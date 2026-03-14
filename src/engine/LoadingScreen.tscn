@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d386dbkjbq2rh"]
+[gd_scene format=3 uid="uid://d386dbkjbq2rh"]
 
 [ext_resource type="Script" uid="uid://bg5x6f3rbsqy" path="res://src/engine/LoadingScreen.cs" id="1"]
 [ext_resource type="PackedScene" uid="uid://cgdp2u78cxxe7" path="res://src/gui_common/CrossFadableTextureRect.tscn" id="2"]
@@ -19,7 +19,7 @@ colors = PackedColorArray(0.0117647, 0.027451, 0.0392157, 1, 0, 0, 0.00392157, 0
 [sub_resource type="GradientTexture2D" id="3"]
 gradient = SubResource("2")
 
-[node name="LoadingScreen" type="Control" node_paths=PackedStringArray("artworkRect", "artDescriptionLabel", "loadingMessageLabel", "loadingDescriptionLabel", "tipLabel", "spinner", "randomizeTimer")]
+[node name="LoadingScreen" type="Control" unique_id=1849056004 node_paths=PackedStringArray("artworkRect", "artDescriptionLabel", "loadingMessageLabel", "loadingDescriptionLabel", "tipLabel", "spinner", "randomizeTimer")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -39,20 +39,20 @@ tipLabel = NodePath("MarginContainer/HBoxContainer/TipLabel")
 spinner = NodePath("MarginContainer/HBoxContainer/Spinner/Control/TextureRect")
 randomizeTimer = NodePath("Timer")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1584445252]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color(0, 0, 0, 1)
 
-[node name="CoolArt" parent="." instance=ExtResource("2")]
+[node name="CoolArt" parent="." unique_id=745745193 instance=ExtResource("2")]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = 0.0
 offset_bottom = 0.0
 
-[node name="FadeGradient" type="TextureRect" parent="."]
+[node name="FadeGradient" type="TextureRect" parent="." unique_id=48555890]
 material = SubResource("1")
 layout_mode = 0
 anchor_right = 1.0
@@ -60,7 +60,7 @@ anchor_bottom = 1.0
 texture = SubResource("3")
 expand_mode = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1533389810]
 layout_mode = 0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -70,14 +70,14 @@ offset_bottom = -81.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ArtDescription" type="Label" parent="CenterContainer"]
+[node name="ArtDescription" type="Label" parent="CenterContainer" unique_id=2075449822]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "Shown image description goes here"
 horizontal_alignment = 1
 max_lines_visible = 4
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=64213365]
 layout_mode = 0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -89,12 +89,12 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1018955020]
 layout_mode = 2
 theme_override_constants/separation = 15
 alignment = 2
 
-[node name="TipLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer"]
+[node name="TipLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer" unique_id=885410026]
 editor_description = "PLACEHOLDER"
 custom_minimum_size = Vector2(650, 0)
 layout_mode = 2
@@ -106,30 +106,30 @@ text = "TIP: not set"
 fit_content = true
 script = ExtResource("9")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=2137644255]
 layout_mode = 2
 
-[node name="LoadingMessage" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="LoadingMessage" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1639449712]
 layout_mode = 2
 text = "LOADING"
 label_settings = ExtResource("6_rw556")
 
-[node name="LoadingDescription" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="LoadingDescription" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=154904381]
 layout_mode = 2
 label_settings = ExtResource("7_dhkod")
 
-[node name="Spinner" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+[node name="Spinner" type="MarginContainer" parent="MarginContainer/HBoxContainer" unique_id=738606992]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/Spinner"]
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/Spinner" unique_id=1509440557]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/Spinner/Control"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/Spinner/Control" unique_id=1639523462]
 custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
+layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 pivot_offset = Vector2(32, 32)
@@ -137,7 +137,7 @@ texture = ExtResource("3")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=924005712]
 wait_time = 10.0
 
 [connection signal="hidden" from="." to="." method="OnBecomeHidden"]

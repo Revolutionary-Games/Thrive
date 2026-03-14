@@ -57,8 +57,7 @@ public partial class MicheDetailsPanel : MarginContainer
         previewMiche = null;
         CurrentPatch = null;
 
-        if (micheDetailsLabel != null)
-            micheDetailsLabel.ExtendedBbcode = null;
+        micheDetailsLabel?.ExtendedBbcode = null;
     }
 
     /// <summary>

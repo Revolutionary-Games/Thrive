@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bjxkgjgaoqvsh"]
+[gd_scene format=3 uid="uid://bjxkgjgaoqvsh"]
 
 [ext_resource type="PackedScene" uid="uid://q16rprhnmgsk" path="res://assets/models/menu_backgrounds/UnderwaterChimney2.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://b1nmj2ijqsdwp" path="res://assets/models/menu_backgrounds/UnderwaterSoil.tscn" id="4"]
@@ -117,7 +117,6 @@ glow_levels/7 = 1.0
 glow_intensity = 0.6
 glow_strength = 0.76
 glow_bloom = 0.45
-glow_blend_mode = 1
 glow_hdr_threshold = 0.5
 glow_hdr_scale = 1.47
 glow_hdr_luminance_cap = 26.63
@@ -206,29 +205,27 @@ metallic_specular = 0.18
 normal_enabled = true
 normal_scale = 1.77
 
-[node name="MainMenuScene3" type="Node3D"]
+[node name="MainMenuScene3" type="Node3D" unique_id=226573388]
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.086738445, -0.071609505, 0.9936541, 0, 0.997413, 0.07188043, -0.996231, 0.0062347963, -0.08651408, 9.478, 8.269, -0.06)
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1351409803]
+transform = Transform3D(-0.086738445, -0.071609505, 0.99365413, 0, 0.997413, 0.07188043, -0.996231, 0.0062347963, -0.08651408, 9.478, 8.269, -0.06)
 fov = 79.3
 far = 8192.0
 
-[node name="CameraAnimation" type="AnimationPlayer" parent="."]
+[node name="CameraAnimation" type="AnimationPlayer" parent="." unique_id=1868227560]
 root_node = NodePath("../Camera3D")
-libraries = {
-&"": SubResource("AnimationLibrary_f2p6t")
-}
-autoplay = "CameraAnim"
+libraries/ = SubResource("AnimationLibrary_f2p6t")
+autoplay = &"CameraAnim"
 speed_scale = 0.5
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1112466480]
 environment = SubResource("2")
 camera_attributes = SubResource("CameraAttributesPractical_1hl6o")
 
-[node name="UnderwaterChimney1" parent="." instance=ExtResource("1")]
+[node name="UnderwaterChimney1" parent="." unique_id=1366291487 instance=ExtResource("1")]
 transform = Transform3D(0.328115, 0.414308, -0.359497, 0, 0.808115, 0.32371, 0.377281, -0.360317, 0.312649, -9.549, 10.604, 25.252)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="UnderwaterChimney1"]
+[node name="OmniLight3D" type="OmniLight3D" parent="UnderwaterChimney1" unique_id=894332697]
 transform = Transform3D(1, -1.19209e-07, 3.57628e-07, 1.19209e-07, 1, -5.82337e-08, -3.57628e-07, 5.82338e-08, 1, 0.161102, 1.31105, 0.0259399)
 light_color = Color(1, 0.286275, 0.0431373, 1)
 light_energy = 10.0
@@ -238,10 +235,10 @@ shadow_enabled = true
 shadow_bias = 0.557
 omni_attenuation = 2.2974
 
-[node name="UnderwaterChimney2" parent="." instance=ExtResource("1")]
+[node name="UnderwaterChimney2" parent="." unique_id=207991762 instance=ExtResource("1")]
 transform = Transform3D(0.959115, -0.0637075, 0.142029, 0.159017, 0.773711, 0.613221, -0.777037, -0.830002, 0.787659, -11.2024, 6.0189, 22.1264)
 
-[node name="VentParticles1" parent="." instance=ExtResource("4_hjk10")]
+[node name="VentParticles1" parent="." unique_id=858404249 instance=ExtResource("4_hjk10")]
 transform = Transform3D(4.872, 0, 0, 0, 1.8, 0, 0, 0, 5.616, -8.972, 10.75, 24.703)
 amount = 45
 interpolate = true
@@ -249,10 +246,10 @@ fract_delta = true
 visibility_aabb = AABB(-3.14709, -4, -6.35581, 8, 8, 7.76436)
 draw_pass_1 = SubResource("QuadMesh_2tyhq")
 
-[node name="UnderwaterChimney3" parent="." instance=ExtResource("1")]
+[node name="UnderwaterChimney3" parent="." unique_id=310097276 instance=ExtResource("1")]
 transform = Transform3D(-0.533049, 0, -0.182602, 0, 1, 0, 0.133665, 0, -0.728206, -7.346, 5.217, 15.494)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="UnderwaterChimney3"]
+[node name="OmniLight3D" type="OmniLight3D" parent="UnderwaterChimney3" unique_id=863516110]
 transform = Transform3D(1, 0, -1.96536e-07, 0, 1, 0, 1.96536e-07, 0, 1, 0, 2.05, 0)
 light_color = Color(1, 0.219608, 0.0431373, 1)
 light_energy = 20.0
@@ -263,15 +260,15 @@ shadow_enabled = true
 shadow_bias = 2.123
 omni_attenuation = 2.2974
 
-[node name="VentParticles2" parent="UnderwaterChimney3" instance=ExtResource("4_hjk10")]
+[node name="VentParticles2" parent="UnderwaterChimney3" unique_id=1020629087 instance=ExtResource("4_hjk10")]
 transform = Transform3D(16, 0, -3.8147e-07, 0, 2.3, 0, 3.8147e-07, 0, 16, 0, 1.6, 0)
 interpolate = true
 fract_delta = true
 
-[node name="UnderwaterChimney4" parent="." instance=ExtResource("1")]
+[node name="UnderwaterChimney4" parent="." unique_id=534357324 instance=ExtResource("1")]
 transform = Transform3D(-0.41343, 0.183527, -0.133774, 0.134676, 0.598819, 6.59842e-08, 0.10367, -0.0460202, -0.533483, -28.6633, 6.39463, 18.5842)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="UnderwaterChimney4"]
+[node name="OmniLight3D" type="OmniLight3D" parent="UnderwaterChimney4" unique_id=2129626852]
 transform = Transform3D(1, -4.99561e-09, 8.18126e-25, 4.99561e-09, 1, 5.82335e-23, -8.18127e-25, -5.82335e-23, 1, -0.133507, 1.6342, -1.90735e-06)
 light_color = Color(1, 0.380392, 0.0431373, 1)
 light_energy = 20.0
@@ -281,16 +278,16 @@ shadow_enabled = true
 shadow_bias = 2.123
 omni_attenuation = 2.2974
 
-[node name="VentParticles3" parent="UnderwaterChimney4" instance=ExtResource("4_hjk10")]
+[node name="VentParticles3" parent="UnderwaterChimney4" unique_id=597349040 instance=ExtResource("4_hjk10")]
 transform = Transform3D(14.6335, 0.659123, 1.79483e-06, -3.29562, 2.9267, -2.88208e-06, -2.38419e-06, 4.83463e-07, 15, -0.691605, 0.768367, -1.90735e-06)
 amount = 25
 interpolate = true
 fract_delta = true
 
-[node name="UnderwaterChimney5" parent="." instance=ExtResource("1")]
+[node name="UnderwaterChimney5" parent="." unique_id=1533386536 instance=ExtResource("1")]
 transform = Transform3D(-0.631706, 0.365301, -0.188013, 0.20578, 1.19192, 7.87585e-08, 0.158404, -0.091601, -0.749787, -31.3255, -0.424461, 4.90141)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="UnderwaterChimney5"]
+[node name="OmniLight3D" type="OmniLight3D" parent="UnderwaterChimney5" unique_id=1613102844]
 transform = Transform3D(1, -5.02914e-09, 5.36442e-08, 5.02914e-09, 1, -1.63615e-08, -5.36442e-08, 1.63615e-08, 1, 0.103, 1.4, 0)
 light_color = Color(1, 0.380392, 0.0431373, 1)
 light_energy = 15.0
@@ -302,19 +299,19 @@ shadow_bias = 0.728
 omni_range = 57.618
 omni_attenuation = 3.03144
 
-[node name="VentParticles4" parent="UnderwaterChimney5" instance=ExtResource("4_hjk10")]
+[node name="VentParticles4" parent="UnderwaterChimney5" unique_id=1248400838 instance=ExtResource("4_hjk10")]
 transform = Transform3D(14.7806, 0.511238, -9.01509e-07, -2.55619, 2.95612, -3.8137e-06, 2.38419e-07, 7.8231e-07, 15, -0.653919, 0.551311, 0.408634)
 amount = 30
 interpolate = true
 fract_delta = true
 
-[node name="UnderwaterChimney6" parent="." instance=ExtResource("1")]
+[node name="UnderwaterChimney6" parent="." unique_id=191459520 instance=ExtResource("1")]
 transform = Transform3D(0.973435, 0.223152, -0.0512572, -0.224611, 0.974137, -0.024659, 0.0444288, 0.0355169, 0.998381, -11.463, 4.481, -14.427)
 
-[node name="UnderwaterChimney7" parent="UnderwaterChimney6" instance=ExtResource("1")]
+[node name="UnderwaterChimney7" parent="UnderwaterChimney6" unique_id=1283003727 instance=ExtResource("1")]
 transform = Transform3D(0.996833, -0.842723, -0.0964952, 0.793632, 0.855041, -0.119675, 0.149684, 0.0422996, 1.25722, -1.12834, -4.78236, 4.4352)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="UnderwaterChimney6"]
+[node name="OmniLight3D" type="OmniLight3D" parent="UnderwaterChimney6" unique_id=1269737829]
 transform = Transform3D(1, -6.98492e-10, 1.11759e-08, -4.69154e-08, 1, 0, -3.72529e-09, -3.72529e-09, 1, 0.114511, 1.4383, 0.0125713)
 light_color = Color(1, 0.258824, 0.0431373, 1)
 light_energy = 20.0
@@ -326,109 +323,107 @@ shadow_bias = 2.123
 omni_range = 9.591
 omni_attenuation = 2.2974
 
-[node name="VentParticles5" parent="." instance=ExtResource("4_hjk10")]
+[node name="VentParticles5" parent="." unique_id=828359679 instance=ExtResource("4_hjk10")]
 transform = Transform3D(-16.4895, -2.63366e-06, -4.13486, -1.86862e-05, 2.3, -5.51403e-06, 4.13486, -1.08702e-07, -16.4895, -11.0402, 5.77586, -14.0467)
 amount = 45
 interpolate = true
 fract_delta = true
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=223814638]
 transform = Transform3D(-0.0543926, -0.99852, -2.37757e-09, -4.37114e-08, 1.91069e-15, 1, -0.99852, 0.0543926, -4.36467e-08, 0, 17.284, 0)
 light_color = Color(0.647059, 0.72549, 0.929412, 1)
 light_energy = 0.595
 shadow_bias = 0.283
 directional_shadow_blend_splits = true
 
-[node name="UnderwaterSoil1" parent="." instance=ExtResource("4")]
+[node name="UnderwaterSoil1" parent="." unique_id=884962001 instance=ExtResource("4")]
 transform = Transform3D(-0.88388, 0, 0.467714, 0, 1, 0, -0.467714, 0, -0.88388, -18.5063, 5.46749, 5.37514)
 
-[node name="UnderwaterSoil2" parent="." instance=ExtResource("4")]
+[node name="UnderwaterSoil2" parent="." unique_id=1832101614 instance=ExtResource("4")]
 transform = Transform3D(2.34667, 0.4843, 3.20291, 0.0737935, 3.94602, -0.65073, -3.23847, 0.44085, 2.30607, -95.3852, 8.35105, 43.0371)
 
-[node name="iron1" parent="." instance=ExtResource("7")]
+[node name="iron1" parent="." unique_id=1619056021 instance=ExtResource("7")]
 transform = Transform3D(1.23, 0, 0, 0, 1.19933, 0.732346, 0, -0.386247, 2.27398, 0.964568, 2.42129, -3.2694)
 material_override = ExtResource("9_m5dda")
 
-[node name="iron9" parent="." instance=ExtResource("7")]
+[node name="iron9" parent="." unique_id=439753312 instance=ExtResource("7")]
 transform = Transform3D(0.389554, -0.446776, 2.10173, 0.308177, -1.08773, -1.04673, 1.12524, 0.452576, -0.440936, -10.3511, 2.52491, 8.31997)
 material_override = ExtResource("9_m5dda")
 
-[node name="iron11" parent="." instance=ExtResource("7")]
+[node name="iron11" parent="." unique_id=397039834 instance=ExtResource("7")]
 transform = Transform3D(0.660357, -0.741751, 3.44029, -0.646167, 1.2966, 2.28875, -1.59122, -0.834353, 0.4983, 5.44006, 4.12481, 6.31493)
 material_override = ExtResource("9_m5dda")
 
-[node name="iron12" parent="." instance=ExtResource("7")]
+[node name="iron12" parent="." unique_id=1584392452 instance=ExtResource("7")]
 transform = Transform3D(-1.65187, 1.47509, 1.40531, 0.254082, -1.50538, 3.04051, 1.32048, 2.13493, 1.17295, -1.2279, 3.85927, 5.78599)
 material_override = ExtResource("9_m5dda")
 
-[node name="iron13" parent="." instance=ExtResource("7")]
+[node name="iron13" parent="." unique_id=2104381289 instance=ExtResource("7")]
 transform = Transform3D(1.325, 1.121, 1.23098, -1.52408, 1.10117, -0.398007, -0.677091, -0.284938, 3.3048, -0.0966698, 1.60704, 3.7366)
 material_override = ExtResource("9_m5dda")
 
-[node name="IronRockBG02" parent="." instance=ExtResource("10_aaijv")]
+[node name="IronRockBG02" parent="." unique_id=699089692 instance=ExtResource("10_aaijv")]
 transform = Transform3D(2.096, 0, 0, 0, -3.14469, -0.452811, 0, 0.592393, -2.40372, 0.148345, 4.14213, -10.4429)
 material_override = SubResource("StandardMaterial3D_kxbxl")
-skeleton = NodePath("")
 
-[node name="IronRockBG01" parent="." instance=ExtResource("10_aaijv")]
+[node name="IronRockBG01" parent="." unique_id=1603790568 instance=ExtResource("10_aaijv")]
 transform = Transform3D(0.718532, -0.26365, 3.52808, 1.35383, -0.300669, -1.88262, 0.149875, 3.97996, 0.0914914, 4.77394, 2.78974, -4.04514)
 material_override = ExtResource("9_m5dda")
-skeleton = NodePath("")
 
-[node name="iron2" parent="." instance=ExtResource("7")]
+[node name="iron2" parent="." unique_id=1663164412 instance=ExtResource("7")]
 transform = Transform3D(11.7, 0, 0, 0, -4.62379e-07, 17.106, 0, -10.578, -7.47727e-07, -32.9505, 2.13488, -11.6791)
 material_override = ExtResource("9_m5dda")
 skeleton = NodePath("../WorldEnvironment")
 
-[node name="iron7" parent="." instance=ExtResource("7")]
+[node name="iron7" parent="." unique_id=1957037877 instance=ExtResource("7")]
 transform = Transform3D(0.62907, 9.94628, -5.74984, 5.72287, 2.84195, 14.1945, 10.1854, -2.2111, -7.62035, -15.3838, -1.26952, -10.1592)
 material_override = ExtResource("9_m5dda")
 skeleton = NodePath("../WorldEnvironment")
 
-[node name="iron3" parent="." instance=ExtResource("6")]
+[node name="iron3" parent="." unique_id=682194808 instance=ExtResource("6")]
 transform = Transform3D(9.52, 0, 0, 0, -3.20623e-07, 4.505, 0, -7.335, -1.9692e-07, -19.3294, 1.13076, 11.4426)
 material_override = ExtResource("9_m5dda")
 
-[node name="iron8" parent="." instance=ExtResource("6")]
+[node name="iron8" parent="." unique_id=656543013 instance=ExtResource("6")]
 transform = Transform3D(2.64944, -12.2456, 0.0627813, 0.442836, 4.00598e-07, -8.48475, 12.3103, 2.63551, 0.291708, -32.651, 4.17994, 12.6542)
 material_override = ExtResource("9_m5dda")
 
-[node name="iron4" parent="." instance=ExtResource("6")]
+[node name="iron4" parent="." unique_id=452543028 instance=ExtResource("6")]
 transform = Transform3D(2.80283, -0.275585, 0.701911, -0.782459, -0.987168, 2.5143, 1.7345e-07, -1.5844, -1.68864, 5.52975, 6.92871, 9.4619)
 material_override = ExtResource("9_m5dda")
 
-[node name="iron14" parent="." instance=ExtResource("6")]
+[node name="iron14" parent="." unique_id=1915059134 instance=ExtResource("6")]
 transform = Transform3D(0.887217, 1.41569, 1.82399, 0.161168, -1.1868, 2.41098, 2.76676, -0.384836, -0.725343, 2.5865, 7.91768, 11.29)
 material_override = ExtResource("9_m5dda")
 
-[node name="iron15" parent="." instance=ExtResource("6")]
+[node name="iron15" parent="." unique_id=812338695 instance=ExtResource("6")]
 transform = Transform3D(0.432089, 1.07576, -0.577609, 0.436467, 0.322186, 1.62046, 1.67069, -0.362395, -0.273958, -0.0443568, 5.86604, 8.92786)
 material_override = ExtResource("9_m5dda")
 
-[node name="iron16" parent="." instance=ExtResource("6")]
+[node name="iron16" parent="." unique_id=922890440 instance=ExtResource("6")]
 transform = Transform3D(-0.306641, 1.73034, 0.663061, -0.958912, 0.518227, -1.454, -1.76277, -0.582904, 0.675607, -0.871419, 6.60865, 10.1376)
 material_override = ExtResource("9_m5dda")
 
-[node name="iron17" parent="." instance=ExtResource("6")]
+[node name="iron17" parent="." unique_id=826115059 instance=ExtResource("6")]
 transform = Transform3D(-0.393956, 1.73336, -0.621467, 0.185826, -0.658005, -1.61963, -1.98271, -0.40608, -0.0283125, -6.10484, 1.91059, -7.38315)
 material_override = SubResource("StandardMaterial3D_duajj")
 
-[node name="iron18" parent="." instance=ExtResource("6")]
+[node name="iron18" parent="." unique_id=881797282 instance=ExtResource("6")]
 transform = Transform3D(1.61054, 0.725711, -0.527229, -0.654335, 2.00637, -0.396508, 0.268514, 0.536488, 2.19606, -3.05077, 2.3034, -7.6066)
 material_override = SubResource("StandardMaterial3D_8qb0v")
 
-[node name="iron19" parent="." instance=ExtResource("6")]
+[node name="iron19" parent="." unique_id=10241383 instance=ExtResource("6")]
 transform = Transform3D(1.51868, -1.6816, 0.108056, -0.226547, -0.472823, -2.58387, 1.32785, 1.8426, -0.564422, -4.57415, 1.70164, -3.62968)
 material_override = SubResource("StandardMaterial3D_jyww4")
 
-[node name="iron20" parent="." instance=ExtResource("6")]
+[node name="iron20" parent="." unique_id=216215844 instance=ExtResource("6")]
 transform = Transform3D(1.12966, -1.1809, 0.0628663, -0.168515, -0.332037, -1.50327, 0.987714, 1.29395, -0.328375, -10.7212, 0.0739745, 3.12302)
 material_override = ExtResource("9_m5dda")
 
-[node name="iron21" parent="." instance=ExtResource("6")]
+[node name="iron21" parent="." unique_id=1122741858 instance=ExtResource("6")]
 transform = Transform3D(-0.438819, 2.02361, 0.952183, 1.48938, -0.382688, 1.32079, 1.26063, 1.15654, -1.22901, -13.0935, 0.454385, 5.19586)
 material_override = SubResource("StandardMaterial3D_a10jh")
 
-[node name="iron22" parent="." instance=ExtResource("6")]
+[node name="iron22" parent="." unique_id=1260416774 instance=ExtResource("6")]
 transform = Transform3D(-0.0125223, 2.60165, 0.0173912, 0.707826, 0.0426514, -1.13572, -0.775451, -0.00308044, -1.03696, -13.7744, -0.214223, 2.02327)
 material_override = SubResource("StandardMaterial3D_cncpf")

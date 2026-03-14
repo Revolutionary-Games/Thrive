@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://socrfv15x3ql"]
+[gd_scene format=3 uid="uid://socrfv15x3ql"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_h1l2k"]
 [ext_resource type="Script" uid="uid://curmuufaswxwy" path="res://src/thriveopedia/pages/wiki/IconPageLinkButton.cs" id="2_ahh3x"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="3_o5f0j"]
 
-[node name="PageLinkButton" type="VBoxContainer" node_paths=PackedStringArray("button", "label")]
+[node name="PageLinkButton" type="VBoxContainer" unique_id=357979656 node_paths=PackedStringArray("button", "label")]
 custom_minimum_size = Vector2(0, 195)
 offset_right = 150.0
 offset_bottom = 195.0
@@ -13,13 +13,13 @@ script = ExtResource("2_ahh3x")
 button = NodePath("Button")
 label = NodePath("Label")
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="." unique_id=1297669191]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 icon_alignment = 1
 expand_icon = true
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=1017794362]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 label_settings = ExtResource("3_o5f0j")

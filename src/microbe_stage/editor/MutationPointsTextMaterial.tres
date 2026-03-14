@@ -1,6 +1,6 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dodp28iio21ld"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dodp28iio21ld"]
 
-[ext_resource type="Shader" path="res://shaders/SelectDistinctFromBackgroundColor.gdshader" id="1"]
+[ext_resource type="Shader" uid="uid://bhlssj4wkbid0" path="res://shaders/SelectDistinctFromBackgroundColor.gdshader" id="1"]
 
 [resource]
 shader = ExtResource("1")

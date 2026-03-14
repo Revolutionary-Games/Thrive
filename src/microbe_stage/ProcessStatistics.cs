@@ -11,9 +11,8 @@ using Nito.Collections;
 public sealed class ProcessStatistics
 {
     /// <summary>
-    ///   Temporary memory to use for <see cref="RemoveUnused"/> to avoid small constant allocations. This is no longer
-    ///   a ThreadLocal in <see cref="Systems.ProcessSystem"/> as that was causing the game process to lock up in
-    ///   Godot 4 (for unknown reasons). See: https://github.com/Revolutionary-Games/Thrive/issues/4989 for context.
+    ///   Temporary memory to use for <see cref="RemoveUnused"/> to avoid small constant allocations. This used to be
+    ///   thread local, but as we lock anyway, it doesn't really matter.
     /// </summary>
     private List<TweakedProcess>? temporaryRemovedItems;
 
@@ -78,6 +77,32 @@ public sealed class ProcessStatistics
             Processes[forProcess] = entry;
             entry.Used = true;
             return entry;
+        }
+    }
+
+    public void SumProcessStatistics(ProcessStatistics other)
+    {
+        foreach (var pair in other.Processes)
+        {
+            var process = GetAndMarkUsed(pair.Key);
+
+            if (pair.Value.LimitingCompounds != null)
+            {
+                foreach (var limitingFactor in pair.Value.LimitingCompounds)
+                {
+                    process.AddLimitingFactor(limitingFactor);
+                }
+            }
+
+            foreach (var input in pair.Value.Inputs)
+            {
+                process.AddInputAmount(input.Key, input.Value);
+            }
+
+            foreach (var output in pair.Value.Outputs)
+            {
+                process.AddOutputAmount(output.Key, output.Value);
+            }
         }
     }
 }

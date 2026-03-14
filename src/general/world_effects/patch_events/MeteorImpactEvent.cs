@@ -99,7 +99,7 @@ public class MeteorImpactEvent : IWorldEffect
 
     private void ChooseAffectedPatches()
     {
-        var impactSize = random.Next(0, 3);
+        var impactSize = random.NextFloat();
 
         var surfacePatches = new List<Patch>();
         foreach (var patch in targetWorld.Map.Patches.Values)
@@ -113,13 +113,10 @@ public class MeteorImpactEvent : IWorldEffect
         var adjacentRegion = adjacentList.Random(random);
 
         // 1 patch
-        if (impactSize >= 0)
-        {
-            affectedPatchesIds.Add(selectedPatch.ID);
-        }
+        affectedPatchesIds.Add(selectedPatch.ID);
 
         // all surface patches in region
-        if (impactSize >= 1)
+        if (impactSize >= 0.33f)
         {
             foreach (var adjacent in selectedPatch.Adjacent)
             {
@@ -130,14 +127,29 @@ public class MeteorImpactEvent : IWorldEffect
             }
         }
 
-        // all surface patches in 2 neighbouring regions
-        if (impactSize >= 2)
+        // all surface patches in a neighbouring region
+        if (impactSize >= 0.67f)
         {
             foreach (var patch in adjacentRegion.Patches)
             {
                 if (patch.IsSurfacePatch())
                 {
                     affectedPatchesIds.Add(patch.ID);
+                }
+            }
+        }
+
+        // all surface patches in all adjacent regions
+        if (impactSize > 0.9f)
+        {
+            foreach (var adjacent in adjacentList)
+            {
+                foreach (var patch in adjacent.Patches)
+                {
+                    if (patch.IsSurfacePatch())
+                    {
+                        affectedPatchesIds.Add(patch.ID);
+                    }
                 }
             }
         }

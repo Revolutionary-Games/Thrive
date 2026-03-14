@@ -1,10 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://bjx6dmh0m3fim"]
+[gd_scene format=3 uid="uid://bjx6dmh0m3fim"]
 
 [ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="1"]
 
-[node name="StagePrototypeConfirm" instance=ExtResource("1")]
+[node name="StagePrototypeConfirm" unique_id=1652741400 instance=ExtResource("1")]
 DialogText = "CONTINUE_TO_PROTOTYPES"
 WindowTitle = "CONTINUE_TO_PROTOTYPES_PROMPT"
 
-[node name="ConfirmButton" parent="VBoxContainer/HBoxContainer" index="3"]
+[node name="ConfirmButton" parent="VBoxContainer/HBoxContainer" parent_id_path=PackedInt32Array(172893812) index="3" unique_id=350050816]
 focus_mode = 0

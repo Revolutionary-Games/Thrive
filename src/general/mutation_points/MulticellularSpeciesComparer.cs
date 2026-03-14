@@ -14,7 +14,8 @@ public class MulticellularSpeciesComparer
     private readonly List<IReadOnlyHexWithData<IReadOnlyCellTemplate>> oldCells = new();
 
     public static double CompareCellTypes(List<IReadOnlyCellTypeDefinition> originalCellTypes,
-        List<IReadOnlyCellTypeDefinition> newCellTypes, MicrobeSpeciesComparer typeComparer)
+        List<IReadOnlyCellTypeDefinition> newCellTypes, MicrobeSpeciesComparer typeComparer, double maxSingleActionCost,
+        double costMultiplier = 1)
     {
         double cost = 0;
 
@@ -48,6 +49,36 @@ public class MulticellularSpeciesComparer
                 }
             }
 
+            // If no match to the old name, then try to compare against the cell type it was split from to get a
+            // reasonable MP usage estimate of the changes roughly. (This doesn't need to be fully accurate as
+            // after a duplication action happens, the duplicated cell type then exists in the original list
+            // {as it is added immediately} and the small inaccurate cost goes away.)
+            if (!string.IsNullOrEmpty(newCellType.SplitFromTypeName) && original == null)
+            {
+                foreach (var originalType in originalCellTypes)
+                {
+                    if (originalType.CellTypeName == newCellType.SplitFromTypeName)
+                    {
+                        original = originalType;
+                        break;
+                    }
+                }
+
+                // Then also match against any new cell types (except self) for where this split from to not cost
+                // (much) MP on the initial split operation and allow it to proceed
+                if (original == null)
+                {
+                    foreach (var newType in newCellTypes)
+                    {
+                        if (newType.CellTypeName == newCellType.SplitFromTypeName && newType != newCellType)
+                        {
+                            original = newType;
+                            break;
+                        }
+                    }
+                }
+            }
+
             // If still null, grab the first old type as the player is likely to duplicate from the stem type
             // If we need more control cell types would need to store the name of the type they are duplicated from
             original ??= originalCellTypes.FirstOrDefault();
@@ -59,7 +90,7 @@ public class MulticellularSpeciesComparer
                 original = newCellTypes.FirstOrDefault(c => c != temp) ?? newCellType;
             }
 
-            cost += typeComparer.CompareCellType(original, newCellType, true);
+            cost += typeComparer.CompareCellType(original, newCellType, true, maxSingleActionCost, costMultiplier);
         }
 
         // We don't need to process removed cell types as they are free to remove
@@ -67,17 +98,19 @@ public class MulticellularSpeciesComparer
         return cost;
     }
 
-    public double Compare(IReadOnlyMulticellularSpecies speciesA, IReadOnlyMulticellularSpecies speciesB)
+    public double Compare(IReadOnlyMulticellularSpecies speciesA, IReadOnlyMulticellularSpecies speciesB,
+        double maxSingleActionCost, double costMultiplier = 1)
     {
         // Base cost
-        double cost = SpeciesComparer.GetRequiredMutationPoints(speciesA, speciesB);
+        double cost =
+            SpeciesComparer.GetRequiredMutationPoints(speciesA, speciesB, maxSingleActionCost, costMultiplier);
 
         originalCellTypes.AddRange(speciesA.CellTypes);
         newCellTypes.AddRange(speciesB.CellTypes);
 
         // Cost from each cell type change
-        cost += CompareCellTypes(originalCellTypes, newCellTypes, cellTypeComparer) *
-            Constants.MULTICELLULAR_EDITOR_COST_FACTOR;
+        cost += CompareCellTypes(originalCellTypes, newCellTypes, cellTypeComparer, maxSingleActionCost,
+            costMultiplier * Constants.MULTICELLULAR_EDITOR_COST_FACTOR);
         originalCellTypes.Clear();
         newCellTypes.Clear();
 
@@ -121,7 +154,7 @@ public class MulticellularSpeciesComparer
                         match = true;
 
                         // A move
-                        cost += Constants.ORGANELLE_MOVE_COST;
+                        cost += Math.Min(Constants.ORGANELLE_MOVE_COST * costMultiplier, maxSingleActionCost);
                         break;
                     }
                 }
@@ -130,7 +163,7 @@ public class MulticellularSpeciesComparer
             if (!match)
             {
                 // Added a new cell
-                cost += newCell.Data!.CellType.MPCost;
+                cost += Math.Min(newCell.Data!.CellType.MPCost * costMultiplier, maxSingleActionCost);
             }
         }
 
@@ -140,7 +173,7 @@ public class MulticellularSpeciesComparer
             cost += Constants.ORGANELLE_REMOVE_COST;
         }*/
 
-        cost += oldCells.Count * Constants.METABALL_REMOVE_COST;
+        cost += oldCells.Count * Math.Min(Constants.CELL_REMOVE_COST * costMultiplier, maxSingleActionCost);
 
         oldCells.Clear();
         newCells.Clear();

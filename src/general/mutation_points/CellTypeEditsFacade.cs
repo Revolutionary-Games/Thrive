@@ -29,7 +29,6 @@ public class CellTypeEditsFacade : EditsFacadeBase, IReadOnlyCellTypeDefinition,
     private bool overrideMembraneRigidity;
 
     private bool overrideColour;
-    private Color newColour;
 
     public CellTypeEditsFacade(IReadOnlyCellTypeDefinition originalCell,
         OrganelleDefinition? nucleusDefinition = null)
@@ -60,11 +59,11 @@ public class CellTypeEditsFacade : EditsFacadeBase, IReadOnlyCellTypeDefinition,
 
     public Color Colour
     {
-        get => overrideColour ? newColour : originalCell.Colour;
+        get => overrideColour ? field : originalCell.Colour;
         set
         {
             overrideColour = true;
-            newColour = value;
+            field = value;
         }
     }
 
@@ -88,6 +87,15 @@ public class CellTypeEditsFacade : EditsFacadeBase, IReadOnlyCellTypeDefinition,
 
     public int MPCost => originalCell.MPCost;
     public string CellTypeName => originalCell.CellTypeName;
+    public string ReadableName => CellTypeName;
+
+    /// <summary>
+    ///   For now, there's no action that changes what a type was split from, so we just forward this
+    /// </summary>
+    public string? SplitFromTypeName => originalCell.SplitFromTypeName;
+
+    public float SpecializationBonus =>
+        throw new NotSupportedException("This class doesn't dynamically recalculate the specialization bonus");
 
     // TODO: check that this is right (there might sometimes be too many items in removedOrganelles)
     // Though this seems to not be relied on currently

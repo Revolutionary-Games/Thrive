@@ -1,11 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bpkascihholu2"]
+[gd_scene format=3 uid="uid://bpkascihholu2"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="3_tov8j"]
 [ext_resource type="Script" uid="uid://m23iuynrxl6c" path="res://src/engine/input/ControllerAxisVisualizer.cs" id="4"]
 [ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/fonts/Body-Regular-Tiny.tres" id="4_146wt"]
 
-[node name="ControllerAxisVisualizer" type="MarginContainer" node_paths=PackedStringArray("verticalDeadzoneDisplayer", "verticalRawDisplayer", "verticalDeadzoneValue", "verticalRawValue", "verticalLabel", "horizontalDeadzoneValue", "horizontalRawValue", "horizontalLabel", "drawerNode")]
+[node name="ControllerAxisVisualizer" type="MarginContainer" unique_id=6090108 node_paths=PackedStringArray("drawerNode", "horizontalLabel", "horizontalRawValue", "horizontalDeadzoneValue", "verticalLabel", "verticalRawValue", "verticalDeadzoneValue", "verticalRawDisplayer", "verticalDeadzoneDisplayer")]
 offset_right = 273.0
 offset_bottom = 210.0
 focus_mode = 2
@@ -24,90 +24,90 @@ verticalDeadzoneValue = NodePath("VBoxContainer/TextContainer/DeadzoneDisplayer2
 verticalRawDisplayer = NodePath("VBoxContainer/TextContainer/RawDisplayer2")
 verticalDeadzoneDisplayer = NodePath("VBoxContainer/TextContainer/DeadzoneDisplayer2")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=38716587]
 layout_mode = 2
 
-[node name="DrawArea" type="Control" parent="VBoxContainer"]
+[node name="DrawArea" type="Control" parent="VBoxContainer" unique_id=2004428432]
 custom_minimum_size = Vector2(92, 92)
 layout_mode = 2
 
-[node name="TextContainer" type="VBoxContainer" parent="VBoxContainer"]
+[node name="TextContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=769524900]
 layout_mode = 2
 
-[node name="Horizontal" type="Label" parent="VBoxContainer/TextContainer"]
+[node name="Horizontal" type="Label" parent="VBoxContainer/TextContainer" unique_id=864363966]
 layout_mode = 2
 text = "HORIZONTAL_WITH_AXIS_NAME_COLON"
 label_settings = ExtResource("3_tov8j")
 
-[node name="RawDisplayer" type="HBoxContainer" parent="VBoxContainer/TextContainer"]
+[node name="RawDisplayer" type="HBoxContainer" parent="VBoxContainer/TextContainer" unique_id=1887866215]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/TextContainer/RawDisplayer"]
+[node name="Label" type="Label" parent="VBoxContainer/TextContainer/RawDisplayer" unique_id=1702993147]
 layout_mode = 2
 text = "RAW_VALUE_COLON"
 label_settings = ExtResource("3_tov8j")
 
-[node name="Spacer" type="Control" parent="VBoxContainer/TextContainer/RawDisplayer"]
+[node name="Spacer" type="Control" parent="VBoxContainer/TextContainer/RawDisplayer" unique_id=615910948]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="RawValue" type="Label" parent="VBoxContainer/TextContainer/RawDisplayer"]
+[node name="RawValue" type="Label" parent="VBoxContainer/TextContainer/RawDisplayer" unique_id=604531733]
 layout_mode = 2
 text = "0.0124"
 label_settings = ExtResource("4_146wt")
 
-[node name="DeadzoneDisplayer" type="HBoxContainer" parent="VBoxContainer/TextContainer"]
+[node name="DeadzoneDisplayer" type="HBoxContainer" parent="VBoxContainer/TextContainer" unique_id=567410538]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/TextContainer/DeadzoneDisplayer"]
+[node name="Label" type="Label" parent="VBoxContainer/TextContainer/DeadzoneDisplayer" unique_id=1804489616]
 layout_mode = 2
 text = "CONTROLLER_DEADZONE_COLON"
 label_settings = ExtResource("3_tov8j")
 
-[node name="Spacer" type="Control" parent="VBoxContainer/TextContainer/DeadzoneDisplayer"]
+[node name="Spacer" type="Control" parent="VBoxContainer/TextContainer/DeadzoneDisplayer" unique_id=1724956813]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="DeadzoneValue" type="Label" parent="VBoxContainer/TextContainer/DeadzoneDisplayer"]
+[node name="DeadzoneValue" type="Label" parent="VBoxContainer/TextContainer/DeadzoneDisplayer" unique_id=1093928739]
 layout_mode = 2
 text = "0.2"
 label_settings = ExtResource("4_146wt")
 
-[node name="Vertical" type="Label" parent="VBoxContainer/TextContainer"]
+[node name="Vertical" type="Label" parent="VBoxContainer/TextContainer" unique_id=1323447963]
 layout_mode = 2
 text = "VERTICAL_WITH_AXIS_NAME_COLON"
 label_settings = ExtResource("3_tov8j")
 
-[node name="RawDisplayer2" type="HBoxContainer" parent="VBoxContainer/TextContainer"]
+[node name="RawDisplayer2" type="HBoxContainer" parent="VBoxContainer/TextContainer" unique_id=940570552]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/TextContainer/RawDisplayer2"]
+[node name="Label" type="Label" parent="VBoxContainer/TextContainer/RawDisplayer2" unique_id=921821647]
 layout_mode = 2
 text = "RAW_VALUE_COLON"
 label_settings = ExtResource("3_tov8j")
 
-[node name="Spacer" type="Control" parent="VBoxContainer/TextContainer/RawDisplayer2"]
+[node name="Spacer" type="Control" parent="VBoxContainer/TextContainer/RawDisplayer2" unique_id=1410501390]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="RawValue" type="Label" parent="VBoxContainer/TextContainer/RawDisplayer2"]
+[node name="RawValue" type="Label" parent="VBoxContainer/TextContainer/RawDisplayer2" unique_id=2100919592]
 layout_mode = 2
 text = "0.00453"
 label_settings = ExtResource("4_146wt")
 
-[node name="DeadzoneDisplayer2" type="HBoxContainer" parent="VBoxContainer/TextContainer"]
+[node name="DeadzoneDisplayer2" type="HBoxContainer" parent="VBoxContainer/TextContainer" unique_id=1698638095]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/TextContainer/DeadzoneDisplayer2"]
+[node name="Label" type="Label" parent="VBoxContainer/TextContainer/DeadzoneDisplayer2" unique_id=706798227]
 layout_mode = 2
 text = "CONTROLLER_DEADZONE_COLON"
 label_settings = ExtResource("3_tov8j")
 
-[node name="Spacer" type="Control" parent="VBoxContainer/TextContainer/DeadzoneDisplayer2"]
+[node name="Spacer" type="Control" parent="VBoxContainer/TextContainer/DeadzoneDisplayer2" unique_id=52336945]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="DeadzoneValue" type="Label" parent="VBoxContainer/TextContainer/DeadzoneDisplayer2"]
+[node name="DeadzoneValue" type="Label" parent="VBoxContainer/TextContainer/DeadzoneDisplayer2" unique_id=2035553926]
 layout_mode = 2
 text = "0.2"
 label_settings = ExtResource("4_146wt")

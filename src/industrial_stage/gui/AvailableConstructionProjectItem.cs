@@ -73,10 +73,7 @@ public partial class AvailableConstructionProjectItem : HBoxContainer
 
     private void ApplyDisabledState()
     {
-        if (button == null)
-            return;
-
-        button.Disabled = disabled;
+        button?.Disabled = disabled;
     }
 
     private void OnButtonPressed()

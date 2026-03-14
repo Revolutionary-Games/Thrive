@@ -332,8 +332,7 @@ public partial class PatchDetailsPanel : PanelContainer, IArchiveUpdatable
             unknownPatch.Visible = false;
 
             // If no selected patch, the move cannot be valid
-            if (moveToPatchButton != null)
-                moveToPatchButton.Disabled = true;
+            moveToPatchButton?.Disabled = true;
 
             return;
         }
@@ -353,11 +352,8 @@ public partial class PatchDetailsPanel : PanelContainer, IArchiveUpdatable
             UpdatePatchDetails();
         }
 
-        if (moveToPatchButton != null)
-        {
-            // Enable move to patch button if this is a valid move
-            moveToPatchButton.Disabled = !IsPatchMoveValid;
-        }
+        // Enable move to patch button if this is a valid move
+        moveToPatchButton?.Disabled = !IsPatchMoveValid;
     }
 
     /// <summary>
@@ -451,30 +447,21 @@ public partial class PatchDetailsPanel : PanelContainer, IArchiveUpdatable
 
     private void UpdateMoveToPatchButton()
     {
-        if (moveToPatchButton != null)
-        {
-            moveToPatchButton.Visible = MoveToPatchButtonVisible;
-        }
+        moveToPatchButton?.Visible = MoveToPatchButtonVisible;
 
         UpdateBottomHSeparatorVisibility();
     }
 
     private void UpdateMigrationManagerVisibility()
     {
-        if (migrateStartButton != null)
-        {
-            migrateStartButton.Visible = MigrationManagerEnabled;
-        }
+        migrateStartButton?.Visible = MigrationManagerEnabled;
 
         UpdateBottomHSeparatorVisibility();
     }
 
     private void UpdateBottomHSeparatorVisibility()
     {
-        if (moveToPatchHSeparator != null)
-        {
-            moveToPatchHSeparator.Visible = MoveToPatchButtonVisible || MigrationManagerEnabled;
-        }
+        moveToPatchHSeparator?.Visible = MoveToPatchButtonVisible || MigrationManagerEnabled;
     }
 
     private float GetCompoundAmount(Patch patch, Compound compound,

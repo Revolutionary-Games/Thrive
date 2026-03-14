@@ -1,15 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://0m5kuieva8m8"]
+[gd_scene format=3 uid="uid://0m5kuieva8m8"]
 
 [ext_resource type="Script" uid="uid://b1pk748rmfr6s" path="res://src/industrial_stage/gui/AvailableConstructionProjectItem.cs" id="1"]
 
-[node name="AvailableConstructionProjectItem" type="HBoxContainer" node_paths=PackedStringArray("button")]
+[node name="AvailableConstructionProjectItem" type="HBoxContainer" unique_id=307411568 node_paths=PackedStringArray("button")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource("1")
 button = NodePath("Button")
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="." unique_id=811378393]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 size_flags_horizontal = 3

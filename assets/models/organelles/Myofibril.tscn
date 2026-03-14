@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bfednm4bjtfx8"]
+[gd_scene format=3 uid="uid://bfednm4bjtfx8"]
 
 [ext_resource type="ArrayMesh" uid="uid://cmrb4padj8164" path="res://assets/models/organelles/Myofibiril.mesh" id="1"]
 [ext_resource type="Shader" uid="uid://caplkvkclneuh" path="res://shaders/OrganelleOpaque.gdshader" id="1_1xrf0"]
@@ -18,7 +18,7 @@ shader_parameter/growColor = Color(0.73, 0.4015, 0.1825, 1)
 shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/jiggleAmount = 0.0005
 
-[node name="Myofibril" type="MeshInstance3D"]
+[node name="Myofibril" type="MeshInstance3D" unique_id=1690835751]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -1.28775, 0)
 material_override = SubResource("ShaderMaterial_pnrts")
 mesh = ExtResource("1")

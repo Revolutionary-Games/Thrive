@@ -24,6 +24,15 @@ public partial class OptionsMenu : ControlWithInput
     [Export]
     public bool DisableInactiveSliders;
 
+    [Export]
+    public float MaxRenderScale = 1.05f;
+
+    [Export]
+    public float MinRenderScale = 0.80f;
+
+    [Export]
+    public float RenderScaleStep = 0.025f;
+
     private static readonly Lazy<List<string>> LanguagesCache = new(() =>
         TranslationServer.GetLoadedLocales().OrderBy(i => i, StringComparer.InvariantCulture).ToList());
 
@@ -35,6 +44,7 @@ public partial class OptionsMenu : ControlWithInput
     private readonly List<DisplayInfo> displaysCache = new();
 
 #pragma warning disable CA2213
+
     [Export]
     private Button backButton = null!;
 
@@ -126,6 +136,9 @@ public partial class OptionsMenu : ControlWithInput
 
     [Export]
     private OptionButton anisotropicFilterLevel = null!;
+
+    [Export]
+    private Label currentGUIScaleDisplay = null!;
 
     [Export]
     private CheckButton damageEffect = null!;
@@ -560,7 +573,7 @@ public partial class OptionsMenu : ControlWithInput
         // Copy the live game settings so we can check against them for changes.
         savedSettings = Settings.Instance.Clone();
 
-        // Set the mode to the one we opened with, and disable any options that should only be visible in game.
+        // Set the mode to the one we opened with and disable any options that should only be visible in-game.
         SwitchMode(OptionsMode.MainMenu);
 
         // Set the state of the gui controls to match the settings.
@@ -578,7 +591,7 @@ public partial class OptionsMenu : ControlWithInput
     /// </summary>
     public void OpenFromInGame(GameProperties gameProperties)
     {
-        // Shouldn't do anything if options is already open.
+        // Shouldn't do anything if the menu is already open.
         if (Visible)
             return;
 
@@ -686,6 +699,7 @@ public partial class OptionsMenu : ControlWithInput
         UpdateDiskMemoryPortionCacheTime();
         UpdateMemoryOnlyCacheTime();
         ApplyCacheSliderEnabledStates();
+        UpdateGUIScale(settings);
 
         UpdateCurrentCacheSize();
 
@@ -943,12 +957,19 @@ public partial class OptionsMenu : ControlWithInput
             .FormatSafe(Math.Round(videoMemoryInMebibytes, 2));
     }
 
+    private void UpdateGUIScale(Settings settings)
+    {
+        currentGUIScaleDisplay.Text = Localization.Translate("PERCENTAGE_VALUE")
+            .FormatSafe(Math.Round(settings.GUIScale.Value * 100, 1));
+    }
+
     private void OnTranslationsChanged()
     {
         BuildInputRebindControls();
         UpdateDefaultAudioOutputDeviceText();
         DisplayResolution();
         DisplayGpuInfo();
+        UpdateGUIScale(Settings.Instance);
 
         // The options menu associated with the pause menu is not always initialized, as such we don't need to update
         // the display options if not required
@@ -2048,6 +2069,24 @@ public partial class OptionsMenu : ControlWithInput
     {
         Settings.Instance.ChromaticAmount.Value = amount;
 
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnIncreaseGUIScale()
+    {
+        Settings.Instance.GUIScale.Value = Math.Min(MaxRenderScale, Settings.Instance.GUIScale.Value + RenderScaleStep);
+        Settings.Instance.ApplyGUISettings();
+
+        UpdateGUIScale(Settings.Instance);
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnDecreaseGUIScale()
+    {
+        Settings.Instance.GUIScale.Value = Math.Max(MinRenderScale, Settings.Instance.GUIScale.Value - RenderScaleStep);
+        Settings.Instance.ApplyGUISettings();
+
+        UpdateGUIScale(Settings.Instance);
         UpdateResetSaveButtonState();
     }
 

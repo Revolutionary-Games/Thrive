@@ -32,6 +32,14 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     private readonly Dictionary<CompoundDefinition, InspectedEntityLabel> hoveredCompoundControls = new();
 
+    /// <summary>
+    ///   Because of how <see cref="ChildObjectCache{TKey, TNode}"/> works, process stats instances need to remain
+    ///   consistent to reduce update frequency.
+    /// </summary>
+    private readonly Dictionary<BioProcess, SummedProcessStatistics> organismProcesses = new();
+
+    private readonly List<BioProcess> tempProcesses = new();
+
     [Export]
     private ActionButton bindingModeHotkey = null!;
 
@@ -44,6 +52,9 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     [Export]
     private Button multicellularButton = null!;
 
+    /// <summary>
+    ///   This is actually now the prototype confirmation before becoming macroscopic
+    /// </summary>
     [Export]
     private CustomWindow multicellularConfirmPopup = null!;
 
@@ -174,6 +185,8 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             UpdateMacroscopicButton(stage.Player);
 
             UpdateHeatHelperWidget(stage.Player);
+
+            UpdateProcessPanelStatus(stage.Player);
 
             UpdateProcessPanelExternalSpeedModifier(stage.WorldSimulation.WorldTimeScale);
         }
@@ -533,9 +546,92 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         ingestedMatterBar.UpdateValue(GetPlayerUsedIngestionCapacity(), maxSize);
     }
 
-    protected override ProcessStatistics? GetPlayerProcessStatistics()
+    protected override IEnumerable<IProcessDisplayInfo>? GetPlayerProcessStatistics()
     {
-        return stage!.Player.Get<BioProcesses>().ProcessStatistics;
+        foreach (var process in organismProcesses)
+        {
+            process.Value.Clear();
+            process.Value.Marked = false;
+        }
+
+        var playerProcesses = stage!.Player.Get<BioProcesses>().ProcessStatistics?.Processes;
+
+        if (playerProcesses == null)
+        {
+            GD.PrintErr("Player process statistics are uninitialized, can't display them in the process panel");
+
+            return null;
+        }
+
+        foreach (var process in playerProcesses)
+        {
+            var display = process.Value.ComputeAverageValues();
+
+            if (!organismProcesses.TryGetValue(process.Key.Process, out var stats))
+            {
+                stats = new SummedProcessStatistics(display);
+                organismProcesses[process.Key.Process] = stats;
+            }
+            else
+            {
+                stats.AddProcess(display);
+            }
+
+            stats.Marked = true;
+        }
+
+        if (stage.Player.TryGet<MicrobeColony>(out var colony))
+        {
+            for (int i = 1; i < colony.ColonyMembers.Length; ++i)
+            {
+                var colonyMemberProcesses = colony.ColonyMembers[i].Get<BioProcesses>().ProcessStatistics?.Processes;
+
+                if (colonyMemberProcesses == null)
+                {
+                    GD.PrintErr(
+                        "Colony member process statistics are uninitialized, can't display them in the process panel");
+
+                    continue;
+                }
+
+                foreach (var process in colonyMemberProcesses)
+                {
+                    var display = process.Value.ComputeAverageValues();
+
+                    if (!organismProcesses.TryGetValue(process.Key.Process, out var stats))
+                    {
+                        stats = new SummedProcessStatistics(display);
+                        organismProcesses[process.Key.Process] = stats;
+                    }
+                    else
+                    {
+                        stats.AddProcess(display);
+                    }
+
+                    stats.Marked = true;
+                }
+            }
+        }
+
+        // Clear unmarked items
+        foreach (var entry in organismProcesses)
+        {
+            if (!entry.Value.Marked)
+                tempProcesses.Add(entry.Key);
+        }
+
+        if (tempProcesses.Count > 0)
+        {
+            foreach (var process in tempProcesses)
+            {
+                if (!organismProcesses.Remove(process))
+                    GD.PrintErr("Expected process remove failed");
+            }
+
+            tempProcesses.Clear();
+        }
+
+        return organismProcesses.Values;
     }
 
     protected override void CalculatePlayerReproductionProgress(Dictionary<Compound, float> gatheredCompounds,
@@ -734,8 +830,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             return;
         }
 
-        if (stage.Player.Get<SpeciesMember>().Species is not MicrobeSpecies ||
-            !stage.CurrentGame!.GameWorld.WorldSettings.IncludeMulticellular || stage.CurrentGame!.FreeBuild)
+        if (stage.Player.Get<SpeciesMember>().Species is not MicrobeSpecies || stage.CurrentGame!.FreeBuild)
         {
             multicellularButton.Visible = false;
             return;
@@ -820,6 +915,11 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         UpdateColonySize(newColonySize);
     }
 
+    private void UpdateProcessPanelStatus(Entity player)
+    {
+        processPanel.IsMicrobe = !player.Has<MicrobeColony>();
+    }
+
     private void UpdateColonySizeForMacroscopic()
     {
         if (playerColonySize == null)
@@ -855,7 +955,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         if (!float.IsNaN(previousTemperature))
         {
-            // Only show good indicator when temperature is going up and it is within the ATP generation range
+            // Only show good indicator when temperature is going up, and it is within the ATP generation range
             heatAccumulationBar.UpdateIndicator(cellProperties.Temperature > previousTemperature + 0.00001f &&
                 cellProperties.Temperature >= Constants.THERMOPLAST_MIN_ATP_TEMPERATURE);
         }
@@ -863,21 +963,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         previousTemperature = cellProperties.Temperature;
     }
 
-    private void OnBecomeMulticellularPressed()
-    {
-        if (!Paused)
-        {
-            PauseButtonPressed(true);
-        }
-        else
-        {
-            GUICommon.Instance.PlayButtonPressSound();
-        }
-
-        multicellularConfirmPopup.PopupCenteredShrink();
-    }
-
-    private void OnBecomeMulticellularCanceled()
+    private void OnBecomeMacroscopicCanceled()
     {
         // The game should have been paused already but just in case
         if (Paused)
@@ -886,7 +972,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         }
     }
 
-    private void OnBecomeMulticellularConfirmed()
+    private void OnBecomeMulticellularPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
@@ -902,9 +988,6 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             return;
         }
 
-        GD.Print("Becoming multicellular. NOTE: game is moving to prototype parts of the game, " +
-            "expect non-finished and buggy things!");
-
         // To prevent being clicked twice
         multicellularButton.Disabled = true;
         editorButton.Disabled = true;
@@ -917,6 +1000,20 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     }
 
     private void OnBecomeMacroscopicPressed()
+    {
+        if (!Paused)
+        {
+            PauseButtonPressed(true);
+        }
+        else
+        {
+            GUICommon.Instance.PlayButtonPressSound();
+        }
+
+        multicellularConfirmPopup.PopupCenteredShrink();
+    }
+
+    private void OnBecomeMacroscopicConfirmed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
@@ -933,7 +1030,8 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             return;
         }
 
-        GD.Print("Becoming macroscopic");
+        GD.Print("Becoming macroscopic. NOTE: game is moving to prototype parts of the game, " +
+            "expect non-finished and buggy things!");
 
         // To prevent being clicked twice
         macroscopicButton.Disabled = true;

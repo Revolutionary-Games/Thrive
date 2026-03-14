@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cqd05blmt6g5e"]
+[gd_scene format=3 uid="uid://cqd05blmt6g5e"]
 
 [ext_resource type="Texture2D" uid="uid://dd7k366lheo4f" path="res://assets/textures/bubble3.png" id="1"]
 
@@ -40,7 +40,7 @@ color_ramp = SubResource("3")
 
 [sub_resource type="QuadMesh" id="7"]
 
-[node name="Current" type="GPUParticles3D"]
+[node name="Current" type="GPUParticles3D" unique_id=2034119322]
 material_override = SubResource("1")
 amount = 33
 lifetime = 4.0

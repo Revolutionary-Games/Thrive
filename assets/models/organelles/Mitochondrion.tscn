@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ddluj5hiii7uv"]
+[gd_scene format=3 uid="uid://ddluj5hiii7uv"]
 
 [ext_resource type="ArrayMesh" uid="uid://b8j7ldxx7cus7" path="res://assets/models/organelles/Mitochondrion.mesh" id="1"]
 [ext_resource type="Shader" uid="uid://bpdtg8smolq32" path="res://shaders/OrganelleTransparent.gdshader" id="3"]
@@ -20,7 +20,7 @@ shader_parameter/growColor = Color(0.1863, 0.192127, 0.23, 1)
 shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/jiggleAmount = 0.0005
 
-[node name="Mitochondrion" type="MeshInstance3D"]
+[node name="Mitochondrion" type="MeshInstance3D" unique_id=47479099]
 transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 0, 0, -0.9)
 material_override = SubResource("ShaderMaterial_srhgv")
 mesh = ExtResource("1")

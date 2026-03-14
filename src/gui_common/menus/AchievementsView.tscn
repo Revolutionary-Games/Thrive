@@ -1,11 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bnjcexj3ob27"]
+[gd_scene format=3 uid="uid://bnjcexj3ob27"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_cnemp"]
 [ext_resource type="Script" uid="uid://cogkvgwbsbki8" path="res://src/gui_common/menus/AchievementsView.cs" id="2_kipvk"]
 [ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="2_pkbja"]
 [ext_resource type="PackedScene" uid="uid://bk3leiofn128o" path="res://src/general/achievements/AchievementsGallery.tscn" id="3_kipvk"]
 
-[node name="AchievementsView" type="Control" node_paths=PackedStringArray("achievementsPopup", "achievementsGallery")]
+[node name="AchievementsView" type="Control" unique_id=2021988953 node_paths=PackedStringArray("achievementsPopup", "achievementsGallery")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,7 +20,7 @@ script = ExtResource("2_kipvk")
 achievementsPopup = NodePath("AchievementsPopup")
 achievementsGallery = NodePath("AchievementsPopup/AchievementsGallery")
 
-[node name="AchievementsPopup" parent="." instance=ExtResource("2_pkbja")]
+[node name="AchievementsPopup" parent="." unique_id=1841460597 instance=ExtResource("2_pkbja")]
 visible = true
 custom_minimum_size = Vector2(850, 600)
 layout_mode = 0
@@ -29,7 +29,7 @@ offset_bottom = 400.0
 WindowTitle = "ACHIEVEMENTS"
 Resizable = true
 
-[node name="AchievementsGallery" parent="AchievementsPopup" instance=ExtResource("3_kipvk")]
+[node name="AchievementsGallery" parent="AchievementsPopup" unique_id=1592345126 instance=ExtResource("3_kipvk")]
 layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
@@ -37,7 +37,7 @@ anchor_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="Back" type="Button" parent="."]
+[node name="Back" type="Button" parent="." unique_id=293493677]
 custom_minimum_size = Vector2(150, 40)
 layout_mode = 0
 anchor_top = 0.931

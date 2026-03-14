@@ -4,6 +4,7 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Threading;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Arch.System;
@@ -48,17 +49,11 @@ public partial class MicrobeReproductionSystem : BaseSystem<World, float>
 
     private readonly ConcurrentStack<PlacedOrganelle> organellesNeedingScaleUpdate = new();
 
-    // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
-    // private readonly ThreadLocal<List<PlacedOrganelle>> organellesToSplit = new(() => new List<PlacedOrganelle>());
-    // private readonly ThreadLocal<List<Compound>> compoundWorkData = new(() => new List<Compound>());
-    // private readonly ThreadLocal<List<Hex>> hexWorkData = new(() => new List<Hex>());
-    // private readonly ThreadLocal<List<Hex>> hexWorkData2 = new(() => new List<Hex>());
-
-    private readonly List<PlacedOrganelle> organellesToSplit = new();
-    private readonly List<Compound> compoundWorkData = new();
-    private readonly List<Hex> hexWorkData = new();
-    private readonly List<Hex> hexWorkData2 = new();
-    private readonly HashSet<Hex> hexWorkData3 = new();
+    private readonly ThreadLocal<List<PlacedOrganelle>> organellesToSplit = new(() => new List<PlacedOrganelle>());
+    private readonly ThreadLocal<List<Compound>> compoundWorkData = new(() => new List<Compound>());
+    private readonly ThreadLocal<List<Hex>> hexWorkData = new(() => new List<Hex>());
+    private readonly ThreadLocal<List<Hex>> hexWorkData2 = new(() => new List<Hex>());
+    private readonly ThreadLocal<HashSet<Hex>> hexWorkData3 = new(() => new HashSet<Hex>());
 
     private GameWorld? gameWorld;
     private IDifficulty? difficulty;
@@ -83,6 +78,7 @@ public partial class MicrobeReproductionSystem : BaseSystem<World, float>
         float remainingFreeCompounds = Constants.MICROBE_REPRODUCTION_FREE_COMPOUNDS *
             (hexCount * Constants.MICROBE_REPRODUCTION_FREE_RATE_FROM_HEX + 1.0f) * delta;
 
+        // TODO: some scaling based on the number of cells in the colony to not have a major slog?
         if (isMulticellular)
             remainingFreeCompounds *= Constants.MULTICELLULAR_REPRODUCTION_COMPOUND_MULTIPLIER;
 
@@ -92,6 +88,11 @@ public partial class MicrobeReproductionSystem : BaseSystem<World, float>
         {
             remainingAllowedCompoundUse = remainingFreeCompounds * Constants.MICROBE_REPRODUCTION_MAX_COMPOUND_USE;
         }
+
+        // Somehow this code was forgotten but *now* properly allow multicellular species to grow at a more intended
+        // speed
+        if (isMulticellular)
+            remainingAllowedCompoundUse *= Constants.MULTICELLULAR_REPRODUCTION_COMPOUND_MAX_USE_MULTIPLIER;
 
         return (remainingAllowedCompoundUse, remainingFreeCompounds);
     }
@@ -158,10 +159,11 @@ public partial class MicrobeReproductionSystem : BaseSystem<World, float>
         }
     }
 
-    public override void Dispose()
+    public sealed override void Dispose()
     {
         Dispose(true);
         base.Dispose();
+        GC.SuppressFinalize(this);
     }
 
     /// <summary>
@@ -367,17 +369,10 @@ public partial class MicrobeReproductionSystem : BaseSystem<World, float>
         var compounds = storage.Compounds;
 
         // Process base cost first so the player can be their designed cell (without extra organelles) for a while
-        bool reproductionStageComplete;
-
-        // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
-        // TODO: this lock somehow locks up the game waiting for this (at least with a debugger attached sometimes)
-        lock (compoundWorkData)
-        {
-            reproductionStageComplete = ProcessBaseReproductionCost(
-                baseReproduction.MissingCompoundsForBaseReproduction, compounds,
-                ref remainingAllowedCompoundUse, ref remainingFreeCompounds,
-                consumeInReverseOrder, compoundWorkData);
-        }
+        var reproductionStageComplete = ProcessBaseReproductionCost(
+            baseReproduction.MissingCompoundsForBaseReproduction,
+            compounds, ref remainingAllowedCompoundUse, ref remainingFreeCompounds,
+            consumeInReverseOrder, compoundWorkData.Value!);
 
         // For this stage and all others below, reproductionStageComplete tracks whether the previous reproduction
         // stage completed, i.e. whether we should proceed with the next stage
@@ -385,67 +380,63 @@ public partial class MicrobeReproductionSystem : BaseSystem<World, float>
         {
             // Organelles that are ready to split
 
-            // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
-            var organellesToAdd = organellesToSplit;
+            var organellesToAdd = organellesToSplit.Value!;
 
-            lock (organellesToAdd)
+            // Grow all the organelles, except the unique organelles which are given compounds last
+            // Manual loops are used here as profiling showed the reproduction system enumerator allocations caused
+            // quite a lot of memory allocations during gameplay
+            var organelleCount = organelles.Organelles.Count;
+            for (int i = 0; i < organelleCount; ++i)
             {
-                // Grow all the organelles, except the unique organelles which are given compounds last
-                // Manual loops are used here as profiling showed the reproduction system enumerator allocations caused
-                // quite a lot of memory allocations during gameplay
-                var organelleCount = organelles.Organelles.Count;
-                for (int i = 0; i < organelleCount; ++i)
+                var organelle = organelles.Organelles[i];
+
+                // Check if already done
+                if (organelle.WasSplit)
+                    continue;
+
+                // If we ran out of allowed compound use, stop early
+                if (remainingAllowedCompoundUse <= 0)
                 {
-                    var organelle = organelles.Organelles[i];
-
-                    // Check if already done
-                    if (organelle.WasSplit)
-                        continue;
-
-                    // If we ran out of allowed compound use, stop early
-                    if (remainingAllowedCompoundUse <= 0)
-                    {
-                        reproductionStageComplete = false;
-                        break;
-                    }
-
-                    // We are in the G1 phase of the cell cycle, duplicate all organelles.
-
-                    // Except the unique organelles
-                    if (organelle.Definition.Unique)
-                        continue;
-
-                    // Give it some compounds to make it larger.
-                    bool grown = organelle.GrowOrganelle(compounds, ref remainingAllowedCompoundUse,
-                        ref remainingFreeCompounds, consumeInReverseOrder);
-
-                    if (organelle.GrowthValue >= 1.0f)
-                    {
-                        // Queue this organelle for splitting after the loop.
-                        organellesToAdd.Add(organelle);
-                    }
-                    else
-                    {
-                        // Needs more stuff
-                        reproductionStageComplete = false;
-
-                        // When not splitting, just the scale needs to be potentially updated
-                        if (grown)
-                        {
-                            organellesNeedingScaleUpdate.Push(organelle);
-                        }
-                    }
-
-                    // TODO: can we quit this loop early if we still would have dozens of organelles to check but
-                    // don't have any compounds left to give them (that are probably useful)?
+                    reproductionStageComplete = false;
+                    break;
                 }
 
-                // Splitting the queued organelles.
-                if (organellesToAdd.Count > 0)
+                // We are in the G1 phase of the cell cycle, duplicate all organelles.
+
+                // Except the unique organelles
+                if (organelle.Definition.Unique)
+                    continue;
+
+                // Give it some compounds to make it larger.
+                bool grown = organelle.GrowOrganelle(compounds, ref remainingAllowedCompoundUse,
+                    ref remainingFreeCompounds, consumeInReverseOrder);
+
+                if (organelle.GrowthValue >= 1.0f)
                 {
-                    SplitQueuedOrganelles(organellesToAdd, entity, ref organelles, ref storage);
-                    organellesToAdd.Clear();
+                    // Queue this organelle for splitting after the loop.
+                    organellesToAdd.Add(organelle);
                 }
+                else
+                {
+                    // Needs more stuff
+                    reproductionStageComplete = false;
+
+                    // When not splitting, just the scale needs to be potentially updated
+                    if (grown)
+                    {
+                        organellesNeedingScaleUpdate.Push(organelle);
+                    }
+                }
+
+                // TODO: can we quit this loop early if we still would have dozens of organelles to check but
+                // don't have any compounds left to give them (that are probably useful)?
+            }
+
+            // Splitting the queued organelles.
+            if (organellesToAdd.Count > 0)
+            {
+                SplitQueuedOrganelles(organellesToAdd, entity, ref organelles, ref storage);
+                organellesToAdd.Clear();
             }
         }
 
@@ -536,21 +527,12 @@ public partial class MicrobeReproductionSystem : BaseSystem<World, float>
 
         var startPosition = organelle.Position;
 
-        var workData1 = hexWorkData;
-        var workData2 = hexWorkData2;
-        var workData3 = hexWorkData3;
+        var workData1 = hexWorkData.Value!;
+        var workData2 = hexWorkData2.Value!;
+        var workData3 = hexWorkData3.Value!;
 
-        // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
-        lock (workData1)
-        {
-            lock (workData2)
-            {
-                // Work data 3 is not locked as it is only used when the other two are locked
-
-                organelles.FindAndPlaceAtValidPosition(newOrganelle, startPosition.Q, startPosition.R, workData1,
-                    workData2, workData3);
-            }
-        }
+        organelles.FindAndPlaceAtValidPosition(newOrganelle, startPosition.Q, startPosition.R, workData1,
+            workData2, workData3);
 
         return newOrganelle;
     }
@@ -610,26 +592,19 @@ public partial class MicrobeReproductionSystem : BaseSystem<World, float>
 
             ref var cellProperties = ref entity.Get<CellProperties>();
 
-            var workData1 = hexWorkData;
-            var workData2 = hexWorkData2;
+            var workData1 = hexWorkData.Value!;
+            var workData2 = hexWorkData2.Value!;
 
-            // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
-            lock (workData1)
-            {
-                lock (workData2)
-                {
-                    MicrobeEnvironmentalEffects environmentalEffects = entity.Get<MicrobeEnvironmentalEffects>();
+            MicrobeEnvironmentalEffects environmentalEffects = entity.Get<MicrobeEnvironmentalEffects>();
 
-                    // Return the first cell to its normal, non-duplicated cell arrangement and spawn a daughter cell
-                    organelles.ResetOrganelleLayout(ref entity.Get<CompoundStorage>(),
-                        ref entity.Get<BioProcesses>(), ref environmentalEffects,
-                        entity, species, species, worldSimulation, workData1, workData2);
+            // Return the first cell to its normal, non-duplicated cell arrangement and spawn a daughter cell
+            organelles.ResetOrganelleLayout(ref entity.Get<CompoundStorage>(),
+                ref entity.Get<BioProcesses>(), ref environmentalEffects,
+                entity, species, species, worldSimulation, workData1, workData2);
 
-                    // This is purely inside this lock to suppress a warning on worldSimulation
-                    cellProperties.Divide(ref organelles, entity, species, worldSimulation, spawnEnvironment,
-                        spawnSystem, null);
-                }
-            }
+            // This is purely inside this lock to suppress a warning on worldSimulation
+            cellProperties.Divide(ref organelles, entity, species, worldSimulation, spawnEnvironment,
+                spawnSystem, null);
         }
     }
 
@@ -637,11 +612,11 @@ public partial class MicrobeReproductionSystem : BaseSystem<World, float>
     {
         if (disposing)
         {
-            // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
-            /*organellesToSplit.Dispose();
+            organellesToSplit.Dispose();
             compoundWorkData.Dispose();
             hexWorkData.Dispose();
-            hexWorkData2.Dispose();*/
+            hexWorkData2.Dispose();
+            hexWorkData3.Dispose();
         }
     }
 }

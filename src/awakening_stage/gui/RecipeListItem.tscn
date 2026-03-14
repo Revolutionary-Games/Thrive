@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d1f3a7hqfxgsh"]
+[gd_scene format=3 uid="uid://d1f3a7hqfxgsh"]
 
 [ext_resource type="Script" uid="uid://qehkldakeki0" path="res://src/awakening_stage/gui/RecipeListItem.cs" id="1"]
 [ext_resource type="FontFile" uid="uid://b62thy1er4r08" path="res://assets/fonts/Lato-Bold.ttf" id="1_d61pw"]
@@ -39,7 +39,7 @@ Button/styles/hover = SubResource("3")
 Button/styles/normal = SubResource("4")
 Button/styles/pressed = SubResource("5")
 
-[node name="RecipeListItem" type="Button"]
+[node name="RecipeListItem" type="Button" unique_id=2044796857]
 editor_description = "Clipping children is on to make sure line wrapping text doesn't overflow"
 clip_contents = true
 custom_minimum_size = Vector2(10, 27)
@@ -52,7 +52,7 @@ toggle_mode = true
 script = ExtResource("1")
 MarginAroundLabel = 8
 
-[node name="Label" parent="." instance=ExtResource("3")]
+[node name="Label" parent="." unique_id=1446723477 instance=ExtResource("3")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

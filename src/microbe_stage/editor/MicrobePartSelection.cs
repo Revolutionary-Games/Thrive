@@ -202,8 +202,8 @@ public partial class MicrobePartSelection : MarginContainer
 
         if (mpCost < 0)
         {
-            // Negative MP cost means it actually gives MP
-            // To convey that to the player, we need to explicitly prefix the cost with a positive sign
+            // Negative MP cost means it actually gives MP.
+            // To convey that to the player, we need to explicitly prefix the cost with a positive sign.
             cost = "+" + Math.Round(Math.Abs(mpCost), Constants.MUTATION_POINTS_DECIMALS)
                 .ToString(CultureInfo.CurrentCulture);
         }
@@ -248,10 +248,7 @@ public partial class MicrobePartSelection : MarginContainer
 
     private void UpdateRecentlyUnlocked()
     {
-        if (recentlyUnlockedControl == null)
-            return;
-
-        recentlyUnlockedControl.Visible = recentlyUnlocked;
+        recentlyUnlockedControl?.Visible = recentlyUnlocked;
     }
 
     private void UpdateButton()

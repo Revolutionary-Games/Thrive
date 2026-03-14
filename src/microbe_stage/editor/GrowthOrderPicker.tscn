@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bdtlirrkst0vl"]
+[gd_scene format=3 uid="uid://bdtlirrkst0vl"]
 
 [ext_resource type="Script" uid="uid://ck3e4jt0l0lc4" path="res://src/microbe_stage/editor/GrowthOrderPicker.cs" id="1_ju87a"]
 
-[node name="GrowthOrderPicker" type="VBoxContainer" node_paths=PackedStringArray("buttonContainer")]
+[node name="GrowthOrderPicker" type="VBoxContainer" unique_id=284503096 node_paths=PackedStringArray("buttonContainer")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -11,11 +11,11 @@ grow_vertical = 2
 script = ExtResource("1_ju87a")
 buttonContainer = NodePath("OrderableItems")
 
-[node name="OrderableItems" type="VBoxContainer" parent="."]
+[node name="OrderableItems" type="VBoxContainer" parent="." unique_id=445309676]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Reset" type="Button" parent="."]
+[node name="Reset" type="Button" parent="." unique_id=177072050]
 layout_mode = 2
 size_flags_horizontal = 4
 tooltip_text = "RESET_ITEM_ORDER_TO_DEFAULT"

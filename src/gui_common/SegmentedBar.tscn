@@ -1,7 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dco36tmyfalxv"]
+[gd_scene format=3 uid="uid://dco36tmyfalxv"]
 
 [ext_resource type="Script" uid="uid://cj6b7tr7und58" path="res://src/gui_common/SegmentedBar.cs" id="1"]
 
-[node name="ProgressBar" type="HBoxContainer"]
+[node name="ProgressBar" type="HBoxContainer" unique_id=1440914831]
 theme_override_constants/separation = 0
 script = ExtResource("1")

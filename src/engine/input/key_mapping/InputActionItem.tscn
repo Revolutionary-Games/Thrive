@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cu0aej2ck4gej"]
+[gd_scene format=3 uid="uid://cu0aej2ck4gej"]
 
 [ext_resource type="Script" uid="uid://cx1mbqmj3cfhq" path="res://src/engine/input/key_mapping/InputActionItem.cs" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
@@ -10,41 +10,41 @@ content_margin_top = 0.0
 content_margin_right = 7.0
 content_margin_bottom = 2.0
 
-[sub_resource type="StyleBoxEmpty" id="1"]
-
 [sub_resource type="StyleBoxEmpty" id="2"]
+
+[sub_resource type="StyleBoxEmpty" id="1"]
 
 [sub_resource type="StyleBoxEmpty" id="3"]
 
-[node name="InputActionItem" type="VBoxContainer" node_paths=PackedStringArray("inputEventsContainer", "inputActionHeader", "addInputEvent")]
+[node name="InputActionItem" type="VBoxContainer" unique_id=970688864 node_paths=PackedStringArray("inputActionHeader", "inputEventsContainer", "addInputEvent")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource("2")
 script = ExtResource("1")
-addInputEvent = NodePath("InputEventsContainer/AddEventButton")
 inputActionHeader = NodePath("InputActionHeader")
 inputEventsContainer = NodePath("InputEventsContainer")
+addInputEvent = NodePath("InputEventsContainer/AddEventButton")
 
-[node name="InputActionHeader" type="Label" parent="."]
+[node name="InputActionHeader" type="Label" parent="." unique_id=838536295]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "Title goes here"
 label_settings = ExtResource("3_6n4v0")
 
-[node name="InputEventsContainer" type="HBoxContainer" parent="."]
+[node name="InputEventsContainer" type="HBoxContainer" parent="." unique_id=1278955531]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="AddEventButton" type="Button" parent="InputEventsContainer"]
+[node name="AddEventButton" type="Button" parent="InputEventsContainer" unique_id=617396622]
 layout_mode = 2
 size_flags_stretch_ratio = 0.0
 focus_neighbor_right = NodePath(".")
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_colors/font_focus_color = Color(0.184314, 0.588235, 0.184314, 1)
 theme_override_styles/normal = SubResource("4")
-theme_override_styles/hover = SubResource("1")
 theme_override_styles/pressed = SubResource("2")
+theme_override_styles/hover = SubResource("1")
 theme_override_styles/focus = SubResource("3")
 text = "+"
 

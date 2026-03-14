@@ -54,7 +54,7 @@ public class AvailableUpgrade : IRegistryType
     public string IconPath { get; private set; } = string.Empty;
 
     /// <summary>
-    ///   If not null this list of processes overrides the defaults for the organelle
+    ///   If not null, this list of processes overrides the defaults for the organelle
     /// </summary>
     [JsonIgnore]
     public List<TweakedProcess>? OverrideProcesses { get; private set; }

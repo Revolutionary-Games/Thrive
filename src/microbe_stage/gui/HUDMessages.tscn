@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://uw3crqw21uu"]
+[gd_scene format=3 uid="uid://uw3crqw21uu"]
 
 [ext_resource type="Script" uid="uid://dm2wd3x8tb5kx" path="res://src/microbe_stage/gui/HUDMessages.cs" id="1"]
 [ext_resource type="LabelSettings" uid="uid://b28iighoel0qm" path="res://src/gui_common/fonts/Body-Bold-Small-Shadow.tres" id="2_stloo"]
 
-[node name="HUDMessages" type="VBoxContainer"]
+[node name="HUDMessages" type="VBoxContainer" unique_id=1143619152]
 process_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

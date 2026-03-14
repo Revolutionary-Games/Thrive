@@ -3,8 +3,6 @@
 /// </summary>
 public interface IPositionedOrganelle : IPositionedHex, IReadOnlyPositionedOrganelle
 {
-    public new int Orientation { get; set; }
-
     public OrganelleUpgrades? ModifiableUpgrades { get; }
 
     public new bool IsEndosymbiont { get; set; }

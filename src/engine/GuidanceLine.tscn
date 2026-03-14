@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://b5yuo8sj21lnf"]
+[gd_scene format=3 uid="uid://b5yuo8sj21lnf"]
 
 [ext_resource type="Script" uid="uid://cyn112d5r8m6k" path="res://src/engine/GuidanceLine.cs" id="1"]
 
@@ -6,7 +6,7 @@
 shading_mode = 0
 vertex_color_use_as_albedo = true
 
-[node name="GuidanceLine" type="MeshInstance3D"]
+[node name="GuidanceLine" type="MeshInstance3D" unique_id=769510968]
 editor_description = "The material has to be unshaded for it to display fine in the game when exported"
 cast_shadow = 0
 script = ExtResource("1")

@@ -109,7 +109,7 @@ public partial class OrganelleUpgradeGUI : Control
 
                 var data = new OrganelleUpgradeActionData(oldUpgrade, newUpgrade, organelle);
 
-                var cost = editorData.WhatWouldActionsCost(new[] { data });
+                var cost = editorData.WhatWouldActionsCost([data]);
 
                 selectionButton.Name = availableUpgrade.Key;
                 selectionButton.SelectionGroup = generalUpgradeButtonGroup;
@@ -139,14 +139,9 @@ public partial class OrganelleUpgradeGUI : Control
                 generalUpgradeSelectorButtons[availableUpgrade.Key] = selectionButton;
             }
 
-            if (organelle.Upgrades != null)
-            {
-                currentlySelectedGeneralUpgrades = new List<string>(organelle.Upgrades.UnlockedFeatures);
-            }
-            else
-            {
-                currentlySelectedGeneralUpgrades = new List<string>();
-            }
+            currentlySelectedGeneralUpgrades = organelle.Upgrades != null ?
+                new List<string>(organelle.Upgrades.UnlockedFeatures) :
+                new List<string>();
 
             UpdateSelectedUpgradeButton();
 

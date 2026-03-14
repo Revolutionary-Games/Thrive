@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bavjxmbooy5rp"]
+[gd_scene format=3 uid="uid://bavjxmbooy5rp"]
 
 [ext_resource type="Script" uid="uid://bxch4fi342rcu" path="res://src/ascension_stage/gui/DescendConfirmationDialog.cs" id="1"]
 [ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="2"]
 
-[node name="DescendConfirmationDialog" instance=ExtResource("2")]
+[node name="DescendConfirmationDialog" unique_id=1674834896 instance=ExtResource("2")]
 custom_minimum_size = Vector2(400, 350)
 offset_right = 400.0
 offset_bottom = 350.0
@@ -12,11 +12,11 @@ HideOnOk = false
 DialogText = "DESCEND_CONFIRMATION_EXPLANATION"
 WindowTitle = "DESCEND_CONFIRMATION"
 
-[node name="DescendSetup" type="ScrollContainer" parent="VBoxContainer" index="4"]
+[node name="DescendSetup" type="ScrollContainer" parent="VBoxContainer" index="4" unique_id=1320574063]
 layout_mode = 2
 follow_focus = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/DescendSetup" index="0"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/DescendSetup" index="0" unique_id=2083234712]
 layout_mode = 2
 
 [connection signal="Confirmed" from="." to="." method="OnConfirmed"]

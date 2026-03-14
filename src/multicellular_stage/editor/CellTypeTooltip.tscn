@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://o7or0bdonqcx"]
+[gd_scene format=3 uid="uid://o7or0bdonqcx"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_vl8jg"]
 [ext_resource type="Script" uid="uid://jksc2g7702o4" path="res://src/multicellular_stage/editor/CellTypeTooltip.cs" id="2_0abd5"]
@@ -48,7 +48,7 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[node name="CellTypeTooltip" type="PanelContainer" node_paths=PackedStringArray("nameLabel", "mpLabel", "compoundBalanceDisplay", "healthLabel", "storageLabel", "speedLabel", "rotationSpeedLabel", "sizeLabel", "digestionSpeedLabel", "atpProductionBar", "atpProductionLabel", "atpConsumptionBar", "atpConsumptionLabel")]
+[node name="CellTypeTooltip" type="PanelContainer" unique_id=1086173989 node_paths=PackedStringArray("nameLabel", "mpLabel", "compoundBalanceDisplay", "healthLabel", "storageLabel", "speedLabel", "rotationSpeedLabel", "sizeLabel", "digestionSpeedLabel", "atpProductionBar", "atpProductionLabel", "atpConsumptionBar", "atpConsumptionLabel")]
 custom_minimum_size = Vector2(300, 0)
 offset_right = 373.0
 offset_bottom = 344.0
@@ -70,7 +70,7 @@ atpProductionLabel = NodePath("MarginContainer/VBoxContainer/AtpBalance/Producti
 atpConsumptionBar = NodePath("MarginContainer/VBoxContainer/AtpBalance/ConsumptionContainer/ConsumptionBar")
 atpConsumptionLabel = NodePath("MarginContainer/VBoxContainer/AtpBalance/ConsumptionContainer/ConsumptionLabel")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1513075606]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 15
@@ -78,23 +78,23 @@ theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1136495569]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 15
 
-[node name="Header" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="Header" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=490314879]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 10
 
-[node name="MP" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Header"]
+[node name="MP" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Header" unique_id=755461089]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 mouse_filter = 2
 
-[node name="Icon" type="TextureRect" parent="MarginContainer/VBoxContainer/Header/MP"]
+[node name="Icon" type="TextureRect" parent="MarginContainer/VBoxContainer/Header/MP" unique_id=1648364890]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 size_flags_vertical = 4
@@ -102,12 +102,12 @@ mouse_filter = 2
 texture = ExtResource("3_esy5e")
 expand_mode = 1
 
-[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Header/MP"]
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Header/MP" unique_id=2140233292]
 layout_mode = 2
 text = "N_A_MP"
 label_settings = ExtResource("4_oloco")
 
-[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/Header"]
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/Header" unique_id=847681148]
 editor_description = "PLACEHOLDER"
 custom_minimum_size = Vector2(230, 0)
 layout_mode = 2
@@ -117,62 +117,62 @@ label_settings = ExtResource("5_smds5")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/Header"]
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/Header" unique_id=1071898644]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="CellStats" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="CellStats" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1409684850]
 layout_mode = 2
 
-[node name="Hp" parent="MarginContainer/VBoxContainer/CellStats" instance=ExtResource("6_w1mf1")]
+[node name="Hp" parent="MarginContainer/VBoxContainer/CellStats" unique_id=1204087930 instance=ExtResource("6_w1mf1")]
 layout_mode = 2
 Icon = ExtResource("7_esy5e")
 Description = "HP_COLON"
 UseChangeIndicator = false
 
-[node name="Storage" parent="MarginContainer/VBoxContainer/CellStats" instance=ExtResource("6_w1mf1")]
+[node name="Storage" parent="MarginContainer/VBoxContainer/CellStats" unique_id=1126758052 instance=ExtResource("6_w1mf1")]
 layout_mode = 2
 tooltip_text = "CELL_STAT_STORAGE_TOOLTIP"
 Icon = ExtResource("8_oloco")
 Description = "STORAGE_COLON"
 UseChangeIndicator = false
 
-[node name="Speed" parent="MarginContainer/VBoxContainer/CellStats" instance=ExtResource("6_w1mf1")]
+[node name="Speed" parent="MarginContainer/VBoxContainer/CellStats" unique_id=568198665 instance=ExtResource("6_w1mf1")]
 layout_mode = 2
 tooltip_text = "CELL_STAT_SPEED_TOOLTIP"
 Icon = ExtResource("9_smds5")
 Description = "SPEED_COLON"
 UseChangeIndicator = false
 
-[node name="Rotation" parent="MarginContainer/VBoxContainer/CellStats" instance=ExtResource("6_w1mf1")]
+[node name="Rotation" parent="MarginContainer/VBoxContainer/CellStats" unique_id=777293253 instance=ExtResource("6_w1mf1")]
 layout_mode = 2
 tooltip_text = "CELL_STAT_ROTATION_TOOLTIP"
 Icon = ExtResource("10_w1mf1")
 Description = "ROTATION_COLON"
 UseChangeIndicator = false
 
-[node name="Size" parent="MarginContainer/VBoxContainer/CellStats" instance=ExtResource("6_w1mf1")]
+[node name="Size" parent="MarginContainer/VBoxContainer/CellStats" unique_id=919600547 instance=ExtResource("6_w1mf1")]
 layout_mode = 2
 Icon = ExtResource("11_smds5")
 Description = "SIZE_COLON"
 UseChangeIndicator = false
 
-[node name="DigestionSpeed" parent="MarginContainer/VBoxContainer/CellStats" instance=ExtResource("6_w1mf1")]
+[node name="DigestionSpeed" parent="MarginContainer/VBoxContainer/CellStats" unique_id=306029415 instance=ExtResource("6_w1mf1")]
 layout_mode = 2
 Icon = ExtResource("12_w1mf1")
 Description = "DIGESTION_SPEED_COLON"
 UseChangeIndicator = false
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1224627416]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="AtpBalance" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="AtpBalance" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1892009736]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/AtpBalance"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/AtpBalance" unique_id=2079886584]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 tooltip_text = "COMPOUND_BALANCE_TOOLTIP"
@@ -181,10 +181,10 @@ text = "ATP_BALANCE"
 label_settings = ExtResource("13_smds5")
 autowrap_mode = 3
 
-[node name="ProductionContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/AtpBalance"]
+[node name="ProductionContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/AtpBalance" unique_id=1757354567]
 layout_mode = 2
 
-[node name="ProductionBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/AtpBalance/ProductionContainer"]
+[node name="ProductionBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/AtpBalance/ProductionContainer" unique_id=1609009624]
 custom_minimum_size = Vector2(0, 6)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -193,16 +193,16 @@ max_value = 1.0
 step = 0.001
 show_percentage = false
 
-[node name="ProductionLabel" type="Label" parent="MarginContainer/VBoxContainer/AtpBalance/ProductionContainer"]
+[node name="ProductionLabel" type="Label" parent="MarginContainer/VBoxContainer/AtpBalance/ProductionContainer" unique_id=468479511]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "n/a"
 label_settings = ExtResource("14_w1mf1")
 
-[node name="ConsumptionContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/AtpBalance"]
+[node name="ConsumptionContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/AtpBalance" unique_id=2111217500]
 layout_mode = 2
 
-[node name="ConsumptionBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/AtpBalance/ConsumptionContainer"]
+[node name="ConsumptionBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/AtpBalance/ConsumptionContainer" unique_id=183286629]
 custom_minimum_size = Vector2(0, 6)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -213,16 +213,16 @@ max_value = 1.0
 step = 0.001
 show_percentage = false
 
-[node name="ConsumptionLabel" type="Label" parent="MarginContainer/VBoxContainer/AtpBalance/ConsumptionContainer"]
+[node name="ConsumptionLabel" type="Label" parent="MarginContainer/VBoxContainer/AtpBalance/ConsumptionContainer" unique_id=249637288]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "n/a"
 label_settings = ExtResource("14_w1mf1")
 
-[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=617617236]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="CompoundBalanceDisplay" parent="MarginContainer/VBoxContainer" instance=ExtResource("6_0abd5")]
+[node name="CompoundBalanceDisplay" parent="MarginContainer/VBoxContainer" unique_id=55412485 instance=ExtResource("6_0abd5")]
 layout_mode = 2
 showDisplayTypeSelector = false

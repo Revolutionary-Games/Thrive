@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cil2efpg6jdmd"]
+[gd_scene format=3 uid="uid://cil2efpg6jdmd"]
 
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="2_cgpu4"]
 [ext_resource type="Script" uid="uid://chvcv51bsiuk5" path="res://src/gui_common/tooltip/DefaultToolTip.cs" id="3"]
@@ -15,7 +15,7 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="DefaultTooltip" type="PanelContainer" node_paths=PackedStringArray("descriptionLabel")]
+[node name="DefaultTooltip" type="PanelContainer" unique_id=310554845 node_paths=PackedStringArray("descriptionLabel")]
 offset_right = 14.0
 offset_bottom = 14.0
 mouse_filter = 2
@@ -23,7 +23,7 @@ theme_override_styles/panel = SubResource("1")
 script = ExtResource("3")
 descriptionLabel = NodePath("MarginContainer/VBoxContainer/Description")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1626748239]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 5
@@ -31,12 +31,12 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=665157229]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 0
 
-[node name="Description" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="Description" type="Label" parent="MarginContainer/VBoxContainer" unique_id=347372318]
 layout_mode = 2
 size_flags_horizontal = 3
 label_settings = ExtResource("2_cgpu4")

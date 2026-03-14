@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bq6aee8pw8y3m"]
+[gd_scene format=3 uid="uid://bq6aee8pw8y3m"]
 
 [ext_resource type="Texture2D" uid="uid://cwrk1w3l7u6t4" path="res://assets/textures/gui/bevel/minusButton.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://ca7aacfe47auq" path="res://assets/textures/gui/bevel/minusButtonHover.png" id="2"]
@@ -13,7 +13,7 @@ texture = ExtResource("5")
 expand_margin_top = 1.0
 region_rect = Rect2(0, 0, 258, 1)
 
-[node name="CollapsibleList" type="VBoxContainer" node_paths=PackedStringArray("titleLabel", "itemContainer", "clipBox", "titleContainer", "collapseButton", "expandButton")]
+[node name="CollapsibleList" type="VBoxContainer" unique_id=289929260 node_paths=PackedStringArray("titleLabel", "itemContainer", "clipBox", "titleContainer", "collapseButton", "expandButton")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -28,15 +28,15 @@ titleContainer = NodePath("TitleContainer")
 collapseButton = NodePath("TitleContainer/Buttons/minusButton")
 expandButton = NodePath("TitleContainer/Buttons/plusButton")
 
-[node name="TitleContainer" type="HBoxContainer" parent="."]
+[node name="TitleContainer" type="HBoxContainer" parent="." unique_id=1118851302]
 layout_mode = 2
 
-[node name="Buttons" type="MarginContainer" parent="TitleContainer"]
+[node name="Buttons" type="MarginContainer" parent="TitleContainer" unique_id=223457409]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="minusButton" type="TextureButton" parent="TitleContainer/Buttons"]
+[node name="minusButton" type="TextureButton" parent="TitleContainer/Buttons" unique_id=657217387]
 layout_mode = 2
 mouse_filter = 1
 texture_normal = ExtResource("1")
@@ -44,7 +44,7 @@ texture_hover = ExtResource("2")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="plusButton" type="TextureButton" parent="TitleContainer/Buttons"]
+[node name="plusButton" type="TextureButton" parent="TitleContainer/Buttons" unique_id=2133893639]
 visible = false
 layout_mode = 2
 mouse_filter = 1
@@ -53,27 +53,27 @@ texture_hover = ExtResource("4")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Title" type="Label" parent="TitleContainer"]
+[node name="Title" type="Label" parent="TitleContainer" unique_id=2124979028]
 editor_description = "PLACEHOLDER"
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 text = "Collapsible List"
 label_settings = ExtResource("6_51q1u")
 
-[node name="HSeparator" type="HSeparator" parent="TitleContainer"]
+[node name="HSeparator" type="HSeparator" parent="TitleContainer" unique_id=1358262729]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 theme_override_styles/separator = SubResource("1")
 
-[node name="Clip" type="Control" parent="."]
+[node name="Clip" type="Control" parent="." unique_id=491625926]
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="GridContainer" type="GridContainer" parent="Clip"]
+[node name="GridContainer" type="GridContainer" parent="Clip" unique_id=592290440]
 layout_mode = 0
 mouse_filter = 2
 

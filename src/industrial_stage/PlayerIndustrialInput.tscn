@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://c2str8e0faks1"]
+[gd_scene format=3 uid="uid://c2str8e0faks1"]
 
 [ext_resource type="Script" uid="uid://bas5mrwl13ia2" path="res://src/industrial_stage/PlayerIndustrialInput.cs" id="1"]
 
-[node name="PlayerIndustrialInput" type="Node"]
+[node name="PlayerIndustrialInput" type="Node" unique_id=2125534294]
 script = ExtResource("1")

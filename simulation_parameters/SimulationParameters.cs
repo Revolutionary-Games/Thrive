@@ -65,6 +65,8 @@ public partial class SimulationParameters : Node
     private List<Enzyme>? cachedDigestiveEnzymes;
     private List<double>? cachedMeteorChances;
 
+    private ushort bioProcessIdCounter;
+
     public static SimulationParameters Instance => instance ?? throw new InstanceNotLoadedYetException();
 
     public IEnumerable<NamedInputGroup> InputGroups => inputGroups;
@@ -234,6 +236,7 @@ public partial class SimulationParameters : Node
 #pragma warning restore CS0162
 
         CheckForInvalidValues();
+        IsCheapestOrganelleConstantUpToDate(GetAllOrganelles());
         ResolveValueRelationships();
 
         // Apply translations here to ensure that initial translations are correct when the game starts.
@@ -271,6 +274,18 @@ public partial class SimulationParameters : Node
     public bool DoesOrganelleExist(string name)
     {
         return organelles.ContainsKey(name);
+    }
+
+    public void IsCheapestOrganelleConstantUpToDate(IEnumerable<OrganelleDefinition> organelles)
+    {
+        foreach (var organelle in organelles)
+        {
+            if (organelle.MPCost < Constants.ORGANELLE_CHEAPEST_COST)
+            {
+                throw new InvalidRegistryDataException(
+                    $"{organelle.Name} is cheaper than {Constants.ORGANELLE_CHEAPEST_COST}, constant must be updated");
+            }
+        }
     }
 
     public MembraneType GetMembrane(string name)
@@ -578,6 +593,14 @@ public partial class SimulationParameters : Node
     public TerrainConfiguration GetTerrainConfigurationForBiome(string internalName)
     {
         return biomes[internalName].Terrain ?? throw new Exception($"No terrain for biome type: {internalName}");
+    }
+
+    public ushort GetNextProcessId()
+    {
+        if (bioProcessIdCounter == ushort.MaxValue)
+            throw new InvalidOperationException("Ran out of BioProcess IDs");
+
+        return ++bioProcessIdCounter;
     }
 
     /// <summary>

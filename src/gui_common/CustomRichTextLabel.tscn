@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bhpjtbtaeunat"]
+[gd_scene format=3 uid="uid://bhpjtbtaeunat"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
 [ext_resource type="Script" uid="uid://c0itxwsgtedpj" path="res://src/gui_common/CustomRichTextLabel.cs" id="3"]
 
-[node name="CustomRichTextLabel" type="RichTextLabel"]
+[node name="CustomRichTextLabel" type="RichTextLabel" unique_id=2045918816]
 offset_right = 22.0
 offset_bottom = 22.0
 theme = ExtResource("1")

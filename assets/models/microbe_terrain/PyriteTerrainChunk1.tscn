@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bhn84lw6vt2pg"]
+[gd_scene format=3 uid="uid://bhn84lw6vt2pg"]
 
 [ext_resource type="PackedScene" uid="uid://ni22u0nn67qk" path="res://assets/models/microbe_terrain/PyriteTerrainChunk1.glb" id="1_s6ryl"]
 [ext_resource type="Texture2D" uid="uid://du3gfqrbeic03" path="res://assets/textures/environment/Pyrite.png" id="2_68k1v"]
@@ -23,7 +23,7 @@ ao_enabled = true
 ao_light_affect = 0.8
 ao_texture = ExtResource("3_b7raa")
 
-[node name="PyriteTerrainChunk1" instance=ExtResource("1_s6ryl")]
+[node name="PyriteTerrainChunk1" unique_id=2040005832 instance=ExtResource("1_s6ryl")]
 
-[node name="pyrite1" parent="." index="0"]
+[node name="pyrite1" parent="." index="0" unique_id=15013185]
 surface_material_override/0 = SubResource("StandardMaterial3D_wdrjk")

@@ -144,32 +144,7 @@ public class GameWorld : IArchivable
         if (applyInitialTolerances)
         {
             // Make player species tolerant to the patch conditions they are starting in
-            // The fallback shouldn't be necessary except in very special cases, so it is fine to allocate a lambda
-            var patch = Map.CurrentPatch ??
-                Map.Patches.Values.FirstOrDefault(p => p.GetSpeciesSimulationPopulation(PlayerSpecies) > 0);
-
-            if (patch != null)
-            {
-                if (PlayerSpecies is MicrobeSpecies microbeSpecies)
-                {
-                    PlayerSpecies.ModifiableTolerances.CopyFrom(
-                        patch.GenerateTolerancesForMicrobe(microbeSpecies.Organelles));
-                }
-                else if (PlayerSpecies is MulticellularSpecies multicellularSpecies)
-                {
-                    PlayerSpecies.ModifiableTolerances.CopyFrom(patch.GenerateTolerancesForMicrobe(multicellularSpecies
-                        .ModifiableGameplayCells[0].ModifiableOrganelles));
-                }
-                else
-                {
-                    // TODO: need to implement this once macroscopic has tolerances
-                    GD.PrintErr("Cannot set initial tolerances from a species that isn't MicrobeSpecies");
-                }
-            }
-            else
-            {
-                GD.PrintErr("Cannot set initial tolerances for player species, no patch with population found");
-            }
+            SetSpeciesInitialTolerances(PlayerSpecies, Map, null);
         }
 
         // Create the initial generation by adding only the player species
@@ -269,6 +244,34 @@ public class GameWorld : IArchivable
             new Hex(0, 0), 0), workMemory1, workMemory2);
 
         species.OnEdited();
+    }
+
+    public static void SetSpeciesInitialTolerances(Species species, PatchMap map, Patch? patch)
+    {
+        // The fallback shouldn't be necessary except in very special cases, so it is fine to allocate a lambda
+        patch ??= map.CurrentPatch ??
+            map.Patches.Values.FirstOrDefault(p => p.GetSpeciesSimulationPopulation(species) > 0);
+
+        if (patch == null)
+        {
+            GD.PrintErr("Cannot set initial tolerances for species, no patch with population found");
+            return;
+        }
+
+        if (species is MicrobeSpecies microbeSpecies)
+        {
+            species.ModifiableTolerances.CopyFrom(patch.GenerateTolerancesForMicrobe(microbeSpecies.Organelles));
+        }
+        else if (species is MulticellularSpecies multicellularSpecies)
+        {
+            species.ModifiableTolerances.CopyFrom(
+                patch.GenerateTolerancesForMicrobe(multicellularSpecies.ModifiableEditorCells));
+        }
+        else
+        {
+            // TODO: need to implement this once macroscopic has tolerances
+            GD.PrintErr($"Cannot set initial tolerances from a species that is: {species.GetType().Name}");
+        }
     }
 
     public static GameWorld ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
@@ -819,9 +822,12 @@ public class GameWorld : IArchivable
     /// </summary>
     /// <param name="species">
     ///   The species to convert to a multicellular one. No checks are done to make sure the species is
-    ///   actually a valid multicellular one.
+    ///   actually valid multicellular.
     /// </param>
-    public MulticellularSpecies ChangeSpeciesToMulticellular(Species species)
+    /// <param name="initialBlob">
+    ///   If true, an initial blob of cells is created rather than just a single placed cell
+    /// </param>
+    public MulticellularSpecies ChangeSpeciesToMulticellular(Species species, bool initialBlob)
     {
         var microbeSpecies = (MicrobeSpecies)species;
 
@@ -835,9 +841,33 @@ public class GameWorld : IArchivable
         var workMemory2 = new List<Hex>();
 
         var stemCellType = new CellType(microbeSpecies, workMemory1, workMemory2);
-
-        multicellularVersion.ModifiableGameplayCells.AddFast(new CellTemplate(stemCellType), workMemory1, workMemory2);
         multicellularVersion.ModifiableCellTypes.Add(stemCellType);
+
+        if (initialBlob)
+        {
+            // As it is simpler to use the editor layout, we create that primarily and then rely on the algorithm to
+            // convert it to a gameplay layout
+            var simpleLayout = new IndividualHexLayout<CellTemplate>();
+
+            simpleLayout.AddFast(
+                new HexWithData<CellTemplate>(new CellTemplate(stemCellType, new Hex(0, 0), 0), new Hex(0, 0), 0),
+                workMemory1, workMemory2);
+            simpleLayout.AddFast(
+                new HexWithData<CellTemplate>(new CellTemplate(stemCellType, new Hex(-1, 1), 0), new Hex(-1, 1), 0),
+                workMemory1, workMemory2);
+            simpleLayout.AddFast(
+                new HexWithData<CellTemplate>(new CellTemplate(stemCellType, new Hex(1, 0), 0), new Hex(1, 0), 0),
+                workMemory1, workMemory2);
+
+            MulticellularLayoutHelpers.UpdateGameplayLayout(multicellularVersion.ModifiableGameplayCells,
+                multicellularVersion.ModifiableEditorCells, simpleLayout, AlgorithmQuality.High, workMemory1,
+                workMemory2);
+        }
+        else
+        {
+            multicellularVersion.ModifiableGameplayCells.AddFast(new CellTemplate(stemCellType, new Hex(0, 0), 0),
+                workMemory1, workMemory2);
+        }
 
         multicellularVersion.OnEdited();
         SwitchSpecies(species, multicellularVersion);
@@ -849,7 +879,7 @@ public class GameWorld : IArchivable
     /// </summary>
     /// <param name="species">
     ///   The species to convert to a macroscopic one. No checks are done to make sure the species is
-    ///   actually a valid multicellular one.
+    ///   actually valid multicellular.
     /// </param>
     public MacroscopicSpecies ChangeSpeciesToMacroscopic(Species species)
     {
@@ -861,7 +891,7 @@ public class GameWorld : IArchivable
         var lateVersion = new MacroscopicSpecies(species.ID, species.Genus, species.Epithet);
         species.CopyDataToConvertedSpecies(lateVersion);
 
-        // Copy all the cell types, even ones that are unused so the player doesn't lose any when moving stages
+        // Copy all the cell types, even ones that are unused, so the player doesn't lose any when moving stages
         // in case they want to place them later
         lateVersion.ModifiableCellTypes.AddRange(earlySpecies.ModifiableCellTypes);
 

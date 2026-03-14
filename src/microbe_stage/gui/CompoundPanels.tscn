@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bk6re4dgb8r3n"]
+[gd_scene format=3 uid="uid://bk6re4dgb8r3n"]
 
 [ext_resource type="Script" uid="uid://d2yfv0dpe61wm" path="res://src/microbe_stage/gui/CompoundPanels.cs" id="1_x6jrf"]
 [ext_resource type="LabelSettings" uid="uid://2wocwdhy8088" path="res://src/gui_common/fonts/Title-SemiBold-AlmostSmaller.tres" id="2_a755s"]
@@ -21,6 +21,14 @@ corner_radius_top_right = 7
 corner_radius_bottom_right = 7
 corner_radius_bottom_left = 7
 
+[sub_resource type="StyleBoxTexture" id="5"]
+texture = ExtResource("3_g8oxc")
+region_rect = Rect2(0, 0, 20, 20)
+
+[sub_resource type="StyleBoxTexture" id="4"]
+texture = ExtResource("4_mf4n6")
+region_rect = Rect2(0, 0, 20, 20)
+
 [sub_resource type="StyleBoxTexture" id="3"]
 texture = ExtResource("3_g8oxc")
 expand_margin_left = 1.0
@@ -30,28 +38,20 @@ expand_margin_bottom = 1.0
 region_rect = Rect2(0, 0, 20, 20)
 modulate_color = Color(0, 0.435294, 0.52549, 1)
 
-[sub_resource type="StyleBoxTexture" id="4"]
-texture = ExtResource("4_mf4n6")
-region_rect = Rect2(0, 0, 20, 20)
-
-[sub_resource type="StyleBoxTexture" id="5"]
-texture = ExtResource("3_g8oxc")
-region_rect = Rect2(0, 0, 20, 20)
-
 [sub_resource type="ButtonGroup" id="ButtonGroup_31tdv"]
 
-[sub_resource type="StyleBoxTexture" id="16"]
+[sub_resource type="StyleBoxTexture" id="18"]
 texture = ExtResource("5_iprbg")
 region_rect = Rect2(0, 0, 20, 20)
-modulate_color = Color(0, 0.435294, 0.52549, 1)
 
 [sub_resource type="StyleBoxTexture" id="17"]
 texture = ExtResource("6_6f8qr")
 region_rect = Rect2(0, 0, 20, 20)
 
-[sub_resource type="StyleBoxTexture" id="18"]
+[sub_resource type="StyleBoxTexture" id="16"]
 texture = ExtResource("5_iprbg")
 region_rect = Rect2(0, 0, 20, 20)
+modulate_color = Color(0, 0.435294, 0.52549, 1)
 
 [sub_resource type="Animation" id="Animation_4cpjp"]
 resource_name = "AddAgents"
@@ -607,7 +607,7 @@ _data = {
 &"ShowOnlyCompounds": SubResource("Animation_dyqfp")
 }
 
-[node name="CompoundPanels" type="VBoxContainer" node_paths=PackedStringArray("agentsContainer", "agentsParentContainer", "expandButton", "compressButton", "primaryBarContainer", "panelHideAnimationPlayer")]
+[node name="CompoundPanels" type="VBoxContainer" unique_id=2008533996 node_paths=PackedStringArray("agentsContainer", "agentsParentContainer", "expandButton", "compressButton", "primaryBarContainer", "panelHideAnimationPlayer")]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -625,29 +625,29 @@ compressButton = NodePath("CompoundsPanel/VBoxContainer/Header/HBoxContainer/Com
 primaryBarContainer = NodePath("CompoundsPanel/VBoxContainer/Body/BarContainer")
 panelHideAnimationPlayer = NodePath("PanelAnimationPlayer")
 
-[node name="CompoundsPanel" type="PanelContainer" parent="."]
+[node name="CompoundsPanel" type="PanelContainer" parent="." unique_id=877905137]
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_styles/panel = SubResource("2")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CompoundsPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CompoundsPanel" unique_id=1672869463]
 custom_minimum_size = Vector2(252, 0)
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="Header" type="MarginContainer" parent="CompoundsPanel/VBoxContainer"]
+[node name="Header" type="MarginContainer" parent="CompoundsPanel/VBoxContainer" unique_id=309951698]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CompoundsPanel/VBoxContainer/Header"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CompoundsPanel/VBoxContainer/Header" unique_id=730533120]
 custom_minimum_size = Vector2(197, 0)
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="Icon" type="TextureRect" parent="CompoundsPanel/VBoxContainer/Header/HBoxContainer"]
+[node name="Icon" type="TextureRect" parent="CompoundsPanel/VBoxContainer/Header/HBoxContainer" unique_id=1105791180]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 size_flags_vertical = 4
@@ -655,108 +655,106 @@ texture = ExtResource("2_ix6mf")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="CompoundsPanel/VBoxContainer/Header/HBoxContainer"]
+[node name="Label" type="Label" parent="CompoundsPanel/VBoxContainer/Header/HBoxContainer" unique_id=2022481871]
 custom_minimum_size = Vector2(145, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "COMPOUNDS"
 label_settings = ExtResource("2_a755s")
 
-[node name="CompoundExpandButton" type="Button" parent="CompoundsPanel/VBoxContainer/Header/HBoxContainer"]
+[node name="CompoundExpandButton" type="Button" parent="CompoundsPanel/VBoxContainer/Header/HBoxContainer" unique_id=619267707]
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 focus_mode = 0
-theme_override_styles/hover = SubResource("3")
-theme_override_styles/pressed = SubResource("4")
 theme_override_styles/normal = SubResource("5")
+theme_override_styles/pressed = SubResource("4")
+theme_override_styles/hover = SubResource("3")
 toggle_mode = true
 button_pressed = true
 action_mode = 0
 button_group = SubResource("ButtonGroup_31tdv")
 
-[node name="CompoundCompressButton" type="Button" parent="CompoundsPanel/VBoxContainer/Header/HBoxContainer"]
+[node name="CompoundCompressButton" type="Button" parent="CompoundsPanel/VBoxContainer/Header/HBoxContainer" unique_id=1563859239]
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 focus_mode = 0
-theme_override_styles/hover = SubResource("16")
-theme_override_styles/pressed = SubResource("17")
 theme_override_styles/normal = SubResource("18")
+theme_override_styles/pressed = SubResource("17")
+theme_override_styles/hover = SubResource("16")
 toggle_mode = true
 action_mode = 0
 button_group = SubResource("ButtonGroup_31tdv")
 
-[node name="HSeparator" type="HSeparator" parent="CompoundsPanel/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="CompoundsPanel/VBoxContainer" unique_id=120379663]
 custom_minimum_size = Vector2(254, 0)
 layout_mode = 2
 
-[node name="Body" type="MarginContainer" parent="CompoundsPanel/VBoxContainer"]
+[node name="Body" type="MarginContainer" parent="CompoundsPanel/VBoxContainer" unique_id=886574818]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 15
 
-[node name="BarContainer" type="GridContainer" parent="CompoundsPanel/VBoxContainer/Body"]
+[node name="BarContainer" type="GridContainer" parent="CompoundsPanel/VBoxContainer/Body" unique_id=1360067561]
 layout_mode = 2
 theme_override_constants/v_separation = 5
 
-[node name="SmoothPopup" type="Control" parent="."]
+[node name="SmoothPopup" type="Control" parent="." unique_id=655068965]
 visible = false
 layout_mode = 2
 
-[node name="AgentsPanel" type="PanelContainer" parent="."]
+[node name="AgentsPanel" type="PanelContainer" parent="." unique_id=2124024578]
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_styles/panel = SubResource("2")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="AgentsPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="AgentsPanel" unique_id=203143169]
 layout_mode = 2
 
-[node name="Header" type="MarginContainer" parent="AgentsPanel/VBoxContainer"]
+[node name="Header" type="MarginContainer" parent="AgentsPanel/VBoxContainer" unique_id=1758707582]
 custom_minimum_size = Vector2(230, 35)
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="AgentsPanel/VBoxContainer/Header"]
+[node name="HBoxContainer" type="HBoxContainer" parent="AgentsPanel/VBoxContainer/Header" unique_id=1072238917]
 layout_mode = 2
 
-[node name="Icon" type="TextureRect" parent="AgentsPanel/VBoxContainer/Header/HBoxContainer"]
+[node name="Icon" type="TextureRect" parent="AgentsPanel/VBoxContainer/Header/HBoxContainer" unique_id=732163486]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 size_flags_vertical = 4
 texture = ExtResource("14_hu0kk")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="AgentsPanel/VBoxContainer/Header/HBoxContainer"]
+[node name="Label" type="Label" parent="AgentsPanel/VBoxContainer/Header/HBoxContainer" unique_id=1980359624]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "AGENTS"
 label_settings = ExtResource("2_a755s")
 
-[node name="HSeparator" type="HSeparator" parent="AgentsPanel/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="AgentsPanel/VBoxContainer" unique_id=1518295232]
 custom_minimum_size = Vector2(254, 0)
 layout_mode = 2
 
-[node name="Body" type="MarginContainer" parent="AgentsPanel/VBoxContainer"]
+[node name="Body" type="MarginContainer" parent="AgentsPanel/VBoxContainer" unique_id=1878445450]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="BarContainer" type="GridContainer" parent="AgentsPanel/VBoxContainer/Body"]
+[node name="BarContainer" type="GridContainer" parent="AgentsPanel/VBoxContainer/Body" unique_id=1432039913]
 layout_mode = 2
 
-[node name="PanelAnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_1orya")
-}
+[node name="PanelAnimationPlayer" type="AnimationPlayer" parent="." unique_id=447839062]
+libraries/ = SubResource("AnimationLibrary_1orya")
 
 [connection signal="pressed" from="CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundExpandButton" to="." method="OnExpandPressed"]
 [connection signal="pressed" from="CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundCompressButton" to="." method="OnCompressPressed"]

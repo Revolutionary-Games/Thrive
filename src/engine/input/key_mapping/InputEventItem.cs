@@ -315,8 +315,7 @@ public partial class InputEventItem : MarginContainer
                     GetViewport().SetInputAsHandled();
 
                     WaitingForInput = false;
-                    if (alternativeButtonContentToText != null)
-                        alternativeButtonContentToText.Visible = true;
+                    alternativeButtonContentToText?.Visible = true;
 
                     // Rebind canceled, alert the InputManager so it can resume getting input
                     InputManager.PerformingRebind = false;
@@ -605,8 +604,7 @@ public partial class InputEventItem : MarginContainer
         button.Text = Localization.Translate("PRESS_KEY_DOT_DOT_DOT");
         xButton.Visible = true;
 
-        if (alternativeButtonContentToText != null)
-            alternativeButtonContentToText.Visible = false;
+        alternativeButtonContentToText?.Visible = false;
 
         // Notify InputManager that input rebinding has started and it should not react to input
         InputManager.PerformingRebind = true;

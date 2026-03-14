@@ -383,8 +383,7 @@ public partial class CompoundProgressBar : Control
         {
             playingFlashAnimation = false;
 
-            if (icon != null)
-                icon.SelfModulate = Colors.White;
+            icon?.SelfModulate = Colors.White;
 
             UpdateColour();
         }
@@ -409,12 +408,11 @@ public partial class CompoundProgressBar : Control
             flashAnimationTimer = 0;
             SetProcess(false);
 
-            if (icon != null)
-                icon.SelfModulate = Colors.White;
+            icon?.SelfModulate = Colors.White;
         }
-        else if (icon != null)
+        else
         {
-            icon.SelfModulate = Colors.White.Lerp(Colors.Red, (float)FlashAnimationSlerpFactor);
+            icon?.SelfModulate = Colors.White.Lerp(Colors.Red, (float)FlashAnimationSlerpFactor);
         }
 
         UpdateColour();

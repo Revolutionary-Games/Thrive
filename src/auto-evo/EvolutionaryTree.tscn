@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cjbhth6wlc08l"]
+[gd_scene format=3 uid="uid://cjbhth6wlc08l"]
 
 [ext_resource type="Script" uid="uid://5ptm1w4024ay" path="res://src/auto-evo/EvolutionaryTree.cs" id="1"]
 
-[node name="EvolutionaryTree" type="VBoxContainer" node_paths=PackedStringArray("timeline", "tree")]
+[node name="EvolutionaryTree" type="VBoxContainer" unique_id=1648760140 node_paths=PackedStringArray("timeline", "tree")]
 clip_contents = true
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,14 +13,14 @@ script = ExtResource("1")
 timeline = NodePath("Timeline")
 tree = NodePath("Tree")
 
-[node name="Timeline" type="Control" parent="."]
+[node name="Timeline" type="Control" parent="." unique_id=1942374237]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 mouse_force_pass_scroll_events = false
 
-[node name="Tree" type="Control" parent="."]
+[node name="Tree" type="Control" parent="." unique_id=881756852]
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3

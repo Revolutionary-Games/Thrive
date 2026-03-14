@@ -36,7 +36,7 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
     /// <summary>
     ///   The cloud resolution of the first cloud
     /// </summary>
-    public int Resolution => clouds[0].Resolution;
+    public int Resolution => clouds[0].CloudResolution;
 
     public bool IsLoadedFromSave { get; set; }
 
@@ -301,7 +301,7 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
                     }
 
                     // Then just need to check that it is within the cloud simulation array
-                    if (x < cloud.Size && y < cloud.Size)
+                    if (x < cloud.PlaneSize && y < cloud.PlaneSize)
                     {
                         // Absorb all compounds in the cloud
                         cloud.AbsorbCompounds(x, y, storage, totals, delta, rate);
@@ -351,7 +351,7 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
                         continue;
 
                     // Then just need to check that it is within the cloud simulation array
-                    if (x < cloud.Size && y < cloud.Size)
+                    if (x < cloud.PlaneSize && y < cloud.PlaneSize)
                     {
                         if (cloud.AmountAvailable(compound, x, y) >= minConcentration)
                         {
@@ -385,10 +385,10 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
     /// <summary>
     ///   Used from the stage to update the player position to reposition the clouds
     /// </summary>
-    public void ReportPlayerPosition(Vector3 position)
+    public void ReportPlayerPosition(Vector3 playerPosition)
     {
         // Calculate what our center should be
-        var targetCenter = CalculateGridCenterForPlayerPos(position);
+        var targetCenter = CalculateGridCenterForPlayerPos(playerPosition);
 
         // TODO: because we no longer check if the player has moved at least a bit
         // it is possible that this gets triggered very often if the player spins
@@ -441,9 +441,9 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
     {
         // The gaps between the positions is used for calculations here. Otherwise
         // all clouds get moved when the player moves
-        return new Vector3((int)Math.Round(pos.X / (Constants.CLOUD_X_EXTENT / 3)),
+        return new Vector3((int)Math.Round(pos.X / (Constants.CLOUD_EXTENT / 3)),
             0,
-            (int)Math.Round(pos.Z / (Constants.CLOUD_Y_EXTENT / 3)));
+            (int)Math.Round(pos.Z / (Constants.CLOUD_EXTENT / 3)));
     }
 
     /// <summary>
@@ -454,7 +454,7 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
         foreach (var cloud in clouds)
         {
             // TODO: make sure the cloud knows where we moved.
-            cloud.Position = cloudGridCenter * Constants.CLOUD_Y_EXTENT / 3;
+            cloud.Position = cloudGridCenter * Constants.CLOUD_EXTENT / 3;
             cloud.UpdatePosition(new Vector2I((int)cloudGridCenter.X, (int)cloudGridCenter.Z));
         }
     }
@@ -464,7 +464,7 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
         // Do moving compounds on the edges of the clouds serially
         foreach (var cloud in clouds)
         {
-            cloud.UpdateEdgesBeforeCenter(delta);
+            cloud.DiffuseEdges(delta);
         }
 
         var executor = TaskExecutor.Instance;
@@ -472,18 +472,24 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
 
         foreach (var cloud in clouds)
         {
-            cloud.QueueUpdateCloud(delta, tasks);
+            cloud.QueueDiffuseCloud(delta, tasks);
         }
 
-        // Start and wait for tasks to finish
         executor.RunTasks(tasks);
         tasks.Clear();
 
-        // Do moving compounds on the edges of the clouds serially
         foreach (var cloud in clouds)
         {
-            cloud.UpdateEdgesAfterCenter(delta);
+            cloud.ClearDensity();
         }
+
+        foreach (var cloud in clouds)
+        {
+            cloud.QueueAdvectCloud(delta, tasks);
+        }
+
+        executor.RunTasks(tasks);
+        tasks.Clear();
 
         // Update the cloud textures in parallel
         foreach (var cloud in clouds)

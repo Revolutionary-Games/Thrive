@@ -78,12 +78,12 @@ public class EnvironmentalCompoundPressure : SelectionPressure
         if (createdCompound.ID == Compound.Glucose)
         {
             amountCreated *=
-                cache.GetCompoundConversionScoreForSpecies(createdCompound, atp, microbeSpecies, patch.Biome);
+                cache.GetCompoundConversionScoreForSpecies(createdCompound, atp, microbeSpecies);
         }
 
         var energyBalance = cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome);
 
-        // Penalize Species that do not rely on this compound
+        // Penalize Species that cannot rely exclusively on this compound
         return MathF.Min(amountCreated / energyBalance.TotalConsumption, 1);
     }
 

@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cjr5bv822t6yp"]
+[gd_scene format=3 uid="uid://cjr5bv822t6yp"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
 
-[node name="WorldProgressBar" type="ProgressBar"]
+[node name="WorldProgressBar" type="ProgressBar" unique_id=1283993803]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

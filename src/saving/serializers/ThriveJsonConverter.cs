@@ -21,7 +21,6 @@ public class ThriveJsonConverter : IDisposable
 
     private readonly JsonConverter[] thriveConverters;
 
-    // TODO: (check if this can cause process lock ups) https://github.com/Revolutionary-Games/Thrive/issues/4989
     private readonly ThreadLocal<JsonSerializerSettings> currentJsonSettings = new();
     private bool disposed;
 

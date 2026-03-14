@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://jjb8ei8wuuk"]
+[gd_scene format=3 uid="uid://jjb8ei8wuuk"]
 
 [ext_resource type="Texture2D" uid="uid://blcmdxxsk4nyv" path="res://assets/textures/gui/bevel/DNAButtonLargeNormal.svg" id="1_78qx4"]
 [ext_resource type="Texture2D" uid="uid://dyc7ht0h5qfca" path="res://assets/textures/gui/bevel/DNAButtonLargePressed.svg" id="2_ktti2"]
@@ -45,7 +45,7 @@ _data = {
 &"EditorButtonFlash": SubResource("30")
 }
 
-[node name="EditorButton" type="TextureButton" node_paths=PackedStringArray("highlight", "buttonAnimationPlayer", "ammoniaIcon", "ammoniaReproductionBar", "phosphateIcon", "phosphateReproductionBar", "reproductionBar", "editorButtonFlash")]
+[node name="EditorButton" type="TextureButton" unique_id=1557187670 node_paths=PackedStringArray("highlight", "buttonAnimationPlayer", "ammoniaIcon", "ammoniaReproductionBar", "phosphateIcon", "phosphateReproductionBar", "reproductionBar", "editorButtonFlash")]
 custom_minimum_size = Vector2(160, 160)
 anchors_preset = 3
 anchor_left = 1.0
@@ -81,7 +81,7 @@ phosphateReproductionBar = NodePath("ReproductionBar/PhosphateReproductionBar")
 reproductionBar = NodePath("ReproductionBar")
 editorButtonFlash = NodePath("Highlight/PointLight2D")
 
-[node name="Highlight" type="TextureRect" parent="."]
+[node name="Highlight" type="TextureRect" parent="." unique_id=1556240166]
 visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
@@ -96,11 +96,11 @@ texture = ExtResource("3_pslvo")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="PointLight2D" type="PointLight2D" parent="Highlight"]
+[node name="PointLight2D" type="PointLight2D" parent="Highlight" unique_id=1559362722]
 scale = Vector2(0.845357, 0.845357)
 texture = ExtResource("5_vcgwd")
 
-[node name="ReproductionBar" type="Control" parent="."]
+[node name="ReproductionBar" type="Control" parent="." unique_id=2077654356]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -111,7 +111,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="BarBackground" type="TextureRect" parent="ReproductionBar"]
+[node name="BarBackground" type="TextureRect" parent="ReproductionBar" unique_id=655257052]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 8
@@ -129,7 +129,7 @@ texture = ExtResource("11_ptk1u")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="AmmoniaReproductionBar" type="TextureProgressBar" parent="ReproductionBar"]
+[node name="AmmoniaReproductionBar" type="TextureProgressBar" parent="ReproductionBar" unique_id=509164800]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -149,7 +149,7 @@ nine_patch_stretch = true
 texture_progress = ExtResource("11_ptk1u")
 tint_progress = Color(1, 0.627451, 0.121569, 1)
 
-[node name="PhosphateReproductionBar" type="TextureProgressBar" parent="ReproductionBar"]
+[node name="PhosphateReproductionBar" type="TextureProgressBar" parent="ReproductionBar" unique_id=373007450]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -170,7 +170,7 @@ nine_patch_stretch = true
 texture_progress = ExtResource("11_ptk1u")
 tint_progress = Color(0.690196, 0.423529, 1, 1)
 
-[node name="AmmoniaIcon" type="TextureRect" parent="ReproductionBar"]
+[node name="AmmoniaIcon" type="TextureRect" parent="ReproductionBar" unique_id=1346233848]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -187,7 +187,7 @@ texture = ExtResource("12_20jfj")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="PhosphateIcon" type="TextureRect" parent="ReproductionBar"]
+[node name="PhosphateIcon" type="TextureRect" parent="ReproductionBar" unique_id=472791933]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -204,10 +204,8 @@ texture = ExtResource("9_ml22k")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_xveqw")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1056681982]
+libraries/ = SubResource("AnimationLibrary_xveqw")
 
 [connection signal="mouse_entered" from="." to="." method="OnEditorButtonMouseEnter"]
 [connection signal="mouse_exited" from="." to="." method="OnEditorButtonMouseExit"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c4sg6uyc17d4s"]
+[gd_scene format=3 uid="uid://c4sg6uyc17d4s"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="3"]
 [ext_resource type="LabelSettings" uid="uid://chasppwihgufu" path="res://src/gui_common/fonts/Body-Bold-Small.tres" id="3_8errd"]
@@ -17,7 +17,7 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="GalleryDetailsTooltip" type="PanelContainer" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "artistLabel")]
+[node name="GalleryDetailsTooltip" type="PanelContainer" unique_id=209043718 node_paths=PackedStringArray("titleLabel", "descriptionLabel", "artistLabel")]
 custom_minimum_size = Vector2(300, 0)
 offset_right = 362.0
 offset_bottom = 81.0
@@ -30,36 +30,36 @@ titleLabel = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Label2")
 descriptionLabel = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/Label2")
 artistLabel = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/Label2")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1905456520]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1372754651]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1173421089]
 layout_mode = 2
 text = "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
 label_settings = ExtResource("3_8errd")
 
-[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer"]
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer" unique_id=312761697]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1432086521]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=436694199]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 text = "TITLE_COLON"
 label_settings = ExtResource("3_8errd")
 
-[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1151071340]
 editor_description = "PLACEHOLDER"
 custom_minimum_size = Vector2(190, 0)
 layout_mode = 2
@@ -68,17 +68,17 @@ size_flags_vertical = 0
 text = "Insert title"
 label_settings = ExtResource("5_3f83p")
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1498458250]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=762401982]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 text = "DESCRIPTION_COLON"
 label_settings = ExtResource("3_8errd")
 
-[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=948909681]
 editor_description = "PLACEHOLDER"
 custom_minimum_size = Vector2(190, 0)
 layout_mode = 2
@@ -87,17 +87,17 @@ size_flags_vertical = 0
 text = "Insert description"
 label_settings = ExtResource("5_3f83p")
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1607233701]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3" unique_id=854560143]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 text = "ARTIST_COLON"
 label_settings = ExtResource("3_8errd")
 
-[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1684016270]
 editor_description = "PLACEHOLDER"
 custom_minimum_size = Vector2(190, 0)
 layout_mode = 2

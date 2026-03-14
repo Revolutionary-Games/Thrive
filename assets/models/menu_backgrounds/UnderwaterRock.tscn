@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://h6dsvt4v07um"]
+[gd_scene format=3 uid="uid://h6dsvt4v07um"]
 
 [ext_resource type="PackedScene" uid="uid://c5ttb5il1h1ix" path="res://assets/models/IronRock1.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://btvaabw1tcq3d" path="res://assets/textures/IronChunk_Full.png" id="2"]
@@ -20,5 +20,5 @@ anisotropy = 1.0
 subsurf_scatter_enabled = true
 subsurf_scatter_strength = 0.08
 
-[node name="IronRockBG01" instance=ExtResource("1")]
+[node name="IronRockBG01" unique_id=1535630609 instance=ExtResource("1")]
 material_override = SubResource("StandardMaterial3D_l1mli")

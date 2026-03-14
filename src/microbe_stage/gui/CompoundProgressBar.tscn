@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://clnc61bm71h04"]
+[gd_scene format=3 uid="uid://clnc61bm71h04"]
 
 [ext_resource type="Script" uid="uid://mj3dsqw5jf12" path="res://src/microbe_stage/gui/CompoundProgressBar.cs" id="1_dosnj"]
 [ext_resource type="LabelSettings" uid="uid://u7fwx3p3shvk" path="res://src/gui_common/fonts/Body-Regular-Small-Shadow.tres" id="2_txlhc"]
@@ -9,7 +9,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d25jo"]
 resource_local_to_scene = true
 
-[node name="CompoundProgressBar" type="Control" node_paths=PackedStringArray("icon", "progressBar", "nameLabel", "amountLabel")]
+[node name="CompoundProgressBar" type="Control" unique_id=94344297 node_paths=PackedStringArray("icon", "progressBar", "nameLabel", "amountLabel")]
 editor_description = "This needs to be a plain control to allow positioning the value to appear above the icon when compact"
 custom_minimum_size = Vector2(220, 25)
 layout_mode = 3
@@ -24,16 +24,16 @@ nameLabel = NodePath("Bar/Name")
 amountLabel = NodePath("Value")
 compactLabelSettings = ExtResource("2_txlhc")
 
-[node name="Icon" type="TextureRect" parent="."]
+[node name="Icon" type="TextureRect" parent="." unique_id=2082150937]
 custom_minimum_size = Vector2(25, 25)
-layout_mode = 2
+layout_mode = 0
 offset_right = 25.0
 offset_bottom = 25.0
 size_flags_horizontal = 0
 expand_mode = 1
 stretch_mode = 6
 
-[node name="Bar" type="ProgressBar" parent="."]
+[node name="Bar" type="ProgressBar" parent="." unique_id=1922570143]
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
@@ -49,7 +49,7 @@ max_value = 1.0
 step = 0.001
 show_percentage = false
 
-[node name="Name" type="Label" parent="Bar"]
+[node name="Name" type="Label" parent="Bar" unique_id=535021239]
 editor_description = "PLACEHOLDER"
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 0
@@ -60,7 +60,7 @@ text = "Glucose"
 label_settings = ExtResource("2_xwjgn")
 vertical_alignment = 1
 
-[node name="Value" type="Label" parent="."]
+[node name="Value" type="Label" parent="." unique_id=827891243]
 editor_description = "PLACEHOLDER"
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 1

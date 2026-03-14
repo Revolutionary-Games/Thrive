@@ -1,11 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://ddi31qylscfyh"]
+[gd_scene format=3 uid="uid://ddi31qylscfyh"]
 
 [ext_resource type="Script" uid="uid://cfvsj45kal4gl" path="res://src/saving/SaveList.cs" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
 [ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://2nt57gfubafw" path="res://src/gui_common/dialogs/ErrorDialog.tscn" id="4"]
 
-[node name="SaveList" type="ScrollContainer" node_paths=PackedStringArray("loadingItem", "noSavesItem", "savesList", "deleteConfirmDialog", "loadNewerConfirmDialog", "loadOlderConfirmDialog", "loadInvalidConfirmDialog", "loadIncompatibleDialog", "upgradeSaveDialog", "loadIncompatiblePrototypeDialog", "upgradeFailedDialog", "errorSaveDeletionFailed")]
+[node name="SaveList" type="ScrollContainer" unique_id=1422659042 node_paths=PackedStringArray("loadingItem", "noSavesItem", "savesList", "deleteConfirmDialog", "loadNewerConfirmDialog", "loadOlderConfirmDialog", "loadInvalidConfirmDialog", "loadIncompatibleDialog", "upgradeSaveDialog", "loadIncompatiblePrototypeDialog", "upgradeFailedDialog", "errorSaveDeletionFailed")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -26,7 +26,7 @@ loadIncompatiblePrototypeDialog = NodePath("MarginContainer/VBoxContainer/LoadIn
 upgradeFailedDialog = NodePath("MarginContainer/VBoxContainer/SaveUpgradeFailedDialog")
 errorSaveDeletionFailed = NodePath("MarginContainer/VBoxContainer/ErrorSaveDeletionFailedDialog")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=791386442]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -35,58 +35,58 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=551514500]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="NoSavesLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="NoSavesLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=371719081]
 visible = false
 layout_mode = 2
 size_flags_vertical = 6
 text = "NO_SAVEGAMES_FOUND"
 horizontal_alignment = 1
 
-[node name="LoadingLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="LoadingLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1435315181]
 visible = false
 layout_mode = 2
 text = "LOADING_DOT_DOT_DOT"
 horizontal_alignment = 1
 
-[node name="ItemList" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="ItemList" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=376002703]
 layout_mode = 2
 
-[node name="DeleteSaveConfirmDialog" parent="MarginContainer/VBoxContainer" instance=ExtResource("3")]
+[node name="DeleteSaveConfirmDialog" parent="MarginContainer/VBoxContainer" unique_id=902416644 instance=ExtResource("3")]
 custom_minimum_size = Vector2(450, 70)
 layout_mode = 2
 WindowTitle = "DELETE_THIS_SAVE_PROMPT"
 
-[node name="LoadNewerSaveDialog" parent="MarginContainer/VBoxContainer" instance=ExtResource("3")]
+[node name="LoadNewerSaveDialog" parent="MarginContainer/VBoxContainer" unique_id=1136337944 instance=ExtResource("3")]
 custom_minimum_size = Vector2(600, 70)
 layout_mode = 2
 DialogText = "NEWER_VERSION_LOADING_WARNING"
 WindowTitle = "LOAD_INCOMPATIBLE_SAVE_PROMPT"
 
-[node name="LoadOlderSaveDialog" parent="MarginContainer/VBoxContainer" instance=ExtResource("3")]
+[node name="LoadOlderSaveDialog" parent="MarginContainer/VBoxContainer" unique_id=401090505 instance=ExtResource("3")]
 custom_minimum_size = Vector2(700, 0)
 layout_mode = 2
 DialogText = "OLDER_VERSION_LOADING_WARNING"
 WindowTitle = "LOAD_INCOMPATIBLE_SAVE_PROMPT"
 
-[node name="LoadInvalidSaveDialog" parent="MarginContainer/VBoxContainer" instance=ExtResource("3")]
+[node name="LoadInvalidSaveDialog" parent="MarginContainer/VBoxContainer" unique_id=39353816 instance=ExtResource("3")]
 custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 DialogText = "LOAD_INVALID_SAVE_WARNING"
 WindowTitle = "LOAD_INVALID_SAVE_PROMPT"
 
-[node name="LoadKnownIncompatibleDialog" parent="MarginContainer/VBoxContainer" instance=ExtResource("3")]
+[node name="LoadKnownIncompatibleDialog" parent="MarginContainer/VBoxContainer" unique_id=489426443 instance=ExtResource("3")]
 custom_minimum_size = Vector2(700, 0)
 layout_mode = 2
 HideCancelButton = true
 DialogText = "LOAD_INCOMPATIBLE_SAVE_WARNING"
 WindowTitle = "SELECTED_SAVE_IS_INCOMPATIBLE_PROMPT"
 
-[node name="UpgradeSelectedSaveDialog" parent="MarginContainer/VBoxContainer" instance=ExtResource("3")]
+[node name="UpgradeSelectedSaveDialog" parent="MarginContainer/VBoxContainer" unique_id=1961291309 instance=ExtResource("3")]
 custom_minimum_size = Vector2(600, 70)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -94,19 +94,19 @@ size_flags_vertical = 5
 DialogText = "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 WindowTitle = "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
 
-[node name="SaveUpgradeFailedDialog" parent="MarginContainer/VBoxContainer" instance=ExtResource("4")]
+[node name="SaveUpgradeFailedDialog" parent="MarginContainer/VBoxContainer" unique_id=403267737 instance=ExtResource("4")]
 layout_mode = 2
 ErrorMessage = "SAVE_UPGRADE_FAILED_DESCRIPTION"
 WindowTitle = "SAVE_UPGRADE_FAILED"
 
-[node name="LoadIncompatiblePrototypeDialog" parent="MarginContainer/VBoxContainer" instance=ExtResource("3")]
+[node name="LoadIncompatiblePrototypeDialog" parent="MarginContainer/VBoxContainer" unique_id=1541299007 instance=ExtResource("3")]
 custom_minimum_size = Vector2(700, 0)
 layout_mode = 2
 HideCancelButton = true
 DialogText = "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
 WindowTitle = "SELECTED_SAVE_IS_INCOMPATIBLE_PROTOTYPE_PROMPT"
 
-[node name="ErrorSaveDeletionFailedDialog" parent="MarginContainer/VBoxContainer" instance=ExtResource("3")]
+[node name="ErrorSaveDeletionFailedDialog" parent="MarginContainer/VBoxContainer" unique_id=601549211 instance=ExtResource("3")]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 HideCancelButton = true

@@ -85,7 +85,7 @@ func _println_message(message: String, _color: Color, _indent: int, flags: int) 
 ## [param _effect] The text effect to apply (e.g. wave).[br]
 ## [param _align] The text alignment (left or right).[br]
 ## [param flags] The text style flags to apply.
-func _print_at(message: String, cursor_pos: int, _color: Color, _effect: Effect, _align: Align, flags: int) -> void:
+func _print_at(message: String, cursor_pos: int, _color: Color, _effect: GdUnitMessageWriter.Effect, _align: Align, flags: int) -> void:
 	if _align == Align.RIGHT:
 		cursor_pos = cursor_pos - message.length()
 

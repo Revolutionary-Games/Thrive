@@ -4,7 +4,6 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Godot;
-using UnlockConstraints;
 
 /// <summary>
 ///   Partial class to mostly separate the GUI interacting parts from the cell editor
@@ -97,6 +96,8 @@ public partial class CellEditorComponent
 
         UpdateOsmoregulationTooltips();
         UpdateMPCost();
+
+        UpdateSpecializationDisplay();
 
         refreshTolerancesWarnings = true;
     }
@@ -358,6 +359,9 @@ public partial class CellEditorComponent
 
     private void CreateUndiscoveredOrganellesButtons(bool refresh = false, bool autoUnlock = true)
     {
+        if (allPartSelectionElements.Count < 1)
+            GD.PrintErr("Create undiscovered organelles buttons is called too early");
+
         // Note that if autoUnlock is true and this is called after the editor is initialized there's a potential
         // logic conflict with UndoEndosymbiontPlaceAction in case we ever decide to allow organelle actions to also
         // occur after entering the editor (other than endosymbiosis unlocks)
@@ -366,7 +370,7 @@ public partial class CellEditorComponent
         var groupsWithUndiscoveredOrganelles =
             new Dictionary<OrganelleDefinition.OrganelleGroup, (LocalizedStringBuilder UnlockText, int Count)>();
 
-        var worldAndPlayerArgs = GetUnlockPlayerDataSource();
+        var worldAndPlayerData = Editor.UnlocksDataSource;
 
         foreach (var entry in allPartSelectionElements)
         {
@@ -374,7 +378,7 @@ public partial class CellEditorComponent
             var control = entry.Value;
 
             // Skip already unlocked organelles
-            if (Editor.CurrentGame.GameWorld.UnlockProgress.IsUnlocked(organelle, worldAndPlayerArgs,
+            if (Editor.CurrentGame.GameWorld.UnlockProgress.IsUnlocked(organelle, worldAndPlayerData,
                     Editor.CurrentGame, autoUnlock))
             {
                 control.Undiscovered = false;
@@ -410,7 +414,7 @@ public partial class CellEditorComponent
                 group.UnlockText.Append("\n\n");
                 group.UnlockText.Append(unlockTextString);
                 group.UnlockText.Append(" ");
-                organelle.GenerateUnlockRequirementsText(group.UnlockText, worldAndPlayerArgs);
+                organelle.GenerateUnlockRequirementsText(group.UnlockText, worldAndPlayerData);
                 groupsWithUndiscoveredOrganelles[buttonGroup] = group;
             }
             else
@@ -423,7 +427,7 @@ public partial class CellEditorComponent
 
                 unlockText.Append(unlockTextString);
                 unlockText.Append(" ");
-                organelle.GenerateUnlockRequirementsText(unlockText, worldAndPlayerArgs);
+                organelle.GenerateUnlockRequirementsText(unlockText, worldAndPlayerData);
                 groupsWithUndiscoveredOrganelles.Add(buttonGroup, (unlockText, 1));
             }
         }
@@ -471,10 +475,36 @@ public partial class CellEditorComponent
         UpdateOrganelleButtons(activeActionName);
     }
 
-    private WorldAndPlayerDataSource GetUnlockPlayerDataSource()
+    private void UpdateSpecializationDisplay()
     {
-        return new WorldAndPlayerDataSource(Editor.CurrentGame.GameWorld, Editor.CurrentPatch,
-            energyBalanceInfo, Editor.EditedCellProperties);
+        var specializationBonus =
+            MicrobeInternalCalculations.CalculateSpecializationBonus(editedMicrobeOrganelles, tempMemory3);
+
+        // Calculate the most common organelle to show what we should recommend the player place more
+        var temp = tempMemory3;
+        temp.Clear();
+        var organelles = editedMicrobeOrganelles;
+
+        var count = organelles.Count;
+        for (int i = 0; i < count; ++i)
+        {
+            var definition = organelles[i].Definition;
+
+            temp.TryGetValue(definition, out var existingCount);
+            temp[definition] = existingCount + 1;
+        }
+
+        // And then with all the info, update the tooltip and display
+        if (organelles.Count < 1)
+        {
+            organismStatisticsPanel.UpdateSpecialization(specializationBonus, 0, Localization.Translate("NONE"));
+            return;
+        }
+
+        var mostCommonOrganelle = temp.MaxBy(t => t.Value);
+
+        organismStatisticsPanel.UpdateSpecialization(specializationBonus, mostCommonOrganelle.Value,
+            mostCommonOrganelle.Key.Name);
     }
 
     private SelectionMenuToolTip? GetSelectionTooltip(string name, string group)
@@ -488,10 +518,13 @@ public partial class CellEditorComponent
     /// </summary>
     private void UpdateMPCost()
     {
+        if (placeablePartSelectionElements.Count < 1 || membraneSelectionElements.Count < 1)
+            GD.PrintErr("Cannot update MP cost tooltips as they are not initialised");
+
         // Set the cost factor for each organelle button
         foreach (var entry in placeablePartSelectionElements)
         {
-            var cost = (int)Math.Min(entry.Key.MPCost * CostMultiplier, 100);
+            var cost = (int)Math.Min(entry.Key.MPCost * CostMultiplier, Constants.MAX_SINGLE_EDIT_MP_COST);
 
             entry.Value.MPCost = cost;
 
@@ -503,7 +536,7 @@ public partial class CellEditorComponent
         // Set the cost factor for each membrane button
         foreach (var entry in membraneSelectionElements)
         {
-            var cost = (int)Math.Min(entry.Key.EditorCost * CostMultiplier, 100);
+            var cost = (int)Math.Min(entry.Key.EditorCost * CostMultiplier, Constants.MAX_SINGLE_EDIT_MP_COST);
 
             entry.Value.MPCost = cost;
 
@@ -515,7 +548,8 @@ public partial class CellEditorComponent
         // Set the cost factor for the rigidity tooltip
         var rigidityTooltip = GetSelectionTooltip("rigiditySlider", "editor");
         rigidityTooltip?.MutationPointCost =
-            (int)Math.Min(Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * CostMultiplier, 100);
+            (int)Math.Min(Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * CostMultiplier,
+                Constants.MAX_SINGLE_EDIT_MP_COST);
 
         tolerancesEditor.MPDisplayCostMultiplier = CostMultiplier;
         tolerancesEditor.UpdateMPCostInToolTips();
@@ -611,14 +645,15 @@ public partial class CellEditorComponent
         foreach (var entry in placeablePartSelectionElements)
         {
             entry.Value.PartName = entry.Key.Name;
-            entry.Value.MPCost = (int)(entry.Key.MPCost * CostMultiplier);
+            entry.Value.MPCost = (int)Math.Min(entry.Key.MPCost * CostMultiplier, Constants.MAX_SINGLE_EDIT_MP_COST);
             entry.Value.PartIcon = entry.Key.LoadedIcon;
         }
 
         foreach (var entry in membraneSelectionElements)
         {
             entry.Value.PartName = entry.Key.Name;
-            entry.Value.MPCost = (int)(entry.Key.EditorCost * CostMultiplier);
+            entry.Value.MPCost =
+                (int)Math.Min(entry.Key.EditorCost * CostMultiplier, Constants.MAX_SINGLE_EDIT_MP_COST);
             entry.Value.PartIcon = entry.Key.LoadedIcon;
         }
     }
@@ -765,42 +800,18 @@ public partial class CellEditorComponent
 
     private void CalculateAndDisplayToleranceWarnings()
     {
-        usedToleranceWarnings = 0;
-
         // Tolerances with the cell editor are not used in multicellular, rather the body plan editor will display
-        // the warnings (once they are done)
+        // the warnings
         if (!IsMulticellularEditor)
         {
-            var tolerances = CalculateRawTolerances();
+            // We exclude bonuses here so that the warnings display doesn't have a partial line about a debuff and then
+            // inexplicably also a bonus percentage as that would be very confusing to see.
+            var tolerances = CalculateRawTolerances(true);
 
-            void AddToleranceWarning(string text)
-            {
-                if (usedToleranceWarnings < activeToleranceWarnings.Count)
-                {
-                    var warning = activeToleranceWarnings[usedToleranceWarnings];
-                    warning.Text = text;
-                }
-                else if (usedToleranceWarnings < MaxToleranceWarnings)
-                {
-                    var warning = new Label
-                    {
-                        HorizontalAlignment = HorizontalAlignment.Center,
-                        AutowrapMode = TextServer.AutowrapMode.WordSmart,
-                        CustomMinimumSize = new Vector2(150, 0),
-                        LabelSettings = toleranceWarningsFont,
-                    };
-
-                    warning.Text = text;
-                    activeToleranceWarnings.Add(warning);
-                    toleranceWarningContainer.AddChild(warning);
-                }
-
-                ++usedToleranceWarnings;
-            }
-
-            // This allocates a delegate, but it's probably not a significant amount of garbage
-            MicrobeEnvironmentalToleranceCalculations.GenerateToleranceProblemList(tolerances,
-                MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(tolerances), AddToleranceWarning);
+            MicrobeEnvironmentalToleranceCalculations.ManageToleranceProblemListGUI(ref usedToleranceWarnings,
+                activeToleranceWarnings, tolerances,
+                MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(tolerances), toleranceWarningContainer,
+                toleranceWarningsFont, MaxToleranceWarnings);
 
             if (usedToleranceWarnings > 0)
             {
@@ -808,13 +819,15 @@ public partial class CellEditorComponent
                 toleranceTabButton.Visible = true;
             }
         }
-
-        // Remove excess text that is no longer used
-        while (usedToleranceWarnings < activeToleranceWarnings.Count)
+        else
         {
-            var last = activeToleranceWarnings[^1];
-            last.QueueFree();
-            activeToleranceWarnings.RemoveAt(activeToleranceWarnings.Count - 1);
+            usedToleranceWarnings = 0;
+            while (usedToleranceWarnings < activeToleranceWarnings.Count)
+            {
+                var last = activeToleranceWarnings[^1];
+                last.QueueFree();
+                activeToleranceWarnings.RemoveAt(activeToleranceWarnings.Count - 1);
+            }
         }
     }
 

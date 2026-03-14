@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://b6pjvrbt518oj"]
+[gd_scene format=3 uid="uid://b6pjvrbt518oj"]
 
 [ext_resource type="Script" uid="uid://c4ujk8ysiafcu" path="res://src/engine/ChromaticFilter.cs" id="1"]
 [ext_resource type="Shader" uid="uid://c0h6kp5jvkstt" path="res://shaders/Chromatic.gdshader" id="2"]
@@ -8,7 +8,7 @@
 shader = ExtResource("2")
 shader_parameter/MAX_DIST_PX = 0.0
 
-[node name="ChromaticFilter" type="TextureRect"]
+[node name="ChromaticFilter" type="TextureRect" unique_id=677709409]
 material = SubResource("1")
 anchors_preset = 15
 anchor_right = 1.0

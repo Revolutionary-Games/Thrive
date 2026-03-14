@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Arch.System;
@@ -35,10 +36,7 @@ using World = Arch.Core.World;
 [RuntimeCost(4, false)]
 public partial class MulticellularGrowthSystem : BaseSystem<World, float>
 {
-    // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
-    // private readonly ThreadLocal<List<Compound>> temporaryWorkData = new(() => new List<Compound>());
-
-    private readonly List<Compound> temporaryWorkData = new();
+    private readonly ThreadLocal<List<Compound>> temporaryWorkData = new(() => new List<Compound>());
 
     private readonly IWorldSimulation worldSimulation;
     private readonly IMicrobeSpawnEnvironment spawnEnvironment;
@@ -65,10 +63,11 @@ public partial class MulticellularGrowthSystem : BaseSystem<World, float>
             throw new InvalidOperationException("GameWorld not set");
     }
 
-    public override void Dispose()
+    public sealed override void Dispose()
     {
         Dispose(true);
         base.Dispose();
+        GC.SuppressFinalize(this);
     }
 
     [Query]
@@ -148,19 +147,15 @@ public partial class MulticellularGrowthSystem : BaseSystem<World, float>
                 {
                     // Apply the base reproduction cost at this point after growing the full layout
 
-                    // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
-                    lock (temporaryWorkData)
+                    if (!MicrobeReproductionSystem.ProcessBaseReproductionCost(
+                            baseReproduction.MissingCompoundsForBaseReproduction, compounds,
+                            ref remainingAllowedCompoundUse,
+                            ref remainingFreeCompounds, status.ConsumeReproductionCompoundsReverse,
+                            temporaryWorkData.Value!,
+                            multicellularGrowth.CompoundsUsedForMulticellularGrowth))
                     {
-                        if (!MicrobeReproductionSystem.ProcessBaseReproductionCost(
-                                baseReproduction.MissingCompoundsForBaseReproduction, compounds,
-                                ref remainingAllowedCompoundUse,
-                                ref remainingFreeCompounds, status.ConsumeReproductionCompoundsReverse,
-                                temporaryWorkData,
-                                multicellularGrowth.CompoundsUsedForMulticellularGrowth))
-                        {
-                            // Not ready yet for budding
-                            return;
-                        }
+                        // Not ready yet for budding
+                        return;
                     }
 
                     // Budding cost is after the base reproduction cost has been overcome
@@ -333,8 +328,7 @@ public partial class MulticellularGrowthSystem : BaseSystem<World, float>
     {
         if (disposing)
         {
-            // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
-            // temporaryWorkData.Dispose();
+            temporaryWorkData.Dispose();
         }
     }
 }

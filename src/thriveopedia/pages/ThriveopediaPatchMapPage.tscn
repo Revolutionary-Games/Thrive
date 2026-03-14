@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cwjyrlp6s2jos"]
+[gd_scene format=3 uid="uid://cwjyrlp6s2jos"]
 
 [ext_resource type="Script" uid="uid://bftirhxrv2ipm" path="res://src/thriveopedia/pages/ThriveopediaPatchMapPage.cs" id="1"]
 [ext_resource type="PackedScene" uid="uid://cckki1kx0cnol" path="res://src/thriveopedia/ThriveopediaPage.tscn" id="2"]
@@ -11,81 +11,68 @@
 [sub_resource type="ShaderMaterial" id="1"]
 shader = ExtResource("8")
 
-[node name="ThriveopediaPatchMapPage" instance=ExtResource("2") node_paths=PackedStringArray("seedLabel", "detailsPanel", "mapDrawer")]
-anchors_preset = 15
+[node name="ThriveopediaPatchMapPage" unique_id=1940744970 node_paths=PackedStringArray("mapDrawer", "detailsPanel", "seedLabel") instance=ExtResource("2")]
 script = ExtResource("1")
 mapDrawer = NodePath("HSplitContainer/MapPanel/MarginContainer/DraggableScrollContainer/PatchMapDrawer")
 detailsPanel = NodePath("HSplitContainer/PatchDetailsPanel")
 seedLabel = NodePath("HSplitContainer/MapPanel/MarginContainer/VBoxContainer/SeedLabel")
 DisplayBackground = false
 
-[node name="MarginContainer" parent="." index="0"]
-layout_mode = 2
-
-[node name="ScrollContainer" parent="MarginContainer" index="0"]
-layout_mode = 2
-
-[node name="MarginContainer" parent="MarginContainer/ScrollContainer" index="0"]
-layout_mode = 2
-
-[node name="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer" index="0"]
-layout_mode = 2
-
-[node name="HSplitContainer" type="HSplitContainer" parent="." index="1"]
+[node name="HSplitContainer" type="HSplitContainer" parent="." index="1" unique_id=1659989176]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 15
 collapsed = true
 
-[node name="MapPanel" type="PanelContainer" parent="HSplitContainer" index="0"]
+[node name="MapPanel" type="PanelContainer" parent="HSplitContainer" index="0" unique_id=1766737856]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="HSplitContainer/MapPanel" index="0"]
+[node name="MarginContainer" type="MarginContainer" parent="HSplitContainer/MapPanel" index="0" unique_id=234904259]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="DraggableScrollContainer" parent="HSplitContainer/MapPanel/MarginContainer" index="0" instance=ExtResource("5") node_paths=PackedStringArray("content")]
+[node name="DraggableScrollContainer" parent="HSplitContainer/MapPanel/MarginContainer" index="0" unique_id=1438218696 node_paths=PackedStringArray("content") instance=ExtResource("5")]
 layout_mode = 2
 content = NodePath("PatchMapDrawer")
 
-[node name="PatchMapDrawer" parent="HSplitContainer/MapPanel/MarginContainer/DraggableScrollContainer" index="0" instance=ExtResource("6")]
+[node name="PatchMapDrawer" parent="HSplitContainer/MapPanel/MarginContainer/DraggableScrollContainer" index="0" unique_id=1540041548 instance=ExtResource("6")]
 custom_minimum_size = Vector2(1500, 1500)
 layout_mode = 2
 DrawDefaultMapIfEmpty = false
 MonochromeMaterial = SubResource("1")
 
-[node name="BoxContainer" type="HBoxContainer" parent="HSplitContainer/MapPanel/MarginContainer" index="1"]
+[node name="BoxContainer" type="HBoxContainer" parent="HSplitContainer/MapPanel/MarginContainer" index="1" unique_id=556996167]
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 2
 
-[node name="FindCurrentPatchButton" type="Button" parent="HSplitContainer/MapPanel/MarginContainer/BoxContainer" index="0"]
+[node name="FindCurrentPatchButton" type="Button" parent="HSplitContainer/MapPanel/MarginContainer/BoxContainer" index="0" unique_id=732211146]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
 text = "FIND_CURRENT_PATCH"
 
-[node name="Control" type="Control" parent="HSplitContainer/MapPanel/MarginContainer/BoxContainer" index="1"]
+[node name="Control" type="Control" parent="HSplitContainer/MapPanel/MarginContainer/BoxContainer" index="1" unique_id=2072784250]
 custom_minimum_size = Vector2(3, 0)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/MapPanel/MarginContainer" index="2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/MapPanel/MarginContainer" index="2" unique_id=813113190]
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="SeedLabel" type="Label" parent="HSplitContainer/MapPanel/MarginContainer/VBoxContainer" index="0"]
+[node name="SeedLabel" type="Label" parent="HSplitContainer/MapPanel/MarginContainer/VBoxContainer" index="0" unique_id=1424827458]
 layout_mode = 2
 size_flags_vertical = 8
 text = "SEED_LABEL"
 label_settings = ExtResource("7_weruj")
 
-[node name="Control" type="Control" parent="HSplitContainer/MapPanel/MarginContainer/VBoxContainer" index="1"]
+[node name="Control" type="Control" parent="HSplitContainer/MapPanel/MarginContainer/VBoxContainer" index="1" unique_id=822492014]
 layout_mode = 2
 
-[node name="PatchDetailsPanel" parent="HSplitContainer" index="1" instance=ExtResource("7")]
+[node name="PatchDetailsPanel" parent="HSplitContainer" index="1" unique_id=2065751711 instance=ExtResource("7")]
 custom_minimum_size = Vector2(352, 0)
 layout_mode = 2
 MoveToPatchButtonVisible = false

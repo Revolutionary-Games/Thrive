@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://de2sohb3fjvc1"]
+[gd_scene format=3 uid="uid://de2sohb3fjvc1"]
 
 [ext_resource type="Texture2D" uid="uid://bhp3uahplsxpb" path="res://assets/textures/gui/bevel/MainMenu.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://cxqnywb8xdvnb" path="res://assets/textures/gui/bevel/helpButton.png" id="2"]
@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dt32f5t6b4u1u" path="res://assets/textures/gui/bevel/statisticsButtonActive.png" id="9"]
 [ext_resource type="Script" uid="uid://bc2jpnna335le" path="res://src/microbe_stage/editor/EditorCommonBottomLeftButtons.cs" id="10"]
 
-[node name="EditorCommonBottomLeftButtons" type="MarginContainer" node_paths=PackedStringArray("menuButton", "helpButton")]
+[node name="EditorCommonBottomLeftButtons" type="MarginContainer" unique_id=94341805 node_paths=PackedStringArray("menuButton", "helpButton")]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -24,11 +24,11 @@ script = ExtResource("10")
 menuButton = NodePath("HBoxContainer/MenuButton")
 helpButton = NodePath("HBoxContainer/HelpButton")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1458256687]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="MenuButton" type="TextureButton" parent="HBoxContainer"]
+[node name="MenuButton" type="TextureButton" parent="HBoxContainer" unique_id=454188267]
 custom_minimum_size = Vector2(50, 35)
 layout_mode = 2
 size_flags_vertical = 4
@@ -39,7 +39,7 @@ texture_hover = ExtResource("6")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="StatisticsButton" type="TextureButton" parent="HBoxContainer"]
+[node name="StatisticsButton" type="TextureButton" parent="HBoxContainer" unique_id=1715289602]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 size_flags_vertical = 4
@@ -51,7 +51,7 @@ texture_hover = ExtResource("7")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="HelpButton" type="TextureButton" parent="HBoxContainer"]
+[node name="HelpButton" type="TextureButton" parent="HBoxContainer" unique_id=139910984]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 size_flags_vertical = 4

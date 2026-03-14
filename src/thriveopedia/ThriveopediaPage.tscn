@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cckki1kx0cnol"]
+[gd_scene format=3 uid="uid://cckki1kx0cnol"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
 [ext_resource type="Script" uid="uid://bjjjtxyhhd0ct" path="res://src/thriveopedia/ThriveopediaPage.cs" id="2"]
 
-[node name="ThriveopediaPage" type="PanelContainer"]
+[node name="ThriveopediaPage" type="PanelContainer" unique_id=1991115155]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -12,30 +12,30 @@ offset_bottom = -120.0
 theme = ExtResource("1")
 script = ExtResource("2")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1173867292]
 layout_mode = 2
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer" unique_id=1946162473]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer" unique_id=481213452]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer" unique_id=830321364]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="Notices" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Notices" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=358082209]
 layout_mode = 2

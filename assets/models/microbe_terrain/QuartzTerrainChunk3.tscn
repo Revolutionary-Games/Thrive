@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cla1u4ep266fj"]
+[gd_scene format=3 uid="uid://cla1u4ep266fj"]
 
 [ext_resource type="PackedScene" uid="uid://8lkoepc030ae" path="res://assets/models/microbe_terrain/QuartzTerrainChunk3.glb" id="1_jmitl"]
 [ext_resource type="Texture2D" uid="uid://sdaqq7afc36o" path="res://assets/textures/environment/Quartz.png" id="2_56p57"]
@@ -26,7 +26,7 @@ ao_enabled = true
 ao_light_affect = 0.6
 ao_texture = ExtResource("3_ig15y")
 
-[node name="QuartzTerrainChunk3" instance=ExtResource("1_jmitl")]
+[node name="QuartzTerrainChunk3" unique_id=1640430302 instance=ExtResource("1_jmitl")]
 
-[node name="quartz3" parent="." index="0"]
+[node name="quartz3" parent="." index="0" unique_id=607951431]
 surface_material_override/0 = SubResource("StandardMaterial3D_6gsiy")

@@ -169,6 +169,8 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.PredefinedAutoEvoConfiguration,
             typeof(PredefinedAutoEvoConfiguration),
             PredefinedAutoEvoConfiguration.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.AutoEvoConfiguration,
+            typeof(AutoEvoConfiguration), AutoEvoConfiguration.ReadFromArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.TerrainConfiguration,
             typeof(TerrainConfiguration), TerrainConfiguration.ReadFromArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.Meteor, typeof(Meteor),
@@ -339,8 +341,6 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CustomDifficulty,
             typeof(CustomDifficulty), CustomDifficulty.ReadFromArchive);
 
-        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.PlayerReadableName,
-            typeof(IPlayerReadableName), IPlayerReadableName.WriteToArchive);
         RegisterBaseClass((ArchiveObjectType)ThriveArchiveObjectType.PlayerReadableName, typeof(IPlayerReadableName));
 
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.Endosymbiont,
@@ -526,6 +526,10 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
             typeof(TemperatureSessilityPressure), TemperatureSessilityPressure.ReadFromArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ReproductionCompoundPressure,
             typeof(ReproductionCompoundPressure), ReproductionCompoundPressure.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.GeneralAvoidPredationSelectionPressure,
+            typeof(GeneralAvoidPredationSelectionPressure), GeneralAvoidPredationSelectionPressure.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.EnergyConsumptionPressure,
+            typeof(EnergyConsumptionPressure), EnergyConsumptionPressure.ReadFromArchive);
     }
 
     private void RegisterEditor()

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-12 15:26+0100\n"
-"PO-Revision-Date: 2026-01-11 05:03+0000\n"
+"POT-Creation-Date: 2026-02-27 14:48+0200\n"
+"PO-Revision-Date: 2026-03-13 11:56+0000\n"
 "Last-Translator: xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.15.1\n"
+"X-Generator: Weblate 5.16.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -709,6 +709,21 @@ msgstr "纖維素"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "這種細胞膜有一層額外的細胞壁，這意味著它對整體傷害有更好的保護，特別是對物理的傷害。它保持形態所需的能量也較少，但速度較慢且無法快速吸收資源。[b]纖維素酶可以消化這堵牆[/b]，使其容易被掠食者吞噬。"
 
+msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
+msgstr ""
+"在多細胞階段，此面板顯示了所有細胞的平均特化增益。\n"
+"目前增益為 {0}%，來自 {1} 個細胞。\n"
+"特化程度最高的類型為 {3}，其增益為 {2}%。\n"
+"要提高此數值，可以提高細胞類型的特化程度，或增加特化程度最高的細胞數量。"
+
+msgid "CELL_SPECIALIZATION_TOOLTIP"
+msgstr ""
+"將細胞專精於一種細胞器類型可以提升生物代謝速度。\n"
+"目前增益為 {0}%（此增益僅在放置 {3} 個細胞器後生效，並隨放置數量增加而提升，直至 {4} 個為止）。\n"
+"目前增益由 {1} 個{2}細胞器提供。\n"
+"放置更多該類型的細胞器可以進一步提升增益。\n"
+"如果細胞器數量達到上限，則需要用該主要類型的細胞器替換其他類型的細胞器才能繼續提升增益。"
+
 msgid "CELL_STAT_ROTATION_TOOLTIP"
 msgstr ""
 "細胞的旋轉速率。較大的細胞旋轉較慢，但可以添加纖毛來補償。\n"
@@ -953,7 +968,7 @@ msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "明度值，決定明度"
 
 msgid "COMMAND_INPUT_LINE_EDIT"
-msgstr ""
+msgstr "插入命令"
 
 msgid "COMMON_ABILITIES"
 msgstr "共同能力"
@@ -1548,9 +1563,8 @@ msgstr "死區設定"
 msgid "DEATH"
 msgstr "死亡"
 
-#, fuzzy
 msgid "DEBUG_CONSOLE"
-msgstr "除錯面板"
+msgstr "除錯控制台"
 
 msgid "DEBUG_COORDINATES"
 msgstr ""
@@ -2041,6 +2055,9 @@ msgstr ""
 "{0}：+{1} ATP\n"
 "消耗時：\n"
 "{2}"
+
+msgid "ENERGY_CONSUMPTION_PRESSURE"
+msgstr "能量消耗壓力"
 
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "{1} 在 {0}的能量"
@@ -2636,6 +2653,12 @@ msgstr ""
 "如果您遇到編輯器按鈕部分消失的問題，\n"
 "可以嘗試停用此功能，看看問題是否消失。"
 
+msgid "GUI_SCALE_INCREASED_SIZE_NOTE"
+msgstr "（注意：增大 GUI 縮放比例是一項實驗性功能，可能會導致元素超出螢幕範圍）"
+
+msgid "GUI_SCALE_OPTION"
+msgstr "縮放倍率："
+
 msgid "GUI_TAB_NAVIGATION"
 msgstr "使用者介面分頁引導"
 
@@ -2733,14 +2756,13 @@ msgid "ICESHELF"
 msgstr "冰棚"
 
 msgid "ICE_CHUNK_BIG"
-msgstr "大型冰塊"
+msgstr "大冰塊"
 
 msgid "ICE_CHUNK_SMALL"
-msgstr "小型冰塊"
+msgstr "小冰塊"
 
-#, fuzzy
 msgid "ICE_SNOWFLAKE_BIG"
-msgstr "雪花"
+msgstr "大冰雪花塊"
 
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr "ID 無效"
@@ -2756,12 +2778,6 @@ msgstr "忽略其他錯誤"
 
 msgid "IMAGE_FILE_TYPES"
 msgstr "支援的圖像檔案"
-
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
-msgstr "包括後期階段原型"
-
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
-msgstr "（進入下一階段後，某些功能可能無法使用）"
 
 msgid "INCREASE_ITEM_SIZE"
 msgstr "放大物件"
@@ -2979,12 +2995,6 @@ msgstr "七月"
 
 msgid "JUNE"
 msgstr "六月"
-
-msgid "KEEP_CURRENT_SHORT"
-msgstr "維持當前"
-
-msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
-msgstr "移動最小與最大滑桿同時保持目前壓力適應範圍"
 
 msgid "KEEP_MIGRATION"
 msgstr "保留遷移"
@@ -3476,6 +3486,9 @@ msgstr "巨環內酯合成"
 
 msgid "MACROSCOPIC"
 msgstr "宏觀生物"
+
+msgid "MACROSCOPIC_EDITOR"
+msgstr "宏觀生物編輯器"
 
 msgid "MACROSCOPIC_STAGE"
 msgstr "宏觀生物階段"
@@ -4209,6 +4222,9 @@ msgstr "多細胞自由編輯器"
 msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "雖然您的細胞共享化合物，但每個細胞都需要生產自己的[thrive:compound type=\"atp\"][/thrive:compound]。任何耗盡能量的細胞將會死亡。"
 
+msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
+msgstr "此面板顯示的是您的細胞群的綜合代謝過程，即所有細胞的代謝總和。請注意，與其他化合物不同，ATP 無法在細胞間共享。"
+
 msgid "MULTICELLULAR_STAGE"
 msgstr "多細胞階段"
 
@@ -4627,6 +4643,9 @@ msgstr "（某些細胞器需要滿足特定解鎖條件才能放置）"
 msgid "ORGANISM_STATISTICS"
 msgstr "生物統計"
 
+msgid "ORGANISM_STATISTICS_MICROBE"
+msgstr "細胞統計"
+
 msgid "OR_UNLOCK_CONDITION"
 msgstr "或"
 
@@ -4977,8 +4996,14 @@ msgstr "處理載入的物件中"
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
+msgid "PROCESS_PANEL_EXPLANATION_TITLE"
+msgstr "生物代謝過程面板說明"
+
 msgid "PROCESS_PANEL_TITLE"
-msgstr "细胞代謝過程"
+msgstr "生物代謝過程"
+
+msgid "PROCESS_PANEL_TITLE_MICROBE"
+msgstr "細胞代謝過程"
 
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "生物代謝速度"
@@ -5255,6 +5280,13 @@ msgstr "逕流事件"
 
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "在遊戲過程中運行 Auto-Evo"
+
+msgid "RUN_AUTO_EVO_DURING_GAMEPLAY_TOOLTIP"
+msgstr ""
+"啟用後，Auto-Evo 會在遊戲過程中進行，以減少載入畫面所需的時間。\n"
+"這可能會導致 CPU 核心數較低的系統出現額外的卡頓。\n"
+"停用後，Auto-Evo 僅在載入畫面期間進行，但仍會正常執行。\n"
+"由於 Auto-Evo 是遊戲的核心功能之一，因此無法完全關閉。"
 
 msgid "RUN_ONE_STEP"
 msgstr "運行一步"
@@ -5683,6 +5715,9 @@ msgstr "生成葡萄糖"
 
 msgid "SPAWN_PHOSPHATES"
 msgstr "生成磷酸鹽"
+
+msgid "SPECIALIZATION_COLON"
+msgstr "特化："
 
 msgid "SPECIAL_MOUSE_1"
 msgstr "滑鼠側鍵 1"
@@ -6210,9 +6245,8 @@ msgstr "切換結合模式"
 msgid "TOGGLE_BINDING_TOOLTIP"
 msgstr "切換結合模式。觸碰其他細胞以建立群落。"
 
-#, fuzzy
 msgid "TOGGLE_DEBUG_CONSOLE"
-msgstr "切換除錯選單"
+msgstr "切換除錯控制台"
 
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "切換除錯選單"
@@ -6302,9 +6336,6 @@ msgstr "工具"
 
 msgid "TOOL_HAND_AXE"
 msgstr "手斧"
-
-msgid "TOO_LARGE_PRESSURE_RANGE"
-msgstr "壓力範圍過寬"
 
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr "未顯示所有最近版本，因為版本過多"
@@ -6978,8 +7009,23 @@ msgstr "增加細胞的儲存空間。"
 msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr "液泡將儲存 {0} 單位的所選化合物"
 
+msgid "VALUE_MODIFIER"
+msgstr "修改值"
+
+msgid "VALUE_OFFSET"
+msgstr "偏移量"
+
+msgid "VALUE_TOTAL"
+msgstr "總計"
+
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
+
+msgid "VALUE_WITH_UNIT_PLUS"
+msgstr "+{0} {1}"
+
+msgid "VALUE_WITH_UNIT_PLUS_MINUS"
+msgstr "±{0} {1}"
 
 msgid "VENTS_ARE_HOME"
 msgstr "家住熱泉"
@@ -7006,6 +7052,9 @@ msgid "VIEW_ALL"
 msgstr "查看所有"
 
 msgid "VIEW_CELL_PROCESSES"
+msgstr "查看生物代謝過程"
+
+msgid "VIEW_CELL_PROCESSES_MICROBE"
 msgstr "查看細胞代謝過程"
 
 msgid "VIEW_ONLINE"
@@ -7183,7 +7232,7 @@ msgstr ""
 "當腦力達到 [b]+0.5[/b] 時，玩家進入意識階段。當腦力達到 [b]+5.0[/b] 時，玩家進入覺醒階段。"
 
 msgid "WIKI_AXON_INTRO"
-msgstr "神經元之間的神經纖維，在多細胞階段可用。需要增加生物體的腦力以進入到之後的階段。"
+msgstr "神經元之間的神經纖維，自[color=#3796e1][url=thriveopedia:macroscopic_stage]宏觀階段[/url][/color]起可用。需要增加生物的腦力以進入後續階段。"
 
 msgid "WIKI_AXON_MODIFICATIONS"
 msgstr "無修改。"
@@ -7192,10 +7241,10 @@ msgid "WIKI_AXON_PROCESSES"
 msgstr "無代謝過程。"
 
 msgid "WIKI_AXON_REQUIREMENTS"
-msgstr "僅從多細胞階段開始可用。"
+msgstr "僅從[color=#3796e1][url=thriveopedia:macroscopic_stage]宏觀階段[/url][/color]開始可用。"
 
 msgid "WIKI_AXON_SCIENTIFIC_BACKGROUND"
-msgstr "待定"
+msgstr "軸突是「神經元細胞」延伸出的細長突起，可連接至另一個細胞（例如另一個「神經元」細胞、「肌肉」細胞等眾多細胞類型），允許訊息以電訊號的形式在兩個或多個細胞之間傳遞。這使得生物體能夠對外部刺激做出反應，例如溫度驟升、受到抓撓，甚至是一些感覺細胞察覺到的難聞氣味。"
 
 msgid "WIKI_AXON_STRATEGY"
 msgstr "添加[b]軸突[/b]對於進入之後的階段至關重要。我們建議在多細胞生物的多種細胞類型中添加一個[b]軸突[/b]，但添加多個是多餘的。目前，更多的[b]軸突[/b]並不會提供額外的好處。"
@@ -7275,7 +7324,7 @@ msgstr ""
 "如果您對包含[b]生物發光液泡[/b]有強烈的感覺，或者對有價值的遊戲內功能有建議，請前往我們的[color=#3796e1][url=https://suggestions.revolutionarygamesstudio.com/]建議板[/url][/color]。"
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_STRATEGY"
-msgstr "如果您的細胞是厭氧的，並且您需要提高細胞的氧耐性，請在細胞中加入[b]生物發光液泡[/b]。"
+msgstr "由於對遊戲機制的影響有限，生物發光液泡主要只是外觀好看而已。然而，它確實能提供額外的氧化抗性，這在超出抗性滑條所能調節的上限時就顯得尤為重要，例如當其他細胞器造成的負氧化抗性過多時。"
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_UPGRADES"
 msgstr "無升級。"
@@ -8103,7 +8152,7 @@ msgstr ""
 "\n"
 "[color=#3796e1][url=thriveopedia:bindingAgent]連接器[/url][/color]讓您的細胞與同類細胞建立一個細胞[b]群落[/b]，讓細胞可以共享吸收與生產的化合物。在群落中，您無法進入編輯器。要進入編輯器，您必須按下[b]解散所有[/b]來離開群落。大型細胞群落是邁向[b]多細胞生物[/b]的必經之路，也是單細胞階段的終點。\n"
 "\n"
-"如果您能存活 20 世代，並擁有 300 物種量，就算是「贏」了這局遊戲。您仍然可以繼續遊玩。"
+"如果您能存活 25 世代，並擁有 300 物種量，並且在多細胞階段下放置了 10 個細胞，就算是「贏」了這局遊戲。您仍然可以繼續遊玩。"
 
 msgid "WIKI_HYDROGENASE_EFFECTS"
 msgstr "無效果。"
@@ -8261,8 +8310,8 @@ msgstr "無升級。"
 
 msgid "WIKI_MACROSCOPIC_STAGE_CONCEPT_ART"
 msgstr ""
-"[indent]—   [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/images/thumb/9/9f/Multieditorconcept.jpeg/120px-Multieditorconcept.jpeg]編輯器概念[/url][/color] \t\t\t[/indent]\n"
-"[indent]—   [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/images/thumb/9/92/Multicolorconcept.png/120px-Multicolorconcept.png]地形色彩概念[/url][/color] \t\t\t[/indent]"
+"[indent]—   \t\t\t<img alt=\"Editor concept\" src=\"/images/thumb/9/9f/Multieditorconcept.jpeg/120px-Multieditorconcept.jpeg\" decoding=\"async\" width=\"120\" height=\"108\" class=\"mw-file-element\" srcset=\"/images/thumb/9/9f/Multieditorconcept.jpeg/180px-Multieditorconcept.jpeg 1.5x, /images/thumb/9/9f/Multieditorconcept.jpeg/240px-Multieditorconcept.jpeg 2x\">\t\t\t\t\t[/indent]\n"
+"[indent]—   \t\t\t<img alt=\"Terrain color concept\" src=\"/images/thumb/9/92/Multicolorconcept.png/120px-Multicolorconcept.png\" decoding=\"async\" width=\"120\" height=\"68\" class=\"mw-file-element\" srcset=\"/images/thumb/9/92/Multicolorconcept.png/180px-Multicolorconcept.png 1.5x, /images/thumb/9/92/Multicolorconcept.png/240px-Multicolorconcept.png 2x\">\t\t\t\t\t[/indent]"
 
 msgid "WIKI_MACROSCOPIC_STAGE_CURRENT_DEVELOPMENT"
 msgstr "宏觀生物階段的原型開發已經開始。"
@@ -8313,7 +8362,7 @@ msgstr "無修改。"
 
 msgid "WIKI_MELANOSOME_PROCESSES"
 msgstr ""
-"[b]放射合成[/b]：[b]輻射[/b] File:RadiationIcon.png → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"[b]放射合成[/b]：[b]輻射[/b] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
 "利用放射性物質生產能量的方法。"
 
@@ -8531,8 +8580,8 @@ msgstr "無升級。"
 
 msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
 msgstr ""
-"[indent]—   [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/images/thumb/7/75/Multiperceptionconcept.jpg/120px-Multiperceptionconcept.jpg]感知概念[/url][/color] \t\t\t[/indent]\n"
-"[indent]—   [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/images/thumb/9/9f/Multieditorconcept.jpeg/120px-Multieditorconcept.jpeg]編輯器概念[/url][/color] \t\t\t[/indent]"
+"[indent]—   \t\t\t<img alt=\"Perception concept\" src=\"/images/thumb/7/75/Multiperceptionconcept.jpg/120px-Multiperceptionconcept.jpg\" decoding=\"async\" width=\"120\" height=\"90\" class=\"mw-file-element\" srcset=\"/images/thumb/7/75/Multiperceptionconcept.jpg/180px-Multiperceptionconcept.jpg 1.5x, /images/thumb/7/75/Multiperceptionconcept.jpg/240px-Multiperceptionconcept.jpg 2x\">\t\t\t\t\t[/indent]\n"
+"[indent]—   \t\t\t<img alt=\"Editor concept\" src=\"/images/thumb/9/9f/Multieditorconcept.jpeg/120px-Multieditorconcept.jpeg\" decoding=\"async\" width=\"120\" height=\"108\" class=\"mw-file-element\" srcset=\"/images/thumb/9/9f/Multieditorconcept.jpeg/180px-Multieditorconcept.jpeg 1.5x, /images/thumb/9/9f/Multieditorconcept.jpeg/240px-Multieditorconcept.jpeg 2x\">\t\t\t\t\t[/indent]"
 
 msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
 msgstr "多細胞階段的原型開發已經開始。早期多細胞階段大多是可玩的。後期多細胞階段更多是實驗中的原型。"
@@ -8569,7 +8618,7 @@ msgid "WIKI_MYOFIBRIL_EFFECTS"
 msgstr "對於包含[b]肌原纖維[/b]的多細胞生物中的每個細胞，該生物的運動速度與該細胞的體積成比例地增加。具有[b]肌原纖維[/b]的細胞將被分類為肌肉組織類型。"
 
 msgid "WIKI_MYOFIBRIL_INTRO"
-msgstr "由長纖維組成的細胞器，它們聚集在一起在生物體內產生肌肉組織，在多細胞階段可用。提高生物體的速度。"
+msgstr "由長纖維組成的細胞器，它們聚集在一起在生物體內產生肌肉組織，在[color=#3796e1][url=thriveopedia:macroscopic_stage]宏觀階段[/url][/color]可用。提高生物體的速度。"
 
 msgid "WIKI_MYOFIBRIL_MODIFICATIONS"
 msgstr "無修改。"
@@ -8578,10 +8627,10 @@ msgid "WIKI_MYOFIBRIL_PROCESSES"
 msgstr "無代謝過程。"
 
 msgid "WIKI_MYOFIBRIL_REQUIREMENTS"
-msgstr "僅從多細胞階段開始可用。"
+msgstr "僅從[color=#3796e1][url=thriveopedia:macroscopic_stage]宏觀階段[/url][/color]開始可用。"
 
 msgid "WIKI_MYOFIBRIL_SCIENTIFIC_BACKGROUND"
-msgstr "待定"
+msgstr "[color=#3796e1][url=https://en.wikipedia.org/wiki/Myofibril][b]肌原纖維[/b][/url][/color]是一種細長的桿狀細胞器，總是存在於「肌肉細胞」中。這些細胞器主要用於肌肉的收縮與舒張，使生物能夠移動某些身體部位，例如腿、手臂或嘴巴。"
 
 msgid "WIKI_MYOFIBRIL_STRATEGY"
 msgstr "我們建議在多細胞生物的多種細胞類型中添加一個[b]肌原纖維[/b]，但添加多個是多餘的。目前，更多的[b]肌原纖維[/b]並不會提供額外的好處。"
@@ -9217,7 +9266,7 @@ msgstr "即將推出。"
 
 msgid "WIKI_STAGES_ROOT_INTRO"
 msgstr ""
-"這些是遊戲中的所有階段。總共有 8 個階段，每個階段的遊戲玩法都略有不同。\n"
+"這些是遊戲中的所有階段。總共有 9 個階段，每個階段的遊戲玩法都略有不同。\n"
 "\n"
 "當您在 Thrive 中發展時，您將經歷各個階段，最終讓您達到飛昇。\n"
 "\n"
@@ -9443,7 +9492,7 @@ msgid "WIKI_VACUOLE_REQUIREMENTS"
 msgstr "細胞必須有[b][color=#3796e1][url=thriveopedia:nucleus]細胞核[/url][/color][/b]才能演化出[b]液泡[/b]。"
 
 msgid "WIKI_VACUOLE_SCIENTIFIC_BACKGROUND"
-msgstr "待定"
+msgstr "[color=#3796e1][url=https://en.wikipedia.org/wiki/Vacuole][b]液泡[/b][/url][/color]是一種具有堅韌膜的細胞器，通常含有用於儲存無機或有機化合物的水溶液，有時也用於儲存完整的固體物質。在現實世界中，[b]液泡[/b]的形狀與大小會根據其所在細胞的需求而變化，甚至可能根據細胞類型的不同而具備特定的功能。例如，在植物細胞中，[b]液泡[/b]通常是最大的細胞器，它既用於儲存物質，也作為壓力調節器，使植物細胞內的水保持流動，從而維持細胞的形狀。"
 
 msgid "WIKI_VACUOLE_STRATEGY"
 msgstr "雖然額外的儲存空間在任何情況下都很有用，但[b]液泡[/b]對於使用[b]光合作用[/b]的生物體（具有[b][color=#3796e1][url=thriveopedia:chromatophore]類囊體[/url][/color][/b]或[b][color=#3796e1][url=thriveopedia:chloroplast]葉綠體[/url][/color][/b]的細胞）特別有用。如果在遊戲設定中啟用了晝／夜循環，光合作用細胞必須有足夠的空間來儲存它們過夜所需的[thrive:compound type=\"glucose\"][/thrive:compound]。"
@@ -9463,8 +9512,8 @@ msgstr "視窗化"
 msgid "WIN_BOX_TITLE"
 msgstr "您已發展繁榮（Thrived）！"
 
-msgid "WIN_TEXT"
-msgstr "恭喜您贏得了此版本的 Thrive！如果您願意，您可以在該訊息消失後繼續遊玩，或在新世界中開始新遊戲。您還可以添加連接器來建立細胞群落並嘗試後期遊戲原型。"
+msgid "WIN_TEXT_2"
+msgstr "恭喜您已在此版本的 Thrive 中贏得了勝利！如果您願意，可以在該訊息消失後繼續遊玩，或在新世界中開始新遊戲。您也可以先完善您的整體細胞計劃，然後嘗試體驗後續的遊戲原型。"
 
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
 msgstr "項目更新註記"
@@ -9509,6 +9558,9 @@ msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
 "包含後期階段原型：{0}\n"
 "包含彩蛋：{1}"
+
+msgid "WORLD_MISC_DETAILS_STRING_2"
+msgstr "包含彩蛋：{0}"
 
 msgid "WORLD_OCEANIC_COVERAGE"
 msgstr "海洋覆蓋率"
@@ -9607,6 +9659,18 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "縮小"
+
+#~ msgid "KEEP_CURRENT_SHORT"
+#~ msgstr "維持當前"
+
+#~ msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
+#~ msgstr "移動最小與最大滑桿同時保持目前壓力適應範圍"
+
+#~ msgid "TOO_LARGE_PRESSURE_RANGE"
+#~ msgstr "壓力範圍過寬"
+
+#~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
+#~ msgstr "包括後期階段原型"
 
 #~ msgid "MOD_AUTO_HARMONY"
 #~ msgstr "使用自動 Harmony："

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using Godot;
 using SharedBase.Archive;
 using ThriveScriptsShared;
@@ -455,7 +457,9 @@ public class BiomeConditions : IBiomeConditions, ICloneable, IArchivable
     {
         const float epsilon = 0.000001f;
 
-        bool hasNormally = Compounds.TryGetValue(compound, out var normal);
+        ref var normal = ref CollectionsMarshal.GetValueRefOrNullRef(compounds, compound);
+        bool hasNormally = !Unsafe.IsNullRef(ref normal);
+
         bool hasMinimum = MinimumCompounds.TryGetValue(compound, out var minimum);
 
         // Not varying if the numbers are the same
@@ -466,28 +470,6 @@ public class BiomeConditions : IBiomeConditions, ICloneable, IArchivable
             return false;
 
         return true;
-    }
-
-    public float CalculateOxygenResistanceFactor()
-    {
-        // TODO: maybe would be nicer to have some kind of exponential or other non-linear relationship here?
-        var oxygen = Math.Clamp(GetCompound(Compound.Oxygen, CompoundAmountType.Biome).Ambient, 0, 1);
-
-        if (oxygen <= Constants.TOLERANCE_OXYGEN_APPLY_AFTER)
-            return 0;
-
-        return oxygen;
-    }
-
-    public float CalculateUVFactor()
-    {
-        // Assume it is directly related to sunlight
-        var light = Math.Clamp(GetCompound(Compound.Sunlight, CompoundAmountType.Biome).Ambient, 0, 1);
-
-        if (light <= Constants.TOLERANCE_UV_APPLY_AFTER)
-            return 0;
-
-        return light;
     }
 
     public void Check(string name)

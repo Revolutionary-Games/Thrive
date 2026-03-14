@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cn2w4pm0v5y15"]
+[gd_scene format=3 uid="uid://cn2w4pm0v5y15"]
 
 [ext_resource type="Shader" uid="uid://d25y8w0858fqi" path="res://shaders/OrganelleEmissive.gdshader" id="1_rt4jn"]
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="2_gytsy"]
@@ -23,7 +23,7 @@ shader_parameter/growColor = Color(0.303233, 0.303233, 0.303233, 1)
 shader_parameter/jiggleAmount = 0.0005
 shader_parameter/dissolveTexture = ExtResource("2_gytsy")
 
-[node name="BioluminescentVacuole" type="MeshInstance3D"]
+[node name="BioluminescentVacuole" type="MeshInstance3D" unique_id=1126487859]
 editor_description = "In the code this defaults to off, so if emission is turned on by default, the code needs changes"
 material_override = SubResource("ShaderMaterial_qaowp")
 mesh = ExtResource("4_uycx8")

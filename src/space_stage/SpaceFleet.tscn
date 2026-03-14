@@ -1,10 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://v6vyx5655ib8"]
+[gd_scene format=3 uid="uid://v6vyx5655ib8"]
 
 [ext_resource type="Script" uid="uid://c0thl3he3ivga" path="res://src/space_stage/SpaceFleet.cs" id="1"]
 
-[node name="SpaceFleet" type="Node3D" node_paths=PackedStringArray("visualsParent")]
+[node name="SpaceFleet" type="Node3D" unique_id=240277728 node_paths=PackedStringArray("visualsParent")]
 script = ExtResource("1")
 visualsParent = NodePath("Visuals")
 
-[node name="Visuals" type="Node3D" parent="."]
+[node name="Visuals" type="Node3D" parent="." unique_id=308276095]
 editor_description = "A scale through the code is applied to this when readied"

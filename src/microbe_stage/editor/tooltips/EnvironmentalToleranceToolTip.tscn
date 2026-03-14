@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://by8bg6b5p4c6m"]
+[gd_scene format=3 uid="uid://by8bg6b5p4c6m"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_8aafa"]
 [ext_resource type="Script" uid="uid://br51w5nxm5ld" path="res://src/microbe_stage/editor/tooltips/EnvironmentalToleranceToolTip.cs" id="2_y5oj5"]
@@ -25,7 +25,7 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="EnvironmentalToleranceToolTip" type="PanelContainer" node_paths=PackedStringArray("nameLabel", "mpLabel", "descriptionLabel", "osmoregulationLabel", "healthLabel", "processSpeedLabel", "badlyAdaptedWarning")]
+[node name="EnvironmentalToleranceToolTip" type="PanelContainer" unique_id=953946608 node_paths=PackedStringArray("nameLabel", "mpLabel", "descriptionLabel", "osmoregulationLabel", "healthLabel", "processSpeedLabel", "badlyAdaptedWarning")]
 custom_minimum_size = Vector2(400, 0)
 offset_top = 1.0
 offset_right = 400.0
@@ -44,7 +44,7 @@ badlyAdaptedWarning = NodePath("MarginContainer/VBoxContainer/NotAdaptedText")
 goodStatFont = ExtResource("3_gd1ig")
 badStatFont = ExtResource("6_jnaox")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=74998057]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 15
@@ -52,23 +52,23 @@ theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=339656638]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 15
 
-[node name="Header" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="Header" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=725719755]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 10
 
-[node name="MP" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Header"]
+[node name="MP" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Header" unique_id=1155950430]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 mouse_filter = 2
 
-[node name="Icon" type="TextureRect" parent="MarginContainer/VBoxContainer/Header/MP"]
+[node name="Icon" type="TextureRect" parent="MarginContainer/VBoxContainer/Header/MP" unique_id=1795494105]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 size_flags_vertical = 4
@@ -76,12 +76,12 @@ mouse_filter = 2
 texture = ExtResource("3_trmea")
 expand_mode = 1
 
-[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Header/MP"]
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Header/MP" unique_id=772917609]
 layout_mode = 2
 text = "N_A_MP"
 label_settings = ExtResource("4_g1i1j")
 
-[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/Header"]
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/Header" unique_id=1388615296]
 editor_description = "PLACEHOLDER"
 custom_minimum_size = Vector2(230, 0)
 layout_mode = 2
@@ -91,54 +91,54 @@ label_settings = ExtResource("5_365bq")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/Header"]
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/Header" unique_id=1404262017]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="NotAdaptedText" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="NotAdaptedText" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1531324888]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "NOT_ADAPTED_TO_CURRENT_PATCH"
 label_settings = ExtResource("6_jnaox")
 autowrap_mode = 3
 
-[node name="StatDescription" parent="MarginContainer/VBoxContainer" instance=ExtResource("7_14lq1")]
+[node name="StatDescription" parent="MarginContainer/VBoxContainer" unique_id=1473679431 instance=ExtResource("7_14lq1")]
 layout_mode = 2
 mouse_filter = 2
 fit_content = true
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1840169939]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="ModifierList" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="ModifierList" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=776717260]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="OsmoregulationCost" parent="MarginContainer/VBoxContainer/ModifierList" instance=ExtResource("9_sgy1c")]
+[node name="OsmoregulationCost" parent="MarginContainer/VBoxContainer/ModifierList" unique_id=557176843 instance=ExtResource("9_sgy1c")]
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "0"
 ModifierIcon = ExtResource("10_4x4xi")
 
-[node name="HealthModifier" parent="MarginContainer/VBoxContainer/ModifierList" instance=ExtResource("9_sgy1c")]
+[node name="HealthModifier" parent="MarginContainer/VBoxContainer/ModifierList" unique_id=342696187 instance=ExtResource("9_sgy1c")]
 layout_mode = 2
 DisplayName = "HEALTH_MODIFIER"
 ModifierValue = "0"
 ModifierIcon = ExtResource("10_xjysk")
 
-[node name="ProcessSpeed" parent="MarginContainer/VBoxContainer/ModifierList" instance=ExtResource("9_sgy1c")]
+[node name="ProcessSpeed" parent="MarginContainer/VBoxContainer/ModifierList" unique_id=1926481110 instance=ExtResource("9_sgy1c")]
 layout_mode = 2
 DisplayName = "PROCESS_SPEED_MODIFIER"
 ModifierValue = "0"
 ModifierIcon = ExtResource("11_21y2n")
 
-[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1835212806]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="PerfectAdaptation" parent="MarginContainer/VBoxContainer" instance=ExtResource("7_14lq1")]
+[node name="PerfectAdaptation" parent="MarginContainer/VBoxContainer" unique_id=664633735 instance=ExtResource("7_14lq1")]
 layout_mode = 2
 fit_content = true
 ExtendedBbcode = "PERFECT_ADAPTATION_DESCRIPTION"

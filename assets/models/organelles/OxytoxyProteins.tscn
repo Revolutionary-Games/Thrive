@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://d18jaljhot4pk"]
+[gd_scene format=3 uid="uid://d18jaljhot4pk"]
 
 [ext_resource type="Shader" uid="uid://bpdtg8smolq32" path="res://shaders/OrganelleTransparent.gdshader" id="1_f788l"]
 [ext_resource type="ArrayMesh" uid="uid://bj5d562k8regp" path="res://assets/models/organelles/OxytoxyProteins.mesh" id="3"]
@@ -20,6 +20,6 @@ shader_parameter/growColor = Color(0.227451, 0.180392, 0.180392, 1)
 shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/jiggleAmount = 0.0005
 
-[node name="OxytoxyProteins" type="MeshInstance3D"]
+[node name="OxytoxyProteins" type="MeshInstance3D" unique_id=1572688980]
 material_override = SubResource("ShaderMaterial_rwb03")
 mesh = ExtResource("3")

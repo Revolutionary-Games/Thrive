@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://5j2erthkb4yy"]
+[gd_scene format=3 uid="uid://5j2erthkb4yy"]
 
 [ext_resource type="LabelSettings" uid="uid://bcafkdnj1p8bc" path="res://src/gui_common/fonts/Title-Bold-Normal.tres" id="2_856wo"]
 [ext_resource type="Script" uid="uid://bcvllo2a45yxh" path="res://src/gui_common/menus/PlanetStatistics.cs" id="2_owqas"]
@@ -18,7 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://c2nk78uls8vui" path="res://assets/textures/gui/bevel/OtherCompounds.svg" id="11_c6j7g"]
 [ext_resource type="Texture2D" uid="uid://bylql42xmffwq" path="res://assets/textures/gui/bevel/CarbonDioxide.svg" id="11_y3i3f"]
 
-[node name="PatchDetailsContainer" type="VBoxContainer" node_paths=PackedStringArray("numberOfPatchesLabel", "numberOfRegionsLabel", "temperatureLevelLabel", "lightLevelLabel", "carbonOxideLevelLabel", "oxygenLevelLabel", "nitrogenLevelLabel", "otherGasesLevelLabel", "sulfideLevelLabel", "ammoniaLevelLabel", "glucoseLevelLabel", "phosphatesLevelLabel", "ironLevelLabel", "radiationLevelLabel")]
+[node name="PatchDetailsContainer" type="VBoxContainer" unique_id=1822291457 node_paths=PackedStringArray("numberOfPatchesLabel", "numberOfRegionsLabel", "temperatureLevelLabel", "lightLevelLabel", "carbonOxideLevelLabel", "oxygenLevelLabel", "nitrogenLevelLabel", "otherGasesLevelLabel", "sulfideLevelLabel", "ammoniaLevelLabel", "glucoseLevelLabel", "phosphatesLevelLabel", "ironLevelLabel", "radiationLevelLabel")]
 offset_right = 200.0
 offset_bottom = 757.0
 size_flags_vertical = 3
@@ -39,24 +39,24 @@ phosphatesLevelLabel = NodePath("Compounds/Phosphate/phosphates")
 ironLevelLabel = NodePath("Compounds/Iron/iron")
 radiationLevelLabel = NodePath("Compounds/Radiation/radiation")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1786126936]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="VBoxContainer"]
+[node name="Label2" type="Label" parent="VBoxContainer" unique_id=1508444210]
 layout_mode = 2
 text = "PLANET_STATISTICS"
 label_settings = ExtResource("2_856wo")
 horizontal_alignment = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+[node name="HBoxContainer2" type="HBoxContainer" parent="." unique_id=1914753078]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer2"]
+[node name="Label" type="Label" parent="HBoxContainer2" unique_id=157414654]
 layout_mode = 2
 text = "REGIONS_NUMBER"
 label_settings = ExtResource("2_856wo")
 
-[node name="RegionsNumber" type="Label" parent="HBoxContainer2"]
+[node name="RegionsNumber" type="Label" parent="HBoxContainer2" unique_id=73840072]
 editor_description = "PLACEHOLDER"
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
@@ -66,15 +66,15 @@ label_settings = ExtResource("4_myaoc")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=371626023]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="HBoxContainer"]
+[node name="Label2" type="Label" parent="HBoxContainer" unique_id=289772740]
 layout_mode = 2
 text = "PATCHES_NUMBER"
 label_settings = ExtResource("2_856wo")
 
-[node name="PatchesNumber" type="Label" parent="HBoxContainer"]
+[node name="PatchesNumber" type="Label" parent="HBoxContainer" unique_id=999216036]
 editor_description = "PLACEHOLDER"
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
@@ -84,17 +84,17 @@ label_settings = ExtResource("4_myaoc")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="PhysicalConditions" parent="." instance=ExtResource("4_tcsvr")]
+[node name="PhysicalConditions" parent="." unique_id=13067052 instance=ExtResource("4_tcsvr")]
 layout_mode = 2
 DisplayName = "PHYSICAL_CONDITIONS"
 Columns = 2
 
-[node name="Temperature" type="HBoxContainer" parent="PhysicalConditions"]
+[node name="Temperature" type="HBoxContainer" parent="PhysicalConditions" unique_id=1611429784]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="PhysicalConditions/Temperature"]
+[node name="TextureRect" type="TextureRect" parent="PhysicalConditions/Temperature" unique_id=1500125220]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
@@ -102,25 +102,25 @@ tooltip_text = "AVERAGE_SURFACE_TEMPERATURE"
 texture = ExtResource("10_whai7")
 expand_mode = 1
 
-[node name="temperature" type="Label" parent="PhysicalConditions/Temperature"]
+[node name="temperature" type="Label" parent="PhysicalConditions/Temperature" unique_id=1418664080]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "52 C"
 label_settings = ExtResource("6_myaoc")
 
-[node name="Situation" type="TextureRect" parent="PhysicalConditions/Temperature"]
+[node name="Situation" type="TextureRect" parent="PhysicalConditions/Temperature" unique_id=270631295]
 custom_minimum_size = Vector2(12, 12)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 expand_mode = 1
 
-[node name="Light" type="HBoxContainer" parent="PhysicalConditions"]
+[node name="Light" type="HBoxContainer" parent="PhysicalConditions" unique_id=701725840]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="PhysicalConditions/Light"]
+[node name="TextureRect" type="TextureRect" parent="PhysicalConditions/Light" unique_id=30480513]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
@@ -128,29 +128,29 @@ tooltip_text = "AVERAGE_SURFACE_LIGHT_LEVEL"
 texture = ExtResource("7_k5rxp")
 expand_mode = 1
 
-[node name="light" type="Label" parent="PhysicalConditions/Light"]
+[node name="light" type="Label" parent="PhysicalConditions/Light" unique_id=1631265121]
 layout_mode = 2
 text = "100%"
 label_settings = ExtResource("6_myaoc")
 
-[node name="Situation" type="TextureRect" parent="PhysicalConditions/Light"]
+[node name="Situation" type="TextureRect" parent="PhysicalConditions/Light" unique_id=227992971]
 custom_minimum_size = Vector2(12, 12)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 expand_mode = 1
 
-[node name="AtmosphericGasses" parent="." instance=ExtResource("4_tcsvr")]
+[node name="AtmosphericGasses" parent="." unique_id=1535284872 instance=ExtResource("4_tcsvr")]
 layout_mode = 2
 DisplayName = "ATMOSPHERIC_GASSES"
 Columns = 2
 
-[node name="Oxygen" type="HBoxContainer" parent="AtmosphericGasses"]
+[node name="Oxygen" type="HBoxContainer" parent="AtmosphericGasses" unique_id=682102926]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="AtmosphericGasses/Oxygen"]
+[node name="TextureRect" type="TextureRect" parent="AtmosphericGasses/Oxygen" unique_id=1064974112]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
@@ -158,18 +158,18 @@ tooltip_text = "AVERAGE_SURFACE_OXYGEN_LEVEL"
 texture = ExtResource("8_50pvu")
 expand_mode = 1
 
-[node name="oxygen" type="Label" parent="AtmosphericGasses/Oxygen"]
+[node name="oxygen" type="Label" parent="AtmosphericGasses/Oxygen" unique_id=1633942859]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "Oxygen"
 label_settings = ExtResource("6_myaoc")
 
-[node name="Nitrogen" type="HBoxContainer" parent="AtmosphericGasses"]
+[node name="Nitrogen" type="HBoxContainer" parent="AtmosphericGasses" unique_id=2062398769]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="AtmosphericGasses/Nitrogen"]
+[node name="TextureRect" type="TextureRect" parent="AtmosphericGasses/Nitrogen" unique_id=306926945]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
@@ -177,18 +177,18 @@ tooltip_text = "AVERAGE_SURFACE_NITROGEN_LEVEL"
 texture = ExtResource("9_1r75g")
 expand_mode = 1
 
-[node name="nitrogen" type="Label" parent="AtmosphericGasses/Nitrogen"]
+[node name="nitrogen" type="Label" parent="AtmosphericGasses/Nitrogen" unique_id=85972896]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "Nitrogen"
 label_settings = ExtResource("6_myaoc")
 
-[node name="CO2" type="HBoxContainer" parent="AtmosphericGasses"]
+[node name="CO2" type="HBoxContainer" parent="AtmosphericGasses" unique_id=104687226]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="AtmosphericGasses/CO2"]
+[node name="TextureRect" type="TextureRect" parent="AtmosphericGasses/CO2" unique_id=1218197764]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
@@ -196,18 +196,18 @@ tooltip_text = "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
 texture = ExtResource("11_y3i3f")
 expand_mode = 1
 
-[node name="carbonDioxide" type="Label" parent="AtmosphericGasses/CO2"]
+[node name="carbonDioxide" type="Label" parent="AtmosphericGasses/CO2" unique_id=1084881764]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "CO₂"
 label_settings = ExtResource("6_myaoc")
 
-[node name="Other" type="HBoxContainer" parent="AtmosphericGasses"]
+[node name="Other" type="HBoxContainer" parent="AtmosphericGasses" unique_id=386509756]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="AtmosphericGasses/Other"]
+[node name="TextureRect" type="TextureRect" parent="AtmosphericGasses/Other" unique_id=1788455468]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
@@ -215,7 +215,7 @@ tooltip_text = "AVERAGE_SURFACE_OTHER_LEVEL"
 texture = ExtResource("11_c6j7g")
 expand_mode = 3
 
-[node name="otherGases" type="Label" parent="AtmosphericGasses/Other"]
+[node name="otherGases" type="Label" parent="AtmosphericGasses/Other" unique_id=1312227111]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 tooltip_text = "OTHER_COMPOUNDS"
@@ -223,16 +223,16 @@ mouse_filter = 1
 text = "Other"
 label_settings = ExtResource("6_myaoc")
 
-[node name="Compounds" parent="." instance=ExtResource("4_tcsvr")]
+[node name="Compounds" parent="." unique_id=1008901348 instance=ExtResource("4_tcsvr")]
 layout_mode = 2
 DisplayName = "COMPOUNDS"
 Columns = 2
 
-[node name="HydrogenSulfide" type="HBoxContainer" parent="Compounds"]
+[node name="HydrogenSulfide" type="HBoxContainer" parent="Compounds" unique_id=1815262843]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="Compounds/HydrogenSulfide"]
+[node name="TextureRect" type="TextureRect" parent="Compounds/HydrogenSulfide" unique_id=591889683]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
@@ -240,24 +240,24 @@ tooltip_text = "HYDROGEN_SULFIDE"
 texture = ExtResource("7_y3i3f")
 expand_mode = 1
 
-[node name="sulfide" type="Label" parent="Compounds/HydrogenSulfide"]
+[node name="sulfide" type="Label" parent="Compounds/HydrogenSulfide" unique_id=746998652]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "12%"
 label_settings = ExtResource("6_myaoc")
 
-[node name="Situation" type="TextureRect" parent="Compounds/HydrogenSulfide"]
+[node name="Situation" type="TextureRect" parent="Compounds/HydrogenSulfide" unique_id=1572672940]
 custom_minimum_size = Vector2(12, 12)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 expand_mode = 1
 
-[node name="Ammonia" type="HBoxContainer" parent="Compounds"]
+[node name="Ammonia" type="HBoxContainer" parent="Compounds" unique_id=1555165105]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="Compounds/Ammonia"]
+[node name="TextureRect" type="TextureRect" parent="Compounds/Ammonia" unique_id=573599133]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
@@ -265,24 +265,24 @@ tooltip_text = "AMMONIA"
 texture = ExtResource("4_owqas")
 expand_mode = 1
 
-[node name="ammonia" type="Label" parent="Compounds/Ammonia"]
+[node name="ammonia" type="Label" parent="Compounds/Ammonia" unique_id=1486655673]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "5%"
 label_settings = ExtResource("6_myaoc")
 
-[node name="Situation" type="TextureRect" parent="Compounds/Ammonia"]
+[node name="Situation" type="TextureRect" parent="Compounds/Ammonia" unique_id=2133958635]
 custom_minimum_size = Vector2(12, 12)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 expand_mode = 1
 
-[node name="Glucose" type="HBoxContainer" parent="Compounds"]
+[node name="Glucose" type="HBoxContainer" parent="Compounds" unique_id=1086665232]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="Compounds/Glucose"]
+[node name="TextureRect" type="TextureRect" parent="Compounds/Glucose" unique_id=470499216]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
@@ -290,24 +290,24 @@ tooltip_text = "GLUCOSE"
 texture = ExtResource("6_whai7")
 expand_mode = 1
 
-[node name="glucose" type="Label" parent="Compounds/Glucose"]
+[node name="glucose" type="Label" parent="Compounds/Glucose" unique_id=1991262020]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "9%"
 label_settings = ExtResource("6_myaoc")
 
-[node name="Situation" type="TextureRect" parent="Compounds/Glucose"]
+[node name="Situation" type="TextureRect" parent="Compounds/Glucose" unique_id=1789547013]
 custom_minimum_size = Vector2(12, 12)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 expand_mode = 1
 
-[node name="Phosphate" type="HBoxContainer" parent="Compounds"]
+[node name="Phosphate" type="HBoxContainer" parent="Compounds" unique_id=885204568]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="Compounds/Phosphate"]
+[node name="TextureRect" type="TextureRect" parent="Compounds/Phosphate" unique_id=2047002150]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
@@ -315,24 +315,24 @@ tooltip_text = "PHOSPHATE"
 texture = ExtResource("3_r2wvh")
 expand_mode = 1
 
-[node name="phosphates" type="Label" parent="Compounds/Phosphate"]
+[node name="phosphates" type="Label" parent="Compounds/Phosphate" unique_id=1203861747]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "5%"
 label_settings = ExtResource("6_myaoc")
 
-[node name="Situation" type="TextureRect" parent="Compounds/Phosphate"]
+[node name="Situation" type="TextureRect" parent="Compounds/Phosphate" unique_id=1891604885]
 custom_minimum_size = Vector2(12, 12)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 expand_mode = 1
 
-[node name="Iron" type="HBoxContainer" parent="Compounds"]
+[node name="Iron" type="HBoxContainer" parent="Compounds" unique_id=1863400910]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="Compounds/Iron"]
+[node name="TextureRect" type="TextureRect" parent="Compounds/Iron" unique_id=2055310116]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
@@ -340,24 +340,24 @@ tooltip_text = "IRON"
 texture = ExtResource("5_uhkkk")
 expand_mode = 1
 
-[node name="iron" type="Label" parent="Compounds/Iron"]
+[node name="iron" type="Label" parent="Compounds/Iron" unique_id=1461257318]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "5%"
 label_settings = ExtResource("6_myaoc")
 
-[node name="Situation" type="TextureRect" parent="Compounds/Iron"]
+[node name="Situation" type="TextureRect" parent="Compounds/Iron" unique_id=2111055324]
 custom_minimum_size = Vector2(12, 12)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 expand_mode = 1
 
-[node name="Radiation" type="HBoxContainer" parent="Compounds"]
+[node name="Radiation" type="HBoxContainer" parent="Compounds" unique_id=45005209]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="Compounds/Radiation"]
+[node name="TextureRect" type="TextureRect" parent="Compounds/Radiation" unique_id=894209037]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
@@ -365,13 +365,13 @@ tooltip_text = "RADIATION"
 texture = ExtResource("8_iwqdh")
 expand_mode = 1
 
-[node name="radiation" type="Label" parent="Compounds/Radiation"]
+[node name="radiation" type="Label" parent="Compounds/Radiation" unique_id=2008716596]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "1"
 label_settings = ExtResource("6_myaoc")
 
-[node name="Situation" type="TextureRect" parent="Compounds/Radiation"]
+[node name="Situation" type="TextureRect" parent="Compounds/Radiation" unique_id=1423495060]
 custom_minimum_size = Vector2(12, 12)
 layout_mode = 2
 size_flags_vertical = 4

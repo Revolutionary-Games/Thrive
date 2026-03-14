@@ -409,10 +409,7 @@ public class DualContourer
 
             points[i] = point + change;
 
-            if (meshNormals != null)
-            {
-                meshNormals[i] = -normal / instantaneousSpeed;
-            }
+            meshNormals?[i] = -normal / instantaneousSpeed;
         }
     }
 

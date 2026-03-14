@@ -111,7 +111,7 @@ public class ModifyEnvironmentalTolerance : IMutationStrategy<MicrobeSpecies>
         {
             if (score.PressureScore < 1 || anyPressureAdjustmentPossible)
             {
-                var maxChange = mp / Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE;
+                var maxChange = mp / Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_MINIMUM;
 
                 // Calculate in doubles as the pressure stuff needs many decimals
                 double change;
@@ -125,19 +125,17 @@ public class ModifyEnvironmentalTolerance : IMutationStrategy<MicrobeSpecies>
                     change = Math.Min(score.PerfectPressureAdjustment, maxChange);
                 }
 
-                // These are adjusted in the same direction to keep the same range as before
-                newTolerances.PressureMinimum = Math.Max(newTolerances.PressureMinimum + (float)change, 0);
-                newTolerances.PressureMaximum = Math.Max(newTolerances.PressureMaximum + (float)change, 0);
+                newTolerances.PressureMinimum += (float)change;
 
-                mp -= Math.Abs(change) * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE;
+                mp -= Math.Abs(change) * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_MINIMUM;
             }
             else
             {
                 // Trying to perfect this, which is much harder than the other cases as the middle point also will
                 // change (potentially)
-                var changePotential = -(mp / Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE);
+                var maxChange = -(mp / Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE);
+                var change = Math.Max(score.PressureRangeSizeAdjustment, -maxChange);
 
-                // The top range needs to always go down, and the bottom range needs always to go up
 #if DEBUG
                 if (score.PressureRangeSizeAdjustment > 0)
                 {
@@ -147,24 +145,8 @@ public class ModifyEnvironmentalTolerance : IMutationStrategy<MicrobeSpecies>
                 }
 #endif
 
-                // TODO: either split this more equally or consider if it should be the other way around
-
-                var halfAdjustment = score.PressureRangeSizeAdjustment * 0.5f;
-
-                // Multiply potential by 0.5 to ensure the min range also gets some MP to change
-                var maxChange = Math.Max(changePotential * 0.5, halfAdjustment);
-
-                newTolerances.PressureMaximum = (float)(newTolerances.PressureMaximum + maxChange);
-
-                // Recalculate change potential for the other part of the calculation
-                mp -= Math.Abs(maxChange) * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE;
-                changePotential = -(mp / Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE);
-
-                var minChange = Math.Max(changePotential, halfAdjustment);
-
-                newTolerances.PressureMinimum = (float)(newTolerances.PressureMinimum - minChange);
-
-                mp -= Math.Abs(minChange) * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE;
+                newTolerances.PressureTolerance += (float)change;
+                mp -= (float)(change * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE);
             }
 
             changes = true;
@@ -231,7 +213,13 @@ public class ModifyEnvironmentalTolerance : IMutationStrategy<MicrobeSpecies>
 
         var newScore = MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(newSpecies, biomeToConsider);
 
-        if (newScore.OverallScore < score.OverallScore - MathUtils.EPSILON)
+        // As auto-evo can evolve to *reduce* perfect adaptability, only check that the score improved if the scores
+        // are below 1. Due to some edge-cases, we need to compare individual score components separately to detect a
+        // real incorrect change.
+        if ((newScore.TemperatureScore < 1 && newScore.TemperatureScore < score.TemperatureScore - MathUtils.EPSILON) ||
+            (newScore.PressureScore < 1 && newScore.PressureScore < score.PressureScore - MathUtils.EPSILON) ||
+            (newScore.OxygenScore < 1 && newScore.OxygenScore < score.OxygenScore - MathUtils.EPSILON) ||
+            (newScore.UVScore < 1 && newScore.UVScore < score.UVScore - MathUtils.EPSILON))
         {
             GD.PrintErr($"Tolerance change in auto-evo caused score to get worse from: {score.OverallScore} " +
                 $"to {newScore.OverallScore}");

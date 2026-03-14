@@ -401,7 +401,7 @@ public static class EngulfableHelpers
 
                     MicrobeDeathSystem.CustomizeSpawnedChunk? customizeCallback = null;
 
-                    if (engulfable.HostileEngulfer.Has<WorldPosition>())
+                    if (engulfable.HostileEngulfer.IsAliveAndHas<WorldPosition>())
                     {
                         var hostilePosition = engulfable.HostileEngulfer.Get<WorldPosition>().Position;
 
@@ -421,7 +421,7 @@ public static class EngulfableHelpers
 
                     var recorder = worldSimulation.StartRecordingEntityCommands();
 
-                    // In case there is no cell properties, this defaults to false in order to behave like the old
+                    // In case there are no cell properties, this defaults to false in order to behave like the old
                     // version of corpse chunk spawning
                     var isBacteria = false;
 

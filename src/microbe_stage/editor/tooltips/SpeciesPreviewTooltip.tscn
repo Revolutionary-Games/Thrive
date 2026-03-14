@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b8tdhxl6kquhx"]
+[gd_scene format=3 uid="uid://b8tdhxl6kquhx"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
 [ext_resource type="PackedScene" uid="uid://b5cbn7afnas1x" path="res://src/gui_common/PhotographablePreview.tscn" id="2"]
@@ -18,7 +18,7 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="SpeciesDetailsTooltip" type="PanelContainer" node_paths=PackedStringArray("speciesPreview", "hexesPreview")]
+[node name="SpeciesDetailsTooltip" type="PanelContainer" unique_id=1503588140 node_paths=PackedStringArray("speciesPreview", "hexesPreview")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -31,18 +31,18 @@ script = ExtResource("5")
 speciesPreview = NodePath("HBoxContainer/SpeciesPreview")
 hexesPreview = NodePath("HBoxContainer/CellHexPreview")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1153282705]
 custom_minimum_size = Vector2(332, 200)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="SpeciesPreview" parent="HBoxContainer" instance=ExtResource("2")]
+[node name="SpeciesPreview" parent="HBoxContainer" unique_id=179190352 instance=ExtResource("2")]
 layout_mode = 2
 mouse_filter = 2
 script = ExtResource("4")
 Priority = -100
 
-[node name="CellHexPreview" parent="HBoxContainer" instance=ExtResource("2")]
+[node name="CellHexPreview" parent="HBoxContainer" unique_id=1036319211 instance=ExtResource("2")]
 layout_mode = 2
 mouse_filter = 2
 script = ExtResource("3")

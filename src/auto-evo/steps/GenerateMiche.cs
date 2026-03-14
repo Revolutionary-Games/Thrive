@@ -32,10 +32,14 @@ public class GenerateMiche : IRunStep
     {
         var rootMiche = new Miche(globalCache.RootPressure);
         var metabolicRoot = new Miche(globalCache.MetabolicStabilityPressure);
+        var avoidPredationMiche = new Miche(globalCache.GeneralAvoidPredationSelectionPressure);
+        var energyConsumptionMiche = new Miche(globalCache.EnergyConsumptionPressure);
         var generatedMiche = new Miche(globalCache.EnvironmentalTolerancesPressure);
 
         rootMiche.AddChild(metabolicRoot);
-        metabolicRoot.AddChild(generatedMiche);
+        metabolicRoot.AddChild(avoidPredationMiche);
+        avoidPredationMiche.AddChild(energyConsumptionMiche);
+        energyConsumptionMiche.AddChild(generatedMiche);
 
         // "Autotrophic" Miches
         var phosphateMiche = new Miche(globalCache.PhosphatePressure);
@@ -170,7 +174,7 @@ public class GenerateMiche : IRunStep
         foreach (var targetSpecies in patch.SpeciesInPatch)
         {
             // Predation Miches
-            predationGlucose.AddChild(new Miche(new PredationEffectivenessPressure(targetSpecies.Key, 1.0f)));
+            predationGlucose.AddChild(new Miche(new PredationEffectivenessPressure(targetSpecies.Key, 6.0f)));
 
             // Endosymbiosis Miches
             if (targetSpecies.Key.PlayerSpecies && targetSpecies.Key.Endosymbiosis.StartedEndosymbiosis != null)

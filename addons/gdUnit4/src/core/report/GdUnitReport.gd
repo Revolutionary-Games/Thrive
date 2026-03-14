@@ -16,12 +16,18 @@ enum {
 var _type :int
 var _line_number :int
 var _message :String
+var _current_value: Variant
 
 
 func create(p_type :int, p_line_number :int, p_message :String) -> GdUnitReport:
 	_type = p_type
 	_line_number = p_line_number
 	_message = p_message
+	return self
+
+
+func with_current_value(value: Variant) -> GdUnitReport:
+	_current_value = value
 	return self
 
 
@@ -51,6 +57,10 @@ func is_failure() -> bool:
 
 func is_error() -> bool:
 	return _type == TERMINATED or _type == INTERUPTED or _type == ABORT
+
+
+func is_orphan() -> bool:
+	return _type == ORPHAN
 
 
 func _to_string() -> String:

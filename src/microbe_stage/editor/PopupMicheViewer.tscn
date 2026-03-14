@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ci8lopfc3lodh"]
+[gd_scene format=3 uid="uid://ci8lopfc3lodh"]
 
 [ext_resource type="Script" uid="uid://cc5vvtu2fehub" path="res://src/microbe_stage/editor/PopupMicheViewer.cs" id="1_euixo"]
 [ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="2_gkx7s"]
@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b1boea8qjx6xx" path="res://src/gui_common/SpeciesDetailsPanel.tscn" id="4_v5bmc"]
 [ext_resource type="PackedScene" uid="uid://cikd2ef2usr1y" path="res://src/gui_common/MicheDetailsPanel.tscn" id="5_6rljh"]
 
-[node name="PopupMicheViewer" type="Control" node_paths=PackedStringArray("michePopup", "miches", "speciesDetails", "micheDetails")]
+[node name="PopupMicheViewer" type="Control" unique_id=1138885174 node_paths=PackedStringArray("michePopup", "miches", "speciesDetails", "micheDetails")]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -21,7 +21,7 @@ miches = NodePath("Popup/HBoxContainer/MicheTree")
 speciesDetails = NodePath("Popup/HBoxContainer/VBoxContainer/SpeciesDetailsPanel")
 micheDetails = NodePath("Popup/HBoxContainer/VBoxContainer/MicheDetailsPanel")
 
-[node name="Popup" parent="." instance=ExtResource("2_gkx7s")]
+[node name="Popup" parent="." unique_id=377908735 instance=ExtResource("2_gkx7s")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -38,32 +38,32 @@ WindowTitle = "MICHES_FOR_PATCH"
 Resizable = true
 Exclusive = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Popup"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Popup" unique_id=1156506191]
 custom_minimum_size = Vector2(750, 500)
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="MicheTree" parent="Popup/HBoxContainer" instance=ExtResource("3_uffxt")]
+[node name="MicheTree" parent="Popup/HBoxContainer" unique_id=2130490376 instance=ExtResource("3_uffxt")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 1.5
 
-[node name="VSeparator" type="VSeparator" parent="Popup/HBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="Popup/HBoxContainer" unique_id=732197722]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Popup/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Popup/HBoxContainer" unique_id=2048716485]
 editor_description = "Min size is set here so that opening miche details doesn't expand things to the left"
 custom_minimum_size = Vector2(352, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="MicheDetailsPanel" parent="Popup/HBoxContainer/VBoxContainer" instance=ExtResource("5_6rljh")]
+[node name="MicheDetailsPanel" parent="Popup/HBoxContainer/VBoxContainer" unique_id=1916968510 instance=ExtResource("5_6rljh")]
 layout_mode = 2
 
-[node name="SpeciesDetailsPanel" parent="Popup/HBoxContainer/VBoxContainer" instance=ExtResource("4_v5bmc")]
+[node name="SpeciesDetailsPanel" parent="Popup/HBoxContainer/VBoxContainer" unique_id=1209940727 instance=ExtResource("4_v5bmc")]
 visible = false
 layout_mode = 2
 

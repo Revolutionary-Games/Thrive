@@ -1,18 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://bmqwuo6wtuwmk"]
+[gd_scene format=3 uid="uid://bmqwuo6wtuwmk"]
 
 [ext_resource type="Script" uid="uid://mrqa5jxao3bw" path="res://src/gui_common/IconProgressBar.cs" id="1"]
 
-[node name="ProgressBar" type="ColorRect"]
+[node name="ProgressBar" type="ColorRect" unique_id=397942116]
 script = ExtResource("1")
 
-[node name="Icon" type="TextureRect" parent="."]
+[node name="Icon" type="TextureRect" parent="." unique_id=720712230]
 layout_mode = 0
 offset_right = 26.0
 offset_bottom = 26.0
 mouse_filter = 2
 expand_mode = 1
 
-[node name="Highlight" type="ColorRect" parent="."]
+[node name="Highlight" type="ColorRect" parent="." unique_id=1820141530]
 visible = false
 layout_mode = 0
 mouse_filter = 2

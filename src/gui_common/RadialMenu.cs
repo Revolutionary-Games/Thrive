@@ -265,10 +265,7 @@ public partial class RadialMenu : CenterContainer
 
     private void UpdateCenterText()
     {
-        if (centerLabel == null)
-            return;
-
-        centerLabel.Text = centerText;
+        centerLabel?.Text = centerText;
     }
 
     private void RepositionLabels()

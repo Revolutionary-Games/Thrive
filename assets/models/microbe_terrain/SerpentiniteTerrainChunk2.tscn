@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://blpdbnmvytljt"]
+[gd_scene format=3 uid="uid://blpdbnmvytljt"]
 
 [ext_resource type="PackedScene" uid="uid://dx5vnwls2e65u" path="res://assets/models/microbe_terrain/SerpentiniteTerrainChunk2.glb" id="1_q2b3m"]
 [ext_resource type="Texture2D" uid="uid://33pvh0blacl2" path="res://assets/textures/environment/serpentinite.png" id="2_s5ni0"]
@@ -13,7 +13,7 @@ ao_enabled = true
 ao_light_affect = 0.35
 ao_texture = ExtResource("3_cp6x4")
 
-[node name="SerpentiniteTerrainChunk2" instance=ExtResource("1_q2b3m")]
+[node name="SerpentiniteTerrainChunk2" unique_id=1108930269 instance=ExtResource("1_q2b3m")]
 
-[node name="serpentinite2" parent="." index="0"]
+[node name="serpentinite2" parent="." index="0" unique_id=440518429]
 surface_material_override/0 = SubResource("StandardMaterial3D_8dstj")

@@ -1,17 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://c027xyogk08vx"]
+[gd_scene format=3 uid="uid://c027xyogk08vx"]
 
 [ext_resource type="LabelSettings" uid="uid://chasppwihgufu" path="res://src/gui_common/fonts/Body-Bold-Small.tres" id="2_756k6"]
 [ext_resource type="Script" uid="uid://ck3f8x1475wda" path="res://src/microbe_stage/editor/CellStatsIndicator.cs" id="3"]
 [ext_resource type="LabelSettings" uid="uid://deaqhtet373fq" path="res://src/gui_common/fonts/Body-Regular-AlmostSmall-Yellow.tres" id="3_crdng"]
 
-[node name="CellStatIndicator" type="HBoxContainer" node_paths=PackedStringArray("valueLabel")]
+[node name="CellStatIndicator" type="HBoxContainer" unique_id=27221530 node_paths=PackedStringArray("valueLabel")]
 offset_right = 213.0
 offset_bottom = 25.0
 size_flags_horizontal = 3
 script = ExtResource("3")
 valueLabel = NodePath("HBoxContainer/Value")
 
-[node name="Indicator" type="TextureRect" parent="."]
+[node name="Indicator" type="TextureRect" parent="." unique_id=1019611899]
 visible = false
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
@@ -19,13 +19,13 @@ size_flags_vertical = 4
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Icon" type="TextureRect" parent="."]
+[node name="Icon" type="TextureRect" parent="." unique_id=1070857297]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Description" type="Label" parent="."]
+[node name="Description" type="Label" parent="." unique_id=97367193]
 editor_description = "PLACEHOLDER"
 custom_minimum_size = Vector2(130, 0)
 layout_mode = 2
@@ -34,12 +34,12 @@ text = "CELL_STAT_PLACEHOLDER"
 label_settings = ExtResource("2_756k6")
 autowrap_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=2066179151]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 2
 
-[node name="Value" type="Label" parent="HBoxContainer"]
+[node name="Value" type="Label" parent="HBoxContainer" unique_id=961131242]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "n/a"

@@ -1,11 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://blv3j6t53xjq2"]
+[gd_scene format=3 uid="uid://blv3j6t53xjq2"]
 
 [ext_resource type="Script" uid="uid://cs3o8igwtntqg" path="res://src/gui_common/RadialMenu.cs" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
 [ext_resource type="Texture2D" uid="uid://cxmly28y6m2ry" path="res://assets/textures/gui/bevel/radialIndicator.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://cq08hpsflrx3k" path="res://assets/textures/gui/radialMenuHighlightBackground.png" id="4"]
 
-[node name="RadialMenu" type="CenterContainer" node_paths=PackedStringArray("centerLabel", "dynamicLabelsContainer", "indicator")]
+[node name="RadialMenu" type="CenterContainer" unique_id=1440993158 node_paths=PackedStringArray("centerLabel", "dynamicLabelsContainer", "indicator")]
 process_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,7 +17,7 @@ centerLabel = NodePath("CenterLabel")
 dynamicLabelsContainer = NodePath("DynamicLabels")
 indicator = NodePath("Indicator")
 
-[node name="CenterLabel" type="Label" parent="."]
+[node name="CenterLabel" type="Label" parent="." unique_id=1882835598]
 editor_description = "PLACEHOLDER"
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
@@ -25,13 +25,13 @@ text = "Pick something"
 horizontal_alignment = 1
 max_lines_visible = 4
 
-[node name="Indicator" type="TextureRect" parent="."]
+[node name="Indicator" type="TextureRect" parent="." unique_id=53641032]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("3")
 expand_mode = 1
 
-[node name="DynamicLabels" type="Control" parent="."]
+[node name="DynamicLabels" type="Control" parent="." unique_id=1187979377]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

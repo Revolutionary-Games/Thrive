@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ork3xiril0bq"]
+[gd_scene format=3 uid="uid://ork3xiril0bq"]
 
 [ext_resource type="Shader" uid="uid://bxd4cdv4qekba" path="res://shaders/Crystal.gdshader" id="1_0qsxg"]
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="2_w0d41"]
@@ -45,12 +45,12 @@ shader_parameter/dissolveScale = 1.5
 shader_parameter/outlineWidth = 0.0
 shader_parameter/growColor = Color(0.819608, 0.670588, 0.509804, 1)
 
-[node name="Apatite" type="MeshInstance3D" node_paths=PackedStringArray("meshChildren")]
+[node name="Apatite" type="MeshInstance3D" unique_id=2061409783 node_paths=PackedStringArray("meshChildren")]
 material_override = SubResource("ShaderMaterial_bfxy3")
 mesh = ExtResource("5_cdma8")
 script = ExtResource("3_b8lrv")
 meshChildren = []
 
-[node name="Rock" type="MeshInstance3D" parent="."]
+[node name="Rock" type="MeshInstance3D" parent="." unique_id=707926761]
 material_override = SubResource("ShaderMaterial_hsbfc")
 mesh = ExtResource("8_7qf82")

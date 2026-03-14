@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c787npbnwyy0s"]
+[gd_scene format=3 uid="uid://c787npbnwyy0s"]
 
 [ext_resource type="ArrayMesh" uid="uid://cxn1jgx15xdao" path="res://assets/models/organelles/Cytoplasm.mesh" id="1"]
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="2"]
@@ -20,7 +20,7 @@ shader_parameter/growColor = Color(0.0941176, 0.0823529, 0.247059, 1)
 shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/jiggleAmount = 0.0005
 
-[node name="Cytoplasm" type="MeshInstance3D"]
+[node name="Cytoplasm" type="MeshInstance3D" unique_id=1080265967]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0.620938, 0)
 material_override = SubResource("ShaderMaterial_v3ckx")
 mesh = ExtResource("1")

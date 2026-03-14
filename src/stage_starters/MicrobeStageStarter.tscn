@@ -1,7 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://0evywiwxqah1"]
+[gd_scene format=3 uid="uid://0evywiwxqah1"]
 
 [ext_resource type="Script" uid="uid://cnxqqpqcp7xx5" path="res://src/stage_starters/SimpleStageStarter.cs" id="1"]
 
-[node name="MicrobeStageStarter" type="Node"]
+[node name="MicrobeStageStarter" type="Node" unique_id=951200516]
 script = ExtResource("1")
 StageToSwitchTo = 1

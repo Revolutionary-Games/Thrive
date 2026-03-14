@@ -1,7 +1,7 @@
 ﻿using Godot;
 
 /// <summary>
-///   Shows various details a bout a species for the player
+///   Shows various details about a species for the player
 /// </summary>
 public partial class SpeciesDetailsPanel : MarginContainer
 {
@@ -28,7 +28,25 @@ public partial class SpeciesDetailsPanel : MarginContainer
             var newHash = value?.GetVisualHashCode() ?? 0UL;
 
             if (newHash == speciesVisualHash)
+            {
+                // If the generation changes, we need to still update the text data even if the visuals is the same.
+                // Because otherwise the evolutionary tree text data won't refresh if switching between visually the
+                // same species.
+                // TODO: should we rely on other stats as well as for AI species they don't necessarily increment the
+                // generation? Though it luckily seems that species basically always mutate which means that they will
+                // always have a changed visual hash.
+                // TODO: https://github.com/Revolutionary-Games/Thrive/issues/3045
+                if (value != null && value.Generation != previewSpecies?.Generation)
+                {
+                    if (speciesDetailsLabel != null)
+                    {
+                        previewSpecies = value;
+                        UpdateDetailString();
+                    }
+                }
+
                 return;
+            }
 
             previewSpecies = value;
             speciesVisualHash = newHash;
@@ -66,12 +84,17 @@ public partial class SpeciesDetailsPanel : MarginContainer
 
         hexesPreview.PreviewSpecies = PreviewSpecies;
 
-        speciesDetailsLabel!.ExtendedBbcode = PreviewSpecies?.GetDetailString();
+        UpdateDetailString();
     }
 
     private void OnTranslationsChanged()
     {
         if (previewSpecies != null)
-            UpdateSpeciesPreview();
+            UpdateDetailString();
+    }
+
+    private void UpdateDetailString()
+    {
+        speciesDetailsLabel!.ExtendedBbcode = PreviewSpecies?.GetDetailString();
     }
 }

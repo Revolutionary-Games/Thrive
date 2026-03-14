@@ -64,7 +64,7 @@ var _current_flags := 0
 var _current_align := Align.LEFT
 
 ## The current text effect to be used for the next output operation
-var _current_effect := Effect.NONE
+var _current_effect := GdUnitMessageWriter.Effect.NONE
 
 
 ## Sets the text color for the next output operation.[br]
@@ -98,7 +98,7 @@ func style(value: int) -> GdUnitMessageWriter:
 ## [br]
 ## [param value] The effect to apply to the text (NONE, WAVE).
 ## Returns self for method chaining.
-func effect(value: Effect) -> GdUnitMessageWriter:
+func effect(value: GdUnitMessageWriter.Effect) -> GdUnitMessageWriter:
 	_current_effect = value
 	return self
 
@@ -203,7 +203,7 @@ func _println_message(_message: String, _color: Color, _indent: int, _flags: int
 ## [param effect] The effect to apply.[br]
 ## [param align] The text alignment.[br]
 ## [param flags] The style flags to apply.
-func _print_at(_message: String, _cursor_pos: int, _color: Color, _effect: Effect, _align: Align, _flags: int) -> void:
+func _print_at(_message: String, _cursor_pos: int, _color: Color, _effect: GdUnitMessageWriter.Effect, _align: Align, _flags: int) -> void:
 	pass
 
 

@@ -19,4 +19,4 @@ func _execute(context: GdUnitExecutionContext) -> void:
 		await test_suite.after_test()
 
 	await context.gc(GdUnitExecutionContext.GC_ORPHANS_CHECK.TEST_HOOK_AFTER)
-	await context.error_monitor_stop()
+	context.error_monitor_stop()

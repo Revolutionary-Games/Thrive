@@ -1,11 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://nsfnyv4brns6"]
+[gd_scene format=3 uid="uid://nsfnyv4brns6"]
 
 [ext_resource type="Script" uid="uid://cdb2rsmxlawq5" path="res://src/microbe_stage/editor/DraggableItem.cs" id="1_vhcni"]
 [ext_resource type="Texture2D" uid="uid://bvs25j23bpuic" path="res://assets/textures/gui/bevel/DragHandle.svg" id="2_v31cb"]
 [ext_resource type="Texture2D" uid="uid://d03mjimd54adn" path="res://assets/textures/gui/bevel/ExpandUp.svg" id="3_s0daa"]
 [ext_resource type="Texture2D" uid="uid://jypb8hhom3iv" path="res://assets/textures/gui/bevel/ExpandDown.svg" id="4_hc1dy"]
 
-[node name="DraggableItem" type="HBoxContainer" node_paths=PackedStringArray("position", "nameLabel", "moveUpButton", "moveDownButton")]
+[node name="DraggableItem" type="HBoxContainer" unique_id=1394599787 node_paths=PackedStringArray("position", "nameLabel", "moveUpButton", "moveDownButton")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -18,7 +18,7 @@ nameLabel = NodePath("ItemName")
 moveUpButton = NodePath("Up")
 moveDownButton = NodePath("Down")
 
-[node name="DragHandle" type="TextureRect" parent="."]
+[node name="DragHandle" type="TextureRect" parent="." unique_id=63672364]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 tooltip_text = "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
@@ -27,17 +27,17 @@ texture = ExtResource("2_v31cb")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="PositionLabel" type="Label" parent="."]
+[node name="PositionLabel" type="Label" parent="." unique_id=1354423323]
 layout_mode = 2
 text = "1."
 vertical_alignment = 1
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=117273048]
 layout_mode = 2
 text = "ITEM_NAME_SEPARATOR"
 vertical_alignment = 1
 
-[node name="ItemName" type="Label" parent="."]
+[node name="ItemName" type="Label" parent="." unique_id=1386686014]
 editor_description = "PLACEHOLDER"
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
@@ -46,17 +46,17 @@ text = "Reorderable item"
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="Spacer" type="Control" parent="."]
+[node name="Spacer" type="Control" parent="." unique_id=1268516764]
 layout_mode = 2
 
-[node name="Up" type="Button" parent="."]
+[node name="Up" type="Button" parent="." unique_id=52528206]
 layout_mode = 2
 size_flags_vertical = 4
 tooltip_text = "MOVE_ITEM_UP"
 disabled = true
 icon = ExtResource("3_s0daa")
 
-[node name="Down" type="Button" parent="."]
+[node name="Down" type="Button" parent="." unique_id=858066971]
 layout_mode = 2
 size_flags_vertical = 4
 tooltip_text = "MOVE_ITEM_DOWN"

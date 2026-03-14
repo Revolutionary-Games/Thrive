@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cahegn58i768h"]
+[gd_scene format=3 uid="uid://cahegn58i768h"]
 
 [ext_resource type="Script" uid="uid://cpv8736sj42ui" path="res://src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.cs" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
@@ -10,7 +10,7 @@
 [ext_resource type="FontVariation" uid="uid://cqork3l186w1c" path="res://assets/fonts/variants/Jura-Bold.tres" id="9_jkhed"]
 [ext_resource type="PackedScene" uid="uid://tna206f2gtkv" path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" id="10"]
 
-[node name="MicrobeEditorTutorialGUI" type="Control" node_paths=PackedStringArray("editorEntryReport", "patchMap", "cellEditorIntroduction", "cellEditorUndo", "cellEditorRedo", "cellEditorClosingWords", "autoEvoPrediction", "staySmallTutorial", "negativeAtpBalanceTutorial", "chemoreceptorPlacementTutorial", "madeNoChangesTutorial", "flagellumPlacementTutorial", "modifyOrganelleTutorial", "atpBalanceIntroduction", "nucleusTutorial", "bindingAgentsTutorial", "tolerancesTabTutorial", "openTolerancesTabTutorial", "earlyGameGoalTutorial", "compoundBalanceTutorial", "migrationTutorial", "foodChainTutorial", "digestionStatTutorial", "CellEditorUndoHighlight", "CellEditorRedoHighlight", "AutoEvoPredictionHighlight", "AtpBalanceBarHighlight", "CompoundBalanceHighlight")]
+[node name="MicrobeEditorTutorialGUI" type="Control" unique_id=1798015826 node_paths=PackedStringArray("editorEntryReport", "patchMap", "cellEditorIntroduction", "cellEditorUndo", "cellEditorRedo", "cellEditorClosingWords", "autoEvoPrediction", "staySmallTutorial", "negativeAtpBalanceTutorial", "chemoreceptorPlacementTutorial", "madeNoChangesTutorial", "flagellumPlacementTutorial", "modifyOrganelleTutorial", "atpBalanceIntroduction", "nucleusTutorial", "bindingAgentsTutorial", "tolerancesTabTutorial", "openTolerancesTabTutorial", "earlyGameGoalTutorial", "compoundBalanceTutorial", "migrationTutorial", "foodChainTutorial", "digestionStatTutorial", "CellEditorUndoHighlight", "CellEditorRedoHighlight", "AutoEvoPredictionHighlight", "AtpBalanceBarHighlight", "CompoundBalanceHighlight")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -50,9 +50,10 @@ AutoEvoPredictionHighlight = NodePath("AutoEvoPredictionHighlight")
 AtpBalanceBarHighlight = NodePath("AtpBalanceBarHighlight")
 CompoundBalanceHighlight = NodePath("CompoundBalanceHighlight")
 
-[node name="AddWindowReorderingSupportToSiblings" parent="." instance=ExtResource("10")]
+[node name="AddWindowReorderingSupportToSiblings" parent="." unique_id=1225748536 instance=ExtResource("10")]
+layout_mode = 0
 
-[node name="EditorEntryReport" parent="." instance=ExtResource("8")]
+[node name="EditorEntryReport" parent="." unique_id=1875822943 instance=ExtResource("8")]
 custom_minimum_size = Vector2(390, 280)
 layout_mode = 1
 anchors_preset = 6
@@ -70,7 +71,7 @@ Description = "EDITOR_TUTORIAL_EDITOR_TEXT"
 ShowDelay = 0.7
 PreventsMouseCaptureWhileOpen = true
 
-[node name="PatchMapTutorial" parent="." instance=ExtResource("8")]
+[node name="PatchMapTutorial" parent="." unique_id=1666293128 instance=ExtResource("8")]
 custom_minimum_size = Vector2(360, 360)
 layout_mode = 1
 anchors_preset = 6
@@ -87,7 +88,7 @@ grow_vertical = 2
 Description = "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 PreventsMouseCaptureWhileOpen = true
 
-[node name="MigrationTutorial" parent="." instance=ExtResource("8")]
+[node name="MigrationTutorial" parent="." unique_id=121674772 instance=ExtResource("8")]
 custom_minimum_size = Vector2(360, 455)
 layout_mode = 1
 anchors_preset = 4
@@ -101,7 +102,7 @@ grow_vertical = 2
 Description = "TUTORIAL_MICROBE_EDITOR_MIGRATION"
 PreventsMouseCaptureWhileOpen = true
 
-[node name="CellEditorIntro" parent="." instance=ExtResource("8")]
+[node name="CellEditorIntro" parent="." unique_id=787149182 instance=ExtResource("8")]
 custom_minimum_size = Vector2(360, 415)
 layout_mode = 1
 anchors_preset = 6
@@ -119,7 +120,7 @@ Description = "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 ShowDelay = 0.7
 PreventsMouseCaptureWhileOpen = true
 
-[node name="UndoTutorial" parent="." instance=ExtResource("8")]
+[node name="UndoTutorial" parent="." unique_id=720267595 instance=ExtResource("8")]
 custom_minimum_size = Vector2(360, 340)
 layout_mode = 1
 anchors_preset = 6
@@ -138,15 +139,16 @@ ShowDelay = 0.3
 ShowCloseButton = false
 PreventsMouseCaptureWhileOpen = true
 
-[node name="UndoButtonHighlight" parent="." instance=ExtResource("3")]
+[node name="UndoButtonHighlight" parent="." unique_id=1342164935 instance=ExtResource("3")]
 visible = false
+layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="RedoTutorial" parent="." instance=ExtResource("8")]
+[node name="RedoTutorial" parent="." unique_id=1811237981 instance=ExtResource("8")]
 custom_minimum_size = Vector2(370, 20)
 layout_mode = 1
 anchors_preset = 5
@@ -162,15 +164,16 @@ ShowDelay = 0.3
 ShowCloseButton = false
 PreventsMouseCaptureWhileOpen = true
 
-[node name="RedoButtonHighlight" parent="." instance=ExtResource("3")]
+[node name="RedoButtonHighlight" parent="." unique_id=757447462 instance=ExtResource("3")]
 visible = false
+layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="CellEditorClosingWords" parent="." node_paths=PackedStringArray("label") instance=ExtResource("9")]
+[node name="CellEditorClosingWords" parent="." unique_id=1731552674 node_paths=PackedStringArray("label") instance=ExtResource("9")]
 custom_minimum_size = Vector2(360, 390)
 layout_mode = 1
 anchors_preset = 8
@@ -191,27 +194,27 @@ DescriptionForController = ""
 ShowDelay = 0.7
 WindowTitle = "TUTORIAL"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CellEditorClosingWords"]
+[node name="ScrollContainer" type="ScrollContainer" parent="CellEditorClosingWords" unique_id=565718934]
 custom_minimum_size = Vector2(230, 230)
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CellEditorClosingWords/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CellEditorClosingWords/ScrollContainer" unique_id=502189882]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="CustomRichTextLabel" parent="CellEditorClosingWords/ScrollContainer/VBoxContainer" instance=ExtResource("5")]
+[node name="CustomRichTextLabel" parent="CellEditorClosingWords/ScrollContainer/VBoxContainer" unique_id=732261268 instance=ExtResource("5")]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 15
 fit_content = true
 
-[node name="Control" type="Control" parent="CellEditorClosingWords/ScrollContainer/VBoxContainer"]
+[node name="Control" type="Control" parent="CellEditorClosingWords/ScrollContainer/VBoxContainer" unique_id=374778965]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="CellEditorClosingWords/ScrollContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="CellEditorClosingWords/ScrollContainer/VBoxContainer" unique_id=1600133782]
 custom_minimum_size = Vector2(110, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -219,15 +222,16 @@ theme_override_fonts/font = ExtResource("9_jkhed")
 theme_override_font_sizes/font_size = 18
 text = "CLOSE"
 
-[node name="AutoEvoPredictionHighlight" parent="." instance=ExtResource("3")]
+[node name="AutoEvoPredictionHighlight" parent="." unique_id=2098033453 instance=ExtResource("3")]
 visible = false
+layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="AutoEvoPrediction" parent="." instance=ExtResource("8")]
+[node name="AutoEvoPrediction" parent="." unique_id=2019144650 instance=ExtResource("8")]
 custom_minimum_size = Vector2(450, 430)
 layout_mode = 1
 anchors_preset = 8
@@ -246,7 +250,7 @@ ShowDelay = 0.7
 ShowCloseButton = false
 PreventsMouseCaptureWhileOpen = true
 
-[node name="ModifyOrganelleTutorial" parent="." instance=ExtResource("8")]
+[node name="ModifyOrganelleTutorial" parent="." unique_id=808506820 instance=ExtResource("8")]
 custom_minimum_size = Vector2(360, 330)
 layout_mode = 1
 anchors_preset = 8
@@ -265,7 +269,7 @@ ShowDelay = 0.7
 ShowCloseButton = false
 PreventsMouseCaptureWhileOpen = true
 
-[node name="FlagellumPlacementTutorial" parent="." node_paths=PackedStringArray("label") instance=ExtResource("9")]
+[node name="FlagellumPlacementTutorial" parent="." unique_id=1487138007 node_paths=PackedStringArray("label") instance=ExtResource("9")]
 custom_minimum_size = Vector2(390, 395)
 layout_mode = 1
 anchors_preset = 8
@@ -286,27 +290,27 @@ DescriptionForController = ""
 ShowDelay = 0.7
 WindowTitle = "TUTORIAL"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="FlagellumPlacementTutorial"]
+[node name="ScrollContainer" type="ScrollContainer" parent="FlagellumPlacementTutorial" unique_id=223607149]
 custom_minimum_size = Vector2(230, 230)
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="FlagellumPlacementTutorial/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="FlagellumPlacementTutorial/ScrollContainer" unique_id=912021699]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="CustomRichTextLabel" parent="FlagellumPlacementTutorial/ScrollContainer/VBoxContainer" instance=ExtResource("5")]
+[node name="CustomRichTextLabel" parent="FlagellumPlacementTutorial/ScrollContainer/VBoxContainer" unique_id=1293811907 instance=ExtResource("5")]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 15
 fit_content = true
 
-[node name="Control" type="Control" parent="FlagellumPlacementTutorial/ScrollContainer/VBoxContainer"]
+[node name="Control" type="Control" parent="FlagellumPlacementTutorial/ScrollContainer/VBoxContainer" unique_id=2078585298]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="FlagellumPlacementTutorial/ScrollContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="FlagellumPlacementTutorial/ScrollContainer/VBoxContainer" unique_id=704221885]
 custom_minimum_size = Vector2(110, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -314,7 +318,7 @@ theme_override_fonts/font = ExtResource("9_jkhed")
 theme_override_font_sizes/font_size = 18
 text = "CLOSE"
 
-[node name="ChemoreceptorPlacementTutorial" parent="." instance=ExtResource("8")]
+[node name="ChemoreceptorPlacementTutorial" parent="." unique_id=1652066602 instance=ExtResource("8")]
 custom_minimum_size = Vector2(360, 300)
 layout_mode = 1
 anchors_preset = 8
@@ -332,7 +336,7 @@ Description = "TUTORIAL_MICROBE_EDITOR_CHEMORECEPTOR"
 ShowDelay = 0.7
 PreventsMouseCaptureWhileOpen = true
 
-[node name="StaySmall" parent="." node_paths=PackedStringArray("label") instance=ExtResource("9")]
+[node name="StaySmall" parent="." unique_id=223594010 node_paths=PackedStringArray("label") instance=ExtResource("9")]
 custom_minimum_size = Vector2(375, 420)
 layout_mode = 1
 anchors_preset = 8
@@ -353,27 +357,27 @@ DescriptionForController = ""
 ShowDelay = 0.7
 WindowTitle = "TUTORIAL"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="StaySmall"]
+[node name="ScrollContainer" type="ScrollContainer" parent="StaySmall" unique_id=687844588]
 custom_minimum_size = Vector2(230, 230)
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="StaySmall/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="StaySmall/ScrollContainer" unique_id=1581096382]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="CustomRichTextLabel" parent="StaySmall/ScrollContainer/VBoxContainer" instance=ExtResource("5")]
+[node name="CustomRichTextLabel" parent="StaySmall/ScrollContainer/VBoxContainer" unique_id=640768268 instance=ExtResource("5")]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 15
 fit_content = true
 
-[node name="Control" type="Control" parent="StaySmall/ScrollContainer/VBoxContainer"]
+[node name="Control" type="Control" parent="StaySmall/ScrollContainer/VBoxContainer" unique_id=805553102]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="StaySmall/ScrollContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="StaySmall/ScrollContainer/VBoxContainer" unique_id=1427955025]
 custom_minimum_size = Vector2(110, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -381,7 +385,7 @@ theme_override_fonts/font = ExtResource("9_jkhed")
 theme_override_font_sizes/font_size = 18
 text = "GOT_IT"
 
-[node name="MadeNoChangesTutorial" parent="." node_paths=PackedStringArray("label") instance=ExtResource("9")]
+[node name="MadeNoChangesTutorial" parent="." unique_id=2042269402 node_paths=PackedStringArray("label") instance=ExtResource("9")]
 custom_minimum_size = Vector2(375, 270)
 layout_mode = 1
 anchors_preset = 8
@@ -402,28 +406,28 @@ DescriptionForController = ""
 ShowDelay = 0.1
 WindowTitle = "TUTORIAL"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MadeNoChangesTutorial"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MadeNoChangesTutorial" unique_id=793635515]
 custom_minimum_size = Vector2(375, 230)
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_bottom = -155.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MadeNoChangesTutorial/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MadeNoChangesTutorial/ScrollContainer" unique_id=2108748691]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="CustomRichTextLabel" parent="MadeNoChangesTutorial/ScrollContainer/VBoxContainer" instance=ExtResource("5")]
+[node name="CustomRichTextLabel" parent="MadeNoChangesTutorial/ScrollContainer/VBoxContainer" unique_id=2129455321 instance=ExtResource("5")]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 15
 fit_content = true
 
-[node name="Control" type="Control" parent="MadeNoChangesTutorial/ScrollContainer/VBoxContainer"]
+[node name="Control" type="Control" parent="MadeNoChangesTutorial/ScrollContainer/VBoxContainer" unique_id=707593078]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="MadeNoChangesTutorial/ScrollContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="MadeNoChangesTutorial/ScrollContainer/VBoxContainer" unique_id=1787786723]
 custom_minimum_size = Vector2(110, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -431,7 +435,7 @@ theme_override_fonts/font = ExtResource("9_jkhed")
 theme_override_font_sizes/font_size = 18
 text = "CLOSE"
 
-[node name="NegativeAtpBalanceTutorial" type="Control" parent="." node_paths=PackedStringArray("label")]
+[node name="NegativeAtpBalanceTutorial" type="Control" parent="." unique_id=1970728207 node_paths=PackedStringArray("label")]
 visible = false
 custom_minimum_size = Vector2(260, 420)
 anchors_preset = 0
@@ -448,27 +452,27 @@ Description = "TUTORIAL_MICROBE_EDITOR_NEGATIVE_ATP_BALANCE"
 WindowTitle = "TUTORIAL"
 PreventsMouseCaptureWhileOpen = false
 
-[node name="ScrollContainer" type="ScrollContainer" parent="NegativeAtpBalanceTutorial"]
+[node name="ScrollContainer" type="ScrollContainer" parent="NegativeAtpBalanceTutorial" unique_id=239592453]
 custom_minimum_size = Vector2(230, 230)
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="NegativeAtpBalanceTutorial/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="NegativeAtpBalanceTutorial/ScrollContainer" unique_id=1798002937]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="CustomRichTextLabel" parent="NegativeAtpBalanceTutorial/ScrollContainer/VBoxContainer" instance=ExtResource("5")]
+[node name="CustomRichTextLabel" parent="NegativeAtpBalanceTutorial/ScrollContainer/VBoxContainer" unique_id=1098526966 instance=ExtResource("5")]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 15
 fit_content = true
 
-[node name="Control" type="Control" parent="NegativeAtpBalanceTutorial/ScrollContainer/VBoxContainer"]
+[node name="Control" type="Control" parent="NegativeAtpBalanceTutorial/ScrollContainer/VBoxContainer" unique_id=415147509]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="NegativeAtpBalanceTutorial/ScrollContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="NegativeAtpBalanceTutorial/ScrollContainer/VBoxContainer" unique_id=1042638817]
 custom_minimum_size = Vector2(110, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -476,15 +480,16 @@ theme_override_fonts/font = ExtResource("9_jkhed")
 theme_override_font_sizes/font_size = 18
 text = "CLOSE"
 
-[node name="AtpBalanceBarHighlight" parent="." instance=ExtResource("3")]
+[node name="AtpBalanceBarHighlight" parent="." unique_id=1429962318 instance=ExtResource("3")]
 visible = false
+layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="AtpBalanceIntroduction" type="Control" parent="." node_paths=PackedStringArray("label")]
+[node name="AtpBalanceIntroduction" type="Control" parent="." unique_id=169917676 node_paths=PackedStringArray("label")]
 visible = false
 custom_minimum_size = Vector2(260, 442)
 layout_mode = 1
@@ -503,27 +508,27 @@ Description = "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 WindowTitle = "TUTORIAL"
 PreventsMouseCaptureWhileOpen = false
 
-[node name="ScrollContainer" type="ScrollContainer" parent="AtpBalanceIntroduction"]
+[node name="ScrollContainer" type="ScrollContainer" parent="AtpBalanceIntroduction" unique_id=1862512713]
 custom_minimum_size = Vector2(230, 230)
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="AtpBalanceIntroduction/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="AtpBalanceIntroduction/ScrollContainer" unique_id=1200468599]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="CustomRichTextLabel" parent="AtpBalanceIntroduction/ScrollContainer/VBoxContainer" instance=ExtResource("5")]
+[node name="CustomRichTextLabel" parent="AtpBalanceIntroduction/ScrollContainer/VBoxContainer" unique_id=1529251519 instance=ExtResource("5")]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 15
 fit_content = true
 
-[node name="Control" type="Control" parent="AtpBalanceIntroduction/ScrollContainer/VBoxContainer"]
+[node name="Control" type="Control" parent="AtpBalanceIntroduction/ScrollContainer/VBoxContainer" unique_id=1846970385]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="AtpBalanceIntroduction/ScrollContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="AtpBalanceIntroduction/ScrollContainer/VBoxContainer" unique_id=1557193291]
 custom_minimum_size = Vector2(110, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -531,9 +536,9 @@ theme_override_fonts/font = ExtResource("9_jkhed")
 theme_override_font_sizes/font_size = 18
 text = "GOT_IT"
 
-[node name="TolerancesTabTutorial" parent="." instance=ExtResource("8")]
+[node name="TolerancesTabTutorial" parent="." unique_id=1322732219 instance=ExtResource("8")]
 custom_minimum_size = Vector2(360, 360)
-layout_mode = 2
+layout_mode = 0
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -548,7 +553,7 @@ Description = "TUTORIAL_MICROBE_EDITOR_TOLERANCES_TAB"
 ShowDelay = 0.4
 PreventsMouseCaptureWhileOpen = true
 
-[node name="OpenTolerancesTabTutorial" parent="." instance=ExtResource("8")]
+[node name="OpenTolerancesTabTutorial" parent="." unique_id=1772897689 instance=ExtResource("8")]
 custom_minimum_size = Vector2(360, 300)
 layout_mode = 1
 anchors_preset = 6
@@ -566,7 +571,7 @@ Description = "TUTORIAL_MICROBE_EDITOR_OPEN_TOLERANCES"
 ShowDelay = 0.3
 PreventsMouseCaptureWhileOpen = true
 
-[node name="EarlyGoalTutorial" parent="." instance=ExtResource("8")]
+[node name="EarlyGoalTutorial" parent="." unique_id=156584559 instance=ExtResource("8")]
 custom_minimum_size = Vector2(390, 360)
 layout_mode = 1
 anchors_preset = 6
@@ -584,7 +589,7 @@ Description = "EDITOR_TUTORIAL_EARLY_GOAL"
 ShowDelay = 0.7
 PreventsMouseCaptureWhileOpen = true
 
-[node name="NucleusTutorial" parent="." instance=ExtResource("8")]
+[node name="NucleusTutorial" parent="." unique_id=102270640 instance=ExtResource("8")]
 custom_minimum_size = Vector2(360, 300)
 layout_mode = 1
 anchors_preset = 6
@@ -602,7 +607,7 @@ Description = "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 ShowDelay = 0.7
 PreventsMouseCaptureWhileOpen = true
 
-[node name="BindingAgentsTutorial" type="Control" parent="." node_paths=PackedStringArray("label")]
+[node name="BindingAgentsTutorial" type="Control" parent="." unique_id=926938060 node_paths=PackedStringArray("label")]
 visible = false
 custom_minimum_size = Vector2(360, 300)
 layout_mode = 1
@@ -625,27 +630,27 @@ Description = "EDITOR_TUTORIAL_MICROBE_EDITOR_BINDING_AGENTS"
 ShowDelay = 0.7
 WindowTitle = "TUTORIAL"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="BindingAgentsTutorial"]
+[node name="ScrollContainer" type="ScrollContainer" parent="BindingAgentsTutorial" unique_id=987527412]
 custom_minimum_size = Vector2(230, 230)
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="BindingAgentsTutorial/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="BindingAgentsTutorial/ScrollContainer" unique_id=1430596589]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="CustomRichTextLabel" parent="BindingAgentsTutorial/ScrollContainer/VBoxContainer" instance=ExtResource("5")]
+[node name="CustomRichTextLabel" parent="BindingAgentsTutorial/ScrollContainer/VBoxContainer" unique_id=838793494 instance=ExtResource("5")]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 16
 fit_content = true
 
-[node name="Control" type="Control" parent="BindingAgentsTutorial/ScrollContainer/VBoxContainer"]
+[node name="Control" type="Control" parent="BindingAgentsTutorial/ScrollContainer/VBoxContainer" unique_id=359996242]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="BindingAgentsTutorial/ScrollContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="BindingAgentsTutorial/ScrollContainer/VBoxContainer" unique_id=219798]
 custom_minimum_size = Vector2(110, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -653,7 +658,7 @@ theme_override_fonts/font = ExtResource("9_jkhed")
 theme_override_font_sizes/font_size = 18
 text = "GOT_IT"
 
-[node name="CompoundBalanceTutorial" type="Control" parent="." node_paths=PackedStringArray("label")]
+[node name="CompoundBalanceTutorial" type="Control" parent="." unique_id=2067441045 node_paths=PackedStringArray("label")]
 visible = false
 custom_minimum_size = Vector2(260, 510)
 layout_mode = 1
@@ -671,27 +676,27 @@ label = NodePath("ScrollContainer/VBoxContainer/CustomRichTextLabel")
 Description = "TUTORIAL_MICROBE_EDITOR_COMPOUND_BALANCES"
 WindowTitle = "TUTORIAL"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CompoundBalanceTutorial"]
+[node name="ScrollContainer" type="ScrollContainer" parent="CompoundBalanceTutorial" unique_id=1089871743]
 custom_minimum_size = Vector2(230, 230)
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CompoundBalanceTutorial/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CompoundBalanceTutorial/ScrollContainer" unique_id=1027639757]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="CustomRichTextLabel" parent="CompoundBalanceTutorial/ScrollContainer/VBoxContainer" instance=ExtResource("5")]
+[node name="CustomRichTextLabel" parent="CompoundBalanceTutorial/ScrollContainer/VBoxContainer" unique_id=847527469 instance=ExtResource("5")]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 15
 fit_content = true
 
-[node name="Control" type="Control" parent="CompoundBalanceTutorial/ScrollContainer/VBoxContainer"]
+[node name="Control" type="Control" parent="CompoundBalanceTutorial/ScrollContainer/VBoxContainer" unique_id=1001746810]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="CompoundBalanceTutorial/ScrollContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="CompoundBalanceTutorial/ScrollContainer/VBoxContainer" unique_id=1781810434]
 custom_minimum_size = Vector2(110, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -699,15 +704,16 @@ theme_override_fonts/font = ExtResource("9_jkhed")
 theme_override_font_sizes/font_size = 18
 text = "GOT_IT"
 
-[node name="CompoundBalanceHighlight" parent="." instance=ExtResource("3")]
+[node name="CompoundBalanceHighlight" parent="." unique_id=1027376527 instance=ExtResource("3")]
 visible = false
+layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="FoodChainTutorial" parent="." instance=ExtResource("8")]
+[node name="FoodChainTutorial" parent="." unique_id=1669301029 instance=ExtResource("8")]
 custom_minimum_size = Vector2(360, 360)
 layout_mode = 1
 anchors_preset = 6
@@ -724,7 +730,7 @@ grow_vertical = 2
 Description = "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
 PreventsMouseCaptureWhileOpen = true
 
-[node name="DigestionStat" parent="." node_paths=PackedStringArray("label") instance=ExtResource("9")]
+[node name="DigestionStat" parent="." unique_id=1166983769 node_paths=PackedStringArray("label") instance=ExtResource("9")]
 custom_minimum_size = Vector2(380, 420)
 layout_mode = 1
 anchors_preset = 8
@@ -745,27 +751,27 @@ DescriptionForController = ""
 ShowDelay = 0.7
 WindowTitle = "TUTORIAL"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="DigestionStat"]
+[node name="ScrollContainer" type="ScrollContainer" parent="DigestionStat" unique_id=1906673262]
 custom_minimum_size = Vector2(230, 230)
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="DigestionStat/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="DigestionStat/ScrollContainer" unique_id=964717942]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="CustomRichTextLabel" parent="DigestionStat/ScrollContainer/VBoxContainer" instance=ExtResource("5")]
+[node name="CustomRichTextLabel" parent="DigestionStat/ScrollContainer/VBoxContainer" unique_id=300083906 instance=ExtResource("5")]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 15
 fit_content = true
 
-[node name="Control" type="Control" parent="DigestionStat/ScrollContainer/VBoxContainer"]
+[node name="Control" type="Control" parent="DigestionStat/ScrollContainer/VBoxContainer" unique_id=1501656897]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="DigestionStat/ScrollContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="DigestionStat/ScrollContainer/VBoxContainer" unique_id=1513293271]
 custom_minimum_size = Vector2(110, 0)
 layout_mode = 2
 size_flags_horizontal = 4

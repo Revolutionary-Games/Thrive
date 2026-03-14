@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-12 15:26+0100\n"
-"PO-Revision-Date: 2025-05-25 15:00+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2026-02-27 14:48+0200\n"
+"PO-Revision-Date: 2026-02-18 15:13+0000\n"
+"Last-Translator: Anelle Lisetter Viktoria Rodin <lisete.rodin@gmail.com>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
 "Language: et\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11.4\n"
+"X-Generator: Weblate 5.15.2\n"
 "Generated-By: Babel 2.9.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -774,6 +774,14 @@ msgstr "Tselluloos"
 #, fuzzy
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Sellel membraanil on sein, mis tagab parema kaitse üldiste kahjustuste ja eriti füüsiliste kahjustuste eest. Samuti kulutab see vormi säilitamiseks vähem energiat, kuid ei suuda ressursse kiiresti omastada ja on aeglasem."
+
+#, fuzzy
+msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
+msgstr "Peata mäng"
+
+#, fuzzy
+msgid "CELL_SPECIALIZATION_TOOLTIP"
+msgstr "Peata mäng"
 
 #, fuzzy
 msgid "CELL_STAT_ROTATION_TOOLTIP"
@@ -2219,6 +2227,10 @@ msgstr "{0}: +{1} ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr "{0}: +{1} ATP"
 
+#, fuzzy
+msgid "ENERGY_CONSUMPTION_PRESSURE"
+msgstr "Liitpilved"
+
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energia: {0}, {1}"
 
@@ -2899,6 +2911,14 @@ msgstr ""
 "võite proovida selle keelata, et näha, kas probleem on kadunud."
 
 #, fuzzy
+msgid "GUI_SCALE_INCREASED_SIZE_NOTE"
+msgstr "(kõrgemad väärtused suurendavad jõudlust)"
+
+#, fuzzy
+msgid "GUI_SCALE_OPTION"
+msgstr "Kas sulgeda valikud?"
+
+#, fuzzy
 msgid "GUI_TAB_NAVIGATION"
 msgstr "{0}K"
 
@@ -3028,13 +3048,6 @@ msgstr ""
 #, fuzzy
 msgid "IMAGE_FILE_TYPES"
 msgstr "Membraani liigid"
-
-#, fuzzy
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
-msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
-
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
-msgstr ""
 
 #, fuzzy
 msgid "INCREASE_ITEM_SIZE"
@@ -3287,14 +3300,6 @@ msgstr "juuli"
 
 msgid "JUNE"
 msgstr "juuni"
-
-#, fuzzy
-msgid "KEEP_CURRENT_SHORT"
-msgstr "Praegused arendajad"
-
-#, fuzzy
-msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
-msgstr "Peata mäng"
 
 #, fuzzy
 msgid "KEEP_MIGRATION"
@@ -3838,6 +3843,10 @@ msgstr "Kemosüntees"
 #, fuzzy
 msgid "MACROSCOPIC"
 msgstr "Muuta makroskoopiliseks ({0}/{1})"
+
+#, fuzzy
+msgid "MACROSCOPIC_EDITOR"
+msgstr "Mikroobide redaktori laadimine"
 
 #, fuzzy
 msgid "MACROSCOPIC_STAGE"
@@ -4726,6 +4735,10 @@ msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Mikroobide redaktori laadimine"
 
 #, fuzzy
+msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
+msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
+
+#, fuzzy
 msgid "MULTICELLULAR_STAGE"
 msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
 
@@ -5191,6 +5204,10 @@ msgstr ""
 msgid "ORGANISM_STATISTICS"
 msgstr "Organismi statistika"
 
+#, fuzzy
+msgid "ORGANISM_STATISTICS_MICROBE"
+msgstr "Organismi statistika"
+
 msgid "OR_UNLOCK_CONDITION"
 msgstr ""
 
@@ -5577,7 +5594,16 @@ msgstr "Laaditud objektide töötlemine"
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
+#, fuzzy
+msgid "PROCESS_PANEL_EXPLANATION_TITLE"
+msgstr "Rakuprotsessid"
+
+#, fuzzy
 msgid "PROCESS_PANEL_TITLE"
+msgstr "Rakuprotsessid"
+
+#, fuzzy
+msgid "PROCESS_PANEL_TITLE_MICROBE"
 msgstr "Rakuprotsessid"
 
 #, fuzzy
@@ -5886,6 +5912,10 @@ msgid "RUNOFF_EVENT"
 msgstr ""
 
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
+msgstr "Käivitage mängu ajal auto-evo"
+
+#, fuzzy
+msgid "RUN_AUTO_EVO_DURING_GAMEPLAY_TOOLTIP"
 msgstr "Käivitage mängu ajal auto-evo"
 
 msgid "RUN_ONE_STEP"
@@ -6368,6 +6398,10 @@ msgstr "Kudema glükoosi"
 
 msgid "SPAWN_PHOSPHATES"
 msgstr "Kudede fosfaat"
+
+#, fuzzy
+msgid "SPECIALIZATION_COLON"
+msgstr "elanikkond:"
 
 msgid "SPECIAL_MOUSE_1"
 msgstr "Hiire eriversioon 1"
@@ -7035,9 +7069,6 @@ msgid "TOOLS"
 msgstr "Tööriistad"
 
 msgid "TOOL_HAND_AXE"
-msgstr ""
-
-msgid "TOO_LARGE_PRESSURE_RANGE"
 msgstr ""
 
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
@@ -7767,7 +7798,23 @@ msgstr "Suurendab raku salvestusruumi."
 msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr "Suurendab raku salvestusruumi."
 
+msgid "VALUE_MODIFIER"
+msgstr ""
+
+msgid "VALUE_OFFSET"
+msgstr ""
+
+#, fuzzy
+msgid "VALUE_TOTAL"
+msgstr "Uus nimi:"
+
 msgid "VALUE_WITH_UNIT"
+msgstr ""
+
+msgid "VALUE_WITH_UNIT_PLUS"
+msgstr ""
+
+msgid "VALUE_WITH_UNIT_PLUS_MINUS"
 msgstr ""
 
 #, fuzzy
@@ -7800,6 +7847,10 @@ msgstr "Keela kõik"
 
 #, fuzzy
 msgid "VIEW_CELL_PROCESSES"
+msgstr "Muudab [thrive:compound type=\"glucose\"][/thrive:compound] tüübiks [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+msgid "VIEW_CELL_PROCESSES_MICROBE"
 msgstr "Muudab [thrive:compound type=\"glucose\"][/thrive:compound] tüübiks [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #, fuzzy
@@ -9795,7 +9846,8 @@ msgstr ""
 msgid "WIN_BOX_TITLE"
 msgstr "SA OLED ÕIDULIKUD!"
 
-msgid "WIN_TEXT"
+#, fuzzy
+msgid "WIN_TEXT_2"
 msgstr "Õnnitleme, võitsite selle Thrive'i versiooni! Soovi korral võite jätkata mängimist pärast selle ekraani sulgemist või alustada uut mängu uues maailmas."
 
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
@@ -9842,6 +9894,10 @@ msgstr "Organismi statistika"
 
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
+
+#, fuzzy
+msgid "WORLD_MISC_DETAILS_STRING_2"
+msgstr "Kohandatud"
 
 #, fuzzy
 msgid "WORLD_OCEANIC_COVERAGE"
@@ -9971,6 +10027,18 @@ msgstr "Suurenda"
 
 msgid "ZOOM_OUT"
 msgstr "Suumi välja"
+
+#, fuzzy
+#~ msgid "KEEP_CURRENT_SHORT"
+#~ msgstr "Praegused arendajad"
+
+#, fuzzy
+#~ msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
+#~ msgstr "Peata mäng"
+
+#, fuzzy
+#~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
+#~ msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
 
 #, fuzzy
 #~ msgid "MOD_AUTO_HARMONY"

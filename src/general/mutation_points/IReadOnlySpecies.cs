@@ -10,6 +10,8 @@ public interface IReadOnlySpecies
     public string Genus { get; }
     public string Epithet { get; }
 
+    public string FormattedName { get; }
+
     public Color SpeciesColour { get; }
 
     public IReadOnlyBehaviourDictionary Behaviour { get; }

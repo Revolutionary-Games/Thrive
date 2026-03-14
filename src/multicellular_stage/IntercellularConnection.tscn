@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bglabqgpv7qgk"]
+[gd_scene format=3 uid="uid://bglabqgpv7qgk"]
 
 [ext_resource type="Texture2D" uid="uid://cwogwp0ip1n3p" path="res://assets/textures/IntercellularMatrix.png" id="1_2enjh"]
 [ext_resource type="Shader" uid="uid://ds2t62ln8y85p" path="res://shaders/IntercellularConnection.gdshader" id="1_ohjgk"]
@@ -15,6 +15,6 @@ shader_parameter/tint = Vector3(1, 1, 1)
 [sub_resource type="QuadMesh" id="QuadMesh_r4mwa"]
 orientation = 1
 
-[node name="IntercellularConnection" type="MeshInstance3D"]
+[node name="IntercellularConnection" type="MeshInstance3D" unique_id=1783069512]
 material_override = SubResource("ShaderMaterial_62jel")
 mesh = SubResource("QuadMesh_r4mwa")

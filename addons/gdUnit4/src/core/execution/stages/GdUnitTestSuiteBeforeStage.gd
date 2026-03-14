@@ -4,7 +4,7 @@ class_name GdUnitTestSuiteBeforeStage
 extends IGdUnitExecutionStage
 
 
-func _execute(context :GdUnitExecutionContext) -> void:
+func _execute(context: GdUnitExecutionContext) -> void:
 	var test_suite := context.test_suite
 
 	fire_event(GdUnitEvent.new()\

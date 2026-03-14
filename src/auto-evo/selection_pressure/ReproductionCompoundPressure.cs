@@ -72,6 +72,7 @@ public class ReproductionCompoundPressure : SelectionPressure
             return 0;
 
         var activeProcessList = cache.GetActiveProcessList(microbeSpecies);
+        var activity = microbeSpecies.Behaviour.Activity;
 
         // Let the miche function even at a compound level of 0
         var compoundAmount = 1.0f;
@@ -88,7 +89,7 @@ public class ReproductionCompoundPressure : SelectionPressure
         // Species that are less active during the night get a small penalty here based on their activity
         if (isDayNightCycleEnabled && cache.GetUsesVaryingCompoundsForSpecies(microbeSpecies, patch.Biome))
         {
-            var multiplier = species.Behaviour.Activity / Constants.AI_ACTIVITY_TO_BE_FULLY_ACTIVE_DURING_NIGHT;
+            var multiplier = activity / Constants.AI_ACTIVITY_TO_BE_FULLY_ACTIVE_DURING_NIGHT;
 
             // Make the multiplier less extreme
             multiplier *= Constants.AUTO_EVO_NIGHT_SESSILITY_COLLECTING_PENALTY_MULTIPLIER;
@@ -112,8 +113,8 @@ public class ReproductionCompoundPressure : SelectionPressure
         {
             if (chunk.Compounds != null && chunk.Compounds.ContainsKey(compound))
             {
-                var chunkChemoreceptorScore = cache.GetChemoreceptorChunkScore(
-                    microbeSpecies, chunk, compoundDefinition, patch.Biome);
+                var chunkChemoreceptorScore =
+                    cache.GetChemoreceptorChunkScore(microbeSpecies, chunk, compoundDefinition);
                 var chunkScore = 1.0f;
 
                 // Speed is not too important to chunk microbes,
@@ -157,35 +158,11 @@ public class ReproductionCompoundPressure : SelectionPressure
 
         var finalScore = 0.1f;
 
-        // Modifier to fit the current mechanics of the Binding Agent. This should probably be removed or adjusted if
-        // being in a colony no longer reduces osmoregulation cost.
-        var bindingModifier = 1.0f;
+        // modify score by activity
+        var activityFraction = activity / Constants.MAX_SPECIES_ACTIVITY;
 
-        MicrobeInternalCalculations.GetBindingAndSignalling(microbeSpecies.Organelles.Organelles,
-            out var hasBindingAgent, out var hasSignallingAgent);
-
-        if (hasBindingAgent)
-        {
-            if (hasSignallingAgent)
-            {
-                bindingModifier *= 1 -
-                    Constants.AUTO_EVO_COLONY_OSMOREGULATION_BONUS * Constants.AUTO_EVO_SIGNALLING_BONUS;
-            }
-            else
-            {
-                bindingModifier *= 1 - Constants.AUTO_EVO_COLONY_OSMOREGULATION_BONUS;
-            }
-        }
-
-        // modify score by energy cost and activity
-        var activityFraction = microbeSpecies.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
-        var energyBalanceForSpecies = cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome);
-
-        // modify score by energy cost and activity
-        finalScore += (score + chemoreceptorScore) * activityFraction /
-            (energyBalanceForSpecies.TotalConsumption * mildingModifier * bindingModifier);
-        finalScore += score * (1 - activityFraction) * Constants.AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION /
-            (energyBalanceForSpecies.TotalConsumptionStationary * mildingModifier * bindingModifier);
+        finalScore += (score + chemoreceptorScore) * activityFraction;
+        finalScore += score * (1 - activityFraction) * Constants.AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION;
 
         // Take into account how much compound the species needs to collect
         finalScore /= species.TotalReproductionCost[compound] * mildingModifier;

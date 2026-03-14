@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://c7qw8dl3i4kiw"]
+[gd_scene format=3 uid="uid://c7qw8dl3i4kiw"]
 
 [sub_resource type="BoxShape3D" id="1"]
 size = Vector3(20, 10, 20)
@@ -6,37 +6,37 @@ size = Vector3(20, 10, 20)
 [sub_resource type="StandardMaterial3D" id="2"]
 albedo_color = Color(0.439216, 0.262745, 0.0392157, 1)
 
-[node name="SocietyCenter" type="StaticBody3D"]
+[node name="SocietyCenter" type="StaticBody3D" unique_id=247661294]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1827578496]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.91965, 0)
 shape = SubResource("1")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=240180307]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.94949, 0.326528)
 size = Vector3(20.1413, 10.2473, 19.0519)
 material = SubResource("2")
 
-[node name="CSGBox2" type="CSGBox3D" parent="."]
+[node name="CSGBox2" type="CSGBox3D" parent="." unique_id=959752893]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0231349, 0.0899892, -9.02117)
 size = Vector3(1, 0.81, 6.39)
 
-[node name="CSGBox3" type="CSGBox3D" parent="."]
+[node name="CSGBox3" type="CSGBox3D" parent="." unique_id=1285813854]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0231349, 8.09533, -9.14304)
 size = Vector3(1, 0.281146, 6.36864)
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="." unique_id=84290485]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.795, 4.21566, -9.61876)
 radius = 0.305107
 height = 7.64628
 sides = 16
 
-[node name="CSGCylinder2" type="CSGCylinder3D" parent="."]
+[node name="CSGCylinder2" type="CSGCylinder3D" parent="." unique_id=1151447346]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.75669, 4.21566, -9.61876)
 radius = 0.305107
 height = 7.64628
 sides = 16
 
-[node name="CSGBox4" type="CSGBox3D" parent="."]
+[node name="CSGBox4" type="CSGBox3D" parent="." unique_id=291343830]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.019322, 3.95701, -9.28844)
 size = Vector3(0.49926, 6.81411, 4.11755)

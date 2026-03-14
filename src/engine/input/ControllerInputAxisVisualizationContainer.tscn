@@ -1,13 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://ufx07qp4e0t8"]
+[gd_scene format=3 uid="uid://ufx07qp4e0t8"]
 
 [ext_resource type="Script" uid="uid://cu3cvatokpm52" path="res://src/engine/input/ControllerInputAxisVisualizationContainer.cs" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
 
-[node name="ControllerInputAxisVisualizationContainer" type="HFlowContainer"]
+[node name="ControllerInputAxisVisualizationContainer" type="HFlowContainer" unique_id=1656523638]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-focus_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+focus_mode = 2
 theme = ExtResource("2")
 script = ExtResource("1")

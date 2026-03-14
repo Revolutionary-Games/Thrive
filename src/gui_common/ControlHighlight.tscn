@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://c46wnild4hluc"]
+[gd_scene format=3 uid="uid://c46wnild4hluc"]
 
 [ext_resource type="Script" uid="uid://dqvqt5ro0s3un" path="res://src/gui_common/ControlHighlight.cs" id="1"]
 
-[node name="ControlHighlight" type="Control" node_paths=PackedStringArray("leftPlane", "topPlane", "rightPlane", "bottomPlane")]
+[node name="ControlHighlight" type="Control" unique_id=1625441231 node_paths=PackedStringArray("leftPlane", "topPlane", "rightPlane", "bottomPlane")]
 process_mode = 3
 process_priority = 1000
 layout_mode = 3
@@ -20,14 +20,14 @@ topPlane = NodePath("TopBlanking")
 rightPlane = NodePath("RightBlanking")
 bottomPlane = NodePath("BottomPlanking")
 
-[node name="LeftBlanking" type="ColorRect" parent="."]
+[node name="LeftBlanking" type="ColorRect" parent="." unique_id=244233607]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_force_pass_scroll_events = false
 color = Color(0.14902, 0.137255, 0.137255, 0.882353)
 
-[node name="RightBlanking" type="ColorRect" parent="."]
+[node name="RightBlanking" type="ColorRect" parent="." unique_id=13634112]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -35,14 +35,14 @@ pivot_offset = Vector2(1520, -62)
 mouse_force_pass_scroll_events = false
 color = Color(0.14902, 0.137255, 0.137255, 0.882353)
 
-[node name="TopBlanking" type="ColorRect" parent="."]
+[node name="TopBlanking" type="ColorRect" parent="." unique_id=1373567916]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_force_pass_scroll_events = false
 color = Color(0.14902, 0.137255, 0.137255, 0.882353)
 
-[node name="BottomPlanking" type="ColorRect" parent="."]
+[node name="BottomPlanking" type="ColorRect" parent="." unique_id=417452386]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0

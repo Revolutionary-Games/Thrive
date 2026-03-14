@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://d0tfe6i1offy"]
+[gd_scene format=3 uid="uid://d0tfe6i1offy"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
 [ext_resource type="PackedScene" uid="uid://jlvayy8csjto" path="res://src/gui_common/PatchNotesList.tscn" id="3"]
@@ -6,7 +6,7 @@
 [ext_resource type="LabelSettings" uid="uid://bv3bnu0g1wdw3" path="res://src/gui_common/fonts/Title-SemiBold-Big.tres" id="4_o16iy"]
 [ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/fonts/Body-Regular-Smaller.tres" id="5_gf8j8"]
 
-[node name="PatchNotesDisplayer" type="VBoxContainer" node_paths=PackedStringArray("patchNotes", "title", "newVersionsCountLabel", "viewAllButton", "viewAllButtonOutsideScroll")]
+[node name="PatchNotesDisplayer" type="VBoxContainer" unique_id=1269164489 node_paths=PackedStringArray("patchNotes", "title", "newVersionsCountLabel", "viewAllButton", "viewAllButtonOutsideScroll")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -20,37 +20,37 @@ newVersionsCountLabel = NodePath("ScrollContainer/VBoxContainer/LastPlayedInfo")
 viewAllButton = NodePath("ScrollContainer/VBoxContainer/All")
 viewAllButtonOutsideScroll = NodePath("All")
 
-[node name="NotesTitle" type="Label" parent="."]
+[node name="NotesTitle" type="Label" parent="." unique_id=1984934454]
 layout_mode = 2
 text = "PATCH_NOTES_TITLE"
 label_settings = ExtResource("4_o16iy")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=850727636]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 follow_focus = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer" unique_id=261140718]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="LastPlayedInfo" type="Label" parent="ScrollContainer/VBoxContainer"]
+[node name="LastPlayedInfo" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=622054605]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 text = "PATCH_NOTES_LAST_PLAYED_INFO"
 label_settings = ExtResource("5_gf8j8")
 autowrap_mode = 3
 
-[node name="PatchNotesList" parent="ScrollContainer/VBoxContainer" instance=ExtResource("3")]
+[node name="PatchNotesList" parent="ScrollContainer/VBoxContainer" unique_id=2053302355 instance=ExtResource("3")]
 layout_mode = 2
 
-[node name="All" type="Button" parent="ScrollContainer/VBoxContainer"]
+[node name="All" type="Button" parent="ScrollContainer/VBoxContainer" unique_id=450859642]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "VIEW_ALL"
 
-[node name="All" type="Button" parent="."]
+[node name="All" type="Button" parent="." unique_id=422751875]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 4

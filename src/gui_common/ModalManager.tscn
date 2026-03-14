@@ -1,14 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://b3708mxr2q7k0"]
+[gd_scene format=3 uid="uid://b3708mxr2q7k0"]
 
 [ext_resource type="Script" uid="uid://be21etihsfleq" path="res://src/gui_common/ModalManager.cs" id="1"]
 
-[node name="ModalManager" type="Node"]
+[node name="ModalManager" type="Node" unique_id=1979274330]
 script = ExtResource("1")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1173056268]
 layer = 126
 
-[node name="ActiveModalContainer" type="Control" parent="CanvasLayer"]
+[node name="ActiveModalContainer" type="Control" parent="CanvasLayer" unique_id=587668837]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

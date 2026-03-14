@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bodu55ie6kdkq"]
+[gd_scene format=3 uid="uid://bodu55ie6kdkq"]
 
 [ext_resource type="LabelSettings" uid="uid://cns7wsfktfld4" path="res://src/gui_common/fonts/Title-SemiBold-Bigger.tres" id="4_olxfy"]
 [ext_resource type="PackedScene" uid="uid://bhpjtbtaeunat" path="res://src/gui_common/CustomRichTextLabel.tscn" id="6"]
@@ -17,7 +17,7 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="UndiscoveredOrganellesTooltip" type="PanelContainer" node_paths=PackedStringArray("nameLabel", "unlockTextLabel")]
+[node name="UndiscoveredOrganellesTooltip" type="PanelContainer" unique_id=531862298 node_paths=PackedStringArray("nameLabel", "unlockTextLabel")]
 custom_minimum_size = Vector2(350, 0)
 offset_right = 350.0
 offset_bottom = 155.0
@@ -28,7 +28,7 @@ script = ExtResource("7")
 nameLabel = NodePath("MarginContainer/VBoxContainer/Header/Title")
 unlockTextLabel = NodePath("MarginContainer/VBoxContainer/UnlockText")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=933902739]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 15
@@ -36,17 +36,17 @@ theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=330628309]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 15
 
-[node name="Header" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="Header" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1183208481]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 10
 
-[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/Header"]
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/Header" unique_id=2103675827]
 custom_minimum_size = Vector2(230, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -54,7 +54,7 @@ text = "UNDISCOVERED_ORGANELLES"
 label_settings = ExtResource("4_olxfy")
 horizontal_alignment = 1
 
-[node name="UnlockText" parent="MarginContainer/VBoxContainer" instance=ExtResource("6")]
+[node name="UnlockText" parent="MarginContainer/VBoxContainer" unique_id=1418072959 instance=ExtResource("6")]
 layout_mode = 2
 mouse_filter = 2
 fit_content = true

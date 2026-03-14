@@ -1,26 +1,22 @@
-[gd_resource type="ParticleProcessMaterial" load_steps=4 format=2]
+[gd_resource type="ParticleProcessMaterial" format=3 uid="uid://bt0ro3lmfhb3s"]
 
-[ext_resource path="res://src/microbe_stage/particles/embergradient.tres" type="Texture2D" id=1]
+[ext_resource type="Texture2D" uid="uid://db8kib2sy8ytd" path="res://src/microbe_stage/particles/embergradient.tres" id="1"]
 
+[sub_resource type="Curve" id="1"]
+_data = [Vector2(0, 0.582955), 0.0, 1.54091, 0, 0, Vector2(1, 0.610227), -1.3697, 0.0, 0, 0]
+point_count = 2
 
-[sub_resource type="Curve" id=1]
-_data = [ Vector2( 0, 0.582955 ), 0.0, 1.54091, 0, 0, Vector2( 1, 0.610227 ), -1.3697, 0.0, 0, 0 ]
-
-[sub_resource type="CurveTexture" id=2]
-curve = SubResource( 1 )
+[sub_resource type="CurveTexture" id="2"]
+curve = SubResource("1")
 
 [resource]
 lifetime_randomness = 0.01
 emission_shape = 2
-emission_box_extents = Vector3( 100, 100, 1 )
-flag_disable_z = true
-direction = Vector3( 0, 0, 0 )
+emission_sphere_radius = 1.0
+direction = Vector3(0, 0, 0)
 spread = 180.0
-gravity = Vector3( 1, -4, 0 )
-initial_velocity = 0.5
-initial_velocity_random = 1.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale = 1.12
-scale_curve = SubResource( 2 )
-color_ramp = ExtResource( 1 )
+gravity = Vector3(1, -4, 0)
+scale_min = 0.0
+scale_max = 0.0
+scale_curve = SubResource("2")
+color_ramp = ExtResource("1")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cv87uwt0hwl6k"]
+[gd_scene format=3 uid="uid://cv87uwt0hwl6k"]
 
 [ext_resource type="Script" uid="uid://3s148k4h1g2m" path="res://src/gui_common/menus/PlanetCustomizerTool.cs" id="1_qm4a8"]
 [ext_resource type="Texture2D" uid="uid://djklaunps1oyd" path="res://assets/concept_art/even-more-cells.jpg" id="2_6fxue"]
@@ -13,7 +13,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7q4fp"]
 
-[node name="PlanetCustomizationTool" type="Node" node_paths=PackedStringArray("patchMapDrawer", "patchDetailsPanel", "settingsPanel", "patchMapPanel", "patchMapButtons", "generateButton", "planetSettings", "planetStatistics", "planetStatisticsContainer")]
+[node name="PlanetCustomizationTool" type="Node" unique_id=1455378166 node_paths=PackedStringArray("patchMapDrawer", "patchDetailsPanel", "settingsPanel", "patchMapPanel", "patchMapButtons", "generateButton", "planetSettings", "planetStatistics", "planetStatisticsContainer")]
 script = ExtResource("1_qm4a8")
 patchMapDrawer = NodePath("GUI/VBoxContainer/PanelsContainer/SettingsAndMapContainer/PatchMap/HBoxContainer/PatchMap/MarginContainer/DraggableScrollContainer/PatchMapDrawer")
 patchDetailsPanel = NodePath("GUI/VBoxContainer/PanelsContainer/SettingsAndMapContainer/PatchMap/HBoxContainer/PatchDetailsPanel")
@@ -25,7 +25,7 @@ planetSettings = NodePath("GUI/VBoxContainer/PanelsContainer/SettingsAndMapConta
 planetStatistics = NodePath("GUI/VBoxContainer/PanelsContainer/PlanetStatisticsPanel/MarginContainer/ScrollContainer/PlanetStatistics")
 planetStatisticsContainer = NodePath("GUI/VBoxContainer/PanelsContainer/PlanetStatisticsPanel")
 
-[node name="BackGround" type="TextureRect" parent="."]
+[node name="BackGround" type="TextureRect" parent="." unique_id=1894995208]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -33,7 +33,7 @@ texture = ExtResource("2_6fxue")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="GUI" type="MarginContainer" parent="."]
+[node name="GUI" type="MarginContainer" parent="." unique_id=182620869]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -45,56 +45,56 @@ theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 30
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI" unique_id=702254961]
 layout_mode = 2
 
-[node name="PanelsContainer" type="HBoxContainer" parent="GUI/VBoxContainer"]
+[node name="PanelsContainer" type="HBoxContainer" parent="GUI/VBoxContainer" unique_id=1156503591]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 20
 
-[node name="SettingsAndMapContainer" type="VBoxContainer" parent="GUI/VBoxContainer/PanelsContainer"]
+[node name="SettingsAndMapContainer" type="VBoxContainer" parent="GUI/VBoxContainer/PanelsContainer" unique_id=456895743]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 10
 
-[node name="SettingsPanel" type="PanelContainer" parent="GUI/VBoxContainer/PanelsContainer/SettingsAndMapContainer"]
+[node name="SettingsPanel" type="PanelContainer" parent="GUI/VBoxContainer/PanelsContainer/SettingsAndMapContainer" unique_id=1911185989]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("3_xrckq")
 
-[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/PanelsContainer/SettingsAndMapContainer/SettingsPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/PanelsContainer/SettingsAndMapContainer/SettingsPanel" unique_id=557930086]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 20
 
-[node name="ScrollContainer" type="ScrollContainer" parent="GUI/VBoxContainer/PanelsContainer/SettingsAndMapContainer/SettingsPanel/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="GUI/VBoxContainer/PanelsContainer/SettingsAndMapContainer/SettingsPanel/MarginContainer" unique_id=440403249]
 layout_mode = 2
 follow_focus = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/PanelsContainer/SettingsAndMapContainer/SettingsPanel/MarginContainer/ScrollContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/PanelsContainer/SettingsAndMapContainer/SettingsPanel/MarginContainer/ScrollContainer" unique_id=1549151902]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PlanetSettings" parent="GUI/VBoxContainer/PanelsContainer/SettingsAndMapContainer/SettingsPanel/MarginContainer/ScrollContainer/HBoxContainer" instance=ExtResource("4_xkyxd")]
+[node name="PlanetSettings" parent="GUI/VBoxContainer/PanelsContainer/SettingsAndMapContainer/SettingsPanel/MarginContainer/ScrollContainer/HBoxContainer" unique_id=28887342 instance=ExtResource("4_xkyxd")]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HSeparator" type="HSeparator" parent="GUI/VBoxContainer/PanelsContainer/SettingsAndMapContainer/SettingsPanel/MarginContainer/ScrollContainer/HBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="GUI/VBoxContainer/PanelsContainer/SettingsAndMapContainer/SettingsPanel/MarginContainer/ScrollContainer/HBoxContainer" unique_id=1952788678]
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 theme = ExtResource("3_xrckq")
 theme_override_styles/separator = SubResource("StyleBoxEmpty_7q4fp")
 
-[node name="PatchMap" type="Control" parent="GUI/VBoxContainer/PanelsContainer/SettingsAndMapContainer"]
+[node name="PatchMap" type="Control" parent="GUI/VBoxContainer/PanelsContainer/SettingsAndMapContainer" unique_id=1665151708]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/PanelsContainer/SettingsAndMapContainer/PatchMap"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/PanelsContainer/SettingsAndMapContainer/PatchMap" unique_id=1774782033]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -102,99 +102,99 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 20
 
-[node name="PatchMap" type="PanelContainer" parent="GUI/VBoxContainer/PanelsContainer/SettingsAndMapContainer/PatchMap/HBoxContainer"]
+[node name="PatchMap" type="PanelContainer" parent="GUI/VBoxContainer/PanelsContainer/SettingsAndMapContainer/PatchMap/HBoxContainer" unique_id=47394244]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/PanelsContainer/SettingsAndMapContainer/PatchMap/HBoxContainer/PatchMap"]
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/PanelsContainer/SettingsAndMapContainer/PatchMap/HBoxContainer/PatchMap" unique_id=1272882130]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="DraggableScrollContainer" parent="GUI/VBoxContainer/PanelsContainer/SettingsAndMapContainer/PatchMap/HBoxContainer/PatchMap/MarginContainer" instance=ExtResource("6_xkyxd")]
+[node name="DraggableScrollContainer" parent="GUI/VBoxContainer/PanelsContainer/SettingsAndMapContainer/PatchMap/HBoxContainer/PatchMap/MarginContainer" unique_id=1741179731 instance=ExtResource("6_xkyxd")]
 layout_mode = 2
 MaxZoom = 5.0
 MinZoom = 0.25
 
-[node name="PatchMapDrawer" parent="GUI/VBoxContainer/PanelsContainer/SettingsAndMapContainer/PatchMap/HBoxContainer/PatchMap/MarginContainer/DraggableScrollContainer" instance=ExtResource("7_8flxh")]
+[node name="PatchMapDrawer" parent="GUI/VBoxContainer/PanelsContainer/SettingsAndMapContainer/PatchMap/HBoxContainer/PatchMap/MarginContainer/DraggableScrollContainer" unique_id=1157262555 instance=ExtResource("7_8flxh")]
 layout_mode = 2
 DrawDefaultMapIfEmpty = false
 
-[node name="PatchDetailsPanel" parent="GUI/VBoxContainer/PanelsContainer/SettingsAndMapContainer/PatchMap/HBoxContainer" instance=ExtResource("8_rj8sx")]
+[node name="PatchDetailsPanel" parent="GUI/VBoxContainer/PanelsContainer/SettingsAndMapContainer/PatchMap/HBoxContainer" unique_id=614285928 instance=ExtResource("8_rj8sx")]
 layout_mode = 2
 MoveToPatchButtonVisible = false
 MigrationManagerEnabled = false
 
-[node name="PlanetStatisticsPanel" type="PanelContainer" parent="GUI/VBoxContainer/PanelsContainer"]
+[node name="PlanetStatisticsPanel" type="PanelContainer" parent="GUI/VBoxContainer/PanelsContainer" unique_id=572970538]
 custom_minimum_size = Vector2(340, 0)
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("3_xrckq")
 
-[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/PanelsContainer/PlanetStatisticsPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/PanelsContainer/PlanetStatisticsPanel" unique_id=2085903317]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 20
 
-[node name="ScrollContainer" type="ScrollContainer" parent="GUI/VBoxContainer/PanelsContainer/PlanetStatisticsPanel/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="GUI/VBoxContainer/PanelsContainer/PlanetStatisticsPanel/MarginContainer" unique_id=124323555]
 layout_mode = 2
 follow_focus = true
 
-[node name="PlanetStatistics" parent="GUI/VBoxContainer/PanelsContainer/PlanetStatisticsPanel/MarginContainer/ScrollContainer" instance=ExtResource("8_7o2yi")]
+[node name="PlanetStatistics" parent="GUI/VBoxContainer/PanelsContainer/PlanetStatisticsPanel/MarginContainer/ScrollContainer" unique_id=829036455 instance=ExtResource("8_7o2yi")]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ButtonsContainer" type="HBoxContainer" parent="GUI/VBoxContainer"]
+[node name="ButtonsContainer" type="HBoxContainer" parent="GUI/VBoxContainer" unique_id=1798497404]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/ButtonsContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/ButtonsContainer" unique_id=120421649]
 layout_mode = 2
 
-[node name="BackButton" type="Button" parent="GUI/VBoxContainer/ButtonsContainer/HBoxContainer"]
+[node name="BackButton" type="Button" parent="GUI/VBoxContainer/ButtonsContainer/HBoxContainer" unique_id=1543395459]
 layout_mode = 2
 text = "BACK"
 
-[node name="FocusGrabber" parent="GUI/VBoxContainer/ButtonsContainer/HBoxContainer" instance=ExtResource("19_huykk")]
+[node name="FocusGrabber" parent="GUI/VBoxContainer/ButtonsContainer/HBoxContainer" unique_id=320398602 instance=ExtResource("19_huykk")]
 layout_mode = 2
 NodeToGiveFocusTo = NodePath("../BackButton")
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="GUI/VBoxContainer/ButtonsContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="GUI/VBoxContainer/ButtonsContainer" unique_id=1109610004]
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="MapButtons" type="HBoxContainer" parent="GUI/VBoxContainer/ButtonsContainer/HBoxContainer2"]
+[node name="MapButtons" type="HBoxContainer" parent="GUI/VBoxContainer/ButtonsContainer/HBoxContainer2" unique_id=1281112523]
 layout_mode = 2
 size_flags_horizontal = 8
 alignment = 2
 
-[node name="PlayButton" type="Button" parent="GUI/VBoxContainer/ButtonsContainer/HBoxContainer2/MapButtons"]
+[node name="PlayButton" type="Button" parent="GUI/VBoxContainer/ButtonsContainer/HBoxContainer2/MapButtons" unique_id=1275204775]
 layout_mode = 2
 disabled = true
 text = "PLAY_WITH_CURRENT_SETTING"
 
-[node name="AutoEvoExplorerToolButton" type="Button" parent="GUI/VBoxContainer/ButtonsContainer/HBoxContainer2/MapButtons"]
+[node name="AutoEvoExplorerToolButton" type="Button" parent="GUI/VBoxContainer/ButtonsContainer/HBoxContainer2/MapButtons" unique_id=687904792]
 layout_mode = 2
 text = "AUTO_EVO_EXPLORER_TOOL_BUTTON"
 
-[node name="RegenerateButton" type="Button" parent="GUI/VBoxContainer/ButtonsContainer/HBoxContainer2/MapButtons"]
+[node name="RegenerateButton" type="Button" parent="GUI/VBoxContainer/ButtonsContainer/HBoxContainer2/MapButtons" unique_id=422191617]
 layout_mode = 2
 text = "REGENERATE_BUTTON"
 
-[node name="GenerateButton" type="Button" parent="GUI/VBoxContainer/ButtonsContainer/HBoxContainer2"]
+[node name="GenerateButton" type="Button" parent="GUI/VBoxContainer/ButtonsContainer/HBoxContainer2" unique_id=354662074]
 layout_mode = 2
 text = "SHOW_MAP"
 
-[node name="ExitConfirmationDialog" parent="." instance=ExtResource("20_h0ypo")]
+[node name="ExitConfirmationDialog" parent="." unique_id=1713126966 instance=ExtResource("20_h0ypo")]
 custom_minimum_size = Vector2(400, 0)
 DialogText = "RETURN_TO_MENU_WARNING"
 WindowTitle = "CONFIRM_EXIT"
 
-[node name="ExportSuccessNotificationDialog" parent="." instance=ExtResource("20_h0ypo")]
+[node name="ExportSuccessNotificationDialog" parent="." unique_id=1759733400 instance=ExtResource("20_h0ypo")]
 custom_minimum_size = Vector2(400, 0)
 HideCancelButton = true
 WindowTitle = "EXPORT_SUCCESS"

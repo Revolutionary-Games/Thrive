@@ -25,7 +25,7 @@ Repository structure:
 - assets: This folder contains all the assets such as models and other binaries. The big files in this folder use [Git LFS](https://git-lfs.github.com/) in order to keep this repository from bloating. You need to have Git LFS installed to get the files. Some better editable versions of the assets are stored in a separate [repository](https://github.com/Revolutionary-Games/Thrive-Raw-Assets).
 - [doc: Documentation files.](/doc) Contains style guide, engine overview and other useful documentation.
 - simulation_parameters: Contains JSON files as well as C# constants for tweaking the game.
-- scripts: Utility scripts for Thrive development
+- scripts: Utility scripts for Thrive development.
 - src: The core of the game written in C# as well as Godot scenes.
 - test: Contains tests that will ensure that core parts work correctly. These don't currently exist for the Godot version.
 
@@ -86,12 +86,12 @@ project in Godot themselves and commit the assets using [Git
 LFS][lfs].
 
 Extra note for modellers:
-There are extra instructions for how to import models here: [import tool][importtutorial]
+There are extra instructions for how to import models here: [import tool][importtutorial].
 
 ### Miscellaneous
 
 The history for this repository has been slightly cleaned up to remove
-large old binary files that were added before we used Git LFS. The original history can be found here: [original_master][originalmaster]
+large old binary files that were added before we used Git LFS. The original history can be found here: [original_master][originalmaster].
 
 [releasespage]: https://revolutionarygamesstudio.com/releases/
 [styleguide]: doc/style_guide.md "Styleguide"

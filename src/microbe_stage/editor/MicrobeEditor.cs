@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using SharedBase.Archive;
+using Systems;
+using UnlockConstraints;
 
 /// <summary>
 ///   Main class of the microbe editor
@@ -15,6 +17,8 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
     private const double EMERGENCY_SHOW_TABS_AFTER_SECONDS = 4;
 
+    // TODO: this prevents directly starting the editor scene due to depending on the simulation parameters being
+    // loaded
     private readonly MicrobeSpeciesComparer speciesComparer = new();
 
 #pragma warning disable CA2213
@@ -43,6 +47,8 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
     private bool checkingTabVisibility;
     private double tabCheckVisibilityTimer = 10;
 
+    private Dictionary<OrganelleDefinition, int> tempMemory1 = new();
+
     public override bool CanCancelAction => cellEditorTab.Visible && cellEditorTab.CanCancelAction;
 
     public override Species EditedBaseSpecies =>
@@ -58,6 +64,9 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
     public Patch? TargetPatch => patchMapTab.TargetPatch;
 
     public Patch? SelectedPatch => patchMapTab.SelectedPatch;
+
+    public WorldAndPlayerDataSource UnlocksDataSource =>
+        new(CurrentGame.GameWorld, CurrentPatch, GetPlayerDataSource());
 
     public override MainGameState GameState => MainGameState.MicrobeEditor;
 
@@ -215,6 +224,41 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
     public override void AddContextToAction(CombinableActionData editorActions)
     {
         // Microbe editor doesn't require any context data in actions
+    }
+
+    public ToleranceResult CalculateRawTolerances(bool excludePositiveBuffs = false)
+    {
+        return cellEditorTab.CalculateRawTolerances(excludePositiveBuffs);
+    }
+
+    public void OnTolerancesChanged(EnvironmentalTolerances newTolerances)
+    {
+        cellEditorTab.OnTolerancesChanged(newTolerances);
+    }
+
+    public EnvironmentalTolerances GetOptimalTolerancesForCurrentPatch()
+    {
+        return CurrentPatch.GenerateTolerancesForMicrobe(EditedCellOrganelles);
+    }
+
+    public ToleranceResult CalculateCurrentTolerances(EnvironmentalTolerances calculationTolerances)
+    {
+        return MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(calculationTolerances,
+            EditedCellOrganelles, CurrentPatch.Biome);
+    }
+
+    public void GetCurrentToleranceSummaryByElement(ToleranceModifier toleranceCategory,
+        Dictionary<IPlayerReadableName, float> result)
+    {
+        MicrobeEnvironmentalToleranceCalculations.GenerateToleranceEffectSummariesByOrganelle(EditedCellOrganelles,
+            toleranceCategory, result);
+    }
+
+    public void CalculateBodyEffectOnTolerances(
+        ref MicrobeEnvironmentalToleranceCalculations.ToleranceValues modifiedTolerances)
+    {
+        MicrobeEnvironmentalToleranceCalculations.ApplyOrganelleEffectsOnTolerances(EditedCellOrganelles,
+            ref modifiedTolerances);
     }
 
     protected override void ResolveDerivedTypeNodeReferences()
@@ -419,7 +463,10 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
         editsFacade.SetActiveActions(performedActionData);
 
-        return speciesComparer.Compare(editedSpecies!, editsFacade) * CurrentGame.GameWorld.WorldSettings.MPMultiplier;
+        // This doesn't use the cell editor CostMultiplier as this cost is purely used in the microbe stage, so we
+        //  don't need to apply the additional considerations on top of this
+        return speciesComparer.Compare(editedSpecies!, editsFacade, Constants.MAX_SINGLE_EDIT_MP_COST,
+            CurrentGame.GameWorld.WorldSettings.MPMultiplier);
     }
 
     protected override GameProperties StartNewGameForEditor()
@@ -567,6 +614,55 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
         {
             // Make sure tabs are shown if the tutorial is turned off
             ShowTabBar(true);
+        }
+    }
+
+    private IPlayerDataSource GetPlayerDataSource()
+    {
+        if (editedSpecies == null)
+        {
+            throw new Exception("Tried to get player unlocks data source without an edited species being set");
+        }
+
+        var energyBalance = new EnergyBalanceInfoSimple();
+
+        var tolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(
+            MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(editedSpecies, CurrentPatch.Biome));
+
+        var specialization =
+            MicrobeInternalCalculations.CalculateSpecializationBonus(editedSpecies.ModifiableOrganelles.Organelles,
+                tempMemory1);
+
+        ProcessSystem.ComputeEnergyBalanceSimple(editedSpecies.ModifiableOrganelles.Organelles,
+            CurrentPatch.Biome, in tolerances, specialization, editedSpecies.MembraneType, Vector3.Zero, false, true,
+            CurrentGame.GameWorld.WorldSettings, CompoundAmountType.Maximum, null, energyBalance);
+
+        return new MicrobeUnlocksData(editedSpecies, energyBalance);
+    }
+
+    private class MicrobeUnlocksData : IPlayerDataSource
+    {
+        public ICellDefinition? CellDefinition;
+
+        public MicrobeUnlocksData(ICellDefinition? cellDefinition, EnergyBalanceInfoSimple? energyBalance)
+        {
+            CellDefinition = cellDefinition;
+            EnergyBalance = energyBalance;
+        }
+
+        public EnergyBalanceInfoSimple? EnergyBalance { get; set; }
+
+        public float Speed
+        {
+            get
+            {
+                if (CellDefinition == null)
+                    return 0;
+
+                return MicrobeInternalCalculations.SpeedToUserReadableNumber(MicrobeInternalCalculations.CalculateSpeed(
+                    CellDefinition.ModifiableOrganelles.Organelles, CellDefinition.MembraneType,
+                    CellDefinition.MembraneRigidity, CellDefinition.IsBacteria));
+            }
         }
     }
 }

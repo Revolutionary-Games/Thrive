@@ -175,6 +175,26 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
                 return;
 
             mouseHoverPositions = value;
+
+#if DEBUG
+            if (mouseHoverPositions != null)
+            {
+                // Make sure no duplicates
+                var temp = mouseHoverPositions.ToList();
+                for (int i = 0; i < temp.Count; ++i)
+                {
+                    for (int j = i + 1; j < temp.Count; ++j)
+                    {
+                        if (temp[i].Hex == temp[j].Hex)
+                        {
+                            throw new InvalidOperationException(
+                                $"Duplicate hex {temp[i].Hex} found in mouse hover positions");
+                        }
+                    }
+                }
+            }
+#endif
+
             UpdateMutationPointsBar();
         }
     }

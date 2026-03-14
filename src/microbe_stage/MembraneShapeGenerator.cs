@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using Godot;
 using Array = Godot.Collections.Array;
 
@@ -9,26 +10,23 @@ using Array = Godot.Collections.Array;
 /// </summary>
 public class MembraneShapeGenerator
 {
-    // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
-    // private static readonly ThreadLocal<MembraneShapeGenerator> ThreadLocalGenerator =
-    //    new(() => new MembraneShapeGenerator());
-
-    private static readonly Lazy<MembraneShapeGenerator> ThreadLocalGenerator =
+    private static readonly ThreadLocal<MembraneShapeGenerator> ThreadLocalGenerator =
         new(() => new MembraneShapeGenerator());
 
     /// <summary>
-    ///   Amount of segments on one side of the above described square. The amount of points on the side of
+    ///   Number of segments on one side of the above described square. The number of points on the side of
     ///   the membrane.
     /// </summary>
     private static readonly int MembraneResolution = Constants.MEMBRANE_RESOLUTION;
 
     /// <summary>
-    ///   Half the amount of points on the membrane prism's side. Total amount is equal to verticalResolution * 2 + 1.
+    ///   Half the number of points on the membrane prism's side.
+    ///   The total amount is equal to verticalResolution * 2 + 1.
     /// </summary>
     private static readonly int MembraneVerticalResolution = Constants.MEMBRANE_VERTICAL_RESOLUTION;
 
     /// <summary>
-    ///   Stores the generated 2-Dimensional membrane. Needed as easily resizable target work area. Data is copied
+    ///   Stores the generated 2-Dimensional membrane. Needed as an easily resizable target work area. Data is copied
     ///   from here to <see cref="MembranePointData"/> for actual usage (and checks like containing points)
     /// </summary>
     private readonly List<Vector2> vertices2D = new();
@@ -44,7 +42,7 @@ public class MembraneShapeGenerator
     /// <returns>A generator that can be used by the calling thread</returns>
     public static MembraneShapeGenerator GetThreadSpecificGenerator()
     {
-        return ThreadLocalGenerator.Value;
+        return ThreadLocalGenerator.Value!;
     }
 
     /// <summary>

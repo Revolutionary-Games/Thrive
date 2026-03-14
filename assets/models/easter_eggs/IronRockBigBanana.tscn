@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b5bw8snk8mxbe"]
+[gd_scene format=3 uid="uid://b5bw8snk8mxbe"]
 
 [ext_resource type="Shader" uid="uid://dwec2fuh8kn2c" path="res://shaders/IronChunk.gdshader" id="1_umh3o"]
 [ext_resource type="Texture2D" uid="uid://cynylcx1824be" path="res://assets/textures/IronChunk_Depleted.png" id="2_3lgju"]
@@ -23,6 +23,6 @@ shader_parameter/dissolveScale = 1.5
 shader_parameter/outlineWidth = 0.0
 shader_parameter/growColor = Color(0.321569, 0.180392, 0.101961, 1)
 
-[node name="IronRockBanan" type="MeshInstance3D"]
+[node name="IronRockBanan" type="MeshInstance3D" unique_id=250622358]
 material_override = SubResource("ShaderMaterial_0vfo4")
 mesh = ExtResource("2_u4vle")

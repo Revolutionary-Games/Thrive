@@ -1,7 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://m0n1m6yoxkfp"]
+[gd_scene format=3 uid="uid://m0n1m6yoxkfp"]
 
 [ext_resource type="ArrayMesh" uid="uid://bb5brfu0kxfmo" path="res://assets/models/EditorHex.mesh" id="1"]
 
-[node name="EditorHex" type="MeshInstance3D"]
+[node name="EditorHex" type="MeshInstance3D" unique_id=660790262]
 transform = Transform3D(-1.22191e-05, 75, -3.27835e-06, 0, -3.27835e-06, -75, -75, -1.22191e-05, 5.34112e-13, 0, 0, 0)
 mesh = ExtResource("1")

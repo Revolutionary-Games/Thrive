@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://c8sp5juqvmna3"]
+[gd_scene format=3 uid="uid://c8sp5juqvmna3"]
 
 [ext_resource type="Script" uid="uid://b75p68p0aj0cc" path="res://src/society_stage/PlayerSocietyInput.cs" id="1"]
 
-[node name="PlayerSocietyInput" type="Node"]
+[node name="PlayerSocietyInput" type="Node" unique_id=2065138524]
 script = ExtResource("1")

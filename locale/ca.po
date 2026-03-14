@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-12 15:26+0100\n"
-"PO-Revision-Date: 2025-05-25 15:00+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2026-02-27 14:48+0200\n"
+"PO-Revision-Date: 2026-02-18 15:14+0000\n"
+"Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11.4\n"
+"X-Generator: Weblate 5.15.2\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -743,6 +743,14 @@ msgstr "Cel·lulosa"
 
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Aquesta membrana té una paret, que ofereix una bona protecció, especialment contra agressions físiques, com ara fiblades. Consumeix poca energia, però no pot absorbir recursos ràpidament i és més lenta. [b]La cel·lulasa pot digerir aquesta membrana[/b] fent-la vulnerable a l'engoliment per part de depredadors."
+
+#, fuzzy
+msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
+msgstr "El valor utilitzat per generar el món, que ha de ser un nombre enter positiu"
+
+#, fuzzy
+msgid "CELL_SPECIALIZATION_TOOLTIP"
+msgstr "El valor utilitzat per generar el món, que ha de ser un nombre enter positiu"
 
 #, fuzzy
 msgid "CELL_STAT_ROTATION_TOOLTIP"
@@ -2133,6 +2141,10 @@ msgstr "{0}: +{1} ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr "{0}: +{1} ATP"
 
+#, fuzzy
+msgid "ENERGY_CONSUMPTION_PRESSURE"
+msgstr "Núvols de Compostos"
+
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energia a {0} per {1}"
 
@@ -2796,6 +2808,14 @@ msgstr ""
 "pots intentar desactivant això per veure si el problema s'arregla."
 
 #, fuzzy
+msgid "GUI_SCALE_INCREASED_SIZE_NOTE"
+msgstr "(valors més alts augmenten el rendiment)"
+
+#, fuzzy
+msgid "GUI_SCALE_OPTION"
+msgstr "Tancar opcions?"
+
+#, fuzzy
 msgid "GUI_TAB_NAVIGATION"
 msgstr "{0} K"
 
@@ -2926,12 +2946,6 @@ msgstr ""
 #, fuzzy
 msgid "IMAGE_FILE_TYPES"
 msgstr "Tipus de Membrana"
-
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
-msgstr "Inclou prototips d'estadis tardans"
-
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
-msgstr "(algunes característiques poden no estar disponibles un cop assoleixis els propers estadis)"
 
 #, fuzzy
 msgid "INCREASE_ITEM_SIZE"
@@ -3183,14 +3197,6 @@ msgstr "Juliol"
 
 msgid "JUNE"
 msgstr "Juny"
-
-#, fuzzy
-msgid "KEEP_CURRENT_SHORT"
-msgstr "Món Actual"
-
-#, fuzzy
-msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
-msgstr "Pausar el joc"
 
 #, fuzzy
 msgid "KEEP_MIGRATION"
@@ -3708,6 +3714,10 @@ msgstr "Síntesi de mucílag"
 #, fuzzy
 msgid "MACROSCOPIC"
 msgstr "Esdevenir un Organisme Macroscòpic ({0}/{1})"
+
+#, fuzzy
+msgid "MACROSCOPIC_EDITOR"
+msgstr "S'està carregant l'Editor de Microbi"
 
 #, fuzzy
 msgid "MACROSCOPIC_STAGE"
@@ -4578,6 +4588,10 @@ msgstr "Editor Multicel·lular"
 msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Editor Multicel·lular"
 
+#, fuzzy
+msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
+msgstr "(algunes característiques poden no estar disponibles un cop assoleixis els propers estadis)"
+
 msgid "MULTICELLULAR_STAGE"
 msgstr "Estadi Multicel·lular"
 
@@ -5031,6 +5045,10 @@ msgstr "(comença cada generació amb un núvol de glucosa gratuït proper)"
 msgid "ORGANISM_STATISTICS"
 msgstr "Estadístiques de la Cèl·lula"
 
+#, fuzzy
+msgid "ORGANISM_STATISTICS_MICROBE"
+msgstr "Estadístiques de la Cèl·lula"
+
 msgid "OR_UNLOCK_CONDITION"
 msgstr ""
 
@@ -5415,7 +5433,16 @@ msgstr "Processant objectes carregats"
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
+#, fuzzy
+msgid "PROCESS_PANEL_EXPLANATION_TITLE"
+msgstr "Processos de la Cèl·lula"
+
+#, fuzzy
 msgid "PROCESS_PANEL_TITLE"
+msgstr "Processos de la Cèl·lula"
+
+#, fuzzy
+msgid "PROCESS_PANEL_TITLE_MICROBE"
 msgstr "Processos de la Cèl·lula"
 
 #, fuzzy
@@ -5719,6 +5746,10 @@ msgid "RUNOFF_EVENT"
 msgstr ""
 
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
+msgstr "Activa la simulació auto-evo durant el joc"
+
+#, fuzzy
+msgid "RUN_AUTO_EVO_DURING_GAMEPLAY_TOOLTIP"
 msgstr "Activa la simulació auto-evo durant el joc"
 
 msgid "RUN_ONE_STEP"
@@ -6181,6 +6212,10 @@ msgstr "Fer aparéixer Glucosa"
 
 msgid "SPAWN_PHOSPHATES"
 msgstr "Fer aparéixer Fosfats"
+
+#, fuzzy
+msgid "SPECIALIZATION_COLON"
+msgstr "població:"
 
 msgid "SPECIAL_MOUSE_1"
 msgstr "Ratolí especial 1"
@@ -6841,9 +6876,6 @@ msgid "TOOLS"
 msgstr "Eines"
 
 msgid "TOOL_HAND_AXE"
-msgstr ""
-
-msgid "TOO_LARGE_PRESSURE_RANGE"
 msgstr ""
 
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
@@ -7570,7 +7602,25 @@ msgstr "Augmenta l'espai d'emmagatzematge de la cèl·lula."
 msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr "Augmenta l'espai d'emmagatzematge de la cèl·lula."
 
+msgid "VALUE_MODIFIER"
+msgstr ""
+
+msgid "VALUE_OFFSET"
+msgstr ""
+
+#, fuzzy
+msgid "VALUE_TOTAL"
+msgstr "Nou nom:"
+
 msgid "VALUE_WITH_UNIT"
+msgstr "{0} {1}"
+
+#, fuzzy
+msgid "VALUE_WITH_UNIT_PLUS"
+msgstr "{0} {1}"
+
+#, fuzzy
+msgid "VALUE_WITH_UNIT_PLUS_MINUS"
 msgstr "{0} {1}"
 
 #, fuzzy
@@ -7603,6 +7653,10 @@ msgstr "Inhabilitar Tot"
 
 #, fuzzy
 msgid "VIEW_CELL_PROCESSES"
+msgstr "Augmenta la velocitat de gir de grans cèl·lules."
+
+#, fuzzy
+msgid "VIEW_CELL_PROCESSES_MICROBE"
 msgstr "Augmenta la velocitat de gir de grans cèl·lules."
 
 #, fuzzy
@@ -9479,7 +9533,8 @@ msgstr ""
 msgid "WIN_BOX_TITLE"
 msgstr "HAS ACONSEGUIT PROSPERAR!"
 
-msgid "WIN_TEXT"
+#, fuzzy
+msgid "WIN_TEXT_2"
 msgstr "Enhorabona, has guanyat en la versió actual del joc! Si ho vols, un cop aquesta finestreta es tanqui, pots continuar jugant i fent evolucionar la teva espècie, o bé començar una nova partida en un nou món."
 
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
@@ -9525,6 +9580,10 @@ msgstr "Estadístiques Generals del Món Actual"
 
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
+
+#, fuzzy
+msgid "WORLD_MISC_DETAILS_STRING_2"
+msgstr "Dificultat predeterminada"
 
 #, fuzzy
 msgid "WORLD_OCEANIC_COVERAGE"
@@ -9654,6 +9713,17 @@ msgstr "Enfocar la visió de la càmera"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom enfora"
+
+#, fuzzy
+#~ msgid "KEEP_CURRENT_SHORT"
+#~ msgstr "Món Actual"
+
+#, fuzzy
+#~ msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
+#~ msgstr "Pausar el joc"
+
+#~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
+#~ msgstr "Inclou prototips d'estadis tardans"
 
 #~ msgid "MOD_AUTO_HARMONY"
 #~ msgstr "Fa servir Auto Harmony:"

@@ -1,23 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmk3jxd5roc2a"]
+[gd_scene format=3 uid="uid://dmk3jxd5roc2a"]
 
 [ext_resource type="PackedScene" uid="uid://rfg25u72afai" path="res://src/gui_common/SpeciesDetailsPanelWithFossilisation.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://cjbhth6wlc08l" path="res://src/auto-evo/EvolutionaryTree.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://cckki1kx0cnol" path="res://src/thriveopedia/ThriveopediaPage.tscn" id="6"]
 [ext_resource type="Script" uid="uid://jgsqx1bgxjjo" path="res://src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs" id="8"]
 
-[node name="ThriveopediaEvolutionaryTreePage" node_paths=PackedStringArray("errorContainer", "evolutionaryTree", "speciesDetailsPanelWithFossilisation") instance=ExtResource("6")]
+[node name="ThriveopediaEvolutionaryTreePage" unique_id=1146753572 node_paths=PackedStringArray("errorContainer", "evolutionaryTree", "speciesDetailsPanelWithFossilisation") instance=ExtResource("6")]
 script = ExtResource("8")
 errorContainer = NodePath("Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ErrorContainer")
 evolutionaryTree = NodePath("Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/EvolutionaryTree")
 speciesDetailsPanelWithFossilisation = NodePath("Viewer/HBoxContainer/PanelContainer2/MarginContainer/SpeciesDetailsPanel")
 DisplayBackground = false
 
-[node name="Viewer" type="Control" parent="." index="1"]
+[node name="Viewer" type="Control" parent="." index="1" unique_id=1709776571]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Viewer" index="0"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Viewer" index="0" unique_id=1308919952]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -25,49 +25,49 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 15
 
-[node name="PanelContainer" type="PanelContainer" parent="Viewer/HBoxContainer" index="0"]
+[node name="PanelContainer" type="PanelContainer" parent="Viewer/HBoxContainer" index="0" unique_id=1974021915]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="Viewer/HBoxContainer/PanelContainer" index="0"]
+[node name="MarginContainer" type="MarginContainer" parent="Viewer/HBoxContainer/PanelContainer" index="0" unique_id=868436326]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Viewer/HBoxContainer/PanelContainer/MarginContainer" index="0"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Viewer/HBoxContainer/PanelContainer/MarginContainer" index="0" unique_id=592785763]
 layout_mode = 2
 
-[node name="ErrorContainer" type="VBoxContainer" parent="Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" index="0"]
+[node name="ErrorContainer" type="VBoxContainer" parent="Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" index="0" unique_id=191815780]
 visible = false
 layout_mode = 2
 
-[node name="Control" type="Control" parent="Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ErrorContainer" index="0"]
+[node name="Control" type="Control" parent="Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ErrorContainer" index="0" unique_id=1731736306]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="GenericErrorText" type="Label" parent="Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ErrorContainer" index="1"]
+[node name="GenericErrorText" type="Label" parent="Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ErrorContainer" index="1" unique_id=491610903]
 layout_mode = 2
 text = "EVOLUTIONARY_TREE_BUILD_FAILED"
 
-[node name="EvolutionaryTree" parent="Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" index="1" instance=ExtResource("4")]
+[node name="EvolutionaryTree" parent="Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" index="1" unique_id=229521008 instance=ExtResource("4")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="PanelContainer2" type="PanelContainer" parent="Viewer/HBoxContainer" index="1"]
+[node name="PanelContainer2" type="PanelContainer" parent="Viewer/HBoxContainer" index="1" unique_id=749479405]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Viewer/HBoxContainer/PanelContainer2" index="0"]
+[node name="MarginContainer" type="MarginContainer" parent="Viewer/HBoxContainer/PanelContainer2" index="0" unique_id=1553666629]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="SpeciesDetailsPanel" parent="Viewer/HBoxContainer/PanelContainer2/MarginContainer" index="0" instance=ExtResource("1")]
+[node name="SpeciesDetailsPanel" parent="Viewer/HBoxContainer/PanelContainer2/MarginContainer" index="0" unique_id=229958329 instance=ExtResource("1")]
 layout_mode = 2
 
 [connection signal="SpeciesSelected" from="Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/EvolutionaryTree" to="." method="EvolutionaryTreeNodeSelected"]

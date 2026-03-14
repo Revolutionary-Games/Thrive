@@ -28,9 +28,10 @@ func _execute(context :GdUnitExecutionContext) -> void:
 			if not is_instance_valid(test_case):
 				continue
 			context.test_suite.set_active_test_case(test_case.test_name())
-			await _stage_test.execute(GdUnitExecutionContext.of_test_case(context, test_case))
+			var test_case_context := GdUnitExecutionContext.of_test_case(context, test_case)
+			await _stage_test.execute(test_case_context)
 			# stop on first error or if fail fast is enabled
-			if _fail_fast and not context.is_success():
+			if test_case.is_terminated() or (_fail_fast and not test_case_context.is_success()):
 				break
 			if test_case.is_interupted():
 				# it needs to go this hard way to kill the outstanding awaits of a test case when the test timed out
@@ -39,9 +40,8 @@ func _execute(context :GdUnitExecutionContext) -> void:
 				context.test_suite = await clone_test_suite(context.test_suite)
 		await _stage_after.execute(context)
 		GdUnitMemoryObserver.unguard_instance(context.test_suite.__awaiter)
+
 	await (Engine.get_main_loop() as SceneTree).process_frame
-	context.test_suite.free()
-	context.dispose()
 
 
 # clones a test suite and moves the test cases to new instance
@@ -133,7 +133,7 @@ func fire_test_skipped(context: GdUnitExecutionContext, skip_count := 1) -> void
 	}
 	var report := GdUnitReport.new() \
 		.create(GdUnitReport.SKIPPED, test_case.line_number(), GdAssertMessages.test_skipped("Skipped from the entire test suite"))
-	fire_event(GdUnitEvent.new().test_after(test_case.id(), statistics, [report]))
+	fire_event(GdUnitEvent.new().test_after(test_case.id(), test_case.test_name(), statistics, [report]))
 
 
 func set_debug_mode(debug_mode :bool = false) -> void:

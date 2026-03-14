@@ -53,6 +53,13 @@ public partial class ThriveopediaEvolutionaryTreePage : ThriveopediaPage, IThriv
         if (CurrentGame == null)
             return;
 
+        // Do not rebuild the tree if we are not showing it as this causes extra lag upon loading a save
+        if (!IsVisibleInTree())
+        {
+            GD.Print("Skipping evolutionary tree rebuild as not visible in tree");
+            return;
+        }
+
         RebuildTree();
     }
 

@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://wwpityxotg0w"]
+[gd_scene format=3 uid="uid://wwpityxotg0w"]
 
 [ext_resource type="Script" uid="uid://cxnv4tqlrwawg" path="res://src/engine/input/key_mapping/InputGroupItem.cs" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
 [ext_resource type="LabelSettings" uid="uid://bnhcbmq3brx0s" path="res://src/gui_common/fonts/Title-SemiBold-Normal.tres" id="3_nhauy"]
 
-[node name="InputGroupItem" type="VBoxContainer" node_paths=PackedStringArray("inputActionsContainer", "inputGroupHeader")]
+[node name="InputGroupItem" type="VBoxContainer" unique_id=1402054364 node_paths=PackedStringArray("inputGroupHeader", "inputActionsContainer")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -13,25 +13,25 @@ script = ExtResource("1")
 inputGroupHeader = NodePath("VBoxContainer/InputGroupHeader")
 inputActionsContainer = NodePath("VBoxContainer/PanelContainer/MarginContainer/InputActionsContainer")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=458107601]
 layout_mode = 2
 
-[node name="InputGroupHeader" type="Label" parent="VBoxContainer"]
+[node name="InputGroupHeader" type="Label" parent="VBoxContainer" unique_id=1702275068]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "Group name goes here"
 label_settings = ExtResource("3_nhauy")
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer" unique_id=1335535554]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer" unique_id=879817693]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="InputActionsContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer/MarginContainer"]
+[node name="InputActionsContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer/MarginContainer" unique_id=383113685]
 layout_mode = 2
 theme_override_constants/separation = 10

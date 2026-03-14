@@ -17,7 +17,7 @@ public class AutoEvoConfiguration : IAutoEvoConfiguration
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.AutoEvoConfiguration;
     public bool CanBeReferencedInArchive => true;
 
-    public static AutoEvoConfiguration ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static AutoEvoConfiguration ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);

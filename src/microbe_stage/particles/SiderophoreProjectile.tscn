@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dfyqvphi12d2v"]
+[gd_scene format=3 uid="uid://dfyqvphi12d2v"]
 
 [ext_resource type="Texture2D" uid="uid://cai50f52nr8gw" path="res://assets/textures/background_particle_fuzzy.png" id="1_i51nk"]
 
@@ -35,7 +35,7 @@ albedo_texture = ExtResource("1_i51nk")
 material = SubResource("StandardMaterial3D_qsf6k")
 size = Vector2(5, 5)
 
-[node name="AgentProjectile" type="GPUParticles3D"]
+[node name="AgentProjectile" type="GPUParticles3D" unique_id=223117111]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.128502, 0, -0.092073)
 amount = 55
 visibility_aabb = AABB(-100, -50, -100, 200, 100, 200)

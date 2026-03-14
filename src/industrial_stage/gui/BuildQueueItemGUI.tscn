@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bfdx6284biuwc"]
+[gd_scene format=3 uid="uid://bfdx6284biuwc"]
 
 [ext_resource type="Script" uid="uid://bfnwp4axo5wle" path="res://src/industrial_stage/gui/BuildQueueItemGUI.cs" id="1"]
 
-[node name="BuildQueueItemGUI" type="VBoxContainer" node_paths=PackedStringArray("progressBar", "nameLabel")]
+[node name="BuildQueueItemGUI" type="VBoxContainer" unique_id=428742595 node_paths=PackedStringArray("progressBar", "nameLabel")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -11,18 +11,18 @@ script = ExtResource("1")
 progressBar = NodePath("ProgressBar")
 nameLabel = NodePath("HBoxContainer/ThingInQueue")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=819731591]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ThingInQueue" type="Label" parent="HBoxContainer"]
+[node name="ThingInQueue" type="Label" parent="HBoxContainer" unique_id=1494597852]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Item name"
 max_lines_visible = 2
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1674741801]
 custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
 size_flags_horizontal = 3

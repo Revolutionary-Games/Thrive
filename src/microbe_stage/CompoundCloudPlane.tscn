@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bertyonikiucy"]
+[gd_scene format=3 uid="uid://bertyonikiucy"]
 
 [ext_resource type="Shader" uid="uid://dgycjc6ljac5u" path="res://shaders/CompoundCloudPlane.gdshader" id="1"]
 [ext_resource type="Script" uid="uid://b3yij73oy1bnv" path="res://src/microbe_stage/CompoundCloudPlane.cs" id="3"]
@@ -11,9 +11,9 @@ colors = PackedColorArray(0.525493, 0.525492, 0.525492, 1, 1, 1, 1, 1)
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_spx17"]
 generate_mipmaps = false
-seamless = true
-color_ramp = SubResource("Gradient_spx17")
 noise = SubResource("FastNoiseLite_spx17")
+color_ramp = SubResource("Gradient_spx17")
+seamless = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_spx17"]
 resource_local_to_scene = true
@@ -33,7 +33,7 @@ shader_parameter/CLOUD_SPEED = 0.013
 lightmap_size_hint = Vector2i(1002, 1002)
 size = Vector2(200, 200)
 
-[node name="CompoundCloudPlane" type="MeshInstance3D"]
+[node name="CompoundCloudPlane" type="MeshInstance3D" unique_id=2019217035]
 transform = Transform3D(3, 0, 0, 0, -1.31134e-07, 1, 0, -3, -4.37114e-08, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_spx17")
 cast_shadow = 0

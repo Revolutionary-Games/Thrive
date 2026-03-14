@@ -115,14 +115,13 @@ public partial class InputGroupItem : VBoxContainer
         result.Actions = data.Actions
             .Select(x => InputActionItem.BuildGUI(result, x, inputData[x.InputName].WhereNotNull())).ToList();
 
-        // When the result is attached to the scene tree it attaches the child objects. So it *must* be attached
-        // at least one otherwise the child objects leak
+        // When the result is attached to the scene tree, it attaches the child objects. So it *must* be attached
+        // to at least one otherwise the child objects leak
         return result;
     }
 
     private void ApplyGroupName()
     {
-        if (inputGroupHeader != null)
-            inputGroupHeader.Text = GroupName;
+        inputGroupHeader?.Text = GroupName;
     }
 }

@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-12 15:26+0100\n"
-"PO-Revision-Date: 2025-12-05 09:23+0000\n"
-"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
+"POT-Creation-Date: 2026-02-27 14:48+0200\n"
+"PO-Revision-Date: 2026-02-28 13:02+0000\n"
+"Last-Translator: zynskeywolf <istvanszabo314@protonmail.com>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11.4\n"
+"X-Generator: Weblate 5.16.1\n"
 "Generated-By: Babel 2.9.1\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -188,7 +188,7 @@ msgid "AMMONIA"
 msgstr "Ammónia"
 
 msgid "AMMONIA_COST"
-msgstr "Ammónia ára:"
+msgstr "Ammóniaköltség:"
 
 msgid "AMMONIA_LEVELS"
 msgstr "Ammónia szintje"
@@ -717,6 +717,14 @@ msgstr "Cellulóz"
 
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Ez a membrán egy fallal rendelkezik, ami jobb védelmet jelent a sérülések ellen, főleg a fizikai sérülések ellen. Kevesebb energia szükséges neki formája megtartásához, viszont nem képes bekebelezése és lassítja magát a sejtet is. [b]Cellulóz képes megemészteni ezt a falat[/b] így a sejt sebezhetővé válik a ragadozók általi bekebelezésre."
+
+#, fuzzy
+msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
+msgstr "Az az érték, ami a világok generálásáért felelős. Ennek az értéknek pozitívnak kell lennie."
+
+#, fuzzy
+msgid "CELL_SPECIALIZATION_TOOLTIP"
+msgstr "Az az érték, ami a világok generálásáért felelős. Ennek az értéknek pozitívnak kell lennie."
 
 #, fuzzy
 msgid "CELL_STAT_ROTATION_TOOLTIP"
@@ -2156,6 +2164,10 @@ msgstr "{0}: +{1} ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr "{0}: +{1} ATP"
 
+#, fuzzy
+msgid "ENERGY_CONSUMPTION_PRESSURE"
+msgstr "Vegyületfelhők"
+
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
@@ -2838,6 +2850,14 @@ msgstr ""
 "ezen opció letiltása megoldhatja a problémát."
 
 #, fuzzy
+msgid "GUI_SCALE_INCREASED_SIZE_NOTE"
+msgstr "(a nagyobb értékek javíthatják a teljesítményt)"
+
+#, fuzzy
+msgid "GUI_SCALE_OPTION"
+msgstr "Bezárod a beállítás panelt?"
+
+#, fuzzy
 msgid "GUI_TAB_NAVIGATION"
 msgstr "{0} K"
 
@@ -2970,12 +2990,6 @@ msgstr ""
 msgid "IMAGE_FILE_TYPES"
 msgstr "Membrán típusok"
 
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
-msgstr "Későbbi fázisok prototípusainak engedélyezése"
-
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
-msgstr "(egyes opciók lehet, hogy elérhetetlenek lesznek a többi fázis elértével)"
-
 #, fuzzy
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Új létrehozása"
@@ -3005,9 +3019,8 @@ msgstr "Szerkeztők"
 msgid "INFO_BOX_ENZYMES"
 msgstr "Enzimek"
 
-#, fuzzy
 msgid "INFO_BOX_GAMEPLAY_TYPE"
-msgstr "Ozmoreguláció ára"
+msgstr "Ozmoregulációs költség"
 
 #, fuzzy
 msgid "INFO_BOX_INTERNAL_NAME"
@@ -3218,14 +3231,6 @@ msgstr "Július"
 
 msgid "JUNE"
 msgstr "Június"
-
-#, fuzzy
-msgid "KEEP_CURRENT_SHORT"
-msgstr "Jelenlegi fejlesztők"
-
-#, fuzzy
-msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
-msgstr "Játék szüneteltetése"
 
 #, fuzzy
 msgid "KEEP_MIGRATION"
@@ -3752,6 +3757,10 @@ msgstr "Nyálka szintézis"
 #, fuzzy
 msgid "MACROSCOPIC"
 msgstr "Makroszkopikussá válni ({0}/{1})"
+
+#, fuzzy
+msgid "MACROSCOPIC_EDITOR"
+msgstr "Sejtszerkesztő betöltése"
 
 #, fuzzy
 msgid "MACROSCOPIC_STAGE"
@@ -4603,6 +4612,10 @@ msgstr "Többsejtes szerkesztő"
 msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Többsejtes szerkesztő"
 
+#, fuzzy
+msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
+msgstr "(egyes opciók lehet, hogy elérhetetlenek lesznek a többi fázis elértével)"
+
 msgid "MULTICELLULAR_STAGE"
 msgstr "Többsejtes fázis"
 
@@ -5061,6 +5074,10 @@ msgstr "(a szerkesztő elhagyása után egy közeli glükózfelhő mellett lesz 
 msgid "ORGANISM_STATISTICS"
 msgstr "Organizmus statisztikái"
 
+#, fuzzy
+msgid "ORGANISM_STATISTICS_MICROBE"
+msgstr "Organizmus statisztikái"
+
 msgid "OR_UNLOCK_CONDITION"
 msgstr "vagy"
 
@@ -5270,9 +5287,8 @@ msgstr "/másodperc"
 msgid "PHOSPHATE"
 msgstr "Foszfát"
 
-#, fuzzy
 msgid "PHOSPHATES_COST"
-msgstr "Foszfát"
+msgstr "Foszfátköltség:"
 
 #, fuzzy
 msgid "PHOSPHATES_LEVELS"
@@ -5435,7 +5451,16 @@ msgstr "Betöltött objektumok feldolgozása"
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
+#, fuzzy
+msgid "PROCESS_PANEL_EXPLANATION_TITLE"
+msgstr "Sejtfolyamatok"
+
+#, fuzzy
 msgid "PROCESS_PANEL_TITLE"
+msgstr "Sejtfolyamatok"
+
+#, fuzzy
+msgid "PROCESS_PANEL_TITLE_MICROBE"
 msgstr "Sejtfolyamatok"
 
 #, fuzzy
@@ -5736,6 +5761,10 @@ msgid "RUNOFF_EVENT"
 msgstr ""
 
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
+msgstr "Auto-evo futtatása játék alatt"
+
+#, fuzzy
+msgid "RUN_AUTO_EVO_DURING_GAMEPLAY_TOOLTIP"
 msgstr "Auto-evo futtatása játék alatt"
 
 msgid "RUN_ONE_STEP"
@@ -6203,6 +6232,10 @@ msgstr "Glükóz létrehozása"
 
 msgid "SPAWN_PHOSPHATES"
 msgstr "Foszfát létrehozása"
+
+#, fuzzy
+msgid "SPECIALIZATION_COLON"
+msgstr "Populáció:"
 
 msgid "SPECIAL_MOUSE_1"
 msgstr "Speciál egér 1"
@@ -6867,9 +6900,6 @@ msgid "TOOLS"
 msgstr "Eszközök"
 
 msgid "TOOL_HAND_AXE"
-msgstr ""
-
-msgid "TOO_LARGE_PRESSURE_RANGE"
 msgstr ""
 
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
@@ -7559,7 +7589,25 @@ msgstr "Növeli a sejt tárkapacitását."
 msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr "Növeli a sejt tárkapacitását."
 
+msgid "VALUE_MODIFIER"
+msgstr ""
+
+msgid "VALUE_OFFSET"
+msgstr ""
+
+#, fuzzy
+msgid "VALUE_TOTAL"
+msgstr "Új név:"
+
 msgid "VALUE_WITH_UNIT"
+msgstr "{0} {1}"
+
+#, fuzzy
+msgid "VALUE_WITH_UNIT_PLUS"
+msgstr "{0} {1}"
+
+#, fuzzy
+msgid "VALUE_WITH_UNIT_PLUS_MINUS"
 msgstr "{0} {1}"
 
 #, fuzzy
@@ -7593,6 +7641,10 @@ msgstr "Az összes tiltása"
 
 #, fuzzy
 msgid "VIEW_CELL_PROCESSES"
+msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t alakít át [thrive:compound type=\"atp\"][/thrive:compound]-vé."
+
+#, fuzzy
+msgid "VIEW_CELL_PROCESSES_MICROBE"
 msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t alakít át [thrive:compound type=\"atp\"][/thrive:compound]-vé."
 
 #, fuzzy
@@ -7777,6 +7829,7 @@ msgstr "Tudatos fázis"
 msgid "WIKI_AXON_EFFECTS"
 msgstr "Külső effektek:"
 
+#, fuzzy
 msgid "WIKI_AXON_INTRO"
 msgstr "Idegrostok neuronok között, elérhető a Többsejtű fázistól. Szükséges az organizmus agykapacitásának növeléséhez és a jövőbeli fázisok eléréséhez."
 
@@ -7786,6 +7839,7 @@ msgstr "Nincs módosítás."
 msgid "WIKI_AXON_PROCESSES"
 msgstr "Nincs folyamat."
 
+#, fuzzy
 msgid "WIKI_AXON_REQUIREMENTS"
 msgstr "Csak a Többsejtű szakasztól kezdve elérhető."
 
@@ -9499,7 +9553,8 @@ msgstr ""
 msgid "WIN_BOX_TITLE"
 msgstr "TÚLÉLTÉL!"
 
-msgid "WIN_TEXT"
+#, fuzzy
+msgid "WIN_TEXT_2"
 msgstr "Gratulálok, a Thrive ezen verzióját végigvitted! Ha akarsz, még játszhatsz tovább, miután ez az ablak bezárul, vagy egy új játékot is kezdhetsz."
 
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
@@ -9547,6 +9602,10 @@ msgstr "Organizmus statisztikái"
 
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
+
+#, fuzzy
+msgid "WORLD_MISC_DETAILS_STRING_2"
+msgstr "Előre beállított nehézség"
 
 #, fuzzy
 msgid "WORLD_OCEANIC_COVERAGE"
@@ -9668,6 +9727,17 @@ msgstr "Közelítés"
 
 msgid "ZOOM_OUT"
 msgstr "Távolodás"
+
+#, fuzzy
+#~ msgid "KEEP_CURRENT_SHORT"
+#~ msgstr "Jelenlegi fejlesztők"
+
+#, fuzzy
+#~ msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
+#~ msgstr "Játék szüneteltetése"
+
+#~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
+#~ msgstr "Későbbi fázisok prototípusainak engedélyezése"
 
 #, fuzzy
 #~ msgid "MOD_AUTO_HARMONY"

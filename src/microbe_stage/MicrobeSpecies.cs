@@ -10,12 +10,10 @@ using Vector3 = Godot.Vector3;
 /// </summary>
 public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     private readonly Dictionary<BiomeConditions, Dictionary<Compound, (float TimeToFill, float Storage)>>
         cachedFillTimes = new();
-
-    private IReadOnlyOrganelleLayout<IReadOnlyOrganelleTemplate>? readonlyLayout;
 
     public MicrobeSpecies(uint id, string genus, string epithet) : base(id, genus, epithet)
     {
@@ -85,7 +83,7 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
     public float BaseRotationSpeed { get; set; }
 
     /// <summary>
-    ///   This is the base size of this species. Meaning that this is the engulf size of microbes of this species when
+    ///   This is the base size of this species. Meaning that this is the engulf-size of microbes of this species when
     ///   they haven't duplicated any organelles. This is related to <see cref="Components.Engulfer.EngulfingSize"/>
     ///   (as well as the size this takes up as an <see cref="Components.Engulfable"/>) and the math should always
     ///   match between these two.
@@ -111,6 +109,7 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         }
     }
 
+    // TODO: precalculate this as it'll help auto-evo quite a bit
     /// <summary>
     ///   Compound capacities members of this species can store in their default configurations
     /// </summary>
@@ -135,13 +134,23 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
 
     public string CellTypeName => FormattedName;
 
+    /// <summary>
+    ///   Microbes are never split from any cell type
+    /// </summary>
+    public string? SplitFromTypeName => null;
+
+    /// <summary>
+    ///   Cached specialization bonus for this species.
+    /// </summary>
+    public float SpecializationBonus { get; set; }
+
     public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
     public override ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.MicrobeSpecies;
 
     // TODO: sadly I found no way to finagle the interfaces to line up fully, so a very light adapter class is needed
     // here
     IReadOnlyOrganelleLayout<IReadOnlyOrganelleTemplate> IReadOnlyCellDefinition.Organelles =>
-        readonlyLayout ??=
+        field ??=
             new ReadonlyOrganelleLayoutAdapter<IReadOnlyOrganelleTemplate, OrganelleTemplate>(Organelles);
 
     public static bool StateHasStabilizedImpl(IWorldSimulation worldSimulation)
@@ -170,6 +179,17 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         instance.Organelles = reader.ReadObject<OrganelleLayout<OrganelleTemplate>>();
         instance.BaseRotationSpeed = reader.ReadFloat();
 
+        if (version > 1)
+        {
+            instance.SpecializationBonus = reader.ReadFloat();
+        }
+        else
+        {
+            // Assume older microbes won't have specialization for now. And the next editor / auto-evo cycle can sort
+            // them out.
+            instance.SpecializationBonus = 1;
+        }
+
         return instance;
     }
 
@@ -183,6 +203,7 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
 
         writer.WriteObject(Organelles);
         writer.Write(BaseRotationSpeed);
+        writer.Write(SpecializationBonus);
     }
 
     public void UpdateIsBacteria()
@@ -207,9 +228,8 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
     {
         base.OnEdited();
 
+        // TODO: do we need to reposition for auto-evo?
         RepositionToOrigin();
-        UpdateInitialCompounds();
-        UpdateIsBacteria();
 
         // Reset endosymbiont status so that they aren't free to move / delete in the next editor cycle
         var count = Organelles.Organelles.Count;
@@ -217,8 +237,20 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         {
             ModifiableOrganelles.Organelles[i].IsEndosymbiont = false;
         }
+    }
+
+    public override void OnAttemptedInAutoEvo(bool refreshCache)
+    {
+        base.OnAttemptedInAutoEvo(refreshCache);
+
+        UpdateInitialCompounds();
+        UpdateIsBacteria();
 
         cachedFillTimes.Clear();
+
+        SpecializationBonus =
+            MicrobeInternalCalculations.CalculateSpecializationBonus(Organelles,
+                new Dictionary<OrganelleDefinition, int>());
     }
 
     public override bool RepositionToOrigin()
@@ -251,7 +283,8 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         };
 
         // False is passed here until we can make the initial compounds patch specific
-        ProcessSystem.ComputeCompoundBalance(Organelles, biomeConditions, environmentalTolerances,
+        // We don't take specialization into account here, so we overestimate how much stuff is needed
+        ProcessSystem.ComputeCompoundBalance(Organelles, biomeConditions, environmentalTolerances, 1,
             CompoundAmountType.Biome, false, compoundBalances);
 
         bool giveBonusGlucose = Organelles.Count <= Constants.FULL_INITIAL_GLUCOSE_SMALL_SIZE_LIMIT && IsBacteria;
@@ -298,7 +331,6 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         if (spawnEnvironment is not IMicrobeSpawnEnvironment microbeSpawnEnvironment)
             throw new ArgumentException("Microbes must have microbe spawn environment info");
 
-        // TODO: cache the data
         var biome = microbeSpawnEnvironment.CurrentBiome;
 
         Dictionary<Compound, (float TimeToFill, float Storage)>? compoundTimes;
@@ -343,6 +375,7 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         IsBacteria = casted.IsBacteria;
         MembraneType = casted.MembraneType;
         MembraneRigidity = casted.MembraneRigidity;
+        SpecializationBonus = casted.SpecializationBonus;
 
         cachedFillTimes.Clear();
     }
@@ -381,6 +414,7 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         result.IsBacteria = IsBacteria;
         result.MembraneType = MembraneType;
         result.MembraneRigidity = MembraneRigidity;
+        result.SpecializationBonus = SpecializationBonus;
 
         if (cloneOrganelles)
         {
@@ -406,7 +440,7 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
 
         for (int i = 0; i < count; ++i)
         {
-            // Organelles in different order don't matter (in terms of visuals) so we don't apply any loop specific
+            // Organelles in different order don't matter (in terms of visuals), so we don't apply any loop-specific
             // stuff here
             unchecked
             {
@@ -428,7 +462,7 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
             Localization.Translate("TOLERANCE_DETAIL_TEXT").FormatSafe(Tolerances.PreferredTemperature,
                 Tolerances.TemperatureTolerance,
                 Tolerances.PressureMinimum,
-                Tolerances.PressureMaximum,
+                Tolerances.PressureMinimum + Tolerances.PressureTolerance,
                 Math.Round(Tolerances.OxygenResistance * 100, 2),
                 Math.Round(Tolerances.UVResistance * 100, 2));
     }

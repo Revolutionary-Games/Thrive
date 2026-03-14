@@ -185,6 +185,9 @@ public partial class CellEditorComponent :
 
     private EnergyBalanceInfoFull? energyBalanceInfo;
 
+    private List<TweakedProcess> tempAllProcesses = new();
+    private Dictionary<OrganelleDefinition, int> tempMemory3 = new();
+
     private string? bestPatchName;
 
     // This and worstPatchPopulation used to be displayed but are now kept for potential future use
@@ -273,8 +276,6 @@ public partial class CellEditorComponent :
     private bool microbePreviewMode;
 
     private bool showGrowthOrderNumbers;
-
-    private bool multicellularTolerancesPrinted;
 
     private TutorialState? tutorialState;
 
@@ -555,8 +556,6 @@ public partial class CellEditorComponent :
         cytoplasm = SimulationParameters.Instance.GetOrganelleType("cytoplasm");
         chemoSynthesizingProteins = SimulationParameters.Instance.GetOrganelleType("chemoSynthesizingProteins");
 
-        SetupMicrobePartSelections();
-
         ApplySelectionMenuTab();
         RegisterTooltips();
     }
@@ -580,6 +579,9 @@ public partial class CellEditorComponent :
             // Endosymbiosis is not managed through this component in multicellular
             endosymbiosisButton.Visible = false;
         }
+
+        // These tooltip updates are now here as they take current effective MP costs into account to write into them
+        SetupMicrobePartSelections();
 
         // Visual simulation is needed very early when loading a save
         previewSimulation = new MicrobeVisualOnlySimulation();
@@ -703,7 +705,7 @@ public partial class CellEditorComponent :
                 }
             }
         }
-        else
+        else if (Editor.EditorReady)
         {
             CheckRunningAutoEvoPrediction();
         }
@@ -798,7 +800,25 @@ public partial class CellEditorComponent :
                     (finalQ, finalR, rotation) =>
                     {
                         RenderHighlightedOrganelle(finalQ, finalR, rotation, shownOrganelle, MovingPlacedHex?.Upgrades);
-                        hoveredHexes.Add((new Hex(finalQ, finalR), rotation));
+
+                        var finalHex = new Hex(finalQ, finalR);
+
+                        // Only add unique positions so that duplicate actions are not attempted which break the MP
+                        // system
+                        bool exists = false;
+                        foreach (var existingHex in hoveredHexes)
+                        {
+                            if (existingHex.Hex == finalHex)
+                            {
+                                exists = true;
+                                break;
+                            }
+                        }
+
+                        if (exists)
+                            return;
+
+                        hoveredHexes.Add((finalHex, rotation));
                     }, effectiveSymmetry);
 
                 MouseHoverPositions = hoveredHexes.ToList();
@@ -992,6 +1012,7 @@ public partial class CellEditorComponent :
         CalculateEnergyAndCompoundBalance(properties.ModifiableOrganelles.Organelles, properties.MembraneType,
             Editor.CurrentPatch.Biome);
 
+        // Checking unlock conditions can happen safely only after the selection buttons are set up
         UpdateOrganelleUnlockTooltips(true);
 
         UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies);
@@ -1004,7 +1025,7 @@ public partial class CellEditorComponent :
         if (!IsMulticellularEditor)
         {
             // Make sure initial tolerance warnings are shown
-            OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
+            TriggerOnTolerancesChanged(tolerancesEditor.CurrentTolerances);
         }
     }
 
@@ -1097,8 +1118,8 @@ public partial class CellEditorComponent :
             return false;
         }
 
-        // Show a warning popup if trying to exit with negative atp production
-        // Not shown in multicellular as the popup would happen in kind of weird place
+        // Show a warning popup if trying to exit with negative ATP production.
+        // This is not shown in multicellular as the popup would happen in kind of weird place.
         if (!IsMulticellularEditor && IsNegativeAtpProduction() &&
             !editorUserOverrides.Contains(EditorUserOverride.NotProducingEnoughATP))
         {
@@ -1236,7 +1257,7 @@ public partial class CellEditorComponent :
         {
             // Refresh tolerances data for the new patch
             tolerancesEditor.OnDataTolerancesDependOnChanged();
-            OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
+            TriggerOnTolerancesChanged(tolerancesEditor.CurrentTolerances);
             UpdateEndosymbiosisSpeciesData();
         }
 
@@ -1258,10 +1279,6 @@ public partial class CellEditorComponent :
         suggestionDirty = true;
     }
 
-    /// <summary>
-    ///   Call when tolerance data changes, re-triggers simulations and updates the GUI warnings
-    /// </summary>
-    /// <param name="newTolerances">New tolerance data</param>
     public void OnTolerancesChanged(EnvironmentalTolerances newTolerances)
     {
         autoEvoPredictionDirty = true;
@@ -1269,6 +1286,18 @@ public partial class CellEditorComponent :
 
         // Need to show new tolerances warnings (and refresh a few other things)
         refreshTolerancesWarnings = true;
+    }
+
+    public ToleranceResult CalculateRawTolerances(bool excludePositiveBuffs = false)
+    {
+        if (IsMulticellularEditor)
+        {
+            throw new InvalidOperationException(
+                "In multicellular, the cell editor is not responsible for tolerances data");
+        }
+
+        return MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(tolerancesEditor.CurrentTolerances,
+            editedMicrobeOrganelles, Editor.CurrentPatch.Biome, excludePositiveBuffs);
     }
 
     public void UpdatePatchDependentBalanceData()
@@ -1294,9 +1323,13 @@ public partial class CellEditorComponent :
     {
         var organelles = SimulationParameters.Instance.GetAllOrganelles();
 
+        // We probably do not want to use actual current bonuses here, so we use 1 as the specialization bonus
+        // As it might be confusing for the tooltips to change based on what has been placed already?
+        var specialization = 1;
+
         var result =
             ProcessSystem.ComputeOrganelleProcessEfficiencies(organelles, Editor.CurrentPatch.Biome,
-                CalculateLatestTolerances(), CompoundAmountType.Current);
+                CalculateLatestTolerances(), specialization, CompoundAmountType.Current);
 
         UpdateOrganelleEfficiencies(result);
     }
@@ -1453,6 +1486,13 @@ public partial class CellEditorComponent :
             {
                 PlayHexPlacementSound();
                 break;
+            }
+
+            // If placed a unique organelle successfully, clear the placement action
+            if (data is OrganellePlacementActionData { PlacedHex.Definition.Unique: true })
+            {
+                GD.Print("Clearing to be placed organelle type as we placed something unique");
+                DeselectOrganelleToPlace();
             }
         }
 
@@ -1708,6 +1748,16 @@ public partial class CellEditorComponent :
         UpdatePatchDependentBalanceData();
     }
 
+    /// <summary>
+    ///   Call when tolerance data changes, re-triggers simulations and updates the GUI warnings
+    /// </summary>
+    /// <param name="newTolerances">New tolerance data</param>
+    private void TriggerOnTolerancesChanged(EnvironmentalTolerances newTolerances)
+    {
+        // We trigger things through the editor as that makes this code path the same for later editors
+        Editor.OnTolerancesChanged(newTolerances);
+    }
+
     private bool PerformEndosymbiosisPlace(int q, int r)
     {
         if (PendingEndosymbiontPlace == null)
@@ -1773,6 +1823,9 @@ public partial class CellEditorComponent :
         {
             // Force large normal size (instead of showing bacteria as a smaller scale than the editor hexes)
             IsBacteria = false,
+
+            // Doesn't matter for visualization, but we want to set a valid value
+            SpecializationBonus = 1,
         };
 
         previewMicrobe = previewSimulation.CreateVisualisationMicrobe(previewMicrobeSpecies);
@@ -2058,29 +2111,10 @@ public partial class CellEditorComponent :
     {
         if (IsMulticellularEditor)
         {
-            if (!multicellularTolerancesPrinted)
-            {
-                GD.Print("TODO: implement tolerances data coming from the multicellular editor");
-                multicellularTolerancesPrinted = true;
-            }
-
-            // TODO: this should use info from the cell body plan editor regarding tolerances and remove this dummy
-            // return
-            return new ResolvedMicrobeTolerances
-            {
-                HealthModifier = 1,
-                OsmoregulationModifier = 1,
-                ProcessSpeedModifier = 1,
-            };
+            return MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(Editor.CalculateRawTolerances());
         }
 
         return MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(CalculateRawTolerances());
-    }
-
-    private ToleranceResult CalculateRawTolerances()
-    {
-        return MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(tolerancesEditor.CurrentTolerances,
-            editedMicrobeOrganelles, Editor.CurrentPatch.Biome);
     }
 
     /// <summary>
@@ -2097,27 +2131,30 @@ public partial class CellEditorComponent :
 
         if (organismStatisticsPanel.ResourceLimitingMode != ResourceLimitingMode.AllResources)
         {
+            ProcessSystem.ComputeActiveProcessList(organelles, ref tempAllProcesses);
+
             conditionsData = new BiomeResourceLimiterAdapter(organismStatisticsPanel.ResourceLimitingMode,
-                conditionsData);
+                conditionsData, tempAllProcesses);
         }
 
-        var energyBalance = new EnergyBalanceInfoFull();
-        energyBalance.SetupTrackingForRequiredCompounds();
+        energyBalanceInfo = new EnergyBalanceInfoFull();
+        energyBalanceInfo.SetupTrackingForRequiredCompounds();
 
         var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(organelles);
 
-        ProcessSystem.ComputeEnergyBalanceFull(organelles, conditionsData, CalculateLatestTolerances(), membrane,
-            maximumMovementDirection, moving, true, Editor.CurrentGame.GameWorld.WorldSettings,
-            organismStatisticsPanel.CompoundAmountType, null, energyBalance);
+        var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(organelles, tempMemory3);
 
-        energyBalanceInfo = energyBalance;
+        var tolerances = CalculateLatestTolerances();
+        ProcessSystem.ComputeEnergyBalanceFull(organelles, conditionsData, tolerances, specialization,
+            membrane, maximumMovementDirection, moving, true, Editor.CurrentGame.GameWorld.WorldSettings,
+            organismStatisticsPanel.CompoundAmountType, null, energyBalanceInfo);
 
-        organismStatisticsPanel.UpdateEnergyBalance(energyBalance);
+        organismStatisticsPanel.UpdateEnergyBalance(energyBalanceInfo);
 
         if (Visible)
         {
             TutorialState?.SendEvent(TutorialEventType.MicrobeEditorPlayerEnergyBalanceChanged,
-                new EnergyBalanceEventArgs(energyBalance), this);
+                new EnergyBalanceEventArgs(energyBalanceInfo), this);
         }
 
         float nominalStorage = 0;
@@ -2126,36 +2163,36 @@ public partial class CellEditorComponent :
         // This takes balanceType into account as well, https://github.com/Revolutionary-Games/Thrive/issues/2068
         var compoundBalanceData =
             CalculateCompoundBalanceWithMethod(organismStatisticsPanel.BalanceDisplayType,
-                organismStatisticsPanel.CompoundAmountType, organelles, conditionsData, energyBalance,
-                ref specificStorages, ref nominalStorage);
+                organismStatisticsPanel.CompoundAmountType, organelles, conditionsData, energyBalanceInfo,
+                ref specificStorages, ref nominalStorage, tolerances, specialization);
 
         UpdateCompoundBalances(compoundBalanceData);
 
         // TODO: should this skip on being affected by the resource limited?
         var nightBalanceData = CalculateCompoundBalanceWithMethod(organismStatisticsPanel.BalanceDisplayType,
-            CompoundAmountType.Minimum, organelles, conditionsData, energyBalance, ref specificStorages,
-            ref nominalStorage);
+            CompoundAmountType.Minimum, organelles, conditionsData, energyBalanceInfo, ref specificStorages,
+            ref nominalStorage, tolerances, specialization);
 
         UpdateCompoundLastingTimes(compoundBalanceData, nightBalanceData, nominalStorage,
             specificStorages ?? throw new Exception("Special storages should have been calculated"));
 
-        HandleProcessList(energyBalance, conditionsData);
+        HandleProcessList(energyBalanceInfo, conditionsData);
     }
 
     private Dictionary<Compound, CompoundBalance> CalculateCompoundBalanceWithMethod(BalanceDisplayType calculationType,
         CompoundAmountType amountType, IReadOnlyList<OrganelleTemplate> organelles, IBiomeConditions biome,
         EnergyBalanceInfoFull energyBalance, ref Dictionary<Compound, float>? specificStorages,
-        ref float nominalStorage)
+        ref float nominalStorage, in ResolvedMicrobeTolerances tolerances, float specializationBonus)
     {
         var compoundBalanceData = new Dictionary<Compound, CompoundBalance>();
         switch (calculationType)
         {
             case BalanceDisplayType.MaxSpeed:
-                ProcessSystem.ComputeCompoundBalance(organelles, biome, CalculateLatestTolerances(), amountType, true,
-                    compoundBalanceData);
+                ProcessSystem.ComputeCompoundBalance(organelles, biome, tolerances, specializationBonus, amountType,
+                    true, compoundBalanceData);
                 break;
             case BalanceDisplayType.EnergyEquilibrium:
-                ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles, biome, CalculateLatestTolerances(),
+                ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles, biome, tolerances, specializationBonus,
                     amountType, energyBalance, compoundBalanceData);
                 break;
             default:
@@ -2181,11 +2218,16 @@ public partial class CellEditorComponent :
 
         float consumptionProductionRatio = energyBalance.TotalConsumption / energyBalance.TotalProduction;
 
+        var specialization =
+            MicrobeInternalCalculations.CalculateSpecializationBonus(editedMicrobeOrganelles, tempMemory3);
+
+        var speedModifier = tolerances.ProcessSpeedModifier * specialization;
+
         foreach (var process in processes)
         {
             // This requires the inputs to be in the biome to give a realistic prediction of how fast the processes
             // *might* run once swimming around in the stage.
-            var singleProcess = ProcessSystem.CalculateProcessMaximumSpeed(process, tolerances.ProcessSpeedModifier,
+            var singleProcess = ProcessSystem.CalculateProcessMaximumSpeed(process, speedModifier,
                 biome, CompoundAmountType.Current, true);
 
             // If produces more ATP than consumes, lower down production for inputs and for outputs,
@@ -2318,16 +2360,16 @@ public partial class CellEditorComponent :
 
     private CombinedEditorAction? CreateAddOrganelleAction(OrganelleTemplate organelle)
     {
-        // 1 - you put a unique organelle (means only one instance allowed) but you already have it
-        // 2 - you put an organelle that requires nucleus but you don't have one
+        // 1 - you put a unique organelle (means only one instance allowed), but you already have it
+        // 2 - you put an organelle that requires nucleus, but you don't have one
         if ((organelle.Definition.Unique && HasOrganelle(organelle.Definition)) ||
             (organelle.Definition.RequiresNucleus && !HasNucleus))
         {
             return null;
         }
 
-        if (organelle.Definition.Unique)
-            DeselectOrganelleToPlace();
+        // This used to deselect things if we created an action for a unique organelle, however, that could trigger
+        // on placement fail so that code is now on action success callback
 
         var replacedCytoplasmActions = GetReplacedCytoplasmRemoveAction([organelle]).Cast<EditorAction>().ToList();
 
@@ -2482,7 +2524,7 @@ public partial class CellEditorComponent :
         if (!IsMulticellularEditor)
         {
             // Tolerances are now affected by organelle changes, so re-trigger calculating them
-            OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
+            TriggerOnTolerancesChanged(tolerancesEditor.CurrentTolerances);
             tolerancesEditor.OnDataTolerancesDependOnChanged();
         }
 
@@ -2497,6 +2539,8 @@ public partial class CellEditorComponent :
         UpdateOrganelleUnlockTooltips(false);
 
         UpdateGrowthOrderUI();
+
+        UpdateSpecializationDisplay();
     }
 
     /// <summary>
@@ -2682,10 +2726,10 @@ public partial class CellEditorComponent :
             control.PartIcon = organelle.LoadedIcon ?? throw new Exception("Organelle with no icon");
             control.PartName = organelle.UntranslatedName;
             control.SelectionGroup = organelleButtonGroup;
-            control.MPCost = organelle.MPCost;
+            control.MPCost = Math.Min(organelle.MPCost * CostMultiplier, Constants.MAX_SINGLE_EDIT_MP_COST);
             control.Name = organelle.InternalName;
 
-            // Special case with registering the tooltip here for item with no associated organelle
+            // Special case with registering the tooltip here for an item with no associated organelle
             control.RegisterToolTipForControl(organelle.InternalName, "organelleSelection");
 
             group.AddItem(control);
@@ -2695,7 +2739,7 @@ public partial class CellEditorComponent :
             if (organelle.Unimplemented)
                 continue;
 
-            // Only add items with valid organelles to dictionary
+            // Only add items with valid organelles to the dictionary
             placeablePartSelectionElements.Add(organelle, control);
 
             control.Connect(MicrobePartSelection.SignalName.OnPartSelected,
@@ -2708,7 +2752,7 @@ public partial class CellEditorComponent :
             control.PartIcon = membraneType.LoadedIcon;
             control.PartName = membraneType.UntranslatedName;
             control.SelectionGroup = membraneButtonGroup;
-            control.MPCost = membraneType.EditorCost;
+            control.MPCost = Math.Min(membraneType.EditorCost * CostMultiplier, Constants.MAX_SINGLE_EDIT_MP_COST);
             control.Name = membraneType.InternalName;
 
             control.RegisterToolTipForControl(membraneType.InternalName, "membraneSelection");

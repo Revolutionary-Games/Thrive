@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bcy1o8pg86owe"]
+[gd_scene format=3 uid="uid://bcy1o8pg86owe"]
 
 [ext_resource type="PackedScene" uid="uid://cckki1kx0cnol" path="res://src/thriveopedia/ThriveopediaPage.tscn" id="1"]
 [ext_resource type="Script" uid="uid://daxip50k51ekn" path="res://src/thriveopedia/pages/ThriveopediaHomePage.cs" id="2"]
@@ -6,44 +6,31 @@
 [ext_resource type="Texture2D" uid="uid://dcx3vsernjy4k" path="res://assets/concept_art/disturbance.jpg" id="4"]
 [ext_resource type="PackedScene" uid="uid://bhpjtbtaeunat" path="res://src/gui_common/CustomRichTextLabel.tscn" id="5"]
 
-[node name="ThriveopediaHomePage" instance=ExtResource("1")]
-anchors_preset = 15
+[node name="ThriveopediaHomePage" unique_id=1015230184 instance=ExtResource("1")]
 script = ExtResource("2")
 
-[node name="MarginContainer" parent="." index="0"]
+[node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(830321364) index="0" unique_id=1693885099]
 layout_mode = 2
 
-[node name="ScrollContainer" parent="MarginContainer" index="0"]
-layout_mode = 2
-
-[node name="MarginContainer" parent="MarginContainer/ScrollContainer" index="0"]
-layout_mode = 2
-
-[node name="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer" index="0"]
-layout_mode = 2
-
-[node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="0"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CenterContainer2" index="0"]
+[node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CenterContainer2" index="0" unique_id=246822301]
 layout_mode = 2
 text = "WELCOME_TO_THRIVEOPEDIA"
 label_settings = ExtResource("3_o2j84")
 
-[node name="Control" type="Control" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="1"]
+[node name="Control" type="Control" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(830321364) index="1" unique_id=1037103351]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(830321364) index="2" unique_id=35902335]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="CustomRichTextLabel" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" index="0" instance=ExtResource("5")]
+[node name="CustomRichTextLabel" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" index="0" unique_id=560203301 instance=ExtResource("5")]
 layout_mode = 2
 size_flags_horizontal = 3
 ExtendedBbcode = "THRIVEOPEDIA_HOME_INFO"
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" index="1"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" index="1" unique_id=313022210]
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 size_flags_vertical = 3

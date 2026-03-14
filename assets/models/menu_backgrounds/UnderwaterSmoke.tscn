@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bbc87m2s4lt5b"]
+[gd_scene format=3 uid="uid://bbc87m2s4lt5b"]
 
 [ext_resource type="Texture2D" uid="uid://kloyvken30uu" path="res://assets/textures/menu_backgrounds/SingleClouds.png" id="1_64woj"]
 [ext_resource type="Texture2D" uid="uid://dhad2rl5f4478" path="res://assets/textures/menu_backgrounds/SingleClouds_Normal.png" id="2_j5pel"]
@@ -62,7 +62,7 @@ particles_anim_loop = false
 material = SubResource("19")
 size = Vector2(1.7, 1.7)
 
-[node name="UnderwaterSmoke" type="GPUParticles3D"]
+[node name="UnderwaterSmoke" type="GPUParticles3D" unique_id=512393710]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 cast_shadow = 0
 amount = 50

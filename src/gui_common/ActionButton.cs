@@ -103,9 +103,6 @@ public partial class ActionButton : Button
 
     private void UpdateKeyPrompt()
     {
-        if (keyPrompt == null)
-            return;
-
-        keyPrompt.ActionName = actionName;
+        keyPrompt?.ActionName = actionName;
     }
 }

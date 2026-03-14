@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://duhmbx8qnpcao"]
+[gd_scene format=3 uid="uid://duhmbx8qnpcao"]
 
 [ext_resource type="Script" uid="uid://hpje00aqbrxa" path="res://src/society_stage/gui/ResourceDisplayBar.cs" id="1"]
 [ext_resource type="LabelSettings" uid="uid://chasppwihgufu" path="res://src/gui_common/fonts/Body-Bold-Small.tres" id="2_pp1g3"]
@@ -6,7 +6,7 @@
 [ext_resource type="LabelSettings" uid="uid://o0tip7etc0x2" path="res://src/gui_common/fonts/Body-Bold-Small-Red.tres" id="4_5o70k"]
 [ext_resource type="Texture2D" uid="uid://r3tppwbfq4mw" path="res://assets/textures/gui/bevel/chemicalButton.svg" id="5_n8k4j"]
 
-[node name="ResourceDisplayBar" type="HBoxContainer" node_paths=PackedStringArray("earlyResourcesContainer", "lateResourcesContainer", "scienceIndicatorContainer", "scienceAmountLabel")]
+[node name="ResourceDisplayBar" type="HBoxContainer" unique_id=1187364166 node_paths=PackedStringArray("earlyResourcesContainer", "lateResourcesContainer", "scienceIndicatorContainer", "scienceAmountLabel")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -21,27 +21,27 @@ lateResourcesContainer = NodePath("LateResources")
 scienceIndicatorContainer = NodePath("ScienceContainer")
 scienceAmountLabel = NodePath("ScienceContainer/ScienceAmount")
 
-[node name="EarlyResources" type="HBoxContainer" parent="."]
+[node name="EarlyResources" type="HBoxContainer" parent="." unique_id=771378912]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="ScienceContainer" type="HBoxContainer" parent="."]
+[node name="ScienceContainer" type="HBoxContainer" parent="." unique_id=1687736228]
 layout_mode = 2
 
-[node name="ScienceAmount" type="Label" parent="ScienceContainer"]
+[node name="ScienceAmount" type="Label" parent="ScienceContainer" unique_id=1885159941]
 layout_mode = 2
 text = "+0.5"
 label_settings = ExtResource("2_pp1g3")
 vertical_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="ScienceContainer"]
+[node name="TextureRect" type="TextureRect" parent="ScienceContainer" unique_id=456966686]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 texture = ExtResource("5_n8k4j")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="LateResources" type="HBoxContainer" parent="."]
+[node name="LateResources" type="HBoxContainer" parent="." unique_id=2034892173]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 10

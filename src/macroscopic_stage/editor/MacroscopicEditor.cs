@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using UnlockConstraints;
 using Environment = Godot.Environment;
 
 /// <summary>
@@ -112,6 +113,9 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
 
     public override MainGameState GameState => MainGameState.MacroscopicEditor;
 
+    public WorldAndPlayerDataSource UnlocksDataSource =>
+        new(CurrentGame.GameWorld, CurrentPatch, new MacroscopicUnlocksData());
+
     protected override string MusicCategory => "MacroscopicEditor";
 
     protected override MainGameState ReturnToState => MainGameState.MacroscopicStage;
@@ -211,6 +215,45 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
         // If so, CellTemplate.UpdateNameIfValid should be updated as well
         return !string.IsNullOrWhiteSpace(newName) && !EditedSpecies.ModifiableCellTypes.Any(c =>
             c.CellTypeName.Equals(newName, StringComparison.InvariantCultureIgnoreCase));
+    }
+
+    public ToleranceResult CalculateRawTolerances(bool excludePositiveBuffs = false)
+    {
+        return bodyPlanEditorTab.CalculateRawTolerances(excludePositiveBuffs);
+    }
+
+    public void OnTolerancesChanged(EnvironmentalTolerances newTolerances)
+    {
+        cellEditorTab.OnTolerancesChanged(newTolerances);
+    }
+
+    public EnvironmentalTolerances GetOptimalTolerancesForCurrentPatch()
+    {
+        // TODO: macroscopic tolerance effects from the body plan
+        return CurrentPatch.GenerateOptimalTolerances(MicrobeEnvironmentalToleranceCalculations.ToleranceValues
+            .MakeEmpty());
+    }
+
+    public ToleranceResult CalculateCurrentTolerances(EnvironmentalTolerances calculationTolerances)
+    {
+        // TODO: macroscopic tolerance effects from metaballs
+        return MicrobeEnvironmentalToleranceCalculations.CalculateTolerancesWithoutOrganelleModifiers(
+            calculationTolerances, CurrentPatch.Biome);
+    }
+
+    public void GetCurrentToleranceSummaryByElement(ToleranceModifier toleranceCategory,
+        Dictionary<IPlayerReadableName, float> result)
+    {
+        // TODO: macroscopic tolerance effects
+        result.Clear();
+        /*MicrobeEnvironmentalToleranceCalculations.GenerateToleranceEffectSummariesByOrganelle(EditedCellOrganelles,
+            toleranceCategory, result);*/
+    }
+
+    public void CalculateBodyEffectOnTolerances(
+        ref MicrobeEnvironmentalToleranceCalculations.ToleranceValues modifiedTolerances)
+    {
+        // TODO: metaballs affecting tolerances
     }
 
     protected override void ResolveDerivedTypeNodeReferences()
@@ -331,7 +374,8 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
 
         editsFacade.SetActiveActions(performedActionData);
 
-        return speciesComparer.Compare(editedSpecies!, editsFacade) * CurrentGame.GameWorld.WorldSettings.MPMultiplier;
+        return speciesComparer.Compare(editedSpecies!, editsFacade, Constants.MAX_SINGLE_EDIT_MP_COST,
+            CurrentGame.GameWorld.WorldSettings.MPMultiplier);
     }
 
     protected override GameProperties StartNewGameForEditor()
@@ -715,5 +759,12 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
         {
             worldEnvironmentNode.Environment = environment;
         }
+    }
+
+    private class MacroscopicUnlocksData : IPlayerDataSource
+    {
+        public EnergyBalanceInfoSimple? EnergyBalance => null;
+
+        public float Speed => 0.0f;
     }
 }

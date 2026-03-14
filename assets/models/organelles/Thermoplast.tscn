@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://00nfh32p4ex6"]
+[gd_scene format=3 uid="uid://00nfh32p4ex6"]
 
 [ext_resource type="Shader" uid="uid://d25y8w0858fqi" path="res://shaders/OrganelleEmissive.gdshader" id="1_6dvsg"]
 [ext_resource type="Texture2D" uid="uid://hg3fqkcf4eda" path="res://assets/textures/Thermoplast.png" id="2_igm2k"]
@@ -25,7 +25,7 @@ shader_parameter/growColor = Color(0.08, 0.0426667, 0, 1)
 shader_parameter/jiggleAmount = 0.03
 shader_parameter/dissolveTexture = ExtResource("3_5fepa")
 
-[node name="Thermoplast" type="MeshInstance3D"]
+[node name="Thermoplast" type="MeshInstance3D" unique_id=2074021694]
 transform = Transform3D(0.988207, 0, 0, 0, 0.988207, 0, 0, 0, 0.988207, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_22sb0")
 mesh = ExtResource("5_ryp7d")

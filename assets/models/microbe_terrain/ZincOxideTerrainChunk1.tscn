@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://37mwx5cfqoui"]
+[gd_scene format=3 uid="uid://37mwx5cfqoui"]
 
 [ext_resource type="PackedScene" uid="uid://cy2sm6icv20fq" path="res://assets/models/microbe_terrain/ZincOxideTerrainChunk1.glb" id="1_tyiuk"]
 [ext_resource type="Texture2D" uid="uid://denw7toahorcf" path="res://assets/textures/environment/Zincoxide.png" id="2_4pj6v"]
@@ -13,7 +13,7 @@ ao_enabled = true
 ao_light_affect = 0.35
 ao_texture = ExtResource("3_mydby")
 
-[node name="ZincoxideTerrainChunk1" instance=ExtResource("1_tyiuk")]
+[node name="ZincoxideTerrainChunk1" unique_id=1155267807 instance=ExtResource("1_tyiuk")]
 
-[node name="zincoxide1" parent="." index="0"]
+[node name="zincoxide1" parent="." index="0" unique_id=504446890]
 surface_material_override/0 = SubResource("StandardMaterial3D_xif62")

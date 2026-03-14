@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bmlgkmdyv458h"]
+[gd_scene format=3 uid="uid://bmlgkmdyv458h"]
 
 [ext_resource type="Script" uid="uid://dd8rpue0p3406" path="res://src/industrial_stage/IndustrialStage.cs" id="1"]
 [ext_resource type="PackedScene" uid="uid://cd1w0b7mbdwcu" path="res://src/society_stage/StrategicCamera.tscn" id="2"]
@@ -31,43 +31,43 @@ uv1_scale = Vector3(105, 105, 105)
 material = SubResource("4")
 size = Vector2(600, 600)
 
-[node name="IndustrialStage" type="Node" node_paths=PackedStringArray("nameLabelSystem", "spaceMoveConfirmationPopup", "strategicCamera", "hudRoot")]
+[node name="IndustrialStage" type="Node" unique_id=659520105 node_paths=PackedStringArray("nameLabelSystem", "spaceMoveConfirmationPopup", "strategicCamera", "hudRoot")]
 script = ExtResource("1")
 nameLabelSystem = NodePath("StrategicEntityNameLabelSystem")
 spaceMoveConfirmationPopup = NodePath("ConfirmSpaceStage")
 strategicCamera = NodePath("World/StrategicCamera")
 hudRoot = NodePath("IndustrialHUD")
 
-[node name="World" type="Node" parent="."]
+[node name="World" type="Node" parent="." unique_id=60821711]
 
-[node name="DynamicallySpawned" type="Node" parent="World"]
+[node name="DynamicallySpawned" type="Node" parent="World" unique_id=857759786]
 
-[node name="WorldLight" type="DirectionalLight3D" parent="World"]
+[node name="WorldLight" type="DirectionalLight3D" parent="World" unique_id=881128122]
 transform = Transform3D(-0.687551, 0.322878, -0.650403, 0.0453496, 0.913048, 0.405323, 0.724719, 0.249185, -0.642409, 0, 1.19209e-07, 0)
 shadow_enabled = true
 
-[node name="StrategicCamera" parent="World" instance=ExtResource("2")]
+[node name="StrategicCamera" parent="World" unique_id=2095362203 instance=ExtResource("2")]
 MaxZoomLevel = 3.0
 
-[node name="TemporaryGround" type="Node3D" parent="World"]
+[node name="TemporaryGround" type="Node3D" parent="World" unique_id=729480092]
 
-[node name="Visual1" type="MeshInstance3D" parent="World/TemporaryGround"]
+[node name="Visual1" type="MeshInstance3D" parent="World/TemporaryGround" unique_id=1660641755]
 mesh = SubResource("2")
 
-[node name="Visual2" type="MeshInstance3D" parent="World/TemporaryGround"]
+[node name="Visual2" type="MeshInstance3D" parent="World/TemporaryGround" unique_id=1533808783]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -700)
 mesh = SubResource("5")
 
-[node name="PlayerIndustrialInput" parent="." instance=ExtResource("9")]
+[node name="PlayerIndustrialInput" parent="." unique_id=430170590 instance=ExtResource("9")]
 
-[node name="StrategicEntityNameLabelSystem" parent="." instance=ExtResource("10")]
+[node name="StrategicEntityNameLabelSystem" parent="." unique_id=567196691 instance=ExtResource("10")]
 visible = false
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="IndustrialHUD" parent="." instance=ExtResource("7")]
+[node name="IndustrialHUD" parent="." unique_id=941286420 instance=ExtResource("7")]
 
-[node name="ConfirmSpaceStage" parent="." instance=ExtResource("11")]
+[node name="ConfirmSpaceStage" parent="." unique_id=724685797 instance=ExtResource("11")]
 custom_minimum_size = Vector2(300, 0)
 DialogText = "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
 WindowTitle = "CONFIRM_MOVE_TO_SPACE_STAGE"

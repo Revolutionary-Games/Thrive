@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://kewggbeyv0kg"]
+[gd_scene format=3 uid="uid://kewggbeyv0kg"]
 
 [ext_resource type="Texture2D" uid="uid://gc70w2bqq323" path="res://assets/textures/snowflake2.png" id="1"]
 
@@ -46,7 +46,7 @@ particles_anim_loop = false
 material = SubResource("8")
 size = Vector2(0.1, 0.1)
 
-[node name="CellBurstEffect" type="GPUParticles3D"]
+[node name="CellBurstEffect" type="GPUParticles3D" unique_id=763848211]
 amount = 300
 lifetime = 5.0
 explosiveness = 1.0

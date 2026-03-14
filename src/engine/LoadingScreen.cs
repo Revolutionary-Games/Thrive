@@ -246,25 +246,21 @@ public partial class LoadingScreen : Control
 
     private void UpdateMessage()
     {
-        if (loadingMessageLabel != null)
-            loadingMessageLabel.Text = LoadingMessage;
+        loadingMessageLabel?.Text = LoadingMessage;
     }
 
     private void UpdateDescription()
     {
-        if (loadingDescriptionLabel != null)
-            loadingDescriptionLabel.Text = LoadingDescription;
+        loadingDescriptionLabel?.Text = LoadingDescription;
     }
 
     private void UpdateArtDescription()
     {
-        if (artDescriptionLabel != null)
-            artDescriptionLabel.Text = ArtDescription;
+        artDescriptionLabel?.Text = ArtDescription;
     }
 
     private void UpdateTip()
     {
-        if (tipLabel != null)
-            tipLabel.ExtendedBbcode = Localization.Translate(Tip);
+        tipLabel?.ExtendedBbcode = Localization.Translate(Tip);
     }
 }

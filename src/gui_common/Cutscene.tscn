@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://2u5vq8yfushf"]
+[gd_scene format=3 uid="uid://2u5vq8yfushf"]
 
 [ext_resource type="Script" uid="uid://hwqwieuwh0as" path="res://src/gui_common/Cutscene.cs" id="1"]
 
-[node name="Cutscene" type="Control"]
+[node name="Cutscene" type="Control" unique_id=1086841402]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,7 +13,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=150831121]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,7 +22,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="." unique_id=731453512]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

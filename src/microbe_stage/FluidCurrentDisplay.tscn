@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://d3hkouff6asri"]
+[gd_scene format=3 uid="uid://d3hkouff6asri"]
 
 [ext_resource type="Shader" uid="uid://erlcc6rxb1cy" path="res://shaders/CurrentsParticles.gdshader" id="1_ykhyg"]
 [ext_resource type="Texture2D" uid="uid://nf7opycrmbhf" path="res://assets/textures/CurrentsNoise1.png" id="2_y0umn"]
@@ -53,7 +53,7 @@ shape = 0
 sections = 15
 curve = SubResource("Curve_00tqm")
 
-[node name="WaterCurrentDisplay" type="GPUParticles3D"]
+[node name="WaterCurrentDisplay" type="GPUParticles3D" unique_id=620334355]
 amount = 1000
 lifetime = 13.0
 transform_align = 2

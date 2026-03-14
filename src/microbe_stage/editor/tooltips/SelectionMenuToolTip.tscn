@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bl77ntlowknmp"]
+[gd_scene format=3 uid="uid://bl77ntlowknmp"]
 
 [ext_resource type="PackedScene" uid="uid://dt4v2vma5p2s4" path="res://src/microbe_stage/ProcessList.tscn" id="3"]
 [ext_resource type="Texture2D" uid="uid://drdwtf2f6qqch" path="res://assets/textures/gui/bevel/MP.png" id="4"]
@@ -23,7 +23,7 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="SelectionMenuTooltip" type="PanelContainer" node_paths=PackedStringArray("modifierInfoList", "organelleCostInfoList", "nameLabel", "mpLabel", "requiresNucleusLabel", "osmoregulationModifier", "descriptionLabel", "processesDescriptionLabel", "processesDescriptionSeparator", "processList", "moreInfo")]
+[node name="SelectionMenuTooltip" type="PanelContainer" unique_id=1253970789 node_paths=PackedStringArray("modifierInfoList", "organelleCostInfoList", "nameLabel", "mpLabel", "requiresNucleusLabel", "osmoregulationModifier", "descriptionLabel", "processesDescriptionLabel", "processesDescriptionSeparator", "processList", "moreInfo")]
 custom_minimum_size = Vector2(400, 0)
 offset_right = 350.0
 offset_bottom = 155.0
@@ -43,7 +43,7 @@ processesDescriptionSeparator = NodePath("MarginContainer/VBoxContainer/HSeparat
 processList = NodePath("MarginContainer/VBoxContainer/ProcessList")
 moreInfo = NodePath("MarginContainer/VBoxContainer/MoreInfo")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1376479516]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 15
@@ -51,23 +51,23 @@ theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1863350977]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 15
 
-[node name="Header" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="Header" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=364542563]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 10
 
-[node name="MP" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Header"]
+[node name="MP" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Header" unique_id=954300520]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 mouse_filter = 2
 
-[node name="Icon" type="TextureRect" parent="MarginContainer/VBoxContainer/Header/MP"]
+[node name="Icon" type="TextureRect" parent="MarginContainer/VBoxContainer/Header/MP" unique_id=1821870094]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 size_flags_vertical = 4
@@ -75,12 +75,12 @@ mouse_filter = 2
 texture = ExtResource("4")
 expand_mode = 1
 
-[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Header/MP"]
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Header/MP" unique_id=1777793338]
 layout_mode = 2
 text = "N_A_MP"
 label_settings = ExtResource("4_olfrb")
 
-[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/Header"]
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/Header" unique_id=117405289]
 editor_description = "PLACEHOLDER"
 custom_minimum_size = Vector2(230, 0)
 layout_mode = 2
@@ -90,60 +90,60 @@ label_settings = ExtResource("5_hsw5o")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/Header"]
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/Header" unique_id=1158572073]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="RequiresNucleus" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="RequiresNucleus" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1907280912]
 layout_mode = 2
 text = "REQUIRES_NUCLEUS"
 label_settings = ExtResource("6_2mc08")
 
-[node name="ProcessesDescription" parent="MarginContainer/VBoxContainer" instance=ExtResource("6")]
+[node name="ProcessesDescription" parent="MarginContainer/VBoxContainer" unique_id=1366796537 instance=ExtResource("6")]
 layout_mode = 2
 mouse_filter = 2
 fit_content = true
 
-[node name="ProcessList" parent="MarginContainer/VBoxContainer" instance=ExtResource("3")]
+[node name="ProcessList" parent="MarginContainer/VBoxContainer" unique_id=1563198072 instance=ExtResource("3")]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="ModifierList" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="ModifierList" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1621578455]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="osmoregulationCost" parent="MarginContainer/VBoxContainer/ModifierList" instance=ExtResource("9_kyay8")]
+[node name="osmoregulationCost" parent="MarginContainer/VBoxContainer/ModifierList" unique_id=493395802 instance=ExtResource("9_kyay8")]
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "-1"
 ModifierValueFont = ExtResource("6_2mc08")
 ModifierIcon = ExtResource("10_log1v")
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1130055289]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="OrganelleCostList" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="OrganelleCostList" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1338570209]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=653440090]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Description" parent="MarginContainer/VBoxContainer" instance=ExtResource("6")]
+[node name="Description" parent="MarginContainer/VBoxContainer" unique_id=840456512 instance=ExtResource("6")]
 layout_mode = 2
 fit_content = true
 
-[node name="MoreInfo" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="MoreInfo" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=665734154]
 layout_mode = 2
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/MoreInfo"]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/MoreInfo" unique_id=201350909]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="MoreInfoLabel" parent="MarginContainer/VBoxContainer/MoreInfo" instance=ExtResource("6")]
+[node name="MoreInfoLabel" parent="MarginContainer/VBoxContainer/MoreInfo" unique_id=2039863102 instance=ExtResource("6")]
 layout_mode = 2
 fit_content = true
 ExtendedBbcode = "MORE_INFO_PROMPT"

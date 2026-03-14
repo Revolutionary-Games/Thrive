@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://glw134awyb7d"]
+[gd_scene format=3 uid="uid://glw134awyb7d"]
 
 [ext_resource type="PackedScene" uid="uid://dl7gg4f1jbray" path="res://assets/models/microbe_terrain/ClayTerrainChunk1.glb" id="1_q6tlx"]
 [ext_resource type="Texture2D" uid="uid://kdbsfcs3vl61" path="res://assets/textures/environment/Clay.png" id="2_pxws5"]
@@ -18,7 +18,7 @@ ao_enabled = true
 ao_light_affect = 0.35
 ao_texture = ExtResource("3_i3qqk")
 
-[node name="ClayTerrainChunk1" instance=ExtResource("1_q6tlx")]
+[node name="ClayTerrainChunk1" unique_id=1240875365 instance=ExtResource("1_q6tlx")]
 
-[node name="clay1" parent="." index="0"]
+[node name="clay1" parent="." index="0" unique_id=1329373328]
 surface_material_override/0 = SubResource("StandardMaterial3D_pxws5")

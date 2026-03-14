@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dhqcyclygrmlu"]
+[gd_scene format=3 uid="uid://dhqcyclygrmlu"]
 
 [ext_resource type="Script" uid="uid://dr3vxad6pmlm" path="res://src/engine/DebugDrawer.cs" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
 
-[node name="DebugDrawer" type="DebugDrawer"]
+[node name="DebugDrawer" type="DebugDrawer" unique_id=1013527587]
 process_mode = 3
 process_priority = 10000
 anchors_preset = 15
@@ -17,10 +17,8 @@ mouse_filter = 2
 theme = ExtResource("2")
 script = ExtResource("1")
 
-[node name="LineDrawer" type="MeshInstance3D" parent="."]
+[node name="LineDrawer" type="MeshInstance3D" parent="." unique_id=1973298629]
 cast_shadow = 0
-skeleton = NodePath("")
 
-[node name="TriangleDrawer" type="MeshInstance3D" parent="."]
+[node name="TriangleDrawer" type="MeshInstance3D" parent="." unique_id=1698187185]
 cast_shadow = 0
-skeleton = NodePath("")

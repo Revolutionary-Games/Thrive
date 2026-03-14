@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d06pkd2hx1syf"]
+[gd_scene format=3 uid="uid://d06pkd2hx1syf"]
 
 [ext_resource type="Script" uid="uid://die3uqch1j6w5" path="res://src/modding/ModManager.cs" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://ehx86lo13kcg" path="res://src/modding/ModUploader.tscn" id="12"]
 [ext_resource type="PackedScene" uid="uid://bgeijgq7runaw" path="res://src/gui_common/FocusGrabber.tscn" id="13"]
 
-[node name="ModManager" type="Control" node_paths=PackedStringArray("leftArrow", "rightArrow", "availableModsContainer", "enabledModsContainer", "openModInfoButton", "openModUrlButton", "disableAllModsButton", "selectedModName", "selectedModIcon", "selectedModAuthor", "selectedModVersion", "selectedModRecommendedThriveVersion", "selectedModMinimumThriveVersion", "selectedModDescription", "applyChangesButton", "unAppliedChangesWarning", "modFullInfoPopup", "fullInfoName", "fullInfoInternalName", "fullInfoAuthor", "fullInfoVersion", "fullInfoDescription", "fullInfoLongDescription", "fullInfoFromWorkshop", "fullInfoIconFile", "fullInfoInfoUrl", "fullInfoLicense", "fullInfoRecommendedThrive", "fullInfoMinimumThrive", "fullInfoMaximumThrive", "fullInfoPckName", "fullInfoModAssembly", "fullInfoAssemblyModClass", "openWorkshopButton", "modUploaderButton", "newModGUI", "modCreateErrorDialog", "modUploader", "modErrorDialog", "restartRequired")]
+[node name="ModManager" type="Control" unique_id=334816235 node_paths=PackedStringArray("leftArrow", "rightArrow", "availableModsContainer", "enabledModsContainer", "openModInfoButton", "openModUrlButton", "disableAllModsButton", "selectedModName", "selectedModIcon", "selectedModAuthor", "selectedModVersion", "selectedModRecommendedThriveVersion", "selectedModMinimumThriveVersion", "selectedModDescription", "applyChangesButton", "unAppliedChangesWarning", "modFullInfoPopup", "fullInfoName", "fullInfoInternalName", "fullInfoAuthor", "fullInfoVersion", "fullInfoDescription", "fullInfoLongDescription", "fullInfoFromWorkshop", "fullInfoIconFile", "fullInfoInfoUrl", "fullInfoLicense", "fullInfoRecommendedThrive", "fullInfoMinimumThrive", "fullInfoMaximumThrive", "fullInfoPckName", "fullInfoModAssembly", "fullInfoAssemblyModClass", "openWorkshopButton", "modUploaderButton", "newModGUI", "modCreateErrorDialog", "modUploader", "modErrorDialog", "restartRequired")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -64,7 +64,7 @@ modUploader = NodePath("ModUploader")
 modErrorDialog = NodePath("LoadUnloadErrors")
 restartRequired = NodePath("RestartRequired")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=50637370]
 layout_mode = 0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -74,266 +74,266 @@ offset_top = -45.0
 offset_right = -16.0
 offset_bottom = -6.0
 
-[node name="Back" type="Button" parent="HBoxContainer"]
+[node name="Back" type="Button" parent="HBoxContainer" unique_id=2130598590]
 custom_minimum_size = Vector2(150, 40)
 layout_mode = 2
 size_flags_horizontal = 4
 mouse_filter = 1
 text = "BACK"
 
-[node name="FocusGrabber" parent="HBoxContainer" instance=ExtResource("13")]
+[node name="FocusGrabber" parent="HBoxContainer" unique_id=618342785 instance=ExtResource("13")]
 layout_mode = 2
 NodeToGiveFocusTo = NodePath("../Back")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=879714874]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_bottom = -47.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=645198649]
 custom_minimum_size = Vector2(850, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="UpperPart" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+[node name="UpperPart" type="HBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=1188944076]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Left" type="VBoxContainer" parent="CenterContainer/VBoxContainer/UpperPart"]
+[node name="Left" type="VBoxContainer" parent="CenterContainer/VBoxContainer/UpperPart" unique_id=1748704097]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/UpperPart/Left"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/UpperPart/Left" unique_id=1119670553]
 layout_mode = 2
 text = "AVAILABLE_MODS"
 
-[node name="AvailableMods" type="ItemList" parent="CenterContainer/VBoxContainer/UpperPart/Left"]
+[node name="AvailableMods" type="ItemList" parent="CenterContainer/VBoxContainer/UpperPart/Left" unique_id=570820375]
 custom_minimum_size = Vector2(300, 200)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 fixed_icon_size = Vector2i(32, 32)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/UpperPart/Left"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/UpperPart/Left" unique_id=1443475710]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Refresh" type="Button" parent="CenterContainer/VBoxContainer/UpperPart/Left/HBoxContainer"]
+[node name="Refresh" type="Button" parent="CenterContainer/VBoxContainer/UpperPart/Left/HBoxContainer" unique_id=333498875]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 18
 text = "REFRESH"
 
-[node name="Browse" type="Button" parent="CenterContainer/VBoxContainer/UpperPart/Left/HBoxContainer"]
+[node name="Browse" type="Button" parent="CenterContainer/VBoxContainer/UpperPart/Left/HBoxContainer" unique_id=657632774]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 18
 text = "OPEN_FOLDER"
 
-[node name="Center" type="VBoxContainer" parent="CenterContainer/VBoxContainer/UpperPart"]
+[node name="Center" type="VBoxContainer" parent="CenterContainer/VBoxContainer/UpperPart" unique_id=1116910392]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/UpperPart/Center"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/UpperPart/Center" unique_id=1579899777]
 layout_mode = 2
 
-[node name="Right" type="Button" parent="CenterContainer/VBoxContainer/UpperPart/Center/VBoxContainer"]
+[node name="Right" type="Button" parent="CenterContainer/VBoxContainer/UpperPart/Center/VBoxContainer" unique_id=1390892006]
 layout_mode = 2
 disabled = true
 text = "RIGHT_ARROW"
 
-[node name="Control" type="Control" parent="CenterContainer/VBoxContainer/UpperPart/Center/VBoxContainer"]
+[node name="Control" type="Control" parent="CenterContainer/VBoxContainer/UpperPart/Center/VBoxContainer" unique_id=838092435]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="Left" type="Button" parent="CenterContainer/VBoxContainer/UpperPart/Center/VBoxContainer"]
+[node name="Left" type="Button" parent="CenterContainer/VBoxContainer/UpperPart/Center/VBoxContainer" unique_id=689924819]
 layout_mode = 2
 disabled = true
 text = "LEFT_ARROW"
 
-[node name="Right" type="VBoxContainer" parent="CenterContainer/VBoxContainer/UpperPart"]
+[node name="Right" type="VBoxContainer" parent="CenterContainer/VBoxContainer/UpperPart" unique_id=1765757893]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/UpperPart/Right"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/UpperPart/Right" unique_id=2075322251]
 layout_mode = 2
 text = "ENABLED_MODS"
 
-[node name="ActiveMods" type="ItemList" parent="CenterContainer/VBoxContainer/UpperPart/Right"]
+[node name="ActiveMods" type="ItemList" parent="CenterContainer/VBoxContainer/UpperPart/Right" unique_id=518859394]
 custom_minimum_size = Vector2(300, 200)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 fixed_icon_size = Vector2i(32, 32)
 
-[node name="DisableAll" type="Button" parent="CenterContainer/VBoxContainer/UpperPart/Right"]
+[node name="DisableAll" type="Button" parent="CenterContainer/VBoxContainer/UpperPart/Right" unique_id=660212249]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
 disabled = true
 text = "DISABLE_ALL"
 
-[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer"]
+[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer" unique_id=278471583]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="CenterContainer/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer/VBoxContainer" unique_id=1222785048]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer" unique_id=1418470877]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="CurrentlySelected" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer"]
+[node name="CurrentlySelected" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer" unique_id=1015300377]
 layout_mode = 2
 
-[node name="NameLine" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected"]
+[node name="NameLine" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected" unique_id=1204414807]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/NameLine"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/NameLine" unique_id=1419009053]
 layout_mode = 2
 text = "SELECTED_MOD"
 
-[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/NameLine"]
+[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/NameLine" unique_id=918334572]
 custom_minimum_size = Vector2(3, 0)
 layout_mode = 2
 
-[node name="Icon" type="TextureRect" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/NameLine"]
+[node name="Icon" type="TextureRect" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/NameLine" unique_id=732359416]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 expand_mode = 1
 stretch_mode = 7
 
-[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/NameLine"]
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/NameLine" unique_id=1464886220]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "My cool mod"
 
-[node name="AuthorLine" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected"]
+[node name="AuthorLine" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected" unique_id=1640942252]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/AuthorLine"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/AuthorLine" unique_id=341829989]
 layout_mode = 2
 text = "MOD_AUTHOR"
 
-[node name="Control" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/AuthorLine"]
+[node name="Control" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/AuthorLine" unique_id=1389822973]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/AuthorLine"]
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/AuthorLine" unique_id=111519708]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "Some dude"
 
-[node name="VersionLine" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected"]
+[node name="VersionLine" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected" unique_id=2030053400]
 layout_mode = 2
 
-[node name="ModVersion" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine"]
+[node name="ModVersion" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine" unique_id=1270753468]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ModVersion"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ModVersion" unique_id=899343667]
 layout_mode = 2
 text = "MOD_VERSION"
 
-[node name="Control" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ModVersion"]
+[node name="Control" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ModVersion" unique_id=999535339]
 custom_minimum_size = Vector2(3, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ModVersion" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ModVersion"]
+[node name="ModVersion" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ModVersion" unique_id=1463854096]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "1.0"
 
-[node name="Control" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine"]
+[node name="Control" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine" unique_id=731903760]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ThriveVersionLine" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine"]
+[node name="ThriveVersionLine" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine" unique_id=494215103]
 layout_mode = 2
 alignment = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine"]
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine" unique_id=973450490]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer" unique_id=1784788314]
 layout_mode = 2
 theme_override_constants/margin_left = 3
 theme_override_constants/margin_top = 3
 theme_override_constants/margin_right = 3
 theme_override_constants/margin_bottom = 3
 
-[node name="ModThriveVersion" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer/MarginContainer"]
+[node name="ModThriveVersion" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer/MarginContainer" unique_id=1788354826]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer/MarginContainer/ModThriveVersion"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer/MarginContainer/ModThriveVersion" unique_id=1544798164]
 layout_mode = 2
 text = "RECOMMENDED_THRIVE_VERSION"
 label_settings = ExtResource("4_sp5px")
 
-[node name="Control" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer/MarginContainer/ModThriveVersion"]
+[node name="Control" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer/MarginContainer/ModThriveVersion" unique_id=427622826]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Recommended" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer/MarginContainer/ModThriveVersion"]
+[node name="Recommended" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer/MarginContainer/ModThriveVersion" unique_id=1421445197]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "0.5.6"
 label_settings = ExtResource("4_sp5px")
 
-[node name="PanelContainer2" type="PanelContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine"]
+[node name="PanelContainer2" type="PanelContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine" unique_id=1750446945]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer2"]
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer2" unique_id=498538033]
 layout_mode = 2
 theme_override_constants/margin_left = 3
 theme_override_constants/margin_top = 3
 theme_override_constants/margin_right = 3
 theme_override_constants/margin_bottom = 3
 
-[node name="ModMinimumThrive" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer2/MarginContainer"]
+[node name="ModMinimumThrive" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer2/MarginContainer" unique_id=2100493]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer2/MarginContainer/ModMinimumThrive"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer2/MarginContainer/ModMinimumThrive" unique_id=1345240530]
 layout_mode = 2
 text = "MINIMUM_VERSION"
 label_settings = ExtResource("4_sp5px")
 
-[node name="Control2" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer2/MarginContainer/ModMinimumThrive"]
+[node name="Control2" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer2/MarginContainer/ModMinimumThrive" unique_id=2087262448]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Minimum" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer2/MarginContainer/ModMinimumThrive"]
+[node name="Minimum" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer2/MarginContainer/ModMinimumThrive" unique_id=2121730355]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "0.5.6"
 label_settings = ExtResource("4_sp5px")
 
-[node name="DescriptionLine" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected"]
+[node name="DescriptionLine" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected" unique_id=811952912]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/DescriptionLine"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/DescriptionLine" unique_id=2037658445]
 layout_mode = 2
 text = "MOD_DESCRIPTION"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/DescriptionLine"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/DescriptionLine" unique_id=2057019043]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 2
 
-[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/DescriptionLine/HBoxContainer"]
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/DescriptionLine/HBoxContainer" unique_id=1014383535]
 editor_description = "PLACEHOLDER"
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
@@ -342,82 +342,82 @@ text = "Mod description goes here that can get a bit long sometimes so this need
 autowrap_mode = 3
 max_lines_visible = 3
 
-[node name="ButtonsLine" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected"]
+[node name="ButtonsLine" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected" unique_id=340776135]
 layout_mode = 2
 
-[node name="MoreInfo" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/ButtonsLine"]
+[node name="MoreInfo" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/ButtonsLine" unique_id=539761590]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 18
 disabled = true
 text = "MORE_INFO"
 
-[node name="Url" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/ButtonsLine"]
+[node name="Url" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/ButtonsLine" unique_id=54757733]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
 disabled = true
 text = "OPEN_MOD_URL"
 
-[node name="Spacer2" type="Control" parent="CenterContainer/VBoxContainer"]
+[node name="Spacer2" type="Control" parent="CenterContainer/VBoxContainer" unique_id=1311882436]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=1602389712]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 2
 
-[node name="Workshop" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
+[node name="Workshop" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2" unique_id=72121819]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
 text = "BROWSE_WORKSHOP"
 
-[node name="Upload" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
+[node name="Upload" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2" unique_id=1148281774]
 layout_mode = 2
 focus_mode = 0
 theme_override_font_sizes/font_size = 18
 text = "UPLOAD"
 
-[node name="New" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
+[node name="New" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2" unique_id=472156149]
 editor_description = "This is not focusable due to controller input getting stuck in the new form"
 layout_mode = 2
 focus_mode = 0
 theme_override_font_sizes/font_size = 18
 text = "NEW"
 
-[node name="Spacer3" type="Control" parent="CenterContainer/VBoxContainer"]
+[node name="Spacer3" type="Control" parent="CenterContainer/VBoxContainer" unique_id=509158973]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1457343597]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "MOD_LOAD_UNLOAD_CAVEATS"
 label_settings = ExtResource("5_b1wkc")
 autowrap_mode = 3
 
-[node name="Spacer4" type="Control" parent="CenterContainer/VBoxContainer"]
+[node name="Spacer4" type="Control" parent="CenterContainer/VBoxContainer" unique_id=293782134]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=361519667]
 layout_mode = 2
 alignment = 1
 
-[node name="LoadAll" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+[node name="LoadAll" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer" unique_id=2009262396]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 18
 text = "ENABLE_ALL_COMPATIBLE"
 
-[node name="Apply" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+[node name="Apply" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer" unique_id=162762127]
 layout_mode = 2
 size_flags_horizontal = 0
 disabled = true
 text = "APPLY_CHANGES"
 
-[node name="NewModGUI" parent="." instance=ExtResource("6")]
+[node name="NewModGUI" parent="." unique_id=1950497673 instance=ExtResource("6")]
 visible = false
 layout_mode = 0
 anchors_preset = 0
@@ -426,7 +426,7 @@ anchor_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="UnAppliedChangesWarning" parent="." instance=ExtResource("3")]
+[node name="UnAppliedChangesWarning" parent="." unique_id=366671493 instance=ExtResource("3")]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
 offset_left = -500.0
@@ -437,7 +437,7 @@ DialogText = "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 ConfirmText = "DISCARD_CHANGES"
 WindowTitle = "UNAPPLIED_MOD_CHANGES"
 
-[node name="ModFullInfo" parent="." instance=ExtResource("4")]
+[node name="ModFullInfo" parent="." unique_id=922941617 instance=ExtResource("4")]
 layout_mode = 0
 offset_left = -580.0
 offset_top = -416.0
@@ -446,7 +446,7 @@ offset_bottom = 0.0
 WindowTitle = "FULL_MOD_INFO"
 Resizable = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ModFullInfo"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ModFullInfo" unique_id=2113820998]
 layout_mode = 0
 offset_left = 15.0
 offset_top = 15.0
@@ -454,250 +454,250 @@ offset_right = 565.0
 offset_bottom = 401.0
 size_flags_horizontal = 3
 
-[node name="ScrollContainer" type="ScrollContainer" parent="ModFullInfo/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="ModFullInfo/VBoxContainer" unique_id=1898905616]
 custom_minimum_size = Vector2(550, 350)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer" unique_id=1966643856]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_right = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer" unique_id=756218779]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 15
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1488113223]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=2121515459]
 layout_mode = 2
 text = "MOD_NAME"
 label_settings = ExtResource("10_m12ca")
 
-[node name="Name" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="Name" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=781690164]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "Name goes here..."
 label_settings = ExtResource("11_kax5m")
 
-[node name="VBoxContainer15" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer15" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=857230127]
 layout_mode = 2
 
-[node name="Label16" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer15"]
+[node name="Label16" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer15" unique_id=2082132773]
 layout_mode = 2
 text = "MOD_INTERNAL_NAME"
 label_settings = ExtResource("10_m12ca")
 
-[node name="InternalName" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer15"]
+[node name="InternalName" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer15" unique_id=2143382091]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "Internal name goes here..."
 label_settings = ExtResource("11_kax5m")
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=170484286]
 layout_mode = 2
 
-[node name="Label3" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
+[node name="Label3" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" unique_id=2049077668]
 layout_mode = 2
 text = "MOD_AUTHOR"
 label_settings = ExtResource("10_m12ca")
 
-[node name="Author" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
+[node name="Author" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" unique_id=560021790]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "Author goes here..."
 label_settings = ExtResource("11_kax5m")
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1295469623]
 layout_mode = 2
 
-[node name="Label4" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer3"]
+[node name="Label4" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer3" unique_id=790207626]
 layout_mode = 2
 text = "MOD_VERSION"
 label_settings = ExtResource("10_m12ca")
 
-[node name="Version" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer3"]
+[node name="Version" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer3" unique_id=195710657]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "1.0"
 label_settings = ExtResource("11_kax5m")
 
-[node name="VBoxContainer4" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer4" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1847545800]
 layout_mode = 2
 
-[node name="Label5" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer4"]
+[node name="Label5" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer4" unique_id=349924949]
 layout_mode = 2
 text = "MOD_DESCRIPTION"
 label_settings = ExtResource("10_m12ca")
 
-[node name="Description" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer4"]
+[node name="Description" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer4" unique_id=927541825]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "Mod description"
 label_settings = ExtResource("11_kax5m")
 
-[node name="VBoxContainer5" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer5" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1444671751]
 layout_mode = 2
 
-[node name="Label6" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer5"]
+[node name="Label6" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer5" unique_id=772809321]
 layout_mode = 2
 text = "MOD_EXTENDED_DESCRIPTION"
 label_settings = ExtResource("10_m12ca")
 
-[node name="LongDescription" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer5"]
+[node name="LongDescription" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer5" unique_id=260973377]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "Longer mod description"
 label_settings = ExtResource("11_kax5m")
 
-[node name="VBoxContainer16" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer16" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=940186205]
 layout_mode = 2
 
-[node name="IsWorkshop" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer16"]
+[node name="IsWorkshop" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer16" unique_id=857099871]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "Is from workshop"
 label_settings = ExtResource("11_kax5m")
 
-[node name="VBoxContainer6" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer6" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=280982933]
 layout_mode = 2
 
-[node name="Label7" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer6"]
+[node name="Label7" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer6" unique_id=23771936]
 layout_mode = 2
 text = "MOD_ICON_FILE"
 label_settings = ExtResource("10_m12ca")
 
-[node name="IconFile" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer6"]
+[node name="IconFile" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer6" unique_id=1124938043]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "mod_icon.png"
 label_settings = ExtResource("11_kax5m")
 
-[node name="VBoxContainer7" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer7" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1195696528]
 layout_mode = 2
 
-[node name="Label8" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer7"]
+[node name="Label8" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer7" unique_id=2316340]
 layout_mode = 2
 text = "MOD_INFO_URL"
 label_settings = ExtResource("10_m12ca")
 
-[node name="InfoURL" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer7"]
+[node name="InfoURL" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer7" unique_id=750608186]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "some URL"
 label_settings = ExtResource("11_kax5m")
 
-[node name="VBoxContainer8" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer8" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=316673040]
 layout_mode = 2
 
-[node name="Label9" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer8"]
+[node name="Label9" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer8" unique_id=486564418]
 layout_mode = 2
 text = "MOD_LICENSE"
 label_settings = ExtResource("10_m12ca")
 
-[node name="License" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer8"]
+[node name="License" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer8" unique_id=1850363549]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "MIT"
 label_settings = ExtResource("11_kax5m")
 
-[node name="VBoxContainer9" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer9" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=400252414]
 layout_mode = 2
 
-[node name="Label10" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer9"]
+[node name="Label10" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer9" unique_id=1487116743]
 layout_mode = 2
 text = "MOD_RECOMMENDED_THRIVE"
 label_settings = ExtResource("10_m12ca")
 
-[node name="RecommendedThrive" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer9"]
+[node name="RecommendedThrive" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer9" unique_id=863618547]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "0.5.6"
 label_settings = ExtResource("11_kax5m")
 
-[node name="VBoxContainer10" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer10" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1023058269]
 layout_mode = 2
 
-[node name="Label11" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer10"]
+[node name="Label11" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer10" unique_id=1373739951]
 layout_mode = 2
 text = "MOD_MINIMUM_THRIVE"
 label_settings = ExtResource("10_m12ca")
 
-[node name="MinimumThrive" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer10"]
+[node name="MinimumThrive" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer10" unique_id=89896578]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "0.5.6-alpha"
 label_settings = ExtResource("11_kax5m")
 
-[node name="VBoxContainer11" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer11" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1878404792]
 layout_mode = 2
 
-[node name="Label12" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer11"]
+[node name="Label12" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer11" unique_id=1920252659]
 layout_mode = 2
 text = "MOD_MAXIMUM_THRIVE"
 label_settings = ExtResource("10_m12ca")
 
-[node name="MaximumThrive" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer11"]
+[node name="MaximumThrive" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer11" unique_id=1791042468]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "0.5.6"
 label_settings = ExtResource("11_kax5m")
 
-[node name="VBoxContainer12" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer12" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=595433852]
 layout_mode = 2
 
-[node name="Label13" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer12"]
+[node name="Label13" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer12" unique_id=1729842361]
 layout_mode = 2
 text = "MOD_PCK_NAME"
 label_settings = ExtResource("10_m12ca")
 
-[node name="PckName" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer12"]
+[node name="PckName" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer12" unique_id=930352169]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "ModName.pck"
 label_settings = ExtResource("11_kax5m")
 
-[node name="VBoxContainer13" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer13" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=484728750]
 layout_mode = 2
 
-[node name="Label14" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer13"]
+[node name="Label14" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer13" unique_id=1585635726]
 layout_mode = 2
 text = "MOD_ASSEMBLY"
 label_settings = ExtResource("10_m12ca")
 
-[node name="ModAssembly" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer13"]
+[node name="ModAssembly" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer13" unique_id=308155437]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "Mod.dll"
 label_settings = ExtResource("11_kax5m")
 
-[node name="VBoxContainer14" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer14" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1784526238]
 layout_mode = 2
 
-[node name="Label15" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer14"]
+[node name="Label15" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer14" unique_id=1798263421]
 layout_mode = 2
 text = "MOD_ASSEMBLY_CLASS"
 label_settings = ExtResource("10_m12ca")
 
-[node name="AssemblyModClass" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer14"]
+[node name="AssemblyModClass" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer14" unique_id=972798908]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "ModClass"
 label_settings = ExtResource("11_kax5m")
 
-[node name="Button" type="Button" parent="ModFullInfo/VBoxContainer"]
+[node name="Button" type="Button" parent="ModFullInfo/VBoxContainer" unique_id=707215357]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("11_eeuir")
 theme_override_font_sizes/font_size = 18
 text = "CLOSE"
 
-[node name="CreateModError" parent="." instance=ExtResource("7")]
+[node name="CreateModError" parent="." unique_id=1125463085 instance=ExtResource("7")]
 layout_mode = 0
 offset_left = -67.0
 offset_top = -87.0
@@ -707,7 +707,7 @@ ExceptionInfo = ""
 WindowTitle = "MOD_CREATION_FAILED"
 Resizable = false
 
-[node name="ModUploader" parent="." instance=ExtResource("12")]
+[node name="ModUploader" parent="." unique_id=423635721 instance=ExtResource("12")]
 visible = false
 layout_mode = 0
 anchors_preset = 0
@@ -716,13 +716,13 @@ anchor_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="LoadUnloadErrors" parent="." instance=ExtResource("7")]
+[node name="LoadUnloadErrors" parent="." unique_id=2014872603 instance=ExtResource("7")]
 custom_minimum_size = Vector2(400, 350)
 layout_mode = 0
 ErrorMessage = "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
 ExceptionInfo = ""
 
-[node name="RestartRequired" parent="." instance=ExtResource("3")]
+[node name="RestartRequired" parent="." unique_id=514284569 instance=ExtResource("3")]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 0
 HideCancelButton = true

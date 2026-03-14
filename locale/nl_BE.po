@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-12 15:26+0100\n"
-"PO-Revision-Date: 2025-12-22 05:43+0000\n"
-"Last-Translator: William <William.berger@outlook.be>\n"
+"POT-Creation-Date: 2026-02-27 14:48+0200\n"
+"PO-Revision-Date: 2026-02-18 15:13+0000\n"
+"Last-Translator: Rune Vercauteren <rune.vercauteren@gmail.com>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
 "Language: nl_BE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11.4\n"
+"X-Generator: Weblate 5.15.2\n"
 "Generated-By: Babel 2.9.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -729,6 +729,14 @@ msgstr "Cellulose"
 
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Dit membraan heeft een celwand, wat resulteert in een betere bescherming tegen algemene schade en vooral tegen fysieke schade. Het kost ook minder energie om zijn vorm te behouden, maar kan stoffen niet snel absorberen en is langzamer. [b]Cellulase kan deze celwand verteren[/b] waardoor het kwetsbaar is voor verzwelging door roofdieren."
+
+#, fuzzy
+msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
+msgstr "Pauzeer het spel"
+
+#, fuzzy
+msgid "CELL_SPECIALIZATION_TOOLTIP"
+msgstr "Pauzeer het spel"
 
 #, fuzzy
 msgid "CELL_STAT_ROTATION_TOOLTIP"
@@ -2157,6 +2165,10 @@ msgstr "{0}: +{1} ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr "{0}: +{1} ATP"
 
+#, fuzzy
+msgid "ENERGY_CONSUMPTION_PRESSURE"
+msgstr "Wolken met chemische stoffen"
+
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energie in {0} voor {1}"
 
@@ -2819,6 +2831,14 @@ msgstr ""
 "kunt u proberen dit uit te schakelen om te zien of het probleem is verdwenen."
 
 #, fuzzy
+msgid "GUI_SCALE_INCREASED_SIZE_NOTE"
+msgstr "(lagere waarden verbeteren prestaties)"
+
+#, fuzzy
+msgid "GUI_SCALE_OPTION"
+msgstr "Opties sluiten?"
+
+#, fuzzy
 msgid "GUI_TAB_NAVIGATION"
 msgstr "{0} K"
 
@@ -2947,13 +2967,6 @@ msgstr ""
 #, fuzzy
 msgid "IMAGE_FILE_TYPES"
 msgstr "Membraantypes"
-
-#, fuzzy
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
-msgstr "Organel plaatsen"
-
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
-msgstr ""
 
 #, fuzzy
 msgid "INCREASE_ITEM_SIZE"
@@ -3200,13 +3213,6 @@ msgstr "Juli"
 
 msgid "JUNE"
 msgstr "Juni"
-
-#, fuzzy
-msgid "KEEP_CURRENT_SHORT"
-msgstr "Huidige Ontwikkelaars"
-
-msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
-msgstr "Behoud het huidige bereik van de druktolerantie terwijl je de min- en max-schuifbalken aanpast"
 
 #, fuzzy
 msgid "KEEP_MIGRATION"
@@ -3745,6 +3751,10 @@ msgstr "Chemosynthese"
 #, fuzzy
 msgid "MACROSCOPIC"
 msgstr "Word Macroscopisch ({0}/{1})"
+
+#, fuzzy
+msgid "MACROSCOPIC_EDITOR"
+msgstr "Microbe editor laden"
 
 #, fuzzy
 msgid "MACROSCOPIC_STAGE"
@@ -4542,6 +4552,10 @@ msgstr "Meercellige Vrijelijke Bewerker"
 msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Meercellige bewerker"
 
+#, fuzzy
+msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
+msgstr "Meercellige Fase"
+
 msgid "MULTICELLULAR_STAGE"
 msgstr "Meercellige Fase"
 
@@ -5004,6 +5018,10 @@ msgstr ""
 msgid "ORGANISM_STATISTICS"
 msgstr "Organismestatistieken"
 
+#, fuzzy
+msgid "ORGANISM_STATISTICS_MICROBE"
+msgstr "Organismestatistieken"
+
 msgid "OR_UNLOCK_CONDITION"
 msgstr ""
 
@@ -5387,7 +5405,16 @@ msgstr "Verwerken van geladen objecten"
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
+#, fuzzy
+msgid "PROCESS_PANEL_EXPLANATION_TITLE"
+msgstr "Celprocessen"
+
+#, fuzzy
 msgid "PROCESS_PANEL_TITLE"
+msgstr "Celprocessen"
+
+#, fuzzy
+msgid "PROCESS_PANEL_TITLE_MICROBE"
 msgstr "Celprocessen"
 
 msgid "PROCESS_SPEED_MODIFIER"
@@ -5699,6 +5726,10 @@ msgid "RUNOFF_EVENT"
 msgstr ""
 
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
+msgstr "Gebruik auto-evo tijdens gameplay"
+
+#, fuzzy
+msgid "RUN_AUTO_EVO_DURING_GAMEPLAY_TOOLTIP"
 msgstr "Gebruik auto-evo tijdens gameplay"
 
 msgid "RUN_ONE_STEP"
@@ -6176,6 +6207,10 @@ msgstr "Glucose spawnen"
 
 msgid "SPAWN_PHOSPHATES"
 msgstr "Fosfaat spawnen"
+
+#, fuzzy
+msgid "SPECIALIZATION_COLON"
+msgstr "Totale populatie:"
 
 msgid "SPECIAL_MOUSE_1"
 msgstr "Muis Speciaal 1"
@@ -6822,9 +6857,6 @@ msgid "TOOLS"
 msgstr "Hulpmiddelen"
 
 msgid "TOOL_HAND_AXE"
-msgstr ""
-
-msgid "TOO_LARGE_PRESSURE_RANGE"
 msgstr ""
 
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
@@ -7543,7 +7575,24 @@ msgstr "Vergroot de opslagruimte van de cel."
 msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr "De vacuole zal {0} eenheden van de geselecteerde stof opslaan"
 
+#, fuzzy
+msgid "VALUE_MODIFIER"
+msgstr "Gezondheidsmodificator"
+
+msgid "VALUE_OFFSET"
+msgstr ""
+
+#, fuzzy
+msgid "VALUE_TOTAL"
+msgstr "Snelheid:"
+
 msgid "VALUE_WITH_UNIT"
+msgstr ""
+
+msgid "VALUE_WITH_UNIT_PLUS"
+msgstr ""
+
+msgid "VALUE_WITH_UNIT_PLUS_MINUS"
 msgstr ""
 
 #, fuzzy
@@ -7576,6 +7625,10 @@ msgstr "Alles uitschakelen"
 
 #, fuzzy
 msgid "VIEW_CELL_PROCESSES"
+msgstr "Verandert [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+msgid "VIEW_CELL_PROCESSES_MICROBE"
 msgstr "Verandert [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #, fuzzy
@@ -9469,7 +9522,8 @@ msgstr ""
 msgid "WIN_BOX_TITLE"
 msgstr "JE HEBT OVERWONNEN!"
 
-msgid "WIN_TEXT"
+#, fuzzy
+msgid "WIN_TEXT_2"
 msgstr "Proficiat, je hebt deze versie van Thrive gewonnen! Je mag verder spelen nadat dit scherm is gesloten als je dat wenst, of een nieuw spel beginnen in een nieuwe wereld. Jij mag ook bindmiddelen toevoegen om een celkolonie te bouwen en de latere spelprototypen te proberen."
 
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
@@ -9513,6 +9567,12 @@ msgid "WORLD_GENERAL_STATISTICS"
 msgstr "Generieke Statistieken van Huidige Wereld"
 
 msgid "WORLD_MISC_DETAILS_STRING"
+msgstr ""
+"Doe latere faseprototypen erbij: {0}\n"
+"Doe Paaseieren erbij: {1}"
+
+#, fuzzy
+msgid "WORLD_MISC_DETAILS_STRING_2"
 msgstr ""
 "Doe latere faseprototypen erbij: {0}\n"
 "Doe Paaseieren erbij: {1}"
@@ -9643,6 +9703,17 @@ msgstr "Inzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
+
+#, fuzzy
+#~ msgid "KEEP_CURRENT_SHORT"
+#~ msgstr "Huidige Ontwikkelaars"
+
+#~ msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
+#~ msgstr "Behoud het huidige bereik van de druktolerantie terwijl je de min- en max-schuifbalken aanpast"
+
+#, fuzzy
+#~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
+#~ msgstr "Organel plaatsen"
 
 #~ msgid "MOD_AUTO_HARMONY"
 #~ msgstr "Gebruikt Auto Harmony:"

@@ -239,7 +239,7 @@ public partial class EditorComponentBottomLeftButtons : MarginContainer
             }
             else
             {
-                // Prevents user from doing other actions with an invalid name
+                // Prevents the player from doing other actions with an invalid name
                 GetViewport().SetInputAsHandled();
 
                 // TODO: Make the popup appear at the top of the line edit instead of at the last mouse position
@@ -287,18 +287,12 @@ public partial class EditorComponentBottomLeftButtons : MarginContainer
 
     private void UpdateNewButtonVisibility()
     {
-        if (newButton != null)
-        {
-            newButton.Visible = ShowNewButton;
-        }
+        newButton?.Visible = ShowNewButton;
     }
 
     private void UpdateRandomButtonVisibility()
     {
-        if (randomizeNameButton != null)
-        {
-            randomizeNameButton.Visible = showRandomizeButton;
-        }
+        randomizeNameButton?.Visible = showRandomizeButton;
     }
 
     private void OnControlMouseEntered()

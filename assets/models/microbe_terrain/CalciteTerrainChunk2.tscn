@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://djcg7apclas2h"]
+[gd_scene format=3 uid="uid://djcg7apclas2h"]
 
 [ext_resource type="PackedScene" uid="uid://c4swd7qo1ei08" path="res://assets/models/microbe_terrain/CalciteTerrainChunk2.glb" id="1_5h8vr"]
 [ext_resource type="Texture2D" uid="uid://3l22ragylwd" path="res://assets/textures/environment/Calcite.png" id="2_o6ql1"]
@@ -13,7 +13,7 @@ ao_enabled = true
 ao_light_affect = 0.35
 ao_texture = ExtResource("3_xuxbg")
 
-[node name="CalciteTerrainChunk2" instance=ExtResource("1_5h8vr")]
+[node name="CalciteTerrainChunk2" unique_id=1028057135 instance=ExtResource("1_5h8vr")]
 
-[node name="calcite2" parent="." index="0"]
+[node name="calcite2" parent="." index="0" unique_id=1329944629]
 surface_material_override/0 = SubResource("StandardMaterial3D_yxmtr")

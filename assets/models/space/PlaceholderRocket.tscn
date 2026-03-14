@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dwoekps04bjrn"]
+[gd_scene format=3 uid="uid://dwoekps04bjrn"]
 
 [ext_resource type="Texture2D" uid="uid://bjlbcex6yyjj3" path="res://assets/textures/space/Rocket.png" id="1_6wiro"]
 [ext_resource type="ArrayMesh" uid="uid://cvoa4ev1o77nb" path="res://assets/models/space/PlaceholderRocket.mesh" id="1_xs86c"]
@@ -86,14 +86,14 @@ color_ramp = SubResource("GradientTexture1D_a3tf6")
 material = ExtResource("5_ac0jd")
 size = Vector2(1.7, 1.7)
 
-[node name="PlaceHolderRocket" type="Node3D"]
+[node name="PlaceHolderRocket" type="Node3D" unique_id=1345536172]
 
-[node name="RocketMesh" type="MeshInstance3D" parent="."]
+[node name="RocketMesh" type="MeshInstance3D" parent="." unique_id=331121531]
 transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 18.4265, 0)
 material_override = SubResource("StandardMaterial3D_wnwdn")
 mesh = ExtResource("1_xs86c")
 
-[node name="RocketFire" type="GPUParticles3D" parent="."]
+[node name="RocketFire" type="GPUParticles3D" parent="." unique_id=1243657911]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 4.09852, 0)
 amount = 100
 lifetime = 0.6
@@ -102,7 +102,7 @@ visibility_aabb = AABB(-4, -56, -4, 8, 60, 8)
 process_material = SubResource("ParticleProcessMaterial_2i5ck")
 draw_pass_1 = SubResource("QuadMesh_srknr")
 
-[node name="RocketSmoke" type="GPUParticles3D" parent="."]
+[node name="RocketSmoke" type="GPUParticles3D" parent="." unique_id=1413269195]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 5.3895, 0)
 amount = 110
 lifetime = 2.5

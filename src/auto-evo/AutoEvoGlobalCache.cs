@@ -7,6 +7,8 @@ public class AutoEvoGlobalCache
 {
     public readonly RootPressure RootPressure;
     public readonly MetabolicStabilityPressure MetabolicStabilityPressure;
+    public readonly GeneralAvoidPredationSelectionPressure GeneralAvoidPredationSelectionPressure;
+    public readonly EnergyConsumptionPressure EnergyConsumptionPressure;
     public readonly EnvironmentalTolerancePressure EnvironmentalTolerancesPressure;
 
     public readonly ReproductionCompoundPressure PhosphatePressure;
@@ -47,6 +49,8 @@ public class AutoEvoGlobalCache
     {
         RootPressure = new RootPressure();
         MetabolicStabilityPressure = new MetabolicStabilityPressure(10.0f);
+        GeneralAvoidPredationSelectionPressure = new GeneralAvoidPredationSelectionPressure(1.4f);
+        EnergyConsumptionPressure = new EnergyConsumptionPressure(0.5f);
         EnvironmentalTolerancesPressure = new EnvironmentalTolerancePressure(4);
 
         PhosphatePressure = new ReproductionCompoundPressure(

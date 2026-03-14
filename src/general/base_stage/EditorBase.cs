@@ -85,6 +85,11 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     /// </summary>
     private float dayLightFraction = 1.0f;
 
+    /// <summary>
+    ///   Used to prevent duplicate sequence starts
+    /// </summary>
+    private bool waitingForEditorReady;
+
     protected EditorBase()
     {
     }
@@ -263,6 +268,10 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
 
     public override void _Process(double delta)
     {
+        // If we are fading in, we do not want to try to trigger anything else
+        if (waitingForEditorReady)
+            return;
+
         if (!EditorReady)
         {
             if (!CurrentGame.GameWorld.IsAutoEvoFinished())
@@ -273,7 +282,9 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
                 return;
             }
 
-            EditorReady = true;
+            // Editor ready gets set by this callback so that expected actions run before other code can see the editor
+            // being ready
+            waitingForEditorReady = true;
             TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.5f, OnEditorReady, false, false);
         }
 
@@ -856,6 +867,7 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     protected virtual void OnEditorReady()
     {
         EditorReady = true;
+        waitingForEditorReady = false;
         LoadingScreen.Instance.Hide();
 
         PauseMenu.Instance.ReportEnterGameState(GameState, CurrentGame);
@@ -979,7 +991,7 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     {
         if (mutationPointsCache == null)
         {
-            // This calls OnMutationPointsChanged anyway so we call this directly here to save a duplicate callback
+            // This calls OnMutationPointsChanged anyway, so we call this directly here to save a duplicate callback
             // dispatch to editor components
             CalculateMutationPointsLeft();
         }
@@ -992,7 +1004,7 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
 
     /// <summary>
     ///   This method should be called after <see cref="ElapseEditorEntryTime"/> so that any changes to the patches
-    ///   caused by patch events will be updated (such as background)
+    ///   caused by patch events will be updated (such as the background)
     /// </summary>
     protected virtual void UpdatePatchDetails()
     {

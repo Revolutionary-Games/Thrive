@@ -48,9 +48,6 @@ public partial class UndiscoveredOrganellesButton : MarginContainer
 
     private void UpdateButton()
     {
-        if (button == null)
-            return;
-
-        button.ButtonGroup = SelectionGroup;
+        button?.ButtonGroup = SelectionGroup;
     }
 }

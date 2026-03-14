@@ -8,7 +8,7 @@ using SharedBase.Archive;
 ///   When the layout is instantiated in a cell, the PlacedOrganelle class is used.
 /// </summary>
 public class OrganelleTemplate : IReadOnlyOrganelleTemplate, IPositionedOrganelle, IActionHex, IPlayerReadableName,
-    ICloneable
+    ICloneable, IArchivable
 {
     public const ushort SERIALIZATION_VERSION = 2;
 
@@ -104,6 +104,17 @@ public class OrganelleTemplate : IReadOnlyOrganelleTemplate, IPositionedOrganell
 
         // No other organelles are known to set up their active enzymes
         return false;
+    }
+
+    public Enzyme? GetActiveTargetEnzyme(string internalName)
+    {
+        if (Definition.HasLysosomeComponent)
+        {
+            return LysosomeComponent.HasActiveEnzyme(Upgrades?.CustomUpgradeData as LysosomeUpgrades, internalName);
+        }
+
+        // No other organelles are known to set up their active enzymes
+        return null;
     }
 
     public float GetActiveToxicity()

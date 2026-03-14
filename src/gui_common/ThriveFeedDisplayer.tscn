@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cpp1dl8aiumt7"]
+[gd_scene format=3 uid="uid://cpp1dl8aiumt7"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
 [ext_resource type="Script" uid="uid://cutyf7b3catik" path="res://src/gui_common/ThriveFeedDisplayer.cs" id="3"]
@@ -7,7 +7,7 @@
 [ext_resource type="LabelSettings" uid="uid://bv3bnu0g1wdw3" path="res://src/gui_common/fonts/Title-SemiBold-Big.tres" id="6_gap0o"]
 [ext_resource type="LabelSettings" uid="uid://fua052cwp5ap" path="res://src/gui_common/fonts/Body-Regular-AlmostSmaller.tres" id="8_l5q4e"]
 
-[node name="ThriveFeedDisplayer" type="VBoxContainer" node_paths=PackedStringArray("newsContainer", "loadingIndicator")]
+[node name="ThriveFeedDisplayer" type="VBoxContainer" unique_id=345204859 node_paths=PackedStringArray("newsContainer", "loadingIndicator")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -20,27 +20,27 @@ FooterFontSettings = ExtResource("4_fuesv")
 newsContainer = NodePath("ScrollContainer/VBoxContainer/NewsContainer")
 loadingIndicator = NodePath("ScrollContainer/VBoxContainer/LoadingIndicator")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=1686655865]
 layout_mode = 2
 text = "NEWS"
 label_settings = ExtResource("6_gap0o")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1126992568]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 follow_focus = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer" unique_id=1573294365]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="LoadingIndicator" type="Label" parent="ScrollContainer/VBoxContainer"]
+[node name="LoadingIndicator" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=1928376092]
 layout_mode = 2
 text = "LOADING_DOT_DOT_DOT"
 label_settings = ExtResource("8_l5q4e")
 
-[node name="NewsContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
+[node name="NewsContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer" unique_id=547151504]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 15

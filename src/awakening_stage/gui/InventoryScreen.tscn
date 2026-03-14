@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bqbt1jtgup58k"]
+[gd_scene format=3 uid="uid://bqbt1jtgup58k"]
 
 [ext_resource type="Script" uid="uid://bjbt2nkr8o8sl" path="res://src/awakening_stage/gui/InventoryScreen.cs" id="1"]
 [ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="2"]
@@ -47,7 +47,7 @@ _data = {
 &"RESET": SubResource("2")
 }
 
-[node name="InventoryScreen" type="Control" node_paths=PackedStringArray("inventoryPopup", "inventorySlotContainer", "equipmentSlotParent", "equipmentBackgroundImage", "craftingPanelButton", "groundPanelButton", "craftingPanelPopup", "craftingRecipesContainer", "craftingSlotsContainer", "craftingResultSlotsContainer", "craftingErrorStatusLabel", "craftingAnimationPlayer", "takeAllCraftingResults", "clearCraftingInputs", "groundPanelPopup", "groundSlotContainer")]
+[node name="InventoryScreen" type="Control" unique_id=1019002998 node_paths=PackedStringArray("inventoryPopup", "inventorySlotContainer", "equipmentSlotParent", "equipmentBackgroundImage", "craftingPanelButton", "groundPanelButton", "craftingPanelPopup", "craftingRecipesContainer", "craftingSlotsContainer", "craftingResultSlotsContainer", "craftingErrorStatusLabel", "craftingAnimationPlayer", "takeAllCraftingResults", "clearCraftingInputs", "groundPanelPopup", "groundSlotContainer")]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -75,10 +75,10 @@ clearCraftingInputs = NodePath("CraftingPanel/VBoxContainer/CraftingItemsSection
 groundPanelPopup = NodePath("GroundPanel")
 groundSlotContainer = NodePath("GroundPanel/ScrollContainer/HBoxContainer")
 
-[node name="AddWindowReorderingSupportToSiblings" parent="." instance=ExtResource("10")]
-anchors_preset = 0
+[node name="AddWindowReorderingSupportToSiblings" parent="." unique_id=148210328 instance=ExtResource("10")]
+layout_mode = 0
 
-[node name="GroundPanel" parent="." instance=ExtResource("2")]
+[node name="GroundPanel" parent="." unique_id=1051757673 instance=ExtResource("2")]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.74
@@ -91,7 +91,7 @@ offset_bottom = -120.0
 WindowTitle = "INVENTORY_ITEMS_ON_GROUND"
 Resizable = true
 
-[node name="ScrollContainer" type="ScrollContainer" parent="GroundPanel"]
+[node name="ScrollContainer" type="ScrollContainer" parent="GroundPanel" unique_id=2140089922]
 custom_minimum_size = Vector2(240, 50)
 layout_mode = 0
 offset_right = 40.0
@@ -100,13 +100,13 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 follow_focus = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GroundPanel/ScrollContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GroundPanel/ScrollContainer" unique_id=1485179624]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 5
 
-[node name="MainInventory" parent="." instance=ExtResource("2")]
+[node name="MainInventory" parent="." unique_id=435931029 instance=ExtResource("2")]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.5
@@ -118,7 +118,7 @@ offset_bottom = -559.0
 WindowTitle = "INVENTORY_TITLE"
 Resizable = true
 
-[node name="BaseInventoryContainer" type="HBoxContainer" parent="MainInventory"]
+[node name="BaseInventoryContainer" type="HBoxContainer" parent="MainInventory" unique_id=1175238419]
 custom_minimum_size = Vector2(400, 400)
 layout_mode = 0
 offset_left = 2.0
@@ -128,19 +128,19 @@ offset_bottom = 396.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainInventory/BaseInventoryContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainInventory/BaseInventoryContainer" unique_id=902762578]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="EquipmentSlots" type="Control" parent="MainInventory/BaseInventoryContainer/VBoxContainer"]
+[node name="EquipmentSlots" type="Control" parent="MainInventory/BaseInventoryContainer/VBoxContainer" unique_id=1522352779]
 clip_contents = true
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="CreatureImage" type="TextureRect" parent="MainInventory/BaseInventoryContainer/VBoxContainer/EquipmentSlots"]
+[node name="CreatureImage" type="TextureRect" parent="MainInventory/BaseInventoryContainer/VBoxContainer/EquipmentSlots" unique_id=1532953115]
 layout_mode = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -148,28 +148,28 @@ texture = ExtResource("3")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MainInventory/BaseInventoryContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MainInventory/BaseInventoryContainer/VBoxContainer" unique_id=608854623]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="Ground" type="Button" parent="MainInventory/BaseInventoryContainer/VBoxContainer/HBoxContainer"]
+[node name="Ground" type="Button" parent="MainInventory/BaseInventoryContainer/VBoxContainer/HBoxContainer" unique_id=127764439]
 layout_mode = 2
 toggle_mode = true
 text = "INVENTORY_TOGGLE_GROUND"
 
-[node name="Crafting" type="Button" parent="MainInventory/BaseInventoryContainer/VBoxContainer/HBoxContainer"]
+[node name="Crafting" type="Button" parent="MainInventory/BaseInventoryContainer/VBoxContainer/HBoxContainer" unique_id=1156314814]
 layout_mode = 2
 toggle_mode = true
 text = "INVENTORY_TOGGLE_CRAFTING"
 
-[node name="Inventory" type="HFlowContainer" parent="MainInventory/BaseInventoryContainer"]
+[node name="Inventory" type="HFlowContainer" parent="MainInventory/BaseInventoryContainer" unique_id=1147984647]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="CraftingPanel" parent="." instance=ExtResource("2")]
+[node name="CraftingPanel" parent="." unique_id=171500420 instance=ExtResource("2")]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -182,7 +182,7 @@ offset_bottom = -600.0
 WindowTitle = "CRAFTING_TITLE"
 Resizable = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CraftingPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CraftingPanel" unique_id=885498381]
 custom_minimum_size = Vector2(400, 400)
 layout_mode = 0
 offset_left = 667.0
@@ -190,53 +190,53 @@ offset_top = 27.0
 offset_right = 1067.0
 offset_bottom = 427.0
 
-[node name="RecipesTitle" type="Label" parent="CraftingPanel/VBoxContainer"]
+[node name="RecipesTitle" type="Label" parent="CraftingPanel/VBoxContainer" unique_id=1298404262]
 visible = false
 layout_mode = 2
 text = "CRAFTING_KNOWN_ITEMS"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CraftingPanel/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="CraftingPanel/VBoxContainer" unique_id=571934948]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 1.7
 follow_focus = true
 
-[node name="RecipesList" type="VBoxContainer" parent="CraftingPanel/VBoxContainer/ScrollContainer"]
+[node name="RecipesList" type="VBoxContainer" parent="CraftingPanel/VBoxContainer/ScrollContainer" unique_id=2094636033]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="HSeparator" type="HSeparator" parent="CraftingPanel/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="CraftingPanel/VBoxContainer" unique_id=575305049]
 layout_mode = 2
 
-[node name="CraftingProblemLabel" type="Label" parent="CraftingPanel/VBoxContainer"]
+[node name="CraftingProblemLabel" type="Label" parent="CraftingPanel/VBoxContainer" unique_id=107227310]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
 label_settings = ExtResource("5_aa5gb")
 
-[node name="CraftingItemsSection" type="HBoxContainer" parent="CraftingPanel/VBoxContainer"]
+[node name="CraftingItemsSection" type="HBoxContainer" parent="CraftingPanel/VBoxContainer" unique_id=1612363885]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="LeftSide" type="VBoxContainer" parent="CraftingPanel/VBoxContainer/CraftingItemsSection"]
+[node name="LeftSide" type="VBoxContainer" parent="CraftingPanel/VBoxContainer/CraftingItemsSection" unique_id=988590074]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="InputsTitleLabel" type="Label" parent="CraftingPanel/VBoxContainer/CraftingItemsSection/LeftSide"]
+[node name="InputsTitleLabel" type="Label" parent="CraftingPanel/VBoxContainer/CraftingItemsSection/LeftSide" unique_id=1614938454]
 layout_mode = 2
 text = "CRAFTING_FILTER_INPUTS"
 
-[node name="CraftingInputs" type="HFlowContainer" parent="CraftingPanel/VBoxContainer/CraftingItemsSection/LeftSide"]
+[node name="CraftingInputs" type="HFlowContainer" parent="CraftingPanel/VBoxContainer/CraftingItemsSection/LeftSide" unique_id=1831147775]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ClearInputs" type="TextureButton" parent="CraftingPanel/VBoxContainer/CraftingItemsSection/LeftSide"]
+[node name="ClearInputs" type="TextureButton" parent="CraftingPanel/VBoxContainer/CraftingItemsSection/LeftSide" unique_id=1988337656]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -250,7 +250,7 @@ texture_focused = ExtResource("8_1f4ig")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="CraftButton" type="Button" parent="CraftingPanel/VBoxContainer/CraftingItemsSection"]
+[node name="CraftButton" type="Button" parent="CraftingPanel/VBoxContainer/CraftingItemsSection" unique_id=1424437287]
 custom_minimum_size = Vector2(45, 35)
 layout_mode = 2
 size_flags_vertical = 4
@@ -258,28 +258,26 @@ icon = ExtResource("4")
 icon_alignment = 1
 expand_icon = true
 
-[node name="RightSide" type="VBoxContainer" parent="CraftingPanel/VBoxContainer/CraftingItemsSection"]
+[node name="RightSide" type="VBoxContainer" parent="CraftingPanel/VBoxContainer/CraftingItemsSection" unique_id=963746111]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ResultsTitleLabel" type="Label" parent="CraftingPanel/VBoxContainer/CraftingItemsSection/RightSide"]
+[node name="ResultsTitleLabel" type="Label" parent="CraftingPanel/VBoxContainer/CraftingItemsSection/RightSide" unique_id=1545331041]
 layout_mode = 2
 text = "CRAFTING_RESULTS"
 
-[node name="CraftingResults" type="HFlowContainer" parent="CraftingPanel/VBoxContainer/CraftingItemsSection/RightSide"]
+[node name="CraftingResults" type="HFlowContainer" parent="CraftingPanel/VBoxContainer/CraftingItemsSection/RightSide" unique_id=815263339]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Take" type="Button" parent="CraftingPanel/VBoxContainer/CraftingItemsSection/RightSide"]
+[node name="Take" type="Button" parent="CraftingPanel/VBoxContainer/CraftingItemsSection/RightSide" unique_id=1209965901]
 layout_mode = 2
 text = "CRAFTING_TAKE_ALL"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CraftingPanel"]
-libraries = {
-&"": SubResource("AnimationLibrary_ed7nr")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CraftingPanel" unique_id=1203724779]
+libraries/ = SubResource("AnimationLibrary_ed7nr")
 
 [connection signal="Canceled" from="GroundPanel" to="." method="OnGroundPanelCanceled"]
 [connection signal="Closed" from="GroundPanel" to="." method="OnGroundPanelBecameHidden"]

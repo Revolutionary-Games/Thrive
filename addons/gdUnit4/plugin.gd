@@ -1,23 +1,29 @@
 @tool
 extends EditorPlugin
 
-# We need to define manually the slot id's, to be downwards compatible
-const CONTEXT_SLOT_FILESYSTEM: int = 1 # EditorContextMenuPlugin.CONTEXT_SLOT_FILESYSTEM
-const CONTEXT_SLOT_SCRIPT_EDITOR: int = 2 # EditorContextMenuPlugin.CONTEXT_SLOT_SCRIPT_EDITOR
-
 var _gd_inspector: Control
 var _gd_console: Control
-var _gd_filesystem_context_menu: Variant
-var _gd_scripteditor_context_menu: Variant
+var _filesystem_context_menu: EditorContextMenuPlugin
+var _editor_context_menu: EditorContextMenuPlugin
+var _editor_code_context_menu: EditorContextMenuPlugin
 
 
 func _enter_tree() -> void:
-
 	var inferred_declaration: int = ProjectSettings.get_setting("debug/gdscript/warnings/inferred_declaration")
-	var exclude_addons: bool = ProjectSettings.get_setting("debug/gdscript/warnings/exclude_addons")
-	if !exclude_addons and inferred_declaration != 0:
+
+	var is_gdunit_excluded_warnings: bool = false
+	if Engine.get_version_info().hex >= 0x40600:
+		var dirctrory_rules: Dictionary = ProjectSettings.get_setting("debug/gdscript/warnings/directory_rules")
+		if dirctrory_rules.has("res://addons/gdUnit4") and dirctrory_rules["res://addons/gdUnit4"] == 0:
+			is_gdunit_excluded_warnings = true
+	else:
+		is_gdunit_excluded_warnings = ProjectSettings.get_setting("debug/gdscript/warnings/exclude_addons")
+	if !is_gdunit_excluded_warnings and inferred_declaration != 0:
 		printerr("GdUnit4: 'inferred_declaration' is set to Warning/Error!")
-		printerr("GdUnit4 is not 'inferred_declaration' save, you have to excluded addons (debug/gdscript/warnings/exclude_addons)")
+		if Engine.get_version_info().hex >= 0x40600:
+			printerr("GdUnit4 is not 'inferred_declaration' save, you have to excluded the addon (debug/gdscript/warnings/directory_rules)")
+		else:
+			printerr("GdUnit4 is not 'inferred_declaration' save, you have to excluded addons (debug/gdscript/warnings/exclude_addons)")
 		printerr("Loading GdUnit4 Plugin failed.")
 		return
 
@@ -73,36 +79,21 @@ func check_running_in_test_env() -> bool:
 
 
 func _add_context_menus() -> void:
-	if Engine.get_version_info().hex >= 0x40400:
-		# With Godot 4.4 we have to use the 'add_context_menu_plugin' to register editor context menus
-		_gd_filesystem_context_menu = _preload_gdx_script("res://addons/gdUnit4/src/ui/menu/EditorFileSystemContextMenuHandlerV44.gdx")
-		call_deferred("add_context_menu_plugin", CONTEXT_SLOT_FILESYSTEM, _gd_filesystem_context_menu)
-		# the CONTEXT_SLOT_SCRIPT_EDITOR is adding to the script panel instead of script editor see https://github.com/godotengine/godot/pull/100556
-		#_gd_scripteditor_context_menu = _preload("res://addons/gdUnit4/src/ui/menu/ScriptEditorContextMenuHandlerV44.gdx")
-		#call_deferred("add_context_menu_plugin", CONTEXT_SLOT_SCRIPT_EDITOR, _gd_scripteditor_context_menu)
-		# so we use the old hacky way to add the context menu
-		_gd_inspector.add_child(preload("res://addons/gdUnit4/src/ui/menu/ScriptEditorContextMenuHandler.gd").new())
-	else:
-		# TODO Delete it if the minimum requirement for the plugin is set to Godot 4.4.
-		_gd_inspector.add_child(preload("res://addons/gdUnit4/src/ui/menu/EditorFileSystemContextMenuHandler.gd").new())
-		_gd_inspector.add_child(preload("res://addons/gdUnit4/src/ui/menu/ScriptEditorContextMenuHandler.gd").new())
+	_filesystem_context_menu = preload("res://addons/gdUnit4/src/ui/menu/GdUnitEditorFileSystemContextMenuHandler.gd").new()
+	_editor_context_menu = preload("res://addons/gdUnit4/src/ui/menu/GdUnitScriptEditorContextMenuHandler.gd").new()
+	_editor_code_context_menu = preload("res://addons/gdUnit4/src/ui/menu/GdUnitScriptEditorContextMenuHandler.gd").new()
+	add_context_menu_plugin(EditorContextMenuPlugin.CONTEXT_SLOT_FILESYSTEM, _filesystem_context_menu)
+	add_context_menu_plugin(EditorContextMenuPlugin.CONTEXT_SLOT_SCRIPT_EDITOR, _editor_context_menu)
+	add_context_menu_plugin(EditorContextMenuPlugin.CONTEXT_SLOT_SCRIPT_EDITOR_CODE, _editor_code_context_menu)
 
 
 func _remove_context_menus() -> void:
-	if is_instance_valid(_gd_filesystem_context_menu):
-		call_deferred("remove_context_menu_plugin", _gd_filesystem_context_menu)
-	if is_instance_valid(_gd_scripteditor_context_menu):
-		call_deferred("remove_context_menu_plugin", _gd_scripteditor_context_menu)
-
-
-func _preload_gdx_script(script_path: String) -> Variant:
-	var script: GDScript = GDScript.new()
-	script.source_code = GdUnitFileAccess.resource_as_string(script_path)
-	script.take_over_path(script_path)
-	var err :Error = script.reload()
-	if err != OK:
-		push_error("Can't create context menu %s, error: %s" % [script_path, error_string(err)])
-	return script.new()
+	if is_instance_valid(_filesystem_context_menu):
+		remove_context_menu_plugin(_filesystem_context_menu)
+	if is_instance_valid(_editor_context_menu):
+		remove_context_menu_plugin(_editor_context_menu)
+	if is_instance_valid(_editor_code_context_menu):
+		remove_context_menu_plugin(_editor_code_context_menu)
 
 
 func _on_resource_saved(resource: Resource) -> void:

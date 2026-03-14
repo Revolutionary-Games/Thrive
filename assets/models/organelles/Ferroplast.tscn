@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://b3wc7kw7ptj1f"]
+[gd_scene format=3 uid="uid://b3wc7kw7ptj1f"]
 
 [ext_resource type="Shader" uid="uid://bpdtg8smolq32" path="res://shaders/OrganelleTransparent.gdshader" id="1_aosyt"]
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="2_2i1y6"]
@@ -20,7 +20,7 @@ shader_parameter/growColor = Color(0.6, 0.109804, 0.576471, 1)
 shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/jiggleAmount = 0.01
 
-[node name="Ferroplast" type="MeshInstance3D"]
+[node name="Ferroplast" type="MeshInstance3D" unique_id=938779277]
 transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, -0.1, 0)
 material_override = SubResource("ShaderMaterial_tcuny")
 mesh = ExtResource("2_syxkk")

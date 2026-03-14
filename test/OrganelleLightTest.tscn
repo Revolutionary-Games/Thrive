@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cuijr3m5dr1b1"]
+[gd_scene format=3 uid="uid://cuijr3m5dr1b1"]
 
 [ext_resource type="Shader" uid="uid://bpdtg8smolq32" path="res://shaders/OrganelleTransparent.gdshader" id="1"]
 [ext_resource type="PackedScene" uid="uid://ddluj5hiii7uv" path="res://assets/models/organelles/Mitochondrion.tscn" id="2"]
@@ -16,7 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="13"]
 [ext_resource type="Texture2D" uid="uid://drqotu8ul3h8c" path="res://assets/textures/IronOrganelle.png" id="15_kgrxq"]
 
-[sub_resource type="ShaderMaterial" id="1"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kgrxq"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1")
@@ -30,7 +30,7 @@ shader_parameter/growColor = Color(0.1, 0.1, 0.1, 1)
 shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/jiggleAmount = 0.0005
 
-[sub_resource type="ShaderMaterial" id="2"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t4rb1"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1")
@@ -44,7 +44,7 @@ shader_parameter/growColor = Color(0.1, 0.1, 0.1, 1)
 shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/jiggleAmount = 0.0005
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_eeqtv"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rr8vr"]
 resource_local_to_scene = true
 render_priority = 1
 shader = ExtResource("9")
@@ -57,7 +57,7 @@ shader_parameter/dissolveValue = 0.0
 shader_parameter/healthFraction = 0.25
 shader_parameter/tint = Color(1, 1, 1, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_04a7v"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8u3i4"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("11_n3xav")
@@ -68,7 +68,7 @@ shader_parameter/waveSpeed = 10.0
 shader_parameter/fade = 0.2
 shader_parameter/tint = Color(0, 0.55, 0.8, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gj8hf"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4qi12"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("12_0y7ws")
@@ -77,7 +77,7 @@ shader_parameter/movementWigglyNess = 1.0
 shader_parameter/fade = 0.25
 shader_parameter/tint = Color(0.4, 0.8, 0.6, 1)
 
-[sub_resource type="ShaderMaterial" id="4"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7itrv"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1")
@@ -92,43 +92,43 @@ shader_parameter/growColor = Color(0.180392, 0.176471, 0.168627, 1)
 shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/jiggleAmount = 0.0005
 
-[node name="Node3D" type="Node3D"]
+[node name="Node3D" type="Node3D" unique_id=2100039611]
 
-[node name="Mitochondrion" parent="." instance=ExtResource("2")]
-material_override = SubResource("1")
+[node name="Mitochondrion" parent="." unique_id=567200434 instance=ExtResource("2")]
+material_override = SubResource("ShaderMaterial_kgrxq")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1743937683]
 transform = Transform3D(0.866025, 0.25, -0.433013, 0, 0.866025, 0.5, 0.5, -0.433013, 0.75, -3, 2, 3)
 shadow_enabled = true
 
-[node name="Chemoplast" parent="." instance=ExtResource("4")]
+[node name="Chemoplast" parent="." unique_id=2106935579 instance=ExtResource("4")]
 transform = Transform3D(0.95882, 0, -0.284015, 0, 1, 0, 0.284015, 0, 0.95882, -2.37408, 0, 0)
-material_override = SubResource("2")
+material_override = SubResource("ShaderMaterial_t4rb1")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=565379683]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.19501, -1.17122)
 size = Vector3(33.445, 1, 38.246)
 
-[node name="CSGBox2" type="CSGBox3D" parent="."]
+[node name="CSGBox2" type="CSGBox3D" parent="." unique_id=2131127618]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.66004, -0.174119, 0)
 size = Vector3(2.45813, 1, 1)
 
-[node name="CSGBox3" type="CSGBox3D" parent="."]
+[node name="CSGBox3" type="CSGBox3D" parent="." unique_id=1186591301]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0240011, 1.7432, 3.09903)
 size = Vector3(2.45813, 1, 1)
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1263336031]
 transform = Transform3D(0.952724, 0.219617, -0.209965, -0.0332861, 0.762328, 0.646334, 0.302008, -0.608789, 0.733599, -3.19108, 3.1727, 3.8879)
 
-[node name="Membrane" parent="." instance=ExtResource("8")]
+[node name="Membrane" parent="." unique_id=2079279049 instance=ExtResource("8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00755703, 0, -1.75788)
-MembraneShaderMaterial = SubResource("ShaderMaterial_eeqtv")
-EngulfShaderMaterial = SubResource("ShaderMaterial_04a7v")
-MucocystShaderMaterial = SubResource("ShaderMaterial_gj8hf")
+MembraneShaderMaterial = SubResource("ShaderMaterial_rr8vr")
+EngulfShaderMaterial = SubResource("ShaderMaterial_8u3i4")
+MucocystShaderMaterial = SubResource("ShaderMaterial_4qi12")
 
-[node name="SlimeJet" parent="." instance=ExtResource("10")]
+[node name="SlimeJet" parent="." unique_id=560624322 instance=ExtResource("10")]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -6.1659, -0.463915, -3.19489)
 
-[node name="Rusticyanin" parent="." instance=ExtResource("11")]
+[node name="Rusticyanin" parent="." unique_id=392230690 instance=ExtResource("11")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.286165, -0.912676, -3.82358)
-material_override = SubResource("4")
+material_override = SubResource("ShaderMaterial_7itrv")

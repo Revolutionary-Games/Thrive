@@ -178,12 +178,9 @@ public partial class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
             resourceStorage.Capacity = planetSystem.CachedTotalStorage;
 
             // Update the place to place the selected structure
-            if (structureToPlaceGhost != null)
-            {
-                // TODO: placement validity checks (placement restrictions and hitting other structures), show the
-                // ghost differently when it can't be placed
-                structureToPlaceGhost.GlobalPosition = GetPlayerCursorPointedWorldPosition();
-            }
+            // TODO: placement validity checks (placement restrictions and hitting other structures), show the
+            // ghost differently when it can't be placed
+            structureToPlaceGhost?.GlobalPosition = GetPlayerCursorPointedWorldPosition();
 
             // TODO: prototype code that can be entirely removed once the relevant feature is done
             if (!zoomingOutFromFleet)

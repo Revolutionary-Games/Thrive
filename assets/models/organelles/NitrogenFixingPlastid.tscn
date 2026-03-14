@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://r4cl1p3d7v0h"]
+[gd_scene format=3 uid="uid://r4cl1p3d7v0h"]
 
 [ext_resource type="Shader" uid="uid://caplkvkclneuh" path="res://shaders/OrganelleOpaque.gdshader" id="1_r8mr7"]
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="2_41ys7"]
@@ -18,7 +18,7 @@ shader_parameter/growColor = Color(0.83, 0.387333, 0, 1)
 shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/jiggleAmount = 0.01
 
-[node name="NitrogenFixingPlastid" type="MeshInstance3D"]
+[node name="NitrogenFixingPlastid" type="MeshInstance3D" unique_id=2104967216]
 transform = Transform3D(0.98, 0, 0, 0, 0.98, 0, 0, 0, 0.98, 0, 0, -0.375)
 material_override = SubResource("ShaderMaterial_kx6pa")
 mesh = ExtResource("3")

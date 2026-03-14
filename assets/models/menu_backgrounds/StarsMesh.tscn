@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2h4vpmx0juq8"]
+[gd_scene format=3 uid="uid://c2h4vpmx0juq8"]
 
 [ext_resource type="PackedScene" uid="uid://cr0v0b738553g" path="res://assets/models/menu_backgrounds/SphereSkyBox.glb" id="1"]
 [ext_resource type="Texture2D" uid="uid://lf17qrqcwjtw" path="res://assets/textures/space/SpaceSkyStars.png" id="2_ey628"]
@@ -11,9 +11,9 @@ albedo_texture = ExtResource("2_ey628")
 uv1_scale = Vector3(2, 1.5, 1.5)
 disable_receive_shadows = true
 
-[node name="StarsMesh" instance=ExtResource("1")]
+[node name="StarsMesh" unique_id=2121951340 instance=ExtResource("1")]
 
-[node name="Sphere" parent="." index="0"]
+[node name="Sphere" parent="." index="0" unique_id=1834695849]
 transparency = 0.09
 cast_shadow = 0
 mesh = ExtResource("4_0vqd2")

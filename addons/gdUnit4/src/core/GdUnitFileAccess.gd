@@ -196,7 +196,7 @@ static func resource_as_string(resource_path :String) -> String:
 	if file == null:
 		push_error("ERROR: Can't read resource '%s'. %s" % [resource_path, error_string(FileAccess.get_open_error())])
 		return ""
-	return file.get_as_text(true)
+	return file.get_as_text()
 
 
 static func make_qualified_path(path :String) -> String:

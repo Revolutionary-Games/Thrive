@@ -51,6 +51,12 @@ class TcpConnection extends GdUnitTcpNode:
 		)
 
 
+	func disconnect_from_server() -> void:
+		if _stream == null or _stream.get_status() != StreamPeerTCP.STATUS_CONNECTED:
+			return
+		rpc_send(_stream, RPCClientDisconnect.new().with_id(_id))
+
+
 	func console(_value: Variant) -> void:
 		#print_debug("TCP Server:		", value)
 		pass
@@ -58,6 +64,11 @@ class TcpConnection extends GdUnitTcpNode:
 
 func _init(server_name := "GdUnit4 TCP Server") -> void:
 	_server_name = server_name
+	GdUnitSignals.instance().gdunit_test_session_terminate.connect(func() -> void:
+		for connection in get_children():
+			if connection is TcpConnection:
+				(connection as TcpConnection).disconnect_from_server()
+	)
 
 
 func _ready() -> void:

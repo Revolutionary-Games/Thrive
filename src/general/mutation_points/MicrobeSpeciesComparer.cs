@@ -31,9 +31,10 @@ public class MicrobeSpeciesComparer
     }
 
     public static double CalculateUpgradeCost(Dictionary<string, AvailableUpgrade> availableUpgrades,
-        IReadOnlyList<string> newUpgrades, IReadOnlyList<string> oldUpgrades, bool refund = false)
+        IReadOnlyList<string> newUpgrades, IReadOnlyList<string> oldUpgrades, double maxSingleActionCost,
+        double costMultiplier = 1, bool refund = false)
     {
-        int cost = 0;
+        double cost = 0;
 
         // TODO: allow custom upgrades to have a cost (should also add a test in EditorMPTests)
         // TODO: also each upgrade will need to have handling code added, see all implementations of
@@ -57,7 +58,7 @@ public class MicrobeSpeciesComparer
             }
             else
             {
-                cost += upgrade.MPCost;
+                cost += Math.Min(upgrade.MPCost * costMultiplier, maxSingleActionCost);
             }
         }
 
@@ -79,7 +80,7 @@ public class MicrobeSpeciesComparer
                 }
                 else
                 {
-                    cost -= upgrade.MPCost;
+                    cost -= Math.Min(upgrade.MPCost * costMultiplier, maxSingleActionCost);
                 }
             }
         }
@@ -95,19 +96,22 @@ public class MicrobeSpeciesComparer
         return cost;
     }
 
-    public double Compare(IReadOnlyMicrobeSpecies speciesA, IReadOnlyMicrobeSpecies speciesB)
+    public double Compare(IReadOnlyMicrobeSpecies speciesA, IReadOnlyMicrobeSpecies speciesB,
+        double maxSingleActionCost, double costMultiplier = 1)
     {
         // Base cost
-        double cost = SpeciesComparer.GetRequiredMutationPoints(speciesA, speciesB);
+        double cost =
+            SpeciesComparer.GetRequiredMutationPoints(speciesA, speciesB, maxSingleActionCost, costMultiplier);
 
         // Microbe species specific costs
         // Colour comparison would be a double cost here, so avoid it
-        cost += CompareCellType(speciesA, speciesB, false);
+        cost += CompareCellType(speciesA, speciesB, false, maxSingleActionCost, costMultiplier);
 
         return cost;
     }
 
-    public double CompareCellType(IReadOnlyCellDefinition cellTypeA, IReadOnlyCellDefinition cellTypeB, bool colour)
+    public double CompareCellType(IReadOnlyCellDefinition cellTypeA, IReadOnlyCellDefinition cellTypeB, bool colour,
+        double maxSingleActionCost, double costMultiplier = 1)
     {
         if (colour)
         {
@@ -119,10 +123,10 @@ public class MicrobeSpeciesComparer
         // First, check the changed easy properties
         if (cellTypeA.MembraneType != cellTypeB.MembraneType)
         {
-            cost += cellTypeB.MembraneType.EditorCost;
+            cost += Math.Min(cellTypeB.MembraneType.EditorCost * costMultiplier, maxSingleActionCost);
         }
 
-        cost += CalculateRigidityCost(cellTypeB.MembraneRigidity, cellTypeA.MembraneRigidity);
+        cost += CalculateRigidityCost(cellTypeB.MembraneRigidity, cellTypeA.MembraneRigidity) * costMultiplier;
 
         // And then figure out all organelle differences
 
@@ -142,7 +146,7 @@ public class MicrobeSpeciesComparer
             {
                 // Found a match. This organelle is still here in the exact same position.
                 // Add any cost from upgrades
-                cost += AddUpgradeCost(originalOrganelle, newOrganelle);
+                cost += AddUpgradeCost(originalOrganelle, newOrganelle, maxSingleActionCost, costMultiplier);
 
                 usedNewOrganelles.Add(newOrganelle);
                 unusedOldOrganelles.Remove(newOrganelle);
@@ -162,7 +166,7 @@ public class MicrobeSpeciesComparer
                 {
                     // Rotated in-place, which is free, but upgrade changes will cost
 
-                    cost += AddUpgradeCost(originalOrganelle, newOrganelle);
+                    cost += AddUpgradeCost(originalOrganelle, newOrganelle, maxSingleActionCost, costMultiplier);
 
                     usedNewOrganelles.Add(newOrganelle);
                     unusedOldOrganelles.Remove(newOrganelle);
@@ -191,7 +195,8 @@ public class MicrobeSpeciesComparer
 
                 if (originalOrganelle.Definition == newOrganelle.Definition)
                 {
-                    var upgradePrice = AddUpgradeCost(originalOrganelle, newOrganelle);
+                    var upgradePrice = AddUpgradeCost(originalOrganelle, newOrganelle, maxSingleActionCost,
+                        costMultiplier);
                     if (upgradePrice < currentCheapestPrice)
                     {
                         cheapestUpgrade = newOrganelle;
@@ -201,10 +206,12 @@ public class MicrobeSpeciesComparer
             }
 
             // TODO: does this need to check if the move is actually cheaper than a new placement?
-            if (cheapestUpgrade != null && currentCheapestPrice + Constants.ORGANELLE_MOVE_COST <
-                originalOrganelle.Definition.MPCost + CalculateUpgradeCost(cheapestUpgrade.Definition.AvailableUpgrades,
+            // TODO: should the multiplied costs here use Math.Min?
+            if (cheapestUpgrade != null && currentCheapestPrice + Constants.ORGANELLE_MOVE_COST * costMultiplier <
+                originalOrganelle.Definition.MPCost * costMultiplier + CalculateUpgradeCost(
+                    cheapestUpgrade.Definition.AvailableUpgrades,
                     cheapestUpgrade.Upgrades?.UnlockedFeatures ?? emptyList,
-                    emptyList))
+                    emptyList, maxSingleActionCost, costMultiplier))
             {
                 // Found a move that leads to a cheaper upgrade (than placing from scratch)
                 usedNewOrganelles.Add(cheapestUpgrade);
@@ -215,7 +222,7 @@ public class MicrobeSpeciesComparer
 
                 // Endosymbionts are free to move or delete
                 if (!originalOrganelle.IsEndosymbiont && !cheapestUpgrade.IsEndosymbiont)
-                    cost += Constants.ORGANELLE_MOVE_COST;
+                    cost += Math.Min(Constants.ORGANELLE_MOVE_COST * costMultiplier, maxSingleActionCost);
 
                 continue;
             }
@@ -227,7 +234,7 @@ public class MicrobeSpeciesComparer
             {
                 // Endosymbionts are free to remove
                 if (!originalOrganelle.IsEndosymbiont)
-                    cost += Constants.ORGANELLE_REMOVE_COST;
+                    cost += Math.Min(Constants.ORGANELLE_REMOVE_COST * costMultiplier, maxSingleActionCost);
 
                 unresolvedMoves.RemoveAt(i);
             }
@@ -245,12 +252,12 @@ public class MicrobeSpeciesComparer
 
             // This is a new organelle so add the cost (except endosymbionts are free)
             if (!newOrganelle.IsEndosymbiont)
-                cost += newOrganelle.Definition.MPCost;
+                cost += Math.Min(newOrganelle.Definition.MPCost * costMultiplier, maxSingleActionCost);
 
             // If placed and upgraded at once, add that cost as well
             cost += CalculateUpgradeCost(newOrganelle.Definition.AvailableUpgrades,
                 newOrganelle.Upgrades?.UnlockedFeatures ?? emptyList,
-                emptyList);
+                emptyList, maxSingleActionCost, costMultiplier);
 
             if (newOrganelle.Definition != cytoplasm && unresolvedMoves.Count > 0)
             {
@@ -280,7 +287,7 @@ public class MicrobeSpeciesComparer
         {
             if (originalOrganelle.Definition == cytoplasm)
             {
-                cost += Constants.ORGANELLE_REMOVE_COST;
+                cost += Math.Min(Constants.ORGANELLE_REMOVE_COST * costMultiplier, maxSingleActionCost);
             }
             else
             {
@@ -294,11 +301,12 @@ public class MicrobeSpeciesComparer
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private double AddUpgradeCost(IReadOnlyOrganelleTemplate originalOrganelle, IReadOnlyOrganelleTemplate newOrganelle)
+    private double AddUpgradeCost(IReadOnlyOrganelleTemplate originalOrganelle, IReadOnlyOrganelleTemplate newOrganelle,
+        double maxSingleActionCost, double costMultiplier)
     {
         return CalculateUpgradeCost(originalOrganelle.Definition.AvailableUpgrades,
             newOrganelle.Upgrades?.UnlockedFeatures ?? emptyList,
-            originalOrganelle.Upgrades?.UnlockedFeatures ?? emptyList);
+            originalOrganelle.Upgrades?.UnlockedFeatures ?? emptyList, maxSingleActionCost, costMultiplier);
     }
 
     private bool RotatedInPlace(IReadOnlyOrganelleTemplate originalOrganelle, IReadOnlyOrganelleTemplate newOrganelle,
