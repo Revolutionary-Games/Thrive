@@ -871,6 +871,10 @@ public static class MicrobeInternalCalculations
             concentration += proportion * proportion;
         }
 
+        // Calculate a strength factor that adjusts things
+        var strength = Math.Min((float)totalHexCount / Constants.CELL_SPECIALIZATION_STRENGTH_FULL_AT, 1);
+        strength *= Constants.CELL_SPECIALIZATION_STRENGTH_MULTIPLIER;
+
         // Then return the final result as the bonus being anything above 1
         return 1 + concentration * Constants.CELL_SPECIALIZATION_STRENGTH_MULTIPLIER;
     }
