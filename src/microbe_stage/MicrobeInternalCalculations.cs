@@ -876,7 +876,7 @@ public static class MicrobeInternalCalculations
         strength *= Constants.CELL_SPECIALIZATION_STRENGTH_MULTIPLIER;
 
         // Then return the final result as the bonus being anything above 1
-        return 1 + concentration * Constants.CELL_SPECIALIZATION_STRENGTH_MULTIPLIER;
+        return 1 + concentration * strength;
     }
 
     private static float MovementForce(float movementForce, float directionFactor)
