@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-02-27 14:48+0200\n"
-"PO-Revision-Date: 2026-03-05 01:14+0000\n"
+"PO-Revision-Date: 2026-03-09 10:02+0000\n"
 "Last-Translator: 归灵祈昱 <guilingqiyu@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -389,10 +389,10 @@ msgid "AUTO_EVO_RESULTS"
 msgstr "自动演化结果："
 
 msgid "AUTO_EVO_RESULTS_GLOBAL_TITLE"
-msgstr "全局结果"
+msgstr "全局演化结果"
 
 msgid "AUTO_EVO_RESULTS_PATCH_TITLE"
-msgstr "选择区域结果"
+msgstr "当前选择区域演化结果"
 
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "运行状态："
@@ -4350,7 +4350,7 @@ msgid "NITROPLAST"
 msgstr "硝化体"
 
 msgid "NITROPLAST_DESCRIPTION"
-msgstr "硝化体是一种可以用氮和氧还有ATP制造氨的蛋白质，氨对细胞生长至关重要。这个过程被称为[b]有氧固氮[/b]。"
+msgstr "硝化体是一种具膜细胞器，可利用气态[thrive:compound type=\"nitrogen\"][/thrive:compound], [thrive:compound type=\"oxygen\"][/thrive:compound]和[thrive:compound type=\"atp\"][/thrive:compound]合成[thrive:compound type=\"ammonia\"][/thrive:compound]，是细胞生长的重要营养物质。该过程称为[b]好氧固氮[/b]。"
 
 msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound type=\"ammonia\"][/thrive:compound]。速率跟[thrive:compound type=\"nitrogen\"][/thrive:compound]与[thrive:compound type=\"oxygen\"][/thrive:compound]浓度成正比。"
@@ -4566,12 +4566,12 @@ msgstr "暂停中。"
 
 msgid "OPPORTUNISM_EXPLANATION"
 msgstr ""
-"机会主义型微生物会和竞争对手争夺物质块\n"
+"投机型微生物会和竞争对手争夺物质块\n"
 "并且会在猎物过大无法吞噬的情况下使用毒素攻击。\n"
 "谨慎型微生物则不大可能冒风险争夺物质块。"
 
 msgid "OPPORTUNISTIC"
-msgstr "机会主义"
+msgstr "投机"
 
 msgid "OPTIONS"
 msgstr "选项"
@@ -5885,7 +5885,7 @@ msgid "STEAM_TOOLTIP"
 msgstr "访问我们在Steam上的页面"
 
 msgid "STEM_CELL_NAME"
-msgstr "干"
+msgstr "干细胞"
 
 msgid "STOP"
 msgstr "暂停"
@@ -8685,7 +8685,7 @@ msgid "WIKI_NITROPLAST_EFFECTS"
 msgstr "无效果。"
 
 msgid "WIKI_NITROPLAST_INTRO"
-msgstr "进行[b]厌氧固氮[/b]，消耗气态[thrive:compound type=\"nitrogen\"][/thrive:compound] 和[thrive:compound type=\"atp\"][/thrive:compound] 生产[thrive :compound type=\"ammonia\"][/thrive:compound]，产生细胞繁殖生长所需的成分之一。 效率高于原核版本的[b][color=#3796e1][url=thriveopedia:nitrogenase]固氮酶[/url][/color][/b]。"
+msgstr "硝化质体是一种具膜细胞器，用于产生 [thrive:compound type=\"ammonia\"][/thrive:compound]，氨是细胞繁殖生长所需的原料之一。该细胞器通过进行 [b]厌氧固氮[/b]，将气态 [thrive:compound type=\"nitrogen\"][/thrive:compound]与 [thrive:compound type=\"atp\"][/thrive:compound]转化为 [thrive:compound type=\"ammonia\"][/thrive:compound]。其效率高于原核生物的 [b][color=#3796e1][url=thriveopedia:nitrogenase]固氮酶[/url][/color][/b]。"
 
 msgid "WIKI_NITROPLAST_MODIFICATIONS"
 msgstr "无修改。"
