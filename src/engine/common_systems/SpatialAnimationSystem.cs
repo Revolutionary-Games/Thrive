@@ -1,5 +1,6 @@
 ﻿namespace Systems;
 
+using System;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Arch.System;
@@ -29,15 +30,7 @@ public partial class SpatialAnimationSystem : BaseSystem<World, float>
     {
         spatialAnimation.TimeSpent += delta;
 
-        float progress = spatialAnimation.TimeSpent / spatialAnimation.AnimationTime;
-
-        if (progress > 1.0f)
-        {
-            var recorder = worldSimulation.StartRecordingEntityCommands();
-            recorder.Remove<SpatialAnimation>(entity);
-            worldSimulation.FinishRecordingEntityCommands(recorder);
-            return;
-        }
+        float progress = MathF.Min(spatialAnimation.TimeSpent / spatialAnimation.AnimationTime, 1.0f);
 
         progress *= progress;
 
@@ -49,6 +42,13 @@ public partial class SpatialAnimationSystem : BaseSystem<World, float>
         {
             entity.Get<AttachedToEntity>().RelativePosition = spatialAnimation.InitialPosition * (1.0f - progress)
                 + spatialAnimation.FinalPosition * progress;
+        }
+
+        if (progress >= 1.0f)
+        {
+            var recorder = worldSimulation.StartRecordingEntityCommands();
+            recorder.Remove<SpatialAnimation>(entity);
+            worldSimulation.FinishRecordingEntityCommands(recorder);
         }
     }
 }
