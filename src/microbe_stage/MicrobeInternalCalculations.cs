@@ -863,7 +863,7 @@ public static class MicrobeInternalCalculations
         if (totalHexCount < 1)
             return 1;
 
-        float concentration = 0f;
+        float concentration = 0.0f;
 
         foreach (var entry in tempWorkMemory)
         {
