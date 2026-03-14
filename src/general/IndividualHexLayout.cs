@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Saving.Serializers;
@@ -48,7 +49,14 @@ public class IndividualHexLayout<TData> : HexLayout<HexWithData<TData>>, IReadOn
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
-        writer.WriteObject(existingHexes);
+        // We ensure that this organism is up-to-date and has an isolated layout for safety.
+        if (existingHexes.Shared)
+        {
+            if (!existingHexes.Commit(false))
+                existingHexes.IsolateIfShared();
+        }
+
+        writer.WriteObject(existingHexes.MainHexes);
         writer.WriteDelegateOrNull(onAdded);
         writer.WriteDelegateOrNull(onRemoved);
     }
@@ -59,9 +67,23 @@ public class IndividualHexLayout<TData> : HexLayout<HexWithData<TData>>, IReadOn
         return this;
     }
 
-    public new IEnumerator<IReadOnlyHexWithData<TData>> GetEnumerator()
+    public new ReadOnlyEnumerator GetEnumerator()
     {
-        return ((HexLayout<HexWithData<TData>>)this).GetEnumerator();
+        return new ReadOnlyEnumerator(((HexLayout<HexWithData<TData>>)this).GetEnumerator());
+    }
+
+    IEnumerator<IReadOnlyHexWithData<TData>> IEnumerable<IReadOnlyHexWithData<TData>>.GetEnumerator()
+    {
+        int count = Count;
+        for (int i = 0; i < count; ++i)
+        {
+            yield return this[i];
+        }
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return ((IEnumerable<IReadOnlyHexWithData<TData>>)this).GetEnumerator();
     }
 
     public new IReadOnlyHexWithData<TData>? GetElementAt(Hex location, List<Hex> temporaryHexesStorage)
@@ -80,5 +102,17 @@ public class IndividualHexLayout<TData> : HexLayout<HexWithData<TData>>, IReadOn
 
         // The single hex is always at 0,0 as it's at the exact position the hex's overall position is
         result.Add(new Hex(0, 0));
+    }
+
+    public ref struct ReadOnlyEnumerator(HexLayoutView.Enumerator baseEnumerator)
+    {
+        private HexLayoutView.Enumerator baseEnumerator = baseEnumerator;
+
+        public IReadOnlyHexWithData<TData> Current => baseEnumerator.Current;
+
+        public bool MoveNext()
+        {
+            return baseEnumerator.MoveNext();
+        }
     }
 }

@@ -28,7 +28,11 @@ public class ReadonlyCellLayoutAdapter<TReadOnly, TUnderlying> : IReadOnlyCellLa
 
     public IEnumerator<TReadOnly> GetEnumerator()
     {
-        return wrappedLayout.GetEnumerator();
+        int count = Count;
+        for (int i = 0; i < count; ++i)
+        {
+            yield return this[i];
+        }
     }
 
     IEnumerator IEnumerable.GetEnumerator()

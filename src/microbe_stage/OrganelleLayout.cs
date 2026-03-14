@@ -10,13 +10,17 @@ using SharedBase.Archive;
 /// </summary>
 /// <typeparam name="T">The type of organelle contained in this layout</typeparam>
 public class OrganelleLayout<T> : HexLayout<T>, IArchivable, IReadOnlyOrganelleLayout<T>
-    where T : class, IPositionedOrganelle, ICloneable
+    where T : class, IPositionedOrganelle
 {
     public OrganelleLayout(Action<T> onAdded, Action<T>? onRemoved = null) : base(onAdded, onRemoved)
     {
     }
 
     public OrganelleLayout()
+    {
+    }
+
+    internal OrganelleLayout(List<T> existingData) : base(existingData)
     {
     }
 
@@ -86,7 +90,14 @@ public class OrganelleLayout<T> : HexLayout<T>, IArchivable, IReadOnlyOrganelleL
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
-        writer.WriteObject(existingHexes);
+        // We ensure that this organism is up-to-date and has an isolated layout for safety.
+        if (existingHexes.Shared)
+        {
+            if (!existingHexes.Commit(false))
+                existingHexes.IsolateIfShared();
+        }
+
+        writer.WriteObject(existingHexes.MainHexes);
         writer.WriteDelegateOrNull(onAdded);
         writer.WriteDelegateOrNull(onRemoved);
     }
@@ -151,6 +162,12 @@ public class OrganelleLayout<T> : HexLayout<T>, IArchivable, IReadOnlyOrganelleL
         // Skip if the center of mass is already correct
         if (centerOfMass.Q == 0 && centerOfMass.R == 0)
             return false;
+
+        // The following repositioning is unsafe to share, so let's isolate.
+        // TODO:
+        // Maybe, instead of this, use an offset Hex in the iterator and adjust the positions on-fly instead of
+        // allocating?
+        existingHexes.IsolateIfShared();
 
         foreach (var organelle in Organelles)
         {
@@ -246,18 +263,20 @@ public class OrganelleLayout<T> : HexLayout<T>, IArchivable, IReadOnlyOrganelleL
     }
 
     /// <summary>
-    ///   Deep clones this organelle layout as a new layout in a more efficient way than copying organelles from here
+    ///   Clones this organelle layout as a new layout in a more efficient way than copying organelles from here
     ///   to a new instance
     /// </summary>
-    /// <returns>Cloned instance with deep copied organelle instances</returns>
     public OrganelleLayout<T> Clone()
     {
-        var result = new OrganelleLayout<T>();
+        // This now creates a new identical organelle layout that uses organelles shared with this layout.
+        // The layouts will automatically create their own new instances whenever there's a modification of such layout.
+        // This layout is also unlikely to change now, so we don't reallocate memory.
+        existingHexes.Commit(false);
 
-        foreach (var existingHex in existingHexes)
-        {
-            result.existingHexes.Add((T)existingHex.Clone());
-        }
+        var result = new OrganelleLayout<T>(existingHexes.MainHexes);
+
+        // Now this layout is shared as well, so if we diverge from it in this instance, we must allocate a new list.
+        existingHexes.Shared = true;
 
         return result;
     }

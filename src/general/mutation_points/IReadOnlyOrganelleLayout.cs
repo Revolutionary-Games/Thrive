@@ -42,13 +42,18 @@ public class ReadonlyOrganelleLayoutAdapter<TReadOnly, TUnderlying> : IReadOnlyO
         return wrappedLayout.GetByExactElementRootPosition(location);
     }
 
-    public IEnumerator<TReadOnly> GetEnumerator()
+    public OrganelleLayout<TUnderlying>.HexLayoutView.Enumerator GetEnumerator()
     {
         return wrappedLayout.GetEnumerator();
     }
 
+    IEnumerator<TReadOnly> IEnumerable<TReadOnly>.GetEnumerator()
+    {
+        return wrappedLayout.Organelles.GetEnumerator();
+    }
+
     IEnumerator IEnumerable.GetEnumerator()
     {
-        return GetEnumerator();
+        return wrappedLayout.Organelles.GetEnumerator();
     }
 }

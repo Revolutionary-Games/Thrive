@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Buffers;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using CommunityToolkit.HighPerformance;
 using JetBrains.Annotations;
 
 /// <summary>
@@ -18,7 +21,7 @@ using JetBrains.Annotations;
 public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnlyHexLayout<T>
     where T : class, IPositionedHex
 {
-    protected readonly List<T> existingHexes = new();
+    protected HexLayoutView existingHexes;
 
     // This and the next property are protected to make JSON work
     protected Action<T>? onAdded;
@@ -29,18 +32,25 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
     {
         this.onAdded = onAdded;
         this.onRemoved = onRemoved;
+
+        existingHexes = new HexLayoutView([], false);
     }
 
     public HexLayout()
     {
+        existingHexes = new HexLayoutView([], false);
+    }
+
+    public HexLayout(List<T> hexes)
+    {
+        existingHexes = new HexLayoutView(hexes, true, true);
     }
 
     /// <summary>
     ///   Derived type JSON constructor (for types that need this to force proper deserialization)
     /// </summary>
-    protected HexLayout(List<T> hexes, Action<T>? onAdded, Action<T>? onRemoved)
+    protected HexLayout(List<T> hexes, Action<T>? onAdded, Action<T>? onRemoved) : this(hexes)
     {
-        existingHexes = hexes;
         this.onAdded = onAdded;
         this.onRemoved = onRemoved;
     }
@@ -316,19 +326,36 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
         return existingHexes.Contains(item);
     }
 
+    public void Approve()
+    {
+        existingHexes.Commit(false);
+    }
+
+    public void Reject()
+    {
+        // This species will probably be discarded by auto-evo in this situation, so this returns the allocated
+        // memory to the pool.
+        existingHexes.Drop();
+    }
+
+    public HexLayoutView.Enumerator GetEnumerator()
+    {
+        return existingHexes.GetEnumerator();
+    }
+
     // TODO: remove this bit of boxing here. https://nede.dev/blog/preventing-unnecessary-allocation-in-net-collections
     // Need to switch this from ICollection to just IEnumerable<T> (which hopefully doesn't break saving or can be
     // worked around with a custom converter) and directly return a list typed enumerator.
     [MustDisposeResource]
-    public IEnumerator<T> GetEnumerator()
+    IEnumerator<T> IEnumerable<T>.GetEnumerator()
     {
-        return existingHexes.GetEnumerator();
+        return existingHexes.FallbackEnumerator();
     }
 
     [MustDisposeResource]
     IEnumerator IEnumerable.GetEnumerator()
     {
-        return existingHexes.GetEnumerator();
+        return existingHexes.FallbackEnumerator();
     }
 
     /// <summary>
@@ -453,6 +480,249 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
                     result.Add(hexToCheck);
                     newlyFound.Enqueue(hexToCheck);
                 }
+            }
+        }
+    }
+
+    public struct HexLayoutView : IReadOnlyList<T>
+    {
+        internal List<T> MainHexes;
+        internal bool Shared;
+
+        private const int MEMORY_ALLOC_SIZE = 16;
+
+        private T?[]? diffHexes;
+        private int diffIndex = 0;
+
+        public HexLayoutView(List<T> parent, bool shared, bool initDiffHexes = false)
+        {
+            MainHexes = parent;
+            Shared = shared;
+
+            if (initDiffHexes)
+                diffHexes = ArrayPool<T?>.Shared.Rent(MEMORY_ALLOC_SIZE);
+        }
+
+        public int Count => MainHexes.Count + diffIndex;
+
+        public T this[int index]
+        {
+            get
+            {
+                if (index < MainHexes.Count)
+                    return MainHexes[index];
+
+                if (diffHexes != null)
+                {
+                    int pendingIndex = index - MainHexes.Count;
+                    if (pendingIndex < diffIndex)
+                    {
+                        var item = diffHexes[pendingIndex];
+
+                        return item ?? throw new ArgumentOutOfRangeException(nameof(index), "Out of range.");
+                    }
+                }
+
+                throw new ArgumentOutOfRangeException(nameof(index), "Out of range.");
+            }
+            set
+            {
+                if (index < MainHexes.Count)
+                {
+                    MainHexes[index] = value;
+                    return;
+                }
+
+                if (diffHexes != null)
+                {
+                    int pendingIndex = index - MainHexes.Count;
+                    if (pendingIndex < diffIndex)
+                    {
+                        diffHexes[pendingIndex] = value;
+                        return;
+                    }
+                }
+
+                throw new ArgumentOutOfRangeException(nameof(index), "Out of range.");
+            }
+        }
+
+        public void Add(T item)
+        {
+            if (diffHexes == null)
+            {
+                // No diff hexes, so we add directly to the layout.
+
+                // This is a shared hex layout. Since we're diverging from it, we need to allocate a brand-new list.
+                IsolateIfShared();
+
+                MainHexes.Add(item);
+                return;
+            }
+
+            if (diffIndex == diffHexes.Length)
+            {
+                ArrayPool<T?>.Shared.Resize(ref diffHexes, diffHexes.Length + MEMORY_ALLOC_SIZE);
+            }
+
+            diffHexes[diffIndex++] = item;
+        }
+
+        public void Remove(T item)
+        {
+            if (diffHexes != null)
+            {
+                for (int i = 0; i < diffIndex; ++i)
+                {
+                    if (!ReferenceEquals(item, diffHexes[i]))
+                        continue;
+
+                    diffHexes[i] = diffHexes[--diffIndex];
+                    diffHexes[diffIndex] = null;
+                    return;
+                }
+            }
+
+            IsolateIfShared();
+
+            MainHexes.Remove(item);
+        }
+
+        /// <summary>
+        ///   This method clears the diff layout and loads the modifications into the permanent layout.
+        /// </summary>
+        /// <remarks>
+        ///   <para>
+        ///     This is the method that allocates memory. Only when this is called and the diff is not empty the
+        ///     organelles get deep cloned.
+        ///   </para>
+        /// </remarks>
+        /// <returns>true if this layout was in diff mode.</returns>
+        public bool Commit(bool reallocate)
+        {
+            if (diffHexes is null || diffIndex == 0)
+                return false;
+
+            IsolateIfShared();
+
+            for (int i = 0; i < diffIndex; ++i)
+            {
+                var diff = diffHexes[i];
+
+                if (diff is null)
+                    break;
+
+                MainHexes.Add(diff);
+            }
+
+            if (reallocate)
+            {
+                Array.Clear(diffHexes, 0, diffIndex);
+                diffIndex = 0;
+            }
+            else
+            {
+                Drop();
+            }
+
+            return true;
+        }
+
+        public void IsolateIfShared()
+        {
+            if (!Shared)
+                return;
+
+            var count = MainHexes.Count;
+            var newList = new List<T>(count);
+
+            for (int i = 0; i < count; ++i)
+            {
+                newList.Add((T)((ICloneable)MainHexes[i]).Clone());
+            }
+
+            MainHexes = newList;
+            Shared = false;
+        }
+
+        public void Drop()
+        {
+            if (diffHexes is null)
+                return;
+
+            Array.Clear(diffHexes, 0, diffIndex);
+            ArrayPool<T?>.Shared.Return(diffHexes, false);
+
+            diffHexes = null;
+            diffIndex = 0;
+        }
+
+        public ReadOnlyEnumerator GetReadOnlyEnumerator()
+        {
+            return new ReadOnlyEnumerator(GetEnumerator());
+        }
+
+        public Enumerator GetEnumerator()
+        {
+            return new Enumerator(MainHexes, diffHexes, diffIndex);
+        }
+
+        IEnumerator<T> IEnumerable<T>.GetEnumerator()
+        {
+            return FallbackEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return FallbackEnumerator();
+        }
+
+        internal IEnumerator<T> FallbackEnumerator()
+        {
+            int count = Count;
+            for (int i = 0; i < count; ++i)
+            {
+                yield return this[i];
+            }
+        }
+
+        public ref struct Enumerator(List<T> mainHexes, T?[]? diffHexes, int diffIndex)
+        {
+            private readonly ReadOnlySpan<T> mainSpan = CollectionsMarshal.AsSpan(mainHexes);
+
+            private readonly ReadOnlySpan<T?> diffSpan = diffHexes != null ?
+                new ReadOnlySpan<T?>(diffHexes, 0, diffIndex) :
+                default;
+
+            private int index = -1;
+
+            public T Current
+            {
+                get
+                {
+                    if (index < mainSpan.Length)
+                        return mainSpan[index];
+
+                    return diffSpan[index - mainSpan.Length]!;
+                }
+            }
+
+            public bool MoveNext()
+            {
+                ++index;
+                return index < mainSpan.Length + diffSpan.Length;
+            }
+        }
+
+        public ref struct ReadOnlyEnumerator(Enumerator baseEnumerator)
+        {
+            private Enumerator baseEnumerator = baseEnumerator;
+
+            public IReadOnlyPositionedHex Current => baseEnumerator.Current;
+
+            public bool MoveNext()
+            {
+                return baseEnumerator.MoveNext();
             }
         }
     }
