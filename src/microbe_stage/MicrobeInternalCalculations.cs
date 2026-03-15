@@ -871,7 +871,7 @@ public static class MicrobeInternalCalculations
             concentration += hexCount * (hexCount - 1);
         }
 
-        concentration /= totalHexCount * (totalHexCount - 1);
+        concentration /= totalHexCount * Math.Max(totalHexCount - 1, 1);
 
         // Then return the final result as the bonus being anything above 1
         return 1 + concentration * Constants.CELL_SPECIALIZATION_STRENGTH_MULTIPLIER;
