@@ -860,21 +860,21 @@ public static class MicrobeInternalCalculations
             totalHexCount += hexCount;
         }
 
-        totalHexCount--;
-
-        if (totalHexCount < 1)
+        if (totalHexCount < 2)
             return 1;
 
         float concentration = 0.0f;
 
         foreach (var entry in tempWorkMemory)
         {
-            float proportion = ((float)entry.Value - 1) / totalHexCount;
-            concentration += proportion * proportion;
+            var hexCount = entry.Value;
+            concentration += hexCount * (hexCount - 1);
         }
 
+        concentration /= totalHexCount * (totalHexCount - 1);
+
         // Calculate a strength factor that adjusts things
-        var strength = Math.Min((float)totalHexCount / Constants.CELL_SPECIALIZATION_STRENGTH_FULL_AT, 1);
+        var strength = Math.Min(((float)totalHexCount - 1) / Constants.CELL_SPECIALIZATION_STRENGTH_FULL_AT, 1);
         strength *= Constants.CELL_SPECIALIZATION_STRENGTH_MULTIPLIER;
 
         // Then return the final result as the bonus being anything above 1
