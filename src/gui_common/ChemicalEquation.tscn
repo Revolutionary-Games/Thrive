@@ -12,30 +12,49 @@
 default_font = ExtResource("5_wdgi7")
 default_font_size = 18
 
-[node name="ChemicalEquation" type="VBoxContainer" unique_id=664382039 node_paths=PackedStringArray("title", "toggleProcess", "spinner", "firstLineContainer")]
+[node name="ChemicalEquation" type="Button" unique_id=1728724136 node_paths=PackedStringArray("title", "toggleProcess", "spinner", "firstLineContainer", "secondLineContainer", "thirdLineContainer", "mainContainer")]
 process_priority = 7
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-size_flags_horizontal = 3
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("1")
 script = ExtResource("2")
 DefaultTitleFont = ExtResource("4_77wn0")
-title = NodePath("HBoxContainer/Label")
-toggleProcess = NodePath("HBoxContainer/ToggleProcess")
-spinner = NodePath("HBoxContainer/SpinnerNode/Spinner")
-firstLineContainer = NodePath("FirstLine")
+title = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Label")
+toggleProcess = NodePath("MarginContainer/VBoxContainer/HBoxContainer/ToggleProcess")
+spinner = NodePath("MarginContainer/VBoxContainer/HBoxContainer/SpinnerNode/Spinner")
+firstLineContainer = NodePath("MarginContainer/VBoxContainer/FirstLine")
+secondLineContainer = NodePath("MarginContainer/VBoxContainer/FirstLine2")
+thirdLineContainer = NodePath("MarginContainer/VBoxContainer/FirstLine3")
 speedLimitedTitleFont = ExtResource("4_vbkf3")
 equationArrowTexture = ExtResource("5_tr4hc")
+mainContainer = NodePath("MarginContainer")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1401810773]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=144987184]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=2056575112]
 layout_mode = 2
 
-[node name="SpinnerNode" type="Control" parent="HBoxContainer" unique_id=1466707511]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1401810773]
+layout_mode = 2
+
+[node name="SpinnerNode" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1466707511]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 
-[node name="Spinner" type="TextureRect" parent="HBoxContainer/SpinnerNode" unique_id=1148069507]
+[node name="Spinner" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/SpinnerNode" unique_id=1148069507]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 0
 offset_right = 32.0
@@ -45,7 +64,7 @@ texture = ExtResource("3")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="HBoxContainer" unique_id=617861566]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=617861566]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 size_flags_horizontal = 3
@@ -54,15 +73,25 @@ label_settings = ExtResource("4_77wn0")
 vertical_alignment = 1
 max_lines_visible = 5
 
-[node name="ToggleProcess" type="CheckButton" parent="HBoxContainer" unique_id=1900492811]
+[node name="ToggleProcess" type="CheckButton" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1900492811]
 process_mode = 3
 layout_mode = 2
 tooltip_text = "PROCESS_TOGGLE_TOOLTIP"
 button_pressed = true
 
-[node name="FirstLine" type="HBoxContainer" parent="." unique_id=2076490625]
+[node name="FirstLine" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=2076490625]
 layout_mode = 2
 mouse_filter = 2
 theme = SubResource("1")
 
-[connection signal="pressed" from="HBoxContainer/ToggleProcess" to="." method="ToggleButtonPressed"]
+[node name="FirstLine2" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=492075199]
+layout_mode = 2
+mouse_filter = 2
+theme = SubResource("1")
+
+[node name="FirstLine3" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1646738280]
+layout_mode = 2
+mouse_filter = 2
+theme = SubResource("1")
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/ToggleProcess" to="." method="ToggleButtonPressed"]

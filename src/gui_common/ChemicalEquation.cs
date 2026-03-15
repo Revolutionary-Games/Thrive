@@ -5,7 +5,7 @@ using Godot;
 /// <summary>
 ///   Shows a single chemical equation in a control
 /// </summary>
-public partial class ChemicalEquation : VBoxContainer
+public partial class ChemicalEquation : Button
 {
 #pragma warning disable CA2213
     [Export]
@@ -24,10 +24,19 @@ public partial class ChemicalEquation : VBoxContainer
     private HBoxContainer firstLineContainer = null!;
 
     [Export]
+    private HBoxContainer secondLineContainer = null!;
+
+    [Export]
+    private HBoxContainer thirdLineContainer = null!;
+
+    [Export]
     private LabelSettings speedLimitedTitleFont = null!;
 
     [Export]
     private Texture2D equationArrowTexture = null!;
+
+    [Export]
+    private Control mainContainer = null!;
 
     // Dynamically generated controls
     private CompoundListBox? leftSide;
@@ -157,6 +166,13 @@ public partial class ChemicalEquation : VBoxContainer
     public override void _Ready()
     {
         UpdateEquation();
+
+        CustomMinimumSize = _GetMinimumSize();
+    }
+
+    public override Vector2 _GetMinimumSize()
+    {
+        return mainContainer.GetMinimumSize();
     }
 
     public override void _EnterTree()
@@ -193,6 +209,14 @@ public partial class ChemicalEquation : VBoxContainer
             UpdateEquation();
     }
 
+    private void OnContentSizeChanged()
+    {
+        var newMinSize = _GetMinimumSize();
+
+        if (newMinSize != CustomMinimumSize)
+            CustomMinimumSize = newMinSize;
+    }
+
     private void OnTranslationsChanged()
     {
         UpdateHeader();
@@ -218,6 +242,7 @@ public partial class ChemicalEquation : VBoxContainer
         {
             Visible = false;
             firstLineContainer.FreeChildren();
+            thirdLineContainer.FreeChildren();
             leftSide = null;
             equationArrow = null;
             rightSide = null;
@@ -356,7 +381,7 @@ public partial class ChemicalEquation : VBoxContainer
                     HorizontalAlignment = HorizontalAlignment.Center,
                 };
 
-                firstLineContainer.AddChild(environmentSeparator);
+                thirdLineContainer.AddChild(environmentSeparator);
             }
 
             environmentSeparator.Visible = true;
@@ -364,7 +389,7 @@ public partial class ChemicalEquation : VBoxContainer
             if (environmentSection == null)
             {
                 environmentSection = new CompoundListBox { PartSeparator = ", ", UsePercentageDisplay = true };
-                firstLineContainer.AddChild(environmentSection);
+                thirdLineContainer.AddChild(environmentSection);
             }
 
             environmentSection.Visible = true;
