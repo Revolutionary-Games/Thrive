@@ -860,6 +860,8 @@ public static class MicrobeInternalCalculations
             totalHexCount += hexCount;
         }
 
+        totalHexCount--;
+
         if (totalHexCount < 1)
             return 1;
 
@@ -867,7 +869,7 @@ public static class MicrobeInternalCalculations
 
         foreach (var entry in tempWorkMemory)
         {
-            float proportion = (float)entry.Value / totalHexCount;
+            float proportion = ((float)entry.Value - 1) / totalHexCount;
             concentration += proportion * proportion;
         }
 
