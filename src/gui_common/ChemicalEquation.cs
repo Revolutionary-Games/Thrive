@@ -18,10 +18,10 @@ public partial class ChemicalEquation : CheckButton
     private TextureRect? spinner;
 
     [Export]
-    private HBoxContainer firstLineContainer = null!;
+    private Container firstLineContainer = null!;
 
     [Export]
-    private HBoxContainer environmentalPartContainer = null!;
+    private Container environmentalPartContainer = null!;
 
     [Export]
     private LabelSettings speedLimitedTitleFont = null!;
@@ -161,7 +161,7 @@ public partial class ChemicalEquation : CheckButton
     {
         UpdateEquation();
 
-        CustomMinimumSize = _GetMinimumSize();
+        RecalculateMinimumSize();
     }
 
     public override Vector2 _GetMinimumSize()
@@ -210,10 +210,7 @@ public partial class ChemicalEquation : CheckButton
 
     private void OnContentSizeChanged()
     {
-        var newMinSize = _GetMinimumSize();
-
-        if (newMinSize != CustomMinimumSize)
-            CustomMinimumSize = newMinSize;
+        RecalculateMinimumSize();
     }
 
     private void OnTranslationsChanged()
@@ -282,6 +279,8 @@ public partial class ChemicalEquation : CheckButton
         UpdateEnvironmentPart(environmentalInputs);
 
         ApplyProcessToggleValue();
+
+        OnContentSizeChanged();
     }
 
     private void UpdateHeader()
@@ -409,5 +408,13 @@ public partial class ChemicalEquation : CheckButton
     private void ApplyProcessToggleValue()
     {
         ButtonPressed = ProcessEnabled && showToggle;
+    }
+
+    private void RecalculateMinimumSize()
+    {
+        var newMinSize = _GetMinimumSize();
+
+        if (newMinSize != CustomMinimumSize)
+            CustomMinimumSize = newMinSize;
     }
 }

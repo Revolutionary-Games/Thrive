@@ -34,7 +34,7 @@ script = ExtResource("2")
 DefaultTitleFont = ExtResource("4_77wn0")
 title = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Label")
 spinner = NodePath("MarginContainer/VBoxContainer/HBoxContainer/SpinnerNode/Spinner")
-firstLineContainer = NodePath("MarginContainer/VBoxContainer/FirstLine")
+firstLineContainer = NodePath("MarginContainer/VBoxContainer/FlowContainer")
 environmentalPartContainer = NodePath("MarginContainer/VBoxContainer/EnvironmentalPartLine")
 speedLimitedTitleFont = ExtResource("4_vbkf3")
 equationArrowTexture = ExtResource("5_tr4hc")
@@ -81,10 +81,10 @@ label_settings = ExtResource("4_77wn0")
 vertical_alignment = 1
 max_lines_visible = 5
 
-[node name="FirstLine" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1200893141]
+[node name="FlowContainer" type="FlowContainer" parent="MarginContainer/VBoxContainer" unique_id=823848967]
 layout_mode = 2
+size_flags_vertical = 3
 mouse_filter = 2
-theme = SubResource("1")
 
 [node name="EnvironmentalPartLine" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1133950042]
 layout_mode = 2
