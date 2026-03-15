@@ -860,7 +860,7 @@ public static class MicrobeInternalCalculations
             totalHexCount += hexCount;
         }
 
-        if (totalHexCount < 2)
+        if (totalHexCount < 1)
             return 1;
 
         float concentration = 0.0f;
