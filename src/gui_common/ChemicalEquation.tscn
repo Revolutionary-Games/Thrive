@@ -2,6 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
 [ext_resource type="Script" uid="uid://6yfse7bf5lb7" path="res://src/gui_common/ChemicalEquation.cs" id="2"]
+[ext_resource type="Texture2D" uid="uid://dtvbg17mj0i35" path="res://assets/textures/blank.png" id="2_m8q6p"]
 [ext_resource type="Texture2D" uid="uid://cyrha88k4ioqh" path="res://assets/textures/gui/bevel/ProcessProcessing.png" id="3"]
 [ext_resource type="LabelSettings" uid="uid://b6c60ljn172wp" path="res://src/gui_common/fonts/Body-Bold-Smaller.tres" id="4_77wn0"]
 [ext_resource type="LabelSettings" uid="uid://4teclbsvoawb" path="res://src/gui_common/fonts/Body-Bold-Smaller-Red.tres" id="4_vbkf3"]
@@ -12,7 +13,7 @@
 default_font = ExtResource("5_wdgi7")
 default_font_size = 18
 
-[node name="ChemicalEquation" type="Button" unique_id=1728724136 node_paths=PackedStringArray("title", "toggleProcess", "spinner", "firstLineContainer", "secondLineContainer", "thirdLineContainer", "mainContainer")]
+[node name="ChemicalEquation" type="CheckButton" unique_id=847799233 node_paths=PackedStringArray("title", "spinner", "firstLineContainer", "environmentalPartContainer", "mainContainer")]
 process_priority = 7
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,14 +21,21 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1")
+theme_override_icons/icon = ExtResource("2_m8q6p")
+theme_override_icons/checked = ExtResource("2_m8q6p")
+theme_override_icons/unchecked = ExtResource("2_m8q6p")
+theme_override_icons/checked_disabled = ExtResource("2_m8q6p")
+theme_override_icons/unchecked_disabled = ExtResource("2_m8q6p")
+theme_override_icons/checked_mirrored = ExtResource("2_m8q6p")
+theme_override_icons/unchecked_mirrored = ExtResource("2_m8q6p")
+theme_override_icons/checked_disabled_mirrored = ExtResource("2_m8q6p")
+theme_override_icons/unchecked_disabled_mirrored = ExtResource("2_m8q6p")
 script = ExtResource("2")
 DefaultTitleFont = ExtResource("4_77wn0")
 title = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Label")
-toggleProcess = NodePath("MarginContainer/VBoxContainer/HBoxContainer/ToggleProcess")
 spinner = NodePath("MarginContainer/VBoxContainer/HBoxContainer/SpinnerNode/Spinner")
 firstLineContainer = NodePath("MarginContainer/VBoxContainer/FirstLine")
-secondLineContainer = NodePath("MarginContainer/VBoxContainer/FirstLine2")
-thirdLineContainer = NodePath("MarginContainer/VBoxContainer/FirstLine3")
+environmentalPartContainer = NodePath("MarginContainer/VBoxContainer/EnvironmentalPartLine")
 speedLimitedTitleFont = ExtResource("4_vbkf3")
 equationArrowTexture = ExtResource("5_tr4hc")
 mainContainer = NodePath("MarginContainer")
@@ -73,25 +81,13 @@ label_settings = ExtResource("4_77wn0")
 vertical_alignment = 1
 max_lines_visible = 5
 
-[node name="ToggleProcess" type="CheckButton" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1900492811]
-process_mode = 3
-layout_mode = 2
-tooltip_text = "PROCESS_TOGGLE_TOOLTIP"
-button_pressed = true
-
-[node name="FirstLine" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=2076490625]
+[node name="FirstLine" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1200893141]
 layout_mode = 2
 mouse_filter = 2
 theme = SubResource("1")
 
-[node name="FirstLine2" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=492075199]
+[node name="EnvironmentalPartLine" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1133950042]
 layout_mode = 2
 mouse_filter = 2
 theme = SubResource("1")
-
-[node name="FirstLine3" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1646738280]
-layout_mode = 2
-mouse_filter = 2
-theme = SubResource("1")
-
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/ToggleProcess" to="." method="ToggleButtonPressed"]
+alignment = 2

@@ -5,7 +5,7 @@ using Godot;
 /// <summary>
 ///   Shows a single chemical equation in a control
 /// </summary>
-public partial class ChemicalEquation : Button
+public partial class ChemicalEquation : CheckButton
 {
 #pragma warning disable CA2213
     [Export]
@@ -15,19 +15,13 @@ public partial class ChemicalEquation : Button
     private Label? title;
 
     [Export]
-    private CheckButton? toggleProcess;
-
-    [Export]
     private TextureRect? spinner;
 
     [Export]
     private HBoxContainer firstLineContainer = null!;
 
     [Export]
-    private HBoxContainer secondLineContainer = null!;
-
-    [Export]
-    private HBoxContainer thirdLineContainer = null!;
+    private HBoxContainer environmentalPartContainer = null!;
 
     [Export]
     private LabelSettings speedLimitedTitleFont = null!;
@@ -209,6 +203,11 @@ public partial class ChemicalEquation : Button
             UpdateEquation();
     }
 
+    public override void _Pressed()
+    {
+        ProcessEnabled = !ProcessEnabled;
+    }
+
     private void OnContentSizeChanged()
     {
         var newMinSize = _GetMinimumSize();
@@ -242,7 +241,7 @@ public partial class ChemicalEquation : Button
         {
             Visible = false;
             firstLineContainer.FreeChildren();
-            thirdLineContainer.FreeChildren();
+            environmentalPartContainer.FreeChildren();
             leftSide = null;
             equationArrow = null;
             rightSide = null;
@@ -288,8 +287,6 @@ public partial class ChemicalEquation : Button
     private void UpdateHeader()
     {
         spinner?.Visible = ShowSpinner;
-
-        toggleProcess?.Visible = ShowToggle;
 
         if (title == null || EquationFromProcess == null)
             return;
@@ -381,7 +378,7 @@ public partial class ChemicalEquation : Button
                     HorizontalAlignment = HorizontalAlignment.Center,
                 };
 
-                thirdLineContainer.AddChild(environmentSeparator);
+                environmentalPartContainer.AddChild(environmentSeparator);
             }
 
             environmentSeparator.Visible = true;
@@ -389,7 +386,7 @@ public partial class ChemicalEquation : Button
             if (environmentSection == null)
             {
                 environmentSection = new CompoundListBox { PartSeparator = ", ", UsePercentageDisplay = true };
-                thirdLineContainer.AddChild(environmentSection);
+                environmentalPartContainer.AddChild(environmentSection);
             }
 
             environmentSection.Visible = true;
@@ -409,13 +406,8 @@ public partial class ChemicalEquation : Button
         return Localization.Translate("PROCESS_ENVIRONMENT_SEPARATOR");
     }
 
-    private void ToggleButtonPressed()
-    {
-        ProcessEnabled = !ProcessEnabled;
-    }
-
     private void ApplyProcessToggleValue()
     {
-        toggleProcess?.ButtonPressed = ProcessEnabled;
+        ButtonPressed = ProcessEnabled && showToggle;
     }
 }
