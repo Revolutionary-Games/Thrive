@@ -91,3 +91,5 @@ layout_mode = 2
 mouse_filter = 2
 theme = SubResource("1")
 alignment = 2
+
+[connection signal="resized" from="MarginContainer/VBoxContainer/FlowContainer" to="." method="OnContentSizeChanged"]
