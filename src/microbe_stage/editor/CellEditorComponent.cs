@@ -44,7 +44,7 @@ public partial class CellEditorComponent :
     private readonly List<ShaderMaterial> temporaryDisplayerFetchList = new();
 
     private readonly List<EditorUserOverride> ignoredEditorWarnings = new();
-    
+
     private readonly OrganelleDefinition nucleusDefinition =
         SimulationParameters.Instance.GetOrganelleType("nucleus");
 
