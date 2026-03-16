@@ -329,6 +329,11 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
     public void Approve()
     {
         existingHexes.Commit(false);
+
+        // Only a handful of species are going to be approved by auto-evo compared to the huge amount of rejected
+        // species. Therefore, the following isn't expected to have a huge impact on memory.
+        // This is to ensure all the approved species have their own layout.
+        existingHexes.IsolateIfShared();
     }
 
     public void Reject()
