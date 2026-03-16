@@ -19,7 +19,7 @@ public static class CompatibleSaveVersions
                     ("0.9.1.0", true), ("0.9.1.1", true),
                     ("0.9.2.0", true), ("1.0.0.0", true),
                     ("1.0.1.0-alpha", true), ("1.0.1.0-rc1", true),
-                    ("1.0.1.1", true),
+                    ("1.0.1.0", true),
                 ]
             },
         };
