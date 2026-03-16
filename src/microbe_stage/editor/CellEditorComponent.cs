@@ -2142,7 +2142,10 @@ public partial class CellEditorComponent :
 
         var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(organelles);
 
-        var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(organelles, tempMemory3);
+        var nucleusDefinition = SimulationParameters.Instance.GetOrganelleType("nucleus");
+
+        var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(organelles, tempMemory3,
+            nucleusDefinition);
 
         var tolerances = CalculateLatestTolerances();
         ProcessSystem.ComputeEnergyBalanceFull(organelles, conditionsData, tolerances, specialization,
@@ -2218,8 +2221,11 @@ public partial class CellEditorComponent :
 
         float consumptionProductionRatio = energyBalance.TotalConsumption / energyBalance.TotalProduction;
 
+        var nucleusDefinition = SimulationParameters.Instance.GetOrganelleType("nucleus");
+
         var specialization =
-            MicrobeInternalCalculations.CalculateSpecializationBonus(editedMicrobeOrganelles, tempMemory3);
+            MicrobeInternalCalculations.CalculateSpecializationBonus(editedMicrobeOrganelles, tempMemory3,
+                nucleusDefinition);
 
         var speedModifier = tolerances.ProcessSpeedModifier * specialization;
 

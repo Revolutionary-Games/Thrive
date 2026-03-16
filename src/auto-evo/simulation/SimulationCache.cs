@@ -141,7 +141,10 @@ public class SimulationCache
         var cached = new EnergyBalanceInfoSimple();
 
         // Assume here that the species specialization factor may not be up to date, so recalculate here
-        var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(species.Organelles, workMemory1);
+        var nucleusDefinition = SimulationParameters.Instance.GetOrganelleType("nucleus");
+
+        var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(species.Organelles, workMemory1,
+            nucleusDefinition);
 
         // Auto-evo uses the average values of compound during the course of a simulated day
         ProcessSystem.ComputeEnergyBalanceSimple(species.Organelles, biomeConditions,

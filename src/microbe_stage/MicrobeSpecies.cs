@@ -248,9 +248,11 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
 
         cachedFillTimes.Clear();
 
+        var nucleusDefinition = SimulationParameters.Instance.GetOrganelleType("nucleus");
+
         SpecializationBonus =
             MicrobeInternalCalculations.CalculateSpecializationBonus(Organelles,
-                new Dictionary<OrganelleDefinition, int>());
+                new Dictionary<OrganelleDefinition, int>(), nucleusDefinition);
     }
 
     public override bool RepositionToOrigin()

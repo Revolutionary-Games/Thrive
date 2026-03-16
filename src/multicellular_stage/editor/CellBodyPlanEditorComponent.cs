@@ -1263,8 +1263,11 @@ public partial class CellBodyPlanEditorComponent :
         var maximumMovementDirection =
             MicrobeInternalCalculations.MaximumSpeedDirection(cellType.ModifiableOrganelles);
 
+        var nucleusDefinition = SimulationParameters.Instance.GetOrganelleType("nucleus");
+
         var specialization =
-            MicrobeInternalCalculations.CalculateSpecializationBonus(cellType.ModifiableOrganelles, tempMemory3);
+            MicrobeInternalCalculations.CalculateSpecializationBonus(cellType.ModifiableOrganelles, tempMemory3,
+                nucleusDefinition);
 
         ProcessSystem.ComputeEnergyBalanceFull(cellType.ModifiableOrganelles, Editor.CurrentPatch.Biome,
             environmentalTolerances, specialization,
@@ -1450,11 +1453,14 @@ public partial class CellBodyPlanEditorComponent :
         var environmentalTolerances =
             MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(Editor.CalculateRawTolerances());
 
+        var nucleusDefinition = SimulationParameters.Instance.GetOrganelleType("nucleus");
+
         // TODO: improve performance by calculating the balance per cell type
         foreach (var hex in cells)
         {
             var specialization =
-                MicrobeInternalCalculations.CalculateSpecializationBonus(hex.Data!.ModifiableOrganelles, tempMemory3);
+                MicrobeInternalCalculations.CalculateSpecializationBonus(hex.Data!.ModifiableOrganelles, tempMemory3,
+                    nucleusDefinition);
 
             // TODO: adjacency bonuses from body plan (GetAdjacencySpecializationBonus)
 
@@ -1497,11 +1503,13 @@ public partial class CellBodyPlanEditorComponent :
         in ResolvedMicrobeTolerances tolerances)
     {
         Dictionary<Compound, CompoundBalance> compoundBalanceData = new();
+        var nucleusDefinition = SimulationParameters.Instance.GetOrganelleType("nucleus");
+
         foreach (var cell in cells)
         {
             var organelles = GetEditedCellDataIfEdited(cell.Data!.ModifiableCellType).ModifiableOrganelles;
             var specialization =
-                MicrobeInternalCalculations.CalculateSpecializationBonus(organelles, tempMemory3);
+                MicrobeInternalCalculations.CalculateSpecializationBonus(organelles, tempMemory3, nucleusDefinition);
 
             // TODO: efficiency from cell layout positions (GetAdjacencySpecializationBonus)
 

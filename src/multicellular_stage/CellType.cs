@@ -189,9 +189,10 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
 
     public void CalculateSpecialization()
     {
+        var nucleusDefinition = SimulationParameters.Instance.GetOrganelleType("nucleus");
         SpecializationBonus =
             MicrobeInternalCalculations.CalculateSpecializationBonus(ModifiableOrganelles,
-                new Dictionary<OrganelleDefinition, int>());
+                new Dictionary<OrganelleDefinition, int>(), nucleusDefinition);
     }
 
     public void SetupWorldEntities(IWorldSimulation worldSimulation)

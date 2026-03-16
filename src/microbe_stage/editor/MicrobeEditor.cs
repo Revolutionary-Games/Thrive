@@ -629,9 +629,10 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
         var tolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(
             MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(editedSpecies, CurrentPatch.Biome));
 
+        var nucleusDefinition = SimulationParameters.Instance.GetOrganelleType("nucleus");
         var specialization =
             MicrobeInternalCalculations.CalculateSpecializationBonus(editedSpecies.ModifiableOrganelles.Organelles,
-                tempMemory1);
+                tempMemory1, nucleusDefinition);
 
         ProcessSystem.ComputeEnergyBalanceSimple(editedSpecies.ModifiableOrganelles.Organelles,
             CurrentPatch.Biome, in tolerances, specialization, editedSpecies.MembraneType, Vector3.Zero, false, true,

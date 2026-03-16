@@ -44,6 +44,8 @@ public partial class CellBodyPlanEditorComponent
         // TODO: this used to have an unused "cells" parameter so figure out why it was added and if it should have
         // done something
 
+        var nucleusDefinition = SimulationParameters.Instance.GetOrganelleType("nucleus");
+
         // Empty list to later fill
         var processStatistics = new List<ProcessSpeedInformation>();
 
@@ -59,7 +61,7 @@ public partial class CellBodyPlanEditorComponent
 
             var specialization =
                 MicrobeInternalCalculations.CalculateSpecializationBonus(cellType.Key.ModifiableOrganelles,
-                    tempMemory3);
+                    tempMemory3, nucleusDefinition);
 
             for (int i = 0; i < newProcesses.Count; ++i)
             {
@@ -237,6 +239,7 @@ public partial class CellBodyPlanEditorComponent
 
     private void UpdateSpecializationDisplay()
     {
+        var nucleusDefinition = SimulationParameters.Instance.GetOrganelleType("nucleus");
         double totalSpecialization = 0;
         float maxSpecialization = -1;
         string mostSpecializedCellName = Localization.Translate("NONE");
@@ -249,7 +252,8 @@ public partial class CellBodyPlanEditorComponent
             var type = GetEditedCellDataIfEdited(cells[i].Data!.ModifiableCellType);
 
             var specialization =
-                MicrobeInternalCalculations.CalculateSpecializationBonus(type.ModifiableOrganelles, tempMemory3);
+                MicrobeInternalCalculations.CalculateSpecializationBonus(type.ModifiableOrganelles, tempMemory3,
+                    nucleusDefinition);
 
             // TODO: calculate adjacency specialization values
             // https://github.com/Revolutionary-Games/Thrive/issues/6764
