@@ -36,6 +36,9 @@ public partial class CellBodyPlanEditorComponent :
 
     private readonly Dictionary<CellType, int> cellTypesCount = new();
 
+    private readonly OrganelleDefinition nucleusDefinition =
+        SimulationParameters.Instance.GetOrganelleType("nucleus");
+
     /// <summary>
     ///   Stores cells that end up being disconnected from the colony because of growth order
     /// </summary>
@@ -1263,8 +1266,6 @@ public partial class CellBodyPlanEditorComponent :
         var maximumMovementDirection =
             MicrobeInternalCalculations.MaximumSpeedDirection(cellType.ModifiableOrganelles);
 
-        var nucleusDefinition = SimulationParameters.Instance.GetOrganelleType("nucleus");
-
         var specialization =
             MicrobeInternalCalculations.CalculateSpecializationBonus(cellType.ModifiableOrganelles, tempMemory3,
                 nucleusDefinition);
@@ -1453,8 +1454,6 @@ public partial class CellBodyPlanEditorComponent :
         var environmentalTolerances =
             MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(Editor.CalculateRawTolerances());
 
-        var nucleusDefinition = SimulationParameters.Instance.GetOrganelleType("nucleus");
-
         // TODO: improve performance by calculating the balance per cell type
         foreach (var hex in cells)
         {
@@ -1503,8 +1502,6 @@ public partial class CellBodyPlanEditorComponent :
         in ResolvedMicrobeTolerances tolerances)
     {
         Dictionary<Compound, CompoundBalance> compoundBalanceData = new();
-        var nucleusDefinition = SimulationParameters.Instance.GetOrganelleType("nucleus");
-
         foreach (var cell in cells)
         {
             var organelles = GetEditedCellDataIfEdited(cell.Data!.ModifiableCellType).ModifiableOrganelles;

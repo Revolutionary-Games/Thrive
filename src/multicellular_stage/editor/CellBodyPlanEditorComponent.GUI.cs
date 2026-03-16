@@ -44,8 +44,6 @@ public partial class CellBodyPlanEditorComponent
         // TODO: this used to have an unused "cells" parameter so figure out why it was added and if it should have
         // done something
 
-        var nucleusDefinition = SimulationParameters.Instance.GetOrganelleType("nucleus");
-
         // Empty list to later fill
         var processStatistics = new List<ProcessSpeedInformation>();
 
@@ -239,7 +237,6 @@ public partial class CellBodyPlanEditorComponent
 
     private void UpdateSpecializationDisplay()
     {
-        var nucleusDefinition = SimulationParameters.Instance.GetOrganelleType("nucleus");
         double totalSpecialization = 0;
         float maxSpecialization = -1;
         string mostSpecializedCellName = Localization.Translate("NONE");

@@ -10,6 +10,9 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
 {
     public const ushort SERIALIZATION_VERSION = 3;
 
+    private readonly OrganelleDefinition nucleusDefinition =
+        SimulationParameters.Instance.GetOrganelleType("nucleus");
+
     public CellType(OrganelleLayout<OrganelleTemplate> organelles, MembraneType membraneType)
     {
         ModifiableOrganelles = organelles;
@@ -189,7 +192,6 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
 
     public void CalculateSpecialization()
     {
-        var nucleusDefinition = SimulationParameters.Instance.GetOrganelleType("nucleus");
         SpecializationBonus =
             MicrobeInternalCalculations.CalculateSpecializationBonus(ModifiableOrganelles,
                 new Dictionary<OrganelleDefinition, int>(), nucleusDefinition);

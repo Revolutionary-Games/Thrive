@@ -477,8 +477,6 @@ public partial class CellEditorComponent
 
     private void UpdateSpecializationDisplay()
     {
-        var nucleusDefinition = SimulationParameters.Instance.GetOrganelleType("nucleus");
-
         var specializationBonus =
             MicrobeInternalCalculations.CalculateSpecializationBonus(editedMicrobeOrganelles, tempMemory3,
                 nucleusDefinition);

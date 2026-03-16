@@ -42,6 +42,9 @@ public class SimulationCache
     private readonly CompoundDefinition oxytoxy = SimulationParameters.GetCompound(Compound.Oxytoxy);
     private readonly CompoundDefinition mucilage = SimulationParameters.GetCompound(Compound.Mucilage);
 
+    private readonly OrganelleDefinition nucleusDefinition =
+        SimulationParameters.Instance.GetOrganelleType("nucleus");
+
     private readonly WorldGenerationSettings worldSettings;
 
 #if USE_HASHED_SCORE_KEYS
@@ -141,8 +144,6 @@ public class SimulationCache
         var cached = new EnergyBalanceInfoSimple();
 
         // Assume here that the species specialization factor may not be up to date, so recalculate here
-        var nucleusDefinition = SimulationParameters.Instance.GetOrganelleType("nucleus");
-
         var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(species.Organelles, workMemory1,
             nucleusDefinition);
 

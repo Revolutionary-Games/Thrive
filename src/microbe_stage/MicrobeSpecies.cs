@@ -15,6 +15,9 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
     private readonly Dictionary<BiomeConditions, Dictionary<Compound, (float TimeToFill, float Storage)>>
         cachedFillTimes = new();
 
+    private readonly OrganelleDefinition nucleusDefinition =
+        SimulationParameters.Instance.GetOrganelleType("nucleus");
+
     public MicrobeSpecies(uint id, string genus, string epithet) : base(id, genus, epithet)
     {
         Organelles = new OrganelleLayout<OrganelleTemplate>();
@@ -247,8 +250,6 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         UpdateIsBacteria();
 
         cachedFillTimes.Clear();
-
-        var nucleusDefinition = SimulationParameters.Instance.GetOrganelleType("nucleus");
 
         SpecializationBonus =
             MicrobeInternalCalculations.CalculateSpecializationBonus(Organelles,
