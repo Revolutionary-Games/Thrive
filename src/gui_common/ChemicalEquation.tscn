@@ -13,7 +13,7 @@
 default_font = ExtResource("5_wdgi7")
 default_font_size = 18
 
-[node name="ChemicalEquation" type="CheckButton" unique_id=847799233 node_paths=PackedStringArray("title", "spinner", "firstLineContainer", "environmentalPartContainer", "mainContainer")]
+[node name="ChemicalEquation" type="CheckButton" unique_id=847799233 node_paths=PackedStringArray("title", "spinner", "firstLineContainer", "environmentalPartContainer", "mainContainer", "processSpeedBar", "processInactiveMarker")]
 process_priority = 7
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,10 +35,12 @@ DefaultTitleFont = ExtResource("4_77wn0")
 title = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Label")
 spinner = NodePath("MarginContainer/VBoxContainer/HBoxContainer/SpinnerNode/Spinner")
 firstLineContainer = NodePath("MarginContainer/VBoxContainer/FlowContainer")
-environmentalPartContainer = NodePath("MarginContainer/VBoxContainer/EnvironmentalPartLine")
+environmentalPartContainer = NodePath("MarginContainer/VBoxContainer/MarginContainer/EnvironmentalPartLine")
 speedLimitedTitleFont = ExtResource("4_vbkf3")
 equationArrowTexture = ExtResource("5_tr4hc")
 mainContainer = NodePath("MarginContainer")
+processSpeedBar = NodePath("MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/ProgressBar")
+processInactiveMarker = NodePath("MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/ProgressBar/Panel")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=144987184]
 layout_mode = 1
@@ -86,7 +88,43 @@ layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="EnvironmentalPartLine" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1133950042]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=402206761]
+layout_mode = 2
+size_flags_vertical = 8
+mouse_filter = 2
+theme = SubResource("1")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer" unique_id=1738905494]
+layout_mode = 2
+mouse_filter = 2
+theme = SubResource("1")
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2" unique_id=999772242]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+max_value = 1.0
+allow_greater = true
+
+[node name="Panel" type="Panel" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/ProgressBar" unique_id=201311116]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/ProgressBar/Panel" unique_id=887071478]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "PROCESS_INACTIVE"
+horizontal_alignment = 1
+
+[node name="EnvironmentalPartLine" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer" unique_id=1133950042]
 layout_mode = 2
 mouse_filter = 2
 theme = SubResource("1")

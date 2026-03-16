@@ -1110,7 +1110,6 @@ public partial class ProcessSystem : BaseSystem<World, float>
             // Processing runs on the current game time following values
             var ambient = GetAmbient(inputCompound, CompoundAmountType.Current);
 
-            // currentProcessStatistics?.AddInputAmount(entry.Key, entry.Value * inverseDelta);
             currentProcessStatistics?.AddInputAmount(inputCompound, ambient);
 
             // do environmental modifier here, and save it for later
@@ -1145,10 +1144,9 @@ public partial class ProcessSystem : BaseSystem<World, float>
             var inputRemoved = entry.Value * process.Rate * environmentModifier * process.SpeedMultiplier *
                 overallSpeedModifier;
 
-            // currentProcessStatistics?.AddInputAmount(entry.Key, 0);
             // We don't multiply by delta here because we report the per-second values anyway. In the actual
             // process output numbers (computed after testing the speed), we need to multiply by inverse delta
-            currentProcessStatistics?.AddInputAmount(inputCompound, inputRemoved);
+            currentProcessStatistics?.AddInputAmount(inputCompound, 0);
 
             inputRemoved = inputRemoved * delta * spaceConstraintModifier;
 
@@ -1193,8 +1191,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
             var outputAdded = entry.Value * process.Rate * environmentModifier * process.SpeedMultiplier *
                 overallSpeedModifier;
 
-            // currentProcessStatistics?.AddOutputAmount(entry.Key, 0);
-            currentProcessStatistics?.AddOutputAmount(outputCompound, outputAdded);
+            currentProcessStatistics?.AddOutputAmount(outputCompound, 0);
 
             outputAdded = outputAdded * delta * spaceConstraintModifier;
 

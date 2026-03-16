@@ -32,6 +32,12 @@ public partial class ChemicalEquation : CheckButton
     [Export]
     private Control mainContainer = null!;
 
+    [Export]
+    private ProgressBar processSpeedBar = null!;
+
+    [Export]
+    private Control processInactiveMarker = null!;
+
     // Dynamically generated controls
     private CompoundListBox? leftSide;
     private TextureRect? equationArrow;
@@ -277,6 +283,10 @@ public partial class ChemicalEquation : CheckButton
 
         // Environment conditions
         UpdateEnvironmentPart(environmentalInputs);
+
+        float speed = EquationFromProcess.CurrentSpeed;
+        processSpeedBar.Value = speed;
+        processInactiveMarker.Visible = speed <= 0.0f;
 
         ApplyProcessToggleValue();
 

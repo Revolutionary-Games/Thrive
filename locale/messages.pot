@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-27 14:48+0200\n"
+"POT-Creation-Date: 2026-03-16 04:10+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -85,7 +85,7 @@ msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr ""
 
 #: ../src/general/base_stage/EditorBase.cs:946
-#: ../src/macroscopic_stage/editor/MacroscopicEditor.cs:567
+#: ../src/macroscopic_stage/editor/MacroscopicEditor.cs:566
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:59
 #: ../src/multicellular_stage/editor/MulticellularEditor.cs:584
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
@@ -1217,7 +1217,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1379
 #: ../src/microbe_stage/editor/EndosymbiosisPopup.tscn:123
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:606
-#: ../src/microbe_stage/ProcessPanel.tscn:81 ../src/modding/ModManager.tscn:698
+#: ../src/microbe_stage/ProcessPanel.tscn:123 ../src/modding/ModManager.tscn:698
 #: ../src/thriveopedia/Thriveopedia.tscn:322
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:223
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:319
@@ -5427,7 +5427,7 @@ msgstr ""
 msgid "MICROBE_RIPPLE_EFFECT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeSpecies.cs:450
+#: ../src/microbe_stage/MicrobeSpecies.cs:457
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 
@@ -5916,7 +5916,7 @@ msgstr ""
 msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr ""
 
-#: ../src/microbe_stage/ProcessPanel.tscn:99
+#: ../src/microbe_stage/ProcessPanel.tscn:142
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr ""
 
@@ -6476,7 +6476,7 @@ msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:796
-#: ../src/thriveopedia/pages/wiki/organelles/ThriveopediaOrganellesRootPage.cs:18
+#: ../src/thriveopedia/pages/wiki/organelles/ThriveopediaOrganellesRootPage.cs:20
 msgid "ORGANELLES"
 msgstr ""
 
@@ -6845,13 +6845,13 @@ msgstr ""
 msgid "PERFORM_UNBINDING"
 msgstr ""
 
-#: ../src/gui_common/ChemicalEquation.cs:209
-#: ../src/gui_common/ChemicalEquation.cs:252
+#: ../src/gui_common/ChemicalEquation.cs:235
+#: ../src/gui_common/ChemicalEquation.cs:279
 msgid "PER_SECOND_ABBREVIATION"
 msgstr ""
 
-#: ../src/gui_common/ChemicalEquation.cs:208
-#: ../src/gui_common/ChemicalEquation.cs:251
+#: ../src/gui_common/ChemicalEquation.cs:234
+#: ../src/gui_common/ChemicalEquation.cs:278
 msgid "PER_SECOND_SLASH"
 msgstr ""
 
@@ -7072,16 +7072,20 @@ msgstr ""
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr ""
 
-#: ../src/gui_common/ChemicalEquation.cs:384
+#: ../src/gui_common/ChemicalEquation.cs:435
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr ""
 
-#: ../src/microbe_stage/ProcessPanel.tscn:86
+#: ../src/gui_common/ChemicalEquation.tscn:124
+msgid "PROCESS_INACTIVE"
+msgstr ""
+
+#: ../src/microbe_stage/ProcessPanel.tscn:128
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
 msgstr ""
 
 #: ../src/microbe_stage/ProcessPanel.cs:89
-#: ../src/microbe_stage/ProcessPanel.tscn:22
+#: ../src/microbe_stage/ProcessPanel.tscn:35
 #: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:890
 msgid "PROCESS_PANEL_TITLE"
 msgstr ""
@@ -7093,10 +7097,6 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/tooltips/EnvironmentalToleranceToolTip.tscn:133
 msgid "PROCESS_SPEED_MODIFIER"
-msgstr ""
-
-#: ../src/gui_common/ChemicalEquation.tscn:60
-msgid "PROCESS_TOGGLE_TOOLTIP"
 msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:513
@@ -8101,7 +8101,7 @@ msgstr ""
 msgid "SPECIES_COLON"
 msgstr ""
 
-#: ../src/general/Species.cs:350
+#: ../src/general/Species.cs:387
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 
@@ -8838,35 +8838,35 @@ msgstr ""
 msgid "TOGGLE_UNBINDING"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:311
+#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:299
 msgid "TOLERANCES_TOO_HIGH_PRESSURE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:296
+#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:284
 msgid "TOLERANCES_TOO_HIGH_TEMPERATURE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:323
+#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:311
 msgid "TOLERANCES_TOO_LOW_OXYGEN_PROTECTION"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:316
+#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:304
 msgid "TOLERANCES_TOO_LOW_PRESSURE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:301
+#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:289
 msgid "TOLERANCES_TOO_LOW_TEMPERATURE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:329
+#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:317
 msgid "TOLERANCES_TOO_LOW_UV_PROTECTION"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:286
+#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:274
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeSpecies.cs:455
+#: ../src/microbe_stage/MicrobeSpecies.cs:462
 msgid "TOLERANCE_DETAIL_TEXT"
 msgstr ""
 
