@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using AutoEvo;
 using Godot;
 using SharedBase.Archive;
 
@@ -31,7 +32,7 @@ public abstract class Species : ICloneable, IArchivable, IReadOnlySpecies
     }
 
     /// <summary>
-    ///   This is the amount of compounds cells of this type spawn with
+    ///   This is the amount of each compound type cells of this type spawn with
     /// </summary>
     public Dictionary<Compound, float> InitialCompounds { get; private set; } = new();
 
@@ -61,6 +62,13 @@ public abstract class Species : ICloneable, IArchivable, IReadOnlySpecies
 
     public string Genus { get; set; }
     public string Epithet { get; set; }
+
+    /// <summary>
+    ///   This is a special extra ID layer used in auto-evo to make caching instances work without keeping hundreds
+    ///   of thousands of active species instances alive. Outside auto-evo this field should not be used. The values
+    ///   will be quite random.
+    /// </summary>
+    public int AutoEvoAttemptCache { get; private set; }
 
     public Color SpeciesColour { get; set; } = new(1, 1, 1);
 
@@ -170,8 +178,35 @@ public abstract class Species : ICloneable, IArchivable, IReadOnlySpecies
     /// </summary>
     public virtual void OnEdited()
     {
+        // Do the light version operations that are in this auto-evo specific version
+        OnAttemptedInAutoEvo(false);
+    }
+
+    /// <summary>
+    ///   This is a lighter version of <see cref="OnEdited"/> that *must be* called before auto-evo does any score
+    ///   calculation for a species. Otherwise, this will be used with outdated stats in pressure calculations.
+    /// </summary>
+    /// <param name="refreshCache">
+    ///   True when a new cache ID is needed for auto-evo. Only call from auto-evo on initial generation
+    ///   before any cache stats are done.
+    /// </param>
+    public virtual void OnAttemptedInAutoEvo(bool refreshCache)
+    {
         cachedBaseReproductionCost = null;
         cachedTotalReproductionCost = null;
+
+        // We must skip regenerating the cache ID when not directly generated in auto-evo
+        if (!refreshCache)
+            return;
+
+        AutoEvoAttemptCache = ModifyExistingSpecies.GetNextAutoEvoAttemptCacheNumber();
+
+        // Avoid problems with 0
+        if (AutoEvoAttemptCache == 0)
+        {
+            GD.Print("Auto-evo cache numbers have rolled around");
+            AutoEvoAttemptCache = ModifyExistingSpecies.GetNextAutoEvoAttemptCacheNumber();
+        }
     }
 
     /// <summary>
@@ -243,6 +278,8 @@ public abstract class Species : ICloneable, IArchivable, IReadOnlySpecies
         // genus;
         // epithet;
         // endosymbiosis
+
+        // And very important to not copy AutoEvoAttemptCache as that will mess up a future auto-evo run, potentially.
     }
 
     /// <summary>
