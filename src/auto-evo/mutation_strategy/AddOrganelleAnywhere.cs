@@ -3,17 +3,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using static CommonMutationFunctions;
 
 /// <summary>
 ///   Adds a random, valid organelle to a valid position. Doesn't place multicellular or later organelles.
 /// </summary>
 public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
 {
-    private readonly CommonMutationFunctions.Direction direction;
+    private readonly Direction direction;
     private readonly OrganelleDefinition[] allOrganelles;
 
-    public AddOrganelleAnywhere(Func<OrganelleDefinition, bool> criteria, CommonMutationFunctions.Direction direction
-        = CommonMutationFunctions.Direction.Neutral)
+    public AddOrganelleAnywhere(Func<OrganelleDefinition, bool> criteria, Direction direction = Direction.Neutral)
     {
         allOrganelles = SimulationParameters.Instance.GetAllOrganelles().Where(criteria).Where(IsOrganelleValid)
             .ToArray();
@@ -26,15 +26,15 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
     // Formatter and inspect code disagree here
     // ReSharper disable InvokeAsExtensionMethod
     public static AddOrganelleAnywhere ThatUseCompound(CompoundDefinition compound,
-        CommonMutationFunctions.Direction direction = CommonMutationFunctions.Direction.Neutral)
+        Direction direction = Direction.Neutral)
     {
         return new AddOrganelleAnywhere(
             organelle => Enumerable.Any(organelle.RunnableProcesses, proc => proc.Process.Inputs.ContainsKey(compound)),
             direction);
     }
 
-    public static AddOrganelleAnywhere ThatUseCompound(Compound compound, CommonMutationFunctions.Direction direction
-        = CommonMutationFunctions.Direction.Neutral)
+    public static AddOrganelleAnywhere ThatUseCompound(Compound compound, Direction direction
+        = Direction.Neutral)
     {
         var compoundResolved = SimulationParameters.GetCompound(compound);
 
@@ -42,7 +42,7 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
     }
 
     public static AddOrganelleAnywhere ThatCreateCompound(CompoundDefinition compound,
-        CommonMutationFunctions.Direction direction = CommonMutationFunctions.Direction.Neutral)
+        Direction direction = Direction.Neutral)
     {
         return new AddOrganelleAnywhere(organelle =>
                 Enumerable.Any(organelle.RunnableProcesses, proc => proc.Process.Outputs.ContainsKey(compound)),
@@ -50,7 +50,7 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
     }
 
     public static AddOrganelleAnywhere ThatCreateCompound(Compound compound,
-        CommonMutationFunctions.Direction direction = CommonMutationFunctions.Direction.Neutral)
+        Direction direction = Direction.Neutral)
     {
         var compoundResolved = SimulationParameters.GetCompound(compound);
 
@@ -59,7 +59,7 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
 
     public static AddOrganelleAnywhere ThatConvertBetweenCompounds(CompoundDefinition fromCompound,
         CompoundDefinition toCompound,
-        CommonMutationFunctions.Direction direction = CommonMutationFunctions.Direction.Neutral)
+        Direction direction = Direction.Neutral)
     {
         return new AddOrganelleAnywhere(organelle => Enumerable.Any(organelle.RunnableProcesses, proc =>
             proc.Process.Inputs.ContainsKey(fromCompound) &&
@@ -69,7 +69,7 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
     // ReSharper restore InvokeAsExtensionMethod
 
     public static AddOrganelleAnywhere ThatConvertBetweenCompounds(Compound fromCompound, Compound toCompound,
-        CommonMutationFunctions.Direction direction = CommonMutationFunctions.Direction.Neutral)
+        Direction direction = Direction.Neutral)
     {
         var fromCompoundResolved = SimulationParameters.GetCompound(fromCompound);
         var toCompoundResolved = SimulationParameters.GetCompound(toCompound);
@@ -77,7 +77,7 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
         return ThatConvertBetweenCompounds(fromCompoundResolved, toCompoundResolved, direction);
     }
 
-    public List<Tuple<MicrobeSpecies, double>>? MutationsOf(MicrobeSpecies baseSpecies, double mp, bool lawk,
+    public List<Mutant>? MutationsOf(MicrobeSpecies baseSpecies, double mp, bool lawk,
         Random random, BiomeConditions biomeToConsider)
     {
         if (mp < Constants.ORGANELLE_CHEAPEST_COST)
@@ -92,7 +92,7 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
         var organelles = allOrganelles.OrderBy(_ => random.Next())
             .Take(Constants.AUTO_EVO_ORGANELLE_ADD_ATTEMPTS);
 
-        var mutated = new List<Tuple<MicrobeSpecies, double>>();
+        var mutated = new List<Mutant>();
 
         // TODO: reuse this memory somehow
         var workMemory1 = new List<Hex>();
@@ -119,10 +119,10 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
 
             // In the rare case that adding the organelle fails, this can skip adding it to be tested as the species
             // is not any different
-            if (CommonMutationFunctions.AddOrganelle(organelle, direction, newSpecies, workMemory1, workMemory2,
+            if (AddOrganelle(organelle, direction, newSpecies, workMemory1, workMemory2,
                     workMemory3, random))
             {
-                mutated.Add(Tuple.Create(newSpecies, mp - organelle.MPCost));
+                mutated.Add(new Mutant(newSpecies, mp - organelle.MPCost));
             }
         }
 

@@ -36,6 +36,9 @@ public partial class CellBodyPlanEditorComponent :
 
     private readonly Dictionary<CellType, int> cellTypesCount = new();
 
+    private readonly OrganelleDefinition nucleusDefinition =
+        SimulationParameters.Instance.GetOrganelleType("nucleus");
+
     /// <summary>
     ///   Stores cells that end up being disconnected from the colony because of growth order
     /// </summary>
@@ -1264,7 +1267,8 @@ public partial class CellBodyPlanEditorComponent :
             MicrobeInternalCalculations.MaximumSpeedDirection(cellType.ModifiableOrganelles);
 
         var specialization =
-            MicrobeInternalCalculations.CalculateSpecializationBonus(cellType.ModifiableOrganelles, tempMemory3);
+            MicrobeInternalCalculations.CalculateSpecializationBonus(cellType.ModifiableOrganelles, tempMemory3,
+                nucleusDefinition);
 
         ProcessSystem.ComputeEnergyBalanceFull(cellType.ModifiableOrganelles, Editor.CurrentPatch.Biome,
             environmentalTolerances, specialization,
@@ -1454,7 +1458,8 @@ public partial class CellBodyPlanEditorComponent :
         foreach (var hex in cells)
         {
             var specialization =
-                MicrobeInternalCalculations.CalculateSpecializationBonus(hex.Data!.ModifiableOrganelles, tempMemory3);
+                MicrobeInternalCalculations.CalculateSpecializationBonus(hex.Data!.ModifiableOrganelles, tempMemory3,
+                    nucleusDefinition);
 
             // TODO: adjacency bonuses from body plan (GetAdjacencySpecializationBonus)
 
@@ -1501,7 +1506,7 @@ public partial class CellBodyPlanEditorComponent :
         {
             var organelles = GetEditedCellDataIfEdited(cell.Data!.ModifiableCellType).ModifiableOrganelles;
             var specialization =
-                MicrobeInternalCalculations.CalculateSpecializationBonus(organelles, tempMemory3);
+                MicrobeInternalCalculations.CalculateSpecializationBonus(organelles, tempMemory3, nucleusDefinition);
 
             // TODO: efficiency from cell layout positions (GetAdjacencySpecializationBonus)
 

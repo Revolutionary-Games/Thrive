@@ -490,9 +490,11 @@ public static class MicrobeInternalCalculations
         WorldGenerationSettings worldSettings)
     {
         var energyBalance = new EnergyBalanceInfoSimple();
+        var nucleusDefinition = SimulationParameters.Instance.GetOrganelleType("nucleus");
 
         // Note this assumes this is only used just for single cell types or microbe species!
-        var specialization = CalculateSpecializationBonus(organelles, new Dictionary<OrganelleDefinition, int>());
+        var specialization = CalculateSpecializationBonus(organelles, new Dictionary<OrganelleDefinition, int>(),
+            nucleusDefinition);
 
         var maximumMovementDirection = MaximumSpeedDirection(organelles);
         ProcessSystem.ComputeEnergyBalanceSimple(organelles, biomeConditions, environmentalTolerances, specialization,
@@ -591,7 +593,10 @@ public static class MicrobeInternalCalculations
         ref Dictionary<Compound, CompoundBalance>? dayCompoundBalances)
     {
         // Note this assumes this is only used just for single cell types or microbe species!
-        var specialization = CalculateSpecializationBonus(organelles, new Dictionary<OrganelleDefinition, int>());
+        var nucleusDefinition = SimulationParameters.Instance.GetOrganelleType("nucleus");
+
+        var specialization = CalculateSpecializationBonus(organelles, new Dictionary<OrganelleDefinition, int>(),
+            nucleusDefinition);
 
         if (dayCompoundBalances == null)
         {
@@ -834,7 +839,7 @@ public static class MicrobeInternalCalculations
     /// </summary>
     /// <returns>A multiplier starting from 1 and going up as specialization improves</returns>
     public static float CalculateSpecializationBonus(IReadOnlyList<IReadOnlyOrganelleTemplate> organelles,
-        Dictionary<OrganelleDefinition, int> tempWorkMemory)
+        Dictionary<OrganelleDefinition, int> tempWorkMemory, OrganelleDefinition nucleusDefinition)
     {
         int totalHexCount = 0;
         tempWorkMemory.Clear();
@@ -847,7 +852,7 @@ public static class MicrobeInternalCalculations
             var definition = organelle.Definition;
 
             // Don't count the nucleus, because of its omnipresence and large size
-            if (definition.InternalName == "nucleus")
+            if (definition == nucleusDefinition)
             {
                 continue;
             }

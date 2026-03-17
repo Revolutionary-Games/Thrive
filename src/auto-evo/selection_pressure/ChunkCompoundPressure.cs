@@ -24,10 +24,17 @@ public class ChunkCompoundPressure : SelectionPressure
 
     public ChunkCompoundPressure(string chunkType, LocalizedString readableName, Compound compound,
         Compound compoundOut, float weight) : base(weight, [
+        RemoveOrganelle.ThatCreateCompound(compoundOut),
         new AddOrganelleAnywhere(organelle => organelle.HasChemoreceptorComponent),
+        new AddOrganelleAnywhere(organelle => organelle.InternalName == "vacuole"),
+        AddOrganelleAnywhere.ThatConvertBetweenCompounds(compound, compoundOut),
+        AddOrganelleAnywhere.ThatUseCompound(compoundOut),
         new UpgradeOrganelle(organelle => organelle.HasChemoreceptorComponent,
             new ChemoreceptorUpgrades(compound, null, Constants.CHEMORECEPTOR_RANGE_DEFAULT,
                 Constants.CHEMORECEPTOR_AMOUNT_DEFAULT, SimulationParameters.GetCompound(compound).Colour)),
+        new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Activity, 150.0f),
+        new ChangeMembraneType("single"),
+        new ChangeMembraneType("double"),
     ])
     {
         this.compound = SimulationParameters.GetCompound(compound);

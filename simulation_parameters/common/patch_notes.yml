@@ -1318,3 +1318,22 @@
     - Updated code checking tools
     - Updated Thriveopedia text
     - Updated translations
+
+1.0.1.1:
+  IntroductionText: |
+    This is a quick patch to fix a few problems when exiting the editor in the multicellular stage with certain cell layouts.
+    And also improves auto-evo memory efficiency a lot.
+  ReleaseLink: https://github.com/Revolutionary-Games/Thrive/releases/tag/v1.0.1.1
+  PatchNotes:
+    - Adjusted the new cell layout algorithm to prevent stuck conditions
+    - Switched auto-evo to use cache keys for species to not keep temporary species around as long. This cuts required memory for auto-evo in half.
+    - Added a colony cell growth animation
+    - Converted species tolerance calculation result into a struct to save on some temporary memory allocations
+    - Fixed engulfing ejection animation not playing when the entity died, now the ejection animation plays and anything engulfed should properly exit the dying cell
+    - Fixed a very rare case of organelles not going to final positions in single centering operation by always performing a second operation
+    - Fixed the water currents sometimes triggering the microbe movement ripple effect. As a downside some slow cells or swimming against extreme currents no longer triggers the effect at all.
+    - Fixed the emergency ejection from dead engulfer entities not working which lead to ghost cells. Now such cells should be able to resume normal gameplay.
+    - Fixed a bug in the debug console history handling
+    - Updated author names in the art gallery
+    - Updated System.IO.Hashing from 10.0.3. to 10.0.5
+    - Updated translations
