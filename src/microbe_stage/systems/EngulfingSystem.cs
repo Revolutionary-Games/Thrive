@@ -310,7 +310,7 @@ public partial class EngulfingSystem : BaseSystem<World, float>
         // Additional compounds have already been set by the original ingestion action
 
         var engulfableFinalPosition = CalculateEngulfableTargetPosition(ref engulferCellProperties,
-            ref engulferPosition, radius, ref targetEntityPosition, ref targetSpatial, targetRadius,
+            ref engulferPosition, radius, ref targetEntityPosition, ref targetSpatial, targetEntity, targetRadius,
             new XoShiRo128plus(), out var relativePosition, out var boundingBoxSize);
 
         Vector3 originalScale;
@@ -407,8 +407,8 @@ public partial class EngulfingSystem : BaseSystem<World, float>
 
     private static Vector3 CalculateEngulfableTargetPosition(ref CellProperties engulferCellProperties,
         ref WorldPosition engulferPosition, float radius, ref WorldPosition targetEntityPosition,
-        ref SpatialInstance targetSpatial, float targetRadius, Random random, out Vector3 relativePosition,
-        out Vector3 boundingBoxSize)
+        ref SpatialInstance targetSpatial, Entity targetEntity, float targetRadius, Random random,
+        out Vector3 relativePosition, out Vector3 boundingBoxSize)
     {
         // Below is for figuring out where to place the object attempted to be engulfed inside the cytoplasm,
         // calculated accordingly to hopefully minimize any part of the object sticking out the membrane.
@@ -447,13 +447,38 @@ public partial class EngulfingSystem : BaseSystem<World, float>
         {
             var geometryInstance = targetSpatial.GraphicalInstance as GeometryInstance3D;
 
-            // TODO: should this use EntityMaterial.AutoRetrieveModelPath to find the path of the graphics instance
-            // in the node? This probably doesn't work for all kinds of chunks correctly
+            var children = targetSpatial.GraphicalInstance.GetChildCount();
 
             // Most engulfables have their graphical node as the first child of their primary node
-            if (geometryInstance == null && targetSpatial.GraphicalInstance.GetChildCount() > 0)
+            if (geometryInstance == null && children > 0)
             {
                 geometryInstance = targetSpatial.GraphicalInstance.GetChild(0) as GeometryInstance3D;
+            }
+
+            // We have to use the model path here for some more complex graphics to work
+            if (geometryInstance == null && children > 0)
+            {
+                if (targetEntity.Has<EntityMaterial>())
+                {
+                    ref var material = ref targetEntity.Get<EntityMaterial>();
+
+                    // The actual graphics is wrapped in an extra layer of node
+                    if (!string.IsNullOrEmpty(material.AutoRetrieveModelPath) && children == 1)
+                    {
+                        try
+                        {
+                            // So we get the first child here and then apply the model path
+                            geometryInstance =
+                                targetSpatial.GraphicalInstance.GetChild(0).GetNode<GeometryInstance3D>(material
+                                    .AutoRetrieveModelPath);
+                        }
+                        catch (InvalidCastException)
+                        {
+                            GD.PrintErr("Failed to get graphical instance for auto-retrieved model path in engulfing: ",
+                                material.AutoRetrieveModelPath);
+                        }
+                    }
+                }
             }
 
             if (geometryInstance != null)
@@ -1271,8 +1296,8 @@ public partial class EngulfingSystem : BaseSystem<World, float>
         ref var engulferPosition = ref engulferEntity.Get<WorldPosition>();
 
         var engulfableFinalPosition = CalculateEngulfableTargetPosition(ref engulferCellProperties,
-            ref engulferPosition, radius, ref targetEntityPosition, ref targetSpatial, targetRadius, random,
-            out var relativePosition, out var boundingBoxSize);
+            ref engulferPosition, radius, ref targetEntityPosition, ref targetSpatial, targetEntity, targetRadius,
+            random, out var relativePosition, out var boundingBoxSize);
 
         ref var engulferPriority = ref engulferEntity.Get<RenderPriorityOverride>();
 
