@@ -1235,7 +1235,7 @@ public partial class EngulfingSystem : BaseSystem<World, float>
         CommandBuffer? recorder = null;
 
         // Steal this cell from a colony if it is in a colony currently
-        // Right now this causes extra operations for deleting the attach component but avoiding that would
+        // Right now this causes extra operations for deleting the attached component but avoiding that would
         // complicate the code a lot here
         if (targetEntity.Has<MicrobeColonyMember>() || targetEntity.Has<MicrobeColony>())
         {
@@ -1246,7 +1246,7 @@ public partial class EngulfingSystem : BaseSystem<World, float>
             // started but that may have been caused by my testing method of overriding the required size ratio (
             // in just one place so maybe some other later check then immediately canceled the engulf)
             // - hhyyrylainen
-            if (!MicrobeColonyHelpers.RemoveFromColony(targetEntity, recorder))
+            if (!MicrobeColonyHelpers.RemoveFromColony(targetEntity, recorder, true))
             {
                 GD.PrintErr("Failed to engulf a member of a cell colony (can't remove it)");
                 return false;
