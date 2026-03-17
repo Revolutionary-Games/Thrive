@@ -17,13 +17,12 @@ public class SummedProcessStatistics : IProcessDisplayInfo
 
     private readonly Dictionary<Compound, float> summedOutputs = new();
 
+    private readonly List<Compound> summedLimitingFactors = new();
+
     private float summedSpeed;
 
     public SummedProcessStatistics(IProcessDisplayInfo displayInfo)
     {
-        if (displayInfo.LimitingCompounds != null)
-            LimitingCompounds = displayInfo.LimitingCompounds.ToList();
-
         Enabled = displayInfo.Enabled;
 
         if (displayInfo is AverageProcessStatistics averageProcessStatistics)
@@ -33,13 +32,6 @@ public class SummedProcessStatistics : IProcessDisplayInfo
         else if (displayInfo is SingleProcessStatistics singleProcessStatistics)
         {
             Process = singleProcessStatistics.Process;
-        }
-
-        // Environemtal inputs don't differ between colony cells, so they only need to be added once
-        foreach (var output in displayInfo.EnvironmentalInputs)
-        {
-            summedEnvironmentalInputs.TryGetValue(output.Key, out var value);
-            summedEnvironmentalInputs[output.Key] = value + output.Value;
         }
 
         AddProcess(displayInfo);
@@ -72,7 +64,7 @@ public class SummedProcessStatistics : IProcessDisplayInfo
     /// </summary>
     public IReadOnlyDictionary<Compound, float> Outputs => summedOutputs;
 
-    public IReadOnlyList<Compound>? LimitingCompounds { get; set; }
+    public IReadOnlyList<Compound>? LimitingCompounds => summedLimitingFactors;
 
     public bool Enabled { get; set; }
 
@@ -106,6 +98,24 @@ public class SummedProcessStatistics : IProcessDisplayInfo
             summedFullSpeedRequiredEnvironmentalInputs[output.Key] = value + output.Value;
         }
 
+        // Environmental inputs and limiting factors don't differ between colony cells, so they only need to be added once
+        if (summedEnvironmentalInputs.Count == 0)
+        {
+            foreach (var output in displayInfo.EnvironmentalInputs)
+            {
+                summedEnvironmentalInputs.TryGetValue(output.Key, out var value);
+                summedEnvironmentalInputs[output.Key] = value + output.Value;
+            }
+        }
+
+        if (summedLimitingFactors.Count == 0 && displayInfo.LimitingCompounds != null)
+        {
+            foreach (var compoound in displayInfo.LimitingCompounds)
+            {
+                summedLimitingFactors.Add(compoound);
+            }
+        }
+
         summedSpeed += displayInfo.CurrentSpeed;
         ++ProcessCount;
 
@@ -121,6 +131,7 @@ public class SummedProcessStatistics : IProcessDisplayInfo
         summedOutputs.Clear();
         summedEnvironmentalInputs.Clear();
         summedFullSpeedRequiredEnvironmentalInputs.Clear();
+        summedLimitingFactors.Clear();
     }
 
     public bool Equals(IProcessDisplayInfo? obj)
