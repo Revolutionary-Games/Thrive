@@ -147,7 +147,13 @@ public static class EngulferHelpers
 
             // Needs to be big enough to engulf
             var targetSize = engulfable.AdjustedEngulfSize;
-            if (engulfer.EngulfingSize < targetSize * Constants.ENGULF_SIZE_RATIO_REQ)
+
+            // Objects attached to something are harder to swallow
+            var adjustedTargetSize = targetSize;
+            if (target.Has<AttachedToEntity>())
+                adjustedTargetSize *= Constants.ENGULF_SIZE_ATTACHED_MULTIPLIER;
+
+            if (engulfer.EngulfingSize < adjustedTargetSize * Constants.ENGULF_SIZE_RATIO_REQ)
                 return EngulfCheckResult.TargetTooBig;
 
             // Limit the number of things that can be engulfed at once
