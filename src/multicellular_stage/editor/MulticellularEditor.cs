@@ -760,6 +760,8 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
             throw new Exception("Tried to get player unlocks data source without an edited species being set");
         }
 
+        var nucleusDefinition = SimulationParameters.Instance.GetOrganelleType("nucleus");
+
         var energyBalance = new EnergyBalanceInfoSimple();
 
         var tolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(
@@ -772,7 +774,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
             // TODO: specialization from positions (GetAdjacencySpecializationBonus)
             var specialization =
                 MicrobeInternalCalculations.CalculateSpecializationBonus(cellType.ModifiableOrganelles.Organelles,
-                    tempMemory1);
+                    tempMemory1, nucleusDefinition);
 
             ProcessSystem.ComputeEnergyBalanceSimple(cellType.ModifiableOrganelles.Organelles, CurrentPatch.Biome,
                 in tolerances, specialization, cellType.MembraneType, Vector3.Zero, false, true,

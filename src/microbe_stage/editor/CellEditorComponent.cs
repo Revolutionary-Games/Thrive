@@ -45,6 +45,9 @@ public partial class CellEditorComponent :
 
     private readonly List<EditorUserOverride> ignoredEditorWarnings = new();
 
+    private readonly OrganelleDefinition nucleusDefinition =
+        SimulationParameters.Instance.GetOrganelleType("nucleus");
+
 #pragma warning disable CA2213
 
     // Selection menu tab selector buttons
@@ -2142,7 +2145,8 @@ public partial class CellEditorComponent :
 
         var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(organelles);
 
-        var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(organelles, tempMemory3);
+        var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(organelles, tempMemory3,
+            nucleusDefinition);
 
         var tolerances = CalculateLatestTolerances();
         ProcessSystem.ComputeEnergyBalanceFull(organelles, conditionsData, tolerances, specialization,
@@ -2219,7 +2223,8 @@ public partial class CellEditorComponent :
         float consumptionProductionRatio = energyBalance.TotalConsumption / energyBalance.TotalProduction;
 
         var specialization =
-            MicrobeInternalCalculations.CalculateSpecializationBonus(editedMicrobeOrganelles, tempMemory3);
+            MicrobeInternalCalculations.CalculateSpecializationBonus(editedMicrobeOrganelles, tempMemory3,
+                nucleusDefinition);
 
         var speedModifier = tolerances.ProcessSpeedModifier * specialization;
 

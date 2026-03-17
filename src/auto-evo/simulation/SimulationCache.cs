@@ -42,6 +42,9 @@ public class SimulationCache
     private readonly CompoundDefinition oxytoxy = SimulationParameters.GetCompound(Compound.Oxytoxy);
     private readonly CompoundDefinition mucilage = SimulationParameters.GetCompound(Compound.Mucilage);
 
+    private readonly OrganelleDefinition nucleusDefinition =
+        SimulationParameters.Instance.GetOrganelleType("nucleus");
+
     private readonly WorldGenerationSettings worldSettings;
 
 #if USE_HASHED_SCORE_KEYS
@@ -141,7 +144,8 @@ public class SimulationCache
         var cached = new EnergyBalanceInfoSimple();
 
         // Assume here that the species specialization factor may not be up to date, so recalculate here
-        var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(species.Organelles, workMemory1);
+        var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(species.Organelles, workMemory1,
+            nucleusDefinition);
 
         // Auto-evo uses the average values of compound during the course of a simulated day
         ProcessSystem.ComputeEnergyBalanceSimple(species.Organelles, biomeConditions,
@@ -365,6 +369,7 @@ public class SimulationCache
         var injectisomeScore = predatorToolScores.InjectisomeScore;
         var oxytoxyScore = predatorToolScores.OxytoxyScore;
         var cytotoxinScore = predatorToolScores.CytotoxinScore;
+        var oxygenMetabolismInhibitorScore = predatorToolScores.OxygenMetabolismInhibitorScore;
         var channelInhibitorScore = predatorToolScores.ChannelInhibitorScore;
         var canEngulf = predator.CanEngulf;
 
@@ -375,6 +380,7 @@ public class SimulationCache
             injectisomeScore == 0 &&
             oxytoxyScore == 0 &&
             cytotoxinScore == 0 &&
+            oxygenMetabolismInhibitorScore == 0 &&
             channelInhibitorScore == 0)
         {
             if (canEngulf)
@@ -445,7 +451,6 @@ public class SimulationCache
 
         var toxicity = predatorToolScores.AverageToxicity;
         var macrolideScore = predatorToolScores.MacrolideScore;
-        var oxygenMetabolismInhibitorScore = predatorToolScores.OxygenMetabolismInhibitorScore;
         var predatorSlimeJetScore = predatorToolScores.SlimeJetScore;
         var pullingCiliaModifier = predatorToolScores.PullingCiliaModifier;
         var strongPullingCiliaModifier = pullingCiliaModifier * pullingCiliaModifier;
