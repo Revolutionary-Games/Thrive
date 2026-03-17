@@ -128,7 +128,7 @@ public partial class EngulfingSystem : BaseSystem<World, float>
 
     /// <summary>
     ///   Eject all engulfables of a destroyed entity (if it is an engulfer). Or if the entity is an engulfable
-    ///   force eject if from an engulfer if it is inside any.
+    ///   force-eject if from an engulfer if it is inside any.
     /// </summary>
     public void OnEntityDestroyed(in Entity entity)
     {
@@ -606,6 +606,8 @@ public partial class EngulfingSystem : BaseSystem<World, float>
         ref CellProperties cellProperties, ref SoundEffectPlayer soundPlayer,
         ref CollisionManagement collisionManagement, in Entity entity)
     {
+        var actuallyEngulfing = control.State == MicrobeState.Engulf && cellProperties.MembraneType.CanEngulf;
+
         // Don't process engulfing when dead
         if (health.Dead)
         {
@@ -618,12 +620,10 @@ public partial class EngulfingSystem : BaseSystem<World, float>
                 EjectEverythingFromDeadEngulfer(ref engulfer, entity);
             }
 
-            return;
+            actuallyEngulfing = false;
         }
 
         usedTopLevelEngulfers.Add(entity);
-
-        var actuallyEngulfing = control.State == MicrobeState.Engulf && cellProperties.MembraneType.CanEngulf;
 
         cellProperties.CreatedMembrane?.HandleEngulfAnimation(actuallyEngulfing, delta);
 
@@ -639,6 +639,14 @@ public partial class EngulfingSystem : BaseSystem<World, float>
         else
         {
             soundPlayer.PlayGraduallyTurningDownSound(Constants.MICROBE_ENGULFING_MODE_SOUND, delta);
+        }
+
+        if (health.Dead)
+        {
+            // When dead we don't want to process the further operations, except we do want to update engulf object
+            // states to make sure we play the ejection animations while we are dying
+            UpdateEngulfedObjectStates(delta, ref engulfer, ref cellProperties, entity);
+            return;
         }
 
         // Not full any more tutorial (end trigger for engulfment full tutorial)
@@ -671,8 +679,18 @@ public partial class EngulfingSystem : BaseSystem<World, float>
 
         HandleExpiringExpelledObjects(ref engulfer, delta);
 
-        if (engulfer.EngulfedObjects == null)
+        if (!UpdateEngulfedObjectStates(delta, ref engulfer, ref cellProperties, entity))
             return;
+
+        var colour = cellProperties.Colour;
+        SetPhagosomeColours(entity, colour);
+    }
+
+    private bool UpdateEngulfedObjectStates(float delta, ref Engulfer engulfer, ref CellProperties cellProperties,
+        in Entity entity)
+    {
+        if (engulfer.EngulfedObjects == null)
+            return false;
 
         // Update animations and move between different states when necessary for all the currently engulfed
         // objects
@@ -850,8 +868,7 @@ public partial class EngulfingSystem : BaseSystem<World, float>
 #endif
         }
 
-        var colour = cellProperties.Colour;
-        SetPhagosomeColours(entity, colour);
+        return true;
     }
 
     /// <summary>
@@ -996,6 +1013,10 @@ public partial class EngulfingSystem : BaseSystem<World, float>
 
         ref var cellProperties = ref entity.Get<CellProperties>();
 
+        // We don't set this to true to play the ejection animations on death
+        // Note: this doesn't seem to work as something has already marked the object as needign to eject
+        bool immediateEjection = false;
+
         foreach (var engulfedObject in tempEntitiesToEject)
         {
             // In case here, the engulfer being dead, we check to make sure the engulfed objects aren't incorrect
@@ -1005,15 +1026,13 @@ public partial class EngulfingSystem : BaseSystem<World, float>
                 continue;
             }
 
-            EjectEngulfable(ref engulfer, ref cellProperties, entity, true, ref engulfedObject.Get<Engulfable>(),
-                engulfedObject);
+            // This method usually only *starts* ejections where needed, so we must not delete our engulfed objects
+            // list, but we do need a temporary list as in some cases this has to eject something immediately
+            EjectEngulfable(ref engulfer, ref cellProperties, entity, immediateEjection,
+                ref engulfedObject.Get<Engulfable>(), engulfedObject);
         }
 
         tempEntitiesToEject.Clear();
-
-        // Should be fine to clear this list object like this as a dead entity should get deleted entirely
-        // soon
-        engulfer.EngulfedObjects = null;
     }
 
     private void CheckStartEngulfing(ref CollisionManagement collisionManagement, ref CellProperties cellProperties,
@@ -1472,12 +1491,16 @@ public partial class EngulfingSystem : BaseSystem<World, float>
 
         var relativePosition = attached.RelativePosition;
 
-        // If engulfer cell is dead (us) or the engulfed is positioned outside any of our closest membrane,
+        // If engulfer cell is dead (us, and we want immediate ejection, we still have some time until entity despawn
+        // to show some animation) or the engulfed is positioned outside any of our closest membrane,
         // immediately eject it without animation.
         // TODO: Asses performance cost in massive cells (of the membrane Contains)?
         if (engulferDead ||
             !engulferCellProperties.CreatedMembrane.Contains(relativePosition.X, relativePosition.Z))
         {
+            // TODO: this method is untested as I didn't find a way to trigger this when testing dead cells ejecting
+            // things properly -hhyyrylainen
+
             CompleteEjection(ref engulfer, entity, ref engulfable, engulfedObject);
 
 #if DEBUG
