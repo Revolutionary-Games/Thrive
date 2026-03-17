@@ -677,7 +677,7 @@ public static class Constants
     ///   How many organelles a cell needs to have to be considered fully specialized. (i.e. the full specialization
     ///   bonus is granted)
     /// </summary>
-    public const int CELL_SPECIALIZATION_STRENGTH_FULL_AT = 20;
+    public const int CELL_SPECIALIZATION_STRENGTH_FULL_AT = 10;
 
     /// <summary>
     ///   Controls how strong the cell specialization effect is (this is a flat multiplier right now but we could use
