@@ -523,7 +523,7 @@ public partial class NewGameSettings : ControlWithInput
 
         void OnStartGame()
         {
-            MainMenu.OnEnteringGame(false);
+            MainMenu.OnEnteringGame(false, false);
 
             var microbeStage = (MicrobeStage)SceneManager.Instance.LoadScene(MainGameState.MicrobeStage).Instantiate();
             microbeStage.CurrentGame = GameProperties.StartNewMicrobeGame(settings);
