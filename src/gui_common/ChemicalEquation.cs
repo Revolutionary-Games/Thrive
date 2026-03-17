@@ -170,11 +170,6 @@ public partial class ChemicalEquation : CheckButton
         RecalculateMinimumSize();
     }
 
-    public override Vector2 _GetMinimumSize()
-    {
-        return mainContainer.GetMinimumSize();
-    }
-
     public override void _EnterTree()
     {
         base._EnterTree();
@@ -207,6 +202,11 @@ public partial class ChemicalEquation : CheckButton
 
         if (AutoRefreshProcess)
             UpdateEquation();
+    }
+
+    public override Vector2 _GetMinimumSize()
+    {
+        return mainContainer.GetMinimumSize();
     }
 
     public override void _Pressed()
