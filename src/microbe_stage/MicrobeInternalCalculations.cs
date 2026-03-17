@@ -842,6 +842,7 @@ public static class MicrobeInternalCalculations
         Dictionary<OrganelleDefinition, int> tempWorkMemory, OrganelleDefinition nucleusDefinition)
     {
         int totalHexCount = 0;
+        var hasNucleus = false;
         tempWorkMemory.Clear();
 
         var count = organelles.Count;
@@ -854,6 +855,7 @@ public static class MicrobeInternalCalculations
             // Don't count the nucleus, because of its omnipresence and large size
             if (definition == nucleusDefinition)
             {
+                hasNucleus = true;
                 continue;
             }
 
@@ -881,6 +883,9 @@ public static class MicrobeInternalCalculations
         // Calculate a strength factor that adjusts things
         var strength = Math.Min(((float)totalHexCount - 1) / Constants.CELL_SPECIALIZATION_STRENGTH_FULL_AT, 1);
         strength *= Constants.CELL_SPECIALIZATION_STRENGTH_MULTIPLIER;
+
+        if (hasNucleus)
+            strength *= Constants.CELL_SPECIALIZATION_NUCLEUS_MULTIPLIER;
 
         // Then return the final result as the bonus being anything above 1
         return 1 + concentration * strength;
