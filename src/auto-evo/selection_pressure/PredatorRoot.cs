@@ -16,6 +16,8 @@ public class PredatorRoot : SelectionPressure
     private readonly CompoundDefinition glucose = SimulationParameters.GetCompound(Compound.Glucose);
 
     public PredatorRoot(float weight) : base(weight, [
+        RemoveOrganelle.ThatCreateCompound(Compound.Glucose),
+        RemoveOrganelle.ThatCreateCompound(Compound.ATP),
         AddOrganelleAnywhere.ThatConvertBetweenCompounds(Compound.Glucose, Compound.ATP),
     ])
     {

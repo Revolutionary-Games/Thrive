@@ -18,11 +18,11 @@
         pkgs = import nixpkgs {
           inherit system;
           config = {
-            # Dotnet 6 is EOL, but godot still needs it
-            # This can be removed in 4.4
-            permittedInsecurePackages = [
-              "dotnet-sdk-6.0.428"
-            ];
+            # # Dotnet 6 is EOL, but godot still needs it
+            # # This can be removed in 4.4
+            # permittedInsecurePackages = [
+            #   "dotnet-sdk-6.0.428"
+            # ];
           };
         };
         fhs = pkgs.buildFHSEnv {
@@ -31,10 +31,7 @@
           targetPkgs =
             pkgs: with pkgs; [
               # Godot
-              (godot_4.override {
-                withMono = true;
-                dotnet-sdk_8 = dotnet-sdk_9;
-              })
+              godot-mono
 
               # For compiling native libraries
               cmake
@@ -46,7 +43,7 @@
               p7zip
 
               # For Localization
-              poedit
+              # poedit # Currently broken
               gettext
 
               # Profiling

@@ -365,6 +365,7 @@ public class SimulationCache
         var injectisomeScore = predatorToolScores.InjectisomeScore;
         var oxytoxyScore = predatorToolScores.OxytoxyScore;
         var cytotoxinScore = predatorToolScores.CytotoxinScore;
+        var oxygenMetabolismInhibitorScore = predatorToolScores.OxygenMetabolismInhibitorScore;
         var channelInhibitorScore = predatorToolScores.ChannelInhibitorScore;
         var canEngulf = predator.CanEngulf;
 
@@ -375,6 +376,7 @@ public class SimulationCache
             injectisomeScore == 0 &&
             oxytoxyScore == 0 &&
             cytotoxinScore == 0 &&
+            oxygenMetabolismInhibitorScore == 0 &&
             channelInhibitorScore == 0)
         {
             if (canEngulf)
@@ -445,7 +447,6 @@ public class SimulationCache
 
         var toxicity = predatorToolScores.AverageToxicity;
         var macrolideScore = predatorToolScores.MacrolideScore;
-        var oxygenMetabolismInhibitorScore = predatorToolScores.OxygenMetabolismInhibitorScore;
         var predatorSlimeJetScore = predatorToolScores.SlimeJetScore;
         var pullingCiliaModifier = predatorToolScores.PullingCiliaModifier;
         var strongPullingCiliaModifier = pullingCiliaModifier * pullingCiliaModifier;
