@@ -35,6 +35,13 @@ public class SummedProcessStatistics : IProcessDisplayInfo
             Process = singleProcessStatistics.Process;
         }
 
+        // Environemtal inputs don't differ between colony cells, so they only need to be added once
+        foreach (var output in displayInfo.EnvironmentalInputs)
+        {
+            summedEnvironmentalInputs.TryGetValue(output.Key, out var value);
+            summedEnvironmentalInputs[output.Key] = value + output.Value;
+        }
+
         AddProcess(displayInfo);
     }
 
@@ -91,12 +98,6 @@ public class SummedProcessStatistics : IProcessDisplayInfo
         {
             summedOutputs.TryGetValue(output.Key, out var value);
             summedOutputs[output.Key] = value + output.Value;
-        }
-
-        foreach (var output in displayInfo.EnvironmentalInputs)
-        {
-            summedEnvironmentalInputs.TryGetValue(output.Key, out var value);
-            summedEnvironmentalInputs[output.Key] = value + output.Value;
         }
 
         foreach (var output in displayInfo.FullSpeedRequiredEnvironmentalInputs)
