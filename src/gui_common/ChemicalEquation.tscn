@@ -102,6 +102,7 @@ theme = SubResource("1")
 [node name="ProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2" unique_id=999772242]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+tooltip_text = "CHEMICAL_EQUATION_SPEED_EXPLANATION"
 max_value = 1.0
 allow_greater = true
 
@@ -113,6 +114,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/ProgressBar/Panel" unique_id=887071478]
 layout_mode = 1
