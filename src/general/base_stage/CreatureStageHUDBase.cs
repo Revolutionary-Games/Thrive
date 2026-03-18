@@ -923,7 +923,7 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
 
         // TODO: would it be better to calculate useful compounds one at a time rather than allocating a method here?
         // This causes quite a bit of memory allocations
-        UpdateBarVisibility(GetIsUsefulCheck());
+        UpdateBarVisibility();
     }
 
     protected virtual CompoundBag? GetPlayerUsefulCompounds()
@@ -931,7 +931,7 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
         throw new GodotAbstractMethodNotOverriddenException();
     }
 
-    protected virtual Func<Compound, bool> GetIsUsefulCheck()
+    protected virtual bool IsUseful(Compound compound)
     {
         throw new GodotAbstractMethodNotOverriddenException();
     }
@@ -1127,23 +1127,16 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
     /// <summary>
     ///   Updates the different bars and panels that should be displayed to the screen
     /// </summary>
-    protected virtual void UpdateBarVisibility(Func<Compound, bool> isUseful)
+    protected virtual void UpdateBarVisibility()
     {
-        if (ShouldShowAgentsPanel())
-        {
-            compoundsPanel.ShowAgents = true;
-        }
-        else
-        {
-            compoundsPanel.ShowAgents = false;
-        }
+        compoundsPanel.ShowAgents = ShouldShowAgentsPanel();
 
         if (compoundBars == null)
             throw new InvalidOperationException("This HUD is not initialized");
 
         foreach (var (compound, bar) in compoundBars)
         {
-            if (isUseful.Invoke(compound))
+            if (IsUseful(compound))
             {
                 bar.Show();
             }

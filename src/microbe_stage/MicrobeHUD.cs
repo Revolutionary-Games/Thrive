@@ -474,23 +474,19 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         return !control.OutOfSprint;
     }
 
-    protected override Func<Compound, bool> GetIsUsefulCheck()
+    protected override bool IsUseful(Compound compound)
     {
         if (!stage!.Player.Has<MicrobeColony>())
         {
-            var compounds = stage.Player.Get<CompoundStorage>().Compounds;
-            return compound => compounds.IsUseful(compound);
+            return stage.Player.Get<CompoundStorage>().Compounds.IsUseful(compound);
         }
-        else
-        {
-            var compounds = stage.Player.Get<MicrobeColony>().GetCompounds();
-            return compound => compounds.IsUsefulInAnyCompoundBag(compound);
-        }
+
+        return stage.Player.Get<MicrobeColony>().GetCompounds().IsUsefulInAnyCompoundBag(compound);
     }
 
-    protected override void UpdateBarVisibility(Func<Compound, bool> isUseful)
+    protected override void UpdateBarVisibility()
     {
-        base.UpdateBarVisibility(isUseful);
+        base.UpdateBarVisibility();
 
         ingestedMatterBar.Visible = GetPlayerUsedIngestionCapacity() > 0;
 
