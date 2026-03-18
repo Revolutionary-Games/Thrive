@@ -834,11 +834,7 @@ public static class MicrobeInternalCalculations
         }
     }
 
-    /// <summary>
-    ///   Calculates a specialization bonus for a cell type based on its organelles.
-    /// </summary>
-    /// <returns>A multiplier starting from 1 and going up as specialization improves</returns>
-    public static float CalculateSpecializationBonus(IReadOnlyList<IReadOnlyOrganelleTemplate> organelles,
+    public static int CalculateMostCommonSpecializationOrganelle(IReadOnlyList<IReadOnlyOrganelleTemplate> organelles,
         Dictionary<OrganelleDefinition, int> tempWorkMemory, OrganelleDefinition nucleusDefinition)
     {
         int totalHexCount = 0;
@@ -865,25 +861,63 @@ public static class MicrobeInternalCalculations
             totalHexCount += hexCount;
         }
 
-        if (totalHexCount < 2)
+        if (totalHexCount < 1)
+            return 0;
+
+        // Merge equivalent organelles to make moving to eukaryotic variants easier
+        foreach (var entry in tempWorkMemory)
+        {
+            var mergeInto = entry.Key.IsSameInSpecializationAs;
+
+            if (mergeInto == null)
+                continue;
+
+            foreach (var entry2 in tempWorkMemory)
+            {
+                if (entry2.Key == mergeInto)
+                {
+                    tempWorkMemory[entry2.Key] += entry.Value;
+                    tempWorkMemory[entry.Key] = 0;
+
+                    // We don't update the total as it should still be correct here
+                    break;
+                }
+            }
+        }
+
+        return totalHexCount;
+    }
+
+    /// <summary>
+    ///   Calculates a specialization bonus for a cell type based on its organelles.
+    /// </summary>
+    /// <returns>A multiplier starting from 1 and going up as specialization improves</returns>
+    public static float CalculateSpecializationBonus(IReadOnlyList<IReadOnlyOrganelleTemplate> organelles,
+        Dictionary<OrganelleDefinition, int> tempWorkMemory, OrganelleDefinition nucleusDefinition)
+    {
+        int totalHexCount = CalculateMostCommonSpecializationOrganelle(organelles, tempWorkMemory, nucleusDefinition);
+        if (totalHexCount < 1)
             return 1;
 
-        float concentration = 0.0f;
+        int maxHexCount = 0;
 
         foreach (var entry in tempWorkMemory)
         {
-            var hexCount = entry.Value;
-            concentration += hexCount * (hexCount - 1);
+            if (entry.Value > maxHexCount)
+            {
+                maxHexCount = entry.Value;
+            }
         }
 
-        concentration /= totalHexCount * (totalHexCount - 1);
+        // The raw bonus is just the ratio of the main organelle type
+        var bonus = (float)maxHexCount / totalHexCount;
 
         // Calculate a strength factor that adjusts things
-        var strength = Math.Min(((float)totalHexCount - 1) / Constants.CELL_SPECIALIZATION_STRENGTH_FULL_AT, 1);
+        var strength = Math.Min((float)totalHexCount / Constants.CELL_SPECIALIZATION_STRENGTH_FULL_AT, 1);
         strength *= Constants.CELL_SPECIALIZATION_STRENGTH_MULTIPLIER;
 
         // Then return the final result as the bonus being anything above 1
-        return 1 + concentration * strength;
+        return 1 + bonus * strength;
     }
 
     private static float MovementForce(float movementForce, float directionFactor)
