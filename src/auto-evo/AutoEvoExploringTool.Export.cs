@@ -260,7 +260,7 @@ public partial class AutoEvoExploringTool
             return;
         }
 
-        var header = new List<string> { "Generation", "Alive Species", "Peak", "G0", "G1", "G2", "LOH", "POH" };
+        var header = new List<string> { "Generation", "Peak", "G0", "G1", "G2", "LOH", "POH", "Alive Species" };
 
         file.StoreCsvLine(header.ToArray());
 
@@ -273,7 +273,6 @@ public partial class AutoEvoExploringTool
             data.Clear();
 
             data.Add(generation.ToString());
-            data.Add(world.AliveSpeciesHistory[generation].ToString(CultureInfo.InvariantCulture));
 
             var memoryMetrics = world.MemoryMetrics[generation];
             data.Add(memoryMetrics.Item1.ToString());
@@ -282,6 +281,8 @@ public partial class AutoEvoExploringTool
             {
                 data.Add(memoryMetrics.Item2.GenerationInfo[memoryGeneration].SizeAfterBytes.ToString());
             }
+
+            data.Add(world.AliveSpeciesHistory[generation].ToString(CultureInfo.InvariantCulture));
 
             file.StoreCsvLine(data.ToArray());
         }
