@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-03-17 14:10+0300\n"
+"POT-Creation-Date: 2026-03-18 07:58+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -155,7 +155,7 @@ msgstr ""
 msgid "AGENTS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:150
+#: ../src/microbe_stage/MicrobeHUD.cs:153
 msgid "AGENTS_COLON"
 msgstr ""
 
@@ -629,12 +629,12 @@ msgstr ""
 msgid "BATHYPELAGIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:928
+#: ../src/microbe_stage/MicrobeHUD.cs:999
 #: ../src/microbe_stage/MicrobeHUD.tscn:431
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:879
+#: ../src/microbe_stage/MicrobeHUD.cs:950
 #: ../src/microbe_stage/MicrobeHUD.tscn:424
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
@@ -1221,7 +1221,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1379
 #: ../src/microbe_stage/editor/EndosymbiosisPopup.tscn:123
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:606
-#: ../src/microbe_stage/ProcessPanel.tscn:123 ../src/modding/ModManager.tscn:698
+#: ../src/microbe_stage/ProcessPanel.tscn:147 ../src/modding/ModManager.tscn:698
 #: ../src/thriveopedia/Thriveopedia.tscn:322
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:223
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:319
@@ -1385,7 +1385,7 @@ msgstr ""
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:147
+#: ../src/microbe_stage/MicrobeHUD.cs:150
 msgid "COMPOUNDS_COLON"
 msgstr ""
 
@@ -1985,6 +1985,10 @@ msgstr ""
 msgid "CTRL"
 msgstr ""
 
+#: ../src/microbe_stage/ProcessPanel.cs:110
+msgid "CURRENTLY_SHOWING_CELL"
+msgstr ""
+
 #: ../src/gui_common/menus/OptionsMenu.tscn:2050
 msgid "CURRENT_CACHE_SIZE"
 msgstr ""
@@ -2243,7 +2247,7 @@ msgstr ""
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:419
+#: ../src/microbe_stage/MicrobeHUD.cs:466
 msgid "DEVOURED"
 msgstr ""
 
@@ -3101,7 +3105,7 @@ msgstr ""
 msgid "FLEET_UNITS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:149
+#: ../src/microbe_stage/MicrobeHUD.cs:152
 msgid "FLOATING_CHUNKS_COLON"
 msgstr ""
 
@@ -3204,12 +3208,12 @@ msgstr ""
 msgid "FOSSILISATION_FAILED_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:800
+#: ../src/microbe_stage/MicrobeHUD.cs:871
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:16
 msgid "FOSSILISATION_HINT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:799
+#: ../src/microbe_stage/MicrobeHUD.cs:870
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
@@ -4123,7 +4127,7 @@ msgstr ""
 msgid "INFO_BOX_UPGRADES"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:141
+#: ../src/microbe_stage/MicrobeHUD.cs:144
 msgid "INGESTED_MATTER"
 msgstr ""
 
@@ -5920,7 +5924,7 @@ msgstr ""
 msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr ""
 
-#: ../src/microbe_stage/ProcessPanel.tscn:142
+#: ../src/microbe_stage/ProcessPanel.tscn:165
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr ""
 
@@ -6345,7 +6349,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:3039
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:3051
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:154
-#: ../src/microbe_stage/MicrobeHUD.cs:747
+#: ../src/microbe_stage/MicrobeHUD.cs:818
 msgid "N_A"
 msgstr ""
 
@@ -6777,7 +6781,7 @@ msgstr ""
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:131
+#: ../src/microbe_stage/MicrobeHUD.cs:134
 msgid "PAUSE_PROMPT"
 msgstr ""
 
@@ -6824,7 +6828,7 @@ msgstr ""
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:510
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:586
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:373
-#: ../src/microbe_stage/MicrobeHUD.cs:425
+#: ../src/microbe_stage/MicrobeHUD.cs:472
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:141
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:144
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:156
@@ -6921,7 +6925,7 @@ msgstr ""
 msgid "PLANET_STATISTICS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:782
+#: ../src/microbe_stage/MicrobeHUD.cs:853
 msgid "PLAYER"
 msgstr ""
 
@@ -7080,22 +7084,22 @@ msgstr ""
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr ""
 
-#: ../src/gui_common/ChemicalEquation.tscn:125
+#: ../src/gui_common/ChemicalEquation.tscn:126
 msgid "PROCESS_INACTIVE"
 msgstr ""
 
-#: ../src/microbe_stage/ProcessPanel.tscn:128
+#: ../src/microbe_stage/ProcessPanel.tscn:152
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/ProcessPanel.cs:89
-#: ../src/microbe_stage/ProcessPanel.tscn:35
+#: ../src/microbe_stage/ProcessPanel.cs:124
+#: ../src/microbe_stage/ProcessPanel.tscn:40
 #: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:890
 msgid "PROCESS_PANEL_TITLE"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1308
-#: ../src/microbe_stage/ProcessPanel.cs:88
+#: ../src/microbe_stage/ProcessPanel.cs:123
 msgid "PROCESS_PANEL_TITLE_MICROBE"
 msgstr ""
 
@@ -7902,27 +7906,27 @@ msgstr ""
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:236
+#: ../src/microbe_stage/MicrobeHUD.cs:239
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:235
+#: ../src/microbe_stage/MicrobeHUD.cs:238
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:233
+#: ../src/microbe_stage/MicrobeHUD.cs:236
 msgid "SIGNAL_COMMAND_FOLLOW"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:232
+#: ../src/microbe_stage/MicrobeHUD.cs:235
 msgid "SIGNAL_COMMAND_NONE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:234
+#: ../src/microbe_stage/MicrobeHUD.cs:237
 msgid "SIGNAL_COMMAND_TO_ME"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:239
+#: ../src/microbe_stage/MicrobeHUD.cs:242
 msgid "SIGNAL_TO_EMIT"
 msgstr ""
 
@@ -8101,7 +8105,7 @@ msgstr ""
 msgid "SPECIES"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:148
+#: ../src/microbe_stage/MicrobeHUD.cs:151
 msgid "SPECIES_COLON"
 msgstr ""
 

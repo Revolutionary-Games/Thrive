@@ -838,6 +838,7 @@ show_percentage = false
 [connection signal="pressed" from="BottomRight/VBoxContainer/Control/Multicellular" to="." method="OnBecomeMulticellularPressed"]
 [connection signal="pressed" from="BottomRight/VBoxContainer/Control/Macroscopic" to="." method="OnBecomeMacroscopicPressed"]
 [connection signal="pressed" from="BottomRight/EditorButton" to="." method="EditorButtonPressed"]
+[connection signal="ChoosenCellDeselected" from="ProcessPanel" to="." method="DeselectProcessSpectatingCell"]
 [connection signal="ToggleProcessPressed" from="ProcessPanel" to="." method="ToggleProcessPressed"]
 [connection signal="hidden" from="ProcessPanel" to="." method="OnProcessPanelClosed"]
 [connection signal="Closed" from="RevertToEditor" to="." method="OnRevertPromptClosed"]

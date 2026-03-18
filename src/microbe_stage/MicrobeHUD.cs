@@ -92,6 +92,10 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     private float previousTemperature = float.NaN;
 
+    /// <summary>
+    ///   The index of the microbe colony member whose processes should be displayed. -1 is the default state that
+    ///   displays the summed processes of the entire colony.
+    /// </summary>
     private int colonyMemberProcessSpectating = -1;
 
     [Signal]
@@ -356,10 +360,30 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
                 if (colonyMemberProcessSpectating != -1)
                 {
+                    var name = "a";
+
+                    if (entity.TryGet<AttachedToEntity>(out var attachedToEntity))
+                    {
+                        name = $"{MathF.Round(attachedToEntity.RelativePosition.X)}, {MathF.Round(attachedToEntity.RelativePosition.Y)}";
+                    }
+
+                    processPanel.ReportChosenCell(name);
+
                     return;
                 }
             }
+            else if (entity == stage.Player)
+            {
+                colonyMemberProcessSpectating = 0;
+
+                processPanel.ReportChosenCell("Core");
+            }
         }
+    }
+
+    public void DeselectProcessSpectatingCell()
+    {
+        colonyMemberProcessSpectating = -1;
     }
 
     protected override void UpdateFossilisationButtonStates()
@@ -597,7 +621,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             }
         }
 
-        if (processes == null)
+        if (colonyMemberProcessSpectating == -1)
         {
             processes = stage!.Player.Get<BioProcesses>().ProcessStatistics?.Processes;
         }
