@@ -838,7 +838,6 @@ public static class MicrobeInternalCalculations
         Dictionary<OrganelleDefinition, int> tempWorkMemory, OrganelleDefinition nucleusDefinition)
     {
         int totalHexCount = 0;
-        var hasNucleus = false;
         tempWorkMemory.Clear();
 
         var count = organelles.Count;
@@ -851,7 +850,6 @@ public static class MicrobeInternalCalculations
             // Don't count the nucleus, because of its omnipresence and large size
             if (definition == nucleusDefinition)
             {
-                hasNucleus = true;
                 continue;
             }
 
