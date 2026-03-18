@@ -30,7 +30,13 @@ public class ColonyCompoundBag : ICompoundStorage
 
     public float GetCapacityForCompound(Compound compound)
     {
-        return GetCompoundBags().Sum(p => p.GetCapacityForCompound(compound));
+        float sum = 0;
+        foreach (var bag in GetCompoundBags())
+        {
+            sum += bag.GetCapacityForCompound(compound);
+        }
+
+        return sum;
     }
 
     /// <summary>
@@ -161,7 +167,13 @@ public class ColonyCompoundBag : ICompoundStorage
 
     public float GetCompoundAmount(Compound compound)
     {
-        return GetCompoundBags().Sum(p => p.GetCompoundAmount(compound));
+        float sum = 0;
+        foreach (var bag in GetCompoundBags())
+        {
+            sum += bag.GetCompoundAmount(compound);
+        }
+
+        return sum;
     }
 
     public float TakeCompound(Compound compound, float amount)
