@@ -309,10 +309,23 @@ public static class OrganelleContainerHelpers
     }
 
     public static bool CanUnbind(this ref OrganelleContainer organelleContainer, ref SpeciesMember species,
-        in Entity entity)
+        in Entity entity, bool forcedUnbind, bool verboseErrors = false)
     {
-        return species.Species is MicrobeSpecies &&
-            (entity.Has<MicrobeColony>() || entity.Has<MicrobeColonyMember>());
+        bool partOfColony = entity.Has<MicrobeColony>() || entity.Has<MicrobeColonyMember>();
+
+        // Multicellular species can be forced to disband
+        if (forcedUnbind && partOfColony)
+            return true;
+
+        var result = species.Species is MicrobeSpecies && partOfColony;
+
+        if (verboseErrors && !result)
+        {
+            GD.Print($"OrganelleContainer: cannot unbind, species type is: {species.Species.GetType().Name}, " +
+                $"part of colony: {partOfColony}");
+        }
+
+        return result;
     }
 
     public static void CreateOrganelleLayout(this ref OrganelleContainer container, ICellDefinition cellDefinition,
@@ -387,7 +400,10 @@ public static class OrganelleContainerHelpers
         if (!container.HasBindingAgent && entity.Has<MicrobeColony>())
         {
             var recorder = worldSimulation.StartRecordingEntityCommands();
-            MicrobeColonyHelpers.UnbindAll(entity, recorder);
+            if (!MicrobeColonyHelpers.UnbindAll(entity, recorder, true, true))
+            {
+                GD.PrintErr("Failed to unbind all cells when lead cell removed binding agent on organelles edit");
+            }
 
             worldSimulation.FinishRecordingEntityCommands(recorder);
         }

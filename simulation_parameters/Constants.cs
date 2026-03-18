@@ -921,6 +921,12 @@ public static class Constants
     /// </summary>
     public const float ENGULF_SIZE_RATIO_REQ = 1.5f;
 
+    /// <summary>
+    ///   How much increased "size" things that are attached (microbe colony members, for example) get in engulfability
+    ///   calculations. This is purely for being the target and doesn't help eating other things.
+    /// </summary>
+    public const float ENGULF_SIZE_ATTACHED_MULTIPLIER = 2;
+
     public const float EUKARYOTIC_ENGULF_SIZE_MULTIPLIER = 2.0f;
 
     /// <summary>
