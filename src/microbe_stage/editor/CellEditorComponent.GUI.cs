@@ -485,7 +485,8 @@ public partial class CellEditorComponent
         var temp = tempMemory3;
         var organelles = editedMicrobeOrganelles;
 
-        int organelleCount = MicrobeInternalCalculations.CalculateMostCommonSpecializationOrganelle(organelles, temp);
+        int organelleCount = MicrobeInternalCalculations.CalculateMostCommonSpecializationOrganelle(organelles, temp,
+            nucleusDefinition);
 
         // And then with all the info, update the tooltip and display
         if (organelleCount < 1)
