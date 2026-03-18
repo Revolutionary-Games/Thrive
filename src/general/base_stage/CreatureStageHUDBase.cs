@@ -921,8 +921,6 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
         if (GetPlayerUsefulCompounds()?.HasAnyBeenSetUseful() != true)
             return;
 
-        // TODO: would it be better to calculate useful compounds one at a time rather than allocating a method here?
-        // This causes quite a bit of memory allocations
         UpdateBarVisibility();
     }
 
