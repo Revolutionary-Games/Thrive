@@ -94,6 +94,8 @@ public class AutoEvoRun
     /// </summary>
     public TimeSpan RunDuration { get; private set; } = TimeSpan.Zero;
 
+    public long PeakMemoryUsage { get; private set; }
+
     public float CompletionFraction
     {
         get
@@ -531,6 +533,10 @@ public class AutoEvoRun
             try
             {
                 complete = Step();
+
+                long heapSize = GC.GetTotalMemory(false);
+                if (PeakMemoryUsage < heapSize)
+                    PeakMemoryUsage = heapSize;
             }
             catch (Exception e)
             {

@@ -585,6 +585,9 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
 
         world.TotalTimeUsed += autoEvoRun.RunDuration;
 
+        world.TimeMetrics.Add(autoEvoRun.RunDuration.TotalSeconds);
+        world.MemoryMetrics.Add((autoEvoRun.PeakMemoryUsage, GC.GetGCMemoryInfo()));
+
         UpdateCurrentWorldStatistics();
         UpdateAllWorldsStatistics();
     }
@@ -1077,6 +1080,17 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         /// </summary>
         public readonly Dictionary<Enzyme, (double Percentage, double Average)>
             MicrobeSpeciesEnzymesStatistics = new();
+
+        /// <summary>
+        ///   Per-generation used auto-evo time in fractional seconds.
+        /// </summary>
+        public readonly List<double> TimeMetrics = new();
+
+        /// <summary>
+        ///   Per-generation memory usage. First item is the peak memory usage, updated after each step; the second one
+        ///   is the .NET GC memory info, which is queried after each generation.
+        /// </summary>
+        public readonly List<(long, GCMemoryInfo)> MemoryMetrics = new();
 
         /// <summary>
         ///   The current generation auto-evo has evolved
