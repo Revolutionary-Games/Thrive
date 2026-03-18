@@ -326,8 +326,9 @@ public partial class PlayerMicrobeInput : NodeWithInput
 
         if (stage.Player.Has<MicrobeColony>())
         {
-            if (!MicrobeColonyHelpers.UnbindAllOutsideGameUpdate(stage.Player, stage.WorldSimulation))
+            if (!MicrobeColonyHelpers.UnbindAllOutsideGameUpdate(stage.Player, stage.WorldSimulation, false))
             {
+                // TODO: suppress this message in multicellular?
                 GD.PrintErr("Failed to unbind the player");
             }
         }
@@ -473,7 +474,7 @@ public partial class PlayerMicrobeInput : NodeWithInput
 
     private void RemoveCellFromColony(Entity target)
     {
-        if (!MicrobeColonyHelpers.UnbindAllOutsideGameUpdate(target, stage.WorldSimulation))
+        if (!MicrobeColonyHelpers.UnbindAllOutsideGameUpdate(target, stage.WorldSimulation, false))
         {
             GD.PrintErr("Target microbe failed to unbind");
         }

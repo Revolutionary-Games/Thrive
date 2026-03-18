@@ -62,7 +62,7 @@ public partial class ColonyStatsUpdateSystem : BaseSystem<World, float>
 
         lock (AttachedToEntityHelpers.EntityAttachRelationshipModifyLock)
         {
-            parentColony.RemoveFromColony(memberInfo.ColonyLeader, entity, recorder);
+            parentColony.RemoveFromColonyAndDisbandIfEmpty(memberInfo.ColonyLeader, entity, recorder);
         }
 
         // As this is called by the destruction callback, the world can't be doing anything else so we can safely
