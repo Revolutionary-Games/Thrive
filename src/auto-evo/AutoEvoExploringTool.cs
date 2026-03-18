@@ -587,6 +587,7 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
 
         world.TimeMetrics.Add(autoEvoRun.RunDuration.TotalSeconds);
         world.MemoryMetrics.Add((autoEvoRun.PeakMemoryUsage, GC.GetGCMemoryInfo()));
+        world.AliveSpeciesHistory.Add(world.CurrentSpeciesCount);
 
         UpdateCurrentWorldStatistics();
         UpdateAllWorldsStatistics();
@@ -1091,6 +1092,11 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         ///   is the .NET GC memory info, which is queried after each generation.
         /// </summary>
         public readonly List<(long, GCMemoryInfo)> MemoryMetrics = new();
+
+        /// <summary>
+        ///   A history of the numbers of alive species.
+        /// </summary>
+        public readonly List<int> AliveSpeciesHistory = new();
 
         /// <summary>
         ///   The current generation auto-evo has evolved

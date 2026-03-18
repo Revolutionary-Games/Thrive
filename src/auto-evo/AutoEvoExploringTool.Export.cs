@@ -229,7 +229,7 @@ public partial class AutoEvoExploringTool
             return;
         }
 
-        var header = new List<string> { "Generation", "Time taken [s]" };
+        var header = new List<string> { "Generation", "Time [s]", "Alive Species" };
 
         file.StoreCsvLine(header.ToArray());
 
@@ -241,6 +241,7 @@ public partial class AutoEvoExploringTool
 
             data.Add(generation.ToString());
             data.Add(world.TimeMetrics[generation].ToString(CultureInfo.InvariantCulture));
+            data.Add(world.AliveSpeciesHistory[generation].ToString(CultureInfo.InvariantCulture));
 
             file.StoreCsvLine(data.ToArray());
         }
