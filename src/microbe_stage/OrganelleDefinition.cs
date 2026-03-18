@@ -193,6 +193,13 @@ public class OrganelleDefinition : RegistryType, IPlayerReadableName
     public OrganelleDefinition? EndosymbiosisUnlocks;
 
     /// <summary>
+    ///   What organelle this is equivalent to in specialization. Used to mark eukaryotic and prokaryotic variants the
+    ///   same to make specialization more effective.
+    /// </summary>
+    [JsonIgnore]
+    public OrganelleDefinition? IsSameInSpecializationAs;
+
+    /// <summary>
     ///   Placement strategy that is used when placing this organelle when calculating an auto-evo organelle suggestion
     ///   for the player
     /// </summary>
@@ -225,6 +232,9 @@ public class OrganelleDefinition : RegistryType, IPlayerReadableName
 
     [JsonProperty]
     private string? endosymbiosisUnlocks;
+
+    [JsonProperty]
+    private string? equivalentInSpecializationTo;
 
     private Vector3 modelOffset;
 
@@ -740,6 +750,11 @@ public class OrganelleDefinition : RegistryType, IPlayerReadableName
         if (!string.IsNullOrEmpty(endosymbiosisUnlocks))
         {
             EndosymbiosisUnlocks = parameters.GetOrganelleType(endosymbiosisUnlocks);
+        }
+
+        if (!string.IsNullOrEmpty(equivalentInSpecializationTo))
+        {
+            IsSameInSpecializationAs = parameters.GetOrganelleType(equivalentInSpecializationTo);
         }
 
         if (Unimplemented)
