@@ -119,6 +119,12 @@ public class AutoEvoRun
     public bool FullSpeed { get; set; }
 
     /// <summary>
+    ///   Whether this run should track memory info. This should be only true in the Auto Evo Exploring Tool as this
+    ///   data is useless in-game.
+    /// </summary>
+    public bool TrackMemoryInfo { get; set; } = false;
+
+    /// <summary>
     ///   a string describing the status of the simulation For example "21% done. 21/100 steps."
     /// </summary>
     public string Status
@@ -534,9 +540,12 @@ public class AutoEvoRun
             {
                 complete = Step();
 
-                long heapSize = GC.GetTotalMemory(false);
-                if (PeakMemoryUsage < heapSize)
-                    PeakMemoryUsage = heapSize;
+                if (TrackMemoryInfo)
+                {
+                    long heapSize = GC.GetTotalMemory(false);
+                    if (PeakMemoryUsage < heapSize)
+                        PeakMemoryUsage = heapSize;
+                }
             }
             catch (Exception e)
             {

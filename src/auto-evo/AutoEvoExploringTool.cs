@@ -530,7 +530,12 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         {
             // If the previous one has finished / failed
             autoEvoRun = new AutoEvoRun(world.GameProperties.GameWorld,
-                AutoEvoRun.GetGlobalCache(autoEvoRun, world.WorldSettings)) { FullSpeed = true };
+                AutoEvoRun.GetGlobalCache(autoEvoRun, world.WorldSettings))
+            {
+                FullSpeed = true,
+                TrackMemoryInfo = true,
+            };
+
             autoEvoRun.Start();
         }
         else
@@ -603,7 +608,7 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         if (autoEvoRun?.Aborted != false || autoEvoRun.Finished)
         {
             autoEvoRun = new AutoEvoRun(world.GameProperties.GameWorld,
-                AutoEvoRun.GetGlobalCache(autoEvoRun, world.WorldSettings));
+                AutoEvoRun.GetGlobalCache(autoEvoRun, world.WorldSettings)) { TrackMemoryInfo = true };
         }
 
         // To avoid concurrent steps
