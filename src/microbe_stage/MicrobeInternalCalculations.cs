@@ -901,6 +901,17 @@ public static class MicrobeInternalCalculations
         if (totalHexCount < 2)
             return 1;
 
+        var hasNucleus = false;
+
+        var count = organelles.Count;
+        for (int i = 0; i < count; ++i)
+        {
+            if (organelles[i].Definition == nucleusDefinition)
+            {
+                hasNucleus = true;
+            }
+        }
+
         float concentration = 0.0f;
 
         foreach (var entry in tempWorkMemory)
