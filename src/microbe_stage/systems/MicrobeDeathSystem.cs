@@ -285,9 +285,9 @@ public partial class MicrobeDeathSystem : BaseSystem<World, float>
             {
                 commandRecorder = worldSimulation.StartRecordingEntityCommands();
 
-                if (!MicrobeColonyHelpers.UnbindAll(entity, commandRecorder))
+                if (!MicrobeColonyHelpers.UnbindAll(entity, commandRecorder, true, true))
                 {
-                    GD.PrintErr("Failed to unbind microbe from colony on death");
+                    GD.PrintErr("Failed to unbind microbe from colony on death (see above for error)");
                 }
             }
             else
@@ -303,9 +303,9 @@ public partial class MicrobeDeathSystem : BaseSystem<World, float>
             // Handle colony lead cell dying (disband the colony)
             commandRecorder ??= worldSimulation.StartRecordingEntityCommands();
 
-            if (!MicrobeColonyHelpers.UnbindAll(entity, commandRecorder))
+            if (!MicrobeColonyHelpers.UnbindAll(entity, commandRecorder, true, true))
             {
-                GD.PrintErr("Failed to unbind colony of a dying lead cell");
+                GD.PrintErr("Failed to unbind colony of a dying lead cell (see above for error)");
             }
         }
 

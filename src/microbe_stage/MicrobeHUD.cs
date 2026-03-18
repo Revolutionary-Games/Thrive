@@ -716,7 +716,9 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         siderophoreHotkey.Visible = showSiderophore;
 
         bindingModeHotkey.Visible = organelles.CanBind(ref species);
-        unbindAllHotkey.Visible = organelles.CanUnbind(ref species, player);
+
+        // Not a forced unbinding, so we pass false to prevent the player from disbanding their multicellular body
+        unbindAllHotkey.Visible = organelles.CanUnbind(ref species, player, false);
 
         bindingModeHotkey.ButtonPressed = control.State == MicrobeState.Binding;
 

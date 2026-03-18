@@ -290,7 +290,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
                 Invoke.Instance.Perform(() =>
                 {
                     GD.PrintErr("Force disbanding the colony that is in invalid state, entity: ", entityId);
-                    MicrobeColonyHelpers.UnbindAllOutsideGameUpdate(entityId, worldSimulation);
+                    MicrobeColonyHelpers.UnbindAllOutsideGameUpdate(entityId, worldSimulation, true);
                 });
             }
         }
