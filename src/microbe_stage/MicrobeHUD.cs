@@ -92,6 +92,8 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     private float previousTemperature = float.NaN;
 
+    private int colonyMemberProcessSpectating = -1;
+
     [Signal]
     public delegate void OnToggleEngulfButtonPressedEventHandler();
 
@@ -336,6 +338,30 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
     }
 
+    public void OnSceneLeftClicked()
+    {
+        if (stage == null || !stage.Player.Has<MicrobeColony>())
+            return;
+
+        var members = stage.Player.Get<MicrobeColony>().ColonyMembers;
+
+        if (members == null)
+            return;
+
+        foreach (var entity in stage!.HoverInfo.Entities)
+        {
+            if (entity.TryGet<MicrobeColonyMember>(out var member))
+            {
+                colonyMemberProcessSpectating = members.IndexOf(entity);
+
+                if (colonyMemberProcessSpectating != -1)
+                {
+                    return;
+                }
+            }
+        }
+    }
+
     protected override void UpdateFossilisationButtonStates()
     {
         var fossils = FossilisedSpecies.CreateListOfFossils(false);
@@ -554,16 +580,36 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             process.Value.Marked = false;
         }
 
-        var playerProcesses = stage!.Player.Get<BioProcesses>().ProcessStatistics?.Processes;
+        Dictionary<TweakedProcess, SingleProcessStatistics>? processes = null;
 
-        if (playerProcesses == null)
+        if (colonyMemberProcessSpectating != -1)
+        {
+            var colonyMembers = stage!.Player.Get<MicrobeColony>().ColonyMembers;
+
+            if (colonyMembers.Length > colonyMemberProcessSpectating)
+            {
+                processes = colonyMembers[colonyMemberProcessSpectating].Get<BioProcesses>().ProcessStatistics?
+                    .Processes;
+            }
+            else
+            {
+                colonyMemberProcessSpectating = -1;
+            }
+        }
+
+        if (processes == null)
+        {
+            processes = stage!.Player.Get<BioProcesses>().ProcessStatistics?.Processes;
+        }
+
+        if (processes == null)
         {
             GD.PrintErr("Player process statistics are uninitialized, can't display them in the process panel");
 
             return null;
         }
 
-        foreach (var process in playerProcesses)
+        foreach (var process in processes)
         {
             var display = process.Value.ComputeAverageValues();
 
@@ -580,7 +626,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             stats.Marked = true;
         }
 
-        if (stage.Player.TryGet<MicrobeColony>(out var colony))
+        if (colonyMemberProcessSpectating == -1 && stage!.Player.TryGet<MicrobeColony>(out var colony))
         {
             for (int i = 1; i < colony.ColonyMembers.Length; ++i)
             {
