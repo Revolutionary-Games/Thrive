@@ -97,11 +97,17 @@ public static class MicrobeEnvironmentalToleranceCalculations
     public static void ApplyOrganelleEffectsOnTolerances(IReadOnlyList<IReadOnlyOrganelleTemplate> organelles,
         ref ToleranceValues tolerances)
     {
-        float temperatureChange = 0;
-        float oxygenChange = 0;
-        float uvChange = 0;
-        float pressureMinimumChange = 0;
-        float pressureToleranceChange = 0;
+        float totalTemperatureChange = 0;
+        float totalOxygenChange = 0;
+        float totalUvChange = 0;
+        float totalPressureMinimumChange = 0;
+        float totalPressureToleranceChange = 0;
+
+        var nucleusDefinition = SimulationParameters.Instance.GetOrganelleType("nucleus");
+
+        // Note this assumes this is only used just for single cell types or microbe species!
+        var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(organelles,
+            new Dictionary<OrganelleDefinition, int>(), nucleusDefinition);
 
         int organelleCount = organelles.Count;
         for (int i = 0; i < organelleCount; ++i)
@@ -110,20 +116,35 @@ public static class MicrobeEnvironmentalToleranceCalculations
 
             if (organelleDefinition.AffectsTolerances)
             {
+                var temperatureChange = organelleDefinition.ToleranceModifierTemperatureRange;
+                var oxygenChange = organelleDefinition.ToleranceModifierOxygen;
+                var uvChange = organelleDefinition.ToleranceModifierUV;
+                var pressureToleranceChange = organelleDefinition.ToleranceModifierPressureTolerance;
+
+                // apply specialization bonus
+                if (temperatureChange > 0)
+                    temperatureChange *= specialization;
+                if (oxygenChange > 0)
+                    oxygenChange *= specialization;
+                if (uvChange > 0)
+                    uvChange *= specialization;
+                if (pressureToleranceChange > 0)
+                    pressureToleranceChange *= specialization;
+
                 // Buffer all changes so that float rounding doesn't cause us issues
-                temperatureChange += organelleDefinition.ToleranceModifierTemperatureRange;
-                oxygenChange += organelleDefinition.ToleranceModifierOxygen;
-                uvChange += organelleDefinition.ToleranceModifierUV;
-                pressureToleranceChange += organelleDefinition.ToleranceModifierPressureTolerance;
+                totalTemperatureChange += temperatureChange;
+                totalOxygenChange += oxygenChange;
+                totalUvChange += uvChange;
+                totalPressureToleranceChange += pressureToleranceChange;
             }
         }
 
         // Then apply all at once
-        tolerances.TemperatureTolerance += temperatureChange;
-        tolerances.OxygenResistance += oxygenChange;
-        tolerances.UVResistance += uvChange;
-        tolerances.PressureMinimum -= pressureMinimumChange;
-        tolerances.PressureTolerance += pressureToleranceChange;
+        tolerances.TemperatureTolerance += totalTemperatureChange;
+        tolerances.OxygenResistance += totalOxygenChange;
+        tolerances.UVResistance += totalUvChange;
+        tolerances.PressureMinimum -= totalPressureMinimumChange;
+        tolerances.PressureTolerance += totalPressureToleranceChange;
     }
 
     public static void ApplyOrganelleEffectsOnTolerances(IReadOnlyCollection<IReadOnlyOrganelleTemplate> organelles,
