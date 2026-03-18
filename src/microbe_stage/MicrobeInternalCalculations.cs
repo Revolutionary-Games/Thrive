@@ -896,28 +896,25 @@ public static class MicrobeInternalCalculations
         Dictionary<OrganelleDefinition, int> tempWorkMemory, OrganelleDefinition nucleusDefinition)
     {
         int totalHexCount = CalculateMostCommonSpecializationOrganelle(organelles, tempWorkMemory, nucleusDefinition);
-        if (totalHexCount < 1)
+        if (totalHexCount < 2)
             return 1;
 
-        int maxHexCount = 0;
+        float concentration = 0.0f;
 
         foreach (var entry in tempWorkMemory)
         {
-            if (entry.Value > maxHexCount)
-            {
-                maxHexCount = entry.Value;
-            }
+            var hexCount = entry.Value;
+            concentration += hexCount * (hexCount - 1);
         }
 
-        // The raw bonus is just the ratio of the main organelle type
-        var bonus = (float)maxHexCount / totalHexCount;
+        concentration /= totalHexCount * (totalHexCount - 1);
 
         // Calculate a strength factor that adjusts things
-        var strength = Math.Min((float)totalHexCount / Constants.CELL_SPECIALIZATION_STRENGTH_FULL_AT, 1);
+        var strength = Math.Min(((float)totalHexCount - 1) / Constants.CELL_SPECIALIZATION_STRENGTH_FULL_AT, 1);
         strength *= Constants.CELL_SPECIALIZATION_STRENGTH_MULTIPLIER;
 
         // Then return the final result as the bonus being anything above 1
-        return 1 + bonus * strength;
+        return 1 + concentration * strength;
     }
 
     private static float MovementForce(float movementForce, float directionFactor)
