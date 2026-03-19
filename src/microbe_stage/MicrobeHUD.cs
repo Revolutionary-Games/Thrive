@@ -344,6 +344,10 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     public void OnSceneLeftClicked()
     {
+        // Only change spectated cell if the process panel is active
+        if (!processPanel.Visible)
+            return;
+
         if (stage == null || !stage.Player.Has<MicrobeColony>())
             return;
 
