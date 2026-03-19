@@ -128,7 +128,7 @@ public partial class EngulfingSystem : BaseSystem<World, float>
 
     /// <summary>
     ///   Eject all engulfables of a destroyed entity (if it is an engulfer). Or if the entity is an engulfable
-    ///   force eject if from an engulfer if it is inside any.
+    ///   force-eject if from an engulfer if it is inside any.
     /// </summary>
     public void OnEntityDestroyed(in Entity entity)
     {
@@ -310,7 +310,7 @@ public partial class EngulfingSystem : BaseSystem<World, float>
         // Additional compounds have already been set by the original ingestion action
 
         var engulfableFinalPosition = CalculateEngulfableTargetPosition(ref engulferCellProperties,
-            ref engulferPosition, radius, ref targetEntityPosition, ref targetSpatial, targetRadius,
+            ref engulferPosition, radius, ref targetEntityPosition, ref targetSpatial, targetEntity, targetRadius,
             new XoShiRo128plus(), out var relativePosition, out var boundingBoxSize);
 
         Vector3 originalScale;
@@ -407,8 +407,8 @@ public partial class EngulfingSystem : BaseSystem<World, float>
 
     private static Vector3 CalculateEngulfableTargetPosition(ref CellProperties engulferCellProperties,
         ref WorldPosition engulferPosition, float radius, ref WorldPosition targetEntityPosition,
-        ref SpatialInstance targetSpatial, float targetRadius, Random random, out Vector3 relativePosition,
-        out Vector3 boundingBoxSize)
+        ref SpatialInstance targetSpatial, Entity targetEntity, float targetRadius, Random random,
+        out Vector3 relativePosition, out Vector3 boundingBoxSize)
     {
         // Below is for figuring out where to place the object attempted to be engulfed inside the cytoplasm,
         // calculated accordingly to hopefully minimize any part of the object sticking out the membrane.
@@ -447,13 +447,38 @@ public partial class EngulfingSystem : BaseSystem<World, float>
         {
             var geometryInstance = targetSpatial.GraphicalInstance as GeometryInstance3D;
 
-            // TODO: should this use EntityMaterial.AutoRetrieveModelPath to find the path of the graphics instance
-            // in the node? This probably doesn't work for all kinds of chunks correctly
+            var children = targetSpatial.GraphicalInstance.GetChildCount();
 
             // Most engulfables have their graphical node as the first child of their primary node
-            if (geometryInstance == null && targetSpatial.GraphicalInstance.GetChildCount() > 0)
+            if (geometryInstance == null && children > 0)
             {
                 geometryInstance = targetSpatial.GraphicalInstance.GetChild(0) as GeometryInstance3D;
+            }
+
+            // We have to use the model path here for some more complex graphics to work
+            if (geometryInstance == null && children > 0)
+            {
+                if (targetEntity.Has<EntityMaterial>())
+                {
+                    ref var material = ref targetEntity.Get<EntityMaterial>();
+
+                    // The actual graphics is wrapped in an extra layer of node
+                    if (!string.IsNullOrEmpty(material.AutoRetrieveModelPath) && children == 1)
+                    {
+                        try
+                        {
+                            // So we get the first child here and then apply the model path
+                            geometryInstance =
+                                targetSpatial.GraphicalInstance.GetChild(0).GetNode<GeometryInstance3D>(material
+                                    .AutoRetrieveModelPath);
+                        }
+                        catch (InvalidCastException)
+                        {
+                            GD.PrintErr("Failed to get graphical instance for auto-retrieved model path in engulfing: ",
+                                material.AutoRetrieveModelPath);
+                        }
+                    }
+                }
             }
 
             if (geometryInstance != null)
@@ -606,6 +631,8 @@ public partial class EngulfingSystem : BaseSystem<World, float>
         ref CellProperties cellProperties, ref SoundEffectPlayer soundPlayer,
         ref CollisionManagement collisionManagement, in Entity entity)
     {
+        var actuallyEngulfing = control.State == MicrobeState.Engulf && cellProperties.MembraneType.CanEngulf;
+
         // Don't process engulfing when dead
         if (health.Dead)
         {
@@ -618,12 +645,10 @@ public partial class EngulfingSystem : BaseSystem<World, float>
                 EjectEverythingFromDeadEngulfer(ref engulfer, entity);
             }
 
-            return;
+            actuallyEngulfing = false;
         }
 
         usedTopLevelEngulfers.Add(entity);
-
-        var actuallyEngulfing = control.State == MicrobeState.Engulf && cellProperties.MembraneType.CanEngulf;
 
         cellProperties.CreatedMembrane?.HandleEngulfAnimation(actuallyEngulfing, delta);
 
@@ -639,6 +664,14 @@ public partial class EngulfingSystem : BaseSystem<World, float>
         else
         {
             soundPlayer.PlayGraduallyTurningDownSound(Constants.MICROBE_ENGULFING_MODE_SOUND, delta);
+        }
+
+        if (health.Dead)
+        {
+            // When dead we don't want to process the further operations, except we do want to update engulf object
+            // states to make sure we play the ejection animations while we are dying
+            UpdateEngulfedObjectStates(delta, ref engulfer, ref cellProperties, entity);
+            return;
         }
 
         // Not full any more tutorial (end trigger for engulfment full tutorial)
@@ -671,8 +704,18 @@ public partial class EngulfingSystem : BaseSystem<World, float>
 
         HandleExpiringExpelledObjects(ref engulfer, delta);
 
-        if (engulfer.EngulfedObjects == null)
+        if (!UpdateEngulfedObjectStates(delta, ref engulfer, ref cellProperties, entity))
             return;
+
+        var colour = cellProperties.Colour;
+        SetPhagosomeColours(entity, colour);
+    }
+
+    private bool UpdateEngulfedObjectStates(float delta, ref Engulfer engulfer, ref CellProperties cellProperties,
+        in Entity entity)
+    {
+        if (engulfer.EngulfedObjects == null)
+            return false;
 
         // Update animations and move between different states when necessary for all the currently engulfed
         // objects
@@ -850,8 +893,7 @@ public partial class EngulfingSystem : BaseSystem<World, float>
 #endif
         }
 
-        var colour = cellProperties.Colour;
-        SetPhagosomeColours(entity, colour);
+        return true;
     }
 
     /// <summary>
@@ -996,6 +1038,10 @@ public partial class EngulfingSystem : BaseSystem<World, float>
 
         ref var cellProperties = ref entity.Get<CellProperties>();
 
+        // We don't set this to true to play the ejection animations on death
+        // Note: this doesn't seem to work as something has already marked the object as needign to eject
+        bool immediateEjection = false;
+
         foreach (var engulfedObject in tempEntitiesToEject)
         {
             // In case here, the engulfer being dead, we check to make sure the engulfed objects aren't incorrect
@@ -1005,15 +1051,13 @@ public partial class EngulfingSystem : BaseSystem<World, float>
                 continue;
             }
 
-            EjectEngulfable(ref engulfer, ref cellProperties, entity, true, ref engulfedObject.Get<Engulfable>(),
-                engulfedObject);
+            // This method usually only *starts* ejections where needed, so we must not delete our engulfed objects
+            // list, but we do need a temporary list as in some cases this has to eject something immediately
+            EjectEngulfable(ref engulfer, ref cellProperties, entity, immediateEjection,
+                ref engulfedObject.Get<Engulfable>(), engulfedObject);
         }
 
         tempEntitiesToEject.Clear();
-
-        // Should be fine to clear this list object like this as a dead entity should get deleted entirely
-        // soon
-        engulfer.EngulfedObjects = null;
     }
 
     private void CheckStartEngulfing(ref CollisionManagement collisionManagement, ref CellProperties cellProperties,
@@ -1216,7 +1260,7 @@ public partial class EngulfingSystem : BaseSystem<World, float>
         CommandBuffer? recorder = null;
 
         // Steal this cell from a colony if it is in a colony currently
-        // Right now this causes extra operations for deleting the attach component but avoiding that would
+        // Right now this causes extra operations for deleting the attached component but avoiding that would
         // complicate the code a lot here
         if (targetEntity.Has<MicrobeColonyMember>() || targetEntity.Has<MicrobeColony>())
         {
@@ -1227,7 +1271,7 @@ public partial class EngulfingSystem : BaseSystem<World, float>
             // started but that may have been caused by my testing method of overriding the required size ratio (
             // in just one place so maybe some other later check then immediately canceled the engulf)
             // - hhyyrylainen
-            if (!MicrobeColonyHelpers.RemoveFromColony(targetEntity, recorder))
+            if (!MicrobeColonyHelpers.RemoveFromColony(targetEntity, recorder, true))
             {
                 GD.PrintErr("Failed to engulf a member of a cell colony (can't remove it)");
                 return false;
@@ -1252,8 +1296,8 @@ public partial class EngulfingSystem : BaseSystem<World, float>
         ref var engulferPosition = ref engulferEntity.Get<WorldPosition>();
 
         var engulfableFinalPosition = CalculateEngulfableTargetPosition(ref engulferCellProperties,
-            ref engulferPosition, radius, ref targetEntityPosition, ref targetSpatial, targetRadius, random,
-            out var relativePosition, out var boundingBoxSize);
+            ref engulferPosition, radius, ref targetEntityPosition, ref targetSpatial, targetEntity, targetRadius,
+            random, out var relativePosition, out var boundingBoxSize);
 
         ref var engulferPriority = ref engulferEntity.Get<RenderPriorityOverride>();
 
@@ -1472,12 +1516,16 @@ public partial class EngulfingSystem : BaseSystem<World, float>
 
         var relativePosition = attached.RelativePosition;
 
-        // If engulfer cell is dead (us) or the engulfed is positioned outside any of our closest membrane,
+        // If engulfer cell is dead (us, and we want immediate ejection, we still have some time until entity despawn
+        // to show some animation) or the engulfed is positioned outside any of our closest membrane,
         // immediately eject it without animation.
         // TODO: Asses performance cost in massive cells (of the membrane Contains)?
         if (engulferDead ||
             !engulferCellProperties.CreatedMembrane.Contains(relativePosition.X, relativePosition.Z))
         {
+            // TODO: this method is untested as I didn't find a way to trigger this when testing dead cells ejecting
+            // things properly -hhyyrylainen
+
             CompleteEjection(ref engulfer, entity, ref engulfable, engulfedObject);
 
 #if DEBUG
@@ -1762,6 +1810,8 @@ public partial class EngulfingSystem : BaseSystem<World, float>
         // Safety check in case the animation started too soon (component not created yet)
         if (!engulfedObject.Has<AttachedToEntity>())
         {
+            // TODO: there's some cases where this can start to get spammed a lot
+            // TODO: see: https://github.com/Revolutionary-Games/Thrive/issues/4704
             GD.PrintErr("Engulfed object doesn't have attached to component set when doing bulk animation");
             return false;
         }

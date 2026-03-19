@@ -482,20 +482,12 @@ public partial class CellEditorComponent
 
         // Calculate the most common organelle to show what we should recommend the player place more
         var temp = tempMemory3;
-        temp.Clear();
         var organelles = editedMicrobeOrganelles;
 
-        var count = organelles.Count;
-        for (int i = 0; i < count; ++i)
-        {
-            var definition = organelles[i].Definition;
-
-            temp.TryGetValue(definition, out var existingCount);
-            temp[definition] = existingCount + 1;
-        }
+        int organelleCount = MicrobeInternalCalculations.CalculateMostCommonSpecializationOrganelle(organelles, temp);
 
         // And then with all the info, update the tooltip and display
-        if (organelles.Count < 1)
+        if (organelleCount < 1)
         {
             organismStatisticsPanel.UpdateSpecialization(specializationBonus, 0, Localization.Translate("NONE"));
             return;

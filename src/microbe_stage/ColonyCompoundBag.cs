@@ -136,7 +136,7 @@ public class ColonyCompoundBag : ICompoundStorage
         return IsUsefulInAnyCompoundBag(SimulationParameters.GetCompound(compound), GetCompoundBags());
     }
 
-    public bool AnyIsUsefulInAnyCompoundBag(IEnumerable<Compound> compounds)
+    public bool AnyIsUsefulInAnyCompoundBag(List<Compound> compounds)
     {
         // Just in case the compound bag method gets turned back into an iterator, this is fetched just once
         var bags = GetCompoundBags();
@@ -204,7 +204,7 @@ public class ColonyCompoundBag : ICompoundStorage
             bag.ClearCompounds();
     }
 
-    private static bool IsUsefulInAnyCompoundBag(CompoundDefinition compound, IEnumerable<CompoundBag> compoundBags)
+    private static bool IsUsefulInAnyCompoundBag(CompoundDefinition compound, List<CompoundBag> compoundBags)
     {
         foreach (var compoundBag in compoundBags)
         {
@@ -215,7 +215,7 @@ public class ColonyCompoundBag : ICompoundStorage
         return false;
     }
 
-    private ICollection<CompoundBag> GetCompoundBags()
+    private List<CompoundBag> GetCompoundBags()
     {
         return colonyBags;
     }

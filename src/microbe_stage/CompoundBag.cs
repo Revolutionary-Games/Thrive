@@ -276,23 +276,12 @@ public class CompoundBag : ICompoundStorage, IArchivable
     }
 
     /// <summary>
-    ///   Checks if any of the given compounds are marked specifically useful. This variant exists to be hopefully more
-    ///   efficient in terms of enumerator allocation.
+    ///   Checks if any of the given compounds are marked specifically useful. This uses List indexed access to avoid
+    ///   interface-typed foreach allocations in hot paths.
     /// </summary>
     /// <param name="compounds">Compounds to check</param>
     /// <returns>True if any are set specifically useful</returns>
-    public bool AreAnySpecificallySetUseful(IList<Compound> compounds)
-    {
-        foreach (var compound in compounds)
-        {
-            if (usefulCompounds.Contains(compound))
-                return true;
-        }
-
-        return false;
-    }
-
-    public bool AreAnySpecificallySetUseful(IEnumerable<Compound> compounds)
+    public bool AreAnySpecificallySetUseful(List<Compound> compounds)
     {
         foreach (var compound in compounds)
         {

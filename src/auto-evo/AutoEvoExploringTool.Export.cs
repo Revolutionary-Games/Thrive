@@ -28,6 +28,8 @@ public partial class AutoEvoExploringTool
             ExportCurrentWorldSpeciesHistory(basePath);
             ExportCurrentWorldPatchHistory(basePath);
             ExportCurrentWorldPopulationHistory(basePath);
+            ExportCurrentWorldTimeMetrics(basePath);
+            ExportCurrentWorldMemoryMetrics(basePath);
         }
 
         worldExportButton.Disabled = false;
@@ -211,6 +213,78 @@ public partial class AutoEvoExploringTool
 
                 file.StoreCsvLine(data.ToArray());
             }
+        }
+
+        file.Close();
+    }
+
+    private void ExportCurrentWorldTimeMetrics(string basePath)
+    {
+        var path = Path.Combine(basePath, "time_metrics.csv");
+
+        using var file = FileAccess.Open(path, FileAccess.ModeFlags.Write);
+        if (file == null)
+        {
+            GD.PrintErr("Couldn't open target file for patch history writing");
+            return;
+        }
+
+        var header = new List<string> { "Generation", "Time [s]", "Alive Species" };
+
+        file.StoreCsvLine(header.ToArray());
+
+        var data = header;
+
+        for (int generation = 0; generation < world.CurrentGeneration; ++generation)
+        {
+            data.Clear();
+
+            data.Add(generation.ToString());
+            data.Add(world.TimeMetrics[generation].ToString(CultureInfo.InvariantCulture));
+            data.Add(world.AliveSpeciesHistory[generation].ToString(CultureInfo.InvariantCulture));
+
+            file.StoreCsvLine(data.ToArray());
+        }
+
+        file.Close();
+    }
+
+    private void ExportCurrentWorldMemoryMetrics(string basePath)
+    {
+        var path = Path.Combine(basePath, "memory_metrics.csv");
+
+        using var file = FileAccess.Open(path, FileAccess.ModeFlags.Write);
+        if (file == null)
+        {
+            GD.PrintErr("Couldn't open target file for patch history writing");
+            return;
+        }
+
+        var header = new List<string> { "Generation", "Peak", "G0", "G1", "G2", "LOH", "POH", "Alive Species" };
+
+        file.StoreCsvLine(header.ToArray());
+
+        var data = header;
+        data.Clear();
+
+        const int memoryGenerations = 5;
+        for (int generation = 0; generation < world.CurrentGeneration; ++generation)
+        {
+            data.Clear();
+
+            data.Add(generation.ToString());
+
+            var memoryMetrics = world.MemoryMetrics[generation];
+            data.Add(memoryMetrics.Item1.ToString());
+
+            for (int memoryGeneration = 0; memoryGeneration < memoryGenerations; ++memoryGeneration)
+            {
+                data.Add(memoryMetrics.Item2.GenerationInfo[memoryGeneration].SizeAfterBytes.ToString());
+            }
+
+            data.Add(world.AliveSpeciesHistory[generation].ToString(CultureInfo.InvariantCulture));
+
+            file.StoreCsvLine(data.ToArray());
         }
 
         file.Close();

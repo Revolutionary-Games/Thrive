@@ -86,6 +86,15 @@ public partial class FluidCurrentsSystem : BaseSystem<World, float>, IArchiveUpd
         return currentsVelocity * speed;
     }
 
+    /// <summary>
+    ///   Gets the configured speed of the currents. Used to automatically adjust movement ripple thresholds.
+    /// </summary>
+    /// <returns>How fast the currents go</returns>
+    public float GetSpeed()
+    {
+        return speed;
+    }
+
     public override void BeforeUpdate(in float delta)
     {
         if (!imagesInitialized)

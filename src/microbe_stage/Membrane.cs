@@ -1,5 +1,6 @@
 ﻿using System;
 using Godot;
+using Systems;
 
 /// <summary>
 ///   Membrane for microbes
@@ -43,6 +44,8 @@ public partial class Membrane : MeshInstance3D
     private MembranePointData membraneData = null!;
 #pragma warning restore CA2213
 
+    private FluidCurrentsSystem? fluidCurrentsSystem;
+
     private string? currentlyLoadedAlbedoTexture;
 
     private float healthFraction = 1.0f;
@@ -53,6 +56,16 @@ public partial class Membrane : MeshInstance3D
     private double engulfFade;
 
     private bool mucocystEffectEnabled;
+
+    public FluidCurrentsSystem? FluidCurrentsSystem
+    {
+        get => fluidCurrentsSystem;
+        set
+        {
+            fluidCurrentsSystem = value;
+            waterRipple.FluidCurrentsSystem = value;
+        }
+    }
 
     /// <summary>
     ///   When true, the material properties need to be reapplied
