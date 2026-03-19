@@ -506,9 +506,10 @@ public partial class MicrobeReproductionSystem : BaseSystem<World, float>
 
             // These are fetched here as most of the time only one organelle will divide per step, so it doesn't
             // help to complicate things by trying to fetch these before the loop
+            // TODO: Get actual SpecializationBonus
             organelles.OnOrganellesChanged(ref storage, ref entity.Get<BioProcesses>(),
                 ref entity.Get<Engulfer>(), ref entity.Get<Engulfable>(),
-                ref entity.Get<CellProperties>());
+                ref entity.Get<CellProperties>(), 1.0f);
 
             if (entity.Has<MicrobeEventCallbacks>())
             {

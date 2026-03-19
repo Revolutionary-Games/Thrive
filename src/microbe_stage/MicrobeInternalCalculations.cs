@@ -46,26 +46,39 @@ public static class MicrobeInternalCalculations
         return (Hex.AxialToCartesian(new Hex(0, 0)) - Hex.AxialToCartesian(organelle.Position)).Normalized();
     }
 
-    public static float GetTotalNominalCapacity(IEnumerable<OrganelleTemplate> organelles)
+    public static float GetTotalNominalCapacity(IEnumerable<OrganelleTemplate> organelles, float specializationBonus)
     {
-        return organelles.Sum(o => GetNominalCapacityForOrganelle(o.Definition, o.Upgrades));
+        return organelles.Sum(o => GetNominalCapacityForOrganelle(o.Definition, o.Upgrades,
+            specializationBonus));
     }
 
     public static Dictionary<Compound, float> GetTotalSpecificCapacity(IReadOnlyList<OrganelleTemplate> organelles,
         out float nominalCapacity)
     {
-        var totalNominalCap = GetTotalNominalCapacity(organelles);
+        var nucleusDefinition = SimulationParameters.Instance.GetOrganelleType("nucleus");
+
+        // Note this assumes this is only used just for single cell types or microbe species!
+        var specializationBonus = CalculateSpecializationBonus(organelles,
+            new Dictionary<OrganelleDefinition, int>(), nucleusDefinition);
+
+        var totalNominalCap = GetTotalNominalCapacity(organelles, specializationBonus);
         nominalCapacity = totalNominalCap;
 
         var capacities = new Dictionary<Compound, float>();
 
-        AddSpecificCapacity(organelles, capacities);
+        AddSpecificCapacity(organelles, capacities, specializationBonus);
+
+        // Apply cell specialization bonus to specific capacities
+        foreach (var key in capacities.Keys.ToList())
+        {
+            capacities[key] *= specializationBonus;
+        }
 
         return capacities;
     }
 
     public static void AddSpecificCapacity(IReadOnlyList<OrganelleTemplate> organelles,
-        Dictionary<Compound, float> capacities)
+        Dictionary<Compound, float> capacities, float specializationBonus)
     {
         var count = organelles.Count;
 
@@ -74,7 +87,8 @@ public static class MicrobeInternalCalculations
         {
             var organelle = organelles[i];
 
-            var specificCapacity = GetAdditionalCapacityForOrganelle(organelle.Definition, organelle.Upgrades);
+            var specificCapacity = GetAdditionalCapacityForOrganelle(organelle.Definition, organelle.Upgrades,
+                specializationBonus);
 
             if (specificCapacity.Compound == Compound.Invalid)
                 continue;
@@ -92,7 +106,9 @@ public static class MicrobeInternalCalculations
     /// </summary>
     /// <param name="compoundBag">Target compound bag to set info in (this doesn't update nominal capacity)</param>
     /// <param name="organelles">Organelles to find specific capacity from</param>
-    public static void UpdateSpecificCapacities(CompoundBag compoundBag, IReadOnlyList<PlacedOrganelle> organelles)
+    /// <param name="specializationBonus">The cell specialization bonus for this microbe/cell</param>
+    public static void UpdateSpecificCapacities(CompoundBag compoundBag, IReadOnlyList<PlacedOrganelle> organelles,
+        float specializationBonus)
     {
         compoundBag.ClearSpecificCapacities();
 
@@ -100,7 +116,8 @@ public static class MicrobeInternalCalculations
         for (int i = 0; i < count; ++i)
         {
             var organelle = organelles[i];
-            var specificCapacity = GetAdditionalCapacityForOrganelle(organelle.Definition, organelle.Upgrades);
+            var specificCapacity = GetAdditionalCapacityForOrganelle(organelle.Definition, organelle.Upgrades,
+                specializationBonus);
 
             if (specificCapacity.Compound == Compound.Invalid)
                 continue;
@@ -110,7 +127,7 @@ public static class MicrobeInternalCalculations
     }
 
     public static float GetNominalCapacityForOrganelle(OrganelleDefinition definition,
-        IReadOnlyOrganelleUpgrades? upgrades)
+        IReadOnlyOrganelleUpgrades? upgrades, float specializationBonus)
     {
         if (upgrades?.CustomUpgradeData is StorageComponentUpgrades storage &&
             storage.SpecializedFor != Compound.Invalid)
@@ -121,11 +138,12 @@ public static class MicrobeInternalCalculations
         if (definition.Components.Storage == null)
             return 0;
 
-        return definition.Components.Storage!.Capacity;
+        return definition.Components.Storage!.Capacity * specializationBonus;
     }
 
     public static (Compound Compound, float Capacity)
-        GetAdditionalCapacityForOrganelle(OrganelleDefinition definition, IReadOnlyOrganelleUpgrades? upgrades)
+        GetAdditionalCapacityForOrganelle(OrganelleDefinition definition, IReadOnlyOrganelleUpgrades? upgrades,
+            float specializationBonus)
     {
         if (definition.Components.Storage == null)
             return (Compound.Invalid, 0);
@@ -136,7 +154,7 @@ public static class MicrobeInternalCalculations
             var specialization = storage.SpecializedFor;
             var capacity = definition.Components.Storage!.Capacity;
             var extraCapacity = capacity * Constants.VACUOLE_SPECIALIZED_MULTIPLIER;
-            return (specialization, extraCapacity);
+            return (specialization, extraCapacity * specializationBonus);
         }
 
         return (Compound.Invalid, 0);

@@ -349,7 +349,7 @@ public static class OrganelleContainerHelpers
             }, workMemory1, workMemory2);
         }
 
-        container.CalculateOrganelleLayoutStatistics();
+        container.CalculateOrganelleLayoutStatistics(cellDefinition.SpecializationBonus);
 
         container.AllOrganellesDivided = false;
 
@@ -421,7 +421,7 @@ public static class OrganelleContainerHelpers
             growth.ResetMulticellularProgress(entity, worldSimulation);
         }
 
-        container.UpdateCompoundBagStorageFromOrganelles(ref storageToUpdate);
+        container.UpdateCompoundBagStorageFromOrganelles(ref storageToUpdate, cellDefinition.SpecializationBonus);
 
         container.RecalculateOrganelleBioProcesses(ref bioProcessesToUpdate);
 
@@ -442,14 +442,14 @@ public static class OrganelleContainerHelpers
     /// </summary>
     public static void OnOrganellesChanged(this ref OrganelleContainer container, ref CompoundStorage storage,
         ref BioProcesses bioProcesses, ref Engulfer engulfer, ref Engulfable engulfable,
-        ref CellProperties cellProperties)
+        ref CellProperties cellProperties, float specializationBonus)
     {
         container.OrganelleVisualsCreated = false;
         container.OrganelleComponentsCached = false;
 
-        container.CalculateOrganelleLayoutStatistics();
+        container.CalculateOrganelleLayoutStatistics(specializationBonus);
         container.UpdateEngulfingSizeData(ref engulfer, ref engulfable, cellProperties.IsBacteria);
-        container.UpdateCompoundBagStorageFromOrganelles(ref storage);
+        container.UpdateCompoundBagStorageFromOrganelles(ref storage, specializationBonus);
 
         container.RecalculateOrganelleBioProcesses(ref bioProcesses);
     }
@@ -557,7 +557,8 @@ public static class OrganelleContainerHelpers
         return detections;
     }
 
-    public static void CalculateOrganelleLayoutStatistics(this ref OrganelleContainer container)
+    public static void CalculateOrganelleLayoutStatistics(this ref OrganelleContainer container,
+        float specializationBonus)
     {
         if (container.AvailableEnzymes == null)
         {
@@ -682,7 +683,7 @@ public static class OrganelleContainerHelpers
 
             container.OrganellesCapacity +=
                 MicrobeInternalCalculations.GetNominalCapacityForOrganelle(organelleDefinition,
-                    organelle.Upgrades);
+                    organelle.Upgrades, specializationBonus);
 
             var enzymes = organelle.GetEnzymes();
 
@@ -732,8 +733,9 @@ public static class OrganelleContainerHelpers
     /// </summary>
     /// <param name="container">Organelle data</param>
     /// <param name="compoundStorage">Target compound storage to update</param>
+    /// <param name="specializationBonus">Bonus modifier from cell specialization</param>
     public static void UpdateCompoundBagStorageFromOrganelles(this ref OrganelleContainer container,
-        ref CompoundStorage compoundStorage)
+        ref CompoundStorage compoundStorage, float specializationBonus)
     {
         if (container.Organelles == null)
             throw new InvalidOperationException("Organelle list needs to be initialized first");
@@ -742,7 +744,8 @@ public static class OrganelleContainerHelpers
 
         compounds.NominalCapacity = container.OrganellesCapacity;
 
-        MicrobeInternalCalculations.UpdateSpecificCapacities(compounds, container.Organelles.Organelles);
+        MicrobeInternalCalculations.UpdateSpecificCapacities(compounds, container.Organelles.Organelles,
+            specializationBonus);
     }
 
     /// <summary>
