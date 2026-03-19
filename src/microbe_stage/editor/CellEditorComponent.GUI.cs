@@ -94,6 +94,9 @@ public partial class CellEditorComponent
         organismStatisticsPanel.UpdateDigestionEfficiencies(CalculateDigestionEfficiencies());
         organismStatisticsPanel.UpdateTotalDigestionSpeed(CalculateTotalDigestionSpeed());
 
+        var (tolerance, capacity) = CalculateHydrogenSulfideProtection();
+        organismStatisticsPanel.UpdateHydrogenSulfideProtection(tolerance, capacity);
+
         UpdateOsmoregulationTooltips();
         UpdateMPCost();
 

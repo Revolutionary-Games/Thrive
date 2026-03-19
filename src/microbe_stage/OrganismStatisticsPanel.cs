@@ -36,6 +36,9 @@ public partial class OrganismStatisticsPanel : PanelContainer
     public bool ShowDigestionEfficiencyStat;
 
     [Export]
+    public bool ShowHydrogenSulfideProtectionStat;
+
+    [Export]
     public bool ShowATPBalanceBars;
 
     [Export]
@@ -78,6 +81,9 @@ public partial class OrganismStatisticsPanel : PanelContainer
 
     [Export]
     private CellStatsIndicator digestionEfficiencyLabel = null!;
+
+    [Export]
+    private CellStatsIndicator hydrogenSulfideProtectionLabel = null!;
 
     [Export]
     private CellStatsIndicator ammoniaCostLabel = null!;
@@ -212,6 +218,8 @@ public partial class OrganismStatisticsPanel : PanelContainer
         digestionSpeedLabel.Visible = ShowDigestionSpeedStat;
         digestionEfficiencyLabel.Visible = ShowDigestionEfficiencyStat;
         digestionStatsSeparator.Visible = ShowDigestionSpeedStat || ShowDigestionEfficiencyStat || ShowSizeStat;
+
+        hydrogenSulfideProtectionLabel.Visible = ShowHydrogenSulfideProtectionStat;
 
         atpBalanceBarContainer.Visible = ShowATPBalanceBars;
 
@@ -390,6 +398,7 @@ public partial class OrganismStatisticsPanel : PanelContainer
     public void RegisterTooltips()
     {
         digestionEfficiencyLabel.RegisterToolTipForControl("digestionEfficiencyDetails", "editor");
+        hydrogenSulfideProtectionLabel.RegisterToolTipForControl("hydrogenSulfideProtection", "editor");
         storageLabel.RegisterToolTipForControl("storageDetails", "editor");
 
         if (!IsMulticellularEditor)
@@ -517,6 +526,26 @@ public partial class OrganismStatisticsPanel : PanelContainer
         else
         {
             GD.PrintErr("Can't update digestion efficiency tooltip");
+        }
+    }
+
+    public void UpdateHydrogenSulfideProtection(float tolerance, float capacity)
+    {
+        var protection = Math.Min(tolerance / capacity, 1);
+        tolerance = (float)Math.Round(Math.Min(tolerance, capacity), 1);
+
+        hydrogenSulfideProtectionLabel.Format = Localization.Translate("PERCENTAGE_VALUE");
+        hydrogenSulfideProtectionLabel.Value = (float)Math.Round(protection * 100);
+
+        var tooltip = ToolTipManager.Instance.GetToolTip("hydrogenSulfideProtection", "editor");
+        if (tooltip != null)
+        {
+            tooltip.Description =
+                new LocalizedString("HYDROGEN_SULFIDE_PROTECTION_TOOLTIP", tolerance).ToString();
+        }
+        else
+        {
+            GD.PrintErr("Can't update hydrogen sulfide protection tooltip");
         }
     }
 
