@@ -98,7 +98,8 @@ public class SummedProcessStatistics : IProcessDisplayInfo
             summedFullSpeedRequiredEnvironmentalInputs[output.Key] = value + output.Value;
         }
 
-        // Environmental inputs and limiting factors don't differ between colony cells, so they only need to be added once
+        // Environmental inputs and limiting factors don't differ between colony cells,
+        // so they only need to be added once
         if (summedEnvironmentalInputs.Count == 0)
         {
             foreach (var output in displayInfo.EnvironmentalInputs)

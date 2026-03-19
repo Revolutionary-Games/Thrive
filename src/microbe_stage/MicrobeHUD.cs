@@ -356,7 +356,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         if (members == null)
             return;
 
-        foreach (var entity in stage!.HoverInfo.Entities)
+        foreach (var entity in stage.HoverInfo.Entities)
         {
             if (entity.TryGet<MicrobeColonyMember>(out var member))
             {
@@ -364,11 +364,25 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
                 if (colonyMemberProcessSpectating != -1)
                 {
-                    var name = "a";
+                    string name;
 
-                    if (entity.TryGet<AttachedToEntity>(out var attachedToEntity))
+                    if (entity.TryGet<MulticellularSpeciesMember>(out var multicellularSpecies))
                     {
-                        name = $"{MathF.Round(attachedToEntity.RelativePosition.X)}, {MathF.Round(attachedToEntity.RelativePosition.Y)}";
+                        Vector2 relativePos = Vector2.Zero;
+
+                        if (entity.TryGet<AttachedToEntity>(out var attachedToEntity))
+                        {
+                            relativePos = new Vector2(MathF.Round(attachedToEntity.RelativePosition.X, 1),
+                                MathF.Round(attachedToEntity.RelativePosition.Z, 1));
+                        }
+
+                        name = Localization.Translate("PROCESS_CELL_DEFINITION_FORMAT").FormatSafe(
+                            multicellularSpecies.MulticellularCellType.ReadableName, relativePos);
+                    }
+                    else
+                    {
+                        GD.PrintErr("A colony member doesn't have a MulticellularSpeciesMember component set");
+                        name = "unset";
                     }
 
                     processPanel.ReportChosenCell(name);
@@ -380,7 +394,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             {
                 colonyMemberProcessSpectating = 0;
 
-                processPanel.ReportChosenCell("Core");
+                processPanel.ReportChosenCell(Localization.Translate("LEADER_CELL"));
             }
         }
     }

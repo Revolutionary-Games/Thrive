@@ -69,9 +69,11 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" index="0" unique_id=2075910736]
 editor_description = "PLACEHOLDER"
+custom_minimum_size = Vector2(5, 5)
 layout_mode = 2
+size_flags_horizontal = 3
 text = "Chosen cell"
-horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="Button" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer" index="1" unique_id=701909081]
 custom_minimum_size = Vector2(30, 30)
@@ -87,7 +89,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 80
+theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 

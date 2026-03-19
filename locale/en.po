@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-03-18 07:58+0300\n"
+"POT-Creation-Date: 2026-03-19 17:53+0300\n"
 "PO-Revision-Date: 2026-02-27 12:02+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
@@ -3241,6 +3241,9 @@ msgstr "LAWK only"
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr "(restricts parts and abilities to only Life As We Know it)"
 
+msgid "LEADER_CELL"
+msgstr "Leader cell"
+
 msgid "LEAD_ARTIST"
 msgstr "Lead Artist"
 
@@ -4232,7 +4235,9 @@ msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "While your cells share compounds, each cell needs to produce its own [thrive:compound type=\"atp\"][/thrive:compound]. Any cell that runs out of this will die."
 
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
-msgstr "This panel shows the combined processes of your colony, summed across all of its cells. Note that unlike other compounds, ATP isn't shared between cells."
+msgstr ""
+"This panel shows the combined processes of your colony, summed across all of its cells. Note that unlike other compounds, ATP isn't shared between cells.\n"
+"Click on a cell in your colony to view their processes."
 
 msgid "MULTICELLULAR_STAGE"
 msgstr "Multicellular Stage"
@@ -5001,6 +5006,9 @@ msgstr "previous:"
 
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Processing loaded objects"
+
+msgid "PROCESS_CELL_DEFINITION_FORMAT"
+msgstr "{0} at {1}"
 
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "At"
