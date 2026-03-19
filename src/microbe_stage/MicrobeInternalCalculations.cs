@@ -425,10 +425,19 @@ public static class MicrobeInternalCalculations
     {
         float hydrogenSulfideProtection = Constants.HYDROGEN_SULFIDE_DEFAULT_PROTECTION;
         float hydrogenSulfideStorage = 0;
+        float hydrogenSulfideOrganellesNumber = 0;
+        float organellesCount = 0;
 
         foreach (var organelle in organelles)
         {
             hydrogenSulfideProtection += organelle.Definition.HydrogenSulfideProtection;
+
+            if (organelle.Definition.HydrogenSulfideProtection > 0)
+            {
+                ++hydrogenSulfideOrganellesNumber;
+            }
+
+            ++organellesCount;
 
             if (organelle.Definition.Components.Storage != null)
             {
@@ -444,6 +453,14 @@ public static class MicrobeInternalCalculations
                     hydrogenSulfideStorage += specificCapacity.Capacity;
                 }
             }
+        }
+
+        // If there are enough organelles providing protection the cell gets full immunity
+        if (hydrogenSulfideOrganellesNumber / organellesCount >=
+            Constants.HYDROGEN_SULFIDE_ORGANELLE_PROTECTION_CAP_FRACTION
+            || hydrogenSulfideProtection > hydrogenSulfideStorage)
+        {
+            hydrogenSulfideProtection = hydrogenSulfideStorage;
         }
 
         return (hydrogenSulfideProtection, hydrogenSulfideStorage);

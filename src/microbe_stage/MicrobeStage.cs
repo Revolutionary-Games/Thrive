@@ -393,7 +393,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
                 HUD.UpdateRadiationBar(compounds.GetCompoundAmount(Compound.Radiation),
                     compounds.GetCapacityForCompound(Compound.Radiation), Constants.RADIATION_WARNING);
-                HUD.UpdateHydrogenSulfideBarBar(compounds.GetCompoundAmount(Compound.Hydrogensulfide),
+                HUD.UpdateHydrogenSulfideBar(compounds.GetCompoundAmount(Compound.Hydrogensulfide),
                     organelles.HydrogenSulfideProtection);
             }
 

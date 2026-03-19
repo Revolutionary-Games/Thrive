@@ -763,6 +763,7 @@ public static class Constants
     public const float HYDROGEN_SULFIDE_DAMAGE_INTERVAL = 0.75f;
 
     public const float HYDROGEN_SULFIDE_DEFAULT_PROTECTION = 0.1f;
+    public const float HYDROGEN_SULFIDE_ORGANELLE_PROTECTION_CAP_FRACTION = 0.25f;
 
     public const float HYDROGEN_SULFIDE_DAMAGE = 2.0f;
 

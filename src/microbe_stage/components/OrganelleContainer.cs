@@ -221,10 +221,11 @@ public static class OrganelleContainerHelpers
         var mucocystCount = reader.ReadInt32();
         var radiationProtection = reader.ReadInt32();
 
-        var hydrogenSulfideProtection = Constants.HYDROGEN_SULFIDE_DEFAULT_PROTECTION;
+        float hydrogenSulfideProtection;
         if (version <= 1)
         {
             reader.ReadBool();
+            hydrogenSulfideProtection = float.MaxValue;
         }
         else
         {

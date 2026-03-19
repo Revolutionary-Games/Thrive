@@ -3,6 +3,7 @@
 using System;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using AngleSharp.Common;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Arch.System;
@@ -66,10 +67,22 @@ public partial class CompoundAbsorptionSystem : BaseSystem<World, float>
         {
             var usefulCompounds =
                 SimulationParameters.Instance.GetCloudCompounds().Where(storage.Compounds.IsUseful);
+
             foreach (var usefulCompound in usefulCompounds)
             {
-                storage.Compounds.AddCompound(usefulCompound.ID,
-                    storage.Compounds.GetFreeSpaceForCompound(usefulCompound.ID));
+                // Exception for hydrogen sulfide. Top only to the tolerable amount so that the cell doesn't lose health
+                if (usefulCompound.ID == Compound.Hydrogensulfide)
+                {
+                    var species = entity.Get<Species>();
+                    var hydrogenSulfideTolerance = species.InitialCompounds.GetOrDefault(Compound.Hydrogensulfide, 0);
+                    storage.Compounds.AddCompound(usefulCompound.ID,
+                        hydrogenSulfideTolerance - storage.Compounds.GetCompoundAmount(usefulCompound.ID));
+                }
+                else
+                {
+                    storage.Compounds.AddCompound(usefulCompound.ID,
+                        storage.Compounds.GetFreeSpaceForCompound(usefulCompound.ID));
+                }
             }
         }
     }

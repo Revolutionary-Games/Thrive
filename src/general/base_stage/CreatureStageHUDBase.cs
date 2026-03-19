@@ -605,7 +605,7 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
         }
     }
 
-    public void UpdateHydrogenSulfideBarBar(float sulfide, float warningThreshold)
+    public void UpdateHydrogenSulfideBar(float sulfide, float warningThreshold)
     {
         if (sulfide >= warningThreshold)
         {
