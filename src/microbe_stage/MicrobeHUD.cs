@@ -348,17 +348,17 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         if (!processPanel.Visible)
             return;
 
-        if (stage == null || !stage.Player.Has<MicrobeColony>())
+        if (stage == null || !stage.Player.TryGet<MicrobeColony>(out var colony))
             return;
 
-        var members = stage.Player.Get<MicrobeColony>().ColonyMembers;
+        var members = colony.ColonyMembers;
 
         if (members == null)
             return;
 
         foreach (var entity in stage.HoverInfo.Entities)
         {
-            if (entity.TryGet<MicrobeColonyMember>(out var member))
+            if (entity.Has<MicrobeColonyMember>())
             {
                 colonyMemberProcessSpectating = members.IndexOf(entity);
 

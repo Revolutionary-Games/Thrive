@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 /// <summary>
 ///   Summed statistics of multiple processes
@@ -64,7 +63,7 @@ public class SummedProcessStatistics : IProcessDisplayInfo
     /// </summary>
     public IReadOnlyDictionary<Compound, float> Outputs => summedOutputs;
 
-    public IReadOnlyList<Compound>? LimitingCompounds => summedLimitingFactors;
+    public IReadOnlyList<Compound> LimitingCompounds => summedLimitingFactors;
 
     public bool Enabled { get; set; }
 
