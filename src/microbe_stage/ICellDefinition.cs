@@ -55,6 +55,8 @@ public interface IReadOnlyCellDefinition
 public interface ICellTypeDefinition : ICellDefinition, IReadOnlyCellTypeDefinition
 {
     public new int MPCost { get; set; }
+
+    public new float SpecializationBonus { get; }
 }
 
 public interface IReadOnlyCellTypeDefinition : IReadOnlyCellDefinition, IPlayerReadableName
