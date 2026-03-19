@@ -96,7 +96,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     ///   The index of the microbe colony member whose processes should be displayed. -1 is the default state that
     ///   displays the summed processes of the entire colony.
     /// </summary>
-    private int colonyMemberProcessSpectating = -1;
+    private int processViewedColonyMember = -1;
 
     [Signal]
     public delegate void OnToggleEngulfButtonPressedEventHandler();
@@ -358,50 +358,48 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         foreach (var entity in stage.HoverInfo.Entities)
         {
-            if (entity.Has<MicrobeColonyMember>())
+            if (!entity.Has<MicrobeColonyMember>())
             {
-                colonyMemberProcessSpectating = members.IndexOf(entity);
-
-                if (colonyMemberProcessSpectating != -1)
+                if (entity == stage.Player)
                 {
-                    string name;
-
-                    if (entity.TryGet<MulticellularSpeciesMember>(out var multicellularSpecies))
-                    {
-                        Vector2 relativePos = Vector2.Zero;
-
-                        if (entity.TryGet<AttachedToEntity>(out var attachedToEntity))
-                        {
-                            relativePos = new Vector2(MathF.Round(attachedToEntity.RelativePosition.X, 1),
-                                MathF.Round(attachedToEntity.RelativePosition.Z, 1));
-                        }
-
-                        name = Localization.Translate("PROCESS_CELL_DEFINITION_FORMAT").FormatSafe(
-                            multicellularSpecies.MulticellularCellType.ReadableName, relativePos);
-                    }
-                    else
-                    {
-                        GD.PrintErr("A colony member doesn't have a MulticellularSpeciesMember component set");
-                        name = "unset";
-                    }
-
-                    processPanel.ReportChosenCell(name);
-
-                    return;
+                    processViewedColonyMember = 0;
+                    processPanel.ReportChosenCell(Localization.Translate("LEADER_CELL"));
                 }
-            }
-            else if (entity == stage.Player)
-            {
-                colonyMemberProcessSpectating = 0;
 
-                processPanel.ReportChosenCell(Localization.Translate("LEADER_CELL"));
+                continue;
+            }
+
+            processViewedColonyMember = members.IndexOf(entity);
+
+            if (processViewedColonyMember != -1)
+            {
+                string name;
+
+                if (!entity.TryGet<MulticellularSpeciesMember>(out var multicellularSpecies)
+                    || !entity.TryGet<AttachedToEntity>(out var attachedToEntity))
+                {
+                    GD.PrintErr(
+                        "A colony member doesn't have a MulticellularSpeciesMember and/or AttachedToEntity component");
+                    name = "unset";
+                }
+                else
+                {
+                    var relativePos = new Vector2(MathF.Round(attachedToEntity.RelativePosition.X, 1),
+                            MathF.Round(attachedToEntity.RelativePosition.Z, 1));
+
+                    name = Localization.Translate("PROCESS_CELL_DEFINITION_FORMAT")
+                        .FormatSafe(multicellularSpecies.MulticellularCellType.ReadableName, relativePos);
+                }
+
+                processPanel.ReportChosenCell(name);
+                return;
             }
         }
     }
 
     public void DeselectProcessSpectatingCell()
     {
-        colonyMemberProcessSpectating = -1;
+        processViewedColonyMember = -1;
     }
 
     protected override void UpdateFossilisationButtonStates()
@@ -624,24 +622,24 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         Dictionary<TweakedProcess, SingleProcessStatistics>? processes = null;
 
-        if (colonyMemberProcessSpectating != -1)
+        if (processViewedColonyMember <= 0)
+        {
+            processes = stage!.Player.Get<BioProcesses>().ProcessStatistics?.Processes;
+        }
+        else
         {
             var colonyMembers = stage!.Player.Get<MicrobeColony>().ColonyMembers;
 
-            if (colonyMembers.Length > colonyMemberProcessSpectating)
+            if (colonyMembers.Length > processViewedColonyMember)
             {
-                processes = colonyMembers[colonyMemberProcessSpectating].Get<BioProcesses>().ProcessStatistics?
+                processes = colonyMembers[processViewedColonyMember].Get<BioProcesses>().ProcessStatistics?
                     .Processes;
             }
             else
             {
-                colonyMemberProcessSpectating = -1;
+                processViewedColonyMember = -1;
+                processes = stage!.Player.Get<BioProcesses>().ProcessStatistics?.Processes;
             }
-        }
-
-        if (colonyMemberProcessSpectating == -1)
-        {
-            processes = stage!.Player.Get<BioProcesses>().ProcessStatistics?.Processes;
         }
 
         if (processes == null)
@@ -668,7 +666,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             stats.Marked = true;
         }
 
-        if (colonyMemberProcessSpectating == -1 && stage!.Player.TryGet<MicrobeColony>(out var colony))
+        if (processViewedColonyMember == -1 && stage!.Player.TryGet<MicrobeColony>(out var colony))
         {
             for (int i = 1; i < colony.ColonyMembers.Length; ++i)
             {
