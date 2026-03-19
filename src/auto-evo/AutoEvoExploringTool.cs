@@ -530,7 +530,12 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         {
             // If the previous one has finished / failed
             autoEvoRun = new AutoEvoRun(world.GameProperties.GameWorld,
-                AutoEvoRun.GetGlobalCache(autoEvoRun, world.WorldSettings)) { FullSpeed = true };
+                AutoEvoRun.GetGlobalCache(autoEvoRun, world.WorldSettings))
+            {
+                FullSpeed = true,
+                TrackMemoryInfo = true,
+            };
+
             autoEvoRun.Start();
         }
         else
@@ -585,6 +590,10 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
 
         world.TotalTimeUsed += autoEvoRun.RunDuration;
 
+        world.TimeMetrics.Add(autoEvoRun.RunDuration.TotalSeconds);
+        world.MemoryMetrics.Add((autoEvoRun.PeakMemoryUsage, GC.GetGCMemoryInfo()));
+        world.AliveSpeciesHistory.Add(world.CurrentSpeciesCount);
+
         UpdateCurrentWorldStatistics();
         UpdateAllWorldsStatistics();
     }
@@ -599,7 +608,7 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         if (autoEvoRun?.Aborted != false || autoEvoRun.Finished)
         {
             autoEvoRun = new AutoEvoRun(world.GameProperties.GameWorld,
-                AutoEvoRun.GetGlobalCache(autoEvoRun, world.WorldSettings));
+                AutoEvoRun.GetGlobalCache(autoEvoRun, world.WorldSettings)) { TrackMemoryInfo = true };
         }
 
         // To avoid concurrent steps
@@ -869,7 +878,7 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
 
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f, () =>
         {
-            MainMenu.OnEnteringGame(false);
+            MainMenu.OnEnteringGame(false, true);
 
             // Instantiate a new editor scene
             var editor = (MicrobeEditor)SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor).Instantiate();
@@ -1077,6 +1086,22 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         /// </summary>
         public readonly Dictionary<Enzyme, (double Percentage, double Average)>
             MicrobeSpeciesEnzymesStatistics = new();
+
+        /// <summary>
+        ///   Per-generation used auto-evo time in fractional seconds.
+        /// </summary>
+        public readonly List<double> TimeMetrics = new();
+
+        /// <summary>
+        ///   Per-generation memory usage. First item is the peak memory usage, updated after each step; the second one
+        ///   is the .NET GC memory info, which is queried after each generation.
+        /// </summary>
+        public readonly List<(long, GCMemoryInfo)> MemoryMetrics = new();
+
+        /// <summary>
+        ///   A history of the numbers of alive species.
+        /// </summary>
+        public readonly List<int> AliveSpeciesHistory = new();
 
         /// <summary>
         ///   The current generation auto-evo has evolved
