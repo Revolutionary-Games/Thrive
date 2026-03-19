@@ -653,7 +653,7 @@ public class Patch : IArchivable
         }
         else
         {
-            // auto-evo is run and oxygen levels might decrease a bit so make sure the tolerance is high enough
+            // auto-evo is run and oxygen levels might increase a bit so make sure the tolerance is high enough
             result.OxygenResistance *= 1.2f;
             result.OxygenResistance -= externalModifiers.OxygenResistance;
 
