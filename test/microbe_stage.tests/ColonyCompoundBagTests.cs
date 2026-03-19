@@ -26,6 +26,23 @@ public class ColonyCompoundBagTests
     }
 
     [TestCase]
+    public void DistributeCompoundSurplusLeavesAlreadyBalancedCompoundsUntouched()
+    {
+        var world = World.Create();
+        var firstBag = CreateBag(10, Compound.Ammonia);
+        var secondBag = CreateBag(20, Compound.Ammonia);
+        var colonyBag = CreateColonyBag(world, firstBag, secondBag);
+
+        SetAmount(firstBag, Compound.Ammonia, 10);
+        SetAmount(secondBag, Compound.Ammonia, 20);
+
+        colonyBag.DistributeCompoundSurplus();
+
+        AssertThat(firstBag.GetCompoundAmount(Compound.Ammonia)).IsEqual(10.0f);
+        AssertThat(secondBag.GetCompoundAmount(Compound.Ammonia)).IsEqual(20.0f);
+    }
+
+    [TestCase]
     public void DistributeCompoundSurplusLeavesNonDistributableCompoundsUntouched()
     {
         var world = World.Create();
