@@ -8,7 +8,7 @@ using SharedBase.Archive;
 /// <summary>
 ///   Object that stores compound amounts and capacities
 /// </summary>
-public class CompoundBag : ICompoundStorage, IArchivable
+public class CompoundBag : ICompoundStorage, IEnumerable<KeyValuePair<Compound, float>>, IArchivable
 {
     public const ushort SERIALIZATION_VERSION = 1;
 
