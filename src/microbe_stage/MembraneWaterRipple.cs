@@ -2,6 +2,7 @@
 using Godot;
 using Godot.Collections;
 using Newtonsoft.Json;
+using Systems;
 
 /// <summary>
 ///   Manages spawning and processing ripple effect for a single microbe
@@ -60,26 +61,26 @@ public partial class MembraneWaterRipple : Node
     [Export]
     public float RippleFormationDelay = 0.2f;
 
-    // TODO: we need some system to only trigger the ripple when a cell moves by itself and not carried by a current
-    // https://github.com/Revolutionary-Games/Thrive/issues/6726
-    // Increasing the movement threshold does not seem like a suitable solution to the issue.
-
     /// <summary>
-    ///   Minimal movement threshold
+    ///   Minimal movement threshold to keep the current movement state active
     /// </summary>
     [Export]
-    public float MovementThresholdSqr = 0.2f;
+    public float MovementThresholdSqr = 30.0f;
 
     /// <summary>
-    ///   Threshold for resuming movement
+    ///   Threshold for resuming movement (when the previous state was not moving)
     /// </summary>
     [Export]
-    public float ResumeMovementThresholdSqr = 0.3f;
+    public float ResumeMovementThresholdSqr = 125.0f;
+
+    public FluidCurrentsSystem? FluidCurrentsSystem;
 
     /// <summary>
     ///   Maximum delta time to prevent jitter
     /// </summary>
     private const float MAX_DELTA_TIME = 0.1f;
+
+    private const float MIN_MOVEMENT_DELTA_CHECK = 1 / 60.0f;
 
     /// <summary>
     ///   The maximum number of past positions to store
@@ -153,6 +154,8 @@ public partial class MembraneWaterRipple : Node
     private float currentSpeed;
 
     private float timeAccumulator;
+
+    private float movementTimeAccumulator;
 
     private bool isCurrentlyVisible = true;
     private float visibilityCheckTimer;
@@ -313,7 +316,15 @@ public partial class MembraneWaterRipple : Node
         float timeScale = CalculateTimeScale();
         timeAccumulator += clampedDelta * timeScale;
         waterMaterial.SetShaderParameter(timeOffsetParam, timeAccumulator);
-        UpdateMovementParameters(clampedDelta);
+
+        // If movement is processed too often, we cannot get a reliable velocity indicator, so we have to throttle this
+        movementTimeAccumulator += clampedDelta;
+
+        if (movementTimeAccumulator >= MIN_MOVEMENT_DELTA_CHECK)
+        {
+            UpdateMovementParameters(movementTimeAccumulator);
+            movementTimeAccumulator = 0;
+        }
     }
 
     protected override void Dispose(bool disposing)
@@ -589,15 +600,37 @@ public partial class MembraneWaterRipple : Node
         if (FollowTargetNode == null)
             return;
 
-        // Store previous position before calculating new movement
-        previousPosition = lastPosition;
-
         // Calculates movement since the last frame
         var currentPos = FollowTargetNode.GlobalPosition;
-        var movement = currentPos - lastPosition;
-        float movementSqr = movement.LengthSquared() / delta;
-        averageMovementSqr = Mathf.Lerp(averageMovementSqr, movementSqr, 0.2f);
+
+        var waterVelocity = Vector2.Zero;
+        float speedScaleDivisor = 1;
+
+        if (FluidCurrentsSystem != null)
+        {
+            waterVelocity = FluidCurrentsSystem.VelocityAt(new Vector2(currentPos.X, currentPos.Z));
+            speedScaleDivisor = FluidCurrentsSystem.GetSpeed() * 0.8f;
+        }
+
+        var waterVelocityToApply = new Vector3(waterVelocity.X, 0.0f, waterVelocity.Y);
+
+        var movement = (currentPos - lastPosition) / delta;
+
+        // Compare velocities to show the ripple when moving fast compared to the currents velocity
+        var currentsDeltaMovement = (movement - waterVelocityToApply).LengthSquared();
+
+        // Don't go negative to resume movement faster
+        currentsDeltaMovement = Math.Max(0, currentsDeltaMovement / speedScaleDivisor);
+        averageMovementSqr = Mathf.Lerp(averageMovementSqr, currentsDeltaMovement, 0.3f);
         bool significantMovement;
+
+        // TODO: fix this initialization bug:
+        // For some reason the lastPosition is often uninitialized on the first frame. Still happens even
+        // with MIN_MOVEMENT_DELTA_CHECK being added.
+        if (currentsDeltaMovement > 1000 && lastPosition == Vector3.Zero)
+        {
+            averageMovementSqr = 0;
+        }
 
         if (wasMovingLastFrame)
         {

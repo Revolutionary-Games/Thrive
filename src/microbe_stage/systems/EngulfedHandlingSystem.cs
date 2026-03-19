@@ -116,16 +116,31 @@ public partial class EngulfedHandlingSystem : BaseSystem<World, float>
             // triggered
             if (!engulfable.HostileEngulfer.IsAliveAndNotNull())
             {
-                GD.PrintErr("Entity is stuck inside a dead engulfer, force clearing state to rescue it");
+                lock (AttachedToEntityHelpers.EntityAttachRelationshipModifyLock)
+                {
+                    GD.PrintErr("Entity is stuck inside a dead engulfer, force clearing state to rescue it");
 
-                engulfable.OnExpelledFromEngulfment(entity, spawnSystem, worldSimulation);
-                engulfable.PhagocytosisStep = PhagocytosisPhase.None;
-                engulfable.HostileEngulfer = Entity.Null;
+                    engulfable.OnExpelledFromEngulfment(entity, spawnSystem, worldSimulation);
+                    engulfable.PhagocytosisStep = PhagocytosisPhase.None;
+                    engulfable.HostileEngulfer = Entity.Null;
 
-                var recorder = worldSimulation.StartRecordingEntityCommands();
-                recorder.Remove<AttachedToEntity>(entity);
+                    // Re-enable physics
+                    ref var physics = ref entity.Get<Physics>();
+                    physics.BodyDisabled = false;
 
-                worldSimulation.FinishRecordingEntityCommands(recorder);
+                    // Clear velocity as we likely can't get the engulfer's velocity any more
+                    physics.Velocity = Vector3.Zero;
+                    physics.AngularVelocity = Vector3.Zero;
+                    physics.VelocitiesApplied = false;
+
+                    // As the engulfer is dead, we can't safely access its data, so we cannot move to a recursive
+                    // engulfer, so that's why that is not checked here like it is in normal ejection.
+
+                    var recorder = worldSimulation.StartRecordingEntityCommands();
+                    recorder.Remove<AttachedToEntity>(entity);
+
+                    worldSimulation.FinishRecordingEntityCommands(recorder);
+                }
             }
         }
     }

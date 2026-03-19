@@ -193,7 +193,7 @@ public class InProgressLoad
                 {
                     bool cheated = save!.Info.CheatsUsed || save.SavedProperties is { CheatsUsed: true };
 
-                    MainMenu.OnEnteringGame(cheated);
+                    MainMenu.OnEnteringGame(cheated, save.SavedProperties?.FreeBuild ?? false);
                     LoadingScreen.Instance.QueueActionForWhenHidden(() =>
                         SaveStatusOverlay.Instance.ShowMessage(message), 0.5f);
 

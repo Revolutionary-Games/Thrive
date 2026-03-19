@@ -627,8 +627,8 @@ public static class MicrobeColonyHelpers
     ///   <see cref="AttachedToEntityHelpers.EntityAttachRelationshipModifyLock"/>
     /// </summary>
     /// <returns>True when the colony still exists. False if the entire colony was disbanded</returns>
-    public static bool RemoveFromColony(this ref MicrobeColony colony, in Entity colonyEntity, Entity removedMember,
-        CommandBuffer recorder)
+    public static bool RemoveFromColonyAndDisbandIfEmpty(this ref MicrobeColony colony, in Entity colonyEntity,
+        Entity removedMember, CommandBuffer recorder)
     {
         if (colonyEntity.Has<MulticellularGrowth>())
         {
@@ -735,7 +735,7 @@ public static class MicrobeColonyHelpers
             // This might stackoverflow if we have absolute, hugely nested cell colonies, but there would probably
             // need to be colonies with thousands of cells, which would already choke the game so that isn't much
             // of a concern
-            if (!colony.RemoveFromColony(colonyEntity, next, recorder))
+            if (!colony.RemoveFromColonyAndDisbandIfEmpty(colonyEntity, next, recorder))
             {
                 // Colony is entirely disbanded, doesn't make sense to continue removing things
                 DependentMembersToRemove.Clear();
@@ -743,8 +743,8 @@ public static class MicrobeColonyHelpers
             }
         }
 
-        // Check against a logic error. All colony members ultimately depend on the leader so the above early
-        // exit must trigger uf the colony leader is removed
+        // Check against a logic error. All colony members ultimately depend on the leader, so the above early
+        // exit must trigger if the colony leader is removed
         if (removedMember == colony.Leader)
             throw new Exception("Colony should have been fully disbanded when leader was removed");
 
@@ -753,11 +753,13 @@ public static class MicrobeColonyHelpers
 
         colony.MarkMembersChanged();
 
+        // Colony still exists
         return true;
     }
 
     /// <summary>
-    ///   Removes this cell and child cells from the colony.
+    ///   Removes this cell and child cells from the colony. When multicellular bodies are forcefully split apart
+    ///   this should use forceUnbind set to true as otherwise it will not work.
     /// </summary>
     /// <remarks>
     ///   <para>
@@ -765,7 +767,8 @@ public static class MicrobeColonyHelpers
     ///   </para>
     /// </remarks>
     /// <returns>True if unbind happened</returns>
-    public static bool UnbindAll(in Entity entity, CommandBuffer entityCommandRecorder)
+    public static bool UnbindAll(in Entity entity, CommandBuffer entityCommandRecorder, bool forcedUnbind,
+        bool verboseErrors = false)
     {
         ref var control = ref entity.Get<MicrobeControl>();
 
@@ -776,20 +779,25 @@ public static class MicrobeColonyHelpers
 
         ref var organelles = ref entity.Get<OrganelleContainer>();
 
-        if (!organelles.CanUnbind(ref entity.Get<SpeciesMember>(), entity))
+        if (!organelles.CanUnbind(ref entity.Get<SpeciesMember>(), entity, forcedUnbind, verboseErrors))
             return false;
 
         // TODO: once the colony leader can leave without the entire colony disbanding this perhaps should
         // keep the disband entire colony functionality
         // Colony!.RemoveFromColony(this); (when entity is a colony leader)
-        return RemoveFromColony(entity, entityCommandRecorder);
+        var removed = RemoveFromColony(entity, entityCommandRecorder, verboseErrors);
+
+        if (!removed && verboseErrors)
+            GD.PrintErr("RemoveFromColony returned false");
+
+        return removed;
     }
 
     /// <summary>
     ///   Removes the given entity from the microbe colony it is in (if any)
     /// </summary>
     /// <returns>True on success</returns>
-    public static bool RemoveFromColony(in Entity entity, CommandBuffer entityCommandRecorder)
+    public static bool RemoveFromColony(in Entity entity, CommandBuffer entityCommandRecorder, bool verboseErrors)
     {
         lock (AttachedToEntityHelpers.EntityAttachRelationshipModifyLock)
         {
@@ -799,7 +807,7 @@ public static class MicrobeColonyHelpers
 
                 try
                 {
-                    colony.RemoveFromColony(entity, entity, entityCommandRecorder);
+                    colony.RemoveFromColonyAndDisbandIfEmpty(entity, entity, entityCommandRecorder);
                 }
                 catch (Exception e)
                 {
@@ -821,7 +829,7 @@ public static class MicrobeColonyHelpers
 
                 try
                 {
-                    colony.RemoveFromColony(member.ColonyLeader, entity, entityCommandRecorder);
+                    colony.RemoveFromColonyAndDisbandIfEmpty(member.ColonyLeader, entity, entityCommandRecorder);
                 }
                 catch (Exception e)
                 {
@@ -837,7 +845,9 @@ public static class MicrobeColonyHelpers
     /// <summary>
     ///   Variant of unbinding allowed to be called *only* outside the game update loop
     /// </summary>
-    public static bool UnbindAllOutsideGameUpdate(in Entity entity, IWorldSimulation entityWorld)
+    /// <returns>True when the unbinding happened</returns>
+    public static bool UnbindAllOutsideGameUpdate(in Entity entity, IWorldSimulation entityWorld,
+        bool forcedUnbind, bool verboseOutput = true)
     {
         if (entityWorld.Processing)
         {
@@ -857,7 +867,7 @@ public static class MicrobeColonyHelpers
 #endif
 
         var recorder = entityWorld.StartRecordingEntityCommands();
-        var result = UnbindAll(entity, recorder);
+        var result = UnbindAll(entity, recorder, forcedUnbind, verboseOutput);
 
         // TODO: should this skip applying the recorder if the operation failed
 

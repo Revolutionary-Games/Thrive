@@ -385,7 +385,7 @@ public static class EngulfableHelpers
         {
             if (entity.Has<Health>() && entity.Has<OrganelleContainer>())
             {
-                // Cell is too damaged from digestion, can't live in open environment and is considered dead
+                // Cell is too damaged from digestion, can't live in the open environment and is considered dead
                 ref var health = ref entity.Get<Health>();
                 health.Kill();
 
@@ -444,7 +444,7 @@ public static class EngulfableHelpers
         }
 
         // There used to be an else branch here that set the escaped flag for the microbe for use in population
-        // bonus. That is now gone as this feature didn't really do anything anymore due to the new engulf
+        // bonus. That is now gone as this feature didn't really do anything any more due to the new engulfing
         // mechanics which are extremely hard to escape.
 
         if (hasCellProperties)
