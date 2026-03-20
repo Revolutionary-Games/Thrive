@@ -978,8 +978,9 @@ public static class MicrobeColonyHelpers
         // be more physically accurate
 
         // When changing this method's logic also update the corresponding method in CellBodyPlanInternalCalculations
+        // TODO: use the cell's actual specialisation bonus here
         float colonyRotation = MicrobeInternalCalculations
-            .CalculateRotationSpeed(colony.Leader.Get<OrganelleContainer>().Organelles!.Organelles);
+            .CalculateRotationSpeed(colony.Leader.Get<OrganelleContainer>().Organelles!.Organelles, 1.0f);
 
         foreach (var colonyMember in colony.ColonyMembers)
         {
@@ -996,8 +997,9 @@ public static class MicrobeColonyHelpers
                 // Multiply both the propulsion and mass by the distance from center to simulate leverage
                 // This relies on the bounding of the cell rotation, as a colony can never be faster than the
                 // fastest cell inside it
+                // TODO: use the cell's actual specialisation bonus here
                 var memberRotation = MicrobeInternalCalculations
-                        .CalculateRotationSpeed(colonyMember.Get<OrganelleContainer>().Organelles!.Organelles)
+                        .CalculateRotationSpeed(colonyMember.Get<OrganelleContainer>().Organelles!.Organelles, 1.0f)
                     * (1 + 0.007f * distanceSquared);
 
                 colonyRotation += memberRotation;

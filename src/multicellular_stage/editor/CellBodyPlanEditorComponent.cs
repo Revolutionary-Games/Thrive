@@ -1296,7 +1296,7 @@ public partial class CellBodyPlanEditorComponent :
             cellType.MembraneType, cellType.MembraneRigidity, cellType.IsBacteria, specialization, false));
 
         tooltip.UpdateRotationSpeedIndicator(
-            MicrobeInternalCalculations.CalculateRotationSpeed(cellType.ModifiableOrganelles));
+            MicrobeInternalCalculations.CalculateRotationSpeed(cellType.ModifiableOrganelles, specialization));
 
         tooltip.UpdateSizeIndicator(cellType.Organelles.Sum(o => o.Definition.HexCount));
         tooltip.UpdateDigestionSpeedIndicator(

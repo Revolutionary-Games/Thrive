@@ -238,7 +238,8 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
         ref OrganelleContainer organelles, ref CellProperties cellProperties,
         Vector2[] membraneVertices, int vertexCount)
     {
-        UpdateRotationRate(ref organelles);
+        // TODO: use the cell's actual specialisation bonus here
+        UpdateRotationRate(ref organelles, 1.0f);
 
         var shape = PhysicsShape.GetOrCreateMicrobeShape(membraneVertices, vertexCount,
             MicrobeInternalCalculations.CalculateAverageDensity(organelles.Organelles!),
@@ -276,7 +277,8 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
             memberOrganelles, Vector2[] membraneVertices, int vertexCount,
         List<(Membrane Membrane, bool Bacteria)>? colonyMembranes)
     {
-        UpdateRotationRate(ref organelles);
+        // TODO: use the cell's actual specialisation bonus here
+        UpdateRotationRate(ref organelles, 1.0f);
 
 #if DEBUG
         if (combinedData.Count > 0)
@@ -458,7 +460,7 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
     ///   Note that the PhysicsShape is not currently used in rotation calculations, and this code is here due to
     ///   an earlier version requiring it.
     /// </summary>
-    private void UpdateRotationRate(ref OrganelleContainer organelleContainer)
+    private void UpdateRotationRate(ref OrganelleContainer organelleContainer, float specializationBonus)
     {
         if (organelleContainer.Organelles == null)
         {
@@ -467,7 +469,8 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
         }
 
         organelleContainer.RotationSpeed =
-            MicrobeInternalCalculations.CalculateRotationSpeed(organelleContainer.Organelles.Organelles);
+            MicrobeInternalCalculations.CalculateRotationSpeed(organelleContainer.Organelles.Organelles,
+                specializationBonus);
     }
 
     private PhysicsShape CreatePilusShape(float size)

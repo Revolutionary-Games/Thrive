@@ -316,10 +316,12 @@ public static class MicrobeInternalCalculations
     ///   Calculates the rotation speed for a cell. Note that higher value means slower rotation.
     /// </summary>
     /// <param name="organelles">The organelles the cell has with their positions for the calculations</param>
+    /// <param name="specializationBonus"> Cell specialization bonus</param>
     /// <returns>
     ///   The rotation speed value for putting in <see cref="Components.OrganelleContainer.RotationSpeed"/>
     /// </returns>
-    public static float CalculateRotationSpeed(IReadOnlyList<IPositionedOrganelle> organelles)
+    public static float CalculateRotationSpeed(IReadOnlyList<IPositionedOrganelle> organelles,
+        float specializationBonus)
     {
         // TODO: it would be very nice to be able to switch this back to a more physically accurate calculation using
         // the real physics shape here
@@ -347,6 +349,8 @@ public static class MicrobeInternalCalculations
                 ciliaFactor += Constants.CILIA_ROTATION_FACTOR + distance * Constants.CILIA_RADIUS_FACTOR_MULTIPLIER;
             }
         }
+
+        ciliaFactor *= specializationBonus;
 
         return inertia / (Constants.CELL_ROTATION_INFLECTION_INERTIA + ciliaFactor + inertia)
             * Constants.CELL_MAX_ROTATION + Constants.CELL_MIN_ROTATION;

@@ -130,7 +130,8 @@ public static class CellBodyPlanInternalCalculations
     {
         var leader = cells[0].Data!;
 
-        var colonyRotation = MicrobeInternalCalculations.CalculateRotationSpeed(leader.ModifiableOrganelles);
+        var colonyRotation = MicrobeInternalCalculations.CalculateRotationSpeed(leader.ModifiableOrganelles,
+            leader.SpecializationBonus);
 
         Vector3 leaderPosition = Hex.AxialToCartesian(leader.Position);
 
@@ -138,9 +139,11 @@ public static class CellBodyPlanInternalCalculations
         {
             var distanceSquared = leaderPosition.DistanceSquaredTo(Hex.AxialToCartesian(colonyMember.Position));
 
+            var colonyMemberData = colonyMember.Data;
+
             var memberRotation = MicrobeInternalCalculations
-                    .CalculateRotationSpeed(colonyMember.Data!.ModifiableOrganelles)
-                * (1 + 0.03f * distanceSquared);
+                .CalculateRotationSpeed(colonyMemberData!.ModifiableOrganelles,
+                    colonyMemberData.SpecializationBonus) * (1 + 0.03f * distanceSquared);
 
             colonyRotation += memberRotation;
         }

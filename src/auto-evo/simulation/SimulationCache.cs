@@ -212,7 +212,13 @@ public class SimulationCache
         // prey species by multiple predators might benefit ever so slightly, but it seems kind of unlikely).
         // A more useful thing would be to cache this directly in the species when calculating other movement cached
         // properties.
-        return MicrobeInternalCalculations.CalculateRotationSpeed(species.Organelles.Organelles);
+        var organelles = species.Organelles;
+
+        var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(organelles,
+            new Dictionary<OrganelleDefinition, int>(),
+            nucleusDefinition);
+
+        return MicrobeInternalCalculations.CalculateRotationSpeed(organelles.Organelles, specialization);
     }
 
     public float GetCompoundConversionScoreForSpecies(CompoundDefinition fromCompound, CompoundDefinition toCompound,

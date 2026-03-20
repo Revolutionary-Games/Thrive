@@ -324,6 +324,7 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
     private void CalculateRotationSpeed()
     {
         // TODO: switch this to use a read only interface
-        BaseRotationSpeed = MicrobeInternalCalculations.CalculateRotationSpeed(ModifiableOrganelles.Organelles);
+        BaseRotationSpeed = MicrobeInternalCalculations.CalculateRotationSpeed(ModifiableOrganelles.Organelles,
+            SpecializationBonus);
     }
 }
