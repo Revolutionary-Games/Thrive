@@ -93,10 +93,14 @@ public partial class ProcessPanel : CustomWindow
     {
         EmitSignal(SignalName.ChoosenCellDeselected);
 
-        UpdateChosenCellDisplay(string.Empty);
+        UpdateChosenCellDisplay(null);
     }
 
-    private void UpdateChosenCellDisplay(string chosenCellName)
+    /// <summary>
+    ///   Updates the part of GUI that tells the player which cell is chosen for the process viewing.
+    /// </summary>
+    /// <param name="chosenCellName">Cell name, purely cosmetic. Send a null or an empty string to deselect.</param>
+    private void UpdateChosenCellDisplay(string? chosenCellName)
     {
         if (string.IsNullOrEmpty(chosenCellName))
         {
