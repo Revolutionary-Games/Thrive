@@ -351,10 +351,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         if (stage == null || !stage.Player.TryGet<MicrobeColony>(out var colony))
             return;
 
-        var members = colony.ColonyMembers;
-
-        if (members == null)
-            return;
+        var colonyMembers = colony.ColonyMembers;
 
         foreach (var entity in stage.HoverInfo.Entities)
         {
@@ -369,35 +366,37 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
                 continue;
             }
 
-            processViewedColonyMember = members.IndexOf(entity);
+            var chosenColonyMemberID = colonyMembers.IndexOf(entity);
 
-            if (processViewedColonyMember != -1)
+            if (chosenColonyMemberID == -1)
+                continue;
+
+            processViewedColonyMember = chosenColonyMemberID;
+
+            string name;
+
+            if (!entity.TryGet<MulticellularSpeciesMember>(out var multicellularSpecies)
+                || !entity.TryGet<AttachedToEntity>(out var attachedToEntity))
             {
-                string name;
-
-                if (!entity.TryGet<MulticellularSpeciesMember>(out var multicellularSpecies)
-                    || !entity.TryGet<AttachedToEntity>(out var attachedToEntity))
-                {
-                    GD.PrintErr(
-                        "A colony member doesn't have a MulticellularSpeciesMember and/or AttachedToEntity component");
-                    name = "unset";
-                }
-                else
-                {
-                    var relativePos = new Vector2(MathF.Round(attachedToEntity.RelativePosition.X, 1),
-                            MathF.Round(attachedToEntity.RelativePosition.Z, 1));
-
-                    name = Localization.Translate("PROCESS_CELL_DEFINITION_FORMAT")
-                        .FormatSafe(multicellularSpecies.MulticellularCellType.ReadableName, relativePos);
-                }
-
-                processPanel.ReportChosenCell(name);
-                return;
+                GD.PrintErr(
+                    "A colony member doesn't have a MulticellularSpeciesMember and/or AttachedToEntity component");
+                name = "unset";
             }
+            else
+            {
+                var relativePos = new Vector2(MathF.Round(attachedToEntity.RelativePosition.X, 1),
+                        MathF.Round(attachedToEntity.RelativePosition.Z, 1));
+
+                name = Localization.Translate("PROCESS_CELL_DEFINITION_FORMAT")
+                    .FormatSafe(multicellularSpecies.MulticellularCellType.ReadableName, relativePos);
+            }
+
+            processPanel.ReportChosenCell(name);
+            break;
         }
     }
 
-    public void DeselectProcessSpectatingCell()
+    public void DeselectProcessViewedCell()
     {
         processViewedColonyMember = -1;
     }
