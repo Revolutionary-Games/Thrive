@@ -816,7 +816,15 @@ public static class SpawnHelpers
 
             // Run the storage update logic for the first time (to ensure consistency with later updates)
             // This has to be called as CreateOrganelleLayout doesn't do this automatically
-            container.UpdateCompoundBagStorageFromOrganelles(ref storage, usedCellDefinition.SpecializationBonus);
+            if (multicellular != null)
+            {
+                container.UpdateCompoundBagStorageFromOrganelles(ref storage, usedCellDefinition.SpecializationBonus
+                    * multicellular.GetAdjacencySpecializationBonus(multicellularData.CellBodyPlanIndex));
+            }
+            else if (species is MicrobeSpecies microbeSpecies)
+            {
+                container.UpdateCompoundBagStorageFromOrganelles(ref storage, microbeSpecies.SpecializationBonus);
+            }
 
             var engulfable = new Engulfable(PhagocytosisPhase.None, Entity.Null)
             {
