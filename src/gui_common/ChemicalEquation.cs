@@ -214,11 +214,6 @@ public partial class ChemicalEquation : CheckButton
         ProcessEnabled = !ProcessEnabled;
     }
 
-    private void OnContentSizeChanged()
-    {
-        RecalculateMinimumSize();
-    }
-
     private void OnTranslationsChanged()
     {
         UpdateHeader();
@@ -290,7 +285,7 @@ public partial class ChemicalEquation : CheckButton
 
         ApplyProcessToggleValue();
 
-        OnContentSizeChanged();
+        RecalculateMinimumSize();
     }
 
     private void UpdateHeader()
