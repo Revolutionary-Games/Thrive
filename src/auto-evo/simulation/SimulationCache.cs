@@ -173,8 +173,14 @@ public class SimulationCache
             return speed;
         }
 
-        var cached = MicrobeInternalCalculations.CalculateSpeed(species.Organelles.Organelles, species.MembraneType,
-            species.MembraneRigidity, species.IsBacteria, true);
+        var organelles = species.Organelles;
+
+        var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(organelles,
+            new Dictionary<OrganelleDefinition, int>(),
+            nucleusDefinition);
+
+        var cached = MicrobeInternalCalculations.CalculateSpeed(organelles.Organelles, species.MembraneType,
+            species.MembraneRigidity, species.IsBacteria, specialization, true);
 
         cachedBaseSpeeds.Add(key, cached);
         return cached;

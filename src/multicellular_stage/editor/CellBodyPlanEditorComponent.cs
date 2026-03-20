@@ -1293,7 +1293,7 @@ public partial class CellBodyPlanEditorComponent :
             MicrobeInternalCalculations.GetTotalNominalCapacity(cellType.ModifiableOrganelles, specialization));
 
         tooltip.UpdateSpeedIndicator(MicrobeInternalCalculations.CalculateSpeed(cellType.ModifiableOrganelles,
-            cellType.MembraneType, cellType.MembraneRigidity, cellType.IsBacteria, false));
+            cellType.MembraneType, cellType.MembraneRigidity, cellType.IsBacteria, specialization, false));
 
         tooltip.UpdateRotationSpeedIndicator(
             MicrobeInternalCalculations.CalculateRotationSpeed(cellType.ModifiableOrganelles));

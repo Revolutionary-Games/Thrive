@@ -1506,8 +1506,11 @@ public partial class CellEditorComponent :
 
     public float CalculateSpeed()
     {
+        var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(
+            editedMicrobeOrganelles.Organelles, tempMemory3, nucleusDefinition);
+
         return MicrobeInternalCalculations.CalculateSpeed(editedMicrobeOrganelles.Organelles, Membrane, Rigidity,
-            !HasNucleus);
+            !HasNucleus, specialization);
     }
 
     public float CalculateRotationSpeed()

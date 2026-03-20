@@ -36,7 +36,7 @@ public static class CellBodyPlanInternalCalculations
         var leader = cells[0].Data!;
 
         var speed = MicrobeInternalCalculations.CalculateSpeed(leader.ModifiableOrganelles, leader.MembraneType,
-            leader.MembraneRigidity, leader.IsBacteria);
+            leader.MembraneRigidity, leader.IsBacteria, leader.SpecializationBonus);
 
         if (cells.Count == 1)
             return speed;
@@ -73,6 +73,9 @@ public static class CellBodyPlanInternalCalculations
 
                 if (!cell.IsBacteria)
                     flagellumForce *= Constants.EUKARYOTIC_MOVEMENT_FORCE_MULTIPLIER;
+
+                // Apply cell specialization bonus
+                flagellumForce *= cell.SpecializationBonus;
 
                 addedSpeed += flagellumForce;
             }

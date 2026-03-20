@@ -168,7 +168,7 @@ public static class MicrobeInternalCalculations
 
     // TODO: maybe this should return a ValueTask as this is getting pretty computation intensive
     public static float CalculateSpeed(IReadOnlyList<OrganelleTemplate> organelles, MembraneType membraneType,
-        float membraneRigidity, bool isBacteria, bool useEstimate = false)
+        float membraneRigidity, bool isBacteria, float specializationBonus, bool useEstimate = false)
     {
         float shapeMass = 0;
 
@@ -269,6 +269,9 @@ public static class MicrobeInternalCalculations
         float baseMovementForce = CalculateBaseMovement(membraneType, membraneRigidity, totalHexes, isBacteria);
 
         var finalMass = useEstimate ? massEstimate : shapeMass;
+
+        // Apply cell specialization bonus
+        organelleMovementForce *= specializationBonus;
 
         float finalSpeed = (baseMovementForce + organelleMovementForce) / finalMass;
 

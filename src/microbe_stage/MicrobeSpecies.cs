@@ -78,7 +78,8 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
     // Base refers here to the fact that these are the values when a cell is freshly spawned and has no
     // reproduction progress.
     public float BaseSpeed =>
-        MicrobeInternalCalculations.CalculateSpeed(Organelles.Organelles, MembraneType, MembraneRigidity, IsBacteria);
+        MicrobeInternalCalculations.CalculateSpeed(Organelles.Organelles, MembraneType, MembraneRigidity, IsBacteria,
+            SpecializationBonus);
 
     public float BaseRotationSpeed { get; set; }
 
