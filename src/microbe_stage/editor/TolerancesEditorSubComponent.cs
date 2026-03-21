@@ -51,6 +51,9 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     private Slider oxygenResistanceSlider = null!;
 
     [Export]
+    private Slider oxygenResistanceDisabledSlider = null!;
+
+    [Export]
     private Slider uvResistanceSlider = null!;
 
     [Export]
@@ -239,14 +242,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         if (!wasFreshInit)
         {
             // The latest data should have already been loaded into CurrentTolerances
-
-            // Allow for bigger max oxygen tolerance range when loading older save or species that were
-            // created to fit into world with higher oxygen level
-            var oxygenMaxValue =
-                (float)(Math.Ceiling(CurrentTolerances.OxygenResistance / Constants.TOLERANCE_OXYGEN_STEP) *
-                    Constants.TOLERANCE_OXYGEN_STEP);
-            oxygenResistanceSlider.MaxValue =
-                Math.Max(Constants.TOLERANCE_OXYGEN_RANGE_MAX, oxygenMaxValue);
+            SetOxygenSliderWidth();
             ApplyCurrentValuesToGUI();
         }
         else
@@ -255,13 +251,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
             var speciesTolerance = Editor.EditedBaseSpecies.Tolerances;
             CurrentTolerances.CopyFrom(speciesTolerance);
 
-            // Allow for bigger max oxygen tolerance range when loading older save or species that were
-            // created to fit into world with higher oxygen level
-            var oxygenMaxValue =
-                (float)(Math.Ceiling(CurrentTolerances.OxygenResistance / Constants.TOLERANCE_OXYGEN_STEP) *
-                    Constants.TOLERANCE_OXYGEN_STEP);
-            oxygenResistanceSlider.MaxValue =
-                Math.Max(Constants.TOLERANCE_OXYGEN_RANGE_MAX, oxygenMaxValue);
+            SetOxygenSliderWidth();
             ResetToCurrentSpeciesTolerances();
         }
 
@@ -466,6 +456,20 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         {
             GD.PrintErr("Tooltips not correctly found for tolerances editor");
         }
+    }
+
+    private void SetOxygenSliderWidth()
+    {
+        // Allow for bigger max oxygen tolerance range when loading older save or species that were
+        // created to fit into world with higher oxygen level
+        var oxygenMaxValue =
+            (float)(Math.Ceiling(CurrentTolerances.OxygenResistance / Constants.TOLERANCE_OXYGEN_STEP) *
+                Constants.TOLERANCE_OXYGEN_STEP);
+        var sliderMaxValue = Math.Max(Constants.TOLERANCE_OXYGEN_RANGE_MAX, oxygenMaxValue);
+
+        oxygenResistanceSlider.MaxValue = sliderMaxValue;
+        oxygenResistanceSlider.SetStretchRatio(sliderMaxValue);
+        oxygenResistanceDisabledSlider.SetStretchRatio(1 - sliderMaxValue);
     }
 
     private void CalculateStatsAndShow(EnvironmentalTolerances calculationTolerances,
