@@ -10,8 +10,7 @@ public struct SpecializationFactor : IArchivableComponent
     public float SpecializationBonus;
 
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
-    public ThriveArchiveObjectType ArchiveObjectType =>
-        ThriveArchiveObjectType.ComponentSpecializationFactor;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentSpecializationFactor;
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
