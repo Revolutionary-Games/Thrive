@@ -1279,9 +1279,13 @@ public class SimulationCache
 
         // If not digestible, mark that as a 0 score
         if (!isMembraneDigestible)
-            enzymesScore = 0;
+            return 0;
 
-        return enzymesScore;
+        // Assume here that the species specialization factor may not be up to date, so recalculate here
+        var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(
+            predator.Organelles.Organelles, workMemory1, nucleusDefinition);
+
+        return enzymesScore * specialization;
     }
 
     public ResolvedMicrobeTolerances GetEnvironmentalTolerances(MicrobeSpecies species,

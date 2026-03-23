@@ -384,15 +384,16 @@ public static class MicrobeInternalCalculations
         return density / totalVolume;
     }
 
-    public static float CalculateDigestionSpeed(int enzymeCount)
+    public static float CalculateDigestionSpeed(int enzymeCount, float specializationBonus)
     {
         var amount = Constants.ENGULF_COMPOUND_ABSORBING_PER_SECOND;
         var buff = amount * Constants.ENZYME_DIGESTION_SPEED_UP_FRACTION * enzymeCount;
 
-        return amount + buff;
+        return amount + buff * specializationBonus;
     }
 
-    public static float CalculateTotalDigestionSpeed(IEnumerable<OrganelleTemplate> organelles)
+    public static float CalculateTotalDigestionSpeed(IEnumerable<OrganelleTemplate> organelles,
+        float specializationBonus)
     {
         var multiplier = 0;
         foreach (var organelle in organelles)
@@ -401,21 +402,22 @@ public static class MicrobeInternalCalculations
                 ++multiplier;
         }
 
-        return CalculateDigestionSpeed(multiplier);
+        return CalculateDigestionSpeed(multiplier, specializationBonus);
     }
 
-    public static float CalculateDigestionEfficiency(int enzymeCount)
+    public static float CalculateDigestionEfficiency(int enzymeCount, float specializationBonus)
     {
         var absorption = Constants.ENGULF_BASE_COMPOUND_ABSORPTION_YIELD;
         var buff = absorption * Constants.ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION * enzymeCount;
 
-        return Math.Clamp(absorption + buff, 0.0f, Constants.ENZYME_DIGESTION_EFFICIENCY_MAXIMUM);
+        return Math.Clamp(absorption + buff * specializationBonus, 0.0f, Constants.ENZYME_DIGESTION_EFFICIENCY_MAXIMUM);
     }
 
     /// <summary>
     ///   Returns the efficiency of all enzymes present in the given organelles.
     /// </summary>
-    public static Dictionary<Enzyme, float> CalculateDigestionEfficiencies(IEnumerable<OrganelleTemplate> organelles)
+    public static Dictionary<Enzyme, float> CalculateDigestionEfficiencies(IEnumerable<OrganelleTemplate> organelles,
+        float specializationBonus)
     {
         var enzymes = new Dictionary<Enzyme, int>();
         var result = new Dictionary<Enzyme, float>();
@@ -435,11 +437,11 @@ public static class MicrobeInternalCalculations
             enzymes[enzyme] = count + 1;
         }
 
-        result[lipase] = CalculateDigestionEfficiency(0);
+        result[lipase] = CalculateDigestionEfficiency(0, specializationBonus);
 
         foreach (var enzyme in enzymes)
         {
-            result[enzyme.Key] = CalculateDigestionEfficiency(enzyme.Value);
+            result[enzyme.Key] = CalculateDigestionEfficiency(enzyme.Value, specializationBonus);
         }
 
         return result;

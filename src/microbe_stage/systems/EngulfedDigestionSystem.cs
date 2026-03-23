@@ -100,6 +100,8 @@ public partial class EngulfedDigestionSystem : BaseSystem<World, float>
         ref var cellProperties = ref entity.Get<CellProperties>();
         ref var position = ref entity.Get<WorldPosition>();
 
+        var specializationBonus = entity.Get<SpecializationFactor>().SpecializationBonus;
+
         for (int i = engulfer.EngulfedObjects!.Count - 1; i >= 0; --i)
         {
             var engulfedObject = engulfer.EngulfedObjects![i];
@@ -237,14 +239,16 @@ public partial class EngulfedDigestionSystem : BaseSystem<World, float>
                     continue;
 
                 var amount =
-                    MicrobeInternalCalculations.CalculateDigestionSpeed(organelles.AvailableEnzymes[usedEnzyme]);
+                    MicrobeInternalCalculations.CalculateDigestionSpeed(organelles.AvailableEnzymes[usedEnzyme],
+                        specializationBonus);
                 amount *= delta;
 
                 // Efficiency starts from Constants.ENGULF_BASE_COMPOUND_ABSORPTION_YIELD up to
                 // Constants.ENZYME_DIGESTION_EFFICIENCY_MAXIMUM. This means at least 7 lysosomes
                 // are needed to achieve "maximum" efficiency
                 var efficiency =
-                    MicrobeInternalCalculations.CalculateDigestionEfficiency(organelles.AvailableEnzymes[usedEnzyme]);
+                    MicrobeInternalCalculations.CalculateDigestionEfficiency(organelles.AvailableEnzymes[usedEnzyme],
+                        specializationBonus);
 
                 var taken = MathF.Min(totalAvailable, amount);
 

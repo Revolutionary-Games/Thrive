@@ -1533,12 +1533,18 @@ public partial class CellEditorComponent :
 
     public float CalculateTotalDigestionSpeed()
     {
-        return MicrobeInternalCalculations.CalculateTotalDigestionSpeed(editedMicrobeOrganelles);
+        var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(
+            editedMicrobeOrganelles.Organelles, tempMemory3, nucleusDefinition);
+
+        return MicrobeInternalCalculations.CalculateTotalDigestionSpeed(editedMicrobeOrganelles, specialization);
     }
 
     public Dictionary<Enzyme, float> CalculateDigestionEfficiencies()
     {
-        return MicrobeInternalCalculations.CalculateDigestionEfficiencies(editedMicrobeOrganelles);
+        var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(
+            editedMicrobeOrganelles.Organelles, tempMemory3, nucleusDefinition);
+
+        return MicrobeInternalCalculations.CalculateDigestionEfficiencies(editedMicrobeOrganelles, specialization);
     }
 
     public (int AmmoniaCost, int PhosphatesCost) CalculateOrganellesCosts()
