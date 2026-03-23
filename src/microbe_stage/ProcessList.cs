@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Godot;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
-using Godot;
 
 /// <summary>
 ///   Shows a list of processes in a container
@@ -21,7 +22,10 @@ public partial class ProcessList : VBoxContainer
 
     public IEnumerable<IProcessDisplayInfo>? ProcessesToShow
     {
-        set => processesToShow = value?.Select(d => new StrictProcessDisplayInfoEquality(d)).ToList();
+        set
+        {
+            processesToShow = value?.Select(d => new StrictProcessDisplayInfoEquality(d)).ToList();
+        }
     }
 
     [Export]

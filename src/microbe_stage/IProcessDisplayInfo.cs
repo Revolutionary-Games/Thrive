@@ -19,26 +19,6 @@ public interface IProcessDisplayInfo : IEquatable<IProcessDisplayInfo>
     public string Name { get; }
 
     /// <summary>
-    ///   Input compounds that aren't environmental
-    /// </summary>
-    public IEnumerable<KeyValuePair<Compound, float>> Inputs { get; }
-
-    /// <summary>
-    ///   Current environmental input values
-    /// </summary>
-    public IEnumerable<KeyValuePair<Compound, float>> EnvironmentalInputs { get; }
-
-    /// <summary>
-    ///   Environment inputs that result in process running at maximum speed
-    /// </summary>
-    public IReadOnlyDictionary<Compound, float> FullSpeedRequiredEnvironmentalInputs { get; }
-
-    /// <summary>
-    ///   All the output compounds
-    /// </summary>
-    public IReadOnlyDictionary<Compound, float> Outputs { get; }
-
-    /// <summary>
     ///   The current speed of the process (if known)
     /// </summary>
     public float CurrentSpeed { get; }
@@ -49,6 +29,13 @@ public interface IProcessDisplayInfo : IEquatable<IProcessDisplayInfo>
     ///   The limiting compounds in speed. Or null if not set
     /// </summary>
     public IReadOnlyList<Compound>? LimitingCompounds { get; }
+
+    /// <summary>
+    ///   Environment inputs that result in process running at maximum speed
+    /// </summary>
+    public IReadOnlyDictionary<Compound, float> FullSpeedRequiredEnvironmentalInputs { get; }
+
+    public IEnumerable<KeyValuePair<Compound, float>> EnvironmentalInputs { get; }
 
     /// <summary>
     ///   Checks if this process info is for the given underlying process
@@ -63,6 +50,15 @@ public interface IProcessDisplayInfo : IEquatable<IProcessDisplayInfo>
     /// </summary>
     /// <param name="compoundId">Compound type to check</param>
     /// <returns>True if environmental</returns>
+    /// <summary>
+    ///   Input compounds that aren't environmental
+    /// </summary>
+    public IEnumerable<(Compound Compound, float Amount)> Inputs();
+
+    /// <summary>
+    ///   All the output compounds
+    /// </summary>
+    public IEnumerable<(Compound Compound, float Amount)> Outputs();
     protected static bool IsEnvironmental(Compound compoundId)
     {
         return SimulationParameters.GetCompound(compoundId).IsEnvironmental;

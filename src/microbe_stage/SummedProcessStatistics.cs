@@ -9,33 +9,23 @@ public class SummedProcessStatistics : IProcessDisplayInfo
 {
     public int ProcessCount;
 
-    private readonly Dictionary<Compound, float> summedInputs = new();
+    public float RawSpeed;
 
     private readonly Dictionary<Compound, float> summedEnvironmentalInputs = new();
 
     private readonly Dictionary<Compound, float> summedFullSpeedRequiredEnvironmentalInputs = new();
 
-    private readonly Dictionary<Compound, float> summedOutputs = new();
-
-    private float summedSpeed;
-
-    public SummedProcessStatistics(IProcessDisplayInfo displayInfo)
+    public SummedProcessStatistics(SingleProcessStatistics displayInfo)
     {
         if (displayInfo.LimitingCompounds != null)
             LimitingCompounds = displayInfo.LimitingCompounds.ToList();
 
         Enabled = displayInfo.Enabled;
 
-        if (displayInfo is AverageProcessStatistics averageProcessStatistics)
-        {
-            Process = averageProcessStatistics.Process;
-        }
-        else if (displayInfo is SingleProcessStatistics singleProcessStatistics)
-        {
-            Process = singleProcessStatistics.Process;
-        }
+        Process = displayInfo.Process;
 
-        AddProcess(displayInfo);
+        RawSpeed = displayInfo.RawSpeed();
+        CurrentSpeed = displayInfo.CurrentSpeed;
     }
 
     /// <summary>
@@ -45,9 +35,7 @@ public class SummedProcessStatistics : IProcessDisplayInfo
 
     public string Name => Process.Process.Name;
 
-    public float CurrentSpeed => summedSpeed;
-
-    public IEnumerable<KeyValuePair<Compound, float>> Inputs => summedInputs;
+    public float CurrentSpeed { get; set; }
 
     /// <summary>
     ///   Current environmental input values
@@ -59,11 +47,6 @@ public class SummedProcessStatistics : IProcessDisplayInfo
     /// </summary>
     public IReadOnlyDictionary<Compound, float> FullSpeedRequiredEnvironmentalInputs =>
         summedFullSpeedRequiredEnvironmentalInputs;
-
-    /// <summary>
-    ///   All the output compounds
-    /// </summary>
-    public IReadOnlyDictionary<Compound, float> Outputs => summedOutputs;
 
     public IReadOnlyList<Compound>? LimitingCompounds { get; set; }
 
@@ -79,45 +62,31 @@ public class SummedProcessStatistics : IProcessDisplayInfo
         return process == Process.Process;
     }
 
-    public void AddProcess(IProcessDisplayInfo displayInfo)
+    public IEnumerable<(Compound Compound, float Amount)> Inputs()
     {
-        foreach (var input in displayInfo.Inputs)
+        foreach (var input in Process.Process.Inputs)
         {
-            summedInputs.TryGetValue(input.Key, out var value);
-            summedInputs[input.Key] = value + input.Value;
-        }
+            if (input.Key.IsEnvironmental)
+                continue;
 
-        foreach (var output in displayInfo.Outputs)
+            yield return (input.Key.ID, input.Value * CurrentSpeed);
+        }
+    }
+
+    public IEnumerable<(Compound Compound, float Amount)> Outputs()
+    {
+        foreach (var output in Process.Process.Outputs)
         {
-            summedOutputs.TryGetValue(output.Key, out var value);
-            summedOutputs[output.Key] = value + output.Value;
+            yield return (output.Key.ID, output.Value * CurrentSpeed);
         }
-
-        foreach (var output in displayInfo.EnvironmentalInputs)
-        {
-            summedEnvironmentalInputs.TryGetValue(output.Key, out var value);
-            summedEnvironmentalInputs[output.Key] = value + output.Value;
-        }
-
-        foreach (var output in displayInfo.FullSpeedRequiredEnvironmentalInputs)
-        {
-            summedFullSpeedRequiredEnvironmentalInputs.TryGetValue(output.Key, out var value);
-            summedFullSpeedRequiredEnvironmentalInputs[output.Key] = value + output.Value;
-        }
-
-        summedSpeed += displayInfo.CurrentSpeed;
-        ++ProcessCount;
-
-        Enabled = displayInfo.Enabled;
     }
 
     public void Clear()
     {
-        summedSpeed = 0.0f;
         ProcessCount = 0;
+        RawSpeed = 0.0f;
+        CurrentSpeed = 0.0f;
 
-        summedInputs.Clear();
-        summedOutputs.Clear();
         summedEnvironmentalInputs.Clear();
         summedFullSpeedRequiredEnvironmentalInputs.Clear();
     }
@@ -132,7 +101,7 @@ public class SummedProcessStatistics : IProcessDisplayInfo
         if (!obj.MatchesUnderlyingProcess(Process.Process))
             return false;
 
-        return MathF.Abs(summedSpeed - obj.CurrentSpeed) < MathUtils.EPSILON;
+        return MathF.Abs(CurrentSpeed - obj.CurrentSpeed) < MathUtils.EPSILON;
     }
 
     public override bool Equals(object? obj)

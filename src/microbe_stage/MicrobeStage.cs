@@ -2046,12 +2046,12 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             bool sunlight = false;
             bool radiation = false;
 
-            foreach (var input in statistics.Inputs)
+            foreach (var input in statistics.Inputs())
             {
-                if (input.Key == Compound.Glucose)
-                    glucoseUsage += input.Value;
+                if (input.Compound == Compound.Glucose)
+                    glucoseUsage += input.Amount;
 
-                if (input.Key == Compound.Radiation && input.Value > 0)
+                if (input.Compound == Compound.Radiation && input.Amount > 0)
                     radiation = true;
             }
 
@@ -2063,19 +2063,19 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
             if (sunlight)
             {
-                foreach (var output in statistics.Outputs)
+                foreach (var output in statistics.Outputs())
                 {
-                    if (output.Key == Compound.Glucose)
-                        photosynthesisProduction += output.Value;
+                    if (output.Compound == Compound.Glucose)
+                        photosynthesisProduction += output.Amount;
                 }
             }
 
             if (radiation)
             {
-                foreach (var output in statistics.Outputs)
+                foreach (var output in statistics.Outputs())
                 {
-                    if (output.Key == Compound.ATP)
-                        radiationProduction += output.Value;
+                    if (output.Compound == Compound.ATP)
+                        radiationProduction += output.Amount;
                 }
             }
         }

@@ -546,66 +546,58 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     {
         foreach (var process in organismProcesses)
         {
-            process.Value.Clear();
             process.Value.Marked = false;
         }
 
-        var playerProcesses = stage!.Player.Get<BioProcesses>().ProcessStatistics?.Processes;
+        bool changed = false;
 
-        if (playerProcesses == null)
+        foreach (var process in organismProcesses)
         {
-            GD.PrintErr("Player process statistics are uninitialized, can't display them in the process panel");
+            float rawSpeed = 0.0f;
+            float displaySpeed = 0.0f;
 
-            return null;
-        }
-
-        foreach (var process in playerProcesses)
-        {
-            var display = process.Value.ComputeAverageValues();
-
-            if (!organismProcesses.TryGetValue(process.Key.Process, out var stats))
+            if (stage!.Player.TryGet<MicrobeColony>(out var colony2))
             {
-                stats = new SummedProcessStatistics(display);
-                organismProcesses[process.Key.Process] = stats;
+                foreach (var colonyMember in colony2.ColonyMembers)
+                {
+                    if (colonyMember.TryGet<BioProcesses>(out var stats) && stats.ProcessStatistics != null)
+                    {
+                        var stat = stats.ProcessStatistics.Processes[process.Key];
+
+                        rawSpeed += stat.RawSpeed();
+                        displaySpeed += stat.CurrentSpeed;
+
+                        process.Value.Marked = true;
+                    }
+                }
+
+                if (MathF.Abs(process.Value.RawSpeed - rawSpeed) > MathUtils.EPSILON)
+                {
+                    changed = true;
+                }
+
+                process.Value.RawSpeed = rawSpeed;
+                process.Value.CurrentSpeed = displaySpeed;
             }
             else
             {
-                stats.AddProcess(display);
-            }
-
-            stats.Marked = true;
-        }
-
-        if (stage.Player.TryGet<MicrobeColony>(out var colony))
-        {
-            for (int i = 1; i < colony.ColonyMembers.Length; ++i)
-            {
-                var colonyMemberProcesses = colony.ColonyMembers[i].Get<BioProcesses>().ProcessStatistics?.Processes;
-
-                if (colonyMemberProcesses == null)
+                if (stage!.Player.TryGet<BioProcesses>(out var stats) && stats.ProcessStatistics != null)
                 {
-                    GD.PrintErr(
-                        "Colony member process statistics are uninitialized, can't display them in the process panel");
+                    var stat = stats.ProcessStatistics.Processes[process.Key];
 
-                    continue;
+                    rawSpeed += stat.RawSpeed();
+                    displaySpeed += stat.CurrentSpeed;
+
+                    process.Value.Marked = true;
                 }
 
-                foreach (var process in colonyMemberProcesses)
+                if (MathF.Abs(process.Value.RawSpeed - rawSpeed) > MathUtils.EPSILON)
                 {
-                    var display = process.Value.ComputeAverageValues();
-
-                    if (!organismProcesses.TryGetValue(process.Key.Process, out var stats))
-                    {
-                        stats = new SummedProcessStatistics(display);
-                        organismProcesses[process.Key.Process] = stats;
-                    }
-                    else
-                    {
-                        stats.AddProcess(display);
-                    }
-
-                    stats.Marked = true;
+                    changed = true;
                 }
+
+                process.Value.RawSpeed = rawSpeed;
+                process.Value.CurrentSpeed = displaySpeed;
             }
         }
 
@@ -622,10 +614,64 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             {
                 if (!organismProcesses.Remove(process))
                     GD.PrintErr("Expected process remove failed");
+
+                changed = true;
             }
 
             tempProcesses.Clear();
         }
+
+        if (stage!.Player.TryGet<MicrobeColony>(out var colony))
+        {
+            foreach (var colonyMember in colony.ColonyMembers)
+            {
+                if (colonyMember.TryGet<BioProcesses>(out var stats) && stats.ProcessStatistics != null)
+                {
+                    foreach (var process in stats.ProcessStatistics.Processes)
+                    {
+                        if (organismProcesses.TryGetValue(process.Key, out var value))
+                        {
+                            if (value.Marked)
+                                continue;
+
+                            value.RawSpeed += process.Value.RawSpeed();
+                            value.CurrentSpeed += process.Value.CurrentSpeed;
+                        }
+                        else
+                        {
+                            var newProcess = new SummedProcessStatistics(process.Value);
+                            organismProcesses.Add(process.Key, newProcess);
+
+                            changed = true;
+                        }
+                    }
+                }
+            }
+        }
+        else if (stage!.Player.TryGet<BioProcesses>(out var stats) && stats.ProcessStatistics != null)
+        {
+            foreach (var process in stats.ProcessStatistics.Processes)
+            {
+                if (organismProcesses.TryGetValue(process.Key, out var value))
+                {
+                    if (value.Marked)
+                        continue;
+
+                    value.RawSpeed += process.Value.RawSpeed();
+                    value.CurrentSpeed += process.Value.CurrentSpeed;
+                }
+                else
+                {
+                    var newProcess = new SummedProcessStatistics(process.Value);
+                    organismProcesses.Add(process.Key, newProcess);
+
+                    changed = true;
+                }
+            }
+        }
+
+        if (changed)
+            GD.Print("Changed");
 
         return organismProcesses.Values;
     }

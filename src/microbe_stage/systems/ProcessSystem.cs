@@ -367,16 +367,16 @@ public partial class ProcessSystem : BaseSystem<World, float>
                     CalculateProcessMaximumSpeed(process, speedModifier, biome, amountType,
                         requireInputCompoundsInBiome);
 
-                foreach (var input in speedAdjusted.Inputs)
+                foreach (var input in speedAdjusted.Inputs())
                 {
-                    MakeSureResultExists(input.Key);
-                    result[input.Key].AddConsumption(organelle.InternalName, input.Value);
+                    MakeSureResultExists(input.Compound);
+                    result[input.Compound].AddConsumption(organelle.InternalName, input.Amount);
                 }
 
-                foreach (var output in speedAdjusted.Outputs)
+                foreach (var output in speedAdjusted.Outputs())
                 {
-                    MakeSureResultExists(output.Key);
-                    result[output.Key].AddProduction(organelle.InternalName, output.Value);
+                    MakeSureResultExists(output.Compound);
+                    result[output.Compound].AddProduction(organelle.InternalName, output.Amount);
                 }
             }
         }
@@ -426,34 +426,34 @@ public partial class ProcessSystem : BaseSystem<World, float>
                 var speedAdjusted = CalculateProcessMaximumSpeed(process, speedModifier, biome, amountType, true);
 
                 // If the cell produces more ATP than it needs, its ATP producing processes need to be toned down
-                bool useRatio = speedAdjusted.Outputs.ContainsKey(Compound.ATP) && consumptionProductionRatio < 1.0f;
+                bool useRatio = speedAdjusted.Outputs().Any(a => a.Compound == Compound.ATP) && consumptionProductionRatio < 1.0f;
 
-                foreach (var input in speedAdjusted.Inputs)
+                foreach (var input in speedAdjusted.Inputs())
                 {
-                    if (input.Key == Compound.ATP)
+                    if (input.Compound == Compound.ATP)
                         continue;
 
-                    float amount = input.Value;
+                    float amount = input.Amount;
 
                     if (useRatio)
                         amount *= consumptionProductionRatio;
 
-                    MakeSureResultExists(input.Key);
-                    result[input.Key].AddConsumption(organelle.InternalName, amount);
+                    MakeSureResultExists(input.Compound);
+                    result[input.Compound].AddConsumption(organelle.InternalName, amount);
                 }
 
-                foreach (var output in speedAdjusted.Outputs)
+                foreach (var output in speedAdjusted.Outputs())
                 {
-                    if (output.Key == Compound.ATP)
+                    if (output.Compound == Compound.ATP)
                         continue;
 
-                    float amount = output.Value;
+                    float amount = output.Amount;
 
                     if (useRatio)
                         amount *= consumptionProductionRatio;
 
-                    MakeSureResultExists(output.Key);
-                    result[output.Key].AddProduction(organelle.InternalName, amount);
+                    MakeSureResultExists(output.Compound);
+                    result[output.Compound].AddProduction(organelle.InternalName, amount);
                 }
             }
         }
@@ -1110,8 +1110,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
             // Processing runs on the current game time following values
             var ambient = GetAmbient(inputCompound, CompoundAmountType.Current);
 
-            // currentProcessStatistics?.AddInputAmount(entry.Key, entry.Value * inverseDelta);
-            currentProcessStatistics?.AddInputAmount(inputCompound, ambient);
+            // currentProcessStatistics?.AddEnvironmentInput(inputCompound, ambient);
 
             // do environmental modifier here, and save it for later
             environmentModifier *= inputCompound == Compound.Temperature ?
@@ -1144,11 +1143,6 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
             var inputRemoved = entry.Value * process.Rate * environmentModifier * process.SpeedMultiplier *
                 overallSpeedModifier;
-
-            // currentProcessStatistics?.AddInputAmount(entry.Key, 0);
-            // We don't multiply by delta here because we report the per-second values anyway. In the actual
-            // process output numbers (computed after testing the speed), we need to multiply by inverse delta
-            currentProcessStatistics?.AddInputAmount(inputCompound, inputRemoved);
 
             inputRemoved = inputRemoved * delta * spaceConstraintModifier;
 
@@ -1192,9 +1186,6 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
             var outputAdded = entry.Value * process.Rate * environmentModifier * process.SpeedMultiplier *
                 overallSpeedModifier;
-
-            // currentProcessStatistics?.AddOutputAmount(entry.Key, 0);
-            currentProcessStatistics?.AddOutputAmount(outputCompound, outputAdded);
 
             outputAdded = outputAdded * delta * spaceConstraintModifier;
 
@@ -1260,8 +1251,8 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
         // TODO: should the overall speed modifier be included in here? It already has scaled the inputs and
         // outputs
-        currentProcessStatistics?.CurrentSpeed = process.Rate * environmentModifier * spaceConstraintModifier *
-            process.SpeedMultiplier * overallSpeedModifier;
+        currentProcessStatistics?.CurrentSpeed = process.Rate * environmentModifier * spaceConstraintModifier
+            * process.SpeedMultiplier * overallSpeedModifier;
 
         // Consume inputs
         foreach (var entry in processData.Inputs)
@@ -1272,8 +1263,6 @@ public partial class ProcessSystem : BaseSystem<World, float>
             var inputCompound = entry.Key.ID;
 
             var inputRemoved = entry.Value * totalModifier;
-
-            currentProcessStatistics?.AddInputAmount(inputCompound, inputRemoved * inverseDelta);
 
             // This should always succeed (due to the earlier check), so it is always assumed here that this
             // succeeded. Caveat: see: BioProcesses.ATPProductionSpeedModifier
@@ -1289,8 +1278,6 @@ public partial class ProcessSystem : BaseSystem<World, float>
             var outputCompound = entry.Key.ID;
 
             var outputGenerated = entry.Value * totalModifier;
-
-            currentProcessStatistics?.AddOutputAmount(outputCompound, outputGenerated * inverseDelta);
 
             bag.AddCompound(outputCompound, outputGenerated);
         }
