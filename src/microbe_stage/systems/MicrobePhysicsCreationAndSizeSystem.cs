@@ -273,10 +273,10 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
     }
 
     private PhysicsShape CreateCompoundMicrobeShape(ref MicrobePhysicsExtraData extraData,
-        ref OrganelleContainer organelles, ref CellProperties cellProperties, ref SpecializationFactor specializationFactor,
-        in Entity entity, List<(PhysicsShape Shape, Vector3 Position, Quaternion Rotation)> combinedData,
-        List<(OrganelleLayout<PlacedOrganelle> Organelles, Vector3 ExtraOffset, Quaternion ExtraRotation)>?
-            memberOrganelles, Vector2[] membraneVertices, int vertexCount,
+        ref OrganelleContainer organelles, ref CellProperties cellProperties,
+        ref SpecializationFactor specializationFactor, in Entity entity, List<(PhysicsShape Shape, Vector3 Position,
+            Quaternion Rotation)> combinedData, List<(OrganelleLayout<PlacedOrganelle> Organelles, Vector3 ExtraOffset,
+            Quaternion ExtraRotation)>? memberOrganelles, Vector2[] membraneVertices, int vertexCount,
         List<(Membrane Membrane, bool Bacteria)>? colonyMembranes)
     {
         UpdateRotationRate(ref organelles, specializationFactor.SpecializationBonus);
