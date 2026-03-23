@@ -20,8 +20,6 @@ public class SummedProcessStatistics : IProcessDisplayInfo
         if (displayInfo.LimitingCompounds != null)
             LimitingCompounds = displayInfo.LimitingCompounds.ToList();
 
-        Enabled = displayInfo.Enabled;
-
         Process = displayInfo.Process;
 
         RawSpeed = displayInfo.RawSpeed();
@@ -31,7 +29,7 @@ public class SummedProcessStatistics : IProcessDisplayInfo
     /// <summary>
     ///   The process these statistics are for
     /// </summary>
-    public TweakedProcess Process { get; private set; }
+    public TweakedProcess Process { get; set; }
 
     public string Name => Process.Process.Name;
 
@@ -50,7 +48,7 @@ public class SummedProcessStatistics : IProcessDisplayInfo
 
     public IReadOnlyList<Compound>? LimitingCompounds { get; set; }
 
-    public bool Enabled { get; set; }
+    public bool Enabled => Process.SpeedMultiplier > 0;
 
     /// <summary>
     ///   Used for algorithms that need to know what they have processed already

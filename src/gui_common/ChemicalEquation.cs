@@ -387,6 +387,8 @@ public partial class ChemicalEquation : VBoxContainer
     private void ToggleButtonPressed()
     {
         ProcessEnabled = !ProcessEnabled;
+
+        GD.Print($"Toggled");
     }
 
     private void ApplyProcessToggleValue()
