@@ -745,7 +745,8 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         // Move to multicellular always happens when the player is in a colony, so we force-disband that here before
         // proceeding
-        MicrobeColonyHelpers.UnbindAllOutsideGameUpdate(Player, WorldSimulation);
+        if (!MicrobeColonyHelpers.UnbindAllOutsideGameUpdate(Player, WorldSimulation, true))
+            GD.PrintErr("Failed to disband player colony before moving to multicellular");
 
         if (Player.Has<MicrobeColony>())
             throw new Exception("Unbind failed");

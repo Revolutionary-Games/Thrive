@@ -31,6 +31,7 @@ public partial class CompoundProgressBar : Control
     [Export]
     private LabelSettings compactLabelSettings = null!;
 
+    [Export]
     private LabelSettings normalLabelSettings = null!;
 
     private StyleBoxFlat? fillStyleBox;
@@ -338,8 +339,6 @@ public partial class CompoundProgressBar : Control
 
         // TODO: check that this fetches per scene instances properly
         fillStyleBox = (StyleBoxFlat)progressBar.GetThemeStylebox("fill");
-
-        normalLabelSettings = amountLabel.LabelSettings;
 
         UpdateName();
         UpdateValue();
