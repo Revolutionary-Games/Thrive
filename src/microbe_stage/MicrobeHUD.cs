@@ -561,7 +561,8 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
                 {
                     if (colonyMember.TryGet<BioProcesses>(out var stats) && stats.ProcessStatistics != null)
                     {
-                        var stat = stats.ProcessStatistics.Processes[process.Key];
+                        if (!stats.ProcessStatistics.Processes.TryGetValue(process.Key, out var stat))
+                            continue;
 
                         speed += stat.CurrentSpeed;
 
