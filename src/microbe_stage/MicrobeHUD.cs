@@ -553,8 +553,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         foreach (var process in organismProcesses)
         {
-            float rawSpeed = 0.0f;
-            float displaySpeed = 0.0f;
+            float speed = 0.0f;
 
             if (stage!.Player.TryGet<MicrobeColony>(out var colony2))
             {
@@ -564,21 +563,21 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
                     {
                         var stat = stats.ProcessStatistics.Processes[process.Key];
 
-                        rawSpeed += stat.RawSpeed();
-                        displaySpeed += stat.CurrentSpeed;
+                        speed += stat.CurrentSpeed;
 
                         process.Value.Marked = true;
                         process.Value.Process = stat.Process;
+
+                        process.Value.LimitingCompounds = process.Value.LimitingCompounds;
                     }
                 }
 
-                if (MathF.Abs(process.Value.RawSpeed - rawSpeed) > MathUtils.EPSILON)
+                if (MathF.Abs(process.Value.CurrentSpeed - speed) > MathUtils.EPSILON)
                 {
                     changed = true;
                 }
 
-                process.Value.RawSpeed = rawSpeed;
-                process.Value.CurrentSpeed = displaySpeed;
+                process.Value.CurrentSpeed = speed;
             }
             else
             {
@@ -586,20 +585,20 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
                 {
                     var stat = stats.ProcessStatistics.Processes[process.Key];
 
-                    rawSpeed += stat.RawSpeed();
-                    displaySpeed += stat.CurrentSpeed;
+                    speed += stat.CurrentSpeed;
 
                     process.Value.Marked = true;
                     process.Value.Process = stat.Process;
+
+                    process.Value.LimitingCompounds = process.Value.LimitingCompounds;
                 }
 
-                if (MathF.Abs(process.Value.RawSpeed - rawSpeed) > MathUtils.EPSILON)
+                if (MathF.Abs(process.Value.CurrentSpeed - speed) > MathUtils.EPSILON)
                 {
                     changed = true;
                 }
 
-                process.Value.RawSpeed = rawSpeed;
-                process.Value.CurrentSpeed = displaySpeed;
+                process.Value.CurrentSpeed = speed;
             }
         }
 
@@ -636,7 +635,6 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
                             if (value.Marked)
                                 continue;
 
-                            value.RawSpeed += process.Value.RawSpeed();
                             value.CurrentSpeed += process.Value.CurrentSpeed;
                         }
                         else
@@ -659,13 +657,14 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
                     if (value.Marked)
                         continue;
 
-                    value.RawSpeed += process.Value.RawSpeed();
                     value.CurrentSpeed += process.Value.CurrentSpeed;
                 }
                 else
                 {
                     var newProcess = new SummedProcessStatistics(process.Value);
                     organismProcesses.Add(process.Key, newProcess);
+
+                    newProcess.LimitingCompounds = process.Value.LimitingCompounds;
 
                     changed = true;
                 }

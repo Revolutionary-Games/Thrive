@@ -158,14 +158,6 @@ public class SingleProcessStatistics : IProcessDisplayInfo
         }
     }
 
-    /// <summary>
-    ///   Raw speed of the process; updates less frequently, but not fit for displaying
-    /// </summary>
-    public float RawSpeed()
-    {
-        return CurrentSpeed / LatestSnapshot.Delta;
-    }
-
     public void BeginFrame(float delta)
     {
         // Prepare the next snapshot object to fill

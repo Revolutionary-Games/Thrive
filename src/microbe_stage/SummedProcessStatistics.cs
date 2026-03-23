@@ -9,8 +9,6 @@ public class SummedProcessStatistics : IProcessDisplayInfo
 {
     public int ProcessCount;
 
-    public float RawSpeed;
-
     private readonly Dictionary<Compound, float> summedEnvironmentalInputs = new();
 
     private readonly Dictionary<Compound, float> summedFullSpeedRequiredEnvironmentalInputs = new();
@@ -22,7 +20,6 @@ public class SummedProcessStatistics : IProcessDisplayInfo
 
         Process = displayInfo.Process;
 
-        RawSpeed = displayInfo.RawSpeed();
         CurrentSpeed = displayInfo.CurrentSpeed;
     }
 
@@ -82,7 +79,6 @@ public class SummedProcessStatistics : IProcessDisplayInfo
     public void Clear()
     {
         ProcessCount = 0;
-        RawSpeed = 0.0f;
         CurrentSpeed = 0.0f;
 
         summedEnvironmentalInputs.Clear();
