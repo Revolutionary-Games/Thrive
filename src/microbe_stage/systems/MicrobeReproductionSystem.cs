@@ -509,7 +509,7 @@ public partial class MicrobeReproductionSystem : BaseSystem<World, float>
             // TODO: Get actual SpecializationBonus
             organelles.OnOrganellesChanged(ref storage, ref entity.Get<BioProcesses>(),
                 ref entity.Get<Engulfer>(), ref entity.Get<Engulfable>(),
-                ref entity.Get<CellProperties>(), 1.0f);
+                ref entity.Get<CellProperties>(), ref entity.Get<SpecializationFactor>());
 
             if (entity.Has<MicrobeEventCallbacks>())
             {

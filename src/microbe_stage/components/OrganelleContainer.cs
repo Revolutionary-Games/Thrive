@@ -442,10 +442,12 @@ public static class OrganelleContainerHelpers
     /// </summary>
     public static void OnOrganellesChanged(this ref OrganelleContainer container, ref CompoundStorage storage,
         ref BioProcesses bioProcesses, ref Engulfer engulfer, ref Engulfable engulfable,
-        ref CellProperties cellProperties, float specializationBonus)
+        ref CellProperties cellProperties, ref SpecializationFactor specializationFactor)
     {
         container.OrganelleVisualsCreated = false;
         container.OrganelleComponentsCached = false;
+
+        var specializationBonus = specializationFactor.SpecializationBonus;
 
         container.CalculateOrganelleLayoutStatistics(specializationBonus);
         container.UpdateEngulfingSizeData(ref engulfer, ref engulfable, cellProperties.IsBacteria);

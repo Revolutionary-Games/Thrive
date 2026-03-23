@@ -73,7 +73,7 @@ public static class SpawnHelpers
         typeof(MicrobeTemporaryEffects), typeof(CollisionManagement), typeof(PhysicsShapeHolder),
         typeof(MicrobeControl), typeof(ManualPhysicsControl), typeof(MicrobeStatus), typeof(Health),
         typeof(MicrobeEnvironmentalEffects), typeof(CommandSignaler), typeof(StrainAffected), typeof(CurrentAffected),
-        typeof(Selectable), typeof(ReadableName),
+        typeof(Selectable), typeof(ReadableName), typeof(SpecializationFactor),
 
         // Player-specific components
         typeof(PlayerMarker), typeof(SoundListener), typeof(EntityLight),
@@ -92,7 +92,7 @@ public static class SpawnHelpers
         typeof(MicrobeTemporaryEffects), typeof(CollisionManagement), typeof(PhysicsShapeHolder),
         typeof(MicrobeControl), typeof(ManualPhysicsControl), typeof(MicrobeStatus), typeof(Health),
         typeof(MicrobeEnvironmentalEffects), typeof(CommandSignaler), typeof(StrainAffected), typeof(CurrentAffected),
-        typeof(Selectable), typeof(ReadableName),
+        typeof(Selectable), typeof(ReadableName), typeof(SpecializationFactor),
 
         // AI-specific components
         typeof(MicrobeAI), typeof(SurvivalStatistics),
@@ -111,7 +111,7 @@ public static class SpawnHelpers
         typeof(MicrobeTemporaryEffects), typeof(CollisionManagement), typeof(PhysicsShapeHolder),
         typeof(MicrobeControl), typeof(ManualPhysicsControl), typeof(MicrobeStatus), typeof(Health),
         typeof(MicrobeEnvironmentalEffects), typeof(CommandSignaler), typeof(StrainAffected), typeof(CurrentAffected),
-        typeof(Selectable), typeof(ReadableName),
+        typeof(Selectable), typeof(ReadableName), typeof(SpecializationFactor),
 
         // Player-specific components
         typeof(PlayerMarker), typeof(SoundListener), typeof(EntityLight),
@@ -130,7 +130,7 @@ public static class SpawnHelpers
         typeof(MicrobeTemporaryEffects), typeof(CollisionManagement), typeof(PhysicsShapeHolder),
         typeof(MicrobeControl), typeof(ManualPhysicsControl), typeof(MicrobeStatus), typeof(Health),
         typeof(MicrobeEnvironmentalEffects), typeof(CommandSignaler), typeof(StrainAffected), typeof(CurrentAffected),
-        typeof(Selectable), typeof(ReadableName),
+        typeof(Selectable), typeof(ReadableName), typeof(SpecializationFactor),
 
         // AI-specific components
         typeof(MicrobeAI), typeof(SurvivalStatistics),
@@ -703,6 +703,9 @@ public static class SpawnHelpers
             ProcessStatistics = !aiControlled ? new ProcessStatistics() : null,
         };
 
+        // Needed for later calculations
+        float specializationBonus;
+
         if (species is MulticellularSpecies multicellularSpecies)
         {
             var multicellularTolerances = spawnEnvironment.GetSpeciesTolerances(multicellularSpecies);
@@ -726,10 +729,15 @@ public static class SpawnHelpers
                 membraneType = properties.MembraneType;
                 recorder.Set(entity, properties);
 
-                environmentalEffects.ApplyEffects(multicellularTolerances,
-                    resolvedCellType.SpecializationBonus *
-                    multicellularSpecies.GetAdjacencySpecializationBonus(multicellularData.CellBodyPlanIndex),
-                    ref bioProcesses);
+                specializationBonus = resolvedCellType.SpecializationBonus *
+                    multicellularSpecies.GetAdjacencySpecializationBonus(multicellularData.CellBodyPlanIndex);
+
+                recorder.Set(entity, new SpecializationFactor
+                {
+                    SpecializationBonus = specializationBonus,
+                });
+
+                environmentalEffects.ApplyEffects(multicellularTolerances, specializationBonus, ref bioProcesses);
 
                 // TODO: should this also be given MulticellularGrowth to allow this to grow fully if the colony splits
             }
@@ -752,10 +760,15 @@ public static class SpawnHelpers
                 // this one more variable)
                 recorder.Add(entity, new MulticellularGrowth(multicellularSpecies));
 
-                environmentalEffects.ApplyEffects(multicellularTolerances,
-                    resolvedCellType.SpecializationBonus *
-                    multicellularSpecies.GetAdjacencySpecializationBonus(multicellularData.CellBodyPlanIndex),
-                    ref bioProcesses);
+                specializationBonus = resolvedCellType.SpecializationBonus *
+                    multicellularSpecies.GetAdjacencySpecializationBonus(multicellularData.CellBodyPlanIndex);
+
+                recorder.Set(entity, new SpecializationFactor
+                {
+                    SpecializationBonus = specializationBonus,
+                });
+
+                environmentalEffects.ApplyEffects(multicellularTolerances, specializationBonus, ref bioProcesses);
             }
 
 #if DEBUG
@@ -770,9 +783,6 @@ public static class SpawnHelpers
         }
         else if (species is MicrobeSpecies microbeSpecies)
         {
-            environmentalEffects.ApplyEffects(spawnEnvironment.GetSpeciesTolerances(microbeSpecies),
-                microbeSpecies.SpecializationBonus, ref bioProcesses);
-
             recorder.Set(entity, new MicrobeSpeciesMember
             {
                 Species = microbeSpecies,
@@ -782,6 +792,16 @@ public static class SpawnHelpers
             var properties = new CellProperties(microbeSpecies);
             membraneType = properties.MembraneType;
             recorder.Set(entity, properties);
+
+            specializationBonus = usedCellDefinition.SpecializationBonus;
+
+            recorder.Set(entity, new SpecializationFactor
+            {
+                SpecializationBonus = specializationBonus,
+            });
+
+            environmentalEffects.ApplyEffects(spawnEnvironment.GetSpeciesTolerances(microbeSpecies),
+                specializationBonus, ref bioProcesses);
 
             if (multicellularData.MulticellularCellType != null)
                 GD.PrintErr("Multicellular cell type may not be set when spawning a MicrobeSpecies instance");
@@ -816,15 +836,7 @@ public static class SpawnHelpers
 
             // Run the storage update logic for the first time (to ensure consistency with later updates)
             // This has to be called as CreateOrganelleLayout doesn't do this automatically
-            if (multicellular != null)
-            {
-                container.UpdateCompoundBagStorageFromOrganelles(ref storage, usedCellDefinition.SpecializationBonus
-                    * multicellular.GetAdjacencySpecializationBonus(multicellularData.CellBodyPlanIndex));
-            }
-            else if (species is MicrobeSpecies microbeSpecies)
-            {
-                container.UpdateCompoundBagStorageFromOrganelles(ref storage, microbeSpecies.SpecializationBonus);
-            }
+            container.UpdateCompoundBagStorageFromOrganelles(ref storage, specializationBonus);
 
             var engulfable = new Engulfable(PhagocytosisPhase.None, Entity.Null)
             {

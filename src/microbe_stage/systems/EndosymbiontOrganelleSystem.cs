@@ -80,10 +80,9 @@ public partial class EndosymbiontOrganelleSystem : BaseSystem<World, float>
 
                     // These are fetched inside the loop with the assumption that most of the time the loop runs 0
                     // times and when not empty, mostly just once
-                    // TODO: Get actual SpecializationBonus
                     organelleContainer.OnOrganellesChanged(ref entity.Get<CompoundStorage>(),
                         ref entity.Get<BioProcesses>(), ref entity.Get<Engulfer>(), ref entity.Get<Engulfable>(),
-                        ref entity.Get<CellProperties>(), 1.0f);
+                        ref entity.Get<CellProperties>(), ref entity.Get<SpecializationFactor>());
 
                     endosymbiontInfo.CreatedOrganelleInstancesFor.Add(symbiontSpecies);
                 }

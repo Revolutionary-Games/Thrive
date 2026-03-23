@@ -286,6 +286,9 @@ public static class ComponentDeserializers
             case ThriveArchiveObjectType.ComponentSpatialAnimation:
                 entity.Add(SpatialAnimationHelpers.ReadFromArchive(reader, version));
                 return true;
+            case ThriveArchiveObjectType.ComponentSpecializationFactor:
+                entity.Add(SpecializationFactorHelpers.ReadFromArchive(reader, version));
+                return true;
         }
 
         return false;

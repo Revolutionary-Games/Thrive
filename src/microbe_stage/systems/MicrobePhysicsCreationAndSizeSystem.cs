@@ -181,10 +181,12 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
 
             var oldShape = shapeHolder.Shape;
 
+            ref var specializationFactor = ref entity.Get<SpecializationFactor>();
+
             if (!requiresCompoundShape)
             {
                 shapeHolder.Shape = CreateSimpleMicrobeShape(ref extraData, ref organelles, ref cellProperties,
-                    rawData, count);
+                    ref specializationFactor, rawData, count);
             }
             else
             {
@@ -196,13 +198,14 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
                 {
                     var memberOrganelles = temporaryColonyMemberOrganelles.Value!;
                     shapeHolder.Shape = CreateCompoundMicrobeShape(ref extraData, ref organelles,
-                        ref cellProperties, entity, combinedData, memberOrganelles,
+                        ref cellProperties, ref specializationFactor, entity, combinedData, memberOrganelles,
                         rawData, count, colonyMembranes);
                 }
                 else
                 {
                     shapeHolder.Shape = CreateCompoundMicrobeShape(ref extraData, ref organelles,
-                        ref cellProperties, entity, combinedData, null, rawData, count,
+                        ref cellProperties, ref specializationFactor, entity, combinedData, null, rawData,
+                        count,
                         colonyMembranes);
                 }
 
@@ -236,10 +239,9 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
 
     private PhysicsShape CreateSimpleMicrobeShape(ref MicrobePhysicsExtraData extraData,
         ref OrganelleContainer organelles, ref CellProperties cellProperties,
-        Vector2[] membraneVertices, int vertexCount)
+        ref SpecializationFactor specializationFactor, Vector2[] membraneVertices, int vertexCount)
     {
-        // TODO: use the cell's actual specialisation bonus here
-        UpdateRotationRate(ref organelles, 1.0f);
+        UpdateRotationRate(ref organelles, specializationFactor.SpecializationBonus);
 
         var shape = PhysicsShape.GetOrCreateMicrobeShape(membraneVertices, vertexCount,
             MicrobeInternalCalculations.CalculateAverageDensity(organelles.Organelles!),
@@ -271,14 +273,13 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
     }
 
     private PhysicsShape CreateCompoundMicrobeShape(ref MicrobePhysicsExtraData extraData,
-        ref OrganelleContainer organelles, ref CellProperties cellProperties, in Entity entity,
-        List<(PhysicsShape Shape, Vector3 Position, Quaternion Rotation)> combinedData,
+        ref OrganelleContainer organelles, ref CellProperties cellProperties, ref SpecializationFactor specializationFactor,
+        in Entity entity, List<(PhysicsShape Shape, Vector3 Position, Quaternion Rotation)> combinedData,
         List<(OrganelleLayout<PlacedOrganelle> Organelles, Vector3 ExtraOffset, Quaternion ExtraRotation)>?
             memberOrganelles, Vector2[] membraneVertices, int vertexCount,
         List<(Membrane Membrane, bool Bacteria)>? colonyMembranes)
     {
-        // TODO: use the cell's actual specialisation bonus here
-        UpdateRotationRate(ref organelles, 1.0f);
+        UpdateRotationRate(ref organelles, specializationFactor.SpecializationBonus);
 
 #if DEBUG
         if (combinedData.Count > 0)
@@ -287,7 +288,8 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
 
         // Base microbe shape is always first
         combinedData.Add((
-            CreateSimpleMicrobeShape(ref extraData, ref organelles, ref cellProperties, membraneVertices,
+            CreateSimpleMicrobeShape(ref extraData, ref organelles, ref cellProperties, ref specializationFactor,
+                membraneVertices,
                 vertexCount), Vector3.Zero, Quaternion.Identity));
 
         // Then the (potential) colony members
