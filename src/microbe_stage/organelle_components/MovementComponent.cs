@@ -51,7 +51,8 @@ public class MovementComponent : IOrganelleComponent
         force = CalculateForce(organelle.Position, momentum);
     }
 
-    public void UpdateAsync(ref OrganelleContainer organelleContainer, in Entity microbeEntity,
+    public void UpdateAsync(ref OrganelleContainer organelleContainer, ref SpecializationFactor specializationFactor,
+        in Entity microbeEntity,
         IWorldSimulation worldSimulation, float delta)
     {
         // Stop animating when being engulfed

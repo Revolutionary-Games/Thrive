@@ -50,7 +50,8 @@ public class BioluminescenceComponent : IOrganelleComponent
         parentOrganelle = organelle;
     }
 
-    public void UpdateAsync(ref OrganelleContainer organelleContainer, in Entity microbeEntity,
+    public void UpdateAsync(ref OrganelleContainer organelleContainer, ref SpecializationFactor specializationFactor,
+        in Entity microbeEntity,
         IWorldSimulation worldSimulation, float delta)
     {
         // Drain luciferase

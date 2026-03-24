@@ -406,9 +406,13 @@ public class SimulationCache
             }
         }
 
+        // This will likely be used at several points to mimic the effect the specialization bonus has on organelles
+        var specializationBonus = MicrobeInternalCalculations.CalculateSpecializationBonus(
+            predator.Organelles.Organelles, workMemory1, nucleusDefinition);
+
         var predatorHexSize = GetBaseHexSizeForSpecies(predator);
         var preyHexSize = GetBaseHexSizeForSpecies(prey);
-        var enzymesScore = GetEnzymesScore(predator, prey.MembraneType.DissolverEnzyme);
+        var enzymesScore = GetEnzymesScore(predator, prey.MembraneType.DissolverEnzyme, specializationBonus);
         var canDigestPrey = predatorHexSize / preyHexSize > Constants.ENGULF_SIZE_RATIO_REQ && canEngulf &&
             enzymesScore > 0.0f;
 
@@ -464,7 +468,7 @@ public class SimulationCache
         var toxicity = predatorToolScores.AverageToxicity;
         var macrolideScore = predatorToolScores.MacrolideScore;
         var predatorSlimeJetScore = predatorToolScores.SlimeJetScore;
-        var pullingCiliaModifier = predatorToolScores.PullingCiliaModifier;
+        var pullingCiliaModifier = predatorToolScores.PullingCiliaModifier * specializationBonus;
         var strongPullingCiliaModifier = pullingCiliaModifier * pullingCiliaModifier;
         var predatorToxinResistance = predator.MembraneType.ToxinResistance;
         var predatorPhysicalResistance = predator.MembraneType.PhysicalResistance;
@@ -1238,7 +1242,7 @@ public class SimulationCache
         return predationToolsRawScores;
     }
 
-    public float GetEnzymesScore(MicrobeSpecies predator, string dissolverEnzyme)
+    public float GetEnzymesScore(MicrobeSpecies predator, string dissolverEnzyme, float specializationBonus)
     {
         // This is not cached as it is not useful at the present time (as this is only called from places that cache
         // stuff)
@@ -1281,11 +1285,7 @@ public class SimulationCache
         if (!isMembraneDigestible)
             return 0;
 
-        // Assume here that the species specialization factor may not be up to date, so recalculate here
-        var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(
-            predator.Organelles.Organelles, workMemory1, nucleusDefinition);
-
-        return enzymesScore * specialization;
+        return enzymesScore * specializationBonus;
     }
 
     public ResolvedMicrobeTolerances GetEnvironmentalTolerances(MicrobeSpecies species,

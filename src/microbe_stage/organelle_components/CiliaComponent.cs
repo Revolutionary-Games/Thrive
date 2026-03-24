@@ -38,8 +38,8 @@ public class CiliaComponent : IOrganelleComponent
         usesPullingCilia = true;
     }
 
-    public void UpdateAsync(ref OrganelleContainer organelleContainer, in Entity microbeEntity,
-        IWorldSimulation worldSimulation, float delta)
+    public void UpdateAsync(ref OrganelleContainer organelleContainer, ref SpecializationFactor specializationFactor,
+        in Entity microbeEntity, IWorldSimulation worldSimulation, float delta)
     {
         // Stop animating when being engulfed
         if (microbeEntity.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.None)
@@ -80,7 +80,8 @@ public class CiliaComponent : IOrganelleComponent
 
             // Update pulling cilia state and logic. This is fine to be rate limited here as we take that into
             // account in the impulse size calculation.
-            UpdatePullingCilia(ref organelleContainer, microbeEntity, worldSimulation, timeSinceRotationSample);
+            UpdatePullingCilia(ref organelleContainer, ref specializationFactor, microbeEntity, worldSimulation,
+                timeSinceRotationSample);
         }
         else
         {
@@ -136,7 +137,8 @@ public class CiliaComponent : IOrganelleComponent
         animationDirty = true;
     }
 
-    private void UpdatePullingCilia(ref OrganelleContainer organelleContainer, in Entity microbeEntity,
+    private void UpdatePullingCilia(ref OrganelleContainer organelleContainer,
+        ref SpecializationFactor specializationFactor, in Entity microbeEntity,
         IWorldSimulation worldSimulation, float delta)
     {
         if (sharedPullData == null)
@@ -191,6 +193,9 @@ public class CiliaComponent : IOrganelleComponent
         float ciliaCountForForce = sharedPullData.CiliaCount;
         sharedPullData.CiliaCount = 1;
 
+        // Cell specialization bonus is applied in several places
+        var specializationBonus = specializationFactor.SpecializationBonus;
+
         if (!microbeEntity.Has<PhysicsSensor>())
         {
             // Cilia initialization
@@ -198,7 +203,7 @@ public class CiliaComponent : IOrganelleComponent
 
             recorder.Add(microbeEntity, new PhysicsSensor(Constants.MAX_SIMULTANEOUS_COLLISIONS_SENSOR)
             {
-                ActiveArea = CreateCiliaDetectorShape(sharedPullData.CiliaCount),
+                ActiveArea = CreateCiliaDetectorShape(sharedPullData.CiliaCount, specializationBonus),
             });
 
             worldSimulation.FinishRecordingEntityCommands(recorder);
@@ -215,7 +220,7 @@ public class CiliaComponent : IOrganelleComponent
         {
             // TODO: could dispose the old area here to release that shape data faster
 
-            sensor.ActiveArea = CreateCiliaDetectorShape(sharedPullData.CiliaCount);
+            sensor.ActiveArea = CreateCiliaDetectorShape(sharedPullData.CiliaCount, specializationBonus);
             sensor.ApplyNewShape = true;
             return;
         }
@@ -269,8 +274,8 @@ public class CiliaComponent : IOrganelleComponent
             if (distance < MathUtils.EPSILON)
                 return;
 
-            float force = Constants.CILIA_PULLING_FORCE * ciliaCountForForce * delta /
-                MathF.Max(1.0f, distance * Constants.CILIA_PULLING_FORCE_FALLOFF_FACTOR);
+            float force = Constants.CILIA_PULLING_FORCE * ciliaCountForForce * specializationBonus * delta
+                / MathF.Max(1.0f, distance * Constants.CILIA_PULLING_FORCE_FALLOFF_FACTOR);
 
             ref var targetPhysics = ref pulledEntity.Get<ManualPhysicsControl>();
             targetPhysics.ImpulseToGive +=
@@ -322,7 +327,7 @@ public class CiliaComponent : IOrganelleComponent
         }
     }
 
-    private PhysicsShape CreateCiliaDetectorShape(int count)
+    private PhysicsShape CreateCiliaDetectorShape(int count, float specializationBonus)
     {
         if (sharedPullData == null)
             throw new InvalidOperationException("Pull data should be initialized first");
@@ -330,8 +335,8 @@ public class CiliaComponent : IOrganelleComponent
         sharedPullData.SizeCreatedWithCilia = count;
 
         // TODO: this will need a size parameter if cilia can ever be placed on prokaryotes
-        return PhysicsShape.CreateSphere(Constants.CILIA_PULLING_FORCE_FIELD_RADIUS +
-            count * Constants.CILIA_PULL_RADIUS_PER_CILIA);
+        return PhysicsShape.CreateSphere((Constants.CILIA_PULLING_FORCE_FIELD_RADIUS +
+            count * Constants.CILIA_PULL_RADIUS_PER_CILIA) * specializationBonus);
     }
 
     /// <summary>

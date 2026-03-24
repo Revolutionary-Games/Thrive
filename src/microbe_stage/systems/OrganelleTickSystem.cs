@@ -62,7 +62,8 @@ public partial class OrganelleTickSystem : BaseSystem<World, float>
     [Query(Parallel = true)]
     [All<CompoundStorage, WorldPosition>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update([Data] in float delta, ref OrganelleContainer organelleContainer, in Entity entity)
+    private void Update([Data] in float delta, ref OrganelleContainer organelleContainer,
+        ref SpecializationFactor specializationFactor, in Entity entity)
     {
         if (organelleContainer.Organelles == null)
             return;
@@ -85,7 +86,7 @@ public partial class OrganelleTickSystem : BaseSystem<World, float>
                 var component = components[j];
 
                 // Organelles can do various things which is why we have the above "All" attribute
-                component.UpdateAsync(ref organelleContainer, entity, worldSimulation, delta);
+                component.UpdateAsync(ref organelleContainer, ref specializationFactor, entity, worldSimulation, delta);
 
                 if (component.UsesSyncProcess)
                     queuedSyncRuns.Push((component, entity));

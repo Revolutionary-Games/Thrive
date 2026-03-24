@@ -69,7 +69,8 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
     private void Update([Data] in float delta, ref Physics physics, ref OrganelleContainer organelles,
         ref MicrobeControl control, ref StrainAffected strainAffected, ref Health health, ref WorldPosition position,
         ref CompoundStorage compoundStorage, ref CellProperties cellProperties,
-        ref MicrobeTemporaryEffects microbeTemporaryEffects, in Entity entity)
+        ref MicrobeTemporaryEffects microbeTemporaryEffects, ref SpecializationFactor specializationFactor,
+        in Entity entity)
     {
         if (!physics.IsBodyEffectivelyEnabled())
             return;
@@ -151,7 +152,8 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
 
         var movementImpulse =
             CalculateMovementForce(entity, ref control, ref cellProperties, ref position, ref organelles,
-                ref microbeTemporaryEffects, ref strainAffected, compoundStorage.Compounds, delta);
+                ref microbeTemporaryEffects, ref strainAffected, compoundStorage.Compounds,
+                specializationFactor.SpecializationBonus, delta);
 
         if (control.State == MicrobeState.MucocystShield)
         {
@@ -165,7 +167,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
     private Vector3 CalculateMovementForce(in Entity entity, ref MicrobeControl control,
         ref CellProperties cellProperties, ref WorldPosition position,
         ref OrganelleContainer organelles, ref MicrobeTemporaryEffects temporaryEffects, ref StrainAffected strain,
-        CompoundBag compounds, float delta)
+        CompoundBag compounds, float specializationBonus, float delta)
     {
         float strainMultiplier;
 
@@ -247,14 +249,18 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
         }
 
         // Speed from flagella (these also take ATP otherwise they won't work)
+        var thrustForce = 0.0f;
+
         if (organelles.ThrustComponents != null && control.MovementDirection != Vector3.Zero)
         {
             foreach (var flagellum in organelles.ThrustComponents)
             {
-                force += flagellum.UseForMovement(control.MovementDirection, compounds, Quaternion.Identity,
+                thrustForce += flagellum.UseForMovement(control.MovementDirection, compounds, Quaternion.Identity,
                     cellProperties.IsBacteria, delta);
             }
         }
+
+        force += thrustForce * specializationBonus;
 
         force *= cellProperties.MembraneType.MovementFactor -
             cellProperties.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER;
