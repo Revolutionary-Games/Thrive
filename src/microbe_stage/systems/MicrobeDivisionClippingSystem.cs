@@ -79,6 +79,7 @@ public partial class MicrobeDivisionClippingSystem : BaseSystem<World, float>
             }
 
             // Square
+            var clipOutDistance = clipOutDistanceSquared;
             clipOutDistanceSquared *= clipOutDistanceSquared;
 
             var difference = worldPosition.Position - otherEntity.Get<WorldPosition>().Position;
@@ -102,7 +103,11 @@ public partial class MicrobeDivisionClippingSystem : BaseSystem<World, float>
 
                 // Ensure the difference is not 0, which would break the animation
                 if (difference.IsZeroApprox())
-                    difference += Vector3.Left * 0.01f;
+                    difference += Vector3.Left * 0.18f;
+
+                // Cap the difference here to set a speed limit for the animation rather than infinitely be able to
+                // increase the speed
+                difference = difference.Clamp(clipOutDistance * -0.2f, clipOutDistance * 0.2f);
 
                 // Make bigger cells get more force to ensure the animation keeps playing fast
                 var sizeMultiplier = Math.Clamp((organelleContainer.HexCount - 3) * 0.9f, 1, 100);
