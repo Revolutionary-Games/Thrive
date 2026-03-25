@@ -561,6 +561,11 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
                         AddStatisticsToProcesses(process.Value, organismProcesses);
                     }
                 }
+                else
+                {
+                    GD.PrintErr(
+                        "Colony member process statistics are uninitialized, can't display them in the process panel");
+                }
             }
         }
         else if (stage!.Player.TryGet<BioProcesses>(out var stats) && stats.ProcessStatistics != null)
@@ -569,6 +574,10 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             {
                 AddStatisticsToProcesses(process.Value, organismProcesses);
             }
+        }
+        else
+        {
+            GD.PrintErr("Player process statistics are uninitialized, can't display them in the process panel");
         }
 
         // Clear unmarked items
