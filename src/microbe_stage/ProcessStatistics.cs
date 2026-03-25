@@ -122,7 +122,7 @@ public class SingleProcessStatistics : IProcessDisplayInfo
     // Todo: add interpolation between multiple snapshots
     public float CurrentSpeed
     {
-        get => LatestSnapshot?.CurrentSpeed ?? 0;
+        get => CalculateAverageSpeed();
         set
         {
             if (LatestSnapshot == null)
@@ -194,6 +194,7 @@ public class SingleProcessStatistics : IProcessDisplayInfo
 
         // TODO: does this need to be cleared this often?
         precomputedEnvironmentInputs = null;
+        limitingCompounds?.Clear();
     }
 
     public void AddLimitingFactor(Compound compound)
@@ -279,6 +280,20 @@ public class SingleProcessStatistics : IProcessDisplayInfo
     public override string ToString()
     {
         return $"Single process speed {CurrentSpeed} for {Process}";
+    }
+
+    private float CalculateAverageSpeed()
+    {
+        float average = 0.0f;
+
+        for (int i = 0; i < snapshots.Count; i++)
+        {
+            average += snapshots[i].CurrentSpeed;
+        }
+
+        average /= snapshots.Count;
+
+        return average;
     }
 
     /// <summary>

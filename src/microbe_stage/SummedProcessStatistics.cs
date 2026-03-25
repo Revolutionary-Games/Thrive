@@ -109,7 +109,7 @@ public class SummedProcessStatistics : IProcessDisplayInfo
         CurrentSpeed = 0.0f;
 
         summedEnvironmentalInputs.Clear();
-        summedFullSpeedRequiredEnvironmentalInputs.Clear();
+        LimitingCompounds = null;
     }
 
     public bool Equals(IProcessDisplayInfo? obj)
