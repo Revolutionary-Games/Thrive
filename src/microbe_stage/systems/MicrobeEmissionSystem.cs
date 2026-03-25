@@ -97,7 +97,8 @@ public partial class MicrobeEmissionSystem : BaseSystem<World, float>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update([Data] in float delta, ref MicrobeControl control, ref OrganelleContainer organelles,
         ref CellProperties cellProperties, ref WorldPosition position, ref SoundEffectPlayer soundEffectPlayer,
-        ref CompoundStorage compoundStorage, ref Engulfable engulfable, in Entity entity)
+        ref CompoundStorage compoundStorage, ref Engulfable engulfable, ref SpecializationFactor specializationFactor,
+        in Entity entity)
     {
         DecreaseTimeCountdownValue(ref control.AgentEmissionCooldown, delta);
         DecreaseTimeCountdownValue(ref control.SlimeSecretionCooldown, delta);
@@ -123,7 +124,7 @@ public partial class MicrobeEmissionSystem : BaseSystem<World, float>
 
         // This method itself checks for the preconditions on emitting slime
         HandleSlimeSecretion(entity, ref control, ref organelles, ref cellProperties, ref soundEffectPlayer,
-            ref position, compounds, engulfed, delta);
+            ref position, compounds, engulfed, specializationFactor.SpecializationBonus, delta);
     }
 
     /// <summary>
@@ -298,7 +299,7 @@ public partial class MicrobeEmissionSystem : BaseSystem<World, float>
     private void HandleSlimeSecretion(in Entity entity, ref MicrobeControl control,
         ref OrganelleContainer organelles, ref CellProperties cellProperties,
         ref SoundEffectPlayer soundEffectPlayer, ref WorldPosition worldPosition,
-        CompoundBag compounds, bool engulfed, float delta)
+        CompoundBag compounds, bool engulfed, float specializationBonus, float delta)
     {
         // Ignore if we have no slime jets
         if (organelles.SlimeJets == null)
@@ -332,7 +333,7 @@ public partial class MicrobeEmissionSystem : BaseSystem<World, float>
                 jet.Active = true;
 
                 // Secrete the slime
-                float slimeToSecrete = Math.Min(Constants.COMPOUNDS_TO_VENT_PER_SECOND * delta,
+                float slimeToSecrete = Math.Min(Constants.COMPOUNDS_TO_VENT_PER_SECOND * specializationBonus * delta,
                     compounds.GetCompoundAmount(Compound.Mucilage));
 
                 var direction = jet.GetDirection();

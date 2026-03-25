@@ -189,7 +189,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
             }
 
             // Slime jets work even when not holding down any movement keys
-            var jetMovement = CalculateMovementFromSlimeJets(ref organelles);
+            var jetMovement = CalculateMovementFromSlimeJets(ref organelles, specializationBonus);
 
             if (jetMovement == Vector3.Zero)
                 return Vector3.Zero;
@@ -319,7 +319,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
 
         // Speed from jets (these are related to a non-rotated state of the cell so this is done before rotating
         // by the transform)
-        movementVector += CalculateMovementFromSlimeJets(ref organelles);
+        movementVector += CalculateMovementFromSlimeJets(ref organelles, specializationBonus);
 
         // Handle colony jets
         if (hasColony)
@@ -337,7 +337,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
 
                 ref var memberOrganelles = ref colonyMember.Get<OrganelleContainer>();
 
-                movementVector += CalculateMovementFromSlimeJets(ref memberOrganelles);
+                movementVector += CalculateMovementFromSlimeJets(ref memberOrganelles, specializationBonus);
             }
         }
 
@@ -352,7 +352,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
         return strainFraction * Constants.STRAIN_TO_ATP_USAGE_COEFFICIENT + 1.0f;
     }
 
-    private Vector3 CalculateMovementFromSlimeJets(ref OrganelleContainer organelles)
+    private Vector3 CalculateMovementFromSlimeJets(ref OrganelleContainer organelles, float specializationBonus)
     {
         var movementVector = Vector3.Zero;
 

@@ -467,13 +467,13 @@ public class SimulationCache
 
         var toxicity = predatorToolScores.AverageToxicity;
         var macrolideScore = predatorToolScores.MacrolideScore;
-        var predatorSlimeJetScore = predatorToolScores.SlimeJetScore;
+        var predatorSlimeJetScore = predatorToolScores.SlimeJetScore * specializationBonus;
         var pullingCiliaModifier = predatorToolScores.PullingCiliaModifier * specializationBonus;
         var strongPullingCiliaModifier = pullingCiliaModifier * pullingCiliaModifier;
         var predatorToxinResistance = predator.MembraneType.ToxinResistance;
         var predatorPhysicalResistance = predator.MembraneType.PhysicalResistance;
 
-        var preySlimeJetScore = preyToolScores.SlimeJetScore;
+        var preySlimeJetScore = preyToolScores.SlimeJetScore * specializationBonus;
         var preyMucocystsScore = preyToolScores.MucocystsScore;
         var preyPilusScore = preyToolScores.PilusScore;
         var preyInjectisomeScore = preyToolScores.InjectisomeScore;
