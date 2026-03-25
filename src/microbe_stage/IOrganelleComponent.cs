@@ -19,13 +19,13 @@ public interface IOrganelleComponent
     ///   <see cref="UpdateSync"/>
     /// </summary>
     /// <param name="organelleContainer">Organelle container instance this organelle is inside</param>
-    /// <param name="specializationFactor"></param>
+    /// <param name="specializationFactor"> Organelle effect bonus cell specialization and adjacency</param>
     /// <param name="microbeEntity">Entity reference of the entity that contains this organelle</param>
     /// <param name="worldSimulation">
-    ///     The simulation this entity is in. Care needs to be taken on what operations are safe to perform here in an
-    ///     async manner. This is provided to allow a bit more complex organelles to work without needing to create
-    ///     systems that are basically clones of <see cref="Systems.OrganelleTickSystem"/> with a tiny bit of different
-    ///     functionality.
+    ///   The simulation this entity is in. Care needs to be taken on what operations are safe to perform here in an
+    ///   async manner. This is provided to allow a bit more complex organelles to work without needing to create
+    ///   systems that are basically clones of <see cref="Systems.OrganelleTickSystem"/> with a tiny bit of different
+    ///   functionality.
     /// </param>
     /// <param name="delta">Time since the last update in seconds</param>
     public void UpdateAsync(ref OrganelleContainer organelleContainer, ref SpecializationFactor specializationFactor,
