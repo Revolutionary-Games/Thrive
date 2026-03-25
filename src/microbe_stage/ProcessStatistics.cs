@@ -286,7 +286,7 @@ public class SingleProcessStatistics : IProcessDisplayInfo
     {
         float average = 0.0f;
 
-        for (int i = 0; i < snapshots.Count; i++)
+        for (int i = 0; i < snapshots.Count; ++i)
         {
             average += snapshots[i].CurrentSpeed;
         }
