@@ -14,12 +14,12 @@ public sealed class ProcessStatistics
     ///   Temporary memory to use for <see cref="RemoveUnused"/> to avoid small constant allocations. This used to be
     ///   thread local, but as we lock anyway, it doesn't really matter.
     /// </summary>
-    private List<BioProcess>? temporaryRemovedItems;
+    private List<TweakedProcess>? temporaryRemovedItems;
 
     /// <summary>
     ///   The processes and their associated speed statistics
     /// </summary>
-    public Dictionary<BioProcess, SingleProcessStatistics> Processes { get; } = new();
+    public Dictionary<TweakedProcess, SingleProcessStatistics> Processes { get; } = new();
 
     public void MarkAllUnused()
     {
@@ -36,7 +36,7 @@ public sealed class ProcessStatistics
     {
         lock (Processes)
         {
-            temporaryRemovedItems ??= new List<BioProcess>();
+            temporaryRemovedItems ??= new List<TweakedProcess>();
 
             foreach (var entry in Processes)
             {
@@ -67,14 +67,14 @@ public sealed class ProcessStatistics
 
         lock (Processes)
         {
-            if (Processes.TryGetValue(forProcess.Process, out var entry))
+            if (Processes.TryGetValue(forProcess, out var entry))
             {
                 entry.Used = true;
                 return entry;
             }
 
             entry = new SingleProcessStatistics(forProcess);
-            Processes[forProcess.Process] = entry;
+            Processes[forProcess] = entry;
             entry.Used = true;
             return entry;
         }
