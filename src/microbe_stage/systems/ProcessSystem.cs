@@ -364,14 +364,14 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
                 foreach (var input in speedAdjusted.Inputs())
                 {
-                    MakeSureResultExists(input.Compound);
-                    result[input.Compound].AddConsumption(organelle.InternalName, input.Amount);
+                    MakeSureResultExists(input.Key);
+                    result[input.Key].AddConsumption(organelle.InternalName, input.Value);
                 }
 
                 foreach (var output in speedAdjusted.Outputs())
                 {
-                    MakeSureResultExists(output.Compound);
-                    result[output.Compound].AddProduction(organelle.InternalName, output.Amount);
+                    MakeSureResultExists(output.Key);
+                    result[output.Key].AddProduction(organelle.InternalName, output.Value);
                 }
             }
         }
@@ -421,35 +421,35 @@ public partial class ProcessSystem : BaseSystem<World, float>
                 var speedAdjusted = CalculateProcessMaximumSpeed(process, speedModifier, biome, amountType, true);
 
                 // If the cell produces more ATP than it needs, its ATP producing processes need to be toned down
-                bool useRatio = speedAdjusted.Outputs().Any(a => a.Compound == Compound.ATP)
+                bool useRatio = speedAdjusted.Outputs().Any(a => a.Key == Compound.ATP)
                     && consumptionProductionRatio < 1.0f;
 
                 foreach (var input in speedAdjusted.Inputs())
                 {
-                    if (input.Compound == Compound.ATP)
+                    if (input.Key == Compound.ATP)
                         continue;
 
-                    float amount = input.Amount;
+                    float amount = input.Value;
 
                     if (useRatio)
                         amount *= consumptionProductionRatio;
 
-                    MakeSureResultExists(input.Compound);
-                    result[input.Compound].AddConsumption(organelle.InternalName, amount);
+                    MakeSureResultExists(input.Key);
+                    result[input.Key].AddConsumption(organelle.InternalName, amount);
                 }
 
                 foreach (var output in speedAdjusted.Outputs())
                 {
-                    if (output.Compound == Compound.ATP)
+                    if (output.Key == Compound.ATP)
                         continue;
 
-                    float amount = output.Amount;
+                    float amount = output.Value;
 
                     if (useRatio)
                         amount *= consumptionProductionRatio;
 
-                    MakeSureResultExists(output.Compound);
-                    result[output.Compound].AddProduction(organelle.InternalName, amount);
+                    MakeSureResultExists(output.Key);
+                    result[output.Key].AddProduction(organelle.InternalName, amount);
                 }
             }
         }
