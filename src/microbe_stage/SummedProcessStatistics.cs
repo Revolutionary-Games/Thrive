@@ -84,22 +84,22 @@ public class SummedProcessStatistics : IProcessDisplayInfo
         LimitingCompounds = stats.LimitingCompounds;
     }
 
-    public IEnumerable<(Compound Compound, float Amount)> Inputs()
+    public IEnumerable<KeyValuePair<Compound, float>> Inputs()
     {
         foreach (var input in Process.Process.Inputs)
         {
             if (input.Key.IsEnvironmental)
                 continue;
 
-            yield return (input.Key.ID, input.Value * CurrentSpeed);
+            yield return new KeyValuePair<Compound, float>(input.Key.ID, input.Value * CurrentSpeed);
         }
     }
 
-    public IEnumerable<(Compound Compound, float Amount)> Outputs()
+    public IEnumerable<KeyValuePair<Compound, float>> Outputs()
     {
         foreach (var output in Process.Process.Outputs)
         {
-            yield return (output.Key.ID, output.Value * CurrentSpeed);
+            yield return new KeyValuePair<Compound, float>(output.Key.ID, output.Value * CurrentSpeed);
         }
     }
 

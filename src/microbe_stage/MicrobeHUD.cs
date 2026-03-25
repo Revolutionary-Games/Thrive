@@ -1110,7 +1110,8 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         }
     }
 
-    private void AddStatisticsToProcesses(SingleProcessStatistics stats, Dictionary<BioProcess, SummedProcessStatistics> processes)
+    private void AddStatisticsToProcesses(SingleProcessStatistics stats,
+        Dictionary<BioProcess, SummedProcessStatistics> processes)
     {
         if (processes.TryGetValue(stats.Process.Process, out var value))
         {

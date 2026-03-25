@@ -61,7 +61,7 @@ public sealed class ProcessStatistics
     public SingleProcessStatistics GetAndMarkUsed(TweakedProcess forProcess)
     {
 #if DEBUG
-        if (forProcess == null!)
+        if (forProcess.Process == null!)
             throw new ArgumentException("Invalid process marked used");
 #endif
 
@@ -139,22 +139,22 @@ public class SingleProcessStatistics : IProcessDisplayInfo
     private SingleProcessStatisticsSnapshot? LatestSnapshot =>
         snapshots.Count > 0 ? snapshots[snapshots.Count - 1] : null;
 
-    public IEnumerable<(Compound Compound, float Amount)> Inputs()
+    public IEnumerable<KeyValuePair<Compound, float>> Inputs()
     {
         foreach (var input in Process.Process.Inputs)
         {
             if (input.Key.IsEnvironmental)
                 continue;
 
-            yield return (input.Key.ID, input.Value * CurrentSpeed);
+            yield return new KeyValuePair<Compound, float>(input.Key.ID, input.Value * CurrentSpeed);
         }
     }
 
-    public IEnumerable<(Compound Compound, float Amount)> Outputs()
+    public IEnumerable<KeyValuePair<Compound, float>> Outputs()
     {
         foreach (var output in Process.Process.Outputs)
         {
-            yield return (output.Key.ID, output.Value * CurrentSpeed);
+            yield return new KeyValuePair<Compound, float>(output.Key.ID, output.Value * CurrentSpeed);
         }
     }
 

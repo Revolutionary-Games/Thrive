@@ -44,11 +44,6 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
     private BiomeConditions? biome;
 
-    /// <summary>
-    ///   Used to go from the calculated compound values to per-second values for reporting statistics
-    /// </summary>
-    private float inverseDelta;
-
     public ProcessSystem(World world) : base(world)
     {
     }
@@ -426,7 +421,8 @@ public partial class ProcessSystem : BaseSystem<World, float>
                 var speedAdjusted = CalculateProcessMaximumSpeed(process, speedModifier, biome, amountType, true);
 
                 // If the cell produces more ATP than it needs, its ATP producing processes need to be toned down
-                bool useRatio = speedAdjusted.Outputs().Any(a => a.Compound == Compound.ATP) && consumptionProductionRatio < 1.0f;
+                bool useRatio = speedAdjusted.Outputs().Any(a => a.Compound == Compound.ATP)
+                    && consumptionProductionRatio < 1.0f;
 
                 foreach (var input in speedAdjusted.Inputs())
                 {
@@ -819,8 +815,6 @@ public partial class ProcessSystem : BaseSystem<World, float>
         {
             GD.PrintErr("ProcessSystem has no biome set");
         }
-
-        inverseDelta = 1.0f / delta;
 
 #if CHECK_USED_STATISTICS
         lock (usedStatistics)

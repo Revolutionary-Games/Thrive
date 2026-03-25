@@ -56,12 +56,12 @@ public interface IProcessDisplayInfo : IEquatable<IProcessDisplayInfo>
     /// <summary>
     ///   Input compounds that aren't environmental
     /// </summary>
-    public IEnumerable<(Compound Compound, float Amount)> Inputs();
+    public IEnumerable<KeyValuePair<Compound, float>> Inputs();
 
     /// <summary>
     ///   All the output compounds
     /// </summary>
-    public IEnumerable<(Compound Compound, float Amount)> Outputs();
+    public IEnumerable<KeyValuePair<Compound, float>> Outputs();
     protected static bool IsEnvironmental(Compound compoundId)
     {
         return SimulationParameters.GetCompound(compoundId).IsEnvironmental;

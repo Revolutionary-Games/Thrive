@@ -238,7 +238,7 @@ public partial class ChemicalEquation : VBoxContainer
         // TODO: add detection when this should be intelligently split onto multiple lines
 
         // Inputs of the process
-        UpdateLeftSide(normalInputs.Select(a => new KeyValuePair<Compound, float>(a.Compound, a.Amount)).ToList());
+        UpdateLeftSide(normalInputs);
 
         // Outputs of the process
         UpdateRightSide();
@@ -340,7 +340,7 @@ public partial class ChemicalEquation : VBoxContainer
 
         rightSide.PrefixPositiveWithPlus = hasNoInputs;
 
-        rightSide.UpdateCompounds(EquationFromProcess!.Outputs().Select(a => new KeyValuePair<Compound, float>(a.Compound, a.Amount)).ToList(), EquationFromProcess.LimitingCompounds);
+        rightSide.UpdateCompounds(EquationFromProcess!.Outputs(), EquationFromProcess.LimitingCompounds);
     }
 
     private void UpdateEnvironmentPart(List<KeyValuePair<Compound, float>> environmentalInputs)
