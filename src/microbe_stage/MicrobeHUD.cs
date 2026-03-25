@@ -546,8 +546,8 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     {
         foreach (var process in organismProcesses)
         {
-            process.Value.Marked = false;
             process.Value.Clear();
+            process.Value.Marked = false;
         }
 
         if (stage!.Player.TryGet<MicrobeColony>(out var colony))
