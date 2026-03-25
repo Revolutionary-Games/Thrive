@@ -102,8 +102,9 @@ public partial class MicrobeDivisionClippingSystem : BaseSystem<World, float>
                 }
 
                 // Ensure the difference is not 0, which would break the animation
+                // Note that this rarely hits, so this doesn't help in increasing the initial speed
                 if (difference.IsZeroApprox())
-                    difference += Vector3.Left * 0.18f;
+                    difference += Vector3.Left * 0.01f;
 
                 // Cap the difference here to set a speed limit for the animation rather than infinitely be able to
                 // increase the speed
