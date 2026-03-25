@@ -21,6 +21,13 @@ public class SummedProcessStatistics : IProcessDisplayInfo
         Process = displayInfo.Process;
 
         CurrentSpeed = displayInfo.CurrentSpeed;
+
+        foreach (var input in displayInfo.FullSpeedRequiredEnvironmentalInputs)
+        {
+            summedFullSpeedRequiredEnvironmentalInputs.Add(input.Key, input.Value);
+        }
+
+        UpdateSecondaryInfo(displayInfo);
     }
 
     /// <summary>
@@ -55,6 +62,18 @@ public class SummedProcessStatistics : IProcessDisplayInfo
     public bool MatchesUnderlyingProcess(BioProcess process)
     {
         return process == Process.Process;
+    }
+
+    public void UpdateSecondaryInfo(SingleProcessStatistics stats)
+    {
+        summedEnvironmentalInputs.Clear();
+
+        foreach (var input in stats.EnvironmentalInputs)
+        {
+            summedEnvironmentalInputs.Add(input.Key, input.Value);
+        }
+
+        LimitingCompounds = stats.LimitingCompounds;
     }
 
     public IEnumerable<(Compound Compound, float Amount)> Inputs()

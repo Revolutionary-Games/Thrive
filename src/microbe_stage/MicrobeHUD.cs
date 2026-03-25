@@ -547,59 +547,27 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         foreach (var process in organismProcesses)
         {
             process.Value.Marked = false;
+            process.Value.Clear();
         }
 
-        bool changed = false;
-
-        foreach (var process in organismProcesses)
+        if (stage!.Player.TryGet<MicrobeColony>(out var colony))
         {
-            float speed = 0.0f;
-
-            if (stage!.Player.TryGet<MicrobeColony>(out var colony2))
+            foreach (var colonyMember in colony.ColonyMembers)
             {
-                foreach (var colonyMember in colony2.ColonyMembers)
+                if (colonyMember.TryGet<BioProcesses>(out var stats) && stats.ProcessStatistics != null)
                 {
-                    if (colonyMember.TryGet<BioProcesses>(out var stats) && stats.ProcessStatistics != null)
+                    foreach (var process in stats.ProcessStatistics.Processes)
                     {
-                        if (!stats.ProcessStatistics.Processes.TryGetValue(process.Key, out var stat))
-                            continue;
-
-                        speed += stat.CurrentSpeed;
-
-                        process.Value.Marked = true;
-                        process.Value.Process = stat.Process;
-
-                        process.Value.LimitingCompounds = process.Value.LimitingCompounds;
+                        AddStatisticsToProcesses(process.Value, organismProcesses);
                     }
                 }
-
-                if (MathF.Abs(process.Value.CurrentSpeed - speed) > MathUtils.EPSILON)
-                {
-                    changed = true;
-                }
-
-                process.Value.CurrentSpeed = speed;
             }
-            else
+        }
+        else if (stage!.Player.TryGet<BioProcesses>(out var stats) && stats.ProcessStatistics != null)
+        {
+            foreach (var process in stats.ProcessStatistics.Processes)
             {
-                if (stage!.Player.TryGet<BioProcesses>(out var stats) && stats.ProcessStatistics != null)
-                {
-                    var stat = stats.ProcessStatistics.Processes[process.Key];
-
-                    speed += stat.CurrentSpeed;
-
-                    process.Value.Marked = true;
-                    process.Value.Process = stat.Process;
-
-                    process.Value.LimitingCompounds = process.Value.LimitingCompounds;
-                }
-
-                if (MathF.Abs(process.Value.CurrentSpeed - speed) > MathUtils.EPSILON)
-                {
-                    changed = true;
-                }
-
-                process.Value.CurrentSpeed = speed;
+                AddStatisticsToProcesses(process.Value, organismProcesses);
             }
         }
 
@@ -616,60 +584,9 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             {
                 if (!organismProcesses.Remove(process))
                     GD.PrintErr("Expected process remove failed");
-
-                changed = true;
             }
 
             tempProcesses.Clear();
-        }
-
-        if (stage!.Player.TryGet<MicrobeColony>(out var colony))
-        {
-            foreach (var colonyMember in colony.ColonyMembers)
-            {
-                if (colonyMember.TryGet<BioProcesses>(out var stats) && stats.ProcessStatistics != null)
-                {
-                    foreach (var process in stats.ProcessStatistics.Processes)
-                    {
-                        if (organismProcesses.TryGetValue(process.Key, out var value))
-                        {
-                            if (value.Marked)
-                                continue;
-
-                            value.CurrentSpeed += process.Value.CurrentSpeed;
-                        }
-                        else
-                        {
-                            var newProcess = new SummedProcessStatistics(process.Value);
-                            organismProcesses.Add(process.Key, newProcess);
-
-                            changed = true;
-                        }
-                    }
-                }
-            }
-        }
-        else if (stage!.Player.TryGet<BioProcesses>(out var stats) && stats.ProcessStatistics != null)
-        {
-            foreach (var process in stats.ProcessStatistics.Processes)
-            {
-                if (organismProcesses.TryGetValue(process.Key, out var value))
-                {
-                    if (value.Marked)
-                        continue;
-
-                    value.CurrentSpeed += process.Value.CurrentSpeed;
-                }
-                else
-                {
-                    var newProcess = new SummedProcessStatistics(process.Value);
-                    organismProcesses.Add(process.Key, newProcess);
-
-                    newProcess.LimitingCompounds = process.Value.LimitingCompounds;
-
-                    changed = true;
-                }
-            }
         }
 
         return organismProcesses.Values;
@@ -1191,6 +1108,23 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
                 activeProcesses[i] = process;
             }
         }
+    }
+
+    private void AddStatisticsToProcesses(SingleProcessStatistics stats, Dictionary<BioProcess, SummedProcessStatistics> processes)
+    {
+        if (processes.TryGetValue(stats.Process.Process, out var value))
+        {
+            value.Process = stats.Process;
+            value.CurrentSpeed += stats.CurrentSpeed;
+            value.UpdateSecondaryInfo(stats);
+        }
+        else
+        {
+            value = new SummedProcessStatistics(stats);
+            processes.Add(stats.Process.Process, value);
+        }
+
+        value.Marked = true;
     }
 
     private void OnRevertPromptClosed()
