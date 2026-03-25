@@ -45,9 +45,7 @@ public class StrictProcessDisplayInfoEquality : IEquatable<StrictProcessDisplayI
         if (our.Enabled != theirs.Enabled)
             return false;
 
-        if (ReferenceEquals(our.Inputs(), null) != ReferenceEquals(theirs.Inputs(), null))
-            return false;
-        if (our.Inputs != null && !our.Inputs().SequenceEqual(theirs.Inputs()))
+        if (!our.Inputs().SequenceEqual(theirs.Inputs()))
             return false;
 
         if (ReferenceEquals(our.EnvironmentalInputs, null) != ReferenceEquals(theirs.EnvironmentalInputs, null))
@@ -67,9 +65,7 @@ public class StrictProcessDisplayInfoEquality : IEquatable<StrictProcessDisplayI
             return false;
         }
 
-        if (ReferenceEquals(our.Outputs(), null) != ReferenceEquals(theirs.Outputs(), null))
-            return false;
-        if (our.Outputs != null && !our.Outputs().SequenceEqual(theirs.Outputs()))
+        if (!our.Outputs().SequenceEqual(theirs.Outputs()))
             return false;
 
         if (ReferenceEquals(our.LimitingCompounds, null) != ReferenceEquals(theirs.LimitingCompounds, null))
