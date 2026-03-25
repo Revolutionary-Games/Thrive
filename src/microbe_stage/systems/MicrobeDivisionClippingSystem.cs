@@ -1,5 +1,6 @@
 ﻿namespace Systems;
 
+using System;
 using System.Runtime.CompilerServices;
 using Arch.Core;
 using Arch.Core.Extensions;
@@ -18,6 +19,7 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(CellDivisionCollisionDisabler))]
 [ReadsComponent(typeof(MicrobeColony))]
 [ReadsComponent(typeof(AttachedToEntity))]
+[ReadsComponent(typeof(OrganelleContainer))]
 [WritesToComponent(typeof(CollisionManagement))]
 [RunsBefore(typeof(PhysicsCollisionManagementSystem))]
 public partial class MicrobeDivisionClippingSystem : BaseSystem<World, float>
@@ -36,11 +38,12 @@ public partial class MicrobeDivisionClippingSystem : BaseSystem<World, float>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update([Data] in float delta, ref CellDivisionCollisionDisabler collisionDisabler,
         ref CollisionManagement collisionManagement, ref CellProperties cellProperties,
-        ref WorldPosition worldPosition, ref Physics physics, in Entity entity)
+        ref WorldPosition worldPosition, ref Physics physics, ref OrganelleContainer organelleContainer,
+        in Entity entity)
     {
         ref var otherEntity = ref collisionDisabler.IgnoredCollisionWith;
 
-        collisionDisabler.SeparationForce += delta * 2.5f;
+        collisionDisabler.SeparationForce += delta * 1.7f;
 
         if (collisionManagement.IgnoredCollisionsWith != null)
         {
@@ -101,10 +104,14 @@ public partial class MicrobeDivisionClippingSystem : BaseSystem<World, float>
                 if (difference.IsZeroApprox())
                     difference += Vector3.Left * 0.01f;
 
+                // Make bigger cells get more force to ensure the animation keeps playing fast
+                var sizeMultiplier = Math.Clamp((organelleContainer.HexCount - 3) * 0.9f, 1, 100);
+
                 // TODO: implement a component (or new property in Physics) that allows giving physical impulses
                 // to entities
                 // NOTE: the force gets bigger the bigger the distance is!
-                physicalWorld.GiveImpulse(physics.Body, difference * 300.0f * collisionDisabler.SeparationForce, true);
+                physicalWorld.GiveImpulse(physics.Body,
+                    difference * 300.0f * collisionDisabler.SeparationForce * sizeMultiplier, true);
             }
         }
         else
