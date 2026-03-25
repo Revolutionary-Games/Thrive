@@ -366,7 +366,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
                 // It might be better to consume the queued force always, but this probably results at most in just
                 // one extra frame of thrust whenever the jets are engaged
                 jet.ConsumeMovementForce(out var jetForce);
-                movementVector += jetForce;
+                movementVector += jetForce * specializationBonus;
             }
         }
 
