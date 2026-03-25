@@ -122,7 +122,7 @@ public class SingleProcessStatistics : IProcessDisplayInfo
     // Todo: add interpolation between multiple snapshots
     public float CurrentSpeed
     {
-        get => LatestSnapshot?.CurrentSpeed * Process.SpeedMultiplier ?? 0;
+        get => LatestSnapshot?.CurrentSpeed ?? 0;
         set
         {
             if (LatestSnapshot == null)

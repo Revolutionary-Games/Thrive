@@ -1231,7 +1231,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
             return;
         }
 
-        float totalModifier = process.Rate * delta * environmentModifier * spaceConstraintModifier *
+        float totalModifier = process.Rate * environmentModifier * spaceConstraintModifier *
             process.SpeedMultiplier * overallSpeedModifier;
 
         // Apply ATP production speed cap if in effect
@@ -1251,8 +1251,10 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
         // TODO: should the overall speed modifier be included in here? It already has scaled the inputs and
         // outputs
-        currentProcessStatistics?.CurrentSpeed = process.Rate * environmentModifier * spaceConstraintModifier
-            * process.SpeedMultiplier * overallSpeedModifier;
+        currentProcessStatistics?.CurrentSpeed = totalModifier;
+
+        // Only multiplying totalModifier by delta time after recording this process' speed per second
+        totalModifier *= delta;
 
         // Consume inputs
         foreach (var entry in processData.Inputs)

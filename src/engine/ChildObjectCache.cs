@@ -45,11 +45,7 @@ public class ChildObjectCache<TKey, TNode>
     public void DeleteUnmarked()
     {
         foreach (var child in createdChildren.Where(p => !p.Value.Marked).Select(p => p.Key).ToList())
-        {
-            GD.Print($"Deleting {child.ToString()}");
-
             DeleteChild(child);
-        }
     }
 
     public void DeleteChild(TKey child)

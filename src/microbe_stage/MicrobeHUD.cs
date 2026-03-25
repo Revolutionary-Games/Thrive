@@ -1140,8 +1140,6 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     private void ToggleProcessPressed(ChemicalEquation equation, bool enabled)
     {
-        GD.Print($"Toggled 2");
-
         if (!stage!.HasAlivePlayer || !stage.Player.Has<BioProcesses>())
             return;
 
@@ -1150,8 +1148,6 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             GD.PrintErr("Equation has no process set for process speed control in player");
             return;
         }
-
-        GD.Print($"Toggled 3");
 
         if (stage.Player.Has<MicrobeColony>())
         {
