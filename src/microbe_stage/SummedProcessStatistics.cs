@@ -33,7 +33,7 @@ public class SummedProcessStatistics : IProcessDisplayInfo
     /// <summary>
     ///   The process these statistics are for
     /// </summary>
-    public TweakedProcess Process { get; set; }
+    public TweakedProcess Process { get; private set; }
 
     public string Name => Process.Process.Name;
 
@@ -66,6 +66,14 @@ public class SummedProcessStatistics : IProcessDisplayInfo
 
     public void UpdateSecondaryInfo(SingleProcessStatistics stats)
     {
+        if (stats.Process.Process != Process.Process)
+        {
+            throw new ArgumentException(
+                "The statistics provided to SummedProcessStatistics have a different bioprocess");
+        }
+
+        Process = stats.Process;
+
         summedEnvironmentalInputs.Clear();
 
         foreach (var input in stats.EnvironmentalInputs)

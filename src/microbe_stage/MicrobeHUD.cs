@@ -1114,7 +1114,6 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     {
         if (processes.TryGetValue(stats.Process.Process, out var value))
         {
-            value.Process = stats.Process;
             value.CurrentSpeed += stats.CurrentSpeed;
             value.UpdateSecondaryInfo(stats);
         }
