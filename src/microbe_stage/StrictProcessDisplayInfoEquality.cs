@@ -105,7 +105,7 @@ public class StrictProcessDisplayInfoEquality : IEquatable<StrictProcessDisplayI
 
         public int GetHashCode(KeyValuePair<Compound, float> obj)
         {
-            return obj.GetHashCode();
+            return obj.Key.GetHashCode() ^ obj.Value.GetHashCode();
         }
     }
 }
