@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 /// <summary>
@@ -45,7 +46,7 @@ public class StrictProcessDisplayInfoEquality : IEquatable<StrictProcessDisplayI
         if (our.Enabled != theirs.Enabled)
             return false;
 
-        if (!our.Inputs().SequenceEqual(theirs.Inputs()))
+        if (!our.Inputs().SequenceEqual(theirs.Inputs(), ProcessKeyValueComparer.Instance))
             return false;
 
         if (ReferenceEquals(our.EnvironmentalInputs, null) != ReferenceEquals(theirs.EnvironmentalInputs, null))
@@ -65,7 +66,7 @@ public class StrictProcessDisplayInfoEquality : IEquatable<StrictProcessDisplayI
             return false;
         }
 
-        if (!our.Outputs().SequenceEqual(theirs.Outputs()))
+        if (!our.Outputs().SequenceEqual(theirs.Outputs(), ProcessKeyValueComparer.Instance))
             return false;
 
         if (ReferenceEquals(our.LimitingCompounds, null) != ReferenceEquals(theirs.LimitingCompounds, null))
@@ -91,5 +92,20 @@ public class StrictProcessDisplayInfoEquality : IEquatable<StrictProcessDisplayI
     public override int GetHashCode()
     {
         return DisplayInfo.GetHashCode();
+    }
+
+    private class ProcessKeyValueComparer : IEqualityComparer<KeyValuePair<Compound, float>>
+    {
+        public static readonly ProcessKeyValueComparer Instance = new();
+
+        public bool Equals(KeyValuePair<Compound, float> first, KeyValuePair<Compound, float> second)
+        {
+            return first.Key == second.Key && first.Value == second.Value;
+        }
+
+        public int GetHashCode(KeyValuePair<Compound, float> obj)
+        {
+            return obj.GetHashCode();
+        }
     }
 }
