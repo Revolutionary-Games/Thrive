@@ -1110,7 +1110,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
             // Processing runs on the current game time following values
             var ambient = GetAmbient(inputCompound, CompoundAmountType.Current);
 
-            // currentProcessStatistics?.AddEnvironmentInput(inputCompound, ambient);
+            currentProcessStatistics?.AddEnvironmentInput(inputCompound, ambient);
 
             // do environmental modifier here, and save it for later
             environmentModifier *= inputCompound == Compound.Temperature ?
