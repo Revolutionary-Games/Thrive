@@ -15,9 +15,6 @@ public class SummedProcessStatistics : IProcessDisplayInfo
 
     public SummedProcessStatistics(SingleProcessStatistics displayInfo)
     {
-        if (displayInfo.LimitingCompounds != null)
-            LimitingCompounds = displayInfo.LimitingCompounds.ToList();
-
         Process = displayInfo.Process;
 
         CurrentSpeed = displayInfo.CurrentSpeed;
@@ -72,7 +69,9 @@ public class SummedProcessStatistics : IProcessDisplayInfo
                 "The statistics provided to SummedProcessStatistics have a different bioprocess");
         }
 
-        Process = stats.Process;
+        var newProcess = Process;
+        newProcess.SpeedMultiplier = stats.Process.SpeedMultiplier;
+        Process = newProcess;
 
         summedEnvironmentalInputs.Clear();
 

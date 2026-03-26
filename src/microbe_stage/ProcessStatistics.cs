@@ -195,6 +195,7 @@ public class SingleProcessStatistics : IProcessDisplayInfo
         // TODO: does this need to be cleared this often?
         precomputedEnvironmentInputs = null;
         limitingCompounds?.Clear();
+        environmentalInputs?.Clear();
     }
 
     public void AddLimitingFactor(Compound compound)
@@ -215,12 +216,6 @@ public class SingleProcessStatistics : IProcessDisplayInfo
     public void AddEnvironmentInput(Compound compound, float amount)
     {
         environmentalInputs[compound] = amount;
-    }
-
-    public void Clear()
-    {
-        snapshots.Clear();
-        precomputedEnvironmentInputs = null;
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
