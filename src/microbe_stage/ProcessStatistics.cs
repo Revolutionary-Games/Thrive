@@ -195,7 +195,7 @@ public class SingleProcessStatistics : IProcessDisplayInfo
         // TODO: does this need to be cleared this often?
         precomputedEnvironmentInputs = null;
         limitingCompounds?.Clear();
-        environmentalInputs?.Clear();
+        environmentalInputs.Clear();
     }
 
     public void AddLimitingFactor(Compound compound)
