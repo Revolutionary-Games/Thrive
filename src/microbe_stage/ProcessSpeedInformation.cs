@@ -27,7 +27,7 @@ public class ProcessSpeedInformation : IProcessDisplayInfo
     public Dictionary<Compound, float> AvailableRates { get; } = new();
 
     public IEnumerable<KeyValuePair<Compound, float>> Inputs =>
-    WritableInputs.Where(p => !IProcessDisplayInfo.IsEnvironmental(p.Key));
+        WritableInputs.Where(p => !IProcessDisplayInfo.IsEnvironmental(p.Key));
 
     public IEnumerable<KeyValuePair<Compound, float>> EnvironmentalInputs =>
         AvailableAmounts.Where(p => IProcessDisplayInfo.IsEnvironmental(p.Key));
