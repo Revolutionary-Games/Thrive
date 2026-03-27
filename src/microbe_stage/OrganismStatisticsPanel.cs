@@ -374,17 +374,19 @@ public partial class OrganismStatisticsPanel : PanelContainer
         }
     }
 
-    public void UpdateCompoundBalances(Dictionary<Compound, CompoundBalance> balances, float warningTime)
+    public void UpdateCompoundBalances(Dictionary<Compound, CompoundBalance> balances,
+        HashSet<Compound> dayNightVaryingCompoundProductions, float warningTime)
     {
-        compoundBalance.UpdateBalances(balances, warningTime);
+        compoundBalance.UpdateBalances(balances, dayNightVaryingCompoundProductions, warningTime);
     }
 
     public void UpdateCompoundLastingTimes(Dictionary<Compound, CompoundBalance> normalBalance,
         Dictionary<Compound, CompoundBalance> nightBalance, float nominalStorage,
-        Dictionary<Compound, float> specificStorages, float warningTime, float fillingUpTime)
+        Dictionary<Compound, float> specificStorages, float warningTime, float fillingUpTime,
+        HashSet<Compound> compoundsThatWarnFillTime)
     {
         compoundStorageLastingTimes.UpdateStorage(normalBalance, nightBalance, nominalStorage, specificStorages,
-            warningTime, fillingUpTime, notEnoughStorageWarning);
+            warningTime, fillingUpTime, compoundsThatWarnFillTime, notEnoughStorageWarning);
     }
 
     public void RegisterTooltips()

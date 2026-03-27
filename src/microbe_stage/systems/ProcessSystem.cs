@@ -382,6 +382,60 @@ public partial class ProcessSystem : BaseSystem<World, float>
         }
     }
 
+    /// <summary>
+    ///   Calculates what input compounds are needed for each output compound. The key in the result is the output
+    ///   compound. This does not clear the result before running to allow chaining!
+    /// </summary>
+    public static void CalculateInputCompoundsNeededForOutputs(IReadOnlyList<OrganelleTemplate> organelles,
+        IBiomeConditions biome, ResolvedMicrobeTolerances environmentTolerances, float specializationFactor,
+        CompoundAmountType amountType, bool requireInputCompoundsInBiome, Dictionary<Compound, List<Compound>> result)
+    {
+        if (specializationFactor <= 0)
+            throw new ArgumentException("Specialization factor must be positive", nameof(specializationFactor));
+
+        float speedModifier = environmentTolerances.ProcessSpeedModifier * specializationFactor;
+
+        var count = organelles.Count;
+        for (int i = 0; i < count; ++i)
+        {
+            foreach (var process in organelles[i].Definition.RunnableProcesses)
+            {
+                var speedAdjusted =
+                    CalculateProcessMaximumSpeed(process, speedModifier, biome, amountType,
+                        requireInputCompoundsInBiome);
+
+                if (speedAdjusted.CurrentSpeed <= MathUtils.EPSILON)
+                    continue;
+
+                foreach (var output in speedAdjusted.Outputs)
+                {
+                    if (!result.TryGetValue(output.Key, out var list))
+                    {
+                        list = new List<Compound>();
+                        result[output.Key] = list;
+                    }
+
+                    foreach (var input in speedAdjusted.Inputs)
+                    {
+                        if (!list.Contains(input.Key))
+                        {
+                            list.Add(input.Key);
+                        }
+                    }
+
+                    // And we also need to add environmental inputs to properly detect varying
+                    foreach (var input in speedAdjusted.EnvironmentalInputs)
+                    {
+                        if (!list.Contains(input.Key))
+                        {
+                            list.Add(input.Key);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     public static void ComputeCompoundBalance(IEnumerable<OrganelleTemplate> organelles, IBiomeConditions biome,
         ResolvedMicrobeTolerances environmentTolerances, float specializationFactor, CompoundAmountType amountType,
         bool requireInputCompoundsInBiome, Dictionary<Compound, CompoundBalance> result)

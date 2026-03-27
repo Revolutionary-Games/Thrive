@@ -103,7 +103,8 @@ public partial class CellBodyPlanEditorComponent
         organismStatisticsPanel.UpdateProcessList(processStatistics);
     }
 
-    private void UpdateCompoundBalances(Dictionary<Compound, CompoundBalance> balances)
+    private void UpdateCompoundBalances(Dictionary<Compound, CompoundBalance> balances,
+        HashSet<Compound> dayNightVaryingCompoundProductions)
     {
         var warningTime = Editor.CurrentGame.GameWorld.LightCycle.DayLengthRealtimeSeconds *
             Editor.CurrentGame.GameWorld.WorldSettings.DaytimeFraction;
@@ -112,12 +113,12 @@ public partial class CellBodyPlanEditorComponent
         if (!Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled)
             warningTime = 10000000;
 
-        organismStatisticsPanel.UpdateCompoundBalances(balances, warningTime);
+        organismStatisticsPanel.UpdateCompoundBalances(balances, dayNightVaryingCompoundProductions, warningTime);
     }
 
     private void UpdateCompoundLastingTimes(Dictionary<Compound, CompoundBalance> normalBalance,
         Dictionary<Compound, CompoundBalance> nightBalance, float nominalStorage,
-        Dictionary<Compound, float> specificStorages)
+        Dictionary<Compound, float> specificStorages, HashSet<Compound> compoundsThatWarnFillTime)
     {
         // TODO: Check if it's possible to move those calculations elsewhere to avoid duplication with
         // CellEditorComponent.UpdateCompoundLastingTimes
@@ -135,7 +136,7 @@ public partial class CellBodyPlanEditorComponent
         }
 
         organismStatisticsPanel.UpdateCompoundLastingTimes(normalBalance, nightBalance, nominalStorage,
-            specificStorages, warningTime, fillingUpTime);
+            specificStorages, warningTime, fillingUpTime, compoundsThatWarnFillTime);
     }
 
     private void UpdateGUIAfterLoadingSpecies(Species species)
