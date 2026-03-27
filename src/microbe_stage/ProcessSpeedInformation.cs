@@ -26,11 +26,16 @@ public class ProcessSpeedInformation : IProcessDisplayInfo
     // ReSharper disable once CollectionNeverQueried.Global
     public Dictionary<Compound, float> AvailableRates { get; } = new();
 
+    public IEnumerable<KeyValuePair<Compound, float>> Inputs =>
+    WritableInputs.Where(p => !IProcessDisplayInfo.IsEnvironmental(p.Key));
+
     public IEnumerable<KeyValuePair<Compound, float>> EnvironmentalInputs =>
         AvailableAmounts.Where(p => IProcessDisplayInfo.IsEnvironmental(p.Key));
 
     public IReadOnlyDictionary<Compound, float> FullSpeedRequiredEnvironmentalInputs =>
         WritableFullSpeedRequiredEnvironmentalInputs;
+
+    public IEnumerable<KeyValuePair<Compound, float>> Outputs => WritableOutputs;
 
     public float CurrentSpeed { get; set; }
 
@@ -56,25 +61,6 @@ public class ProcessSpeedInformation : IProcessDisplayInfo
     public bool MatchesUnderlyingProcess(BioProcess process)
     {
         return Process == process;
-    }
-
-    public IEnumerable<KeyValuePair<Compound, float>> Inputs()
-    {
-        foreach (var input in Process.Inputs)
-        {
-            if (input.Key.IsEnvironmental)
-                continue;
-
-            yield return new KeyValuePair<Compound, float>(input.Key.ID, input.Value * CurrentSpeed);
-        }
-    }
-
-    public IEnumerable<KeyValuePair<Compound, float>> Outputs()
-    {
-        foreach (var output in Process.Outputs)
-        {
-            yield return new KeyValuePair<Compound, float>(output.Key.ID, output.Value * CurrentSpeed);
-        }
     }
 
     /// <summary>

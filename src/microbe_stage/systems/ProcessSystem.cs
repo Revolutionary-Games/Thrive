@@ -362,13 +362,13 @@ public partial class ProcessSystem : BaseSystem<World, float>
                     CalculateProcessMaximumSpeed(process, speedModifier, biome, amountType,
                         requireInputCompoundsInBiome);
 
-                foreach (var input in speedAdjusted.Inputs())
+                foreach (var input in speedAdjusted.Inputs)
                 {
                     MakeSureResultExists(input.Key);
                     result[input.Key].AddConsumption(organelle.InternalName, input.Value);
                 }
 
-                foreach (var output in speedAdjusted.Outputs())
+                foreach (var output in speedAdjusted.Outputs)
                 {
                     MakeSureResultExists(output.Key);
                     result[output.Key].AddProduction(organelle.InternalName, output.Value);
@@ -421,10 +421,10 @@ public partial class ProcessSystem : BaseSystem<World, float>
                 var speedAdjusted = CalculateProcessMaximumSpeed(process, speedModifier, biome, amountType, true);
 
                 // If the cell produces more ATP than it needs, its ATP producing processes need to be toned down
-                bool useRatio = speedAdjusted.Outputs().Any(a => a.Key == Compound.ATP)
+                bool useRatio = speedAdjusted.Outputs.Any(a => a.Key == Compound.ATP)
                     && consumptionProductionRatio < 1.0f;
 
-                foreach (var input in speedAdjusted.Inputs())
+                foreach (var input in speedAdjusted.Inputs)
                 {
                     if (input.Key == Compound.ATP)
                         continue;
@@ -438,7 +438,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
                     result[input.Key].AddConsumption(organelle.InternalName, amount);
                 }
 
-                foreach (var output in speedAdjusted.Outputs())
+                foreach (var output in speedAdjusted.Outputs)
                 {
                     if (output.Key == Compound.ATP)
                         continue;

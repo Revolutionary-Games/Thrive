@@ -46,7 +46,7 @@ public class StrictProcessDisplayInfoEquality : IEquatable<StrictProcessDisplayI
         if (our.Enabled != theirs.Enabled)
             return false;
 
-        if (!our.Inputs().SequenceEqual(theirs.Inputs(), ProcessKeyValueComparer.Instance))
+        if (!our.Inputs.SequenceEqual(theirs.Inputs, ProcessKeyValueComparer.Instance))
             return false;
 
         if (ReferenceEquals(our.EnvironmentalInputs, null) != ReferenceEquals(theirs.EnvironmentalInputs, null))
@@ -66,7 +66,7 @@ public class StrictProcessDisplayInfoEquality : IEquatable<StrictProcessDisplayI
             return false;
         }
 
-        if (!our.Outputs().SequenceEqual(theirs.Outputs(), ProcessKeyValueComparer.Instance))
+        if (!our.Outputs.SequenceEqual(theirs.Outputs, ProcessKeyValueComparer.Instance))
             return false;
 
         if (ReferenceEquals(our.LimitingCompounds, null) != ReferenceEquals(theirs.LimitingCompounds, null))

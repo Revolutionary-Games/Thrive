@@ -111,6 +111,20 @@ public class SingleProcessStatistics : IProcessDisplayInfo
 
     public string Name => Process.Process.Name;
 
+    public IEnumerable<KeyValuePair<Compound, float>> Inputs
+    {
+        get
+        {
+            foreach (var input in Process.Process.Inputs)
+            {
+                if (input.Key.IsEnvironmental)
+                    continue;
+
+                yield return new KeyValuePair<Compound, float>(input.Key.ID, input.Value * CurrentSpeed);
+            }
+        }
+    }
+
     public IEnumerable<KeyValuePair<Compound, float>> EnvironmentalInputs => environmentalInputs
         ?? throw new InvalidOperationException("No snapshot set");
 
@@ -118,6 +132,17 @@ public class SingleProcessStatistics : IProcessDisplayInfo
         precomputedEnvironmentInputs ??= Process.Process.Inputs
             .Where(p => IProcessDisplayInfo.IsEnvironmental(p.Key.ID))
             .ToDictionary(p => p.Key.ID, p => p.Value);
+
+    public IEnumerable<KeyValuePair<Compound, float>> Outputs
+    {
+        get
+        {
+            foreach (var output in Process.Process.Outputs)
+            {
+                yield return new KeyValuePair<Compound, float>(output.Key.ID, output.Value * CurrentSpeed);
+            }
+        }
+    }
 
     // Todo: add interpolation between multiple snapshots
     public float CurrentSpeed
@@ -138,25 +163,6 @@ public class SingleProcessStatistics : IProcessDisplayInfo
 
     private SingleProcessStatisticsSnapshot? LatestSnapshot =>
         snapshots.Count > 0 ? snapshots[snapshots.Count - 1] : null;
-
-    public IEnumerable<KeyValuePair<Compound, float>> Inputs()
-    {
-        foreach (var input in Process.Process.Inputs)
-        {
-            if (input.Key.IsEnvironmental)
-                continue;
-
-            yield return new KeyValuePair<Compound, float>(input.Key.ID, input.Value * CurrentSpeed);
-        }
-    }
-
-    public IEnumerable<KeyValuePair<Compound, float>> Outputs()
-    {
-        foreach (var output in Process.Process.Outputs)
-        {
-            yield return new KeyValuePair<Compound, float>(output.Key.ID, output.Value * CurrentSpeed);
-        }
-    }
 
     public void BeginFrame(float delta)
     {

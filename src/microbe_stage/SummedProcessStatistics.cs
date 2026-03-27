@@ -35,6 +35,20 @@ public class SummedProcessStatistics : IProcessDisplayInfo
 
     public float CurrentSpeed { get; set; }
 
+    public IEnumerable<KeyValuePair<Compound, float>> Inputs
+    {
+        get
+        {
+            foreach (var input in Process.Process.Inputs)
+            {
+                if (input.Key.IsEnvironmental)
+                    continue;
+
+                yield return new KeyValuePair<Compound, float>(input.Key.ID, input.Value * CurrentSpeed);
+            }
+        }
+    }
+
     /// <summary>
     ///   Current environmental input values
     /// </summary>
@@ -45,6 +59,20 @@ public class SummedProcessStatistics : IProcessDisplayInfo
     /// </summary>
     public IReadOnlyDictionary<Compound, float> FullSpeedRequiredEnvironmentalInputs =>
         summedFullSpeedRequiredEnvironmentalInputs;
+
+    /// <summary>
+    ///   All the output compounds
+    /// </summary>
+    public IEnumerable<KeyValuePair<Compound, float>> Outputs
+    {
+        get
+        {
+            foreach (var output in Process.Process.Outputs)
+            {
+                yield return new KeyValuePair<Compound, float>(output.Key.ID, output.Value * CurrentSpeed);
+            }
+        }
+    }
 
     public IReadOnlyList<Compound>? LimitingCompounds { get; set; }
 
@@ -80,25 +108,6 @@ public class SummedProcessStatistics : IProcessDisplayInfo
         }
 
         LimitingCompounds = stats.LimitingCompounds;
-    }
-
-    public IEnumerable<KeyValuePair<Compound, float>> Inputs()
-    {
-        foreach (var input in Process.Process.Inputs)
-        {
-            if (input.Key.IsEnvironmental)
-                continue;
-
-            yield return new KeyValuePair<Compound, float>(input.Key.ID, input.Value * CurrentSpeed);
-        }
-    }
-
-    public IEnumerable<KeyValuePair<Compound, float>> Outputs()
-    {
-        foreach (var output in Process.Process.Outputs)
-        {
-            yield return new KeyValuePair<Compound, float>(output.Key.ID, output.Value * CurrentSpeed);
-        }
     }
 
     public void Clear()

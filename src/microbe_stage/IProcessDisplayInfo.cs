@@ -41,20 +41,20 @@ public interface IProcessDisplayInfo : IEquatable<IProcessDisplayInfo>
     public IReadOnlyList<Compound>? LimitingCompounds { get; }
 
     /// <summary>
-    ///   Checks if this process info is for the given underlying process
-    /// </summary>
-    /// <returns>True if matches, false if this info is for some other process type</returns>
-    public bool MatchesUnderlyingProcess(BioProcess process);
-
-    /// <summary>
     ///   Input compounds that aren't environmental
     /// </summary>
-    public IEnumerable<KeyValuePair<Compound, float>> Inputs();
+    public IEnumerable<KeyValuePair<Compound, float>> Inputs { get; }
 
     /// <summary>
     ///   All the output compounds
     /// </summary>
-    public IEnumerable<KeyValuePair<Compound, float>> Outputs();
+    public IEnumerable<KeyValuePair<Compound, float>> Outputs { get; }
+
+    /// <summary>
+    ///   Checks if this process info is for the given underlying process
+    /// </summary>
+    /// <returns>True if matches, false if this info is for some other process type</returns>
+    public bool MatchesUnderlyingProcess(BioProcess process);
 
     /// <summary>
     ///   A helper for the various process things to filter in / our environmental compounds. This is probably maybe

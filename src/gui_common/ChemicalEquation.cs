@@ -232,7 +232,7 @@ public partial class ChemicalEquation : VBoxContainer
         // Title and spinner
         UpdateHeader();
 
-        var normalInputs = EquationFromProcess.Inputs().ToList();
+        var normalInputs = EquationFromProcess.Inputs.ToList();
         var environmentalInputs = EquationFromProcess.EnvironmentalInputs.ToList();
 
         // TODO: add detection when this should be intelligently split onto multiple lines
@@ -340,7 +340,7 @@ public partial class ChemicalEquation : VBoxContainer
 
         rightSide.PrefixPositiveWithPlus = hasNoInputs;
 
-        rightSide.UpdateCompounds(EquationFromProcess!.Outputs(), EquationFromProcess.LimitingCompounds);
+        rightSide.UpdateCompounds(EquationFromProcess!.Outputs, EquationFromProcess.LimitingCompounds);
     }
 
     private void UpdateEnvironmentPart(List<KeyValuePair<Compound, float>> environmentalInputs)
