@@ -16,7 +16,7 @@ public partial class MacroscopicMetaballDisplayer : MultiMeshInstance3D, IMetaba
 
 #pragma warning disable CA2213
     [Export]
-    private PackedScene hierarchyLineScene;
+    private PackedScene hierarchyLineScene = null!;
 #pragma warning restore CA2213
 
     private float? overrideColourAlpha;
@@ -150,7 +150,8 @@ public partial class MacroscopicMetaballDisplayer : MultiMeshInstance3D, IMetaba
 
                 line.Position = (metaball.Position + metaball.Parent.Position) * 0.5f;
                 line.Quaternion = Basis.LookingAt(metaball.Parent.Position - metaball.Position).GetRotationQuaternion();
-                line.Scale = new Vector3(line.Scale.X, line.Scale.Y, metaball.Parent.Position.DistanceTo(metaball.Position));
+                line.Scale =
+                    new Vector3(line.Scale.X, line.Scale.Y, metaball.Parent.Position.DistanceTo(metaball.Position));
 
                 ++j;
             }
@@ -160,7 +161,7 @@ public partial class MacroscopicMetaballDisplayer : MultiMeshInstance3D, IMetaba
 
         if (j < lines.Count)
         {
-            for (int k = j; k < lines.Count; k++)
+            for (int k = j; k < lines.Count; ++k)
             {
                 lines[k].DetachAndQueueFree();
             }
