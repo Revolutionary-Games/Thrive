@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://dagq5aexbmybf"]
 
 [ext_resource type="Script" uid="uid://bsq36gyv7ort1" path="res://src/macroscopic_stage/MacroscopicMetaballDisplayer.cs" id="1"]
+[ext_resource type="PackedScene" uid="uid://6t41bep5u10" path="res://src/macroscopic_stage/editor/MetaballHierarchyline.tscn" id="2_kpvoh"]
 
 [node name="MacroscopicMetaballDisplayer" type="MultiMeshInstance3D" unique_id=1297900871]
 script = ExtResource("1")
+hierarchyLineScene = ExtResource("2_kpvoh")
