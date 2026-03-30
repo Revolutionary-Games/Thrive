@@ -920,12 +920,16 @@ public static class MicrobeInternalCalculations
 
         concentration /= totalHexCount * (totalHexCount - 1);
 
-        // Calculate a strength factor that adjusts things
-        var strength = Math.Min(((float)totalHexCount - 1) / Constants.CELL_SPECIALIZATION_STRENGTH_FULL_AT, 1);
-        strength *= Constants.CELL_SPECIALIZATION_STRENGTH_MULTIPLIER;
+        var strength = Constants.CELL_SPECIALIZATION_STRENGTH_MULTIPLIER;
 
+        // If the cell has a nucleus max out the strength factor and apply an additional bonus
         if (hasNucleus)
-            strength *= Constants.CELL_SPECIALIZATION_NUCLEUS_MULTIPLIER;
+        {
+            return 1 + concentration * strength * Constants.CELL_SPECIALIZATION_NUCLEUS_MULTIPLIER;
+        }
+
+        // Calculate a strength factor that adjusts things
+        strength *= Math.Min(((float)totalHexCount - 1) / Constants.CELL_SPECIALIZATION_STRENGTH_FULL_AT, 1);
 
         // Then return the final result as the bonus being anything above 1
         return 1 + concentration * strength;
