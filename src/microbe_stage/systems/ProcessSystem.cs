@@ -421,7 +421,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
                 var speedAdjusted = CalculateProcessMaximumSpeed(process, speedModifier, biome, amountType, true);
 
                 // If the cell produces more ATP than it needs, its ATP producing processes need to be toned down
-                bool useRatio = speedAdjusted.Outputs.Any(a => a.Key == Compound.ATP)
+                bool useRatio = speedAdjusted.WritableOutputs.ContainsKey(Compound.ATP)
                     && consumptionProductionRatio < 1.0f;
 
                 foreach (var input in speedAdjusted.Inputs)
