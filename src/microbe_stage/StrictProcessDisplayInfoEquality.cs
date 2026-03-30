@@ -41,17 +41,17 @@ public class StrictProcessDisplayInfoEquality : IEquatable<StrictProcessDisplayI
         if (Math.Abs(our.CurrentSpeed - theirs.CurrentSpeed) > MathUtils.EPSILON)
             return false;
 
+        var processKeyValueComparer = new ProcessKeyValueComparer();
+
         // If process toggle state doesn't match, cannot be equal (needed to properly update process panel state when
         // enable / disable button is pressed)
         if (our.Enabled != theirs.Enabled)
             return false;
 
-        if (!our.Inputs.SequenceEqual(theirs.Inputs, ProcessKeyValueComparer.Instance))
+        if (!our.Inputs.SequenceEqual(theirs.Inputs, processKeyValueComparer))
             return false;
 
-        if (ReferenceEquals(our.EnvironmentalInputs, null) != ReferenceEquals(theirs.EnvironmentalInputs, null))
-            return false;
-        if (our.EnvironmentalInputs != null && !our.EnvironmentalInputs.DictionaryEquals(theirs.EnvironmentalInputs!))
+        if (!our.EnvironmentalInputs.SequenceEqual(theirs.EnvironmentalInputs!))
             return false;
 
         if (ReferenceEquals(our.FullSpeedRequiredEnvironmentalInputs, null) !=
@@ -66,7 +66,7 @@ public class StrictProcessDisplayInfoEquality : IEquatable<StrictProcessDisplayI
             return false;
         }
 
-        if (!our.Outputs.SequenceEqual(theirs.Outputs, ProcessKeyValueComparer.Instance))
+        if (!our.Outputs.SequenceEqual(theirs.Outputs, processKeyValueComparer))
             return false;
 
         if (ReferenceEquals(our.LimitingCompounds, null) != ReferenceEquals(theirs.LimitingCompounds, null))
@@ -96,8 +96,6 @@ public class StrictProcessDisplayInfoEquality : IEquatable<StrictProcessDisplayI
 
     private class ProcessKeyValueComparer : IEqualityComparer<KeyValuePair<Compound, float>>
     {
-        public static readonly ProcessKeyValueComparer Instance = new();
-
         public bool Equals(KeyValuePair<Compound, float> first, KeyValuePair<Compound, float> second)
         {
             return first.Key == second.Key && first.Value == second.Value;
