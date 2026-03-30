@@ -19,6 +19,11 @@ public interface IProcessDisplayInfo : IEquatable<IProcessDisplayInfo>
     public string Name { get; }
 
     /// <summary>
+    ///   Input compounds that aren't environmental
+    /// </summary>
+    public IEnumerable<KeyValuePair<Compound, float>> Inputs { get; }
+
+    /// <summary>
     ///   Current environmental input values
     /// </summary>
     public IEnumerable<KeyValuePair<Compound, float>> EnvironmentalInputs { get; }
@@ -27,6 +32,11 @@ public interface IProcessDisplayInfo : IEquatable<IProcessDisplayInfo>
     ///   Environment inputs that result in process running at maximum speed
     /// </summary>
     public IReadOnlyDictionary<Compound, float> FullSpeedRequiredEnvironmentalInputs { get; }
+
+    /// <summary>
+    ///   All the output compounds
+    /// </summary>
+    public IEnumerable<KeyValuePair<Compound, float>> Outputs { get; }
 
     /// <summary>
     ///   The current speed of the process (if known)
@@ -39,16 +49,6 @@ public interface IProcessDisplayInfo : IEquatable<IProcessDisplayInfo>
     ///   The limiting compounds in speed. Or null if not set
     /// </summary>
     public IReadOnlyList<Compound>? LimitingCompounds { get; }
-
-    /// <summary>
-    ///   Input compounds that aren't environmental
-    /// </summary>
-    public IEnumerable<KeyValuePair<Compound, float>> Inputs { get; }
-
-    /// <summary>
-    ///   All the output compounds
-    /// </summary>
-    public IEnumerable<KeyValuePair<Compound, float>> Outputs { get; }
 
     /// <summary>
     ///   Checks if this process info is for the given underlying process
