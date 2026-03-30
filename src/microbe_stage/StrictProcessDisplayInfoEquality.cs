@@ -51,7 +51,7 @@ public class StrictProcessDisplayInfoEquality : IEquatable<StrictProcessDisplayI
         if (!our.Inputs.SequenceEqual(theirs.Inputs, processKeyValueComparer))
             return false;
 
-        if (!our.EnvironmentalInputs.SequenceEqual(theirs.EnvironmentalInputs!))
+        if (!our.EnvironmentalInputs.SequenceEqual(theirs.EnvironmentalInputs, processKeyValueComparer))
             return false;
 
         if (ReferenceEquals(our.FullSpeedRequiredEnvironmentalInputs, null) !=
