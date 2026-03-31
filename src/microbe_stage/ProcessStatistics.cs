@@ -144,7 +144,6 @@ public class SingleProcessStatistics : IProcessDisplayInfo
         }
     }
 
-    // Todo: add interpolation between multiple snapshots
     public float CurrentSpeed
     {
         get => CalculateAverageSpeed();
