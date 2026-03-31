@@ -6,8 +6,6 @@ using System.Collections.Generic;
 /// </summary>
 public class SummedProcessStatistics : IProcessDisplayInfo
 {
-    public int ProcessCount;
-
     private readonly Dictionary<Compound, float> summedEnvironmentalInputs = new();
 
     private readonly Dictionary<Compound, float> summedFullSpeedRequiredEnvironmentalInputs = new();
@@ -89,6 +87,7 @@ public class SummedProcessStatistics : IProcessDisplayInfo
 
         CurrentSpeed += stats.CurrentSpeed;
 
+        // Refresh the process' manual activation status
         var newProcess = Process;
         newProcess.SpeedMultiplier = stats.Process.SpeedMultiplier;
         Process = newProcess;
@@ -104,6 +103,8 @@ public class SummedProcessStatistics : IProcessDisplayInfo
             }
         }
 
+        // This list may vary between cells if the current process consumes/produces ATP
+        // The first added cell with this process provides this data
         if (LimitingCompounds == null)
         {
             LimitingCompounds = stats.LimitingCompounds;
@@ -120,10 +121,10 @@ public class SummedProcessStatistics : IProcessDisplayInfo
 
     public void Clear()
     {
-        ProcessCount = 0;
         CurrentSpeed = 0.0f;
 
         summedEnvironmentalInputs.Clear();
+        summedFullSpeedRequiredEnvironmentalInputs.Clear();
         LimitingCompounds = null;
     }
 
