@@ -41,17 +41,15 @@ public class StrictProcessDisplayInfoEquality : IEquatable<StrictProcessDisplayI
         if (Math.Abs(our.CurrentSpeed - theirs.CurrentSpeed) > MathUtils.EPSILON)
             return false;
 
-        var processKeyValueComparer = new ProcessKeyValueComparer();
-
         // If process toggle state doesn't match, cannot be equal (needed to properly update process panel state when
         // enable / disable button is pressed)
         if (our.Enabled != theirs.Enabled)
             return false;
 
-        if (!our.Inputs.SequenceEqual(theirs.Inputs, processKeyValueComparer))
+        if (!IsSequenceEqual(our.Inputs, theirs.Inputs))
             return false;
 
-        if (!our.EnvironmentalInputs.SequenceEqual(theirs.EnvironmentalInputs, processKeyValueComparer))
+        if (!IsSequenceEqual(our.EnvironmentalInputs, theirs.EnvironmentalInputs))
             return false;
 
         if (ReferenceEquals(our.FullSpeedRequiredEnvironmentalInputs, null) !=
@@ -66,7 +64,7 @@ public class StrictProcessDisplayInfoEquality : IEquatable<StrictProcessDisplayI
             return false;
         }
 
-        if (!our.Outputs.SequenceEqual(theirs.Outputs, processKeyValueComparer))
+        if (!IsSequenceEqual(our.Outputs, theirs.Outputs))
             return false;
 
         if (ReferenceEquals(our.LimitingCompounds, null) != ReferenceEquals(theirs.LimitingCompounds, null))
@@ -94,16 +92,32 @@ public class StrictProcessDisplayInfoEquality : IEquatable<StrictProcessDisplayI
         return DisplayInfo.GetHashCode();
     }
 
-    private class ProcessKeyValueComparer : IEqualityComparer<KeyValuePair<Compound, float>>
+    private bool IsSequenceEqual(IEnumerable<KeyValuePair<Compound, float>> items1,
+        IEnumerable<KeyValuePair<Compound, float>> items2)
     {
-        public bool Equals(KeyValuePair<Compound, float> first, KeyValuePair<Compound, float> second)
+        using var enumerator1 = items1.GetEnumerator();
+        using var enumerator2 = items2.GetEnumerator();
+
+        while (enumerator1.MoveNext())
         {
-            return first.Key == second.Key && first.Value == second.Value;
+            // Fail if different count
+            if (!enumerator2.MoveNext())
+                return false;
+
+            var value1 = enumerator1.Current;
+            var value2 = enumerator2.Current;
+
+            if (!value1.Value.Equals(value2.Value))
+                return false;
+
+            if (!value1.Key.Equals(value2.Key))
+                return false;
         }
 
-        public int GetHashCode(KeyValuePair<Compound, float> obj)
-        {
-            return obj.Key.GetHashCode() ^ obj.Value.GetHashCode();
-        }
+        // Fail if different number of items
+        if (enumerator2.MoveNext())
+            return false;
+
+        return true;
     }
 }
