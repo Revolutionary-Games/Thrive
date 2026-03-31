@@ -15,6 +15,8 @@ public partial class CellBodyPlanEditorComponent
 
     protected override void OnTranslationsChanged()
     {
+        base.OnTranslationsChanged();
+
         organismStatisticsPanel.OnTranslationsChanged();
 
         UpdateSpecializationDisplay();

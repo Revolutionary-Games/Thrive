@@ -344,6 +344,8 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
     protected override void OnTranslationsChanged()
     {
+        base.OnTranslationsChanged();
+
         Editor.SendAutoEvoResultsToReportComponent();
         UpdateTimeIndicator(Editor.CurrentGame.GameWorld.TotalPassedTime);
         UpdateEvents(Editor.CurrentGame.GameWorld.EventsLog, Editor.CurrentGame.GameWorld.TotalPassedTime);

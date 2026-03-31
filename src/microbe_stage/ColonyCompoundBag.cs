@@ -1,11 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Components;
 using Godot;
-using JetBrains.Annotations;
 
 /// <summary>
 ///   Access to a microbe colony's compounds through a unified interface. Instances of this class should not be stored
@@ -14,6 +11,7 @@ using JetBrains.Annotations;
 public class ColonyCompoundBag : ICompoundStorage
 {
     private readonly object refreshListLock = new();
+    private readonly Dictionary<Compound, float> summedCompoundsBuffer = new();
 
     private List<CompoundBag> colonyBags = new();
     private List<CompoundBag> bagBuilder = new();
@@ -30,7 +28,13 @@ public class ColonyCompoundBag : ICompoundStorage
 
     public float GetCapacityForCompound(Compound compound)
     {
-        return GetCompoundBags().Sum(p => p.GetCapacityForCompound(compound));
+        float sum = 0;
+        foreach (var bag in GetCompoundBags())
+        {
+            sum += bag.GetCapacityForCompound(compound);
+        }
+
+        return sum;
     }
 
     /// <summary>
@@ -69,60 +73,16 @@ public class ColonyCompoundBag : ICompoundStorage
     public void DistributeCompoundSurplus()
     {
         var bags = GetCompoundBags();
+        FillSummedCompoundsBuffer(bags);
 
-        // TODO: rework how this colony compounds are calculated to avoid the so temporary memory and LINQ-heavy code
-        foreach (var currentPair in this)
+        foreach (var (compound, compoundAmount) in summedCompoundsBuffer)
         {
-            var compound = currentPair.Key;
             var compoundDefinition = SimulationParameters.GetCompound(compound);
-
-            if (!compoundDefinition.CanBeDistributed || !IsUsefulInAnyCompoundBag(compoundDefinition, bags))
+            if (!TryPrepareCompoundDistribution(compound, compoundAmount, bags, compoundDefinition, out var ratio))
                 continue;
 
-            var compoundAmount = currentPair.Value;
-            var compoundCapacity = GetCapacityForCompound(compound);
-
-            // This is just an error print, can be removed if no more NaN issues occur
-            // See also CompoundBag.FixNaNCompounds which fixes NaN values after they occur
-            if (compoundCapacity == 0)
-            {
-                if (!nanIssueReported)
-                {
-                    GD.PrintErr($"Compound {compoundDefinition.Name} is set to useful but has a Capacity of zero, " +
-                        "https://github.com/Revolutionary-Games/Thrive/issues/3201");
-                    nanIssueReported = true;
-                }
-            }
-
-            var ratio = compoundAmount / compoundCapacity;
-
-            foreach (var bag in bags)
-            {
-                if (!bag.IsUseful(compound))
-                    continue;
-
-                var expectedAmount = ratio * bag.GetCapacityForCompound(compound);
-                var surplus = bag.GetCompoundAmount(compound) - expectedAmount;
-                if (surplus > 0)
-                {
-                    bag.TakeCompound(compound, surplus);
-                }
-                else
-                {
-                    bag.AddCompound(compound, -surplus);
-                }
-            }
+            RedistributeCompoundAcrossBags(compound, compoundDefinition, ratio, bags);
         }
-    }
-
-    [MustDisposeResource]
-    public IEnumerator<KeyValuePair<Compound, float>> GetEnumerator()
-    {
-        return GetCompoundBags()
-            .SelectMany(p => p.Compounds)
-            .GroupBy(p => p.Key)
-            .Select(p => new KeyValuePair<Compound, float>(p.Key, p.Sum(x => x.Value)))
-            .GetEnumerator();
     }
 
     public void ClampNegativeCompoundAmounts()
@@ -138,7 +98,7 @@ public class ColonyCompoundBag : ICompoundStorage
 
     public bool AnyIsUsefulInAnyCompoundBag(List<Compound> compounds)
     {
-        // Just in case the compound bag method gets turned back into an iterator, this is fetched just once
+        // Fetch this once to keep the hot path on the concrete list type.
         var bags = GetCompoundBags();
 
         foreach (var compound in compounds)
@@ -153,15 +113,15 @@ public class ColonyCompoundBag : ICompoundStorage
         return false;
     }
 
-    [MustDisposeResource]
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return GetEnumerator();
-    }
-
     public float GetCompoundAmount(Compound compound)
     {
-        return GetCompoundBags().Sum(p => p.GetCompoundAmount(compound));
+        float sum = 0;
+        foreach (var bag in GetCompoundBags())
+        {
+            sum += bag.GetCompoundAmount(compound);
+        }
+
+        return sum;
     }
 
     public float TakeCompound(Compound compound, float amount)
@@ -213,6 +173,90 @@ public class ColonyCompoundBag : ICompoundStorage
         }
 
         return false;
+    }
+
+    private void FillSummedCompoundsBuffer(List<CompoundBag> bags)
+    {
+        summedCompoundsBuffer.Clear();
+
+        foreach (var compoundBag in bags)
+        {
+            foreach (var pair in compoundBag.Compounds)
+            {
+                if (!summedCompoundsBuffer.TryGetValue(pair.Key, out var existingAmount))
+                {
+                    summedCompoundsBuffer.Add(pair.Key, pair.Value);
+                    continue;
+                }
+
+                summedCompoundsBuffer[pair.Key] = existingAmount + pair.Value;
+            }
+        }
+    }
+
+    private bool TryPrepareCompoundDistribution(Compound compound, float compoundAmount, List<CompoundBag> bags,
+        CompoundDefinition compoundDefinition, out float ratio)
+    {
+        ratio = 0;
+
+        if (!compoundDefinition.CanBeDistributed)
+            return false;
+
+        float compoundCapacity = 0;
+        var usefulInAnyBag = false;
+
+        foreach (var bag in bags)
+        {
+            if (!usefulInAnyBag && bag.IsUseful(compoundDefinition))
+                usefulInAnyBag = true;
+
+            compoundCapacity += bag.GetCapacityForCompound(compound);
+        }
+
+        if (!usefulInAnyBag)
+            return false;
+
+        // This is just an error print, can be removed if no more NaN issues occur
+        // See also CompoundBag.FixNaNCompounds which fixes NaN values after they occur
+        if (compoundCapacity == 0)
+        {
+            ReportZeroCapacityForUsefulCompoundOnce(compoundDefinition);
+            return false;
+        }
+
+        ratio = compoundAmount / compoundCapacity;
+        return true;
+    }
+
+    private void ReportZeroCapacityForUsefulCompoundOnce(CompoundDefinition compoundDefinition)
+    {
+        if (nanIssueReported)
+            return;
+
+        GD.PrintErr($"Compound {compoundDefinition.Name} is set to useful but has a Capacity of zero, " +
+            "https://github.com/Revolutionary-Games/Thrive/issues/3201");
+        nanIssueReported = true;
+    }
+
+    private void RedistributeCompoundAcrossBags(Compound compound, CompoundDefinition compoundDefinition,
+        float ratio, List<CompoundBag> bags)
+    {
+        foreach (var bag in bags)
+        {
+            if (!bag.IsUseful(compoundDefinition))
+                continue;
+
+            var expectedAmount = ratio * bag.GetCapacityForCompound(compound);
+            var surplus = bag.GetCompoundAmount(compound) - expectedAmount;
+
+            if (surplus > 0)
+            {
+                bag.TakeCompound(compound, surplus);
+                continue;
+            }
+
+            bag.AddCompound(compound, -surplus);
+        }
     }
 
     private List<CompoundBag> GetCompoundBags()

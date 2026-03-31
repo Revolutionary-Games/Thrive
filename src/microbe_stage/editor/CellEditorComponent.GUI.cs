@@ -81,6 +81,8 @@ public partial class CellEditorComponent
 
     protected override void OnTranslationsChanged()
     {
+        base.OnTranslationsChanged();
+
         UpdateAutoEvoPredictionTranslations();
         UpdateAutoEvoPredictionDetailsText();
 

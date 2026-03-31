@@ -397,6 +397,8 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
     protected override void OnTranslationsChanged()
     {
+        base.OnTranslationsChanged();
+
         UpdateCurrentValueDisplays();
         UpdateMPCostInToolTips();
         UpdateToolTipStats();
