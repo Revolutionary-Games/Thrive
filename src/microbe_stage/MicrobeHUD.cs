@@ -567,7 +567,6 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
                         "Colony member process statistics are uninitialized, can't display them in the process panel");
                 }
             }
-
         }
         else if (stage!.Player.TryGet<BioProcesses>(out var stats) && stats.ProcessStatistics != null)
         {
