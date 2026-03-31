@@ -51,7 +51,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     private Slider oxygenResistanceSlider = null!;
 
     [Export]
-    private Slider oxygenResistanceDisabledSlider = null!;
+    private Control oxygenResistanceSpacer = null!;
 
     [Export]
     private Slider uvResistanceSlider = null!;
@@ -471,7 +471,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         oxygenResistanceSlider.MaxValue = sliderMaxValue;
         oxygenResistanceSlider.SetStretchRatio(sliderMaxValue);
-        oxygenResistanceDisabledSlider.SetStretchRatio(1 - sliderMaxValue);
+        oxygenResistanceSpacer.SetStretchRatio(1 - sliderMaxValue);
     }
 
     private void CalculateStatsAndShow(EnvironmentalTolerances calculationTolerances,
