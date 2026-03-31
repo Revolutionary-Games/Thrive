@@ -311,8 +311,8 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             if (control.State == MicrobeState.MucocystShield)
                 return;
 
-            FleeFromPredators(ref position, ref ai, ref control, ref organelles, ref compoundStorage, entity,
-                predator.Value.Position, predator.Value.Entity, speciesFocus,
+            FleeFromPredators(ref position, ref ai, ref control, ref organelles, ref signaling, ref compoundStorage,
+                entity, predator.Value.Position, predator.Value.Entity, speciesFocus,
                 speciesActivity, speciesAggression, speciesFear, strain, random);
 
             if (organelles.HasSignalingAgent && random.NextSingle() < Constants.AI_SIGNALING_CHANCE)
@@ -593,11 +593,6 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
 
                 signaling.QueuedSignalingCommand = MicrobeSignalCommand.None;
             }
-        }
-        else
-        {
-            // TODO: should probably add more
-            signaling.QueuedSignalingCommand = MicrobeSignalCommand.None;
         }
 
         signaling.QueuedSignalingCommand = MicrobeSignalCommand.None;
@@ -1003,8 +998,8 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
     }
 
     private void FleeFromPredators(ref WorldPosition position, ref MicrobeAI ai, ref MicrobeControl control,
-        ref OrganelleContainer organelles, ref CompoundStorage compoundStorage, in Entity entity,
-        Vector3 predatorLocation, Entity predatorEntity, float speciesFocus, float speciesActivity,
+        ref OrganelleContainer organelles, ref CommandSignaler signaling, ref CompoundStorage compoundStorage,
+        in Entity entity, Vector3 predatorLocation, Entity predatorEntity, float speciesFocus, float speciesActivity,
         float speciesAggression, float speciesFear, float strain, Random random)
     {
         var ourCompounds = compoundStorage.Compounds;
@@ -1065,6 +1060,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         }
 
         // If prey is confident enough, it will try and launch toxin at the predator
+        // and send follow me command if it has signaling agent and the chance hits
         if (speciesAggression > speciesFear &&
             position.Position.DistanceSquaredTo(predatorLocation) >
             300.0f - (5.0f * speciesAggression) + (6.0f * speciesFear) &&
@@ -1072,6 +1068,11 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         {
             LaunchToxin(ref control, ref organelles, ref position, predatorLocation, ourCompounds, speciesFocus,
                 speciesActivity);
+
+            if (organelles.HasSignalingAgent && random.NextSingle() < Constants.AI_SIGNALING_CHANCE)
+            {
+                signaling.QueuedSignalingCommand = MicrobeSignalCommand.FollowMe;
+            }
         }
 
         // No matter what, I want to make sure I'm moving
