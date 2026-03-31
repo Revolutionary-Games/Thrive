@@ -12,18 +12,9 @@ public class SummedProcessStatistics : IProcessDisplayInfo
 
     private readonly Dictionary<Compound, float> summedFullSpeedRequiredEnvironmentalInputs = new();
 
-    public SummedProcessStatistics(SingleProcessStatistics displayInfo)
+    public SummedProcessStatistics(TweakedProcess process)
     {
-        Process = displayInfo.Process;
-
-        CurrentSpeed = displayInfo.CurrentSpeed;
-
-        foreach (var input in displayInfo.FullSpeedRequiredEnvironmentalInputs)
-        {
-            summedFullSpeedRequiredEnvironmentalInputs.Add(input.Key, input.Value);
-        }
-
-        UpdateSecondaryInfo(displayInfo);
+        Process = process;
     }
 
     /// <summary>
@@ -88,7 +79,7 @@ public class SummedProcessStatistics : IProcessDisplayInfo
         return process == Process.Process;
     }
 
-    public void UpdateSecondaryInfo(SingleProcessStatistics stats)
+    public void SumWithStatistics(SingleProcessStatistics stats)
     {
         if (stats.Process.Process != Process.Process)
         {
@@ -96,18 +87,35 @@ public class SummedProcessStatistics : IProcessDisplayInfo
                 "The statistics provided to SummedProcessStatistics have a different bioprocess");
         }
 
+        CurrentSpeed += stats.CurrentSpeed;
+
         var newProcess = Process;
         newProcess.SpeedMultiplier = stats.Process.SpeedMultiplier;
         Process = newProcess;
 
-        summedEnvironmentalInputs.Clear();
+        // The next three stats can't vary between cells in a colony, so they are only set once per frame
+        // Importantly, they're reset each frame by Clear(), so e.g. moving patches can still change these
 
-        foreach (var input in stats.EnvironmentalInputs)
+        if (summedEnvironmentalInputs.Count == 0)
         {
-            summedEnvironmentalInputs.Add(input.Key, input.Value);
+            foreach (var input in stats.EnvironmentalInputs)
+            {
+                summedEnvironmentalInputs.Add(input.Key, input.Value);
+            }
         }
 
-        LimitingCompounds = stats.LimitingCompounds;
+        if (LimitingCompounds == null)
+        {
+            LimitingCompounds = stats.LimitingCompounds;
+        }
+
+        if (summedFullSpeedRequiredEnvironmentalInputs.Count == 0)
+        {
+            foreach (var input in stats.FullSpeedRequiredEnvironmentalInputs)
+            {
+                summedFullSpeedRequiredEnvironmentalInputs.Add(input.Key, input.Value);
+            }
+        }
     }
 
     public void Clear()

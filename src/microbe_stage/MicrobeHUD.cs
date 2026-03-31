@@ -567,6 +567,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
                         "Colony member process statistics are uninitialized, can't display them in the process panel");
                 }
             }
+
         }
         else if (stage!.Player.TryGet<BioProcesses>(out var stats) && stats.ProcessStatistics != null)
         {
@@ -1122,17 +1123,13 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     private void AddStatisticsToProcesses(SingleProcessStatistics stats,
         Dictionary<BioProcess, SummedProcessStatistics> processes)
     {
-        if (processes.TryGetValue(stats.Process.Process, out var value))
+        if (!processes.TryGetValue(stats.Process.Process, out var value))
         {
-            value.CurrentSpeed += stats.CurrentSpeed;
-            value.UpdateSecondaryInfo(stats);
-        }
-        else
-        {
-            value = new SummedProcessStatistics(stats);
+            value = new SummedProcessStatistics(stats.Process);
             processes.Add(stats.Process.Process, value);
         }
 
+        value.SumWithStatistics(stats);
         value.Marked = true;
     }
 
