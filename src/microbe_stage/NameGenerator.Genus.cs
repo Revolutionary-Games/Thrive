@@ -27,7 +27,7 @@ public partial class NameGenerator
 
     public void GenerateGenusNameInternal(Random random, StringBuilder stringBuilder,
         MicrobeSpecies? speciesOld, MicrobeSpecies speciesNew, out bool isNumbered, out bool isProto,
-        out string newRoot, out global::NameGenerator.GrammaticalGender newGender, out INameGenerationTarget? target)
+        out string newRoot, out GrammaticalGender newGender, out INameGenerationTarget? target)
     {
         target = null;
 
