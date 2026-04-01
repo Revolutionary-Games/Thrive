@@ -77,6 +77,9 @@ public class SummedProcessStatistics : IProcessDisplayInfo
         return process == Process.Process;
     }
 
+    /// <summary>
+    ///   Adds the <paramref name="stats"/>' speed to the these stats. Also updates this class' secondary info.
+    /// </summary>
     public void SumWithStatistics(SingleProcessStatistics stats)
     {
         if (stats.Process.Process != Process.Process)
