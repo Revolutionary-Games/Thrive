@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-02-27 14:48+0200\n"
-"PO-Revision-Date: 2026-02-23 21:23+0000\n"
+"PO-Revision-Date: 2026-03-03 07:27+0000\n"
 "Last-Translator: Søren Hansen <pjuske4life@gmail.com>\n"
 "Language-Team: Danish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/da/>\n"
 "Language: da\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.15.2\n"
+"X-Generator: Weblate 5.16.1\n"
 "Generated-By: Babel 2.9.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -709,17 +709,20 @@ msgstr "Cellulose"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Denne membran har en væg, som resulterer i bedre overordnet beskyttelse imod skade, og særligt imod fysik skade. Det koster også mindre energi at holde sin form, men kan ikke hurtigt absorbere ressourcer, og er langsommere. [b]Cellulase kan fordøje denne væg[/b] hvilket gør den sårbar overfor opslugning af rovdyr."
 
-#, fuzzy
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
 msgstr ""
-"Cellens rotationshastighed. Større celler roterer langsommere, men kan kompenseres for ved at tilføje cilier.\n"
-"Placering af organeller påvirker rotationen, hvor organeller længere væk fra midten har en kraftigere rotationensreduktion."
+"I flercelle viser dette den gennemsnitlige specialiseringsbonus for alle cellerne.\n"
+"Den nuværende bonus er {0}% fra {1} celler.\n"
+"Den mest specialiseret type er {3} med en bonus på {2}%.\n"
+"For at øge dette, gør celletyperne mere specialiseret, eller tilføj flere specialiserede celler."
 
-#, fuzzy
 msgid "CELL_SPECIALIZATION_TOOLTIP"
 msgstr ""
-"Cellens rotationshastighed. Større celler roterer langsommere, men kan kompenseres for ved at tilføje cilier.\n"
-"Placering af organeller påvirker rotationen, hvor organeller længere væk fra midten har en kraftigere rotationensreduktion."
+"Specialisering af en celle til bare en type organel giver en hastighedsbonus til bioprocesser.\n"
+"Den nuværende bonus er {0}% (bonussen dukker først op efter {3} organeller er placeret, og styrken øges op til {4})\n"
+"Den nuværende bonus gives da der er {1} {2} organeller.\n"
+"Bonussen øges som flere organeller er den mest almindelige type placeres.\n"
+"Hvis den er ved fuld størrelsesstyrke skal andre organeller udskiftes med den almindelige type for at øge bonussen."
 
 msgid "CELL_STAT_ROTATION_TOOLTIP"
 msgstr ""
@@ -7006,27 +7009,23 @@ msgstr "Øger lagerpladsen i cellen."
 msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr "Vakuolen vil lagre {0} enheder af det valgte stof"
 
-#, fuzzy
 msgid "VALUE_MODIFIER"
-msgstr "Helbredsmodifikationer"
+msgstr "Modifikator"
 
 msgid "VALUE_OFFSET"
-msgstr ""
+msgstr "Offset"
 
-#, fuzzy
 msgid "VALUE_TOTAL"
-msgstr "Rå:"
+msgstr "Total"
 
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
 
-#, fuzzy
 msgid "VALUE_WITH_UNIT_PLUS"
-msgstr "{0} {1}"
+msgstr "+{0} {1}"
 
-#, fuzzy
 msgid "VALUE_WITH_UNIT_PLUS_MINUS"
-msgstr "{0} {1}"
+msgstr "±{0} {1}"
 
 msgid "VENTS_ARE_HOME"
 msgstr "Vældet er mit hjem"
@@ -7217,6 +7216,7 @@ msgstr "Kommer snart."
 msgid "WIKI_AXON_EFFECTS"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_AXON_INTRO"
 msgstr "Nervefibre mellem neuroner, tilgængeligt fra Flercellestadiet. Påkrævet for at øge din organismes hjernekraft og dermed fortsætte til fremtidige stadier."
 
@@ -7226,9 +7226,11 @@ msgstr "Ingen modifikationer."
 msgid "WIKI_AXON_PROCESSES"
 msgstr "Ingen processer."
 
+#, fuzzy
 msgid "WIKI_AXON_REQUIREMENTS"
 msgstr "Kun tilgængeligt fra Flercellestadiet og fremefter."
 
+#, fuzzy
 msgid "WIKI_AXON_SCIENTIFIC_BACKGROUND"
 msgstr "Mangler at blive tilføjet"
 
@@ -7818,6 +7820,7 @@ msgstr ""
 msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr "Ingen opgraderinger."
 
+#, fuzzy
 msgid "WIKI_MACROSCOPIC_STAGE_CONCEPT_ART"
 msgstr ""
 "[indent]—   [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/images/thumb/9/9f/Multieditorconcept.jpeg/120px-Multieditorconcept.jpeg]Editor koncept[/url][/color] \t\t\t[/indent]\n"
@@ -7865,6 +7868,7 @@ msgstr "[b] Melanosomer[/b] er [color=#3796e1][url=thriveopedia:OrganellesRoot]o
 msgid "WIKI_MELANOSOME_MODIFICATIONS"
 msgstr "Ingen modifikationer."
 
+#, fuzzy
 msgid "WIKI_MELANOSOME_PROCESSES"
 msgstr ""
 "[b]Radiosyntese[/b]: [b]Stråling[/b] File:RadiationIcon.png → [thrive:compound type=\"atp\"][/thrive:compound]\n"
@@ -7988,6 +7992,7 @@ msgstr "Ingen processer."
 msgid "WIKI_MYOFIBRIL_REQUIREMENTS"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_SCIENTIFIC_BACKGROUND"
 msgstr "Mangler at blive tilføjet"
 
@@ -8456,6 +8461,7 @@ msgstr ""
 msgid "WIKI_SPACE_STAGE_UI"
 msgstr "Kommer snart."
 
+#, fuzzy
 msgid "WIKI_STAGES_ROOT_INTRO"
 msgstr ""
 "Dette er alle de stadier der er i spillet. Alt i alt er der 8 stadier, hver med deres eget tildels særpræget gameplay.\n"
@@ -8593,6 +8599,7 @@ msgstr "Ingen processer"
 msgid "WIKI_VACUOLE_REQUIREMENTS"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_VACUOLE_SCIENTIFIC_BACKGROUND"
 msgstr "Mangler at blive tilføjet"
 

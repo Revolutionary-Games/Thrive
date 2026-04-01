@@ -95,7 +95,8 @@
     "IconPath": "res://assets/textures/gui/bevel/parts/RusticyaninIcon.png",
     "EditorButtonGroup": "Protein",
     "EditorButtonOrder": 4,
-    "EndosymbiosisUnlocks": "ferroplast"
+    "EndosymbiosisUnlocks": "ferroplast",
+    "EquivalentInSpecializationTo": "ferroplast"
   },
   "nitrogenase": {
     "MPCost": 55,
@@ -141,7 +142,8 @@
     ],
     "EditorButtonGroup": "Protein",
     "EditorButtonOrder": 5,
-    "EndosymbiosisUnlocks": "nitrogenfixingplastid"
+    "EndosymbiosisUnlocks": "nitrogenfixingplastid",
+    "EquivalentInSpecializationTo": "nitrogenfixingplastid"
   },
   "protoplasm": {
     "MPCost": 55,
@@ -175,7 +177,8 @@
     "ConsumptionColour": "#c51d38",
     "IconPath": "res://assets/textures/gui/bevel/parts/CytoplasmIcon.png",
     "EditorButtonGroup": "Hidden",
-    "EditorButtonOrder": 5
+    "EditorButtonOrder": 5,
+    "EquivalentInSpecializationTo": "cytoplasm"
   },
   "chemoSynthesizingProteins": {
     "MPCost": 45,
@@ -213,7 +216,8 @@
     "IconPath": "res://assets/textures/gui/bevel/parts/ChemoproteinsIcon.png",
     "EditorButtonGroup": "Protein",
     "EditorButtonOrder": 3,
-    "EndosymbiosisUnlocks": "chemoplast"
+    "EndosymbiosisUnlocks": "chemoplast",
+    "EquivalentInSpecializationTo": "chemoplast"
   },
   "oxytoxyProteins": {
     "MPCost": 55,
@@ -317,7 +321,8 @@
       }
     },
     "EditorButtonOrder": 6,
-    "EndosymbiosisUnlocks": "oxytoxy"
+    "EndosymbiosisUnlocks": "oxytoxy",
+    "EquivalentInSpecializationTo": "oxytoxy"
   },
   "chromatophore": {
     "MPCost": 50,
@@ -364,7 +369,8 @@
     ],
     "EditorButtonGroup": "Protein",
     "EditorButtonOrder": 2,
-    "EndosymbiosisUnlocks": "chloroplast"
+    "EndosymbiosisUnlocks": "chloroplast",
+    "EquivalentInSpecializationTo": "chloroplast"
   },
   "metabolosome": {
     "MPCost": 45,
@@ -409,7 +415,8 @@
     ],
     "EditorButtonGroup": "Protein",
     "EditorButtonOrder": 1,
-    "EndosymbiosisUnlocks": "mitochondrion"
+    "EndosymbiosisUnlocks": "mitochondrion",
+    "EquivalentInSpecializationTo": "mitochondrion"
   },
   "hydrogenase": {
     "MPCost": 45,
@@ -446,7 +453,8 @@
     "IconPath": "res://assets/textures/gui/bevel/parts/HydrogenaseIcon.svg",
     "EditorButtonGroup": "Protein",
     "EditorButtonOrder": 0,
-    "EndosymbiosisUnlocks": "hydrogenosome"
+    "EndosymbiosisUnlocks": "hydrogenosome",
+    "EquivalentInSpecializationTo": "hydrogenosome"
   },
   "hydrogenosome": {
     "MPCost": 45,
@@ -591,7 +599,8 @@
     "EditorButtonGroup": "Protein",
     "EditorButtonOrder": 8,
     "LAWK": false,
-    "EndosymbiosisUnlocks": "thermoplast"
+    "EndosymbiosisUnlocks": "thermoplast",
+    "EquivalentInSpecializationTo": "thermoplast"
   },
   "chemoplast": {
     "MPCost": 45,

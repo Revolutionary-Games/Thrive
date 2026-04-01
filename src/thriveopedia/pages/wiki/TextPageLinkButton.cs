@@ -14,12 +14,20 @@ public partial class TextPageLinkButton : Button
 #pragma warning disable CA2213
     [Export]
     public ThriveopediaWikiPage ParentPage = null!;
+
+    private Thriveopedia? thriveopedia;
 #pragma warning restore CA2213
 
     public override void _Ready()
     {
         ParentPage.Connect(ThriveopediaWikiPage.SignalName.OnStageChanged,
             new Callable(this, nameof(OnSelectedStageChanged)));
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        thriveopedia = null;
     }
 
     public override void _Pressed()
@@ -29,10 +37,15 @@ public partial class TextPageLinkButton : Button
 
     public void OnSelectedStageChanged()
     {
+        thriveopedia ??= ThriveopediaManager.GetParentThriveopedia(this);
+
+        if (thriveopedia == null)
+            return;
+
         IThriveopediaPage page;
         try
         {
-            page = ThriveopediaManager.GetPage(PageName);
+            page = thriveopedia.GetPage(PageName);
         }
         catch (Exception e)
         {

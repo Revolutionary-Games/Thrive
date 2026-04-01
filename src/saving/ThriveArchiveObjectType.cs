@@ -313,6 +313,7 @@ public enum ThriveArchiveObjectType : uint
     CellTypeEditsHolder = 4393,
     GeneralAvoidPredationSelectionPressure = 4394,
     EnergyConsumptionPressure = 4395,
+    ComponentSpatialAnimation = 4396,
 
     // Special flag types
     ExtendedOrganelleLayout = OrganelleLayout | ArchiveObjectType.ExtendedTypeFlag,

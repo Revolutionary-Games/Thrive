@@ -78,16 +78,9 @@ public partial class EditorComponentBase<TEditor> : ControlWithInput, IEditorCom
         if (IsSubComponent)
             return;
 
-        if (OnNextTab != null)
+        if (OnNextTab != null || OnFinish != null)
         {
-            // This is the default state, so we don't need to do anything here
-        }
-        else if (OnFinish != null)
-        {
-            // Turn the next button into the finish button
-            finishOrNextButton.Text = Localization.Translate("CONFIRM_CAPITAL");
-            finishOrNextButton.UnRegisterFirstToolTipForControl();
-            finishOrNextButton.RegisterToolTipForControl("finishButton", "editor");
+            ApplyFinishOrNextButtonChanges(true);
         }
         else
         {
@@ -228,7 +221,31 @@ public partial class EditorComponentBase<TEditor> : ControlWithInput, IEditorCom
     /// </summary>
     protected virtual void OnTranslationsChanged()
     {
-        throw new GodotAbstractMethodNotOverriddenException();
+        if (IsSubComponent)
+            return;
+
+        ApplyFinishOrNextButtonChanges(false);
+    }
+
+    /// <summary>
+    ///   Applies the correct text and tooltip registration for the finish/next button
+    /// </summary>
+    protected void ApplyFinishOrNextButtonChanges(bool registerToolTip)
+    {
+        if (OnNextTab != null)
+        {
+            // This is the default state, so we don't need to do anything here
+        }
+        else if (OnFinish != null)
+        {
+            // Turn the next button into the finish button
+            finishOrNextButton.Text = Localization.Translate("CONFIRM_CAPITAL");
+            if (registerToolTip)
+            {
+                finishOrNextButton.UnRegisterFirstToolTipForControl();
+                finishOrNextButton.RegisterToolTipForControl("finishButton", "editor");
+            }
+        }
     }
 
     /// <summary>

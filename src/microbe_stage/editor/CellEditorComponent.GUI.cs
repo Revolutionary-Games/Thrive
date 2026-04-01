@@ -81,6 +81,8 @@ public partial class CellEditorComponent
 
     protected override void OnTranslationsChanged()
     {
+        base.OnTranslationsChanged();
+
         UpdateAutoEvoPredictionTranslations();
         UpdateAutoEvoPredictionDetailsText();
 
@@ -482,20 +484,12 @@ public partial class CellEditorComponent
 
         // Calculate the most common organelle to show what we should recommend the player place more
         var temp = tempMemory3;
-        temp.Clear();
         var organelles = editedMicrobeOrganelles;
 
-        var count = organelles.Count;
-        for (int i = 0; i < count; ++i)
-        {
-            var definition = organelles[i].Definition;
-
-            temp.TryGetValue(definition, out var existingCount);
-            temp[definition] = existingCount + 1;
-        }
+        int organelleCount = MicrobeInternalCalculations.CalculateMostCommonSpecializationOrganelle(organelles, temp);
 
         // And then with all the info, update the tooltip and display
-        if (organelles.Count < 1)
+        if (organelleCount < 1)
         {
             organismStatisticsPanel.UpdateSpecialization(specializationBonus, 0, Localization.Translate("NONE"));
             return;
@@ -555,7 +549,8 @@ public partial class CellEditorComponent
         tolerancesEditor.UpdateMPCostInToolTips();
     }
 
-    private void UpdateCompoundBalances(Dictionary<Compound, CompoundBalance> balances)
+    private void UpdateCompoundBalances(Dictionary<Compound, CompoundBalance> balances,
+        HashSet<Compound> dayNightVaryingCompoundProductions)
     {
         var warningTime = Editor.CurrentGame.GameWorld.LightCycle.DayLengthRealtimeSeconds *
             Editor.CurrentGame.GameWorld.WorldSettings.DaytimeFraction;
@@ -564,12 +559,12 @@ public partial class CellEditorComponent
         if (!Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled)
             warningTime = 10000000;
 
-        organismStatisticsPanel.UpdateCompoundBalances(balances, warningTime);
+        organismStatisticsPanel.UpdateCompoundBalances(balances, dayNightVaryingCompoundProductions, warningTime);
     }
 
     private void UpdateCompoundLastingTimes(Dictionary<Compound, CompoundBalance> normalBalance,
         Dictionary<Compound, CompoundBalance> nightBalance, float nominalStorage,
-        Dictionary<Compound, float> specificStorages)
+        Dictionary<Compound, float> specificStorages, HashSet<Compound> compoundsThatWarnFillTime)
     {
         float lightFraction = Editor.CurrentGame.GameWorld.WorldSettings.DaytimeFraction;
 
@@ -585,7 +580,7 @@ public partial class CellEditorComponent
         }
 
         organismStatisticsPanel.UpdateCompoundLastingTimes(normalBalance, nightBalance, nominalStorage,
-            specificStorages, warningTime, fillingUpTime);
+            specificStorages, warningTime, fillingUpTime, compoundsThatWarnFillTime);
     }
 
     private void UpdateAutoEvoPrediction(EditorAutoEvoRun startedRun, Species playerSpeciesOriginal,

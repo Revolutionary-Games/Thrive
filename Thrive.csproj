@@ -9,8 +9,8 @@
     <LangVersion>14</LangVersion>
     <Nullable>enable</Nullable>
     <Company>Revolutionary Games Studio</Company>
-    <Version>1.0.1.0</Version>
-    <InformationalVersion>-rc1</InformationalVersion>
+    <Version>1.0.1.1</Version>
+    <!--<InformationalVersion>-rc1</InformationalVersion>-->
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
   <!-- Ignore the subproject source files -->
@@ -54,12 +54,12 @@
     <PackageReference Include="GraphShape" Version="1.2.1" />
     <PackageReference Include="JetBrains.Annotations" Version="2025.2.4" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
-    <PackageReference Include="System.IO.Hashing" Version="10.0.3" />
+    <PackageReference Include="System.IO.Hashing" Version="10.0.5" />
     <PackageReference Include="Nito.Collections.Deque" Version="1.2.1" />
     <PackageReference Include="XoshiroPRNG.Net" Version="1.6.0" />
     <PackageReference Include="YamlDotNet" Version="16.3.0" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.556" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="10.0.103" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="10.0.201" PrivateAssets="all" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".config\dotnet-tools.json" />

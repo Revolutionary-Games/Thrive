@@ -23,6 +23,33 @@ public class ThriveopediaManager
     public OnPageOpened? OnPageOpenedHandler { get; set; }
 
     /// <summary>
+    ///   This looks up in the tree to find the owning Thriveopedia instance. This is now preferred rather than looking
+    ///   through the open Thriveopedias because there is the persistent pause menu one, and it has caused various
+    ///   bugs.
+    /// </summary>
+    /// <param name="currentNode">Node that is contained in a Thriveopedia</param>
+    /// <returns>
+    ///   The parent Thriveopedia or null if a node not in a Thriveopedia. If null methods need to cancel (this handles
+    ///   error reporting).
+    /// </returns>
+    public static Thriveopedia? GetParentThriveopedia(Control currentNode)
+    {
+        var parent = currentNode.GetParent();
+
+        while (parent != null)
+        {
+            if (parent is Thriveopedia thriveopedia)
+                return thriveopedia;
+
+            parent = parent.GetParent();
+        }
+
+        GD.PrintErr($"Thriveopedia not found when looking up from node: {currentNode.GetPath()}");
+        LogInterceptor.ForwardCaughtError(new Exception("Cannot find parent Thriveopedia instance"));
+        return null;
+    }
+
+    /// <summary>
     ///   Opens a page in the Thriveopedia via the appropriate menu context. Name must match the PageName property
     ///   of the desired page.
     /// </summary>
@@ -35,17 +62,6 @@ public class ThriveopediaManager
         }
 
         Instance.OnPageOpenedHandler(pageName);
-    }
-
-    public static IThriveopediaPage GetPage(string pageName)
-    {
-        foreach (var thriveopedia in Instance.activeThriveopedias)
-        {
-            // TODO: allow GetPage to return null to be able to support more thriveopedia?
-            return thriveopedia.GetPage(pageName);
-        }
-
-        throw new InvalidOperationException("No active Thriveopedias to get a page from");
     }
 
     public static Species? GetActiveSpeciesData(uint speciesId)
