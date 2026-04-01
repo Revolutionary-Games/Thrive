@@ -186,6 +186,42 @@ public partial class NameGenerator
         return list[random.Next(list.Count)];
     }
 
+    private GrammaticalGender GenerateGenderedSuffix(Random random, StringBuilder stringBuilder, GrammaticalGender?
+        parent, bool useBacteria)
+    {
+        GrammaticalGender gender;
+
+        // If the parent gender is ambiguous, we can consistently reroll the wanted grammatical gender for the new
+        // generation.
+        if (parent == GrammaticalGender.Ambiguous)
+        {
+            gender = GetRandomElement(random, (GrammaticalGender[])Enum.GetValuesAsUnderlyingType<GrammaticalGender>());
+        }
+        else
+        {
+            gender = parent ?? GetRandomElement(random,
+                (GrammaticalGender[])Enum.GetValuesAsUnderlyingType<GrammaticalGender>());
+        }
+
+        var genderName = gender.ToString().ToLowerInvariant();
+
+        string genderedSuffix;
+        if (useBacteria)
+        {
+            genderedSuffix = config.BacteriaShapes.Random(random)!.TryGetValue(genderName, out var suffixes) ?
+                suffixes.Random(random) :
+                config.Suffixes[genderName].Random(random);
+        }
+        else
+        {
+            genderedSuffix = config.Suffixes[genderName].Random(random);
+        }
+
+        PhonotacticsFriendlyAppend(stringBuilder, genderedSuffix);
+
+        return gender;
+    }
+
     public record NamingState(bool GenusIsNumbered = false, bool GenusIsProto = false, string GenusRoot = "",
         GrammaticalGender Gender = GrammaticalGender.Neuter, INameGenerationTarget? Target = null)
     {
