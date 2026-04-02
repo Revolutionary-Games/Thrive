@@ -110,7 +110,7 @@ public class StrictProcessDisplayInfoEquality : IEquatable<StrictProcessDisplayI
             if (!value1.Value.Equals(value2.Value))
                 return false;
 
-            if (EqualityComparer<Compound>.Default.Equals(value1.Key, value2.Key))
+            if (!EqualityComparer<Compound>.Default.Equals(value1.Key, value2.Key))
                 return false;
         }
 
