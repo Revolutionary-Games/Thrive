@@ -315,6 +315,10 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         microbeAI.SetWorld(currentGame.GameWorld);
         damageSoundSystem.SetWorld(currentGame.GameWorld);
         FluidCurrentsSystem.SetWorld(currentGame.GameWorld);
+        organelleTickSystem.SetWorld(currentGame.GameWorld);
+        microbeMovementSystem.SetWorld(currentGame.GameWorld);
+        colonyBindingSystem.SetWorld(currentGame.GameWorld);
+        ProcessSystem.SetWorld(currentGame.GameWorld);
 
         CloudSystem.Init(FluidCurrentsSystem);
     }

@@ -42,6 +42,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
     private readonly List<ProcessStatistics> usedStatistics = new();
 #endif
 
+    private GameWorld? gameWorld;
     private BiomeConditions? biome;
 
     /// <summary>
@@ -842,6 +843,11 @@ public partial class ProcessSystem : BaseSystem<World, float>
         return Math.Clamp(temperature / optimal, 0, 2 - temperature / optimal);
     }
 
+    public void SetWorld(GameWorld world)
+    {
+        gameWorld = world;
+    }
+
     /// <summary>
     ///   Sets the biome whose environmental values affect processes
     /// </summary>
@@ -957,7 +963,14 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
         if (isPlayerSpecies)
         {
-            osmoregulation *= worldSettings.OsmoregulationMultiplier;
+            var energyCostMultiplier = worldSettings.EnergyCostMultiplier;
+
+            osmoregulation *= energyCostMultiplier;
+            processATPConsumption *= energyCostMultiplier;
+            result.TotalMovement *= energyCostMultiplier;
+            result.BaseMovement *= energyCostMultiplier;
+            result.Flagella *= energyCostMultiplier;
+            result.Cilia *= energyCostMultiplier;
         }
 
         result.Osmoregulation += osmoregulation;
@@ -1022,7 +1035,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
     [Query(Parallel = true)]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update([Data] in float delta, in Entity entity, ref CompoundStorage storage,
-        ref BioProcesses processes)
+        ref SpeciesMember speciesMember, ref BioProcesses processes)
     {
         float overallSpeedModifier = 1.0f;
 
@@ -1058,11 +1071,11 @@ public partial class ProcessSystem : BaseSystem<World, float>
         }
 #endif
 
-        ProcessNode(ref processes, ref storage, overallSpeedModifier, delta);
+        ProcessNode(ref processes, ref storage, overallSpeedModifier, speciesMember.Species.PlayerSpecies, delta);
     }
 
     private void ProcessNode(ref BioProcesses processor, ref CompoundStorage storage, float overallSpeedModifier,
-        float delta)
+        bool isPlayer, float delta)
     {
         var bag = storage.Compounds;
 
@@ -1117,12 +1130,13 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
                         currentProcessStatistics.BeginFrame(delta);
                         RunProcess(delta, processData, bag, process, ref processor, overallSpeedModifier,
-                            currentProcessStatistics);
+                            currentProcessStatistics, isPlayer);
                     }
                 }
                 else
                 {
-                    RunProcess(delta, processData, bag, process, ref processor, overallSpeedModifier, null);
+                    RunProcess(delta, processData, bag, process, ref processor, overallSpeedModifier, null,
+                        isPlayer);
                 }
             }
         }
@@ -1134,7 +1148,8 @@ public partial class ProcessSystem : BaseSystem<World, float>
     }
 
     private void RunProcess(float delta, BioProcess processData, CompoundBag bag, TweakedProcess process,
-        ref BioProcesses processorInfo, float overallSpeedModifier, SingleProcessStatistics? currentProcessStatistics)
+        ref BioProcesses processorInfo, float overallSpeedModifier, SingleProcessStatistics? currentProcessStatistics,
+        bool isPlayer)
     {
         // Bool for can your cell do the process
         bool canDoProcess = true;
@@ -1326,6 +1341,9 @@ public partial class ProcessSystem : BaseSystem<World, float>
             var inputCompound = entry.Key.ID;
 
             var inputRemoved = entry.Value * totalModifier;
+
+            if (inputCompound == Compound.ATP && isPlayer)
+                inputRemoved *= gameWorld!.WorldSettings.EnergyCostMultiplier;
 
             currentProcessStatistics?.AddInputAmount(inputCompound, inputRemoved * inverseDelta);
 

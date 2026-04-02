@@ -629,7 +629,7 @@ public partial class EngulfingSystem : BaseSystem<World, float>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update([Data] in float delta, ref Engulfer engulfer, ref Health health, ref MicrobeControl control,
         ref CellProperties cellProperties, ref SoundEffectPlayer soundPlayer,
-        ref CollisionManagement collisionManagement, in Entity entity)
+        ref CollisionManagement collisionManagement, ref SpeciesMember speciesMember, Entity entity)
     {
         var actuallyEngulfing = control.State == MicrobeState.Engulf && cellProperties.MembraneType.CanEngulf;
 
@@ -652,7 +652,8 @@ public partial class EngulfingSystem : BaseSystem<World, float>
 
         cellProperties.CreatedMembrane?.HandleEngulfAnimation(actuallyEngulfing, delta);
 
-        bool checkEngulfStartCollisions = HandleEngulfModeStateUpdate(ref control, entity, actuallyEngulfing, delta);
+        bool checkEngulfStartCollisions = HandleEngulfModeStateUpdate(ref control, entity, actuallyEngulfing,
+            speciesMember.Species.PlayerSpecies, delta);
 
         // Play sound
         if (actuallyEngulfing)
@@ -900,7 +901,7 @@ public partial class EngulfingSystem : BaseSystem<World, float>
     ///   Checks if cell can stay in engulf mode and updates states if cannot
     /// </summary>
     private bool HandleEngulfModeStateUpdate(ref MicrobeControl control, in Entity entity, bool actuallyEngulfing,
-        float delta)
+        bool isPlayer, float delta)
     {
         bool checkEngulfStartCollisions = false;
 
@@ -910,6 +911,9 @@ public partial class EngulfingSystem : BaseSystem<World, float>
             var cost = Constants.ENGULFING_ATP_COST_PER_SECOND * delta;
 
             var compounds = entity.Get<CompoundStorage>().Compounds;
+
+            if (isPlayer)
+                cost *= gameWorld!.WorldSettings.EnergyCostMultiplier;
 
             // Stop engulfing if out of ATP or if this is an engulfable that has been engulfed
             bool engulfed = false;

@@ -21,14 +21,16 @@ public interface IOrganelleComponent
     /// <param name="organelleContainer">Organelle container instance this organelle is inside</param>
     /// <param name="microbeEntity">Entity reference of the entity that contains this organelle</param>
     /// <param name="worldSimulation">
-    ///   The simulation this entity is in. Care needs to be taken on what operations are safe to perform here in an
-    ///   async manner. This is provided to allow a bit more complex organelles to work without needing to create
-    ///   systems that are basically clones of <see cref="Systems.OrganelleTickSystem"/> with a tiny bit of different
-    ///   functionality.
+    ///     The simulation this entity is in. Care needs to be taken on what operations are safe to perform here in an
+    ///     async manner. This is provided to allow a bit more complex organelles to work without needing to create
+    ///     systems that are basically clones of <see cref="Systems.OrganelleTickSystem"/> with a tiny bit of different
+    ///     functionality.
     /// </param>
+    /// <param name="energyCostMultiplier">The player ATP cost modifier from difficulty settings</param>
+    /// <param name="isPlayer">Bool to track whether this is a player species for difficulty setting effects</param>
     /// <param name="delta">Time since the last update in seconds</param>
     public void UpdateAsync(ref OrganelleContainer organelleContainer, in Entity microbeEntity,
-        IWorldSimulation worldSimulation, float delta);
+        IWorldSimulation worldSimulation, float energyCostMultiplier, bool isPlayer, float delta);
 
     /// <summary>
     ///   Sync processing that is allowed to do non-thread safe things (this is called on the main thread). Only called

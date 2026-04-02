@@ -17,7 +17,7 @@ public class CustomDifficulty : IDifficulty
     public float CompoundDensity { get; set; }
     public float PlayerDeathPopulationPenalty { get; set; }
     public float GlucoseDecay { get; set; }
-    public float OsmoregulationMultiplier { get; set; }
+    public float EnergyCostMultiplier { get; set; }
 
     /// <summary>
     ///   The default value is picked here to preserve the old behaviour when loading older saves.
@@ -70,7 +70,7 @@ public class CustomDifficulty : IDifficulty
             CompoundDensity = reader.ReadFloat(),
             PlayerDeathPopulationPenalty = reader.ReadFloat(),
             GlucoseDecay = reader.ReadFloat(),
-            OsmoregulationMultiplier = reader.ReadFloat(),
+            EnergyCostMultiplier = reader.ReadFloat(),
             PlayerAutoEvoStrength = reader.ReadFloat(),
             PlayerSpeciesAIPopulationStrength = reader.ReadFloat(),
             FreeGlucoseCloud = reader.ReadBool(),
@@ -104,7 +104,7 @@ public class CustomDifficulty : IDifficulty
         writer.Write(CompoundDensity);
         writer.Write(PlayerDeathPopulationPenalty);
         writer.Write(GlucoseDecay);
-        writer.Write(OsmoregulationMultiplier);
+        writer.Write(EnergyCostMultiplier);
         writer.Write(PlayerAutoEvoStrength);
         writer.Write(PlayerSpeciesAIPopulationStrength);
         writer.Write(FreeGlucoseCloud);

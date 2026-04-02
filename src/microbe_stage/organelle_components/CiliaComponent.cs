@@ -39,7 +39,7 @@ public class CiliaComponent : IOrganelleComponent
     }
 
     public void UpdateAsync(ref OrganelleContainer organelleContainer, in Entity microbeEntity,
-        IWorldSimulation worldSimulation, float delta)
+        IWorldSimulation worldSimulation, float energyCostModifier, bool isPlayer, float delta)
     {
         // Stop animating when being engulfed
         if (microbeEntity.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.None)
@@ -100,6 +100,10 @@ public class CiliaComponent : IOrganelleComponent
                 Constants.CILIA_ROTATION_NEEDED_FOR_ATP_COST, Constants.CILIA_ENERGY_COST);
 
             var requiredEnergy = cost * timeSinceRotationSample;
+
+            // Only player species benefits from lowered ATP cost
+            if (isPlayer)
+                requiredEnergy *= energyCostModifier;
 
             var compounds = microbeEntity.Get<CompoundStorage>().Compounds;
 

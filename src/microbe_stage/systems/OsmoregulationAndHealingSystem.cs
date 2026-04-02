@@ -165,7 +165,7 @@ public partial class OsmoregulationAndHealingSystem : BaseSystem<World, float>
 
         // Only player species benefits from lowered osmoregulation
         if (playerSpecies)
-            osmoregulationCost *= gameWorld!.WorldSettings.OsmoregulationMultiplier;
+            osmoregulationCost *= gameWorld!.WorldSettings.EnergyCostMultiplier;
 
         compounds.TakeCompound(Compound.ATP, osmoregulationCost);
     }

@@ -41,9 +41,16 @@ public partial class OrganelleTickSystem : BaseSystem<World, float>
     private readonly IWorldSimulation worldSimulation;
     private readonly ConcurrentStack<(IOrganelleComponent Component, Entity Entity)> queuedSyncRuns = new();
 
+    private GameWorld? gameWorld;
+
     public OrganelleTickSystem(IWorldSimulation worldSimulation, World world) : base(world)
     {
         this.worldSimulation = worldSimulation;
+    }
+
+    public void SetWorld(GameWorld world)
+    {
+        gameWorld = world;
     }
 
     public override void AfterUpdate(in float delta)
@@ -62,7 +69,8 @@ public partial class OrganelleTickSystem : BaseSystem<World, float>
     [Query(Parallel = true)]
     [All<CompoundStorage, WorldPosition>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update([Data] in float delta, ref OrganelleContainer organelleContainer, in Entity entity)
+    private void Update([Data] in float delta, ref OrganelleContainer organelleContainer,
+        ref SpeciesMember speciesMember, in Entity entity)
     {
         if (organelleContainer.Organelles == null)
             return;
@@ -85,7 +93,9 @@ public partial class OrganelleTickSystem : BaseSystem<World, float>
                 var component = components[j];
 
                 // Organelles can do various things which is why we have the above "All" attribute
-                component.UpdateAsync(ref organelleContainer, entity, worldSimulation, delta);
+                component.UpdateAsync(ref organelleContainer, entity, worldSimulation,
+                    gameWorld!.WorldSettings.EnergyCostMultiplier,
+                    speciesMember.Species.PlayerSpecies, delta);
 
                 if (component.UsesSyncProcess)
                     queuedSyncRuns.Push((component, entity));
