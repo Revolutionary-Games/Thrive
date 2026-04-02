@@ -92,7 +92,7 @@ public class SummedProcessStatistics : IProcessDisplayInfo
 
         // Refresh the process' manual activation status
         var newProcess = Process;
-        newProcess.SpeedMultiplier = stats.Process.SpeedMultiplier;
+        newProcess.SpeedMultiplier = Math.Max(newProcess.SpeedMultiplier, stats.Process.SpeedMultiplier);
         Process = newProcess;
 
         // The next three stats can't vary between cells in a colony, so they are only set once per frame
