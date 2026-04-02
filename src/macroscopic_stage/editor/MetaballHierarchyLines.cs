@@ -26,7 +26,7 @@ public partial class MetaballHierarchyLines : MultiMeshInstance3D
                 continue;
 
             var basis = Basis.LookingAt(metaball.Parent.Position - metaball.Position)
-                .Scaled(Vector3.One * metaball.Position.DistanceTo(metaball.Parent.Position));
+                .ScaledLocal(new Vector3(1.0f, 1.0f, metaball.Position.DistanceTo(metaball.Parent.Position)));
 
             mesh.SetInstanceTransform(i,
                 new Transform3D(basis, (metaball.Position + metaball.Parent.Position) * 0.5f));
