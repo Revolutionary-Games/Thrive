@@ -57,6 +57,10 @@ public abstract class SpeciesEditsFacade : EditsFacadeBase, IReadOnlySpecies
     public int Generation => baseSpecies.Generation;
     public bool PlayerSpecies => baseSpecies.PlayerSpecies;
 
+    // TODO: should this show it is an edited variant?
+    public string FormattedName => baseSpecies.FormattedName + " (facade)";
+    public string ReadableName => FormattedName;
+
     internal override bool ApplyAction(EditorCombinableActionData actionData)
     {
         if (actionData is BehaviourActionData behaviourActionData)

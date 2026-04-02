@@ -50,7 +50,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
         // This is not used for intensive use, and even is used in the background of normal gameplay
         // TODO: but we cannot prevent this entity world from using multithreading
 
-        microbeVisualsSystem = new MicrobeVisualsSystem(EntitySystem);
+        microbeVisualsSystem = new MicrobeVisualsSystem(EntitySystem, null);
 #pragma warning disable SA1115
         simulationSystems = new Group<float>(simulationSystems.Name,
             microbeVisualsSystem,
@@ -202,7 +202,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
             ProcessSpeedModifier = 1,
         };
 
-        // Do a full update apply with the general code method
+        // Perform a full update apply with the general code method.
         ref var cellProperties = ref microbe.Get<CellProperties>();
         cellProperties.ReApplyCellTypeProperties(ref dummyEffects, microbe, species,
             species, this, hexWorkData1, hexWorkData2);

@@ -19,6 +19,9 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
     private readonly Dictionary<MicrobeSpecies, ResolvedMicrobeTolerances> resolvedTolerancesCache = new();
 
+    private readonly Dictionary<MulticellularSpecies, ResolvedMicrobeTolerances>
+        resolvedMulticellularTolerances = new();
+
     private OrganelleDefinition cytoplasm = null!;
 
     // This is no longer saved with child properties as it gets really complicated trying to load data into this from
@@ -618,6 +621,25 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         }
     }
 
+    public ResolvedMicrobeTolerances GetSpeciesTolerances(MulticellularSpecies multicellularSpecies)
+    {
+        // Use caching to speed up spawning
+        lock (resolvedMulticellularTolerances)
+        {
+            if (resolvedMulticellularTolerances.TryGetValue(multicellularSpecies, out var cached))
+                return cached;
+
+            var tolerances =
+                MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(multicellularSpecies, CurrentBiome);
+
+            cached = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(tolerances);
+
+            resolvedMulticellularTolerances[multicellularSpecies] = cached;
+
+            return cached;
+        }
+    }
+
     /// <summary>
     ///   Switches to the editor
     /// </summary>
@@ -721,9 +743,10 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         GD.Print("Disbanding colony and becoming multicellular");
 
-        // Move to multicellular always happens when the player is in a colony, so we force disband that here before
+        // Move to multicellular always happens when the player is in a colony, so we force-disband that here before
         // proceeding
-        MicrobeColonyHelpers.UnbindAllOutsideGameUpdate(Player, WorldSimulation);
+        if (!MicrobeColonyHelpers.UnbindAllOutsideGameUpdate(Player, WorldSimulation, true))
+            GD.PrintErr("Failed to disband player colony before moving to multicellular");
 
         if (Player.Has<MicrobeColony>())
             throw new Exception("Unbind failed");
@@ -737,7 +760,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         // This prevents previous members of the player's colony from immediately being hostile
         bool playerHandled = false;
 
-        var multicellularSpecies = GameWorld.ChangeSpeciesToMulticellular(previousSpecies);
+        var multicellularSpecies = GameWorld.ChangeSpeciesToMulticellular(previousSpecies, true);
         foreach (var microbe in playerSpeciesMicrobes)
         {
             // Direct component setting is safe as we verified above we aren't running during a simulation update
@@ -896,11 +919,17 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         {
             ref var earlySpeciesType = ref Player.Get<MulticellularSpeciesMember>();
 
-            // TODO: multicellular tolerances
+            var resolvedTolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(
+                MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(earlySpeciesType.Species,
+                    CurrentBiome));
 
             // Allow updating the first cell type to reproduce (reproduction order changed)
             earlySpeciesType.MulticellularCellType =
                 earlySpeciesType.Species.ModifiableGameplayCells[0].ModifiableCellType;
+
+            environmentalEffects.ApplyEffects(resolvedTolerances,
+                earlySpeciesType.MulticellularCellType.SpecializationBonus *
+                earlySpeciesType.Species.GetAdjacencySpecializationBonus(0), ref bioProcesses);
 
             cellProperties.ReApplyCellTypeProperties(ref environmentalEffects, Player,
                 earlySpeciesType.MulticellularCellType, earlySpeciesType.Species, WorldSimulation, workData1,
@@ -913,7 +942,8 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             var resolvedTolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(
                 MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(species.Species, CurrentBiome));
 
-            environmentalEffects.ApplyEffects(resolvedTolerances, ref bioProcesses);
+            environmentalEffects.ApplyEffects(resolvedTolerances, species.Species.SpecializationBonus,
+                ref bioProcesses);
 
             cellProperties.ReApplyCellTypeProperties(ref environmentalEffects, Player,
                 species.Species, species.Species, WorldSimulation,
@@ -1973,6 +2003,11 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         lock (resolvedTolerancesCache)
         {
             resolvedTolerancesCache.Clear();
+        }
+
+        lock (resolvedMulticellularTolerances)
+        {
+            resolvedMulticellularTolerances.Clear();
         }
     }
 

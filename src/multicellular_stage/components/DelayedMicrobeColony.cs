@@ -8,7 +8,7 @@ using SharedBase.Archive;
 /// </summary>
 public struct DelayedMicrobeColony : IArchivableComponent
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     /// <summary>
     ///   If not default, then this entity wants to attach to a colony after initialization. Note that this entity
@@ -20,6 +20,8 @@ public struct DelayedMicrobeColony : IArchivableComponent
 
     public int GrowAdditionalMembers;
 
+    public bool PlayAnimation;
+
     // This doesn't have an applied field as this component is always removed after operating on it because this
     // component only is used once on each entity
 
@@ -29,12 +31,17 @@ public struct DelayedMicrobeColony : IArchivableComponent
     /// <param name="growAdditionalMembers">
     ///   How many members to add (should be one less than the multicellular body plan count for fully grown colony)
     /// </param>
-    public DelayedMicrobeColony(int growAdditionalMembers)
+    /// <param name="playAnimation">
+    ///   Whether or not should the growing animation (<see cref="SpatialAnimation"/>) be played in this colony
+    /// </param>
+    public DelayedMicrobeColony(int growAdditionalMembers, bool playAnimation = true)
     {
         GrowAdditionalMembers = growAdditionalMembers;
 
         FinishAttachingToColony = Entity.Null;
         AttachIndex = 0;
+
+        PlayAnimation = playAnimation;
     }
 
     /// <summary>
@@ -61,6 +68,7 @@ public struct DelayedMicrobeColony : IArchivableComponent
         writer.WriteAnyRegisteredValueAsObject(FinishAttachingToColony);
         writer.Write(AttachIndex);
         writer.Write(GrowAdditionalMembers);
+        writer.Write(PlayAnimation);
     }
 }
 
@@ -76,6 +84,7 @@ public static class DelayedMicrobeColonyHelpers
             FinishAttachingToColony = reader.ReadObject<Entity>(),
             AttachIndex = reader.ReadInt32(),
             GrowAdditionalMembers = reader.ReadInt32(),
+            PlayAnimation = version > 1 ? reader.ReadBool() : true,
         };
     }
 }

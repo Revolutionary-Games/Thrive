@@ -9,6 +9,7 @@ public enum EmbeddedThriveIcon
     ConditionFulfilled,
     StorageIcon,
     OsmoIcon,
+    HealthIcon,
     MovementIcon,
     MP,
     Pressure,

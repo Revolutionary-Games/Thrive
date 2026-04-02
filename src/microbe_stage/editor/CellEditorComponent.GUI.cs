@@ -81,6 +81,8 @@ public partial class CellEditorComponent
 
     protected override void OnTranslationsChanged()
     {
+        base.OnTranslationsChanged();
+
         UpdateAutoEvoPredictionTranslations();
         UpdateAutoEvoPredictionDetailsText();
 
@@ -96,6 +98,8 @@ public partial class CellEditorComponent
 
         UpdateOsmoregulationTooltips();
         UpdateMPCost();
+
+        UpdateSpecializationDisplay();
 
         refreshTolerancesWarnings = true;
     }
@@ -473,6 +477,30 @@ public partial class CellEditorComponent
         UpdateOrganelleButtons(activeActionName);
     }
 
+    private void UpdateSpecializationDisplay()
+    {
+        var specializationBonus =
+            MicrobeInternalCalculations.CalculateSpecializationBonus(editedMicrobeOrganelles, tempMemory3);
+
+        // Calculate the most common organelle to show what we should recommend the player place more
+        var temp = tempMemory3;
+        var organelles = editedMicrobeOrganelles;
+
+        int organelleCount = MicrobeInternalCalculations.CalculateMostCommonSpecializationOrganelle(organelles, temp);
+
+        // And then with all the info, update the tooltip and display
+        if (organelleCount < 1)
+        {
+            organismStatisticsPanel.UpdateSpecialization(specializationBonus, 0, Localization.Translate("NONE"));
+            return;
+        }
+
+        var mostCommonOrganelle = temp.MaxBy(t => t.Value);
+
+        organismStatisticsPanel.UpdateSpecialization(specializationBonus, mostCommonOrganelle.Value,
+            mostCommonOrganelle.Key.Name);
+    }
+
     private SelectionMenuToolTip? GetSelectionTooltip(string name, string group)
     {
         return (SelectionMenuToolTip?)ToolTipManager.Instance.GetToolTip(name, group);
@@ -521,7 +549,8 @@ public partial class CellEditorComponent
         tolerancesEditor.UpdateMPCostInToolTips();
     }
 
-    private void UpdateCompoundBalances(Dictionary<Compound, CompoundBalance> balances)
+    private void UpdateCompoundBalances(Dictionary<Compound, CompoundBalance> balances,
+        HashSet<Compound> dayNightVaryingCompoundProductions)
     {
         var warningTime = Editor.CurrentGame.GameWorld.LightCycle.DayLengthRealtimeSeconds *
             Editor.CurrentGame.GameWorld.WorldSettings.DaytimeFraction;
@@ -530,12 +559,12 @@ public partial class CellEditorComponent
         if (!Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled)
             warningTime = 10000000;
 
-        organismStatisticsPanel.UpdateCompoundBalances(balances, warningTime);
+        organismStatisticsPanel.UpdateCompoundBalances(balances, dayNightVaryingCompoundProductions, warningTime);
     }
 
     private void UpdateCompoundLastingTimes(Dictionary<Compound, CompoundBalance> normalBalance,
         Dictionary<Compound, CompoundBalance> nightBalance, float nominalStorage,
-        Dictionary<Compound, float> specificStorages)
+        Dictionary<Compound, float> specificStorages, HashSet<Compound> compoundsThatWarnFillTime)
     {
         float lightFraction = Editor.CurrentGame.GameWorld.WorldSettings.DaytimeFraction;
 
@@ -551,7 +580,7 @@ public partial class CellEditorComponent
         }
 
         organismStatisticsPanel.UpdateCompoundLastingTimes(normalBalance, nightBalance, nominalStorage,
-            specificStorages, warningTime, fillingUpTime);
+            specificStorages, warningTime, fillingUpTime, compoundsThatWarnFillTime);
     }
 
     private void UpdateAutoEvoPrediction(EditorAutoEvoRun startedRun, Species playerSpeciesOriginal,
@@ -766,42 +795,18 @@ public partial class CellEditorComponent
 
     private void CalculateAndDisplayToleranceWarnings()
     {
-        usedToleranceWarnings = 0;
-
         // Tolerances with the cell editor are not used in multicellular, rather the body plan editor will display
-        // the warnings (once they are done)
+        // the warnings
         if (!IsMulticellularEditor)
         {
-            var tolerances = CalculateRawTolerances();
+            // We exclude bonuses here so that the warnings display doesn't have a partial line about a debuff and then
+            // inexplicably also a bonus percentage as that would be very confusing to see.
+            var tolerances = CalculateRawTolerances(true);
 
-            void AddToleranceWarning(string text)
-            {
-                if (usedToleranceWarnings < activeToleranceWarnings.Count)
-                {
-                    var warning = activeToleranceWarnings[usedToleranceWarnings];
-                    warning.Text = text;
-                }
-                else if (usedToleranceWarnings < MaxToleranceWarnings)
-                {
-                    var warning = new Label
-                    {
-                        HorizontalAlignment = HorizontalAlignment.Center,
-                        AutowrapMode = TextServer.AutowrapMode.WordSmart,
-                        CustomMinimumSize = new Vector2(150, 0),
-                        LabelSettings = toleranceWarningsFont,
-                    };
-
-                    warning.Text = text;
-                    activeToleranceWarnings.Add(warning);
-                    toleranceWarningContainer.AddChild(warning);
-                }
-
-                ++usedToleranceWarnings;
-            }
-
-            // This allocates a delegate, but it's probably not a significant amount of garbage
-            MicrobeEnvironmentalToleranceCalculations.GenerateToleranceProblemList(tolerances,
-                MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(tolerances), AddToleranceWarning);
+            MicrobeEnvironmentalToleranceCalculations.ManageToleranceProblemListGUI(ref usedToleranceWarnings,
+                activeToleranceWarnings, tolerances,
+                MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(tolerances), toleranceWarningContainer,
+                toleranceWarningsFont, MaxToleranceWarnings);
 
             if (usedToleranceWarnings > 0)
             {
@@ -809,13 +814,15 @@ public partial class CellEditorComponent
                 toleranceTabButton.Visible = true;
             }
         }
-
-        // Remove excess text that is no longer used
-        while (usedToleranceWarnings < activeToleranceWarnings.Count)
+        else
         {
-            var last = activeToleranceWarnings[^1];
-            last.QueueFree();
-            activeToleranceWarnings.RemoveAt(activeToleranceWarnings.Count - 1);
+            usedToleranceWarnings = 0;
+            while (usedToleranceWarnings < activeToleranceWarnings.Count)
+            {
+                var last = activeToleranceWarnings[^1];
+                last.QueueFree();
+                activeToleranceWarnings.RemoveAt(activeToleranceWarnings.Count - 1);
+            }
         }
     }
 

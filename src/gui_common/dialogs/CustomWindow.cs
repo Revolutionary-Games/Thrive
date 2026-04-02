@@ -227,6 +227,9 @@ public partial class CustomWindow : TopLevelContainer
         }
     }
 
+    public StyleBox PanelStyle { get; set; } = null!;
+    public StyleBox TitleBarPanelStyle { get; set; } = null!;
+
     public override void _EnterTree()
     {
         customPanel = GetThemeStylebox("custom_panel", "Window");
@@ -241,6 +244,12 @@ public partial class CustomWindow : TopLevelContainer
         closeButtonTexture = GetThemeIcon("custom_close", "Window");
         scaleBorderSize = GetThemeConstant("custom_scaleBorder_size", "Window");
         customMargin = decorate ? GetThemeConstant("custom_margin", "Dialogs") : 0;
+
+        // Apply defaults if nobody has overridden them
+        if (PanelStyle == null!)
+            PanelStyle = customPanel;
+        if (TitleBarPanelStyle == null!)
+            TitleBarPanelStyle = titleBarPanel;
 
         // Make the close button style be fully created when this is initialized
         if (showCloseButton)
@@ -300,10 +309,10 @@ public partial class CustomWindow : TopLevelContainer
             return;
 
         // Draw background panels
-        DrawStyleBox(customPanel,
+        DrawStyleBox(PanelStyle,
             new Rect2(new Vector2(0, -titleBarHeight), new Vector2(Size.X, Size.Y + titleBarHeight)));
 
-        DrawStyleBox(titleBarPanel,
+        DrawStyleBox(TitleBarPanelStyle,
             new Rect2(new Vector2(3, -titleBarHeight + 3), new Vector2(Size.X - 6, titleBarHeight - 3)));
 
         // Draw title in the title bar
@@ -314,7 +323,7 @@ public partial class CustomWindow : TopLevelContainer
         DrawString(titleFont, titlePosition, translatedWindowTitle, HorizontalAlignment.Center, Size.X,
             titleFontSize, titleColor);
 
-        // Draw close button (if this window has a close button)
+        // Draw a close button (if this window has a close button)
         if (closeButton != null)
         {
             var closeButtonRect = closeButton!.GetRect();

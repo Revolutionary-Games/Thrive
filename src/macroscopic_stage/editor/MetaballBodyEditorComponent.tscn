@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="7"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="7_ck2k0"]
 [ext_resource type="PackedScene" uid="uid://bapb4m7jw7pc8" path="res://src/microbe_stage/editor/BehaviourEditorSubComponent.tscn" id="9"]
+[ext_resource type="PackedScene" uid="uid://5kamud4sukbd" path="res://src/microbe_stage/editor/TolerancesEditorSubComponent.tscn" id="9_as603"]
 [ext_resource type="PackedScene" uid="uid://dw3ubsraoopin" path="res://src/gui_common/TabButtons.tscn" id="10"]
 [ext_resource type="PackedScene" uid="uid://bq6aee8pw8y3m" path="res://src/gui_common/CollapsibleList.tscn" id="11"]
 [ext_resource type="PackedScene" uid="uid://seoiqsheiljf" path="res://src/microbe_stage/editor/MutationPointsBar.tscn" id="12"]
@@ -89,7 +90,9 @@ corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxEmpty" id="8"]
 
-[sub_resource type="StyleBoxFlat" id="14"]
+[sub_resource type="StyleBoxEmpty" id="14"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_enpqv"]
 content_margin_left = 5.0
 content_margin_top = 5.0
 content_margin_right = 5.0
@@ -327,7 +330,7 @@ _data = {
 &"show": SubResource("19")
 }
 
-[node name="MetaballBodyEditorComponent" type="Control" unique_id=1870871702 node_paths=PackedStringArray("structureTabButton", "reproductionTabButton", "behaviourTabButton", "appearanceTabButton", "structureTab", "reproductionTab", "appearanceTab", "behaviourEditor", "cellTypeSelectionList", "modifyTypeButton", "deleteTypeButton", "duplicateTypeButton", "cannotDeleteInUseTypeDialog", "duplicateCellTypeDialog", "duplicateCellTypeName", "metaballPopupMenu", "cannotReduceBrainPowerPopup", "metaballResizeScroll", "islandPopup", "componentBottomLeftButtons", "mutationPointsBar", "cancelButton", "finishButtonWarningBadge", "finishOrNextButton")]
+[node name="MetaballBodyEditorComponent" type="Control" unique_id=1870871702 node_paths=PackedStringArray("structureTabButton", "reproductionTabButton", "behaviourTabButton", "appearanceTabButton", "tolerancesTabButton", "structureTab", "reproductionTab", "appearanceTab", "behaviourEditor", "tolerancesEditor", "toleranceTab", "toleranceWarningContainer", "cellTypeSelectionList", "modifyTypeButton", "deleteTypeButton", "duplicateTypeButton", "cannotDeleteInUseTypeDialog", "duplicateCellTypeDialog", "duplicateCellTypeName", "metaballPopupMenu", "cannotReduceBrainPowerPopup", "metaballResizeScroll", "islandPopup", "componentBottomLeftButtons", "mutationPointsBar", "cancelButton", "finishButtonWarningBadge", "finishOrNextButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -340,10 +343,14 @@ structureTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer
 reproductionTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Reproduction")
 behaviourTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Behaviour")
 appearanceTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Appearance")
+tolerancesTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Tolerance")
 structureTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure")
 reproductionTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction")
 appearanceTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Appearance")
 behaviourEditor = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour")
+tolerancesEditor = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance/ScrollContainer/MarginContainer/TolerancesEditor")
+toleranceTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance")
+toleranceWarningContainer = NodePath("ToleranceWarnings")
 cellTypeSelectionList = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Cells")
 modifyTypeButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Modify")
 deleteTypeButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Delete")
@@ -353,6 +360,7 @@ duplicateCellTypeDialog = NodePath("NewTissueTypeSetup")
 duplicateCellTypeName = NodePath("NewTissueTypeSetup/VBoxContainer2/NewName")
 metaballPopupMenu = NodePath("MetaballPopupMenu")
 cannotReduceBrainPowerPopup = NodePath("CannotReduceBrainPowerStage")
+toleranceWarningsFont = ExtResource("7_ck2k0")
 metaballResizeScroll = NodePath("MetaballSizeControls/MetaballSize")
 islandPopup = NodePath("IslandError")
 componentBottomLeftButtons = NodePath("EditorComponentBottomLeftButtons")
@@ -517,6 +525,23 @@ action_mode = 0
 button_group = SubResource("ButtonGroup_vcpf2")
 text = "REPRODUCTION"
 
+[node name="Tolerance" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons" unique_id=478616262]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0.870588, 0.870588, 0.870588, 1)
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("5")
+theme_override_styles/pressed = SubResource("3")
+theme_override_styles/hover = SubResource("2")
+theme_override_styles/disabled = SubResource("4")
+toggle_mode = true
+action_mode = 0
+button_group = SubResource("ButtonGroup_vcpf2")
+text = "ENVIRONMENT_TOLERANCE"
+
 [node name="Structure" type="PanelContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" unique_id=197366387]
 layout_mode = 2
 size_flags_vertical = 3
@@ -643,6 +668,26 @@ text = "Appearance customization has not been implemented yet, but the creature 
 label_settings = ExtResource("7_ck2k0")
 autowrap_mode = 3
 
+[node name="Tolerance" type="PanelContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" unique_id=1531646376]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_styles/panel = SubResource("14")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance" unique_id=289800308]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance/ScrollContainer" unique_id=1621183157]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_right = 10
+
+[node name="TolerancesEditor" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance/ScrollContainer/MarginContainer" unique_id=1336617322 instance=ExtResource("9_as603")]
+layout_mode = 2
+
 [node name="EditorComponentBottomLeftButtons" parent="." unique_id=1382668117 instance=ExtResource("13")]
 layout_mode = 1
 offset_right = 641.0
@@ -671,7 +716,7 @@ layout_mode = 2
 mouse_force_pass_scroll_events = false
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/font_disabled_color = Color(0.498039, 0.529412, 0.541176, 1)
-theme_override_styles/normal = SubResource("14")
+theme_override_styles/normal = SubResource("StyleBoxFlat_enpqv")
 theme_override_styles/pressed = SubResource("13")
 theme_override_styles/hover = SubResource("12")
 theme_override_styles/focus = SubResource("StyleBoxFlat_foare")
@@ -713,6 +758,17 @@ expand_mode = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BottomRight/HBoxContainer/ConfirmButton/MarginContainer/WarningBadge" unique_id=32013440]
 libraries/ = SubResource("AnimationLibrary_vbjf3")
+
+[node name="ToleranceWarnings" type="VBoxContainer" parent="." unique_id=858270649]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -286.0
+offset_top = 78.0
+offset_right = 352.0
+offset_bottom = 250.0
+grow_horizontal = 2
 
 [node name="MetaballSizeControls" type="MarginContainer" parent="." unique_id=321398276]
 layout_mode = 1
@@ -807,9 +863,11 @@ layout_mode = 0
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Appearance" to="." method="SetSelectionMenuTab" binds= ["Appearance"]]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Movement" to="." method="SetSelectionMenuTab" binds= ["Movement"]]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Reproduction" to="." method="SetSelectionMenuTab" binds= ["Reproduction"]]
+[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Tolerance" to="." method="SetSelectionMenuTab" binds= ["Tolerance"]]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Modify" to="." method="OnModifyCurrentCellTypePressed"]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Delete" to="." method="OnDeleteCellTypePressed"]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/Duplicate" to="." method="OnTypeDuplicateStartPressed"]
+[connection signal="OnTolerancesChanged" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance/ScrollContainer/MarginContainer/TolerancesEditor" to="." method="OnTolerancesEditorChangedData"]
 [connection signal="OnNameSet" from="EditorComponentBottomLeftButtons" to="." method="OnSpeciesNameChanged"]
 [connection signal="OnRedo" from="EditorComponentBottomLeftButtons" to="." method="Redo"]
 [connection signal="OnSymmetryChanged" from="EditorComponentBottomLeftButtons" to="." method="OnSymmetryPressed"]

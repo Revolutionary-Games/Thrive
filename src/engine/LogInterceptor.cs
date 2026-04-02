@@ -126,6 +126,10 @@ public partial class LogInterceptor : Logger
         if (rationale.Contains("tempt to disconnect a nonexistent connection from 'root:<Window"))
             return;
 
+        // Potentially another related, bug one that Iman is reporting often so... we'll just ignore it
+        if (rationale.Contains("disconnect a nonexistent connection") && rationale.Contains("ActiveModalContainer"))
+            return;
+
         // Again, an engine bug that is caused by reopening a dropdown menu that always triggers this error
         if (rationale.Contains("is already connected to given callable"))
             return;

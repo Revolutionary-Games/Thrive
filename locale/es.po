@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-10 09:55+0200\n"
-"PO-Revision-Date: 2026-01-22 03:55+0000\n"
-"Last-Translator: JESUS5PACHECO <jesusxpacheco5@gmail.com>\n"
+"POT-Creation-Date: 2026-02-27 14:48+0200\n"
+"PO-Revision-Date: 2026-04-01 20:02+0000\n"
+"Last-Translator: doselillo <doselfurioso@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11.4\n"
+"X-Generator: Weblate 5.16.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -49,9 +49,8 @@ msgstr "Abisopelágico"
 msgid "ACCEPT"
 msgstr "Aceptar"
 
-#, fuzzy
 msgid "ACHIEVEMENTS"
-msgstr "Movimiento Base"
+msgstr "Logros"
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr "Logros {0}/{1}"
@@ -190,9 +189,8 @@ msgstr "Amoniaco"
 msgid "AMMONIA_COST"
 msgstr "Coste del Amoniaco:"
 
-#, fuzzy
 msgid "AMMONIA_LEVELS"
-msgstr "Coste del Amoniaco:"
+msgstr "Nivel de Amoniaco"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Cantidad de autoguardados a almacenar:"
@@ -221,7 +219,6 @@ msgstr "Modo de suavizado:"
 msgid "ANTI_ALIASING_MSAA"
 msgstr "MSAA:"
 
-#, fuzzy
 msgid "ANTI_ALIASING_TAA"
 msgstr "TAA"
 
@@ -274,9 +271,8 @@ msgstr "Estadio de ascenso"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Se requiere la clase del ensamblaje del mod cuando se especifica el ensamblaje"
 
-#, fuzzy
 msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
-msgstr "Se requiere la clase del ensamblaje del mod cuando se especifica el ensamblaje"
+msgstr "Se requiere ensamblaje cuando una clase mod es especificada"
 
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Asume que la CPU tiene «hyperthreading» habilitado"
@@ -367,9 +363,8 @@ msgstr "Resultados de Auto-evo:"
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% hecho. {1:n0}/{2:n0} etapas."
 
-#, fuzzy
 msgid "AUTO-EVO_STRENGHT_MULTIPLIER"
-msgstr "Multiplicador de costo de mutación"
+msgstr "Multiplicador de fuerza de auto mutación"
 
 #, fuzzy
 msgid "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
@@ -721,6 +716,18 @@ msgstr "Celulosa"
 
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Esta membrana tiene una pared, lo que se traduce en una mejor protección contra el daño general y, sobre todo, contra el daño físico. También cuesta menos energía mantener su forma, pero no puede absorber recursos rápidamente y es más lenta. 1[b]La celulosa puede digerir esta pared2[/b], lo que la hace vulnerable a ser engullida por los depredadores."
+
+#, fuzzy
+msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
+msgstr ""
+"Velocidad de rotación de la célula. Las células más grandes rotan más despacio, pero pueden añadirse cilios para compensar.\n"
+"La ubicación de los orgánulos afecta a la rotación: los orgánulos más alejados del centro reducen más la rotación."
+
+#, fuzzy
+msgid "CELL_SPECIALIZATION_TOOLTIP"
+msgstr ""
+"Velocidad de rotación de la célula. Las células más grandes rotan más despacio, pero pueden añadirse cilios para compensar.\n"
+"La ubicación de los orgánulos afecta a la rotación: los orgánulos más alejados del centro reducen más la rotación."
 
 msgid "CELL_STAT_ROTATION_TOOLTIP"
 msgstr ""
@@ -2819,12 +2826,6 @@ msgstr ""
 msgid "IMAGE_FILE_TYPES"
 msgstr "Archivos de Imagen Soportados"
 
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
-msgstr "Incluye prototipos de futuras etapas"
-
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
-msgstr "(ciertas características no estarán disponibles cuando llegues a ciertas etapas)"
-
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Aumentar tamaño del objeto"
 
@@ -3043,14 +3044,6 @@ msgstr "Julio"
 
 msgid "JUNE"
 msgstr "Junio"
-
-#, fuzzy
-msgid "KEEP_CURRENT_SHORT"
-msgstr "Mundo Actual"
-
-#, fuzzy
-msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
-msgstr "Visita nuestro Patreon"
 
 msgid "KEEP_MIGRATION"
 msgstr "Mantener Migración"
@@ -4384,6 +4377,10 @@ msgstr "Editor multicelular"
 msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Editor multicelular"
 
+#, fuzzy
+msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
+msgstr "(ciertas características no estarán disponibles cuando llegues a ciertas etapas)"
+
 msgid "MULTICELLULAR_STAGE"
 msgstr "Etapa multicelular"
 
@@ -4846,6 +4843,10 @@ msgstr "(ADVERTENCIA: la fotosíntesis se vuelve mucho menos viable)"
 msgid "ORGANISM_STATISTICS"
 msgstr "Estadísticas del Organismo"
 
+#, fuzzy
+msgid "ORGANISM_STATISTICS_MICROBE"
+msgstr "Estadísticas del Organismo"
+
 msgid "OR_UNLOCK_CONDITION"
 msgstr "o"
 
@@ -5239,7 +5240,16 @@ msgstr "Procesando objetos cargados"
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
+#, fuzzy
+msgid "PROCESS_PANEL_EXPLANATION_TITLE"
+msgstr "Procesos celulares"
+
+#, fuzzy
 msgid "PROCESS_PANEL_TITLE"
+msgstr "Procesos celulares"
+
+#, fuzzy
+msgid "PROCESS_PANEL_TITLE_MICROBE"
 msgstr "Procesos celulares"
 
 #, fuzzy
@@ -6006,6 +6016,10 @@ msgstr "Crear glucosa"
 msgid "SPAWN_PHOSPHATES"
 msgstr "Crear fosfato"
 
+#, fuzzy
+msgid "SPECIALIZATION_COLON"
+msgstr "Población Total:"
+
 msgid "SPECIAL_MOUSE_1"
 msgstr "Botón especial de mouse 1"
 
@@ -6696,9 +6710,6 @@ msgstr "Herramientas"
 #, fuzzy
 msgid "TOOL_HAND_AXE"
 msgstr "Hacha de mano"
-
-msgid "TOO_LARGE_PRESSURE_RANGE"
-msgstr "Rango de presión muy grande"
 
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr "No se muestran todas las versiones recientes ya que son demasiadas"
@@ -7433,7 +7444,26 @@ msgstr "Aumenta el espacio de almacenamiento de la célula."
 msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr "Aumenta el espacio de almacenamiento de la célula."
 
+#, fuzzy
+msgid "VALUE_MODIFIER"
+msgstr "Modificador de salud"
+
+msgid "VALUE_OFFSET"
+msgstr ""
+
+#, fuzzy
+msgid "VALUE_TOTAL"
+msgstr "Valor bruto:"
+
 msgid "VALUE_WITH_UNIT"
+msgstr "{0} {1}"
+
+#, fuzzy
+msgid "VALUE_WITH_UNIT_PLUS"
+msgstr "{0} {1}"
+
+#, fuzzy
+msgid "VALUE_WITH_UNIT_PLUS_MINUS"
 msgstr "{0} {1}"
 
 #, fuzzy
@@ -7464,6 +7494,10 @@ msgstr "Deshabilitar todo"
 
 #, fuzzy
 msgid "VIEW_CELL_PROCESSES"
+msgstr "Aumenta la velocidad de rotación de células grandes."
+
+#, fuzzy
+msgid "VIEW_CELL_PROCESSES_MICROBE"
 msgstr "Aumenta la velocidad de rotación de células grandes."
 
 #, fuzzy
@@ -7654,6 +7688,7 @@ msgstr "Estadio Consciente"
 msgid "WIKI_AXON_EFFECTS"
 msgstr "Efectos externos:"
 
+#, fuzzy
 msgid "WIKI_AXON_INTRO"
 msgstr "Fibra nerviosa entre neuronas, accesible desde la Fase Multicelular. Requerida para incrementar el poder cerebral de un organismo y progresar a etapas futuras."
 
@@ -7664,9 +7699,11 @@ msgstr "No hay modificaciones."
 msgid "WIKI_AXON_PROCESSES"
 msgstr "Colocar orgánulos"
 
+#, fuzzy
 msgid "WIKI_AXON_REQUIREMENTS"
 msgstr "Solo disponible desde la Fase Multicelular en adelante."
 
+#, fuzzy
 msgid "WIKI_AXON_SCIENTIFIC_BACKGROUND"
 msgstr "Todavía por ser anunciado"
 
@@ -8618,6 +8655,7 @@ msgstr "Etapa multicelular"
 msgid "WIKI_MYOFIBRIL_EFFECTS"
 msgstr "Por cada célula en un organismo multicelular que contiene una [b]Miofibrilla[/b], la velocidad de movimiento de ese organismo incrementa proporcionalmente al volumen de esa célula. Células con [b]Miofibrillas[/b] son clasificadas como poseedoras de tejido muscular."
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_INTRO"
 msgstr "Organela que consiste de largas fibras las cuales en agregación crean tejido muscular dentro de los organismos, disponibles desde la Etapa Multicelular. Incrementa la velocidad de un organismo."
 
@@ -8628,9 +8666,11 @@ msgstr "Sin modificaciones."
 msgid "WIKI_MYOFIBRIL_PROCESSES"
 msgstr "Colocar orgánulos"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_REQUIREMENTS"
 msgstr "Unicamente disponible a partir de la Etapa Multicelular en adelante."
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_SCIENTIFIC_BACKGROUND"
 msgstr "TBA"
 
@@ -9390,6 +9430,7 @@ msgstr "Convierte [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:co
 msgid "WIKI_VACUOLE_REQUIREMENTS"
 msgstr "Una célula debe tener un [b][color=#3796e1][url=thriveopedia:nucleus]Nucleo[/url][/color][/b] para evolucionar [b]Vacuolas[/b]."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_SCIENTIFIC_BACKGROUND"
 msgstr "TBA"
 
@@ -9460,6 +9501,12 @@ msgid "WORLD_GENERAL_STATISTICS"
 msgstr "Estadísticas del Organismo"
 
 msgid "WORLD_MISC_DETAILS_STRING"
+msgstr ""
+"Incluir prototipos de etapas posteriores: {0}\n"
+"Incluir \"huevos de pascua\": {1}"
+
+#, fuzzy
+msgid "WORLD_MISC_DETAILS_STRING_2"
 msgstr ""
 "Incluir prototipos de etapas posteriores: {0}\n"
 "Incluir \"huevos de pascua\": {1}"
@@ -9590,6 +9637,20 @@ msgstr "Hacer zoom"
 
 msgid "ZOOM_OUT"
 msgstr "Alejar el zoom"
+
+#, fuzzy
+#~ msgid "KEEP_CURRENT_SHORT"
+#~ msgstr "Mundo Actual"
+
+#, fuzzy
+#~ msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
+#~ msgstr "Visita nuestro Patreon"
+
+#~ msgid "TOO_LARGE_PRESSURE_RANGE"
+#~ msgstr "Rango de presión muy grande"
+
+#~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
+#~ msgstr "Incluye prototipos de futuras etapas"
 
 #~ msgid "MOD_AUTO_HARMONY"
 #~ msgstr "Usa Auto Harmony:"

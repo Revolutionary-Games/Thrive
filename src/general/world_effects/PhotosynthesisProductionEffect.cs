@@ -79,22 +79,9 @@ public class PhotosynthesisProductionEffect : IWorldEffect
 
             foreach (var species in patch.SpeciesInPatch)
             {
-                var resolvedTolerances = new ResolvedMicrobeTolerances
-                {
-                    ProcessSpeedModifier = 1,
-                    OsmoregulationModifier = 1,
-                    HealthModifier = 1,
-                };
-
-                // TODO: multicellular environmental tolerances
-                if (species.Key is MicrobeSpecies microbeSpecies)
-                {
-                    resolvedTolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(
-                        MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(microbeSpecies, patch.Biome));
-                }
-
-                var balanceModifier = ProcessSystem.CalculateSpeciesActiveProcessListForEffect(species.Key,
-                    microbeProcesses, patch.Biome, resolvedTolerances, targetWorld.WorldSettings);
+                var balanceModifier = AmmoniaProductionEffect.GetSpeciesModifiersForEffect(species.Key,
+                    out var resolvedTolerances, out var specialization, microbeProcesses, patch.Biome,
+                    targetWorld.WorldSettings);
 
                 foreach (var process in microbeProcesses)
                 {
@@ -104,7 +91,7 @@ public class PhotosynthesisProductionEffect : IWorldEffect
 
                     var effectiveSpeed =
                         ProcessSystem.CalculateEffectiveProcessSpeedForEffect(process, balanceModifier, patch.Biome,
-                            resolvedTolerances.ProcessSpeedModifier);
+                            resolvedTolerances.ProcessSpeedModifier, specialization);
 
                     if (effectiveSpeed <= 0)
                         continue;

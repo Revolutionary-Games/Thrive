@@ -1,7 +1,7 @@
 ﻿namespace Systems;
 
 using System;
-using System.Linq;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Arch.Buffer;
 using Arch.Core;
@@ -20,12 +20,18 @@ using Godot;
 [WritesToComponent(typeof(CellProperties))]
 [WritesToComponent(typeof(Physics))]
 [WritesToComponent(typeof(OrganelleContainer))]
+[WritesToComponent(typeof(BioProcesses))]
 [ReadsComponent(typeof(MulticellularSpeciesMember))]
 [ReadsComponent(typeof(WorldPosition))]
 [RunsAfter(typeof(ColonyBindingSystem))]
 [RuntimeCost(0.25f)]
 public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
 {
+    private readonly object attachLock = new();
+    private readonly List<(Entity Cell, DelayedMicrobeColony Delayed)> attachmentOrder = new();
+
+    private readonly IComparer<(Entity Cell, DelayedMicrobeColony Delayed)> attachmentOrderComparer;
+
     private readonly IWorldSimulation worldSimulation;
     private readonly IMicrobeSpawnEnvironment spawnEnvironment;
     private readonly ISpawnSystem spawnSystem;
@@ -37,12 +43,14 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
         this.worldSimulation = worldSimulation;
         this.spawnEnvironment = spawnEnvironment;
         this.spawnSystem = spawnSystem;
+
+        attachmentOrderComparer = new AttachmentOrderComparer();
     }
 
     public static void CreateDelayAttachedMicrobe(ref WorldPosition colonyPosition, in Entity colonyEntity,
         int colonyTargetIndex, CellTemplate cellTemplate, MulticellularSpecies species,
         IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment spawnEnvironment,
-        CommandBuffer recorder, ISpawnSystem notifySpawnTo, bool giveStartingCompounds)
+        CommandBuffer recorder, ISpawnSystem notifySpawnTo, bool giveStartingCompounds, bool playAnimation = true)
     {
         if (colonyTargetIndex == 0)
             throw new ArgumentException("Cannot delay add the root colony cell");
@@ -81,6 +89,18 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
         // Ensure no physics is created before the attach-operation completes
         recorder.Set(member, PhysicsHelpers.CreatePhysicsForMicrobe(true));
 
+        if (playAnimation)
+        {
+            recorder.Add(member, new SpatialAnimation
+            {
+                InitialPosition = attachPosition.RelativePosition * 0.8f,
+                FinalPosition = attachPosition.RelativePosition,
+                InitialScale = Vector3.Zero,
+                FinalScale = Vector3.One,
+                AnimationTime = 0.5f,
+            });
+        }
+
         if (colonyEntity.Has<MicrobeEventCallbacks>())
         {
             ref var originalEvents = ref colonyEntity.Get<MicrobeEventCallbacks>();
@@ -92,6 +112,41 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
         }
     }
 
+    public override void AfterUpdate(in float delta)
+    {
+        lock (attachLock)
+        {
+            if (attachmentOrder.Count == 0)
+                return;
+
+            var recorder = worldSimulation.StartRecordingEntityCommands();
+
+            attachmentOrder.Sort(attachmentOrderComparer);
+
+            foreach (var pair in attachmentOrder)
+            {
+                if (!pair.Delayed.FinishAttachingToColony.IsAlive())
+                {
+                    GD.PrintErr("Delayed attach target entity is dead, ignoring attach request");
+                    continue;
+                }
+
+                if (!pair.Delayed.FinishAttachingToColony.Has<MicrobeColony>())
+                {
+                    GD.PrintErr("Delayed attach target entity is missing colony, ignoring attach request");
+                    continue;
+                }
+
+                CompleteDelayedColonyAttach(ref pair.Delayed.FinishAttachingToColony.Get<MicrobeColony>(),
+                    pair.Delayed.FinishAttachingToColony, pair.Cell, recorder, pair.Delayed.AttachIndex);
+            }
+
+            attachmentOrder.Clear();
+
+            worldSimulation.FinishRecordingEntityCommands(recorder);
+        }
+    }
+
     [Query]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update(ref DelayedMicrobeColony delayed, in Entity entity)
@@ -100,30 +155,13 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
 
         if (delayed.GrowAdditionalMembers > 0)
         {
-            GrowColonyMembers(entity, recorder, delayed.GrowAdditionalMembers);
+            GrowColonyMembers(entity, recorder, delayed.GrowAdditionalMembers, delayed.PlayAnimation);
         }
         else if (delayed.FinishAttachingToColony != Entity.Null)
         {
-            if (delayed.FinishAttachingToColony.IsAlive())
+            lock (attachLock)
             {
-                if (delayed.FinishAttachingToColony.Has<MicrobeColony>())
-                {
-                    ref var colony = ref delayed.FinishAttachingToColony.Get<MicrobeColony>();
-
-                    lock (AttachedToEntityHelpers.EntityAttachRelationshipModifyLock)
-                    {
-                        CompleteDelayedColonyAttach(ref colony, delayed.FinishAttachingToColony, entity,
-                            recorder, delayed.AttachIndex);
-                    }
-                }
-                else
-                {
-                    GD.PrintErr("Delayed attach target entity is missing colony, ignoring attach request");
-                }
-            }
-            else
-            {
-                GD.PrintErr("Delayed attach target entity is dead, ignoring attach request");
+                attachmentOrder.Add((entity, delayed));
             }
         }
         else
@@ -137,7 +175,7 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
         worldSimulation.FinishRecordingEntityCommands(recorder);
     }
 
-    private void GrowColonyMembers(in Entity entity, CommandBuffer recorder, int members)
+    private void GrowColonyMembers(in Entity entity, CommandBuffer recorder, int members, bool playAnimation = true)
     {
         if (!entity.Has<MulticellularSpeciesMember>())
         {
@@ -183,14 +221,15 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
         ref var species = ref entity.Get<MulticellularSpeciesMember>();
 
         bool added = false;
-        var cellsToGrow = species.Species.ModifiableGameplayCells.Skip(bodyPlanIndex).Take(members);
 
         ref var parentPosition = ref entity.Get<WorldPosition>();
 
-        foreach (var cellTemplate in cellsToGrow)
+        for (int i = bodyPlanIndex; i < bodyPlanIndex + members && i < species.Species.ModifiableGameplayCells.Count;
+             ++i)
         {
-            CreateDelayAttachedMicrobe(ref parentPosition, entity, bodyPlanIndex++, cellTemplate, species.Species,
-                worldSimulation, spawnEnvironment, recorder, spawnSystem, true);
+            CreateDelayAttachedMicrobe(ref parentPosition, entity, bodyPlanIndex++,
+                species.Species.ModifiableGameplayCells[i], species.Species, worldSimulation, spawnEnvironment,
+                recorder, spawnSystem, true, playAnimation);
 
             added = true;
         }
@@ -207,5 +246,14 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
     {
         var parentIndex = colony.CalculateSensibleParentIndexForMulticellular(ref entity.Get<AttachedToEntity>());
         colony.FinishQueuedMemberAdd(colonyEntity, parentIndex, entity, targetMemberIndex, recorder);
+    }
+
+    private class AttachmentOrderComparer : IComparer<(Entity Cell, DelayedMicrobeColony Delayed)>
+    {
+        public int Compare((Entity Cell, DelayedMicrobeColony Delayed) first,
+            (Entity Cell, DelayedMicrobeColony Delayed) second)
+        {
+            return first.Delayed.AttachIndex.CompareTo(second.Delayed.AttachIndex);
+        }
     }
 }

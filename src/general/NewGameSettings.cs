@@ -162,9 +162,6 @@ public partial class NewGameSettings : ControlWithInput
 
     // Misc controls
     [Export]
-    private CheckButton includeMulticellularButton = null!;
-
-    [Export]
     private CheckButton easterEggsButton = null!;
 
     // Other
@@ -371,9 +368,6 @@ public partial class NewGameSettings : ControlWithInput
         var seedText = settings.Seed.ToString();
         planetSettings.SetSeed(seedText);
 
-        // Always set prototypes to true as the player must have been there to descend
-        includeMulticellularButton.ButtonPressed = true;
-
         // And also turn LAWK off because if the player initially played with it on, they'll probably want to experience
         // what they missed now.
         // If they still want to play with LAWK on, they can just put the checkbox back
@@ -497,7 +491,6 @@ public partial class NewGameSettings : ControlWithInput
         settings.ExperimentalFeatures = experimentalFeatures.ButtonPressed;
         OnExperimentalFeaturesChanged(settings.ExperimentalFeatures);
 
-        settings.IncludeMulticellular = includeMulticellularButton.ButtonPressed;
         settings.EasterEggs = easterEggsButton.ButtonPressed;
 
         settings.WorldSize = planetGenerationSettings.WorldSize;
@@ -530,7 +523,7 @@ public partial class NewGameSettings : ControlWithInput
 
         void OnStartGame()
         {
-            MainMenu.OnEnteringGame(false);
+            MainMenu.OnEnteringGame(false, false);
 
             var microbeStage = (MicrobeStage)SceneManager.Instance.LoadScene(MainGameState.MicrobeStage).Instantiate();
             microbeStage.CurrentGame = GameProperties.StartNewMicrobeGame(settings);
@@ -931,11 +924,6 @@ public partial class NewGameSettings : ControlWithInput
     private void OnWorldSizeSelected(int index)
     {
         _ = index;
-    }
-
-    private void OnIncludeMulticellularToggled(bool pressed)
-    {
-        _ = pressed;
     }
 
     private void OnEasterEggsToggled(bool pressed)

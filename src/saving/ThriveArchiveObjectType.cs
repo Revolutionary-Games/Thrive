@@ -292,7 +292,10 @@ public enum ThriveArchiveObjectType : uint
     PatchDetailsMigration = 4375,
     BehaviourEditorSubComponent = 4376,
     MicrobeEditorPatchMap = 4377,
+
+    // Note: this is only registered as a base class and can't be directly saved
     PlayerReadableName = 4378,
+
     WorldResource = 4379,
     CombinedEditorAction = 4380,
     SingleEditorAction = 4381,
@@ -310,6 +313,7 @@ public enum ThriveArchiveObjectType : uint
     CellTypeEditsHolder = 4393,
     GeneralAvoidPredationSelectionPressure = 4394,
     EnergyConsumptionPressure = 4395,
+    ComponentSpatialAnimation = 4396,
 
     // Special flag types
     ExtendedOrganelleLayout = OrganelleLayout | ArchiveObjectType.ExtendedTypeFlag,

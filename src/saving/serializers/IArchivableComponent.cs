@@ -283,6 +283,9 @@ public static class ComponentDeserializers
             case ThriveArchiveObjectType.ComponentCellDivisionCollisionDisabler:
                 entity.Add(CellDivisionCollisionDisablerHelpers.ReadFromArchive(reader, version));
                 return true;
+            case ThriveArchiveObjectType.ComponentSpatialAnimation:
+                entity.Add(SpatialAnimationHelpers.ReadFromArchive(reader, version));
+                return true;
         }
 
         return false;

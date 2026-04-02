@@ -11,6 +11,7 @@ using Godot;
 public partial class OrganismStatisticsPanel : PanelContainer
 {
     [Export]
+    [ExportCategory("Configuration")]
     public bool IsMulticellularEditor;
 
     [Export]
@@ -57,6 +58,7 @@ public partial class OrganismStatisticsPanel : PanelContainer
 #pragma warning disable CA2213
 
     [Export]
+    [ExportCategory("Internal")]
     private CellStatsIndicator sizeLabel = null!;
 
     [Export]
@@ -129,6 +131,16 @@ public partial class OrganismStatisticsPanel : PanelContainer
     private Button processListButton = null!;
 
     [Export]
+    private Label titleLabel = null!;
+
+    [Export]
+    private Label specializationValueLabel = null!;
+
+    [Export]
+    private Label specializationTitleLabel = null!;
+
+    [Export]
+    [ExportCategory("Other Editor Parts")]
     private ProcessList processList = null!;
 
     [Export]
@@ -174,6 +186,8 @@ public partial class OrganismStatisticsPanel : PanelContainer
 
         UpdateStatVisibility();
         UpdateATPBalanceText();
+
+        UpdateStageDependentText();
     }
 
     public void OnTranslationsChanged()
@@ -182,6 +196,8 @@ public partial class OrganismStatisticsPanel : PanelContainer
         {
             UpdateEnergyBalance(energyBalanceInfo);
         }
+
+        UpdateStageDependentText();
     }
 
     public void UpdateStatVisibility()
@@ -201,6 +217,30 @@ public partial class OrganismStatisticsPanel : PanelContainer
 
         ammoniaCostLabel.Visible = ShowOrganellesCostStat;
         phosphatesCostLabel.Visible = ShowOrganellesCostStat;
+    }
+
+    public void UpdateSpecialization(float specializationFactor, int maxOrganelles, string mostCommonOrganelle)
+    {
+        var bonusStr = CalculateAndShowBonusStr(specializationFactor);
+
+        var tooltip = Localization.Translate("CELL_SPECIALIZATION_TOOLTIP").FormatSafe(bonusStr, maxOrganelles,
+            mostCommonOrganelle, Constants.CELL_SPECIALIZATION_APPLIES_AFTER_SIZE,
+            Constants.CELL_SPECIALIZATION_STRENGTH_FULL_AT);
+
+        specializationValueLabel.TooltipText = tooltip;
+        specializationTitleLabel.TooltipText = tooltip;
+    }
+
+    public void UpdateCellBodyPlanSpecialization(float averageSpecializationFactor, int cellCount,
+        float maxSpecialization, string mostSpecializedCellName)
+    {
+        var bonusStr = CalculateAndShowBonusStr(averageSpecializationFactor);
+
+        var tooltip = Localization.Translate("CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP").FormatSafe(bonusStr,
+            cellCount, Math.Round((maxSpecialization - 1) * 100, 1), mostSpecializedCellName);
+
+        specializationValueLabel.TooltipText = tooltip;
+        specializationTitleLabel.TooltipText = tooltip;
     }
 
     public void SendObjectsToTutorials(TutorialState tutorial, MicrobeEditorTutorialGUI gui)
@@ -334,17 +374,19 @@ public partial class OrganismStatisticsPanel : PanelContainer
         }
     }
 
-    public void UpdateCompoundBalances(Dictionary<Compound, CompoundBalance> balances, float warningTime)
+    public void UpdateCompoundBalances(Dictionary<Compound, CompoundBalance> balances,
+        HashSet<Compound> dayNightVaryingCompoundProductions, float warningTime)
     {
-        compoundBalance.UpdateBalances(balances, warningTime);
+        compoundBalance.UpdateBalances(balances, dayNightVaryingCompoundProductions, warningTime);
     }
 
     public void UpdateCompoundLastingTimes(Dictionary<Compound, CompoundBalance> normalBalance,
         Dictionary<Compound, CompoundBalance> nightBalance, float nominalStorage,
-        Dictionary<Compound, float> specificStorages, float warningTime, float fillingUpTime)
+        Dictionary<Compound, float> specificStorages, float warningTime, float fillingUpTime,
+        HashSet<Compound> compoundsThatWarnFillTime)
     {
         compoundStorageLastingTimes.UpdateStorage(normalBalance, nightBalance, nominalStorage, specificStorages,
-            warningTime, fillingUpTime, notEnoughStorageWarning);
+            warningTime, fillingUpTime, compoundsThatWarnFillTime, notEnoughStorageWarning);
     }
 
     public void RegisterTooltips()
@@ -513,7 +555,7 @@ public partial class OrganismStatisticsPanel : PanelContainer
 
         lightConfigurationPanel.ApplyLightLevelSelection(selectedLightLevelOption);
 
-        // Show selected light level
+        // Show the selected light level
         switch (selectedLightLevelOption)
         {
             case LightLevelOption.Day:
@@ -561,6 +603,39 @@ public partial class OrganismStatisticsPanel : PanelContainer
                 Localization.Translate("ATP_PRODUCTION_TOO_LOW");
             atpBalanceLabel.LabelSettings = ATPBalanceNotEnoughText;
         }
+    }
+
+    private void UpdateStageDependentText()
+    {
+        if (!IsMulticellularEditor)
+        {
+            titleLabel.Text = Localization.Translate("ORGANISM_STATISTICS_MICROBE");
+            processListButton.Text = Localization.Translate("VIEW_CELL_PROCESSES_MICROBE");
+        }
+        else
+        {
+            titleLabel.Text = Localization.Translate("ORGANISM_STATISTICS");
+            processListButton.Text = Localization.Translate("VIEW_CELL_PROCESSES");
+        }
+    }
+
+    private string CalculateAndShowBonusStr(float specializationFactor)
+    {
+        // Show the bonus as the amount that is above 1 in the factor as a multiplier of 1 does nothing and a bigger
+        // value helps
+        var bonus = Math.Round((specializationFactor - 1) * 100, 1);
+
+        var bonusStr = bonus.ToString(CultureInfo.CurrentCulture);
+        if (bonus >= 1)
+        {
+            specializationValueLabel.Text = "+" + Localization.Translate("PERCENTAGE_VALUE").FormatSafe(bonusStr);
+        }
+        else
+        {
+            specializationValueLabel.Text = Localization.Translate("PERCENTAGE_VALUE").FormatSafe(bonusStr);
+        }
+
+        return bonusStr;
     }
 
     private void OnCompoundBalanceTypeChanged(BalanceDisplayType newType)

@@ -39,7 +39,7 @@ public class EnvironmentalTolerancePressure : SelectionPressure
 
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {
-        // TODO: multicellular tolerance
+        // TODO: multicellular tolerance (only needed once multicellular works in general in auto-evo)
         if (species is not MicrobeSpecies microbeSpecies)
             return 0;
 

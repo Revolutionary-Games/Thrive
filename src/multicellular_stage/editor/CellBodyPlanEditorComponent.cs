@@ -12,11 +12,16 @@ public partial class CellBodyPlanEditorComponent :
     HexEditorComponentBase<MulticellularEditor, CombinedEditorAction, EditorAction, HexWithData<CellTemplate>,
         MulticellularSpecies>, IArchiveUpdatable
 {
-    public const ushort SERIALIZATION_VERSION = 3;
+    public const ushort SERIALIZATION_VERSION = 4;
+
+    [Export]
+    public int MaxToleranceWarnings = 3;
 
     private static Vector3 microbeModelOffset = new(0, -0.1f, 0);
 
     private readonly Dictionary<string, CellTypeSelection> cellTypeSelectionButtons = new();
+
+    private readonly IndividualHexLayout<CellTemplate> tempFreshlyUpdatedCells = new();
 
     private readonly List<Hex> hexTemporaryMemory = new();
     private readonly List<Hex> hexTemporaryMemory2 = new();
@@ -36,6 +41,10 @@ public partial class CellBodyPlanEditorComponent :
     /// </summary>
     private readonly HashSet<Hex> wrongGrowthOrderCells = new();
 
+    private readonly Dictionary<Compound, List<Compound>> tempCompoundSources = new();
+
+    private readonly HashSet<Compound> compoundsThatDependOnDay = new();
+
 #pragma warning disable CA2213
 
     // Selection menu tab selector buttons
@@ -50,6 +59,9 @@ public partial class CellBodyPlanEditorComponent :
 
     [Export]
     private Button growthOrderTabButton = null!;
+
+    [Export]
+    private Button tolerancesTabButton = null!;
 
     [Export]
     private PanelContainer structureTab = null!;
@@ -68,6 +80,15 @@ public partial class CellBodyPlanEditorComponent :
 
     [Export]
     private CheckBox showGrowthOrderCoordinates = null!;
+
+    [Export]
+    private TolerancesEditorSubComponent tolerancesEditor = null!;
+
+    [Export]
+    private PanelContainer toleranceTab = null!;
+
+    [Export]
+    private Container toleranceWarningContainer = null!;
 
     [Export]
     private CollapsibleList cellTypeSelectionList = null!;
@@ -109,16 +130,25 @@ public partial class CellBodyPlanEditorComponent :
 
     [Export]
     private CustomConfirmationDialog wrongGrowthOrderPopup = null!;
+
+    [Export]
+    private LabelSettings toleranceWarningsFont = null!;
 #pragma warning restore CA2213
 
     private string newName = "unset";
 
     private IndividualHexLayout<CellTemplate> editedMicrobeCells = null!;
 
+    private List<IReadOnlyOrganelleTemplate> tempAllOrganelles = new();
+    private List<TweakedProcess> tempAllProcesses = new();
+    private Dictionary<OrganelleDefinition, int> tempMemory3 = new();
+
     /// <summary>
     ///   True, when visuals of already placed things need to be updated
     /// </summary>
     private bool cellDataDirty = true;
+
+    private bool refreshTolerancesWarnings = true;
 
     private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
 
@@ -139,6 +169,7 @@ public partial class CellBodyPlanEditorComponent :
         Reproduction,
         Behaviour,
         GrowthOrder,
+        Tolerance,
     }
 
     public override bool HasIslands =>
@@ -218,6 +249,7 @@ public partial class CellBodyPlanEditorComponent :
     {
         base.Init(owningEditor, fresh);
         behaviourEditor.Init(owningEditor, fresh);
+        tolerancesEditor.Init(owningEditor, fresh);
 
         var newLayout = new IndividualHexLayout<CellTemplate>(OnCellAdded, OnCellRemoved);
 
@@ -245,6 +277,8 @@ public partial class CellBodyPlanEditorComponent :
             UpdateCellTypeSelections();
 
             newName = Editor.EditedSpecies.FormattedName;
+
+            tolerancesEditor.OnEditorSpeciesSetup(Editor.EditedBaseSpecies);
         }
 
         organismStatisticsPanel.UpdateLightSelectionPanelVisibility(
@@ -272,6 +306,20 @@ public partial class CellBodyPlanEditorComponent :
         {
             OnCellsChanged();
             cellDataDirty = false;
+        }
+
+        if (refreshTolerancesWarnings)
+        {
+            refreshTolerancesWarnings = false;
+
+            // These are all also affected by the environmental tolerances
+            CalculateEnergyAndCompoundBalance(GetCurrentCellsWithLatestTypes());
+            UpdateCellTypesSecondaryInfo();
+
+            // Health is also affected
+            UpdateStats();
+
+            CalculateAndDisplayToleranceWarnings();
         }
 
         // Show the cell that is about to be placed
@@ -313,9 +361,37 @@ public partial class CellBodyPlanEditorComponent :
 
             if (cellType != null)
             {
+                HashSet<(Hex Hex, int Orientation)> hoveredHexes = new();
+
+                /*if (!componentBottomLeftButtons.SymmetryEnabled)
+                    effectiveSymmetry = HexEditorSymmetry.None;*/
+
                 RunWithSymmetry(q, r,
-                    (finalQ, finalR, rotation) => RenderHighlightedCell(finalQ, finalR, rotation, cellType),
+                    (finalQ, finalR, rotation) =>
+                    {
+                        RenderHighlightedCell(finalQ, finalR, rotation, cellType);
+
+                        var finalHex = new Hex(finalQ, finalR);
+
+                        // Only add unique positions so that duplicate actions are not attempted
+                        bool exists = false;
+                        foreach (var existingHex in hoveredHexes)
+                        {
+                            if (existingHex.Hex == finalHex)
+                            {
+                                exists = true;
+                                break;
+                            }
+                        }
+
+                        if (exists)
+                            return;
+
+                        hoveredHexes.Add((finalHex, rotation));
+                    },
                     effectiveSymmetry);
+
+                MouseHoverPositions = hoveredHexes.ToList();
             }
         }
         else if (forceUpdateCellGraphics)
@@ -341,6 +417,8 @@ public partial class CellBodyPlanEditorComponent :
         writer.WriteObject(editedMicrobeCells);
         writer.Write((int)selectedSelectionMenuTab);
         writer.WriteObjectProperties(growthOrderGUI);
+
+        writer.WriteObjectProperties(tolerancesEditor);
     }
 
     public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
@@ -385,6 +463,11 @@ public partial class CellBodyPlanEditorComponent :
         {
             reader.ReadObjectProperties(growthOrderGUI);
         }
+
+        if (version >= 4)
+        {
+            reader.ReadObjectProperties(tolerancesEditor);
+        }
     }
 
     public override void OnEditorSpeciesSetup(Species species)
@@ -392,6 +475,7 @@ public partial class CellBodyPlanEditorComponent :
         UpdateCellTypeSelections();
 
         behaviourEditor.OnEditorSpeciesSetup(species);
+        tolerancesEditor.OnEditorSpeciesSetup(species);
 
         foreach (var cell in Editor.EditedSpecies.ModifiableEditorCells.AsModifiable())
         {
@@ -405,6 +489,9 @@ public partial class CellBodyPlanEditorComponent :
         UpdateGUIAfterLoadingSpecies(species);
 
         UpdateArrow(false);
+
+        // Make sure initial tolerance warnings are shown
+        OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
     }
 
     public override void OnFinishEditing()
@@ -423,15 +510,27 @@ public partial class CellBodyPlanEditorComponent :
             CellTypeVisualsOverride.ApplyChanges();
         }
 
+        bool neededTwoShifts = false;
+
         // Note that for the below calculations to work, all cell types need to be positioned correctly. So we need
         // to force that to happen here first. This also ensures that the skipped positioning to the origin of the cell
         // editor component (that is used as a special mode in multicellular) is performed.
         foreach (var cellType in editedSpecies.ModifiableCellTypes)
         {
-            cellType.RepositionToOrigin();
+            if (cellType.RepositionToOrigin())
+            {
+                // It seems like in very rare cases a cell type requires two shifts of the layout to fix it, and then
+                // it stops shifting. So we take the slight performance hit here and try to shift everything twice
+                // in case some type needs it.
+                if (cellType.RepositionToOrigin())
+                {
+                    GD.Print($"Did a second shift for cell type: {cellType.CellTypeName}");
+                    neededTwoShifts = true;
+                }
+            }
         }
 
-        // Safety check against cell layouts that forever want to shift
+        // Safety check against cell layouts that forever want to shift (this causes layout overlap errors)
         foreach (var cellType in editedSpecies.ModifiableCellTypes)
         {
             if (cellType.RepositionToOrigin())
@@ -445,20 +544,31 @@ public partial class CellBodyPlanEditorComponent :
             }
         }
 
+        if (neededTwoShifts)
+        {
+            GD.Print("Some cell types required two shifts to get organelles centered around the origin");
+        }
+
         ApplyGrowthOrderToCells();
 
         // Compute final cell layout positions and update the species
         // TODO: maybe in the future we want to switch to editing the full hex layout with the entire cells in this
         // editor so this step can be skipped. Or another approach that keeps the shape the player worked on better
         // than this approach that can move around the cells a lot.
-        MulticellularLayoutHelpers.UpdateGameplayLayout(editedSpecies.ModifiableGameplayCells,
-            editedSpecies.ModifiableEditorCells, editedMicrobeCells, hexTemporaryMemory, hexTemporaryMemory2);
+        // This uses high quality as extra time spent doesn't matter here and is even important for the player species.
 
+        // TODO: as this is a long operation, it would be very nice to be able to run this in a background thread
+        MulticellularLayoutHelpers.UpdateGameplayLayout(editedSpecies.ModifiableGameplayCells,
+            editedSpecies.ModifiableEditorCells, editedMicrobeCells, AlgorithmQuality.High, hexTemporaryMemory,
+            hexTemporaryMemory2);
+
+        tempFreshlyUpdatedCells.Clear();
         editedSpecies.OnEdited();
 
         editedSpecies.UpdateNameIfValid(newName);
 
         behaviourEditor.OnFinishEditing();
+        tolerancesEditor.OnFinishEditing();
     }
 
     public override bool CanFinishEditing(IEnumerable<EditorUserOverride> userOverrides)
@@ -485,6 +595,9 @@ public partial class CellBodyPlanEditorComponent :
 
     public void OnCellTypeEdited(CellType changedType)
     {
+        // Make sure specialization is calculated
+        changedType.CalculateSpecialization();
+
         // Update all cell graphics holders
         forceUpdateCellGraphics = true;
 
@@ -497,8 +610,37 @@ public partial class CellBodyPlanEditorComponent :
         RegenerateCellTypeIcon(changedType);
 
         UpdateStats();
+        tolerancesEditor.OnDataTolerancesDependOnChanged();
 
         UpdateFinishButtonWarningVisibility();
+
+        UpdateSpecializationDisplay();
+    }
+
+    /// <summary>
+    ///   Gets the current body plan that is being edited. For calculating stats etc. based on this in other editor
+    ///   parts. This also makes sure the latest cell types are applied to the layout, so this is a bit of an expensive
+    ///   method to call.
+    /// </summary>
+    /// <returns>Current cells. Should not be edited directly.</returns>
+    public IndividualHexLayout<CellTemplate> GetCurrentCellsWithLatestTypes()
+    {
+        tempFreshlyUpdatedCells.Clear();
+
+        foreach (var editedMicrobeCell in editedMicrobeCells)
+        {
+            if (editedMicrobeCell.Data == null)
+                throw new InvalidOperationException("Layout to edit should not have cells with no data");
+
+            var dataToAdd = new CellTemplate(GetEditedCellDataIfEdited(editedMicrobeCell.Data.ModifiableCellType),
+                editedMicrobeCell.Position, editedMicrobeCell.Orientation);
+
+            tempFreshlyUpdatedCells.AddFast(
+                new HexWithData<CellTemplate>(dataToAdd, dataToAdd.Position, dataToAdd.Orientation), hexTemporaryMemory,
+                hexTemporaryMemory2);
+        }
+
+        return tempFreshlyUpdatedCells;
     }
 
     /// <summary>
@@ -547,19 +689,40 @@ public partial class CellBodyPlanEditorComponent :
 
     public void OnCurrentPatchUpdated(Patch patch)
     {
-        CalculateEnergyAndCompoundBalance(editedMicrobeCells);
+        CalculateEnergyAndCompoundBalance(GetCurrentCellsWithLatestTypes());
 
         UpdateCellTypesSecondaryInfo();
 
         organismStatisticsPanel.UpdateLightSelectionPanelVisibility(
             Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled && Editor.CurrentPatch.HasDayAndNight);
+
+        tolerancesEditor.OnDataTolerancesDependOnChanged();
+        OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
+    }
+
+    /// <summary>
+    ///   Call when tolerance data changes
+    /// </summary>
+    /// <param name="newTolerances">New tolerance data</param>
+    public void OnTolerancesChanged(EnvironmentalTolerances newTolerances)
+    {
+        // Need to show new tolerances warnings (and refresh a few other things)
+        refreshTolerancesWarnings = true;
+
+        Editor.OnTolerancesChanged(newTolerances);
+    }
+
+    public ToleranceResult CalculateRawTolerances(bool excludePositiveBuffs = false)
+    {
+        return MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(tolerancesEditor.CurrentTolerances,
+            GetCurrentCellsWithLatestTypes(), Editor.CurrentPatch.Biome, excludePositiveBuffs);
     }
 
     public override void OnLightLevelChanged(float dayLightFraction)
     {
         UpdateVisualLightLevel(dayLightFraction, Editor.CurrentPatch);
 
-        CalculateEnergyAndCompoundBalance(editedMicrobeCells);
+        CalculateEnergyAndCompoundBalance(GetCurrentCellsWithLatestTypes());
 
         UpdateCellTypesSecondaryInfo();
     }
@@ -747,7 +910,7 @@ public partial class CellBodyPlanEditorComponent :
             return;
 
         // For now a single hex represents entire cells
-        RenderHoveredHex(q, r, new[] { new Hex(0, 0) }, isPlacementProbablyValid,
+        RenderHoveredHex(q, r, [new Hex(0, 0)], isPlacementProbablyValid,
             out bool hadDuplicate);
 
         bool showModel = !hadDuplicate;
@@ -812,6 +975,7 @@ public partial class CellBodyPlanEditorComponent :
                 if (placed != null)
                 {
                     placementActions.Add(placed);
+                    GD.Print($"Trying to place cell \"{cellType.CellTypeName}\" at {hex}");
 
                     usedHexes.Add(hex);
                 }
@@ -1064,6 +1228,9 @@ public partial class CellBodyPlanEditorComponent :
 
         hasNegativeATPCells = false;
 
+        var tolerances = Editor.CalculateCurrentTolerances(tolerancesEditor.CurrentTolerances);
+        var environmentalTolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(tolerances);
+
         foreach (var button in cellTypeSelectionButtons.Values)
         {
             var cellType = button.CellType;
@@ -1075,14 +1242,6 @@ public partial class CellBodyPlanEditorComponent :
                 GD.PrintErr($"Tooltip not found for species' cell type: {cellType.CellTypeName}");
                 continue;
             }
-
-            // TODO: get actual tolerances once they are added to the multicellular stage
-            var environmentalTolerances = new ResolvedMicrobeTolerances
-            {
-                HealthModifier = 1,
-                OsmoregulationModifier = 1,
-                ProcessSpeedModifier = 1,
-            };
 
             cellTypesCount.TryGetValue(cellType, out var count);
 
@@ -1108,20 +1267,33 @@ public partial class CellBodyPlanEditorComponent :
         var maximumMovementDirection =
             MicrobeInternalCalculations.MaximumSpeedDirection(cellType.ModifiableOrganelles);
 
+        var specialization =
+            MicrobeInternalCalculations.CalculateSpecializationBonus(cellType.ModifiableOrganelles, tempMemory3);
+
         ProcessSystem.ComputeEnergyBalanceFull(cellType.ModifiableOrganelles, Editor.CurrentPatch.Biome,
-            environmentalTolerances,
+            environmentalTolerances, specialization,
             cellType.MembraneType,
             maximumMovementDirection, moving, true, Editor.CurrentGame.GameWorld.WorldSettings,
             organismStatisticsPanel.CompoundAmountType, null, energyBalanceInfo);
 
         AddCellTypeCompoundBalance(balances, cellType.ModifiableOrganelles, organismStatisticsPanel.BalanceDisplayType,
             organismStatisticsPanel.CompoundAmountType, Editor.CurrentPatch.Biome, energyBalanceInfo,
-            environmentalTolerances);
+            environmentalTolerances, specialization);
 
         tooltip.DisplayName = cellType.CellTypeName;
         tooltip.MutationPointCost = Math.Min(cellType.MPCost * Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier,
             Constants.MAX_SINGLE_EDIT_MP_COST);
-        tooltip.DisplayCellTypeBalances(balances);
+
+        tempCompoundSources.Clear();
+        ProcessSystem.CalculateInputCompoundsNeededForOutputs(cellType.ModifiableOrganelles, Editor.CurrentPatch.Biome,
+            environmentalTolerances, specialization,
+            organismStatisticsPanel.CompoundAmountType, true, tempCompoundSources);
+
+        Editor.CurrentPatch.Biome.GetProducedCompoundsThatDependOnVarying(tempCompoundSources,
+            compoundsThatDependOnDay);
+
+        tooltip.DisplayCellTypeBalances(balances, compoundsThatDependOnDay);
+
         tooltip.UpdateATPBalance(energyBalanceInfo.TotalProduction, energyBalanceInfo.TotalConsumption);
 
         tooltip.UpdateHealthIndicator(MicrobeInternalCalculations.CalculateHealth(environmentalTolerances,
@@ -1199,7 +1371,7 @@ public partial class CellBodyPlanEditorComponent :
 
     private void OnEnergyBalanceOptionsChanged()
     {
-        CalculateEnergyAndCompoundBalance(editedMicrobeCells);
+        CalculateEnergyAndCompoundBalance(GetCurrentCellsWithLatestTypes());
 
         UpdateCellTypesSecondaryInfo();
 
@@ -1208,7 +1380,7 @@ public partial class CellBodyPlanEditorComponent :
 
     private void OnResourceLimitingModeChanged()
     {
-        CalculateEnergyAndCompoundBalance(editedMicrobeCells);
+        CalculateEnergyAndCompoundBalance(GetCurrentCellsWithLatestTypes());
 
         UpdateCellTypesSecondaryInfo();
 
@@ -1228,19 +1400,26 @@ public partial class CellBodyPlanEditorComponent :
         UpdateFinishButtonWarningVisibility();
 
         UpdateGrowthOrderUI();
+
+        OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
+        tolerancesEditor.OnDataTolerancesDependOnChanged();
+
+        UpdateSpecializationDisplay();
     }
 
     private void UpdateStats()
     {
+        var latestTypes = GetCurrentCellsWithLatestTypes();
+
         organismStatisticsPanel.UpdateStorage(GetAdditionalCapacities(out var nominalCapacity), nominalCapacity);
-        organismStatisticsPanel.UpdateSpeed(CellBodyPlanInternalCalculations.CalculateSpeed(editedMicrobeCells));
+        organismStatisticsPanel.UpdateSpeed(CellBodyPlanInternalCalculations.CalculateSpeed(latestTypes));
         organismStatisticsPanel.UpdateRotationSpeed(
-            CellBodyPlanInternalCalculations.CalculateRotationSpeed(editedMicrobeCells));
+            CellBodyPlanInternalCalculations.CalculateRotationSpeed(latestTypes));
         var (ammoniaCost, phosphatesCost) =
-            CellBodyPlanInternalCalculations.CalculateOrganellesCost(editedMicrobeCells);
+            CellBodyPlanInternalCalculations.CalculateOrganellesCost(latestTypes);
         organismStatisticsPanel.UpdateOrganellesCost(ammoniaCost, phosphatesCost);
 
-        CalculateEnergyAndCompoundBalance(editedMicrobeCells);
+        CalculateEnergyAndCompoundBalance(latestTypes);
 
         UpdateCellTypesSecondaryInfo();
     }
@@ -1259,8 +1438,19 @@ public partial class CellBodyPlanEditorComponent :
 
         if (organismStatisticsPanel.ResourceLimitingMode != ResourceLimitingMode.AllResources)
         {
+            tempAllOrganelles.Clear();
+            foreach (var cell in cells)
+            {
+                foreach (var organelle in cell.Data!.CellType.Organelles)
+                {
+                    tempAllOrganelles.Add(organelle);
+                }
+            }
+
+            ProcessSystem.ComputeActiveProcessList(tempAllOrganelles, ref tempAllProcesses);
+
             conditionsData = new BiomeResourceLimiterAdapter(organismStatisticsPanel.ResourceLimitingMode,
-                conditionsData);
+                conditionsData, tempAllProcesses);
         }
 
         energyBalanceInfo = new EnergyBalanceInfoFull();
@@ -1271,21 +1461,27 @@ public partial class CellBodyPlanEditorComponent :
             MicrobeInternalCalculations.MaximumSpeedDirection(
                 GetEditedCellDataIfEdited(cells[0].Data!.ModifiableCellType).ModifiableOrganelles);
 
-        // TODO: environmental tolerances for multicellular
-        var environmentalTolerances = new ResolvedMicrobeTolerances
-        {
-            HealthModifier = 1,
-            OsmoregulationModifier = 1,
-            ProcessSpeedModifier = 1,
-        };
+        var environmentalTolerances =
+            MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(Editor.CalculateRawTolerances());
+
+        tempCompoundSources.Clear();
 
         // TODO: improve performance by calculating the balance per cell type
         foreach (var hex in cells)
         {
-            ProcessSystem.ComputeEnergyBalanceFull(hex.Data!.ModifiableOrganelles, conditionsData,
-                environmentalTolerances, hex.Data.MembraneType,
+            var specialization =
+                MicrobeInternalCalculations.CalculateSpecializationBonus(hex.Data!.ModifiableOrganelles, tempMemory3);
+
+            // TODO: adjacency bonuses from body plan (GetAdjacencySpecializationBonus)
+
+            ProcessSystem.ComputeEnergyBalanceFull(hex.Data.ModifiableOrganelles, conditionsData,
+                environmentalTolerances, specialization, hex.Data.MembraneType,
                 maximumMovementDirection, moving, true, Editor.CurrentGame.GameWorld.WorldSettings,
                 organismStatisticsPanel.CompoundAmountType, null, energyBalanceInfo);
+
+            ProcessSystem.CalculateInputCompoundsNeededForOutputs(hex.Data.ModifiableOrganelles, conditionsData,
+                environmentalTolerances, specialization,
+                organismStatisticsPanel.CompoundAmountType, true, tempCompoundSources);
         }
 
         // Passing those variables by refs to the following functions to reuse them
@@ -1297,17 +1493,20 @@ public partial class CellBodyPlanEditorComponent :
             CalculateCompoundBalanceWithMethod(organismStatisticsPanel.BalanceDisplayType,
                 organismStatisticsPanel.CompoundAmountType,
                 cells, conditionsData, energyBalanceInfo,
-                ref specificStorages, ref nominalStorage);
+                ref specificStorages, ref nominalStorage, environmentalTolerances);
 
-        UpdateCompoundBalances(compoundBalanceData);
+        conditionsData.GetProducedCompoundsThatDependOnVarying(tempCompoundSources, compoundsThatDependOnDay);
+
+        UpdateCompoundBalances(compoundBalanceData, compoundsThatDependOnDay);
 
         // TODO: should this skip on being affected by the resource limited?
         var nightBalanceData = CalculateCompoundBalanceWithMethod(organismStatisticsPanel.BalanceDisplayType,
             CompoundAmountType.Minimum, cells, conditionsData, energyBalanceInfo, ref specificStorages,
-            ref nominalStorage);
+            ref nominalStorage, environmentalTolerances);
 
         UpdateCompoundLastingTimes(compoundBalanceData, nightBalanceData, nominalStorage,
-            specificStorages ?? throw new Exception("Special storages should have been calculated"));
+            specificStorages ?? throw new Exception("Special storages should have been calculated"),
+            compoundsThatDependOnDay);
 
         // TODO: find out why this method used to take the cells parameter but now causes a warning so it is removed
         // HandleProcessList( cells, energyBalance, conditionsData);
@@ -1317,22 +1516,20 @@ public partial class CellBodyPlanEditorComponent :
     private Dictionary<Compound, CompoundBalance> CalculateCompoundBalanceWithMethod(BalanceDisplayType calculationType,
         CompoundAmountType amountType,
         IReadOnlyList<HexWithData<CellTemplate>> cells, IBiomeConditions biome, EnergyBalanceInfoFull energyBalance,
-        ref Dictionary<Compound, float>? specificStorages, ref float nominalStorage)
+        ref Dictionary<Compound, float>? specificStorages, ref float nominalStorage,
+        in ResolvedMicrobeTolerances tolerances)
     {
-        // TODO: environmental tolerances for multicellular
-        var environmentalTolerances = new ResolvedMicrobeTolerances
-        {
-            HealthModifier = 1,
-            OsmoregulationModifier = 1,
-            ProcessSpeedModifier = 1,
-        };
-
         Dictionary<Compound, CompoundBalance> compoundBalanceData = new();
         foreach (var cell in cells)
         {
-            AddCellTypeCompoundBalance(compoundBalanceData,
-                GetEditedCellDataIfEdited(cell.Data!.ModifiableCellType).ModifiableOrganelles, calculationType,
-                amountType, biome, energyBalance, environmentalTolerances);
+            var organelles = GetEditedCellDataIfEdited(cell.Data!.ModifiableCellType).ModifiableOrganelles;
+            var specialization =
+                MicrobeInternalCalculations.CalculateSpecializationBonus(organelles, tempMemory3);
+
+            // TODO: efficiency from cell layout positions (GetAdjacencySpecializationBonus)
+
+            AddCellTypeCompoundBalance(compoundBalanceData, organelles, calculationType,
+                amountType, biome, energyBalance, tolerances, specialization);
         }
 
         specificStorages ??= CellBodyPlanInternalCalculations.GetTotalSpecificCapacity(cells.Select(o => o.Data!),
@@ -1343,17 +1540,18 @@ public partial class CellBodyPlanEditorComponent :
 
     private void AddCellTypeCompoundBalance(Dictionary<Compound, CompoundBalance> compoundBalanceData,
         IEnumerable<OrganelleTemplate> organelles, BalanceDisplayType calculationType, CompoundAmountType amountType,
-        IBiomeConditions biome, EnergyBalanceInfoFull energyBalance, ResolvedMicrobeTolerances tolerances)
+        IBiomeConditions biome, EnergyBalanceInfoFull energyBalance, ResolvedMicrobeTolerances tolerances,
+        float specializationFactor)
     {
         switch (calculationType)
         {
             case BalanceDisplayType.MaxSpeed:
-                ProcessSystem.ComputeCompoundBalance(organelles, biome, tolerances,
+                ProcessSystem.ComputeCompoundBalance(organelles, biome, tolerances, specializationFactor,
                     amountType, true, compoundBalanceData);
                 break;
             case BalanceDisplayType.EnergyEquilibrium:
                 ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles, biome,
-                    tolerances, amountType, energyBalance, compoundBalanceData);
+                    tolerances, specializationFactor, amountType, energyBalance, compoundBalanceData);
                 break;
             default:
                 GD.PrintErr("Unknown compound balance type: ", organismStatisticsPanel.BalanceDisplayType);
@@ -1433,8 +1631,6 @@ public partial class CellBodyPlanEditorComponent :
 
         var leaderPosition = editedMicrobeCells[0].Position;
 
-        GD.Print(leaderPosition);
-
         foreach (var cell in editedMicrobeCells.AsModifiable())
         {
             cell.Position -= leaderPosition;
@@ -1444,7 +1640,7 @@ public partial class CellBodyPlanEditorComponent :
 
     /// <summary>
     ///   This destroys and creates again entities to represent all the currently placed cells. Call this whenever
-    ///   editedMicrobeCells is changed.
+    ///   editedMicrobeCells-variable is changed.
     /// </summary>
     private void UpdateAlreadyPlacedVisuals()
     {
@@ -1688,6 +1884,7 @@ public partial class CellBodyPlanEditorComponent :
         reproductionTab.Hide();
         behaviourEditor.Hide();
         growthOrderTab.Hide();
+        toleranceTab.Hide();
 
         ShowGrowthOrder = selectedSelectionMenuTab is SelectionMenuTab.GrowthOrder;
 
@@ -1721,6 +1918,13 @@ public partial class CellBodyPlanEditorComponent :
                 growthOrderTabButton.ButtonPressed = true;
 
                 UpdateGrowthOrderUI();
+                break;
+            }
+
+            case SelectionMenuTab.Tolerance:
+            {
+                toleranceTab.Show();
+                tolerancesTabButton.ButtonPressed = true;
                 break;
             }
 

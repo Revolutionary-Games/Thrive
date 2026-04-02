@@ -11,6 +11,8 @@ public partial class ThriveopediaOrganellesRootPage : ThriveopediaWikiPage
 
     [Export]
     private HFlowContainer organelleListContainer = null!;
+
+    private Thriveopedia? thriveopedia;
 #pragma warning restore CA2213
 
     public override string PageName => "OrganellesRoot";
@@ -26,6 +28,12 @@ public partial class ThriveopediaOrganellesRootPage : ThriveopediaWikiPage
         base._Ready();
 
         linkButtonScene = GD.Load<PackedScene>("res://src/thriveopedia/pages/wiki/IconPageLinkButton.tscn");
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        thriveopedia = null;
     }
 
     public override void OnThriveopediaOpened()
@@ -51,11 +59,16 @@ public partial class ThriveopediaOrganellesRootPage : ThriveopediaWikiPage
 
     public override void OnSelectedStageChanged()
     {
+        thriveopedia ??= ThriveopediaManager.GetParentThriveopedia(this);
+
+        if (thriveopedia == null)
+            return;
+
         foreach (var node in organelleListContainer.GetChildren())
         {
             if (node is IconPageLinkButton button)
             {
-                var page = (ThriveopediaWikiPage)ThriveopediaManager.GetPage(button.PageName);
+                var page = (ThriveopediaWikiPage)thriveopedia.GetPage(button.PageName);
 
                 // TODO: should this property be in the base page interface to avoid having the cast above?
                 button.Visible = page.VisibleInTree;

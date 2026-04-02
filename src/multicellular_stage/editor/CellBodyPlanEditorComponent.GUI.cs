@@ -9,9 +9,17 @@ using Systems;
 /// </summary>
 public partial class CellBodyPlanEditorComponent
 {
+    private readonly List<Label> activeToleranceWarnings = new();
+
+    private int usedToleranceWarnings;
+
     protected override void OnTranslationsChanged()
     {
+        base.OnTranslationsChanged();
+
         organismStatisticsPanel.OnTranslationsChanged();
+
+        UpdateSpecializationDisplay();
     }
 
     private void ConfirmFinishEditingWithNegativeATPPressed()
@@ -51,9 +59,15 @@ public partial class CellBodyPlanEditorComponent
 
             ProcessSystem.ComputeActiveProcessList(cellType.Key.ModifiableOrganelles, ref newProcesses);
 
+            var specialization =
+                MicrobeInternalCalculations.CalculateSpecializationBonus(cellType.Key.ModifiableOrganelles,
+                    tempMemory3);
+
             for (int i = 0; i < newProcesses.Count; ++i)
             {
-                newProcesses[i] = new TweakedProcess(newProcesses[i].Process, newProcesses[i].Rate * cellType.Value)
+                // Apply specialization here to approximate it in this editor
+                newProcesses[i] = new TweakedProcess(newProcesses[i].Process,
+                    newProcesses[i].Rate * cellType.Value * specialization)
                 {
                     SpeedMultiplier = newProcesses[i].SpeedMultiplier,
                 };
@@ -64,18 +78,14 @@ public partial class CellBodyPlanEditorComponent
 
         float consumptionProductionRatio = energyBalance.TotalConsumption / energyBalance.TotalProduction;
 
-        // TODO: environmental tolerances for multicellular
-        var environmentalTolerances = new ResolvedMicrobeTolerances
-        {
-            HealthModifier = 1,
-            OsmoregulationModifier = 1,
-            ProcessSpeedModifier = 1,
-        };
+        var environmentalTolerances =
+            MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(Editor.CalculateRawTolerances());
 
         foreach (var process in processes)
         {
             // This requires the inputs to be in the biome to give a realistic prediction of how fast the processes
             // *might* run once swimming around in the stage.
+            // This uses just environmental factors as we put the specialization into the above loop.
             var singleProcess = ProcessSystem.CalculateProcessMaximumSpeed(process,
                 environmentalTolerances.ProcessSpeedModifier, biome, CompoundAmountType.Current, true);
 
@@ -93,7 +103,8 @@ public partial class CellBodyPlanEditorComponent
         organismStatisticsPanel.UpdateProcessList(processStatistics);
     }
 
-    private void UpdateCompoundBalances(Dictionary<Compound, CompoundBalance> balances)
+    private void UpdateCompoundBalances(Dictionary<Compound, CompoundBalance> balances,
+        HashSet<Compound> dayNightVaryingCompoundProductions)
     {
         var warningTime = Editor.CurrentGame.GameWorld.LightCycle.DayLengthRealtimeSeconds *
             Editor.CurrentGame.GameWorld.WorldSettings.DaytimeFraction;
@@ -102,12 +113,12 @@ public partial class CellBodyPlanEditorComponent
         if (!Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled)
             warningTime = 10000000;
 
-        organismStatisticsPanel.UpdateCompoundBalances(balances, warningTime);
+        organismStatisticsPanel.UpdateCompoundBalances(balances, dayNightVaryingCompoundProductions, warningTime);
     }
 
     private void UpdateCompoundLastingTimes(Dictionary<Compound, CompoundBalance> normalBalance,
         Dictionary<Compound, CompoundBalance> nightBalance, float nominalStorage,
-        Dictionary<Compound, float> specificStorages)
+        Dictionary<Compound, float> specificStorages, HashSet<Compound> compoundsThatWarnFillTime)
     {
         // TODO: Check if it's possible to move those calculations elsewhere to avoid duplication with
         // CellEditorComponent.UpdateCompoundLastingTimes
@@ -125,7 +136,7 @@ public partial class CellBodyPlanEditorComponent
         }
 
         organismStatisticsPanel.UpdateCompoundLastingTimes(normalBalance, nightBalance, nominalStorage,
-            specificStorages, warningTime, fillingUpTime);
+            specificStorages, warningTime, fillingUpTime, compoundsThatWarnFillTime);
     }
 
     private void UpdateGUIAfterLoadingSpecies(Species species)
@@ -189,7 +200,7 @@ public partial class CellBodyPlanEditorComponent
             {
                 if (ReferenceEquals(orderList[j], cell.Data!))
                 {
-                    // +1 to be user readable numbers
+                    // +1 to be user-readable numbers
                     order = j + 1;
                     break;
                 }
@@ -203,5 +214,60 @@ public partial class CellBodyPlanEditorComponent
     private void OnGrowthOrderCoordinatesToggled(bool show)
     {
         growthOrderGUI.ShowCoordinates = show;
+    }
+
+    private void CalculateAndDisplayToleranceWarnings()
+    {
+        // We exclude bonuses here so that the warnings display doesn't have a partial line about a debuff and then
+        // inexplicably also a bonus percentage as that would be very confusing to see.
+        var tolerances = CalculateRawTolerances(true);
+
+        MicrobeEnvironmentalToleranceCalculations.ManageToleranceProblemListGUI(ref usedToleranceWarnings,
+            activeToleranceWarnings, tolerances,
+            MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(tolerances), toleranceWarningContainer,
+            toleranceWarningsFont, MaxToleranceWarnings);
+
+        if (usedToleranceWarnings > 0)
+        {
+            tolerancesTabButton.Visible = true;
+        }
+    }
+
+    private void OnTolerancesEditorChangedData()
+    {
+        OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
+    }
+
+    private void UpdateSpecializationDisplay()
+    {
+        double totalSpecialization = 0;
+        float maxSpecialization = -1;
+        string mostSpecializedCellName = Localization.Translate("NONE");
+
+        var cells = editedMicrobeCells;
+
+        var count = cells.Count;
+        for (int i = 0; i < count; ++i)
+        {
+            var type = GetEditedCellDataIfEdited(cells[i].Data!.ModifiableCellType);
+
+            var specialization =
+                MicrobeInternalCalculations.CalculateSpecializationBonus(type.ModifiableOrganelles, tempMemory3);
+
+            // TODO: calculate adjacency specialization values
+            // https://github.com/Revolutionary-Games/Thrive/issues/6764
+            // totalSpecialization += specialization * adjacencySpecialization;
+
+            totalSpecialization += specialization;
+
+            if (specialization > maxSpecialization)
+            {
+                maxSpecialization = specialization;
+                mostSpecializedCellName = type.CellTypeName;
+            }
+        }
+
+        organismStatisticsPanel.UpdateCellBodyPlanSpecialization((float)(totalSpecialization / count), count,
+            maxSpecialization, mostSpecializedCellName);
     }
 }

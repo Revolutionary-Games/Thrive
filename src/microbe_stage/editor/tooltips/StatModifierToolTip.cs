@@ -28,7 +28,15 @@ public partial class StatModifierToolTip : Control, ICustomToolTip
     [Export]
     private GridContainer statsContainer = null!;
 
+    [Export]
+    [ExportCategory("Configuration")]
     private LabelSettings? breakdownFont;
+
+    [Export]
+    private LabelSettings? breakdownGoodFont;
+
+    [Export]
+    private LabelSettings? breakdownBadFont;
 #pragma warning restore CA2213
 
     private string? displayName;
@@ -39,9 +47,9 @@ public partial class StatModifierToolTip : Control, ICustomToolTip
 
     private bool formatAsPercentage;
     private string? valueSuffix;
+    private string? valuePrefix;
 
     [Export]
-    [ExportCategory("Configuration")]
     public string DisplayName
     {
         get => displayName ?? "StatModifierToolTip_unset";
@@ -97,6 +105,20 @@ public partial class StatModifierToolTip : Control, ICustomToolTip
     }
 
     [Export]
+    public string? ValuePrefix
+    {
+        get => valuePrefix;
+        set
+        {
+            if (valuePrefix == value)
+                return;
+
+            valuePrefix = value;
+            UpdateValueDisplay();
+        }
+    }
+
+    [Export]
     public bool ShowAsPercentage
     {
         get => formatAsPercentage;
@@ -112,13 +134,6 @@ public partial class StatModifierToolTip : Control, ICustomToolTip
 
     [Export]
     public float DisplayDelay { get; set; }
-
-    [Export]
-    public LabelSettings? BreakdownFont
-    {
-        get => breakdownFont;
-        set => breakdownFont = value;
-    }
 
     public ToolTipPositioning Positioning { get; set; } = ToolTipPositioning.ControlBottomRightCorner;
 
@@ -152,7 +167,7 @@ public partial class StatModifierToolTip : Control, ICustomToolTip
     ///   any more.
     /// </summary>
     /// <param name="itemsAndValues">Data to show</param>
-    public void DisplayOrganelleBreakdown(Dictionary<OrganelleDefinition, float> itemsAndValues)
+    public void DisplayOrganelleBreakdown(IDictionary<IPlayerReadableName, float> itemsAndValues)
     {
         var percentageFormat = Localization.Translate("PERCENTAGE_VALUE");
 
@@ -187,7 +202,7 @@ public partial class StatModifierToolTip : Control, ICustomToolTip
                 (title, value) = shownStats[usedIndex];
             }
 
-            title.Text = pair.Key.Name;
+            title.Text = pair.Key.ReadableName;
 
             double valueToShow = pair.Value;
 
@@ -207,6 +222,13 @@ public partial class StatModifierToolTip : Control, ICustomToolTip
                     StringUtils.FormatPositiveWithLeadingPlus(valueToShow.ToString(CultureInfo.CurrentCulture),
                         pair.Value);
             }
+
+            value.LabelSettings = valueToShow switch
+            {
+                > 0 => breakdownGoodFont,
+                < 0 => breakdownBadFont,
+                _ => breakdownFont,
+            };
 
             ++usedIndex;
         }
@@ -245,6 +267,9 @@ public partial class StatModifierToolTip : Control, ICustomToolTip
 
         if (!string.IsNullOrEmpty(valueSuffix))
             text = $"{text} {valueSuffix}";
+
+        if (!string.IsNullOrEmpty(valuePrefix))
+            text = $"{valuePrefix} {text}";
 
         valueLabel.Text = text;
     }

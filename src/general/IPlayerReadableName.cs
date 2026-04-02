@@ -1,9 +1,7 @@
-﻿using SharedBase.Archive;
-
-/// <summary>
+﻿/// <summary>
 ///   Something that has a player-readable name
 /// </summary>
-public interface IPlayerReadableName : IArchivable
+public interface IPlayerReadableName
 {
     /// <summary>
     ///   Primary user-readable name of this thing (should be translated)
@@ -15,16 +13,4 @@ public interface IPlayerReadableName : IArchivable
     ///   the same as <see cref="ReadableName"/> but some types provide more exact information with this.
     /// </summary>
     public string ReadableExactIdentifier => ReadableName;
-
-    // TODO: remove this if not needed
-    // /// <summary>
-    // ///   Access to the internal name, needed when copying data and the ability to translate later needs
-    // ///   to be preserved
-    // /// </summary>
-    // public string InternalName { get; }
-
-    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
-    {
-        writer.WriteObject((IArchivable)obj);
-    }
 }

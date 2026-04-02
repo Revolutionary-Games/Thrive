@@ -11,6 +11,8 @@ public interface IMicrobeSpawnEnvironment : ISpawnEnvironmentInfo
     /// </summary>
     /// <param name="microbeSpecies">Species to get tolerances for</param>
     public ResolvedMicrobeTolerances GetSpeciesTolerances(MicrobeSpecies microbeSpecies);
+
+    public ResolvedMicrobeTolerances GetSpeciesTolerances(MulticellularSpecies multicellularSpecies);
 }
 
 public class DummyMicrobeSpawnEnvironment : IMicrobeSpawnEnvironment
@@ -26,6 +28,16 @@ public class DummyMicrobeSpawnEnvironment : IMicrobeSpawnEnvironment
     public BiomeConditions CurrentBiome { get; set; }
 
     public ResolvedMicrobeTolerances GetSpeciesTolerances(MicrobeSpecies microbeSpecies)
+    {
+        return new ResolvedMicrobeTolerances
+        {
+            ProcessSpeedModifier = 1,
+            OsmoregulationModifier = 1,
+            HealthModifier = 1,
+        };
+    }
+
+    public ResolvedMicrobeTolerances GetSpeciesTolerances(MulticellularSpecies multicellularSpecies)
     {
         return new ResolvedMicrobeTolerances
         {

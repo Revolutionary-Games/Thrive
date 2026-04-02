@@ -104,7 +104,7 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[node name="OrganellePopupMenu" unique_id=1534193429 node_paths=PackedStringArray("titleLabel", "deleteButton", "moveButton", "modifyButton") instance=ExtResource("3")]
+[node name="OrganellePopupMenu" unique_id=537338137 node_paths=PackedStringArray("titleLabel", "deleteButton", "moveButton", "modifyButton") instance=ExtResource("3")]
 custom_minimum_size = Vector2(220, 139)
 offset_bottom = 139.0
 script = ExtResource("8")
@@ -114,17 +114,21 @@ moveButton = NodePath("PanelContainer/VBoxContainer/Move")
 modifyButton = NodePath("PanelContainer/VBoxContainer/Modify")
 
 [node name="PanelContainer" parent="." index="0" unique_id=1992844089]
-anchor_right = 0.0
-anchor_bottom = 0.0
+layout_mode = 1
+anchors_preset = 15
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer" parent_id_path=PackedInt32Array(706553967) index="0" unique_id=21148908]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer" parent_id_path=PackedInt32Array(706553967) index="0" unique_id=401628361]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_right = 10
 
-[node name="SelectedOrganelleName" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer" index="0" unique_id=1939059398]
+[node name="SelectedOrganelleName" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer" index="0" unique_id=1693103733]
+custom_minimum_size = Vector2(195, 0)
 layout_mode = 2
 label_settings = ExtResource("3_yrfoj")
+autowrap_mode = 3
 
 [node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer" parent_id_path=PackedInt32Array(706553967) index="1" unique_id=931879141]
 layout_mode = 2
@@ -140,15 +144,16 @@ theme_override_styles/hover = SubResource("3")
 theme_override_styles/disabled = SubResource("5")
 keep_pressed_outside = true
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/Delete" index="0" unique_id=442625950]
-layout_mode = 0
-offset_right = 210.0
-offset_bottom = 35.0
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/Delete" index="0" unique_id=1090102854]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Delete/MarginContainer" index="0" unique_id=333743875]
 layout_mode = 2
@@ -158,7 +163,7 @@ theme_override_constants/separation = 7
 [node name="Icon" type="TextureRect" parent="PanelContainer/VBoxContainer/Delete/MarginContainer/HBoxContainer" index="0" unique_id=1437367491]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
-size_flags_vertical = 0
+size_flags_vertical = 4
 mouse_filter = 2
 texture = ExtResource("4")
 expand_mode = 1
@@ -175,6 +180,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "-15 MP"
 label_settings = ExtResource("5_clp5b")
+horizontal_alignment = 2
 
 [node name="Move" type="Button" parent="PanelContainer/VBoxContainer" parent_id_path=PackedInt32Array(706553967) index="3" unique_id=1823942002]
 custom_minimum_size = Vector2(165, 28)
@@ -187,15 +193,16 @@ theme_override_styles/hover = SubResource("7")
 theme_override_styles/disabled = SubResource("9")
 keep_pressed_outside = true
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/Move" index="0" unique_id=1838374851]
-layout_mode = 0
-offset_right = 210.0
-offset_bottom = 28.0
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/Move" index="0" unique_id=269713034]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Move/MarginContainer" index="0" unique_id=273901291]
 layout_mode = 2
@@ -205,7 +212,7 @@ theme_override_constants/separation = 7
 [node name="Icon" type="TextureRect" parent="PanelContainer/VBoxContainer/Move/MarginContainer/HBoxContainer" index="0" unique_id=866981253]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
-size_flags_vertical = 0
+size_flags_vertical = 4
 mouse_filter = 2
 texture = ExtResource("5")
 expand_mode = 1
@@ -222,6 +229,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "-2 MP/hex"
 label_settings = ExtResource("5_clp5b")
+horizontal_alignment = 2
 
 [node name="Modify" type="Button" parent="PanelContainer/VBoxContainer" parent_id_path=PackedInt32Array(706553967) index="4" unique_id=1421887311]
 custom_minimum_size = Vector2(165, 28)
@@ -235,15 +243,16 @@ theme_override_styles/disabled = SubResource("9")
 disabled = true
 keep_pressed_outside = true
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/Modify" index="0" unique_id=78248516]
-layout_mode = 0
-offset_right = 210.0
-offset_bottom = 28.0
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/Modify" index="0" unique_id=758323103]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Modify/MarginContainer" index="0" unique_id=57092739]
 layout_mode = 2
@@ -253,7 +262,7 @@ theme_override_constants/separation = 7
 [node name="Icon" type="TextureRect" parent="PanelContainer/VBoxContainer/Modify/MarginContainer/HBoxContainer" index="0" unique_id=779643046]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
-size_flags_vertical = 0
+size_flags_vertical = 4
 mouse_filter = 2
 texture = ExtResource("6")
 expand_mode = 1
@@ -268,6 +277,7 @@ label_settings = ExtResource("5_clp5b")
 layout_mode = 2
 size_flags_horizontal = 3
 label_settings = ExtResource("5_clp5b")
+horizontal_alignment = 2
 
 [connection signal="button_down" from="PanelContainer/VBoxContainer/Delete" to="." method="UpdateButtonContentsColour" binds= ["Delete", true]]
 [connection signal="button_up" from="PanelContainer/VBoxContainer/Delete" to="." method="UpdateButtonContentsColour" binds= ["Delete", false]]

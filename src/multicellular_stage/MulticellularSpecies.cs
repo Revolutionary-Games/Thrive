@@ -12,6 +12,9 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 {
     public const ushort SERIALIZATION_VERSION = 2;
 
+    private readonly Dictionary<BiomeConditions, Dictionary<Compound, (float TimeToFill, float Storage)>>
+        cachedFillTimes = new();
+
     private ReadonlyCellLayoutAdapter<IReadOnlyCellTemplate, CellTemplate>? readonlyCellLayoutAdapter;
     private ReadonlyIndividualLayoutAdapter<CellTemplate, IReadOnlyCellTemplate>? readonlyIndividualLayoutAdapter;
 
@@ -135,8 +138,8 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
     {
         base.OnEdited();
 
+        // TODO: do we need to reposition for auto-evo?
         RepositionToOrigin();
-        UpdateInitialCompounds();
 
         // Make certain these are all up to date
         foreach (var cellType in ModifiableCellTypes)
@@ -183,6 +186,15 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 #endif
     }
 
+    public override void OnAttemptedInAutoEvo(bool refreshCache)
+    {
+        base.OnAttemptedInAutoEvo(refreshCache);
+
+        UpdateInitialCompounds();
+
+        cachedFillTimes.Clear();
+    }
+
     public override bool RepositionToOrigin()
     {
         // TODO: should this actually reposition things as the cell at index 0 is always the colony leader so if it
@@ -206,7 +218,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 
         var compoundBalances = new Dictionary<Compound, CompoundBalance>();
 
-        // TODO: environmental tolerances for multicellular
+        // TODO: figure out a way to use the real patch environmental tolerances
         var environmentalTolerances = new ResolvedMicrobeTolerances
         {
             HealthModifier = 1,
@@ -214,8 +226,9 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
             ProcessSpeedModifier = 1,
         };
 
+        // We don't take specialization into account here, so we overestimate how much stuff is needed
         ProcessSystem.ComputeCompoundBalance(ModifiableGameplayCells[0].ModifiableOrganelles,
-            biomeConditions, environmentalTolerances, CompoundAmountType.Biome, false, compoundBalances);
+            biomeConditions, environmentalTolerances, 1, CompoundAmountType.Biome, false, compoundBalances);
         var storageCapacity =
             MicrobeInternalCalculations.CalculateCapacity(ModifiableGameplayCells[0].ModifiableOrganelles);
 
@@ -247,23 +260,31 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         if (spawnEnvironment is not IMicrobeSpawnEnvironment microbeSpawnEnvironment)
             throw new ArgumentException("Multicellular species must have microbe spawn environment info");
 
+        var biome = microbeSpawnEnvironment.CurrentBiome;
+
         // TODO: this would be excellent to match the actual cell type being used for spawning
         var cellType = ModifiableGameplayCells[0].ModifiableCellType;
 
-        // TODO: environmental tolerances for multicellular
-        var environmentalTolerances = new ResolvedMicrobeTolerances
-        {
-            HealthModifier = 1,
-            OsmoregulationModifier = 1,
-            ProcessSpeedModifier = 1,
-        };
+        // TODO: can we do caching somehow here?
+        var resolvedTolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(
+            MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(this, microbeSpawnEnvironment.CurrentBiome));
 
-        // TODO: CACHING IS MISSING from here (but microbe has it)
-        // TODO: should moving be false in some cases?
-        var compoundTimes = MicrobeInternalCalculations.CalculateDayVaryingCompoundsFillTimes(
-            cellType.ModifiableOrganelles, cellType.MembraneType, true, PlayerSpecies,
-            microbeSpawnEnvironment.CurrentBiome, environmentalTolerances,
-            microbeSpawnEnvironment.WorldSettings);
+        Dictionary<Compound, (float TimeToFill, float Storage)>? compoundTimes;
+
+        // This lock is here to allow multiple microbe spawns to happen in parallel. Lock is not used on clear as no
+        // spawns should be allowed to happen while species are being modified
+        lock (cachedFillTimes)
+        {
+            if (!cachedFillTimes.TryGetValue(biome, out compoundTimes))
+            {
+                // TODO: should moving be false in some cases?
+                compoundTimes = MicrobeInternalCalculations.CalculateDayVaryingCompoundsFillTimes(
+                    cellType.ModifiableOrganelles, cellType.MembraneType, true, PlayerSpecies,
+                    microbeSpawnEnvironment.CurrentBiome, resolvedTolerances,
+                    microbeSpawnEnvironment.WorldSettings);
+                cachedFillTimes[biome] = compoundTimes;
+            }
+        }
 
         MicrobeInternalCalculations.GiveNearNightInitialCompoundBuff(targetStorage, compoundTimes,
             spawnEnvironment.DaylightInfo);
@@ -291,6 +312,8 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         {
             ModifiableCellTypes.Add((CellType)cellType.Clone());
         }
+
+        cachedFillTimes.Clear();
     }
 
     public override float GetPredationTargetSizeFactor()
@@ -304,6 +327,36 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         }
 
         return totalOrganelles;
+    }
+
+    public float CalculateAverageSpecialization()
+    {
+        float score = 0;
+        int count = ModifiableGameplayCells.Count;
+
+        if (count < 1)
+            return 1;
+
+        for (int i = 0; i < count; ++i)
+        {
+            var cell = ModifiableGameplayCells[i];
+            score += cell.CellType.SpecializationBonus * GetAdjacencySpecializationBonus(i);
+        }
+
+        return score / count;
+    }
+
+    /// <summary>
+    ///   Calculates the adjacency bonus of efficiency for a cell in the body plan of this species. This is meant to
+    ///   be applied by multiplying into the base specialization bonus.
+    /// </summary>
+    /// <param name="cellIndexInBodyPlan">Index of the cell in the body plan we want the bonus for</param>
+    /// <returns>The calculated bonus (or 1, if it can't be calculated)</returns>
+    public float GetAdjacencySpecializationBonus(int cellIndexInBodyPlan)
+    {
+        // TODO: implement this https://github.com/Revolutionary-Games/Thrive/issues/6764
+        _ = cellIndexInBodyPlan;
+        return 1;
     }
 
     public void SetupWorldEntities(IWorldSimulation worldSimulation)

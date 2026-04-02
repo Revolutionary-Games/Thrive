@@ -28,12 +28,12 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="ToolTipManager" type="CanvasLayer" unique_id=42672692]
+[node name="ToolTipManager" type="CanvasLayer" unique_id=502662551]
 process_mode = 3
 layer = 128
 script = ExtResource("23")
 
-[node name="GroupHolder" type="Control" parent="." unique_id=768120489]
+[node name="GroupHolder" type="Control" parent="." unique_id=1984538779]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -44,29 +44,29 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("4")
 
-[node name="default" type="Control" parent="GroupHolder" unique_id=2002253373]
+[node name="default" type="Control" parent="GroupHolder" unique_id=134032860]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 
-[node name="menuButton" parent="GroupHolder/default" unique_id=1568091440 instance=ExtResource("1")]
+[node name="menuButton" parent="GroupHolder/default" unique_id=1961917771 instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 Description = "OPEN_THE_MENU"
 
-[node name="helpButton" parent="GroupHolder/default" unique_id=1104594387 instance=ExtResource("1")]
+[node name="helpButton" parent="GroupHolder/default" unique_id=1309246228 instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 theme_override_styles/panel = SubResource("1")
 Description = "OPEN_HELP_SCREEN"
 
-[node name="popup" parent="GroupHolder/default" unique_id=590963529 instance=ExtResource("1")]
+[node name="popup" parent="GroupHolder/default" unique_id=1513855023 instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 DisplayDelay = 0.0
 
-[node name="speciesPreview" parent="GroupHolder/default" unique_id=1463835257 instance=ExtResource("3")]
+[node name="speciesPreview" parent="GroupHolder/default" unique_id=128555151 instance=ExtResource("3")]
 visible = false
 layout_mode = 0
 anchors_preset = 0
@@ -75,76 +75,76 @@ anchor_bottom = 0.0
 offset_right = 0.0
 offset_bottom = 0.0
 
-[node name="mainMenu" type="Control" parent="GroupHolder" unique_id=999498568]
+[node name="mainMenu" type="Control" parent="GroupHolder" unique_id=355257749]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 
-[node name="thriveLogoEasterEgg" parent="GroupHolder/mainMenu" unique_id=658410248 instance=ExtResource("1")]
+[node name="thriveLogoEasterEgg" parent="GroupHolder/mainMenu" unique_id=45030504 instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 Description = "WILL_YOU_THRIVE"
 
-[node name="editor" type="Control" parent="GroupHolder" unique_id=559279387]
+[node name="editor" type="Control" parent="GroupHolder" unique_id=2047994277]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 
-[node name="cancelButton" parent="GroupHolder/editor" unique_id=1879005347 node_paths=PackedStringArray("descriptionLabel") instance=ExtResource("1")]
+[node name="cancelButton" parent="GroupHolder/editor" unique_id=2118257202 node_paths=PackedStringArray("descriptionLabel") instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 descriptionLabel = NodePath("../finishButton/MarginContainer/VBoxContainer/Description")
 Description = "CANCEL_CURRENT_ACTION"
 
-[node name="finishButton" parent="GroupHolder/editor" unique_id=683012048 instance=ExtResource("1")]
+[node name="finishButton" parent="GroupHolder/editor" unique_id=1840386339 instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 Description = "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
 
-[node name="nextTabButton" parent="GroupHolder/editor" unique_id=293618621 node_paths=PackedStringArray("descriptionLabel") instance=ExtResource("1")]
+[node name="nextTabButton" parent="GroupHolder/editor" unique_id=279489791 node_paths=PackedStringArray("descriptionLabel") instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 descriptionLabel = NodePath("../finishButton/MarginContainer/VBoxContainer/Description")
 Description = "NEXT_EDITOR_TAB"
 
-[node name="symmetryButton" parent="GroupHolder/editor" unique_id=1744588398 instance=ExtResource("1")]
+[node name="symmetryButton" parent="GroupHolder/editor" unique_id=1187357543 instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 theme_override_styles/panel = SubResource("1")
 Description = "CHANGE_THE_SYMMETRY"
 
-[node name="undoButton" parent="GroupHolder/editor" unique_id=1954537973 instance=ExtResource("1")]
+[node name="undoButton" parent="GroupHolder/editor" unique_id=647417222 instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 theme_override_styles/panel = SubResource("1")
 Description = "UNDO_THE_LAST_ACTION"
 
-[node name="redoButton" parent="GroupHolder/editor" unique_id=179905467 instance=ExtResource("1")]
+[node name="redoButton" parent="GroupHolder/editor" unique_id=1130569297 instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 theme_override_styles/panel = SubResource("1")
 Description = "REDO_THE_LAST_ACTION"
 
-[node name="newCellButton" parent="GroupHolder/editor" unique_id=814110614 instance=ExtResource("1")]
+[node name="newCellButton" parent="GroupHolder/editor" unique_id=161994957 instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 theme_override_styles/panel = SubResource("1")
 Description = "CREATE_A_NEW_MICROBE"
 
-[node name="randomizeNameButton" parent="GroupHolder/editor" unique_id=1428242903 instance=ExtResource("1")]
+[node name="randomizeNameButton" parent="GroupHolder/editor" unique_id=1101733955 instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 Description = "RANDOMIZE_SPECIES_NAME"
 
-[node name="timeIndicator" parent="GroupHolder/editor" unique_id=81448307 instance=ExtResource("1")]
+[node name="timeIndicator" parent="GroupHolder/editor" unique_id=653390817 instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 theme_override_styles/panel = SubResource("1")
 DisplayDelay = 0.5
 
-[node name="rigiditySlider" parent="GroupHolder/editor" unique_id=1244059071 instance=ExtResource("5")]
+[node name="rigiditySlider" parent="GroupHolder/editor" unique_id=9346694 instance=ExtResource("5")]
 visible = false
 layout_mode = 0
 offset_right = 400.0
@@ -152,32 +152,32 @@ DisplayName = "MEMBRANE_RIGIDITY"
 Description = "RIGIDITY_MEMBRANE_DESCRIPTION"
 ShowOsmoregulation = false
 
-[node name="RequiresNucleus" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer" index="1"]
+[node name="RequiresNucleus" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(9346694, 1863350977) index="1" unique_id=1907280912]
 visible = false
 
-[node name="ProcessesDescription" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer" index="2"]
+[node name="ProcessesDescription" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(9346694, 1863350977) index="2" unique_id=1366796537]
 visible = false
 
-[node name="ProcessList" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer" index="3"]
+[node name="ProcessList" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(9346694, 1863350977) index="3" unique_id=1563198072]
 visible = false
 
-[node name="baseMobility" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer/ModifierList" index="0" unique_id=369604212 instance=ExtResource("2")]
+[node name="baseMobility" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer/ModifierList" parent_id_path=PackedInt32Array(9346694, 1621578455) index="0" unique_id=527654288 instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "BASE_MOBILITY"
 ModifierIcon = ExtResource("7")
 
-[node name="health" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer/ModifierList" index="1" unique_id=1566508514 instance=ExtResource("2")]
+[node name="health" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer/ModifierList" parent_id_path=PackedInt32Array(9346694, 1621578455) index="1" unique_id=192972117 instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "HEALTH"
 ModifierIcon = ExtResource("13")
 
-[node name="HSeparator" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer" index="5"]
+[node name="HSeparator" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(9346694, 1863350977) index="5" unique_id=1130055289]
 visible = false
 
-[node name="OrganelleCostList" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer" index="6"]
+[node name="OrganelleCostList" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(9346694, 1863350977) index="6" unique_id=1338570209]
 visible = false
 
-[node name="aggressionSlider" parent="GroupHolder/editor" unique_id=302316393 node_paths=PackedStringArray("descriptionLabel") instance=ExtResource("1")]
+[node name="aggressionSlider" parent="GroupHolder/editor" unique_id=1459362333 node_paths=PackedStringArray("descriptionLabel") instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 theme_override_styles/panel = SubResource("1")
@@ -186,7 +186,7 @@ Description = "AGGRESSION_EXPLANATION"
 DisplayDelay = 0.0
 Positioning = 2
 
-[node name="opportunismSlider" parent="GroupHolder/editor" unique_id=260001144 node_paths=PackedStringArray("descriptionLabel") instance=ExtResource("1")]
+[node name="opportunismSlider" parent="GroupHolder/editor" unique_id=1573727514 node_paths=PackedStringArray("descriptionLabel") instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 theme_override_styles/panel = SubResource("1")
@@ -195,7 +195,7 @@ Description = "OPPORTUNISM_EXPLANATION"
 DisplayDelay = 0.0
 Positioning = 2
 
-[node name="fearSlider" parent="GroupHolder/editor" unique_id=621004580 node_paths=PackedStringArray("descriptionLabel") instance=ExtResource("1")]
+[node name="fearSlider" parent="GroupHolder/editor" unique_id=1130850262 node_paths=PackedStringArray("descriptionLabel") instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 theme_override_styles/panel = SubResource("1")
@@ -204,7 +204,7 @@ Description = "FEAR_EXPLANATION"
 DisplayDelay = 0.0
 Positioning = 2
 
-[node name="activitySlider" parent="GroupHolder/editor" unique_id=1885212116 node_paths=PackedStringArray("descriptionLabel") instance=ExtResource("1")]
+[node name="activitySlider" parent="GroupHolder/editor" unique_id=805125207 node_paths=PackedStringArray("descriptionLabel") instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 theme_override_styles/panel = SubResource("1")
@@ -213,7 +213,7 @@ Description = "ACTIVITY_EXPLANATION"
 DisplayDelay = 0.0
 Positioning = 2
 
-[node name="focusSlider" parent="GroupHolder/editor" unique_id=1308643140 node_paths=PackedStringArray("descriptionLabel") instance=ExtResource("1")]
+[node name="focusSlider" parent="GroupHolder/editor" unique_id=28065807 node_paths=PackedStringArray("descriptionLabel") instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 theme_override_styles/panel = SubResource("1")
@@ -222,298 +222,298 @@ Description = "FOCUS_EXPLANATION"
 DisplayDelay = 0.0
 Positioning = 2
 
-[node name="digestionEfficiencyDetails" parent="GroupHolder/editor" unique_id=1949655214 instance=ExtResource("1")]
+[node name="digestionEfficiencyDetails" parent="GroupHolder/editor" unique_id=905423779 instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 DisplayDelay = 0.0
 Positioning = 1
 HideOnMouseAction = false
 
-[node name="storageDetails" parent="GroupHolder/editor" unique_id=2060708485 instance=ExtResource("1")]
+[node name="storageDetails" parent="GroupHolder/editor" unique_id=317247693 instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 DisplayDelay = 0.0
 Positioning = 1
 HideOnMouseAction = false
 
-[node name="organelleSelection" type="Control" parent="GroupHolder" unique_id=1841685809]
+[node name="organelleSelection" type="Control" parent="GroupHolder" unique_id=1196537675]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 
-[node name="membraneSelection" type="Control" parent="GroupHolder" unique_id=467720149]
+[node name="membraneSelection" type="Control" parent="GroupHolder" unique_id=381338863]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 
-[node name="single" parent="GroupHolder/membraneSelection" unique_id=1533392944 instance=ExtResource("5")]
+[node name="single" parent="GroupHolder/membraneSelection" unique_id=1864056327 instance=ExtResource("5")]
 visible = false
 layout_mode = 0
 offset_right = 400.0
 DisplayName = "NORMAL"
 Description = "NORMAL_MEMBRANE_DESCRIPTION"
 
-[node name="RequiresNucleus" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer" index="1"]
+[node name="RequiresNucleus" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1864056327, 1863350977) index="1" unique_id=1907280912]
 visible = false
 
-[node name="ProcessesDescription" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer" index="2"]
+[node name="ProcessesDescription" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1864056327, 1863350977) index="2" unique_id=1366796537]
 visible = false
 
-[node name="ProcessList" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer" index="3"]
+[node name="ProcessList" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1864056327, 1863350977) index="3" unique_id=1563198072]
 visible = false
 
-[node name="baseMobility" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList" index="0" unique_id=1069223595 instance=ExtResource("2")]
+[node name="baseMobility" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList" parent_id_path=PackedInt32Array(1864056327, 1621578455) index="0" unique_id=474889058 instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "BASE_MOBILITY"
 ModifierIcon = ExtResource("7")
 
-[node name="resourceAbsorptionSpeed" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList" index="1" unique_id=283668636 instance=ExtResource("2")]
+[node name="resourceAbsorptionSpeed" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList" parent_id_path=PackedInt32Array(1864056327, 1621578455) index="1" unique_id=1364646295 instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "RESOURCE_ABSORBTION_SPEED"
 ModifierIcon = ExtResource("11")
 
-[node name="health" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList" index="2" unique_id=175192861 instance=ExtResource("2")]
+[node name="health" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList" parent_id_path=PackedInt32Array(1864056327, 1621578455) index="2" unique_id=1105108430 instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "HEALTH"
 ModifierIcon = ExtResource("13")
 
-[node name="physicalResistance" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList" index="3" unique_id=1606951337 instance=ExtResource("2")]
+[node name="physicalResistance" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList" parent_id_path=PackedInt32Array(1864056327, 1621578455) index="3" unique_id=187889537 instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "PHYSICAL_RESISTANCE"
 ModifierIcon = ExtResource("15")
 
-[node name="toxinResistance" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList" index="4" unique_id=1125190160 instance=ExtResource("2")]
+[node name="toxinResistance" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList" parent_id_path=PackedInt32Array(1864056327, 1621578455) index="4" unique_id=1555423102 instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "TOXIN_RESISTANCE"
 ModifierIcon = ExtResource("16")
 
-[node name="HSeparator" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer" index="5"]
+[node name="HSeparator" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1864056327, 1863350977) index="5" unique_id=1130055289]
 visible = false
 
-[node name="OrganelleCostList" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer" index="6"]
+[node name="OrganelleCostList" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1864056327, 1863350977) index="6" unique_id=1338570209]
 visible = false
 
-[node name="double" parent="GroupHolder/membraneSelection" unique_id=1362288703 instance=ExtResource("5")]
+[node name="double" parent="GroupHolder/membraneSelection" unique_id=1238471686 instance=ExtResource("5")]
 visible = false
 layout_mode = 0
 offset_right = 400.0
 DisplayName = "DOUBLE"
 Description = "DOUBLE_MEMBRANE_DESCRIPTION"
 
-[node name="RequiresNucleus" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer" index="1"]
+[node name="RequiresNucleus" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1238471686, 1863350977) index="1" unique_id=1907280912]
 visible = false
 
-[node name="ProcessesDescription" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer" index="2"]
+[node name="ProcessesDescription" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1238471686, 1863350977) index="2" unique_id=1366796537]
 visible = false
 
-[node name="ProcessList" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer" index="3"]
+[node name="ProcessList" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1238471686, 1863350977) index="3" unique_id=1563198072]
 visible = false
 
-[node name="baseMobility" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList" index="0" unique_id=1319833287 instance=ExtResource("2")]
+[node name="baseMobility" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList" parent_id_path=PackedInt32Array(1238471686, 1621578455) index="0" unique_id=1706655994 instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "BASE_MOBILITY"
 ModifierIcon = ExtResource("7")
 
-[node name="resourceAbsorptionSpeed" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList" index="1" unique_id=1072012573 instance=ExtResource("2")]
+[node name="resourceAbsorptionSpeed" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList" parent_id_path=PackedInt32Array(1238471686, 1621578455) index="1" unique_id=272197687 instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "RESOURCE_ABSORBTION_SPEED"
 ModifierIcon = ExtResource("11")
 
-[node name="health" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList" index="2" unique_id=497486693 instance=ExtResource("2")]
+[node name="health" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList" parent_id_path=PackedInt32Array(1238471686, 1621578455) index="2" unique_id=2066369101 instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "HEALTH"
 ModifierIcon = ExtResource("13")
 
-[node name="physicalResistance" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList" index="3" unique_id=384445289 instance=ExtResource("2")]
+[node name="physicalResistance" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList" parent_id_path=PackedInt32Array(1238471686, 1621578455) index="3" unique_id=328546101 instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "PHYSICAL_RESISTANCE"
 ModifierIcon = ExtResource("15")
 
-[node name="toxinResistance" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList" index="4" unique_id=681858532 instance=ExtResource("2")]
+[node name="toxinResistance" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList" parent_id_path=PackedInt32Array(1238471686, 1621578455) index="4" unique_id=2030956916 instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "TOXIN_RESISTANCE"
 ModifierIcon = ExtResource("16")
 
-[node name="HSeparator" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer" index="5"]
+[node name="HSeparator" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1238471686, 1863350977) index="5" unique_id=1130055289]
 visible = false
 
-[node name="OrganelleCostList" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer" index="6"]
+[node name="OrganelleCostList" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1238471686, 1863350977) index="6" unique_id=1338570209]
 visible = false
 
-[node name="cellulose" parent="GroupHolder/membraneSelection" unique_id=1802705429 instance=ExtResource("5")]
+[node name="cellulose" parent="GroupHolder/membraneSelection" unique_id=720676102 instance=ExtResource("5")]
 visible = false
 layout_mode = 0
 offset_right = 400.0
 DisplayName = "CELLULOSE"
 Description = "CELLULOSE_MEMBRANE_DESCRIPTION"
 
-[node name="RequiresNucleus" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer" index="1"]
+[node name="RequiresNucleus" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(720676102, 1863350977) index="1" unique_id=1907280912]
 visible = false
 
-[node name="ProcessesDescription" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer" index="2"]
+[node name="ProcessesDescription" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(720676102, 1863350977) index="2" unique_id=1366796537]
 visible = false
 
-[node name="ProcessList" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer" index="3"]
+[node name="ProcessList" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(720676102, 1863350977) index="3" unique_id=1563198072]
 visible = false
 
-[node name="baseMobility" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="0" unique_id=1558945140 instance=ExtResource("2")]
+[node name="baseMobility" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" parent_id_path=PackedInt32Array(720676102, 1621578455) index="0" unique_id=1159309638 instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "BASE_MOBILITY"
 ModifierIcon = ExtResource("7")
 
-[node name="resourceAbsorptionSpeed" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="1" unique_id=1548051672 instance=ExtResource("2")]
+[node name="resourceAbsorptionSpeed" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" parent_id_path=PackedInt32Array(720676102, 1621578455) index="1" unique_id=916219828 instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "RESOURCE_ABSORBTION_SPEED"
 ModifierIcon = ExtResource("11")
 
-[node name="health" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="2" unique_id=2095727088 instance=ExtResource("2")]
+[node name="health" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" parent_id_path=PackedInt32Array(720676102, 1621578455) index="2" unique_id=1048896556 instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "HEALTH"
 ModifierIcon = ExtResource("13")
 
-[node name="physicalResistance" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="3" unique_id=691360954 instance=ExtResource("2")]
+[node name="physicalResistance" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" parent_id_path=PackedInt32Array(720676102, 1621578455) index="3" unique_id=1776152639 instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "PHYSICAL_RESISTANCE"
 ModifierIcon = ExtResource("15")
 
-[node name="toxinResistance" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="4" unique_id=1647824258 instance=ExtResource("2")]
+[node name="toxinResistance" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" parent_id_path=PackedInt32Array(720676102, 1621578455) index="4" unique_id=958721107 instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "TOXIN_RESISTANCE"
 ModifierIcon = ExtResource("16")
 
-[node name="canEngulf" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="6" unique_id=279219694 instance=ExtResource("2")]
+[node name="canEngulf" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" parent_id_path=PackedInt32Array(720676102, 1621578455) index="6" unique_id=1167178519 instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "CANNOT_ENGULF"
 ModifierNameFont = ExtResource("16_dd0bc")
 ShowValue = false
 
-[node name="engulfInvulnerable" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="7" unique_id=1834392466 instance=ExtResource("2")]
+[node name="engulfInvulnerable" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" parent_id_path=PackedInt32Array(720676102, 1621578455) index="7" unique_id=1779659570 instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "RESISTANT_TO_BASIC_ENGULFMENT"
 ModifierNameFont = ExtResource("17_ftkue")
 ShowValue = false
 
-[node name="HSeparator" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer" index="5"]
+[node name="HSeparator" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(720676102, 1863350977) index="5" unique_id=1130055289]
 visible = false
 
-[node name="OrganelleCostList" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer" index="6"]
+[node name="OrganelleCostList" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(720676102, 1863350977) index="6" unique_id=1338570209]
 visible = false
 
-[node name="chitin" parent="GroupHolder/membraneSelection" unique_id=1446432279 instance=ExtResource("5")]
+[node name="chitin" parent="GroupHolder/membraneSelection" unique_id=362976481 instance=ExtResource("5")]
 visible = false
 layout_mode = 0
 offset_right = 400.0
 DisplayName = "CHITIN"
 Description = "CHITIN_MEMBRANE_DESCRIPTION"
 
-[node name="RequiresNucleus" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer" index="1"]
+[node name="RequiresNucleus" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(362976481, 1863350977) index="1" unique_id=1907280912]
 visible = false
 
-[node name="ProcessesDescription" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer" index="2"]
+[node name="ProcessesDescription" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(362976481, 1863350977) index="2" unique_id=1366796537]
 visible = false
 
-[node name="ProcessList" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer" index="3"]
+[node name="ProcessList" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(362976481, 1863350977) index="3" unique_id=1563198072]
 visible = false
 
-[node name="baseMobility" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="0" unique_id=1854287983 instance=ExtResource("2")]
+[node name="baseMobility" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" parent_id_path=PackedInt32Array(362976481, 1621578455) index="0" unique_id=1340329411 instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "BASE_MOBILITY"
 ModifierIcon = ExtResource("7")
 
-[node name="resourceAbsorptionSpeed" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="1" unique_id=688939037 instance=ExtResource("2")]
+[node name="resourceAbsorptionSpeed" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" parent_id_path=PackedInt32Array(362976481, 1621578455) index="1" unique_id=904370550 instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "RESOURCE_ABSORBTION_SPEED"
 ModifierIcon = ExtResource("11")
 
-[node name="health" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="2" unique_id=1567300140 instance=ExtResource("2")]
+[node name="health" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" parent_id_path=PackedInt32Array(362976481, 1621578455) index="2" unique_id=1154703734 instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "HEALTH"
 ModifierIcon = ExtResource("13")
 
-[node name="physicalResistance" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="3" unique_id=1227094201 instance=ExtResource("2")]
+[node name="physicalResistance" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" parent_id_path=PackedInt32Array(362976481, 1621578455) index="3" unique_id=608336749 instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "PHYSICAL_RESISTANCE"
 ModifierIcon = ExtResource("15")
 
-[node name="toxinResistance" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="4" unique_id=752586159 instance=ExtResource("2")]
+[node name="toxinResistance" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" parent_id_path=PackedInt32Array(362976481, 1621578455) index="4" unique_id=839510683 instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "TOXIN_RESISTANCE"
 ModifierIcon = ExtResource("16")
 
-[node name="canEngulf" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="6" unique_id=1599251135 instance=ExtResource("2")]
+[node name="canEngulf" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" parent_id_path=PackedInt32Array(362976481, 1621578455) index="6" unique_id=938113349 instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "CANNOT_ENGULF"
 ModifierNameFont = ExtResource("16_dd0bc")
 ShowValue = false
 
-[node name="engulfInvulnerable" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="7" unique_id=1383282384 instance=ExtResource("2")]
+[node name="engulfInvulnerable" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" parent_id_path=PackedInt32Array(362976481, 1621578455) index="7" unique_id=49817278 instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "RESISTANT_TO_BASIC_ENGULFMENT"
 ModifierNameFont = ExtResource("17_ftkue")
 ShowValue = false
 
-[node name="HSeparator" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer" index="5"]
+[node name="HSeparator" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(362976481, 1863350977) index="5" unique_id=1130055289]
 visible = false
 
-[node name="OrganelleCostList" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer" index="6"]
+[node name="OrganelleCostList" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(362976481, 1863350977) index="6" unique_id=1338570209]
 visible = false
 
-[node name="calciumCarbonate" parent="GroupHolder/membraneSelection" unique_id=64419759 instance=ExtResource("5")]
+[node name="calciumCarbonate" parent="GroupHolder/membraneSelection" unique_id=127395123 instance=ExtResource("5")]
 visible = false
 layout_mode = 0
 offset_right = 400.0
 DisplayName = "CALCIUM_CARBONATE"
 Description = "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 
-[node name="RequiresNucleus" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer" index="1"]
+[node name="RequiresNucleus" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(127395123, 1863350977) index="1" unique_id=1907280912]
 visible = false
 
-[node name="ProcessesDescription" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer" index="2"]
+[node name="ProcessesDescription" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(127395123, 1863350977) index="2" unique_id=1366796537]
 visible = false
 
-[node name="ProcessList" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer" index="3"]
+[node name="ProcessList" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(127395123, 1863350977) index="3" unique_id=1563198072]
 visible = false
 
-[node name="baseMobility" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="0" unique_id=2130036262 instance=ExtResource("2")]
+[node name="baseMobility" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" parent_id_path=PackedInt32Array(127395123, 1621578455) index="0" unique_id=2000823129 instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "BASE_MOBILITY"
 ModifierIcon = ExtResource("7")
 
-[node name="resourceAbsorptionSpeed" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="1" unique_id=1356516560 instance=ExtResource("2")]
+[node name="resourceAbsorptionSpeed" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" parent_id_path=PackedInt32Array(127395123, 1621578455) index="1" unique_id=36249777 instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "RESOURCE_ABSORBTION_SPEED"
 ModifierIcon = ExtResource("11")
 
-[node name="health" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="2" unique_id=681437043 instance=ExtResource("2")]
+[node name="health" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" parent_id_path=PackedInt32Array(127395123, 1621578455) index="2" unique_id=1095288865 instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "HEALTH"
 ModifierIcon = ExtResource("13")
 
-[node name="physicalResistance" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="3" unique_id=848677021 instance=ExtResource("2")]
+[node name="physicalResistance" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" parent_id_path=PackedInt32Array(127395123, 1621578455) index="3" unique_id=496255510 instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "PHYSICAL_RESISTANCE"
 ModifierIcon = ExtResource("15")
 
-[node name="toxinResistance" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="4" unique_id=1891535551 instance=ExtResource("2")]
+[node name="toxinResistance" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" parent_id_path=PackedInt32Array(127395123, 1621578455) index="4" unique_id=226982216 instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "TOXIN_RESISTANCE"
 ModifierIcon = ExtResource("16")
 
-[node name="canEngulf" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="6" unique_id=1839406428 instance=ExtResource("2")]
+[node name="canEngulf" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" parent_id_path=PackedInt32Array(127395123, 1621578455) index="6" unique_id=2105406081 instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "CANNOT_ENGULF"
 ModifierNameFont = ExtResource("16_dd0bc")
 ShowValue = false
 
-[node name="HSeparator" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer" index="5"]
+[node name="HSeparator" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(127395123, 1863350977) index="5" unique_id=1130055289]
 visible = false
 
-[node name="OrganelleCostList" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer" index="6"]
+[node name="OrganelleCostList" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(127395123, 1863350977) index="6" unique_id=1338570209]
 visible = false
 
-[node name="silica" parent="GroupHolder/membraneSelection" unique_id=314522459 instance=ExtResource("5")]
+[node name="silica" parent="GroupHolder/membraneSelection" unique_id=1055494397 instance=ExtResource("5")]
 visible = false
 layout_mode = 0
 offset_right = 400.0
@@ -521,127 +521,127 @@ offset_bottom = 173.0
 DisplayName = "SILICA"
 Description = "SILICA_MEMBRANE_DESCRIPTION"
 
-[node name="RequiresNucleus" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer" index="1"]
+[node name="RequiresNucleus" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1055494397, 1863350977) index="1" unique_id=1907280912]
 visible = false
 
-[node name="ProcessesDescription" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer" index="2"]
+[node name="ProcessesDescription" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1055494397, 1863350977) index="2" unique_id=1366796537]
 visible = false
 
-[node name="ProcessList" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer" index="3"]
+[node name="ProcessList" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1055494397, 1863350977) index="3" unique_id=1563198072]
 visible = false
 
-[node name="baseMobility" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="0" unique_id=646610109 instance=ExtResource("2")]
+[node name="baseMobility" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" parent_id_path=PackedInt32Array(1055494397, 1621578455) index="0" unique_id=1185276147 instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "BASE_MOBILITY"
 ModifierIcon = ExtResource("7")
 
-[node name="resourceAbsorptionSpeed" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="1" unique_id=582073894 instance=ExtResource("2")]
+[node name="resourceAbsorptionSpeed" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" parent_id_path=PackedInt32Array(1055494397, 1621578455) index="1" unique_id=509939979 instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "RESOURCE_ABSORBTION_SPEED"
 ModifierIcon = ExtResource("11")
 
-[node name="health" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="2" unique_id=605351364 instance=ExtResource("2")]
+[node name="health" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" parent_id_path=PackedInt32Array(1055494397, 1621578455) index="2" unique_id=1112743885 instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "HEALTH"
 ModifierIcon = ExtResource("13")
 
-[node name="physicalResistance" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="3" unique_id=498811307 instance=ExtResource("2")]
+[node name="physicalResistance" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" parent_id_path=PackedInt32Array(1055494397, 1621578455) index="3" unique_id=1224760972 instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "PHYSICAL_RESISTANCE"
 ModifierIcon = ExtResource("15")
 
-[node name="toxinResistance" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="4" unique_id=884905428 instance=ExtResource("2")]
+[node name="toxinResistance" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" parent_id_path=PackedInt32Array(1055494397, 1621578455) index="4" unique_id=426730290 instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "TOXIN_RESISTANCE"
 ModifierIcon = ExtResource("16")
 
-[node name="canEngulf" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="6" unique_id=785835487 instance=ExtResource("2")]
+[node name="canEngulf" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" parent_id_path=PackedInt32Array(1055494397, 1621578455) index="6" unique_id=183465334 instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "CANNOT_ENGULF"
 ModifierNameFont = ExtResource("16_dd0bc")
 ShowValue = false
 
-[node name="HSeparator" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer" index="5"]
+[node name="HSeparator" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1055494397, 1863350977) index="5" unique_id=1130055289]
 visible = false
 
-[node name="OrganelleCostList" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer" index="6"]
+[node name="OrganelleCostList" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1055494397, 1863350977) index="6" unique_id=1338570209]
 visible = false
 
-[node name="processesProduction" type="Control" parent="GroupHolder" unique_id=919043525]
+[node name="processesProduction" type="Control" parent="GroupHolder" unique_id=396680834]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 
-[node name="cytoplasm" parent="GroupHolder/processesProduction" unique_id=1679842948 instance=ExtResource("1")]
+[node name="cytoplasm" parent="GroupHolder/processesProduction" unique_id=2118686698 instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="metabolosome" parent="GroupHolder/processesProduction" unique_id=1789854572 instance=ExtResource("1")]
+[node name="metabolosome" parent="GroupHolder/processesProduction" unique_id=1952672642 instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="hydrogenase" parent="GroupHolder/processesProduction" unique_id=348641658 node_paths=PackedStringArray("descriptionLabel") instance=ExtResource("1")]
-visible = false
-layout_mode = 0
-descriptionLabel = NodePath("../metabolosome/MarginContainer/VBoxContainer/Description")
-DisplayDelay = 0.0
-Positioning = 1
-
-[node name="hydrogenosome" parent="GroupHolder/processesProduction" unique_id=773771693 node_paths=PackedStringArray("descriptionLabel") instance=ExtResource("1")]
+[node name="hydrogenase" parent="GroupHolder/processesProduction" unique_id=1700481726 node_paths=PackedStringArray("descriptionLabel") instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 descriptionLabel = NodePath("../metabolosome/MarginContainer/VBoxContainer/Description")
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="chromatophore" parent="GroupHolder/processesProduction" unique_id=826990210 instance=ExtResource("1")]
+[node name="hydrogenosome" parent="GroupHolder/processesProduction" unique_id=1193558068 node_paths=PackedStringArray("descriptionLabel") instance=ExtResource("1")]
+visible = false
+layout_mode = 0
+descriptionLabel = NodePath("../metabolosome/MarginContainer/VBoxContainer/Description")
+DisplayDelay = 0.0
+Positioning = 1
+
+[node name="chromatophore" parent="GroupHolder/processesProduction" unique_id=319091486 instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="chemoSynthesizingProteins" parent="GroupHolder/processesProduction" unique_id=1674817827 instance=ExtResource("1")]
+[node name="chemoSynthesizingProteins" parent="GroupHolder/processesProduction" unique_id=1818727852 instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="rusticyanin" parent="GroupHolder/processesProduction" unique_id=956629331 instance=ExtResource("1")]
+[node name="rusticyanin" parent="GroupHolder/processesProduction" unique_id=1464025291 instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="nitrogenase" parent="GroupHolder/processesProduction" unique_id=563364219 instance=ExtResource("1")]
+[node name="nitrogenase" parent="GroupHolder/processesProduction" unique_id=721250831 instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="oxytoxyProteins" parent="GroupHolder/processesProduction" unique_id=1696814895 instance=ExtResource("1")]
+[node name="oxytoxyProteins" parent="GroupHolder/processesProduction" unique_id=1902505375 instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="thermosynthase" parent="GroupHolder/processesProduction" unique_id=1980936600 instance=ExtResource("1")]
+[node name="thermosynthase" parent="GroupHolder/processesProduction" unique_id=489472646 instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="mitochondrion" parent="GroupHolder/processesProduction" unique_id=574555540 instance=ExtResource("1")]
+[node name="mitochondrion" parent="GroupHolder/processesProduction" unique_id=1845328801 instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="ferroplast" parent="GroupHolder/processesProduction" unique_id=2058473432 node_paths=PackedStringArray("descriptionLabel") instance=ExtResource("1")]
+[node name="ferroplast" parent="GroupHolder/processesProduction" unique_id=1764666488 node_paths=PackedStringArray("descriptionLabel") instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 offset_bottom = 34.0
@@ -649,39 +649,39 @@ descriptionLabel = NodePath("../mitochondrion/MarginContainer/VBoxContainer/Desc
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="thermoplast" parent="GroupHolder/processesProduction" unique_id=1828583506 instance=ExtResource("1")]
+[node name="thermoplast" parent="GroupHolder/processesProduction" unique_id=357658060 instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="nitrogenfixingplastid" parent="GroupHolder/processesProduction" unique_id=1029916756 instance=ExtResource("1")]
+[node name="nitrogenfixingplastid" parent="GroupHolder/processesProduction" unique_id=1119451050 instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="oxytoxy" parent="GroupHolder/processesProduction" unique_id=1650507036 instance=ExtResource("1")]
+[node name="oxytoxy" parent="GroupHolder/processesProduction" unique_id=485254374 instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="protoplasm" parent="GroupHolder/processesProduction" unique_id=393521836 node_paths=PackedStringArray("descriptionLabel") instance=ExtResource("1")]
-visible = false
-layout_mode = 0
-descriptionLabel = NodePath("../cytoplasm/MarginContainer/VBoxContainer/Description")
-DisplayDelay = 0.0
-Positioning = 1
-
-[node name="melanosome" parent="GroupHolder/processesProduction" unique_id=50004679 node_paths=PackedStringArray("descriptionLabel") instance=ExtResource("1")]
+[node name="protoplasm" parent="GroupHolder/processesProduction" unique_id=1023510975 node_paths=PackedStringArray("descriptionLabel") instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 descriptionLabel = NodePath("../cytoplasm/MarginContainer/VBoxContainer/Description")
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="bioluminescentVacuole" parent="GroupHolder/processesProduction" unique_id=263346461 node_paths=PackedStringArray("descriptionLabel") instance=ExtResource("1")]
+[node name="melanosome" parent="GroupHolder/processesProduction" unique_id=206849259 node_paths=PackedStringArray("descriptionLabel") instance=ExtResource("1")]
+visible = false
+layout_mode = 0
+descriptionLabel = NodePath("../cytoplasm/MarginContainer/VBoxContainer/Description")
+DisplayDelay = 0.0
+Positioning = 1
+
+[node name="bioluminescentVacuole" parent="GroupHolder/processesProduction" unique_id=561195265 node_paths=PackedStringArray("descriptionLabel") instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 offset_bottom = 34.0
@@ -689,80 +689,80 @@ descriptionLabel = NodePath("../cytoplasm/MarginContainer/VBoxContainer/Descript
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="processesConsumption" type="Control" parent="GroupHolder" unique_id=1819693900]
+[node name="processesConsumption" type="Control" parent="GroupHolder" unique_id=29367669]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 
-[node name="osmoregulation" parent="GroupHolder/processesConsumption" unique_id=1028035561 instance=ExtResource("1")]
+[node name="osmoregulation" parent="GroupHolder/processesConsumption" unique_id=279774360 instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="baseMovement" parent="GroupHolder/processesConsumption" unique_id=1626703819 instance=ExtResource("1")]
+[node name="baseMovement" parent="GroupHolder/processesConsumption" unique_id=1610685820 instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="chromatophore" parent="GroupHolder/processesConsumption" unique_id=292645211 instance=ExtResource("1")]
+[node name="chromatophore" parent="GroupHolder/processesConsumption" unique_id=137917794 instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="chemoSynthesizingProteins" parent="GroupHolder/processesConsumption" unique_id=284357184 instance=ExtResource("1")]
+[node name="chemoSynthesizingProteins" parent="GroupHolder/processesConsumption" unique_id=1515772799 instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="rusticyanin" parent="GroupHolder/processesConsumption" unique_id=2142374032 instance=ExtResource("1")]
+[node name="rusticyanin" parent="GroupHolder/processesConsumption" unique_id=1311014650 instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="nitrogenase" parent="GroupHolder/processesConsumption" unique_id=1022651247 instance=ExtResource("1")]
+[node name="nitrogenase" parent="GroupHolder/processesConsumption" unique_id=2142318998 instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="oxytoxyProteins" parent="GroupHolder/processesConsumption" unique_id=1509494873 instance=ExtResource("1")]
+[node name="oxytoxyProteins" parent="GroupHolder/processesConsumption" unique_id=1805210141 instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="flagellum" parent="GroupHolder/processesConsumption" unique_id=153205554 instance=ExtResource("1")]
+[node name="flagellum" parent="GroupHolder/processesConsumption" unique_id=1793702907 instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="cilia" parent="GroupHolder/processesConsumption" unique_id=680430567 node_paths=PackedStringArray("descriptionLabel") instance=ExtResource("1")]
+[node name="cilia" parent="GroupHolder/processesConsumption" unique_id=822969243 node_paths=PackedStringArray("descriptionLabel") instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 descriptionLabel = NodePath("../flagellum/MarginContainer/VBoxContainer/Description")
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="nitrogenfixingplastid" parent="GroupHolder/processesConsumption" unique_id=1070342590 instance=ExtResource("1")]
+[node name="nitrogenfixingplastid" parent="GroupHolder/processesConsumption" unique_id=1918251822 instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="oxytoxy" parent="GroupHolder/processesConsumption" unique_id=782412500 instance=ExtResource("1")]
+[node name="oxytoxy" parent="GroupHolder/processesConsumption" unique_id=748519011 instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="bioluminescentVacuole" parent="GroupHolder/processesConsumption" unique_id=1314483231 node_paths=PackedStringArray("descriptionLabel") instance=ExtResource("1")]
+[node name="bioluminescentVacuole" parent="GroupHolder/processesConsumption" unique_id=1033714756 node_paths=PackedStringArray("descriptionLabel") instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 offset_bottom = 34.0
@@ -770,76 +770,76 @@ descriptionLabel = NodePath("../chromatophore/MarginContainer/VBoxContainer/Desc
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="options" type="Control" parent="GroupHolder" unique_id=447342847]
+[node name="options" type="Control" parent="GroupHolder" unique_id=971587408]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 
-[node name="addInputButton" parent="GroupHolder/options" unique_id=627508153 node_paths=PackedStringArray("descriptionLabel") instance=ExtResource("1")]
+[node name="addInputButton" parent="GroupHolder/options" unique_id=606944714 node_paths=PackedStringArray("descriptionLabel") instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 descriptionLabel = NodePath("../cloudResolution/MarginContainer/VBoxContainer/Description")
 Description = "ADD_INPUT_BUTTON_TOOLTIP"
 DisplayDelay = 0.5
 
-[node name="cloudResolution" parent="GroupHolder/options" unique_id=1086898244 instance=ExtResource("1")]
+[node name="cloudResolution" parent="GroupHolder/options" unique_id=175357502 instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 Description = "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 DisplayDelay = 0.5
 
-[node name="guiLightEffects" parent="GroupHolder/options" unique_id=172738638 instance=ExtResource("1")]
+[node name="guiLightEffects" parent="GroupHolder/options" unique_id=1181649664 instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 Description = "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 DisplayDelay = 0.5
 
-[node name="assumeHyperthreading" parent="GroupHolder/options" unique_id=1302426959 instance=ExtResource("1")]
+[node name="assumeHyperthreading" parent="GroupHolder/options" unique_id=1579127045 instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 Description = "ASSUME_HYPERTHREADING_TOOLTIP"
 DisplayDelay = 0.5
 
-[node name="unsavedProgressWarning" parent="GroupHolder/options" unique_id=332029040 instance=ExtResource("1")]
+[node name="unsavedProgressWarning" parent="GroupHolder/options" unique_id=1725453234 instance=ExtResource("1")]
 layout_mode = 0
 Description = "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 DisplayDelay = 0.5
 
-[node name="chartLegendPhysicalConditions" type="Control" parent="GroupHolder" unique_id=1683207648]
+[node name="chartLegendPhysicalConditions" type="Control" parent="GroupHolder" unique_id=369725885]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 
-[node name="temperature" parent="GroupHolder/chartLegendPhysicalConditions" unique_id=638402449 instance=ExtResource("1")]
+[node name="temperature" parent="GroupHolder/chartLegendPhysicalConditions" unique_id=1584325583 instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 Description = "TEMPERATURE"
 
-[node name="sunlight" parent="GroupHolder/chartLegendPhysicalConditions" unique_id=1113329780 instance=ExtResource("1")]
+[node name="sunlight" parent="GroupHolder/chartLegendPhysicalConditions" unique_id=1860257491 instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 Description = "SUNLIGHT"
 
-[node name="patchMap" type="Control" parent="GroupHolder" unique_id=1826064890]
+[node name="patchMap" type="Control" parent="GroupHolder" unique_id=748015260]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 
-[node name="navigationHint" parent="GroupHolder/patchMap" unique_id=895851831 instance=ExtResource("1")]
+[node name="navigationHint" parent="GroupHolder/patchMap" unique_id=396656676 instance=ExtResource("1")]
 layout_mode = 0
 Description = "PATCH_MAP_NAVIGATION_TOOLTIP"
 DisplayDelay = 2.5
 
-[node name="tolerances" type="Control" parent="GroupHolder" unique_id=1332803369]
+[node name="tolerances" type="Control" parent="GroupHolder" unique_id=1298918634]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 
-[node name="temperature" parent="GroupHolder/tolerances" unique_id=475410450 instance=ExtResource("14_k78dl")]
+[node name="temperature" parent="GroupHolder/tolerances" unique_id=1744214386 instance=ExtResource("14_k78dl")]
 visible = false
 layout_mode = 0
 offset_top = 0.0
@@ -847,7 +847,7 @@ offset_bottom = 283.0
 DisplayName = "TEMPERATURE"
 Description = "TEMPERATURE_TOLERANCE_TOOLTIP"
 
-[node name="temperatureRangeModifier" parent="GroupHolder/tolerances" unique_id=660632081 instance=ExtResource("15_l158n")]
+[node name="temperatureRangeModifier" parent="GroupHolder/tolerances" unique_id=1605168615 instance=ExtResource("15_l158n")]
 visible = false
 layout_mode = 0
 offset_top = 0.0
@@ -856,7 +856,7 @@ DisplayName = "TEMPERATURE"
 Description = "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
 ShownDecimals = 3
 
-[node name="pressure" parent="GroupHolder/tolerances" unique_id=499806736 instance=ExtResource("14_k78dl")]
+[node name="pressure" parent="GroupHolder/tolerances" unique_id=1831506502 instance=ExtResource("14_k78dl")]
 visible = false
 layout_mode = 0
 offset_top = 0.0
@@ -864,7 +864,7 @@ offset_bottom = 283.0
 DisplayName = "PRESSURE"
 Description = "PRESSURE_TOLERANCE_TOOLTIP"
 
-[node name="pressureRangeModifier" parent="GroupHolder/tolerances" unique_id=1610746720 instance=ExtResource("15_l158n")]
+[node name="pressureRangeModifier" parent="GroupHolder/tolerances" unique_id=569496477 instance=ExtResource("15_l158n")]
 visible = false
 layout_mode = 0
 offset_top = 0.0
@@ -874,7 +874,7 @@ Description = "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
 ShownDecimals = 0
 ValueSuffix = "Pa"
 
-[node name="oxygenResistance" parent="GroupHolder/tolerances" unique_id=1310896355 instance=ExtResource("14_k78dl")]
+[node name="oxygenResistance" parent="GroupHolder/tolerances" unique_id=864595271 instance=ExtResource("14_k78dl")]
 visible = false
 layout_mode = 0
 offset_top = 0.0
@@ -882,7 +882,7 @@ offset_bottom = 283.0
 DisplayName = "OXYGEN_RESISTANCE"
 Description = "OXYGEN_TOLERANCE_TOOLTIP"
 
-[node name="oxygenResistanceModifier" parent="GroupHolder/tolerances" unique_id=1977134415 instance=ExtResource("15_l158n")]
+[node name="oxygenResistanceModifier" parent="GroupHolder/tolerances" unique_id=657784372 instance=ExtResource("15_l158n")]
 visible = false
 layout_mode = 0
 offset_top = 0.0
@@ -891,7 +891,7 @@ DisplayName = "OXYGEN_RESISTANCE"
 Description = "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
 ShowAsPercentage = true
 
-[node name="uvResistance" parent="GroupHolder/tolerances" unique_id=1711263264 instance=ExtResource("14_k78dl")]
+[node name="uvResistance" parent="GroupHolder/tolerances" unique_id=1574907588 instance=ExtResource("14_k78dl")]
 visible = false
 layout_mode = 0
 offset_top = 0.0
@@ -899,7 +899,7 @@ offset_bottom = 283.0
 DisplayName = "UV_PROTECTION"
 Description = "UV_TOLERANCE_TOOLTIP"
 
-[node name="uvResistanceModifier" parent="GroupHolder/tolerances" unique_id=1971056617 instance=ExtResource("15_l158n")]
+[node name="uvResistanceModifier" parent="GroupHolder/tolerances" unique_id=1687477135 instance=ExtResource("15_l158n")]
 visible = false
 layout_mode = 0
 offset_top = 0.0

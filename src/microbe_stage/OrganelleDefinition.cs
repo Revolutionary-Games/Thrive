@@ -19,7 +19,7 @@ using UnlockConstraints;
 ///   </para>
 /// </remarks>
 #pragma warning disable CA1001 // Owns Godot resource that is fine to stay for the program lifetime
-public class OrganelleDefinition : RegistryType
+public class OrganelleDefinition : RegistryType, IPlayerReadableName
 #pragma warning restore CA1001
 {
     /// <summary>
@@ -193,6 +193,13 @@ public class OrganelleDefinition : RegistryType
     public OrganelleDefinition? EndosymbiosisUnlocks;
 
     /// <summary>
+    ///   What organelle this is equivalent to in specialization. Used to mark eukaryotic and prokaryotic variants the
+    ///   same to make specialization more effective.
+    /// </summary>
+    [JsonIgnore]
+    public OrganelleDefinition? IsSameInSpecializationAs;
+
+    /// <summary>
     ///   Placement strategy that is used when placing this organelle when calculating an auto-evo organelle suggestion
     ///   for the player
     /// </summary>
@@ -225,6 +232,9 @@ public class OrganelleDefinition : RegistryType
 
     [JsonProperty]
     private string? endosymbiosisUnlocks;
+
+    [JsonProperty]
+    private string? equivalentInSpecializationTo;
 
     private Vector3 modelOffset;
 
@@ -259,8 +269,11 @@ public class OrganelleDefinition : RegistryType
     [JsonIgnore]
     public string NameWithoutSpecialCharacters => Name.Replace('\n', ' ');
 
+    [JsonIgnore]
+    public string ReadableName => Name;
+
     /// <summary>
-    ///   The total amount of compounds in InitialComposition
+    ///   The sum of all compound values in InitialComposition
     /// </summary>
     [JsonIgnore]
     public float OrganelleCost { get; private set; }
@@ -312,7 +325,7 @@ public class OrganelleDefinition : RegistryType
     // Easy access to precalculated total tolerance modifiers
     public float ToleranceModifierOxygen { get; private set; }
     public float ToleranceModifierUV { get; private set; }
-    public float ToleranceModifierPressureRange { get; private set; }
+    public float ToleranceModifierPressureTolerance { get; private set; }
     public float ToleranceModifierTemperatureRange { get; private set; }
 
     /// <summary>
@@ -739,6 +752,11 @@ public class OrganelleDefinition : RegistryType
             EndosymbiosisUnlocks = parameters.GetOrganelleType(endosymbiosisUnlocks);
         }
 
+        if (!string.IsNullOrEmpty(equivalentInSpecializationTo))
+        {
+            IsSameInSpecializationAs = parameters.GetOrganelleType(equivalentInSpecializationTo);
+        }
+
         if (Unimplemented)
             return;
 
@@ -867,7 +885,7 @@ public class OrganelleDefinition : RegistryType
     {
         ToleranceModifierOxygen = 0;
         ToleranceModifierUV = 0;
-        ToleranceModifierPressureRange = 0;
+        ToleranceModifierPressureTolerance = 0;
         ToleranceModifierTemperatureRange = 0;
 
         foreach (var toleranceEffect in ToleranceEffects)
@@ -883,8 +901,8 @@ public class OrganelleDefinition : RegistryType
                 case ToleranceModifier.TemperatureRange:
                     ToleranceModifierTemperatureRange += toleranceEffect.Value;
                     break;
-                case ToleranceModifier.PressureRange:
-                    ToleranceModifierPressureRange += toleranceEffect.Value;
+                case ToleranceModifier.PressureTolerance:
+                    ToleranceModifierPressureTolerance += toleranceEffect.Value;
                     break;
                 default:
                     GD.PrintErr("Unknown tolerance type for organelle to effect: ", toleranceEffect.Key);
@@ -893,7 +911,7 @@ public class OrganelleDefinition : RegistryType
         }
 
         AffectsTolerances = ToleranceModifierOxygen != 0 || ToleranceModifierUV != 0 ||
-            ToleranceModifierTemperatureRange != 0 || ToleranceModifierPressureRange != 0;
+            ToleranceModifierTemperatureRange != 0 || ToleranceModifierPressureTolerance != 0;
     }
 
     private bool TryGetGraphicsForUpgrade(IReadOnlyOrganelleUpgrades? upgrades,
