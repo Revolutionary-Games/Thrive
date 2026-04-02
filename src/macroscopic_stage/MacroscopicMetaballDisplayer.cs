@@ -12,11 +12,9 @@ public partial class MacroscopicMetaballDisplayer : MultiMeshInstance3D, IMetaba
     private StandardMaterial3D? material;
     private Mesh metaballSphere = null!;
 
-    private List<Sprite3D> lines = new();
-
 #pragma warning disable CA2213
     [Export]
-    private PackedScene hierarchyLineScene = null!;
+    private MetaballHierarchyLines hierarchyLineScene = null!;
 #pragma warning restore CA2213
 
     private float? overrideColourAlpha;
@@ -94,12 +92,9 @@ public partial class MacroscopicMetaballDisplayer : MultiMeshInstance3D, IMetaba
             return;
         }
 
-        // TODO: drawing links between the metaballs (or maybe only just the editor needs that?)
-
         var extends = Vector3.Zero;
 
         int i = 0;
-        int j = 0;
 
         // Setup the metaball parameters for drawing
         foreach (var metaball in layout)
@@ -133,41 +128,10 @@ public partial class MacroscopicMetaballDisplayer : MultiMeshInstance3D, IMetaba
             if (absPosition.Z > extends.Z)
                 extends.Z = absPosition.Z;
 
-            if (metaball.Parent != null)
-            {
-                Sprite3D line;
-
-                if (j >= lines.Count)
-                {
-                    line = hierarchyLineScene.Instantiate<Sprite3D>();
-                    AddChild(line);
-                    lines.Add(line);
-                }
-                else
-                {
-                    line = lines[j];
-                }
-
-                line.Position = (metaball.Position + metaball.Parent.Position) * 0.5f;
-                line.Quaternion = Basis.LookingAt(metaball.Parent.Position - metaball.Position).GetRotationQuaternion();
-                line.Scale =
-                    new Vector3(line.Scale.X, line.Scale.Y, metaball.Parent.Position.DistanceTo(metaball.Position));
-
-                ++j;
-            }
-
             ++i;
         }
 
-        if (j < lines.Count)
-        {
-            for (int k = j; k < lines.Count; ++k)
-            {
-                lines[k].DetachAndQueueFree();
-            }
-
-            lines.RemoveRange(j, lines.Count - j);
-        }
+        hierarchyLineScene.UpdateLines(layout);
 
         CustomAabb = new Aabb(-extends, extends * 2);
     }
