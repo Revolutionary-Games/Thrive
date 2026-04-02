@@ -52,7 +52,7 @@ public class MovementComponent : IOrganelleComponent
     }
 
     public void UpdateAsync(ref OrganelleContainer organelleContainer, in Entity microbeEntity,
-        IWorldSimulation worldSimulation, float energyCostMultiplier, bool isPlayer, float delta)
+        IWorldSimulation worldSimulation, float energyCostMultiplier, float delta)
     {
         // Stop animating when being engulfed
         if (microbeEntity.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.None)

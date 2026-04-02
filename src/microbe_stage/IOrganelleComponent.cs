@@ -26,11 +26,10 @@ public interface IOrganelleComponent
     ///   systems that are basically clones of <see cref="Systems.OrganelleTickSystem"/> with a tiny bit of different
     ///   functionality.
     /// </param>
-    /// <param name="energyCostMultiplier">The player ATP cost modifier from difficulty settings</param>
-    /// <param name="isPlayer">Bool to track whether this is a player species for difficulty setting effects</param>
+    /// <param name="energyCostMultiplier">modifies the amount of ATP to be consumed by organelles</param>
     /// <param name="delta">Time since the last update in seconds</param>
     public void UpdateAsync(ref OrganelleContainer organelleContainer, in Entity microbeEntity,
-        IWorldSimulation worldSimulation, float energyCostMultiplier, bool isPlayer, float delta);
+        IWorldSimulation worldSimulation, float energyCostMultiplier, float delta);
 
     /// <summary>
     ///   Sync processing that is allowed to do non-thread safe things (this is called on the main thread). Only called

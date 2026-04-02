@@ -54,7 +54,7 @@ public class SlimeJetComponent : IOrganelleComponent
     }
 
     public void UpdateAsync(ref OrganelleContainer organelleContainer, in Entity microbeEntity,
-        IWorldSimulation worldSimulation, float osmoregulationModifier, bool isPlayer, float delta)
+        IWorldSimulation worldSimulation, float energycostMultiplier, float delta)
     {
         // All the logic for this ended up in MicrobeEmissionSystem and MicrobeMovementSystem, just the animation
         // applying is here anymore...

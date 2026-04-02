@@ -89,6 +89,11 @@ public partial class OrganelleTickSystem : BaseSystem<World, float>
         var organelles = organelleContainer.Organelles.Organelles;
         int organelleCount = organelles.Count;
 
+        // For player species, apply the energy consumption modifier from difficulty settings
+        var energyCostMultiplier = 1.0f;
+        if (speciesMember.Species.PlayerSpecies)
+            energyCostMultiplier *= gameWorld!.WorldSettings.EnergyCostMultiplier;
+
         // Manual loop used here to avoid memory allocations in this very often running code
         for (int i = 0; i < organelleCount; ++i)
         {
@@ -100,9 +105,7 @@ public partial class OrganelleTickSystem : BaseSystem<World, float>
                 var component = components[j];
 
                 // Organelles can do various things which is why we have the above "All" attribute
-                component.UpdateAsync(ref organelleContainer, entity, worldSimulation,
-                    gameWorld!.WorldSettings.EnergyCostMultiplier,
-                    speciesMember.Species.PlayerSpecies, delta);
+                component.UpdateAsync(ref organelleContainer, entity, worldSimulation, energyCostMultiplier, delta);
 
                 if (component.UsesSyncProcess)
                     queuedSyncRuns.Push((component, entity));
