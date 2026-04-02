@@ -121,7 +121,7 @@ public static class DifficultyHelpers
             $", Compound density: {difficulty.CompoundDensity}" +
             $", Player death population penalty: {difficulty.PlayerDeathPopulationPenalty}" +
             $", Glucose decay: {difficulty.GlucoseDecay}" +
-            $", Osmoregulation multiplier: {difficulty.EnergyCostMultiplier}" +
+            $", Energy cost multiplier: {difficulty.EnergyCostMultiplier}" +
             $", auto-evo strength: {difficulty.PlayerAutoEvoStrength}" +
             $", AI dying strength: {difficulty.PlayerSpeciesAIPopulationStrength}" +
             $", Free glucose cloud: {difficulty.FreeGlucoseCloud}" +
