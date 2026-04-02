@@ -51,7 +51,7 @@ public partial class ColonyBindingSystem : BaseSystem<World, float>
         MicrobeSpeciesMember, CollisionManagement, SoundEffectPlayer, CompoundStorage>]
     [None<AttachedToEntity>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update([Data] in float delta, ref MicrobeControl control, ref Health health, 
+    private void Update([Data] in float delta, ref MicrobeControl control, ref Health health,
         ref SpeciesMember speciesMember, Entity entity)
     {
         // Disallow binding to happen when dead
