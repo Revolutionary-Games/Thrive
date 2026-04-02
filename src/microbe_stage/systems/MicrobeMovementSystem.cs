@@ -52,6 +52,12 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
         gameWorld = world;
     }
 
+    public override void BeforeUpdate(in float delta)
+    {
+        if (gameWorld == null)
+            throw new InvalidOperationException("GameWorld not set");
+    }
+
     private static float CalculateRotationSpeed(in Entity entity, ref OrganelleContainer organelles)
     {
         float rotationSpeed = organelles.RotationSpeed;

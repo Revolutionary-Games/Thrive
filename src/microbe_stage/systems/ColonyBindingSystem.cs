@@ -1,5 +1,6 @@
 ﻿namespace Systems;
 
+using System;
 using System.Runtime.CompilerServices;
 using Arch.Buffer;
 using Arch.Core;
@@ -44,6 +45,12 @@ public partial class ColonyBindingSystem : BaseSystem<World, float>
     public void SetWorld(GameWorld world)
     {
         gameWorld = world;
+    }
+
+    public override void BeforeUpdate(in float delta)
+    {
+        if (gameWorld == null)
+            throw new InvalidOperationException("GameWorld not set");
     }
 
     [Query]

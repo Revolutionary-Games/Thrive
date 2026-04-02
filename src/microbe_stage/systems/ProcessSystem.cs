@@ -880,6 +880,11 @@ public partial class ProcessSystem : BaseSystem<World, float>
             GD.PrintErr("ProcessSystem has no biome set");
         }
 
+        if (gameWorld == null)
+        {
+            throw new InvalidOperationException("GameWorld not set");
+        }
+
         inverseDelta = 1.0f / delta;
 
 #if CHECK_USED_STATISTICS
