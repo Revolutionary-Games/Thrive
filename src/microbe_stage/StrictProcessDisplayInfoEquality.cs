@@ -98,6 +98,8 @@ public class StrictProcessDisplayInfoEquality : IEquatable<StrictProcessDisplayI
         using var enumerator1 = items1.GetEnumerator();
         using var enumerator2 = items2.GetEnumerator();
 
+        var compoundComparer = EqualityComparer<Compound>.Default;
+
         while (enumerator1.MoveNext())
         {
             // Fail if different count
@@ -110,7 +112,7 @@ public class StrictProcessDisplayInfoEquality : IEquatable<StrictProcessDisplayI
             if (!value1.Value.Equals(value2.Value))
                 return false;
 
-            if (!EqualityComparer<Compound>.Default.Equals(value1.Key, value2.Key))
+            if (!compoundComparer.Equals(value1.Key, value2.Key))
                 return false;
         }
 
