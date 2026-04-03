@@ -106,8 +106,6 @@ public class SummedProcessStatistics : IProcessDisplayInfo
             }
         }
 
-        // This list may vary between cells if the current process consumes/produces ATP
-        // The first added cell with this process provides this data
         LimitingCompounds ??= stats.LimitingCompounds;
 
         if (summedFullSpeedRequiredEnvironmentalInputs.Count == 0)
