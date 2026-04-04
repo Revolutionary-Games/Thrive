@@ -17,6 +17,7 @@ public partial class NameGenerator
         { ('o', 'a'), 'o' },
         { ('e', 'a'), 'e' },
         { ('e', 'u'), 'u' },
+        { ('o', 'u'), 'u' },
     }.ToFrozenDictionary();
 
     private static StringBuilder? stringBuffer;
@@ -56,6 +57,7 @@ public partial class NameGenerator
         if (Vocals.Contains(next) && Vocals.Contains(previous))
         {
             // Both are vocals
+
             if (next == previous)
             {
                 --stringBuilder.Length;
@@ -74,6 +76,7 @@ public partial class NameGenerator
             switch (previous)
             {
                 // Both are consonants
+
                 case 'n' when Bilabials.Contains(next):
                     // n before bilabial becomes m
                     --stringBuilder.Length;
@@ -107,7 +110,7 @@ public partial class NameGenerator
                 break;
         }
 
-        // Preferred and tolerated temperature
+        // Preferred temperature
         var preferredTemperature = species.Tolerances.PreferredTemperature;
         var temperatureWeight = Math.Abs(Clamp((preferredTemperature - 50) * 0.02, -1, 1));
         switch (preferredTemperature)
@@ -134,7 +137,71 @@ public partial class NameGenerator
                 break;
         }
 
+        // Membrane rigidity
+        var rigidity = 0.5 * (species.MembraneRigidity + 1.0);
+        rigidity = rigidity * rigidity * rigidity * rigidity * Math.Sign(rigidity);
+        switch (rigidity)
+        {
+            case > 0.5:
+                relevantQualities.Add("rigid", rigidity);
+                break;
+            case < 0.5:
+                relevantQualities.Add("fluid", rigidity);
+                break;
+        }
+
         return relevantQualities;
+    }
+
+    private static Dictionary<string, double> CalculateRelevantTolerances(MicrobeSpecies species)
+    {
+        Dictionary<string, double> relevantTolerances = new();
+
+        var tolerances = species.Tolerances;
+
+        // Oxygen resistance
+        var oxygenResistance = tolerances.OxygenResistance;
+        switch (oxygenResistance)
+        {
+            case > 0.1f:
+                relevantTolerances.Add("oxygen", oxygenResistance);
+                break;
+        }
+
+        // Preferred temperature
+        var preferredTemperature = tolerances.PreferredTemperature;
+        var temperatureWeight = Math.Abs(Clamp((preferredTemperature - 50) * 0.02, -1, 1));
+        switch (preferredTemperature)
+        {
+            case > 80:
+                relevantTolerances.Add("hot", temperatureWeight);
+                break;
+            case < 0:
+                relevantTolerances.Add("cold", temperatureWeight);
+                break;
+        }
+
+        // Pressure
+        var pressure = tolerances.PressureMinimum + tolerances.PressureTolerance;
+        var logPressure = Math.Log10(pressure);
+        switch (logPressure)
+        {
+            case > 7:
+                var logPressureWeight = Clamp(logPressure / 8.0, -1.0, 1.0);
+                relevantTolerances.Add("pressure", logPressureWeight);
+                break;
+        }
+
+        // Membrane rigidity
+        var uvResistance = tolerances.UVResistance;
+        switch (uvResistance)
+        {
+            case > 0.5f:
+                relevantTolerances.Add("sunlight", uvResistance);
+                break;
+        }
+
+        return relevantTolerances;
     }
 
     private static string CalculateColourAdjective(MicrobeSpecies species)
@@ -175,6 +242,35 @@ public partial class NameGenerator
         return wantedAdjective;
     }
 
+    private static string ExtractWeightedKey(Random random, Dictionary<string, double> dictionary)
+    {
+        if (dictionary.Count == 0)
+            return string.Empty;
+
+        double maxRandom = 0.0;
+        foreach (var weight in dictionary.Values)
+        {
+            maxRandom += Math.Abs(weight);
+        }
+
+        var randomValue = random.NextDouble() * maxRandom;
+
+        double cumulative = 0.0;
+        string key = string.Empty;
+        foreach (var entry in dictionary)
+        {
+            cumulative += Math.Abs(entry.Value);
+
+            if (cumulative < randomValue)
+                continue;
+
+            key = entry.Key;
+            break;
+        }
+
+        return key;
+    }
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static double Clamp(double value, double min, double max)
     {
@@ -208,6 +304,8 @@ public partial class NameGenerator
         string genderedSuffix;
         if (useBacteria)
         {
+            // For now, we don't actually care about the shape specifiers.
+            // TODO: make this consider actual bacteria shapes.
             genderedSuffix = config.BacteriaShapes.Random(random)!.TryGetValue(genderName, out var suffixes) ?
                 suffixes.Random(random) :
                 config.Suffixes[genderName].Random(random);

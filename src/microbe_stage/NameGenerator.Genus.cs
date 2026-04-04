@@ -103,7 +103,7 @@ public partial class NameGenerator
 
                     // Force genus change on the old species to acquire the "Eu-" prefix.
                     speciesOld.Genus = GenerateGenusName(random, speciesOld, speciesOld);
-                    speciesOld.Epithet = GenerateEpithetName(random, speciesOld, speciesOld);
+                    speciesOld.Epithet = GenerateEpithetName(random, speciesOld, speciesOld, null);
 
                     return;
                 }

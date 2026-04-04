@@ -482,7 +482,7 @@ public partial class MicrobeBenchmark : BenchmarkBase
                 random.Next(200, 500));
 
             species.Genus = nameGenerator.GenerateGenusName(random, null, species);
-            species.Genus = nameGenerator.GenerateEpithetName(random, null, species);
+            species.Epithet = nameGenerator.GenerateEpithetName(random, null, species, dummyPatch);
 
             generatedSpecies.Add(species);
         }

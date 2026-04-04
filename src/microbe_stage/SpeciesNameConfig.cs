@@ -31,6 +31,15 @@ public class SpeciesNameConfig : IRegistryType
     [JsonRequired]
     public Dictionary<string, List<string>> QualitySuffixes = null!;
 
+    [JsonRequired]
+    public Dictionary<string, List<string>> Colours = null!;
+
+    [JsonRequired]
+    public Dictionary<string, List<string>> Membranes = null!;
+
+    [JsonRequired]
+    public Dictionary<string, List<string>> Tolerances = null!;
+
     // Legacy name generator species_names data
     [JsonRequired]
     public List<string> PrefixesV = null!;
@@ -127,6 +136,24 @@ public class SpeciesNameConfig : IRegistryType
         {
             throw new InvalidRegistryDataException("SpeciesNameConfig", GetType().Name,
                 "CofixesC is empty");
+        }
+
+        if (Membranes.Count < 1)
+        {
+            throw new InvalidRegistryDataException("SpeciesNameConfig", GetType().Name,
+                "Membranes is empty");
+        }
+
+        if (Colours.Count < 1)
+        {
+            throw new InvalidRegistryDataException("SpeciesNameConfig", GetType().Name,
+                "Colours is empty");
+        }
+
+        if (Tolerances.Count < 1)
+        {
+            throw new InvalidRegistryDataException("SpeciesNameConfig", GetType().Name,
+                "Tolerances is empty");
         }
     }
 

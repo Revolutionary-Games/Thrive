@@ -1243,7 +1243,7 @@ public partial class CellEditorComponent :
             CopyEditedPropertiesToSpecies(previewMicrobeSpecies);
 
             return nameGenerator.GenerateGenusName(null, null, previewMicrobeSpecies) + " " +
-                nameGenerator.GenerateEpithetName(null, null, previewMicrobeSpecies);
+                nameGenerator.GenerateEpithetName(null, null, previewMicrobeSpecies, null);
         }
 
         return string.Empty;

@@ -141,7 +141,7 @@ public partial class FossilisationDialog : CustomWindow
         if (selectedSpecies is MicrobeSpecies microbeSpecies)
         {
             var randomizedName = nameGenerator.GenerateGenusName(null, null, microbeSpecies) +
-                nameGenerator.GenerateEpithetName(null, null, microbeSpecies);
+                nameGenerator.GenerateEpithetName(null, null, microbeSpecies, null);
 
             speciesNameEdit.Text = randomizedName;
             OnNameTextChanged(randomizedName);
