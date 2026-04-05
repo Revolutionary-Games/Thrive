@@ -162,10 +162,15 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
 
         var rotationSpeed = CalculateRotationSpeed(entity, ref organelles);
 
+        // Set up energy cost modifier for movement energy usage.
+        var energyCostMultiplier = 1.0f;
+        if (speciesMember.Species.PlayerSpecies)
+            energyCostMultiplier *= gameWorld!.WorldSettings.EnergyCostMultiplier;
+
         var movementImpulse =
             CalculateMovementForce(entity, ref control, ref cellProperties, ref position, ref organelles,
                 ref microbeTemporaryEffects, ref strainAffected, compoundStorage.Compounds,
-                speciesMember.Species.PlayerSpecies, delta);
+                energyCostMultiplier, delta);
 
         if (control.State == MicrobeState.MucocystShield)
         {
@@ -179,11 +184,9 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
     private Vector3 CalculateMovementForce(in Entity entity, ref MicrobeControl control,
         ref CellProperties cellProperties, ref WorldPosition position,
         ref OrganelleContainer organelles, ref MicrobeTemporaryEffects temporaryEffects, ref StrainAffected strain,
-        CompoundBag compounds, bool isPlayer, float delta)
+        CompoundBag compounds, float energyCostMultiplier, float delta)
     {
         float strainMultiplier;
-
-        var energyCostMultiplier = gameWorld!.WorldSettings.EnergyCostMultiplier;
 
         if (control.MovementDirection == Vector3.Zero)
         {
@@ -198,9 +201,9 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
                 // This is calculated similarly to the regular movement cost for consistency
                 // TODO: is it fine for this to be so punishing? By taking the base movement cost here even though
                 // the cell is not moving (this could take just the portion of strain multiplier that is above 1)
-                var strainCost = Constants.BASE_MOVEMENT_ATP_COST * organelles.HexCount * delta * strainMultiplier;
-                if (isPlayer)
-                    strainCost *= energyCostMultiplier;
+                var strainCost = Constants.BASE_MOVEMENT_ATP_COST * organelles.HexCount * delta * strainMultiplier
+                    * energyCostMultiplier;
+
                 compounds.TakeCompound(Compound.ATP, strainCost);
             }
 
@@ -241,9 +244,8 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
 
         // Length is multiplied here so that cells that set very slow movement speed don't need to pay the entire
         // movement cost
-        var cost = Constants.BASE_MOVEMENT_ATP_COST * organelles.HexCount * length * delta * strainMultiplier;
-        if (isPlayer)
-            cost *= energyCostMultiplier;
+        var cost = Constants.BASE_MOVEMENT_ATP_COST * organelles.HexCount * length * delta * strainMultiplier *
+            energyCostMultiplier;
 
         var got = compounds.TakeCompound(Compound.ATP, cost);
 
@@ -272,7 +274,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
             foreach (var flagellum in organelles.ThrustComponents)
             {
                 force += flagellum.UseForMovement(control.MovementDirection, compounds, Quaternion.Identity,
-                    cellProperties.IsBacteria, isPlayer, energyCostMultiplier, delta);
+                    cellProperties.IsBacteria, energyCostMultiplier, delta);
             }
         }
 
@@ -297,7 +299,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
             try
             {
                 CalculateColonyImpactOnMovementForce(ref entity.Get<MicrobeColony>(), control.MovementDirection,
-                    cellProperties.IsBacteria, isPlayer, energyCostMultiplier, delta, ref force);
+                    cellProperties.IsBacteria, energyCostMultiplier, delta, ref force);
             }
             catch (Exception e)
             {
@@ -413,7 +415,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
     }
 
     private void CalculateColonyImpactOnMovementForce(ref MicrobeColony microbeColony, Vector3 movementDirection,
-        bool isBacteria, bool isPlayer, float energyCostMultiplier, float delta, ref float force)
+        bool isBacteria, float energyCostMultiplier, float delta, ref float force)
     {
         // If this method is updated, the CalculateSpeed() method in CellBodyPlanInternalCalculations.cs
         // also has to be changed
@@ -448,7 +450,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
                 foreach (var flagellum in organelles.ThrustComponents)
                 {
                     force += flagellum.UseForMovement(movementDirection, compounds,
-                        relativeRotation, isBacteria, isPlayer, energyCostMultiplier,
+                        relativeRotation, isBacteria, energyCostMultiplier,
                         delta) * Constants.CELL_COLONY_MOVEMENT_FORCE_MULTIPLIER;
                 }
             }
