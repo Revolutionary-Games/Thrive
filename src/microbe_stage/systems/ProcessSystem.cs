@@ -1076,11 +1076,16 @@ public partial class ProcessSystem : BaseSystem<World, float>
         }
 #endif
 
-        ProcessNode(ref processes, ref storage, overallSpeedModifier, speciesMember.Species.PlayerSpecies, delta);
+        // calculate energy cost multiplier for processes that cost ATP
+        var energyCostMultiplier = 1.0f;
+        if (speciesMember.Species.PlayerSpecies)
+            energyCostMultiplier *= gameWorld!.WorldSettings.EnergyCostMultiplier;
+
+        ProcessNode(ref processes, ref storage, overallSpeedModifier, energyCostMultiplier, delta);
     }
 
     private void ProcessNode(ref BioProcesses processor, ref CompoundStorage storage, float overallSpeedModifier,
-        bool isPlayer, float delta)
+        float energyCostMultiplier, float delta)
     {
         var bag = storage.Compounds;
 
@@ -1135,13 +1140,13 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
                         currentProcessStatistics.BeginFrame(delta);
                         RunProcess(delta, processData, bag, process, ref processor, overallSpeedModifier,
-                            currentProcessStatistics, isPlayer);
+                            currentProcessStatistics, energyCostMultiplier);
                     }
                 }
                 else
                 {
                     RunProcess(delta, processData, bag, process, ref processor, overallSpeedModifier, null,
-                        isPlayer);
+                        energyCostMultiplier);
                 }
             }
         }
@@ -1154,7 +1159,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
     private void RunProcess(float delta, BioProcess processData, CompoundBag bag, TweakedProcess process,
         ref BioProcesses processorInfo, float overallSpeedModifier, SingleProcessStatistics? currentProcessStatistics,
-        bool isPlayer)
+        float energyCostMultiplier)
     {
         // Bool for can your cell do the process
         bool canDoProcess = true;
@@ -1347,8 +1352,8 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
             var inputRemoved = entry.Value * totalModifier;
 
-            if (inputCompound == Compound.ATP && isPlayer)
-                inputRemoved *= gameWorld!.WorldSettings.EnergyCostMultiplier;
+            if (inputCompound == Compound.ATP)
+                inputRemoved *= energyCostMultiplier;
 
             currentProcessStatistics?.AddInputAmount(inputCompound, inputRemoved * inverseDelta);
 
