@@ -80,7 +80,7 @@ public partial class ColonyBindingSystem : BaseSystem<World, float>
         }
     }
 
-    private void HandleBindingMode(ref MicrobeControl control, in Entity entity, bool isPlayer, float delta)
+    private void HandleBindingMode(ref MicrobeControl control, in Entity entity, bool playerSpecies, float delta)
     {
         ref var organelles = ref entity.Get<OrganelleContainer>();
         ref var ourSpecies = ref entity.Get<MicrobeSpeciesMember>();
@@ -95,7 +95,7 @@ public partial class ColonyBindingSystem : BaseSystem<World, float>
         // Drain atp
         var cost = Constants.BINDING_ATP_COST_PER_SECOND * delta;
 
-        if (isPlayer)
+        if (playerSpecies)
             cost *= gameWorld!.WorldSettings.EnergyCostMultiplier;
 
         var compounds = entity.Get<CompoundStorage>().Compounds;
