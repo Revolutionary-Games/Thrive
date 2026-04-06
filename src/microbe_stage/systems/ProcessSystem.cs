@@ -1040,7 +1040,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
     [Query(Parallel = true)]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update([Data] in float delta, in Entity entity, ref CompoundStorage storage,
-        ref SpeciesMember speciesMember, ref BioProcesses processes)
+        in SpeciesMember speciesMember, ref BioProcesses processes)
     {
         float overallSpeedModifier = 1.0f;
 

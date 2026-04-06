@@ -24,6 +24,7 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(WorldPosition))]
 [ReadsComponent(typeof(AttachedToEntity))]
 [ReadsComponent(typeof(MicrobeEventCallbacks))]
+[ReadsComponent(typeof(SpeciesMember))]
 [WritesToComponent(typeof(Spawned))]
 [WritesToComponent(typeof(MicrobeColony))]
 [WritesToComponent(typeof(MicrobeColonyMember))]

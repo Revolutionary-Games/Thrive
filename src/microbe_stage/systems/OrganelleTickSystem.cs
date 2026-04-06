@@ -29,6 +29,7 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(MicrobeControl))]
 [ReadsComponent(typeof(Physics))]
 [ReadsComponent(typeof(WorldPosition))]
+[ReadsComponent(typeof(SpeciesMember))]
 [WritesToComponent(typeof(ManualPhysicsControl))]
 [WritesToComponent(typeof(EntityLight))]
 [RunsAfter(typeof(MicrobeMovementSystem))]
@@ -77,7 +78,7 @@ public partial class OrganelleTickSystem : BaseSystem<World, float>
     [All<CompoundStorage, WorldPosition>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update([Data] in float delta, ref OrganelleContainer organelleContainer,
-        ref SpeciesMember speciesMember, in Entity entity)
+        in SpeciesMember speciesMember, in Entity entity)
     {
         if (organelleContainer.Organelles == null)
             return;

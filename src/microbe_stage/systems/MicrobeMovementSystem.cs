@@ -27,6 +27,7 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(AttachedToEntity))]
 [ReadsComponent(typeof(MicrobeColony))]
 [ReadsComponent(typeof(MicrobeTemporaryEffects))]
+[ReadsComponent(typeof(SpeciesMember))]
 [RunsAfter(typeof(PhysicsBodyCreationSystem))]
 [RunsAfter(typeof(PhysicsBodyDisablingSystem))]
 [RunsBefore(typeof(PhysicsBodyControlSystem))]
@@ -82,7 +83,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
     private void Update([Data] in float delta, ref Physics physics, ref OrganelleContainer organelles,
         ref MicrobeControl control, ref StrainAffected strainAffected, ref Health health, ref WorldPosition position,
         ref CompoundStorage compoundStorage, ref CellProperties cellProperties,
-        ref MicrobeTemporaryEffects microbeTemporaryEffects, ref SpeciesMember speciesMember, Entity entity)
+        ref MicrobeTemporaryEffects microbeTemporaryEffects, in SpeciesMember speciesMember, Entity entity)
     {
         if (!physics.IsBodyEffectivelyEnabled())
             return;

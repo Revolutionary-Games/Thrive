@@ -44,6 +44,7 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(MicrobeEventCallbacks))]
 [ReadsComponent(typeof(WorldPosition))]
 [ReadsComponent(typeof(EntityRadiusInfo))]
+[ReadsComponent(typeof(SpeciesMember))]
 [RunsAfter(typeof(ColonyCompoundDistributionSystem))]
 [RunsAfter(typeof(PilusDamageSystem))]
 [RunsAfter(typeof(MicrobeVisualsSystem))]
@@ -629,7 +630,7 @@ public partial class EngulfingSystem : BaseSystem<World, float>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update([Data] in float delta, ref Engulfer engulfer, ref Health health, ref MicrobeControl control,
         ref CellProperties cellProperties, ref SoundEffectPlayer soundPlayer,
-        ref CollisionManagement collisionManagement, ref SpeciesMember speciesMember, Entity entity)
+        ref CollisionManagement collisionManagement, in SpeciesMember speciesMember, Entity entity)
     {
         var actuallyEngulfing = control.State == MicrobeState.Engulf && cellProperties.MembraneType.CanEngulf;
 
