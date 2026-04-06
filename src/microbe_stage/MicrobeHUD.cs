@@ -474,23 +474,19 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         return !control.OutOfSprint;
     }
 
-    protected override Func<Compound, bool> GetIsUsefulCheck()
+    protected override bool IsUseful(Compound compound)
     {
         if (!stage!.Player.Has<MicrobeColony>())
         {
-            var compounds = stage.Player.Get<CompoundStorage>().Compounds;
-            return compound => compounds.IsUseful(compound);
+            return stage.Player.Get<CompoundStorage>().Compounds.IsUseful(compound);
         }
-        else
-        {
-            var compounds = stage.Player.Get<MicrobeColony>().GetCompounds();
-            return compound => compounds.IsUsefulInAnyCompoundBag(compound);
-        }
+
+        return stage.Player.Get<MicrobeColony>().GetCompounds().IsUsefulInAnyCompoundBag(compound);
     }
 
-    protected override void UpdateBarVisibility(Func<Compound, bool> isUseful)
+    protected override void UpdateBarVisibility()
     {
-        base.UpdateBarVisibility(isUseful);
+        base.UpdateBarVisibility();
 
         ingestedMatterBar.Visible = GetPlayerUsedIngestionCapacity() > 0;
 
@@ -716,7 +712,9 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         siderophoreHotkey.Visible = showSiderophore;
 
         bindingModeHotkey.Visible = organelles.CanBind(ref species);
-        unbindAllHotkey.Visible = organelles.CanUnbind(ref species, player);
+
+        // Not a forced unbinding, so we pass false to prevent the player from disbanding their multicellular body
+        unbindAllHotkey.Visible = organelles.CanUnbind(ref species, player, false);
 
         bindingModeHotkey.ButtonPressed = control.State == MicrobeState.Binding;
 

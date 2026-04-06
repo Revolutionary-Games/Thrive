@@ -41,6 +41,10 @@ public partial class CellBodyPlanEditorComponent :
     /// </summary>
     private readonly HashSet<Hex> wrongGrowthOrderCells = new();
 
+    private readonly Dictionary<Compound, List<Compound>> tempCompoundSources = new();
+
+    private readonly HashSet<Compound> compoundsThatDependOnDay = new();
+
 #pragma warning disable CA2213
 
     // Selection menu tab selector buttons
@@ -1279,7 +1283,17 @@ public partial class CellBodyPlanEditorComponent :
         tooltip.DisplayName = cellType.CellTypeName;
         tooltip.MutationPointCost = Math.Min(cellType.MPCost * Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier,
             Constants.MAX_SINGLE_EDIT_MP_COST);
-        tooltip.DisplayCellTypeBalances(balances);
+
+        tempCompoundSources.Clear();
+        ProcessSystem.CalculateInputCompoundsNeededForOutputs(cellType.ModifiableOrganelles, Editor.CurrentPatch.Biome,
+            environmentalTolerances, specialization,
+            organismStatisticsPanel.CompoundAmountType, true, tempCompoundSources);
+
+        Editor.CurrentPatch.Biome.GetProducedCompoundsThatDependOnVarying(tempCompoundSources,
+            compoundsThatDependOnDay);
+
+        tooltip.DisplayCellTypeBalances(balances, compoundsThatDependOnDay);
+
         tooltip.UpdateATPBalance(energyBalanceInfo.TotalProduction, energyBalanceInfo.TotalConsumption);
 
         tooltip.UpdateHealthIndicator(MicrobeInternalCalculations.CalculateHealth(environmentalTolerances,
@@ -1450,6 +1464,8 @@ public partial class CellBodyPlanEditorComponent :
         var environmentalTolerances =
             MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(Editor.CalculateRawTolerances());
 
+        tempCompoundSources.Clear();
+
         // TODO: improve performance by calculating the balance per cell type
         foreach (var hex in cells)
         {
@@ -1462,6 +1478,10 @@ public partial class CellBodyPlanEditorComponent :
                 environmentalTolerances, specialization, hex.Data.MembraneType,
                 maximumMovementDirection, moving, true, Editor.CurrentGame.GameWorld.WorldSettings,
                 organismStatisticsPanel.CompoundAmountType, null, energyBalanceInfo);
+
+            ProcessSystem.CalculateInputCompoundsNeededForOutputs(hex.Data.ModifiableOrganelles, conditionsData,
+                environmentalTolerances, specialization,
+                organismStatisticsPanel.CompoundAmountType, true, tempCompoundSources);
         }
 
         // Passing those variables by refs to the following functions to reuse them
@@ -1475,7 +1495,9 @@ public partial class CellBodyPlanEditorComponent :
                 cells, conditionsData, energyBalanceInfo,
                 ref specificStorages, ref nominalStorage, environmentalTolerances);
 
-        UpdateCompoundBalances(compoundBalanceData);
+        conditionsData.GetProducedCompoundsThatDependOnVarying(tempCompoundSources, compoundsThatDependOnDay);
+
+        UpdateCompoundBalances(compoundBalanceData, compoundsThatDependOnDay);
 
         // TODO: should this skip on being affected by the resource limited?
         var nightBalanceData = CalculateCompoundBalanceWithMethod(organismStatisticsPanel.BalanceDisplayType,
@@ -1483,7 +1505,8 @@ public partial class CellBodyPlanEditorComponent :
             ref nominalStorage, environmentalTolerances);
 
         UpdateCompoundLastingTimes(compoundBalanceData, nightBalanceData, nominalStorage,
-            specificStorages ?? throw new Exception("Special storages should have been calculated"));
+            specificStorages ?? throw new Exception("Special storages should have been calculated"),
+            compoundsThatDependOnDay);
 
         // TODO: find out why this method used to take the cells parameter but now causes a warning so it is removed
         // HandleProcessList( cells, energyBalance, conditionsData);

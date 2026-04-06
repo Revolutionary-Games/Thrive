@@ -23,6 +23,7 @@ progressBar = NodePath("Bar")
 nameLabel = NodePath("Bar/Name")
 amountLabel = NodePath("Value")
 compactLabelSettings = ExtResource("2_txlhc")
+normalLabelSettings = ExtResource("2_xwjgn")
 
 [node name="Icon" type="TextureRect" parent="." unique_id=2082150937]
 custom_minimum_size = Vector2(25, 25)

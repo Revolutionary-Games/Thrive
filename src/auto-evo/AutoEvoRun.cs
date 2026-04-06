@@ -94,6 +94,8 @@ public class AutoEvoRun
     /// </summary>
     public TimeSpan RunDuration { get; private set; } = TimeSpan.Zero;
 
+    public long PeakMemoryUsage { get; private set; }
+
     public float CompletionFraction
     {
         get
@@ -115,6 +117,12 @@ public class AutoEvoRun
     ///   If true, the auto evo uses all available executor threads by running more concurrent concurrentStepTasks
     /// </summary>
     public bool FullSpeed { get; set; }
+
+    /// <summary>
+    ///   Whether this run should track memory info. This should be only true in the Auto Evo Exploring Tool as this
+    ///   data is useless in-game.
+    /// </summary>
+    public bool TrackMemoryInfo { get; set; } = false;
 
     /// <summary>
     ///   a string describing the status of the simulation For example "21% done. 21/100 steps."
@@ -531,6 +539,13 @@ public class AutoEvoRun
             try
             {
                 complete = Step();
+
+                if (TrackMemoryInfo)
+                {
+                    long heapSize = GC.GetTotalMemory(false);
+                    if (PeakMemoryUsage < heapSize)
+                        PeakMemoryUsage = heapSize;
+                }
             }
             catch (Exception e)
             {
