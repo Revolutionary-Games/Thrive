@@ -546,14 +546,7 @@ public class WikiUpdater
                     text = ConvertParagraphToBbcode(child) + "\n\n";
                     break;
                 case "UL":
-
-                    // TODO: switch to the Godot 4 way to handle this:
-                    // https://github.com/Revolutionary-Games/Thrive/issues/5511
-                    // Godot 3 does not support lists in BBCode, so use custom formatting
-                    text = child.Children
-                        .Where(c => c.TagName == "LI")
-                        .Select(l => $"[indent]—   {ConvertParagraphToBbcode(l)}[/indent]")
-                        .Aggregate((a, b) => a + "\n" + b) + "\n\n";
+                    text = ConvertListToBbcode(child) + "\n\n";
                     break;
                 case "H3":
                     var headline = child.Children
@@ -592,9 +585,33 @@ public class WikiUpdater
     private string ConvertParagraphToBbcode(IElement paragraph)
     {
         var bbcode = new StringBuilder();
-
         ConvertParagraphToBbcode(paragraph, bbcode);
         return bbcode.ToString();
+    }
+
+    private string ConvertListToBbcode(IElement list)
+    {
+        var bbcode = new StringBuilder();
+        ConvertListToBbcode(list, bbcode);
+        return bbcode.ToString();
+    }
+
+    private void ConvertListToBbcode(IElement list, StringBuilder builder)
+    {
+        switch (list)
+        {
+            case IHtmlUnorderedListElement:
+                builder.Append("[ul bullet=—   ]");
+                builder.AppendJoin('\n', list.Children.Select(ConvertListToBbcode));
+                builder.Append("[/ul]");
+                break;
+            case IHtmlListItemElement:
+                ConvertParagraphToBbcode(list, builder);
+                break;
+            default:
+                builder.Append(ConvertTextToBbcode(list.TextContent));
+                break;
+        }
     }
 
     private void ConvertParagraphToBbcode(INode paragraph, StringBuilder result)
@@ -721,7 +738,7 @@ public class WikiUpdater
     /// <summary>
     ///   Converts formatted HTML text into BBCode.
     /// </summary>
-    private string ConvertTextToBbcode(string paragraph)
+    private static string ConvertTextToBbcode(string paragraph)
     {
         return paragraph
             .Replace("\n", string.Empty)
