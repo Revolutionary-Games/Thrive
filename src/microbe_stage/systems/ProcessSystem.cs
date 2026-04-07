@@ -42,7 +42,6 @@ public partial class ProcessSystem : BaseSystem<World, float>
     private readonly List<ProcessStatistics> usedStatistics = new();
 #endif
 
-    private GameWorld? gameWorld;
     private BiomeConditions? biome;
 
     /// <summary>
@@ -843,11 +842,6 @@ public partial class ProcessSystem : BaseSystem<World, float>
         return Math.Clamp(temperature / optimal, 0, 2 - temperature / optimal);
     }
 
-    public void SetWorld(GameWorld world)
-    {
-        gameWorld = world;
-    }
-
     /// <summary>
     ///   Sets the biome whose environmental values affect processes
     /// </summary>
@@ -878,11 +872,6 @@ public partial class ProcessSystem : BaseSystem<World, float>
         if (biome == null)
         {
             GD.PrintErr("ProcessSystem has no biome set");
-        }
-
-        if (gameWorld == null)
-        {
-            throw new InvalidOperationException("GameWorld not set");
         }
 
         inverseDelta = 1.0f / delta;
