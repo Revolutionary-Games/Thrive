@@ -223,6 +223,19 @@ public class SingleProcessStatistics : IProcessDisplayInfo
         environmentalInputs[compound] = amount;
     }
 
+    /// <summary>
+    ///   Adds all environmental inputs to the target dictionary without allocating an enumerator. Will throw if the
+    ///   target already has something, so it should be cleared by the caller first.
+    /// </summary>
+    /// <param name="target">Where to copy the data</param>
+    public void CopyEnvironmentalInputs(Dictionary<Compound, float> target)
+    {
+        foreach (var input in environmentalInputs)
+        {
+            target.Add(input.Key, input.Value);
+        }
+    }
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void UpdateProcessDataIfNeeded(in TweakedProcess process)
     {

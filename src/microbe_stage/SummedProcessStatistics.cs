@@ -44,7 +44,7 @@ public class SummedProcessStatistics : IProcessDisplayInfo
     public IEnumerable<KeyValuePair<Compound, float>> EnvironmentalInputs => summedEnvironmentalInputs;
 
     /// <summary>
-    ///   Environment inputs that result in process running at maximum speed
+    ///   Environment inputs that result in the process running at maximum speed
     /// </summary>
     public IReadOnlyDictionary<Compound, float> FullSpeedRequiredEnvironmentalInputs =>
         summedFullSpeedRequiredEnvironmentalInputs;
@@ -95,15 +95,14 @@ public class SummedProcessStatistics : IProcessDisplayInfo
         newProcess.SpeedMultiplier = Math.Max(newProcess.SpeedMultiplier, stats.Process.SpeedMultiplier);
         Process = newProcess;
 
-        // The next three stats can't vary between cells in a colony, so they are only set once per frame
-        // Importantly, they're reset each frame by Clear(), so e.g. moving patches can still change these
+        // The next three stats can't vary between cells in a colony, so they are only set once per frame.
+        // Importantly, they reset each frame by Clear(), so e.g. moving patches can still change these.
+        // So as a result, we assume it is safe to latch these values on the first time we see them and then wait
+        // until the next clear.
 
         if (summedEnvironmentalInputs.Count == 0)
         {
-            foreach (var input in stats.EnvironmentalInputs)
-            {
-                summedEnvironmentalInputs.Add(input.Key, input.Value);
-            }
+            stats.CopyEnvironmentalInputs(summedEnvironmentalInputs);
         }
 
         LimitingCompounds ??= stats.LimitingCompounds;
