@@ -98,8 +98,6 @@ public class StrictProcessDisplayInfoEquality : IEquatable<StrictProcessDisplayI
         using var enumerator1 = items1.GetEnumerator();
         using var enumerator2 = items2.GetEnumerator();
 
-        var compoundComparer = EqualityComparer<Compound>.Default;
-
         while (enumerator1.MoveNext())
         {
             // Fail if different count
@@ -109,10 +107,12 @@ public class StrictProcessDisplayInfoEquality : IEquatable<StrictProcessDisplayI
             var value1 = enumerator1.Current;
             var value2 = enumerator2.Current;
 
-            if (!value1.Value.Equals(value2.Value))
+            // We want exact float values only
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            if (value1.Value != value2.Value)
                 return false;
 
-            if (!compoundComparer.Equals(value1.Key, value2.Key))
+            if (value1.Key != value2.Key)
                 return false;
         }
 
