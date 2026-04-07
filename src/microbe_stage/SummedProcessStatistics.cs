@@ -120,6 +120,10 @@ public class SummedProcessStatistics : IProcessDisplayInfo
     {
         CurrentSpeed = 0.0f;
 
+        var newProcess = Process;
+        newProcess.SpeedMultiplier = 0.0f;
+        Process = newProcess;
+
         summedEnvironmentalInputs.Clear();
         summedFullSpeedRequiredEnvironmentalInputs.Clear();
         LimitingCompounds = null;
