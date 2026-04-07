@@ -142,9 +142,14 @@ public partial class ExtinctionBox : CustomWindow
         if (ShowContinueAs != null)
         {
             continueButton.Visible = true;
+
+            double population = ShowContinueAs.Population;
+
+            if (ShowContinueAs is MicrobeSpecies or MulticellularSpecies)
+                population *= Constants.MICROBE_POPULATION_MULTIPLIER;
+
             continueText.ExtendedBbcode = Localization.Translate("CONTINUE_AS_SPECIES")
-                .FormatSafe(ShowContinueAs.FormattedNameBbCode,
-                    StringUtils.ThreeDigitFormat(ShowContinueAs.Population));
+                .FormatSafe(ShowContinueAs.FormattedNameBbCode, population.FormatNumber());
             continueText.Visible = true;
         }
         else

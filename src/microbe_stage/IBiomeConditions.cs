@@ -58,5 +58,26 @@ public static class BiomeConditionsHelpers
 
             return light;
         }
+
+        public void GetProducedCompoundsThatDependOnVarying(Dictionary<Compound, List<Compound>> compoundsDependOn,
+            HashSet<Compound> result)
+        {
+            result.Clear();
+
+            foreach (var entry in compoundsDependOn)
+            {
+                var compound = entry.Key;
+                var dependencies = entry.Value;
+
+                foreach (var dependency in dependencies)
+                {
+                    if (conditions.IsVaryingCompound(dependency))
+                    {
+                        result.Add(compound);
+                        break;
+                    }
+                }
+            }
+        }
     }
 }

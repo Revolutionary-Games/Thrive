@@ -307,6 +307,8 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
 
     protected override void OnTranslationsChanged()
     {
+        base.OnTranslationsChanged();
+
         UpdateShownPatchDetails();
         UpdateSeedLabel();
     }

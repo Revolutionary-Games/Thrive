@@ -282,7 +282,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
             catch (Exception e)
             {
                 // TODO: try to find out the real root cause of this problem rather than detecting and force disbanding
-                // the colony here
+                // the colony here. Note there's similar block of code for the jet movement.
                 GD.PrintErr("Error calculating colony movement force: " + e);
 
                 var entityId = entity;
@@ -318,20 +318,45 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
         // Handle colony jets
         if (hasColony)
         {
-            // This is a duplicate fetch of this component, but this method would get pretty ugly / would need to
-            // be split into many methods to allow sharing the variable
-            ref var colony = ref entity.Get<MicrobeColony>();
-
-            foreach (var colonyMember in colony.ColonyMembers)
+            // This can trigger similar errors as general colony movement calculation, so we use similar protection
+            // here
+            try
             {
-                // This doesn't really hurt as the slime jets were consumed above, but for consistency with
-                // basically all other places code like this is needed we skip the leader here
-                if (colonyMember == entity)
-                    continue;
+                // This is a duplicate fetch of this component, but this method would get pretty ugly / would need to
+                // be split into many methods to allow sharing the variable
+                ref var colony = ref entity.Get<MicrobeColony>();
 
-                ref var memberOrganelles = ref colonyMember.Get<OrganelleContainer>();
+                foreach (var colonyMember in colony.ColonyMembers)
+                {
+                    // This doesn't really hurt as the slime jets were consumed above, but for consistency with
+                    // basically all other places code like this is needed we skip the leader here
+                    if (colonyMember == entity)
+                        continue;
 
-                movementVector += CalculateMovementFromSlimeJets(ref memberOrganelles);
+                    if (!colonyMember.IsAliveAndHas<OrganelleContainer>())
+                    {
+                        throw new Exception("Invalid colony member that doesn't have OrganelleContainer for jets: " +
+                            colonyMember);
+                    }
+
+                    ref var memberOrganelles = ref colonyMember.Get<OrganelleContainer>();
+
+                    movementVector += CalculateMovementFromSlimeJets(ref memberOrganelles);
+                }
+            }
+            catch (Exception e)
+            {
+                // TODO: try to find out the real root cause of this problem rather than detecting and force disbanding
+                // the colony here. Note there's similar block of code for the general movement
+                GD.PrintErr("Error calculating colony jet movement: " + e);
+
+                var entityId = entity;
+
+                Invoke.Instance.Perform(() =>
+                {
+                    GD.PrintErr("Force disbanding the colony that is in invalid state, entity: ", entityId);
+                    MicrobeColonyHelpers.UnbindAllOutsideGameUpdate(entityId, worldSimulation, true);
+                });
             }
         }
 
@@ -386,6 +411,11 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
             // Colony leader processes the normal movement logic so it isn't taken into account here
             if (colonyMember == microbeColony.Leader)
                 continue;
+
+            // We have received a crash report with the OrganelleContainer fetch here, so this is an extra safety
+            // check to not read an incorrect component but instead trigger an error early
+            if (!colonyMember.IsAliveAndHas<OrganelleContainer>())
+                throw new Exception("Invalid colony member in colony member movement calculation: " + colonyMember);
 
             // Flagella in colony members
             ref var organelles = ref colonyMember.Get<OrganelleContainer>();
