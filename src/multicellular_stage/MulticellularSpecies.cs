@@ -348,7 +348,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
     public float GetAdjacencySpecializationBonus(int cellIndexInBodyPlan)
     {
         return CellBodyPlanInternalCalculations
-            .GetAdjacencySpecializationBonusFromIndexAndPlan(cellIndexInBodyPlan, ModifiableGameplayCells);
+            .GetAdjacencySpecializationBonusFromIndexAndPlan(cellIndexInBodyPlan, ModifiableEditorCells);
     }
 
     public void SetupWorldEntities(IWorldSimulation worldSimulation)
