@@ -13,7 +13,7 @@ public partial class NameGenerator(SpeciesNameConfig config)
     private bool GenerateOrganelleBasedName(Random random, StringBuilder stringBuilder, OrganelleDefinition organelle,
         int count, out string root)
     {
-        var name = organelle.NameWithoutSpecialCharacters.Replace(" ", "_").ToLowerInvariant();
+        var name = organelle.UntranslatedName.Replace(" ", "_").ToLowerInvariant().Replace("organelle_", string.Empty);
 
         // Check for aliases
         if (config.OrganelleMap.TryGetValue(name, out var alias))
