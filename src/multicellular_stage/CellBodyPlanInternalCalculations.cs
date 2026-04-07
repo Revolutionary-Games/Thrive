@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Components;
 using Godot;
 
@@ -150,6 +151,25 @@ public static class CellBodyPlanInternalCalculations
         foreach (var cell in bodyPlan)
         {
             if (cellInBodyPlan!.CellType == cell.Data!.CellType
+                && cell.Position.DistanceTo(cellInBodyPlan.Position) == 1)
+            {
+                bonus += Constants.CELL_ADJACENCY_SPECIALIZATION_BONUS;
+            }
+        }
+
+        return 1 + bonus;
+    }
+
+    public static float GetAdjacencySpecializationBonusFromIndexAndPlan(int cellIndexInBodyPlan,
+        IReadOnlyIndividualLayout<IReadOnlyCellTemplate> bodyPlan)
+    {
+        var bonus = 0.0f;
+        var plan = bodyPlan.ToList();
+        var cellInBodyPlan = plan[cellIndexInBodyPlan];
+
+        foreach (var cell in bodyPlan)
+        {
+            if (cellInBodyPlan.Data!.CellType == cell.Data!.CellType
                 && cell.Position.DistanceTo(cellInBodyPlan.Position) == 1)
             {
                 bonus += Constants.CELL_ADJACENCY_SPECIALIZATION_BONUS;
