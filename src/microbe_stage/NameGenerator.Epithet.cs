@@ -82,11 +82,11 @@ public partial class NameGenerator
         {
             // If everything failed, fall back to the old generator.
             ModifiedLegacyGenerateNameRoot(random, stringBuilder);
-
-            return;
         }
-
-        PhonotacticsFriendlyAppend(stringBuilder, root);
+        else
+        {
+            PhonotacticsFriendlyAppend(stringBuilder, root);
+        }
 
         ArrayPool<int>.Shared.Return(rules);
     }
