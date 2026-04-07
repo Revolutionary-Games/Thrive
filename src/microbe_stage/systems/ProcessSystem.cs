@@ -1040,7 +1040,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
     [Query(Parallel = true)]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update([Data] in float delta, in Entity entity, ref CompoundStorage storage,
-        in SpeciesMember speciesMember, ref BioProcesses processes)
+        ref BioProcesses processes)
     {
         float overallSpeedModifier = 1.0f;
 
@@ -1075,17 +1075,11 @@ public partial class ProcessSystem : BaseSystem<World, float>
                 Debugger.Break();
         }
 #endif
-
-        // calculate energy cost multiplier for processes that cost ATP
-        var energyCostMultiplier = 1.0f;
-        if (speciesMember.Species.PlayerSpecies)
-            energyCostMultiplier *= gameWorld!.WorldSettings.EnergyCostMultiplier;
-
-        ProcessNode(ref processes, ref storage, overallSpeedModifier, energyCostMultiplier, delta);
+        ProcessNode(ref processes, ref storage, overallSpeedModifier, delta);
     }
 
     private void ProcessNode(ref BioProcesses processor, ref CompoundStorage storage, float overallSpeedModifier,
-        float energyCostMultiplier, float delta)
+        float delta)
     {
         var bag = storage.Compounds;
 
@@ -1140,13 +1134,12 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
                         currentProcessStatistics.BeginFrame(delta);
                         RunProcess(delta, processData, bag, process, ref processor, overallSpeedModifier,
-                            currentProcessStatistics, energyCostMultiplier);
+                            currentProcessStatistics);
                     }
                 }
                 else
                 {
-                    RunProcess(delta, processData, bag, process, ref processor, overallSpeedModifier, null,
-                        energyCostMultiplier);
+                    RunProcess(delta, processData, bag, process, ref processor, overallSpeedModifier, null);
                 }
             }
         }
@@ -1158,8 +1151,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
     }
 
     private void RunProcess(float delta, BioProcess processData, CompoundBag bag, TweakedProcess process,
-        ref BioProcesses processorInfo, float overallSpeedModifier, SingleProcessStatistics? currentProcessStatistics,
-        float energyCostMultiplier)
+        ref BioProcesses processorInfo, float overallSpeedModifier, SingleProcessStatistics? currentProcessStatistics)
     {
         // Bool for can your cell do the process
         bool canDoProcess = true;
@@ -1351,9 +1343,6 @@ public partial class ProcessSystem : BaseSystem<World, float>
             var inputCompound = entry.Key.ID;
 
             var inputRemoved = entry.Value * totalModifier;
-
-            if (inputCompound == Compound.ATP)
-                inputRemoved *= energyCostMultiplier;
 
             currentProcessStatistics?.AddInputAmount(inputCompound, inputRemoved * inverseDelta);
 
