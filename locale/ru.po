@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-27 14:48+0200\n"
+"POT-Creation-Date: 2026-04-08 23:11+0200\n"
 "PO-Revision-Date: 2026-03-04 10:15+0000\n"
 "Last-Translator: ILIA RIABOV <ilyarya131@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -2058,6 +2058,14 @@ msgstr ""
 
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr "Давление Потребления Энергии"
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER"
+msgstr "Коэффициент стоимости мутации"
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER_EXPLANATION"
+msgstr "(стоимость органелл, мембран и т. д. в редакторе)"
 
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Энергия в {0} для {1}"
@@ -4654,12 +4662,6 @@ msgstr "Осморегуляция"
 
 msgid "OSMOREGULATION_COST"
 msgstr "Стоимость Осморегуляции"
-
-msgid "OSMOREGULATION_COST_MULTIPLIER"
-msgstr "Множитель стоимости осморегуляции"
-
-msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
-msgstr "(стоимость осморегуляции вида игрока)"
 
 msgid "OTHER_COMPOUNDS"
 msgstr "Другое"
@@ -9661,6 +9663,12 @@ msgstr "Увеличить масштаб"
 
 msgid "ZOOM_OUT"
 msgstr "Уменьшить масштаб"
+
+#~ msgid "OSMOREGULATION_COST_MULTIPLIER"
+#~ msgstr "Множитель стоимости осморегуляции"
+
+#~ msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
+#~ msgstr "(стоимость осморегуляции вида игрока)"
 
 #~ msgid "KEEP_CURRENT_SHORT"
 #~ msgstr "Использовать Текущий"

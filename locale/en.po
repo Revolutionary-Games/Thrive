@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-27 14:48+0200\n"
+"POT-Creation-Date: 2026-04-08 23:11+0200\n"
 "PO-Revision-Date: 2026-02-27 12:02+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
@@ -1633,7 +1633,7 @@ msgid "DESCEND_CONFIRMATION_EXPLANATION"
 msgstr ""
 "Descending will remove your ascended status and return you to the Microbe Stage. From there you can play through the game again in the current save.\n"
 "\n"
-"You will receive a descension perk for the new playthrough. In a future version you will be able to choose the perk yourself but for now it will always be a 20% decrease to osmoregulation.\n"
+"You will receive a descension perk for the new playthrough. In a future version you will be able to choose the perk yourself but for now it will always be a 20% decrease to energy costs.\n"
 "\n"
 "Once you confirm descending you can edit the game settings to pick a new world seed to play on a different map or disable LAWK, for example."
 
@@ -2058,6 +2058,12 @@ msgstr ""
 
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr "Energy Consumption Pressure"
+
+msgid "ENERGY_COST_MULTIPLIER"
+msgstr "Energy cost multiplier"
+
+msgid "ENERGY_COST_MULTIPLIER_EXPLANATION"
+msgstr "(multiplier on energy costs for the player species)"
 
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energy in {0} for {1}"
@@ -4654,12 +4660,6 @@ msgstr "Osmoregulation"
 
 msgid "OSMOREGULATION_COST"
 msgstr "Osmoregulation Cost"
-
-msgid "OSMOREGULATION_COST_MULTIPLIER"
-msgstr "Osmoregulation cost multiplier"
-
-msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
-msgstr "(cost of player species osmoregulation)"
 
 msgid "OTHER_COMPOUNDS"
 msgstr "Other"
@@ -9659,6 +9659,12 @@ msgstr "Zoom in"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom out"
+
+#~ msgid "OSMOREGULATION_COST_MULTIPLIER"
+#~ msgstr "Osmoregulation cost multiplier"
+
+#~ msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
+#~ msgstr "(cost of player species osmoregulation)"
 
 #~ msgid "KEEP_CURRENT_SHORT"
 #~ msgstr "Keep Current"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-27 14:48+0200\n"
+"POT-Creation-Date: 2026-04-08 23:11+0200\n"
 "PO-Revision-Date: 2026-03-20 23:46+0000\n"
 "Last-Translator: Miłosz Kaczmarczyk <149769453+RedMirrow@users.noreply.github.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -2079,6 +2079,14 @@ msgstr "{0}: +{1} ATP"
 #, fuzzy
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr "Utrzymaj ciśnienie związków"
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER"
+msgstr "Mnożnik kosztu mutacji"
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER_EXPLANATION"
+msgstr "(koszt organelli, błon i innych przedmiotów w edytorze)"
 
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energia w {0} dla {1}"
@@ -4832,12 +4840,6 @@ msgstr "Osmoregulacja"
 
 msgid "OSMOREGULATION_COST"
 msgstr "Koszt Osmoregulacji"
-
-msgid "OSMOREGULATION_COST_MULTIPLIER"
-msgstr "Mnożnik kosztu osmoregulacji"
-
-msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
-msgstr "(koszt osmoregulacji gatunku gracza)"
 
 msgid "OTHER_COMPOUNDS"
 msgstr "Pozostałe"
@@ -9431,6 +9433,12 @@ msgstr "Przybliż"
 
 msgid "ZOOM_OUT"
 msgstr "Oddal"
+
+#~ msgid "OSMOREGULATION_COST_MULTIPLIER"
+#~ msgstr "Mnożnik kosztu osmoregulacji"
+
+#~ msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
+#~ msgstr "(koszt osmoregulacji gatunku gracza)"
 
 #, fuzzy
 #~ msgid "KEEP_CURRENT_SHORT"
