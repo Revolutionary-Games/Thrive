@@ -36,7 +36,7 @@ public interface IProcessDisplayInfo : IEquatable<IProcessDisplayInfo>
     /// <summary>
     ///   All the output compounds
     /// </summary>
-    public IReadOnlyDictionary<Compound, float> Outputs { get; }
+    public IEnumerable<KeyValuePair<Compound, float>> Outputs { get; }
 
     /// <summary>
     ///   The current speed of the process (if known)

@@ -6,34 +6,13 @@ using System.Collections.Generic;
 /// </summary>
 public class SummedProcessStatistics : IProcessDisplayInfo
 {
-    public int ProcessCount;
-
-    private readonly Dictionary<Compound, float> summedInputs = new();
-
     private readonly Dictionary<Compound, float> summedEnvironmentalInputs = new();
 
     private readonly Dictionary<Compound, float> summedFullSpeedRequiredEnvironmentalInputs = new();
 
-    private readonly Dictionary<Compound, float> summedOutputs = new();
-
-    private readonly List<Compound> summedLimitingFactors = new();
-
-    private float summedSpeed;
-
-    public SummedProcessStatistics(IProcessDisplayInfo displayInfo)
+    public SummedProcessStatistics(TweakedProcess process)
     {
-        Enabled = displayInfo.Enabled;
-
-        if (displayInfo is AverageProcessStatistics averageProcessStatistics)
-        {
-            Process = averageProcessStatistics.Process;
-        }
-        else if (displayInfo is SingleProcessStatistics singleProcessStatistics)
-        {
-            Process = singleProcessStatistics.Process;
-        }
-
-        AddProcess(displayInfo);
+        Process = process;
     }
 
     /// <summary>
@@ -43,9 +22,21 @@ public class SummedProcessStatistics : IProcessDisplayInfo
 
     public string Name => Process.Process.Name;
 
-    public float CurrentSpeed => summedSpeed;
+    public float CurrentSpeed { get; set; }
 
-    public IEnumerable<KeyValuePair<Compound, float>> Inputs => summedInputs;
+    public IEnumerable<KeyValuePair<Compound, float>> Inputs
+    {
+        get
+        {
+            foreach (var input in Process.Process.Inputs)
+            {
+                if (input.Key.IsEnvironmental)
+                    continue;
+
+                yield return new KeyValuePair<Compound, float>(input.Key.ID, input.Value * CurrentSpeed);
+            }
+        }
+    }
 
     /// <summary>
     ///   Current environmental input values
@@ -53,7 +44,7 @@ public class SummedProcessStatistics : IProcessDisplayInfo
     public IEnumerable<KeyValuePair<Compound, float>> EnvironmentalInputs => summedEnvironmentalInputs;
 
     /// <summary>
-    ///   Environment inputs that result in process running at maximum speed
+    ///   Environment inputs that result in the process running at maximum speed
     /// </summary>
     public IReadOnlyDictionary<Compound, float> FullSpeedRequiredEnvironmentalInputs =>
         summedFullSpeedRequiredEnvironmentalInputs;
@@ -61,11 +52,20 @@ public class SummedProcessStatistics : IProcessDisplayInfo
     /// <summary>
     ///   All the output compounds
     /// </summary>
-    public IReadOnlyDictionary<Compound, float> Outputs => summedOutputs;
+    public IEnumerable<KeyValuePair<Compound, float>> Outputs
+    {
+        get
+        {
+            foreach (var output in Process.Process.Outputs)
+            {
+                yield return new KeyValuePair<Compound, float>(output.Key.ID, output.Value * CurrentSpeed);
+            }
+        }
+    }
 
-    public IReadOnlyList<Compound> LimitingCompounds => summedLimitingFactors;
+    public IReadOnlyList<Compound>? LimitingCompounds { get; set; }
 
-    public bool Enabled { get; set; }
+    public bool Enabled => Process.SpeedMultiplier > 0;
 
     /// <summary>
     ///   Used for algorithms that need to know what they have processed already
@@ -77,61 +77,56 @@ public class SummedProcessStatistics : IProcessDisplayInfo
         return process == Process.Process;
     }
 
-    public void AddProcess(IProcessDisplayInfo displayInfo)
+    /// <summary>
+    ///   Adds the <paramref name="stats"/>' speed to the these stats. Also updates this class' secondary info.
+    /// </summary>
+    public void SumWithStatistics(SingleProcessStatistics stats)
     {
-        foreach (var input in displayInfo.Inputs)
+        if (stats.Process.Process != Process.Process)
         {
-            summedInputs.TryGetValue(input.Key, out var value);
-            summedInputs[input.Key] = value + input.Value;
+            throw new ArgumentException(
+                "The statistics provided to SummedProcessStatistics have a different bioprocess");
         }
 
-        foreach (var output in displayInfo.Outputs)
-        {
-            summedOutputs.TryGetValue(output.Key, out var value);
-            summedOutputs[output.Key] = value + output.Value;
-        }
+        CurrentSpeed += stats.CurrentSpeed;
 
-        foreach (var output in displayInfo.FullSpeedRequiredEnvironmentalInputs)
-        {
-            summedFullSpeedRequiredEnvironmentalInputs.TryGetValue(output.Key, out var value);
-            summedFullSpeedRequiredEnvironmentalInputs[output.Key] = value + output.Value;
-        }
+        // Refresh the process' manual activation status
+        var newProcess = Process;
+        newProcess.SpeedMultiplier = Math.Max(newProcess.SpeedMultiplier, stats.Process.SpeedMultiplier);
+        Process = newProcess;
 
-        // Environmental inputs and limiting factors don't differ between colony cells,
-        // so they only need to be added once
+        // The next three stats can't vary between cells in a colony, so they are only set once per frame.
+        // Importantly, they reset each frame by Clear(), so e.g. moving patches can still change these.
+        // So as a result, we assume it is safe to latch these values on the first time we see them and then wait
+        // until the next clear.
+
         if (summedEnvironmentalInputs.Count == 0)
         {
-            foreach (var output in displayInfo.EnvironmentalInputs)
-            {
-                summedEnvironmentalInputs.TryGetValue(output.Key, out var value);
-                summedEnvironmentalInputs[output.Key] = value + output.Value;
-            }
+            stats.CopyEnvironmentalInputs(summedEnvironmentalInputs);
         }
 
-        if (summedLimitingFactors.Count == 0 && displayInfo.LimitingCompounds != null)
+        LimitingCompounds ??= stats.LimitingCompounds;
+
+        if (summedFullSpeedRequiredEnvironmentalInputs.Count == 0)
         {
-            foreach (var compoound in displayInfo.LimitingCompounds)
+            foreach (var input in stats.FullSpeedRequiredEnvironmentalInputs)
             {
-                summedLimitingFactors.Add(compoound);
+                summedFullSpeedRequiredEnvironmentalInputs.Add(input.Key, input.Value);
             }
         }
-
-        summedSpeed += displayInfo.CurrentSpeed;
-        ++ProcessCount;
-
-        Enabled = displayInfo.Enabled;
     }
 
     public void Clear()
     {
-        summedSpeed = 0.0f;
-        ProcessCount = 0;
+        CurrentSpeed = 0.0f;
 
-        summedInputs.Clear();
-        summedOutputs.Clear();
+        var newProcess = Process;
+        newProcess.SpeedMultiplier = 0.0f;
+        Process = newProcess;
+
         summedEnvironmentalInputs.Clear();
         summedFullSpeedRequiredEnvironmentalInputs.Clear();
-        summedLimitingFactors.Clear();
+        LimitingCompounds = null;
     }
 
     public bool Equals(IProcessDisplayInfo? obj)
@@ -144,7 +139,7 @@ public class SummedProcessStatistics : IProcessDisplayInfo
         if (!obj.MatchesUnderlyingProcess(Process.Process))
             return false;
 
-        return MathF.Abs(summedSpeed - obj.CurrentSpeed) < MathUtils.EPSILON;
+        return MathF.Abs(CurrentSpeed - obj.CurrentSpeed) < MathUtils.EPSILON;
     }
 
     public override bool Equals(object? obj)

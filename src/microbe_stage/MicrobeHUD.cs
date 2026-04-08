@@ -607,7 +607,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         ingestedMatterBar.UpdateValue(GetPlayerUsedIngestionCapacity(), maxSize);
     }
 
-    protected override IEnumerable<IProcessDisplayInfo>? GetPlayerProcessStatistics()
+    protected override IEnumerable<IProcessDisplayInfo> GetPlayerProcessStatistics()
     {
         foreach (var process in organismProcesses)
         {
@@ -615,83 +615,34 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             process.Value.Marked = false;
         }
 
-        Dictionary<TweakedProcess, SingleProcessStatistics>? processes = null;
-
-        if (processViewedColonyMember <= 0)
+        if (stage!.Player.TryGet<MicrobeColony>(out var colony))
         {
-            processes = stage!.Player.Get<BioProcesses>().ProcessStatistics?.Processes;
-        }
-        else
-        {
-            var colonyMembers = stage!.Player.Get<MicrobeColony>().ColonyMembers;
-
-            if (colonyMembers.Length > processViewedColonyMember)
+            foreach (var colonyMember in colony.ColonyMembers)
             {
-                processes = colonyMembers[processViewedColonyMember].Get<BioProcesses>().ProcessStatistics?
-                    .Processes;
-            }
-            else
-            {
-                processViewedColonyMember = -1;
-                processes = stage!.Player.Get<BioProcesses>().ProcessStatistics?.Processes;
-            }
-        }
-
-        if (processes == null)
-        {
-            GD.PrintErr("Player process statistics are uninitialized, can't display them in the process panel");
-
-            return null;
-        }
-
-        foreach (var process in processes)
-        {
-            var display = process.Value.ComputeAverageValues();
-
-            if (!organismProcesses.TryGetValue(process.Key.Process, out var stats))
-            {
-                stats = new SummedProcessStatistics(display);
-                organismProcesses[process.Key.Process] = stats;
-            }
-            else
-            {
-                stats.AddProcess(display);
-            }
-
-            stats.Marked = true;
-        }
-
-        if (processViewedColonyMember == -1 && stage!.Player.TryGet<MicrobeColony>(out var colony))
-        {
-            for (int i = 1; i < colony.ColonyMembers.Length; ++i)
-            {
-                var colonyMemberProcesses = colony.ColonyMembers[i].Get<BioProcesses>().ProcessStatistics?.Processes;
-
-                if (colonyMemberProcesses == null)
+                if (colonyMember.TryGet<BioProcesses>(out var stats) && stats.ProcessStatistics != null)
+                {
+                    foreach (var process in stats.ProcessStatistics.Processes)
+                    {
+                        AddStatisticsToProcesses(process.Value, organismProcesses);
+                    }
+                }
+                else
                 {
                     GD.PrintErr(
                         "Colony member process statistics are uninitialized, can't display them in the process panel");
-
-                    continue;
-                }
-
-                foreach (var process in colonyMemberProcesses)
-                {
-                    var display = process.Value.ComputeAverageValues();
-
-                    if (!organismProcesses.TryGetValue(process.Key.Process, out var stats))
-                    {
-                        stats = new SummedProcessStatistics(display);
-                        organismProcesses[process.Key.Process] = stats;
-                    }
-                    else
-                    {
-                        stats.AddProcess(display);
-                    }
-
-                    stats.Marked = true;
                 }
             }
+        }
+        else if (stage!.Player.TryGet<BioProcesses>(out var stats) && stats.ProcessStatistics != null)
+        {
+            foreach (var process in stats.ProcessStatistics.Processes)
+            {
+                AddStatisticsToProcesses(process.Value, organismProcesses);
+            }
+        }
+        else
+        {
+            GD.PrintErr("Player process statistics are uninitialized, can't display them in the process panel");
         }
 
         // Clear unmarked items
@@ -1231,6 +1182,19 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
                 activeProcesses[i] = process;
             }
         }
+    }
+
+    private void AddStatisticsToProcesses(SingleProcessStatistics stats,
+        Dictionary<BioProcess, SummedProcessStatistics> processes)
+    {
+        if (!processes.TryGetValue(stats.Process.Process, out var value))
+        {
+            value = new SummedProcessStatistics(stats.Process);
+            processes.Add(stats.Process.Process, value);
+        }
+
+        value.SumWithStatistics(stats);
+        value.Marked = true;
     }
 
     private void OnRevertPromptClosed()

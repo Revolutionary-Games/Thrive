@@ -44,11 +44,6 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
     private BiomeConditions? biome;
 
-    /// <summary>
-    ///   Used to go from the calculated compound values to per-second values for reporting statistics
-    /// </summary>
-    private float inverseDelta;
-
     public ProcessSystem(World world) : base(world)
     {
     }
@@ -480,7 +475,8 @@ public partial class ProcessSystem : BaseSystem<World, float>
                 var speedAdjusted = CalculateProcessMaximumSpeed(process, speedModifier, biome, amountType, true);
 
                 // If the cell produces more ATP than it needs, its ATP producing processes need to be toned down
-                bool useRatio = speedAdjusted.Outputs.ContainsKey(Compound.ATP) && consumptionProductionRatio < 1.0f;
+                bool useRatio = speedAdjusted.WritableOutputs.ContainsKey(Compound.ATP)
+                    && consumptionProductionRatio < 1.0f;
 
                 foreach (var input in speedAdjusted.Inputs)
                 {
@@ -874,8 +870,6 @@ public partial class ProcessSystem : BaseSystem<World, float>
             GD.PrintErr("ProcessSystem has no biome set");
         }
 
-        inverseDelta = 1.0f / delta;
-
 #if CHECK_USED_STATISTICS
         lock (usedStatistics)
         {
@@ -1164,8 +1158,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
             // Processing runs on the current game time following values
             var ambient = GetAmbient(inputCompound, CompoundAmountType.Current);
 
-            // currentProcessStatistics?.AddInputAmount(entry.Key, entry.Value * inverseDelta);
-            currentProcessStatistics?.AddInputAmount(inputCompound, ambient);
+            currentProcessStatistics?.AddEnvironmentInput(inputCompound, ambient);
 
             // do environmental modifier here, and save it for later
             environmentModifier *= inputCompound == Compound.Temperature ?
@@ -1198,10 +1191,6 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
             var inputRemoved = entry.Value * process.Rate * environmentModifier * process.SpeedMultiplier *
                 overallSpeedModifier;
-
-            // We don't multiply by delta here because we report the per-second values anyway. In the actual
-            // process output numbers (computed after testing the speed), we need to multiply by inverse delta
-            currentProcessStatistics?.AddInputAmount(inputCompound, 0);
 
             inputRemoved = inputRemoved * delta * spaceConstraintModifier;
 
@@ -1245,8 +1234,6 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
             var outputAdded = entry.Value * process.Rate * environmentModifier * process.SpeedMultiplier *
                 overallSpeedModifier;
-
-            currentProcessStatistics?.AddOutputAmount(outputCompound, 0);
 
             outputAdded = outputAdded * delta * spaceConstraintModifier;
 
@@ -1292,7 +1279,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
             return;
         }
 
-        float totalModifier = process.Rate * delta * environmentModifier * spaceConstraintModifier *
+        float totalModifier = process.Rate * environmentModifier * spaceConstraintModifier *
             process.SpeedMultiplier * overallSpeedModifier;
 
         // Apply ATP production speed cap if in effect
@@ -1312,8 +1299,10 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
         // TODO: should the overall speed modifier be included in here? It already has scaled the inputs and
         // outputs
-        currentProcessStatistics?.CurrentSpeed = process.Rate * environmentModifier * spaceConstraintModifier *
-            process.SpeedMultiplier * overallSpeedModifier;
+        currentProcessStatistics?.CurrentSpeed = totalModifier;
+
+        // Only multiplying totalModifier by delta time after recording this process' speed per second
+        totalModifier *= delta;
 
         // Consume inputs
         foreach (var entry in processData.Inputs)
@@ -1324,8 +1313,6 @@ public partial class ProcessSystem : BaseSystem<World, float>
             var inputCompound = entry.Key.ID;
 
             var inputRemoved = entry.Value * totalModifier;
-
-            currentProcessStatistics?.AddInputAmount(inputCompound, inputRemoved * inverseDelta);
 
             // This should always succeed (due to the earlier check), so it is always assumed here that this
             // succeeded. Caveat: see: BioProcesses.ATPProductionSpeedModifier
@@ -1341,8 +1328,6 @@ public partial class ProcessSystem : BaseSystem<World, float>
             var outputCompound = entry.Key.ID;
 
             var outputGenerated = entry.Value * totalModifier;
-
-            currentProcessStatistics?.AddOutputAmount(outputCompound, outputGenerated * inverseDelta);
 
             bag.AddCompound(outputCompound, outputGenerated);
         }
