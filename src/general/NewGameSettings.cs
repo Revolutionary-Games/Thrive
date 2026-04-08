@@ -777,7 +777,7 @@ public partial class NewGameSettings : ControlWithInput
         UpdateSelectedDifficultyPresetControl();
     }
 
-    private void OnOsmoregulationMultiplierValueChanged(double amount)
+    private void OnEnergyCostMultiplierValueChanged(double amount)
     {
         amount = Math.Round(amount, 1);
         osmoregulationMultiplierReadout.Text = amount.ToString(CultureInfo.CurrentCulture);
