@@ -41,6 +41,10 @@ public partial class CellBodyPlanEditorComponent :
     /// </summary>
     private readonly HashSet<Hex> wrongGrowthOrderCells = new();
 
+    private readonly Dictionary<Compound, List<Compound>> tempCompoundSources = new();
+
+    private readonly HashSet<Compound> compoundsThatDependOnDay = new();
+
 #pragma warning disable CA2213
 
     // Selection menu tab selector buttons
@@ -506,15 +510,27 @@ public partial class CellBodyPlanEditorComponent :
             CellTypeVisualsOverride.ApplyChanges();
         }
 
+        bool neededTwoShifts = false;
+
         // Note that for the below calculations to work, all cell types need to be positioned correctly. So we need
         // to force that to happen here first. This also ensures that the skipped positioning to the origin of the cell
         // editor component (that is used as a special mode in multicellular) is performed.
         foreach (var cellType in editedSpecies.ModifiableCellTypes)
         {
-            cellType.RepositionToOrigin();
+            if (cellType.RepositionToOrigin())
+            {
+                // It seems like in very rare cases a cell type requires two shifts of the layout to fix it, and then
+                // it stops shifting. So we take the slight performance hit here and try to shift everything twice
+                // in case some type needs it.
+                if (cellType.RepositionToOrigin())
+                {
+                    GD.Print($"Did a second shift for cell type: {cellType.CellTypeName}");
+                    neededTwoShifts = true;
+                }
+            }
         }
 
-        // Safety check against cell layouts that forever want to shift
+        // Safety check against cell layouts that forever want to shift (this causes layout overlap errors)
         foreach (var cellType in editedSpecies.ModifiableCellTypes)
         {
             if (cellType.RepositionToOrigin())
@@ -526,6 +542,11 @@ public partial class CellBodyPlanEditorComponent :
                     "Please include a save or screenshot of your species' cell types with the report");
                 break;
             }
+        }
+
+        if (neededTwoShifts)
+        {
+            GD.Print("Some cell types required two shifts to get organelles centered around the origin");
         }
 
         ApplyGrowthOrderToCells();
@@ -1262,7 +1283,17 @@ public partial class CellBodyPlanEditorComponent :
         tooltip.DisplayName = cellType.CellTypeName;
         tooltip.MutationPointCost = Math.Min(cellType.MPCost * Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier,
             Constants.MAX_SINGLE_EDIT_MP_COST);
-        tooltip.DisplayCellTypeBalances(balances);
+
+        tempCompoundSources.Clear();
+        ProcessSystem.CalculateInputCompoundsNeededForOutputs(cellType.ModifiableOrganelles, Editor.CurrentPatch.Biome,
+            environmentalTolerances, specialization,
+            organismStatisticsPanel.CompoundAmountType, true, tempCompoundSources);
+
+        Editor.CurrentPatch.Biome.GetProducedCompoundsThatDependOnVarying(tempCompoundSources,
+            compoundsThatDependOnDay);
+
+        tooltip.DisplayCellTypeBalances(balances, compoundsThatDependOnDay);
+
         tooltip.UpdateATPBalance(energyBalanceInfo.TotalProduction, energyBalanceInfo.TotalConsumption);
 
         tooltip.UpdateHealthIndicator(MicrobeInternalCalculations.CalculateHealth(environmentalTolerances,
@@ -1448,6 +1479,10 @@ public partial class CellBodyPlanEditorComponent :
                 environmentalTolerances, totalSpecialization, hex.Data.MembraneType,
                 maximumMovementDirection, moving, true, Editor.CurrentGame.GameWorld.WorldSettings,
                 organismStatisticsPanel.CompoundAmountType, null, energyBalanceInfo);
+
+            ProcessSystem.CalculateInputCompoundsNeededForOutputs(hex.Data.ModifiableOrganelles, conditionsData,
+                environmentalTolerances, specialization,
+                organismStatisticsPanel.CompoundAmountType, true, tempCompoundSources);
         }
 
         // Passing those variables by refs to the following functions to reuse them
@@ -1461,7 +1496,9 @@ public partial class CellBodyPlanEditorComponent :
                 cells, conditionsData, energyBalanceInfo,
                 ref specificStorages, ref nominalStorage, environmentalTolerances);
 
-        UpdateCompoundBalances(compoundBalanceData);
+        conditionsData.GetProducedCompoundsThatDependOnVarying(tempCompoundSources, compoundsThatDependOnDay);
+
+        UpdateCompoundBalances(compoundBalanceData, compoundsThatDependOnDay);
 
         // TODO: should this skip on being affected by the resource limited?
         var nightBalanceData = CalculateCompoundBalanceWithMethod(organismStatisticsPanel.BalanceDisplayType,
@@ -1469,7 +1506,8 @@ public partial class CellBodyPlanEditorComponent :
             ref nominalStorage, environmentalTolerances);
 
         UpdateCompoundLastingTimes(compoundBalanceData, nightBalanceData, nominalStorage,
-            specificStorages ?? throw new Exception("Special storages should have been calculated"));
+            specificStorages ?? throw new Exception("Special storages should have been calculated"),
+            compoundsThatDependOnDay);
 
         // TODO: find out why this method used to take the cells parameter but now causes a warning so it is removed
         // HandleProcessList( cells, energyBalance, conditionsData);

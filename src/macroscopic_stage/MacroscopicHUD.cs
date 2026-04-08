@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Godot;
 using SharedBase.Archive;
 
@@ -148,10 +147,9 @@ public partial class MacroscopicHUD : CreatureStageHUDBase<MacroscopicStage>
         return stage!.Player!.ProcessCompoundStorage;
     }
 
-    protected override Func<Compound, bool> GetIsUsefulCheck()
+    protected override bool IsUseful(Compound compound)
     {
-        var bag = stage!.Player!.ProcessCompoundStorage;
-        return c => bag.IsUseful(c);
+        return stage!.Player!.ProcessCompoundStorage.IsUseful(compound);
     }
 
     protected override bool ShouldShowAgentsPanel()
@@ -179,7 +177,7 @@ public partial class MacroscopicHUD : CreatureStageHUDBase<MacroscopicStage>
 
     protected override IEnumerable<IProcessDisplayInfo>? GetPlayerProcessStatistics()
     {
-        return stage!.Player!.ProcessStatistics?.Processes.Select(a => a.Value.ComputeAverageValues());
+        return stage!.Player!.ProcessStatistics?.Processes.Values;
     }
 
     protected override void UpdateHoverInfo(float delta)

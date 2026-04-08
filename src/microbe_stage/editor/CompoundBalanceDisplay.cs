@@ -46,7 +46,8 @@ public partial class CompoundBalanceDisplay : VBoxContainer
         modeSelector.Visible = showDisplayTypeSelector;
     }
 
-    public void UpdateBalances(Dictionary<Compound, CompoundBalance> balances, float dayLengthWarningThreshold)
+    public void UpdateBalances(Dictionary<Compound, CompoundBalance> balances,
+        HashSet<Compound> dayNightVaryingCompoundProductions, float dayLengthWarningThreshold)
     {
         childCache.UnMarkAll();
 
@@ -54,7 +55,7 @@ public partial class CompoundBalanceDisplay : VBoxContainer
 
         foreach (var entry in balances)
         {
-            // Skip any gas compounds as they aren't stored by cells so no point in showing in the balance
+            // Skip any gas compounds as they aren't stored by cells, so no point in showing in the balance
             if (simulationParameters.GetCompoundDefinition(entry.Key).IsGas)
                 continue;
 
@@ -68,7 +69,8 @@ public partial class CompoundBalanceDisplay : VBoxContainer
 
             if (entry.Value.FillTime > 0)
             {
-                UpdateExtraValueDescription(compoundControl, entry.Value, dayLengthWarningThreshold);
+                UpdateExtraValueDescription(compoundControl, entry.Value,
+                    dayNightVaryingCompoundProductions.Contains(entry.Key), dayLengthWarningThreshold);
             }
             else
             {
@@ -81,23 +83,26 @@ public partial class CompoundBalanceDisplay : VBoxContainer
     }
 
     private static void UpdateExtraValueDescription(CompoundAmount compoundControl, CompoundBalance balance,
-        float dayLengthWarningThreshold)
+        bool actuallyVariesDuringDay, float dayLengthWarningThreshold)
     {
+        // Only warn for things that actually vary during the day/night cycle
+        var isTooLong = balance.FillTime > dayLengthWarningThreshold && actuallyVariesDuringDay;
+
         if (compoundControl.ExtraValueDescription == null)
         {
-            SetNewExtraDescription(compoundControl, balance, dayLengthWarningThreshold);
+            SetNewExtraDescription(compoundControl, balance, dayLengthWarningThreshold, isTooLong);
         }
         else
         {
             // For object allocation efficiency reuse the existing string but just update the value
             var updateTarget = compoundControl.ExtraValueDescription;
 
-            if (balance.FillTime > dayLengthWarningThreshold)
+            if (isTooLong)
             {
                 if (updateTarget.TranslationKey != "COMPOUND_BALANCE_FILL_TIME_TOO_LONG")
                 {
-                    // Need to swap base key
-                    SetNewExtraDescription(compoundControl, balance, dayLengthWarningThreshold);
+                    // Need to swap the base key
+                    SetNewExtraDescription(compoundControl, balance, dayLengthWarningThreshold, true);
                     return;
                 }
 
@@ -111,8 +116,8 @@ public partial class CompoundBalanceDisplay : VBoxContainer
             {
                 if (updateTarget.TranslationKey != "COMPOUND_BALANCE_FILL_TIME")
                 {
-                    // Need to swap base key
-                    SetNewExtraDescription(compoundControl, balance, dayLengthWarningThreshold);
+                    // Need to swap the base key
+                    SetNewExtraDescription(compoundControl, balance, dayLengthWarningThreshold, false);
                     return;
                 }
 
@@ -124,9 +129,9 @@ public partial class CompoundBalanceDisplay : VBoxContainer
     }
 
     private static void SetNewExtraDescription(CompoundAmount compoundControl, CompoundBalance balance,
-        float dayLengthWarningThreshold)
+        float dayLengthWarningThreshold, bool tooLong)
     {
-        if (balance.FillTime > dayLengthWarningThreshold)
+        if (tooLong)
         {
             compoundControl.ExtraValueDescription = new LocalizedString("COMPOUND_BALANCE_FILL_TIME_TOO_LONG",
                 Math.Round(balance.FillTime), Math.Round(dayLengthWarningThreshold));

@@ -13,9 +13,7 @@ public class RootPressure : SelectionPressure
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
     public RootPressure() : base(1, [
-        new RemoveOrganelle(_ => true),
-        new AddOrganelleAnywhere(_ => true),
-        new AddOrganelleAnywhere(organelle => organelle.InternalName == "nucleus"),
+        new AddOrganelleAnywhere(organelle => organelle.InternalName == CommonMutationFunctions.Nucleus.InternalName),
     ])
     {
     }

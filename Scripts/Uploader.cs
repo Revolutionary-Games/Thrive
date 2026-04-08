@@ -82,11 +82,17 @@ public class Uploader
         if (!await FindBuildsToUpload(cancellationToken))
             return false;
 
-        if (devbuildsToUpload.Count < 1 && dehydratedToUpload.Count < 1)
+        lock (devbuildsToUpload)
         {
-            ColourConsole.WriteWarningLine("Nothing to upload");
-            DeleteAlreadyExisting();
-            return true;
+            lock (dehydratedToUpload)
+            {
+                if (devbuildsToUpload.Count < 1 && dehydratedToUpload.Count < 1)
+                {
+                    ColourConsole.WriteWarningLine("Nothing to upload");
+                    DeleteAlreadyExisting();
+                    return true;
+                }
+            }
         }
 
         ColourConsole.WriteInfoLine($"Beginning upload of {"devbuild".PrintCount(devbuildsToUpload.Count)} with "
@@ -155,12 +161,19 @@ public class Uploader
 
         if (!data.Upload)
         {
-            alreadyUploadedToDelete.Add((meta.ArchiveFile, metaFile));
+            lock (alreadyUploadedToDelete)
+            {
+                alreadyUploadedToDelete.Add((meta.ArchiveFile, metaFile));
+            }
+
             return;
         }
 
         ColourConsole.WriteNormalLine("Server doesn't have it");
-        devbuildsToUpload.Add(meta);
+        lock (devbuildsToUpload)
+        {
+            devbuildsToUpload.Add(meta);
+        }
 
         // Determine related objects to upload
         foreach (var chunk in meta.DehydratedObjects.Chunk(CommunicationConstants.MAX_DEHYDRATED_OBJECTS_PER_OFFER))
@@ -177,30 +190,36 @@ public class Uploader
                 return await GetJsonFromResponse<DevObjectOfferResult>(response, cancellation);
             }, cancellationToken);
 
-            foreach (var toUpload in dehydratedData.Upload)
+            lock (dehydratedToUpload)
             {
-                dehydratedToUpload.Add(toUpload);
+                foreach (var toUpload in dehydratedData.Upload)
+                {
+                    dehydratedToUpload.Add(toUpload);
+                }
             }
         }
     }
 
     private void DeleteAlreadyExisting()
     {
-        foreach (var (archive, meta) in alreadyUploadedToDelete)
+        lock (alreadyUploadedToDelete)
         {
-            ColourConsole.WriteWarningLine($"Deleting build server didn't want: {meta}");
-
-            try
+            foreach (var (archive, meta) in alreadyUploadedToDelete)
             {
-                if (!string.IsNullOrEmpty(meta) && File.Exists(meta))
-                    File.Delete(meta);
+                ColourConsole.WriteWarningLine($"Deleting build server didn't want: {meta}");
 
-                if (!string.IsNullOrEmpty(archive) && File.Exists(archive))
-                    File.Delete(archive);
-            }
-            catch (Exception e)
-            {
-                ColourConsole.WriteErrorLine($"Failed to delete {meta} or {archive}: {e}");
+                try
+                {
+                    if (!string.IsNullOrEmpty(meta) && File.Exists(meta))
+                        File.Delete(meta);
+
+                    if (!string.IsNullOrEmpty(archive) && File.Exists(archive))
+                        File.Delete(archive);
+                }
+                catch (Exception e)
+                {
+                    ColourConsole.WriteErrorLine($"Failed to delete {meta} or {archive}: {e}");
+                }
             }
         }
     }

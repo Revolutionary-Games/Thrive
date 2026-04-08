@@ -80,13 +80,8 @@ public class MacroscopicSpecies : Species, IReadOnlyMacroscopicSpecies
     {
         base.OnEdited();
 
+        // TODO: do we need to reposition for auto-evo?
         RepositionToOrigin();
-        UpdateInitialCompounds();
-        CalculateBrainPower();
-        CalculateMuscularPower();
-
-        // Note that a few stage transitions are explicit for the player, so the editor will override this
-        SetTypeFromBrainPower();
 
         // Probably don't need to reset endosymbiont status here any more as it is likely not possible to perform it
         // at this stage
@@ -101,6 +96,18 @@ public class MacroscopicSpecies : Species, IReadOnlyMacroscopicSpecies
             }
         }
 #endif
+    }
+
+    public override void OnAttemptedInAutoEvo(bool refreshCache)
+    {
+        base.OnAttemptedInAutoEvo(refreshCache);
+
+        UpdateInitialCompounds();
+        CalculateBrainPower();
+        CalculateMuscularPower();
+
+        // Note that a few stage transitions are explicit for the player, so the editor will override this
+        SetTypeFromBrainPower();
     }
 
     public override bool RepositionToOrigin()
