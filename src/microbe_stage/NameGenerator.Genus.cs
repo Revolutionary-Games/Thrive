@@ -86,7 +86,8 @@ public partial class NameGenerator
                     isNumbered = false;
                     isProto = false;
                     newRoot = namingState.GenusRoot;
-                    newGender = GenerateGenderedSuffix(random, stringBuilder, namingState.Gender, useBacteriaSuffix);
+                    newGender = GenerateGenderedSuffix(random, stringBuilder, namingState.Gender, useBacteriaSuffix,
+                        speciesNew);
 
                     return;
                 }
@@ -99,7 +100,8 @@ public partial class NameGenerator
                     isNumbered = namingState.GenusIsNumbered;
                     isProto = false;
                     newRoot = namingState.GenusRoot;
-                    newGender = GenerateGenderedSuffix(random, stringBuilder, namingState.Gender, useBacteriaSuffix);
+                    newGender = GenerateGenderedSuffix(random, stringBuilder, namingState.Gender, useBacteriaSuffix,
+                        speciesNew);
 
                     // Force genus change on the old species to acquire the "Eu-" prefix.
                     speciesOld.Genus = GenerateGenusName(random, speciesOld, speciesOld);
@@ -129,7 +131,8 @@ public partial class NameGenerator
 
                 isProto = false;
                 newRoot = namingState.GenusRoot;
-                newGender = GenerateGenderedSuffix(random, stringBuilder, namingState.Gender, useBacteriaSuffix);
+                newGender = GenerateGenderedSuffix(random, stringBuilder, namingState.Gender, useBacteriaSuffix,
+                    speciesNew);
 
                 return;
             }
@@ -139,7 +142,7 @@ public partial class NameGenerator
 
         GenerateGenusRoot(random, stringBuilder, randomOrganelle, organelleCount, out target, out isNumbered,
             out var root);
-        var gender = GenerateGenderedSuffix(random, stringBuilder, null, useBacteriaSuffix);
+        var gender = GenerateGenderedSuffix(random, stringBuilder, null, useBacteriaSuffix, speciesNew);
 
         newRoot = root;
         newGender = gender;
@@ -187,8 +190,7 @@ public partial class NameGenerator
         if (root == string.Empty)
             root = stringBuilder.ToString();
 
-        gender = GenerateGenderedSuffix(random, stringBuilder, null, random.Next(100) < 10 &&
-            species.IsBacteria);
+        gender = GenerateGenderedSuffix(random, stringBuilder, null, true, species);
     }
 
     private void GenerateGenusRoot(Random random, StringBuilder stringBuilder, OrganelleDefinition randomOrganelle,

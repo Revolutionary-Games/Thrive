@@ -20,7 +20,7 @@ public partial class NameGenerator
         var gender = speciesNew.NamingState.Gender;
 
         GenerateEpithetRoot(random, stringBuilder, speciesNew, patch);
-        GenerateGenderedSuffix(random, stringBuilder, gender, false);
+        GenerateGenderedSuffix(random, stringBuilder, gender, false, speciesNew);
 
         stringBuilder[0] = char.ToLowerInvariant(stringBuilder[0]);
 
