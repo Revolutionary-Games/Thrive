@@ -1433,6 +1433,8 @@ public partial class CellBodyPlanEditorComponent :
         var environmentalTolerances =
             MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(Editor.CalculateRawTolerances());
 
+        tempCompoundSources.Clear();
+
         foreach (var hex in cells)
         {
             var specialization =
