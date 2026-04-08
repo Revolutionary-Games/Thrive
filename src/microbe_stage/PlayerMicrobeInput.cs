@@ -472,12 +472,6 @@ public partial class PlayerMicrobeInput : NodeWithInput
         }
     }
 
-    [RunOnKeyDown("e_primary")]
-    public void OnSceneLeftClicked()
-    {
-        stage.HUD.OnSceneLeftClicked();
-    }
-
     private void RemoveCellFromColony(Entity target)
     {
         if (!MicrobeColonyHelpers.UnbindAllOutsideGameUpdate(target, stage.WorldSimulation, false))

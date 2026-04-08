@@ -11,12 +11,6 @@ public partial class ProcessPanel : CustomWindow
 
 #pragma warning disable CA2213
     [Export]
-    private Control chosenCellBox = null!;
-
-    [Export]
-    private Label chosenCellLabel = null!;
-
-    [Export]
     private ProcessList processList = null!;
 
     [Export]
@@ -82,35 +76,6 @@ public partial class ProcessPanel : CustomWindow
     public void OnHelpButtonPressed()
     {
         multicellularProcessPanelExplanation.PopupCenteredShrink();
-    }
-
-    public void ReportChosenCell(string chosenCellName)
-    {
-        UpdateChosenCellDisplay(chosenCellName);
-    }
-
-    public void DeselectChosenCell()
-    {
-        EmitSignal(SignalName.ChoosenCellDeselected);
-
-        UpdateChosenCellDisplay(null);
-    }
-
-    /// <summary>
-    ///   Updates the part of GUI that tells the player which cell is chosen for the process viewing.
-    /// </summary>
-    /// <param name="chosenCellName">Cell name, purely cosmetic. Send a null or an empty string to deselect.</param>
-    private void UpdateChosenCellDisplay(string? chosenCellName)
-    {
-        if (string.IsNullOrEmpty(chosenCellName))
-        {
-            // No cell chosen
-            chosenCellBox.Visible = false;
-            return;
-        }
-
-        chosenCellBox.Visible = true;
-        chosenCellLabel.Text = Localization.Translate("CURRENTLY_SHOWING_CELL").FormatSafe(chosenCellName);
     }
 
     private void ToggleProcessToggled(ChemicalEquation equation, bool enabled)

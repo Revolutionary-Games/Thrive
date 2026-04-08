@@ -92,12 +92,6 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     private float previousTemperature = float.NaN;
 
-    /// <summary>
-    ///   The index of the microbe colony member whose processes should be displayed. -1 is the default state that
-    ///   displays the summed processes of the entire colony.
-    /// </summary>
-    private int processViewedColonyMember = -1;
-
     [Signal]
     public delegate void OnToggleEngulfButtonPressedEventHandler();
 
@@ -340,65 +334,6 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         // The base version is different from ours
         ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
-    }
-
-    public void OnSceneLeftClicked()
-    {
-        // Only change spectated cell if the process panel is active
-        if (!processPanel.Visible)
-            return;
-
-        if (stage == null || !stage.Player.TryGet<MicrobeColony>(out var colony))
-            return;
-
-        var colonyMembers = colony.ColonyMembers;
-
-        foreach (var entity in stage.HoverInfo.Entities)
-        {
-            if (!entity.Has<MicrobeColonyMember>())
-            {
-                if (entity == stage.Player)
-                {
-                    processViewedColonyMember = 0;
-                    processPanel.ReportChosenCell(Localization.Translate("LEADER_CELL"));
-                }
-
-                continue;
-            }
-
-            var chosenColonyMemberID = colonyMembers.IndexOf(entity);
-
-            if (chosenColonyMemberID == -1)
-                continue;
-
-            processViewedColonyMember = chosenColonyMemberID;
-
-            string name;
-
-            if (!entity.TryGet<MulticellularSpeciesMember>(out var multicellularSpecies)
-                || !entity.TryGet<AttachedToEntity>(out var attachedToEntity))
-            {
-                GD.PrintErr(
-                    "A colony member doesn't have a MulticellularSpeciesMember and/or AttachedToEntity component");
-                name = "unset";
-            }
-            else
-            {
-                var relativePos = new Vector2(MathF.Round(attachedToEntity.RelativePosition.X, 1),
-                        MathF.Round(attachedToEntity.RelativePosition.Z, 1));
-
-                name = Localization.Translate("PROCESS_CELL_DEFINITION_FORMAT")
-                    .FormatSafe(multicellularSpecies.MulticellularCellType.ReadableName, relativePos);
-            }
-
-            processPanel.ReportChosenCell(name);
-            break;
-        }
-    }
-
-    public void DeselectProcessViewedCell()
-    {
-        processViewedColonyMember = -1;
     }
 
     protected override void UpdateFossilisationButtonStates()
