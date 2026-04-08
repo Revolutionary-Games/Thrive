@@ -829,11 +829,7 @@ public static class MicrobeInternalCalculations
         }
     }
 
-    /// <summary>
-    ///   Calculates a specialization bonus for a cell type based on its organelles.
-    /// </summary>
-    /// <returns>A multiplier starting from 1 and going up as specialization improves</returns>
-    public static float CalculateSpecializationBonus(IReadOnlyList<IReadOnlyOrganelleTemplate> organelles,
+    public static int CalculateMostCommonSpecializationOrganelle(IReadOnlyList<IReadOnlyOrganelleTemplate> organelles,
         Dictionary<OrganelleDefinition, int> tempWorkMemory)
     {
         int totalOrganelles = 0;
@@ -852,6 +848,41 @@ public static class MicrobeInternalCalculations
             ++totalOrganelles;
         }
 
+        if (totalOrganelles < 1)
+            return 0;
+
+        // Merge equivalent organelles to make moving to eukaryotic variants easier
+        foreach (var entry in tempWorkMemory)
+        {
+            var mergeInto = entry.Key.IsSameInSpecializationAs;
+
+            if (mergeInto == null)
+                continue;
+
+            foreach (var entry2 in tempWorkMemory)
+            {
+                if (entry2.Key == mergeInto)
+                {
+                    tempWorkMemory[entry2.Key] += entry.Value;
+                    tempWorkMemory[entry.Key] = 0;
+
+                    // We don't update the total as it should still be correct here
+                    break;
+                }
+            }
+        }
+
+        return totalOrganelles;
+    }
+
+    /// <summary>
+    ///   Calculates a specialization bonus for a cell type based on its organelles.
+    /// </summary>
+    /// <returns>A multiplier starting from 1 and going up as specialization improves</returns>
+    public static float CalculateSpecializationBonus(IReadOnlyList<IReadOnlyOrganelleTemplate> organelles,
+        Dictionary<OrganelleDefinition, int> tempWorkMemory)
+    {
+        int totalOrganelles = CalculateMostCommonSpecializationOrganelle(organelles, tempWorkMemory);
         if (totalOrganelles < 1)
             return 1;
 

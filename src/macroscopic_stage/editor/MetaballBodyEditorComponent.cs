@@ -429,10 +429,14 @@ public partial class MetaballBodyEditorComponent :
         return Editor.EditedSpecies.ModifiableCellTypes.First(c => c.CellTypeName == name);
     }
 
+    /*
     protected override void OnTranslationsChanged()
     {
+        base.OnTranslationsChanged();
+
         // TODO: do we want specialization in macroscopic?
     }
+    */
 
     protected override double CalculateCurrentActionCost()
     {

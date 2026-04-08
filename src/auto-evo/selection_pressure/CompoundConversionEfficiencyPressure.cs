@@ -23,8 +23,8 @@ public class CompoundConversionEfficiencyPressure : SelectionPressure
     public CompoundConversionEfficiencyPressure(Compound compound, Compound outCompound,
         bool usedForSurvival, float weight) :
         base(weight, [
-            AddOrganelleAnywhere.ThatConvertBetweenCompounds(compound, outCompound),
             RemoveOrganelle.ThatCreateCompound(outCompound),
+            AddOrganelleAnywhere.ThatConvertBetweenCompounds(compound, outCompound),
         ])
     {
         FromCompound = SimulationParameters.GetCompound(compound);

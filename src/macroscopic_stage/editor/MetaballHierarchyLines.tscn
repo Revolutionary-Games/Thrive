@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://6t41bep5u10"]
+
+[ext_resource type="Script" uid="uid://dga7m2k80dxvb" path="res://src/macroscopic_stage/editor/MetaballHierarchyLines.cs" id="1_0f3wr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0f3wr"]
+render_priority = 10
+cull_mode = 2
+no_depth_test = true
+shading_mode = 0
+specular_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vh1rm"]
+render_priority = 10
+no_depth_test = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_vh1rm"]
+material = SubResource("StandardMaterial3D_vh1rm")
+size = Vector3(0.05, 0.05, 1)
+
+[sub_resource type="MultiMesh" id="MultiMesh_rod3y"]
+resource_local_to_scene = true
+transform_format = 1
+mesh = SubResource("BoxMesh_vh1rm")
+
+[node name="MetaballHierarchyLines" type="MultiMeshInstance3D" unique_id=1606598428]
+material_override = SubResource("StandardMaterial3D_0f3wr")
+cast_shadow = 0
+multimesh = SubResource("MultiMesh_rod3y")
+script = ExtResource("1_0f3wr")

@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://dagq5aexbmybf"]
 
 [ext_resource type="Script" uid="uid://bsq36gyv7ort1" path="res://src/macroscopic_stage/MacroscopicMetaballDisplayer.cs" id="1"]
+[ext_resource type="PackedScene" uid="uid://6t41bep5u10" path="res://src/macroscopic_stage/editor/MetaballHierarchyLines.tscn" id="2_kpvoh"]
 
-[node name="MacroscopicMetaballDisplayer" type="MultiMeshInstance3D" unique_id=1297900871]
+[node name="MacroscopicMetaballDisplayer" type="MultiMeshInstance3D" unique_id=1297900871 node_paths=PackedStringArray("hierarchyLineScene")]
 script = ExtResource("1")
+hierarchyLineScene = NodePath("MetaballHierarchyLine")
+
+[node name="MetaballHierarchyLine" parent="." unique_id=2032652842 instance=ExtResource("2_kpvoh")]

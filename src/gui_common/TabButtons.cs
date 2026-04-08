@@ -32,6 +32,9 @@ public partial class TabButtons : HBoxContainer
 
     private readonly List<Control> tabButtons = new();
 
+    private readonly Color enabledIndicatorModulate = new(1, 1, 1, 1);
+    private readonly Color disabledIndicatorModulate = new(1, 1, 1, 0.35f);
+
     private TabLevel levelOnScreen = TabLevel.Primary;
 
 #pragma warning disable CA2213
@@ -99,6 +102,8 @@ public partial class TabButtons : HBoxContainer
         AdjustSceneAddedChildren();
 
         CheckControllerInput(null, EventArgs.Empty);
+
+        UpdateIndicatorGreyOutState();
     }
 
     public void ResolveNodeReferences()
@@ -369,6 +374,45 @@ public partial class TabButtons : HBoxContainer
         }
     }
 
+    /// <summary>
+    ///   Greys out the left/right tab change indicators when the currently pressed tab is at that end and the tabs
+    ///   don't loop, to hint that pressing in that direction does nothing.
+    /// </summary>
+    private void UpdateIndicatorGreyOutState()
+    {
+        if (leftButtonIndicator == null)
+            return;
+
+        // When tabs loop there's never a real end, so both indicators stay fully visible
+        if (TabsLoop)
+        {
+            leftButtonIndicator.Modulate = enabledIndicatorModulate;
+            rightButtonIndicator.Modulate = enabledIndicatorModulate;
+            return;
+        }
+
+        Button? firstVisibleButton = null;
+        Button? lastVisibleButton = null;
+
+        foreach (var potentialButton in tabButtons)
+        {
+            if (potentialButton is Button button)
+            {
+                if (!button.Visible || button.Disabled)
+                    continue;
+
+                firstVisibleButton ??= button;
+                lastVisibleButton = button;
+            }
+        }
+
+        var atFirst = firstVisibleButton != null && firstVisibleButton.ButtonPressed;
+        var atLast = lastVisibleButton != null && lastVisibleButton.ButtonPressed;
+
+        leftButtonIndicator.Modulate = atFirst ? disabledIndicatorModulate : enabledIndicatorModulate;
+        rightButtonIndicator.Modulate = atLast ? disabledIndicatorModulate : enabledIndicatorModulate;
+    }
+
     private void PressButton(Button button)
     {
         // None of the methods seem to work in all cases so we just allow the GUI creator to define which is the right
@@ -394,6 +438,8 @@ public partial class TabButtons : HBoxContainer
             default:
                 throw new ArgumentOutOfRangeException();
         }
+
+        UpdateIndicatorGreyOutState();
     }
 
     /// <summary>
