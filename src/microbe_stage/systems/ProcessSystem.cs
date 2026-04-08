@@ -296,6 +296,10 @@ public partial class ProcessSystem : BaseSystem<World, float>
         CalculateSimplePartOfEnergyBalance(organelles, biome, environmentTolerances, specializationFactor, membrane,
             onlyMovementInDirection, includeMovementCost, isPlayerSpecies, worldSettings, amountType, cache, result);
 
+        var energyCostMultiplier = 1.0f;
+        if (isPlayerSpecies)
+            energyCostMultiplier = worldSettings.EnergyCostMultiplier;
+
         // Once simple balance is calculated we add the extra info on top, this approach loops the organelles twice
         // but reduces code duplication
 
@@ -309,12 +313,12 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
             // Take special cell components that take energy into account
             if (TryGetMovementCostForOrganelle(includeMovementCost, organelle, onlyMovementInDirection, out var cost))
-                result.AddConsumption(organelle.Definition.InternalName, cost);
+                result.AddConsumption(organelle.Definition.InternalName, cost * energyCostMultiplier);
 
             if (includeMovementCost && organelle.Definition.HasCiliaComponent)
             {
                 var amount = Constants.CILIA_ENERGY_COST;
-                result.AddConsumption(organelle.Definition.InternalName, amount);
+                result.AddConsumption(organelle.Definition.InternalName, amount * energyCostMultiplier);
             }
         }
 
