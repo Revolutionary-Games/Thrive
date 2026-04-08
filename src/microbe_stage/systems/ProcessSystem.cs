@@ -959,12 +959,12 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
         osmoregulation *= environmentTolerances.OsmoregulationModifier;
 
+        // Apply energy cost multiplier from difficulty setting to player species
         if (isPlayerSpecies)
         {
             var energyCostMultiplier = worldSettings.EnergyCostMultiplier;
 
             osmoregulation *= energyCostMultiplier;
-            processATPConsumption *= energyCostMultiplier;
             result.TotalMovement *= energyCostMultiplier;
             result.BaseMovement *= energyCostMultiplier;
             result.Flagella *= energyCostMultiplier;
