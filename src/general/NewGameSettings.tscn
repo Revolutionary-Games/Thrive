@@ -56,8 +56,8 @@ playerSpeciesAIPopulationStrength = NodePath("CenterContainer/VBoxContainer/Adva
 playerSpeciesAIPopulationStrengthReadout = NodePath("CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer16/HBoxContainer/HBoxContainer/SpeciesMemberStrengthDisplay")
 glucoseDecayRate = NodePath("CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer4/HBoxContainer/HBoxContainer/GlucoseDecayRate")
 glucoseDecayRateReadout = NodePath("CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer4/HBoxContainer/HBoxContainer/GlucoseDecayRateReadout")
-energyCostMultiplier = NodePath("CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer7/HBoxContainer/HBoxContainer/OsmoregulationMultiplier")
-energyCostMultiplierReadout = NodePath("CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer7/HBoxContainer/HBoxContainer/OsmoregulationMultiplierReadout")
+energyCostMultiplier = NodePath("CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer7/HBoxContainer/HBoxContainer/EnergyCostMultiplier")
+energyCostMultiplierReadout = NodePath("CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer7/HBoxContainer/HBoxContainer/EnergyCostMultiplierReadout")
 autoEvoStrengthMultiplier = NodePath("CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer15/HBoxContainer/HBoxContainer/AutoEvoMultiplier")
 autoEvoStrengthReadout = NodePath("CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer15/HBoxContainer/HBoxContainer/AutoEvoReadout")
 fogOfWarModeDropdown = NodePath("CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer11/HBoxContainer/HBoxContainer/FogOfWarMode")
@@ -619,7 +619,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 
-[node name="OsmoregulationMultiplier" type="HSlider" parent="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer7/HBoxContainer/HBoxContainer" unique_id=1682231921]
+[node name="EnergyCostMultiplier" type="HSlider" parent="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer7/HBoxContainer/HBoxContainer" unique_id=1682231921]
 custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -633,7 +633,7 @@ value = 1.0
 layout_mode = 2
 theme_override_styles/separator = SubResource("6")
 
-[node name="OsmoregulationMultiplierReadout" type="LineEdit" parent="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer7/HBoxContainer/HBoxContainer" unique_id=1063417635]
+[node name="EnergyCostMultiplierReadout" type="LineEdit" parent="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer7/HBoxContainer/HBoxContainer" unique_id=1063417635]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 text = "1"
@@ -1127,7 +1127,7 @@ text = "START_GAME"
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/CompoundDensity" to="." method="OnCompoundDensityValueChanged"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer3/HBoxContainer/HBoxContainer/PopulationPenalty" to="." method="OnPlayerDeathPopulationPenaltyValueChanged"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer4/HBoxContainer/HBoxContainer/GlucoseDecayRate" to="." method="OnGlucoseDecayRateValueChanged"]
-[connection signal="value_changed" from="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer7/HBoxContainer/HBoxContainer/OsmoregulationMultiplier" to="." method="OnEnergyCostMultiplierValueChanged"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer7/HBoxContainer/HBoxContainer/EnergyCostMultiplier" to="." method="OnEnergyCostMultiplierValueChanged"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer15/HBoxContainer/HBoxContainer/AutoEvoMultiplier" to="." method="OnAutoEvoStrengthValueChanged"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer16/HBoxContainer/HBoxContainer/PlayerSpeciesAIPopStrength" to="." method="OnPlayerSpeciesAIPopulationStrengthValueChanged"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer14/HBoxContainer/HBoxContainer/ReproductionCompounds" to="." method="OnReproductionCompoundModeChanged"]
