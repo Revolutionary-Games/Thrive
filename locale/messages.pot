@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-08 23:11+0200\n"
+"POT-Creation-Date: 2026-04-09 12:05+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -75,7 +75,7 @@ msgstr ""
 msgid "ACHIEVEMENT_LOCKED"
 msgstr ""
 
-#: ../src/macroscopic_stage/MacroscopicHUD.cs:260
+#: ../src/macroscopic_stage/MacroscopicHUD.cs:259
 #: ../src/macroscopic_stage/MacroscopicHUD.tscn:276
 msgid "ACTION_AWAKEN"
 msgstr ""
@@ -502,7 +502,7 @@ msgstr ""
 msgid "AUTO_MOVE_FORWARDS"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.cs:925
+#: ../src/gui_common/menus/OptionsMenu.cs:939
 #: ../src/gui_common/menus/OptionsMenu.tscn:556
 msgid "AUTO_RESOLUTION"
 msgstr ""
@@ -629,12 +629,12 @@ msgstr ""
 msgid "BATHYPELAGIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:926
+#: ../src/microbe_stage/MicrobeHUD.cs:897
 #: ../src/microbe_stage/MicrobeHUD.tscn:431
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:877
+#: ../src/microbe_stage/MicrobeHUD.cs:848
 #: ../src/microbe_stage/MicrobeHUD.tscn:424
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
@@ -2133,7 +2133,7 @@ msgstr ""
 msgid "DECREASE_ITEM_SIZE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.cs:1563
+#: ../src/gui_common/menus/OptionsMenu.cs:1580
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
@@ -2391,11 +2391,11 @@ msgstr ""
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.cs:942
+#: ../src/gui_common/menus/OptionsMenu.cs:956
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.cs:939
+#: ../src/gui_common/menus/OptionsMenu.cs:953
 msgid "DISPLAY_DRIVER_VULKAN"
 msgstr ""
 
@@ -3208,12 +3208,12 @@ msgstr ""
 msgid "FOSSILISATION_FAILED_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:798
+#: ../src/microbe_stage/MicrobeHUD.cs:769
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:16
 msgid "FOSSILISATION_HINT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:797
+#: ../src/microbe_stage/MicrobeHUD.cs:768
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
@@ -4549,15 +4549,15 @@ msgstr ""
 msgid "LANGUAGE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.cs:1615
+#: ../src/gui_common/menus/OptionsMenu.cs:1632
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.cs:1611
+#: ../src/gui_common/menus/OptionsMenu.cs:1628
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.cs:1607
+#: ../src/gui_common/menus/OptionsMenu.cs:1624
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 
@@ -5189,8 +5189,8 @@ msgid "METRICS_CONTENT"
 msgstr ""
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:168
-#: ../src/gui_common/menus/OptionsMenu.cs:1691
-#: ../src/gui_common/menus/OptionsMenu.cs:2472
+#: ../src/gui_common/menus/OptionsMenu.cs:1708
+#: ../src/gui_common/menus/OptionsMenu.cs:2650
 #: ../src/saving/SaveManagerGUI.cs:115
 msgid "MIB_VALUE"
 msgstr ""
@@ -5768,11 +5768,11 @@ msgstr ""
 msgid "MOD_VERSION"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.cs:884
+#: ../src/gui_common/menus/OptionsMenu.cs:898
 msgid "MONITOR_AUTO"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.cs:888
+#: ../src/gui_common/menus/OptionsMenu.cs:902
 msgid "MONITOR_IDENTIFIER"
 msgstr ""
 
@@ -6349,7 +6349,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:3050
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:3062
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:154
-#: ../src/microbe_stage/MicrobeHUD.cs:745
+#: ../src/microbe_stage/MicrobeHUD.cs:716
 msgid "N_A"
 msgstr ""
 
@@ -6807,8 +6807,8 @@ msgstr ""
 #: ../src/general/world_effects/GlucoseReductionEffect.cs:125
 #: ../src/general/WorldGenerationSettings.cs:381
 #: ../src/gui_common/CompoundAmount.cs:316
-#: ../src/gui_common/menus/OptionsMenu.cs:962
-#: ../src/gui_common/menus/OptionsMenu.cs:2011
+#: ../src/gui_common/menus/OptionsMenu.cs:976
+#: ../src/gui_common/menus/OptionsMenu.cs:2060
 #: ../src/gui_common/menus/PlanetStatistics.cs:113
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:570
 #: ../src/microbe_stage/editor/MutationPointsBar.cs:101
@@ -6917,7 +6917,7 @@ msgstr ""
 msgid "PLANET_STATISTICS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:780
+#: ../src/microbe_stage/MicrobeHUD.cs:751
 msgid "PLAYER"
 msgstr ""
 
@@ -9228,7 +9228,7 @@ msgstr ""
 msgid "UNBIND_HELP_TEXT"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.cs:1705
+#: ../src/gui_common/menus/OptionsMenu.cs:1722
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
 
@@ -9295,7 +9295,7 @@ msgstr ""
 msgid "UNKNOWN"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.cs:946
+#: ../src/gui_common/menus/OptionsMenu.cs:960
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr ""
 
@@ -9316,7 +9316,7 @@ msgstr ""
 msgid "UNKNOWN_SHORT"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.cs:1720
+#: ../src/gui_common/menus/OptionsMenu.cs:1737
 msgid "UNKNOWN_VERSION"
 msgstr ""
 
@@ -9604,7 +9604,7 @@ msgstr ""
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.cs:956
+#: ../src/gui_common/menus/OptionsMenu.cs:970
 #: ../src/gui_common/menus/OptionsMenu.tscn:1087
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
