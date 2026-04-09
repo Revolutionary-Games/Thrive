@@ -542,7 +542,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         ingestedMatterBar.UpdateValue(GetPlayerUsedIngestionCapacity(), maxSize);
     }
 
-    protected override IEnumerable<IProcessDisplayInfo>? GetPlayerProcessStatistics()
+    protected override IEnumerable<IProcessDisplayInfo> GetPlayerProcessStatistics()
     {
         foreach (var process in organismProcesses)
         {
@@ -550,63 +550,34 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             process.Value.Marked = false;
         }
 
-        var playerProcesses = stage!.Player.Get<BioProcesses>().ProcessStatistics?.Processes;
-
-        if (playerProcesses == null)
+        if (stage!.Player.TryGet<MicrobeColony>(out var colony))
         {
-            GD.PrintErr("Player process statistics are uninitialized, can't display them in the process panel");
-
-            return null;
-        }
-
-        foreach (var process in playerProcesses)
-        {
-            var display = process.Value.ComputeAverageValues();
-
-            if (!organismProcesses.TryGetValue(process.Key.Process, out var stats))
+            foreach (var colonyMember in colony.ColonyMembers)
             {
-                stats = new SummedProcessStatistics(display);
-                organismProcesses[process.Key.Process] = stats;
-            }
-            else
-            {
-                stats.AddProcess(display);
-            }
-
-            stats.Marked = true;
-        }
-
-        if (stage.Player.TryGet<MicrobeColony>(out var colony))
-        {
-            for (int i = 1; i < colony.ColonyMembers.Length; ++i)
-            {
-                var colonyMemberProcesses = colony.ColonyMembers[i].Get<BioProcesses>().ProcessStatistics?.Processes;
-
-                if (colonyMemberProcesses == null)
+                if (colonyMember.TryGet<BioProcesses>(out var stats) && stats.ProcessStatistics != null)
+                {
+                    foreach (var process in stats.ProcessStatistics.Processes)
+                    {
+                        AddStatisticsToProcesses(process.Value, organismProcesses);
+                    }
+                }
+                else
                 {
                     GD.PrintErr(
                         "Colony member process statistics are uninitialized, can't display them in the process panel");
-
-                    continue;
-                }
-
-                foreach (var process in colonyMemberProcesses)
-                {
-                    var display = process.Value.ComputeAverageValues();
-
-                    if (!organismProcesses.TryGetValue(process.Key.Process, out var stats))
-                    {
-                        stats = new SummedProcessStatistics(display);
-                        organismProcesses[process.Key.Process] = stats;
-                    }
-                    else
-                    {
-                        stats.AddProcess(display);
-                    }
-
-                    stats.Marked = true;
                 }
             }
+        }
+        else if (stage!.Player.TryGet<BioProcesses>(out var stats) && stats.ProcessStatistics != null)
+        {
+            foreach (var process in stats.ProcessStatistics.Processes)
+            {
+                AddStatisticsToProcesses(process.Value, organismProcesses);
+            }
+        }
+        else
+        {
+            GD.PrintErr("Player process statistics are uninitialized, can't display them in the process panel");
         }
 
         // Clear unmarked items
@@ -1146,6 +1117,19 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
                 activeProcesses[i] = process;
             }
         }
+    }
+
+    private void AddStatisticsToProcesses(SingleProcessStatistics stats,
+        Dictionary<BioProcess, SummedProcessStatistics> processes)
+    {
+        if (!processes.TryGetValue(stats.Process.Process, out var value))
+        {
+            value = new SummedProcessStatistics(stats.Process);
+            processes.Add(stats.Process.Process, value);
+        }
+
+        value.SumWithStatistics(stats);
+        value.Marked = true;
     }
 
     private void OnRevertPromptClosed()
