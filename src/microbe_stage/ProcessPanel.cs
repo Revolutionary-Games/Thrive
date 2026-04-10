@@ -28,9 +28,6 @@ public partial class ProcessPanel : CustomWindow
     [Signal]
     public delegate void ToggleProcessPressedEventHandler(ChemicalEquation equation);
 
-    [Signal]
-    public delegate void ChoosenCellDeselectedEventHandler();
-
     public IEnumerable<IProcessDisplayInfo>? ShownData { get; set; }
 
     public bool IsMicrobe
