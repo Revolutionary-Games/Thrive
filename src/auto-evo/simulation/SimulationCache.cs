@@ -702,7 +702,7 @@ public class SimulationCache
             pilusScore = 0;
         pilusScore *= catchScore + accidentalCatchScore;
 
-        // Prey can use offensive pili for defense in these encounters, but only if they have the right behaviour
+        // Prey can use offensive pili for defense in these encounters, but only if they have the right behavior
         preyPilusScore *= (catchScore + accidentalCatchScore) * preyRotationModifier * defenseScoreModifier *
             preyAggressionScore * (1 - preyFearScore);
 
@@ -754,6 +754,10 @@ public class SimulationCache
             damagingToxinScore += channelInhibitorScore;
         if (predatorInhibitedPreyEnergyProduction < predatorOsmoregulationCost)
             damagingToxinScore += channelInhibitorScore;
+
+        // MicrobeAISystem makes prey not fire toxins against predators under this condition
+        if (preyFearScore >= preyAggressionScore)
+            preyDamagingToxinScore = 0;
 
         if (damagingToxinScore > 0)
         {
