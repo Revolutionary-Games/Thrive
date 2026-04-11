@@ -206,6 +206,8 @@ public class OrganelleDefinition : RegistryType, IPlayerReadableName
     public CommonMutationFunctions.OrganelleAddStrategy SuggestionPlacement =
         CommonMutationFunctions.OrganelleAddStrategy.Spiral;
 
+    public string[]? IncompatibleMembraneNames;
+
     /// <summary>
     ///   Caches the rotated hexes
     /// </summary>

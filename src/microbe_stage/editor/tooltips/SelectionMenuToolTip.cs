@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Text;
 using Godot;
 
 /// <summary>
@@ -36,6 +37,9 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     private Label requiresNucleusLabel = null!;
 
     [Export]
+    private Label incompatibleMembranesLabel = null!;
+
+    [Export]
     private ModifierInfoLabel osmoregulationModifier = null!;
 
     [Export]
@@ -61,6 +65,7 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     private float osmoregulationCost;
     private bool showOsmoregulation = true;
     private bool requiresNucleus;
+    private string[]? incompatibleMembraneNames;
     private string? thriveopediaPageName;
     private bool hasProcesses;
 
@@ -166,6 +171,17 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     }
 
     [Export]
+    public string[]? IncompatibleMembraneNames
+    {
+        get => incompatibleMembraneNames;
+        set
+        {
+            incompatibleMembraneNames = value;
+            UpdateIncompatibleMembranes();
+        }
+    }
+
+    [Export]
     public string? ThriveopediaPageName
     {
         get => thriveopediaPageName;
@@ -198,6 +214,7 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
         UpdateProcessesDescription();
         UpdateMpCost();
         UpdateRequiresNucleus();
+        UpdateIncompatibleMembranes();
         UpdateLists();
         UpdateMoreInfo();
 
@@ -456,6 +473,28 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     private void UpdateRequiresNucleus()
     {
         requiresNucleusLabel.Visible = requiresNucleus;
+    }
+
+    private void UpdateIncompatibleMembranes()
+    {
+        incompatibleMembranesLabel.Visible = incompatibleMembraneNames != null;
+
+        if (incompatibleMembraneNames != null)
+        {
+            var stringBuilder = new StringBuilder();
+
+            foreach (var membrane in incompatibleMembraneNames)
+            {
+                if (stringBuilder.Length > 0)
+                {
+                    stringBuilder.Append(", ");
+                }
+
+                stringBuilder.Append(SimulationParameters.Instance.GetMembrane(membrane).Name);
+            }
+
+            incompatibleMembranesLabel.Text = Localization.Translate("INCOMPATIBLE_MEMBRANE_LIST").FormatSafe(stringBuilder.ToString());
+        }
     }
 
     private void UpdateLists()
