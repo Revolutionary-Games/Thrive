@@ -351,6 +351,10 @@ public partial class CellEditorComponent
             {
                 tooltip?.IncompatibleMembraneNames = organelle.IncompatibleMembraneNames;
             }
+            else
+            {
+                tooltip?.IncompatibleMembraneNames = null;
+            }
         }
 
         CreateUndiscoveredOrganellesButtons(true, autoUnlockOrganelles);

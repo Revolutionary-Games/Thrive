@@ -1387,6 +1387,9 @@ public partial class CellEditorComponent :
 
         // In case the action failed, we need to make sure the membrane buttons are updated properly
         UpdateMembraneButtons(Membrane.InternalName);
+
+        UpdatePartsAvailability(PlacedUniqueOrganelles.ToList());
+        UpdateOrganelleUnlockTooltips(false);
     }
 
     public void OnRigidityChanged(int desiredRigidity)
@@ -2692,6 +2695,11 @@ public partial class CellEditorComponent :
             item.Locked = true;
         }
         else if (organelle.RequiresNucleus && !placedUniqueOrganelleNames.Contains(nucleus))
+        {
+            item.Locked = true;
+        }
+        else if (organelle.IncompatibleMembraneNames != null
+            && organelle.IncompatibleMembraneNames.Contains(Membrane.InternalName))
         {
             item.Locked = true;
         }
