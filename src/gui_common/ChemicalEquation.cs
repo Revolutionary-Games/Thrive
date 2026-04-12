@@ -50,6 +50,7 @@ public partial class ChemicalEquation : CheckButton
     private IProcessDisplayInfo? equationFromProcess;
     private bool showSpinner;
     private bool showToggle;
+    private bool showSpeedBar;
 
     // TODO: if some people prefer this on, add a GUI option to default this value as on
     private bool showFullSecondText;
@@ -104,6 +105,16 @@ public partial class ChemicalEquation : CheckButton
         {
             showToggle = value;
             UpdateHeader();
+        }
+    }
+
+    public bool ShowSpeedBar
+    {
+        get => showSpeedBar;
+        set
+        {
+            showSpeedBar = value;
+            UpdateSpeedBar();
         }
     }
 
@@ -279,13 +290,19 @@ public partial class ChemicalEquation : CheckButton
         // Environment conditions
         UpdateEnvironmentPart(environmentalInputs);
 
-        float speed = EquationFromProcess.CurrentSpeed;
-        processSpeedBar.Value = speed;
-        processInactiveMarker.Visible = speed <= 0.0f;
+        UpdateSpeedBar();
+
+        processInactiveMarker.Visible = EquationFromProcess.CurrentSpeed <= 0.0f;
 
         ApplyProcessToggleValue();
 
         RecalculateMinimumSize();
+    }
+
+    private void UpdateSpeedBar()
+    {
+        processSpeedBar.Visible = showSpeedBar;
+        processSpeedBar.Value = EquationFromProcess?.CurrentSpeed ?? 0.0f;
     }
 
     private void UpdateHeader()
