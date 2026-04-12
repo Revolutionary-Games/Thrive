@@ -2579,6 +2579,8 @@ public partial class CellEditorComponent :
         UpdateSpecializationDisplay();
 
         UpdateMembraneAvailability();
+
+        SetMembraneTooltips(Membrane);
     }
 
     /// <summary>

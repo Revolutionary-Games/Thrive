@@ -238,6 +238,11 @@ public partial class CellEditorComponent
         {
             var tooltip = GetSelectionTooltip(membraneType.InternalName, "membraneSelection");
             tooltip?.WriteMembraneModifierList(referenceMembrane, membraneType);
+
+            if (membraneSelectionElements[membraneType].Locked)
+            {
+                tooltip.IncompatibleMembraneNames = new [] { "single" };
+            }
         }
 
         // Osmoregulation cost is based on the membrane, so update the osmoregulation tooltips
