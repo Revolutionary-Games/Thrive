@@ -2476,13 +2476,35 @@ public partial class CellEditorComponent :
     }
 
     /// <summary>
-    ///   Lock / unlock the organelles that need a nucleus
+    ///   Lock / unlock the organelles that need a nucleus or have other requirements
     /// </summary>
-    private void UpdatePartsAvailability(List<OrganelleDefinition> placedUniqueOrganelleNames)
+    private void UpdatePartsAvailability(List<OrganelleDefinition> placedUniqueOrganelles)
     {
         foreach (var organelle in placeablePartSelectionElements.Keys)
         {
-            UpdatePartAvailability(placedUniqueOrganelleNames, organelle);
+            UpdatePartAvailability(placedUniqueOrganelles, organelle);
+        }
+    }
+
+    private void UpdateMembraneAvailability()
+    {
+        foreach (var membrane in membraneSelectionElements)
+        {
+            membrane.Value.Locked = false;
+
+            foreach (var organelle in editedMicrobeOrganelles)
+            {
+                if (organelle.Definition.IncompatibleMembraneNames == null)
+                    continue;
+
+                membrane.Value.Locked =
+                    organelle.Definition.IncompatibleMembraneNames.Contains(membrane.Key.InternalName);
+
+                if (membrane.Value.Locked)
+                {
+                    break;
+                }
+            }
         }
     }
 
@@ -2555,6 +2577,8 @@ public partial class CellEditorComponent :
         UpdateGrowthOrderUI();
 
         UpdateSpecializationDisplay();
+
+        UpdateMembraneAvailability();
     }
 
     /// <summary>
@@ -2685,16 +2709,16 @@ public partial class CellEditorComponent :
     /// <summary>
     ///   Lock / unlock organelle buttons that need a nucleus or are already placed (if unique)
     /// </summary>
-    private void UpdatePartAvailability(List<OrganelleDefinition> placedUniqueOrganelleNames,
+    private void UpdatePartAvailability(List<OrganelleDefinition> placedUniqueOrganelles,
         OrganelleDefinition organelle)
     {
         var item = placeablePartSelectionElements[organelle];
 
-        if (organelle.Unique && placedUniqueOrganelleNames.Contains(organelle))
+        if (organelle.Unique && placedUniqueOrganelles.Contains(organelle))
         {
             item.Locked = true;
         }
-        else if (organelle.RequiresNucleus && !placedUniqueOrganelleNames.Contains(nucleus))
+        else if (organelle.RequiresNucleus && !placedUniqueOrganelles.Contains(nucleus))
         {
             item.Locked = true;
         }
