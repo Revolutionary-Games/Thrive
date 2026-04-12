@@ -1,11 +1,12 @@
 ﻿namespace AutoEvo;
 
 using System;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using SharedBase.Archive;
 
 public class CompoundCloudPressure : SelectionPressure
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     // Needed for translation extraction
     // ReSharper disable ArrangeObjectCreationWhenTypeEvident
@@ -13,13 +14,16 @@ public class CompoundCloudPressure : SelectionPressure
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
+    private readonly CompoundDefinition atp = SimulationParameters.GetCompound(Compound.ATP);
+
     private readonly Compound compound;
+    private readonly CompoundDefinition compoundOut;
 
     private readonly CompoundDefinition compoundDefinition;
 
     private readonly bool isDayNightCycleEnabled;
 
-    public CompoundCloudPressure(Compound compound, bool isDayNightCycleEnabled, float weight) :
+    public CompoundCloudPressure(Compound compound, Compound compoundOut, bool isDayNightCycleEnabled, float weight) :
         base(weight, [
             RemoveOrganelle.ThatCreateCompound(Compound.Glucose),
             AddOrganelleAnywhere.ThatUseCompound(compound),
@@ -36,6 +40,7 @@ public class CompoundCloudPressure : SelectionPressure
             throw new ArgumentException("Given compound to cloud pressure is not of cloud type");
 
         this.compound = compound;
+        this.compoundOut = SimulationParameters.GetCompound(compoundOut);
         this.isDayNightCycleEnabled = isDayNightCycleEnabled;
     }
 
@@ -46,13 +51,27 @@ public class CompoundCloudPressure : SelectionPressure
     public override ArchiveObjectType ArchiveObjectType =>
         (ArchiveObjectType)ThriveArchiveObjectType.CompoundCloudPressure;
 
-    public static CompoundCloudPressure ReadFromArchive(ISArchiveReader reader, ushort version,
+    public static CompoundCloudPressure ReadFromArchive(
+        ISArchiveReader reader,
+        ushort version,
         int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        var instance = new CompoundCloudPressure((Compound)reader.ReadInt32(), reader.ReadBool(), reader.ReadFloat());
+        Compound compoundOut;
+
+        if (version >= 2)
+        {
+            compoundOut = (Compound)reader.ReadInt32();
+        }
+        else
+        {
+            compoundOut = Compound.ATP;
+        }
+
+        var instance = new CompoundCloudPressure((Compound)reader.ReadInt32(), compoundOut, reader.ReadBool(),
+            reader.ReadFloat());
 
         instance.ReadBasePropertiesFromArchive(reader, 1);
         return instance;
@@ -61,6 +80,7 @@ public class CompoundCloudPressure : SelectionPressure
     public override void WriteToArchive(ISArchiveWriter writer)
     {
         writer.Write((int)compound);
+        writer.Write((int)compoundOut.ID);
         writer.Write(isDayNightCycleEnabled);
         base.WriteToArchive(writer);
     }
@@ -95,6 +115,27 @@ public class CompoundCloudPressure : SelectionPressure
 
         score = (score + chemoreceptorScore) * activityFraction
             + score * (1 - activityFraction) * Constants.AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION;
+
+        // Diminishing returns on storage
+        score += (MathF.Pow(microbeSpecies.StorageCapacities.Nominal + 1, 0.8f) - 1) / 0.8f;
+
+        float compoundATP;
+        if (compoundOut != atp)
+        {
+            var compoundOutGenerated =
+                cache.GetCompoundGeneratedFrom(compoundDefinition, compoundOut, microbeSpecies, patch.Biome);
+            compoundATP = cache.GetCompoundConversionScoreForSpecies(compoundOut, atp, microbeSpecies) *
+                compoundOutGenerated;
+        }
+        else
+        {
+            compoundATP = cache.GetCompoundGeneratedFrom(compoundDefinition, atp, microbeSpecies, patch.Biome);
+        }
+
+        var energyBalance = cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome);
+
+        // Penalize species that don't produce enough ATP to survive from just the compound in this cloud
+        score *= MathF.Min(compoundATP / energyBalance.TotalConsumption, 1);
 
         return score;
     }
