@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-10 10:30+0200\n"
+"POT-Creation-Date: 2026-04-13 23:33+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1049,6 +1049,10 @@ msgstr ""
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
 
+#: ../src/gui_common/ChemicalEquation.tscn:108
+msgid "CHEMICAL_EQUATION_SPEED_EXPLANATION"
+msgstr ""
+
 #: ../simulation_parameters/microbe_stage/organelles.json:636
 msgid "CHEMOPLAST"
 msgstr ""
@@ -1217,7 +1221,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1379
 #: ../src/microbe_stage/editor/EndosymbiosisPopup.tscn:123
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:606
-#: ../src/microbe_stage/ProcessPanel.tscn:149 ../src/modding/ModManager.tscn:698
+#: ../src/microbe_stage/ProcessPanel.tscn:122 ../src/modding/ModManager.tscn:698
 #: ../src/thriveopedia/Thriveopedia.tscn:322
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:223
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:319
@@ -5780,7 +5784,7 @@ msgstr ""
 msgid "MORE_INFO"
 msgstr ""
 
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:149
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:150
 msgid "MORE_INFO_PROMPT"
 msgstr ""
 
@@ -5924,7 +5928,7 @@ msgstr ""
 msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr ""
 
-#: ../src/microbe_stage/ProcessPanel.tscn:167
+#: ../src/microbe_stage/ProcessPanel.tscn:140
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr ""
 
@@ -6581,7 +6585,7 @@ msgid "OSMOREGULATION"
 msgstr ""
 
 #: ../src/microbe_stage/editor/tooltips/EnvironmentalToleranceToolTip.tscn:121
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:118
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:119
 msgid "OSMOREGULATION_COST"
 msgstr ""
 
@@ -6845,13 +6849,13 @@ msgstr ""
 msgid "PERFORM_UNBINDING"
 msgstr ""
 
-#: ../src/gui_common/ChemicalEquation.cs:230
-#: ../src/gui_common/ChemicalEquation.cs:274
+#: ../src/gui_common/ChemicalEquation.cs:244
+#: ../src/gui_common/ChemicalEquation.cs:288
 msgid "PER_SECOND_ABBREVIATION"
 msgstr ""
 
-#: ../src/gui_common/ChemicalEquation.cs:229
-#: ../src/gui_common/ChemicalEquation.cs:273
+#: ../src/gui_common/ChemicalEquation.cs:243
+#: ../src/gui_common/ChemicalEquation.cs:287
 msgid "PER_SECOND_SLASH"
 msgstr ""
 
@@ -7072,26 +7076,26 @@ msgstr ""
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr ""
 
-#: ../src/gui_common/ChemicalEquation.cs:410
+#: ../src/gui_common/ChemicalEquation.cs:430
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr ""
 
-#: ../src/gui_common/ChemicalEquation.tscn:126
+#: ../src/gui_common/ChemicalEquation.tscn:129
 msgid "PROCESS_INACTIVE"
 msgstr ""
 
-#: ../src/microbe_stage/ProcessPanel.tscn:154
+#: ../src/microbe_stage/ProcessPanel.tscn:127
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/ProcessPanel.cs:92
-#: ../src/microbe_stage/ProcessPanel.tscn:40
+#: ../src/microbe_stage/ProcessPanel.cs:89
+#: ../src/microbe_stage/ProcessPanel.tscn:34
 #: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:890
 msgid "PROCESS_PANEL_TITLE"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1308
-#: ../src/microbe_stage/ProcessPanel.cs:91
+#: ../src/microbe_stage/ProcessPanel.cs:88
 msgid "PROCESS_PANEL_TITLE_MICROBE"
 msgstr ""
 
