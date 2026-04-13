@@ -86,6 +86,9 @@ public class ChunkCompoundPressure : SelectionPressure
         // Speed is not too important to chunk microbes, but all else being the same faster is better than slower
         score += MathF.Pow(cache.GetSpeedForSpecies(microbeSpecies), 0.4f);
 
+        // Diminishing returns on storage
+        score += (MathF.Pow(microbeSpecies.StorageCapacities.Nominal + 1, 0.8f) - 1) / 0.8f;
+
         // Additional bonus from chemoreceptor
         var chemoreceptorScore = cache.GetChemoreceptorChunkScore(microbeSpecies, chunk, compound);
 
@@ -94,9 +97,6 @@ public class ChunkCompoundPressure : SelectionPressure
 
         score = (score + chemoreceptorScore) * activityFraction
             + score * (1 - activityFraction) * Constants.AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION;
-
-        // Diminishing returns on storage
-        score += (MathF.Pow(microbeSpecies.StorageCapacities.Nominal + 1, 0.8f) - 1) / 0.8f;
 
         // If the species can't engulf, then they are dependent on only eating the runoff compounds
         if (!microbeSpecies.CanEngulf ||

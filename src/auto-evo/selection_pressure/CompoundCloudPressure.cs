@@ -92,6 +92,9 @@ public class CompoundCloudPressure : SelectionPressure
 
         var score = MathF.Pow(cache.GetSpeedForSpecies(microbeSpecies), 0.6f);
 
+        // Diminishing returns on storage
+        score += (MathF.Pow(microbeSpecies.StorageCapacities.Nominal + 1, 0.8f) - 1) / 0.8f;
+
         var activity = microbeSpecies.Behaviour.Activity;
 
         // Species that are less active during the night get a small penalty here based on their activity
@@ -115,9 +118,6 @@ public class CompoundCloudPressure : SelectionPressure
 
         score = (score + chemoreceptorScore) * activityFraction
             + score * (1 - activityFraction) * Constants.AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION;
-
-        // Diminishing returns on storage
-        score += (MathF.Pow(microbeSpecies.StorageCapacities.Nominal + 1, 0.8f) - 1) / 0.8f;
 
         float compoundATP;
         if (compoundOut != atp)
