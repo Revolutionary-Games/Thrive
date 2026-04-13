@@ -46,11 +46,17 @@ public class EnergyConsumptionPressure : SelectionPressure
             return 0;
 
         var energyBalance = cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome);
-        var activityScore = species.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
+        var inactivityFraction = species.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
+
+        // even inactive species still spend energy when chasing prey or running away from predators
+        inactivityFraction *= 1 - microbeSpecies.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION *
+            Constants.AUTO_EVO_MAX_AGGRESSION_GATHERING_PENALTY;
+        inactivityFraction *= 1 - microbeSpecies.Behaviour.Fear / Constants.MAX_SPECIES_FEAR *
+            Constants.AUTO_EVO_MAX_FEAR_GATHERING_PENALTY;
 
         // Calculate how much energy is typically being consumed
-        var energyConsumption = (1 - activityScore) * energyBalance.TotalConsumptionStationary;
-        energyConsumption += activityScore * energyBalance.TotalConsumption;
+        var energyConsumption = inactivityFraction * energyBalance.TotalConsumptionStationary;
+        energyConsumption += (1 - inactivityFraction) * energyBalance.TotalConsumption;
 
         // Modifier to fit the current mechanics of the Binding Agent. This should probably be removed or adjusted if
         // being in a colony no longer reduces osmoregulation cost.
