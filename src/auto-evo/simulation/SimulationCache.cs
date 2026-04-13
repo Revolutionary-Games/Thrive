@@ -697,9 +697,7 @@ public class SimulationCache
             preyPilusScore *= signallingBonus;
 
         // Use catch score for Pili
-        pilusScore -= defensivePilusScore;
-        if (pilusScore < 0)
-            pilusScore = 0;
+        pilusScore /= Math.Max(1, defensivePilusScore);
         pilusScore *= catchScore + accidentalCatchScore;
 
         // Prey can use offensive pili for defense in these encounters, but only if they have the right behavior
@@ -729,10 +727,7 @@ public class SimulationCache
             // Engulfing prey by luck is especially easy if you are huge.
             // This is also used to incentivize size in microbe species.
             engulfmentScore = (catchScore + accidentalCatchScore * predatorHexSize) *
-                (Constants.AUTO_EVO_ENGULF_PREDATION_SCORE - defensivePilusScore - totalPreyToxinContent);
-            if (engulfmentScore < 0)
-                engulfmentScore = 0;
-
+                (Constants.AUTO_EVO_ENGULF_PREDATION_SCORE / Math.Max(1, defensivePilusScore + totalPreyToxinContent));
             engulfmentScore *= enzymesScore;
         }
 
@@ -861,8 +856,8 @@ public class SimulationCache
             preySlimeJetScore = 0;
 
         cached = scoreMultiplier * aggressionScore *
-            (pilusScore + engulfmentScore + damagingToxinScore) - (preySlimeJetScore + preyMucocystsScore +
-                preyPilusScore + preyDamagingToxinScore);
+            ((pilusScore + engulfmentScore + damagingToxinScore) / Math.Max(1, preySlimeJetScore + preyMucocystsScore +
+                preyPilusScore + preyDamagingToxinScore));
         if (cached < 0)
             cached = 0;
 
