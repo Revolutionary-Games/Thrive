@@ -71,7 +71,6 @@ public class ReproductionCompoundPressure : SelectionPressure
 
         var activeProcessList = cache.GetActiveProcessList(microbeSpecies);
 
-
         // Let the miche function even at a compound level of 0
         var compoundAmount = 1.0f;
 
@@ -131,15 +130,6 @@ public class ReproductionCompoundPressure : SelectionPressure
         score *= compoundAmount;
         chemoreceptorScore *= compoundAmount;
 
-        // Score from organelles that produce this compound
-        foreach (var process in activeProcessList)
-        {
-            if (process.Process.Outputs.TryGetValue(compoundDefinition, out var producedCompoundAmount))
-            {
-                score += producedCompoundAmount * Constants.AUTO_EVO_REPRODUCTION_COMPOUND_PRODUCTION_SCORE;
-            }
-        }
-
         var finalScore = 0.1f;
 
         var activity = microbeSpecies.Behaviour.Activity;
@@ -160,6 +150,15 @@ public class ReproductionCompoundPressure : SelectionPressure
 
         finalScore += (score + chemoreceptorScore) * activityFraction;
         finalScore += score * (1 - activityFraction) * Constants.AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION;
+
+        // Score from organelles that produce this compound
+        foreach (var process in activeProcessList)
+        {
+            if (process.Process.Outputs.TryGetValue(compoundDefinition, out var producedCompoundAmount))
+            {
+                finalScore += producedCompoundAmount * Constants.AUTO_EVO_REPRODUCTION_COMPOUND_PRODUCTION_SCORE;
+            }
+        }
 
         // Take into account how much compound the species needs to collect
         finalScore /= species.TotalReproductionCost[compound] * mildingModifier;
