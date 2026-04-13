@@ -70,7 +70,7 @@ public class ReproductionCompoundPressure : SelectionPressure
             return 0;
 
         var activeProcessList = cache.GetActiveProcessList(microbeSpecies);
-        var activity = microbeSpecies.Behaviour.Activity;
+
 
         // Let the miche function even at a compound level of 0
         var compoundAmount = 1.0f;
@@ -83,20 +83,6 @@ public class ReproductionCompoundPressure : SelectionPressure
         }
 
         var score = MathF.Pow(cache.GetSpeedForSpecies(microbeSpecies), 0.6f);
-
-        // Species that are less active during the night get a small penalty here based on their activity
-        if (isDayNightCycleEnabled && cache.GetUsesVaryingCompoundsForSpecies(microbeSpecies, patch.Biome))
-        {
-            var multiplier = activity / Constants.AI_ACTIVITY_TO_BE_FULLY_ACTIVE_DURING_NIGHT;
-
-            // Make the multiplier less extreme
-            multiplier *= Constants.AUTO_EVO_NIGHT_SESSILITY_COLLECTING_PENALTY_MULTIPLIER;
-
-            multiplier = Math.Max(multiplier, Constants.AUTO_EVO_MAX_NIGHT_SESSILITY_COLLECTING_PENALTY);
-
-            if (multiplier <= 1)
-                score *= multiplier;
-        }
 
         var chemoreceptorScore = cache.GetChemoreceptorCloudScore(microbeSpecies, compoundDefinition, patch.Biome);
         score += chemoreceptorScore;
@@ -155,6 +141,19 @@ public class ReproductionCompoundPressure : SelectionPressure
         }
 
         var finalScore = 0.1f;
+
+        var activity = microbeSpecies.Behaviour.Activity;
+
+        // Species that are less active during the night get a penalty to their activity
+        if (isDayNightCycleEnabled && cache.GetUsesVaryingCompoundsForSpecies(microbeSpecies, patch.Biome))
+        {
+            var multiplier = activity / Constants.AI_ACTIVITY_TO_BE_FULLY_ACTIVE_DURING_NIGHT;
+
+            multiplier = Math.Max(multiplier, Constants.AUTO_EVO_MAX_NIGHT_SESSILITY_COLLECTING_PENALTY);
+
+            if (multiplier <= 1)
+                activity *= multiplier;
+        }
 
         // modify score by activity
         var activityFraction = activity / Constants.MAX_SPECIES_ACTIVITY;

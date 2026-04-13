@@ -97,23 +97,20 @@ public class CompoundCloudPressure : SelectionPressure
         // Diminishing returns on storage
         score += (MathF.Pow(microbeSpecies.StorageCapacities.Nominal + 1, 0.8f) - 1) / 0.8f;
 
+        var chemoreceptorScore = cache.GetChemoreceptorCloudScore(microbeSpecies, compoundDefinition, patch.Biome);
+
         var activity = microbeSpecies.Behaviour.Activity;
 
-        // Species that are less active during the night get a small penalty here based on their activity
+        // Species that are less active during the night get a penalty to their activity
         if (isDayNightCycleEnabled && cache.GetUsesVaryingCompoundsForSpecies(microbeSpecies, patch.Biome))
         {
             var multiplier = activity / Constants.AI_ACTIVITY_TO_BE_FULLY_ACTIVE_DURING_NIGHT;
 
-            // Make the multiplier less extreme
-            multiplier *= Constants.AUTO_EVO_NIGHT_SESSILITY_COLLECTING_PENALTY_MULTIPLIER;
-
             multiplier = Math.Max(multiplier, Constants.AUTO_EVO_MAX_NIGHT_SESSILITY_COLLECTING_PENALTY);
 
             if (multiplier <= 1)
-                score *= multiplier;
+                activity *= multiplier;
         }
-
-        var chemoreceptorScore = cache.GetChemoreceptorCloudScore(microbeSpecies, compoundDefinition, patch.Biome);
 
         // modify score by activity
         var activityFraction = activity / Constants.MAX_SPECIES_ACTIVITY;
