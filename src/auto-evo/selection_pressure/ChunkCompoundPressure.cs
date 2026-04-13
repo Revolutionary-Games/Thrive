@@ -5,7 +5,7 @@ using SharedBase.Archive;
 
 public class ChunkCompoundPressure : SelectionPressure
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     // Needed for translation extraction
     // ReSharper disable ArrangeObjectCreationWhenTypeEvident
@@ -22,8 +22,10 @@ public class ChunkCompoundPressure : SelectionPressure
     private readonly CompoundDefinition compound;
     private readonly CompoundDefinition compoundOut;
 
+    private readonly bool isDayNightCycleEnabled;
+
     public ChunkCompoundPressure(string chunkType, LocalizedString readableName, Compound compound,
-        Compound compoundOut, float weight) : base(weight, [
+        Compound compoundOut, bool isDayNightCycleEnabled, float weight) : base(weight, [
         RemoveOrganelle.ThatCreateCompound(compoundOut),
         new AddOrganelleAnywhere(organelle => organelle.HasChemoreceptorComponent),
         new AddOrganelleAnywhere(organelle => organelle.InternalName == "vacuole"),
@@ -41,6 +43,7 @@ public class ChunkCompoundPressure : SelectionPressure
         this.compoundOut = SimulationParameters.GetCompound(compoundOut);
         this.chunkType = chunkType;
         this.readableName = readableName;
+        this.isDayNightCycleEnabled = isDayNightCycleEnabled;
     }
 
     public override LocalizedString Name => NameString;
@@ -56,9 +59,20 @@ public class ChunkCompoundPressure : SelectionPressure
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
+        bool isDayNightCycleEnabled;
+
+        if (version >= 2)
+        {
+            isDayNightCycleEnabled = reader.ReadBool();
+        }
+        else
+        {
+            isDayNightCycleEnabled = true;
+        }
+
         var instance = new ChunkCompoundPressure(reader.ReadString() ?? throw new NullArchiveObjectException(),
             reader.ReadObject<LocalizedString>(), (Compound)reader.ReadInt32(), (Compound)reader.ReadInt32(),
-            reader.ReadFloat());
+            isDayNightCycleEnabled, reader.ReadFloat());
 
         instance.ReadBasePropertiesFromArchive(reader, 1);
         return instance;
@@ -70,6 +84,7 @@ public class ChunkCompoundPressure : SelectionPressure
         writer.WriteObject(readableName);
         writer.Write((int)compound.ID);
         writer.Write((int)compoundOut.ID);
+        writer.Write(isDayNightCycleEnabled);
         base.WriteToArchive(writer);
     }
 
@@ -92,8 +107,21 @@ public class ChunkCompoundPressure : SelectionPressure
         // Additional bonus from chemoreceptor
         var chemoreceptorScore = cache.GetChemoreceptorChunkScore(microbeSpecies, chunk, compound);
 
+        var activity = microbeSpecies.Behaviour.Activity;
+
+        // Species that are less active during the night get a penalty to their activity
+        if (isDayNightCycleEnabled && cache.GetUsesVaryingCompoundsForSpecies(microbeSpecies, patch.Biome))
+        {
+            var multiplier = activity / Constants.AI_ACTIVITY_TO_BE_FULLY_ACTIVE_DURING_NIGHT;
+
+            multiplier = Math.Max(multiplier, Constants.AUTO_EVO_MAX_NIGHT_SESSILITY_COLLECTING_PENALTY);
+
+            if (multiplier <= 1)
+                activity *= multiplier;
+        }
+
         // modify score by activity
-        var activityFraction = microbeSpecies.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
+        var activityFraction = activity / Constants.MAX_SPECIES_ACTIVITY;
 
         score = (score + chemoreceptorScore) * activityFraction
             + score * (1 - activityFraction) * Constants.AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION;
