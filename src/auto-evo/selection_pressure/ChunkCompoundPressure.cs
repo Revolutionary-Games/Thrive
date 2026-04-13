@@ -126,7 +126,7 @@ public class ChunkCompoundPressure : SelectionPressure
         score = (score + chemoreceptorScore) * activityFraction
             + score * (1 - activityFraction) * Constants.AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION;
 
-        // cloud compound collection is reduced if you are running away from predators instead
+        // compound collection is reduced if you are running away from predators instead
         var fearFraction = microbeSpecies.Behaviour.Fear / Constants.MAX_SPECIES_FEAR;
 
         score *= 1 - fearFraction * Constants.AUTO_EVO_MAX_FEAR_GATHERING_PENALTY;
