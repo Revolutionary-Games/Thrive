@@ -1,7 +1,6 @@
 ﻿namespace AutoEvo;
 
 using System;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using SharedBase.Archive;
 
 public class CompoundCloudPressure : SelectionPressure
