@@ -84,10 +84,16 @@ public class ReproductionCompoundPressure : SelectionPressure
         var score = MathF.Pow(cache.GetSpeedForSpecies(microbeSpecies), 0.6f);
 
         var chemoreceptorScore = cache.GetChemoreceptorCloudScore(microbeSpecies, compoundDefinition, patch.Biome);
-        score += chemoreceptorScore;
+
+        // Diminishing returns on storage
+        var capacitiesScore = (MathF.Pow(microbeSpecies.StorageCapacities.Nominal + 1, 0.8f) - 1) * 1.25f;
+        score += capacitiesScore;
+
+        // modify score by how much compound is available for collection
+        score *= compoundAmount;
+        chemoreceptorScore *= compoundAmount;
 
         // Precompute some scores to only resolve once.
-        var capacitiesScore = (MathF.Pow(microbeSpecies.StorageCapacities.Nominal + 1, 0.8f) - 1) * 1.25f;
         var speedScore = MathF.Pow(cache.GetSpeedForSpecies(microbeSpecies), 0.4f);
         var baseMicrobeHexSize = cache.GetBaseHexSizeForSpecies(microbeSpecies);
 
@@ -112,23 +118,19 @@ public class ReproductionCompoundPressure : SelectionPressure
                     baseMicrobeHexSize < chunk.Size * Constants.ENGULF_SIZE_RATIO_REQ)
                 {
                     chunkScore *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;
+                    chunkChemoreceptorScore *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;
                 }
-
-                chemoreceptorScore += chunkChemoreceptorScore;
-                score += chunkScore;
 
                 if (!chunk.Compounds.TryGetValue(compoundDefinition.ID, out var chunkCompoundAmount))
                     throw new ArgumentException("Chunk does not contain compound");
 
                 var ventedCompound = MathF.Pow(chunkCompoundAmount.Amount, Constants.AUTO_EVO_CHUNK_AMOUNT_NERF);
 
-                compoundAmount += ventedCompound;
+                // modify score by how much compound is available for collection
+                chemoreceptorScore += chunkChemoreceptorScore * ventedCompound;
+                score += chunkScore * ventedCompound;
             }
         }
-
-        // modify score by how much compound is available for collection
-        score *= compoundAmount;
-        chemoreceptorScore *= compoundAmount;
 
         var finalScore = 0.1f;
 
