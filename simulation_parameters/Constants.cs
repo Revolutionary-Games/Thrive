@@ -1313,7 +1313,7 @@ public static class Constants
     public const float AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION = 0.1f;
     public const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.4f;
 
-    public const float AUTO_EVO_ENGULF_PREDATION_SCORE = 100;
+    public const float AUTO_EVO_ENGULF_PREDATION_SCORE = 150;
     public const float AUTO_EVO_PILUS_PREDATION_SCORE = 5000;
     public const float AUTO_EVO_PILUS_DEFENSE_SCORE = 2000;
     public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 90000;
