@@ -18,6 +18,9 @@ public partial class ChemicalEquation : CheckButton
     private TextureRect? spinner;
 
     [Export]
+    private Control? spinnerController;
+
+    [Export]
     private Container firstLineContainer = null!;
 
     [Export]
@@ -307,7 +310,7 @@ public partial class ChemicalEquation : CheckButton
 
     private void UpdateHeader()
     {
-        spinner?.Visible = ShowSpinner;
+        spinnerController?.Visible = ShowSpinner;
 
         if (title == null || EquationFromProcess == null)
             return;

@@ -13,7 +13,7 @@
 default_font = ExtResource("5_wdgi7")
 default_font_size = 18
 
-[node name="ChemicalEquation" type="CheckButton" unique_id=847799233 node_paths=PackedStringArray("title", "spinner", "firstLineContainer", "environmentalPartContainer", "mainContainer", "processSpeedBar", "processInactiveMarker")]
+[node name="ChemicalEquation" type="CheckButton" unique_id=847799233 node_paths=PackedStringArray("title", "spinner", "spinnerController", "firstLineContainer", "environmentalPartContainer", "mainContainer", "processSpeedBar", "processInactiveMarker")]
 process_priority = 7
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,6 +34,7 @@ script = ExtResource("2")
 DefaultTitleFont = ExtResource("4_77wn0")
 title = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Label")
 spinner = NodePath("MarginContainer/VBoxContainer/HBoxContainer/SpinnerNode/Spinner")
+spinnerController = NodePath("MarginContainer/VBoxContainer/HBoxContainer/SpinnerNode")
 firstLineContainer = NodePath("MarginContainer/VBoxContainer/FlowContainer")
 environmentalPartContainer = NodePath("MarginContainer/VBoxContainer/MarginContainer/EnvironmentalPartLine")
 speedLimitedTitleFont = ExtResource("4_vbkf3")
