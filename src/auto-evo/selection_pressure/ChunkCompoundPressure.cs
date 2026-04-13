@@ -98,11 +98,21 @@ public class ChunkCompoundPressure : SelectionPressure
         score = (score + chemoreceptorScore) * activityFraction
             + score * (1 - activityFraction) * Constants.AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION;
 
+        // cloud compound collection is reduced if you are running away from predators instead
+        var fearFraction = microbeSpecies.Behaviour.Fear / Constants.MAX_SPECIES_FEAR;
+
+        score *= 1 - fearFraction * Constants.AUTO_EVO_MAX_FEAR_GATHERING_PENALTY;
+
         // If the species can't engulf, then they are dependent on only eating the runoff compounds
         if (!microbeSpecies.CanEngulf ||
             cache.GetBaseHexSizeForSpecies(microbeSpecies) < chunk.Size * Constants.ENGULF_SIZE_RATIO_REQ)
         {
             score *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;
+
+            // cloud compound collection is reduced if you are chasing prey instead
+            var aggressionFraction = microbeSpecies.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
+
+            score *= 1 - aggressionFraction * Constants.AUTO_EVO_MAX_AGGRESSION_GATHERING_PENALTY;
         }
 
         float compoundATP;
