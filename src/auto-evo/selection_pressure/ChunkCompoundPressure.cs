@@ -53,8 +53,7 @@ public class ChunkCompoundPressure : SelectionPressure
     public override ArchiveObjectType ArchiveObjectType =>
         (ArchiveObjectType)ThriveArchiveObjectType.ChunkCompoundPressure;
 
-    public static ChunkCompoundPressure ReadFromArchive(ISArchiveReader reader, ushort version,
-        int referenceId)
+    public static ChunkCompoundPressure ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);

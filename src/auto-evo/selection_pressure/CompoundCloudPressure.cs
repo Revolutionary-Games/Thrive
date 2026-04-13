@@ -1,6 +1,7 @@
 ﻿namespace AutoEvo;
 
 using System;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using SharedBase.Archive;
 
 public class CompoundCloudPressure : SelectionPressure
@@ -52,10 +53,7 @@ public class CompoundCloudPressure : SelectionPressure
     public override ArchiveObjectType ArchiveObjectType =>
         (ArchiveObjectType)ThriveArchiveObjectType.CompoundCloudPressure;
 
-    public static CompoundCloudPressure ReadFromArchive(
-        ISArchiveReader reader,
-        ushort version,
-        int referenceId)
+    public static CompoundCloudPressure ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
