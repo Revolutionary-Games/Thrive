@@ -617,7 +617,7 @@ public class GameProperties : IArchivable
         // Need to ensure the world has a custom difficulty we can modify here
         var modifiedDifficulty = GameWorld.WorldSettings.Difficulty.Clone();
 
-        modifiedDifficulty.OsmoregulationMultiplier *= osmoregulationMultiplier;
+        modifiedDifficulty.EnergyCostMultiplier *= osmoregulationMultiplier;
 
         GameWorld.WorldSettings.Difficulty = modifiedDifficulty;
     }

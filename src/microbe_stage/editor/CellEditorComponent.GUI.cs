@@ -250,7 +250,7 @@ public partial class CellEditorComponent
         var organelles = SimulationParameters.Instance.GetAllOrganelles();
 
         float osmoregulationCostPerHex = Membrane.OsmoregulationFactor * Constants.ATP_COST_FOR_OSMOREGULATION
-            * Editor.CurrentGame.GameWorld.WorldSettings.OsmoregulationMultiplier;
+            * Editor.CurrentGame.GameWorld.WorldSettings.EnergyCostMultiplier;
 
         foreach (var organelle in organelles)
         {

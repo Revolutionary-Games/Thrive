@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-09 23:05+0300\n"
+"POT-Creation-Date: 2026-04-10 10:30+0200\n"
 "PO-Revision-Date: 2026-03-20 15:28+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -2082,6 +2082,14 @@ msgstr ""
 #, fuzzy
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr "Тиск підтримки сполук"
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER"
+msgstr "Множник вартості мутації"
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER_EXPLANATION"
+msgstr "(ціна органел, мембран та інших речей в редакторі)"
 
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Енергія в {0} для {1}"
@@ -4781,12 +4789,6 @@ msgstr "Осморегуляція"
 
 msgid "OSMOREGULATION_COST"
 msgstr "Вартість осморегуляції"
-
-msgid "OSMOREGULATION_COST_MULTIPLIER"
-msgstr "Множник вартості осморегуляції"
-
-msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
-msgstr "(вартість осморегуляції виду гравця)"
 
 msgid "OTHER_COMPOUNDS"
 msgstr "Інші"
@@ -9368,11 +9370,11 @@ msgstr "Приблизитись"
 msgid "ZOOM_OUT"
 msgstr "Віддалитись"
 
-#~ msgid "PROCESS_TOGGLE_TOOLTIP"
-#~ msgstr ""
-#~ "Увімкнути або вимкнути цей процес. Це дозволяє краще контролювати клітинні процеси.\n"
-#~ "Наприклад, таким чином можна вимкнути продукування токсинів, коли вони не потрібні.\n"
-#~ "Або вручну збалансувати, якими джерелами енергії користуватися для більшої ефективності, але це дуже продвинута геймплейна тактика."
+#~ msgid "OSMOREGULATION_COST_MULTIPLIER"
+#~ msgstr "Множник вартості осморегуляції"
+
+#~ msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
+#~ msgstr "(вартість осморегуляції виду гравця)"
 
 #~ msgid "KEEP_CURRENT_SHORT"
 #~ msgstr "Зберегти поточний"

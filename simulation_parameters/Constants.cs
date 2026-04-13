@@ -1929,8 +1929,8 @@ public static class Constants
 
     public const float MIN_GLUCOSE_DECAY = 0.3f;
     public const float MAX_GLUCOSE_DECAY = 0.95f;
-    public const float MIN_OSMOREGULATION_MULTIPLIER = 0.2f;
-    public const float MAX_OSMOREGULATION_MULTIPLIER = 2;
+    public const float MIN_ENERGYCOST_MULTIPLIER = 0.2f;
+    public const float MAX_ENERGYCOST_MULTIPLIER = 2;
     public const float MIN_AUTO_EVO_STRENGTH_MULTIPLIER = 0.01f;
     public const float MAX_AUTO_EVO_STRENGTH_MULTIPLIER = 1.0f;
 
