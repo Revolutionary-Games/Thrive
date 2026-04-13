@@ -89,6 +89,16 @@ public class ReproductionCompoundPressure : SelectionPressure
         var capacitiesScore = (MathF.Pow(microbeSpecies.StorageCapacities.Nominal + 1, 0.8f) - 1) * 1.25f;
         score += capacitiesScore;
 
+        // cloud compound collection is reduced if you are chasing prey or running away from predators instead
+        var aggressionPenaltyMultiplier = 1 -
+            microbeSpecies.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION *
+            Constants.AUTO_EVO_MAX_AGGRESSION_GATHERING_PENALTY;
+        var fearPenaltyMultiplier = 1 - microbeSpecies.Behaviour.Fear / Constants.MAX_SPECIES_FEAR *
+            Constants.AUTO_EVO_MAX_FEAR_GATHERING_PENALTY;
+
+        score *= aggressionPenaltyMultiplier * fearPenaltyMultiplier;
+        chemoreceptorScore *= aggressionPenaltyMultiplier * fearPenaltyMultiplier;
+
         // modify score by how much compound is available for collection
         score *= compoundAmount;
         chemoreceptorScore *= compoundAmount;
@@ -113,12 +123,19 @@ public class ReproductionCompoundPressure : SelectionPressure
                 // Diminishing returns on storage
                 chunkScore += capacitiesScore;
 
+                // compound collection is reduced if you are running away from predators instead
+                chunkScore *= fearPenaltyMultiplier;
+
                 // If the species can't engulf, then they are dependent on only eating the runoff compounds
                 if (!microbeSpecies.CanEngulf ||
                     baseMicrobeHexSize < chunk.Size * Constants.ENGULF_SIZE_RATIO_REQ)
                 {
                     chunkScore *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;
                     chunkChemoreceptorScore *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;
+
+                    // cloud compound collection is reduced if you are chasing prey instead
+                    chunkScore *= aggressionPenaltyMultiplier;
+                    chunkChemoreceptorScore *= aggressionPenaltyMultiplier;
                 }
 
                 if (!chunk.Compounds.TryGetValue(compoundDefinition.ID, out var chunkCompoundAmount))
