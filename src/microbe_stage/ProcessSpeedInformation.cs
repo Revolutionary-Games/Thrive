@@ -106,6 +106,7 @@ public class ProcessSpeedInformation : IProcessDisplayInfo
             }
         }
 
+        // Scales speed, which is independent of input and output values
         CurrentSpeed *= modifier;
     }
 
