@@ -855,7 +855,7 @@ public class SimulationCache
         if (predatorSlimeJetScore > 0)
             preySlimeJetScore = 0;
 
-        cached = scoreMultiplier * aggressionScore *
+        cached = scoreMultiplier * MathF.Pow(aggressionScore, 0.5f) *
             ((pilusScore + engulfmentScore + damagingToxinScore) / Math.Max(1, preySlimeJetScore + preyMucocystsScore +
                 preyPilusScore + preyDamagingToxinScore));
         if (cached < 0)
