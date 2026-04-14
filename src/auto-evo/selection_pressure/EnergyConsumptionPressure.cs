@@ -17,7 +17,7 @@ public class EnergyConsumptionPressure : SelectionPressure
         base(weight, [
             new AddOrganelleAnywhere(organelle => organelle.HasBindingFeature),
             new AddOrganelleAnywhere(organelle => organelle.HasSignalingFeature),
-            new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Activity, -50.0f),
+            new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Activity, -100.0f),
         ])
     {
     }
@@ -47,7 +47,7 @@ public class EnergyConsumptionPressure : SelectionPressure
             return 0;
 
         var energyBalance = cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome);
-        var inactivityFraction = species.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
+        var inactivityFraction = 1 - species.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
 
         // even inactive species still spend energy when chasing prey or running away from predators
         inactivityFraction *= 1 -
