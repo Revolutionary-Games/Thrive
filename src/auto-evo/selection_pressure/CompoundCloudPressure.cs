@@ -109,7 +109,7 @@ public class CompoundCloudPressure : SelectionPressure
         }
 
         // modify score by activity
-        var activityFraction = activity / Constants.MAX_SPECIES_ACTIVITY;
+        var activityFraction = MathF.Pow(activity / Constants.MAX_SPECIES_ACTIVITY, 0.5f);
 
         score = (score + chemoreceptorScore) * activityFraction
             + score * (1 - activityFraction) * Constants.AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION;

@@ -478,7 +478,7 @@ public class SimulationCache
         }
 
         var aggressionScore = predator.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
-        var activityScore = predator.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
+        var activityScore = MathF.Pow(predator.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY, 0.5f);
 
         var preyFearScore = prey.Behaviour.Fear / Constants.MAX_SPECIES_FEAR;
         var preyAggressionScore = prey.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;

@@ -165,7 +165,7 @@ public class ReproductionCompoundPressure : SelectionPressure
         }
 
         // modify score by activity
-        var activityFraction = activity / Constants.MAX_SPECIES_ACTIVITY;
+        var activityFraction = MathF.Pow(activity / Constants.MAX_SPECIES_ACTIVITY, 0.5f);
 
         finalScore += (score + chemoreceptorScore) * activityFraction;
         finalScore += score * (1 - activityFraction) * Constants.AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION;
