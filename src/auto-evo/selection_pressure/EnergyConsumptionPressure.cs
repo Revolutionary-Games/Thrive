@@ -49,10 +49,12 @@ public class EnergyConsumptionPressure : SelectionPressure
         var inactivityFraction = species.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
 
         // even inactive species still spend energy when chasing prey or running away from predators
-        inactivityFraction *= 1 - microbeSpecies.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION *
-            Constants.AUTO_EVO_MAX_AGGRESSION_GATHERING_PENALTY;
-        inactivityFraction *= 1 - microbeSpecies.Behaviour.Fear / Constants.MAX_SPECIES_FEAR *
-            Constants.AUTO_EVO_MAX_FEAR_GATHERING_PENALTY;
+        inactivityFraction *= 1 -
+            MathF.Pow(microbeSpecies.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION, 1.5f)
+            * Constants.AUTO_EVO_MAX_AGGRESSION_GATHERING_PENALTY;
+        inactivityFraction *= 1 -
+            MathF.Pow(microbeSpecies.Behaviour.Fear / Constants.MAX_SPECIES_FEAR, 1.5f)
+            * Constants.AUTO_EVO_MAX_FEAR_GATHERING_PENALTY;
 
         // Calculate how much energy is typically being consumed
         var energyConsumption = inactivityFraction * energyBalance.TotalConsumptionStationary;
