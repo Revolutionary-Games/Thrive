@@ -35,6 +35,8 @@ public class ChunkCompoundPressure : SelectionPressure
             new ChemoreceptorUpgrades(compound, null, Constants.CHEMORECEPTOR_RANGE_DEFAULT,
                 Constants.CHEMORECEPTOR_AMOUNT_DEFAULT, SimulationParameters.GetCompound(compound).Colour)),
         new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Activity, 150.0f),
+        new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Aggression, -50.0f),
+        new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Fear, -50.0f),
         new ChangeMembraneType("single"),
         new ChangeMembraneType("double"),
     ])
