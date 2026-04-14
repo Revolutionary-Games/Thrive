@@ -36,6 +36,7 @@ public class GeneralAvoidPredationSelectionPressure : SelectionPressure
         new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Opportunism, -150.0f),
         new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Fear, 150.0f),
         new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Fear, -150.0f),
+        new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Focus, -150.0f),
         new ChangeMembraneType("double"),
         new ChangeMembraneType("cellulose"),
         new ChangeMembraneType("chitin"),

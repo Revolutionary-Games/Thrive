@@ -170,11 +170,12 @@ public class ReproductionCompoundPressure : SelectionPressure
                 activity *= multiplier;
         }
 
-        // modify score by activity
-        var activityFraction = MathF.Pow(activity / Constants.MAX_SPECIES_ACTIVITY, 0.5f);
+        // modify score by activity and focus
+        var activityScore = MathF.Pow(activity / Constants.MAX_SPECIES_ACTIVITY, 0.4f);
+        var focusScore = MathF.Pow(microbeSpecies.Behaviour.Focus / Constants.MAX_SPECIES_ACTIVITY, 0.4f);
 
-        finalScore += (score + chemoreceptorScore) * activityFraction;
-        finalScore += score * (1 - activityFraction) * Constants.AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION;
+        finalScore += (score + chemoreceptorScore) * activityScore * focusScore;
+        finalScore += score * (1 - activityScore * focusScore) * Constants.AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION;
 
         // Score from organelles that produce this compound
         foreach (var process in activeProcessList)

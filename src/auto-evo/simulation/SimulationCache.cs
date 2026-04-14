@@ -480,10 +480,12 @@ public class SimulationCache
         var aggressionScore = predator.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
         var activityScore = MathF.Pow(predator.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY, 0.5f);
         var opportunismScore = predator.Behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
+        var focusScore = predator.Behaviour.Focus / Constants.MAX_SPECIES_FOCUS;
 
         var preyFearScore = prey.Behaviour.Fear / Constants.MAX_SPECIES_FEAR;
         var preyAggressionScore = prey.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
         var preyOpportunismScore = prey.Behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
+        var preyFocusScore = prey.Behaviour.Focus / Constants.MAX_SPECIES_FOCUS;
 
         // prey's effectiveness at running away depends on how quickly they choose to run away
         preySpeed *= preyFearScore * (1 - preyAggressionScore);
@@ -666,17 +668,20 @@ public class SimulationCache
 
             // Active hunting is more effective for active species
             catchScore *= activityScore;
+            catchScore *= 1 + focusScore;
 
             // ... but you may also catch them by luck (e.g. when they run into you),
             // Prey that can't turn away fast enough are more likely to get caught.
             accidentalCatchScore = Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY *
                 strongPullingCiliaModifier * preyRotationModifier;
 
-            // Less cautious prey is slightly more likely to get into a dangerous situation
+            // Less cautious and more focused prey are slightly more likely to get into a dangerous situation
             var opportunismPenalty = MathF.Pow(preyOpportunismScore, 1.5f)
                 * Constants.AUTO_EVO_MAX_OPPORTUNISM_PENALTY;
-            catchScore *= opportunismPenalty;
-            accidentalCatchScore *= opportunismPenalty;
+            var focusPenalty = MathF.Pow(preyFocusScore, 1.5f)
+                * Constants.AUTO_EVO_MAX_FOCUS_PENALTY;
+            catchScore *= 1 + opportunismPenalty * (1 + focusPenalty);
+            accidentalCatchScore *= 1 + opportunismPenalty * (1 + focusPenalty);
         }
 
         // targets that resist physical damage are of course less vulnerable to it
@@ -804,6 +809,7 @@ public class SimulationCache
 
             // Active hunting is more effective for active species
             damagingToxinScore *= activityScore;
+            damagingToxinScore *= 1 + focusScore;
         }
 
         if (preyDamagingToxinScore > 0)

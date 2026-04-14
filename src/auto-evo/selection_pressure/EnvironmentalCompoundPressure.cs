@@ -24,6 +24,8 @@ public class EnvironmentalCompoundPressure : SelectionPressure
         float weight) :
         base(weight, [
             AddOrganelleAnywhere.ThatUseCompound(compound),
+            new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Activity, -150.0f),
+            new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Focus, -150.0f),
         ])
     {
         this.compound = SimulationParameters.GetCompound(compound);

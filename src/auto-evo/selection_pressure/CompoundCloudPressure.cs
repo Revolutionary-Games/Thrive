@@ -31,8 +31,11 @@ public class CompoundCloudPressure : SelectionPressure
                 new ChemoreceptorUpgrades(compound, null, Constants.CHEMORECEPTOR_RANGE_DEFAULT,
                     Constants.CHEMORECEPTOR_AMOUNT_DEFAULT, SimulationParameters.GetCompound(compound).Colour)),
             new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Activity, 150.0f),
+            new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Activity, -150.0f),
             new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Aggression, -50.0f),
             new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Fear, -50.0f),
+            new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Focus, 150.0f),
+            new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Focus, -150.0f),
             new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Opportunism, -150.0f),
         ])
     {
@@ -109,11 +112,13 @@ public class CompoundCloudPressure : SelectionPressure
                 activity *= multiplier;
         }
 
-        // modify score by activity
-        var activityFraction = MathF.Pow(activity / Constants.MAX_SPECIES_ACTIVITY, 0.5f);
+        // modify score by activity and focus
+        var activityScore = MathF.Pow(activity / Constants.MAX_SPECIES_ACTIVITY, 0.4f);
+        var focusScore = 1 + MathF.Pow(microbeSpecies.Behaviour.Focus / Constants.MAX_SPECIES_ACTIVITY, 0.4f) *
+            Constants.AUTO_EVO_MAX_FOCUS_CLOUD_BONUS;
 
-        score = (score + chemoreceptorScore) * activityFraction
-            + score * (1 - activityFraction) * Constants.AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION;
+        score = (score + chemoreceptorScore) * activityScore * focusScore
+            + score * (1 - activityScore * focusScore) * Constants.AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION;
 
         // cloud compound collection is reduced if you are chasing prey or running away from predators instead
         // the same goes for chasing chunks
