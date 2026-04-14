@@ -485,7 +485,7 @@ public class SimulationCache
         var preyOpportunismScore = prey.Behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
 
         // prey's effectiveness at running away depends on how quickly they choose to run away
-        preySpeed *= preyFearScore;
+        preySpeed *= preyFearScore * (1 - preyAggressionScore);
 
         // Sprinting calculations
         var predatorSprintSpeed = predatorSpeed * sprintMultiplier;
@@ -688,7 +688,7 @@ public class SimulationCache
         defensivePilusScore += defensiveInjectisomeScore;
 
         // defensive pili need to be turned directly away from the predator to work
-        defensivePilusScore *= preyRotationModifier * preyFearScore;
+        defensivePilusScore *= preyRotationModifier * preyFearScore * (1 - preyAggressionScore);
 
         // Calling for allies helps with combat.
         if (hasSignallingAgent)
