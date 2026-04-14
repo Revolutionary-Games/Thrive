@@ -106,6 +106,8 @@ public class ReproductionCompoundPressure : SelectionPressure
         // Precompute some scores to only resolve once.
         var speedScore = MathF.Pow(cache.GetSpeedForSpecies(microbeSpecies), 0.4f);
         var baseMicrobeHexSize = cache.GetBaseHexSizeForSpecies(microbeSpecies);
+        var opportunismFraction = MathF.Pow(
+            microbeSpecies.Behaviour.Opportunism / Constants.MAX_SPECIES_ACTIVITY, 0.5f);
 
         // Combine with compound amounts and scores from all chunks
         foreach (var chunk in patch.Biome.Chunks.Values)
@@ -136,6 +138,10 @@ public class ReproductionCompoundPressure : SelectionPressure
                     // cloud compound collection is reduced if you are chasing prey instead
                     chunkScore *= aggressionPenaltyMultiplier;
                     chunkChemoreceptorScore *= aggressionPenaltyMultiplier;
+                }
+                else
+                {
+                    score *= 1 + opportunismFraction * Constants.AUTO_EVO_MAX_OPPORTUNISM_BONUS;
                 }
 
                 if (!chunk.Compounds.TryGetValue(compoundDefinition.ID, out var chunkCompoundAmount))

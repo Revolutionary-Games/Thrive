@@ -33,6 +33,7 @@ public class CompoundCloudPressure : SelectionPressure
             new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Activity, 150.0f),
             new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Aggression, -50.0f),
             new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Fear, -50.0f),
+            new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Opportunism, -150.0f),
         ])
     {
         compoundDefinition = SimulationParameters.GetCompound(compound);
@@ -115,11 +116,14 @@ public class CompoundCloudPressure : SelectionPressure
             + score * (1 - activityFraction) * Constants.AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION;
 
         // cloud compound collection is reduced if you are chasing prey or running away from predators instead
+        // the same goes for chasing chunks
         var aggressionFraction = microbeSpecies.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
         var fearFraction = microbeSpecies.Behaviour.Fear / Constants.MAX_SPECIES_FEAR;
+        var opportunismFraction = microbeSpecies.Behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
 
         score *= (1 - aggressionFraction * Constants.AUTO_EVO_MAX_AGGRESSION_GATHERING_PENALTY)
-            * (1 - fearFraction * Constants.AUTO_EVO_MAX_FEAR_GATHERING_PENALTY);
+            * (1 - fearFraction * Constants.AUTO_EVO_MAX_FEAR_GATHERING_PENALTY)
+            * (1 - opportunismFraction * Constants.AUTO_EVO_MAX_OPPORTUNISM_PENALTY);
 
         float compoundATP;
         if (compoundOut != atp)

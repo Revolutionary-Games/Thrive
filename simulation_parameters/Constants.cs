@@ -1341,6 +1341,8 @@ public static class Constants
 
     public const float AUTO_EVO_MAX_AGGRESSION_GATHERING_PENALTY = 0.7f;
     public const float AUTO_EVO_MAX_FEAR_GATHERING_PENALTY = 0.1f;
+    public const float AUTO_EVO_MAX_OPPORTUNISM_BONUS = 0.3f;
+    public const float AUTO_EVO_MAX_OPPORTUNISM_PENALTY = 0.1f;
 
     public const float AUTO_EVO_PREDATION_DEFENSE_SCORE_MODIFIER = 0.5f;
 

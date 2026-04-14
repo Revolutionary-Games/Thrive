@@ -37,6 +37,7 @@ public class ChunkCompoundPressure : SelectionPressure
         new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Activity, 150.0f),
         new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Aggression, -50.0f),
         new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Fear, -50.0f),
+        new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Opportunism, 150.0f),
         new ChangeMembraneType("single"),
         new ChangeMembraneType("double"),
     ])
@@ -142,6 +143,12 @@ public class ChunkCompoundPressure : SelectionPressure
             var aggressionFraction = microbeSpecies.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
 
             score *= 1 - aggressionFraction * Constants.AUTO_EVO_MAX_AGGRESSION_GATHERING_PENALTY;
+        }
+        else
+        {
+            var opportunismFraction = MathF.Pow(
+                microbeSpecies.Behaviour.Opportunism / Constants.MAX_SPECIES_ACTIVITY, 0.5f);
+            score *= 1 + opportunismFraction * Constants.AUTO_EVO_MAX_OPPORTUNISM_BONUS;
         }
 
         float compoundATP;

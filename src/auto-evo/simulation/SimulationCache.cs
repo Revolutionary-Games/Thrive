@@ -479,6 +479,7 @@ public class SimulationCache
 
         var aggressionScore = predator.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
         var activityScore = MathF.Pow(predator.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY, 0.5f);
+        var opportunismScore = predator.Behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
 
         var preyFearScore = prey.Behaviour.Fear / Constants.MAX_SPECIES_FEAR;
         var preyAggressionScore = prey.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
@@ -670,6 +671,12 @@ public class SimulationCache
             // Prey that can't turn away fast enough are more likely to get caught.
             accidentalCatchScore = Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY *
                 strongPullingCiliaModifier * preyRotationModifier;
+
+            // Less cautious prey is slightly more likely to get into a dangerous situation
+            var opportunismPenalty = MathF.Pow(preyOpportunismScore, 1.5f)
+                * Constants.AUTO_EVO_MAX_OPPORTUNISM_PENALTY;
+            catchScore *= opportunismPenalty;
+            accidentalCatchScore *= opportunismPenalty;
         }
 
         // targets that resist physical damage are of course less vulnerable to it
@@ -856,8 +863,9 @@ public class SimulationCache
             preySlimeJetScore = 0;
 
         cached = scoreMultiplier * MathF.Pow(aggressionScore, 0.5f) *
-            ((pilusScore + engulfmentScore + damagingToxinScore) / Math.Max(1, preySlimeJetScore + preyMucocystsScore +
-                preyPilusScore + preyDamagingToxinScore));
+            (1 + MathF.Pow(opportunismScore, 0.5f * Constants.AUTO_EVO_MAX_OPPORTUNISM_BONUS)) *
+            ((pilusScore + engulfmentScore + damagingToxinScore) /
+                Math.Max(1, preySlimeJetScore + preyMucocystsScore + preyPilusScore + preyDamagingToxinScore));
         if (cached < 0)
             cached = 0;
 
