@@ -19,6 +19,7 @@ public class PredatorRoot : SelectionPressure
         RemoveOrganelle.ThatCreateCompound(Compound.Glucose),
         RemoveOrganelle.ThatCreateCompound(Compound.ATP),
         AddOrganelleAnywhere.ThatConvertBetweenCompounds(Compound.Glucose, Compound.ATP),
+        new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Aggression, 5.0f),
     ])
     {
     }
@@ -49,6 +50,12 @@ public class PredatorRoot : SelectionPressure
 
         var atpFromGlucose = cache.GetCompoundGeneratedFrom(glucose, atp, microbeSpecies, patch.Biome);
         var energyBalance = cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome);
+
+        // ensure that the predator is at least slightly willing to hunt
+        if (microbeSpecies.Behaviour.Aggression == 0)
+        {
+            return 0;
+        }
 
         // Ensure that a predator can actually survive off of only glucose
         if (atpFromGlucose >= energyBalance.TotalConsumption)
