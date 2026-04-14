@@ -1339,8 +1339,8 @@ public static class Constants
     public const float AUTO_EVO_REPRODUCTION_COMPOUND_PRODUCTION_SCORE = 3000.0f;
     public const float AUTO_EVO_REPRODUCTION_COMPOUND_COST_WEAKENING_MODIFIER = 0.2f;
 
-    public const float AUTO_EVO_MAX_AGGRESSION_GATHERING_PENALTY = 0.5f;
-    public const float AUTO_EVO_MAX_FEAR_GATHERING_PENALTY = 0.2f;
+    public const float AUTO_EVO_MAX_AGGRESSION_GATHERING_PENALTY = 0.7f;
+    public const float AUTO_EVO_MAX_FEAR_GATHERING_PENALTY = 0.1f;
 
     public const float AUTO_EVO_PREDATION_DEFENSE_SCORE_MODIFIER = 0.5f;
 
