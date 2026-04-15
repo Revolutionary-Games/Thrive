@@ -104,6 +104,12 @@ public class Program
             return 2;
         }
 
+        if (File.Exists(TestRunningHelpers.RUN_SETTINGS_FILE))
+        {
+            ColourConsole.WriteNormalLine(
+                $"Run settings file exists before tests start ({TestRunningHelpers.RUN_SETTINGS_FILE})");
+        }
+
         // Delete the old gdUnit runner if one is present as it will make tests fail
         if (Directory.Exists("gdunit4_testadapter"))
         {
@@ -142,6 +148,7 @@ public class Program
         const int maxTries = 2;
 
         // Then gdUnit tests
+        ColourConsole.WriteNormalLine($"Generating {TestRunningHelpers.RUN_SETTINGS_FILE}");
         TestRunningHelpers.GenerateRunSettings(godot, false);
 
         // gdUnit can randomly fail once to detect available tests, that's why the tests run multiple times on fail
@@ -156,11 +163,15 @@ public class Program
             startInfo.ArgumentList.Add(TestRunningHelpers.TEST_RUN_VERBOSITY);
             startInfo.ArgumentList.Add("Thrive.csproj");
 
+            ColourConsole.WriteNormalLine($"Starting gdUnit tests (attempt {i + 1}/{maxTries})...");
             result = ProcessRunHelpers.RunProcessAsync(startInfo, tokenSource.Token, false)
                 .Result.ExitCode;
 
             if (result == 0)
+            {
+                ColourConsole.WriteSuccessLine("gdUnit run succeeded (exit code 0)");
                 break;
+            }
 
             if (i + 1 < maxTries)
             {
