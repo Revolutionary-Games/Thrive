@@ -346,14 +346,14 @@ public partial class CellEditorComponent
             var tooltip = GetSelectionTooltip(organelle.InternalName, "organelleSelection");
             tooltip?.RequiresNucleus = organelle.RequiresNucleus && !HasNucleus;
 
-            if (organelle.IncompatibleMembraneNames != null
-                && organelle.IncompatibleMembraneNames.Contains(Membrane.InternalName))
+            if (organelle.IncompatibleMembranes != null
+                && organelle.IncompatibleMembranes.Contains(Membrane))
             {
-                tooltip?.IncompatibleMembraneNames = organelle.IncompatibleMembraneNames;
+                tooltip?.IncompatibleMembranes = organelle.IncompatibleMembranes;
             }
             else
             {
-                tooltip?.IncompatibleMembraneNames = null;
+                tooltip?.IncompatibleMembranes = null;
             }
         }
 

@@ -2493,20 +2493,21 @@ public partial class CellEditorComponent :
             membrane.Value.Locked = false;
 
             var tooltip = GetSelectionTooltip(membrane.Key.InternalName, "membraneSelection");
-            tooltip?.IncompatibleOrganelleNames?.Clear();
+            tooltip?.IncompatibleOrganelles?.Clear();
 
             foreach (var organelle in editedMicrobeOrganelles)
             {
-                if (organelle.Definition.IncompatibleMembraneNames == null)
+                if (organelle.Definition.IncompatibleMembranes == null)
                     continue;
 
-                membrane.Value.Locked =
-                    organelle.Definition.IncompatibleMembraneNames.Contains(membrane.Key.InternalName);
+                var incompatible = organelle.Definition.IncompatibleMembranes.Contains(membrane.Key);
 
-                if (membrane.Value.Locked && tooltip != null)
+                membrane.Value.Locked |= incompatible;
+
+                if (incompatible && tooltip != null)
                 {
-                    tooltip.IncompatibleOrganelleNames ??= new HashSet<string>();
-                    tooltip.IncompatibleOrganelleNames.Add(organelle.Definition.Name);
+                    tooltip.IncompatibleOrganelles ??= new HashSet<OrganelleDefinition>();
+                    tooltip.IncompatibleOrganelles.Add(organelle.Definition);
                 }
             }
 

@@ -206,6 +206,9 @@ public class OrganelleDefinition : RegistryType, IPlayerReadableName
     public CommonMutationFunctions.OrganelleAddStrategy SuggestionPlacement =
         CommonMutationFunctions.OrganelleAddStrategy.Spiral;
 
+    [JsonIgnore]
+    public MembraneType[]? IncompatibleMembranes;
+
     public string[]? IncompatibleMembraneNames;
 
     /// <summary>
@@ -795,6 +798,16 @@ public class OrganelleDefinition : RegistryType, IPlayerReadableName
         }
 
         ComputeTolerances();
+
+        if (IncompatibleMembraneNames != null)
+        {
+            IncompatibleMembranes = new MembraneType[IncompatibleMembraneNames.Length];
+
+            for (int i = 0; i < IncompatibleMembraneNames.Length; ++i)
+            {
+                IncompatibleMembranes[i] = parameters.GetMembrane(IncompatibleMembraneNames[i]);
+            }
+        }
     }
 
     /// <summary>
