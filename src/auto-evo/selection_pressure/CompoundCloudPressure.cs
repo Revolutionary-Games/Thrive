@@ -64,6 +64,7 @@ public class CompoundCloudPressure : SelectionPressure
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
+        var compound = (Compound)reader.ReadInt32();
         Compound compoundOut;
 
         if (version >= 2)
@@ -72,10 +73,13 @@ public class CompoundCloudPressure : SelectionPressure
         }
         else
         {
-            compoundOut = Compound.ATP;
+            if (compound == Compound.Hydrogensulfide)
+                compoundOut = Compound.Glucose;
+            else
+                compoundOut = Compound.ATP;
         }
 
-        var instance = new CompoundCloudPressure((Compound)reader.ReadInt32(), compoundOut, reader.ReadBool(),
+        var instance = new CompoundCloudPressure(compound, compoundOut, reader.ReadBool(),
             reader.ReadFloat());
 
         instance.ReadBasePropertiesFromArchive(reader, 1);
