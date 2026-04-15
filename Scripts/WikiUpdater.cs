@@ -223,6 +223,27 @@ public class WikiUpdater
     }
 
     /// <summary>
+    ///   Converts formatted HTML text into BBCode.
+    /// </summary>
+    private static string ConvertTextToBbcode(string paragraph)
+    {
+        return paragraph
+            .Replace("\n", string.Empty)
+            .Replace("<b>", "[b]")
+            .Replace("</b>", "[/b]")
+            .Replace("<i>", "[i]")
+            .Replace("</i>", "[/i]")
+            .Replace("<u>", "[u]")
+            .Replace("</u>", "[/u]")
+            .Replace("<code>", "[code]")
+            .Replace("</code>", "[/code]")
+            .Replace("<pre>", "[code]")
+            .Replace("</pre>", "[/code]")
+            .Replace("<br>", "\n")
+            .Replace("\"", "\\\"");
+    }
+
+    /// <summary>
     ///   Fetches a page from the online wiki
     /// </summary>
     /// <returns>The HTML content of the page</returns>
@@ -545,15 +566,8 @@ public class WikiUpdater
                 case "P":
                     text = ConvertParagraphToBbcode(child) + "\n\n";
                     break;
-                case "UL":
-
-                    // TODO: switch to the Godot 4 way to handle this:
-                    // https://github.com/Revolutionary-Games/Thrive/issues/5511
-                    // Godot 3 does not support lists in BBCode, so use custom formatting
-                    text = child.Children
-                        .Where(c => c.TagName == "LI")
-                        .Select(l => $"[indent]—   {ConvertParagraphToBbcode(l)}[/indent]")
-                        .Aggregate((a, b) => a + "\n" + b) + "\n\n";
+                case "UL" or "OL":
+                    text = ConvertListToBbcode(child) + "\n\n";
                     break;
                 case "H3":
                     var headline = child.Children
@@ -592,9 +606,33 @@ public class WikiUpdater
     private string ConvertParagraphToBbcode(IElement paragraph)
     {
         var bbcode = new StringBuilder();
-
         ConvertParagraphToBbcode(paragraph, bbcode);
         return bbcode.ToString();
+    }
+
+    private string ConvertListToBbcode(IElement list)
+    {
+        var bbcode = new StringBuilder();
+        ConvertListToBbcode(list, bbcode);
+        return bbcode.ToString();
+    }
+
+    private void ConvertListToBbcode(IElement list, StringBuilder builder)
+    {
+        switch (list)
+        {
+            case IHtmlUnorderedListElement or IHtmlOrderedListElement:
+            {
+                var tag = list is IHtmlUnorderedListElement ? "ul" : "ol";
+                builder.Append($"[{tag}]");
+                builder.AppendJoin('\n', list.Children.Select(ConvertListToBbcode));
+                builder.Append($"[/{tag}]");
+                break;
+            }
+            case IHtmlListItemElement:
+                ConvertParagraphToBbcode(list, builder);
+                break;
+        }
     }
 
     private void ConvertParagraphToBbcode(INode paragraph, StringBuilder result)
@@ -716,27 +754,6 @@ public class WikiUpdater
             return false;
 
         return EmbeddedThriveIconExtensions.TryGetIcon(iconName, out _);
-    }
-
-    /// <summary>
-    ///   Converts formatted HTML text into BBCode.
-    /// </summary>
-    private string ConvertTextToBbcode(string paragraph)
-    {
-        return paragraph
-            .Replace("\n", string.Empty)
-            .Replace("<b>", "[b]")
-            .Replace("</b>", "[/b]")
-            .Replace("<i>", "[i]")
-            .Replace("</i>", "[/i]")
-            .Replace("<u>", "[u]")
-            .Replace("</u>", "[/u]")
-            .Replace("<code>", "[code]")
-            .Replace("</code>", "[/code]")
-            .Replace("<pre>", "[code]")
-            .Replace("</pre>", "[/code]")
-            .Replace("<br>", "\n")
-            .Replace("\"", "\\\"");
     }
 
     /// <summary>

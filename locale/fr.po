@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-27 14:48+0200\n"
-"PO-Revision-Date: 2026-02-28 13:02+0000\n"
-"Last-Translator: luke <aidow@netcourrier.com>\n"
+"POT-Creation-Date: 2026-04-13 10:37+0300\n"
+"PO-Revision-Date: 2026-04-10 22:42+0000\n"
+"Last-Translator: Shigasaa <altitudes.etrangeres@ikmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -1632,6 +1632,7 @@ msgstr "Dévoluer"
 msgid "DESCEND_CONFIRMATION"
 msgstr "Êtes vous sur de vouloir dévoluer ?"
 
+#, fuzzy
 msgid "DESCEND_CONFIRMATION_EXPLANATION"
 msgstr ""
 "Dévoluer vous retirera votre statut évolué et vous fera retourner à la phase microbienne. De là vous pourrez rejouer au jeu dans la sauvegarde actuelle.\n"
@@ -2081,6 +2082,14 @@ msgstr ""
 #, fuzzy
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr "Pression sur le maintient des composés"
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER"
+msgstr "Multiplicateur de cout de mutation"
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER_EXPLANATION"
+msgstr "(cout des organites, membranes et autres éléments dans l'éditeur)"
 
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Énergie dans le secteur {0} pour la source {1}"
@@ -4803,12 +4812,6 @@ msgstr "Osmorégulation"
 
 msgid "OSMOREGULATION_COST"
 msgstr "Cout en osmorégulation"
-
-msgid "OSMOREGULATION_COST_MULTIPLIER"
-msgstr "Multiplicateur du cout de l'osmorégulation"
-
-msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
-msgstr "(cout de l'osmorégulation de l'espèce du joueur)"
 
 #, fuzzy
 msgid "OTHER_COMPOUNDS"
@@ -9876,6 +9879,12 @@ msgstr "Zoomer"
 
 msgid "ZOOM_OUT"
 msgstr "Dézoomer"
+
+#~ msgid "OSMOREGULATION_COST_MULTIPLIER"
+#~ msgstr "Multiplicateur du cout de l'osmorégulation"
+
+#~ msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
+#~ msgstr "(cout de l'osmorégulation de l'espèce du joueur)"
 
 #, fuzzy
 #~ msgid "KEEP_CURRENT_SHORT"

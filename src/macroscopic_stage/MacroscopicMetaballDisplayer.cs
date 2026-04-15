@@ -12,6 +12,11 @@ public partial class MacroscopicMetaballDisplayer : MultiMeshInstance3D, IMetaba
     private StandardMaterial3D? material;
     private Mesh metaballSphere = null!;
 
+#pragma warning disable CA2213
+    [Export]
+    private MetaballHierarchyLines hierarchyLineScene = null!;
+#pragma warning restore CA2213
+
     private float? overrideColourAlpha;
 
     public float? OverrideColourAlpha
@@ -87,8 +92,6 @@ public partial class MacroscopicMetaballDisplayer : MultiMeshInstance3D, IMetaba
             return;
         }
 
-        // TODO: drawing links between the metaballs (or maybe only just the editor needs that?)
-
         var extends = Vector3.Zero;
 
         int i = 0;
@@ -127,6 +130,8 @@ public partial class MacroscopicMetaballDisplayer : MultiMeshInstance3D, IMetaba
 
             ++i;
         }
+
+        hierarchyLineScene.UpdateLines(layout);
 
         CustomAabb = new Aabb(-extends, extends * 2);
     }

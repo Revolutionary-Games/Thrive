@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-27 14:48+0200\n"
-"PO-Revision-Date: 2025-11-28 09:29+0000\n"
-"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
+"POT-Creation-Date: 2026-04-13 10:37+0300\n"
+"PO-Revision-Date: 2026-04-10 22:42+0000\n"
+"Last-Translator: Argakyan <andrinmueller@hotmail.ch>\n"
 "Language-Team: Alemannic <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/gsw/>\n"
 "Language: gsw\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11.4\n"
+"X-Generator: Weblate 5.16.1\n"
 "Generated-By: Thrive.Scripts 1.2.0.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -1635,6 +1635,7 @@ msgstr "Zruggentwickle"
 msgid "DESCEND_CONFIRMATION"
 msgstr "Bisch sicher, dass du dich zrugg entwickle wettsch?"
 
+#, fuzzy
 msgid "DESCEND_CONFIRMATION_EXPLANATION"
 msgstr ""
 "Abstieg entfernt de Uufstiegsstatus und wirft dich zrugg is Mikrobestatium. Vo dötte uus chasch im derziitige Spielstand nommal durs Spiel spiele.\n"
@@ -2065,6 +2066,14 @@ msgstr ""
 
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr ""
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER"
+msgstr "Simulationsmultiplikator:"
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER_EXPLANATION"
+msgstr "(Prozentsatz vode Bevölkerigsänderig, wo Auto-Evo uf d'Spieler-Spezies aawendet)"
 
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energie i {0} für {1}"
@@ -4546,12 +4555,6 @@ msgid "OSMOREGULATION"
 msgstr ""
 
 msgid "OSMOREGULATION_COST"
-msgstr ""
-
-msgid "OSMOREGULATION_COST_MULTIPLIER"
-msgstr ""
-
-msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr ""
 
 msgid "OTHER_COMPOUNDS"

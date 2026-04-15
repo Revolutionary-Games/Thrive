@@ -50,7 +50,7 @@ public class DifficultyPreset : RegistryType, IDifficulty
     public float GlucoseDecay { get; private set; }
 
     [JsonProperty]
-    public float OsmoregulationMultiplier { get; private set; }
+    public float EnergyCostMultiplier { get; private set; }
 
     [JsonProperty]
     public float PlayerAutoEvoStrength { get; private set; }
@@ -155,11 +155,11 @@ public class DifficultyPreset : RegistryType, IDifficulty
             throw new InvalidRegistryDataException(name, GetType().Name, $"Invalid glucose decay: {GlucoseDecay}");
         }
 
-        if (OsmoregulationMultiplier is > Constants.MAX_OSMOREGULATION_MULTIPLIER or
-            < Constants.MIN_OSMOREGULATION_MULTIPLIER)
+        if (EnergyCostMultiplier is > Constants.MAX_ENERGYCOST_MULTIPLIER or
+            < Constants.MIN_ENERGYCOST_MULTIPLIER)
         {
             throw new InvalidRegistryDataException(name, GetType().Name,
-                $"Invalid osmoregulation multiplier: {OsmoregulationMultiplier}");
+                $"Invalid energy cost multiplier: {EnergyCostMultiplier}");
         }
 
         if (PlayerAutoEvoStrength is < 0 or > 1)
