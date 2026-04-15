@@ -384,7 +384,9 @@ public class Program
 
         try
         {
-            var result = ProcessRunHelpers.RunProcessAsync(startInfo, combined.Token, false).Result;
+            var processTask = ProcessRunHelpers.RunProcessAsync(startInfo, combined.Token, false, 1, false);
+            processTask.Wait(combined.Token);
+            var result = processTask.Result;
 
             if (result.ExitCode != 0)
             {
