@@ -1338,12 +1338,15 @@ public static class Constants
     public const float AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION = 0.1f;
     public const float AUTO_EVO_REPRODUCTION_COMPOUND_PRODUCTION_SCORE = 3000.0f;
     public const float AUTO_EVO_REPRODUCTION_COMPOUND_COST_WEAKENING_MODIFIER = 0.2f;
-    public const float AUTO_EVO_SPRINTING_CONSUMPTION_MULTIPLIER = 0.2f;
+    public const float AUTO_EVO_SPRINTING_CONSUMPTION = 0.1f;
 
-    public const float AUTO_EVO_MAX_AGGRESSION_GATHERING_PENALTY = 0.7f;
-    public const float AUTO_EVO_MAX_FEAR_GATHERING_PENALTY = 0.1f;
-    public const float AUTO_EVO_MAX_OPPORTUNISM_BONUS = 0.3f;
-    public const float AUTO_EVO_MAX_OPPORTUNISM_PENALTY = 0.1f;
+    public const float AUTO_EVO_MAX_AGGRESSION_ENERGY_PENALTY = 0.8f;
+    public const float AUTO_EVO_MAX_AGGRESSION_GATHERING_PENALTY = 0.1f;
+    public const float AUTO_EVO_MAX_FEAR_ENERGY_PENALTY = 0.005f;
+    public const float AUTO_EVO_MAX_FEAR_GATHERING_PENALTY = 0.000f;
+    public const float AUTO_EVO_MAX_OPPORTUNISM_BONUS = 0.4f;
+    public const float AUTO_EVO_MAX_OPPORTUNISM_PENALTY = 0.05f;
+    public const float AUTO_EVO_MAX_FOCUS_CHUNK_BONUS = 0.9f;
     public const float AUTO_EVO_MAX_FOCUS_CLOUD_BONUS = 0.5f;
     public const float AUTO_EVO_MAX_FOCUS_PENALTY = 0.1f;
 

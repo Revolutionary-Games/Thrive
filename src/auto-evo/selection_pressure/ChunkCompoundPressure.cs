@@ -130,7 +130,8 @@ public class ChunkCompoundPressure : SelectionPressure
 
         // modify score by activity and focus
         var activityScore = MathF.Pow(activity / Constants.MAX_SPECIES_ACTIVITY, 0.4f);
-        var focusScore = MathF.Pow(microbeSpecies.Behaviour.Focus / Constants.MAX_SPECIES_ACTIVITY, 0.4f);
+        var focusScore = 1 + MathF.Pow(microbeSpecies.Behaviour.Focus / Constants.MAX_SPECIES_ACTIVITY, 0.4f)
+            * Constants.AUTO_EVO_MAX_FOCUS_CHUNK_BONUS;
 
         score = (score + chemoreceptorScore) * activityScore * focusScore
             + score * (1 - activityScore * focusScore) * Constants.AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION;

@@ -48,19 +48,19 @@ public class EnergyConsumptionPressure : SelectionPressure
 
         var energyBalance = cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome);
         var inactivityScore = 1 - MathF.Pow(species.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY, 1.2f);
-        inactivityScore *= 1 - MathF.Pow(species.Behaviour.Focus / Constants.MAX_SPECIES_FOCUS, 1.2f);
+        var focusScore = MathF.Pow(species.Behaviour.Focus / Constants.MAX_SPECIES_FOCUS, 1.2f);
+        var fearScore = MathF.Pow(microbeSpecies.Behaviour.Fear / Constants.MAX_SPECIES_FEAR, 1.5f);
+        var agressionScore = MathF.Pow(microbeSpecies.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION, 1.5f);
+        inactivityScore *= 1 - focusScore;
 
         // even inactive species still spend energy when chasing prey or running away from predators
-        inactivityScore *= 1 -
-            MathF.Pow(microbeSpecies.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION, 1.5f)
-            * Constants.AUTO_EVO_MAX_AGGRESSION_GATHERING_PENALTY;
-        inactivityScore *= 1 -
-            MathF.Pow(microbeSpecies.Behaviour.Fear / Constants.MAX_SPECIES_FEAR, 1.5f)
-            * Constants.AUTO_EVO_MAX_FEAR_GATHERING_PENALTY;
+        inactivityScore *= 1 - agressionScore * Constants.AUTO_EVO_MAX_AGGRESSION_ENERGY_PENALTY;
+        inactivityScore *= 1 - fearScore * Constants.AUTO_EVO_MAX_FEAR_ENERGY_PENALTY;
 
         // Calculate how much energy is typically being consumed
         var energyConsumption = inactivityScore * energyBalance.TotalConsumptionStationary;
-        energyConsumption += (1 - inactivityScore) * energyBalance.TotalConsumption;
+        energyConsumption += (1 - inactivityScore) * (energyBalance.TotalConsumption +
+            energyBalance.BaseMovement * Constants.AUTO_EVO_SPRINTING_CONSUMPTION * focusScore * agressionScore);
 
         // Modifier to fit the current mechanics of the Binding Agent. This should probably be removed or adjusted if
         // being in a colony no longer reduces osmoregulation cost.

@@ -38,6 +38,8 @@ public class GeneralAvoidPredationSelectionPressure : SelectionPressure
         new ChangeMembraneType("silica"),
         new ChangeMembraneRigidity(true),
         new ChangeMembraneRigidity(false),
+        new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Fear, 50.0f),
+        new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Aggression, 50.0f),
     ])
     {
     }
