@@ -19,7 +19,7 @@ public class PredatorRoot : SelectionPressure
         RemoveOrganelle.ThatCreateCompound(Compound.Glucose),
         RemoveOrganelle.ThatCreateCompound(Compound.ATP),
         AddOrganelleAnywhere.ThatConvertBetweenCompounds(Compound.Glucose, Compound.ATP),
-        new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Aggression, 5.0f),
+        new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Aggression, 100.0f),
     ])
     {
     }
