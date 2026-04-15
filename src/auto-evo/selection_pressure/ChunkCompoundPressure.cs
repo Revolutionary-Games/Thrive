@@ -68,7 +68,7 @@ public class ChunkCompoundPressure : SelectionPressure
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
         var chunkType = reader.ReadString();
-        var readableName = reader.ReadObjectOrNull<LocalizedString>();
+        var readableName = reader.ReadObject<LocalizedString>();
         var compound = (Compound)reader.ReadInt32();
         var compoundOut = (Compound)reader.ReadInt32();
         bool isDayNightCycleEnabled;
