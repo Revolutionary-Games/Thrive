@@ -11,6 +11,8 @@ using Godot;
 /// </summary>
 public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
 {
+    public HashSet<string>? IncompatibleOrganelleNames;
+
     /// <summary>
     ///   Hold reference of modifier info elements for easier access to change their values later
     /// </summary>
@@ -170,7 +172,6 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
         }
     }
 
-    [Export]
     public string[]? IncompatibleMembraneNames
     {
         get => incompatibleMembraneNames;
@@ -413,6 +414,31 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
         return true;
     }
 
+    public void UpdateIncompatibleOrganelles()
+    {
+        if (IncompatibleOrganelleNames == null || IncompatibleOrganelleNames.Count == 0)
+        {
+            incompatibleMembranesLabel.Visible = false;
+            return;
+        }
+
+        incompatibleMembranesLabel.Visible = true;
+
+        var stringBuilder = new StringBuilder();
+
+        foreach (var organelle in IncompatibleOrganelleNames)
+        {
+            if (stringBuilder.Length > 0)
+            {
+                stringBuilder.Append(", ");
+            }
+
+            stringBuilder.Append(organelle);
+        }
+
+        incompatibleMembranesLabel.Text = Localization.Translate("INCOMPATIBLE_ORGANELLE_LIST").FormatSafe(stringBuilder.ToString());
+    }
+
     private void UpdateName()
     {
         if (string.IsNullOrEmpty(displayName))
@@ -479,22 +505,22 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     {
         incompatibleMembranesLabel.Visible = incompatibleMembraneNames != null;
 
-        if (incompatibleMembraneNames != null)
+        if (incompatibleMembraneNames == null)
+            return;
+
+        var stringBuilder = new StringBuilder();
+
+        foreach (var membrane in incompatibleMembraneNames)
         {
-            var stringBuilder = new StringBuilder();
-
-            foreach (var membrane in incompatibleMembraneNames)
+            if (stringBuilder.Length > 0)
             {
-                if (stringBuilder.Length > 0)
-                {
-                    stringBuilder.Append(", ");
-                }
-
-                stringBuilder.Append(SimulationParameters.Instance.GetMembrane(membrane).Name);
+                stringBuilder.Append(", ");
             }
 
-            incompatibleMembranesLabel.Text = Localization.Translate("INCOMPATIBLE_MEMBRANE_LIST").FormatSafe(stringBuilder.ToString());
+            stringBuilder.Append(SimulationParameters.Instance.GetMembrane(membrane).Name);
         }
+
+        incompatibleMembranesLabel.Text = Localization.Translate("INCOMPATIBLE_MEMBRANE_LIST").FormatSafe(stringBuilder.ToString());
     }
 
     private void UpdateLists()

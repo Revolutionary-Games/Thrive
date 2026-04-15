@@ -2492,6 +2492,9 @@ public partial class CellEditorComponent :
         {
             membrane.Value.Locked = false;
 
+            var tooltip = GetSelectionTooltip(membrane.Key.InternalName, "membraneSelection");
+            tooltip?.IncompatibleOrganelleNames?.Clear();
+
             foreach (var organelle in editedMicrobeOrganelles)
             {
                 if (organelle.Definition.IncompatibleMembraneNames == null)
@@ -2500,11 +2503,14 @@ public partial class CellEditorComponent :
                 membrane.Value.Locked =
                     organelle.Definition.IncompatibleMembraneNames.Contains(membrane.Key.InternalName);
 
-                if (membrane.Value.Locked)
+                if (membrane.Value.Locked && tooltip != null)
                 {
-                    break;
+                    tooltip.IncompatibleOrganelleNames ??= new HashSet<string>();
+                    tooltip.IncompatibleOrganelleNames.Add(organelle.Definition.Name);
                 }
             }
+
+            tooltip?.UpdateIncompatibleOrganelles();
         }
     }
 
@@ -2579,8 +2585,6 @@ public partial class CellEditorComponent :
         UpdateSpecializationDisplay();
 
         UpdateMembraneAvailability();
-
-        SetMembraneTooltips(Membrane);
     }
 
     /// <summary>
