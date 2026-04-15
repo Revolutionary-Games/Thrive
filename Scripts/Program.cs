@@ -370,7 +370,6 @@ public class Program
         ColourConsole.WriteInfoLine("This quite often fails, so this will try to run for 7 minutes before cancelling");
 
         var timeout = new CancellationTokenSource(TimeSpan.FromMinutes(7));
-
         var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
 
         var combined = CancellationTokenSource.CreateLinkedTokenSource(tokenSource.Token, timeout.Token);
@@ -385,7 +384,10 @@ public class Program
         try
         {
             var processTask = ProcessRunHelpers.RunProcessAsync(startInfo, combined.Token, false, 1, false);
-            processTask.Wait(combined.Token);
+
+            var waitTimeout = new CancellationTokenSource(TimeSpan.FromMinutes(8));
+
+            processTask.Wait(waitTimeout.Token);
             var result = processTask.Result;
 
             if (result.ExitCode != 0)
