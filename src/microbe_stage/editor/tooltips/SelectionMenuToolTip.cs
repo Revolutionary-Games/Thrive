@@ -10,12 +10,21 @@ using Godot;
 /// </summary>
 public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
 {
+    private const float AUTO_SCROLLING_DELAY = 2.0f;
+    private const float AUTO_SCROLLING_HEIGHT_THREESHOLD = 700.0f;
+
     /// <summary>
     ///   Hold reference of modifier info elements for easier access to change their values later
     /// </summary>
     private readonly List<ModifierInfoLabel> modifierInfos = new();
 
 #pragma warning disable CA2213
+    [Export]
+    private Control sizeController = null!;
+
+    [Export]
+    private MarginContainer mainContainer = null!;
+
     [Export]
     private VBoxContainer modifierInfoList = null!;
 
@@ -63,6 +72,10 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     private bool requiresNucleus;
     private string? thriveopediaPageName;
     private bool hasProcesses;
+
+    private float currentAutoScrollingDelay = AUTO_SCROLLING_DELAY;
+    private float currentAutoScrollingOffset = 0.0f;
+    private float currentAutoScrollingDirection = -1.0f;
 
     [Export]
     public string DisplayName
@@ -217,6 +230,11 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     {
         base._ExitTree();
         Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
+    }
+
+    public override void _Process(double delta)
+    {
+        UpdateAutoScrolling(delta);
     }
 
     /// <summary>
@@ -480,5 +498,46 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     private void DummyKeepTranslations()
     {
         Localization.Translate("NO_ORGANELLE_PROCESSES");
+    }
+
+    private void UpdateAutoScrolling(double delta)
+    {
+        if (!Visible)
+        {
+            // Reset the values
+            currentAutoScrollingOffset = 0.0f;
+            currentAutoScrollingDelay = AUTO_SCROLLING_DELAY;
+            return;
+        }
+
+        float excessHeight = mainContainer.Size.Y - AUTO_SCROLLING_HEIGHT_THREESHOLD;
+
+        sizeController.CustomMinimumSize =
+            new Vector2(sizeController.Size.X, MathF.Min(AUTO_SCROLLING_HEIGHT_THREESHOLD, mainContainer.Size.Y));
+
+        if (currentAutoScrollingDelay <= 0.0f && excessHeight > 0.0f)
+        {
+            currentAutoScrollingOffset += (float)delta * currentAutoScrollingDirection * 40.0f;
+
+            if (currentAutoScrollingOffset < -excessHeight)
+            {
+                currentAutoScrollingOffset = -excessHeight;
+                currentAutoScrollingDirection = 1.0f;
+                currentAutoScrollingDelay = AUTO_SCROLLING_DELAY;
+            }
+
+            if (currentAutoScrollingOffset > 0.0f)
+            {
+                currentAutoScrollingOffset = 0.0f;
+                currentAutoScrollingDirection = -1.0f;
+                currentAutoScrollingDelay = AUTO_SCROLLING_DELAY;
+            }
+
+            mainContainer.Position = new Vector2(mainContainer.Position.X, currentAutoScrollingOffset);
+        }
+        else
+        {
+            currentAutoScrollingDelay -= (float)delta;
+        }
     }
 }
