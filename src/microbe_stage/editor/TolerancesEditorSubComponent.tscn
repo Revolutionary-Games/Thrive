@@ -150,6 +150,7 @@ layout_mode = 2
 [node name="Spacer" type="Control" parent="Temperature/RangeDisplayContainer" unique_id=1733797315]
 custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Temperature/RangeDisplayContainer" unique_id=448157339]
 layout_mode = 2
@@ -177,6 +178,7 @@ value = 50.0
 [node name="Spacer2" type="Control" parent="Temperature/RangeDisplayContainer" unique_id=88187736]
 custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="Temperature" unique_id=121520012]
 layout_mode = 2
@@ -302,6 +304,7 @@ layout_mode = 2
 [node name="Spacer" type="Control" parent="Pressure/RangeDisplayContainer" unique_id=1702930961]
 custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Pressure/RangeDisplayContainer" unique_id=797964187]
 layout_mode = 2
@@ -331,6 +334,7 @@ value = 40000000.0
 [node name="Spacer2" type="Control" parent="Pressure/RangeDisplayContainer" unique_id=1570659681]
 custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="Pressure" unique_id=1472914901]
 layout_mode = 2
@@ -453,6 +457,7 @@ layout_mode = 2
 [node name="Spacer" type="Control" parent="Oxygen/RangeDisplayContainer" unique_id=131682752]
 custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Oxygen/RangeDisplayContainer" unique_id=242132622]
 layout_mode = 2
@@ -482,6 +487,7 @@ step = 0.05
 [node name="Spacer2" type="Control" parent="Oxygen/RangeDisplayContainer" unique_id=1372406449]
 custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Spacer" type="Control" parent="Oxygen" unique_id=574127871]
 custom_minimum_size = Vector2(0, 2)
@@ -558,6 +564,7 @@ layout_mode = 2
 [node name="Spacer" type="Control" parent="UV/RangeDisplayContainer" unique_id=1682938016]
 custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UV/RangeDisplayContainer" unique_id=1203124143]
 layout_mode = 2
@@ -585,6 +592,7 @@ step = 0.05
 [node name="Spacer2" type="Control" parent="UV/RangeDisplayContainer" unique_id=1944425756]
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
+mouse_filter = 2
 
 [connection signal="value_changed" from="Temperature/RangeDisplayContainer/VBoxContainer/TemperatureSlider" to="." method="OnTemperatureSliderChanged"]
 [connection signal="value_changed" from="Temperature/HBoxContainer3/TemperatureRange" to="." method="OnTemperatureToleranceRangeSliderChanged"]
