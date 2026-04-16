@@ -12,6 +12,7 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
 {
     private const float AUTO_SCROLLING_DELAY = 2.0f;
     private const float AUTO_SCROLLING_HEIGHT_THREESHOLD = 700.0f;
+    private const float AUTO_SCROLLING_SPEED = 40.0f;
 
     /// <summary>
     ///   Hold reference of modifier info elements for easier access to change their values later
@@ -504,9 +505,8 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     {
         if (!Visible)
         {
-            // Reset the values
-            currentAutoScrollingOffset = 0.0f;
-            currentAutoScrollingDelay = AUTO_SCROLLING_DELAY;
+            ResetAutoScrollingValues();
+            mainContainer.Position = new Vector2(mainContainer.Position.X, currentAutoScrollingOffset);
             return;
         }
 
@@ -517,7 +517,7 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
 
         if (currentAutoScrollingDelay <= 0.0f && excessHeight > 0.0f)
         {
-            currentAutoScrollingOffset += (float)delta * currentAutoScrollingDirection * 40.0f;
+            currentAutoScrollingOffset += (float)delta * currentAutoScrollingDirection * AUTO_SCROLLING_SPEED;
 
             if (currentAutoScrollingOffset < -excessHeight)
             {
@@ -528,9 +528,7 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
 
             if (currentAutoScrollingOffset > 0.0f)
             {
-                currentAutoScrollingOffset = 0.0f;
-                currentAutoScrollingDirection = -1.0f;
-                currentAutoScrollingDelay = AUTO_SCROLLING_DELAY;
+                ResetAutoScrollingValues();
             }
 
             mainContainer.Position = new Vector2(mainContainer.Position.X, currentAutoScrollingOffset);
@@ -539,5 +537,12 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
         {
             currentAutoScrollingDelay -= (float)delta;
         }
+    }
+
+    private void ResetAutoScrollingValues()
+    {
+        currentAutoScrollingOffset = 0.0f;
+        currentAutoScrollingDirection = -1.0f;
+        currentAutoScrollingDelay = AUTO_SCROLLING_DELAY;
     }
 }
