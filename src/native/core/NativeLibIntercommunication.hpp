@@ -40,7 +40,7 @@ public:
     bool PhysicsDebugSupported = false;
 };
 
-inline JVec3 JoltToJVec3(const JPH::RVec3Arg& vec)
+inline JVec3 JoltToJVec3(JPH::RVec3Arg vec)
 {
     return JVec3(vec.GetX(), vec.GetY(), vec.GetZ());
 }
