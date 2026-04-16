@@ -224,8 +224,7 @@ public partial class OrganismStatisticsPanel : PanelContainer
         var bonusStr = CalculateAndShowBonusStr(specializationFactor);
 
         var tooltip = Localization.Translate("CELL_SPECIALIZATION_TOOLTIP").FormatSafe(bonusStr, maxOrganelles,
-            mostCommonOrganelle, Constants.CELL_SPECIALIZATION_APPLIES_AFTER_SIZE,
-            Constants.CELL_SPECIALIZATION_STRENGTH_FULL_AT);
+            mostCommonOrganelle, Constants.CELL_SPECIALIZATION_STRENGTH_FULL_AT);
 
         specializationValueLabel.TooltipText = tooltip;
         specializationTitleLabel.TooltipText = tooltip;
