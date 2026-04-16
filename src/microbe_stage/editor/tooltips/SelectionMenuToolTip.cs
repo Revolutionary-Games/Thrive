@@ -75,8 +75,9 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     private bool hasProcesses;
 
     private float currentAutoScrollingDelay = AUTO_SCROLLING_DELAY;
-    private float currentAutoScrollingOffset = 0.0f;
-    private float currentAutoScrollingDirection = -1.0f;
+    private float currentAutoScrollingOffset;
+    private bool isAutoScrollingMovingDown = true;
+    private bool visibleLastFrame;
 
     [Export]
     public string DisplayName
@@ -505,33 +506,57 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     {
         if (!Visible)
         {
-            ResetAutoScrollingValues();
-            mainContainer.Position = new Vector2(mainContainer.Position.X, currentAutoScrollingOffset);
+            visibleLastFrame = false;
             return;
         }
 
-        float excessHeight = mainContainer.Size.Y - AUTO_SCROLLING_HEIGHT_THREESHOLD;
+        if (!visibleLastFrame)
+        {
+            visibleLastFrame = true;
+
+            ResetAutoScrollingValues();
+            mainContainer.Position = new Vector2(0.0f, currentAutoScrollingOffset);
+        }
+
+        float mainContainerHeight = mainContainer.GetMinimumSize().Y;
+        float excessHeight = mainContainerHeight - AUTO_SCROLLING_HEIGHT_THREESHOLD;
 
         sizeController.CustomMinimumSize =
-            new Vector2(sizeController.Size.X, MathF.Min(AUTO_SCROLLING_HEIGHT_THREESHOLD, mainContainer.Size.Y));
+            new Vector2(sizeController.GetMinimumSize().X,
+                MathF.Min(AUTO_SCROLLING_HEIGHT_THREESHOLD, mainContainerHeight));
 
         if (currentAutoScrollingDelay <= 0.0f && excessHeight > 0.0f)
         {
-            currentAutoScrollingOffset += (float)delta * currentAutoScrollingDirection * AUTO_SCROLLING_SPEED;
+            float direction;
 
-            if (currentAutoScrollingOffset < -excessHeight)
+            if (isAutoScrollingMovingDown)
             {
-                currentAutoScrollingOffset = -excessHeight;
-                currentAutoScrollingDirection = 1.0f;
-                currentAutoScrollingDelay = AUTO_SCROLLING_DELAY;
+                // Visually moving to the lower part of the text requires us to move the container up
+                direction = -1.0f;
+
+                if (currentAutoScrollingOffset < -excessHeight)
+                {
+                    currentAutoScrollingOffset = -excessHeight;
+                    isAutoScrollingMovingDown = false;
+                    currentAutoScrollingDelay = AUTO_SCROLLING_DELAY;
+                    return;
+                }
+            }
+            else
+            {
+                // Moving back to the top
+                direction = 1.0f;
+
+                if (currentAutoScrollingOffset > 0.0f)
+                {
+                    ResetAutoScrollingValues();
+                    return;
+                }
             }
 
-            if (currentAutoScrollingOffset > 0.0f)
-            {
-                ResetAutoScrollingValues();
-            }
+            currentAutoScrollingOffset += direction * (float)delta * AUTO_SCROLLING_SPEED;
 
-            mainContainer.Position = new Vector2(mainContainer.Position.X, currentAutoScrollingOffset);
+            mainContainer.Position = new Vector2(0.0f, currentAutoScrollingOffset);
         }
         else
         {
@@ -542,7 +567,7 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     private void ResetAutoScrollingValues()
     {
         currentAutoScrollingOffset = 0.0f;
-        currentAutoScrollingDirection = -1.0f;
         currentAutoScrollingDelay = AUTO_SCROLLING_DELAY;
+        isAutoScrollingMovingDown = true;
     }
 }
