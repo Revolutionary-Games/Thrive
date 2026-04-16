@@ -989,6 +989,9 @@ public static class MicrobeColonyHelpers
 
             try
             {
+                if (!colonyMember.IsAliveAndHas<AttachedToEntity>())
+                    throw new Exception("Colony member has no AttachedToEntity component");
+
                 ref var memberPosition = ref colonyMember.Get<AttachedToEntity>();
 
                 var distanceSquared = memberPosition.RelativePosition.LengthSquared();
