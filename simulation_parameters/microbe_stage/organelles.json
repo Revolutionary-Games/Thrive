@@ -1577,6 +1577,12 @@
     "IconPath": "res://assets/textures/gui/bevel/parts/MyofibrilIcon.png",
     "RequiresNucleus": true,
     "EditorButtonGroup": "Macroscopic",
-    "EditorButtonOrder": 2
+    "EditorButtonOrder": 2,
+    "IncompatibleMembraneNames": [
+      "cellulose",
+      "chitin",
+      "calciumCarbonate",
+      "silica"
+    ]
   }
 }
