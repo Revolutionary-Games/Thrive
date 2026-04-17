@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 
 /// <summary>
 ///   Tweaked colour picker allows for tooltip texts translations and has a customized theming.
@@ -65,6 +66,8 @@ public partial class TweakedColourPicker : ColorPicker
 
         // Disable the RAW option in a dropdown menu
         baseControl.GetChild(2).GetChild<MenuButton>(3).GetPopup().SetItemDisabled(2, true);
+
+        FixScreenRecordingPermissionLabel(this);
 
         // Disable value bar scroll with the mouse, as the colour pickers are often in scrollable containers and
         // this would otherwise be problematic. Perhaps in the future we should have this be configurable with an
@@ -159,6 +162,25 @@ public partial class TweakedColourPicker : ColorPicker
         sliderA.Hide();
         labelA.Hide();
         spinBoxA.Hide();
+    }
+
+    private void FixScreenRecordingPermissionLabel(Node node)
+    {
+        if (node is Label label && label.Text.Contains("Screen Recording", StringComparison.OrdinalIgnoreCase))
+        {
+            label.AutowrapMode = TextServer.AutowrapMode.WordSmart;
+            label.SizeFlagsHorizontal = SizeFlags.ExpandFill;
+            label.CustomMinimumSize = new Vector2(1, 0);
+
+            if (label.GetParent() is Control parentControl)
+                parentControl.SizeFlagsHorizontal = SizeFlags.ExpandFill;
+        }
+
+        var childCount = node.GetChildCount(true);
+        for (int i = 0; i < childCount; ++i)
+        {
+            FixScreenRecordingPermissionLabel(node.GetChild(i, true));
+        }
     }
 
     private void DummyTranslations()
