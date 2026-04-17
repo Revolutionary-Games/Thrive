@@ -2736,7 +2736,7 @@ public partial class CellEditorComponent :
             item.Locked = true;
         }
         else if (organelle.IncompatibleMembraneNames != null
-                && organelle.IncompatibleMembraneNames.Contains(Membrane.InternalName))
+                 && organelle.IncompatibleMembraneNames.Contains(Membrane.InternalName))
         {
             item.Locked = true;
         }
