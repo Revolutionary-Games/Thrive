@@ -2494,23 +2494,29 @@ public partial class CellEditorComponent :
 
             var tooltip = GetSelectionTooltip(membrane.Key.InternalName, "membraneSelection");
             tooltip?.IncompatibleOrganelles?.Clear();
+        }
 
-            foreach (var organelle in editedMicrobeOrganelles)
+        foreach (var organelle in editedMicrobeOrganelles)
+        {
+            if (organelle.Definition.IncompatibleMembranes == null)
+                continue;
+
+            foreach (var membrane in organelle.Definition.IncompatibleMembranes)
             {
-                if (organelle.Definition.IncompatibleMembranes == null)
-                    continue;
+                membraneSelectionElements[membrane].Locked = true;
 
-                var incompatible = organelle.Definition.IncompatibleMembranes.Contains(membrane.Key);
-
-                membrane.Value.Locked |= incompatible;
-
-                if (incompatible && tooltip != null)
+                var tooltip = GetSelectionTooltip(membrane.InternalName, "membraneSelection");
+                if (tooltip != null)
                 {
                     tooltip.IncompatibleOrganelles ??= new HashSet<OrganelleDefinition>();
                     tooltip.IncompatibleOrganelles.Add(organelle.Definition);
                 }
             }
+        }
 
+        foreach (var membrane in membraneSelectionElements)
+        {
+            var tooltip = GetSelectionTooltip(membrane.Key.InternalName, "membraneSelection");
             tooltip?.UpdateIncompatibleOrganelles();
         }
     }

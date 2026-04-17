@@ -23,7 +23,7 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="SelectionMenuTooltip" type="PanelContainer" unique_id=1253970789 node_paths=PackedStringArray("modifierInfoList", "organelleCostInfoList", "nameLabel", "mpLabel", "requiresNucleusLabel", "osmoregulationModifier", "descriptionLabel", "processesDescriptionLabel", "processesDescriptionSeparator", "processList", "moreInfo")]
+[node name="SelectionMenuTooltip" type="PanelContainer" unique_id=1253970789 node_paths=PackedStringArray("modifierInfoList", "organelleCostInfoList", "nameLabel", "mpLabel", "requiresNucleusLabel", "incompatibleMembranesLabel", "osmoregulationModifier", "descriptionLabel", "processesDescriptionLabel", "processesDescriptionSeparator", "processList", "moreInfo")]
 custom_minimum_size = Vector2(400, 0)
 offset_right = 350.0
 offset_bottom = 155.0
@@ -36,6 +36,7 @@ organelleCostInfoList = NodePath("MarginContainer/VBoxContainer/OrganelleCostLis
 nameLabel = NodePath("MarginContainer/VBoxContainer/Header/Title")
 mpLabel = NodePath("MarginContainer/VBoxContainer/Header/MP/Value")
 requiresNucleusLabel = NodePath("MarginContainer/VBoxContainer/RequiresNucleus")
+incompatibleMembranesLabel = NodePath("MarginContainer/VBoxContainer/IncompatibleMembrane")
 osmoregulationModifier = NodePath("MarginContainer/VBoxContainer/ModifierList/osmoregulationCost")
 descriptionLabel = NodePath("MarginContainer/VBoxContainer/Description")
 processesDescriptionLabel = NodePath("MarginContainer/VBoxContainer/ProcessesDescription")
