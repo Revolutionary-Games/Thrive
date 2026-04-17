@@ -135,6 +135,21 @@ public static class KeyPromptHelper
     /// <returns>A tuple of icon for the action and a potential overlay that should be drawn on top</returns>
     public static (Texture2D Primary, Texture2D? Overlay) GetTextureForAction(string actionName)
     {
+        var (primary, overlay, _) = GetTextureForActionWithDisplayOptions(actionName);
+
+        return (primary, overlay);
+    }
+
+    /// <summary>
+    ///   Returns an icon and any special display options for the action
+    /// </summary>
+    /// <param name="actionName">Name of the action</param>
+    /// <returns>
+    ///   A tuple of icon for the action, a potential overlay, and whether the primary icon should be drawn smaller
+    /// </returns>
+    public static (Texture2D Primary, Texture2D? Overlay, bool SmallPrimaryIcon) GetTextureForActionWithDisplayOptions(
+        string actionName)
+    {
         var (primaryPath, overlayPath) = GetPathForAction(actionName);
 
         Texture2D? overlay = null;
@@ -142,7 +157,8 @@ public static class KeyPromptHelper
         if (overlayPath != null)
             overlay = GD.Load<Texture2D>(overlayPath);
 
-        return (GD.Load<Texture2D>(primaryPath), overlay);
+        return (GD.Load<Texture2D>(primaryPath), overlay,
+            ShouldUseSmallPrimaryIcon(InputMap.ActionGetEvents(actionName)));
     }
 
     /// <summary>
@@ -595,5 +611,49 @@ public static class KeyPromptHelper
         }
 
         return $"res://assets/textures/gui/xelu_prompts/{type}/{type}_{buttonName}.png";
+    }
+
+    private static bool ShouldUseSmallPrimaryIcon(Array<InputEvent> actionList)
+    {
+        foreach (var action in actionList)
+        {
+            switch (InputMethod)
+            {
+                case ActiveInputMethod.Keyboard:
+                {
+                    if (action is InputEventKey key)
+                    {
+                        var potentialKey = GetPathForKeyboardKey(OS.GetKeycodeString(key.KeyCodeOrLabel()));
+
+                        if (potentialKey != null)
+                            return false;
+                    }
+
+                    if (action is InputEventMouseButton button)
+                        return MouseButtonUsesSmallPrimaryIcon(button.ButtonIndex);
+
+                    break;
+                }
+
+                case ActiveInputMethod.Controller:
+                {
+                    if (action is InputEventJoypadButton)
+                        return false;
+
+                    if (action is InputEventJoypadMotion)
+                        return false;
+
+                    break;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    private static bool MouseButtonUsesSmallPrimaryIcon(MouseButton button)
+    {
+        return button is MouseButton.WheelUp or MouseButton.WheelDown or
+            MouseButton.WheelLeft or MouseButton.WheelRight;
     }
 }
