@@ -16,6 +16,7 @@ public class PredationEffectivenessPressure : SelectionPressure
 
     public PredationEffectivenessPressure(Species prey, float weight) :
         base(weight, [
+            new RemoveOrganelle(_ => true),
             new AddOrganelleAnywhere(organelle => organelle.MPCost < 30),
             new AddOrganelleAnywhere(organelle =>
                 organelle.InternalName == CommonMutationFunctions.Nucleus.InternalName),

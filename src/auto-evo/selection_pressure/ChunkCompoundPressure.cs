@@ -26,7 +26,7 @@ public class ChunkCompoundPressure : SelectionPressure
 
     public ChunkCompoundPressure(string chunkType, LocalizedString readableName, Compound compound,
         Compound compoundOut, bool isDayNightCycleEnabled, float weight) : base(weight, [
-        RemoveOrganelle.ThatCreateCompound(compoundOut),
+        new RemoveOrganelle(_ => true),
         new AddOrganelleAnywhere(organelle => organelle.HasChemoreceptorComponent),
         new AddOrganelleAnywhere(organelle => organelle.InternalName == "vacuole"),
         AddOrganelleAnywhere.ThatConvertBetweenCompounds(compound, compoundOut),

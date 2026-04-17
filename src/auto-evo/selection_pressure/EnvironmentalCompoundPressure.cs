@@ -23,6 +23,7 @@ public class EnvironmentalCompoundPressure : SelectionPressure
     public EnvironmentalCompoundPressure(Compound compound, Compound createdCompound, float energyMultiplier,
         float weight) :
         base(weight, [
+            new RemoveOrganelle(_ => true),
             AddOrganelleAnywhere.ThatUseCompound(compound),
             new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Activity, 50.0f),
             new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Activity, -150.0f),

@@ -24,7 +24,7 @@ public class CompoundCloudPressure : SelectionPressure
 
     public CompoundCloudPressure(Compound compound, Compound compoundOut, bool isDayNightCycleEnabled, float weight) :
         base(weight, [
-            RemoveOrganelle.ThatCreateCompound(Compound.Glucose),
+            new RemoveOrganelle(_ => true),
             AddOrganelleAnywhere.ThatUseCompound(compound),
             new AddOrganelleAnywhere(organelle => organelle.HasChemoreceptorComponent),
             new UpgradeOrganelle(organelle => organelle.HasChemoreceptorComponent,
