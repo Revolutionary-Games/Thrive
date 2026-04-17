@@ -149,6 +149,7 @@ private:
     void DrawTriangle(const godot::Vector3& vertex1, const godot::Vector3& vertex2, const godot::Vector3& vertex3,
         const godot::Color& colour);
     void StartDrawingIfNotYetThisFrame();
+    void UpdateDebugCameraLocation();
 
     inline void AddTimedLine(const TimedLine& line)
     {
@@ -173,6 +174,8 @@ private:
     godot::Vector3 debugCameraLocation{0, 0, 0};
 
     std::vector<TimedLine> timedLines;
+    std::vector<std::pair<float, size_t>> lineDrawOrder;
+    std::vector<std::pair<float, size_t>> triangleDrawOrder;
 
     /// \brief As the data is not drawn each frame, there's a delay before hiding the draw result
     double timeInactive = 0;

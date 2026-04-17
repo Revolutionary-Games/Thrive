@@ -1,6 +1,10 @@
 // ------------------------------------ //
 #include "DebugDrawer.hpp"
 
+#include <algorithm>
+#include <cstdint>
+#include <utility>
+
 BEGIN_GODOT_INCLUDES;
 #include <godot_cpp/classes/camera3d.hpp>
 #include <godot_cpp/classes/engine.hpp>
@@ -30,12 +34,44 @@ constexpr long SingleLineDrawMemoryUse = MemoryUseOfIntermediateVertex * 2 + siz
 /// 3 vertices
 constexpr long SingleTriangleDrawMemoryUse = MemoryUseOfIntermediateVertex * 3 + sizeof(uint32_t);
 
+using LineDrawEntry = std::tuple<JPH::RVec3Arg, JPH::RVec3Arg, JPH::Float4>;
+using TriangleDrawEntry = std::tuple<JPH::RVec3Arg, JPH::RVec3Arg, JPH::RVec3Arg, JPH::Float4>;
+
 const godot::Vector3 DebugDrawer::pointOffsetLeft = {-PointLineWidth, 0, 0};
 const godot::Vector3 DebugDrawer::pointOffsetUp = {0, PointLineWidth, 0};
 const godot::Vector3 DebugDrawer::pointOffsetRight = {PointLineWidth, 0, 0};
 const godot::Vector3 DebugDrawer::pointOffsetDown = {0, -PointLineWidth, 0};
 const godot::Vector3 DebugDrawer::pointOffsetForward = {0, 0, -PointLineWidth};
 const godot::Vector3 DebugDrawer::pointOffsetBack = {0, 0, PointLineWidth};
+
+namespace
+{
+
+bool EntriesFitDrawMemory(size_t entryCount, long singleEntryDrawMemoryUse, int usedDrawMemory, int drawMemoryLimit)
+{
+    const auto memoryNeeded = static_cast<int64_t>(entryCount) * singleEntryDrawMemoryUse;
+
+    return usedDrawMemory + memoryNeeded < drawMemoryLimit;
+}
+
+float CalculateLineCameraDistanceSquared(const LineDrawEntry& entry, const godot::Vector3& cameraLocation)
+{
+    const auto from = JoltToGodot(std::get<0>(entry));
+    const auto to = JoltToGodot(std::get<1>(entry));
+
+    return ((from + to) * 0.5f).distance_squared_to(cameraLocation);
+}
+
+float CalculateTriangleCameraDistanceSquared(const TriangleDrawEntry& entry, const godot::Vector3& cameraLocation)
+{
+    const auto vertex1 = JoltToGodot(std::get<0>(entry));
+    const auto vertex2 = JoltToGodot(std::get<1>(entry));
+    const auto vertex3 = JoltToGodot(std::get<2>(entry));
+
+    return ((vertex1 + vertex2 + vertex3) / 3.0f).distance_squared_to(cameraLocation);
+}
+
+} // namespace
 
 DebugDrawer* DebugDrawer::instance = nullptr;
 
@@ -157,6 +193,11 @@ void DebugDrawer::_process(double delta)
     if (lineDrawer == nullptr)
         return;
 
+    if (physicsDebugSupported && currentPhysicsDebugLevel > 0)
+    {
+        UpdateDebugCameraLocation();
+    }
+
     if (!timedLines.empty())
     {
         // Only draw the other debug lines if physics lines have been updated to avoid flicker
@@ -191,14 +232,6 @@ void DebugDrawer::_process(double delta)
         lineDrawer->set_visible(true);
         triangleDrawer->set_visible(true);
         drawnThisFrame = false;
-
-        // Send camera position to the debug draw for LOD purposes
-        const auto* camera = get_viewport()->get_camera_3d();
-
-        if (camera != nullptr)
-        {
-            SetDebugCameraLocation(camera->get_global_position());
-        }
 
         if (!warnedAboutHittingMemoryLimit && usedDrawMemory + SingleTriangleDrawMemoryUse * 100 >= drawMemoryLimit)
         {
@@ -260,21 +293,70 @@ void DebugDrawer::DisablePhysicsDebug() noexcept
 
 // ------------------------------------ //
 void DebugDrawer::OnReceiveLines(
-    const std::vector<std::tuple<JPH::RVec3Arg, JPH::RVec3Arg, JPH::Float4>>& lineBuffer) noexcept
+    const std::vector<LineDrawEntry>& lineBuffer) noexcept
 {
-    for (const auto& entry : lineBuffer)
+    if (EntriesFitDrawMemory(lineBuffer.size(), SingleLineDrawMemoryUse, usedDrawMemory, drawMemoryLimit))
     {
-        DrawLine(JoltToGodot(std::get<0>(entry)), JoltToGodot(std::get<1>(entry)), JoltToGodot(std::get<2>(entry)));
+        for (const auto& entry : lineBuffer)
+        {
+            DrawLine(
+                JoltToGodot(std::get<0>(entry)), JoltToGodot(std::get<1>(entry)), JoltToGodot(std::get<2>(entry)));
+        }
+
+        return;
+    }
+
+    lineDrawOrder.clear();
+    lineDrawOrder.reserve(lineBuffer.size());
+
+    for (size_t i = 0; i < lineBuffer.size(); ++i)
+    {
+        lineDrawOrder.emplace_back(CalculateLineCameraDistanceSquared(lineBuffer[i], debugCameraLocation), i);
+    }
+
+    std::sort(lineDrawOrder.begin(), lineDrawOrder.end(),
+        [](const auto& left, const auto& right) { return left.first < right.first; });
+
+    for (const auto& entry : lineDrawOrder)
+    {
+        const auto& line = lineBuffer[entry.second];
+
+        DrawLine(JoltToGodot(std::get<0>(line)), JoltToGodot(std::get<1>(line)), JoltToGodot(std::get<2>(line)));
     }
 }
 
 void DebugDrawer::OnReceiveTriangles(
-    const std::vector<std::tuple<JPH::RVec3Arg, JPH::RVec3Arg, JPH::RVec3Arg, JPH::Float4>>& triangleBuffer) noexcept
+    const std::vector<TriangleDrawEntry>& triangleBuffer) noexcept
 {
-    for (const auto& entry : triangleBuffer)
+    if (EntriesFitDrawMemory(triangleBuffer.size(), SingleTriangleDrawMemoryUse, usedDrawMemory, drawMemoryLimit))
     {
-        DrawTriangle(JoltToGodot(std::get<0>(entry)), JoltToGodot(std::get<1>(entry)), JoltToGodot(std::get<2>(entry)),
-            JoltToGodot(std::get<3>(entry)));
+        for (const auto& entry : triangleBuffer)
+        {
+            DrawTriangle(JoltToGodot(std::get<0>(entry)), JoltToGodot(std::get<1>(entry)),
+                JoltToGodot(std::get<2>(entry)), JoltToGodot(std::get<3>(entry)));
+        }
+
+        return;
+    }
+
+    triangleDrawOrder.clear();
+    triangleDrawOrder.reserve(triangleBuffer.size());
+
+    for (size_t i = 0; i < triangleBuffer.size(); ++i)
+    {
+        triangleDrawOrder.emplace_back(
+            CalculateTriangleCameraDistanceSquared(triangleBuffer[i], debugCameraLocation), i);
+    }
+
+    std::sort(triangleDrawOrder.begin(), triangleDrawOrder.end(),
+        [](const auto& left, const auto& right) { return left.first < right.first; });
+
+    for (const auto& entry : triangleDrawOrder)
+    {
+        const auto& triangle = triangleBuffer[entry.second];
+
+        DrawTriangle(JoltToGodot(std::get<0>(triangle)), JoltToGodot(std::get<1>(triangle)),
+            JoltToGodot(std::get<2>(triangle)), JoltToGodot(std::get<3>(triangle)));
     }
 }
 
@@ -382,6 +464,17 @@ void DebugDrawer::StartDrawingIfNotYetThisFrame()
     extraNeededDrawMemory = 0;
 
     drawnThisFrame = true;
+}
+
+void DebugDrawer::UpdateDebugCameraLocation()
+{
+    // The physics debug culling depends on this position even before a successful draw happens.
+    const auto* camera = get_viewport()->get_camera_3d();
+
+    if (camera != nullptr)
+    {
+        SetDebugCameraLocation(camera->get_global_position());
+    }
 }
 
 // ------------------------------------ //
