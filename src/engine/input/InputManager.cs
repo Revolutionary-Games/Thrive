@@ -490,6 +490,7 @@ public partial class InputManager : Node
         if (keyEvent.Unicode < ' ')
             return false;
 
+        // Let focused text fields handle printable keys first, so layout-specific typing is not consumed as a shortcut.
         return GetViewport().GuiGetFocusOwner() is LineEdit or TextEdit;
     }
 
