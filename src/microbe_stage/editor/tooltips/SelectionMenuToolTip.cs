@@ -436,7 +436,8 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
             stringBuilder.Append(organelle.Name);
         }
 
-        incompatibleMembranesLabel.Text = Localization.Translate("INCOMPATIBLE_ORGANELLE_LIST").FormatSafe(stringBuilder.ToString());
+        incompatibleMembranesLabel.Text
+            = Localization.Translate("INCOMPATIBLE_ORGANELLE_LIST").FormatSafe(stringBuilder.ToString());
     }
 
     private void UpdateName()
@@ -520,7 +521,8 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
             stringBuilder.Append(membrane.Name);
         }
 
-        incompatibleMembranesLabel.Text = Localization.Translate("INCOMPATIBLE_MEMBRANE_LIST").FormatSafe(stringBuilder.ToString());
+        incompatibleMembranesLabel.Text
+            = Localization.Translate("INCOMPATIBLE_MEMBRANE_LIST").FormatSafe(stringBuilder.ToString());
     }
 
     private void UpdateLists()
