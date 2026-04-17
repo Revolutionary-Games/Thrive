@@ -71,6 +71,8 @@ public class PhysicalWorld : IDisposable
     /// <returns>True when at least one physics simulation step was performed</returns>
     public bool ProcessPhysics(float delta)
     {
+        DebugDrawer.Instance.UpdatePhysicsDebugCameraLocation();
+
         bool processed = NativeMethods.ProcessPhysicalWorld(AccessWorldInternal(), delta);
 
         if (processed && !DisablePhysicsTimeRecording)
@@ -96,6 +98,8 @@ public class PhysicalWorld : IDisposable
 
     public bool WaitUntilPhysicsRunEnds()
     {
+        DebugDrawer.Instance.UpdatePhysicsDebugCameraLocation();
+
         bool processed = NativeMethods.WaitForPhysicsToCompleteInPhysicalWorld(AccessWorldInternal());
 
         if (processed && !DisablePhysicsTimeRecording)

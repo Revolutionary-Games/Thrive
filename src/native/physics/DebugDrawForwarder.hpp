@@ -115,6 +115,11 @@ private:
     void DrawTriangleInternal(
         const DVertex& vertex1, const DVertex& vertex2, const DVertex& vertex3, JPH::Float4 colourTint, bool wireFrame);
 
+    [[nodiscard]] inline bool IsPointWithinDrawDistance(JPH::RVec3Arg position) const
+    {
+        return (position - cameraPosition).LengthSq() <= maxModelDistance * maxModelDistance;
+    }
+
 private:
     /// Apparently debug rendering happens from multiple threads so we need a lock
     Mutex mutex;

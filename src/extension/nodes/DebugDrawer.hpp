@@ -174,8 +174,6 @@ private:
     godot::Vector3 debugCameraLocation{0, 0, 0};
 
     std::vector<TimedLine> timedLines;
-    std::vector<std::pair<float, size_t>> lineDrawOrder;
-    std::vector<std::pair<float, size_t>> triangleDrawOrder;
 
     /// \brief As the data is not drawn each frame, there's a delay before hiding the draw result
     double timeInactive = 0;

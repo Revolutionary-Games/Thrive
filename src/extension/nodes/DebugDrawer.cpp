@@ -1,9 +1,7 @@
 // ------------------------------------ //
 #include "DebugDrawer.hpp"
 
-#include <algorithm>
 #include <cstdint>
-#include <utility>
 
 BEGIN_GODOT_INCLUDES;
 #include <godot_cpp/classes/camera3d.hpp>
@@ -43,35 +41,6 @@ const godot::Vector3 DebugDrawer::pointOffsetRight = {PointLineWidth, 0, 0};
 const godot::Vector3 DebugDrawer::pointOffsetDown = {0, -PointLineWidth, 0};
 const godot::Vector3 DebugDrawer::pointOffsetForward = {0, 0, -PointLineWidth};
 const godot::Vector3 DebugDrawer::pointOffsetBack = {0, 0, PointLineWidth};
-
-namespace
-{
-
-bool EntriesFitDrawMemory(size_t entryCount, long singleEntryDrawMemoryUse, int usedDrawMemory, int drawMemoryLimit)
-{
-    const auto memoryNeeded = static_cast<int64_t>(entryCount) * singleEntryDrawMemoryUse;
-
-    return usedDrawMemory + memoryNeeded < drawMemoryLimit;
-}
-
-float CalculateLineCameraDistanceSquared(const LineDrawEntry& entry, const godot::Vector3& cameraLocation)
-{
-    const auto from = JoltToGodot(std::get<0>(entry));
-    const auto to = JoltToGodot(std::get<1>(entry));
-
-    return ((from + to) * 0.5f).distance_squared_to(cameraLocation);
-}
-
-float CalculateTriangleCameraDistanceSquared(const TriangleDrawEntry& entry, const godot::Vector3& cameraLocation)
-{
-    const auto vertex1 = JoltToGodot(std::get<0>(entry));
-    const auto vertex2 = JoltToGodot(std::get<1>(entry));
-    const auto vertex3 = JoltToGodot(std::get<2>(entry));
-
-    return ((vertex1 + vertex2 + vertex3) / 3.0f).distance_squared_to(cameraLocation);
-}
-
-} // namespace
 
 DebugDrawer* DebugDrawer::instance = nullptr;
 
@@ -295,68 +264,19 @@ void DebugDrawer::DisablePhysicsDebug() noexcept
 void DebugDrawer::OnReceiveLines(
     const std::vector<LineDrawEntry>& lineBuffer) noexcept
 {
-    if (EntriesFitDrawMemory(lineBuffer.size(), SingleLineDrawMemoryUse, usedDrawMemory, drawMemoryLimit))
+    for (const auto& entry : lineBuffer)
     {
-        for (const auto& entry : lineBuffer)
-        {
-            DrawLine(
-                JoltToGodot(std::get<0>(entry)), JoltToGodot(std::get<1>(entry)), JoltToGodot(std::get<2>(entry)));
-        }
-
-        return;
-    }
-
-    lineDrawOrder.clear();
-    lineDrawOrder.reserve(lineBuffer.size());
-
-    for (size_t i = 0; i < lineBuffer.size(); ++i)
-    {
-        lineDrawOrder.emplace_back(CalculateLineCameraDistanceSquared(lineBuffer[i], debugCameraLocation), i);
-    }
-
-    std::sort(lineDrawOrder.begin(), lineDrawOrder.end(),
-        [](const auto& left, const auto& right) { return left.first < right.first; });
-
-    for (const auto& entry : lineDrawOrder)
-    {
-        const auto& line = lineBuffer[entry.second];
-
-        DrawLine(JoltToGodot(std::get<0>(line)), JoltToGodot(std::get<1>(line)), JoltToGodot(std::get<2>(line)));
+        DrawLine(JoltToGodot(std::get<0>(entry)), JoltToGodot(std::get<1>(entry)), JoltToGodot(std::get<2>(entry)));
     }
 }
 
 void DebugDrawer::OnReceiveTriangles(
     const std::vector<TriangleDrawEntry>& triangleBuffer) noexcept
 {
-    if (EntriesFitDrawMemory(triangleBuffer.size(), SingleTriangleDrawMemoryUse, usedDrawMemory, drawMemoryLimit))
+    for (const auto& entry : triangleBuffer)
     {
-        for (const auto& entry : triangleBuffer)
-        {
-            DrawTriangle(JoltToGodot(std::get<0>(entry)), JoltToGodot(std::get<1>(entry)),
-                JoltToGodot(std::get<2>(entry)), JoltToGodot(std::get<3>(entry)));
-        }
-
-        return;
-    }
-
-    triangleDrawOrder.clear();
-    triangleDrawOrder.reserve(triangleBuffer.size());
-
-    for (size_t i = 0; i < triangleBuffer.size(); ++i)
-    {
-        triangleDrawOrder.emplace_back(
-            CalculateTriangleCameraDistanceSquared(triangleBuffer[i], debugCameraLocation), i);
-    }
-
-    std::sort(triangleDrawOrder.begin(), triangleDrawOrder.end(),
-        [](const auto& left, const auto& right) { return left.first < right.first; });
-
-    for (const auto& entry : triangleDrawOrder)
-    {
-        const auto& triangle = triangleBuffer[entry.second];
-
-        DrawTriangle(JoltToGodot(std::get<0>(triangle)), JoltToGodot(std::get<1>(triangle)),
-            JoltToGodot(std::get<2>(triangle)), JoltToGodot(std::get<3>(triangle)));
+        DrawTriangle(JoltToGodot(std::get<0>(entry)), JoltToGodot(std::get<1>(entry)),
+            JoltToGodot(std::get<2>(entry)), JoltToGodot(std::get<3>(entry)));
     }
 }
 

@@ -153,6 +153,9 @@ bool DebugDrawForwarder::HasAReceiver() const noexcept
 // ------------------------------------ //
 void DebugDrawForwarder::DrawLine(JPH::RVec3Arg inFrom, JPH::RVec3Arg inTo, JPH::ColorArg inColor)
 {
+    if (!IsPointWithinDrawDistance(inFrom) && !IsPointWithinDrawDistance(inTo))
+        return;
+
     Lock lock(mutex);
     lineBuffer.emplace_back(inFrom, inTo, ColorToFloat4(inColor));
 }
@@ -162,6 +165,9 @@ void DebugDrawForwarder::DrawTriangle(
 {
     // TODO: shadow support?
     UNUSED(inCastShadow);
+
+    if (!IsPointWithinDrawDistance(inV1) && !IsPointWithinDrawDistance(inV2) && !IsPointWithinDrawDistance(inV3))
+        return;
 
     Lock lock(mutex);
     triangleBuffer.emplace_back(inV1, inV2, inV3, ColorToFloat4(inColor));
@@ -322,6 +328,12 @@ JPH::DebugRenderer::Batch DebugDrawForwarder::CreateTriangleBatch(
 void DebugDrawForwarder::DrawTriangleInternal(
     const DVertex& vertex1, const DVertex& vertex2, const DVertex& vertex3, JPH::Float4 colourTint, bool wireFrame)
 {
+    if (!IsPointWithinDrawDistance(vertex1.mPosition) && !IsPointWithinDrawDistance(vertex2.mPosition) &&
+        !IsPointWithinDrawDistance(vertex3.mPosition))
+    {
+        return;
+    }
+
     if (wireFrame)
     {
         lineBuffer.emplace_back(vertex1.mPosition, vertex2.mPosition, MixColour(vertex1.mColor, colourTint));
