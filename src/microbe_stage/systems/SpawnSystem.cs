@@ -182,10 +182,7 @@ public partial class SpawnSystem : BaseSystem<World, float>, ISpawnSystem, IArch
     public void AddSpawnType(Spawner spawner, float spawnDensity, int spawnRadius)
     {
         spawner.SpawnRadius = spawnRadius;
-        spawner.SpawnRadiusSquared = spawnRadius * spawnRadius;
 
-        float minSpawnRadius = spawnRadius * Constants.MIN_SPAWN_RADIUS_RATIO;
-        spawner.MinSpawnRadiusSquared = minSpawnRadius * minSpawnRadius;
         spawner.Density = spawnDensity;
 
         spawnTypes.Add(spawner);

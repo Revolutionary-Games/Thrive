@@ -201,6 +201,7 @@ public static class SpawnHelpers
     /// <summary>
     ///   Spawns an agent projectile
     /// </summary>
+    /// <returns>The created projectile entity.</returns>
     public static Entity SpawnIronProjectile(IWorldSimulation worldSimulation,
         float amount, float lifetime, Vector3 location, Vector3 direction, float scale, Entity emitter)
     {
@@ -345,7 +346,8 @@ public static class SpawnHelpers
         bool usesDamageTouch = chunkType.Damages > 0 || chunkType.DeleteOnTouch;
 
         // This needs to be skipped for particle type chunks (as they don't have materials)
-        bool hasMicrobeShaderParameters = !selectedMesh.IsParticles && !selectedMesh.MissingDefaultShaderSupport;
+        bool hasMicrobeShaderParameters =
+            selectedMesh is { IsParticles: false, MissingDefaultShaderSupport: false };
 
         // Due to the very many combinations, we need to construct a bitflag-variable and then look it up with a
         // dictionary lookup
@@ -998,6 +1000,7 @@ public static class SpawnHelpers
     /// <summary>
     ///   Calculates spaced out positions to spawn a bacteria swarm (to avoid them all overlapping)
     /// </summary>
+    /// <returns>The swarm member positions, or null if no swarm should spawn.</returns>
     public static List<Vector3>? CalculateBacteriaSwarmPositions(Vector3 initialLocation, MicrobeSpecies species,
         Random random)
     {
@@ -1418,14 +1421,9 @@ public static class SpawnHelpers
                 temp.Add(typeof(FadeOutActions));
             }
 
-            if ((flags & ChunkComponentFlag.SimpleShape) != 0)
-            {
-                temp.Add(typeof(SimpleShapeCreator));
-            }
-            else
-            {
-                temp.Add(typeof(CollisionShapeLoader));
-            }
+            temp.Add((flags & ChunkComponentFlag.SimpleShape) != 0 ?
+                typeof(SimpleShapeCreator) :
+                typeof(CollisionShapeLoader));
 
             if ((flags & ChunkComponentFlag.Engulfable) != 0)
                 temp.Add(typeof(Engulfable));
@@ -1450,21 +1448,14 @@ public static class SpawnHelpers
 /// <summary>
 ///   Spawns microbes of a specific species
 /// </summary>
-public class MicrobeSpawner : Spawner
+public class MicrobeSpawner(Species species, IMicrobeSpawnEnvironment spawnEnvironmentSource) : Spawner
 {
-    private readonly IMicrobeSpawnEnvironment spawnEnvironmentSource;
     private readonly Random random = new();
     private float? cachedTerrainCollisionRadius;
 
-    public MicrobeSpawner(Species species, IMicrobeSpawnEnvironment spawnEnvironmentSource)
-    {
-        this.spawnEnvironmentSource = spawnEnvironmentSource;
-        Species = species ?? throw new ArgumentException("species is null");
-    }
-
     public override bool SpawnsEntities => true;
 
-    public Species Species { get; }
+    public Species Species { get; } = species ?? throw new ArgumentException("species is null");
 
     public override string Name => ToString();
 
@@ -1472,6 +1463,8 @@ public class MicrobeSpawner : Spawner
 
     public override SpawnQueue Spawn(IWorldSimulation worldSimulation, Vector3 location, ISpawnSystem spawnSystem)
     {
+        _ = spawnSystem;
+
         // This should no longer happen, but let's keep this print here to keep track of the situation
         if (Species.Obsolete)
             GD.PrintErr("Obsolete species microbe has spawned");
@@ -1532,7 +1525,7 @@ public class MicrobeSpawner : Spawner
 
     private float CalculateTerrainCollisionRadius()
     {
-        if (Species is not MicrobeSpecies microbeSpecies || microbeSpecies.MembraneType == null)
+        if (Species is not MicrobeSpecies microbeSpecies)
             return DefaultTerrainCollisionRadius;
 
         var membraneData = MembraneComputationHelpers.GetOrComputeMembraneShape(microbeSpecies.Organelles.Organelles,
@@ -1573,6 +1566,8 @@ public class CompoundCloudSpawner : Spawner
 
     public override SpawnQueue? Spawn(IWorldSimulation worldSimulation, Vector3 location, ISpawnSystem spawnSystem)
     {
+        _ = spawnSystem;
+
         SpawnHelpers.SpawnCloud(clouds, location, compound, amount, random);
 
         // We don't spawn entities
@@ -1588,15 +1583,9 @@ public class CompoundCloudSpawner : Spawner
 /// <summary>
 ///   Spawns chunks of a specific type
 /// </summary>
-public class ChunkSpawner : Spawner
+public class ChunkSpawner(ChunkConfiguration chunkType) : Spawner
 {
-    private readonly ChunkConfiguration chunkType;
     private readonly Random random = new();
-
-    public ChunkSpawner(ChunkConfiguration chunkType)
-    {
-        this.chunkType = chunkType;
-    }
 
     public override bool SpawnsEntities => true;
 
@@ -1606,6 +1595,8 @@ public class ChunkSpawner : Spawner
 
     public override SpawnQueue Spawn(IWorldSimulation worldSimulation, Vector3 location, ISpawnSystem spawnSystem)
     {
+        _ = spawnSystem;
+
         return new SingleItemSpawnQueue((out entity) =>
         {
             var recorder = SpawnHelpers.SpawnChunkWithoutFinalizing(worldSimulation,

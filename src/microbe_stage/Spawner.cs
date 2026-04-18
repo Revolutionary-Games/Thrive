@@ -5,7 +5,7 @@
 /// </summary>
 public abstract class Spawner
 {
-    public const float DefaultTerrainCollisionRadius = 5.5f;
+    protected const float DefaultTerrainCollisionRadius = 5.5f;
 
     /// <summary>
     ///   Whether this spawner spawns items contributing to the entity limit
@@ -21,18 +21,6 @@ public abstract class Spawner
     ///   The distance at which spawning happens
     /// </summary>
     public int SpawnRadius { get; set; }
-
-    /// <summary>
-    ///   Squared spawn distance for faster computations when spawning
-    /// </summary>
-    /// <value>The spawn radius sqr.</value>
-    public int SpawnRadiusSquared { get; set; }
-
-    /// <summary>
-    ///   Squared minimum spawn distance allowed
-    /// </summary>
-    /// <value>The minimum allowed spawn radius sqr.</value>
-    public float MinSpawnRadiusSquared { get; set; }
 
     /// <summary>
     ///   How often the SpawnSystem will call this spawner
