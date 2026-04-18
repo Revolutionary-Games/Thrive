@@ -5,10 +5,17 @@
 /// </summary>
 public abstract class Spawner
 {
+    public const float DefaultTerrainCollisionRadius = 5.5f;
+
     /// <summary>
     ///   Whether this spawner spawns items contributing to the entity limit
     /// </summary>
     public abstract bool SpawnsEntities { get; }
+
+    /// <summary>
+    ///   How much room this spawned thing needs from terrain to not overlap it
+    /// </summary>
+    public virtual float TerrainCollisionRadius => DefaultTerrainCollisionRadius;
 
     /// <summary>
     ///   The distance at which spawning happens

@@ -1454,6 +1454,7 @@ public class MicrobeSpawner : Spawner
 {
     private readonly IMicrobeSpawnEnvironment spawnEnvironmentSource;
     private readonly Random random = new();
+    private float? cachedTerrainCollisionRadius;
 
     public MicrobeSpawner(Species species, IMicrobeSpawnEnvironment spawnEnvironmentSource)
     {
@@ -1466,6 +1467,8 @@ public class MicrobeSpawner : Spawner
     public Species Species { get; }
 
     public override string Name => ToString();
+
+    public override float TerrainCollisionRadius => cachedTerrainCollisionRadius ??= CalculateTerrainCollisionRadius();
 
     public override SpawnQueue Spawn(IWorldSimulation worldSimulation, Vector3 location, ISpawnSystem spawnSystem)
     {
@@ -1526,6 +1529,22 @@ public class MicrobeSpawner : Spawner
     {
         return $"MicrobeSpawner for {Species.FormattedIdentifier}";
     }
+
+    private float CalculateTerrainCollisionRadius()
+    {
+        if (Species is not MicrobeSpecies microbeSpecies || microbeSpecies.MembraneType == null)
+            return DefaultTerrainCollisionRadius;
+
+        var membraneData = MembraneComputationHelpers.GetOrComputeMembraneShape(microbeSpecies.Organelles.Organelles,
+            microbeSpecies.MembraneType);
+
+        var radius = membraneData.Radius;
+
+        if (microbeSpecies.IsBacteria)
+            radius *= 0.5f;
+
+        return radius;
+    }
 }
 
 /// <summary>
@@ -1582,6 +1601,8 @@ public class ChunkSpawner : Spawner
     public override bool SpawnsEntities => true;
 
     public override string Name => ToString();
+
+    public override float TerrainCollisionRadius => chunkType.Radius;
 
     public override SpawnQueue Spawn(IWorldSimulation worldSimulation, Vector3 location, ISpawnSystem spawnSystem)
     {
