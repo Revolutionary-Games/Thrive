@@ -318,7 +318,7 @@ void DebugDrawer::RemoveDebugDraw() noexcept
 // Drawing methods
 void DebugDrawer::DrawLine(const godot::Vector3& from, const godot::Vector3& to, const godot::Color& colour)
 {
-    if (usedDrawMemory + SingleLineDrawMemoryUse >= drawMemoryLimit)
+    if (usedLineDrawMemory + SingleLineDrawMemoryUse >= perMeshDrawMemoryLimit)
     {
         extraNeededDrawMemory += SingleLineDrawMemoryUse;
         return;
@@ -339,14 +339,15 @@ void DebugDrawer::DrawLine(const godot::Vector3& from, const godot::Vector3& to,
     lineMesh->surface_add_vertex(to);
 
     usedDrawMemory += SingleLineDrawMemoryUse;
+    usedLineDrawMemory += SingleLineDrawMemoryUse;
 }
 
 void DebugDrawer::DrawTriangle(const godot::Vector3& vertex1, const godot::Vector3& vertex2,
     const godot::Vector3& vertex3, const godot::Color& colour)
 {
-    if (usedDrawMemory + SingleTriangleDrawMemoryUse >= drawMemoryLimit)
+    if (usedTriangleDrawMemory + SingleTriangleDrawMemoryUse >= perMeshDrawMemoryLimit)
     {
-        extraNeededDrawMemory += SingleLineDrawMemoryUse;
+        extraNeededDrawMemory += SingleTriangleDrawMemoryUse;
         return;
     }
 
@@ -369,6 +370,7 @@ void DebugDrawer::DrawTriangle(const godot::Vector3& vertex1, const godot::Vecto
     triangleMesh->surface_add_vertex(vertex3);
 
     usedDrawMemory += SingleTriangleDrawMemoryUse;
+    usedTriangleDrawMemory += SingleTriangleDrawMemoryUse;
 }
 
 void DebugDrawer::StartDrawingIfNotYetThisFrame()
@@ -377,6 +379,8 @@ void DebugDrawer::StartDrawingIfNotYetThisFrame()
         return;
 
     usedDrawMemory = 0;
+    usedLineDrawMemory = 0;
+    usedTriangleDrawMemory = 0;
     extraNeededDrawMemory = 0;
 
     drawnThisFrame = true;

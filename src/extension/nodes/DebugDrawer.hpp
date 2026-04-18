@@ -183,7 +183,10 @@ private:
 
     /// Set a max limit to not draw way too much stuff and slow down things a ton. 8 megabytes
     const int drawMemoryLimit = 1024 * 1024 * 8;
+    const int perMeshDrawMemoryLimit = drawMemoryLimit / 2;
     int usedDrawMemory = 0;
+    int usedLineDrawMemory = 0;
+    int usedTriangleDrawMemory = 0;
     int extraNeededDrawMemory = 0;
 
     bool physicsDebugSupported = false;
