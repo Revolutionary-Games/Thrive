@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-27 14:48+0200\n"
-"PO-Revision-Date: 2026-02-18 15:13+0000\n"
-"Last-Translator: Joah van der Maaden <voorjoah@gmail.com>\n"
+"POT-Creation-Date: 2026-04-17 10:24+0300\n"
+"PO-Revision-Date: 2026-04-13 13:50+0000\n"
+"Last-Translator: tijder <gerben@droogers.eu>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.15.2\n"
+"X-Generator: Weblate 5.16.1\n"
 "Generated-By: Babel 2.9.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -1649,6 +1649,7 @@ msgstr "Neerdalen"
 msgid "DESCEND_CONFIRMATION"
 msgstr "Weetje zeker dat je wil neerdalen?"
 
+#, fuzzy
 msgid "DESCEND_CONFIRMATION_EXPLANATION"
 msgstr ""
 "Neerdalen zal je verheven status verwijderen en je terug naar de Microbenfase brengen. Je kunt dan in je huidige opslagbestand het spel opnieuw spelen.\n"
@@ -2086,6 +2087,14 @@ msgstr "{0}: +{1} ATP"
 #, fuzzy
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr "Samenstellings-wolken"
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER"
+msgstr "Multiplier voor mutatiekost"
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER_EXPLANATION"
+msgstr "(kost van organellen, membranen en andere items in de editor)"
 
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energie in {0} voor {1}"
@@ -4865,12 +4874,6 @@ msgstr "Osmoregulatie"
 
 msgid "OSMOREGULATION_COST"
 msgstr "Osmoregulatiekosten"
-
-msgid "OSMOREGULATION_COST_MULTIPLIER"
-msgstr "Osmoregulatiekosten"
-
-msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
-msgstr "(kost van osmoregulatie van spelersoort)"
 
 #, fuzzy
 msgid "OTHER_COMPOUNDS"
@@ -8993,6 +8996,7 @@ msgstr "Rusticyanine is een eiwat dat [thrive:compound type=\"carbondioxide\"][/
 msgid "WIKI_RUSTICYANIN_UPGRADES"
 msgstr "Geen upgrades."
 
+#, fuzzy
 msgid "WIKI_SIGNALING_AGENT_EFFECTS"
 msgstr ""
 "Als de spelercel [b]Signaling Agents[/b] heeft, kan de speler op een sneltoets drukken (standaard [b]V[/b]) om het signaalcommando-paneel te openen en een commando te geven aan alle leden van hun soort. Elk commando blijft van kracht totdat een nieuw commando wordt gekozen. De opties zijn:\n"
@@ -9477,6 +9481,12 @@ msgstr "Inzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
+
+#~ msgid "OSMOREGULATION_COST_MULTIPLIER"
+#~ msgstr "Osmoregulatiekosten"
+
+#~ msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
+#~ msgstr "(kost van osmoregulatie van spelersoort)"
 
 #, fuzzy
 #~ msgid "KEEP_CURRENT_SHORT"
