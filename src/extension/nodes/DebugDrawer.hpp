@@ -11,6 +11,8 @@ BEGIN_GODOT_INCLUDES;
 #include <Jolt/Math/Real.h>
 END_GODOT_INCLUDES;
 
+#include "interop/CStructures.h"
+
 namespace godot
 {
 class MeshInstance3D;
@@ -96,9 +98,8 @@ public:
         AddLine(position + pointOffsetForward, position + pointOffsetBack, colour);
     }
 
-    void OnReceiveLines(const std::vector<std::tuple<JPH::RVec3Arg, JPH::RVec3Arg, JPH::Float4>>& lineBuffer) noexcept;
-    void OnReceiveTriangles(const std::vector<std::tuple<JPH::RVec3Arg, JPH::RVec3Arg, JPH::RVec3Arg, JPH::Float4>>&
-            triangleBuffer) noexcept;
+    void OnReceiveLines(const std::vector<std::tuple<JVec3, JVec3, JColour>>& lineBuffer) noexcept;
+    void OnReceiveTriangles(const std::vector<std::tuple<JVec3, JVec3, JVec3, JColour>>& triangleBuffer) noexcept;
 
     bool RegisterDebugDraw() noexcept;
     void RemoveDebugDraw() noexcept;

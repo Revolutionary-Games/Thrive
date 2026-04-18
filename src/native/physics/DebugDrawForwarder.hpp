@@ -31,10 +31,10 @@ public:
     class DVertex
     {
     public:
-        JPH::RVec3Arg mPosition;
+        JVec3 mPosition;
         JPH::Float3 mNormal;
         JPH::Float2 mUV;
-        JPH::Float4 mColor;
+        JColour mColor;
     };
 
 private:
@@ -113,7 +113,7 @@ public:
 
 private:
     void DrawTriangleInternal(
-        const DVertex& vertex1, const DVertex& vertex2, const DVertex& vertex3, JPH::Float4 colourTint, bool wireFrame);
+        const DVertex& vertex1, const DVertex& vertex2, const DVertex& vertex3, JColour colourTint, bool wireFrame);
 
     [[nodiscard]] inline bool IsPointWithinDrawDistance(JPH::RVec3Arg position) const
     {
@@ -121,7 +121,7 @@ private:
     }
 
 private:
-    /// Apparently debug rendering happens from multiple threads so we need a lock
+    /// Apparently debug rendering happens from multiple threads, so we need a lock
     Mutex mutex;
 
     /// Next ID to use for a predefined batch of geometry
@@ -136,8 +136,8 @@ private:
     // ------------------------------------ //
     // Actual variables of this debug forwarder, everything else needed to be default Jolt stuff
 
-    std::vector<std::tuple<JPH::RVec3Arg, JPH::RVec3Arg, JPH::Float4>> lineBuffer;
-    std::vector<std::tuple<JPH::RVec3Arg, JPH::RVec3Arg, JPH::RVec3Arg, JPH::Float4>> triangleBuffer;
+    std::vector<std::tuple<JVec3, JVec3, JColour>> lineBuffer;
+    std::vector<std::tuple<JVec3, JVec3, JVec3, JColour>> triangleBuffer;
 
     LineCallback lineCallback = nullptr;
     TriangleCallback triangleCallback = nullptr;

@@ -9,7 +9,7 @@
 /// \file Defines all of the API methods that can be called from C# specifically in this extension type
 
 // This file uses always API_EXPORT as this always exports (and this cannot use the same macro as the general interop
-// as that defines only it to build when that project is being built so this would result in non-exported DLL symbols)
+// as that defines only it to build when that project is being built, so this would result in non-exported DLL symbols)
 
 extern "C"
 {
@@ -26,8 +26,8 @@ extern "C"
 
     // ------------------------------------ //
     // DebugDrawer direct access calls
-    [[maybe_unused]] API_EXPORT void DebugDrawerAddLine(DebugDrawer* drawerInstance, JVecF3* from, JVecF3* to,
-        JColour* colour);
+    [[maybe_unused]] API_EXPORT void DebugDrawerAddLine(
+        DebugDrawer* drawerInstance, JVec3* from, JVec3* to, JColour* colour);
 
-    [[maybe_unused]] API_EXPORT void DebugDrawerAddPoint(DebugDrawer* drawerInstance, JVecF3* point, JColour* colour);
+    [[maybe_unused]] API_EXPORT void DebugDrawerAddPoint(DebugDrawer* drawerInstance, JVec3* point, JColour* colour);
 }
