@@ -221,6 +221,13 @@ public partial class OrganelleUpgradeGUI : Control
             }
         }
 
+        if (openedForOrganelle.ModifiableUpgrades == null && newUpgrades.UnlockedFeatures.Count < 1 &&
+            (upgrader == null || upgrader.IsCurrentStateDefault()))
+        {
+            EmitSignal(SignalName.Accepted);
+            return;
+        }
+
         // Only create an action and apply changes if changes were actually made
         if (!newUpgrades.Equals(oldUpgrades))
         {
