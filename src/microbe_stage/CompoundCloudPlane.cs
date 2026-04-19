@@ -896,6 +896,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static int GetWorldShiftKey(int xSquare, int ySquare, int playerX, int playerY)
     {
+        // Each value is in the 0-2 range, so two bits per value is enough to avoid collisions.
         return xSquare | ySquare << 2 | playerX << 4 | playerY << 6;
     }
 
