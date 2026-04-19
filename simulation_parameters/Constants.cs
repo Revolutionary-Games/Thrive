@@ -998,6 +998,16 @@ public static class Constants
     public const float TOXIN_DIGESTION_DAMAGE_FRACTION = 0.09f;
 
     /// <summary>
+    ///   Lowest remaining health fraction where the bravest AI microbes eject a toxic engulfed cell.
+    /// </summary>
+    public const float AI_TOXIC_ENGULFED_EJECT_MIN_HEALTH_FRACTION = 0.25f;
+
+    /// <summary>
+    ///   Highest remaining health fraction where the most cautious AI microbes eject a toxic engulfed cell.
+    /// </summary>
+    public const float AI_TOXIC_ENGULFED_EJECT_MAX_HEALTH_FRACTION = 0.75f;
+
+    /// <summary>
     ///   Each enzyme addition grants a fraction, set by this variable, increase in digestion speed.
     /// </summary>
     public const float ENZYME_DIGESTION_SPEED_UP_FRACTION = 0.1f;

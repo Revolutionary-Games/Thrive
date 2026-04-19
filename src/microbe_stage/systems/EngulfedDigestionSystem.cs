@@ -25,6 +25,7 @@ using World = Arch.Core.World;
 [WritesToComponent(typeof(Engulfable))]
 [ReadsComponent(typeof(OrganelleContainer))]
 [ReadsComponent(typeof(MicrobeStatus))]
+[ReadsComponent(typeof(MicrobeAI))]
 [ReadsComponent(typeof(CellProperties))]
 [ReadsComponent(typeof(WorldPosition))]
 [ReadsComponent(typeof(MicrobeEventCallbacks))]
@@ -120,6 +121,7 @@ public partial class EngulfedDigestionSystem : BaseSystem<World, float>
             }
 
             ref var engulfable = ref engulfedObject.Get<Engulfable>();
+            ref var health = ref entity.Get<Health>();
 
             var currentEngulfableSize = engulfable.AdjustedEngulfSize;
 
@@ -206,6 +208,7 @@ public partial class EngulfedDigestionSystem : BaseSystem<World, float>
             // containedCompounds?.FixNaNCompounds();
 
             var totalAmountLeft = 0.0f;
+            var toxicDigestionDamagedEngulfer = false;
 
             var digestibleCount = digestibleCompounds.Count;
 
@@ -259,11 +262,11 @@ public partial class EngulfedDigestionSystem : BaseSystem<World, float>
                     {
                         status.LastCheckedOxytoxyDigestionDamage -= Constants.TOXIN_DIGESTION_DAMAGE_CHECK_INTERVAL;
 
-                        ref var health = ref entity.Get<Health>();
-
                         health.DealMicrobeDamage(ref cellProperties, entity,
                             health.MaxHealth * Constants.TOXIN_DIGESTION_DAMAGE_FRACTION, "oxytoxy",
                             HealthHelpers.GetInstantKillProtectionThreshold(entity));
+
+                        toxicDigestionDamagedEngulfer = true;
 
                         entity.SendNoticeIfPossible(() => new SimpleHUDMessage(
                             Localization.Translate("NOTICE_ENGULF_DAMAGE_FROM_TOXIN"),
@@ -292,6 +295,12 @@ public partial class EngulfedDigestionSystem : BaseSystem<World, float>
                 // Eject excess
                 cellProperties.SpawnEjectedCompound(ref position, compoundCloudSystem, compound,
                     takenAdjusted - added, Vector3.Back);
+            }
+
+            if (toxicDigestionDamagedEngulfer && ShouldAIEjectToxicEngulfedObject(entity, ref health) &&
+                engulfer.EjectEngulfable(ref engulfable))
+            {
+                continue;
             }
 
             var initialTotalEngulfableCompounds = engulfable.InitialTotalEngulfableCompounds;
@@ -358,5 +367,26 @@ public partial class EngulfedDigestionSystem : BaseSystem<World, float>
         }
 
         engulfer.UsedEngulfingCapacity = usedCapacity;
+    }
+
+    private bool ShouldAIEjectToxicEngulfedObject(in Entity entity, ref Health health)
+    {
+        if (entity.Has<PlayerMarker>() || !entity.Has<MicrobeAI>() || !entity.TryGet<SpeciesMember>(out var species))
+            return false;
+
+        if (health.Dead || health.MaxHealth <= 0)
+            return false;
+
+        var behaviour = species.Species.Behaviour;
+        var aggression = Math.Clamp(behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION, 0, 1);
+        var bravery = 1 - Math.Clamp(behaviour.Fear / Constants.MAX_SPECIES_FEAR, 0, 1);
+        var willingnessToRiskDigestion = (aggression + bravery) * 0.5f;
+
+        var ejectionHealthFraction = Mathf.Lerp(
+            Constants.AI_TOXIC_ENGULFED_EJECT_MAX_HEALTH_FRACTION,
+            Constants.AI_TOXIC_ENGULFED_EJECT_MIN_HEALTH_FRACTION,
+            willingnessToRiskDigestion);
+
+        return health.CurrentHealth / health.MaxHealth <= ejectionHealthFraction;
     }
 }
