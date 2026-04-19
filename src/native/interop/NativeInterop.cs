@@ -32,6 +32,8 @@ public static class NativeInterop
     private static bool loadCalled;
     private static bool nativeLoadSucceeded;
     private static bool cpuIsInsufficient;
+    private static bool? armWaitForEventAvailable;
+    private static bool? armDataMemoryBarrierAndSendEventAvailable;
 
     private static bool printedDistributableNotice;
     private static bool printedErrorAboutExecutablePath;
@@ -87,6 +89,8 @@ public static class NativeInterop
 
         // Ensure this is not true if load fails partway through
         nativeLoadSucceeded = false;
+        armWaitForEventAvailable = null;
+        armDataMemoryBarrierAndSendEventAvailable = null;
 
         loadCalled = true;
 
@@ -244,20 +248,38 @@ public static class NativeInterop
 
     public static bool TryArmWaitForEvent()
     {
-        if (!nativeLoadSucceeded)
+        if (!nativeLoadSucceeded || armWaitForEventAvailable == false)
             return false;
 
-        NativeMethods.ArmWaitForEvent();
-        return true;
+        try
+        {
+            NativeMethods.ArmWaitForEvent();
+            armWaitForEventAvailable = true;
+            return true;
+        }
+        catch (EntryPointNotFoundException)
+        {
+            armWaitForEventAvailable = false;
+            return false;
+        }
     }
 
     public static bool TryArmDataMemoryBarrierAndSendEvent()
     {
-        if (!nativeLoadSucceeded)
+        if (!nativeLoadSucceeded || armDataMemoryBarrierAndSendEventAvailable == false)
             return false;
 
-        NativeMethods.ArmDataMemoryBarrierAndSendEvent();
-        return true;
+        try
+        {
+            NativeMethods.ArmDataMemoryBarrierAndSendEvent();
+            armDataMemoryBarrierAndSendEventAvailable = true;
+            return true;
+        }
+        catch (EntryPointNotFoundException)
+        {
+            armDataMemoryBarrierAndSendEventAvailable = false;
+            return false;
+        }
     }
 
     private static CPUCheckResult CheckCPUFeaturesFull()
