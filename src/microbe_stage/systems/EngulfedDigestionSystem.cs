@@ -33,6 +33,12 @@ using World = Arch.Core.World;
 [RuntimeCost(2)]
 public partial class EngulfedDigestionSystem : BaseSystem<World, float>
 {
+    /// <summary>
+    ///   The ingested matter HUD displays one decimal place, so lower non-zero values are indistinguishable from
+    ///   empty storage to the player.
+    /// </summary>
+    private const float DIGESTED_ENGULF_SIZE_THRESHOLD = 0.05f;
+
     private readonly CompoundCloudSystem compoundCloudSystem;
     private readonly IReadOnlyList<Compound> digestibleCompounds;
 
@@ -309,11 +315,12 @@ public partial class EngulfedDigestionSystem : BaseSystem<World, float>
                 GD.PrintErr("Engulfing system hasn't initialized InitialTotalEngulfableCompounds");
             }
 
-            // If out of stuff to digest, or as a safety check, the engulf size has gone to zero, consider digested
-            // Note that the digestion threshold has to be slightly above zero
-            // to avoid https://github.com/Revolutionary-Games/Thrive/issues/4794
+            // If out of stuff to digest, or as a safety check, the engulf size has gone to zero, consider digested.
+            // The thresholds have to be slightly above zero to avoid
+            // https://github.com/Revolutionary-Games/Thrive/issues/4794 and to prevent a rounded 0.0 ingested
+            // matter value from lingering on the HUD.
             if (totalAmountLeft <= 0.001f || engulfable.DigestedAmount >= Constants.FULLY_DIGESTED_LIMIT ||
-                engulfable.AdjustedEngulfSize <= 0)
+                engulfable.AdjustedEngulfSize <= DIGESTED_ENGULF_SIZE_THRESHOLD)
             {
                 engulfable.PhagocytosisStep = PhagocytosisPhase.Digested;
 
