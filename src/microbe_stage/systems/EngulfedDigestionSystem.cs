@@ -382,8 +382,7 @@ public partial class EngulfedDigestionSystem : BaseSystem<World, float>
         var bravery = 1 - Math.Clamp(behaviour.Fear / Constants.MAX_SPECIES_FEAR, 0, 1);
         var willingnessToRiskDigestion = (aggression + bravery) * 0.5f;
 
-        var ejectionHealthFraction = Mathf.Lerp(
-            Constants.AI_TOXIC_ENGULFED_EJECT_MAX_HEALTH_FRACTION,
+        var ejectionHealthFraction = Mathf.Lerp(Constants.AI_TOXIC_ENGULFED_EJECT_MAX_HEALTH_FRACTION,
             Constants.AI_TOXIC_ENGULFED_EJECT_MIN_HEALTH_FRACTION,
             willingnessToRiskDigestion);
 
