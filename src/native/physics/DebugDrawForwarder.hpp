@@ -4,6 +4,8 @@
 
 #ifdef JPH_DEBUG_RENDERER
 
+#include <cstddef>
+
 #include <Jolt/Renderer/DebugRenderer.h>
 
 #include "core/Mutex.hpp"
@@ -16,6 +18,10 @@ constexpr float MaxDebugDrawRate = 1 / 60.0f;
 constexpr bool AutoAdjustDebugDrawRateWhenSlow = true;
 constexpr float DebugDrawLODBias = 2;
 constexpr float DefaultMaxDistanceToDrawLinesFromCamera = 180;
+
+/// Keep forwarded primitive counts below the DebugDrawer immediate mesh per-surface budget.
+constexpr size_t MaxForwardedDebugLines = 40000;
+constexpr size_t MaxForwardedDebugTriangles = 27000;
 
 /// \brief Forwards debug draw from the physics system out of this native library
 class DebugDrawForwarder : public JPH::DebugRenderer
@@ -89,6 +95,7 @@ public:
     inline void SetCameraPositionForLOD(JPH::Vec3Arg position)
     {
         cameraPosition = position;
+        cameraPositionForDrawDistance = JPH::RVec3(position);
     }
 
     inline void SetCameraLODBias(float newBias)
@@ -109,16 +116,25 @@ public:
     inline void SetMaxDrawDistance(float drawDistance)
     {
         maxModelDistance = drawDistance;
+        maxModelDistanceSquared = static_cast<double>(drawDistance) * drawDistance;
     }
 
 private:
+    using LineDrawEntry = std::tuple<JVec3, JVec3, JColour>;
+    using TriangleDrawEntry = std::tuple<JVec3, JVec3, JVec3, JColour>;
+
     void DrawTriangleInternal(
         const DVertex& vertex1, const DVertex& vertex2, const DVertex& vertex3, JColour colourTint, bool wireFrame);
 
     [[nodiscard]] inline bool IsPointWithinDrawDistance(JPH::RVec3Arg position) const
     {
-        return (position - cameraPosition).LengthSq() <= maxModelDistance * maxModelDistance;
+        return (position - cameraPositionForDrawDistance).LengthSq() <= maxModelDistanceSquared;
     }
+
+    void CullOutputToDrawDistance();
+    [[nodiscard]] double GetDistanceSquared(const JVec3& position) const;
+    [[nodiscard]] double GetClosestDistanceSquared(const LineDrawEntry& entry) const;
+    [[nodiscard]] double GetClosestDistanceSquared(const TriangleDrawEntry& entry) const;
 
 private:
     /// Apparently debug rendering happens from multiple threads, so we need a lock
@@ -136,17 +152,20 @@ private:
     // ------------------------------------ //
     // Actual variables of this debug forwarder, everything else needed to be default Jolt stuff
 
-    std::vector<std::tuple<JVec3, JVec3, JColour>> lineBuffer;
-    std::vector<std::tuple<JVec3, JVec3, JVec3, JColour>> triangleBuffer;
+    std::vector<LineDrawEntry> lineBuffer;
+    std::vector<TriangleDrawEntry> triangleBuffer;
 
     LineCallback lineCallback = nullptr;
     TriangleCallback triangleCallback = nullptr;
 
     JPH::Vec3 cameraPosition = {};
+    JPH::RVec3 cameraPositionForDrawDistance = {};
     float cameraLODBias = DebugDrawLODBias;
     float minDrawDelta = MaxDebugDrawRate;
     bool adjustRateOnLag = AutoAdjustDebugDrawRateWhenSlow;
     float maxModelDistance = DefaultMaxDistanceToDrawLinesFromCamera;
+    double maxModelDistanceSquared =
+        static_cast<double>(DefaultMaxDistanceToDrawLinesFromCamera) * DefaultMaxDistanceToDrawLinesFromCamera;
 
     float timeSinceDraw = 1;
 };

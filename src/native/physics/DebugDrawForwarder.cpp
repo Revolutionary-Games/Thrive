@@ -1,6 +1,8 @@
 // ------------------------------------ //
 #include "DebugDrawForwarder.hpp"
 
+#include <algorithm>
+
 #include "Jolt/Math/Float4.h"
 
 #include "core/Logger.hpp"
@@ -61,6 +63,50 @@ JColour MixColour(const JColour baseColour, const JColour colourTint)
 }
 #endif // ENSURE_NO_COLOUR_OVER_SATURATION
 
+constexpr int DistanceCullSearchIterations = 12;
+
+template<typename TBuffer, typename TDistance>
+void CullBufferByClosestDistance(TBuffer& buffer, size_t maxEntries, TDistance getDistanceSquared)
+{
+    if (buffer.size() <= maxEntries)
+        return;
+
+    double highDistance = 0;
+
+    for (const auto& entry : buffer)
+    {
+        highDistance = std::max(highDistance, getDistanceSquared(entry));
+    }
+
+    double lowDistance = 0;
+
+    for (int i = 0; i < DistanceCullSearchIterations; ++i)
+    {
+        const auto middleDistance = (lowDistance + highDistance) * 0.5;
+        size_t entryCount = 0;
+
+        for (const auto& entry : buffer)
+        {
+            if (getDistanceSquared(entry) <= middleDistance)
+                ++entryCount;
+        }
+
+        if (entryCount > maxEntries)
+            highDistance = middleDistance;
+        else
+            lowDistance = middleDistance;
+    }
+
+    buffer.erase(std::remove_if(buffer.begin(), buffer.end(),
+                     [highDistance, getDistanceSquared](const auto& entry) {
+                         return getDistanceSquared(entry) > highDistance;
+                     }),
+        buffer.end());
+
+    if (buffer.size() > maxEntries)
+        buffer.resize(maxEntries);
+}
+
 // Apparently we need to act like a GPU just to get debug rendering done...
 DebugDrawForwarder::DVertex TransformVertex(const JPH::RMat44& matrix, const JPH::DebugRenderer::Vertex& vertex)
 {
@@ -81,6 +127,8 @@ void DebugDrawForwarder::FlushOutput()
     const auto startTime = TimingClock::now();
 
     Lock lock(mutex);
+
+    CullOutputToDrawDistance();
 
     // Send the accumulated data
     if (lineCallback != nullptr && *lineCallback != nullptr)
@@ -177,7 +225,7 @@ void DebugDrawForwarder::DrawGeometry(JPH::RMat44Arg inModelMatrix, const JPH::A
 {
     // Skip rendering too faraway objects
     const auto distance = inWorldSpaceBounds.GetSqDistanceTo(cameraPosition);
-    if (distance > maxModelDistance * maxModelDistance)
+    if (distance > maxModelDistanceSquared)
         return;
 
     const JPH::RMat44 transformMatrix = inModelMatrix;
@@ -339,6 +387,35 @@ void DebugDrawForwarder::DrawTriangleInternal(
         triangleBuffer.emplace_back(
             vertex1.mPosition, vertex2.mPosition, vertex3.mPosition, MixColour(vertex1.mColor, colourTint));
     }
+}
+
+void DebugDrawForwarder::CullOutputToDrawDistance()
+{
+    CullBufferByClosestDistance(lineBuffer, MaxForwardedDebugLines,
+        [this](const LineDrawEntry& entry) { return GetClosestDistanceSquared(entry); });
+    CullBufferByClosestDistance(triangleBuffer, MaxForwardedDebugTriangles,
+        [this](const TriangleDrawEntry& entry) { return GetClosestDistanceSquared(entry); });
+}
+
+double DebugDrawForwarder::GetDistanceSquared(const JVec3& position) const
+{
+    const auto x = position.X - cameraPositionForDrawDistance.GetX();
+    const auto y = position.Y - cameraPositionForDrawDistance.GetY();
+    const auto z = position.Z - cameraPositionForDrawDistance.GetZ();
+
+    return x * x + y * y + z * z;
+}
+
+double DebugDrawForwarder::GetClosestDistanceSquared(const LineDrawEntry& entry) const
+{
+    return std::min(GetDistanceSquared(std::get<0>(entry)), GetDistanceSquared(std::get<1>(entry)));
+}
+
+double DebugDrawForwarder::GetClosestDistanceSquared(const TriangleDrawEntry& entry) const
+{
+    return std::min(
+        std::min(GetDistanceSquared(std::get<0>(entry)), GetDistanceSquared(std::get<1>(entry))),
+        GetDistanceSquared(std::get<2>(entry)));
 }
 
 } // namespace Thrive::Physics

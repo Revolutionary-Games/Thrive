@@ -1,6 +1,7 @@
 // ------------------------------------ //
 #include "CInterop.h"
 
+#include <bit>
 #include <cstdarg>
 #include <cstring>
 

@@ -166,11 +166,7 @@ public partial class DebugDrawer : ControlWithInput
 
     public void UpdatePhysicsDebugCameraLocation()
     {
-        var viewport = GetViewport();
-        if (viewport == null)
-            return;
-
-        var camera = viewport.GetCamera3D();
+        var camera = GetViewport()?.GetCamera3D();
 
         if (camera != null)
             Set(cameraPosition, camera.GlobalPosition);
