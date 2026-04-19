@@ -9,7 +9,7 @@ using System.Threading;
 public class CPUHelpers
 {
     private static readonly bool IsX86 = X86Base.IsSupported;
-    private static readonly bool IsARM = ArmBase.IsSupported;
+    private static readonly bool IsArm = ArmBase.IsSupported;
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void HyperThreadPause()
@@ -18,12 +18,10 @@ public class CPUHelpers
         {
             X86Base.Pause();
         }
-        else if (IsARM)
+        else if (IsArm)
         {
-            // This is almost equivalent to X86's Pause.
-            // Warning: this is implemented as NOP on some ARM CPUs, so it might not be the best option here.
-            // This should be implemented as WFE and woke up by SEV, on ARM, which would require custom bindings.
-            ArmBase.Yield();
+            if (!NativeInterop.TryArmWaitForEvent())
+                ArmBase.Yield();
         }
         else
         {
@@ -31,5 +29,15 @@ public class CPUHelpers
             // This actually implements Pause on x86 and yield on ARM.
             Thread.SpinWait(1);
         }
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void SignalEvent()
+    {
+        if (!IsArm)
+            return;
+
+        Thread.MemoryBarrier();
+        NativeInterop.TryArmDataMemoryBarrierAndSendEvent();
     }
 }

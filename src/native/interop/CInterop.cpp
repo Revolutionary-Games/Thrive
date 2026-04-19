@@ -1,8 +1,13 @@
 // ------------------------------------ //
 #include "CInterop.h"
 
+#include <bit>
 #include <cstdarg>
 #include <cstring>
+
+#ifdef _MSC_VER
+#include <intrin.h>
+#endif
 
 #include "Jolt/Core/Factory.h"
 #include "Jolt/Core/Memory.h"
@@ -38,6 +43,32 @@ using ShapePool = boost::singleton_pool<Thrive::Physics::ShapeWrapper, sizeof(Th
 #ifdef JPH_ENABLE_ASSERTS
 bool PhysicsAssert(const char* expression, const char* message, const char* file, unsigned int line);
 #endif
+
+namespace
+{
+FORCE_INLINE void ArmWaitForEventInstruction()
+{
+#if defined(_MSC_VER) && defined(_M_ARM64)
+    __wfe();
+#elif defined(__aarch64__)
+    __asm__ __volatile__("wfe" ::: "memory");
+#endif
+}
+
+FORCE_INLINE void ArmDataMemoryBarrierAndSendEventInstruction()
+{
+#if defined(_MSC_VER) && defined(_M_ARM64)
+    __dmb(_ARM64_BARRIER_ISH);
+    __sev();
+#elif defined(__aarch64__)
+    __asm__ __volatile__("dmb ish\n\t"
+                         "sev"
+                         :
+                         :
+                         : "memory");
+#endif
+}
+} // namespace
 
 int32_t CheckAPIVersion()
 {
@@ -698,6 +729,16 @@ void SetNativeExecutorThreads(int32_t count)
 int32_t GetNativeExecutorThreads()
 {
     return Thrive::TaskSystem::Get().GetThreads();
+}
+
+void ArmWaitForEvent()
+{
+    ArmWaitForEventInstruction();
+}
+
+void ArmDataMemoryBarrierAndSendEvent()
+{
+    ArmDataMemoryBarrierAndSendEventInstruction();
 }
 
 // ------------------------------------ //
