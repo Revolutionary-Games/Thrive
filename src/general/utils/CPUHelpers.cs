@@ -37,7 +37,6 @@ public class CPUHelpers
         if (!IsArm)
             return;
 
-        Thread.MemoryBarrier();
         NativeInterop.TryArmDataMemoryBarrierAndSendEvent();
     }
 }
