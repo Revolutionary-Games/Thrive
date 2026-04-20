@@ -220,8 +220,8 @@ extern "C"
 
     // ------------------------------------ //
     // Misc
-    [[maybe_unused]] THRIVE_NATIVE_API void ArmWaitForEvent();
-    [[maybe_unused]] THRIVE_NATIVE_API void ArmDataMemoryBarrierAndSendEvent();
+    [[maybe_unused]] THRIVE_NATIVE_API bool ArmWaitForEvent();
+    [[maybe_unused]] THRIVE_NATIVE_API bool ArmDataMemoryBarrierAndSendEvent();
 
     [[maybe_unused]] THRIVE_NATIVE_API void SetNativeExecutorThreads(int32_t count);
     [[maybe_unused]] THRIVE_NATIVE_API int32_t GetNativeExecutorThreads();

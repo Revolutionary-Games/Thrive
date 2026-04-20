@@ -9,7 +9,7 @@ using System.Threading;
 public class CPUHelpers
 {
     private static readonly bool IsX86 = X86Base.IsSupported;
-    private static readonly bool IsArm = ArmBase.IsSupported;
+    private static readonly bool IsARM = ArmBase.IsSupported;
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void HyperThreadPause()
@@ -18,7 +18,7 @@ public class CPUHelpers
         {
             X86Base.Pause();
         }
-        else if (IsArm)
+        else if (IsARM)
         {
             if (!NativeInterop.TryArmWaitForEvent())
                 ArmBase.Yield();
@@ -34,7 +34,7 @@ public class CPUHelpers
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void SignalEvent()
     {
-        if (!IsArm)
+        if (!IsARM)
             return;
 
         NativeInterop.TryArmDataMemoryBarrierAndSendEvent();

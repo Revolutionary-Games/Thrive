@@ -32,8 +32,6 @@ public static class NativeInterop
     private static bool loadCalled;
     private static bool nativeLoadSucceeded;
     private static bool cpuIsInsufficient;
-    private static bool? armWaitForEventAvailable;
-    private static bool? armDataMemoryBarrierAndSendEventAvailable;
 
     private static bool printedDistributableNotice;
     private static bool printedErrorAboutExecutablePath;
@@ -89,8 +87,6 @@ public static class NativeInterop
 
         // Ensure this is not true if load fails partway through
         nativeLoadSucceeded = false;
-        armWaitForEventAvailable = null;
-        armDataMemoryBarrierAndSendEventAvailable = null;
 
         loadCalled = true;
 
@@ -248,38 +244,18 @@ public static class NativeInterop
 
     public static bool TryArmWaitForEvent()
     {
-        if (!nativeLoadSucceeded || armWaitForEventAvailable == false)
+        if (!nativeLoadSucceeded)
             return false;
 
-        try
-        {
-            NativeMethods.ArmWaitForEvent();
-            armWaitForEventAvailable = true;
-            return true;
-        }
-        catch (EntryPointNotFoundException)
-        {
-            armWaitForEventAvailable = false;
-            return false;
-        }
+        return NativeMethods.ArmWaitForEvent();
     }
 
     public static bool TryArmDataMemoryBarrierAndSendEvent()
     {
-        if (!nativeLoadSucceeded || armDataMemoryBarrierAndSendEventAvailable == false)
+        if (!nativeLoadSucceeded)
             return false;
 
-        try
-        {
-            NativeMethods.ArmDataMemoryBarrierAndSendEvent();
-            armDataMemoryBarrierAndSendEventAvailable = true;
-            return true;
-        }
-        catch (EntryPointNotFoundException)
-        {
-            armDataMemoryBarrierAndSendEventAvailable = false;
-            return false;
-        }
+        return NativeMethods.ArmDataMemoryBarrierAndSendEvent();
     }
 
     private static CPUCheckResult CheckCPUFeaturesFull()
@@ -854,11 +830,15 @@ internal static partial class NativeMethods
     [DllImport("thrive_native")]
     internal static extern int GetNativeExecutorThreads();
 
+    [SuppressGCTransition]
     [DllImport("thrive_native")]
-    internal static extern void ArmWaitForEvent();
+    [return: MarshalAs(UnmanagedType.I1)]
+    internal static extern bool ArmWaitForEvent();
 
+    [SuppressGCTransition]
     [DllImport("thrive_native")]
-    internal static extern void ArmDataMemoryBarrierAndSendEvent();
+    [return: MarshalAs(UnmanagedType.I1)]
+    internal static extern bool ArmDataMemoryBarrierAndSendEvent();
 
     // The wrapper-specific methods are in their respective files like PhysicalWorld.cs etc.
 }

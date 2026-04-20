@@ -44,32 +44,6 @@ using ShapePool = boost::singleton_pool<Thrive::Physics::ShapeWrapper, sizeof(Th
 bool PhysicsAssert(const char* expression, const char* message, const char* file, unsigned int line);
 #endif
 
-namespace
-{
-FORCE_INLINE void ArmWaitForEventInstruction()
-{
-#if defined(_MSC_VER) && defined(_M_ARM64)
-    __wfe();
-#elif defined(__aarch64__)
-    __asm__ __volatile__("wfe" ::: "memory");
-#endif
-}
-
-FORCE_INLINE void ArmDataMemoryBarrierAndSendEventInstruction()
-{
-#if defined(_MSC_VER) && defined(_M_ARM64)
-    __dmb(_ARM64_BARRIER_ISH);
-    __sev();
-#elif defined(__aarch64__)
-    __asm__ __volatile__("dmb ish\n\t"
-                         "sev"
-                         :
-                         :
-                         : "memory");
-#endif
-}
-} // namespace
-
 int32_t CheckAPIVersion()
 {
     return THRIVE_LIBRARY_VERSION;
@@ -731,14 +705,35 @@ int32_t GetNativeExecutorThreads()
     return Thrive::TaskSystem::Get().GetThreads();
 }
 
-void ArmWaitForEvent()
+bool ArmWaitForEvent()
 {
-    ArmWaitForEventInstruction();
+#if defined(_MSC_VER) && defined(_M_ARM64)
+    __wfe();
+    return true;
+#elif defined(__aarch64__)
+    __asm__ __volatile__("wfe" ::: "memory");
+    return true;
+#else
+    return false;
+#endif
 }
 
-void ArmDataMemoryBarrierAndSendEvent()
+bool ArmDataMemoryBarrierAndSendEvent()
 {
-    ArmDataMemoryBarrierAndSendEventInstruction();
+#if defined(_MSC_VER) && defined(_M_ARM64)
+    __dmb(_ARM64_BARRIER_ISH);
+    __sev();
+    return true;
+#elif defined(__aarch64__)
+    __asm__ __volatile__("dmb ish\n\t"
+                         "sev"
+                         :
+                         :
+                         : "memory");
+    return true;
+#else
+    return false;
+#endif
 }
 
 // ------------------------------------ //
