@@ -569,7 +569,7 @@ public class WikiUpdater
                 case "UL" or "OL":
                     text = ConvertListToBbcode(child) + "\n\n";
                     break;
-                case "H3":
+                case "H3" or "H4":
                     var headline = child.Children
                         .First(c => c.ClassList.Contains("mw-headline"));
 

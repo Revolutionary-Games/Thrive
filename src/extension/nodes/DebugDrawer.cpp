@@ -11,7 +11,7 @@ BEGIN_GODOT_INCLUDES;
 #include <godot_cpp/variant/utility_functions.hpp>
 END_GODOT_INCLUDES;
 
-#include "core/GodotJoltConversions.hpp"
+#include "core/GodotConversions.hpp"
 #include "core/ThriveConfig.hpp"
 
 // ------------------------------------ //
@@ -259,22 +259,21 @@ void DebugDrawer::DisablePhysicsDebug() noexcept
 }
 
 // ------------------------------------ //
-void DebugDrawer::OnReceiveLines(
-    const std::vector<std::tuple<JPH::RVec3Arg, JPH::RVec3Arg, JPH::Float4>>& lineBuffer) noexcept
+void DebugDrawer::OnReceiveLines(const std::vector<std::tuple<JVec3, JVec3, JColour>>& lineBuffer) noexcept
 {
     for (const auto& entry : lineBuffer)
     {
-        DrawLine(JoltToGodot(std::get<0>(entry)), JoltToGodot(std::get<1>(entry)), JoltToGodot(std::get<2>(entry)));
+        DrawLine(JToGodot(std::get<0>(entry)), JToGodot(std::get<1>(entry)), JToGodot(std::get<2>(entry)));
     }
 }
 
 void DebugDrawer::OnReceiveTriangles(
-    const std::vector<std::tuple<JPH::RVec3Arg, JPH::RVec3Arg, JPH::RVec3Arg, JPH::Float4>>& triangleBuffer) noexcept
+    const std::vector<std::tuple<JVec3, JVec3, JVec3, JColour>>& triangleBuffer) noexcept
 {
     for (const auto& entry : triangleBuffer)
     {
-        DrawTriangle(JoltToGodot(std::get<0>(entry)), JoltToGodot(std::get<1>(entry)), JoltToGodot(std::get<2>(entry)),
-            JoltToGodot(std::get<3>(entry)));
+        DrawTriangle(JToGodot(std::get<0>(entry)), JToGodot(std::get<1>(entry)), JToGodot(std::get<2>(entry)),
+            JToGodot(std::get<3>(entry)));
     }
 }
 
