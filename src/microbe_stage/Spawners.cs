@@ -1523,8 +1523,38 @@ public class MicrobeSpawner(Species species, IMicrobeSpawnEnvironment spawnEnvir
         return $"MicrobeSpawner for {Species.FormattedIdentifier}";
     }
 
+    private static float CalculateMulticellularTerrainCollisionRadius(MulticellularSpecies multicellularSpecies)
+    {
+        var cells = multicellularSpecies.ModifiableGameplayCells;
+        var cellCount = cells.Count;
+
+        if (cellCount < 1)
+            return DefaultTerrainCollisionRadius;
+
+        float radius = 0;
+
+        for (int i = 0; i < cellCount; ++i)
+        {
+            var cell = cells[i];
+            var membraneData = MembraneComputationHelpers.GetOrComputeMembraneShape(
+                cell.ModifiableCellType.ModifiableOrganelles.Organelles, cell.MembraneType);
+
+            var cellPosition = Hex.AxialToCartesian(cell.Position) *
+                Constants.MULTICELLULAR_CELL_DISTANCE_MULTIPLIER;
+            var cellOuterRadius = cellPosition.Length() + membraneData.Radius;
+
+            if (cellOuterRadius > radius)
+                radius = cellOuterRadius;
+        }
+
+        return radius;
+    }
+
     private float CalculateTerrainCollisionRadius()
     {
+        if (Species is MulticellularSpecies multicellularSpecies)
+            return CalculateMulticellularTerrainCollisionRadius(multicellularSpecies);
+
         if (Species is not MicrobeSpecies microbeSpecies)
             return DefaultTerrainCollisionRadius;
 
