@@ -17,9 +17,15 @@ using Godot;
 /// </remarks>
 public partial class PlayerMicrobeInput : NodeWithInput
 {
+    private const float CONTROLLER_LOOK_EPSILON = 0.01f;
+    private const float CONTROLLER_LOOK_POINT_DISTANCE = 10.0f;
+
     private readonly MicrobeMovementEventArgs cachedEventArgs = new(true, Vector3.Zero);
 
+    private Vector3 controllerLookDirection = new(0, 0, -1);
+
     private bool autoMove;
+    private bool hasControllerLookDirection;
 
 #pragma warning disable CA2213 // this is our parent object
 
@@ -83,11 +89,12 @@ public partial class PlayerMicrobeInput : NodeWithInput
 
             if (inputMethod == ActiveInputMethod.Controller)
             {
-                // TODO: look direction for controller input  https://github.com/Revolutionary-Games/Thrive/issues/4034
-                control.LookAtPoint = position.Position + new Vector3(0, 0, -10);
+                var lookDirection = hasControllerLookDirection ? controllerLookDirection : new Vector3(0, 0, -1);
+                control.LookAtPoint = position.Position + lookDirection * CONTROLLER_LOOK_POINT_DISTANCE;
             }
             else
             {
+                hasControllerLookDirection = false;
                 control.LookAtPoint = stage.Camera.CursorWorldPos;
             }
 
@@ -115,6 +122,31 @@ public partial class PlayerMicrobeInput : NodeWithInput
             cachedEventArgs.ReuseEvent(screenRelative, control.MovementDirection);
             stage.TutorialState.SendEvent(TutorialEventType.MicrobePlayerMovement, cachedEventArgs, this);
         }
+    }
+
+    [RunOnAxis(new[] { "g_look_yaw_negative", "g_look_yaw_positive" }, new[] { -1.0f, 1.0f })]
+    [RunOnAxis(new[] { "g_look_pitch_negative", "g_look_pitch_positive" }, new[] { -1.0f, 1.0f })]
+    [RunOnAxisGroup(InvokeAlsoWithNoInput = true, InvokeWithDelta = false)]
+    public void OnControllerLook(float horizontalMovement, float verticalMovement)
+    {
+        var direction = new Vector3(horizontalMovement, 0, verticalMovement);
+
+        if (direction.LengthSquared() < CONTROLLER_LOOK_EPSILON)
+        {
+            hasControllerLookDirection = false;
+            return;
+        }
+
+        controllerLookDirection = direction.Normalized();
+        hasControllerLookDirection = true;
+
+        if (!stage.HasPlayer)
+            return;
+
+        ref var position = ref stage.Player.Get<WorldPosition>();
+        ref var control = ref stage.Player.Get<MicrobeControl>();
+
+        control.LookAtPoint = position.Position + controllerLookDirection * CONTROLLER_LOOK_POINT_DISTANCE;
     }
 
     [RunOnKeyDown("g_fire_siderophore")]
