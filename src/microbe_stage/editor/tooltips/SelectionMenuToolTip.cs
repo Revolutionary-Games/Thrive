@@ -18,6 +18,8 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     /// </summary>
     private readonly List<ModifierInfoLabel> modifierInfos = new();
 
+    private readonly StringBuilder stringBuilder = new();
+
 #pragma warning disable CA2213
     [Export]
     private VBoxContainer modifierInfoList = null!;
@@ -424,7 +426,7 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
 
         incompatibleMembranesLabel.Visible = true;
 
-        var stringBuilder = new StringBuilder();
+        stringBuilder.Clear();
 
         foreach (var organelle in IncompatibleOrganelles)
         {
