@@ -845,6 +845,7 @@ public static class MicrobeInternalCalculations
             // Don't count the nucleus, because of its omnipresence and large size
             if (definition.HasNucleusFeature)
             {
+                tempWorkMemory[definition] = 0;
                 continue;
             }
 
@@ -898,17 +899,14 @@ public static class MicrobeInternalCalculations
 
         float concentration = 0.0f;
 
-        var count = organelles.Count;
-        for (int i = 0; i < count; ++i)
-        {
-            if (organelles[i].Definition.HasNucleusFeature)
-            {
-                hasNucleus = true;
-            }
-        }
-
         foreach (var entry in tempWorkMemory)
         {
+            if (entry.Key.HasNucleusFeature)
+            {
+                hasNucleus = true;
+                continue;
+            }
+
             var hexCount = entry.Value;
             concentration += hexCount * (hexCount - 1);
         }
