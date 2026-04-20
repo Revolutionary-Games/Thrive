@@ -437,10 +437,9 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             playerWasDigested = true;
             FlashHealthBar(new Color(0.96f, 0.5f, 0.27f), delta);
         }
-
-        // Update to the player's current digested progress, unless the player does not exist
         else if (stage.HasPlayer)
         {
+            // Update to the player's current digested progress, unless the player does not exist
             var percentageValue = Localization.Translate("PERCENTAGE_VALUE");
 
             // Show the digestion progress to the player
