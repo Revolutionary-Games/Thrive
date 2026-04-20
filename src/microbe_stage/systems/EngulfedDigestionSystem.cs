@@ -23,6 +23,7 @@ using World = Arch.Core.World;
 ///   </para>
 /// </remarks>
 [WritesToComponent(typeof(Engulfable))]
+[WritesToComponent(typeof(Health))]
 [ReadsComponent(typeof(OrganelleContainer))]
 [ReadsComponent(typeof(MicrobeStatus))]
 [ReadsComponent(typeof(MicrobeAI))]
