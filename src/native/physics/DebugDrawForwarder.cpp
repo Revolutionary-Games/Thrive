@@ -369,8 +369,9 @@ JPH::DebugRenderer::Batch DebugDrawForwarder::CreateTriangleBatch(
 void DebugDrawForwarder::DrawTriangleInternal(
     const DVertex& vertex1, const DVertex& vertex2, const DVertex& vertex3, JColour colourTint, bool wireFrame)
 {
-    if (!IsPointWithinDrawDistance(vertex1.mPosition) && !IsPointWithinDrawDistance(vertex2.mPosition) &&
-        !IsPointWithinDrawDistance(vertex3.mPosition))
+    if (GetDistanceSquared(vertex1.mPosition) > maxModelDistanceSquared &&
+        GetDistanceSquared(vertex2.mPosition) > maxModelDistanceSquared &&
+        GetDistanceSquared(vertex3.mPosition) > maxModelDistanceSquared)
     {
         return;
     }
