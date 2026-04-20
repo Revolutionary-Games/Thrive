@@ -99,6 +99,8 @@ public partial class ToolTipManager : CanvasLayer
                 if (MainToolTip == null)
                     throw new InvalidOperationException("Can't set display to true without main tooltip");
 
+                UpdateCurrentTooltip(0);
+
                 // Set timer
                 displayTimer = MainToolTip.DisplayDelay;
             }
@@ -448,9 +450,12 @@ public partial class ToolTipManager : CanvasLayer
                 throw new Exception("Invalid tooltip positioning type");
         }
 
+        var tooltipNode = MainToolTip.ToolTipNode;
+        tooltipNode.ResetSize();
+
         var screenRect = GetViewport().GetVisibleRect();
         var newPos = new Vector2(position.X + offset.X, position.Y + offset.Y);
-        var tooltipSize = MainToolTip.ToolTipNode.Size;
+        var tooltipSize = tooltipNode.GetCombinedMinimumSize();
 
         if (newPos.X + tooltipSize.X > screenRect.Size.X)
         {
@@ -472,11 +477,11 @@ public partial class ToolTipManager : CanvasLayer
 
         // Clamp tooltip position so it doesn't go offscreen
         // TODO: Take into account viewport (window) resizing for the offsetting.
-        MainToolTip.ToolTipNode.Position = new Vector2(
+        tooltipNode.Position = new Vector2(
             Math.Clamp(newPos.X, 0, Math.Max(screenRect.Size.X - tooltipSize.X, 0)),
             Math.Clamp(newPos.Y, 0, Math.Max(screenRect.Size.Y - tooltipSize.Y, 0)) + currentAutoScrollingOffset);
 
-        MainToolTip.ToolTipNode.Size = Vector2.Zero;
+        tooltipNode.Size = Vector2.Zero;
 
         // Handle temporary tooltips/popup
         if (currentIsTemporary && hideTimer >= 0)
