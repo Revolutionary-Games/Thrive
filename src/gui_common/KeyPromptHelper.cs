@@ -211,38 +211,39 @@ public static class KeyPromptHelper
     /// </summary>
     /// <returns>
     ///   A tuple of the primary key texture and an optional overlay texture that should be drawn on top of the primary
-    ///   one. If not drawn the icon will not be clear
+    ///   one. If not drawn the icon will not be clear. The third tuple part tells whether the primary icon should be
+    ///   drawn smaller than normal to make room for the overlay
     /// </returns>
-    public static (string Primary, string? Overlay) GetPathForMouseButton(MouseButton button)
+    public static (string Primary, string? Overlay, bool SmallPrimaryIcon) GetPathForMouseButton(MouseButton button)
     {
         switch (button)
         {
             case MouseButton.Left:
                 return ($"res://assets/textures/gui/xelu_prompts/Keyboard_Mouse/{Theme}/Mouse_Left_Key_{Theme}.png",
-                    null);
+                    null, false);
             case MouseButton.Middle:
                 return ($"res://assets/textures/gui/xelu_prompts/Keyboard_Mouse/{Theme}/Mouse_Middle_Key_{Theme}.png",
-                    null);
+                    null, false);
             case MouseButton.Right:
                 return ($"res://assets/textures/gui/xelu_prompts/Keyboard_Mouse/{Theme}/Mouse_Right_Key_{Theme}.png",
-                    null);
+                    null, false);
             case MouseButton.WheelUp:
                 return ($"res://assets/textures/gui/xelu_prompts/Keyboard_Mouse/{Theme}/Mouse_Middle_Key_{Theme}.png",
-                    "res://assets/textures/gui/xelu_prompts/Customized/Directional_Arrow_Up.png");
+                    "res://assets/textures/gui/xelu_prompts/Customized/Directional_Arrow_Up.png", true);
             case MouseButton.WheelDown:
                 return ($"res://assets/textures/gui/xelu_prompts/Keyboard_Mouse/{Theme}/Mouse_Middle_Key_{Theme}.png",
-                    "res://assets/textures/gui/xelu_prompts/Customized/Directional_Arrow_Down.png");
+                    "res://assets/textures/gui/xelu_prompts/Customized/Directional_Arrow_Down.png", true);
             case MouseButton.WheelLeft:
                 return ($"res://assets/textures/gui/xelu_prompts/Keyboard_Mouse/{Theme}/Mouse_Middle_Key_{Theme}.png",
-                    "res://assets/textures/gui/xelu_prompts/Customized/Directional_Arrow_Left.png");
+                    "res://assets/textures/gui/xelu_prompts/Customized/Directional_Arrow_Left.png", true);
             case MouseButton.WheelRight:
                 return ($"res://assets/textures/gui/xelu_prompts/Keyboard_Mouse/{Theme}/Mouse_Middle_Key_{Theme}.png",
-                    "res://assets/textures/gui/xelu_prompts/Customized/Directional_Arrow_Right.png");
+                    "res://assets/textures/gui/xelu_prompts/Customized/Directional_Arrow_Right.png", true);
 
             // TODO: handle the extra mouse buttons 1 and 2 (need custom images for them)
         }
 
-        return (GetPathForInvalidKey(), null);
+        return (GetPathForInvalidKey(), null, false);
     }
 
     public static string GetPathForControllerButton(JoyButton button)
@@ -597,9 +598,9 @@ public static class KeyPromptHelper
 
                     if (action is InputEventMouseButton button)
                     {
-                        var (primary, overlay) = GetPathForMouseButton(button.ButtonIndex);
+                        var (primary, overlay, smallPrimaryIcon) = GetPathForMouseButton(button.ButtonIndex);
 
-                        return (primary, overlay, MouseButtonUsesSmallPrimaryIcon(button.ButtonIndex));
+                        return (primary, overlay, smallPrimaryIcon);
                     }
 
                     break;
@@ -624,11 +625,5 @@ public static class KeyPromptHelper
         }
 
         return (GetPathForInvalidKey(), null, false);
-    }
-
-    private static bool MouseButtonUsesSmallPrimaryIcon(MouseButton button)
-    {
-        return button is MouseButton.WheelUp or MouseButton.WheelDown or
-            MouseButton.WheelLeft or MouseButton.WheelRight;
     }
 }

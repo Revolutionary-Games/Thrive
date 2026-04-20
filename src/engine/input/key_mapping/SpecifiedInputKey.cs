@@ -292,11 +292,11 @@ public class SpecifiedInputKey : ICloneable
                     MouseFilter = Godot.Control.MouseFilterEnum.Ignore,
                 };
 
-                var (primary, overlay) = KeyPromptHelper.GetPathForMouseButton((MouseButton)Code);
+                var (primary, overlay, smallPrimaryIcon) = KeyPromptHelper.GetPathForMouseButton((MouseButton)Code);
 
                 if (overlay != null)
                 {
-                    overlayPositioner.AddChild(CreateTextureRect(primary, true));
+                    overlayPositioner.AddChild(CreateTextureRect(primary, smallPrimaryIcon));
                     overlayPositioner.AddChild(CreateTextureRect(overlay));
                 }
                 else
