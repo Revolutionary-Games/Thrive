@@ -37,6 +37,7 @@ public partial class EngulfedDigestionSystem : BaseSystem<World, float>
 {
     private readonly CompoundCloudSystem compoundCloudSystem;
     private readonly IReadOnlyList<Compound> digestibleCompounds;
+    private readonly Random aiToxicPreyEjectionRandom = new();
 
     private readonly Enzyme lipase;
 
@@ -298,7 +299,8 @@ public partial class EngulfedDigestionSystem : BaseSystem<World, float>
                     takenAdjusted - added, Vector3.Back);
             }
 
-            if (toxicDigestionDamagedEngulfer && ShouldAIEjectToxicEngulfedObject(entity, ref health) &&
+            if (toxicDigestionDamagedEngulfer &&
+                ShouldAIEjectToxicEngulfedObject(entity, ref health, aiToxicPreyEjectionRandom) &&
                 engulfer.EjectEngulfable(ref engulfable))
             {
                 continue;
@@ -370,7 +372,7 @@ public partial class EngulfedDigestionSystem : BaseSystem<World, float>
         engulfer.UsedEngulfingCapacity = usedCapacity;
     }
 
-    private bool ShouldAIEjectToxicEngulfedObject(in Entity entity, ref Health health)
+    private bool ShouldAIEjectToxicEngulfedObject(in Entity entity, ref Health health, Random random)
     {
         if (entity.Has<PlayerMarker>() || !entity.Has<MicrobeAI>() || !entity.TryGet<SpeciesMember>(out var species))
             return false;
@@ -380,13 +382,20 @@ public partial class EngulfedDigestionSystem : BaseSystem<World, float>
 
         var behaviour = species.Species.Behaviour;
         var aggression = Math.Clamp(behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION, 0, 1);
-        var bravery = 1 - Math.Clamp(behaviour.Fear / Constants.MAX_SPECIES_FEAR, 0, 1);
-        var willingnessToRiskDigestion = (aggression + bravery) * 0.5f;
+        var opportunism = Math.Clamp(behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM, 0, 1);
+        var willingnessToRiskDigestion = (aggression + opportunism) * 0.5f;
 
         var ejectionHealthFraction = Mathf.Lerp(Constants.AI_TOXIC_ENGULFED_EJECT_MAX_HEALTH_FRACTION,
             Constants.AI_TOXIC_ENGULFED_EJECT_MIN_HEALTH_FRACTION,
             willingnessToRiskDigestion);
 
-        return health.CurrentHealth / health.MaxHealth <= ejectionHealthFraction;
+        if (health.CurrentHealth / health.MaxHealth > ejectionHealthFraction)
+            return false;
+
+        var ejectionChance = Mathf.Lerp(Constants.AI_TOXIC_ENGULFED_EJECT_MAX_CHANCE,
+            Constants.AI_TOXIC_ENGULFED_EJECT_MIN_CHANCE,
+            willingnessToRiskDigestion);
+
+        return random.NextDouble() <= ejectionChance;
     }
 }
