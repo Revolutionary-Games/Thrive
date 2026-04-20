@@ -16,7 +16,6 @@ public partial class ToolTipManager : CanvasLayer
     public const string DEFAULT_GROUP_NAME = "default";
 
     private const double AUTO_SCROLLING_DELAY = 2.0f;
-    private const float AUTO_SCROLLING_HEIGHT_THREESHOLD = 720.0f;
     private const float AUTO_SCROLLING_SPEED = 40.0f;
 
     private static ToolTipManager? instance;
@@ -38,7 +37,8 @@ public partial class ToolTipManager : CanvasLayer
     private double hideTimer;
 
     /// <summary>
-    ///   Flags whether MainToolTip should be shown temporarily (automatically hides once timer reaches threshold).
+    ///   Flags whether MainToolTip should be shown temporarily (automatically hides once the timer reaches
+    ///   the threshold).
     /// </summary>
     private bool currentIsTemporary;
 
@@ -696,9 +696,14 @@ public partial class ToolTipManager : CanvasLayer
 
     private void UpdateAutoScrollingOffset(double delta)
     {
+        if (MainToolTip == null)
+            throw new InvalidOperationException("This is only valid when there is an active tooltip");
+
         if (currentAutoScrollingDelay <= 0.0)
         {
-            float excessHeight = MainToolTip!.ToolTipNode.GetMinimumSize().Y - AUTO_SCROLLING_HEIGHT_THREESHOLD;
+            var scrollHeightThreshold = groupHolder.GetViewportRect().Size.Y;
+
+            float excessHeight = MainToolTip.ToolTipNode.GetMinimumSize().Y - scrollHeightThreshold;
 
             if (excessHeight <= 0.0f)
             {
