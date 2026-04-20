@@ -236,7 +236,7 @@ public static class HealthHelpers
         // Damage reduction is only wanted for non-starving damage
         bool canApplyDamageReduction = true;
 
-        if (damageSource is "toxin" or "oxytoxy" or "injectisome")
+        if (IsDamageToxinType(damageSource))
         {
             // Divide damage by toxin resistance
             damage /= cellProperties.MembraneType.ToxinResistance;
@@ -257,6 +257,58 @@ public static class HealthHelpers
         }
 
         health.DealDamage(entity, damage, damageSource, instantKillProtectionThreshold);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool IsDamageToxinType(string damageSource)
+    {
+        return damageSource is "toxin" or "oxytoxy" or "injectisome";
+    }
+
+    /// <summary>
+    ///   This variant of damage-dealing will automatically find if the entity is in a colony, and if so, it will share
+    ///   the total damage across all members to make the damage to individual members smaller.
+    /// </summary>
+    /// <param name="entity">Entity to damage (must at least have a health component)</param>
+    /// <param name="damage">Raw damage amount to do in total</param>
+    /// <param name="damageSource">Damage type</param>
+    /// <param name="instantKillProtectionThreshold">Instant kill protection</param>
+    public static void DealDistributedMicrobeDamage(in Entity entity, float damage, string damageSource,
+        float instantKillProtectionThreshold)
+    {
+        if (entity.Has<MicrobeColony>())
+        {
+            ref var microbeColony = ref entity.Get<MicrobeColony>();
+
+            var members = microbeColony.ColonyMembers;
+
+            var perEntityDamage = Math.Max(MathUtils.EPSILON, damage / members.Length);
+            foreach (var member in members)
+            {
+                if (member.IsAliveAndHas<Health>())
+                {
+                    ref var health = ref member.Get<Health>();
+                    health.DealMicrobeDamage(ref entity.Get<CellProperties>(), member, perEntityDamage,
+                        damageSource, instantKillProtectionThreshold);
+                }
+                else
+                {
+                    GD.PrintErr("Tried to deal distributed damage to a dead member of a colony: ", member);
+                }
+            }
+        }
+        else if (entity.Has<Health>())
+        {
+            // Not in a colony, deal damage normally
+            ref var health = ref entity.Get<Health>();
+            health.DealMicrobeDamage(ref entity.Get<CellProperties>(), entity, damage, damageSource,
+                instantKillProtectionThreshold);
+        }
+        else
+        {
+            GD.PrintErr("Tried to deal distributed damage to an entity that didn't have a colony " +
+                "or health components");
+        }
     }
 
     /// <summary>
