@@ -490,11 +490,9 @@ public static class MicrobeInternalCalculations
         WorldGenerationSettings worldSettings)
     {
         var energyBalance = new EnergyBalanceInfoSimple();
-        var nucleusDefinition = SimulationParameters.Instance.GetOrganelleType("nucleus");
 
         // Note this assumes this is only used just for single cell types or microbe species!
-        var specialization = CalculateSpecializationBonus(organelles, new Dictionary<OrganelleDefinition, int>(),
-            nucleusDefinition);
+        var specialization = CalculateSpecializationBonus(organelles, new Dictionary<OrganelleDefinition, int>());
 
         var maximumMovementDirection = MaximumSpeedDirection(organelles);
         ProcessSystem.ComputeEnergyBalanceSimple(organelles, biomeConditions, environmentalTolerances, specialization,
@@ -593,10 +591,7 @@ public static class MicrobeInternalCalculations
         ref Dictionary<Compound, CompoundBalance>? dayCompoundBalances)
     {
         // Note this assumes this is only used just for single cell types or microbe species!
-        var nucleusDefinition = SimulationParameters.Instance.GetOrganelleType("nucleus");
-
-        var specialization = CalculateSpecializationBonus(organelles, new Dictionary<OrganelleDefinition, int>(),
-            nucleusDefinition);
+        var specialization = CalculateSpecializationBonus(organelles, new Dictionary<OrganelleDefinition, int>());
 
         if (dayCompoundBalances == null)
         {
@@ -835,7 +830,7 @@ public static class MicrobeInternalCalculations
     }
 
     public static int CalculateMostCommonSpecializationOrganelle(IReadOnlyList<IReadOnlyOrganelleTemplate> organelles,
-        Dictionary<OrganelleDefinition, int> tempWorkMemory, OrganelleDefinition nucleusDefinition)
+        Dictionary<OrganelleDefinition, int> tempWorkMemory)
     {
         int totalHexCount = 0;
         tempWorkMemory.Clear();
@@ -848,7 +843,7 @@ public static class MicrobeInternalCalculations
             var definition = organelle.Definition;
 
             // Don't count the nucleus, because of its omnipresence and large size
-            if (definition == nucleusDefinition)
+            if (definition.HasNucleusFeature)
             {
                 continue;
             }
@@ -893,24 +888,24 @@ public static class MicrobeInternalCalculations
     /// </summary>
     /// <returns>A multiplier starting from 1 and going up as specialization improves</returns>
     public static float CalculateSpecializationBonus(IReadOnlyList<IReadOnlyOrganelleTemplate> organelles,
-        Dictionary<OrganelleDefinition, int> tempWorkMemory, OrganelleDefinition nucleusDefinition)
+        Dictionary<OrganelleDefinition, int> tempWorkMemory)
     {
-        int totalHexCount = CalculateMostCommonSpecializationOrganelle(organelles, tempWorkMemory, nucleusDefinition);
+        int totalHexCount = CalculateMostCommonSpecializationOrganelle(organelles, tempWorkMemory);
         if (totalHexCount < 2)
             return 1;
 
         var hasNucleus = false;
 
+        float concentration = 0.0f;
+
         var count = organelles.Count;
         for (int i = 0; i < count; ++i)
         {
-            if (organelles[i].Definition == nucleusDefinition)
+            if (organelles[i].Definition.HasNucleusFeature)
             {
                 hasNucleus = true;
             }
         }
-
-        float concentration = 0.0f;
 
         foreach (var entry in tempWorkMemory)
         {

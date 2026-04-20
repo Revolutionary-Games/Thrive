@@ -61,7 +61,7 @@ public partial class CellBodyPlanEditorComponent
 
             var specialization =
                 MicrobeInternalCalculations.CalculateSpecializationBonus(cellType.Key.ModifiableOrganelles,
-                    tempMemory3, nucleusDefinition);
+                    tempMemory3);
 
             for (int i = 0; i < newProcesses.Count; ++i)
             {
@@ -252,8 +252,7 @@ public partial class CellBodyPlanEditorComponent
             var type = GetEditedCellDataIfEdited(cells[i].Data!.ModifiableCellType);
 
             var specialization =
-                MicrobeInternalCalculations.CalculateSpecializationBonus(type.ModifiableOrganelles, tempMemory3,
-                    nucleusDefinition);
+                MicrobeInternalCalculations.CalculateSpecializationBonus(type.ModifiableOrganelles, tempMemory3);
 
             // TODO: calculate adjacency specialization values
             // https://github.com/Revolutionary-Games/Thrive/issues/6764

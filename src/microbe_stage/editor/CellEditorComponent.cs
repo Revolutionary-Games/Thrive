@@ -45,9 +45,6 @@ public partial class CellEditorComponent :
 
     private readonly List<EditorUserOverride> ignoredEditorWarnings = new();
 
-    private readonly OrganelleDefinition nucleusDefinition =
-        SimulationParameters.Instance.GetOrganelleType("nucleus");
-
     private readonly Dictionary<Compound, List<Compound>> tempCompoundSources = new();
 
     private readonly HashSet<Compound> compoundsThatDependOnDay = new();
@@ -2149,8 +2146,7 @@ public partial class CellEditorComponent :
 
         var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(organelles);
 
-        var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(organelles, tempMemory3,
-            nucleusDefinition);
+        var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(organelles, tempMemory3);
 
         var tolerances = CalculateLatestTolerances();
         ProcessSystem.ComputeEnergyBalanceFull(organelles, conditionsData, tolerances, specialization,
@@ -2234,8 +2230,7 @@ public partial class CellEditorComponent :
         float consumptionProductionRatio = energyBalance.TotalConsumption / energyBalance.TotalProduction;
 
         var specialization =
-            MicrobeInternalCalculations.CalculateSpecializationBonus(editedMicrobeOrganelles, tempMemory3,
-                nucleusDefinition);
+            MicrobeInternalCalculations.CalculateSpecializationBonus(editedMicrobeOrganelles, tempMemory3);
 
         var speedModifier = tolerances.ProcessSpeedModifier * specialization;
 

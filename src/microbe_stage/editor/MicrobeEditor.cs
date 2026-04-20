@@ -21,9 +21,6 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
     // loaded
     private readonly MicrobeSpeciesComparer speciesComparer = new();
 
-    private readonly OrganelleDefinition nucleusDefinition =
-        SimulationParameters.Instance.GetOrganelleType("nucleus");
-
 #pragma warning disable CA2213
     [Export]
     private MicrobeEditorReportComponent reportTab = null!;
@@ -634,7 +631,7 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
         var specialization =
             MicrobeInternalCalculations.CalculateSpecializationBonus(editedSpecies.ModifiableOrganelles.Organelles,
-                tempMemory1, nucleusDefinition);
+                tempMemory1);
 
         ProcessSystem.ComputeEnergyBalanceSimple(editedSpecies.ModifiableOrganelles.Organelles,
             CurrentPatch.Biome, in tolerances, specialization, editedSpecies.MembraneType, Vector3.Zero, false, true,
