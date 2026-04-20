@@ -207,7 +207,7 @@ public class OrganelleDefinition : RegistryType, IPlayerReadableName
         CommonMutationFunctions.OrganelleAddStrategy.Spiral;
 
     [JsonIgnore]
-    public MembraneType[]? IncompatibleMembranes;
+    public List<MembraneType>? IncompatibleMembranes;
 
     public string[]? IncompatibleMembraneNames;
 
@@ -801,11 +801,14 @@ public class OrganelleDefinition : RegistryType, IPlayerReadableName
 
         if (IncompatibleMembraneNames != null)
         {
-            IncompatibleMembranes = new MembraneType[IncompatibleMembraneNames.Length];
+            IncompatibleMembranes = new List<MembraneType>();
 
             for (int i = 0; i < IncompatibleMembraneNames.Length; ++i)
             {
-                IncompatibleMembranes[i] = parameters.GetMembrane(IncompatibleMembraneNames[i]);
+                if (!parameters.DoesMembraneExist(IncompatibleMembraneNames[i]))
+                    continue;
+
+                IncompatibleMembranes.Add(parameters.GetMembrane(IncompatibleMembraneNames[i]));
             }
         }
     }

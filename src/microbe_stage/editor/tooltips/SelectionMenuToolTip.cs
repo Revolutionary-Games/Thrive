@@ -69,7 +69,7 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     private float osmoregulationCost;
     private bool showOsmoregulation = true;
     private bool requiresNucleus;
-    private MembraneType[]? incompatibleMembranes;
+    private List<MembraneType>? incompatibleMembranes;
     private string? thriveopediaPageName;
     private bool hasProcesses;
 
@@ -174,7 +174,7 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
         }
     }
 
-    public MembraneType[]? IncompatibleMembranes
+    public List<MembraneType>? IncompatibleMembranes
     {
         get => incompatibleMembranes;
         set
