@@ -208,6 +208,9 @@ public struct Engulfable : IArchivableComponent
     }
 }
 
+/// <summary>
+///   Helpers for reading and calculating data for <see cref="Engulfable"/>.
+/// </summary>
 public static partial class EngulfableHelpers
 {
     public static Engulfable ReadFromArchive(ISArchiveReader reader, ushort version)
@@ -272,6 +275,9 @@ public static partial class EngulfableHelpers
     }
 }
 
+/// <summary>
+///   Extension methods for <see cref="Engulfable"/>.
+/// </summary>
 public static partial class EngulfableHelpers
 {
     extension(ref Engulfable engulfable)
