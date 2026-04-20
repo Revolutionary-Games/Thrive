@@ -491,6 +491,7 @@ public partial class InputManager : Node
             return false;
 
         // Let focused text fields handle printable keys first, so layout-specific typing is not consumed as a shortcut.
+        // See: https://github.com/Revolutionary-Games/Thrive/issues/3031
         return GetViewport().GuiGetFocusOwner() is LineEdit or TextEdit;
     }
 
