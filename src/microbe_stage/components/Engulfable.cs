@@ -208,7 +208,7 @@ public struct Engulfable : IArchivableComponent
     }
 }
 
-public static class EngulfableHelpers
+public static partial class EngulfableHelpers
 {
     public static Engulfable ReadFromArchive(ISArchiveReader reader, ushort version)
     {
@@ -229,283 +229,6 @@ public static class EngulfableHelpers
             PhagocytosisStep = (PhagocytosisPhase)reader.ReadInt32(),
             DestroyIfPartiallyDigested = reader.ReadBool(),
         };
-    }
-
-    /// <summary>
-    ///   Effective size of the engulfable for engulfability calculations
-    /// </summary>
-    public static float EffectiveEngulfSize(this ref Engulfable engulfable)
-    {
-        return engulfable.BaseEngulfSize * (1 - engulfable.DigestedAmount);
-    }
-
-    /// <summary>
-    ///   Calculates additional digestible compounds to be made available when entity is engulfed. Note that only
-    ///   <see cref="CompoundDefinition.Digestible"/> compounds may be returned as the result.
-    /// </summary>
-    /// <returns>
-    ///   The extra compounds to add (this also shouldn't have any 0 values in it for clarity). Or null if there
-    ///   aren't any extra digestible compounds.
-    /// </returns>
-    public static Dictionary<Compound, float>? CalculateAdditionalDigestibleCompounds(this ref Engulfable engulfable,
-        in Entity entity)
-    {
-        // Extra digestible compounds for microbes
-        if (entity.Has<OrganelleContainer>() && entity.Has<CompoundStorage>())
-        {
-            return CalculateMicrobeAdditionalDigestibleCompounds(ref entity.Get<OrganelleContainer>(),
-                ref entity.Get<CompoundStorage>());
-        }
-
-        // This entity type doesn't have extra digestible compounds
-        return null;
-    }
-
-    /// <summary>
-    ///   Called when this becomes engulfed and starts to be pulled in (this may get immediately thrown out if this
-    ///   is not digestible by the attacker)
-    /// </summary>
-    public static void OnBecomeEngulfed(this ref Engulfable engulfable, in Entity entity,
-        int engulferRenderPriority)
-    {
-        if (entity.Has<CellProperties>())
-        {
-            ref var cellProperties = ref entity.Get<CellProperties>();
-
-            // Make the membrane not wiggle to make it look better
-            cellProperties.CreatedMembrane?.WigglyNess = 0;
-        }
-
-        // Stop being in ready to reproduce state while engulfed
-        if (entity.Has<OrganelleContainer>())
-        {
-            ref var organelleContainer = ref entity.Get<OrganelleContainer>();
-            organelleContainer.AllOrganellesDivided = false;
-        }
-
-        if (entity.Has<MicrobeEventCallbacks>())
-        {
-            ref var callbacks = ref entity.Get<MicrobeEventCallbacks>();
-
-            callbacks.OnReproductionStatus?.Invoke(entity, false);
-        }
-
-        // Disable absorbing compounds
-        if (entity.Has<CompoundAbsorber>())
-        {
-            entity.Get<CompoundAbsorber>().AbsorbSpeed = -1;
-        }
-
-        // Force mode to normal
-        if (entity.Has<MicrobeControl>())
-        {
-            // Cells are yanked from colonies, so this doesn't need to use the colony-aware set
-            entity.Get<MicrobeControl>().State = MicrobeState.Normal;
-        }
-
-        if (entity.Has<StrainAffected>())
-        {
-            entity.Get<StrainAffected>().IsUnderStrain = false;
-        }
-
-        // Disable compound venting
-        if (entity.Has<UnneededCompoundVenter>())
-        {
-            entity.Get<UnneededCompoundVenter>().VentThreshold = float.MaxValue;
-        }
-
-        // Save the original scale for re-applying when ejecting
-        ref var spatial = ref entity.Get<SpatialInstance>();
-        engulfable.OriginalScale = spatial.ApplyVisualScale ? spatial.VisualScale : Vector3.One;
-
-        if (entity.Has<RenderPriorityOverride>())
-        {
-            ref var renderPriority = ref entity.Get<RenderPriorityOverride>();
-
-            engulfable.OriginalRenderPriority = renderPriority.RenderPriority;
-
-            // Make the render priority of our organelles be on top of the highest possible render priority
-            // of the hostile engulfer's organelles
-            // +2 is used here as the membrane also takes one render priority slot
-            renderPriority.RenderPriority = engulferRenderPriority + Constants.HEX_MAX_RENDER_PRIORITY + 2;
-            renderPriority.RenderPriorityApplied = false;
-
-            // TODO: the above doesn't take recursive engulfing into account but that's probably fine enough for now
-            // If the above is done, IngestEngulfableFromOtherEntity might also need changes
-        }
-    }
-
-    /// <summary>
-    ///   Called when it is confirmed that an engulfable will be digested (i.e. will not be thrown out immediately
-    ///   due to being inedible)
-    /// </summary>
-    public static void OnReportBecomeIngestedIfCallbackRegistered(this ref Engulfable engulfable, in Entity entity)
-    {
-        if (!entity.Has<MicrobeEventCallbacks>())
-            return;
-
-        ref var callbacks = ref entity.Get<MicrobeEventCallbacks>();
-
-        callbacks.OnIngestedByHostile?.Invoke(entity, engulfable.HostileEngulfer);
-    }
-
-    /// <summary>
-    ///   Called when an entity is thrown out from the engulfer, for example due to being indigestible or if the
-    ///   attacker dies
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     This needs to take in the <see cref="IWorldSimulation"/> and spawn system to be able to spawn death
-    ///     chunks as a special case for a microbe that basically died during engulfment.
-    ///   </para>
-    /// </remarks>
-    public static void OnExpelledFromEngulfment(this ref Engulfable engulfable, in Entity entity,
-        ISpawnSystem spawnSystem, IWorldSimulation worldSimulation)
-    {
-        // Restore scale
-        ref var spatial = ref entity.Get<SpatialInstance>();
-
-#if DEBUG
-        if (engulfable.OriginalScale.Length() < MathUtils.EPSILON)
-        {
-            throw new Exception("Ejected engulfable with zero original scale");
-        }
-#endif
-
-        spatial.VisualScale = engulfable.OriginalScale;
-
-        bool alreadyDeathProcessed = false;
-
-        if (entity.Has<Health>())
-            alreadyDeathProcessed = entity.Get<Health>().DeathProcessed;
-
-        bool hasCellProperties = entity.Has<CellProperties>();
-
-        if (engulfable.DigestedAmount >= Constants.PARTIALLY_DIGESTED_THRESHOLD && !alreadyDeathProcessed)
-        {
-            if (entity.Has<Health>() && entity.Has<OrganelleContainer>())
-            {
-                // Cell is too damaged from digestion, can't live in the open environment and is considered dead
-                ref var health = ref entity.Get<Health>();
-                health.Kill();
-
-                // Organelles must be initialized to drop chunks
-                ref var organelleContainer = ref entity.Get<OrganelleContainer>();
-
-                if (organelleContainer.Organelles != null)
-                {
-                    ref var position = ref entity.Get<WorldPosition>();
-
-                    // Most of the normal microbe death gets skipped on engulfed things, instead we do some stuff
-                    // here
-
-                    MicrobeDeathSystem.CustomizeSpawnedChunk? customizeCallback = null;
-
-                    if (engulfable.HostileEngulfer.IsAliveAndHas<WorldPosition>())
-                    {
-                        var hostilePosition = engulfable.HostileEngulfer.Get<WorldPosition>().Position;
-
-                        customizeCallback = (ref position) =>
-                        {
-                            var direction = hostilePosition.DirectionTo(position);
-                            position += direction *
-                                Constants.EJECTED_PARTIALLY_DIGESTED_CELL_CORPSE_CHUNKS_SPAWN_OFFSET;
-
-                            // Apply outwards ejection velocity
-                            // TODO: this used to also add the linear velocity of the ejected entity (which was
-                            // probably not doing much, but now we could take the velocity from the engulfer
-                            // and add it here)
-                            return direction * Constants.ENGULF_EJECTION_VELOCITY;
-                        };
-                    }
-
-                    var recorder = worldSimulation.StartRecordingEntityCommands();
-
-                    // In case there are no cell properties, this defaults to false in order to behave like the old
-                    // version of corpse chunk spawning
-                    var isBacteria = false;
-
-                    if (hasCellProperties)
-                        isBacteria = entity.Get<CellProperties>().IsBacteria;
-
-                    MicrobeDeathSystem.SpawnCorpseChunks(ref organelleContainer,
-                        entity.Get<CompoundStorage>().Compounds, spawnSystem, worldSimulation, recorder,
-                        position.Position, new XoShiRo128starstar(), customizeCallback, isBacteria);
-
-                    SpawnHelpers.FinalizeEntitySpawn(recorder, worldSimulation);
-
-                    // Don't need to do the normal entity state restore as the entity was killed and will be
-                    // shortly destroyed
-                    return;
-                }
-
-                GD.PrintErr("Killed a partially digested cell that didn't have organelles set yet");
-            }
-        }
-
-        // There used to be an else branch here that set the escaped flag for the microbe for use in population
-        // bonus. That is now gone as this feature didn't really do anything any more due to the new engulfing
-        // mechanics which are extremely hard to escape.
-
-        if (hasCellProperties)
-        {
-            if (alreadyDeathProcessed)
-            {
-                if (!entity.Has<TimedLife>())
-                {
-                    GD.PrintErr("Microbe was ejected from engulfment without setting lifetime remaining");
-                    GD.Print("Creating timed life now as safety fallback");
-                    var recorder = worldSimulation.StartRecordingEntityCommands();
-
-                    recorder.Add(entity, new TimedLife(10));
-
-                    worldSimulation.FinishRecordingEntityCommands(recorder);
-                }
-                else
-                {
-                    // Really ensure the entity cannot live too long if already despawning
-                    ref var timedLife = ref entity.Get<TimedLife>();
-                    if (timedLife.TimeToLiveRemaining > 10)
-                        timedLife.TimeToLiveRemaining = 10;
-                }
-            }
-
-            ref var cellProperties = ref entity.Get<CellProperties>();
-
-            // Reset wigglyness (which was cleared when this was engulfed)
-            if (cellProperties.CreatedMembrane != null)
-                cellProperties.ApplyMembraneWigglyness(cellProperties.CreatedMembrane);
-        }
-
-        // Restore unlimited absorption speed
-        if (entity.Has<CompoundAbsorber>())
-        {
-            entity.Get<CompoundAbsorber>().AbsorbSpeed = 0;
-        }
-
-        // Re-enable compound venting
-        if (entity.Has<UnneededCompoundVenter>())
-        {
-            entity.Get<UnneededCompoundVenter>().VentThreshold = Constants.DEFAULT_MICROBE_VENT_THRESHOLD;
-        }
-
-        // Reset render priority
-        if (entity.Has<RenderPriorityOverride>())
-        {
-            ref var renderPriority = ref entity.Get<RenderPriorityOverride>();
-
-            renderPriority.RenderPriority = engulfable.OriginalRenderPriority;
-            renderPriority.RenderPriorityApplied = false;
-
-            // If recursive engulfing render priority is supported in the future, there might be a need to write
-            // some code here related to that
-        }
-
-        if (entity.Has<MicrobeEventCallbacks>())
-        {
-            ref var callbacks = ref entity.Get<MicrobeEventCallbacks>();
-            callbacks.OnEjectedFromHostileEngulfer?.Invoke(entity);
-        }
     }
 
     public static void CalculateBonusDigestibleGlucose(Dictionary<Compound, float> result,
@@ -546,5 +269,286 @@ public static class EngulfableHelpers
 
         CalculateBonusDigestibleGlucose(result, heldCompounds.Compounds);
         return result;
+    }
+}
+
+public static partial class EngulfableHelpers
+{
+    extension(ref Engulfable engulfable)
+    {
+        /// <summary>
+        ///   Effective size of the engulfable for engulfability calculations
+        /// </summary>
+        public float EffectiveEngulfSize()
+        {
+            return engulfable.BaseEngulfSize * (1 - engulfable.DigestedAmount);
+        }
+
+        /// <summary>
+        ///   Calculates additional digestible compounds to be made available when entity is engulfed. Note that only
+        ///   <see cref="CompoundDefinition.Digestible"/> compounds may be returned as the result.
+        /// </summary>
+        /// <returns>
+        ///   The extra compounds to add (this also shouldn't have any 0 values in it for clarity). Or null if there
+        ///   aren't any extra digestible compounds.
+        /// </returns>
+        public Dictionary<Compound, float>? CalculateAdditionalDigestibleCompounds(in Entity entity)
+        {
+            // Extra digestible compounds for microbes
+            if (entity.Has<OrganelleContainer>() && entity.Has<CompoundStorage>())
+            {
+                return CalculateMicrobeAdditionalDigestibleCompounds(ref entity.Get<OrganelleContainer>(),
+                    ref entity.Get<CompoundStorage>());
+            }
+
+            // This entity type doesn't have extra digestible compounds
+            return null;
+        }
+
+        /// <summary>
+        ///   Called when this becomes engulfed and starts to be pulled in (this may get immediately thrown out if this
+        ///   is not digestible by the attacker)
+        /// </summary>
+        public void OnBecomeEngulfed(in Entity entity, int engulferRenderPriority)
+        {
+            if (entity.Has<CellProperties>())
+            {
+                ref var cellProperties = ref entity.Get<CellProperties>();
+
+                // Make the membrane not wiggle to make it look better
+                cellProperties.CreatedMembrane?.WigglyNess = 0;
+            }
+
+            // Stop being in ready to reproduce state while engulfed
+            if (entity.Has<OrganelleContainer>())
+            {
+                ref var organelleContainer = ref entity.Get<OrganelleContainer>();
+                organelleContainer.AllOrganellesDivided = false;
+            }
+
+            if (entity.Has<MicrobeEventCallbacks>())
+            {
+                ref var callbacks = ref entity.Get<MicrobeEventCallbacks>();
+
+                callbacks.OnReproductionStatus?.Invoke(entity, false);
+            }
+
+            // Disable absorbing compounds
+            if (entity.Has<CompoundAbsorber>())
+            {
+                entity.Get<CompoundAbsorber>().AbsorbSpeed = -1;
+            }
+
+            // Force mode to normal
+            if (entity.Has<MicrobeControl>())
+            {
+                // Cells are yanked from colonies, so this doesn't need to use the colony-aware set
+                entity.Get<MicrobeControl>().State = MicrobeState.Normal;
+            }
+
+            if (entity.Has<StrainAffected>())
+            {
+                entity.Get<StrainAffected>().IsUnderStrain = false;
+            }
+
+            // Disable compound venting
+            if (entity.Has<UnneededCompoundVenter>())
+            {
+                entity.Get<UnneededCompoundVenter>().VentThreshold = float.MaxValue;
+            }
+
+            // Save the original scale for re-applying when ejecting
+            ref var spatial = ref entity.Get<SpatialInstance>();
+            engulfable.OriginalScale = spatial.ApplyVisualScale ? spatial.VisualScale : Vector3.One;
+
+            if (entity.Has<RenderPriorityOverride>())
+            {
+                ref var renderPriority = ref entity.Get<RenderPriorityOverride>();
+
+                engulfable.OriginalRenderPriority = renderPriority.RenderPriority;
+
+                // Make the render priority of our organelles be on top of the highest possible render priority
+                // of the hostile engulfer's organelles
+                // +2 is used here as the membrane also takes one render priority slot
+                renderPriority.RenderPriority = engulferRenderPriority + Constants.HEX_MAX_RENDER_PRIORITY + 2;
+                renderPriority.RenderPriorityApplied = false;
+
+                // TODO: the above doesn't take recursive engulfing into account but that's probably fine enough for now
+                // If the above is done, IngestEngulfableFromOtherEntity might also need changes
+            }
+        }
+
+        /// <summary>
+        ///   Called when it is confirmed that an engulfable will be digested (i.e. will not be thrown out immediately
+        ///   due to being inedible)
+        /// </summary>
+        public void OnReportBecomeIngestedIfCallbackRegistered(in Entity entity)
+        {
+            if (!entity.Has<MicrobeEventCallbacks>())
+                return;
+
+            ref var callbacks = ref entity.Get<MicrobeEventCallbacks>();
+
+            callbacks.OnIngestedByHostile?.Invoke(entity, engulfable.HostileEngulfer);
+        }
+
+        /// <summary>
+        ///   Called when an entity is thrown out from the engulfer, for example due to being indigestible or if the
+        ///   attacker dies
+        /// </summary>
+        /// <remarks>
+        ///   <para>
+        ///     This needs to take in the <see cref="IWorldSimulation"/> and spawn system to be able to spawn death
+        ///     chunks as a special case for a microbe that basically died during engulfment.
+        ///   </para>
+        /// </remarks>
+        public void OnExpelledFromEngulfment(in Entity entity, ISpawnSystem spawnSystem,
+            IWorldSimulation worldSimulation)
+        {
+            // Restore scale
+            ref var spatial = ref entity.Get<SpatialInstance>();
+
+#if DEBUG
+            if (engulfable.OriginalScale.Length() < MathUtils.EPSILON)
+            {
+                throw new Exception("Ejected engulfable with zero original scale");
+            }
+#endif
+
+            spatial.VisualScale = engulfable.OriginalScale;
+
+            bool alreadyDeathProcessed = false;
+
+            if (entity.Has<Health>())
+                alreadyDeathProcessed = entity.Get<Health>().DeathProcessed;
+
+            bool hasCellProperties = entity.Has<CellProperties>();
+
+            if (engulfable.DigestedAmount >= Constants.PARTIALLY_DIGESTED_THRESHOLD && !alreadyDeathProcessed)
+            {
+                if (entity.Has<Health>() && entity.Has<OrganelleContainer>())
+                {
+                    // Cell is too damaged from digestion, can't live in the open environment and is considered dead
+                    ref var health = ref entity.Get<Health>();
+                    health.Kill();
+
+                    // Organelles must be initialized to drop chunks
+                    ref var organelleContainer = ref entity.Get<OrganelleContainer>();
+
+                    if (organelleContainer.Organelles != null)
+                    {
+                        ref var position = ref entity.Get<WorldPosition>();
+
+                        // Most of the normal microbe death gets skipped on engulfed things, instead we do some stuff
+                        // here
+
+                        MicrobeDeathSystem.CustomizeSpawnedChunk? customizeCallback = null;
+
+                        if (engulfable.HostileEngulfer.IsAliveAndHas<WorldPosition>())
+                        {
+                            var hostilePosition = engulfable.HostileEngulfer.Get<WorldPosition>().Position;
+
+                            customizeCallback = (ref position) =>
+                            {
+                                var direction = hostilePosition.DirectionTo(position);
+                                position += direction *
+                                    Constants.EJECTED_PARTIALLY_DIGESTED_CELL_CORPSE_CHUNKS_SPAWN_OFFSET;
+
+                                // Apply outwards ejection velocity
+                                // TODO: this used to also add the linear velocity of the ejected entity (which was
+                                // probably not doing much, but now we could take the velocity from the engulfer
+                                // and add it here)
+                                return direction * Constants.ENGULF_EJECTION_VELOCITY;
+                            };
+                        }
+
+                        var recorder = worldSimulation.StartRecordingEntityCommands();
+
+                        // In case there are no cell properties, this defaults to false in order to behave like the old
+                        // version of corpse chunk spawning
+                        var isBacteria = false;
+
+                        if (hasCellProperties)
+                            isBacteria = entity.Get<CellProperties>().IsBacteria;
+
+                        MicrobeDeathSystem.SpawnCorpseChunks(ref organelleContainer,
+                            entity.Get<CompoundStorage>().Compounds, spawnSystem, worldSimulation, recorder,
+                            position.Position, new XoShiRo128starstar(), customizeCallback, isBacteria);
+
+                        SpawnHelpers.FinalizeEntitySpawn(recorder, worldSimulation);
+
+                        // Don't need to do the normal entity state restore as the entity was killed and will be
+                        // shortly destroyed
+                        return;
+                    }
+
+                    GD.PrintErr("Killed a partially digested cell that didn't have organelles set yet");
+                }
+            }
+
+            // There used to be an else branch here that set the escaped flag for the microbe for use in population
+            // bonus. That is now gone as this feature didn't really do anything any more due to the new engulfing
+            // mechanics which are extremely hard to escape.
+
+            if (hasCellProperties)
+            {
+                if (alreadyDeathProcessed)
+                {
+                    if (!entity.Has<TimedLife>())
+                    {
+                        GD.PrintErr("Microbe was ejected from engulfment without setting lifetime remaining");
+                        GD.Print("Creating timed life now as safety fallback");
+                        var recorder = worldSimulation.StartRecordingEntityCommands();
+
+                        recorder.Add(entity, new TimedLife(10));
+
+                        worldSimulation.FinishRecordingEntityCommands(recorder);
+                    }
+                    else
+                    {
+                        // Really ensure the entity cannot live too long if already despawning
+                        ref var timedLife = ref entity.Get<TimedLife>();
+                        if (timedLife.TimeToLiveRemaining > 10)
+                            timedLife.TimeToLiveRemaining = 10;
+                    }
+                }
+
+                ref var cellProperties = ref entity.Get<CellProperties>();
+
+                // Reset wigglyness (which was cleared when this was engulfed)
+                if (cellProperties.CreatedMembrane != null)
+                    cellProperties.ApplyMembraneWigglyness(cellProperties.CreatedMembrane);
+            }
+
+            // Restore unlimited absorption speed
+            if (entity.Has<CompoundAbsorber>())
+            {
+                entity.Get<CompoundAbsorber>().AbsorbSpeed = 0;
+            }
+
+            // Re-enable compound venting
+            if (entity.Has<UnneededCompoundVenter>())
+            {
+                entity.Get<UnneededCompoundVenter>().VentThreshold = Constants.DEFAULT_MICROBE_VENT_THRESHOLD;
+            }
+
+            // Reset render priority
+            if (entity.Has<RenderPriorityOverride>())
+            {
+                ref var renderPriority = ref entity.Get<RenderPriorityOverride>();
+
+                renderPriority.RenderPriority = engulfable.OriginalRenderPriority;
+                renderPriority.RenderPriorityApplied = false;
+
+                // If recursive engulfing render priority is supported in the future, there might be a need to write
+                // some code here related to that
+            }
+
+            if (entity.Has<MicrobeEventCallbacks>())
+            {
+                ref var callbacks = ref entity.Get<MicrobeEventCallbacks>();
+                callbacks.OnEjectedFromHostileEngulfer?.Invoke(entity);
+            }
+        }
     }
 }
