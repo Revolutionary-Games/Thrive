@@ -576,10 +576,10 @@ public partial class Jukebox : Node
 
         if (mode == TrackList.Order.Sequential)
         {
-            list.LastPlayedIndex = (list.LastPlayedIndex + 1) % tracks.Length;
+            var nextTrack = GetNextSequentialTrack(list, tracks);
 
-            PlayTrack(getPlayer(playerToUse), tracks[list.LastPlayedIndex], list.TrackBus);
-            list.LastPlayedTrack = tracks[list.LastPlayedIndex];
+            PlayTrack(getPlayer(playerToUse), nextTrack, list.TrackBus);
+            list.LastPlayedTrack = nextTrack;
         }
         else
         {
@@ -605,8 +605,32 @@ public partial class Jukebox : Node
 
             PlayTrack(getPlayer(playerToUse), tracks[nextIndex], list.TrackBus);
             list.LastPlayedTrack = tracks[nextIndex];
-            list.LastPlayedIndex = nextIndex;
         }
+    }
+
+    private TrackList.Track GetNextSequentialTrack(TrackList list, TrackList.Track[] currentTracks)
+    {
+        if (list.LastPlayedTrack == null)
+            return currentTracks[0];
+
+        var allTracks = list.GetAllTracks().ToArray();
+        var lastPlayedTrackIndex = Array.IndexOf(allTracks, list.LastPlayedTrack);
+
+        if (lastPlayedTrackIndex == -1)
+            return currentTracks[0];
+
+        for (var offset = 1; offset <= allTracks.Length; ++offset)
+        {
+            var candidateTrack = allTracks[(lastPlayedTrackIndex + offset) % allTracks.Length];
+            var candidateTrackIndex = Array.IndexOf(currentTracks, candidateTrack);
+
+            if (candidateTrackIndex == -1)
+                continue;
+
+            return candidateTrack;
+        }
+
+        return currentTracks[0];
     }
 
     private void OnCategoryEnded()

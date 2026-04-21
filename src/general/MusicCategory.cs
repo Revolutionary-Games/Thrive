@@ -113,9 +113,6 @@ public class TrackList
     public bool Repeat { get; set; } = true;
 
     [JsonIgnore]
-    public int LastPlayedIndex { get; set; } = -1;
-
-    [JsonIgnore]
     public Track? LastPlayedTrack { get; set; }
 
     [JsonProperty]
