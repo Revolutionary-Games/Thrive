@@ -261,9 +261,8 @@ public partial class EngulfedDigestionSystem : BaseSystem<World, float>
 
                         ref var health = ref entity.Get<Health>();
 
-                        health.DealMicrobeDamage(ref cellProperties, entity,
-                            health.MaxHealth * Constants.TOXIN_DIGESTION_DAMAGE_FRACTION, "oxytoxy",
-                            HealthHelpers.GetInstantKillProtectionThreshold(entity));
+                        health.DealMicrobeDamage(ref cellProperties, entity, Constants.TOXIN_DIGESTION_DAMAGE,
+                            "oxytoxy", HealthHelpers.GetInstantKillProtectionThreshold(entity));
 
                         entity.SendNoticeIfPossible(() => new SimpleHUDMessage(
                             Localization.Translate("NOTICE_ENGULF_DAMAGE_FROM_TOXIN"),

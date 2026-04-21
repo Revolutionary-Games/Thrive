@@ -992,10 +992,9 @@ public static class Constants
     public const float TOXIN_DIGESTION_DAMAGE_CHECK_INTERVAL = 0.9f;
 
     /// <summary>
-    ///   Determines how big of a fraction of damage (of total health)
-    ///   is dealt to a microbe at a time when it digests a toxic cell.
+    ///   Determines how damage is dealt to a microbe at a time when it digests a toxic cell.
     /// </summary>
-    public const float TOXIN_DIGESTION_DAMAGE_FRACTION = 0.09f;
+    public const float TOXIN_DIGESTION_DAMAGE = 4.0f;
 
     /// <summary>
     ///   Each enzyme addition grants a fraction, set by this variable, increase in digestion speed.
