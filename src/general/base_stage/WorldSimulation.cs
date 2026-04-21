@@ -369,7 +369,7 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
 
             // If destroy all is used a lot, then this temporary memory use (ToList) here should be solved
             var toDestroy = new List<Entity>();
-            entities.Query(new QueryDescription(), entity => toDestroy.Add(entity));
+            entities.Query(new QueryDescription(), toDestroy.Add);
 
             foreach (var entity in toDestroy)
             {

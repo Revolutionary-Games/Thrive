@@ -14,6 +14,8 @@ using SharedBase.Utilities;
 /// </summary>
 public class GodotTemplateInstaller
 {
+    private static readonly HttpClient HttpClient = new();
+
     public static async Task<bool> Run(CancellationToken cancellationToken)
     {
         var targetPath = ThriveProperties.GetGodotTemplateInstallPath(GodotVersion.GODOT_VERSION_FULL);
@@ -54,15 +56,13 @@ public class GodotTemplateInstaller
         ColourConsole.WriteNormalLine($"Downloading {url}");
         ColourConsole.WriteNormalLine("This may take many minutes as the download is large");
 
-        using var client = new HttpClient();
-
         bool success = false;
 
         try
         {
             await using var writer = File.OpenWrite(target);
 
-            var response = await client.GetAsync(url, cancellationToken);
+            var response = await HttpClient.GetAsync(url, cancellationToken);
 
             response.EnsureSuccessStatusCode();
 

@@ -520,7 +520,7 @@ public partial class Jukebox : Node
             // not then force 2 tracks to play at the same time from the same track list if the context switch didn't
             // force tracks to end
             var trackResources = list.GetAllTracks().Select(t => t.ResourcePath);
-            if (activeTracks.Any(t => trackResources.Contains(t)))
+            if (activeTracks.Any(trackResources.Contains))
                 continue;
 
             needToStartFrom.Add(list);
