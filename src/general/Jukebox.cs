@@ -42,6 +42,8 @@ public partial class Jukebox : Node
 
     private MusicContext[]? activeContexts;
 
+    private Dictionary<string, float>? savedPlayingTrackPositions;
+
     /// <summary>
     ///   Loads the music categories and prepares to play them
     /// </summary>
@@ -54,6 +56,8 @@ public partial class Jukebox : Node
     }
 
     public static Jukebox Instance => instance ?? throw new InstanceNotLoadedYetException();
+
+    public static bool HasInstance => instance != null;
 
     /// <summary>
     ///   The category to play music tracks from
@@ -75,6 +79,26 @@ public partial class Jukebox : Node
             playingCategory = value;
             OnCategoryChanged();
         }
+    }
+
+    public Dictionary<string, float> SavedPlayingTrackPositions
+    {
+        get
+        {
+            var result = new Dictionary<string, float>();
+
+            foreach (var player in audioPlayers)
+            {
+                if (!player.Playing || player.CurrentTrack == null)
+                    continue;
+
+                result[player.CurrentTrack] = player.Player.GetPlaybackPosition();
+            }
+
+            return result;
+        }
+
+        set => savedPlayingTrackPositions = value;
     }
 
     private List<string> PlayingTracks => audioPlayers.Where(p => p.Playing)
@@ -476,7 +500,15 @@ public partial class Jukebox : Node
 
     private void SetupStreamsFromCategory()
     {
-        OnCategoryEnded();
+        if (savedPlayingTrackPositions != null)
+        {
+            ApplySavedPlayingTrackPositions(savedPlayingTrackPositions);
+            savedPlayingTrackPositions = null;
+        }
+        else
+        {
+            OnCategoryEnded();
+        }
 
         // Stop all players to not let them play anymore
         StopStreams();
@@ -504,6 +536,31 @@ public partial class Jukebox : Node
         }
 
         StartPlayingFromMissingLists(target);
+    }
+
+    private void ApplySavedPlayingTrackPositions(IReadOnlyDictionary<string, float> trackPositions)
+    {
+        foreach (var category in categories.Values)
+        {
+            foreach (var list in category.TrackLists)
+            {
+                foreach (var track in list.GetAllTracks())
+                {
+                    track.PlayedOnce = false;
+
+                    if (trackPositions.TryGetValue(track.ResourcePath, out var position))
+                    {
+                        track.WasPlaying = true;
+                        track.PreviousPlayedPosition = position;
+                    }
+                    else
+                    {
+                        track.WasPlaying = false;
+                        track.PreviousPlayedPosition = 0;
+                    }
+                }
+            }
+        }
     }
 
     private void StartPlayingFromMissingLists(MusicCategory target)
