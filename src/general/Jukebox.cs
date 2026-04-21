@@ -579,6 +579,7 @@ public partial class Jukebox : Node
             list.LastPlayedIndex = (list.LastPlayedIndex + 1) % tracks.Length;
 
             PlayTrack(getPlayer(playerToUse), tracks[list.LastPlayedIndex], list.TrackBus);
+            list.LastPlayedTrack = tracks[list.LastPlayedIndex];
         }
         else
         {
@@ -591,7 +592,7 @@ public partial class Jukebox : Node
                 {
                     nextIndex = random.Next(0, tracks.Length);
                 }
-                while (nextIndex == list.LastPlayedIndex && tracks.Length > 1);
+                while (ReferenceEquals(tracks[nextIndex], list.LastPlayedTrack) && tracks.Length > 1);
             }
             else if (mode == TrackList.Order.EntirelyRandom)
             {
@@ -603,6 +604,7 @@ public partial class Jukebox : Node
             }
 
             PlayTrack(getPlayer(playerToUse), tracks[nextIndex], list.TrackBus);
+            list.LastPlayedTrack = tracks[nextIndex];
             list.LastPlayedIndex = nextIndex;
         }
     }

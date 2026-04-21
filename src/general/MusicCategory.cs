@@ -115,6 +115,9 @@ public class TrackList
     [JsonIgnore]
     public int LastPlayedIndex { get; set; } = -1;
 
+    [JsonIgnore]
+    public Track? LastPlayedTrack { get; set; }
+
     [JsonProperty]
     private List<Track> Tracks { get; set; } = null!;
 
