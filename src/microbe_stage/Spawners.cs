@@ -1451,7 +1451,6 @@ public static class SpawnHelpers
 public class MicrobeSpawner(Species species, IMicrobeSpawnEnvironment spawnEnvironmentSource) : Spawner
 {
     private readonly Random random = new();
-    private float? cachedTerrainCollisionRadius;
 
     public override bool SpawnsEntities => true;
 
@@ -1459,12 +1458,14 @@ public class MicrobeSpawner(Species species, IMicrobeSpawnEnvironment spawnEnvir
 
     public override string Name => ToString();
 
-    public override float TerrainCollisionRadius => cachedTerrainCollisionRadius ??= CalculateTerrainCollisionRadius();
+    /// <summary>
+    ///   Gets the radius of the species to spawn. This overestimates things when the colony is spawned partially grown
+    ///   in multicellular, but that is safer than underestimating and spawning stuff inside terrain.
+    /// </summary>
+    public override float TerrainCollisionRadius => spawnEnvironmentSource.GetSpeciesTerrainCollisionRadius(species);
 
     public override SpawnQueue Spawn(IWorldSimulation worldSimulation, Vector3 location, ISpawnSystem spawnSystem)
     {
-        _ = spawnSystem;
-
         // This should no longer happen, but let's keep this print here to keep track of the situation
         if (Species.Obsolete)
             GD.PrintErr("Obsolete species microbe has spawned");
@@ -1522,52 +1523,6 @@ public class MicrobeSpawner(Species species, IMicrobeSpawnEnvironment spawnEnvir
     {
         return $"MicrobeSpawner for {Species.FormattedIdentifier}";
     }
-
-    private static float CalculateMulticellularTerrainCollisionRadius(MulticellularSpecies multicellularSpecies)
-    {
-        var cells = multicellularSpecies.ModifiableGameplayCells;
-        var cellCount = cells.Count;
-
-        if (cellCount < 1)
-            return DefaultTerrainCollisionRadius;
-
-        float radius = 0;
-
-        for (int i = 0; i < cellCount; ++i)
-        {
-            var cell = cells[i];
-            var membraneData = MembraneComputationHelpers.GetOrComputeMembraneShape(
-                cell.ModifiableCellType.ModifiableOrganelles.Organelles, cell.MembraneType);
-
-            var cellPosition = Hex.AxialToCartesian(cell.Position) *
-                Constants.MULTICELLULAR_CELL_DISTANCE_MULTIPLIER;
-            var cellOuterRadius = cellPosition.Length() + membraneData.Radius;
-
-            if (cellOuterRadius > radius)
-                radius = cellOuterRadius;
-        }
-
-        return radius;
-    }
-
-    private float CalculateTerrainCollisionRadius()
-    {
-        if (Species is MulticellularSpecies multicellularSpecies)
-            return CalculateMulticellularTerrainCollisionRadius(multicellularSpecies);
-
-        if (Species is not MicrobeSpecies microbeSpecies)
-            return DefaultTerrainCollisionRadius;
-
-        var membraneData = MembraneComputationHelpers.GetOrComputeMembraneShape(microbeSpecies.Organelles.Organelles,
-            microbeSpecies.MembraneType);
-
-        var radius = membraneData.Radius;
-
-        if (microbeSpecies.IsBacteria)
-            radius *= 0.5f;
-
-        return radius;
-    }
 }
 
 /// <summary>
@@ -1596,8 +1551,6 @@ public class CompoundCloudSpawner : Spawner
 
     public override SpawnQueue? Spawn(IWorldSimulation worldSimulation, Vector3 location, ISpawnSystem spawnSystem)
     {
-        _ = spawnSystem;
-
         SpawnHelpers.SpawnCloud(clouds, location, compound, amount, random);
 
         // We don't spawn entities
@@ -1625,8 +1578,6 @@ public class ChunkSpawner(ChunkConfiguration chunkType) : Spawner
 
     public override SpawnQueue Spawn(IWorldSimulation worldSimulation, Vector3 location, ISpawnSystem spawnSystem)
     {
-        _ = spawnSystem;
-
         return new SingleItemSpawnQueue((out entity) =>
         {
             var recorder = SpawnHelpers.SpawnChunkWithoutFinalizing(worldSimulation,
