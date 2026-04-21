@@ -126,9 +126,15 @@ public partial class PlayerMicrobeInput : NodeWithInput
 
     [RunOnAxis(new[] { "g_look_yaw_negative", "g_look_yaw_positive" }, new[] { -1.0f, 1.0f })]
     [RunOnAxis(new[] { "g_look_pitch_negative", "g_look_pitch_positive" }, new[] { -1.0f, 1.0f })]
-    [RunOnAxisGroup(InvokeAlsoWithNoInput = true, InvokeWithDelta = false)]
-    public void OnControllerLook(float horizontalMovement, float verticalMovement)
+    [RunOnAxisGroup(InvokeAlsoWithNoInput = true, InvokeWithDelta = false, TrackInputMethod = true)]
+    public void OnControllerLook(float horizontalMovement, float verticalMovement, ActiveInputMethod inputMethod)
     {
+        if (inputMethod != ActiveInputMethod.Controller)
+        {
+            hasControllerLookDirection = false;
+            return;
+        }
+
         var direction = new Vector3(horizontalMovement, 0, verticalMovement);
 
         if (direction.LengthSquared() < CONTROLLER_LOOK_EPSILON)
