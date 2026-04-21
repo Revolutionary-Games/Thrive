@@ -537,6 +537,22 @@ public class OrganelleDefinition : RegistryType, IPlayerReadableName
         return null;
     }
 
+    public bool IsIncompatibleWithMembrane(MembraneType membraneType)
+    {
+        if (IncompatibleMembranes == null)
+            return false;
+
+        for (int i = 0; i < IncompatibleMembranes.Count; i++)
+        {
+            if (IncompatibleMembranes[i] == membraneType)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public override void Check(string name)
     {
         if (string.IsNullOrEmpty(Name))
