@@ -620,7 +620,7 @@ public partial class Jukebox : Node
         if (lastIndex < 0)
             return playableTracks[0];
 
-        for (var checkedCount = 1; checkedCount < orderedTracks.Count; checkedCount++)
+        for (var checkedCount = 1; checkedCount < orderedTracks.Count; ++checkedCount)
         {
             var candidate = orderedTracks[(lastIndex + checkedCount) % orderedTracks.Count];
             if (playableSet.Contains(candidate))
