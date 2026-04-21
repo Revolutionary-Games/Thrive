@@ -1616,40 +1616,6 @@ public partial class EngulfingSystem : BaseSystem<World, float>
         var endosome = GetEndosomeIfExists(entity, engulfableObject);
 
         endosome?.Hide();
-
-        if (entity.Has<Engulfable>() && canMoveToHigherLevelEngulfer)
-        {
-            ref var engulfersEngulfable = ref entity.Get<Engulfable>();
-
-            if (engulfersEngulfable.PhagocytosisStep != PhagocytosisPhase.None)
-            {
-                if (!engulfersEngulfable.HostileEngulfer.IsAliveAndHas<Engulfer>())
-                {
-                    GD.PrintErr("Attempt to pass ejected object to our engulfer failed because that " +
-                        "engulfer is not alive");
-                    return;
-                }
-
-                // Skip sending to the hostile engulfer if it is dead
-                if (engulfersEngulfable.HostileEngulfer.Has<Health>() &&
-                    engulfersEngulfable.HostileEngulfer.Get<Health>().Dead)
-                {
-                    GD.Print("Not sending engulfable to our engulfer as that is dead");
-                    return;
-                }
-
-                ref var hostileEngulfer = ref engulfersEngulfable.HostileEngulfer.Get<Engulfer>();
-
-                // We have our own engulfer, and it wants to claim this object we've just expelled
-                if (!IngestEngulfable(ref hostileEngulfer,
-                        ref engulfersEngulfable.HostileEngulfer.Get<CellProperties>(),
-                        engulfersEngulfable.HostileEngulfer, ref engulfable,
-                        engulfableObject))
-                {
-                    GD.PrintErr("Failed to pass ejected object from an engulfed object to its engulfer");
-                }
-            }
-        }
     }
 
     private bool TryMoveEjectedObjectToHigherLevelEngulfer(ref Engulfer engulfer, Entity entity,
