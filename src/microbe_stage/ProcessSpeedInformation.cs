@@ -105,6 +105,9 @@ public class ProcessSpeedInformation : IProcessDisplayInfo
                 WritableOutputs[entry.Key] = entry.Value;
             }
         }
+
+        // Scales speed, which is independent of input and output values
+        CurrentSpeed *= modifier;
     }
 
     public bool Equals(IProcessDisplayInfo? other)
