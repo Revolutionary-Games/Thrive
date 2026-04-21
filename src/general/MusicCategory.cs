@@ -138,7 +138,7 @@ public class TrackList
     ///   Accesses all tracks for operations that need to bypass context restrictions
     /// </summary>
     /// <returns>Enumerable for all of the tracks</returns>
-    public IEnumerable<Track> GetAllTracks()
+    public List<Track> GetAllTracks()
     {
         return Tracks;
     }

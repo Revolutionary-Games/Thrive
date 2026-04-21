@@ -520,7 +520,7 @@ public partial class Jukebox : Node
             // not then force 2 tracks to play at the same time from the same track list if the context switch didn't
             // force tracks to end
             var trackResources = list.GetAllTracks().Select(t => t.ResourcePath);
-            if (activeTracks.Any(t => trackResources.Contains(t)))
+            if (activeTracks.Any(trackResources.Contains))
                 continue;
 
             needToStartFrom.Add(list);
@@ -608,29 +608,26 @@ public partial class Jukebox : Node
         }
     }
 
-    private TrackList.Track GetNextSequentialTrack(TrackList list, TrackList.Track[] currentTracks)
+    private TrackList.Track GetNextSequentialTrack(TrackList list, TrackList.Track[] playableTracks)
     {
-        if (list.LastPlayedTrack == null)
-            return currentTracks[0];
+        if (playableTracks.Length == 1 || list.LastPlayedTrack == null)
+            return playableTracks[0];
 
-        var allTracks = list.GetAllTracks().ToArray();
-        var lastPlayedTrackIndex = Array.IndexOf(allTracks, list.LastPlayedTrack);
+        var orderedTracks = list.GetAllTracks();
+        var playableSet = playableTracks.ToHashSet();
+        var lastIndex = orderedTracks.IndexOf(list.LastPlayedTrack);
 
-        if (lastPlayedTrackIndex == -1)
-            return currentTracks[0];
+        if (lastIndex < 0)
+            return playableTracks[0];
 
-        for (var offset = 1; offset <= allTracks.Length; ++offset)
+        for (var checkedCount = 1; checkedCount < orderedTracks.Count; checkedCount++)
         {
-            var candidateTrack = allTracks[(lastPlayedTrackIndex + offset) % allTracks.Length];
-            var candidateTrackIndex = Array.IndexOf(currentTracks, candidateTrack);
-
-            if (candidateTrackIndex == -1)
-                continue;
-
-            return candidateTrack;
+            var candidate = orderedTracks[(lastIndex + checkedCount) % orderedTracks.Count];
+            if (playableSet.Contains(candidate))
+                return candidate;
         }
 
-        return currentTracks[0];
+        return playableTracks[0];
     }
 
     private void OnCategoryEnded()
@@ -651,31 +648,24 @@ public partial class Jukebox : Node
 
         // We don't have to do anything for the Reset return type here
 
+        if (category?.Return != MusicCategory.ReturnType.Continue)
+            return;
+
         // Store continue positions
-        if (category?.Return == MusicCategory.ReturnType.Continue)
+        foreach (var list in category.TrackLists)
         {
-            var activeTracks = PlayingTracks;
-
-            foreach (var list in category.TrackLists)
+            // This doesn't restrict tracks to ones that can be played according to the context. This is done to
+            // ensure that in the future if context can be changed while playing a category without immediately
+            // stopping tracks, this will work correctly.
+            foreach (var track in list.GetAllTracks())
             {
-                // This doesn't restrict tracks to ones that can be played according to the context. This is done to
-                // ensure that in the future if context can be changed while playing a category without immediately
-                // stopping tracks, this will work correctly.
-                foreach (var track in list.GetAllTracks())
+                track.WasPlaying = PlayingTracks.Contains(track.ResourcePath);
+                if (track.WasPlaying)
                 {
-                    if (activeTracks.Contains(track.ResourcePath))
-                    {
-                        track.WasPlaying = true;
-
-                        // Store the position to resume from
-                        track.PreviousPlayedPosition = audioPlayers
-                            .Where(p => p.Playing && p.CurrentTrack == track.ResourcePath)
-                            .Select(p => p.Player.GetPlaybackPosition()).First();
-                    }
-                    else
-                    {
-                        track.WasPlaying = false;
-                    }
+                    // Store the position to resume from
+                    track.PreviousPlayedPosition = audioPlayers
+                        .Where(p => p.Playing && p.CurrentTrack == track.ResourcePath)
+                        .Select(p => p.Player.GetPlaybackPosition()).First();
                 }
             }
         }
