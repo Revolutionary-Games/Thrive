@@ -26,7 +26,7 @@ public class ChangeMembraneType : IMutationStrategy<MicrobeSpecies>
 
         var organelles = baseSpecies.Organelles;
 
-        for (int i = 0; i < organelles.Count; i++)
+        for (int i = 0; i < organelles.Count; ++i)
         {
             if (organelles[i].Definition.IsIncompatibleWithMembrane(membraneType))
                 return null;
