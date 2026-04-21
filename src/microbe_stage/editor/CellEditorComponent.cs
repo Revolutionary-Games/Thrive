@@ -2503,7 +2503,10 @@ public partial class CellEditorComponent :
 
             foreach (var membrane in organelle.Definition.IncompatibleMembranes)
             {
-                membraneSelectionElements[membrane].Locked = true;
+                if (!membraneSelectionElements.TryGetValue(membrane, out var button))
+                    continue;
+
+                button.Locked = true;
 
                 var tooltip = GetSelectionTooltip(membrane.InternalName, "membraneSelection");
                 if (tooltip != null)
