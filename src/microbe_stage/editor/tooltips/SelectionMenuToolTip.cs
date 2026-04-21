@@ -511,7 +511,7 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
         if (incompatibleMembranes == null)
             return;
 
-        var stringBuilder = new StringBuilder();
+        stringBuilder.Clear();
 
         foreach (var membrane in incompatibleMembranes)
         {
