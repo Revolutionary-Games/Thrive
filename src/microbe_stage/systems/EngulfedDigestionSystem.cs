@@ -23,10 +23,8 @@ using World = Arch.Core.World;
 ///   </para>
 /// </remarks>
 [WritesToComponent(typeof(Engulfable))]
-[WritesToComponent(typeof(Health))]
 [ReadsComponent(typeof(OrganelleContainer))]
 [ReadsComponent(typeof(MicrobeStatus))]
-[ReadsComponent(typeof(MicrobeAI))]
 [ReadsComponent(typeof(CellProperties))]
 [ReadsComponent(typeof(WorldPosition))]
 [ReadsComponent(typeof(MicrobeEventCallbacks))]
@@ -396,6 +394,10 @@ public partial class EngulfedDigestionSystem : BaseSystem<World, float>
             Constants.AI_TOXIC_ENGULFED_EJECT_MIN_CHANCE,
             willingnessToRiskDigestion);
 
-        return random.NextDouble() <= ejectionChance;
+        // Allow random to be shared across threads by locking it before use
+        lock (random)
+        {
+            return random.NextDouble() <= ejectionChance;
+        }
     }
 }
