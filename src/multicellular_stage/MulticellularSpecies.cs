@@ -354,9 +354,39 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
     /// <returns>The calculated bonus (or 1, if it can't be calculated)</returns>
     public float GetAdjacencySpecializationBonus(int cellIndexInBodyPlan)
     {
-        // TODO: implement this https://github.com/Revolutionary-Games/Thrive/issues/6764
-        _ = cellIndexInBodyPlan;
-        return 1;
+        int count = ModifiableGameplayCells.Count;
+
+        if (cellIndexInBodyPlan < 0 || cellIndexInBodyPlan >= count)
+        {
+            GD.PrintErr("Invalid multicellular body plan cell index for adjacency bonus: ", cellIndexInBodyPlan);
+            return 1;
+        }
+
+        var targetCell = ModifiableGameplayCells[cellIndexInBodyPlan];
+        var targetCellType = targetCell.ModifiableCellType;
+
+        var targetOccupiedHexes = new List<Hex>();
+        var layoutLookupTemporaryMemory = new List<Hex>();
+        var adjacentCells = new HashSet<CellTemplate>();
+
+        AddCellOccupiedHexes(targetCell, targetOccupiedHexes);
+
+        foreach (var targetHex in targetOccupiedHexes)
+        {
+            foreach (var offset in Hex.HexNeighbourOffset.Values)
+            {
+                var adjacentCell = ModifiableGameplayCells.GetElementAt(targetHex + offset,
+                    layoutLookupTemporaryMemory);
+
+                if (adjacentCell == null || ReferenceEquals(adjacentCell, targetCell))
+                    continue;
+
+                if (ReferenceEquals(adjacentCell.ModifiableCellType, targetCellType))
+                    adjacentCells.Add(adjacentCell);
+            }
+        }
+
+        return 1 + adjacentCells.Count * Constants.CELL_SPECIALIZATION_ADJACENCY_BONUS;
     }
 
     public void SetupWorldEntities(IWorldSimulation worldSimulation)
@@ -448,6 +478,23 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         }
 
         return result;
+    }
+
+    private static void AddCellOccupiedHexes(IReadOnlyCellTemplate cell, List<Hex> result)
+    {
+        result.Clear();
+
+        foreach (var organelle in cell.Organelles)
+        {
+            var organelleHexes = organelle.Definition.GetRotatedHexes(organelle.Orientation);
+            int hexCount = organelleHexes.Count;
+
+            for (int i = 0; i < hexCount; ++i)
+            {
+                result.Add(Hex.RotateAxialNTimes(organelleHexes[i], cell.Orientation) +
+                    Hex.RotateAxialNTimes(organelle.Position, cell.Orientation) + cell.Position);
+            }
+        }
     }
 
     private bool RepositionGameplayCells()

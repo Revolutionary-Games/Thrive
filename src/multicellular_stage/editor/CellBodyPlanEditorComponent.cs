@@ -1268,7 +1268,8 @@ public partial class CellBodyPlanEditorComponent :
             MicrobeInternalCalculations.MaximumSpeedDirection(cellType.ModifiableOrganelles);
 
         var specialization =
-            MicrobeInternalCalculations.CalculateSpecializationBonus(cellType.ModifiableOrganelles, tempMemory3);
+            MicrobeInternalCalculations.CalculateSpecializationBonus(cellType.ModifiableOrganelles, tempMemory3) *
+            CalculateAverageEditedCellAdjacencySpecializationBonus(cellType);
 
         ProcessSystem.ComputeEnergyBalanceFull(cellType.ModifiableOrganelles, Editor.CurrentPatch.Biome,
             environmentalTolerances, specialization,
@@ -1467,12 +1468,13 @@ public partial class CellBodyPlanEditorComponent :
         tempCompoundSources.Clear();
 
         // TODO: improve performance by calculating the balance per cell type
-        foreach (var hex in cells)
+        int cellCount = cells.Count;
+        for (int i = 0; i < cellCount; ++i)
         {
+            var hex = cells[i];
             var specialization =
-                MicrobeInternalCalculations.CalculateSpecializationBonus(hex.Data!.ModifiableOrganelles, tempMemory3);
-
-            // TODO: adjacency bonuses from body plan (GetAdjacencySpecializationBonus)
+                MicrobeInternalCalculations.CalculateSpecializationBonus(hex.Data!.ModifiableOrganelles, tempMemory3) *
+                CalculateEditedCellAdjacencySpecializationBonus(i);
 
             ProcessSystem.ComputeEnergyBalanceFull(hex.Data.ModifiableOrganelles, conditionsData,
                 environmentalTolerances, specialization, hex.Data.MembraneType,
@@ -1520,13 +1522,14 @@ public partial class CellBodyPlanEditorComponent :
         in ResolvedMicrobeTolerances tolerances)
     {
         Dictionary<Compound, CompoundBalance> compoundBalanceData = new();
-        foreach (var cell in cells)
+        int cellCount = cells.Count;
+        for (int i = 0; i < cellCount; ++i)
         {
+            var cell = cells[i];
             var organelles = GetEditedCellDataIfEdited(cell.Data!.ModifiableCellType).ModifiableOrganelles;
             var specialization =
-                MicrobeInternalCalculations.CalculateSpecializationBonus(organelles, tempMemory3);
-
-            // TODO: efficiency from cell layout positions (GetAdjacencySpecializationBonus)
+                MicrobeInternalCalculations.CalculateSpecializationBonus(organelles, tempMemory3) *
+                CalculateEditedCellAdjacencySpecializationBonus(i);
 
             AddCellTypeCompoundBalance(compoundBalanceData, organelles, calculationType,
                 amountType, biome, energyBalance, tolerances, specialization);
@@ -1570,6 +1573,66 @@ public partial class CellBodyPlanEditorComponent :
             cellTypesCount.TryGetValue(type, out var count);
             cellTypesCount[type] = count + 1;
         }
+    }
+
+    private float CalculateEditedCellAdjacencySpecializationBonus(int cellIndex)
+    {
+        int cellCount = editedMicrobeCells.Count;
+
+        if (cellIndex < 0 || cellIndex >= cellCount)
+            return 1;
+
+        var targetCell = editedMicrobeCells[cellIndex];
+        var targetType = GetEditedCellDataIfEdited(targetCell.Data!.ModifiableCellType);
+        int adjacentSameTypeCells = 0;
+
+        for (int i = 0; i < cellCount; ++i)
+        {
+            if (i == cellIndex)
+                continue;
+
+            var otherCell = editedMicrobeCells[i];
+
+            if (!ReferenceEquals(GetEditedCellDataIfEdited(otherCell.Data!.ModifiableCellType), targetType))
+                continue;
+
+            if (AreHexesAdjacent(targetCell.Position, otherCell.Position))
+                ++adjacentSameTypeCells;
+        }
+
+        return 1 + adjacentSameTypeCells * Constants.CELL_SPECIALIZATION_ADJACENCY_BONUS;
+    }
+
+    private float CalculateAverageEditedCellAdjacencySpecializationBonus(CellType cellType)
+    {
+        double totalSpecialization = 0;
+        int matchingCells = 0;
+        int cellCount = editedMicrobeCells.Count;
+
+        for (int i = 0; i < cellCount; ++i)
+        {
+            if (!ReferenceEquals(GetEditedCellDataIfEdited(editedMicrobeCells[i].Data!.ModifiableCellType), cellType))
+                continue;
+
+            totalSpecialization += CalculateEditedCellAdjacencySpecializationBonus(i);
+            ++matchingCells;
+        }
+
+        if (matchingCells < 1)
+            return 1;
+
+        return (float)(totalSpecialization / matchingCells);
+    }
+
+    private bool AreHexesAdjacent(Hex first, Hex second)
+    {
+        foreach (var offset in Hex.HexNeighbourOffset.Values)
+        {
+            if (first + offset == second)
+                return true;
+        }
+
+        return false;
     }
 
     /// <summary>

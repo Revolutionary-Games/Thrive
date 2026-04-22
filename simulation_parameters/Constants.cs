@@ -686,6 +686,11 @@ public static class Constants
     public const float CELL_SPECIALIZATION_STRENGTH_MULTIPLIER = 0.8f;
 
     /// <summary>
+    ///   Extra specialization multiplier granted for each adjacent cell of the same type in a multicellular body plan
+    /// </summary>
+    public const float CELL_SPECIALIZATION_ADJACENCY_BONUS = 0.05f;
+
+    /// <summary>
     ///   If more chunks exist at once than this, then some are forced to despawn immediately. In reality the effective
     ///   value is higher as spawned and microbe corpse chunks have now their individual limits (so the real limit is
     ///   double this)

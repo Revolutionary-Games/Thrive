@@ -51,23 +51,26 @@ public partial class CellBodyPlanEditorComponent
 
         var processes = new List<TweakedProcess>();
 
-        UpdateCellTypesCounts();
         var newProcesses = new List<TweakedProcess>();
-        foreach (var cellType in cellTypesCount)
+        var cells = editedMicrobeCells;
+        int cellCount = cells.Count;
+
+        for (int cellIndex = 0; cellIndex < cellCount; ++cellIndex)
         {
+            var cellType = GetEditedCellDataIfEdited(cells[cellIndex].Data!.ModifiableCellType);
             newProcesses.Clear();
 
-            ProcessSystem.ComputeActiveProcessList(cellType.Key.ModifiableOrganelles, ref newProcesses);
+            ProcessSystem.ComputeActiveProcessList(cellType.ModifiableOrganelles, ref newProcesses);
 
             var specialization =
-                MicrobeInternalCalculations.CalculateSpecializationBonus(cellType.Key.ModifiableOrganelles,
-                    tempMemory3);
+                MicrobeInternalCalculations.CalculateSpecializationBonus(cellType.ModifiableOrganelles,
+                    tempMemory3) * CalculateEditedCellAdjacencySpecializationBonus(cellIndex);
 
             for (int i = 0; i < newProcesses.Count; ++i)
             {
                 // Apply specialization here to approximate it in this editor
                 newProcesses[i] = new TweakedProcess(newProcesses[i].Process,
-                    newProcesses[i].Rate * cellType.Value * specialization)
+                    newProcesses[i].Rate * specialization)
                 {
                     SpeedMultiplier = newProcesses[i].SpeedMultiplier,
                 };
@@ -252,11 +255,8 @@ public partial class CellBodyPlanEditorComponent
             var type = GetEditedCellDataIfEdited(cells[i].Data!.ModifiableCellType);
 
             var specialization =
-                MicrobeInternalCalculations.CalculateSpecializationBonus(type.ModifiableOrganelles, tempMemory3);
-
-            // TODO: calculate adjacency specialization values
-            // https://github.com/Revolutionary-Games/Thrive/issues/6764
-            // totalSpecialization += specialization * adjacencySpecialization;
+                MicrobeInternalCalculations.CalculateSpecializationBonus(type.ModifiableOrganelles, tempMemory3) *
+                CalculateEditedCellAdjacencySpecializationBonus(i);
 
             totalSpecialization += specialization;
 
