@@ -221,6 +221,16 @@ public partial class OrganelleUpgradeGUI : Control
             }
         }
 
+        // If there was no previous upgrade, we want to skip creating an upgrade if the GUI was left in the default
+        // state (i.e. the user didn't actually change anything).
+        // So this check prevents creating an action if the current state is the default state.
+        if (openedForOrganelle.ModifiableUpgrades == null && newUpgrades.UnlockedFeatures.Count < 1 &&
+            (upgrader == null || upgrader.IsCurrentStateDefault()))
+        {
+            EmitSignal(SignalName.Accepted);
+            return;
+        }
+
         // Only create an action and apply changes if changes were actually made
         if (!newUpgrades.Equals(oldUpgrades))
         {
