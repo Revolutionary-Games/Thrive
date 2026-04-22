@@ -19,6 +19,12 @@ public partial class ToleranceRangeDisplay : HSlider
     private bool showMiddleMarker;
 
     [Export]
+    private bool logarithmicScale;
+
+    [Export]
+    private float logarithmicScaleOffset = 1;
+
+    [Export]
     private RangeMarker beginConnectorFromMarker;
 
 #pragma warning disable CA2213
@@ -71,8 +77,7 @@ public partial class ToleranceRangeDisplay : HSlider
 
         var lowerBoundCenter = new Vector2(lowerBoundPos + LINE_WIDTH * 0.5f, Size.Y * 0.5f);
         var upperBoundCenter = new Vector2(upperBoundPos + LINE_WIDTH * 0.5f, Size.Y * 0.5f);
-        var middleBoundCenter =
-            new Vector2((float)(Size.X * (Value - MinValue) / (MaxValue - MinValue)), Size.Y * 0.5f);
+        var middleBoundCenter = new Vector2(Size.X * GetValueFraction((float)Value), Size.Y * 0.5f);
 
         var boundOffset = new Vector2(0, Constants.TOLERANCE_DISPLAY_BOUND_HEIGHT * 0.5f);
 
@@ -134,8 +139,7 @@ public partial class ToleranceRangeDisplay : HSlider
     /// <param name="value"> Has to be between this slider's max and min.</param>
     public void UpdateMarker(float value)
     {
-        optimalValueMarker.OptimalValue = (value - (float)MinValue)
-            / (float)(MaxValue - MinValue);
+        optimalValueMarker.OptimalValue = GetValueFraction(value);
     }
 
     /// <summary>
@@ -186,11 +190,11 @@ public partial class ToleranceRangeDisplay : HSlider
 
     private void SetBoundPositions()
     {
-        var upperBoundFraction = Math.Clamp((upperValue - MinValue) / (MaxValue - MinValue), 0, 1);
-        var lowerBoundFraction = Math.Clamp((lowerValue - MinValue) / (MaxValue - MinValue), 0, 1);
+        var upperBoundFraction = GetValueFraction(upperValue);
+        var lowerBoundFraction = GetValueFraction(lowerValue);
 
-        lowerBoundPos = Size.X * (float)lowerBoundFraction - 1;
-        upperBoundPos = Size.X * (float)upperBoundFraction - 1;
+        lowerBoundPos = Size.X * lowerBoundFraction - 1;
+        upperBoundPos = Size.X * upperBoundFraction - 1;
 
         QueueRedraw();
     }
@@ -209,6 +213,24 @@ public partial class ToleranceRangeDisplay : HSlider
         sliderGrabberXPos = relatedSlider.Size.X * fraction;
 
         QueueRedraw();
+    }
+
+    private float GetValueFraction(float value)
+    {
+        if (MaxValue <= MinValue)
+            return 0;
+
+        value = Math.Clamp(value, (float)MinValue, (float)MaxValue);
+
+        if (!logarithmicScale)
+            return (float)((value - MinValue) / (MaxValue - MinValue));
+
+        var offset = Math.Max(logarithmicScaleOffset, MathUtils.EPSILON);
+        var shiftedValue = value - (float)MinValue;
+        var shiftedMaximum = (float)(MaxValue - MinValue);
+
+        return Math.Clamp((float)(Math.Log((shiftedValue + offset) / offset) /
+            Math.Log((shiftedMaximum + offset) / offset)), 0, 1);
     }
 
     private void SetBoundPositionsInternal()

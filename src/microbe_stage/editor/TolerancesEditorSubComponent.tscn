@@ -316,6 +316,8 @@ size_flags_horizontal = 3
 max_value = 80000000.0
 value = 0.0
 hasTwoBounds = true
+logarithmicScale = true
+logarithmicScaleOffset = 100000.0
 relatedSlider = NodePath("../PressureSlider")
 
 [node name="PressureSlider" type="HSlider" parent="Pressure/RangeDisplayContainer/VBoxContainer" unique_id=691339473]
@@ -327,9 +329,9 @@ focus_next = NodePath("../../../HBoxContainer4/PressureRange")
 focus_previous = NodePath("../../../../Temperature/HBoxContainer3/TemperatureRange")
 theme_override_constants/center_grabber = 1
 theme_override_styles/slider = SubResource("StyleBoxEmpty_n6u17")
-max_value = 80000000.0
-step = 200000.0
-value = 40000000.0
+max_value = 1.0
+step = 0.001
+value = 0.5
 
 [node name="Spacer2" type="Control" parent="Pressure/RangeDisplayContainer" unique_id=1570659681]
 custom_minimum_size = Vector2(8, 0)
@@ -357,11 +359,9 @@ focus_neighbor_bottom = NodePath("../../../Oxygen/RangeDisplayContainer/VBoxCont
 focus_next = NodePath("../../../Oxygen/RangeDisplayContainer/VBoxContainer/OxygenResistanceSlider")
 focus_previous = NodePath("../../RangeDisplayContainer/VBoxContainer/PressureSlider")
 mouse_filter = 1
-min_value = 200000.0
-max_value = 8000000.0
-step = 200000.0
-value = 200000.0
-rounded = true
+max_value = 1.0
+step = 0.001
+value = 0.5
 scrollable = false
 
 [node name="Spacer2" type="Control" parent="Pressure/HBoxContainer4" unique_id=1359946918]
