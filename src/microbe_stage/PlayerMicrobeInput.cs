@@ -11,7 +11,7 @@ using Godot;
 /// <remarks>
 ///   <para>
 ///     Note that callbacks from other places directly call some methods in this class, so
-///     an extra care should be taken while modifying the methods as otherwise some stuff
+///     extra care should be taken while modifying the methods as otherwise some stuff
 ///     may no longer work.
 ///   </para>
 /// </remarks>
@@ -89,8 +89,7 @@ public partial class PlayerMicrobeInput : NodeWithInput
 
             if (inputMethod == ActiveInputMethod.Controller)
             {
-                var lookDirection = hasControllerLookDirection ? controllerLookDirection : new Vector3(0, 0, -1);
-                control.LookAtPoint = position.Position + lookDirection * CONTROLLER_LOOK_POINT_DISTANCE;
+                control.LookAtPoint = position.Position + controllerLookDirection * CONTROLLER_LOOK_POINT_DISTANCE;
             }
             else
             {
@@ -124,6 +123,8 @@ public partial class PlayerMicrobeInput : NodeWithInput
         }
     }
 
+    // TODO: for some reason this doesn't feel fully smooth to rotate over? Maybe one axis is deadzoned to 0 when other
+    // is still active thus causing the feel of the cardinal directions "snapping"?
     [RunOnAxis(new[] { "g_look_yaw_negative", "g_look_yaw_positive" }, new[] { -1.0f, 1.0f })]
     [RunOnAxis(new[] { "g_look_pitch_negative", "g_look_pitch_positive" }, new[] { -1.0f, 1.0f })]
     [RunOnAxisGroup(InvokeAlsoWithNoInput = true, InvokeWithDelta = false, TrackInputMethod = true)]
@@ -137,14 +138,12 @@ public partial class PlayerMicrobeInput : NodeWithInput
 
         var direction = new Vector3(horizontalMovement, 0, verticalMovement);
 
+        // Keep previous look direction when no new input
+        // TODO: this seems kind of too sensitive still as angle doesn't stay at the exact same direction
         if (direction.LengthSquared() < CONTROLLER_LOOK_EPSILON)
-        {
-            hasControllerLookDirection = false;
             return;
-        }
 
         controllerLookDirection = direction.Normalized();
-        hasControllerLookDirection = true;
 
         if (!stage.HasPlayer)
             return;
