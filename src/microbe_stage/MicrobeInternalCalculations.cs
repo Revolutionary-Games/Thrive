@@ -515,7 +515,6 @@ public static class MicrobeInternalCalculations
         WorldGenerationSettings worldSettings)
     {
         var energyBalance = new EnergyBalanceInfoSimple();
-        var nucleusDefinition = SimulationParameters.Instance.GetOrganelleType("nucleus");
 
         // Note this assumes this is only used just for single cell types or microbe species!
         var specialization = CalculateSpecializationBonus(organelles,
@@ -618,8 +617,6 @@ public static class MicrobeInternalCalculations
         ref Dictionary<Compound, CompoundBalance>? dayCompoundBalances)
     {
         // Note this assumes this is only used just for single cell types or microbe species!
-        var nucleusDefinition = SimulationParameters.Instance.GetOrganelleType("nucleus");
-
         var specialization = CalculateSpecializationBonus(organelles,
             new Dictionary<OrganelleDefinition, int>());
 
