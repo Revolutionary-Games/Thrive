@@ -9,7 +9,7 @@ jobs:
         - v16-master-build
       writeTo: v16-{Branch}-build
       shared:
-        .git/lfs: v8-lfs
+        .git/lfs: v9-lfs
         .import: v15-import
         builds: v7-builds
         native_libs: v2-native
@@ -43,7 +43,7 @@ jobs:
         - v11-master-jetbrains
       writeTo: v11-{Branch}-jetbrains
       shared:
-        .git/lfs: v8-lfs
+        .git/lfs: v9-jet-lfs
       system:
         /root/.nuget: v8-nuget
     artifacts:
@@ -101,7 +101,7 @@ jobs:
         - v11-master-format
       writeTo: v11-{Branch}-format
       shared:
-        .git/lfs: v8-lfs
+        .git/lfs: v9-lfs
         native_libs: v2-native
       system:
         /root/.nuget: v8-nuget
@@ -119,7 +119,7 @@ jobs:
           command: dotnet run --project Scripts -- check files localization steam-build rewrite
       - run:
           name: Make sure no lib files were modified
-          command: GIT_LFS_SKIP_SMUDGE=1 git checkout HEAD -- native_libs/
+          command: git checkout HEAD -- native_libs/
       - run:
           when: always
           name: Check format changes
