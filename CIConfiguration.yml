@@ -35,11 +35,6 @@ jobs:
       - run:
          name: Upload devbuilds
          command: dotnet run --project Scripts -- upload
-      # Due to these needing a bunch of dependencies in the engine to work,
-      # it is useful to run them here after exporting the game and assets should be fine
-      - run:
-          name: Run unit tests that require Godot
-          command: dotnet run --project Scripts -- test --godot true
   jetbrains:
     image: thrive/godot-ci:v32
     cache:
@@ -106,7 +101,7 @@ jobs:
         - v12-master-format
       writeTo: v12-{Branch}-format
       shared:
-        .git/lfs: v9-jet-lfs
+        .git/lfs: v9-lfs
         native_libs: v2-native
       system:
         /root/.nuget: v8-nuget
@@ -117,11 +112,14 @@ jobs:
       - run:
           command: dotnet restore Scripts/Scripts.csproj
       - run:
-          name: Make sure no changes to git tracked files at this point
-          command: GIT_LFS_SKIP_SMUDGE=1 git reset --hard HEAD
+          name: Make sure no changes to git tracked files at this point (LFS supported)
+          command: git reset --hard HEAD
       - run:
           name: files localization steam-build rewrite checks
           command: dotnet run --project Scripts -- check files localization steam-build rewrite
+      - run:
+          name: Make sure no lib files were modified
+          command: git checkout HEAD -- native_libs/
       - run:
           when: always
           name: Check format changes
@@ -137,6 +135,15 @@ jobs:
                 rm -f format_diff.patch
             fi
       - run:
+          name: Download native libraries
+          command: dotnet run --project Scripts -- native Fetch Install --debug true
+      - run:
           name: "Unit tests (code-only, no Godot dependencies)"
           command: dotnet run --project Scripts -- test --godot false
+      - run:
+          name: Make sure Godot resources are imported for test detection
+          command: dotnet run --project Scripts -- godot-test-import
+      - run:
+          name: "Unit tests (Godot)"
+          command: dotnet run --project Scripts -- test --godot true
 
