@@ -1011,13 +1011,14 @@ public static class Constants
 
     /// <summary>
     ///   Lowest chance for risk-taking AI microbes to eject a toxic engulfed cell when past the health threshold.
+    ///   These are calculated per-damage tick which is why these are quite low to not make ejection guaranteed.
     /// </summary>
-    public const float AI_TOXIC_ENGULFED_EJECT_MIN_CHANCE = 0.25f;
+    public const float AI_TOXIC_ENGULFED_EJECT_MIN_CHANCE = 0.05f;
 
     /// <summary>
     ///   Highest chance for cautious AI microbes to eject a toxic engulfed cell when past the health threshold.
     /// </summary>
-    public const float AI_TOXIC_ENGULFED_EJECT_MAX_CHANCE = 0.95f;
+    public const float AI_TOXIC_ENGULFED_EJECT_MAX_CHANCE = 0.40f;
 
     /// <summary>
     ///   Each enzyme addition grants a fraction, set by this variable, increase in digestion speed.
