@@ -112,8 +112,11 @@ public class TrackList
     /// </summary>
     public bool Repeat { get; set; } = true;
 
+    /// <summary>
+    ///   Runtime-only path of the last track played from this list.
+    /// </summary>
     [JsonIgnore]
-    public Track? LastPlayedTrack { get; set; }
+    public string? LastPlayedTrackPath { get; set; }
 
     [JsonProperty]
     private List<Track> Tracks { get; set; } = null!;

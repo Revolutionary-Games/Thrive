@@ -579,7 +579,7 @@ public partial class Jukebox : Node
             var nextTrack = GetNextSequentialTrack(list, tracks);
 
             PlayTrack(getPlayer(playerToUse), nextTrack, list.TrackBus);
-            list.LastPlayedTrack = nextTrack;
+            list.LastPlayedTrackPath = nextTrack.ResourcePath;
         }
         else
         {
@@ -592,7 +592,7 @@ public partial class Jukebox : Node
                 {
                     nextIndex = random.Next(0, tracks.Length);
                 }
-                while (ReferenceEquals(tracks[nextIndex], list.LastPlayedTrack) && tracks.Length > 1);
+                while (tracks.Length > 1 && tracks[nextIndex].ResourcePath == list.LastPlayedTrackPath);
             }
             else if (mode == TrackList.Order.EntirelyRandom)
             {
@@ -604,18 +604,26 @@ public partial class Jukebox : Node
             }
 
             PlayTrack(getPlayer(playerToUse), tracks[nextIndex], list.TrackBus);
-            list.LastPlayedTrack = tracks[nextIndex];
+            list.LastPlayedTrackPath = tracks[nextIndex].ResourcePath;
         }
     }
 
     private TrackList.Track GetNextSequentialTrack(TrackList list, TrackList.Track[] playableTracks)
     {
-        if (playableTracks.Length == 1 || list.LastPlayedTrack == null)
+        if (playableTracks.Length == 1 || string.IsNullOrEmpty(list.LastPlayedTrackPath))
             return playableTracks[0];
 
         var orderedTracks = list.GetAllTracks();
-        var playableSet = playableTracks.ToHashSet();
-        var lastIndex = orderedTracks.IndexOf(list.LastPlayedTrack);
+        var lastIndex = -1;
+
+        for (var i = 0; i < orderedTracks.Count; ++i)
+        {
+            if (orderedTracks[i].ResourcePath != list.LastPlayedTrackPath)
+                continue;
+
+            lastIndex = i;
+            break;
+        }
 
         if (lastIndex < 0)
             return playableTracks[0];
@@ -623,11 +631,22 @@ public partial class Jukebox : Node
         for (var checkedCount = 1; checkedCount < orderedTracks.Count; ++checkedCount)
         {
             var candidate = orderedTracks[(lastIndex + checkedCount) % orderedTracks.Count];
-            if (playableSet.Contains(candidate))
+            if (IsTrackPlayable(playableTracks, candidate))
                 return candidate;
         }
 
         return playableTracks[0];
+    }
+
+    private bool IsTrackPlayable(TrackList.Track[] playableTracks, TrackList.Track candidate)
+    {
+        foreach (var track in playableTracks)
+        {
+            if (ReferenceEquals(track, candidate))
+                return true;
+        }
+
+        return false;
     }
 
     private void OnCategoryEnded()
