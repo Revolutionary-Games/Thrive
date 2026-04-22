@@ -822,7 +822,10 @@ public class OrganelleDefinition : RegistryType, IPlayerReadableName
             for (int i = 0; i < IncompatibleMembraneNames.Length; ++i)
             {
                 if (!parameters.DoesMembraneExist(IncompatibleMembraneNames[i]))
-                    continue;
+                {
+                    throw new InvalidRegistryDataException(InternalName, nameof(OrganelleDefinition),
+                        "Incompatible membrane name doesn't correspond to any existent membrane");
+                }
 
                 IncompatibleMembranes.Add(parameters.GetMembrane(IncompatibleMembraneNames[i]));
             }
