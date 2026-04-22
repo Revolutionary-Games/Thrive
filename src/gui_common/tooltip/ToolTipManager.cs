@@ -477,9 +477,12 @@ public partial class ToolTipManager : CanvasLayer
 
         // Clamp tooltip position so it doesn't go offscreen
         // TODO: Take into account viewport (window) resizing for the offsetting.
+        float maxTooltipX = Math.Max(screenRect.Size.X - tooltipSize.X, 0.0f);
+        float maxTooltipY = Math.Max(screenRect.Size.Y - tooltipSize.Y, 0.0f);
+
         tooltipNode.Position = new Vector2(
-            Math.Clamp(newPos.X, 0, Math.Max(screenRect.Size.X - tooltipSize.X, 0)),
-            Math.Clamp(newPos.Y, 0, Math.Max(screenRect.Size.Y - tooltipSize.Y, 0)) + currentAutoScrollingOffset);
+            Math.Clamp(newPos.X, 0.0f, maxTooltipX),
+            Math.Clamp(newPos.Y, 0.0f, maxTooltipY) + currentAutoScrollingOffset);
 
         tooltipNode.Size = Vector2.Zero;
 
@@ -598,16 +601,16 @@ public partial class ToolTipManager : CanvasLayer
         if (organelle.Components.Movement != null)
         {
             tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
-                "res://assets/textures/gui/bevel/SpeedIcon.png", "speed");
+                "res://assets/textures/gui/bevel/SpeedIcon.png", new StringName("speed"));
         }
 
         if (organelle.Components.Lysosome != null)
         {
             tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
-                "res://assets/textures/gui/bevel/DigestionSpeedIcon.png", "digestionSpeed");
+                "res://assets/textures/gui/bevel/DigestionSpeedIcon.png", new StringName("digestionSpeed"));
 
             tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
-                "res://assets/textures/gui/bevel/DigestionIcon.png", "digestionEfficiency");
+                "res://assets/textures/gui/bevel/DigestionIcon.png", new StringName("digestionEfficiency"));
         }
 
         if (organelle.Components.Storage != null)
@@ -616,16 +619,16 @@ public partial class ToolTipManager : CanvasLayer
             // This is done just on startup, so it isn't super important, but this allocates a bunch of StringNames
             // for the modifier info sections for each organelle unnecessarily (when the StringNames could be reused)
             tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
-                "res://assets/textures/gui/bevel/StorageIcon.png", "storage");
+                "res://assets/textures/gui/bevel/StorageIcon.png", new StringName("storage"));
         }
 
         tooltip.AddOrganelleCostInfo("AMMONIA_COST",
             "+" + organelle.InitialComposition.GetValueOrDefault(Compound.Ammonia, 0), 0,
-            "res://assets/textures/gui/bevel/Ammonia.svg", "ammoniaCost");
+            "res://assets/textures/gui/bevel/Ammonia.svg", new StringName("ammoniaCost"));
 
         tooltip.AddOrganelleCostInfo("PHOSPHATES_COST",
             "+" + organelle.InitialComposition.GetValueOrDefault(Compound.Phosphates, 0), 0,
-            "res://assets/textures/gui/bevel/Phosphates.svg", "phosphateCost");
+            "res://assets/textures/gui/bevel/Phosphates.svg", new StringName("phosphateCost"));
 
         UpdateModifierInfoWithTranslations(organelle, tooltip);
     }
