@@ -36,6 +36,7 @@ public partial class ToolTipManager : CanvasLayer
     private bool display;
     private double displayTimer;
     private double hideTimer;
+    private bool showMainToolTipNextFrame;
 
     /// <summary>
     ///   Flags whether MainToolTip should be shown temporarily (automatically hides once the timer reaches
@@ -74,7 +75,10 @@ public partial class ToolTipManager : CanvasLayer
         set
         {
             if (mainToolTip != value)
+            {
                 ResetAutoScrolling();
+                showMainToolTipNextFrame = false;
+            }
 
             previousToolTip = mainToolTip;
             mainToolTip = value;
@@ -92,6 +96,9 @@ public partial class ToolTipManager : CanvasLayer
         {
             display = value;
 
+            if (!display)
+                showMainToolTipNextFrame = false;
+
             if (previousToolTip != null)
                 UpdateToolTipVisibility(previousToolTip, false);
 
@@ -100,6 +107,7 @@ public partial class ToolTipManager : CanvasLayer
                 if (MainToolTip == null)
                     throw new InvalidOperationException("Can't set display to true without main tooltip");
 
+                showMainToolTipNextFrame = false;
                 UpdateCurrentTooltip(0);
 
                 // Set timer
@@ -176,8 +184,15 @@ public partial class ToolTipManager : CanvasLayer
         if (MainToolTip == null)
             return;
 
+        if (showMainToolTipNextFrame && !MainToolTip.ToolTipNode.Visible)
+        {
+            UpdateCurrentTooltip(0);
+            UpdateToolTipVisibility(MainToolTip, true);
+            showMainToolTipNextFrame = false;
+        }
+
         // Wait for duration of the delay and then show the tooltip
-        if (displayTimer >= 0 && !MainToolTip.ToolTipNode.Visible)
+        if (displayTimer >= 0 && !MainToolTip.ToolTipNode.Visible && !showMainToolTipNextFrame)
         {
             displayTimer -= delta;
 
@@ -187,7 +202,8 @@ public partial class ToolTipManager : CanvasLayer
             if (displayTimer < 0)
             {
                 lastMousePosition = GetViewport().GetMousePosition();
-                UpdateToolTipVisibility(MainToolTip, true);
+                UpdateCurrentTooltip(0);
+                showMainToolTipNextFrame = true;
             }
         }
 
@@ -212,6 +228,7 @@ public partial class ToolTipManager : CanvasLayer
                     return;
 
                 UpdateToolTipVisibility(MainToolTip, false);
+                showMainToolTipNextFrame = false;
                 displayTimer = MainToolTip.DisplayDelay;
 
                 if (currentIsTemporary)
