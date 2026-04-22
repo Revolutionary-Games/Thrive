@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-22 23:37+0300\n"
-"PO-Revision-Date: 2026-04-18 09:35+0000\n"
+"POT-Creation-Date: 2026-04-22 17:18+0300\n"
+"PO-Revision-Date: 2026-04-21 09:08+0000\n"
 "Last-Translator: 归灵祈昱 <guilingqiyu@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -769,9 +769,11 @@ msgstr "作弊菜单"
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "显示/隐藏细胞过程"
 
-#, fuzzy
 msgid "CHEMICAL_EQUATION_SPEED_EXPLANATION"
-msgstr "（AI物种突变的速度）"
+msgstr ""
+"该进度条显示了此过程的速度倍率。\n"
+"它取决于执行该过程的细胞器数量，并且在某些过程中还会受到环境条件的影响。\n"
+"在生成 ATP 的过程中，如果其他过程已经产生了足够的 ATP，该速度倍率可能会受到限制。"
 
 msgid "CHEMOPLAST"
 msgstr "化学质体"
@@ -3463,6 +3465,20 @@ msgstr "L"
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "锁定昼夜循环"
 
+#, fuzzy
+msgid "LOOK_LEFT"
+msgstr "左键"
+
+#, fuzzy
+msgid "LOOK_RIGHT"
+msgstr "右键"
+
+msgid "LOOK_SCREEN_DOWN_OR_3D_TOWARDS_UP"
+msgstr ""
+
+msgid "LOOK_SCREEN_UP_OR_3D_TOWARDS_DOWN"
+msgstr ""
+
 msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
 msgstr "（更低数值有助于提升性能）"
 
@@ -5009,11 +5025,10 @@ msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "处理载入的物体中"
 
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
-msgstr "@"
+msgstr "于"
 
-#, fuzzy
 msgid "PROCESS_INACTIVE"
-msgstr "生物代谢过程"
+msgstr "未激活的"
 
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
 msgstr "生物代谢过程面板说明"
@@ -6723,7 +6738,7 @@ msgstr ""
 "\n"
 "如果某个数字变为 [color=#ff4d4d]红色[/color]，则意味着它是[u]限制因素[/u]。例如，如果某个生产 [thrive:compound type=\"atp\"][/thrive:compound] 的过程的[i]输入[/i]变红，您的麻烦就大了，在开始死亡之前，您需要找到[b]更多该种化合物[/b]！\n"
 "\n"
-"代谢过程旁边的切换按钮可用于将其关闭或开启。这些可用于高级玩法技巧。\n"
+"点击代谢过程卡片可以将其关闭或开启。这些可用于高级玩法技巧，例如在不需要时关闭毒素生产。\n"
 "要体验耗尽化合物时会发生什么，请尝试关闭其中某个代谢过程，然后[b]立即将其重启[/b]以停止死亡。请注意，游戏必须处于未暂停状态。"
 
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"

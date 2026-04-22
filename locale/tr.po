@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-22 23:37+0300\n"
-"PO-Revision-Date: 2026-04-17 13:04+0000\n"
+"POT-Creation-Date: 2026-04-22 17:18+0300\n"
+"PO-Revision-Date: 2026-04-20 23:52+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -768,9 +768,11 @@ msgstr "Hile menüsü"
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Hücre işlemlerini göster / gizle"
 
-#, fuzzy
 msgid "CHEMICAL_EQUATION_SPEED_EXPLANATION"
-msgstr "(AI türlerinin mutasyona uğrama hızı)"
+msgstr ""
+"Bu çubuk, işlemin hız çarpanını gösterir.\n"
+"Bu çarpan, bu işlemi yürüten organellerin miktarına ve bazı işlemlerde ise çevresel koşullara bağlıdır.\n"
+"Hız çarpanı, eğer diğer işlemlerde zaten yeterince ATP üretiliyorsa, ATP üreten işlemlerde sınırlı olabilir."
 
 msgid "CHEMOPLAST"
 msgstr "Kemoplast"
@@ -1728,7 +1730,7 @@ msgid "DIGESTION_SPEED_COLON"
 msgstr "Sindirim Hızı:"
 
 msgid "DIGESTION_SPEED_VALUE"
-msgstr "{0}/s"
+msgstr "{0}/sn"
 
 msgid "DISABLED"
 msgstr "Devre Dışı"
@@ -3462,6 +3464,20 @@ msgstr "Y"
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "Gece Gündüz Döngüsünü Kilitle"
 
+#, fuzzy
+msgid "LOOK_LEFT"
+msgstr "Sol yön tuşu"
+
+#, fuzzy
+msgid "LOOK_RIGHT"
+msgstr "Sağ yön tuşu"
+
+msgid "LOOK_SCREEN_DOWN_OR_3D_TOWARDS_UP"
+msgstr ""
+
+msgid "LOOK_SCREEN_UP_OR_3D_TOWARDS_DOWN"
+msgstr ""
+
 msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
 msgstr "(daha düşük değerler performansı arttırır)"
 
@@ -4842,7 +4858,7 @@ msgid "PERFORM_UNBINDING"
 msgstr "Bağ koparmayı gerçekleştir"
 
 msgid "PER_SECOND_ABBREVIATION"
-msgstr "/s"
+msgstr "/sn"
 
 msgid "PER_SECOND_SLASH"
 msgstr "/saniye"
@@ -5010,9 +5026,8 @@ msgstr "Yüklenen nesneler işleniyor"
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
-#, fuzzy
 msgid "PROCESS_INACTIVE"
-msgstr "Organizma İşlemleri"
+msgstr "İNAKTİF"
 
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
 msgstr "Organizma İşlem Paneli Açıklaması"
@@ -6722,7 +6737,7 @@ msgstr ""
 "\n"
 "Bir sayı [color=#ff4d4d]kırmızıya[/color] dönerse, bu onun [u]sınırlayıcı etken[/u] olduğunu gösterir. Örneğin, [thrive:compound type=\"atp\"]ATP[/thrive:compound] üreten bir işlemin [i]gireni[/i] kırmızıya dönerse, büyük bir sorunla karşı karşıya kalırsınız ve, ölmeye başlamadan önce, [b]o bileşiğin daha fazlasını[/b] bulmanız gerekir!\n"
 "\n"
-"İşlemlerin yanındaki açma düğmeleri, onları devre dışı bırakmak veya yeniden etkinleştirmek için kullanılabilir. Bunlar, ileri düzey oyun taktikleri için kullanılabilir.\n"
+"İşlem kartları, onları devre dışı bırakmak veya yeniden etkinleştirmek için kullanılabilir. Bu kartlar, gereksiz olduğu zaman toksin üretimini durdurmak gibi ileri düzey oyun taktikleri için kullanılabilir.\n"
 "Bileşikleriniz tükendiğinde ne olacağını görmek için işlemlerden birini kapatabilir ve sonrasında ölmeyi durdurmak için [b]hemen tekrar açabilirsiniz[/b]. Ancak, bunu yapmak için oyunun duraklatılmamış olması gerektiğini unutmayın."
 
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
