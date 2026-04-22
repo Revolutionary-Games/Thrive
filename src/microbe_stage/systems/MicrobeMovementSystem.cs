@@ -348,7 +348,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
 
         // Handle colony jets
         if (hasColony)
-            movementVector += CalculateColonyMovementFromSlimeJets(entity, specializationBonus);
+            movementVector += CalculateColonyMovementFromSlimeJets(entity);
 
         // MovementDirection is proportional to the current cell rotation, so we need to rotate the movement
         // vector to work correctly
@@ -405,8 +405,10 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
                 }
 
                 ref var memberOrganelles = ref colonyMember.Get<OrganelleContainer>();
+                ref var specializationFactor = ref colonyMember.Get<SpecializationFactor>();
 
-                movementVector += CalculateMovementFromSlimeJets(ref memberOrganelles);
+                movementVector += CalculateMovementFromSlimeJets(ref memberOrganelles,
+                    specializationFactor.SpecializationBonus);
             }
         }
         catch (Exception e)

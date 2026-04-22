@@ -1508,7 +1508,7 @@ public partial class CellEditorComponent :
     public float CalculateSpeed()
     {
         var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(
-            editedMicrobeOrganelles.Organelles, tempMemory3, nucleusDefinition);
+            editedMicrobeOrganelles.Organelles, tempMemory3);
 
         return MicrobeInternalCalculations.CalculateSpeed(editedMicrobeOrganelles.Organelles, Membrane, Rigidity,
             !HasNucleus, specialization);
@@ -1517,7 +1517,7 @@ public partial class CellEditorComponent :
     public float CalculateRotationSpeed()
     {
         var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(
-            editedMicrobeOrganelles.Organelles, tempMemory3, nucleusDefinition);
+            editedMicrobeOrganelles.Organelles, tempMemory3);
 
         return MicrobeInternalCalculations.CalculateRotationSpeed(editedMicrobeOrganelles.Organelles, specialization);
     }
@@ -1535,7 +1535,7 @@ public partial class CellEditorComponent :
     public float CalculateTotalDigestionSpeed()
     {
         var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(
-            editedMicrobeOrganelles.Organelles, tempMemory3, nucleusDefinition);
+            editedMicrobeOrganelles.Organelles, tempMemory3);
 
         return MicrobeInternalCalculations.CalculateTotalDigestionSpeed(editedMicrobeOrganelles, specialization);
     }
@@ -1543,7 +1543,7 @@ public partial class CellEditorComponent :
     public Dictionary<Enzyme, float> CalculateDigestionEfficiencies()
     {
         var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(
-            editedMicrobeOrganelles.Organelles, tempMemory3, nucleusDefinition);
+            editedMicrobeOrganelles.Organelles, tempMemory3);
 
         return MicrobeInternalCalculations.CalculateDigestionEfficiencies(editedMicrobeOrganelles, specialization);
     }
@@ -2158,8 +2158,7 @@ public partial class CellEditorComponent :
 
         var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(organelles);
 
-        var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(organelles, tempMemory3,
-            nucleusDefinition);
+        var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(organelles, tempMemory3);
 
         var tolerances = CalculateLatestTolerances();
         ProcessSystem.ComputeEnergyBalanceFull(organelles, conditionsData, tolerances, specialization,
@@ -2243,8 +2242,7 @@ public partial class CellEditorComponent :
         float consumptionProductionRatio = energyBalance.TotalConsumption / energyBalance.TotalProduction;
 
         var specialization =
-            MicrobeInternalCalculations.CalculateSpecializationBonus(editedMicrobeOrganelles, tempMemory3,
-                nucleusDefinition);
+            MicrobeInternalCalculations.CalculateSpecializationBonus(editedMicrobeOrganelles, tempMemory3);
 
         var speedModifier = tolerances.ProcessSpeedModifier * specialization;
 

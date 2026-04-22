@@ -38,7 +38,7 @@ public class ChemoreceptorComponent : IOrganelleComponent
 
     public void UpdateAsync(ref OrganelleContainer organelleContainer, ref SpecializationFactor specializationFactor,
         in Entity microbeEntity,
-        IWorldSimulation worldSimulation, float energyCostMultiplier, delta)
+        IWorldSimulation worldSimulation, float energyCostMultiplier, float delta)
     {
         if (targetCompound != Compound.Invalid)
         {

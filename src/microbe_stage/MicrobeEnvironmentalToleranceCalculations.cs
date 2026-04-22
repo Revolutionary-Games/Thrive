@@ -103,11 +103,9 @@ public static class MicrobeEnvironmentalToleranceCalculations
         float totalPressureMinimumChange = 0;
         float totalPressureToleranceChange = 0;
 
-        var nucleusDefinition = SimulationParameters.Instance.GetOrganelleType("nucleus");
-
         // Note this assumes this is only used just for single cell types or microbe species!
         var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(organelles,
-            new Dictionary<OrganelleDefinition, int>(), nucleusDefinition);
+            new Dictionary<OrganelleDefinition, int>());
 
         int organelleCount = organelles.Count;
         for (int i = 0; i < organelleCount; ++i)

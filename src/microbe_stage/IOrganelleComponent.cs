@@ -31,7 +31,7 @@ public interface IOrganelleComponent
     /// <param name="delta">Time since the last update in seconds</param>
     public void UpdateAsync(ref OrganelleContainer organelleContainer, ref SpecializationFactor specializationFactor,
         in Entity microbeEntity,
-        IWorldSimulation worldSimulation, float energyCostMultiplier, delta);
+        IWorldSimulation worldSimulation, float energyCostMultiplier, float delta);
 
     /// <summary>
     ///   Sync processing that is allowed to do non-thread safe things (this is called on the main thread). Only called

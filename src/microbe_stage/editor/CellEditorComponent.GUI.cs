@@ -480,15 +480,13 @@ public partial class CellEditorComponent
     private void UpdateSpecializationDisplay()
     {
         var specializationBonus =
-            MicrobeInternalCalculations.CalculateSpecializationBonus(editedMicrobeOrganelles, tempMemory3,
-                nucleusDefinition);
+            MicrobeInternalCalculations.CalculateSpecializationBonus(editedMicrobeOrganelles, tempMemory3);
 
         // Calculate the most common organelle to show what we should recommend the player place more
         var temp = tempMemory3;
         var organelles = editedMicrobeOrganelles;
 
-        int organelleCount = MicrobeInternalCalculations.CalculateMostCommonSpecializationOrganelle(organelles, temp,
-            nucleusDefinition);
+        int organelleCount = MicrobeInternalCalculations.CalculateMostCommonSpecializationOrganelle(organelles, temp);
 
         // And then with all the info, update the tooltip and display
         if (organelleCount < 1)
