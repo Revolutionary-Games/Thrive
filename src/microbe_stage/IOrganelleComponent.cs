@@ -19,7 +19,7 @@ public interface IOrganelleComponent
     ///   <see cref="UpdateSync"/>
     /// </summary>
     /// <param name="organelleContainer">Organelle container instance this organelle is inside</param>
-    /// <param name="specializationFactor"> Organelle effect bonus cell specialization and adjacency</param>
+    /// <param name="specializationFactor">Organelle effect bonus cell from specialization and adjacency</param>
     /// <param name="microbeEntity">Entity reference of the entity that contains this organelle</param>
     /// <param name="worldSimulation">
     ///   The simulation this entity is in. Care needs to be taken on what operations are safe to perform here in an

@@ -30,7 +30,7 @@ public interface ICellDefinition : IReadOnlyCellDefinition, ISimulationPhotograp
 
     /// <summary>
     ///   A multiplier starting from 1 and going up based on how specialized this cell type is. This is eventually
-    ///   applied to <see cref="Components.BioProcesses.OverallSpeedModifier"/>
+    ///   applied to <see cref="Components.BioProcesses.OverallSpeedModifier"/> and many other systems
     /// </summary>
     public float SpecializationBonus { get; }
 
