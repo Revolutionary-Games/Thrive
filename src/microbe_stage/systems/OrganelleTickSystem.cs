@@ -1,5 +1,6 @@
 ﻿namespace Systems;
 
+using System;
 using System.Collections.Concurrent;
 using System.Runtime.CompilerServices;
 using Arch.Core;
@@ -28,6 +29,7 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(MicrobeControl))]
 [ReadsComponent(typeof(Physics))]
 [ReadsComponent(typeof(WorldPosition))]
+[ReadsComponent(typeof(SpeciesMember))]
 [WritesToComponent(typeof(ManualPhysicsControl))]
 [WritesToComponent(typeof(EntityLight))]
 [RunsAfter(typeof(MicrobeMovementSystem))]
@@ -41,9 +43,22 @@ public partial class OrganelleTickSystem : BaseSystem<World, float>
     private readonly IWorldSimulation worldSimulation;
     private readonly ConcurrentStack<(IOrganelleComponent Component, Entity Entity)> queuedSyncRuns = new();
 
+    private GameWorld? gameWorld;
+
     public OrganelleTickSystem(IWorldSimulation worldSimulation, World world) : base(world)
     {
         this.worldSimulation = worldSimulation;
+    }
+
+    public void SetWorld(GameWorld world)
+    {
+        gameWorld = world;
+    }
+
+    public override void BeforeUpdate(in float delta)
+    {
+        if (gameWorld == null)
+            throw new InvalidOperationException("GameWorld not set");
     }
 
     public override void AfterUpdate(in float delta)
@@ -63,7 +78,7 @@ public partial class OrganelleTickSystem : BaseSystem<World, float>
     [All<CompoundStorage, WorldPosition>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update([Data] in float delta, ref OrganelleContainer organelleContainer,
-        ref SpecializationFactor specializationFactor, in Entity entity)
+        ref SpecializationFactor specializationFactor, in SpeciesMember speciesMember, in Entity entity)
     {
         if (organelleContainer.Organelles == null)
             return;
@@ -74,6 +89,11 @@ public partial class OrganelleTickSystem : BaseSystem<World, float>
 
         var organelles = organelleContainer.Organelles.Organelles;
         int organelleCount = organelles.Count;
+
+        // For player species, apply the energy consumption modifier from difficulty settings
+        var energyCostMultiplier = 1.0f;
+        if (speciesMember.Species.PlayerSpecies)
+            energyCostMultiplier *= gameWorld!.WorldSettings.EnergyCostMultiplier;
 
         // Manual loop used here to avoid memory allocations in this very often running code
         for (int i = 0; i < organelleCount; ++i)
@@ -86,7 +106,7 @@ public partial class OrganelleTickSystem : BaseSystem<World, float>
                 var component = components[j];
 
                 // Organelles can do various things which is why we have the above "All" attribute
-                component.UpdateAsync(ref organelleContainer, ref specializationFactor, entity, worldSimulation, delta);
+                component.UpdateAsync(ref organelleContainer, ref specializationFactor, entity, worldSimulation, energyCostMultiplier, delta);
 
                 if (component.UsesSyncProcess)
                     queuedSyncRuns.Push((component, entity));

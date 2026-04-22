@@ -94,9 +94,10 @@ public partial class CellTypeTooltip : Control, ICustomToolTip
         mpLabel.Text = StringUtils.FormatMutationPointCost(mpCost);
     }
 
-    public void DisplayCellTypeBalances(Dictionary<Compound, CompoundBalance> balance)
+    public void DisplayCellTypeBalances(Dictionary<Compound, CompoundBalance> balance,
+        HashSet<Compound> dayNightVaryingCompoundProductions)
     {
-        compoundBalanceDisplay.UpdateBalances(balance, float.MaxValue);
+        compoundBalanceDisplay.UpdateBalances(balance, dayNightVaryingCompoundProductions, float.MaxValue);
     }
 
     public void UpdateHealthIndicator(float value)

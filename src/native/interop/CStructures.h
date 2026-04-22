@@ -34,6 +34,13 @@ extern "C"
         float R, G, B, A;
     } JColour;
 
+#ifdef __cplusplus
+    // Layout sanity checks for wire types used across the ABI boundary
+    static_assert(sizeof(JVec3) == 24, "JVec3 layout changed (expected 24 bytes)");
+    static_assert(sizeof(JVecF3) == 12, "JVecF3 layout changed (expected 12 bytes)");
+    static_assert(sizeof(JColour) == 16, "JColour layout changed (expected 16 bytes)");
+#endif
+
     // See the C++ side for the layout of the contained members
     typedef struct PhysicsCollision
     {

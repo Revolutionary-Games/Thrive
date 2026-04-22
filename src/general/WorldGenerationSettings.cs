@@ -256,7 +256,7 @@ public class WorldGenerationSettings : IArchivable
     public float CompoundDensity => Difficulty.CompoundDensity;
     public float PlayerDeathPopulationPenalty => Difficulty.PlayerDeathPopulationPenalty;
     public float GlucoseDecay => Difficulty.GlucoseDecay;
-    public float OsmoregulationMultiplier => Difficulty.OsmoregulationMultiplier;
+    public float EnergyCostMultiplier => Difficulty.EnergyCostMultiplier;
     public float PlayerAutoEvoStrength => Difficulty.PlayerAutoEvoStrength;
     public FogOfWarMode FogOfWarMode => Difficulty.FogOfWarMode;
     public bool FreeGlucoseCloud => Difficulty.FreeGlucoseCloud;
@@ -379,7 +379,7 @@ public class WorldGenerationSettings : IArchivable
             CompoundDensity,
             PlayerDeathPopulationPenalty,
             Localization.Translate("PERCENTAGE_VALUE").FormatSafe(Math.Round(GlucoseDecay * 100, 1)),
-            OsmoregulationMultiplier,
+            EnergyCostMultiplier,
             TranslationHelper.TranslateFeatureFlag(FreeGlucoseCloud),
             TranslationHelper.TranslateFeatureFlag(LimitReproductionCompoundUseSpeed));
     }

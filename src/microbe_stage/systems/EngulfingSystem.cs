@@ -44,6 +44,7 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(MicrobeEventCallbacks))]
 [ReadsComponent(typeof(WorldPosition))]
 [ReadsComponent(typeof(EntityRadiusInfo))]
+[ReadsComponent(typeof(SpeciesMember))]
 [RunsAfter(typeof(ColonyCompoundDistributionSystem))]
 [RunsAfter(typeof(PilusDamageSystem))]
 [RunsAfter(typeof(MicrobeVisualsSystem))]
@@ -629,7 +630,7 @@ public partial class EngulfingSystem : BaseSystem<World, float>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update([Data] in float delta, ref Engulfer engulfer, ref Health health, ref MicrobeControl control,
         ref CellProperties cellProperties, ref SoundEffectPlayer soundPlayer,
-        ref CollisionManagement collisionManagement, in Entity entity)
+        ref CollisionManagement collisionManagement, in SpeciesMember speciesMember, Entity entity)
     {
         var actuallyEngulfing = control.State == MicrobeState.Engulf && cellProperties.MembraneType.CanEngulf;
 
@@ -652,7 +653,13 @@ public partial class EngulfingSystem : BaseSystem<World, float>
 
         cellProperties.CreatedMembrane?.HandleEngulfAnimation(actuallyEngulfing, delta);
 
-        bool checkEngulfStartCollisions = HandleEngulfModeStateUpdate(ref control, entity, actuallyEngulfing, delta);
+        // setup energy cost multiplier for binding cost
+        var energyCostMultiplier = 1.0f;
+        if (speciesMember.Species.PlayerSpecies)
+            energyCostMultiplier *= gameWorld!.WorldSettings.EnergyCostMultiplier;
+
+        bool checkEngulfStartCollisions = HandleEngulfModeStateUpdate(ref control, entity, actuallyEngulfing,
+            energyCostMultiplier, delta);
 
         // Play sound
         if (actuallyEngulfing)
@@ -900,14 +907,14 @@ public partial class EngulfingSystem : BaseSystem<World, float>
     ///   Checks if cell can stay in engulf mode and updates states if cannot
     /// </summary>
     private bool HandleEngulfModeStateUpdate(ref MicrobeControl control, in Entity entity, bool actuallyEngulfing,
-        float delta)
+        float energyCostMultiplier, float delta)
     {
         bool checkEngulfStartCollisions = false;
 
         if (actuallyEngulfing)
         {
             // Drain atp
-            var cost = Constants.ENGULFING_ATP_COST_PER_SECOND * delta;
+            var cost = Constants.ENGULFING_ATP_COST_PER_SECOND * energyCostMultiplier * delta;
 
             var compounds = entity.Get<CompoundStorage>().Compounds;
 

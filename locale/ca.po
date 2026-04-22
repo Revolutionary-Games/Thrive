@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-27 14:48+0200\n"
-"PO-Revision-Date: 2026-02-18 15:14+0000\n"
+"POT-Creation-Date: 2026-04-22 17:18+0300\n"
+"PO-Revision-Date: 2026-04-20 23:52+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
 "Language: ca\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.15.2\n"
+"X-Generator: Weblate 5.16.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -792,6 +792,10 @@ msgstr "Menú de trucs"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Mostrar / amagar els procesos del microbi"
+
+#, fuzzy
+msgid "CHEMICAL_EQUATION_SPEED_EXPLANATION"
+msgstr "(velocitat a la qual les espècies de la IA muten)"
 
 msgid "CHEMOPLAST"
 msgstr "Quimioplast"
@@ -2144,6 +2148,14 @@ msgstr "{0}: +{1} ATP"
 #, fuzzy
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr "Núvols de Compostos"
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER"
+msgstr "Multiplicador del cost de mutació"
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER_EXPLANATION"
+msgstr "(cost d'orgànuls, membranes i altres elements a l'editor)"
 
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energia a {0} per {1}"
@@ -3670,6 +3682,20 @@ msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr ""
 
 #, fuzzy
+msgid "LOOK_LEFT"
+msgstr "Esquerra"
+
+#, fuzzy
+msgid "LOOK_RIGHT"
+msgstr "Dreta"
+
+msgid "LOOK_SCREEN_DOWN_OR_3D_TOWARDS_UP"
+msgstr ""
+
+msgid "LOOK_SCREEN_UP_OR_3D_TOWARDS_DOWN"
+msgstr ""
+
+#, fuzzy
 msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
 msgstr "(valors més alts augmenten el rendiment)"
 
@@ -5058,12 +5084,6 @@ msgstr "Osmoregulació"
 msgid "OSMOREGULATION_COST"
 msgstr "Cost d'Osmoregulació"
 
-msgid "OSMOREGULATION_COST_MULTIPLIER"
-msgstr "Multiplicador del cost d'osmoregulació"
-
-msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
-msgstr "(cost d'osmoregulació de l'espècie del jugador)"
-
 #, fuzzy
 msgid "OTHER_COMPOUNDS"
 msgstr "Compostos"
@@ -5430,8 +5450,13 @@ msgstr "previ:"
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Processant objectes carregats"
 
+#, fuzzy
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
+
+#, fuzzy
+msgid "PROCESS_INACTIVE"
+msgstr "Processos de la Cèl·lula"
 
 #, fuzzy
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
@@ -5448,10 +5473,6 @@ msgstr "Processos de la Cèl·lula"
 #, fuzzy
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Processos de la Cèl·lula"
-
-#, fuzzy
-msgid "PROCESS_TOGGLE_TOOLTIP"
-msgstr "Tornar al menú principal"
 
 msgid "PROGRAMMING_TEAM"
 msgstr "Equip de programació"
@@ -9713,6 +9734,16 @@ msgstr "Enfocar la visió de la càmera"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom enfora"
+
+#~ msgid "OSMOREGULATION_COST_MULTIPLIER"
+#~ msgstr "Multiplicador del cost d'osmoregulació"
+
+#~ msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
+#~ msgstr "(cost d'osmoregulació de l'espècie del jugador)"
+
+#, fuzzy
+#~ msgid "PROCESS_TOGGLE_TOOLTIP"
+#~ msgstr "Tornar al menú principal"
 
 #, fuzzy
 #~ msgid "KEEP_CURRENT_SHORT"

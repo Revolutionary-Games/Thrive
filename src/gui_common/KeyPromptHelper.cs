@@ -32,13 +32,18 @@ public static class KeyPromptHelper
     private static ControllerType activeControllerType = Constants.DEFAULT_CONTROLLER_TYPE;
 
     /// <summary>
-    ///   Event triggered when the key icons change, any GUI
+    ///   Event triggered when the key icons change, any GUI can listen to this.
     /// </summary>
     public static event EventHandler? IconsChanged;
 
     /// <summary>
-    ///   Event triggered when controller type changes (sent even when input type is not a controller). Usually most
-    ///   places should listen for <see cref="IconsChanged"/> instead
+    ///   Triggered only when the input type changes, and not, for example, when the GUI theme changes
+    /// </summary>
+    public static event EventHandler? InputTypeChanged;
+
+    /// <summary>
+    ///   Event triggered when the controller type changes (sent even when the input type is not a controller). Usually
+    ///   most places should listen for <see cref="IconsChanged"/> instead
     /// </summary>
     public static event EventHandler? ControllerTypeChanged;
 
@@ -82,6 +87,8 @@ public static class KeyPromptHelper
 
             inputMethod = value;
             var handler = IconsChanged;
+            handler?.Invoke(null, EventArgs.Empty);
+            handler = InputTypeChanged;
             handler?.Invoke(null, EventArgs.Empty);
         }
     }

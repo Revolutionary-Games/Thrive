@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-27 14:48+0200\n"
-"PO-Revision-Date: 2026-02-18 15:13+0000\n"
+"POT-Creation-Date: 2026-04-22 17:18+0300\n"
+"PO-Revision-Date: 2026-04-20 23:52+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
 "Language: he\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && n % 10 == 0) ? 2 : 3));\n"
-"X-Generator: Weblate 5.15.2\n"
+"X-Generator: Weblate 5.16.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -782,6 +782,10 @@ msgstr "תפריט קודים"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "הראה/החבא תהליכי תא"
+
+#, fuzzy
+msgid "CHEMICAL_EQUATION_SPEED_EXPLANATION"
+msgstr "(המהירות המוטציות שנוצרים במיני AI )"
 
 msgid "CHEMOPLAST"
 msgstr "כימופלסט"
@@ -2159,6 +2163,14 @@ msgstr "{0}: {1}+ ATP"
 #, fuzzy
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr "ענני תרכובות"
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER"
+msgstr "מכפיל עלות המוטציות"
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER_EXPLANATION"
+msgstr "(העלות של אברונים, ממברנה וחפצים אחרים בעורך)"
 
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "אנרגיה מ{0} ל{1}"
@@ -3674,6 +3686,20 @@ msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr ""
 
 #, fuzzy
+msgid "LOOK_LEFT"
+msgstr "מקש שמאלה"
+
+#, fuzzy
+msgid "LOOK_RIGHT"
+msgstr "מקש ימינה"
+
+msgid "LOOK_SCREEN_DOWN_OR_3D_TOWARDS_UP"
+msgstr ""
+
+msgid "LOOK_SCREEN_UP_OR_3D_TOWARDS_DOWN"
+msgstr ""
+
+#, fuzzy
 msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
 msgstr "(ערכים גבוהים יותר מגדילים ביצועים)"
 
@@ -5030,12 +5056,6 @@ msgstr "אוסמורגולציה"
 msgid "OSMOREGULATION_COST"
 msgstr "עלות אוסמורגולציה"
 
-msgid "OSMOREGULATION_COST_MULTIPLIER"
-msgstr "מכפיל עלות האוסמורגולציה"
-
-msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
-msgstr "(עלות של אוסמורגולציה במין השחקן)"
-
 #, fuzzy
 msgid "OTHER_COMPOUNDS"
 msgstr "תרכובות"
@@ -5400,8 +5420,13 @@ msgstr "קודם:"
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "מעלה אובייקטים"
 
+#, fuzzy
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
+
+#, fuzzy
+msgid "PROCESS_INACTIVE"
+msgstr "תהליכי התא"
 
 #, fuzzy
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
@@ -5418,10 +5443,6 @@ msgstr "תהליכי התא"
 #, fuzzy
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "תהליכי התא"
-
-#, fuzzy
-msgid "PROCESS_TOGGLE_TOOLTIP"
-msgstr "צא לתפריט הראשי"
 
 msgid "PROGRAMMING_TEAM"
 msgstr "צוות מתכנתים"
@@ -9672,6 +9693,16 @@ msgstr "להתמקד"
 
 msgid "ZOOM_OUT"
 msgstr "זום החוצה"
+
+#~ msgid "OSMOREGULATION_COST_MULTIPLIER"
+#~ msgstr "מכפיל עלות האוסמורגולציה"
+
+#~ msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
+#~ msgstr "(עלות של אוסמורגולציה במין השחקן)"
+
+#, fuzzy
+#~ msgid "PROCESS_TOGGLE_TOOLTIP"
+#~ msgstr "צא לתפריט הראשי"
 
 #, fuzzy
 #~ msgid "KEEP_CURRENT_SHORT"

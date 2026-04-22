@@ -875,8 +875,9 @@ public static class MicrobeInternalCalculations
             var definition = organelle.Definition;
 
             // Don't count the nucleus, because of its omnipresence and large size
-            if (definition == nucleusDefinition)
+            if (definition.HasNucleusFeature)
             {
+                tempWorkMemory[definition] = 0;
                 continue;
             }
 
@@ -922,29 +923,45 @@ public static class MicrobeInternalCalculations
     public static float CalculateSpecializationBonus(IReadOnlyList<IReadOnlyOrganelleTemplate> organelles,
         Dictionary<OrganelleDefinition, int> tempWorkMemory, OrganelleDefinition nucleusDefinition)
     {
-        int totalHexCount = CalculateMostCommonSpecializationOrganelle(organelles, tempWorkMemory, nucleusDefinition);
-        if (totalHexCount < 1)
+        int totalHexCount = CalculateMostCommonSpecializationOrganelle(organelles, tempWorkMemory);
+        if (totalHexCount < 2)
             return 1;
 
-        int maxHexCount = 0;
+        var hasNucleus = false;
 
+        float concentration = 0.0f;
+
+        // The following calculation of concentration is an implementation of the Simpson Diversity Index,
+        // an existing algorithm used for evaluating ecological diversity, among other things
+        // maximum possible diversity at a given size gives 0, while complete uniformity gives 1
+        // Additional explanation can be found at: https://en.wikipedia.org/wiki/Diversity_index#Simpson_index
         foreach (var entry in tempWorkMemory)
         {
-            if (entry.Value > maxHexCount)
+            if (entry.Key.HasNucleusFeature)
             {
-                maxHexCount = entry.Value;
+                hasNucleus = true;
+                continue;
             }
+
+            var hexCount = entry.Value;
+            concentration += hexCount * (hexCount - 1);
         }
 
-        // The raw bonus is just the ratio of the main organelle type
-        var bonus = (float)maxHexCount / totalHexCount;
+        concentration /= totalHexCount * (totalHexCount - 1);
+
+        var strength = Constants.CELL_SPECIALIZATION_STRENGTH_MULTIPLIER;
+
+        // If the cell has a nucleus max out the strength factor and apply an additional bonus
+        if (hasNucleus)
+        {
+            return 1 + concentration * strength * Constants.CELL_SPECIALIZATION_NUCLEUS_MULTIPLIER;
+        }
 
         // Calculate a strength factor that adjusts things
-        var strength = Math.Min((float)totalHexCount / Constants.CELL_SPECIALIZATION_STRENGTH_FULL_AT, 1);
-        strength *= Constants.CELL_SPECIALIZATION_STRENGTH_MULTIPLIER;
+        strength *= Math.Min(((float)totalHexCount - 1) / Constants.CELL_SPECIALIZATION_STRENGTH_FULL_AT, 1);
 
         // Then return the final result as the bonus being anything above 1
-        return 1 + bonus * strength;
+        return 1 + concentration * strength;
     }
 
     private static float MovementForce(float movementForce, float directionFactor)

@@ -79,32 +79,6 @@ public sealed class ProcessStatistics
             return entry;
         }
     }
-
-    public void SumProcessStatistics(ProcessStatistics other)
-    {
-        foreach (var pair in other.Processes)
-        {
-            var process = GetAndMarkUsed(pair.Key);
-
-            if (pair.Value.LimitingCompounds != null)
-            {
-                foreach (var limitingFactor in pair.Value.LimitingCompounds)
-                {
-                    process.AddLimitingFactor(limitingFactor);
-                }
-            }
-
-            foreach (var input in pair.Value.Inputs)
-            {
-                process.AddInputAmount(input.Key, input.Value);
-            }
-
-            foreach (var output in pair.Value.Outputs)
-            {
-                process.AddOutputAmount(output.Key, output.Value);
-            }
-        }
-    }
 }
 
 /// <summary>
@@ -115,10 +89,9 @@ public class SingleProcessStatistics : IProcessDisplayInfo
     private readonly float keepSnapshotTime;
     private readonly Deque<SingleProcessStatisticsSnapshot> snapshots = new();
 
-    /// <summary>
-    ///   Cached statistics object to not need to recreate this each time the average statistics are computed.
-    /// </summary>
-    private readonly AverageProcessStatistics computedStatistics;
+    private List<Compound>? limitingCompounds;
+
+    private Dictionary<Compound, float> environmentalInputs = new();
 
     private Dictionary<Compound, float>? precomputedEnvironmentInputs;
 
@@ -127,7 +100,6 @@ public class SingleProcessStatistics : IProcessDisplayInfo
     {
         this.keepSnapshotTime = keepSnapshotTime;
         Process = process;
-        computedStatistics = new AverageProcessStatistics(this);
     }
 
     /// <summary>
@@ -139,25 +111,42 @@ public class SingleProcessStatistics : IProcessDisplayInfo
 
     public string Name => Process.Process.Name;
 
-    public IEnumerable<KeyValuePair<Compound, float>> Inputs =>
-        LatestSnapshot?.Inputs.Where(p => !IProcessDisplayInfo.IsEnvironmental(p.Key)) ??
-        throw new InvalidOperationException("No snapshot set");
+    public IEnumerable<KeyValuePair<Compound, float>> Inputs
+    {
+        get
+        {
+            foreach (var input in Process.Process.Inputs)
+            {
+                if (input.Key.IsEnvironmental)
+                    continue;
 
-    public IEnumerable<KeyValuePair<Compound, float>> EnvironmentalInputs =>
-        LatestSnapshot?.Inputs.Where(p => IProcessDisplayInfo.IsEnvironmental(p.Key)) ??
-        throw new InvalidOperationException("No snapshot set");
+                yield return new KeyValuePair<Compound, float>(input.Key.ID, input.Value * CurrentSpeed);
+            }
+        }
+    }
+
+    public IEnumerable<KeyValuePair<Compound, float>> EnvironmentalInputs => environmentalInputs
+        ?? throw new InvalidOperationException("No snapshot set");
 
     public IReadOnlyDictionary<Compound, float> FullSpeedRequiredEnvironmentalInputs =>
         precomputedEnvironmentInputs ??= Process.Process.Inputs
             .Where(p => IProcessDisplayInfo.IsEnvironmental(p.Key.ID))
             .ToDictionary(p => p.Key.ID, p => p.Value);
 
-    public IReadOnlyDictionary<Compound, float> Outputs =>
-        LatestSnapshot?.Outputs ?? throw new InvalidOperationException("No snapshot set");
+    public IEnumerable<KeyValuePair<Compound, float>> Outputs
+    {
+        get
+        {
+            foreach (var output in Process.Process.Outputs)
+            {
+                yield return new KeyValuePair<Compound, float>(output.Key.ID, output.Value * CurrentSpeed);
+            }
+        }
+    }
 
     public float CurrentSpeed
     {
-        get => LatestSnapshot?.CurrentSpeed ?? 0;
+        get => CalculateAverageSpeed();
         set
         {
             if (LatestSnapshot == null)
@@ -169,68 +158,10 @@ public class SingleProcessStatistics : IProcessDisplayInfo
 
     public bool Enabled => Process.SpeedMultiplier > 0;
 
-    public IReadOnlyList<Compound>? LimitingCompounds => LatestSnapshot?.LimitingCompounds;
+    public IReadOnlyList<Compound>? LimitingCompounds => limitingCompounds;
 
     private SingleProcessStatisticsSnapshot? LatestSnapshot =>
         snapshots.Count > 0 ? snapshots[snapshots.Count - 1] : null;
-
-    /// <summary>
-    ///   Computes the average values reported in this statistics object. Used to provide smoother display for the user
-    /// </summary>
-    /// <returns>The average statistics result. This may not be modified.</returns>
-    public IProcessDisplayInfo ComputeAverageValues()
-    {
-        // Statistics can't be computed if we have nothing to compute them from
-        // TODO: should the statistics be cleared in this case?
-        if (snapshots.Count < 1)
-            return computedStatistics;
-
-        int entriesProcessed = 0;
-
-        float totalSpeed = 0;
-        computedStatistics.WritableInputs.Clear();
-        computedStatistics.WritableOutputs.Clear();
-
-        var seenLimiters = new Dictionary<Compound, int>();
-
-        foreach (var entry in snapshots)
-        {
-            totalSpeed += entry.CurrentSpeed;
-
-            computedStatistics.WritableInputs.Merge(entry.Inputs);
-            computedStatistics.WritableOutputs.Merge(entry.Outputs);
-
-            foreach (var limit in entry.LimitingCompounds)
-            {
-                seenLimiters.TryGetValue(limit, out var existing);
-
-                seenLimiters[limit] = existing + 1;
-            }
-
-            ++entriesProcessed;
-        }
-
-        // TODO: probably want to come up with a better way for averaging this
-        int limitorCutoff = entriesProcessed / 2;
-
-        // It is assumed that the updates have happened at pretty consistent intervals. So we do a rough average
-        // based on the entry count. If we wanted to get fancy we could take the delta in each snapshot into account
-        computedStatistics.CurrentSpeed = totalSpeed / entriesProcessed;
-        computedStatistics.WritableInputs.DivideBy(entriesProcessed);
-        computedStatistics.WritableOutputs.DivideBy(entriesProcessed);
-
-        computedStatistics.WritableLimitingCompounds.Clear();
-
-        foreach (var entry in seenLimiters)
-        {
-            if (entry.Value > limitorCutoff)
-            {
-                computedStatistics.WritableLimitingCompounds.Add(entry.Key);
-            }
-        }
-
-        return computedStatistics;
-    }
 
     public void BeginFrame(float delta)
     {
@@ -268,45 +199,41 @@ public class SingleProcessStatistics : IProcessDisplayInfo
 
         // TODO: does this need to be cleared this often?
         precomputedEnvironmentInputs = null;
+        limitingCompounds?.Clear();
+        environmentalInputs.Clear();
     }
 
     public void AddLimitingFactor(Compound compound)
     {
-        if (LatestSnapshot == null)
-            throw new InvalidOperationException("Snapshot needs to be set before recording data into it");
+        limitingCompounds ??= new List<Compound>();
 
-        LatestSnapshot.LimitingCompounds.Add(compound);
+        limitingCompounds.Add(compound);
     }
 
     public void AddCapacityProblem(Compound compound)
     {
-        if (LatestSnapshot == null)
-            throw new InvalidOperationException("Snapshot needs to be set before recording data into it");
+        limitingCompounds ??= new List<Compound>();
 
         // For now this is shown to the user the same way as limit problems
-        LatestSnapshot.LimitingCompounds.Add(compound);
+        limitingCompounds.Add(compound);
     }
 
-    public void AddInputAmount(Compound compound, float amount)
+    public void AddEnvironmentInput(Compound compound, float amount)
     {
-        if (LatestSnapshot == null)
-            throw new InvalidOperationException("Snapshot needs to be set before recording data into it");
-
-        LatestSnapshot.Inputs[compound] = amount;
+        environmentalInputs[compound] = amount;
     }
 
-    public void AddOutputAmount(Compound compound, float amount)
+    /// <summary>
+    ///   Adds all environmental inputs to the target dictionary without allocating an enumerator. Will throw if the
+    ///   target already has something, so it should be cleared by the caller first.
+    /// </summary>
+    /// <param name="target">Where to copy the data</param>
+    public void CopyEnvironmentalInputs(Dictionary<Compound, float> target)
     {
-        if (LatestSnapshot == null)
-            throw new InvalidOperationException("Snapshot needs to be set before recording data into it");
-
-        LatestSnapshot.Outputs[compound] = amount;
-    }
-
-    public void Clear()
-    {
-        snapshots.Clear();
-        precomputedEnvironmentInputs = null;
+        foreach (var input in environmentalInputs)
+        {
+            target.Add(input.Key, input.Value);
+        }
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -368,14 +295,25 @@ public class SingleProcessStatistics : IProcessDisplayInfo
         return $"Single process speed {CurrentSpeed} for {Process}";
     }
 
+    private float CalculateAverageSpeed()
+    {
+        float average = 0.0f;
+
+        for (int i = 0; i < snapshots.Count; ++i)
+        {
+            average += snapshots[i].CurrentSpeed;
+        }
+
+        average /= snapshots.Count;
+
+        return average;
+    }
+
     /// <summary>
     ///   Single point in time when statistics were collected
     /// </summary>
     private class SingleProcessStatisticsSnapshot
     {
-        public readonly Dictionary<Compound, float> Inputs = new();
-        public readonly Dictionary<Compound, float> Outputs = new();
-        public readonly List<Compound> LimitingCompounds = new();
         public float CurrentSpeed;
         public float Delta;
 
@@ -386,79 +324,6 @@ public class SingleProcessStatistics : IProcessDisplayInfo
         {
             CurrentSpeed = 0;
             Delta = 0;
-            Inputs.Clear();
-            Outputs.Clear();
-            LimitingCompounds.Clear();
         }
-    }
-}
-
-/// <summary>
-///   Computed average statistics for a single process
-/// </summary>
-public class AverageProcessStatistics : IProcessDisplayInfo
-{
-    public readonly Dictionary<Compound, float> WritableInputs = new();
-    public readonly Dictionary<Compound, float> WritableOutputs = new();
-    public readonly List<Compound> WritableLimitingCompounds = new();
-
-    private readonly SingleProcessStatistics owner;
-
-    public AverageProcessStatistics(SingleProcessStatistics owner)
-    {
-        this.owner = owner;
-    }
-
-    public string Name => owner.Name;
-
-    public IEnumerable<KeyValuePair<Compound, float>> Inputs =>
-        WritableInputs.Where(p => !IProcessDisplayInfo.IsEnvironmental(p.Key));
-
-    public IEnumerable<KeyValuePair<Compound, float>> EnvironmentalInputs =>
-        WritableInputs.Where(p => IProcessDisplayInfo.IsEnvironmental(p.Key));
-
-    public IReadOnlyDictionary<Compound, float> FullSpeedRequiredEnvironmentalInputs =>
-        owner.FullSpeedRequiredEnvironmentalInputs;
-
-    public IReadOnlyDictionary<Compound, float> Outputs => WritableOutputs;
-    public float CurrentSpeed { get; set; }
-    public IReadOnlyList<Compound> LimitingCompounds => WritableLimitingCompounds;
-
-    public TweakedProcess Process => owner.Process;
-
-    public bool Enabled => owner.Enabled;
-
-    public bool MatchesUnderlyingProcess(BioProcess process)
-    {
-        return owner.Process.Process == process;
-    }
-
-    public bool Equals(IProcessDisplayInfo? other)
-    {
-        return Equals((object?)other);
-    }
-
-    public override bool Equals(object? obj)
-    {
-        if (ReferenceEquals(this, obj))
-            return true;
-
-        // This also checks for obj being null
-        if (obj is AverageProcessStatistics statistics)
-        {
-            return owner.Equals(statistics.owner);
-        }
-
-        return false;
-    }
-
-    public override int GetHashCode()
-    {
-        return 211 ^ owner.GetHashCode();
-    }
-
-    public override string ToString()
-    {
-        return $"Average process speed {CurrentSpeed} for {Name}";
     }
 }

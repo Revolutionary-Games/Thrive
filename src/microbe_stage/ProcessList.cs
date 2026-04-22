@@ -30,6 +30,9 @@ public partial class ProcessList : VBoxContainer
     [Export]
     public bool ShowToggles { get; set; } = true;
 
+    [Export]
+    public bool ShowSpeedBar { get; set; } = true;
+
     /// <summary>
     ///   The default color for all the process titles in this list. TODO: test that this works still
     /// </summary>
@@ -112,6 +115,7 @@ public partial class ProcessList : VBoxContainer
         var equation = chemicalEquationScene.Instantiate<ChemicalEquation>();
         equation.ShowSpinner = ShowSpinners;
         equation.ShowToggle = ShowToggles;
+        equation.ShowSpeedBar = ShowSpeedBar;
         equation.MarkRedOnLimitingCompounds = MarkRedOnLimitingCompounds;
         equation.AutoRefreshProcess = UpdateEquationAutomatically;
         equation.ExternalSpeedModifier = ExternalSpeedModifier;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Threading;
 using CommandLine;
 using CommandLine.Text;
 using Scripts;
@@ -24,7 +25,7 @@ public class Program
                 typeof(ChangesOptions), typeof(LocalizationOptions), typeof(CleanupOptions), typeof(PackageOptions),
                 typeof(UploadOptions), typeof(ContainerOptions), typeof(SteamOptions), typeof(GodotTemplateOptions),
                 typeof(TranslationProgressOptions), typeof(CreditsOptions), typeof(WikiOptions),
-                typeof(GeneratorOptions), typeof(GodotProjectValidMakerOptions));
+                typeof(GeneratorOptions), typeof(GodotProjectValidMakerOptions), typeof(GodotTestImportOptions));
 
         int result;
         if (parserResult is Parsed<object> parsed)
@@ -47,6 +48,7 @@ public class Program
                 WikiOptions value => RunWikiUpdate(value),
                 GeneratorOptions value => RunFileGenerator(value),
                 GodotProjectValidMakerOptions value => RunProjectValidMaker(value),
+                GodotTestImportOptions value => RunGodotImportForTests(value),
                 _ => throw new InvalidOperationException(),
             };
         }
@@ -102,6 +104,12 @@ public class Program
             return 2;
         }
 
+        if (File.Exists(TestRunningHelpers.RUN_SETTINGS_FILE))
+        {
+            ColourConsole.WriteNormalLine(
+                $"Run settings file exists before tests start ({TestRunningHelpers.RUN_SETTINGS_FILE})");
+        }
+
         // Delete the old gdUnit runner if one is present as it will make tests fail
         if (Directory.Exists("gdunit4_testadapter"))
         {
@@ -140,6 +148,7 @@ public class Program
         const int maxTries = 2;
 
         // Then gdUnit tests
+        ColourConsole.WriteNormalLine($"Generating {TestRunningHelpers.RUN_SETTINGS_FILE}");
         TestRunningHelpers.GenerateRunSettings(godot, false);
 
         // gdUnit can randomly fail once to detect available tests, that's why the tests run multiple times on fail
@@ -154,11 +163,15 @@ public class Program
             startInfo.ArgumentList.Add(TestRunningHelpers.TEST_RUN_VERBOSITY);
             startInfo.ArgumentList.Add("Thrive.csproj");
 
+            ColourConsole.WriteNormalLine($"Starting gdUnit tests (attempt {i + 1}/{maxTries})...");
             result = ProcessRunHelpers.RunProcessAsync(startInfo, tokenSource.Token, false)
                 .Result.ExitCode;
 
             if (result == 0)
+            {
+                ColourConsole.WriteSuccessLine("gdUnit run succeeded (exit code 0)");
                 break;
+            }
 
             if (i + 1 < maxTries)
             {
@@ -358,6 +371,53 @@ public class Program
         var tool = new GodotProjectCompiler(options);
 
         return tool.Run(tokenSource.Token).Result;
+    }
+
+    private static int RunGodotImportForTests(GodotTestImportOptions options)
+    {
+        CommandLineHelpers.HandleDefaultOptions(options);
+
+        ColourConsole.WriteInfoLine("Attempting to import assets to Godot to make test detection work");
+        ColourConsole.WriteInfoLine("This quite often fails, so this will try to run for 7 minutes before cancelling");
+
+        var timeout = new CancellationTokenSource(TimeSpan.FromMinutes(7));
+        var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
+
+        var combined = CancellationTokenSource.CreateLinkedTokenSource(tokenSource.Token, timeout.Token);
+
+        var startInfo = new ProcessStartInfo("godot");
+        startInfo.ArgumentList.Add(PackageTool.GODOT_HEADLESS_FLAG);
+        startInfo.ArgumentList.Add("--editor");
+        startInfo.ArgumentList.Add("--quit-after");
+        startInfo.ArgumentList.Add("20");
+        startInfo.ArgumentList.Add(".");
+
+        try
+        {
+            var processTask = ProcessRunHelpers.RunProcessAsync(startInfo, combined.Token, false, 1, false);
+
+            var waitTimeout = new CancellationTokenSource(TimeSpan.FromMinutes(8));
+
+            processTask.Wait(waitTimeout.Token);
+            var result = processTask.Result;
+
+            if (result.ExitCode != 0)
+            {
+                ColourConsole.WriteErrorLine("Failed to import assets to Godot, exit code: " + result.ExitCode);
+                return 1;
+            }
+        }
+        catch (AggregateException ae) when (ae.InnerException is OperationCanceledException)
+        {
+            ColourConsole.WriteErrorLine("Failed to import assets to Godot, due to timeout (aggregate exception)");
+        }
+        catch (OperationCanceledException)
+        {
+            ColourConsole.WriteErrorLine("Failed to import assets to Godot, due to timeout");
+        }
+
+        // This script is never reported as failed so that CI can safely continue on problem
+        return 0;
     }
 
     public class CheckOptions : CheckOptionsBase;
@@ -586,4 +646,7 @@ public class Program
 
     [Verb("make-project-valid", HelpText = "Makes the Godot project valid for C# compile (deprecated)")]
     public class GodotProjectValidMakerOptions : ScriptOptionsBase;
+
+    [Verb("godot-test-import", HelpText = "Tries to import Godot assets for test detection but is allowed to fail")]
+    public class GodotTestImportOptions : ScriptOptionsBase;
 }

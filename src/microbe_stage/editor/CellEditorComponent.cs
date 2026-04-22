@@ -45,8 +45,9 @@ public partial class CellEditorComponent :
 
     private readonly List<EditorUserOverride> ignoredEditorWarnings = new();
 
-    private readonly OrganelleDefinition nucleusDefinition =
-        SimulationParameters.Instance.GetOrganelleType("nucleus");
+    private readonly Dictionary<Compound, List<Compound>> tempCompoundSources = new();
+
+    private readonly HashSet<Compound> compoundsThatDependOnDay = new();
 
 #pragma warning disable CA2213
 
@@ -2182,7 +2183,13 @@ public partial class CellEditorComponent :
                 organismStatisticsPanel.CompoundAmountType, organelles, conditionsData, energyBalanceInfo,
                 ref specificStorages, ref nominalStorage, tolerances, specialization);
 
-        UpdateCompoundBalances(compoundBalanceData);
+        tempCompoundSources.Clear();
+        ProcessSystem.CalculateInputCompoundsNeededForOutputs(organelles, conditionsData, tolerances, specialization,
+            organismStatisticsPanel.CompoundAmountType, true, tempCompoundSources);
+
+        conditionsData.GetProducedCompoundsThatDependOnVarying(tempCompoundSources, compoundsThatDependOnDay);
+
+        UpdateCompoundBalances(compoundBalanceData, compoundsThatDependOnDay);
 
         // TODO: should this skip on being affected by the resource limited?
         var nightBalanceData = CalculateCompoundBalanceWithMethod(organismStatisticsPanel.BalanceDisplayType,
@@ -2190,7 +2197,8 @@ public partial class CellEditorComponent :
             ref nominalStorage, tolerances, specialization);
 
         UpdateCompoundLastingTimes(compoundBalanceData, nightBalanceData, nominalStorage,
-            specificStorages ?? throw new Exception("Special storages should have been calculated"));
+            specificStorages ?? throw new Exception("Special storages should have been calculated"),
+            compoundsThatDependOnDay);
 
         HandleProcessList(energyBalanceInfo, conditionsData);
     }

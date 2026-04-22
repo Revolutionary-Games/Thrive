@@ -53,7 +53,7 @@ public class MovementComponent : IOrganelleComponent
 
     public void UpdateAsync(ref OrganelleContainer organelleContainer, ref SpecializationFactor specializationFactor,
         in Entity microbeEntity,
-        IWorldSimulation worldSimulation, float delta)
+        IWorldSimulation worldSimulation, float energyCostMultiplier, delta)
     {
         // Stop animating when being engulfed
         if (microbeEntity.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.None)
@@ -82,9 +82,10 @@ public class MovementComponent : IOrganelleComponent
     }
 
     public float UseForMovement(Vector3 wantedMovementDirection, CompoundBag compounds, Quaternion extraColonyRotation,
-        bool isBacteria, float delta)
+        bool isBacteria, float energyCostMultiplier, float delta)
     {
-        return CalculateMovementForce(compounds, wantedMovementDirection, extraColonyRotation, isBacteria, delta);
+        return CalculateMovementForce(compounds, wantedMovementDirection, extraColonyRotation, isBacteria,
+            energyCostMultiplier, delta);
     }
 
     /// <summary>
@@ -123,7 +124,7 @@ public class MovementComponent : IOrganelleComponent
     ///   </para>
     /// </remarks>
     private float CalculateMovementForce(CompoundBag compounds, Vector3 wantedMovementDirection,
-        Quaternion extraColonyRotation, bool isBacteria, float elapsed)
+        Quaternion extraColonyRotation, bool isBacteria, float energyCostMultiplier, float elapsed)
     {
         // Real force the flagella applied to the colony (considering rotation)
         var realForce = extraColonyRotation * force;
@@ -142,8 +143,7 @@ public class MovementComponent : IOrganelleComponent
         lastUsed = true;
 
         var requiredEnergy = (Constants.FLAGELLA_ENERGY_COST + Constants.FLAGELLA_MAX_UPGRADE_ATP_USAGE
-            * flagellumLength) * elapsed;
-
+            * flagellumLength) * elapsed * energyCostMultiplier;
         var availableEnergy = compounds.TakeCompound(Compound.ATP, requiredEnergy);
 
         if (availableEnergy < requiredEnergy)

@@ -209,7 +209,6 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
 
     public void UpdateIsBacteria()
     {
-        var nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
         IsBacteria = true;
         var organelles = Organelles.Organelles;
         var count = organelles.Count;
@@ -217,7 +216,7 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         for (int i = 0; i < count; ++i)
         {
             var organelle = organelles[i];
-            if (organelle.Definition == nucleus)
+            if (organelle.Definition.HasNucleusFeature)
             {
                 IsBacteria = false;
                 break;

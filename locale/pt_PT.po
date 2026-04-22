@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-27 14:48+0200\n"
-"PO-Revision-Date: 2026-02-28 13:02+0000\n"
-"Last-Translator: AegisTTN <gamemastermine042004@gmail.com>\n"
+"POT-Creation-Date: 2026-04-22 17:18+0300\n"
+"PO-Revision-Date: 2026-04-20 23:52+0000\n"
+"Last-Translator: \"Dr. A. S.\" <Dr.A.S.Tuga@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -785,6 +785,10 @@ msgstr "Cheat Menu"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Mostrar / ocultar processos de célula"
+
+#, fuzzy
+msgid "CHEMICAL_EQUATION_SPEED_EXPLANATION"
+msgstr "(velocidade na qual as espécies de IA sofrem mutação)"
 
 msgid "CHEMOPLAST"
 msgstr "Quimioplasto"
@@ -2130,6 +2134,14 @@ msgstr "{0}: +{1} ATP"
 #, fuzzy
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr "Nuvens de compostos"
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER"
+msgstr "Multiplicador de custo de mutação"
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER_EXPLANATION"
+msgstr "(custo de organelas, membranas e outros itens no editor)"
 
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energia em {0} para {1}"
@@ -3573,6 +3585,20 @@ msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "Trancar Ciclo Dia/Noite"
 
 #, fuzzy
+msgid "LOOK_LEFT"
+msgstr "Seta Esquerda"
+
+#, fuzzy
+msgid "LOOK_RIGHT"
+msgstr "Seta Direita"
+
+msgid "LOOK_SCREEN_DOWN_OR_3D_TOWARDS_UP"
+msgstr ""
+
+msgid "LOOK_SCREEN_UP_OR_3D_TOWARDS_DOWN"
+msgstr ""
+
+#, fuzzy
 msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
 msgstr "(valores mais altos melhoram o desempenho)"
 
@@ -4890,13 +4916,6 @@ msgid "OSMOREGULATION_COST"
 msgstr "Custo de Osmorregulação"
 
 #, fuzzy
-msgid "OSMOREGULATION_COST_MULTIPLIER"
-msgstr "Custo de Osmorregulação"
-
-msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
-msgstr "(custo da osmorregulação da espécie do jogador)"
-
-#, fuzzy
 msgid "OTHER_COMPOUNDS"
 msgstr "Compostos"
 
@@ -5259,8 +5278,13 @@ msgstr "Anterior:"
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "A processar objetos carregados"
 
+#, fuzzy
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
+
+#, fuzzy
+msgid "PROCESS_INACTIVE"
+msgstr "Processos de Célula"
 
 #, fuzzy
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
@@ -5277,10 +5301,6 @@ msgstr "Processos de Célula"
 #, fuzzy
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Processos de Célula"
-
-#, fuzzy
-msgid "PROCESS_TOGGLE_TOOLTIP"
-msgstr "Sair para o menu principal"
 
 msgid "PROGRAMMING_TEAM"
 msgstr "Equipa da Programação"
@@ -9460,6 +9480,13 @@ msgstr "Ampliar"
 
 msgid "ZOOM_OUT"
 msgstr "Reduzir"
+
+#, fuzzy
+#~ msgid "OSMOREGULATION_COST_MULTIPLIER"
+#~ msgstr "Custo de Osmorregulação"
+
+#~ msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
+#~ msgstr "(custo da osmorregulação da espécie do jogador)"
 
 #, fuzzy
 #~ msgid "KEEP_CURRENT_SHORT"
