@@ -2374,11 +2374,24 @@ public partial class CellEditorComponent :
 
     private CombinedEditorAction? CreateAddOrganelleAction(OrganelleTemplate organelle)
     {
-        // 1 - you put a unique organelle (means only one instance allowed), but you already have it
-        // 2 - you put an organelle that requires nucleus, but you don't have one
-        if ((organelle.Definition.Unique && HasOrganelle(organelle.Definition)) ||
-            (organelle.Definition.RequiresNucleus && !HasNucleus))
+        if (organelle.Definition.Unique && HasOrganelle(organelle.Definition))
         {
+            // You put a unique organelle (means only one instance allowed), but you already have it
+            return null;
+        }
+
+        if (organelle.Definition.RequiresNucleus && !HasNucleus)
+        {
+            // You put an organelle that requires nucleus, but you don't have one
+            return null;
+        }
+
+        if (organelle.Definition.IsIncompatibleWithMembrane(Membrane))
+        {
+            // You put an organelle incompatible with the current membrane
+            ToolTipManager.Instance.ShowPopup(Localization.Translate("PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"),
+                1.5f);
+
             return null;
         }
 
