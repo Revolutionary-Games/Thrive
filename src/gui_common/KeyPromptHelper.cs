@@ -605,9 +605,7 @@ public static class KeyPromptHelper
 
                     if (action is InputEventMouseButton button)
                     {
-                        var (primary, overlay, smallPrimaryIcon) = GetPathForMouseButton(button.ButtonIndex);
-
-                        return (primary, overlay, smallPrimaryIcon);
+                        return GetPathForMouseButton(button.ButtonIndex);
                     }
 
                     break;
