@@ -1,4 +1,4 @@
-namespace ThriveTest.MulticellularStage.Tests;
+﻿namespace ThriveTest.MulticellularStage.Tests;
 
 using System.Collections.Generic;
 using Xunit;
