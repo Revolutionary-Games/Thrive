@@ -365,7 +365,7 @@ public static class SaveHelper
             }
             catch (Exception e)
             {
-                GD.PrintErr($"Failed to load save info for {filename}: {e}");
+                GD.PrintErr("Failed to load save info for ", filename, ": ", e);
             }
         }
 
@@ -619,7 +619,7 @@ public static class SaveHelper
         {
             GameState = gameState,
             Info = { Type = type },
-            JukeboxPlayingTrackPositions = Jukebox.HasInstance ? Jukebox.Instance.SavedPlayingTrackPositions : null,
+            JukeboxPlaybackState = Jukebox.HasInstance ? Jukebox.Instance.PlaybackState : null,
             Screenshot = ScreenShotTaker.Instance.GetViewportTextureAsImage(),
         };
     }

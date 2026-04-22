@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Formats.Tar;
 using System.IO;
@@ -63,9 +62,9 @@ public sealed class Save : IArchivable, IDisposable
     public MulticellularEditor? MulticellularEditor { get; set; }
 
     /// <summary>
-    ///   Jukebox track playback positions to resume once the loaded game starts its music category
+    ///   Jukebox playback state to restore once the loaded game starts
     /// </summary>
-    public Dictionary<string, float>? JukeboxPlayingTrackPositions { get; set; }
+    public JukeboxPlaybackState? JukeboxPlaybackState { get; set; }
 
     /// <summary>
     ///   Screenshot for this save
@@ -237,9 +236,9 @@ public sealed class Save : IArchivable, IDisposable
         writer.WriteObjectOrNull(MicrobeStage);
         writer.WriteObjectOrNull(MicrobeEditor);
         writer.WriteObjectOrNull(MulticellularEditor);
-        if (JukeboxPlayingTrackPositions != null)
+        if (JukeboxPlaybackState != null)
         {
-            writer.WriteObject(JukeboxPlayingTrackPositions);
+            writer.WriteObject(JukeboxPlaybackState);
         }
         else
         {
@@ -342,8 +341,8 @@ public sealed class Save : IArchivable, IDisposable
         instance.MicrobeStage = reader.ReadObjectOrNull<MicrobeStage>();
         instance.MicrobeEditor = reader.ReadObjectOrNull<MicrobeEditor>();
         instance.MulticellularEditor = reader.ReadObjectOrNull<MulticellularEditor>();
-        instance.JukeboxPlayingTrackPositions = version >= 2 ?
-            reader.ReadObjectOrNull<Dictionary<string, float>>() :
+        instance.JukeboxPlaybackState = version >= 2 ?
+            reader.ReadObjectOrNull<JukeboxPlaybackState>() :
             null;
 
         return instance;

@@ -42,8 +42,6 @@ public partial class Jukebox : Node
 
     private MusicContext[]? activeContexts;
 
-    private Dictionary<string, float>? savedPlayingTrackPositions;
-
     /// <summary>
     ///   Loads the music categories and prepares to play them
     /// </summary>
@@ -81,24 +79,14 @@ public partial class Jukebox : Node
         }
     }
 
-    public Dictionary<string, float> SavedPlayingTrackPositions
+    public JukeboxPlaybackState PlaybackState
     {
-        get
+        get => CreatePlaybackState();
+        set
         {
-            var result = new Dictionary<string, float>();
-
-            foreach (var player in audioPlayers)
-            {
-                if (!player.Playing || player.CurrentTrack == null)
-                    continue;
-
-                result[player.CurrentTrack] = player.Player.GetPlaybackPosition();
-            }
-
-            return result;
+            OnCategoryEnded();
+            ApplyPlaybackState(value);
         }
-
-        set => savedPlayingTrackPositions = value;
     }
 
     private List<string> PlayingTracks => audioPlayers.Where(p => p.Playing)
@@ -500,15 +488,7 @@ public partial class Jukebox : Node
 
     private void SetupStreamsFromCategory()
     {
-        if (savedPlayingTrackPositions != null)
-        {
-            ApplySavedPlayingTrackPositions(savedPlayingTrackPositions);
-            savedPlayingTrackPositions = null;
-        }
-        else
-        {
-            OnCategoryEnded();
-        }
+        OnCategoryEnded();
 
         // Stop all players to not let them play anymore
         StopStreams();
@@ -538,10 +518,48 @@ public partial class Jukebox : Node
         StartPlayingFromMissingLists(target);
     }
 
-    private void ApplySavedPlayingTrackPositions(IReadOnlyDictionary<string, float> trackPositions)
+    private JukeboxPlaybackState CreatePlaybackState()
     {
-        foreach (var category in categories.Values)
+        var state = new JukeboxPlaybackState();
+
+        foreach (var (categoryName, category) in categories)
         {
+            var trackPositions = new Dictionary<string, float>();
+
+            foreach (var list in category.TrackLists)
+            {
+                foreach (var track in list.GetAllTracks())
+                {
+                    if (track.WasPlaying)
+                        trackPositions[track.ResourcePath] = track.PreviousPlayedPosition;
+                }
+            }
+
+            if (categoryName == playingCategory)
+            {
+                foreach (var player in audioPlayers)
+                {
+                    if (!player.Playing || player.CurrentTrack == null)
+                        continue;
+
+                    trackPositions[player.CurrentTrack] = player.Player.GetPlaybackPosition();
+                }
+            }
+
+            if (trackPositions.Count > 0)
+                state.TrackPositionsByCategory[categoryName] = trackPositions;
+        }
+
+        return state;
+    }
+
+    private void ApplyPlaybackState(JukeboxPlaybackState state)
+    {
+        foreach (var (categoryName, trackPositions) in state.TrackPositionsByCategory)
+        {
+            if (!categories.TryGetValue(categoryName, out var category))
+                continue;
+
             foreach (var list in category.TrackLists)
             {
                 foreach (var track in list.GetAllTracks())

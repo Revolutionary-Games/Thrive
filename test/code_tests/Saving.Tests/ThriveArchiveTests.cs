@@ -67,38 +67,6 @@ public class ThriveArchiveTests
     }
 
     [Fact]
-    public void ThriveArchive_TestJukeboxTrackPositionsArchiveFormat()
-    {
-        var memoryStream = new MemoryStream();
-        var writer = new SArchiveMemoryWriter(memoryStream, manager);
-        var reader = new SArchiveMemoryReader(memoryStream, manager);
-
-        var original = new Dictionary<string, float>
-        {
-            ["res://assets/sounds/microbe-theme-1.ogg"] = 12.5f,
-            ["res://assets/sounds/soundeffects/microbe-ambience.ogg"] = 24.75f,
-        };
-
-        manager.OnStartNewWrite(writer);
-        writer.WriteArchiveHeader(1, "test", "2");
-        writer.WriteObject(original);
-        writer.WriteArchiveFooter();
-        manager.OnFinishWrite(writer);
-
-        manager.OnStartNewRead(reader);
-        memoryStream.Seek(0, SeekOrigin.Begin);
-        reader.ReadArchiveHeader(out _, out _, out _);
-
-        var read = reader.ReadObjectOrNull<Dictionary<string, float>>();
-        reader.ReadArchiveFooter();
-        manager.OnFinishRead(reader);
-
-        Assert.NotNull(read);
-        Assert.Equal(12.5f, read["res://assets/sounds/microbe-theme-1.ogg"]);
-        Assert.Equal(24.75f, read["res://assets/sounds/soundeffects/microbe-ambience.ogg"]);
-    }
-
-    [Fact]
     public void ThriveArchive_TestBiomeConditions()
     {
         var memoryStream = new MemoryStream();
