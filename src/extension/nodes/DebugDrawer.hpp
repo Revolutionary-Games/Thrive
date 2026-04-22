@@ -150,6 +150,7 @@ private:
     void DrawTriangle(const godot::Vector3& vertex1, const godot::Vector3& vertex2, const godot::Vector3& vertex3,
         const godot::Color& colour);
     void StartDrawingIfNotYetThisFrame();
+    void UpdateDrawAabb(const godot::Vector3& center);
     void UpdateDebugCameraLocation();
 
     inline void AddTimedLine(const TimedLine& line)

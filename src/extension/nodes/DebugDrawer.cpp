@@ -130,24 +130,19 @@ void DebugDrawer::Init()
         return;
     }
 
-    // Make sure the debug stuff is always rendered
-    const auto quiteBigAABB = godot::AABB(godot::Vector3{0, 0, 0},
-        godot::Vector3{DEBUG_DRAW_MAX_DISTANCE_ORIGIN, DEBUG_DRAW_MAX_DISTANCE_ORIGIN, DEBUG_DRAW_MAX_DISTANCE_ORIGIN});
-
     lineMesh = godot::Ref<godot::ImmediateMesh>(memnew(godot::ImmediateMesh));
     triangleMesh = godot::Ref<godot::ImmediateMesh>(memnew(godot::ImmediateMesh));
 
     lineDrawer->set_mesh(lineMesh);
     lineDrawer->set_visible(false);
-    lineDrawer->set_custom_aabb(quiteBigAABB);
     lineDrawer->set_ignore_occlusion_culling(true);
     lineDrawer->set_extra_cull_margin(1000);
 
     triangleDrawer->set_mesh(triangleMesh);
     triangleDrawer->set_visible(false);
-    triangleDrawer->set_custom_aabb(quiteBigAABB);
     triangleDrawer->set_ignore_occlusion_culling(true);
     triangleDrawer->set_extra_cull_margin(1000);
+    UpdateDrawAabb({});
 
     // TODO: implement debug text drawing (this is a Control to support that in the future)
 }
@@ -386,6 +381,16 @@ void DebugDrawer::StartDrawingIfNotYetThisFrame()
     drawnThisFrame = true;
 }
 
+void DebugDrawer::UpdateDrawAabb(const godot::Vector3& center)
+{
+    const auto radius = godot::Vector3{
+        DEBUG_DRAW_MAX_DISTANCE_ORIGIN, DEBUG_DRAW_MAX_DISTANCE_ORIGIN, DEBUG_DRAW_MAX_DISTANCE_ORIGIN};
+    const auto bounds = godot::AABB(center - radius, radius * 2.0f);
+
+    lineDrawer->set_custom_aabb(bounds);
+    triangleDrawer->set_custom_aabb(bounds);
+}
+
 void DebugDrawer::UpdateDebugCameraLocation()
 {
     // The physics debug culling depends on this position even before a successful draw happens.
@@ -393,7 +398,10 @@ void DebugDrawer::UpdateDebugCameraLocation()
 
     if (camera != nullptr)
     {
-        SetDebugCameraLocation(camera->get_global_position());
+        const auto cameraLocation = camera->get_global_position();
+
+        SetDebugCameraLocation(cameraLocation);
+        UpdateDrawAabb(cameraLocation);
     }
 }
 
