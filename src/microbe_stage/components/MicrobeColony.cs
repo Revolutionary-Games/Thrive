@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Arch.Buffer;
 using Arch.Core;
 using Arch.Core.Extensions;
@@ -507,6 +508,17 @@ public static class MicrobeColonyHelpers
         }
 
         newMembers[colony.ColonyMembers.Length] = newMember;
+
+        if (newMembers[0] != colony.Leader)
+        {
+            GD.PrintErr("Logic error in colony member add: leader is not first");
+
+#if DEBUG
+            if (Debugger.IsAttached)
+                Debugger.Break();
+#endif
+        }
+
         colony.ColonyMembers = newMembers;
 
         colony.MarkMembersChanged();
@@ -569,8 +581,18 @@ public static class MicrobeColonyHelpers
 
         for (int i = intendedNewMemberIndex + 1; i < newMembers.Length; ++i)
         {
-            // As we inserted one new item, the items don't anymore map 1-to-1 between the arrays
+            // As we inserted one new item, the items don't any more map 1-to-1 between the arrays
             newMembers[i] = colony.ColonyMembers[i - 1];
+        }
+
+        if (newMembers[0] != colony.Leader)
+        {
+            GD.PrintErr("Logic error in colony member add: leader is not first");
+
+#if DEBUG
+            if (Debugger.IsAttached)
+                Debugger.Break();
+#endif
         }
 
         colony.ColonyMembers = newMembers;
@@ -608,7 +630,7 @@ public static class MicrobeColonyHelpers
 
         var parentMicrobe = colony.ColonyMembers[parentIndex];
 
-        // Calculate the attach position
+        // Calculate the attachment position
         // Note that if the multicellular growth is moved away from precomputed locations, this won't likely be
         // usable to calculate the positions instead
         if (!CalculateColonyMemberAttachPosition(colonyEntity, parentMicrobe, newMemberPosition,
@@ -670,7 +692,8 @@ public static class MicrobeColonyHelpers
         ref var cellProperties = ref colonyEntity.Get<CellProperties>();
         cellProperties.ShapeCreated = false;
 
-        if (colony.ColonyMembers.Length <= 2)
+        // Colony will disband if the root cell is removed, otherwise it will be in a terrible state
+        if (colony.ColonyMembers.Length <= 2 || colonyEntity == removedMember)
         {
             // The whole colony is disbanding
             recorder.Remove<MicrobeColony>(colonyEntity);
@@ -1443,6 +1466,12 @@ public static class MicrobeColonyHelpers
     /// <exception cref="Exception">If this is called with a member not in the list of members</exception>
     private static void RemoveColonyMemberFromMemberList(ref MicrobeColony colony, in Entity removedMember)
     {
+        if (colony.Leader == removedMember)
+        {
+            throw new InvalidOperationException(
+                "Colony must be disbanded rather than the leader removed like a member");
+        }
+
         // TODO: pooling (see the TODO in the add method)
         // TODO: when recursively removing members somehow make sure that we don't need to keep creating more and
         // more of these lists...
@@ -1465,6 +1494,16 @@ public static class MicrobeColonyHelpers
         {
             throw new Exception("Logic error in new member array copy without member " +
                 "(was it ensured removed member was in the list)");
+        }
+
+        if (newMembers.Length > 0 && newMembers[0] != colony.Leader)
+        {
+            GD.PrintErr("Logic error in colony member remove: leader is not first");
+
+#if DEBUG
+            if (Debugger.IsAttached)
+                Debugger.Break();
+#endif
         }
 
         colony.ColonyMembers = newMembers;
