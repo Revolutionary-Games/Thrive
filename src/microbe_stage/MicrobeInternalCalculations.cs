@@ -899,6 +899,10 @@ public static class MicrobeInternalCalculations
 
         float concentration = 0.0f;
 
+        // The following calculation of concentration is an implementation of the Simpson Diversity Index,
+        // an existing algorithm used for evaluating ecological diversity, among other things
+        // maximum possible diversity at a given size gives 0, while complete uniformity gives 1
+        // Additional explanation can be found at: https://en.wikipedia.org/wiki/Diversity_index#Simpson_index
         foreach (var entry in tempWorkMemory)
         {
             if (entry.Key.HasNucleusFeature)
