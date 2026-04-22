@@ -211,6 +211,9 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
             // Slime jets work even when not holding down any movement keys
             var jetMovement = CalculateMovementFromSlimeJets(ref organelles);
 
+            if (entity.Has<MicrobeColony>())
+                jetMovement += CalculateColonyMovementFromSlimeJets(entity);
+
             if (jetMovement == Vector3.Zero)
                 return Vector3.Zero;
 
@@ -340,48 +343,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
 
         // Handle colony jets
         if (hasColony)
-        {
-            // This can trigger similar errors as general colony movement calculation, so we use similar protection
-            // here
-            try
-            {
-                // This is a duplicate fetch of this component, but this method would get pretty ugly / would need to
-                // be split into many methods to allow sharing the variable
-                ref var colony = ref entity.Get<MicrobeColony>();
-
-                foreach (var colonyMember in colony.ColonyMembers)
-                {
-                    // This doesn't really hurt as the slime jets were consumed above, but for consistency with
-                    // basically all other places code like this is needed we skip the leader here
-                    if (colonyMember == entity)
-                        continue;
-
-                    if (!colonyMember.IsAliveAndHas<OrganelleContainer>())
-                    {
-                        throw new Exception("Invalid colony member that doesn't have OrganelleContainer for jets: " +
-                            colonyMember);
-                    }
-
-                    ref var memberOrganelles = ref colonyMember.Get<OrganelleContainer>();
-
-                    movementVector += CalculateMovementFromSlimeJets(ref memberOrganelles);
-                }
-            }
-            catch (Exception e)
-            {
-                // TODO: try to find out the real root cause of this problem rather than detecting and force disbanding
-                // the colony here. Note there's similar block of code for the general movement
-                GD.PrintErr("Error calculating colony jet movement: " + e);
-
-                var entityId = entity;
-
-                Invoke.Instance.Perform(() =>
-                {
-                    GD.PrintErr("Force disbanding the colony that is in invalid state, entity: ", entityId);
-                    MicrobeColonyHelpers.UnbindAllOutsideGameUpdate(entityId, worldSimulation, true);
-                });
-            }
-        }
+            movementVector += CalculateColonyMovementFromSlimeJets(entity);
 
         // MovementDirection is proportional to the current cell rotation, so we need to rotate the movement
         // vector to work correctly
@@ -410,6 +372,51 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
                 jet.ConsumeMovementForce(out var jetForce);
                 movementVector += jetForce;
             }
+        }
+
+        return movementVector;
+    }
+
+    private Vector3 CalculateColonyMovementFromSlimeJets(in Entity entity)
+    {
+        var movementVector = Vector3.Zero;
+
+        // This can trigger similar errors as general colony movement calculation, so we use similar protection here
+        try
+        {
+            ref var colony = ref entity.Get<MicrobeColony>();
+
+            foreach (var colonyMember in colony.ColonyMembers)
+            {
+                // This doesn't really hurt as the slime jets were consumed above, but for consistency with basically
+                // all other places code like this is needed we skip the leader here
+                if (colonyMember == entity)
+                    continue;
+
+                if (!colonyMember.IsAliveAndHas<OrganelleContainer>())
+                {
+                    throw new Exception("Invalid colony member that doesn't have OrganelleContainer for jets: " +
+                        colonyMember);
+                }
+
+                ref var memberOrganelles = ref colonyMember.Get<OrganelleContainer>();
+
+                movementVector += CalculateMovementFromSlimeJets(ref memberOrganelles);
+            }
+        }
+        catch (Exception e)
+        {
+            // TODO: try to find out the real root cause of this problem rather than detecting and force disbanding
+            // the colony here. Note there's similar block of code for the general movement
+            GD.PrintErr("Error calculating colony jet movement: " + e);
+
+            var entityId = entity;
+
+            Invoke.Instance.Perform(() =>
+            {
+                GD.PrintErr("Force disbanding the colony that is in invalid state, entity: ", entityId);
+                MicrobeColonyHelpers.UnbindAllOutsideGameUpdate(entityId, worldSimulation, true);
+            });
         }
 
         return movementVector;

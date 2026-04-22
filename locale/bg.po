@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-13 10:37+0300\n"
-"PO-Revision-Date: 2026-02-28 13:02+0000\n"
+"POT-Creation-Date: 2026-04-22 17:18+0300\n"
+"PO-Revision-Date: 2026-04-20 23:52+0000\n"
 "Last-Translator: \"Georgi Georgiev (RacerBG)\" <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
 "Language: bg\n"
@@ -779,6 +779,10 @@ msgstr "Допълнителни кодове"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Превключване на клетъчните процеси"
+
+#, fuzzy
+msgid "CHEMICAL_EQUATION_SPEED_EXPLANATION"
+msgstr "(определя скоростта на мутация на Вашите съперници)"
 
 msgid "CHEMOPLAST"
 msgstr "Хемопласт"
@@ -3667,6 +3671,20 @@ msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "Денонощен цикъл"
 
 #, fuzzy
+msgid "LOOK_LEFT"
+msgstr "Стрелка наляво"
+
+#, fuzzy
+msgid "LOOK_RIGHT"
+msgstr "Стрелка надясно"
+
+msgid "LOOK_SCREEN_DOWN_OR_3D_TOWARDS_UP"
+msgstr ""
+
+msgid "LOOK_SCREEN_UP_OR_3D_TOWARDS_DOWN"
+msgstr ""
+
+#, fuzzy
 msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
 msgstr "(по-високите стойности подобряват производителността)"
 
@@ -5363,8 +5381,13 @@ msgstr "предишна:"
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Обработка на заредените обекти"
 
+#, fuzzy
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "при"
+
+#, fuzzy
+msgid "PROCESS_INACTIVE"
+msgstr "Клетъчни процеси"
 
 #, fuzzy
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
@@ -5381,10 +5404,6 @@ msgstr "Клетъчни процеси"
 #, fuzzy
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Клетъчни процеси"
-
-#, fuzzy
-msgid "PROCESS_TOGGLE_TOOLTIP"
-msgstr "Връщане в главното меню"
 
 msgid "PROGRAMMING_TEAM"
 msgstr "Програмисти"
@@ -9670,6 +9689,10 @@ msgstr "Отдалечаване"
 
 #~ msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 #~ msgstr "(определя разхода на осморегулация на Вашите създания)"
+
+#, fuzzy
+#~ msgid "PROCESS_TOGGLE_TOOLTIP"
+#~ msgstr "Връщане в главното меню"
 
 #, fuzzy
 #~ msgid "KEEP_CURRENT_SHORT"

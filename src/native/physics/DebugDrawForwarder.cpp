@@ -47,24 +47,17 @@ JPH::DVec3 FloatToDVec(JPH::Float3 input)
     return {input.x, input.y, input.z};
 }
 
-JPH::Float4 ColorToFloat4(const JPH::ColorArg color)
-{
-    constexpr float multiplier = 1 / 255.0f;
-    return {(float)color.r * multiplier, (float)color.g * multiplier, (float)color.b * multiplier,
-        (float)color.a * multiplier};
-}
-
 #ifdef ENSURE_NO_COLOUR_OVER_SATURATION
-JPH::Float4 MixColour(JPH::Float4 baseColour, JPH::Float4 colourTint)
+JColour MixColour(const JColour baseColour, const JColour colourTint)
 {
-    return {std::max(baseColour.x * colourTint.x, 1.0f), std::max(baseColour.y * colourTint.y, 1.0f),
-        std::max(baseColour.z * colourTint.z, 1.0f), std::max(baseColour.w * colourTint.w, 1.0f)};
+    return {std::max(baseColour.R * colourTint.R, 1.0f), std::max(baseColour.G * colourTint.G, 1.0f),
+        std::max(baseColour.B * colourTint.B, 1.0f), std::max(baseColour.A * colourTint.A, 1.0f)};
 }
 #else
-JPH::Float4 MixColour(JPH::Float4 baseColour, JPH::Float4 colourTint)
+JColour MixColour(const JColour baseColour, const JColour colourTint)
 {
-    return {baseColour.x * colourTint.x, baseColour.y * colourTint.y, baseColour.z * colourTint.z,
-        baseColour.w * colourTint.w};
+    return {baseColour.R * colourTint.R, baseColour.G * colourTint.G, baseColour.B * colourTint.B,
+        baseColour.A * colourTint.A};
 }
 #endif // ENSURE_NO_COLOUR_OVER_SATURATION
 
@@ -73,7 +66,7 @@ DebugDrawForwarder::DVertex TransformVertex(const JPH::RMat44& matrix, const JPH
 {
     // TODO: for proper usage should we transform the normal as well?
     return DebugDrawForwarder::DVertex{
-        matrix * FloatToDVec(vertex.mPosition), vertex.mNormal, vertex.mUV, ColorToFloat4(vertex.mColor)};
+        JoltToJVec3(matrix * FloatToDVec(vertex.mPosition)), vertex.mNormal, vertex.mUV, JoltToJColour(vertex.mColor)};
 }
 
 // ------------------------------------ //
@@ -154,7 +147,7 @@ bool DebugDrawForwarder::HasAReceiver() const noexcept
 void DebugDrawForwarder::DrawLine(JPH::RVec3Arg inFrom, JPH::RVec3Arg inTo, JPH::ColorArg inColor)
 {
     Lock lock(mutex);
-    lineBuffer.emplace_back(inFrom, inTo, ColorToFloat4(inColor));
+    lineBuffer.emplace_back(JoltToJVec3(inFrom), JoltToJVec3(inTo), JoltToJColour(inColor));
 }
 
 void DebugDrawForwarder::DrawTriangle(
@@ -164,7 +157,7 @@ void DebugDrawForwarder::DrawTriangle(
     UNUSED(inCastShadow);
 
     Lock lock(mutex);
-    triangleBuffer.emplace_back(inV1, inV2, inV3, ColorToFloat4(inColor));
+    triangleBuffer.emplace_back(JoltToJVec3(inV1), JoltToJVec3(inV2), JoltToJVec3(inV3), JoltToJColour(inColor));
 }
 
 // It is always assumed that the renderer was responsible for creating the geometry instances, so we can cast them here
@@ -212,7 +205,7 @@ void DebugDrawForwarder::DrawGeometry(JPH::RMat44Arg inModelMatrix, const JPH::A
         }
     }*/
 
-    const auto modelTint = ColorToFloat4(inModelColor);
+    const auto modelTint = JoltToJColour(inModelColor);
 
     for (const LOD& lod : inGeometry->mLODs)
     {
@@ -320,7 +313,7 @@ JPH::DebugRenderer::Batch DebugDrawForwarder::CreateTriangleBatch(
 
 // ------------------------------------ //
 void DebugDrawForwarder::DrawTriangleInternal(
-    const DVertex& vertex1, const DVertex& vertex2, const DVertex& vertex3, JPH::Float4 colourTint, bool wireFrame)
+    const DVertex& vertex1, const DVertex& vertex2, const DVertex& vertex3, JColour colourTint, bool wireFrame)
 {
     if (wireFrame)
     {

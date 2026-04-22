@@ -40,7 +40,7 @@
   </ItemGroup>
   <!-- Test resources -->
   <ItemGroup Condition="'$(Configuration)' != 'ExportRelease'">
-    <PackageReference Include="gdUnit4.api" Version="5.1.0-rc3" />
+    <PackageReference Include="gdUnit4.api" Version="5.1.0-rc4" />
     <PackageReference Include="gdUnit4.test.adapter" Version="3.0.0" />
     <!-- Re-enable this this once newer compiler versions are deployed everywhere
     <PackageReference Include="gdUnit4.analyzers" Version="1.0.0">
@@ -54,12 +54,12 @@
     <PackageReference Include="GraphShape" Version="1.2.1" />
     <PackageReference Include="JetBrains.Annotations" Version="2025.2.4" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
-    <PackageReference Include="System.IO.Hashing" Version="10.0.6" />
+    <PackageReference Include="System.IO.Hashing" Version="10.0.7" />
     <PackageReference Include="Nito.Collections.Deque" Version="1.2.1" />
     <PackageReference Include="XoshiroPRNG.Net" Version="1.6.0" />
     <PackageReference Include="YamlDotNet" Version="17.0.1" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.556" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="10.0.201" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="10.0.203" PrivateAssets="all" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".config\dotnet-tools.json" />
