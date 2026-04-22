@@ -97,9 +97,9 @@ jobs:
     image: thrive/godot-ci:v32
     cache:
       loadFrom:
-        - v11-{Branch}-format
-        - v11-master-format
-      writeTo: v11-{Branch}-format
+        - v12-{Branch}-format
+        - v12-master-format
+      writeTo: v12-{Branch}-format
       shared:
         .git/lfs: v9-lfs
         native_libs: v2-native
