@@ -389,7 +389,7 @@ public class Program
         startInfo.ArgumentList.Add(PackageTool.GODOT_HEADLESS_FLAG);
         startInfo.ArgumentList.Add("--editor");
         startInfo.ArgumentList.Add("--quit-after");
-        startInfo.ArgumentList.Add("20");
+        startInfo.ArgumentList.Add("200");
         startInfo.ArgumentList.Add(".");
 
         try
