@@ -106,7 +106,8 @@ public partial class OrganelleTickSystem : BaseSystem<World, float>
                 var component = components[j];
 
                 // Organelles can do various things which is why we have the above "All" attribute
-                component.UpdateAsync(ref organelleContainer, ref specializationFactor, entity, worldSimulation, energyCostMultiplier, delta);
+                component.UpdateAsync(ref organelleContainer, ref specializationFactor, entity, worldSimulation,
+                    energyCostMultiplier, delta);
 
                 if (component.UsesSyncProcess)
                     queuedSyncRuns.Push((component, entity));
