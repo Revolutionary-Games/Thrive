@@ -385,9 +385,9 @@ public static class MicrobeInternalCalculations
     public static float CalculateDigestionSpeed(int enzymeCount, float specializationBonus)
     {
         var amount = Constants.ENGULF_COMPOUND_ABSORBING_PER_SECOND;
-        var buff = amount * Constants.ENZYME_DIGESTION_SPEED_UP_FRACTION * enzymeCount;
+        var buff = amount * Constants.ENZYME_DIGESTION_SPEED_UP_FRACTION * enzymeCount * specializationBonus;
 
-        return amount + buff * specializationBonus;
+        return amount + buff;
     }
 
     public static float CalculateTotalDigestionSpeed(IEnumerable<OrganelleTemplate> organelles,
@@ -406,9 +406,10 @@ public static class MicrobeInternalCalculations
     public static float CalculateDigestionEfficiency(int enzymeCount, float specializationBonus)
     {
         var absorption = Constants.ENGULF_BASE_COMPOUND_ABSORPTION_YIELD;
-        var buff = absorption * Constants.ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION * enzymeCount;
+        var buff = absorption * Constants.ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION * enzymeCount *
+            specializationBonus;
 
-        return Math.Clamp(absorption + buff * specializationBonus, 0.0f, Constants.ENZYME_DIGESTION_EFFICIENCY_MAXIMUM);
+        return Math.Clamp(absorption + buff, 0.0f, Constants.ENZYME_DIGESTION_EFFICIENCY_MAXIMUM);
     }
 
     /// <summary>
