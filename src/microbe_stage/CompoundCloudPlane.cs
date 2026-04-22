@@ -732,7 +732,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     public bool ContainsPosition(Vector3 worldPosition, out int x, out int y)
     {
         ConvertToCloudLocal(worldPosition, out x, out y);
-        return x >= 0 && y >= 0 && x < Constants.CLOUD_SIZE && y < Constants.CLOUD_SIZE;
+        return x >= 0 && y >= 0 && x < PlaneSize && y < PlaneSize;
     }
 
     /// <summary>
@@ -894,10 +894,10 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static int GetWorldShiftKey(int x0, int y0, int playerX, int playerY)
+    private static int GetWorldShiftKey(int xSquare, int ySquare, int playerX, int playerY)
     {
-        // This is safe as long as the values are max 8 bit long, otherwise they will collide
-        return x0 | y0 << 8 | playerX << 16 | playerY << 24;
+        // Each value is in the 0-2 range, so two bits per value is enough to avoid collisions.
+        return xSquare | ySquare << 2 | playerX << 4 | playerY << 6;
     }
 
     /// <summary>
@@ -961,20 +961,23 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     private FrozenDictionary<int, Vector2> PrecalculateWorldShiftVectors()
     {
         var shiftCache = new Dictionary<int, Vector2>(81);
-        int worldShift = Constants.CLOUD_SIZE / Constants.CLOUD_PLANE_SQUARES_PER_SIDE * CloudResolution;
+        int planeChunkSize = PlaneSize / Constants.CLOUD_PLANE_SQUARES_PER_SIDE;
+        int worldShift = planeChunkSize * CloudResolution;
 
-        int[] planeOffsets = { 0, 100, 200 };
+        int[] planeSquares = { 0, 1, 2 };
         int[] playerPositions = { 0, 1, 2 };
 
-        foreach (int x0 in planeOffsets)
+        foreach (int xSquare in planeSquares)
         {
-            foreach (int y0 in planeOffsets)
+            foreach (int ySquare in planeSquares)
             {
                 foreach (int playerX in playerPositions)
                 {
                     foreach (int playerY in playerPositions)
                     {
                         // When not caching equivalent math is in GetWorldPositionForAdvection
+                        int x0 = xSquare * planeChunkSize;
+                        int y0 = ySquare * planeChunkSize;
                         int xShift = GetEdgeShift(x0, playerX);
                         int yShift = GetEdgeShift(y0, playerY);
 
@@ -983,7 +986,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
 
                         var edgePlanesShift = new Vector2(xShift * worldShift, yShift * worldShift);
 
-                        int key = GetWorldShiftKey(x0, y0, playerX, playerY);
+                        int key = GetWorldShiftKey(xSquare, ySquare, playerX, playerY);
                         shiftCache[key] = wholePlaneShift + edgePlanesShift;
                     }
                 }
@@ -1000,7 +1003,8 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     private Vector2 GetWorldPositionForAdvection(int x0, int y0)
     {
 #if CACHE_WORLD_COORDINATES
-        var key = GetWorldShiftKey(x0, y0, playersPosition.X, playersPosition.Y);
+        int planeChunkSize = PlaneSize / Constants.CLOUD_PLANE_SQUARES_PER_SIDE;
+        var key = GetWorldShiftKey(x0 / planeChunkSize, y0 / planeChunkSize, playersPosition.X, playersPosition.Y);
 
         // In benchmarks the null ref or direct try get basically both get wins and losses, but the TryGet wins
         // slightly more often, so it is used
@@ -1018,7 +1022,8 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
 #endif
 #else
         // Same math as in PrecalculateWorldShiftVectors. This is used when not caching.
-        int worldShift = Constants.CLOUD_SIZE / Constants.CLOUD_PLANE_SQUARES_PER_SIDE * CloudResolution;
+        int planeChunkSize = PlaneSize / Constants.CLOUD_PLANE_SQUARES_PER_SIDE;
+        int worldShift = planeChunkSize * CloudResolution;
         var playerX = playersPosition.X;
         var playerY = playersPosition.Y;
 

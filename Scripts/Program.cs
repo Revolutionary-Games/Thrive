@@ -396,6 +396,10 @@ public class Program
                 return 1;
             }
         }
+        catch (AggregateException ae) when (ae.InnerException is OperationCanceledException)
+        {
+            ColourConsole.WriteErrorLine("Failed to import assets to Godot, due to timeout (aggregate exception)");
+        }
         catch (OperationCanceledException)
         {
             ColourConsole.WriteErrorLine("Failed to import assets to Godot, due to timeout");
