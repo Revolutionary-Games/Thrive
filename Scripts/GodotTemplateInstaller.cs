@@ -54,6 +54,9 @@ public class GodotTemplateInstaller
         ColourConsole.WriteNormalLine($"Downloading {url}");
         ColourConsole.WriteNormalLine("This may take many minutes as the download is large");
 
+        // Only one of these downloads is done per program run, so caching the client is not relevant.
+
+        // ReSharper disable once ShortLivedHttpClient
         using var client = new HttpClient();
 
         bool success = false;

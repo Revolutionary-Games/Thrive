@@ -132,6 +132,13 @@ public partial class DamageOnTouchSystem : BaseSystem<World, float>
             // This is fetched here as the protection also applies to the player's cell colony
             var protection = HealthHelpers.GetInstantKillProtectionThreshold(entity);
 
+            if (HealthHelpers.IsDamageToxinType(damageType))
+            {
+                // Toxin damage is distributed to all members of a colony
+                HealthHelpers.DealDistributedMicrobeDamage(entity, damageValue, damageType, protection);
+                return true;
+            }
+
             if (entity.Has<MicrobeColony>())
             {
                 if (entity.Get<MicrobeColony>().GetMicrobeFromSubShape(ref entityExtraData,

@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-13 10:37+0300\n"
-"PO-Revision-Date: 2026-04-10 22:42+0000\n"
-"Last-Translator: Shigasaa <altitudes.etrangeres@ikmail.com>\n"
+"POT-Creation-Date: 2026-04-16 22:52+0300\n"
+"PO-Revision-Date: 2026-04-13 13:49+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -767,6 +767,10 @@ msgstr "Menu de triche"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Afficher / cacher les processus cellulaires"
+
+#, fuzzy
+msgid "CHEMICAL_EQUATION_SPEED_EXPLANATION"
+msgstr "(vitesse de mutation des espèces contrôlées par l'IA)"
 
 msgid "CHEMOPLAST"
 msgstr "Chimioplaste"
@@ -5171,6 +5175,10 @@ msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
 #, fuzzy
+msgid "PROCESS_INACTIVE"
+msgstr "Processus cellulaires"
+
+#, fuzzy
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
 msgstr "Processus cellulaires"
 
@@ -5185,10 +5193,6 @@ msgstr "Processus cellulaires"
 #, fuzzy
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Processus cellulaires"
-
-#, fuzzy
-msgid "PROCESS_TOGGLE_TOOLTIP"
-msgstr "Retour au menu principal"
 
 msgid "PROGRAMMING_TEAM"
 msgstr "Équipe de programmation"
@@ -7560,6 +7564,7 @@ msgstr "Pas de modifications."
 msgid "WIKI_BINDING_AGENT_PROCESSES"
 msgstr "Pas de processus."
 
+#, fuzzy
 msgid "WIKI_BINDING_AGENT_REQUIREMENTS"
 msgstr ""
 "Une cellule doit avoir un [b][color=#3796e1][url=thriveopedia:nucleus]noyau[/url][/color][/b] pour pouvoir développer des [b]agents liants[/b].\n"
@@ -7754,6 +7759,7 @@ msgstr ""
 "\n"
 "Une version optimisée de la [b]photosythèse chromatophorienne[/b] des [b][color=#3796e1][url=thriveopedia:chromatophore]thylakoïds[/url][/color][/b]. Elle vous permet de gouter le soleil plus efficacement ! Comme son homologue procaryote, les [b]chloroplastes[/b] effectuent la [b]photosythèse[/b] uniquement dans les secteurs illuminés ; et plus une cellule est proche de la surface plus le processus est effectif."
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_REQUIREMENTS"
 msgstr ""
 "Une cellule doit avoir un [b][color=#3796e1][url=thriveopedia:nucleus]noyau[/url][/color][/b] pour pouvoir développer des [b]chloroplastes[/b].\n"
@@ -7823,6 +7829,7 @@ msgstr "Pour des informations sur les coulisses et la théorie derrière les com
 msgid "WIKI_COMPOUNDS_INTRO"
 msgstr "Pendant les premières phases, les ressources principales sont les [b]composés[/b]. Ils sont utilisés par les processus métabolique pour en créer d'autres ou sont consommés d'une autre manière."
 
+#, fuzzy
 msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
 msgstr ""
 "Il existe plusieurs [b]composés[/b] différents dans Thrive.\n"
@@ -7984,6 +7991,7 @@ msgstr ""
 "[indent]— Les processus avec une capacité de 0 n'affectent pas le système.[/indent]\n"
 "[indent]— C’est terminé ! :D[/indent]"
 
+#, fuzzy
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
 msgstr ""
 "[indent]— Dans Thrive, les substances qui composent les choses sont appelées composés, et peuvent être considérées comme des ressources. Elles ne se limitent pas à la définition scientifique de \"composé\" comme étant une combinaison de deux ou plusieurs éléments liés entre eux. Les composés au sens de ressource peuvent être des éléments (comme l’oxygène), des composés (comme l’ammoniac) ou d’autres substances (agents chimiques ou toxines).[/indent]\n"
@@ -8063,6 +8071,7 @@ msgstr "Ce sont des [color=#3796e1][url=thriveopedia:Compounds]Composés[/url][/
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_INTRO"
 msgstr "Il y a un certain nombre de [b]conditions environnementales[/b] dans Thrive. Elles influent sur les processus de certains organites. Par exemple, la [thrive:compound type=\"sunlight\"][/thrive:compound] affecte la [b]photosynthèse[/b] des [color=#3796e1][url=thriveopedia:chloroplast]chloroplastes[/url][/color]."
 
+#, fuzzy
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_PHYSICAL_CONDITIONS"
 msgstr ""
 "Il y a trois conditions pricipales qui affectent les processus méaboliques :\n"
@@ -8104,6 +8113,7 @@ msgstr ""
 "\n"
 "Une méthode de production d'énergie sans [thrive:compound type=\"glucose\"][/thrive:compound]. COnsomme du [thrive:compound type=\"iron\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_FERROPLAST_REQUIREMENTS"
 msgstr ""
 "Une cellule doit avoir un [b][color=#3796e1][url=thriveopedia:nucleus]Noyau[/url][/color][/b] pour développer des [b]Ferroplastes[/b].\n"
@@ -8517,6 +8527,7 @@ msgstr ""
 "\n"
 "Une méthode de production d'énergie qui ne demande pas d'[thrive:compound type=\"oxygen\"][/thrive:compound]. Est plus efficace que l'[b][color=#3796e1][url=thriveopedia:hydrogenase]Hydrogenase[/url][/color][/b] mais moins que l'[b][color=#3796e1][url=thriveopedia:mitochondrion]Mitochondrion[/url][/color][/b] quand une certaine quantité d'oxygène est présente. Nécéssite un afflux régulier de [thrive:compound type=\"glucose\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_HYDROGENOSOME_REQUIREMENTS"
 msgstr ""
 "Une cellule doit posséder un [b][color=#3796e1][url=thriveopedia:nucleus]noyau[/url][/color][/b] pour évoluer des [b]hydrogénosomes[/b].\n"
@@ -8563,6 +8574,7 @@ msgstr "Prochainement."
 msgid "WIKI_INJECTISOME_PILUS"
 msgstr "Pilus injectisome"
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_EFFECTS"
 msgstr ""
 "L'ajout d'un [b]lysosome[/b] avec de la [b]chitinase[/b] ou de la [b]cellulase[/b] permet à une cellule de digérer d'autres cellules avec des parois en [b]chitine[/b] ou en [b]cellulose[/b], respectivement. Les cellules indigestes — celles pour lesquelles une cellule ne possède pas l'enzyme requise — sont immédiatement rejetées.\n"
@@ -8578,6 +8590,7 @@ msgstr ""
 "\n"
 "Les [b]lysosomes[/b] sont des organites membranaires qui contiennent des enzymes hydrolytiques qui peuvent décomposer diverses biomolécules. Les [b]lysosomes[/b] permettent à la cellule de digérer la matière ingérée par endocytose et de détruire les déchets cellulaires grâce à l'autophagie."
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_MODIFICATIONS"
 msgstr ""
 "Modifiez un [b]lysosome[/b] pour sélectiopnner quelle enzyme il contient. Par défaut, il contient de la [b]lipase[/b] qui dégrade les [b]membranes normales[/b] et les [b]membranes doubles[/b].\n"
@@ -8590,6 +8603,7 @@ msgstr ""
 msgid "WIKI_LYSOSOME_PROCESSES"
 msgstr "Pas de processus."
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_REQUIREMENTS"
 msgstr ""
 "Une cellule doit posséder un [b][color=#3796e1][url=thriveopedia:nucleus]noyau[/url][/color][/b] pour pouvoir développer des [b]lysosomes[/b].\n"
@@ -8810,6 +8824,7 @@ msgstr ""
 "\n"
 "Une des principales méthode de prodiction d'énergie, plus efficace que les [b][color=#3796e1][url=thriveopedia:metabolosome]métabolosomes[/url][/color][/b]. Demande un afflux de [thrive:compound type=\"glucose\"][/thrive:compound] constant. Taux proportionel à la concentration d'[thrive:compound type=\"oxygen\"][/thrive:compound] dans l'environnement."
 
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_REQUIREMENTS"
 msgstr ""
 "Une cellule doit posséder un [b][color=#3796e1][url=thriveopedia:nucleus]noyau[/url][/color][/b] pour pouvoir développer des [b]mitochondries[/b].\n"
@@ -8837,6 +8852,7 @@ msgstr ""
 "[indent]—   [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/images/thumb/7/75/Multiperceptionconcept.jpg/120px-Multiperceptionconcept.jpg]Concept de perception[/url][/color] \t\t\t[/indent]\n"
 "[indent]—   [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/images/thumb/9/9f/Multieditorconcept.jpeg/120px-Multieditorconcept.jpeg]Concept d'éditeur[/url][/color] \t\t\t[/indent]"
 
+#, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Le développement de la phase multicellulaire a commencé mais elle n'est pas encore très détaillée."
 
@@ -8914,6 +8930,7 @@ msgstr ""
 "\n"
 "Comme beaucoup d'organites procaryotes, le [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytoplasm[/url][/color][/b] entourant la [b]nitrogénase[/b] réalise une forme de [b]glycolyse[/b] moins efficace, transformant le [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_REQUIREMENTS"
 msgstr ""
 "Si les améliorations des organelles sont activées dans les paramètres du jeu, la condition suivante doit être vraie [i]pour la cellule du joueur[/i] :\n"
@@ -9036,6 +9053,7 @@ msgstr "Pas de modifications."
 msgid "WIKI_OXYTOXISOME_PROCESSES"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_REQUIREMENTS"
 msgstr ""
 "Si l'amélioration des organites est activée dans les paramètres de la partie, la condition suivante doit être remplie [i]pour la cellule du joueur[/i] :\n"
@@ -9251,6 +9269,7 @@ msgstr "Pas de modifications."
 msgid "WIKI_PERFORATOR_PILUS_PROCESSES"
 msgstr "Pas de processus."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_REQUIREMENTS"
 msgstr ""
 "Si l'amélioration des organites est activée dans les paramètres de la partie, [i]au moins une[/i] des conditions suivantes doit être vraie [i]pour la cellule du joueur[/i] :\n"
@@ -9382,6 +9401,7 @@ msgstr ""
 msgid "WIKI_RUSTICYANIN_UPGRADES"
 msgstr "Pas d'améliorations."
 
+#, fuzzy
 msgid "WIKI_SIGNALING_AGENT_EFFECTS"
 msgstr ""
 "Si la cellule du joueur a des [b]agents de signalisation[/b], le joueur peut appuyer sur une touche ([b]V[/b] par défaut) pour ouvrir le panneau d'émission d'ordres et émettre un ordre à tous les membre de l'espèce. Chaque ordre persiste jusqu'au prochain ordre. Les options sont :\n"
@@ -9535,6 +9555,7 @@ msgstr ""
 "\n"
 "Génère de l'énergie à partir de l'augmentation de la [thrive:compound type=\"temperature\"][/thrive:compound]. Les enzymes thermosensibles changent de forme quand la [thrive:compound type=\"temperature\"][/thrive:compound] s'élève, permettant la conversion de divers composés en [thrive:compound type=\"glucose\"][/thrive:compound]. Lorsque la cellule refroidit, les enzymes reprennent leur forme originale, permettant de recommencer un cycle. Version plus efficiente de la [i]thermosynthèse bactérienne[/i] réalisé par la [b][color=#3796e1][url=thriveopedia:thermosynthase]Thermosynthase[/url][/color][/b]. Le taux de production de glucose est proportionnel au [i]discriminant[/i] de la [thrive:compound type=\"temperature\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_REQUIREMENTS"
 msgstr ""
 "Les [b]Thermoplastes[/b] n'apparaissent que dans les jeux avec [i]LAWK[/i] désactivé dans les paramètres du jeu.\n"
@@ -9622,6 +9643,7 @@ msgstr ""
 "\n"
 "Comme les [b]thylakoïdes[/b] sont suspendus directement dans le [b][color=#3796e1][url=thriveopedia:cytoplasm]cytoplasme[/url][/color][/b], le fluide environnant effectue de la [b]glycolyse[/b]."
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_REQUIREMENTS"
 msgstr ""
 "Si les améliorations des organelles sont activées dans les paramètres du jeu, la condition suivante doit être vraie [i]pour la cellule du joueur[/i] :\n"
@@ -9885,6 +9907,10 @@ msgstr "Dézoomer"
 
 #~ msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 #~ msgstr "(cout de l'osmorégulation de l'espèce du joueur)"
+
+#, fuzzy
+#~ msgid "PROCESS_TOGGLE_TOOLTIP"
+#~ msgstr "Retour au menu principal"
 
 #, fuzzy
 #~ msgid "KEEP_CURRENT_SHORT"

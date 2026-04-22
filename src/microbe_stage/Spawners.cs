@@ -201,6 +201,7 @@ public static class SpawnHelpers
     /// <summary>
     ///   Spawns an agent projectile
     /// </summary>
+    /// <returns>The created projectile entity.</returns>
     public static Entity SpawnIronProjectile(IWorldSimulation worldSimulation,
         float amount, float lifetime, Vector3 location, Vector3 direction, float scale, Entity emitter)
     {
@@ -345,7 +346,8 @@ public static class SpawnHelpers
         bool usesDamageTouch = chunkType.Damages > 0 || chunkType.DeleteOnTouch;
 
         // This needs to be skipped for particle type chunks (as they don't have materials)
-        bool hasMicrobeShaderParameters = !selectedMesh.IsParticles && !selectedMesh.MissingDefaultShaderSupport;
+        bool hasMicrobeShaderParameters =
+            selectedMesh is { IsParticles: false, MissingDefaultShaderSupport: false };
 
         // Due to the very many combinations, we need to construct a bitflag-variable and then look it up with a
         // dictionary lookup
@@ -998,6 +1000,7 @@ public static class SpawnHelpers
     /// <summary>
     ///   Calculates spaced out positions to spawn a bacteria swarm (to avoid them all overlapping)
     /// </summary>
+    /// <returns>The swarm member positions, or null if no swarm should spawn.</returns>
     public static List<Vector3>? CalculateBacteriaSwarmPositions(Vector3 initialLocation, MicrobeSpecies species,
         Random random)
     {
@@ -1418,14 +1421,9 @@ public static class SpawnHelpers
                 temp.Add(typeof(FadeOutActions));
             }
 
-            if ((flags & ChunkComponentFlag.SimpleShape) != 0)
-            {
-                temp.Add(typeof(SimpleShapeCreator));
-            }
-            else
-            {
-                temp.Add(typeof(CollisionShapeLoader));
-            }
+            temp.Add((flags & ChunkComponentFlag.SimpleShape) != 0 ?
+                typeof(SimpleShapeCreator) :
+                typeof(CollisionShapeLoader));
 
             if ((flags & ChunkComponentFlag.Engulfable) != 0)
                 temp.Add(typeof(Engulfable));
@@ -1450,22 +1448,21 @@ public static class SpawnHelpers
 /// <summary>
 ///   Spawns microbes of a specific species
 /// </summary>
-public class MicrobeSpawner : Spawner
+public class MicrobeSpawner(Species species, IMicrobeSpawnEnvironment spawnEnvironmentSource) : Spawner
 {
-    private readonly IMicrobeSpawnEnvironment spawnEnvironmentSource;
     private readonly Random random = new();
-
-    public MicrobeSpawner(Species species, IMicrobeSpawnEnvironment spawnEnvironmentSource)
-    {
-        this.spawnEnvironmentSource = spawnEnvironmentSource;
-        Species = species ?? throw new ArgumentException("species is null");
-    }
 
     public override bool SpawnsEntities => true;
 
-    public Species Species { get; }
+    public Species Species { get; } = species ?? throw new ArgumentException("species is null");
 
     public override string Name => ToString();
+
+    /// <summary>
+    ///   Gets the radius of the species to spawn. This overestimates things when the colony is spawned partially grown
+    ///   in multicellular, but that is safer than underestimating and spawning stuff inside terrain.
+    /// </summary>
+    public override float TerrainCollisionRadius => spawnEnvironmentSource.GetSpeciesTerrainCollisionRadius(species);
 
     public override SpawnQueue Spawn(IWorldSimulation worldSimulation, Vector3 location, ISpawnSystem spawnSystem)
     {
@@ -1569,19 +1566,15 @@ public class CompoundCloudSpawner : Spawner
 /// <summary>
 ///   Spawns chunks of a specific type
 /// </summary>
-public class ChunkSpawner : Spawner
+public class ChunkSpawner(ChunkConfiguration chunkType) : Spawner
 {
-    private readonly ChunkConfiguration chunkType;
     private readonly Random random = new();
-
-    public ChunkSpawner(ChunkConfiguration chunkType)
-    {
-        this.chunkType = chunkType;
-    }
 
     public override bool SpawnsEntities => true;
 
     public override string Name => ToString();
+
+    public override float TerrainCollisionRadius => chunkType.Radius;
 
     public override SpawnQueue Spawn(IWorldSimulation worldSimulation, Vector3 location, ISpawnSystem spawnSystem)
     {
