@@ -79,7 +79,6 @@ public partial class SpawnSystem : BaseSystem<World, float>, ISpawnSystem, IArch
     private float spawnedEntityWeight;
     private int despawnedCount;
 
-    private float spawnRadiusCheck = 5.5f;
     private int maxDifferentPositionsCheck = 10;
 
     public SpawnSystem(IWorldSimulation worldSimulation, World world, IsSpawnPositionBad badSpawnPositionCheck) :
@@ -183,10 +182,7 @@ public partial class SpawnSystem : BaseSystem<World, float>, ISpawnSystem, IArch
     public void AddSpawnType(Spawner spawner, float spawnDensity, int spawnRadius)
     {
         spawner.SpawnRadius = spawnRadius;
-        spawner.SpawnRadiusSquared = spawnRadius * spawnRadius;
 
-        float minSpawnRadius = spawnRadius * Constants.MIN_SPAWN_RADIUS_RATIO;
-        spawner.MinSpawnRadiusSquared = minSpawnRadius * minSpawnRadius;
         spawner.Density = spawnDensity;
 
         spawnTypes.Add(spawner);
@@ -521,7 +517,7 @@ public partial class SpawnSystem : BaseSystem<World, float>, ISpawnSystem, IArch
                 var finalPosition = sectorCenter + displacement;
 
                 // Skip spawning stuff into the terrain
-                if (badSpawnPositionCheck.Invoke(finalPosition, spawnRadiusCheck))
+                if (badSpawnPositionCheck.Invoke(finalPosition, spawnType.TerrainCollisionRadius))
                     continue;
 
                 spawned = true;
@@ -553,7 +549,7 @@ public partial class SpawnSystem : BaseSystem<World, float>, ISpawnSystem, IArch
                     var position = playerLocation + new Vector3(MathF.Cos(angle) * Constants.SPAWN_SECTOR_SIZE * 2, 0,
                         MathF.Sin(angle) * Constants.SPAWN_SECTOR_SIZE * 2);
 
-                    if (badSpawnPositionCheck.Invoke(position, spawnRadiusCheck))
+                    if (badSpawnPositionCheck.Invoke(position, spawnType.TerrainCollisionRadius))
                         continue;
 
                     spawns += SpawnWithSpawner(spawnType, position, ref spawnsLeftThisFrame);

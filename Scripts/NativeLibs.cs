@@ -1832,6 +1832,9 @@ public class NativeLibs
 
         ColourConsole.WriteNormalLine("Uploading data, this may take a while if the precompiled object is large");
 
+        // We upload at most like 10 native libs, so a few re-created clients is not a problem here.
+
+        // ReSharper disable once ShortLivedHttpClient
         using var normalClient = new HttpClient();
 
         bool uploaded = false;
