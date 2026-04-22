@@ -30,6 +30,7 @@ public partial class ToolTipManager : CanvasLayer
 
 #pragma warning disable CA2213
     private Control groupHolder = null!;
+    private Control? mainToolTipOwner;
 #pragma warning restore CA2213
 
     private bool display;
@@ -105,6 +106,23 @@ public partial class ToolTipManager : CanvasLayer
                 displayTimer = MainToolTip.DisplayDelay;
             }
         }
+    }
+
+    public void ShowToolTip(ICustomToolTip tooltip, Control owner)
+    {
+        MainToolTip = tooltip;
+        mainToolTipOwner = owner;
+        Display = true;
+    }
+
+    public void HideToolTip(ICustomToolTip tooltip)
+    {
+        if (MainToolTip != tooltip)
+            return;
+
+        MainToolTip = null;
+        mainToolTipOwner = null;
+        Display = false;
     }
 
     public override void _Ready()
@@ -430,7 +448,7 @@ public partial class ToolTipManager : CanvasLayer
                 break;
             case ToolTipPositioning.ControlBottomRightCorner:
             {
-                var control = ToolTipHelper.GetControlAssociatedWithToolTip(MainToolTip);
+                var control = mainToolTipOwner ?? ToolTipHelper.GetControlAssociatedWithToolTip(MainToolTip);
                 if (control != null)
                 {
                     position = new Vector2(control.GlobalPosition.X + control.Size.X,

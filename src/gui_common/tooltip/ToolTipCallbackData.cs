@@ -32,19 +32,12 @@ public partial class ToolTipCallbackData : RefCounted
 
     public void OnMouseEnter()
     {
-        ToolTipManager.Instance.MainToolTip = ToolTip;
-        ToolTipManager.Instance.Display = true;
+        ToolTipManager.Instance.ShowToolTip(ToolTip, ToolTipable);
     }
 
     public void OnMouseExit()
     {
-        // This used to always unset the main tooltip, but this now only unsets the tooltip if no one else had touched
-        // it in the meantime
-        if (ToolTipManager.Instance.MainToolTip == ToolTip)
-        {
-            ToolTipManager.Instance.MainToolTip = null;
-            ToolTipManager.Instance.Display = false;
-        }
+        ToolTipManager.Instance.HideToolTip(ToolTip);
     }
 
     public void OnExitingTree()
