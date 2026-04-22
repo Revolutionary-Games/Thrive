@@ -655,22 +655,30 @@ public partial class Jukebox : Node
 
         if (category != null)
         {
-            // Reset PlayedOnce flag in all tracks
-            foreach (var list in category.TrackLists)
-            {
-                foreach (var track in list.GetAllTracks())
-                {
-                    track.PlayedOnce = false;
-                }
-            }
+            ResetPlayedOnceFlag(category);
         }
 
         // We don't have to do anything for the Reset return type here
 
-        if (category?.Return != MusicCategory.ReturnType.Continue)
-            return;
+        if (category?.Return == MusicCategory.ReturnType.Continue)
+        {
+            StoreContinuePositions(category);
+        }
+    }
 
-        // Store continue positions
+    private void ResetPlayedOnceFlag(MusicCategory category)
+    {
+        foreach (var list in category.TrackLists)
+        {
+            foreach (var track in list.GetAllTracks())
+            {
+                track.PlayedOnce = false;
+            }
+        }
+    }
+
+    private void StoreContinuePositions(MusicCategory category)
+    {
         foreach (var list in category.TrackLists)
         {
             // This doesn't restrict tracks to ones that can be played according to the context. This is done to
