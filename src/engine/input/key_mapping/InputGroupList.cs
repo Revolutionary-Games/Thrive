@@ -122,7 +122,7 @@ public partial class InputGroupList : VBoxContainer
         // Take the ones with any interception of the environments.
         // Take the input actions.
         // Get the first action where the event collides or null if there aren't any.
-        return ActiveInputGroupList.Where(g => g.EnvironmentId.Any(e => environments.Contains(e)))
+        return ActiveInputGroupList.Where(g => g.EnvironmentId.Any(environments.Contains))
             .SelectMany(g => g.Actions)
             .Where(a => !Equals(inputActionItem, a))
             .SelectMany(a => a.Inputs)

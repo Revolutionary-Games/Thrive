@@ -1271,7 +1271,7 @@ public partial class PatchMapDrawer : Control
         // Generate a list of patches to connect to
         var patches = targetRegion.Patches
             .Where(p => p.Visibility == MapElementVisibility.Unknown)
-            .Where(p => adjacencies.Contains(p));
+            .Where(adjacencies.Contains);
 
         foreach (var targetPatch in patches)
         {
@@ -1332,7 +1332,7 @@ public partial class PatchMapDrawer : Control
 
         if (!endingRegion.Patches
                 .Where(p => p.Visibility == MapElementVisibility.Unknown)
-                .Any(p => adjacencies.Contains(p)))
+                .Any(adjacencies.Contains))
         {
             ApplyFadeToLine(line, reversed);
         }
