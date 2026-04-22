@@ -177,7 +177,9 @@ public class ModifyExistingSpecies : IRunStep
 
                 foreach (var mutation in mutationsToTry)
                 {
-                    mutation.MutatedSpecies.OnEdited();
+                    // Don't call OnEdited() here as that repositions organelles in-place. Auto-evo mutations may
+                    // share unchanged organelle templates with their parent species to avoid needless cloning.
+                    mutation.MutatedSpecies.OnAttemptedInAutoEvo(false);
 
 #if DEBUG
                     if (mutation.MutatedSpecies.AutoEvoAttemptCache == 0)

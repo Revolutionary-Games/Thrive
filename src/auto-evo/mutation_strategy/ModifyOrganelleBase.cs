@@ -103,11 +103,7 @@ public abstract class ModifyOrganelleBase : IMutationStrategy<MicrobeSpecies>
                 }
                 else
                 {
-                    // TODO: switch away from cloning again once ensured that auto-evo does not modify original
-                    // organelles
-                    newSpecies.Organelles.AddAutoEvoAttemptOrganelle(organelleList[j].Clone());
-
-                    // newSpecies.Organelles.AddAutoEvoAttemptOrganelle(organelleList[j]);
+                    newSpecies.Organelles.AddAutoEvoAttemptOrganelle(organelleList[j]);
                 }
             }
 

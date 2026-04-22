@@ -31,9 +31,20 @@ internal class MoveOrganelleBack : IMutationStrategy<MicrobeSpecies>
 
         foreach (OrganelleTemplate organelle in baseSpecies.Organelles.Where(x => allOrganelles.Contains(x.Definition)))
         {
-            MicrobeSpecies newSpecies = (MicrobeSpecies)baseSpecies.Clone();
+            MicrobeSpecies newSpecies = baseSpecies.Clone(false);
 
-            newSpecies.Organelles.Remove(organelle);
+            var baseOrganelles = baseSpecies.Organelles.Organelles;
+            var count = baseOrganelles.Count;
+
+            for (var i = 0; i < count; ++i)
+            {
+                var existingOrganelle = baseOrganelles[i];
+
+                if (ReferenceEquals(existingOrganelle, organelle))
+                    continue;
+
+                newSpecies.Organelles.AddAutoEvoAttemptOrganelle(existingOrganelle);
+            }
 
             if (AddOrganelle(organelle.Definition, Direction.Rear, newSpecies, workMemory1, workMemory2, workMemory3,
                     random))
