@@ -17,9 +17,6 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     public bool ShowZeroModifiers;
 
     private const float PressureSliderLogOffset = 100000;
-    private const float PressureToleranceSliderLogOffset = 10000;
-    private const float PressureToleranceSliderMinimum = 200000;
-    private const float PressureToleranceSliderMaximum = 8000000;
     private const float PressureEditorRounding = 10000;
 
     private readonly Dictionary<IPlayerReadableName, float> tempToleranceModifiers = new();
@@ -555,8 +552,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         pressureSlider.Value = ActualPressureToSliderValue(CurrentTolerances.PressureMinimum,
             Constants.TOLERANCE_PRESSURE_MAX, PressureSliderLogOffset);
-        pressureToleranceRangeSlider.Value = ActualPressureToSliderValue(CurrentTolerances.PressureTolerance,
-            PressureToleranceSliderMaximum, PressureToleranceSliderLogOffset, PressureToleranceSliderMinimum);
+        pressureToleranceRangeSlider.Value = CurrentTolerances.PressureTolerance;
 
         oxygenResistanceSlider.Value = CurrentTolerances.OxygenResistance;
         uvResistanceSlider.Value = CurrentTolerances.UVResistance;
@@ -656,16 +652,13 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         reusableTolerances ??= new EnvironmentalTolerances();
         reusableTolerances.CopyFrom(CurrentTolerances);
-        reusableTolerances.PressureTolerance = RoundPressureForEditing(
-            SliderValueToActualPressure(value, PressureToleranceSliderMaximum, PressureToleranceSliderLogOffset,
-                PressureToleranceSliderMinimum));
+        reusableTolerances.PressureTolerance = value;
 
         automaticallyChanging = true;
 
         if (!TriggerChangeIfPossible())
         {
-            pressureToleranceRangeSlider.Value = ActualPressureToSliderValue(CurrentTolerances.PressureTolerance,
-                PressureToleranceSliderMaximum, PressureToleranceSliderLogOffset, PressureToleranceSliderMinimum);
+            pressureToleranceRangeSlider.Value = CurrentTolerances.PressureTolerance;
         }
 
         automaticallyChanging = false;
