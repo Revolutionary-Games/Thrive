@@ -40,7 +40,6 @@ public class NativeLibs
     private const string ExtensionInstallFolderDebug = "lib/debug";
 
     private static readonly string[] MacArchitectures = ["x86_64", "arm64"];
-    private static readonly HttpClient PublicDownloadClient = new();
 
     /// <summary>
     ///   Default libraries to operate on when nothing is explicitly selected. This no longer includes the early checks
@@ -1833,6 +1832,11 @@ public class NativeLibs
 
         ColourConsole.WriteNormalLine("Uploading data, this may take a while if the precompiled object is large");
 
+        // We upload at most like 10 native libs, so a few re-created clients is not a problem here.
+
+        // ReSharper disable once ShortLivedHttpClient
+        using var normalClient = new HttpClient();
+
         bool uploaded = false;
 
         for (int i = 0; i < 10; ++i)
@@ -1848,7 +1852,7 @@ public class NativeLibs
 
             // We have created the item already, do not cancel
             // ReSharper disable once MethodSupportsCancellation
-            response = await PublicDownloadClient.PutAsync(uploadResponse.UploadUrl,
+            response = await normalClient.PutAsync(uploadResponse.UploadUrl,
                 new StreamContent(File.OpenRead(compressedLocation)));
 
             if (!response.IsSuccessStatusCode)
@@ -2020,6 +2024,9 @@ public class NativeLibs
 
         ColourConsole.WriteInfoLine($"Downloading {library} for {platform} version: {version}");
 
+        // Download the file without sending the authentication headers used for the DevCenter
+        using var normalClient = new HttpClient();
+
         var stopwatch = Stopwatch.StartNew();
 
         // Retry a few times in case the storage is not available
@@ -2045,7 +2052,7 @@ public class NativeLibs
                     completion = HttpCompletionOption.ResponseContentRead;
                 }
 
-                using var download = await PublicDownloadClient.GetAsync(downloadUrl, completion,
+                using var download = await httpClient.GetAsync(downloadUrl, completion,
                     cancellationToken);
 
                 download.EnsureSuccessStatusCode();
