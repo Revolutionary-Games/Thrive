@@ -677,13 +677,18 @@ public static class Constants
     ///   How many organelles a cell needs to have to be considered fully specialized. (i.e. the full specialization
     ///   bonus is granted)
     /// </summary>
-    public const int CELL_SPECIALIZATION_STRENGTH_FULL_AT = 20;
+    public const int CELL_SPECIALIZATION_STRENGTH_FULL_AT = 10;
 
     /// <summary>
     ///   Controls how strong the cell specialization effect is (this is a flat multiplier right now but we could use
     ///   something like a power curve or another function for diminishing returns)
     /// </summary>
-    public const float CELL_SPECIALIZATION_STRENGTH_MULTIPLIER = 0.8f;
+    public const float CELL_SPECIALIZATION_STRENGTH_MULTIPLIER = 0.4f;
+
+    /// <summary>
+    ///   Controls how much having a nucleus boosts the cell specialization effect
+    /// </summary>
+    public const float CELL_SPECIALIZATION_NUCLEUS_MULTIPLIER = 2.0f;
 
     /// <summary>
     ///   If more chunks exist at once than this, then some are forced to despawn immediately. In reality the effective
@@ -992,10 +997,9 @@ public static class Constants
     public const float TOXIN_DIGESTION_DAMAGE_CHECK_INTERVAL = 0.9f;
 
     /// <summary>
-    ///   Determines how big of a fraction of damage (of total health)
-    ///   is dealt to a microbe at a time when it digests a toxic cell.
+    ///   Determines how damage is dealt to a microbe at a time when it digests a toxic cell.
     /// </summary>
-    public const float TOXIN_DIGESTION_DAMAGE_FRACTION = 0.09f;
+    public const float TOXIN_DIGESTION_DAMAGE = 4.0f;
 
     /// <summary>
     ///   Lowest remaining health fraction where the most risk-taking AI microbes start considering ejecting a toxic
