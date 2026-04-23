@@ -952,23 +952,23 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         if (playerIsMulticellular)
         {
-            ref var earlySpeciesType = ref Player.Get<MulticellularSpeciesMember>();
+            ref var multicellularSpeciesType = ref Player.Get<MulticellularSpeciesMember>();
 
             var resolvedTolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(
-                MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(earlySpeciesType.Species,
+                MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(multicellularSpeciesType.Species,
                     CurrentBiome));
 
             // Allow updating the first cell type to reproduce (reproduction order changed)
-            earlySpeciesType.MulticellularCellType =
-                earlySpeciesType.Species.ModifiableGameplayCells[0].ModifiableCellType;
+            multicellularSpeciesType.MulticellularCellType =
+                multicellularSpeciesType.Species.ModifiableGameplayCells[0].ModifiableCellType;
 
             environmentalEffects.ApplyEffects(resolvedTolerances,
-                earlySpeciesType.MulticellularCellType.SpecializationBonus *
-                earlySpeciesType.Species.GetAdjacencySpecializationBonus(0), ref bioProcesses);
+                multicellularSpeciesType.MulticellularCellType.SpecializationBonus *
+                multicellularSpeciesType.Species.GetAdjacencySpecializationBonus(0), ref bioProcesses);
 
             cellProperties.ReApplyCellTypeProperties(ref environmentalEffects, Player,
-                earlySpeciesType.MulticellularCellType, earlySpeciesType.Species, WorldSimulation, workData1,
-                workData2);
+                multicellularSpeciesType.MulticellularCellType, multicellularSpeciesType.Species, WorldSimulation,
+                workData1, workData2);
         }
         else
         {

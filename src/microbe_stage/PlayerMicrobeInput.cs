@@ -496,18 +496,16 @@ public partial class PlayerMicrobeInput : NodeWithInput
         if (!stage.HasPlayer)
             return;
 
-        var workData1 = new List<Hex>();
-        var workData2 = new List<Hex>();
+        if (!stage.Player.TryGet<MulticellularSpeciesMember>(out var multicellularSpeciesType))
+            return;
 
         ref var cellProperties = ref stage.Player.Get<CellProperties>();
 
-        ref var earlySpeciesType = ref stage.Player.Get<MulticellularSpeciesMember>();
-
-        earlySpeciesType.MulticellularCellType = earlySpeciesType.Species.ModifiableCellTypes[1];
+        multicellularSpeciesType.MulticellularCellType = multicellularSpeciesType.Species.ModifiableCellTypes[1];
 
         cellProperties.ReApplyCellTypeProperties(ref stage.Player.Get<MicrobeEnvironmentalEffects>(), stage.Player,
-            earlySpeciesType.MulticellularCellType, earlySpeciesType.Species, stage.WorldSimulation, workData1,
-            workData2);
+            multicellularSpeciesType.MulticellularCellType, multicellularSpeciesType.Species, stage.WorldSimulation,
+            new List<Hex>(), new List<Hex>());
     }
 
     [RunOnKey("g_cheat_glucose")]
