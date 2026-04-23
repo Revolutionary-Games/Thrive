@@ -832,7 +832,7 @@ public static class MicrobeInternalCalculations
     public static int CalculateMostCommonSpecializationOrganelle(IReadOnlyList<IReadOnlyOrganelleTemplate> organelles,
         Dictionary<OrganelleDefinition, int> tempWorkMemory)
     {
-        int totalOrganelles = 0;
+        int totalHexCount = 0;
         tempWorkMemory.Clear();
 
         var count = organelles.Count;
@@ -842,13 +842,22 @@ public static class MicrobeInternalCalculations
 
             var definition = organelle.Definition;
 
-            tempWorkMemory.TryGetValue(definition, out var existingCount);
-            tempWorkMemory[definition] = existingCount + 1;
+            // Don't count the nucleus, because of its omnipresence and large size
+            if (definition.HasNucleusFeature)
+            {
+                tempWorkMemory[definition] = 0;
+                continue;
+            }
 
-            ++totalOrganelles;
+            var hexCount = definition.HexCount;
+
+            tempWorkMemory.TryGetValue(definition, out var existingCount);
+            tempWorkMemory[definition] = existingCount + hexCount;
+
+            totalHexCount += hexCount;
         }
 
-        if (totalOrganelles < 1)
+        if (totalHexCount < 1)
             return 0;
 
         // Merge equivalent organelles to make moving to eukaryotic variants easier
@@ -872,7 +881,7 @@ public static class MicrobeInternalCalculations
             }
         }
 
-        return totalOrganelles;
+        return totalHexCount;
     }
 
     /// <summary>
@@ -882,32 +891,45 @@ public static class MicrobeInternalCalculations
     public static float CalculateSpecializationBonus(IReadOnlyList<IReadOnlyOrganelleTemplate> organelles,
         Dictionary<OrganelleDefinition, int> tempWorkMemory)
     {
-        int totalOrganelles = CalculateMostCommonSpecializationOrganelle(organelles, tempWorkMemory);
-        if (totalOrganelles < 1)
+        int totalHexCount = CalculateMostCommonSpecializationOrganelle(organelles, tempWorkMemory);
+        if (totalHexCount < 2)
             return 1;
 
-        if (totalOrganelles < Constants.CELL_SPECIALIZATION_APPLIES_AFTER_SIZE)
-            return 1;
+        var hasNucleus = false;
 
-        int maxOrganelleCount = 0;
+        float concentration = 0.0f;
 
+        // The following calculation of concentration is an implementation of the Simpson Diversity Index,
+        // an existing algorithm used for evaluating ecological diversity, among other things
+        // maximum possible diversity at a given size gives 0, while complete uniformity gives 1
+        // Additional explanation can be found at: https://en.wikipedia.org/wiki/Diversity_index#Simpson_index
         foreach (var entry in tempWorkMemory)
         {
-            if (entry.Value > maxOrganelleCount)
+            if (entry.Key.HasNucleusFeature)
             {
-                maxOrganelleCount = entry.Value;
+                hasNucleus = true;
+                continue;
             }
+
+            var hexCount = entry.Value;
+            concentration += hexCount * (hexCount - 1);
         }
 
-        // The raw bonus is just the ratio of the main organelle type
-        var bonus = (float)maxOrganelleCount / totalOrganelles;
+        concentration /= totalHexCount * (totalHexCount - 1);
+
+        var strength = Constants.CELL_SPECIALIZATION_STRENGTH_MULTIPLIER;
+
+        // If the cell has a nucleus max out the strength factor and apply an additional bonus
+        if (hasNucleus)
+        {
+            return 1 + concentration * strength * Constants.CELL_SPECIALIZATION_NUCLEUS_MULTIPLIER;
+        }
 
         // Calculate a strength factor that adjusts things
-        var strength = Math.Min((float)totalOrganelles / Constants.CELL_SPECIALIZATION_STRENGTH_FULL_AT, 1);
-        strength *= Constants.CELL_SPECIALIZATION_STRENGTH_MULTIPLIER;
+        strength *= Math.Min(((float)totalHexCount - 1) / Constants.CELL_SPECIALIZATION_STRENGTH_FULL_AT, 1);
 
         // Then return the final result as the bonus being anything above 1
-        return 1 + bonus * strength;
+        return 1 + concentration * strength;
     }
 
     private static float MovementForce(float movementForce, float directionFactor)

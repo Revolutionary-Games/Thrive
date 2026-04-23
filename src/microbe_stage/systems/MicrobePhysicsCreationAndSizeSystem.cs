@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading;
@@ -280,7 +281,12 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
 
 #if DEBUG
         if (combinedData.Count > 0)
+        {
+            if (Debugger.IsAttached)
+                Debugger.Break();
+
             throw new Exception("Combined shape data list was not properly cleared on last use");
+        }
 #endif
 
         // Base microbe shape is always first
@@ -299,6 +305,11 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
             if (memberOrganelles == null)
                 throw new Exception("This should not be null with colonies");
 
+            // Safety check data before trying to run the list processing
+            // Single member colonies can be processed entirely, but in other cases the main membrane isn't in the list
+            if (colonyMembranes.Count != memberCount - 1 && memberCount != 1)
+                throw new Exception("Colony member count mismatch with given membrane count");
+
             // The bodies need to be added colony member list order
             for (int i = 0; i < memberCount; ++i)
             {
@@ -313,9 +324,21 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
                     continue;
                 }
 
-                // The -1 is here as the membrane list excludes the lead cell (which is in the first position in
-                // members)
-                var (membrane, isBacteria) = colonyMembranes[i - 1];
+                // Rarely, it seems that colony leader is not first in the list of members
+                Membrane? membrane;
+                bool isBacteria;
+                if (i == 0)
+                {
+                    GD.PrintErr("Colony leader not in first position as is assumed, using potentially wrong " +
+                        "membrane");
+                    (membrane, isBacteria) = colonyMembranes[0];
+                }
+                else
+                {
+                    // The -1 is here as the membrane list excludes the lead cell (which is in the first position in
+                    // members)
+                    (membrane, isBacteria) = colonyMembranes[i - 1];
+                }
 
                 ref var currentMemberOrganelles = ref member.Get<OrganelleContainer>();
 
