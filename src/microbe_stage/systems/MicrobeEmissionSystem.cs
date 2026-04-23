@@ -111,14 +111,14 @@ public partial class MicrobeEmissionSystem : BaseSystem<World, float>
         if (control.QueuedToxinToEmit != Compound.Invalid)
         {
             EmitProjectile(entity, ref control, ref organelles, ref cellProperties, ref soundEffectPlayer, ref position,
-                control.QueuedToxinToEmit, compounds, engulfed, false);
+                control.QueuedToxinToEmit, compounds, engulfed, false, specializationFactor.SpecializationBonus);
             control.QueuedToxinToEmit = Compound.Invalid;
         }
 
         if (control.QueuedSiderophoreToEmit)
         {
             EmitProjectile(entity, ref control, ref organelles, ref cellProperties, ref soundEffectPlayer, ref position,
-                Compound.Invalid, null, engulfed, true);
+                Compound.Invalid, null, engulfed, true, specializationFactor.SpecializationBonus);
             control.QueuedSiderophoreToEmit = false;
         }
 
@@ -132,7 +132,7 @@ public partial class MicrobeEmissionSystem : BaseSystem<World, float>
     /// </summary>
     private void EmitProjectile(in Entity entity, ref MicrobeControl control, ref OrganelleContainer organelles,
         ref CellProperties cellProperties, ref SoundEffectPlayer soundEffectPlayer, ref WorldPosition position,
-        Compound agentType, CompoundBag? compounds, bool engulfed, bool siderophore)
+        Compound agentType, CompoundBag? compounds, bool engulfed, bool siderophore, float specializationBonus)
     {
         if (engulfed)
             return;
@@ -255,28 +255,31 @@ public partial class MicrobeEmissionSystem : BaseSystem<World, float>
             // TODO: some of the checks above part are already implemented as extension for PlayerMicrobeInput
             // (so could share a bit of code for checking if ready to shoot yet)
 
-            // The cooldown time is inversely proportional to the amount of agent vacuoles.
+            // Cooldown time is inversely proportional to the amount of agent vacuoles (with specialization multiplier).
+            GD.Print("spec bonus --------------", specializationBonus);
             control.AgentEmissionCooldown =
-                ToxinCooldownWithToxicity(organelles.AgentVacuoleCount, organelles.AverageToxinToxicity);
+                ToxinCooldownWithToxicity(organelles.AgentVacuoleCount, organelles.AverageToxinToxicity,
+                    specializationBonus);
         }
     }
 
-    private float ToxinCooldownWithToxicity(int vacuoleCount, float toxicity)
+    private float ToxinCooldownWithToxicity(int vacuoleCount, float toxicity, float specializationBonus)
     {
         if (toxicity < 0)
         {
             // High-firerate
-            return Constants.AGENT_EMISSION_COOLDOWN / vacuoleCount * (1.0f - (0.5f * Math.Abs(toxicity)));
+            return Constants.AGENT_EMISSION_COOLDOWN / vacuoleCount * specializationBonus *
+                (1.0f - 0.5f * Math.Abs(toxicity));
         }
 
         if (toxicity > 0)
         {
             // Low-firerate
-            return Constants.AGENT_EMISSION_COOLDOWN / vacuoleCount * (1 + toxicity);
+            return Constants.AGENT_EMISSION_COOLDOWN / vacuoleCount * specializationBonus * (1 + toxicity);
         }
 
         // No modification from default
-        return Constants.AGENT_EMISSION_COOLDOWN / vacuoleCount;
+        return Constants.AGENT_EMISSION_COOLDOWN / vacuoleCount * specializationBonus;
     }
 
     private float EmissionAmountWithToxicity(float toxicity)
