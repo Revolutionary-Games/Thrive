@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Arch.Core;
 using Arch.Core.Extensions;
@@ -487,6 +488,26 @@ public partial class PlayerMicrobeInput : NodeWithInput
             stage.HUD.ShowReproductionDialog();
             AchievementsManager.ReportCheatsUsed();
         }
+    }
+
+    [RunOnKeyDown("g_grow_spore")]
+    public void GrowSporeIntoColony()
+    {
+        if (!stage.HasPlayer)
+            return;
+
+        var workData1 = new List<Hex>();
+        var workData2 = new List<Hex>();
+
+        ref var cellProperties = ref stage.Player.Get<CellProperties>();
+
+        ref var earlySpeciesType = ref stage.Player.Get<MulticellularSpeciesMember>();
+
+        earlySpeciesType.MulticellularCellType = earlySpeciesType.Species.ModifiableCellTypes[1];
+
+        cellProperties.ReApplyCellTypeProperties(ref stage.Player.Get<MicrobeEnvironmentalEffects>(), stage.Player,
+            earlySpeciesType.MulticellularCellType, earlySpeciesType.Species, stage.WorldSimulation, workData1,
+            workData2);
     }
 
     [RunOnKey("g_cheat_glucose")]
