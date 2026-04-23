@@ -527,6 +527,10 @@ public partial class Jukebox : Node
 
         foreach (var (categoryName, category) in categories)
         {
+            // Skip categories that are general and not save-specific
+            if (category.IsGlobalMenu)
+                continue;
+
             var trackPositions = new Dictionary<string, float>();
 
             foreach (var list in category.TrackLists)
@@ -562,6 +566,12 @@ public partial class Jukebox : Node
         {
             if (!categories.TryGetValue(categoryName, out var category))
                 continue;
+
+            if (category.IsGlobalMenu)
+            {
+                GD.Print($"Ignoring Jukebox state in a save for global category: {categoryName}");
+                continue;
+            }
 
             foreach (var list in category.TrackLists)
             {
