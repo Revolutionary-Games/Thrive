@@ -1127,9 +1127,8 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         {
             GD.Print("Creating new stage of type ", typeof(TStage).Name, " as there isn't one yet");
 
-            var scene = SceneManager.Instance.LoadScene(typeof(TStage).GetCustomAttribute<SceneLoadedClassAttribute>());
-
-            ReturnToStage = (TStage)scene.Instantiate();
+            ReturnToStage = SceneManager.Instance.InstantiateScene<TStage>(
+                typeof(TStage).GetCustomAttribute<SceneLoadedClassAttribute>());
             ReturnToStage.CurrentGame = CurrentGame;
         }
     }

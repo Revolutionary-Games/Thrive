@@ -809,7 +809,7 @@ public partial class MainMenu : NodeWithInput
             OnEnteringGame(false);
 
             // Instantiate a new editor scene
-            var editor = (MicrobeEditor)SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor).Instantiate();
+            var editor = SceneManager.Instance.InstantiateScene<MicrobeEditor>(MainGameState.MicrobeEditor);
 
             // Start freebuild game
             editor.CurrentGame = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings(), true);
@@ -832,8 +832,8 @@ public partial class MainMenu : NodeWithInput
             OnEnteringGame(false);
 
             // Instantiate a new editor scene
-            var editor = (MulticellularEditor)SceneManager.Instance
-                .LoadScene(MainGameState.MulticellularEditor).Instantiate();
+            var editor = SceneManager.Instance.InstantiateScene<MulticellularEditor>(
+                MainGameState.MulticellularEditor);
 
             // Start freebuild game
             editor.CurrentGame = GameProperties.StartNewMulticellularGame(new WorldGenerationSettings(), true);

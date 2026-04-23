@@ -260,10 +260,8 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
         if (CurrentGame == null)
             throw new InvalidOperationException("Stage has no current game");
 
-        var scene = SceneManager.Instance.LoadScene(MainGameState.MacroscopicEditor);
-
-        Node sceneInstance = scene.Instantiate();
-        var editor = (MacroscopicEditor)sceneInstance;
+        var editor = SceneManager.Instance.InstantiateScene<MacroscopicEditor>(MainGameState.MacroscopicEditor);
+        Node sceneInstance = editor;
 
         editor.CurrentGame = CurrentGame;
         editor.ReturnToStage = this;
@@ -897,7 +895,7 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
 
     private void SwitchToSocietyScene()
     {
-        var societyStage = SceneManager.Instance.LoadScene(MainGameState.SocietyStage).Instantiate<SocietyStage>();
+        var societyStage = SceneManager.Instance.InstantiateScene<SocietyStage>(MainGameState.SocietyStage);
         societyStage.CurrentGame = CurrentGame;
 
         SceneManager.Instance.SwitchToScene(societyStage);

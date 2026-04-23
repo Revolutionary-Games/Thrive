@@ -9,16 +9,18 @@ using Godot;
 ///     Note a lot of this functionality is duplicated from PatchMapEditorComponent.
 ///   </para>
 /// </remarks>
-public partial class ThriveopediaPatchMapPage : ThriveopediaPage, IThriveopediaPage
+public partial class ThriveopediaPatchMapPage : ThriveopediaPage, IThriveopediaPage, ISceneInstanceValidator
 {
+    private const string MapDrawerPath = "HSplitContainer/MapPanel/MarginContainer/DraggableScrollContainer/" +
+        "PatchMapDrawer";
+    private const string DetailsPanelPath = "HSplitContainer/PatchDetailsPanel";
+    private const string SeedLabelPath = "HSplitContainer/MapPanel/MarginContainer/VBoxContainer/SeedLabel";
+
 #pragma warning disable CA2213
-    [Export]
     private PatchMapDrawer mapDrawer = null!;
 
-    [Export]
     private PatchDetailsPanel detailsPanel = null!;
 
-    [Export]
     private Label seedLabel = null!;
 #pragma warning restore CA2213
 
@@ -34,6 +36,10 @@ public partial class ThriveopediaPatchMapPage : ThriveopediaPage, IThriveopediaP
     public override void _Ready()
     {
         base._Ready();
+
+        var failure = ValidateSceneInstance();
+        if (failure != null)
+            throw new InvalidOperationException(failure);
 
         mapDrawer.OnSelectedPatchChanged = _ =>
         {
@@ -64,6 +70,24 @@ public partial class ThriveopediaPatchMapPage : ThriveopediaPage, IThriveopediaP
 
     public override void OnNavigationPanelSizeChanged(bool collapsed)
     {
+    }
+
+    public string? ValidateSceneInstance()
+    {
+        mapDrawer = GetNodeOrNull<PatchMapDrawer>(MapDrawerPath);
+        detailsPanel = GetNodeOrNull<PatchDetailsPanel>(DetailsPanelPath);
+        seedLabel = GetNodeOrNull<Label>(SeedLabelPath);
+
+        if (mapDrawer == null)
+            return $"missing required PatchMapDrawer node at {MapDrawerPath}";
+
+        if (detailsPanel == null)
+            return $"missing required PatchDetailsPanel node at {DetailsPanelPath}";
+
+        if (seedLabel == null)
+            return $"missing required seed Label node at {SeedLabelPath}";
+
+        return null;
     }
 
     public override void OnTranslationsChanged()

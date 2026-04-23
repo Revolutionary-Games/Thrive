@@ -872,7 +872,7 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
             MainMenu.OnEnteringGame(false);
 
             // Instantiate a new editor scene
-            var editor = (MicrobeEditor)SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor).Instantiate();
+            var editor = SceneManager.Instance.InstantiateScene<MicrobeEditor>(MainGameState.MicrobeEditor);
 
             world.GameProperties.EnterFreeBuild();
             world.GameProperties.TutorialState.Enabled = false;

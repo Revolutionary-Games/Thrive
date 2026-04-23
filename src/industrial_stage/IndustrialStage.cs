@@ -399,7 +399,7 @@ public partial class IndustrialStage : StrategyStageBase, ISocietyStructureDataA
     {
         GD.Print("Switching to space scene");
 
-        var spaceStage = SceneManager.Instance.LoadScene(MainGameState.SpaceStage).Instantiate<SpaceStage>();
+        var spaceStage = SceneManager.Instance.InstantiateScene<SpaceStage>(MainGameState.SpaceStage);
         spaceStage.CurrentGame = CurrentGame;
 
         SceneManager.Instance.SwitchToScene(spaceStage);

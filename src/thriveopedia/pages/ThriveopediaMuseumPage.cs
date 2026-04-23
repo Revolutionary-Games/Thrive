@@ -251,7 +251,7 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPag
             MainMenu.OnEnteringGame(false);
 
             // Instantiate a new editor scene
-            var editor = SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor).Instantiate<MicrobeEditor>();
+            var editor = SceneManager.Instance.InstantiateScene<MicrobeEditor>(MainGameState.MicrobeEditor);
 
             // Start a freebuild game with the selected species
             editor.CurrentGame = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings(), true,

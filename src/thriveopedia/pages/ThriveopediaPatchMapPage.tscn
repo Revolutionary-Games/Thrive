@@ -11,11 +11,8 @@
 [sub_resource type="ShaderMaterial" id="1"]
 shader = ExtResource("8")
 
-[node name="ThriveopediaPatchMapPage" unique_id=1940744970 node_paths=PackedStringArray("mapDrawer", "detailsPanel", "seedLabel") instance=ExtResource("2")]
+[node name="ThriveopediaPatchMapPage" unique_id=1940744970 instance=ExtResource("2")]
 script = ExtResource("1")
-mapDrawer = NodePath("HSplitContainer/MapPanel/MarginContainer/DraggableScrollContainer/PatchMapDrawer")
-detailsPanel = NodePath("HSplitContainer/PatchDetailsPanel")
-seedLabel = NodePath("HSplitContainer/MapPanel/MarginContainer/VBoxContainer/SeedLabel")
 DisplayBackground = false
 
 [node name="HSplitContainer" type="HSplitContainer" parent="." index="1" unique_id=1659989176]
