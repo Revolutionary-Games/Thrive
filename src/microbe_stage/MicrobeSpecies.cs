@@ -118,7 +118,8 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
     {
         get
         {
-            var specific = MicrobeInternalCalculations.GetTotalSpecificCapacity(Organelles, out var nominal);
+            var specific = MicrobeInternalCalculations.GetTotalSpecificCapacity(Organelles,
+                SpecializationBonus, out var nominal);
             return (nominal, specific);
         }
     }

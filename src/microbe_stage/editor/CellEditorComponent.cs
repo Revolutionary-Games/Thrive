@@ -1529,7 +1529,11 @@ public partial class CellEditorComponent :
 
     public Dictionary<Compound, float> GetAdditionalCapacities(out float nominalCapacity)
     {
-        return MicrobeInternalCalculations.GetTotalSpecificCapacity(editedMicrobeOrganelles, out nominalCapacity);
+        var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(
+            editedMicrobeOrganelles.Organelles, tempMemory3);
+
+        return MicrobeInternalCalculations.GetTotalSpecificCapacity(editedMicrobeOrganelles,
+            specialization, out nominalCapacity);
     }
 
     public float CalculateTotalDigestionSpeed()
@@ -2223,7 +2227,8 @@ public partial class CellEditorComponent :
                 goto case BalanceDisplayType.EnergyEquilibrium;
         }
 
-        specificStorages ??= MicrobeInternalCalculations.GetTotalSpecificCapacity(organelles, out nominalStorage);
+        specificStorages ??= MicrobeInternalCalculations.GetTotalSpecificCapacity(organelles,
+            specializationBonus, out nominalStorage);
 
         return ProcessSystem.ComputeCompoundFillTimes(compoundBalanceData, nominalStorage, specificStorages);
     }

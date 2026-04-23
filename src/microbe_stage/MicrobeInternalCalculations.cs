@@ -53,12 +53,8 @@ public static class MicrobeInternalCalculations
     }
 
     public static Dictionary<Compound, float> GetTotalSpecificCapacity(IReadOnlyList<OrganelleTemplate> organelles,
-        out float nominalCapacity)
+        float specializationBonus, out float nominalCapacity)
     {
-        // Note this assumes this is only used just for single cell types or microbe species!
-        var specializationBonus = CalculateSpecializationBonus(organelles,
-            new Dictionary<OrganelleDefinition, int>());
-
         var totalNominalCap = GetTotalNominalCapacity(organelles, specializationBonus);
         nominalCapacity = totalNominalCap;
 
@@ -98,9 +94,9 @@ public static class MicrobeInternalCalculations
     }
 
     /// <summary>
-    ///   Variant of <see cref="GetTotalSpecificCapacity(IReadOnlyList{OrganelleTemplate}, out float)"/> to update
-    ///   spawned microbe stats. The used <see cref="CompoundBag"/> must already have the correct nominal capacity set
-    ///   for this to work correctly.
+    ///   Variant of <see cref="GetTotalSpecificCapacity(IReadOnlyList{OrganelleTemplate}, float, out float)"/> to
+    /// update spawned microbe stats. The used <see cref="CompoundBag"/> must already have the correct nominal capacity
+    /// set for this to work correctly.
     /// </summary>
     /// <param name="compoundBag">Target compound bag to set info in (this doesn't update nominal capacity)</param>
     /// <param name="organelles">Organelles to find specific capacity from</param>
@@ -537,7 +533,8 @@ public static class MicrobeInternalCalculations
         ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles, biomeConditions, environmentalTolerances,
             specialization, CompoundAmountType.Minimum, energyBalance, minimums);
 
-        var cachedCapacities = GetTotalSpecificCapacity(organelles, out var cachedCapacity);
+        var cachedCapacities =
+            GetTotalSpecificCapacity(organelles, specialization, out var cachedCapacity);
 
         var result = new Dictionary<Compound, (float TimeToFill, float Storage)>();
 
@@ -646,7 +643,8 @@ public static class MicrobeInternalCalculations
         ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles, biomeConditions, environmentalTolerances,
             specialization, CompoundAmountType.Minimum, energyBalanceAtMinimum, minimums);
 
-        var cachedCapacities = GetTotalSpecificCapacity(organelles, out var cachedCapacity);
+        var cachedCapacities =
+            GetTotalSpecificCapacity(organelles, specialization, out var cachedCapacity);
 
         var nightSeconds = worldSettings.DayLength * (1 - worldSettings.DaytimeFraction);
 
