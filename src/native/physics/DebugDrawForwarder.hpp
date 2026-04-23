@@ -128,7 +128,7 @@ private:
     void DrawTriangleInternal(
         const DVertex& vertex1, const DVertex& vertex2, const DVertex& vertex3, JColour colourTint, bool wireFrame);
 
-    [[nodiscard]] inline bool IsPointWithinDrawDistance(const JPH::RVec3Arg position) const
+    [[nodiscard]] inline bool IsPointWithinDrawDistance(JPH::RVec3Arg position) const
     {
         return (position - cameraPositionForDrawDistance).LengthSq() <= maxModelDistanceSquared;
     }
