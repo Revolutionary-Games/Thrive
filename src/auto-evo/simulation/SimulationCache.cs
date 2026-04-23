@@ -401,8 +401,8 @@ public class SimulationCache
         }
 
         // This will likely be used at several points to mimic the effect the specialization bonus has on organelles
-        var specializationBonus = MicrobeInternalCalculations.CalculateSpecializationBonus(
-            predator.Organelles.Organelles, workMemory1);
+        var specializationBonus =
+            MicrobeInternalCalculations.CalculateSpecializationBonus(predator.Organelles.Organelles, workMemory1);
 
         var predatorHexSize = GetBaseHexSizeForSpecies(predator);
         var preyHexSize = GetBaseHexSizeForSpecies(prey);
