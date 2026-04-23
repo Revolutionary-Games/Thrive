@@ -32,11 +32,11 @@ public class CPUHelpers
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static void SignalEvent()
+    public static bool SignalEvent()
     {
         if (!IsARM)
-            return;
+            return false;
 
-        NativeInterop.TryArmDataMemoryBarrierAndSendEvent();
+        return NativeInterop.TryArmDataMemoryBarrierAndSendEvent();
     }
 }
