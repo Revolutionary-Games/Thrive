@@ -5,7 +5,7 @@ using Godot;
 using Xoshiro.PRNG32;
 
 /// <summary>
-///   Manages playing music. Autoload singleton
+///   Manages playing of music. Autoload singleton
 /// </summary>
 [GodotAutoload]
 public partial class Jukebox : Node
@@ -84,7 +84,10 @@ public partial class Jukebox : Node
         get => CreatePlaybackState();
         set
         {
+            // We call this to not end the current category, but just to save and remember the positions of tracks
+            // that were playing right now
             OnCategoryEnded();
+
             ApplyPlaybackState(value);
         }
     }
@@ -564,6 +567,7 @@ public partial class Jukebox : Node
             {
                 foreach (var track in list.GetAllTracks())
                 {
+                    // Reset all tracks to be eligible to be played again after loading a save
                     track.PlayedOnce = false;
 
                     if (trackPositions.TryGetValue(track.ResourcePath, out var position))
