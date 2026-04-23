@@ -80,7 +80,7 @@ public partial class SceneManager : Node
     /// <returns>The scene that was switched to</returns>
     public Node SwitchToScene(MainGameState state)
     {
-        var scene = LoadScene(state).Instantiate();
+        var scene = InstantiateScene(state);
         SwitchToScene(scene);
 
         return scene;
@@ -88,7 +88,7 @@ public partial class SceneManager : Node
 
     public Node SwitchToScene(string scenePath)
     {
-        var scene = LoadScene(scenePath).Instantiate();
+        var scene = InstantiateScene(scenePath);
         SwitchToScene(scene);
 
         return scene;
@@ -133,9 +133,7 @@ public partial class SceneManager : Node
     /// </summary>
     public void ReturnToMenu()
     {
-        var scene = LoadScene("res://src/general/MainMenu.tscn");
-
-        var mainMenu = (MainMenu)scene.Instantiate();
+        var mainMenu = InstantiateScene<MainMenu>("res://src/general/MainMenu.tscn");
 
         mainMenu.IsReturningToMenu = true;
 
@@ -181,29 +179,42 @@ public partial class SceneManager : Node
 
     public PackedScene LoadScene(MainGameState state)
     {
-        switch (state)
+        return LoadScene(GetScenePath(state));
+    }
+
+    public Node InstantiateScene(MainGameState state)
+    {
+        return InstantiateScene(GetScenePath(state));
+    }
+
+    public T InstantiateScene<T>(MainGameState state)
+        where T : Node
+    {
+        return InstantiateScene<T>(GetScenePath(state));
+    }
+
+    public Node InstantiateScene(string scenePath)
+    {
+        return InstantiateScene<Node>(scenePath);
+    }
+
+    public T InstantiateScene<T>(string scenePath)
+        where T : Node
+    {
+        return SceneInstantiationHelpers.InstantiateSceneWithRetries<T>(scenePath) ??
+            throw new InvalidOperationException($"Failed to instantiate scene after retries: {scenePath}");
+    }
+
+    public T InstantiateScene<T>(SceneLoadedClassAttribute? sceneLoaded)
+        where T : Node
+    {
+        if (string.IsNullOrEmpty(sceneLoaded?.ScenePath))
         {
-            case MainGameState.MicrobeStage:
-                return LoadScene("res://src/microbe_stage/MicrobeStage.tscn");
-            case MainGameState.MicrobeEditor:
-                return LoadScene("res://src/microbe_stage/editor/MicrobeEditor.tscn");
-            case MainGameState.MulticellularEditor:
-                return LoadScene("res://src/multicellular_stage/editor/MulticellularEditor.tscn");
-            case MainGameState.MacroscopicStage:
-                return LoadScene("res://src/macroscopic_stage/MacroscopicStage.tscn");
-            case MainGameState.MacroscopicEditor:
-                return LoadScene("res://src/macroscopic_stage/editor/MacroscopicEditor.tscn");
-            case MainGameState.SocietyStage:
-                return LoadScene("res://src/society_stage/SocietyStage.tscn");
-            case MainGameState.IndustrialStage:
-                return LoadScene("res://src/industrial_stage/IndustrialStage.tscn");
-            case MainGameState.SpaceStage:
-                return LoadScene("res://src/space_stage/SpaceStage.tscn");
-            case MainGameState.AscensionCeremony:
-                return LoadScene("res://src/ascension_stage/AscensionCeremony.tscn");
-            default:
-                throw new ArgumentException("unknown scene path for given game state");
+            throw new ArgumentException(
+                "The specified class to load a scene for didn't have SceneLoadedClassAttribute");
         }
+
+        return InstantiateScene<T>(sceneLoaded.ScenePath);
     }
 
     public PackedScene LoadScene(string scenePath)
@@ -248,6 +259,33 @@ public partial class SceneManager : Node
     public bool QuittingRequested()
     {
         return alreadyQuit;
+    }
+
+    private static string GetScenePath(MainGameState state)
+    {
+        switch (state)
+        {
+            case MainGameState.MicrobeStage:
+                return "res://src/microbe_stage/MicrobeStage.tscn";
+            case MainGameState.MicrobeEditor:
+                return "res://src/microbe_stage/editor/MicrobeEditor.tscn";
+            case MainGameState.MulticellularEditor:
+                return "res://src/multicellular_stage/editor/MulticellularEditor.tscn";
+            case MainGameState.MacroscopicStage:
+                return "res://src/macroscopic_stage/MacroscopicStage.tscn";
+            case MainGameState.MacroscopicEditor:
+                return "res://src/macroscopic_stage/editor/MacroscopicEditor.tscn";
+            case MainGameState.SocietyStage:
+                return "res://src/society_stage/SocietyStage.tscn";
+            case MainGameState.IndustrialStage:
+                return "res://src/industrial_stage/IndustrialStage.tscn";
+            case MainGameState.SpaceStage:
+                return "res://src/space_stage/SpaceStage.tscn";
+            case MainGameState.AscensionCeremony:
+                return "res://src/ascension_stage/AscensionCeremony.tscn";
+            default:
+                throw new ArgumentException("unknown scene path for given game state");
+        }
     }
 
     [Command("load", true, "Switches to the specified game state.")]

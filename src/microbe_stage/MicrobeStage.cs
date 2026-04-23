@@ -704,10 +704,9 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         {
             // Player is a multicellular species, go to multicellular editor
 
-            var scene = SceneManager.Instance.LoadScene(MainGameState.MulticellularEditor);
-
-            sceneInstance = scene.Instantiate();
-            var editor = (MulticellularEditor)sceneInstance;
+            var editor = SceneManager.Instance.InstantiateScene<MulticellularEditor>(
+                MainGameState.MulticellularEditor);
+            sceneInstance = editor;
 
             editor.CurrentGame = CurrentGame;
             editor.ReturnToStage = this;
@@ -724,10 +723,8 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
                 return;
             }
 
-            var scene = SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor);
-
-            sceneInstance = scene.Instantiate();
-            var editor = (MicrobeEditor)sceneInstance;
+            var editor = SceneManager.Instance.InstantiateScene<MicrobeEditor>(MainGameState.MicrobeEditor);
+            sceneInstance = editor;
 
             editor.CurrentGame = CurrentGame;
             editor.ReturnToStage = this;
@@ -818,9 +815,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         // Make sure no queued player species can spawn with the old species
         WorldSimulation.SpawnSystem.ClearSpawnQueue();
 
-        var scene = SceneManager.Instance.LoadScene(MainGameState.MulticellularEditor);
-
-        var editor = scene.Instantiate<MulticellularEditor>();
+        var editor = SceneManager.Instance.InstantiateScene<MulticellularEditor>(MainGameState.MulticellularEditor);
 
         editor.CurrentGame = CurrentGame ?? throw new InvalidOperationException("Stage has no current game");
         editor.ReturnToStage = this;
@@ -874,9 +869,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         GameWorld.NotifySpeciesChangedStages();
 
-        var scene = SceneManager.Instance.LoadScene(MainGameState.MacroscopicEditor);
-
-        var editor = scene.Instantiate<MacroscopicEditor>();
+        var editor = SceneManager.Instance.InstantiateScene<MacroscopicEditor>(MainGameState.MacroscopicEditor);
 
         editor.CurrentGame = CurrentGame ?? throw new InvalidOperationException("Stage has no current game");
 

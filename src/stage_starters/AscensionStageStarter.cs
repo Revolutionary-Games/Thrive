@@ -12,7 +12,7 @@ public partial class AscensionStageStarter : ComplexStageStarterBase
     {
         currentGame ??= GameProperties.StartAscensionStageGame(new WorldGenerationSettings());
 
-        var spaceStage = SceneManager.Instance.LoadScene(MainGameState.SpaceStage).Instantiate<SpaceStage>();
+        var spaceStage = SceneManager.Instance.InstantiateScene<SpaceStage>(MainGameState.SpaceStage);
         spaceStage.CurrentGame = currentGame;
 
         return spaceStage;

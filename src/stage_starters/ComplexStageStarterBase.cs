@@ -59,7 +59,7 @@ public partial class ComplexStageStarterBase : Node
 
     protected virtual Node LoadScene()
     {
-        return SceneManager.Instance.LoadScene(SimplyLoadableGameState).Instantiate();
+        return SceneManager.Instance.InstantiateScene(SimplyLoadableGameState);
     }
 
     /// <summary>

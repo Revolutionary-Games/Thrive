@@ -606,7 +606,7 @@ public partial class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         GD.Print("Switching to ascension ceremony scene");
 
         var ascensionScene =
-            SceneManager.Instance.LoadScene(MainGameState.AscensionCeremony).Instantiate<AscensionCeremony>();
+            SceneManager.Instance.InstantiateScene<AscensionCeremony>(MainGameState.AscensionCeremony);
         ascensionScene.CurrentGame = CurrentGame;
 
         var us = (SpaceStage?)SceneManager.Instance.SwitchToScene(ascensionScene, true);

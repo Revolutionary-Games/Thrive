@@ -330,7 +330,7 @@ public partial class SocietyStage : StrategyStageBase, ISocietyStructureDataAcce
         GD.Print("Switching to industrial scene");
 
         var industrialStage =
-            SceneManager.Instance.LoadScene(MainGameState.IndustrialStage).Instantiate<IndustrialStage>();
+            SceneManager.Instance.InstantiateScene<IndustrialStage>(MainGameState.IndustrialStage);
         industrialStage.CurrentGame = CurrentGame;
         industrialStage.TakeInitialResourcesFrom(SocietyResources);
 

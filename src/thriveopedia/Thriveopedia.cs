@@ -323,14 +323,17 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
 
         if (page == null)
         {
-            var scene = GD.Load<PackedScene>($"res://src/thriveopedia/pages/Thriveopedia{name}Page.tscn");
-            page = scene.Instantiate<IThriveopediaPage>();
+            var path = $"res://src/thriveopedia/pages/Thriveopedia{name}Page.tscn";
+            var pageNode = SceneInstantiationHelpers.InstantiateSceneWithRetries<ThriveopediaPage>(
+                path, ValidateThriveopediaPageInstance);
 
-            if (page == null)
+            if (pageNode is not IThriveopediaPage loadedPage)
             {
                 GD.PrintErr($"Failed to load Thriveopedia page {name} due to scene instantiate failure");
                 return;
             }
+
+            page = loadedPage;
         }
 
         if (page.ParentPageName != null && page.ParentPageName != "CurrentStage" &&
@@ -353,6 +356,17 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
             treeItem.Visible = false;
 
         page.Hide();
+    }
+
+    private string? ValidateThriveopediaPageInstance(ThriveopediaPage page)
+    {
+        if (page is not IThriveopediaPage)
+            return $"root node {page.Name} does not implement {nameof(IThriveopediaPage)}";
+
+        if (page is ISceneInstanceValidator validator)
+            return validator.ValidateSceneInstance();
+
+        return null;
     }
 
     private void AddStageDropdown()
