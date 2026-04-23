@@ -142,6 +142,8 @@ void DebugDrawer::Init()
     triangleDrawer->set_visible(false);
     triangleDrawer->set_ignore_occlusion_culling(true);
     triangleDrawer->set_extra_cull_margin(1000);
+
+    // Set an initial AABB as we might not have the camera yet
     UpdateDrawAabb({});
 
     // TODO: implement debug text drawing (this is a Control to support that in the future)
@@ -156,6 +158,7 @@ void DebugDrawer::_process(double delta)
 
     if (physicsDebugSupported && currentPhysicsDebugLevel > 0)
     {
+        // Update camera before drawing / even when not drawing anything to ensure culling works
         UpdateDebugCameraLocation();
     }
 
@@ -313,9 +316,10 @@ void DebugDrawer::RemoveDebugDraw() noexcept
 // Drawing methods
 void DebugDrawer::DrawLine(const godot::Vector3& from, const godot::Vector3& to, const godot::Color& colour)
 {
-    if (usedLineDrawMemory + SingleLineDrawMemoryUse >= perMeshDrawMemoryLimit)
+    if (usedLineDrawMemory + SingleLineDrawMemoryUse >= perTypeDrawLimit)
     {
-        extraNeededDrawMemory += SingleLineDrawMemoryUse;
+        // Needs double the actual limit raise because each type gets just half of the total
+        extraNeededDrawMemory += SingleLineDrawMemoryUse * 2;
         return;
     }
 
@@ -340,9 +344,9 @@ void DebugDrawer::DrawLine(const godot::Vector3& from, const godot::Vector3& to,
 void DebugDrawer::DrawTriangle(const godot::Vector3& vertex1, const godot::Vector3& vertex2,
     const godot::Vector3& vertex3, const godot::Color& colour)
 {
-    if (usedTriangleDrawMemory + SingleTriangleDrawMemoryUse >= perMeshDrawMemoryLimit)
+    if (usedTriangleDrawMemory + SingleTriangleDrawMemoryUse >= perTypeDrawLimit)
     {
-        extraNeededDrawMemory += SingleTriangleDrawMemoryUse;
+        extraNeededDrawMemory += SingleTriangleDrawMemoryUse * 2;
         return;
     }
 
@@ -383,8 +387,8 @@ void DebugDrawer::StartDrawingIfNotYetThisFrame()
 
 void DebugDrawer::UpdateDrawAabb(const godot::Vector3& center)
 {
-    const auto radius = godot::Vector3{
-        DEBUG_DRAW_MAX_DISTANCE_ORIGIN, DEBUG_DRAW_MAX_DISTANCE_ORIGIN, DEBUG_DRAW_MAX_DISTANCE_ORIGIN};
+    const auto radius =
+        godot::Vector3{DEBUG_DRAW_MAX_DISTANCE, DEBUG_DRAW_MAX_DISTANCE, DEBUG_DRAW_MAX_DISTANCE};
     const auto bounds = godot::AABB(center - radius, radius * 2.0f);
 
     lineDrawer->set_custom_aabb(bounds);
