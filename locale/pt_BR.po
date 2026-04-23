@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-13 10:37+0300\n"
-"PO-Revision-Date: 2026-04-10 22:42+0000\n"
-"Last-Translator: Koala Dourado <edooardoluz@gmail.com>\n"
+"POT-Creation-Date: 2026-04-22 17:18+0300\n"
+"PO-Revision-Date: 2026-04-20 23:52+0000\n"
+"Last-Translator: Davi Araújo <davi.augusto.araujo@hotmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -772,6 +772,10 @@ msgstr "Menu de Trapaças"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Mostrar/esconder processos da célula"
+
+#, fuzzy
+msgid "CHEMICAL_EQUATION_SPEED_EXPLANATION"
+msgstr "(velocidade de mutação das espécies controladas pela IA)"
 
 msgid "CHEMOPLAST"
 msgstr "Quimioplasto"
@@ -3469,6 +3473,20 @@ msgstr "L"
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "Desativar o Ciclo Dia/Noite"
 
+#, fuzzy
+msgid "LOOK_LEFT"
+msgstr "Seta para esquerda"
+
+#, fuzzy
+msgid "LOOK_RIGHT"
+msgstr "Seta para direita"
+
+msgid "LOOK_SCREEN_DOWN_OR_3D_TOWARDS_UP"
+msgstr ""
+
+msgid "LOOK_SCREEN_UP_OR_3D_TOWARDS_DOWN"
+msgstr ""
+
 msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
 msgstr "(valores mais baixos melhoram o desempenho)"
 
@@ -5021,8 +5039,13 @@ msgstr "anterior:"
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Processando objetos carregados"
 
+#, fuzzy
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
+
+#, fuzzy
+msgid "PROCESS_INACTIVE"
+msgstr "Processos"
 
 #, fuzzy
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
@@ -5038,10 +5061,6 @@ msgstr "Processos"
 
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Velocidade dos Bioprocessos"
-
-#, fuzzy
-msgid "PROCESS_TOGGLE_TOOLTIP"
-msgstr "A pressão preferida pela sua espécie e a faixa de flexibilidade ao redor dela. Quando em condições fora dessa faixa, haverá diversos efeitos negativos na sua espécie. Mude a pressão preferida e a flexibilidade com os sliders."
 
 msgid "PROGRAMMING_TEAM"
 msgstr "Equipe de Programação"
@@ -7308,6 +7327,7 @@ msgstr "Sem modificações."
 msgid "WIKI_BINDING_AGENT_PROCESSES"
 msgstr "Sem processos."
 
+#, fuzzy
 msgid "WIKI_BINDING_AGENT_REQUIREMENTS"
 msgstr ""
 "Uma célula precisa ter um [b][color=#3796e1][url=thriveopedia:nucleus]Núcleo[/url][/color][/b] para evoluir [b]Agentes de Ligação[/b].\n"
@@ -7462,6 +7482,7 @@ msgstr "Sem modificações."
 msgid "WIKI_CHLOROPLAST_PROCESSES"
 msgstr "Produz [thrive:compound type=\"glucose\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"carbondioxide\"][/thrive:compound] e intensidade de [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_REQUIREMENTS"
 msgstr ""
 "Uma célula deve ter um [b][color=#3796e1][url=thriveopedia:nucleus]Núcleo[/url][/color][/b] para evoluir [b]Cloroplastos[/b].\n"
@@ -7526,6 +7547,7 @@ msgstr "Compostos:"
 msgid "WIKI_COMPOUNDS_INTRO"
 msgstr "Para os primeiros estágios, os principais recursos de Thrive são [b]Compostos[/b]. Compostos são usados em processos para criar outros compostos ou consumidos de outra forma."
 
+#, fuzzy
 msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
 msgstr ""
 "Existem diversos [b]Compostos[/b] diferentes no Thrive.\n"
@@ -7658,6 +7680,7 @@ msgstr "Sem modificações."
 msgid "WIKI_FERROPLAST_PROCESSES"
 msgstr "Produz [thrive:compound type=\"glucose\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"carbondioxide\"][/thrive:compound] e temperatura."
 
+#, fuzzy
 msgid "WIKI_FERROPLAST_REQUIREMENTS"
 msgstr ""
 "Uma célula deve ter um [b][color=#3796e1][url=thriveopedia:nucleus]Núcleo[/url][/color][/b] para evoluir [b]Ferroplastos[/b].\n"
@@ -7691,6 +7714,7 @@ msgstr "Sem modificações."
 msgid "WIKI_FLAGELLUM_PROCESSES"
 msgstr "Sem processos."
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_REQUIREMENTS"
 msgstr ""
 "Se melhorias de organela estiverem ativadas nas configurações do jogo, [i]pelo menos uma[/i] das condições seguintes deve ser verdadeira [i]para a célula do jogador[/i]:\n"
@@ -7944,6 +7968,7 @@ msgstr "Em breve."
 msgid "WIKI_INJECTISOME_PILUS"
 msgstr "Pilus Injectissômico"
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_EFFECTS"
 msgstr ""
 "Equipar um [b]Lisossomo[/b] com [b]Quitinase[/b] ou [b]Celulase[/b] permite que a célula possa digerir outras células com [b]Membranas de Quitina[/b] ou [b]Celulose[/b], respectivamente. Células indigeríveis – aquelas para quais uma célula não possui a enzima necessária– são ejetadas imediatamente.\n"
@@ -7964,6 +7989,7 @@ msgstr "O lisossomo é uma organela ligada à membrana que contém enzimas hidro
 msgid "WIKI_LYSOSOME_PROCESSES"
 msgstr "Sem processos."
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_REQUIREMENTS"
 msgstr ""
 "Uma célula precisa ter um [b][color=#3796e1][url=thriveopedia:nucleus]Núcleo[/url][/color][/b] para evoluir [b]Lisossomos[/b].\n"
@@ -8181,6 +8207,7 @@ msgstr "Sem modificações."
 msgid "WIKI_MITOCHONDRION_PROCESSES"
 msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound]. Quantidade aumenta com concentração de [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_REQUIREMENTS"
 msgstr ""
 "Uma célula precisa ter um [b][color=#3796e1][url=thriveopedia:nucleus]Núcleo[/url][/color][/b] para evoluir [b]Mitocôndrias[/b].\n"
@@ -8280,6 +8307,7 @@ msgstr "Sem modificações."
 msgid "WIKI_NITROGENASE_PROCESSES"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"ammonia\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_REQUIREMENTS"
 msgstr ""
 "Se melhorias de organela estiverem ativadas nas configurações do jogo, a condição seguinte também deve ser verdadeira [i]para a célula do jogador[/i]:\n"
@@ -8375,6 +8403,7 @@ msgstr "Sem modificações."
 msgid "WIKI_OXYTOXISOME_PROCESSES"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"oxygen\"][/thrive:compound]. Pode disparar toxinas apertando [thrive:input]g_fire_toxin[/thrive:input]. Quando a quantidade de [thrive:compound type=\"oxytoxy\"][/thrive:compound] ficar baixa, será possível disparar, mas o dano irá ser reduzido."
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_REQUIREMENTS"
 msgstr ""
 "Se melhorias de organela estiverem ativadas nas configurações do jogo, a condição seguinte também deve ser verdadeira [i]para a célula do jogador[/i]:\n"
@@ -8567,6 +8596,7 @@ msgstr "Sem modificações."
 msgid "WIKI_PERFORATOR_PILUS_PROCESSES"
 msgstr "Sem processos."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_REQUIREMENTS"
 msgstr ""
 "Se melhorias de organela estiverem ativadas nas configurações do jogo, [i]pelo menos uma[/i] das condições seguintes também deve ser verdadeira [i]para a célula do jogador[/i]:\n"
@@ -8882,6 +8912,7 @@ msgstr ""
 "\n"
 "Já que [b]Tilacóides[/b] estão suspensos diretamente no [b][color=#3796e1][url=thriveopedia:cytoplasm]Citoplasma[/url][/color][/b], o fluido ao seu redor realiza [b]Glicólise[/b]."
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_REQUIREMENTS"
 msgstr ""
 "Se melhorias de organela estiverem ativadas nas configurações do jogo, a condição seguinte deve ser verdadeira [i]para a célula do jogador[/i]:\n"
@@ -8916,6 +8947,7 @@ msgstr "Sem modificações."
 msgid "WIKI_TOXIN_VACUOLE_PROCESSES"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"oxygen\"][/thrive:compound]. Pode disparar toxinas apertando [thrive:input]g_fire_toxin[/thrive:input]. Quando a quantidade de [thrive:compound type=\"oxytoxy\"][/thrive:compound] ficar baixa, será possível disparar, mas o dano irá ser reduzido."
 
+#, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_REQUIREMENTS"
 msgstr ""
 "Uma célula precisa ter um [b][color=#3796e1][url=thriveopedia:nucleus]Núcleo[/url][/color][/b] para evoluir [b]Vacúolos de Toxinas[/b].\n"

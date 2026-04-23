@@ -15,6 +15,9 @@ public partial class ToolTipManager : CanvasLayer
     /// </summary>
     public const string DEFAULT_GROUP_NAME = "default";
 
+    private const double AUTO_SCROLLING_DELAY = 2.0f;
+    private const float AUTO_SCROLLING_SPEED = 40.0f;
+
     private static ToolTipManager? instance;
 
     /// <summary>
@@ -34,7 +37,8 @@ public partial class ToolTipManager : CanvasLayer
     private double hideTimer;
 
     /// <summary>
-    ///   Flags whether MainToolTip should be shown temporarily (automatically hides once timer reaches threshold).
+    ///   Flags whether MainToolTip should be shown temporarily (automatically hides once the timer reaches
+    ///   the threshold).
     /// </summary>
     private bool currentIsTemporary;
 
@@ -44,6 +48,11 @@ public partial class ToolTipManager : CanvasLayer
     private ICustomToolTip? previousToolTip;
 
     private bool nodeReferencesResolved;
+
+    private double currentAutoScrollingDelay = AUTO_SCROLLING_DELAY;
+    private float currentAutoScrollingOffset;
+    private bool isAutoScrollingMovingDown = true;
+    private bool visibleLastFrame;
 
     private ToolTipManager()
     {
@@ -63,6 +72,9 @@ public partial class ToolTipManager : CanvasLayer
         get => mainToolTip;
         set
         {
+            if (mainToolTip != value)
+                ResetAutoScrolling();
+
             previousToolTip = mainToolTip;
             mainToolTip = value;
         }
@@ -456,11 +468,13 @@ public partial class ToolTipManager : CanvasLayer
                 newPos.Y = position.Y + offset.Y;
         }
 
+        UpdateAutoScrollingOffset(delta);
+
         // Clamp tooltip position so it doesn't go offscreen
         // TODO: Take into account viewport (window) resizing for the offsetting.
         MainToolTip.ToolTipNode.Position = new Vector2(
             Math.Clamp(newPos.X, 0, Math.Max(screenRect.Size.X - tooltipSize.X, 0)),
-            Math.Clamp(newPos.Y, 0, Math.Max(screenRect.Size.Y - tooltipSize.Y, 0)));
+            Math.Clamp(newPos.Y, 0, Math.Max(screenRect.Size.Y - tooltipSize.Y, 0)) + currentAutoScrollingOffset);
 
         MainToolTip.ToolTipNode.Size = Vector2.Zero;
 
@@ -678,5 +692,57 @@ public partial class ToolTipManager : CanvasLayer
         Localization.Translate("DIGESTION_SPEED");
         Localization.Translate("DIGESTION_EFFICIENCY");
         Localization.Translate("SPEED");
+    }
+
+    private void UpdateAutoScrollingOffset(double delta)
+    {
+        if (MainToolTip == null)
+            throw new InvalidOperationException("This is only valid when there is an active tooltip");
+
+        if (currentAutoScrollingDelay <= 0.0)
+        {
+            var scrollHeightThreshold = groupHolder.GetViewportRect().Size.Y;
+
+            float excessHeight = MainToolTip.ToolTipNode.GetMinimumSize().Y - scrollHeightThreshold;
+
+            if (excessHeight <= 0.0f)
+            {
+                currentAutoScrollingOffset = 0.0f;
+                return;
+            }
+
+            if (isAutoScrollingMovingDown)
+            {
+                // To move the content down, the tooltip has to go up
+                currentAutoScrollingOffset -= (float)delta * AUTO_SCROLLING_SPEED;
+
+                if (currentAutoScrollingOffset < -excessHeight)
+                {
+                    currentAutoScrollingOffset = -excessHeight;
+                    currentAutoScrollingDelay = AUTO_SCROLLING_DELAY;
+                    isAutoScrollingMovingDown = false;
+                }
+            }
+            else
+            {
+                currentAutoScrollingOffset += (float)delta * AUTO_SCROLLING_SPEED;
+
+                if (currentAutoScrollingOffset > 0.0f)
+                {
+                    ResetAutoScrolling();
+                }
+            }
+        }
+        else
+        {
+            currentAutoScrollingDelay -= delta;
+        }
+    }
+
+    private void ResetAutoScrolling()
+    {
+        currentAutoScrollingOffset = 0.0f;
+        currentAutoScrollingDelay = AUTO_SCROLLING_DELAY;
+        isAutoScrollingMovingDown = true;
     }
 }

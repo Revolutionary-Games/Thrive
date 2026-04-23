@@ -66,6 +66,12 @@ public partial class LysosomeUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         return true;
     }
 
+    public bool IsCurrentStateDefault()
+    {
+        return shownChoices != null && enzymes.Selected >= 0 &&
+            shownChoices[enzymes.Selected].InternalName == Constants.LIPASE_ENZYME;
+    }
+
     public Vector2 GetMinDialogSize()
     {
         return new Vector2(420, 160);

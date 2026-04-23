@@ -36,6 +36,11 @@ public partial class FlagellumUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         return true;
     }
 
+    public bool IsCurrentStateDefault()
+    {
+        return MathUtils.IsEqualApproximately((float)lengthSlider.Value, 0, MathUtils.EPSILON);
+    }
+
     public Vector2 GetMinDialogSize()
     {
         return new Vector2(420, 135);

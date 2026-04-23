@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-13 10:37+0300\n"
-"PO-Revision-Date: 2026-04-10 22:42+0000\n"
-"Last-Translator: Francesco Vasco <fsco_v-weblate@yahoo.com>\n"
+"POT-Creation-Date: 2026-04-22 17:18+0300\n"
+"PO-Revision-Date: 2026-04-20 23:52+0000\n"
+"Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -771,6 +771,10 @@ msgstr "Menù dei trucchi"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Mostra/nascondi i processi cellulari"
+
+#, fuzzy
+msgid "CHEMICAL_EQUATION_SPEED_EXPLANATION"
+msgstr "(velocità di mutazione delle specie controllate dall'intelligenza artificiale)"
 
 msgid "CHEMOPLAST"
 msgstr "Chemioplasto"
@@ -2061,40 +2065,28 @@ msgstr "Il valore usato per generare il mondo; deve essere un numero intero posi
 
 #, fuzzy
 msgid "ENDOSYMBIOSIS_EXPLANATION"
-msgstr ""
-"I microbi aggressivi inseguono le prede per grandi distanze\n"
-"e sono più propensi a combattere quando aggrediti.\n"
-"I microbi pacifici, invece, ignorano i soggetti lontani\n"
-"e sono meno inclini a sparare tossine ai propri predatori."
+msgstr "L'endosimbiosi è un processo che trasforma un'altra specie in un endosimbionte (una specie che vive dentro un'altra, in una relazione simbiotica). Questo sblocca l'organulo scelto e consente il posizionamento di una copia gratuita di esso. Una volta inghiottita una specie valida, essa sarà selezionabile come candidato. La durata del processo dipende da quanto la specie scelta è adatta per l'endosimbiosi (il valore è scritto al di sotto di ciascun organulo candidato)."
 
 msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
-msgstr ""
+msgstr "Non è stata ancora inghiottita una specie valida per l'endosimbiosi"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
-msgstr "Organuli non connessi"
+msgstr "Nessun organulo valido"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
-msgstr ""
-"I microbi focalizzati inseguono le prede e i frammenti di cibo per lunghe distanze\n"
-"e potrebbero essere più ambiziosi per questi ultimi.\n"
-"I microbi reattivi cambiano più facilmente bersaglio."
+msgstr "Per progredire nel processo endosimbiotico la specie scelta deve essere inghiottita, trasformandola in un organulo temporaneo (ne può essere presente solo una alla volta). Il progresso è salvato una volta entrati nell'editor con all'interno l'organulo temporaneo."
 
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
-msgstr ""
+msgstr "I procarioti possono avere al massimo un solo endosimbionte"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
-msgstr "Trasforma l'[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] in [thrive:compound type=\"glucose\"][/thrive:compound]. Il tasso aumenta con la concentrazione di [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Inoltre, trasforma il [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]."
+msgstr "Sopravvivi fino all'editor con questa specie come organulo temporaneo per progredire"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_START_TOOLTIP"
-msgstr "Apri l'editor e modifica la tua specie"
+msgstr "Incomincia il processo di endosimbiosi per questa specie (disponibile una volta che il tipo di organulo è stato selezionato)"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_TITLE"
-msgstr "Il titolo è mancante"
+msgstr "Endosimbiosi"
 
 #, fuzzy
 msgid "ENERGY_BALANCE_REQUIRED_COMPOUND_LINE"
@@ -3642,6 +3634,20 @@ msgstr "L"
 
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "Blocca ciclo giorno/notte"
+
+#, fuzzy
+msgid "LOOK_LEFT"
+msgstr "🡐 Freccia sinistra"
+
+#, fuzzy
+msgid "LOOK_RIGHT"
+msgstr "🡒 Freccia destra"
+
+msgid "LOOK_SCREEN_DOWN_OR_3D_TOWARDS_UP"
+msgstr ""
+
+msgid "LOOK_SCREEN_UP_OR_3D_TOWARDS_DOWN"
+msgstr ""
 
 #, fuzzy
 msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
@@ -5384,8 +5390,13 @@ msgstr "precedente:"
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Elaborazione degli oggetti caricati"
 
+#, fuzzy
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
+
+#, fuzzy
+msgid "PROCESS_INACTIVE"
+msgstr "Processi cellulari"
 
 #, fuzzy
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
@@ -5402,10 +5413,6 @@ msgstr "Processi cellulari"
 #, fuzzy
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Processi cellulari"
-
-#, fuzzy
-msgid "PROCESS_TOGGLE_TOOLTIP"
-msgstr "Torna al menù principale"
 
 msgid "PROGRAMMING_TEAM"
 msgstr "Squadra Programmatori"
@@ -9665,6 +9672,10 @@ msgstr "Zoom indietro"
 
 #~ msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 #~ msgstr "(costo di osmoregolazione della specie del giocatore)"
+
+#, fuzzy
+#~ msgid "PROCESS_TOGGLE_TOOLTIP"
+#~ msgstr "Torna al menù principale"
 
 #, fuzzy
 #~ msgid "KEEP_CURRENT_SHORT"

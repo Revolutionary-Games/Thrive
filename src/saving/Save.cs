@@ -17,7 +17,7 @@ using FileAccess = Godot.FileAccess;
 /// </summary>
 public sealed class Save : IArchivable, IDisposable
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     public const string SAVE_SAVE_ARCHIVE = "save.bin";
     public const string SAVE_INFO_JSON = "info.json";
@@ -60,6 +60,11 @@ public sealed class Save : IArchivable, IDisposable
     ///   Multicellular editor data for the save, if GameStateName == MulticellularEditor
     /// </summary>
     public MulticellularEditor? MulticellularEditor { get; set; }
+
+    /// <summary>
+    ///   Jukebox playback state to restore once the loaded game starts
+    /// </summary>
+    public JukeboxPlaybackState? JukeboxPlaybackState { get; set; }
 
     /// <summary>
     ///   Screenshot for this save
@@ -231,6 +236,14 @@ public sealed class Save : IArchivable, IDisposable
         writer.WriteObjectOrNull(MicrobeStage);
         writer.WriteObjectOrNull(MicrobeEditor);
         writer.WriteObjectOrNull(MulticellularEditor);
+        if (JukeboxPlaybackState != null)
+        {
+            writer.WriteObject(JukeboxPlaybackState);
+        }
+        else
+        {
+            writer.WriteNullObject();
+        }
 
         // Other properties are not saved
     }
@@ -328,6 +341,9 @@ public sealed class Save : IArchivable, IDisposable
         instance.MicrobeStage = reader.ReadObjectOrNull<MicrobeStage>();
         instance.MicrobeEditor = reader.ReadObjectOrNull<MicrobeEditor>();
         instance.MulticellularEditor = reader.ReadObjectOrNull<MulticellularEditor>();
+        instance.JukeboxPlaybackState = version >= 2 ?
+            reader.ReadObjectOrNull<JukeboxPlaybackState>() :
+            null;
 
         return instance;
     }

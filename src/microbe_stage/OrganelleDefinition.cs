@@ -312,6 +312,8 @@ public class OrganelleDefinition : RegistryType, IPlayerReadableName
 
     public bool HasChemoreceptorComponent { get; private set; }
 
+    public bool HasNucleusFeature { get; private set; }
+
     /// <summary>
     ///   True when this organelle is one that uses oxygen as a process input (and is metabolism-related). This is
     ///   used to adjust toxin effects that have a distinction between oxygen breathers and others.
@@ -859,6 +861,7 @@ public class OrganelleDefinition : RegistryType, IPlayerReadableName
         HasRadiationProtection = HasFeatureTag(OrganelleFeatureTag.RadiationBlock);
         HasHydrogenSulfideProtection = HasFeatureTag(OrganelleFeatureTag.HydrogenSulfideProtection);
         HasHeatCollection = HasFeatureTag(OrganelleFeatureTag.HeatCollecting);
+        HasNucleusFeature = HasFeatureTag(OrganelleFeatureTag.Nucleus);
     }
 
     private void CalculateModelOffset()

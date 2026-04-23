@@ -163,6 +163,11 @@ public class InProgressLoad
 
                 try
                 {
+                    if (save!.JukeboxPlaybackState != null)
+                    {
+                        Jukebox.Instance.PlaybackState = save.JukeboxPlaybackState;
+                    }
+
                     SceneManager.Instance.SwitchToScene(loadedState.GameStateRoot);
                     loadedState.OnFinishLoading(save);
                 }
