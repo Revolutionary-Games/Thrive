@@ -413,6 +413,10 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
             playerAlive = !health.Dead;
             playerEngulfed = engulfable.PhagocytosisStep != PhagocytosisPhase.None;
+
+            // Reset engulfed status to avoid the "devoured" text unnecessarily
+            if (!playerEngulfed)
+                playerWasDigested = false;
         }
 
         // Normal health update if there is a player and the player was not digesting
@@ -437,7 +441,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             playerWasDigested = true;
             FlashHealthBar(new Color(0.96f, 0.5f, 0.27f), delta);
         }
-        else if (stage.HasPlayer)
+        else if (stage.HasPlayer && (playerEngulfed || playerWasDigested))
         {
             // Update to the player's current digested progress, unless the player does not exist
             var percentageValue = Localization.Translate("PERCENTAGE_VALUE");
