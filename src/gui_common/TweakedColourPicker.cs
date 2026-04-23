@@ -67,7 +67,8 @@ public partial class TweakedColourPicker : ColorPicker
         // Disable the RAW option in a dropdown menu
         baseControl.GetChild(2).GetChild<MenuButton>(3).GetPopup().SetItemDisabled(2, true);
 
-        FixScreenRecordingPermissionLabel(this);
+        if (!FixScreenRecordingPermissionText(this))
+            GD.PrintErr("Failed to apply Mac-specific screen recording permission label fix");
 
         // Disable value bar scroll with the mouse, as the colour pickers are often in scrollable containers and
         // this would otherwise be problematic. Perhaps in the future we should have this be configurable with an
@@ -164,23 +165,28 @@ public partial class TweakedColourPicker : ColorPicker
         spinBoxA.Hide();
     }
 
-    private void FixScreenRecordingPermissionLabel(Node node)
+    private bool FixScreenRecordingPermissionText(Node node)
     {
-        if (node is Label label && label.Text.Contains("Screen Recording", StringComparison.OrdinalIgnoreCase))
+        if (node is LinkButton button && button.Text.Contains("Screen Recording", StringComparison.OrdinalIgnoreCase))
         {
-            label.AutowrapMode = TextServer.AutowrapMode.WordSmart;
-            label.SizeFlagsHorizontal = SizeFlags.ExpandFill;
-            label.CustomMinimumSize = new Vector2(1, 0);
+            button.TextOverrunBehavior = TextServer.OverrunBehavior.TrimEllipsis;
+            button.SizeFlagsHorizontal = SizeFlags.ExpandFill;
+            button.CustomMinimumSize = new Vector2(50, 0);
 
-            if (label.GetParent() is Control parentControl)
+            if (button.GetParent() is Control parentControl)
                 parentControl.SizeFlagsHorizontal = SizeFlags.ExpandFill;
+
+            return true;
         }
 
         var childCount = node.GetChildCount(true);
         for (int i = 0; i < childCount; ++i)
         {
-            FixScreenRecordingPermissionLabel(node.GetChild(i, true));
+            if (FixScreenRecordingPermissionText(node.GetChild(i, true)))
+                return true;
         }
+
+        return false;
     }
 
     private void DummyTranslations()
