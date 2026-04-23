@@ -314,11 +314,8 @@ public enum ThriveArchiveObjectType : uint
     GeneralAvoidPredationSelectionPressure = 4394,
     EnergyConsumptionPressure = 4395,
     ComponentSpatialAnimation = 4396,
-<<<<<<< expanded-cell-specialization-effects
-    ComponentSpecializationFactor = 4397,
-=======
     JukeboxPlaybackState = 4397,
->>>>>>> master
+    ComponentSpecializationFactor = 4398,
 
     // Special flag types
     ExtendedOrganelleLayout = OrganelleLayout | ArchiveObjectType.ExtendedTypeFlag,
