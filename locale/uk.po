@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-17 10:24+0300\n"
-"PO-Revision-Date: 2026-04-13 13:50+0000\n"
+"POT-Creation-Date: 2026-04-22 17:18+0300\n"
+"PO-Revision-Date: 2026-04-20 23:52+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
 "Language: uk\n"
@@ -765,6 +765,10 @@ msgstr "Меню читів"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Показати /приховати клітинні процеси"
+
+#, fuzzy
+msgid "CHEMICAL_EQUATION_SPEED_EXPLANATION"
+msgstr "(швидкість з якою ШІ мутує вид)"
 
 msgid "CHEMOPLAST"
 msgstr "Хемопласт"
@@ -3504,6 +3508,20 @@ msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "Заблокувати цикл дня/ночі"
 
 #, fuzzy
+msgid "LOOK_LEFT"
+msgstr "Вліво"
+
+#, fuzzy
+msgid "LOOK_RIGHT"
+msgstr "Вправо"
+
+msgid "LOOK_SCREEN_DOWN_OR_3D_TOWARDS_UP"
+msgstr ""
+
+msgid "LOOK_SCREEN_UP_OR_3D_TOWARDS_DOWN"
+msgstr ""
+
+#, fuzzy
 msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
 msgstr "(вищі значення покращать продуктивність)"
 
@@ -5126,8 +5144,13 @@ msgstr "попередній:"
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Обробка об'єктів завантаження"
 
+#, fuzzy
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "у"
+
+#, fuzzy
+msgid "PROCESS_INACTIVE"
+msgstr "Клітинні процеси"
 
 #, fuzzy
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
@@ -5143,12 +5166,6 @@ msgstr "Клітинні процеси"
 
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Швидкість біопроцесів"
-
-msgid "PROCESS_TOGGLE_TOOLTIP"
-msgstr ""
-"Увімкнути або вимкнути цей процес. Це дозволяє краще контролювати клітинні процеси.\n"
-"Наприклад, таким чином можна вимкнути продукування токсинів, коли вони не потрібні.\n"
-"Або вручну збалансувати, якими джерелами енергії користуватися для більшої ефективності, але це дуже продвинута геймплейна тактика."
 
 msgid "PROGRAMMING_TEAM"
 msgstr "Команда програмістів"
@@ -6891,6 +6908,7 @@ msgstr ""
 "\n"
 "Аби повністю покинути колонію ви можете клікнути на свою клітину або натиснути клавішу [thrive:input]g_unbind_all[/thrive:input]."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_PROCESS_PANEL"
 msgstr ""
 "Тут, на [b]панелі процесів[/b], ви можете спостерігати за клітинними процесами у реальному часі. Кожний спінер показує, як швидко пробігає процес, а числа вказують усереднене значення нещодавнього споживання або продукування.\n"

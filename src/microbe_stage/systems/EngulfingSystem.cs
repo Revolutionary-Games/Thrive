@@ -1593,6 +1593,12 @@ public partial class EngulfingSystem : BaseSystem<World, float>
         // Mark the object as recently expelled (0 seconds since ejection)
         engulfer.ExpelledObjects[engulfableObject] = 0;
 
+        if (canMoveToHigherLevelEngulfer &&
+            TryMoveEjectedObjectToHigherLevelEngulfer(ref engulfer, entity, ref engulfable, engulfableObject))
+        {
+            return;
+        }
+
         PerformEjectionForceAndAttachedRemove(entity, ref engulfable, engulfableObject);
 
         RemoveEngulfedObject(ref engulfer, engulfableObject, ref engulfable, false);
@@ -1610,40 +1616,53 @@ public partial class EngulfingSystem : BaseSystem<World, float>
         var endosome = GetEndosomeIfExists(entity, engulfableObject);
 
         endosome?.Hide();
+    }
 
-        if (entity.Has<Engulfable>() && canMoveToHigherLevelEngulfer)
+    private bool TryMoveEjectedObjectToHigherLevelEngulfer(ref Engulfer engulfer, Entity entity,
+        ref Engulfable engulfable, in Entity engulfableObject)
+    {
+        if (!entity.Has<Engulfable>())
+            return false;
+
+        ref var engulfersEngulfable = ref entity.Get<Engulfable>();
+
+        if (engulfersEngulfable.PhagocytosisStep == PhagocytosisPhase.None)
+            return false;
+
+        if (!engulfersEngulfable.HostileEngulfer.IsAliveAndHas<Engulfer>())
         {
-            ref var engulfersEngulfable = ref entity.Get<Engulfable>();
-
-            if (engulfersEngulfable.PhagocytosisStep != PhagocytosisPhase.None)
-            {
-                if (!engulfersEngulfable.HostileEngulfer.IsAliveAndHas<Engulfer>())
-                {
-                    GD.PrintErr("Attempt to pass ejected object to our engulfer failed because that " +
-                        "engulfer is not alive");
-                    return;
-                }
-
-                // Skip sending to the hostile engulfer if it is dead
-                if (engulfersEngulfable.HostileEngulfer.Has<Health>() &&
-                    engulfersEngulfable.HostileEngulfer.Get<Health>().Dead)
-                {
-                    GD.Print("Not sending engulfable to our engulfer as that is dead");
-                    return;
-                }
-
-                ref var hostileEngulfer = ref engulfersEngulfable.HostileEngulfer.Get<Engulfer>();
-
-                // We have our own engulfer, and it wants to claim this object we've just expelled
-                if (!IngestEngulfable(ref hostileEngulfer,
-                        ref engulfersEngulfable.HostileEngulfer.Get<CellProperties>(),
-                        engulfersEngulfable.HostileEngulfer, ref engulfable,
-                        engulfableObject))
-                {
-                    GD.PrintErr("Failed to pass ejected object from an engulfed object to its engulfer");
-                }
-            }
+            GD.PrintErr("Attempt to pass ejected object to our engulfer failed because that engulfer is not alive");
+            return false;
         }
+
+        if (engulfersEngulfable.HostileEngulfer.Has<Health>() &&
+            engulfersEngulfable.HostileEngulfer.Get<Health>().Dead)
+        {
+            GD.Print("Not sending engulfable to our engulfer as that is dead");
+            return false;
+        }
+
+        ref var hostileEngulfer = ref engulfersEngulfable.HostileEngulfer.Get<Engulfer>();
+        var oldTransport = engulfable.BulkTransport;
+
+        if (!IngestEngulfableFromOtherEntity(ref hostileEngulfer, engulfersEngulfable.HostileEngulfer,
+                ref engulfable, engulfableObject))
+        {
+            GD.PrintErr("Failed to pass ejected object from an engulfed object to its engulfer");
+            return false;
+        }
+
+        if (!engulfer.EngulfedObjects!.Remove(engulfableObject))
+        {
+            GD.PrintErr("Failed to remove moved engulfed object from engulfer's list of engulfed objects");
+        }
+
+        if (oldTransport != null)
+            ReturnTransportAnimationToCache(oldTransport);
+
+        GetEndosomeIfExists(entity, engulfableObject)?.Hide();
+
+        return true;
     }
 
     private void PerformEjectionForceAndAttachedRemove(in Entity entity, ref Engulfable engulfable,
@@ -1734,15 +1753,7 @@ public partial class EngulfingSystem : BaseSystem<World, float>
         var transport = engulfable.BulkTransport;
         if (transport != null)
         {
-            // Reset state before storing it for future use
-            transport.Interpolate = false;
-            transport.DigestionEjectionStarted = false;
-
-            lock (UnusedTransportAnimations)
-            {
-                UnusedTransportAnimations.Enqueue(transport);
-            }
-
+            ReturnTransportAnimationToCache(transport);
             engulfable.BulkTransport = null;
         }
 
@@ -1776,6 +1787,18 @@ public partial class EngulfingSystem : BaseSystem<World, float>
             }
 
             worldSimulation.DestroyEntity(engulfedEntity);
+        }
+    }
+
+    private void ReturnTransportAnimationToCache(Engulfable.BulkTransportAnimation transport)
+    {
+        // Reset state before storing it for future use
+        transport.Interpolate = false;
+        transport.DigestionEjectionStarted = false;
+
+        lock (UnusedTransportAnimations)
+        {
+            UnusedTransportAnimations.Enqueue(transport);
         }
     }
 

@@ -39,7 +39,7 @@ public class EditorActionTests
         Assert.False(history.CanUndo());
 
         // There's no easy way to verify the history is completely empty, so we misuse an API here and expect an error
-        Assert.Throws<ArgumentOutOfRangeException>(() => history.PopTopAction());
+        Assert.Throws<ArgumentOutOfRangeException>(history.PopTopAction);
     }
 
     [Fact]
@@ -125,7 +125,7 @@ public class EditorActionTests
         Assert.False(history.CanUndo());
 
         // There's no easy way to verify the history is completely empty, so we misuse an API here and expect an error
-        Assert.Throws<ArgumentOutOfRangeException>(() => history.PopTopAction());
+        Assert.Throws<ArgumentOutOfRangeException>(history.PopTopAction);
     }
 
     [Fact]

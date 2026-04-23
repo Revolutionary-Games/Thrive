@@ -22,6 +22,8 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
     private readonly Dictionary<MulticellularSpecies, ResolvedMicrobeTolerances>
         resolvedMulticellularTolerances = new();
 
+    private readonly Dictionary<Species, float> resolvedSpeciesRadii = new();
+
     private OrganelleDefinition cytoplasm = null!;
 
     // This is no longer saved with child properties as it gets really complicated trying to load data into this from
@@ -637,6 +639,39 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             resolvedMulticellularTolerances[multicellularSpecies] = cached;
 
             return cached;
+        }
+    }
+
+    public float GetSpeciesTerrainCollisionRadius(Species species)
+    {
+        lock (resolvedSpeciesRadii)
+        {
+            if (resolvedSpeciesRadii.TryGetValue(species, out var radius))
+                return radius;
+
+            if (species is MulticellularSpecies multicellularSpecies)
+            {
+                radius = CalculateMulticellularTerrainCollisionRadius(multicellularSpecies);
+            }
+            else if (species is not MicrobeSpecies microbeSpecies)
+            {
+                GD.PrintErr($"MicrobeStage asked to calculate radius of unsupported species type: {species.GetType()}");
+                return Spawner.DEFAULT_SPAWN_RADIUS;
+            }
+            else
+            {
+                var membraneData =
+                    MembraneComputationHelpers.GetOrComputeMembraneShape(microbeSpecies.Organelles.Organelles,
+                        microbeSpecies.MembraneType);
+
+                radius = membraneData.Radius;
+
+                if (microbeSpecies.IsBacteria)
+                    radius *= 0.5f;
+            }
+
+            resolvedSpeciesRadii[species] = radius;
+            return radius;
         }
     }
 
@@ -1558,6 +1593,34 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         SaveHelper.Save(name, this);
     }
 
+    private static float CalculateMulticellularTerrainCollisionRadius(MulticellularSpecies multicellularSpecies)
+    {
+        // Very similar code to the multicellular photo taking code
+        var cells = multicellularSpecies.ModifiableGameplayCells;
+        var cellCount = cells.Count;
+
+        if (cellCount < 1)
+            return Spawner.DEFAULT_SPAWN_RADIUS;
+
+        float radius = 0;
+
+        for (int i = 0; i < cellCount; ++i)
+        {
+            var cell = cells[i];
+            var membraneData = MembraneComputationHelpers.GetOrComputeMembraneShape(
+                cell.ModifiableCellType.ModifiableOrganelles.Organelles, cell.MembraneType);
+
+            var cellPosition = Hex.AxialToCartesian(cell.Position) *
+                Constants.MULTICELLULAR_CELL_DISTANCE_MULTIPLIER;
+            var cellOuterRadius = cellPosition.Length() + membraneData.Radius;
+
+            if (cellOuterRadius > radius)
+                radius = cellOuterRadius;
+        }
+
+        return radius;
+    }
+
     private void UpdateZoomLevels(bool isMulticellular)
     {
         if (isMulticellular)
@@ -1927,7 +1990,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         // Remove excess lines
         while (currentLineIndex < chemoreceptionLines.Count)
         {
-            var line = chemoreceptionLines[chemoreceptionLines.Count - 1].Line;
+            var line = chemoreceptionLines[^1].Line;
             chemoreceptionLines.RemoveAt(chemoreceptionLines.Count - 1);
 
             RemoveChild(line);
@@ -2008,6 +2071,11 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         lock (resolvedMulticellularTolerances)
         {
             resolvedMulticellularTolerances.Clear();
+        }
+
+        lock (resolvedSpeciesRadii)
+        {
+            resolvedSpeciesRadii.Clear();
         }
     }
 

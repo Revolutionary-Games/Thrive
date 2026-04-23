@@ -1,7 +1,9 @@
 // ------------------------------------ //
 #include "DebugDrawForwarder.hpp"
 
-#include "Jolt/Math/Float4.h"
+#include <algorithm>
+
+#include <Jolt/Math/Float4.h>
 
 #include "core/Logger.hpp"
 #include "core/Time.hpp"
@@ -61,6 +63,16 @@ JColour MixColour(const JColour baseColour, const JColour colourTint)
 }
 #endif // ENSURE_NO_COLOUR_OVER_SATURATION
 
+template<typename TBuffer, typename TDistance>
+void SortBufferByClosestDistance(TBuffer& buffer, size_t sortIfBiggerThan, TDistance getDistanceSquared)
+{
+    if (buffer.size() <= sortIfBiggerThan)
+        return;
+
+    std::sort(buffer.begin(), buffer.end(), [getDistanceSquared](const auto& entry1, const auto& entry2)
+        { return getDistanceSquared(entry1) < getDistanceSquared(entry2); });
+}
+
 // Apparently we need to act like a GPU just to get debug rendering done...
 DebugDrawForwarder::DVertex TransformVertex(const JPH::RMat44& matrix, const JPH::DebugRenderer::Vertex& vertex)
 {
@@ -81,6 +93,8 @@ void DebugDrawForwarder::FlushOutput()
     const auto startTime = TimingClock::now();
 
     Lock lock(mutex);
+
+    SortDrawBuffersIfAboveThreshold();
 
     // Send the accumulated data
     if (lineCallback != nullptr && *lineCallback != nullptr)
@@ -146,6 +160,9 @@ bool DebugDrawForwarder::HasAReceiver() const noexcept
 // ------------------------------------ //
 void DebugDrawForwarder::DrawLine(JPH::RVec3Arg inFrom, JPH::RVec3Arg inTo, JPH::ColorArg inColor)
 {
+    if (!IsPointWithinDrawDistance(inFrom) && !IsPointWithinDrawDistance(inTo))
+        return;
+
     Lock lock(mutex);
     lineBuffer.emplace_back(JoltToJVec3(inFrom), JoltToJVec3(inTo), JoltToJColour(inColor));
 }
@@ -155,6 +172,9 @@ void DebugDrawForwarder::DrawTriangle(
 {
     // TODO: shadow support?
     UNUSED(inCastShadow);
+
+    if (!IsPointWithinDrawDistance(inV1) && !IsPointWithinDrawDistance(inV2) && !IsPointWithinDrawDistance(inV3))
+        return;
 
     Lock lock(mutex);
     triangleBuffer.emplace_back(JoltToJVec3(inV1), JoltToJVec3(inV2), JoltToJVec3(inV3), JoltToJColour(inColor));
@@ -171,7 +191,7 @@ void DebugDrawForwarder::DrawGeometry(JPH::RMat44Arg inModelMatrix, const JPH::A
 {
     // Skip rendering too faraway objects
     const auto distance = inWorldSpaceBounds.GetSqDistanceTo(cameraPosition);
-    if (distance > maxModelDistance * maxModelDistance)
+    if (distance > maxModelDistanceSquared)
         return;
 
     const JPH::RMat44 transformMatrix = inModelMatrix;
@@ -269,8 +289,8 @@ JPH::DebugRenderer::Batch DebugDrawForwarder::CreateTriangleBatch(
 
     const auto batchId = nextBatchID++;
 
-    // This isn't immediately wrapped in the smart pointer so this could leak if the copying throws, but as this is
-    // just debug rendering there's not much point in doing this exactly right
+    // This isn't immediately wrapped in the smart pointer, so this could leak if the copying throws, but as this is
+    // just debug rendering, there's not much point in doing this exactly right
     auto result = new BatchImpl(batchId);
 
     result->triangles.reserve(inTriangleCount);
@@ -315,6 +335,7 @@ JPH::DebugRenderer::Batch DebugDrawForwarder::CreateTriangleBatch(
 void DebugDrawForwarder::DrawTriangleInternal(
     const DVertex& vertex1, const DVertex& vertex2, const DVertex& vertex3, JColour colourTint, bool wireFrame)
 {
+    // We don't check distances here as the model draw check already checked the distance
     if (wireFrame)
     {
         lineBuffer.emplace_back(vertex1.mPosition, vertex2.mPosition, MixColour(vertex1.mColor, colourTint));
@@ -327,6 +348,15 @@ void DebugDrawForwarder::DrawTriangleInternal(
         triangleBuffer.emplace_back(
             vertex1.mPosition, vertex2.mPosition, vertex3.mPosition, MixColour(vertex1.mColor, colourTint));
     }
+}
+
+// ------------------------------------ //
+void DebugDrawForwarder::SortDrawBuffersIfAboveThreshold()
+{
+    SortBufferByClosestDistance(lineBuffer, SortForwardedDebugLinesAfter,
+        [this](const LineDrawEntry& entry) { return GetClosestDistanceSquared(entry); });
+    SortBufferByClosestDistance(triangleBuffer, SortForwardedDebugTrianglesAfter,
+        [this](const TriangleDrawEntry& entry) { return GetClosestDistanceSquared(entry); });
 }
 
 } // namespace Thrive::Physics

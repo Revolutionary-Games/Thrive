@@ -1,6 +1,8 @@
 // ------------------------------------ //
 #include "DebugDrawer.hpp"
 
+#include <cstdint>
+
 BEGIN_GODOT_INCLUDES;
 #include <godot_cpp/classes/camera3d.hpp>
 #include <godot_cpp/classes/engine.hpp>
@@ -128,24 +130,21 @@ void DebugDrawer::Init()
         return;
     }
 
-    // Make sure the debug stuff is always rendered
-    const auto quiteBigAABB = godot::AABB(godot::Vector3{0, 0, 0},
-        godot::Vector3{DEBUG_DRAW_MAX_DISTANCE_ORIGIN, DEBUG_DRAW_MAX_DISTANCE_ORIGIN, DEBUG_DRAW_MAX_DISTANCE_ORIGIN});
-
     lineMesh = godot::Ref<godot::ImmediateMesh>(memnew(godot::ImmediateMesh));
     triangleMesh = godot::Ref<godot::ImmediateMesh>(memnew(godot::ImmediateMesh));
 
     lineDrawer->set_mesh(lineMesh);
     lineDrawer->set_visible(false);
-    lineDrawer->set_custom_aabb(quiteBigAABB);
     lineDrawer->set_ignore_occlusion_culling(true);
     lineDrawer->set_extra_cull_margin(1000);
 
     triangleDrawer->set_mesh(triangleMesh);
     triangleDrawer->set_visible(false);
-    triangleDrawer->set_custom_aabb(quiteBigAABB);
     triangleDrawer->set_ignore_occlusion_culling(true);
     triangleDrawer->set_extra_cull_margin(1000);
+
+    // Set an initial AABB as we might not have the camera yet
+    UpdateDrawAabb({});
 
     // TODO: implement debug text drawing (this is a Control to support that in the future)
 }
@@ -156,6 +155,12 @@ void DebugDrawer::_process(double delta)
     // Don't do anything if not initialized
     if (lineDrawer == nullptr)
         return;
+
+    if (physicsDebugSupported && currentPhysicsDebugLevel > 0)
+    {
+        // Update camera before drawing / even when not drawing anything to ensure culling works
+        UpdateDebugCameraLocation();
+    }
 
     if (!timedLines.empty())
     {
@@ -191,14 +196,6 @@ void DebugDrawer::_process(double delta)
         lineDrawer->set_visible(true);
         triangleDrawer->set_visible(true);
         drawnThisFrame = false;
-
-        // Send camera position to the debug draw for LOD purposes
-        const auto* camera = get_viewport()->get_camera_3d();
-
-        if (camera != nullptr)
-        {
-            SetDebugCameraLocation(camera->get_global_position());
-        }
 
         if (!warnedAboutHittingMemoryLimit && usedDrawMemory + SingleTriangleDrawMemoryUse * 100 >= drawMemoryLimit)
         {
@@ -319,9 +316,10 @@ void DebugDrawer::RemoveDebugDraw() noexcept
 // Drawing methods
 void DebugDrawer::DrawLine(const godot::Vector3& from, const godot::Vector3& to, const godot::Color& colour)
 {
-    if (usedDrawMemory + SingleLineDrawMemoryUse >= drawMemoryLimit)
+    if (usedLineDrawMemory + SingleLineDrawMemoryUse >= perTypeDrawLimit)
     {
-        extraNeededDrawMemory += SingleLineDrawMemoryUse;
+        // Needs double the actual limit raise because each type gets just half of the total
+        extraNeededDrawMemory += SingleLineDrawMemoryUse * 2;
         return;
     }
 
@@ -340,14 +338,15 @@ void DebugDrawer::DrawLine(const godot::Vector3& from, const godot::Vector3& to,
     lineMesh->surface_add_vertex(to);
 
     usedDrawMemory += SingleLineDrawMemoryUse;
+    usedLineDrawMemory += SingleLineDrawMemoryUse;
 }
 
 void DebugDrawer::DrawTriangle(const godot::Vector3& vertex1, const godot::Vector3& vertex2,
     const godot::Vector3& vertex3, const godot::Color& colour)
 {
-    if (usedDrawMemory + SingleTriangleDrawMemoryUse >= drawMemoryLimit)
+    if (usedTriangleDrawMemory + SingleTriangleDrawMemoryUse >= perTypeDrawLimit)
     {
-        extraNeededDrawMemory += SingleLineDrawMemoryUse;
+        extraNeededDrawMemory += SingleTriangleDrawMemoryUse * 2;
         return;
     }
 
@@ -370,6 +369,7 @@ void DebugDrawer::DrawTriangle(const godot::Vector3& vertex1, const godot::Vecto
     triangleMesh->surface_add_vertex(vertex3);
 
     usedDrawMemory += SingleTriangleDrawMemoryUse;
+    usedTriangleDrawMemory += SingleTriangleDrawMemoryUse;
 }
 
 void DebugDrawer::StartDrawingIfNotYetThisFrame()
@@ -378,9 +378,35 @@ void DebugDrawer::StartDrawingIfNotYetThisFrame()
         return;
 
     usedDrawMemory = 0;
+    usedLineDrawMemory = 0;
+    usedTriangleDrawMemory = 0;
     extraNeededDrawMemory = 0;
 
     drawnThisFrame = true;
+}
+
+void DebugDrawer::UpdateDrawAabb(const godot::Vector3& center)
+{
+    const auto radius =
+        godot::Vector3{DEBUG_DRAW_MAX_DISTANCE, DEBUG_DRAW_MAX_DISTANCE, DEBUG_DRAW_MAX_DISTANCE};
+    const auto bounds = godot::AABB(center - radius, radius * 2.0f);
+
+    lineDrawer->set_custom_aabb(bounds);
+    triangleDrawer->set_custom_aabb(bounds);
+}
+
+void DebugDrawer::UpdateDebugCameraLocation()
+{
+    // The physics debug culling depends on this position even before a successful draw happens.
+    const auto* camera = get_viewport()->get_camera_3d();
+
+    if (camera != nullptr)
+    {
+        const auto cameraLocation = camera->get_global_position();
+
+        SetDebugCameraLocation(cameraLocation);
+        UpdateDrawAabb(cameraLocation);
+    }
 }
 
 // ------------------------------------ //

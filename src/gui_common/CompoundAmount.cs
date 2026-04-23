@@ -256,7 +256,7 @@ public partial class CompoundAmount : HBoxContainer
         if (value is <= 0 or >= 1)
             throw new ArgumentException("Value must be between 0 and 1 (exclusive)");
 
-        return (int)Math.Ceiling(Math.Abs(Math.Log10(value)));
+        return (int)MathF.Ceiling(MathF.Abs(MathF.Log10(value)));
     }
 
     private static string GetFormatWithDecimals(int decimals)
@@ -309,7 +309,7 @@ public partial class CompoundAmount : HBoxContainer
             // TODO: implement also the small value display here?
 
             numberPart = Localization.Translate("VALUE_WITH_UNIT")
-                .FormatSafe(Math.Round(amount, decimals), compoundDefinition.Unit);
+                .FormatSafe(MathF.Round(amount, decimals), compoundDefinition.Unit);
         }
         else if (UsePercentageDisplay)
         {
@@ -317,16 +317,17 @@ public partial class CompoundAmount : HBoxContainer
         }
         else
         {
-            var absAmount = Math.Abs(amount);
+            var absAmount = MathF.Abs(amount);
             if (showEvenSmallValues && absAmount is < 1 and > MINIMUM_DISPLAY_VALUE &&
-                absAmount < Math.Pow(10, -decimals))
+                absAmount < MathF.Pow(10, -decimals))
             {
                 numberPart = amount.ToString(GetFormatWithDecimals(CalculateNeededDecimalPlaces(absAmount)))
                     .ToString(CultureInfo.CurrentCulture);
             }
             else
             {
-                numberPart = Math.Round(amount, decimals).ToString(CultureInfo.CurrentCulture);
+                numberPart = MathF.Round(amount, decimals).ToString(GetFormatWithDecimals(decimals),
+                    CultureInfo.CurrentCulture);
             }
         }
 

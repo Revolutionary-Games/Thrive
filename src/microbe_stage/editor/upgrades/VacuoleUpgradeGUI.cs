@@ -91,6 +91,11 @@ public partial class VacuoleUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         return true;
     }
 
+    public bool IsCurrentStateDefault()
+    {
+        return !isSpecializedCheckbox.ButtonPressed;
+    }
+
     public Vector2 GetMinDialogSize()
     {
         return new Vector2(420, 135);
