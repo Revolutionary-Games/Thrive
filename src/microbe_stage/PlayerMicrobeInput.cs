@@ -11,15 +11,21 @@ using Godot;
 /// <remarks>
 ///   <para>
 ///     Note that callbacks from other places directly call some methods in this class, so
-///     an extra care should be taken while modifying the methods as otherwise some stuff
+///     extra care should be taken while modifying the methods as otherwise some stuff
 ///     may no longer work.
 ///   </para>
 /// </remarks>
 public partial class PlayerMicrobeInput : NodeWithInput
 {
+    private const float CONTROLLER_LOOK_EPSILON = 0.01f;
+    private const float CONTROLLER_LOOK_POINT_DISTANCE = 10.0f;
+
     private readonly MicrobeMovementEventArgs cachedEventArgs = new(true, Vector3.Zero);
 
+    private Vector3 controllerLookDirection = new(0, 0, -1);
+
     private bool autoMove;
+    private bool hasExternalLookDirection;
 
 #pragma warning disable CA2213 // this is our parent object
 
@@ -33,6 +39,18 @@ public partial class PlayerMicrobeInput : NodeWithInput
     {
         // Not the cleanest that the parent has to be MicrobeState type...
         stage = (MicrobeStage)GetParent();
+    }
+
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+        KeyPromptHelper.InputTypeChanged += OnSwitchedInputTypes;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        KeyPromptHelper.InputTypeChanged -= OnSwitchedInputTypes;
     }
 
     [RunOnKeyDown("g_hold_forward")]
@@ -81,10 +99,9 @@ public partial class PlayerMicrobeInput : NodeWithInput
 
             var movement = new Vector3(leftRightMovement, 0, forwardMovement);
 
-            if (inputMethod == ActiveInputMethod.Controller)
+            if (inputMethod == ActiveInputMethod.Controller || hasExternalLookDirection)
             {
-                // TODO: look direction for controller input  https://github.com/Revolutionary-Games/Thrive/issues/4034
-                control.LookAtPoint = position.Position + new Vector3(0, 0, -10);
+                control.LookAtPoint = position.Position + controllerLookDirection * CONTROLLER_LOOK_POINT_DISTANCE;
             }
             else
             {
@@ -115,6 +132,33 @@ public partial class PlayerMicrobeInput : NodeWithInput
             cachedEventArgs.ReuseEvent(screenRelative, control.MovementDirection);
             stage.TutorialState.SendEvent(TutorialEventType.MicrobePlayerMovement, cachedEventArgs, this);
         }
+    }
+
+    // TODO: for some reason this doesn't feel fully smooth to rotate over? Maybe one axis is deadzoned to 0 when other
+    // is still active thus causing the feel of the cardinal directions "snapping"?
+    [RunOnAxis(new[] { "g_look_yaw_negative", "g_look_yaw_positive" }, new[] { -1.0f, 1.0f })]
+    [RunOnAxis(new[] { "g_look_pitch_negative", "g_look_pitch_positive" }, new[] { -1.0f, 1.0f })]
+    [RunOnAxisGroup(InvokeAlsoWithNoInput = true, InvokeWithDelta = false)]
+    public void OnControllerLook(float horizontalMovement, float verticalMovement)
+    {
+        // We don't need to check the input method here as keyboard look direction is valid
+        var direction = new Vector3(horizontalMovement, 0, verticalMovement);
+
+        // Keep previous look direction when no new input
+        // TODO: this seems kind of too sensitive still as angle doesn't stay at the exact same direction
+        if (direction.LengthSquared() < CONTROLLER_LOOK_EPSILON)
+            return;
+
+        controllerLookDirection = direction.Normalized();
+        hasExternalLookDirection = true;
+
+        if (!stage.HasPlayer)
+            return;
+
+        ref var position = ref stage.Player.Get<WorldPosition>();
+        ref var control = ref stage.Player.Get<MicrobeControl>();
+
+        control.LookAtPoint = position.Position + controllerLookDirection * CONTROLLER_LOOK_POINT_DISTANCE;
     }
 
     [RunOnKeyDown("g_fire_siderophore")]
@@ -492,5 +536,11 @@ public partial class PlayerMicrobeInput : NodeWithInput
             stage.Camera.CursorWorldPos);
 
         AchievementsManager.ReportCheatsUsed();
+    }
+
+    private void OnSwitchedInputTypes(object? sender, EventArgs e)
+    {
+        // Reset this as we no longer always reset this to allow keyboard look-directions to be specified
+        hasExternalLookDirection = false;
     }
 }
