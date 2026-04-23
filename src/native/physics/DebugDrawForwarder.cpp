@@ -3,7 +3,7 @@
 
 #include <algorithm>
 
-#include "Jolt/Math/Float4.h"
+#include <Jolt/Math/Float4.h>
 
 #include "core/Logger.hpp"
 #include "core/Time.hpp"
@@ -63,48 +63,14 @@ JColour MixColour(const JColour baseColour, const JColour colourTint)
 }
 #endif // ENSURE_NO_COLOUR_OVER_SATURATION
 
-constexpr int DistanceCullSearchIterations = 12;
-
 template<typename TBuffer, typename TDistance>
-void CullBufferByClosestDistance(TBuffer& buffer, size_t maxEntries, TDistance getDistanceSquared)
+void SortBufferByClosestDistance(TBuffer& buffer, size_t sortIfBiggerThan, TDistance getDistanceSquared)
 {
-    if (buffer.size() <= maxEntries)
+    if (buffer.size() <= sortIfBiggerThan)
         return;
 
-    double highDistance = 0;
-
-    for (const auto& entry : buffer)
-    {
-        highDistance = std::max(highDistance, getDistanceSquared(entry));
-    }
-
-    double lowDistance = 0;
-
-    for (int i = 0; i < DistanceCullSearchIterations; ++i)
-    {
-        const auto middleDistance = (lowDistance + highDistance) * 0.5;
-        size_t entryCount = 0;
-
-        for (const auto& entry : buffer)
-        {
-            if (getDistanceSquared(entry) <= middleDistance)
-                ++entryCount;
-        }
-
-        if (entryCount > maxEntries)
-            highDistance = middleDistance;
-        else
-            lowDistance = middleDistance;
-    }
-
-    buffer.erase(std::remove_if(buffer.begin(), buffer.end(),
-                     [highDistance, getDistanceSquared](const auto& entry) {
-                         return getDistanceSquared(entry) > highDistance;
-                     }),
-        buffer.end());
-
-    if (buffer.size() > maxEntries)
-        buffer.resize(maxEntries);
+    std::sort(buffer.begin(), buffer.end(), [getDistanceSquared](const auto& entry1, const auto& entry2)
+        { return getDistanceSquared(entry1) < getDistanceSquared(entry2); });
 }
 
 // Apparently we need to act like a GPU just to get debug rendering done...
@@ -128,7 +94,7 @@ void DebugDrawForwarder::FlushOutput()
 
     Lock lock(mutex);
 
-    CullOutputToDrawDistance();
+    SortDrawBuffersIfAboveThreshold();
 
     // Send the accumulated data
     if (lineCallback != nullptr && *lineCallback != nullptr)
@@ -323,8 +289,8 @@ JPH::DebugRenderer::Batch DebugDrawForwarder::CreateTriangleBatch(
 
     const auto batchId = nextBatchID++;
 
-    // This isn't immediately wrapped in the smart pointer so this could leak if the copying throws, but as this is
-    // just debug rendering there's not much point in doing this exactly right
+    // This isn't immediately wrapped in the smart pointer, so this could leak if the copying throws, but as this is
+    // just debug rendering, there's not much point in doing this exactly right
     auto result = new BatchImpl(batchId);
 
     result->triangles.reserve(inTriangleCount);
@@ -369,13 +335,7 @@ JPH::DebugRenderer::Batch DebugDrawForwarder::CreateTriangleBatch(
 void DebugDrawForwarder::DrawTriangleInternal(
     const DVertex& vertex1, const DVertex& vertex2, const DVertex& vertex3, JColour colourTint, bool wireFrame)
 {
-    if (GetDistanceSquared(vertex1.mPosition) > maxModelDistanceSquared &&
-        GetDistanceSquared(vertex2.mPosition) > maxModelDistanceSquared &&
-        GetDistanceSquared(vertex3.mPosition) > maxModelDistanceSquared)
-    {
-        return;
-    }
-
+    // We don't check distances here as the model draw check already checked the distance
     if (wireFrame)
     {
         lineBuffer.emplace_back(vertex1.mPosition, vertex2.mPosition, MixColour(vertex1.mColor, colourTint));
@@ -390,33 +350,13 @@ void DebugDrawForwarder::DrawTriangleInternal(
     }
 }
 
-void DebugDrawForwarder::CullOutputToDrawDistance()
+// ------------------------------------ //
+void DebugDrawForwarder::SortDrawBuffersIfAboveThreshold()
 {
-    CullBufferByClosestDistance(lineBuffer, MaxForwardedDebugLines,
+    SortBufferByClosestDistance(lineBuffer, SortForwardedDebugLinesAfter,
         [this](const LineDrawEntry& entry) { return GetClosestDistanceSquared(entry); });
-    CullBufferByClosestDistance(triangleBuffer, MaxForwardedDebugTriangles,
+    SortBufferByClosestDistance(triangleBuffer, SortForwardedDebugTrianglesAfter,
         [this](const TriangleDrawEntry& entry) { return GetClosestDistanceSquared(entry); });
-}
-
-double DebugDrawForwarder::GetDistanceSquared(const JVec3& position) const
-{
-    const auto x = position.X - cameraPositionForDrawDistance.GetX();
-    const auto y = position.Y - cameraPositionForDrawDistance.GetY();
-    const auto z = position.Z - cameraPositionForDrawDistance.GetZ();
-
-    return x * x + y * y + z * z;
-}
-
-double DebugDrawForwarder::GetClosestDistanceSquared(const LineDrawEntry& entry) const
-{
-    return std::min(GetDistanceSquared(std::get<0>(entry)), GetDistanceSquared(std::get<1>(entry)));
-}
-
-double DebugDrawForwarder::GetClosestDistanceSquared(const TriangleDrawEntry& entry) const
-{
-    return std::min(
-        std::min(GetDistanceSquared(std::get<0>(entry)), GetDistanceSquared(std::get<1>(entry))),
-        GetDistanceSquared(std::get<2>(entry)));
 }
 
 } // namespace Thrive::Physics
