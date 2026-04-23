@@ -750,6 +750,16 @@ public static class Constants
     public const float ATP_DAMAGE_THRESHOLD = 0.05f;
 
     /// <summary>
+    ///   ATP storage fraction that is treated as full for HUD display purposes.
+    /// </summary>
+    public const float ATP_BAR_FULL_DISPLAY_FRACTION = 0.9f;
+
+    /// <summary>
+    ///   Minimum ATP margin that is treated as full for HUD display purposes.
+    /// </summary>
+    public const float ATP_BAR_FULL_DISPLAY_MINIMUM_MARGIN = 0.1f;
+
+    /// <summary>
     ///   Amount of health per second regenerated
     /// </summary>
     public const float HEALTH_REGENERATION_RATE = 1.5f;

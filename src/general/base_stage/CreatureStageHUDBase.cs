@@ -1040,7 +1040,13 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
 
         atpBar.MaxValue = maxATP * 10.0f;
 
-        atpAmount = ATPDisplayHelper.CalculateDisplayedATPAmount(atpAmount, maxATP);
+        // If the current ATP is close to full, just pretend that it is to keep the bar from flickering.
+        var fullMargin = Math.Max(maxATP * (1 - Constants.ATP_BAR_FULL_DISPLAY_FRACTION),
+            Constants.ATP_BAR_FULL_DISPLAY_MINIMUM_MARGIN);
+        if (maxATP - atpAmount <= fullMargin)
+        {
+            atpAmount = maxATP;
+        }
 
         GUICommon.SmoothlyUpdateBar(atpBar, atpAmount * 10.0f, delta);
 
