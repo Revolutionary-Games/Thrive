@@ -462,7 +462,10 @@ public class SimulationCache
         var preyToolScores = GetPredationToolsRawScores(prey);
 
         var toxicity = predatorToolScores.AverageToxicity;
-        var macrolideScore = predatorToolScores.MacrolideScore;
+        oxytoxyScore *= specializationBonus;
+        cytotoxinScore *= specializationBonus;
+        channelInhibitorScore *= specializationBonus;
+        var macrolideScore = predatorToolScores.MacrolideScore * specializationBonus;
         var predatorSlimeJetScore = predatorToolScores.SlimeJetScore * specializationBonus;
         var pullingCiliaModifier = predatorToolScores.PullingCiliaModifier * specializationBonus;
         var strongPullingCiliaModifier = pullingCiliaModifier * pullingCiliaModifier;
@@ -474,10 +477,10 @@ public class SimulationCache
         var preyPilusScore = preyToolScores.PilusScore;
         var preyInjectisomeScore = preyToolScores.InjectisomeScore;
         var preyToxicity = preyToolScores.AverageToxicity;
-        var preyOxytoxyScore = preyToolScores.OxytoxyScore;
-        var preyCytotoxinScore = preyToolScores.CytotoxinScore;
-        var preyMacrolideScore = preyToolScores.MacrolideScore;
-        var preyChannelInhibitorScore = preyToolScores.ChannelInhibitorScore;
+        var preyOxytoxyScore = preyToolScores.OxytoxyScore * preySpecializationBonus;
+        var preyCytotoxinScore = preyToolScores.CytotoxinScore * preySpecializationBonus;
+        var preyMacrolideScore = preyToolScores.MacrolideScore * preySpecializationBonus;
+        var preyChannelInhibitorScore = preyToolScores.ChannelInhibitorScore * preySpecializationBonus;
         var preyOxygenMetabolismInhibitorScore = preyToolScores.OxygenMetabolismInhibitorScore;
         var defensivePilusScore = preyToolScores.DefensivePilusScore;
         var defensiveInjectisomeScore = preyToolScores.DefensiveInjectisomeScore;
