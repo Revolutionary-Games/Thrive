@@ -365,7 +365,7 @@ public static class SaveHelper
             }
             catch (Exception e)
             {
-                GD.PrintErr("Failed to load save info for ", filename, ": ", e);
+                GD.PrintErr($"Failed to load save info for {filename}: {e}");
             }
         }
 
