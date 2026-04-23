@@ -98,16 +98,19 @@ public class Program
 
         var godot = ExecutableFinder.Which("godot");
 
-        if (string.IsNullOrEmpty(godot))
+        if (options.Godot is not false)
         {
-            ColourConsole.WriteErrorLine("Could not find 'godot' executable, make sure it is in PATH");
-            return 2;
-        }
+            if (string.IsNullOrEmpty(godot))
+            {
+                ColourConsole.WriteErrorLine("Could not find 'godot' executable, make sure it is in PATH");
+                return 2;
+            }
 
-        if (File.Exists(TestRunningHelpers.RUN_SETTINGS_FILE))
-        {
-            ColourConsole.WriteNormalLine(
-                $"Run settings file exists before tests start ({TestRunningHelpers.RUN_SETTINGS_FILE})");
+            if (File.Exists(TestRunningHelpers.RUN_SETTINGS_FILE))
+            {
+                ColourConsole.WriteNormalLine(
+                    $"Run settings file exists before tests start ({TestRunningHelpers.RUN_SETTINGS_FILE})");
+            }
         }
 
         // Delete the old gdUnit runner if one is present as it will make tests fail
@@ -121,61 +124,67 @@ public class Program
 
         var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
 
-        int result;
-
-        ColourConsole.WriteInfoLine("Running 'dotnet test'");
+        int result = -1;
 
         // Run plain C# tests first
+        if (options.Godot is not true)
         {
-            var startInfo = new ProcessStartInfo("dotnet");
-            startInfo.ArgumentList.Add("test");
-            startInfo.ArgumentList.Add("--verbosity");
-            startInfo.ArgumentList.Add(TestRunningHelpers.TEST_RUN_VERBOSITY);
-            startInfo.ArgumentList.Add("test/code_tests/ThriveTest.csproj");
-
-            result = ProcessRunHelpers.RunProcessAsync(startInfo, tokenSource.Token, false)
-                .Result.ExitCode;
-
-            if (result != 0)
             {
-                ColourConsole.WriteErrorLine("Pure C# code tests failed");
-                return result;
+                ColourConsole.WriteInfoLine("Running 'dotnet test'");
+
+                var startInfo = new ProcessStartInfo("dotnet");
+                startInfo.ArgumentList.Add("test");
+                startInfo.ArgumentList.Add("--verbosity");
+                startInfo.ArgumentList.Add(TestRunningHelpers.TEST_RUN_VERBOSITY);
+                startInfo.ArgumentList.Add("test/code_tests/ThriveTest.csproj");
+
+                result = ProcessRunHelpers.RunProcessAsync(startInfo, tokenSource.Token, false)
+                    .Result.ExitCode;
+
+                if (result != 0)
+                {
+                    ColourConsole.WriteErrorLine("Pure C# code tests failed");
+                    return result;
+                }
             }
         }
 
-        ColourConsole.WriteInfoLine("Running tests with gdUnit");
-
-        const int maxTries = 2;
-
-        // Then gdUnit tests
-        ColourConsole.WriteNormalLine($"Generating {TestRunningHelpers.RUN_SETTINGS_FILE}");
-        TestRunningHelpers.GenerateRunSettings(godot, false);
-
-        // gdUnit can randomly fail once to detect available tests, that's why the tests run multiple times on fail
-        // (which is not ideal, but it should hopefully be relatively rare for the tests to actually fail for real)
-        for (int i = 0; i < maxTries; ++i)
+        if (options.Godot is not false)
         {
-            var startInfo = new ProcessStartInfo("dotnet");
-            startInfo.ArgumentList.Add("test");
-            startInfo.ArgumentList.Add("--settings");
-            startInfo.ArgumentList.Add(TestRunningHelpers.RUN_SETTINGS_FILE);
-            startInfo.ArgumentList.Add("--verbosity");
-            startInfo.ArgumentList.Add(TestRunningHelpers.TEST_RUN_VERBOSITY);
-            startInfo.ArgumentList.Add("Thrive.csproj");
+            ColourConsole.WriteInfoLine("Running tests with gdUnit");
 
-            ColourConsole.WriteNormalLine($"Starting gdUnit tests (attempt {i + 1}/{maxTries})...");
-            result = ProcessRunHelpers.RunProcessAsync(startInfo, tokenSource.Token, false)
-                .Result.ExitCode;
+            const int maxTries = 2;
 
-            if (result == 0)
+            // Then gdUnit tests
+            ColourConsole.WriteNormalLine($"Generating {TestRunningHelpers.RUN_SETTINGS_FILE}");
+            TestRunningHelpers.GenerateRunSettings(godot ?? throw new Exception("Godot executable unknown"), false);
+
+            // gdUnit can randomly fail once to detect available tests, that's why the tests run multiple times on fail
+            // (which is not ideal, but it should hopefully be relatively rare for the tests to actually fail for real)
+            for (int i = 0; i < maxTries; ++i)
             {
-                ColourConsole.WriteSuccessLine("gdUnit run succeeded (exit code 0)");
-                break;
-            }
+                var startInfo = new ProcessStartInfo("dotnet");
+                startInfo.ArgumentList.Add("test");
+                startInfo.ArgumentList.Add("--settings");
+                startInfo.ArgumentList.Add(TestRunningHelpers.RUN_SETTINGS_FILE);
+                startInfo.ArgumentList.Add("--verbosity");
+                startInfo.ArgumentList.Add(TestRunningHelpers.TEST_RUN_VERBOSITY);
+                startInfo.ArgumentList.Add("Thrive.csproj");
 
-            if (i + 1 < maxTries)
-            {
-                ColourConsole.WriteErrorLine("Failed to run tests, retrying");
+                ColourConsole.WriteNormalLine($"Starting gdUnit tests (attempt {i + 1}/{maxTries})...");
+                result = ProcessRunHelpers.RunProcessAsync(startInfo, tokenSource.Token, false)
+                    .Result.ExitCode;
+
+                if (result == 0)
+                {
+                    ColourConsole.WriteSuccessLine("gdUnit run succeeded (exit code 0)");
+                    break;
+                }
+
+                if (i + 1 < maxTries)
+                {
+                    ColourConsole.WriteErrorLine("Failed to run tests, retrying");
+                }
             }
         }
 
@@ -389,7 +398,7 @@ public class Program
         startInfo.ArgumentList.Add(PackageTool.GODOT_HEADLESS_FLAG);
         startInfo.ArgumentList.Add("--editor");
         startInfo.ArgumentList.Add("--quit-after");
-        startInfo.ArgumentList.Add("20");
+        startInfo.ArgumentList.Add("200");
         startInfo.ArgumentList.Add(".");
 
         try
@@ -529,7 +538,12 @@ public class Program
     }
 
     [Verb("test", HelpText = "Run tests using 'dotnet' command")]
-    public class TestOptions : ScriptOptionsBase;
+    public class TestOptions : ScriptOptionsBase
+    {
+        [Option("godot", Required = false,
+            HelpText = "If specified can only run Godot tests or non-Godot tests. Default is to run all.")]
+        public bool? Godot { get; set; }
+    }
 
     public class ChangesOptions : ChangesOptionsBase
     {

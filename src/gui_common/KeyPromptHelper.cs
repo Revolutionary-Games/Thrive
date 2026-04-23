@@ -132,7 +132,9 @@ public static class KeyPromptHelper
     public static (string Primary, string? Overlay) GetPathForAction(string actionName)
     {
         // TODO: cache for valid input actions: https://github.com/Revolutionary-Games/Thrive/issues/4983
-        return GetPathForAction(InputMap.ActionGetEvents(actionName));
+        var (primary, overlay, _) = GetPathForActionWithDisplayOptions(InputMap.ActionGetEvents(actionName));
+
+        return (primary, overlay);
     }
 
     /// <summary>
@@ -142,14 +144,31 @@ public static class KeyPromptHelper
     /// <returns>A tuple of icon for the action and a potential overlay that should be drawn on top</returns>
     public static (Texture2D Primary, Texture2D? Overlay) GetTextureForAction(string actionName)
     {
-        var (primaryPath, overlayPath) = GetPathForAction(actionName);
+        var (primary, overlay, _) = GetTextureForActionWithDisplayOptions(actionName);
+
+        return (primary, overlay);
+    }
+
+    /// <summary>
+    ///   Returns an icon and any special display options for the action
+    /// </summary>
+    /// <param name="actionName">Name of the action</param>
+    /// <returns>
+    ///   A tuple of icon for the action, a potential overlay, and whether the primary icon should be drawn smaller
+    /// </returns>
+    public static (Texture2D Primary, Texture2D? Overlay, bool SmallPrimaryIcon) GetTextureForActionWithDisplayOptions(
+        string actionName)
+    {
+        // TODO: cache for valid input actions: https://github.com/Revolutionary-Games/Thrive/issues/4983
+        var (primaryPath, overlayPath, smallPrimaryIcon) =
+            GetPathForActionWithDisplayOptions(InputMap.ActionGetEvents(actionName));
 
         Texture2D? overlay = null;
 
         if (overlayPath != null)
             overlay = GD.Load<Texture2D>(overlayPath);
 
-        return (GD.Load<Texture2D>(primaryPath), overlay);
+        return (GD.Load<Texture2D>(primaryPath), overlay, smallPrimaryIcon);
     }
 
     /// <summary>
@@ -161,50 +180,9 @@ public static class KeyPromptHelper
     /// </returns>
     public static (string Primary, string? Overlay) GetPathForAction(Array<InputEvent> actionList)
     {
-        // Find the first action matching InputMethod
-        foreach (var action in actionList)
-        {
-            switch (InputMethod)
-            {
-                case ActiveInputMethod.Keyboard:
-                {
-                    if (action is InputEventKey key)
-                    {
-                        var potentialKey = GetPathForKeyboardKey(OS.GetKeycodeString(key.KeyCodeOrLabel()));
+        var (primary, overlay, _) = GetPathForActionWithDisplayOptions(actionList);
 
-                        // Skip keys we can't display (and either find a suitable key later or return the invalid
-                        // icon after this loop)
-                        if (potentialKey != null)
-                            return (potentialKey, null);
-                    }
-
-                    if (action is InputEventMouseButton button)
-                    {
-                        return GetPathForMouseButton(button.ButtonIndex);
-                    }
-
-                    break;
-                }
-
-                case ActiveInputMethod.Controller:
-                {
-                    if (action is InputEventJoypadButton joypadButton)
-                    {
-                        return (GetPathForControllerButton(joypadButton.ButtonIndex), null);
-                    }
-
-                    if (action is InputEventJoypadMotion joypadMotion)
-                    {
-                        return (GetPathForControllerAxis(joypadMotion.Axis),
-                            GetPathForControllerAxisDirection(joypadMotion.Axis, joypadMotion.AxisValue));
-                    }
-
-                    break;
-                }
-            }
-        }
-
-        return (GetPathForInvalidKey(), null);
+        return (primary, overlay);
     }
 
     /// <summary>
@@ -240,38 +218,39 @@ public static class KeyPromptHelper
     /// </summary>
     /// <returns>
     ///   A tuple of the primary key texture and an optional overlay texture that should be drawn on top of the primary
-    ///   one. If not drawn the icon will not be clear
+    ///   one. If not drawn the icon will not be clear. The third tuple part tells whether the primary icon should be
+    ///   drawn smaller than normal to make room for the overlay
     /// </returns>
-    public static (string Primary, string? Overlay) GetPathForMouseButton(MouseButton button)
+    public static (string Primary, string? Overlay, bool SmallPrimaryIcon) GetPathForMouseButton(MouseButton button)
     {
         switch (button)
         {
             case MouseButton.Left:
                 return ($"res://assets/textures/gui/xelu_prompts/Keyboard_Mouse/{Theme}/Mouse_Left_Key_{Theme}.png",
-                    null);
+                    null, false);
             case MouseButton.Middle:
                 return ($"res://assets/textures/gui/xelu_prompts/Keyboard_Mouse/{Theme}/Mouse_Middle_Key_{Theme}.png",
-                    null);
+                    null, false);
             case MouseButton.Right:
                 return ($"res://assets/textures/gui/xelu_prompts/Keyboard_Mouse/{Theme}/Mouse_Right_Key_{Theme}.png",
-                    null);
+                    null, false);
             case MouseButton.WheelUp:
                 return ($"res://assets/textures/gui/xelu_prompts/Keyboard_Mouse/{Theme}/Mouse_Middle_Key_{Theme}.png",
-                    "res://assets/textures/gui/xelu_prompts/Customized/Directional_Arrow_Up.png");
+                    "res://assets/textures/gui/xelu_prompts/Customized/Directional_Arrow_Up.png", true);
             case MouseButton.WheelDown:
                 return ($"res://assets/textures/gui/xelu_prompts/Keyboard_Mouse/{Theme}/Mouse_Middle_Key_{Theme}.png",
-                    "res://assets/textures/gui/xelu_prompts/Customized/Directional_Arrow_Down.png");
+                    "res://assets/textures/gui/xelu_prompts/Customized/Directional_Arrow_Down.png", true);
             case MouseButton.WheelLeft:
                 return ($"res://assets/textures/gui/xelu_prompts/Keyboard_Mouse/{Theme}/Mouse_Middle_Key_{Theme}.png",
-                    "res://assets/textures/gui/xelu_prompts/Customized/Directional_Arrow_Left.png");
+                    "res://assets/textures/gui/xelu_prompts/Customized/Directional_Arrow_Left.png", true);
             case MouseButton.WheelRight:
                 return ($"res://assets/textures/gui/xelu_prompts/Keyboard_Mouse/{Theme}/Mouse_Middle_Key_{Theme}.png",
-                    "res://assets/textures/gui/xelu_prompts/Customized/Directional_Arrow_Right.png");
+                    "res://assets/textures/gui/xelu_prompts/Customized/Directional_Arrow_Right.png", true);
 
             // TODO: handle the extra mouse buttons 1 and 2 (need custom images for them)
         }
 
-        return (GetPathForInvalidKey(), null);
+        return (GetPathForInvalidKey(), null, false);
     }
 
     public static string GetPathForControllerButton(JoyButton button)
@@ -602,5 +581,54 @@ public static class KeyPromptHelper
         }
 
         return $"res://assets/textures/gui/xelu_prompts/{type}/{type}_{buttonName}.png";
+    }
+
+    private static (string Primary, string? Overlay, bool SmallPrimaryIcon) GetPathForActionWithDisplayOptions(
+        Array<InputEvent> actionList)
+    {
+        // Find the first action matching InputMethod
+        foreach (var action in actionList)
+        {
+            switch (InputMethod)
+            {
+                case ActiveInputMethod.Keyboard:
+                {
+                    if (action is InputEventKey key)
+                    {
+                        var potentialKey = GetPathForKeyboardKey(OS.GetKeycodeString(key.KeyCodeOrLabel()));
+
+                        // Skip keys we can't display (and either find a suitable key later or return the invalid
+                        // icon after this loop)
+                        if (potentialKey != null)
+                            return (potentialKey, null, false);
+                    }
+
+                    if (action is InputEventMouseButton button)
+                    {
+                        return GetPathForMouseButton(button.ButtonIndex);
+                    }
+
+                    break;
+                }
+
+                case ActiveInputMethod.Controller:
+                {
+                    if (action is InputEventJoypadButton joypadButton)
+                    {
+                        return (GetPathForControllerButton(joypadButton.ButtonIndex), null, false);
+                    }
+
+                    if (action is InputEventJoypadMotion joypadMotion)
+                    {
+                        return (GetPathForControllerAxis(joypadMotion.Axis),
+                            GetPathForControllerAxisDirection(joypadMotion.Axis, joypadMotion.AxisValue), false);
+                    }
+
+                    break;
+                }
+            }
+        }
+
+        return (GetPathForInvalidKey(), null, false);
     }
 }

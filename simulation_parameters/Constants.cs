@@ -997,10 +997,32 @@ public static class Constants
     public const float TOXIN_DIGESTION_DAMAGE_CHECK_INTERVAL = 0.9f;
 
     /// <summary>
-    ///   Determines how big of a fraction of damage (of total health)
-    ///   is dealt to a microbe at a time when it digests a toxic cell.
+    ///   Determines how damage is dealt to a microbe at a time when it digests a toxic cell.
     /// </summary>
-    public const float TOXIN_DIGESTION_DAMAGE_FRACTION = 0.09f;
+    public const float TOXIN_DIGESTION_DAMAGE = 4.0f;
+
+    /// <summary>
+    ///   Lowest remaining health fraction where the most risk-taking AI microbes start considering ejecting a toxic
+    ///   engulfed cell.
+    /// </summary>
+    public const float AI_TOXIC_ENGULFED_EJECT_MIN_HEALTH_FRACTION = 0.25f;
+
+    /// <summary>
+    ///   Highest remaining health fraction where the most cautious AI microbes start considering ejecting a toxic
+    ///   engulfed cell.
+    /// </summary>
+    public const float AI_TOXIC_ENGULFED_EJECT_MAX_HEALTH_FRACTION = 0.75f;
+
+    /// <summary>
+    ///   Lowest chance for risk-taking AI microbes to eject a toxic engulfed cell when past the health threshold.
+    ///   These are calculated per-damage tick which is why these are quite low to not make ejection guaranteed.
+    /// </summary>
+    public const float AI_TOXIC_ENGULFED_EJECT_MIN_CHANCE = 0.05f;
+
+    /// <summary>
+    ///   Highest chance for cautious AI microbes to eject a toxic engulfed cell when past the health threshold.
+    /// </summary>
+    public const float AI_TOXIC_ENGULFED_EJECT_MAX_CHANCE = 0.40f;
 
     /// <summary>
     ///   Each enzyme addition grants a fraction, set by this variable, increase in digestion speed.
