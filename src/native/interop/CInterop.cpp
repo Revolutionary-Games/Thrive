@@ -710,7 +710,7 @@ bool ArmWaitForEvent()
 #if defined(_MSC_VER) && defined(_M_ARM64)
     __wfe();
     return true;
-#elif defined(__aarch64__)
+#elif defined(__aarch64__) || defined(__arm64__)
     __asm__ __volatile__("wfe" ::: "memory");
     return true;
 #else
@@ -724,7 +724,7 @@ bool ArmDataMemoryBarrierAndSendEvent()
     __dmb(_ARM64_BARRIER_ISH);
     __sev();
     return true;
-#elif defined(__aarch64__)
+#elif defined(__aarch64__) || defined(__arm64__)
     __asm__ __volatile__("dmb ish\n\t"
                          "sev"
                          :
