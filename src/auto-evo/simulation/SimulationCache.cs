@@ -400,9 +400,11 @@ public class SimulationCache
             }
         }
 
-        // This will likely be used at several points to mimic the effect the specialization bonus has on organelles
+        // This will be used at several points to mimic the effect the specialization bonus has on organelles
         var specializationBonus =
             MicrobeInternalCalculations.CalculateSpecializationBonus(predator.Organelles.Organelles, workMemory1);
+        var preySpecializationBonus =
+            MicrobeInternalCalculations.CalculateSpecializationBonus(prey.Organelles.Organelles, workMemory1);
 
         var predatorHexSize = GetBaseHexSizeForSpecies(predator);
         var preyHexSize = GetBaseHexSizeForSpecies(prey);
@@ -467,7 +469,7 @@ public class SimulationCache
         var predatorToxinResistance = predator.MembraneType.ToxinResistance;
         var predatorPhysicalResistance = predator.MembraneType.PhysicalResistance;
 
-        var preySlimeJetScore = preyToolScores.SlimeJetScore * specializationBonus;
+        var preySlimeJetScore = preyToolScores.SlimeJetScore * preySpecializationBonus;
         var preyMucocystsScore = preyToolScores.MucocystsScore;
         var preyPilusScore = preyToolScores.PilusScore;
         var preyInjectisomeScore = preyToolScores.InjectisomeScore;
