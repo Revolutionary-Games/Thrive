@@ -62,12 +62,6 @@ public static class MicrobeInternalCalculations
 
         AddSpecificCapacity(organelles, capacities, specializationBonus);
 
-        // Apply cell specialization bonus to specific capacities
-        foreach (var key in capacities.Keys.ToList())
-        {
-            capacities[key] *= specializationBonus;
-        }
-
         return capacities;
     }
 
