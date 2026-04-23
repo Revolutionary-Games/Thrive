@@ -164,14 +164,6 @@ public partial class DebugDrawer : ControlWithInput
         Call(disablePhysicsName);
     }
 
-    public void UpdatePhysicsDebugCameraLocation()
-    {
-        var camera = GetViewport()?.GetCamera3D();
-
-        if (camera != null)
-            Set(cameraPosition, camera.GlobalPosition);
-    }
-
     protected override void Dispose(bool disposing)
     {
         if (disposing)
