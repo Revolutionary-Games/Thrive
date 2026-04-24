@@ -5,7 +5,7 @@ using Godot;
 using Xoshiro.PRNG32;
 
 /// <summary>
-///   Manages playing music. Autoload singleton
+///   Manages playing of music. Autoload singleton
 /// </summary>
 [GodotAutoload]
 public partial class Jukebox : Node
@@ -55,6 +55,8 @@ public partial class Jukebox : Node
 
     public static Jukebox Instance => instance ?? throw new InstanceNotLoadedYetException();
 
+    public static bool HasInstance => instance != null;
+
     /// <summary>
     ///   The category to play music tracks from
     /// </summary>
@@ -74,6 +76,19 @@ public partial class Jukebox : Node
 
             playingCategory = value;
             OnCategoryChanged();
+        }
+    }
+
+    public JukeboxPlaybackState PlaybackState
+    {
+        get => CreatePlaybackState();
+        set
+        {
+            // We call this to not end the current category, but just to save and remember the positions of tracks
+            // that were playing right now
+            OnCategoryEnded();
+
+            ApplyPlaybackState(value);
         }
     }
 
@@ -504,6 +519,80 @@ public partial class Jukebox : Node
         }
 
         StartPlayingFromMissingLists(target);
+    }
+
+    private JukeboxPlaybackState CreatePlaybackState()
+    {
+        var state = new JukeboxPlaybackState();
+
+        foreach (var (categoryName, category) in categories)
+        {
+            // Skip categories that are general and not save-specific
+            if (category.IsGlobalMenu)
+                continue;
+
+            var trackPositions = new Dictionary<string, float>();
+
+            foreach (var list in category.TrackLists)
+            {
+                foreach (var track in list.GetAllTracks())
+                {
+                    if (track.WasPlaying)
+                        trackPositions[track.ResourcePath] = track.PreviousPlayedPosition;
+                }
+            }
+
+            if (categoryName == playingCategory)
+            {
+                foreach (var player in audioPlayers)
+                {
+                    if (!player.Playing || player.CurrentTrack == null)
+                        continue;
+
+                    trackPositions[player.CurrentTrack] = player.Player.GetPlaybackPosition();
+                }
+            }
+
+            if (trackPositions.Count > 0)
+                state.TrackPositionsByCategory[categoryName] = trackPositions;
+        }
+
+        return state;
+    }
+
+    private void ApplyPlaybackState(JukeboxPlaybackState state)
+    {
+        foreach (var (categoryName, trackPositions) in state.TrackPositionsByCategory)
+        {
+            if (!categories.TryGetValue(categoryName, out var category))
+                continue;
+
+            if (category.IsGlobalMenu)
+            {
+                GD.Print($"Ignoring Jukebox state in a save for global category: {categoryName}");
+                continue;
+            }
+
+            foreach (var list in category.TrackLists)
+            {
+                foreach (var track in list.GetAllTracks())
+                {
+                    // Reset all tracks to be eligible to be played again after loading a save
+                    track.PlayedOnce = false;
+
+                    if (trackPositions.TryGetValue(track.ResourcePath, out var position))
+                    {
+                        track.WasPlaying = true;
+                        track.PreviousPlayedPosition = position;
+                    }
+                    else
+                    {
+                        track.WasPlaying = false;
+                        track.PreviousPlayedPosition = 0;
+                    }
+                }
+            }
+        }
     }
 
     private void StartPlayingFromMissingLists(MusicCategory target)

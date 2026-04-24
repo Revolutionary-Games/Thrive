@@ -45,6 +45,11 @@ inline JVec3 JoltToJVec3(JPH::RVec3Arg vec)
     return JVec3(vec.GetX(), vec.GetY(), vec.GetZ());
 }
 
+inline JVec3 JoltToJVec3(JPH::Vec3Arg vec)
+{
+    return JVec3(vec.GetX(), vec.GetY(), vec.GetZ());
+}
+
 inline JColour JoltToJColour(const JPH::ColorArg& color)
 {
     constexpr float multiplier = 1 / 255.0f;

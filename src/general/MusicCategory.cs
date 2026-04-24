@@ -47,10 +47,15 @@ public class MusicCategory : IRegistryType
     public Transition TrackTransition { get; set; } = Transition.Crossfade;
 
     /// <summary>
-    ///   List of track lists. When the mode is concurrent one track from each list is played at once
+    ///   List of track lists. When the mode is concurrent, one track from each list is played at once
     /// </summary>
     /// <value>The track lists.</value>
     public List<TrackList> TrackLists { get; set; } = null!;
+
+    /// <summary>
+    ///   If true, this is a global category that isn't specific to any game and as thus is not saved or loaded
+    /// </summary>
+    public bool IsGlobalMenu { get; set; }
 
     public string InternalName { get; set; } = null!;
 
