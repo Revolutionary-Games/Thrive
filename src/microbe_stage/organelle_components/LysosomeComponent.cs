@@ -55,7 +55,7 @@ public class LysosomeComponent : IOrganelleComponent
     }
 
     public void UpdateAsync(ref OrganelleContainer organelleContainer, in Entity microbeEntity,
-        IWorldSimulation worldSimulation, float delta)
+        IWorldSimulation worldSimulation, float energycostMultiplier, float delta)
     {
         // TODO: Animate lysosomes sticking onto phagosomes (if possible). This probably should happen in the
         // engulfing system (this at least can't happen here as Godot data update needs to happen in sync update)

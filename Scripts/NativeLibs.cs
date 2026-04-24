@@ -559,11 +559,8 @@ public class NativeLibs
     {
         var tag = PrecompiledTag.None;
 
-        // Allows different name when we are fudging the name a bit
-        PrecompiledTag targetTags;
-
         // The extension library defaults to installing without AVX
-        // Due to the "if" above this is always true
+        // Due to the "if" above, this is always true
         // ReSharper disable once ConditionIsAlwaysTrueOrFalse
         if (library == NativeConstants.Library.ThriveExtension)
             tag = PrecompiledTag.WithoutAvx;
@@ -576,8 +573,9 @@ public class NativeLibs
             tag |= PrecompiledTag.Debug;
         }
 
+        // Allows different name when we are fudging the name a bit
         // Currently always use the same name as the original file
-        targetTags = tag;
+        var targetTags = tag;
 
         Directory.CreateDirectory(target);
 
@@ -1832,6 +1830,9 @@ public class NativeLibs
 
         ColourConsole.WriteNormalLine("Uploading data, this may take a while if the precompiled object is large");
 
+        // We upload at most like 10 native libs, so a few re-created clients is not a problem here.
+
+        // ReSharper disable once ShortLivedHttpClient
         using var normalClient = new HttpClient();
 
         bool uploaded = false;

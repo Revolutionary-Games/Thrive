@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-27 14:48+0200\n"
-"PO-Revision-Date: 2026-04-01 20:02+0000\n"
-"Last-Translator: doselillo <doselfurioso@gmail.com>\n"
+"POT-Creation-Date: 2026-04-22 17:18+0300\n"
+"PO-Revision-Date: 2026-04-22 18:35+0000\n"
+"Last-Translator: \"Georgi Georgiev (RacerBG)\" <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -773,6 +773,10 @@ msgstr "Menu de trucos"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Mostrar / Ocultar procesos celulares"
+
+#, fuzzy
+msgid "CHEMICAL_EQUATION_SPEED_EXPLANATION"
+msgstr "(Velocidad con la cual las species de la AI mutan)"
 
 msgid "CHEMOPLAST"
 msgstr "Quimioplasto"
@@ -1653,6 +1657,7 @@ msgstr "Descender"
 msgid "DESCEND_CONFIRMATION"
 msgstr "¿Seguro que quieres Descender?"
 
+#, fuzzy
 msgid "DESCEND_CONFIRMATION_EXPLANATION"
 msgstr ""
 "Descender eliminará tu estado de ascendido y te devolverá al Escenario Microbio. Desde ahí puedes volver a jugar en la partida guardada.\n"
@@ -2087,6 +2092,14 @@ msgstr ""
 #, fuzzy
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr "Presión de Mantenimiento de Compuesto"
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER"
+msgstr "Multiplicador de costo de mutación"
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER_EXPLANATION"
+msgstr "(Costo de orgánulos, membranas, y otros objetos en el editor)"
 
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energía en {0} para {1}"
@@ -3506,6 +3519,20 @@ msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "Bloquear Ciclo Día/Noche"
 
 #, fuzzy
+msgid "LOOK_LEFT"
+msgstr "Izquierda"
+
+#, fuzzy
+msgid "LOOK_RIGHT"
+msgstr "Derecha"
+
+msgid "LOOK_SCREEN_DOWN_OR_3D_TOWARDS_UP"
+msgstr ""
+
+msgid "LOOK_SCREEN_UP_OR_3D_TOWARDS_DOWN"
+msgstr ""
+
+#, fuzzy
 msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
 msgstr "(valores más altos mejoran el rendimiento)"
 
@@ -4641,6 +4668,7 @@ msgstr ""
 msgid "NUCLEUS_DESCRIPTION"
 msgstr "La característica definitoria de las células eucariotas. El núcleo también incluye el retículo endoplásmico y el aparato de golgi. Es una evolución de las células procariotas para desarrollar un sistema de membranas internas a través de la asimilación de otra procariota adentro de sí misma. Esto permite compartimentar los distintos procesos que ocurren dentro de la célula y evitar su superposición. La adición del núcleo a una célula permite que sus nuevos orgánulos, contenidos por una bicapa lipídica, sean mucho más complejos, eficientes y especializados. No obstante, esto viene con el precio de aumentar drásticamente el tamaño de la célula y requerir más energía para mantenerla."
 
+#, fuzzy
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr "Permite la evolución de orgánulos más avanzados unidos a la membrana. Consume mucho ATP. Ésta evolución es irreversible."
 
@@ -4855,12 +4883,6 @@ msgstr "Osmorregulación"
 
 msgid "OSMOREGULATION_COST"
 msgstr "Costo de Osmorregulación"
-
-msgid "OSMOREGULATION_COST_MULTIPLIER"
-msgstr "Multiplicador de costo de osmorregulación"
-
-msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
-msgstr "(costo de la osmorregulación de la especie del jugador)"
 
 #, fuzzy
 msgid "OTHER_COMPOUNDS"
@@ -5237,8 +5259,13 @@ msgstr "anterior:"
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Procesando objetos cargados"
 
+#, fuzzy
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
+
+#, fuzzy
+msgid "PROCESS_INACTIVE"
+msgstr "Procesos celulares"
 
 #, fuzzy
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
@@ -5255,10 +5282,6 @@ msgstr "Procesos celulares"
 #, fuzzy
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Procesos celulares"
-
-#, fuzzy
-msgid "PROCESS_TOGGLE_TOOLTIP"
-msgstr "Volver al menú principal"
 
 msgid "PROGRAMMING_TEAM"
 msgstr "Equipo de programación"
@@ -7898,6 +7921,7 @@ msgstr "Los cloroplastos son una estructura de doble membrana que contiene pigme
 msgid "WIKI_CHLOROPLAST_PROCESSES"
 msgstr "Produce [thrive:compound type=\"glucose\"][/thrive:compound]. La tasa de producción escala con la concentración de [thrive:compound type=\"carbondioxide\"][/thrive:compound] y la intensidad de la [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_REQUIREMENTS"
 msgstr ""
 "Una célula debe contener un [b][color=#3796e1][url=thriveopedia:nucleus]Núcleo[/url][/color][/b] para evolucionar [b]Cloroplastos[/b].\n"
@@ -7980,6 +8004,7 @@ msgstr "El sistema de Compuestos es una de las mecánicas base que guía las sim
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_MICROBE_STAGE"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
 msgstr ""
 "[indent]—   En Thrive las sustancias que componen a las cosas se las conocen como Compuestos, que pueden pensarse como recursos. No están limitados a la definición científica de \"Compuesto\" de dos o más elementos vinculados. Los Compuestos en el sentido de recursos pueden ser elementos (como el Oxígeno), compuestos (como el amoníaco), u otras sustancias (agentes químicos o toxinas).[/indent]\n"
@@ -8105,6 +8130,7 @@ msgstr "Los flagelos son grupos de fibras de proteínas en forma de látigo que 
 msgid "WIKI_FLAGELLUM_PROCESSES"
 msgstr "Los flagelos son grupos de fibras de proteínas en forma de látigo que se extienden desde la membrana de la célula. Usan ATP para propulsar a la célula en una dirección."
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_REQUIREMENTS"
 msgstr ""
 "Si las mejoras de Organelas estan activadas en los ajustes del juego, [i]al menos una[/i] de las siguientes condiciones debe cumplirse [i]para la célula del jugador[/i]:\n"
@@ -9282,6 +9308,7 @@ msgstr "El Termoplasto es una estructura de doble membrana que contiene pigmento
 msgid "WIKI_THERMOPLAST_PROCESSES"
 msgstr "Produce [thrive:compound type=\"glucose\"][/thrive:compound]. La tasa de producción escala con la concentración de [thrive:compound type=\"carbondioxide\"][/thrive:compound] y la temperatura."
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_REQUIREMENTS"
 msgstr ""
 "[b]Termoplastos[/b] solo aparecen en juegos con [i]VCLC[/i] desactivada en los ajustes del juego.\n"
@@ -9637,6 +9664,16 @@ msgstr "Hacer zoom"
 
 msgid "ZOOM_OUT"
 msgstr "Alejar el zoom"
+
+#~ msgid "OSMOREGULATION_COST_MULTIPLIER"
+#~ msgstr "Multiplicador de costo de osmorregulación"
+
+#~ msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
+#~ msgstr "(costo de la osmorregulación de la especie del jugador)"
+
+#, fuzzy
+#~ msgid "PROCESS_TOGGLE_TOOLTIP"
+#~ msgstr "Volver al menú principal"
 
 #, fuzzy
 #~ msgid "KEEP_CURRENT_SHORT"

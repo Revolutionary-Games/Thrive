@@ -321,6 +321,11 @@ public partial class CloudBenchmark : BenchmarkBase
     {
         var builder = new StringBuilder();
 
+        // Put the config here as it can change the performance
+        builder.Append("Resolution divisor: ");
+        builder.Append(Settings.Instance.CloudResolution.Value);
+        builder.Append('\n');
+
         // This is intentionally not translatable to make it easier for developers to request this info from players and
         // then understand it
         if (simpleSpawningResult != 0)

@@ -314,6 +314,7 @@ public enum ThriveArchiveObjectType : uint
     GeneralAvoidPredationSelectionPressure = 4394,
     EnergyConsumptionPressure = 4395,
     ComponentSpatialAnimation = 4396,
+    JukeboxPlaybackState = 4397,
 
     // Special flag types
     ExtendedOrganelleLayout = OrganelleLayout | ArchiveObjectType.ExtendedTypeFlag,

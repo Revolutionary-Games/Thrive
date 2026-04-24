@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-27 14:48+0200\n"
-"PO-Revision-Date: 2026-02-18 15:14+0000\n"
-"Last-Translator: Helionky <marfason@seznam.cz>\n"
+"POT-Creation-Date: 2026-04-22 17:18+0300\n"
+"PO-Revision-Date: 2026-04-22 18:35+0000\n"
+"Last-Translator: \"Georgi Georgiev (RacerBG)\" <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 5.15.2\n"
+"X-Generator: Weblate 5.16.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -770,6 +770,10 @@ msgstr "Cheatovací menu"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Zobrazit / skrýt procesy buňky"
+
+#, fuzzy
+msgid "CHEMICAL_EQUATION_SPEED_EXPLANATION"
+msgstr "(rychlost mutací AI druhů)"
 
 msgid "CHEMOPLAST"
 msgstr "Chemoplast"
@@ -1646,6 +1650,7 @@ msgstr "Klesnout"
 msgid "DESCEND_CONFIRMATION"
 msgstr "Jsi si jistý, že chceš Klesnout?"
 
+#, fuzzy
 msgid "DESCEND_CONFIRMATION_EXPLANATION"
 msgstr ""
 "Klesnutím přijdeš o Povznesený status a budeš vrácen do Stádia mikroba. Od toho okamžiku budeš moci pokračovat v hraní v tomto světě.\n"
@@ -2090,6 +2095,14 @@ msgstr ""
 #, fuzzy
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr "Mračna sloučenin"
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER"
+msgstr "Násobení ceny mutace"
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER_EXPLANATION"
+msgstr "(cena organel, membrán a jiných věcí v editoru)"
 
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energie v {0} pro {1}"
@@ -3538,6 +3551,20 @@ msgstr "L"
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "Povolení cyklu den/noc"
 
+#, fuzzy
+msgid "LOOK_LEFT"
+msgstr "Vlevo"
+
+#, fuzzy
+msgid "LOOK_RIGHT"
+msgstr "Vpravo"
+
+msgid "LOOK_SCREEN_DOWN_OR_3D_TOWARDS_UP"
+msgstr ""
+
+msgid "LOOK_SCREEN_UP_OR_3D_TOWARDS_DOWN"
+msgstr ""
+
 msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
 msgstr "(nižší hodnoty zvyšují výkon)"
 
@@ -4658,6 +4685,7 @@ msgstr ""
 msgid "NUCLEUS_DESCRIPTION"
 msgstr "Definující rys eukaryotických buněk. Jádro také zahrnuje endoplazmatické retikulum a golgiho aparát. Jde o evoluci prokaryotických buněk, které vyvinuly systém vnitřních membrán, a to provedením asimilace dalšího prokaryota uvnitř sebe. To jim umožňuje rozdělit nebo odvrátit různé procesy probíhající uvnitř buňky a zabránit jim v překrývání. To umožňuje, aby jejich nové organely vázané na membránu byly mnohem složitější, účinnější a specializovanější, než kdyby volně plovaly v cytoplazmě. To však přichází za cenu toho, že se buňka zvětší a vyžaduje mnoho energie, aby se udržovala."
 
+#, fuzzy
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr "Umožňuje vývoj složitějších, membránově vázaných organel. Stojí hodně ATP k údržbě. Tento proces je nevratný."
 
@@ -4856,12 +4884,6 @@ msgstr "Osmoregulace"
 
 msgid "OSMOREGULATION_COST"
 msgstr "Náklady na osmoregulaci"
-
-msgid "OSMOREGULATION_COST_MULTIPLIER"
-msgstr "Násobitel ceny osmoregulace"
-
-msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
-msgstr "(cena osmoregulace hráčova druhu)"
 
 #, fuzzy
 msgid "OTHER_COMPOUNDS"
@@ -5220,8 +5242,13 @@ msgstr "předchozí:"
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Zpracování načtených objektů"
 
+#, fuzzy
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
+
+#, fuzzy
+msgid "PROCESS_INACTIVE"
+msgstr "Proces buňky"
 
 #, fuzzy
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
@@ -5238,10 +5265,6 @@ msgstr "Proces buňky"
 #, fuzzy
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Proces buňky"
-
-#, fuzzy
-msgid "PROCESS_TOGGLE_TOOLTIP"
-msgstr "Návrat do hlavního menu"
 
 msgid "PROGRAMMING_TEAM"
 msgstr "Programátoři"
@@ -8411,6 +8434,7 @@ msgstr "Elektrárna buňky. Mitochondie je struktura dvou membrán vyplněná pr
 msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
 msgstr "Mnohobuněčné Období"
 
+#, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Práce na mnohobuněčném stádiu začala, ale zatím není úplně propracovaná."
 
@@ -9369,6 +9393,12 @@ msgstr "Přiblížit"
 
 msgid "ZOOM_OUT"
 msgstr "Oddálit"
+
+#~ msgid "OSMOREGULATION_COST_MULTIPLIER"
+#~ msgstr "Násobitel ceny osmoregulace"
+
+#~ msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
+#~ msgstr "(cena osmoregulace hráčova druhu)"
 
 #~ msgid "KEEP_CURRENT_SHORT"
 #~ msgstr "Ponechat současné"

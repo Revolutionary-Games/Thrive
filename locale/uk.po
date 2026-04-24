@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-27 14:48+0200\n"
-"PO-Revision-Date: 2026-03-20 15:28+0000\n"
+"POT-Creation-Date: 2026-04-22 17:18+0300\n"
+"PO-Revision-Date: 2026-04-22 18:35+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
 "Language: uk\n"
@@ -765,6 +765,10 @@ msgstr "Меню читів"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Показати /приховати клітинні процеси"
+
+#, fuzzy
+msgid "CHEMICAL_EQUATION_SPEED_EXPLANATION"
+msgstr "(швидкість з якою ШІ мутує вид)"
 
 msgid "CHEMOPLAST"
 msgstr "Хемопласт"
@@ -1638,6 +1642,7 @@ msgstr "Спуститися"
 msgid "DESCEND_CONFIRMATION"
 msgstr "Ви дійсно хочете Спуститися?"
 
+#, fuzzy
 msgid "DESCEND_CONFIRMATION_EXPLANATION"
 msgstr ""
 "Спуск видалить Ваш статус піднесеного та поверне Вас до Мікробної Стадії. Від туди Ви зможете пройти гру заново у цьому збереженні.\n"
@@ -2078,6 +2083,14 @@ msgstr ""
 #, fuzzy
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr "Тиск підтримки сполук"
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER"
+msgstr "Множник вартості мутації"
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER_EXPLANATION"
+msgstr "(ціна органел, мембран та інших речей в редакторі)"
 
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Енергія в {0} для {1}"
@@ -3495,6 +3508,20 @@ msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "Заблокувати цикл дня/ночі"
 
 #, fuzzy
+msgid "LOOK_LEFT"
+msgstr "Вліво"
+
+#, fuzzy
+msgid "LOOK_RIGHT"
+msgstr "Вправо"
+
+msgid "LOOK_SCREEN_DOWN_OR_3D_TOWARDS_UP"
+msgstr ""
+
+msgid "LOOK_SCREEN_UP_OR_3D_TOWARDS_DOWN"
+msgstr ""
+
+#, fuzzy
 msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
 msgstr "(вищі значення покращать продуктивність)"
 
@@ -4588,6 +4615,7 @@ msgstr ""
 msgid "NUCLEUS_DESCRIPTION"
 msgstr "Визначальна риса еукаріотичної клітини. До ядерного складу також, входять ендоплазматична сітка та комплекс Ґольджі. Ця еволюція прокаріотичної клітини до розвитку системи внутрішніх мембран, здійснена приєднанням іншого прокаріота всеридину себе. Це дозволило їм розділяти і згруповувати різні процеси, що відбувалися всередині клітини та запобігти змішування останніх. Це дозволило їхнім мембранним органелам бути сладнішими, ефективнішими та спеціалізованими, аніж якби вони вільно плавали в цитоплазмі. Але це відбувається ціною того, що клітина значно більшає й потребує багато клітинної енергії для підтримки ядра."
 
+#, fuzzy
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr "Дозволяє еволюцію складніших, мембрановмісних органел. Його підтримка вимагає значних витрат АТФ. Ця еволюція — необоротна."
 
@@ -4777,12 +4805,6 @@ msgstr "Осморегуляція"
 
 msgid "OSMOREGULATION_COST"
 msgstr "Вартість осморегуляції"
-
-msgid "OSMOREGULATION_COST_MULTIPLIER"
-msgstr "Множник вартості осморегуляції"
-
-msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
-msgstr "(вартість осморегуляції виду гравця)"
 
 msgid "OTHER_COMPOUNDS"
 msgstr "Інші"
@@ -5123,8 +5145,13 @@ msgstr "попередній:"
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Обробка об'єктів завантаження"
 
+#, fuzzy
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "у"
+
+#, fuzzy
+msgid "PROCESS_INACTIVE"
+msgstr "Клітинні процеси"
 
 #, fuzzy
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
@@ -5140,12 +5167,6 @@ msgstr "Клітинні процеси"
 
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Швидкість біопроцесів"
-
-msgid "PROCESS_TOGGLE_TOOLTIP"
-msgstr ""
-"Увімкнути або вимкнути цей процес. Це дозволяє краще контролювати клітинні процеси.\n"
-"Наприклад, таким чином можна вимкнути продукування токсинів, коли вони не потрібні.\n"
-"Або вручну збалансувати, якими джерелами енергії користуватися для більшої ефективності, але це дуже продвинута геймплейна тактика."
 
 msgid "PROGRAMMING_TEAM"
 msgstr "Команда програмістів"
@@ -6888,6 +6909,7 @@ msgstr ""
 "\n"
 "Аби повністю покинути колонію ви можете клікнути на свою клітину або натиснути клавішу [thrive:input]g_unbind_all[/thrive:input]."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_PROCESS_PANEL"
 msgstr ""
 "Тут, на [b]панелі процесів[/b], ви можете спостерігати за клітинними процесами у реальному часі. Кожний спінер показує, як швидко пробігає процес, а числа вказують усереднене значення нещодавнього споживання або продукування.\n"
@@ -7491,6 +7513,7 @@ msgstr "Немає модифікацій."
 msgid "WIKI_BINDING_AGENT_PROCESSES"
 msgstr "Немає процесів."
 
+#, fuzzy
 msgid "WIKI_BINDING_AGENT_REQUIREMENTS"
 msgstr ""
 "Клітина повинна мати [b][color=#3796e1][url=thriveopedia:nucleus]Ядро[/url][/color][/b], щоб розвинути собі [b]Зв'язувальні агенти[/b].\n"
@@ -7661,6 +7684,7 @@ msgstr "Хлоропласти– це двохмембранна структу
 msgid "WIKI_CHLOROPLAST_PROCESSES"
 msgstr "Продукує [thrive:compound type=\"glucose\"][/thrive:compound]. Кількість залежить від [thrive:compound type=\"carbondioxide\"][/thrive:compound] та інтенсивності [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_REQUIREMENTS"
 msgstr ""
 "Клітина повинна мати [b][color=#3796e1][url=thriveopedia:nucleus]Ядро[/url][/color][/b] для розвинення [b]Хлоропластів[/b].\n"
@@ -7730,6 +7754,7 @@ msgstr "Сполуки:"
 msgid "WIKI_COMPOUNDS_INTRO"
 msgstr "Клейкий вміст клітини. Цитоплазма є базовою сумішшю йонів, білків та інших речовин, розчинених у воді, що заповнюють нутрощі клітини. Одна з функцій, яку вона виконує — [b]гліколіз[/b], перетворення [thrive:compound type=\"glucose\"][/thrive:compound] на [thrive:compound type=\"atp\"][/thrive:compound]. Для клітин без органел для стабільного метаболізму, це є засобом отримання енергії. Також вона потрібна для збереження молекул в клітині та збільшення розміру останньої."
 
+#, fuzzy
 msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
 msgstr ""
 "У Thrive існує багато різних [b]Сполук[/b].\n"
@@ -9365,6 +9390,12 @@ msgstr "Приблизитись"
 
 msgid "ZOOM_OUT"
 msgstr "Віддалитись"
+
+#~ msgid "OSMOREGULATION_COST_MULTIPLIER"
+#~ msgstr "Множник вартості осморегуляції"
+
+#~ msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
+#~ msgstr "(вартість осморегуляції виду гравця)"
 
 #~ msgid "KEEP_CURRENT_SHORT"
 #~ msgstr "Зберегти поточний"
