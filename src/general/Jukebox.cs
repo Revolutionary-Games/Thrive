@@ -32,6 +32,7 @@ public partial class Jukebox : Node
 
     private bool paused = true;
     private bool pausing;
+    private bool suppressTrackEndHandling;
 
     private string? playingCategory;
 
@@ -215,6 +216,72 @@ public partial class Jukebox : Node
                 return true;
             }));
         }
+    }
+
+    [Command("jukeboxnext", false, "Advances the currently playing Jukebox track(s) to the next selection.")]
+    private static bool CommandJukeboxNextTrack(CommandContext context)
+    {
+        if (Instance.operations.Count > 0)
+        {
+            context.PrintWarning("Jukebox is busy with a pending transition. Wait for it to finish before advancing.");
+            return false;
+        }
+
+        if (!Instance.AdvanceToNextTrack())
+        {
+            context.PrintWarning("Jukebox has no active track to advance.");
+            return false;
+        }
+
+        context.Print("Jukebox advanced to the next track.");
+        return true;
+    }
+
+    /// <summary>
+    ///   Advances the currently playing tracks as if they had just naturally ended.
+    /// </summary>
+    /// <returns>
+    ///   True if at least one active track was advanced; false if nothing is currently playing.
+    /// </returns>
+    private bool AdvanceToNextTrack()
+    {
+        if (playingCategory == null)
+            return false;
+
+        var advancedAny = false;
+        var target = categories[playingCategory];
+
+        suppressTrackEndHandling = true;
+
+        try
+        {
+            foreach (var player in audioPlayers)
+            {
+                if (!player.Playing)
+                    continue;
+
+                StopPlayerAsIfTrackEnded(player, target.TrackTransition);
+                advancedAny = true;
+            }
+        }
+        finally
+        {
+            suppressTrackEndHandling = false;
+        }
+
+        if (!advancedAny)
+            return false;
+
+        StartPlayingFromMissingLists(target);
+        return true;
+    }
+
+    private void StopPlayerAsIfTrackEnded(AudioPlayer player, MusicCategory.Transition trackTransition)
+    {
+        player.Player.Stop();
+        player.Operations.Clear();
+        player.LinearVolume = trackTransition == MusicCategory.Transition.Crossfade ? FADE_LOW_VOLUME : NORMAL_VOLUME;
+        ApplyLinearVolume(player);
     }
 
     private void UpdateStreamsPauseStatus()
@@ -474,6 +541,9 @@ public partial class Jukebox : Node
     // ReSharper disable once UnusedMember.Local
     private void OnSomeTrackEnded()
     {
+        if (suppressTrackEndHandling)
+            return;
+
         // Check that a stream has actually ended, as we get this callback when also purposefully stopping
         bool actuallyEnded = false;
 
