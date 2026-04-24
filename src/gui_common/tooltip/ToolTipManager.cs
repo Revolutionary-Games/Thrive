@@ -17,6 +17,7 @@ public partial class ToolTipManager : CanvasLayer
 
     private const double AUTO_SCROLLING_DELAY = 2.0f;
     private const float AUTO_SCROLLING_SPEED = 40.0f;
+    private const int TOOLTIP_LAYOUT_WARMUP_FRAMES = 2;
 
     private static ToolTipManager? instance;
 
@@ -36,7 +37,7 @@ public partial class ToolTipManager : CanvasLayer
     private bool display;
     private double displayTimer;
     private double hideTimer;
-    private bool showMainToolTipNextFrame;
+    private int tooltipLayoutWarmupFramesRemaining;
 
     /// <summary>
     ///   Flags whether MainToolTip should be shown temporarily (automatically hides once the timer reaches
@@ -77,7 +78,8 @@ public partial class ToolTipManager : CanvasLayer
             if (mainToolTip != value)
             {
                 ResetAutoScrolling();
-                showMainToolTipNextFrame = false;
+                tooltipLayoutWarmupFramesRemaining = 0;
+                mainToolTipOwner = null;
             }
 
             previousToolTip = mainToolTip;
@@ -97,7 +99,7 @@ public partial class ToolTipManager : CanvasLayer
             display = value;
 
             if (!display)
-                showMainToolTipNextFrame = false;
+                tooltipLayoutWarmupFramesRemaining = 0;
 
             if (previousToolTip != null)
                 UpdateToolTipVisibility(previousToolTip, false);
@@ -107,30 +109,13 @@ public partial class ToolTipManager : CanvasLayer
                 if (MainToolTip == null)
                     throw new InvalidOperationException("Can't set display to true without main tooltip");
 
-                showMainToolTipNextFrame = false;
+                tooltipLayoutWarmupFramesRemaining = 0;
                 UpdateCurrentTooltip(0);
 
                 // Set timer
                 displayTimer = MainToolTip.DisplayDelay;
             }
         }
-    }
-
-    public void ShowToolTip(ICustomToolTip tooltip, Control owner)
-    {
-        MainToolTip = tooltip;
-        mainToolTipOwner = owner;
-        Display = true;
-    }
-
-    public void HideToolTip(ICustomToolTip tooltip)
-    {
-        if (MainToolTip != tooltip)
-            return;
-
-        MainToolTip = null;
-        mainToolTipOwner = null;
-        Display = false;
     }
 
     public override void _Ready()
@@ -184,15 +169,20 @@ public partial class ToolTipManager : CanvasLayer
         if (MainToolTip == null)
             return;
 
-        if (showMainToolTipNextFrame && !MainToolTip.ToolTipNode.Visible)
+        if (tooltipLayoutWarmupFramesRemaining > 0)
         {
             UpdateCurrentTooltip(0);
-            UpdateToolTipVisibility(MainToolTip, true);
-            showMainToolTipNextFrame = false;
+
+            --tooltipLayoutWarmupFramesRemaining;
+
+            if (tooltipLayoutWarmupFramesRemaining < 1)
+                FinishShowingToolTip(MainToolTip);
+
+            return;
         }
 
         // Wait for duration of the delay and then show the tooltip
-        if (displayTimer >= 0 && !MainToolTip.ToolTipNode.Visible && !showMainToolTipNextFrame)
+        if (displayTimer >= 0 && !MainToolTip.ToolTipNode.Visible)
         {
             displayTimer -= delta;
 
@@ -202,8 +192,7 @@ public partial class ToolTipManager : CanvasLayer
             if (displayTimer < 0)
             {
                 lastMousePosition = GetViewport().GetMousePosition();
-                UpdateCurrentTooltip(0);
-                showMainToolTipNextFrame = true;
+                PrepareToolTipForDisplay(MainToolTip);
             }
         }
 
@@ -228,7 +217,7 @@ public partial class ToolTipManager : CanvasLayer
                     return;
 
                 UpdateToolTipVisibility(MainToolTip, false);
-                showMainToolTipNextFrame = false;
+                tooltipLayoutWarmupFramesRemaining = 0;
                 displayTimer = MainToolTip.DisplayDelay;
 
                 if (currentIsTemporary)
@@ -238,6 +227,23 @@ public partial class ToolTipManager : CanvasLayer
                 }
             }
         }
+    }
+
+    public void ShowToolTip(ICustomToolTip tooltip, Control owner)
+    {
+        MainToolTip = tooltip;
+        mainToolTipOwner = owner;
+        Display = true;
+    }
+
+    public void HideToolTip(ICustomToolTip tooltip)
+    {
+        if (MainToolTip != tooltip)
+            return;
+
+        MainToolTip = null;
+        mainToolTipOwner = null;
+        Display = false;
     }
 
     /// <summary>
@@ -519,7 +525,7 @@ public partial class ToolTipManager : CanvasLayer
             Math.Clamp(newPos.X, 0.0f, maxTooltipX),
             Math.Clamp(newPos.Y, 0.0f, maxTooltipY) + currentAutoScrollingOffset);
 
-        tooltipNode.Size = Vector2.Zero;
+        tooltipNode.Size = tooltipSize;
 
         // Handle temporary tooltips/popup
         if (currentIsTemporary && hideTimer >= 0)
@@ -595,6 +601,51 @@ public partial class ToolTipManager : CanvasLayer
             default:
                 throw new Exception("Invalid tooltip visibility transition type");
         }
+    }
+
+    private void PrepareToolTipForDisplay(ICustomToolTip tooltip)
+    {
+        var tooltipNode = tooltip.ToolTipNode;
+
+        UpdateCurrentTooltip(0);
+
+        SetToolTipAlpha(tooltipNode, 0.0f);
+        tooltipNode.Show();
+
+        tooltipLayoutWarmupFramesRemaining = TOOLTIP_LAYOUT_WARMUP_FRAMES;
+    }
+
+    private void FinishShowingToolTip(ICustomToolTip tooltip)
+    {
+        var tooltipNode = tooltip.ToolTipNode;
+
+        UpdateCurrentTooltip(0);
+
+        switch (tooltip.TransitionType)
+        {
+            case ToolTipTransitioning.Immediate:
+            {
+                SetToolTipAlpha(tooltipNode, 1.0f);
+                break;
+            }
+
+            case ToolTipTransitioning.Fade:
+            {
+                SetToolTipAlpha(tooltipNode, 0.0f);
+                GUICommon.Instance.ModulateFadeIn(tooltipNode, Constants.TOOLTIP_FADE_SPEED);
+                break;
+            }
+
+            default:
+                throw new Exception("Invalid tooltip visibility transition type");
+        }
+    }
+
+    private void SetToolTipAlpha(Control tooltipNode, float alpha)
+    {
+        var modulate = tooltipNode.Modulate;
+        modulate.A = alpha;
+        tooltipNode.Modulate = modulate;
     }
 
     private void HideAllToolTips()
