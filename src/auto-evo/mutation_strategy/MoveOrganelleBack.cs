@@ -31,7 +31,7 @@ internal class MoveOrganelleBack : IMutationStrategy<MicrobeSpecies>
 
         foreach (OrganelleTemplate organelle in baseSpecies.Organelles.Where(x => allOrganelles.Contains(x.Definition)))
         {
-            MicrobeSpecies newSpecies = baseSpecies.Clone(false);
+            var newSpecies = baseSpecies.Clone(false);
 
             var baseOrganelles = baseSpecies.Organelles.Organelles;
             var count = baseOrganelles.Count;
@@ -43,7 +43,7 @@ internal class MoveOrganelleBack : IMutationStrategy<MicrobeSpecies>
                 if (ReferenceEquals(existingOrganelle, organelle))
                     continue;
 
-                newSpecies.Organelles.AddAutoEvoAttemptOrganelle(existingOrganelle);
+                newSpecies.Organelles.AddAutoEvoAttemptOrganelle(existingOrganelle.Clone());
             }
 
             if (AddOrganelle(organelle.Definition, Direction.Rear, newSpecies, workMemory1, workMemory2, workMemory3,
