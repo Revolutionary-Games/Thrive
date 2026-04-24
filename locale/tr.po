@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-16 22:52+0300\n"
-"PO-Revision-Date: 2026-04-17 13:04+0000\n"
+"POT-Creation-Date: 2026-04-22 17:18+0300\n"
+"PO-Revision-Date: 2026-04-22 18:35+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -718,11 +718,10 @@ msgstr ""
 
 msgid "CELL_SPECIALIZATION_TOOLTIP"
 msgstr ""
-"Bir hücrenin yalnızca bir organel türüne özel hale getirilmesi, o hücreye biyoişlem hızı bonusları sağlar.\n"
-"Mevcut bonus %{0} değerindedir (bonus yalnızca {3} organel yerleştirildikten sonra görünür ve {4} tane eklenene kadar gücü artar).\n"
-"Mevcut bonus, {1} adet {2} organeli bulunduğu için verilmekte.\n"
-"Bonus, en yaygın organel türünden daha fazlası yerleştirildikçe artar.\n"
-"Eğer bonus tam gücüne ulaşırsa, bonusu arttırmak için diğer organellerin yaygın organel türü ile değiştirilmesi gerekir."
+"Bir hücrenin daha az organel türü kullanmak için özelleşmesi, bütün biyoişlemlere bir hız bonusu sağlar.\n"
+"Mevcut bonus %{0} değerindedir (maksimum bonus kapasitesi, {3} altıgen boyutuna kadar, hücre büyüklüğü ile artar).\n"
+"Mevcut bonus, {1} organeli {2} altıgen boyutunda bulunduğu için verilmekte.\n"
+"Bonus, en yaygın organel türünden daha fazlası yerleştirildikçe ve diğer organel türleri kaldırıldıkça artar."
 
 msgid "CELL_STAT_ROTATION_TOOLTIP"
 msgstr ""
@@ -768,9 +767,11 @@ msgstr "Hile menüsü"
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Hücre işlemlerini göster / gizle"
 
-#, fuzzy
 msgid "CHEMICAL_EQUATION_SPEED_EXPLANATION"
-msgstr "(AI türlerinin mutasyona uğrama hızı)"
+msgstr ""
+"Bu çubuk, işlemin hız çarpanını gösterir.\n"
+"Bu çarpan, bu işlemi yürüten organellerin miktarına ve bazı işlemlerde ise çevresel koşullara bağlıdır.\n"
+"Hız çarpanı, eğer diğer işlemlerde zaten yeterince ATP üretiliyorsa, ATP üreten işlemlerde sınırlı olabilir."
 
 msgid "CHEMOPLAST"
 msgstr "Kemoplast"
@@ -1728,7 +1729,7 @@ msgid "DIGESTION_SPEED_COLON"
 msgstr "Sindirim Hızı:"
 
 msgid "DIGESTION_SPEED_VALUE"
-msgstr "{0}/s"
+msgstr "{0}/sn"
 
 msgid "DISABLED"
 msgstr "Devre Dışı"
@@ -3454,6 +3455,18 @@ msgstr "Y"
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "Gece Gündüz Döngüsünü Kilitle"
 
+msgid "LOOK_LEFT"
+msgstr "Sola Bak"
+
+msgid "LOOK_RIGHT"
+msgstr "Sağa Bak"
+
+msgid "LOOK_SCREEN_DOWN_OR_3D_TOWARDS_UP"
+msgstr "Ekran Aşağı Doğruyken Bak veya 3D’de Yukarıya Bak"
+
+msgid "LOOK_SCREEN_UP_OR_3D_TOWARDS_DOWN"
+msgstr "Ekran Aşağı Doğruyken Bak veya 3D’de Yukarıya Bak"
+
 msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
 msgstr "(daha düşük değerler performansı arttırır)"
 
@@ -4475,7 +4488,7 @@ msgid "NUCLEUS_DESCRIPTION"
 msgstr "Ökaryotik hücrelerinin belirleyici özelliği. Çekirdek ayrıca endoplazmik retikulum ve Golgi aygıtını içerir. Bu kısım, hücre iç zarında bir sistem geliştirmek amacıyla prokaryotik hücrelerin kendi içlerinde başka bir prokaryotu özümsemesiyle tanıştığı bir evrimdir. Çekirdek, hücre içindeki işlemlerin farklı bölümlere ayrılmasını veya uzaklaştırılmasını sağlar ve bu işlemlerin birbirine karışmasını engeller. Bu yapı, yeni zarlı organellerin, sitoplazmadaki serbest yapılardan daha kompleks, etkili ve özelleşmiş olmasını sağlar. Ancak çekirdeği eklemenin, hücrenin daha büyük olması ve bakım için hücrenin enerjisini daha fazla kullanması gibi bedelleri var."
 
 msgid "NUCLEUS_SMALL_DESCRIPTION"
-msgstr "Daha kompleks olan zarlı organellerin evrimleşmesini sağlar ve hasarı %50'ye indirir. Bakımı bir sürü ATP'ye mal olur. Bu geri dönüşü olmayan bir evrimdir."
+msgstr "Daha kompleks olan zarlı organellerin evrimleşmesini sağlar, hasarı %50'ye indirir ve hücre özelleşmesi kapasitesini ikiye katlar. Bakımı bir sürü ATP'ye mal olur. Bu geri dönüşü olmayan bir evrimdir."
 
 msgid "NUMLOCK"
 msgstr "Num Lock"
@@ -4834,7 +4847,7 @@ msgid "PERFORM_UNBINDING"
 msgstr "Bağ koparmayı gerçekleştir"
 
 msgid "PER_SECOND_ABBREVIATION"
-msgstr "/s"
+msgstr "/sn"
 
 msgid "PER_SECOND_SLASH"
 msgstr "/saniye"
@@ -4999,9 +5012,8 @@ msgstr "Yüklenen nesneler işleniyor"
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
-#, fuzzy
 msgid "PROCESS_INACTIVE"
-msgstr "Organizma İşlemleri"
+msgstr "İNAKTİF"
 
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
 msgstr "Organizma İşlem Paneli Açıklaması"
@@ -6711,7 +6723,7 @@ msgstr ""
 "\n"
 "Bir sayı [color=#ff4d4d]kırmızıya[/color] dönerse, bu onun [u]sınırlayıcı etken[/u] olduğunu gösterir. Örneğin, [thrive:compound type=\"atp\"]ATP[/thrive:compound] üreten bir işlemin [i]gireni[/i] kırmızıya dönerse, büyük bir sorunla karşı karşıya kalırsınız ve, ölmeye başlamadan önce, [b]o bileşiğin daha fazlasını[/b] bulmanız gerekir!\n"
 "\n"
-"İşlemlerin yanındaki açma düğmeleri, onları devre dışı bırakmak veya yeniden etkinleştirmek için kullanılabilir. Bunlar, ileri düzey oyun taktikleri için kullanılabilir.\n"
+"İşlem kartları, onları devre dışı bırakmak veya yeniden etkinleştirmek için kullanılabilir. Bu kartlar, gereksiz olduğu zaman toksin üretimini durdurmak gibi ileri düzey oyun taktikleri için kullanılabilir.\n"
 "Bileşikleriniz tükendiğinde ne olacağını görmek için işlemlerden birini kapatabilir ve sonrasında ölmeyi durdurmak için [b]hemen tekrar açabilirsiniz[/b]. Ancak, bunu yapmak için oyunun duraklatılmamış olması gerektiğini unutmayın."
 
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
