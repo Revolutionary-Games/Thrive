@@ -249,12 +249,13 @@ public partial class CellBodyPlanEditorComponent
         var count = cells.Count;
         for (int i = 0; i < count; ++i)
         {
-            var type = GetEditedCellDataIfEdited(cells[i].Data!.ModifiableCellType);
+            var cell = cells[i].Data!;
+            var type = GetEditedCellDataIfEdited(cell.ModifiableCellType);
 
             var specialization =
                 MicrobeInternalCalculations.CalculateSpecializationBonus(type.ModifiableOrganelles, tempMemory3);
             var adjacencySpecialization =
-                CellBodyPlanInternalCalculations.GetAdjacencySpecializationBonusFromIndexAndPlan(i, cells);
+                CellBodyPlanInternalCalculations.GetAdjacencySpecializationBonusFromBodyPlan(cell, cells);
 
             totalSpecialization += specialization * adjacencySpecialization;
 

@@ -767,6 +767,16 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
         foreach (var cellType in editedSpecies.ModifiableCellTypes)
         {
+            // We could calculate the max specialization, but for simplicity we just find the first one
+            var placedCell =
+                editedSpecies.EditorCells.FirstOrDefault(c => c.Data!.CellType.CellTypeName == cellType.CellTypeName);
+
+            if (placedCell == null)
+            {
+                // There are no cells of this type in the body plan, so ignore it in unlock data calculations
+                continue;
+            }
+
             var cellEnergyBalance = new EnergyBalanceInfoSimple();
 
             // TODO: specialization from positions (GetAdjacencySpecializationBonus)
@@ -774,8 +784,13 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
                 MicrobeInternalCalculations.CalculateSpecializationBonus(cellType.ModifiableOrganelles.Organelles,
                     tempMemory1);
 
+            var adjacencySpecialization =
+                CellBodyPlanInternalCalculations.GetAdjacencySpecializationBonusFromBodyPlan(placedCell.Data!,
+                    editedSpecies.EditorCells);
+
+            var totalSpecialization = specialization * adjacencySpecialization;
             ProcessSystem.ComputeEnergyBalanceSimple(cellType.ModifiableOrganelles.Organelles, CurrentPatch.Biome,
-                in tolerances, specialization, cellType.MembraneType, Vector3.Zero, false, true,
+                in tolerances, totalSpecialization, cellType.MembraneType, Vector3.Zero, false, true,
                 CurrentGame.GameWorld.WorldSettings, CompoundAmountType.Maximum, null, cellEnergyBalance);
 
             GetBestEnergyBalanceProperties(energyBalance, cellEnergyBalance);
