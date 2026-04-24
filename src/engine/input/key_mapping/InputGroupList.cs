@@ -37,7 +37,7 @@ public partial class InputGroupList : VBoxContainer
     public PackedScene InputActionItemScene { get; private set; } = null!;
 
     /// <summary>
-    ///   Is any Input currently waiting for input
+    ///   True if any Input currently waiting for input
     /// </summary>
     public bool ListeningForInput => ActiveInputGroupList
         .Any(g => g.Actions
@@ -107,11 +107,11 @@ public partial class InputGroupList : VBoxContainer
         // ReSharper disable InlineOutVariableDeclaration RedundantAssignment
         InputActionItem? inputActionItem = null;
         if (item.AssociatedAction?.TryGetTarget(out inputActionItem) != true || inputActionItem == null)
-            return default;
+            return null;
 
         InputGroupItem? inputGroupItem = null;
         if (inputActionItem.AssociatedGroup?.TryGetTarget(out inputGroupItem) != true || inputGroupItem == null)
-            return default;
+            return null;
 
         // ReSharper restore InlineOutVariableDeclaration RedundantAssignment
 

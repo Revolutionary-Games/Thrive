@@ -21,11 +21,9 @@ class ImmediateMesh;
 
 namespace Thrive
 {
-/// How far away from the world origin debug draw works. When farther away no debug drawing happens. Setting this too
-/// far seems to trigger a problem in Godot where a grey overlay is over all 3D content blocking everything.
-/// TODO: if we need bigger worlds then the DebugDrawer will need to be updated to reposition its meshes to get a
-/// smaller bounding box working
-constexpr float DEBUG_DRAW_MAX_DISTANCE_ORIGIN = 1000000000.0f;
+/// This is now a limit on how far from the camera a bounding box extends for debug draw.
+/// This is automatically moved as the camera moves, so this should be unnecessary to tweak anymore.
+constexpr float DEBUG_DRAW_MAX_DISTANCE = 1000000.0f;
 
 /// \brief Hides the debug drawing after this time of inactivity. Makes sure debug draw is still visible after a while
 /// the game is paused, but will eventually clear up (for example if going to a part of the game that doesn't
@@ -150,6 +148,8 @@ private:
     void DrawTriangle(const godot::Vector3& vertex1, const godot::Vector3& vertex2, const godot::Vector3& vertex3,
         const godot::Color& colour);
     void StartDrawingIfNotYetThisFrame();
+    void UpdateDrawAabb(const godot::Vector3& center);
+    void UpdateDebugCameraLocation();
 
     inline void AddTimedLine(const TimedLine& line)
     {
@@ -182,7 +182,13 @@ private:
 
     /// Set a max limit to not draw way too much stuff and slow down things a ton. 8 megabytes
     const int drawMemoryLimit = 1024 * 1024 * 8;
+
+    /// To give both lines and triangles the possibility to draw, each type is limited to half the total
+    const int perTypeDrawLimit = drawMemoryLimit / 2;
+
     int usedDrawMemory = 0;
+    int usedLineDrawMemory = 0;
+    int usedTriangleDrawMemory = 0;
     int extraNeededDrawMemory = 0;
 
     bool physicsDebugSupported = false;

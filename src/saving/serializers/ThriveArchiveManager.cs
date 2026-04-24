@@ -123,6 +123,8 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.Save, typeof(Save), Save.ReadFromArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.SaveInformation, typeof(SaveInformation),
             SaveInformation.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.JukeboxPlaybackState,
+            typeof(JukeboxPlaybackState), JukeboxPlaybackState.ReadFromArchive);
 
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.LocalizedString, typeof(LocalizedString),
             LocalizedString.WriteToArchive);
