@@ -218,6 +218,16 @@ public partial class Jukebox : Node
         }
     }
 
+    [Command("jukeboxstatus", false, "Shows the currently playing Jukebox tracklists and tracks.")]
+    private static bool CommandJukeboxStatus(CommandContext context)
+    {
+        if (HasInstance)
+            return Instance.PrintPlaybackStatus(context);
+
+        context.PrintWarning("Jukebox has no active instance.");
+        return false;
+    }
+
     [Command("jukeboxnext", false, "Advances the currently playing Jukebox track(s) to the next selection.")]
     private static bool CommandJukeboxNextTrack(CommandContext context)
     {
@@ -234,6 +244,34 @@ public partial class Jukebox : Node
         }
 
         context.Print("Jukebox advanced to the next track.");
+        return true;
+    }
+
+    private bool PrintPlaybackStatus(CommandContext context)
+    {
+        if (playingCategory == null)
+        {
+            context.PrintWarning("Jukebox is not currently playing a category.");
+            return false;
+        }
+
+        context.Print($"Jukebox category: {playingCategory}");
+
+        var activePlayers = audioPlayers.Where(p => p is { Playing: true, CurrentTrack: not null }).ToList();
+        var count = activePlayers.Count;
+
+        if (count <= 0)
+        {
+            context.PrintWarning("Jukebox has no active players.");
+            return false;
+        }
+
+        for (var index = 0; index < count; index++)
+        {
+            var player = activePlayers[index];
+            context.Print($"audio player {index}, Bus: {player.Bus}, playing: {player.CurrentTrack}");
+        }
+
         return true;
     }
 
