@@ -17,6 +17,9 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
 
     private readonly CellTypeFacadeHelper cellTypes = new();
 
+    private MulticellularReproductionMethod reproductionMethod;
+    private bool overrideReproductionMethod;
+
     public MulticellularEditsFacade(IReadOnlyMulticellularSpecies species) : base(species)
     {
         multicellularSpecies = species;
@@ -31,6 +34,9 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
     public IReadOnlyIndividualLayout<IReadOnlyCellTemplate> EditorCells => this;
 
     public IReadOnlyList<IReadOnlyCellTypeDefinition> CellTypes => this;
+
+    public MulticellularReproductionMethod ReproductionMethod =>
+        overrideReproductionMethod ? reproductionMethod : multicellularSpecies.ReproductionMethod;
 
     /// <summary>
     ///   For MP calculations it is not required to also get the gameplay layout, so for simplicity this is not
@@ -124,6 +130,8 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
         addedCells.Clear();
 
         cellTypes.ClearUsed();
+
+        overrideReproductionMethod = false;
     }
 
     internal override bool ApplyAction(EditorCombinableActionData actionData)
@@ -277,6 +285,14 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
             if (Debugger.IsAttached)
                 Debugger.Break();
 #endif
+        }
+
+        if (actionData is MulticellularReproductionActionData reproductionActionData)
+        {
+            reproductionMethod = reproductionActionData.NewReproductionMethod;
+            overrideReproductionMethod = true;
+
+            return true;
         }
 
         return base.ApplyAction(actionData);

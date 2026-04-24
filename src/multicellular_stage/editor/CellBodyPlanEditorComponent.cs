@@ -12,7 +12,7 @@ public partial class CellBodyPlanEditorComponent :
     HexEditorComponentBase<MulticellularEditor, CombinedEditorAction, EditorAction, HexWithData<CellTemplate>,
         MulticellularSpecies>, IArchiveUpdatable
 {
-    public const ushort SERIALIZATION_VERSION = 4;
+    public const ushort SERIALIZATION_VERSION = 5;
 
     [Export]
     public int MaxToleranceWarnings = 3;
@@ -133,6 +133,9 @@ public partial class CellBodyPlanEditorComponent :
 
     [Export]
     private LabelSettings toleranceWarningsFont = null!;
+
+    [Export]
+    private OptionButton reproductionMethodDropdown = null!;
 #pragma warning restore CA2213
 
     private string newName = "unset";
@@ -223,6 +226,8 @@ public partial class CellBodyPlanEditorComponent :
         }
     }
 
+    public MulticellularReproductionMethod ReproductionMethod { get; private set; }
+
     protected override bool ShowFloatingLabels => ShowGrowthOrder;
 
     protected override bool ForceHideHover => false;
@@ -279,6 +284,8 @@ public partial class CellBodyPlanEditorComponent :
             newName = Editor.EditedSpecies.FormattedName;
 
             tolerancesEditor.OnEditorSpeciesSetup(Editor.EditedBaseSpecies);
+
+            UpdateReproductionDropdownChoice();
         }
 
         organismStatisticsPanel.UpdateLightSelectionPanelVisibility(
@@ -419,6 +426,8 @@ public partial class CellBodyPlanEditorComponent :
         writer.WriteObjectProperties(growthOrderGUI);
 
         writer.WriteObjectProperties(tolerancesEditor);
+
+        writer.Write((int)ReproductionMethod);
     }
 
     public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
@@ -468,6 +477,11 @@ public partial class CellBodyPlanEditorComponent :
         {
             reader.ReadObjectProperties(tolerancesEditor);
         }
+
+        if (version >= 5)
+        {
+            ReproductionMethod = (MulticellularReproductionMethod)reader.ReadInt32();
+        }
     }
 
     public override void OnEditorSpeciesSetup(Species species)
@@ -492,6 +506,9 @@ public partial class CellBodyPlanEditorComponent :
 
         // Make sure initial tolerance warnings are shown
         OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
+
+        ReproductionMethod = ((MulticellularSpecies)species).ReproductionMethod;
+        UpdateReproductionDropdownChoice();
     }
 
     public override void OnFinishEditing()
@@ -566,6 +583,8 @@ public partial class CellBodyPlanEditorComponent :
         editedSpecies.OnEdited();
 
         editedSpecies.UpdateNameIfValid(newName);
+
+        editedSpecies.ReproductionMethod = ReproductionMethod;
 
         behaviourEditor.OnFinishEditing();
         tolerancesEditor.OnFinishEditing();
@@ -725,6 +744,22 @@ public partial class CellBodyPlanEditorComponent :
         CalculateEnergyAndCompoundBalance(GetCurrentCellsWithLatestTypes());
 
         UpdateCellTypesSecondaryInfo();
+    }
+
+    public void OnReproductionMethodSelected(int selectedOption)
+    {
+        var selectedMethod = (MulticellularReproductionMethod)selectedOption;
+
+        if (ReproductionMethod == selectedMethod)
+            return;
+
+        var action = new SingleEditorAction<MulticellularReproductionActionData>(DoReproductionMethodChangeAction,
+            UndoReproductionMethodChangeAction,
+            new MulticellularReproductionActionData(ReproductionMethod, selectedMethod));
+
+        Editor.EnqueueAction(action);
+
+        UpdateReproductionDropdownChoice();
     }
 
     protected override void RegisterTooltips()
@@ -1931,5 +1966,10 @@ public partial class CellBodyPlanEditorComponent :
             default:
                 throw new Exception("Invalid selection menu tab");
         }
+    }
+
+    private void UpdateReproductionDropdownChoice()
+    {
+        reproductionMethodDropdown.Select((int)ReproductionMethod);
     }
 }

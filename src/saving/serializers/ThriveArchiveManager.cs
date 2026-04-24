@@ -674,6 +674,11 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
             typeof(DuplicateDeleteCellTypeData), DuplicateDeleteCellTypeData.WriteToArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.DuplicateDeleteCellTypeData,
             typeof(DuplicateDeleteCellTypeData), DuplicateDeleteCellTypeData.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MulticellularReproductionActionData,
+            typeof(MulticellularReproductionActionData), MulticellularReproductionActionData.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MulticellularReproductionActionData,
+            typeof(MulticellularReproductionActionData), MulticellularReproductionActionData.ReadFromArchive);
     }
 
     private void RegisterFossils()

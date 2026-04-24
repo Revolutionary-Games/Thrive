@@ -175,6 +175,11 @@ public class MulticellularSpeciesComparer
 
         cost += oldCells.Count * Math.Min(Constants.CELL_REMOVE_COST * costMultiplier, maxSingleActionCost);
 
+        if (speciesA.ReproductionMethod != speciesB.ReproductionMethod)
+        {
+            cost += Constants.MULTUCELLULAR_REPRODUCTION_METHOD_CHANGE_COST;
+        }
+
         oldCells.Clear();
         newCells.Clear();
 

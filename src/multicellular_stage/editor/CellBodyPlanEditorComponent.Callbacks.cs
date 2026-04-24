@@ -112,4 +112,20 @@ public partial class CellBodyPlanEditorComponent
 
         UpdateAlreadyPlacedVisuals();
     }
+
+    [ArchiveAllowedMethod]
+    private void DoReproductionMethodChangeAction(MulticellularReproductionActionData data)
+    {
+        ReproductionMethod = data.NewReproductionMethod;
+
+        UpdateReproductionDropdownChoice();
+    }
+
+    [ArchiveAllowedMethod]
+    private void UndoReproductionMethodChangeAction(MulticellularReproductionActionData data)
+    {
+        ReproductionMethod = data.OldReproductionMethod;
+
+        UpdateReproductionDropdownChoice();
+    }
 }

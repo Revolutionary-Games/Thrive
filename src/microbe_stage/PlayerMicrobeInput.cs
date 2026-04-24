@@ -499,6 +499,9 @@ public partial class PlayerMicrobeInput : NodeWithInput
         if (!stage.Player.TryGet<MulticellularSpeciesMember>(out var multicellularSpeciesType))
             return;
 
+        if (multicellularSpeciesType.Species.ReproductionMethod != MulticellularReproductionMethod.Spore)
+            return;
+
         ref var cellProperties = ref stage.Player.Get<CellProperties>();
 
         multicellularSpeciesType.MulticellularCellType = multicellularSpeciesType.Species.ModifiableCellTypes[1];
