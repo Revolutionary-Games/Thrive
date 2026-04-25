@@ -218,7 +218,8 @@ public partial class Jukebox : Node
         }
     }
 
-    [Command("jukeboxstatus", false, "Shows the currently playing Jukebox's active audio player and their playing tracks.")]
+    [Command("jukeboxstatus", false,
+        "Shows the currently playing Jukebox's active audio player and their playing tracks.")]
     private static bool CommandJukeboxStatus(CommandContext context)
     {
         if (HasInstance)
@@ -228,7 +229,8 @@ public partial class Jukebox : Node
         return false;
     }
 
-    [Command("jukeboxnext", false, "Advances the selected active audio player's playing track to the next selection.")]
+    [Command("jukeboxnext", false,
+        "Advances the selected active audio player's playing track to the next selection.")]
     private static bool CommandJukeboxNextTrack(CommandContext context, int index)
     {
         if (!HasInstance)
@@ -295,7 +297,7 @@ public partial class Jukebox : Node
             return false;
         }
 
-        for (var index = 0; index < count; index++)
+        for (var index = 0; index < count; ++index)
         {
             var player = activePlayers[index];
             context.Print($"audio player {index}, Bus: {player.Bus}, playing: {player.CurrentTrack}");
