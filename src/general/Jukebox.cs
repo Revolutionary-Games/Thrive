@@ -43,6 +43,12 @@ public partial class Jukebox : Node
 
     private MusicContext[]? activeContexts;
 
+    internal enum JukeboxCommandParameters
+    {
+        Status,
+        Next,
+    }
+
     /// <summary>
     ///   Loads the music categories and prepares to play them
     /// </summary>
@@ -218,19 +224,39 @@ public partial class Jukebox : Node
         }
     }
 
-    [Command("jukeboxstatus", false,
-        "Shows the currently playing Jukebox's active audio player and their playing tracks.")]
-    private static bool CommandJukeboxStatus(CommandContext context)
+    [Command("jukebox", false,
+        "`jukebox status` shows the currently playing Jukebox's active category, " +
+        "current active audio players and their playing tracks.")]
+    private static bool CommandJukebox(CommandContext context, JukeboxCommandParameters param)
     {
-        if (HasInstance)
-            return Instance.PrintPlaybackStatus(context);
+        if (param == JukeboxCommandParameters.Status)
+        {
+            if (!HasInstance)
+            {
+                context.PrintWarning("Jukebox has no active instance.");
+                return false;
+            }
 
-        context.PrintWarning("Jukebox has no active instance.");
+            return Instance.PrintPlaybackStatus(context);
+        }
+
+        context.PrintWarning("Illegal parameter");
         return false;
     }
 
-    [Command("jukeboxnext", false,
-        "Advances the selected active audio player's playing track to the next selection.")]
+    [Command("jukebox", false,
+        "`jukebox next i` advances the i-th active audio player's playing track to the next selection. i start from 0.")]
+    private static bool CommandJukebox(CommandContext context, JukeboxCommandParameters param, int index)
+    {
+        if (param == JukeboxCommandParameters.Next)
+        {
+            return CommandJukeboxNextTrack(context, index);
+        }
+
+        context.PrintWarning("Illegal parameter");
+        return false;
+    }
+
     private static bool CommandJukeboxNextTrack(CommandContext context, int index)
     {
         if (!HasInstance)
