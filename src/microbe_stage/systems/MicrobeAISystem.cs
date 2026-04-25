@@ -264,7 +264,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         var compounds = compoundStorage.Compounds;
 
         bool signalExists = signaling.ReceivedCommand != MicrobeSignalCommand.None &&
-            entity.IsAliveAndHas<WorldPosition>();
+            signaling.ReceivedCommandFromEntity.IsAliveAndHas<WorldPosition>();
         Vector3 signalerPosition = default;
         float signalerDistanceSquared = default;
 
@@ -276,7 +276,8 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
 
         // Adjusted behaviour values (calculated here as these are needed by various methods)
         var speciesBehaviour = ourSpecies.Species.Behaviour;
-        var adjustBehaviourValues = signaling.ReceivedCommand == MicrobeSignalCommand.BecomeAggressive &&
+        var adjustBehaviourValues = signalExists &&
+            signaling.ReceivedCommand == MicrobeSignalCommand.BecomeAggressive &&
             signalerDistanceSquared < Constants.AI_BECOME_AGGRESSIVE_DISTANCE_SQUARED;
 
         float speciesAggression = speciesBehaviour.Aggression *
@@ -397,10 +398,11 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             ai.ATPThreshold = 0.0f;
         }
 
-        // Use signaling agent if I have any with a small chance per think method call
-        if (organelles.HasSignalingAgent && random.NextSingle() < Constants.AI_SIGNALING_CHANCE)
+        // Use signaling agent if I have any and am not receiving a command, with a small chance per think method call
+        if (organelles.HasSignalingAgent && random.NextSingle() < Constants.AI_SIGNALING_CHANCE && !signalExists)
         {
-            UseSignalingAgent(ref position, ref organelles, speciesAggression, ref signaling, random, ref ourSpecies);
+            UseSignalingAgent(ref position, ref organelles, ref control, speciesAggression,
+                ref signaling, random, ref ourSpecies);
         }
 
         // Follow received commands if we have them
@@ -416,11 +418,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                     // was smelled from
                     if (signaling.ReceivedCommandFromEntity.IsAliveAndHas<WorldPosition>())
                     {
-                        if (signalerDistanceSquared < Constants.AI_MOVE_DISTANCE_SQUARED)
-                        {
-                            ai.MoveToLocation(signalerPosition, ref control, entity);
-                        }
-
+                        ai.MoveToLocation(signalerPosition, ref control, entity);
                         return;
                     }
 
@@ -552,7 +550,8 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
     }
 
     private void UseSignalingAgent(ref WorldPosition position, ref OrganelleContainer organelles,
-        float speciesAggression, ref CommandSignaler signaling, Random random, ref SpeciesMember ourSpecies)
+        ref MicrobeControl control, float speciesAggression, ref CommandSignaler signaling, Random random,
+        ref SpeciesMember ourSpecies)
     {
         var shouldBeAggressive = RollCheck(speciesAggression, Constants.MAX_SPECIES_AGGRESSION, random);
         var speciesMembers = GetSpeciesMembers(ourSpecies.Species);
@@ -564,34 +563,39 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
 
         if (shouldBeAggressive)
         {
+            var membersNearEnough = 0;
+            var enoughMembers = (int)speciesAggression / 100;
+
+            var pilusAndToxinCount = 0;
+
             foreach (var organelle in organelles.Organelles!)
             {
                 // Has pili or toxins
                 if (organelle.Definition.HasPilusComponent || organelles.AgentVacuoleCount > 0)
                 {
-                    var membersNearEnough = 0;
-                    var enoughMembers = (int)speciesAggression / 100;
+                    ++pilusAndToxinCount;
+                }
+            }
 
-                    foreach (var member in speciesMembers!)
+            if (pilusAndToxinCount > 0)
+            {
+                foreach (var member in speciesMembers!)
+                {
+                    if (position.Position.DistanceSquaredTo(member.Position)
+                        < Constants.AI_BECOME_AGGRESSIVE_DISTANCE_SQUARED)
                     {
-                        if (position.Position.DistanceSquaredTo(member.Position)
-                            < Constants.AI_BECOME_AGGRESSIVE_DISTANCE_SQUARED)
-                        {
-                            ++membersNearEnough;
-                        }
+                        ++membersNearEnough;
                     }
-
-                    if (membersNearEnough >= enoughMembers)
-                    {
-                        signaling.QueuedSignalingCommand = MicrobeSignalCommand.BecomeAggressive;
-                        break;
-                    }
-
-                    signaling.QueuedSignalingCommand = MicrobeSignalCommand.FollowMe;
-                    break;
                 }
 
-                signaling.QueuedSignalingCommand = MicrobeSignalCommand.None;
+                if (membersNearEnough >= enoughMembers)
+                {
+                    signaling.QueuedSignalingCommand = MicrobeSignalCommand.BecomeAggressive;
+                    return;
+                }
+
+                signaling.QueuedSignalingCommand = MicrobeSignalCommand.FollowMe;
+                return;
             }
         }
 
