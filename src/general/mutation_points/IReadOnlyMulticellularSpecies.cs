@@ -16,4 +16,6 @@ public interface IReadOnlyMulticellularSpecies : IReadOnlySpecies
     public IReadOnlyList<IReadOnlyCellTypeDefinition> CellTypes { get; }
 
     public MulticellularReproductionMethod ReproductionMethod { get; }
+
+    public IReadOnlyCellTypeDefinition? SporeCellType { get; }
 }

@@ -136,6 +136,9 @@ public partial class CellBodyPlanEditorComponent :
 
     [Export]
     private OptionButton reproductionMethodDropdown = null!;
+
+    [Export]
+    private OptionButton sporeCellTypeDropdown = null!;
 #pragma warning restore CA2213
 
     private string newName = "unset";
@@ -228,6 +231,8 @@ public partial class CellBodyPlanEditorComponent :
 
     public MulticellularReproductionMethod ReproductionMethod { get; private set; }
 
+    public CellType? SporeCellType { get; private set; }
+
     protected override bool ShowFloatingLabels => ShowGrowthOrder;
 
     protected override bool ForceHideHover => false;
@@ -286,6 +291,7 @@ public partial class CellBodyPlanEditorComponent :
             tolerancesEditor.OnEditorSpeciesSetup(Editor.EditedBaseSpecies);
 
             UpdateReproductionDropdownChoice();
+            UpdateSporeCellDropdown();
         }
 
         organismStatisticsPanel.UpdateLightSelectionPanelVisibility(
@@ -428,6 +434,7 @@ public partial class CellBodyPlanEditorComponent :
         writer.WriteObjectProperties(tolerancesEditor);
 
         writer.Write((int)ReproductionMethod);
+        writer.WriteObjectOrNull(SporeCellType);
     }
 
     public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
@@ -481,6 +488,7 @@ public partial class CellBodyPlanEditorComponent :
         if (version >= 5)
         {
             ReproductionMethod = (MulticellularReproductionMethod)reader.ReadInt32();
+            SporeCellType = reader.ReadObjectOrNull<CellType>();
         }
     }
 
@@ -509,6 +517,9 @@ public partial class CellBodyPlanEditorComponent :
 
         ReproductionMethod = ((MulticellularSpecies)species).ReproductionMethod;
         UpdateReproductionDropdownChoice();
+
+        SporeCellType = ((MulticellularSpecies)species).ModifiableSporeCellType;
+        UpdateSporeCellDropdown();
     }
 
     public override void OnFinishEditing()
@@ -585,6 +596,8 @@ public partial class CellBodyPlanEditorComponent :
         editedSpecies.UpdateNameIfValid(newName);
 
         editedSpecies.ReproductionMethod = ReproductionMethod;
+
+        editedSpecies.ModifiableSporeCellType = SporeCellType;
 
         behaviourEditor.OnFinishEditing();
         tolerancesEditor.OnFinishEditing();
@@ -760,6 +773,21 @@ public partial class CellBodyPlanEditorComponent :
         Editor.EnqueueAction(action);
 
         UpdateReproductionDropdownChoice();
+    }
+
+    public void OnSporeCellTypeSelected(int selectedOption)
+    {
+        var cellType = Editor.EditedSpecies.ModifiableCellTypes[selectedOption];
+
+        if (cellType == SporeCellType)
+            return;
+
+        var action = new SingleEditorAction<SporeCellTypeChangeActionData>(DoSporeCellChangeAction,
+            UndoSporeCellChangeAction, new SporeCellTypeChangeActionData(SporeCellType, cellType));
+
+        Editor.EnqueueAction(action);
+
+        UpdateSporeCellDropdown();
     }
 
     protected override void RegisterTooltips()
@@ -1971,5 +1999,22 @@ public partial class CellBodyPlanEditorComponent :
     private void UpdateReproductionDropdownChoice()
     {
         reproductionMethodDropdown.Select((int)ReproductionMethod);
+    }
+
+    private void UpdateSporeCellDropdown()
+    {
+        sporeCellTypeDropdown.Clear();
+        foreach (var cellType in Editor.EditedSpecies.ModifiableCellTypes)
+        {
+            sporeCellTypeDropdown.AddItem($"{cellType.FormattedName}, {cellType.Colour}");
+        }
+
+        if (SporeCellType == null)
+        {
+            sporeCellTypeDropdown.Select(-1);
+            return;
+        }
+
+        sporeCellTypeDropdown.Select(Editor.EditedSpecies.ModifiableCellTypes.IndexOf(SporeCellType));
     }
 }

@@ -20,6 +20,8 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
     private MulticellularReproductionMethod reproductionMethod;
     private bool overrideReproductionMethod;
 
+    private IReadOnlyCellTypeDefinition? sporeCellTypeOverride;
+
     public MulticellularEditsFacade(IReadOnlyMulticellularSpecies species) : base(species)
     {
         multicellularSpecies = species;
@@ -37,6 +39,8 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
 
     public MulticellularReproductionMethod ReproductionMethod =>
         overrideReproductionMethod ? reproductionMethod : multicellularSpecies.ReproductionMethod;
+
+    public IReadOnlyCellTypeDefinition? SporeCellType => sporeCellTypeOverride ?? multicellularSpecies.SporeCellType;
 
     /// <summary>
     ///   For MP calculations it is not required to also get the gameplay layout, so for simplicity this is not
@@ -132,6 +136,8 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
         cellTypes.ClearUsed();
 
         overrideReproductionMethod = false;
+
+        sporeCellTypeOverride = null;
     }
 
     internal override bool ApplyAction(EditorCombinableActionData actionData)
@@ -291,6 +297,13 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
         {
             reproductionMethod = reproductionActionData.NewReproductionMethod;
             overrideReproductionMethod = true;
+
+            return true;
+        }
+
+        if (actionData is SporeCellTypeChangeActionData sporeCellTypeChangeActionData)
+        {
+            sporeCellTypeOverride = sporeCellTypeChangeActionData.NewCellType;
 
             return true;
         }

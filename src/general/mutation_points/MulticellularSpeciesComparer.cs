@@ -180,6 +180,11 @@ public class MulticellularSpeciesComparer
             cost += Constants.MULTUCELLULAR_REPRODUCTION_METHOD_CHANGE_COST;
         }
 
+        if (speciesA.SporeCellType != speciesB.SporeCellType)
+        {
+            cost += Constants.SPORE_CELL_TYPE_CHANGE_COST;
+        }
+
         oldCells.Clear();
         newCells.Clear();
 

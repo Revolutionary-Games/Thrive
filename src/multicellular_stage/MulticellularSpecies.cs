@@ -79,6 +79,10 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 
     public MulticellularReproductionMethod ReproductionMethod { get; set; }
 
+    public CellType? ModifiableSporeCellType { get; set; }
+
+    public IReadOnlyCellTypeDefinition? SporeCellType => ModifiableSporeCellType;
+
     public ISimulationPhotographable.SimulationType SimulationToPhotograph =>
         ISimulationPhotographable.SimulationType.MicrobeGraphics;
 

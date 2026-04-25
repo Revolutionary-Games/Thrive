@@ -1173,6 +1173,8 @@ public static class Constants
 
     public const int MULTUCELLULAR_REPRODUCTION_METHOD_CHANGE_COST = 50;
 
+    public const int SPORE_CELL_TYPE_CHANGE_COST = 10;
+
     public const string ORGANELLE_UPGRADE_SPECIAL_NONE = "none";
 
     public const int METABALL_ADD_COST = 7;
