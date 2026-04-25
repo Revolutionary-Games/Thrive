@@ -428,6 +428,26 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         return hash;
     }
 
+    public CellType FirstCellTypeToSpawn()
+    {
+        if (ReproductionMethod == MulticellularReproductionMethod.Budding)
+        {
+            return ModifiableGameplayCells[0].ModifiableCellType;
+        }
+        else if (ReproductionMethod == MulticellularReproductionMethod.Spore)
+        {
+            if (ModifiableSporeCellType == null)
+            {
+                throw new Exception("A spore-reproducing species' spore cell type is unset:" +
+                    $"{FormattedName}");
+            }
+
+            return ModifiableSporeCellType;
+        }
+
+        throw new NotImplementedException($"Reproduction type not implemented: {ReproductionMethod}");
+    }
+
     protected override Dictionary<Compound, float> CalculateBaseReproductionCost()
     {
         var baseReproductionCost = base.CalculateBaseReproductionCost();

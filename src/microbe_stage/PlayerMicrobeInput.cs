@@ -504,7 +504,10 @@ public partial class PlayerMicrobeInput : NodeWithInput
 
         ref var cellProperties = ref stage.Player.Get<CellProperties>();
 
-        multicellularSpeciesType.MulticellularCellType = multicellularSpeciesType.Species.ModifiableGameplayCells[0];
+        multicellularSpeciesType.MulticellularCellType =
+            multicellularSpeciesType.Species.ModifiableGameplayCells[0].ModifiableCellType;
+
+        stage.Player.Get<MulticellularGrowth>().IsASpore = false;
 
         cellProperties.ReApplyCellTypeProperties(ref stage.Player.Get<MicrobeEnvironmentalEffects>(), stage.Player,
             multicellularSpeciesType.MulticellularCellType, multicellularSpeciesType.Species, stage.WorldSimulation,

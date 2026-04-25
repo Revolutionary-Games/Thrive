@@ -49,6 +49,8 @@ public struct MulticellularGrowth : IArchivableComponent
 
     public bool EnoughResourcesForBudding;
 
+    public bool IsASpore;
+
     public MulticellularGrowth(MulticellularSpecies species)
     {
         // Start growing at the cell after the initial bud

@@ -79,6 +79,9 @@ public partial class MulticellularGrowthSystem : BaseSystem<World, float>
         ref MicrobeStatus status, ref ReproductionStatus baseReproduction, ref CompoundStorage compoundStorage,
         in Entity entity)
     {
+        if (growth.IsASpore)
+            return;
+
         // Dead multicellular colonies can't reproduce
         if (health.Dead)
             return;
