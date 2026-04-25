@@ -5,6 +5,10 @@
 #include <cstdarg>
 #include <cstring>
 
+#ifdef _MSC_VER
+#include <intrin.h>
+#endif
+
 #include "Jolt/Core/Factory.h"
 #include "Jolt/Core/Memory.h"
 #include "Jolt/Jolt.h"
@@ -699,6 +703,37 @@ void SetNativeExecutorThreads(int32_t count)
 int32_t GetNativeExecutorThreads()
 {
     return Thrive::TaskSystem::Get().GetThreads();
+}
+
+bool ArmWaitForEvent()
+{
+#if defined(_MSC_VER) && defined(_M_ARM64)
+    __wfe();
+    return true;
+#elif defined(__aarch64__) || defined(__arm64__)
+    __asm__ __volatile__("wfe" ::: "memory");
+    return true;
+#else
+    return false;
+#endif
+}
+
+bool ArmDataMemoryBarrierAndSendEvent()
+{
+#if defined(_MSC_VER) && defined(_M_ARM64)
+    __dmb(_ARM64_BARRIER_ISH);
+    __sev();
+    return true;
+#elif defined(__aarch64__) || defined(__arm64__)
+    __asm__ __volatile__("dmb ish\n\t"
+                         "sev"
+                         :
+                         :
+                         : "memory");
+    return true;
+#else
+    return false;
+#endif
 }
 
 // ------------------------------------ //

@@ -249,16 +249,15 @@ public partial class CellBodyPlanEditorComponent
         var count = cells.Count;
         for (int i = 0; i < count; ++i)
         {
-            var type = GetEditedCellDataIfEdited(cells[i].Data!.ModifiableCellType);
+            var cell = cells[i].Data!;
+            var type = GetEditedCellDataIfEdited(cell.ModifiableCellType);
 
             var specialization =
                 MicrobeInternalCalculations.CalculateSpecializationBonus(type.ModifiableOrganelles, tempMemory3);
+            var adjacencySpecialization =
+                CellBodyPlanInternalCalculations.GetAdjacencySpecializationBonusFromBodyPlan(cell, cells);
 
-            // TODO: calculate adjacency specialization values
-            // https://github.com/Revolutionary-Games/Thrive/issues/6764
-            // totalSpecialization += specialization * adjacencySpecialization;
-
-            totalSpecialization += specialization;
+            totalSpecialization += specialization * adjacencySpecialization;
 
             if (specialization > maxSpecialization)
             {

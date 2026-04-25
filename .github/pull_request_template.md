@@ -17,7 +17,7 @@ Note: before starting this checklist the PR should be marked as non-draft.
       break existing features:
       https://wiki.revolutionarygamesstudio.com/wiki/Testing_Checklist
       (this is important as to not waste the time of Thrive team
-      members reviewing this PR)
+      members reviewing this PR). This includes **gameplay** testing by the PR author.
 - [ ] Initial code review passed (this and further items should not be checked by the PR author)
 - [ ] Functionality is confirmed working by another person (see above checklist link)
 - [ ] Final code review is passed and code conforms to the 
