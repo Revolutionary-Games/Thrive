@@ -43,12 +43,6 @@ public partial class Jukebox : Node
 
     private MusicContext[]? activeContexts;
 
-    internal enum JukeboxCommandParameters
-    {
-        Status,
-        Next,
-    }
-
     /// <summary>
     ///   Loads the music categories and prepares to play them
     /// </summary>
@@ -58,6 +52,12 @@ public partial class Jukebox : Node
             return;
 
         instance = this;
+    }
+
+    internal enum JukeboxCommandParameters
+    {
+        Status,
+        Next,
     }
 
     public static Jukebox Instance => instance ?? throw new InstanceNotLoadedYetException();
@@ -226,35 +226,23 @@ public partial class Jukebox : Node
 
     [Command("jukebox", false,
         "`jukebox status` shows the currently playing Jukebox's active category, " +
-        "current active audio players and their playing tracks.")]
-    private static bool CommandJukebox(CommandContext context, JukeboxCommandParameters param)
+        "current active audio players and their playing tracks.\n" +
+        "`jukebox next i (default 0)` advances the i-th active audio player's playing track to the next selection. i start from 0.")]
+    private static bool CommandJukebox(CommandContext context, JukeboxCommandParameters param, int index = 0)
     {
-        if (param == JukeboxCommandParameters.Status)
+        switch (param)
         {
-            if (!HasInstance)
-            {
+            case JukeboxCommandParameters.Status when !HasInstance:
                 context.PrintWarning("Jukebox has no active instance.");
                 return false;
-            }
-
-            return Instance.PrintPlaybackStatus(context);
+            case JukeboxCommandParameters.Status:
+                return Instance.PrintPlaybackStatus(context);
+            case JukeboxCommandParameters.Next:
+                return CommandJukeboxNextTrack(context, index);
+            default:
+                context.PrintWarning("Illegal parameter");
+                return false;
         }
-
-        context.PrintWarning("Illegal parameter");
-        return false;
-    }
-
-    [Command("jukebox", false,
-        "`jukebox next i` advances the i-th active audio player's playing track to the next selection. i start from 0.")]
-    private static bool CommandJukebox(CommandContext context, JukeboxCommandParameters param, int index)
-    {
-        if (param == JukeboxCommandParameters.Next)
-        {
-            return CommandJukeboxNextTrack(context, index);
-        }
-
-        context.PrintWarning("Illegal parameter");
-        return false;
     }
 
     private static bool CommandJukeboxNextTrack(CommandContext context, int index)
