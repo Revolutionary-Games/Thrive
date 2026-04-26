@@ -368,7 +368,7 @@ negativeAtpPopup = NodePath("NegativeAtpWarning")
 wrongGrowthOrderPopup = NodePath("WrongGrowthOrderError")
 toleranceWarningsFont = ExtResource("6_pwhoj")
 reproductionMethodDropdown = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/OptionButton")
-sporeCellTypeDropdown = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/OptionButton")
+sporeCellTypeDropdown = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/OptionButton")
 floatingLabelContainer = NodePath("GrowthOrderNumberContainer")
 islandPopup = NodePath("IslandError")
 componentBottomLeftButtons = NodePath("EditorComponentBottomLeftButtons")
@@ -632,7 +632,18 @@ popup/item_0/id = 0
 popup/item_1/text = "REPRODUCTION_SPORE"
 popup/item_1/id = 1
 
-[node name="OptionButton" type="OptionButton" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1518376352]
+[node name="HBoxContainer2" type="HBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer" unique_id=2043429769]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=236058147]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "SPORE_CELL_TYPE"
+label_settings = ExtResource("6_pwhoj")
+autowrap_mode = 3
+
+[node name="OptionButton" type="OptionButton" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1518376352]
 layout_mode = 2
 
 [node name="Behaviour" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" unique_id=766902860 instance=ExtResource("9")]
@@ -921,7 +932,7 @@ ShowToggles = false
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Delete" to="." method="OnDeleteCellTypePressed"]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/Duplicate" to="." method="OnTypeDuplicateStartPressed"]
 [connection signal="item_selected" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/OptionButton" to="." method="OnReproductionMethodSelected"]
-[connection signal="item_selected" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/OptionButton" to="." method="OnSporeCellTypeSelected"]
+[connection signal="item_selected" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/OptionButton" to="." method="OnSporeCellTypeSelected"]
 [connection signal="OnGrowthOrderChanged" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer/GrowthOrderPicker" to="." method="OnGrowthOrderChanged"]
 [connection signal="OrderReset" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer/GrowthOrderPicker" to="." method="OnResetGrowthOrderPressed"]
 [connection signal="toggled" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer/Coordinates" to="." method="OnGrowthOrderCoordinatesToggled"]

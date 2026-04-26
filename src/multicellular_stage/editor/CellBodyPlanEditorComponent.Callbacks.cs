@@ -83,6 +83,11 @@ public partial class CellBodyPlanEditorComponent
 
         Editor.DirtyMutationPointsCache();
 
+        if (data.CellType == SporeCellType)
+        {
+            SporeCellType = Editor.EditedSpecies.ModifiableCellTypes[0];
+        }
+
         UpdateSporeCellDropdown();
     }
 
@@ -122,6 +127,9 @@ public partial class CellBodyPlanEditorComponent
     {
         ReproductionMethod = data.NewReproductionMethod;
 
+        if (ReproductionMethod == MulticellularReproductionMethod.Spore)
+            OnReproductionMethodChangedToSpore();
+
         UpdateReproductionDropdownChoice();
     }
 
@@ -129,6 +137,9 @@ public partial class CellBodyPlanEditorComponent
     private void UndoReproductionMethodChangeAction(MulticellularReproductionActionData data)
     {
         ReproductionMethod = data.OldReproductionMethod;
+
+        if (ReproductionMethod == MulticellularReproductionMethod.Spore)
+            OnReproductionMethodChangedToSpore();
 
         UpdateReproductionDropdownChoice();
     }
@@ -145,6 +156,17 @@ public partial class CellBodyPlanEditorComponent
     private void UndoSporeCellChangeAction(SporeCellTypeChangeActionData data)
     {
         SporeCellType = data.OldCellType;
+
+        UpdateSporeCellDropdown();
+    }
+
+    private void OnReproductionMethodChangedToSpore()
+    {
+        // Set a default spore cell type
+        if (SporeCellType == null)
+        {
+            SporeCellType = Editor.EditedSpecies.ModifiableCellTypes[0];
+        }
 
         UpdateSporeCellDropdown();
     }
