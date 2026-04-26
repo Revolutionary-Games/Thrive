@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-22 17:18+0300\n"
+"POT-Creation-Date: 2026-04-26 17:31+0200\n"
 "PO-Revision-Date: 2026-04-22 18:35+0000\n"
 "Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -111,9 +111,6 @@ msgstr "打开高级菜单"
 msgid "AEROBIC_NITROGEN_FIXATION"
 msgstr "好氧固氮"
 
-msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "好氧固氮"
-
 msgid "AEROBIC_RESPIRATION"
 msgstr "有氧呼吸作用"
 
@@ -197,9 +194,6 @@ msgstr "要保留的自动保存存档数："
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "要保留的快速保存存档数："
-
-msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "无氧固氮"
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr "和"
@@ -4372,6 +4366,10 @@ msgstr "固氮酶是一种能用ATP和氮来产出氨的蛋白质，氨对细胞
 
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound type=\"ammonia\"][/thrive:compound]。速率跟[thrive:compound type=\"nitrogen\"][/thrive:compound]浓度成正比。"
+
+#, fuzzy
+msgid "NITROGEN_FIXATION"
+msgstr "好氧固氮"
 
 msgid "NITROPLAST"
 msgstr "硝化体"
@@ -9702,6 +9700,12 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "缩小"
+
+#~ msgid "AEROBIC_NITROGEN_FIXING"
+#~ msgstr "好氧固氮"
+
+#~ msgid "ANAEROBIC_NITROGEN_FIXATION"
+#~ msgstr "无氧固氮"
 
 #~ msgid "OSMOREGULATION_COST_MULTIPLIER"
 #~ msgstr "渗透调节消耗系数"

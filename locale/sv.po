@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-22 17:18+0300\n"
+"POT-Creation-Date: 2026-04-26 17:31+0200\n"
 "PO-Revision-Date: 2026-04-22 18:35+0000\n"
 "Last-Translator: \"Georgi Georgiev (RacerBG)\" <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -113,9 +113,6 @@ msgstr "Öppna vyn för avancerade inställningar"
 msgid "AEROBIC_NITROGEN_FIXATION"
 msgstr "Aerob Kvävefixering"
 
-msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "Aerob Kvävefixering"
-
 msgid "AEROBIC_RESPIRATION"
 msgstr "Aerob Andning"
 
@@ -200,9 +197,6 @@ msgstr "Antal autosparningar att behålla:"
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Antal quicksaves att behålla:"
-
-msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "Anaerob kvävefixering"
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr "och"
@@ -4718,6 +4712,10 @@ msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellul
 #, fuzzy
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+
+#, fuzzy
+msgid "NITROGEN_FIXATION"
+msgstr "Aerob Kvävefixering"
 
 msgid "NITROPLAST"
 msgstr "Kväve-Fixande Plastid"
@@ -9637,6 +9635,12 @@ msgstr "Zooma in"
 
 msgid "ZOOM_OUT"
 msgstr "Zooma ut"
+
+#~ msgid "AEROBIC_NITROGEN_FIXING"
+#~ msgstr "Aerob Kvävefixering"
+
+#~ msgid "ANAEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Anaerob kvävefixering"
 
 #, fuzzy
 #~ msgid "PROCESS_TOGGLE_TOOLTIP"

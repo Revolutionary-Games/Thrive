@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-22 17:18+0300\n"
+"POT-Creation-Date: 2026-04-26 17:31+0200\n"
 "PO-Revision-Date: 2026-04-22 18:35+0000\n"
 "Last-Translator: \"Georgi Georgiev (RacerBG)\" <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -111,9 +111,6 @@ msgstr "Open de weergave voor uitgebreide instellingen"
 msgid "AEROBIC_NITROGEN_FIXATION"
 msgstr "Anaerobe Stikstofbinding"
 
-msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "Aerobe Stikstoffixatie"
-
 msgid "AEROBIC_RESPIRATION"
 msgstr "Aerobe Ademhaling"
 
@@ -197,9 +194,6 @@ msgstr "Hoeveelheid automatisch opgeslagen bestanden om bij te houden:"
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Hoeveelheid snel opgeslagen bestanden om bij te houden:"
-
-msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "Anaerobe Stikstoffixatie"
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr "en"
@@ -4707,6 +4701,10 @@ msgstr "Nitrogenase is een eiwit dat [thrive:compound type=\"nitrogen\"][/thrive
 
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Verandert [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound]. Ratio schaalt met concentratie van [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+
+#, fuzzy
+msgid "NITROGEN_FIXATION"
+msgstr "Anaerobe Stikstofbinding"
 
 msgid "NITROPLAST"
 msgstr "Stikstoffixerende Plastide"
@@ -9723,6 +9721,12 @@ msgstr "Inzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
+
+#~ msgid "AEROBIC_NITROGEN_FIXING"
+#~ msgstr "Aerobe Stikstoffixatie"
+
+#~ msgid "ANAEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Anaerobe Stikstoffixatie"
 
 #, fuzzy
 #~ msgid "OSMOREGULATION_COST_MULTIPLIER"

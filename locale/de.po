@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-22 17:18+0300\n"
+"POT-Creation-Date: 2026-04-26 17:31+0200\n"
 "PO-Revision-Date: 2026-04-22 18:35+0000\n"
 "Last-Translator: \"Georgi Georgiev (RacerBG)\" <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -111,9 +111,6 @@ msgstr "Erweiterte Einstellungen anzeigen"
 msgid "AEROBIC_NITROGEN_FIXATION"
 msgstr "Aerobe Stickstofffixierung"
 
-msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "Aerobe Stickstofffixierung"
-
 msgid "AEROBIC_RESPIRATION"
 msgstr "Aerobe Atmung"
 
@@ -197,9 +194,6 @@ msgstr "Anzahl der Autospeicherungen:"
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Anzahl der Schnellspeicherungen:"
-
-msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "Anaerobe Stickstofffixierung"
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr "und"
@@ -4425,6 +4419,10 @@ msgstr "Nitrogenase ist ein Protein, das gasförmiges [thrive:compound type=\"ni
 
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Wandelt [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound] um. Rate skaliert mit der Konzentration von [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+
+#, fuzzy
+msgid "NITROGEN_FIXATION"
+msgstr "Aerobe Stickstofffixierung"
 
 msgid "NITROPLAST"
 msgstr "Stickstofffixier-Plastid"
@@ -9473,6 +9471,12 @@ msgstr "Hereinzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Herauszoomen"
+
+#~ msgid "AEROBIC_NITROGEN_FIXING"
+#~ msgstr "Aerobe Stickstofffixierung"
+
+#~ msgid "ANAEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Anaerobe Stickstofffixierung"
 
 #~ msgid "OSMOREGULATION_COST_MULTIPLIER"
 #~ msgstr "Osmoregulationskostenmultiplikator"

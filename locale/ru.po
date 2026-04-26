@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-22 17:18+0300\n"
+"POT-Creation-Date: 2026-04-26 17:31+0200\n"
 "PO-Revision-Date: 2026-04-22 18:35+0000\n"
 "Last-Translator: \"Georgi Georgiev (RacerBG)\" <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -111,9 +111,6 @@ msgstr "Открыть дополнительные настройки"
 msgid "AEROBIC_NITROGEN_FIXATION"
 msgstr "Аэробная Азотфиксация"
 
-msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "Аэробная азотфиксация"
-
 msgid "AEROBIC_RESPIRATION"
 msgstr "Аэробное Дыхание"
 
@@ -197,9 +194,6 @@ msgstr "Количество записей автосохранения:"
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Количество записей быстрого сохранения:"
-
-msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "Анаэробная азотфиксация"
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr "И"
@@ -4372,6 +4366,10 @@ msgstr "Нитрогеназа - это белок, способный испо�
 
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Превращает [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:compound type=\"ammonia\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+
+#, fuzzy
+msgid "NITROGEN_FIXATION"
+msgstr "Аэробная Азотфиксация"
 
 msgid "NITROPLAST"
 msgstr "Азотфиксирующая пластида"
@@ -9701,6 +9699,12 @@ msgstr "Увеличить масштаб"
 
 msgid "ZOOM_OUT"
 msgstr "Уменьшить масштаб"
+
+#~ msgid "AEROBIC_NITROGEN_FIXING"
+#~ msgstr "Аэробная азотфиксация"
+
+#~ msgid "ANAEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Анаэробная азотфиксация"
 
 #~ msgid "OSMOREGULATION_COST_MULTIPLIER"
 #~ msgstr "Множитель стоимости осморегуляции"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-22 17:18+0300\n"
+"POT-Creation-Date: 2026-04-26 17:31+0200\n"
 "PO-Revision-Date: 2026-04-22 18:35+0000\n"
 "Last-Translator: \"Georgi Georgiev (RacerBG)\" <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
@@ -119,9 +119,6 @@ msgstr "Tambah keybind baru"
 msgid "AEROBIC_NITROGEN_FIXATION"
 msgstr "Fiksasi Nitrogen Aerobik"
 
-msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "Fiksasi Aerob Nitrogen"
-
 msgid "AEROBIC_RESPIRATION"
 msgstr "Respirasi Aerobik"
 
@@ -211,9 +208,6 @@ msgstr "Jumlah save otomatis tersimpan:"
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Jumlah save cepat tersimpan:"
-
-msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "Fiksasi Anaerob Nitrogen"
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr "dan"
@@ -4754,6 +4748,10 @@ msgstr "Nitrogenase adalah protein yang dapat menggunakan gas nitrogen dan energ
 
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Mengubah [thrive:compound type=\"atp\"][/thrive:compound] menjadi [thrive:compound type=\"ammonia\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"nitrogen\"][/thrive:compound]"
+
+#, fuzzy
+msgid "NITROGEN_FIXATION"
+msgstr "Fiksasi Nitrogen Aerobik"
 
 msgid "NITROPLAST"
 msgstr "Plastida Pengikat Nitrogen"
@@ -9757,6 +9755,12 @@ msgstr "Perbesar"
 
 msgid "ZOOM_OUT"
 msgstr "Perkecil"
+
+#~ msgid "AEROBIC_NITROGEN_FIXING"
+#~ msgstr "Fiksasi Aerob Nitrogen"
+
+#~ msgid "ANAEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Fiksasi Anaerob Nitrogen"
 
 #, fuzzy
 #~ msgid "PROCESS_TOGGLE_TOOLTIP"

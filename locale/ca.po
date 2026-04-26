@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-22 17:18+0300\n"
+"POT-Creation-Date: 2026-04-26 17:31+0200\n"
 "PO-Revision-Date: 2026-04-22 18:35+0000\n"
 "Last-Translator: \"Georgi Georgiev (RacerBG)\" <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -122,9 +122,6 @@ msgstr "Obrir la vista de configuració avançada"
 msgid "AEROBIC_NITROGEN_FIXATION"
 msgstr "Fixació Anaeròbica de Nitrogen"
 
-msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "Fixació Aeròbica de Nitrogen"
-
 #, fuzzy
 msgid "AEROBIC_RESPIRATION"
 msgstr "Respiració aeròbica"
@@ -207,9 +204,6 @@ msgstr "Màxim nombre d'arxius d'autoguardat:"
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Màxim nombre d'arxius de guardat ràpid:"
-
-msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "Fixació Anaeròbica de Nitrogen"
 
 #, fuzzy
 msgid "AND_UNLOCK_CONDITION"
@@ -4742,6 +4736,10 @@ msgstr "La Nitrogenasa és una proteïna capaç de produïr Amoníac, nutrient b
 
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+
+#, fuzzy
+msgid "NITROGEN_FIXATION"
+msgstr "Fixació Anaeròbica de Nitrogen"
 
 msgid "NITROPLAST"
 msgstr "Plastidi Fixador de Nitrogen"
@@ -9735,6 +9733,12 @@ msgstr "Enfocar la visió de la càmera"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom enfora"
+
+#~ msgid "AEROBIC_NITROGEN_FIXING"
+#~ msgstr "Fixació Aeròbica de Nitrogen"
+
+#~ msgid "ANAEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Fixació Anaeròbica de Nitrogen"
 
 #~ msgid "OSMOREGULATION_COST_MULTIPLIER"
 #~ msgstr "Multiplicador del cost d'osmoregulació"
