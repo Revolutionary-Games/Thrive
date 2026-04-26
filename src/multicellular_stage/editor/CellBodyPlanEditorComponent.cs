@@ -139,6 +139,9 @@ public partial class CellBodyPlanEditorComponent :
 
     [Export]
     private OptionButton sporeCellTypeDropdown = null!;
+
+    [Export]
+    private Control sporeReproductionSettings = null!;
 #pragma warning restore CA2213
 
     private string newName = "unset";
@@ -2002,6 +2005,8 @@ public partial class CellBodyPlanEditorComponent :
     private void UpdateReproductionDropdownChoice()
     {
         reproductionMethodDropdown.Select((int)ReproductionMethod);
+
+        sporeReproductionSettings.Visible = ReproductionMethod == MulticellularReproductionMethod.Spore;
     }
 
     private void UpdateSporeCellDropdown()
@@ -2009,7 +2014,7 @@ public partial class CellBodyPlanEditorComponent :
         sporeCellTypeDropdown.Clear();
         foreach (var cellType in Editor.EditedSpecies.ModifiableCellTypes)
         {
-            sporeCellTypeDropdown.AddItem($"{cellType.FormattedName}, {cellType.Colour}");
+            sporeCellTypeDropdown.AddItem(cellType.FormattedName);
         }
 
         if (SporeCellType == null)
