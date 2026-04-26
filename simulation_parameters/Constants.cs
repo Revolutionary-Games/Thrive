@@ -668,6 +668,8 @@ public static class Constants
 
     public const float DEFAULT_MICROBE_VENT_THRESHOLD = 2.0f;
 
+    public const float CELL_ADJACENCY_SPECIALIZATION_BONUS = 0.04f;
+
     /// <summary>
     ///   A cell needs to have this many organelles for specialization to apply to it
     /// </summary>
@@ -748,6 +750,16 @@ public static class Constants
     ///   but while under strain, ATP never reached that low, so an extra margin for ATP damage was added.
     /// </summary>
     public const float ATP_DAMAGE_THRESHOLD = 0.05f;
+
+    /// <summary>
+    ///   ATP storage fraction that is treated as full for HUD display purposes.
+    /// </summary>
+    public const float ATP_BAR_FULL_DISPLAY_FRACTION = 0.9f;
+
+    /// <summary>
+    ///   Minimum ATP margin that is treated as full for HUD display purposes.
+    /// </summary>
+    public const float ATP_BAR_FULL_DISPLAY_MINIMUM_MARGIN = 0.1f;
 
     /// <summary>
     ///   Amount of health per second regenerated
