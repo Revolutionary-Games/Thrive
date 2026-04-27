@@ -32,7 +32,6 @@ public partial class Jukebox : Node
 
     private bool paused = true;
     private bool pausing;
-    private bool suppressTrackEndHandling;
 
     private string? playingCategory;
 
@@ -355,19 +354,10 @@ public partial class Jukebox : Node
         if (sourceTrackList == null)
             return false;
 
-        suppressTrackEndHandling = true;
+        StopPlayerAsIfTrackEnded(player, target.TrackTransition);
 
-        try
-        {
-            StopPlayerAsIfTrackEnded(player, target.TrackTransition);
-
-            if (sourceTrackList.Repeat || sourceTrackList.GetTracksForContexts(activeContexts).Any(t => !t.PlayedOnce))
-                PlayNextTrackFromList(sourceTrackList, _ => player, 0);
-        }
-        finally
-        {
-            suppressTrackEndHandling = false;
-        }
+        if (sourceTrackList.Repeat || sourceTrackList.GetTracksForContexts(activeContexts).Any(t => !t.PlayedOnce))
+            PlayNextTrackFromList(sourceTrackList, _ => player, 0);
 
         UpdateStreamsPauseStatus();
         return true;
@@ -652,9 +642,6 @@ public partial class Jukebox : Node
     // ReSharper disable once UnusedMember.Local
     private void OnSomeTrackEnded()
     {
-        if (suppressTrackEndHandling)
-            return;
-
         // Check that a stream has actually ended, as we get this callback when also purposefully stopping
         bool actuallyEnded = false;
 
