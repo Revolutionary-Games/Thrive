@@ -29,40 +29,6 @@ public partial class IrradiationSystem(World world) : BaseSystem<World, float>(w
         return PhysicsShape.CreateSphere(sourceRadius);
     }
 
-    private static void HandleRadiation(CompoundBag compounds, float amount, float distanceSquared)
-    {
-        // Apply inverse square law
-        amount *= 1 / distanceSquared;
-
-        compounds.AddCompound(Compound.Radiation, amount);
-    }
-
-    private static void HandleRadiationForColonyMember(in Entity entity, Vector3 chunkPosition, float radiationAmount,
-        float sourceRadiusSquared)
-    {
-        if (!entity.IsAliveAndHas<CompoundStorage>() || !entity.Has<WorldPosition>())
-            return;
-
-        ref readonly var worldPosition = ref entity.Get<WorldPosition>();
-        var distanceSquared = chunkPosition.DistanceSquaredTo(worldPosition.Position);
-
-        if (distanceSquared > sourceRadiusSquared)
-            return;
-
-        HandleRadiationForEntity(entity, radiationAmount, distanceSquared);
-    }
-
-    private static void HandleRadiationForEntity(in Entity entity, Vector3 chunkPosition, float radiationAmount)
-    {
-        // Anything with a compound storage can receive radiation.
-        if (!entity.IsAliveAndHas<CompoundStorage>())
-            return;
-
-        ref readonly var worldPosition = ref entity.Get<WorldPosition>();
-        var distanceSquared = chunkPosition.DistanceSquaredTo(worldPosition.Position);
-        HandleRadiationForEntity(entity, radiationAmount, distanceSquared);
-    }
-
     private static void HandleRadiationForEntity(in Entity entity, float radiationAmount, float distanceSquared)
     {
         ref var compoundStorage = ref entity.Get<CompoundStorage>();
@@ -73,7 +39,13 @@ public partial class IrradiationSystem(World world) : BaseSystem<World, float>(w
         if (compounds.NominalCapacity <= 0)
             return;
 
-        HandleRadiation(compounds, radiationAmount, distanceSquared);
+        compounds.AddCompound(Compound.Radiation, radiationAmount / distanceSquared);
+    }
+
+    private static float GetDistanceSquared(Entity entity, Vector3 chunkPosition)
+    {
+        ref readonly var worldPosition = ref entity.Get<WorldPosition>();
+        return chunkPosition.DistanceSquaredTo(worldPosition.Position);
     }
 
     [Query]
@@ -111,10 +83,14 @@ public partial class IrradiationSystem(World world) : BaseSystem<World, float>(w
                 if (radiatedEntity == default(Entity))
                     continue;
 
-                if (!radiatedEntity.IsAliveAndHas<MicrobeColony>())
+                if (!radiatedEntity.IsAliveAndHas<CompoundStorage>())
+                    continue;
+
+                if (!radiatedEntity.Has<MicrobeColony>())
                 {
-                    // Preserve the direct sensor-hit behavior for non-colony entities the physics sensor detected.
-                    HandleRadiationForEntity(radiatedEntity, chunkPosition, radiationAmount);
+                    // Not a cell colony, handle just the entity itself that was detected as hit
+                    var distanceSquared = GetDistanceSquared(radiatedEntity, chunkPosition);
+                    HandleRadiationForEntity(radiatedEntity, radiationAmount, distanceSquared);
                     continue;
                 }
 
@@ -124,7 +100,15 @@ public partial class IrradiationSystem(World world) : BaseSystem<World, float>(w
 
                 foreach (var entity in colonyMembers)
                 {
-                    HandleRadiationForColonyMember(entity, chunkPosition, radiationAmount, sourceRadiusSquared);
+                    if (!entity.IsAliveAndHas<CompoundStorage>() || !entity.Has<WorldPosition>())
+                        continue;
+
+                    var distanceSquared = GetDistanceSquared(entity, chunkPosition);
+
+                    if (distanceSquared > sourceRadiusSquared)
+                        continue;
+
+                    HandleRadiationForEntity(entity, radiationAmount, distanceSquared);
                 }
             }
         }
