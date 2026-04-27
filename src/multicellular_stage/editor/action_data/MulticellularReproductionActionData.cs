@@ -8,7 +8,8 @@ public class MulticellularReproductionActionData : EditorCombinableActionData<Mu
     public MulticellularReproductionMethod OldReproductionMethod;
     public MulticellularReproductionMethod NewReproductionMethod;
 
-    public MulticellularReproductionActionData(MulticellularReproductionMethod oldReproduction, MulticellularReproductionMethod newReproduction)
+    public MulticellularReproductionActionData(MulticellularReproductionMethod oldReproduction,
+        MulticellularReproductionMethod newReproduction)
     {
         OldReproductionMethod = oldReproduction;
         NewReproductionMethod = newReproduction;
@@ -27,7 +28,8 @@ public class MulticellularReproductionActionData : EditorCombinableActionData<Mu
         writer.WriteObject((MulticellularReproductionActionData)obj);
     }
 
-    public static MulticellularReproductionActionData ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    public static MulticellularReproductionActionData ReadFromArchive(ISArchiveReader reader, ushort version,
+        int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);

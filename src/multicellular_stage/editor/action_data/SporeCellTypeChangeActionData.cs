@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Godot;
 using SharedBase.Archive;
 
@@ -33,7 +33,8 @@ public class SporeCellTypeChangeActionData : EditorCombinableActionData<Multicel
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        var instance = new SporeCellTypeChangeActionData(reader.ReadObjectOrNull<CellType>(), reader.ReadObject<CellType>());
+        var instance =
+            new SporeCellTypeChangeActionData(reader.ReadObjectOrNull<CellType>(), reader.ReadObject<CellType>());
 
         instance.ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
 
