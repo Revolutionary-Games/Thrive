@@ -138,10 +138,11 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
     public bool RepositionToOrigin()
     {
         var changes = ModifiableOrganelles.RepositionToOrigin();
-        CalculateRotationSpeed();
 
         // We don't have another on-edit callback, so we do this update here
         CalculateSpecialization();
+
+        CalculateRotationSpeed();
 
         return changes;
     }
