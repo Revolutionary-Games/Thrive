@@ -226,7 +226,8 @@ public partial class Jukebox : Node
     [Command("jukebox", false,
         "`jukebox status` shows the currently playing Jukebox's active category, " +
         "current active audio players and their playing tracks.\n" +
-        "`jukebox next i (default 0)` advances the i-th active audio player's playing track to the next selection. i start from 0.")]
+        "`jukebox next i (default 0)` advances the i-th active audio player's playing track to the next selection. " +
+        "i start from 0.")]
     private static bool CommandJukebox(CommandContext context, JukeboxCommandParameters param, int index = 0)
     {
         switch (param)
@@ -308,10 +309,10 @@ public partial class Jukebox : Node
             return false;
         }
 
-        for (var index = 0; index < count; ++index)
+        for (var i = 0; i < count; ++i)
         {
-            var player = activePlayers[index];
-            context.Print($"audio player {index}, Bus: {player.Bus}, playing: {player.CurrentTrack}");
+            var player = activePlayers[i];
+            context.Print($"audio player {i}, Bus: {player.Bus}, playing: {player.CurrentTrack}");
         }
 
         return true;
