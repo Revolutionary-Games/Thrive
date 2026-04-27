@@ -168,18 +168,17 @@
     "IsMetabolismProcess": true
   },
   "nitrogenFixing": {
-    "Name": "AEROBIC_NITROGEN_FIXING",
+    "Name": "NITROGEN_FIXATION",
     "Inputs": {
-      "oxygen": 0.21,
       "nitrogen": 1,
-      "atp": 2.5
+      "atp": 6.5
     },
     "Outputs": {
-      "ammonia": 0.16
+      "ammonia": 0.24
     }
   },
   "nitrogenaseReaction": {
-    "Name": "ANAEROBIC_NITROGEN_FIXATION",
+    "Name": "NITROGEN_FIXATION",
     "Inputs": {
       "nitrogen": 1,
       "atp": 2.5

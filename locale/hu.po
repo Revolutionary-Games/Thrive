@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-22 17:18+0300\n"
-"PO-Revision-Date: 2026-04-20 23:52+0000\n"
-"Last-Translator: Undibundi <andras9334@citromail.hu>\n"
+"POT-Creation-Date: 2026-04-26 17:31+0200\n"
+"PO-Revision-Date: 2026-04-22 18:35+0000\n"
+"Last-Translator: zynskeywolf <istvanszabo314@protonmail.com>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
@@ -111,9 +111,6 @@ msgstr "Speciális beállítási nézet megnyitása"
 msgid "AEROBIC_NITROGEN_FIXATION"
 msgstr "Aerob nitrogénkötés"
 
-msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "Aerob nitrogénkötés"
-
 #, fuzzy
 msgid "AEROBIC_RESPIRATION"
 msgstr "Aerob légzés"
@@ -198,10 +195,6 @@ msgstr "Megtartható automatikus mentések száma:"
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Megtartható gyorsmentések száma:"
-
-#, fuzzy
-msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "Anaerob Nitrogénkötés"
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr "és"
@@ -4769,6 +4762,10 @@ msgstr "A nitrogenáz egy enzim, mely nitrogéngázból a sejt energiaraktároz�
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"ammonia\"][/thrive:compound]-vá. Hatékonysága függ az [thrive:compound type=\"nitrogen\"][/thrive:compound] koncentrációjától."
 
+#, fuzzy
+msgid "NITROGEN_FIXATION"
+msgstr "Aerob nitrogénkötés"
+
 msgid "NITROPLAST"
 msgstr "Nitrifikáló színtest"
 
@@ -4898,6 +4895,7 @@ msgstr ""
 msgid "NUCLEUS_DESCRIPTION"
 msgstr "Az eukarióta sejtek legmeghatározóbb jellemzője. A sejtmaghoz még hozzá tartozik az endoplazmatikus membránrendszer és a golgi-készülék is."
 
+#, fuzzy
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr "Lehetővé teszi az összetettebb, membránnal határolt sejtszervecskék kialakulását és 50%-kal csökkenti az elszenvedett sérülések mértékét. A fenntartása sok ATP-t igényel. Ez egy visszafordíthatatlan fejlődés."
 
@@ -9748,6 +9746,13 @@ msgstr "Közelítés"
 
 msgid "ZOOM_OUT"
 msgstr "Távolodás"
+
+#~ msgid "AEROBIC_NITROGEN_FIXING"
+#~ msgstr "Aerob nitrogénkötés"
+
+#, fuzzy
+#~ msgid "ANAEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Anaerob Nitrogénkötés"
 
 #~ msgid "OSMOREGULATION_COST_MULTIPLIER"
 #~ msgstr "Ozmoreguláció költségének szorzója"

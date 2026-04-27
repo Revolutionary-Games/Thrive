@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-22 17:18+0300\n"
+"POT-Creation-Date: 2026-04-26 17:31+0200\n"
 "PO-Revision-Date: 2026-04-21 06:26+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -122,9 +122,6 @@ msgstr "Pysäytysmenu"
 msgid "AEROBIC_NITROGEN_FIXATION"
 msgstr "Anaerobinen typensidonta"
 
-msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "Aerobinen typensidonta"
-
 #, fuzzy
 msgid "AEROBIC_RESPIRATION"
 msgstr "Soluhengitys"
@@ -205,9 +202,6 @@ msgstr "Paikat automaattitallenuksille:"
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Paikat nopeille tallennuksille:"
-
-msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "Anaerobinen typensidonta"
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr "ja"
@@ -4842,6 +4836,10 @@ msgstr "Nitrogenaasi on entsyymikompleksi, joka katalysoi typpimolekyylien pelki
 
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:n [thrive:compound type=\"ammonia\"]ammoniakiksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"nitrogen\"]typpipitoisuudesta[/thrive:compound]."
+
+#, fuzzy
+msgid "NITROGEN_FIXATION"
+msgstr "Anaerobinen typensidonta"
 
 msgid "NITROPLAST"
 msgstr "Typpeä sitova plastidi"
@@ -9997,6 +9995,12 @@ msgstr "Zoomaa sisään"
 
 msgid "ZOOM_OUT"
 msgstr "Zoomaa ulospäin"
+
+#~ msgid "AEROBIC_NITROGEN_FIXING"
+#~ msgstr "Aerobinen typensidonta"
+
+#~ msgid "ANAEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Anaerobinen typensidonta"
 
 #, fuzzy
 #~ msgid "OSMOREGULATION_COST_MULTIPLIER"

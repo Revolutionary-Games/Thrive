@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-22 17:18+0300\n"
-"PO-Revision-Date: 2026-02-18 15:13+0000\n"
-"Last-Translator: Telegina Alexandra <teleginaaleksandra1@gmail.com>\n"
+"POT-Creation-Date: 2026-04-26 17:31+0200\n"
+"PO-Revision-Date: 2026-04-22 18:35+0000\n"
+"Last-Translator: \"Georgi Georgiev (RacerBG)\" <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Esperanto <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/eo/>\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.15.2\n"
+"X-Generator: Weblate 5.16.1\n"
 "Generated-By: Babel 2.9.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -121,9 +121,6 @@ msgstr "Aldonunovan funkcion por klavo"
 msgid "AEROBIC_NITROGEN_FIXATION"
 msgstr "Malaerobia Nitrogena Riparado"
 
-msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "Aerobia Nitrogena Riparado"
-
 #, fuzzy
 msgid "AEROBIC_RESPIRATION"
 msgstr "Spirado"
@@ -208,9 +205,6 @@ msgstr "Kvanto da aŭtomataj konservadoj:"
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Kvanto da rapidaj konservadoj:"
-
-msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "Malaerobia Nitrogena Riparado"
 
 #, fuzzy
 msgid "AND_UNLOCK_CONDITION"
@@ -4798,6 +4792,10 @@ msgstr "Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energ
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
+#, fuzzy
+msgid "NITROGEN_FIXATION"
+msgstr "Malaerobia Nitrogena Riparado"
+
 msgid "NITROPLAST"
 msgstr "Nitrogen-fiksa Plastido"
 
@@ -4930,6 +4928,7 @@ msgstr ""
 msgid "NUCLEUS_DESCRIPTION"
 msgstr "La ĉefa eco de eŭkariotaj ĉeloj. La kerno ankaŭ inkluzivas la endoplasman retikulo kaj la golgi-korpon. Ĉi tio estas evoluado de prokariotaj ĉeloj por disvolvi sistemon de internaj membranoj, farita per asimilado de alia prokarioto en si mem. Ĉi tio permesas al ili dividi, aŭ kunestigi la malsamajn procezojn okazantajn ene de la ĉelo kaj malhelpi ilin interkovri. Ĉi tio permesas al iliaj novaj membranoligitaj organetoj esti multe pli kompleksaj, efikaj kaj specialigitaj ol se ili libere flosus en la citoplasmo. Tamen ĉi tio kostas fari la ĉelon multe pli granda kaj postuli multan energion por konservi la ĉelon."
 
+#, fuzzy
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr ""
 "Permesas la evoluon de pli kompleksaj,\n"
@@ -9994,6 +9993,12 @@ msgstr "Zomu"
 
 msgid "ZOOM_OUT"
 msgstr "Malzomu"
+
+#~ msgid "AEROBIC_NITROGEN_FIXING"
+#~ msgstr "Aerobia Nitrogena Riparado"
+
+#~ msgid "ANAEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Malaerobia Nitrogena Riparado"
 
 #, fuzzy
 #~ msgid "PROCESS_TOGGLE_TOOLTIP"

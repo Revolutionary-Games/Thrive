@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-22 17:18+0300\n"
+"POT-Creation-Date: 2026-04-26 17:31+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -143,10 +143,6 @@ msgstr ""
 msgid "AEROBIC_NITROGEN_FIXATION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/bio_processes.json:171
-msgid "AEROBIC_NITROGEN_FIXING"
-msgstr ""
-
 #: ../simulation_parameters/common/wiki.json:1336
 msgid "AEROBIC_RESPIRATION"
 msgstr ""
@@ -237,10 +233,6 @@ msgstr ""
 
 #: ../src/gui_common/menus/OptionsMenu.tscn:2901
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
-msgstr ""
-
-#: ../simulation_parameters/microbe_stage/bio_processes.json:182
-msgid "ANAEROBIC_NITROGEN_FIXATION"
 msgstr ""
 
 #: ../src/microbe_stage/organelle_unlocks/ConditionSet.cs:32
@@ -629,12 +621,12 @@ msgstr ""
 msgid "BATHYPELAGIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:915
+#: ../src/microbe_stage/MicrobeHUD.cs:919
 #: ../src/microbe_stage/MicrobeHUD.tscn:431
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:866
+#: ../src/microbe_stage/MicrobeHUD.cs:870
 #: ../src/microbe_stage/MicrobeHUD.tscn:424
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
@@ -1236,8 +1228,8 @@ msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:941
 #: ../simulation_parameters/common/wiki.json:1020
-#: ../simulation_parameters/microbe_stage/bio_processes.json:204
-#: ../simulation_parameters/microbe_stage/bio_processes.json:214
+#: ../simulation_parameters/microbe_stage/bio_processes.json:203
+#: ../simulation_parameters/microbe_stage/bio_processes.json:213
 msgid "CLOSTRIDIAL_FERMENTATION"
 msgstr ""
 
@@ -1278,52 +1270,52 @@ msgstr ""
 msgid "COLOURBLIND_CORRECTION"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:168
+#: ../src/gui_common/TweakedColourPicker.cs:196
 msgid "COLOUR_PICKER_ADD_PRESET"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:148
+#: ../src/gui_common/TweakedColourPicker.cs:152
 msgid "COLOUR_PICKER_A_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:142
+#: ../src/gui_common/TweakedColourPicker.cs:146
 msgid "COLOUR_PICKER_B_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:141
+#: ../src/gui_common/TweakedColourPicker.cs:145
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:176
+#: ../src/gui_common/TweakedColourPicker.cs:204
 msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:132
+#: ../src/gui_common/TweakedColourPicker.cs:136
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:128
+#: ../src/gui_common/TweakedColourPicker.cs:132
 msgid "COLOUR_PICKER_PICK_COLOUR"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:167
-#: ../src/gui_common/TweakedColourPicker.cs:169
+#: ../src/gui_common/TweakedColourPicker.cs:195
+#: ../src/gui_common/TweakedColourPicker.cs:197
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:177
+#: ../src/gui_common/TweakedColourPicker.cs:205
 msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:140
+#: ../src/gui_common/TweakedColourPicker.cs:144
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:133
+#: ../src/gui_common/TweakedColourPicker.cs:137
 msgid "COLOUR_PICKER_S_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:134
+#: ../src/gui_common/TweakedColourPicker.cs:138
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr ""
 
@@ -2243,7 +2235,7 @@ msgstr ""
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:431 ../src/microbe_stage/MicrobeHUD.cs:436
+#: ../src/microbe_stage/MicrobeHUD.cs:435 ../src/microbe_stage/MicrobeHUD.cs:440
 msgid "DEVOURED"
 msgstr ""
 
@@ -2809,7 +2801,7 @@ msgstr ""
 msgid "ERROR_FETCHING_NEWS"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:204
+#: ../src/saving/InProgressLoad.cs:209
 msgid "ERROR_LOADING"
 msgstr ""
 
@@ -2886,7 +2878,7 @@ msgstr ""
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:174
+#: ../src/saving/InProgressLoad.cs:179
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr ""
 
@@ -3212,12 +3204,12 @@ msgstr ""
 msgid "FOSSILISATION_FAILED_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:787
+#: ../src/microbe_stage/MicrobeHUD.cs:791
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:16
 msgid "FOSSILISATION_HINT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:786
+#: ../src/microbe_stage/MicrobeHUD.cs:790
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
@@ -3633,7 +3625,7 @@ msgstr ""
 msgid "HP_COLON"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:172
+#: ../src/gui_common/TweakedColourPicker.cs:200
 msgid "HSV"
 msgstr ""
 
@@ -4295,7 +4287,7 @@ msgstr ""
 msgid "INVERTED"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:666
+#: ../src/saving/SaveHelper.cs:667
 msgid "IN_PROTOTYPE"
 msgstr ""
 
@@ -4311,8 +4303,8 @@ msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:783
 #: ../simulation_parameters/common/wiki.json:1968
-#: ../simulation_parameters/microbe_stage/bio_processes.json:235
-#: ../simulation_parameters/microbe_stage/bio_processes.json:263
+#: ../simulation_parameters/microbe_stage/bio_processes.json:234
+#: ../simulation_parameters/microbe_stage/bio_processes.json:262
 msgid "IRON_OXIDATION"
 msgstr ""
 
@@ -4905,7 +4897,7 @@ msgstr ""
 msgid "LOADING_STAGE_ASSETS"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:180
+#: ../src/saving/InProgressLoad.cs:185
 msgid "LOAD_FINISHED"
 msgstr ""
 
@@ -4992,7 +4984,7 @@ msgid "LUCIFERASE"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:230
-#: ../simulation_parameters/microbe_stage/bio_processes.json:282
+#: ../simulation_parameters/microbe_stage/bio_processes.json:281
 msgid "LUCIFERASE_SYNTHESIS"
 msgstr ""
 
@@ -6115,6 +6107,11 @@ msgstr ""
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
 
+#: ../simulation_parameters/microbe_stage/bio_processes.json:171
+#: ../simulation_parameters/microbe_stage/bio_processes.json:181
+msgid "NITROGEN_FIXATION"
+msgstr ""
+
 #: ../simulation_parameters/microbe_stage/organelles.json:544
 msgid "NITROPLAST"
 msgstr ""
@@ -6236,11 +6233,11 @@ msgstr ""
 msgid "NOTICE_ENGULFING_OUT_OF_ATP"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:269
+#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:271
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:176
+#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:178
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
@@ -6248,7 +6245,7 @@ msgstr ""
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:132
+#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:134
 #: ../src/microbe_stage/systems/EngulfingSystem.cs:1205
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
@@ -6369,7 +6366,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:3050
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:3062
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:154
-#: ../src/microbe_stage/MicrobeHUD.cs:734
+#: ../src/microbe_stage/MicrobeHUD.cs:738
 msgid "N_A"
 msgstr ""
 
@@ -6840,7 +6837,7 @@ msgstr ""
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:509
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:585
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:373
-#: ../src/microbe_stage/MicrobeHUD.cs:443
+#: ../src/microbe_stage/MicrobeHUD.cs:447
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:141
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:144
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:156
@@ -6891,7 +6888,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:546
 #: ../simulation_parameters/microbe_stage/bio_processes.json:35
-#: ../simulation_parameters/microbe_stage/bio_processes.json:224
+#: ../simulation_parameters/microbe_stage/bio_processes.json:223
 msgid "PHOTOSYNTHESIS"
 msgstr ""
 
@@ -6937,7 +6934,7 @@ msgstr ""
 msgid "PLANET_STATISTICS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:769
+#: ../src/microbe_stage/MicrobeHUD.cs:773
 msgid "PLAYER"
 msgstr ""
 
@@ -6957,7 +6954,7 @@ msgstr ""
 msgid "PLAYER_DUPLICATE"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:647
+#: ../src/saving/SaveHelper.cs:648
 msgid "PLAYER_EXTINCT"
 msgstr ""
 
@@ -7182,7 +7179,7 @@ msgid "RADIOACTIVE_CHUNK"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:1178
-#: ../simulation_parameters/microbe_stage/bio_processes.json:273
+#: ../simulation_parameters/microbe_stage/bio_processes.json:272
 msgid "RADIOSYNTHESIS"
 msgstr ""
 
@@ -7195,7 +7192,7 @@ msgstr ""
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:173
+#: ../src/gui_common/TweakedColourPicker.cs:201
 msgid "RAW"
 msgstr ""
 
@@ -7403,7 +7400,7 @@ msgid "RESOURCE_WOOD"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
-#: ../simulation_parameters/microbe_stage/bio_processes.json:192
+#: ../simulation_parameters/microbe_stage/bio_processes.json:191
 msgid "RESPIRATION"
 msgstr ""
 
@@ -7616,7 +7613,7 @@ msgstr ""
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:242
+#: ../src/saving/InProgressLoad.cs:247
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ""
 
@@ -7648,15 +7645,15 @@ msgstr ""
 msgid "SAVING_DOT_DOT_DOT"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:637 ../src/saving/SaveHelper.cs:720
+#: ../src/saving/SaveHelper.cs:638 ../src/saving/SaveHelper.cs:721
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:646 ../src/saving/SaveHelper.cs:665
+#: ../src/saving/SaveHelper.cs:647 ../src/saving/SaveHelper.cs:666
 msgid "SAVING_NOT_POSSIBLE"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:699
+#: ../src/saving/SaveHelper.cs:700
 msgid "SAVING_SUCCEEDED"
 msgstr ""
 
@@ -8631,8 +8628,8 @@ msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:2205
-#: ../simulation_parameters/microbe_stage/bio_processes.json:245
-#: ../simulation_parameters/microbe_stage/bio_processes.json:254
+#: ../simulation_parameters/microbe_stage/bio_processes.json:244
+#: ../simulation_parameters/microbe_stage/bio_processes.json:253
 msgid "THERMOSYNTHESIS"
 msgstr ""
 
@@ -9246,7 +9243,7 @@ msgstr ""
 msgid "UNBIND_ALL_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/PlayerMicrobeInput.cs:357
+#: ../src/microbe_stage/PlayerMicrobeInput.cs:356
 msgid "UNBIND_HELP_TEXT"
 msgstr ""
 

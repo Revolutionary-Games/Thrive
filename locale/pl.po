@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-22 17:18+0300\n"
-"PO-Revision-Date: 2026-04-20 23:52+0000\n"
-"Last-Translator: Pikamochzo <tmaciek12q@gmail.com>\n"
+"POT-Creation-Date: 2026-04-26 17:31+0200\n"
+"PO-Revision-Date: 2026-04-22 18:35+0000\n"
+"Last-Translator: \"Georgi Georgiev (RacerBG)\" <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -111,9 +111,6 @@ msgstr "Otwórz widok konfiguracji zaawansowanej"
 msgid "AEROBIC_NITROGEN_FIXATION"
 msgstr "Tlenowe Wiązanie Azotu"
 
-msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "Tlenowe Wiązanie Azotu"
-
 msgid "AEROBIC_RESPIRATION"
 msgstr "Oddychanie Tlenowe"
 
@@ -197,9 +194,6 @@ msgstr "Zachowywana ilość autozapisów:"
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Zachowywana ilość szybkich zapisów:"
-
-msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "Beztlenowe Wiązanie Azotu"
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr "i"
@@ -4532,6 +4526,10 @@ msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"n
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Przekształca [thrive:compound type=\"atp\"][/thrive:compound] w [thrive:compound type=\"ammonia\"]Amoniak[/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"nitrogen\"]Azotu[/thrive:compound]."
 
+#, fuzzy
+msgid "NITROGEN_FIXATION"
+msgstr "Tlenowe Wiązanie Azotu"
+
 msgid "NITROPLAST"
 msgstr "Plastyd Wiążący Azot"
 
@@ -4656,6 +4654,7 @@ msgstr ""
 msgid "NUCLEUS_DESCRIPTION"
 msgstr "Cecha definiująca komórki eukariotyczne. Jądro zawiera w pakiecie siatkę endoplazmatyczną i aparat Golgiego. Wykształcenie systemu wewnętrznych membran jest ewolucją prokariotycznych komórek, dokonaną przez wchłonięcie innego prokariota. To pozwala im na oddzielanie, lub zatrzymywanie, różnych procesów dziejących się w środku komórki i zapobiec przed ich nakładaniem się na siebie. To pozwala ich nowym organellom membranowym na większą złożoność, efektywność i wyspecjalizowanie niż gdyby pływały bezpośrednio w cytozolu. Jednakże ma to swoją cenę - bardzo powiększa komórkę i wymaga dużo energii do utrzymania."
 
+#, fuzzy
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr "Pozwala na ewolucję bardziej złożonych, organelli otoczonych błoną. Utrzymanie wymaga dużo ATP. Jest to nieodwracalna ewolucja."
 
@@ -9462,6 +9461,12 @@ msgstr "Przybliż"
 
 msgid "ZOOM_OUT"
 msgstr "Oddal"
+
+#~ msgid "AEROBIC_NITROGEN_FIXING"
+#~ msgstr "Tlenowe Wiązanie Azotu"
+
+#~ msgid "ANAEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Beztlenowe Wiązanie Azotu"
 
 #~ msgid "OSMOREGULATION_COST_MULTIPLIER"
 #~ msgstr "Mnożnik kosztu osmoregulacji"
