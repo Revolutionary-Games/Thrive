@@ -244,13 +244,12 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
     {
         base.OnAttemptedInAutoEvo(refreshCache);
 
+        SpecializationBonus = MicrobeInternalCalculations.CalculateSpecializationBonus(Organelles,
+            new Dictionary<OrganelleDefinition, int>());
         UpdateInitialCompounds();
         UpdateIsBacteria();
 
         cachedFillTimes.Clear();
-        SpecializationBonus =
-            MicrobeInternalCalculations.CalculateSpecializationBonus(Organelles,
-                new Dictionary<OrganelleDefinition, int>());
     }
 
     public override bool RepositionToOrigin()
