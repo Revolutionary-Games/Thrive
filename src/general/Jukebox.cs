@@ -244,34 +244,6 @@ public partial class Jukebox : Node
         }
     }
 
-    private bool PrintPlaybackStatus(CommandContext context)
-    {
-        if (playingCategory == null)
-        {
-            context.PrintWarning("Jukebox is not currently playing a category.");
-            return false;
-        }
-
-        context.Print($"Jukebox category: {playingCategory}");
-
-        var activePlayers = GetActiveAudioPlayersForDebugCommands();
-        var count = activePlayers.Count;
-
-        if (count <= 0)
-        {
-            context.PrintWarning("Jukebox has no active players.");
-            return false;
-        }
-
-        for (var index = 0; index < count; ++index)
-        {
-            var player = activePlayers[index];
-            context.Print($"audio player {index}, Bus: {player.Bus}, playing: {player.CurrentTrack}");
-        }
-
-        return true;
-    }
-
     private static bool CommandJukeboxNextTrack(CommandContext context, int index)
     {
         if (!HasInstance)
@@ -314,6 +286,34 @@ public partial class Jukebox : Node
         }
 
         context.Print($"Jukebox advanced audio player {index} to the next track.");
+        return true;
+    }
+
+    private bool PrintPlaybackStatus(CommandContext context)
+    {
+        if (playingCategory == null)
+        {
+            context.PrintWarning("Jukebox is not currently playing a category.");
+            return false;
+        }
+
+        context.Print($"Jukebox category: {playingCategory}");
+
+        var activePlayers = GetActiveAudioPlayersForDebugCommands();
+        var count = activePlayers.Count;
+
+        if (count <= 0)
+        {
+            context.PrintWarning("Jukebox has no active players.");
+            return false;
+        }
+
+        for (var index = 0; index < count; ++index)
+        {
+            var player = activePlayers[index];
+            context.Print($"audio player {index}, Bus: {player.Bus}, playing: {player.CurrentTrack}");
+        }
+
         return true;
     }
 
