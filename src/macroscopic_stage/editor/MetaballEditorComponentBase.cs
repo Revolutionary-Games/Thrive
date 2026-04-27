@@ -606,6 +606,9 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
         structuralMetaballDisplayer = CreateStructuralMetaballDisplayer();
         hoverMetaballDisplayer = CreateStructuralMetaballDisplayer();
         hoverMetaballDisplayer.OverrideColourAlpha = DefaultHoverAlpha;
+
+        // The hierarchy data doesn't exist, so doesn't make sense to try to update the lines really for them
+        hoverMetaballDisplayer.DisplayHierarchyLines = false;
     }
 
     protected virtual void LoadScenes()
