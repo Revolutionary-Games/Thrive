@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-22 17:18+0300\n"
-"PO-Revision-Date: 2026-04-20 23:52+0000\n"
+"POT-Creation-Date: 2026-04-27 11:05+0300\n"
+"PO-Revision-Date: 2026-04-22 18:35+0000\n"
 "Last-Translator: Søren Hansen <pjuske4life@gmail.com>\n"
 "Language-Team: Danish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/da/>\n"
 "Language: da\n"
@@ -111,9 +111,6 @@ msgstr "Åben visning af avancerede indstillinger"
 msgid "AEROBIC_NITROGEN_FIXATION"
 msgstr "Aerob Kvælstoffiksering"
 
-msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "Aerob Kvælstoffiksering"
-
 msgid "AEROBIC_RESPIRATION"
 msgstr "Aerob respiration"
 
@@ -197,9 +194,6 @@ msgstr "Antal autolagringer der beholdes:"
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Antal hurtiglagringer der beholdes:"
-
-msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "Anaerob kvælstoffiksering"
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr "og"
@@ -716,6 +710,7 @@ msgstr ""
 "Den mest specialiseret type er {3} med en bonus på {2}%.\n"
 "For at øge dette, gør celletyperne mere specialiseret, eller tilføj flere specialiserede celler."
 
+#, fuzzy
 msgid "CELL_SPECIALIZATION_TOOLTIP"
 msgstr ""
 "Specialisering af en celle til bare en type organel giver en hastighedsbonus til bioprocesser.\n"
@@ -2792,6 +2787,14 @@ msgstr "Ignorer yderligere fejl"
 msgid "IMAGE_FILE_TYPES"
 msgstr "Understøttede billedefiler"
 
+#, fuzzy
+msgid "INCOMPATIBLE_MEMBRANE_LIST"
+msgstr "[b]Membraner Data:[/b]"
+
+#, fuzzy
+msgid "INCOMPATIBLE_ORGANELLE_LIST"
+msgstr "Adskillelige organeller"
+
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Forøg objekt størrelse"
 
@@ -4373,6 +4376,10 @@ msgstr "Nitrogenase er et protein der kan bruge gasformig [thrive:compound type=
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Omdanner [thrive:compound type=\"atp\"][/thrive:compound] til [thrive:compound type=\"ammonia\"][/thrive:compound]. Hastigheden skalerer med koncentrationen af [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
+#, fuzzy
+msgid "NITROGEN_FIXATION"
+msgstr "Aerob Kvælstoffiksering"
+
 msgid "NITROPLAST"
 msgstr "Nitroplast"
 
@@ -4492,6 +4499,7 @@ msgstr ""
 msgid "NUCLEUS_DESCRIPTION"
 msgstr "Den definerende feature for eukaryotiske celler. Cellekernen inkluderer også de endoplasmatiske retikulum og Golgiapparatet. Det er en evolution af prokaryotiske celler for at udvikle et system af interne membraner, gjort ved at assimilere en anden prokaryote inden i dem selv. Dette tillader dem at opdele eller afskærme forskellige processer der ske inde i cellen og forhindre at de overlapper. Det tillader deres nye membranbundne organeller at være meget mere komplekse, effektive og specialiseret ned hvis de var frit flydende i cytoplasma. Det medfører dog at cellen bliver meget større, og kræver meget af cellens energi at vedligeholde."
 
+#, fuzzy
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr "Tillader evolutionen af mere komplekse, membranbundne organeller, og reducere skade med 50%. Koster en hel del ATP at vedligeholde. Denne evolution kan ikke ændres igen."
 
@@ -4874,6 +4882,9 @@ msgstr "Fysiske tilstande"
 
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Fysisk resistens"
+
+msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
+msgstr ""
 
 msgid "PLACE_ORGANELLE"
 msgstr "Placer organel (eller andre placerbare ting)"
@@ -8792,6 +8803,12 @@ msgstr "Zoom ind"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom ud"
+
+#~ msgid "AEROBIC_NITROGEN_FIXING"
+#~ msgstr "Aerob Kvælstoffiksering"
+
+#~ msgid "ANAEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Anaerob kvælstoffiksering"
 
 #~ msgid "OSMOREGULATION_COST_MULTIPLIER"
 #~ msgstr "Osmoreguleringsomkostning multiplikator"

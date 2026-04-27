@@ -1387,6 +1387,9 @@ public partial class CellEditorComponent :
 
         // In case the action failed, we need to make sure the membrane buttons are updated properly
         UpdateMembraneButtons(Membrane.InternalName);
+
+        UpdatePartsAvailability(PlacedUniqueOrganelles.ToList());
+        UpdateOrganelleUnlockTooltips(false);
     }
 
     public void OnRigidityChanged(int desiredRigidity)
@@ -2371,11 +2374,24 @@ public partial class CellEditorComponent :
 
     private CombinedEditorAction? CreateAddOrganelleAction(OrganelleTemplate organelle)
     {
-        // 1 - you put a unique organelle (means only one instance allowed), but you already have it
-        // 2 - you put an organelle that requires nucleus, but you don't have one
-        if ((organelle.Definition.Unique && HasOrganelle(organelle.Definition)) ||
-            (organelle.Definition.RequiresNucleus && !HasNucleus))
+        if (organelle.Definition.Unique && HasOrganelle(organelle.Definition))
         {
+            // You put a unique organelle (means only one instance allowed), but you already have it
+            return null;
+        }
+
+        if (organelle.Definition.RequiresNucleus && !HasNucleus)
+        {
+            // You put an organelle that requires nucleus, but you don't have one
+            return null;
+        }
+
+        if (organelle.Definition.IsIncompatibleWithMembrane(Membrane))
+        {
+            // You put an organelle incompatible with the current membrane
+            ToolTipManager.Instance.ShowPopup(Localization.Translate("PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"),
+                1.5f);
+
             return null;
         }
 
@@ -2473,13 +2489,51 @@ public partial class CellEditorComponent :
     }
 
     /// <summary>
-    ///   Lock / unlock the organelles that need a nucleus
+    ///   Lock / unlock the organelles that need a nucleus or have other requirements
     /// </summary>
-    private void UpdatePartsAvailability(List<OrganelleDefinition> placedUniqueOrganelleNames)
+    private void UpdatePartsAvailability(List<OrganelleDefinition> placedUniqueOrganelles)
     {
         foreach (var organelle in placeablePartSelectionElements.Keys)
         {
-            UpdatePartAvailability(placedUniqueOrganelleNames, organelle);
+            UpdatePartAvailability(placedUniqueOrganelles, organelle);
+        }
+    }
+
+    private void UpdateMembraneAvailability()
+    {
+        foreach (var membrane in membraneSelectionElements)
+        {
+            membrane.Value.Locked = false;
+
+            var tooltip = GetSelectionTooltip(membrane.Key.InternalName, "membraneSelection");
+            tooltip?.IncompatibleOrganelles?.Clear();
+        }
+
+        foreach (var organelle in editedMicrobeOrganelles)
+        {
+            if (organelle.Definition.IncompatibleMembranes == null)
+                continue;
+
+            foreach (var membrane in organelle.Definition.IncompatibleMembranes)
+            {
+                if (!membraneSelectionElements.TryGetValue(membrane, out var button))
+                    continue;
+
+                button.Locked = true;
+
+                var tooltip = GetSelectionTooltip(membrane.InternalName, "membraneSelection");
+                if (tooltip != null)
+                {
+                    tooltip.IncompatibleOrganelles ??= new HashSet<OrganelleDefinition>();
+                    tooltip.IncompatibleOrganelles.Add(organelle.Definition);
+                }
+            }
+        }
+
+        foreach (var membrane in membraneSelectionElements)
+        {
+            var tooltip = GetSelectionTooltip(membrane.Key.InternalName, "membraneSelection");
+            tooltip?.UpdateIncompatibleOrganelles();
         }
     }
 
@@ -2552,6 +2606,8 @@ public partial class CellEditorComponent :
         UpdateGrowthOrderUI();
 
         UpdateSpecializationDisplay();
+
+        UpdateMembraneAvailability();
     }
 
     /// <summary>
@@ -2682,16 +2738,21 @@ public partial class CellEditorComponent :
     /// <summary>
     ///   Lock / unlock organelle buttons that need a nucleus or are already placed (if unique)
     /// </summary>
-    private void UpdatePartAvailability(List<OrganelleDefinition> placedUniqueOrganelleNames,
+    private void UpdatePartAvailability(List<OrganelleDefinition> placedUniqueOrganelles,
         OrganelleDefinition organelle)
     {
         var item = placeablePartSelectionElements[organelle];
 
-        if (organelle.Unique && placedUniqueOrganelleNames.Contains(organelle))
+        if (organelle.Unique && placedUniqueOrganelles.Contains(organelle))
         {
             item.Locked = true;
         }
-        else if (organelle.RequiresNucleus && !placedUniqueOrganelleNames.Contains(nucleus))
+        else if (organelle.RequiresNucleus && !placedUniqueOrganelles.Contains(nucleus))
+        {
+            item.Locked = true;
+        }
+        else if (organelle.IncompatibleMembraneNames != null
+                 && organelle.IncompatibleMembraneNames.Contains(Membrane.InternalName))
         {
             item.Locked = true;
         }
