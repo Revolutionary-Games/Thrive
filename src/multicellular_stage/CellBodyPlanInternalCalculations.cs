@@ -5,7 +5,7 @@ using Godot;
 
 public static class CellBodyPlanInternalCalculations
 {
-    public static Dictionary<Compound, float> GetTotalSpecificCapacity(IEnumerable<CellTemplate> cells,
+    public static Dictionary<Compound, float> GetTotalSpecificCapacity(IReadOnlyList<HexWithData<CellTemplate>> cells,
         out float nominalCapacity)
     {
         nominalCapacity = 0.0f;
@@ -13,9 +13,12 @@ public static class CellBodyPlanInternalCalculations
         var capacities = new Dictionary<Compound, float>();
 
         // TODO: Check if it's possible to do those calculations per cell type and multiply by the types' cell counts
-        foreach (var cell in cells)
+        foreach (var hex in cells)
         {
-            var specializationBonus = cell.SpecializationBonus;
+            var cell = hex.Data!;
+
+            var specializationBonus = cell.SpecializationBonus *
+                GetAdjacencySpecializationBonusFromBodyPlan(cell, cells);
 
             var totalNominalCap = MicrobeInternalCalculations.GetTotalNominalCapacity(cell.ModifiableOrganelles,
                 specializationBonus);
@@ -35,8 +38,10 @@ public static class CellBodyPlanInternalCalculations
     {
         var leader = cells[0].Data!;
 
+        var leaderSpecializationBonus = leader.SpecializationBonus *
+            GetAdjacencySpecializationBonusFromBodyPlan(leader.Data, cells);
         var speed = MicrobeInternalCalculations.CalculateSpeed(leader.ModifiableOrganelles, leader.MembraneType,
-            leader.MembraneRigidity, leader.IsBacteria, leader.SpecializationBonus);
+            leader.MembraneRigidity, leader.IsBacteria, leaderSpecializationBonus);
 
         if (cells.Count == 1)
             return speed;
@@ -75,7 +80,10 @@ public static class CellBodyPlanInternalCalculations
                     flagellumForce *= Constants.EUKARYOTIC_MOVEMENT_FORCE_MULTIPLIER;
 
                 // Apply cell specialization bonus
-                flagellumForce *= cell.SpecializationBonus;
+                var cellSpecializationBonus = cell.SpecializationBonus *
+                    GetAdjacencySpecializationBonusFromBodyPlan(cell, cells);
+
+                flagellumForce *= cellSpecializationBonus;
 
                 addedSpeed += flagellumForce;
             }
@@ -130,8 +138,10 @@ public static class CellBodyPlanInternalCalculations
     {
         var leader = cells[0].Data!;
 
+        var leaderSpecializationBonus = leader.SpecializationBonus *
+            GetAdjacencySpecializationBonusFromBodyPlan(leader.Data, cells);
         var colonyRotation = MicrobeInternalCalculations.CalculateRotationSpeed(leader.ModifiableOrganelles,
-            leader.SpecializationBonus);
+            leaderSpecializationBonus);
 
         Vector3 leaderPosition = Hex.AxialToCartesian(leader.Position);
 
@@ -141,9 +151,12 @@ public static class CellBodyPlanInternalCalculations
 
             var colonyMemberData = colonyMember.Data;
 
+            var memberSpecializationBonus = colonyMemberData!.SpecializationBonus *
+                GetAdjacencySpecializationBonusFromBodyPlan(colonyMemberData.Data, cells);
+
             var memberRotation = MicrobeInternalCalculations
-                .CalculateRotationSpeed(colonyMemberData!.ModifiableOrganelles,
-                    colonyMemberData.SpecializationBonus) * (1 + 0.03f * distanceSquared);
+                    .CalculateRotationSpeed(colonyMemberData.ModifiableOrganelles, memberSpecializationBonus) *
+                (1 + 0.03f * distanceSquared);
 
             colonyRotation += memberRotation;
         }

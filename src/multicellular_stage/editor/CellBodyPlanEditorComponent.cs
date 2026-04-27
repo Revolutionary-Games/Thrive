@@ -682,9 +682,7 @@ public partial class CellBodyPlanEditorComponent :
 
     public Dictionary<Compound, float> GetAdditionalCapacities(out float nominalCapacity)
     {
-        return CellBodyPlanInternalCalculations.GetTotalSpecificCapacity(
-            editedMicrobeCells.AsModifiable().Select(o => o.Data!),
-            out nominalCapacity);
+        return CellBodyPlanInternalCalculations.GetTotalSpecificCapacity(editedMicrobeCells, out nominalCapacity);
     }
 
     public void OnCurrentPatchUpdated(Patch patch)
@@ -1535,8 +1533,7 @@ public partial class CellBodyPlanEditorComponent :
                 amountType, biome, energyBalance, tolerances, totalSpecialization);
         }
 
-        specificStorages ??= CellBodyPlanInternalCalculations.GetTotalSpecificCapacity(cells.Select(o => o.Data!),
-            out nominalStorage);
+        specificStorages ??= CellBodyPlanInternalCalculations.GetTotalSpecificCapacity(cells, out nominalStorage);
 
         return ProcessSystem.ComputeCompoundFillTimes(compoundBalanceData, nominalStorage, specificStorages);
     }
