@@ -81,7 +81,7 @@ public class IndividualHexLayout<TData> : HexLayout<HexWithData<TData>>, IReadOn
 
     public bool CanPlace(Hex position)
     {
-        for (int i = 0; i < Count; i++)
+        for (int i = 0; i < Count; ++i)
         {
             if (this[i].Position == position)
                 return false;
