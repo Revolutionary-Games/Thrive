@@ -354,9 +354,20 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
     /// <returns>The calculated bonus (or 1, if it can't be calculated)</returns>
     public float GetAdjacencySpecializationBonus(int cellIndexInBodyPlan)
     {
-        // TODO: implement this https://github.com/Revolutionary-Games/Thrive/issues/6764
-        _ = cellIndexInBodyPlan;
-        return 1;
+        // We theoretically don't have to access the modifiable things here, however, the wrapper doesn't provide
+        // index access, so we use the modifiable property here.
+        var modifiable = ModifiableEditorCells;
+
+        if (modifiable.Count < cellIndexInBodyPlan)
+        {
+            GD.PrintErr("Cell index out of bounds, using first cell for specialization");
+            cellIndexInBodyPlan = 0;
+        }
+
+        var cell = modifiable[cellIndexInBodyPlan];
+
+        return CellBodyPlanInternalCalculations
+            .GetAdjacencySpecializationBonusFromBodyPlan(cell.Data!, EditorCells);
     }
 
     public void SetupWorldEntities(IWorldSimulation worldSimulation)
