@@ -244,53 +244,6 @@ public partial class Jukebox : Node
         }
     }
 
-    private static bool CommandJukeboxNextTrack(CommandContext context, int index)
-    {
-        if (!HasInstance)
-        {
-            context.PrintWarning("Jukebox has no active instance.");
-            return false;
-        }
-
-        var jukebox = Instance;
-
-        if (jukebox.operations.Count > 0)
-        {
-            context.PrintWarning("Jukebox is busy with a pending transition. Wait for it to finish before advancing.");
-            return false;
-        }
-
-        if (jukebox.playingCategory == null)
-        {
-            context.PrintWarning("Jukebox is not currently playing a category.");
-            return false;
-        }
-
-        var activePlayers = jukebox.GetActiveAudioPlayersForDebugCommands();
-
-        if (activePlayers.Count <= 0)
-        {
-            context.PrintWarning("Jukebox has no active track to advance.");
-            return false;
-        }
-
-        if (index < 0 || index >= activePlayers.Count)
-        {
-            context.PrintWarning(
-                $"Jukebox audio player index {index} is invalid. Valid indexes are 0-{activePlayers.Count - 1}.");
-            return false;
-        }
-
-        if (!jukebox.AdvanceToNextTrack(activePlayers[index]))
-        {
-            context.PrintWarning("Jukebox has no active track to advance.");
-            return false;
-        }
-
-        context.Print($"Jukebox advanced audio player {index} to the next track.");
-        return true;
-    }
-
     private bool PrintPlaybackStatus(CommandContext context)
     {
         if (playingCategory == null)
@@ -319,6 +272,51 @@ public partial class Jukebox : Node
         return true;
     }
 
+    private static bool CommandJukeboxNextTrack(CommandContext context, int index)
+    {
+        if (!HasInstance)
+        {
+            context.PrintWarning("Jukebox has no active instance.");
+            return false;
+        }
+
+        if (Instance.operations.Count > 0)
+        {
+            context.PrintWarning("Jukebox is busy with a pending transition. Wait for it to finish before advancing.");
+            return false;
+        }
+
+        if (Instance.playingCategory == null)
+        {
+            context.PrintWarning("Jukebox is not currently playing a category.");
+            return false;
+        }
+
+        var activePlayers = Instance.GetActiveAudioPlayersForDebugCommands();
+
+        if (activePlayers.Count <= 0)
+        {
+            context.PrintWarning("Jukebox has no active track to advance.");
+            return false;
+        }
+
+        if (index < 0 || index >= activePlayers.Count)
+        {
+            context.PrintWarning(
+                $"Jukebox audio player index {index} is invalid. Valid indexes are 0-{activePlayers.Count - 1}.");
+            return false;
+        }
+
+        if (!Instance.AdvanceToNextTrack(activePlayers[index]))
+        {
+            context.PrintWarning("Jukebox has no active track to advance.");
+            return false;
+        }
+
+        context.Print($"Jukebox advanced audio player {index} to the next track.");
+        return true;
+    }
+
     private List<AudioPlayer> GetActiveAudioPlayersForDebugCommands()
     {
         var activePlayers = new List<AudioPlayer>();
@@ -343,46 +341,12 @@ public partial class Jukebox : Node
         if (playingCategory == null)
             return false;
 
-        var currentTrack = player.CurrentTrack;
-
-        if (!player.Playing || currentTrack == null)
+        if (!player.Playing || player.CurrentTrack == null)
             return false;
 
-        var target = categories[playingCategory];
-        var sourceTrackList = FindTrackListContainingTrack(target, currentTrack);
-
-        if (sourceTrackList == null)
-            return false;
-
-        StopPlayerAsIfTrackEnded(player, target.TrackTransition);
-
-        if (sourceTrackList.Repeat || sourceTrackList.GetTracksForContexts(activeContexts).Any(t => !t.PlayedOnce))
-            PlayNextTrackFromList(sourceTrackList, _ => player, 0);
-
-        UpdateStreamsPauseStatus();
-        return true;
-    }
-
-    private TrackList? FindTrackListContainingTrack(MusicCategory category, string trackResource)
-    {
-        foreach (var list in category.TrackLists)
-        {
-            foreach (var track in list.GetAllTracks())
-            {
-                if (track.ResourcePath == trackResource)
-                    return list;
-            }
-        }
-
-        return null;
-    }
-
-    private void StopPlayerAsIfTrackEnded(AudioPlayer player, MusicCategory.Transition trackTransition)
-    {
         player.Player.Stop();
-        player.Operations.Clear();
-        player.LinearVolume = trackTransition == MusicCategory.Transition.Crossfade ? FADE_LOW_VOLUME : NORMAL_VOLUME;
-        ApplyLinearVolume(player);
+        OnSomeTrackEnded();
+        return true;
     }
 
     private void UpdateStreamsPauseStatus()
