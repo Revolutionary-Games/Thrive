@@ -115,9 +115,6 @@ public partial class DebugConsole : CustomWindow, ICommandInvoker
 
         newPrivateMessages = 0;
         newGlobalMessages = 0;
-
-        for (int i = 0; i < 32; ++i)
-            GD.Print("helo");
     }
 
     public void Print(DebugConsoleManager.RawDebugEntry entry)
