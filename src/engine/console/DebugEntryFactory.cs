@@ -57,6 +57,17 @@ public class DebugEntryFactory
         return true;
     }
 
+    public void FlushAllExcept(int idToKeep)
+    {
+        foreach (var id in pipelines.Keys)
+        {
+            if (id == idToKeep)
+                continue;
+
+            Flush(id);
+        }
+    }
+
     /// <summary>
     ///   This should be called right after flushing a pipeline to initialize the timestamp.
     /// </summary>

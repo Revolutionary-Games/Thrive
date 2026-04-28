@@ -111,6 +111,7 @@ public partial class DebugConsole : CustomWindow, ICommandInvoker
     {
         var debugEntryFactory = DebugConsoleManager.Instance.DebugEntryFactory;
 
+        debugEntryFactory.FlushAllExcept(entry.Id);
         debugEntryFactory.TryAddMessage(entry.Id, entry, DebugEntryFactory.AddMessageMode.NoStacking);
         debugEntryFactory.UpdateDebugEntry(entry.Id);
     }
