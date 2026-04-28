@@ -562,7 +562,7 @@ public static class OrganelleContainerHelpers
     }
 
     public static void CalculateOrganelleLayoutStatistics(this ref OrganelleContainer container,
-        float specializationBonus)
+        float totalSpecializationBonus)
     {
         if (container.AvailableEnzymes == null)
         {
@@ -687,7 +687,7 @@ public static class OrganelleContainerHelpers
 
             container.OrganellesCapacity +=
                 MicrobeInternalCalculations.GetNominalCapacityForOrganelle(organelleDefinition,
-                    organelle.Upgrades, specializationBonus);
+                    organelle.Upgrades, totalSpecializationBonus);
 
             var enzymes = organelle.GetEnzymes();
 

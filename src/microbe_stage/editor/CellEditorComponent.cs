@@ -1532,20 +1532,20 @@ public partial class CellEditorComponent :
     public Dictionary<Compound, float> GetAdditionalCapacities(out float nominalCapacity)
     {
         // Treats cellTypeSpecializationBonus as totalSpecializationBonus, because adjacency is ignored in this editor.
-        var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(
+        var totalSpecializationBonus = MicrobeInternalCalculations.CalculateSpecializationBonus(
             editedMicrobeOrganelles.Organelles, tempMemory3);
 
         return MicrobeInternalCalculations.GetTotalSpecificCapacity(editedMicrobeOrganelles,
-            specialization, out nominalCapacity);
+            totalSpecializationBonus, out nominalCapacity);
     }
 
     public float CalculateTotalDigestionSpeed()
     {
         // Treats cellTypeSpecializationBonus as totalSpecializationBonus, because adjacency is ignored in this editor.
-        var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(
+        var totalSpecializationBonus = MicrobeInternalCalculations.CalculateSpecializationBonus(
             editedMicrobeOrganelles.Organelles, tempMemory3);
 
-        return MicrobeInternalCalculations.CalculateTotalDigestionSpeed(editedMicrobeOrganelles, specialization);
+        return MicrobeInternalCalculations.CalculateTotalDigestionSpeed(editedMicrobeOrganelles, totalSpecializationBonus);
     }
 
     public Dictionary<Enzyme, float> CalculateDigestionEfficiencies()

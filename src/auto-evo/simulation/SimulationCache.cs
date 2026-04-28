@@ -171,11 +171,12 @@ public class SimulationCache
 
         var organelles = species.Organelles;
 
-        var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(organelles,
+        // For MicrobeSpecies, Cell Type Specialization = Total Specialization Bonus
+        var totalSpecializationBonus = MicrobeInternalCalculations.CalculateSpecializationBonus(organelles,
             new Dictionary<OrganelleDefinition, int>());
 
         var cached = MicrobeInternalCalculations.CalculateSpeed(organelles.Organelles, species.MembraneType,
-            species.MembraneRigidity, species.IsBacteria, specialization, true);
+            species.MembraneRigidity, species.IsBacteria, totalSpecializationBonus, true);
 
         cachedBaseSpeeds.Add(key, cached);
         return cached;
@@ -209,10 +210,11 @@ public class SimulationCache
         // properties.
         var organelles = species.Organelles;
 
-        var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(organelles,
+        // For MicrobeSpecies, Cell Type Specialization = Total Specialization Bonus
+        var totalSpecializationBonus = MicrobeInternalCalculations.CalculateSpecializationBonus(organelles,
             new Dictionary<OrganelleDefinition, int>());
 
-        return MicrobeInternalCalculations.CalculateRotationSpeed(organelles.Organelles, specialization);
+        return MicrobeInternalCalculations.CalculateRotationSpeed(organelles.Organelles, totalSpecializationBonus);
     }
 
     public float GetCompoundConversionScoreForSpecies(CompoundDefinition fromCompound, CompoundDefinition toCompound,

@@ -485,7 +485,7 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
     ///   Note that the PhysicsShape is not currently used in rotation calculations, and this code is here due to
     ///   an earlier version requiring it.
     /// </summary>
-    private void UpdateRotationRate(ref OrganelleContainer organelleContainer, float specializationBonus)
+    private void UpdateRotationRate(ref OrganelleContainer organelleContainer, float totalSpecializationBonus)
     {
         if (organelleContainer.Organelles == null)
         {
@@ -495,7 +495,7 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
 
         organelleContainer.RotationSpeed =
             MicrobeInternalCalculations.CalculateRotationSpeed(organelleContainer.Organelles.Organelles,
-                specializationBonus);
+                totalSpecializationBonus);
     }
 
     private PhysicsShape CreatePilusShape(float size)

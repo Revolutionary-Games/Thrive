@@ -602,41 +602,38 @@ public static class MicrobeInternalCalculations
     /// </returns>
     public static (bool CanSurvive, Dictionary<Compound, float> RequiredStorage) CalculateNightStorageRequirements(
         IReadOnlyList<OrganelleTemplate> organelles, MembraneType membraneType, bool moving, bool playerSpecies,
-        BiomeConditions biomeConditions, ResolvedMicrobeTolerances environmentalTolerances,
-        WorldGenerationSettings worldSettings,
+        float totalSpecializationBonus, BiomeConditions biomeConditions,
+        ResolvedMicrobeTolerances environmentalTolerances, WorldGenerationSettings worldSettings,
         ref Dictionary<Compound, CompoundBalance>? dayCompoundBalances)
     {
-        // Note this assumes this is only used just for single cell types or microbe species!
-        var specialization = CalculateSpecializationBonus(organelles,
-            new Dictionary<OrganelleDefinition, int>());
-
         if (dayCompoundBalances == null)
         {
             var energyBalance = new EnergyBalanceInfoSimple();
 
             ProcessSystem.ComputeEnergyBalanceSimple(organelles, biomeConditions, environmentalTolerances,
-                specialization, membraneType, Vector3.Forward, moving, playerSpecies, worldSettings,
+                totalSpecializationBonus, membraneType, Vector3.Forward, moving, playerSpecies, worldSettings,
                 CompoundAmountType.Biome, null, energyBalance);
 
             dayCompoundBalances = new Dictionary<Compound, CompoundBalance>();
 
             ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles, biomeConditions, environmentalTolerances,
-                specialization, CompoundAmountType.Biome, energyBalance, dayCompoundBalances);
+                totalSpecializationBonus, CompoundAmountType.Biome, energyBalance, dayCompoundBalances);
         }
 
         var energyBalanceAtMinimum = new EnergyBalanceInfoSimple();
 
-        ProcessSystem.ComputeEnergyBalanceSimple(organelles, biomeConditions, environmentalTolerances, specialization,
-            membraneType, Vector3.Forward, moving, playerSpecies, worldSettings, CompoundAmountType.Minimum, null,
+        ProcessSystem.ComputeEnergyBalanceSimple(organelles, biomeConditions, environmentalTolerances,
+            totalSpecializationBonus, membraneType, Vector3.Forward, moving, playerSpecies,
+            worldSettings, CompoundAmountType.Minimum, null,
             energyBalanceAtMinimum);
 
         var minimums = new Dictionary<Compound, CompoundBalance>();
 
         ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles, biomeConditions, environmentalTolerances,
-            specialization, CompoundAmountType.Minimum, energyBalanceAtMinimum, minimums);
+            totalSpecializationBonus, CompoundAmountType.Minimum, energyBalanceAtMinimum, minimums);
 
         var cachedCapacities =
-            GetTotalSpecificCapacity(organelles, specialization, out var cachedCapacity);
+            GetTotalSpecificCapacity(organelles, totalSpecializationBonus, out var cachedCapacity);
 
         var nightSeconds = worldSettings.DayLength * (1 - worldSettings.DaytimeFraction);
 
@@ -903,7 +900,8 @@ public static class MicrobeInternalCalculations
     }
 
     /// <summary>
-    ///   Calculates a specialization bonus for a cell type based on its organelles.
+    ///   Calculates a specialization bonus for a cell type based on its organelles. In case of a multicellular
+    ///   organism, this will need to be multiplied by the adjacency bonus for most purposes.
     /// </summary>
     /// <returns>A multiplier starting from 1 and going up as specialization improves</returns>
     public static float CalculateSpecializationBonus(IReadOnlyList<IReadOnlyOrganelleTemplate> organelles,

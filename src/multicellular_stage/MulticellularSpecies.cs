@@ -279,6 +279,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
             {
                 var totalSpecializationBonus = ModifiableGameplayCells[0].CellTypeSpecializationBonus *
                     GetAdjacencySpecializationBonus(0);
+
                 // TODO: should moving be false in some cases?
                 compoundTimes = MicrobeInternalCalculations.CalculateDayVaryingCompoundsFillTimes(
                     cellType.ModifiableOrganelles, cellType.MembraneType, true, PlayerSpecies,
