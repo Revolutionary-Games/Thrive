@@ -490,30 +490,13 @@ public partial class PlayerMicrobeInput : NodeWithInput
         }
     }
 
-    [RunOnKeyDown("g_grow_spore")]
-    public void GrowSporeIntoColony()
+    [RunOnKeyDown("g_germinate_spore")]
+    public void GerminateSporeIntoColony()
     {
         if (!stage.HasPlayer)
             return;
 
-        if (!stage.Player.TryGet<MulticellularSpeciesMember>(out var multicellularSpeciesType))
-            return;
-
-        ref var growth = ref stage.Player.Get<MulticellularGrowth>();
-
-        if (!growth.IsASpore)
-            return;
-
-        ref var cellProperties = ref stage.Player.Get<CellProperties>();
-
-        multicellularSpeciesType.MulticellularCellType =
-            multicellularSpeciesType.Species.ModifiableGameplayCells[0].ModifiableCellType;
-
-        stage.Player.Get<MulticellularGrowth>().IsASpore = false;
-
-        cellProperties.ReApplyCellTypeProperties(ref stage.Player.Get<MicrobeEnvironmentalEffects>(), stage.Player,
-            multicellularSpeciesType.MulticellularCellType, multicellularSpeciesType.Species, stage.WorldSimulation,
-            new List<Hex>(), new List<Hex>());
+        stage.Player.Get<MulticellularGrowth>().GerminateSpore(stage.Player, stage.WorldSimulation);
     }
 
     [RunOnKey("g_cheat_glucose")]

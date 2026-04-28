@@ -344,4 +344,27 @@ public static class MulticellularGrowthHelpers
 
         multicellularGrowth.TotalNeededForMulticellularGrowth.Merge(species.BaseReproductionCost);
     }
+
+    public static void GerminateSpore(this ref MulticellularGrowth multicellularGrowth,
+        Entity entity, IWorldSimulation worldSimulation)
+    {
+        if (!entity.TryGet<MulticellularSpeciesMember>(out var multicellularSpeciesType))
+            return;
+
+        ref var growth = ref entity.Get<MulticellularGrowth>();
+
+        if (!growth.IsASpore)
+            return;
+
+        ref var cellProperties = ref entity.Get<CellProperties>();
+
+        multicellularSpeciesType.MulticellularCellType =
+            multicellularSpeciesType.Species.ColonyRootCellType();
+
+        entity.Get<MulticellularGrowth>().IsASpore = false;
+
+        cellProperties.ReApplyCellTypeProperties(ref entity.Get<MicrobeEnvironmentalEffects>(), entity,
+            multicellularSpeciesType.MulticellularCellType, multicellularSpeciesType.Species, worldSimulation,
+            new List<Hex>(), new List<Hex>());
+    }
 }

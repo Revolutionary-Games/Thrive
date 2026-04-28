@@ -775,12 +775,12 @@ ActionName = "g_fire_siderophore"
 [node name="GrowSpore" parent="ScrollContainer/HotBar" unique_id=2014487089 instance=ExtResource("65")]
 visible = false
 layout_mode = 2
-tooltip_text = "GROW_SPORE_ACTION_TOOLTIP"
+tooltip_text = "GERMINATE_SPORE_ACTION_TOOLTIP"
 theme_override_styles/normal = SubResource("46")
 theme_override_styles/pressed = SubResource("1")
 theme_override_styles/hover = SubResource("1")
 ActionIcon = ExtResource("34_bs2fk")
-ActionName = "g_grow_spore"
+ActionName = "g_germinate_spore"
 
 [node name="HintText" type="Label" parent="." unique_id=13979526]
 layout_mode = 1
