@@ -1,4 +1,5 @@
-﻿using Godot;
+using System;
+using Godot;
 
 /// <summary>
 ///   Mutation points bar that shows the remaining mutation points in the editor
@@ -7,6 +8,8 @@ public partial class MutationPointsBar : HBoxContainer
 {
     [Export]
     public bool ShowPercentageSymbol = true;
+
+    private const string PercentageValuePlaceholder = "{0}";
 
 #pragma warning disable CA2213
     [Export]
@@ -32,10 +35,33 @@ public partial class MutationPointsBar : HBoxContainer
 #pragma warning restore CA2213
 
     private string freebuildingText = string.Empty;
+    private string percentagePrefix = string.Empty;
+    private string percentageSuffix = " %";
+    private bool hasMutationPointDisplayState;
+    private bool lastFreebuilding;
+    private bool lastShowResultingPoints;
+    private double lastCurrentMutationPoints;
+    private double lastPossibleMutationPoints;
 
     public override void _Ready()
     {
-        freebuildingText = Localization.Translate("FREEBUILDING");
+        UpdatePercentageFormatParts();
+    }
+
+    public override void _Notification(int what)
+    {
+        base._Notification(what);
+
+        if (what != NotificationTranslationChanged)
+            return;
+
+        UpdatePercentageFormatParts();
+
+        if (hasMutationPointDisplayState)
+        {
+            UpdateMutationPoints(lastFreebuilding, lastShowResultingPoints, lastCurrentMutationPoints,
+                lastPossibleMutationPoints);
+        }
     }
 
     public void UpdateBar(double currentMutationPoints, double possibleMutationPoints, bool tween = true)
@@ -63,6 +89,12 @@ public partial class MutationPointsBar : HBoxContainer
     public void UpdateMutationPoints(bool freebuilding, bool showResultingPoints, double currentMutationPoints,
         double possibleMutationPoints)
     {
+        hasMutationPointDisplayState = true;
+        lastFreebuilding = freebuilding;
+        lastShowResultingPoints = showResultingPoints;
+        lastCurrentMutationPoints = currentMutationPoints;
+        lastPossibleMutationPoints = possibleMutationPoints;
+
         // Make sure tiny negative values aren't shown improperly
         if (currentMutationPoints < 0 && currentMutationPoints > Constants.ALLOWED_MP_OVERSHOOT)
             currentMutationPoints = 0;
@@ -82,7 +114,7 @@ public partial class MutationPointsBar : HBoxContainer
                 mutationPointsArrow.Show();
                 resultingMutationPointsLabel.Show();
 
-                currentMutationPointsLabel.Text = $"({currentMutationPoints:0.#}";
+                currentMutationPointsLabel.Text = $"{percentagePrefix}({currentMutationPoints:0.#}";
                 resultingMutationPointsLabel.Text = $"{possibleMutationPoints:F0})";
             }
             else
@@ -90,27 +122,40 @@ public partial class MutationPointsBar : HBoxContainer
                 mutationPointsArrow.Hide();
                 resultingMutationPointsLabel.Hide();
 
-                currentMutationPointsLabel.Text = $"{currentMutationPoints:0.#}";
+                currentMutationPointsLabel.Text = $"{percentagePrefix}{currentMutationPoints:0.#}";
             }
 
-            // TODO: implement full support for free percentage symbol placement within the mutation points bar
-            // for now we detect a format we cannot support and suppress the percentage symbol
-            // The reason is that the "100 / 100" is logically the unit that is a percentage so we would need an
-            // approach where the percentage symbol can escape the current label and go all the way to the start.
-            // See: https://github.com/Revolutionary-Games/Thrive/issues/6584
-            if (ShowPercentageSymbol && Localization.Translate("PERCENTAGE_VALUE").EndsWith('%'))
-            {
-                baseMutationPointsLabel.Text = $"/ {Constants.BASE_MUTATION_POINTS:F0} %";
-            }
-            else
-            {
-                baseMutationPointsLabel.Text = $"/ {Constants.BASE_MUTATION_POINTS:F0}";
-            }
+            baseMutationPointsLabel.Text = $"/ {Constants.BASE_MUTATION_POINTS:F0}{percentageSuffix}";
         }
     }
 
     public void PlayFlashAnimation()
     {
         animationPlayer.Play("FlashBar");
+    }
+
+    private void UpdatePercentageFormatParts()
+    {
+        freebuildingText = Localization.Translate("FREEBUILDING");
+
+        if (!ShowPercentageSymbol)
+        {
+            percentagePrefix = string.Empty;
+            percentageSuffix = string.Empty;
+            return;
+        }
+
+        var percentageFormat = Localization.Translate("PERCENTAGE_VALUE").ToString();
+        var placeholderPosition = percentageFormat.IndexOf(PercentageValuePlaceholder, StringComparison.Ordinal);
+
+        if (placeholderPosition < 0)
+        {
+            percentagePrefix = string.Empty;
+            percentageSuffix = " %";
+            return;
+        }
+
+        percentagePrefix = percentageFormat[..placeholderPosition];
+        percentageSuffix = percentageFormat[(placeholderPosition + PercentageValuePlaceholder.Length)..];
     }
 }
