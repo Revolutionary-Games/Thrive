@@ -731,7 +731,7 @@ public static class SpawnHelpers
                 membraneType = properties.MembraneType;
                 recorder.Set(entity, properties);
 
-                specializationBonus = resolvedCellType.SpecializationBonus *
+                specializationBonus = resolvedCellType.CellTypeSpecializationBonus *
                     multicellularSpecies.GetAdjacencySpecializationBonus(multicellularData.CellBodyPlanIndex);
 
                 recorder.Set(entity, new SpecializationFactor
@@ -762,7 +762,7 @@ public static class SpawnHelpers
                 // this one more variable)
                 recorder.Add(entity, new MulticellularGrowth(multicellularSpecies));
 
-                specializationBonus = resolvedCellType.SpecializationBonus *
+                specializationBonus = resolvedCellType.CellTypeSpecializationBonus *
                     multicellularSpecies.GetAdjacencySpecializationBonus(multicellularData.CellBodyPlanIndex);
 
                 recorder.Set(entity, new SpecializationFactor
@@ -795,7 +795,7 @@ public static class SpawnHelpers
             membraneType = properties.MembraneType;
             recorder.Set(entity, properties);
 
-            specializationBonus = usedCellDefinition.SpecializationBonus;
+            specializationBonus = usedCellDefinition.CellTypeSpecializationBonus;
 
             recorder.Set(entity, new SpecializationFactor
             {

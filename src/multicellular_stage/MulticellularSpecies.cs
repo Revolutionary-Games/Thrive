@@ -340,7 +340,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         for (int i = 0; i < count; ++i)
         {
             var cell = ModifiableGameplayCells[i];
-            score += cell.CellType.SpecializationBonus * GetAdjacencySpecializationBonus(i);
+            score += cell.CellType.CellTypeSpecializationBonus * GetAdjacencySpecializationBonus(i);
         }
 
         return score / count;

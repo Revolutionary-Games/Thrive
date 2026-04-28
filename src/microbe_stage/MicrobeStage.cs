@@ -963,7 +963,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
                 earlySpeciesType.Species.ModifiableGameplayCells[0].ModifiableCellType;
 
             environmentalEffects.ApplyEffects(resolvedTolerances,
-                earlySpeciesType.MulticellularCellType.SpecializationBonus *
+                earlySpeciesType.MulticellularCellType.CellTypeSpecializationBonus *
                 earlySpeciesType.Species.GetAdjacencySpecializationBonus(0), ref bioProcesses);
 
             cellProperties.ReApplyCellTypeProperties(ref environmentalEffects, Player,
@@ -977,7 +977,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             var resolvedTolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(
                 MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(species.Species, CurrentBiome));
 
-            environmentalEffects.ApplyEffects(resolvedTolerances, species.Species.SpecializationBonus,
+            environmentalEffects.ApplyEffects(resolvedTolerances, species.Species.CellTypeSpecializationBonus,
                 ref bioProcesses);
 
             cellProperties.ReApplyCellTypeProperties(ref environmentalEffects, Player,

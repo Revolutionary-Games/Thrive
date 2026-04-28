@@ -79,7 +79,7 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
     // reproduction progress.
     public float BaseSpeed =>
         MicrobeInternalCalculations.CalculateSpeed(Organelles.Organelles, MembraneType, MembraneRigidity, IsBacteria,
-            SpecializationBonus);
+            CellTypeSpecializationBonus);
 
     public float BaseRotationSpeed { get; set; }
 
@@ -119,7 +119,7 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         get
         {
             var specific = MicrobeInternalCalculations.GetTotalSpecificCapacity(Organelles,
-                SpecializationBonus, out var nominal);
+                CellTypeSpecializationBonus, out var nominal);
             return (nominal, specific);
         }
     }
@@ -144,7 +144,7 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
     /// <summary>
     ///   Cached specialization bonus for this species.
     /// </summary>
-    public float SpecializationBonus { get; set; }
+    public float CellTypeSpecializationBonus { get; set; }
 
     public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
     public override ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.MicrobeSpecies;
@@ -183,13 +183,13 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
 
         if (version > 1)
         {
-            instance.SpecializationBonus = reader.ReadFloat();
+            instance.CellTypeSpecializationBonus = reader.ReadFloat();
         }
         else
         {
             // Assume older microbes won't have specialization for now. And the next editor / auto-evo cycle can sort
             // them out.
-            instance.SpecializationBonus = 1;
+            instance.CellTypeSpecializationBonus = 1;
         }
 
         return instance;
@@ -205,7 +205,7 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
 
         writer.WriteObject(Organelles);
         writer.Write(BaseRotationSpeed);
-        writer.Write(SpecializationBonus);
+        writer.Write(CellTypeSpecializationBonus);
     }
 
     public void UpdateIsBacteria()
@@ -244,7 +244,7 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
     {
         base.OnAttemptedInAutoEvo(refreshCache);
 
-        SpecializationBonus = MicrobeInternalCalculations.CalculateSpecializationBonus(Organelles,
+        CellTypeSpecializationBonus = MicrobeInternalCalculations.CalculateSpecializationBonus(Organelles,
             new Dictionary<OrganelleDefinition, int>());
         UpdateInitialCompounds();
         UpdateIsBacteria();
@@ -374,7 +374,7 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         IsBacteria = casted.IsBacteria;
         MembraneType = casted.MembraneType;
         MembraneRigidity = casted.MembraneRigidity;
-        SpecializationBonus = casted.SpecializationBonus;
+        CellTypeSpecializationBonus = casted.CellTypeSpecializationBonus;
 
         cachedFillTimes.Clear();
     }
@@ -413,7 +413,7 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         result.IsBacteria = IsBacteria;
         result.MembraneType = MembraneType;
         result.MembraneRigidity = MembraneRigidity;
-        result.SpecializationBonus = SpecializationBonus;
+        result.CellTypeSpecializationBonus = CellTypeSpecializationBonus;
 
         if (cloneOrganelles)
         {
@@ -483,6 +483,6 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
     private void CalculateRotationSpeed()
     {
         BaseRotationSpeed = MicrobeInternalCalculations.CalculateRotationSpeed(Organelles.Organelles,
-            SpecializationBonus);
+            CellTypeSpecializationBonus);
     }
 }

@@ -1845,7 +1845,7 @@ public partial class CellEditorComponent :
             IsBacteria = false,
 
             // Doesn't matter for visualization, but we want to set a valid value
-            SpecializationBonus = 1,
+            CellTypeSpecializationBonus = 1,
         };
 
         previewMicrobe = previewSimulation.CreateVisualisationMicrobe(previewMicrobeSpecies);

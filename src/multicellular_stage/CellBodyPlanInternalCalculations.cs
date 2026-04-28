@@ -17,7 +17,7 @@ public static class CellBodyPlanInternalCalculations
         {
             var cell = hex.Data!;
 
-            var specializationBonus = cell.SpecializationBonus *
+            var specializationBonus = cell.CellTypeSpecializationBonus *
                 GetAdjacencySpecializationBonusFromBodyPlan(cell, cells);
 
             var totalNominalCap = MicrobeInternalCalculations.GetTotalNominalCapacity(cell.ModifiableOrganelles,
@@ -38,7 +38,7 @@ public static class CellBodyPlanInternalCalculations
     {
         var leader = cells[0].Data!;
 
-        var leaderSpecializationBonus = leader.SpecializationBonus *
+        var leaderSpecializationBonus = leader.CellTypeSpecializationBonus *
             GetAdjacencySpecializationBonusFromBodyPlan(leader.Data, cells);
         var speed = MicrobeInternalCalculations.CalculateSpeed(leader.ModifiableOrganelles, leader.MembraneType,
             leader.MembraneRigidity, leader.IsBacteria, leaderSpecializationBonus);
@@ -80,7 +80,7 @@ public static class CellBodyPlanInternalCalculations
                     flagellumForce *= Constants.EUKARYOTIC_MOVEMENT_FORCE_MULTIPLIER;
 
                 // Apply cell specialization bonus
-                var cellSpecializationBonus = cell.SpecializationBonus *
+                var cellSpecializationBonus = cell.CellTypeSpecializationBonus *
                     GetAdjacencySpecializationBonusFromBodyPlan(cell, cells);
 
                 flagellumForce *= cellSpecializationBonus;
@@ -138,7 +138,7 @@ public static class CellBodyPlanInternalCalculations
     {
         var leader = cells[0].Data!;
 
-        var leaderSpecializationBonus = leader.SpecializationBonus *
+        var leaderSpecializationBonus = leader.CellTypeSpecializationBonus *
             GetAdjacencySpecializationBonusFromBodyPlan(leader.Data, cells);
         var colonyRotation = MicrobeInternalCalculations.CalculateRotationSpeed(leader.ModifiableOrganelles,
             leaderSpecializationBonus);
@@ -151,7 +151,7 @@ public static class CellBodyPlanInternalCalculations
 
             var colonyMemberData = colonyMember.Data;
 
-            var memberSpecializationBonus = colonyMemberData!.SpecializationBonus *
+            var memberSpecializationBonus = colonyMemberData!.CellTypeSpecializationBonus *
                 GetAdjacencySpecializationBonusFromBodyPlan(colonyMemberData.Data, cells);
 
             var memberRotation = MicrobeInternalCalculations

@@ -349,7 +349,7 @@ public static class OrganelleContainerHelpers
             }, workMemory1, workMemory2);
         }
 
-        container.CalculateOrganelleLayoutStatistics(cellDefinition.SpecializationBonus);
+        container.CalculateOrganelleLayoutStatistics(cellDefinition.CellTypeSpecializationBonus);
 
         container.AllOrganellesDivided = false;
 
@@ -421,7 +421,7 @@ public static class OrganelleContainerHelpers
             growth.ResetMulticellularProgress(entity, worldSimulation);
         }
 
-        container.UpdateCompoundBagStorageFromOrganelles(ref storageToUpdate, cellDefinition.SpecializationBonus);
+        container.UpdateCompoundBagStorageFromOrganelles(ref storageToUpdate, cellDefinition.CellTypeSpecializationBonus);
 
         container.RecalculateOrganelleBioProcesses(ref bioProcessesToUpdate);
 

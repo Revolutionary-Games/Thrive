@@ -46,12 +46,12 @@ public class CellTemplate : IPositionedCell, ICloneable, IReadOnlyHexWithData<IR
     }
 
     /// <summary>
-    ///   Cached specialization bonus for this cell type.
+    ///   Cached specialization bonus for this cell type (excluding any adjacency effects!).
     /// </summary>
-    public float SpecializationBonus
+    public float CellTypeSpecializationBonus
     {
-        get => ModifiableCellType.SpecializationBonus;
-        set => ModifiableCellType.SpecializationBonus = value;
+        get => ModifiableCellType.CellTypeSpecializationBonus;
+        set => ModifiableCellType.CellTypeSpecializationBonus = value;
     }
 
     public float MembraneRigidity

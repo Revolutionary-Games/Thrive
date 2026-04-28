@@ -30,9 +30,10 @@ public interface ICellDefinition : IReadOnlyCellDefinition, ISimulationPhotograp
 
     /// <summary>
     ///   A multiplier starting from 1 and going up based on how specialized this cell type is. This is eventually
-    ///   applied to <see cref="Components.BioProcesses.OverallSpeedModifier"/> and many other systems
+    ///   applied to <see cref="Components.BioProcesses.OverallSpeedModifier"/> and many other systems.
+    ///   Does not include any adjacency bonus effects that may be applied later.
     /// </summary>
-    public float SpecializationBonus { get; }
+    public float CellTypeSpecializationBonus { get; }
 
     /// <summary>
     ///   Repositions the cell to the origin and recalculates any properties dependent on its position.
@@ -74,7 +75,7 @@ public interface IReadOnlyCellTypeDefinition : IReadOnlyCellDefinition, IPlayerR
     ///   A multiplier starting from 1 and going up based on how specialized this cell type is. This is eventually
     ///   applied to <see cref="Components.BioProcesses.OverallSpeedModifier"/>
     /// </summary>
-    public float SpecializationBonus { get; }
+    public float CellTypeSpecializationBonus { get; }
 }
 
 /// <summary>
@@ -135,7 +136,7 @@ public static class GeneralCellPropertiesHelpers
             workMemory1, workMemory2)
         {
             // For visualization the bonus doesn't matter, but we need to set a valid value
-            SpecializationBonus = 1,
+            CellTypeSpecializationBonus = 1,
         };
 
         species.SetupWorldEntities(worldSimulation);
