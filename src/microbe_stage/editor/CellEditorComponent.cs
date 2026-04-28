@@ -1507,6 +1507,7 @@ public partial class CellEditorComponent :
 
     public float CalculateSpeed()
     {
+        // Treats cellTypeSpecializationBonus as totalSpecializationBonus, because adjacency is ignored in this editor.
         var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(
             editedMicrobeOrganelles.Organelles, tempMemory3);
 
@@ -1516,6 +1517,7 @@ public partial class CellEditorComponent :
 
     public float CalculateRotationSpeed()
     {
+        // Treats cellTypeSpecializationBonus as totalSpecializationBonus, because adjacency is ignored in this editor.
         var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(
             editedMicrobeOrganelles.Organelles, tempMemory3);
 
@@ -1529,6 +1531,7 @@ public partial class CellEditorComponent :
 
     public Dictionary<Compound, float> GetAdditionalCapacities(out float nominalCapacity)
     {
+        // Treats cellTypeSpecializationBonus as totalSpecializationBonus, because adjacency is ignored in this editor.
         var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(
             editedMicrobeOrganelles.Organelles, tempMemory3);
 
@@ -1538,6 +1541,7 @@ public partial class CellEditorComponent :
 
     public float CalculateTotalDigestionSpeed()
     {
+        // Treats cellTypeSpecializationBonus as totalSpecializationBonus, because adjacency is ignored in this editor.
         var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(
             editedMicrobeOrganelles.Organelles, tempMemory3);
 
@@ -1546,6 +1550,7 @@ public partial class CellEditorComponent :
 
     public Dictionary<Enzyme, float> CalculateDigestionEfficiencies()
     {
+        // Treats cellTypeSpecializationBonus as totalSpecializationBonus, because adjacency is ignored in this editor.
         var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(
             editedMicrobeOrganelles.Organelles, tempMemory3);
 
@@ -2162,6 +2167,7 @@ public partial class CellEditorComponent :
 
         var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(organelles);
 
+        // Treats cellTypeSpecializationBonus as totalSpecializationBonus, because adjacency is ignored in this editor.
         var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(organelles, tempMemory3);
 
         var tolerances = CalculateLatestTolerances();

@@ -46,27 +46,28 @@ public static class MicrobeInternalCalculations
         return (Hex.AxialToCartesian(new Hex(0, 0)) - Hex.AxialToCartesian(organelle.Position)).Normalized();
     }
 
-    public static float GetTotalNominalCapacity(IEnumerable<OrganelleTemplate> organelles, float specializationBonus)
+    public static float GetTotalNominalCapacity(IEnumerable<OrganelleTemplate> organelles,
+        float totalSpecializationBonus)
     {
         return organelles.Sum(o => GetNominalCapacityForOrganelle(o.Definition, o.Upgrades,
-            specializationBonus));
+            totalSpecializationBonus));
     }
 
     public static Dictionary<Compound, float> GetTotalSpecificCapacity(IReadOnlyList<OrganelleTemplate> organelles,
-        float specializationBonus, out float nominalCapacity)
+        float totalSpecializationBonus, out float nominalCapacity)
     {
-        var totalNominalCap = GetTotalNominalCapacity(organelles, specializationBonus);
+        var totalNominalCap = GetTotalNominalCapacity(organelles, totalSpecializationBonus);
         nominalCapacity = totalNominalCap;
 
         var capacities = new Dictionary<Compound, float>();
 
-        AddSpecificCapacity(organelles, capacities, specializationBonus);
+        AddSpecificCapacity(organelles, capacities, totalSpecializationBonus);
 
         return capacities;
     }
 
     public static void AddSpecificCapacity(IReadOnlyList<OrganelleTemplate> organelles,
-        Dictionary<Compound, float> capacities, float specializationBonus)
+        Dictionary<Compound, float> capacities, float totalSpecializationBonus)
     {
         var count = organelles.Count;
 
@@ -76,7 +77,7 @@ public static class MicrobeInternalCalculations
             var organelle = organelles[i];
 
             var specificCapacity = GetAdditionalCapacityForOrganelle(organelle.Definition, organelle.Upgrades,
-                specializationBonus);
+                totalSpecializationBonus);
 
             if (specificCapacity.Compound == Compound.Invalid)
                 continue;
@@ -94,9 +95,10 @@ public static class MicrobeInternalCalculations
     /// </summary>
     /// <param name="compoundBag">Target compound bag to set info in (this doesn't update nominal capacity)</param>
     /// <param name="organelles">Organelles to find specific capacity from</param>
-    /// <param name="specializationBonus">The cell specialization bonus for this microbe/cell</param>
+    /// <param name="totalSpecializationBonus">The cell specialization bonus for this microbe/cell,
+    /// including adjacency when relevant</param>
     public static void UpdateSpecificCapacities(CompoundBag compoundBag, IReadOnlyList<PlacedOrganelle> organelles,
-        float specializationBonus)
+        float totalSpecializationBonus)
     {
         compoundBag.ClearSpecificCapacities();
 
@@ -105,7 +107,7 @@ public static class MicrobeInternalCalculations
         {
             var organelle = organelles[i];
             var specificCapacity = GetAdditionalCapacityForOrganelle(organelle.Definition, organelle.Upgrades,
-                specializationBonus);
+                totalSpecializationBonus);
 
             if (specificCapacity.Compound == Compound.Invalid)
                 continue;
@@ -115,7 +117,7 @@ public static class MicrobeInternalCalculations
     }
 
     public static float GetNominalCapacityForOrganelle(OrganelleDefinition definition,
-        IReadOnlyOrganelleUpgrades? upgrades, float specializationBonus)
+        IReadOnlyOrganelleUpgrades? upgrades, float totalSpecializationBonus)
     {
         if (upgrades?.CustomUpgradeData is StorageComponentUpgrades storage &&
             storage.SpecializedFor != Compound.Invalid)
@@ -126,12 +128,12 @@ public static class MicrobeInternalCalculations
         if (definition.Components.Storage == null)
             return 0;
 
-        return definition.Components.Storage!.Capacity * specializationBonus;
+        return definition.Components.Storage!.Capacity * totalSpecializationBonus;
     }
 
     public static (Compound Compound, float Capacity)
         GetAdditionalCapacityForOrganelle(OrganelleDefinition definition, IReadOnlyOrganelleUpgrades? upgrades,
-            float specializationBonus)
+            float totalSpecializationBonus)
     {
         if (definition.Components.Storage == null)
             return (Compound.Invalid, 0);
@@ -142,7 +144,7 @@ public static class MicrobeInternalCalculations
             var specialization = storage.SpecializedFor;
             var capacity = definition.Components.Storage!.Capacity;
             var extraCapacity = capacity * Constants.VACUOLE_SPECIALIZED_MULTIPLIER;
-            return (specialization, extraCapacity * specializationBonus);
+            return (specialization, extraCapacity * totalSpecializationBonus);
         }
 
         return (Compound.Invalid, 0);
@@ -156,7 +158,7 @@ public static class MicrobeInternalCalculations
 
     // TODO: maybe this should return a ValueTask as this is getting pretty computation intensive
     public static float CalculateSpeed(IReadOnlyList<OrganelleTemplate> organelles, MembraneType membraneType,
-        float membraneRigidity, bool isBacteria, float specializationBonus, bool useEstimate = false)
+        float membraneRigidity, bool isBacteria, float totalSpecializationBonus, bool useEstimate = false)
     {
         float shapeMass = 0;
 
@@ -259,7 +261,7 @@ public static class MicrobeInternalCalculations
         var finalMass = useEstimate ? massEstimate : shapeMass;
 
         // Apply cell specialization bonus
-        organelleMovementForce *= specializationBonus;
+        organelleMovementForce *= totalSpecializationBonus;
 
         float finalSpeed = (baseMovementForce + organelleMovementForce) / finalMass;
 
@@ -304,12 +306,12 @@ public static class MicrobeInternalCalculations
     ///   Calculates the rotation speed for a cell. Note that higher value means slower rotation.
     /// </summary>
     /// <param name="organelles">The organelles the cell has with their positions for the calculations</param>
-    /// <param name="specializationBonus"> Cell specialization bonus</param>
+    /// <param name="totalSpecializationBonus"> Cell specialization bonus, including adjacency if relevant</param>
     /// <returns>
     ///   The rotation speed value for putting in <see cref="Components.OrganelleContainer.RotationSpeed"/>
     /// </returns>
     public static float CalculateRotationSpeed(IReadOnlyList<IPositionedOrganelle> organelles,
-        float specializationBonus)
+        float totalSpecializationBonus)
     {
         // TODO: it would be very nice to be able to switch this back to a more physically accurate calculation using
         // the real physics shape here
@@ -338,7 +340,7 @@ public static class MicrobeInternalCalculations
             }
         }
 
-        ciliaFactor *= specializationBonus;
+        ciliaFactor *= totalSpecializationBonus;
 
         return inertia / (Constants.CELL_ROTATION_INFLECTION_INERTIA + ciliaFactor + inertia)
             * Constants.CELL_MAX_ROTATION + Constants.CELL_MIN_ROTATION;
@@ -372,16 +374,16 @@ public static class MicrobeInternalCalculations
         return density / totalVolume;
     }
 
-    public static float CalculateDigestionSpeed(int enzymeCount, float specializationBonus)
+    public static float CalculateDigestionSpeed(int enzymeCount, float totalSpecializationBonus)
     {
         var amount = Constants.ENGULF_COMPOUND_ABSORBING_PER_SECOND;
-        var buff = amount * Constants.ENZYME_DIGESTION_SPEED_UP_FRACTION * enzymeCount * specializationBonus;
+        var buff = amount * Constants.ENZYME_DIGESTION_SPEED_UP_FRACTION * enzymeCount * totalSpecializationBonus;
 
         return amount + buff;
     }
 
     public static float CalculateTotalDigestionSpeed(IEnumerable<OrganelleTemplate> organelles,
-        float specializationBonus)
+        float totalSpecializationBonus)
     {
         var multiplier = 0;
         foreach (var organelle in organelles)
@@ -390,14 +392,14 @@ public static class MicrobeInternalCalculations
                 ++multiplier;
         }
 
-        return CalculateDigestionSpeed(multiplier, specializationBonus);
+        return CalculateDigestionSpeed(multiplier, totalSpecializationBonus);
     }
 
-    public static float CalculateDigestionEfficiency(int enzymeCount, float specializationBonus)
+    public static float CalculateDigestionEfficiency(int enzymeCount, float totalSpecializationBonus)
     {
         var absorption = Constants.ENGULF_BASE_COMPOUND_ABSORPTION_YIELD;
         var buff = absorption * Constants.ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION * enzymeCount *
-            specializationBonus;
+            totalSpecializationBonus;
 
         return Math.Clamp(absorption + buff, 0.0f, Constants.ENZYME_DIGESTION_EFFICIENCY_MAXIMUM);
     }
@@ -406,7 +408,7 @@ public static class MicrobeInternalCalculations
     ///   Returns the efficiency of all enzymes present in the given organelles.
     /// </summary>
     public static Dictionary<Enzyme, float> CalculateDigestionEfficiencies(IEnumerable<OrganelleTemplate> organelles,
-        float specializationBonus)
+        float totalSpecializationBonus)
     {
         var enzymes = new Dictionary<Enzyme, int>();
         var result = new Dictionary<Enzyme, float>();
@@ -426,11 +428,11 @@ public static class MicrobeInternalCalculations
             enzymes[enzyme] = count + 1;
         }
 
-        result[lipase] = CalculateDigestionEfficiency(0, specializationBonus);
+        result[lipase] = CalculateDigestionEfficiency(0, totalSpecializationBonus);
 
         foreach (var enzyme in enzymes)
         {
-            result[enzyme.Key] = CalculateDigestionEfficiency(enzyme.Value, specializationBonus);
+            result[enzyme.Key] = CalculateDigestionEfficiency(enzyme.Value, totalSpecializationBonus);
         }
 
         return result;
