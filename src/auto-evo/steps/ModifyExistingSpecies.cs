@@ -85,7 +85,7 @@ public class ModifyExistingSpecies : IRunStep
                 ++remainingPatchSpeciesToGenerate;
         }
 
-        TotalSteps = remainingPatchSpeciesToGenerate * mutationStepEstimatePerSpecies + FinalMutationPhases;
+        SetTotalStepsEstimate(remainingPatchSpeciesToGenerate * mutationStepEstimatePerSpecies + FinalMutationPhases);
         speciesEnumerator = patch.SpeciesInPatch.GetEnumerator();
     }
 
@@ -151,7 +151,7 @@ public class ModifyExistingSpecies : IRunStep
                 if (currentMutationGeneration == null && !TryStartNextMutationGeneration())
                 {
                     step = Step.MutationFilter;
-                    TotalSteps = FinalMutationPhases;
+                    SetTotalStepsEstimate(FinalMutationPhases);
                     speciesEnumerator = patch.SpeciesInPatch.GetEnumerator();
                 }
                 else
@@ -193,7 +193,7 @@ public class ModifyExistingSpecies : IRunStep
 #endif
                 }
 
-                TotalSteps = 2;
+                SetTotalStepsEstimate(2);
                 step = Step.MutationTest;
                 break;
             }
@@ -212,7 +212,7 @@ public class ModifyExistingSpecies : IRunStep
                 newOccupantsWorkMemory.Clear();
                 miche.GetOccupants(newOccupantsWorkMemory);
 
-                TotalSteps = 1;
+                SetTotalStepsEstimate(1);
                 step = Step.FinalApply;
                 break;
             }
@@ -248,7 +248,7 @@ public class ModifyExistingSpecies : IRunStep
                     }
                 }
 
-                TotalSteps = 0;
+                SetTotalStepsEstimate(0);
                 return true;
             }
 
@@ -427,9 +427,15 @@ public class ModifyExistingSpecies : IRunStep
             remainingOutOfSyncSpeciesToGenerate :
             potentialOutOfSyncSpeciesToGenerate;
 
-        TotalSteps = (currentMutationGeneration?.RemainingStepEstimate ?? 0) +
+        SetTotalStepsEstimate((currentMutationGeneration?.RemainingStepEstimate ?? 0) +
             (remainingPatchSpeciesToGenerate + remainingOutOfSyncSpecies) * mutationStepEstimatePerSpecies +
-            FinalMutationPhases;
+            FinalMutationPhases);
+    }
+
+    private void SetTotalStepsEstimate(int estimate)
+    {
+        if (estimate > TotalSteps)
+            TotalSteps = estimate;
     }
 
     private void ProcessMutationRecursionStep(MicrobeSpecies baseSpecies, Mutant baseSpeciesMutant,
@@ -557,6 +563,7 @@ public class ModifyExistingSpecies : IRunStep
         public MutationGenerationFramePhase Phase;
         public IMutationStrategy<MicrobeSpecies>[] Mutations = null!;
         public List<Mutant> OutputSpecies = null!;
+        public Mutant BaseSpeciesMutant = null!;
         public int MutationStrategyIndex;
         public int RecursionIndex;
         public int ChildIndex;
@@ -574,7 +581,6 @@ public class ModifyExistingSpecies : IRunStep
     {
         private readonly ModifyExistingSpecies owner;
         private readonly MicrobeSpecies baseSpecies;
-        private readonly Mutant baseSpeciesMutant;
         private readonly Stack<MutationGenerationFrame> frameStack = new();
 
         public SpeciesMutationGenerationState(ModifyExistingSpecies owner, MicrobeSpecies baseSpecies, Miche miche,
@@ -582,14 +588,13 @@ public class ModifyExistingSpecies : IRunStep
         {
             this.owner = owner;
             this.baseSpecies = baseSpecies;
-            baseSpeciesMutant = new Mutant(baseSpecies,
-                Constants.BASE_MUTATION_POINTS * owner.worldSettings.AIMutationMultiplier);
 
             owner.generateMutationsWorkingMemory.Clear();
             owner.pressureStack.Clear();
 
             var inputSpecies = owner.generateMutationsWorkingMemory.GetMutationsAtDepth(0);
-            inputSpecies.Add(baseSpeciesMutant);
+            inputSpecies.Add(new Mutant(baseSpecies,
+                Constants.BASE_MUTATION_POINTS * owner.worldSettings.AIMutationMultiplier));
 
             frameStack.Push(new MutationGenerationFrame(miche, 1, false));
             RemainingStepEstimate = stepEstimate;
@@ -614,6 +619,8 @@ public class ModifyExistingSpecies : IRunStep
                         owner.generateMutationsWorkingMemory.GetMutationsAtDepth(currentFrame.Depth);
                     currentFrame.OutputSpecies.Clear();
                     currentFrame.OutputSpecies.AddRange(inputSpecies);
+                    currentFrame.BaseSpeciesMutant = new Mutant(baseSpecies,
+                        Constants.BASE_MUTATION_POINTS * owner.worldSettings.AIMutationMultiplier);
 
                     owner.pressureStack.Push(currentFrame.Miche.Pressure);
                     owner.mutationSorter.Setup(baseSpecies, owner.pressureStack);
@@ -634,7 +641,7 @@ public class ModifyExistingSpecies : IRunStep
                         break;
                     }
 
-                    owner.ProcessMutationRecursionStep(baseSpecies, baseSpeciesMutant, currentFrame);
+                    owner.ProcessMutationRecursionStep(baseSpecies, currentFrame.BaseSpeciesMutant, currentFrame);
                     break;
                 }
 
