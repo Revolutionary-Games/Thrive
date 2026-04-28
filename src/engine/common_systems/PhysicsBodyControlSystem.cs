@@ -26,17 +26,41 @@ public partial class PhysicsBodyControlSystem : BaseSystem<World, float>
     private void Update(ref Physics physics, ref ManualPhysicsControl control)
     {
         if (!physics.IsBodyEffectivelyEnabled())
+        {
+            // To make it simple to avoid bodies launching fast after being disabled, we eat up any queued forces here
+            if (!physics.QueuedForceApplied)
+            {
+                physics.QueuedForceApplied = true;
+                physics.QueuedImpulse = Vector3.Zero;
+                physics.QueuedAngularImpulse = Vector3.Zero;
+            }
+
             return;
+        }
 
         var body = physics.Body!;
 
-        if (control.PhysicsApplied && physics.VelocitiesApplied)
+        if (control.PhysicsApplied && physics.VelocitiesApplied && physics.QueuedForceApplied)
             return;
 
         if (!physics.VelocitiesApplied)
         {
             physicalWorld.SetBodyVelocity(body, physics.Velocity, physics.AngularVelocity);
             physics.VelocitiesApplied = true;
+        }
+
+        if (!physics.QueuedForceApplied)
+        {
+            physicalWorld.GiveImpulse(body, physics.QueuedImpulse, true);
+            physics.QueuedImpulse = Vector3.Zero;
+
+            if (!physics.QueuedAngularImpulse.IsZeroApprox())
+            {
+                physicalWorld.GiveAngularImpulse(body, physics.QueuedAngularImpulse, true);
+                physics.QueuedAngularImpulse = Vector3.Zero;
+            }
+
+            physics.QueuedForceApplied = false;
         }
 
         if (!control.PhysicsApplied)
