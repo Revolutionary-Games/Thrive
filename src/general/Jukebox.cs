@@ -779,6 +779,7 @@ public partial class Jukebox : Node
 
         if (random.NextFloat() <= Constants.CONTEXTUAL_ONLY_MUSIC_CHANCE)
         {
+            // TODO: avoid the temporary array and lambda allocations here somehow
             var contextMusicOnly = list.GetTracksForContexts(activeContexts)
                 .Where(c => c.ExclusiveToContexts != null && c.ResourcePath != list.LastPlayedTrackPath)
                 .ToArray();
