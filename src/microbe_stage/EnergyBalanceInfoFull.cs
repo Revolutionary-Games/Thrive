@@ -54,7 +54,7 @@ public class EnergyBalanceInfoFull : EnergyBalanceInfoSimple
             foreach (var inputCompound in requiredInputCompounds)
             {
                 compoundData.TryGetValue(inputCompound.Key, out var existingAmount);
-                compoundData[inputCompound.Key] = existingAmount + amount;
+                compoundData[inputCompound.Key] = existingAmount + inputCompound.Value;
             }
         }
     }
