@@ -147,6 +147,10 @@ public partial class DebugConsole : CustomWindow, ICommandInvoker
 
         commandRegistry.Execute(context, command);
 
+        // Commands can also cause normal GD.Print output. Process it now so the final scroll position is based on
+        // everything the command synchronously produced.
+        debugConsoleManager.ProcessQueuedMessages();
+
         // This updates the debug entry to reflect the final command output, if any, and releases the executionToken.
         debugConsoleManager.ReleaseCustomDebugEntryId(executionToken);
 

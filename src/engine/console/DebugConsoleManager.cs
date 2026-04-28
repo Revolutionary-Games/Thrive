@@ -57,6 +57,13 @@ public partial class DebugConsoleManager : Node, ICommandInvoker
 
     public override void _Process(double delta)
     {
+        ProcessQueuedMessages();
+
+        base._Process(delta);
+    }
+
+    public int ProcessQueuedMessages()
+    {
         // We choose to stack equivalent consecutive messages, while forcing separation on different entries.
         const DebugEntryFactory.AddMessageMode addMessageMode = DebugEntryFactory.AddMessageMode.Split;
 
@@ -64,12 +71,12 @@ public partial class DebugConsoleManager : Node, ICommandInvoker
         int count = inbox.Count;
 
         if (OnHistoryUpdated == null)
-            return;
+            return 0;
 
         lock (inbox)
         {
             if (count == 0)
-                return;
+                return 0;
 
             TotalMessageCount += count;
 
@@ -109,7 +116,7 @@ public partial class DebugConsoleManager : Node, ICommandInvoker
             OnHistoryUpdated.Invoke(null, new HistoryUpdatedEventArgs(newMessages));
         }
 
-        base._Process(delta);
+        return newMessages;
     }
 
     public void Print(string line, int id, bool isError = false)
