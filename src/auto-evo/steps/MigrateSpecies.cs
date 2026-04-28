@@ -60,6 +60,7 @@ public class MigrateSpecies : IRunStep
 
         // To not randomly pick the same adjacent patch multiple times as a migration target
         var shuffledNeighbours = new List<Patch>();
+        var shuffledEmptyNeighbours = new List<Patch>();
 
         foreach (var patch in sourcePatches)
         {
@@ -74,7 +75,7 @@ public class MigrateSpecies : IRunStep
             if (population < Constants.AUTO_EVO_MINIMUM_MOVE_POPULATION)
                 continue;
 
-            // Try all neighbour patches in random order
+            // Try all neighbour patches in random order, but try empty patches first
             shuffledNeighbours.Clear();
             foreach (var adjacent in patch.Adjacent)
             {
@@ -82,8 +83,51 @@ public class MigrateSpecies : IRunStep
                 if (adjacent.SpeciesInPatch.ContainsKey(species))
                     continue;
 
+                if (adjacent.SpeciesInPatch.Count < 1)
+                {
+                    shuffledEmptyNeighbours.Add(adjacent);
+                    continue;
+                }
+
                 shuffledNeighbours.Add(adjacent);
             }
+
+            shuffledEmptyNeighbours.Shuffle(random);
+
+            var migrated = false;
+
+            // Prioritize colonizing empty patches
+            foreach (var target in shuffledEmptyNeighbours)
+            {
+                // Skip checking population send to the same patch multiple times
+                if (usedTargets.Contains(target))
+                    continue;
+
+                --attemptsLeft;
+                var targetMiche = results.GetMicheForPatch(target);
+
+                // Calculate random amount of population to send
+                var moveAmount = (long)random.Next(population * Constants.AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION,
+                    population * Constants.AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION);
+
+                if (moveAmount > 0 &&
+                    targetMiche.InsertSpecies(species, target, null, cache, true, insertWorkingMemory))
+                {
+                    results.AddMigrationResultForSpecies(species, new SpeciesMigration(patch, target, moveAmount));
+                    usedTargets.Add(target);
+
+                    // Only one migration per patch
+                    migrated = true;
+                    break;
+                }
+
+                if (attemptsLeft <= 0)
+                    break;
+            }
+
+            // Do not continue checking if a migration target was already chosen for this source
+            if (migrated)
+                break;
 
             shuffledNeighbours.Shuffle(random);
 
