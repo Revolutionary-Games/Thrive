@@ -779,7 +779,6 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
             var cellEnergyBalance = new EnergyBalanceInfoSimple();
 
-            // TODO: specialization from positions (GetAdjacencySpecializationBonus)
             var specialization =
                 MicrobeInternalCalculations.CalculateSpecializationBonus(cellType.ModifiableOrganelles.Organelles,
                     tempMemory1);

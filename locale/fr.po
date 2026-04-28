@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-26 22:18+0300\n"
+"POT-Creation-Date: 2026-04-27 11:05+0300\n"
 "PO-Revision-Date: 2026-04-22 18:35+0000\n"
 "Last-Translator: Shigasaa <altitudes.etrangeres@ikmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -111,9 +111,6 @@ msgstr "Ouvrir la vue de configuration avancée"
 msgid "AEROBIC_NITROGEN_FIXATION"
 msgstr "Fixation aérobique d'azote"
 
-msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "Fixation aérobique d'azote"
-
 msgid "AEROBIC_RESPIRATION"
 msgstr "Respiration aérobie"
 
@@ -197,9 +194,6 @@ msgstr "Nombre de sauvegardes à conserver :"
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Nombre de sauvegardes rapides à conserver :"
-
-msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "Fixation anaérobique d'azote"
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr "et"
@@ -2864,6 +2858,14 @@ msgid "IMAGE_FILE_TYPES"
 msgstr "Formats d'image supportés"
 
 #, fuzzy
+msgid "INCOMPATIBLE_MEMBRANE_LIST"
+msgstr "[b]Données sur les membranes :[/b]"
+
+#, fuzzy
+msgid "INCOMPATIBLE_ORGANELLE_LIST"
+msgstr "Plusieurs organites"
+
+#, fuzzy
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Augmenter la taille de l'objet"
 
@@ -4512,6 +4514,10 @@ msgstr "La nitrogénase est une protéine capable d'utiliser l'[thrive:compound 
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Transforme l'[thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound]. Taux proportionnels à la concentration de [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
+#, fuzzy
+msgid "NITROGEN_FIXATION"
+msgstr "Fixation aérobique d'azote"
+
 msgid "NITROPLAST"
 msgstr "Nitroplaste"
 
@@ -5044,6 +5050,9 @@ msgstr "Conditions physiques"
 
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Résistance physique"
+
+msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
+msgstr ""
 
 msgid "PLACE_ORGANELLE"
 msgstr "Placer organite"
@@ -9929,6 +9938,12 @@ msgstr "Zoomer"
 
 msgid "ZOOM_OUT"
 msgstr "Dézoomer"
+
+#~ msgid "AEROBIC_NITROGEN_FIXING"
+#~ msgstr "Fixation aérobique d'azote"
+
+#~ msgid "ANAEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Fixation anaérobique d'azote"
 
 #~ msgid "OSMOREGULATION_COST_MULTIPLIER"
 #~ msgstr "Multiplicateur du cout de l'osmorégulation"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-26 22:18+0300\n"
+"POT-Creation-Date: 2026-04-27 11:05+0300\n"
 "PO-Revision-Date: 2026-04-22 18:35+0000\n"
 "Last-Translator: zynskeywolf <istvanszabo314@protonmail.com>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -111,9 +111,6 @@ msgstr "Speciális beállítási nézet megnyitása"
 msgid "AEROBIC_NITROGEN_FIXATION"
 msgstr "Aerob nitrogénkötés"
 
-msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "Aerob nitrogénkötés"
-
 #, fuzzy
 msgid "AEROBIC_RESPIRATION"
 msgstr "Aerob légzés"
@@ -198,10 +195,6 @@ msgstr "Megtartható automatikus mentések száma:"
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Megtartható gyorsmentések száma:"
-
-#, fuzzy
-msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "Anaerob Nitrogénkötés"
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr "és"
@@ -3007,6 +3000,14 @@ msgid "IMAGE_FILE_TYPES"
 msgstr "Membrán típusok"
 
 #, fuzzy
+msgid "INCOMPATIBLE_MEMBRANE_LIST"
+msgstr "{0}: Megtalálható a {1} fajokban, átlagosan {2} darabja"
+
+#, fuzzy
+msgid "INCOMPATIBLE_ORGANELLE_LIST"
+msgstr "Sejtszervecske elhelyezése"
+
+#, fuzzy
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Új létrehozása"
 
@@ -4773,6 +4774,10 @@ msgstr "A nitrogenáz egy enzim, mely nitrogéngázból a sejt energiaraktároz�
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"ammonia\"][/thrive:compound]-vá. Hatékonysága függ az [thrive:compound type=\"nitrogen\"][/thrive:compound] koncentrációjától."
 
+#, fuzzy
+msgid "NITROGEN_FIXATION"
+msgstr "Aerob nitrogénkötés"
+
 msgid "NITROPLAST"
 msgstr "Nitrifikáló színtest"
 
@@ -5327,6 +5332,9 @@ msgstr "Fizikai körülmények"
 
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Fizikai állóképesség"
+
+msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
+msgstr ""
 
 msgid "PLACE_ORGANELLE"
 msgstr "Sejtszervecske elhelyezése"
@@ -9761,6 +9769,13 @@ msgstr "Közelítés"
 
 msgid "ZOOM_OUT"
 msgstr "Távolodás"
+
+#~ msgid "AEROBIC_NITROGEN_FIXING"
+#~ msgstr "Aerob nitrogénkötés"
+
+#, fuzzy
+#~ msgid "ANAEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Anaerob Nitrogénkötés"
 
 #~ msgid "OSMOREGULATION_COST_MULTIPLIER"
 #~ msgstr "Ozmoreguláció költségének szorzója"

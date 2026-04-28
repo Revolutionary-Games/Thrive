@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-26 22:18+0300\n"
+"POT-Creation-Date: 2026-04-27 11:05+0300\n"
 "PO-Revision-Date: 2026-04-10 22:42+0000\n"
 "Last-Translator: Argakyan <andrinmueller@hotmail.ch>\n"
 "Language-Team: Alemannic <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/gsw/>\n"
@@ -111,9 +111,6 @@ msgstr "Erwiiteriti Iistellige aazeige"
 msgid "AEROBIC_NITROGEN_FIXATION"
 msgstr "Aerobi Stickstofffixierig"
 
-msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "Aerobi Stickstofffixierig"
-
 msgid "AEROBIC_RESPIRATION"
 msgstr "Aerobi Atmig"
 
@@ -197,9 +194,6 @@ msgstr "Aazahl vode Autospiicherige:"
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Aazahl vode Schnällspiicherige:"
-
-msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "Anaerobi Stickstofffixierig"
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr "und"
@@ -2813,6 +2807,14 @@ msgstr ""
 msgid "IMAGE_FILE_TYPES"
 msgstr "Unterstützti Bilddateie"
 
+#, fuzzy
+msgid "INCOMPATIBLE_MEMBRANE_LIST"
+msgstr "E zweischichtigi Membran bütet bessere Schutz vor Schade und benötigt weniger Energie um sich nöd z'deformiere. Sie verlangsamt allerdings d'Zelle und senkt ihri Fähigkeit Ressource z'absorbiere."
+
+#, fuzzy
+msgid "INCOMPATIBLE_ORGANELLE_LIST"
+msgstr "Trennti Organelle"
+
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Objektgrössi erhöhe"
 
@@ -4288,6 +4290,10 @@ msgstr ""
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
 
+#, fuzzy
+msgid "NITROGEN_FIXATION"
+msgstr "Aerobi Stickstofffixierig"
+
 msgid "NITROPLAST"
 msgstr ""
 
@@ -4769,6 +4775,9 @@ msgid "PHYSICAL_CONDITIONS"
 msgstr ""
 
 msgid "PHYSICAL_RESISTANCE"
+msgstr ""
+
+msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
 msgstr ""
 
 msgid "PLACE_ORGANELLE"
@@ -8331,6 +8340,12 @@ msgstr ""
 
 msgid "ZOOM_OUT"
 msgstr ""
+
+#~ msgid "AEROBIC_NITROGEN_FIXING"
+#~ msgstr "Aerobi Stickstofffixierig"
+
+#~ msgid "ANAEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Anaerobi Stickstofffixierig"
 
 #~ msgid "PROCESS_TOGGLE_TOOLTIP"
 #~ msgstr ""

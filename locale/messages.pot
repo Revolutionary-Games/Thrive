@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-26 22:18+0300\n"
+"POT-Creation-Date: 2026-04-27 11:05+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -143,10 +143,6 @@ msgstr ""
 msgid "AEROBIC_NITROGEN_FIXATION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/bio_processes.json:171
-msgid "AEROBIC_NITROGEN_FIXING"
-msgstr ""
-
 #: ../simulation_parameters/common/wiki.json:1336
 msgid "AEROBIC_RESPIRATION"
 msgstr ""
@@ -237,10 +233,6 @@ msgstr ""
 
 #: ../src/gui_common/menus/OptionsMenu.tscn:2901
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
-msgstr ""
-
-#: ../simulation_parameters/microbe_stage/bio_processes.json:182
-msgid "ANAEROBIC_NITROGEN_FIXATION"
 msgstr ""
 
 #: ../src/microbe_stage/organelle_unlocks/ConditionSet.cs:32
@@ -629,13 +621,13 @@ msgstr ""
 msgid "BATHYPELAGIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:927
-#: ../src/microbe_stage/MicrobeHUD.tscn:432
+#: ../src/microbe_stage/MicrobeHUD.cs:919
+#: ../src/microbe_stage/MicrobeHUD.tscn:431
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:878
-#: ../src/microbe_stage/MicrobeHUD.tscn:425
+#: ../src/microbe_stage/MicrobeHUD.cs:870
+#: ../src/microbe_stage/MicrobeHUD.tscn:424
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
@@ -1236,8 +1228,8 @@ msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:941
 #: ../simulation_parameters/common/wiki.json:1020
-#: ../simulation_parameters/microbe_stage/bio_processes.json:204
-#: ../simulation_parameters/microbe_stage/bio_processes.json:214
+#: ../simulation_parameters/microbe_stage/bio_processes.json:203
+#: ../simulation_parameters/microbe_stage/bio_processes.json:213
 msgid "CLOSTRIDIAL_FERMENTATION"
 msgstr ""
 
@@ -2243,7 +2235,7 @@ msgstr ""
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:438 ../src/microbe_stage/MicrobeHUD.cs:443
+#: ../src/microbe_stage/MicrobeHUD.cs:435 ../src/microbe_stage/MicrobeHUD.cs:440
 msgid "DEVOURED"
 msgstr ""
 
@@ -2714,19 +2706,19 @@ msgstr ""
 msgid "ENERGY_COST_MULTIPLIER_EXPLANATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3204
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3265
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3039
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3100
 msgid "ENERGY_IN_PATCH_SHORT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3215
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3276
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3208
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3269
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
@@ -3176,7 +3168,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3221
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3282
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -3212,12 +3204,12 @@ msgstr ""
 msgid "FOSSILISATION_FAILED_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:799
+#: ../src/microbe_stage/MicrobeHUD.cs:791
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:16
 msgid "FOSSILISATION_HINT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:798
+#: ../src/microbe_stage/MicrobeHUD.cs:790
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
@@ -3298,7 +3290,7 @@ msgstr ""
 msgid "GAME_SYSTEMS_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3139
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3200
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1078
 msgid "GATHERED_ENERGY_TOOLTIP"
 msgstr ""
@@ -3721,6 +3713,14 @@ msgstr ""
 
 #: ../src/modding/ModUploader.cs:96
 msgid "IMAGE_FILE_TYPES"
+msgstr ""
+
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:527
+msgid "INCOMPATIBLE_MEMBRANE_LIST"
+msgstr ""
+
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:442
+msgid "INCOMPATIBLE_ORGANELLE_LIST"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:278
@@ -4315,8 +4315,8 @@ msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:783
 #: ../simulation_parameters/common/wiki.json:1968
-#: ../simulation_parameters/microbe_stage/bio_processes.json:235
-#: ../simulation_parameters/microbe_stage/bio_processes.json:263
+#: ../simulation_parameters/microbe_stage/bio_processes.json:234
+#: ../simulation_parameters/microbe_stage/bio_processes.json:262
 msgid "IRON_OXIDATION"
 msgstr ""
 
@@ -4578,7 +4578,7 @@ msgstr ""
 msgid "LARGE_SULFUR_CHUNK"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1896
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1899
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -4996,7 +4996,7 @@ msgid "LUCIFERASE"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:230
-#: ../simulation_parameters/microbe_stage/bio_processes.json:282
+#: ../simulation_parameters/microbe_stage/bio_processes.json:281
 msgid "LUCIFERASE_SYNTHESIS"
 msgstr ""
 
@@ -5804,7 +5804,7 @@ msgstr ""
 msgid "MORE_INFO"
 msgstr ""
 
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:150
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:158
 msgid "MORE_INFO_PROMPT"
 msgstr ""
 
@@ -6119,6 +6119,11 @@ msgstr ""
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
 
+#: ../simulation_parameters/microbe_stage/bio_processes.json:171
+#: ../simulation_parameters/microbe_stage/bio_processes.json:181
+msgid "NITROGEN_FIXATION"
+msgstr ""
+
 #: ../simulation_parameters/microbe_stage/organelles.json:544
 msgid "NITROPLAST"
 msgstr ""
@@ -6203,7 +6208,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2545
 #: ../simulation_parameters/common/wiki.json:2600
 #: ../src/gui_common/menus/OptionsMenu.tscn:745
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:494
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:503
 #: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.GUI.cs:245
 #: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.cs:145
 #: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.cs:154
@@ -6298,7 +6303,7 @@ msgid "NO_AI"
 msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:665
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3236
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3297
 msgid "NO_DATA_TO_SHOW"
 msgstr ""
 
@@ -6318,7 +6323,7 @@ msgstr ""
 msgid "NO_MODS_ENABLED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:482
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:551
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr ""
 
@@ -6346,7 +6351,7 @@ msgstr ""
 msgid "NUCLEUS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1895
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1898
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -6370,15 +6375,15 @@ msgstr ""
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:25
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:35
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:45
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3050
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3062
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3111
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3123
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:154
-#: ../src/microbe_stage/MicrobeHUD.cs:746
+#: ../src/microbe_stage/MicrobeHUD.cs:738
 msgid "N_A"
 msgstr ""
 
 #: ../src/microbe_stage/editor/tooltips/EnvironmentalToleranceToolTip.tscn:81
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:80
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:81
 #: ../src/multicellular_stage/editor/CellTypeTooltip.tscn:107
 msgid "N_A_MP"
 msgstr ""
@@ -6516,7 +6521,7 @@ msgstr ""
 msgid "ORGANELLES_BUTTON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:427
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:436
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
 msgstr ""
 
@@ -6596,7 +6601,7 @@ msgstr ""
 msgid "ORGANISM_STATISTICS_MICROBE"
 msgstr ""
 
-#: ../src/microbe_stage/OrganelleDefinition.cs:814
+#: ../src/microbe_stage/OrganelleDefinition.cs:851
 msgid "OR_UNLOCK_CONDITION"
 msgstr ""
 
@@ -6605,7 +6610,7 @@ msgid "OSMOREGULATION"
 msgstr ""
 
 #: ../src/microbe_stage/editor/tooltips/EnvironmentalToleranceToolTip.tscn:121
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:119
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:127
 msgid "OSMOREGULATION_COST"
 msgstr ""
 
@@ -6844,7 +6849,7 @@ msgstr ""
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:509
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:585
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:373
-#: ../src/microbe_stage/MicrobeHUD.cs:450
+#: ../src/microbe_stage/MicrobeHUD.cs:447
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:141
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:144
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:156
@@ -6895,7 +6900,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:546
 #: ../simulation_parameters/microbe_stage/bio_processes.json:35
-#: ../simulation_parameters/microbe_stage/bio_processes.json:224
+#: ../simulation_parameters/microbe_stage/bio_processes.json:223
 msgid "PHOTOSYNTHESIS"
 msgstr ""
 
@@ -6912,6 +6917,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:490
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:543
 msgid "PHYSICAL_RESISTANCE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2392
+msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:205
@@ -6941,7 +6950,7 @@ msgstr ""
 msgid "PLANET_STATISTICS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:781
+#: ../src/microbe_stage/MicrobeHUD.cs:773
 msgid "PLAYER"
 msgstr ""
 
@@ -7021,7 +7030,7 @@ msgstr ""
 msgid "POPULATION_IN_PATCHES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3069
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3130
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr ""
 
@@ -7186,7 +7195,7 @@ msgid "RADIOACTIVE_CHUNK"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:1178
-#: ../simulation_parameters/microbe_stage/bio_processes.json:273
+#: ../simulation_parameters/microbe_stage/bio_processes.json:272
 msgid "RADIOSYNTHESIS"
 msgstr ""
 
@@ -7309,11 +7318,7 @@ msgstr ""
 msgid "REPRODUCTION_METHOD"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:632
-msgid "REPRODUCTION_SPORE"
-msgstr ""
-
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:100
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:101
 msgid "REQUIRES_NUCLEUS"
 msgstr ""
 
@@ -7411,7 +7416,7 @@ msgid "RESOURCE_WOOD"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
-#: ../simulation_parameters/microbe_stage/bio_processes.json:192
+#: ../simulation_parameters/microbe_stage/bio_processes.json:191
 msgid "RESPIRATION"
 msgstr ""
 
@@ -8643,8 +8648,8 @@ msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:2205
-#: ../simulation_parameters/microbe_stage/bio_processes.json:245
-#: ../simulation_parameters/microbe_stage/bio_processes.json:254
+#: ../simulation_parameters/microbe_stage/bio_processes.json:244
+#: ../simulation_parameters/microbe_stage/bio_processes.json:253
 msgid "THERMOSYNTHESIS"
 msgstr ""
 
@@ -9258,7 +9263,7 @@ msgstr ""
 msgid "UNBIND_ALL_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/PlayerMicrobeInput.cs:357
+#: ../src/microbe_stage/PlayerMicrobeInput.cs:356
 msgid "UNBIND_HELP_TEXT"
 msgstr ""
 
@@ -9426,7 +9431,7 @@ msgstr ""
 msgid "UNLOCK_CONDITION_SPEED_BELOW"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:409
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:418
 msgid "UNLOCK_WITH_ANY_OF_FOLLOWING"
 msgstr ""
 
