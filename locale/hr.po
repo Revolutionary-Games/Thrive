@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-22 17:18+0300\n"
+"POT-Creation-Date: 2026-04-27 11:05+0300\n"
 "PO-Revision-Date: 2025-09-24 02:53+0000\n"
 "Last-Translator: Emanuel Gossain <thisisfor33@gmail.com>\n"
 "Language-Team: Croatian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hr/>\n"
@@ -111,9 +111,6 @@ msgstr "Prikaži dodatne postavke"
 msgid "AEROBIC_NITROGEN_FIXATION"
 msgstr "Aerobna fiksacija dušika"
 
-msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "Aerobna fiksacija dušika"
-
 msgid "AEROBIC_RESPIRATION"
 msgstr "Aerobna fiksacija dušika"
 
@@ -199,9 +196,6 @@ msgstr "Kolićina automatskih spremanja za čuvanje:"
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Količina brzih spremanja za čuvanje:"
-
-msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "Anaerobna fiksacija dušika"
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr "i"
@@ -2694,6 +2688,14 @@ msgstr ""
 msgid "IMAGE_FILE_TYPES"
 msgstr ""
 
+#, fuzzy
+msgid "INCOMPATIBLE_MEMBRANE_LIST"
+msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] te miš koriste se za kretanje. [thrive:input]g_fire_toxin[/thrive:input] za ispucavanje [thrive:compound type=\"oxytoxy\"][/thrive:compound] ako posjeduješ vakuolu za toksin. [thrive:input]g_toggle_engulf[/thrive:input] za paljenje/gašenje gutanja. Kotač miša koristi se za podešavanje zumiranja."
+
+#, fuzzy
+msgid "INCOMPATIBLE_ORGANELLE_LIST"
+msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] te miš koriste se za kretanje. [thrive:input]g_fire_toxin[/thrive:input] za ispucavanje [thrive:compound type=\"oxytoxy\"][/thrive:compound] ako posjeduješ vakuolu za toksin. [thrive:input]g_toggle_engulf[/thrive:input] za paljenje/gašenje gutanja. Kotač miša koristi se za podešavanje zumiranja."
+
 msgid "INCREASE_ITEM_SIZE"
 msgstr ""
 
@@ -4312,6 +4314,10 @@ msgstr ""
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
 
+#, fuzzy
+msgid "NITROGEN_FIXATION"
+msgstr "Aerobna fiksacija dušika"
+
 msgid "NITROPLAST"
 msgstr ""
 
@@ -4820,6 +4826,9 @@ msgid "PHYSICAL_CONDITIONS"
 msgstr ""
 
 msgid "PHYSICAL_RESISTANCE"
+msgstr ""
+
+msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
 msgstr ""
 
 msgid "PLACE_ORGANELLE"
@@ -8841,6 +8850,12 @@ msgstr ""
 
 msgid "ZOOM_OUT"
 msgstr "Povećaj"
+
+#~ msgid "AEROBIC_NITROGEN_FIXING"
+#~ msgstr "Aerobna fiksacija dušika"
+
+#~ msgid "ANAEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Anaerobna fiksacija dušika"
 
 #, fuzzy
 #~ msgid "PROCESS_TOGGLE_TOOLTIP"

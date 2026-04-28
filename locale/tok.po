@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-22 17:18+0300\n"
+"POT-Creation-Date: 2026-04-27 11:05+0300\n"
 "PO-Revision-Date: 2023-02-06 07:13+0000\n"
 "Last-Translator: jan-sopi <jansopi303@genocide.fun>\n"
 "Language-Team: Toki Pona <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tok/>\n"
@@ -114,9 +114,6 @@ msgstr "open e lipu pi ante mute"
 msgid "AEROBIC_NITROGEN_FIXATION"
 msgstr "pali pi kon ilo kepeken kon ala"
 
-msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "pali pi kon ilo kepeken kon"
-
 #, fuzzy
 msgid "AEROBIC_RESPIRATION"
 msgstr "pali pi kon ilo kepeken kon ala"
@@ -204,9 +201,6 @@ msgstr "nanpa ni: sona musi ilo lon ilo nanpa sina:"
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "nanpa ni: sona musi lili lon ilo nanpa sina:"
-
-msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "pali pi kon ilo kepeken kon ala"
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr ""
@@ -2693,6 +2687,26 @@ msgstr ""
 msgid "IMAGE_FILE_TYPES"
 msgstr ""
 
+#, fuzzy
+msgid "INCOMPATIBLE_MEMBRANE_LIST"
+msgstr ""
+"[b]tenpo lon:[/b]\n"
+"  {0}\n"
+"[b]kule ale:[/b]\n"
+"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule  {1}; nanpa pi weka lon nanpa {2}\n"
+"[b]kule lon tenpo ni:[/b]\n"
+"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {3}; nanpa pi weka lon nanpa {4}\n"
+"[b]kule lon ma:[/b]\n"
+"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {5}; nanpa pi weka lon nanpa {6}\n"
+"[b]lon ale lon ma:[/b]\n"
+"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {7}; nanpa pi weka lon nanpa {8}\n"
+"[b]suli pi sike ante:[/b]\n"
+"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {9}; nanpa pi weka lon nanpa {10}\n"
+"[b]sona pi tomo lon sike:[/b]"
+
+msgid "INCOMPATIBLE_ORGANELLE_LIST"
+msgstr ""
+
 msgid "INCREASE_ITEM_SIZE"
 msgstr ""
 
@@ -4300,6 +4314,10 @@ msgstr ""
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
 
+#, fuzzy
+msgid "NITROGEN_FIXATION"
+msgstr "pali pi kon ilo kepeken kon ala"
+
 msgid "NITROPLAST"
 msgstr ""
 
@@ -4791,6 +4809,9 @@ msgid "PHYSICAL_CONDITIONS"
 msgstr ""
 
 msgid "PHYSICAL_RESISTANCE"
+msgstr ""
+
+msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
 msgstr ""
 
 msgid "PLACE_ORGANELLE"
@@ -8700,6 +8721,12 @@ msgstr ""
 
 msgid "ZOOM_OUT"
 msgstr ""
+
+#~ msgid "AEROBIC_NITROGEN_FIXING"
+#~ msgstr "pali pi kon ilo kepeken kon"
+
+#~ msgid "ANAEROBIC_NITROGEN_FIXATION"
+#~ msgstr "pali pi kon ilo kepeken kon ala"
 
 #, fuzzy
 #~ msgid "PROCESS_TOGGLE_TOOLTIP"

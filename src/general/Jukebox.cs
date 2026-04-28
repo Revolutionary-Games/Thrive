@@ -53,6 +53,12 @@ public partial class Jukebox : Node
         instance = this;
     }
 
+    internal enum JukeboxCommandParameters
+    {
+        Status,
+        Next,
+    }
+
     public static Jukebox Instance => instance ?? throw new InstanceNotLoadedYetException();
 
     public static bool HasInstance => instance != null;
@@ -215,6 +221,133 @@ public partial class Jukebox : Node
                 return true;
             }));
         }
+    }
+
+    [Command("jukebox", false,
+        "`jukebox status` shows the currently playing Jukebox's active category, " +
+        "current active audio players and their playing tracks.\n" +
+        "`jukebox next i (default 0)` advances the i-th active audio player's playing track to the next selection. " +
+        "i start from 0.")]
+    private static bool CommandJukebox(CommandContext context, JukeboxCommandParameters param, int index = 0)
+    {
+        switch (param)
+        {
+            case JukeboxCommandParameters.Status when !HasInstance:
+                context.PrintWarning("Jukebox has no active instance.");
+                return false;
+            case JukeboxCommandParameters.Status:
+                return Instance.PrintPlaybackStatus(context);
+            case JukeboxCommandParameters.Next:
+                return CommandJukeboxNextTrack(context, index);
+            default:
+                context.PrintWarning("Illegal parameter");
+                return false;
+        }
+    }
+
+    private static bool CommandJukeboxNextTrack(CommandContext context, int index)
+    {
+        if (!HasInstance)
+        {
+            context.PrintWarning("Jukebox has no active instance.");
+            return false;
+        }
+
+        if (Instance.operations.Count > 0)
+        {
+            context.PrintWarning("Jukebox is busy with a pending transition. Wait for it to finish before advancing.");
+            return false;
+        }
+
+        if (Instance.playingCategory == null)
+        {
+            context.PrintWarning("Jukebox is not currently playing a category.");
+            return false;
+        }
+
+        var activePlayers = Instance.GetActiveAudioPlayersForDebugCommands();
+
+        if (activePlayers.Count <= 0)
+        {
+            context.PrintWarning("Jukebox has no active track to advance.");
+            return false;
+        }
+
+        if (index < 0 || index >= activePlayers.Count)
+        {
+            context.PrintWarning(
+                $"Jukebox audio player index {index} is invalid. Valid indexes are 0-{activePlayers.Count - 1}.");
+            return false;
+        }
+
+        if (!Instance.AdvanceToNextTrack(activePlayers[index]))
+        {
+            context.PrintWarning("Jukebox has no active track to advance.");
+            return false;
+        }
+
+        context.Print($"Jukebox advanced audio player {index} to the next track.");
+        return true;
+    }
+
+    private bool PrintPlaybackStatus(CommandContext context)
+    {
+        if (playingCategory == null)
+        {
+            context.PrintWarning("Jukebox is not currently playing a category.");
+            return false;
+        }
+
+        context.Print($"Jukebox category: {playingCategory}");
+
+        var activePlayers = GetActiveAudioPlayersForDebugCommands();
+        var count = activePlayers.Count;
+
+        if (count <= 0)
+        {
+            context.PrintWarning("Jukebox has no active players.");
+            return false;
+        }
+
+        for (var i = 0; i < count; ++i)
+        {
+            var player = activePlayers[i];
+            context.Print($"audio player {i}, Bus: {player.Bus}, playing: {player.CurrentTrack}");
+        }
+
+        return true;
+    }
+
+    private List<AudioPlayer> GetActiveAudioPlayersForDebugCommands()
+    {
+        var activePlayers = new List<AudioPlayer>();
+
+        foreach (var player in audioPlayers)
+        {
+            if (player is { Playing: true, CurrentTrack: not null })
+                activePlayers.Add(player);
+        }
+
+        return activePlayers;
+    }
+
+    /// <summary>
+    ///   Advances the selected currently playing track as if it had just naturally ended.
+    /// </summary>
+    /// <returns>
+    ///   True if the selected active track was advanced; false if nothing is currently playing.
+    /// </returns>
+    private bool AdvanceToNextTrack(AudioPlayer player)
+    {
+        if (playingCategory == null)
+            return false;
+
+        if (!player.Playing || player.CurrentTrack == null)
+            return false;
+
+        player.Player.Stop();
+        OnSomeTrackEnded();
+        return true;
     }
 
     private void UpdateStreamsPauseStatus()

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-22 17:18+0300\n"
-"PO-Revision-Date: 2026-04-21 09:08+0000\n"
+"POT-Creation-Date: 2026-04-27 11:05+0300\n"
+"PO-Revision-Date: 2026-04-26 18:02+0000\n"
 "Last-Translator: 归灵祈昱 <guilingqiyu@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -111,9 +111,6 @@ msgstr "打开高级菜单"
 msgid "AEROBIC_NITROGEN_FIXATION"
 msgstr "好氧固氮"
 
-msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "好氧固氮"
-
 msgid "AEROBIC_RESPIRATION"
 msgstr "有氧呼吸作用"
 
@@ -197,9 +194,6 @@ msgstr "要保留的自动保存存档数："
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "要保留的快速保存存档数："
-
-msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "无氧固氮"
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr "和"
@@ -718,11 +712,10 @@ msgstr ""
 
 msgid "CELL_SPECIALIZATION_TOOLTIP"
 msgstr ""
-"将细胞专精于单一类型的细胞器，可获得生物代谢过程速度加成。\n"
-"当前加成为 {0}%（该加成仅在放置 {3} 个细胞器后才会生效，并随数量增加而提升，直至达到 {4} 个）。\n"
-"当前加成由 {1} 个 {2} 细胞器提供。\n"
-"放置更多该主要类型的细胞器可进一步提升加成。\n"
-"若细胞已达到最大尺寸，则需要用该主要类型的细胞器替换掉其他细胞器，才能继续提升加成。"
+"将细胞特化为使用更少种类的细胞器，可为所有生物代谢过程提供速度加成。\n"
+"当前加成为 {0}%（最大加成幅度会随着细胞尺寸的增加而提升，直至达到 {3} 个六角格）。\n"
+"当前加成由 {1} 个 {2} 六角格提供。\n"
+"放置更多该主要类型的细胞器，并移除其他类型的细胞器，即可进一步提升加成。"
 
 msgid "CELL_STAT_ROTATION_TOOLTIP"
 msgstr ""
@@ -2791,6 +2784,14 @@ msgstr "忽略其他错误"
 msgid "IMAGE_FILE_TYPES"
 msgstr "支持的图片文件"
 
+#, fuzzy
+msgid "INCOMPATIBLE_MEMBRANE_LIST"
+msgstr "[b]细胞膜数据：[/b]"
+
+#, fuzzy
+msgid "INCOMPATIBLE_ORGANELLE_LIST"
+msgstr "多个细胞器"
+
 msgid "INCREASE_ITEM_SIZE"
 msgstr "放大物体"
 
@@ -3457,19 +3458,17 @@ msgstr "L"
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "锁定昼夜循环"
 
-#, fuzzy
 msgid "LOOK_LEFT"
-msgstr "左键"
+msgstr "视角左移"
 
-#, fuzzy
 msgid "LOOK_RIGHT"
-msgstr "右键"
+msgstr "视角右移"
 
 msgid "LOOK_SCREEN_DOWN_OR_3D_TOWARDS_UP"
-msgstr ""
+msgstr "屏幕视角下移，或在3D视图中向上看"
 
 msgid "LOOK_SCREEN_UP_OR_3D_TOWARDS_DOWN"
-msgstr ""
+msgstr "屏幕视角上移，或在3D视图中向下看"
 
 msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
 msgstr "（更低数值有助于提升性能）"
@@ -4372,6 +4371,10 @@ msgstr "固氮酶是一种能用ATP和氮来产出氨的蛋白质，氨对细胞
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound type=\"ammonia\"][/thrive:compound]。速率跟[thrive:compound type=\"nitrogen\"][/thrive:compound]浓度成正比。"
 
+#, fuzzy
+msgid "NITROGEN_FIXATION"
+msgstr "好氧固氮"
+
 msgid "NITROPLAST"
 msgstr "硝化体"
 
@@ -4492,7 +4495,7 @@ msgid "NUCLEUS_DESCRIPTION"
 msgstr "真核细胞的定义特征。您看见的这个细胞核同时还包括了内质网和高尔基体。这种进化本质上是原核细胞通过吸收自身内部的另一种原核生物来发展内部膜系统。以允许它们在细胞内的不同隔间完成不同的生化过程，并防止它们相互重叠干扰。因此，膜细胞器比那些直接浮在细胞质里的玩意要复杂，高效与专业的多。无论如何，它也会让细胞变得更大并需要消耗超多的ATP维护。"
 
 msgid "NUCLEUS_SMALL_DESCRIPTION"
-msgstr "允许进化一些更加复杂的膜细胞器，并减少50%的所受伤害。需要非常多的ATP维护。此进化无法被撤销。"
+msgstr "允许进化一些更加复杂的膜细胞器，减少50%的所受伤害，同时将细胞特化的效果翻倍。需要非常多的ATP维护。此进化无法被撤销。"
 
 msgid "NUMLOCK"
 msgstr "数字锁定"
@@ -4873,6 +4876,9 @@ msgstr "物理条件"
 
 msgid "PHYSICAL_RESISTANCE"
 msgstr "物防"
+
+msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
+msgstr ""
 
 msgid "PLACE_ORGANELLE"
 msgstr "放置细胞器"
@@ -9700,6 +9706,12 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "缩小"
+
+#~ msgid "AEROBIC_NITROGEN_FIXING"
+#~ msgstr "好氧固氮"
+
+#~ msgid "ANAEROBIC_NITROGEN_FIXATION"
+#~ msgstr "无氧固氮"
 
 #~ msgid "OSMOREGULATION_COST_MULTIPLIER"
 #~ msgstr "渗透调节消耗系数"

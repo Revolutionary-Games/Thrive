@@ -206,6 +206,11 @@ public class OrganelleDefinition : RegistryType, IPlayerReadableName
     public CommonMutationFunctions.OrganelleAddStrategy SuggestionPlacement =
         CommonMutationFunctions.OrganelleAddStrategy.Spiral;
 
+    [JsonIgnore]
+    public List<MembraneType>? IncompatibleMembranes;
+
+    public string[]? IncompatibleMembraneNames;
+
     /// <summary>
     ///   Caches the rotated hexes
     /// </summary>
@@ -534,6 +539,22 @@ public class OrganelleDefinition : RegistryType, IPlayerReadableName
         return null;
     }
 
+    public bool IsIncompatibleWithMembrane(MembraneType membraneType)
+    {
+        if (IncompatibleMembranes == null)
+            return false;
+
+        for (int i = 0; i < IncompatibleMembranes.Count; ++i)
+        {
+            if (IncompatibleMembranes[i] == membraneType)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public override void Check(string name)
     {
         if (string.IsNullOrEmpty(Name))
@@ -795,6 +816,22 @@ public class OrganelleDefinition : RegistryType, IPlayerReadableName
         }
 
         ComputeTolerances();
+
+        if (IncompatibleMembraneNames != null)
+        {
+            IncompatibleMembranes = new List<MembraneType>();
+
+            for (int i = 0; i < IncompatibleMembraneNames.Length; ++i)
+            {
+                if (!parameters.DoesMembraneExist(IncompatibleMembraneNames[i]))
+                {
+                    throw new InvalidRegistryDataException(InternalName, nameof(OrganelleDefinition),
+                        "Incompatible membrane name doesn't correspond to any existent membrane");
+                }
+
+                IncompatibleMembranes.Add(parameters.GetMembrane(IncompatibleMembraneNames[i]));
+            }
+        }
     }
 
     /// <summary>

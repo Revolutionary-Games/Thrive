@@ -141,4 +141,52 @@ public static class CellBodyPlanInternalCalculations
 
         return colonyRotation / cells.Count;
     }
+
+    public static float GetAdjacencySpecializationBonusFromBodyPlan(IReadOnlyCellTemplate? cellInBodyPlan,
+        IReadOnlyIndividualLayout<IReadOnlyCellTemplate> bodyPlan)
+    {
+        var bonus = 0.0f;
+
+        // We sadly have duplicated code with the other overload as the data interfaces don't really line up, so
+        // we need to have this algorithm twice.
+        foreach (var cell in bodyPlan)
+        {
+            // Must skip self
+            if (cellInBodyPlan == cell)
+                continue;
+
+            if (cellInBodyPlan!.CellType == cell.Data!.CellType
+                && cell.Position.DistanceTo(cellInBodyPlan.Position) <= 1)
+            {
+                bonus += Constants.CELL_ADJACENCY_SPECIALIZATION_BONUS;
+            }
+        }
+
+        return 1 + bonus;
+    }
+
+    public static float GetAdjacencySpecializationBonusFromBodyPlan(IReadOnlyCellTemplate? cellInBodyPlan,
+        IReadOnlyList<HexWithData<CellTemplate>> bodyPlan)
+    {
+        var bonus = 0.0f;
+
+        // If this loop is modified, see also the other overload
+        var count = bodyPlan.Count;
+        for (int i = 0; i < count; ++i)
+        {
+            var cell = bodyPlan[i];
+
+            // Must skip self
+            if (cellInBodyPlan == cell.Data)
+                continue;
+
+            if (cellInBodyPlan!.CellType == cell.Data!.CellType
+                && cell.Position.DistanceTo(cellInBodyPlan.Position) <= 1)
+            {
+                bonus += Constants.CELL_ADJACENCY_SPECIALIZATION_BONUS;
+            }
+        }
+
+        return 1 + bonus;
+    }
 }
