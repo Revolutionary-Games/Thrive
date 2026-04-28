@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Godot;
 
 /// <summary>
@@ -145,7 +145,7 @@ public partial class MutationPointsBar : HBoxContainer
             return;
         }
 
-        var percentageFormat = Localization.Translate("PERCENTAGE_VALUE").ToString();
+        var percentageFormat = Localization.Translate("PERCENTAGE_VALUE");
         var placeholderPosition = percentageFormat.IndexOf(PercentageValuePlaceholder, StringComparison.Ordinal);
 
         if (placeholderPosition < 0)
