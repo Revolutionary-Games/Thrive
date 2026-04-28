@@ -736,7 +736,7 @@ public static class SpawnHelpers
 
                 recorder.Set(entity, new SpecializationFactor
                 {
-                    SpecializationBonus = specializationBonus,
+                    TotalSpecializationBonus = specializationBonus,
                 });
 
                 environmentalEffects.ApplyEffects(multicellularTolerances, specializationBonus, ref bioProcesses);
@@ -767,7 +767,7 @@ public static class SpawnHelpers
 
                 recorder.Set(entity, new SpecializationFactor
                 {
-                    SpecializationBonus = specializationBonus,
+                    TotalSpecializationBonus = specializationBonus,
                 });
 
                 environmentalEffects.ApplyEffects(multicellularTolerances, specializationBonus, ref bioProcesses);
@@ -799,7 +799,7 @@ public static class SpawnHelpers
 
             recorder.Set(entity, new SpecializationFactor
             {
-                SpecializationBonus = specializationBonus,
+                TotalSpecializationBonus = specializationBonus,
             });
 
             environmentalEffects.ApplyEffects(spawnEnvironment.GetSpeciesTolerances(microbeSpecies),

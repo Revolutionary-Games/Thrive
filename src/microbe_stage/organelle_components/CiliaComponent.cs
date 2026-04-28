@@ -196,7 +196,7 @@ public class CiliaComponent : IOrganelleComponent
         sharedPullData.CiliaCount = 1;
 
         // Cell specialization bonus is applied in several places
-        var specializationBonus = specializationFactor.SpecializationBonus;
+        var totalSpecializationBonus = specializationFactor.TotalSpecializationBonus;
 
         if (!microbeEntity.Has<PhysicsSensor>())
         {
@@ -205,7 +205,7 @@ public class CiliaComponent : IOrganelleComponent
 
             recorder.Add(microbeEntity, new PhysicsSensor(Constants.MAX_SIMULTANEOUS_COLLISIONS_SENSOR)
             {
-                ActiveArea = CreateCiliaDetectorShape(sharedPullData.CiliaCount, specializationBonus),
+                ActiveArea = CreateCiliaDetectorShape(sharedPullData.CiliaCount, totalSpecializationBonus),
             });
 
             worldSimulation.FinishRecordingEntityCommands(recorder);
@@ -222,7 +222,7 @@ public class CiliaComponent : IOrganelleComponent
         {
             // TODO: could dispose the old area here to release that shape data faster
 
-            sensor.ActiveArea = CreateCiliaDetectorShape(sharedPullData.CiliaCount, specializationBonus);
+            sensor.ActiveArea = CreateCiliaDetectorShape(sharedPullData.CiliaCount, totalSpecializationBonus);
             sensor.ApplyNewShape = true;
             return;
         }
@@ -276,7 +276,7 @@ public class CiliaComponent : IOrganelleComponent
             if (distance < MathUtils.EPSILON)
                 return;
 
-            float force = Constants.CILIA_PULLING_FORCE * ciliaCountForForce * specializationBonus * delta
+            float force = Constants.CILIA_PULLING_FORCE * ciliaCountForForce * totalSpecializationBonus * delta
                 / MathF.Max(1.0f, distance * Constants.CILIA_PULLING_FORCE_FALLOFF_FACTOR);
 
             ref var targetPhysics = ref pulledEntity.Get<ManualPhysicsControl>();

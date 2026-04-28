@@ -101,7 +101,7 @@ public partial class EngulfedDigestionSystem : BaseSystem<World, float>
         ref var cellProperties = ref entity.Get<CellProperties>();
         ref var position = ref entity.Get<WorldPosition>();
 
-        var specializationBonus = entity.Get<SpecializationFactor>().SpecializationBonus;
+        var totalSpecializationBonus = entity.Get<SpecializationFactor>().TotalSpecializationBonus;
 
         for (int i = engulfer.EngulfedObjects!.Count - 1; i >= 0; --i)
         {
@@ -243,7 +243,7 @@ public partial class EngulfedDigestionSystem : BaseSystem<World, float>
 
                 var amount =
                     MicrobeInternalCalculations.CalculateDigestionSpeed(organelles.AvailableEnzymes[usedEnzyme],
-                        specializationBonus);
+                        totalSpecializationBonus);
                 amount *= delta;
 
                 // Efficiency starts from Constants.ENGULF_BASE_COMPOUND_ABSORPTION_YIELD up to
@@ -251,7 +251,7 @@ public partial class EngulfedDigestionSystem : BaseSystem<World, float>
                 // are needed to achieve "maximum" efficiency
                 var efficiency =
                     MicrobeInternalCalculations.CalculateDigestionEfficiency(organelles.AvailableEnzymes[usedEnzyme],
-                        specializationBonus);
+                        totalSpecializationBonus);
 
                 var taken = MathF.Min(totalAvailable, amount);
 

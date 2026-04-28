@@ -242,7 +242,7 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
         ref OrganelleContainer organelles, ref CellProperties cellProperties,
         ref SpecializationFactor specializationFactor, Vector2[] membraneVertices, int vertexCount)
     {
-        UpdateRotationRate(ref organelles, specializationFactor.SpecializationBonus);
+        UpdateRotationRate(ref organelles, specializationFactor.TotalSpecializationBonus);
 
         var shape = PhysicsShape.GetOrCreateMicrobeShape(membraneVertices, vertexCount,
             MicrobeInternalCalculations.CalculateAverageDensity(organelles.Organelles!),
@@ -280,7 +280,7 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
             Quaternion ExtraRotation)>? memberOrganelles, Vector2[] membraneVertices, int vertexCount,
         List<(Membrane Membrane, bool Bacteria)>? colonyMembranes)
     {
-        UpdateRotationRate(ref organelles, specializationFactor.SpecializationBonus);
+        UpdateRotationRate(ref organelles, specializationFactor.TotalSpecializationBonus);
 
 #if DEBUG
         if (combinedData.Count > 0)

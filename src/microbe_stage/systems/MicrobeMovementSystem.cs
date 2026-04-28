@@ -172,7 +172,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
         var movementImpulse =
             CalculateMovementForce(entity, ref control, ref cellProperties, ref position, ref organelles,
                 ref microbeTemporaryEffects, ref strainAffected, compoundStorage.Compounds,
-                specializationFactor.SpecializationBonus, energyCostMultiplier, delta);
+                specializationFactor.TotalSpecializationBonus, energyCostMultiplier, delta);
 
         if (control.State == MicrobeState.MucocystShield)
         {
@@ -186,7 +186,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
     private Vector3 CalculateMovementForce(in Entity entity, ref MicrobeControl control,
         ref CellProperties cellProperties, ref WorldPosition position,
         ref OrganelleContainer organelles, ref MicrobeTemporaryEffects temporaryEffects, ref StrainAffected strain,
-        CompoundBag compounds, float specializationBonus, float energyCostMultiplier, float delta)
+        CompoundBag compounds, float totalSpecializationBonus, float energyCostMultiplier, float delta)
     {
         float strainMultiplier;
 
@@ -210,7 +210,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
             }
 
             // Slime jets work even when not holding down any movement keys
-            var jetMovement = CalculateMovementFromSlimeJets(ref organelles, specializationBonus);
+            var jetMovement = CalculateMovementFromSlimeJets(ref organelles, totalSpecializationBonus);
 
             if (entity.Has<MicrobeColony>())
                 jetMovement += CalculateColonyMovementFromSlimeJets(entity);
@@ -285,7 +285,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
             }
         }
 
-        force += thrustForce * specializationBonus;
+        force += thrustForce * totalSpecializationBonus;
 
         force *= cellProperties.MembraneType.MovementFactor -
             cellProperties.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER;
@@ -344,7 +344,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
 
         // Speed from jets (these are related to a non-rotated state of the cell so this is done before rotating
         // by the transform)
-        movementVector += CalculateMovementFromSlimeJets(ref organelles, specializationBonus);
+        movementVector += CalculateMovementFromSlimeJets(ref organelles, totalSpecializationBonus);
 
         // Handle colony jets
         if (hasColony)
@@ -408,7 +408,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
                 ref var specializationFactor = ref colonyMember.Get<SpecializationFactor>();
 
                 movementVector += CalculateMovementFromSlimeJets(ref memberOrganelles,
-                    specializationFactor.SpecializationBonus);
+                    specializationFactor.TotalSpecializationBonus);
             }
         }
         catch (Exception e)

@@ -7,14 +7,17 @@ public struct SpecializationFactor : IArchivableComponent
 {
     public const ushort SERIALIZATION_VERSION = 1;
 
-    public float SpecializationBonus;
+    /// <summary>
+    ///   Total applied specialization bonus for this specific cell, including any adjacency effects.
+    /// </summary>
+    public float TotalSpecializationBonus;
 
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
     public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentSpecializationFactor;
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
-        writer.Write(SpecializationBonus);
+        writer.Write(TotalSpecializationBonus);
     }
 }
 
@@ -27,7 +30,7 @@ public static class SpecializationFactorHelpers
 
         return new SpecializationFactor
         {
-            SpecializationBonus = reader.ReadFloat(),
+            TotalSpecializationBonus = reader.ReadFloat(),
         };
     }
 }

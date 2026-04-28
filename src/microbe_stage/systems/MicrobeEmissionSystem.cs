@@ -111,20 +111,20 @@ public partial class MicrobeEmissionSystem : BaseSystem<World, float>
         if (control.QueuedToxinToEmit != Compound.Invalid)
         {
             EmitProjectile(entity, ref control, ref organelles, ref cellProperties, ref soundEffectPlayer, ref position,
-                control.QueuedToxinToEmit, compounds, engulfed, false, specializationFactor.SpecializationBonus);
+                control.QueuedToxinToEmit, compounds, engulfed, false, specializationFactor.TotalSpecializationBonus);
             control.QueuedToxinToEmit = Compound.Invalid;
         }
 
         if (control.QueuedSiderophoreToEmit)
         {
             EmitProjectile(entity, ref control, ref organelles, ref cellProperties, ref soundEffectPlayer, ref position,
-                Compound.Invalid, null, engulfed, true, specializationFactor.SpecializationBonus);
+                Compound.Invalid, null, engulfed, true, specializationFactor.TotalSpecializationBonus);
             control.QueuedSiderophoreToEmit = false;
         }
 
         // This method itself checks for the preconditions on emitting slime
         HandleSlimeSecretion(entity, ref control, ref organelles, ref cellProperties, ref soundEffectPlayer,
-            ref position, compounds, engulfed, specializationFactor.SpecializationBonus, delta);
+            ref position, compounds, engulfed, specializationFactor.TotalSpecializationBonus, delta);
     }
 
     /// <summary>

@@ -447,11 +447,12 @@ public static class OrganelleContainerHelpers
         container.OrganelleVisualsCreated = false;
         container.OrganelleComponentsCached = false;
 
-        var specializationBonus = specializationFactor.SpecializationBonus;
+        // This includes any relevant adjacency effects
+        var totalSpecializationBonus = specializationFactor.TotalSpecializationBonus;
 
-        container.CalculateOrganelleLayoutStatistics(specializationBonus);
+        container.CalculateOrganelleLayoutStatistics(totalSpecializationBonus);
         container.UpdateEngulfingSizeData(ref engulfer, ref engulfable, cellProperties.IsBacteria);
-        container.UpdateCompoundBagStorageFromOrganelles(ref storage, specializationBonus);
+        container.UpdateCompoundBagStorageFromOrganelles(ref storage, totalSpecializationBonus);
 
         container.RecalculateOrganelleBioProcesses(ref bioProcesses);
     }
