@@ -391,6 +391,10 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         return ((MicrobeVisualOnlySimulation)worldSimulation).CalculateColonyPhotographDistance();
     }
 
+    /// <summary>
+    ///   The cell that gets produced by a fully grown colony that grows into its own organism.
+    ///   Might be the same as <see cref="ColonyRootCellType"/>, but might be a spore or a gamete
+    /// </summary>
     public CellType FirstCellTypeToSpawn()
     {
         if (ReproductionMethod == MulticellularReproductionMethod.Budding)
@@ -409,6 +413,15 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         }
 
         throw new NotImplementedException($"Reproduction type not implemented: {ReproductionMethod}");
+    }
+
+    /// <summary>
+    ///   Returns the cell type of the cell that can directly grow into a full colony. In advanced reproduction
+    ///   methods, this cell can be created through spore germination or gamete fusion.
+    /// </summary>
+    public CellType ColonyRootCellType()
+    {
+        return ModifiableGameplayCells[0].ModifiableCellType;
     }
 
     public override object Clone()
