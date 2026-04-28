@@ -421,7 +421,8 @@ public static class OrganelleContainerHelpers
             growth.ResetMulticellularProgress(entity, worldSimulation);
         }
 
-        container.UpdateCompoundBagStorageFromOrganelles(ref storageToUpdate, cellDefinition.CellTypeSpecializationBonus);
+        container.UpdateCompoundBagStorageFromOrganelles(ref storageToUpdate,
+            cellDefinition.CellTypeSpecializationBonus);
 
         container.RecalculateOrganelleBioProcesses(ref bioProcessesToUpdate);
 
