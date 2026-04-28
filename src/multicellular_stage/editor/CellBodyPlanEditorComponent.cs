@@ -650,6 +650,9 @@ public partial class CellBodyPlanEditorComponent :
         UpdateFinishButtonWarningVisibility();
 
         UpdateSpecializationDisplay();
+
+        // In case the cell type's name was changed
+        UpdateSporeCellDropdown();
     }
 
     /// <summary>
