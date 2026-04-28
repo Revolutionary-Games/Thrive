@@ -755,15 +755,8 @@ public partial class Jukebox : Node
             if (!list.Repeat && list.GetTracksForContexts(activeContexts).All(t => t.PlayedOnce))
                 continue;
 
-            PlayNextTrackFromList(list, index =>
-            {
-                if (index < usablePlayers.Count)
-                {
-                    return usablePlayers[index];
-                }
-
-                return NewPlayer();
-            }, nextPlayerToUse++);
+            PlayNextTrackFromList(list,
+                index => index < usablePlayers.Count ? usablePlayers[index] : NewPlayer(), nextPlayerToUse++);
         }
 
         // Set pause status for any new streams
@@ -773,34 +766,24 @@ public partial class Jukebox : Node
     private void PlayNextTrackFromList(TrackList list, Func<int, AudioPlayer> getPlayer, int playerToUse)
     {
         var mode = list.TrackOrder;
-        TrackList.Track[]? tracks = null;
+        var tracks = list.GetTracksForContexts(activeContexts);
+
+        if (tracks.Count == 0)
+            return;
 
         var random = new XoShiRo128starstar();
 
-        if (random.NextFloat() <= Constants.CONTEXTUAL_ONLY_MUSIC_CHANCE)
+        if (random.NextFloat() <= Constants.CONTEXTUAL_ONLY_MUSIC_CHANCE &&
+            TryGetContextOnlyTracks(list, tracks, out var contextOnlyTracks))
         {
-            // TODO: avoid the temporary array and lambda allocations here somehow
-            var contextMusicOnly = list.GetTracksForContexts(activeContexts)
-                .Where(c => c.ExclusiveToContexts != null && c.ResourcePath != list.LastPlayedTrackPath)
-                .ToArray();
-
-            if (contextMusicOnly.Length > 0)
-            {
-                tracks = contextMusicOnly;
-            }
+            tracks = contextOnlyTracks;
         }
 
-        tracks ??= list.GetTracksForContexts(activeContexts).ToArray();
-
-        if (tracks.Length == 0)
-            return;
+        TrackList.Track nextTrack;
 
         if (mode == TrackList.Order.Sequential)
         {
-            var nextTrack = GetNextSequentialTrack(list, tracks);
-
-            PlayTrack(getPlayer(playerToUse), nextTrack, list.TrackBus);
-            list.LastPlayedTrackPath = nextTrack.ResourcePath;
+            nextTrack = GetNextSequentialTrack(list, tracks);
         }
         else
         {
@@ -811,27 +794,43 @@ public partial class Jukebox : Node
                 // Make sure same random track is not played twice in a row
                 do
                 {
-                    nextIndex = random.Next(0, tracks.Length);
+                    nextIndex = random.Next(0, tracks.Count);
                 }
-                while (tracks.Length > 1 && tracks[nextIndex].ResourcePath == list.LastPlayedTrackPath);
+                while (tracks.Count > 1 && string.Equals(tracks[nextIndex].ResourcePath, list.LastPlayedTrackPath));
             }
             else if (mode == TrackList.Order.EntirelyRandom)
             {
-                nextIndex = random.Next(0, tracks.Length);
+                nextIndex = random.Next(0, tracks.Count);
             }
             else
             {
                 throw new InvalidOperationException("Unknown track list order type");
             }
 
-            PlayTrack(getPlayer(playerToUse), tracks[nextIndex], list.TrackBus);
-            list.LastPlayedTrackPath = tracks[nextIndex].ResourcePath;
+            nextTrack = tracks[nextIndex];
         }
+
+        PlayTrack(getPlayer(playerToUse), nextTrack, list.TrackBus);
+        list.LastPlayedTrackPath = nextTrack.ResourcePath;
     }
 
-    private TrackList.Track GetNextSequentialTrack(TrackList list, TrackList.Track[] playableTracks)
+    private bool TryGetContextOnlyTracks(TrackList list, List<TrackList.Track> tracks, out List<TrackList.Track> contextOnlyTracks)
     {
-        if (playableTracks.Length == 1 || string.IsNullOrEmpty(list.LastPlayedTrackPath))
+        contextOnlyTracks = [];
+        foreach (var track in tracks)
+        {
+            if (track.ExclusiveToContexts != null && track.ResourcePath != list.LastPlayedTrackPath)
+            {
+                contextOnlyTracks.Add(track);
+            }
+        }
+
+        return contextOnlyTracks.Count != 0;
+    }
+
+    private TrackList.Track GetNextSequentialTrack(TrackList list, List<TrackList.Track> playableTracks)
+    {
+        if (playableTracks.Count == 1 || string.IsNullOrEmpty(list.LastPlayedTrackPath))
             return playableTracks[0];
 
         var orderedTracks = list.GetAllTracks();
@@ -839,7 +838,7 @@ public partial class Jukebox : Node
 
         for (var i = 0; i < orderedTracks.Count; ++i)
         {
-            if (orderedTracks[i].ResourcePath != list.LastPlayedTrackPath)
+            if (!string.Equals(orderedTracks[i].ResourcePath, list.LastPlayedTrackPath))
                 continue;
 
             lastIndex = i;
@@ -859,11 +858,11 @@ public partial class Jukebox : Node
         return playableTracks[0];
     }
 
-    private bool IsTrackPlayable(TrackList.Track[] playableTracks, TrackList.Track candidate)
+    private bool IsTrackPlayable(List<TrackList.Track> playableTracks, TrackList.Track candidate)
     {
         foreach (var track in playableTracks)
         {
-            if (ReferenceEquals(track, candidate))
+            if (string.Equals(track.ResourcePath, candidate.ResourcePath))
                 return true;
         }
 

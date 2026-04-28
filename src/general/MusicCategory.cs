@@ -137,9 +137,16 @@ public class TrackList
         }
     }
 
-    public IEnumerable<Track> GetTracksForContexts(MusicContext[]? contexts)
+    public List<Track> GetTracksForContexts(MusicContext[]? contexts)
     {
-        return Tracks.Where(t => CheckIfTrackValidInContext(t, contexts));
+        var list = new List<Track>();
+        foreach (var t in Tracks)
+        {
+            if (CheckIfTrackValidInContext(t, contexts))
+                list.Add(t);
+        }
+
+        return list;
     }
 
     /// <summary>
