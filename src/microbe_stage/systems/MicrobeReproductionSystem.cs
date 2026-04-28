@@ -599,8 +599,8 @@ public partial class MicrobeReproductionSystem : BaseSystem<World, float>
 
             // Return the first cell to its normal, non-duplicated cell arrangement and spawn a daughter cell
             organelles.ResetOrganelleLayout(ref entity.Get<CompoundStorage>(),
-                ref entity.Get<BioProcesses>(), ref environmentalEffects,
-                entity, species, species, worldSimulation, workData1, workData2);
+                ref entity.Get<BioProcesses>(), ref entity.Get<SpecializationFactor>(),
+                in environmentalEffects, entity, species, species, worldSimulation, workData1, workData2);
 
             // This is purely inside this lock to suppress a warning on worldSimulation
             cellProperties.Divide(ref organelles, entity, species, worldSimulation, spawnEnvironment,

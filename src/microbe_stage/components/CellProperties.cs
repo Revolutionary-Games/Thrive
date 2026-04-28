@@ -511,7 +511,8 @@ public static class CellPropertiesHelpers
         // Reset all the duplicate organelles / reproduction progress of the entity
         // This also resets multicellular creature's reproduction progress
         organelleContainer.ResetOrganelleLayout(ref entity.Get<CompoundStorage>(), ref entity.Get<BioProcesses>(),
-            in environmentalEffects, entity, newDefinition, baseReproductionCostFrom, worldSimulation, workMemory1,
+            ref entity.Get<SpecializationFactor>(), in environmentalEffects, entity, newDefinition,
+            baseReproductionCostFrom, worldSimulation, workMemory1,
             workMemory2);
 
         // Reset runtime colour
