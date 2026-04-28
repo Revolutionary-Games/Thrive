@@ -114,8 +114,8 @@ public partial class MutationPointsBar : HBoxContainer
                 mutationPointsArrow.Show();
                 resultingMutationPointsLabel.Show();
 
-                currentMutationPointsLabel.Text = $"{percentagePrefix}({currentMutationPoints:0.#}";
-                resultingMutationPointsLabel.Text = $"{possibleMutationPoints:F0})";
+                currentMutationPointsLabel.Text = $"({percentagePrefix}{currentMutationPoints:0.#}";
+                resultingMutationPointsLabel.Text = $"{percentagePrefix}{possibleMutationPoints:F0})";
             }
             else
             {
@@ -125,7 +125,7 @@ public partial class MutationPointsBar : HBoxContainer
                 currentMutationPointsLabel.Text = $"{percentagePrefix}{currentMutationPoints:0.#}";
             }
 
-            baseMutationPointsLabel.Text = $"/ {Constants.BASE_MUTATION_POINTS:F0}{percentageSuffix}";
+            baseMutationPointsLabel.Text = $"/ {percentagePrefix}{Constants.BASE_MUTATION_POINTS:F0}{percentageSuffix}";
         }
     }
 
