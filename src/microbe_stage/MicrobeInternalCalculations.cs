@@ -504,33 +504,29 @@ public static class MicrobeInternalCalculations
     /// </returns>
     public static Dictionary<Compound, (float TimeToFill, float Storage)> CalculateDayVaryingCompoundsFillTimes(
         IReadOnlyList<OrganelleTemplate> organelles, MembraneType membraneType, bool moving, bool playerSpecies,
-        BiomeConditions biomeConditions, ResolvedMicrobeTolerances environmentalTolerances,
-        WorldGenerationSettings worldSettings)
+        float totalSpecializationBonus, BiomeConditions biomeConditions,
+        ResolvedMicrobeTolerances environmentalTolerances, WorldGenerationSettings worldSettings)
     {
         var energyBalance = new EnergyBalanceInfoSimple();
 
-        // Note this assumes this is only used just for single cell types or microbe species!
-        var specialization = CalculateSpecializationBonus(organelles,
-            new Dictionary<OrganelleDefinition, int>());
-
         var maximumMovementDirection = MaximumSpeedDirection(organelles);
-        ProcessSystem.ComputeEnergyBalanceSimple(organelles, biomeConditions, environmentalTolerances, specialization,
-            membraneType, maximumMovementDirection, moving, playerSpecies, worldSettings, CompoundAmountType.Biome,
-            null, energyBalance);
+        ProcessSystem.ComputeEnergyBalanceSimple(organelles, biomeConditions, environmentalTolerances,
+            totalSpecializationBonus, membraneType, maximumMovementDirection, moving, playerSpecies,
+            worldSettings, CompoundAmountType.Biome, null, energyBalance);
 
         var compoundBalances = new Dictionary<Compound, CompoundBalance>();
 
         ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles, biomeConditions, environmentalTolerances,
-            specialization, CompoundAmountType.Biome, energyBalance, compoundBalances);
+            totalSpecializationBonus, CompoundAmountType.Biome, energyBalance, compoundBalances);
 
         // TODO: is it fine to use energy balance calculated with the biome numbers here?
         var minimums = new Dictionary<Compound, CompoundBalance>();
 
         ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles, biomeConditions, environmentalTolerances,
-            specialization, CompoundAmountType.Minimum, energyBalance, minimums);
+            totalSpecializationBonus, CompoundAmountType.Minimum, energyBalance, minimums);
 
         var cachedCapacities =
-            GetTotalSpecificCapacity(organelles, specialization, out var cachedCapacity);
+            GetTotalSpecificCapacity(organelles, totalSpecializationBonus, out var cachedCapacity);
 
         var result = new Dictionary<Compound, (float TimeToFill, float Storage)>();
 

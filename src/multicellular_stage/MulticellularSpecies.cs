@@ -277,10 +277,12 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         {
             if (!cachedFillTimes.TryGetValue(biome, out compoundTimes))
             {
+                var totalSpecializationBonus = ModifiableGameplayCells[0].CellTypeSpecializationBonus *
+                    GetAdjacencySpecializationBonus(0);
                 // TODO: should moving be false in some cases?
                 compoundTimes = MicrobeInternalCalculations.CalculateDayVaryingCompoundsFillTimes(
                     cellType.ModifiableOrganelles, cellType.MembraneType, true, PlayerSpecies,
-                    microbeSpawnEnvironment.CurrentBiome, resolvedTolerances,
+                    totalSpecializationBonus, microbeSpawnEnvironment.CurrentBiome, resolvedTolerances,
                     microbeSpawnEnvironment.WorldSettings);
                 cachedFillTimes[biome] = compoundTimes;
             }

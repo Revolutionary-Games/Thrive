@@ -346,7 +346,8 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
             {
                 // TODO: should moving be false in some cases?
                 compoundTimes = MicrobeInternalCalculations.CalculateDayVaryingCompoundsFillTimes(Organelles,
-                    MembraneType, true, PlayerSpecies, biome, resolvedTolerances, spawnEnvironment.WorldSettings);
+                    MembraneType, true, PlayerSpecies, CellTypeSpecializationBonus, biome, resolvedTolerances,
+                    spawnEnvironment.WorldSettings);
                 cachedFillTimes[biome] = compoundTimes;
             }
         }
