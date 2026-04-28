@@ -706,7 +706,7 @@ public static class SpawnHelpers
         };
 
         // Needed for later calculations
-        float specializationBonus;
+        float totalSpecializationBonus;
 
         if (species is MulticellularSpecies multicellularSpecies)
         {
@@ -731,15 +731,15 @@ public static class SpawnHelpers
                 membraneType = properties.MembraneType;
                 recorder.Set(entity, properties);
 
-                specializationBonus = resolvedCellType.CellTypeSpecializationBonus *
+                totalSpecializationBonus = resolvedCellType.CellTypeSpecializationBonus *
                     multicellularSpecies.GetAdjacencySpecializationBonus(multicellularData.CellBodyPlanIndex);
 
                 recorder.Set(entity, new SpecializationFactor
                 {
-                    TotalSpecializationBonus = specializationBonus,
+                    TotalSpecializationBonus = totalSpecializationBonus,
                 });
 
-                environmentalEffects.ApplyEffects(multicellularTolerances, specializationBonus, ref bioProcesses);
+                environmentalEffects.ApplyEffects(multicellularTolerances, totalSpecializationBonus, ref bioProcesses);
 
                 // TODO: should this also be given MulticellularGrowth to allow this to grow fully if the colony splits
             }
@@ -762,15 +762,15 @@ public static class SpawnHelpers
                 // this one more variable)
                 recorder.Add(entity, new MulticellularGrowth(multicellularSpecies));
 
-                specializationBonus = resolvedCellType.CellTypeSpecializationBonus *
+                totalSpecializationBonus = resolvedCellType.CellTypeSpecializationBonus *
                     multicellularSpecies.GetAdjacencySpecializationBonus(multicellularData.CellBodyPlanIndex);
 
                 recorder.Set(entity, new SpecializationFactor
                 {
-                    TotalSpecializationBonus = specializationBonus,
+                    TotalSpecializationBonus = totalSpecializationBonus,
                 });
 
-                environmentalEffects.ApplyEffects(multicellularTolerances, specializationBonus, ref bioProcesses);
+                environmentalEffects.ApplyEffects(multicellularTolerances, totalSpecializationBonus, ref bioProcesses);
             }
 
 #if DEBUG
@@ -795,15 +795,16 @@ public static class SpawnHelpers
             membraneType = properties.MembraneType;
             recorder.Set(entity, properties);
 
-            specializationBonus = usedCellDefinition.CellTypeSpecializationBonus;
+            // No cells to be adjacent to, so total specialization = cell type specialization
+            totalSpecializationBonus = usedCellDefinition.CellTypeSpecializationBonus;
 
             recorder.Set(entity, new SpecializationFactor
             {
-                TotalSpecializationBonus = specializationBonus,
+                TotalSpecializationBonus = totalSpecializationBonus,
             });
 
             environmentalEffects.ApplyEffects(spawnEnvironment.GetSpeciesTolerances(microbeSpecies),
-                specializationBonus, ref bioProcesses);
+                totalSpecializationBonus, ref bioProcesses);
 
             if (multicellularData.MulticellularCellType != null)
                 GD.PrintErr("Multicellular cell type may not be set when spawning a MicrobeSpecies instance");
@@ -838,7 +839,7 @@ public static class SpawnHelpers
 
             // Run the storage update logic for the first time (to ensure consistency with later updates)
             // This has to be called as CreateOrganelleLayout doesn't do this automatically
-            container.UpdateCompoundBagStorageFromOrganelles(ref storage, specializationBonus);
+            container.UpdateCompoundBagStorageFromOrganelles(ref storage, totalSpecializationBonus);
 
             var engulfable = new Engulfable(PhagocytosisPhase.None, Entity.Null)
             {
