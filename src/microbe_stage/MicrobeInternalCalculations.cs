@@ -95,8 +95,9 @@ public static class MicrobeInternalCalculations
     /// </summary>
     /// <param name="compoundBag">Target compound bag to set info in (this doesn't update nominal capacity)</param>
     /// <param name="organelles">Organelles to find specific capacity from</param>
-    /// <param name="totalSpecializationBonus">The cell specialization bonus for this microbe/cell,
-    /// including adjacency when relevant</param>
+    /// <param name="totalSpecializationBonus">
+    ///   The cell specialization bonus for this microbe/cell, including adjacency when relevant
+    /// </param>
     public static void UpdateSpecificCapacities(CompoundBag compoundBag, IReadOnlyList<PlacedOrganelle> organelles,
         float totalSpecializationBonus)
     {

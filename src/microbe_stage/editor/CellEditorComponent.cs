@@ -1545,7 +1545,8 @@ public partial class CellEditorComponent :
         var totalSpecializationBonus = MicrobeInternalCalculations.CalculateSpecializationBonus(
             editedMicrobeOrganelles.Organelles, tempMemory3);
 
-        return MicrobeInternalCalculations.CalculateTotalDigestionSpeed(editedMicrobeOrganelles, totalSpecializationBonus);
+        return MicrobeInternalCalculations.CalculateTotalDigestionSpeed(editedMicrobeOrganelles,
+            totalSpecializationBonus);
     }
 
     public Dictionary<Enzyme, float> CalculateDigestionEfficiencies()
