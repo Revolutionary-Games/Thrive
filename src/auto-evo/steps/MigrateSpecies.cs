@@ -78,10 +78,6 @@ public class MigrateSpecies : IRunStep
             shuffledNeighbours.Clear();
             foreach (var adjacent in patch.Adjacent)
             {
-                // Don't waste calculation time or migration attempts on migrating to patches the species is already in
-                if (adjacent.SpeciesInPatch.ContainsKey(species))
-                    continue;
-
                 if (adjacent.SpeciesInPatch.Count < 1)
                 {
                     shuffledNeighbours.Add(adjacent);
