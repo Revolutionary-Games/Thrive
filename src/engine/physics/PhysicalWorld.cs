@@ -598,12 +598,14 @@ internal static partial class NativeMethods
     internal static extern void DestroyPhysicalWorld(IntPtr physicalWorld);
 
     [DllImport("thrive_native")]
+    [return: MarshalAs(UnmanagedType.U1)]
     internal static extern bool ProcessPhysicalWorld(IntPtr physicalWorld, float delta);
 
     [DllImport("thrive_native")]
     internal static extern void ProcessPhysicalWorldInBackground(IntPtr physicalWorld, float delta);
 
     [DllImport("thrive_native")]
+    [return: MarshalAs(UnmanagedType.U1)]
     internal static extern bool WaitForPhysicsToCompleteInPhysicalWorld(IntPtr physicalWorld);
 
     [DllImport("thrive_native")]
