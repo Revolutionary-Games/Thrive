@@ -87,7 +87,7 @@ public class MigrateSpecies : IRunStep
             shuffledNeighbours.Shuffle(random);
 
             // Try to generate a migration. If successful, do not try non-empty target patches.
-            if (GenerateMigrations(results, shuffledNeighbours, usedTargets, patch, population, attemptsLeft))
+            if (GenerateMigrations(results, shuffledNeighbours, usedTargets, patch, population, ref attemptsLeft))
                 continue;
 
             // Try all non-empty neighbor patches in random order
@@ -106,14 +106,14 @@ public class MigrateSpecies : IRunStep
 
             shuffledNeighbours.Shuffle(random);
 
-            GenerateMigrations(results, shuffledNeighbours, usedTargets, patch, population, attemptsLeft);
+            GenerateMigrations(results, shuffledNeighbours, usedTargets, patch, population, ref attemptsLeft);
         }
 
         return true;
     }
 
     private bool GenerateMigrations(RunResults results, List<Patch> shuffledNeighbours, HashSet<Patch> usedTargets,
-        Patch patch, long population, int attemptsLeft)
+        Patch patch, long population, ref int attemptsLeft)
     {
         var generatedMigration = false;
         foreach (var target in shuffledNeighbours)
