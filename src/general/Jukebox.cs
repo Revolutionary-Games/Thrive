@@ -734,7 +734,12 @@ public partial class Jukebox : Node
         var needToStartFrom = new List<TrackList>();
 
         var activeTracks = PlayingTracks;
-        var usablePlayers = audioPlayers.Where(p => !p.Playing).ToList();
+        var usablePlayers = new List<AudioPlayer>();
+        foreach (var p in audioPlayers)
+        {
+            if (!p.Playing)
+                usablePlayers.Add(p);
+        }
 
         foreach (var list in target.TrackLists)
         {
@@ -748,22 +753,23 @@ public partial class Jukebox : Node
             needToStartFrom.Add(list);
         }
 
-        int nextPlayerToUse = 0;
+        var nextPlayerToUse = 0;
 
         foreach (var list in needToStartFrom)
         {
             if (!list.Repeat && list.GetTracksForContexts(activeContexts).All(t => t.PlayedOnce))
                 continue;
 
-            PlayNextTrackFromList(list,
-                index => index < usablePlayers.Count ? usablePlayers[index] : NewPlayer(), nextPlayerToUse++);
+            var player = nextPlayerToUse < usablePlayers.Count ? usablePlayers[nextPlayerToUse] : NewPlayer();
+            nextPlayerToUse++;
+            PlayNextTrackFromList(list, player);
         }
 
         // Set pause status for any new streams
         UpdateStreamsPauseStatus();
     }
 
-    private void PlayNextTrackFromList(TrackList list, Func<int, AudioPlayer> getPlayer, int playerToUse)
+    private void PlayNextTrackFromList(TrackList list, AudioPlayer player)
     {
         var mode = list.TrackOrder;
         var tracks = list.GetTracksForContexts(activeContexts);
@@ -810,7 +816,7 @@ public partial class Jukebox : Node
             nextTrack = tracks[nextIndex];
         }
 
-        PlayTrack(getPlayer(playerToUse), nextTrack, list.TrackBus);
+        PlayTrack(player, nextTrack, list.TrackBus);
         list.LastPlayedTrackPath = nextTrack.ResourcePath;
     }
 
