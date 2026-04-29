@@ -115,7 +115,6 @@ public class MigrateSpecies : IRunStep
     private bool GenerateMigrations(RunResults results, List<Patch> shuffledNeighbours, HashSet<Patch> usedTargets,
         Patch patch, long population, ref int attemptsLeft)
     {
-        var generatedMigration = false;
         foreach (var target in shuffledNeighbours)
         {
             // Skip checking population send to the same patch multiple times
@@ -136,13 +135,13 @@ public class MigrateSpecies : IRunStep
                 usedTargets.Add(target);
 
                 // Only one migration per patch
-                break;
+                return true;
             }
 
             if (attemptsLeft <= 0)
                 break;
         }
 
-        return generatedMigration;
+        return false;
     }
 }
