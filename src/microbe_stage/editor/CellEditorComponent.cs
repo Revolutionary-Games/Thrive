@@ -1532,8 +1532,8 @@ public partial class CellEditorComponent :
     public Dictionary<Compound, float> GetAdditionalCapacities(out float nominalCapacity)
     {
         // Treats cellTypeSpecializationBonus as totalSpecializationBonus, because adjacency is ignored in this editor.
-        var totalSpecializationBonus = MicrobeInternalCalculations.CalculateSpecializationBonus(
-            editedMicrobeOrganelles.Organelles, tempMemory3);
+        var totalSpecializationBonus =
+            MicrobeInternalCalculations.CalculateSpecializationBonus(editedMicrobeOrganelles.Organelles, tempMemory3);
 
         return MicrobeInternalCalculations.GetTotalSpecificCapacity(editedMicrobeOrganelles,
             totalSpecializationBonus, out nominalCapacity);
