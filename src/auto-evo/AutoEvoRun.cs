@@ -22,8 +22,6 @@ public class AutoEvoRun
     /// </summary>
     private readonly RunResults results = new();
 
-    private readonly object totalStepsLock = new();
-
     /// <summary>
     ///   Generated steps are stored here until they are executed
     /// </summary>
@@ -670,12 +668,16 @@ public class AutoEvoRun
     private void UpdateTotalStepsEstimate()
     {
         var estimate = CompleteSteps + runSteps.Sum(s => s.TotalSteps) + 1;
+        int current;
 
-        lock (totalStepsLock)
+        do
         {
-            if (estimate > totalSteps)
-                totalSteps = estimate;
+            current = totalSteps;
+
+            if (estimate <= current)
+                return;
         }
+        while (Interlocked.CompareExchange(ref totalSteps, estimate, current) != current);
     }
 
     private void UpdateMap(bool playerCantGoExtinct)
