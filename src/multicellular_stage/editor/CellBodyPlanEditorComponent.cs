@@ -791,7 +791,7 @@ public partial class CellBodyPlanEditorComponent :
 
     protected override bool IsMoveTargetValid(Hex position, int rotation, HexWithData<CellTemplate> cell)
     {
-        return editedMicrobeCells.CanPlace(cell, hexTemporaryMemory, hexTemporaryMemory2);
+        return editedMicrobeCells.CanPlace(position);
     }
 
     protected override void OnCurrentActionCanceled()
