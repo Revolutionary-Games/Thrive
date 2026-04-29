@@ -140,10 +140,10 @@ public class TrackList
     public List<Track> GetTracksForContexts(MusicContext[]? contexts)
     {
         var list = new List<Track>();
-        foreach (var t in Tracks)
+        foreach (var track in Tracks)
         {
-            if (CheckIfTrackValidInContext(t, contexts))
-                list.Add(t);
+            if (CheckIfTrackValidInContext(track, contexts))
+                list.Add(track);
         }
 
         return list;

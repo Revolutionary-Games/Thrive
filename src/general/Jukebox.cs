@@ -796,7 +796,7 @@ public partial class Jukebox : Node
                 {
                     nextIndex = random.Next(0, tracks.Count);
                 }
-                while (tracks.Count > 1 && string.Equals(tracks[nextIndex].ResourcePath, list.LastPlayedTrackPath));
+                while (tracks.Count > 1 && tracks[nextIndex].ResourcePath == list.LastPlayedTrackPath);
             }
             else if (mode == TrackList.Order.EntirelyRandom)
             {
@@ -839,7 +839,7 @@ public partial class Jukebox : Node
 
         for (var i = 0; i < orderedTracks.Count; ++i)
         {
-            if (!string.Equals(orderedTracks[i].ResourcePath, list.LastPlayedTrackPath))
+            if (orderedTracks[i].ResourcePath != list.LastPlayedTrackPath)
                 continue;
 
             lastIndex = i;
@@ -908,12 +908,17 @@ public partial class Jukebox : Node
             foreach (var track in list.GetAllTracks())
             {
                 track.WasPlaying = PlayingTracks.Contains(track.ResourcePath);
-                if (track.WasPlaying)
+                if (!track.WasPlaying)
+                    continue;
+
+                foreach (var p in audioPlayers)
                 {
+                    if (!p.Playing || p.CurrentTrack != track.ResourcePath)
+                        continue;
+
                     // Store the position to resume from
-                    track.PreviousPlayedPosition = audioPlayers
-                        .Where(p => p.Playing && p.CurrentTrack == track.ResourcePath)
-                        .Select(p => p.Player.GetPlaybackPosition()).First();
+                    track.PreviousPlayedPosition = p.Player.GetPlaybackPosition();
+                    break;
                 }
             }
         }
