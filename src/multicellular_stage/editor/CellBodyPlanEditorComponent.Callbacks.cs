@@ -127,7 +127,7 @@ public partial class CellBodyPlanEditorComponent
     {
         ReproductionMethod = data.NewReproductionMethod;
 
-        if (ReproductionMethod == MulticellularReproductionMethod.Spore)
+        if (ReproductionMethod == MulticellularReproductionMethod.Sporulation)
             OnReproductionMethodChangedToSpore();
 
         UpdateReproductionDropdownChoice();
@@ -138,7 +138,7 @@ public partial class CellBodyPlanEditorComponent
     {
         ReproductionMethod = data.OldReproductionMethod;
 
-        if (ReproductionMethod == MulticellularReproductionMethod.Spore)
+        if (ReproductionMethod == MulticellularReproductionMethod.Sporulation)
             OnReproductionMethodChangedToSpore();
 
         UpdateReproductionDropdownChoice();

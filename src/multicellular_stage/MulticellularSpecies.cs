@@ -401,7 +401,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         {
             return ModifiableGameplayCells[0].ModifiableCellType;
         }
-        else if (ReproductionMethod == MulticellularReproductionMethod.Spore)
+        else if (ReproductionMethod == MulticellularReproductionMethod.Sporulation)
         {
             if (ModifiableSporeCellType == null)
             {

@@ -748,7 +748,7 @@ public static class SpawnHelpers
                 {
                     resolvedCellType = multicellularSpecies.FirstCellTypeToSpawn();
 
-                    if (multicellularSpecies.ReproductionMethod == MulticellularReproductionMethod.Spore)
+                    if (multicellularSpecies.ReproductionMethod == MulticellularReproductionMethod.Sporulation)
                         growth.IsASpore = true;
                 }
                 else

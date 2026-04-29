@@ -1,7 +1,7 @@
 ﻿public enum MulticellularReproductionMethod
 {
     Budding,
-    Spore,
+    Sporulation,
     SexualIsogamy,
     SexualAnisogamy,
 }

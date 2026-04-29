@@ -961,7 +961,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             // Allow updating the first cell type to reproduce (reproduction order changed)
             multicellularSpeciesType.MulticellularCellType = multicellularSpeciesType.Species.FirstCellTypeToSpawn();
 
-            if (multicellularSpeciesType.Species.ReproductionMethod == MulticellularReproductionMethod.Spore)
+            if (multicellularSpeciesType.Species.ReproductionMethod == MulticellularReproductionMethod.Sporulation)
             {
                 Player.Get<MulticellularGrowth>().IsASpore = true;
             }

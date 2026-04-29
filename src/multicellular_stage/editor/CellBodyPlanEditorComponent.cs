@@ -141,7 +141,10 @@ public partial class CellBodyPlanEditorComponent :
     private OptionButton sporeCellTypeDropdown = null!;
 
     [Export]
-    private Control sporeReproductionSettings = null!;
+    private Control buddingReproductionSection = null!;
+
+    [Export]
+    private Control sporeReproductionSection = null!;
 #pragma warning restore CA2213
 
     private string newName = "unset";
@@ -2009,7 +2012,8 @@ public partial class CellBodyPlanEditorComponent :
     {
         reproductionMethodDropdown.Select((int)ReproductionMethod);
 
-        sporeReproductionSettings.Visible = ReproductionMethod == MulticellularReproductionMethod.Spore;
+        buddingReproductionSection.Visible = ReproductionMethod == MulticellularReproductionMethod.Budding;
+        sporeReproductionSection.Visible = ReproductionMethod == MulticellularReproductionMethod.Sporulation;
     }
 
     private void UpdateSporeCellDropdown()
