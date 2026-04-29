@@ -209,8 +209,6 @@ internal static partial class NativeMethods
     [DllImport("thrive_native")]
     internal static extern void ReleasePhysicsBodyReference(IntPtr body);
 
-    // TODO: find out why this had to be converted to have return type "byte" instead of bool
-    // BUG: https://github.com/Revolutionary-Games/Thrive/issues/5676
     [DllImport("thrive_native")]
     [return: MarshalAs(UnmanagedType.U1)]
     internal static extern bool PhysicsBodyIsDetached(IntPtr body);
