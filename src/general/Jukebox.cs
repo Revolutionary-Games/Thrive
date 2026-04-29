@@ -814,7 +814,8 @@ public partial class Jukebox : Node
         list.LastPlayedTrackPath = nextTrack.ResourcePath;
     }
 
-    private bool TryGetContextOnlyTracks(TrackList list, List<TrackList.Track> tracks, out List<TrackList.Track> contextOnlyTracks)
+    private bool TryGetContextOnlyTracks(TrackList list, List<TrackList.Track> tracks,
+        out List<TrackList.Track> contextOnlyTracks)
     {
         contextOnlyTracks = [];
         foreach (var track in tracks)
