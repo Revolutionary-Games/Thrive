@@ -1542,8 +1542,8 @@ public partial class CellEditorComponent :
     public float CalculateTotalDigestionSpeed()
     {
         // Treats cellTypeSpecializationBonus as totalSpecializationBonus, because adjacency is ignored in this editor.
-        var totalSpecializationBonus = MicrobeInternalCalculations.CalculateSpecializationBonus(
-            editedMicrobeOrganelles.Organelles, tempMemory3);
+        var totalSpecializationBonus =
+            MicrobeInternalCalculations.CalculateSpecializationBonus(editedMicrobeOrganelles.Organelles, tempMemory3);
 
         return MicrobeInternalCalculations.CalculateTotalDigestionSpeed(editedMicrobeOrganelles,
             totalSpecializationBonus);
@@ -1552,8 +1552,8 @@ public partial class CellEditorComponent :
     public Dictionary<Enzyme, float> CalculateDigestionEfficiencies()
     {
         // Treats cellTypeSpecializationBonus as totalSpecializationBonus, because adjacency is ignored in this editor.
-        var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(
-            editedMicrobeOrganelles.Organelles, tempMemory3);
+        var specialization =
+            MicrobeInternalCalculations.CalculateSpecializationBonus(editedMicrobeOrganelles.Organelles, tempMemory3);
 
         return MicrobeInternalCalculations.CalculateDigestionEfficiencies(editedMicrobeOrganelles, specialization);
     }
