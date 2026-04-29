@@ -18,7 +18,7 @@ public class MulticellularReproductionActionData : EditorCombinableActionData<Mu
     public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
 
     public override ArchiveObjectType ArchiveObjectType =>
-    (ArchiveObjectType)ThriveArchiveObjectType.MulticellularReproductionActionData;
+        (ArchiveObjectType)ThriveArchiveObjectType.MulticellularReproductionActionData;
 
     public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
     {

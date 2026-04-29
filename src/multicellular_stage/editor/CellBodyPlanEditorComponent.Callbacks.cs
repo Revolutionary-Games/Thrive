@@ -163,10 +163,7 @@ public partial class CellBodyPlanEditorComponent
     private void OnReproductionMethodChangedToSpore()
     {
         // Set a default spore cell type
-        if (SporeCellType == null)
-        {
-            SporeCellType = Editor.EditedSpecies.ModifiableCellTypes[0];
-        }
+        SporeCellType ??= Editor.EditedSpecies.ModifiableCellTypes[0];
 
         UpdateSporeCellDropdown();
     }
