@@ -19,6 +19,9 @@ public partial class Jukebox : Node
     private readonly List<AudioPlayer> audioPlayers = [];
     private readonly List<TrackList.Track> playableTracks = [];
     private readonly List<TrackList.Track> contextOnlyTracks = [];
+    private readonly List<TrackList> missingTrackLists = [];
+    private readonly List<AudioPlayer> usableAudioPlayers = [];
+    private readonly List<string> activePlayingTracks = [];
 
     private readonly Queue<Operation> operations = new();
 
@@ -735,56 +738,86 @@ public partial class Jukebox : Node
     private void StartPlayingFromMissingLists(MusicCategory target)
     {
         // Find track lists that don't have a playing track in them and reallocate players for those
-        var needToStartFrom = new List<TrackList>();
-
-        var activeTracks = PlayingTracks;
-        var usablePlayers = new List<AudioPlayer>();
-        foreach (var p in audioPlayers)
-        {
-            if (!p.Playing)
-                usablePlayers.Add(p);
-        }
+        missingTrackLists.Clear();
+        UpdateActivePlayingTracks();
+        UpdateUsableAudioPlayers();
 
         foreach (var list in target.TrackLists)
         {
             // Detecting playing tracks doesn't take context restrictions into account to allow context to change but
             // not then force 2 tracks to play at the same time from the same track list if the context switch didn't
             // force tracks to end
-            var trackResources = list.GetAllTracks().Select(t => t.ResourcePath);
-            if (activeTracks.Any(trackResources.Contains))
+            if (TrackListHasActiveTrack(list))
                 continue;
 
-            needToStartFrom.Add(list);
+            missingTrackLists.Add(list);
         }
 
         var nextPlayerToUse = 0;
 
-        foreach (var list in needToStartFrom)
+        foreach (var list in missingTrackLists)
         {
-            if (!list.Repeat)
-            {
-                list.GetTracksForContexts(activeContexts, playableTracks);
+            if (!ShouldStartTrackFromList(list))
+                continue;
 
-                var allTracksPlayedOnce = true;
-                foreach (var track in playableTracks)
-                {
-                    if (track.PlayedOnce)
-                        continue;
-
-                    allTracksPlayedOnce = false;
-                    break;
-                }
-
-                if (allTracksPlayedOnce)
-                    continue;
-            }
-
-            PlayNextTrackFromList(list, usablePlayers, nextPlayerToUse);
+            PlayNextTrackFromList(list, usableAudioPlayers, nextPlayerToUse);
             ++nextPlayerToUse;
         }
 
         // Set pause status for any new streams
         UpdateStreamsPauseStatus();
+    }
+
+    private void UpdateActivePlayingTracks()
+    {
+        activePlayingTracks.Clear();
+        foreach (var player in audioPlayers)
+        {
+            if (!player.Playing || player.CurrentTrack == null)
+                continue;
+
+            activePlayingTracks.Add(player.CurrentTrack);
+        }
+    }
+
+    private void UpdateUsableAudioPlayers()
+    {
+        usableAudioPlayers.Clear();
+        foreach (var player in audioPlayers)
+        {
+            if (!player.Playing)
+                usableAudioPlayers.Add(player);
+        }
+    }
+
+    private bool TrackListHasActiveTrack(TrackList list)
+    {
+        foreach (var track in list.GetAllTracks())
+        {
+            foreach (var activeTrack in activePlayingTracks)
+            {
+                if (activeTrack == track.ResourcePath)
+                    return true;
+            }
+        }
+
+        return false;
+    }
+
+    private bool ShouldStartTrackFromList(TrackList list)
+    {
+        if (list.Repeat)
+            return true;
+
+        list.GetTracksForContexts(activeContexts, playableTracks);
+
+        foreach (var track in playableTracks)
+        {
+            if (!track.PlayedOnce)
+                return true;
+        }
+
+        return false;
     }
 
     private void PlayNextTrackFromList(TrackList list, List<AudioPlayer> usablePlayers, int nextPlayerToUse)
