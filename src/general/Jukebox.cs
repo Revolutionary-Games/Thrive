@@ -16,7 +16,9 @@ public partial class Jukebox : Node
 
     private static Jukebox? instance;
 
-    private readonly List<AudioPlayer> audioPlayers = new();
+    private readonly List<AudioPlayer> audioPlayers = [];
+    private readonly List<TrackList.Track> playableTracks = [];
+    private readonly List<TrackList.Track> contextOnlyTracks = [];
 
     private readonly Queue<Operation> operations = new();
 
@@ -639,7 +641,9 @@ public partial class Jukebox : Node
         {
             foreach (var list in target.TrackLists)
             {
-                foreach (var track in list.GetTracksForContexts(activeContexts))
+                list.GetTracksForContexts(activeContexts, playableTracks);
+
+                foreach (var track in playableTracks)
                 {
                     // Resume track (but only one per list)
                     if (track.WasPlaying)
@@ -757,30 +761,44 @@ public partial class Jukebox : Node
 
         foreach (var list in needToStartFrom)
         {
-            if (!list.Repeat && list.GetTracksForContexts(activeContexts).All(t => t.PlayedOnce))
-                continue;
+            if (!list.Repeat)
+            {
+                list.GetTracksForContexts(activeContexts, playableTracks);
 
-            var player = nextPlayerToUse < usablePlayers.Count ? usablePlayers[nextPlayerToUse] : NewPlayer();
-            nextPlayerToUse++;
-            PlayNextTrackFromList(list, player);
+                var allTracksPlayedOnce = true;
+                foreach (var track in playableTracks)
+                {
+                    if (track.PlayedOnce)
+                        continue;
+
+                    allTracksPlayedOnce = false;
+                    break;
+                }
+
+                if (allTracksPlayedOnce)
+                    continue;
+            }
+
+            PlayNextTrackFromList(list, usablePlayers, nextPlayerToUse);
+            ++nextPlayerToUse;
         }
 
         // Set pause status for any new streams
         UpdateStreamsPauseStatus();
     }
 
-    private void PlayNextTrackFromList(TrackList list, AudioPlayer player)
+    private void PlayNextTrackFromList(TrackList list, List<AudioPlayer> usablePlayers, int nextPlayerToUse)
     {
         var mode = list.TrackOrder;
-        var tracks = list.GetTracksForContexts(activeContexts);
+        list.GetTracksForContexts(activeContexts, playableTracks);
+        var tracks = playableTracks;
 
         if (tracks.Count == 0)
             return;
 
         var random = new XoShiRo128starstar();
 
-        if (random.NextFloat() <= Constants.CONTEXTUAL_ONLY_MUSIC_CHANCE &&
-            TryGetContextOnlyTracks(list, tracks, out var contextOnlyTracks))
+        if (random.NextFloat() <= Constants.CONTEXTUAL_ONLY_MUSIC_CHANCE && TryUpdateContextOnlyTracks(list, tracks))
         {
             tracks = contextOnlyTracks;
         }
@@ -816,14 +834,14 @@ public partial class Jukebox : Node
             nextTrack = tracks[nextIndex];
         }
 
+        var player = nextPlayerToUse < usablePlayers.Count ? usablePlayers[nextPlayerToUse] : NewPlayer();
         PlayTrack(player, nextTrack, list.TrackBus);
         list.LastPlayedTrackPath = nextTrack.ResourcePath;
     }
 
-    private bool TryGetContextOnlyTracks(TrackList list, List<TrackList.Track> tracks,
-        out List<TrackList.Track> contextOnlyTracks)
+    private bool TryUpdateContextOnlyTracks(TrackList list, List<TrackList.Track> tracks)
     {
-        contextOnlyTracks = [];
+        contextOnlyTracks.Clear();
         foreach (var track in tracks)
         {
             if (track.ExclusiveToContexts != null && track.ResourcePath != list.LastPlayedTrackPath)
@@ -858,18 +876,18 @@ public partial class Jukebox : Node
         for (var checkedCount = 1; checkedCount < orderedTracks.Count; ++checkedCount)
         {
             var candidate = orderedTracks[(lastIndex + checkedCount) % orderedTracks.Count];
-            if (IsTrackPlayable(playableTracks, candidate))
+            if (IsTrackPlayable(candidate))
                 return candidate;
         }
 
         return playableTracks[0];
     }
 
-    private bool IsTrackPlayable(List<TrackList.Track> playableTracks, TrackList.Track candidate)
+    private bool IsTrackPlayable(TrackList.Track candidate)
     {
         foreach (var track in playableTracks)
         {
-            if (string.Equals(track.ResourcePath, candidate.ResourcePath))
+            if (ReferenceEquals(track, candidate))
                 return true;
         }
 
