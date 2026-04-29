@@ -1,5 +1,4 @@
-﻿using System;
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   Mutation points bar that shows the remaining mutation points in the editor
@@ -8,8 +7,6 @@ public partial class MutationPointsBar : HBoxContainer
 {
     [Export]
     public bool ShowPercentageSymbol = true;
-
-    private const string PercentageValuePlaceholder = "{0}";
 
 #pragma warning disable CA2213
     [Export]
@@ -35,8 +32,6 @@ public partial class MutationPointsBar : HBoxContainer
 #pragma warning restore CA2213
 
     private string freebuildingText = string.Empty;
-    private string percentagePrefix = string.Empty;
-    private string percentageSuffix = " %";
     private bool hasMutationPointDisplayState;
     private bool lastFreebuilding;
     private bool lastShowResultingPoints;
@@ -45,7 +40,7 @@ public partial class MutationPointsBar : HBoxContainer
 
     public override void _Ready()
     {
-        UpdatePercentageFormatParts();
+        freebuildingText = Localization.Translate("FREEBUILDING");
     }
 
     public override void _Notification(int what)
@@ -55,7 +50,7 @@ public partial class MutationPointsBar : HBoxContainer
         if (what != NotificationTranslationChanged)
             return;
 
-        UpdatePercentageFormatParts();
+        freebuildingText = Localization.Translate("FREEBUILDING");
 
         if (hasMutationPointDisplayState)
         {
@@ -114,18 +109,30 @@ public partial class MutationPointsBar : HBoxContainer
                 mutationPointsArrow.Show();
                 resultingMutationPointsLabel.Show();
 
-                currentMutationPointsLabel.Text = $"({percentagePrefix}{currentMutationPoints:0.#}";
-                resultingMutationPointsLabel.Text = $"{percentagePrefix}{possibleMutationPoints:F0})";
+                currentMutationPointsLabel.Text = FormatMutationPoints(
+                    "MUTATION_POINTS_CURRENT_WITH_RESULT",
+                    "MUTATION_POINTS_CURRENT_WITH_RESULT_WITH_PERCENTAGE",
+                    $"({currentMutationPoints:0.#}");
+                resultingMutationPointsLabel.Text = FormatMutationPoints(
+                    "MUTATION_POINTS_RESULTING",
+                    "MUTATION_POINTS_RESULTING_WITH_PERCENTAGE",
+                    $"{possibleMutationPoints:F0})");
             }
             else
             {
                 mutationPointsArrow.Hide();
                 resultingMutationPointsLabel.Hide();
 
-                currentMutationPointsLabel.Text = $"{percentagePrefix}{currentMutationPoints:0.#}";
+                currentMutationPointsLabel.Text = FormatMutationPoints(
+                    "MUTATION_POINTS_CURRENT",
+                    "MUTATION_POINTS_CURRENT_WITH_PERCENTAGE",
+                    $"{currentMutationPoints:0.#}");
             }
 
-            baseMutationPointsLabel.Text = $"/ {percentagePrefix}{Constants.BASE_MUTATION_POINTS:F0}{percentageSuffix}";
+            baseMutationPointsLabel.Text = FormatMutationPoints(
+                "MUTATION_POINTS_BASE",
+                "MUTATION_POINTS_BASE_WITH_PERCENTAGE",
+                $"{Constants.BASE_MUTATION_POINTS:F0}");
         }
     }
 
@@ -134,28 +141,9 @@ public partial class MutationPointsBar : HBoxContainer
         animationPlayer.Play("FlashBar");
     }
 
-    private void UpdatePercentageFormatParts()
+    private string FormatMutationPoints(string normalTranslation, string percentageTranslation, string value)
     {
-        freebuildingText = Localization.Translate("FREEBUILDING");
-
-        if (!ShowPercentageSymbol)
-        {
-            percentagePrefix = string.Empty;
-            percentageSuffix = string.Empty;
-            return;
-        }
-
-        var percentageFormat = Localization.Translate("PERCENTAGE_VALUE");
-        var placeholderPosition = percentageFormat.IndexOf(PercentageValuePlaceholder, StringComparison.Ordinal);
-
-        if (placeholderPosition < 0)
-        {
-            percentagePrefix = string.Empty;
-            percentageSuffix = " %";
-            return;
-        }
-
-        percentagePrefix = percentageFormat[..placeholderPosition];
-        percentageSuffix = percentageFormat[(placeholderPosition + PercentageValuePlaceholder.Length)..];
+        return Localization.Translate(ShowPercentageSymbol ? percentageTranslation : normalTranslation)
+            .FormatSafe(value);
     }
 }
