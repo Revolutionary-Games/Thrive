@@ -69,7 +69,7 @@ public class NativePhysicsBody : IDisposable, IEquatable<NativePhysicsBody>
     public bool MicrobeControlEnabled { get; set; }
 
     public bool IsDisposed => disposed;
-    public bool IsDetached => NativeMethods.PhysicsBodyIsDetached(AccessBodyInternal()) != 0;
+    public bool IsDetached => NativeMethods.PhysicsBodyIsDetached(AccessBodyInternal());
 
     public static bool operator ==(NativePhysicsBody? left, NativePhysicsBody? right)
     {
@@ -212,7 +212,8 @@ internal static partial class NativeMethods
     // TODO: find out why this had to be converted to have return type "byte" instead of bool
     // BUG: https://github.com/Revolutionary-Games/Thrive/issues/5676
     [DllImport("thrive_native")]
-    internal static extern byte PhysicsBodyIsDetached(IntPtr body);
+    [return: MarshalAs(UnmanagedType.U1)]
+    internal static extern bool PhysicsBodyIsDetached(IntPtr body);
 
     [DllImport("thrive_native")]
     internal static extern void PhysicsBodySetUserData(IntPtr body, in Entity userData, int userDataSize);
