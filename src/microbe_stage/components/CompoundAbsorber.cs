@@ -22,12 +22,12 @@ public struct CompoundAbsorber : IArchivableComponent
     public float AbsorbRadius;
 
     /// <summary>
-    ///   How fast this can absorb things. If 0 then the absorption speed is not limited.
+    ///   How fast this can absorb things. If 0 then the absorption speed is not limited. (this is unimplemented)
     /// </summary>
     public float AbsorbSpeed;
 
     /// <summary>
-    ///   The effectiveness (ratio of gained vs compounds taken from the clouds) of absorption
+    ///   A multiplier on the rate at which this entity can consume clouds and absorb compounds from them
     /// </summary>
     public float AbsorptionRate;
 
