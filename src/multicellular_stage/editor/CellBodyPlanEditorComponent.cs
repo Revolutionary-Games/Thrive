@@ -296,7 +296,7 @@ public partial class CellBodyPlanEditorComponent :
 
             tolerancesEditor.OnEditorSpeciesSetup(Editor.EditedBaseSpecies);
 
-            UpdateReproductionDropdownChoice();
+            UpdateReproductionMethodChoice();
             UpdateSporeCellDropdown();
         }
 
@@ -522,7 +522,7 @@ public partial class CellBodyPlanEditorComponent :
         OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
 
         ReproductionMethod = ((MulticellularSpecies)species).ReproductionMethod;
-        UpdateReproductionDropdownChoice();
+        UpdateReproductionMethodChoice();
 
         SporeCellType = ((MulticellularSpecies)species).ModifiableSporeCellType;
         UpdateSporeCellDropdown();
@@ -781,7 +781,7 @@ public partial class CellBodyPlanEditorComponent :
 
         Editor.EnqueueAction(action);
 
-        UpdateReproductionDropdownChoice();
+        UpdateReproductionMethodChoice();
     }
 
     public void OnSporeCellTypeSelected(int selectedOption)
@@ -2008,7 +2008,7 @@ public partial class CellBodyPlanEditorComponent :
         }
     }
 
-    private void UpdateReproductionDropdownChoice()
+    private void UpdateReproductionMethodChoice()
     {
         reproductionMethodDropdown.Select((int)ReproductionMethod);
 
@@ -2018,6 +2018,9 @@ public partial class CellBodyPlanEditorComponent :
 
     private void UpdateSporeCellDropdown()
     {
+        if (!sporeCellTypeDropdown.Visible)
+            return;
+
         sporeCellTypeDropdown.Clear();
         foreach (var cellType in Editor.EditedSpecies.ModifiableCellTypes)
         {

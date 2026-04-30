@@ -544,7 +544,6 @@ button_group = SubResource("ButtonGroup_j7atr")
 text = "ENVIRONMENT_TOLERANCE"
 
 [node name="Structure" type="PanelContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" unique_id=1998025270]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 1
@@ -599,6 +598,7 @@ disabled = true
 text = "DUPLICATE_TYPE"
 
 [node name="Reproduction" type="PanelContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" unique_id=364460517]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 1

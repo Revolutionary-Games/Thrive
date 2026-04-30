@@ -265,6 +265,21 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
             return true;
         }
 
+        if (actionData is MulticellularReproductionActionData reproductionActionData)
+        {
+            reproductionMethod = reproductionActionData.NewReproductionMethod;
+            overrideReproductionMethod = true;
+
+            return true;
+        }
+
+        if (actionData is SporeCellTypeChangeActionData sporeCellTypeChangeActionData)
+        {
+            sporeCellTypeOverride = sporeCellTypeChangeActionData.NewCellType;
+
+            return true;
+        }
+
         if (cellTypes.HandleAction(actionData))
             return true;
 
@@ -291,21 +306,6 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
             if (Debugger.IsAttached)
                 Debugger.Break();
 #endif
-        }
-
-        if (actionData is MulticellularReproductionActionData reproductionActionData)
-        {
-            reproductionMethod = reproductionActionData.NewReproductionMethod;
-            overrideReproductionMethod = true;
-
-            return true;
-        }
-
-        if (actionData is SporeCellTypeChangeActionData sporeCellTypeChangeActionData)
-        {
-            sporeCellTypeOverride = sporeCellTypeChangeActionData.NewCellType;
-
-            return true;
         }
 
         return base.ApplyAction(actionData);

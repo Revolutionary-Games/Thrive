@@ -346,22 +346,19 @@ public static class MulticellularGrowthHelpers
     }
 
     public static void GerminateSpore(this ref MulticellularGrowth multicellularGrowth,
-        Entity entity, IWorldSimulation worldSimulation)
+        in Entity entity, IWorldSimulation worldSimulation)
     {
         if (!entity.TryGet<MulticellularSpeciesMember>(out var multicellularSpeciesType))
             return;
 
-        ref var growth = ref entity.Get<MulticellularGrowth>();
-
-        if (!growth.IsASpore)
+        if (!multicellularGrowth.IsASpore)
             return;
 
         ref var cellProperties = ref entity.Get<CellProperties>();
 
-        multicellularSpeciesType.MulticellularCellType =
-            multicellularSpeciesType.Species.ColonyRootCellType();
+        multicellularSpeciesType.MulticellularCellType = multicellularSpeciesType.Species.ColonyRootCellType();
 
-        entity.Get<MulticellularGrowth>().IsASpore = false;
+        multicellularGrowth.IsASpore = false;
 
         cellProperties.ReApplyCellTypeProperties(ref entity.Get<MicrobeEnvironmentalEffects>(), entity,
             multicellularSpeciesType.MulticellularCellType, multicellularSpeciesType.Species, worldSimulation,
