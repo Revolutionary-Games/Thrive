@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-13 10:37+0300\n"
-"PO-Revision-Date: 2026-04-10 22:42+0000\n"
-"Last-Translator: Koala Dourado <edooardoluz@gmail.com>\n"
+"POT-Creation-Date: 2026-04-27 11:05+0300\n"
+"PO-Revision-Date: 2026-04-22 18:35+0000\n"
+"Last-Translator: \"Georgi Georgiev (RacerBG)\" <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -111,9 +111,6 @@ msgstr "Abrir as configurações avançadas"
 msgid "AEROBIC_NITROGEN_FIXATION"
 msgstr "Fixação Aeróbica de Nitrogênio"
 
-msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "Fixação Aeróbica de Nitrogênio"
-
 msgid "AEROBIC_RESPIRATION"
 msgstr "Respiração Aeróbica"
 
@@ -197,9 +194,6 @@ msgstr "Quantidade de salvamentos automáticos para manter:"
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Quantidade de salvamentos rápidos para manter:"
-
-msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "Fixação Anaeróbica de Nitrogênio"
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr "e"
@@ -772,6 +766,10 @@ msgstr "Menu de Trapaças"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Mostrar/esconder processos da célula"
+
+#, fuzzy
+msgid "CHEMICAL_EQUATION_SPEED_EXPLANATION"
+msgstr "(velocidade de mutação das espécies controladas pela IA)"
 
 msgid "CHEMOPLAST"
 msgstr "Quimioplasto"
@@ -2801,6 +2799,14 @@ msgstr "Ignorar outros erros"
 msgid "IMAGE_FILE_TYPES"
 msgstr "Arquivos de Imagem Compatíveis"
 
+#, fuzzy
+msgid "INCOMPATIBLE_MEMBRANE_LIST"
+msgstr "[b]Dados das Membranas:[/b]"
+
+#, fuzzy
+msgid "INCOMPATIBLE_ORGANELLE_LIST"
+msgstr "Múltiplas Organelas"
+
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Aumentar tamanho do objeto"
 
@@ -3468,6 +3474,20 @@ msgstr "L"
 #, fuzzy
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "Desativar o Ciclo Dia/Noite"
+
+#, fuzzy
+msgid "LOOK_LEFT"
+msgstr "Seta para esquerda"
+
+#, fuzzy
+msgid "LOOK_RIGHT"
+msgstr "Seta para direita"
+
+msgid "LOOK_SCREEN_DOWN_OR_3D_TOWARDS_UP"
+msgstr ""
+
+msgid "LOOK_SCREEN_UP_OR_3D_TOWARDS_DOWN"
+msgstr ""
 
 msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
 msgstr "(valores mais baixos melhoram o desempenho)"
@@ -4371,6 +4391,10 @@ msgstr "Nitrogenase é uma proteína que consegue usar [thrive:compound type=\"n
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"ammonia\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
+#, fuzzy
+msgid "NITROGEN_FIXATION"
+msgstr "Fixação Aeróbica de Nitrogênio"
+
 msgid "NITROPLAST"
 msgstr "Nitroplasto"
 
@@ -4490,6 +4514,7 @@ msgstr ""
 msgid "NUCLEUS_DESCRIPTION"
 msgstr "A principal característica das células eucarióticas. O núcleo também inclui o retículo endoplasmático e o complexo de golgi. É uma evolução das células procarióticas para desenvolver um sistema de membranas internas, assimilando outros procariontes dentro deles. Isso os permite compartimentar, ou repelir os diferentes processos acontecendo dentro das células prevenindo eles de se sobrepor. Isso permite as suas novas organelas com membranas serem mais complexas, eficientes, e especializadas do que se estivessem flutuando no citoplasma. Entretanto, isso tem o custo de fazer a célula muito maior e precisar de muita da energia da célula para se manter."
 
+#, fuzzy
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr "Permite a evolução de mais complexas, organelas com membrana. Custa muito ATP para manter. Essa é uma evolução irreversível."
 
@@ -4875,6 +4900,9 @@ msgstr "Condições Físicas"
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Resistência Física"
 
+msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
+msgstr ""
+
 msgid "PLACE_ORGANELLE"
 msgstr "Colocar organela"
 
@@ -5021,8 +5049,13 @@ msgstr "anterior:"
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Processando objetos carregados"
 
+#, fuzzy
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
+
+#, fuzzy
+msgid "PROCESS_INACTIVE"
+msgstr "Processos"
 
 #, fuzzy
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
@@ -5038,10 +5071,6 @@ msgstr "Processos"
 
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Velocidade dos Bioprocessos"
-
-#, fuzzy
-msgid "PROCESS_TOGGLE_TOOLTIP"
-msgstr "A pressão preferida pela sua espécie e a faixa de flexibilidade ao redor dela. Quando em condições fora dessa faixa, haverá diversos efeitos negativos na sua espécie. Mude a pressão preferida e a flexibilidade com os sliders."
 
 msgid "PROGRAMMING_TEAM"
 msgstr "Equipe de Programação"
@@ -7308,6 +7337,7 @@ msgstr "Sem modificações."
 msgid "WIKI_BINDING_AGENT_PROCESSES"
 msgstr "Sem processos."
 
+#, fuzzy
 msgid "WIKI_BINDING_AGENT_REQUIREMENTS"
 msgstr ""
 "Uma célula precisa ter um [b][color=#3796e1][url=thriveopedia:nucleus]Núcleo[/url][/color][/b] para evoluir [b]Agentes de Ligação[/b].\n"
@@ -7462,6 +7492,7 @@ msgstr "Sem modificações."
 msgid "WIKI_CHLOROPLAST_PROCESSES"
 msgstr "Produz [thrive:compound type=\"glucose\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"carbondioxide\"][/thrive:compound] e intensidade de [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_REQUIREMENTS"
 msgstr ""
 "Uma célula deve ter um [b][color=#3796e1][url=thriveopedia:nucleus]Núcleo[/url][/color][/b] para evoluir [b]Cloroplastos[/b].\n"
@@ -7526,6 +7557,7 @@ msgstr "Compostos:"
 msgid "WIKI_COMPOUNDS_INTRO"
 msgstr "Para os primeiros estágios, os principais recursos de Thrive são [b]Compostos[/b]. Compostos são usados em processos para criar outros compostos ou consumidos de outra forma."
 
+#, fuzzy
 msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
 msgstr ""
 "Existem diversos [b]Compostos[/b] diferentes no Thrive.\n"
@@ -7658,6 +7690,7 @@ msgstr "Sem modificações."
 msgid "WIKI_FERROPLAST_PROCESSES"
 msgstr "Produz [thrive:compound type=\"glucose\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"carbondioxide\"][/thrive:compound] e temperatura."
 
+#, fuzzy
 msgid "WIKI_FERROPLAST_REQUIREMENTS"
 msgstr ""
 "Uma célula deve ter um [b][color=#3796e1][url=thriveopedia:nucleus]Núcleo[/url][/color][/b] para evoluir [b]Ferroplastos[/b].\n"
@@ -7691,6 +7724,7 @@ msgstr "Sem modificações."
 msgid "WIKI_FLAGELLUM_PROCESSES"
 msgstr "Sem processos."
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_REQUIREMENTS"
 msgstr ""
 "Se melhorias de organela estiverem ativadas nas configurações do jogo, [i]pelo menos uma[/i] das condições seguintes deve ser verdadeira [i]para a célula do jogador[/i]:\n"
@@ -7944,6 +7978,7 @@ msgstr "Em breve."
 msgid "WIKI_INJECTISOME_PILUS"
 msgstr "Pilus Injectissômico"
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_EFFECTS"
 msgstr ""
 "Equipar um [b]Lisossomo[/b] com [b]Quitinase[/b] ou [b]Celulase[/b] permite que a célula possa digerir outras células com [b]Membranas de Quitina[/b] ou [b]Celulose[/b], respectivamente. Células indigeríveis – aquelas para quais uma célula não possui a enzima necessária– são ejetadas imediatamente.\n"
@@ -7964,6 +7999,7 @@ msgstr "O lisossomo é uma organela ligada à membrana que contém enzimas hidro
 msgid "WIKI_LYSOSOME_PROCESSES"
 msgstr "Sem processos."
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_REQUIREMENTS"
 msgstr ""
 "Uma célula precisa ter um [b][color=#3796e1][url=thriveopedia:nucleus]Núcleo[/url][/color][/b] para evoluir [b]Lisossomos[/b].\n"
@@ -8181,6 +8217,7 @@ msgstr "Sem modificações."
 msgid "WIKI_MITOCHONDRION_PROCESSES"
 msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound]. Quantidade aumenta com concentração de [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_REQUIREMENTS"
 msgstr ""
 "Uma célula precisa ter um [b][color=#3796e1][url=thriveopedia:nucleus]Núcleo[/url][/color][/b] para evoluir [b]Mitocôndrias[/b].\n"
@@ -8280,6 +8317,7 @@ msgstr "Sem modificações."
 msgid "WIKI_NITROGENASE_PROCESSES"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"ammonia\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_REQUIREMENTS"
 msgstr ""
 "Se melhorias de organela estiverem ativadas nas configurações do jogo, a condição seguinte também deve ser verdadeira [i]para a célula do jogador[/i]:\n"
@@ -8375,6 +8413,7 @@ msgstr "Sem modificações."
 msgid "WIKI_OXYTOXISOME_PROCESSES"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"oxygen\"][/thrive:compound]. Pode disparar toxinas apertando [thrive:input]g_fire_toxin[/thrive:input]. Quando a quantidade de [thrive:compound type=\"oxytoxy\"][/thrive:compound] ficar baixa, será possível disparar, mas o dano irá ser reduzido."
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_REQUIREMENTS"
 msgstr ""
 "Se melhorias de organela estiverem ativadas nas configurações do jogo, a condição seguinte também deve ser verdadeira [i]para a célula do jogador[/i]:\n"
@@ -8567,6 +8606,7 @@ msgstr "Sem modificações."
 msgid "WIKI_PERFORATOR_PILUS_PROCESSES"
 msgstr "Sem processos."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_REQUIREMENTS"
 msgstr ""
 "Se melhorias de organela estiverem ativadas nas configurações do jogo, [i]pelo menos uma[/i] das condições seguintes também deve ser verdadeira [i]para a célula do jogador[/i]:\n"
@@ -8882,6 +8922,7 @@ msgstr ""
 "\n"
 "Já que [b]Tilacóides[/b] estão suspensos diretamente no [b][color=#3796e1][url=thriveopedia:cytoplasm]Citoplasma[/url][/color][/b], o fluido ao seu redor realiza [b]Glicólise[/b]."
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_REQUIREMENTS"
 msgstr ""
 "Se melhorias de organela estiverem ativadas nas configurações do jogo, a condição seguinte deve ser verdadeira [i]para a célula do jogador[/i]:\n"
@@ -8916,6 +8957,7 @@ msgstr "Sem modificações."
 msgid "WIKI_TOXIN_VACUOLE_PROCESSES"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"oxygen\"][/thrive:compound]. Pode disparar toxinas apertando [thrive:input]g_fire_toxin[/thrive:input]. Quando a quantidade de [thrive:compound type=\"oxytoxy\"][/thrive:compound] ficar baixa, será possível disparar, mas o dano irá ser reduzido."
 
+#, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_REQUIREMENTS"
 msgstr ""
 "Uma célula precisa ter um [b][color=#3796e1][url=thriveopedia:nucleus]Núcleo[/url][/color][/b] para evoluir [b]Vacúolos de Toxinas[/b].\n"
@@ -9127,6 +9169,12 @@ msgstr "Aumentar o zoom"
 
 msgid "ZOOM_OUT"
 msgstr "Diminuir o zoom"
+
+#~ msgid "AEROBIC_NITROGEN_FIXING"
+#~ msgstr "Fixação Aeróbica de Nitrogênio"
+
+#~ msgid "ANAEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Fixação Anaeróbica de Nitrogênio"
 
 #~ msgid "OSMOREGULATION_COST_MULTIPLIER"
 #~ msgstr "Multiplicador do custo da osmorregulação"

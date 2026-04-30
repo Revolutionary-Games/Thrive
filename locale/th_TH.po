@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-13 10:37+0300\n"
-"PO-Revision-Date: 2025-05-27 06:43+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2026-04-27 11:05+0300\n"
+"PO-Revision-Date: 2026-04-22 18:35+0000\n"
+"Last-Translator: \"Georgi Georgiev (RacerBG)\" <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Thai <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/th/>\n"
 "Language: th_TH\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.11.4\n"
+"X-Generator: Weblate 5.16.1\n"
 "Generated-By: Babel 2.9.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -124,9 +124,6 @@ msgstr "ดำเนินการต่อ"
 msgid "AEROBIC_NITROGEN_FIXATION"
 msgstr "การตรึงไนโตรเจนแบบไม่ใช้ออกซิเจน"
 
-msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "การตรึงไนโตรเจนแบบแอโรบิค"
-
 #, fuzzy
 msgid "AEROBIC_RESPIRATION"
 msgstr "ระบบหายใจแบบแอโรบิค"
@@ -202,9 +199,6 @@ msgstr "จำนวนการบันทึกอัตโนมัติท
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "จำนวนการบันทึกด่วนที่จะเก็บไว้:"
-
-msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "การตรึงไนโตรเจนแบบไม่ใช้ออกซิเจน"
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr ""
@@ -790,6 +784,10 @@ msgstr "เมนูของโหมดโกง"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
+
+#, fuzzy
+msgid "CHEMICAL_EQUATION_SPEED_EXPLANATION"
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
 
 msgid "CHEMOPLAST"
 msgstr "เคโมพลาสต์"
@@ -2896,6 +2894,14 @@ msgid "IMAGE_FILE_TYPES"
 msgstr ""
 
 #, fuzzy
+msgid "INCOMPATIBLE_MEMBRANE_LIST"
+msgstr "เอาออร์แกเนลล์ออก"
+
+#, fuzzy
+msgid "INCOMPATIBLE_ORGANELLE_LIST"
+msgstr "วางออร์แกเนลล์"
+
+#, fuzzy
 msgid "INCREASE_ITEM_SIZE"
 msgstr "สร้างจุลินทรีย์ใหม่"
 
@@ -3605,6 +3611,20 @@ msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
 
 msgid "LOCK_DAY_NIGHT_CYCLE"
+msgstr ""
+
+#, fuzzy
+msgid "LOOK_LEFT"
+msgstr "ซ้าย"
+
+#, fuzzy
+msgid "LOOK_RIGHT"
+msgstr "ขวา"
+
+msgid "LOOK_SCREEN_DOWN_OR_3D_TOWARDS_UP"
+msgstr ""
+
+msgid "LOOK_SCREEN_UP_OR_3D_TOWARDS_DOWN"
 msgstr ""
 
 #, fuzzy
@@ -4579,6 +4599,10 @@ msgstr "Nitrogenase เป็นโปรตีนที่สามารถใ
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Nitrogenase เป็นโปรตีนที่สามารถใช้ก๊าซไนโตรเจนและพลังงานของเซลล์ในรูปแบบของ ATP เพื่อผลิตแอมโมเนียซึ่งเป็นสารอาหารที่สำคัญในการเจริญเติบโตของเซลล์ นี่คือกระบวนการที่เรียกว่าการตรึงไนโตรเจนแบบไม่ใช้ออกซิเจน เนื่องจากไนโตรเจนเนสถูกแขวนอยู่ในไซโทพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
 
+#, fuzzy
+msgid "NITROGEN_FIXATION"
+msgstr "การตรึงไนโตรเจนแบบไม่ใช้ออกซิเจน"
+
 msgid "NITROPLAST"
 msgstr "พลาสติดตรึงไนโตรเจน"
 
@@ -4708,6 +4732,7 @@ msgstr ""
 msgid "NUCLEUS_DESCRIPTION"
 msgstr "คุณสมบัติที่กำหนดของเซลล์ยูคาริโอต นิวเคลียสยังรวมถึงเรติคูลัมเอนโดพลาสมิกและกอลจิ มันเป็นวิวัฒนาการของเซลล์โปรคาริโอตในการพัฒนาระบบของเยื่อหุ้มภายในซึ่งทำได้โดยการดูดซึมโปรคาริโอตอื่นเข้าไปในตัวมันเอง สิ่งนี้ช่วยให้สามารถแบ่งส่วนหรือปัดป้องกระบวนการต่างๆที่เกิดขึ้นภายในเซลล์และป้องกันไม่ให้เกิดการทับซ้อนกัน สิ่งนี้ช่วยให้ออร์แกเนลล์ที่ถูกยึดเมมเบรนใหม่มีความซับซ้อนมีประสิทธิภาพและเชี่ยวชาญกว่าการลอยตัวในไซโทพลาสซึมอย่างอิสระ อย่างไรก็ตามสิ่งนี้มีค่าใช้จ่ายในการทำให้เซลล์มีขนาดใหญ่ขึ้นและต้องใช้พลังงานจำนวนมากในการรักษาเซลล์"
 
+#, fuzzy
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr ""
 "ช่วยให้มีวิวัฒนาการที่ซับซ้อนมากขึ้น\n"
@@ -5131,6 +5156,9 @@ msgstr ""
 msgid "PHYSICAL_RESISTANCE"
 msgstr ""
 
+msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
+msgstr ""
+
 msgid "PLACE_ORGANELLE"
 msgstr "วางออร์แกเนลล์"
 
@@ -5279,6 +5307,9 @@ msgstr ""
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr ""
 
+msgid "PROCESS_INACTIVE"
+msgstr ""
+
 #, fuzzy
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
 msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
@@ -5291,10 +5322,6 @@ msgstr ""
 
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr ""
-
-#, fuzzy
-msgid "PROCESS_TOGGLE_TOOLTIP"
-msgstr "กลับไปที่เมนู"
 
 msgid "PROGRAMMING_TEAM"
 msgstr ""
@@ -9431,6 +9458,16 @@ msgstr "ซูมเข้า"
 
 msgid "ZOOM_OUT"
 msgstr "ซูมออก"
+
+#~ msgid "AEROBIC_NITROGEN_FIXING"
+#~ msgstr "การตรึงไนโตรเจนแบบแอโรบิค"
+
+#~ msgid "ANAEROBIC_NITROGEN_FIXATION"
+#~ msgstr "การตรึงไนโตรเจนแบบไม่ใช้ออกซิเจน"
+
+#, fuzzy
+#~ msgid "PROCESS_TOGGLE_TOOLTIP"
+#~ msgstr "กลับไปที่เมนู"
 
 #, fuzzy
 #~ msgid "KEEP_CURRENT_SHORT"

@@ -30,7 +30,7 @@ corner_radius_bottom_left = 5
 
 [node name="ToolTipManager" type="CanvasLayer" unique_id=502662551]
 process_mode = 3
-layer = 128
+layer = 127
 script = ExtResource("23")
 
 [node name="GroupHolder" type="Control" parent="." unique_id=1984538779]
@@ -147,7 +147,6 @@ DisplayDelay = 0.5
 [node name="rigiditySlider" parent="GroupHolder/editor" unique_id=9346694 instance=ExtResource("5")]
 visible = false
 layout_mode = 0
-offset_right = 400.0
 DisplayName = "MEMBRANE_RIGIDITY"
 Description = "RIGIDITY_MEMBRANE_DESCRIPTION"
 ShowOsmoregulation = false
@@ -251,7 +250,6 @@ mouse_filter = 2
 [node name="single" parent="GroupHolder/membraneSelection" unique_id=1864056327 instance=ExtResource("5")]
 visible = false
 layout_mode = 0
-offset_right = 400.0
 DisplayName = "NORMAL"
 Description = "NORMAL_MEMBRANE_DESCRIPTION"
 
@@ -298,7 +296,6 @@ visible = false
 [node name="double" parent="GroupHolder/membraneSelection" unique_id=1238471686 instance=ExtResource("5")]
 visible = false
 layout_mode = 0
-offset_right = 400.0
 DisplayName = "DOUBLE"
 Description = "DOUBLE_MEMBRANE_DESCRIPTION"
 
@@ -345,7 +342,6 @@ visible = false
 [node name="cellulose" parent="GroupHolder/membraneSelection" unique_id=720676102 instance=ExtResource("5")]
 visible = false
 layout_mode = 0
-offset_right = 400.0
 DisplayName = "CELLULOSE"
 Description = "CELLULOSE_MEMBRANE_DESCRIPTION"
 
@@ -404,7 +400,6 @@ visible = false
 [node name="chitin" parent="GroupHolder/membraneSelection" unique_id=362976481 instance=ExtResource("5")]
 visible = false
 layout_mode = 0
-offset_right = 400.0
 DisplayName = "CHITIN"
 Description = "CHITIN_MEMBRANE_DESCRIPTION"
 
@@ -463,7 +458,6 @@ visible = false
 [node name="calciumCarbonate" parent="GroupHolder/membraneSelection" unique_id=127395123 instance=ExtResource("5")]
 visible = false
 layout_mode = 0
-offset_right = 400.0
 DisplayName = "CALCIUM_CARBONATE"
 Description = "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 
@@ -516,7 +510,6 @@ visible = false
 [node name="silica" parent="GroupHolder/membraneSelection" unique_id=1055494397 instance=ExtResource("5")]
 visible = false
 layout_mode = 0
-offset_right = 400.0
 offset_bottom = 173.0
 DisplayName = "SILICA"
 Description = "SILICA_MEMBRANE_DESCRIPTION"

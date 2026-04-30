@@ -124,5 +124,6 @@ internal static partial class NativeMethods
     internal static extern int ExtensionGetVersion(IntPtr thriveConfig);
 
     [DllImport("thrive_extension")]
+    [return: MarshalAs(UnmanagedType.U1)]
     internal static extern bool ArrayMeshUnwrap(in godot_variant mesh, float texelSize);
 }

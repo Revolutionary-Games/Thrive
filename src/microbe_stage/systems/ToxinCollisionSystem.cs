@@ -102,6 +102,7 @@ public partial class ToxinCollisionSystem : BaseSystem<World, float>
         if (!damageTarget.IsAliveAndHas<SpeciesMember>())
             return false;
 
+        var originalTarget = damageTarget;
         ref var speciesComponent = ref damageTarget.Get<SpeciesMember>();
 
         try
@@ -206,15 +207,17 @@ public partial class ToxinCollisionSystem : BaseSystem<World, float>
 
                 if (damageTarget.Has<OrganelleContainer>())
                 {
+                    // Note for distributed damage this doesn't fully make sense as the damage would need to be
+                    // different for different target cells
                     modifier = CalculateToxinOrganelleDamageMultiplier(ref damageTarget.Get<OrganelleContainer>(),
                         damageSource.ToxinProperties);
                 }
 
-                damageSource.ToxinProperties.DealDamage(ref health, ref damageTarget.Get<CellProperties>(),
-                    damageTarget, damageSource.ToxinAmount * modifier);
+                damageSource.ToxinProperties.DealDamage(originalTarget, damageSource.ToxinAmount * modifier);
             }
             else
             {
+                // This is mostly a fallback that shouldn't trigger, so this isn't updated to target the full colony
                 damageSource.ToxinProperties.DealDamage(ref health, damageTarget, damageSource.ToxinAmount);
             }
 

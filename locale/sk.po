@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-13 10:37+0300\n"
-"PO-Revision-Date: 2025-04-26 10:58+0000\n"
-"Last-Translator: Samuel Haššo <snurka1999@gmail.com>\n"
+"POT-Creation-Date: 2026-04-27 11:05+0300\n"
+"PO-Revision-Date: 2026-04-20 23:52+0000\n"
+"Last-Translator: LordZemiakus <kubo.van@gmail.com>\n"
 "Language-Team: Slovak <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sk/>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 5.7.2\n"
+"X-Generator: Weblate 5.16.1\n"
 "Generated-By: Babel 2.9.1\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -112,9 +112,6 @@ msgstr "Otvoriť zobrazenie rozšírených nastavení"
 msgid "AEROBIC_NITROGEN_FIXATION"
 msgstr "Aeróbna fixácia dusíka"
 
-msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "Aeróbna fixácia dusíka"
-
 msgid "AEROBIC_RESPIRATION"
 msgstr "Aeróbne Dýchanie"
 
@@ -188,9 +185,6 @@ msgstr "Počet automatických uložení k zachovaniu:"
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Počet rýchlych uložení k zachovaniu:"
-
-msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "Anaeróbna fixácia dusíka"
 
 #, fuzzy
 msgid "AND_UNLOCK_CONDITION"
@@ -774,6 +768,10 @@ msgstr "Cheat menu"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Zobraziť / skryť bunkové procesy"
+
+#, fuzzy
+msgid "CHEMICAL_EQUATION_SPEED_EXPLANATION"
+msgstr "(rýchlosť, akou druhy AI mutujú)"
 
 msgid "CHEMOPLAST"
 msgstr "Chemoplast"
@@ -2854,6 +2852,14 @@ msgid "IMAGE_FILE_TYPES"
 msgstr "Typy membrán"
 
 #, fuzzy
+msgid "INCOMPATIBLE_MEMBRANE_LIST"
+msgstr "Štatistika organizmu"
+
+#, fuzzy
+msgid "INCOMPATIBLE_ORGANELLE_LIST"
+msgstr "Štatistika organizmu"
+
+#, fuzzy
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Vytvoriť nový"
 
@@ -3560,6 +3566,20 @@ msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
 msgid "LOCK_DAY_NIGHT_CYCLE"
+msgstr ""
+
+#, fuzzy
+msgid "LOOK_LEFT"
+msgstr "Doľava"
+
+#, fuzzy
+msgid "LOOK_RIGHT"
+msgstr "Doprava"
+
+msgid "LOOK_SCREEN_DOWN_OR_3D_TOWARDS_UP"
+msgstr ""
+
+msgid "LOOK_SCREEN_UP_OR_3D_TOWARDS_DOWN"
 msgstr ""
 
 #, fuzzy
@@ -4485,6 +4505,10 @@ msgstr ""
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Premieňa [thrive:compound type=\"atp\"][/thrive:compound] na [thrive:compound type=\"ammonia\"][/thrive:compound]. Množstvo závisí od koncentrácie[thrive:compound type=\"nitrogen\"]dusíka[/thrive:compound]."
 
+#, fuzzy
+msgid "NITROGEN_FIXATION"
+msgstr "Aeróbna fixácia dusíka"
+
 msgid "NITROPLAST"
 msgstr "Plastid fixujúci dusík"
 
@@ -5031,6 +5055,9 @@ msgstr "Fyzické podmienky"
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Fyzická odolnosť"
 
+msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
+msgstr ""
+
 msgid "PLACE_ORGANELLE"
 msgstr "Umiestniť organelu"
 
@@ -5178,8 +5205,13 @@ msgstr "predchádzajúce:"
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Spracovanie načítaných objektov"
 
+#, fuzzy
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
+
+#, fuzzy
+msgid "PROCESS_INACTIVE"
+msgstr "Bunkové procesy"
 
 #, fuzzy
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
@@ -5196,10 +5228,6 @@ msgstr "Bunkové procesy"
 #, fuzzy
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Bunkové procesy"
-
-#, fuzzy
-msgid "PROCESS_TOGGLE_TOOLTIP"
-msgstr "Vrátiť sa do hlavného menu"
 
 msgid "PROGRAMMING_TEAM"
 msgstr "Programátori"
@@ -9144,12 +9172,22 @@ msgstr "Priblížiť"
 msgid "ZOOM_OUT"
 msgstr "Oddialiť"
 
+#~ msgid "AEROBIC_NITROGEN_FIXING"
+#~ msgstr "Aeróbna fixácia dusíka"
+
+#~ msgid "ANAEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Anaeróbna fixácia dusíka"
+
 #~ msgid "OSMOREGULATION_COST_MULTIPLIER"
 #~ msgstr "Násobiteľ nákladov na osmoreguláciu"
 
 #, fuzzy
 #~ msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 #~ msgstr "(náklady na osmoreguláciu druhu hráča)"
+
+#, fuzzy
+#~ msgid "PROCESS_TOGGLE_TOOLTIP"
+#~ msgstr "Vrátiť sa do hlavného menu"
 
 #, fuzzy
 #~ msgid "KEEP_CURRENT_SHORT"

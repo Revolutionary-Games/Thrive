@@ -263,7 +263,7 @@ public partial class TransitionManager : ControlWithInput
                 var previous = queuedTransitions.Dequeue();
 
                 // Defer call to avoid possible "flickers"
-                Invoke.Instance.Queue(() => previous.Clear());
+                Invoke.Instance.Queue(previous.Clear);
 
                 if (previous is ScreenFade fade)
                     Instance.LastFadedType = fade.CurrentFadeType;

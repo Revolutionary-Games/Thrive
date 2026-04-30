@@ -345,6 +345,15 @@ public partial class CellEditorComponent
 
             var tooltip = GetSelectionTooltip(organelle.InternalName, "organelleSelection");
             tooltip?.RequiresNucleus = organelle.RequiresNucleus && !HasNucleus;
+
+            if (organelle.IsIncompatibleWithMembrane(Membrane))
+            {
+                tooltip?.IncompatibleMembranes = organelle.IncompatibleMembranes;
+            }
+            else
+            {
+                tooltip?.IncompatibleMembranes = null;
+            }
         }
 
         CreateUndiscoveredOrganellesButtons(true, autoUnlockOrganelles);

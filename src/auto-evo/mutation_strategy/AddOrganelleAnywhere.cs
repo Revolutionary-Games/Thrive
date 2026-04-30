@@ -111,6 +111,9 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
             if (organelle.RequiresNucleus && baseSpecies.IsBacteria)
                 continue;
 
+            if (organelle.IsIncompatibleWithMembrane(baseSpecies.MembraneType))
+                continue;
+
             // Don't add duplicate unique organelles
             if (organelle.Unique && baseSpecies.Organelles.Select(x => x.Definition).Contains(organelle))
                 continue;

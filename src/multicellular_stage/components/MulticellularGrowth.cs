@@ -170,16 +170,7 @@ public static class MulticellularGrowthHelpers
         in Entity entity, IWorldSimulation worldSimulation)
     {
         // Clear variables
-
-        // The first cell is the last to duplicate (budding reproduction) so the body plan starts filling at index 1
-        // Note that this is also set in the struct constructor
-        multicellularGrowth.NextBodyPlanCellToGrowIndex = 1;
-        multicellularGrowth.EnoughResourcesForBudding = false;
-
-        multicellularGrowth.CompoundsNeededForNextCell = null;
-        multicellularGrowth.CompoundsUsedForMulticellularGrowth = null;
-
-        multicellularGrowth.TotalNeededForMulticellularGrowth = null;
+        multicellularGrowth.OnLeadCellEjectedFromEngulfment();
 
         // Delete the cells in our colony currently
         if (entity.Has<MicrobeColony>())
@@ -199,6 +190,23 @@ public static class MulticellularGrowthHelpers
             recorder.Remove<MicrobeColony>(entity);
             worldSimulation.FinishRecordingEntityCommands(recorder);
         }
+    }
+
+    /// <summary>
+    ///   Resets all growth progress tracking after exiting engulfment (which disbanded the entire colony) to grow the
+    ///   usual body plan as needed.
+    /// </summary>
+    public static void OnLeadCellEjectedFromEngulfment(this ref MulticellularGrowth multicellularGrowth)
+    {
+        // The first cell is the last to duplicate (budding reproduction), so the body plan starts filling at index 1
+        // Note that this is also set in the struct constructor
+        multicellularGrowth.NextBodyPlanCellToGrowIndex = 1;
+        multicellularGrowth.EnoughResourcesForBudding = false;
+
+        multicellularGrowth.CompoundsNeededForNextCell = null;
+        multicellularGrowth.CompoundsUsedForMulticellularGrowth = null;
+
+        multicellularGrowth.TotalNeededForMulticellularGrowth = null;
     }
 
     public static void OnMulticellularColonyCellLost(this ref MulticellularGrowth multicellularGrowth,

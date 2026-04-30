@@ -206,6 +206,11 @@ public class OrganelleDefinition : RegistryType, IPlayerReadableName
     public CommonMutationFunctions.OrganelleAddStrategy SuggestionPlacement =
         CommonMutationFunctions.OrganelleAddStrategy.Spiral;
 
+    [JsonIgnore]
+    public List<MembraneType>? IncompatibleMembranes;
+
+    public string[]? IncompatibleMembraneNames;
+
     /// <summary>
     ///   Caches the rotated hexes
     /// </summary>
@@ -311,6 +316,8 @@ public class OrganelleDefinition : RegistryType, IPlayerReadableName
     public bool HasLysosomeComponent { get; private set; }
 
     public bool HasChemoreceptorComponent { get; private set; }
+
+    public bool HasNucleusFeature { get; private set; }
 
     /// <summary>
     ///   True when this organelle is one that uses oxygen as a process input (and is metabolism-related). This is
@@ -530,6 +537,22 @@ public class OrganelleDefinition : RegistryType, IPlayerReadableName
 
         // No upgrade with changed processes
         return null;
+    }
+
+    public bool IsIncompatibleWithMembrane(MembraneType membraneType)
+    {
+        if (IncompatibleMembranes == null)
+            return false;
+
+        for (int i = 0; i < IncompatibleMembranes.Count; ++i)
+        {
+            if (IncompatibleMembranes[i] == membraneType)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public override void Check(string name)
@@ -793,6 +816,22 @@ public class OrganelleDefinition : RegistryType, IPlayerReadableName
         }
 
         ComputeTolerances();
+
+        if (IncompatibleMembraneNames != null)
+        {
+            IncompatibleMembranes = new List<MembraneType>();
+
+            for (int i = 0; i < IncompatibleMembraneNames.Length; ++i)
+            {
+                if (!parameters.DoesMembraneExist(IncompatibleMembraneNames[i]))
+                {
+                    throw new InvalidRegistryDataException(InternalName, nameof(OrganelleDefinition),
+                        "Incompatible membrane name doesn't correspond to any existent membrane");
+                }
+
+                IncompatibleMembranes.Add(parameters.GetMembrane(IncompatibleMembraneNames[i]));
+            }
+        }
     }
 
     /// <summary>
@@ -859,6 +898,7 @@ public class OrganelleDefinition : RegistryType, IPlayerReadableName
         HasRadiationProtection = HasFeatureTag(OrganelleFeatureTag.RadiationBlock);
         HasHydrogenSulfideProtection = HasFeatureTag(OrganelleFeatureTag.HydrogenSulfideProtection);
         HasHeatCollection = HasFeatureTag(OrganelleFeatureTag.HeatCollecting);
+        HasNucleusFeature = HasFeatureTag(OrganelleFeatureTag.Nucleus);
     }
 
     private void CalculateModelOffset()
