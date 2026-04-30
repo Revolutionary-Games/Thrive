@@ -551,8 +551,9 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                 return false;
             }
 
+            var distanceToPrey = GetClosestColonyMemberDistanceSquared(in entity, position.Position, prey);
             bool engulfPrey = cellProperties.CanEngulfObject(ref ourSpecies, ref engulfer, possiblePrey) ==
-                EngulfCheckResult.Ok && position.Position.DistanceSquaredTo(prey) <
+                EngulfCheckResult.Ok && distanceToPrey <
                 10.0f * engulfer.EngulfingSize;
 
             // If out of ATP and the prey is out of reach to engulf, do nothing
@@ -1269,7 +1270,8 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
     {
         // Turn on engulf mode if close
         // Sometimes "close" is hard to discern since microbes can range from straight lines to circles
-        if ((position.Position - targetPosition).LengthSquared() <= engulfer.EngulfingSize * 2.0f)
+        if (GetClosestColonyMemberDistanceSquared(in entity, position.Position, targetPosition) <=
+            engulfer.EngulfingSize * 2.0f)
         {
             control.SetStateColonyAware(entity, MicrobeState.Engulf);
         }
@@ -1277,6 +1279,30 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         {
             control.SetStateColonyAware(entity, MicrobeState.Normal);
         }
+    }
+
+    private float GetClosestColonyMemberDistanceSquared(in Entity entity, Vector3 fallbackPosition,
+        Vector3 targetPosition)
+    {
+        var closestDistance = fallbackPosition.DistanceSquaredTo(targetPosition);
+
+        if (!entity.Has<MicrobeColony>())
+            return closestDistance;
+
+        ref var colony = ref entity.Get<MicrobeColony>();
+
+        foreach (var colonyMember in colony.ColonyMembers)
+        {
+            if (!colonyMember.IsAliveAndHas<WorldPosition>())
+                continue;
+
+            var memberDistance = colonyMember.Get<WorldPosition>().Position.DistanceSquaredTo(targetPosition);
+
+            if (memberDistance < closestDistance)
+                closestDistance = memberDistance;
+        }
+
+        return closestDistance;
     }
 
     private void LaunchToxin(ref MicrobeControl control, ref OrganelleContainer organelles,

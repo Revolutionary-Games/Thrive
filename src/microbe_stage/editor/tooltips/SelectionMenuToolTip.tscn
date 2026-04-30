@@ -23,7 +23,7 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="SelectionMenuTooltip" type="PanelContainer" unique_id=1253970789 node_paths=PackedStringArray("modifierInfoList", "organelleCostInfoList", "nameLabel", "mpLabel", "requiresNucleusLabel", "osmoregulationModifier", "descriptionLabel", "processesDescriptionLabel", "processesDescriptionSeparator", "processList", "moreInfo")]
+[node name="SelectionMenuTooltip" type="PanelContainer" unique_id=1253970789 node_paths=PackedStringArray("modifierInfoList", "organelleCostInfoList", "nameLabel", "mpLabel", "requiresNucleusLabel", "incompatibleMembranesLabel", "osmoregulationModifier", "descriptionLabel", "processesDescriptionLabel", "processesDescriptionSeparator", "processList", "moreInfo")]
 custom_minimum_size = Vector2(400, 0)
 offset_right = 400.0
 offset_bottom = 2.0
@@ -36,6 +36,7 @@ organelleCostInfoList = NodePath("MarginContainer/VBoxContainer/OrganelleCostLis
 nameLabel = NodePath("MarginContainer/VBoxContainer/Header/Title")
 mpLabel = NodePath("MarginContainer/VBoxContainer/Header/MP/Value")
 requiresNucleusLabel = NodePath("MarginContainer/VBoxContainer/RequiresNucleus")
+incompatibleMembranesLabel = NodePath("MarginContainer/VBoxContainer/IncompatibleMembrane")
 osmoregulationModifier = NodePath("MarginContainer/VBoxContainer/ModifierList/osmoregulationCost")
 descriptionLabel = NodePath("MarginContainer/VBoxContainer/Description")
 processesDescriptionLabel = NodePath("MarginContainer/VBoxContainer/ProcessesDescription")
@@ -99,6 +100,13 @@ mouse_filter = 2
 layout_mode = 2
 text = "REQUIRES_NUCLEUS"
 label_settings = ExtResource("6_2mc08")
+
+[node name="IncompatibleMembrane" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1331665203]
+editor_description = "PLACEHOLDER"
+layout_mode = 2
+text = "Incompatible membranes"
+label_settings = ExtResource("6_2mc08")
+autowrap_mode = 2
 
 [node name="ProcessesDescription" parent="MarginContainer/VBoxContainer" unique_id=1366796537 instance=ExtResource("6")]
 layout_mode = 2

@@ -2206,6 +2206,9 @@ public class NativeLibs
 
     private static class NativeMethods
     {
+        // Warning: do NOT use MarshalAs here, as kernel32.dll calls return the BOOL macro, which is by default a 4 byte
+        // integer. This is the only place where the marshalling of the bool value is actually correct.
+        // This is in general true for Windows native methods.
         [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
         public static extern bool CreateHardLink(string lpFileName, string lpExistingFileName,
             IntPtr lpSecurityAttributes);

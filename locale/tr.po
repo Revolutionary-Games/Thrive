@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-26 17:31+0200\n"
-"PO-Revision-Date: 2026-04-22 18:35+0000\n"
+"POT-Creation-Date: 2026-04-27 11:05+0300\n"
+"PO-Revision-Date: 2026-04-28 09:04+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -2783,6 +2783,12 @@ msgstr "Ek hataları yoksay"
 msgid "IMAGE_FILE_TYPES"
 msgstr "Desteklenen Resim Dosyaları"
 
+msgid "INCOMPATIBLE_MEMBRANE_LIST"
+msgstr "Hücre zarları ile uyumlu değil: {0}"
+
+msgid "INCOMPATIBLE_ORGANELLE_LIST"
+msgstr "Yerleştirilmiş organeller ile uyumlu değil: {0}"
+
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Nesne büyüklüğünü arttır"
 
@@ -4362,9 +4368,8 @@ msgstr "Nitrojenaz, hücrelerde temel gelişim yapı maddesi olan [thrive:compou
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"ammonia\"]amonyağa[/thrive:compound] dönüştürür. Bu oran, [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
 
-#, fuzzy
 msgid "NITROGEN_FIXATION"
-msgstr "Oksijenli Azot Fiksasyonu"
+msgstr "Azot Fiksasyonu"
 
 msgid "NITROPLAST"
 msgstr "Nitroplast"
@@ -4867,6 +4872,9 @@ msgstr "Fiziksel Koşullar"
 
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Fiziksel Direnç"
+
+msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
+msgstr "Yerleştirme işlemi engellendi çünkü mevcut hücre zarı bu organel ile uyumlu değil"
 
 msgid "PLACE_ORGANELLE"
 msgstr "Organel yerleştir (veya başka yerleştirilen şey)"

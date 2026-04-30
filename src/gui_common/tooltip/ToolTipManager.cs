@@ -18,6 +18,13 @@ public partial class ToolTipManager : CanvasLayer
     private const double AUTO_SCROLLING_DELAY = 2.0f;
     private const float AUTO_SCROLLING_SPEED = 40.0f;
 
+    /// <summary>
+    ///   How many frames (game updates) a tooltip stays transparent before it is made visible to avoid re-layout
+    ///   causing visible jumps to a tooltip that just appeared. This has to be at least 3 to remove the flicker, 2
+    ///   is too little.
+    /// </summary>
+    private const int TOOLTIP_INVISIBLE_FRAMES = 3;
+
     private static ToolTipManager? instance;
 
     /// <summary>
@@ -33,6 +40,7 @@ public partial class ToolTipManager : CanvasLayer
 #pragma warning restore CA2213
 
     private bool display;
+    private int tooltipNonTransparentDelay;
     private double displayTimer;
     private double hideTimer;
 
@@ -44,8 +52,13 @@ public partial class ToolTipManager : CanvasLayer
 
     private Vector2 lastMousePosition;
 
-    private ICustomToolTip? mainToolTip;
     private ICustomToolTip? previousToolTip;
+
+    /// <summary>
+    ///   Used to know what the last hidden tooltip is (even if it was a while ago) to know when the same tooltip is
+    ///   shown again, used to reduce flicker.
+    /// </summary>
+    private WeakReference<ICustomToolTip>? lastHiddenToolTip;
 
     private bool nodeReferencesResolved;
 
@@ -69,14 +82,14 @@ public partial class ToolTipManager : CanvasLayer
     /// </summary>
     public ICustomToolTip? MainToolTip
     {
-        get => mainToolTip;
+        get;
         set
         {
-            if (mainToolTip != value)
+            if (field != value)
                 ResetAutoScrolling();
 
-            previousToolTip = mainToolTip;
-            mainToolTip = value;
+            previousToolTip = field;
+            field = value;
         }
     }
 
@@ -478,6 +491,20 @@ public partial class ToolTipManager : CanvasLayer
 
         MainToolTip.ToolTipNode.Size = Vector2.Zero;
 
+        // Handle initial transparency to avoid visual jumps in position after the initial display.
+        // Being transparent but `Visible` allows the layout and position to settle before we make the tooltip
+        // user-visible.
+        if (tooltipNonTransparentDelay > 0 && delta > 0)
+        {
+            if (--tooltipNonTransparentDelay <= 0)
+            {
+                // The initial show made things transparent, so we are only responsible for making things visible again
+                MainToolTip.ToolTipNode.Modulate = Colors.White;
+            }
+
+            return;
+        }
+
         // Handle temporary tooltips/popup
         if (currentIsTemporary && hideTimer >= 0)
         {
@@ -529,6 +556,32 @@ public partial class ToolTipManager : CanvasLayer
         {
             case ToolTipTransitioning.Immediate:
             {
+                // When becoming visible, tooltips will flicker for one frame, so we force them transparent.
+                // This only applies on the initial display when the tooltip needs to lay out its content.
+                // The tooltip processing later will make it then visible.
+                if (visible)
+                {
+                    bool doTransparencyFix = true;
+
+                    // If we just hid this tooltip, we don't need to re-layout it, so we don't need to use the
+                    // invisible time
+                    if (lastHiddenToolTip != null && lastHiddenToolTip.TryGetTarget(out var lastHidden))
+                    {
+                        if (lastHidden == tooltip)
+                            doTransparencyFix = false;
+                    }
+
+                    if (doTransparencyFix)
+                    {
+                        tooltip.ToolTipNode.Modulate = Colors.Transparent;
+                        tooltipNonTransparentDelay = TOOLTIP_INVISIBLE_FRAMES;
+                    }
+                }
+                else
+                {
+                    lastHiddenToolTip = new WeakReference<ICustomToolTip>(tooltip);
+                }
+
                 tooltip.ToolTipNode.Visible = visible;
                 break;
             }

@@ -24,13 +24,10 @@ using World = Arch.Core.World;
 [RunsBefore(typeof(PhysicsCollisionManagementSystem))]
 public partial class MicrobeDivisionClippingSystem : BaseSystem<World, float>
 {
-    private readonly PhysicalWorld physicalWorld;
     private readonly IWorldSimulation worldSimulation;
 
-    public MicrobeDivisionClippingSystem(IWorldSimulation worldSimulation, PhysicalWorld physicalWorld, World world) :
-        base(world)
+    public MicrobeDivisionClippingSystem(IWorldSimulation worldSimulation, World world) : base(world)
     {
-        this.physicalWorld = physicalWorld;
         this.worldSimulation = worldSimulation;
     }
 
@@ -91,16 +88,9 @@ public partial class MicrobeDivisionClippingSystem : BaseSystem<World, float>
                 RemoveDivisionComponentFromEntity(entity);
             }
 
-            // Very important to not apply force if the body is detached
+            // Very important to not apply force if the body is disabled
             if (physics.Body != null && !physics.BodyDisabled)
             {
-                if (physics.Body.IsDetached)
-                {
-                    GD.PrintErr("Somehow a physics body is detached in division clipping system " +
-                        "even though we checked the body state");
-                    return;
-                }
-
                 // Ensure the difference is not 0, which would break the animation
                 // Note that this rarely hits, so this doesn't help in increasing the initial speed
                 if (difference.IsZeroApprox())
@@ -113,11 +103,9 @@ public partial class MicrobeDivisionClippingSystem : BaseSystem<World, float>
                 // Make bigger cells get more force to ensure the animation keeps playing fast
                 var sizeMultiplier = Math.Clamp((organelleContainer.HexCount - 3) * 0.9f, 1, 100);
 
-                // TODO: implement a component (or new property in Physics) that allows giving physical impulses
-                // to entities
-                // NOTE: the force gets bigger the bigger the distance is!
-                physicalWorld.GiveImpulse(physics.Body,
-                    difference * 300.0f * collisionDisabler.SeparationForce * sizeMultiplier, true);
+                // NOTE: the force gets bigger the distance is!
+                physics.QueuedImpulse += difference * 300.0f * collisionDisabler.SeparationForce * sizeMultiplier;
+                physics.QueuedForceApplied = false;
             }
         }
         else

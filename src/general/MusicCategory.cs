@@ -117,8 +117,11 @@ public class TrackList
     /// </summary>
     public bool Repeat { get; set; } = true;
 
+    /// <summary>
+    ///   Runtime-only path of the last track played from this list.
+    /// </summary>
     [JsonIgnore]
-    public int LastPlayedIndex { get; set; } = -1;
+    public string? LastPlayedTrackPath { get; set; }
 
     [JsonProperty]
     private List<Track> Tracks { get; set; } = null!;
@@ -143,7 +146,7 @@ public class TrackList
     ///   Accesses all tracks for operations that need to bypass context restrictions
     /// </summary>
     /// <returns>Enumerable for all of the tracks</returns>
-    public IEnumerable<Track> GetAllTracks()
+    public List<Track> GetAllTracks()
     {
         return Tracks;
     }

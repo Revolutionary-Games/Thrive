@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-26 17:31+0200\n"
+"POT-Creation-Date: 2026-04-27 11:05+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2706,19 +2706,19 @@ msgstr ""
 msgid "ENERGY_COST_MULTIPLIER_EXPLANATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3204
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3265
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3039
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3100
 msgid "ENERGY_IN_PATCH_SHORT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3215
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3276
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3208
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3269
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
@@ -3168,7 +3168,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3221
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3282
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -3290,7 +3290,7 @@ msgstr ""
 msgid "GAME_SYSTEMS_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3139
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3200
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1078
 msgid "GATHERED_ENERGY_TOOLTIP"
 msgstr ""
@@ -3709,6 +3709,14 @@ msgstr ""
 
 #: ../src/modding/ModUploader.cs:96
 msgid "IMAGE_FILE_TYPES"
+msgstr ""
+
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:527
+msgid "INCOMPATIBLE_MEMBRANE_LIST"
+msgstr ""
+
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:442
+msgid "INCOMPATIBLE_ORGANELLE_LIST"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:278
@@ -4566,7 +4574,7 @@ msgstr ""
 msgid "LARGE_SULFUR_CHUNK"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1896
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1899
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -5792,7 +5800,7 @@ msgstr ""
 msgid "MORE_INFO"
 msgstr ""
 
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:150
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:158
 msgid "MORE_INFO_PROMPT"
 msgstr ""
 
@@ -6196,7 +6204,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2545
 #: ../simulation_parameters/common/wiki.json:2600
 #: ../src/gui_common/menus/OptionsMenu.tscn:745
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:494
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:503
 #: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.GUI.cs:245
 #: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.cs:145
 #: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.cs:154
@@ -6291,7 +6299,7 @@ msgid "NO_AI"
 msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:665
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3236
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3297
 msgid "NO_DATA_TO_SHOW"
 msgstr ""
 
@@ -6311,7 +6319,7 @@ msgstr ""
 msgid "NO_MODS_ENABLED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:482
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:551
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr ""
 
@@ -6339,7 +6347,7 @@ msgstr ""
 msgid "NUCLEUS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1895
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1898
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -6363,15 +6371,15 @@ msgstr ""
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:25
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:35
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:45
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3050
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3062
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3111
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3123
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:154
 #: ../src/microbe_stage/MicrobeHUD.cs:738
 msgid "N_A"
 msgstr ""
 
 #: ../src/microbe_stage/editor/tooltips/EnvironmentalToleranceToolTip.tscn:81
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:80
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:81
 #: ../src/multicellular_stage/editor/CellTypeTooltip.tscn:107
 msgid "N_A_MP"
 msgstr ""
@@ -6509,7 +6517,7 @@ msgstr ""
 msgid "ORGANELLES_BUTTON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:427
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:436
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
 msgstr ""
 
@@ -6589,7 +6597,7 @@ msgstr ""
 msgid "ORGANISM_STATISTICS_MICROBE"
 msgstr ""
 
-#: ../src/microbe_stage/OrganelleDefinition.cs:814
+#: ../src/microbe_stage/OrganelleDefinition.cs:851
 msgid "OR_UNLOCK_CONDITION"
 msgstr ""
 
@@ -6598,7 +6606,7 @@ msgid "OSMOREGULATION"
 msgstr ""
 
 #: ../src/microbe_stage/editor/tooltips/EnvironmentalToleranceToolTip.tscn:121
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:119
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:127
 msgid "OSMOREGULATION_COST"
 msgstr ""
 
@@ -6907,6 +6915,10 @@ msgstr ""
 msgid "PHYSICAL_RESISTANCE"
 msgstr ""
 
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2392
+msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
+msgstr ""
+
 #: ../simulation_parameters/common/input_options.json:205
 msgid "PLACE_ORGANELLE"
 msgstr ""
@@ -7014,7 +7026,7 @@ msgstr ""
 msgid "POPULATION_IN_PATCHES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3069
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3130
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr ""
 
@@ -7302,7 +7314,7 @@ msgstr ""
 msgid "REPRODUCTION_METHOD"
 msgstr ""
 
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:100
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:101
 msgid "REQUIRES_NUCLEUS"
 msgstr ""
 
@@ -9411,7 +9423,7 @@ msgstr ""
 msgid "UNLOCK_CONDITION_SPEED_BELOW"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:409
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:418
 msgid "UNLOCK_WITH_ANY_OF_FOLLOWING"
 msgstr ""
 
