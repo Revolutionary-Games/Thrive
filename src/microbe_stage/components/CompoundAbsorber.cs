@@ -29,7 +29,7 @@ public struct CompoundAbsorber : IArchivableComponent
     /// <summary>
     ///   The effectiveness (ratio of gained vs compounds taken from the clouds) of absorption
     /// </summary>
-    public float AbsorptionRatio;
+    public float AbsorptionRate;
 
     /// <summary>
     ///   When true, then the <see cref="CompoundBag"/> that we put things in must have useful compounds set and
@@ -53,7 +53,7 @@ public struct CompoundAbsorber : IArchivableComponent
 
         writer.Write(AbsorbRadius);
         writer.Write(AbsorbSpeed);
-        writer.Write(AbsorptionRatio);
+        writer.Write(AbsorptionRate);
         writer.Write(OnlyAbsorbUseful);
     }
 }
@@ -70,7 +70,7 @@ public static class CompoundAbsorberHelpers
             TotalAbsorbedCompounds = reader.ReadObject<Dictionary<Compound, float>>(),
             AbsorbRadius = reader.ReadFloat(),
             AbsorbSpeed = reader.ReadFloat(),
-            AbsorptionRatio = reader.ReadFloat(),
+            AbsorptionRate = reader.ReadFloat(),
             OnlyAbsorbUseful = reader.ReadBool(),
         };
     }
