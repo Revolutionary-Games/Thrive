@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-29 19:54+0300\n"
-"PO-Revision-Date: 2026-04-22 18:35+0000\n"
-"Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
+"POT-Creation-Date: 2026-04-29 22:42+0200\n"
+"PO-Revision-Date: 2026-04-30 11:43+0000\n"
+"Last-Translator: GalaxyDragon <galaxydragon9@yahoo.it>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -53,7 +53,7 @@ msgid "ACHIEVEMENTS"
 msgstr "Obiettivi"
 
 msgid "ACHIEVEMENTS_TOTAL"
-msgstr ""
+msgstr "Obiettivi {0} / {1}"
 
 msgid "ACHIEVEMENT_ACHIEVED"
 msgstr "Completato"
@@ -877,7 +877,7 @@ msgid "CLICK_TO_SELECT"
 msgstr "Seleziona"
 
 msgid "CLIMATE_INSTABILITY"
-msgstr ""
+msgstr "Instabilità climatica"
 
 #, fuzzy
 msgid "CLIMATE_INSTABILITY_EXPLANATION"
@@ -886,13 +886,13 @@ msgstr ""
 "I microbi sessili sono stazionari e aspettano cambiamenti nell'ambiente prima di agire."
 
 msgid "CLIMATE_STABILITY_AVERAGE"
-msgstr ""
+msgstr "Media"
 
 msgid "CLIMATE_STABILITY_STABLE"
-msgstr ""
+msgstr "Stabile"
 
 msgid "CLIMATE_STABILITY_UNSTABLE"
-msgstr ""
+msgstr "Instabile"
 
 msgid "CLOSE"
 msgstr "Chiudi"
@@ -977,7 +977,7 @@ msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "V: value (valore): è la luminosità/intensità del colore"
 
 msgid "COMMAND_INPUT_LINE_EDIT"
-msgstr ""
+msgstr "Inserisci Comando"
 
 msgid "COMMON_ABILITIES"
 msgstr "Abilità di base"
@@ -1082,7 +1082,7 @@ msgid "COMPOUND_LEVEL_LOW"
 msgstr "Nuvole di composti"
 
 msgid "COMPOUND_LEVEL_VERY_HIGH"
-msgstr ""
+msgstr "Molto alto"
 
 #, fuzzy
 msgid "COMPOUND_LEVEL_VERY_LOW"
@@ -2038,13 +2038,13 @@ msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Abilita gli effetti di luce della GUI"
 
 msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
-msgstr ""
+msgstr "Processo di endosimbiosi già finito, finiscilo nell'editor"
 
 msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
-msgstr ""
+msgstr "Trasformato bersaglio di endosimbiosi in un organello temporaneo, questo farà progredire l'endosimbiosi se riesci ad arrivare all'editor"
 
 msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
-msgstr ""
+msgstr "Tipo di endosimbionte già presente, entra nell'editor per progredire l'endosimbiosi"
 
 #, fuzzy
 msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
@@ -2126,10 +2126,10 @@ msgid "ENERGY_SUMMARY_LINE"
 msgstr "L'energia totale accumulata è {0}, con un costo individuale di {1}, risultante in una popolazione (non calibrata) di {2}"
 
 msgid "ENGULF_CELL_OR_CHUNK"
-msgstr ""
+msgstr "Inghiottisci un altra cellula o frammento"
 
 msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
-msgstr ""
+msgstr "Danneggiato dal tentativo di entrare in modalità fagocitosi senza ATP"
 
 msgid "ENTER_EXISTING_ID"
 msgstr "Inserisci ID esistente"
@@ -2211,6 +2211,8 @@ msgstr "Carica automaticamente patch Harmony dall'Assembly (non richiede di spec
 
 msgid "EVENT_METEOR_GLUCOSE"
 msgstr ""
+"Evento d'impatto di meteorite portante Glucosio\n"
+"Aumenta i livelli di glucosio e di diossido di carbonio"
 
 #, fuzzy
 msgid "EVENT_METEOR_IRON"
@@ -2229,6 +2231,9 @@ msgstr ""
 
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
+"Evento d'impatto di meteorite portante Zolfo\n"
+"Aumenta i livelli di zolfo e di diossido di carbonio\n"
+"Appariranno frammenti di zolfo."
 
 #, fuzzy
 msgid "EVENT_RUNOFF_TOOLTIP"
@@ -2399,7 +2404,7 @@ msgid "FEED_ITEM_PUBLISHED_AT"
 msgstr "Pubblicato a {0}"
 
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
-msgstr ""
+msgstr "Questo elemento è stato troncato per essere troppo lungo, leggere l'originale per tutto il contenuto. {0}"
 
 #, fuzzy
 msgid "FERROPLAST"
@@ -2648,7 +2653,7 @@ msgid "GENERAL_LOADING_TIP_7"
 msgstr "Nell'editor, premi il tasto \"Annulla l'ultima azione\" per correggere eventuali errori"
 
 msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
-msgstr ""
+msgstr "Generare più glucosio di quanto ne usi tramite fotosintesi"
 
 msgid "GENERATIONS"
 msgstr "Generazioni"
@@ -2657,16 +2662,16 @@ msgid "GENERATION_COLON"
 msgstr "Generazione:"
 
 msgid "GEOLOGICAL_ACTIVITY"
-msgstr ""
+msgstr "Attività geologica"
 
 msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
-msgstr ""
+msgstr "Attiva"
 
 msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
-msgstr ""
+msgstr "Media"
 
 msgid "GEOLOGICAL_ACTIVITY_DORMANT"
-msgstr ""
+msgstr "Dormiente"
 
 #, fuzzy
 msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
@@ -2690,7 +2695,7 @@ msgid "GLES3"
 msgstr "GLES3"
 
 msgid "GLOBAL_GLACIATION_END_EVENT_LOG"
-msgstr ""
+msgstr "L'evento di glaciazione globale è terminata su tutte le zone in superficie"
 
 #, fuzzy
 msgid "GLOBAL_GLACIATION_EVENT"
@@ -2701,13 +2706,13 @@ msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
 msgstr "Spostati alla Fase di Risveglio. Disponibile una volta che hai abbastanza Potenza Cerebale (un tipo di tessuto con assoni)"
 
 msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
-msgstr ""
+msgstr "Evento di glaciazione globale arriverà tra {0} generazioni"
 
 msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_SINGULAR"
-msgstr ""
+msgstr "Evento di glaciazione globale arriverà tra {0} generazione"
 
 msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
-msgstr ""
+msgstr "Evento di glaciazione globale è iniziato su tutte le zone in superficie"
 
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
@@ -2797,7 +2802,7 @@ msgid "HEALTH"
 msgstr "Salute"
 
 msgid "HEALTH_MODIFIER"
-msgstr ""
+msgstr "Modificatore salute"
 
 #, fuzzy
 msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"

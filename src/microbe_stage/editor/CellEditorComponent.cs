@@ -801,7 +801,7 @@ public partial class CellEditorComponent :
                     effectiveSymmetry = HexEditorSymmetry.None;
 
                 RunWithSymmetry(q, r,
-                    (finalQ, finalR, rotation) =>
+                    (finalQ, finalR, rotation, _) =>
                     {
                         RenderHighlightedOrganelle(finalQ, finalR, rotation, shownOrganelle, MovingPlacedHex?.Upgrades);
 
@@ -1465,7 +1465,7 @@ public partial class CellEditorComponent :
         // This is a list to preserve order, Distinct is used later to ensure no duplicate organelles are added
         var organelles = new List<OrganelleTemplate>();
 
-        RunWithSymmetry(q, r, (symmetryQ, symmetryR, _) =>
+        RunWithSymmetry(q, r, (symmetryQ, symmetryR, _, _) =>
         {
             var organelle = editedMicrobeOrganelles.GetElementAt(new Hex(symmetryQ, symmetryR), hexTemporaryMemory);
 
@@ -2305,7 +2305,7 @@ public partial class CellEditorComponent :
             componentBottomLeftButtons.SymmetryEnabled ? null : HexEditorSymmetry.None;
 
         RunWithSymmetry(q, r,
-            (attemptQ, attemptR, rotation) =>
+            (attemptQ, attemptR, rotation, _) =>
             {
                 var organelle = new OrganelleTemplate(GetOrganelleDefinition(organelleType),
                     new Hex(attemptQ, attemptR), rotation);
