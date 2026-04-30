@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
+using CommunityToolkit.HighPerformance;
 using Godot;
 using SharedBase.Archive;
 using Systems;
@@ -70,6 +71,8 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
 
     private Vector4 decayRates;
 
+    private byte[]? tempBuffer;
+
     /// <summary>
     ///   Which square plane player is in
     /// </summary>
@@ -89,7 +92,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     /// <summary>
     ///   This is used in data copy.
     /// </summary>
-    public byte[]? TempBuffer { get; private set; }
+    public byte[]? TempBuffer => tempBuffer;
 
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.CompoundCloudPlane;
@@ -469,7 +472,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
 
                 // TODO: fix task allocations
                 var task = new Task(() => PartialUpdateTextureImage(x0, y0, planeChunkSize, planeChunkSize,
-                    TempBuffer.AsSpan(0, size)));
+                    tempBuffer.AsSpan(0, size)));
                 queue.Add(task);
             }
         }
@@ -481,7 +484,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
         int height = image.GetHeight();
         int size = width * height * 4;
 
-        image!.SetData(width, height, false, image.GetFormat(), TempBuffer.AsSpan(0, size));
+        image!.SetData(width, height, false, image.GetFormat(), tempBuffer.AsSpan(0, size));
         texture.Update(image);
     }
 
@@ -899,8 +902,8 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
         {
             if (image != null)
             {
-                if (TempBuffer is not null)
-                    ArrayPool<byte>.Shared.Return(TempBuffer);
+                if (tempBuffer is not null)
+                    ArrayPool<byte>.Shared.Return(tempBuffer);
 
                 brightnessParameterName.Dispose();
                 uvOffsetParameterName.Dispose();
@@ -1189,7 +1192,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
 
     private void CreateDensityTexture()
     {
-        TempBuffer = ArrayPool<byte>.Shared.Rent(PlaneSize * PlaneSize * 4);
+        ArrayPool<byte>.Shared.Resize(ref tempBuffer, PlaneSize * PlaneSize * 4);
 
         image = Image.CreateEmpty(PlaneSize, PlaneSize, false, Image.Format.Rgba8);
         texture = ImageTexture.CreateFromImage(image);
