@@ -458,7 +458,6 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
         int width = image!.GetWidth();
         int height = image.GetHeight();
         int size = width * height * 4;
-        TempBuffer = ArrayPool<byte>.Shared.Rent(size);
 
         for (var i = 0; i < Constants.CLOUD_PLANE_SQUARES_PER_SIDE; ++i)
         {
@@ -1190,6 +1189,8 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
 
     private void CreateDensityTexture()
     {
+        TempBuffer = ArrayPool<byte>.Shared.Rent(PlaneSize * PlaneSize * 4);
+
         image = Image.CreateEmpty(PlaneSize, PlaneSize, false, Image.Format.Rgba8);
         texture = ImageTexture.CreateFromImage(image);
 
