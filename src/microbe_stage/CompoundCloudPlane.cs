@@ -3,12 +3,10 @@
 #define CACHE_WORLD_COORDINATES
 
 using System;
-using System.Buffers;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
-using CommunityToolkit.HighPerformance;
 using Godot;
 using SharedBase.Archive;
 using Systems;
@@ -902,9 +900,6 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
         {
             if (image != null)
             {
-                if (tempBuffer is not null)
-                    ArrayPool<byte>.Shared.Return(tempBuffer);
-
                 brightnessParameterName.Dispose();
                 uvOffsetParameterName.Dispose();
                 image.Dispose();
@@ -1192,7 +1187,11 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
 
     private void CreateDensityTexture()
     {
-        ArrayPool<byte>.Shared.Resize(ref tempBuffer, PlaneSize * PlaneSize * 4);
+        int requestedSize = PlaneSize * PlaneSize * 4;
+        if (tempBuffer is null || requestedSize > tempBuffer.Length)
+        {
+            tempBuffer = new byte[requestedSize];
+        }
 
         image = Image.CreateEmpty(PlaneSize, PlaneSize, false, Image.Format.Rgba8);
         texture = ImageTexture.CreateFromImage(image);
