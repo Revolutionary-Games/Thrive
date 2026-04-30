@@ -3,6 +3,7 @@
 #define CACHE_WORLD_COORDINATES
 
 using System;
+using System.Buffers;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Threading;
@@ -84,6 +85,11 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     public int PlaneSize { get; private set; }
 
     public bool IsLoadedFromSave { get; set; }
+
+    /// <summary>
+    ///   This is used in data copy.
+    /// </summary>
+    public byte[]? TempBuffer { get; private set; }
 
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.CompoundCloudPlane;
@@ -447,7 +453,12 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     /// </summary>
     public void QueueUpdateTextureImage(List<Task> queue)
     {
-        var planeChunkSize = PlaneSize / Constants.CLOUD_PLANE_SQUARES_PER_SIDE;
+        int planeChunkSize = PlaneSize / Constants.CLOUD_PLANE_SQUARES_PER_SIDE;
+
+        int width = image!.GetWidth();
+        int height = image.GetHeight();
+        int size = width * height * 4;
+        TempBuffer = ArrayPool<byte>.Shared.Rent(size);
 
         for (var i = 0; i < Constants.CLOUD_PLANE_SQUARES_PER_SIDE; ++i)
         {
@@ -458,7 +469,8 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
                 var y0 = j * planeChunkSize;
 
                 // TODO: fix task allocations
-                var task = new Task(() => PartialUpdateTextureImage(x0, y0, planeChunkSize, planeChunkSize));
+                var task = new Task(() => PartialUpdateTextureImage(x0, y0, planeChunkSize, planeChunkSize,
+                    TempBuffer.AsSpan(0, size)));
                 queue.Add(task);
             }
         }
@@ -466,6 +478,11 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
 
     public void UpdateTexture()
     {
+        int width = image!.GetWidth();
+        int height = image.GetHeight();
+        int size = width * height * 4;
+
+        image!.SetData(width, height, false, image.GetFormat(), TempBuffer.AsSpan(0, size));
         texture.Update(image);
     }
 
@@ -883,6 +900,9 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
         {
             if (image != null)
             {
+                if (TempBuffer is not null)
+                    ArrayPool<byte>.Shared.Return(TempBuffer);
+
                 brightnessParameterName.Dispose();
                 uvOffsetParameterName.Dispose();
                 image.Dispose();
@@ -1104,14 +1124,21 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
         }
     }
 
-    private void PartialUpdateTextureImage(int x0, int y0, int width, int height)
+    private void PartialUpdateTextureImage(int x0, int y0, int width, int height, Span<byte> bufferSpan)
     {
+        int imgWidth = image!.GetWidth();
+
         for (int x = x0; x < x0 + width; ++x)
         {
             for (int y = y0; y < y0 + height; ++y)
             {
-                var pixel = Density[x, y] * (1 / Constants.CLOUD_MAX_INTENSITY_SHOWN);
-                image!.SetPixel(x, y, new Color(pixel.X, pixel.Y, pixel.Z, pixel.W));
+                var pixel = Density[x, y] * 1.0f / Constants.CLOUD_MAX_INTENSITY_SHOWN;
+                int offset = (y * imgWidth + x) * 4;
+
+                bufferSpan[offset] = (byte)(Math.Clamp(pixel.X, 0, 1) * 255);
+                bufferSpan[offset + 1] = (byte)(Math.Clamp(pixel.Y, 0, 1) * 255);
+                bufferSpan[offset + 2] = (byte)(Math.Clamp(pixel.Z, 0, 1) * 255);
+                bufferSpan[offset + 3] = (byte)(Math.Clamp(pixel.W, 0, 1) * 255);
             }
         }
     }
