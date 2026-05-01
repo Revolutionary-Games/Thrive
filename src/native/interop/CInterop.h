@@ -80,6 +80,9 @@ extern "C"
     [[maybe_unused]] THRIVE_NATIVE_API void ReadPhysicsBodyTransform(
         PhysicalWorld* physicalWorld, PhysicsBody* body, JVec3* positionReceiver, JQuat* rotationReceiver);
 
+    [[maybe_unused]] THRIVE_NATIVE_API void ReadPhysicsBodyCenterOfMass(
+        PhysicalWorld* physicalWorld, PhysicsBody* body, JVec3* positionReceiver);
+
     [[maybe_unused]] THRIVE_NATIVE_API void ReadPhysicsBodyVelocity(
         PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3* velocityReceiver, JVecF3* angularVelocityReceiver);
 

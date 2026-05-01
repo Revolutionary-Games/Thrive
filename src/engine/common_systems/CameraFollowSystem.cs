@@ -55,7 +55,7 @@ public partial class CameraFollowSystem : BaseSystem<World, float>
 
     [Query]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update([Data] in float delta, ref CameraFollowTarget followTarget, ref WorldPosition position)
+    private void Update([Data] in float delta, ref CameraFollowTarget followTarget, ref Physics physics)
     {
         if (followTarget.Disabled)
             return;
@@ -76,7 +76,7 @@ public partial class CameraFollowSystem : BaseSystem<World, float>
 
         if (Camera != null)
         {
-            Camera.UpdateCameraPosition(delta, position.Position);
+            Camera.UpdateCameraPosition(delta, physics.CenterOfMassPosition);
         }
         else if (!warnedAboutMissingCamera)
         {

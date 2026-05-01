@@ -276,6 +276,25 @@ void ReadPhysicsBodyTransform(
     *rotationReceiver = Thrive::QuatToCAPI(readQuat);
 }
 
+void ReadPhysicsBodyCenterOfMass(
+    PhysicalWorld* physicalWorld, PhysicsBody* body, JVec3* positionReceiver)
+{
+#ifndef NDEBUG
+    if (physicalWorld == nullptr || body == nullptr || positionReceiver == nullptr)
+    {
+        LOG_ERROR("Physics body read center of mass call with invalid parameters");
+        return;
+    }
+#endif
+
+    JPH::DVec3 readPosition;
+
+    reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
+        ->ReadBodyCenterOfMassPosition(reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId(), readPosition);
+
+    *positionReceiver = Thrive::DVec3ToCAPI(readPosition);
+}
+
 void ReadPhysicsBodyVelocity(
     PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3* velocityReceiver, JVecF3* angularVelocityReceiver)
 {

@@ -225,6 +225,13 @@ public class PhysicalWorld : IDisposable
         return (position, orientation);
     }
 
+    public Vector3 ReadBodyCenterOfMassPosition(NativePhysicsBody body)
+    {
+        NativeMethods.ReadPhysicsBodyCenterOfMass(AccessWorldInternal(), body.AccessBodyInternal(), out var position);
+
+        return position;
+    }
+
     public (Vector3 Velocity, Vector3 AngularVelocity) ReadBodyVelocity(NativePhysicsBody body)
     {
         NativeMethods.ReadPhysicsBodyVelocity(AccessWorldInternal(), body.AccessBodyInternal(),
@@ -644,6 +651,9 @@ internal static partial class NativeMethods
     [DllImport("thrive_native")]
     internal static extern void ReadPhysicsBodyTransform(IntPtr world, IntPtr body, [Out] out JVec3 position,
         [Out] out JQuat orientation);
+
+    [DllImport("thrive_native")]
+    internal static extern void ReadPhysicsBodyCenterOfMass(IntPtr world, IntPtr body, [Out] out JVec3 position);
 
     [DllImport("thrive_native")]
     internal static extern void ReadPhysicsBodyVelocity(IntPtr world, IntPtr body, [Out] out JVecF3 velocity,

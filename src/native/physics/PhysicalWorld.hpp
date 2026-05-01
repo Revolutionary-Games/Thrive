@@ -95,6 +95,7 @@ public:
     void SetDamping(JPH::BodyID bodyId, float damping, const float* angularDamping = nullptr);
 
     void ReadBodyTransform(JPH::BodyID bodyId, JPH::RVec3& positionReceiver, JPH::Quat& rotationReceiver) const;
+    void ReadBodyCenterOfMassPosition(JPH::BodyID bodyId, JPH::RVec3& positionReceiver) const;
     void ReadBodyVelocity(JPH::BodyID bodyId, JPH::Vec3& velocityReceiver, JPH::Vec3& angularVelocityReceiver) const;
 
     // The activate parameters make the methods activate the body automatically if it has a bit of velocity on it
