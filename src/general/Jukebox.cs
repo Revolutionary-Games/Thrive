@@ -22,18 +22,22 @@ public partial class Jukebox : Node
     /// cache playable tracks as candidates when trying to play the next track
     /// </summary>
     private readonly List<TrackList.Track> workMemory1 = [];
+
     /// <summary>
     /// cache context only tracks as candidates when trying to play the next track
     /// </summary>
     private readonly List<TrackList.Track> workMemory2 = [];
+
     /// <summary>
     /// cache track lists that don't have a playing track in them
     /// </summary>
     private readonly List<TrackList> workMemory3 = [];
+
     /// <summary>
     /// cache usable audio players when trying to play the next track
     /// </summary>
     private readonly List<AudioPlayer> workMemory4 = [];
+
     /// <summary>
     /// cache active playing tracks' resource paths
     /// </summary>
