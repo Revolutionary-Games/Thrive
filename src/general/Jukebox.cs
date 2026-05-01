@@ -17,11 +17,27 @@ public partial class Jukebox : Node
     private static Jukebox? instance;
 
     private readonly List<AudioPlayer> audioPlayers = [];
-    private readonly List<TrackList.Track> playableTracks = [];
-    private readonly List<TrackList.Track> contextOnlyTracks = [];
-    private readonly List<TrackList> missingTrackLists = [];
-    private readonly List<AudioPlayer> usableAudioPlayers = [];
-    private readonly List<string> activePlayingTracks = [];
+
+    /// <summary>
+    /// cache playable tracks as candidates when trying to play the next track
+    /// </summary>
+    private readonly List<TrackList.Track> workMemory1 = [];
+    /// <summary>
+    /// cache context only tracks as candidates when trying to play the next track
+    /// </summary>
+    private readonly List<TrackList.Track> workMemory2 = [];
+    /// <summary>
+    /// cache track lists that don't have a playing track in them
+    /// </summary>
+    private readonly List<TrackList> workMemory3 = [];
+    /// <summary>
+    /// cache usable audio players when trying to play the next track
+    /// </summary>
+    private readonly List<AudioPlayer> workMemory4 = [];
+    /// <summary>
+    /// cache active playing tracks' resource paths
+    /// </summary>
+    private readonly List<string> workMemory5 = [];
 
     private readonly Queue<Operation> operations = new();
 
@@ -102,9 +118,6 @@ public partial class Jukebox : Node
             ApplyPlaybackState(value);
         }
     }
-
-    private List<string> PlayingTracks => audioPlayers.Where(p => p.Playing)
-        .Select(p => p.CurrentTrack).WhereNotNull().ToList();
 
     public override void _Ready()
     {
@@ -644,9 +657,9 @@ public partial class Jukebox : Node
         {
             foreach (var list in target.TrackLists)
             {
-                list.GetTracksForContexts(activeContexts, playableTracks);
+                list.GetTracksForContexts(activeContexts, workMemory1);
 
-                foreach (var track in playableTracks)
+                foreach (var track in workMemory1)
                 {
                     // Resume track (but only one per list)
                     if (track.WasPlaying)
@@ -738,7 +751,7 @@ public partial class Jukebox : Node
     private void StartPlayingFromMissingLists(MusicCategory target)
     {
         // Find track lists that don't have a playing track in them and reallocate players for those
-        missingTrackLists.Clear();
+        workMemory3.Clear();
         UpdateActivePlayingTracks();
         UpdateUsableAudioPlayers();
 
@@ -750,17 +763,17 @@ public partial class Jukebox : Node
             if (TrackListHasActiveTrack(list))
                 continue;
 
-            missingTrackLists.Add(list);
+            workMemory3.Add(list);
         }
 
         var nextPlayerToUse = 0;
 
-        foreach (var list in missingTrackLists)
+        foreach (var list in workMemory3)
         {
             if (!ShouldStartTrackFromList(list))
                 continue;
 
-            PlayNextTrackFromList(list, usableAudioPlayers, nextPlayerToUse);
+            PlayNextTrackFromList(list, workMemory4, nextPlayerToUse);
             ++nextPlayerToUse;
         }
 
@@ -770,23 +783,23 @@ public partial class Jukebox : Node
 
     private void UpdateActivePlayingTracks()
     {
-        activePlayingTracks.Clear();
+        workMemory5.Clear();
         foreach (var player in audioPlayers)
         {
             if (!player.Playing || player.CurrentTrack == null)
                 continue;
 
-            activePlayingTracks.Add(player.CurrentTrack);
+            workMemory5.Add(player.CurrentTrack);
         }
     }
 
     private void UpdateUsableAudioPlayers()
     {
-        usableAudioPlayers.Clear();
+        workMemory4.Clear();
         foreach (var player in audioPlayers)
         {
             if (!player.Playing)
-                usableAudioPlayers.Add(player);
+                workMemory4.Add(player);
         }
     }
 
@@ -794,7 +807,7 @@ public partial class Jukebox : Node
     {
         foreach (var track in list.GetAllTracks())
         {
-            foreach (var activeTrack in activePlayingTracks)
+            foreach (var activeTrack in workMemory5)
             {
                 if (activeTrack == track.ResourcePath)
                     return true;
@@ -809,9 +822,9 @@ public partial class Jukebox : Node
         if (list.Repeat)
             return true;
 
-        list.GetTracksForContexts(activeContexts, playableTracks);
+        list.GetTracksForContexts(activeContexts, workMemory1);
 
-        foreach (var track in playableTracks)
+        foreach (var track in workMemory1)
         {
             if (!track.PlayedOnce)
                 return true;
@@ -823,8 +836,8 @@ public partial class Jukebox : Node
     private void PlayNextTrackFromList(TrackList list, List<AudioPlayer> usablePlayers, int nextPlayerToUse)
     {
         var mode = list.TrackOrder;
-        list.GetTracksForContexts(activeContexts, playableTracks);
-        var tracks = playableTracks;
+        list.GetTracksForContexts(activeContexts, workMemory1);
+        var tracks = workMemory1;
 
         if (tracks.Count == 0)
             return;
@@ -833,7 +846,7 @@ public partial class Jukebox : Node
 
         if (random.NextFloat() <= Constants.CONTEXTUAL_ONLY_MUSIC_CHANCE && TryUpdateContextOnlyTracks(list, tracks))
         {
-            tracks = contextOnlyTracks;
+            tracks = workMemory2;
         }
 
         TrackList.Track nextTrack;
@@ -874,16 +887,16 @@ public partial class Jukebox : Node
 
     private bool TryUpdateContextOnlyTracks(TrackList list, List<TrackList.Track> tracks)
     {
-        contextOnlyTracks.Clear();
+        workMemory2.Clear();
         foreach (var track in tracks)
         {
             if (track.ExclusiveToContexts != null && track.ResourcePath != list.LastPlayedTrackPath)
             {
-                contextOnlyTracks.Add(track);
+                workMemory2.Add(track);
             }
         }
 
-        return contextOnlyTracks.Count != 0;
+        return workMemory2.Count != 0;
     }
 
     private TrackList.Track GetNextSequentialTrack(TrackList list, List<TrackList.Track> playableTracks)
@@ -918,7 +931,7 @@ public partial class Jukebox : Node
 
     private bool IsTrackPlayable(TrackList.Track candidate)
     {
-        foreach (var track in playableTracks)
+        foreach (var track in workMemory1)
         {
             if (ReferenceEquals(track, candidate))
                 return true;
@@ -964,7 +977,8 @@ public partial class Jukebox : Node
             // stopping tracks, this will work correctly.
             foreach (var track in list.GetAllTracks())
             {
-                track.WasPlaying = PlayingTracks.Contains(track.ResourcePath);
+                track.WasPlaying = IsTrackPlaying(track);
+
                 if (!track.WasPlaying)
                     continue;
 
@@ -979,6 +993,26 @@ public partial class Jukebox : Node
                 }
             }
         }
+    }
+
+    private bool IsTrackPlaying(TrackList.Track track)
+    {
+        var isPlaying = false;
+        foreach (var player in audioPlayers)
+        {
+            if (!player.Playing)
+                continue;
+
+            var currentTrack = player.CurrentTrack;
+
+            if (string.IsNullOrEmpty(currentTrack) || currentTrack != track.ResourcePath)
+                continue;
+
+            isPlaying = true;
+            break;
+        }
+
+        return isPlaying;
     }
 
     private class AudioPlayer
