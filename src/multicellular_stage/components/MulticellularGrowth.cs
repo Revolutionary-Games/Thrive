@@ -15,7 +15,7 @@ using Systems;
 /// </summary>
 public struct MulticellularGrowth : IArchivableComponent
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     /// <summary>
     ///   List of cells that need to be regrown, after being lost, in
@@ -108,6 +108,8 @@ public struct MulticellularGrowth : IArchivableComponent
 
         writer.Write(NextBodyPlanCellToGrowIndex);
         writer.Write(EnoughResourcesForBudding);
+
+        writer.Write(IsASpore);
     }
 }
 
@@ -138,6 +140,11 @@ public static class MulticellularGrowthHelpers
 
         instance.NextBodyPlanCellToGrowIndex = reader.ReadInt32();
         instance.EnoughResourcesForBudding = reader.ReadBool();
+
+        if (version >= 2)
+        {
+            instance.IsASpore = reader.ReadBool();
+        }
 
         return instance;
     }
@@ -348,13 +355,15 @@ public static class MulticellularGrowthHelpers
     public static void GerminateSpore(this ref MulticellularGrowth multicellularGrowth,
         in Entity entity, IWorldSimulation worldSimulation)
     {
-        if (!entity.TryGet<MulticellularSpeciesMember>(out var multicellularSpeciesType))
+        if (!entity.Has<MulticellularSpeciesMember>())
             return;
 
         if (!multicellularGrowth.IsASpore)
             return;
 
         ref var cellProperties = ref entity.Get<CellProperties>();
+
+        ref var multicellularSpeciesType = ref entity.Get<MulticellularSpeciesMember>();
 
         multicellularSpeciesType.MulticellularCellType = multicellularSpeciesType.Species.ColonyRootCellType();
 

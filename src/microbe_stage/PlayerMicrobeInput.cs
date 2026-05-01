@@ -495,8 +495,10 @@ public partial class PlayerMicrobeInput : NodeWithInput
         if (!stage.HasPlayer)
             return;
 
-        if (!stage.Player.TryGet<MulticellularGrowth>(out var growth))
+        if (!stage.Player.Has<MulticellularGrowth>())
             return;
+
+        ref var growth = ref stage.Player.Get<MulticellularGrowth>();
 
         growth.GerminateSpore(stage.Player, stage.WorldSimulation);
     }

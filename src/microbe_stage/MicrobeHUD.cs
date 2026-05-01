@@ -50,7 +50,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     private ActionButton siderophoreHotkey = null!;
 
     [Export]
-    private ActionButton growSporeHotkey = null!;
+    private ActionButton germinateSporeHotkey = null!;
 
     [Export]
     private Button multicellularButton = null!;
@@ -716,7 +716,11 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         if (player.TryGet<MulticellularGrowth>(out var growth))
         {
-            growSporeHotkey.Visible = growth.IsASpore;
+            germinateSporeHotkey.Visible = growth.IsASpore;
+        }
+        else
+        {
+            germinateSporeHotkey.Visible = false;
         }
 
         if (unbindAllHotkey.ActionNameAsStringName != null)

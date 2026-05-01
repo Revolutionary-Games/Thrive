@@ -10,7 +10,7 @@ using Systems;
 /// </summary>
 public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISimulationPhotographable
 {
-    public const ushort SERIALIZATION_VERSION = 2;
+    public const ushort SERIALIZATION_VERSION = 3;
 
     private readonly Dictionary<BiomeConditions, Dictionary<Compound, (float TimeToFill, float Storage)>>
         cachedFillTimes = new();
@@ -128,6 +128,12 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
             }
         }
 
+        if (version >= 3)
+        {
+            instance.ReproductionMethod = (MulticellularReproductionMethod)reader.ReadInt32();
+            instance.ModifiableSporeCellType = reader.ReadObjectOrNull<CellType>();
+        }
+
         return instance;
     }
 
@@ -138,6 +144,9 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         writer.WriteObject(ModifiableGameplayCells);
         writer.WriteObject(ModifiableEditorCells);
         writer.WriteObject(ModifiableCellTypes);
+
+        writer.Write((int)ReproductionMethod);
+        writer.WriteObjectOrNull(ModifiableSporeCellType);
     }
 
     public override void OnEdited()
@@ -164,6 +173,9 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
                 cellType.ModifiableOrganelles.Organelles[i].IsEndosymbiont = false;
             }
         }
+
+        if (ReproductionMethod == MulticellularReproductionMethod.Sporulation && ModifiableSporeCellType == null)
+            throw new Exception("Sporulation reproduction method requires a spore cell type to be set");
 
         if (modifiableEditorCells != null)
         {
@@ -457,6 +469,9 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         {
             result.ModifiableCellTypes.Add((CellType)cellType.Clone());
         }
+
+        result.ReproductionMethod = ReproductionMethod;
+        result.ModifiableSporeCellType = ModifiableSporeCellType?.Clone() as CellType;
 
         return result;
     }
