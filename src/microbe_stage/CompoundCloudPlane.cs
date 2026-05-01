@@ -388,7 +388,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
         int squaresPerSide = Constants.CLOUD_PLANE_SQUARES_PER_SIDE;
         int planeChunkSize = planeSize / squaresPerSide;
 
-        for (int column = 0; column <= squaresPerSide; column++)
+        for (int column = 0; column <= squaresPerSide; ++column)
         {
             int boundaryCenter = column * planeChunkSize;
             int horizontalStart = Math.Max(0, boundaryCenter - halfEdgeWidth);
@@ -397,12 +397,12 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
             AreaDiffuse(horizontalStart, horizontalEnd, 0, planeSize, deltaTime);
         }
 
-        for (int square = 0; square < squaresPerSide; square++)
+        for (int square = 0; square < squaresPerSide; ++square)
         {
             int horizontalStart = square * planeChunkSize + halfEdgeWidth;
             int horizontalEnd = (square + 1) * planeChunkSize - halfEdgeWidth;
 
-            for (int row = 0; row <= squaresPerSide; row++)
+            for (int row = 0; row <= squaresPerSide; ++row)
             {
                 int boundaryCenter = row * planeChunkSize;
                 int verticalStart = Math.Max(0, boundaryCenter - halfEdgeWidth);
@@ -421,7 +421,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
         deltaTime *= 100.0f;
         int slices = Constants.CLOUD_PLANE_SQUARES_PER_SIDE * Constants.CLOUD_PLANE_SQUARES_PER_SIDE;
 
-        for (int slice = 0; slice < slices; slice++)
+        for (int slice = 0; slice < slices; ++slice)
         {
             int atSlice = slice;
             queue.Add(new Task(() => PartialDiffuse(atSlice, slices, deltaTime)));
@@ -945,7 +945,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
         var sourceDensity = Density.AsSpan();
         var destinationDensity = OldDensity.AsSpan();
 
-        for (int horizontalIndex = horizontalStart; horizontalIndex < horizontalEnd; horizontalIndex++)
+        for (int horizontalIndex = horizontalStart; horizontalIndex < horizontalEnd; ++horizontalIndex)
         {
             int currentRowOffset = horizontalIndex * planeSize;
             int previousRowOffset = (horizontalIndex == 0 ? planeSize - 1 : horizontalIndex - 1) * planeSize;
@@ -958,7 +958,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
 
             int verticalIndex = 1;
             int safeLimit = planeSize - 1;
-            for (; verticalIndex < safeLimit; verticalIndex++)
+            for (; verticalIndex < safeLimit; ++verticalIndex)
             {
                 int currentIndex = currentRowOffset + verticalIndex;
                 destinationDensity[currentIndex] = sourceDensity[currentIndex] * centerWeight +
@@ -989,7 +989,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
         var sourceDensity = Density.AsSpan();
         var destinationDensity = OldDensity.AsSpan();
 
-        for (int horizontalIndex = horizontalStart; horizontalIndex < horizontalEnd; horizontalIndex++)
+        for (int horizontalIndex = horizontalStart; horizontalIndex < horizontalEnd; ++horizontalIndex)
         {
             int currentRowOffset = horizontalIndex * planeSize;
             int previousRowOffset = (horizontalIndex == 0 ? planeSize - 1 : horizontalIndex - 1) * planeSize;
@@ -1003,11 +1003,11 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
                 destinationDensity[currentIndex] = sourceDensity[currentIndex] * centerWeight +
                     (sourceDensity[currentRowOffset + (planeSize - 1)] + sourceDensity[currentRowOffset + 1] +
                         sourceDensity[previousRowOffset] + sourceDensity[nextRowOffset]) * neighborWeight;
-                verticalIndex++;
+                ++verticalIndex;
             }
 
             int safeLimit = Math.Min(verticalEnd, planeSize - 1);
-            for (; verticalIndex < safeLimit; verticalIndex++)
+            for (; verticalIndex < safeLimit; ++verticalIndex)
             {
                 int currentIndex = currentRowOffset + verticalIndex;
                 destinationDensity[currentIndex] = sourceDensity[currentIndex] * centerWeight +
@@ -1131,12 +1131,12 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
         var oldDensitySpan = OldDensity.AsSpan();
         var densitySpan = Density.AsSpan();
 
-        for (int x = horizontalStart; x < horizontalEnd; x++)
+        for (int x = horizontalStart; x < horizontalEnd; ++x)
         {
             int horizontalOffset = x * planeSize;
             float worldX = worldPositionBase.X + (x - horizontalStart) * resolution;
 
-            for (int y = 0; y < planeSize; y++)
+            for (int y = 0; y < planeSize; ++y)
             {
                 Vector4 oldDensity = oldDensitySpan[horizontalOffset + y];
                 if (oldDensity.X + oldDensity.Y + oldDensity.Z + oldDensity.W < 1.0f)
@@ -1218,7 +1218,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
             MemoryMarshal.Write(bufferSpan.Slice(i, 4), packed8.AsUInt32().ToScalar());
         }
 
-        for (; i < floatLength; i++)
+        for (; i < floatLength; ++i)
         {
             bufferSpan[i] = (byte)Math.Clamp(denFloats[i] * invMax, 0, 255);
         }
