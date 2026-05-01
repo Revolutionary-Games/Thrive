@@ -1119,13 +1119,13 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
         const float intensityScale = 255.0f / Constants.CLOUD_MAX_INTENSITY_SHOWN;
 
         int bufferIndex = 0;
-        for (int y = 0; y < rowCount; y++)
+        for (int y = 0; y < rowCount; ++y)
         {
             int rowOffset = y * planeSize;
             float worldY = worldPositionBase.Y + y * resolution;
             int absoluteY = y + rowStart;
 
-            for (int x = 0; x < planeSize; x++)
+            for (int x = 0; x < planeSize; ++x)
             {
                 Vector4 currentDensity = source[rowOffset + x];
 
