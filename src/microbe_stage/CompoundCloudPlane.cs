@@ -447,20 +447,6 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
         }
     }
 
-    /// <summary>
-    ///   Updates the cloud in parallel.
-    /// </summary>
-    public void QueueUpdateTextureImage(List<Task> queue)
-    {
-        int slices = Constants.CLOUD_PLANE_SQUARES_PER_SIDE * Constants.CLOUD_PLANE_SQUARES_PER_SIDE;
-
-        for (int slice = 0; slice < slices; ++slice)
-        {
-            int atSlice = slice;
-            queue.Add(new Task(() => PartialUpdateTextureImage(atSlice, slices)));
-        }
-    }
-
     public void UpdateTexture()
     {
         int width = image!.GetWidth();
@@ -1122,40 +1108,51 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     private void PartialAdvect(int slice, int slices, float delta)
     {
         int planeSize = PlaneSize;
-        int horizontalStart = slice * planeSize / slices;
-        int horizontalEnd = (slice + 1) * planeSize / slices;
+        int rowStart = slice * planeSize / slices;
+        int rowEnd = (slice + 1) * planeSize / slices;
+        int rowCount = rowEnd - rowStart;
+
+        var source = OldDensity.AsSpan(rowStart * planeSize, rowCount * planeSize);
+        var destination = Density.AsSpan();
+        var bufferSpan = tempBuffer.AsSpan(rowStart * planeSize * 4, rowCount * planeSize * 4);
 
         float resolution = CloudResolution;
-        Vector2 worldPositionBase = GetWorldPositionForAdvection(horizontalStart, 0);
+        Vector2 worldPositionBase = GetWorldPositionForAdvection(0, rowStart);
 
-        var oldDensitySpan = OldDensity.AsSpan();
-        var densitySpan = Density.AsSpan();
+        const float intensityScale = 255.0f / Constants.CLOUD_MAX_INTENSITY_SHOWN;
 
-        for (int x = horizontalStart; x < horizontalEnd; ++x)
+        int bufferIndex = 0;
+        for (int y = 0; y < rowCount; y++)
         {
-            int horizontalOffset = x * planeSize;
-            float worldX = worldPositionBase.X + (x - horizontalStart) * resolution;
+            int rowOffset = y * planeSize;
+            float worldY = worldPositionBase.Y + y * resolution;
+            int absoluteY = y + rowStart;
 
-            for (int y = 0; y < planeSize; ++y)
+            for (int x = 0; x < planeSize; x++)
             {
-                Vector4 oldDensity = oldDensitySpan[horizontalOffset + y];
-                if (oldDensity.X + oldDensity.Y + oldDensity.Z + oldDensity.W < 1.0f)
+                Vector4 currentDensity = source[rowOffset + x];
+
+                bufferSpan[bufferIndex] = (byte)Math.Clamp(currentDensity.X * intensityScale, 0, 255);
+                bufferSpan[bufferIndex + 1] = (byte)Math.Clamp(currentDensity.Y * intensityScale, 0, 255);
+                bufferSpan[bufferIndex + 2] = (byte)Math.Clamp(currentDensity.Z * intensityScale, 0, 255);
+                bufferSpan[bufferIndex + 3] = (byte)Math.Clamp(currentDensity.W * intensityScale, 0, 255);
+                bufferIndex += 4;
+
+                if (currentDensity.X + currentDensity.Y + currentDensity.Z + currentDensity.W < 1.0f)
                     continue;
 
-                float worldY = worldPositionBase.Y + y * resolution;
+                float worldX = worldPositionBase.X + x * resolution;
                 Vector2 velocity = fluidSystem!.VelocityAt(new Vector2(worldX, worldY));
 
                 if (MathF.Abs(velocity.X) + MathF.Abs(velocity.Y) < Constants.CURRENT_COMPOUND_CLOUD_ADVECT_THRESHOLD)
-                {
                     velocity = Vector2.Zero;
-                }
 
                 velocity *= VISCOSITY;
 
-                float destinationX = x + delta * velocity.X;
-                float destinationY = y + delta * velocity.Y;
+                float targetX = x + delta * velocity.X;
+                float targetY = absoluteY + delta * velocity.Y;
 
-                CalculateMovementFactors(destinationX, destinationY,
+                CalculateMovementFactors(targetX, targetY,
                     out int floorX, out int ceilingX, out int floorY, out int ceilingY,
                     out float weightRight, out float weightLeft, out float weightBottom, out float weightTop);
 
@@ -1168,59 +1165,18 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
                 if ((uint)ceilingY >= (uint)planeSize)
                     ceilingY = (ceilingY < 0) ? ceilingY + planeSize : ceilingY - planeSize;
 
-                int floorXRow = floorX * planeSize;
-                int ceilingXRow = ceilingX * planeSize;
+                int floorYOffset = floorY * planeSize;
+                int ceilingYOffset = ceilingY * planeSize;
 
-                Vector4 decayed = oldDensity * decayRates;
+                Vector4 decayed = currentDensity * decayRates;
                 Vector4 decayedLeft = decayed * weightLeft;
                 Vector4 decayedRight = decayed * weightRight;
 
-                densitySpan[floorXRow + floorY] += decayedLeft * weightTop;
-                densitySpan[floorXRow + ceilingY] += decayedLeft * weightBottom;
-                densitySpan[ceilingXRow + floorY] += decayedRight * weightTop;
-                densitySpan[ceilingXRow + ceilingY] += decayedRight * weightBottom;
+                destination[floorX + floorYOffset] += decayedLeft * weightTop;
+                destination[floorX + ceilingYOffset] += decayedLeft * weightBottom;
+                destination[ceilingX + floorYOffset] += decayedRight * weightTop;
+                destination[ceilingX + ceilingYOffset] += decayedRight * weightBottom;
             }
-        }
-    }
-
-    private void PartialUpdateTextureImage(int slice, int nOfSlices)
-    {
-        float invMax = 255.0f / Constants.CLOUD_MAX_INTENSITY_SHOWN;
-        int rowsPerSlice = PlaneSize / nOfSlices;
-        int startRow = slice * rowsPerSlice;
-        int endRow = (slice == nOfSlices - 1) ? PlaneSize : (slice + 1) * rowsPerSlice;
-        int rowCount = endRow - startRow;
-
-        var densitySpan = Density.AsSpan(startRow * PlaneSize, rowCount * PlaneSize);
-        var denFloats = MemoryMarshal.Cast<Vector4, float>(densitySpan);
-
-        var bufferSpan = tempBuffer.AsSpan(startRow * PlaneSize * 4, rowCount * PlaneSize * 4);
-
-        var vInvMax = Vector128.Create(invMax);
-        var vZero = Vector128<float>.Zero;
-        var v255 = Vector128.Create(255.0f);
-
-        int i = 0;
-        int floatLength = denFloats.Length;
-
-        for (; i <= floatLength - 4; i += 4)
-        {
-            Vector128<float> v = Vector128.LoadUnsafe(ref MemoryMarshal.GetReference(denFloats), (uint)i);
-
-            v = Vector128.Multiply(v, vInvMax);
-            v = Vector128.Max(v, vZero);
-            v = Vector128.Min(v, v255);
-
-            Vector128<int> vInt = Vector128.ConvertToInt32(v);
-            Vector128<short> packed16 = Sse2.PackSignedSaturate(vInt, vInt);
-            Vector128<byte> packed8 = Sse2.PackUnsignedSaturate(packed16.AsInt16(), packed16.AsInt16()).AsByte();
-
-            MemoryMarshal.Write(bufferSpan.Slice(i, 4), packed8.AsUInt32().ToScalar());
-        }
-
-        for (; i < floatLength; ++i)
-        {
-            bufferSpan[i] = (byte)Math.Clamp(denFloats[i] * invMax, 0, 255);
         }
     }
 
