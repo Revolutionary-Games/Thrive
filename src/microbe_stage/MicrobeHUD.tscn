@@ -862,6 +862,7 @@ show_percentage = false
 [connection signal="pressed" from="ScrollContainer/HotBar/Sprint" to="." method="OnSprintPressed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/Mucocyst" to="." method="OnMucocystPressed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/Siderophore" to="." method="OnSiderophorePressed"]
+[connection signal="pressed" from="ScrollContainer/HotBar/GerminateSpore" to="." method="OnGerminateSporePressed"]
 [connection signal="OnItemSelected" from="RadialPopup" to="." method="OnRadialItemSelected"]
 [connection signal="Canceled" from="StagePrototypeConfirm" to="." method="OnBecomeMacroscopicCanceled"]
 [connection signal="Confirmed" from="StagePrototypeConfirm" to="." method="OnBecomeMacroscopicConfirmed"]

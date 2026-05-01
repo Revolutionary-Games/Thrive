@@ -123,6 +123,9 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     public delegate void OnSprintButtonPressedEventHandler();
 
     [Signal]
+    public delegate void OnGerminateSporeButtonPressedEventHandler();
+
+    [Signal]
     public delegate void OnAcceptRevertToEditorEventHandler();
 
     [Signal]
@@ -1090,6 +1093,11 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     private void OnSprintPressed()
     {
         EmitSignal(SignalName.OnSprintButtonPressed);
+    }
+
+    private void OnGerminateSporePressed()
+    {
+        EmitSignal(SignalName.OnGerminateSporeButtonPressed);
     }
 
     private void OnTranslationsChanged()
