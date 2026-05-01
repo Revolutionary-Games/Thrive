@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Godot;
 using Xoshiro.PRNG32;
 
@@ -19,27 +18,27 @@ public partial class Jukebox : Node
     private readonly List<AudioPlayer> audioPlayers = [];
 
     /// <summary>
-    /// cache playable tracks as candidates when trying to play the next track
+    ///   Cache playable tracks as candidates when trying to play the next track
     /// </summary>
     private readonly List<TrackList.Track> workMemory1 = [];
 
     /// <summary>
-    /// cache context only tracks as candidates when trying to play the next track
+    ///   Cache context only tracks as candidates when trying to play the next track
     /// </summary>
     private readonly List<TrackList.Track> workMemory2 = [];
 
     /// <summary>
-    /// cache track lists that don't have a playing track in them
+    ///   Cache track lists that don't have a playing track in them
     /// </summary>
     private readonly List<TrackList> workMemory3 = [];
 
     /// <summary>
-    /// cache usable audio players when trying to play the next track
+    ///   Cache usable audio players when trying to play the next track
     /// </summary>
     private readonly List<AudioPlayer> workMemory4 = [];
 
     /// <summary>
-    /// cache active playing tracks' resource paths
+    ///   Cache active playing tracks' resource paths
     /// </summary>
     private readonly List<string> workMemory5 = [];
 
