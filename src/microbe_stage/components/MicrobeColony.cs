@@ -725,7 +725,7 @@ public static class MicrobeColonyHelpers
 
         OnColonyMemberRemoved(removedMember, removedMemberIsLeader);
 
-        // Remove colony members that depend on the removed member
+        // Re-parent (when possible) or remove colony members that depend on the removed member
         foreach (var entry in colony.ColonyStructure)
         {
             if (entry.Value == removedMember)
@@ -743,7 +743,7 @@ public static class MicrobeColonyHelpers
             {
                 // This entity is already dead, this should hopefully never trigger. If this does, then this would
                 // give some more info on a colony despawn crash problem.
-                GD.PrintErr("Dependent colony member to remove is already dead, doing only " +
+                GD.PrintErr("Dependent colony member to re-parent is already dead, doing only " +
                     "light fallback cleanup");
 
                 colony.ColonyStructure.Remove(next);
@@ -755,9 +755,17 @@ public static class MicrobeColonyHelpers
                 continue;
             }
 
+            var newParent = FindSuitableReParentTarget(ref colony, next);
+            if (newParent != Entity.Null)
+            {
+                colony.ColonyStructure[next] = newParent;
+                next.Get<IntercellularMatrix>().RemoveConnection();
+                continue;
+            }
+
             // This might stackoverflow if we have absolute, hugely nested cell colonies, but there would probably
-            // need to be colonies with thousands of cells, which would already choke the game so that isn't much
-            // of a concern
+            // need to be colonies with thousands of cells, which would already choke the game so that isn't much of a
+            // concern
             if (!colony.RemoveFromColonyAndDisbandIfEmpty(colonyEntity, next, recorder))
             {
                 // Colony is entirely disbanded, doesn't make sense to continue removing things
@@ -1507,6 +1515,42 @@ public static class MicrobeColonyHelpers
         }
 
         colony.ColonyMembers = newMembers;
+    }
+
+    /// <summary>
+    ///   Finds the closest alive colony member to re-parent the cell to, or returns <see cref="Entity.Null"/>
+    ///   if no suitable cell exists or is close enough.
+    /// </summary>
+    private static Entity FindSuitableReParentTarget(ref MicrobeColony colony, in Entity child)
+    {
+        Vector3 relativePosition = child.Get<AttachedToEntity>().RelativePosition;
+
+        Entity bestParent = Entity.Null;
+        float bestDistanceSquared = float.MaxValue;
+
+        foreach (var member in colony.ColonyMembers)
+        {
+            if (member == child)
+                continue;
+
+            Vector3 memberRelativePosition = Vector3.Zero;
+
+            if (member != colony.Leader)
+            {
+                memberRelativePosition = member.Get<AttachedToEntity>().RelativePosition;
+            }
+
+            float distanceSquared = relativePosition.DistanceSquaredTo(memberRelativePosition);
+
+            if (distanceSquared < bestDistanceSquared && distanceSquared <=
+                Constants.MICROBE_COLONY_MAX_REPARENT_DISTANCE_SQUARED)
+            {
+                bestDistanceSquared = distanceSquared;
+                bestParent = member;
+            }
+        }
+
+        return bestParent;
     }
 
     private static void MarkMembersChanged(this ref MicrobeColony colony)
