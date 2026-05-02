@@ -1172,7 +1172,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
         int sourceIdx = 0;
         int bufferIdx = 0;
 
-        for (int y = 0; y < rowCount; y++)
+        for (int y = 0; y < rowCount; ++y)
         {
             int absoluteY = y + rowStart;
             float worldY = worldPositionBase.Y + y * resolution;
@@ -1201,7 +1201,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
                     continue;
                 }
 
-                for (int i = 0; i < 4; i++)
+                for (int i = 0; i < 4; ++i)
                 {
                     Vector4 currentDensity = source[sourceIdx++];
 
@@ -1253,7 +1253,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
                 }
             }
 
-            for (; x < planeSize; x++)
+            for (; x < planeSize; ++x)
             {
             }
         }
