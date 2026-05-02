@@ -957,6 +957,8 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
             {
                 // Use Avx2 SIMD to vectorise diffusion.
 
+                // Most of the operations are now vectorised, except for a possible final tail that doesn't fit in a
+                // Vector256. This is taken care of after the current conditional branch.
                 for (; verticalIndex <= safeLimit - 2; verticalIndex += 2)
                 {
                     uint offset = (uint)(currentRowOffset + verticalIndex) << 2;
@@ -983,6 +985,8 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
             // executed after the SIMD operations if Avx2 is supported anyway, as we need to take care of a possible
             // "tail" if the PlaneSize is not aligned to the previous SIMD algorithm.
 
+            // This is the scalar algorithm. It executes if Avx2 is not supported and on the tail we discussed in the
+            // previous comments.
             for (; verticalIndex < safeLimit; ++verticalIndex)
             {
                 int currentIndex = currentRowOffset + verticalIndex;
