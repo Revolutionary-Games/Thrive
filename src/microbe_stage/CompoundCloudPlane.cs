@@ -5,6 +5,9 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using System.Runtime.Intrinsics;
+using System.Runtime.Intrinsics.X86;
 using System.Threading;
 using System.Threading.Tasks;
 using Godot;
@@ -925,8 +928,16 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
         float neighborWeight = diffusionAmount * 0.25f;
         float centerWeight = 1.0f - diffusionAmount;
 
-        var sourceDensity = Density.AsSpan();
-        var destinationDensity = OldDensity.AsSpan();
+        ReadOnlySpan<Vector4> sourceDensity = Density.AsSpan();
+        Span<Vector4> destinationDensity = OldDensity.AsSpan();
+        ReadOnlySpan<float> sourceFloats = MemoryMarshal.Cast<Vector4, float>(sourceDensity);
+        Span<float> destinationFloats = MemoryMarshal.Cast<Vector4, float>(destinationDensity);
+
+        var centerWeightVector = Vector256.Create(centerWeight);
+        var neighborWeightVector = Vector256.Create(neighborWeight);
+
+        ref float sourceReference = ref MemoryMarshal.GetReference(sourceFloats);
+        ref float destinationReference = ref MemoryMarshal.GetReference(destinationFloats);
 
         for (int horizontalIndex = horizontalStart; horizontalIndex < horizontalEnd; ++horizontalIndex)
         {
@@ -941,6 +952,37 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
 
             int verticalIndex = 1;
             int safeLimit = planeSize - 1;
+
+            if (Avx2.IsSupported)
+            {
+                // Use Avx2 SIMD to vectorise diffusion.
+
+                for (; verticalIndex <= safeLimit - 2; verticalIndex += 2)
+                {
+                    uint offset = (uint)(currentRowOffset + verticalIndex) << 2;
+
+                    var center = Vector256.LoadUnsafe(ref sourceReference, offset);
+
+                    var up = Vector256.LoadUnsafe(ref sourceReference, offset - 4);
+                    var down = Vector256.LoadUnsafe(ref sourceReference, offset + 4);
+                    var left = Vector256.LoadUnsafe(ref sourceReference, (uint)(previousRowOffset +
+                        verticalIndex) << 2);
+                    var right = Vector256.LoadUnsafe(ref sourceReference, (uint)(nextRowOffset + verticalIndex) << 2);
+
+                    var neighbors = Avx.Add(Avx.Add(up, down), Avx.Add(left, right));
+
+                    var result = Avx.Add(
+                        Avx.Multiply(center, centerWeightVector),
+                        Avx.Multiply(neighbors, neighborWeightVector));
+
+                    result.StoreUnsafe(ref destinationReference, offset);
+                }
+            }
+
+            // If Avx2 is unsupported, the following loops will take care of the scalar operations. That must be
+            // executed after the SIMD operations if Avx2 is supported anyway, as we need to take care of a possible
+            // "tail" if the PlaneSize is not aligned to the previous SIMD algorithm.
+
             for (; verticalIndex < safeLimit; ++verticalIndex)
             {
                 int currentIndex = currentRowOffset + verticalIndex;
