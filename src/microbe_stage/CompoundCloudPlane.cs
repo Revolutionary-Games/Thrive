@@ -1159,7 +1159,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
 
         ReadOnlySpan<Vector4> source = OldDensity.AsSpan(rowStart * planeSize, rowCount * planeSize);
         Span<Vector4> destination = Density.AsSpan();
-        Span<byte> targetBuffer = tempBuffer.AsSpan(rowStart * planeSize * 4, rowCount * planeSize * 4);
+        Span<byte> bufferSpan = tempBuffer.AsSpan(rowStart * planeSize * 4, rowCount * planeSize * 4);
 
         float resolution = CloudResolution;
         float intensityScale = 255.0f / Constants.CLOUD_MAX_INTENSITY_SHOWN;
@@ -1194,7 +1194,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
 
                 if (Vector128.LessThanAll(sums, Vector128.Create(1.0f)))
                 {
-                    Vector128<byte>.Zero.StoreUnsafe(ref targetBuffer[bufferIdx]);
+                    Vector128<byte>.Zero.StoreUnsafe(ref bufferSpan[bufferIdx]);
 
                     sourceIdx += 4;
                     bufferIdx += 16;
@@ -1212,7 +1212,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
                     var packed16 = Sse2.PackSignedSaturate(vInt, vInt);
                     var packed8 = Sse2.PackUnsignedSaturate(packed16, packed16).AsByte();
 
-                    MemoryMarshal.Write(targetBuffer.Slice(bufferIdx, 4),
+                    MemoryMarshal.Write(bufferSpan.Slice(bufferIdx, 4),
                         packed8.AsUInt32().ToScalar());
 
                     bufferIdx += 4;
@@ -1220,44 +1220,64 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
                     if (currentDensity.X + currentDensity.Y + currentDensity.Z + currentDensity.W < 1.0f)
                         continue;
 
-                    float worldX = worldPositionBase.X + (x + i) * resolution;
-                    Vector2 velocity = fluidSystem!.VelocityAt(new Vector2(worldX, worldY));
-                    if (MathF.Abs(velocity.X) + MathF.Abs(velocity.Y) <
-                        Constants.CURRENT_COMPOUND_CLOUD_ADVECT_THRESHOLD)
-                        velocity = Vector2.Zero;
-
-                    velocity *= VISCOSITY;
-                    float targetX = (x + i) + delta * velocity.X;
-                    float targetY = absoluteY + delta * velocity.Y;
-
-                    CalculateMovementFactors(targetX, targetY,
-                        out int fX, out int cX, out int fY, out int cY,
-                        out float wR, out float wL, out float wB, out float wT);
-
-                    if ((uint)fX >= (uint)planeSize)
-                        fX = (fX < 0) ? fX + planeSize : fX - planeSize;
-                    if ((uint)cX >= (uint)planeSize)
-                        cX = (cX < 0) ? cX + planeSize : cX - planeSize;
-                    if ((uint)fY >= (uint)planeSize)
-                        fY = (fY < 0) ? fY + planeSize : fY - planeSize;
-                    if ((uint)cY >= (uint)planeSize)
-                        cY = (cY < 0) ? cY + planeSize : cY - planeSize;
-
-                    int fYRow = fY * planeSize;
-                    int cYRow = cY * planeSize;
-                    Vector4 decayed = currentDensity * decayRates;
-
-                    destination[fX + fYRow] += decayed * (wL * wT);
-                    destination[fX + cYRow] += decayed * (wL * wB);
-                    destination[cX + fYRow] += decayed * (wR * wT);
-                    destination[cX + cYRow] += decayed * (wR * wB);
+                    ProcessPixelAdvection(currentDensity, x + i, absoluteY, worldY, worldXOffset: (x + i) * resolution,
+                        delta, destination, planeSize, worldPositionBase);
                 }
             }
 
             for (; x < planeSize; ++x)
             {
+                Vector4 currentDensity = source[sourceIdx++];
+
+                bufferSpan[bufferIdx] = (byte)Math.Clamp(currentDensity.X * intensityScale, 0, 255);
+                bufferSpan[bufferIdx + 1] = (byte)Math.Clamp(currentDensity.Y * intensityScale, 0, 255);
+                bufferSpan[bufferIdx + 2] = (byte)Math.Clamp(currentDensity.Z * intensityScale, 0, 255);
+                bufferSpan[bufferIdx + 3] = (byte)Math.Clamp(currentDensity.W * intensityScale, 0, 255);
+                bufferIdx += 4;
+
+                if (currentDensity.X + currentDensity.Y + currentDensity.Z + currentDensity.W < 1.0f)
+                    continue;
+
+                ProcessPixelAdvection(currentDensity, x, absoluteY, worldY, worldXOffset: x * resolution, delta,
+                    destination, planeSize, worldPositionBase);
             }
         }
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void ProcessPixelAdvection(Vector4 currentDensity, int x, int absoluteY, float worldY, float worldXOffset,
+        float delta, Span<Vector4> destination, int planeSize, Vector2 worldPositionBase)
+    {
+        float worldX = worldPositionBase.X + worldXOffset;
+        Vector2 velocity = fluidSystem!.VelocityAt(new Vector2(worldX, worldY));
+
+        if (MathF.Abs(velocity.X) + MathF.Abs(velocity.Y) < Constants.CURRENT_COMPOUND_CLOUD_ADVECT_THRESHOLD)
+            velocity = Vector2.Zero;
+
+        velocity *= VISCOSITY;
+        float targetX = x + delta * velocity.X;
+        float targetY = absoluteY + delta * velocity.Y;
+
+        CalculateMovementFactors(targetX, targetY, out int fX, out int cX, out int fY, out int cY, out float wR,
+            out float wL, out float wB, out float wT);
+
+        if ((uint)fX >= (uint)planeSize)
+            fX = (fX < 0) ? fX + planeSize : fX - planeSize;
+        if ((uint)cX >= (uint)planeSize)
+            cX = (cX < 0) ? cX + planeSize : cX - planeSize;
+        if ((uint)fY >= (uint)planeSize)
+            fY = (fY < 0) ? fY + planeSize : fY - planeSize;
+        if ((uint)cY >= (uint)planeSize)
+            cY = (cY < 0) ? cY + planeSize : cY - planeSize;
+
+        int fYRow = fY * planeSize;
+        int cYRow = cY * planeSize;
+        Vector4 decayed = currentDensity * decayRates;
+
+        destination[fX + fYRow] += decayed * (wL * wT);
+        destination[fX + cYRow] += decayed * (wL * wB);
+        destination[cX + fYRow] += decayed * (wR * wT);
+        destination[cX + cYRow] += decayed * (wR * wB);
     }
 
     private void PartialClearDensity(int x0, int y0, int width, int height)
