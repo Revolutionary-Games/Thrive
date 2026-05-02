@@ -939,6 +939,8 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
         ref float sourceReference = ref MemoryMarshal.GetReference(sourceFloats);
         ref float destinationReference = ref MemoryMarshal.GetReference(destinationFloats);
 
+        bool avx2Supported = Avx2.IsSupported;
+
         for (int horizontalIndex = horizontalStart; horizontalIndex < horizontalEnd; ++horizontalIndex)
         {
             int currentRowOffset = horizontalIndex * planeSize;
@@ -953,7 +955,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
             int verticalIndex = 1;
             int safeLimit = planeSize - 1;
 
-            if (Avx2.IsSupported)
+            if (avx2Supported)
             {
                 // Use Avx2 SIMD to vectorise diffusion.
 
