@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-04-29 22:42+0200\n"
-"PO-Revision-Date: 2026-04-29 07:47+0000\n"
-"Last-Translator: ILIA RIABOV <ilyarya131@gmail.com>\n"
+"PO-Revision-Date: 2026-05-01 09:17+0000\n"
+"Last-Translator: dligr <dellpls43@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -4375,9 +4375,11 @@ msgstr "Фиксация Азота"
 msgid "NITROPLAST"
 msgstr "Азотфиксирующая пластида"
 
+#, fuzzy
 msgid "NITROPLAST_DESCRIPTION"
 msgstr "Азотфиксирующий пластид — белок, способный использовать газообразный [thrive:compound type=\"nitrogen\"][/thrive:compound], [thrive:compound type=\"oxygen\"][/thrive:compound] и [thrive:compound type=\"atp\"][/thrive:compound] для производства [thrive:compound type=\"ammonia\"][/thrive:compound], ключевого питательного вещества для роста клеток. Это процесс, называемый [b]аэробная азотфиксация[/b]."
 
+#, fuzzy
 msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Превращает [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:compound type=\"ammonia\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"nitrogen\"][/thrive:compound] и [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
@@ -4875,7 +4877,7 @@ msgid "PHYSICAL_RESISTANCE"
 msgstr "Физическое Сопротивление"
 
 msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
-msgstr ""
+msgstr "Размещение органеллы заблокировано, так как она несовместима с текущей мембраной"
 
 msgid "PLACE_ORGANELLE"
 msgstr "Разместить органеллу (или другую вещь)"
@@ -8686,6 +8688,7 @@ msgstr "Редактор Наций"
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "Нет эффектов."
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_INTRO"
 msgstr ""
 "Выполняет [b]Анаэробную Фиксацию Азота[/b] для производства [thrive:compound type=\"ammonia\"][/thrive:compound] из газзобразного [thrive:compound type=\"nitrogen\"][/thrive:compound] и [thrive:compound type=\"atp\"][/thrive:compound], вырабатывает один из компонентов роста для клеточного размножения. Менее эффективен, чем эукариот [b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]Нитропласт[/url][/color][/b].\n"
@@ -8726,12 +8729,14 @@ msgstr "Нет улучшений."
 msgid "WIKI_NITROPLAST_EFFECTS"
 msgstr "Нет эффектов."
 
+#, fuzzy
 msgid "WIKI_NITROPLAST_INTRO"
 msgstr "Нитропласт — это окружённая мембраной органелла, используемая для производства [thrive:compound type=\"ammonia\"][/thrive:compound], один из компонентов роста, необходимый для клеточного размножения. Выполняет [b]Анаэробную Фиксацию Азота[/b] для преобразования газообразного [thrive:compound type=\"nitrogen\"][/thrive:compound] и [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:compound type=\"ammonia\"][/thrive:compound]. Более эффективен, чем прокариот [b][color=#3796e1][url=thriveopedia:nitrogenase]Нитрогеназа[/url][/color][/b]."
 
 msgid "WIKI_NITROPLAST_MODIFICATIONS"
 msgstr "Нет модификаций."
 
+#, fuzzy
 msgid "WIKI_NITROPLAST_PROCESSES"
 msgstr ""
 "[b]Аэробная Фиксация Азота[/b]\n"
