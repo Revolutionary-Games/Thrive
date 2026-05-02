@@ -1222,7 +1222,8 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
 
                     float worldX = worldPositionBase.X + (x + i) * resolution;
                     Vector2 velocity = fluidSystem!.VelocityAt(new Vector2(worldX, worldY));
-                    if (MathF.Abs(velocity.X) + MathF.Abs(velocity.Y) < Constants.CURRENT_COMPOUND_CLOUD_ADVECT_THRESHOLD)
+                    if (MathF.Abs(velocity.X) + MathF.Abs(velocity.Y) <
+                        Constants.CURRENT_COMPOUND_CLOUD_ADVECT_THRESHOLD)
                         velocity = Vector2.Zero;
 
                     velocity *= VISCOSITY;
