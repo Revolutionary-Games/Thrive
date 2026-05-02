@@ -361,8 +361,6 @@ public static class Constants
     /// </summary>
     public const float MICROBE_COLONY_MEMBER_ENTITY_WEIGHT_MULTIPLIER = 0.95f;
 
-    public const float MICROBE_COLONY_MAX_REPARENT_DISTANCE_SQUARED = 8000.0f * 8000.0f;
-
     /// <summary>
     ///   Extra radius added to the spawn radius of things to allow them to move in the "wrong" direction a bit
     ///   without causing them to despawn instantly. Things despawn outside the despawn radius.

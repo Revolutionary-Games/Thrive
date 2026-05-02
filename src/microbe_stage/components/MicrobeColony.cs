@@ -31,7 +31,7 @@ public struct MicrobeColony : IArchivableComponent
     public Entity Leader;
 
     /// <summary>
-    ///   This maps parent cells to their children in the colony hierarchy. All cells are merged into the leader,
+    ///   This maps child cells to their parents in the colony hierarchy. All cells are merged into the leader,
     ///   but certain operations like removing cells need to not leave gaps in the colony for that this is used to
     ///   detect which cells are also lost if one cell is lost. Key is the dependent cell and the value is its
     ///   parent.
@@ -1518,19 +1518,25 @@ public static class MicrobeColonyHelpers
     }
 
     /// <summary>
-    ///   Finds the closest alive colony member to re-parent the cell to, or returns <see cref="Entity.Null"/>
-    ///   if no suitable cell exists or is close enough.
+    ///   Re-parents the cell to the closest alive colony member, or returns <see cref="Entity.Null"/> if no suitable
+    ///   cell exists or is close enough.
     /// </summary>
-    private static Entity FindSuitableReParentTarget(ref MicrobeColony colony, in Entity child)
+    private static Entity FindSuitableReParentTarget(ref MicrobeColony colony, in Entity cell)
     {
-        Vector3 relativePosition = child.Get<AttachedToEntity>().RelativePosition;
+        Vector3 relativePosition = cell.Get<AttachedToEntity>().RelativePosition;
 
         Entity bestParent = Entity.Null;
         float bestDistanceSquared = float.MaxValue;
 
+        float radius = cell.Get<CellProperties>().Radius;
+
         foreach (var member in colony.ColonyMembers)
         {
-            if (member == child)
+            if (member == cell)
+                continue;
+
+            // Skip if it's connected to our cell
+            if (colony.ColonyStructure.ContainsKey(member) && colony.ColonyStructure[member] == cell)
                 continue;
 
             Vector3 memberRelativePosition = Vector3.Zero;
@@ -1540,10 +1546,12 @@ public static class MicrobeColonyHelpers
                 memberRelativePosition = member.Get<AttachedToEntity>().RelativePosition;
             }
 
+            // Totally arbitrary
+            float maxDistanceSquared = MathUtils.Square((radius + member.Get<CellProperties>().Radius) * 3.0f);
+
             float distanceSquared = relativePosition.DistanceSquaredTo(memberRelativePosition);
 
-            if (distanceSquared < bestDistanceSquared && distanceSquared <=
-                Constants.MICROBE_COLONY_MAX_REPARENT_DISTANCE_SQUARED)
+            if (distanceSquared < bestDistanceSquared && distanceSquared <= maxDistanceSquared)
             {
                 bestDistanceSquared = distanceSquared;
                 bestParent = member;
