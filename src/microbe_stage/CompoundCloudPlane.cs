@@ -1157,70 +1157,104 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
         int rowEnd = (slice + 1) * planeSize / slices;
         int rowCount = rowEnd - rowStart;
 
-        var source = OldDensity.AsSpan(rowStart * planeSize, rowCount * planeSize);
-        var destination = Density.AsSpan();
-        var bufferSpan = tempBuffer.AsSpan(rowStart * planeSize * 4, rowCount * planeSize * 4);
+        ReadOnlySpan<Vector4> source = OldDensity.AsSpan(rowStart * planeSize, rowCount * planeSize);
+        Span<Vector4> destination = Density.AsSpan();
+        Span<byte> targetBuffer = tempBuffer.AsSpan(rowStart * planeSize * 4, rowCount * planeSize * 4);
 
         float resolution = CloudResolution;
+        float intensityScale = 255.0f / Constants.CLOUD_MAX_INTENSITY_SHOWN;
         Vector2 worldPositionBase = GetWorldPositionForAdvection(0, rowStart);
 
-        const float intensityScale = 255.0f / Constants.CLOUD_MAX_INTENSITY_SHOWN;
+        var vScale = Vector128.Create(intensityScale);
+        var vZero = Vector128<float>.Zero;
+        var v255 = Vector128.Create(255.0f);
 
-        int bufferIndex = 0;
-        for (int y = 0; y < rowCount; ++y)
+        int sourceIdx = 0;
+        int bufferIdx = 0;
+
+        for (int y = 0; y < rowCount; y++)
         {
-            int rowOffset = y * planeSize;
-            float worldY = worldPositionBase.Y + y * resolution;
             int absoluteY = y + rowStart;
+            float worldY = worldPositionBase.Y + y * resolution;
 
-            for (int x = 0; x < planeSize; ++x)
+            int x = 0;
+
+            for (; x <= planeSize - 4; x += 4)
             {
-                Vector4 currentDensity = source[rowOffset + x];
+                var p0 = source[sourceIdx].AsVector128();
+                var p1 = source[sourceIdx + 1].AsVector128();
+                var p2 = source[sourceIdx + 2].AsVector128();
+                var p3 = source[sourceIdx + 3].AsVector128();
 
-                bufferSpan[bufferIndex] = (byte)Math.Clamp(currentDensity.X * intensityScale, 0, 255);
-                bufferSpan[bufferIndex + 1] = (byte)Math.Clamp(currentDensity.Y * intensityScale, 0, 255);
-                bufferSpan[bufferIndex + 2] = (byte)Math.Clamp(currentDensity.Z * intensityScale, 0, 255);
-                bufferSpan[bufferIndex + 3] = (byte)Math.Clamp(currentDensity.W * intensityScale, 0, 255);
-                bufferIndex += 4;
+                var sums = Vector128.Create(
+                    p0[0] + p0[1] + p0[2] + p0[3],
+                    p1[0] + p1[1] + p1[2] + p1[3],
+                    p2[0] + p2[1] + p2[2] + p2[3],
+                    p3[0] + p3[1] + p3[2] + p3[3]);
 
-                if (currentDensity.X + currentDensity.Y + currentDensity.Z + currentDensity.W < 1.0f)
+                if (Vector128.LessThanAll(sums, Vector128.Create(1.0f)))
+                {
+                    Vector128<byte>.Zero.StoreUnsafe(ref targetBuffer[bufferIdx]);
+
+                    sourceIdx += 4;
+                    bufferIdx += 16;
                     continue;
+                }
 
-                float worldX = worldPositionBase.X + x * resolution;
-                Vector2 velocity = fluidSystem!.VelocityAt(new Vector2(worldX, worldY));
+                for (int i = 0; i < 4; i++)
+                {
+                    Vector4 currentDensity = source[sourceIdx++];
 
-                if (MathF.Abs(velocity.X) + MathF.Abs(velocity.Y) < Constants.CURRENT_COMPOUND_CLOUD_ADVECT_THRESHOLD)
-                    velocity = Vector2.Zero;
+                    var vPixel = currentDensity.AsVector128();
+                    vPixel = Vector128.Multiply(vPixel, vScale);
+                    vPixel = Vector128.Min(Vector128.Max(vPixel, vZero), v255);
+                    var vInt = Vector128.ConvertToInt32(vPixel);
+                    var packed16 = Sse2.PackSignedSaturate(vInt, vInt);
+                    var packed8 = Sse2.PackUnsignedSaturate(packed16, packed16).AsByte();
 
-                velocity *= VISCOSITY;
+                    MemoryMarshal.Write(targetBuffer.Slice(bufferIdx, 4),
+                        packed8.AsUInt32().ToScalar());
 
-                float targetX = x + delta * velocity.X;
-                float targetY = absoluteY + delta * velocity.Y;
+                    bufferIdx += 4;
 
-                CalculateMovementFactors(targetX, targetY,
-                    out int floorX, out int ceilingX, out int floorY, out int ceilingY,
-                    out float weightRight, out float weightLeft, out float weightBottom, out float weightTop);
+                    if (currentDensity.X + currentDensity.Y + currentDensity.Z + currentDensity.W < 1.0f)
+                        continue;
 
-                if ((uint)floorX >= (uint)planeSize)
-                    floorX = (floorX < 0) ? floorX + planeSize : floorX - planeSize;
-                if ((uint)ceilingX >= (uint)planeSize)
-                    ceilingX = (ceilingX < 0) ? ceilingX + planeSize : ceilingX - planeSize;
-                if ((uint)floorY >= (uint)planeSize)
-                    floorY = (floorY < 0) ? floorY + planeSize : floorY - planeSize;
-                if ((uint)ceilingY >= (uint)planeSize)
-                    ceilingY = (ceilingY < 0) ? ceilingY + planeSize : ceilingY - planeSize;
+                    float worldX = worldPositionBase.X + (x + i) * resolution;
+                    Vector2 velocity = fluidSystem!.VelocityAt(new Vector2(worldX, worldY));
+                    if (MathF.Abs(velocity.X) + MathF.Abs(velocity.Y) < Constants.CURRENT_COMPOUND_CLOUD_ADVECT_THRESHOLD)
+                        velocity = Vector2.Zero;
 
-                int floorYOffset = floorY * planeSize;
-                int ceilingYOffset = ceilingY * planeSize;
+                    velocity *= VISCOSITY;
+                    float targetX = (x + i) + delta * velocity.X;
+                    float targetY = absoluteY + delta * velocity.Y;
 
-                Vector4 decayed = currentDensity * decayRates;
-                Vector4 decayedLeft = decayed * weightLeft;
-                Vector4 decayedRight = decayed * weightRight;
+                    CalculateMovementFactors(targetX, targetY,
+                        out int fX, out int cX, out int fY, out int cY,
+                        out float wR, out float wL, out float wB, out float wT);
 
-                destination[floorX + floorYOffset] += decayedLeft * weightTop;
-                destination[floorX + ceilingYOffset] += decayedLeft * weightBottom;
-                destination[ceilingX + floorYOffset] += decayedRight * weightTop;
-                destination[ceilingX + ceilingYOffset] += decayedRight * weightBottom;
+                    if ((uint)fX >= (uint)planeSize)
+                        fX = (fX < 0) ? fX + planeSize : fX - planeSize;
+                    if ((uint)cX >= (uint)planeSize)
+                        cX = (cX < 0) ? cX + planeSize : cX - planeSize;
+                    if ((uint)fY >= (uint)planeSize)
+                        fY = (fY < 0) ? fY + planeSize : fY - planeSize;
+                    if ((uint)cY >= (uint)planeSize)
+                        cY = (cY < 0) ? cY + planeSize : cY - planeSize;
+
+                    int fYRow = fY * planeSize;
+                    int cYRow = cY * planeSize;
+                    Vector4 decayed = currentDensity * decayRates;
+
+                    destination[fX + fYRow] += decayed * (wL * wT);
+                    destination[fX + cYRow] += decayed * (wL * wB);
+                    destination[cX + fYRow] += decayed * (wR * wT);
+                    destination[cX + cYRow] += decayed * (wR * wB);
+                }
+            }
+
+            for (; x < planeSize; x++)
+            {
             }
         }
     }
