@@ -191,9 +191,8 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
 
         var localDensity = Density;
 
-        // If rank changes square root is not suitable
-        if (localDensity.Rank != 2)
-            throw new Exception("Cloud plane densities array rank is not 2");
+        if (Math.Abs(Math.Sqrt(localDensity.Length) - (int)Math.Sqrt(localDensity.Length)) > 0.001f)
+            throw new Exception("Cloud plane densities size is not a perfect square");
 
         int dimensions = (int)Math.Sqrt(localDensity.Length);
 
