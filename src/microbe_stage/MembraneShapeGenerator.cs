@@ -161,7 +161,7 @@ public class MembraneShapeGenerator
             {
                 int id = i + layer * vertexCount;
 
-                float y = 0.9f * MathF.Abs(layer - MembraneVerticalResolution) / MembraneVerticalResolution;
+                float y = 0.8f * MathF.Abs(layer - MembraneVerticalResolution) / MembraneVerticalResolution;
                 (float sin, float cos) = MathF.SinCos(uvAngleModifier * i);
 
                 Vector2 direction = (1.0f - y) * new Vector2(sin, cos) * 0.49f + new Vector2(0.5f, 0.5f);
