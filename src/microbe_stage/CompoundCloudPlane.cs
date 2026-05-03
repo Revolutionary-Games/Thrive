@@ -1281,9 +1281,9 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
 
     private void PartialClearDensity(int x0, int y0, int width, int height)
     {
-        for (int y = x0; y < x0 + width; ++y)
+        for (int x = x0; x < x0 + width; ++x)
         {
-            for (int x = y0; x < y0 + height; ++x)
+            for (int y = y0; y < y0 + height; ++y)
             {
                 Density[x + y * PlaneSize] = Vector4.Zero;
             }
