@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-22 17:18+0300\n"
+"POT-Creation-Date: 2026-04-29 22:42+0200\n"
 "PO-Revision-Date: 2026-04-22 18:35+0000\n"
 "Last-Translator: bionick7 <nickfelten@yahoo.com>\n"
 "Language-Team: Luxembourgish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lb/>\n"
@@ -114,9 +114,6 @@ msgstr "Erweidert Méiglechkeeten op maachen"
 msgid "AEROBIC_NITROGEN_FIXATION"
 msgstr "Anaerobe Stéckstofffixeirung"
 
-msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "Aerobëg Stéckstoff Fixéierung"
-
 #, fuzzy
 msgid "AEROBIC_RESPIRATION"
 msgstr "Anaerobe Stéckstofffixeirung"
@@ -207,9 +204,6 @@ msgstr "Unzuel un automatesche Späicherungen:"
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Unzuel u Schnell-Späicherungen:"
-
-msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "Anaerobe Stéckstofffixeirung"
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr "an"
@@ -2732,6 +2726,27 @@ msgstr ""
 msgid "IMAGE_FILE_TYPES"
 msgstr ""
 
+#, fuzzy
+msgid "INCOMPATIBLE_MEMBRANE_LIST"
+msgstr ""
+"[b]Generatiounen[/b]\n"
+"  {0}\n"
+"[b]All Aarten:[/b]\n"
+"  Duerchschnëtt {1}; Standard Deviatioun {2}\n"
+"[b]Nach liewend Aarten:[/b]\n"
+"  Duerchschnëtt {3}; Standard Deviatioun {4}\n"
+"[b]Pro-Gebitt Aarten Unzuel:[/b]\n"
+"  Duerchschnëtt {5}; Standard Deviatioun {6}\n"
+"[b]Pro-Gebitt Total Populatioun:[/b]\n"
+"  Duerchschnëtt {7}; Standard Deviatioun {8}\n"
+"[b]Duerchschnëttlëch Hex Gréisst Mikroben Aarten:[/b]\n"
+"  Duerchschnëtt {9}; Standard Deviatioun {10}\n"
+"[b]Algeméng Organellen Daten:[/b]"
+
+#, fuzzy
+msgid "INCOMPATIBLE_ORGANELLE_LIST"
+msgstr "Organelle placéieren"
+
 msgid "INCREASE_ITEM_SIZE"
 msgstr ""
 
@@ -4362,6 +4377,10 @@ msgstr "Nitrogenase ass een Eewäiss dat fäeg ass gasfërmeg [thrive:compound t
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
 
+#, fuzzy
+msgid "NITROGEN_FIXATION"
+msgstr "Anaerobe Stéckstofffixeirung"
+
 msgid "NITROPLAST"
 msgstr "Stéckstoff-Fixéierend Plastiden"
 
@@ -4859,6 +4878,9 @@ msgid "PHYSICAL_CONDITIONS"
 msgstr ""
 
 msgid "PHYSICAL_RESISTANCE"
+msgstr ""
+
+msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
 msgstr ""
 
 msgid "PLACE_ORGANELLE"
@@ -8753,6 +8775,12 @@ msgstr "Eran Zoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Eraus Zoomen"
+
+#~ msgid "AEROBIC_NITROGEN_FIXING"
+#~ msgstr "Aerobëg Stéckstoff Fixéierung"
+
+#~ msgid "ANAEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Anaerobe Stéckstofffixeirung"
 
 #, fuzzy
 #~ msgid "PROCESS_TOGGLE_TOOLTIP"

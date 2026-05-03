@@ -57,8 +57,10 @@ public partial class DebugConsoleManager : Node, ICommandInvoker
 
     public override void _Process(double delta)
     {
-        // We choose to stack equivalent consecutive messages, while forcing separation on different entries.
-        const DebugEntryFactory.AddMessageMode addMessageMode = DebugEntryFactory.AddMessageMode.Split;
+        // We choose to always split messages, whether they are equal or different.
+        // See issue: https://github.com/Revolutionary-Games/Thrive/issues/6944
+        const DebugEntryFactory.AddMessageMode addMessageMode = DebugEntryFactory.AddMessageMode.Split |
+            DebugEntryFactory.AddMessageMode.NoStacking;
 
         int newMessages = 0;
         int count = inbox.Count;
@@ -87,7 +89,7 @@ public partial class DebugConsoleManager : Node, ICommandInvoker
                     DebugEntryFactory.ResetTimestamp(id, rawDebugEntry.Timestamp);
                     if (DebugEntryFactory.TryAddMessage(id, rawDebugEntry, addMessageMode))
                     {
-                        var newEntry = DebugEntryFactory.GetDebugEntry(id);
+                        var newEntry = DebugEntryFactory.GetDebugEntry(id, true);
                         history.AddToBack(newEntry);
 
                         ++newMessages;

@@ -34,6 +34,8 @@ public partial class MacroscopicMetaballDisplayer : MultiMeshInstance3D, IMetaba
         }
     }
 
+    public bool DisplayHierarchyLines { get; set; } = true;
+
     public override void _Ready()
     {
         base._Ready();
@@ -131,7 +133,8 @@ public partial class MacroscopicMetaballDisplayer : MultiMeshInstance3D, IMetaba
             ++i;
         }
 
-        hierarchyLineScene.UpdateLines(layout);
+        if (DisplayHierarchyLines)
+            hierarchyLineScene.UpdateLines(layout);
 
         CustomAabb = new Aabb(-extends, extends * 2);
     }

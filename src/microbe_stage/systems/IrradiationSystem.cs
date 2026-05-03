@@ -1,11 +1,11 @@
 ﻿namespace Systems;
 
-using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Arch.System;
 using Components;
+using Godot;
 
 /// <summary>
 ///   Handles <see cref="RadiationSource"/> sending out radiation to anything that can receive it that is nearby
@@ -18,13 +18,34 @@ using Components;
 /// </remarks>
 [ReadsComponent(typeof(WorldPosition))]
 [ReadsComponent(typeof(CompoundStorage))]
+[ReadsComponent(typeof(MicrobeColony))]
 [RunsBefore(typeof(ProcessSystem))]
 [RunsBefore(typeof(CompoundAbsorptionSystem))]
 [RuntimeCost(0.5f)]
-public partial class IrradiationSystem : BaseSystem<World, float>
+public partial class IrradiationSystem(World world) : BaseSystem<World, float>(world)
 {
-    public IrradiationSystem(World world) : base(world)
+    private static PhysicsShape CreateDetectorShape(float sourceRadius)
     {
+        return PhysicsShape.CreateSphere(sourceRadius);
+    }
+
+    private static void HandleRadiationForEntity(in Entity entity, float radiationAmount, float distanceSquared)
+    {
+        ref var compoundStorage = ref entity.Get<CompoundStorage>();
+        var compounds = compoundStorage.Compounds;
+
+        // If the storage has no capacity set, don't add anything. This should filter out drain-only storages
+        // like chunks.
+        if (compounds.NominalCapacity <= 0)
+            return;
+
+        compounds.AddCompound(Compound.Radiation, radiationAmount / distanceSquared);
+    }
+
+    private static float GetDistanceSquared(Entity entity, Vector3 chunkPosition)
+    {
+        ref readonly var worldPosition = ref entity.Get<WorldPosition>();
+        return chunkPosition.DistanceSquaredTo(worldPosition.Position);
     }
 
     [Query]
@@ -44,7 +65,7 @@ public partial class IrradiationSystem : BaseSystem<World, float>
         }
         else
         {
-            source.RadiatedEntities ??= new HashSet<Entity>();
+            source.RadiatedEntities ??= [];
 
             source.RadiatedEntities.Clear();
             sensor.GetDetectedBodies(source.RadiatedEntities);
@@ -52,43 +73,44 @@ public partial class IrradiationSystem : BaseSystem<World, float>
             if (source.RadiatedEntities.Count == 0)
                 return;
 
-            float radiationAmount = source.RadiationStrength * delta;
+            var radiationAmount = source.RadiationStrength * delta;
 
             var chunkPosition = position.Position;
+            var sourceRadiusSquared = source.Radius * source.Radius;
 
             foreach (var radiatedEntity in source.RadiatedEntities)
             {
                 if (radiatedEntity == default(Entity))
                     continue;
 
-                // Anything with a compound storage can receive radiation
                 if (!radiatedEntity.IsAliveAndHas<CompoundStorage>())
                     continue;
 
-                var compounds = radiatedEntity.Get<CompoundStorage>().Compounds;
-
-                // Though if the storage has no capacity set, then don't add anything. This should filter out
-                // drain-only storages like chunks
-                if (compounds.NominalCapacity <= 0)
+                if (!radiatedEntity.Has<MicrobeColony>())
+                {
+                    // Not a cell colony, handle just the entity itself that was detected as hit
+                    var distanceSquared = GetDistanceSquared(radiatedEntity, chunkPosition);
+                    HandleRadiationForEntity(radiatedEntity, radiationAmount, distanceSquared);
                     continue;
+                }
 
-                var distanceSquared = chunkPosition.DistanceSquaredTo(radiatedEntity.Get<WorldPosition>().Position);
+                // Colony physics detections can come from any member sub-shape, so check every member by position.
+                ref readonly var colony = ref radiatedEntity.Get<MicrobeColony>();
+                var colonyMembers = colony.ColonyMembers;
 
-                HandleRadiation(compounds, radiationAmount, distanceSquared);
+                foreach (var entity in colonyMembers)
+                {
+                    if (!entity.IsAliveAndHas<CompoundStorage>() || !entity.Has<WorldPosition>())
+                        continue;
+
+                    var distanceSquared = GetDistanceSquared(entity, chunkPosition);
+
+                    if (distanceSquared > sourceRadiusSquared)
+                        continue;
+
+                    HandleRadiationForEntity(entity, radiationAmount, distanceSquared);
+                }
             }
         }
-    }
-
-    private PhysicsShape CreateDetectorShape(float sourceRadius)
-    {
-        return PhysicsShape.CreateSphere(sourceRadius);
-    }
-
-    private void HandleRadiation(CompoundBag compounds, float amount, float distanceSquared)
-    {
-        // Apply inverse square law
-        amount *= 1 / distanceSquared;
-
-        compounds.AddCompound(Compound.Radiation, amount);
     }
 }
