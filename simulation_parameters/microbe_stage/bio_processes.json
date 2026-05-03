@@ -35,11 +35,11 @@
     "Name": "PHOTOSYNTHESIS",
     "Inputs": {
       "sunlight": 1,
-      "carbondioxide": 0.15
+      "carbondioxide": 1
     },
     "Outputs": {
-      "glucose": 0.10,
-      "oxygen": 0.27
+      "glucose": 0.667,
+      "oxygen": 1.8
     }
   },
   "cytotoxinSynthesis": {
@@ -73,11 +73,11 @@
   "bacterial_oxytoxySynthesis": {
     "Name": "OXYTOXY_SYNTHESIS",
     "Inputs": {
-      "oxygen": 0.21,
-      "atp": 3
+      "oxygen": 1,
+      "atp": 14.29
     },
     "Outputs": {
-      "oxytoxy": 0.21
+      "oxytoxy": 1
     }
   },
   "macrolideSynthesis": {
@@ -129,11 +129,11 @@
   "bacterial_oxygenInhibitorSynthesis": {
     "Name": "OXYGEN_INHIBITOR_SYNTHESIS",
     "Inputs": {
-      "oxygen": 0.21,
-      "atp": 3
+      "oxygen": 1,
+      "atp": 14.29
     },
     "Outputs": {
-      "oxytoxy": 0.15
+      "oxytoxy": 0.714
     }
   },
   "mucilage_synthesis": {
@@ -148,22 +148,22 @@
   "chemoSynthesis": {
     "Name": "CHEMO_SYNTHESIS",
     "Inputs": {
-      "hydrogensulfide": 0.08,
-      "carbondioxide": 0.09
+      "hydrogensulfide": 0.889,
+      "carbondioxide": 1
     },
     "Outputs": {
-      "glucose": 0.1
+      "glucose": 1.11
     },
     "IsMetabolismProcess": true
   },
   "bacterial_ChemoSynthesis": {
     "Name": "CHEMO_SYNTHESIS",
     "Inputs": {
-      "hydrogensulfide": 0.04,
-      "carbondioxide": 0.09
+      "hydrogensulfide": 0.444,
+      "carbondioxide": 1
     },
     "Outputs": {
-      "glucose": 0.04
+      "glucose": 0.444
     },
     "IsMetabolismProcess": true
   },
@@ -223,11 +223,11 @@
     "Name": "PHOTOSYNTHESIS",
     "Inputs": {
       "sunlight": 1,
-      "carbondioxide": 0.081
+      "carbondioxide": 1
     },
     "Outputs": {
-      "glucose": 0.015,
-      "oxygen": 0.081
+      "glucose": 0.185,
+      "oxygen": 1
     }
   },
   "iron_chemolithoautotrophy": {
@@ -280,11 +280,11 @@
   "luciferaseSynthesis": {
     "Name": "LUCIFERASE_SYNTHESIS",
     "Inputs": {
-      "oxygen": 0.05,
-      "atp": 0.5
+      "oxygen": 1,
+      "atp": 10
     },
     "Outputs": {
-      "luciferase": 1.5
+      "luciferase": 30
     }
   }
 }
