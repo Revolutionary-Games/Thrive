@@ -1241,7 +1241,6 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
         }
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessPixelAdvection(Vector4 currentDensity, int x, int absoluteY, float worldY, float worldXOffset,
         float delta, Span<Vector4> destination, int planeSize, Vector2 worldPositionBase)
     {
