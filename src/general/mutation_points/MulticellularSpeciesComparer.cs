@@ -179,10 +179,10 @@ public class MulticellularSpeciesComparer
         {
             cost += Constants.MULTUCELLULAR_REPRODUCTION_METHOD_CHANGE_COST;
         }
-
-        if (speciesA.SporeCellType != null
-            && speciesA.SporeCellType.CellTypeName != speciesB.SporeCellType?.CellTypeName)
+        else if (speciesA.ReproductionMethod == MulticellularReproductionMethod.Sporulation
+                 && speciesA.SporeCellType!.CellTypeName != speciesB.SporeCellType?.CellTypeName)
         {
+            // The reproduction method is sporulation (and it wasn't changed), but the spore cell type is different
             cost += Constants.SPORE_CELL_TYPE_CHANGE_COST;
         }
 
