@@ -7,7 +7,7 @@ using SharedBase.Archive;
 /// </summary>
 public partial class MicrobeCamera : Camera3D, ISaveLoadedTracked, IGameCamera, IArchiveUpdatable
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     /// <summary>
     ///   Automatically process the camera position while the game is paused (used to still process zooming easily
@@ -41,7 +41,7 @@ public partial class MicrobeCamera : Camera3D, ISaveLoadedTracked, IGameCamera, 
     public float MaxCameraHeight = Constants.MICROBE_CAMERA_MAX_HEIGHT;
 
     [Export]
-    public float InterpolateSpeed = 0.3f;
+    public float InterpolateSpeed = 0.8f;
 
     [Export]
     public float InterpolateZoomSpeed = 0.3f;
@@ -54,12 +54,6 @@ public partial class MicrobeCamera : Camera3D, ISaveLoadedTracked, IGameCamera, 
     /// </summary>
     [Export]
     public float CursorTiltAmplitude = 0.04f;
-
-    /// <summary>
-    ///   Now required with native physics to ensure that there's no occasional hitching with the camera
-    /// </summary>
-    [Export]
-    public float SnapWithDistanceLessThan = 7.0f;
 
     /// <summary>
     ///   How many units of light level can change per second
@@ -86,6 +80,8 @@ public partial class MicrobeCamera : Camera3D, ISaveLoadedTracked, IGameCamera, 
     private Vector3 lastCursorTilt = new(0, 0, 0);
 
     private float lightLevel = 1.0f;
+
+    private Vector3 followedObjectPosition;
 
     [Signal]
     public delegate void OnZoomChangedEventHandler(float zoom);
@@ -186,57 +182,52 @@ public partial class MicrobeCamera : Camera3D, ISaveLoadedTracked, IGameCamera, 
             UpdateLightLevel((float)delta);
         }
 
-        if (AutoProcessWhilePaused && PauseManager.Instance.Paused)
+        bool paused = PauseManager.Instance.Paused;
+
+        if (AutoProcessWhilePaused && paused)
         {
-            UpdateCameraPosition(delta, null);
+            UpdateCameraTargets(delta, null);
+        }
+
+        if (!paused)
+            UpdateCameraPosition(delta);
+    }
+
+    public void UpdateCameraTargets(double delta, Vector3? followedObject)
+    {
+        if (followedObject != null)
+        {
+            followedObjectPosition = followedObject.Value;
+        }
+        else
+        {
+            followedObjectPosition = Position;
         }
     }
 
-    public void UpdateCameraPosition(double delta, Vector3? followedObject)
+    public void UpdateCameraPosition(double delta)
     {
         var currentFloorPosition = new Vector3(Position.X, 0, Position.Z);
         var currentCameraHeight = new Vector3(0, Position.Y, 0);
         var newCameraHeight = new Vector3(0, CameraHeight, 0);
 
-        if (followedObject != null)
+        var newFloorPosition = new Vector3(followedObjectPosition.X, 0, followedObjectPosition.Z);
+
+        Vector3 target = currentFloorPosition.Lerp(newFloorPosition, InterpolateSpeed * (float)delta)
+            + currentCameraHeight.Lerp(newCameraHeight, InterpolateZoomSpeed);
+
+        // Apply cursor-induced tilt
+        if (Settings.Instance.MicrobeCameraTilt)
         {
-            var newFloorPosition = new Vector3(followedObject.Value.X, 0, followedObject.Value.Z);
+            var tilt = new Vector3(cursorVisualWorldPos.X - Position.X, 0, cursorVisualWorldPos.Z - Position.Z) *
+                CursorTiltAmplitude;
 
-            Vector3 target;
+            lastCursorTilt = lastCursorTilt.Lerp(tilt, CursorTiltSpeed);
 
-            if (currentFloorPosition.DistanceTo(newFloorPosition) < SnapWithDistanceLessThan)
-            {
-                // Don't interpolate floor position, this stops every few seconds slight hitching happening visually
-                // with the player movement using the new physics (even when multiplying InterpolateSpeed with delta)
-                target = newFloorPosition +
-                    currentCameraHeight.Lerp(newCameraHeight, InterpolateZoomSpeed);
-            }
-            else
-            {
-                target = currentFloorPosition.Lerp(newFloorPosition, InterpolateSpeed)
-                    + currentCameraHeight.Lerp(newCameraHeight, InterpolateZoomSpeed);
-            }
-
-            // Apply cursor-induced tilt
-            if (Settings.Instance.MicrobeCameraTilt)
-            {
-                var tilt = new Vector3(cursorVisualWorldPos.X - Position.X, 0, cursorVisualWorldPos.Z - Position.Z) *
-                    CursorTiltAmplitude;
-
-                lastCursorTilt = lastCursorTilt.Lerp(tilt, CursorTiltSpeed);
-
-                target += lastCursorTilt;
-            }
-
-            Position = target;
+            target += lastCursorTilt;
         }
-        else
-        {
-            var target = new Vector3(Position.X, 0, Position.Z)
-                + currentCameraHeight.Lerp(newCameraHeight, InterpolateZoomSpeed);
 
-            Position = target;
-        }
+        Position = target;
 
         backgroundPlane.PlaneOffset = float.Lerp(backgroundPlane.PlaneOffset, -CameraHeight - 15, InterpolateZoomSpeed);
 
@@ -309,7 +300,6 @@ public partial class MicrobeCamera : Camera3D, ISaveLoadedTracked, IGameCamera, 
         writer.Write(InterpolateZoomSpeed);
         writer.Write(CursorTiltSpeed);
         writer.Write(CursorTiltAmplitude);
-        writer.Write(SnapWithDistanceLessThan);
         writer.Write(lightLevel);
         writer.Write(CameraHeight);
         writer.Write(FramerateAdjustZoomSpeed);
@@ -329,7 +319,10 @@ public partial class MicrobeCamera : Camera3D, ISaveLoadedTracked, IGameCamera, 
         InterpolateZoomSpeed = reader.ReadFloat();
         CursorTiltSpeed = reader.ReadFloat();
         CursorTiltAmplitude = reader.ReadFloat();
-        SnapWithDistanceLessThan = reader.ReadFloat();
+
+        // This used to read SnapWithDistanceLessThanm which is now removed
+        _ = reader.ReadFloat();
+
         lightLevel = reader.ReadFloat();
         CameraHeight = reader.ReadFloat();
         FramerateAdjustZoomSpeed = reader.ReadBool();

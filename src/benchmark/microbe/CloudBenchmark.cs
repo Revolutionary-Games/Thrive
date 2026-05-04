@@ -119,7 +119,7 @@ public partial class CloudBenchmark : BenchmarkBase
             multipliedSimulationsContainer.Visible = false;
         }
 
-        benchmarkCamera.UpdateCameraPosition(delta, Vector3.Zero);
+        benchmarkCamera.UpdateCameraTargets(delta, Vector3.Zero);
 
         // Extra cloud simulations per frame to make things heavier. Though 2x is very high so this starts low
 

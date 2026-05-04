@@ -49,7 +49,7 @@ public partial class CameraFollowSystem : BaseSystem<World, float>
         if (!cameraUsed)
         {
             // Update camera without a target
-            Camera?.UpdateCameraPosition(delta, null);
+            Camera?.UpdateCameraTargets(delta, null);
         }
     }
 
@@ -76,7 +76,7 @@ public partial class CameraFollowSystem : BaseSystem<World, float>
 
         if (Camera != null)
         {
-            Camera.UpdateCameraPosition(delta, physics.CenterOfMassPosition);
+            Camera.UpdateCameraTargets(delta, physics.CenterOfMassPosition);
         }
         else if (!warnedAboutMissingCamera)
         {

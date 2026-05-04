@@ -132,7 +132,7 @@ public partial class MicrobeBenchmark : BenchmarkBase
 
         microbesCountLabel.Text = spawnedMicrobes.Count.ToString(CultureInfo.CurrentCulture);
 
-        benchmarkCamera.UpdateCameraPosition(delta, Vector3.Zero);
+        benchmarkCamera.UpdateCameraTargets(delta, Vector3.Zero);
 
         if (spawnedSomething)
             CheckSpawnedMicrobes();
