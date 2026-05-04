@@ -37,6 +37,7 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(SoundEffectPlayer))]
 [ReadsComponent(typeof(MicrobeControl))]
 [ReadsComponent(typeof(MicrobeEnvironmentalEffects))]
+[ReadsComponent(typeof(SpecializationFactor))]
 [RunsAfter(typeof(OsmoregulationAndHealingSystem))]
 [RunsAfter(typeof(ProcessSystem))]
 [RuntimeCost(10)]

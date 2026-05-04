@@ -15,6 +15,7 @@ using Godot;
 /// </summary>
 [ReadsComponent(typeof(SpeciesMember))]
 [ReadsComponent(typeof(CellProperties))]
+[ReadsComponent(typeof(SpecializationFactor))]
 [RunsBefore(typeof(MicrobeReproductionSystem))]
 [RunsBefore(typeof(MicrobePhysicsCreationAndSizeSystem))]
 [RunsBefore(typeof(MicrobeVisualsSystem))]

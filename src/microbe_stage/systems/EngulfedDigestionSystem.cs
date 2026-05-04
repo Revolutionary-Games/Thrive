@@ -29,6 +29,7 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(WorldPosition))]
 [ReadsComponent(typeof(MicrobeEventCallbacks))]
 [ReadsComponent(typeof(SpeciesMember))]
+[ReadsComponent(typeof(SpecializationFactor))]
 [RunsAfter(typeof(EngulfingSystem))]
 [RuntimeCost(2)]
 public partial class EngulfedDigestionSystem : BaseSystem<World, float>

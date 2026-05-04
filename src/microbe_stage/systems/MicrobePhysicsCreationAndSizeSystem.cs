@@ -29,6 +29,7 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(OrganelleContainer))]
 [ReadsComponent(typeof(AttachedToEntity))]
 [ReadsComponent(typeof(SpatialAnimation))]
+[ReadsComponent(typeof(SpecializationFactor))]
 [RunsAfter(typeof(MicrobeVisualsSystem))]
 [RunsBefore(typeof(PhysicsBodyCreationSystem))]
 [RunsBefore(typeof(MicrobeReproductionSystem))]
