@@ -186,7 +186,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
 
         var localDensity = Density;
 
-        if (Math.Abs(Math.Sqrt(localDensity.Length) - (int)Math.Sqrt(localDensity.Length)) > 0.001f)
+        if (Math.Abs(Math.Sqrt(localDensity.Length) - (int)Math.Round(Math.Sqrt(localDensity.Length))) > 0.001f)
             throw new Exception("Cloud plane densities size is not a perfect square");
 
         int dimensions = (int)Math.Sqrt(localDensity.Length);
@@ -1258,6 +1258,10 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
         CalculateMovementFactors(targetX, targetY, out int fX, out int cX, out int fY, out int cY, out float wR,
             out float wL, out float wB, out float wT);
 
+        // Normally the checks here would be fX < 0 || fX >= planeSize
+        // By casting the operands to uint here, the first condition (fX < 0) is converted to fX becoming a really large
+        // number. This makes the comparison always true (as planeSize is usually much smaller than the max integer)
+        // thus saving us a few more instructions during the calculations.
         if ((uint)fX >= (uint)planeSize)
             fX = (fX < 0) ? fX + planeSize : fX - planeSize;
         if ((uint)cX >= (uint)planeSize)
