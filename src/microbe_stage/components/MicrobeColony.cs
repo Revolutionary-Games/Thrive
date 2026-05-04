@@ -1023,7 +1023,6 @@ public static class MicrobeColonyHelpers
                 // Multiply both the propulsion and mass by the distance from center to simulate leverage
                 // This relies on the bounding of the cell rotation, as a colony can never be faster than the
                 // fastest cell inside it
-                // TODO: use the cell's actual specialisation bonus here
                 var memberRotation = MicrobeInternalCalculations
                         .CalculateRotationSpeed(colonyMember.Get<OrganelleContainer>().Organelles!.Organelles,
                             colonyMember.Get<SpecializationFactor>().TotalSpecializationBonus)
