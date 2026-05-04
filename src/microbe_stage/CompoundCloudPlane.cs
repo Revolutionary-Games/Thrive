@@ -252,6 +252,9 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        if (Marshal.SizeOf<float>() * 4 != Marshal.SizeOf<Vector4>())
+            throw new InvalidCastException("The assumption that Vector4 is 4 floats is not valid in this context.");
+
         if (!IsLoadedFromSave)
         {
             PlaneSize = Settings.Instance.CloudSimulationWidth;
