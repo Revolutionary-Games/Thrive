@@ -268,18 +268,18 @@ public partial class MicrobeEmissionSystem : BaseSystem<World, float>
         if (toxicity < 0)
         {
             // High-firerate
-            return Constants.AGENT_EMISSION_COOLDOWN / vacuoleCount * specializationBonus *
+            return Constants.AGENT_EMISSION_COOLDOWN / (vacuoleCount * specializationBonus) *
                 (1.0f - 0.5f * Math.Abs(toxicity));
         }
 
         if (toxicity > 0)
         {
             // Low-firerate
-            return Constants.AGENT_EMISSION_COOLDOWN / vacuoleCount * specializationBonus * (1 + toxicity);
+            return Constants.AGENT_EMISSION_COOLDOWN / (vacuoleCount * specializationBonus) * (1 + toxicity);
         }
 
         // No modification from default
-        return Constants.AGENT_EMISSION_COOLDOWN / vacuoleCount * specializationBonus;
+        return Constants.AGENT_EMISSION_COOLDOWN / (vacuoleCount * specializationBonus);
     }
 
     private float EmissionAmountWithToxicity(float toxicity)
