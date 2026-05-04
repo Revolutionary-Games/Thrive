@@ -180,7 +180,8 @@ public class MulticellularSpeciesComparer
             cost += Constants.MULTUCELLULAR_REPRODUCTION_METHOD_CHANGE_COST;
         }
 
-        if (speciesA.SporeCellType != null && speciesA.SporeCellType.CellTypeName != speciesB.SporeCellType?.CellTypeName)
+        if (speciesA.SporeCellType != null
+            && speciesA.SporeCellType.CellTypeName != speciesB.SporeCellType?.CellTypeName)
         {
             cost += Constants.SPORE_CELL_TYPE_CHANGE_COST;
         }
