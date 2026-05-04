@@ -350,7 +350,7 @@ public static class EngulfableHelpers
     }
 
     /// <summary>
-    ///   Called when an entity is thrown out from the engulfer, for example due to being indigestible or if the
+    ///   Called when an entity is thrown out from the engulfer, for example, due to being indigestible or if the
     ///   attacker dies
     /// </summary>
     /// <remarks>
@@ -505,6 +505,14 @@ public static class EngulfableHelpers
         {
             ref var callbacks = ref entity.Get<MicrobeEventCallbacks>();
             callbacks.OnEjectedFromHostileEngulfer?.Invoke(entity);
+        }
+
+        // If a multicellular lead cell was engulfed and then ejected, it has lost all colony members and thus all
+        // growth progress
+        if (entity.Has<MulticellularGrowth>())
+        {
+            ref var growth = ref entity.Get<MulticellularGrowth>();
+            growth.OnLeadCellEjectedFromEngulfment();
         }
     }
 

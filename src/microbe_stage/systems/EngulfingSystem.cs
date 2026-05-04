@@ -38,6 +38,7 @@ using World = Arch.Core.World;
 [WritesToComponent(typeof(DamageCooldown))]
 [WritesToComponent(typeof(TimedLife))]
 [WritesToComponent(typeof(StrainAffected))]
+[WritesToComponent(typeof(MulticellularGrowth))]
 [ReadsComponent(typeof(CollisionManagement))]
 [ReadsComponent(typeof(MicrobePhysicsExtraData))]
 [ReadsComponent(typeof(OrganelleContainer))]
@@ -49,6 +50,7 @@ using World = Arch.Core.World;
 [RunsAfter(typeof(PilusDamageSystem))]
 [RunsAfter(typeof(MicrobeVisualsSystem))]
 [RunsBefore(typeof(SpatialAttachSystem))]
+[RunsBefore(typeof(MulticellularGrowthSystem))]
 [RuntimeCost(10)]
 [RunsOnMainThread]
 public partial class EngulfingSystem : BaseSystem<World, float>

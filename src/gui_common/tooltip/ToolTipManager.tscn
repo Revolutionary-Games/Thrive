@@ -30,7 +30,7 @@ corner_radius_bottom_left = 5
 
 [node name="ToolTipManager" type="CanvasLayer" unique_id=502662551]
 process_mode = 3
-layer = 127
+layer = 128
 script = ExtResource("23")
 
 [node name="GroupHolder" type="Control" parent="." unique_id=1984538779]
@@ -154,10 +154,10 @@ ShowOsmoregulation = false
 [node name="RequiresNucleus" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(9346694, 1863350977) index="1" unique_id=1907280912]
 visible = false
 
-[node name="ProcessesDescription" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(9346694, 1863350977) index="2" unique_id=1366796537]
+[node name="ProcessesDescription" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(9346694, 1863350977) index="3" unique_id=1366796537]
 visible = false
 
-[node name="ProcessList" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(9346694, 1863350977) index="3" unique_id=1563198072]
+[node name="ProcessList" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(9346694, 1863350977) index="4" unique_id=1563198072]
 visible = false
 
 [node name="baseMobility" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer/ModifierList" parent_id_path=PackedInt32Array(9346694, 1621578455) index="0" unique_id=527654288 instance=ExtResource("2")]
@@ -170,10 +170,10 @@ layout_mode = 2
 DisplayName = "HEALTH"
 ModifierIcon = ExtResource("13")
 
-[node name="HSeparator" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(9346694, 1863350977) index="5" unique_id=1130055289]
+[node name="HSeparator" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(9346694, 1863350977) index="6" unique_id=1130055289]
 visible = false
 
-[node name="OrganelleCostList" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(9346694, 1863350977) index="6" unique_id=1338570209]
+[node name="OrganelleCostList" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(9346694, 1863350977) index="7" unique_id=1338570209]
 visible = false
 
 [node name="aggressionSlider" parent="GroupHolder/editor" unique_id=1459362333 node_paths=PackedStringArray("descriptionLabel") instance=ExtResource("1")]
@@ -256,10 +256,10 @@ Description = "NORMAL_MEMBRANE_DESCRIPTION"
 [node name="RequiresNucleus" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1864056327, 1863350977) index="1" unique_id=1907280912]
 visible = false
 
-[node name="ProcessesDescription" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1864056327, 1863350977) index="2" unique_id=1366796537]
+[node name="ProcessesDescription" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1864056327, 1863350977) index="3" unique_id=1366796537]
 visible = false
 
-[node name="ProcessList" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1864056327, 1863350977) index="3" unique_id=1563198072]
+[node name="ProcessList" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1864056327, 1863350977) index="4" unique_id=1563198072]
 visible = false
 
 [node name="baseMobility" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList" parent_id_path=PackedInt32Array(1864056327, 1621578455) index="0" unique_id=474889058 instance=ExtResource("2")]
@@ -287,10 +287,10 @@ layout_mode = 2
 DisplayName = "TOXIN_RESISTANCE"
 ModifierIcon = ExtResource("16")
 
-[node name="HSeparator" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1864056327, 1863350977) index="5" unique_id=1130055289]
+[node name="HSeparator" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1864056327, 1863350977) index="6" unique_id=1130055289]
 visible = false
 
-[node name="OrganelleCostList" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1864056327, 1863350977) index="6" unique_id=1338570209]
+[node name="OrganelleCostList" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1864056327, 1863350977) index="7" unique_id=1338570209]
 visible = false
 
 [node name="double" parent="GroupHolder/membraneSelection" unique_id=1238471686 instance=ExtResource("5")]
@@ -302,10 +302,10 @@ Description = "DOUBLE_MEMBRANE_DESCRIPTION"
 [node name="RequiresNucleus" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1238471686, 1863350977) index="1" unique_id=1907280912]
 visible = false
 
-[node name="ProcessesDescription" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1238471686, 1863350977) index="2" unique_id=1366796537]
+[node name="ProcessesDescription" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1238471686, 1863350977) index="3" unique_id=1366796537]
 visible = false
 
-[node name="ProcessList" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1238471686, 1863350977) index="3" unique_id=1563198072]
+[node name="ProcessList" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1238471686, 1863350977) index="4" unique_id=1563198072]
 visible = false
 
 [node name="baseMobility" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList" parent_id_path=PackedInt32Array(1238471686, 1621578455) index="0" unique_id=1706655994 instance=ExtResource("2")]
@@ -333,10 +333,10 @@ layout_mode = 2
 DisplayName = "TOXIN_RESISTANCE"
 ModifierIcon = ExtResource("16")
 
-[node name="HSeparator" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1238471686, 1863350977) index="5" unique_id=1130055289]
+[node name="HSeparator" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1238471686, 1863350977) index="6" unique_id=1130055289]
 visible = false
 
-[node name="OrganelleCostList" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1238471686, 1863350977) index="6" unique_id=1338570209]
+[node name="OrganelleCostList" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1238471686, 1863350977) index="7" unique_id=1338570209]
 visible = false
 
 [node name="cellulose" parent="GroupHolder/membraneSelection" unique_id=720676102 instance=ExtResource("5")]
@@ -348,10 +348,10 @@ Description = "CELLULOSE_MEMBRANE_DESCRIPTION"
 [node name="RequiresNucleus" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(720676102, 1863350977) index="1" unique_id=1907280912]
 visible = false
 
-[node name="ProcessesDescription" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(720676102, 1863350977) index="2" unique_id=1366796537]
+[node name="ProcessesDescription" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(720676102, 1863350977) index="3" unique_id=1366796537]
 visible = false
 
-[node name="ProcessList" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(720676102, 1863350977) index="3" unique_id=1563198072]
+[node name="ProcessList" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(720676102, 1863350977) index="4" unique_id=1563198072]
 visible = false
 
 [node name="baseMobility" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" parent_id_path=PackedInt32Array(720676102, 1621578455) index="0" unique_id=1159309638 instance=ExtResource("2")]
@@ -391,10 +391,10 @@ DisplayName = "RESISTANT_TO_BASIC_ENGULFMENT"
 ModifierNameFont = ExtResource("17_ftkue")
 ShowValue = false
 
-[node name="HSeparator" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(720676102, 1863350977) index="5" unique_id=1130055289]
+[node name="HSeparator" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(720676102, 1863350977) index="6" unique_id=1130055289]
 visible = false
 
-[node name="OrganelleCostList" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(720676102, 1863350977) index="6" unique_id=1338570209]
+[node name="OrganelleCostList" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(720676102, 1863350977) index="7" unique_id=1338570209]
 visible = false
 
 [node name="chitin" parent="GroupHolder/membraneSelection" unique_id=362976481 instance=ExtResource("5")]
@@ -406,10 +406,10 @@ Description = "CHITIN_MEMBRANE_DESCRIPTION"
 [node name="RequiresNucleus" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(362976481, 1863350977) index="1" unique_id=1907280912]
 visible = false
 
-[node name="ProcessesDescription" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(362976481, 1863350977) index="2" unique_id=1366796537]
+[node name="ProcessesDescription" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(362976481, 1863350977) index="3" unique_id=1366796537]
 visible = false
 
-[node name="ProcessList" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(362976481, 1863350977) index="3" unique_id=1563198072]
+[node name="ProcessList" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(362976481, 1863350977) index="4" unique_id=1563198072]
 visible = false
 
 [node name="baseMobility" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" parent_id_path=PackedInt32Array(362976481, 1621578455) index="0" unique_id=1340329411 instance=ExtResource("2")]
@@ -449,10 +449,10 @@ DisplayName = "RESISTANT_TO_BASIC_ENGULFMENT"
 ModifierNameFont = ExtResource("17_ftkue")
 ShowValue = false
 
-[node name="HSeparator" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(362976481, 1863350977) index="5" unique_id=1130055289]
+[node name="HSeparator" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(362976481, 1863350977) index="6" unique_id=1130055289]
 visible = false
 
-[node name="OrganelleCostList" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(362976481, 1863350977) index="6" unique_id=1338570209]
+[node name="OrganelleCostList" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(362976481, 1863350977) index="7" unique_id=1338570209]
 visible = false
 
 [node name="calciumCarbonate" parent="GroupHolder/membraneSelection" unique_id=127395123 instance=ExtResource("5")]
@@ -464,10 +464,10 @@ Description = "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 [node name="RequiresNucleus" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(127395123, 1863350977) index="1" unique_id=1907280912]
 visible = false
 
-[node name="ProcessesDescription" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(127395123, 1863350977) index="2" unique_id=1366796537]
+[node name="ProcessesDescription" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(127395123, 1863350977) index="3" unique_id=1366796537]
 visible = false
 
-[node name="ProcessList" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(127395123, 1863350977) index="3" unique_id=1563198072]
+[node name="ProcessList" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(127395123, 1863350977) index="4" unique_id=1563198072]
 visible = false
 
 [node name="baseMobility" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" parent_id_path=PackedInt32Array(127395123, 1621578455) index="0" unique_id=2000823129 instance=ExtResource("2")]
@@ -501,10 +501,10 @@ DisplayName = "CANNOT_ENGULF"
 ModifierNameFont = ExtResource("16_dd0bc")
 ShowValue = false
 
-[node name="HSeparator" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(127395123, 1863350977) index="5" unique_id=1130055289]
+[node name="HSeparator" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(127395123, 1863350977) index="6" unique_id=1130055289]
 visible = false
 
-[node name="OrganelleCostList" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(127395123, 1863350977) index="6" unique_id=1338570209]
+[node name="OrganelleCostList" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(127395123, 1863350977) index="7" unique_id=1338570209]
 visible = false
 
 [node name="silica" parent="GroupHolder/membraneSelection" unique_id=1055494397 instance=ExtResource("5")]
@@ -517,10 +517,10 @@ Description = "SILICA_MEMBRANE_DESCRIPTION"
 [node name="RequiresNucleus" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1055494397, 1863350977) index="1" unique_id=1907280912]
 visible = false
 
-[node name="ProcessesDescription" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1055494397, 1863350977) index="2" unique_id=1366796537]
+[node name="ProcessesDescription" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1055494397, 1863350977) index="3" unique_id=1366796537]
 visible = false
 
-[node name="ProcessList" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1055494397, 1863350977) index="3" unique_id=1563198072]
+[node name="ProcessList" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1055494397, 1863350977) index="4" unique_id=1563198072]
 visible = false
 
 [node name="baseMobility" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" parent_id_path=PackedInt32Array(1055494397, 1621578455) index="0" unique_id=1185276147 instance=ExtResource("2")]
@@ -554,10 +554,10 @@ DisplayName = "CANNOT_ENGULF"
 ModifierNameFont = ExtResource("16_dd0bc")
 ShowValue = false
 
-[node name="HSeparator" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1055494397, 1863350977) index="5" unique_id=1130055289]
+[node name="HSeparator" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1055494397, 1863350977) index="6" unique_id=1130055289]
 visible = false
 
-[node name="OrganelleCostList" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1055494397, 1863350977) index="6" unique_id=1338570209]
+[node name="OrganelleCostList" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1055494397, 1863350977) index="7" unique_id=1338570209]
 visible = false
 
 [node name="processesProduction" type="Control" parent="GroupHolder" unique_id=396680834]
