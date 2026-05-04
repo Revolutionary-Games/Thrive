@@ -74,9 +74,13 @@ public class CompoundCloudPressure : SelectionPressure
         else
         {
             if (compound == Compound.Hydrogensulfide)
+            {
                 compoundOut = Compound.Glucose;
+            }
             else
+            {
                 compoundOut = Compound.ATP;
+            }
         }
 
         var instance = new CompoundCloudPressure(compound, compoundOut, reader.ReadBool(),
