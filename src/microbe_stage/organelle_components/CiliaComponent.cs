@@ -205,7 +205,7 @@ public class CiliaComponent : IOrganelleComponent
 
             recorder.Add(microbeEntity, new PhysicsSensor(Constants.MAX_SIMULTANEOUS_COLLISIONS_SENSOR)
             {
-                ActiveArea = CreateCiliaDetectorShape(sharedPullData.CiliaCount, totalSpecializationBonus),
+                ActiveArea = CreateCiliaDetectorShape(sharedPullData.CiliaCount),
             });
 
             worldSimulation.FinishRecordingEntityCommands(recorder);
@@ -222,7 +222,7 @@ public class CiliaComponent : IOrganelleComponent
         {
             // TODO: could dispose the old area here to release that shape data faster
 
-            sensor.ActiveArea = CreateCiliaDetectorShape(sharedPullData.CiliaCount, totalSpecializationBonus);
+            sensor.ActiveArea = CreateCiliaDetectorShape(sharedPullData.CiliaCount);
             sensor.ApplyNewShape = true;
             return;
         }
@@ -329,7 +329,7 @@ public class CiliaComponent : IOrganelleComponent
         }
     }
 
-    private PhysicsShape CreateCiliaDetectorShape(int count, float specializationBonus)
+    private PhysicsShape CreateCiliaDetectorShape(int count)
     {
         if (sharedPullData == null)
             throw new InvalidOperationException("Pull data should be initialized first");
@@ -337,8 +337,8 @@ public class CiliaComponent : IOrganelleComponent
         sharedPullData.SizeCreatedWithCilia = count;
 
         // TODO: this will need a size parameter if cilia can ever be placed on prokaryotes
-        return PhysicsShape.CreateSphere((Constants.CILIA_PULLING_FORCE_FIELD_RADIUS +
-            count * Constants.CILIA_PULL_RADIUS_PER_CILIA) * specializationBonus);
+        return PhysicsShape.CreateSphere(Constants.CILIA_PULLING_FORCE_FIELD_RADIUS + count
+            * Constants.CILIA_PULL_RADIUS_PER_CILIA);
     }
 
     /// <summary>
