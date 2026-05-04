@@ -467,11 +467,21 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 
         foreach (var cellType in ModifiableCellTypes)
         {
-            result.ModifiableCellTypes.Add((CellType)cellType.Clone());
+            var clonedType = (CellType)cellType.Clone();
+
+            result.ModifiableCellTypes.Add(clonedType);
+
+            if (cellType == ModifiableSporeCellType)
+                result.ModifiableSporeCellType = cellType;
+        }
+
+        if (ModifiableSporeCellType != null && result.ModifiableSporeCellType == null)
+        {
+            throw new Exception($"Cell type {ModifiableSporeCellType.ReadableName} not found while cloning" +
+                $"multicellular species: {ReadableName}");
         }
 
         result.ReproductionMethod = ReproductionMethod;
-        result.ModifiableSporeCellType = ModifiableSporeCellType?.Clone() as CellType;
 
         return result;
     }
