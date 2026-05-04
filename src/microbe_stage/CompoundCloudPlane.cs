@@ -1183,8 +1183,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
                 var p2 = source[sourceIdx + 2].AsVector128();
                 var p3 = source[sourceIdx + 3].AsVector128();
 
-                var sums = Vector128.Create(
-                    p0[0] + p0[1] + p0[2] + p0[3],
+                var sums = Vector128.Create(p0[0] + p0[1] + p0[2] + p0[3],
                     p1[0] + p1[1] + p1[2] + p1[3],
                     p2[0] + p2[1] + p2[2] + p2[3],
                     p3[0] + p3[1] + p3[2] + p3[3]);
@@ -1235,8 +1234,8 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
                 if (currentDensity.X + currentDensity.Y + currentDensity.Z + currentDensity.W < 1.0f)
                     continue;
 
-                ProcessPixelAdvection(currentDensity, x, absoluteY, worldY, worldXOffset: x * resolution, delta,
-                    destination, planeSize, worldPositionBase);
+                ProcessPixelAdvection(currentDensity, x, absoluteY, worldY, x * resolution, delta, destination,
+                    planeSize, worldPositionBase);
             }
         }
     }
