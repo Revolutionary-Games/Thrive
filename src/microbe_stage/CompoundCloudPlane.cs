@@ -973,8 +973,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
 
                     var neighbors = Avx.Add(Avx.Add(up, down), Avx.Add(left, right));
 
-                    var result = Avx.Add(
-                        Avx.Multiply(center, centerWeightVector),
+                    var result = Avx.Add(Avx.Multiply(center, centerWeightVector),
                         Avx.Multiply(neighbors, neighborWeightVector));
 
                     result.StoreUnsafe(ref destinationReference, offset);
