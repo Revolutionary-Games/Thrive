@@ -2,6 +2,4 @@
 {
     Budding,
     Sporulation,
-    SexualIsogamy,
-    SexualAnisogamy,
 }
