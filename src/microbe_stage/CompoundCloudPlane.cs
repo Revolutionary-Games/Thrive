@@ -90,11 +90,6 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
 
     public bool IsLoadedFromSave { get; set; }
 
-    /// <summary>
-    ///   This is used in data copy.
-    /// </summary>
-    public byte[] TempBuffer => tempBuffer;
-
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.CompoundCloudPlane;
     public bool CanBeReferencedInArchive => false;
@@ -430,9 +425,9 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     /// <summary>
     ///   Updates the cloud in parallel.
     /// </summary>
-    public void QueueAdvectCloud(float delta, List<Task> queue)
+    public void QueueAdvectCloud(float deltaTime, List<Task> queue)
     {
-        delta *= 100.0f;
+        deltaTime *= 100.0f;
 
         int slices = Constants.CLOUD_PLANE_SQUARES_PER_SIDE * Constants.CLOUD_PLANE_SQUARES_PER_SIDE;
 
@@ -441,7 +436,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
             int atSlice = slice;
 
             // TODO: fix task allocations
-            var task = new Task(() => PartialAdvect(atSlice, slices, delta));
+            var task = new Task(() => PartialAdvect(atSlice, slices, deltaTime));
             queue.Add(task);
         }
     }
@@ -1219,7 +1214,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
                     if (currentDensity.X + currentDensity.Y + currentDensity.Z + currentDensity.W < 1.0f)
                         continue;
 
-                    ProcessPixelAdvection(currentDensity, x + i, absoluteY, worldY, worldXOffset: (x + i) * resolution,
+                    ProcessPixelAdvection(currentDensity, x + i, absoluteY, worldY, (x + i) * resolution,
                         delta, destination, planeSize, worldPositionBase);
                 }
             }
