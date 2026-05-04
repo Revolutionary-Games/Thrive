@@ -256,7 +256,6 @@ public partial class MicrobeEmissionSystem : BaseSystem<World, float>
             // (so could share a bit of code for checking if ready to shoot yet)
 
             // Cooldown time is inversely proportional to the amount of agent vacuoles (with specialization multiplier).
-            GD.Print("spec bonus --------------", specializationBonus);
             control.AgentEmissionCooldown =
                 ToxinCooldownWithToxicity(organelles.AgentVacuoleCount, organelles.AverageToxinToxicity,
                     specializationBonus);
