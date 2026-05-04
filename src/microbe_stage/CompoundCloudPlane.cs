@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.Intrinsics;
+using System.Runtime.Intrinsics.Arm;
 using System.Runtime.Intrinsics.X86;
 using System.Threading;
 using System.Threading.Tasks;
@@ -1205,8 +1206,27 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
                     vPixel = Vector128.Multiply(vPixel, vScale);
                     vPixel = Vector128.Min(Vector128.Max(vPixel, vZero), v255);
                     var vInt = Vector128.ConvertToInt32(vPixel);
-                    var packed16 = Sse2.PackSignedSaturate(vInt, vInt);
-                    var packed8 = Sse2.PackUnsignedSaturate(packed16, packed16).AsByte();
+
+                    // These check are JIT compile-time constants, so they are pruned during execution.
+                    // This makes branching here de-facto non-existent.
+                    Vector128<byte> packed8;
+                    if (Sse2.IsSupported)
+                    {
+                        var packed16 = Sse2.PackSignedSaturate(vInt, vInt);
+                        packed8 = Sse2.PackUnsignedSaturate(packed16, packed16).AsByte();
+                    }
+                    else if (AdvSimd.IsSupported)
+                    {
+                        var narrow16 = AdvSimd.ExtractNarrowingSaturateLower(vInt);
+                        var narrow8 = AdvSimd.ExtractNarrowingSaturateUnsignedLower(narrow16.ToVector128());
+                        packed8 = narrow8.ToVector128();
+                    }
+                    else
+                    {
+                        packed8 = Vector128.Create((byte)vInt.GetElement(0), (byte)vInt.GetElement(1),
+                            (byte)vInt.GetElement(2), (byte)vInt.GetElement(3),
+                            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0).AsByte();
+                    }
 
                     MemoryMarshal.Write(bufferSpan.Slice(bufferIdx, 4),
                         packed8.AsUInt32().ToScalar());
