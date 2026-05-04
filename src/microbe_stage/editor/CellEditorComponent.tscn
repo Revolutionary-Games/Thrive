@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bwegwjlcioasf" path="res://src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://0hb8nq18ljr8" path="res://src/microbe_stage/editor/LightConfigurationPanel.tscn" id="3_yy73o"]
 [ext_resource type="Script" uid="uid://dfbi66n0pfqh7" path="res://src/microbe_stage/editor/CellEditorComponent.cs" id="4"]
+[ext_resource type="FontFile" uid="uid://b62thy1er4r08" path="res://assets/fonts/Lato-Bold.ttf" id="4_o1pli"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="6"]
 [ext_resource type="PackedScene" uid="uid://seoiqsheiljf" path="res://src/microbe_stage/editor/MutationPointsBar.tscn" id="7"]
 [ext_resource type="FontVariation" uid="uid://cik4lxxj7fi2t" path="res://assets/fonts/variants/Jura-Regular.tres" id="8_07qd0"]
@@ -565,6 +566,7 @@ rightPanelScrollContainer = NodePath("RightPanel/VBoxContainer/OrganismStatistic
 bottomRightPanel = NodePath("BottomRight")
 tutorialAnimationPlayer = NodePath("TutorialAnimations")
 toleranceWarningsFont = ExtResource("28_qclxk")
+hexEffectFont = ExtResource("4_o1pli")
 floatingLabelContainer = NodePath("GrowthOrderNumberContainer")
 islandPopup = NodePath("IslandError")
 componentBottomLeftButtons = NodePath("EditorComponentBottomLeftButtons")

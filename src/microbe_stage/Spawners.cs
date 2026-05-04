@@ -880,7 +880,7 @@ public static class SpawnHelpers
             // Microbes only want to grab stuff they want
             OnlyAbsorbUseful = true,
 
-            AbsorptionRatio = usedCellDefinition.MembraneType.ResourceAbsorptionFactor,
+            AbsorptionRate = usedCellDefinition.MembraneType.ResourceAbsorptionFactor,
 
             // AI requires this, player doesn't (or at least I can't remember right now that it would -hhyyrylainen)
             // but it isn't too big a problem to also specify this for the player
