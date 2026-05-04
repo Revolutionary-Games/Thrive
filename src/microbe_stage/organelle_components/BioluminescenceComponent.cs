@@ -51,8 +51,7 @@ public class BioluminescenceComponent : IOrganelleComponent
     }
 
     public void UpdateAsync(ref OrganelleContainer organelleContainer, ref SpecializationFactor specializationFactor,
-        in Entity microbeEntity,
-        IWorldSimulation worldSimulation, float energyCostMultiplier, float delta)
+        in Entity microbeEntity, IWorldSimulation worldSimulation, float energyCostMultiplier, float delta)
     {
         // Drain luciferase
         var compounds = microbeEntity.Get<CompoundStorage>().Compounds;
