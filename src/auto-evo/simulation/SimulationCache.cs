@@ -173,7 +173,7 @@ public class SimulationCache
 
         // For MicrobeSpecies, Cell Type Specialization = Total Specialization Bonus
         var totalSpecializationBonus = MicrobeInternalCalculations.CalculateSpecializationBonus(organelles,
-            new Dictionary<OrganelleDefinition, int>());
+            workMemory1);
 
         var cached = MicrobeInternalCalculations.CalculateSpeed(organelles.Organelles, species.MembraneType,
             species.MembraneRigidity, species.IsBacteria, totalSpecializationBonus, true);
@@ -212,7 +212,7 @@ public class SimulationCache
 
         // For MicrobeSpecies, Cell Type Specialization = Total Specialization Bonus
         var totalSpecializationBonus = MicrobeInternalCalculations.CalculateSpecializationBonus(organelles,
-            new Dictionary<OrganelleDefinition, int>());
+            workMemory1);
 
         return MicrobeInternalCalculations.CalculateRotationSpeed(organelles.Organelles, totalSpecializationBonus);
     }
