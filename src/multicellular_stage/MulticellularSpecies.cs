@@ -277,8 +277,9 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         {
             if (!cachedFillTimes.TryGetValue(biome, out compoundTimes))
             {
-                var totalSpecializationBonus = ModifiableGameplayCells[0].CellTypeSpecializationBonus *
-                    GetAdjacencySpecializationBonus(0);
+                // This does not use the real specialization bonus to avoid underestimating how much single cells in
+                // unusual spawn situations (such as spores) need to survive the night
+                var totalSpecializationBonus = 1;
 
                 // TODO: should moving be false in some cases?
                 compoundTimes = MicrobeInternalCalculations.CalculateDayVaryingCompoundsFillTimes(
