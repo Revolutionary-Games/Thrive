@@ -156,6 +156,8 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         // TODO: do we need to reposition for auto-evo?
         RepositionToOrigin();
 
+        bool sporeCellTypeInList = false;
+
         // Make certain these are all up to date
         foreach (var cellType in ModifiableCellTypes)
         {
@@ -172,7 +174,13 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
             {
                 cellType.ModifiableOrganelles.Organelles[i].IsEndosymbiont = false;
             }
+
+            if (!sporeCellTypeInList && cellType == ModifiableSporeCellType)
+                sporeCellTypeInList = true;
         }
+
+        if (!sporeCellTypeInList && ModifiableSporeCellType != null)
+            throw new Exception($"Spore cell type isn't present in the cell type list: {ModifiableSporeCellType}");
 
         if (ReproductionMethod == MulticellularReproductionMethod.Sporulation && ModifiableSporeCellType == null)
             throw new Exception("Sporulation reproduction method requires a spore cell type to be set");

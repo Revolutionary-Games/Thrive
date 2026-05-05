@@ -596,14 +596,14 @@ public partial class CellBodyPlanEditorComponent :
             editedSpecies.ModifiableEditorCells, editedMicrobeCells, AlgorithmQuality.High, hexTemporaryMemory,
             hexTemporaryMemory2);
 
+        editedSpecies.ReproductionMethod = ReproductionMethod;
+
+        editedSpecies.ModifiableSporeCellType = SporeCellType;
+
         tempFreshlyUpdatedCells.Clear();
         editedSpecies.OnEdited();
 
         editedSpecies.UpdateNameIfValid(newName);
-
-        editedSpecies.ReproductionMethod = ReproductionMethod;
-
-        editedSpecies.ModifiableSporeCellType = SporeCellType;
 
         behaviourEditor.OnFinishEditing();
         tolerancesEditor.OnFinishEditing();
