@@ -475,6 +475,8 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     {
         if (!stage!.Player.IsAliveAndHas<StrainAffected>())
         {
+            // This should never trigger as long as this method is called only when the player is alive.
+            // But this legacy error-checking code might as well be kept.
             if (!playerMissingStrainAffected)
             {
                 GD.PrintErr("Player is missing StrainAffected component");
