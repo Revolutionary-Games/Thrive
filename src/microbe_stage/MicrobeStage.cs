@@ -961,14 +961,21 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             // Allow updating the first cell type to reproduce (reproduction order changed)
             multicellularSpeciesType.MulticellularCellType = multicellularSpeciesType.Species.FirstCellTypeToSpawn();
 
+            float adjacencyBonus = 1.0f;
+
+            Player.Get<MulticellularGrowth>().IsASpore = false;
+
             if (multicellularSpeciesType.Species.ReproductionMethod == MulticellularReproductionMethod.Sporulation)
             {
                 Player.Get<MulticellularGrowth>().IsASpore = true;
             }
+            else if (multicellularSpeciesType.Species.ReproductionMethod == MulticellularReproductionMethod.Budding)
+            {
+                adjacencyBonus = multicellularSpeciesType.Species.GetAdjacencySpecializationBonus(0);
+            }
 
             environmentalEffects.ApplyEffects(resolvedTolerances,
-                multicellularSpeciesType.MulticellularCellType.SpecializationBonus *
-                multicellularSpeciesType.Species.GetAdjacencySpecializationBonus(0), ref bioProcesses);
+                multicellularSpeciesType.MulticellularCellType.SpecializationBonus * adjacencyBonus, ref bioProcesses);
 
             cellProperties.ReApplyCellTypeProperties(ref environmentalEffects, Player,
                 multicellularSpeciesType.MulticellularCellType, multicellularSpeciesType.Species, WorldSimulation,

@@ -500,7 +500,7 @@ public partial class PlayerMicrobeInput : NodeWithInput
 
         ref var growth = ref stage.Player.Get<MulticellularGrowth>();
 
-        growth.GerminateSpore(stage.Player, stage.WorldSimulation);
+        growth.GerminateSpore(stage.Player, stage.WorldSimulation, stage);
     }
 
     [RunOnKey("g_cheat_glucose")]
