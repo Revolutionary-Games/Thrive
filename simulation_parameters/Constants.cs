@@ -1183,7 +1183,7 @@ public static class Constants
 
     public const int CELL_REMOVE_COST = 5;
 
-    public const int MULTUCELLULAR_REPRODUCTION_METHOD_CHANGE_COST = 50;
+    public const int MULTICELLULAR_REPRODUCTION_METHOD_CHANGE_COST = 50;
 
     public const int SPORE_CELL_TYPE_CHANGE_COST = 10;
 

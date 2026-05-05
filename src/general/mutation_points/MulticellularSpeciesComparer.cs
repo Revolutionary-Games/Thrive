@@ -177,7 +177,7 @@ public class MulticellularSpeciesComparer
 
         if (speciesA.ReproductionMethod != speciesB.ReproductionMethod)
         {
-            cost += Constants.MULTUCELLULAR_REPRODUCTION_METHOD_CHANGE_COST;
+            cost += Constants.MULTICELLULAR_REPRODUCTION_METHOD_CHANGE_COST;
         }
         else if (speciesA.ReproductionMethod == MulticellularReproductionMethod.Sporulation
                  && speciesA.SporeCellType!.CellTypeName != speciesB.SporeCellType?.CellTypeName)
