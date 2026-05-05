@@ -98,7 +98,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     protected override MainGameState ReturnToState => MainGameState.MicrobeStage;
 
-    protected override string? TipsCategoryOverrideForLoading => "MulticellularStageTips";
+    protected override string TipsCategoryOverrideForLoading => "MulticellularStageTips";
 
     protected override string EditorLoadingMessage =>
         Localization.Translate("LOADING_MULTICELLULAR_EDITOR");
