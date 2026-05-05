@@ -1,6 +1,5 @@
 using Godot;
 using System.Collections.Generic;
-using Thrive; // Game's main namespace
 
 /// <summary>
 /// Electric Organelle – creates an electric field around the microbe upon attack.
@@ -26,7 +25,7 @@ public class ElectricOrganelle : Node2D
 
     #region Private Fields
 
-    private Microbe owner;                                      // The parent microbe
+    private Node2D owner;                                      // The parent microbe
     private bool isOnCooldown = false;
     private bool isFieldActive = false;
     private float currentCooldown = 0f;
@@ -35,7 +34,7 @@ public class ElectricOrganelle : Node2D
 
     private Area2D electricFieldArea;
     private CollisionShape2D collisionShape;
-    private Sprite fieldSprite;
+    private Sprite2D fieldSprite;
 
     #endregion
 
@@ -232,7 +231,7 @@ public class ElectricOrganelle : Node2D
         }
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (isFieldActive)
         {
