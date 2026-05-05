@@ -234,6 +234,19 @@ public static class MicrobeEnvironmentalToleranceCalculations
         }
     }
 
+    /// <summary>
+    ///   Calculates effective tolerances given the species tolerances, cells, and environmental conditions.
+    /// </summary>
+    /// <param name="speciesTolerances">Configured tolerances</param>
+    /// <param name="cells">Organelles that may affect the tolerances</param>
+    /// <param name="environment">Environment that the tolerances need to match to not get debuffs</param>
+    /// <param name="excludePositiveBuffs">
+    ///   If true, excludes perfect adaptation bonuses. This is used to show debuffs in a way that no buffs can get
+    ///   mixed in. Note that for the tooltips we separately generate "good enough" tolerances to not get bonuses or
+    ///   debuffs instead of using this flag. So TODO: it would be nice to combine these two approaches that are almost
+    ///   the same. But to get the new tolerance GUI visuals done, these two systems were left as separate (for now).
+    /// </param>
+    /// <returns>Calculated tolerance result</returns>
     public static ToleranceResult CalculateTolerances(IReadOnlyEnvironmentalTolerances speciesTolerances,
         IndividualHexLayout<CellTemplate> cells, IBiomeConditions environment, bool excludePositiveBuffs = false)
     {
