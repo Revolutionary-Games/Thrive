@@ -146,16 +146,16 @@ public static class MicrobeEnvironmentalToleranceCalculations
     }
 
     public static void ApplyOrganelleEffectsOnTolerances(IReadOnlyCollection<IReadOnlyOrganelleTemplate> organelles,
-        ref ToleranceValues tolerances)
+        ref ToleranceValues tolerances, float totalSpecializationBonus)
     {
         // This is a separate overload as this uses an extra enumerator call (and putting in the indexer requirement
         // to the base-read-only cell layout would require quite expensive operations in facade types).
 
-        float temperatureChange = 0;
-        float oxygenChange = 0;
-        float uvChange = 0;
-        float pressureMinimumChange = 0;
-        float pressureToleranceChange = 0;
+        float totalTemperatureChange = 0;
+        float totalOxygenChange = 0;
+        float totalUvChange = 0;
+        float totalPressureMinimumChange = 0;
+        float totalPressureToleranceChange = 0;
 
         foreach (var organelle in organelles)
         {
@@ -163,20 +163,35 @@ public static class MicrobeEnvironmentalToleranceCalculations
 
             if (organelleDefinition.AffectsTolerances)
             {
+                var temperatureChange = organelleDefinition.ToleranceModifierTemperatureRange;
+                var oxygenChange = organelleDefinition.ToleranceModifierOxygen;
+                var uvChange = organelleDefinition.ToleranceModifierUV;
+                var pressureToleranceChange = organelleDefinition.ToleranceModifierPressureTolerance;
+
+                // apply specialization bonus
+                if (temperatureChange > 0)
+                    temperatureChange *= totalSpecializationBonus;
+                if (oxygenChange > 0)
+                    oxygenChange *= totalSpecializationBonus;
+                if (uvChange > 0)
+                    uvChange *= totalSpecializationBonus;
+                if (pressureToleranceChange > 0)
+                    pressureToleranceChange *= totalSpecializationBonus;
+
                 // Buffer all changes so that float rounding doesn't cause us issues
-                temperatureChange += organelleDefinition.ToleranceModifierTemperatureRange;
-                oxygenChange += organelleDefinition.ToleranceModifierOxygen;
-                uvChange += organelleDefinition.ToleranceModifierUV;
-                pressureToleranceChange += organelleDefinition.ToleranceModifierPressureTolerance;
+                totalTemperatureChange += temperatureChange;
+                totalOxygenChange += oxygenChange;
+                totalUvChange += uvChange;
+                totalPressureToleranceChange += pressureToleranceChange;
             }
         }
 
         // Then apply all at once
-        tolerances.TemperatureTolerance += temperatureChange;
-        tolerances.OxygenResistance += oxygenChange;
-        tolerances.UVResistance += uvChange;
-        tolerances.PressureMinimum -= pressureMinimumChange;
-        tolerances.PressureTolerance += pressureToleranceChange;
+        tolerances.TemperatureTolerance += totalTemperatureChange;
+        tolerances.OxygenResistance += totalOxygenChange;
+        tolerances.UVResistance += totalUvChange;
+        tolerances.PressureMinimum -= totalPressureMinimumChange;
+        tolerances.PressureTolerance += totalPressureToleranceChange;
     }
 
     public static void GenerateToleranceEffectSummariesByOrganelle(IReadOnlyList<OrganelleTemplate> organelles,
@@ -282,11 +297,15 @@ public static class MicrobeEnvironmentalToleranceCalculations
         int cellCount = cells.Count;
         for (int i = 0; i < cellCount; ++i)
         {
-            var cell = cells[i];
+            var cellTemplate = cells[i].Data!;
 
-            var type = cell.Data!.CellType;
+            var type = cellTemplate.CellType;
 
-            ApplyOrganelleEffectsOnTolerances(type.Organelles, ref typeTolerances);
+            var totalSpecializationBonus = MicrobeInternalCalculations.CalculateSpecializationBonus(
+                    cellTemplate.ModifiableOrganelles, new Dictionary<OrganelleDefinition, int>()) *
+                CellBodyPlanInternalCalculations.GetAdjacencySpecializationBonusFromBodyPlan(cellTemplate, cells);
+
+            ApplyOrganelleEffectsOnTolerances(type.Organelles, ref typeTolerances, totalSpecializationBonus);
         }
 
         // We apply the averaging here at the end to preserve more precision
