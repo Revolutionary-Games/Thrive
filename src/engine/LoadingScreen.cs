@@ -135,7 +135,7 @@ public partial class LoadingScreen : Control
         switch (target)
         {
             case MainGameState.MicrobeEditor:
-                return (MainGameState.MicrobeEditor, overrideTipsCategory);
+                return (MainGameState.MicrobeStage, overrideTipsCategory);
             case MainGameState.MulticellularEditor:
                 return (MainGameState.MicrobeStage, "MulticellularStageTips");
             case MainGameState.MacroscopicEditor:
@@ -227,6 +227,8 @@ public partial class LoadingScreen : Control
             CurrentlyLoadingGameState = target;
             OverrideTips = overrideTipsCategory;
         }
+
+        GD.Print($"Showing loading screen for stage {CurrentlyLoadingGameState} with override: {OverrideTips}");
 
         LoadingMessage = message;
         LoadingDescription = description;
