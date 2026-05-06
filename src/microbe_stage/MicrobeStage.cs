@@ -962,13 +962,14 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             earlySpeciesType.MulticellularCellType =
                 earlySpeciesType.Species.ModifiableGameplayCells[0].ModifiableCellType;
 
-            environmentalEffects.ApplyEffects(resolvedTolerances,
-                earlySpeciesType.MulticellularCellType.CellTypeSpecializationBonus *
-                earlySpeciesType.Species.GetAdjacencySpecializationBonus(0), ref bioProcesses);
+            var totalSpecializationBonus = earlySpeciesType.MulticellularCellType.CellTypeSpecializationBonus *
+                earlySpeciesType.Species.GetAdjacencySpecializationBonus(0);
+
+            environmentalEffects.ApplyEffects(resolvedTolerances, totalSpecializationBonus, ref bioProcesses);
 
             cellProperties.ReApplyCellTypeProperties(ref environmentalEffects, Player,
-                earlySpeciesType.MulticellularCellType, earlySpeciesType.Species, WorldSimulation, workData1,
-                workData2);
+                earlySpeciesType.MulticellularCellType, earlySpeciesType.Species, totalSpecializationBonus,
+                WorldSimulation, workData1, workData2);
         }
         else
         {
@@ -981,7 +982,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
                 ref bioProcesses);
 
             cellProperties.ReApplyCellTypeProperties(ref environmentalEffects, Player,
-                species.Species, species.Species, WorldSimulation,
+                species.Species, species.Species, species.Species.CellTypeSpecializationBonus, WorldSimulation,
                 workData1, workData2);
 
             foreach (var organelle in species.Species.Organelles)
