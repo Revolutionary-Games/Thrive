@@ -480,7 +480,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
             result.ModifiableCellTypes.Add(clonedType);
 
             if (cellType == ModifiableSporeCellType)
-                result.ModifiableSporeCellType = cellType;
+                result.ModifiableSporeCellType = clonedType;
         }
 
         if (ModifiableSporeCellType != null && result.ModifiableSporeCellType == null)
