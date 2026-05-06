@@ -893,7 +893,8 @@ public partial class Jukebox : Node
                 {
                     nextIndex = random.Next(0, candidateTracks.Count);
                 }
-                while (candidateTracks.Count > 1 && candidateTracks[nextIndex].ResourcePath == list.LastPlayedTrackPath);
+                while (candidateTracks.Count > 1 &&
+                       candidateTracks[nextIndex].ResourcePath == list.LastPlayedTrackPath);
             }
             else if (mode == TrackList.Order.EntirelyRandom)
             {
@@ -923,6 +924,7 @@ public partial class Jukebox : Node
                 contextOnlyTracks.Add(track);
             }
         }
+
         return contextOnlyTracks;
     }
 
