@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using Arch.Core;
-using Arch.Core.Extensions;
 using Godot;
+using ThriveScriptsShared; // Убрали .Components, пробуем так
 using Components;
 using ThriveScriptsShared.Components;
 namespace Thrive.MicrobeStage.Components;
