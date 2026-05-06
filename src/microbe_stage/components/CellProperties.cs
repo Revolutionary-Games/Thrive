@@ -512,14 +512,14 @@ public static class CellPropertiesHelpers
         ref var organelleContainer = ref entity.Get<OrganelleContainer>();
 
         // Reset Specialization factor to the one in new species' data
-        entity.Get<SpecializationFactor>().TotalSpecializationBonus = totalSpecializationBonus;
+        ref var specialization = ref entity.Get<SpecializationFactor>();
+        specialization.TotalSpecializationBonus = totalSpecializationBonus;
 
         // Reset all the duplicate organelles / reproduction progress of the entity
         // This also resets multicellular creature's reproduction progress
         organelleContainer.ResetOrganelleLayout(ref entity.Get<CompoundStorage>(), ref entity.Get<BioProcesses>(),
-            ref entity.Get<SpecializationFactor>(), in environmentalEffects, entity, newDefinition,
-            baseReproductionCostFrom, worldSimulation, workMemory1,
-            workMemory2);
+            ref specialization, in environmentalEffects, entity, newDefinition, baseReproductionCostFrom,
+            worldSimulation, workMemory1, workMemory2);
 
         // Reset runtime colour
         if (entity.Has<ColourAnimation>())
