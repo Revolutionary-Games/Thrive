@@ -4,7 +4,7 @@ using Arch.Core;
 using Arch.Core.Extensions;
 using Godot;
 using Components;
-
+using ThriveScriptsShared.Components;
 namespace Thrive.MicrobeStage.Components;
 
 // Мы используем struct (структуру), так как Thrive работает на Arch ECS.
