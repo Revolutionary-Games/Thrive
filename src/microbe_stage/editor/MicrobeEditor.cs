@@ -238,13 +238,33 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
     public EnvironmentalTolerances GetOptimalTolerancesForCurrentPatch()
     {
-        return CurrentPatch.GenerateTolerancesForMicrobe(EditedCellOrganelles);
+        if (editedSpecies == null)
+        {
+            throw new Exception("Tried to calculate tolerances without an edited species being set");
+        }
+
+        // This is a microbe, so totalSpecializationBonus = cell specialization bonus
+        var totalSpecializationBonus =
+            MicrobeInternalCalculations.CalculateSpecializationBonus(editedSpecies.ModifiableOrganelles.Organelles,
+                tempMemory1);
+
+        return CurrentPatch.GenerateTolerancesForMicrobe(EditedCellOrganelles, totalSpecializationBonus);
     }
 
     public ToleranceResult CalculateCurrentTolerances(EnvironmentalTolerances calculationTolerances)
     {
+        if (editedSpecies == null)
+        {
+            throw new Exception("Tried to calculate tolerances without an edited species being set");
+        }
+
+        // This is a microbe, so totalSpecializationBonus = cell specialization bonus
+        var totalSpecializationBonus =
+            MicrobeInternalCalculations.CalculateSpecializationBonus(editedSpecies.ModifiableOrganelles.Organelles,
+                tempMemory1);
+
         return MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(calculationTolerances,
-            EditedCellOrganelles, CurrentPatch.Biome);
+            EditedCellOrganelles, totalSpecializationBonus, CurrentPatch.Biome);
     }
 
     public void GetCurrentToleranceSummaryByElement(ToleranceModifier toleranceCategory,
@@ -257,8 +277,18 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
     public void CalculateBodyEffectOnTolerances(
         ref MicrobeEnvironmentalToleranceCalculations.ToleranceValues modifiedTolerances)
     {
+        if (editedSpecies == null)
+        {
+            throw new Exception("Tried to calculate tolerances without an edited species being set");
+        }
+
+        // This is a microbe, so totalSpecializationBonus = cell specialization bonus
+        var totalSpecializationBonus =
+            MicrobeInternalCalculations.CalculateSpecializationBonus(editedSpecies.ModifiableOrganelles.Organelles,
+                tempMemory1);
+
         MicrobeEnvironmentalToleranceCalculations.ApplyOrganelleEffectsOnTolerances(EditedCellOrganelles,
-            ref modifiedTolerances);
+            totalSpecializationBonus, ref modifiedTolerances);
     }
 
     protected override void ResolveDerivedTypeNodeReferences()

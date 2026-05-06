@@ -1300,8 +1300,12 @@ public partial class CellEditorComponent :
                 "In multicellular, the cell editor is not responsible for tolerances data");
         }
 
+        // Treats cellTypeSpecializationBonus as totalSpecializationBonus, because adjacency is ignored in this editor.
+        var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(
+            editedMicrobeOrganelles.Organelles, tempMemory3);
+
         return MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(tolerancesEditor.CurrentTolerances,
-            editedMicrobeOrganelles, Editor.CurrentPatch.Biome, excludePositiveBuffs);
+            editedMicrobeOrganelles, specialization, Editor.CurrentPatch.Biome, excludePositiveBuffs);
     }
 
     public void UpdatePatchDependentBalanceData()

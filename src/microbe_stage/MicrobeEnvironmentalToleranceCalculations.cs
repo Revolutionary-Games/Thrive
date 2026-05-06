@@ -27,7 +27,8 @@ public static class MicrobeEnvironmentalToleranceCalculations
 
     public static ToleranceResult CalculateTolerances(MicrobeSpecies species, IBiomeConditions environment)
     {
-        return CalculateTolerances(species.Tolerances, species.Organelles, environment);
+        return CalculateTolerances(species.Tolerances, species.Organelles, species.CellTypeSpecializationBonus,
+            environment);
     }
 
     public static ToleranceResult CalculateTolerances(MulticellularSpecies species, IBiomeConditions environment)
@@ -40,6 +41,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
     /// </summary>
     /// <param name="speciesTolerances">Configured tolerances</param>
     /// <param name="organelles">Organelles that may affect the tolerances</param>
+    /// <param name="totalSpecializationBonus">Specialization bonus for this species</param>
     /// <param name="environment">Environment that the tolerances need to match to not get debuffs</param>
     /// <param name="excludePositiveBuffs">
     ///   If true, excludes perfect adaptation bonuses. This is used to show debuffs in a way that no buffs can get
@@ -49,7 +51,8 @@ public static class MicrobeEnvironmentalToleranceCalculations
     /// </param>
     /// <returns>Calculated tolerance result</returns>
     public static ToleranceResult CalculateTolerances(IReadOnlyEnvironmentalTolerances speciesTolerances,
-        IReadOnlyList<OrganelleTemplate> organelles, IBiomeConditions environment, bool excludePositiveBuffs = false)
+        IReadOnlyList<OrganelleTemplate> organelles, float totalSpecializationBonus, IBiomeConditions environment,
+        bool excludePositiveBuffs = false)
     {
         var resolvedTolerances = new ToleranceValues
         {
@@ -63,7 +66,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
 
         var noExtraEffects = resolvedTolerances;
 
-        ApplyOrganelleEffectsOnTolerances(organelles, ref resolvedTolerances);
+        ApplyOrganelleEffectsOnTolerances(organelles, totalSpecializationBonus, ref resolvedTolerances);
 
         ApplyResultMinimums(ref resolvedTolerances);
 
@@ -95,17 +98,13 @@ public static class MicrobeEnvironmentalToleranceCalculations
     }
 
     public static void ApplyOrganelleEffectsOnTolerances(IReadOnlyList<IReadOnlyOrganelleTemplate> organelles,
-        ref ToleranceValues tolerances)
+        float totalSpecializationBonus, ref ToleranceValues tolerances)
     {
         float totalTemperatureChange = 0;
         float totalOxygenChange = 0;
         float totalUvChange = 0;
         float totalPressureMinimumChange = 0;
         float totalPressureToleranceChange = 0;
-
-        // Note this assumes this is only used just for single cell types or microbe species!
-        var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(organelles,
-            new Dictionary<OrganelleDefinition, int>());
 
         int organelleCount = organelles.Count;
         for (int i = 0; i < organelleCount; ++i)
@@ -121,13 +120,13 @@ public static class MicrobeEnvironmentalToleranceCalculations
 
                 // apply specialization bonus
                 if (temperatureChange > 0)
-                    temperatureChange *= specialization;
+                    temperatureChange *= totalSpecializationBonus;
                 if (oxygenChange > 0)
-                    oxygenChange *= specialization;
+                    oxygenChange *= totalSpecializationBonus;
                 if (uvChange > 0)
-                    uvChange *= specialization;
+                    uvChange *= totalSpecializationBonus;
                 if (pressureToleranceChange > 0)
-                    pressureToleranceChange *= specialization;
+                    pressureToleranceChange *= totalSpecializationBonus;
 
                 // Buffer all changes so that float rounding doesn't cause us issues
                 totalTemperatureChange += temperatureChange;
