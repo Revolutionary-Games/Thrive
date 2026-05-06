@@ -871,8 +871,7 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
     ///   Gets the current amount of strain affecting the player
     /// </summary>
     /// <returns>
-    ///   Null if the player is missing <see cref="StrainAffected"/>,
-    ///   else the player's strain fraction
+    ///   Null if the player is missing <see cref="StrainAffected"/>, else the player's strain fraction
     /// </returns>
     protected virtual float? ReadPlayerStrainFraction()
     {
