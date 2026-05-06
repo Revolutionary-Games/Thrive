@@ -140,12 +140,11 @@ public class SimulationCache
         // TODO: check if caching instances of these objects would be better than always recreating
         var cached = new EnergyBalanceInfoSimple();
 
-        // Assume here that the species specialization factor may not be up to date, so recalculate here
-        var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(species.Organelles, workMemory1);
+        var totalSpecializationBonus = species.CellTypeSpecializationBonus;
 
         // Auto-evo uses the average values of compound during the course of a simulated day
         ProcessSystem.ComputeEnergyBalanceSimple(species.Organelles, biomeConditions,
-            GetEnvironmentalTolerances(species, biomeConditions), specialization, species.MembraneType,
+            GetEnvironmentalTolerances(species, biomeConditions), totalSpecializationBonus, species.MembraneType,
             maximumMovementDirection, true, species.PlayerSpecies, worldSettings, CompoundAmountType.Average, this,
             cached);
 
@@ -172,8 +171,7 @@ public class SimulationCache
         var organelles = species.Organelles;
 
         // For MicrobeSpecies, Cell Type Specialization = Total Specialization Bonus
-        var totalSpecializationBonus = MicrobeInternalCalculations.CalculateSpecializationBonus(organelles,
-            workMemory1);
+        var totalSpecializationBonus = species.CellTypeSpecializationBonus;
 
         var cached = MicrobeInternalCalculations.CalculateSpeed(organelles.Organelles, species.MembraneType,
             species.MembraneRigidity, species.IsBacteria, totalSpecializationBonus, true);
@@ -211,8 +209,7 @@ public class SimulationCache
         var organelles = species.Organelles;
 
         // For MicrobeSpecies, Cell Type Specialization = Total Specialization Bonus
-        var totalSpecializationBonus = MicrobeInternalCalculations.CalculateSpecializationBonus(organelles,
-            workMemory1);
+        var totalSpecializationBonus = species.CellTypeSpecializationBonus;
 
         return MicrobeInternalCalculations.CalculateRotationSpeed(organelles.Organelles, totalSpecializationBonus);
     }
@@ -403,10 +400,8 @@ public class SimulationCache
         }
 
         // This will be used at several points to mimic the effect the specialization bonus has on organelles
-        var specializationBonus =
-            MicrobeInternalCalculations.CalculateSpecializationBonus(predator.Organelles.Organelles, workMemory1);
-        var preySpecializationBonus =
-            MicrobeInternalCalculations.CalculateSpecializationBonus(prey.Organelles.Organelles, workMemory1);
+        var specializationBonus = predator.CellTypeSpecializationBonus;
+        var preySpecializationBonus = prey.CellTypeSpecializationBonus;
 
         var predatorHexSize = GetBaseHexSizeForSpecies(predator);
         var preyHexSize = GetBaseHexSizeForSpecies(prey);
