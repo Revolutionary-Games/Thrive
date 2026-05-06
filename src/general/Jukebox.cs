@@ -1011,15 +1011,21 @@ public partial class Jukebox : Node
                 if (!track.WasPlaying)
                     continue;
 
-                foreach (var p in audioPlayers)
+                bool foundPosition = false;
+
+                foreach (var player in audioPlayers)
                 {
-                    if (!p.Playing || p.CurrentTrack != track.ResourcePath)
+                    if (!player.Playing || player.CurrentTrack != track.ResourcePath)
                         continue;
 
                     // Store the position to resume from
-                    track.PreviousPlayedPosition = p.Player.GetPlaybackPosition();
+                    track.PreviousPlayedPosition = player.Player.GetPlaybackPosition();
+                    foundPosition = true;
                     break;
                 }
+
+                if (!foundPosition)
+                    GD.Print("Jukebox: failed to store continue position of playing track: ", track.ResourcePath);
             }
         }
     }
