@@ -9,7 +9,7 @@ namespace Thrive.MicrobeStage.Components;
 
 // Мы используем struct (структуру), так как Thrive работает на Arch ECS.
 // Это именно то, что требовали разработчики в doc/architecture.md.
-public struct ElectricOrganelle : IComponent
+public struct ElectricOrganelle
 {
     // Параметры органеллы (данные)
     public float Damage { get; set; }
