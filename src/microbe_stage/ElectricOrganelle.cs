@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using Arch.Core;
 using Arch.Core.Extensions;
-using Components;
 using Godot;
+using Components;
 
 namespace Thrive.MicrobeStage.Components;
 
