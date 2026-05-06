@@ -172,8 +172,6 @@ public partial class MulticellularGrowthSystem : BaseSystem<World, float>
 
         bool stillNeedsSomething = false;
 
-        status.ConsumeReproductionCompoundsReverse = !status.ConsumeReproductionCompoundsReverse;
-
         // Consume some compounds for the next cell in the layout
         // Similar logic for "growing" more cells than in PlacedOrganelle growth
         if (multicellularGrowth.CompoundsNeededForNextCell.Count > 0)
