@@ -330,9 +330,22 @@ public static class MulticellularGrowthHelpers
     public static List<(Compound Compound, float AmountNeeded)> GetCompoundsNeededForNextCell(
         this ref MulticellularGrowth multicellularGrowth, MulticellularSpecies species)
     {
-        return species
-            .ModifiableGameplayCells[
-                multicellularGrowth.IsFullyGrownMulticellular ? 0 : multicellularGrowth.NextBodyPlanCellToGrowIndex]
+        if (multicellularGrowth.IsFullyGrownMulticellular)
+        {
+            // Calculate compounds needed for reproduction
+            if (species.ReproductionMethod is MulticellularReproductionMethod.Budding
+                or MulticellularReproductionMethod.Sporulation)
+            {
+                return species.FirstCellTypeToSpawn().CalculateTotalCompositionList();
+            }
+            else
+            {
+                throw new NotImplementedException($"Reproduction method's reproduction cost calculation is" +
+                    $"unimplemented: {species.ReproductionMethod}");
+            }
+        }
+
+        return species.ModifiableGameplayCells[multicellularGrowth.NextBodyPlanCellToGrowIndex]
             .ModifiableCellType.CalculateTotalCompositionList();
     }
 
