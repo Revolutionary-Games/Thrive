@@ -238,11 +238,6 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
     public EnvironmentalTolerances GetOptimalTolerancesForCurrentPatch()
     {
-        if (editedSpecies == null)
-        {
-            throw new Exception("Tried to calculate tolerances without an edited species being set");
-        }
-
         // This is a microbe, so totalSpecializationBonus = cell specialization bonus
         var totalSpecializationBonus =
             MicrobeInternalCalculations.CalculateSpecializationBonus(EditedCellOrganelles,
@@ -253,11 +248,6 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
     public ToleranceResult CalculateCurrentTolerances(EnvironmentalTolerances calculationTolerances)
     {
-        if (editedSpecies == null)
-        {
-            throw new Exception("Tried to calculate tolerances without an edited species being set");
-        }
-
         // This is a microbe, so totalSpecializationBonus = cell specialization bonus
         var totalSpecializationBonus =
             MicrobeInternalCalculations.CalculateSpecializationBonus(EditedCellOrganelles,
@@ -277,11 +267,6 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
     public void CalculateBodyEffectOnTolerances(
         ref MicrobeEnvironmentalToleranceCalculations.ToleranceValues modifiedTolerances)
     {
-        if (editedSpecies == null)
-        {
-            throw new Exception("Tried to calculate tolerances without an edited species being set");
-        }
-
         // This is a microbe, so totalSpecializationBonus = cell specialization bonus
         var totalSpecializationBonus =
             MicrobeInternalCalculations.CalculateSpecializationBonus(EditedCellOrganelles,
