@@ -1164,6 +1164,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
 
         float resolution = CloudResolution;
         float intensityScale = 255.0f / Constants.CLOUD_MAX_INTENSITY_SHOWN;
+        int chunkWidth = planeSize / Constants.CLOUD_PLANE_SQUARES_PER_SIDE;
 
         var vScale = Vector128.Create(intensityScale);
         var vZero = Vector128<float>.Zero;
@@ -1176,14 +1177,17 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
         {
             int absoluteY = y + rowStart;
 
-            int x = 0;
-
             for (int chunkX = 0; chunkX < Constants.CLOUD_PLANE_SQUARES_PER_SIDE; ++chunkX)
             {
                 Vector2 worldPositionBase = GetWorldPositionForAdvection(chunkX * planeSize /
                     Constants.CLOUD_PLANE_SQUARES_PER_SIDE, rowStart);
 
-                for (; x <= planeSize - 4; x += 4)
+                int startX = chunkX * chunkWidth;
+                int endX = startX + chunkWidth;
+
+                int x = startX;
+
+                for (; x <= endX - 4; x += 4)
                 {
                     var p0 = source[sourceIdx].AsVector128();
                     var p1 = source[sourceIdx + 1].AsVector128();
@@ -1247,7 +1251,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
                     }
                 }
 
-                for (; x < planeSize; ++x)
+                for (; x < endX; ++x)
                 {
                     Vector4 currentDensity = source[sourceIdx++];
 
