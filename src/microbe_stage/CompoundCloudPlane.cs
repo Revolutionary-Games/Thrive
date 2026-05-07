@@ -380,34 +380,26 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     {
         deltaTime *= 100.0f;
 
-        int planeSize = PlaneSize;
         int edgeWidth = Constants.CLOUD_PLANE_EDGE_WIDTH;
         int halfEdgeWidth = edgeWidth / 2;
-        int squaresPerSide = Constants.CLOUD_PLANE_SQUARES_PER_SIDE;
-        int planeChunkSize = planeSize / squaresPerSide;
+        int planeChunkSize = PlaneSize / Constants.CLOUD_PLANE_SQUARES_PER_SIDE;
 
-        for (int column = 0; column <= squaresPerSide; ++column)
+        // Vertical edge columns
+        PartialDiffuseScalar(0, 0, halfEdgeWidth, PlaneSize, deltaTime);
+        PartialDiffuseScalar(1 * planeChunkSize - halfEdgeWidth, 0, edgeWidth, PlaneSize, deltaTime);
+        PartialDiffuseScalar(2 * planeChunkSize - halfEdgeWidth, 0, edgeWidth, PlaneSize, deltaTime);
+        PartialDiffuseScalar(3 * planeChunkSize - halfEdgeWidth, 0, halfEdgeWidth, PlaneSize, deltaTime);
+
+        // Horizontal edge rows
+        for (int square = 0; square < Constants.CLOUD_PLANE_SQUARES_PER_SIDE; ++square)
         {
-            int boundaryCenter = column * planeChunkSize;
-            int horizontalStart = Math.Max(0, boundaryCenter - halfEdgeWidth);
-            int horizontalEnd = Math.Min(planeSize, boundaryCenter + halfEdgeWidth);
+            int x = square * planeChunkSize + halfEdgeWidth;
+            int width = planeChunkSize - edgeWidth;
 
-            AreaDiffuse(horizontalStart, horizontalEnd, 0, planeSize, deltaTime);
-        }
-
-        for (int square = 0; square < squaresPerSide; ++square)
-        {
-            int horizontalStart = square * planeChunkSize + halfEdgeWidth;
-            int horizontalEnd = (square + 1) * planeChunkSize - halfEdgeWidth;
-
-            for (int row = 0; row <= squaresPerSide; ++row)
-            {
-                int boundaryCenter = row * planeChunkSize;
-                int verticalStart = Math.Max(0, boundaryCenter - halfEdgeWidth);
-                int verticalEnd = Math.Min(planeSize, boundaryCenter + halfEdgeWidth);
-
-                AreaDiffuse(horizontalStart, horizontalEnd, verticalStart, verticalEnd, deltaTime);
-            }
+            PartialDiffuseScalar(x, 3 * planeChunkSize - halfEdgeWidth, width, halfEdgeWidth, deltaTime);
+            PartialDiffuseScalar(x, 2 * planeChunkSize - halfEdgeWidth, width, edgeWidth, deltaTime);
+            PartialDiffuseScalar(x, 1 * planeChunkSize - halfEdgeWidth, width, edgeWidth, deltaTime);
+            PartialDiffuseScalar(x, 0, width, halfEdgeWidth, deltaTime);
         }
     }
 
@@ -1002,6 +994,37 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
                     (sourceDensity[lastIndex - 1] + sourceDensity[currentRowOffset] +
                         sourceDensity[previousRowOffset + verticalIndex] + sourceDensity[nextRowOffset + verticalIndex])
                     * neighborWeight;
+            }
+        }
+    }
+
+    /// <summary>
+    ///   This is the original implementation of the PartialDiffuse algorithm, which was scalar.
+    ///   It has been kept to diffuse edges.
+    /// </summary>
+    private void PartialDiffuseScalar(int x0, int y0, int width, int height, float delta)
+    {
+        float a = delta * Constants.CLOUD_DIFFUSION_RATE;
+        var cellMultiplier = a * 0.25f;
+        var planeSize = PlaneSize;
+
+        for (int x = x0; x < x0 + width; ++x)
+        {
+            var xMinus = x == 0 ? planeSize - 1 : x - 1;
+            var xPlus = x == planeSize - 1 ? 0 : x + 1;
+
+            for (int y = y0; y < y0 + height; ++y)
+            {
+                var yMinus = y == 0 ? planeSize - 1 : y - 1;
+                var yPlus = y == planeSize - 1 ? 0 : y + 1;
+
+                OldDensity[x + y * planeSize] =
+                    Density[x + y * planeSize] * (1 - a) +
+                    (
+                        Density[x + yMinus * planeSize] +
+                        Density[x + yPlus * planeSize] +
+                        Density[xMinus + y * planeSize] +
+                        Density[xPlus + y * planeSize]) * cellMultiplier;
             }
         }
     }
