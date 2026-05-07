@@ -1164,7 +1164,6 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
 
         float resolution = CloudResolution;
         float intensityScale = 255.0f / Constants.CLOUD_MAX_INTENSITY_SHOWN;
-        Vector2 worldPositionBase = GetWorldPositionForAdvection(0, rowStart);
 
         var vScale = Vector128.Create(intensityScale);
         var vZero = Vector128<float>.Zero;
@@ -1176,89 +1175,94 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
         for (int y = 0; y < rowCount; ++y)
         {
             int absoluteY = y + rowStart;
-            float worldY = worldPositionBase.Y + y * resolution;
 
             int x = 0;
 
-            for (; x <= planeSize - 4; x += 4)
+            for (int chunkX = 0; chunkX < Constants.CLOUD_PLANE_SQUARES_PER_SIDE; ++chunkX)
             {
-                var p0 = source[sourceIdx].AsVector128();
-                var p1 = source[sourceIdx + 1].AsVector128();
-                var p2 = source[sourceIdx + 2].AsVector128();
-                var p3 = source[sourceIdx + 3].AsVector128();
+                Vector2 worldPositionBase = GetWorldPositionForAdvection(chunkX * planeSize /
+                    Constants.CLOUD_PLANE_SQUARES_PER_SIDE, rowStart);
 
-                var sums = Vector128.Create(p0[0] + p0[1] + p0[2] + p0[3],
-                    p1[0] + p1[1] + p1[2] + p1[3],
-                    p2[0] + p2[1] + p2[2] + p2[3],
-                    p3[0] + p3[1] + p3[2] + p3[3]);
-
-                if (Vector128.LessThanAll(sums, Vector128.Create(1.0f)))
+                for (; x <= planeSize - 4; x += 4)
                 {
-                    Vector128<byte>.Zero.StoreUnsafe(ref bufferSpan[bufferIdx]);
+                    var p0 = source[sourceIdx].AsVector128();
+                    var p1 = source[sourceIdx + 1].AsVector128();
+                    var p2 = source[sourceIdx + 2].AsVector128();
+                    var p3 = source[sourceIdx + 3].AsVector128();
 
-                    sourceIdx += 4;
-                    bufferIdx += 16;
-                    continue;
+                    var sums = Vector128.Create(p0[0] + p0[1] + p0[2] + p0[3],
+                        p1[0] + p1[1] + p1[2] + p1[3],
+                        p2[0] + p2[1] + p2[2] + p2[3],
+                        p3[0] + p3[1] + p3[2] + p3[3]);
+
+                    if (Vector128.LessThanAll(sums, Vector128.Create(1.0f)))
+                    {
+                        Vector128<byte>.Zero.StoreUnsafe(ref bufferSpan[bufferIdx]);
+
+                        sourceIdx += 4;
+                        bufferIdx += 16;
+                        continue;
+                    }
+
+                    for (int i = 0; i < 4; ++i)
+                    {
+                        Vector4 currentDensity = source[sourceIdx++];
+
+                        var vPixel = currentDensity.AsVector128();
+                        vPixel = Vector128.Multiply(vPixel, vScale);
+                        vPixel = Vector128.Min(Vector128.Max(vPixel, vZero), v255);
+                        var vInt = Vector128.ConvertToInt32(vPixel);
+
+                        // These check are JIT compile-time constants, so they are pruned during execution.
+                        // This makes branching here de-facto non-existent.
+                        Vector128<byte> packed8;
+                        if (Sse2.IsSupported)
+                        {
+                            var packed16 = Sse2.PackSignedSaturate(vInt, vInt);
+                            packed8 = Sse2.PackUnsignedSaturate(packed16, packed16).AsByte();
+                        }
+                        else if (AdvSimd.IsSupported)
+                        {
+                            var narrow16 = AdvSimd.ExtractNarrowingSaturateLower(vInt);
+                            var narrow8 = AdvSimd.ExtractNarrowingSaturateUnsignedLower(narrow16.ToVector128());
+                            packed8 = narrow8.ToVector128();
+                        }
+                        else
+                        {
+                            packed8 = Vector128.Create((byte)vInt.GetElement(0), (byte)vInt.GetElement(1),
+                                (byte)vInt.GetElement(2), (byte)vInt.GetElement(3),
+                                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0).AsByte();
+                        }
+
+                        MemoryMarshal.Write(bufferSpan.Slice(bufferIdx, 4),
+                            packed8.AsUInt32().ToScalar());
+
+                        bufferIdx += 4;
+
+                        if (currentDensity.X + currentDensity.Y + currentDensity.Z + currentDensity.W < 1.0f)
+                            continue;
+
+                        ProcessPixelAdvection(currentDensity, x + i, absoluteY, worldPositionBase.Y,
+                            (x + i) * resolution, delta, destination, planeSize, worldPositionBase);
+                    }
                 }
 
-                for (int i = 0; i < 4; ++i)
+                for (; x < planeSize; ++x)
                 {
                     Vector4 currentDensity = source[sourceIdx++];
 
-                    var vPixel = currentDensity.AsVector128();
-                    vPixel = Vector128.Multiply(vPixel, vScale);
-                    vPixel = Vector128.Min(Vector128.Max(vPixel, vZero), v255);
-                    var vInt = Vector128.ConvertToInt32(vPixel);
-
-                    // These check are JIT compile-time constants, so they are pruned during execution.
-                    // This makes branching here de-facto non-existent.
-                    Vector128<byte> packed8;
-                    if (Sse2.IsSupported)
-                    {
-                        var packed16 = Sse2.PackSignedSaturate(vInt, vInt);
-                        packed8 = Sse2.PackUnsignedSaturate(packed16, packed16).AsByte();
-                    }
-                    else if (AdvSimd.IsSupported)
-                    {
-                        var narrow16 = AdvSimd.ExtractNarrowingSaturateLower(vInt);
-                        var narrow8 = AdvSimd.ExtractNarrowingSaturateUnsignedLower(narrow16.ToVector128());
-                        packed8 = narrow8.ToVector128();
-                    }
-                    else
-                    {
-                        packed8 = Vector128.Create((byte)vInt.GetElement(0), (byte)vInt.GetElement(1),
-                            (byte)vInt.GetElement(2), (byte)vInt.GetElement(3),
-                            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0).AsByte();
-                    }
-
-                    MemoryMarshal.Write(bufferSpan.Slice(bufferIdx, 4),
-                        packed8.AsUInt32().ToScalar());
-
+                    bufferSpan[bufferIdx] = (byte)Math.Clamp(currentDensity.X * intensityScale, 0, 255);
+                    bufferSpan[bufferIdx + 1] = (byte)Math.Clamp(currentDensity.Y * intensityScale, 0, 255);
+                    bufferSpan[bufferIdx + 2] = (byte)Math.Clamp(currentDensity.Z * intensityScale, 0, 255);
+                    bufferSpan[bufferIdx + 3] = (byte)Math.Clamp(currentDensity.W * intensityScale, 0, 255);
                     bufferIdx += 4;
 
                     if (currentDensity.X + currentDensity.Y + currentDensity.Z + currentDensity.W < 1.0f)
                         continue;
 
-                    ProcessPixelAdvection(currentDensity, x + i, absoluteY, worldY, (x + i) * resolution,
-                        delta, destination, planeSize, worldPositionBase);
+                    ProcessPixelAdvection(currentDensity, x, absoluteY, worldPositionBase.Y,
+                        x * resolution, delta, destination, planeSize, worldPositionBase);
                 }
-            }
-
-            for (; x < planeSize; ++x)
-            {
-                Vector4 currentDensity = source[sourceIdx++];
-
-                bufferSpan[bufferIdx] = (byte)Math.Clamp(currentDensity.X * intensityScale, 0, 255);
-                bufferSpan[bufferIdx + 1] = (byte)Math.Clamp(currentDensity.Y * intensityScale, 0, 255);
-                bufferSpan[bufferIdx + 2] = (byte)Math.Clamp(currentDensity.Z * intensityScale, 0, 255);
-                bufferSpan[bufferIdx + 3] = (byte)Math.Clamp(currentDensity.W * intensityScale, 0, 255);
-                bufferIdx += 4;
-
-                if (currentDensity.X + currentDensity.Y + currentDensity.Z + currentDensity.W < 1.0f)
-                    continue;
-
-                ProcessPixelAdvection(currentDensity, x, absoluteY, worldY, x * resolution, delta, destination,
-                    planeSize, worldPositionBase);
             }
         }
     }
