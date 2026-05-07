@@ -873,6 +873,8 @@ public static class Constants
     /// </summary>
     public const float MULTICELLULAR_REPRODUCTION_COMPOUND_MULTIPLIER = 2;
 
+    public const float MULTICELLULAR_REPRODUCTION_COMPOUND_FROM_EACH_EXTRA_CELL = 0.9f;
+
     /// <summary>
     ///   A multiplier for <see cref="MICROBE_REPRODUCTION_MAX_COMPOUND_USE"/> for multicellular microbes
     /// </summary>
@@ -885,7 +887,17 @@ public static class Constants
 
     public const float MICROBE_REPRODUCTION_COST_BASE_PHOSPHATES = 16;
 
-    public const float MULTICELLULAR_BASE_REPRODUCTION_COST_MULTIPLIER = 1.3f;
+    /// <summary>
+    ///   This is a base cost taken after the full colony has grown. So this can be increased to lengthen the time the
+    ///   player plays as a full colony.
+    /// </summary>
+    public const float MULTICELLULAR_BASE_REPRODUCTION_COST_MULTIPLIER = 1.6f;
+
+    /// <summary>
+    ///   This modifies <see cref="MULTICELLULAR_BASE_REPRODUCTION_COST_MULTIPLIER"/> per cell. So each cost gets extra
+    ///   multiplier on top <c>(cell count * this value) * cost</c>.
+    /// </summary>
+    public const float MULTICELLULAR_BASE_REPRODUCTION_COST_MULTIPLIER_PER_CELL = 0.08f;
 
     /// <summary>
     ///   Determines how big of a fraction of damage (of total health)
