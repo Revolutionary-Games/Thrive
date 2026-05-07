@@ -245,7 +245,7 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
         // This is a microbe, so totalSpecializationBonus = cell specialization bonus
         var totalSpecializationBonus =
-            MicrobeInternalCalculations.CalculateSpecializationBonus(editedSpecies.ModifiableOrganelles.Organelles,
+            MicrobeInternalCalculations.CalculateSpecializationBonus(EditedCellOrganelles,
                 tempMemory1);
 
         return CurrentPatch.GenerateTolerancesForMicrobe(EditedCellOrganelles, totalSpecializationBonus);
@@ -260,7 +260,7 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
         // This is a microbe, so totalSpecializationBonus = cell specialization bonus
         var totalSpecializationBonus =
-            MicrobeInternalCalculations.CalculateSpecializationBonus(editedSpecies.ModifiableOrganelles.Organelles,
+            MicrobeInternalCalculations.CalculateSpecializationBonus(EditedCellOrganelles,
                 tempMemory1);
 
         return MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(calculationTolerances,
@@ -284,7 +284,7 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
         // This is a microbe, so totalSpecializationBonus = cell specialization bonus
         var totalSpecializationBonus =
-            MicrobeInternalCalculations.CalculateSpecializationBonus(editedSpecies.ModifiableOrganelles.Organelles,
+            MicrobeInternalCalculations.CalculateSpecializationBonus(EditedCellOrganelles,
                 tempMemory1);
 
         MicrobeEnvironmentalToleranceCalculations.ApplyOrganelleEffectsOnTolerances(EditedCellOrganelles,
