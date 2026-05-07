@@ -2995,6 +2995,10 @@ public partial class CellEditorComponent :
             target.ModifiableBehaviour = ((IReadOnlyBehaviourDictionary)overwriteBehaviourForCalculations).Clone();
         }
 
+        target.CellTypeSpecializationBonus =
+            MicrobeInternalCalculations.CalculateSpecializationBonus(target.Organelles,
+                new Dictionary<OrganelleDefinition, int>());
+
         // Copy tolerances
         target.ModifiableTolerances.CopyFrom(tolerancesEditor.CurrentTolerances);
     }
@@ -3458,6 +3462,9 @@ public partial class CellEditorComponent :
             Action<MicrobeSpecies> applyLatestEditsToSpecies, GameProperties currentGameProperties,
             Species editedSpecies)
         {
+            initialSpeciesToCopy.CellTypeSpecializationBonus =
+                MicrobeInternalCalculations.CalculateSpecializationBonus(initialSpeciesToCopy.Organelles,
+                    new Dictionary<OrganelleDefinition, int>());
             pristineSpeciesCopy = initialSpeciesToCopy;
             calculationSpecies = initialSpeciesToCopy.Clone(true);
             this.applyLatestEditsToSpecies = applyLatestEditsToSpecies;
