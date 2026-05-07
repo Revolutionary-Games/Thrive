@@ -59,10 +59,12 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
     private ThriveopediaHomePage homePage = null!;
 
     /// <summary>
-    ///   The stage dropdown is stored here so it can be used as a parent for the stage specific items when they are
+    ///   The stage dropdown is stored here, so it can be used as a parent for the stage-specific items when they are
     ///   added to the page tree.
     /// </summary>
     private TreeItem stageDropdown = null!;
+
+    private PackedScene speciesPageScene = null!;
 #pragma warning restore CA2213
 
     private bool treeCollapsed;
@@ -153,6 +155,8 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
 
     public override void _Ready()
     {
+        speciesPageScene = GD.Load<PackedScene>("res://src/thriveopedia/pages/ThriveopediaSpeciesInfoPage.tscn");
+
         // Create and hide a blank root to avoid home being used as the root
         pageTree.CreateItem();
         pageTree.HideRoot = true;
