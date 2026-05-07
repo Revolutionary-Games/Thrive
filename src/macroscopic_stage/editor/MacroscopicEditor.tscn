@@ -12,18 +12,18 @@
 [ext_resource type="PackedScene" uid="uid://qdqcbnri7vsw" path="res://src/microbe_stage/editor/MicrobeEditorReportComponent.tscn" id="10"]
 [ext_resource type="PackedScene" uid="uid://b6at78uxbps1" path="res://src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn" id="11"]
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_pvnio"]
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_hbefc"]
 resource_local_to_scene = true
 panorama = ExtResource("3_hbefc")
 
-[sub_resource type="Sky" id="Sky_x3jph"]
+[sub_resource type="Sky" id="Sky_pvnio"]
 resource_local_to_scene = true
-sky_material = SubResource("PanoramaSkyMaterial_pvnio")
+sky_material = SubResource("PanoramaSkyMaterial_hbefc")
 
-[sub_resource type="Environment" id="Environment_kud1a"]
+[sub_resource type="Environment" id="Environment_x3jph"]
 resource_local_to_scene = true
 background_mode = 2
-sky = SubResource("Sky_x3jph")
+sky = SubResource("Sky_pvnio")
 ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 0.04
@@ -49,7 +49,7 @@ editorGUIBaseNode = NodePath("MacroscopicEditorGUI")
 current = true
 
 [node name="WorldEnvironment" parent="EditorWorld" index="6" unique_id=232823169]
-environment = SubResource("Environment_kud1a")
+environment = SubResource("Environment_x3jph")
 
 [node name="MicrobeEditorWorld" parent="." unique_id=1734008661 instance=ExtResource("6")]
 
