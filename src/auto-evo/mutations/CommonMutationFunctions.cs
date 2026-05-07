@@ -91,7 +91,8 @@ public static class CommonMutationFunctions
         }
 
         mutated.ModifiableTolerances.CopyFrom(forPatch.GenerateTolerancesForMicrobe(mutated.Organelles,
-            mutated.CellTypeSpecializationBonus));
+            MicrobeInternalCalculations.CalculateSpecializationBonus(mutated.Organelles,
+                new Dictionary<OrganelleDefinition, int>())));
 
         // Override the default species starting name to have more variability in the names
         var nameGenerator = SimulationParameters.Instance.NameGenerator;
