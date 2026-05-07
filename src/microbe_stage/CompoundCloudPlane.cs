@@ -409,12 +409,17 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     public void QueueDiffuseCloud(float deltaTime, List<Task> queue)
     {
         deltaTime *= 100.0f;
-        int slices = Constants.CLOUD_PLANE_SQUARES_PER_SIDE * Constants.CLOUD_PLANE_SQUARES_PER_SIDE;
+        int planeChunkSize = PlaneSize / Constants.CLOUD_PLANE_SQUARES_PER_SIDE;
 
-        for (int slice = 0; slice < slices; ++slice)
+        for (int i = 0; i < Constants.CLOUD_PLANE_SQUARES_PER_SIDE; ++i)
         {
-            int atSlice = slice;
-            queue.Add(new Task(() => PartialDiffuse(atSlice, slices, deltaTime)));
+            int x0 = i * planeChunkSize;
+
+            for (int j = 0; j < Constants.CLOUD_PLANE_SQUARES_PER_SIDE; ++j)
+            {
+                int y0 = j * planeChunkSize;
+                queue.Add(new Task(() => PartialDiffuse(x0, y0, planeChunkSize, deltaTime)));
+            }
         }
     }
 
@@ -908,12 +913,15 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
             Compounds[3] == compound ? density : 0.0f);
     }
 
-    private void PartialDiffuse(int slice, int slices, float delta)
+    private void PartialDiffuse(int x0, int y0, int size, float delta)
     {
-        int planeSize = PlaneSize;
-        int horizontalStart = slice * planeSize / slices;
-        int horizontalEnd = (slice + 1) * planeSize / slices;
+        int halfEdge = Constants.CLOUD_PLANE_EDGE_WIDTH / 2;
+        int startX = x0 + halfEdge;
+        int endX = x0 + size - halfEdge;
+        int startY = y0 + halfEdge;
+        int endY = y0 + size - halfEdge;
 
+        int planeSize = PlaneSize;
         float diffusionAmount = delta * Constants.CLOUD_DIFFUSION_RATE;
         float neighborWeight = diffusionAmount * 0.25f;
         float centerWeight = 1.0f - diffusionAmount;
@@ -931,40 +939,28 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
 
         bool avx2Supported = Avx2.IsSupported;
 
-        for (int horizontalIndex = horizontalStart; horizontalIndex < horizontalEnd; ++horizontalIndex)
+        for (int y = startY; y < endY; ++y)
         {
-            int currentRowOffset = horizontalIndex * planeSize;
-            int previousRowOffset = (horizontalIndex == 0 ? planeSize - 1 : horizontalIndex - 1) * planeSize;
-            int nextRowOffset = (horizontalIndex == planeSize - 1 ? 0 : horizontalIndex + 1) * planeSize;
+            int currentColumnOffset = y * planeSize;
+            int previousColumnOffset = (y == 0 ? planeSize - 1 : y - 1) * planeSize;
+            int nextColumnOffset = (y == planeSize - 1 ? 0 : y + 1) * planeSize;
 
-            int firstIndex = currentRowOffset;
-            destinationDensity[firstIndex] = sourceDensity[firstIndex] * centerWeight +
-                (sourceDensity[currentRowOffset + (planeSize - 1)] + sourceDensity[currentRowOffset + 1] +
-                    sourceDensity[previousRowOffset] + sourceDensity[nextRowOffset]) * neighborWeight;
-
-            int verticalIndex = 1;
-            int safeLimit = planeSize - 1;
+            int x = startX;
 
             if (avx2Supported)
             {
-                // Use Avx2 SIMD to vectorise diffusion.
-
-                // Most of the operations are now vectorised, except for a possible final tail that doesn't fit in a
-                // Vector256. This is taken care of after the current conditional branch.
-                for (; verticalIndex <= safeLimit - 2; verticalIndex += 2)
+                for (; x <= endX - 2; x += 2)
                 {
-                    uint offset = (uint)(currentRowOffset + verticalIndex) << 2;
+                    uint offset = (uint)(currentColumnOffset + x) << 2;
 
                     var center = Vector256.LoadUnsafe(ref sourceReference, offset);
+                    var up = Vector256.LoadUnsafe(ref sourceReference, (uint)(previousColumnOffset + x) << 2);
+                    var down = Vector256.LoadUnsafe(ref sourceReference, (uint)(nextColumnOffset + x) << 2);
 
-                    var up = Vector256.LoadUnsafe(ref sourceReference, offset - 4);
-                    var down = Vector256.LoadUnsafe(ref sourceReference, offset + 4);
-                    var left = Vector256.LoadUnsafe(ref sourceReference, (uint)(previousRowOffset +
-                        verticalIndex) << 2);
-                    var right = Vector256.LoadUnsafe(ref sourceReference, (uint)(nextRowOffset + verticalIndex) << 2);
+                    var left = Vector256.LoadUnsafe(ref sourceReference, offset - 4);
+                    var right = Vector256.LoadUnsafe(ref sourceReference, offset + 4);
 
                     var neighbors = Avx.Add(Avx.Add(up, down), Avx.Add(left, right));
-
                     var result = Avx.Add(Avx.Multiply(center, centerWeightVector),
                         Avx.Multiply(neighbors, neighborWeightVector));
 
@@ -972,28 +968,13 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
                 }
             }
 
-            // If Avx2 is unsupported, the following loops will take care of the scalar operations. That must be
-            // executed after the SIMD operations if Avx2 is supported anyway, as we need to take care of a possible
-            // "tail" if the PlaneSize is not aligned to the previous SIMD algorithm.
-
-            // This is the scalar algorithm. It executes if Avx2 is not supported and on the tail we discussed in the
-            // previous comments.
-            for (; verticalIndex < safeLimit; ++verticalIndex)
+            // Tail fallback
+            for (; x < endX; ++x)
             {
-                int currentIndex = currentRowOffset + verticalIndex;
+                int currentIndex = currentColumnOffset + x;
                 destinationDensity[currentIndex] = sourceDensity[currentIndex] * centerWeight +
                     (sourceDensity[currentIndex - 1] + sourceDensity[currentIndex + 1] +
-                        sourceDensity[previousRowOffset + verticalIndex] + sourceDensity[nextRowOffset + verticalIndex])
-                    * neighborWeight;
-            }
-
-            if (verticalIndex < planeSize)
-            {
-                int lastIndex = currentRowOffset + verticalIndex;
-                destinationDensity[lastIndex] = sourceDensity[lastIndex] * centerWeight +
-                    (sourceDensity[lastIndex - 1] + sourceDensity[currentRowOffset] +
-                        sourceDensity[previousRowOffset + verticalIndex] + sourceDensity[nextRowOffset + verticalIndex])
-                    * neighborWeight;
+                        sourceDensity[previousColumnOffset + x] + sourceDensity[nextColumnOffset + x]) * neighborWeight;
             }
         }
     }
