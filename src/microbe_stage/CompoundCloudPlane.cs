@@ -1280,30 +1280,30 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
         float targetX = x + delta * velocity.X;
         float targetY = absoluteY + delta * velocity.Y;
 
-        CalculateMovementFactors(targetX, targetY, out int fX, out int cX, out int fY, out int cY, out float wR,
-            out float wL, out float wB, out float wT);
+        CalculateMovementFactors(targetX, targetY, out int floorX, out int ceilX, out int floorY, out int ceilY,
+            out float weightRight, out float weightLeft, out float weightBottom, out float weightTop);
 
         // Normally the checks here would be fX < 0 || fX >= planeSize
         // By casting the operands to uint here, the first condition (fX < 0) is converted to fX becoming a really large
         // number. This makes the comparison always true (as planeSize is usually much smaller than the max integer)
         // thus saving us a few more instructions during the calculations.
-        if ((uint)fX >= (uint)planeSize)
-            fX = (fX < 0) ? fX + planeSize : fX - planeSize;
-        if ((uint)cX >= (uint)planeSize)
-            cX = (cX < 0) ? cX + planeSize : cX - planeSize;
-        if ((uint)fY >= (uint)planeSize)
-            fY = (fY < 0) ? fY + planeSize : fY - planeSize;
-        if ((uint)cY >= (uint)planeSize)
-            cY = (cY < 0) ? cY + planeSize : cY - planeSize;
+        if ((uint)floorX >= (uint)planeSize)
+            floorX = (floorX < 0) ? floorX + planeSize : floorX - planeSize;
+        if ((uint)ceilX >= (uint)planeSize)
+            ceilX = (ceilX < 0) ? ceilX + planeSize : ceilX - planeSize;
+        if ((uint)floorY >= (uint)planeSize)
+            floorY = (floorY < 0) ? floorY + planeSize : floorY - planeSize;
+        if ((uint)ceilY >= (uint)planeSize)
+            ceilY = (ceilY < 0) ? ceilY + planeSize : ceilY - planeSize;
 
-        int fYRow = fY * planeSize;
-        int cYRow = cY * planeSize;
+        int floorYRow = floorY * planeSize;
+        int ceilYRow = ceilY * planeSize;
         Vector4 decayed = currentDensity * decayRates;
 
-        destination[fX + fYRow] += decayed * (wL * wT);
-        destination[fX + cYRow] += decayed * (wL * wB);
-        destination[cX + fYRow] += decayed * (wR * wT);
-        destination[cX + cYRow] += decayed * (wR * wB);
+        destination[floorX + floorYRow] += decayed * (weightLeft * weightTop);
+        destination[floorX + ceilYRow] += decayed * (weightLeft * weightBottom);
+        destination[ceilX + floorYRow] += decayed * (weightRight * weightTop);
+        destination[ceilX + ceilYRow] += decayed * (weightRight * weightBottom);
     }
 
     private void PartialClearDensity(int x0, int y0, int width, int height)
