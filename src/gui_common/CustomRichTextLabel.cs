@@ -715,6 +715,10 @@ public partial class CustomRichTextLabel : RichTextLabel
                 var pageName = metaString.Split("thriveopedia:", 2)[1];
                 ThriveopediaManager.OpenPage(pageName);
             }
+            else if (metaString.StartsWith("species:", StringComparison.Ordinal))
+            {
+                ThriveopediaManager.OpenPage(metaString);
+            }
         }
     }
 

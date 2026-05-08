@@ -490,15 +490,6 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
         }
 
         executor.RunTasks(tasks);
-        tasks.Clear();
-
-        // Update the cloud textures in parallel
-        foreach (var cloud in clouds)
-        {
-            cloud.QueueUpdateTextureImage(tasks);
-        }
-
-        executor.RunTasks(tasks);
 
         foreach (var cloud in clouds)
         {

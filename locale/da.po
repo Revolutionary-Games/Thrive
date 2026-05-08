@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-29 22:42+0200\n"
-"PO-Revision-Date: 2026-04-22 18:35+0000\n"
+"POT-Creation-Date: 2026-05-08 16:35+0300\n"
+"PO-Revision-Date: 2026-05-01 09:17+0000\n"
 "Last-Translator: Søren Hansen <pjuske4life@gmail.com>\n"
 "Language-Team: Danish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/da/>\n"
 "Language: da\n"
@@ -1712,6 +1712,10 @@ msgstr "Svært"
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "Normalt"
 
+#, fuzzy
+msgid "DIFFICULTY_PRESET_VERY_EASY"
+msgstr "Nemt"
+
 msgid "DIGESTION_EFFICIENCY"
 msgstr "Fordøjelseseffektivitet"
 
@@ -2219,6 +2223,10 @@ msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Dette er den præcise kode commit som denne version af Thrive er kompileret ud fra"
 
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
+msgstr "Der skete en undtagelse mens der forsøgtes at håndtere indhentede objekter"
+
+#, fuzzy
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE_JUKEBOX"
 msgstr "Der skete en undtagelse mens der forsøgtes at håndtere indhentede objekter"
 
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
@@ -2848,6 +2856,14 @@ msgstr "Kræver cellekerne"
 
 msgid "INFO_BOX_SIZE"
 msgstr "Størrelse (Hexes)"
+
+#, fuzzy
+msgid "INFO_BOX_SIZE_PLAIN"
+msgstr "Størrelse (Hexes)"
+
+#, fuzzy
+msgid "INFO_BOX_STAGE"
+msgstr "Lager"
 
 msgid "INFO_BOX_STORAGE"
 msgstr "Lager"
@@ -4252,6 +4268,30 @@ msgstr "Flercellet fribyg editor"
 msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Mens dine celler deler stoffer mellem sig, så skal hver celle producere sin egen [thrive:compound type=\"atp\"][/thrive:compound]. En celle der løber tør for det vil dø."
 
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_2"
+msgstr "Mens dine celler deler stoffer mellem sig, så skal hver celle producere sin egen [thrive:compound type=\"atp\"][/thrive:compound]. En celle der løber tør for det vil dø."
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_3"
+msgstr "Mens dine celler deler stoffer mellem sig, så skal hver celle producere sin egen [thrive:compound type=\"atp\"][/thrive:compound]. En celle der løber tør for det vil dø."
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_4"
+msgstr "Mens dine celler deler stoffer mellem sig, så skal hver celle producere sin egen [thrive:compound type=\"atp\"][/thrive:compound]. En celle der løber tør for det vil dø."
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_5"
+msgstr "Mens dine celler deler stoffer mellem sig, så skal hver celle producere sin egen [thrive:compound type=\"atp\"][/thrive:compound]. En celle der løber tør for det vil dø."
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_6"
+msgstr "Mens dine celler deler stoffer mellem sig, så skal hver celle producere sin egen [thrive:compound type=\"atp\"][/thrive:compound]. En celle der løber tør for det vil dø."
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_7"
+msgstr "Mens dine celler deler stoffer mellem sig, så skal hver celle producere sin egen [thrive:compound type=\"atp\"][/thrive:compound]. En celle der løber tør for det vil dø."
+
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "Dette panel viser din kolonis samlede processer på tværs af alle celler. Bemærk at ulig andre stoffer, så deles ATP ikke mellem celler."
 
@@ -4383,9 +4423,11 @@ msgstr "Aerob Kvælstoffiksering"
 msgid "NITROPLAST"
 msgstr "Nitroplast"
 
+#, fuzzy
 msgid "NITROPLAST_DESCRIPTION"
 msgstr "Nitroplasten er en membranbundet organel der kan bruge gasformig [thrive:compound type=\"nitrogen\"][/thrive:compound], [thrive:compound type=\"oxygen\"][/thrive:compound] og [thrive:compound type=\"atp\"][/thrive:compound] til at producere [thrive:compound type=\"ammonia\"][/thrive:compound], et vigtigt vækstnæringsstof for celler. Denne proces refereres til som [b]anaerob kvælstoffiksering[/b]."
 
+#, fuzzy
 msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Omdanner [thrive:compound type=\"atp\"][/thrive:compound] til [thrive:compound type=\"ammonia\"][/thrive:compound]. Hastigheden skalerer med koncentrationen af [thrive:compound type=\"nitrogen\"][/thrive:compound] and [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
@@ -4545,6 +4587,10 @@ msgstr "OpenGL tilstand advarsel"
 
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr "Du kører Thrive med OpenGL. Dette er i høj grad utestet og vil højst sandsynligt skabe problemer. Sørg for at du bruger et nyt nok grafikkort eller integreret grafik, og prøv at opdatere video driverne. For bærbare computere kan du blive nødt til at tvinge dedikeret AMD eller Nvidia grafik til at blive brugt til at køre Thrive, i stedet for det integrerede grafik."
+
+#, fuzzy
+msgid "OPEN_EVOLUTIONARY_TREE"
+msgstr "Evolutionære træ"
 
 msgid "OPEN_FOLDER"
 msgstr "Åben mappe"
@@ -4752,6 +4798,10 @@ msgstr "tilbage"
 msgid "PAGE_FORWARD"
 msgstr "Frem"
 
+#, fuzzy
+msgid "PAGE_PINNED"
+msgstr "Sidetitel"
+
 msgid "PAGE_TITLE"
 msgstr "Sidetitel"
 
@@ -4882,6 +4932,10 @@ msgstr "Fysiske tilstande"
 
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Fysisk resistens"
+
+#, fuzzy
+msgid "PIN_BUTTON_TOOLTIP"
+msgstr "Skift dine indstillinger"
 
 msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
 msgstr ""
@@ -6177,6 +6231,10 @@ msgstr "Nuværende verden"
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr "Evolutionære træ"
 
+#, fuzzy
+msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
+msgstr "Åben Thriveopedia'en"
+
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr "Åben Thriveopedia'en"
 
@@ -6198,8 +6256,40 @@ msgstr "Hjem"
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Museum"
 
+#, fuzzy
+msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
+msgstr "Hjem"
+
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr "Områdekort"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
+msgstr "Evolutionære træ"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE"
+msgstr "Museum"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
+msgstr "Museum"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
+msgstr "Museum"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
+msgstr "Museum"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
+msgstr "Museum"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
+msgstr "Nuværende verden"
 
 msgid "THRIVE_LICENSES"
 msgstr "Thrive licenser"

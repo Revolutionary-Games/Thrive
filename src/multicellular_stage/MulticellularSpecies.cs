@@ -80,6 +80,8 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
     public ISimulationPhotographable.SimulationType SimulationToPhotograph =>
         ISimulationPhotographable.SimulationType.MicrobeGraphics;
 
+    public override Stage StageForDisplay => Stage.MulticellularStage;
+
     public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
 
     public override ArchiveObjectType ArchiveObjectType =>
@@ -440,9 +442,15 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         // Apply the multiplier to the costs for being multicellular
         var result = new Dictionary<Compound, float>();
 
+        var fromCellsMultiplier = ModifiableGameplayCells.Count *
+            Constants.MULTICELLULAR_BASE_REPRODUCTION_COST_MULTIPLIER_PER_CELL;
+
         foreach (var entry in baseReproductionCost)
         {
-            result[entry.Key] = entry.Value * Constants.MULTICELLULAR_BASE_REPRODUCTION_COST_MULTIPLIER;
+            var multicellCost = entry.Value * Constants.MULTICELLULAR_BASE_REPRODUCTION_COST_MULTIPLIER;
+
+            var cellExtra = fromCellsMultiplier * multicellCost;
+            result[entry.Key] = multicellCost + cellExtra;
         }
 
         return result;

@@ -17,6 +17,8 @@ public partial class AutoEvoExploringTool
         worldExportButton.Disabled = true;
         var exportPath = Path.Combine(Constants.AUTO_EVO_EXPORT_FOLDER, DateTime.Now.ToString("yyyyMMdd_hh_mm_ss"));
 
+        var overallTimes = new List<(int Generation, int Species, double AccumulatedTime)>();
+
         for (int worldToExport = 0; worldToExport < worldsList.Count; ++worldToExport)
         {
             // Init the world (we need evolutionary tree data so tree needs to be built)
@@ -28,9 +30,12 @@ public partial class AutoEvoExploringTool
             ExportCurrentWorldSpeciesHistory(basePath);
             ExportCurrentWorldPatchHistory(basePath);
             ExportCurrentWorldPopulationHistory(basePath);
-            ExportCurrentWorldTimeMetrics(basePath);
+            ExportCurrentWorldTimeMetrics(basePath, overallTimes);
             ExportCurrentWorldMemoryMetrics(basePath);
         }
+
+        // Export overall time statistics
+        ExportOverallTimeMetrics(exportPath, overallTimes);
 
         worldExportButton.Disabled = false;
         exportSuccessNotificationDialog.DialogText = Localization.Translate("WORLD_EXPORT_SUCCESS_MESSAGE")
@@ -218,7 +223,8 @@ public partial class AutoEvoExploringTool
         file.Close();
     }
 
-    private void ExportCurrentWorldTimeMetrics(string basePath)
+    private void ExportCurrentWorldTimeMetrics(string basePath,
+        List<(int Generation, int Species, double AccumulatedTime)> overallTimes)
     {
         var path = Path.Combine(basePath, "time_metrics.csv");
 
@@ -235,6 +241,8 @@ public partial class AutoEvoExploringTool
 
         var data = header;
 
+        double accumulatedTime = 0;
+
         for (int generation = 0; generation < world.CurrentGeneration; ++generation)
         {
             data.Clear();
@@ -242,6 +250,40 @@ public partial class AutoEvoExploringTool
             data.Add(generation.ToString());
             data.Add(world.TimeMetrics[generation].ToString(CultureInfo.InvariantCulture));
             data.Add(world.AliveSpeciesHistory[generation].ToString(CultureInfo.InvariantCulture));
+
+            file.StoreCsvLine(data.ToArray());
+
+            accumulatedTime += world.TimeMetrics[generation];
+            overallTimes.Add((generation, world.AliveSpeciesHistory[generation], accumulatedTime));
+        }
+
+        file.Close();
+    }
+
+    private void ExportOverallTimeMetrics(string basePath,
+        List<(int Generation, int Species, double AccumulatedTime)> overallTimes)
+    {
+        var path = Path.Combine(basePath, "overall_time.csv");
+
+        using var file = FileAccess.Open(path, FileAccess.ModeFlags.Write);
+        if (file == null)
+        {
+            GD.PrintErr("Couldn't open target file for time history writing");
+            return;
+        }
+
+        var header = new List<string> { "Generation", "Alive Species", "Accumulated Time [s]" };
+
+        file.StoreCsvLine(header.ToArray());
+
+        var data = header;
+
+        foreach (var entry in overallTimes)
+        {
+            data.Clear();
+            data.Add(entry.Generation.ToString(CultureInfo.InvariantCulture));
+            data.Add(entry.Species.ToString(CultureInfo.InvariantCulture));
+            data.Add(entry.AccumulatedTime.ToString(CultureInfo.InvariantCulture));
 
             file.StoreCsvLine(data.ToArray());
         }
