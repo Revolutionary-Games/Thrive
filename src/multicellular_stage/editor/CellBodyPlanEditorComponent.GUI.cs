@@ -152,6 +152,9 @@ public partial class CellBodyPlanEditorComponent
 
         organismStatisticsPanel.ApplyLightLevelSelection();
 
+        UpdateReproductionMethodChoice();
+        UpdateSporeCellDropdown();
+
         UpdateCancelButtonVisibility();
     }
 

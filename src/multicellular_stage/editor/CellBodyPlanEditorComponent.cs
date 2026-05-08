@@ -295,9 +295,6 @@ public partial class CellBodyPlanEditorComponent :
             newName = Editor.EditedSpecies.FormattedName;
 
             tolerancesEditor.OnEditorSpeciesSetup(Editor.EditedBaseSpecies);
-
-            UpdateReproductionMethodChoice();
-            UpdateSporeCellDropdown();
         }
 
         organismStatisticsPanel.UpdateLightSelectionPanelVisibility(
@@ -522,10 +519,7 @@ public partial class CellBodyPlanEditorComponent :
         OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
 
         ReproductionMethod = ((MulticellularSpecies)species).ReproductionMethod;
-        UpdateReproductionMethodChoice();
-
         SporeCellType = ((MulticellularSpecies)species).ModifiableSporeCellType;
-        UpdateSporeCellDropdown();
     }
 
     public override void OnFinishEditing()
