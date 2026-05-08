@@ -1153,7 +1153,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
         return 0;
     }
 
-    private void PartialAdvect(int slice, int slices, float delta)
+    private void PartialAdvect(int slice, int slices, float deltaTime)
     {
         int planeSize = PlaneSize;
         int rowStart = slice * planeSize / slices;
@@ -1186,6 +1186,8 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
 
                 int startX = chunkX * chunkWidth;
                 int endX = startX + chunkWidth;
+
+                float worldY = worldPositionBase.Y + absoluteY * resolution;
 
                 int x = startX;
 
@@ -1248,8 +1250,9 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
                         if (currentDensity.X + currentDensity.Y + currentDensity.Z + currentDensity.W < 1.0f)
                             continue;
 
-                        ProcessPixelAdvection(currentDensity, x + i, absoluteY, worldPositionBase.Y,
-                            (x + i) * resolution, delta, destination, planeSize, worldPositionBase);
+                        float worldX = worldPositionBase.X + (x + i) * resolution;
+                        ProcessPixelAdvection(currentDensity, x + i, absoluteY, worldX, worldY, deltaTime,
+                            destination, planeSize);
                     }
                 }
 
@@ -1266,25 +1269,25 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
                     if (currentDensity.X + currentDensity.Y + currentDensity.Z + currentDensity.W < 1.0f)
                         continue;
 
-                    ProcessPixelAdvection(currentDensity, x, absoluteY, worldPositionBase.Y,
-                        x * resolution, delta, destination, planeSize, worldPositionBase);
+                    float worldX = worldPositionBase.X + x * resolution;
+                    ProcessPixelAdvection(currentDensity, x, absoluteY, worldX, worldY, deltaTime,
+                        destination, planeSize);
                 }
             }
         }
     }
 
-    private void ProcessPixelAdvection(Vector4 currentDensity, int x, int absoluteY, float worldY, float worldXOffset,
-        float delta, Span<Vector4> destination, int planeSize, Vector2 worldPositionBase)
+    private void ProcessPixelAdvection(Vector4 currentDensity, int absoluteX, int absoluteY, float worldX, float worldY,
+        float deltaTime, Span<Vector4> destination, int planeSize)
     {
-        float worldX = worldPositionBase.X + worldXOffset;
         Vector2 velocity = fluidSystem!.VelocityAt(new Vector2(worldX, worldY));
 
         if (MathF.Abs(velocity.X) + MathF.Abs(velocity.Y) < Constants.CURRENT_COMPOUND_CLOUD_ADVECT_THRESHOLD)
             velocity = Vector2.Zero;
 
         velocity *= VISCOSITY;
-        float targetX = x + delta * velocity.X;
-        float targetY = absoluteY + delta * velocity.Y;
+        float targetX = absoluteX + deltaTime * velocity.X;
+        float targetY = absoluteY + deltaTime * velocity.Y;
 
         CalculateMovementFactors(targetX, targetY, out int floorX, out int ceilX, out int floorY, out int ceilY,
             out float weightRight, out float weightLeft, out float weightBottom, out float weightTop);
