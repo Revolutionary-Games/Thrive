@@ -670,7 +670,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         if (affectedACell)
         {
             GD.Print("Undone / redone action affected cell types");
-            cellEditorTab.OnFinishEditing(true);
+            cellEditorTab.OnFinishEditing(false);
 
             // cellEditorTab.OnEditorSpeciesSetup(EditedBaseSpecies);
             bodyPlanEditorTab.OnCellTypeEdited(cellTypeEditsHolder.GetOriginalType(selectedCellTypeToEdit));
@@ -684,7 +684,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
         var oldName = selectedCellTypeToEdit.CellTypeName;
 
-        cellEditorTab.OnFinishEditing(true);
+        cellEditorTab.OnFinishEditing(false);
 
         // Revert to the old name if the name is a duplicate
         if (EditedSpecies.ModifiableCellTypes.Any(c =>
