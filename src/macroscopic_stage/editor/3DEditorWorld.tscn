@@ -19,8 +19,9 @@ sky_material = SubResource("PanoramaSkyMaterial_nliqr")
 resource_local_to_scene = true
 background_mode = 2
 sky = SubResource("5")
-ambient_light_source = 1
+ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.04
 
 [node name="3DEditorWorld" type="Node" unique_id=158422131]
 
@@ -44,12 +45,10 @@ DefaultViewDistance = 12.0
 [node name="EditorArrow" parent="." unique_id=785324618 instance=ExtResource("2")]
 transform = Transform3D(-0.5, 0, -1.94707e-07, 0, 0.5, 0, 1.94707e-07, 0, -0.5, 0, 0.2, 0)
 
-[node name="EditorLight" type="OmniLight3D" parent="." unique_id=1851608961]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+[node name="EditorLight" type="DirectionalLight3D" parent="." unique_id=1987111585]
+transform = Transform3D(0.9985702, 0.05310131, 0.0061499905, -0.0060581854, -0.001889646, 0.99998, 0.05311186, -0.9985874, -0.0015652776, 0, 0, 0)
 light_energy = 0.5
 shadow_enabled = true
-omni_range = 100.0
-omni_attenuation = 0.420448
 
 [node name="DynamicallySpawned" type="Node3D" parent="." unique_id=1350978535]
 
