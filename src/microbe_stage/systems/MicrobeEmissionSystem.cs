@@ -331,9 +331,6 @@ public partial class MicrobeEmissionSystem : BaseSystem<World, float>
             // Activate all jets, which will constantly secrete slime until we turn them off
             foreach (var jet in organelles.SlimeJets)
             {
-                // Make sure this is animating
-                jet.Active = true;
-
                 // Secrete the slime
                 float slimeToSecrete = Math.Min(Constants.COMPOUNDS_TO_VENT_PER_SECOND * specializationBonus * delta,
                     compounds.GetCompoundAmount(Compound.Mucilage));
@@ -343,6 +340,13 @@ public partial class MicrobeEmissionSystem : BaseSystem<World, float>
                 // Eject mucilage at the maximum rate in the opposite direction to this organelle's rotation
                 slimeToSecrete = cellProperties.EjectCompound(ref worldPosition, compounds, clouds, Compound.Mucilage,
                     slimeToSecrete, -direction, 2);
+
+                // If we couldn't emit (due to no membrane yet), then skip for now
+                if (slimeToSecrete <= 0)
+                    continue;
+
+                // Make sure this is animating
+                jet.Active = true;
 
                 // Queue movement force to be used by the movement system based on the amount of slime ejected
                 jet.AddQueuedForce(entity, slimeToSecrete);

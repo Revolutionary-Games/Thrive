@@ -5,6 +5,10 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using System.Runtime.Intrinsics;
+using System.Runtime.Intrinsics.Arm;
+using System.Runtime.Intrinsics.X86;
 using System.Threading;
 using System.Threading.Tasks;
 using Godot;
@@ -34,9 +38,9 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     ///     Because this is such a high-priority system, this uses a bit more happily null suppressing than elsewhere
     ///   </para>
     /// </remarks>
-    public Vector4[,] Density = null!;
+    public Vector4[] Density = null!;
 
-    public Vector4[,] OldDensity = null!;
+    public Vector4[] OldDensity = null!;
 
     public Compound[] Compounds = null!;
 
@@ -68,6 +72,8 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     private FluidCurrentsSystem? fluidSystem;
 
     private Vector4 decayRates;
+
+    private byte[] tempBuffer = null!;
 
     /// <summary>
     ///   Which square plane player is in
@@ -127,7 +133,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
 
         int dimensions = instance.PlaneSize;
 
-        var target = new Vector4[dimensions, dimensions];
+        var target = new Vector4[dimensions * dimensions];
 
         for (int x = 0; x < dimensions; ++x)
         {
@@ -156,7 +162,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
                     (uint)buffer[bufferReadOffset++] << 16 | (uint)buffer[bufferReadOffset++] << 24;
                 vector4.W = BitConverter.UInt32BitsToSingle(data);
 
-                target[x, y] = vector4;
+                target[x + y * dimensions] = vector4;
             }
 
             if (bufferReadOffset != buffer.Length)
@@ -181,9 +187,8 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
 
         var localDensity = Density;
 
-        // If rank changes square root is not suitable
-        if (localDensity.Rank != 2)
-            throw new Exception("Cloud plane densities array rank is not 2");
+        if (Math.Abs(Math.Sqrt(localDensity.Length) - (int)Math.Round(Math.Sqrt(localDensity.Length))) > 0.001f)
+            throw new Exception("Cloud plane densities size is not a perfect square");
 
         int dimensions = (int)Math.Sqrt(localDensity.Length);
 
@@ -206,7 +211,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
             // Convert data into the buffer
             for (int y = 0; y < dimensions; ++y)
             {
-                var vector4 = localDensity[x, y];
+                var vector4 = localDensity[x + y * dimensions];
 
                 var data = BitConverter.SingleToUInt32Bits(vector4.X);
 
@@ -248,14 +253,17 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        if (Marshal.SizeOf<float>() * 4 != Marshal.SizeOf<Vector4>())
+            throw new InvalidCastException("The assumption that Vector4 is 4 floats is not valid in this context.");
+
         if (!IsLoadedFromSave)
         {
             PlaneSize = Settings.Instance.CloudSimulationWidth;
             CloudResolution = Settings.Instance.CloudResolution;
             CreateDensityTexture();
 
-            Density = new Vector4[PlaneSize, PlaneSize];
-            OldDensity = new Vector4[PlaneSize, PlaneSize];
+            Density = new Vector4[PlaneSize * PlaneSize];
+            OldDensity = new Vector4[PlaneSize * PlaneSize];
             ClearContents();
         }
         else
@@ -265,7 +273,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
             // without starting a new save
             CreateDensityTexture();
 
-            OldDensity = new Vector4[PlaneSize, PlaneSize];
+            OldDensity = new Vector4[PlaneSize * PlaneSize];
             SetMaterialUVForPosition();
         }
 
@@ -368,20 +376,19 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     ///   Updates the edge concentrations of this cloud before the rest of the cloud.
     ///   This is not run in parallel.
     /// </summary>
-    public void DiffuseEdges(float delta)
+    public void DiffuseEdges(float deltaTime)
     {
-        // Increase diffusion effect
-        delta *= 100.0f;
+        deltaTime *= 100.0f;
 
         int edgeWidth = Constants.CLOUD_PLANE_EDGE_WIDTH;
         int halfEdgeWidth = edgeWidth / 2;
         int planeChunkSize = PlaneSize / Constants.CLOUD_PLANE_SQUARES_PER_SIDE;
 
         // Vertical edge columns
-        PartialDiffuse(0, 0, halfEdgeWidth, PlaneSize, delta);
-        PartialDiffuse(1 * planeChunkSize - halfEdgeWidth, 0, edgeWidth, PlaneSize, delta);
-        PartialDiffuse(2 * planeChunkSize - halfEdgeWidth, 0, edgeWidth, PlaneSize, delta);
-        PartialDiffuse(3 * planeChunkSize - halfEdgeWidth, 0, halfEdgeWidth, PlaneSize, delta);
+        PartialDiffuseScalar(0, 0, halfEdgeWidth, PlaneSize, deltaTime);
+        PartialDiffuseScalar(1 * planeChunkSize - halfEdgeWidth, 0, edgeWidth, PlaneSize, deltaTime);
+        PartialDiffuseScalar(2 * planeChunkSize - halfEdgeWidth, 0, edgeWidth, PlaneSize, deltaTime);
+        PartialDiffuseScalar(3 * planeChunkSize - halfEdgeWidth, 0, halfEdgeWidth, PlaneSize, deltaTime);
 
         // Horizontal edge rows
         for (int square = 0; square < Constants.CLOUD_PLANE_SQUARES_PER_SIDE; ++square)
@@ -389,32 +396,29 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
             int x = square * planeChunkSize + halfEdgeWidth;
             int width = planeChunkSize - edgeWidth;
 
-            PartialDiffuse(x, 3 * planeChunkSize - halfEdgeWidth, width, halfEdgeWidth, delta);
-            PartialDiffuse(x, 2 * planeChunkSize - halfEdgeWidth, width, edgeWidth, delta);
-            PartialDiffuse(x, 1 * planeChunkSize - halfEdgeWidth, width, edgeWidth, delta);
-            PartialDiffuse(x, 0, width, halfEdgeWidth, delta);
+            PartialDiffuseScalar(x, 3 * planeChunkSize - halfEdgeWidth, width, halfEdgeWidth, deltaTime);
+            PartialDiffuseScalar(x, 2 * planeChunkSize - halfEdgeWidth, width, edgeWidth, deltaTime);
+            PartialDiffuseScalar(x, 1 * planeChunkSize - halfEdgeWidth, width, edgeWidth, deltaTime);
+            PartialDiffuseScalar(x, 0, width, halfEdgeWidth, deltaTime);
         }
     }
 
     /// <summary>
     ///   Updates the cloud in parallel.
     /// </summary>
-    public void QueueDiffuseCloud(float delta, List<Task> queue)
+    public void QueueDiffuseCloud(float deltaTime, List<Task> queue)
     {
-        delta *= 100.0f;
-        var planeChunkSize = PlaneSize / Constants.CLOUD_PLANE_SQUARES_PER_SIDE;
+        deltaTime *= 100.0f;
+        int planeChunkSize = PlaneSize / Constants.CLOUD_PLANE_SQUARES_PER_SIDE;
 
-        for (var i = 0; i < Constants.CLOUD_PLANE_SQUARES_PER_SIDE; ++i)
+        for (int i = 0; i < Constants.CLOUD_PLANE_SQUARES_PER_SIDE; ++i)
         {
-            var x0 = i * planeChunkSize;
+            int x0 = i * planeChunkSize;
 
-            for (var j = 0; j < Constants.CLOUD_PLANE_SQUARES_PER_SIDE; ++j)
+            for (int j = 0; j < Constants.CLOUD_PLANE_SQUARES_PER_SIDE; ++j)
             {
-                var y0 = j * planeChunkSize;
-
-                // TODO: fix task allocations
-                var task = new Task(() => PartialDiffuseCenter(x0, y0, planeChunkSize, delta));
-                queue.Add(task);
+                int y0 = j * planeChunkSize;
+                queue.Add(new Task(() => PartialDiffuse(x0, y0, planeChunkSize, deltaTime)));
             }
         }
     }
@@ -422,50 +426,29 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     /// <summary>
     ///   Updates the cloud in parallel.
     /// </summary>
-    public void QueueAdvectCloud(float delta, List<Task> queue)
+    public void QueueAdvectCloud(float deltaTime, List<Task> queue)
     {
-        delta *= 100.0f;
-        var planeChunkSize = PlaneSize / Constants.CLOUD_PLANE_SQUARES_PER_SIDE;
+        deltaTime *= 100.0f;
 
-        for (var i = 0; i < Constants.CLOUD_PLANE_SQUARES_PER_SIDE; ++i)
+        int slices = Constants.CLOUD_PLANE_SQUARES_PER_SIDE * Constants.CLOUD_PLANE_SQUARES_PER_SIDE;
+
+        for (int slice = 0; slice < slices; ++slice)
         {
-            var x0 = i * planeChunkSize;
+            int atSlice = slice;
 
-            for (var j = 0; j < Constants.CLOUD_PLANE_SQUARES_PER_SIDE; ++j)
-            {
-                var y0 = j * planeChunkSize;
-
-                // TODO: fix task allocations
-                var task = new Task(() => PartialAdvect(x0, y0, planeChunkSize, delta));
-                queue.Add(task);
-            }
-        }
-    }
-
-    /// <summary>
-    ///   Updates the cloud in parallel.
-    /// </summary>
-    public void QueueUpdateTextureImage(List<Task> queue)
-    {
-        var planeChunkSize = PlaneSize / Constants.CLOUD_PLANE_SQUARES_PER_SIDE;
-
-        for (var i = 0; i < Constants.CLOUD_PLANE_SQUARES_PER_SIDE; ++i)
-        {
-            var x0 = i * planeChunkSize;
-
-            for (var j = 0; j < Constants.CLOUD_PLANE_SQUARES_PER_SIDE; ++j)
-            {
-                var y0 = j * planeChunkSize;
-
-                // TODO: fix task allocations
-                var task = new Task(() => PartialUpdateTextureImage(x0, y0, planeChunkSize, planeChunkSize));
-                queue.Add(task);
-            }
+            // TODO: fix task allocations
+            var task = new Task(() => PartialAdvect(atSlice, slices, deltaTime));
+            queue.Add(task);
         }
     }
 
     public void UpdateTexture()
     {
+        int width = image!.GetWidth();
+        int height = image.GetHeight();
+        int size = width * height * 4;
+
+        image!.SetData(width, height, false, image.GetFormat(), tempBuffer.AsSpan(0, size));
         texture.Update(image);
     }
 
@@ -498,11 +481,11 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
             {
                 do
                 {
-                    seenCurrentAmount = Density[x, y].X;
+                    seenCurrentAmount = Density[x + y * PlaneSize].X;
                     newValue = seenCurrentAmount + density;
                 }
-                while (Interlocked.CompareExchange(ref Density[x, y].X, newValue, seenCurrentAmount) !=
-                       seenCurrentAmount);
+                while (Interlocked.CompareExchange(ref Density[x + y * PlaneSize].X, newValue,
+                           seenCurrentAmount) != seenCurrentAmount);
 
                 break;
             }
@@ -511,11 +494,11 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
             {
                 do
                 {
-                    seenCurrentAmount = Density[x, y].Y;
+                    seenCurrentAmount = Density[x + y * PlaneSize].Y;
                     newValue = seenCurrentAmount + density;
                 }
-                while (Interlocked.CompareExchange(ref Density[x, y].Y, newValue, seenCurrentAmount) !=
-                       seenCurrentAmount);
+                while (Interlocked.CompareExchange(ref Density[x + y * PlaneSize].Y, newValue,
+                           seenCurrentAmount) != seenCurrentAmount);
 
                 break;
             }
@@ -524,11 +507,11 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
             {
                 do
                 {
-                    seenCurrentAmount = Density[x, y].Z;
+                    seenCurrentAmount = Density[x + y * PlaneSize].Z;
                     newValue = seenCurrentAmount + density;
                 }
-                while (Interlocked.CompareExchange(ref Density[x, y].Z, newValue, seenCurrentAmount) !=
-                       seenCurrentAmount);
+                while (Interlocked.CompareExchange(ref Density[x + y * PlaneSize].Z, newValue,
+                           seenCurrentAmount) != seenCurrentAmount);
 
                 break;
             }
@@ -537,11 +520,11 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
             {
                 do
                 {
-                    seenCurrentAmount = Density[x, y].W;
+                    seenCurrentAmount = Density[x + y * PlaneSize].W;
                     newValue = seenCurrentAmount + density;
                 }
-                while (Interlocked.CompareExchange(ref Density[x, y].W, newValue, seenCurrentAmount) !=
-                       seenCurrentAmount);
+                while (Interlocked.CompareExchange(ref Density[x + y * PlaneSize].W, newValue,
+                           seenCurrentAmount) != seenCurrentAmount);
 
                 break;
             }
@@ -572,11 +555,11 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
             {
                 do
                 {
-                    seenCurrentAmount = Density[x, y].X;
+                    seenCurrentAmount = Density[x + y * PlaneSize].X;
                     newValue = seenCurrentAmount + density;
                 }
-                while (Interlocked.CompareExchange(ref Density[x, y].X, newValue, seenCurrentAmount) !=
-                       seenCurrentAmount);
+                while (Interlocked.CompareExchange(ref Density[x + y * PlaneSize].X, newValue,
+                           seenCurrentAmount) != seenCurrentAmount);
 
                 return true;
             }
@@ -585,11 +568,11 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
             {
                 do
                 {
-                    seenCurrentAmount = Density[x, y].Y;
+                    seenCurrentAmount = Density[x + y * PlaneSize].Y;
                     newValue = seenCurrentAmount + density;
                 }
-                while (Interlocked.CompareExchange(ref Density[x, y].Y, newValue, seenCurrentAmount) !=
-                       seenCurrentAmount);
+                while (Interlocked.CompareExchange(ref Density[x + y * PlaneSize].Y, newValue,
+                           seenCurrentAmount) != seenCurrentAmount);
 
                 return true;
             }
@@ -598,11 +581,11 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
             {
                 do
                 {
-                    seenCurrentAmount = Density[x, y].Z;
+                    seenCurrentAmount = Density[x + y * PlaneSize].Z;
                     newValue = seenCurrentAmount + density;
                 }
-                while (Interlocked.CompareExchange(ref Density[x, y].Z, newValue, seenCurrentAmount) !=
-                       seenCurrentAmount);
+                while (Interlocked.CompareExchange(ref Density[x + y * PlaneSize].Z, newValue,
+                           seenCurrentAmount) != seenCurrentAmount);
 
                 return true;
             }
@@ -611,11 +594,11 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
             {
                 do
                 {
-                    seenCurrentAmount = Density[x, y].W;
+                    seenCurrentAmount = Density[x + y * PlaneSize].W;
                     newValue = seenCurrentAmount + density;
                 }
-                while (Interlocked.CompareExchange(ref Density[x, y].W, newValue, seenCurrentAmount) !=
-                       seenCurrentAmount);
+                while (Interlocked.CompareExchange(ref Density[x + y * PlaneSize].W, newValue,
+                           seenCurrentAmount) != seenCurrentAmount);
 
                 return true;
             }
@@ -633,17 +616,17 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     /// <returns>The amount of compound taken</returns>
     public float TakeCompound(Compound compound, int x, int y, float fraction = 1.0f)
     {
-        float amountInCloud = HackyAddress(ref Density[x, y], GetCompoundIndex(compound));
+        float amountInCloud = HackyAddress(ref Density[x + y * PlaneSize], GetCompoundIndex(compound));
         var amountToGive = amountInCloud * fraction;
 
         if (amountInCloud - amountToGive < 0.1f)
         {
             // Taking basically everything in the cloud
-            Density[x, y] += CalculateCloudToAdd(compound, -amountInCloud);
+            Density[x + y * PlaneSize] += CalculateCloudToAdd(compound, -amountInCloud);
         }
         else
         {
-            Density[x, y] += CalculateCloudToAdd(compound, -amountToGive);
+            Density[x + y * PlaneSize] += CalculateCloudToAdd(compound, -amountToGive);
         }
 
         return amountToGive;
@@ -677,17 +660,17 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
         switch (compoundIndex)
         {
             case 0:
-                return Interlocked.CompareExchange(ref Density[x, y].X, newValue, seenCurrentAmount) ==
-                    seenCurrentAmount;
+                return Interlocked.CompareExchange(ref Density[x + y * PlaneSize].X, newValue,
+                    seenCurrentAmount) == seenCurrentAmount;
             case 1:
-                return Interlocked.CompareExchange(ref Density[x, y].Y, newValue, seenCurrentAmount) ==
-                    seenCurrentAmount;
+                return Interlocked.CompareExchange(ref Density[x + y * PlaneSize].Y, newValue,
+                    seenCurrentAmount) == seenCurrentAmount;
             case 2:
-                return Interlocked.CompareExchange(ref Density[x, y].Z, newValue, seenCurrentAmount) ==
-                    seenCurrentAmount;
+                return Interlocked.CompareExchange(ref Density[x + y * PlaneSize].Z, newValue,
+                    seenCurrentAmount) == seenCurrentAmount;
             case 3:
-                return Interlocked.CompareExchange(ref Density[x, y].W, newValue, seenCurrentAmount) ==
-                    seenCurrentAmount;
+                return Interlocked.CompareExchange(ref Density[x + y * PlaneSize].W, newValue,
+                    seenCurrentAmount) == seenCurrentAmount;
             default:
                 throw new ArgumentException("Compound index out of range");
         }
@@ -701,7 +684,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     /// <returns>The amount available for taking</returns>
     public float AmountAvailable(Compound compound, int x, int y, float fraction = 1.0f)
     {
-        float amountInCloud = HackyAddress(ref Density[x, y], GetCompoundIndex(compound));
+        float amountInCloud = HackyAddress(ref Density[x + y * PlaneSize], GetCompoundIndex(compound));
         float amountToGive = amountInCloud * fraction;
         return amountToGive;
     }
@@ -720,7 +703,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
             if (onlyAbsorbable && !compoundDefinitions[i]!.IsAbsorbable)
                 continue;
 
-            float amount = HackyAddress(ref Density[x, y], i);
+            float amount = HackyAddress(ref Density[x + y * PlaneSize], i);
             if (amount > 0)
                 result[compound] = amount;
         }
@@ -815,7 +798,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
             while (true)
             {
                 // Overestimate of how many compounds we get
-                float cloudAmount = HackyAddress(ref Density[localX, localY], i);
+                float cloudAmount = HackyAddress(ref Density[localX + localY * PlaneSize], i);
                 float generousAmount = cloudAmount * Constants.SKIP_TRYING_TO_ABSORB_RATIO;
 
                 // Skip if there isn't enough to absorb
@@ -930,29 +913,150 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
             Compounds[3] == compound ? density : 0.0f);
     }
 
-    private void PartialDiffuse(int x0, int y0, int width, int height, float delta)
+    private void PartialDiffuse(int x0, int y0, int size, float delta)
     {
-        float a = delta * Constants.CLOUD_DIFFUSION_RATE;
-        var cellMultiplier = a * 0.25f;
-        var planeSize = PlaneSize;
+        int halfEdge = Constants.CLOUD_PLANE_EDGE_WIDTH / 2;
+        int startX = x0 + halfEdge;
+        int endX = x0 + size - halfEdge;
+        int startY = y0 + halfEdge;
+        int endY = y0 + size - halfEdge;
 
-        for (int x = x0; x < x0 + width; ++x)
+        int planeSize = PlaneSize;
+        float diffusionAmount = delta * Constants.CLOUD_DIFFUSION_RATE;
+        float neighborWeight = diffusionAmount * 0.25f;
+        float centerWeight = 1.0f - diffusionAmount;
+
+        ReadOnlySpan<Vector4> sourceDensity = Density.AsSpan();
+        Span<Vector4> destinationDensity = OldDensity.AsSpan();
+        ReadOnlySpan<float> sourceFloats = MemoryMarshal.Cast<Vector4, float>(sourceDensity);
+        Span<float> destinationFloats = MemoryMarshal.Cast<Vector4, float>(destinationDensity);
+
+        var centerWeightVector = Vector256.Create(centerWeight);
+        var neighborWeightVector = Vector256.Create(neighborWeight);
+
+        ref float sourceReference = ref MemoryMarshal.GetReference(sourceFloats);
+        ref float destinationReference = ref MemoryMarshal.GetReference(destinationFloats);
+
+        bool avx2Supported = Avx2.IsSupported;
+
+        for (int y = startY; y < endY; ++y)
         {
-            var xMinus = x == 0 ? planeSize - 1 : x - 1;
-            var xPlus = x == planeSize - 1 ? 0 : x + 1;
+            int currentColumnOffset = y * planeSize;
+            int previousColumnOffset = (y == 0 ? planeSize - 1 : y - 1) * planeSize;
+            int nextColumnOffset = (y == planeSize - 1 ? 0 : y + 1) * planeSize;
 
-            for (int y = y0; y < y0 + height; ++y)
+            int x = startX;
+
+            if (avx2Supported)
             {
-                var yMinus = y == 0 ? planeSize - 1 : y - 1;
-                var yPlus = y == planeSize - 1 ? 0 : y + 1;
+                for (; x <= endX - 2; x += 2)
+                {
+                    uint offset = (uint)(currentColumnOffset + x) << 2;
 
-                OldDensity[x, y] =
-                    Density[x, y] * (1 - a) +
-                    (
-                        Density[x, yMinus] +
-                        Density[x, yPlus] +
-                        Density[xMinus, y] +
-                        Density[xPlus, y]) * cellMultiplier;
+                    var center = Vector256.LoadUnsafe(ref sourceReference, offset);
+                    var up = Vector256.LoadUnsafe(ref sourceReference, (uint)(previousColumnOffset + x) << 2);
+                    var down = Vector256.LoadUnsafe(ref sourceReference, (uint)(nextColumnOffset + x) << 2);
+
+                    var left = Vector256.LoadUnsafe(ref sourceReference, offset - 4);
+                    var right = Vector256.LoadUnsafe(ref sourceReference, offset + 4);
+
+                    var neighbors = Avx.Add(Avx.Add(up, down), Avx.Add(left, right));
+                    var result = Avx.Add(Avx.Multiply(center, centerWeightVector),
+                        Avx.Multiply(neighbors, neighborWeightVector));
+
+                    result.StoreUnsafe(ref destinationReference, offset);
+                }
+            }
+
+            // Tail fallback
+            for (; x < endX; ++x)
+            {
+                int currentIndex = currentColumnOffset + x;
+                destinationDensity[currentIndex] = sourceDensity[currentIndex] * centerWeight +
+                    (sourceDensity[currentIndex - 1] + sourceDensity[currentIndex + 1] +
+                        sourceDensity[previousColumnOffset + x] + sourceDensity[nextColumnOffset + x]) * neighborWeight;
+            }
+        }
+    }
+
+    /// <summary>
+    ///   This is the original implementation of the PartialDiffuse algorithm, which was scalar.
+    ///   It has been kept to diffuse edges.
+    /// </summary>
+    private void PartialDiffuseScalar(int x0, int y0, int width, int height, float deltaTime)
+    {
+        float diffusionAmount = deltaTime * Constants.CLOUD_DIFFUSION_RATE;
+        float cellMultiplier = diffusionAmount * 0.25f;
+        float neighbourMultiplier = 1.0f - diffusionAmount;
+        int planeSize = PlaneSize;
+
+        var sourceDensity = Density.AsSpan();
+        var destinationDensity = OldDensity.AsSpan();
+
+        for (int y = y0; y < y0 + height; ++y)
+        {
+            int currentRowOffset = y * planeSize;
+            int previousRowOffset = (y == 0 ? planeSize - 1 : y - 1) * planeSize;
+            int nextRowOffset = (y == planeSize - 1 ? 0 : y + 1) * planeSize;
+
+            for (int x = x0; x < x0 + width; ++x)
+            {
+                int currentIndex = currentRowOffset + x;
+                int prevX = x == 0 ? planeSize - 1 : x - 1;
+                int nextX = x == planeSize - 1 ? 0 : x + 1;
+
+                destinationDensity[currentIndex] = sourceDensity[currentIndex] * neighbourMultiplier +
+                    (sourceDensity[currentRowOffset + prevX] + sourceDensity[currentRowOffset + nextX] +
+                        sourceDensity[previousRowOffset + x] + sourceDensity[nextRowOffset + x]) * cellMultiplier;
+            }
+        }
+    }
+
+    private void AreaDiffuse(int horizontalStart, int horizontalEnd, int verticalStart, int verticalEnd,
+        float delta)
+    {
+        int planeSize = PlaneSize;
+        float diffusionAmount = delta * Constants.CLOUD_DIFFUSION_RATE;
+        float neighborWeight = diffusionAmount * 0.25f;
+        float centerWeight = 1.0f - diffusionAmount;
+
+        var sourceDensity = Density.AsSpan();
+        var destinationDensity = OldDensity.AsSpan();
+
+        for (int horizontalIndex = horizontalStart; horizontalIndex < horizontalEnd; ++horizontalIndex)
+        {
+            int currentRowOffset = horizontalIndex * planeSize;
+            int previousRowOffset = (horizontalIndex == 0 ? planeSize - 1 : horizontalIndex - 1) * planeSize;
+            int nextRowOffset = (horizontalIndex == planeSize - 1 ? 0 : horizontalIndex + 1) * planeSize;
+
+            int verticalIndex = verticalStart;
+
+            if (verticalIndex == 0 && verticalIndex < verticalEnd)
+            {
+                int currentIndex = currentRowOffset + 0;
+                destinationDensity[currentIndex] = sourceDensity[currentIndex] * centerWeight +
+                    (sourceDensity[currentRowOffset + (planeSize - 1)] + sourceDensity[currentRowOffset + 1] +
+                        sourceDensity[previousRowOffset] + sourceDensity[nextRowOffset]) * neighborWeight;
+                ++verticalIndex;
+            }
+
+            int safeLimit = Math.Min(verticalEnd, planeSize - 1);
+            for (; verticalIndex < safeLimit; ++verticalIndex)
+            {
+                int currentIndex = currentRowOffset + verticalIndex;
+                destinationDensity[currentIndex] = sourceDensity[currentIndex] * centerWeight +
+                    (sourceDensity[currentIndex - 1] + sourceDensity[currentIndex + 1] +
+                        sourceDensity[previousRowOffset + verticalIndex] + sourceDensity[nextRowOffset + verticalIndex])
+                    * neighborWeight;
+            }
+
+            if (verticalIndex == planeSize - 1 && verticalIndex < verticalEnd)
+            {
+                int currentIndex = currentRowOffset + verticalIndex;
+                destinationDensity[currentIndex] = sourceDensity[currentIndex] * centerWeight +
+                    (sourceDensity[currentIndex - 1] + sourceDensity[currentRowOffset] +
+                        sourceDensity[previousRowOffset + verticalIndex] + sourceDensity[nextRowOffset + verticalIndex])
+                    * neighborWeight;
             }
         }
     }
@@ -1049,71 +1153,166 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
         return 0;
     }
 
-    private void PartialAdvect(int x0, int y0, int size, float delta)
+    private void PartialAdvect(int slice, int slices, float deltaTime)
     {
-        var resolution = CloudResolution;
-        var worldPos = GetWorldPositionForAdvection(x0, y0);
+        int planeSize = PlaneSize;
+        int rowStart = slice * planeSize / slices;
+        int rowEnd = (slice + 1) * planeSize / slices;
+        int rowCount = rowEnd - rowStart;
 
-        for (int x = x0; x < x0 + size; ++x)
+        ReadOnlySpan<Vector4> source = OldDensity.AsSpan(rowStart * planeSize, rowCount * planeSize);
+        Span<Vector4> destination = Density.AsSpan();
+        Span<byte> bufferSpan = tempBuffer.AsSpan(rowStart * planeSize * 4, rowCount * planeSize * 4);
+
+        float resolution = CloudResolution;
+        float intensityScale = 255.0f / Constants.CLOUD_MAX_INTENSITY_SHOWN;
+        int chunkWidth = planeSize / Constants.CLOUD_PLANE_SQUARES_PER_SIDE;
+
+        var vScale = Vector128.Create(intensityScale);
+        var vZero = Vector128<float>.Zero;
+        var v255 = Vector128.Create(255.0f);
+
+        int sourceIdx = 0;
+        int bufferIdx = 0;
+
+        for (int y = 0; y < rowCount; ++y)
         {
-            var worldX = worldPos.X + x * resolution;
+            int absoluteY = y + rowStart;
 
-            for (int y = y0; y < y0 + size; ++y)
+            for (int chunkX = 0; chunkX < Constants.CLOUD_PLANE_SQUARES_PER_SIDE; ++chunkX)
             {
-                var worldY = worldPos.Y + y * resolution;
+                Vector2 worldPositionBase = GetWorldPositionForAdvection(chunkX * planeSize /
+                    Constants.CLOUD_PLANE_SQUARES_PER_SIDE, rowStart);
 
-                var oldDensity = OldDensity[x, y];
+                int startX = chunkX * chunkWidth;
+                int endX = startX + chunkWidth;
 
-                // This is better for performance than checking length squared of oldDensity although
-                // might cause issues if for some reason density would end up with negative value
-                if (oldDensity.X + oldDensity.Y + oldDensity.Z + oldDensity.W < 1)
-                    continue;
+                float worldY = worldPositionBase.Y + absoluteY * resolution;
 
-                var velocity =
-                    fluidSystem!.VelocityAt(new Vector2(worldX, worldY));
+                int x = startX;
 
-                if (MathF.Abs(velocity.X) + MathF.Abs(velocity.Y) <
-                    Constants.CURRENT_COMPOUND_CLOUD_ADVECT_THRESHOLD)
+                for (; x <= endX - 4; x += 4)
                 {
-                    velocity = Vector2.Zero;
+                    var p0 = source[sourceIdx].AsVector128();
+                    var p1 = source[sourceIdx + 1].AsVector128();
+                    var p2 = source[sourceIdx + 2].AsVector128();
+                    var p3 = source[sourceIdx + 3].AsVector128();
+
+                    var sums = Vector128.Create(p0[0] + p0[1] + p0[2] + p0[3],
+                        p1[0] + p1[1] + p1[2] + p1[3],
+                        p2[0] + p2[1] + p2[2] + p2[3],
+                        p3[0] + p3[1] + p3[2] + p3[3]);
+
+                    if (Vector128.LessThanAll(sums, Vector128.Create(1.0f)))
+                    {
+                        Vector128<byte>.Zero.StoreUnsafe(ref bufferSpan[bufferIdx]);
+
+                        sourceIdx += 4;
+                        bufferIdx += 16;
+                        continue;
+                    }
+
+                    for (int i = 0; i < 4; ++i)
+                    {
+                        Vector4 currentDensity = source[sourceIdx++];
+
+                        var vPixel = currentDensity.AsVector128();
+                        vPixel = Vector128.Multiply(vPixel, vScale);
+                        vPixel = Vector128.Min(Vector128.Max(vPixel, vZero), v255);
+                        var vInt = Vector128.ConvertToInt32(vPixel);
+
+                        // These check are JIT compile-time constants, so they are pruned during execution.
+                        // This makes branching here de-facto non-existent.
+                        Vector128<byte> packed8;
+                        if (Sse2.IsSupported)
+                        {
+                            var packed16 = Sse2.PackSignedSaturate(vInt, vInt);
+                            packed8 = Sse2.PackUnsignedSaturate(packed16, packed16).AsByte();
+                        }
+                        else if (AdvSimd.IsSupported)
+                        {
+                            var narrow16 = AdvSimd.ExtractNarrowingSaturateLower(vInt);
+                            var narrow8 = AdvSimd.ExtractNarrowingSaturateUnsignedLower(narrow16.ToVector128());
+                            packed8 = narrow8.ToVector128();
+                        }
+                        else
+                        {
+                            packed8 = Vector128.Create((byte)vInt.GetElement(0), (byte)vInt.GetElement(1),
+                                (byte)vInt.GetElement(2), (byte)vInt.GetElement(3),
+                                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0).AsByte();
+                        }
+
+                        MemoryMarshal.Write(bufferSpan.Slice(bufferIdx, 4),
+                            packed8.AsUInt32().ToScalar());
+
+                        bufferIdx += 4;
+
+                        if (currentDensity.X + currentDensity.Y + currentDensity.Z + currentDensity.W < 1.0f)
+                            continue;
+
+                        float worldX = worldPositionBase.X + (x + i) * resolution;
+                        ProcessPixelAdvection(currentDensity, x + i, absoluteY, worldX, worldY, deltaTime,
+                            destination, planeSize);
+                    }
                 }
 
-                velocity *= VISCOSITY;
+                for (; x < endX; ++x)
+                {
+                    Vector4 currentDensity = source[sourceIdx++];
 
-                float dx = x + delta * velocity.X;
-                float dy = y + delta * velocity.Y;
+                    bufferSpan[bufferIdx] = (byte)Math.Clamp(currentDensity.X * intensityScale, 0, 255);
+                    bufferSpan[bufferIdx + 1] = (byte)Math.Clamp(currentDensity.Y * intensityScale, 0, 255);
+                    bufferSpan[bufferIdx + 2] = (byte)Math.Clamp(currentDensity.Z * intensityScale, 0, 255);
+                    bufferSpan[bufferIdx + 3] = (byte)Math.Clamp(currentDensity.W * intensityScale, 0, 255);
+                    bufferIdx += 4;
 
-                CalculateMovementFactors(dx, dy,
-                    out int floorX, out int ceilX, out int floorY, out int ceilY,
-                    out float weightRight, out float weightLeft, out float weightBottom, out float weightTop);
+                    if (currentDensity.X + currentDensity.Y + currentDensity.Z + currentDensity.W < 1.0f)
+                        continue;
 
-                floorX = floorX.PositiveModulo(PlaneSize);
-                ceilX = ceilX.PositiveModulo(PlaneSize);
-                floorY = floorY.PositiveModulo(PlaneSize);
-                ceilY = ceilY.PositiveModulo(PlaneSize);
-
-                var oldDensityDecayed = oldDensity * decayRates;
-                var oldDensityDecayedLeft = oldDensityDecayed * weightLeft;
-                var oldDensityDecayedRight = oldDensityDecayed * weightRight;
-
-                Density[floorX, floorY] += oldDensityDecayedLeft * weightTop;
-                Density[floorX, ceilY] += oldDensityDecayedLeft * weightBottom;
-                Density[ceilX, floorY] += oldDensityDecayedRight * weightTop;
-                Density[ceilX, ceilY] += oldDensityDecayedRight * weightBottom;
+                    float worldX = worldPositionBase.X + x * resolution;
+                    ProcessPixelAdvection(currentDensity, x, absoluteY, worldX, worldY, deltaTime,
+                        destination, planeSize);
+                }
             }
         }
     }
 
-    private void PartialUpdateTextureImage(int x0, int y0, int width, int height)
+    private void ProcessPixelAdvection(Vector4 currentDensity, int absoluteX, int absoluteY, float worldX, float worldY,
+        float deltaTime, Span<Vector4> destination, int planeSize)
     {
-        for (int x = x0; x < x0 + width; ++x)
-        {
-            for (int y = y0; y < y0 + height; ++y)
-            {
-                var pixel = Density[x, y] * (1 / Constants.CLOUD_MAX_INTENSITY_SHOWN);
-                image!.SetPixel(x, y, new Color(pixel.X, pixel.Y, pixel.Z, pixel.W));
-            }
-        }
+        Vector2 velocity = fluidSystem!.VelocityAt(new Vector2(worldX, worldY));
+
+        if (MathF.Abs(velocity.X) + MathF.Abs(velocity.Y) < Constants.CURRENT_COMPOUND_CLOUD_ADVECT_THRESHOLD)
+            velocity = Vector2.Zero;
+
+        velocity *= VISCOSITY;
+        float targetX = absoluteX + deltaTime * velocity.X;
+        float targetY = absoluteY + deltaTime * velocity.Y;
+
+        CalculateMovementFactors(targetX, targetY, out int floorX, out int ceilX, out int floorY, out int ceilY,
+            out float weightRight, out float weightLeft, out float weightBottom, out float weightTop);
+
+        // Normally the checks here would be fX < 0 || fX >= planeSize
+        // By casting the operands to uint here, the first condition (fX < 0) is converted to fX becoming a really large
+        // number. This makes the comparison always true (as planeSize is usually much smaller than the max integer)
+        // thus saving us a few more instructions during the calculations.
+        if ((uint)floorX >= (uint)planeSize)
+            floorX = (floorX < 0) ? floorX + planeSize : floorX - planeSize;
+        if ((uint)ceilX >= (uint)planeSize)
+            ceilX = (ceilX < 0) ? ceilX + planeSize : ceilX - planeSize;
+        if ((uint)floorY >= (uint)planeSize)
+            floorY = (floorY < 0) ? floorY + planeSize : floorY - planeSize;
+        if ((uint)ceilY >= (uint)planeSize)
+            ceilY = (ceilY < 0) ? ceilY + planeSize : ceilY - planeSize;
+
+        int floorYRow = floorY * planeSize;
+        int ceilYRow = ceilY * planeSize;
+        Vector4 decayed = currentDensity * decayRates;
+
+        destination[floorX + floorYRow] += decayed * (weightLeft * weightTop);
+        destination[floorX + ceilYRow] += decayed * (weightLeft * weightBottom);
+        destination[ceilX + floorYRow] += decayed * (weightRight * weightTop);
+        destination[ceilX + ceilYRow] += decayed * (weightRight * weightBottom);
     }
 
     private void PartialClearDensity(int x0, int y0, int width, int height)
@@ -1122,15 +1321,9 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
         {
             for (int y = y0; y < y0 + height; ++y)
             {
-                Density[x, y] = Vector4.Zero;
+                Density[x + y * PlaneSize] = Vector4.Zero;
             }
         }
-    }
-
-    private void PartialDiffuseCenter(int x0, int y0, int size, float delta)
-    {
-        PartialDiffuse(x0 + Constants.CLOUD_PLANE_EDGE_WIDTH / 2, y0 + Constants.CLOUD_PLANE_EDGE_WIDTH / 2, size
-            - Constants.CLOUD_PLANE_EDGE_WIDTH, size - Constants.CLOUD_PLANE_EDGE_WIDTH, delta);
     }
 
     private float HackyAddress(ref Vector4 vector, int index)
@@ -1163,6 +1356,12 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
 
     private void CreateDensityTexture()
     {
+        int requestedSize = PlaneSize * PlaneSize * 4;
+        if (tempBuffer == null! || requestedSize > tempBuffer.Length)
+        {
+            tempBuffer = new byte[requestedSize];
+        }
+
         image = Image.CreateEmpty(PlaneSize, PlaneSize, false, Image.Format.Rgba8);
         texture = ImageTexture.CreateFromImage(image);
 

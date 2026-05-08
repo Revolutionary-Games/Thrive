@@ -186,8 +186,13 @@ public static class CellPropertiesHelpers
     {
         float amount = compounds.TakeCompound(compound, maxAmount);
 
-        cellProperties.SpawnEjectedCompound(ref cellPosition, compoundCloudSystem, compound, amount, direction,
-            displacement);
+        if (!cellProperties.SpawnEjectedCompound(ref cellPosition, compoundCloudSystem, compound, amount, direction,
+                displacement))
+        {
+            // If membrane was not ready, we didn't eject anything
+            return 0;
+        }
+
         return amount;
     }
 
@@ -352,7 +357,7 @@ public static class CellPropertiesHelpers
 
         if (cellProperties.CreatedMembrane == null)
         {
-            GD.PrintErr($"{nameof(SpawnEjectedCompound)} called before membrane is created, ignoring eject");
+            GD.Print($"{nameof(SpawnEjectedCompound)} called before membrane is created, ignoring eject");
             return false;
         }
 

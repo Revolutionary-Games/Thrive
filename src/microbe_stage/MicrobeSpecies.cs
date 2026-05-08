@@ -146,6 +146,8 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
     /// </summary>
     public float CellTypeSpecializationBonus { get; set; }
 
+    public override Stage StageForDisplay => Stage.MicrobeStage;
+
     public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
     public override ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.MicrobeSpecies;
 

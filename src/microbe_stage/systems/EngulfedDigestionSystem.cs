@@ -296,7 +296,7 @@ public partial class EngulfedDigestionSystem : BaseSystem<World, float>
                 var takenAdjusted = taken * efficiency;
                 var added = compounds.AddCompound(compound, takenAdjusted);
 
-                // Eject excess
+                // Eject excess (we just want to get rid of it, we don't care if the eject failed)
                 cellProperties.SpawnEjectedCompound(ref position, compoundCloudSystem, compound,
                     takenAdjusted - added, Vector3.Back);
             }
