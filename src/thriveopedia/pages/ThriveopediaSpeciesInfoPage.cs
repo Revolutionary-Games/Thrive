@@ -132,6 +132,9 @@ public partial class ThriveopediaSpeciesInfoPage : ThriveopediaPage, IThriveoped
         stageInfo.Text = SpeciesToShow.StageForDisplay.GetAttribute<DescriptionAttribute>().Description;
         internalName.Text = SpeciesToShow.FormattedIdentifier;
 
+        // TODO: if the page is kept open and the player edits the species and goes back to the editor, the size
+        // doesn't get updated for some reason (but the graphical visualization does get updated). Even though opening
+        // the Thriveopedia should trigger a call to this method again.
         float size = 0;
 
         // Set species preview
