@@ -5,8 +5,10 @@
 [ext_resource type="Script" uid="uid://b1rjaeg3sk7kx" path="res://src/thriveopedia/pages/ThriveopediaWorldSpeciesPage.cs" id="2_u78wy"]
 [ext_resource type="LabelSettings" uid="uid://bnhcbmq3brx0s" path="res://src/gui_common/fonts/Title-SemiBold-Normal.tres" id="4_gef7k"]
 
-[node name="ThriveopediaWorldSpeciesPage" unique_id=350470261 instance=ExtResource("1_c5igb")]
+[node name="ThriveopediaWorldSpeciesPage" unique_id=350470261 node_paths=PackedStringArray("subPagesList", "noPagesHeading") instance=ExtResource("1_c5igb")]
 script = ExtResource("2_u78wy")
+subPagesList = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/SpeciesPages")
+noPagesHeading = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/NoPinnedSpeciesText")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(830321364) index="1" unique_id=1277200656]
 layout_mode = 2
@@ -36,3 +38,6 @@ layout_mode = 2
 text = "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
 label_settings = ExtResource("2_2746s")
 autowrap_mode = 3
+
+[node name="SpeciesPages" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer" index="5" unique_id=381294331]
+layout_mode = 2

@@ -159,6 +159,19 @@ public abstract class Species : ICloneable, IArchivable, IReadOnlySpecies
 
     public bool CanBeReferencedInArchive => true;
 
+    public static double ScalePopulationByType(Species speciesType, double rawPopulation)
+    {
+        // To not confuse the player that might see a 1 as the population but still seeing plenty of their species,
+        // scale up the displayed numbers.
+        if (speciesType is MicrobeSpecies or MulticellularSpecies)
+        {
+            // Scale is trillions to make it somewhat realistic for the entire oceans of microbes
+            rawPopulation *= Constants.MICROBE_POPULATION_MULTIPLIER;
+        }
+
+        return rawPopulation;
+    }
+
     public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
     {
         writer.WriteObject((Species)obj);

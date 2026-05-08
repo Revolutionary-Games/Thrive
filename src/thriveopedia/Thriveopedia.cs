@@ -86,7 +86,7 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
     private bool hasGeneratedWiki;
 
     /// <summary>
-    ///   As Thriveopedias are now persistent, we need to know once game property setup is done
+    ///   As Thriveopedias are now persistent, we need to know once the game-properties parent-page is created
     /// </summary>
     private bool currentGamePagesAdded;
 
@@ -147,6 +147,11 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
 
             currentGame = value;
 
+            // When changing the current game, we want to delete pages related to the old world
+            // Need to delete items in right order to delete the children first
+            RemoveTransientPages(true);
+            RemovePageIfExists("WorldSpecies");
+
             // Add all pages associated with a game in progress
             if (currentGame != null)
             {
@@ -158,7 +163,21 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
                     currentGamePagesAdded = true;
                 }
 
-                // Looks like refresh is automatic, so we don't need an else clause here
+                // This is always added to be the last page
+                AddPage("WorldSpecies");
+
+                // Load world-pinned pages
+                foreach (var pinnedPage in currentGame.ThriveopediaData.PinnedPages)
+                {
+                    try
+                    {
+                        GetPage(pinnedPage);
+                    }
+                    catch (Exception e)
+                    {
+                        GD.PrintErr($"Failed to load pinned page: {pinnedPage}, error: {e.Message}");
+                    }
+                }
             }
 
             // Notify all pages of the new game properties
@@ -415,6 +434,10 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
         {
             GD.Print("Deleting selected page, will unselect it");
             SelectedPage = homePage;
+
+            // A transient page may have been deleted already by unselecting it
+            if (IsTransientPage(page) && !allPages.ContainsKey(page))
+                return;
         }
 
         if (!allPages.TryGetValue(page, out var item))
@@ -424,11 +447,52 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
             throw new InvalidOperationException("Attempted to delete a non-existent page");
 
         // Remove the tree item
+        // Note: this is unsafe if the item has any children! So most nested items need to be removed first.
+#if DEBUG
+        foreach (var treeItem in item.GetChildren())
+        {
+            GD.PrintErr("When removing tree item, found child: ", treeItem.GetText(0));
+        }
+
+#endif
+
         item.Free();
 
         // Remove the actual page node
         pageContainer.RemoveChild(page.PageNode);
         page.PageNode.QueueFree();
+    }
+
+    private void RemoveTransientPages(bool evenPinned)
+    {
+        var temp = new List<IThriveopediaPage>();
+
+        foreach (var page in allPages.Keys)
+        {
+            if (IsTransientPage(page) && (evenPinned || !((ITransientPage)page).Pinned))
+            {
+                temp.Add(page);
+            }
+        }
+
+        foreach (var page in temp)
+        {
+            RemovePage(page);
+        }
+    }
+
+    private bool RemovePageIfExists(string title)
+    {
+        foreach (var pair in allPages)
+        {
+            if (pair.Key.PageName == title)
+            {
+                RemovePage(pair.Key);
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private void AddStageDropdown()

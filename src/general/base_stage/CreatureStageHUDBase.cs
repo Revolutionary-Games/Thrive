@@ -893,16 +893,11 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
         var playerSpecies = stage!.GameWorld.PlayerSpecies;
         double population = stage.GameWorld.Map.CurrentPatch!.GetSpeciesGameplayPopulation(playerSpecies);
 
+        // Don't show 0 for population before the player is extinct so that players don't report that as a bug
         if (population <= 0 && stage.HasPlayer)
             population = 1;
 
-        // To not confuse the player that might see a 1 as the population but still seeing plenty of their species
-        // scale up the displayed numbers
-        if (playerSpecies is MicrobeSpecies or MulticellularSpecies)
-        {
-            // Scale is trillions
-            population *= Constants.MICROBE_POPULATION_MULTIPLIER;
-        }
+        population = Species.ScalePopulationByType(playerSpecies, population);
 
         // TODO: skip updating the label if value has not changed to save on memory allocations
         populationLabel.Text = population.FormatNumber();

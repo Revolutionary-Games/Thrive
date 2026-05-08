@@ -4,14 +4,23 @@
 [ext_resource type="Script" uid="uid://dtwckv4fwb7k5" path="res://src/thriveopedia/pages/ThriveopediaSpeciesInfoPage.cs" id="2_blqkh"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="3_o5qvj"]
 [ext_resource type="PackedScene" uid="uid://bhpjtbtaeunat" path="res://src/gui_common/CustomRichTextLabel.tscn" id="3_wd02k"]
-[ext_resource type="LabelSettings" uid="uid://dd3w1mc3ion6w" path="res://src/gui_common/fonts/Body-Bold-AlmostSmall.tres" id="4_wd02k"]
+[ext_resource type="PackedScene" uid="uid://dwjn4utplmrj3" path="res://src/thriveopedia/pages/PagePinButton.tscn" id="4_3g7f5"]
 [ext_resource type="LabelSettings" uid="uid://chasppwihgufu" path="res://src/gui_common/fonts/Body-Bold-Small.tres" id="5_3g7f5"]
+[ext_resource type="PackedScene" uid="uid://b5cbn7afnas1x" path="res://src/gui_common/PhotographablePreview.tscn" id="6_3g7f5"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="6_jbr6e"]
+[ext_resource type="Script" uid="uid://b0ycij328egrn" path="res://src/gui_common/SpeciesPreview.cs" id="7_4uepn"]
+[ext_resource type="Script" uid="uid://qy26p3ugf4wu" path="res://src/microbe_stage/CellHexesPreview.cs" id="8_sfmcc"]
 [ext_resource type="Script" uid="uid://bqs3es06ri3tj" path="res://src/thriveopedia/pages/wiki/TextPageLinkButton.cs" id="8_wd02k"]
 
-[node name="ThriveopediaSpeciesInfoPage" unique_id=1991115155 node_paths=PackedStringArray("mainText") instance=ExtResource("1_nofsr")]
+[node name="ThriveopediaSpeciesInfoPage" unique_id=1991115155 node_paths=PackedStringArray("mainText", "mainPreview", "hexesPreview", "pinButton", "stageInfo", "sizeInfo", "internalName") instance=ExtResource("1_nofsr")]
 script = ExtResource("2_blqkh")
 mainText = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/IntroText")
+mainPreview = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/SpeciesInfoBox/MarginContainer/VBoxContainer/HBoxContainer/SpeciesPreview")
+hexesPreview = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/SpeciesInfoBox/MarginContainer/VBoxContainer/HBoxContainer/StructurePreview")
+pinButton = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/PagePinButton")
+stageInfo = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/SpeciesInfoBox/MarginContainer/VBoxContainer/Stage/Value")
+sizeInfo = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/SpeciesInfoBox/MarginContainer/VBoxContainer/Size/Value")
+internalName = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/SpeciesInfoBox/MarginContainer/VBoxContainer/InternalName/Value")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(830321364) index="1" unique_id=1273305137]
 layout_mode = 2
@@ -28,97 +37,92 @@ layout_mode = 2
 fit_content = true
 ExtendedBbcode = "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
 
-[node name="SpeciesInfoBox" type="PanelContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" index="1" unique_id=777736953]
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" index="1" unique_id=1531005818]
+layout_mode = 2
+
+[node name="PagePinButton" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2" index="0" unique_id=864430296 instance=ExtResource("4_3g7f5")]
+layout_mode = 2
+
+[node name="SpeciesInfoBox" type="PanelContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2" index="1" unique_id=777736953]
 custom_minimum_size = Vector2(330, 0)
 layout_mode = 2
 theme = ExtResource("3_o5qvj")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/SpeciesInfoBox" index="0" unique_id=1901645230]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/SpeciesInfoBox" index="0" unique_id=1901645230]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/SpeciesInfoBox/MarginContainer" index="0" unique_id=1352265587]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/SpeciesInfoBox/MarginContainer" index="0" unique_id=1352265587]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/SpeciesInfoBox/MarginContainer/VBoxContainer" index="0" unique_id=1964639326]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/SpeciesInfoBox/MarginContainer/VBoxContainer" index="0" unique_id=1964639326]
 layout_mode = 2
 
-[node name="Name" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/SpeciesInfoBox/MarginContainer/VBoxContainer/HBoxContainer" index="0" unique_id=1355474186]
-custom_minimum_size = Vector2(180, 0)
+[node name="SpeciesPreview" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/SpeciesInfoBox/MarginContainer/VBoxContainer/HBoxContainer" index="0" unique_id=2089188422 instance=ExtResource("6_3g7f5")]
+custom_minimum_size = Vector2(50, 128)
 layout_mode = 2
-size_flags_horizontal = 3
-label_settings = ExtResource("4_wd02k")
+script = ExtResource("7_4uepn")
 
-[node name="Icon" type="TextureRect" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/SpeciesInfoBox/MarginContainer/VBoxContainer/HBoxContainer" index="1" unique_id=1680350875]
-custom_minimum_size = Vector2(80, 60)
+[node name="StructurePreview" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/SpeciesInfoBox/MarginContainer/VBoxContainer/HBoxContainer" index="1" unique_id=1369743733 instance=ExtResource("6_3g7f5")]
 layout_mode = 2
-expand_mode = 1
-stretch_mode = 5
+script = ExtResource("8_sfmcc")
 
-[node name="Model" type="TextureRect" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/SpeciesInfoBox/MarginContainer/VBoxContainer" index="1" unique_id=1307748467]
-visible = false
-custom_minimum_size = Vector2(250, 250)
-layout_mode = 2
-size_flags_horizontal = 3
-expand_mode = 1
-stretch_mode = 5
-
-[node name="HSeparator2" type="HSeparator" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/SpeciesInfoBox/MarginContainer/VBoxContainer" index="2" unique_id=832977977]
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/SpeciesInfoBox/MarginContainer/VBoxContainer" index="1" unique_id=832977977]
 modulate = Color(1, 1, 1, 0.25098)
 layout_mode = 2
 
-[node name="Stage" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/SpeciesInfoBox/MarginContainer/VBoxContainer" index="3" unique_id=1319282447]
+[node name="Stage" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/SpeciesInfoBox/MarginContainer/VBoxContainer" index="2" unique_id=1319282447]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/SpeciesInfoBox/MarginContainer/VBoxContainer/Stage" index="0" unique_id=1798942827]
+[node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/SpeciesInfoBox/MarginContainer/VBoxContainer/Stage" index="0" unique_id=1798942827]
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 text = "INFO_BOX_STAGE"
 label_settings = ExtResource("5_3g7f5")
 
-[node name="Value" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/SpeciesInfoBox/MarginContainer/VBoxContainer/Stage" index="1" unique_id=1868431990]
+[node name="Value" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/SpeciesInfoBox/MarginContainer/VBoxContainer/Stage" index="1" unique_id=1868431990]
 layout_mode = 2
 size_flags_horizontal = 3
 label_settings = ExtResource("6_jbr6e")
 
-[node name="HSeparator4" type="HSeparator" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/SpeciesInfoBox/MarginContainer/VBoxContainer" index="4" unique_id=599331688]
+[node name="HSeparator4" type="HSeparator" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/SpeciesInfoBox/MarginContainer/VBoxContainer" index="3" unique_id=599331688]
 modulate = Color(1, 1, 1, 0.25098)
 layout_mode = 2
 
-[node name="Size" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/SpeciesInfoBox/MarginContainer/VBoxContainer" index="5" unique_id=1188473253]
+[node name="Size" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/SpeciesInfoBox/MarginContainer/VBoxContainer" index="4" unique_id=1188473253]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/SpeciesInfoBox/MarginContainer/VBoxContainer/Size" index="0" unique_id=446782789]
+[node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/SpeciesInfoBox/MarginContainer/VBoxContainer/Size" index="0" unique_id=446782789]
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 text = "INFO_BOX_SIZE_PLAIN"
 label_settings = ExtResource("5_3g7f5")
 
-[node name="Value" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/SpeciesInfoBox/MarginContainer/VBoxContainer/Size" index="1" unique_id=1765801134]
+[node name="Value" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/SpeciesInfoBox/MarginContainer/VBoxContainer/Size" index="1" unique_id=1765801134]
 layout_mode = 2
 size_flags_horizontal = 3
 label_settings = ExtResource("6_jbr6e")
 
-[node name="HSeparator8" type="HSeparator" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/SpeciesInfoBox/MarginContainer/VBoxContainer" index="6" unique_id=1471904267]
+[node name="HSeparator8" type="HSeparator" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/SpeciesInfoBox/MarginContainer/VBoxContainer" index="5" unique_id=1471904267]
 modulate = Color(1, 1, 1, 0.25098)
 layout_mode = 2
 
-[node name="InternalName" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/SpeciesInfoBox/MarginContainer/VBoxContainer" index="7" unique_id=755501658]
+[node name="InternalName" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/SpeciesInfoBox/MarginContainer/VBoxContainer" index="6" unique_id=755501658]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/SpeciesInfoBox/MarginContainer/VBoxContainer/InternalName" index="0" unique_id=1560608354]
+[node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/SpeciesInfoBox/MarginContainer/VBoxContainer/InternalName" index="0" unique_id=1560608354]
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 text = "INFO_BOX_INTERNAL_NAME"
 label_settings = ExtResource("5_3g7f5")
 
-[node name="Value" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/SpeciesInfoBox/MarginContainer/VBoxContainer/InternalName" index="1" unique_id=1293784559]
+[node name="Value" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/SpeciesInfoBox/MarginContainer/VBoxContainer/InternalName" index="1" unique_id=1293784559]
 layout_mode = 2
 size_flags_horizontal = 3
 label_settings = ExtResource("6_jbr6e")
@@ -142,3 +146,5 @@ layout_mode = 2
 text = "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
 label_settings = ExtResource("6_jbr6e")
 autowrap_mode = 3
+
+[connection signal="toggled" from="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/PagePinButton" to="." method="OnPinPressed"]

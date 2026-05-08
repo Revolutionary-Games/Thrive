@@ -1,4 +1,6 @@
+﻿using System;
 using System.ComponentModel;
+using System.Globalization;
 using Godot;
 
 /// <summary>
@@ -10,7 +12,27 @@ public partial class ThriveopediaSpeciesInfoPage : ThriveopediaPage, IThriveoped
     [Export]
     private CustomRichTextLabel mainText = null!;
 
+    [Export]
+    private SpeciesPreview mainPreview = null!;
+
+    [Export]
+    private CellHexesPreview hexesPreview = null!;
+
+    [Export]
+    private Button pinButton = null!;
+
+    [Export]
+    private Label stageInfo = null!;
+
+    [Export]
+    private Label sizeInfo = null!;
+
+    [Export]
+    private Label internalName = null!;
+
 #pragma warning restore CA2213
+
+    private bool changingAutomatically;
 
     private string cachedName = "ERROR_UNINITIALIZED_SPECIES_INFO";
 
@@ -43,6 +65,7 @@ public partial class ThriveopediaSpeciesInfoPage : ThriveopediaPage, IThriveoped
     {
         base._Ready();
         RebuildInfo();
+        RefreshPinStatus();
     }
 
     public override void OnThriveopediaOpened()
@@ -53,6 +76,26 @@ public partial class ThriveopediaSpeciesInfoPage : ThriveopediaPage, IThriveoped
     public override void OnTranslationsChanged()
     {
         RebuildInfo();
+    }
+
+    public override void UpdateCurrentWorldDetails()
+    {
+        RebuildInfo();
+
+        RefreshPinStatus();
+    }
+
+    private void RefreshPinStatus()
+    {
+        if (CurrentGame == null)
+            return;
+
+        bool pinned = CurrentGame.ThriveopediaData.IsPagePinned(this);
+
+        changingAutomatically = true;
+        Pinned = pinned;
+        pinButton.ButtonPressed = pinned;
+        changingAutomatically = false;
     }
 
     private void RebuildInfo()
@@ -76,14 +119,57 @@ public partial class ThriveopediaSpeciesInfoPage : ThriveopediaPage, IThriveoped
 
         var stageText = Localization.Translate(stage.GetAttribute<DescriptionAttribute>().Description);
 
+        var population = Species.ScalePopulationByType(SpeciesToShow, SpeciesToShow.Population);
+
         mainText.ExtendedBbcode = Localization.Translate("THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT")
-            .FormatSafe(SpeciesToShow.FormattedNameBbCode, SpeciesToShow.Population, areas, stageText);
+            .FormatSafe(SpeciesToShow.FormattedNameBbCode, population.FormatNumber(), areas, stageText);
 
         UpdateInfoBox();
     }
 
     private void UpdateInfoBox()
     {
-        // TODO: implement!
+        stageInfo.Text = SpeciesToShow.StageForDisplay.GetAttribute<DescriptionAttribute>().Description;
+        internalName.Text = SpeciesToShow.FormattedIdentifier;
+
+        float size = 0;
+
+        // Set species preview
+        mainPreview.PreviewSpecies = SpeciesToShow;
+
+        if (SpeciesToShow is MicrobeSpecies microbeSpecies)
+        {
+            size = microbeSpecies.BaseHexSize;
+            hexesPreview.PreviewSpecies = microbeSpecies;
+        }
+        else if (SpeciesToShow is MulticellularSpecies multicellularSpecies)
+        {
+            // TODO: add up hexes of all cells?
+            size = multicellularSpecies.GameplayCells.Count;
+            hexesPreview.PreviewSpecies = multicellularSpecies;
+        }
+        else if (SpeciesToShow is MacroscopicSpecies macroscopicSpecies)
+        {
+            hexesPreview.Visible = false;
+
+            foreach (var metaball in macroscopicSpecies.BodyLayout)
+            {
+                var sphereVolume = metaball.Radius * metaball.Radius * Math.PI;
+                size += (float)sphereVolume;
+            }
+        }
+
+        // TODO: show nicely with like a "2 hexes" etc. suffix
+        sizeInfo.Text = size.ToString(CultureInfo.CurrentCulture);
+    }
+
+    private void OnPinPressed(bool pressed)
+    {
+        if (changingAutomatically || CurrentGame == null)
+            return;
+
+        GUICommon.Instance.PlayButtonPressSound();
+        Pinned = pressed;
+        CurrentGame.ThriveopediaData.SetPagePinned(this, Pinned);
     }
 }
