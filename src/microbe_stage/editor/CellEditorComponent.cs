@@ -3462,11 +3462,11 @@ public partial class CellEditorComponent :
             Action<MicrobeSpecies> applyLatestEditsToSpecies, GameProperties currentGameProperties,
             Species editedSpecies)
         {
-            initialSpeciesToCopy.CellTypeSpecializationBonus =
-                MicrobeInternalCalculations.CalculateSpecializationBonus(initialSpeciesToCopy.Organelles,
-                    new Dictionary<OrganelleDefinition, int>());
             pristineSpeciesCopy = initialSpeciesToCopy;
             calculationSpecies = initialSpeciesToCopy.Clone(true);
+            calculationSpecies.CellTypeSpecializationBonus =
+                MicrobeInternalCalculations.CalculateSpecializationBonus(initialSpeciesToCopy.Organelles,
+                    new Dictionary<OrganelleDefinition, int>());
             this.applyLatestEditsToSpecies = applyLatestEditsToSpecies;
             this.currentGameProperties = currentGameProperties;
             editorOpenedForSpecies = editedSpecies;
