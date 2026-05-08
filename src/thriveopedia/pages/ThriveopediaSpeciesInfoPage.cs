@@ -157,6 +157,8 @@ public partial class ThriveopediaSpeciesInfoPage : ThriveopediaPage, IThriveoped
                 var sphereVolume = metaball.Radius * metaball.Radius * Math.PI;
                 size += (float)sphereVolume;
             }
+
+            size = (float)Math.Round(size, 2);
         }
 
         // TODO: show nicely with like a "2 hexes" etc. suffix
