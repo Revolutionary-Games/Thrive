@@ -383,8 +383,8 @@ public static class MulticellularGrowthHelpers
         multicellularGrowth.IsASpore = false;
 
         var resolvedTolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(
-                MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(multicellularSpeciesType.Species,
-                    microbeSpawnEnvironment.CurrentBiome));
+            MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(multicellularSpeciesType.Species,
+                microbeSpawnEnvironment.CurrentBiome));
 
         var environmentalEffects = new MicrobeEnvironmentalEffects
         {
