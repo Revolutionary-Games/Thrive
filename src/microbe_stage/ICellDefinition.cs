@@ -33,7 +33,7 @@ public interface ICellDefinition : IReadOnlyCellDefinition, ISimulationPhotograp
     ///   applied to <see cref="Components.BioProcesses.OverallSpeedModifier"/> and many other systems.
     ///   Does not include any adjacency bonus effects that may be applied later.
     /// </summary>
-    public float CellTypeSpecializationBonus { get; }
+    public float CellTypeSpecializationBonus { get; set; }
 
     /// <summary>
     ///   Repositions the cell to the origin and recalculates any properties dependent on its position.

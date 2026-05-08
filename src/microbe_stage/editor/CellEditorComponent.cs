@@ -1062,7 +1062,15 @@ public partial class CellEditorComponent :
         }
 
         if (shouldUpdatePosition)
+        {
             editedProperties.RepositionToOrigin();
+        }
+        else
+        {
+            // Even if not repositioning to origin, we still need to update this
+            editedProperties.CellTypeSpecializationBonus = MicrobeInternalCalculations.CalculateSpecializationBonus(
+                editedProperties.ModifiableOrganelles, new Dictionary<OrganelleDefinition, int>());
+        }
 
         // Update bacteria status
         editedProperties.IsBacteria = !HasNucleus;
