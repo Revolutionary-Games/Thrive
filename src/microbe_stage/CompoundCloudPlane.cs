@@ -983,29 +983,31 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     ///   This is the original implementation of the PartialDiffuse algorithm, which was scalar.
     ///   It has been kept to diffuse edges.
     /// </summary>
-    private void PartialDiffuseScalar(int x0, int y0, int width, int height, float delta)
+    private void PartialDiffuseScalar(int x0, int y0, int width, int height, float deltaTime)
     {
-        float a = delta * Constants.CLOUD_DIFFUSION_RATE;
-        var cellMultiplier = a * 0.25f;
-        var planeSize = PlaneSize;
+        float diffusionAmount = deltaTime * Constants.CLOUD_DIFFUSION_RATE;
+        float cellMultiplier = diffusionAmount * 0.25f;
+        float neighbourMultiplier = 1.0f - diffusionAmount;
+        int planeSize = PlaneSize;
 
-        for (int x = x0; x < x0 + width; ++x)
+        var sourceDensity = Density.AsSpan();
+        var destinationDensity = OldDensity.AsSpan();
+
+        for (int y = y0; y < y0 + height; ++y)
         {
-            var xMinus = x == 0 ? planeSize - 1 : x - 1;
-            var xPlus = x == planeSize - 1 ? 0 : x + 1;
+            int currentRowOffset = y * planeSize;
+            int previousRowOffset = (y == 0 ? planeSize - 1 : y - 1) * planeSize;
+            int nextRowOffset = (y == planeSize - 1 ? 0 : y + 1) * planeSize;
 
-            for (int y = y0; y < y0 + height; ++y)
+            for (int x = x0; x < x0 + width; ++x)
             {
-                var yMinus = y == 0 ? planeSize - 1 : y - 1;
-                var yPlus = y == planeSize - 1 ? 0 : y + 1;
+                int currentIndex = currentRowOffset + x;
+                int prevX = x == 0 ? planeSize - 1 : x - 1;
+                int nextX = x == planeSize - 1 ? 0 : x + 1;
 
-                OldDensity[x + y * planeSize] =
-                    Density[x + y * planeSize] * (1 - a) +
-                    (
-                        Density[x + yMinus * planeSize] +
-                        Density[x + yPlus * planeSize] +
-                        Density[xMinus + y * planeSize] +
-                        Density[xPlus + y * planeSize]) * cellMultiplier;
+                destinationDensity[currentIndex] = sourceDensity[currentIndex] * neighbourMultiplier +
+                    (sourceDensity[currentRowOffset + prevX] + sourceDensity[currentRowOffset + nextX] +
+                        sourceDensity[previousRowOffset + x] + sourceDensity[nextRowOffset + x]) * cellMultiplier;
             }
         }
     }
