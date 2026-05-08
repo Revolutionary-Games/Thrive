@@ -50,6 +50,7 @@ public partial class LoadingScreen : Control
     private string? artDescription;
 
     private double totalElapsed;
+    private double elapsedSinceTipChange;
 
     private LoadingScreen()
     {
@@ -119,6 +120,45 @@ public partial class LoadingScreen : Control
 
     private MainGameState CurrentlyLoadingGameState { get; set; } = MainGameState.Invalid;
 
+    private string? OverrideTips { get; set; }
+
+    /// <summary>
+    ///   Handles mapping states that don't have tips to their parent states that do (for example, editors)
+    /// </summary>
+    /// <param name="target">Original target</param>
+    /// <param name="overrideTipsCategory">Original category override</param>
+    /// <returns>Mapped values</returns>
+    /// <exception cref="ArgumentOutOfRangeException">If an unhandled state is provided</exception>
+    public static (MainGameState State, string? OverrideCategory) GetStateFallbackForTips(MainGameState target,
+        string? overrideTipsCategory)
+    {
+        switch (target)
+        {
+            case MainGameState.MicrobeEditor:
+                return (MainGameState.MicrobeStage, overrideTipsCategory);
+            case MainGameState.MulticellularEditor:
+                return (MainGameState.MicrobeStage, "MulticellularStageTips");
+            case MainGameState.MacroscopicEditor:
+                return (MainGameState.MacroscopicStage, overrideTipsCategory);
+            case MainGameState.AscensionCeremony:
+                return (MainGameState.SpaceStage, overrideTipsCategory);
+
+            // Passthrough states
+            case MainGameState.Invalid:
+            case MainGameState.MicrobeStage:
+            case MainGameState.MacroscopicStage:
+            case MainGameState.SocietyStage:
+            case MainGameState.IndustrialStage:
+            case MainGameState.SpaceStage:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(target), target, null);
+        }
+
+        // No mapping
+        return (target, overrideTipsCategory);
+    }
+
     public override void _Ready()
     {
         UpdateMessage();
@@ -163,22 +203,50 @@ public partial class LoadingScreen : Control
         // Spin the spinner
         totalElapsed += delta;
 
+        elapsedSinceTipChange += delta;
+
         spinner.Rotation = (float)(totalElapsed * SpinnerSpeed) % MathF.Tau;
     }
 
     /// <summary>
     ///   Shows this and updates the shown messages. If this just became visible, also loads new art and tip
     /// </summary>
-    public void Show(string message, MainGameState target, string description = "")
+    public void Show(string message, MainGameState target, string description = "", string? overrideTipsCategory = null)
     {
+        var oldCategory = CurrentlyLoadingGameState;
+
+        // This is called in some cases from the save load method, which means that the main game state can be any
+        // main game state, even some without tips, so we do a custom fallback mapping here
+        try
+        {
+            (CurrentlyLoadingGameState, OverrideTips) = GetStateFallbackForTips(target, overrideTipsCategory);
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr("Failed to get state fallback for tips: ", e);
+            CurrentlyLoadingGameState = target;
+            OverrideTips = overrideTipsCategory;
+        }
+
+        GD.Print($"Showing loading screen for stage {CurrentlyLoadingGameState} with override: {OverrideTips}");
+
         LoadingMessage = message;
         LoadingDescription = description;
-        CurrentlyLoadingGameState = target;
 
         if (!Visible)
         {
             OnBecomeVisible();
             Show();
+        }
+        else if (oldCategory != CurrentlyLoadingGameState)
+        {
+            // Category changed, change tip if it's been a little bit since the tip change to give a chance for new
+            // tips to be visible. This mostly applies to save load screen, which otherwise has such a fast end that
+            // the user basically never sees stage-specific tips there.
+            if (elapsedSinceTipChange >= 1.5 || string.IsNullOrWhiteSpace(Tip))
+            {
+                RandomizeTip();
+            }
         }
     }
 
@@ -201,14 +269,27 @@ public partial class LoadingScreen : Control
 
     public void RandomizeTip()
     {
-        if (CurrentlyLoadingGameState == MainGameState.Invalid)
+        elapsedSinceTipChange = 0;
+
+        if (CurrentlyLoadingGameState == MainGameState.Invalid && string.IsNullOrWhiteSpace(OverrideTips))
         {
             Tip = string.Empty;
             return;
         }
 
-        // TODO: multicellular specific tips when the game state is microbe stage but we are in multicellular
-        var tips = SimulationParameters.Instance.GetHelpTexts(CurrentlyLoadingGameState + "Tips");
+        HelpTexts tips;
+
+        // Some loading screens are not related to a main game state, so they use a special lookup key.
+        // For example, multicellular tips work like this.
+        if (!string.IsNullOrWhiteSpace(OverrideTips))
+        {
+            tips = SimulationParameters.Instance.GetHelpTexts(OverrideTips);
+        }
+        else
+        {
+            tips = SimulationParameters.Instance.GetHelpTexts(CurrentlyLoadingGameState + "Tips");
+        }
+
         var selectedTip = tips.Messages.Random(random).Message;
         Tip = selectedTip;
     }
@@ -217,6 +298,24 @@ public partial class LoadingScreen : Control
     {
         var gameStateName = CurrentlyLoadingGameState.ToString();
         var gallery = SimulationParameters.Instance.GetGallery("ConceptArt");
+
+        if (!string.IsNullOrWhiteSpace(OverrideTips))
+        {
+            if (OverrideTips.EndsWith("Tips"))
+            {
+                gameStateName = OverrideTips.Substring(0, OverrideTips.Length - 4);
+            }
+            else
+            {
+                gameStateName = OverrideTips;
+            }
+
+            if (!gallery.AssetCategories.ContainsKey(gameStateName))
+            {
+                // Is not a good override, switch back
+                gameStateName = CurrentlyLoadingGameState.ToString();
+            }
+        }
 
         var category = gallery.AssetCategories.ContainsKey(gameStateName) ? gameStateName : "General";
         var artwork = gallery.AssetCategories[category].Assets.Random(random);
