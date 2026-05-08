@@ -300,8 +300,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
 
             var type = cellTemplate.CellType;
 
-            var totalSpecializationBonus = MicrobeInternalCalculations.CalculateSpecializationBonus(
-                    cellTemplate.ModifiableOrganelles, new Dictionary<OrganelleDefinition, int>()) *
+            var totalSpecializationBonus = type.CellTypeSpecializationBonus *
                 CellBodyPlanInternalCalculations.GetAdjacencySpecializationBonusFromBodyPlan(cellTemplate, cells);
 
             ApplyOrganelleEffectsOnTolerances(type.Organelles, ref typeTolerances, totalSpecializationBonus);
