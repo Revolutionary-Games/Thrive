@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-29 22:42+0200\n"
-"PO-Revision-Date: 2026-04-22 17:20+0300\n"
+"POT-Creation-Date: 2026-05-05 16:34+0300\n"
+"PO-Revision-Date: 2026-05-05 16:44+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -1711,6 +1711,9 @@ msgstr "Hard"
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "Normal"
 
+msgid "DIFFICULTY_PRESET_VERY_EASY"
+msgstr "Very Easy"
+
 msgid "DIGESTION_EFFICIENCY"
 msgstr "Digestion Efficiency"
 
@@ -2217,6 +2220,9 @@ msgstr "This is the exact code commit that this version of Thrive was compiled f
 
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr "An exception happened while processing loaded objects"
+
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE_JUKEBOX"
+msgstr "An exception happened while processing jukebox state"
 
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "An exception happened while loading the save data"
@@ -4244,6 +4250,24 @@ msgstr "Multicellular Freebuild Editor"
 
 msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "While your cells share compounds, each cell needs to produce its own [thrive:compound type=\"atp\"][/thrive:compound]. Any cell that runs out of this will die."
+
+msgid "MULTICELLULAR_LOADING_TIP_2"
+msgstr "The main mechanic of the Multicellular Stage is creating specialized cells for different tasks."
+
+msgid "MULTICELLULAR_LOADING_TIP_3"
+msgstr "While cells in colonies are harder to engulf, they can still be eaten so be careful of large eukaryotes."
+
+msgid "MULTICELLULAR_LOADING_TIP_4"
+msgstr "The position of cells in your body plan matters. Cells of the same type get increased specialization bonuses when adjacent to each other."
+
+msgid "MULTICELLULAR_LOADING_TIP_5"
+msgstr "All cells in a colony need to produce [thrive:compound type=\"atp\"][/thrive:compound], but other unnecessary parts can be removed to create highly specialized cells that get major specialization bonuses."
+
+msgid "MULTICELLULAR_LOADING_TIP_6"
+msgstr "You can control the order of growth for cells in your body plan to optimize your early life. Different reproduction types also impact the early life."
+
+msgid "MULTICELLULAR_LOADING_TIP_7"
+msgstr "Specialized cells in multicellular are the first step towards proper organs. The initial clusters of cells of the same type will eventually turn into tissues."
 
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "This panel shows the combined processes of your colony, summed across all of its cells. Note that unlike other compounds, ATP isn't shared between cells."

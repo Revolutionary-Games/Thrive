@@ -1082,6 +1082,8 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             }
         }
 
+        HUD.ClearSignalingCommandsOnEditorExitIfNecessary(Player);
+
         if (!CurrentGame.TutorialState.Enabled)
         {
             tutorialGUI.EventReceiver?.OnTutorialDisabled();

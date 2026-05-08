@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-29 22:42+0200\n"
-"PO-Revision-Date: 2026-04-22 18:35+0000\n"
-"Last-Translator: \"Georgi Georgiev (RacerBG)\" <g.georgiev.shumen@gmail.com>\n"
+"POT-Creation-Date: 2026-05-05 16:34+0300\n"
+"PO-Revision-Date: 2026-05-01 09:17+0000\n"
+"Last-Translator: JareelSkaj <jareelskaj@marcinwolny.net>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -1727,6 +1727,10 @@ msgstr "Trudny"
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "Normalny"
 
+#, fuzzy
+msgid "DIFFICULTY_PRESET_VERY_EASY"
+msgstr "Łatwy"
+
 msgid "DIGESTION_EFFICIENCY"
 msgstr "Wydajność Trawienia"
 
@@ -2239,6 +2243,10 @@ msgid "EXACT_VERSION_TOOLTIP"
 msgstr "To jest dokładne zatwierdzenie kodu, z którego została złożona ta wersja Thrive"
 
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
+msgstr "Podczas przetwarzania załadowanych obiektów nastąpił wyjątek"
+
+#, fuzzy
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE_JUKEBOX"
 msgstr "Podczas przetwarzania załadowanych obiektów nastąpił wyjątek"
 
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
@@ -4409,6 +4417,30 @@ msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Edytor Wielokomórkowca"
 
 #, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_2"
+msgstr "Edytor Wielokomórkowca"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_3"
+msgstr "Edytor Wielokomórkowca"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_4"
+msgstr "Edytor Wielokomórkowca"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_5"
+msgstr "Edytor Wielokomórkowca"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_6"
+msgstr "Edytor Wielokomórkowca"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_7"
+msgstr "Edytor Wielokomórkowca"
+
+#, fuzzy
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "(niektóre funkcje mogą być niedostępne gdy dotrzesz to następnych etapów)"
 
@@ -4541,9 +4573,11 @@ msgstr "Tlenowe Wiązanie Azotu"
 msgid "NITROPLAST"
 msgstr "Plastyd Wiążący Azot"
 
+#, fuzzy
 msgid "NITROPLAST_DESCRIPTION"
 msgstr "Nitroplast to plastyd używający gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound] oraz energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], składnika kluczowego dla wzrostu komórek. Ten proces jest znany jako [b]tlenowe wiązanie azotu[/b]."
 
+#, fuzzy
 msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Przekształca wolny N₂ i O₂ w [thrive:compound type=\"ammonia\"][/thrive:compound] zużywając [thrive:compound type=\"atp\"][/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"nitrogen\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
@@ -8627,6 +8661,7 @@ msgstr "Brak ulepszeń."
 msgid "WIKI_NITROPLAST_EFFECTS"
 msgstr "Brak efektów."
 
+#, fuzzy
 msgid "WIKI_NITROPLAST_INTRO"
 msgstr "Nitroplast to organellum otoczone błoną, służące do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], będącego jednym ze składników niezbędnych do wzrostu i rozmnażania komórki. Przeprowadza [b]beztlenowe wiązanie azotu[/b], przekształcając gazowy [thrive:compound type=\"nitrogen\"][/thrive:compound] i [thrive:compound type=\"atp\"][/thrive:compound] w [thrive:compound type=\"ammonia\"][/thrive:compound]. Jest wydajniejsze od prokariotycznej [b][color=#3796e1][url=thriveopedia:nitrogenase]nitrogenazy[/url][/color][/b]."
 

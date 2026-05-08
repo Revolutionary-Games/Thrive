@@ -186,6 +186,8 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
 
     protected virtual MainGameState ReturnToState => throw new GodotAbstractPropertyNotOverriddenException();
 
+    protected virtual string? TipsCategoryOverrideForLoading => null;
+
     protected virtual string EditorLoadingMessage => throw new GodotAbstractPropertyNotOverriddenException();
 
     /// <summary>
@@ -278,7 +280,7 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
             {
                 LoadingScreen.Instance.Show(EditorLoadingMessage, ReturnToState,
                     Localization.Translate("WAITING_FOR_AUTO_EVO") + " " +
-                    CurrentGame.GameWorld.GetAutoEvoRun().Status);
+                    CurrentGame.GameWorld.GetAutoEvoRun().Status, TipsCategoryOverrideForLoading);
                 return;
             }
 
@@ -721,7 +723,7 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
             {
                 EditorReady = false;
                 LoadingScreen.Instance.Show(EditorLoadingMessage, ReturnToState,
-                    CurrentGame.GameWorld.GetAutoEvoRun().Status);
+                    CurrentGame.GameWorld.GetAutoEvoRun().Status, TipsCategoryOverrideForLoading);
 
                 CurrentGame.GameWorld.FinishAutoEvoRunAtFullSpeed();
 
