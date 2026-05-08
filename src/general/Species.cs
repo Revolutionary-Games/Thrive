@@ -145,6 +145,12 @@ public abstract class Species : ICloneable, IArchivable, IReadOnlySpecies
 
     public string FormattedIdentifier => FormattedName + $" ({ID:n0})";
 
+    /// <summary>
+    ///   The main stage this species is in, for display purposes. This returns a game state as that is already
+    ///   supported in translations, so we do it like this.
+    /// </summary>
+    public abstract Stage StageForDisplay { get; }
+
     public bool IsExtinct => Population <= 0;
 
     public abstract ushort CurrentArchiveVersion { get; }

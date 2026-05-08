@@ -12,9 +12,11 @@ script = ExtResource("2_u78wy")
 layout_mode = 2
 
 [node name="IntroLabel" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer" index="0" unique_id=1619747194]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
 label_settings = ExtResource("2_2746s")
+autowrap_mode = 3
 
 [node name="Spacer" type="Control" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer" index="1" unique_id=1507412503]
 custom_minimum_size = Vector2(0, 15)
@@ -29,6 +31,8 @@ label_settings = ExtResource("4_gef7k")
 layout_mode = 2
 
 [node name="NoPinnedSpeciesText" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer" index="4" unique_id=1645772071]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
 label_settings = ExtResource("2_2746s")
+autowrap_mode = 3

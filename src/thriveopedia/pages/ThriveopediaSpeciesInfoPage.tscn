@@ -7,9 +7,11 @@
 [ext_resource type="LabelSettings" uid="uid://dd3w1mc3ion6w" path="res://src/gui_common/fonts/Body-Bold-AlmostSmall.tres" id="4_wd02k"]
 [ext_resource type="LabelSettings" uid="uid://chasppwihgufu" path="res://src/gui_common/fonts/Body-Bold-Small.tres" id="5_3g7f5"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="6_jbr6e"]
+[ext_resource type="Script" uid="uid://bqs3es06ri3tj" path="res://src/thriveopedia/pages/wiki/TextPageLinkButton.cs" id="8_wd02k"]
 
-[node name="ThriveopediaSpeciesInfoPage" unique_id=1991115155 instance=ExtResource("1_nofsr")]
+[node name="ThriveopediaSpeciesInfoPage" unique_id=1991115155 node_paths=PackedStringArray("mainText") instance=ExtResource("1_nofsr")]
 script = ExtResource("2_blqkh")
+mainText = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/IntroText")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(830321364) index="1" unique_id=1273305137]
 layout_mode = 2
@@ -21,10 +23,10 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CustomRichTextLabel" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer" index="0" unique_id=2045918816 instance=ExtResource("3_wd02k")]
+[node name="IntroText" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer" index="0" unique_id=2045918816 instance=ExtResource("3_wd02k")]
 layout_mode = 2
 fit_content = true
-ExtendedBbcode = "Species info goes here..."
+ExtendedBbcode = "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
 
 [node name="SpeciesInfoBox" type="PanelContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" index="1" unique_id=777736953]
 custom_minimum_size = Vector2(330, 0)
@@ -94,7 +96,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/SpeciesInfoBox/MarginContainer/VBoxContainer/Size" index="0" unique_id=446782789]
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
-text = "INFO_BOX_SIZE"
+text = "INFO_BOX_SIZE_PLAIN"
 label_settings = ExtResource("5_3g7f5")
 
 [node name="Value" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/SpeciesInfoBox/MarginContainer/VBoxContainer/Size" index="1" unique_id=1765801134]
@@ -120,3 +122,23 @@ label_settings = ExtResource("5_3g7f5")
 layout_mode = 2
 size_flags_horizontal = 3
 label_settings = ExtResource("6_jbr6e")
+
+[node name="Spacer" type="Control" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer" index="1" unique_id=347723795]
+layout_mode = 2
+
+[node name="EvolutionaryTree" type="Button" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer" index="2" unique_id=1069404930]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "OPEN_EVOLUTIONARY_TREE"
+script = ExtResource("8_wd02k")
+PageName = "EvolutionaryTree"
+
+[node name="Spacer2" type="Control" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer" index="3" unique_id=216007001]
+layout_mode = 2
+
+[node name="LinkExplanationLabel" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer" index="4" unique_id=857986118]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
+label_settings = ExtResource("6_jbr6e")
+autowrap_mode = 3

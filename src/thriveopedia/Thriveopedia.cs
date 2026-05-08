@@ -65,6 +65,7 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
     private TreeItem stageDropdown = null!;
 
     private PackedScene speciesPageScene = null!;
+    private PackedScene extinctPageScene = null!;
 #pragma warning restore CA2213
 
     private bool treeCollapsed;
@@ -109,7 +110,20 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
         set
         {
             // Hide the last page and show the new page
-            selectedPage?.Hide();
+            if (selectedPage != null)
+            {
+                selectedPage.Hide();
+
+                if (selectedPage is ITransientPage transient && !transient.Pinned)
+                {
+                    // If navigating away from a non-pinned transient page, destroy the page
+                    GD.Print("Removing transient page due to navigation away from it: ", selectedPage.PageName);
+
+                    var pageToDelete = selectedPage;
+                    selectedPage = null;
+                    RemovePage(pageToDelete);
+                }
+            }
 
             selectedPage = value;
             selectedPage.Show();
@@ -156,6 +170,7 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
     public override void _Ready()
     {
         speciesPageScene = GD.Load<PackedScene>("res://src/thriveopedia/pages/ThriveopediaSpeciesInfoPage.tscn");
+        extinctPageScene = GD.Load<PackedScene>("res://src/thriveopedia/pages/ThriveopediaExtinctSpeciesPage.tscn");
 
         // Create and hide a blank root to avoid home being used as the root
         pageTree.CreateItem();
@@ -284,6 +299,31 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
                 return page.Key;
         }
 
+        if (name.StartsWith("species:"))
+        {
+            var specialName = name.Split("species:", 2)[1];
+            if (uint.TryParse(specialName, out var speciesId))
+            {
+                var species = GetActiveSpeciesData(speciesId);
+
+                if (species == null)
+                {
+                    GD.Print($"No species data exists for {speciesId} so showing extinct page");
+
+                    var extinctPage = extinctPageScene.Instantiate<ThriveopediaExtinctSpeciesPage>();
+                    extinctPage.SpeciesId = speciesId;
+                    AddPage(extinctPage.PageName, extinctPage);
+                    return extinctPage;
+                }
+
+                var instance = speciesPageScene.Instantiate<ThriveopediaSpeciesInfoPage>();
+                instance.SpeciesToShow = species;
+
+                AddPage(instance.PageName, instance);
+                return instance;
+            }
+        }
+
 #if DEBUG
         GD.PrintErr($"Couldn't find page with name: {name}, existing pages:");
         foreach (var page in allPages)
@@ -318,7 +358,7 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
     /// </summary>
     /// <param name="name">The name of the page</param>
     /// <param name="page">
-    ///   Pre-configured page if scene filename does not match the page name or the page needs extra adjustment
+    ///   Pre-configured page if the scene filename does not match the page name or the page needs extra adjustment
     /// </param>
     private void AddPage(string name, IThriveopediaPage? page = null)
     {
@@ -343,6 +383,9 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
             throw new InvalidOperationException($"Attempted to add page with name {name} before parent was added");
         }
 
+        // If pages are added after the game is set, we want them to also get the info
+        page.CurrentGame = CurrentGame;
+
         page.PageNode.Connect(ThriveopediaPage.SignalName.OnSceneChanged,
             new Callable(this, nameof(HandleSceneChanged)));
         pageContainer.AddChild(page.PageNode);
@@ -357,6 +400,35 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
             treeItem.Visible = false;
 
         page.Hide();
+    }
+
+    /// <summary>
+    ///   Removes a page that should no longer be shown. Will delete the page node.
+    /// </summary>
+    /// <param name="page">Page to delete</param>
+    private void RemovePage(IThriveopediaPage page)
+    {
+        if (!allPages.Keys.Contains(page))
+            throw new InvalidOperationException("Attempted to delete a non-existent page");
+
+        if (page == SelectedPage)
+        {
+            GD.Print("Deleting selected page, will unselect it");
+            SelectedPage = homePage;
+        }
+
+        if (!allPages.TryGetValue(page, out var item))
+            throw new InvalidOperationException("Attempted to delete a non-existent page");
+
+        if (!allPages.Remove(page))
+            throw new InvalidOperationException("Attempted to delete a non-existent page");
+
+        // Remove the tree item
+        item.Free();
+
+        // Remove the actual page node
+        pageContainer.RemoveChild(page.PageNode);
+        page.PageNode.QueueFree();
     }
 
     private void AddStageDropdown()
@@ -584,12 +656,43 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
     private void OnBackPressed()
     {
         pageFuture.Push(pageHistory.Pop());
+
+        var targetPage = pageHistory.Peek();
+
+        if (IsTransientPage(targetPage) && !allPages.ContainsKey(targetPage))
+        {
+            GD.Print("Restoring transient page for navigation");
+
+            // Reload the page and update history reference
+            pageHistory.Pop();
+            pageHistory.Push(GetPage(targetPage.PageName));
+        }
+
         ChangePage(pageHistory.Peek().PageName, false, false);
     }
 
     private void OnForwardPressed()
     {
-        ChangePage(pageFuture.Pop().PageName, true, false);
+        var targetPage = pageFuture.Pop();
+
+        // TODO: handling for removed species page here
+        if (IsTransientPage(targetPage) && !allPages.ContainsKey(targetPage))
+        {
+            GD.Print("Restoring transient page for navigation");
+            targetPage = GetPage(targetPage.PageName);
+        }
+
+        ChangePage(targetPage.PageName, true, false);
+    }
+
+    private bool IsTransientPage(IThriveopediaPage page)
+    {
+        if (page is ITransientPage)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     private void OnSearchUpdated(string newText)
