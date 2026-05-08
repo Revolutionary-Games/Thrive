@@ -315,11 +315,8 @@ public enum ThriveArchiveObjectType : uint
     EnergyConsumptionPressure = 4395,
     ComponentSpatialAnimation = 4396,
     JukeboxPlaybackState = 4397,
-<<<<<<< expanded-cell-specialization-effects
-    ComponentSpecializationFactor = 4398,
-=======
     ThriveopediaGameData = 4398,
->>>>>>> master
+    ComponentSpecializationFactor = 4399,
 
     // Special flag types
     ExtendedOrganelleLayout = OrganelleLayout | ArchiveObjectType.ExtendedTypeFlag,
