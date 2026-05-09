@@ -511,15 +511,15 @@ public partial class CellBodyPlanEditorComponent :
 
         newName = species.FormattedName;
 
+        ReproductionMethod = ((MulticellularSpecies)species).ReproductionMethod;
+        SporeCellType = ((MulticellularSpecies)species).ModifiableSporeCellType;
+
         UpdateGUIAfterLoadingSpecies(species);
 
         UpdateArrow(false);
 
         // Make sure initial tolerance warnings are shown
         OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
-
-        ReproductionMethod = ((MulticellularSpecies)species).ReproductionMethod;
-        SporeCellType = ((MulticellularSpecies)species).ModifiableSporeCellType;
     }
 
     public override void OnFinishEditing()
@@ -591,7 +591,6 @@ public partial class CellBodyPlanEditorComponent :
             hexTemporaryMemory2);
 
         editedSpecies.ReproductionMethod = ReproductionMethod;
-
         editedSpecies.ModifiableSporeCellType = SporeCellType;
 
         tempFreshlyUpdatedCells.Clear();
