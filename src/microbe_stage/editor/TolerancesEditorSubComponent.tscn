@@ -477,7 +477,7 @@ relatedSlider = NodePath("../HBoxContainer/OxygenResistanceSlider")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Oxygen/RangeDisplayContainer/VBoxContainer" unique_id=1215608808]
 layout_mode = 2
-theme_override_constants/separation = -1
+theme_override_constants/separation = 0
 
 [node name="OxygenResistanceSlider" type="HSlider" parent="Oxygen/RangeDisplayContainer/VBoxContainer/HBoxContainer" unique_id=967114038]
 layout_mode = 2
