@@ -470,6 +470,16 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             }
         }
 
+        if (entity.Has<MulticellularGrowth>())
+        {
+            var growth = entity.Get<MulticellularGrowth>();
+
+            if (growth.IsASpore)
+            {
+                control.GerminatingSpore = true;
+            }
+        }
+
         var isIronEater = organelles.IronBreakdownEfficiency > 0;
 
         // Siderophore is an experimental feature

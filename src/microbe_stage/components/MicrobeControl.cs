@@ -95,6 +95,11 @@ public struct MicrobeControl : IArchivableComponent
     public bool MucocystEffectsApplied;
 
     /// <summary>
+    ///   Whether this microbe is going to germinate next frame
+    /// </summary>
+    public bool GerminatingSpore;
+
+    /// <summary>
     ///   Constructs an instance with a sensible <see cref="LookAtPoint"/> set
     /// </summary>
     /// <param name="startingPosition">World position this entity is starting at</param>

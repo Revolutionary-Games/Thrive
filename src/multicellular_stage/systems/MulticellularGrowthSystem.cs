@@ -80,7 +80,12 @@ public partial class MulticellularGrowthSystem : BaseSystem<World, float>
         in Entity entity)
     {
         if (growth.IsASpore)
+        {
+            if (microbeControl.GerminatingSpore)
+                growth.GerminateSpore(entity, worldSimulation, spawnEnvironment);
+
             return;
+        }
 
         // Dead multicellular colonies can't reproduce
         if (health.Dead)
