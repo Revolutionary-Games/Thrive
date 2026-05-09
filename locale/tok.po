@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-27 14:48+0200\n"
+"POT-Creation-Date: 2026-05-08 16:35+0300\n"
 "PO-Revision-Date: 2023-02-06 07:13+0000\n"
 "Last-Translator: jan-sopi <jansopi303@genocide.fun>\n"
 "Language-Team: Toki Pona <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tok/>\n"
@@ -114,9 +114,6 @@ msgstr "open e lipu pi ante mute"
 msgid "AEROBIC_NITROGEN_FIXATION"
 msgstr "pali pi kon ilo kepeken kon ala"
 
-msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "pali pi kon ilo kepeken kon"
-
 #, fuzzy
 msgid "AEROBIC_RESPIRATION"
 msgstr "pali pi kon ilo kepeken kon ala"
@@ -204,9 +201,6 @@ msgstr "nanpa ni: sona musi ilo lon ilo nanpa sina:"
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "nanpa ni: sona musi lili lon ilo nanpa sina:"
-
-msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "pali pi kon ilo kepeken kon ala"
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr ""
@@ -765,6 +759,10 @@ msgstr ""
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
+
+#, fuzzy
+msgid "CHEMICAL_EQUATION_SPEED_EXPLANATION"
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
 
 msgid "CHEMOPLAST"
 msgstr ""
@@ -1661,6 +1659,9 @@ msgstr ""
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr ""
 
+msgid "DIFFICULTY_PRESET_VERY_EASY"
+msgstr ""
+
 msgid "DIGESTION_EFFICIENCY"
 msgstr ""
 
@@ -1985,6 +1986,13 @@ msgstr ""
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr ""
 
+msgid "ENERGY_COST_MULTIPLIER"
+msgstr ""
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER_EXPLANATION"
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
+
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
@@ -2117,6 +2125,9 @@ msgid "EXACT_VERSION_TOOLTIP"
 msgstr ""
 
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
+msgstr ""
+
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE_JUKEBOX"
 msgstr ""
 
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
@@ -2682,6 +2693,26 @@ msgstr ""
 msgid "IMAGE_FILE_TYPES"
 msgstr ""
 
+#, fuzzy
+msgid "INCOMPATIBLE_MEMBRANE_LIST"
+msgstr ""
+"[b]tenpo lon:[/b]\n"
+"  {0}\n"
+"[b]kule ale:[/b]\n"
+"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule  {1}; nanpa pi weka lon nanpa {2}\n"
+"[b]kule lon tenpo ni:[/b]\n"
+"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {3}; nanpa pi weka lon nanpa {4}\n"
+"[b]kule lon ma:[/b]\n"
+"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {5}; nanpa pi weka lon nanpa {6}\n"
+"[b]lon ale lon ma:[/b]\n"
+"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {7}; nanpa pi weka lon nanpa {8}\n"
+"[b]suli pi sike ante:[/b]\n"
+"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {9}; nanpa pi weka lon nanpa {10}\n"
+"[b]sona pi tomo lon sike:[/b]"
+
+msgid "INCOMPATIBLE_ORGANELLE_LIST"
+msgstr ""
+
 msgid "INCREASE_ITEM_SIZE"
 msgstr ""
 
@@ -2734,6 +2765,12 @@ msgid "INFO_BOX_REQUIRES_NUCLEUS"
 msgstr ""
 
 msgid "INFO_BOX_SIZE"
+msgstr ""
+
+msgid "INFO_BOX_SIZE_PLAIN"
+msgstr ""
+
+msgid "INFO_BOX_STAGE"
 msgstr ""
 
 msgid "INFO_BOX_STORAGE"
@@ -3349,6 +3386,18 @@ msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
 
 msgid "LOCK_DAY_NIGHT_CYCLE"
+msgstr ""
+
+msgid "LOOK_LEFT"
+msgstr ""
+
+msgid "LOOK_RIGHT"
+msgstr ""
+
+msgid "LOOK_SCREEN_DOWN_OR_3D_TOWARDS_UP"
+msgstr ""
+
+msgid "LOOK_SCREEN_UP_OR_3D_TOWARDS_DOWN"
 msgstr ""
 
 msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
@@ -4161,6 +4210,30 @@ msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr ""
 
 #, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_2"
+msgstr "pali pi kon ilo kepeken kon"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_3"
+msgstr "pali pi kon ilo kepeken kon"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_4"
+msgstr "pali pi kon ilo kepeken kon"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_5"
+msgstr "pali pi kon ilo kepeken kon"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_6"
+msgstr "pali pi kon ilo kepeken kon"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_7"
+msgstr "pali pi kon ilo kepeken kon"
+
+#, fuzzy
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
 
@@ -4276,6 +4349,10 @@ msgstr ""
 
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
+
+#, fuzzy
+msgid "NITROGEN_FIXATION"
+msgstr "pali pi kon ilo kepeken kon ala"
 
 msgid "NITROPLAST"
 msgstr ""
@@ -4439,6 +4516,9 @@ msgstr ""
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
 
+msgid "OPEN_EVOLUTIONARY_TREE"
+msgstr ""
+
 msgid "OPEN_FOLDER"
 msgstr ""
 
@@ -4577,12 +4657,6 @@ msgstr ""
 msgid "OSMOREGULATION_COST"
 msgstr ""
 
-msgid "OSMOREGULATION_COST_MULTIPLIER"
-msgstr ""
-
-msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
-msgstr ""
-
 msgid "OTHER_COMPOUNDS"
 msgstr ""
 
@@ -4642,6 +4716,9 @@ msgid "PAGE_BACK"
 msgstr ""
 
 msgid "PAGE_FORWARD"
+msgstr ""
+
+msgid "PAGE_PINNED"
 msgstr ""
 
 msgid "PAGE_TITLE"
@@ -4774,6 +4851,13 @@ msgid "PHYSICAL_CONDITIONS"
 msgstr ""
 
 msgid "PHYSICAL_RESISTANCE"
+msgstr ""
+
+#, fuzzy
+msgid "PIN_BUTTON_TOOLTIP"
+msgstr "pali e nasin nena sin"
+
+msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
 msgstr ""
 
 msgid "PLACE_ORGANELLE"
@@ -4925,6 +5009,9 @@ msgstr ""
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr ""
 
+msgid "PROCESS_INACTIVE"
+msgstr ""
+
 #, fuzzy
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
 msgstr ""
@@ -4941,10 +5028,6 @@ msgstr ""
 
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr ""
-
-#, fuzzy
-msgid "PROCESS_TOGGLE_TOOLTIP"
-msgstr "kama lon tenpo pi kama sona. open la sina jo e sona mute."
 
 msgid "PROGRAMMING_TEAM"
 msgstr ""
@@ -6051,6 +6134,9 @@ msgstr ""
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr ""
 
+msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
+msgstr ""
+
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr ""
 
@@ -6063,8 +6149,35 @@ msgstr ""
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
+msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
+msgstr ""
+
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE"
+msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
+msgstr ""
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
+msgstr ""
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
+msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
+msgstr "\"{0}\" - {1}"
 
 msgid "THRIVE_LICENSES"
 msgstr ""
@@ -8684,6 +8797,16 @@ msgstr ""
 
 msgid "ZOOM_OUT"
 msgstr ""
+
+#~ msgid "AEROBIC_NITROGEN_FIXING"
+#~ msgstr "pali pi kon ilo kepeken kon"
+
+#~ msgid "ANAEROBIC_NITROGEN_FIXATION"
+#~ msgstr "pali pi kon ilo kepeken kon ala"
+
+#, fuzzy
+#~ msgid "PROCESS_TOGGLE_TOOLTIP"
+#~ msgstr "kama lon tenpo pi kama sona. open la sina jo e sona mute."
 
 #, fuzzy
 #~ msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"

@@ -80,7 +80,7 @@ public class GodotProjectCompiler
         startInfo.ArgumentList.Add(PackageTool.GODOT_HEADLESS_FLAG);
         startInfo.ArgumentList.Add("--build-solutions");
 
-        // This is needed to workaround Godot bug with it not exiting after the build otherwise
+        // This is needed to work around Godot bug with it not exiting after the build otherwise
         startInfo.ArgumentList.Add("--quit-after");
         startInfo.ArgumentList.Add("2");
 

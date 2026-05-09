@@ -42,7 +42,7 @@ public partial class CompoundStorageStatistics : VBoxContainer
     public void UpdateStorage(Dictionary<Compound, CompoundBalance> daytimeBalances,
         Dictionary<Compound, CompoundBalance> nightBalance, float nominalStorage,
         Dictionary<Compound, float> specialCapacities, float nightDuration, float fillTimeWarning,
-        CustomRichTextLabel notEnoughStorageWarning)
+        HashSet<Compound> compoundsThatWarnFillTime, CustomRichTextLabel notEnoughStorageWarning)
     {
         childCache.UnMarkAll();
 
@@ -94,9 +94,10 @@ public partial class CompoundStorageStatistics : VBoxContainer
                         compoundControl.ValueColour = CompoundAmount.Colour.White;
                     }
 
-                    // Check and give warnings if not enough compound can be generated during the day to survive
-                    // the night
-                    if (!MicrobeInternalCalculations.CanGenerateEnoughCompoundToSurviveNight(nightEntry.Balance,
+                    // Check and give warnings if not enough compounds can be generated during the day to survive
+                    // the night, but only for compound that depend on day to generate
+                    if (compoundsThatWarnFillTime.Contains(entry.Key) &&
+                        !MicrobeInternalCalculations.CanGenerateEnoughCompoundToSurviveNight(nightEntry.Balance,
                             entry.Value.Balance, nightDuration, fillTimeWarning, out var generated, out var required))
                     {
                         storageWarningBuilder.Append(new LocalizedString(

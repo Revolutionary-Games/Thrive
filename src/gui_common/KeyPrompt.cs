@@ -35,10 +35,13 @@ public partial class KeyPrompt : CenterContainer
     protected TextureRect secondaryIcon = null!;
 #pragma warning restore CA2213
 
+    private const float SmallPrimaryIconScale = 0.45f;
+
     private string actionName = string.Empty;
     private StringName? resolvedActionName;
 
     private bool dirty;
+    private bool useSmallPrimaryIcon;
 
     /// <summary>
     ///   Name of the action this key prompt shows
@@ -142,7 +145,7 @@ public partial class KeyPrompt : CenterContainer
             return;
 
         var size = Size;
-        primaryIcon.CustomMinimumSize = size;
+        primaryIcon.CustomMinimumSize = useSmallPrimaryIcon ? size * SmallPrimaryIconScale : size;
         secondaryIcon.CustomMinimumSize = size;
     }
 
@@ -171,19 +174,23 @@ public partial class KeyPrompt : CenterContainer
 
         if (string.IsNullOrEmpty(ActionName))
         {
+            useSmallPrimaryIcon = false;
+            ApplySize();
+
             primaryIcon.Texture = null;
             secondaryIcon.Visible = false;
         }
         else
         {
-            var (primaryTexture, secondaryTexture) = KeyPromptHelper.GetTextureForAction(ActionName);
+            var (primaryTexture, secondaryTexture, smallPrimaryIcon) =
+                KeyPromptHelper.GetTextureForActionWithDisplayOptions(ActionName);
 
             primaryIcon.Texture = primaryTexture;
+            useSmallPrimaryIcon = secondaryTexture != null && smallPrimaryIcon;
+            ApplySize();
 
             if (secondaryTexture != null)
             {
-                // TODO: we need to somehow scale the primary icon down when it is the mouse wheel up or down action...
-
                 secondaryIcon.Texture = secondaryTexture;
                 secondaryIcon.Visible = true;
             }

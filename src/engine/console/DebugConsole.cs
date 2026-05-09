@@ -23,6 +23,10 @@ public partial class DebugConsole : CustomWindow, ICommandInvoker
 
     private bool stickToBottom = true;
 
+    private int newGlobalMessages;
+    private int newPrivateMessages;
+    private string lastAdded = string.Empty;
+
 #pragma warning disable CA2213
     [Export]
     private VBoxContainer debugEntryList = null!;
@@ -90,6 +94,9 @@ public partial class DebugConsole : CustomWindow, ICommandInvoker
 
     public override void _Process(double delta)
     {
+        if (newPrivateMessages > 0 || newGlobalMessages > 0)
+            RefreshLogs();
+
         UpdateLiveEntries();
         UpdateAutoscroll();
 
@@ -105,6 +112,9 @@ public partial class DebugConsole : CustomWindow, ICommandInvoker
             if (node is RichTextLabel label)
                 label.Visible = false;
         }
+
+        newPrivateMessages = 0;
+        newGlobalMessages = 0;
     }
 
     public void Print(DebugConsoleManager.RawDebugEntry entry)
@@ -198,7 +208,7 @@ public partial class DebugConsole : CustomWindow, ICommandInvoker
 
         commandInput.GrabFocus();
 
-        RefreshLogs(DebugConsoleManager.Instance.MessageCountInHistory, privateHistory.Count);
+        newGlobalMessages = DebugConsoleManager.Instance.MessageCountInHistory;
     }
 
     private void AddPrivateEntry(DebugEntry entry)
@@ -208,20 +218,24 @@ public partial class DebugConsole : CustomWindow, ICommandInvoker
         if (privateHistory.Count > MaxPrivateHistorySize)
             privateHistory.RemoveFromFront();
 
-        RefreshLogs(0, 1);
+        ++newPrivateMessages;
+
+        if (newPrivateMessages > MaxPrivateHistorySize)
+            newPrivateMessages = (int)MaxPrivateHistorySize;
     }
 
-    private void RefreshLogs(int newMessages, int newPrivateMessages)
+    private void RefreshLogs()
     {
         int size = DebugConsoleManager.Instance.MessageCountInHistory;
 
         int globalAdded = 0;
         int localAdded = 0;
-        while (globalAdded < newMessages || localAdded < newPrivateMessages)
+
+        while (globalAdded < newGlobalMessages || localAdded < newPrivateMessages)
         {
             DebugEntry entry;
 
-            int globalIndex = size - newMessages + globalAdded;
+            int globalIndex = size - newGlobalMessages + globalAdded;
             int localIndex = privateHistory.Count - newPrivateMessages + localAdded;
 
             if (globalIndex == size)
@@ -255,7 +269,14 @@ public partial class DebugConsole : CustomWindow, ICommandInvoker
 
             RichTextLabel label;
             EntryView view;
-            if (debugEntryLabels.Count > DebugConsoleManager.MaxHistorySize)
+            if (lastAdded == entry.Text && debugEntryLabels.Count > 0 && debugEntryLabels[^1].Content.Frozen)
+            {
+                view = debugEntryLabels[^1];
+                label = view.Label;
+
+                ++view.LocalAmount;
+            }
+            else if (debugEntryLabels.Count > DebugConsoleManager.MaxHistorySize)
             {
                 view = debugEntryLabels.RemoveFromFront();
                 view.Content = entry;
@@ -278,16 +299,28 @@ public partial class DebugConsole : CustomWindow, ICommandInvoker
                 view = new EntryView(label, entry);
             }
 
-            debugEntryLabels.AddToBack(view);
-            debugEntryList.AddChild(label);
+            lastAdded = entry.Text;
+            if (view.LocalAmount > 1)
+            {
+                // This allocates for string formatting, but it shouldn't be an issue as it should be sporadic enough.
+                label.Text = lastAdded.TrimEnd('\n') + $" [x{view.LocalAmount}]";
+            }
+            else
+            {
+                label.Text = lastAdded;
 
-            label.Text = entry.Text;
+                debugEntryLabels.AddToBack(view);
+                debugEntryList.AddChild(label);
 
-            if (!entry.Frozen)
-                liveEntries.Add(view);
+                if (!entry.Frozen)
+                    liveEntries.Add(view);
+            }
         }
 
         UpdateLiveEntries();
+
+        newPrivateMessages = 0;
+        newGlobalMessages = 0;
     }
 
     private void UpdateLiveEntries()
@@ -308,7 +341,7 @@ public partial class DebugConsole : CustomWindow, ICommandInvoker
 
     private void RefreshLogs(object? o, DebugConsoleManager.HistoryUpdatedEventArgs e)
     {
-        RefreshLogs(e.NewMessages, 0);
+        newGlobalMessages = e.NewMessages;
     }
 
     private void CommandSubmitted(string command)
@@ -344,5 +377,6 @@ public partial class DebugConsole : CustomWindow, ICommandInvoker
     {
         public readonly RichTextLabel Label = label;
         public DebugEntry Content = content;
+        public int LocalAmount = 1;
     }
 }

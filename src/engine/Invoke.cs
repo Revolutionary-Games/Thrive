@@ -123,7 +123,7 @@ public partial class Invoke : Node
     ///   action is run
     /// </param>
     /// <param name="logDispose">
-    ///   If true then a log message is printed if <see cref="forObject"/> is disposed before the action is ran
+    ///   If true then a log message is printed if <see cref="forObject"/> is disposed before the action is run
     /// </param>
     public void QueueForObject(Action action, GodotObject forObject, bool logDispose = false)
     {
@@ -135,7 +135,7 @@ public partial class Invoke : Node
 
         var skippableInvoke = new SkippableDisposedInvoke(action, forObject, logDispose);
 
-        nextFrameInvokes.Add(() => skippableInvoke.Run());
+        nextFrameInvokes.Add(skippableInvoke.Run);
     }
 
     /// <summary>

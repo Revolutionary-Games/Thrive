@@ -236,7 +236,7 @@ public partial class FoodChainDisplay : Control
         // FRLayoutAlgorithm seems to fail often so it is not usable with our data
 
         layoutAlgorithm.Compute();
-        cancellationSource.Token.Register(() => layoutAlgorithm.Abort());
+        cancellationSource.Token.Register(layoutAlgorithm.Abort);
 
         if (layoutAlgorithm.State != ComputationState.Finished)
             GD.PrintErr("Graph layout algorithm didn't finish");

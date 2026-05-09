@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-27 14:48+0200\n"
-"PO-Revision-Date: 2025-11-28 09:29+0000\n"
-"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
+"POT-Creation-Date: 2026-05-08 16:35+0300\n"
+"PO-Revision-Date: 2026-04-10 22:42+0000\n"
+"Last-Translator: Argakyan <andrinmueller@hotmail.ch>\n"
 "Language-Team: Alemannic <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/gsw/>\n"
 "Language: gsw\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11.4\n"
+"X-Generator: Weblate 5.16.1\n"
 "Generated-By: Thrive.Scripts 1.2.0.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -111,9 +111,6 @@ msgstr "Erwiiteriti Iistellige aazeige"
 msgid "AEROBIC_NITROGEN_FIXATION"
 msgstr "Aerobi Stickstofffixierig"
 
-msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "Aerobi Stickstofffixierig"
-
 msgid "AEROBIC_RESPIRATION"
 msgstr "Aerobi Atmig"
 
@@ -197,9 +194,6 @@ msgstr "Aazahl vode Autospiicherige:"
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Aazahl vode Schnällspiicherige:"
-
-msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "Anaerobi Stickstofffixierig"
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr "und"
@@ -768,6 +762,10 @@ msgstr "Cheatmenü"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Zellprozess I-/usblende"
+
+#, fuzzy
+msgid "CHEMICAL_EQUATION_SPEED_EXPLANATION"
+msgstr "(Mutationsgschwindigkeit für KI-gstüürti Spezie)"
 
 msgid "CHEMOPLAST"
 msgstr "Chemoplascht"
@@ -1635,6 +1633,7 @@ msgstr "Zruggentwickle"
 msgid "DESCEND_CONFIRMATION"
 msgstr "Bisch sicher, dass du dich zrugg entwickle wettsch?"
 
+#, fuzzy
 msgid "DESCEND_CONFIRMATION_EXPLANATION"
 msgstr ""
 "Abstieg entfernt de Uufstiegsstatus und wirft dich zrugg is Mikrobestatium. Vo dötte uus chasch im derziitige Spielstand nommal durs Spiel spiele.\n"
@@ -1717,6 +1716,10 @@ msgstr "Schwer"
 
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "Normal"
+
+#, fuzzy
+msgid "DIFFICULTY_PRESET_VERY_EASY"
+msgstr "Liecht"
 
 msgid "DIGESTION_EFFICIENCY"
 msgstr "Verdauigseffizienz"
@@ -2066,6 +2069,14 @@ msgstr ""
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr ""
 
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER"
+msgstr "Simulationsmultiplikator:"
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER_EXPLANATION"
+msgstr "(Prozentsatz vode Bevölkerigsänderig, wo Auto-Evo uf d'Spieler-Spezies aawendet)"
+
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energie i {0} für {1}"
 
@@ -2220,6 +2231,10 @@ msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Das isch d'exakti Version vo dere Thrive Instantz"
 
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
+msgstr "Während de Verarbeitig vo g'laddene Objekte isch en Fehler passiert"
+
+#, fuzzy
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE_JUKEBOX"
 msgstr "Während de Verarbeitig vo g'laddene Objekte isch en Fehler passiert"
 
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
@@ -2793,6 +2808,14 @@ msgstr ""
 msgid "IMAGE_FILE_TYPES"
 msgstr "Unterstützti Bilddateie"
 
+#, fuzzy
+msgid "INCOMPATIBLE_MEMBRANE_LIST"
+msgstr "E zweischichtigi Membran bütet bessere Schutz vor Schade und benötigt weniger Energie um sich nöd z'deformiere. Sie verlangsamt allerdings d'Zelle und senkt ihri Fähigkeit Ressource z'absorbiere."
+
+#, fuzzy
+msgid "INCOMPATIBLE_ORGANELLE_LIST"
+msgstr "Trennti Organelle"
+
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Objektgrössi erhöhe"
 
@@ -2846,6 +2869,14 @@ msgstr "Bruucht Zellkern"
 
 msgid "INFO_BOX_SIZE"
 msgstr "Grössi (in Hexagone)"
+
+#, fuzzy
+msgid "INFO_BOX_SIZE_PLAIN"
+msgstr "Grössi (in Hexagone)"
+
+#, fuzzy
+msgid "INFO_BOX_STAGE"
+msgstr "Spiicher"
 
 msgid "INFO_BOX_STORAGE"
 msgstr "Spiicher"
@@ -3449,6 +3480,20 @@ msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
 
 msgid "LOCK_DAY_NIGHT_CYCLE"
+msgstr ""
+
+#, fuzzy
+msgid "LOOK_LEFT"
+msgstr "Links"
+
+#, fuzzy
+msgid "LOOK_RIGHT"
+msgstr "Rechts"
+
+msgid "LOOK_SCREEN_DOWN_OR_3D_TOWARDS_UP"
+msgstr ""
+
+msgid "LOOK_SCREEN_UP_OR_3D_TOWARDS_DOWN"
 msgstr ""
 
 msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
@@ -4140,6 +4185,30 @@ msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr ""
 
 #, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_2"
+msgstr "Pass uf grösseri Organisme uuf. Sie werdet dich fresse und verdaut z'werde isch kes Zuckerspiel!"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_3"
+msgstr "Bis vorsichtig, wenn du d'gliichi Spezies d'ganzi Ziit über jagsch. Sie chönnd dadur uussterbe."
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_4"
+msgstr "Mängisch isches am beste efach ab z'haue."
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_5"
+msgstr "Wenn Auto-Evo en Bevölkerigsabfall vo dinere Art voruus seit chasch du d'Bevölkerig trotzdem no immer stiigere, wenn du in Spiel guet abschniidisch."
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_6"
+msgstr "Nöd vergesse: D'Aazeig rechts obbe zeigt dir, was unter em Cursor isch."
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_7"
+msgstr "Wenn dini Bevölkerig auf Null keit, stirbsch du uus."
+
+#, fuzzy
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "(einigi Funktione chönnd nümme verfüegbar siim, wenn du id nöchschti Stufe chunnsch)"
 
@@ -4253,6 +4322,10 @@ msgstr ""
 
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
+
+#, fuzzy
+msgid "NITROGEN_FIXATION"
+msgstr "Aerobi Stickstofffixierig"
 
 msgid "NITROPLAST"
 msgstr ""
@@ -4413,6 +4486,10 @@ msgstr ""
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr ""
 
+#, fuzzy
+msgid "OPEN_EVOLUTIONARY_TREE"
+msgstr "Evolutionsbaum"
+
 msgid "OPEN_FOLDER"
 msgstr ""
 
@@ -4548,12 +4625,6 @@ msgstr ""
 msgid "OSMOREGULATION_COST"
 msgstr ""
 
-msgid "OSMOREGULATION_COST_MULTIPLIER"
-msgstr ""
-
-msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
-msgstr ""
-
 msgid "OTHER_COMPOUNDS"
 msgstr ""
 
@@ -4612,6 +4683,9 @@ msgid "PAGE_BACK"
 msgstr ""
 
 msgid "PAGE_FORWARD"
+msgstr ""
+
+msgid "PAGE_PINNED"
 msgstr ""
 
 msgid "PAGE_TITLE"
@@ -4741,6 +4815,13 @@ msgid "PHYSICAL_CONDITIONS"
 msgstr ""
 
 msgid "PHYSICAL_RESISTANCE"
+msgstr ""
+
+#, fuzzy
+msgid "PIN_BUTTON_TOOLTIP"
+msgstr "Wie mer's Spiel spielt"
+
+msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
 msgstr ""
 
 msgid "PLACE_ORGANELLE"
@@ -4880,6 +4961,9 @@ msgstr ""
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr ""
 
+msgid "PROCESS_INACTIVE"
+msgstr ""
+
 #, fuzzy
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
 msgstr ""
@@ -4896,12 +4980,6 @@ msgstr ""
 
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr ""
-
-msgid "PROCESS_TOGGLE_TOOLTIP"
-msgstr ""
-"Schalt de Prozess a oder uus. Das erlaubt fortgschritteni Kontrolle über Zelleprozess.\n"
-"Zum Biispiel chammer Toxinproduktion abstelle sofern unnötig.\n"
-"Oder mer chann manuell balanciere welli Energiequelle mer benutze wett um effizienter z'sii, aber das isch e Fortschritteni Taktik."
 
 msgid "PROGRAMMING_TEAM"
 msgstr ""
@@ -5989,6 +6067,10 @@ msgstr ""
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
+msgstr "Uus g'storbeni Art"
+
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr ""
 
@@ -6001,8 +6083,36 @@ msgstr ""
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
+msgstr "Uus g'storbeni Art"
+
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
+msgstr "Zeigt, dass die Spezies idem auto-evo Zyklus mutiert isch"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE"
+msgstr "Zeigt, dass die Spezies idem auto-evo Zyklus mutiert isch"
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
+msgstr ""
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
+msgstr ""
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
+msgstr ""
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
+msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
+msgstr "Zeigt, dass die Spezies idem auto-evo Zyklus mutiert isch"
 
 msgid "THRIVE_LICENSES"
 msgstr ""
@@ -8298,6 +8408,18 @@ msgstr ""
 
 msgid "ZOOM_OUT"
 msgstr ""
+
+#~ msgid "AEROBIC_NITROGEN_FIXING"
+#~ msgstr "Aerobi Stickstofffixierig"
+
+#~ msgid "ANAEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Anaerobi Stickstofffixierig"
+
+#~ msgid "PROCESS_TOGGLE_TOOLTIP"
+#~ msgstr ""
+#~ "Schalt de Prozess a oder uus. Das erlaubt fortgschritteni Kontrolle über Zelleprozess.\n"
+#~ "Zum Biispiel chammer Toxinproduktion abstelle sofern unnötig.\n"
+#~ "Oder mer chann manuell balanciere welli Energiequelle mer benutze wett um effizienter z'sii, aber das isch e Fortschritteni Taktik."
 
 #~ msgid "KEEP_CURRENT_SHORT"
 #~ msgstr "Jetziges B'halte"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-27 14:48+0200\n"
+"POT-Creation-Date: 2026-05-08 16:35+0300\n"
 "PO-Revision-Date: 2025-01-21 12:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Romanian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ro/>\n"
@@ -114,9 +114,6 @@ msgstr "Deschide meniul setărilor avansate"
 msgid "AEROBIC_NITROGEN_FIXATION"
 msgstr "Fixarea azotului anaerob"
 
-msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "Fixare aerobă a azotului"
-
 #, fuzzy
 msgid "AEROBIC_RESPIRATION"
 msgstr "Fixarea azotului anaerob"
@@ -205,9 +202,6 @@ msgstr "Cantitatea de salvări automate de păstrat:"
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Cantitatea de salvări rapide de păstrat:"
-
-msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "Fixarea azotului anaerob"
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr "și"
@@ -784,6 +778,10 @@ msgstr ""
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
+
+#, fuzzy
+msgid "CHEMICAL_EQUATION_SPEED_EXPLANATION"
+msgstr "(viteza cu care speciile IA suferă mutații)"
 
 msgid "CHEMOPLAST"
 msgstr ""
@@ -1665,6 +1663,10 @@ msgstr "Greu"
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "Normal"
 
+#, fuzzy
+msgid "DIFFICULTY_PRESET_VERY_EASY"
+msgstr "Ușor"
+
 msgid "DIGESTION_EFFICIENCY"
 msgstr ""
 
@@ -2022,6 +2024,13 @@ msgstr ""
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr ""
 
+msgid "ENERGY_COST_MULTIPLIER"
+msgstr ""
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER_EXPLANATION"
+msgstr "(viteza cu care speciile IA suferă mutații)"
+
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
@@ -2153,6 +2162,9 @@ msgid "EXACT_VERSION_TOOLTIP"
 msgstr ""
 
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
+msgstr ""
+
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE_JUKEBOX"
 msgstr ""
 
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
@@ -2723,6 +2735,14 @@ msgstr ""
 msgid "IMAGE_FILE_TYPES"
 msgstr ""
 
+#, fuzzy
+msgid "INCOMPATIBLE_MEMBRANE_LIST"
+msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] şi mouse-ul să vă deplasați. [thrive:input]g_fire_toxin[/thrive:input] pentru a trage [thrive:compound type=\"oxytoxy\"][/thrive:compound] dacă aveți o vacuolă de toxine. [thrive:input]g_toggle_engulf[/thrive:input] pentru a activa modul de înghițit. Puteți să zoomați mai aproape și mai departe cu rotița mouse-ului."
+
+#, fuzzy
+msgid "INCOMPATIBLE_ORGANELLE_LIST"
+msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] şi mouse-ul să vă deplasați. [thrive:input]g_fire_toxin[/thrive:input] pentru a trage [thrive:compound type=\"oxytoxy\"][/thrive:compound] dacă aveți o vacuolă de toxine. [thrive:input]g_toggle_engulf[/thrive:input] pentru a activa modul de înghițit. Puteți să zoomați mai aproape și mai departe cu rotița mouse-ului."
+
 msgid "INCREASE_ITEM_SIZE"
 msgstr ""
 
@@ -2779,6 +2799,14 @@ msgstr ""
 
 msgid "INFO_BOX_SIZE"
 msgstr ""
+
+#, fuzzy
+msgid "INFO_BOX_SIZE_PLAIN"
+msgstr "Etapa Microbilor"
+
+#, fuzzy
+msgid "INFO_BOX_STAGE"
+msgstr "Etapa Microbilor"
 
 msgid "INFO_BOX_STORAGE"
 msgstr ""
@@ -3383,6 +3411,18 @@ msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
 
 msgid "LOCK_DAY_NIGHT_CYCLE"
+msgstr ""
+
+msgid "LOOK_LEFT"
+msgstr ""
+
+msgid "LOOK_RIGHT"
+msgstr ""
+
+msgid "LOOK_SCREEN_DOWN_OR_3D_TOWARDS_UP"
+msgstr ""
+
+msgid "LOOK_SCREEN_UP_OR_3D_TOWARDS_DOWN"
 msgstr ""
 
 msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
@@ -4142,6 +4182,30 @@ msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Editorul Multicelular"
 
 #, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_2"
+msgstr "Editorul Multicelular"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_3"
+msgstr "Editorul Multicelular"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_4"
+msgstr "Editorul Multicelular"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_5"
+msgstr "Editorul Multicelular"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_6"
+msgstr "Editorul Multicelular"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_7"
+msgstr "Editorul Multicelular"
+
+#, fuzzy
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "Etapa Multicelulară"
 
@@ -4255,6 +4319,10 @@ msgstr ""
 
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
+
+#, fuzzy
+msgid "NITROGEN_FIXATION"
+msgstr "Fixarea azotului anaerob"
 
 msgid "NITROPLAST"
 msgstr ""
@@ -4423,6 +4491,9 @@ msgstr ""
 "Microbii pașnici nu vor urmări pe alții pe distanțe mai mari\n"
 "și sunt mai puțin susceptibile de a folosi toxine împotriva prădătorilor."
 
+msgid "OPEN_EVOLUTIONARY_TREE"
+msgstr ""
+
 msgid "OPEN_FOLDER"
 msgstr ""
 
@@ -4565,12 +4636,6 @@ msgstr ""
 msgid "OSMOREGULATION_COST"
 msgstr ""
 
-msgid "OSMOREGULATION_COST_MULTIPLIER"
-msgstr ""
-
-msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
-msgstr ""
-
 msgid "OTHER_COMPOUNDS"
 msgstr ""
 
@@ -4630,6 +4695,9 @@ msgid "PAGE_BACK"
 msgstr ""
 
 msgid "PAGE_FORWARD"
+msgstr ""
+
+msgid "PAGE_PINNED"
 msgstr ""
 
 msgid "PAGE_TITLE"
@@ -4773,6 +4841,13 @@ msgstr ""
 msgid "PHYSICAL_RESISTANCE"
 msgstr ""
 
+#, fuzzy
+msgid "PIN_BUTTON_TOOLTIP"
+msgstr "Adaugă un key-bind nou"
+
+msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
+msgstr ""
+
 msgid "PLACE_ORGANELLE"
 msgstr ""
 
@@ -4911,6 +4986,9 @@ msgstr ""
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr ""
 
+msgid "PROCESS_INACTIVE"
+msgstr ""
+
 #, fuzzy
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
 msgstr ""
@@ -4927,10 +5005,6 @@ msgstr ""
 
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr ""
-
-#, fuzzy
-msgid "PROCESS_TOGGLE_TOOLTIP"
-msgstr "Treceți la etapa de trezire. Disponibil odată ce aveți creierul suficient de dezvoltat (tip de țesut cu axoni)."
 
 msgid "PROGRAMMING_TEAM"
 msgstr ""
@@ -6049,6 +6123,9 @@ msgstr ""
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr ""
 
+msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
+msgstr ""
+
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr ""
 
@@ -6061,8 +6138,36 @@ msgstr ""
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
+msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
+msgstr ""
+
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
+msgstr "Etapa Microbilor"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE"
+msgstr "Permiteți speciilor să nu sufere mutații (dacă nu se găsește nicio mutație bună)"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
+msgstr "Etapa Microbilor"
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
+msgstr ""
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
+msgstr ""
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
+msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
+msgstr "\"{0}\" - {1}"
 
 msgid "THRIVE_LICENSES"
 msgstr ""
@@ -8941,6 +9046,16 @@ msgstr ""
 
 msgid "ZOOM_OUT"
 msgstr ""
+
+#~ msgid "AEROBIC_NITROGEN_FIXING"
+#~ msgstr "Fixare aerobă a azotului"
+
+#~ msgid "ANAEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Fixarea azotului anaerob"
+
+#, fuzzy
+#~ msgid "PROCESS_TOGGLE_TOOLTIP"
+#~ msgstr "Treceți la etapa de trezire. Disponibil odată ce aveți creierul suficient de dezvoltat (tip de țesut cu axoni)."
 
 #, fuzzy
 #~ msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"

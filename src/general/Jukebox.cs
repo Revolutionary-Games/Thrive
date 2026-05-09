@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Godot;
 using Xoshiro.PRNG32;
 
 /// <summary>
-///   Manages playing music. Autoload singleton
+///   Manages playing of music. Autoload singleton
 /// </summary>
 [GodotAutoload]
 public partial class Jukebox : Node
@@ -16,7 +15,32 @@ public partial class Jukebox : Node
 
     private static Jukebox? instance;
 
-    private readonly List<AudioPlayer> audioPlayers = new();
+    private readonly List<AudioPlayer> audioPlayers = [];
+
+    /// <summary>
+    ///   Cache playable tracks as candidates when trying to play the next track
+    /// </summary>
+    private readonly List<TrackList.Track> workMemory1 = [];
+
+    /// <summary>
+    ///   Cache context only tracks as candidates when trying to play the next track
+    /// </summary>
+    private readonly List<TrackList.Track> workMemory2 = [];
+
+    /// <summary>
+    ///   Cache track lists that don't have a playing track in them
+    /// </summary>
+    private readonly List<TrackList> workMemory3 = [];
+
+    /// <summary>
+    ///   Cache usable audio players when trying to play the next track
+    /// </summary>
+    private readonly List<AudioPlayer> workMemory4 = [];
+
+    /// <summary>
+    ///   Cache active playing tracks' resource paths
+    /// </summary>
+    private readonly List<string> workMemory5 = [];
 
     private readonly Queue<Operation> operations = new();
 
@@ -53,7 +77,15 @@ public partial class Jukebox : Node
         instance = this;
     }
 
+    internal enum JukeboxCommandParameters
+    {
+        Status,
+        Next,
+    }
+
     public static Jukebox Instance => instance ?? throw new InstanceNotLoadedYetException();
+
+    public static bool HasInstance => instance != null;
 
     /// <summary>
     ///   The category to play music tracks from
@@ -77,8 +109,18 @@ public partial class Jukebox : Node
         }
     }
 
-    private List<string> PlayingTracks => audioPlayers.Where(p => p.Playing)
-        .Select(p => p.CurrentTrack).WhereNotNull().ToList();
+    public JukeboxPlaybackState PlaybackState
+    {
+        get => CreatePlaybackState();
+        set
+        {
+            // We call this to not end the current category, but just to save and remember the positions of tracks
+            // that were playing right now
+            OnCategoryEnded();
+
+            ApplyPlaybackState(value);
+        }
+    }
 
     public override void _Ready()
     {
@@ -200,6 +242,133 @@ public partial class Jukebox : Node
                 return true;
             }));
         }
+    }
+
+    [Command("jukebox", false,
+        "`jukebox status` shows the currently playing Jukebox's active category, " +
+        "current active audio players and their playing tracks.\n" +
+        "`jukebox next i (default 0)` advances the i-th active audio player's playing track to the next selection. " +
+        "i start from 0.")]
+    private static bool CommandJukebox(CommandContext context, JukeboxCommandParameters param, int index = 0)
+    {
+        switch (param)
+        {
+            case JukeboxCommandParameters.Status when !HasInstance:
+                context.PrintWarning("Jukebox has no active instance.");
+                return false;
+            case JukeboxCommandParameters.Status:
+                return Instance.PrintPlaybackStatus(context);
+            case JukeboxCommandParameters.Next:
+                return CommandJukeboxNextTrack(context, index);
+            default:
+                context.PrintWarning("Illegal parameter");
+                return false;
+        }
+    }
+
+    private static bool CommandJukeboxNextTrack(CommandContext context, int index)
+    {
+        if (!HasInstance)
+        {
+            context.PrintWarning("Jukebox has no active instance.");
+            return false;
+        }
+
+        if (Instance.operations.Count > 0)
+        {
+            context.PrintWarning("Jukebox is busy with a pending transition. Wait for it to finish before advancing.");
+            return false;
+        }
+
+        if (Instance.playingCategory == null)
+        {
+            context.PrintWarning("Jukebox is not currently playing a category.");
+            return false;
+        }
+
+        var activePlayers = Instance.GetActiveAudioPlayersForDebugCommands();
+
+        if (activePlayers.Count <= 0)
+        {
+            context.PrintWarning("Jukebox has no active track to advance.");
+            return false;
+        }
+
+        if (index < 0 || index >= activePlayers.Count)
+        {
+            context.PrintWarning(
+                $"Jukebox audio player index {index} is invalid. Valid indexes are 0-{activePlayers.Count - 1}.");
+            return false;
+        }
+
+        if (!Instance.AdvanceToNextTrack(activePlayers[index]))
+        {
+            context.PrintWarning("Jukebox has no active track to advance.");
+            return false;
+        }
+
+        context.Print($"Jukebox advanced audio player {index} to the next track.");
+        return true;
+    }
+
+    private bool PrintPlaybackStatus(CommandContext context)
+    {
+        if (playingCategory == null)
+        {
+            context.PrintWarning("Jukebox is not currently playing a category.");
+            return false;
+        }
+
+        context.Print($"Jukebox category: {playingCategory}");
+
+        var activePlayers = GetActiveAudioPlayersForDebugCommands();
+        var count = activePlayers.Count;
+
+        if (count <= 0)
+        {
+            context.PrintWarning("Jukebox has no active players.");
+            return false;
+        }
+
+        for (var i = 0; i < count; ++i)
+        {
+            var player = activePlayers[i];
+            context.Print($"audio player {i}, Bus: {player.Bus}, playing: {player.CurrentTrack}");
+        }
+
+        return true;
+    }
+
+    private List<AudioPlayer> GetActiveAudioPlayersForDebugCommands()
+    {
+        var activePlayers = new List<AudioPlayer>();
+
+        foreach (var player in audioPlayers)
+        {
+            if (player is { Playing: true, CurrentTrack: not null })
+                activePlayers.Add(player);
+        }
+
+        return activePlayers;
+    }
+
+    /// <summary>
+    ///   Advances the selected currently playing track as if it had just naturally ended.
+    /// </summary>
+    /// <returns>
+    ///   True if the selected active track was advanced; false if nothing is currently playing.
+    /// </returns>
+    private bool AdvanceToNextTrack(AudioPlayer player)
+    {
+        if (playingCategory == null)
+            return false;
+
+        if (!player.Playing || player.CurrentTrack == null)
+            return false;
+
+        player.Player.Stop();
+        OnSomeTrackEnded();
+        return true;
     }
 
     private void UpdateStreamsPauseStatus()
@@ -491,14 +660,16 @@ public partial class Jukebox : Node
         {
             foreach (var list in target.TrackLists)
             {
-                foreach (var track in list.GetTracksForContexts(activeContexts))
+                var playableTracks = GetPlayableTracks(list);
+
+                foreach (var track in playableTracks)
                 {
                     // Resume track (but only one per list)
-                    if (track.WasPlaying)
-                    {
-                        PlayTrack(GetNextPlayer(nextPlayerToUse++), track, list.TrackBus, track.PreviousPlayedPosition);
-                        break;
-                    }
+                    if (!track.WasPlaying)
+                        continue;
+
+                    PlayTrack(GetNextPlayer(nextPlayerToUse++), track, list.TrackBus, track.PreviousPlayedPosition);
+                    break;
                 }
             }
         }
@@ -506,79 +677,210 @@ public partial class Jukebox : Node
         StartPlayingFromMissingLists(target);
     }
 
+    private JukeboxPlaybackState CreatePlaybackState()
+    {
+        var state = new JukeboxPlaybackState();
+
+        foreach (var (categoryName, category) in categories)
+        {
+            // Skip categories that are general and not save-specific
+            if (category.IsGlobalMenu)
+                continue;
+
+            var trackPositions = new Dictionary<string, float>();
+
+            foreach (var list in category.TrackLists)
+            {
+                foreach (var track in list.GetAllTracks())
+                {
+                    if (track.WasPlaying)
+                        trackPositions[track.ResourcePath] = track.PreviousPlayedPosition;
+                }
+            }
+
+            if (categoryName == playingCategory)
+            {
+                foreach (var player in audioPlayers)
+                {
+                    if (!player.Playing || player.CurrentTrack == null)
+                        continue;
+
+                    trackPositions[player.CurrentTrack] = player.Player.GetPlaybackPosition();
+                }
+            }
+
+            if (trackPositions.Count > 0)
+                state.TrackPositionsByCategory[categoryName] = trackPositions;
+        }
+
+        return state;
+    }
+
+    private void ApplyPlaybackState(JukeboxPlaybackState state)
+    {
+        foreach (var (categoryName, trackPositions) in state.TrackPositionsByCategory)
+        {
+            if (!categories.TryGetValue(categoryName, out var category))
+                continue;
+
+            if (category.IsGlobalMenu)
+            {
+                GD.Print($"Ignoring Jukebox state in a save for global category: {categoryName}");
+                continue;
+            }
+
+            foreach (var list in category.TrackLists)
+            {
+                foreach (var track in list.GetAllTracks())
+                {
+                    // Reset all tracks to be eligible to be played again after loading a save
+                    track.PlayedOnce = false;
+
+                    if (trackPositions.TryGetValue(track.ResourcePath, out var position))
+                    {
+                        track.WasPlaying = true;
+                        track.PreviousPlayedPosition = position;
+                    }
+                    else
+                    {
+                        track.WasPlaying = false;
+                        track.PreviousPlayedPosition = 0;
+                    }
+                }
+            }
+        }
+    }
+
     private void StartPlayingFromMissingLists(MusicCategory target)
     {
         // Find track lists that don't have a playing track in them and reallocate players for those
-        var needToStartFrom = new List<TrackList>();
+        var activePlayingTracks = GetActivePlayingTracks();
+        var usableAudioPlayers = GetUsableAudioPlayers();
+        var missingTrackLists = GetMissingTrackLists(target, activePlayingTracks);
 
-        var activeTracks = PlayingTracks;
-        var usablePlayers = audioPlayers.Where(p => !p.Playing).ToList();
+        var nextPlayerToUse = 0;
 
-        foreach (var list in target.TrackLists)
+        foreach (var list in missingTrackLists)
         {
-            // Detecting playing tracks doesn't take context restrictions into account to allow context to change but
-            // not then force 2 tracks to play at the same time from the same track list if the context switch didn't
-            // force tracks to end
-            var trackResources = list.GetAllTracks().Select(t => t.ResourcePath);
-            if (activeTracks.Any(t => trackResources.Contains(t)))
+            if (!ShouldStartTrackFromList(list))
                 continue;
 
-            needToStartFrom.Add(list);
-        }
-
-        int nextPlayerToUse = 0;
-
-        foreach (var list in needToStartFrom)
-        {
-            if (!list.Repeat && list.GetTracksForContexts(activeContexts).All(t => t.PlayedOnce))
-                continue;
-
-            PlayNextTrackFromList(list, index =>
-            {
-                if (index < usablePlayers.Count)
-                {
-                    return usablePlayers[index];
-                }
-
-                return NewPlayer();
-            }, nextPlayerToUse++);
+            PlayNextTrackFromList(list, usableAudioPlayers, nextPlayerToUse);
+            ++nextPlayerToUse;
         }
 
         // Set pause status for any new streams
         UpdateStreamsPauseStatus();
     }
 
-    private void PlayNextTrackFromList(TrackList list, Func<int, AudioPlayer> getPlayer, int playerToUse)
+    private List<string> GetActivePlayingTracks()
+    {
+        var activePlayingTracks = workMemory5;
+        activePlayingTracks.Clear();
+        foreach (var player in audioPlayers)
+        {
+            if (!player.Playing || player.CurrentTrack == null)
+                continue;
+
+            activePlayingTracks.Add(player.CurrentTrack);
+        }
+
+        return activePlayingTracks;
+    }
+
+    private List<AudioPlayer> GetUsableAudioPlayers()
+    {
+        var usableAudioPlayers = workMemory4;
+        usableAudioPlayers.Clear();
+        foreach (var player in audioPlayers)
+        {
+            if (!player.Playing)
+                usableAudioPlayers.Add(player);
+        }
+
+        return usableAudioPlayers;
+    }
+
+    private List<TrackList> GetMissingTrackLists(MusicCategory target, List<string> activeTrackPaths)
+    {
+        var missingTrackLists = workMemory3;
+        missingTrackLists.Clear();
+        foreach (var list in target.TrackLists)
+        {
+            // Detecting playing tracks doesn't take context restrictions into account to allow context to change but
+            // not then force 2 tracks to play at the same time from the same track list if the context switch didn't
+            // force tracks to end
+            if (TrackListHasActiveTrack(list, activeTrackPaths))
+                continue;
+
+            missingTrackLists.Add(list);
+        }
+
+        return missingTrackLists;
+    }
+
+    private bool TrackListHasActiveTrack(TrackList list, List<string> activeTracks)
+    {
+        foreach (var track in list.GetAllTracks())
+        {
+            foreach (var activeTrack in activeTracks)
+            {
+                if (activeTrack == track.ResourcePath)
+                    return true;
+            }
+        }
+
+        return false;
+    }
+
+    private bool ShouldStartTrackFromList(TrackList list)
+    {
+        if (list.Repeat)
+            return true;
+
+        var playableTracks = GetPlayableTracks(list);
+
+        foreach (var track in playableTracks)
+        {
+            if (!track.PlayedOnce)
+                return true;
+        }
+
+        return false;
+    }
+
+    private List<TrackList.Track> GetPlayableTracks(TrackList list)
+    {
+        var playableTracks = workMemory1;
+        list.GetTracksForContexts(activeContexts, playableTracks);
+        return playableTracks;
+    }
+
+    private void PlayNextTrackFromList(TrackList list, List<AudioPlayer> usablePlayers, int nextPlayerToUse)
     {
         var mode = list.TrackOrder;
-        TrackList.Track[]? tracks = null;
+        var playableTracks = GetPlayableTracks(list);
+
+        var candidateTracks = playableTracks;
+
+        if (candidateTracks.Count == 0)
+            return;
 
         var random = new XoShiRo128starstar();
 
         if (random.NextFloat() <= Constants.CONTEXTUAL_ONLY_MUSIC_CHANCE)
         {
-            var contextMusicOnly = list.GetTracksForContexts(activeContexts).Where(c => c.ExclusiveToContexts != null)
-                .ToArray();
+            var contextOnlyTracks = GetContextOnlyTracks(list, candidateTracks);
 
-            if (contextMusicOnly.Length > 0)
-            {
-                tracks = contextMusicOnly;
-
-                // TODO: it would be nice to ensure that contextual track doesn't cause the same track to play in a row
-                // Currently it is way more likely as most contexts only have one track for them.
-            }
+            if (contextOnlyTracks.Count > 0)
+                candidateTracks = contextOnlyTracks;
         }
 
-        tracks ??= list.GetTracksForContexts(activeContexts).ToArray();
-
-        if (tracks.Length == 0)
-            return;
+        TrackList.Track nextTrack;
 
         if (mode == TrackList.Order.Sequential)
         {
-            list.LastPlayedIndex = (list.LastPlayedIndex + 1) % tracks.Length;
-
-            PlayTrack(getPlayer(playerToUse), tracks[list.LastPlayedIndex], list.TrackBus);
+            nextTrack = GetNextSequentialTrack(list, candidateTracks);
         }
         else
         {
@@ -589,22 +891,82 @@ public partial class Jukebox : Node
                 // Make sure same random track is not played twice in a row
                 do
                 {
-                    nextIndex = random.Next(0, tracks.Length);
+                    nextIndex = random.Next(0, candidateTracks.Count);
                 }
-                while (nextIndex == list.LastPlayedIndex && tracks.Length > 1);
+                while (candidateTracks.Count > 1 &&
+                       candidateTracks[nextIndex].ResourcePath == list.LastPlayedTrackPath);
             }
             else if (mode == TrackList.Order.EntirelyRandom)
             {
-                nextIndex = random.Next(0, tracks.Length);
+                nextIndex = random.Next(0, candidateTracks.Count);
             }
             else
             {
                 throw new InvalidOperationException("Unknown track list order type");
             }
 
-            PlayTrack(getPlayer(playerToUse), tracks[nextIndex], list.TrackBus);
-            list.LastPlayedIndex = nextIndex;
+            nextTrack = candidateTracks[nextIndex];
         }
+
+        var player = nextPlayerToUse < usablePlayers.Count ? usablePlayers[nextPlayerToUse] : NewPlayer();
+        PlayTrack(player, nextTrack, list.TrackBus);
+        list.LastPlayedTrackPath = nextTrack.ResourcePath;
+    }
+
+    private List<TrackList.Track> GetContextOnlyTracks(TrackList list, List<TrackList.Track> sourceTracks)
+    {
+        var contextOnlyTracks = workMemory2;
+        contextOnlyTracks.Clear();
+        foreach (var track in sourceTracks)
+        {
+            if (track.ExclusiveToContexts != null && track.ResourcePath != list.LastPlayedTrackPath)
+            {
+                contextOnlyTracks.Add(track);
+            }
+        }
+
+        return contextOnlyTracks;
+    }
+
+    private TrackList.Track GetNextSequentialTrack(TrackList list, List<TrackList.Track> candidateTracks)
+    {
+        if (candidateTracks.Count == 1 || string.IsNullOrEmpty(list.LastPlayedTrackPath))
+            return candidateTracks[0];
+
+        var orderedTracks = list.GetAllTracks();
+        var lastIndex = -1;
+
+        for (var i = 0; i < orderedTracks.Count; ++i)
+        {
+            if (orderedTracks[i].ResourcePath != list.LastPlayedTrackPath)
+                continue;
+
+            lastIndex = i;
+            break;
+        }
+
+        if (lastIndex < 0)
+            return candidateTracks[0];
+
+        for (var checkedCount = 1; checkedCount < orderedTracks.Count; ++checkedCount)
+        {
+            var candidate = orderedTracks[(lastIndex + checkedCount) % orderedTracks.Count];
+            if (IsTrackPlayable(candidate, candidateTracks))
+                return candidate;
+        }
+
+        return candidateTracks[0];
+    }
+
+    private bool IsTrackPlayable(TrackList.Track candidate, List<TrackList.Track> allowedTracks)
+    {
+        foreach (var track in allowedTracks)
+        {
+            if (ReferenceEquals(track, candidate))
+                return true;
+        }
+
+        return false;
     }
 
     private void OnCategoryEnded()
@@ -613,46 +975,79 @@ public partial class Jukebox : Node
 
         if (category != null)
         {
-            // Reset PlayedOnce flag in all tracks
-            foreach (var list in category.TrackLists)
-            {
-                foreach (var track in list.GetAllTracks())
-                {
-                    track.PlayedOnce = false;
-                }
-            }
+            ResetPlayedOnceFlag(category);
         }
 
         // We don't have to do anything for the Reset return type here
 
-        // Store continue positions
         if (category?.Return == MusicCategory.ReturnType.Continue)
         {
-            var activeTracks = PlayingTracks;
+            StoreContinuePositions(category);
+        }
+    }
 
-            foreach (var list in category.TrackLists)
+    private void ResetPlayedOnceFlag(MusicCategory category)
+    {
+        foreach (var list in category.TrackLists)
+        {
+            foreach (var track in list.GetAllTracks())
             {
-                // This doesn't restrict tracks to ones that can be played according to the context. This is done to
-                // ensure that in the future if context can be changed while playing a category without immediately
-                // stopping tracks, this will work correctly.
-                foreach (var track in list.GetAllTracks())
-                {
-                    if (activeTracks.Contains(track.ResourcePath))
-                    {
-                        track.WasPlaying = true;
-
-                        // Store the position to resume from
-                        track.PreviousPlayedPosition = audioPlayers
-                            .Where(p => p.Playing && p.CurrentTrack == track.ResourcePath)
-                            .Select(p => p.Player.GetPlaybackPosition()).First();
-                    }
-                    else
-                    {
-                        track.WasPlaying = false;
-                    }
-                }
+                track.PlayedOnce = false;
             }
         }
+    }
+
+    private void StoreContinuePositions(MusicCategory category)
+    {
+        foreach (var list in category.TrackLists)
+        {
+            // This doesn't restrict tracks to ones that can be played according to the context. This is done to
+            // ensure that in the future if context can be changed while playing a category without immediately
+            // stopping tracks, this will work correctly.
+            foreach (var track in list.GetAllTracks())
+            {
+                track.WasPlaying = IsTrackPlaying(track);
+
+                if (!track.WasPlaying)
+                    continue;
+
+                bool foundPosition = false;
+
+                foreach (var player in audioPlayers)
+                {
+                    if (!player.Playing || player.CurrentTrack != track.ResourcePath)
+                        continue;
+
+                    // Store the position to resume from
+                    track.PreviousPlayedPosition = player.Player.GetPlaybackPosition();
+                    foundPosition = true;
+                    break;
+                }
+
+                if (!foundPosition)
+                    GD.Print("Jukebox: failed to store continue position of playing track: ", track.ResourcePath);
+            }
+        }
+    }
+
+    private bool IsTrackPlaying(TrackList.Track track)
+    {
+        var isPlaying = false;
+        foreach (var player in audioPlayers)
+        {
+            if (!player.Playing)
+                continue;
+
+            var currentTrack = player.CurrentTrack;
+
+            if (string.IsNullOrEmpty(currentTrack) || currentTrack != track.ResourcePath)
+                continue;
+
+            isPlaying = true;
+            break;
+        }
+
+        return isPlaying;
     }
 
     private class AudioPlayer

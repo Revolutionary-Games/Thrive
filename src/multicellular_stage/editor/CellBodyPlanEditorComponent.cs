@@ -41,6 +41,10 @@ public partial class CellBodyPlanEditorComponent :
     /// </summary>
     private readonly HashSet<Hex> wrongGrowthOrderCells = new();
 
+    private readonly Dictionary<Compound, List<Compound>> tempCompoundSources = new();
+
+    private readonly HashSet<Compound> compoundsThatDependOnDay = new();
+
 #pragma warning disable CA2213
 
     // Selection menu tab selector buttons
@@ -363,9 +367,9 @@ public partial class CellBodyPlanEditorComponent :
                     effectiveSymmetry = HexEditorSymmetry.None;*/
 
                 RunWithSymmetry(q, r,
-                    (finalQ, finalR, rotation) =>
+                    (finalQ, finalR, rotation, main) =>
                     {
-                        RenderHighlightedCell(finalQ, finalR, rotation, cellType);
+                        RenderHighlightedCell(finalQ, finalR, rotation, cellType, main);
 
                         var finalHex = new Hex(finalQ, finalR);
 
@@ -660,7 +664,7 @@ public partial class CellBodyPlanEditorComponent :
 
         var cells = new List<HexWithData<CellTemplate>>();
 
-        RunWithSymmetry(q, r, (symmetryQ, symmetryR, _) =>
+        RunWithSymmetry(q, r, (symmetryQ, symmetryR, _, _) =>
         {
             var cell = editedMicrobeCells.AsModifiable()
                 .GetElementAt(new Hex(symmetryQ, symmetryR), hexTemporaryMemory);
@@ -787,7 +791,7 @@ public partial class CellBodyPlanEditorComponent :
 
     protected override bool IsMoveTargetValid(Hex position, int rotation, HexWithData<CellTemplate> cell)
     {
-        return editedMicrobeCells.CanPlace(cell, hexTemporaryMemory, hexTemporaryMemory2);
+        return editedMicrobeCells.CanPlace(position);
     }
 
     protected override void OnCurrentActionCanceled()
@@ -900,7 +904,7 @@ public partial class CellBodyPlanEditorComponent :
         cellPopupMenu.EnableMoveOption = editedMicrobeCells.Count > 1;
     }
 
-    private void RenderHighlightedCell(int q, int r, int rotation, CellType cellToPlace)
+    private void RenderHighlightedCell(int q, int r, int rotation, CellType cellToPlace, bool isMainPosition)
     {
         if (MovingPlacedHex == null && activeActionName == null)
             return;
@@ -911,8 +915,58 @@ public partial class CellBodyPlanEditorComponent :
 
         bool showModel = !hadDuplicate;
 
-        // When force updating this has to run to make sure the cell holder has been forced to refresh so that when
-        // it becomes visible it doesn't have outdated graphics on it
+        if (!hadDuplicate || isMainPosition)
+        {
+            // We are hovering over an existing hex, show its adjacency effects
+            // Or placing a new cell
+            var text = "+" + Localization.Translate("PERCENTAGE_VALUE")
+                .FormatSafe(Math.Round(100 * Constants.CELL_ADJACENCY_SPECIALIZATION_BONUS));
+
+            float totalBonus = 0;
+
+            // If placing on existing cell, check that type to show existing info, otherwise use the cell to place
+            var cellToCheckAgainst = hadDuplicate ?
+                editedMicrobeCells.AsModifiable().GetElementAt(new Hex(q, r), hexTemporaryMemory)?.Data!
+                    .ModifiableCellType :
+                cellToPlace;
+
+            // If we for some reason didn't get the main cell type, use the cell to place as a fallback
+            cellToCheckAgainst ??= cellToPlace;
+
+            foreach (var (_, offset) in Hex.HexNeighbourOffset)
+            {
+                var positionToCheck = new Hex(q + offset.Q, r + offset.R);
+
+                var cellAtPosition =
+                    editedMicrobeCells.AsModifiable().GetElementAt(positionToCheck, hexTemporaryMemory);
+
+                if (cellAtPosition == null)
+                    continue;
+
+                // For now cell adjacency only looks at the type, so we can easily re-calculate that here
+                if (GetEditedCellDataIfEdited(cellAtPosition.Data!.ModifiableCellType) !=
+                    GetEditedCellDataIfEdited(cellToCheckAgainst))
+                {
+                    continue;
+                }
+
+                totalBonus += Constants.CELL_ADJACENCY_SPECIALIZATION_BONUS;
+                DisplayHexAdjacencyEffect(new Hex(q, r), positionToCheck, text, Colors.LightGreen);
+            }
+
+            if (totalBonus > 0)
+            {
+                // TODO: show total bonus number
+                text = "+" + Localization.Translate("PERCENTAGE_VALUE")
+                    .FormatSafe(Math.Round(100 * totalBonus));
+
+                // We just draw the text here and not the line
+                DisplayHexAdjacencyEffect(new Hex(q, r), new Hex(q, r), text, Colors.White);
+            }
+        }
+
+        // When force updating, this has to run to make sure the cell holder has been forced to refresh so that when
+        // it becomes visible, it doesn't have outdated graphics on it
         if (showModel || forceUpdateCellGraphics)
         {
             var cartesianPosition = Hex.AxialToCartesian(new Hex(q, r));
@@ -956,7 +1010,7 @@ public partial class CellBodyPlanEditorComponent :
         var usedHexes = new HashSet<Hex>();
 
         RunWithSymmetry(q, r,
-            (attemptQ, attemptR, rotation) =>
+            (attemptQ, attemptR, rotation, _) =>
             {
                 var hex = new Hex(attemptQ, attemptR);
 
@@ -1279,7 +1333,17 @@ public partial class CellBodyPlanEditorComponent :
         tooltip.DisplayName = cellType.CellTypeName;
         tooltip.MutationPointCost = Math.Min(cellType.MPCost * Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier,
             Constants.MAX_SINGLE_EDIT_MP_COST);
-        tooltip.DisplayCellTypeBalances(balances);
+
+        tempCompoundSources.Clear();
+        ProcessSystem.CalculateInputCompoundsNeededForOutputs(cellType.ModifiableOrganelles, Editor.CurrentPatch.Biome,
+            environmentalTolerances, specialization,
+            organismStatisticsPanel.CompoundAmountType, true, tempCompoundSources);
+
+        Editor.CurrentPatch.Biome.GetProducedCompoundsThatDependOnVarying(tempCompoundSources,
+            compoundsThatDependOnDay);
+
+        tooltip.DisplayCellTypeBalances(balances, compoundsThatDependOnDay);
+
         tooltip.UpdateATPBalance(energyBalanceInfo.TotalProduction, energyBalanceInfo.TotalConsumption);
 
         tooltip.UpdateHealthIndicator(MicrobeInternalCalculations.CalculateHealth(environmentalTolerances,
@@ -1450,18 +1514,25 @@ public partial class CellBodyPlanEditorComponent :
         var environmentalTolerances =
             MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(Editor.CalculateRawTolerances());
 
-        // TODO: improve performance by calculating the balance per cell type
+        tempCompoundSources.Clear();
+
         foreach (var hex in cells)
         {
             var specialization =
                 MicrobeInternalCalculations.CalculateSpecializationBonus(hex.Data!.ModifiableOrganelles, tempMemory3);
+            var adjacencySpecialization =
+                CellBodyPlanInternalCalculations.GetAdjacencySpecializationBonusFromBodyPlan(hex.Data, cells);
 
-            // TODO: adjacency bonuses from body plan (GetAdjacencySpecializationBonus)
+            var totalSpecialization = specialization * adjacencySpecialization;
 
             ProcessSystem.ComputeEnergyBalanceFull(hex.Data.ModifiableOrganelles, conditionsData,
-                environmentalTolerances, specialization, hex.Data.MembraneType,
+                environmentalTolerances, totalSpecialization, hex.Data.MembraneType,
                 maximumMovementDirection, moving, true, Editor.CurrentGame.GameWorld.WorldSettings,
                 organismStatisticsPanel.CompoundAmountType, null, energyBalanceInfo);
+
+            ProcessSystem.CalculateInputCompoundsNeededForOutputs(hex.Data.ModifiableOrganelles, conditionsData,
+                environmentalTolerances, specialization,
+                organismStatisticsPanel.CompoundAmountType, true, tempCompoundSources);
         }
 
         // Passing those variables by refs to the following functions to reuse them
@@ -1475,7 +1546,9 @@ public partial class CellBodyPlanEditorComponent :
                 cells, conditionsData, energyBalanceInfo,
                 ref specificStorages, ref nominalStorage, environmentalTolerances);
 
-        UpdateCompoundBalances(compoundBalanceData);
+        conditionsData.GetProducedCompoundsThatDependOnVarying(tempCompoundSources, compoundsThatDependOnDay);
+
+        UpdateCompoundBalances(compoundBalanceData, compoundsThatDependOnDay);
 
         // TODO: should this skip on being affected by the resource limited?
         var nightBalanceData = CalculateCompoundBalanceWithMethod(organismStatisticsPanel.BalanceDisplayType,
@@ -1483,7 +1556,8 @@ public partial class CellBodyPlanEditorComponent :
             ref nominalStorage, environmentalTolerances);
 
         UpdateCompoundLastingTimes(compoundBalanceData, nightBalanceData, nominalStorage,
-            specificStorages ?? throw new Exception("Special storages should have been calculated"));
+            specificStorages ?? throw new Exception("Special storages should have been calculated"),
+            compoundsThatDependOnDay);
 
         // TODO: find out why this method used to take the cells parameter but now causes a warning so it is removed
         // HandleProcessList( cells, energyBalance, conditionsData);
@@ -1502,11 +1576,13 @@ public partial class CellBodyPlanEditorComponent :
             var organelles = GetEditedCellDataIfEdited(cell.Data!.ModifiableCellType).ModifiableOrganelles;
             var specialization =
                 MicrobeInternalCalculations.CalculateSpecializationBonus(organelles, tempMemory3);
+            var adjacencySpecialization =
+                CellBodyPlanInternalCalculations.GetAdjacencySpecializationBonusFromBodyPlan(cell.Data, cells);
 
-            // TODO: efficiency from cell layout positions (GetAdjacencySpecializationBonus)
+            var totalSpecialization = specialization * adjacencySpecialization;
 
             AddCellTypeCompoundBalance(compoundBalanceData, organelles, calculationType,
-                amountType, biome, energyBalance, tolerances, specialization);
+                amountType, biome, energyBalance, tolerances, totalSpecialization);
         }
 
         specificStorages ??= CellBodyPlanInternalCalculations.GetTotalSpecificCapacity(cells.Select(o => o.Data!),

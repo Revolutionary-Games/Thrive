@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-27 14:48+0200\n"
-"PO-Revision-Date: 2026-03-08 01:02+0000\n"
-"Last-Translator: Ezra Alvarion <ezraalvarion71@gmail.com>\n"
+"POT-Creation-Date: 2026-05-08 16:35+0300\n"
+"PO-Revision-Date: 2026-05-01 09:17+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
@@ -119,9 +119,6 @@ msgstr "Tambah keybind baru"
 msgid "AEROBIC_NITROGEN_FIXATION"
 msgstr "Fiksasi Nitrogen Aerobik"
 
-msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "Fiksasi Aerob Nitrogen"
-
 msgid "AEROBIC_RESPIRATION"
 msgstr "Respirasi Aerobik"
 
@@ -211,9 +208,6 @@ msgstr "Jumlah save otomatis tersimpan:"
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Jumlah save cepat tersimpan:"
-
-msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "Fiksasi Anaerob Nitrogen"
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr "dan"
@@ -801,6 +795,10 @@ msgstr "Menu Cheat"
 #, fuzzy
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Tambah keybind baru"
+
+#, fuzzy
+msgid "CHEMICAL_EQUATION_SPEED_EXPLANATION"
+msgstr "(kecepatan mutasi spesies AI)"
 
 msgid "CHEMOPLAST"
 msgstr "Kemoplas"
@@ -1782,6 +1780,10 @@ msgstr "Sulit"
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "Sedang"
 
+#, fuzzy
+msgid "DIFFICULTY_PRESET_VERY_EASY"
+msgstr "Mudah"
+
 msgid "DIGESTION_EFFICIENCY"
 msgstr ""
 
@@ -2169,6 +2171,14 @@ msgstr "{0}: +{1} ATP"
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr "Awan senyawa"
 
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER"
+msgstr "Harga Osmoregulasi"
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER_EXPLANATION"
+msgstr "Harga Osmoregulasi"
+
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
@@ -2316,6 +2326,10 @@ msgstr "Tambah keybind baru"
 
 #, fuzzy
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
+msgstr "Sebuah eksepsi terjadi saat sedang memproses obyek yang termuat"
+
+#, fuzzy
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE_JUKEBOX"
 msgstr "Sebuah eksepsi terjadi saat sedang memproses obyek yang termuat"
 
 #, fuzzy
@@ -2980,6 +2994,14 @@ msgid "IMAGE_FILE_TYPES"
 msgstr "Jenis Membran"
 
 #, fuzzy
+msgid "INCOMPATIBLE_MEMBRANE_LIST"
+msgstr "Statistika Organisme"
+
+#, fuzzy
+msgid "INCOMPATIBLE_ORGANELLE_LIST"
+msgstr "Letakkan organel"
+
+#, fuzzy
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Buat Save Baru"
 
@@ -3044,6 +3066,14 @@ msgstr "Nukleus"
 
 #, fuzzy
 msgid "INFO_BOX_SIZE"
+msgstr "KAMU TELAH BERKEMBANG!"
+
+#, fuzzy
+msgid "INFO_BOX_SIZE_PLAIN"
+msgstr "KAMU TELAH BERKEMBANG!"
+
+#, fuzzy
+msgid "INFO_BOX_STAGE"
 msgstr "KAMU TELAH BERKEMBANG!"
 
 #, fuzzy
@@ -3709,6 +3739,20 @@ msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
 
 msgid "LOCK_DAY_NIGHT_CYCLE"
+msgstr ""
+
+#, fuzzy
+msgid "LOOK_LEFT"
+msgstr "Left"
+
+#, fuzzy
+msgid "LOOK_RIGHT"
+msgstr "Right"
+
+msgid "LOOK_SCREEN_DOWN_OR_3D_TOWARDS_UP"
+msgstr ""
+
+msgid "LOOK_SCREEN_UP_OR_3D_TOWARDS_DOWN"
 msgstr ""
 
 #, fuzzy
@@ -4602,6 +4646,30 @@ msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Editor Multiseluler"
 
 #, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_2"
+msgstr "Editor Multiseluler"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_3"
+msgstr "Editor Multiseluler"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_4"
+msgstr "Editor Multiseluler"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_5"
+msgstr "Editor Multiseluler"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_6"
+msgstr "Editor Multiseluler"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_7"
+msgstr "Editor Multiseluler"
+
+#, fuzzy
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "Tahapan Multiseluler"
 
@@ -4729,6 +4797,10 @@ msgstr "Nitrogenase adalah protein yang dapat menggunakan gas nitrogen dan energ
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Mengubah [thrive:compound type=\"atp\"][/thrive:compound] menjadi [thrive:compound type=\"ammonia\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"nitrogen\"][/thrive:compound]"
 
+#, fuzzy
+msgid "NITROGEN_FIXATION"
+msgstr "Fiksasi Nitrogen Aerobik"
+
 msgid "NITROPLAST"
 msgstr "Plastida Pengikat Nitrogen"
 
@@ -4736,6 +4808,7 @@ msgstr "Plastida Pengikat Nitrogen"
 msgid "NITROPLAST_DESCRIPTION"
 msgstr "Plastida Pengikat Nitrogen adalah protein yang dapat menggunakan gas nitrogen dan oksigen dan energi seluler dalam bentuk ATP untuk memproduksi amonia, nutrisi penumbuh penting bagi sel. Ini proses yang disebut sebagai Fiksasi Nitrogen Aerobik."
 
+#, fuzzy
 msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Mengubah [thrive:compound type=\"atp\"][/thrive:compound] menjadi [thrive:compound type=\"ammonia\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"nitrogen\"][/thrive:compound] dan [thrive:compound type=\"oxygen\"][/thrive:compound]"
 
@@ -4859,6 +4932,7 @@ msgstr ""
 msgid "NUCLEUS_DESCRIPTION"
 msgstr "Ciri yang mendefinisikan sel eukariota. Nukleus juga mengandung retikulum endoplasma dan badan golgi. Ia merupakan evolusi dari sel prokariota guna mengembang sebuah sistem membran internal, dilakukan dengan cara asimilasi prokariota lain ke dalam diri mereka. Ini memungkinkan eukariota untuk memilah diri atau menghindari berbagai macam proses berbeda yang terjadi dalam sel dan mencegah proses tersebut bertumpang tindih. Ini memungkinkan organel terikat-membran baru milik mereka menjadi lebih kompleks, efisien dan terspesialisasi daripada jika hanya mengambang bebas dalam sitoplasma. Namun, kekurangannya adalah memperbesar sel dan memerlukan sangat banyak energi milik sel untuk perawatan."
 
+#, fuzzy
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr "Memungkinkan evolusi organel terikat-membran yang lebih kompleks. Menggunakan banyak ATP untuk perawatan. Ini merupakan evolusi yang tak dapat diubah."
 
@@ -4910,6 +4984,10 @@ msgstr "Peringatan Mode GLES2"
 #, fuzzy
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr "Kamu menjalankan Thrive dengan GLES2. Ini belum teruji secara penuh dan mungkin akan menyebabkan masalah. Coba perbarui driver dan/atau paksa grafik AMD atau Nvidia anda untuk digunakan menjalankan Thrive."
+
+#, fuzzy
+msgid "OPEN_EVOLUTIONARY_TREE"
+msgstr "Pohon Evolusi"
 
 #, fuzzy
 msgid "OPEN_FOLDER"
@@ -5072,14 +5150,6 @@ msgid "OSMOREGULATION_COST"
 msgstr "Harga Osmoregulasi"
 
 #, fuzzy
-msgid "OSMOREGULATION_COST_MULTIPLIER"
-msgstr "Harga Osmoregulasi"
-
-#, fuzzy
-msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
-msgstr "Harga Osmoregulasi"
-
-#, fuzzy
 msgid "OTHER_COMPOUNDS"
 msgstr "Senyawa"
 
@@ -5151,6 +5221,10 @@ msgstr "Back"
 #, fuzzy
 msgid "PAGE_FORWARD"
 msgstr "Depan"
+
+#, fuzzy
+msgid "PAGE_PINNED"
+msgstr "Proses Sel"
 
 #, fuzzy
 msgid "PAGE_TITLE"
@@ -5304,6 +5378,13 @@ msgstr "Kondisi Fisik"
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Kekebalan Fisik"
 
+#, fuzzy
+msgid "PIN_BUTTON_TOOLTIP"
+msgstr "Ubah setelan"
+
+msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
+msgstr ""
+
 msgid "PLACE_ORGANELLE"
 msgstr "Letakkan organel"
 
@@ -5452,8 +5533,13 @@ msgstr "sebelumnya:"
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Memproses obyek yang termuat"
 
+#, fuzzy
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
+
+#, fuzzy
+msgid "PROCESS_INACTIVE"
+msgstr "Proses Sel"
 
 #, fuzzy
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
@@ -5470,10 +5556,6 @@ msgstr "Proses Sel"
 #, fuzzy
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Proses Sel"
-
-#, fuzzy
-msgid "PROCESS_TOGGLE_TOOLTIP"
-msgstr "Kembali ke Menu"
 
 msgid "PROGRAMMING_TEAM"
 msgstr ""
@@ -6729,6 +6811,10 @@ msgstr ""
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
+msgstr "KEPUNAHAN"
+
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr ""
 
@@ -6741,8 +6827,62 @@ msgstr ""
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
+msgstr "KEPUNAHAN"
+
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
+msgstr ""
+"[b]Fase[/b]\n"
+"  Mikroba\n"
+"[b]Tipe Membran[/b]\n"
+"  {0}\n"
+"[b]Ketegaran Membran[/b]\n"
+"  {1}\n"
+"[b]Kecepatan Dasar[/b]\n"
+"  {2}\n"
+"[b]Kecepatan Rotasi Dasar[/b]\n"
+"  {3}\n"
+"[b]Jumlah Hex Dasar[/b]\n"
+"  {4}"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE"
+msgstr "Izinkan spesies untuk tidak bermutasi (jika tidak ada mutasi cocok yang ditemukan)"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
+msgstr "Dalaman lengket sebuah sel. Sitoplasma adalah gabungan dasar dari ion, protein dan zat lain terlarut dalam air yang mengisi bagian dalam sel. Salah satu fungsi yang di lakukannya adalah glikolisis, perubahan glukosa menjadi energi ATP. Bagi sel yang kekurangan organel untuk memiliki tingkatan metabolisme yang lebih tinggi, ini yang mereka andalkan untuk energi. Sitoplasma juga digunakan untuk menyimpan molekul di dalam sel dan menumbuhkan ukuran sel."
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
+msgstr ""
+"[b]Fase[/b]\n"
+"  Mikroba\n"
+"[b]Tipe Membran[/b]\n"
+"  {0}\n"
+"[b]Ketegaran Membran[/b]\n"
+"  {1}\n"
+"[b]Kecepatan Dasar[/b]\n"
+"  {2}\n"
+"[b]Kecepatan Rotasi Dasar[/b]\n"
+"  {3}\n"
+"[b]Jumlah Hex Dasar[/b]\n"
+"  {4}"
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
+msgstr ""
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
+msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
+msgstr "Pengembang Masa Ini"
 
 #, fuzzy
 msgid "THRIVE_LICENSES"
@@ -9737,6 +9877,16 @@ msgstr "Perbesar"
 
 msgid "ZOOM_OUT"
 msgstr "Perkecil"
+
+#~ msgid "AEROBIC_NITROGEN_FIXING"
+#~ msgstr "Fiksasi Aerob Nitrogen"
+
+#~ msgid "ANAEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Fiksasi Anaerob Nitrogen"
+
+#, fuzzy
+#~ msgid "PROCESS_TOGGLE_TOOLTIP"
+#~ msgstr "Kembali ke Menu"
 
 #, fuzzy
 #~ msgid "KEEP_CURRENT_SHORT"

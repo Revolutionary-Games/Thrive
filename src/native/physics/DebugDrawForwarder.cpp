@@ -1,7 +1,9 @@
 // ------------------------------------ //
 #include "DebugDrawForwarder.hpp"
 
-#include "Jolt/Math/Float4.h"
+#include <algorithm>
+
+#include <Jolt/Math/Float4.h>
 
 #include "core/Logger.hpp"
 #include "core/Time.hpp"
@@ -47,33 +49,36 @@ JPH::DVec3 FloatToDVec(JPH::Float3 input)
     return {input.x, input.y, input.z};
 }
 
-JPH::Float4 ColorToFloat4(const JPH::ColorArg color)
-{
-    constexpr float multiplier = 1 / 255.0f;
-    return {(float)color.r * multiplier, (float)color.g * multiplier, (float)color.b * multiplier,
-        (float)color.a * multiplier};
-}
-
 #ifdef ENSURE_NO_COLOUR_OVER_SATURATION
-JPH::Float4 MixColour(JPH::Float4 baseColour, JPH::Float4 colourTint)
+JColour MixColour(const JColour baseColour, const JColour colourTint)
 {
-    return {std::max(baseColour.x * colourTint.x, 1.0f), std::max(baseColour.y * colourTint.y, 1.0f),
-        std::max(baseColour.z * colourTint.z, 1.0f), std::max(baseColour.w * colourTint.w, 1.0f)};
+    return {std::max(baseColour.R * colourTint.R, 1.0f), std::max(baseColour.G * colourTint.G, 1.0f),
+        std::max(baseColour.B * colourTint.B, 1.0f), std::max(baseColour.A * colourTint.A, 1.0f)};
 }
 #else
-JPH::Float4 MixColour(JPH::Float4 baseColour, JPH::Float4 colourTint)
+JColour MixColour(const JColour baseColour, const JColour colourTint)
 {
-    return {baseColour.x * colourTint.x, baseColour.y * colourTint.y, baseColour.z * colourTint.z,
-        baseColour.w * colourTint.w};
+    return {baseColour.R * colourTint.R, baseColour.G * colourTint.G, baseColour.B * colourTint.B,
+        baseColour.A * colourTint.A};
 }
 #endif // ENSURE_NO_COLOUR_OVER_SATURATION
+
+template<typename TBuffer, typename TDistance>
+void SortBufferByClosestDistance(TBuffer& buffer, size_t sortIfBiggerThan, TDistance getDistanceSquared)
+{
+    if (buffer.size() <= sortIfBiggerThan)
+        return;
+
+    std::sort(buffer.begin(), buffer.end(), [getDistanceSquared](const auto& entry1, const auto& entry2)
+        { return getDistanceSquared(entry1) < getDistanceSquared(entry2); });
+}
 
 // Apparently we need to act like a GPU just to get debug rendering done...
 DebugDrawForwarder::DVertex TransformVertex(const JPH::RMat44& matrix, const JPH::DebugRenderer::Vertex& vertex)
 {
     // TODO: for proper usage should we transform the normal as well?
     return DebugDrawForwarder::DVertex{
-        matrix * FloatToDVec(vertex.mPosition), vertex.mNormal, vertex.mUV, ColorToFloat4(vertex.mColor)};
+        JoltToJVec3(matrix * FloatToDVec(vertex.mPosition)), vertex.mNormal, vertex.mUV, JoltToJColour(vertex.mColor)};
 }
 
 // ------------------------------------ //
@@ -88,6 +93,8 @@ void DebugDrawForwarder::FlushOutput()
     const auto startTime = TimingClock::now();
 
     Lock lock(mutex);
+
+    SortDrawBuffersIfAboveThreshold();
 
     // Send the accumulated data
     if (lineCallback != nullptr && *lineCallback != nullptr)
@@ -153,8 +160,11 @@ bool DebugDrawForwarder::HasAReceiver() const noexcept
 // ------------------------------------ //
 void DebugDrawForwarder::DrawLine(JPH::RVec3Arg inFrom, JPH::RVec3Arg inTo, JPH::ColorArg inColor)
 {
+    if (!IsPointWithinDrawDistance(inFrom) && !IsPointWithinDrawDistance(inTo))
+        return;
+
     Lock lock(mutex);
-    lineBuffer.emplace_back(inFrom, inTo, ColorToFloat4(inColor));
+    lineBuffer.emplace_back(JoltToJVec3(inFrom), JoltToJVec3(inTo), JoltToJColour(inColor));
 }
 
 void DebugDrawForwarder::DrawTriangle(
@@ -163,8 +173,11 @@ void DebugDrawForwarder::DrawTriangle(
     // TODO: shadow support?
     UNUSED(inCastShadow);
 
+    if (!IsPointWithinDrawDistance(inV1) && !IsPointWithinDrawDistance(inV2) && !IsPointWithinDrawDistance(inV3))
+        return;
+
     Lock lock(mutex);
-    triangleBuffer.emplace_back(inV1, inV2, inV3, ColorToFloat4(inColor));
+    triangleBuffer.emplace_back(JoltToJVec3(inV1), JoltToJVec3(inV2), JoltToJVec3(inV3), JoltToJColour(inColor));
 }
 
 // It is always assumed that the renderer was responsible for creating the geometry instances, so we can cast them here
@@ -178,7 +191,7 @@ void DebugDrawForwarder::DrawGeometry(JPH::RMat44Arg inModelMatrix, const JPH::A
 {
     // Skip rendering too faraway objects
     const auto distance = inWorldSpaceBounds.GetSqDistanceTo(cameraPosition);
-    if (distance > maxModelDistance * maxModelDistance)
+    if (distance > maxModelDistanceSquared)
         return;
 
     const JPH::RMat44 transformMatrix = inModelMatrix;
@@ -212,7 +225,7 @@ void DebugDrawForwarder::DrawGeometry(JPH::RMat44Arg inModelMatrix, const JPH::A
         }
     }*/
 
-    const auto modelTint = ColorToFloat4(inModelColor);
+    const auto modelTint = JoltToJColour(inModelColor);
 
     for (const LOD& lod : inGeometry->mLODs)
     {
@@ -276,8 +289,8 @@ JPH::DebugRenderer::Batch DebugDrawForwarder::CreateTriangleBatch(
 
     const auto batchId = nextBatchID++;
 
-    // This isn't immediately wrapped in the smart pointer so this could leak if the copying throws, but as this is
-    // just debug rendering there's not much point in doing this exactly right
+    // This isn't immediately wrapped in the smart pointer, so this could leak if the copying throws, but as this is
+    // just debug rendering, there's not much point in doing this exactly right
     auto result = new BatchImpl(batchId);
 
     result->triangles.reserve(inTriangleCount);
@@ -320,8 +333,9 @@ JPH::DebugRenderer::Batch DebugDrawForwarder::CreateTriangleBatch(
 
 // ------------------------------------ //
 void DebugDrawForwarder::DrawTriangleInternal(
-    const DVertex& vertex1, const DVertex& vertex2, const DVertex& vertex3, JPH::Float4 colourTint, bool wireFrame)
+    const DVertex& vertex1, const DVertex& vertex2, const DVertex& vertex3, JColour colourTint, bool wireFrame)
 {
+    // We don't check distances here as the model draw check already checked the distance
     if (wireFrame)
     {
         lineBuffer.emplace_back(vertex1.mPosition, vertex2.mPosition, MixColour(vertex1.mColor, colourTint));
@@ -334,6 +348,15 @@ void DebugDrawForwarder::DrawTriangleInternal(
         triangleBuffer.emplace_back(
             vertex1.mPosition, vertex2.mPosition, vertex3.mPosition, MixColour(vertex1.mColor, colourTint));
     }
+}
+
+// ------------------------------------ //
+void DebugDrawForwarder::SortDrawBuffersIfAboveThreshold()
+{
+    SortBufferByClosestDistance(lineBuffer, SortForwardedDebugLinesAfter,
+        [this](const LineDrawEntry& entry) { return GetClosestDistanceSquared(entry); });
+    SortBufferByClosestDistance(triangleBuffer, SortForwardedDebugTrianglesAfter,
+        [this](const TriangleDrawEntry& entry) { return GetClosestDistanceSquared(entry); });
 }
 
 } // namespace Thrive::Physics

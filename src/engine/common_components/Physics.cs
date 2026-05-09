@@ -9,7 +9,7 @@ using SharedBase.Archive;
 /// </summary>
 public struct Physics : IArchivableComponent
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     /// <summary>
     ///   Allows direct physics state control. <see cref="VelocitiesApplied"/> need to be false for this to apply.
@@ -19,6 +19,17 @@ public struct Physics : IArchivableComponent
     public Vector3 Velocity;
 
     public Vector3 AngularVelocity;
+
+    /// <summary>
+    ///   Instead of setting direct velocity with <see cref="Velocity"/> this allows adding an impulse.
+    ///   Only applied if <see cref="QueuedForceApplied"/> is set to false after modifying this. Note that applying
+    ///   this or the angular impulse will always auto activate the body. Note that if a body is disabled, the forces
+    ///   are removed to prevent problems where some system queues a ton of force for a disabled body which then all
+    ///   gets released at once when the body is attached.
+    /// </summary>
+    public Vector3 QueuedImpulse;
+
+    public Vector3 QueuedAngularImpulse;
 
     public NativePhysicsBody? Body;
 
@@ -33,6 +44,8 @@ public struct Physics : IArchivableComponent
     ///   Set to false if the new velocities should apply to the entity
     /// </summary>
     public bool VelocitiesApplied;
+
+    public bool QueuedForceApplied;
 
     /// <summary>
     ///   Set to false if new damping values are set
@@ -123,6 +136,9 @@ public struct Physics : IArchivableComponent
         {
             writer.Write(false);
         }
+
+        writer.Write(QueuedImpulse);
+        writer.Write(QueuedAngularImpulse);
     }
 }
 
@@ -159,6 +175,12 @@ public static class PhysicsHelpers
         else
         {
             physics.AngularDamping = null;
+        }
+
+        if (version > 1)
+        {
+            physics.QueuedImpulse = reader.ReadVector3();
+            physics.QueuedAngularImpulse = reader.ReadVector3();
         }
 
         return physics;

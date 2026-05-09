@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-27 14:48+0200\n"
-"PO-Revision-Date: 2026-03-20 15:28+0000\n"
-"Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
+"POT-Creation-Date: 2026-05-08 16:35+0300\n"
+"PO-Revision-Date: 2026-05-01 09:17+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -111,9 +111,6 @@ msgstr "Відкрити вікно розширених налаштувань"
 msgid "AEROBIC_NITROGEN_FIXATION"
 msgstr "Аеробна азотфіксація"
 
-msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "Аеробна азотфіксація"
-
 msgid "AEROBIC_RESPIRATION"
 msgstr "Аеробне Дихання"
 
@@ -197,9 +194,6 @@ msgstr "Кількість можливих автозбереженнь:"
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Кількість можливих швидких збережень:"
-
-msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "Анаеробна азотфіксація"
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr "та"
@@ -765,6 +759,10 @@ msgstr "Меню читів"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Показати /приховати клітинні процеси"
+
+#, fuzzy
+msgid "CHEMICAL_EQUATION_SPEED_EXPLANATION"
+msgstr "(швидкість з якою ШІ мутує вид)"
 
 msgid "CHEMOPLAST"
 msgstr "Хемопласт"
@@ -1638,6 +1636,7 @@ msgstr "Спуститися"
 msgid "DESCEND_CONFIRMATION"
 msgstr "Ви дійсно хочете Спуститися?"
 
+#, fuzzy
 msgid "DESCEND_CONFIRMATION_EXPLANATION"
 msgstr ""
 "Спуск видалить Ваш статус піднесеного та поверне Вас до Мікробної Стадії. Від туди Ви зможете пройти гру заново у цьому збереженні.\n"
@@ -1722,6 +1721,10 @@ msgstr "Важкий"
 
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "Нормальний"
+
+#, fuzzy
+msgid "DIFFICULTY_PRESET_VERY_EASY"
+msgstr "Легкий"
 
 msgid "DIGESTION_EFFICIENCY"
 msgstr "Ефективність травлення"
@@ -2079,6 +2082,14 @@ msgstr ""
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr "Тиск підтримки сполук"
 
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER"
+msgstr "Множник вартості мутації"
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER_EXPLANATION"
+msgstr "(ціна органел, мембран та інших речей в редакторі)"
+
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Енергія в {0} для {1}"
 
@@ -2226,6 +2237,10 @@ msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Це точний підтверджувальний код компіляції цієї версії Thrive"
 
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
+msgstr "З'явилося заперечення, під час обробки завантажених об'єктів"
+
+#, fuzzy
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE_JUKEBOX"
 msgstr "З'явилося заперечення, під час обробки завантажених об'єктів"
 
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
@@ -2809,6 +2824,14 @@ msgid "IMAGE_FILE_TYPES"
 msgstr "Типи Мембрани"
 
 #, fuzzy
+msgid "INCOMPATIBLE_MEMBRANE_LIST"
+msgstr "  {0}: Знайдено в {1} видів, у середньому {2} кожен"
+
+#, fuzzy
+msgid "INCOMPATIBLE_ORGANELLE_LIST"
+msgstr "Група органел"
+
+#, fuzzy
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Створити новий"
 
@@ -2868,6 +2891,14 @@ msgstr "Необхідне ядро"
 
 msgid "INFO_BOX_SIZE"
 msgstr "Розмір (у гексах)"
+
+#, fuzzy
+msgid "INFO_BOX_SIZE_PLAIN"
+msgstr "Розмір (у гексах)"
+
+#, fuzzy
+msgid "INFO_BOX_STAGE"
+msgstr "Сховище"
 
 msgid "INFO_BOX_STORAGE"
 msgstr "Сховище"
@@ -3493,6 +3524,20 @@ msgstr "L"
 #, fuzzy
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "Заблокувати цикл дня/ночі"
+
+#, fuzzy
+msgid "LOOK_LEFT"
+msgstr "Вліво"
+
+#, fuzzy
+msgid "LOOK_RIGHT"
+msgstr "Вправо"
+
+msgid "LOOK_SCREEN_DOWN_OR_3D_TOWARDS_UP"
+msgstr ""
+
+msgid "LOOK_SCREEN_UP_OR_3D_TOWARDS_DOWN"
+msgstr ""
 
 #, fuzzy
 msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
@@ -4339,6 +4384,30 @@ msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Багатоклітинний редактор"
 
 #, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_2"
+msgstr "Багатоклітинний редактор"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_3"
+msgstr "Багатоклітинний редактор"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_4"
+msgstr "Багатоклітинний редактор"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_5"
+msgstr "Багатоклітинний редактор"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_6"
+msgstr "Багатоклітинний редактор"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_7"
+msgstr "Багатоклітинний редактор"
+
+#, fuzzy
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "(деякі функції можуть бути недоступні коли ви досягнете наступних етапів)"
 
@@ -4463,12 +4532,18 @@ msgstr "Нітрогеназа– це білок, що використовує
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Перетворює [thrive:compound type=\"atp\"][/thrive:compound] на [thrive:compound type=\"ammonia\"][/thrive:compound]. Кількість залежить від [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
+#, fuzzy
+msgid "NITROGEN_FIXATION"
+msgstr "Аеробна азотфіксація"
+
 msgid "NITROPLAST"
 msgstr "Азотфіксувальні пластиди"
 
+#, fuzzy
 msgid "NITROPLAST_DESCRIPTION"
 msgstr "Азотфіксувальні пластиди – це білки, що використовують [thrive:compound type=\"nitrogen\"][/thrive:compound], [thrive:compound type=\"oxygen\"][/thrive:compound], та [thrive:compound type=\"atp\"][/thrive:compound] для продукування [thrive:compound type=\"ammonia\"][/thrive:compound], ключової поживної речовини для росту клітини. Цей процес кличуть [b]Аеробною азотфіксацією[/b]."
 
+#, fuzzy
 msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Перетворює [thrive:compound type=\"atp\"][/thrive:compound] на [thrive:compound type=\"ammonia\"][/thrive:compound]. Кількість залежить від [thrive:compound type=\"nitrogen\"][/thrive:compound] та [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
@@ -4588,6 +4663,7 @@ msgstr ""
 msgid "NUCLEUS_DESCRIPTION"
 msgstr "Визначальна риса еукаріотичної клітини. До ядерного складу також, входять ендоплазматична сітка та комплекс Ґольджі. Ця еволюція прокаріотичної клітини до розвитку системи внутрішніх мембран, здійснена приєднанням іншого прокаріота всеридину себе. Це дозволило їм розділяти і згруповувати різні процеси, що відбувалися всередині клітини та запобігти змішування останніх. Це дозволило їхнім мембранним органелам бути сладнішими, ефективнішими та спеціалізованими, аніж якби вони вільно плавали в цитоплазмі. Але це відбувається ціною того, що клітина значно більшає й потребує багато клітинної енергії для підтримки ядра."
 
+#, fuzzy
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr "Дозволяє еволюцію складніших, мембрановмісних органел. Його підтримка вимагає значних витрат АТФ. Ця еволюція — необоротна."
 
@@ -4633,6 +4709,10 @@ msgstr "Попередження режиму GLES2"
 
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr "Ви граєте у Thrive за допомогою OpenGL. Це є дуже неперевіреним та напевно викличе проблеми. Переконайтеся, що ваша зовнішня або вбудована відеокарта є достатньо новою та спробуйте оновити свої відеодрайвери. Для ноутбуків вам може знадобитися діскретна графіка від Nvidia або AMD замість вбудованої."
+
+#, fuzzy
+msgid "OPEN_EVOLUTIONARY_TREE"
+msgstr "Еволюційне дерево"
 
 msgid "OPEN_FOLDER"
 msgstr "Відкрити теку"
@@ -4778,12 +4858,6 @@ msgstr "Осморегуляція"
 msgid "OSMOREGULATION_COST"
 msgstr "Вартість осморегуляції"
 
-msgid "OSMOREGULATION_COST_MULTIPLIER"
-msgstr "Множник вартості осморегуляції"
-
-msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
-msgstr "(вартість осморегуляції виду гравця)"
-
 msgid "OTHER_COMPOUNDS"
 msgstr "Інші"
 
@@ -4847,6 +4921,10 @@ msgstr "Назад"
 
 msgid "PAGE_FORWARD"
 msgstr "Вперед"
+
+#, fuzzy
+msgid "PAGE_PINNED"
+msgstr "Назва сторінки"
 
 msgid "PAGE_TITLE"
 msgstr "Назва сторінки"
@@ -4981,6 +5059,13 @@ msgstr "Фізичні умови"
 
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Фізичний опір"
+
+#, fuzzy
+msgid "PIN_BUTTON_TOOLTIP"
+msgstr "Зміна ваших налаштувань"
+
+msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
+msgstr ""
 
 msgid "PLACE_ORGANELLE"
 msgstr "Місце для органели"
@@ -5123,8 +5208,13 @@ msgstr "попередній:"
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Обробка об'єктів завантаження"
 
+#, fuzzy
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "у"
+
+#, fuzzy
+msgid "PROCESS_INACTIVE"
+msgstr "Клітинні процеси"
 
 #, fuzzy
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
@@ -5140,12 +5230,6 @@ msgstr "Клітинні процеси"
 
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Швидкість біопроцесів"
-
-msgid "PROCESS_TOGGLE_TOOLTIP"
-msgstr ""
-"Увімкнути або вимкнути цей процес. Це дозволяє краще контролювати клітинні процеси.\n"
-"Наприклад, таким чином можна вимкнути продукування токсинів, коли вони не потрібні.\n"
-"Або вручну збалансувати, якими джерелами енергії користуватися для більшої ефективності, але це дуже продвинута геймплейна тактика."
 
 msgid "PROGRAMMING_TEAM"
 msgstr "Команда програмістів"
@@ -6317,6 +6401,10 @@ msgstr "Поточний світ"
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr "Еволюційне древо"
 
+#, fuzzy
+msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
+msgstr "Відкрити Трайвопедію"
+
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr "Відкрити Трайвопедію"
 
@@ -6338,8 +6426,40 @@ msgstr "Дім"
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Музей"
 
+#, fuzzy
+msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
+msgstr "Дім"
+
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr "Мапа ділянок"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
+msgstr "Еволюційне древо"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE"
+msgstr "Музей"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
+msgstr "Музей"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
+msgstr "Музей"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
+msgstr "Музей"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
+msgstr "Музей"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
+msgstr "Поточний світ"
 
 msgid "THRIVE_LICENSES"
 msgstr "Ліцензії Thrive"
@@ -6888,6 +7008,7 @@ msgstr ""
 "\n"
 "Аби повністю покинути колонію ви можете клікнути на свою клітину або натиснути клавішу [thrive:input]g_unbind_all[/thrive:input]."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_PROCESS_PANEL"
 msgstr ""
 "Тут, на [b]панелі процесів[/b], ви можете спостерігати за клітинними процесами у реальному часі. Кожний спінер показує, як швидко пробігає процес, а числа вказують усереднене значення нещодавнього споживання або продукування.\n"
@@ -7491,6 +7612,7 @@ msgstr "Немає модифікацій."
 msgid "WIKI_BINDING_AGENT_PROCESSES"
 msgstr "Немає процесів."
 
+#, fuzzy
 msgid "WIKI_BINDING_AGENT_REQUIREMENTS"
 msgstr ""
 "Клітина повинна мати [b][color=#3796e1][url=thriveopedia:nucleus]Ядро[/url][/color][/b], щоб розвинути собі [b]Зв'язувальні агенти[/b].\n"
@@ -7661,6 +7783,7 @@ msgstr "Хлоропласти– це двохмембранна структу
 msgid "WIKI_CHLOROPLAST_PROCESSES"
 msgstr "Продукує [thrive:compound type=\"glucose\"][/thrive:compound]. Кількість залежить від [thrive:compound type=\"carbondioxide\"][/thrive:compound] та інтенсивності [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_REQUIREMENTS"
 msgstr ""
 "Клітина повинна мати [b][color=#3796e1][url=thriveopedia:nucleus]Ядро[/url][/color][/b] для розвинення [b]Хлоропластів[/b].\n"
@@ -7730,6 +7853,7 @@ msgstr "Сполуки:"
 msgid "WIKI_COMPOUNDS_INTRO"
 msgstr "Клейкий вміст клітини. Цитоплазма є базовою сумішшю йонів, білків та інших речовин, розчинених у воді, що заповнюють нутрощі клітини. Одна з функцій, яку вона виконує — [b]гліколіз[/b], перетворення [thrive:compound type=\"glucose\"][/thrive:compound] на [thrive:compound type=\"atp\"][/thrive:compound]. Для клітин без органел для стабільного метаболізму, це є засобом отримання енергії. Також вона потрібна для збереження молекул в клітині та збільшення розміру останньої."
 
+#, fuzzy
 msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
 msgstr ""
 "У Thrive існує багато різних [b]Сполук[/b].\n"
@@ -7828,7 +7952,7 @@ msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
 msgstr "Аксон"
 
 msgid "WIKI_EDITORS_AND_MUTATIONS_GENERATIONS_AND_EDITOR_SESSIONS"
-msgstr ""
+msgstr "Кожного разу, коли ви входите до [b]Редактору[/b] в Thrive ви покращуєте [b]одне покоління[/b]. Ви можете побачити їхні характеристики, змінювати місце перебування або вносити інші зміни до вашого виду. Це називаєтся [b]Редакторська сесія[/b]."
 
 #, fuzzy
 msgid "WIKI_EDITORS_AND_MUTATIONS_INTRO"
@@ -7836,6 +7960,9 @@ msgstr "Мітохондрія"
 
 msgid "WIKI_EDITORS_AND_MUTATIONS_MUTATIONS_AND_MUTATION_POINTS"
 msgstr ""
+"Кожна зміна, яку ви зробите з вашим видом це [b]Мутація[/b]. Це включає постановку органел, їх покращення [u]та навіть їхпродажу[/u].\n"
+"\n"
+"Кожна мутація, яку ви зробите з вашим видом коштуватиме вам [b]Очків Мутації[/b]  [thrive:icon]MP[/thrive:icon], які згадуются як [b]ОМ (MP)[/b]. Ви завжди отримуватимете по [b]100[/b] очків мутацій за редакторську сесію. [u]Вони не переносятся між редакторськими сесіями[/u]."
 
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_ENVIRONMENTAL_GASSES"
 msgstr ""
@@ -8448,7 +8575,7 @@ msgid "WIKI_MYOFIBRIL_INTRO"
 msgstr ""
 
 msgid "WIKI_MYOFIBRIL_MODIFICATIONS"
-msgstr ""
+msgstr "Немає змін."
 
 #, fuzzy
 msgid "WIKI_MYOFIBRIL_PROCESSES"
@@ -8464,7 +8591,7 @@ msgid "WIKI_MYOFIBRIL_STRATEGY"
 msgstr ""
 
 msgid "WIKI_MYOFIBRIL_UPGRADES"
-msgstr ""
+msgstr "Немає покращень"
 
 #, fuzzy
 msgid "WIKI_NATION_EDITOR"
@@ -8563,7 +8690,7 @@ msgid "WIKI_NUCLEUS_STRATEGY"
 msgstr ""
 
 msgid "WIKI_NUCLEUS_UPGRADES"
-msgstr ""
+msgstr "Немає покращень."
 
 #, fuzzy
 msgid "WIKI_ORGANELLES_ROOT_INTRO"
@@ -8616,7 +8743,7 @@ msgid "WIKI_PAGE_AWARE_STAGE"
 msgstr "Стадія свідомості"
 
 msgid "WIKI_PAGE_AXON"
-msgstr ""
+msgstr "Аксон"
 
 msgid "WIKI_PAGE_BINDING_AGENT"
 msgstr "Зв'язувальний агент"
@@ -8642,7 +8769,7 @@ msgid "WIKI_PAGE_CHLOROPLAST"
 msgstr "Хлоропласт"
 
 msgid "WIKI_PAGE_CILIA"
-msgstr ""
+msgstr "Війки"
 
 #, fuzzy
 msgid "WIKI_PAGE_COMPOUNDS"
@@ -8747,7 +8874,7 @@ msgid "WIKI_PAGE_OXYTOXISOME"
 msgstr "Окситоксисома"
 
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
-msgstr ""
+msgstr "Хижа ворсинка"
 
 #, fuzzy
 msgid "WIKI_PAGE_PROTOPLASM"
@@ -8973,7 +9100,7 @@ msgid "WIKI_SLIME_JET_STRATEGY"
 msgstr ""
 
 msgid "WIKI_SLIME_JET_UPGRADES"
-msgstr ""
+msgstr "Немає покращень."
 
 msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
 msgstr ""
@@ -9174,7 +9301,7 @@ msgid "WIKI_TOXIN_VACUOLE_UPGRADES"
 msgstr "Токсинова вакуоля– це вакуоля модифікована для специфічного продукування– зберігання та секреції оксигенобазованих токсинів. Більша кількість токсинових вакуоль збільшить швидкість виведення."
 
 msgid "WIKI_VACUOLE_EFFECTS"
-msgstr ""
+msgstr "Немає ефектів."
 
 #, fuzzy
 msgid "WIKI_VACUOLE_INTRO"
@@ -9189,7 +9316,7 @@ msgid "WIKI_VACUOLE_PROCESSES"
 msgstr "Перетворює [thrive:compound type=\"atp\"][/thrive:compound] на [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Кількість залежить від [thrive:compound type=\"oxygen\"][/thrive:compound]. Може пирснути токсини при натисканні [thrive:input]g_fire_toxin[/thrive:input]. Коли [thrive:compound type=\"oxytoxy\"][/thrive:compound] недостатньо, то постріл можливий, але шкода буде незначною."
 
 msgid "WIKI_VACUOLE_REQUIREMENTS"
-msgstr ""
+msgstr "Клітина має містити [b][color=#3796e1][url=thriveopedia:nucleus]Nucleus[/url][/color][/b] щоб розвинути [b]Vacuoles[/b]."
 
 msgid "WIKI_VACUOLE_SCIENTIFIC_BACKGROUND"
 msgstr ""
@@ -9365,6 +9492,18 @@ msgstr "Приблизитись"
 
 msgid "ZOOM_OUT"
 msgstr "Віддалитись"
+
+#~ msgid "AEROBIC_NITROGEN_FIXING"
+#~ msgstr "Аеробна азотфіксація"
+
+#~ msgid "ANAEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Анаеробна азотфіксація"
+
+#~ msgid "OSMOREGULATION_COST_MULTIPLIER"
+#~ msgstr "Множник вартості осморегуляції"
+
+#~ msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
+#~ msgstr "(вартість осморегуляції виду гравця)"
 
 #~ msgid "KEEP_CURRENT_SHORT"
 #~ msgstr "Зберегти поточний"

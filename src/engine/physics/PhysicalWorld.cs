@@ -598,12 +598,14 @@ internal static partial class NativeMethods
     internal static extern void DestroyPhysicalWorld(IntPtr physicalWorld);
 
     [DllImport("thrive_native")]
+    [return: MarshalAs(UnmanagedType.U1)]
     internal static extern bool ProcessPhysicalWorld(IntPtr physicalWorld, float delta);
 
     [DllImport("thrive_native")]
     internal static extern void ProcessPhysicalWorldInBackground(IntPtr physicalWorld, float delta);
 
     [DllImport("thrive_native")]
+    [return: MarshalAs(UnmanagedType.U1)]
     internal static extern bool WaitForPhysicsToCompleteInPhysicalWorld(IntPtr physicalWorld);
 
     [DllImport("thrive_native")]
@@ -682,6 +684,7 @@ internal static partial class NativeMethods
     internal static extern void SetBodyAllowSleep(IntPtr world, IntPtr body, bool allowSleep);
 
     [DllImport("thrive_native")]
+    [return: MarshalAs(UnmanagedType.U1)]
     internal static extern bool FixBodyYCoordinateToZero(IntPtr world, IntPtr body);
 
     [DllImport("thrive_native")]
@@ -745,6 +748,7 @@ internal static partial class NativeMethods
     internal static extern float PhysicalWorldGetPhysicsAverageTime(IntPtr physicalWorld);
 
     [DllImport("thrive_native", CharSet = CharSet.Ansi, BestFitMapping = false)]
+    [return: MarshalAs(UnmanagedType.U1)]
     internal static extern bool PhysicalWorldDumpPhysicsState(IntPtr physicalWorld, string path);
 
     [DllImport("thrive_native")]

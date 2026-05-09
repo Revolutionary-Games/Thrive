@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-27 14:48+0200\n"
-"PO-Revision-Date: 2026-02-18 15:13+0000\n"
-"Last-Translator: Anelle Lisetter Viktoria Rodin <lisete.rodin@gmail.com>\n"
+"POT-Creation-Date: 2026-05-08 16:35+0300\n"
+"PO-Revision-Date: 2026-05-01 09:17+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
 "Language: et\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.15.2\n"
+"X-Generator: Weblate 5.16.1\n"
 "Generated-By: Babel 2.9.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -131,9 +131,6 @@ msgstr "Pausi menüü"
 msgid "AEROBIC_NITROGEN_FIXATION"
 msgstr "Anaeroobne lämmastiku fikseerimine"
 
-msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "Aeroobne lämmastiku fikseerimine"
-
 #, fuzzy
 msgid "AEROBIC_RESPIRATION"
 msgstr "Aeroobne hingamine"
@@ -220,9 +217,6 @@ msgstr "Säilitatavate automaatsete salvestamiste arv:"
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Säilitatavate kiirsäästude arv:"
-
-msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "Anaeroobne lämmastiku fikseerimine"
 
 #, fuzzy
 msgid "AND_UNLOCK_CONDITION"
@@ -823,6 +817,10 @@ msgstr "Pettuste menüü"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Kuva/peida rakuprotsessid"
+
+#, fuzzy
+msgid "CHEMICAL_EQUATION_SPEED_EXPLANATION"
+msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. Lõpliku populatsiooni määrab kogu energia, mida liik suudab püüda, ja kulu liigi isendi kohta. Auto-evo kasutab lihtsustatud tegelikkuse mudelit, et arvutada, kui hästi liigid toimivad, võttes aluseks energia, mida nad suudavad koguda. Iga toiduallika puhul näidatakse, et liik saab sellest palju energiat. Lisaks kuvatakse sellest allikast saadaolev koguenergia. See, kui suur osa liikide koguenergiast võidab, põhineb sellel, kui suur on sobivus võrreldes kogu sobivusega. Fitness on mõõdik selle kohta, kui hästi liik suudab seda toiduallikat kasutada."
 
 msgid "CHEMOPLAST"
 msgstr "Kemoplast"
@@ -1819,6 +1817,10 @@ msgstr "Raske"
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "Keskmine"
 
+#, fuzzy
+msgid "DIFFICULTY_PRESET_VERY_EASY"
+msgstr "Kerge"
+
 msgid "DIGESTION_EFFICIENCY"
 msgstr ""
 
@@ -2231,6 +2233,16 @@ msgstr "{0}: +{1} ATP"
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr "Liitpilved"
 
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER"
+msgstr "Osmoregulatsiooni maksumus"
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER_EXPLANATION"
+msgstr ""
+"Aktiivsed mikroobid jooksevad ja kukuvad, kui midagi huvitavat ei juhtu.\n"
+"Sessiilsed mikroobid on paigal ja ootavad enne tegutsemist, kuni keskkond muutub."
+
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energia: {0}, {1}"
 
@@ -2381,6 +2393,10 @@ msgid "EXACT_VERSION_TOOLTIP"
 msgstr "vabasurm"
 
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
+msgstr "Laaditud objektide töötlemisel juhtus erand"
+
+#, fuzzy
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE_JUKEBOX"
 msgstr "Laaditud objektide töötlemisel juhtus erand"
 
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
@@ -3050,6 +3066,14 @@ msgid "IMAGE_FILE_TYPES"
 msgstr "Membraani liigid"
 
 #, fuzzy
+msgid "INCOMPATIBLE_MEMBRANE_LIST"
+msgstr "Organismi statistika"
+
+#, fuzzy
+msgid "INCOMPATIBLE_ORGANELLE_LIST"
+msgstr "Asetage organell"
+
+#, fuzzy
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Loo uus"
 
@@ -3114,6 +3138,14 @@ msgstr "Tuum"
 
 #, fuzzy
 msgid "INFO_BOX_SIZE"
+msgstr "SA OLED ÕIDULIKUD!"
+
+#, fuzzy
+msgid "INFO_BOX_SIZE_PLAIN"
+msgstr "SA OLED ÕIDULIKUD!"
+
+#, fuzzy
+msgid "INFO_BOX_STAGE"
 msgstr "SA OLED ÕIDULIKUD!"
 
 #, fuzzy
@@ -3794,6 +3826,20 @@ msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
 msgid "LOCK_DAY_NIGHT_CYCLE"
+msgstr ""
+
+#, fuzzy
+msgid "LOOK_LEFT"
+msgstr "Vasakule"
+
+#, fuzzy
+msgid "LOOK_RIGHT"
+msgstr "Õige"
+
+msgid "LOOK_SCREEN_DOWN_OR_3D_TOWARDS_UP"
+msgstr ""
+
+msgid "LOOK_SCREEN_UP_OR_3D_TOWARDS_DOWN"
 msgstr ""
 
 #, fuzzy
@@ -4735,6 +4781,30 @@ msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Mikroobide redaktori laadimine"
 
 #, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_2"
+msgstr "Mikroobide redaktori laadimine"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_3"
+msgstr "Mikroobide redaktori laadimine"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_4"
+msgstr "Mikroobide redaktori laadimine"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_5"
+msgstr "Mikroobide redaktori laadimine"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_6"
+msgstr "Mikroobide redaktori laadimine"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_7"
+msgstr "Mikroobide redaktori laadimine"
+
+#, fuzzy
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
 
@@ -4871,6 +4941,10 @@ msgstr "Lämmastik on valk, mis on võimeline kasutama gaasilist lämmastikku ja
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Muudab [thrive:compound type=\"atp\"][/thrive:compound] tüübiks [thrive:compound type=\"ammoniaak\"][/thrive:compound]. Hindamisskaalad kontsentratsiooniga [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
+#, fuzzy
+msgid "NITROGEN_FIXATION"
+msgstr "Anaeroobne lämmastiku fikseerimine"
+
 msgid "NITROPLAST"
 msgstr "Lämmastikku fikseeriv plastiid"
 
@@ -4878,6 +4952,7 @@ msgstr "Lämmastikku fikseeriv plastiid"
 msgid "NITROPLAST_DESCRIPTION"
 msgstr "Lämmastikku fikseeriv plastiid on valk, mis on võimeline kasutama gaasilist lämmastikku ja hapnikku ning rakuenergiat ATP kujul, et toota ammoniaaki, mis on rakkude kasvu peamine toitaine. Seda protsessi nimetatakse aeroobseks lämmastiku fikseerimiseks."
 
+#, fuzzy
 msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Muudab [thrive:compound type=\"atp\"][/thrive:compound] tüübiks [thrive:compound type=\"ammoniaak\"][/thrive:compound]. Hindamisskaalad [thrive:compound type=\"nitrogen\"][/thrive:compound] ja [thrive:compound type=\"oxygen\"][/thrive:compound] kontsentratsiooniga."
 
@@ -4998,6 +5073,7 @@ msgstr ""
 msgid "NUCLEUS_DESCRIPTION"
 msgstr "Eukarüootsete rakkude iseloomulik tunnus. Tuum hõlmab ka endoplasmaatilist retikulumit ja golgi keha. See on prokarüootsete rakkude evolutsioon sisemembraanide süsteemi väljatöötamiseks, mis toimub teise prokarüooti enda sees assimileerimise teel. See võimaldab neil rakus toimuvaid erinevaid protsesse lahterdada või ära hoida ja vältida nende kattumist. See võimaldab nende uutel membraaniga seotud organellidel olla palju keerukamad, tõhusamad ja spetsialiseerunud kui siis, kui nad hõljuksid tsütoplasmas vabalt. See aga läheb raku palju suuremaks muutmise hinnaga ning selle ülalpidamiseks kulub palju raku energiat."
 
+#, fuzzy
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr "Võimaldab keerukamate membraaniga seotud organellide evolutsiooni. ATP ülalpidamine maksab palju. See on pöördumatu areng."
 
@@ -5048,6 +5124,10 @@ msgstr "GLES2 režiimi hoiatus"
 #, fuzzy
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr "Kasutate GLES2-ga Thrive'i. See on tõsiselt testimata ja põhjustab tõenäoliselt probleeme. Proovige värskendada oma videodraivereid ja/või sundida Thrive'i käitamiseks kasutama AMD või Nvidia graafikat."
+
+#, fuzzy
+msgid "OPEN_EVOLUTIONARY_TREE"
+msgstr "Autor Revolutionary Games Studio"
 
 msgid "OPEN_FOLDER"
 msgstr "Ava kaust"
@@ -5218,14 +5298,6 @@ msgid "OSMOREGULATION_COST"
 msgstr "Osmoregulatsiooni maksumus"
 
 #, fuzzy
-msgid "OSMOREGULATION_COST_MULTIPLIER"
-msgstr "Osmoregulatsiooni maksumus"
-
-#, fuzzy
-msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
-msgstr "Osmoregulatsiooni maksumus"
-
-#, fuzzy
 msgid "OTHER_COMPOUNDS"
 msgstr "Ühendid"
 
@@ -5295,6 +5367,10 @@ msgstr "tagasi"
 #, fuzzy
 msgid "PAGE_FORWARD"
 msgstr "Edasi"
+
+#, fuzzy
+msgid "PAGE_PINNED"
+msgstr "Eemaldage kohalikud andmed"
 
 #, fuzzy
 msgid "PAGE_TITLE"
@@ -5446,6 +5522,13 @@ msgstr "Füüsilised tingimused"
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Füüsiline vastupanu"
 
+#, fuzzy
+msgid "PIN_BUTTON_TOOLTIP"
+msgstr "Abi"
+
+msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
+msgstr ""
+
 msgid "PLACE_ORGANELLE"
 msgstr "Asetage organell"
 
@@ -5591,8 +5674,13 @@ msgstr "eelmine:"
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Laaditud objektide töötlemine"
 
+#, fuzzy
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
+
+#, fuzzy
+msgid "PROCESS_INACTIVE"
+msgstr "Rakuprotsessid"
 
 #, fuzzy
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
@@ -5609,10 +5697,6 @@ msgstr "Rakuprotsessid"
 #, fuzzy
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Rakuprotsessid"
-
-#, fuzzy
-msgid "PROCESS_TOGGLE_TOOLTIP"
-msgstr "Tagasi menüüsse"
 
 msgid "PROGRAMMING_TEAM"
 msgstr "Programmeerimismeeskond"
@@ -6866,6 +6950,10 @@ msgstr ""
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
+msgstr "Väljasurnud liigid"
+
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr ""
 
@@ -6878,8 +6966,46 @@ msgstr ""
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
+msgstr "Väljasurnud liigid"
+
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
+msgstr ""
+"Hoidke oma terviseribal silm peal ATP riba kõrval (all paremal).\n"
+"Teie rakk sureb, kui selle tervis otsa saab.\n"
+"Kui teil on ATP, taastate tervist.\n"
+"Veenduge, et kogute piisavalt glükoosi ATP tootmiseks."
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE"
+msgstr "on muteerunud"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
+msgstr "Raku kleepuv sisemus. Tsütoplasma on põhiline segu ioonidest, valkudest ja muudest vees lahustunud ainetest, mis täidavad raku sisemuse. Üks selle ülesandeid on glükolüüs, glükoosi muundamine ATP energiaks. Et rakkudel, millel puuduvad organellid, on arenenum ainevahetus, loodavad nad energiat just sellele. Seda kasutatakse ka molekulide säilitamiseks rakus ja raku suuruse suurendamiseks."
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
+msgstr ""
+"Hoidke oma terviseribal silm peal ATP riba kõrval (all paremal).\n"
+"Teie rakk sureb, kui selle tervis otsa saab.\n"
+"Kui teil on ATP, taastate tervist.\n"
+"Veenduge, et kogute piisavalt glükoosi ATP tootmiseks."
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
+msgstr ""
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
+msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
+msgstr "Praegused arendajad"
 
 msgid "THRIVE_LICENSES"
 msgstr "Thrive litsentsid"
@@ -10027,6 +10153,16 @@ msgstr "Suurenda"
 
 msgid "ZOOM_OUT"
 msgstr "Suumi välja"
+
+#~ msgid "AEROBIC_NITROGEN_FIXING"
+#~ msgstr "Aeroobne lämmastiku fikseerimine"
+
+#~ msgid "ANAEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Anaeroobne lämmastiku fikseerimine"
+
+#, fuzzy
+#~ msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
+#~ msgstr "Osmoregulatsiooni maksumus"
 
 #, fuzzy
 #~ msgid "KEEP_CURRENT_SHORT"

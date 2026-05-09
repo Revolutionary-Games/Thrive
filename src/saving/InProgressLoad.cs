@@ -36,6 +36,8 @@ public class InProgressLoad
     {
         Initial,
         ReadingData,
+        TargetStateKnown,
+        Wait,
         ProcessingLoadedObjects,
         CreatingScene,
         Finished,
@@ -43,7 +45,7 @@ public class InProgressLoad
 
     /// <summary>
     ///   True when a save is currently being loaded
-    ///   Used to stop quick load starting while a load is in progress already
+    ///   Used to stop a quick load starting while a load is in progress already
     /// </summary>
     public static bool IsLoading { get; private set; }
 
@@ -148,23 +150,55 @@ public class InProgressLoad
                     break;
                 }
 
+                state = State.TargetStateKnown;
+                break;
+            }
+
+            case State.TargetStateKnown:
+            {
+                if (!loadedState!.IsLoadedFromSave)
+                    throw new Exception("Game load logic not working correctly, IsLoadedFromSave was not set");
+
+                // This exists to update the loading screen with the target state we are going for
+                LoadingScreen.Instance.Show(Localization.Translate("LOADING_GAME"),
+                    save!.GameState,
+                    Localization.Translate("PROCESSING_LOADED_OBJECTS"));
+
+                try
+                {
+                    if (save!.JukeboxPlaybackState != null)
+                    {
+                        Jukebox.Instance.PlaybackState = save.JukeboxPlaybackState;
+                    }
+                }
+                catch (Exception e)
+                {
+                    var extraProblem = TryFreeAlreadyLoadedData();
+
+                    ReportStatus(false,
+                        Localization.Translate("EXCEPTION_HAPPENED_PROCESSING_SAVE_JUKEBOX"),
+                        e + extraProblem);
+                    state = State.Finished;
+                    break;
+                }
+
+                state = State.Wait;
+                break;
+            }
+
+            case State.Wait:
+            {
+                // This state exists purely to be able to show the data updated in the previous step in the GUI
                 state = State.ProcessingLoadedObjects;
                 break;
             }
 
             case State.ProcessingLoadedObjects:
             {
-                LoadingScreen.Instance.Show(Localization.Translate("LOADING_GAME"),
-                    save!.GameState,
-                    Localization.Translate("PROCESSING_LOADED_OBJECTS"));
-
-                if (!loadedState!.IsLoadedFromSave)
-                    throw new Exception("Game load logic not working correctly, IsLoadedFromSave was not set");
-
                 try
                 {
-                    SceneManager.Instance.SwitchToScene(loadedState.GameStateRoot);
-                    loadedState.OnFinishLoading(save);
+                    SceneManager.Instance.SwitchToScene(loadedState!.GameStateRoot);
+                    loadedState.OnFinishLoading(save!);
                 }
                 catch (Exception e)
                 {

@@ -11,7 +11,7 @@ using Xoshiro.PRNG64;
 /// </summary>
 public class GameProperties : IArchivable
 {
-    public const int SERIALIZATION_VERSION = 1;
+    public const int SERIALIZATION_VERSION = 2;
 
     private readonly Dictionary<string, bool> setBoolStatuses;
 
@@ -71,6 +71,11 @@ public class GameProperties : IArchivable
     ///   ID of this playthrough
     /// </summary>
     public Guid PlaythroughID { get; private set; } = Guid.NewGuid();
+
+    /// <summary>
+    ///   Playthrough-specific Thriveopedia data that is saved.
+    /// </summary>
+    public ThriveopediaGameData ThriveopediaData { get; private set; } = new();
 
     public TechWeb TechWeb { get; private set; } = new();
 
@@ -302,6 +307,9 @@ public class GameProperties : IArchivable
         // Not saved currently
         // instance.TechWeb = reader.ReadObject<TechWeb>();
 
+        if (version > 1)
+            instance.ThriveopediaData = reader.ReadObject<ThriveopediaGameData>();
+
         return instance;
     }
 
@@ -321,6 +329,8 @@ public class GameProperties : IArchivable
         // Not saved for now as this is only used in the prototypes
 
         // writer.WriteObject(TechWeb);
+
+        writer.WriteObject(ThriveopediaData);
     }
 
     /// <summary>
@@ -617,7 +627,7 @@ public class GameProperties : IArchivable
         // Need to ensure the world has a custom difficulty we can modify here
         var modifiedDifficulty = GameWorld.WorldSettings.Difficulty.Clone();
 
-        modifiedDifficulty.OsmoregulationMultiplier *= osmoregulationMultiplier;
+        modifiedDifficulty.EnergyCostMultiplier *= osmoregulationMultiplier;
 
         GameWorld.WorldSettings.Difficulty = modifiedDifficulty;
     }

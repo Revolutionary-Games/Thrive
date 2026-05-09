@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-27 14:48+0200\n"
-"PO-Revision-Date: 2026-03-03 07:27+0000\n"
+"POT-Creation-Date: 2026-05-08 16:35+0300\n"
+"PO-Revision-Date: 2026-05-01 09:17+0000\n"
 "Last-Translator: Søren Hansen <pjuske4life@gmail.com>\n"
 "Language-Team: Danish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/da/>\n"
 "Language: da\n"
@@ -111,9 +111,6 @@ msgstr "Åben visning af avancerede indstillinger"
 msgid "AEROBIC_NITROGEN_FIXATION"
 msgstr "Aerob Kvælstoffiksering"
 
-msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "Aerob Kvælstoffiksering"
-
 msgid "AEROBIC_RESPIRATION"
 msgstr "Aerob respiration"
 
@@ -197,9 +194,6 @@ msgstr "Antal autolagringer der beholdes:"
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Antal hurtiglagringer der beholdes:"
-
-msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "Anaerob kvælstoffiksering"
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr "og"
@@ -716,6 +710,7 @@ msgstr ""
 "Den mest specialiseret type er {3} med en bonus på {2}%.\n"
 "For at øge dette, gør celletyperne mere specialiseret, eller tilføj flere specialiserede celler."
 
+#, fuzzy
 msgid "CELL_SPECIALIZATION_TOOLTIP"
 msgstr ""
 "Specialisering af en celle til bare en type organel giver en hastighedsbonus til bioprocesser.\n"
@@ -768,6 +763,10 @@ msgstr "Snyd menu"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Vis / gem celle processer"
+
+#, fuzzy
+msgid "CHEMICAL_EQUATION_SPEED_EXPLANATION"
+msgstr "(hastighed som AI arter muterer ved)"
 
 msgid "CHEMOPLAST"
 msgstr "Kemoplast"
@@ -1629,6 +1628,7 @@ msgstr "Nedstig"
 msgid "DESCEND_CONFIRMATION"
 msgstr "Er du sikker på du vil nedstige?"
 
+#, fuzzy
 msgid "DESCEND_CONFIRMATION_EXPLANATION"
 msgstr ""
 "Nedstigning vil fjerne din opsteget status og sende dig tilbage til Mikrobestadiet. Derfra kan du spille igennem spillet igen med den nuværende lagring.\n"
@@ -1711,6 +1711,10 @@ msgstr "Svært"
 
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "Normalt"
+
+#, fuzzy
+msgid "DIFFICULTY_PRESET_VERY_EASY"
+msgstr "Nemt"
 
 msgid "DIGESTION_EFFICIENCY"
 msgstr "Fordøjelseseffektivitet"
@@ -2059,6 +2063,14 @@ msgstr ""
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr "Energiforbrugs pres"
 
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER"
+msgstr "Multiplikator for mutationspris"
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER_EXPLANATION"
+msgstr "(hvad organeller, membraner og andre genstande koster i editoren)"
+
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energi i {0} for {1}"
 
@@ -2211,6 +2223,10 @@ msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Dette er den præcise kode commit som denne version af Thrive er kompileret ud fra"
 
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
+msgstr "Der skete en undtagelse mens der forsøgtes at håndtere indhentede objekter"
+
+#, fuzzy
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE_JUKEBOX"
 msgstr "Der skete en undtagelse mens der forsøgtes at håndtere indhentede objekter"
 
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
@@ -2779,6 +2795,14 @@ msgstr "Ignorer yderligere fejl"
 msgid "IMAGE_FILE_TYPES"
 msgstr "Understøttede billedefiler"
 
+#, fuzzy
+msgid "INCOMPATIBLE_MEMBRANE_LIST"
+msgstr "[b]Membraner Data:[/b]"
+
+#, fuzzy
+msgid "INCOMPATIBLE_ORGANELLE_LIST"
+msgstr "Adskillelige organeller"
+
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Forøg objekt størrelse"
 
@@ -2832,6 +2856,14 @@ msgstr "Kræver cellekerne"
 
 msgid "INFO_BOX_SIZE"
 msgstr "Størrelse (Hexes)"
+
+#, fuzzy
+msgid "INFO_BOX_SIZE_PLAIN"
+msgstr "Størrelse (Hexes)"
+
+#, fuzzy
+msgid "INFO_BOX_STAGE"
+msgstr "Lager"
 
 msgid "INFO_BOX_STORAGE"
 msgstr "Lager"
@@ -3444,6 +3476,20 @@ msgstr "L"
 
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "Lås dag nat cyklus"
+
+#, fuzzy
+msgid "LOOK_LEFT"
+msgstr "Venstre"
+
+#, fuzzy
+msgid "LOOK_RIGHT"
+msgstr "Højre"
+
+msgid "LOOK_SCREEN_DOWN_OR_3D_TOWARDS_UP"
+msgstr ""
+
+msgid "LOOK_SCREEN_UP_OR_3D_TOWARDS_DOWN"
+msgstr ""
 
 msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
 msgstr "(lavere værdier øger ydeevne)"
@@ -4222,6 +4268,30 @@ msgstr "Flercellet fribyg editor"
 msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Mens dine celler deler stoffer mellem sig, så skal hver celle producere sin egen [thrive:compound type=\"atp\"][/thrive:compound]. En celle der løber tør for det vil dø."
 
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_2"
+msgstr "Mens dine celler deler stoffer mellem sig, så skal hver celle producere sin egen [thrive:compound type=\"atp\"][/thrive:compound]. En celle der løber tør for det vil dø."
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_3"
+msgstr "Mens dine celler deler stoffer mellem sig, så skal hver celle producere sin egen [thrive:compound type=\"atp\"][/thrive:compound]. En celle der løber tør for det vil dø."
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_4"
+msgstr "Mens dine celler deler stoffer mellem sig, så skal hver celle producere sin egen [thrive:compound type=\"atp\"][/thrive:compound]. En celle der løber tør for det vil dø."
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_5"
+msgstr "Mens dine celler deler stoffer mellem sig, så skal hver celle producere sin egen [thrive:compound type=\"atp\"][/thrive:compound]. En celle der løber tør for det vil dø."
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_6"
+msgstr "Mens dine celler deler stoffer mellem sig, så skal hver celle producere sin egen [thrive:compound type=\"atp\"][/thrive:compound]. En celle der løber tør for det vil dø."
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_7"
+msgstr "Mens dine celler deler stoffer mellem sig, så skal hver celle producere sin egen [thrive:compound type=\"atp\"][/thrive:compound]. En celle der løber tør for det vil dø."
+
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "Dette panel viser din kolonis samlede processer på tværs af alle celler. Bemærk at ulig andre stoffer, så deles ATP ikke mellem celler."
 
@@ -4346,12 +4416,18 @@ msgstr "Nitrogenase er et protein der kan bruge gasformig [thrive:compound type=
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Omdanner [thrive:compound type=\"atp\"][/thrive:compound] til [thrive:compound type=\"ammonia\"][/thrive:compound]. Hastigheden skalerer med koncentrationen af [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
+#, fuzzy
+msgid "NITROGEN_FIXATION"
+msgstr "Aerob Kvælstoffiksering"
+
 msgid "NITROPLAST"
 msgstr "Nitroplast"
 
+#, fuzzy
 msgid "NITROPLAST_DESCRIPTION"
 msgstr "Nitroplasten er en membranbundet organel der kan bruge gasformig [thrive:compound type=\"nitrogen\"][/thrive:compound], [thrive:compound type=\"oxygen\"][/thrive:compound] og [thrive:compound type=\"atp\"][/thrive:compound] til at producere [thrive:compound type=\"ammonia\"][/thrive:compound], et vigtigt vækstnæringsstof for celler. Denne proces refereres til som [b]anaerob kvælstoffiksering[/b]."
 
+#, fuzzy
 msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Omdanner [thrive:compound type=\"atp\"][/thrive:compound] til [thrive:compound type=\"ammonia\"][/thrive:compound]. Hastigheden skalerer med koncentrationen af [thrive:compound type=\"nitrogen\"][/thrive:compound] and [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
@@ -4465,6 +4541,7 @@ msgstr ""
 msgid "NUCLEUS_DESCRIPTION"
 msgstr "Den definerende feature for eukaryotiske celler. Cellekernen inkluderer også de endoplasmatiske retikulum og Golgiapparatet. Det er en evolution af prokaryotiske celler for at udvikle et system af interne membraner, gjort ved at assimilere en anden prokaryote inden i dem selv. Dette tillader dem at opdele eller afskærme forskellige processer der ske inde i cellen og forhindre at de overlapper. Det tillader deres nye membranbundne organeller at være meget mere komplekse, effektive og specialiseret ned hvis de var frit flydende i cytoplasma. Det medfører dog at cellen bliver meget større, og kræver meget af cellens energi at vedligeholde."
 
+#, fuzzy
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr "Tillader evolutionen af mere komplekse, membranbundne organeller, og reducere skade med 50%. Koster en hel del ATP at vedligeholde. Denne evolution kan ikke ændres igen."
 
@@ -4510,6 +4587,10 @@ msgstr "OpenGL tilstand advarsel"
 
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr "Du kører Thrive med OpenGL. Dette er i høj grad utestet og vil højst sandsynligt skabe problemer. Sørg for at du bruger et nyt nok grafikkort eller integreret grafik, og prøv at opdatere video driverne. For bærbare computere kan du blive nødt til at tvinge dedikeret AMD eller Nvidia grafik til at blive brugt til at køre Thrive, i stedet for det integrerede grafik."
+
+#, fuzzy
+msgid "OPEN_EVOLUTIONARY_TREE"
+msgstr "Evolutionære træ"
 
 msgid "OPEN_FOLDER"
 msgstr "Åben mappe"
@@ -4655,12 +4736,6 @@ msgstr "Osmoregulering"
 msgid "OSMOREGULATION_COST"
 msgstr "Osmoreguleringsomkostning"
 
-msgid "OSMOREGULATION_COST_MULTIPLIER"
-msgstr "Osmoreguleringsomkostning multiplikator"
-
-msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
-msgstr "(omkostningen af spillerens arts osmoregulering)"
-
 msgid "OTHER_COMPOUNDS"
 msgstr "Andre"
 
@@ -4722,6 +4797,10 @@ msgstr "tilbage"
 
 msgid "PAGE_FORWARD"
 msgstr "Frem"
+
+#, fuzzy
+msgid "PAGE_PINNED"
+msgstr "Sidetitel"
 
 msgid "PAGE_TITLE"
 msgstr "Sidetitel"
@@ -4853,6 +4932,13 @@ msgstr "Fysiske tilstande"
 
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Fysisk resistens"
+
+#, fuzzy
+msgid "PIN_BUTTON_TOOLTIP"
+msgstr "Skift dine indstillinger"
+
+msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
+msgstr ""
 
 msgid "PLACE_ORGANELLE"
 msgstr "Placer organel (eller andre placerbare ting)"
@@ -4993,8 +5079,13 @@ msgstr "forrige:"
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Behandler indlæste objekter"
 
+#, fuzzy
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
+
+#, fuzzy
+msgid "PROCESS_INACTIVE"
+msgstr "Organismeprocesser"
 
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
 msgstr "Organisme processpanel forklaring"
@@ -5007,12 +5098,6 @@ msgstr "Celleprocesser"
 
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Bioprocess hastighed"
-
-msgid "PROCESS_TOGGLE_TOOLTIP"
-msgstr ""
-"Slå procesen til og fra. Det giver avanceret kontrol over celleprocesserne.\n"
-"F.eks. kan det bruges til at slå toksin produktion fra når det ikke er nødvendigt.\n"
-"Kan også bruge til at balancere hvilke energikilder der bruges for at øge effektiviteten, men det er en meget avanceret taktik."
 
 msgid "PROGRAMMING_TEAM"
 msgstr "Programmerings Team"
@@ -6146,6 +6231,10 @@ msgstr "Nuværende verden"
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr "Evolutionære træ"
 
+#, fuzzy
+msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
+msgstr "Åben Thriveopedia'en"
+
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr "Åben Thriveopedia'en"
 
@@ -6167,8 +6256,40 @@ msgstr "Hjem"
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Museum"
 
+#, fuzzy
+msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
+msgstr "Hjem"
+
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr "Områdekort"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
+msgstr "Evolutionære træ"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE"
+msgstr "Museum"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
+msgstr "Museum"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
+msgstr "Museum"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
+msgstr "Museum"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
+msgstr "Museum"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
+msgstr "Nuværende verden"
 
 msgid "THRIVE_LICENSES"
 msgstr "Thrive licenser"
@@ -6702,6 +6823,7 @@ msgstr ""
 "\n"
 "Tryk på pause symbolet i nederst til venstre (anden knap fra venstre) for at se hvordan det fungerer at pause. Genoptag derefter spillet for at fortsætte."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_PROCESS_PANEL"
 msgstr ""
 "Her i [b]processpanelet[/b] can du overvåge dine celleprocesser i realtid. Spinnerne viser hvor hurtigt en process kører, mens tallene viser et gennemsnit af nyligt forbrug eller produktion.\n"
@@ -7381,6 +7503,7 @@ msgstr "Ingen modifikationer."
 msgid "WIKI_CHLOROPLAST_PROCESSES"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_REQUIREMENTS"
 msgstr ""
 "En celle skal have en [b][color=#3796e1][url=thriveopedia:nucleus]Cellekerne[/url][/color][/b] for at udvikle [b]Kloroplaster[/b].\n"
@@ -7553,6 +7676,7 @@ msgstr "Ingen modifikationer."
 msgid "WIKI_FLAGELLUM_PROCESSES"
 msgstr "Ingen processer."
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_REQUIREMENTS"
 msgstr ""
 "Hvis organelopgraderinger er aktiveret i spilindstillingerne [i]skal mindst en[/i] af de følgende krav være opfyldt [i]for spillerens celle[/i]:\n"
@@ -7959,6 +8083,7 @@ msgstr "Ingen opgraderinger."
 msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Udvikling af Flercellestadiet er påbegyndt, men er ikke særlig uddybet endnu."
 
@@ -8768,6 +8893,18 @@ msgstr "Zoom ind"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom ud"
+
+#~ msgid "AEROBIC_NITROGEN_FIXING"
+#~ msgstr "Aerob Kvælstoffiksering"
+
+#~ msgid "ANAEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Anaerob kvælstoffiksering"
+
+#~ msgid "OSMOREGULATION_COST_MULTIPLIER"
+#~ msgstr "Osmoreguleringsomkostning multiplikator"
+
+#~ msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
+#~ msgstr "(omkostningen af spillerens arts osmoregulering)"
 
 #~ msgid "KEEP_CURRENT_SHORT"
 #~ msgstr "Behold nuværende"

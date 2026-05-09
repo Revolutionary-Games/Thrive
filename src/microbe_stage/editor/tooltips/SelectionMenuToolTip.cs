@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Text;
 using Godot;
 
 /// <summary>
@@ -10,10 +11,14 @@ using Godot;
 /// </summary>
 public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
 {
+    public HashSet<OrganelleDefinition>? IncompatibleOrganelles;
+
     /// <summary>
     ///   Hold reference of modifier info elements for easier access to change their values later
     /// </summary>
     private readonly List<ModifierInfoLabel> modifierInfos = new();
+
+    private readonly StringBuilder stringBuilder = new();
 
 #pragma warning disable CA2213
     [Export]
@@ -34,6 +39,9 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
 
     [Export]
     private Label requiresNucleusLabel = null!;
+
+    [Export]
+    private Label incompatibleMembranesLabel = null!;
 
     [Export]
     private ModifierInfoLabel osmoregulationModifier = null!;
@@ -61,6 +69,7 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     private float osmoregulationCost;
     private bool showOsmoregulation = true;
     private bool requiresNucleus;
+    private List<MembraneType>? incompatibleMembranes;
     private string? thriveopediaPageName;
     private bool hasProcesses;
 
@@ -165,6 +174,16 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
         }
     }
 
+    public List<MembraneType>? IncompatibleMembranes
+    {
+        get => incompatibleMembranes;
+        set
+        {
+            incompatibleMembranes = value;
+            UpdateIncompatibleMembranes();
+        }
+    }
+
     [Export]
     public string? ThriveopediaPageName
     {
@@ -198,6 +217,7 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
         UpdateProcessesDescription();
         UpdateMpCost();
         UpdateRequiresNucleus();
+        UpdateIncompatibleMembranes();
         UpdateLists();
         UpdateMoreInfo();
 
@@ -396,6 +416,32 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
         return true;
     }
 
+    public void UpdateIncompatibleOrganelles()
+    {
+        if (IncompatibleOrganelles == null || IncompatibleOrganelles.Count == 0)
+        {
+            incompatibleMembranesLabel.Visible = false;
+            return;
+        }
+
+        incompatibleMembranesLabel.Visible = true;
+
+        stringBuilder.Clear();
+
+        foreach (var organelle in IncompatibleOrganelles)
+        {
+            if (stringBuilder.Length > 0)
+            {
+                stringBuilder.Append(", ");
+            }
+
+            stringBuilder.Append(organelle.Name);
+        }
+
+        incompatibleMembranesLabel.Text
+            = Localization.Translate("INCOMPATIBLE_ORGANELLE_LIST").FormatSafe(stringBuilder.ToString());
+    }
+
     private void UpdateName()
     {
         if (string.IsNullOrEmpty(displayName))
@@ -456,6 +502,29 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     private void UpdateRequiresNucleus()
     {
         requiresNucleusLabel.Visible = requiresNucleus;
+    }
+
+    private void UpdateIncompatibleMembranes()
+    {
+        incompatibleMembranesLabel.Visible = incompatibleMembranes != null;
+
+        if (incompatibleMembranes == null)
+            return;
+
+        stringBuilder.Clear();
+
+        foreach (var membrane in incompatibleMembranes)
+        {
+            if (stringBuilder.Length > 0)
+            {
+                stringBuilder.Append(", ");
+            }
+
+            stringBuilder.Append(membrane.Name);
+        }
+
+        incompatibleMembranesLabel.Text
+            = Localization.Translate("INCOMPATIBLE_MEMBRANE_LIST").FormatSafe(stringBuilder.ToString());
     }
 
     private void UpdateLists()

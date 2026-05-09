@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-27 14:48+0200\n"
-"PO-Revision-Date: 2026-02-18 15:13+0000\n"
-"Last-Translator: Joah van der Maaden <voorjoah@gmail.com>\n"
+"POT-Creation-Date: 2026-05-08 16:35+0300\n"
+"PO-Revision-Date: 2026-05-01 09:17+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.15.2\n"
+"X-Generator: Weblate 5.16.1\n"
 "Generated-By: Babel 2.9.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -111,9 +111,6 @@ msgstr "Open de weergave voor geavanceerde instellingen"
 msgid "AEROBIC_NITROGEN_FIXATION"
 msgstr "Aerobe Stikstoffixatie"
 
-msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "Aerobe Stikstoffixatie"
-
 msgid "AEROBIC_RESPIRATION"
 msgstr "Aerobe Dissimilatie"
 
@@ -197,9 +194,6 @@ msgstr "Aantal automatische savegames om te bewaren:"
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Aantal savegames om te bewaren:"
-
-msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "Anaerobe Stikstoffixatie"
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr "En"
@@ -770,6 +764,10 @@ msgstr "Cheat Menu"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Toon / verberg celprocessen"
+
+#, fuzzy
+msgid "CHEMICAL_EQUATION_SPEED_EXPLANATION"
+msgstr "(snelheid waarmee AI-soorten muteren)"
 
 msgid "CHEMOPLAST"
 msgstr "Chemoplast"
@@ -1649,6 +1647,7 @@ msgstr "Neerdalen"
 msgid "DESCEND_CONFIRMATION"
 msgstr "Weetje zeker dat je wil neerdalen?"
 
+#, fuzzy
 msgid "DESCEND_CONFIRMATION_EXPLANATION"
 msgstr ""
 "Neerdalen zal je verheven status verwijderen en je terug naar de Microbenfase brengen. Je kunt dan in je huidige opslagbestand het spel opnieuw spelen.\n"
@@ -1731,6 +1730,10 @@ msgstr "Moeilijk"
 
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "Normaal"
+
+#, fuzzy
+msgid "DIFFICULTY_PRESET_VERY_EASY"
+msgstr "Gemakkelijk"
 
 msgid "DIGESTION_EFFICIENCY"
 msgstr "Verteringsefficiëntie"
@@ -2087,6 +2090,14 @@ msgstr "{0}: +{1} ATP"
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr "Samenstellings-wolken"
 
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER"
+msgstr "Multiplier voor mutatiekost"
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER_EXPLANATION"
+msgstr "(kost van organellen, membranen en andere items in de editor)"
+
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energie in {0} voor {1}"
 
@@ -2228,6 +2239,10 @@ msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Dit is de exacte code commit die gebruikt is bij het compileren van deze versie van Thrive"
 
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
+msgstr "Er heeft zich een uitzondering voorgedaan tijdens het verwerken van geladen objecten"
+
+#, fuzzy
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE_JUKEBOX"
 msgstr "Er heeft zich een uitzondering voorgedaan tijdens het verwerken van geladen objecten"
 
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
@@ -2835,6 +2850,14 @@ msgid "IMAGE_FILE_TYPES"
 msgstr "Membraantypes"
 
 #, fuzzy
+msgid "INCOMPATIBLE_MEMBRANE_LIST"
+msgstr "[b]Membranendata:[/b]"
+
+#, fuzzy
+msgid "INCOMPATIBLE_ORGANELLE_LIST"
+msgstr "Meerdere Organellen"
+
+#, fuzzy
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Maak Nieuw"
 
@@ -2894,6 +2917,14 @@ msgstr "Vereist Nucleus"
 
 msgid "INFO_BOX_SIZE"
 msgstr "Grootte (Hexen)"
+
+#, fuzzy
+msgid "INFO_BOX_SIZE_PLAIN"
+msgstr "Grootte (Hexen)"
+
+#, fuzzy
+msgid "INFO_BOX_STAGE"
+msgstr "Opslag"
 
 msgid "INFO_BOX_STORAGE"
 msgstr "Opslag"
@@ -3532,6 +3563,20 @@ msgstr "L"
 #, fuzzy
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "Zet dag/nacht cyclus vast"
+
+#, fuzzy
+msgid "LOOK_LEFT"
+msgstr "Links"
+
+#, fuzzy
+msgid "LOOK_RIGHT"
+msgstr "Rechts"
+
+msgid "LOOK_SCREEN_DOWN_OR_3D_TOWARDS_UP"
+msgstr ""
+
+msgid "LOOK_SCREEN_UP_OR_3D_TOWARDS_DOWN"
+msgstr ""
 
 #, fuzzy
 msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
@@ -4407,6 +4452,30 @@ msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Meercellige Bewerker"
 
 #, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_2"
+msgstr "Meercellige Bewerker"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_3"
+msgstr "Meercellige Bewerker"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_4"
+msgstr "Meercellige Bewerker"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_5"
+msgstr "Meercellige Bewerker"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_6"
+msgstr "Meercellige Bewerker"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_7"
+msgstr "Meercellige Bewerker"
+
+#, fuzzy
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "(sommige functies zijn mogelijk niet toegankelijk wanneer je volgende fasen bereikt)"
 
@@ -4535,12 +4604,18 @@ msgstr "Nitrogenase is een eiwit dat gasvormig [thrive:compound type=\"nitrogen\
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Zet [thrive:compound type=\"atp\"][/thrive:compound] om in [thrive:compound type=\"ammonia\"][/thrive:compound]. Snelheid schaalt met de concentratie van [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
+#, fuzzy
+msgid "NITROGEN_FIXATION"
+msgstr "Aerobe Stikstoffixatie"
+
 msgid "NITROPLAST"
 msgstr "Stikstofbindende plastide"
 
+#, fuzzy
 msgid "NITROPLAST_DESCRIPTION"
 msgstr "Het Stikstofbindende Plastide is een membraangebonden organel dat gasvormig [thrive:compound type=\"nitrogen\"][/thrive:compound], [thrive:compound type=\"oxygen\"][/thrive:compound], en [thrive:compound type=\"atp\"][/thrive:compound] gebruikt om [thrive:compound type=\"ammonia\"][/thrive:compound] te maken. Dit is een essentiële voedingsstof voor cellen. Dit proces heet [b]aerobe stikstoffixatie[/b]."
 
+#, fuzzy
 msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Zet [thrive:compound type=\"atp\"][/thrive:compound] om in [thrive:compound type=\"ammonia\"][/thrive:compound]. Snelheid schaalt met de concentractie van [thrive:compound type=\"nitrogen\"][/thrive:compound] en [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
@@ -4663,6 +4738,7 @@ msgstr ""
 msgid "NUCLEUS_DESCRIPTION"
 msgstr "De kenmerkende eigenschap van eukaryotische cellen. De nucleus bevat ook het endoplasmatisch reticulum en het golgicomplex. Het is een evolutie van de prokaryotische cellen waarbij het interne membranen ontwikkelt. Dit wordt gedaan door een andere prokaryoot in zichzelf op te nemen. Dit maakt het mogelijk om de verschillende processen in een cel te scheiden en compartmentalizeren zodat ze elkaar niet in de weg zitten. In tegenstelling tot organellen die vrij in het cytoplasma vloeien, kunnen er zo meer complexe, efficiënte, en gespecializeerde organellen aan het membraan kunnen worden verbonden. Echter zorgt dit er ook voor dat de cel veel groter is en veel meer energie nodig heeft om te overleven."
 
+#, fuzzy
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr "Staat de evolutie van meer complexe organellen toe die gebonden zijn aan het membraan. Het verminderd ook schade met 50%. Kost veel ATP om te onderhouden. Deze evolutie kan niet ongedaan worden gemaakt."
 
@@ -4711,6 +4787,10 @@ msgstr "GLES2 moduswaarschuwing"
 #, fuzzy
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr "Je gebruikt Thrive met GLES2. Dit is niet getest en zal hoogstwaarschijnlijk voor problemen veroorzaken. Update je drivers en/of forceer je AMD of Nvidia graphics om Thrive te laten runnen."
+
+#, fuzzy
+msgid "OPEN_EVOLUTIONARY_TREE"
+msgstr "Stamboom"
 
 msgid "OPEN_FOLDER"
 msgstr "Open Map"
@@ -4866,12 +4946,6 @@ msgstr "Osmoregulatie"
 msgid "OSMOREGULATION_COST"
 msgstr "Osmoregulatiekosten"
 
-msgid "OSMOREGULATION_COST_MULTIPLIER"
-msgstr "Osmoregulatiekosten"
-
-msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
-msgstr "(kost van osmoregulatie van spelersoort)"
-
 #, fuzzy
 msgid "OTHER_COMPOUNDS"
 msgstr "Verbindingen"
@@ -4940,6 +5014,10 @@ msgstr "Terug"
 
 msgid "PAGE_FORWARD"
 msgstr "Verder"
+
+#, fuzzy
+msgid "PAGE_PINNED"
+msgstr "Paginatitel"
 
 msgid "PAGE_TITLE"
 msgstr "Paginatitel"
@@ -5082,6 +5160,13 @@ msgstr "Fysieke Omstandigheden"
 
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Fysieke Weerstand"
+
+#, fuzzy
+msgid "PIN_BUTTON_TOOLTIP"
+msgstr "Pas je instellingen aan"
+
+msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
+msgstr ""
 
 msgid "PLACE_ORGANELLE"
 msgstr "Plaats organellen"
@@ -5230,8 +5315,13 @@ msgstr "vorige:"
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Geladen objecten worden verwerkt"
 
+#, fuzzy
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
+
+#, fuzzy
+msgid "PROCESS_INACTIVE"
+msgstr "Celprocessen"
 
 #, fuzzy
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
@@ -5248,10 +5338,6 @@ msgstr "Celprocessen"
 #, fuzzy
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Celprocessen"
-
-#, fuzzy
-msgid "PROCESS_TOGGLE_TOOLTIP"
-msgstr "Sluit en terug naar hoofdmenu"
 
 msgid "PROGRAMMING_TEAM"
 msgstr "Programmeerteam"
@@ -6434,6 +6520,10 @@ msgstr "Huidige Wereld"
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr "Fylogenetische stamboom"
 
+#, fuzzy
+msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
+msgstr "Open de Thriveopedia"
+
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr "Open de Thriveopedia"
 
@@ -6455,8 +6545,40 @@ msgstr "Thuis"
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Museum"
 
+#, fuzzy
+msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
+msgstr "Thuis"
+
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr "Gebiedenkaart"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
+msgstr "Fylogenetische stamboom"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE"
+msgstr "Museum"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
+msgstr "Museum"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
+msgstr "Museum"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
+msgstr "Museum"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
+msgstr "Museum"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
+msgstr "Huidige Wereld"
 
 msgid "THRIVE_LICENSES"
 msgstr "Thrive Licenties"
@@ -8993,6 +9115,7 @@ msgstr "Rusticyanine is een eiwat dat [thrive:compound type=\"carbondioxide\"][/
 msgid "WIKI_RUSTICYANIN_UPGRADES"
 msgstr "Geen upgrades."
 
+#, fuzzy
 msgid "WIKI_SIGNALING_AGENT_EFFECTS"
 msgstr ""
 "Als de spelercel [b]Signaling Agents[/b] heeft, kan de speler op een sneltoets drukken (standaard [b]V[/b]) om het signaalcommando-paneel te openen en een commando te geven aan alle leden van hun soort. Elk commando blijft van kracht totdat een nieuw commando wordt gekozen. De opties zijn:\n"
@@ -9477,6 +9600,22 @@ msgstr "Inzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
+
+#~ msgid "AEROBIC_NITROGEN_FIXING"
+#~ msgstr "Aerobe Stikstoffixatie"
+
+#~ msgid "ANAEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Anaerobe Stikstoffixatie"
+
+#~ msgid "OSMOREGULATION_COST_MULTIPLIER"
+#~ msgstr "Osmoregulatiekosten"
+
+#~ msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
+#~ msgstr "(kost van osmoregulatie van spelersoort)"
+
+#, fuzzy
+#~ msgid "PROCESS_TOGGLE_TOOLTIP"
+#~ msgstr "Sluit en terug naar hoofdmenu"
 
 #, fuzzy
 #~ msgid "KEEP_CURRENT_SHORT"

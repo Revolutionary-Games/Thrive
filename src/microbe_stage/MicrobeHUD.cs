@@ -213,6 +213,36 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         }
     }
 
+    public void ClearSignalingCommandsOnEditorExitIfNecessary(Entity player)
+    {
+        if (!player.Has<CommandSignaler>())
+            return;
+
+        ref var signaler = ref player.Get<CommandSignaler>();
+        ref var organelles = ref player.Get<OrganelleContainer>();
+
+        if (player.Has<MicrobeColony>())
+        {
+            ref var colony = ref player.Get<MicrobeColony>();
+
+            colony.GetColonySpecialOrganelles(out _, out _, out _, out var hasSignalingAgent);
+
+            if (hasSignalingAgent)
+            {
+                return;
+            }
+        }
+        else if (organelles.HasSignalingAgent)
+        {
+            return;
+        }
+
+        packControlRadial.Hide();
+        signalingAgentMenuOpenForMicrobe = null;
+
+        signaler.QueuedSignalingCommand = MicrobeSignalCommand.None;
+    }
+
     public void ShowSignalingCommandsMenu(Entity player)
     {
         if (!player.IsAliveAndHas<CommandSignaler>())
@@ -403,8 +433,24 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         if (stage == null)
             throw new InvalidOperationException("UpdateHealth called before stage is set");
 
-        // Normal health update if there is a player and the player was not engulfed
-        if (stage.HasPlayer &&
+        var playerAlive = false;
+        var playerEngulfed = false;
+
+        if (stage.HasPlayer)
+        {
+            ref var health = ref stage.Player.Get<Health>();
+            ref var engulfable = ref stage.Player.Get<Engulfable>();
+
+            playerAlive = !health.Dead;
+            playerEngulfed = engulfable.PhagocytosisStep != PhagocytosisPhase.None;
+
+            // Reset engulfed status to avoid the "devoured" text unnecessarily
+            if (!playerEngulfed)
+                playerWasDigested = false;
+        }
+
+        // Normal health update if there is a player and the player was not digesting
+        if (stage.HasPlayer && playerAlive &&
             stage.Player.Get<Engulfable>().PhagocytosisStep is PhagocytosisPhase.None or PhagocytosisPhase.Ingestion)
         {
             playerWasDigested = false;
@@ -419,9 +465,15 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             Localization.Translate("DEVOURED") :
             hp.ToString(CultureInfo.CurrentCulture);
 
-        // Update to the player's current digested progress, unless the player does not exist
-        if (stage.HasPlayer)
+        if (stage.HasPlayer && !playerAlive && playerEngulfed)
         {
+            hpText = Localization.Translate("DEVOURED");
+            playerWasDigested = true;
+            FlashHealthBar(new Color(0.96f, 0.5f, 0.27f), delta);
+        }
+        else if (stage.HasPlayer && (playerEngulfed || playerWasDigested))
+        {
+            // Update to the player's current digested progress, unless the player does not exist
             var percentageValue = Localization.Translate("PERCENTAGE_VALUE");
 
             // Show the digestion progress to the player
@@ -453,6 +505,8 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     {
         if (!stage!.Player.IsAliveAndHas<StrainAffected>())
         {
+            // This should never trigger as long as this method is called only when the player is alive.
+            // But this legacy error-checking code might as well be kept.
             if (!playerMissingStrainAffected)
             {
                 GD.PrintErr("Player is missing StrainAffected component");
@@ -542,7 +596,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         ingestedMatterBar.UpdateValue(GetPlayerUsedIngestionCapacity(), maxSize);
     }
 
-    protected override IEnumerable<IProcessDisplayInfo>? GetPlayerProcessStatistics()
+    protected override IEnumerable<IProcessDisplayInfo> GetPlayerProcessStatistics()
     {
         foreach (var process in organismProcesses)
         {
@@ -550,63 +604,34 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             process.Value.Marked = false;
         }
 
-        var playerProcesses = stage!.Player.Get<BioProcesses>().ProcessStatistics?.Processes;
-
-        if (playerProcesses == null)
+        if (stage!.Player.TryGet<MicrobeColony>(out var colony))
         {
-            GD.PrintErr("Player process statistics are uninitialized, can't display them in the process panel");
-
-            return null;
-        }
-
-        foreach (var process in playerProcesses)
-        {
-            var display = process.Value.ComputeAverageValues();
-
-            if (!organismProcesses.TryGetValue(process.Key.Process, out var stats))
+            foreach (var colonyMember in colony.ColonyMembers)
             {
-                stats = new SummedProcessStatistics(display);
-                organismProcesses[process.Key.Process] = stats;
-            }
-            else
-            {
-                stats.AddProcess(display);
-            }
-
-            stats.Marked = true;
-        }
-
-        if (stage.Player.TryGet<MicrobeColony>(out var colony))
-        {
-            for (int i = 1; i < colony.ColonyMembers.Length; ++i)
-            {
-                var colonyMemberProcesses = colony.ColonyMembers[i].Get<BioProcesses>().ProcessStatistics?.Processes;
-
-                if (colonyMemberProcesses == null)
+                if (colonyMember.TryGet<BioProcesses>(out var stats) && stats.ProcessStatistics != null)
+                {
+                    foreach (var process in stats.ProcessStatistics.Processes)
+                    {
+                        AddStatisticsToProcesses(process.Value, organismProcesses);
+                    }
+                }
+                else
                 {
                     GD.PrintErr(
                         "Colony member process statistics are uninitialized, can't display them in the process panel");
-
-                    continue;
-                }
-
-                foreach (var process in colonyMemberProcesses)
-                {
-                    var display = process.Value.ComputeAverageValues();
-
-                    if (!organismProcesses.TryGetValue(process.Key.Process, out var stats))
-                    {
-                        stats = new SummedProcessStatistics(display);
-                        organismProcesses[process.Key.Process] = stats;
-                    }
-                    else
-                    {
-                        stats.AddProcess(display);
-                    }
-
-                    stats.Marked = true;
                 }
             }
+        }
+        else if (stage!.Player.TryGet<BioProcesses>(out var stats) && stats.ProcessStatistics != null)
+        {
+            foreach (var process in stats.ProcessStatistics.Processes)
+            {
+                AddStatisticsToProcesses(process.Value, organismProcesses);
+            }
+        }
+        else
+        {
+            GD.PrintErr("Player process statistics are uninitialized, can't display them in the process panel");
         }
 
         // Clear unmarked items
@@ -1146,6 +1171,19 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
                 activeProcesses[i] = process;
             }
         }
+    }
+
+    private void AddStatisticsToProcesses(SingleProcessStatistics stats,
+        Dictionary<BioProcess, SummedProcessStatistics> processes)
+    {
+        if (!processes.TryGetValue(stats.Process.Process, out var value))
+        {
+            value = new SummedProcessStatistics(stats.Process);
+            processes.Add(stats.Process.Process, value);
+        }
+
+        value.SumWithStatistics(stats);
+        value.Marked = true;
     }
 
     private void OnRevertPromptClosed()

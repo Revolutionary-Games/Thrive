@@ -35,6 +35,7 @@ public partial class EngulfedDigestionSystem : BaseSystem<World, float>
 {
     private readonly CompoundCloudSystem compoundCloudSystem;
     private readonly IReadOnlyList<Compound> digestibleCompounds;
+    private readonly Random aiToxicPreyEjectionRandom = new();
 
     private readonly Enzyme lipase;
 
@@ -120,6 +121,7 @@ public partial class EngulfedDigestionSystem : BaseSystem<World, float>
             }
 
             ref var engulfable = ref engulfedObject.Get<Engulfable>();
+            ref var health = ref entity.Get<Health>();
 
             var currentEngulfableSize = engulfable.AdjustedEngulfSize;
 
@@ -206,6 +208,7 @@ public partial class EngulfedDigestionSystem : BaseSystem<World, float>
             // containedCompounds?.FixNaNCompounds();
 
             var totalAmountLeft = 0.0f;
+            var toxicDigestionDamagedEngulfer = false;
 
             var digestibleCount = digestibleCompounds.Count;
 
@@ -259,11 +262,10 @@ public partial class EngulfedDigestionSystem : BaseSystem<World, float>
                     {
                         status.LastCheckedOxytoxyDigestionDamage -= Constants.TOXIN_DIGESTION_DAMAGE_CHECK_INTERVAL;
 
-                        ref var health = ref entity.Get<Health>();
+                        health.DealMicrobeDamage(ref cellProperties, entity, Constants.TOXIN_DIGESTION_DAMAGE,
+                            "oxytoxy", HealthHelpers.GetInstantKillProtectionThreshold(entity));
 
-                        health.DealMicrobeDamage(ref cellProperties, entity,
-                            health.MaxHealth * Constants.TOXIN_DIGESTION_DAMAGE_FRACTION, "oxytoxy",
-                            HealthHelpers.GetInstantKillProtectionThreshold(entity));
+                        toxicDigestionDamagedEngulfer = true;
 
                         entity.SendNoticeIfPossible(() => new SimpleHUDMessage(
                             Localization.Translate("NOTICE_ENGULF_DAMAGE_FROM_TOXIN"),
@@ -289,9 +291,16 @@ public partial class EngulfedDigestionSystem : BaseSystem<World, float>
                 var takenAdjusted = taken * efficiency;
                 var added = compounds.AddCompound(compound, takenAdjusted);
 
-                // Eject excess
+                // Eject excess (we just want to get rid of it, we don't care if the eject failed)
                 cellProperties.SpawnEjectedCompound(ref position, compoundCloudSystem, compound,
                     takenAdjusted - added, Vector3.Back);
+            }
+
+            if (toxicDigestionDamagedEngulfer &&
+                ShouldAIEjectToxicEngulfedObject(entity, ref health, aiToxicPreyEjectionRandom) &&
+                engulfer.EjectEngulfable(ref engulfable))
+            {
+                continue;
             }
 
             var initialTotalEngulfableCompounds = engulfable.InitialTotalEngulfableCompounds;
@@ -358,5 +367,36 @@ public partial class EngulfedDigestionSystem : BaseSystem<World, float>
         }
 
         engulfer.UsedEngulfingCapacity = usedCapacity;
+    }
+
+    private bool ShouldAIEjectToxicEngulfedObject(in Entity entity, ref Health health, Random random)
+    {
+        if (entity.Has<PlayerMarker>() || !entity.Has<MicrobeAI>() || !entity.TryGet<SpeciesMember>(out var species))
+            return false;
+
+        if (health.Dead || health.MaxHealth <= 0)
+            return false;
+
+        var behaviour = species.Species.Behaviour;
+        var aggression = Math.Clamp(behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION, 0, 1);
+        var opportunism = Math.Clamp(behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM, 0, 1);
+        var willingnessToRiskDigestion = (aggression + opportunism) * 0.5f;
+
+        var ejectionHealthFraction = Mathf.Lerp(Constants.AI_TOXIC_ENGULFED_EJECT_MAX_HEALTH_FRACTION,
+            Constants.AI_TOXIC_ENGULFED_EJECT_MIN_HEALTH_FRACTION,
+            willingnessToRiskDigestion);
+
+        if (health.CurrentHealth / health.MaxHealth > ejectionHealthFraction)
+            return false;
+
+        var ejectionChance = Mathf.Lerp(Constants.AI_TOXIC_ENGULFED_EJECT_MAX_CHANCE,
+            Constants.AI_TOXIC_ENGULFED_EJECT_MIN_CHANCE,
+            willingnessToRiskDigestion);
+
+        // Allow random to be shared across threads by locking it before use
+        lock (random)
+        {
+            return random.NextDouble() <= ejectionChance;
+        }
     }
 }

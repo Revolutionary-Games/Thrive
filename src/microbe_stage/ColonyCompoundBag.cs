@@ -183,6 +183,14 @@ public class ColonyCompoundBag : ICompoundStorage
         {
             foreach (var pair in compoundBag.Compounds)
             {
+                // Don't need to count compounds there isn't any of
+                if (pair.Value <= 0)
+                    continue;
+
+                // If a bag does not accept a compound, we should not count it to prevent infinite compounds issue
+                if (!compoundBag.IsUseful(pair.Key))
+                    continue;
+
                 if (!summedCompoundsBuffer.TryGetValue(pair.Key, out var existingAmount))
                 {
                     summedCompoundsBuffer.Add(pair.Key, pair.Value);
@@ -207,8 +215,14 @@ public class ColonyCompoundBag : ICompoundStorage
 
         foreach (var bag in bags)
         {
-            if (!usefulInAnyBag && bag.IsUseful(compoundDefinition))
+            bool isUseful = bag.IsUseful(compound);
+            if (!usefulInAnyBag && isUseful)
                 usefulInAnyBag = true;
+
+            // If a bag doesn't consider a compound useful, it won't take it, thus we would calculate things
+            // incorrectly (in RedistributeCompoundAcrossBags), so capacity is not given for non-useful compounds
+            if (!isUseful)
+                continue;
 
             compoundCapacity += bag.GetCapacityForCompound(compound);
         }
@@ -216,8 +230,8 @@ public class ColonyCompoundBag : ICompoundStorage
         if (!usefulInAnyBag)
             return false;
 
-        // This is just an error print, can be removed if no more NaN issues occur
-        // See also CompoundBag.FixNaNCompounds which fixes NaN values after they occur
+        // This is just an error print, can be removed if no more NaN issues occur.
+        // See also CompoundBag.FixNaNCompounds, which fixes NaN values after they occur
         if (compoundCapacity == 0)
         {
             ReportZeroCapacityForUsefulCompoundOnce(compoundDefinition);

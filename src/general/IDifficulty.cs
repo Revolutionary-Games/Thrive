@@ -34,7 +34,7 @@ public interface IDifficulty : IRegistryAssignable, IArchivable
     /// <summary>
     ///   Multiplier for player species osmoregulation cost
     /// </summary>
-    public float OsmoregulationMultiplier { get; }
+    public float EnergyCostMultiplier { get; }
 
     /// <summary>
     ///   Multiplier on how strong of an effect the auto-evo has on the player population (0-1).
@@ -100,7 +100,7 @@ public static class DifficultyHelpers
             CompoundDensity = difficulty.CompoundDensity,
             PlayerDeathPopulationPenalty = difficulty.PlayerDeathPopulationPenalty,
             GlucoseDecay = difficulty.GlucoseDecay,
-            OsmoregulationMultiplier = difficulty.OsmoregulationMultiplier,
+            EnergyCostMultiplier = difficulty.EnergyCostMultiplier,
             PlayerAutoEvoStrength = difficulty.PlayerAutoEvoStrength,
             FreeGlucoseCloud = difficulty.FreeGlucoseCloud,
             SwitchSpeciesOnExtinction = difficulty.SwitchSpeciesOnExtinction,
@@ -121,7 +121,7 @@ public static class DifficultyHelpers
             $", Compound density: {difficulty.CompoundDensity}" +
             $", Player death population penalty: {difficulty.PlayerDeathPopulationPenalty}" +
             $", Glucose decay: {difficulty.GlucoseDecay}" +
-            $", Osmoregulation multiplier: {difficulty.OsmoregulationMultiplier}" +
+            $", Energy cost multiplier: {difficulty.EnergyCostMultiplier}" +
             $", auto-evo strength: {difficulty.PlayerAutoEvoStrength}" +
             $", AI dying strength: {difficulty.PlayerSpeciesAIPopulationStrength}" +
             $", Free glucose cloud: {difficulty.FreeGlucoseCloud}" +

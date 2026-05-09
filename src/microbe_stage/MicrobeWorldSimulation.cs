@@ -257,7 +257,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         radiationDamageSystem = new RadiationDamageSystem(EntitySystem);
         slimeSlowdownSystem = new SlimeSlowdownSystem(cloudSystem, EntitySystem);
         mucocystSystem = new MucocystSystem(EntitySystem);
-        microbeDivisionClippingSystem = new MicrobeDivisionClippingSystem(this, physics, EntitySystem);
+        microbeDivisionClippingSystem = new MicrobeDivisionClippingSystem(this, EntitySystem);
         microbePhysicsCreationAndSizeSystem = new MicrobePhysicsCreationAndSizeSystem(EntitySystem);
         microbeRenderPrioritySystem = new MicrobeRenderPrioritySystem(EntitySystem);
         tintColourApplyingSystem = new TintColourApplyingSystem(EntitySystem);
@@ -315,6 +315,9 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         microbeAI.SetWorld(currentGame.GameWorld);
         damageSoundSystem.SetWorld(currentGame.GameWorld);
         FluidCurrentsSystem.SetWorld(currentGame.GameWorld);
+        organelleTickSystem.SetWorld(currentGame.GameWorld);
+        microbeMovementSystem.SetWorld(currentGame.GameWorld);
+        colonyBindingSystem.SetWorld(currentGame.GameWorld);
 
         CloudSystem.Init(FluidCurrentsSystem);
     }

@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-27 14:48+0200\n"
-"PO-Revision-Date: 2026-02-18 15:13+0000\n"
-"Last-Translator: 0nmyhead <jg020135@naver.com>\n"
+"POT-Creation-Date: 2026-05-08 16:35+0300\n"
+"PO-Revision-Date: 2026-04-22 18:35+0000\n"
+"Last-Translator: \"Georgi Georgiev (RacerBG)\" <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.15.2\n"
+"X-Generator: Weblate 5.16.1\n"
 "Generated-By: Babel 2.9.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -130,9 +130,6 @@ msgstr "새로운 키 배치 추가"
 msgid "AEROBIC_NITROGEN_FIXATION"
 msgstr "혐기성 질소 고정"
 
-msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "호기성 질소 고정"
-
 #, fuzzy
 msgid "AEROBIC_RESPIRATION"
 msgstr "호흡"
@@ -212,9 +209,6 @@ msgstr "저장할 수 있는 자동저장 갯수:"
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "저장할 수 있는 빠른저장 갯수:"
-
-msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "혐기성 질소 고정"
 
 #, fuzzy
 msgid "AND_UNLOCK_CONDITION"
@@ -822,6 +816,10 @@ msgstr "치트 메뉴"
 #, fuzzy
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "새로운 키 배치 추가"
+
+#, fuzzy
+msgid "CHEMICAL_EQUATION_SPEED_EXPLANATION"
+msgstr "(AI 종이 변이하는 속도)"
 
 msgid "CHEMOPLAST"
 msgstr "화학 기관"
@@ -1817,6 +1815,10 @@ msgstr "어려움"
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "보통"
 
+#, fuzzy
+msgid "DIFFICULTY_PRESET_VERY_EASY"
+msgstr "쉬움"
+
 msgid "DIGESTION_EFFICIENCY"
 msgstr "소화 효율"
 
@@ -2209,6 +2211,14 @@ msgstr ""
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr "화합물 구름"
 
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER"
+msgstr "삼투압 비용"
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER_EXPLANATION"
+msgstr "삼투압 비용"
+
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
@@ -2356,6 +2366,10 @@ msgstr "새로운 키 배치 추가"
 
 #, fuzzy
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
+msgstr "불러온 객체를 처리하는 중 예기치 못한 일이 발생했습니다"
+
+#, fuzzy
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE_JUKEBOX"
 msgstr "불러온 객체를 처리하는 중 예기치 못한 일이 발생했습니다"
 
 #, fuzzy
@@ -2986,6 +3000,14 @@ msgid "IMAGE_FILE_TYPES"
 msgstr "세포막 유형"
 
 #, fuzzy
+msgid "INCOMPATIBLE_MEMBRANE_LIST"
+msgstr "생체 상태창"
+
+#, fuzzy
+msgid "INCOMPATIBLE_ORGANELLE_LIST"
+msgstr "세포 기관 배치"
+
+#, fuzzy
 msgid "INCREASE_ITEM_SIZE"
 msgstr "새 저장 생성"
 
@@ -3051,6 +3073,14 @@ msgstr "핵"
 
 #, fuzzy
 msgid "INFO_BOX_SIZE"
+msgstr "번영했습니다!"
+
+#, fuzzy
+msgid "INFO_BOX_SIZE_PLAIN"
+msgstr "번영했습니다!"
+
+#, fuzzy
+msgid "INFO_BOX_STAGE"
 msgstr "번영했습니다!"
 
 #, fuzzy
@@ -3721,6 +3751,20 @@ msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
 
 msgid "LOCK_DAY_NIGHT_CYCLE"
+msgstr ""
+
+#, fuzzy
+msgid "LOOK_LEFT"
+msgstr "왼쪽으로 이동"
+
+#, fuzzy
+msgid "LOOK_RIGHT"
+msgstr "오른쪽으로 이동"
+
+msgid "LOOK_SCREEN_DOWN_OR_3D_TOWARDS_UP"
+msgstr ""
+
+msgid "LOOK_SCREEN_UP_OR_3D_TOWARDS_DOWN"
 msgstr ""
 
 #, fuzzy
@@ -4598,6 +4642,30 @@ msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "다세포 편집기"
 
 #, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_2"
+msgstr "다세포 편집기"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_3"
+msgstr "다세포 편집기"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_4"
+msgstr "다세포 편집기"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_5"
+msgstr "다세포 편집기"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_6"
+msgstr "다세포 편집기"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_7"
+msgstr "다세포 편집기"
+
+#, fuzzy
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "다세포 단계"
 
@@ -4730,6 +4798,10 @@ msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
+#, fuzzy
+msgid "NITROGEN_FIXATION"
+msgstr "혐기성 질소 고정"
+
 msgid "NITROPLAST"
 msgstr "질소 고정 색소체"
 
@@ -4861,6 +4933,7 @@ msgstr ""
 msgid "NUCLEUS_DESCRIPTION"
 msgstr "진핵 세포의 특징. 핵은 소포체와 골지체를 포함합니다. 원핵 세포의 진화는 내부 막의 시스템을 개발하는 것이며, 내부의 다른 원핵 생물을 동화시킴으로써 이루어집니다. 이를 통해 세포 내부에서 발생하는 여러 프로세스를 구분하거나 겹치는 것을 방지 할 수 있습니다. 이것은 그들의 새로운 세포막 기관이 세포질에서 자유롭게 떠 다니는 것보다 훨씬 더 복잡하고 효율적이며 전문화되도록합니다. 그러나 이 일은 세포를 훨씬 더 크게 만들고 유지하기 위해 많은 에너지를 필요로 하게 만듭니다."
 
+#, fuzzy
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr ""
 "세포막 기관에 더 복잡한 진화를 허용\n"
@@ -4915,6 +4988,10 @@ msgstr "GLES2 모드 경고"
 #, fuzzy
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr "GLES2를 사용하여 실행중입니다. 이는 실험되지 않았으며 이로 인해 문제가 발생할 수 있습니다. 비디오 카드 드라이버를 업데이트 하거나 AMD 혹은 Nvidia 그래픽을 사용하여 Thrive를 실행해주시기 바랍니다."
+
+#, fuzzy
+msgid "OPEN_EVOLUTIONARY_TREE"
+msgstr "진화 계보"
 
 #, fuzzy
 msgid "OPEN_FOLDER"
@@ -5077,14 +5154,6 @@ msgid "OSMOREGULATION_COST"
 msgstr "삼투압 비용"
 
 #, fuzzy
-msgid "OSMOREGULATION_COST_MULTIPLIER"
-msgstr "삼투압 비용"
-
-#, fuzzy
-msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
-msgstr "삼투압 비용"
-
-#, fuzzy
 msgid "OTHER_COMPOUNDS"
 msgstr "화합물"
 
@@ -5156,6 +5225,10 @@ msgstr "뒤로가기"
 #, fuzzy
 msgid "PAGE_FORWARD"
 msgstr "앞으로 이동"
+
+#, fuzzy
+msgid "PAGE_PINNED"
+msgstr "세포 진행률"
 
 #, fuzzy
 msgid "PAGE_TITLE"
@@ -5304,6 +5377,13 @@ msgstr "물리적 상태"
 
 msgid "PHYSICAL_RESISTANCE"
 msgstr "물리 저항"
+
+#, fuzzy
+msgid "PIN_BUTTON_TOOLTIP"
+msgstr "새로운 키 배치 추가"
+
+msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
+msgstr ""
 
 msgid "PLACE_ORGANELLE"
 msgstr "세포 기관 배치"
@@ -5457,6 +5537,10 @@ msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr ""
 
 #, fuzzy
+msgid "PROCESS_INACTIVE"
+msgstr "세포 진행률"
+
+#, fuzzy
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
 msgstr "세포 진행률"
 
@@ -5471,10 +5555,6 @@ msgstr "세포 진행률"
 #, fuzzy
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "세포 진행률"
-
-#, fuzzy
-msgid "PROCESS_TOGGLE_TOOLTIP"
-msgstr "메뉴로 돌아가기"
 
 msgid "PROGRAMMING_TEAM"
 msgstr ""
@@ -6727,6 +6807,10 @@ msgstr ""
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
+msgstr "멸종"
+
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr ""
 
@@ -6739,8 +6823,46 @@ msgstr ""
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
+msgstr "멸종"
+
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
+msgstr ""
+"ATP 막대 옆의 생명력 막대를 주시하세요(오른쪽 아래).\n"
+"생명력이 모두 떨어지면 세포는 죽게 됩니다.\n"
+"ATP가 있다면 재생할 것입니다.\n"
+"ATP를 만들기 위하여 충분한 포도당을 수집하세요."
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE"
+msgstr "종이 변이하지 않을 수 있도록 허용 (좋은 변이가 발견되지 않는 경우)"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
+msgstr "끈적끈적한 세포 내부. 세포질은 이온, 단백질 및 세포 내부를 채우는 물에 용해된 기타 물질의 기본 혼합물입니다. 이것의 기능 중 하나는 발효를 통해 포도당을 ATP 에너지로 전환시키는 것 입니다. 세포 소 기관이 부족하고 세포가 더 발전된 신진 대사를 하는 경우, 에너지에 더욱 의존하게 됩니다. 또한 분자를 세포에 저장하고 세포의 크기를 성장시키는 데 사용됩니다."
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
+msgstr ""
+"ATP 막대 옆의 생명력 막대를 주시하세요(오른쪽 아래).\n"
+"생명력이 모두 떨어지면 세포는 죽게 됩니다.\n"
+"ATP가 있다면 재생할 것입니다.\n"
+"ATP를 만들기 위하여 충분한 포도당을 수집하세요."
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
+msgstr ""
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
+msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
+msgstr "번영했습니다!"
 
 msgid "THRIVE_LICENSES"
 msgstr ""
@@ -9750,6 +9872,16 @@ msgstr "확대"
 
 msgid "ZOOM_OUT"
 msgstr "축소"
+
+#~ msgid "AEROBIC_NITROGEN_FIXING"
+#~ msgstr "호기성 질소 고정"
+
+#~ msgid "ANAEROBIC_NITROGEN_FIXATION"
+#~ msgstr "혐기성 질소 고정"
+
+#, fuzzy
+#~ msgid "PROCESS_TOGGLE_TOOLTIP"
+#~ msgstr "메뉴로 돌아가기"
 
 #, fuzzy
 #~ msgid "KEEP_CURRENT_SHORT"

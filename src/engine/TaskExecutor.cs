@@ -364,6 +364,8 @@ public class TaskExecutor
         {
             Monitor.PulseAll(threadNotifySync);
         }
+
+        CPUHelpers.SignalEvent();
     }
 
     private void NotifyNewTasksAdded(int count)
@@ -381,6 +383,7 @@ public class TaskExecutor
                 Monitor.Pulse(threadNotifySync);
             }
 
+            CPUHelpers.SignalEvent();
             return;
         }
 
@@ -395,6 +398,8 @@ public class TaskExecutor
                 Monitor.Pulse(threadNotifySync);
             }
         }
+
+        CPUHelpers.SignalEvent();
     }
 
     private void RunExecutorThread()

@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-27 14:48+0200\n"
-"PO-Revision-Date: 2026-02-18 15:14+0000\n"
-"Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
+"POT-Creation-Date: 2026-05-08 16:35+0300\n"
+"PO-Revision-Date: 2026-05-01 09:17+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.15.2\n"
+"X-Generator: Weblate 5.16.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -122,9 +122,6 @@ msgstr "Obrir la vista de configuració avançada"
 msgid "AEROBIC_NITROGEN_FIXATION"
 msgstr "Fixació Anaeròbica de Nitrogen"
 
-msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "Fixació Aeròbica de Nitrogen"
-
 #, fuzzy
 msgid "AEROBIC_RESPIRATION"
 msgstr "Respiració aeròbica"
@@ -207,9 +204,6 @@ msgstr "Màxim nombre d'arxius d'autoguardat:"
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Màxim nombre d'arxius de guardat ràpid:"
-
-msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "Fixació Anaeròbica de Nitrogen"
 
 #, fuzzy
 msgid "AND_UNLOCK_CONDITION"
@@ -792,6 +786,10 @@ msgstr "Menú de trucs"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Mostrar / amagar els procesos del microbi"
+
+#, fuzzy
+msgid "CHEMICAL_EQUATION_SPEED_EXPLANATION"
+msgstr "(velocitat a la qual les espècies de la IA muten)"
 
 msgid "CHEMOPLAST"
 msgstr "Quimioplast"
@@ -1764,6 +1762,10 @@ msgstr "Difícil"
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "Normal"
 
+#, fuzzy
+msgid "DIFFICULTY_PRESET_VERY_EASY"
+msgstr "Fàcil"
+
 msgid "DIGESTION_EFFICIENCY"
 msgstr "Eficiència de Digestió"
 
@@ -2145,6 +2147,14 @@ msgstr "{0}: +{1} ATP"
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr "Núvols de Compostos"
 
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER"
+msgstr "Multiplicador del cost de mutació"
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER_EXPLANATION"
+msgstr "(cost d'orgànuls, membranes i altres elements a l'editor)"
+
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energia a {0} per {1}"
 
@@ -2289,6 +2299,10 @@ msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Automàticament carregar els ecosistemes Harmony de l'Ensamblatge (no requereix especificar una classe de mod)"
 
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
+msgstr "S'ha produït un problema mentre es processaven els objectes carregats"
+
+#, fuzzy
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE_JUKEBOX"
 msgstr "S'ha produït un problema mentre es processaven els objectes carregats"
 
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
@@ -2948,6 +2962,14 @@ msgid "IMAGE_FILE_TYPES"
 msgstr "Tipus de Membrana"
 
 #, fuzzy
+msgid "INCOMPATIBLE_MEMBRANE_LIST"
+msgstr "Estadístiques de la Cèl·lula"
+
+#, fuzzy
+msgid "INCOMPATIBLE_ORGANELLE_LIST"
+msgstr "Múltiples Orgànuls"
+
+#, fuzzy
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Crear Nou"
 
@@ -3012,6 +3034,14 @@ msgstr "Requereix nucli"
 
 #, fuzzy
 msgid "INFO_BOX_SIZE"
+msgstr "HAS ACONSEGUIT PROSPERAR!"
+
+#, fuzzy
+msgid "INFO_BOX_SIZE_PLAIN"
+msgstr "HAS ACONSEGUIT PROSPERAR!"
+
+#, fuzzy
+msgid "INFO_BOX_STAGE"
 msgstr "HAS ACONSEGUIT PROSPERAR!"
 
 #, fuzzy
@@ -3667,6 +3697,20 @@ msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
 msgid "LOCK_DAY_NIGHT_CYCLE"
+msgstr ""
+
+#, fuzzy
+msgid "LOOK_LEFT"
+msgstr "Esquerra"
+
+#, fuzzy
+msgid "LOOK_RIGHT"
+msgstr "Dreta"
+
+msgid "LOOK_SCREEN_DOWN_OR_3D_TOWARDS_UP"
+msgstr ""
+
+msgid "LOOK_SCREEN_UP_OR_3D_TOWARDS_DOWN"
 msgstr ""
 
 #, fuzzy
@@ -4589,6 +4633,30 @@ msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Editor Multicel·lular"
 
 #, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_2"
+msgstr "Editor Multicel·lular"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_3"
+msgstr "Editor Multicel·lular"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_4"
+msgstr "Editor Multicel·lular"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_5"
+msgstr "Editor Multicel·lular"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_6"
+msgstr "Editor Multicel·lular"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_7"
+msgstr "Editor Multicel·lular"
+
+#, fuzzy
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "(algunes característiques poden no estar disponibles un cop assoleixis els propers estadis)"
 
@@ -4717,6 +4785,10 @@ msgstr "La Nitrogenasa és una proteïna capaç de produïr Amoníac, nutrient b
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
+#, fuzzy
+msgid "NITROGEN_FIXATION"
+msgstr "Fixació Anaeròbica de Nitrogen"
+
 msgid "NITROPLAST"
 msgstr "Plastidi Fixador de Nitrogen"
 
@@ -4724,6 +4796,7 @@ msgstr "Plastidi Fixador de Nitrogen"
 msgid "NITROPLAST_DESCRIPTION"
 msgstr "El Plast de Fixació de Nitrogen és una proteïna que produeix Amoníac, un component important en el creixement i reproducció de les cèl·lules, mitjançant Nitrogen, Oxigen i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen Aeròbica."
 
+#, fuzzy
 msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"nitrogen\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
@@ -4846,6 +4919,7 @@ msgstr ""
 msgid "NUCLEUS_DESCRIPTION"
 msgstr "És la característica que defineix les cèl·lules eucariotes. El nucli inclou el Reticle Endoplasmàtic i l'Aparell de Golgi. Representa un pas evolutiu important respecte a les cèl·lules procariotes, que permet desenvolupar orgànuls més complexes, rodejats per una membrana, tot engolint i assimilant petites cèl·lules procariotes. Això permet dividir clarament l'interior de la cèl·lula en diversos compartiments separats, cadascun duent a terme un procés de síntesi de recursos diferents. Així, amb aquests nous orgànuls, la cèl·lula pot esdevenir molt més complexa, eficient i especialitzada. No obstant, això també implica que la cèl·lula ha d'esdevenir més gran i necessita més quantitat de recursos per a viure."
 
+#, fuzzy
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr "Permet evolucionar orgànuls més complexes, adherits a la membrana. Mantenir-lo costa una gran quantitat d'ATP. Aquesta evolució és irreversible."
 
@@ -4896,6 +4970,10 @@ msgstr "Mode d'Alerta GLES2"
 #, fuzzy
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr "Esteu executant el programa Thrive amb GLES2. Aquesta tecnologia encara no ha estat del tot validada i, per tant, pot originar alguns problemes. Intenteu actualitzar els vostres drivers de vídeo i/o forçar l'ús de gràfics AMD o Nvidia per executar Thrive."
+
+#, fuzzy
+msgid "OPEN_EVOLUTIONARY_TREE"
+msgstr "Per Revolutionary Games Studio"
 
 msgid "OPEN_FOLDER"
 msgstr "Obrir Carpeta"
@@ -5058,12 +5136,6 @@ msgstr "Osmoregulació"
 msgid "OSMOREGULATION_COST"
 msgstr "Cost d'Osmoregulació"
 
-msgid "OSMOREGULATION_COST_MULTIPLIER"
-msgstr "Multiplicador del cost d'osmoregulació"
-
-msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
-msgstr "(cost d'osmoregulació de l'espècie del jugador)"
-
 #, fuzzy
 msgid "OTHER_COMPOUNDS"
 msgstr "Compostos"
@@ -5134,6 +5206,10 @@ msgstr "Enrere"
 #, fuzzy
 msgid "PAGE_FORWARD"
 msgstr "Endavant"
+
+#, fuzzy
+msgid "PAGE_PINNED"
+msgstr "Eliminar Dades Locals"
 
 #, fuzzy
 msgid "PAGE_TITLE"
@@ -5285,6 +5361,13 @@ msgstr "Condicions Físiques"
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Resistència física"
 
+#, fuzzy
+msgid "PIN_BUTTON_TOOLTIP"
+msgstr "Canviar la configuració"
+
+msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
+msgstr ""
+
 msgid "PLACE_ORGANELLE"
 msgstr "Col·locar orgànul"
 
@@ -5430,8 +5513,13 @@ msgstr "previ:"
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Processant objectes carregats"
 
+#, fuzzy
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
+
+#, fuzzy
+msgid "PROCESS_INACTIVE"
+msgstr "Processos de la Cèl·lula"
 
 #, fuzzy
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
@@ -5448,10 +5536,6 @@ msgstr "Processos de la Cèl·lula"
 #, fuzzy
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Processos de la Cèl·lula"
-
-#, fuzzy
-msgid "PROCESS_TOGGLE_TOOLTIP"
-msgstr "Tornar al menú principal"
 
 msgid "PROGRAMMING_TEAM"
 msgstr "Equip de programació"
@@ -6675,6 +6759,10 @@ msgstr ""
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
+msgstr "EXTINCIÓ"
+
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr ""
 
@@ -6687,8 +6775,62 @@ msgstr ""
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
+msgstr "EXTINCIÓ"
+
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
+msgstr ""
+"[b]Estadi[/b]\n"
+"  Microbi\n"
+"[b]Tipus de Membrana[/b]\n"
+"  {0}\n"
+"[b]Rigidesa de la Membrana[/b]\n"
+"  {1}\n"
+"[b]Velocitat Base[/b]\n"
+"  {2}\n"
+"[b]Velocitat de Rotació Base[/b]\n"
+"  {3}\n"
+"[b]Mida d'Hexàgon Base[/b]\n"
+"  {4}"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE"
+msgstr "ha mutat"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
+msgstr "La lipasa permet a la cèl·lula digerir la major part de membranes. La teva cèl·lula ja produeix una certa quantitat d'aquest enzim sense lisosoma, però seleccionant aquest tipus n'augmentaràs l'efectivitat."
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
+msgstr ""
+"[b]Estadi[/b]\n"
+"  Microbi\n"
+"[b]Tipus de Membrana[/b]\n"
+"  {0}\n"
+"[b]Rigidesa de la Membrana[/b]\n"
+"  {1}\n"
+"[b]Velocitat Base[/b]\n"
+"  {2}\n"
+"[b]Velocitat de Rotació Base[/b]\n"
+"  {3}\n"
+"[b]Mida d'Hexàgon Base[/b]\n"
+"  {4}"
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
+msgstr ""
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
+msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
+msgstr "Món"
 
 msgid "THRIVE_LICENSES"
 msgstr "Llicències de Thrive"
@@ -9713,6 +9855,22 @@ msgstr "Enfocar la visió de la càmera"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom enfora"
+
+#~ msgid "AEROBIC_NITROGEN_FIXING"
+#~ msgstr "Fixació Aeròbica de Nitrogen"
+
+#~ msgid "ANAEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Fixació Anaeròbica de Nitrogen"
+
+#~ msgid "OSMOREGULATION_COST_MULTIPLIER"
+#~ msgstr "Multiplicador del cost d'osmoregulació"
+
+#~ msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
+#~ msgstr "(cost d'osmoregulació de l'espècie del jugador)"
+
+#, fuzzy
+#~ msgid "PROCESS_TOGGLE_TOOLTIP"
+#~ msgstr "Tornar al menú principal"
 
 #, fuzzy
 #~ msgid "KEEP_CURRENT_SHORT"
