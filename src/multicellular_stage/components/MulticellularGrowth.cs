@@ -340,7 +340,7 @@ public static class MulticellularGrowthHelpers
             }
 
             throw new NotImplementedException($"Reproduction method's reproduction cost calculation is" +
-                    $"unimplemented: {species.ReproductionMethod}");
+                $"unimplemented: {species.ReproductionMethod}");
         }
 
         return species.ModifiableGameplayCells[multicellularGrowth.NextBodyPlanCellToGrowIndex]
