@@ -1,7 +1,27 @@
 ﻿{
+  "very_easy": {
+    "Name": "DIFFICULTY_PRESET_VERY_EASY",
+    "Index": 0,
+    "MPMultiplier": 0.7,
+    "AIMutationMultiplier": 0.8,
+    "CompoundDensity": 1.5,
+    "PlayerDeathPopulationPenalty": 1,
+    "GlucoseDecay": 0.9,
+    "EnergyCostMultiplier": 0.7,
+    "PlayerAutoEvoStrength": 0.7,
+    "PlayerSpeciesAIPopulationStrength": 0.05,
+    "FreeGlucoseCloud": true,
+    "PassiveReproduction": true,
+    "ReproductionCompounds": "TopUpWithInitial",
+    "SwitchSpeciesOnExtinction": true,
+    "LimitGrowthRate": false,
+    "FogOfWarMode": "Regular",
+    "InstantKillProtection": true,
+    "OrganelleUnlocksEnabled": true
+  },
   "easy": {
     "Name": "DIFFICULTY_PRESET_EASY",
-    "Index": 0,
+    "Index": 1,
     "MPMultiplier": 0.8,
     "AIMutationMultiplier": 0.9,
     "CompoundDensity": 1.5,
@@ -21,7 +41,7 @@
   },
   "normal": {
     "Name": "DIFFICULTY_PRESET_NORMAL",
-    "Index": 1,
+    "Index": 2,
     "MPMultiplier": 1,
     "AIMutationMultiplier": 1,
     "CompoundDensity": 1,
@@ -41,7 +61,7 @@
   },
   "hard": {
     "Name": "DIFFICULTY_PRESET_HARD",
-    "Index": 2,
+    "Index": 3,
     "MPMultiplier": 1.2,
     "AIMutationMultiplier": 1.5,
     "CompoundDensity": 0.7,
@@ -61,6 +81,6 @@
   },
   "custom": {
     "Name": "DIFFICULTY_PRESET_CUSTOM",
-    "Index": 3
+    "Index": 4
   }
 }

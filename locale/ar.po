@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-29 22:42+0200\n"
+"POT-Creation-Date: 2026-05-10 20:05+0300\n"
 "PO-Revision-Date: 2026-01-08 20:20+0000\n"
 "Last-Translator: khalid <khalid50540@gmail.com>\n"
 "Language-Team: Arabic <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ar/>\n"
@@ -1637,6 +1637,10 @@ msgstr "صعب"
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "متوسط"
 
+#, fuzzy
+msgid "DIFFICULTY_PRESET_VERY_EASY"
+msgstr "سهل"
+
 msgid "DIGESTION_EFFICIENCY"
 msgstr "فعالية الهضم"
 
@@ -2097,6 +2101,9 @@ msgid "EXACT_VERSION_TOOLTIP"
 msgstr ""
 
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
+msgstr ""
+
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE_JUKEBOX"
 msgstr ""
 
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
@@ -2745,6 +2752,14 @@ msgstr ""
 
 msgid "INFO_BOX_SIZE"
 msgstr ""
+
+#, fuzzy
+msgid "INFO_BOX_SIZE_PLAIN"
+msgstr "فترة الميكروبات"
+
+#, fuzzy
+msgid "INFO_BOX_STAGE"
+msgstr "فترة الميكروبات"
 
 msgid "INFO_BOX_STORAGE"
 msgstr ""
@@ -4166,6 +4181,30 @@ msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "فترة الكائنات متعددة الخلايا"
 
 #, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_2"
+msgstr "فترة الكائنات متعددة الخلايا"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_3"
+msgstr "فترة الكائنات متعددة الخلايا"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_4"
+msgstr "فترة الكائنات متعددة الخلايا"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_5"
+msgstr "فترة الكائنات متعددة الخلايا"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_6"
+msgstr "فترة الكائنات متعددة الخلايا"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_7"
+msgstr "فترة الكائنات متعددة الخلايا"
+
+#, fuzzy
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "فترة الكائنات متعددة الخلايا"
 
@@ -4445,6 +4484,10 @@ msgstr ""
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr ""
 
+#, fuzzy
+msgid "OPEN_EVOLUTIONARY_TREE"
+msgstr "بواسطة استيديو ريفولوشنيري قيمز"
+
 msgid "OPEN_FOLDER"
 msgstr "فتح المجلد"
 
@@ -4646,6 +4689,10 @@ msgstr "الى الخلف"
 msgid "PAGE_FORWARD"
 msgstr "الى الامام"
 
+#, fuzzy
+msgid "PAGE_PINNED"
+msgstr "عنوان الصفحة"
+
 msgid "PAGE_TITLE"
 msgstr "عنوان الصفحة"
 
@@ -4777,6 +4824,10 @@ msgstr ""
 
 msgid "PHYSICAL_RESISTANCE"
 msgstr ""
+
+#, fuzzy
+msgid "PIN_BUTTON_TOOLTIP"
+msgstr "تغيير الإعدادات"
 
 msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
 msgstr ""
@@ -6056,6 +6107,9 @@ msgstr ""
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr ""
 
+msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
+msgstr ""
+
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr ""
 
@@ -6068,8 +6122,85 @@ msgstr ""
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
+msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
+msgstr ""
+
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
+msgstr ""
+"[b]مرحلة[/b]\n"
+" ميكروب \n"
+"[b]نوع الغشاء[/b]\n"
+"  {0}\n"
+"[b]صلابة الغشاء[/b]\n"
+"  {1}\n"
+"[b]السرعة الاساسية[/b]\n"
+"  {2}\n"
+"[b]سرعة الدوران الأساسية[/b]\n"
+"  {3}\n"
+"[b]حجم السداسي الاساسي[/b]\n"
+"  {4}"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE"
+msgstr ""
+"[b]مرحلة[/b]\n"
+" ميكروب \n"
+"[b]نوع الغشاء[/b]\n"
+"  {0}\n"
+"[b]صلابة الغشاء[/b]\n"
+"  {1}\n"
+"[b]السرعة الاساسية[/b]\n"
+"  {2}\n"
+"[b]سرعة الدوران الأساسية[/b]\n"
+"  {3}\n"
+"[b]حجم السداسي الاساسي[/b]\n"
+"  {4}"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
+msgstr "فترة الميكروبات"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
+msgstr ""
+"[b]مرحلة[/b]\n"
+" ميكروب \n"
+"[b]نوع الغشاء[/b]\n"
+"  {0}\n"
+"[b]صلابة الغشاء[/b]\n"
+"  {1}\n"
+"[b]السرعة الاساسية[/b]\n"
+"  {2}\n"
+"[b]سرعة الدوران الأساسية[/b]\n"
+"  {3}\n"
+"[b]حجم السداسي الاساسي[/b]\n"
+"  {4}"
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
+msgstr ""
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
+msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
+msgstr ""
+"[b]مرحلة[/b]\n"
+" ميكروب \n"
+"[b]نوع الغشاء[/b]\n"
+"  {0}\n"
+"[b]صلابة الغشاء[/b]\n"
+"  {1}\n"
+"[b]السرعة الاساسية[/b]\n"
+"  {2}\n"
+"[b]سرعة الدوران الأساسية[/b]\n"
+"  {3}\n"
+"[b]حجم السداسي الاساسي[/b]\n"
+"  {4}"
 
 msgid "THRIVE_LICENSES"
 msgstr ""

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-29 22:42+0200\n"
-"PO-Revision-Date: 2026-04-30 11:43+0000\n"
+"POT-Creation-Date: 2026-05-10 20:05+0300\n"
+"PO-Revision-Date: 2026-05-07 19:05+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -1714,6 +1714,9 @@ msgstr "Zor"
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "Normal"
 
+msgid "DIFFICULTY_PRESET_VERY_EASY"
+msgstr "Çok Kolay"
+
 msgid "DIGESTION_EFFICIENCY"
 msgstr "Sindirim Verimliliği"
 
@@ -2219,7 +2222,10 @@ msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Thrive'ın mevcut sürümünden derlenen tam kod işlemesi"
 
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
-msgstr "Yüklenen nesneleri işlerken bir sorun oluştu"
+msgstr "Yüklenen nesneler işlenirken bir sorun oluştu"
+
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE_JUKEBOX"
+msgstr "Müzik kutusu durumu işlenirken bir sorun oluştu"
 
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Kayıt verisi yüklenirken bir sorun oluştu"
@@ -2854,6 +2860,14 @@ msgstr "Hücre Çekirdeği Gerektirir"
 
 msgid "INFO_BOX_SIZE"
 msgstr "Büyüklük (Altıgenler)"
+
+#, fuzzy
+msgid "INFO_BOX_SIZE_PLAIN"
+msgstr "Büyüklük (Altıgenler)"
+
+#, fuzzy
+msgid "INFO_BOX_STAGE"
+msgstr "Depo"
 
 msgid "INFO_BOX_STORAGE"
 msgstr "Depo"
@@ -4098,10 +4112,10 @@ msgid "MOD_LOAD_ERRORS"
 msgstr "Mod Yükleme Hataları"
 
 msgid "MOD_LOAD_ERRORS_OCCURRED"
-msgstr "Bir ya da daha fazla modu yüklerken sorun oluştu. Günlük dosyaları, bu sorunla ilgili ek bilgi içerebilir."
+msgstr "Bir ya da daha fazla mod yüklenirken sorun oluştu. Günlük dosyaları, bu sorunla ilgili ek bilgi içerebilir."
 
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
-msgstr "Bir ya da daha fazla modu yüklerken ya da kaldırırken sorun oluştu. Günlük dosyaları, bu sorunla ilgili ek bilgi içerebilir."
+msgstr "Bir ya da daha fazla mod yüklenirken veya kaldırılırken sorun oluştu. Günlük dosyaları, bu sorunla ilgili ek bilgi içerebilir."
 
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
 msgstr "Not: Birçok modun düzgün yüklenmesi ya da kaldırılması için oyunun yeniden başlatılması gerekir. Modlar, çalıştırılabilir kodlar içerebileceği için yalnızca güvendiğiniz modları yüklemelisiniz."
@@ -4256,6 +4270,24 @@ msgstr "Serbest Çok Hücreli Yapım Editörü"
 msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Hücreleriniz bileşikleri paylaşsa da, her hücrenin kendi [thrive:compound type=\"atp\"]ATP'sini[/thrive:compound] üretmesi gerekir. Herhangi bir hücre, bu molekülden yoksun kalırsa ölür."
 
+msgid "MULTICELLULAR_LOADING_TIP_2"
+msgstr "Çok Hücreli Evresi'nin ana mekaniği, farklı görevler için özelleşmiş hücreler oluşturmaktır."
+
+msgid "MULTICELLULAR_LOADING_TIP_3"
+msgstr "Kolonideki hücrelerin yutulması daha zor olsa da, bu hücreler yine de yenebilir. O yüzden, büyük ökaryotlara karşı dikkatli olun."
+
+msgid "MULTICELLULAR_LOADING_TIP_4"
+msgstr "Beden planınızdaki hücrelerin pozisyonu önem taşımaktadır. Aynı hücre türleri birbirine komşuyken özelleşme bonusu artar."
+
+msgid "MULTICELLULAR_LOADING_TIP_5"
+msgstr "Kolonideki tüm hücreler [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretmeye ihtiyaç duyar. Ama daha büyük özelleşme bonusu alan son derece özelleşmiş hücreler oluşturmak için diğer gereksiz parçalar kaldırılabilir."
+
+msgid "MULTICELLULAR_LOADING_TIP_6"
+msgstr "Hayatınızın ilk evrelerini daha iyi hale getirmek için beden planınızdaki hücreler için büyüme sırasını düzenleyebilirsiniz. Farklı üreme türleri de erken yaşamı etkiler."
+
+msgid "MULTICELLULAR_LOADING_TIP_7"
+msgstr "Çok hücrelideki özelleşmiş hücreler, tam organlara doğru ilk adımdır. Aynı türden ilk hücre grupları, zamanla dokulara dönüşür."
+
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "Bu panel, koloninizin tüm hücrelerinin toplamını veren birleştirilmiş işlemleri gösterir. Diğer bileşiklerin aksine, ATP'nin hücreler arasında paylaşılmadığını unutmayın."
 
@@ -4387,10 +4419,10 @@ msgid "NITROPLAST"
 msgstr "Nitroplast"
 
 msgid "NITROPLAST_DESCRIPTION"
-msgstr "Nitroplast, hücrelerde ana gelişim yapı maddesi olan [thrive:compound type=\"ammonia\"]amonyağı[/thrive:compound] üretmek için [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] gazı, [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] ve [thrive:compound type=\"atp\"]ATP[/thrive:compound] formundaki hücresel enerjiyi kullanan zarlı bir organeldir. Bu işlem, [b]oksijenli azot fiksasyonu[/b] olarak anılır."
+msgstr "Nitroplast, hücrelerde ana gelişim yapı maddesi olan [thrive:compound type=\"ammonia\"]amonyağı[/thrive:compound] üretmek için [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] gazı ve [thrive:compound type=\"atp\"]ATP[/thrive:compound] formundaki hücresel enerjiyi kullanan zarlı bir organeldir. Bu işlem, [b]azot fiksasyonu[/b] olarak anılır."
 
 msgid "NITROPLAST_PROCESSES_DESCRIPTION"
-msgstr "[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"ammonia\"]amonyağa[/thrive:compound] dönüştürür. Bu oran, [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] ve [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
+msgstr "[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"ammonia\"]amonyağa[/thrive:compound] dönüştürür. Bu oran, [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
 
 msgid "NONE"
 msgstr "Yok"
@@ -4547,6 +4579,10 @@ msgstr "OpenGL Mod Uyarısı"
 
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr "Thrive'ı OpenGL ile çalıştırmaktasınız. Bu mod ciddi derecede test edilmemiştir ve bu modun sorunlara neden olması muhtemeldir. Yeterince yeni bir ekran kartı ya da dahili ekran kartı kullandığınızdan emin olun ve ekran kartı sürücülerinizi güncelleştirmeyi deneyin. Dizüstü bilgisayarlarda Thrive'ı çalıştırmak için, dahili grafiklerin yerine, harici AMD veya Nvidia grafiklerini kullanmaya zorlamanız gerekebilir."
+
+#, fuzzy
+msgid "OPEN_EVOLUTIONARY_TREE"
+msgstr "Evrim Ağacı"
 
 msgid "OPEN_FOLDER"
 msgstr "Klasörü Aç"
@@ -4754,6 +4790,10 @@ msgstr "Geri"
 msgid "PAGE_FORWARD"
 msgstr "İleri"
 
+#, fuzzy
+msgid "PAGE_PINNED"
+msgstr "Sayfa Başlığı"
+
 msgid "PAGE_TITLE"
 msgstr "Sayfa Başlığı"
 
@@ -4884,6 +4924,10 @@ msgstr "Fiziksel Koşullar"
 
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Fiziksel Direnç"
+
+#, fuzzy
+msgid "PIN_BUTTON_TOOLTIP"
+msgstr "Ayarlarını değiştir"
 
 msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
 msgstr "Yerleştirme işlemi engellendi çünkü mevcut hücre zarı bu organel ile uyumlu değil"
@@ -6189,6 +6233,10 @@ msgstr "Mevcut Dünya"
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr "Evrim Ağacı"
 
+#, fuzzy
+msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
+msgstr "Thriveopedi'yi Aç"
+
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr "Thriveopedi'yi Aç"
 
@@ -6210,8 +6258,40 @@ msgstr "Ana Sayfa"
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Müze"
 
+#, fuzzy
+msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
+msgstr "Ana Sayfa"
+
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr "Arazi Haritası"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
+msgstr "Evrim Ağacı"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE"
+msgstr "Müze"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
+msgstr "Müze"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
+msgstr "Müze"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
+msgstr "Müze"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
+msgstr "Müze"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
+msgstr "Mevcut Dünya"
 
 msgid "THRIVE_LICENSES"
 msgstr "Thrive Lisansları"
@@ -8712,7 +8792,7 @@ msgstr "Etki yok."
 
 msgid "WIKI_NITROGENASE_INTRO"
 msgstr ""
-"[thrive:compound type=\"nitrogen\"]Azot[/thrive:compound] gazı ve [thrive:compound type=\"atp\"]ATP'den[/thrive:compound], hücresel üreme için gerekli büyüme bileşenlerinden biri olan [thrive:compound type=\"ammonia\"]amonyağı[/thrive:compound] üretmek için [b]Oksijensiz Azot Fiksasyonu[/b] gerçekleştirir. Bu organel, ökaryotik [b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]Nitroplasttan[/url][/color][/b] daha verimsizdir.\n"
+"[thrive:compound type=\"nitrogen\"]Azot[/thrive:compound] gazı ve [thrive:compound type=\"atp\"]ATP'den[/thrive:compound], hücresel üreme için gerekli büyüme bileşenlerinden biri olan [thrive:compound type=\"ammonia\"]amonyağı[/thrive:compound] üretmek için [b]Azot Fiksasyonu[/b] gerçekleştirir. Bu organel, ökaryotik [b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]Nitroplasttan[/url][/color][/b] daha verimsizdir.\n"
 "\n"
 "Ayrıca [thrive:compound type=\"atp\"]ATP'den[/thrive:compound], [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretmek için [b]Glikoliz[/b] yapar."
 
@@ -8751,16 +8831,16 @@ msgid "WIKI_NITROPLAST_EFFECTS"
 msgstr "Etki yok."
 
 msgid "WIKI_NITROPLAST_INTRO"
-msgstr "Nitroplast, hücresel üreme için büyüme bileşenlerinden biri olan [thrive:compound type=\"nitrogen\"]azotu[/thrive:compound] üretmek için kullanılan zarlı bir organeldir. Bu organel, [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] gazı ve [thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"ammonia\"]amonyağa[/thrive:compound] dönüştürmek için [b]Oksijensiz Azot Fiksasyonu[/b] yapar. Bu organel, prokaryotik [b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrojenazdan[/url][/color][/b] daha verimlidir."
+msgstr "Nitroplast, hücresel üreme için büyüme bileşenlerinden biri olan [thrive:compound type=\"nitrogen\"]azotu[/thrive:compound] üretmek için kullanılan zarlı bir organeldir. Bu organel, [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] gazı ve [thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"ammonia\"]amonyağa[/thrive:compound] dönüştürmek için [b]Azot Fiksasyonu[/b] yapar. Bu organel, prokaryotik [b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrojenazdan[/url][/color][/b] daha verimlidir."
 
 msgid "WIKI_NITROPLAST_MODIFICATIONS"
 msgstr "Değişiklikler yok."
 
 msgid "WIKI_NITROPLAST_PROCESSES"
 msgstr ""
-"[b]Oksijenli Azot Fiksasyonu[/b]\n"
+"[b]Azot Fiksasyonu[/b]\n"
 "\n"
-"Enerji harcayarak [thrive:compound type=\"nitrogen\"]azotu[/thrive:compound], [thrive:compound type=\"ammonia\"]amonyağa[/thrive:compound] dönüştürür. Bu oran, ortamdaki [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] ve [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] miktarı ile doğru orantılıdır. [b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrojenazda[/url][/color][/b] bulunan benzer işlemden daha verimlidir."
+"Enerji harcayarak [thrive:compound type=\"nitrogen\"]azotu[/thrive:compound], [thrive:compound type=\"ammonia\"]amonyağa[/thrive:compound] dönüştürür. Bu oran, ortamdaki [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] miktarı ile doğru orantılıdır. [b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrojenazda[/url][/color][/b] bulunan benzer işlemden daha verimlidir."
 
 msgid "WIKI_NITROPLAST_REQUIREMENTS"
 msgstr "Bir hücre, [b]Nitroplastları[/b] evrimleştirmek için [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdeğe[/url][/color][/b] sahip olmalıdır."

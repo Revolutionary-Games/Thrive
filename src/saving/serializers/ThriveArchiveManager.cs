@@ -361,6 +361,11 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
             typeof(PatchEventProperties), PatchEventProperties.WriteToArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.PatchEventProperties,
             typeof(PatchEventProperties), PatchEventProperties.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ThriveopediaGameData,
+            typeof(ThriveopediaGameData), ThriveopediaGameData.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ThriveopediaGameData,
+            typeof(ThriveopediaGameData), ThriveopediaGameData.ReadFromArchive);
     }
 
     private void RegisterComponentParts()

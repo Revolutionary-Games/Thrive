@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-29 22:42+0200\n"
+"POT-Creation-Date: 2026-05-10 20:05+0300\n"
 "PO-Revision-Date: 2026-04-22 18:35+0000\n"
 "Last-Translator: \"Georgi Georgiev (RacerBG)\" <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Esperanto <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/eo/>\n"
@@ -1809,6 +1809,9 @@ msgstr ""
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr ""
 
+msgid "DIFFICULTY_PRESET_VERY_EASY"
+msgstr ""
+
 msgid "DIGESTION_EFFICIENCY"
 msgstr ""
 
@@ -2367,6 +2370,10 @@ msgstr "Aldonunovan funkcion por klavo"
 
 #, fuzzy
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
+msgstr "Escepto okazis dum prilaborado de ŝarĝitaj objektoj"
+
+#, fuzzy
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE_JUKEBOX"
 msgstr "Escepto okazis dum prilaborado de ŝarĝitaj objektoj"
 
 #, fuzzy
@@ -3082,6 +3089,14 @@ msgstr "Kerno/Nukleo"
 
 #, fuzzy
 msgid "INFO_BOX_SIZE"
+msgstr "VI PROSPERIS!"
+
+#, fuzzy
+msgid "INFO_BOX_SIZE_PLAIN"
+msgstr "VI PROSPERIS!"
+
+#, fuzzy
+msgid "INFO_BOX_STAGE"
 msgstr "VI PROSPERIS!"
 
 #, fuzzy
@@ -4678,6 +4693,30 @@ msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Ŝarĝante Mikrobredaktilon"
 
 #, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_2"
+msgstr "Ŝarĝante Mikrobredaktilon"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_3"
+msgstr "Ŝarĝante Mikrobredaktilon"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_4"
+msgstr "Ŝarĝante Mikrobredaktilon"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_5"
+msgstr "Ŝarĝante Mikrobredaktilon"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_6"
+msgstr "Ŝarĝante Mikrobredaktilon"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_7"
+msgstr "Ŝarĝante Mikrobredaktilon"
+
+#, fuzzy
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "Disloku organeton"
 
@@ -5006,6 +5045,10 @@ msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr "Vi uzas Thrive kun GLES2. Ĉi tio estas tre neprovita kaj probable kaŭzas problemojn. Provu ĝisdatigi viajn video-pelilojn kaj/aŭ devigi uzi AMD aŭ Nvidia-grafikaĵojn por ke Thrive funkciu."
 
 #, fuzzy
+msgid "OPEN_EVOLUTIONARY_TREE"
+msgstr "Aldonunovan funkcion por klavo"
+
+#, fuzzy
 msgid "OPEN_FOLDER"
 msgstr "Malfermu Dosierujon de Registroj"
 
@@ -5240,6 +5283,10 @@ msgid "PAGE_FORWARD"
 msgstr "Antaŭeniĝu"
 
 #, fuzzy
+msgid "PAGE_PINNED"
+msgstr "Ĉelaj Procezoj"
+
+#, fuzzy
 msgid "PAGE_TITLE"
 msgstr "Ĉelaj Procezoj"
 
@@ -5387,6 +5434,10 @@ msgstr "Fizikaj Kondiĉoj"
 
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Fizika Rezisto"
+
+#, fuzzy
+msgid "PIN_BUTTON_TOOLTIP"
+msgstr "Aldonunovan funkcion por klavo"
 
 msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
 msgstr ""
@@ -6850,6 +6901,10 @@ msgstr ""
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
+msgstr "FORMORTADO"
+
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr ""
 
@@ -6862,8 +6917,46 @@ msgstr ""
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
+msgstr "FORMORTADO"
+
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
+msgstr ""
+"Rigardu vian sanstaton apud la ATP-breto (malsupre dekstre).\n"
+"Via ĉelo mortas, se ĝi elĉerpiĝas.\n"
+"Vi regeneras sanon dum vi havas ATP-ojn.\n"
+"Certigu kolekti sufiĉe da glukozo por produkti ATP-ojn."
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE"
+msgstr "Permesu al specioj ne mutacii (se ne bona mutacio trovitas)"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
+msgstr "La gluiĝemaj internaĵoj de ĉelo. La citoplasmo estas la baza miksaĵo de jonoj, proteinoj kaj aliaj substancoj solvitaj en akvo, kiu plenigas la internon de la ĉelo. Unu el la funkcioj, kiujn ĝi plenumas, estas Fermentado, la konvertiĝo de glukozo en ATP-energion. Por havi pli progresintajn metabolojn, ĉeloj, al kiuj mankas organetoj, uzas energion de ATP. Ĝi ankaŭ estas uzita por stoki molekulojn en la ĉelo kaj kreskigi la grandecon de la ĉelo."
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
+msgstr ""
+"Rigardu vian sanstaton apud la ATP-breto (malsupre dekstre).\n"
+"Via ĉelo mortas, se ĝi elĉerpiĝas.\n"
+"Vi regeneras sanon dum vi havas ATP-ojn.\n"
+"Certigu kolekti sufiĉe da glukozo por produkti ATP-ojn."
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
+msgstr ""
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
+msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
+msgstr "\"{0}\" - {1}"
 
 msgid "THRIVE_LICENSES"
 msgstr ""

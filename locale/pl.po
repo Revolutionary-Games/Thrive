@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-29 22:42+0200\n"
-"PO-Revision-Date: 2026-04-22 18:35+0000\n"
-"Last-Translator: \"Georgi Georgiev (RacerBG)\" <g.georgiev.shumen@gmail.com>\n"
+"POT-Creation-Date: 2026-05-10 20:05+0300\n"
+"PO-Revision-Date: 2026-05-01 09:17+0000\n"
+"Last-Translator: JareelSkaj <jareelskaj@marcinwolny.net>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -1731,6 +1731,10 @@ msgstr "Trudny"
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "Normalny"
 
+#, fuzzy
+msgid "DIFFICULTY_PRESET_VERY_EASY"
+msgstr "Łatwy"
+
 msgid "DIGESTION_EFFICIENCY"
 msgstr "Wydajność Trawienia"
 
@@ -2243,6 +2247,10 @@ msgid "EXACT_VERSION_TOOLTIP"
 msgstr "To jest dokładne zatwierdzenie kodu, z którego została złożona ta wersja Thrive"
 
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
+msgstr "Podczas przetwarzania załadowanych obiektów nastąpił wyjątek"
+
+#, fuzzy
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE_JUKEBOX"
 msgstr "Podczas przetwarzania załadowanych obiektów nastąpił wyjątek"
 
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
@@ -2909,6 +2917,14 @@ msgstr "Wymaga Jądra"
 
 msgid "INFO_BOX_SIZE"
 msgstr "Wielkość (Heksy)"
+
+#, fuzzy
+msgid "INFO_BOX_SIZE_PLAIN"
+msgstr "Wielkość (Heksy)"
+
+#, fuzzy
+msgid "INFO_BOX_STAGE"
+msgstr "Magazyn"
 
 msgid "INFO_BOX_STORAGE"
 msgstr "Magazyn"
@@ -4421,6 +4437,30 @@ msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Edytor Wielokomórkowca"
 
 #, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_2"
+msgstr "Edytor Wielokomórkowca"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_3"
+msgstr "Edytor Wielokomórkowca"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_4"
+msgstr "Edytor Wielokomórkowca"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_5"
+msgstr "Edytor Wielokomórkowca"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_6"
+msgstr "Edytor Wielokomórkowca"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_7"
+msgstr "Edytor Wielokomórkowca"
+
+#, fuzzy
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "(niektóre funkcje mogą być niedostępne gdy dotrzesz to następnych etapów)"
 
@@ -4553,9 +4593,11 @@ msgstr "Tlenowe Wiązanie Azotu"
 msgid "NITROPLAST"
 msgstr "Plastyd Wiążący Azot"
 
+#, fuzzy
 msgid "NITROPLAST_DESCRIPTION"
 msgstr "Nitroplast to plastyd używający gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound] oraz energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], składnika kluczowego dla wzrostu komórek. Ten proces jest znany jako [b]tlenowe wiązanie azotu[/b]."
 
+#, fuzzy
 msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Przekształca wolny N₂ i O₂ w [thrive:compound type=\"ammonia\"][/thrive:compound] zużywając [thrive:compound type=\"atp\"][/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"nitrogen\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
@@ -4724,6 +4766,10 @@ msgstr "Ostrzeżenie Tryb GLES2"
 #, fuzzy
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr "Uruchomiłeś Thrive w GLES2. Jest to poważnie nietestowane i prawdopodobnie spowoduje problemy. Zaaktualizuj sterowniki graficzne i/lub wymuś użycie grafiki AMD lub Nvidia do uruchamiania Trive."
+
+#, fuzzy
+msgid "OPEN_EVOLUTIONARY_TREE"
+msgstr "Drzewo Filogenetyczne"
 
 msgid "OPEN_FOLDER"
 msgstr "Otwórz Folder"
@@ -4949,6 +4995,10 @@ msgstr "Tył"
 msgid "PAGE_FORWARD"
 msgstr "Przód"
 
+#, fuzzy
+msgid "PAGE_PINNED"
+msgstr "Tytuł Strony"
+
 msgid "PAGE_TITLE"
 msgstr "Tytuł Strony"
 
@@ -5088,6 +5138,10 @@ msgstr "Warunki Fizyczne"
 
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Odporność Fizyczna"
+
+#, fuzzy
+msgid "PIN_BUTTON_TOOLTIP"
+msgstr "Zmień swoje ustawienia"
 
 msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
 msgstr ""
@@ -6456,6 +6510,10 @@ msgstr "Obecny Świat"
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr "Drzewo Filogenetyczne"
 
+#, fuzzy
+msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
+msgstr "Otwórz Thriveopedia'ę"
+
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr "Otwórz Thriveopedia'ę"
 
@@ -6477,8 +6535,40 @@ msgstr "Dom"
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Muzeum"
 
+#, fuzzy
+msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
+msgstr "Dom"
+
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr "Mapa Obszarów"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
+msgstr "Drzewo Filogenetyczne"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE"
+msgstr "Muzeum"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
+msgstr "Muzeum"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
+msgstr "Muzeum"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
+msgstr "Muzeum"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
+msgstr "Muzeum"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
+msgstr "Obecny Świat"
 
 msgid "THRIVE_LICENSES"
 msgstr "Licencje \"Thrive\""
@@ -8651,6 +8741,7 @@ msgstr "Brak ulepszeń."
 msgid "WIKI_NITROPLAST_EFFECTS"
 msgstr "Brak efektów."
 
+#, fuzzy
 msgid "WIKI_NITROPLAST_INTRO"
 msgstr "Nitroplast to organellum otoczone błoną, służące do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], będącego jednym ze składników niezbędnych do wzrostu i rozmnażania komórki. Przeprowadza [b]beztlenowe wiązanie azotu[/b], przekształcając gazowy [thrive:compound type=\"nitrogen\"][/thrive:compound] i [thrive:compound type=\"atp\"][/thrive:compound] w [thrive:compound type=\"ammonia\"][/thrive:compound]. Jest wydajniejsze od prokariotycznej [b][color=#3796e1][url=thriveopedia:nitrogenase]nitrogenazy[/url][/color][/b]."
 

@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-29 22:42+0200\n"
-"PO-Revision-Date: 2026-04-28 09:04+0000\n"
-"Last-Translator: Юфименко Микола <yufimenkokolja2012@gmail.com>\n"
+"POT-Creation-Date: 2026-05-10 20:05+0300\n"
+"PO-Revision-Date: 2026-05-01 09:17+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -1726,6 +1726,10 @@ msgstr "Важкий"
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "Нормальний"
 
+#, fuzzy
+msgid "DIFFICULTY_PRESET_VERY_EASY"
+msgstr "Легкий"
+
 msgid "DIGESTION_EFFICIENCY"
 msgstr "Ефективність травлення"
 
@@ -2237,6 +2241,10 @@ msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Це точний підтверджувальний код компіляції цієї версії Thrive"
 
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
+msgstr "З'явилося заперечення, під час обробки завантажених об'єктів"
+
+#, fuzzy
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE_JUKEBOX"
 msgstr "З'явилося заперечення, під час обробки завантажених об'єктів"
 
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
@@ -2895,6 +2903,14 @@ msgstr "Необхідне ядро"
 
 msgid "INFO_BOX_SIZE"
 msgstr "Розмір (у гексах)"
+
+#, fuzzy
+msgid "INFO_BOX_SIZE_PLAIN"
+msgstr "Розмір (у гексах)"
+
+#, fuzzy
+msgid "INFO_BOX_STAGE"
+msgstr "Сховище"
 
 msgid "INFO_BOX_STORAGE"
 msgstr "Сховище"
@@ -4380,6 +4396,30 @@ msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Багатоклітинний редактор"
 
 #, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_2"
+msgstr "Багатоклітинний редактор"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_3"
+msgstr "Багатоклітинний редактор"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_4"
+msgstr "Багатоклітинний редактор"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_5"
+msgstr "Багатоклітинний редактор"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_6"
+msgstr "Багатоклітинний редактор"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_7"
+msgstr "Багатоклітинний редактор"
+
+#, fuzzy
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "(деякі функції можуть бути недоступні коли ви досягнете наступних етапів)"
 
@@ -4511,9 +4551,11 @@ msgstr "Аеробна азотфіксація"
 msgid "NITROPLAST"
 msgstr "Азотфіксувальні пластиди"
 
+#, fuzzy
 msgid "NITROPLAST_DESCRIPTION"
 msgstr "Азотфіксувальні пластиди – це білки, що використовують [thrive:compound type=\"nitrogen\"][/thrive:compound], [thrive:compound type=\"oxygen\"][/thrive:compound], та [thrive:compound type=\"atp\"][/thrive:compound] для продукування [thrive:compound type=\"ammonia\"][/thrive:compound], ключової поживної речовини для росту клітини. Цей процес кличуть [b]Аеробною азотфіксацією[/b]."
 
+#, fuzzy
 msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Перетворює [thrive:compound type=\"atp\"][/thrive:compound] на [thrive:compound type=\"ammonia\"][/thrive:compound]. Кількість залежить від [thrive:compound type=\"nitrogen\"][/thrive:compound] та [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
@@ -4679,6 +4721,10 @@ msgstr "Попередження режиму GLES2"
 
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr "Ви граєте у Thrive за допомогою OpenGL. Це є дуже неперевіреним та напевно викличе проблеми. Переконайтеся, що ваша зовнішня або вбудована відеокарта є достатньо новою та спробуйте оновити свої відеодрайвери. Для ноутбуків вам може знадобитися діскретна графіка від Nvidia або AMD замість вбудованої."
+
+#, fuzzy
+msgid "OPEN_EVOLUTIONARY_TREE"
+msgstr "Еволюційне дерево"
 
 msgid "OPEN_FOLDER"
 msgstr "Відкрити теку"
@@ -4888,6 +4934,10 @@ msgstr "Назад"
 msgid "PAGE_FORWARD"
 msgstr "Вперед"
 
+#, fuzzy
+msgid "PAGE_PINNED"
+msgstr "Назва сторінки"
+
 msgid "PAGE_TITLE"
 msgstr "Назва сторінки"
 
@@ -5021,6 +5071,10 @@ msgstr "Фізичні умови"
 
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Фізичний опір"
+
+#, fuzzy
+msgid "PIN_BUTTON_TOOLTIP"
+msgstr "Зміна ваших налаштувань"
 
 msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
 msgstr ""
@@ -6371,6 +6425,10 @@ msgstr "Поточний світ"
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr "Еволюційне древо"
 
+#, fuzzy
+msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
+msgstr "Відкрити Трайвопедію"
+
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr "Відкрити Трайвопедію"
 
@@ -6392,8 +6450,40 @@ msgstr "Дім"
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Музей"
 
+#, fuzzy
+msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
+msgstr "Дім"
+
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr "Мапа ділянок"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
+msgstr "Еволюційне древо"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE"
+msgstr "Музей"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
+msgstr "Музей"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
+msgstr "Музей"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
+msgstr "Музей"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
+msgstr "Музей"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
+msgstr "Поточний світ"
 
 msgid "THRIVE_LICENSES"
 msgstr "Ліцензії Thrive"

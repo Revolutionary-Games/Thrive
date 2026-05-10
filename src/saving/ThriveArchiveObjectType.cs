@@ -315,8 +315,9 @@ public enum ThriveArchiveObjectType : uint
     EnergyConsumptionPressure = 4395,
     ComponentSpatialAnimation = 4396,
     JukeboxPlaybackState = 4397,
-    MulticellularReproductionActionData = 4398,
-    SporeCellTypeChangeActionData = 4399,
+    ThriveopediaGameData = 4398,
+    MulticellularReproductionActionData = 4399,
+    SporeCellTypeChangeActionData = 4400,
 
     // Special flag types
     ExtendedOrganelleLayout = OrganelleLayout | ArchiveObjectType.ExtendedTypeFlag,

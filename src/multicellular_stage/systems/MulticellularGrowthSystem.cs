@@ -31,6 +31,7 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(MicrobeEventCallbacks))]
 [ReadsComponent(typeof(CellProperties))]
 [ReadsComponent(typeof(MicrobeControl))]
+[ReadsComponent(typeof(MicrobeColony))]
 [RunsAfter(typeof(ProcessSystem))]
 [RunsAfter(typeof(ColonyCompoundDistributionSystem))]
 [RuntimeCost(4, false)]
@@ -109,9 +110,17 @@ public partial class MulticellularGrowthSystem : BaseSystem<World, float>
 
         multicellularGrowth.CompoundsUsedForMulticellularGrowth ??= new Dictionary<Compound, float>();
 
+        int cellCount = 1;
+
+        if (entity.Has<MicrobeColony>())
+        {
+            ref var colony = ref entity.Get<MicrobeColony>();
+            cellCount = colony.ColonyMembers.Length;
+        }
+
         var (remainingAllowedCompoundUse, remainingFreeCompounds) =
             MicrobeReproductionSystem.CalculateFreeCompoundsAndLimits(gameWorld!.WorldSettings,
-                organelleContainer.HexCount, true, elapsedSinceLastUpdate);
+                organelleContainer.HexCount, true, cellCount, elapsedSinceLastUpdate);
 
         if (multicellularGrowth.CompoundsNeededForNextCell == null)
         {
@@ -142,7 +151,7 @@ public partial class MulticellularGrowthSystem : BaseSystem<World, float>
                 multicellularGrowth.ResumeBodyPlanAfterReplacingLost = null;
             }
 
-            // Need to setup the next cell to be grown in our body plan
+            // Need to set up the next cell to be grown in our body plan
             if (multicellularGrowth.IsFullyGrownMulticellular)
             {
                 // We have completed our body plan and can (once enough resources) reproduce
@@ -180,8 +189,6 @@ public partial class MulticellularGrowthSystem : BaseSystem<World, float>
 
         bool stillNeedsSomething = false;
 
-        status.ConsumeReproductionCompoundsReverse = !status.ConsumeReproductionCompoundsReverse;
-
         // Consume some compounds for the next cell in the layout
         // Similar logic for "growing" more cells than in PlacedOrganelle growth
         if (multicellularGrowth.CompoundsNeededForNextCell.Count > 0)
@@ -207,7 +214,7 @@ public partial class MulticellularGrowthSystem : BaseSystem<World, float>
                 usedAmount += usedFreeCompounds;
                 allowedUseAmount -= usedFreeCompounds;
 
-                // As we loop just once we don't need to update the free compounds or allowed use compounds
+                // As we loop just once, we don't need to update the free compounds or allowed use compounds
                 // variables
             }
 
