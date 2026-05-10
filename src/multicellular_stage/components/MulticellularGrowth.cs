@@ -338,11 +338,9 @@ public static class MulticellularGrowthHelpers
             {
                 return species.FirstCellTypeToSpawn().CalculateTotalCompositionList();
             }
-            else
-            {
-                throw new NotImplementedException($"Reproduction method's reproduction cost calculation is" +
+
+            throw new NotImplementedException($"Reproduction method's reproduction cost calculation is" +
                     $"unimplemented: {species.ReproductionMethod}");
-            }
         }
 
         return species.ModifiableGameplayCells[multicellularGrowth.NextBodyPlanCellToGrowIndex]
@@ -373,6 +371,10 @@ public static class MulticellularGrowthHelpers
 
         if (!multicellularGrowth.IsASpore)
             return;
+
+        ref var control = ref entity.Get<MicrobeControl>();
+
+        control.GerminatingSpore = false;
 
         ref var cellProperties = ref entity.Get<CellProperties>();
 
