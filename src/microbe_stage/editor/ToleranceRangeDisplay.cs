@@ -203,10 +203,13 @@ public partial class ToleranceRangeDisplay : HSlider
 
     private void UpdateSliderGrabberXPos()
     {
-        var fraction = (float)((relatedSlider.Value - relatedSlider.MinValue) /
-            (relatedSlider.MaxValue - relatedSlider.MinValue));
-
-        sliderGrabberXPos = relatedSlider.Size.X * fraction;
+        // Calculate grabber position. Use Size instead of relatedSlider.Size because the if the related slider has set
+        // width as a percentage of the parent slider, the rounding will cause the grabber to be off by a few pixels
+        var normalizedValue = (relatedSlider.Value - relatedSlider.MinValue) /
+            (relatedSlider.MaxValue - relatedSlider.MinValue);
+        var displayFraction =
+            normalizedValue * (relatedSlider.MaxValue - relatedSlider.MinValue) / (MaxValue - MinValue);
+        sliderGrabberXPos = Size.X * (float)displayFraction;
 
         QueueRedraw();
     }
