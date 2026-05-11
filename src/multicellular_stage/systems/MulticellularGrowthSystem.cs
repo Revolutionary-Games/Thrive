@@ -37,6 +37,7 @@ using World = Arch.Core.World;
 [WritesToComponent(typeof(MicrobeEnvironmentalEffects))]
 [WritesToComponent(typeof(ColourAnimation))]
 [WritesToComponent(typeof(CellProperties))]
+[WritesToComponent(typeof(BioProcesses))]
 [RunsAfter(typeof(ProcessSystem))]
 [RunsAfter(typeof(ColonyCompoundDistributionSystem))]
 [RuntimeCost(4, false)]

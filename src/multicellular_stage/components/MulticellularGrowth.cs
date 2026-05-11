@@ -395,7 +395,7 @@ public static class MulticellularGrowthHelpers
             multicellularSpeciesType.MulticellularCellType.SpecializationBonus *
             multicellularSpeciesType.Species.GetAdjacencySpecializationBonus(0), ref entity.Get<BioProcesses>());
 
-        cellProperties.ReApplyCellTypeProperties(ref entity.Get<MicrobeEnvironmentalEffects>(), entity,
+        cellProperties.ReApplyCellTypeProperties(ref environmentalEffects, entity,
             multicellularSpeciesType.MulticellularCellType, multicellularSpeciesType.Species, worldSimulation,
             workMemory1, workMemory2);
     }
