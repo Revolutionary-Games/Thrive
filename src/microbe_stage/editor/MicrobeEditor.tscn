@@ -64,10 +64,11 @@ offset_top = -54.0
 offset_right = 154.0
 grow_vertical = 0
 
-[node name="MicrobeEditorCheatMenu" parent="MicrobeEditorGUI" unique_id=1037789443 instance=ExtResource("39")]
+[node name="MicrobeEditorCheatMenu" parent="MicrobeEditorGUI" unique_id=1037789443 node_paths=PackedStringArray("editor") instance=ExtResource("39")]
 layout_mode = 0
 offset_left = 10.0
 offset_top = 30.0
+editor = NodePath("../..")
 
 [node name="TutorialGUI" parent="." unique_id=1480772500 instance=ExtResource("85")]
 visible = false

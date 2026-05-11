@@ -8,6 +8,9 @@ public partial class MicrobeEditorCheatMenu : CheatMenu
 #pragma warning disable CA2213
     [Export]
     private CheckBox infiniteMp = null!;
+
+    [Export]
+    private MicrobeEditor editor = null!;
 #pragma warning restore CA2213
 
     public override void ReloadGUI()
@@ -23,5 +26,10 @@ public partial class MicrobeEditorCheatMenu : CheatMenu
     private void OnUnlockAllOrganellesPressed()
     {
         CheatManager.UnlockAllOrganelles();
+    }
+
+    private void UpdateMutationPointsDisplay(bool value)
+    {
+        editor.EnableCheatMP(value);
     }
 }
