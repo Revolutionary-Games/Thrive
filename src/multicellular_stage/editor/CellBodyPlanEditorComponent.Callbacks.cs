@@ -69,6 +69,8 @@ public partial class CellBodyPlanEditorComponent
         OnCellToPlaceSelected(data.CellType.CellTypeName);
 
         Editor.DirtyMutationPointsCache();
+
+        UpdateSporeCellDropdown();
     }
 
     [ArchiveAllowedMethod]
@@ -80,6 +82,13 @@ public partial class CellBodyPlanEditorComponent
         UpdateCellTypeSelections();
 
         Editor.DirtyMutationPointsCache();
+
+        if (data.CellType == SporeCellType)
+        {
+            SporeCellType = Editor.EditedSpecies.ModifiableCellTypes[0];
+        }
+
+        UpdateSporeCellDropdown();
     }
 
     [ArchiveAllowedMethod]
@@ -111,5 +120,51 @@ public partial class CellBodyPlanEditorComponent
         data.MovedHex.Data.Position = data.OldLocation;
 
         UpdateAlreadyPlacedVisuals();
+    }
+
+    [ArchiveAllowedMethod]
+    private void DoReproductionMethodChangeAction(MulticellularReproductionActionData data)
+    {
+        ReproductionMethod = data.NewReproductionMethod;
+
+        if (ReproductionMethod == MulticellularReproductionMethod.Sporulation)
+            OnReproductionMethodChangedToSpore();
+
+        UpdateReproductionMethodChoice();
+    }
+
+    [ArchiveAllowedMethod]
+    private void UndoReproductionMethodChangeAction(MulticellularReproductionActionData data)
+    {
+        ReproductionMethod = data.OldReproductionMethod;
+
+        if (ReproductionMethod == MulticellularReproductionMethod.Sporulation)
+            OnReproductionMethodChangedToSpore();
+
+        UpdateReproductionMethodChoice();
+    }
+
+    [ArchiveAllowedMethod]
+    private void DoSporeCellChangeAction(SporeCellTypeChangeActionData data)
+    {
+        SporeCellType = data.NewCellType;
+
+        UpdateSporeCellDropdown();
+    }
+
+    [ArchiveAllowedMethod]
+    private void UndoSporeCellChangeAction(SporeCellTypeChangeActionData data)
+    {
+        SporeCellType = data.OldCellType;
+
+        UpdateSporeCellDropdown();
+    }
+
+    private void OnReproductionMethodChangedToSpore()
+    {
+        // Set a default spore cell type
+        SporeCellType ??= Editor.EditedSpecies.ModifiableCellTypes[0];
+
+        UpdateSporeCellDropdown();
     }
 }

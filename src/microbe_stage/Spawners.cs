@@ -742,7 +742,19 @@ public static class SpawnHelpers
                     throw new ArgumentException("First Multicellular cell must have body plan index of 0");
                 }
 
-                resolvedCellType = multicellularSpecies.ModifiableGameplayCells[0].ModifiableCellType;
+                var multicellularGrowth = new MulticellularGrowth(multicellularSpecies);
+
+                if (multicellularSpawnState == MulticellularSpawnState.Bud)
+                {
+                    resolvedCellType = multicellularSpecies.FirstCellTypeToSpawn();
+
+                    if (multicellularSpecies.ReproductionMethod == MulticellularReproductionMethod.Sporulation)
+                        multicellularGrowth.IsASpore = true;
+                }
+                else
+                {
+                    resolvedCellType = multicellularSpecies.ColonyRootCellType();
+                }
 
                 usedCellDefinition = resolvedCellType;
                 var properties = new CellProperties(usedCellDefinition);
@@ -752,7 +764,7 @@ public static class SpawnHelpers
                 // This is not in the signature as this is a very specific case
                 // TODO: determine if this has negative effects and the signature should be adjusted (to split on
                 // this one more variable)
-                recorder.Add(entity, new MulticellularGrowth(multicellularSpecies));
+                recorder.Add(entity, multicellularGrowth);
 
                 environmentalEffects.ApplyEffects(multicellularTolerances,
                     resolvedCellType.SpecializationBonus *
