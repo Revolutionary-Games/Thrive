@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dmqforhospsmb" path="res://assets/textures/gui/bevel/PinActive.svg" id="2_8nqjk"]
 [ext_resource type="Texture2D" uid="uid://cigmga3rffgvg" path="res://assets/textures/gui/bevel/PinIdleHover.svg" id="3_8kb60"]
 [ext_resource type="Texture2D" uid="uid://x6k7qfwwy6fx" path="res://assets/textures/gui/bevel/PinActiveHover.svg" id="4_doj8h"]
+[ext_resource type="Texture2D" uid="uid://dd4avq3b528n6" path="res://assets/textures/gui/bevel/PinDisabled.svg" id="5_8kb60"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3pr70"]
 texture = ExtResource("1_7w4xw")
@@ -16,6 +17,9 @@ texture = ExtResource("3_8kb60")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qeral"]
 texture = ExtResource("4_doj8h")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_doj8h"]
+texture = ExtResource("5_8kb60")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8nqjk"]
 content_margin_left = 5.0
@@ -48,5 +52,6 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_3pr70")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_eidgo")
 theme_override_styles/hover = SubResource("StyleBoxTexture_6jr7r")
 theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_qeral")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_doj8h")
 theme_override_styles/focus = SubResource("StyleBoxFlat_8nqjk")
 toggle_mode = true
