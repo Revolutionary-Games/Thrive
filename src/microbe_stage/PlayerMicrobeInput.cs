@@ -489,6 +489,20 @@ public partial class PlayerMicrobeInput : NodeWithInput
         }
     }
 
+    [RunOnKeyDown("g_germinate_spore")]
+    public void GerminateSporeIntoColony()
+    {
+        if (!stage.HasPlayer)
+            return;
+
+        if (!stage.Player.Has<MulticellularGrowth>())
+            return;
+
+        ref var control = ref stage.Player.Get<MicrobeControl>();
+
+        control.GerminatingSpore = true;
+    }
+
     [RunOnKey("g_cheat_glucose")]
     public void CheatGlucose(double delta)
     {

@@ -15,7 +15,7 @@ using Systems;
 /// </summary>
 public struct MulticellularGrowth : IArchivableComponent
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     /// <summary>
     ///   List of cells that need to be regrown, after being lost, in
@@ -48,6 +48,8 @@ public struct MulticellularGrowth : IArchivableComponent
     public int NextBodyPlanCellToGrowIndex;
 
     public bool EnoughResourcesForBudding;
+
+    public bool IsASpore;
 
     public MulticellularGrowth(MulticellularSpecies species)
     {
@@ -106,6 +108,8 @@ public struct MulticellularGrowth : IArchivableComponent
 
         writer.Write(NextBodyPlanCellToGrowIndex);
         writer.Write(EnoughResourcesForBudding);
+
+        writer.Write(IsASpore);
     }
 }
 
@@ -136,6 +140,11 @@ public static class MulticellularGrowthHelpers
 
         instance.NextBodyPlanCellToGrowIndex = reader.ReadInt32();
         instance.EnoughResourcesForBudding = reader.ReadBool();
+
+        if (version >= 2)
+        {
+            instance.IsASpore = reader.ReadBool();
+        }
 
         return instance;
     }
@@ -321,9 +330,20 @@ public static class MulticellularGrowthHelpers
     public static List<(Compound Compound, float AmountNeeded)> GetCompoundsNeededForNextCell(
         this ref MulticellularGrowth multicellularGrowth, MulticellularSpecies species)
     {
-        return species
-            .ModifiableGameplayCells[
-                multicellularGrowth.IsFullyGrownMulticellular ? 0 : multicellularGrowth.NextBodyPlanCellToGrowIndex]
+        if (multicellularGrowth.IsFullyGrownMulticellular)
+        {
+            // Calculate compounds needed for reproduction
+            if (species.ReproductionMethod is MulticellularReproductionMethod.Budding
+                or MulticellularReproductionMethod.Sporulation)
+            {
+                return species.FirstCellTypeToSpawn().CalculateTotalCompositionList();
+            }
+
+            throw new NotImplementedException($"Reproduction method's reproduction cost calculation is" +
+                $"unimplemented: {species.ReproductionMethod}");
+        }
+
+        return species.ModifiableGameplayCells[multicellularGrowth.NextBodyPlanCellToGrowIndex]
             .ModifiableCellType.CalculateTotalCompositionList();
     }
 
@@ -341,5 +361,42 @@ public static class MulticellularGrowthHelpers
         }
 
         multicellularGrowth.TotalNeededForMulticellularGrowth.Merge(species.BaseReproductionCost);
+    }
+
+    public static void GerminateSpore(this ref MulticellularGrowth multicellularGrowth,
+        in Entity entity, IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment microbeSpawnEnvironment,
+        List<Hex> workMemory1, List<Hex> workMemory2)
+    {
+        if (!entity.Has<MulticellularSpeciesMember>())
+            return;
+
+        if (!multicellularGrowth.IsASpore)
+            return;
+
+        ref var control = ref entity.Get<MicrobeControl>();
+
+        control.GerminatingSpore = false;
+
+        ref var cellProperties = ref entity.Get<CellProperties>();
+
+        ref var multicellularSpeciesType = ref entity.Get<MulticellularSpeciesMember>();
+
+        multicellularSpeciesType.MulticellularCellType = multicellularSpeciesType.Species.ColonyRootCellType();
+
+        multicellularGrowth.IsASpore = false;
+
+        var resolvedTolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(
+            MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(multicellularSpeciesType.Species,
+                microbeSpawnEnvironment.CurrentBiome));
+
+        ref var environmentalEffects = ref entity.Get<MicrobeEnvironmentalEffects>();
+
+        environmentalEffects.ApplyEffects(resolvedTolerances,
+            multicellularSpeciesType.MulticellularCellType.SpecializationBonus *
+            multicellularSpeciesType.Species.GetAdjacencySpecializationBonus(0), ref entity.Get<BioProcesses>());
+
+        cellProperties.ReApplyCellTypeProperties(ref environmentalEffects, entity,
+            multicellularSpeciesType.MulticellularCellType, multicellularSpeciesType.Species, worldSimulation,
+            workMemory1, workMemory2);
     }
 }
