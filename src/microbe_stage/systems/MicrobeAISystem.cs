@@ -477,6 +477,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
 
             if (growth.IsASpore)
             {
+                // TODO: add a smarter condition here for when the AI decides to germinate as a spore
                 control.GerminatingSpore = true;
             }
         }
