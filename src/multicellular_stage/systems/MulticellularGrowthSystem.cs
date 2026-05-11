@@ -29,15 +29,23 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(MicrobeStatus))]
 [ReadsComponent(typeof(WorldPosition))]
 [ReadsComponent(typeof(MicrobeEventCallbacks))]
-[ReadsComponent(typeof(CellProperties))]
-[ReadsComponent(typeof(MicrobeControl))]
 [ReadsComponent(typeof(MicrobeColony))]
+[WritesToComponent(typeof(Engulfable))]
+[WritesToComponent(typeof(ReadableName))]
+[WritesToComponent(typeof(SpatialInstance))]
+[WritesToComponent(typeof(OrganelleContainer))]
+[WritesToComponent(typeof(MicrobeEnvironmentalEffects))]
+[WritesToComponent(typeof(ColourAnimation))]
+[WritesToComponent(typeof(CellProperties))]
 [RunsAfter(typeof(ProcessSystem))]
 [RunsAfter(typeof(ColonyCompoundDistributionSystem))]
 [RuntimeCost(4, false)]
 public partial class MulticellularGrowthSystem : BaseSystem<World, float>
 {
     private readonly ThreadLocal<List<Compound>> temporaryWorkData = new(() => new List<Compound>());
+
+    private readonly List<Hex> hexWorkMemory1 = new();
+    private readonly List<Hex> hexWorkMemory2 = new();
 
     private readonly IWorldSimulation worldSimulation;
     private readonly IMicrobeSpawnEnvironment spawnEnvironment;
@@ -83,7 +91,14 @@ public partial class MulticellularGrowthSystem : BaseSystem<World, float>
         if (growth.IsASpore)
         {
             if (microbeControl.GerminatingSpore)
-                growth.GerminateSpore(entity, worldSimulation, spawnEnvironment);
+            {
+                // Theoretically this is not set to run multithreaded, but here's a lock just in case that is added
+                // in the future
+                lock (hexWorkMemory1)
+                {
+                    growth.GerminateSpore(entity, worldSimulation, spawnEnvironment, hexWorkMemory1, hexWorkMemory2);
+                }
+            }
 
             return;
         }

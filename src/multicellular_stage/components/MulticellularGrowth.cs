@@ -364,7 +364,8 @@ public static class MulticellularGrowthHelpers
     }
 
     public static void GerminateSpore(this ref MulticellularGrowth multicellularGrowth,
-        in Entity entity, IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment microbeSpawnEnvironment)
+        in Entity entity, IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment microbeSpawnEnvironment,
+        List<Hex> workMemory1, List<Hex> workMemory2)
     {
         if (!entity.Has<MulticellularSpeciesMember>())
             return;
@@ -388,12 +389,7 @@ public static class MulticellularGrowthHelpers
             MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(multicellularSpeciesType.Species,
                 microbeSpawnEnvironment.CurrentBiome));
 
-        var environmentalEffects = new MicrobeEnvironmentalEffects
-        {
-            OsmoregulationMultiplier = 1,
-            HealthMultiplier = 1,
-            ProcessSpeedModifier = 1,
-        };
+        ref var environmentalEffects = ref entity.Get<MicrobeEnvironmentalEffects>();
 
         environmentalEffects.ApplyEffects(resolvedTolerances,
             multicellularSpeciesType.MulticellularCellType.SpecializationBonus *
@@ -401,6 +397,6 @@ public static class MulticellularGrowthHelpers
 
         cellProperties.ReApplyCellTypeProperties(ref entity.Get<MicrobeEnvironmentalEffects>(), entity,
             multicellularSpeciesType.MulticellularCellType, multicellularSpeciesType.Species, worldSimulation,
-            new List<Hex>(), new List<Hex>());
+            workMemory1, workMemory2);
     }
 }
