@@ -1469,6 +1469,9 @@ public partial class CellBodyPlanEditorComponent :
             CellBodyPlanInternalCalculations.CalculateOrganellesCost(latestTypes);
         organismStatisticsPanel.UpdateOrganellesCost(ammoniaCost, phosphatesCost);
 
+        var (tolerance, capacity) = CellBodyPlanInternalCalculations.CalculateHydrogenSulfideProtection(latestTypes);
+        organismStatisticsPanel.UpdateHydrogenSulfideProtection(tolerance, capacity);
+
         CalculateEnergyAndCompoundBalance(latestTypes);
 
         UpdateCellTypesSecondaryInfo();

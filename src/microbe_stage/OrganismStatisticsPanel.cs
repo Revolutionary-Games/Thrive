@@ -542,7 +542,7 @@ public partial class OrganismStatisticsPanel : PanelContainer
         if (tooltip != null)
         {
             tooltip.Description =
-                new LocalizedString("HYDROGEN_SULFIDE_PROTECTION_TOOLTIP", tolerance).ToString();
+                new LocalizedString("HYDROGEN_SULFIDE_PROTECTION_TOOLTIP", tolerance, capacity).ToString();
         }
         else
         {

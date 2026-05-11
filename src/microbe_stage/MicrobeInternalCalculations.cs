@@ -430,10 +430,9 @@ public static class MicrobeInternalCalculations
 
         foreach (var organelle in organelles)
         {
-            hydrogenSulfideProtection += organelle.Definition.HydrogenSulfideProtection;
-
             if (organelle.Definition.HydrogenSulfideProtection > 0)
             {
+                hydrogenSulfideProtection += organelle.Definition.HydrogenSulfideProtection;
                 ++hydrogenSulfideOrganellesNumber;
             }
 
@@ -442,16 +441,13 @@ public static class MicrobeInternalCalculations
             if (organelle.Definition.Components.Storage != null)
             {
                 var baseCapacity = organelle.Definition.Components.Storage.Capacity;
-                var specificCapacity = GetAdditionalCapacityForOrganelle(organelle.Definition, organelle.Upgrades);
+                hydrogenSulfideStorage += baseCapacity;
+            }
 
-                if (specificCapacity.Compound != Compound.Hydrogensulfide)
-                {
-                    hydrogenSulfideStorage += baseCapacity;
-                }
-                else
-                {
-                    hydrogenSulfideStorage += specificCapacity.Capacity;
-                }
+            var specificCapacity = GetAdditionalCapacityForOrganelle(organelle.Definition, organelle.Upgrades);
+            if (specificCapacity.Compound == Compound.Hydrogensulfide)
+            {
+                hydrogenSulfideStorage += specificCapacity.Capacity;
             }
         }
 

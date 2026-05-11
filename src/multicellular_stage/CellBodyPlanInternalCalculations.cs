@@ -102,6 +102,59 @@ public static class CellBodyPlanInternalCalculations
         return ((int)ammoniaCostTotal, (int)phosphatesCostTotal);
     }
 
+    public static (float Tolerance, float Capacity) CalculateHydrogenSulfideProtection(
+        IReadOnlyList<HexWithData<CellTemplate>> cells)
+    {
+        float hydrogenSulfideProtection = Constants.HYDROGEN_SULFIDE_DEFAULT_PROTECTION;
+        float hydrogenSulfideStorage = 0;
+        float hydrogenSulfideOrganellesNumber = 0;
+        float organellesCount = 0;
+
+        foreach (var hex in cells)
+        {
+            var cell = hex.Data!;
+
+            foreach (var organelle in cell.Organelles)
+            {
+                hydrogenSulfideProtection += organelle.Definition.HydrogenSulfideProtection;
+
+                if (organelle.Definition.HydrogenSulfideProtection > 0)
+                {
+                    ++hydrogenSulfideOrganellesNumber;
+                }
+
+                ++organellesCount;
+
+                if (organelle.Definition.Components.Storage != null)
+                {
+                    var baseCapacity = organelle.Definition.Components.Storage.Capacity;
+                    var specificCapacity =
+                        MicrobeInternalCalculations.GetAdditionalCapacityForOrganelle(organelle.Definition,
+                            organelle.Upgrades);
+
+                    if (specificCapacity.Compound != Compound.Hydrogensulfide)
+                    {
+                        hydrogenSulfideStorage += baseCapacity;
+                    }
+                    else
+                    {
+                        hydrogenSulfideStorage += specificCapacity.Capacity;
+                    }
+                }
+            }
+        }
+
+        // If there are enough organelles providing protection the cell gets full immunity
+        if (hydrogenSulfideOrganellesNumber / organellesCount >=
+            Constants.HYDROGEN_SULFIDE_ORGANELLE_PROTECTION_CAP_FRACTION
+            || hydrogenSulfideProtection > hydrogenSulfideStorage)
+        {
+            hydrogenSulfideProtection = hydrogenSulfideStorage;
+        }
+
+        return (hydrogenSulfideProtection, hydrogenSulfideStorage);
+    }
+
     public static void ModifyCellSpeedWithColony(ref float speed, int cellCount)
     {
         // Multiplies the movement factor as if the colony has the normal microbe speed

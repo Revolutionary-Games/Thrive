@@ -94,6 +94,10 @@ public partial class OsmoregulationAndHealingSystem : BaseSystem<World, float>
     private void TakeHydrogenSulfideDamage(ref Health health, ref CellProperties cellProperties,
         OrganelleContainer organelleContainer, Entity entity, CompoundBag compounds)
     {
+        bool isPlayerMicrobe = entity.Has<PlayerMarker>();
+        if (isPlayerMicrobe)
+            GD.Print(
+                $"{compounds.GetCompoundAmount(Compound.Hydrogensulfide)} - {organelleContainer.HydrogenSulfideProtection}");
         if (hydrogenSulfideDamageTrigger
             && compounds.GetCompoundAmount(Compound.Hydrogensulfide) > organelleContainer.HydrogenSulfideProtection)
         {
