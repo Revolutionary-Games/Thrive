@@ -41,8 +41,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 14
 text = "UNLOCK_ALL_ORGANELLES"
 
-[connection signal="toggled" from="VBoxContainer/InfiniteMP" to="." method="SetInfiniteMP"]
-[connection signal="toggled" from="VBoxContainer/InfiniteMP" to="." method="UpdateMutationPointsDisplay"]
+[connection signal="toggled" from="VBoxContainer/InfiniteMP" to="." method="InfiniteMPToggled"]
 [connection signal="toggled" from="VBoxContainer/MoveToAnyPatch" to="." method="SetMoveToAnyPatch"]
 [connection signal="pressed" from="VBoxContainer/RevealAllPatches" to="." method="OnRevealAllPatchesPressed"]
 [connection signal="pressed" from="VBoxContainer/UnlockAllOrganelles" to="." method="OnUnlockAllOrganellesPressed"]

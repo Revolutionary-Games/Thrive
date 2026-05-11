@@ -28,8 +28,10 @@ public partial class MicrobeEditorCheatMenu : CheatMenu
         CheatManager.UnlockAllOrganelles();
     }
 
-    private void UpdateMutationPointsDisplay(bool value)
+    private void InfiniteMPToggled(bool value)
     {
+        SetInfiniteMP(value);
+
         editor.DirtyMutationPointsCache();
     }
 }
