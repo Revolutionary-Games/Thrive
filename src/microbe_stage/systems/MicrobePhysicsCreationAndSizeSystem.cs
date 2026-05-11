@@ -44,10 +44,11 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
         new(() => new List<(Membrane Membrane, bool Bacteria)>());
 
     private readonly
-        ThreadLocal<List<(OrganelleLayout<PlacedOrganelle> Organelles, Vector3 ExtraOffset, Quaternion ExtraRotation)>>
+        ThreadLocal<List<(Entity Entity, OrganelleLayout<PlacedOrganelle> Organelles, Vector3 ExtraOffset,
+            Quaternion ExtraRotation)>>
         temporaryColonyMemberOrganelles =
             new(() =>
-                new List<(OrganelleLayout<PlacedOrganelle> Organelles,
+                new List<(Entity Entity, OrganelleLayout<PlacedOrganelle> Organelles,
                     Vector3 ExtraOffset, Quaternion ExtraRotation)>());
 
     private readonly Lazy<PhysicsShape> eukaryoticPilus;
@@ -273,7 +274,8 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
     private PhysicsShape CreateCompoundMicrobeShape(ref MicrobePhysicsExtraData extraData,
         ref OrganelleContainer organelles, ref CellProperties cellProperties, in Entity entity,
         List<(PhysicsShape Shape, Vector3 Position, Quaternion Rotation)> combinedData,
-        List<(OrganelleLayout<PlacedOrganelle> Organelles, Vector3 ExtraOffset, Quaternion ExtraRotation)>?
+        List<(Entity Entity, OrganelleLayout<PlacedOrganelle> Organelles, Vector3 ExtraOffset,
+            Quaternion ExtraRotation)>?
             memberOrganelles, Vector2[] membraneVertices, int vertexCount,
         List<(Membrane Membrane, bool Bacteria)>? colonyMembranes)
     {
@@ -356,7 +358,7 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
                     relativePosition = animation.FinalPosition;
                 }
 
-                memberOrganelles.Add((currentMemberOrganelles.Organelles ??
+                memberOrganelles.Add((member, currentMemberOrganelles.Organelles ??
                     throw new Exception("Colony member has no organelles but it had a membrane"), relativePosition,
                     attached.RelativeRotation));
 
@@ -391,6 +393,9 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
         {
             foreach (var entry in memberOrganelles)
             {
+                var memberEntity = entry.Entity;
+                ref var memberCellProperties = ref memberEntity.Get<CellProperties>();
+
                 foreach (var organelle in entry.Organelles)
                 {
                     if (organelle.Definition.HasPilusComponent)
@@ -401,7 +406,7 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
                             continue;
                         }
 
-                        combinedData.Add(CreatePilusShape(ref extraData, ref cellProperties, organelle,
+                        combinedData.Add(CreatePilusShape(ref extraData, ref memberCellProperties, organelle,
                             entry.ExtraOffset, entry.ExtraRotation));
                     }
                 }
@@ -425,11 +430,14 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
             {
                 foreach (var entry in memberOrganelles)
                 {
+                    var memberEntity = entry.Entity;
+                    ref var memberCellProperties = ref memberEntity.Get<CellProperties>();
+
                     foreach (var organelle in entry.Organelles)
                     {
                         if (organelle.Definition.HasPilusComponent && organelle.Upgrades.HasInjectisomeUpgrade())
                         {
-                            combinedData.Add(CreatePilusShape(ref extraData, ref cellProperties, organelle,
+                            combinedData.Add(CreatePilusShape(ref extraData, ref memberCellProperties, organelle,
                                 entry.ExtraOffset, entry.ExtraRotation));
                             ++extraData.PilusInjectisomeCount;
                         }
@@ -465,9 +473,10 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
         var externalPosition = cellProperties.CalculateExternalOrganellePosition(placedOrganelle.Position,
             placedOrganelle.Orientation, out var rotation);
 
+        var physicsScale = cellProperties.IsBacteria ? 0.5f : 1.0f;
+
         var (position, orientation) =
-            placedOrganelle.CalculatePhysicsExternalTransform(externalPosition, rotation,
-                cellProperties.IsBacteria);
+            placedOrganelle.CalculatePhysicsExternalTransform(externalPosition, rotation, physicsScale);
 
         ++extraData.PilusCount;
         ++extraData.TotalShapeCount;
