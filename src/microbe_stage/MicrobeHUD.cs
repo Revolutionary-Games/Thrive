@@ -50,6 +50,9 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     private ActionButton siderophoreHotkey = null!;
 
     [Export]
+    private ActionButton germinateSporeHotkey = null!;
+
+    [Export]
     private Button multicellularButton = null!;
 
     /// <summary>
@@ -118,6 +121,9 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     [Signal]
     public delegate void OnSprintButtonPressedEventHandler();
+
+    [Signal]
+    public delegate void OnGerminateSporeButtonPressedEventHandler();
 
     [Signal]
     public delegate void OnAcceptRevertToEditorEventHandler();
@@ -743,6 +749,15 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         bindingModeHotkey.ButtonPressed = control.State == MicrobeState.Binding;
 
+        if (player.TryGet<MulticellularGrowth>(out var growth))
+        {
+            germinateSporeHotkey.Visible = growth.IsASpore;
+        }
+        else
+        {
+            germinateSporeHotkey.Visible = false;
+        }
+
         if (unbindAllHotkey.ActionNameAsStringName != null)
             unbindAllHotkey.ButtonPressed = Input.IsActionPressed(unbindAllHotkey.ActionNameAsStringName);
 
@@ -1110,6 +1125,11 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     private void OnSprintPressed()
     {
         EmitSignal(SignalName.OnSprintButtonPressed);
+    }
+
+    private void OnGerminateSporePressed()
+    {
+        EmitSignal(SignalName.OnGerminateSporeButtonPressed);
     }
 
     private void OnTranslationsChanged()
