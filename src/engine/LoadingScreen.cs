@@ -228,7 +228,9 @@ public partial class LoadingScreen : Control
             OverrideTips = overrideTipsCategory;
         }
 
-        GD.Print($"Showing loading screen for stage {CurrentlyLoadingGameState} with override: {OverrideTips}");
+        // This print would trigger a ton in some cases, so this is commented out so that it can be used for debugging
+        // only when needed
+        // GD.Print($"Showing loading screen for stage {CurrentlyLoadingGameState} with override: {OverrideTips}");
 
         LoadingMessage = message;
         LoadingDescription = description;

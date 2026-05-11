@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://ctvsovn0yl3vd"]
+
+[ext_resource type="PackedScene" uid="uid://cckki1kx0cnol" path="res://src/thriveopedia/ThriveopediaPage.tscn" id="1_wb0sb"]
+[ext_resource type="Script" uid="uid://dq81or6eigjd4" path="res://src/thriveopedia/pages/ThriveopediaExtinctSpeciesPage.cs" id="2_wb0sb"]
+[ext_resource type="PackedScene" uid="uid://bhpjtbtaeunat" path="res://src/gui_common/CustomRichTextLabel.tscn" id="3_u6nt6"]
+
+[node name="ThriveopediaSpeciesInfoPage" unique_id=1991115155 node_paths=PackedStringArray("mainText") instance=ExtResource("1_wb0sb")]
+script = ExtResource("2_wb0sb")
+mainText = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/CustomRichTextLabel")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(830321364) index="1" unique_id=1273305137]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer" index="0" unique_id=567573817]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" index="0" unique_id=904062229]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CustomRichTextLabel" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer" index="0" unique_id=2045918816 instance=ExtResource("3_u6nt6")]
+layout_mode = 2
+fit_content = true
+ExtendedBbcode = "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"

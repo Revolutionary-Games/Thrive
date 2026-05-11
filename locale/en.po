@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-05 16:34+0300\n"
-"PO-Revision-Date: 2026-05-05 16:44+0300\n"
+"POT-Creation-Date: 2026-05-08 16:35+0300\n"
+"PO-Revision-Date: 2026-05-08 16:35+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -2850,6 +2850,12 @@ msgstr "Requires Nucleus"
 msgid "INFO_BOX_SIZE"
 msgstr "Size (Hexes)"
 
+msgid "INFO_BOX_SIZE_PLAIN"
+msgstr "Size"
+
+msgid "INFO_BOX_STAGE"
+msgstr "Stage"
+
 msgid "INFO_BOX_STORAGE"
 msgstr "Storage"
 
@@ -4561,6 +4567,9 @@ msgstr "OpenGL Mode Warning"
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr "You are running Thrive with OpenGL. This is severely untested and is likely to cause issues. Make sure you are using a new enough GPU or integrated graphics and try to update your video drivers. For laptops you may need to force dedicated AMD or Nvidia graphics to be used to run Thrive instead of integrated graphics."
 
+msgid "OPEN_EVOLUTIONARY_TREE"
+msgstr "Open Evolutionary Tree"
+
 msgid "OPEN_FOLDER"
 msgstr "Open Folder"
 
@@ -4767,6 +4776,9 @@ msgstr "Back"
 msgid "PAGE_FORWARD"
 msgstr "Forward"
 
+msgid "PAGE_PINNED"
+msgstr "Pinned"
+
 msgid "PAGE_TITLE"
 msgstr "Page Title"
 
@@ -4897,6 +4909,9 @@ msgstr "Physical Conditions"
 
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Physical Resistance"
+
+msgid "PIN_BUTTON_TOOLTIP"
+msgstr "Pin this page to keep it around instead of it becoming deleted when moving to another page"
 
 msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
 msgstr "Placement blocked because the current membrane is incompatible with this organelle"
@@ -6190,6 +6205,9 @@ msgstr "Current World"
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr "Evolutionary Tree"
 
+msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
+msgstr "This species is extinct and is no longer part of the world. As such its details are no longer known. The species had the ID {0}."
+
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr "Open the Thriveopedia"
 
@@ -6211,8 +6229,35 @@ msgstr "Home"
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Museum"
 
+msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
+msgstr "Extinct Species {0}"
+
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr "Patch Map"
+
+msgid "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
+msgstr "Right now the above button just opens the evolutionary tree in general and does not focus this specific species in it automatically. That feature might be added in the future."
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE"
+msgstr "{0}"
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
+msgstr "This page lists the species that exist in this world."
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
+msgstr ""
+"{0} is a species that exists in this world. It has a current population of {1} and is present in {2} area(s). It is in the {3}.\n"
+"\n"
+"Note that this page will disappear if navigated away from, unless the page is pinned. Pin this page if this is an interesting species you want to refer back to."
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
+msgstr "No species have been pinned yet so there are no pages listed here. Click on a species elsewhere in the game to get to its page and then pin it. Once pinned, it will appear here."
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
+msgstr "Pinned Species"
+
+msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
+msgstr "Species"
 
 msgid "THRIVE_LICENSES"
 msgstr "Thrive Licenses"

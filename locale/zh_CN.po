@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-05 16:34+0300\n"
+"POT-Creation-Date: 2026-05-08 16:35+0300\n"
 "PO-Revision-Date: 2026-05-07 19:05+0000\n"
 "Last-Translator: 归灵祈昱 <guilingqiyu@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -2850,6 +2850,14 @@ msgstr "需要细胞核"
 msgid "INFO_BOX_SIZE"
 msgstr "大小（六边形数量）"
 
+#, fuzzy
+msgid "INFO_BOX_SIZE_PLAIN"
+msgstr "大小（六边形数量）"
+
+#, fuzzy
+msgid "INFO_BOX_STAGE"
+msgstr "储存空间"
+
 msgid "INFO_BOX_STORAGE"
 msgstr "储存空间"
 
@@ -4561,6 +4569,10 @@ msgstr "OpenGL模式警告"
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr "您正在使用 OpenGL 运行 Thrive。这是完全未经测试的，很可能会导致问题。请确保您使用了足够新的 GPU 或集成显卡，并尝试更新视频驱动程序。对于笔记本电脑，您可能需要强制使用专用的 AMD 或 Nvidia 显卡来运行 Thrive，而不是集成显卡。"
 
+#, fuzzy
+msgid "OPEN_EVOLUTIONARY_TREE"
+msgstr "进化树"
+
 msgid "OPEN_FOLDER"
 msgstr "打开文件夹"
 
@@ -4767,6 +4779,10 @@ msgstr "转到上一页"
 msgid "PAGE_FORWARD"
 msgstr "转到下一页"
 
+#, fuzzy
+msgid "PAGE_PINNED"
+msgstr "页面标题"
+
 msgid "PAGE_TITLE"
 msgstr "页面标题"
 
@@ -4897,6 +4913,10 @@ msgstr "物理条件"
 
 msgid "PHYSICAL_RESISTANCE"
 msgstr "物防"
+
+#, fuzzy
+msgid "PIN_BUTTON_TOOLTIP"
+msgstr "改变您的设置"
 
 msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
 msgstr "无法放置，因为当前的细胞膜与该细胞器不兼容"
@@ -6190,6 +6210,10 @@ msgstr "目前世界"
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr "树状进化图"
 
+#, fuzzy
+msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
+msgstr "打开Thrive百科"
+
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr "打开Thrive百科"
 
@@ -6211,8 +6235,40 @@ msgstr "主页"
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "博物馆"
 
+#, fuzzy
+msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
+msgstr "主页"
+
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr "地区图"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
+msgstr "树状进化图"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE"
+msgstr "博物馆"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
+msgstr "博物馆"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
+msgstr "博物馆"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
+msgstr "博物馆"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
+msgstr "博物馆"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
+msgstr "目前世界"
 
 msgid "THRIVE_LICENSES"
 msgstr "Thrive的许可证书"

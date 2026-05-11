@@ -80,6 +80,8 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
     public ISimulationPhotographable.SimulationType SimulationToPhotograph =>
         ISimulationPhotographable.SimulationType.MicrobeGraphics;
 
+    public override Stage StageForDisplay => Stage.MulticellularStage;
+
     public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
 
     public override ArchiveObjectType ArchiveObjectType =>
