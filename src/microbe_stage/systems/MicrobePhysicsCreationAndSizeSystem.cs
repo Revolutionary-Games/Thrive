@@ -275,7 +275,7 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
         ref OrganelleContainer organelles, ref CellProperties cellProperties, in Entity entity,
         List<(PhysicsShape Shape, Vector3 Position, Quaternion Rotation)> combinedData,
         List<(Entity Entity, OrganelleLayout<PlacedOrganelle> Organelles, Vector3 ExtraOffset,
-            Quaternion ExtraRotation)>?
+                Quaternion ExtraRotation)>?
             memberOrganelles, Vector2[] membraneVertices, int vertexCount,
         List<(Membrane Membrane, bool Bacteria)>? colonyMembranes)
     {
