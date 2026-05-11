@@ -213,6 +213,36 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         }
     }
 
+    public void ClearSignalingCommandsOnEditorExitIfNecessary(Entity player)
+    {
+        if (!player.Has<CommandSignaler>())
+            return;
+
+        ref var signaler = ref player.Get<CommandSignaler>();
+        ref var organelles = ref player.Get<OrganelleContainer>();
+
+        if (player.Has<MicrobeColony>())
+        {
+            ref var colony = ref player.Get<MicrobeColony>();
+
+            colony.GetColonySpecialOrganelles(out _, out _, out _, out var hasSignalingAgent);
+
+            if (hasSignalingAgent)
+            {
+                return;
+            }
+        }
+        else if (organelles.HasSignalingAgent)
+        {
+            return;
+        }
+
+        packControlRadial.Hide();
+        signalingAgentMenuOpenForMicrobe = null;
+
+        signaler.QueuedSignalingCommand = MicrobeSignalCommand.None;
+    }
+
     public void ShowSignalingCommandsMenu(Entity player)
     {
         if (!player.IsAliveAndHas<CommandSignaler>())
@@ -475,6 +505,8 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     {
         if (!stage!.Player.IsAliveAndHas<StrainAffected>())
         {
+            // This should never trigger as long as this method is called only when the player is alive.
+            // But this legacy error-checking code might as well be kept.
             if (!playerMissingStrainAffected)
             {
                 GD.PrintErr("Player is missing StrainAffected component");

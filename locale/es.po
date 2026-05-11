@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-04 10:15+0200\n"
+"POT-Creation-Date: 2026-05-08 16:35+0300\n"
 "PO-Revision-Date: 2026-05-01 09:17+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
@@ -2253,6 +2253,10 @@ msgstr "Esta es la commit exacta desde la cual esta versión de Thrive fue compi
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr "Una excepción ha ocurrido al procesar objetos cargados"
 
+#, fuzzy
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE_JUKEBOX"
+msgstr "Una excepción ha ocurrido al procesar objetos cargados"
+
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Una excepción ha ocurrido al cargar los datos guardados"
 
@@ -2898,6 +2902,14 @@ msgstr "Requiere Núcleo"
 
 msgid "INFO_BOX_SIZE"
 msgstr "Tamaño (Hexágonos)"
+
+#, fuzzy
+msgid "INFO_BOX_SIZE_PLAIN"
+msgstr "Tamaño (Hexágonos)"
+
+#, fuzzy
+msgid "INFO_BOX_STAGE"
+msgstr "Almacenamiento"
 
 msgid "INFO_BOX_STORAGE"
 msgstr "Almacenamiento"
@@ -4411,6 +4423,30 @@ msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Editor multicelular"
 
 #, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_2"
+msgstr "Editor multicelular"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_3"
+msgstr "Editor multicelular"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_4"
+msgstr "Editor multicelular"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_5"
+msgstr "Editor multicelular"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_6"
+msgstr "Editor multicelular"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_7"
+msgstr "Editor multicelular"
+
+#, fuzzy
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "(ciertas características no estarán disponibles cuando llegues a ciertas etapas)"
 
@@ -4731,6 +4767,10 @@ msgstr "Advertencia del modo GLES2"
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr "Estás usando Thrive en el Modo GLES2. No está probado y probablemente cause errores. Intenta actualizar tus drivers de video y/o fuerza los gráficos AMD o Nvidia para ser usados al ejecutar Thrive."
 
+#, fuzzy
+msgid "OPEN_EVOLUTIONARY_TREE"
+msgstr "Arbol Evolutivo"
+
 msgid "OPEN_FOLDER"
 msgstr "Abrir carpeta"
 
@@ -4967,6 +5007,10 @@ msgstr "Volver"
 msgid "PAGE_FORWARD"
 msgstr "Seguir"
 
+#, fuzzy
+msgid "PAGE_PINNED"
+msgstr "Título de la página"
+
 msgid "PAGE_TITLE"
 msgstr "Título de la página"
 
@@ -5117,6 +5161,10 @@ msgstr "Condiciones Físicas"
 
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Resistencia Física"
+
+#, fuzzy
+msgid "PIN_BUTTON_TOOLTIP"
+msgstr "Cambiar configuración"
 
 msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
 msgstr ""
@@ -6533,6 +6581,10 @@ msgstr "Mundo actual"
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr "Árbol de evolución"
 
+#, fuzzy
+msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
+msgstr "Abrir Thrivepedia"
+
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr "Abrir Thrivepedia"
 
@@ -6554,8 +6606,40 @@ msgstr "Inicio"
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Museo"
 
+#, fuzzy
+msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
+msgstr "Inicio"
+
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr "Zona"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
+msgstr "Árbol de evolución"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE"
+msgstr "Museo"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
+msgstr "Museo"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
+msgstr "Museo"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
+msgstr "Museo"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
+msgstr "Museo"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
+msgstr "Mundo actual"
 
 msgid "THRIVE_LICENSES"
 msgstr "Licencias de Thrive"

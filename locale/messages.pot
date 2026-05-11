@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-04 10:15+0200\n"
+"POT-Creation-Date: 2026-05-08 16:35+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -84,10 +84,10 @@ msgstr ""
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr ""
 
-#: ../src/general/base_stage/EditorBase.cs:946
+#: ../src/general/base_stage/EditorBase.cs:948
 #: ../src/macroscopic_stage/editor/MacroscopicEditor.cs:566
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:59
-#: ../src/multicellular_stage/editor/MulticellularEditor.cs:584
+#: ../src/multicellular_stage/editor/MulticellularEditor.cs:586
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr ""
 
@@ -621,12 +621,12 @@ msgstr ""
 msgid "BATHYPELAGIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:919
+#: ../src/microbe_stage/MicrobeHUD.cs:951
 #: ../src/microbe_stage/MicrobeHUD.tscn:431
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:870
+#: ../src/microbe_stage/MicrobeHUD.cs:902
 #: ../src/microbe_stage/MicrobeHUD.tscn:424
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
@@ -778,7 +778,7 @@ msgstr ""
 msgid "BLUESKY_TOOLTIP"
 msgstr ""
 
-#: ../src/general/GameProperties.cs:171
+#: ../src/general/GameProperties.cs:176
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr ""
 
@@ -923,27 +923,27 @@ msgstr ""
 msgid "CARBON_DIOXIDE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:961
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:955
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:965
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:959
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:969
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:963
 msgid "CATEGORY_LITTLE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:963
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:957
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:967
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:961
 msgid "CATEGORY_SOME"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:971
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:965
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
@@ -1601,7 +1601,7 @@ msgstr ""
 msgid "CONTINUE"
 msgstr ""
 
-#: ../src/microbe_stage/gui/ExtinctionBox.cs:151
+#: ../src/microbe_stage/gui/ExtinctionBox.cs:150
 msgid "CONTINUE_AS_SPECIES"
 msgstr ""
 
@@ -1964,7 +1964,7 @@ msgstr ""
 msgid "CREATING_DOT_DOT_DOT"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:105
+#: ../src/saving/InProgressLoad.cs:107
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr ""
 
@@ -2235,7 +2235,7 @@ msgstr ""
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:435 ../src/microbe_stage/MicrobeHUD.cs:440
+#: ../src/microbe_stage/MicrobeHUD.cs:465 ../src/microbe_stage/MicrobeHUD.cs:470
 msgid "DEVOURED"
 msgstr ""
 
@@ -2459,75 +2459,75 @@ msgstr ""
 msgid "DUPLICATE_TYPE"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:257
+#: ../simulation_parameters/common/help_texts.json:260
 msgid "EASTEREGG_MESSAGE_1"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:284
+#: ../simulation_parameters/common/help_texts.json:287
 msgid "EASTEREGG_MESSAGE_10"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:287
+#: ../simulation_parameters/common/help_texts.json:290
 msgid "EASTEREGG_MESSAGE_11"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:290
+#: ../simulation_parameters/common/help_texts.json:293
 msgid "EASTEREGG_MESSAGE_12"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:293
+#: ../simulation_parameters/common/help_texts.json:296
 msgid "EASTEREGG_MESSAGE_13"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:296
+#: ../simulation_parameters/common/help_texts.json:299
 msgid "EASTEREGG_MESSAGE_14"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:299
+#: ../simulation_parameters/common/help_texts.json:302
 msgid "EASTEREGG_MESSAGE_15"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:302
+#: ../simulation_parameters/common/help_texts.json:305
 msgid "EASTEREGG_MESSAGE_16"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:305
+#: ../simulation_parameters/common/help_texts.json:308
 msgid "EASTEREGG_MESSAGE_17"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:308
+#: ../simulation_parameters/common/help_texts.json:311
 msgid "EASTEREGG_MESSAGE_18"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:260
+#: ../simulation_parameters/common/help_texts.json:263
 msgid "EASTEREGG_MESSAGE_2"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:263
+#: ../simulation_parameters/common/help_texts.json:266
 msgid "EASTEREGG_MESSAGE_3"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:266
+#: ../simulation_parameters/common/help_texts.json:269
 msgid "EASTEREGG_MESSAGE_4"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:269
+#: ../simulation_parameters/common/help_texts.json:272
 msgid "EASTEREGG_MESSAGE_5"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:272
+#: ../simulation_parameters/common/help_texts.json:275
 msgid "EASTEREGG_MESSAGE_6"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:275
+#: ../simulation_parameters/common/help_texts.json:278
 msgid "EASTEREGG_MESSAGE_7"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:278
+#: ../simulation_parameters/common/help_texts.json:281
 msgid "EASTEREGG_MESSAGE_8"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:281
+#: ../simulation_parameters/common/help_texts.json:284
 msgid "EASTEREGG_MESSAGE_9"
 msgstr ""
 
@@ -2805,7 +2805,7 @@ msgstr ""
 msgid "ERROR_FETCHING_NEWS"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:209
+#: ../src/saving/InProgressLoad.cs:238
 msgid "ERROR_LOADING"
 msgstr ""
 
@@ -2821,7 +2821,7 @@ msgstr ""
 msgid "ESCAPE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:2176
+#: ../src/microbe_stage/MicrobeStage.cs:2178
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -2882,11 +2882,15 @@ msgstr ""
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:179
+#: ../src/saving/InProgressLoad.cs:208
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:119
+#: ../src/saving/InProgressLoad.cs:179
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE_JUKEBOX"
+msgstr ""
+
+#: ../src/saving/InProgressLoad.cs:121
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr ""
 
@@ -3208,12 +3212,12 @@ msgstr ""
 msgid "FOSSILISATION_FAILED_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:791
+#: ../src/microbe_stage/MicrobeHUD.cs:823
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:16
 msgid "FOSSILISATION_HINT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:790
+#: ../src/microbe_stage/MicrobeHUD.cs:822
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
@@ -3305,64 +3309,63 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:5
 #: ../simulation_parameters/common/help_texts.json:96
-#: ../simulation_parameters/common/help_texts.json:157
-#: ../simulation_parameters/common/help_texts.json:182
-#: ../simulation_parameters/common/help_texts.json:207
-#: ../simulation_parameters/common/help_texts.json:232
-msgid "GENERAL_LOADING_TIP_1"
-msgstr ""
-
-#: ../simulation_parameters/common/help_texts.json:8
-#: ../simulation_parameters/common/help_texts.json:99
 #: ../simulation_parameters/common/help_texts.json:160
 #: ../simulation_parameters/common/help_texts.json:185
 #: ../simulation_parameters/common/help_texts.json:210
 #: ../simulation_parameters/common/help_texts.json:235
-msgid "GENERAL_LOADING_TIP_2"
+msgid "GENERAL_LOADING_TIP_1"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:11
-#: ../simulation_parameters/common/help_texts.json:102
+#: ../simulation_parameters/common/help_texts.json:8
 #: ../simulation_parameters/common/help_texts.json:163
 #: ../simulation_parameters/common/help_texts.json:188
 #: ../simulation_parameters/common/help_texts.json:213
 #: ../simulation_parameters/common/help_texts.json:238
-msgid "GENERAL_LOADING_TIP_3"
+msgid "GENERAL_LOADING_TIP_2"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:14
-#: ../simulation_parameters/common/help_texts.json:105
+#: ../simulation_parameters/common/help_texts.json:11
+#: ../simulation_parameters/common/help_texts.json:99
 #: ../simulation_parameters/common/help_texts.json:166
 #: ../simulation_parameters/common/help_texts.json:191
 #: ../simulation_parameters/common/help_texts.json:216
 #: ../simulation_parameters/common/help_texts.json:241
-msgid "GENERAL_LOADING_TIP_4"
+msgid "GENERAL_LOADING_TIP_3"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:17
-#: ../simulation_parameters/common/help_texts.json:108
+#: ../simulation_parameters/common/help_texts.json:14
+#: ../simulation_parameters/common/help_texts.json:102
 #: ../simulation_parameters/common/help_texts.json:169
 #: ../simulation_parameters/common/help_texts.json:194
 #: ../simulation_parameters/common/help_texts.json:219
 #: ../simulation_parameters/common/help_texts.json:244
-msgid "GENERAL_LOADING_TIP_5"
+msgid "GENERAL_LOADING_TIP_4"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:20
-#: ../simulation_parameters/common/help_texts.json:111
+#: ../simulation_parameters/common/help_texts.json:17
+#: ../simulation_parameters/common/help_texts.json:105
 #: ../simulation_parameters/common/help_texts.json:172
 #: ../simulation_parameters/common/help_texts.json:197
 #: ../simulation_parameters/common/help_texts.json:222
 #: ../simulation_parameters/common/help_texts.json:247
-msgid "GENERAL_LOADING_TIP_6"
+msgid "GENERAL_LOADING_TIP_5"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:23
-#: ../simulation_parameters/common/help_texts.json:114
+#: ../simulation_parameters/common/help_texts.json:20
+#: ../simulation_parameters/common/help_texts.json:108
 #: ../simulation_parameters/common/help_texts.json:175
 #: ../simulation_parameters/common/help_texts.json:200
 #: ../simulation_parameters/common/help_texts.json:225
 #: ../simulation_parameters/common/help_texts.json:250
+msgid "GENERAL_LOADING_TIP_6"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:23
+#: ../simulation_parameters/common/help_texts.json:111
+#: ../simulation_parameters/common/help_texts.json:178
+#: ../simulation_parameters/common/help_texts.json:203
+#: ../simulation_parameters/common/help_texts.json:228
+#: ../simulation_parameters/common/help_texts.json:253
 msgid "GENERAL_LOADING_TIP_7"
 msgstr ""
 
@@ -3848,6 +3851,7 @@ msgstr ""
 msgid "INFO_BOX_GAMEPLAY_TYPE"
 msgstr ""
 
+#: ../src/thriveopedia/pages/ThriveopediaSpeciesInfoPage.tscn:122
 #: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.tscn:269
 #: ../src/thriveopedia/pages/wiki/stages/StageInfoBox.tscn:128
 msgid "INFO_BOX_INTERNAL_NAME"
@@ -4025,6 +4029,14 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2528
 #: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.tscn:172
 msgid "INFO_BOX_SIZE"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaSpeciesInfoPage.tscn:103
+msgid "INFO_BOX_SIZE_PLAIN"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaSpeciesInfoPage.tscn:84
+msgid "INFO_BOX_STAGE"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:85
@@ -4862,7 +4874,7 @@ msgstr ""
 msgid "LOAD"
 msgstr ""
 
-#: ../src/engine/LoadingScreen.cs:63 ../src/engine/LoadingScreen.tscn:114
+#: ../src/engine/LoadingScreen.cs:64 ../src/engine/LoadingScreen.tscn:114
 msgid "LOADING"
 msgstr ""
 
@@ -4871,8 +4883,8 @@ msgstr ""
 msgid "LOADING_DOT_DOT_DOT"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:83 ../src/saving/InProgressLoad.cs:103
-#: ../src/saving/InProgressLoad.cs:157
+#: ../src/saving/InProgressLoad.cs:85 ../src/saving/InProgressLoad.cs:105
+#: ../src/saving/InProgressLoad.cs:163
 msgid "LOADING_GAME"
 msgstr ""
 
@@ -4888,15 +4900,15 @@ msgstr ""
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1363
+#: ../src/microbe_stage/MicrobeStage.cs:1365
 msgid "LOADING_MICROBE_STAGE"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/MulticellularEditor.cs:102
+#: ../src/multicellular_stage/editor/MulticellularEditor.cs:104
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1359
+#: ../src/microbe_stage/MicrobeStage.cs:1361
 msgid "LOADING_MULTICELLULAR_STAGE"
 msgstr ""
 
@@ -4909,7 +4921,7 @@ msgstr ""
 msgid "LOADING_STAGE_ASSETS"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:185
+#: ../src/saving/InProgressLoad.cs:214
 msgid "LOAD_FINISHED"
 msgstr ""
 
@@ -5345,7 +5357,7 @@ msgid "MICROBE_LOADING_TIP_11"
 msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:59
-#: ../simulation_parameters/common/help_texts.json:132
+#: ../simulation_parameters/common/help_texts.json:120
 msgid "MICROBE_LOADING_TIP_12"
 msgstr ""
 
@@ -5354,12 +5366,12 @@ msgid "MICROBE_LOADING_TIP_13"
 msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:65
-#: ../simulation_parameters/common/help_texts.json:135
+#: ../simulation_parameters/common/help_texts.json:123
 msgid "MICROBE_LOADING_TIP_14"
 msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:68
-#: ../simulation_parameters/common/help_texts.json:138
+#: ../simulation_parameters/common/help_texts.json:126
 msgid "MICROBE_LOADING_TIP_15"
 msgstr ""
 
@@ -5372,7 +5384,7 @@ msgid "MICROBE_LOADING_TIP_17"
 msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:77
-#: ../simulation_parameters/common/help_texts.json:141
+#: ../simulation_parameters/common/help_texts.json:129
 msgid "MICROBE_LOADING_TIP_18"
 msgstr ""
 
@@ -5381,17 +5393,15 @@ msgid "MICROBE_LOADING_TIP_19"
 msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:29
-#: ../simulation_parameters/common/help_texts.json:117
 msgid "MICROBE_LOADING_TIP_2"
 msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:83
-#: ../simulation_parameters/common/help_texts.json:144
+#: ../simulation_parameters/common/help_texts.json:132
 msgid "MICROBE_LOADING_TIP_20"
 msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:86
-#: ../simulation_parameters/common/help_texts.json:147
 msgid "MICROBE_LOADING_TIP_21"
 msgstr ""
 
@@ -5400,7 +5410,7 @@ msgid "MICROBE_LOADING_TIP_22"
 msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:32
-#: ../simulation_parameters/common/help_texts.json:120
+#: ../simulation_parameters/common/help_texts.json:114
 msgid "MICROBE_LOADING_TIP_3"
 msgstr ""
 
@@ -5413,7 +5423,6 @@ msgid "MICROBE_LOADING_TIP_5"
 msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:41
-#: ../simulation_parameters/common/help_texts.json:123
 msgid "MICROBE_LOADING_TIP_6"
 msgstr ""
 
@@ -5422,12 +5431,11 @@ msgid "MICROBE_LOADING_TIP_7"
 msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:47
-#: ../simulation_parameters/common/help_texts.json:126
+#: ../simulation_parameters/common/help_texts.json:117
 msgid "MICROBE_LOADING_TIP_8"
 msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:50
-#: ../simulation_parameters/common/help_texts.json:129
 msgid "MICROBE_LOADING_TIP_9"
 msgstr ""
 
@@ -5459,7 +5467,7 @@ msgstr ""
 msgid "MICROBE_RIPPLE_EFFECT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeSpecies.cs:456
+#: ../src/microbe_stage/MicrobeSpecies.cs:458
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 
@@ -5944,8 +5952,32 @@ msgstr ""
 msgid "MULTICELLULAR_FREEBUILD_EDITOR"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:150
+#: ../simulation_parameters/common/help_texts.json:135
 msgid "MULTICELLULAR_LOADING_TIP_1"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:138
+msgid "MULTICELLULAR_LOADING_TIP_2"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:141
+msgid "MULTICELLULAR_LOADING_TIP_3"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:144
+msgid "MULTICELLULAR_LOADING_TIP_4"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:147
+msgid "MULTICELLULAR_LOADING_TIP_5"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:150
+msgid "MULTICELLULAR_LOADING_TIP_6"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:153
+msgid "MULTICELLULAR_LOADING_TIP_7"
 msgstr ""
 
 #: ../src/microbe_stage/ProcessPanel.tscn:140
@@ -6378,7 +6410,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:3111
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:3123
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:154
-#: ../src/microbe_stage/MicrobeHUD.cs:738
+#: ../src/microbe_stage/MicrobeHUD.cs:770
 msgid "N_A"
 msgstr ""
 
@@ -6425,6 +6457,10 @@ msgstr ""
 
 #: ../src/general/MainMenu.tscn:914
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaSpeciesInfoPage.tscn:136
+msgid "OPEN_EVOLUTIONARY_TREE"
 msgstr ""
 
 #: ../src/modding/ModManager.tscn:136
@@ -6703,6 +6739,10 @@ msgstr ""
 msgid "PAGE_FORWARD"
 msgstr ""
 
+#: ../src/thriveopedia/pages/PagePinButton.tscn:11
+msgid "PAGE_PINNED"
+msgstr ""
+
 #: ../src/thriveopedia/Thriveopedia.tscn:301
 msgid "PAGE_TITLE"
 msgstr ""
@@ -6849,7 +6889,7 @@ msgstr ""
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:509
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:585
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:373
-#: ../src/microbe_stage/MicrobeHUD.cs:447
+#: ../src/microbe_stage/MicrobeHUD.cs:477
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:141
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:144
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:156
@@ -6921,6 +6961,10 @@ msgstr ""
 msgid "PHYSICAL_RESISTANCE"
 msgstr ""
 
+#: ../src/thriveopedia/pages/PagePinButton.tscn:10
+msgid "PIN_BUTTON_TOOLTIP"
+msgstr ""
+
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2392
 msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
 msgstr ""
@@ -6952,7 +6996,7 @@ msgstr ""
 msgid "PLANET_STATISTICS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:773
+#: ../src/microbe_stage/MicrobeHUD.cs:805
 msgid "PLAYER"
 msgstr ""
 
@@ -7103,7 +7147,7 @@ msgstr ""
 msgid "PREVIOUS_COLON"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:159
+#: ../src/saving/InProgressLoad.cs:165
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr ""
 
@@ -7175,7 +7219,7 @@ msgstr ""
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/PauseMenu.cs:498
+#: ../src/general/PauseMenu.cs:495
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 
@@ -7231,7 +7275,7 @@ msgstr ""
 msgid "REACH_MULTICELLULAR_STAGE"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:85
+#: ../src/saving/InProgressLoad.cs:87
 msgid "READING_SAVE_DATA"
 msgstr ""
 
@@ -7281,9 +7325,9 @@ msgstr ""
 msgid "REPORT_BUG"
 msgstr ""
 
-#: ../src/microbe_stage/systems/MicrobeReproductionSystem.cs:579
-#: ../src/microbe_stage/systems/MicrobeReproductionSystem.cs:589
-#: ../src/multicellular_stage/systems/MulticellularGrowthSystem.cs:308
+#: ../src/microbe_stage/systems/MicrobeReproductionSystem.cs:585
+#: ../src/microbe_stage/systems/MicrobeReproductionSystem.cs:595
+#: ../src/multicellular_stage/systems/MulticellularGrowthSystem.cs:315
 msgid "REPRODUCED"
 msgstr ""
 
@@ -7447,7 +7491,7 @@ msgstr ""
 msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:694 ../src/general/PauseMenu.cs:479
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:694 ../src/general/PauseMenu.cs:476
 #: ../src/gui_common/menus/PlanetCustomizerTool.tscn:194
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
@@ -7615,7 +7659,7 @@ msgstr ""
 msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:146
+#: ../src/saving/InProgressLoad.cs:148
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr ""
 
@@ -7623,7 +7667,7 @@ msgstr ""
 msgid "SAVE_INVALID"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:145
+#: ../src/saving/InProgressLoad.cs:147
 msgid "SAVE_IS_INVALID"
 msgstr ""
 
@@ -7631,7 +7675,7 @@ msgstr ""
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:247
+#: ../src/saving/InProgressLoad.cs:276
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ""
 
@@ -7824,7 +7868,7 @@ msgstr ""
 msgid "SELECT_STRUCTURE_POPUP_TITLE"
 msgstr ""
 
-#: ../src/macroscopic_stage/editor/MacroscopicEditor.tscn:113
+#: ../src/macroscopic_stage/editor/MacroscopicEditor.tscn:114
 msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
 msgstr ""
 
@@ -7935,27 +7979,27 @@ msgstr ""
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:236
+#: ../src/microbe_stage/MicrobeHUD.cs:266
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:235
+#: ../src/microbe_stage/MicrobeHUD.cs:265
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:233
+#: ../src/microbe_stage/MicrobeHUD.cs:263
 msgid "SIGNAL_COMMAND_FOLLOW"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:232
+#: ../src/microbe_stage/MicrobeHUD.cs:262
 msgid "SIGNAL_COMMAND_NONE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:234
+#: ../src/microbe_stage/MicrobeHUD.cs:264
 msgid "SIGNAL_COMMAND_TO_ME"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:239
+#: ../src/microbe_stage/MicrobeHUD.cs:269
 msgid "SIGNAL_TO_EMIT"
 msgstr ""
 
@@ -8105,7 +8149,7 @@ msgstr ""
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1751
+#: ../src/microbe_stage/MicrobeStage.cs:1753
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -8138,7 +8182,7 @@ msgstr ""
 msgid "SPECIES_COLON"
 msgstr ""
 
-#: ../src/general/Species.cs:387
+#: ../src/general/Species.cs:406
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 
@@ -8433,11 +8477,11 @@ msgstr ""
 msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:2174
+#: ../src/microbe_stage/MicrobeStage.cs:2176
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:2175
+#: ../src/microbe_stage/MicrobeStage.cs:2177
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
@@ -8692,6 +8736,11 @@ msgstr ""
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr ""
 
+#: ../src/thriveopedia/pages/ThriveopediaExtinctSpeciesPage.cs:37
+#: ../src/thriveopedia/pages/ThriveopediaExtinctSpeciesPage.tscn:24
+msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
+msgstr ""
+
 #: ../src/general/PauseMenu.tscn:230
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr ""
@@ -8708,8 +8757,42 @@ msgstr ""
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
+#: ../src/thriveopedia/pages/ThriveopediaExtinctSpeciesPage.cs:17
+#: ../src/thriveopedia/pages/ThriveopediaWorldSpeciesPage.cs:106
+msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
+msgstr ""
+
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:28
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaSpeciesInfoPage.tscn:146
+msgid "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaSpeciesInfoPage.cs:41
+msgid "THRIVEOPEDIA_SPECIES_PAGE"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaWorldSpeciesPage.tscn:19
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaSpeciesInfoPage.cs:123
+#: ../src/thriveopedia/pages/ThriveopediaSpeciesInfoPage.tscn:38
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaWorldSpeciesPage.tscn:38
+msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaWorldSpeciesPage.tscn:29
+msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaWorldSpeciesPage.cs:22
+msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
 msgstr ""
 
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:31
@@ -8903,7 +8986,7 @@ msgstr ""
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeSpecies.cs:461
+#: ../src/microbe_stage/MicrobeSpecies.cs:463
 msgid "TOLERANCE_DETAIL_TEXT"
 msgstr ""
 
@@ -9735,7 +9818,7 @@ msgstr ""
 msgid "VSYNC"
 msgstr ""
 
-#: ../src/general/base_stage/EditorBase.cs:280
+#: ../src/general/base_stage/EditorBase.cs:282
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr ""
 
@@ -11998,7 +12081,7 @@ msgstr ""
 msgid "WORLD"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.Export.cs:36
+#: ../src/auto-evo/AutoEvoExploringTool.Export.cs:41
 msgid "WORLD_EXPORT_SUCCESS_MESSAGE"
 msgstr ""
 

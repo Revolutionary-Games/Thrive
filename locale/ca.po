@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-04 10:15+0200\n"
+"POT-Creation-Date: 2026-05-08 16:35+0300\n"
 "PO-Revision-Date: 2026-05-01 09:17+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -2301,6 +2301,10 @@ msgstr "Automàticament carregar els ecosistemes Harmony de l'Ensamblatge (no re
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr "S'ha produït un problema mentre es processaven els objectes carregats"
 
+#, fuzzy
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE_JUKEBOX"
+msgstr "S'ha produït un problema mentre es processaven els objectes carregats"
+
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "S'ha produït un problema mentre es carregaven les dades de guardat"
 
@@ -3030,6 +3034,14 @@ msgstr "Requereix nucli"
 
 #, fuzzy
 msgid "INFO_BOX_SIZE"
+msgstr "HAS ACONSEGUIT PROSPERAR!"
+
+#, fuzzy
+msgid "INFO_BOX_SIZE_PLAIN"
+msgstr "HAS ACONSEGUIT PROSPERAR!"
+
+#, fuzzy
+msgid "INFO_BOX_STAGE"
 msgstr "HAS ACONSEGUIT PROSPERAR!"
 
 #, fuzzy
@@ -4621,6 +4633,30 @@ msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Editor Multicel·lular"
 
 #, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_2"
+msgstr "Editor Multicel·lular"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_3"
+msgstr "Editor Multicel·lular"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_4"
+msgstr "Editor Multicel·lular"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_5"
+msgstr "Editor Multicel·lular"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_6"
+msgstr "Editor Multicel·lular"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_7"
+msgstr "Editor Multicel·lular"
+
+#, fuzzy
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "(algunes característiques poden no estar disponibles un cop assoleixis els propers estadis)"
 
@@ -4935,6 +4971,10 @@ msgstr "Mode d'Alerta GLES2"
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr "Esteu executant el programa Thrive amb GLES2. Aquesta tecnologia encara no ha estat del tot validada i, per tant, pot originar alguns problemes. Intenteu actualitzar els vostres drivers de vídeo i/o forçar l'ús de gràfics AMD o Nvidia per executar Thrive."
 
+#, fuzzy
+msgid "OPEN_EVOLUTIONARY_TREE"
+msgstr "Per Revolutionary Games Studio"
+
 msgid "OPEN_FOLDER"
 msgstr "Obrir Carpeta"
 
@@ -5168,6 +5208,10 @@ msgid "PAGE_FORWARD"
 msgstr "Endavant"
 
 #, fuzzy
+msgid "PAGE_PINNED"
+msgstr "Eliminar Dades Locals"
+
+#, fuzzy
 msgid "PAGE_TITLE"
 msgstr "Eliminar Dades Locals"
 
@@ -5316,6 +5360,10 @@ msgstr "Condicions Físiques"
 
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Resistència física"
+
+#, fuzzy
+msgid "PIN_BUTTON_TOOLTIP"
+msgstr "Canviar la configuració"
 
 msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
 msgstr ""
@@ -6711,6 +6759,10 @@ msgstr ""
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
+msgstr "EXTINCIÓ"
+
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr ""
 
@@ -6723,8 +6775,62 @@ msgstr ""
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
+msgstr "EXTINCIÓ"
+
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
+msgstr ""
+"[b]Estadi[/b]\n"
+"  Microbi\n"
+"[b]Tipus de Membrana[/b]\n"
+"  {0}\n"
+"[b]Rigidesa de la Membrana[/b]\n"
+"  {1}\n"
+"[b]Velocitat Base[/b]\n"
+"  {2}\n"
+"[b]Velocitat de Rotació Base[/b]\n"
+"  {3}\n"
+"[b]Mida d'Hexàgon Base[/b]\n"
+"  {4}"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE"
+msgstr "ha mutat"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
+msgstr "La lipasa permet a la cèl·lula digerir la major part de membranes. La teva cèl·lula ja produeix una certa quantitat d'aquest enzim sense lisosoma, però seleccionant aquest tipus n'augmentaràs l'efectivitat."
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
+msgstr ""
+"[b]Estadi[/b]\n"
+"  Microbi\n"
+"[b]Tipus de Membrana[/b]\n"
+"  {0}\n"
+"[b]Rigidesa de la Membrana[/b]\n"
+"  {1}\n"
+"[b]Velocitat Base[/b]\n"
+"  {2}\n"
+"[b]Velocitat de Rotació Base[/b]\n"
+"  {3}\n"
+"[b]Mida d'Hexàgon Base[/b]\n"
+"  {4}"
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
+msgstr ""
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
+msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
+msgstr "Món"
 
 msgid "THRIVE_LICENSES"
 msgstr "Llicències de Thrive"

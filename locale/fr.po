@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-04 10:15+0200\n"
-"PO-Revision-Date: 2026-05-01 09:17+0000\n"
-"Last-Translator: Shigasaa <altitudes.etrangeres@ikmail.com>\n"
+"POT-Creation-Date: 2026-05-08 16:35+0300\n"
+"PO-Revision-Date: 2026-05-07 19:05+0000\n"
+"Last-Translator: abderahmentuihri-svg <abderahmentuihri@gmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -2249,6 +2249,10 @@ msgstr "Ceci est le code exact à partir duquel cette version de Thrive a été 
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr "Une exception s'est produite lors du traitement des objets importés"
 
+#, fuzzy
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE_JUKEBOX"
+msgstr "Une exception s'est produite lors du traitement des objets importés"
+
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Une exception a eu lieu pendant le chargement des données de sauvegarde"
 
@@ -2922,6 +2926,14 @@ msgstr "Nécessite un noyau"
 
 msgid "INFO_BOX_SIZE"
 msgstr "Taille (hexagones)"
+
+#, fuzzy
+msgid "INFO_BOX_SIZE_PLAIN"
+msgstr "Taille (hexagones)"
+
+#, fuzzy
+msgid "INFO_BOX_STAGE"
+msgstr "Stockage"
 
 msgid "INFO_BOX_STORAGE"
 msgstr "Stockage"
@@ -4383,6 +4395,30 @@ msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Éditeur multicellulaire"
 
 #, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_2"
+msgstr "Éditeur multicellulaire"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_3"
+msgstr "Éditeur multicellulaire"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_4"
+msgstr "Éditeur multicellulaire"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_5"
+msgstr "Éditeur multicellulaire"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_6"
+msgstr "Éditeur multicellulaire"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_7"
+msgstr "Éditeur multicellulaire"
+
+#, fuzzy
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "(certaines fonctionnalités peuvent être indisponibles une fois les phases suivantes atteintes)"
 
@@ -4695,6 +4731,10 @@ msgstr "Avertissement mode OpenGL"
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr "Vous utilisez Thrive avec OpenGL. Cela demeure non testé et risque de causer des problèmes. Assurez-vous d'utiliser des cartes graphiques (processeurs graphiques ou intégrées) suffisamment récentes et essayez de mettre à jour vos pilotes vidéos. Pour les ordinateur portables vous pouvez avoir besoin de forcer l'utilisation des cartes graphiques AMD ou Nvidia dédiées pour lancer Thrive au lieu des cartes graphiques intégrées."
 
+#, fuzzy
+msgid "OPEN_EVOLUTIONARY_TREE"
+msgstr "Arbre phylogénétique"
+
 msgid "OPEN_FOLDER"
 msgstr "Ouvrir le dossier"
 
@@ -4914,6 +4954,10 @@ msgstr "Revenir"
 msgid "PAGE_FORWARD"
 msgstr "Avancer"
 
+#, fuzzy
+msgid "PAGE_PINNED"
+msgstr "Titre de la page"
+
 msgid "PAGE_TITLE"
 msgstr "Titre de la page"
 
@@ -5053,8 +5097,12 @@ msgstr "Conditions physiques"
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Résistance physique"
 
+#, fuzzy
+msgid "PIN_BUTTON_TOOLTIP"
+msgstr "Modifier vos paramètres"
+
 msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
-msgstr ""
+msgstr "Placement bloqué parce que la membrane actuelle est incompatible avec cette organelle"
 
 msgid "PLACE_ORGANELLE"
 msgstr "Placer organite"
@@ -6403,6 +6451,10 @@ msgstr "Monde actuel"
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr "Arbre d'évolution"
 
+#, fuzzy
+msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
+msgstr "Ouvrir Thriveopédia"
+
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr "Ouvrir Thriveopédia"
 
@@ -6424,8 +6476,40 @@ msgstr "Accueil"
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Musée"
 
+#, fuzzy
+msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
+msgstr "Accueil"
+
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr "Carte des secteurs"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
+msgstr "Arbre d'évolution"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE"
+msgstr "Musée"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
+msgstr "Musée"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
+msgstr "Musée"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
+msgstr "Musée"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
+msgstr "Musée"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
+msgstr "Monde actuel"
 
 msgid "THRIVE_LICENSES"
 msgstr "Licences de Thrive"
@@ -8839,6 +8923,12 @@ msgstr "Phase microbienne"
 
 msgid "WIKI_MICROBE_STAGE_INTRO"
 msgstr ""
+"Étage précedent: Pas d'étages plus tôts\n"
+"\n"
+"Étage suivant: [color=#3796e1][url=thriveopedia:multicellular_stage]Multicellular Stage[/url][/color]\n"
+"\n"
+"L'Étage Microbe est le premier étage du jeu. L'étage commence avec la première espéce existante dans le monde, fraîche des origines primordiaux de la vie explorant les sources hydrothermales pangoniennes riches en nutriments. C'est ici oú le joueur assume le role d'une trés petite goutte prokaryotique de cytoplasme, un des rares individus de son espèce. Á ce point, le joueur doit compter sur trouver de l'éparce [thrive:compound type=\"glucose\"][/thrive:compound] pour survivre parce qu'il ne possède pas encore des moyens de processer des autres nutriments et chercher le [thrive:compound type=\"phosphates\"][/thrive:compound] et l'[thrive:compound type=\"ammonia\"][/thrive:compound] pour grandir en préparation pour la reproduction. Une fois que le joueur a attenu une taille suffisante il sera capable de se reproduire, qui amènera le joueur à l'éditeur de la microbe si il choisit de le faire.\n"
+"Au fil du jeu, le joueur adaptera progressivement sa cellule pour mieux survivre dans un monde qui devient de plus en plus hostile à chaque génération, et devra rivaliser avec de nouvelles espèces issues de la sienne."
 
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "Pas d'effets."

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-04 10:15+0200\n"
+"POT-Creation-Date: 2026-05-08 16:35+0300\n"
 "PO-Revision-Date: 2026-05-01 09:17+0000\n"
 "Last-Translator: xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -2222,6 +2222,10 @@ msgstr "這是編譯此版本 Thrive 的確切程式碼提交"
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr "處理載入的物件時發生異常"
 
+#, fuzzy
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE_JUKEBOX"
+msgstr "處理載入的物件時發生異常"
+
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "載入存檔資料時發生異常"
 
@@ -2849,6 +2853,14 @@ msgstr "需要細胞核"
 
 msgid "INFO_BOX_SIZE"
 msgstr "大小（六邊形）"
+
+#, fuzzy
+msgid "INFO_BOX_SIZE_PLAIN"
+msgstr "大小（六邊形）"
+
+#, fuzzy
+msgid "INFO_BOX_STAGE"
+msgstr "儲存空間"
 
 msgid "INFO_BOX_STORAGE"
 msgstr "儲存空間"
@@ -4253,6 +4265,30 @@ msgstr "多細胞自由編輯器"
 msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "雖然您的細胞共享化合物，但每個細胞都需要生產自己的[thrive:compound type=\"atp\"][/thrive:compound]。任何耗盡能量的細胞將會死亡。"
 
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_2"
+msgstr "雖然您的細胞共享化合物，但每個細胞都需要生產自己的[thrive:compound type=\"atp\"][/thrive:compound]。任何耗盡能量的細胞將會死亡。"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_3"
+msgstr "雖然您的細胞共享化合物，但每個細胞都需要生產自己的[thrive:compound type=\"atp\"][/thrive:compound]。任何耗盡能量的細胞將會死亡。"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_4"
+msgstr "雖然您的細胞共享化合物，但每個細胞都需要生產自己的[thrive:compound type=\"atp\"][/thrive:compound]。任何耗盡能量的細胞將會死亡。"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_5"
+msgstr "雖然您的細胞共享化合物，但每個細胞都需要生產自己的[thrive:compound type=\"atp\"][/thrive:compound]。任何耗盡能量的細胞將會死亡。"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_6"
+msgstr "雖然您的細胞共享化合物，但每個細胞都需要生產自己的[thrive:compound type=\"atp\"][/thrive:compound]。任何耗盡能量的細胞將會死亡。"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_7"
+msgstr "雖然您的細胞共享化合物，但每個細胞都需要生產自己的[thrive:compound type=\"atp\"][/thrive:compound]。任何耗盡能量的細胞將會死亡。"
+
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "此面板顯示的是您的細胞群的綜合代謝過程，即所有細胞的代謝總和。請注意，與其他化合物不同，ATP 無法在細胞間共享。"
 
@@ -4549,6 +4585,10 @@ msgstr "OpenGL 模式警告"
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr "您正在使用 OpenGL 運行 Thrive。這未經嚴格測試並且很可能導致問題。確保您使用的是足夠新的 GPU 或整合式顯示卡，並嘗試更新您的視訊驅動程式。對於筆記型電腦，您可能需要強制使用專用 AMD 或 Nvidia 顯示卡而非整合式顯示卡來運行 Thrive。"
 
+#, fuzzy
+msgid "OPEN_EVOLUTIONARY_TREE"
+msgstr "演化樹"
+
 msgid "OPEN_FOLDER"
 msgstr "開啟資料夾"
 
@@ -4755,6 +4795,10 @@ msgstr "返回"
 msgid "PAGE_FORWARD"
 msgstr "前進"
 
+#, fuzzy
+msgid "PAGE_PINNED"
+msgstr "頁面標題"
+
 msgid "PAGE_TITLE"
 msgstr "頁面標題"
 
@@ -4885,6 +4929,10 @@ msgstr "物理條件"
 
 msgid "PHYSICAL_RESISTANCE"
 msgstr "物理抗性"
+
+#, fuzzy
+msgid "PIN_BUTTON_TOOLTIP"
+msgstr "更改您的設定"
 
 msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
 msgstr ""
@@ -6180,6 +6228,10 @@ msgstr "當前世界"
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr "演化樹"
 
+#, fuzzy
+msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
+msgstr "開啟 Thrive 百科"
+
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr "開啟 Thrive 百科"
 
@@ -6201,8 +6253,40 @@ msgstr "首頁"
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "博物館"
 
+#, fuzzy
+msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
+msgstr "首頁"
+
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr "區域地圖"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
+msgstr "演化樹"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE"
+msgstr "博物館"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
+msgstr "博物館"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
+msgstr "博物館"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
+msgstr "博物館"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
+msgstr "博物館"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
+msgstr "當前世界"
 
 msgid "THRIVE_LICENSES"
 msgstr "Thrive 授權條款"

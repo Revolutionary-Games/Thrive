@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-04 10:15+0200\n"
+"POT-Creation-Date: 2026-05-08 16:35+0300\n"
 "PO-Revision-Date: 2026-05-01 09:17+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -2312,6 +2312,10 @@ msgstr "זוהי מחויבת הקוד המדויקת שממנה הורכבה ה
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr "משהו חריג אירע במהלך עיבוד טעינת אובייקטים"
 
+#, fuzzy
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE_JUKEBOX"
+msgstr "משהו חריג אירע במהלך עיבוד טעינת אובייקטים"
+
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "חריג אירע בעת טעינת נתוני שמירה"
 
@@ -3036,6 +3040,14 @@ msgstr "נדרש גרעין התא"
 
 #, fuzzy
 msgid "INFO_BOX_SIZE"
+msgstr "אתה שגשגת!"
+
+#, fuzzy
+msgid "INFO_BOX_SIZE_PLAIN"
+msgstr "אתה שגשגת!"
+
+#, fuzzy
+msgid "INFO_BOX_STAGE"
 msgstr "אתה שגשגת!"
 
 #, fuzzy
@@ -4596,6 +4608,30 @@ msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "עורך הרב-תאי"
 
 #, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_2"
+msgstr "עורך הרב-תאי"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_3"
+msgstr "עורך הרב-תאי"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_4"
+msgstr "עורך הרב-תאי"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_5"
+msgstr "עורך הרב-תאי"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_6"
+msgstr "עורך הרב-תאי"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_7"
+msgstr "עורך הרב-תאי"
+
+#, fuzzy
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "(חלק מהאפשריות יכולים להיות לא זמינים כשאתה מגיע לשלבים הבאים)"
 
@@ -4906,6 +4942,10 @@ msgstr "אזהרת GLES2"
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr "אתה מריץ את Thrive על GLES2. אופציה זו עדין לא נבדקה ועלולה לגרום לבעיות. אנא נסה לעדכן את מנהל התקן ו / או להשתמש במקום בכרטיס גרפיקה של AMD או Nvidia על מנת להפעלת את Thrive."
 
+#, fuzzy
+msgid "OPEN_EVOLUTIONARY_TREE"
+msgstr "עץ אבולוציוני"
+
 msgid "OPEN_FOLDER"
 msgstr "פתח תיקייה"
 
@@ -5141,6 +5181,10 @@ msgid "PAGE_FORWARD"
 msgstr "מקש קדימה"
 
 #, fuzzy
+msgid "PAGE_PINNED"
+msgstr "Thrive הופעל במצב בטוח"
+
+#, fuzzy
 msgid "PAGE_TITLE"
 msgstr "Thrive הופעל במצב בטוח"
 
@@ -5287,6 +5331,10 @@ msgstr "מצב פיזי"
 
 msgid "PHYSICAL_RESISTANCE"
 msgstr "עמידות מפגיעה פיזית"
+
+#, fuzzy
+msgid "PIN_BUTTON_TOOLTIP"
+msgstr "שנה את ההגדרות שלך"
 
 msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
 msgstr ""
@@ -6667,6 +6715,10 @@ msgstr ""
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
+msgstr "מינים נכחדים"
+
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr ""
 
@@ -6679,8 +6731,62 @@ msgstr ""
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
+msgstr "מינים נכחדים"
+
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
+msgstr ""
+"[b]שלב[/b]\n"
+" מיקרוב\n"
+"[b]סוג ממברנה[/b]\n"
+" {0}\n"
+"[b]צמיגות הממברנה[/b]\n"
+" {1}\n"
+"[b]מהירות בסיסית[/b]\n"
+" {2}\n"
+"[b]מהירות סיבוב בסיסית[/b]\n"
+" {3}\n"
+"[b]גודל משושה בסיסית[/b]\n"
+" {4}"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE"
+msgstr "טראיבופדיה"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
+msgstr "הרבה אורגניזמים מפיקים חומרים רב סוכרים דמויי רפש, וריר היא אחד מאותם רב סוכרים אלו. אומנם רבים מהמינים משתמשים ברפש בשביל תנועה, סוגים מסוימים של חיידקים מפרישים חומרים אלו בלחץ גבוהה. אלו סילוני רפש מתנהגים כמו מנועי טילים, דוחפים את התאים קדימה במהירות גבוהה. רפש משומש בנוסף בשביל לעקב טורפים, הנתקעים בתוך החומר שרק מחזיקים בסילונים מסוגלים לנווט בהם."
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
+msgstr ""
+"[b]שלב[/b]\n"
+" מיקרוב\n"
+"[b]סוג ממברנה[/b]\n"
+" {0}\n"
+"[b]צמיגות הממברנה[/b]\n"
+" {1}\n"
+"[b]מהירות בסיסית[/b]\n"
+" {2}\n"
+"[b]מהירות סיבוב בסיסית[/b]\n"
+" {3}\n"
+"[b]גודל משושה בסיסית[/b]\n"
+" {4}"
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
+msgstr ""
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
+msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
+msgstr "מפתחים נוכחים"
 
 msgid "THRIVE_LICENSES"
 msgstr "רישיונות Thrive"
