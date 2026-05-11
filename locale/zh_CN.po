@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-05-10 20:05+0300\n"
-"PO-Revision-Date: 2026-05-10 06:11+0000\n"
-"Last-Translator: ChevyLevi <wolffgriffith@gmail.com>\n"
+"PO-Revision-Date: 2026-05-12 06:42+0000\n"
+"Last-Translator: 归灵祈昱 <guilingqiyu@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -583,9 +583,8 @@ msgstr "浏览"
 msgid "BROWSE_WORKSHOP"
 msgstr "浏览创意工坊"
 
-#, fuzzy
 msgid "BUDDING_REPRODUCTION_METHOD_EXPLANATION"
-msgstr "（从编辑器返回游戏时如何处理玩家储存的化合物）"
+msgstr "产生单个后代——新群落的根细胞。"
 
 msgid "BUILD_CITY"
 msgstr "建造城市"
@@ -2576,13 +2575,11 @@ msgstr "休眠"
 msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
 msgstr "（影响诸如陨石撞击和火山喷发等事件的发生频率和严重程度）"
 
-#, fuzzy
 msgid "GERMINATE_SPORE"
-msgstr "发射嗜铁素"
+msgstr "萌发孢子"
 
-#, fuzzy
 msgid "GERMINATE_SPORE_ACTION_TOOLTIP"
-msgstr "发射嗜铁素"
+msgstr "萌发孢子至群落"
 
 msgid "GITHUB_TOOLTIP"
 msgstr "访问我们在GitHub上的代码仓库"
@@ -4789,7 +4786,7 @@ msgid "PAGE_FORWARD"
 msgstr "转到下一页"
 
 msgid "PAGE_PINNED"
-msgstr "已置顶"
+msgstr "已固定"
 
 msgid "PAGE_TITLE"
 msgstr "页面标题"
@@ -4922,9 +4919,8 @@ msgstr "物理条件"
 msgid "PHYSICAL_RESISTANCE"
 msgstr "物防"
 
-#, fuzzy
 msgid "PIN_BUTTON_TOOLTIP"
-msgstr "改变您的设置"
+msgstr "固定此页面，以免在切换至其他页面时被删除"
 
 msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
 msgstr "无法放置，因为当前的细胞膜与该细胞器不兼容"
@@ -5219,9 +5215,8 @@ msgstr ""
 msgid "REPRODUCTION_METHOD"
 msgstr "繁殖："
 
-#, fuzzy
 msgid "REPRODUCTION_SPORE"
-msgstr "繁殖"
+msgstr "孢子形成"
 
 msgid "REQUIRES_NUCLEUS"
 msgstr "需要细胞核"
@@ -5862,13 +5857,11 @@ msgstr "速度"
 msgid "SPEED_COLON"
 msgstr "速度："
 
-#, fuzzy
 msgid "SPORE_CELL_TYPE"
-msgstr "创建新细胞类型"
+msgstr "孢子细胞类型"
 
-#, fuzzy
 msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
-msgstr "（从周围的环境中被动获得的用于繁殖的化合物）"
+msgstr "产生多个可选特化的后代，它们在转化为群落根细胞之前，能够寻找更好的环境。"
 
 msgid "SPREAD_TO_PATCHES"
 msgstr "传播到的地区："
@@ -6230,9 +6223,8 @@ msgstr "目前世界"
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr "树状进化图"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
-msgstr "打开Thrive百科"
+msgstr "该物种已灭绝，不再存在于这个世界上。因此，其详细信息已无从考证。该物种的 ID 为 {0}。"
 
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr "打开Thrive百科"
@@ -6255,40 +6247,35 @@ msgstr "主页"
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "博物馆"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
-msgstr "主页"
+msgstr "灭绝物种 {0}"
 
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr "地区图"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
-msgstr "树状进化图"
+msgstr "目前，上方的按钮仅会打开整个演化树，而不会自动定位到该特定物种。此功能可能会在未来加入。"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_SPECIES_PAGE"
-msgstr "博物馆"
+msgstr "{0}"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
-msgstr "博物馆"
+msgstr "这一页列出了世上现存的物种。"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
-msgstr "博物馆"
+msgstr ""
+"{0} 是存在于这个世界上的一个物种。其当前种群数量为 {1}，分布于 {2} 个区域。它位于 {3}。\n"
+"\n"
+"请注意，除非固定此页面，否则在切换至其他页面时该页面将会消失。如果您觉得该物种很有趣并希望日后查阅，请固定此页面。"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
-msgstr "博物馆"
+msgstr "目前尚未固定任何物种，因此这里没有列出任何页面。您可以在游戏的其他地方点击某个物种进入其页面，然后将其固定。固定后，该页面便会显示在这里。"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
-msgstr "博物馆"
+msgstr "固定的物种"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
-msgstr "目前世界"
+msgstr "物种"
 
 msgid "THRIVE_LICENSES"
 msgstr "Thrive的许可证书"
