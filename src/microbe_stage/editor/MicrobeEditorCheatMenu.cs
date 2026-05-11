@@ -30,6 +30,6 @@ public partial class MicrobeEditorCheatMenu : CheatMenu
 
     private void UpdateMutationPointsDisplay(bool value)
     {
-        editor.EnableCheatMP(value);
+        editor.DirtyMutationPointsCache();
     }
 }

@@ -81,11 +81,6 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     private double? mutationPointsCache;
 
     /// <summary>
-    ///   Extra cache for storing mutation points in case infinite MP cheat was used
-    /// </summary>
-    private double? mutationPointsCacheClean;
-
-    /// <summary>
     ///   The fraction of daylight the editor is previewing things at
     /// </summary>
     private float dayLightFraction = 1.0f;
@@ -611,20 +606,6 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         }
 
         return true;
-    }
-
-    public void EnableCheatMP(bool value)
-    {
-        if (value)
-        {
-            mutationPointsCacheClean = mutationPointsCache;
-        }
-        else
-        {
-            mutationPointsCache = mutationPointsCacheClean;
-        }
-
-        DirtyMutationPointsCache();
     }
 
     public virtual void OnInsufficientMP(bool playSound = true)
