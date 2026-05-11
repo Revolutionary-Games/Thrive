@@ -399,26 +399,21 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable, IArchivable
             cachedExternalPosition + cachedExternalOrientation * Definition.ModelOffset);
     }
 
+    /// <summary>
+    ///   Calculates the local physics transform for an externally positioned organelle. The external position is in
+    ///   unscaled membrane coordinates, and <paramref name="physicsScale"/> converts it to the physics body scale.
+    /// </summary>
     public (Vector3 Position, Quaternion Rotation) CalculatePhysicsExternalTransform(Vector3 externalPosition,
-        Quaternion orientation, bool isBacteria)
+        Quaternion orientation, float physicsScale)
     {
         // The shape needs to be rotated 90 degrees to point forward for (so that the pilus is not a vertical column
         // but is instead a stabby thing)
         var extraRotation = new Quaternion(new Vector3(1, 0, 0), MathF.PI * 0.5f);
 
         // Maybe should have a variable for physics shape offset if different organelles need different things
-        var offset = new Vector3(0, 0, -1.0f);
+        var offset = new Vector3(0, 0, -1.0f) * physicsScale;
 
-        // Need to adjust physics position for bacteria scale
-        if (isBacteria)
-        {
-            // TODO: find the root cause and fix properly why this kind of very specific tweak is needed
-            var length = externalPosition.Length() * Constants.BACTERIA_PILUS_ATTACH_ADJUSTMENT_MULTIPLIER;
-
-            offset.Z += length;
-        }
-
-        return (externalPosition + orientation * offset, orientation * extraRotation);
+        return (externalPosition * physicsScale + orientation * offset, orientation * extraRotation);
     }
 
     /// <summary>
