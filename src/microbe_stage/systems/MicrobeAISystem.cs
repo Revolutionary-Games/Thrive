@@ -33,6 +33,7 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(Engulfable))]
 [ReadsComponent(typeof(MicrobeColony))]
 [ReadsComponent(typeof(WorldPosition))]
+[WritesToComponent(typeof(MulticellularGrowth))]
 [RunsAfter(typeof(OrganelleComponentFetchSystem))]
 [RunsBefore(typeof(MicrobeMovementSystem))]
 [RunsBefore(typeof(MicrobeEmissionSystem))]
@@ -467,6 +468,17 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                 }
 
                 ai.HasBeenNearPlayer = true;
+            }
+        }
+
+        if (entity.Has<MulticellularGrowth>())
+        {
+            var growth = entity.Get<MulticellularGrowth>();
+
+            if (growth.IsASpore)
+            {
+                // TODO: add a smarter condition here for when the AI decides to germinate as a spore
+                control.GerminatingSpore = true;
             }
         }
 

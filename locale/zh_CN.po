@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-08 16:35+0300\n"
-"PO-Revision-Date: 2026-05-07 19:05+0000\n"
+"POT-Creation-Date: 2026-05-11 17:17+0200\n"
+"PO-Revision-Date: 2026-05-12 06:42+0000\n"
 "Last-Translator: 归灵祈昱 <guilingqiyu@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -506,7 +506,7 @@ msgid "BELOW_SEA_LEVEL"
 msgstr "在海平面下方{0}-{1}米处"
 
 msgid "BENCHMARKS"
-msgstr "载入"
+msgstr "基准测试"
 
 msgid "BENCHMARK_FINISHED"
 msgstr "基准测试完成"
@@ -582,6 +582,9 @@ msgstr "浏览"
 
 msgid "BROWSE_WORKSHOP"
 msgstr "浏览创意工坊"
+
+msgid "BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "产生单个后代——新群落的根细胞。"
 
 msgid "BUILD_CITY"
 msgstr "建造城市"
@@ -2572,6 +2575,12 @@ msgstr "休眠"
 msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
 msgstr "（影响诸如陨石撞击和火山喷发等事件的发生频率和严重程度）"
 
+msgid "GERMINATE_SPORE"
+msgstr "萌发孢子"
+
+msgid "GERMINATE_SPORE_ACTION_TOOLTIP"
+msgstr "萌发孢子至群落"
+
 msgid "GITHUB_TOOLTIP"
 msgstr "访问我们在GitHub上的代码仓库"
 
@@ -2850,13 +2859,11 @@ msgstr "需要细胞核"
 msgid "INFO_BOX_SIZE"
 msgstr "大小（六边形数量）"
 
-#, fuzzy
 msgid "INFO_BOX_SIZE_PLAIN"
-msgstr "大小（六边形数量）"
+msgstr "大小"
 
-#, fuzzy
 msgid "INFO_BOX_STAGE"
-msgstr "储存空间"
+msgstr "阶段"
 
 msgid "INFO_BOX_STORAGE"
 msgstr "储存空间"
@@ -3741,7 +3748,7 @@ msgid "MICROBES_COUNT"
 msgstr "微生物计数："
 
 msgid "MICROBE_BENCHMARK"
-msgstr "微生物编辑器"
+msgstr "微生物性能基准测试"
 
 msgid "MICROBE_CAMERA_TILT_EFFECT"
 msgstr "微生物镜头倾角"
@@ -4569,9 +4576,8 @@ msgstr "OpenGL模式警告"
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr "您正在使用 OpenGL 运行 Thrive。这是完全未经测试的，很可能会导致问题。请确保您使用了足够新的 GPU 或集成显卡，并尝试更新视频驱动程序。对于笔记本电脑，您可能需要强制使用专用的 AMD 或 Nvidia 显卡来运行 Thrive，而不是集成显卡。"
 
-#, fuzzy
 msgid "OPEN_EVOLUTIONARY_TREE"
-msgstr "进化树"
+msgstr "打开进化树"
 
 msgid "OPEN_FOLDER"
 msgstr "打开文件夹"
@@ -4779,9 +4785,8 @@ msgstr "转到上一页"
 msgid "PAGE_FORWARD"
 msgstr "转到下一页"
 
-#, fuzzy
 msgid "PAGE_PINNED"
-msgstr "页面标题"
+msgstr "已固定"
 
 msgid "PAGE_TITLE"
 msgstr "页面标题"
@@ -4914,9 +4919,8 @@ msgstr "物理条件"
 msgid "PHYSICAL_RESISTANCE"
 msgstr "物防"
 
-#, fuzzy
 msgid "PIN_BUTTON_TOOLTIP"
-msgstr "改变您的设置"
+msgstr "固定此页面，以免在切换至其他页面时被删除"
 
 msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
 msgstr "无法放置，因为当前的细胞膜与该细胞器不兼容"
@@ -5210,6 +5214,9 @@ msgstr ""
 
 msgid "REPRODUCTION_METHOD"
 msgstr "繁殖："
+
+msgid "REPRODUCTION_SPORE"
+msgstr "孢子形成"
 
 msgid "REQUIRES_NUCLEUS"
 msgstr "需要细胞核"
@@ -5850,6 +5857,12 @@ msgstr "速度"
 msgid "SPEED_COLON"
 msgstr "速度："
 
+msgid "SPORE_CELL_TYPE"
+msgstr "孢子细胞类型"
+
+msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "产生多个可选特化的后代，它们在转化为群落根细胞之前，能够寻找更好的环境。"
+
 msgid "SPREAD_TO_PATCHES"
 msgstr "传播到的地区："
 
@@ -6210,9 +6223,8 @@ msgstr "目前世界"
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr "树状进化图"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
-msgstr "打开Thrive百科"
+msgstr "该物种已灭绝，不再存在于这个世界上。因此，其详细信息已无从考证。该物种的 ID 为 {0}。"
 
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr "打开Thrive百科"
@@ -6235,40 +6247,35 @@ msgstr "主页"
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "博物馆"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
-msgstr "主页"
+msgstr "灭绝物种 {0}"
 
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr "地区图"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
-msgstr "树状进化图"
+msgstr "目前，上方的按钮仅会打开整个演化树，而不会自动定位到该特定物种。此功能可能会在未来加入。"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_SPECIES_PAGE"
-msgstr "博物馆"
+msgstr "{0}"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
-msgstr "博物馆"
+msgstr "这一页列出了世上现存的物种。"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
-msgstr "博物馆"
+msgstr ""
+"{0} 是存在于这个世界上的一个物种。其当前种群数量为 {1}，分布于 {2} 个区域。它位于 {3}。\n"
+"\n"
+"请注意，除非固定此页面，否则在切换至其他页面时该页面将会消失。如果您觉得该物种很有趣并希望日后查阅，请固定此页面。"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
-msgstr "博物馆"
+msgstr "目前尚未固定任何物种，因此这里没有列出任何页面。您可以在游戏的其他地方点击某个物种进入其页面，然后将其固定。固定后，该页面便会显示在这里。"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
-msgstr "博物馆"
+msgstr "固定的物种"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
-msgstr "目前世界"
+msgstr "物种"
 
 msgid "THRIVE_LICENSES"
 msgstr "Thrive的许可证书"
@@ -9880,9 +9887,6 @@ msgstr "缩小"
 
 #~ msgid "PLANET_GENERATION_TEASER"
 #~ msgstr "行星生成即将发布！"
-
-#~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
-#~ msgstr "（从周围的环境中被动获得的用于繁殖的化合物）"
 
 #~ msgid "TO_BE_IMPLEMENTED"
 #~ msgstr "仍在开发中。"

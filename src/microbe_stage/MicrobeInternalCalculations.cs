@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Components;
 using Godot;
 using Systems;
 
@@ -43,7 +44,13 @@ public static class MicrobeInternalCalculations
 
     public static Vector3 GetOrganelleDirection(OrganelleTemplate organelle)
     {
-        return (Hex.AxialToCartesian(new Hex(0, 0)) - Hex.AxialToCartesian(organelle.Position)).Normalized();
+        Vector3 middle = Hex.AxialToCartesian(new Hex(0, 0));
+        var delta = middle - Hex.AxialToCartesian(organelle.Position);
+
+        if (delta == Vector3.Zero)
+            delta = CellPropertiesHelpers.DefaultVisualPos;
+
+        return delta.Normalized();
     }
 
     public static float GetTotalNominalCapacity(IEnumerable<OrganelleTemplate> organelles,

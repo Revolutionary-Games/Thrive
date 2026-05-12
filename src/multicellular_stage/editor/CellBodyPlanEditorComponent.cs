@@ -12,7 +12,7 @@ public partial class CellBodyPlanEditorComponent :
     HexEditorComponentBase<MulticellularEditor, CombinedEditorAction, EditorAction, HexWithData<CellTemplate>,
         MulticellularSpecies>, IArchiveUpdatable
 {
-    public const ushort SERIALIZATION_VERSION = 4;
+    public const ushort SERIALIZATION_VERSION = 5;
 
     [Export]
     public int MaxToleranceWarnings = 3;
@@ -133,6 +133,18 @@ public partial class CellBodyPlanEditorComponent :
 
     [Export]
     private LabelSettings toleranceWarningsFont = null!;
+
+    [Export]
+    private OptionButton reproductionMethodDropdown = null!;
+
+    [Export]
+    private OptionButton sporeCellTypeDropdown = null!;
+
+    [Export]
+    private Control buddingReproductionSection = null!;
+
+    [Export]
+    private Control sporeReproductionSection = null!;
 #pragma warning restore CA2213
 
     private string newName = "unset";
@@ -222,6 +234,10 @@ public partial class CellBodyPlanEditorComponent :
             UpdateGrowthOrderUI();
         }
     }
+
+    public MulticellularReproductionMethod ReproductionMethod { get; private set; }
+
+    public CellType? SporeCellType { get; private set; }
 
     protected override bool ShowFloatingLabels => ShowGrowthOrder;
 
@@ -419,6 +435,9 @@ public partial class CellBodyPlanEditorComponent :
         writer.WriteObjectProperties(growthOrderGUI);
 
         writer.WriteObjectProperties(tolerancesEditor);
+
+        writer.Write((int)ReproductionMethod);
+        writer.WriteObjectOrNull(SporeCellType);
     }
 
     public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
@@ -468,6 +487,12 @@ public partial class CellBodyPlanEditorComponent :
         {
             reader.ReadObjectProperties(tolerancesEditor);
         }
+
+        if (version >= 5)
+        {
+            ReproductionMethod = (MulticellularReproductionMethod)reader.ReadInt32();
+            SporeCellType = reader.ReadObjectOrNull<CellType>();
+        }
     }
 
     public override void OnEditorSpeciesSetup(Species species)
@@ -485,6 +510,9 @@ public partial class CellBodyPlanEditorComponent :
         }
 
         newName = species.FormattedName;
+
+        ReproductionMethod = ((MulticellularSpecies)species).ReproductionMethod;
+        SporeCellType = ((MulticellularSpecies)species).ModifiableSporeCellType;
 
         UpdateGUIAfterLoadingSpecies(species);
 
@@ -562,6 +590,9 @@ public partial class CellBodyPlanEditorComponent :
             editedSpecies.ModifiableEditorCells, editedMicrobeCells, AlgorithmQuality.High, hexTemporaryMemory,
             hexTemporaryMemory2);
 
+        editedSpecies.ReproductionMethod = ReproductionMethod;
+        editedSpecies.ModifiableSporeCellType = SporeCellType;
+
         tempFreshlyUpdatedCells.Clear();
         editedSpecies.OnEdited();
 
@@ -615,6 +646,9 @@ public partial class CellBodyPlanEditorComponent :
         UpdateFinishButtonWarningVisibility();
 
         UpdateSpecializationDisplay();
+
+        // In case the cell type's name was changed
+        UpdateSporeCellDropdown();
     }
 
     /// <summary>
