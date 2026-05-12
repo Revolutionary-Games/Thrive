@@ -203,7 +203,7 @@ public partial class ToleranceRangeDisplay : HSlider
 
     private void UpdateSliderGrabberXPos()
     {
-        // Calculate grabber position. Use Size instead of relatedSlider.Size because the if the related slider has set
+        // Calculate grabber position. Use Size instead of relatedSlider.Size because if the related slider has set
         // width as a percentage of the parent slider, the rounding will cause the grabber to be off by a few pixels
         var normalizedValue = (relatedSlider.Value - relatedSlider.MinValue) /
             (relatedSlider.MaxValue - relatedSlider.MinValue);

@@ -242,6 +242,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         if (!wasFreshInit)
         {
             // The latest data should have already been loaded into CurrentTolerances
+
             SetOxygenSliderWidth();
             ApplyCurrentValuesToGUI();
         }
