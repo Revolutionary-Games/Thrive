@@ -324,7 +324,16 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
                 transform = placedOrganelle.CalculateVisualsTransformExternal(externalPosition, rotation);
             }
 
-            if (!organelleContainer.CreatedOrganelleVisuals.ContainsKey(placedOrganelle))
+            if (organelleContainer.CreatedOrganelleVisuals.TryGetValue(placedOrganelle, out var existingGraphics))
+            {
+                // Existing visuals still need their wrapper transform refreshed when the membrane or physics shape
+                // changes.
+                var nodeToTransform = existingGraphics.GetParentSpatialWorking() ??
+                    throw new InvalidOperationException("Created organelle graphics should have a spatial parent");
+
+                nodeToTransform.Transform = transform;
+            }
+            else
             {
                 // New visuals needed
 
