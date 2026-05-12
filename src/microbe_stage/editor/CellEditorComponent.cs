@@ -39,6 +39,8 @@ public partial class CellEditorComponent :
     private readonly List<Hex> islandsWorkMemory2 = new();
     private readonly Queue<Hex> islandsWorkMemory3 = new();
 
+    private readonly Dictionary<OrganelleDefinition, int> definitionCountWorkMemory = new();
+
     private readonly Dictionary<Compound, float> processSpeedWorkMemory = new();
 
     private readonly List<ShaderMaterial> temporaryDisplayerFetchList = new();
@@ -1067,9 +1069,12 @@ public partial class CellEditorComponent :
         }
         else
         {
-            // Even if not repositioning to origin, we still need to update this
+            // Even if not repositioning to origin, we still need to update this.
+            // This is because repositioning recalculates cell type specialization bonus. However, we must get that
+            // data updated during the editor to have it be correct without repositioning. Repositioning always
+            // would break the editor history, so that must absolutely be avoided until fully exiting the editor.
             editedProperties.CellTypeSpecializationBonus = MicrobeInternalCalculations.CalculateSpecializationBonus(
-                editedProperties.ModifiableOrganelles, new Dictionary<OrganelleDefinition, int>());
+                editedProperties.ModifiableOrganelles, definitionCountWorkMemory);
         }
 
         // Update bacteria status
@@ -3004,8 +3009,7 @@ public partial class CellEditorComponent :
         }
 
         target.CellTypeSpecializationBonus =
-            MicrobeInternalCalculations.CalculateSpecializationBonus(target.Organelles,
-                new Dictionary<OrganelleDefinition, int>());
+            MicrobeInternalCalculations.CalculateSpecializationBonus(target.Organelles, definitionCountWorkMemory);
 
         // Copy tolerances
         target.ModifiableTolerances.CopyFrom(tolerancesEditor.CurrentTolerances);

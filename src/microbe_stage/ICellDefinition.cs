@@ -28,11 +28,7 @@ public interface ICellDefinition : IReadOnlyCellDefinition, ISimulationPhotograp
 
     public string FormattedName { get; }
 
-    /// <summary>
-    ///   A multiplier starting from 1 and going up based on how specialized this cell type is. This is eventually
-    ///   applied to <see cref="Components.BioProcesses.OverallSpeedModifier"/> and many other systems.
-    ///   Does not include any adjacency bonus effects that may be applied later.
-    /// </summary>
+    /// <inheritdoc cref="IReadOnlyCellTypeDefinition.CellTypeSpecializationBonus" />
     public float CellTypeSpecializationBonus { get; set; }
 
     /// <summary>
@@ -73,7 +69,8 @@ public interface IReadOnlyCellTypeDefinition : IReadOnlyCellDefinition, IPlayerR
 
     /// <summary>
     ///   A multiplier starting from 1 and going up based on how specialized this cell type is. This is eventually
-    ///   applied to <see cref="Components.BioProcesses.OverallSpeedModifier"/>
+    ///   applied to <see cref="Components.BioProcesses.OverallSpeedModifier"/> and many other systems.
+    ///   Does not include any adjacency bonus effects that may be applied later.
     /// </summary>
     public float CellTypeSpecializationBonus { get; }
 }

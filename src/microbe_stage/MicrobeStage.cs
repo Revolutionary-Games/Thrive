@@ -981,8 +981,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
             cellProperties.ReApplyCellTypeProperties(ref environmentalEffects, Player,
                 multicellularSpeciesType.MulticellularCellType, multicellularSpeciesType.Species,
-                totalSpecializationBonus,
-                WorldSimulation, workData1, workData2);
+                totalSpecializationBonus, WorldSimulation, workData1, workData2);
         }
         else
         {

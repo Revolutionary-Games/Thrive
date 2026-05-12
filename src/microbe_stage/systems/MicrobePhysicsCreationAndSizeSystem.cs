@@ -208,8 +208,7 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
                 {
                     shapeHolder.Shape = CreateCompoundMicrobeShape(ref extraData, ref organelles,
                         ref cellProperties, ref specializationFactor, entity, combinedData, null, rawData,
-                        count,
-                        colonyMembranes);
+                        count, colonyMembranes);
                 }
 
                 if (colonyMembranes != null)
@@ -298,8 +297,7 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
         // Base microbe shape is always first
         combinedData.Add((
             CreateSimpleMicrobeShape(ref extraData, ref organelles, ref cellProperties, ref specializationFactor,
-                membraneVertices,
-                vertexCount), Vector3.Zero, Quaternion.Identity));
+                membraneVertices, vertexCount), Vector3.Zero, Quaternion.Identity));
 
         // Then the (potential) colony members
         if (colonyMembranes != null)

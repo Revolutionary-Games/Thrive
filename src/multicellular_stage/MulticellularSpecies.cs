@@ -218,6 +218,8 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
     {
         base.OnAttemptedInAutoEvo(refreshCache);
 
+        // TODO: in the future this will need to refresh specialization calculatioons for cell types
+
         UpdateInitialCompounds();
 
         cachedFillTimes.Clear();
