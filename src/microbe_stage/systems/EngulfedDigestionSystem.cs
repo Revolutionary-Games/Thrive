@@ -30,6 +30,7 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(MicrobeEventCallbacks))]
 [ReadsComponent(typeof(SpeciesMember))]
 [ReadsComponent(typeof(SpecializationFactor))]
+[ReadsComponent(typeof(MicrobeColonyMember))]
 [RunsAfter(typeof(EngulfingSystem))]
 [RuntimeCost(2)]
 public partial class EngulfedDigestionSystem : BaseSystem<World, float>
@@ -382,6 +383,8 @@ public partial class EngulfedDigestionSystem : BaseSystem<World, float>
         if (health.Dead || health.MaxHealth <= 0)
             return false;
 
+        // TODO: should this code be skipped if the entity itself is engulfed?
+
         var behaviour = species.Species.Behaviour;
         var aggression = Math.Clamp(behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION, 0, 1);
         var opportunism = Math.Clamp(behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM, 0, 1);
@@ -393,6 +396,18 @@ public partial class EngulfedDigestionSystem : BaseSystem<World, float>
 
         if (health.CurrentHealth / health.MaxHealth > ejectionHealthFraction)
             return false;
+
+        // We need to avoid ejecting if this is part of the player's colony so that the AI doesn't take over part of
+        // the player's control in the multicellular stage
+        if (entity.Has<MicrobeColonyMember>())
+        {
+            ref var colonyMember = ref entity.Get<MicrobeColonyMember>();
+            if (colonyMember.ColonyLeader.IsAliveAndHas<PlayerMarker>())
+            {
+                // Don't eject automatically. The player has a button to eject manually.
+                return false;
+            }
+        }
 
         var ejectionChance = Mathf.Lerp(Constants.AI_TOXIC_ENGULFED_EJECT_MAX_CHANCE,
             Constants.AI_TOXIC_ENGULFED_EJECT_MIN_CHANCE,
