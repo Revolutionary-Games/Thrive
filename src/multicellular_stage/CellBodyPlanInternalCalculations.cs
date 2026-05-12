@@ -5,7 +5,7 @@ using Godot;
 
 public static class CellBodyPlanInternalCalculations
 {
-    public static Dictionary<Compound, float> GetTotalSpecificCapacity(IEnumerable<CellTemplate> cells,
+    public static Dictionary<Compound, float> GetTotalSpecificCapacity(IReadOnlyList<HexWithData<CellTemplate>> cells,
         out float nominalCapacity)
     {
         nominalCapacity = 0.0f;
@@ -13,12 +13,19 @@ public static class CellBodyPlanInternalCalculations
         var capacities = new Dictionary<Compound, float>();
 
         // TODO: Check if it's possible to do those calculations per cell type and multiply by the types' cell counts
-        foreach (var cell in cells)
+        foreach (var hex in cells)
         {
-            var totalNominalCap = MicrobeInternalCalculations.GetTotalNominalCapacity(cell.ModifiableOrganelles);
+            var cell = hex.Data!;
+
+            var totalSpecializationBonus = cell.CellTypeSpecializationBonus *
+                GetAdjacencySpecializationBonusFromBodyPlan(cell, cells);
+
+            var totalNominalCap = MicrobeInternalCalculations.GetTotalNominalCapacity(cell.ModifiableOrganelles,
+                totalSpecializationBonus);
             nominalCapacity += totalNominalCap;
 
-            MicrobeInternalCalculations.AddSpecificCapacity(cell.ModifiableOrganelles, capacities);
+            MicrobeInternalCalculations.AddSpecificCapacity(cell.ModifiableOrganelles, capacities,
+                totalSpecializationBonus);
         }
 
         return capacities;
@@ -32,8 +39,10 @@ public static class CellBodyPlanInternalCalculations
     {
         var leader = cells[0].Data!;
 
+        var leaderTotalSpecializationBonus = leader.CellTypeSpecializationBonus *
+            GetAdjacencySpecializationBonusFromBodyPlan(leader.Data, cells);
         var speed = MicrobeInternalCalculations.CalculateSpeed(leader.ModifiableOrganelles, leader.MembraneType,
-            leader.MembraneRigidity, leader.IsBacteria);
+            leader.MembraneRigidity, leader.IsBacteria, leaderTotalSpecializationBonus);
 
         if (cells.Count == 1)
             return speed;
@@ -70,6 +79,12 @@ public static class CellBodyPlanInternalCalculations
 
                 if (!cell.IsBacteria)
                     flagellumForce *= Constants.EUKARYOTIC_MOVEMENT_FORCE_MULTIPLIER;
+
+                // Apply cell specialization bonus
+                var totalSpecializationBonus = cell.CellTypeSpecializationBonus *
+                    GetAdjacencySpecializationBonusFromBodyPlan(cell, cells);
+
+                flagellumForce *= totalSpecializationBonus;
 
                 addedSpeed += flagellumForce;
             }
@@ -124,7 +139,10 @@ public static class CellBodyPlanInternalCalculations
     {
         var leader = cells[0].Data!;
 
-        var colonyRotation = MicrobeInternalCalculations.CalculateRotationSpeed(leader.ModifiableOrganelles);
+        var leaderTotalSpecializationBonus = leader.CellTypeSpecializationBonus *
+            GetAdjacencySpecializationBonusFromBodyPlan(leader.Data, cells);
+        var colonyRotation = MicrobeInternalCalculations.CalculateRotationSpeed(leader.ModifiableOrganelles,
+            leaderTotalSpecializationBonus);
 
         Vector3 leaderPosition = Hex.AxialToCartesian(leader.Position);
 
@@ -132,9 +150,14 @@ public static class CellBodyPlanInternalCalculations
         {
             var distanceSquared = leaderPosition.DistanceSquaredTo(Hex.AxialToCartesian(colonyMember.Position));
 
+            var colonyMemberData = colonyMember.Data;
+
+            var memberTotalSpecializationBonus = colonyMemberData!.CellTypeSpecializationBonus *
+                GetAdjacencySpecializationBonusFromBodyPlan(colonyMemberData.Data, cells);
+
             var memberRotation = MicrobeInternalCalculations
-                    .CalculateRotationSpeed(colonyMember.Data!.ModifiableOrganelles)
-                * (1 + 0.03f * distanceSquared);
+                    .CalculateRotationSpeed(colonyMemberData.ModifiableOrganelles, memberTotalSpecializationBonus) *
+                (1 + 0.03f * distanceSquared);
 
             colonyRotation += memberRotation;
         }

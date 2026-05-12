@@ -338,9 +338,15 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         if (enableMicrobeDebugCode)
         {
             tempTolerances.CopyFrom(optimal);
+
+            // Note this assumes this is only used just for single cell types or microbe species!
+            var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(
+                Editor.EditedCellOrganelles ?? throw new Exception("Organelles not set"),
+                new Dictionary<OrganelleDefinition, int>());
+
             var optimalTest =
                 MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(tempTolerances,
-                    Editor.EditedCellOrganelles ?? throw new Exception("Organelles not set"),
+                    Editor.EditedCellOrganelles, specialization,
                     Editor.CurrentPatch.Biome);
 
             if (optimalTest.OverallScore is < 1 or > 1 + MathUtils.EPSILON)

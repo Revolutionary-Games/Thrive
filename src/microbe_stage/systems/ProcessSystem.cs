@@ -218,7 +218,10 @@ public partial class ProcessSystem : BaseSystem<World, float>
     /// <param name="organelles">The organelles to compute the balance with</param>
     /// <param name="biome">The conditions the organelles are simulated in</param>
     /// <param name="environmentTolerances">Environmental tolerances that affect the processes</param>
-    /// <param name="specializationFactor">Cell type specialization factor (1 is default)</param>
+    /// <param name="totalSpecializationBonus">
+    ///   Cell type specialization factor (1 is default). This should include any adjacency bonuses when relevant.
+    ///   (cells in a multicellular species)
+    /// </param>
     /// <param name="membrane">The membrane type to adjust the energy balance with</param>
     /// <param name="onlyMovementInDirection">
     ///   Only movement organelles that can move in this (cell origin relative) direction are calculated. Other
@@ -238,7 +241,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
     ///   The resulting energy balance.
     /// </param>
     public static void ComputeEnergyBalanceSimple(IReadOnlyList<OrganelleTemplate> organelles,
-        IBiomeConditions biome, in ResolvedMicrobeTolerances environmentTolerances, float specializationFactor,
+        IBiomeConditions biome, in ResolvedMicrobeTolerances environmentTolerances, float totalSpecializationBonus,
         MembraneType membrane, Vector3 onlyMovementInDirection,
         bool includeMovementCost, bool isPlayerSpecies, WorldGenerationSettings worldSettings,
         CompoundAmountType amountType, SimulationCache? cache,
@@ -255,7 +258,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
         }
 #endif
 
-        CalculateSimplePartOfEnergyBalance(organelles, biome, environmentTolerances, specializationFactor, membrane,
+        CalculateSimplePartOfEnergyBalance(organelles, biome, environmentTolerances, totalSpecializationBonus, membrane,
             onlyMovementInDirection, includeMovementCost, isPlayerSpecies, worldSettings, amountType, cache, result);
     }
 
