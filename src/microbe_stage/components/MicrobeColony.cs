@@ -1002,7 +1002,8 @@ public static class MicrobeColonyHelpers
 
         // When changing this method's logic also update the corresponding method in CellBodyPlanInternalCalculations
         float colonyRotation = MicrobeInternalCalculations
-            .CalculateRotationSpeed(colony.Leader.Get<OrganelleContainer>().Organelles!.Organelles);
+            .CalculateRotationSpeed(colony.Leader.Get<OrganelleContainer>().Organelles!.Organelles,
+                colony.Leader.Get<SpecializationFactor>().TotalSpecializationBonus);
 
         foreach (var colonyMember in colony.ColonyMembers)
         {
@@ -1023,7 +1024,8 @@ public static class MicrobeColonyHelpers
                 // This relies on the bounding of the cell rotation, as a colony can never be faster than the
                 // fastest cell inside it
                 var memberRotation = MicrobeInternalCalculations
-                        .CalculateRotationSpeed(colonyMember.Get<OrganelleContainer>().Organelles!.Organelles)
+                        .CalculateRotationSpeed(colonyMember.Get<OrganelleContainer>().Organelles!.Organelles,
+                            colonyMember.Get<SpecializationFactor>().TotalSpecializationBonus)
                     * (1 + 0.007f * distanceSquared);
 
                 colonyRotation += memberRotation;

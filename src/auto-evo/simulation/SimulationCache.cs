@@ -140,12 +140,11 @@ public class SimulationCache
         // TODO: check if caching instances of these objects would be better than always recreating
         var cached = new EnergyBalanceInfoSimple();
 
-        // Assume here that the species specialization factor may not be up to date, so recalculate here
-        var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(species.Organelles, workMemory1);
+        var totalSpecializationBonus = species.CellTypeSpecializationBonus;
 
         // Auto-evo uses the average values of compound during the course of a simulated day
         ProcessSystem.ComputeEnergyBalanceSimple(species.Organelles, biomeConditions,
-            GetEnvironmentalTolerances(species, biomeConditions), specialization, species.MembraneType,
+            GetEnvironmentalTolerances(species, biomeConditions), totalSpecializationBonus, species.MembraneType,
             maximumMovementDirection, true, species.PlayerSpecies, worldSettings, CompoundAmountType.Average, this,
             cached);
 
@@ -169,8 +168,13 @@ public class SimulationCache
             return speed;
         }
 
-        var cached = MicrobeInternalCalculations.CalculateSpeed(species.Organelles.Organelles, species.MembraneType,
-            species.MembraneRigidity, species.IsBacteria, true);
+        var organelles = species.Organelles;
+
+        // For MicrobeSpecies, Cell Type Specialization = Total Specialization Bonus
+        var totalSpecializationBonus = species.CellTypeSpecializationBonus;
+
+        var cached = MicrobeInternalCalculations.CalculateSpeed(organelles.Organelles, species.MembraneType,
+            species.MembraneRigidity, species.IsBacteria, totalSpecializationBonus, true);
 
         cachedBaseSpeeds.Add(key, cached);
         return cached;
@@ -202,7 +206,12 @@ public class SimulationCache
         // prey species by multiple predators might benefit ever so slightly, but it seems kind of unlikely).
         // A more useful thing would be to cache this directly in the species when calculating other movement cached
         // properties.
-        return MicrobeInternalCalculations.CalculateRotationSpeed(species.Organelles.Organelles);
+        var organelles = species.Organelles;
+
+        // For MicrobeSpecies, Cell Type Specialization = Total Specialization Bonus
+        var totalSpecializationBonus = species.CellTypeSpecializationBonus;
+
+        return MicrobeInternalCalculations.CalculateRotationSpeed(organelles.Organelles, totalSpecializationBonus);
     }
 
     public float GetCompoundConversionScoreForSpecies(CompoundDefinition fromCompound, CompoundDefinition toCompound,
@@ -390,9 +399,13 @@ public class SimulationCache
             }
         }
 
+        // This will be used at several points to mimic the effect the specialization bonus has on organelles
+        var specializationBonus = predator.CellTypeSpecializationBonus;
+        var preySpecializationBonus = prey.CellTypeSpecializationBonus;
+
         var predatorHexSize = GetBaseHexSizeForSpecies(predator);
         var preyHexSize = GetBaseHexSizeForSpecies(prey);
-        var enzymesScore = GetEnzymesScore(predator, prey.MembraneType.DissolverEnzyme);
+        var enzymesScore = GetEnzymesScore(predator, prey.MembraneType.DissolverEnzyme, specializationBonus);
         var canDigestPrey = predatorHexSize / preyHexSize > Constants.ENGULF_SIZE_RATIO_REQ && canEngulf &&
             enzymesScore > 0.0f;
 
@@ -446,22 +459,25 @@ public class SimulationCache
         var preyToolScores = GetPredationToolsRawScores(prey);
 
         var toxicity = predatorToolScores.AverageToxicity;
-        var macrolideScore = predatorToolScores.MacrolideScore;
-        var predatorSlimeJetScore = predatorToolScores.SlimeJetScore;
-        var pullingCiliaModifier = predatorToolScores.PullingCiliaModifier;
+        oxytoxyScore *= specializationBonus;
+        cytotoxinScore *= specializationBonus;
+        channelInhibitorScore *= specializationBonus;
+        var macrolideScore = predatorToolScores.MacrolideScore * specializationBonus;
+        var predatorSlimeJetScore = predatorToolScores.SlimeJetScore * specializationBonus;
+        var pullingCiliaModifier = predatorToolScores.PullingCiliaModifier * specializationBonus;
         var strongPullingCiliaModifier = pullingCiliaModifier * pullingCiliaModifier;
         var predatorToxinResistance = predator.MembraneType.ToxinResistance;
         var predatorPhysicalResistance = predator.MembraneType.PhysicalResistance;
 
-        var preySlimeJetScore = preyToolScores.SlimeJetScore;
+        var preySlimeJetScore = preyToolScores.SlimeJetScore * preySpecializationBonus;
         var preyMucocystsScore = preyToolScores.MucocystsScore;
         var preyPilusScore = preyToolScores.PilusScore;
         var preyInjectisomeScore = preyToolScores.InjectisomeScore;
         var preyToxicity = preyToolScores.AverageToxicity;
-        var preyOxytoxyScore = preyToolScores.OxytoxyScore;
-        var preyCytotoxinScore = preyToolScores.CytotoxinScore;
-        var preyMacrolideScore = preyToolScores.MacrolideScore;
-        var preyChannelInhibitorScore = preyToolScores.ChannelInhibitorScore;
+        var preyOxytoxyScore = preyToolScores.OxytoxyScore * preySpecializationBonus;
+        var preyCytotoxinScore = preyToolScores.CytotoxinScore * preySpecializationBonus;
+        var preyMacrolideScore = preyToolScores.MacrolideScore * preySpecializationBonus;
+        var preyChannelInhibitorScore = preyToolScores.ChannelInhibitorScore * preySpecializationBonus;
         var preyOxygenMetabolismInhibitorScore = preyToolScores.OxygenMetabolismInhibitorScore;
         var defensivePilusScore = preyToolScores.DefensivePilusScore;
         var defensiveInjectisomeScore = preyToolScores.DefensiveInjectisomeScore;
@@ -1235,7 +1251,7 @@ public class SimulationCache
         return predationToolsRawScores;
     }
 
-    public float GetEnzymesScore(MicrobeSpecies predator, string dissolverEnzyme)
+    public float GetEnzymesScore(MicrobeSpecies predator, string dissolverEnzyme, float specializationBonus)
     {
         // This is not cached as it is not useful at the present time (as this is only called from places that cache
         // stuff)
@@ -1276,9 +1292,9 @@ public class SimulationCache
 
         // If not digestible, mark that as a 0 score
         if (!isMembraneDigestible)
-            enzymesScore = 0;
+            return 0;
 
-        return enzymesScore;
+        return enzymesScore * specializationBonus;
     }
 
     public ResolvedMicrobeTolerances GetEnvironmentalTolerances(MicrobeSpecies species,

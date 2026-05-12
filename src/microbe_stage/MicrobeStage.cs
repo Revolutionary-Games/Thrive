@@ -952,23 +952,36 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         if (playerIsMulticellular)
         {
-            ref var earlySpeciesType = ref Player.Get<MulticellularSpeciesMember>();
+            ref var multicellularSpeciesType = ref Player.Get<MulticellularSpeciesMember>();
 
             var resolvedTolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(
-                MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(earlySpeciesType.Species,
+                MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(multicellularSpeciesType.Species,
                     CurrentBiome));
 
             // Allow updating the first cell type to reproduce (reproduction order changed)
-            earlySpeciesType.MulticellularCellType =
-                earlySpeciesType.Species.ModifiableGameplayCells[0].ModifiableCellType;
+            multicellularSpeciesType.MulticellularCellType = multicellularSpeciesType.Species.FirstCellTypeToSpawn();
 
-            environmentalEffects.ApplyEffects(resolvedTolerances,
-                earlySpeciesType.MulticellularCellType.SpecializationBonus *
-                earlySpeciesType.Species.GetAdjacencySpecializationBonus(0), ref bioProcesses);
+            float adjacencyBonus = 1.0f;
+
+            Player.Get<MulticellularGrowth>().IsASpore = false;
+
+            if (multicellularSpeciesType.Species.ReproductionMethod == MulticellularReproductionMethod.Sporulation)
+            {
+                Player.Get<MulticellularGrowth>().IsASpore = true;
+            }
+            else if (multicellularSpeciesType.Species.ReproductionMethod == MulticellularReproductionMethod.Budding)
+            {
+                adjacencyBonus = multicellularSpeciesType.Species.GetAdjacencySpecializationBonus(0);
+            }
+
+            var totalSpecializationBonus = multicellularSpeciesType.MulticellularCellType.CellTypeSpecializationBonus *
+                adjacencyBonus;
+
+            environmentalEffects.ApplyEffects(resolvedTolerances, totalSpecializationBonus, ref bioProcesses);
 
             cellProperties.ReApplyCellTypeProperties(ref environmentalEffects, Player,
-                earlySpeciesType.MulticellularCellType, earlySpeciesType.Species, WorldSimulation, workData1,
-                workData2);
+                multicellularSpeciesType.MulticellularCellType, multicellularSpeciesType.Species,
+                totalSpecializationBonus, WorldSimulation, workData1, workData2);
         }
         else
         {
@@ -977,11 +990,11 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             var resolvedTolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(
                 MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(species.Species, CurrentBiome));
 
-            environmentalEffects.ApplyEffects(resolvedTolerances, species.Species.SpecializationBonus,
+            environmentalEffects.ApplyEffects(resolvedTolerances, species.Species.CellTypeSpecializationBonus,
                 ref bioProcesses);
 
             cellProperties.ReApplyCellTypeProperties(ref environmentalEffects, Player,
-                species.Species, species.Species, WorldSimulation,
+                species.Species, species.Species, species.Species.CellTypeSpecializationBonus, WorldSimulation,
                 workData1, workData2);
 
             foreach (var organelle in species.Species.Organelles)

@@ -37,6 +37,7 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(SoundEffectPlayer))]
 [ReadsComponent(typeof(MicrobeControl))]
 [ReadsComponent(typeof(MicrobeEnvironmentalEffects))]
+[ReadsComponent(typeof(SpecializationFactor))]
 [RunsAfter(typeof(OsmoregulationAndHealingSystem))]
 [RunsAfter(typeof(ProcessSystem))]
 [RuntimeCost(10)]
@@ -514,7 +515,7 @@ public partial class MicrobeReproductionSystem : BaseSystem<World, float>
             // help to complicate things by trying to fetch these before the loop
             organelles.OnOrganellesChanged(ref storage, ref entity.Get<BioProcesses>(),
                 ref entity.Get<Engulfer>(), ref entity.Get<Engulfable>(),
-                ref entity.Get<CellProperties>());
+                ref entity.Get<CellProperties>(), ref entity.Get<SpecializationFactor>());
 
             if (entity.Has<MicrobeEventCallbacks>())
             {
@@ -605,8 +606,8 @@ public partial class MicrobeReproductionSystem : BaseSystem<World, float>
 
             // Return the first cell to its normal, non-duplicated cell arrangement and spawn a daughter cell
             organelles.ResetOrganelleLayout(ref entity.Get<CompoundStorage>(),
-                ref entity.Get<BioProcesses>(), ref environmentalEffects,
-                entity, species, species, worldSimulation, workData1, workData2);
+                ref entity.Get<BioProcesses>(), ref entity.Get<SpecializationFactor>(),
+                in environmentalEffects, entity, species, species, worldSimulation, workData1, workData2);
 
             // This is purely inside this lock to suppress a warning on worldSimulation
             cellProperties.Divide(ref organelles, entity, species, worldSimulation, spawnEnvironment,

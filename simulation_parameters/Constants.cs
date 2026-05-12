@@ -1114,8 +1114,6 @@ public static class Constants
 
     public const float PILUS_PHYSICS_SIZE = 4.6f;
 
-    public const float BACTERIA_PILUS_ATTACH_ADJUSTMENT_MULTIPLIER = 0.575f;
-
     /// <summary>
     ///   Damage a single injectisome stab does
     /// </summary>
@@ -1194,6 +1192,10 @@ public static class Constants
     public const int ORGANELLE_CHEAPEST_COST = 20;
 
     public const int CELL_REMOVE_COST = 5;
+
+    public const int MULTICELLULAR_REPRODUCTION_METHOD_CHANGE_COST = 50;
+
+    public const int SPORE_CELL_TYPE_CHANGE_COST = 10;
 
     public const string ORGANELLE_UPGRADE_SPECIAL_NONE = "none";
 

@@ -597,13 +597,15 @@ public class Patch : IArchivable
     ///   negative effects. To balance out organelle tolerance debuffs, needs to be given the current organelles.
     /// </summary>
     /// <returns>Set of tolerances that can survive well in the current patch</returns>
-    public EnvironmentalTolerances GenerateTolerancesForMicrobe(IReadOnlyList<OrganelleTemplate> organelles)
+    public EnvironmentalTolerances GenerateTolerancesForMicrobe(IReadOnlyList<OrganelleTemplate> organelles,
+        float totalSpecializationBonus)
     {
         // To guarantee perfect tolerance, we need to apply reverse of the organelle effects so that when the organelle
         // effects are applied, the final tolerances are well adapted
         var organelleEffects = default(MicrobeEnvironmentalToleranceCalculations.ToleranceValues);
 
-        MicrobeEnvironmentalToleranceCalculations.ApplyOrganelleEffectsOnTolerances(organelles, ref organelleEffects);
+        MicrobeEnvironmentalToleranceCalculations.ApplyOrganelleEffectsOnTolerances(organelles,
+            totalSpecializationBonus, ref organelleEffects);
 
         var result = GenerateOptimalTolerances(organelleEffects);
 
@@ -611,7 +613,8 @@ public class Patch : IArchivable
         result.SanityCheck();
 
         var optimalTest =
-            MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(result, organelles, currentSnapshot.Biome);
+            MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(result, organelles, totalSpecializationBonus,
+                currentSnapshot.Biome);
 
         if (optimalTest.OverallScore is < 1 or > 1 + MathUtils.EPSILON)
         {
