@@ -125,4 +125,6 @@ public interface IEditor : ISaveLoadedTracked
     /// </summary>
     /// <returns>Predicted next <see cref="GameWorld.TotalPassedTime"/></returns>
     public double CalculateNextGenerationTimePoint();
+
+    public void DirtyMutationPointsCache();
 }

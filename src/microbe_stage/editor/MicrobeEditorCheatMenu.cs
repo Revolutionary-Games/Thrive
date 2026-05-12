@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using Arch.Core;
+using Godot;
 
 /// <summary>
 ///   Cheat menu for the <see cref="MicrobeEditor"/>
@@ -10,7 +11,7 @@ public partial class MicrobeEditorCheatMenu : CheatMenu
     private CheckBox infiniteMp = null!;
 
     [Export]
-    private MicrobeEditor editor = null!;
+    private NodeWithInput editorNode = null!;
 #pragma warning restore CA2213
 
     public override void ReloadGUI()
@@ -32,6 +33,7 @@ public partial class MicrobeEditorCheatMenu : CheatMenu
     {
         SetInfiniteMP(value);
 
-        editor.DirtyMutationPointsCache();
+        if (editorNode is IEditor editor)
+            editor.DirtyMutationPointsCache();
     }
 }

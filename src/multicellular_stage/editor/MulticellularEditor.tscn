@@ -81,12 +81,13 @@ layout_mode = 2
 text = "SELECT_CELL_TYPE_FROM_EDITOR"
 horizontal_alignment = 1
 
-[node name="MicrobeEditorCheatMenu" parent="EarlyMulticellularEditorGUI" unique_id=966094592 instance=ExtResource("10_xy0bv")]
+[node name="MicrobeEditorCheatMenu" parent="EarlyMulticellularEditorGUI" unique_id=966094592 node_paths=PackedStringArray("editorNode") instance=ExtResource("10_xy0bv")]
 layout_mode = 0
 offset_left = 10.0
 offset_top = 30.0
 offset_right = 10.0
 offset_bottom = 30.0
+editorNode = NodePath("../..")
 
 [connection signal="OnCellTypeToEditSelected" from="EarlyMulticellularEditorGUI/CellBodyPlanEditorComponent" to="." method="OnStartEditingCellType"]
 [connection signal="OnTabSelected" from="EarlyMulticellularEditorGUI/MicrobeEditorTabButtons" to="." method="SetEditorTab"]
