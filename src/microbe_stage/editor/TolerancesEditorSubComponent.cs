@@ -16,6 +16,9 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     [ExportCategory("Config")]
     public bool ShowZeroModifiers;
 
+    private const float PressureSliderLogOffset = 100000;
+    private const float PressureEditorRounding = 10000;
+
     private readonly Dictionary<IPlayerReadableName, float> tempToleranceModifiers = new();
 
     private CompoundDefinition temperature = null!;
@@ -300,7 +303,9 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         if (pressureToolTip != null)
         {
-            var pressureCost = pressureSlider.Step * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_MINIMUM *
+            var pressureCost = EstimatePressureChangeFromSliderStep(pressureSlider, 0,
+                    Constants.TOLERANCE_PRESSURE_MAX, PressureSliderLogOffset) *
+                Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_MINIMUM *
                 MPDisplayCostMultiplier;
 
             pressureToolTip.MPCost = (float)pressureCost;
@@ -456,6 +461,37 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         }
     }
 
+    private static float ActualPressureToSliderValue(float pressure, float maximum, float offset, float minimum = 0)
+    {
+        pressure = Math.Clamp(pressure, minimum, maximum);
+
+        return Math.Clamp((float)(Math.Log((pressure - minimum + offset) / offset) /
+            Math.Log((maximum - minimum + offset) / offset)), 0, 1);
+    }
+
+    private static float SliderValueToActualPressure(float sliderValue, float maximum, float offset, float minimum = 0)
+    {
+        sliderValue = Math.Clamp(sliderValue, 0, 1);
+
+        return (float)(minimum + offset * (Math.Pow((maximum - minimum + offset) / offset, sliderValue) - 1));
+    }
+
+    private static float RoundPressureForEditing(float pressure)
+    {
+        return MathF.Round(pressure / PressureEditorRounding) * PressureEditorRounding;
+    }
+
+    private static double EstimatePressureChangeFromSliderStep(Slider slider, float minimum, float maximum,
+        float offset)
+    {
+        var previous = SliderValueToActualPressure((float)Math.Max(slider.Value - slider.Step, slider.MinValue),
+            maximum, offset, minimum);
+        var next = SliderValueToActualPressure((float)Math.Min(slider.Value + slider.Step, slider.MaxValue),
+            maximum, offset, minimum);
+
+        return Math.Max(Math.Abs(next - previous) * 0.5f, PressureEditorRounding);
+    }
+
     private void CalculateStatsAndShow(EnvironmentalTolerances calculationTolerances,
         EnvironmentalToleranceToolTip toolTip)
     {
@@ -514,7 +550,8 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         temperatureSlider.Value = CurrentTolerances.PreferredTemperature;
         temperatureToleranceRangeSlider.Value = CurrentTolerances.TemperatureTolerance;
 
-        pressureSlider.Value = CurrentTolerances.PressureMinimum;
+        pressureSlider.Value = ActualPressureToSliderValue(CurrentTolerances.PressureMinimum,
+            Constants.TOLERANCE_PRESSURE_MAX, PressureSliderLogOffset);
         pressureToleranceRangeSlider.Value = CurrentTolerances.PressureTolerance;
 
         oxygenResistanceSlider.Value = CurrentTolerances.OxygenResistance;
@@ -594,13 +631,15 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         reusableTolerances ??= new EnvironmentalTolerances();
         reusableTolerances.CopyFrom(CurrentTolerances);
-        reusableTolerances.PressureMinimum = value;
+        reusableTolerances.PressureMinimum = RoundPressureForEditing(
+            SliderValueToActualPressure(value, Constants.TOLERANCE_PRESSURE_MAX, PressureSliderLogOffset));
 
         automaticallyChanging = true;
 
         if (!TriggerChangeIfPossible())
         {
-            pressureSlider.Value = CurrentTolerances.PressureMinimum;
+            pressureSlider.Value = ActualPressureToSliderValue(CurrentTolerances.PressureMinimum,
+                Constants.TOLERANCE_PRESSURE_MAX, PressureSliderLogOffset);
         }
 
         automaticallyChanging = false;
