@@ -102,11 +102,12 @@ public class PhysicsShape : IDisposable
         {
             return new PhysicsShape(NativeMethods.CreateMicrobeShapeSpheres(
                 MemoryMarshal.GetReference(organellePositions),
-                (uint)organellePositions.Length, overallDensity, scaleAsBacteria ? 0.5f : 1));
+                (uint)organellePositions.Length, overallDensity,
+                scaleAsBacteria ? Constants.BACTERIA_CELL_SCALE : 1));
         }
 
         return new PhysicsShape(NativeMethods.CreateMicrobeShapeConvex(MemoryMarshal.GetReference(organellePositions),
-            (uint)organellePositions.Length, overallDensity, scaleAsBacteria ? 0.5f : 1));
+            (uint)organellePositions.Length, overallDensity, scaleAsBacteria ? Constants.BACTERIA_CELL_SCALE : 1));
     }
 
     public static PhysicsShape CreateCombinedShapeStatic(

@@ -89,6 +89,11 @@ public static class Constants
     public const float PLAYER_SPECIES_SPAWN_MULTIPLIER = 0.5f;
 
     /// <summary>
+    ///   Uniform scale used to render and simulate prokaryotic cells relative to their unscaled membrane geometry.
+    /// </summary>
+    public const float BACTERIA_CELL_SCALE = 0.5f;
+
+    /// <summary>
     ///   Smaller spawn penalty to make binding agents easier to use with better player species spawn rates.
     /// </summary>
     public const float PLAYER_SPECIES_SPAWN_MULTIPLIER_BINDING_AGENTS = 0.7f;
