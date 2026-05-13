@@ -1370,6 +1370,10 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
     {
         var storage = compounds.GetCapacityForCompound(Compound.Oxytoxy) * 0.99f;
 
+        // If a cell can't store toxin, cannot shoot it either
+        if (storage <= Constants.AI_SHOOT_TOXIN_AFTER)
+            return false;
+
         // Ensure that zero focus species don't constantly think they can fire toxins
         // And that otherwise focus nicely scales how many toxins are spewed before max damage
         var shootThreshold =
