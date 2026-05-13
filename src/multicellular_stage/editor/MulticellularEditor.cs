@@ -168,6 +168,13 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         writer.WriteObjectOrNull(editedSpecies);
     }
 
+    public override void _Ready()
+    {
+        base._Ready();
+
+        tutorialGUI.Visible = true;
+    }
+
     public override void _EnterTree()
     {
         base._EnterTree();
