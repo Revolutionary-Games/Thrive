@@ -10,7 +10,7 @@ using Tutorial;
 /// </summary>
 public class TutorialState : ITutorialInput, IArchivable
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     /// <summary>
     ///   True when the tutorial has paused the game
@@ -91,6 +91,8 @@ public class TutorialState : ITutorialInput, IArchivable
     public CompoundBalancesTutorial CompoundBalancesTutorial { get; private set; } = new();
 
     public FoodChainTabTutorial FoodChainTabTutorial { get; private set; } = new();
+
+    public MicrobeSpecializationTutorial MicrobeSpecializationTutorial { get; private set; } = new();
 
     public LeaveColonyTutorial LeaveColonyTutorial { get; private set; } = new();
 
@@ -213,6 +215,9 @@ public class TutorialState : ITutorialInput, IArchivable
         reader.ReadObjectProperties(instance.NucleusTutorial);
         reader.ReadObjectProperties(instance.BindingAgentsTutorial);
 
+        if (version > 1)
+            reader.ReadObjectProperties(instance.MicrobeSpecializationTutorial);
+
         if (instance.DisableShowingAlreadySeenTutorials)
         {
             instance.OnCompleteTutorialsAlreadySeen();
@@ -274,6 +279,7 @@ public class TutorialState : ITutorialInput, IArchivable
         writer.WriteObjectProperties(EarlyGameGoalTutorial);
         writer.WriteObjectProperties(NucleusTutorial);
         writer.WriteObjectProperties(BindingAgentsTutorial);
+        writer.WriteObjectProperties(MicrobeSpecializationTutorial);
     }
 
     /// <summary>
@@ -595,6 +601,7 @@ public class TutorialState : ITutorialInput, IArchivable
             MigrationTutorial,
             CellEditorIntroduction,
             NucleusTutorial,
+            MicrobeSpecializationTutorial,
             BindingAgentsTutorial,
             EditorUndoTutorial,
             EditorRedoTutorial,

@@ -319,6 +319,7 @@ public enum ThriveArchiveObjectType : uint
     MulticellularReproductionActionData = 4399,
     SporeCellTypeChangeActionData = 4400,
     ComponentSpecializationFactor = 4401,
+    TutorialMicrobeSpecializationTutorial = 4402,
 
     // Special flag types
     ExtendedOrganelleLayout = OrganelleLayout | ArchiveObjectType.ExtendedTypeFlag,
