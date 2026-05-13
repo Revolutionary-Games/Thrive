@@ -342,6 +342,9 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         cellEditorTab.TutorialState = TutorialState;
         tutorialGUI.EventReceiver = TutorialState;
 
+        // Send highlighted controls to the tutorial system
+        bodyPlanEditorTab.SendObjectsToTutorials(TutorialState, tutorialGUI);
+
         if (fresh)
         {
             CurrentGame.SetBool("edited_multicellular", true);

@@ -16,6 +16,11 @@ public partial class MulticellularEditorTutorialGUI : Control, ITutorialGUI
     public bool AllTutorialsDesiredState { get; private set; } = true;
     public Node GUINode => this;
 
+    /// <summary>
+    ///   This is used to ensure the scroll position shows elements related to active tutorials
+    /// </summary>
+    public ScrollContainer RightPanelScrollContainer { get; set; } = null!;
+
     public bool SpecializationTutorialVisible
     {
         get => specializationTutorial.Visible;
@@ -27,6 +32,7 @@ public partial class MulticellularEditorTutorialGUI : Control, ITutorialGUI
             if (value)
             {
                 specializationTutorial.Show();
+                RightPanelScrollContainer.ScrollVertical = 100;
             }
             else
             {

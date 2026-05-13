@@ -126,6 +126,9 @@ public partial class CellBodyPlanEditorComponent :
     private OrganismStatisticsPanel organismStatisticsPanel = null!;
 
     [Export]
+    private ScrollContainer rightPanelScrollContainer = null!;
+
+    [Export]
     private CustomConfirmationDialog negativeAtpPopup = null!;
 
     [Export]

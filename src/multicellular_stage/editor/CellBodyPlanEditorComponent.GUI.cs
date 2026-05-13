@@ -44,6 +44,13 @@ public partial class CellBodyPlanEditorComponent
         UpdateSporeCellDropdown();
     }
 
+    public void SendObjectsToTutorials(TutorialState tutorial, MulticellularEditorTutorialGUI gui)
+    {
+        _ = tutorial;
+
+        gui.RightPanelScrollContainer = rightPanelScrollContainer;
+    }
+
     protected override void OnTranslationsChanged()
     {
         base.OnTranslationsChanged();
