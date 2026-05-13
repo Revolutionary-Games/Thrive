@@ -647,8 +647,7 @@ public static class Constants
     public const float MAXIMUM_AGENT_EMISSION_AMOUNT = 2.0f;
 
     /// <summary>
-    ///   AI always consider shooting a toxin possible if it has that much toxin stored no matter the current focus
-    ///   value.
+    ///   AI only consider shooting a toxin possible if it has this much toxin stored or more
     /// </summary>
     public const float AI_SHOOT_TOXIN_AFTER = 0.15f;
 
