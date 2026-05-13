@@ -634,7 +634,7 @@ public static class Constants
     /// <summary>
     ///   Cooldown between agent emissions, in seconds.
     /// </summary>
-    public const float AGENT_EMISSION_COOLDOWN = 2.0f;
+    public const float AGENT_EMISSION_COOLDOWN = 2.2f;
 
     /// <summary>
     ///   The minimum amount of oxytoxy (or any agent) fired in one shot.
