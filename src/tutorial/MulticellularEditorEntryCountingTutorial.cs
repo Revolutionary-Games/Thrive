@@ -1,0 +1,58 @@
+namespace Tutorial;
+
+using System;
+using SharedBase.Archive;
+
+/// <summary>
+///   A tutorial that counts how many times the multicellular editor has been entered and allows derived classes
+///   access to that information
+/// </summary>
+public abstract class MulticellularEditorEntryCountingTutorial : TutorialPhase
+{
+    protected MulticellularEditorEntryCountingTutorial()
+    {
+        // Make this tutorial not trigger until the editor entry count is right
+        CanTrigger = false;
+    }
+
+    public int NumberOfEditorEntries { get; set; }
+
+    protected abstract int TriggersOnNthEditorSession { get; }
+
+    public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
+        object sender)
+    {
+        // We never want to consume these events, so we ignore the return value
+        _ = CheckEventEditorEntryEvent(eventType);
+
+        return false;
+    }
+
+    public override void WritePropertiesToArchive(ISArchiveWriter writer)
+    {
+        base.WritePropertiesToArchive(writer);
+
+        writer.Write(NumberOfEditorEntries);
+    }
+
+    public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        base.ReadPropertiesFromArchive(reader, version);
+
+        NumberOfEditorEntries = reader.ReadInt32();
+    }
+
+    private bool CheckEventEditorEntryEvent(TutorialEventType eventType)
+    {
+        if (eventType != TutorialEventType.EnteredMulticellularEditor)
+            return false;
+
+        if (!HasBeenShown)
+        {
+            ++NumberOfEditorEntries;
+            CanTrigger = NumberOfEditorEntries >= TriggersOnNthEditorSession;
+        }
+
+        return true;
+    }
+}

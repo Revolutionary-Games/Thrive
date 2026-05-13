@@ -517,6 +517,9 @@ public class TutorialState : ITutorialInput, IArchivable
             case MicrobeEditorTutorialGUI casted:
                 ApplySpecificGUI(casted);
                 break;
+            case MulticellularEditorTutorialGUI casted:
+                ApplySpecificGUI(casted);
+                break;
             default:
                 throw new ArgumentException("Unhandled GUI class in ApplyGUIState");
         }
@@ -532,6 +535,12 @@ public class TutorialState : ITutorialInput, IArchivable
     }
 
     private void ApplySpecificGUI(MicrobeEditorTutorialGUI gui)
+    {
+        foreach (var tutorial in Tutorials)
+            tutorial.ApplyGUIState(gui);
+    }
+
+    private void ApplySpecificGUI(MulticellularEditorTutorialGUI gui)
     {
         foreach (var tutorial in Tutorials)
             tutorial.ApplyGUIState(gui);

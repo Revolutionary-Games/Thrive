@@ -33,6 +33,8 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     [Export]
     private Control noCellTypeSelected = null!;
+
+    private MulticellularEditorTutorialGUI tutorialGUI = null!;
 #pragma warning restore CA2213
 
     /// <summary>
@@ -315,6 +317,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     protected override void ResolveDerivedTypeNodeReferences()
     {
+        tutorialGUI = GetNode<MulticellularEditorTutorialGUI>("TutorialGUI");
     }
 
     protected override void InitEditor(bool fresh)
@@ -327,6 +330,10 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         base.InitEditor(fresh);
 
         reportTab.UpdateReportTabPatchSelector();
+
+        // Make tutorials run
+        cellEditorTab.TutorialState = TutorialState;
+        tutorialGUI.EventReceiver = TutorialState;
 
         if (fresh)
         {
