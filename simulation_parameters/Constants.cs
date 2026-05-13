@@ -647,6 +647,12 @@ public static class Constants
     public const float MAXIMUM_AGENT_EMISSION_AMOUNT = 2.0f;
 
     /// <summary>
+    ///   AI always consider shooting a toxin possible if it has that much toxin stored no matter the current focus
+    ///   value.
+    /// </summary>
+    public const float AI_SHOOT_TOXIN_AFTER = 0.15f;
+
+    /// <summary>
     ///   The time (in seconds) it takes a cloud being absorbed to halve its compounds.
     /// </summary>
     public const float CLOUD_ABSORPTION_HALF_LIFE = 0.02291666666f;
