@@ -30,7 +30,8 @@ public class MicrobeSpecializationTutorial : EditorEntryCountingTutorial
     {
         gui.SpecializationTutorialVisible = ShownCurrently;
 
-        if (gui.SpecializationTutorialVisible && SpecializationContainer != null && SpecializationDisplayControl != null)
+        if (gui.SpecializationTutorialVisible && SpecializationContainer != null &&
+            SpecializationDisplayControl != null)
         {
             // Make sure it is visible at the bottom of the scroll
             var containerHeight = SpecializationContainer.GetRect().Size.Y;
