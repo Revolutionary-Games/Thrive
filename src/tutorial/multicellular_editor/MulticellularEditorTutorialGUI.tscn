@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://b8f0k18m57aq7"]
+
+[ext_resource type="Script" uid="uid://cfpvqs5gxons5" path="res://src/tutorial/multicellular_editor/MulticellularEditorTutorialGUI.cs" id="1"]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
+[ext_resource type="PackedScene" uid="uid://tna206f2gtkv" path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://cy5puaxnv8e2a" path="res://src/gui_common/dialogs/TutorialDialog.tscn" id="4_fr4jn"]
+
+[node name="MulticellularEditorTutorialGUI" type="Control" unique_id=442652590 node_paths=PackedStringArray("specializationTutorial")]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("2")
+script = ExtResource("1")
+specializationTutorial = NodePath("SpecializationTutorial")
+
+[node name="AddWindowReorderingSupportToSiblings" parent="." unique_id=42779509 instance=ExtResource("3")]
+layout_mode = 0
+
+[node name="SpecializationTutorial" parent="." unique_id=1429245187 instance=ExtResource("4_fr4jn")]
+custom_minimum_size = Vector2(360, 300)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -423.0
+offset_top = -321.0
+offset_right = -9.0
+offset_bottom = 18.0
+grow_horizontal = 0
+grow_vertical = 2
+Description = "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
+ShowDelay = 0.7
+PreventsMouseCaptureWhileOpen = true
+
+[connection signal="hidden" from="SpecializationTutorial" to="." method="OnSpecificCloseClicked" binds= ["MulticellularSpecializationTutorial"]]
