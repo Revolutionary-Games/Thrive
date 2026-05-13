@@ -94,6 +94,8 @@ public class TutorialState : ITutorialInput, IArchivable
 
     public MicrobeSpecializationTutorial MicrobeSpecializationTutorial { get; private set; } = new();
 
+    public MulticellularSpecializationTutorial MulticellularSpecializationTutorial { get; private set; } = new();
+
     public LeaveColonyTutorial LeaveColonyTutorial { get; private set; } = new();
 
     public PausingTutorial PausingTutorial { get; private set; } = new();
@@ -216,7 +218,10 @@ public class TutorialState : ITutorialInput, IArchivable
         reader.ReadObjectProperties(instance.BindingAgentsTutorial);
 
         if (version > 1)
+        {
             reader.ReadObjectProperties(instance.MicrobeSpecializationTutorial);
+            reader.ReadObjectProperties(instance.MulticellularSpecializationTutorial);
+        }
 
         if (instance.DisableShowingAlreadySeenTutorials)
         {
@@ -280,6 +285,7 @@ public class TutorialState : ITutorialInput, IArchivable
         writer.WriteObjectProperties(NucleusTutorial);
         writer.WriteObjectProperties(BindingAgentsTutorial);
         writer.WriteObjectProperties(MicrobeSpecializationTutorial);
+        writer.WriteObjectProperties(MulticellularSpecializationTutorial);
     }
 
     /// <summary>
@@ -636,6 +642,7 @@ public class TutorialState : ITutorialInput, IArchivable
             NegativeAtpBalanceTutorial,
             PausingTutorial,
             SpeciesMemberDiedTutorial,
+            MulticellularSpecializationTutorial,
         };
     }
 }

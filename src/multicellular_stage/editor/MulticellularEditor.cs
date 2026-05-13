@@ -469,6 +469,10 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     protected override void ApplyEditorTab()
     {
+        // Similar trigger for tutorials as for the MicrobeEditor
+        TutorialState.SendEvent(TutorialEventType.MulticellularEditorTabChanged,
+            new StringEventArgs(selectedEditorTab.ToString()), this);
+
         // Hide all
         reportTab.Hide();
         patchMapTab.Hide();

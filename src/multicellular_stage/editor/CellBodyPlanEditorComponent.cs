@@ -808,7 +808,8 @@ public partial class CellBodyPlanEditorComponent :
     {
         if (AddCell(CellTypeFromName(activeActionName ?? throw new InvalidOperationException("no action active"))))
         {
-            // Placed a cell, could trigger a tutorial or something
+            // TODO: could send the cell data here
+            Editor.TutorialState.SendEvent(TutorialEventType.MulticellularEditorCellPlaced, EventArgs.Empty, this);
         }
     }
 
