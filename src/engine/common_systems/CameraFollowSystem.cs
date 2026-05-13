@@ -75,11 +75,11 @@ public partial class CameraFollowSystem : BaseSystem<World, float>
 
         cameraUsed = true;
 
-        if (Camera != null)
+        if (Camera != null && shapeHolder.Shape != null)
         {
             // This is required due to the weird way Jolt physics gives us the body's position:
             // return mPosition - mRotation * mShape->GetCenterOfMass();
-            Camera.UpdateCameraTargets(delta, worldPosition.Position + worldPosition.Rotation * shapeHolder.Shape!.CenterOfMass);
+            Camera.UpdateCameraTargets(delta, worldPosition.Position + worldPosition.Rotation * shapeHolder.Shape.CenterOfMass);
         }
         else if (!warnedAboutMissingCamera)
         {

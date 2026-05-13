@@ -213,7 +213,7 @@ public partial class MicrobeCamera : Camera3D, ISaveLoadedTracked, IGameCamera, 
 
         var newFloorPosition = new Vector3(followedObjectPosition.X, 0, followedObjectPosition.Z);
 
-        Vector3 target = currentFloorPosition.Lerp(newFloorPosition, InterpolateSpeed * (float)delta)
+        Vector3 target = currentFloorPosition.Lerp(newFloorPosition, InterpolateSpeed)
             + currentCameraHeight.Lerp(newCameraHeight, InterpolateZoomSpeed);
 
         // Apply cursor-induced tilt

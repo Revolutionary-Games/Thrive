@@ -31,6 +31,7 @@ hudRoot = NodePath("MicrobeHUD")
 [node name="PrimaryCamera" parent="World" unique_id=922652182 instance=ExtResource("2")]
 process_mode = 3
 AutoProcessWhilePaused = true
+InterpolateSpeed = 0.4
 
 [node name="HeatGradientPlane" parent="World/PrimaryCamera" unique_id=1560443787 instance=ExtResource("8_7ghg3")]
 transform = Transform3D(1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 1.62921e-06, -10)
