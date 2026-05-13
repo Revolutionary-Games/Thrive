@@ -50,8 +50,6 @@ public partial class PhysicsUpdateAndPositionSystem : BaseSystem<World, float>
 
         (position.Position, position.Rotation) = physicalWorld.ReadBodyPosition(body);
 
-        physics.CenterOfMassPosition = physicalWorld.ReadBodyCenterOfMassPosition(body);
-
         // TODO: it might be a good slight performance improvement to have a single native method to get both
         // the velocities and positions with a single native method call
         if (physics.TrackVelocity)

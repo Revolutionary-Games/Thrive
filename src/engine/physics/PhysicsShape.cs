@@ -13,6 +13,9 @@ public class PhysicsShape : IDisposable
     private bool disposed;
     private IntPtr nativeInstance;
 
+    private bool calculatedCenterOfMass;
+    private Vector3 cachedCenterOfMass;
+
     private PhysicsShape(IntPtr nativeInstance)
     {
         this.nativeInstance = nativeInstance;
@@ -24,6 +27,20 @@ public class PhysicsShape : IDisposable
     }
 
     public bool Disposed => disposed;
+
+    public Vector3 CenterOfMass
+    {
+        get
+        {
+            if (!calculatedCenterOfMass)
+            {
+                cachedCenterOfMass = GetCenterOfMass();
+                calculatedCenterOfMass = true;
+            }
+
+            return cachedCenterOfMass;
+        }
+    }
 
     public static PhysicsShape CreateBox(float halfSideLength, float density = 1000)
     {
@@ -185,6 +202,11 @@ public class PhysicsShape : IDisposable
     public float GetMass()
     {
         return NativeMethods.ShapeGetMass(AccessShapeInternal());
+    }
+
+    public Vector3 GetCenterOfMass()
+    {
+        return NativeMethods.ShapeGetCenterOfMass(AccessShapeInternal());
     }
 
     public uint GetSubShapeIndexFromData(uint subShapeData)
@@ -448,6 +470,9 @@ internal static partial class NativeMethods
 
     [DllImport("thrive_native")]
     internal static extern float ShapeGetMass(IntPtr shape);
+
+    [DllImport("thrive_native")]
+    internal static extern JVecF3 ShapeGetCenterOfMass(IntPtr shape);
 
     [DllImport("thrive_native")]
     internal static extern uint ShapeGetSubShapeIndex(IntPtr shape, uint subShapeData);

@@ -11,8 +11,6 @@ public struct Physics : IArchivableComponent
 {
     public const ushort SERIALIZATION_VERSION = 2;
 
-    public Vector3 CenterOfMassPosition;
-
     /// <summary>
     ///   Allows direct physics state control. <see cref="VelocitiesApplied"/> need to be false for this to apply.
     ///   Only applies on body creation unless also <see cref="ManualPhysicsControl"/> component exists on the

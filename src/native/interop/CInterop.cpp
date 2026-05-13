@@ -673,6 +673,13 @@ float ShapeGetMass(PhysicsShape* shape)
     return reinterpret_cast<Thrive::Physics::ShapeWrapper*>(shape)->GetShape()->GetMassProperties().mMass;
 }
 
+JVecF3 ShapeGetCenterOfMass(PhysicsShape* shape)
+{
+    const auto centerOfMass = reinterpret_cast<Thrive::Physics::ShapeWrapper*>(shape)->GetShape()->GetCenterOfMass();
+
+    return Thrive::Vec3ToCAPI(centerOfMass);
+}
+
 uint32_t ShapeGetSubShapeIndex(PhysicsShape* shape, uint32_t subShapeData)
 {
     JPH::SubShapeID unusedRemainder;
