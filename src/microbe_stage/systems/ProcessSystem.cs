@@ -700,7 +700,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
             var availableRate = inputCompound == Compound.Temperature ?
                 CalculateTemperatureEffect(availableInEnvironment) :
-                availableInEnvironment / (input.Value * speedModifier);
+                availableInEnvironment / speedModifier;
 
             result.AvailableAmounts[inputCompound] = availableInEnvironment;
 
@@ -1177,7 +1177,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
             // do environmental modifier here, and save it for later
             environmentModifier *= inputCompound == Compound.Temperature ?
                 CalculateTemperatureEffect(ambient) :
-                ambient / (entry.Value * overallSpeedModifier);
+                ambient / overallSpeedModifier;
 
             if (environmentModifier <= MathUtils.EPSILON)
                 currentProcessStatistics?.AddLimitingFactor(inputCompound);
