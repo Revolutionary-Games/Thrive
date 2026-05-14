@@ -1441,7 +1441,7 @@ public static class Constants
     public const int AUTO_EVO_MAX_MUTATION_RECURSIONS = 3;
 
     public const int AUTO_EVO_ORGANELLE_ADD_ATTEMPTS = 15;
-    public const int AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS = 15;
+    public const int AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS = 10;
     public const int AUTO_EVO_ORGANELLE_UPGRADE_ATTEMPTS = 5;
 
     /// <summary>
