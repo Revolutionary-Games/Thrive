@@ -755,17 +755,17 @@ public static class MicrobeColonyHelpers
                 continue;
             }
 
-            var newParent = FindSuitableReParentTarget(ref colony, next);
-            if (newParent != Entity.Null)
+            var newParent = CalculateSensibleReParentIndex(ref colony, ref next.Get<AttachedToEntity>(), ref next);
+            if (newParent != -1)
             {
-                colony.ColonyStructure[next] = newParent;
+                colony.ColonyStructure[next] = colony.ColonyMembers[newParent];
                 next.Get<IntercellularMatrix>().RemoveConnection();
                 continue;
             }
 
             // This might stackoverflow if we have absolute, hugely nested cell colonies, but there would probably
-            // need to be colonies with thousands of cells, which would already choke the game so that isn't much of a
-            // concern
+            // need to be colonies with thousands of cells, which would already choke the game so that isn't much
+            // of a concern
             if (!colony.RemoveFromColonyAndDisbandIfEmpty(colonyEntity, next, recorder))
             {
                 // Colony is entirely disbanded, doesn't make sense to continue removing things
@@ -1147,6 +1147,72 @@ public static class MicrobeColonyHelpers
         return bestParentIndex;
     }
 
+    /// <summary>
+    ///   Finds a good cell to reparent <paramref name="forCell"/> to; avoids its descendants.
+    ///   Also avoids cells that are too far.
+    /// </summary>
+    /// <returns>
+    ///   An index if there is a suitable parent, -1 otherwise.
+    /// </returns>
+    public static int CalculateSensibleReParentIndex(this ref MicrobeColony colony,
+        ref AttachedToEntity attachedPosition, ref Entity forCell)
+    {
+        float bestDistance = float.MaxValue;
+        int bestParentIndex = -1;
+        Entity bestParentEntity = Entity.Null;
+
+        float radius = forCell.Get<CellProperties>().Radius;
+
+        var members = colony.ColonyMembers;
+
+        for (int i = 0; i < members.Length; ++i)
+        {
+            var cell = members[i];
+
+            if (cell == forCell)
+                continue;
+
+            float distance;
+            if (i == 0)
+            {
+                // Colony leader has no attached to component
+                distance = attachedPosition.RelativePosition.LengthSquared();
+            }
+            else
+            {
+                distance = cell.Get<AttachedToEntity>().RelativePosition
+                    .DistanceSquaredTo(attachedPosition.RelativePosition);
+            }
+
+            if (distance < bestDistance)
+            {
+                // An arbitrary condition, feel free to change
+                float maxDistanceSquared = MathUtils.Square((radius + cell.Get<CellProperties>().Radius) * 3.0f);
+                if (distance > maxDistanceSquared)
+                    continue;
+
+                // Go up the member's parent tree to see if it's a descendant of forCell
+                // If bestParentEntity is reached, then this one is safe too (bestParentEntity was already checked)
+                Entity current = cell;
+                while (current != colony.Leader && current != forCell && current != bestParentEntity)
+                {
+                    current = colony.ColonyStructure[current];
+                }
+
+                if (current == forCell)
+                {
+                    // members[i] is a descendant of forCell and can't be its parent
+                    continue;
+                }
+
+                bestDistance = distance;
+                bestParentIndex = i;
+            }
+        }
+
+        return bestParentIndex;
+    }
+
     public static void DebugCheckColonyHasNoDeadEntities(this ref MicrobeColony colony)
     {
         foreach (var colonyMember in colony.ColonyMembers)
@@ -1517,50 +1583,6 @@ public static class MicrobeColonyHelpers
         }
 
         colony.ColonyMembers = newMembers;
-    }
-
-    /// <summary>
-    ///   Re-parents the cell to the closest alive colony member, or returns <see cref="Entity.Null"/> if no suitable
-    ///   cell exists or is close enough.
-    /// </summary>
-    private static Entity FindSuitableReParentTarget(ref MicrobeColony colony, in Entity cell)
-    {
-        Vector3 relativePosition = cell.Get<AttachedToEntity>().RelativePosition;
-
-        Entity bestParent = Entity.Null;
-        float bestDistanceSquared = float.MaxValue;
-
-        float radius = cell.Get<CellProperties>().Radius;
-
-        foreach (var member in colony.ColonyMembers)
-        {
-            if (member == cell)
-                continue;
-
-            // Skip if it's connected to our cell
-            if (colony.ColonyStructure.ContainsKey(member) && colony.ColonyStructure[member] == cell)
-                continue;
-
-            Vector3 memberRelativePosition = Vector3.Zero;
-
-            if (member != colony.Leader)
-            {
-                memberRelativePosition = member.Get<AttachedToEntity>().RelativePosition;
-            }
-
-            // Totally arbitrary
-            float maxDistanceSquared = MathUtils.Square((radius + member.Get<CellProperties>().Radius) * 3.0f);
-
-            float distanceSquared = relativePosition.DistanceSquaredTo(memberRelativePosition);
-
-            if (distanceSquared < bestDistanceSquared && distanceSquared <= maxDistanceSquared)
-            {
-                bestDistanceSquared = distanceSquared;
-                bestParent = member;
-            }
-        }
-
-        return bestParent;
     }
 
     private static void MarkMembersChanged(this ref MicrobeColony colony)
