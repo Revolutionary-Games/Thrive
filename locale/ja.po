@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-29 22:42+0200\n"
+"POT-Creation-Date: 2026-05-13 11:47+0200\n"
 "PO-Revision-Date: 2025-11-14 11:00+0000\n"
 "Last-Translator: Sur3 <sur3@gmx.de>\n"
 "Language-Team: Japanese <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ja/>\n"
@@ -586,6 +586,10 @@ msgstr "閲覧"
 
 msgid "BROWSE_WORKSHOP"
 msgstr "ワークショップを閲覧"
+
+#, fuzzy
+msgid "BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "（AI生物が突然変異する速度）"
 
 msgid "BUILD_CITY"
 msgstr "都市を建設"
@@ -1658,6 +1662,9 @@ msgstr ""
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr ""
 
+msgid "DIFFICULTY_PRESET_VERY_EASY"
+msgstr ""
+
 msgid "DIGESTION_EFFICIENCY"
 msgstr ""
 
@@ -2101,6 +2108,9 @@ msgstr ""
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr ""
 
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE_JUKEBOX"
+msgstr ""
+
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr ""
 
@@ -2441,6 +2451,18 @@ msgstr ""
 msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
 msgstr "（AI生物が突然変異する速度）"
 
+#, fuzzy
+msgid "GERMINATE_SPORE"
+msgstr ""
+"細胞の回転速度。大きな細胞ほど回転は遅くなりますが、線毛を追加することで補えます。\n"
+"細胞小器官の配置も回転に影響し、中心から遠いほど回転速度は低下します。"
+
+#, fuzzy
+msgid "GERMINATE_SPORE_ACTION_TOOLTIP"
+msgstr ""
+"細胞の回転速度。大きな細胞ほど回転は遅くなりますが、線毛を追加することで補えます。\n"
+"細胞小器官の配置も回転に影響し、中心から遠いほど回転速度は低下します。"
+
 msgid "GITHUB_TOOLTIP"
 msgstr ""
 
@@ -2711,6 +2733,12 @@ msgid "INFO_BOX_REQUIRES_NUCLEUS"
 msgstr ""
 
 msgid "INFO_BOX_SIZE"
+msgstr ""
+
+msgid "INFO_BOX_SIZE_PLAIN"
+msgstr ""
+
+msgid "INFO_BOX_STAGE"
 msgstr ""
 
 msgid "INFO_BOX_STORAGE"
@@ -3625,6 +3653,10 @@ msgstr ""
 msgid "MICROBE_LOADING_TIP_22"
 msgstr ""
 
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_23"
+msgstr "多細胞ステージに到達"
+
 msgid "MICROBE_LOADING_TIP_3"
 msgstr ""
 
@@ -4014,6 +4046,30 @@ msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr ""
 
 #, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_2"
+msgstr "多細胞ステージに到達"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_3"
+msgstr "多細胞ステージに到達"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_4"
+msgstr "多細胞ステージに到達"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_5"
+msgstr "多細胞ステージに到達"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_6"
+msgstr "多細胞ステージに到達"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_7"
+msgstr "多細胞ステージに到達"
+
+#, fuzzy
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "全てのチュートリアルが再び表示されます。このオプションをオフにすると、まだ表示されていないチュートリアルだけが表示されます。初めてのプレイでもオフにして問題ありません。"
 
@@ -4292,6 +4348,10 @@ msgstr ""
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr ""
 
+#, fuzzy
+msgid "OPEN_EVOLUTIONARY_TREE"
+msgstr "Revolutionary Games Studio 作"
+
 msgid "OPEN_FOLDER"
 msgstr ""
 
@@ -4487,6 +4547,9 @@ msgstr ""
 msgid "PAGE_FORWARD"
 msgstr ""
 
+msgid "PAGE_PINNED"
+msgstr ""
+
 msgid "PAGE_TITLE"
 msgstr ""
 
@@ -4616,6 +4679,10 @@ msgstr ""
 
 msgid "PHYSICAL_RESISTANCE"
 msgstr ""
+
+#, fuzzy
+msgid "PIN_BUTTON_TOOLTIP"
+msgstr "キー割り当てを追加"
 
 msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
 msgstr ""
@@ -4901,6 +4968,10 @@ msgstr ""
 
 msgid "REPRODUCTION_METHOD"
 msgstr ""
+
+#, fuzzy
+msgid "REPRODUCTION_SPORE"
+msgstr "{0} 消費量"
 
 msgid "REQUIRES_NUCLEUS"
 msgstr ""
@@ -5510,6 +5581,14 @@ msgstr ""
 msgid "SPEED_COLON"
 msgstr ""
 
+#, fuzzy
+msgid "SPORE_CELL_TYPE"
+msgstr "細胞タイプ名"
+
+#, fuzzy
+msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "現在の微生物がこの環境で生き残るのに適していない場合、前回エディターにいた時点に戻って別のアプローチを試すことができます。"
+
 msgid "SPREAD_TO_PATCHES"
 msgstr ""
 
@@ -5859,6 +5938,9 @@ msgstr ""
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr ""
 
+msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
+msgstr ""
+
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr ""
 
@@ -5871,7 +5953,31 @@ msgstr ""
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
+msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
+msgstr ""
+
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
+msgstr ""
+
+msgid "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
+msgstr ""
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE"
+msgstr ""
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
+msgstr ""
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
+msgstr ""
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
+msgstr ""
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
+msgstr ""
+
+msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
 msgstr ""
 
 msgid "THRIVE_LICENSES"

@@ -873,6 +873,8 @@ public static class Constants
     /// </summary>
     public const float MULTICELLULAR_REPRODUCTION_COMPOUND_MULTIPLIER = 2;
 
+    public const float MULTICELLULAR_REPRODUCTION_COMPOUND_FROM_EACH_EXTRA_CELL = 0.9f;
+
     /// <summary>
     ///   A multiplier for <see cref="MICROBE_REPRODUCTION_MAX_COMPOUND_USE"/> for multicellular microbes
     /// </summary>
@@ -885,7 +887,17 @@ public static class Constants
 
     public const float MICROBE_REPRODUCTION_COST_BASE_PHOSPHATES = 16;
 
-    public const float MULTICELLULAR_BASE_REPRODUCTION_COST_MULTIPLIER = 1.3f;
+    /// <summary>
+    ///   This is a base cost taken after the full colony has grown. So this can be increased to lengthen the time the
+    ///   player plays as a full colony.
+    /// </summary>
+    public const float MULTICELLULAR_BASE_REPRODUCTION_COST_MULTIPLIER = 1.6f;
+
+    /// <summary>
+    ///   This modifies <see cref="MULTICELLULAR_BASE_REPRODUCTION_COST_MULTIPLIER"/> per cell. So each cost gets extra
+    ///   multiplier on top <c>(cell count * this value) * cost</c>.
+    /// </summary>
+    public const float MULTICELLULAR_BASE_REPRODUCTION_COST_MULTIPLIER_PER_CELL = 0.08f;
 
     /// <summary>
     ///   Determines how big of a fraction of damage (of total health)
@@ -1102,8 +1114,6 @@ public static class Constants
 
     public const float PILUS_PHYSICS_SIZE = 4.6f;
 
-    public const float BACTERIA_PILUS_ATTACH_ADJUSTMENT_MULTIPLIER = 0.575f;
-
     /// <summary>
     ///   Damage a single injectisome stab does
     /// </summary>
@@ -1182,6 +1192,10 @@ public static class Constants
     public const int ORGANELLE_CHEAPEST_COST = 20;
 
     public const int CELL_REMOVE_COST = 5;
+
+    public const int MULTICELLULAR_REPRODUCTION_METHOD_CHANGE_COST = 50;
+
+    public const int SPORE_CELL_TYPE_CHANGE_COST = 10;
 
     public const string ORGANELLE_UPGRADE_SPECIAL_NONE = "none";
 
@@ -2038,6 +2052,11 @@ public static class Constants
 
     public const float TOLERANCE_INITIAL_PRESSURE_RANGE = 2400000;
     public const float TOLERANCE_PRESSURE_RANGE_MAX = 2000000;
+
+    // These values must be the same as in the editor
+    public const float TOLERANCE_OXYGEN_RANGE_MAX = 0.1f;
+    public const float TOLERANCE_OXYGEN_STEP = 0.01f;
+    public const float TOLERANCE_UV_STEP = 0.05f;
 
     /// <summary>
     ///   UV effects only appear once this amount of UV is in a patch

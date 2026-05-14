@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-29 22:42+0200\n"
-"PO-Revision-Date: 2026-04-26 18:02+0000\n"
+"POT-Creation-Date: 2026-05-13 11:47+0200\n"
+"PO-Revision-Date: 2026-05-13 10:26+0000\n"
 "Last-Translator: 归灵祈昱 <guilingqiyu@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -506,7 +506,7 @@ msgid "BELOW_SEA_LEVEL"
 msgstr "在海平面下方{0}-{1}米处"
 
 msgid "BENCHMARKS"
-msgstr "载入"
+msgstr "基准测试"
 
 msgid "BENCHMARK_FINISHED"
 msgstr "基准测试完成"
@@ -582,6 +582,9 @@ msgstr "浏览"
 
 msgid "BROWSE_WORKSHOP"
 msgstr "浏览创意工坊"
+
+msgid "BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "产生单个后代——新群落的根细胞。"
 
 msgid "BUILD_CITY"
 msgstr "建造城市"
@@ -703,6 +706,7 @@ msgstr "纤维素"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "这个细胞膜额外配置了一层细胞壁，各方面都有更好的防御力，尤其是物防。同时也不需要多少能量来维持形状，但吸收营养和移动的速度都很慢。[b]纤维素酶可以消化这层墙[/b]，使其容易被捕食者吞噬。"
 
+#, fuzzy
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
 msgstr ""
 "在多细胞阶段，此面板显示了所有细胞的平均特化加成。\n"
@@ -710,6 +714,7 @@ msgstr ""
 "特化程度最高的类型为 {3}，其加成达到了 {2}%。\n"
 "若您想提升此数值，请提高细胞类型的特化程度，或增加特化程度最高的细胞数量。"
 
+#, fuzzy
 msgid "CELL_SPECIALIZATION_TOOLTIP"
 msgstr ""
 "将细胞特化为使用更少种类的细胞器，可为所有生物代谢过程提供速度加成。\n"
@@ -1711,6 +1716,9 @@ msgstr "困难"
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "一般"
 
+msgid "DIFFICULTY_PRESET_VERY_EASY"
+msgstr "非常简单"
+
 msgid "DIGESTION_EFFICIENCY"
 msgstr "消化效率"
 
@@ -1833,7 +1841,7 @@ msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
 msgstr "双击可全屏查看"
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
-msgstr "有两层的细胞膜，对伤害有更好的防护能力，也不需要花费那么多能量避免变形。不管怎样，它也会减缓细胞的移动速度，并降低其吸收营养的速率。"
+msgstr "有两层的细胞膜，对伤害有更高抗性，尤其毒性伤害。然而，它也会减缓细胞的移动速度，并降低其吸收营养的速率。"
 
 msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
 msgstr "在正常与倍速的游戏速度之间切换"
@@ -2218,6 +2226,9 @@ msgstr "这是编译此版本 Thrive 的确切 Commit"
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr "处理载入的对象时发生异常"
 
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE_JUKEBOX"
+msgstr "在处理唱片机状态时发生了异常"
+
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "加载存档数据时发生异常"
 
@@ -2566,6 +2577,12 @@ msgstr "休眠"
 msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
 msgstr "（影响诸如陨石撞击和火山喷发等事件的发生频率和严重程度）"
 
+msgid "GERMINATE_SPORE"
+msgstr "萌发孢子"
+
+msgid "GERMINATE_SPORE_ACTION_TOOLTIP"
+msgstr "萌发孢子至群落"
+
 msgid "GITHUB_TOOLTIP"
 msgstr "访问我们在GitHub上的代码仓库"
 
@@ -2784,13 +2801,11 @@ msgstr "忽略其他错误"
 msgid "IMAGE_FILE_TYPES"
 msgstr "支持的图片文件"
 
-#, fuzzy
 msgid "INCOMPATIBLE_MEMBRANE_LIST"
-msgstr "[b]细胞膜数据：[/b]"
+msgstr "与以下细胞膜不兼容：{0}"
 
-#, fuzzy
 msgid "INCOMPATIBLE_ORGANELLE_LIST"
-msgstr "多个细胞器"
+msgstr "与以下放置的细胞器不兼容：{0}"
 
 msgid "INCREASE_ITEM_SIZE"
 msgstr "放大物体"
@@ -2845,6 +2860,12 @@ msgstr "需要细胞核"
 
 msgid "INFO_BOX_SIZE"
 msgstr "大小（六边形数量）"
+
+msgid "INFO_BOX_SIZE_PLAIN"
+msgstr "大小"
+
+msgid "INFO_BOX_STAGE"
+msgstr "阶段"
 
 msgid "INFO_BOX_STORAGE"
 msgstr "储存空间"
@@ -3729,7 +3750,7 @@ msgid "MICROBES_COUNT"
 msgstr "微生物计数："
 
 msgid "MICROBE_BENCHMARK"
-msgstr "微生物编辑器"
+msgstr "微生物性能基准测试"
 
 msgid "MICROBE_CAMERA_TILT_EFFECT"
 msgstr "微生物镜头倾角"
@@ -3790,6 +3811,10 @@ msgstr "化学质体或化能合成蛋白能够将 [thrive:compound type=\"hydro
 
 msgid "MICROBE_LOADING_TIP_22"
 msgstr "每次进入微生物阶段的编辑器，代表了 [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] 百万年的进化历程。"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_23"
+msgstr "鞭毛越多（或越长），移动速度就越快——如搅拌机那样“日～”的一声！不过这也会消耗更多 ATP。"
 
 msgid "MICROBE_LOADING_TIP_3"
 msgstr "您可以吞噬漂浮的物质碎块，比如死亡细胞的残骸或矿物质。"
@@ -4247,6 +4272,24 @@ msgstr "多细胞生物自由编辑器"
 msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "虽然细胞之间会共享化合物，但每个细胞都需要自行产生 [thrive:compound type=\"atp\"][/thrive:compound]。任何耗尽这种它的细胞都会死亡。"
 
+msgid "MULTICELLULAR_LOADING_TIP_2"
+msgstr "多细胞阶段的主要机制是为执行不同的任务创造特化的细胞。"
+
+msgid "MULTICELLULAR_LOADING_TIP_3"
+msgstr "尽管群落中的细胞更难被吞噬，但它们仍有被吃掉的可能，所以要小心大型真核生物。"
+
+msgid "MULTICELLULAR_LOADING_TIP_4"
+msgstr "在躯体设计过程中，细胞的位置很重要。当相同类型的细胞相邻放置时，会得到更高的特化加成。"
+
+msgid "MULTICELLULAR_LOADING_TIP_5"
+msgstr "群落中的所有细胞都需要自行产生[thrive:compound type=\"atp\"][/thrive:compound]，但是其他一些不必要的部分可以移除，从而创造高度特化的细胞来获取主要的特化加成。"
+
+msgid "MULTICELLULAR_LOADING_TIP_6"
+msgstr "你可以控制躯体设计中细胞们的生长顺序，以优化幼年期的生存。不同的繁殖方式也会对幼年阶段产生影响。"
+
+msgid "MULTICELLULAR_LOADING_TIP_7"
+msgstr "多细胞生物中的特化细胞是进化出真正器官的第一步。最初的同类细胞群最终将演变成组织。"
+
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "该面板显示了您的群落的综合代谢过程，即所有细胞的代谢总和。请注意，与其他化合物不同，ATP 无法在细胞间共享。"
 
@@ -4371,18 +4414,17 @@ msgstr "固氮酶是一种能用ATP和氮来产出氨的蛋白质，氨对细胞
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound type=\"ammonia\"][/thrive:compound]。速率跟[thrive:compound type=\"nitrogen\"][/thrive:compound]浓度成正比。"
 
-#, fuzzy
 msgid "NITROGEN_FIXATION"
-msgstr "好氧固氮"
+msgstr "固氮作用"
 
 msgid "NITROPLAST"
 msgstr "硝化体"
 
 msgid "NITROPLAST_DESCRIPTION"
-msgstr "硝化体是一种具膜细胞器，可利用气态[thrive:compound type=\"nitrogen\"][/thrive:compound], [thrive:compound type=\"oxygen\"][/thrive:compound]和[thrive:compound type=\"atp\"][/thrive:compound]合成[thrive:compound type=\"ammonia\"][/thrive:compound]，是细胞生长的重要营养物质。该过程称为[b]好氧固氮[/b]。"
+msgstr "硝化体是一种膜结合细胞器，能够利用气态的 [thrive:compound type=\"nitrogen\"][/thrive:compound] 与 [thrive:compound type=\"atp\"][/thrive:compound] 来生成 [thrive:compound type=\"ammonia\"][/thrive:compound]，一种细胞生长的关键营养物质。这一过程被称为[b]固氮作用[/b]。"
 
 msgid "NITROPLAST_PROCESSES_DESCRIPTION"
-msgstr "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound type=\"ammonia\"][/thrive:compound]。速率跟[thrive:compound type=\"nitrogen\"][/thrive:compound]与[thrive:compound type=\"oxygen\"][/thrive:compound]浓度成正比。"
+msgstr "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound type=\"ammonia\"][/thrive:compound]。速率跟[thrive:compound type=\"nitrogen\"][/thrive:compound]的浓度成正比。"
 
 msgid "NONE"
 msgstr "无"
@@ -4539,6 +4581,9 @@ msgstr "OpenGL模式警告"
 
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr "您正在使用 OpenGL 运行 Thrive。这是完全未经测试的，很可能会导致问题。请确保您使用了足够新的 GPU 或集成显卡，并尝试更新视频驱动程序。对于笔记本电脑，您可能需要强制使用专用的 AMD 或 Nvidia 显卡来运行 Thrive，而不是集成显卡。"
+
+msgid "OPEN_EVOLUTIONARY_TREE"
+msgstr "打开进化树"
 
 msgid "OPEN_FOLDER"
 msgstr "打开文件夹"
@@ -4746,6 +4791,9 @@ msgstr "转到上一页"
 msgid "PAGE_FORWARD"
 msgstr "转到下一页"
 
+msgid "PAGE_PINNED"
+msgstr "已固定"
+
 msgid "PAGE_TITLE"
 msgstr "页面标题"
 
@@ -4877,8 +4925,11 @@ msgstr "物理条件"
 msgid "PHYSICAL_RESISTANCE"
 msgstr "物防"
 
+msgid "PIN_BUTTON_TOOLTIP"
+msgstr "固定此页面，以免在切换至其他页面时被删除"
+
 msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
-msgstr ""
+msgstr "无法放置，因为当前的细胞膜与该细胞器不兼容"
 
 msgid "PLACE_ORGANELLE"
 msgstr "放置细胞器"
@@ -5169,6 +5220,9 @@ msgstr ""
 
 msgid "REPRODUCTION_METHOD"
 msgstr "繁殖："
+
+msgid "REPRODUCTION_SPORE"
+msgstr "孢子形成"
 
 msgid "REQUIRES_NUCLEUS"
 msgstr "需要细胞核"
@@ -5809,6 +5863,12 @@ msgstr "速度"
 msgid "SPEED_COLON"
 msgstr "速度："
 
+msgid "SPORE_CELL_TYPE"
+msgstr "孢子细胞类型"
+
+msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "产生多个可选特化的后代，它们在转化为群落根细胞之前，能够寻找更好的环境。"
+
 msgid "SPREAD_TO_PATCHES"
 msgstr "传播到的地区："
 
@@ -6169,6 +6229,9 @@ msgstr "目前世界"
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr "树状进化图"
 
+msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
+msgstr "该物种已灭绝，不再存在于这个世界上。因此，其详细信息已无从考证。该物种的 ID 为 {0}。"
+
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr "打开Thrive百科"
 
@@ -6190,8 +6253,35 @@ msgstr "主页"
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "博物馆"
 
+msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
+msgstr "灭绝物种 {0}"
+
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr "地区图"
+
+msgid "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
+msgstr "目前，上方的按钮仅会打开整个演化树，而不会自动定位到该特定物种。此功能可能会在未来加入。"
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE"
+msgstr "{0}"
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
+msgstr "这一页列出了世上现存的物种。"
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
+msgstr ""
+"{0} 是存在于这个世界上的一个物种。其当前种群数量为 {1}，分布于 {2} 个区域。它位于 {3}。\n"
+"\n"
+"请注意，除非固定此页面，否则在切换至其他页面时该页面将会消失。如果您觉得该物种很有趣并希望日后查阅，请固定此页面。"
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
+msgstr "目前尚未固定任何物种，因此这里没有列出任何页面。您可以在游戏的其他地方点击某个物种进入其页面，然后将其固定。固定后，该页面便会显示在这里。"
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
+msgstr "固定的物种"
+
+msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
+msgstr "物种"
 
 msgid "THRIVE_LICENSES"
 msgstr "Thrive的许可证书"
@@ -8693,7 +8783,7 @@ msgstr "无效果。"
 
 msgid "WIKI_NITROGENASE_INTRO"
 msgstr ""
-"进行[b]厌氧固氮[/b]，消耗气态 [thrive:compound type=\"nitrogen\"][/thrive:compound] 和 [thrive:compound type=\"atp\"][/thrive:compound] 产生 [thrive:compound type=\"ammonia\"][/thrive:compound]，从而生成细胞繁殖生长所需的成分之一。效率低于真核生物的[b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]硝化体[/url][/color][/b]。\n"
+"进行[b]固氮作用[/b]，消耗气态 [thrive:compound type=\"nitrogen\"][/thrive:compound] 和 [thrive:compound type=\"atp\"][/thrive:compound] 产生 [thrive:compound type=\"ammonia\"][/thrive:compound]，从而生成细胞繁殖生长所需的成分之一。效率低于真核生物的[b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]硝化体[/url][/color][/b]。\n"
 "\n"
 "同时也进行部分[b]糖酵解[/b]，利用 [thrive:compound type=\"glucose\"][/thrive:compound] 产生 [thrive:compound type=\"atp\"][/thrive:compound]。"
 
@@ -8732,16 +8822,16 @@ msgid "WIKI_NITROPLAST_EFFECTS"
 msgstr "无效果。"
 
 msgid "WIKI_NITROPLAST_INTRO"
-msgstr "硝化质体是一种具膜细胞器，用于产生 [thrive:compound type=\"ammonia\"][/thrive:compound]，氨是细胞繁殖生长所需的原料之一。该细胞器通过进行 [b]厌氧固氮[/b]，将气态 [thrive:compound type=\"nitrogen\"][/thrive:compound]与 [thrive:compound type=\"atp\"][/thrive:compound]转化为 [thrive:compound type=\"ammonia\"][/thrive:compound]。其效率高于原核生物的 [b][color=#3796e1][url=thriveopedia:nitrogenase]固氮酶[/url][/color][/b]。"
+msgstr "硝化质体是一种具膜细胞器，用于产生 [thrive:compound type=\"ammonia\"][/thrive:compound]，氨是细胞繁殖生长所需的原料之一。该细胞器通过进行 [b]固氮作用[/b]，将气态 [thrive:compound type=\"nitrogen\"][/thrive:compound]与 [thrive:compound type=\"atp\"][/thrive:compound]转化为 [thrive:compound type=\"ammonia\"][/thrive:compound]。其效率高于原核生物的 [b][color=#3796e1][url=thriveopedia:nitrogenase]固氮酶[/url][/color][/b]。"
 
 msgid "WIKI_NITROPLAST_MODIFICATIONS"
 msgstr "无修改。"
 
 msgid "WIKI_NITROPLAST_PROCESSES"
 msgstr ""
-"[b]有氧固氮[/b]\n"
+"[b]固氮作用[/b]\n"
 "\n"
-"透过消耗能量将大气中的[thrive:compound type=\"nitrogen\"][/thrive:compound] 转化为[thrive:compound type=\"ammonia\"][/thrive:compound]。 速率与环境中[thrive:compound type=\"nitrogen\"][/thrive:compound] 和[thrive:compound type=\"oxygen\"][/thrive:compound] 的量成正比。 效率高于[b][color=#3796e1][url=thriveopedia:nitrogenase]固氮酶[/url][/color][/b]中的同种代谢。"
+"透过消耗能量将大气中的[thrive:compound type=\"nitrogen\"][/thrive:compound] 转化为[thrive:compound type=\"ammonia\"][/thrive:compound]。 速率与环境中[thrive:compound type=\"nitrogen\"][/thrive:compound] 的量成正比。 效率高于[b][color=#3796e1][url=thriveopedia:nitrogenase]固氮酶[/url][/color][/b]中的同种代谢。"
 
 msgid "WIKI_NITROPLAST_REQUIREMENTS"
 msgstr "细胞必须有[b][color=#3796e1][url=thriveopedia:nucleus]细胞核[/url][/color][/b]才能演化出[b]硝化体[/b]。"
@@ -9803,9 +9893,6 @@ msgstr "缩小"
 
 #~ msgid "PLANET_GENERATION_TEASER"
 #~ msgstr "行星生成即将发布！"
-
-#~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
-#~ msgstr "（从周围的环境中被动获得的用于繁殖的化合物）"
 
 #~ msgid "TO_BE_IMPLEMENTED"
 #~ msgstr "仍在开发中。"

@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-29 22:42+0200\n"
-"PO-Revision-Date: 2026-04-22 18:35+0000\n"
-"Last-Translator: zynskeywolf <istvanszabo314@protonmail.com>\n"
+"POT-Creation-Date: 2026-05-13 11:47+0200\n"
+"PO-Revision-Date: 2026-05-13 03:55+0000\n"
+"Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
@@ -590,6 +590,10 @@ msgstr "Böngészés"
 
 msgid "BROWSE_WORKSHOP"
 msgstr "A műhely böngészése"
+
+#, fuzzy
+msgid "BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
 
 msgid "BUILD_CITY"
 msgstr "Város építése"
@@ -1780,6 +1784,10 @@ msgstr "Nehéz"
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "Közepes"
 
+#, fuzzy
+msgid "DIFFICULTY_PRESET_VERY_EASY"
+msgstr "Könnyű"
+
 msgid "DIGESTION_EFFICIENCY"
 msgstr "Emésztés hatékonysága"
 
@@ -1915,6 +1923,7 @@ msgstr "Dupla"
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
 msgstr "Dupla kattintás a teljes képernyő nézetért"
 
+#, fuzzy
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Egy membrán, ami két rétegből áll. Jobb védelmet nyújt sérülések ellen, és kevesebb energia szükséges ahhoz, hogy ne deformálódjon el. Hátránya viszont, hogy lassítja a sejt bekebelező képességét."
 
@@ -2333,6 +2342,10 @@ msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Öngyilkosság"
 
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
+msgstr "Kivétel történt a betöltött objektumok feldolgozása során"
+
+#, fuzzy
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE_JUKEBOX"
 msgstr "Kivétel történt a betöltött objektumok feldolgozása során"
 
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
@@ -2759,6 +2772,14 @@ msgstr ""
 "A rögzült sejtek inkább egy helyben maradva várnak a környezet változásaira, mielőtt cselekednek."
 
 #, fuzzy
+msgid "GERMINATE_SPORE"
+msgstr "Játék szüneteltetése"
+
+#, fuzzy
+msgid "GERMINATE_SPORE_ACTION_TOOLTIP"
+msgstr "Játék szüneteltetése"
+
+#, fuzzy
 msgid "GITHUB_TOOLTIP"
 msgstr "Kilépés a játékból"
 
@@ -3061,6 +3082,14 @@ msgstr "Sejtmag"
 
 msgid "INFO_BOX_SIZE"
 msgstr "Méret (Hexák)"
+
+#, fuzzy
+msgid "INFO_BOX_SIZE_PLAIN"
+msgstr "Méret (Hexák)"
+
+#, fuzzy
+msgid "INFO_BOX_STAGE"
+msgstr "Tárhely"
 
 msgid "INFO_BOX_STORAGE"
 msgstr "Tárhely"
@@ -4116,6 +4145,10 @@ msgid "MICROBE_LOADING_TIP_22"
 msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy véletlen elkövetett hibát"
 
 #, fuzzy
+msgid "MICROBE_LOADING_TIP_23"
+msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy véletlen elkövetett hibát"
+
+#, fuzzy
 msgid "MICROBE_LOADING_TIP_3"
 msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy véletlen elkövetett hibát"
 
@@ -4640,6 +4673,30 @@ msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Többsejtes szerkesztő"
 
 #, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_2"
+msgstr "Többsejtes szerkesztő"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_3"
+msgstr "Többsejtes szerkesztő"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_4"
+msgstr "Többsejtes szerkesztő"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_5"
+msgstr "Többsejtes szerkesztő"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_6"
+msgstr "Többsejtes szerkesztő"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_7"
+msgstr "Többsejtes szerkesztő"
+
+#, fuzzy
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "(egyes opciók lehet, hogy elérhetetlenek lesznek a többi fázis elértével)"
 
@@ -4777,9 +4834,11 @@ msgstr "Aerob nitrogénkötés"
 msgid "NITROPLAST"
 msgstr "Nitrifikáló színtest"
 
+#, fuzzy
 msgid "NITROPLAST_DESCRIPTION"
 msgstr "A Nitroplasztisz egy sejtmembránnal rendelkező sejtszervecske, amely gáznemű [thrive:compound type=\"nitrogen\"][/thrive:compound] és [thrive:compound type=\"oxygen\"][/thrive:compound], illetve [thrive:compound type=\"atp\"][/thrive:compound] felhasználásával képes [thrive:compound type=\"ammonia\"][/thrive:compound] előállítására, amely a sejtnövekedés kulcsfontosságú tápanyaga. Ezt a folyamatot [b]aerob nitrogénmegkötésnek[/b] nevezzük."
 
+#, fuzzy
 msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"ammonia\"][/thrive:compound]-vá. Hatékonysága függ a [thrive:compound type=\"nitrogen\"][/thrive:compound] és az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától."
 
@@ -4954,6 +5013,10 @@ msgstr "GLES2 mód figyelmeztetés"
 #, fuzzy
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr "A Thrive-ot GLES2 módban futtatod. Ennek a módnak a használata nincs letesztelve, és nagy eséllyel hibákat okozhat. Próbáld meg frissíteni a videókártyád driverét vagy/és kényszerítsd az AMD vagy Nvidia grafikai szoftverét a Thrive futtatására."
+
+#, fuzzy
+msgid "OPEN_EVOLUTIONARY_TREE"
+msgstr "A Revolutionary Games Studio-tól"
 
 msgid "OPEN_FOLDER"
 msgstr "Mappa megnyitása"
@@ -5189,6 +5252,10 @@ msgid "PAGE_FORWARD"
 msgstr "Előre lapoz"
 
 #, fuzzy
+msgid "PAGE_PINNED"
+msgstr "Helyi adatok törlése"
+
+#, fuzzy
 msgid "PAGE_TITLE"
 msgstr "Helyi adatok törlése"
 
@@ -5328,6 +5395,10 @@ msgstr "Fizikai körülmények"
 
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Fizikai állóképesség"
+
+#, fuzzy
+msgid "PIN_BUTTON_TOOLTIP"
+msgstr "Változtasd meg beállításaidat"
 
 msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
 msgstr ""
@@ -5644,6 +5715,10 @@ msgstr "Reprodukció:"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reprodukció:"
+
+#, fuzzy
+msgid "REPRODUCTION_SPORE"
+msgstr "Reprodukció"
 
 #, fuzzy
 msgid "REQUIRES_NUCLEUS"
@@ -6340,6 +6415,14 @@ msgstr "Sebesség"
 msgid "SPEED_COLON"
 msgstr "Sebesség:"
 
+#, fuzzy
+msgid "SPORE_CELL_TYPE"
+msgstr "Új sejttípus létrehozása"
+
+#, fuzzy
+msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
+
 msgid "SPREAD_TO_PATCHES"
 msgstr "ezen patch-ekben terjed:"
 
@@ -6724,6 +6807,10 @@ msgstr ""
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr "Evolúciós fa"
 
+#, fuzzy
+msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
+msgstr "A Thriveopédia megnyitása"
+
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr "A Thriveopédia megnyitása"
 
@@ -6736,8 +6823,40 @@ msgstr ""
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Múzeum"
 
+#, fuzzy
+msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
+msgstr "Múzeum"
+
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr "Patch térkép"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
+msgstr "Evolúciós fa"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE"
+msgstr "Múzeum"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
+msgstr "Múzeum"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
+msgstr "Múzeum"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
+msgstr "Múzeum"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
+msgstr "Múzeum"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
+msgstr "Múzeum"
 
 msgid "THRIVE_LICENSES"
 msgstr "Thrive licenszek"
@@ -9844,10 +9963,6 @@ msgstr "Távolodás"
 
 #~ msgid "PLANET_GENERATION_TEASER"
 #~ msgstr "Bolygó generálás hamarosan!"
-
-#, fuzzy
-#~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
-#~ msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
 
 #~ msgid "TO_BE_IMPLEMENTED"
 #~ msgstr "Fejlesztés alatt."

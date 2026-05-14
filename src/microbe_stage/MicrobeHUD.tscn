@@ -269,7 +269,7 @@ corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
-[node name="MicrobeHUD" type="Control" unique_id=1404145423 node_paths=PackedStringArray("bindingModeHotkey", "unbindAllHotkey", "siderophoreHotkey", "multicellularButton", "multicellularConfirmPopup", "previousSaveLoadAdvicePopup", "macroscopicButton", "heatAccumulationBar", "mouseHoverPanel", "environmentPanel", "compoundsPanel", "editorButton", "mucocystHotkey", "engulfHotkey", "secreteSlimeHotkey", "ejectEngulfedHotkey", "signalingAgentsHotkey", "atpBar", "healthBar", "atpLabel", "hpLabel", "populationLabel", "hintText", "packControlRadial", "bottomLeftBar", "processPanel", "sprintHotkey", "strainBar", "damageScreenEffect", "hotBar", "fireToxinHotkey", "pausePrompt", "pauseInfo", "hudMessages")]
+[node name="MicrobeHUD" type="Control" unique_id=1404145423 node_paths=PackedStringArray("bindingModeHotkey", "unbindAllHotkey", "siderophoreHotkey", "germinateSporeHotkey", "multicellularButton", "multicellularConfirmPopup", "previousSaveLoadAdvicePopup", "macroscopicButton", "heatAccumulationBar", "mouseHoverPanel", "environmentPanel", "compoundsPanel", "editorButton", "mucocystHotkey", "engulfHotkey", "secreteSlimeHotkey", "ejectEngulfedHotkey", "signalingAgentsHotkey", "atpBar", "healthBar", "atpLabel", "hpLabel", "populationLabel", "hintText", "packControlRadial", "bottomLeftBar", "processPanel", "sprintHotkey", "strainBar", "damageScreenEffect", "hotBar", "fireToxinHotkey", "pausePrompt", "pauseInfo", "hudMessages")]
 process_mode = 3
 process_priority = 4
 layout_mode = 3
@@ -287,6 +287,7 @@ WinBoxScene = ExtResource("53")
 bindingModeHotkey = NodePath("ScrollContainer/HotBar/BindingMode")
 unbindAllHotkey = NodePath("ScrollContainer/HotBar/UnbindAll")
 siderophoreHotkey = NodePath("ScrollContainer/HotBar/Siderophore")
+germinateSporeHotkey = NodePath("ScrollContainer/HotBar/GerminateSpore")
 multicellularButton = NodePath("BottomRight/VBoxContainer/Control/Multicellular")
 multicellularConfirmPopup = NodePath("StagePrototypeConfirm")
 previousSaveLoadAdvicePopup = NodePath("RevertToEditor")
@@ -771,6 +772,16 @@ theme_override_styles/hover = SubResource("1")
 ActionIcon = ExtResource("34_bs2fk")
 ActionName = "g_fire_siderophore"
 
+[node name="GerminateSpore" parent="ScrollContainer/HotBar" unique_id=2014487089 instance=ExtResource("65")]
+visible = false
+layout_mode = 2
+tooltip_text = "GERMINATE_SPORE_ACTION_TOOLTIP"
+theme_override_styles/normal = SubResource("46")
+theme_override_styles/pressed = SubResource("1")
+theme_override_styles/hover = SubResource("1")
+ActionIcon = ExtResource("34_bs2fk")
+ActionName = "g_germinate_spore"
+
 [node name="HintText" type="Label" parent="." unique_id=13979526]
 layout_mode = 1
 anchors_preset = 10
@@ -851,6 +862,7 @@ show_percentage = false
 [connection signal="pressed" from="ScrollContainer/HotBar/Sprint" to="." method="OnSprintPressed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/Mucocyst" to="." method="OnMucocystPressed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/Siderophore" to="." method="OnSiderophorePressed"]
+[connection signal="pressed" from="ScrollContainer/HotBar/GerminateSpore" to="." method="OnGerminateSporePressed"]
 [connection signal="OnItemSelected" from="RadialPopup" to="." method="OnRadialItemSelected"]
 [connection signal="Canceled" from="StagePrototypeConfirm" to="." method="OnBecomeMacroscopicCanceled"]
 [connection signal="Confirmed" from="StagePrototypeConfirm" to="." method="OnBecomeMacroscopicConfirmed"]

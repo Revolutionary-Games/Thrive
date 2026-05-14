@@ -29,6 +29,8 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(WorldPosition))]
 [ReadsComponent(typeof(MicrobeEventCallbacks))]
 [ReadsComponent(typeof(SpeciesMember))]
+[ReadsComponent(typeof(SpecializationFactor))]
+[ReadsComponent(typeof(MicrobeColonyMember))]
 [RunsAfter(typeof(EngulfingSystem))]
 [RuntimeCost(2)]
 public partial class EngulfedDigestionSystem : BaseSystem<World, float>
@@ -100,6 +102,8 @@ public partial class EngulfedDigestionSystem : BaseSystem<World, float>
 
         ref var cellProperties = ref entity.Get<CellProperties>();
         ref var position = ref entity.Get<WorldPosition>();
+
+        var totalSpecializationBonus = entity.Get<SpecializationFactor>().TotalSpecializationBonus;
 
         for (int i = engulfer.EngulfedObjects!.Count - 1; i >= 0; --i)
         {
@@ -240,14 +244,16 @@ public partial class EngulfedDigestionSystem : BaseSystem<World, float>
                     continue;
 
                 var amount =
-                    MicrobeInternalCalculations.CalculateDigestionSpeed(organelles.AvailableEnzymes[usedEnzyme]);
+                    MicrobeInternalCalculations.CalculateDigestionSpeed(organelles.AvailableEnzymes[usedEnzyme],
+                        totalSpecializationBonus);
                 amount *= delta;
 
                 // Efficiency starts from Constants.ENGULF_BASE_COMPOUND_ABSORPTION_YIELD up to
                 // Constants.ENZYME_DIGESTION_EFFICIENCY_MAXIMUM. This means at least 7 lysosomes
                 // are needed to achieve "maximum" efficiency
                 var efficiency =
-                    MicrobeInternalCalculations.CalculateDigestionEfficiency(organelles.AvailableEnzymes[usedEnzyme]);
+                    MicrobeInternalCalculations.CalculateDigestionEfficiency(organelles.AvailableEnzymes[usedEnzyme],
+                        totalSpecializationBonus);
 
                 var taken = MathF.Min(totalAvailable, amount);
 
@@ -291,7 +297,7 @@ public partial class EngulfedDigestionSystem : BaseSystem<World, float>
                 var takenAdjusted = taken * efficiency;
                 var added = compounds.AddCompound(compound, takenAdjusted);
 
-                // Eject excess
+                // Eject excess (we just want to get rid of it, we don't care if the eject failed)
                 cellProperties.SpawnEjectedCompound(ref position, compoundCloudSystem, compound,
                     takenAdjusted - added, Vector3.Back);
             }
@@ -377,6 +383,8 @@ public partial class EngulfedDigestionSystem : BaseSystem<World, float>
         if (health.Dead || health.MaxHealth <= 0)
             return false;
 
+        // TODO: should this code be skipped if the entity itself is engulfed?
+
         var behaviour = species.Species.Behaviour;
         var aggression = Math.Clamp(behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION, 0, 1);
         var opportunism = Math.Clamp(behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM, 0, 1);
@@ -388,6 +396,18 @@ public partial class EngulfedDigestionSystem : BaseSystem<World, float>
 
         if (health.CurrentHealth / health.MaxHealth > ejectionHealthFraction)
             return false;
+
+        // We need to avoid ejecting if this is part of the player's colony so that the AI doesn't take over part of
+        // the player's control in the multicellular stage
+        if (entity.Has<MicrobeColonyMember>())
+        {
+            ref var colonyMember = ref entity.Get<MicrobeColonyMember>();
+            if (colonyMember.ColonyLeader.IsAliveAndHas<PlayerMarker>())
+            {
+                // Don't eject automatically. The player has a button to eject manually.
+                return false;
+            }
+        }
 
         var ejectionChance = Mathf.Lerp(Constants.AI_TOXIC_ENGULFED_EJECT_MAX_CHANCE,
             Constants.AI_TOXIC_ENGULFED_EJECT_MIN_CHANCE,

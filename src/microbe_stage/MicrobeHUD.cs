@@ -50,6 +50,9 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     private ActionButton siderophoreHotkey = null!;
 
     [Export]
+    private ActionButton germinateSporeHotkey = null!;
+
+    [Export]
     private Button multicellularButton = null!;
 
     /// <summary>
@@ -118,6 +121,9 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     [Signal]
     public delegate void OnSprintButtonPressedEventHandler();
+
+    [Signal]
+    public delegate void OnGerminateSporeButtonPressedEventHandler();
 
     [Signal]
     public delegate void OnAcceptRevertToEditorEventHandler();
@@ -211,6 +217,36 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
                 previousSaveLoadAdvicePopup.Close();
             }
         }
+    }
+
+    public void ClearSignalingCommandsOnEditorExitIfNecessary(Entity player)
+    {
+        if (!player.Has<CommandSignaler>())
+            return;
+
+        ref var signaler = ref player.Get<CommandSignaler>();
+        ref var organelles = ref player.Get<OrganelleContainer>();
+
+        if (player.Has<MicrobeColony>())
+        {
+            ref var colony = ref player.Get<MicrobeColony>();
+
+            colony.GetColonySpecialOrganelles(out _, out _, out _, out var hasSignalingAgent);
+
+            if (hasSignalingAgent)
+            {
+                return;
+            }
+        }
+        else if (organelles.HasSignalingAgent)
+        {
+            return;
+        }
+
+        packControlRadial.Hide();
+        signalingAgentMenuOpenForMicrobe = null;
+
+        signaler.QueuedSignalingCommand = MicrobeSignalCommand.None;
     }
 
     public void ShowSignalingCommandsMenu(Entity player)
@@ -475,6 +511,8 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     {
         if (!stage!.Player.IsAliveAndHas<StrainAffected>())
         {
+            // This should never trigger as long as this method is called only when the player is alive.
+            // But this legacy error-checking code might as well be kept.
             if (!playerMissingStrainAffected)
             {
                 GD.PrintErr("Player is missing StrainAffected component");
@@ -710,6 +748,15 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         unbindAllHotkey.Visible = organelles.CanUnbind(ref species, player, false);
 
         bindingModeHotkey.ButtonPressed = control.State == MicrobeState.Binding;
+
+        if (player.TryGet<MulticellularGrowth>(out var growth))
+        {
+            germinateSporeHotkey.Visible = growth.IsASpore;
+        }
+        else
+        {
+            germinateSporeHotkey.Visible = false;
+        }
 
         if (unbindAllHotkey.ActionNameAsStringName != null)
             unbindAllHotkey.ButtonPressed = Input.IsActionPressed(unbindAllHotkey.ActionNameAsStringName);
@@ -1078,6 +1125,11 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     private void OnSprintPressed()
     {
         EmitSignal(SignalName.OnSprintButtonPressed);
+    }
+
+    private void OnGerminateSporePressed()
+    {
+        EmitSignal(SignalName.OnGerminateSporeButtonPressed);
     }
 
     private void OnTranslationsChanged()

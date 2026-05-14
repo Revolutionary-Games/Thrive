@@ -27,15 +27,16 @@ public partial class CloudBenchmark : BenchmarkBase
     private const float STRESS_TEST_THRESHOLD_REDUCE_EVERY_N = 15;
     private const float STRESS_TEST_THRESHOLD_REDUCE = 0.35f;
     private const float STRESS_TEST_END_THRESHOLD_MIN = 1.0f;
-    private const int STRESS_TEST_SPAWN_INCREASE_EVERY_N = 8;
-    private const float STRESS_TEST_SIMULATION_INCREASE_EVERY_N = 130;
+    private const int STRESS_TEST_SPAWN_INCREASE_EVERY_N = 7;
+    private const float STRESS_TEST_SIMULATION_INCREASE_EVERY_N = 110;
 
     private const float ABSORBER_RADIUS = 8;
     private const float ABSORB_RATE = 0.99f;
 
     private const double EXTRA_SIMULATION_DELTA = 1 / 60.0;
 
-    private const int STRESS_TEST_ABSOLUTE_END = 1000;
+    private const int STRESS_TEST_RAMP_UP = 300;
+    private const int STRESS_TEST_ABSOLUTE_END = 1500;
 
     private readonly CompoundBag absorbBag = new(float.MaxValue);
     private readonly Dictionary<Compound, float> absorbTracker = new();
@@ -250,6 +251,19 @@ public partial class CloudBenchmark : BenchmarkBase
                 absorbersCount = 1 + spawnCounter / STRESS_TEST_SPAWN_INCREASE_EVERY_N;
                 extraSimulations = spawnCounter / STRESS_TEST_SIMULATION_INCREASE_EVERY_N;
 
+                // If the performance stays too good for a while, start to ramp things up
+                int rampCount = fpsValues.Count - STRESS_TEST_RAMP_UP;
+                while (rampCount > 0)
+                {
+                    var localCount = Math.Min(rampCount, STRESS_TEST_RAMP_UP);
+
+                    extraSimulations += localCount / STRESS_TEST_SIMULATION_INCREASE_EVERY_N;
+                    emittersCount += localCount / 100;
+                    absorbersCount += localCount / 100;
+
+                    rampCount -= STRESS_TEST_RAMP_UP;
+                }
+
                 if (Engine.GetFramesPerSecond() >= TARGET_FPS_FOR_SPAWNING)
                 {
                     SpawnAndUpdatePositionState();
@@ -266,6 +280,9 @@ public partial class CloudBenchmark : BenchmarkBase
                 if ((timeSinceSpawn > endThreshold && fpsValues.Count > 0) ||
                     fpsValues.Count > STRESS_TEST_ABSOLUTE_END)
                 {
+                    if (fpsValues.Count > STRESS_TEST_ABSOLUTE_END)
+                        GD.Print("Ending cloud stress test phase as reached absolute end");
+
                     stressTestResult = extraSimulations + 1;
                     stressTestEmittersResult = emittersCount;
                     stressTestMinFPS = (float)fpsValues.Min();

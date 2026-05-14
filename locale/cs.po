@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-29 22:42+0200\n"
-"PO-Revision-Date: 2026-04-22 18:35+0000\n"
-"Last-Translator: \"Georgi Georgiev (RacerBG)\" <g.georgiev.shumen@gmail.com>\n"
+"POT-Creation-Date: 2026-05-13 11:47+0200\n"
+"PO-Revision-Date: 2026-05-13 03:55+0000\n"
+"Last-Translator: Tibor Šťastný <tiborstgame2@seznam.cz>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -589,6 +589,10 @@ msgstr "Procházet"
 
 msgid "BROWSE_WORKSHOP"
 msgstr "Procházet Workshop"
+
+#, fuzzy
+msgid "BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(pasivní příjem reprodukčních sloučenin z prostředí bez toho aniž byste něco museli dělat)"
 
 msgid "BUILD_CITY"
 msgstr "Postavit město"
@@ -1726,6 +1730,10 @@ msgstr "Obtížná"
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "Normální"
 
+#, fuzzy
+msgid "DIFFICULTY_PRESET_VERY_EASY"
+msgstr "Lehká"
+
 msgid "DIGESTION_EFFICIENCY"
 msgstr "Efektivita trávení"
 
@@ -1850,6 +1858,7 @@ msgstr "Dvojitá"
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
 msgstr "Dvojklikem zobrazíte v celé obrazovce"
 
+#, fuzzy
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Membrána se dvěma vrstvami má lepší ochranu proti poškození a potřebuje méně energie k zabránění deformace. Avšak zpomaluje buňku a snižuje rychlost, kterou může absorbovat zdroje."
 
@@ -2247,6 +2256,10 @@ msgstr "Automaticky načítat Harmony patche ze sestavy (nepotřebuje specifikov
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr "Při zpracování načtených objektů došlo k výjimce"
 
+#, fuzzy
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE_JUKEBOX"
+msgstr "Při zpracování načtených objektů došlo k výjimce"
+
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Při načítání uložených dat došlo k výjimce"
 
@@ -2630,6 +2643,14 @@ msgstr ""
 "Aktivní mikrobi se rozběhnou, když se nic zajímavého neděje.\n"
 "Přisedlé mikroby jsou nehybné a čekají na změnu prostředí, než začnou jednat."
 
+#, fuzzy
+msgid "GERMINATE_SPORE"
+msgstr "Navštivte náš Patreon"
+
+#, fuzzy
+msgid "GERMINATE_SPORE_ACTION_TOOLTIP"
+msgstr "Navštivte náš Patreon"
+
 msgid "GITHUB_TOOLTIP"
 msgstr "Navštiv náš GitHub repozitář"
 
@@ -2921,6 +2942,14 @@ msgstr "Potřebuje jádro"
 
 msgid "INFO_BOX_SIZE"
 msgstr "Velikost (v políčcích)"
+
+#, fuzzy
+msgid "INFO_BOX_SIZE_PLAIN"
+msgstr "Velikost (v políčcích)"
+
+#, fuzzy
+msgid "INFO_BOX_STAGE"
+msgstr "Uložiště"
 
 msgid "INFO_BOX_STORAGE"
 msgstr "Uložiště"
@@ -3925,6 +3954,10 @@ msgstr "Chybu opravíš stisknutím tlačítka Zpět v editoru"
 msgid "MICROBE_LOADING_TIP_22"
 msgstr "Chybu opravíš stisknutím tlačítka Zpět v editoru"
 
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_23"
+msgstr "Čím víc bičíků máš, a nebo čím delší jsou, tím rychleji se budeš pohybovat - brm brm! Vyžadují však více ATP."
+
 msgid "MICROBE_LOADING_TIP_3"
 msgstr "Můžeš pohltit plovoucí úlomky hmoty, nezáleží jestli vznikly z buněk nebo z minerálů."
 
@@ -4441,6 +4474,30 @@ msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Mnohobuněčný Editor"
 
 #, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_2"
+msgstr "Mnohobuněčný Editor"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_3"
+msgstr "Mnohobuněčný Editor"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_4"
+msgstr "Mnohobuněčný Editor"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_5"
+msgstr "Mnohobuněčný Editor"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_6"
+msgstr "Mnohobuněčný Editor"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_7"
+msgstr "Mnohobuněčný Editor"
+
+#, fuzzy
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "(některé funkce možná nebudou přístupné jakmile se dostanete do dalších období)"
 
@@ -4573,9 +4630,11 @@ msgstr "Anaerobní fixace dusíku"
 msgid "NITROPLAST"
 msgstr "Plastid fixující dusík"
 
+#, fuzzy
 msgid "NITROPLAST_DESCRIPTION"
 msgstr "Dusík fixující plastid je protein schopný využít plynný [thrive:compound type=\"nitrogen\"][/thrive:compound], [thrive:compound type=\"oxygen\"][/thrive:compound] a [thrive:compound type=\"atp\"][/thrive:compound] k produkci [thrive:compound type=\"ammonia\"][/thrive:compound], klíčová živina pro růst buněk. Tento proces se nazývá [b]biologická fixace dusíku[/b]."
 
+#, fuzzy
 msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Přeměňuje [thrive:compound type=\"atp\"][/thrive:compound] na [thrive:compound type=\"ammonia\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"nitrogen\"][/thrive:compound] a [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
@@ -4739,6 +4798,10 @@ msgstr "Varování režimu OpenGL"
 #, fuzzy
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr "Spouštíte Thrive pomocí OpenGLES2. Tato možnost není otestovaná a může způsobovat problémy. Zkuste aktualizovat grafické ovladače nebo vynutit použití AMD nebo Nvidia grafiky pro spuštění Thrive."
+
+#, fuzzy
+msgid "OPEN_EVOLUTIONARY_TREE"
+msgstr "Evoluční strom"
 
 msgid "OPEN_FOLDER"
 msgstr "Otevřít složku"
@@ -4961,6 +5024,10 @@ msgid "PAGE_FORWARD"
 msgstr "Dopředu"
 
 #, fuzzy
+msgid "PAGE_PINNED"
+msgstr "Odstranit místní data"
+
+#, fuzzy
 msgid "PAGE_TITLE"
 msgstr "Odstranit místní data"
 
@@ -5100,6 +5167,10 @@ msgstr "Fyzické podmínky"
 
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Fyzická odolnost"
+
+#, fuzzy
+msgid "PIN_BUTTON_TOOLTIP"
+msgstr "Změna nastavení"
 
 msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
 msgstr ""
@@ -5410,6 +5481,10 @@ msgstr "Reprodukce:"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reprodukce:"
+
+#, fuzzy
+msgid "REPRODUCTION_SPORE"
+msgstr "Reprodukce"
 
 msgid "REQUIRES_NUCLEUS"
 msgstr "Potřebuje jádro"
@@ -6092,6 +6167,14 @@ msgstr "Rychlost"
 msgid "SPEED_COLON"
 msgstr "Rychlost:"
 
+#, fuzzy
+msgid "SPORE_CELL_TYPE"
+msgstr "Vytvořit nový typ buňky"
+
+#, fuzzy
+msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(pasivní příjem reprodukčních sloučenin z prostředí bez toho aniž byste něco museli dělat)"
+
 msgid "SPREAD_TO_PATCHES"
 msgstr "rozšířen do prostředí:"
 
@@ -6469,6 +6552,10 @@ msgstr "Současný svět"
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr "Fylogenetický strom"
 
+#, fuzzy
+msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
+msgstr "Otevři si Thriveopedii"
+
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr "Otevři si Thriveopedii"
 
@@ -6481,8 +6568,40 @@ msgstr "Domovní stránka"
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Muzeum"
 
+#, fuzzy
+msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
+msgstr "Domovní stránka"
+
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr "Mapa sektorů"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
+msgstr "Fylogenetický strom"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE"
+msgstr "Muzeum"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
+msgstr "Muzeum"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
+msgstr "Muzeum"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
+msgstr "Muzeum"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
+msgstr "Muzeum"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
+msgstr "Současný svět"
 
 msgid "THRIVE_LICENSES"
 msgstr "Thrive Licence"
@@ -9486,9 +9605,6 @@ msgstr "Oddálit"
 
 #~ msgid "PLANET_GENERATION_TEASER"
 #~ msgstr "Generováni planet již brzy!"
-
-#~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
-#~ msgstr "(pasivní příjem reprodukčních sloučenin z prostředí bez toho aniž byste něco museli dělat)"
 
 #~ msgid "TO_BE_IMPLEMENTED"
 #~ msgstr "K implementaci."

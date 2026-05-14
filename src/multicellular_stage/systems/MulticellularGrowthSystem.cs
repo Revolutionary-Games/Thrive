@@ -29,14 +29,24 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(MicrobeStatus))]
 [ReadsComponent(typeof(WorldPosition))]
 [ReadsComponent(typeof(MicrobeEventCallbacks))]
-[ReadsComponent(typeof(CellProperties))]
-[ReadsComponent(typeof(MicrobeControl))]
+[ReadsComponent(typeof(MicrobeColony))]
+[WritesToComponent(typeof(Engulfable))]
+[WritesToComponent(typeof(ReadableName))]
+[WritesToComponent(typeof(SpatialInstance))]
+[WritesToComponent(typeof(OrganelleContainer))]
+[WritesToComponent(typeof(MicrobeEnvironmentalEffects))]
+[WritesToComponent(typeof(ColourAnimation))]
+[WritesToComponent(typeof(CellProperties))]
+[WritesToComponent(typeof(BioProcesses))]
 [RunsAfter(typeof(ProcessSystem))]
 [RunsAfter(typeof(ColonyCompoundDistributionSystem))]
 [RuntimeCost(4, false)]
 public partial class MulticellularGrowthSystem : BaseSystem<World, float>
 {
     private readonly ThreadLocal<List<Compound>> temporaryWorkData = new(() => new List<Compound>());
+
+    private readonly List<Hex> hexWorkMemory1 = new();
+    private readonly List<Hex> hexWorkMemory2 = new();
 
     private readonly IWorldSimulation worldSimulation;
     private readonly IMicrobeSpawnEnvironment spawnEnvironment;
@@ -79,6 +89,21 @@ public partial class MulticellularGrowthSystem : BaseSystem<World, float>
         ref MicrobeStatus status, ref ReproductionStatus baseReproduction, ref CompoundStorage compoundStorage,
         in Entity entity)
     {
+        if (growth.IsASpore)
+        {
+            if (microbeControl.GerminatingSpore)
+            {
+                // Theoretically this is not set to run multithreaded, but here's a lock just in case that is added
+                // in the future
+                lock (hexWorkMemory1)
+                {
+                    growth.GerminateSpore(entity, worldSimulation, spawnEnvironment, hexWorkMemory1, hexWorkMemory2);
+                }
+            }
+
+            return;
+        }
+
         // Dead multicellular colonies can't reproduce
         if (health.Dead)
             return;
@@ -101,9 +126,17 @@ public partial class MulticellularGrowthSystem : BaseSystem<World, float>
 
         multicellularGrowth.CompoundsUsedForMulticellularGrowth ??= new Dictionary<Compound, float>();
 
+        int cellCount = 1;
+
+        if (entity.Has<MicrobeColony>())
+        {
+            ref var colony = ref entity.Get<MicrobeColony>();
+            cellCount = colony.ColonyMembers.Length;
+        }
+
         var (remainingAllowedCompoundUse, remainingFreeCompounds) =
             MicrobeReproductionSystem.CalculateFreeCompoundsAndLimits(gameWorld!.WorldSettings,
-                organelleContainer.HexCount, true, elapsedSinceLastUpdate);
+                organelleContainer.HexCount, true, cellCount, elapsedSinceLastUpdate);
 
         if (multicellularGrowth.CompoundsNeededForNextCell == null)
         {
@@ -134,7 +167,7 @@ public partial class MulticellularGrowthSystem : BaseSystem<World, float>
                 multicellularGrowth.ResumeBodyPlanAfterReplacingLost = null;
             }
 
-            // Need to setup the next cell to be grown in our body plan
+            // Need to set up the next cell to be grown in our body plan
             if (multicellularGrowth.IsFullyGrownMulticellular)
             {
                 // We have completed our body plan and can (once enough resources) reproduce
@@ -172,8 +205,6 @@ public partial class MulticellularGrowthSystem : BaseSystem<World, float>
 
         bool stillNeedsSomething = false;
 
-        status.ConsumeReproductionCompoundsReverse = !status.ConsumeReproductionCompoundsReverse;
-
         // Consume some compounds for the next cell in the layout
         // Similar logic for "growing" more cells than in PlacedOrganelle growth
         if (multicellularGrowth.CompoundsNeededForNextCell.Count > 0)
@@ -199,7 +230,7 @@ public partial class MulticellularGrowthSystem : BaseSystem<World, float>
                 usedAmount += usedFreeCompounds;
                 allowedUseAmount -= usedFreeCompounds;
 
-                // As we loop just once we don't need to update the free compounds or allowed use compounds
+                // As we loop just once, we don't need to update the free compounds or allowed use compounds
                 // variables
             }
 
