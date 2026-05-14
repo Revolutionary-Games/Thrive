@@ -18,6 +18,7 @@ public class EnergyConsumptionPressure : SelectionPressure
             new AddOrganelleAnywhere(organelle => organelle.HasBindingFeature),
             new AddOrganelleAnywhere(organelle => organelle.HasSignalingFeature),
             new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Activity, -100.0f),
+            new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Focus, -100.0f),
         ])
     {
     }

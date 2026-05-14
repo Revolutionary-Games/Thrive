@@ -31,15 +31,9 @@ public class CompoundCloudPressure : SelectionPressure
                 new ChemoreceptorUpgrades(compound, null, Constants.CHEMORECEPTOR_RANGE_DEFAULT,
                     Constants.CHEMORECEPTOR_AMOUNT_DEFAULT, SimulationParameters.GetCompound(compound).Colour)),
             new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Activity, 150.0f),
-            new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Activity, -150.0f),
-            new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Aggression, 50.0f),
             new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Aggression, -150.0f),
-            new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Fear, 150.0f),
-            new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Fear, -150.0f),
+            new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Fear, -100.0f),
             new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Focus, 150.0f),
-            new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Focus, -150.0f),
-            new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Opportunism, 150.0f),
-            new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Opportunism, -150.0f),
         ])
     {
         compoundDefinition = SimulationParameters.GetCompound(compound);

@@ -25,16 +25,8 @@ public class EnvironmentalCompoundPressure : SelectionPressure
         base(weight, [
             new RemoveOrganelle(_ => true),
             AddOrganelleAnywhere.ThatUseCompound(compound),
-            new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Activity, 50.0f),
-            new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Activity, -150.0f),
-            new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Aggression, 50.0f),
-            new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Aggression, -150.0f),
-            new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Fear, 150.0f),
-            new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Fear, -150.0f),
-            new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Focus, 50.0f),
-            new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Focus, -150.0f),
-            new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Opportunism, 50.0f),
-            new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Opportunism, -150.0f),
+            new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Fear, -50.0f),
+            new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Aggression, -50.0f),
         ])
     {
         this.compound = SimulationParameters.GetCompound(compound);
