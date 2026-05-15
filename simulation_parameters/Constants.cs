@@ -493,11 +493,11 @@ public static class Constants
     /// </summary>
     public const float AGENT_EMISSION_VELOCITY = 25.0f;
 
-    public const float OXYTOXY_DAMAGE = 25.0f;
+    public const float OXYTOXY_DAMAGE = 20.0f;
 
-    public const float CYTOTOXIN_DAMAGE = 18.0f;
+    public const float CYTOTOXIN_DAMAGE = 14.0f;
 
-    public const float OXYGEN_INHIBITOR_DAMAGE = 23.0f;
+    public const float OXYGEN_INHIBITOR_DAMAGE = 19.0f;
 
     public const float CHANNEL_INHIBITOR_ATP_DEBUFF = 0.5f;
     public const float CHANNEL_INHIBITOR_DEBUFF_DURATION = 15;
@@ -634,7 +634,7 @@ public static class Constants
     /// <summary>
     ///   Cooldown between agent emissions, in seconds.
     /// </summary>
-    public const float AGENT_EMISSION_COOLDOWN = 2.0f;
+    public const float AGENT_EMISSION_COOLDOWN = 2.2f;
 
     /// <summary>
     ///   The minimum amount of oxytoxy (or any agent) fired in one shot.
