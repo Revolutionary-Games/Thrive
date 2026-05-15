@@ -140,6 +140,12 @@ public partial class OrganismStatisticsPanel : PanelContainer
     private Label specializationTitleLabel = null!;
 
     [Export]
+    private Control specializationPosition = null!;
+
+    [Export]
+    private ScrollContainer mainScrollContainer = null!;
+
+    [Export]
     [ExportCategory("Other Editor Parts")]
     private ProcessList processList = null!;
 
@@ -246,6 +252,9 @@ public partial class OrganismStatisticsPanel : PanelContainer
     {
         tutorial.AtpBalanceIntroduction.ATPBalanceBarControl = atpBalancePanel;
         tutorial.CompoundBalancesTutorial.CompoundBalanceControl = compoundBalance;
+
+        tutorial.MicrobeSpecializationTutorial.SpecializationDisplayControl = specializationPosition;
+        tutorial.MicrobeSpecializationTutorial.SpecializationContainer = mainScrollContainer;
     }
 
     public void UpdateEnergyBalance(EnergyBalanceInfoFull energyBalance)

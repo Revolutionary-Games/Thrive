@@ -4,12 +4,12 @@ using System;
 using SharedBase.Archive;
 
 /// <summary>
-///   A tutorial that counts how many times the editor has been entered and allows derived classes access to that
-///   information
+///   A tutorial that counts how many times the multicellular editor has been entered and allows derived classes
+///   access to that information
 /// </summary>
-public abstract class EditorEntryCountingTutorial : TutorialPhase
+public abstract class MulticellularEditorEntryCountingTutorial : TutorialPhase
 {
-    protected EditorEntryCountingTutorial()
+    protected MulticellularEditorEntryCountingTutorial()
     {
         // Make this tutorial not trigger until the editor entry count is right
         CanTrigger = false;
@@ -44,7 +44,7 @@ public abstract class EditorEntryCountingTutorial : TutorialPhase
 
     private bool CheckEventEditorEntryEvent(TutorialEventType eventType)
     {
-        if (eventType != TutorialEventType.EnteredMicrobeEditor)
+        if (eventType != TutorialEventType.EnteredMulticellularEditor)
             return false;
 
         if (!HasBeenShown)
