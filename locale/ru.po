@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-05-13 11:47+0200\n"
-"PO-Revision-Date: 2026-05-13 10:26+0000\n"
-"Last-Translator: zhk-kkk <zhkcake@gmail.com>\n"
+"PO-Revision-Date: 2026-05-14 04:52+0000\n"
+"Last-Translator: ILIA RIABOV <ilyarya131@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -583,9 +583,8 @@ msgstr "Просматривать"
 msgid "BROWSE_WORKSHOP"
 msgstr "Просмотреть мастерскую"
 
-#, fuzzy
 msgid "BUDDING_REPRODUCTION_METHOD_EXPLANATION"
-msgstr "(что делать с необходимыми для репродукции вещеставми, полученными игроком по возвращении с этапа в редактор)"
+msgstr "Производит единственное потомство—корневую клетку новой колонии."
 
 msgid "BUILD_CITY"
 msgstr "Построить город"
@@ -707,18 +706,17 @@ msgstr "Целлюлоза"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Эта мембрана имеет стенку, что обеспечивает лучшую защиту от общих повреждений и, особенно, от физических повреждений. Она также требует меньше энергии для сохранения своей формы, но не может быстро поглощать ресурсы и двигается медленнее. [b]Целлюлаза может растворить эту стенку,[/b] делая её уязвимой к поглощению хищниками."
 
-#, fuzzy
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
 msgstr ""
-"В многоклеточных организмах это показывает средний бонус специализации всех клеток.\n"
+"В многоклеточных организмах это показывает средний бонус специализации всех клеток, включая смежные бонусы.\n"
 "Текущий бонус составляет{0}% от {1} клеток.\n"
-"Наиболее специализированным типом является {3} с бонусом {2}%.\n"
-"Чтобы увеличить этот показатель, сделайте типы клеток более специализированными или добавьте больше самых специализированных клеток.."
+"Самый специализированный тип — {3} с бонусом {2}%.\n"
+"Чтобы увеличить этот показатель, сделайте типы клеток более специализированными, добавьте больше типов клетки\n"
+"или располагайте ячейки одного типа рядом друг с другом."
 
-#, fuzzy
 msgid "CELL_SPECIALIZATION_TOOLTIP"
 msgstr ""
-"Специализация клетки на меньшем количестве различных типов органелл повышает скорость всех биологических процессов.\n"
+"Специализация клетки на меньшем количестве различных типов органелл дает бонус к эффективности всех органелл в этой клетке.\n"
 "Текущий бонус составляет {0}% (максимально возможное бонусное ускорение увеличевается вместе с размером клетки, до {3} ячеек)\n"
 "Текущий бонус предоставляется в связи с {1} {2} ячейками.\n"
 "Бонус увеличивается по мере размещения большего количества органелл наиболее распространенного типа, и удаления органелл других типов."
@@ -1717,9 +1715,8 @@ msgstr "Сложно"
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "Нормально"
 
-#, fuzzy
 msgid "DIFFICULTY_PRESET_VERY_EASY"
-msgstr "Легко"
+msgstr "Очень Легко"
 
 msgid "DIGESTION_EFFICIENCY"
 msgstr "Эффективность усвоения"
@@ -1842,9 +1839,8 @@ msgstr "Двойная"
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
 msgstr "Двойной клик для полноэкранного режима"
 
-#, fuzzy
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
-msgstr "Двухслойная мембрана лучше защищена от повреждений и требует меньше энергии, чтобы не деформироваться. Однако она несколько замедляет скорость клетки и снижает скорость, с которой она может поглощать ресурсы."
+msgstr "Двухслойная мембрана более стойкая к повреждению, особенно к токсинам. Однако она несколько замедляет скорость клетки и снижает скорость, с которой она может поглощать ресурсы."
 
 msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
 msgstr "Переключайтесь между нормальной и удвоенной скоростями игры"
@@ -2229,9 +2225,8 @@ msgstr "Код коммита, с которого была скомпилиро
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr "Во время обработки загружаемых объектов произошла ошибка"
 
-#, fuzzy
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE_JUKEBOX"
-msgstr "Во время обработки загружаемых объектов произошла ошибка"
+msgstr "Произошло исключение при обработке состояния музыкального аппарата"
 
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Во время загрузки сохранённых данных произошла ошибка"
@@ -2581,13 +2576,11 @@ msgstr "Спящая"
 msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
 msgstr "(влияет на частоту и серьёзность таких явлений, как падение метеоритов и извержения вулканов)"
 
-#, fuzzy
 msgid "GERMINATE_SPORE"
-msgstr "Выстрелить из сидерофоры"
+msgstr "Прорастающая спора"
 
-#, fuzzy
 msgid "GERMINATE_SPORE_ACTION_TOOLTIP"
-msgstr "Выстрелить из сидерофоры"
+msgstr "Прорастание споры в колонию"
 
 msgid "GITHUB_TOOLTIP"
 msgstr "Посетить наш Github-репозиторий"
@@ -2867,13 +2860,11 @@ msgstr "Требуется ядро"
 msgid "INFO_BOX_SIZE"
 msgstr "Размер (В ячейках)"
 
-#, fuzzy
 msgid "INFO_BOX_SIZE_PLAIN"
-msgstr "Размер (В ячейках)"
+msgstr "Размер"
 
-#, fuzzy
 msgid "INFO_BOX_STAGE"
-msgstr "Вместимость"
+msgstr "Стадия"
 
 msgid "INFO_BOX_STORAGE"
 msgstr "Вместимость"
@@ -3494,10 +3485,10 @@ msgid "LOOK_RIGHT"
 msgstr "Посмотреть Вправо"
 
 msgid "LOOK_SCREEN_DOWN_OR_3D_TOWARDS_UP"
-msgstr ""
+msgstr "Смотрите на экран сверху или в 3D-режиме смотрите вверх"
 
 msgid "LOOK_SCREEN_UP_OR_3D_TOWARDS_DOWN"
-msgstr ""
+msgstr "Смотрите на экран сверху или в 3D-режиме смотрите вниз"
 
 msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
 msgstr "(высокие значения могут ухудшить производительность)"
@@ -3820,9 +3811,8 @@ msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] может 
 msgid "MICROBE_LOADING_TIP_22"
 msgstr "Каждое открытие Редактора на Стадии Микроорганизма представляет собой результат [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] миллионов лет эволюции."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_23"
-msgstr "Чем больше жгутиков есть у вашей клетки (и чем они длиннее), тем быстрее вы передвигаетесь! Ценой за это станет увеличенный расход АТФ."
+msgstr "Размещение в клетке органелл меньшего количества различных типов увеличивает ваш бонус специализации, делая каждую органеллу в клетке сильнее."
 
 msgid "MICROBE_LOADING_TIP_3"
 msgstr "Вы можете поглощать плавающие в воде обломки горных пород и останки погибших клеток."
@@ -4280,29 +4270,23 @@ msgstr "Свободный Многоклеточный Редактор"
 msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Когда ваши клетки поделились веществами, каждой клетке необходимо произвести собственный АТФ. Каждая клетка, в которой он закончится, погибнет."
 
-#, fuzzy
 msgid "MULTICELLULAR_LOADING_TIP_2"
-msgstr "Когда ваши клетки поделились веществами, каждой клетке необходимо произвести собственный АТФ. Каждая клетка, в которой он закончится, погибнет."
+msgstr "Основная механика Многоклеточной Стадии — создание специализированных клеток для различных задач."
 
-#, fuzzy
 msgid "MULTICELLULAR_LOADING_TIP_3"
-msgstr "Когда ваши клетки поделились веществами, каждой клетке необходимо произвести собственный АТФ. Каждая клетка, в которой он закончится, погибнет."
+msgstr "Хотя клетки в колониях сложнее поглотить, их все же можно съесть, так что будьте осторожны с крупными эукариотами."
 
-#, fuzzy
 msgid "MULTICELLULAR_LOADING_TIP_4"
-msgstr "Когда ваши клетки поделились веществами, каждой клетке необходимо произвести собственный АТФ. Каждая клетка, в которой он закончится, погибнет."
+msgstr "Расположение клеток в вашем теле имеет значение. Клетки одного типа получают повышенные бонусы специализации, если находятся рядом друг с другом."
 
-#, fuzzy
 msgid "MULTICELLULAR_LOADING_TIP_5"
-msgstr "Когда ваши клетки поделились веществами, каждой клетке необходимо произвести собственный АТФ. Каждая клетка, в которой он закончится, погибнет."
+msgstr "Все клетки в колонии должны производить [thrive:compound type=\"atp\"][/thrive:compound], но другие ненужные части можно удалить, чтобы создать узкоспециализированные клетки, которые получают значительные бонусы за специализацию."
 
-#, fuzzy
 msgid "MULTICELLULAR_LOADING_TIP_6"
-msgstr "Когда ваши клетки поделились веществами, каждой клетке необходимо произвести собственный АТФ. Каждая клетка, в которой он закончится, погибнет."
+msgstr "Вы можете контролировать порядок роста клеток в своем теле, чтобы оптимизировать развитие в раннем возрасте. Различные типы размножения также влияют на развитие эмбриона."
 
-#, fuzzy
 msgid "MULTICELLULAR_LOADING_TIP_7"
-msgstr "Когда ваши клетки поделились веществами, каждой клетке необходимо произвести собственный АТФ. Каждая клетка, в которой он закончится, погибнет."
+msgstr "Специализированные клетки в многоклеточных организмах — первый шаг к формированию полноценных органов. Первоначальные скопления клеток одного типа со временем превратятся в ткани."
 
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "На этой панели показаны совокупные процессы в вашей колонии, суммированные по всем клеткам. Обратите внимание, что, в отличие от других соединений, АТФ не распределяется между клетками."
@@ -4434,13 +4418,11 @@ msgstr "Фиксация Азота"
 msgid "NITROPLAST"
 msgstr "Азотфиксирующая пластида"
 
-#, fuzzy
 msgid "NITROPLAST_DESCRIPTION"
-msgstr "Азотфиксирующий пластид — белок, способный использовать газообразный [thrive:compound type=\"nitrogen\"][/thrive:compound], [thrive:compound type=\"oxygen\"][/thrive:compound] и [thrive:compound type=\"atp\"][/thrive:compound] для производства [thrive:compound type=\"ammonia\"][/thrive:compound], ключевого питательного вещества для роста клеток. Это процесс, называемый [b]аэробная азотфиксация[/b]."
+msgstr "Азотфиксирующий пластид — белок, способный использовать газообразный [thrive:compound type=\"nitrogen\"][/thrive:compound] и [thrive:compound type=\"atp\"][/thrive:compound] для производства [thrive:compound type=\"ammonia\"][/thrive:compound], ключевого питательного вещества для роста клеток. Это процесс, называемый [b]азотфиксация[/b]."
 
-#, fuzzy
 msgid "NITROPLAST_PROCESSES_DESCRIPTION"
-msgstr "Превращает [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:compound type=\"ammonia\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"nitrogen\"][/thrive:compound] и [thrive:compound type=\"oxygen\"][/thrive:compound]."
+msgstr "Превращает [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:compound type=\"ammonia\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
 msgid "NONE"
 msgstr "Отсутствует"
@@ -4598,9 +4580,8 @@ msgstr "Предупреждение Режима OpenGL"
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr "Ты запустил Thrive с помощью OpenGL. Thrive не тестировался на нём, от чего, скорей всего, ты столкнёшься с некотормыи трудностями. Убедись, что ты используешь достаточно свежую видеокарту, способную на обновление видеодрайверов. В случае коль вы используете ноутбук вам нужно будет использовать дискретные видеокарты NVIDIA и AMD взамен интегрированной видеокарты."
 
-#, fuzzy
 msgid "OPEN_EVOLUTIONARY_TREE"
-msgstr "Эволюционное древо"
+msgstr "Открыть Эволюционное Древо"
 
 msgid "OPEN_FOLDER"
 msgstr "Открыть папку"
@@ -4808,9 +4789,8 @@ msgstr "Назад"
 msgid "PAGE_FORWARD"
 msgstr "Вперед"
 
-#, fuzzy
 msgid "PAGE_PINNED"
-msgstr "Титульная Страница"
+msgstr "Закреплено"
 
 msgid "PAGE_TITLE"
 msgstr "Титульная Страница"
@@ -4943,9 +4923,8 @@ msgstr "Физические Условия"
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Физическое Сопротивление"
 
-#, fuzzy
 msgid "PIN_BUTTON_TOOLTIP"
-msgstr "Сменить настройки"
+msgstr "Закрепите эту страницу, чтобы она не удалялась при переходе на другую страницу"
 
 msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
 msgstr "Размещение органеллы заблокировано, так как она несовместима с текущей мембраной"
@@ -5240,9 +5219,8 @@ msgstr ""
 msgid "REPRODUCTION_METHOD"
 msgstr "Воспроизведение:"
 
-#, fuzzy
 msgid "REPRODUCTION_SPORE"
-msgstr "Репродукция"
+msgstr "Споруляция"
 
 msgid "REQUIRES_NUCLEUS"
 msgstr "Требуется ядро"
@@ -5883,13 +5861,11 @@ msgstr "Скорость"
 msgid "SPEED_COLON"
 msgstr "Скорость:"
 
-#, fuzzy
 msgid "SPORE_CELL_TYPE"
-msgstr "Создать Новый Тип Клетки"
+msgstr "Тип споровых клеток"
 
-#, fuzzy
 msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
-msgstr "(пассивно получать необходимые для репродукции вещества из окружающей среды)"
+msgstr "Производит множество специализированных потомков, которые могут искать более благоприятные условия, прежде чем превратиться в корневую клетку колонии."
 
 msgid "SPREAD_TO_PATCHES"
 msgstr "распространяется в биомы:"
@@ -6251,9 +6227,8 @@ msgstr "Текущий Мир"
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr "Древо Эволюции"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
-msgstr "Откройте Thriveopedia"
+msgstr "Этот вид вымер и больше не существует в природе. Поэтому подробности уже неизвестны. Этот вид имел ID {0}."
 
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr "Откройте Thriveopedia"
@@ -6276,40 +6251,35 @@ msgstr "Центр"
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Музей"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
-msgstr "Центр"
+msgstr "Вымершие виды {0}"
 
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr "Карта биомов"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
-msgstr "Древо Эволюции"
+msgstr "Сейчас при нажатии на эту кнопку открывается эволюционное древо в целом, а не только этого конкретного вида. Эта функция может быть добавлена в будущем."
 
-#, fuzzy
 msgid "THRIVEOPEDIA_SPECIES_PAGE"
-msgstr "Музей"
+msgstr "{0}"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
-msgstr "Музей"
+msgstr "На этой странице перечислены виды, существующие в этом мире."
 
-#, fuzzy
 msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
-msgstr "Музей"
+msgstr ""
+"{0} — это виды, существующие в этом мире. В настоящее время здесь проживает {1} и присутствует в {2} области(ях). Это находится в {3}.\n"
+"\n"
+"Обратите внимание, что эта страница исчезнет, если вы перейдете на другую, если только она не закреплена. Закрепите эту страницу, если хотите вернуться к ней, когда будете изучать этот интересный вид."
 
-#, fuzzy
 msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
-msgstr "Музей"
+msgstr "Ни один вид еще не закреплен, поэтому здесь нет списка страниц. Нажмите на вид в другом месте игры, чтобы перейти на его страницу, а затем закрепите его. После закрепления он появится здесь."
 
-#, fuzzy
 msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
-msgstr "Музей"
+msgstr "Закрепленные Виды"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
-msgstr "Текущий Мир"
+msgstr "Виды"
 
 msgid "THRIVE_LICENSES"
 msgstr "Лицензии Thrive"
@@ -8807,10 +8777,9 @@ msgstr "Редактор Наций"
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "Нет эффектов."
 
-#, fuzzy
 msgid "WIKI_NITROGENASE_INTRO"
 msgstr ""
-"Выполняет [b]Анаэробную Фиксацию Азота[/b] для производства [thrive:compound type=\"ammonia\"][/thrive:compound] из газзобразного [thrive:compound type=\"nitrogen\"][/thrive:compound] и [thrive:compound type=\"atp\"][/thrive:compound], вырабатывает один из компонентов роста для клеточного размножения. Менее эффективен, чем эукариот [b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]Нитропласт[/url][/color][/b].\n"
+"Выполняет [b]Фиксацию Азота[/b] для производства [thrive:compound type=\"ammonia\"][/thrive:compound] из газзобразного [thrive:compound type=\"nitrogen\"][/thrive:compound] и [thrive:compound type=\"atp\"][/thrive:compound], вырабатывает один из компонентов роста для клеточного размножения. Менее эффективен, чем эукариот [b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]Нитропласт[/url][/color][/b].\n"
 "\n"
 "Также немного выполняет [b]Гликолиз[/b] для производства [thrive:compound type=\"atp\"][/thrive:compound] из[thrive:compound type=\"glucose\"][/thrive:compound]."
 
@@ -8848,19 +8817,17 @@ msgstr "Нет улучшений."
 msgid "WIKI_NITROPLAST_EFFECTS"
 msgstr "Нет эффектов."
 
-#, fuzzy
 msgid "WIKI_NITROPLAST_INTRO"
-msgstr "Нитропласт — это окружённая мембраной органелла, используемая для производства [thrive:compound type=\"ammonia\"][/thrive:compound], один из компонентов роста, необходимый для клеточного размножения. Выполняет [b]Анаэробную Фиксацию Азота[/b] для преобразования газообразного [thrive:compound type=\"nitrogen\"][/thrive:compound] и [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:compound type=\"ammonia\"][/thrive:compound]. Более эффективен, чем прокариот [b][color=#3796e1][url=thriveopedia:nitrogenase]Нитрогеназа[/url][/color][/b]."
+msgstr "Нитропласт — это окружённая мембраной органелла, используемая для производства [thrive:compound type=\"ammonia\"][/thrive:compound], один из компонентов роста, необходимый для клеточного размножения. Выполняет [b]Фиксацию Азота[/b] для преобразования газообразного [thrive:compound type=\"nitrogen\"][/thrive:compound] и [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:compound type=\"ammonia\"][/thrive:compound]. Более эффективен, чем прокариот [b][color=#3796e1][url=thriveopedia:nitrogenase]Нитрогеназа[/url][/color][/b]."
 
 msgid "WIKI_NITROPLAST_MODIFICATIONS"
 msgstr "Нет модификаций."
 
-#, fuzzy
 msgid "WIKI_NITROPLAST_PROCESSES"
 msgstr ""
-"[b]Аэробная Фиксация Азота[/b]\n"
+"[b]Фиксация Азота[/b]\n"
 "\n"
-"Фиксирует атмосферный [thrive:compound type=\"nitrogen\"][/thrive:compound] в [thrive:compound type=\"ammonia\"][/thrive:compound] за счёт расхода энергии. Скорость зависит от количества окружающего [thrive:compound type=\"nitrogen\"][/thrive:compound] и [thrive:compound type=\"oxygen\"][/thrive:compound]. Более эффективно, чем аналогичный процесс в [b][color=#3796e1][url=thriveopedia:nitrogenase]Нитрогеназе[/url][/color][/b]."
+"Фиксирует атмосферный [thrive:compound type=\"nitrogen\"][/thrive:compound] в [thrive:compound type=\"ammonia\"][/thrive:compound] за счёт расхода энергии. Скорость зависит от количества окружающего [thrive:compound type=\"nitrogen\"][/thrive:compound]. Более эффективно, чем аналогичный процесс в [b][color=#3796e1][url=thriveopedia:nitrogenase]Нитрогеназе[/url][/color][/b]."
 
 msgid "WIKI_NITROPLAST_REQUIREMENTS"
 msgstr "Клетка должна иметь [b][color=#3796e1][url=thriveopedia:nucleus]Ядро[/url][/color][/b] для развития [b]Нитропластов[/b]."
@@ -8922,11 +8889,11 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_NUCLEUS_STRATEGY"
 msgstr ""
-"Хорошо подумайте перед тем, как добавлять [b]Ядро[/b] в свою клетку. Содержание Ядра дорого обходится, и значительно замедляет клетку, поэтому удостоверьтесь, что у вас достаточно запасов [thrive:compound type=\"atp\"][/thrive:compound] и вы можете позволить себе малоподвижное существование первые одно-два поколения. Мы рекомендуем добавлять [b][color=#3796e1][url=thriveopedia:cilia]Реснички[/url][/color][/b] и [b][color=#3796e1][url=thriveopedia:flagellum]Жгутики[/url][/color][/b] в более поздних поколениях для восстановления части подвижности.\n"
+"Хорошо подумайте перед тем, как добавлять [b]Ядро[/b] в свою клетку. Содержание Ядра дорого обходится, и значительно замедляет клетку, поэтому удостоверьтесь, что у вас достаточно запасов [thrive:compound type=\"atp\"][/thrive:compound] и вы можете позволить себе малоподвижное существование первые одно-два поколения. Мы рекомендуем добавлять [b][color=#3796e1][url=thriveopedia:cilia]Реснички[/url][/color][/b] и [b][color=#3796e1][url=thriveopedia:flagellum]Жгутики[/url][/color][/b] в более поздних поколениях для восстановления части ловкости.\n"
 "\n"
-"Однако преимущества наличия Ядра очевидны. [i]Эукариоты[/i] (клетки с [b]Ядром[/b]) получают доступ к более гибким и превосходным улучшениям, чем прокариоты (безъядерные клетки).\n"
+"Однако преимущества очевидны. [i]Эукариоты[/i] (клетки с [b]Ядром[/b]) получают доступ к более гибким и превосходным улучшениям, чем прокариоты (безъядерные клетки).\n"
 "\n"
-"[b]Органеллы[/b], разблокирующиеся при наличии [b]Ядра[/b], предлагают мощные, новые способности, как, например, [b][color=#3796e1][url=thriveopedia:signalingAgent]Сигнальный Агент[/url][/color][/b] со [b][color=#3796e1][url=thriveopedia:bindingAgent]Связывающим агентом[/url][/color][/b], или значительные улучшения существующих функций, например, [b][color=#3796e1][url=thriveopedia:mitochondrion]Митохондрия[/url][/color][/b] и [b][color=#3796e1] с [url=thriveopedia:thermoplast]Термопластами[/url][/color][/b]. Мы рекомендуем заменять [i]прокариотические[/i] [b]органеллы[b] более эффективными [i]эукариотическими[/i] аналогами после получения [b]Ядра[/b], для более эффективного синтеза [thrive:compound type=\"atp\"][/thrive:compound] и улучшения выживаемости вашей клетки."
+"[b]Органеллы[/b], разблокирующиеся при наличии [b]Ядра[/b], предлагают мощные, новые способности, как, например, [b][color=#3796e1][url=thriveopedia:signalingAgent]Сигнальный Агент[/url][/color][/b] и [b][color=#3796e1][url=thriveopedia:bindingAgent]Связывающий агент[/url][/color][/b], или значительные улучшения существующих функций, например, [b][color=#3796e1][url=thriveopedia:mitochondrion]Митохондрия[/url][/color][/b] и [b][color=#3796e1] с [url=thriveopedia:thermoplast]Термопластами[/url][/color][/b]. Мы рекомендуем заменять [i]прокариотические[/i] [b]органеллы[b] более эффективными [i]эукариотическими[/i] аналогами после получения [b]Ядра[/b], для более эффективного синтеза [thrive:compound type=\"atp\"][/thrive:compound] и улучшения выживаемости вашей клетки."
 
 msgid "WIKI_NUCLEUS_UPGRADES"
 msgstr "Нет улучшений."
