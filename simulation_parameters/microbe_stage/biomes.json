@@ -4954,29 +4954,6 @@
           }
         }
       },
-      "googlyEyeCell": {
-        "Name": "GOOGLY_EYE_CELL",
-        "Meshes": [
-          {
-            "ScenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
-            "SceneModelPath": "Armature/Skeleton/Cube",
-            "SceneAnimationPath": "AnimationPlayer",
-            "PlayAnimation": true,
-            "MissingDefaultShaderSupport": true
-          }
-        ],
-        "Density": 1e-7,
-        "ChunkScale": 1,
-        "Size": 10,
-        "PhysicsDensity": 2000,
-        "Radius": 2,
-        "EasterEgg": true,
-        "Compounds": {
-          "glucose": {
-            "Amount": 1
-          }
-        }
-      },
       "Compounds": {
         "ammonia": {
           "Amount": 180000,
