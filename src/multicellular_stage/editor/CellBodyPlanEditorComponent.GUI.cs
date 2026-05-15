@@ -13,6 +13,44 @@ public partial class CellBodyPlanEditorComponent
 
     private int usedToleranceWarnings;
 
+    public void OnReproductionMethodSelected(int selectedOption)
+    {
+        var selectedMethod = (MulticellularReproductionMethod)selectedOption;
+
+        if (ReproductionMethod == selectedMethod)
+            return;
+
+        var action = new SingleEditorAction<MulticellularReproductionActionData>(DoReproductionMethodChangeAction,
+            UndoReproductionMethodChangeAction,
+            new MulticellularReproductionActionData(ReproductionMethod, selectedMethod));
+
+        Editor.EnqueueAction(action);
+
+        UpdateReproductionMethodChoice();
+    }
+
+    public void OnSporeCellTypeSelected(int selectedOption)
+    {
+        var cellType = Editor.EditedSpecies.ModifiableCellTypes[selectedOption];
+
+        if (cellType == SporeCellType)
+            return;
+
+        var action = new SingleEditorAction<SporeCellTypeChangeActionData>(DoSporeCellChangeAction,
+            UndoSporeCellChangeAction, new SporeCellTypeChangeActionData(SporeCellType, cellType));
+
+        Editor.EnqueueAction(action);
+
+        UpdateSporeCellDropdown();
+    }
+
+    public void SendObjectsToTutorials(TutorialState tutorial, MulticellularEditorTutorialGUI gui)
+    {
+        _ = tutorial;
+
+        gui.RightPanelScrollContainer = rightPanelScrollContainer;
+    }
+
     protected override void OnTranslationsChanged()
     {
         base.OnTranslationsChanged();
@@ -152,6 +190,9 @@ public partial class CellBodyPlanEditorComponent
 
         organismStatisticsPanel.ApplyLightLevelSelection();
 
+        UpdateReproductionMethodChoice();
+        UpdateSporeCellDropdown();
+
         UpdateCancelButtonVisibility();
     }
 
@@ -268,5 +309,33 @@ public partial class CellBodyPlanEditorComponent
 
         organismStatisticsPanel.UpdateCellBodyPlanSpecialization((float)(totalSpecialization / count), count,
             maxSpecialization, mostSpecializedCellName);
+    }
+
+    private void UpdateReproductionMethodChoice()
+    {
+        reproductionMethodDropdown.Select((int)ReproductionMethod);
+
+        buddingReproductionSection.Visible = ReproductionMethod == MulticellularReproductionMethod.Budding;
+        sporeReproductionSection.Visible = ReproductionMethod == MulticellularReproductionMethod.Sporulation;
+    }
+
+    private void UpdateSporeCellDropdown()
+    {
+        if (!sporeCellTypeDropdown.Visible)
+            return;
+
+        sporeCellTypeDropdown.Clear();
+        foreach (var cellType in Editor.EditedSpecies.ModifiableCellTypes)
+        {
+            sporeCellTypeDropdown.AddItem(cellType.FormattedName);
+        }
+
+        if (SporeCellType == null)
+        {
+            sporeCellTypeDropdown.Select(-1);
+            return;
+        }
+
+        sporeCellTypeDropdown.Select(Editor.EditedSpecies.ModifiableCellTypes.IndexOf(SporeCellType));
     }
 }

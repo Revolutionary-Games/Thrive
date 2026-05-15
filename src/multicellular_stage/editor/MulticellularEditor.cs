@@ -33,6 +33,8 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     [Export]
     private Control noCellTypeSelected = null!;
+
+    private MulticellularEditorTutorialGUI tutorialGUI = null!;
 #pragma warning restore CA2213
 
     /// <summary>
@@ -98,6 +100,8 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     protected override MainGameState ReturnToState => MainGameState.MicrobeStage;
 
+    protected override string TipsCategoryOverrideForLoading => "MulticellularStageTips";
+
     protected override string EditorLoadingMessage =>
         Localization.Translate("LOADING_MULTICELLULAR_EDITOR");
 
@@ -162,6 +166,13 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         WriteBasePropertiesToArchive(writer);
 
         writer.WriteObjectOrNull(editedSpecies);
+    }
+
+    public override void _Ready()
+    {
+        base._Ready();
+
+        tutorialGUI.Visible = true;
     }
 
     public override void _EnterTree()
@@ -313,6 +324,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     protected override void ResolveDerivedTypeNodeReferences()
     {
+        tutorialGUI = GetNode<MulticellularEditorTutorialGUI>("TutorialGUI");
     }
 
     protected override void InitEditor(bool fresh)
@@ -325,6 +337,13 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         base.InitEditor(fresh);
 
         reportTab.UpdateReportTabPatchSelector();
+
+        // Make tutorials run
+        cellEditorTab.TutorialState = TutorialState;
+        tutorialGUI.EventReceiver = TutorialState;
+
+        // Send highlighted controls to the tutorial system
+        bodyPlanEditorTab.SendObjectsToTutorials(TutorialState, tutorialGUI);
 
         if (fresh)
         {
@@ -460,6 +479,10 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     protected override void ApplyEditorTab()
     {
+        // Similar trigger for tutorials as for the MicrobeEditor
+        TutorialState.SendEvent(TutorialEventType.MulticellularEditorTabChanged,
+            new StringEventArgs(selectedEditorTab.ToString()), this);
+
         // Hide all
         reportTab.Hide();
         patchMapTab.Hide();

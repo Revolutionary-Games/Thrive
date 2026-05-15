@@ -4764,9 +4764,9 @@
       "a": 1
     },
     "WaterCurrents": {
-      "Speed": 1.5,
-      "Chaoticness": 1.5,
-      "InverseScale": 1.0,
+      "Speed": 4.0,
+      "Chaoticness": 6.0,
+      "InverseScale": 0.4,
       "ParticleCount": 1500,
       "UseTrails": true,
       "Colour": {
@@ -4927,6 +4927,29 @@
             },
             "glucose": {
               "Amount": 120
+            }
+          }
+        },
+        "radioactiveChunk": {
+          "Name": "RADIOACTIVE_CHUNK",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/RadioactiveChunk1.tscn",
+              "ConvexShapePath": "res://assets/models/RadioactiveChunk1.shape"
+            }
+          ],
+          "Density": 0.000025,
+          "Dissolves": false,
+          "Radius": 10,
+          "ChunkScale": 1,
+          "PhysicsDensity": 2500,
+          "Size": 0,
+          "VentAmount": 0,
+          "Damages": 0,
+          "DeleteOnTouch": false,
+          "Compounds": {
+            "radiation": {
+              "Amount": 10000
             }
           }
         }

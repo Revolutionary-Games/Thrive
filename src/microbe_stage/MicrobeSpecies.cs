@@ -78,7 +78,8 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
     // Base refers here to the fact that these are the values when a cell is freshly spawned and has no
     // reproduction progress.
     public float BaseSpeed =>
-        MicrobeInternalCalculations.CalculateSpeed(Organelles.Organelles, MembraneType, MembraneRigidity, IsBacteria);
+        MicrobeInternalCalculations.CalculateSpeed(Organelles.Organelles, MembraneType, MembraneRigidity, IsBacteria,
+            CellTypeSpecializationBonus);
 
     public float BaseRotationSpeed { get; set; }
 
@@ -117,7 +118,8 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
     {
         get
         {
-            var specific = MicrobeInternalCalculations.GetTotalSpecificCapacity(Organelles, out var nominal);
+            var specific = MicrobeInternalCalculations.GetTotalSpecificCapacity(Organelles,
+                CellTypeSpecializationBonus, out var nominal);
             return (nominal, specific);
         }
     }
@@ -142,7 +144,9 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
     /// <summary>
     ///   Cached specialization bonus for this species.
     /// </summary>
-    public float SpecializationBonus { get; set; }
+    public float CellTypeSpecializationBonus { get; set; }
+
+    public override Stage StageForDisplay => Stage.MicrobeStage;
 
     public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
     public override ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.MicrobeSpecies;
@@ -181,13 +185,13 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
 
         if (version > 1)
         {
-            instance.SpecializationBonus = reader.ReadFloat();
+            instance.CellTypeSpecializationBonus = reader.ReadFloat();
         }
         else
         {
             // Assume older microbes won't have specialization for now. And the next editor / auto-evo cycle can sort
             // them out.
-            instance.SpecializationBonus = 1;
+            instance.CellTypeSpecializationBonus = 1;
         }
 
         return instance;
@@ -203,7 +207,7 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
 
         writer.WriteObject(Organelles);
         writer.Write(BaseRotationSpeed);
-        writer.Write(SpecializationBonus);
+        writer.Write(CellTypeSpecializationBonus);
     }
 
     public void UpdateIsBacteria()
@@ -242,14 +246,12 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
     {
         base.OnAttemptedInAutoEvo(refreshCache);
 
+        CellTypeSpecializationBonus = MicrobeInternalCalculations.CalculateSpecializationBonus(Organelles,
+            new Dictionary<OrganelleDefinition, int>());
         UpdateInitialCompounds();
         UpdateIsBacteria();
 
         cachedFillTimes.Clear();
-
-        SpecializationBonus =
-            MicrobeInternalCalculations.CalculateSpecializationBonus(Organelles,
-                new Dictionary<OrganelleDefinition, int>());
     }
 
     public override bool RepositionToOrigin()
@@ -346,7 +348,8 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
             {
                 // TODO: should moving be false in some cases?
                 compoundTimes = MicrobeInternalCalculations.CalculateDayVaryingCompoundsFillTimes(Organelles,
-                    MembraneType, true, PlayerSpecies, biome, resolvedTolerances, spawnEnvironment.WorldSettings);
+                    MembraneType, true, PlayerSpecies, CellTypeSpecializationBonus, biome, resolvedTolerances,
+                    spawnEnvironment.WorldSettings);
                 cachedFillTimes[biome] = compoundTimes;
             }
         }
@@ -374,7 +377,7 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         IsBacteria = casted.IsBacteria;
         MembraneType = casted.MembraneType;
         MembraneRigidity = casted.MembraneRigidity;
-        SpecializationBonus = casted.SpecializationBonus;
+        CellTypeSpecializationBonus = casted.CellTypeSpecializationBonus;
 
         cachedFillTimes.Clear();
     }
@@ -413,7 +416,7 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         result.IsBacteria = IsBacteria;
         result.MembraneType = MembraneType;
         result.MembraneRigidity = MembraneRigidity;
-        result.SpecializationBonus = SpecializationBonus;
+        result.CellTypeSpecializationBonus = CellTypeSpecializationBonus;
 
         if (cloneOrganelles)
         {
@@ -482,6 +485,7 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
 
     private void CalculateRotationSpeed()
     {
-        BaseRotationSpeed = MicrobeInternalCalculations.CalculateRotationSpeed(Organelles.Organelles);
+        BaseRotationSpeed = MicrobeInternalCalculations.CalculateRotationSpeed(Organelles.Organelles,
+            CellTypeSpecializationBonus);
     }
 }

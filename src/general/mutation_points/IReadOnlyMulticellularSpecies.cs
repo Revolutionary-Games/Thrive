@@ -14,4 +14,8 @@ public interface IReadOnlyMulticellularSpecies : IReadOnlySpecies
     public IReadOnlyCellLayout<IReadOnlyCellTemplate> GameplayCells { get; }
 
     public IReadOnlyList<IReadOnlyCellTypeDefinition> CellTypes { get; }
+
+    public MulticellularReproductionMethod ReproductionMethod { get; }
+
+    public IReadOnlyCellTypeDefinition? SporeCellType { get; }
 }

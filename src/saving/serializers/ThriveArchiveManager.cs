@@ -361,6 +361,11 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
             typeof(PatchEventProperties), PatchEventProperties.WriteToArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.PatchEventProperties,
             typeof(PatchEventProperties), PatchEventProperties.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ThriveopediaGameData,
+            typeof(ThriveopediaGameData), ThriveopediaGameData.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ThriveopediaGameData,
+            typeof(ThriveopediaGameData), ThriveopediaGameData.ReadFromArchive);
     }
 
     private void RegisterComponentParts()
@@ -674,6 +679,14 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
             typeof(DuplicateDeleteCellTypeData), DuplicateDeleteCellTypeData.WriteToArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.DuplicateDeleteCellTypeData,
             typeof(DuplicateDeleteCellTypeData), DuplicateDeleteCellTypeData.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MulticellularReproductionActionData,
+            typeof(MulticellularReproductionActionData), MulticellularReproductionActionData.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MulticellularReproductionActionData,
+            typeof(MulticellularReproductionActionData), MulticellularReproductionActionData.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.SporeCellTypeChangeActionData,
+            typeof(SporeCellTypeChangeActionData), SporeCellTypeChangeActionData.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.SporeCellTypeChangeActionData,
+            typeof(SporeCellTypeChangeActionData), SporeCellTypeChangeActionData.ReadFromArchive);
     }
 
     private void RegisterFossils()

@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-29 22:42+0200\n"
-"PO-Revision-Date: 2026-04-22 18:35+0000\n"
-"Last-Translator: \"Georgi Georgiev (RacerBG)\" <g.georgiev.shumen@gmail.com>\n"
+"POT-Creation-Date: 2026-05-15 15:32+0300\n"
+"PO-Revision-Date: 2026-05-13 03:55+0000\n"
+"Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -107,9 +107,6 @@ msgstr "Avançado"
 
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Abrir as configurações avançadas"
-
-msgid "AEROBIC_NITROGEN_FIXATION"
-msgstr "Fixação Aeróbica de Nitrogênio"
 
 msgid "AEROBIC_RESPIRATION"
 msgstr "Respiração Aeróbica"
@@ -589,6 +586,10 @@ msgstr "Navegar"
 
 msgid "BROWSE_WORKSHOP"
 msgstr "Navegar na Oficina Steam"
+
+#, fuzzy
+msgid "BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(o que fazer com os compostos que o jogador havia guardado quando voltar para o estágio do editor)"
 
 msgid "BUILD_CITY"
 msgstr "Construir uma Cidade"
@@ -1719,6 +1720,10 @@ msgstr "Difícil"
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "Normal"
 
+#, fuzzy
+msgid "DIFFICULTY_PRESET_VERY_EASY"
+msgstr "Fácil"
+
 msgid "DIGESTION_EFFICIENCY"
 msgstr "Eficiência da Digestão"
 
@@ -1841,6 +1846,7 @@ msgstr "Dupla"
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
 msgstr "Clique duas vezes para ver em tela cheia"
 
+#, fuzzy
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Uma membrana com duas camadas, tem melhor proteção contra dano e leva menos energia para não se deformar. No entanto, diminui um pouco sua velocidade e diminui a taxa em que pode absorver recursos."
 
@@ -1966,6 +1972,28 @@ msgstr ""
 "Se a sua célula não estiver pronta para o núcleo, você pode usar o  [b]botão de desfazer[/b] para [u]reverter[/u] o núcleo."
 
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
+msgstr ""
+"Para continuar progredindo, você eventualmente vai querer adicionar um [b]núcleo[/b].\n"
+"\n"
+"Adicionar o [b]núcleo[/b] irá desbloquear organelas mais avançadas, como o [b]agente ligante[/b], o qual te permitirá se ligar com outras células de sua espécie a virar [u]multicelMulticelularular[/u].\n"
+"\n"
+"Tente colocar um [b]núcleo[/b] para fechar este tutorial\n"
+"\n"
+"Se a sua célula não estiver pronta para o núcleo, você pode usar o  [b]botão de desfazer[/b] para [u]reverter[/u] o núcleo."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
+msgstr ""
+"Para continuar progredindo, você eventualmente vai querer adicionar um [b]núcleo[/b].\n"
+"\n"
+"Adicionar o [b]núcleo[/b] irá desbloquear organelas mais avançadas, como o [b]agente ligante[/b], o qual te permitirá se ligar com outras células de sua espécie a virar [u]multicelMulticelularular[/u].\n"
+"\n"
+"Tente colocar um [b]núcleo[/b] para fechar este tutorial\n"
+"\n"
+"Se a sua célula não estiver pronta para o núcleo, você pode usar o  [b]botão de desfazer[/b] para [u]reverter[/u] o núcleo."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
 msgstr ""
 "Para continuar progredindo, você eventualmente vai querer adicionar um [b]núcleo[/b].\n"
 "\n"
@@ -2229,6 +2257,10 @@ msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Esta é a commit na qual essa versão de Thrive foi compilada"
 
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
+msgstr "Uma exceção ocorreu ao processar objetos carregados"
+
+#, fuzzy
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE_JUKEBOX"
 msgstr "Uma exceção ocorreu ao processar objetos carregados"
 
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
@@ -2579,6 +2611,14 @@ msgstr "Inativa"
 msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
 msgstr "(influencia a frequência e severidade de eventos como impactos de meteoros e erupções vulcânicas)"
 
+#, fuzzy
+msgid "GERMINATE_SPORE"
+msgstr "Atirar sideróforo"
+
+#, fuzzy
+msgid "GERMINATE_SPORE_ACTION_TOOLTIP"
+msgstr "Atirar sideróforo"
+
 msgid "GITHUB_TOOLTIP"
 msgstr "Visite o nosso repositório no GitHub"
 
@@ -2860,6 +2900,14 @@ msgstr "Requer um Núcleo"
 
 msgid "INFO_BOX_SIZE"
 msgstr "Tamanho (em Hexágonos)"
+
+#, fuzzy
+msgid "INFO_BOX_SIZE_PLAIN"
+msgstr "Tamanho (em Hexágonos)"
+
+#, fuzzy
+msgid "INFO_BOX_STAGE"
+msgstr "Armazenamento"
 
 msgid "INFO_BOX_STORAGE"
 msgstr "Armazenamento"
@@ -3811,6 +3859,10 @@ msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] pode ser co
 msgid "MICROBE_LOADING_TIP_22"
 msgstr "Cada visita ao editor no Estágio Microbial representa [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] milhão(ões) de anos de evolução."
 
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_23"
+msgstr "Quanto mais (ou mais longos) flagelos você tiver, mais rápido você vai - vrum vrum! Só que você gasta mais ATP."
+
 msgid "MICROBE_LOADING_TIP_3"
 msgstr "Você pode fagocitar pedaços de matéria flutuante, sejam eles partes de células mortas ou minerais."
 
@@ -4270,6 +4322,30 @@ msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Apesar das suas células dividirem compostos, cada célula precisa produzir sua própria [thrive:compound type=\"atp\"][/thrive:compound]. Qualquer célula que não tenha isso morrerá."
 
 #, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_2"
+msgstr "Apesar das suas células dividirem compostos, cada célula precisa produzir sua própria [thrive:compound type=\"atp\"][/thrive:compound]. Qualquer célula que não tenha isso morrerá."
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_3"
+msgstr "Apesar das suas células dividirem compostos, cada célula precisa produzir sua própria [thrive:compound type=\"atp\"][/thrive:compound]. Qualquer célula que não tenha isso morrerá."
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_4"
+msgstr "Apesar das suas células dividirem compostos, cada célula precisa produzir sua própria [thrive:compound type=\"atp\"][/thrive:compound]. Qualquer célula que não tenha isso morrerá."
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_5"
+msgstr "Apesar das suas células dividirem compostos, cada célula precisa produzir sua própria [thrive:compound type=\"atp\"][/thrive:compound]. Qualquer célula que não tenha isso morrerá."
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_6"
+msgstr "Apesar das suas células dividirem compostos, cada célula precisa produzir sua própria [thrive:compound type=\"atp\"][/thrive:compound]. Qualquer célula que não tenha isso morrerá."
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_7"
+msgstr "Apesar das suas células dividirem compostos, cada célula precisa produzir sua própria [thrive:compound type=\"atp\"][/thrive:compound]. Qualquer célula que não tenha isso morrerá."
+
+#, fuzzy
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "(alguns recursos podem não estar disponíveis quando você alcançar os próximos estágios)"
 
@@ -4398,9 +4474,11 @@ msgstr "Fixação Aeróbica de Nitrogênio"
 msgid "NITROPLAST"
 msgstr "Nitroplasto"
 
+#, fuzzy
 msgid "NITROPLAST_DESCRIPTION"
 msgstr "O Nitroplasto é uma organela membranosa capaz de usar [thrive:compound type=\"nitrogen\"][/thrive:compound] gasoso, [thrive:compound type=\"oxygen\"][/thrive:compound] e [thrive:compound type=\"atp\"][/thrive:compound] para produzir [thrive:compound type=\"ammonia\"][/thrive:compound], um nutriente essencial para o crescimento das células. Este é um processo chamado [b]fixação aeróbica de nitrogênio[/b]."
 
+#, fuzzy
 msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"ammonia\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"nitrogen\"][/thrive:compound] e [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
@@ -4560,6 +4638,10 @@ msgstr "Aviso: Modo OpenGL"
 
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr "Você está usando Thrive com OpenGL, que não é testado e provavelmente causará problemas. Garanta que você está usando uma placa de vídeo recente e tente atualizar seus drivers de vídeo. Em laptops, você pode precisar forçar o uso de gráficos AMD ou Nvidia em vez de gráficos integrados para executar Thrive."
+
+#, fuzzy
+msgid "OPEN_EVOLUTIONARY_TREE"
+msgstr "Árvore Evolucionária"
 
 msgid "OPEN_FOLDER"
 msgstr "Abrir Pasta"
@@ -4768,6 +4850,10 @@ msgstr "Voltar"
 msgid "PAGE_FORWARD"
 msgstr "Avançar"
 
+#, fuzzy
+msgid "PAGE_PINNED"
+msgstr "Título da página"
+
 msgid "PAGE_TITLE"
 msgstr "Título da página"
 
@@ -4899,6 +4985,10 @@ msgstr "Condições Físicas"
 
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Resistência Física"
+
+#, fuzzy
+msgid "PIN_BUTTON_TOOLTIP"
+msgstr "Muda as configurações do jogo"
 
 msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
 msgstr ""
@@ -5207,6 +5297,10 @@ msgstr ""
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reprodução:"
+
+#, fuzzy
+msgid "REPRODUCTION_SPORE"
+msgstr "Reprodução"
 
 msgid "REQUIRES_NUCLEUS"
 msgstr "Requer um núcleo"
@@ -5854,6 +5948,14 @@ msgstr "Velocidade"
 msgid "SPEED_COLON"
 msgstr "Velocidade:"
 
+#, fuzzy
+msgid "SPORE_CELL_TYPE"
+msgstr "Criar novo tipo de célula"
+
+#, fuzzy
+msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(ganhar os compostos necessários para a reprodução do ambiente sem ter que fazer nada)"
+
 msgid "SPREAD_TO_PATCHES"
 msgstr "espalhou para as regiões:"
 
@@ -6218,6 +6320,10 @@ msgstr "Mundo atual"
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr "Árvore evolucionária"
 
+#, fuzzy
+msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
+msgstr "Abrir a Thrivepédia"
+
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr "Abrir a Thrivepédia"
 
@@ -6239,8 +6345,40 @@ msgstr "Página inicial"
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Museu"
 
+#, fuzzy
+msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
+msgstr "Página inicial"
+
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr "Mapa de regiões"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
+msgstr "Árvore evolucionária"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE"
+msgstr "Museu"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
+msgstr "Museu"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
+msgstr "Museu"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
+msgstr "Museu"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
+msgstr "Museu"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
+msgstr "Mundo atual"
 
 msgid "THRIVE_LICENSES"
 msgstr "Licenças de Thrive"
@@ -7742,7 +7880,8 @@ msgstr ""
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr "Sem melhoras."
 
-msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+#, fuzzy
+msgid "WIKI_GLYCOLYSIS_COMMA_NITROGEN_FIXATION"
 msgstr "Glicólise, Fixação Anaeróbica de Nitrogênio"
 
 msgid "WIKI_HEADING_APPENDICES"
@@ -9170,6 +9309,9 @@ msgstr "Aumentar o zoom"
 msgid "ZOOM_OUT"
 msgstr "Diminuir o zoom"
 
+#~ msgid "AEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Fixação Aeróbica de Nitrogênio"
+
 #~ msgid "AEROBIC_NITROGEN_FIXING"
 #~ msgstr "Fixação Aeróbica de Nitrogênio"
 
@@ -9263,9 +9405,6 @@ msgstr "Diminuir o zoom"
 
 #~ msgid "PLANET_GENERATION_TEASER"
 #~ msgstr "Geração de planetas em breve!"
-
-#~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
-#~ msgstr "(ganhar os compostos necessários para a reprodução do ambiente sem ter que fazer nada)"
 
 #~ msgid "TO_BE_IMPLEMENTED"
 #~ msgstr "A ser implementado."

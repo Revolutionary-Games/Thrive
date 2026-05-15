@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-29 22:42+0200\n"
-"PO-Revision-Date: 2026-04-30 11:43+0000\n"
+"POT-Creation-Date: 2026-05-15 15:32+0300\n"
+"PO-Revision-Date: 2026-05-14 04:52+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -107,9 +107,6 @@ msgstr "Gelişmiş"
 
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Gelişmiş kurulum görünümünü aç"
-
-msgid "AEROBIC_NITROGEN_FIXATION"
-msgstr "Oksijenli Azot Fiksasyonu"
 
 msgid "AEROBIC_RESPIRATION"
 msgstr "Oksijenli Solunum"
@@ -583,6 +580,9 @@ msgstr "Göz At"
 msgid "BROWSE_WORKSHOP"
 msgstr "Atölye'ye Göz At"
 
+msgid "BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "Tek bir yavru üretir; bu, yeni bir koloninin kök hücresidir."
+
 msgid "BUILD_CITY"
 msgstr "Bir Şehir Kur"
 
@@ -705,14 +705,15 @@ msgstr "Bu hücre zarı, genel hasara ve özellikle fiziksel hasara karşı daha
 
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
 msgstr ""
-"Çok hücrelilerde, bu bütün hücrelerin özelleşme bonusunun ortalamasını gösterir.\n"
+"Çok hücrelilerde, bitişiklik bonusu dahil, bu bölüm bütün hücrelerin özelleşme bonusunun ortalamasını gösterir.\n"
 "Mevcut bonus, {1} adet hücreden gelmekte olup %{0} değerindedir.\n"
 "En çok özelleşmiş hücre türü, %{2} değerindeki bonus ile {3} hücresidir.\n"
-"Bu bonusu arttırmak için hücre türlerini daha özelleşmiş hale getirin ya da en çok özelleşmiş hücre türünden daha fazla ekleyin."
+"Bu bonusu arttırmak için hücre türlerini daha özelleşmiş hale getirin, en çok özelleşmiş hücre türünden daha fazla ekleyin\n"
+"ya da aynı tür hücreleri birbirine bitişik halde yerleştirin."
 
 msgid "CELL_SPECIALIZATION_TOOLTIP"
 msgstr ""
-"Bir hücrenin daha az organel türü kullanmak için özelleşmesi, bütün biyoişlemlere bir hız bonusu sağlar.\n"
+"Bir hücrenin daha az organel türü kullanmak üzere özelleştirilmesi, o hücredeki bütün organellerin etkinliğine bir bonus sağlar.\n"
 "Mevcut bonus %{0} değerindedir (maksimum bonus kapasitesi, {3} altıgen boyutuna kadar, hücre büyüklüğü ile artar).\n"
 "Mevcut bonus, {1} organeli {2} altıgen boyutunda bulunduğu için verilmekte.\n"
 "Bonus, en yaygın organel türünden daha fazlası yerleştirildikçe ve diğer organel türleri kaldırıldıkça artar."
@@ -1710,6 +1711,9 @@ msgstr "Zor"
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "Normal"
 
+msgid "DIFFICULTY_PRESET_VERY_EASY"
+msgstr "Çok Kolay"
+
 msgid "DIGESTION_EFFICIENCY"
 msgstr "Sindirim Verimliliği"
 
@@ -1832,7 +1836,7 @@ msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
 msgstr "Tam ekranda görüntülemek için çift tıklayın"
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
-msgstr "İki katmanlı bir hücre zarı. Hasara karşı koruyuculuğu daha iyidir ve şeklinin bozulmaması için daha az enerji harcar. Ancak hücreyi biraz yavaşlatır ve kaynakların emilim oranını düşürür."
+msgstr "İki katmanlı bir hücre zarıdır. Hasara karşı daha dayanıklıdır. Ancak hücreyi biraz yavaşlatır ve kaynakların emilim oranını düşürür."
 
 msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
 msgstr "Normal oyun hızı ve iki kat oyun hızı arasında geçiş yap"
@@ -1955,6 +1959,28 @@ msgstr ""
 "[b]Bağlayıcı ajanların[/b] kilidini henüz açıp açmadığınızı inceleyin. Eğer bu organelin kilidini açtıysanız, şimdi onu yerleştirmeyi deneyin."
 
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
+msgstr ""
+"İlerlemeye devam etmek için er ya da geç bir [b]çekirdek[/b] yerleştirmeniz gerekecek.\n"
+"\n"
+"Bir [b]çekirdek[/b] eklemek, türünüzün diğer hücreleri ile bağ kurmanızı ve [u]çok hücreli[/u] olmanızı sağlayan [b]bağlayıcı ajan[/b] gibi gelişmiş organellerin kilidini açar.\n"
+"\n"
+"Bu oyun rehberini kapatmak için bir [b]çekirdek[/b] eklemeyi deneyin.\n"
+"\n"
+"Eğer hücreniz henüz çekirdeğe hazır değilse, [b]geri al butonunu[/b] kullanarak çekirdeği [u]geri alabilirsiniz[/u]."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
+msgstr ""
+"İlerlemeye devam etmek için er ya da geç bir [b]çekirdek[/b] yerleştirmeniz gerekecek.\n"
+"\n"
+"Bir [b]çekirdek[/b] eklemek, türünüzün diğer hücreleri ile bağ kurmanızı ve [u]çok hücreli[/u] olmanızı sağlayan [b]bağlayıcı ajan[/b] gibi gelişmiş organellerin kilidini açar.\n"
+"\n"
+"Bu oyun rehberini kapatmak için bir [b]çekirdek[/b] eklemeyi deneyin.\n"
+"\n"
+"Eğer hücreniz henüz çekirdeğe hazır değilse, [b]geri al butonunu[/b] kullanarak çekirdeği [u]geri alabilirsiniz[/u]."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
 msgstr ""
 "İlerlemeye devam etmek için er ya da geç bir [b]çekirdek[/b] yerleştirmeniz gerekecek.\n"
 "\n"
@@ -2215,7 +2241,10 @@ msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Thrive'ın mevcut sürümünden derlenen tam kod işlemesi"
 
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
-msgstr "Yüklenen nesneleri işlerken bir sorun oluştu"
+msgstr "Yüklenen nesneler işlenirken bir sorun oluştu"
+
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE_JUKEBOX"
+msgstr "Müzik kutusu durumu işlenirken bir sorun oluştu"
 
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Kayıt verisi yüklenirken bir sorun oluştu"
@@ -2565,6 +2594,12 @@ msgstr "Pasif"
 msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
 msgstr "(göktaşı etkileri ve yanardağ patlamaları gibi olayların sıklığını ve şiddetini etkiler)"
 
+msgid "GERMINATE_SPORE"
+msgstr "Spor geliştir"
+
+msgid "GERMINATE_SPORE_ACTION_TOOLTIP"
+msgstr "Sporu koloniye dönüştür"
+
 msgid "GITHUB_TOOLTIP"
 msgstr "GitHub depomuzu ziyaret edin"
 
@@ -2842,6 +2877,12 @@ msgstr "Hücre Çekirdeği Gerektirir"
 
 msgid "INFO_BOX_SIZE"
 msgstr "Büyüklük (Altıgenler)"
+
+msgid "INFO_BOX_SIZE_PLAIN"
+msgstr "Büyüklük"
+
+msgid "INFO_BOX_STAGE"
+msgstr "Evre"
 
 msgid "INFO_BOX_STORAGE"
 msgstr "Depo"
@@ -3788,6 +3829,9 @@ msgstr "Kemoplastlar ve kemosentez yapan proteinler aracılığıyla, [thrive:co
 msgid "MICROBE_LOADING_TIP_22"
 msgstr "Editöre yapılan her ziyaret, Mikrop Evresi'nde [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] milyon yıllık evrimi temsil eder."
 
+msgid "MICROBE_LOADING_TIP_23"
+msgstr "Bir hücrede daha az farklı türde organel yerleştirmek, özelleşme bonusunuzu arttırır. Bu durum, hücredeki her organeli daha güçlü yapar."
+
 msgid "MICROBE_LOADING_TIP_3"
 msgstr "Ölü hücre ya da mineral olduğuna bakılmaksızın, yüzen madde parçalarını yutabilirsiniz."
 
@@ -4086,10 +4130,10 @@ msgid "MOD_LOAD_ERRORS"
 msgstr "Mod Yükleme Hataları"
 
 msgid "MOD_LOAD_ERRORS_OCCURRED"
-msgstr "Bir ya da daha fazla modu yüklerken sorun oluştu. Günlük dosyaları, bu sorunla ilgili ek bilgi içerebilir."
+msgstr "Bir ya da daha fazla mod yüklenirken sorun oluştu. Günlük dosyaları, bu sorunla ilgili ek bilgi içerebilir."
 
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
-msgstr "Bir ya da daha fazla modu yüklerken ya da kaldırırken sorun oluştu. Günlük dosyaları, bu sorunla ilgili ek bilgi içerebilir."
+msgstr "Bir ya da daha fazla mod yüklenirken veya kaldırılırken sorun oluştu. Günlük dosyaları, bu sorunla ilgili ek bilgi içerebilir."
 
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
 msgstr "Not: Birçok modun düzgün yüklenmesi ya da kaldırılması için oyunun yeniden başlatılması gerekir. Modlar, çalıştırılabilir kodlar içerebileceği için yalnızca güvendiğiniz modları yüklemelisiniz."
@@ -4244,6 +4288,24 @@ msgstr "Serbest Çok Hücreli Yapım Editörü"
 msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Hücreleriniz bileşikleri paylaşsa da, her hücrenin kendi [thrive:compound type=\"atp\"]ATP'sini[/thrive:compound] üretmesi gerekir. Herhangi bir hücre, bu molekülden yoksun kalırsa ölür."
 
+msgid "MULTICELLULAR_LOADING_TIP_2"
+msgstr "Çok Hücreli Evresi'nin ana mekaniği, farklı görevler için özelleşmiş hücreler oluşturmaktır."
+
+msgid "MULTICELLULAR_LOADING_TIP_3"
+msgstr "Kolonideki hücrelerin yutulması daha zor olsa da, bu hücreler yine de yenebilir. O yüzden, büyük ökaryotlara karşı dikkatli olun."
+
+msgid "MULTICELLULAR_LOADING_TIP_4"
+msgstr "Beden planınızdaki hücrelerin pozisyonu önem taşımaktadır. Aynı hücre türleri birbirine komşuyken özelleşme bonusu artar."
+
+msgid "MULTICELLULAR_LOADING_TIP_5"
+msgstr "Kolonideki tüm hücreler [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretmeye ihtiyaç duyar. Ama daha büyük özelleşme bonusu alan son derece özelleşmiş hücreler oluşturmak için diğer gereksiz parçalar kaldırılabilir."
+
+msgid "MULTICELLULAR_LOADING_TIP_6"
+msgstr "Hayatınızın ilk evrelerini daha iyi hale getirmek için beden planınızdaki hücreler için büyüme sırasını düzenleyebilirsiniz. Farklı üreme türleri de erken yaşamı etkiler."
+
+msgid "MULTICELLULAR_LOADING_TIP_7"
+msgstr "Çok hücrelideki özelleşmiş hücreler, tam organlara doğru ilk adımdır. Aynı türden ilk hücre grupları, zamanla dokulara dönüşür."
+
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "Bu panel, koloninizin tüm hücrelerinin toplamını veren birleştirilmiş işlemleri gösterir. Diğer bileşiklerin aksine, ATP'nin hücreler arasında paylaşılmadığını unutmayın."
 
@@ -4375,10 +4437,10 @@ msgid "NITROPLAST"
 msgstr "Nitroplast"
 
 msgid "NITROPLAST_DESCRIPTION"
-msgstr "Nitroplast, hücrelerde ana gelişim yapı maddesi olan [thrive:compound type=\"ammonia\"]amonyağı[/thrive:compound] üretmek için [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] gazı, [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] ve [thrive:compound type=\"atp\"]ATP[/thrive:compound] formundaki hücresel enerjiyi kullanan zarlı bir organeldir. Bu işlem, [b]oksijenli azot fiksasyonu[/b] olarak anılır."
+msgstr "Nitroplast, hücrelerde ana gelişim yapı maddesi olan [thrive:compound type=\"ammonia\"]amonyağı[/thrive:compound] üretmek için [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] gazı ve [thrive:compound type=\"atp\"]ATP[/thrive:compound] formundaki hücresel enerjiyi kullanan zarlı bir organeldir. Bu işlem, [b]azot fiksasyonu[/b] olarak anılır."
 
 msgid "NITROPLAST_PROCESSES_DESCRIPTION"
-msgstr "[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"ammonia\"]amonyağa[/thrive:compound] dönüştürür. Bu oran, [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] ve [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
+msgstr "[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"ammonia\"]amonyağa[/thrive:compound] dönüştürür. Bu oran, [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
 
 msgid "NONE"
 msgstr "Yok"
@@ -4535,6 +4597,9 @@ msgstr "OpenGL Mod Uyarısı"
 
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr "Thrive'ı OpenGL ile çalıştırmaktasınız. Bu mod ciddi derecede test edilmemiştir ve bu modun sorunlara neden olması muhtemeldir. Yeterince yeni bir ekran kartı ya da dahili ekran kartı kullandığınızdan emin olun ve ekran kartı sürücülerinizi güncelleştirmeyi deneyin. Dizüstü bilgisayarlarda Thrive'ı çalıştırmak için, dahili grafiklerin yerine, harici AMD veya Nvidia grafiklerini kullanmaya zorlamanız gerekebilir."
+
+msgid "OPEN_EVOLUTIONARY_TREE"
+msgstr "Evrim Ağacını Aç"
 
 msgid "OPEN_FOLDER"
 msgstr "Klasörü Aç"
@@ -4742,6 +4807,9 @@ msgstr "Geri"
 msgid "PAGE_FORWARD"
 msgstr "İleri"
 
+msgid "PAGE_PINNED"
+msgstr "Sabitlenmiş"
+
 msgid "PAGE_TITLE"
 msgstr "Sayfa Başlığı"
 
@@ -4872,6 +4940,9 @@ msgstr "Fiziksel Koşullar"
 
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Fiziksel Direnç"
+
+msgid "PIN_BUTTON_TOOLTIP"
+msgstr "Diğer sayfalara geçerken bu sayfanın silinmesi yerine, bu sayfayı yanınızda tutmak için sabitleyin"
 
 msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
 msgstr "Yerleştirme işlemi engellendi çünkü mevcut hücre zarı bu organel ile uyumlu değil"
@@ -5165,6 +5236,9 @@ msgstr ""
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Üreme:"
+
+msgid "REPRODUCTION_SPORE"
+msgstr "Sporlanma"
 
 msgid "REQUIRES_NUCLEUS"
 msgstr "Hücre çekirdeği gerektirir"
@@ -5805,6 +5879,12 @@ msgstr "Hız"
 msgid "SPEED_COLON"
 msgstr "Hız:"
 
+msgid "SPORE_CELL_TYPE"
+msgstr "Spor hücresi türü"
+
+msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "Bir koloni kök hücresine dönüşmeden önce, daha iyi koşullar arayabilen, birden fazla isteğe bağlı olarak özelleşmiş yavru üretir."
+
 msgid "SPREAD_TO_PATCHES"
 msgstr "yayıldığı araziler:"
 
@@ -6165,6 +6245,9 @@ msgstr "Mevcut Dünya"
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr "Evrim Ağacı"
 
+msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
+msgstr "Bu türün soyu tükendi ve artık bu dünyanın bir parçası değil. Bu nedenle, bu türün detayları artık bilinmiyor. Bu türün kimliği {0}."
+
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr "Thriveopedi'yi Aç"
 
@@ -6186,8 +6269,35 @@ msgstr "Ana Sayfa"
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Müze"
 
+msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
+msgstr "Soyu Tükenen Tür {0}"
+
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr "Arazi Haritası"
+
+msgid "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
+msgstr "Şu an için, yukarıdaki buton sadece genel evrim ağacını gösterir ve bu belirli türe otomatik olarak odaklanmaz. Bu özellik, gelecekte eklenebilir."
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE"
+msgstr "{0}"
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
+msgstr "Bu sayfa, bu dünyada var olan türleri listeler."
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
+msgstr ""
+"{0}, bu dünyada var olan bir tür. Bu türün {1} değerinde bir mevcut popülasyonu var ve bu tür {2} bölgede bulunmaktadır. Bu tür, {3} içindedir.\n"
+"\n"
+"Bu sayfa sabitlenmediği sürece, bu sayfadan çıkıldığında sayfanın kaybolacağını unutmayın. Eğer bu tür tekrar incelemek isteyeceğiniz ilginç bir türse, bu sayfayı sabitleyin."
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
+msgstr "Henüz hiçbir tür sabitlenmedi. O yüzden, burada hiçbir sayfa listelenmiyor. Bir türün sayfasına ulaşmak için oyunun başka bir yerinde bu türe tıklayın ve sonra onu sabitleyin. Tür sabitlendiğinde, burada görünecektir."
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
+msgstr "Sabitlenen Türler"
+
+msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
+msgstr "Tür"
 
 msgid "THRIVE_LICENSES"
 msgstr "Thrive Lisansları"
@@ -7895,7 +8005,8 @@ msgstr ""
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr "Geliştirme yok."
 
-msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+#, fuzzy
+msgid "WIKI_GLYCOLYSIS_COMMA_NITROGEN_FIXATION"
 msgstr "Glikoliz, Oksijensiz Azot Fiksasyonu"
 
 msgid "WIKI_HEADING_APPENDICES"
@@ -8688,7 +8799,7 @@ msgstr "Etki yok."
 
 msgid "WIKI_NITROGENASE_INTRO"
 msgstr ""
-"[thrive:compound type=\"nitrogen\"]Azot[/thrive:compound] gazı ve [thrive:compound type=\"atp\"]ATP'den[/thrive:compound], hücresel üreme için gerekli büyüme bileşenlerinden biri olan [thrive:compound type=\"ammonia\"]amonyağı[/thrive:compound] üretmek için [b]Oksijensiz Azot Fiksasyonu[/b] gerçekleştirir. Bu organel, ökaryotik [b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]Nitroplasttan[/url][/color][/b] daha verimsizdir.\n"
+"[thrive:compound type=\"nitrogen\"]Azot[/thrive:compound] gazı ve [thrive:compound type=\"atp\"]ATP'den[/thrive:compound], hücresel üreme için gerekli büyüme bileşenlerinden biri olan [thrive:compound type=\"ammonia\"]amonyağı[/thrive:compound] üretmek için [b]Azot Fiksasyonu[/b] gerçekleştirir. Bu organel, ökaryotik [b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]Nitroplasttan[/url][/color][/b] daha verimsizdir.\n"
 "\n"
 "Ayrıca [thrive:compound type=\"atp\"]ATP'den[/thrive:compound], [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretmek için [b]Glikoliz[/b] yapar."
 
@@ -8727,16 +8838,16 @@ msgid "WIKI_NITROPLAST_EFFECTS"
 msgstr "Etki yok."
 
 msgid "WIKI_NITROPLAST_INTRO"
-msgstr "Nitroplast, hücresel üreme için büyüme bileşenlerinden biri olan [thrive:compound type=\"nitrogen\"]azotu[/thrive:compound] üretmek için kullanılan zarlı bir organeldir. Bu organel, [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] gazı ve [thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"ammonia\"]amonyağa[/thrive:compound] dönüştürmek için [b]Oksijensiz Azot Fiksasyonu[/b] yapar. Bu organel, prokaryotik [b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrojenazdan[/url][/color][/b] daha verimlidir."
+msgstr "Nitroplast, hücresel üreme için büyüme bileşenlerinden biri olan [thrive:compound type=\"nitrogen\"]azotu[/thrive:compound] üretmek için kullanılan zarlı bir organeldir. Bu organel, [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] gazı ve [thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"ammonia\"]amonyağa[/thrive:compound] dönüştürmek için [b]Azot Fiksasyonu[/b] yapar. Bu organel, prokaryotik [b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrojenazdan[/url][/color][/b] daha verimlidir."
 
 msgid "WIKI_NITROPLAST_MODIFICATIONS"
 msgstr "Değişiklikler yok."
 
 msgid "WIKI_NITROPLAST_PROCESSES"
 msgstr ""
-"[b]Oksijenli Azot Fiksasyonu[/b]\n"
+"[b]Azot Fiksasyonu[/b]\n"
 "\n"
-"Enerji harcayarak [thrive:compound type=\"nitrogen\"]azotu[/thrive:compound], [thrive:compound type=\"ammonia\"]amonyağa[/thrive:compound] dönüştürür. Bu oran, ortamdaki [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] ve [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] miktarı ile doğru orantılıdır. [b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrojenazda[/url][/color][/b] bulunan benzer işlemden daha verimlidir."
+"Enerji harcayarak [thrive:compound type=\"nitrogen\"]azotu[/thrive:compound], [thrive:compound type=\"ammonia\"]amonyağa[/thrive:compound] dönüştürür. Bu oran, ortamdaki [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] miktarı ile doğru orantılıdır. [b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrojenazda[/url][/color][/b] bulunan benzer işlemden daha verimlidir."
 
 msgid "WIKI_NITROPLAST_REQUIREMENTS"
 msgstr "Bir hücre, [b]Nitroplastları[/b] evrimleştirmek için [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdeğe[/url][/color][/b] sahip olmalıdır."
@@ -9702,6 +9813,9 @@ msgstr "Yakınlaştır"
 msgid "ZOOM_OUT"
 msgstr "Uzaklaştır"
 
+#~ msgid "AEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Oksijenli Azot Fiksasyonu"
+
 #~ msgid "AEROBIC_NITROGEN_FIXING"
 #~ msgstr "Oksijenli Azot Fiksasyonu"
 
@@ -9792,9 +9906,6 @@ msgstr "Uzaklaştır"
 
 #~ msgid "PLANET_GENERATION_TEASER"
 #~ msgstr "Gezegen oluşumu çok yakında!"
-
-#~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
-#~ msgstr "(hiçbir şey yapmadan çevreden pasif olarak üreme bileşenleri elde et)"
 
 #, fuzzy
 #~ msgid "GLOBAL_GLACIATION_EVENT_LOG"

@@ -13,14 +13,14 @@ public partial class TextPageLinkButton : Button
 
 #pragma warning disable CA2213
     [Export]
-    public ThriveopediaWikiPage ParentPage = null!;
+    public ThriveopediaWikiPage? ParentPage;
 
     private Thriveopedia? thriveopedia;
 #pragma warning restore CA2213
 
     public override void _Ready()
     {
-        ParentPage.Connect(ThriveopediaWikiPage.SignalName.OnStageChanged,
+        ParentPage?.Connect(ThriveopediaWikiPage.SignalName.OnStageChanged,
             new Callable(this, nameof(OnSelectedStageChanged)));
     }
 

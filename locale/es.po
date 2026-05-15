@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-29 22:42+0200\n"
-"PO-Revision-Date: 2026-04-22 18:35+0000\n"
-"Last-Translator: \"Georgi Georgiev (RacerBG)\" <g.georgiev.shumen@gmail.com>\n"
+"POT-Creation-Date: 2026-05-15 15:32+0300\n"
+"PO-Revision-Date: 2026-05-13 03:55+0000\n"
+"Last-Translator: Levi Monjeau <iamaoenguin@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -107,9 +107,6 @@ msgstr "Avanzado"
 
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Abre las opciones avanzadas"
-
-msgid "AEROBIC_NITROGEN_FIXATION"
-msgstr "Fijación de nitrógeno anaeróbica"
 
 msgid "AEROBIC_RESPIRATION"
 msgstr "Respiración Aeróbica"
@@ -590,6 +587,10 @@ msgstr "Navegar"
 
 msgid "BROWSE_WORKSHOP"
 msgstr "Navegar Workshop"
+
+#, fuzzy
+msgid "BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(recibe compuestos del ambiente de forma pasiva sin tener que realizar acciones)"
 
 msgid "BUILD_CITY"
 msgstr "Construir una ciudad"
@@ -1737,6 +1738,10 @@ msgstr "Difícil"
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "Normal"
 
+#, fuzzy
+msgid "DIFFICULTY_PRESET_VERY_EASY"
+msgstr "Fácil"
+
 msgid "DIGESTION_EFFICIENCY"
 msgstr "Eficiencia de digestion"
 
@@ -1860,6 +1865,7 @@ msgstr "Doble"
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
 msgstr "Doble click para ver en pantalla completa"
 
+#, fuzzy
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Una membrana con dos capas; tiene mejor protección y consume menos energía. Sin embargo, reduce un poco la velocidad del movimiento y absorbe recursos más lentamente."
 
@@ -1984,6 +1990,24 @@ msgstr ""
 
 #, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
+msgstr ""
+"Este es el editor celular, donde vas a poder evolucionar tu especie gastanto punto de mutación (PM). Cada generación tendrás siempre 100 PM para gastar así que no te molestes en guardarlos!\n"
+"\n"
+"El hexágono en el centro de tu pantalla es tu célula, la cual está compuesta por una única parte de citoplasma.\n"
+"\n"
+"Para continuar, selecciona una parte del panel de la izquierda. Luego apreta click izquierdo al lado del hexágono para ubicarla. Puedes rotar partes con [thrive:input]e_rotate_left[/thrive:input] and [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
+msgstr ""
+"Este es el editor celular, donde vas a poder evolucionar tu especie gastanto punto de mutación (PM). Cada generación tendrás siempre 100 PM para gastar así que no te molestes en guardarlos!\n"
+"\n"
+"El hexágono en el centro de tu pantalla es tu célula, la cual está compuesta por una única parte de citoplasma.\n"
+"\n"
+"Para continuar, selecciona una parte del panel de la izquierda. Luego apreta click izquierdo al lado del hexágono para ubicarla. Puedes rotar partes con [thrive:input]e_rotate_left[/thrive:input] and [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
 msgstr ""
 "Este es el editor celular, donde vas a poder evolucionar tu especie gastanto punto de mutación (PM). Cada generación tendrás siempre 100 PM para gastar así que no te molestes en guardarlos!\n"
 "\n"
@@ -2247,6 +2271,10 @@ msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Esta es la commit exacta desde la cual esta versión de Thrive fue compilada"
 
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
+msgstr "Una excepción ha ocurrido al procesar objetos cargados"
+
+#, fuzzy
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE_JUKEBOX"
 msgstr "Una excepción ha ocurrido al procesar objetos cargados"
 
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
@@ -2610,6 +2638,14 @@ msgstr "Inactiva"
 msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
 msgstr "(influencia la frecuencia y severidad de eventos como impactos de meteoritos o erupciones volcánicas)"
 
+#, fuzzy
+msgid "GERMINATE_SPORE"
+msgstr "Visita nuestro Patreon"
+
+#, fuzzy
+msgid "GERMINATE_SPORE_ACTION_TOOLTIP"
+msgstr "Visita nuestro Patreon"
+
 msgid "GITHUB_TOOLTIP"
 msgstr "Visita nuestro repositorio de GitHub"
 
@@ -2894,6 +2930,14 @@ msgstr "Requiere Núcleo"
 
 msgid "INFO_BOX_SIZE"
 msgstr "Tamaño (Hexágonos)"
+
+#, fuzzy
+msgid "INFO_BOX_SIZE_PLAIN"
+msgstr "Tamaño (Hexágonos)"
+
+#, fuzzy
+msgid "INFO_BOX_STAGE"
+msgstr "Almacenamiento"
 
 msgid "INFO_BOX_STORAGE"
 msgstr "Almacenamiento"
@@ -3903,6 +3947,10 @@ msgid "MICROBE_LOADING_TIP_22"
 msgstr "Presiona el botón de deshacer en el editor para corregir un error"
 
 #, fuzzy
+msgid "MICROBE_LOADING_TIP_23"
+msgstr "Presiona el botón de deshacer en el editor para corregir un error"
+
+#, fuzzy
 msgid "MICROBE_LOADING_TIP_3"
 msgstr "Presiona el botón de deshacer en el editor para corregir un error"
 
@@ -4407,6 +4455,30 @@ msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Editor multicelular"
 
 #, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_2"
+msgstr "Editor multicelular"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_3"
+msgstr "Editor multicelular"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_4"
+msgstr "Editor multicelular"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_5"
+msgstr "Editor multicelular"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_6"
+msgstr "Editor multicelular"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_7"
+msgstr "Editor multicelular"
+
+#, fuzzy
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "(ciertas características no estarán disponibles cuando llegues a ciertas etapas)"
 
@@ -4545,6 +4617,7 @@ msgstr "Nitroplasto"
 msgid "NITROPLAST_DESCRIPTION"
 msgstr "El Nitroplasto es una proteína capaz de usar nitrógeno, oxígeno y ATP para producir amoníaco, un nutriente clave para el crecimiento celular. A este proceso se lo denomina Fijación de Nitrógeno Aeróbica."
 
+#, fuzzy
 msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Convierte [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound]. La tasa de conversión depende de la concentración de [thrive:compound type=\"nitrogen\"][/thrive:compound] y [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
@@ -4725,6 +4798,10 @@ msgstr "Advertencia del modo GLES2"
 #, fuzzy
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr "Estás usando Thrive en el Modo GLES2. No está probado y probablemente cause errores. Intenta actualizar tus drivers de video y/o fuerza los gráficos AMD o Nvidia para ser usados al ejecutar Thrive."
+
+#, fuzzy
+msgid "OPEN_EVOLUTIONARY_TREE"
+msgstr "Arbol Evolutivo"
 
 msgid "OPEN_FOLDER"
 msgstr "Abrir carpeta"
@@ -4962,6 +5039,10 @@ msgstr "Volver"
 msgid "PAGE_FORWARD"
 msgstr "Seguir"
 
+#, fuzzy
+msgid "PAGE_PINNED"
+msgstr "Título de la página"
+
 msgid "PAGE_TITLE"
 msgstr "Título de la página"
 
@@ -5112,6 +5193,10 @@ msgstr "Condiciones Físicas"
 
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Resistencia Física"
+
+#, fuzzy
+msgid "PIN_BUTTON_TOOLTIP"
+msgstr "Cambiar configuración"
 
 msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
 msgstr ""
@@ -5431,6 +5516,10 @@ msgstr "Reproducción:"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproducción:"
+
+#, fuzzy
+msgid "REPRODUCTION_SPORE"
+msgstr "Reproducción"
 
 msgid "REQUIRES_NUCLEUS"
 msgstr "Requiere Núcleo"
@@ -6124,6 +6213,14 @@ msgstr "Velocidad"
 msgid "SPEED_COLON"
 msgstr "Velocidad:"
 
+#, fuzzy
+msgid "SPORE_CELL_TYPE"
+msgstr "Crea un nuevo tipo de célula"
+
+#, fuzzy
+msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(recibe compuestos del ambiente de forma pasiva sin tener que realizar acciones)"
+
 msgid "SPREAD_TO_PATCHES"
 msgstr "Migró a:"
 
@@ -6528,6 +6625,10 @@ msgstr "Mundo actual"
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr "Árbol de evolución"
 
+#, fuzzy
+msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
+msgstr "Abrir Thrivepedia"
+
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr "Abrir Thrivepedia"
 
@@ -6549,8 +6650,40 @@ msgstr "Inicio"
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Museo"
 
+#, fuzzy
+msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
+msgstr "Inicio"
+
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr "Zona"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
+msgstr "Árbol de evolución"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE"
+msgstr "Museo"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
+msgstr "Museo"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
+msgstr "Museo"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
+msgstr "Museo"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
+msgstr "Museo"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
+msgstr "Mundo actual"
 
 msgid "THRIVE_LICENSES"
 msgstr "Licencias de Thrive"
@@ -8157,7 +8290,7 @@ msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr "Sin mejoras."
 
 #, fuzzy
-msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+msgid "WIKI_GLYCOLYSIS_COMMA_NITROGEN_FIXATION"
 msgstr "Fijación de Nitrógeno Anaeróbica"
 
 #, fuzzy
@@ -9674,6 +9807,9 @@ msgstr "Hacer zoom"
 msgid "ZOOM_OUT"
 msgstr "Alejar el zoom"
 
+#~ msgid "AEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Fijación de nitrógeno anaeróbica"
+
 #~ msgid "AEROBIC_NITROGEN_FIXING"
 #~ msgstr "Fijación de Nitrógeno Aeróbica"
 
@@ -9765,9 +9901,6 @@ msgstr "Alejar el zoom"
 
 #~ msgid "PLANET_GENERATION_TEASER"
 #~ msgstr "Generación de Planeta próximamente!"
-
-#~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
-#~ msgstr "(recibe compuestos del ambiente de forma pasiva sin tener que realizar acciones)"
 
 #~ msgid "TO_BE_IMPLEMENTED"
 #~ msgstr "A implementar."

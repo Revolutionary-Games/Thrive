@@ -106,6 +106,7 @@ mouse_filter = 2
 [connection signal="OnDismissRevertToEditor" from="MicrobeHUD" to="." method="OnCancelLoadAdvice"]
 [connection signal="OnEjectEngulfedButtonPressed" from="MicrobeHUD" to="PlayerMicrobeInput" method="EjectAllEngulfed"]
 [connection signal="OnFireToxinButtonPressed" from="MicrobeHUD" to="PlayerMicrobeInput" method="EmitToxin"]
+[connection signal="OnGerminateSporeButtonPressed" from="MicrobeHUD" to="PlayerMicrobeInput" method="GerminateSporeIntoColony"]
 [connection signal="OnMucocystButtonPressed" from="MicrobeHUD" to="PlayerMicrobeInput" method="ToggleMucocyst"]
 [connection signal="OnSecreteSlimeButtonPressed" from="MicrobeHUD" to="PlayerMicrobeInput" method="SecreteSlime" binds= [1.0]]
 [connection signal="OnSiderophoreButtonPressed" from="MicrobeHUD" to="PlayerMicrobeInput" method="EmitSiderophore"]
