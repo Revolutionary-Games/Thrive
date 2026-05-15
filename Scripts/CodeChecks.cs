@@ -83,6 +83,8 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
         // styles
         FilePathsToAlwaysIgnore.Add(new Regex(@"\.godot\/"));
 
+        FilePathsToAlwaysIgnore.Add(new Regex(@"\.junie\/"));
+
         FilePathsToAlwaysIgnore.Add(new Regex(@"Scripts\/GodotAPIData"));
 
         FilePathsToAlwaysIgnore.Add(new Regex(@"\.generated\.cs$"));

@@ -481,6 +481,9 @@ public static class CellPropertiesHelpers
     ///   (<see cref="newDefinition"/> applies instead). Note if species object instance changes from what it
     ///   was before, the code calling this method must do that adjustment manually.
     /// </param>
+    /// <param name="totalSpecializationBonus">
+    ///   The specialization bonus the cell should use, including any adjacency effects.
+    /// </param>
     /// <param name="worldSimulation">
     ///   Needed when resetting multicellular growth as that needs to delete colony cells
     /// </param>
@@ -488,8 +491,8 @@ public static class CellPropertiesHelpers
     /// <param name="workMemory2">More temporary memory</param>
     public static void ReApplyCellTypeProperties(this ref CellProperties cellProperties,
         ref readonly MicrobeEnvironmentalEffects environmentalEffects, in Entity entity,
-        ICellDefinition newDefinition, Species baseReproductionCostFrom, IWorldSimulation worldSimulation,
-        List<Hex> workMemory1, List<Hex> workMemory2)
+        ICellDefinition newDefinition, Species baseReproductionCostFrom, float totalSpecializationBonus,
+        IWorldSimulation worldSimulation, List<Hex> workMemory1, List<Hex> workMemory2)
     {
         // Copy new cell type properties
         cellProperties.MembraneType = newDefinition.MembraneType;
@@ -513,11 +516,15 @@ public static class CellPropertiesHelpers
 
         ref var organelleContainer = ref entity.Get<OrganelleContainer>();
 
+        // Reset Specialization factor to the one in new species' data
+        ref var specialization = ref entity.Get<SpecializationFactor>();
+        specialization.TotalSpecializationBonus = totalSpecializationBonus;
+
         // Reset all the duplicate organelles / reproduction progress of the entity
         // This also resets multicellular creature's reproduction progress
         organelleContainer.ResetOrganelleLayout(ref entity.Get<CompoundStorage>(), ref entity.Get<BioProcesses>(),
-            in environmentalEffects, entity, newDefinition, baseReproductionCostFrom, worldSimulation, workMemory1,
-            workMemory2);
+            ref specialization, in environmentalEffects, entity, newDefinition, baseReproductionCostFrom,
+            worldSimulation, workMemory1, workMemory2);
 
         // Reset runtime colour
         if (entity.Has<ColourAnimation>())

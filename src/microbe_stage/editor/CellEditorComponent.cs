@@ -39,6 +39,8 @@ public partial class CellEditorComponent :
     private readonly List<Hex> islandsWorkMemory2 = new();
     private readonly Queue<Hex> islandsWorkMemory3 = new();
 
+    private readonly Dictionary<OrganelleDefinition, int> definitionCountWorkMemory = new();
+
     private readonly Dictionary<Compound, float> processSpeedWorkMemory = new();
 
     private readonly List<ShaderMaterial> temporaryDisplayerFetchList = new();
@@ -1062,7 +1064,18 @@ public partial class CellEditorComponent :
         }
 
         if (shouldUpdatePosition)
+        {
             editedProperties.RepositionToOrigin();
+        }
+        else
+        {
+            // Even if not repositioning to origin, we still need to update this.
+            // This is because repositioning recalculates cell type specialization bonus. However, we must get that
+            // data updated during the editor to have it be correct without repositioning. Repositioning always
+            // would break the editor history, so that must absolutely be avoided until fully exiting the editor.
+            editedProperties.CellTypeSpecializationBonus = MicrobeInternalCalculations.CalculateSpecializationBonus(
+                editedProperties.ModifiableOrganelles, definitionCountWorkMemory);
+        }
 
         // Update bacteria status
         editedProperties.IsBacteria = !HasNucleus;
@@ -1300,8 +1313,12 @@ public partial class CellEditorComponent :
                 "In multicellular, the cell editor is not responsible for tolerances data");
         }
 
+        // Treats cellTypeSpecializationBonus as totalSpecializationBonus, because adjacency is ignored in this editor.
+        var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(
+            editedMicrobeOrganelles.Organelles, tempMemory3);
+
         return MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(tolerancesEditor.CurrentTolerances,
-            editedMicrobeOrganelles, Editor.CurrentPatch.Biome, excludePositiveBuffs);
+            editedMicrobeOrganelles, specialization, Editor.CurrentPatch.Biome, excludePositiveBuffs);
     }
 
     public void UpdatePatchDependentBalanceData()
@@ -1510,13 +1527,21 @@ public partial class CellEditorComponent :
 
     public float CalculateSpeed()
     {
+        // Treats cellTypeSpecializationBonus as totalSpecializationBonus, because adjacency is ignored in this editor.
+        var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(
+            editedMicrobeOrganelles.Organelles, tempMemory3);
+
         return MicrobeInternalCalculations.CalculateSpeed(editedMicrobeOrganelles.Organelles, Membrane, Rigidity,
-            !HasNucleus);
+            !HasNucleus, specialization);
     }
 
     public float CalculateRotationSpeed()
     {
-        return MicrobeInternalCalculations.CalculateRotationSpeed(editedMicrobeOrganelles.Organelles);
+        // Treats cellTypeSpecializationBonus as totalSpecializationBonus, because adjacency is ignored in this editor.
+        var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(
+            editedMicrobeOrganelles.Organelles, tempMemory3);
+
+        return MicrobeInternalCalculations.CalculateRotationSpeed(editedMicrobeOrganelles.Organelles, specialization);
     }
 
     public float CalculateHitpoints()
@@ -1526,17 +1551,31 @@ public partial class CellEditorComponent :
 
     public Dictionary<Compound, float> GetAdditionalCapacities(out float nominalCapacity)
     {
-        return MicrobeInternalCalculations.GetTotalSpecificCapacity(editedMicrobeOrganelles, out nominalCapacity);
+        // Treats cellTypeSpecializationBonus as totalSpecializationBonus, because adjacency is ignored in this editor.
+        var totalSpecializationBonus =
+            MicrobeInternalCalculations.CalculateSpecializationBonus(editedMicrobeOrganelles.Organelles, tempMemory3);
+
+        return MicrobeInternalCalculations.GetTotalSpecificCapacity(editedMicrobeOrganelles,
+            totalSpecializationBonus, out nominalCapacity);
     }
 
     public float CalculateTotalDigestionSpeed()
     {
-        return MicrobeInternalCalculations.CalculateTotalDigestionSpeed(editedMicrobeOrganelles);
+        // Treats cellTypeSpecializationBonus as totalSpecializationBonus, because adjacency is ignored in this editor.
+        var totalSpecializationBonus =
+            MicrobeInternalCalculations.CalculateSpecializationBonus(editedMicrobeOrganelles.Organelles, tempMemory3);
+
+        return MicrobeInternalCalculations.CalculateTotalDigestionSpeed(editedMicrobeOrganelles,
+            totalSpecializationBonus);
     }
 
     public Dictionary<Enzyme, float> CalculateDigestionEfficiencies()
     {
-        return MicrobeInternalCalculations.CalculateDigestionEfficiencies(editedMicrobeOrganelles);
+        // Treats cellTypeSpecializationBonus as totalSpecializationBonus, because adjacency is ignored in this editor.
+        var specialization =
+            MicrobeInternalCalculations.CalculateSpecializationBonus(editedMicrobeOrganelles.Organelles, tempMemory3);
+
+        return MicrobeInternalCalculations.CalculateDigestionEfficiencies(editedMicrobeOrganelles, specialization);
     }
 
     public (int AmmoniaCost, int PhosphatesCost) CalculateOrganellesCosts()
@@ -1832,7 +1871,7 @@ public partial class CellEditorComponent :
             IsBacteria = false,
 
             // Doesn't matter for visualization, but we want to set a valid value
-            SpecializationBonus = 1,
+            CellTypeSpecializationBonus = 1,
         };
 
         previewMicrobe = previewSimulation.CreateVisualisationMicrobe(previewMicrobeSpecies);
@@ -2149,6 +2188,7 @@ public partial class CellEditorComponent :
 
         var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(organelles);
 
+        // Treats cellTypeSpecializationBonus as totalSpecializationBonus, because adjacency is ignored in this editor.
         var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(organelles, tempMemory3);
 
         var tolerances = CalculateLatestTolerances();
@@ -2214,7 +2254,8 @@ public partial class CellEditorComponent :
                 goto case BalanceDisplayType.EnergyEquilibrium;
         }
 
-        specificStorages ??= MicrobeInternalCalculations.GetTotalSpecificCapacity(organelles, out nominalStorage);
+        specificStorages ??= MicrobeInternalCalculations.GetTotalSpecificCapacity(organelles,
+            specializationBonus, out nominalStorage);
 
         return ProcessSystem.ComputeCompoundFillTimes(compoundBalanceData, nominalStorage, specificStorages);
     }
@@ -2967,6 +3008,9 @@ public partial class CellEditorComponent :
             target.ModifiableBehaviour = ((IReadOnlyBehaviourDictionary)overwriteBehaviourForCalculations).Clone();
         }
 
+        target.CellTypeSpecializationBonus =
+            MicrobeInternalCalculations.CalculateSpecializationBonus(target.Organelles, definitionCountWorkMemory);
+
         // Copy tolerances
         target.ModifiableTolerances.CopyFrom(tolerancesEditor.CurrentTolerances);
     }
@@ -3432,6 +3476,9 @@ public partial class CellEditorComponent :
         {
             pristineSpeciesCopy = initialSpeciesToCopy;
             calculationSpecies = initialSpeciesToCopy.Clone(true);
+            calculationSpecies.CellTypeSpecializationBonus =
+                MicrobeInternalCalculations.CalculateSpecializationBonus(initialSpeciesToCopy.Organelles,
+                    new Dictionary<OrganelleDefinition, int>());
             this.applyLatestEditsToSpecies = applyLatestEditsToSpecies;
             this.currentGameProperties = currentGameProperties;
             editorOpenedForSpecies = editedSpecies;

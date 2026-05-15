@@ -218,6 +218,8 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
     {
         base.OnAttemptedInAutoEvo(refreshCache);
 
+        // TODO: in the future this will need to refresh specialization calculations for cell types
+
         UpdateInitialCompounds();
 
         cachedFillTimes.Clear();
@@ -305,10 +307,14 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         {
             if (!cachedFillTimes.TryGetValue(biome, out compoundTimes))
             {
+                // This does not use the real specialization bonus to avoid underestimating how much single cells in
+                // unusual spawn situations (such as spores) need to survive the night
+                var totalSpecializationBonus = 1;
+
                 // TODO: should moving be false in some cases?
                 compoundTimes = MicrobeInternalCalculations.CalculateDayVaryingCompoundsFillTimes(
                     cellType.ModifiableOrganelles, cellType.MembraneType, true, PlayerSpecies,
-                    microbeSpawnEnvironment.CurrentBiome, resolvedTolerances,
+                    totalSpecializationBonus, microbeSpawnEnvironment.CurrentBiome, resolvedTolerances,
                     microbeSpawnEnvironment.WorldSettings);
                 cachedFillTimes[biome] = compoundTimes;
             }
@@ -368,7 +374,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         for (int i = 0; i < count; ++i)
         {
             var cell = ModifiableGameplayCells[i];
-            score += cell.CellType.SpecializationBonus * GetAdjacencySpecializationBonus(i);
+            score += cell.CellType.CellTypeSpecializationBonus * GetAdjacencySpecializationBonus(i);
         }
 
         return score / count;

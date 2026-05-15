@@ -498,11 +498,11 @@ public static class Constants
     /// </summary>
     public const float AGENT_EMISSION_VELOCITY = 25.0f;
 
-    public const float OXYTOXY_DAMAGE = 25.0f;
+    public const float OXYTOXY_DAMAGE = 20.0f;
 
-    public const float CYTOTOXIN_DAMAGE = 18.0f;
+    public const float CYTOTOXIN_DAMAGE = 14.0f;
 
-    public const float OXYGEN_INHIBITOR_DAMAGE = 23.0f;
+    public const float OXYGEN_INHIBITOR_DAMAGE = 19.0f;
 
     public const float CHANNEL_INHIBITOR_ATP_DEBUFF = 0.5f;
     public const float CHANNEL_INHIBITOR_DEBUFF_DURATION = 15;
@@ -639,7 +639,7 @@ public static class Constants
     /// <summary>
     ///   Cooldown between agent emissions, in seconds.
     /// </summary>
-    public const float AGENT_EMISSION_COOLDOWN = 2.0f;
+    public const float AGENT_EMISSION_COOLDOWN = 2.2f;
 
     /// <summary>
     ///   The minimum amount of oxytoxy (or any agent) fired in one shot.
@@ -650,6 +650,11 @@ public static class Constants
     ///   The maximum amount of oxytoxy (or any agent) fired in one shot.
     /// </summary>
     public const float MAXIMUM_AGENT_EMISSION_AMOUNT = 2.0f;
+
+    /// <summary>
+    ///   AI only consider shooting a toxin possible if it has this much toxin stored or more
+    /// </summary>
+    public const float AI_SHOOT_TOXIN_AFTER = 0.15f;
 
     /// <summary>
     ///   The time (in seconds) it takes a cloud being absorbed to halve its compounds.
@@ -2057,6 +2062,11 @@ public static class Constants
 
     public const float TOLERANCE_INITIAL_PRESSURE_RANGE = 2400000;
     public const float TOLERANCE_PRESSURE_RANGE_MAX = 2000000;
+
+    // These values must be the same as in the editor
+    public const float TOLERANCE_OXYGEN_RANGE_MAX = 0.1f;
+    public const float TOLERANCE_OXYGEN_STEP = 0.01f;
+    public const float TOLERANCE_UV_STEP = 0.05f;
 
     /// <summary>
     ///   UV effects only appear once this amount of UV is in a patch

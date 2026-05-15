@@ -974,12 +974,14 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
                 adjacencyBonus = multicellularSpeciesType.Species.GetAdjacencySpecializationBonus(0);
             }
 
-            environmentalEffects.ApplyEffects(resolvedTolerances,
-                multicellularSpeciesType.MulticellularCellType.SpecializationBonus * adjacencyBonus, ref bioProcesses);
+            var totalSpecializationBonus = multicellularSpeciesType.MulticellularCellType.CellTypeSpecializationBonus *
+                adjacencyBonus;
+
+            environmentalEffects.ApplyEffects(resolvedTolerances, totalSpecializationBonus, ref bioProcesses);
 
             cellProperties.ReApplyCellTypeProperties(ref environmentalEffects, Player,
-                multicellularSpeciesType.MulticellularCellType, multicellularSpeciesType.Species, WorldSimulation,
-                workData1, workData2);
+                multicellularSpeciesType.MulticellularCellType, multicellularSpeciesType.Species,
+                totalSpecializationBonus, WorldSimulation, workData1, workData2);
         }
         else
         {
@@ -988,11 +990,11 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             var resolvedTolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(
                 MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(species.Species, CurrentBiome));
 
-            environmentalEffects.ApplyEffects(resolvedTolerances, species.Species.SpecializationBonus,
+            environmentalEffects.ApplyEffects(resolvedTolerances, species.Species.CellTypeSpecializationBonus,
                 ref bioProcesses);
 
             cellProperties.ReApplyCellTypeProperties(ref environmentalEffects, Player,
-                species.Species, species.Species, WorldSimulation,
+                species.Species, species.Species, species.Species.CellTypeSpecializationBonus, WorldSimulation,
                 workData1, workData2);
 
             foreach (var organelle in species.Species.Organelles)
