@@ -44,6 +44,17 @@ public partial class CellBodyPlanEditorComponent
         UpdateSporeCellDropdown();
     }
 
+    public void OnMassBuddingCellCountChanged(float count)
+    {
+        var action = new SingleEditorAction<MassBuddingCellCountActionData>(DoMassBuddingCellCountChangeAction,
+            UndoMassBuddingCellCountChangeAction,
+            new MassBuddingCellCountActionData(MassBuddingCellCount, (int)count));
+
+        Editor.EnqueueAction(action);
+
+        UpdateMassBuddingCellCountSlider();
+    }
+
     public void SendObjectsToTutorials(TutorialState tutorial, MulticellularEditorTutorialGUI gui)
     {
         _ = tutorial;
@@ -192,6 +203,7 @@ public partial class CellBodyPlanEditorComponent
 
         UpdateReproductionMethodChoice();
         UpdateSporeCellDropdown();
+        UpdateMassBuddingCellCountSlider();
 
         UpdateCancelButtonVisibility();
     }
@@ -338,5 +350,11 @@ public partial class CellBodyPlanEditorComponent
         }
 
         sporeCellTypeDropdown.Select(Editor.EditedSpecies.ModifiableCellTypes.IndexOf(SporeCellType));
+    }
+
+    private void UpdateMassBuddingCellCountSlider()
+    {
+        massBuddingCellCountSlider.MaxValue = editedMicrobeCells.Count;
+        massBuddingCellCountSlider.Value = MassBuddingCellCount;
     }
 }

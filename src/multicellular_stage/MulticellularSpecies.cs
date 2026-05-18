@@ -83,6 +83,12 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 
     public IReadOnlyCellTypeDefinition? SporeCellType => ModifiableSporeCellType;
 
+    /// <summary>
+    ///   The amount of colony cells initially spawned if the species has the
+    ///   <see cref="MulticellularReproductionMethod.MassBudding"/> reproduction method
+    /// </summary>
+    public int MassBuddingCellCount { get; set; }
+
     public ISimulationPhotographable.SimulationType SimulationToPhotograph =>
         ISimulationPhotographable.SimulationType.MicrobeGraphics;
 
@@ -425,7 +431,8 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
     /// </summary>
     public CellType FirstCellTypeToSpawn()
     {
-        if (ReproductionMethod == MulticellularReproductionMethod.Budding)
+        if (ReproductionMethod is MulticellularReproductionMethod.Budding
+            or MulticellularReproductionMethod.MassBudding)
         {
             return ModifiableGameplayCells[0].ModifiableCellType;
         }

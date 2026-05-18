@@ -12,7 +12,7 @@ public partial class CellBodyPlanEditorComponent :
     HexEditorComponentBase<MulticellularEditor, CombinedEditorAction, EditorAction, HexWithData<CellTemplate>,
         MulticellularSpecies>, IArchiveUpdatable
 {
-    public const ushort SERIALIZATION_VERSION = 5;
+    public const ushort SERIALIZATION_VERSION = 6;
 
     [Export]
     public int MaxToleranceWarnings = 3;
@@ -248,6 +248,8 @@ public partial class CellBodyPlanEditorComponent :
 
     public CellType? SporeCellType { get; private set; }
 
+    public int MassBuddingCellCount { get; private set; }
+
     protected override bool ShowFloatingLabels => ShowGrowthOrder;
 
     protected override bool ForceHideHover => false;
@@ -447,6 +449,7 @@ public partial class CellBodyPlanEditorComponent :
 
         writer.Write((int)ReproductionMethod);
         writer.WriteObjectOrNull(SporeCellType);
+        writer.Write(MassBuddingCellCount);
     }
 
     public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
@@ -502,6 +505,11 @@ public partial class CellBodyPlanEditorComponent :
             ReproductionMethod = (MulticellularReproductionMethod)reader.ReadInt32();
             SporeCellType = reader.ReadObjectOrNull<CellType>();
         }
+
+        if (version >= 6)
+        {
+            MassBuddingCellCount = reader.ReadInt32();
+        }
     }
 
     public override void OnEditorSpeciesSetup(Species species)
@@ -520,8 +528,11 @@ public partial class CellBodyPlanEditorComponent :
 
         newName = species.FormattedName;
 
-        ReproductionMethod = ((MulticellularSpecies)species).ReproductionMethod;
-        SporeCellType = ((MulticellularSpecies)species).ModifiableSporeCellType;
+        var multicellularSpecies = (MulticellularSpecies)species;
+
+        ReproductionMethod = multicellularSpecies.ReproductionMethod;
+        SporeCellType = multicellularSpecies.ModifiableSporeCellType;
+        MassBuddingCellCount = multicellularSpecies.MassBuddingCellCount;
 
         UpdateGUIAfterLoadingSpecies(species);
 
@@ -601,6 +612,7 @@ public partial class CellBodyPlanEditorComponent :
 
         editedSpecies.ReproductionMethod = ReproductionMethod;
         editedSpecies.ModifiableSporeCellType = SporeCellType;
+        editedSpecies.MassBuddingCellCount = MassBuddingCellCount;
 
         tempFreshlyUpdatedCells.Clear();
         editedSpecies.OnEdited();

@@ -18,4 +18,6 @@ public interface IReadOnlyMulticellularSpecies : IReadOnlySpecies
     public MulticellularReproductionMethod ReproductionMethod { get; }
 
     public IReadOnlyCellTypeDefinition? SporeCellType { get; }
+
+    public int MassBuddingCellCount { get; }
 }
