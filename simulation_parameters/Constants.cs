@@ -291,6 +291,8 @@ public static class Constants
     public const float CILIA_RADIUS_FACTOR_MULTIPLIER = 8000000.0f;
     public const float CELL_TURN_INFLECTION_RADIANS = 0.4f;
 
+    public const float CILIA_ROTATION_FORCE_DISPLAY = CILIA_ROTATION_FACTOR / 1000000;
+
     // TODO: remove if these stay unused
     // // These speed values are also reversed like the above
     // public const float CELL_COLONY_MAX_ROTATION_MULTIPLIER = 2.5f;

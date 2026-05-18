@@ -649,6 +649,12 @@ public partial class ToolTipManager : CanvasLayer
                 "res://assets/textures/gui/bevel/SpeedIcon.png", "speed");
         }
 
+        if (organelle.Components.Cilia != null)
+        {
+            tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
+                "res://assets/textures/gui/bevel/RotationIcon.png", "rotationSpeed");
+        }
+
         if (organelle.Components.Lysosome != null)
         {
             tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
@@ -740,6 +746,14 @@ public partial class ToolTipManager : CanvasLayer
         {
             modifierInfo.DisplayName = "SPEED";
             modifierInfo.ModifierValue = "+" + organelle.Components.Movement!.Momentum;
+        }
+
+        modifierInfo = selectionMenuTooltip.GetModifierInfo("rotationSpeed");
+
+        if (modifierInfo != null)
+        {
+            modifierInfo.DisplayName = "SPEED";
+            modifierInfo.ModifierValue = "+" + Constants.CILIA_ROTATION_FORCE_DISPLAY;
         }
 
         modifierInfo = selectionMenuTooltip.GetModifierInfo("temperatureTolerance");
