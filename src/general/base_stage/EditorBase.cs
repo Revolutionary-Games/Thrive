@@ -679,6 +679,11 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         PauseMenu.Instance.OpenToSpeciesPage(species);
     }
 
+    public void OpenSpeciesInfoFor(uint speciesId)
+    {
+        PauseMenu.Instance.OpenToSpeciesPage(speciesId);
+    }
+
     public double CalculateNextGenerationTimePoint()
     {
         if (currentGame == null)
