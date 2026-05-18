@@ -756,7 +756,7 @@ public static class MicrobeColonyHelpers
                 continue;
             }
 
-            var newParent = CalculateSensibleReParentIndex(ref colony, ref next.Get<AttachedToEntity>(), ref next);
+            var newParent = colony.CalculateSensibleReParentIndex(ref next.Get<AttachedToEntity>(), ref next);
             if (newParent != -1)
             {
                 colony.ColonyStructure[next] = colony.ColonyMembers[newParent];
