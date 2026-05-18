@@ -739,7 +739,7 @@ public partial class ToolTipManager : CanvasLayer
         if (modifierInfo != null)
         {
             modifierInfo.DisplayName = "SPEED";
-            modifierInfo.ModifierValue = "+" + Constants.FLAGELLA_SPEED_BONUS_DISPLAY;
+            modifierInfo.ModifierValue = "+" + organelle.Components.Movement!.Momentum;
         }
 
         modifierInfo = selectionMenuTooltip.GetModifierInfo("temperatureTolerance");
