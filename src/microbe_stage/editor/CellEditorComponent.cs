@@ -2497,6 +2497,9 @@ public partial class CellEditorComponent :
 
         autoEvoPredictionDirty = true;
         suggestionDirty = true;
+
+        microbeVisualizationOrganellePositionsAreDirty = true;
+        organelleDataDirty = true;
     }
 
     private void OnRigidityChanged()
