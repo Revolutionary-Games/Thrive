@@ -177,7 +177,7 @@ public static class MicrobeColonyHelpers
     // from the colony class)
     // public static readonly ArrayPool<Entity> MicrobeColonyMemberListPool = ArrayPool<Entity>.Create(100, 50);
 
-    private static readonly List<Entity> DependentMembersToRemove = new();
+    private static readonly List<Entity> DependentMembersToReparent = new();
 
     public static MicrobeColony ReadFromArchive(ISArchiveReader reader, ushort version)
     {
@@ -729,15 +729,15 @@ public static class MicrobeColonyHelpers
         foreach (var entry in colony.ColonyStructure)
         {
             if (entry.Value == removedMember)
-                DependentMembersToRemove.Add(entry.Key);
+                DependentMembersToReparent.Add(entry.Key);
         }
 
-        while (DependentMembersToRemove.Count > 0)
+        while (DependentMembersToReparent.Count > 0)
         {
-            var next = DependentMembersToRemove[DependentMembersToRemove.Count - 1];
+            var next = DependentMembersToReparent[DependentMembersToReparent.Count - 1];
 
             // This is this way around to support recursive calls also adding things here
-            DependentMembersToRemove.RemoveAt(DependentMembersToRemove.Count - 1);
+            DependentMembersToReparent.RemoveAt(DependentMembersToReparent.Count - 1);
 
             if (!next.IsAliveAndNotNull())
             {
@@ -746,6 +746,7 @@ public static class MicrobeColonyHelpers
                 GD.PrintErr("Dependent colony member to re-parent is already dead, doing only " +
                     "light fallback cleanup");
 
+                // It doesn't make sense to re-parent a dead cell
                 colony.ColonyStructure.Remove(next);
 
                 if (colony.ColonyMembers.Contains(next))
@@ -769,7 +770,7 @@ public static class MicrobeColonyHelpers
             if (!colony.RemoveFromColonyAndDisbandIfEmpty(colonyEntity, next, recorder))
             {
                 // Colony is entirely disbanded, doesn't make sense to continue removing things
-                DependentMembersToRemove.Clear();
+                DependentMembersToReparent.Clear();
                 return false;
             }
         }
