@@ -1,9 +1,6 @@
-using System;
+﻿using System;
 using SharedBase.Archive;
 
-/// <summary>
-///   Action data for changing mass budding initial cell count
-/// </summary>
 public class MassBuddingCellCountActionData : EditorCombinableActionData<MulticellularSpecies>
 {
     public const ushort SERIALIZATION_VERSION = 1;
@@ -54,6 +51,26 @@ public class MassBuddingCellCountActionData : EditorCombinableActionData<Multice
 
     protected override bool CanMergeWithInternal(CombinableActionData other)
     {
-        return false;
+        return other is MassBuddingCellCountActionData;
+    }
+
+    protected override void MergeGuaranteed(CombinableActionData other)
+    {
+        var otherCellCountData = (MassBuddingCellCountActionData)other;
+
+        if (OldCellCount == otherCellCountData.NewCellCount)
+        {
+            // Handle cancels out
+            if (NewCellCount == otherCellCountData.OldCellCount)
+            {
+                NewCellCount = otherCellCountData.NewCellCount;
+                return;
+            }
+
+            OldCellCount = otherCellCountData.OldCellCount;
+            return;
+        }
+
+        NewCellCount = otherCellCountData.NewCellCount;
     }
 }
