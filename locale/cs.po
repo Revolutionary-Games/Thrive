@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-05-18 10:19+0200\n"
-"PO-Revision-Date: 2026-05-13 03:55+0000\n"
+"PO-Revision-Date: 2026-05-17 08:05+0000\n"
 "Last-Translator: Tibor Šťastný <tiborstgame2@seznam.cz>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
 "Language: cs\n"
@@ -403,10 +403,10 @@ msgid "AVAILABLE_MODS"
 msgstr "Dostupné mody"
 
 msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
-msgstr ""
+msgstr "Průměrná hodnota povrchového CO2"
 
 msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
-msgstr ""
+msgstr "Průměrná hodnota intenzity povrchového světla"
 
 msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
 msgstr ""
@@ -415,10 +415,10 @@ msgid "AVERAGE_SURFACE_OTHER_LEVEL"
 msgstr ""
 
 msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
-msgstr ""
+msgstr "Průměrná hodnota kyslíku na povrchu"
 
 msgid "AVERAGE_SURFACE_TEMPERATURE"
-msgstr ""
+msgstr "Průměrná teplota na povrchu"
 
 msgid "AWAKENING_STAGE"
 msgstr "Fáze Probuzení"
@@ -650,7 +650,7 @@ msgid "CANNOT_ENGULF"
 msgstr "Nedokáže pohlcovat"
 
 msgid "CANNOT_IMPROVE_PERFECTION"
-msgstr ""
+msgstr "Nemůžete vylepšit dokonalost"
 
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr "Nelze umístit masovou kouli do jeho stromu potomků"
@@ -868,19 +868,19 @@ msgid "CLICK_TO_SELECT"
 msgstr "Vybrat"
 
 msgid "CLIMATE_INSTABILITY"
-msgstr ""
+msgstr "Nestabilita podnebí"
 
 msgid "CLIMATE_INSTABILITY_EXPLANATION"
 msgstr "(ovlivňuje frekvenci a závažnost událostí v sektorech jako je například globální zalednění)"
 
 msgid "CLIMATE_STABILITY_AVERAGE"
-msgstr ""
+msgstr "Průměrný"
 
 msgid "CLIMATE_STABILITY_STABLE"
-msgstr ""
+msgstr "Stabilní"
 
 msgid "CLIMATE_STABILITY_UNSTABLE"
-msgstr ""
+msgstr "Nestabilní"
 
 msgid "CLOSE"
 msgstr "Zavřít"
@@ -888,9 +888,8 @@ msgstr "Zavřít"
 msgid "CLOSE_OPTIONS"
 msgstr "Zavřít možnosti?"
 
-#, fuzzy
 msgid "CLOSTRIDIAL_FERMENTATION"
-msgstr "Klostridiová fermentace"
+msgstr "Klostridiové kvašení"
 
 #, fuzzy
 msgid "CLOUD_BENCHMARK"
@@ -967,7 +966,7 @@ msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Jas (intenzita barvy)"
 
 msgid "COMMAND_INPUT_LINE_EDIT"
-msgstr ""
+msgstr "Vložte příkaz"
 
 msgid "COMMON_ABILITIES"
 msgstr "Společné schopnosti"
@@ -1068,7 +1067,7 @@ msgid "COMPOUND_LEVEL_LOW"
 msgstr "Nízká"
 
 msgid "COMPOUND_LEVEL_VERY_HIGH"
-msgstr ""
+msgstr "Velice vysoká"
 
 msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr "Velmi nízká"
@@ -2135,7 +2134,7 @@ msgid "ENERGY_SUMMARY_LINE"
 msgstr "Celková získaná energie je {0} s individuálními náklady {1}, což vede k nekorigované populaci {2}"
 
 msgid "ENGULF_CELL_OR_CHUNK"
-msgstr ""
+msgstr "Pohlť jinou buňku nebo úlomek"
 
 #, fuzzy
 msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
@@ -2218,6 +2217,8 @@ msgstr ""
 
 msgid "EVENT_METEOR_GLUCOSE"
 msgstr ""
+"Pád glukózového meteoritu\n"
+"Zvýšil hodnoty oxidu uhličitého a glukózy."
 
 msgid "EVENT_METEOR_IRON"
 msgstr ""
@@ -2241,6 +2242,9 @@ msgstr ""
 
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
+"Pád sírového meteoritu\n"
+"Zvýšil hodnoty Oxidu uhličitého a síry\n"
+"Rozpadl se na sírové úlomky."
 
 msgid "EVENT_RUNOFF_TOOLTIP"
 msgstr ""
@@ -2631,7 +2635,7 @@ msgid "GENERAL_LOADING_TIP_7"
 msgstr "Pokud tvá populace spadne na nulu, tak vyhyneš."
 
 msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
-msgstr ""
+msgstr "Vytvoř více glukózy než spotřebuješ fotosyntézou"
 
 msgid "GENERATIONS"
 msgstr "Generace"
@@ -2672,7 +2676,7 @@ msgid "GLES3"
 msgstr "GLES3"
 
 msgid "GLOBAL_GLACIATION_END_EVENT_LOG"
-msgstr ""
+msgstr "Globální zalednění skončilo ve všech povrchových sektorech"
 
 #, fuzzy
 msgid "GLOBAL_GLACIATION_EVENT"
@@ -2683,13 +2687,13 @@ msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
 msgstr "Přejděte do fáze Probuzení. Dostupné, jakmile máte dostatečnou sílu mozku (typ tkáně s axony)."
 
 msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
-msgstr ""
+msgstr "Globální zalednění nastane za {0} generací"
 
 msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_SINGULAR"
-msgstr ""
+msgstr "Globální zalednění nastane za {0} generaci"
 
 msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
-msgstr ""
+msgstr "Globální zalednění začalo ve všech povrchových sektorech"
 
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
@@ -2885,7 +2889,7 @@ msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr ""
 
 msgid "IGNORE_FURTHER_ERRORS"
-msgstr ""
+msgstr "Ignorovat další chyby"
 
 #, fuzzy
 msgid "IMAGE_FILE_TYPES"
@@ -3110,7 +3114,7 @@ msgid "IRON"
 msgstr "Železo"
 
 msgid "IRON_LEVELS"
-msgstr ""
+msgstr "Hodnoty železa"
 
 msgid "IRON_OXIDATION"
 msgstr "Rezivění"
@@ -3771,13 +3775,13 @@ msgid "META_THREADS_TOOLTIP"
 msgstr "Navštivte náš profil na Threads."
 
 msgid "METEOR_IMPACT_EVENT"
-msgstr ""
+msgstr "Pád meteoru"
 
 msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
-msgstr ""
+msgstr "Pád meteoru zasáhl {0} sektorů"
 
 msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
-msgstr ""
+msgstr "Pád meteoru zasáhl {0} sektor"
 
 msgid "METRICS"
 msgstr "Metriky výkonu"
@@ -4665,7 +4669,7 @@ msgid "NOTHING_HERE"
 msgstr "Nic zde není"
 
 msgid "NOTHING_TO_INTERACT_WITH"
-msgstr ""
+msgstr "Nic tu není"
 
 msgid "NOTICE_BINDING_OUT_OF_ATP"
 msgstr "Rušení spojovacího módu z důvodu nedostatku ATP"
@@ -6798,7 +6802,7 @@ msgid "TOTAL_SAVES"
 msgstr "Celkem úložných souborů:"
 
 msgid "TOXIN_CHANNEL_INHIBITOR"
-msgstr ""
+msgstr "Inhibitor kanálu"
 
 #, fuzzy
 msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
