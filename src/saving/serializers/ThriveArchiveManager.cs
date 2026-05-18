@@ -667,26 +667,32 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
             typeof(CellPlacementActionData), CellPlacementActionData.WriteToArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CellPlacementActionData,
             typeof(CellPlacementActionData), CellPlacementActionData.ReadFromArchive);
+
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CellMoveActionData,
             typeof(CellMoveActionData), CellMoveActionData.WriteToArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CellMoveActionData,
             typeof(CellMoveActionData), CellMoveActionData.ReadFromArchive);
+
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CellRemoveActionData,
             typeof(CellRemoveActionData), CellRemoveActionData.WriteToArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CellRemoveActionData,
             typeof(CellRemoveActionData), CellRemoveActionData.ReadFromArchive);
+
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.DuplicateDeleteCellTypeData,
             typeof(DuplicateDeleteCellTypeData), DuplicateDeleteCellTypeData.WriteToArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.DuplicateDeleteCellTypeData,
             typeof(DuplicateDeleteCellTypeData), DuplicateDeleteCellTypeData.ReadFromArchive);
+
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MulticellularReproductionActionData,
             typeof(MulticellularReproductionActionData), MulticellularReproductionActionData.WriteToArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MulticellularReproductionActionData,
             typeof(MulticellularReproductionActionData), MulticellularReproductionActionData.ReadFromArchive);
+
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.SporeCellTypeChangeActionData,
             typeof(SporeCellTypeChangeActionData), SporeCellTypeChangeActionData.WriteToArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.SporeCellTypeChangeActionData,
             typeof(SporeCellTypeChangeActionData), SporeCellTypeChangeActionData.ReadFromArchive);
+
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MassBuddingCellCountActionData,
             typeof(MassBuddingCellCountActionData), MassBuddingCellCountActionData.WriteToArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MassBuddingCellCountActionData,

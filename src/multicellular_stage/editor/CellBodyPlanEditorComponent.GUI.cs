@@ -46,6 +46,9 @@ public partial class CellBodyPlanEditorComponent
 
     public void OnMassBuddingCellCountChanged(float count)
     {
+        if ((int)count == MassBuddingCellCount)
+            return;
+
         var action = new SingleEditorAction<MassBuddingCellCountActionData>(DoMassBuddingCellCountChangeAction,
             UndoMassBuddingCellCountChangeAction,
             new MassBuddingCellCountActionData(MassBuddingCellCount, (int)count));

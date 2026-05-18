@@ -248,7 +248,7 @@ public partial class CellBodyPlanEditorComponent :
 
     public CellType? SporeCellType { get; private set; }
 
-    public int MassBuddingCellCount { get; private set; }
+    public int MassBuddingCellCount { get; private set; } = 1;
 
     protected override bool ShowFloatingLabels => ShowGrowthOrder;
 
@@ -1511,6 +1511,8 @@ public partial class CellBodyPlanEditorComponent :
         tolerancesEditor.OnDataTolerancesDependOnChanged();
 
         UpdateSpecializationDisplay();
+
+        UpdateMassBuddingCellCountSlider();
     }
 
     private void UpdateStats()

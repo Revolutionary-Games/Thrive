@@ -8,9 +8,9 @@ public class MassBuddingCellCountActionData : EditorCombinableActionData<Multice
     public int OldCellCount;
     public int NewCellCount;
 
-    public MassBuddingCellCountActionData(int previousCellCount, int newCellCount)
+    public MassBuddingCellCountActionData(int oldCellCount, int newCellCount)
     {
-        OldCellCount = previousCellCount;
+        OldCellCount = oldCellCount;
         NewCellCount = newCellCount;
     }
 
