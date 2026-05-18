@@ -317,6 +317,7 @@ public partial class CellBodyPlanEditorComponent
 
         buddingReproductionSection.Visible = ReproductionMethod == MulticellularReproductionMethod.Budding;
         sporeReproductionSection.Visible = ReproductionMethod == MulticellularReproductionMethod.Sporulation;
+        massBuddingReproductionSection.Visible = ReproductionMethod == MulticellularReproductionMethod.MassBudding;
     }
 
     private void UpdateSporeCellDropdown()

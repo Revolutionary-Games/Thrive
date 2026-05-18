@@ -144,10 +144,16 @@ public partial class CellBodyPlanEditorComponent :
     private OptionButton sporeCellTypeDropdown = null!;
 
     [Export]
+    private Slider massBuddingCellCountSlider = null!;
+
+    [Export]
     private Control buddingReproductionSection = null!;
 
     [Export]
     private Control sporeReproductionSection = null!;
+
+    [Export]
+    private Control massBuddingReproductionSection = null!;
 #pragma warning restore CA2213
 
     private string newName = "unset";

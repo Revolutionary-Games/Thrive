@@ -2,4 +2,5 @@
 {
     Budding,
     Sporulation,
+    MassBudding,
 }
