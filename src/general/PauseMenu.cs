@@ -375,13 +375,18 @@ public partial class PauseMenu : CanvasLayer
 
     public void OpenToSpeciesPage(Species species)
     {
+        OpenToSpeciesPage(species.ID);
+    }
+
+    public void OpenToSpeciesPage(uint speciesId)
+    {
         if (GameLoading)
             return;
 
         Open();
         OpenThriveopediaPressed();
 
-        ThriveopediaManager.OpenPage($"species:{species.ID}");
+        ThriveopediaManager.OpenPage($"species:{speciesId}");
     }
 
     public void SetNewSaveName(string name)
