@@ -667,6 +667,30 @@ public partial class ToolTipManager : CanvasLayer
                 "res://assets/textures/gui/bevel/StorageIcon.png", "storage");
         }
 
+        if (organelle.ToleranceModifierTemperatureRange != 0)
+        {
+            tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
+                "res://assets/textures/gui/bevel/Temperature.svg", "temperatureTolerance");
+        }
+
+        if (organelle.ToleranceModifierPressureTolerance != 0)
+        {
+            tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
+                "res://assets/textures/gui/bevel/Pressure.svg", "pressureTolerance");
+        }
+
+        if (organelle.ToleranceModifierOxygen != 0)
+        {
+            tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
+                "res://assets/textures/gui/bevel/Oxygen.svg", "oxygenTolerance");
+        }
+
+        if (organelle.ToleranceModifierUV != 0)
+        {
+            tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
+                "res://assets/textures/gui/bevel/Sunlight.svg", "uvTolerance");
+        }
+
         tooltip.AddOrganelleCostInfo("AMMONIA_COST",
             "+" + organelle.InitialComposition.GetValueOrDefault(Compound.Ammonia, 0), 0,
             "res://assets/textures/gui/bevel/Ammonia.svg", "ammoniaCost");
@@ -716,6 +740,82 @@ public partial class ToolTipManager : CanvasLayer
         {
             modifierInfo.DisplayName = "SPEED";
             modifierInfo.ModifierValue = "+" + Constants.FLAGELLA_SPEED_BONUS_DISPLAY;
+        }
+
+        modifierInfo = selectionMenuTooltip.GetModifierInfo("temperatureTolerance");
+
+        if (modifierInfo != null)
+        {
+            modifierInfo.DisplayName = "DIGESTION_EFFICIENCY";
+            var value = organelle.ToleranceModifierTemperatureRange;
+
+            if (value > 0)
+            {
+                modifierInfo.ModifierValue = "+" + value.ToString(CultureInfo.CurrentCulture);
+            }
+            else
+            {
+                modifierInfo.AdjustValueColor(value);
+                modifierInfo.ModifierValue = value.ToString(CultureInfo.CurrentCulture);
+            }
+        }
+
+        modifierInfo = selectionMenuTooltip.GetModifierInfo("pressureTolerance");
+
+        if (modifierInfo != null)
+        {
+            modifierInfo.DisplayName = "DIGESTION_EFFICIENCY";
+            var value = organelle.ToleranceModifierPressureTolerance;
+
+            if (value > 0)
+            {
+                modifierInfo.ModifierValue = "+" + value.ToString(CultureInfo.CurrentCulture);
+            }
+            else
+            {
+                modifierInfo.AdjustValueColor(value);
+                modifierInfo.ModifierValue = value.ToString(CultureInfo.CurrentCulture);
+            }
+        }
+
+        modifierInfo = selectionMenuTooltip.GetModifierInfo("oxygenTolerance");
+
+        if (modifierInfo != null)
+        {
+            modifierInfo.DisplayName = "DIGESTION_EFFICIENCY";
+            var value = organelle.ToleranceModifierOxygen;
+
+            if (value > 0)
+            {
+                modifierInfo.ModifierValue = "+" + Localization.Translate("PERCENTAGE_VALUE")
+                    .FormatSafe((value * 100).ToString("F1", CultureInfo.CurrentCulture));
+            }
+            else
+            {
+                modifierInfo.AdjustValueColor(value);
+                modifierInfo.ModifierValue = Localization.Translate("PERCENTAGE_VALUE")
+                    .FormatSafe((value * 100).ToString("F1", CultureInfo.CurrentCulture));
+            }
+        }
+
+        modifierInfo = selectionMenuTooltip.GetModifierInfo("uvTolerance");
+
+        if (modifierInfo != null)
+        {
+            modifierInfo.DisplayName = "DIGESTION_EFFICIENCY";
+            var value = organelle.ToleranceModifierUV;
+
+            if (value > 0)
+            {
+                modifierInfo.ModifierValue = "+" + Localization.Translate("PERCENTAGE_VALUE")
+                    .FormatSafe((value * 100).ToString("F1", CultureInfo.CurrentCulture));
+            }
+            else
+            {
+                modifierInfo.AdjustValueColor(value);
+                modifierInfo.ModifierValue = Localization.Translate("PERCENTAGE_VALUE")
+                    .FormatSafe((value * 100).ToString("F1", CultureInfo.CurrentCulture));
+            }
         }
 
         modifierInfo = selectionMenuTooltip.GetModifierInfo("ammoniaCost");
