@@ -89,8 +89,16 @@ public static class Constants
     public const float PLAYER_SPECIES_SPAWN_MULTIPLIER = 0.5f;
 
     /// <summary>
-    ///   Uniform scale used to render and simulate prokaryotic cells relative to their unscaled membrane geometry.
+    ///   Uniform scale used to render and simulate prokaryotic cells relative to their unscaled true size.
+    ///   Eukaryotes use the true scale for their size. So at present this makes bacteria half the size of eukaryotes.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This is extracted as a constant to not be a magic value all over the code, however, changing this would be
+    ///     a very major thing. So do not touch this! Changing this will break old saves, and some game logic still
+    ///     seems to depend on the hardcoded value, so changing this cannot be done easily.
+    ///   </para>
+    /// </remarks>
     public const float BACTERIA_CELL_SCALE = 0.5f;
 
     /// <summary>
