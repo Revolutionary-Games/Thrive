@@ -745,7 +745,7 @@ public partial class ToolTipManager : CanvasLayer
         if (modifierInfo != null)
         {
             modifierInfo.DisplayName = "SPEED";
-            modifierInfo.ModifierValue = "+" + organelle.Components.Movement!.Momentum;
+            modifierInfo.ModifierValue = "+" + Constants.FLAGELLA_BASE_FORCE;
         }
 
         modifierInfo = selectionMenuTooltip.GetModifierInfo("rotationSpeed");
