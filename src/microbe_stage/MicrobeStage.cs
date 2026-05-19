@@ -970,7 +970,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
                 Player.Get<MulticellularGrowth>().IsASpore = true;
             }
             else if (multicellularSpeciesType.Species.ReproductionMethod is MulticellularReproductionMethod.Budding
-                or MulticellularReproductionMethod.MassBudding)
+                     or MulticellularReproductionMethod.MassBudding)
             {
                 adjacencyBonus = multicellularSpeciesType.Species.GetAdjacencySpecializationBonus(0);
             }
