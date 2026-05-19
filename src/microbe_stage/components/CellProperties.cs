@@ -76,7 +76,7 @@ public struct CellProperties : IArchivableComponent
         ShapeCreated = false;
     }
 
-    public float Radius => IsBacteria ? UnadjustedRadius * 0.5f : UnadjustedRadius;
+    public float Radius => IsBacteria ? UnadjustedRadius * Constants.BACTERIA_CELL_SCALE : UnadjustedRadius;
 
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
     public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentCellProperties;
@@ -420,7 +420,7 @@ public static class CellPropertiesHelpers
 
         // The membrane radius doesn't take being bacteria into account
         if (cellProperties.IsBacteria)
-            distance *= 0.5f;
+            distance *= Constants.BACTERIA_CELL_SCALE;
 
         distance += displacement;
 
@@ -512,7 +512,7 @@ public static class CellPropertiesHelpers
 
         ref var spatial = ref entity.Get<SpatialInstance>();
 
-        spatial.VisualScale = cellProperties.IsBacteria ? new Vector3(0.5f, 0.5f, 0.5f) : new Vector3(1, 1, 1);
+        spatial.VisualScale = cellProperties.IsBacteria ? Vector3.One * Constants.BACTERIA_CELL_SCALE : Vector3.One;
 
         ref var organelleContainer = ref entity.Get<OrganelleContainer>();
 

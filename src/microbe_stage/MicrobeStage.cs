@@ -667,7 +667,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
                 radius = membraneData.Radius;
 
                 if (microbeSpecies.IsBacteria)
-                    radius *= 0.5f;
+                    radius *= Constants.BACTERIA_CELL_SCALE;
             }
 
             resolvedSpeciesRadii[species] = radius;

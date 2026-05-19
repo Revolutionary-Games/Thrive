@@ -884,7 +884,7 @@ public static class SpawnHelpers
         recorder.Set(entity, new ReproductionStatus(species.BaseReproductionCost));
 
         // Visuals
-        var scale = usedCellDefinition.IsBacteria ? new Vector3(0.5f, 0.5f, 0.5f) : new Vector3(1, 1, 1);
+        var scale = usedCellDefinition.IsBacteria ? Vector3.One * Constants.BACTERIA_CELL_SCALE : Vector3.One;
 
         recorder.Set(entity, new SpatialInstance
         {
