@@ -51,7 +51,7 @@ public partial class CellBodyPlanEditorComponent
 
         var action = new SingleEditorAction<MassBuddingCellCountActionData>(DoMassBuddingCellCountChangeAction,
             UndoMassBuddingCellCountChangeAction,
-            new MassBuddingCellCountActionData(MassBuddingCellCount, (int)count));
+            new MassBuddingCellCountActionData(MassBuddingCellCount, (int)count, editedMicrobeCells.Count));
 
         Editor.EnqueueAction(action);
 

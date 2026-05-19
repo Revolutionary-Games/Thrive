@@ -877,7 +877,7 @@ public partial class CellBodyPlanEditorComponent :
 
         ++alreadyDeleted;
         return new SingleEditorAction<CellRemoveActionData>(DoCellRemoveAction, UndoCellRemoveAction,
-            new CellRemoveActionData(hexHere));
+            new CellRemoveActionData(hexHere, MassBuddingCellCount));
     }
 
     protected override float CalculateEditorArrowZPosition()
@@ -1152,7 +1152,7 @@ public partial class CellBodyPlanEditorComponent :
             if (occupied)
             {
                 action = new SingleEditorAction<CellRemoveActionData>(DoCellRemoveAction,
-                    UndoCellRemoveAction, new CellRemoveActionData(cell));
+                    UndoCellRemoveAction, new CellRemoveActionData(cell, MassBuddingCellCount));
             }
             else
             {

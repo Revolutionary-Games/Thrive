@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 using SharedBase.Archive;
 
 /// <summary>
@@ -22,12 +23,18 @@ public partial class CellBodyPlanEditorComponent
     private void DoCellRemoveAction(CellRemoveActionData data)
     {
         editedMicrobeCells.Remove(data.RemovedHex);
+
+        MassBuddingCellCount = Math.Clamp(data.MassBuddingCellCount, 1, MassBuddingCellCount);
+        UpdateMassBuddingCellCountSlider();
     }
 
     [ArchiveAllowedMethod]
     private void UndoCellRemoveAction(CellRemoveActionData data)
     {
         editedMicrobeCells.AddFast(data.RemovedHex, hexTemporaryMemory, hexTemporaryMemory2);
+
+        MassBuddingCellCount = data.MassBuddingCellCount;
+        UpdateMassBuddingCellCountSlider();
     }
 
     [ArchiveAllowedMethod]

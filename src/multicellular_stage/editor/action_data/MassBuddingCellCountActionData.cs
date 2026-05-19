@@ -8,10 +8,13 @@ public class MassBuddingCellCountActionData : EditorCombinableActionData<Multice
     public int OldCellCount;
     public int NewCellCount;
 
-    public MassBuddingCellCountActionData(int oldCellCount, int newCellCount)
+    private int maxCellCount;
+
+    public MassBuddingCellCountActionData(int oldCellCount, int newCellCount, int maxCellCount)
     {
         OldCellCount = oldCellCount;
         NewCellCount = newCellCount;
+        this.maxCellCount = maxCellCount;
     }
 
     public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
@@ -33,7 +36,7 @@ public class MassBuddingCellCountActionData : EditorCombinableActionData<Multice
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        var instance = new MassBuddingCellCountActionData(reader.ReadInt32(), reader.ReadInt32());
+        var instance = new MassBuddingCellCountActionData(reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32());
 
         instance.ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
 
@@ -44,6 +47,7 @@ public class MassBuddingCellCountActionData : EditorCombinableActionData<Multice
     {
         writer.Write(OldCellCount);
         writer.Write(NewCellCount);
+        writer.Write(maxCellCount);
 
         writer.Write(SERIALIZATION_VERSION_CONTEXT);
         base.WriteToArchive(writer);
@@ -51,7 +55,8 @@ public class MassBuddingCellCountActionData : EditorCombinableActionData<Multice
 
     protected override bool CanMergeWithInternal(CombinableActionData other)
     {
-        return other is MassBuddingCellCountActionData;
+        return other is MassBuddingCellCountActionData otherCellCountData
+            && otherCellCountData.maxCellCount == maxCellCount;
     }
 
     protected override void MergeGuaranteed(CombinableActionData other)

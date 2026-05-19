@@ -83,7 +83,7 @@ public partial class CellPopupMenu : HexPopupMenu
 
         var mpCost = GetActionPrice?.Invoke(SelectedCells
                 .Select(o =>
-                    (EditorCombinableActionData)new CellRemoveActionData(o))) ??
+                    (EditorCombinableActionData)new CellRemoveActionData(o, 1))) ??
             throw new ArgumentException($"{nameof(GetActionPrice)} not set");
 
         mpCost = Math.Round(mpCost, Constants.MUTATION_POINTS_DECIMALS);
