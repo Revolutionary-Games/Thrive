@@ -646,13 +646,13 @@ public partial class ToolTipManager : CanvasLayer
         if (organelle.Components.Movement != null)
         {
             tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
-                "res://assets/textures/gui/bevel/SpeedIcon.png", "speed");
+                "res://assets/textures/gui/bevel/SpeedIcon.png", "thrustForce");
         }
 
         if (organelle.Components.Cilia != null)
         {
             tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
-                "res://assets/textures/gui/bevel/RotationIcon.png", "rotationSpeed");
+                "res://assets/textures/gui/bevel/RotationIcon.png", "rotationForce");
         }
 
         if (organelle.Components.Lysosome != null)
@@ -688,13 +688,13 @@ public partial class ToolTipManager : CanvasLayer
         if (organelle.ToleranceModifierOxygen != 0)
         {
             tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
-                "res://assets/textures/gui/bevel/Oxygen.svg", "oxygenTolerance");
+                "res://assets/textures/gui/bevel/Oxygen.svg", "oxygenResistance");
         }
 
         if (organelle.ToleranceModifierUV != 0)
         {
             tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
-                "res://assets/textures/gui/bevel/Sunlight.svg", "uvTolerance");
+                "res://assets/textures/gui/bevel/Sunlight.svg", "uvResistance");
         }
 
         tooltip.AddOrganelleCostInfo("AMMONIA_COST",
@@ -740,7 +740,7 @@ public partial class ToolTipManager : CanvasLayer
                     Constants.ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION).ToString("F1", CultureInfo.CurrentCulture));
         }
 
-        modifierInfo = selectionMenuTooltip.GetModifierInfo("speed");
+        modifierInfo = selectionMenuTooltip.GetModifierInfo("thrustForce");
 
         if (modifierInfo != null)
         {
@@ -749,7 +749,7 @@ public partial class ToolTipManager : CanvasLayer
                 / 100;
         }
 
-        modifierInfo = selectionMenuTooltip.GetModifierInfo("rotationSpeed");
+        modifierInfo = selectionMenuTooltip.GetModifierInfo("rotationForce");
 
         if (modifierInfo != null)
         {
@@ -793,7 +793,7 @@ public partial class ToolTipManager : CanvasLayer
             }
         }
 
-        modifierInfo = selectionMenuTooltip.GetModifierInfo("oxygenTolerance");
+        modifierInfo = selectionMenuTooltip.GetModifierInfo("oxygenResistance");
 
         if (modifierInfo != null)
         {
@@ -813,7 +813,7 @@ public partial class ToolTipManager : CanvasLayer
             }
         }
 
-        modifierInfo = selectionMenuTooltip.GetModifierInfo("uvTolerance");
+        modifierInfo = selectionMenuTooltip.GetModifierInfo("uvResistance");
 
         if (modifierInfo != null)
         {
