@@ -130,7 +130,8 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
     {
         // We pass AI-controlled true here to avoid creating player-specific data, but as we don't have the AI system,
         // it is fine to create the AI properties as it won't actually do anything
-        SpawnHelpers.SpawnMicrobe(this, dummyEnvironment, species, Vector3.Zero, true);
+        SpawnHelpers.SpawnMicrobe(this, dummyEnvironment, species, Vector3.Zero, true,
+            MulticellularSpawnState.ColonyRoot);
 
         ProcessDelaySpawnedEntitiesImmediately();
 

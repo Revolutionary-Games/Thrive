@@ -590,7 +590,7 @@ public static class SpawnHelpers
 
     public static void SpawnMicrobe(IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment spawnEnvironment,
         Species species, Vector3 location, bool aiControlled,
-        MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.Bud)
+        MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.InitialState)
     {
         SpawnMicrobe(worldSimulation, spawnEnvironment, species, location, aiControlled, (null, 0),
             multicellularSpawnState);
@@ -599,7 +599,7 @@ public static class SpawnHelpers
     public static void SpawnMicrobe(IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment spawnEnvironment,
         Species species, Vector3 location, bool aiControlled,
         (CellType? MulticellularCellType, int CellBodyPlanIndex) multicellularData,
-        MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.Bud)
+        MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.InitialState)
     {
         var (recorder, _) = SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species, location,
             aiControlled,
@@ -611,7 +611,7 @@ public static class SpawnHelpers
     public static (CommandBuffer Recorder, float Weight) SpawnMicrobeWithoutFinalizing(IWorldSimulation worldSimulation,
         IMicrobeSpawnEnvironment spawnEnvironment, Species species,
         Vector3 location, bool aiControlled, (CellType? MulticellularCellType, int CellBodyPlanIndex) multicellularData,
-        out Entity entity, MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.Bud,
+        out Entity entity, MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.InitialState,
         Random? random = null)
     {
         var recorder = worldSimulation.StartRecordingEntityCommands();
@@ -623,7 +623,7 @@ public static class SpawnHelpers
         IMicrobeSpawnEnvironment spawnEnvironment, Species species,
         Vector3 location, bool aiControlled, (CellType? MulticellularCellType, int CellBodyPlanIndex) multicellularData,
         CommandBuffer recorder, out Entity entity,
-        MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.Bud,
+        MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.InitialState,
         bool giveInitialCompounds = true, Random? random = null)
     {
         // If this method is modified, it must be ensured that CellPropertiesHelpers.ReApplyCellTypeProperties and
@@ -752,7 +752,7 @@ public static class SpawnHelpers
 
                 var multicellularGrowth = new MulticellularGrowth(multicellularSpecies);
 
-                if (multicellularSpawnState == MulticellularSpawnState.Bud)
+                if (multicellularSpawnState == MulticellularSpawnState.InitialState)
                 {
                     resolvedCellType = multicellularSpecies.FirstCellTypeToSpawn();
 
@@ -976,7 +976,8 @@ public static class SpawnHelpers
 
         float spawnLimitWeight = OrganelleContainerHelpers.CalculateCellEntityWeight(organelleCount);
 
-        if (multicellularSpawnState != MulticellularSpawnState.Bud && multicellular != null)
+        if (multicellularSpawnState is not MulticellularSpawnState.InitialState
+            and not MulticellularSpawnState.ColonyRoot && multicellular != null)
         {
             switch (multicellularSpawnState)
             {
@@ -1074,7 +1075,7 @@ public static class SpawnHelpers
         Vector3 location, out Entity entity)
     {
         return SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species, location, true, (null, 0),
-            out entity, MulticellularSpawnState.Bud);
+            out entity, MulticellularSpawnState.InitialState);
     }
 
     public static void SpawnCloud(CompoundCloudSystem clouds, Vector3 location, Compound compound, float amount,
