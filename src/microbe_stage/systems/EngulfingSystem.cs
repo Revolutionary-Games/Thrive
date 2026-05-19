@@ -300,7 +300,7 @@ public partial class EngulfingSystem : BaseSystem<World, float>
         float radius = engulferCellProperties.CreatedMembrane.EncompassingCircleRadius;
 
         if (engulferCellProperties.IsBacteria)
-            radius *= 0.5f;
+            radius *= Constants.BACTERIA_CELL_SCALE;
 
         // TODO: check that the positioning and animating make sense here, it should as this is only used for
         // recursively engulfed objects that should already be inside the engulfer, but re-checking this
@@ -380,7 +380,7 @@ public partial class EngulfingSystem : BaseSystem<World, float>
             targetRadius = targetCellProperties.CreatedMembrane.EncompassingCircleRadius;
 
             if (targetCellProperties.IsBacteria)
-                targetRadius *= 0.5f;
+                targetRadius *= Constants.BACTERIA_CELL_SCALE;
         }
         else if (targetEntity.Has<EntityRadiusInfo>())
         {
@@ -430,7 +430,7 @@ public partial class EngulfingSystem : BaseSystem<World, float>
 
         // The point nearest to the membrane calculation doesn't take being bacteria into account
         if (engulferCellProperties.IsBacteria)
-            nearestPointOfMembraneToTarget *= 0.5f;
+            nearestPointOfMembraneToTarget *= Constants.BACTERIA_CELL_SCALE;
 
         // From the calculated nearest point of membrane above we then linearly interpolate it by the engulfed's
         // normalized radius to this cell's center in order to "shrink" the point relative to this cell's origin.
@@ -1264,7 +1264,7 @@ public partial class EngulfingSystem : BaseSystem<World, float>
         float radius = engulferCellProperties.CreatedMembrane.EncompassingCircleRadius;
 
         if (engulferCellProperties.IsBacteria)
-            radius *= 0.5f;
+            radius *= Constants.BACTERIA_CELL_SCALE;
 
         CommandBuffer? recorder = null;
 
@@ -1500,7 +1500,7 @@ public partial class EngulfingSystem : BaseSystem<World, float>
 
         // The point nearest to the membrane calculation doesn't take being bacteria into account
         if (engulferCellProperties.IsBacteria)
-            nearestPointOfMembraneToTarget *= 0.5f;
+            nearestPointOfMembraneToTarget *= Constants.BACTERIA_CELL_SCALE;
 
         // If the animation is missing then for simplicity we just eject immediately or if the attached to
         // component is missing even though it should be always there

@@ -297,7 +297,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
         var radius = cellProperties.CreatedMembrane!.EncompassingCircleRadius;
 
         if (cellProperties.IsBacteria)
-            radius *= 0.5f;
+            radius *= Constants.BACTERIA_CELL_SCALE;
 
         var center = Vector3.Zero;
 

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-15 15:32+0300\n"
-"PO-Revision-Date: 2026-05-13 10:26+0000\n"
+"POT-Creation-Date: 2026-05-18 10:19+0200\n"
+"PO-Revision-Date: 2026-05-17 08:05+0000\n"
 "Last-Translator: xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -580,9 +580,8 @@ msgstr "瀏覽"
 msgid "BROWSE_WORKSHOP"
 msgstr "瀏覽工作坊"
 
-#, fuzzy
 msgid "BUDDING_REPRODUCTION_METHOD_EXPLANATION"
-msgstr "（從編輯器返回遊戲時如何處理玩家儲存的化合物）"
+msgstr "產生單一後代——新群落的根細胞。"
 
 msgid "BUILD_CITY"
 msgstr "建造城市"
@@ -704,13 +703,13 @@ msgstr "纖維素"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "這種細胞膜有一層額外的細胞壁，這意味著它對整體傷害有更好的保護，特別是對物理的傷害。它保持形態所需的能量也較少，但速度較慢且無法快速吸收資源。[b]纖維素酶可以消化這堵牆[/b]，使其容易被掠食者吞噬。"
 
-#, fuzzy
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
 msgstr ""
-"在多細胞階段，此面板顯示了所有細胞的平均特化增益。\n"
+"在多細胞階段，此面板顯示了所有細胞的平均特化增益，包括相鄰加成。\n"
 "目前增益為 {0}%，來自 {1} 個細胞。\n"
 "特化程度最高的類型為 {3}，其增益為 {2}%。\n"
-"要提高此數值，可以提高細胞類型的特化程度，或增加特化程度最高的細胞數量。"
+"要提高此數值，可以提高細胞類型的特化程度，增加特化程度最高的細胞數量\n"
+"或將同類型的細胞相鄰放置。"
 
 #, fuzzy
 msgid "CELL_SPECIALIZATION_TOOLTIP"
@@ -1713,9 +1712,8 @@ msgstr "困難"
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "普通"
 
-#, fuzzy
 msgid "DIFFICULTY_PRESET_VERY_EASY"
-msgstr "簡單"
+msgstr "非常簡單"
 
 msgid "DIGESTION_EFFICIENCY"
 msgstr "消化效率"
@@ -1838,9 +1836,8 @@ msgstr "雙層"
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
 msgstr "雙擊即可全螢幕檢視"
 
-#, fuzzy
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
-msgstr "有兩層的細胞膜，對傷害有更好的防護能力，並且花費更少能量來維持外型。然而，它會減慢細胞的移動速度並降低其吸收資源的速率。"
+msgstr "有兩層的細胞膜，對傷害有更好的防護能力，尤其是毒素侵害。然而，它會減慢細胞的移動速度並降低其吸收資源的速率。"
 
 msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
 msgstr "在正常與雙倍遊戲速度之間切換"
@@ -2247,9 +2244,8 @@ msgstr "這是編譯此版本 Thrive 的確切程式碼提交"
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr "處理載入的物件時發生異常"
 
-#, fuzzy
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE_JUKEBOX"
-msgstr "處理載入的物件時發生異常"
+msgstr "處理點唱機狀態時發生異常"
 
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "載入存檔資料時發生異常"
@@ -7423,6 +7419,7 @@ msgstr "無升級。"
 msgid "WIKI_BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr "細菌化能合成、糖解"
 
+#, fuzzy
 msgid "WIKI_BINDING_AGENT_EFFECTS"
 msgstr ""
 "具有[b]連接器[/b]的細胞（或含有具有[b]連接器[/b]的細胞的群落）可以進入結合模式。在結合模式下，每個細胞消耗額外的 [b]+2[/b] [thrive:compound type=\"atp\"][/thrive:compound]。結合模式會在與同物種的細胞接觸，將細胞加入群落後停用。也可以手動停用結合模式。\n"
@@ -8826,6 +8823,7 @@ msgstr ""
 msgid "WIKI_NITROGENASE_MODIFICATIONS"
 msgstr "無修改。"
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_PROCESSES"
 msgstr ""
 "[b]厭氧固氮[/b]：[thrive:compound type=\"atp\"][/thrive:compound] + [thrive:compound type=\"nitrogen\"][/thrive:compound] → [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
@@ -8845,6 +8843,7 @@ msgstr ""
 msgid "WIKI_NITROGENASE_SCIENTIFIC_BACKGROUND"
 msgstr "[color=#3796e1][url=https://en.wikipedia.org/wiki/Nitrogenase]固氮酶[/url][/color]是存在於某些真實世界細菌中的酶，它們將氮氣（N<sub>2</sub>）固化為氨（NH<sub>3</sub>）。這些固氮微生物在地球上所有其他生命的生存中發揮著至關重要的作用，因為氮是 DNA 與蛋白質的重要組成成分，但大多數生物無法直接利用其氣態形態。"
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_STRATEGY"
 msgstr ""
 "[b]固氮酶[/b]生產的[thrive:compound type=\"ammonia\"][/thrive:compound] 有助於儲存用於繁殖的資源。因此，具有[b]固氮酶[/b]的細胞只需要從環境中找到[thrive:compound type=\"phosphates\"][/thrive:compound]，就能以比基本速率更快的速率繁殖（如果在當前遊戲選項中停用了被動繁殖進度，則基本速率為零）。一種好的策略是尋找[thrive:compound type=\"phosphates\"][/thrive:compound] 塊來吞噬或停留在附近。\n"
@@ -8897,6 +8896,7 @@ msgstr "否"
 msgid "WIKI_NONE_COMMA_THIS_IS_THE_LAST_STAGE"
 msgstr "無，這是最後一個階段"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_EFFECTS"
 msgstr ""
 "一旦細胞演化出[b]細胞核[/b]，它就獲得了演化許多先前鎖定的其他[b]細胞器[/b]的能力。\n"
@@ -8928,6 +8928,7 @@ msgstr ""
 "\n"
 "目前尚不清楚細胞核最初是如何演化的；一些研究人員認為，它們可能是內共生的產物，可能起源於古菌細胞侵入細菌細胞。另一些人則提出，它們可能由病毒演化而來，或只是單一細胞在自身周圍形成第二層膜，原始細胞成為細胞核的結果。"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_STRATEGY"
 msgstr ""
 "在將[b]細胞核[/b]添加到細胞之前請仔細考慮。它們的維護成本很高，並且會大幅降低您的細胞速度，因此請確保您擁有充足的[thrive:compound type=\"atp\"][/thrive:compound] 正平衡，並且能夠負擔一兩世代更平靜的生活方式。我們建議加入[b][color=#3796e1][url=thriveopedia:cilia]纖毛[/url][/color][/b]與[b][color=#3796e1][url=thriveopedia:flagellum]鞭毛[/url][/color][/b]以在後代中恢復一些機動性。\n"
