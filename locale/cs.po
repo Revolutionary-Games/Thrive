@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-18 10:19+0200\n"
+"POT-Creation-Date: 2026-05-20 16:48+0200\n"
 "PO-Revision-Date: 2026-05-17 08:05+0000\n"
 "Last-Translator: Tibor Šťastný <tiborstgame2@seznam.cz>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -5322,8 +5322,16 @@ msgid "PRESSURE_SHORT"
 msgstr "Tlak"
 
 #, fuzzy
+msgid "PRESSURE_TOLERANCE"
+msgstr "Návrat do hlavního menu"
+
+#, fuzzy
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "Návrat do hlavního menu"
+
+#, fuzzy
+msgid "PRESSURE_VALUE"
+msgstr "Tlak"
 
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Stiskněte klávesu..."
@@ -5645,6 +5653,10 @@ msgid "ROTATE_RIGHT"
 msgstr "Otočit doprava"
 
 msgid "ROTATION_COLON"
+msgstr "Rotace:"
+
+#, fuzzy
+msgid "ROTATION_FORCE"
 msgstr "Rotace:"
 
 msgid "RUNOFF_EVENT"
@@ -6179,9 +6191,6 @@ msgstr "Druh:"
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} s populací: {1}"
 
-msgid "SPEED"
-msgstr "Rychlost"
-
 msgid "SPEED_COLON"
 msgstr "Rychlost:"
 
@@ -6489,8 +6498,16 @@ msgstr "Teplota"
 msgid "TEMPERATURE_SHORT"
 msgstr "Teplota"
 
+#, fuzzy
+msgid "TEMPERATURE_TOLERANCE_RANGE"
+msgstr "Teplota tolerovaná tvým druhem. Pokud jsi v podmínkách, které nespadají do rozsahu tvé tolerance teploty, tak utrpíš negativní následky, které ti ztíží přežívání. Adaptuj se s využitím posuvníků na sektory, ve kterých chceš žít."
+
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "Teplota tolerovaná tvým druhem. Pokud jsi v podmínkách, které nespadají do rozsahu tvé tolerance teploty, tak utrpíš negativní následky, které ti ztíží přežívání. Adaptuj se s využitím posuvníků na sektory, ve kterých chceš žít."
+
+#, fuzzy
+msgid "TEMPERATURE_VALUE"
+msgstr "Teplota"
 
 msgid "TESTING_TEAM"
 msgstr "Tým testerů"
@@ -6626,6 +6643,9 @@ msgstr "Thrive Licence"
 
 msgid "THRIVIN_ACHIEVEMENT"
 msgstr "Prosperující"
+
+msgid "THRUST_FORCE"
+msgstr ""
 
 msgid "THYLAKOIDS"
 msgstr "Thylakoidy"
@@ -9539,6 +9559,9 @@ msgstr "Přiblížit"
 
 msgid "ZOOM_OUT"
 msgstr "Oddálit"
+
+#~ msgid "SPEED"
+#~ msgstr "Rychlost"
 
 #, fuzzy
 #~ msgid "AEROBIC_NITROGEN_FIXATION"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-18 10:19+0200\n"
+"POT-Creation-Date: 2026-05-20 16:48+0200\n"
 "PO-Revision-Date: 2026-05-15 16:14+0000\n"
 "Last-Translator: Matthias Ulbl <matthias.ulbl@gmx.at>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -5181,8 +5181,16 @@ msgstr "Druck"
 msgid "PRESSURE_SHORT"
 msgstr "Druck"
 
+#, fuzzy
+msgid "PRESSURE_TOLERANCE"
+msgstr "Der Umgebungsdruck, den deine Spezies bevorzugt. Minimal- und Maximalwerte können in separaten Schiebern eingestellt werden. Wenn die Umweltbedingungen außerhalb des Bereichs liegen, hat das viele negative Auswirkungen auf deine Spezies. Die Bereichsgröße kannst du mit der Checkbox unter den Schiebern verändern."
+
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "Der Umgebungsdruck, den deine Spezies bevorzugt. Minimal- und Maximalwerte können in separaten Schiebern eingestellt werden. Wenn die Umweltbedingungen außerhalb des Bereichs liegen, hat das viele negative Auswirkungen auf deine Spezies. Die Bereichsgröße kannst du mit der Checkbox unter den Schiebern verändern."
+
+#, fuzzy
+msgid "PRESSURE_VALUE"
+msgstr "Druck"
 
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Drücke eine Taste..."
@@ -5503,6 +5511,10 @@ msgid "ROTATE_RIGHT"
 msgstr "Nach links rotieren"
 
 msgid "ROTATION_COLON"
+msgstr "Drehung:"
+
+#, fuzzy
+msgid "ROTATION_FORCE"
 msgstr "Drehung:"
 
 msgid "RUNOFF_EVENT"
@@ -6030,9 +6042,6 @@ msgstr "Suche nach Art:"
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} mit Bevölkerung: {1}"
 
-msgid "SPEED"
-msgstr "Geschwindigkeit"
-
 msgid "SPEED_COLON"
 msgstr "Geschwindigkeit:"
 
@@ -6338,8 +6347,16 @@ msgstr "Temperatur"
 msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
+#, fuzzy
+msgid "TEMPERATURE_TOLERANCE_RANGE"
+msgstr "Die bevorzugte Umgebungstemperatur deiner Spezies. In Umweltbereichen, die außerhalb des Toleranzbereichs um die ideale Temperatur liegen, gibt es negative Effekte, die das Überleben erschweren. Mit den Schiebereglern lässt sich der Temperaturbereich für die Gebiete anpassen, in denen deine Spezies leben soll."
+
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "Die bevorzugte Umgebungstemperatur deiner Spezies. In Umweltbereichen, die außerhalb des Toleranzbereichs um die ideale Temperatur liegen, gibt es negative Effekte, die das Überleben erschweren. Mit den Schiebereglern lässt sich der Temperaturbereich für die Gebiete anpassen, in denen deine Spezies leben soll."
+
+#, fuzzy
+msgid "TEMPERATURE_VALUE"
+msgstr "Temperatur"
 
 msgid "TESTING_TEAM"
 msgstr "Test Team"
@@ -6486,6 +6503,9 @@ msgstr "Thrive Lizenzen"
 #, fuzzy
 msgid "THRIVIN_ACHIEVEMENT"
 msgstr "Basisbewegung"
+
+msgid "THRUST_FORCE"
+msgstr ""
 
 msgid "THYLAKOIDS"
 msgstr "Thylakoide"
@@ -9621,6 +9641,9 @@ msgstr "Hereinzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Herauszoomen"
+
+#~ msgid "SPEED"
+#~ msgstr "Geschwindigkeit"
 
 #~ msgid "AEROBIC_NITROGEN_FIXATION"
 #~ msgstr "Aerobe Stickstofffixierung"

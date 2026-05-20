@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-18 10:19+0200\n"
+"POT-Creation-Date: 2026-05-20 16:48+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -84,7 +84,7 @@ msgstr ""
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr ""
 
-#: ../src/general/base_stage/EditorBase.cs:948
+#: ../src/general/base_stage/EditorBase.cs:953
 #: ../src/macroscopic_stage/editor/MacroscopicEditor.cs:566
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:59
 #: ../src/multicellular_stage/editor/MulticellularEditor.cs:607
@@ -332,7 +332,7 @@ msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 
 #: ../src/gui_common/menus/PlanetStatistics.tscn:145
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:610
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:605
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:475
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:479
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:255
@@ -1356,7 +1356,7 @@ msgid "COMPLETE_ACTION"
 msgstr ""
 
 #: ../src/gui_common/menus/PlanetStatistics.tscn:228
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:614
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:609
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:484
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:488
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:33
@@ -2279,7 +2279,7 @@ msgstr ""
 msgid "DIFFICULTY_PRESET_VERY_EASY"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.cs:746
+#: ../src/gui_common/tooltip/ToolTipManager.cs:865
 msgid "DIGESTION_EFFICIENCY"
 msgstr ""
 
@@ -2287,7 +2287,7 @@ msgstr ""
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.cs:745
+#: ../src/gui_common/tooltip/ToolTipManager.cs:864
 msgid "DIGESTION_SPEED"
 msgstr ""
 
@@ -2718,19 +2718,19 @@ msgstr ""
 msgid "ENERGY_COST_MULTIPLIER_EXPLANATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3309
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3312
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3144
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3147
 msgid "ENERGY_IN_PATCH_SHORT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3320
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3323
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3313
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3316
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
@@ -2964,13 +2964,13 @@ msgstr ""
 msgid "EXTINCTION_CAPITAL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:623
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:634
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:618
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:629
 msgid "EXTINCT_FROM_PATCH"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:622
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:635
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:617
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:630
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr ""
 
@@ -3184,7 +3184,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3326
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3329
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -3306,7 +3306,7 @@ msgstr ""
 msgid "GAME_SYSTEMS_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3244
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3247
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1080
 msgid "GATHERED_ENERGY_TOOLTIP"
 msgstr ""
@@ -6357,7 +6357,7 @@ msgid "NO_AI"
 msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:665
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3341
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3344
 msgid "NO_DATA_TO_SHOW"
 msgstr ""
 
@@ -6429,8 +6429,8 @@ msgstr ""
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:25
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:35
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:45
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3155
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3167
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3158
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3170
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:154
 #: ../src/microbe_stage/MicrobeHUD.cs:785
 msgid "N_A"
@@ -6901,7 +6901,11 @@ msgstr ""
 #: ../src/gui_common/menus/OptionsMenu.cs:976
 #: ../src/gui_common/menus/OptionsMenu.cs:2060
 #: ../src/gui_common/menus/PlanetStatistics.cs:113
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:570
+#: ../src/gui_common/tooltip/ToolTipManager.cs:809
+#: ../src/gui_common/tooltip/ToolTipManager.cs:815
+#: ../src/gui_common/tooltip/ToolTipManager.cs:829
+#: ../src/gui_common/tooltip/ToolTipManager.cs:835
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:565
 #: ../src/microbe_stage/editor/MutationPointsBar.cs:101
 #: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:776
 #: ../src/microbe_stage/editor/tooltips/EnvironmentalToleranceToolTip.cs:98
@@ -7098,7 +7102,7 @@ msgstr ""
 msgid "POPULATION_IN_PATCHES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3174
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3177
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr ""
 
@@ -7149,8 +7153,17 @@ msgstr ""
 msgid "PRESSURE_SHORT"
 msgstr ""
 
+#: ../src/gui_common/tooltip/ToolTipManager.cs:868
+msgid "PRESSURE_TOLERANCE"
+msgstr ""
+
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:858
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.cs:791
+#: ../src/gui_common/tooltip/ToolTipManager.cs:796
+msgid "PRESSURE_VALUE"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/InputEventItem.cs:604
@@ -7241,7 +7254,7 @@ msgstr ""
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/PauseMenu.cs:495
+#: ../src/general/PauseMenu.cs:500
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 
@@ -7518,7 +7531,7 @@ msgstr ""
 msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:694 ../src/general/PauseMenu.cs:476
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:694 ../src/general/PauseMenu.cs:481
 #: ../src/gui_common/menus/PlanetCustomizerTool.tscn:194
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
@@ -7570,6 +7583,10 @@ msgstr ""
 #: ../src/microbe_stage/OrganismStatisticsPanel.tscn:129
 #: ../src/multicellular_stage/editor/CellTypeTooltip.tscn:152
 msgid "ROTATION_COLON"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.cs:867
+msgid "ROTATION_FORCE"
 msgstr ""
 
 #: ../src/general/world_effects/patch_events/RunoffEvent.cs:216
@@ -8225,7 +8242,7 @@ msgstr ""
 msgid "SPECIES_IN_OTHER_PATCHES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:612
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:607
 msgid "SPECIES_LIST"
 msgstr ""
 
@@ -8261,10 +8278,6 @@ msgstr ""
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:439
 msgid "SPECIES_WITH_POPULATION"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.cs:747
-msgid "SPEED"
 msgstr ""
 
 #: ../src/microbe_stage/OrganismStatisticsPanel.tscn:123
@@ -8420,7 +8433,7 @@ msgstr ""
 msgid "STOP"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.cs:744
+#: ../src/gui_common/tooltip/ToolTipManager.cs:863
 msgid "STORAGE"
 msgstr ""
 
@@ -8665,7 +8678,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:811
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:840
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:848
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:453
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:448
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:529
 #: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:97
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:170
@@ -8676,8 +8689,17 @@ msgstr ""
 msgid "TEMPERATURE_SHORT"
 msgstr ""
 
+#: ../src/gui_common/tooltip/ToolTipManager.cs:869
+msgid "TEMPERATURE_TOLERANCE_RANGE"
+msgstr ""
+
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:841
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.cs:772
+#: ../src/gui_common/tooltip/ToolTipManager.cs:778
+msgid "TEMPERATURE_VALUE"
 msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:525
@@ -8836,6 +8858,10 @@ msgstr ""
 
 #: ../simulation_parameters/common/achievements.json:88
 msgid "THRIVIN_ACHIEVEMENT"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.cs:866
+msgid "THRUST_FORCE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:356
@@ -12237,11 +12263,11 @@ msgstr ""
 msgid "X_TWITTER_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:607
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:608
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:602
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:603
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:604
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:606
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:609
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:611
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:614
 msgid "YEARS"
 msgstr ""
 

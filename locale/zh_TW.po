@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-18 10:19+0200\n"
+"POT-Creation-Date: 2026-05-20 16:48+0200\n"
 "PO-Revision-Date: 2026-05-17 08:05+0000\n"
 "Last-Translator: xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -5091,8 +5091,16 @@ msgstr "壓力"
 msgid "PRESSURE_SHORT"
 msgstr "壓力"
 
+#, fuzzy
+msgid "PRESSURE_TOLERANCE"
+msgstr "您的物種所偏好的壓力以及適應範圍。當處於範圍之外的條件時，您的物種將受到許多負面影響。使用滑桿更改偏好壓力與適應範圍。"
+
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "您的物種所偏好的壓力以及適應範圍。當處於範圍之外的條件時，您的物種將受到許多負面影響。使用滑桿更改偏好壓力與適應範圍。"
+
+#, fuzzy
+msgid "PRESSURE_VALUE"
+msgstr "壓力"
 
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "按下按鍵…"
@@ -5392,6 +5400,10 @@ msgid "ROTATE_RIGHT"
 msgstr "向右旋轉"
 
 msgid "ROTATION_COLON"
+msgstr "旋轉："
+
+#, fuzzy
+msgid "ROTATION_FORCE"
 msgstr "旋轉："
 
 msgid "RUNOFF_EVENT"
@@ -5899,9 +5911,6 @@ msgstr "尋找物種："
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} 的物種量：{1}"
 
-msgid "SPEED"
-msgstr "速度"
-
 msgid "SPEED_COLON"
 msgstr "速度："
 
@@ -6196,8 +6205,16 @@ msgstr "溫度"
 msgid "TEMPERATURE_SHORT"
 msgstr "溫度"
 
+#, fuzzy
+msgid "TEMPERATURE_TOLERANCE_RANGE"
+msgstr "您的物種所偏好的溫度。當處於理想溫度適應範圍之外的條件時，就會產生負面影響，使生存變得更加困難。使用滑桿來調整並適應您計劃遊玩的區域。"
+
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "您的物種所偏好的溫度。當處於理想溫度適應範圍之外的條件時，就會產生負面影響，使生存變得更加困難。使用滑桿來調整並適應您計劃遊玩的區域。"
+
+#, fuzzy
+msgid "TEMPERATURE_VALUE"
+msgstr "溫度"
 
 msgid "TESTING_TEAM"
 msgstr "測試團隊"
@@ -6338,6 +6355,9 @@ msgstr "Thrive 授權條款"
 
 msgid "THRIVIN_ACHIEVEMENT"
 msgstr "蓬勃發展"
+
+msgid "THRUST_FORCE"
+msgstr ""
 
 msgid "THYLAKOIDS"
 msgstr "類囊體"
@@ -9835,6 +9855,9 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "縮小"
+
+#~ msgid "SPEED"
+#~ msgstr "速度"
 
 #~ msgid "AEROBIC_NITROGEN_FIXATION"
 #~ msgstr "有氧固氮"

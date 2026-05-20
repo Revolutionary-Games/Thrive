@@ -747,7 +747,7 @@ public partial class ToolTipManager : CanvasLayer
             var movementComponent = organelle.Components.Movement
                 ?? throw new InvalidOperationException("Movement component is null for organelle with thrust tooltip");
 
-            modifierInfo.DisplayName = "SPEED";
+            modifierInfo.DisplayName = "THRUST_FORCE";
             modifierInfo.ModifierValue = "+" + Constants.FLAGELLA_BASE_FORCE * movementComponent.Momentum
                 / 100;
         }
@@ -756,7 +756,7 @@ public partial class ToolTipManager : CanvasLayer
 
         if (modifierInfo != null)
         {
-            modifierInfo.DisplayName = "SPEED";
+            modifierInfo.DisplayName = "ROTATION_FORCE";
             modifierInfo.ModifierValue = "+" + Constants.CILIA_ROTATION_FORCE_DISPLAY;
         }
 
@@ -764,17 +764,18 @@ public partial class ToolTipManager : CanvasLayer
 
         if (modifierInfo != null)
         {
-            modifierInfo.DisplayName = "DIGESTION_EFFICIENCY";
+            modifierInfo.DisplayName = "TEMPERATURE_TOLERANCE_RANGE";
             var value = organelle.ToleranceModifierTemperatureRange;
 
             if (value > 0)
             {
-                modifierInfo.ModifierValue = "+" + value.ToString(CultureInfo.CurrentCulture);
+                modifierInfo.ModifierValue = "+" + Localization.Translate("TEMPERATURE_VALUE")
+                    .FormatSafe(value);
             }
             else
             {
                 modifierInfo.AdjustValueColor(value);
-                modifierInfo.ModifierValue = value.ToString(CultureInfo.CurrentCulture);
+                modifierInfo.ModifierValue = Localization.Translate("TEMPERATURE_VALUE").FormatSafe(value);
             }
         }
 
@@ -782,17 +783,17 @@ public partial class ToolTipManager : CanvasLayer
 
         if (modifierInfo != null)
         {
-            modifierInfo.DisplayName = "DIGESTION_EFFICIENCY";
+            modifierInfo.DisplayName = "PRESSURE_TOLERANCE";
             var value = organelle.ToleranceModifierPressureTolerance;
 
             if (value > 0)
             {
-                modifierInfo.ModifierValue = "+" + value.ToString(CultureInfo.CurrentCulture);
+                modifierInfo.ModifierValue = "+" + Localization.Translate("PRESSURE_VALUE").FormatSafe(value / 1000);
             }
             else
             {
                 modifierInfo.AdjustValueColor(value);
-                modifierInfo.ModifierValue = value.ToString(CultureInfo.CurrentCulture);
+                modifierInfo.ModifierValue = Localization.Translate("PRESSURE_VALUE").FormatSafe(value / 1000);
             }
         }
 
@@ -800,7 +801,7 @@ public partial class ToolTipManager : CanvasLayer
 
         if (modifierInfo != null)
         {
-            modifierInfo.DisplayName = "DIGESTION_EFFICIENCY";
+            modifierInfo.DisplayName = "OXYGEN_RESISTANCE";
             var value = organelle.ToleranceModifierOxygen;
 
             if (value > 0)
@@ -820,7 +821,7 @@ public partial class ToolTipManager : CanvasLayer
 
         if (modifierInfo != null)
         {
-            modifierInfo.DisplayName = "DIGESTION_EFFICIENCY";
+            modifierInfo.DisplayName = "UV_PROTECTION";
             var value = organelle.ToleranceModifierUV;
 
             if (value > 0)
@@ -862,7 +863,10 @@ public partial class ToolTipManager : CanvasLayer
         Localization.Translate("STORAGE");
         Localization.Translate("DIGESTION_SPEED");
         Localization.Translate("DIGESTION_EFFICIENCY");
-        Localization.Translate("SPEED");
+        Localization.Translate("THRUST_FORCE");
+        Localization.Translate("ROTATION_FORCE");
+        Localization.Translate("PRESSURE_TOLERANCE");
+        Localization.Translate("TEMPERATURE_TOLERANCE_RANGE");
     }
 
     private void UpdateAutoScrollingOffset(double delta)

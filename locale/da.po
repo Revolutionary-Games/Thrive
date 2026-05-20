@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-18 10:19+0200\n"
+"POT-Creation-Date: 2026-05-20 16:48+0200\n"
 "PO-Revision-Date: 2026-05-13 10:26+0000\n"
 "Last-Translator: Søren Hansen <pjuske4life@gmail.com>\n"
 "Language-Team: Danish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/da/>\n"
@@ -5098,8 +5098,16 @@ msgstr "Tryk"
 msgid "PRESSURE_SHORT"
 msgstr "Tryk"
 
+#, fuzzy
+msgid "PRESSURE_TOLERANCE"
+msgstr "Din arts fortrukne tryk. Konfigureret som minimum og maksimum værdier med hver deres slider. Når forholdene er uden for det spænd vil det have en negativ effekt på din art. Ændre spændet ved at fjerne markeringen i afkrydsningsfeltet under slideren."
+
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "Din arts fortrukne tryk. Konfigureret som minimum og maksimum værdier med hver deres slider. Når forholdene er uden for det spænd vil det have en negativ effekt på din art. Ændre spændet ved at fjerne markeringen i afkrydsningsfeltet under slideren."
+
+#, fuzzy
+msgid "PRESSURE_VALUE"
+msgstr "Tryk"
 
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Tryk på en tast..."
@@ -5399,6 +5407,10 @@ msgid "ROTATE_RIGHT"
 msgstr "Rotér højre"
 
 msgid "ROTATION_COLON"
+msgstr "Rotation:"
+
+#, fuzzy
+msgid "ROTATION_FORCE"
 msgstr "Rotation:"
 
 msgid "RUNOFF_EVENT"
@@ -5906,9 +5918,6 @@ msgstr "Art at finde:"
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} med bestand på: {1}"
 
-msgid "SPEED"
-msgstr "Hastighed"
-
 msgid "SPEED_COLON"
 msgstr "Hastighed:"
 
@@ -6203,8 +6212,16 @@ msgstr "Temperatur"
 msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
+#, fuzzy
+msgid "TEMPERATURE_TOLERANCE_RANGE"
+msgstr "Din arts foretrukne temperatur. Når foreholdne er uden for fleksibilitetsområdet omkring den ideelle temperatur, vil det have en negativ effekt der gør det sværere at overleve. Tilpas ved at bruge skyderne til de patches som du har tænkt dig at spille i."
+
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "Din arts foretrukne temperatur. Når foreholdne er uden for fleksibilitetsområdet omkring den ideelle temperatur, vil det have en negativ effekt der gør det sværere at overleve. Tilpas ved at bruge skyderne til de patches som du har tænkt dig at spille i."
+
+#, fuzzy
+msgid "TEMPERATURE_VALUE"
+msgstr "Temperatur"
 
 msgid "TESTING_TEAM"
 msgstr "Testing Team"
@@ -6345,6 +6362,9 @@ msgstr "Thrive licenser"
 
 msgid "THRIVIN_ACHIEVEMENT"
 msgstr "Stortrives"
+
+msgid "THRUST_FORCE"
+msgstr ""
 
 msgid "THYLAKOIDS"
 msgstr "Thylakoider"
@@ -8943,6 +8963,9 @@ msgstr "Zoom ind"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom ud"
+
+#~ msgid "SPEED"
+#~ msgstr "Hastighed"
 
 #~ msgid "AEROBIC_NITROGEN_FIXATION"
 #~ msgstr "Aerob Kvælstoffiksering"
