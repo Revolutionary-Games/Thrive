@@ -744,8 +744,11 @@ public partial class ToolTipManager : CanvasLayer
 
         if (modifierInfo != null)
         {
+            var movementComponent = organelle.Components.Movement
+                ?? throw new InvalidOperationException("Movement component is null for organelle with thrust tooltip");
+
             modifierInfo.DisplayName = "SPEED";
-            modifierInfo.ModifierValue = "+" + Constants.FLAGELLA_BASE_FORCE * organelle.Components.Movement!.Momentum
+            modifierInfo.ModifierValue = "+" + Constants.FLAGELLA_BASE_FORCE * movementComponent.Momentum
                 / 100;
         }
 
