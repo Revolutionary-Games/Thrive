@@ -179,13 +179,13 @@ public static class MulticellularGrowthHelpers
         in Entity entity, IWorldSimulation worldSimulation)
     {
         // Clear variables
-        multicellularGrowth.OnLeadCellEjectedFromEngulfment();
+        multicellularGrowth.ResetGrowthProgress();
+
+        var recorder = worldSimulation.StartRecordingEntityCommands();
 
         // Delete the cells in our colony currently
         if (entity.Has<MicrobeColony>())
         {
-            var recorder = worldSimulation.StartRecordingEntityCommands();
-
             ref var colony = ref entity.Get<MicrobeColony>();
 
             foreach (var member in colony.ColonyMembers)
@@ -197,15 +197,18 @@ public static class MulticellularGrowthHelpers
             }
 
             recorder.Remove<MicrobeColony>(entity);
-            worldSimulation.FinishRecordingEntityCommands(recorder);
         }
+
+        var species = entity.Get<MulticellularSpeciesMember>().Species;
+
+        worldSimulation.FinishRecordingEntityCommands(recorder);
     }
 
     /// <summary>
     ///   Resets all growth progress tracking after exiting engulfment (which disbanded the entire colony) to grow the
     ///   usual body plan as needed.
     /// </summary>
-    public static void OnLeadCellEjectedFromEngulfment(this ref MulticellularGrowth multicellularGrowth)
+    public static void ResetGrowthProgress(this ref MulticellularGrowth multicellularGrowth)
     {
         // The first cell is the last to duplicate (budding reproduction), so the body plan starts filling at index 1
         // Note that this is also set in the struct constructor
@@ -336,6 +339,12 @@ public static class MulticellularGrowthHelpers
             if (species.ReproductionMethod is MulticellularReproductionMethod.Budding
                 or MulticellularReproductionMethod.Sporulation)
             {
+                return species.FirstCellTypeToSpawn().CalculateTotalCompositionList();
+            }
+
+            if (species.ReproductionMethod is MulticellularReproductionMethod.MassBudding)
+            {
+                // TBD
                 return species.FirstCellTypeToSpawn().CalculateTotalCompositionList();
             }
 

@@ -113,6 +113,24 @@ public partial class MulticellularGrowthSystem : BaseSystem<World, float>
         if (microbeControl.State == MicrobeState.MucocystShield)
             return;
 
+        if (speciesData.Species.ReproductionMethod == MulticellularReproductionMethod.MassBudding
+            && (!entity.Has<MicrobeColony>() || entity.Get<MicrobeColony>().ColonyMembers.Length == 1))
+        {
+            var recorder = worldSimulation.StartRecordingEntityCommands();
+
+            for (; growth.NextBodyPlanCellToGrowIndex < speciesData.Species.MassBuddingCellCount;
+                ++growth.NextBodyPlanCellToGrowIndex)
+            {
+                var cellTemplate = speciesData.Species.ModifiableGameplayCells[growth.NextBodyPlanCellToGrowIndex];
+
+                DelayedColonyOperationSystem.CreateDelayAttachedMicrobe(ref entity.Get<WorldPosition>(), entity,
+                    growth.NextBodyPlanCellToGrowIndex, cellTemplate, speciesData.Species, worldSimulation,
+                    spawnEnvironment, recorder, spawnSystem, false);
+            }
+
+            worldSimulation.FinishRecordingEntityCommands(recorder);
+        }
+
         HandleMulticellularReproduction(ref growth, ref speciesData, compoundStorage.Compounds, ref organelleContainer,
             ref status, ref baseReproduction, entity, delta);
     }

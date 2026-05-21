@@ -963,11 +963,13 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
             float adjacencyBonus = 1.0f;
 
-            Player.Get<MulticellularGrowth>().IsASpore = false;
+            var growth = Player.Get<MulticellularGrowth>();
+
+            growth.IsASpore = false;
 
             if (multicellularSpeciesType.Species.ReproductionMethod == MulticellularReproductionMethod.Sporulation)
             {
-                Player.Get<MulticellularGrowth>().IsASpore = true;
+                growth.IsASpore = true;
             }
             else if (multicellularSpeciesType.Species.ReproductionMethod is MulticellularReproductionMethod.Budding
                      or MulticellularReproductionMethod.MassBudding)

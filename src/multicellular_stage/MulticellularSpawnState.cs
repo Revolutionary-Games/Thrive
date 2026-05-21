@@ -4,9 +4,9 @@
 public enum MulticellularSpawnState
 {
     /// <summary>
-    ///   Spawn as just a single cell
+    ///   Spawns as a bud, a spore, etc. based on the reproduction method
     /// </summary>
-    Bud = 0,
+    Offspring = 0,
     FullColony,
     ChanceForFullColony,
 }
