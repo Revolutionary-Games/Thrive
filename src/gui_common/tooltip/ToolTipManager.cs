@@ -769,17 +769,12 @@ public partial class ToolTipManager : CanvasLayer
             modifierInfo.DisplayName = "TEMPERATURE_TOLERANCE_RANGE";
             var value = organelle.ToleranceModifierTemperatureRange;
 
-            if (value > 0)
-            {
-                modifierInfo.ModifierValue = Localization.Translate("VALUE_WITH_UNIT_PLUS").FormatSafe(value,
-                    SimulationParameters.Instance.GetCompoundDefinition(Compound.Temperature).Unit);
-            }
-            else
-            {
+            if (value < 0)
                 modifierInfo.AdjustValueColor(value);
-                modifierInfo.ModifierValue = Localization.Translate("VALUE_WITH_UNIT").FormatSafe(value,
-                    SimulationParameters.Instance.GetCompoundDefinition(Compound.Temperature).Unit);
-            }
+
+            modifierInfo.ModifierValue = Localization.Translate("VALUE_WITH_UNIT").FormatSafe(
+                StringUtils.FormatPositiveWithLeadingPlus(value),
+                SimulationParameters.Instance.GetCompoundDefinition(Compound.Temperature).Unit);
         }
 
         modifierInfo = selectionMenuTooltip.GetModifierInfo("pressureTolerance");
@@ -789,15 +784,11 @@ public partial class ToolTipManager : CanvasLayer
             modifierInfo.DisplayName = "PRESSURE_TOLERANCE";
             var value = organelle.ToleranceModifierPressureTolerance / 1000;
 
-            if (value > 0)
-            {
-                modifierInfo.ModifierValue = Localization.Translate("VALUE_WITH_UNIT_PLUS").FormatSafe(value, "kPa");
-            }
-            else
-            {
+            if (value < 0)
                 modifierInfo.AdjustValueColor(value);
-                modifierInfo.ModifierValue = Localization.Translate("VALUE_WITH_UNIT").FormatSafe(value, "kPa");
-            }
+
+            modifierInfo.ModifierValue = Localization.Translate("VALUE_WITH_UNIT").FormatSafe(
+                StringUtils.FormatPositiveWithLeadingPlus(value), "kPa");
         }
 
         modifierInfo = selectionMenuTooltip.GetModifierInfo("oxygenResistance");
@@ -805,19 +796,13 @@ public partial class ToolTipManager : CanvasLayer
         if (modifierInfo != null)
         {
             modifierInfo.DisplayName = "OXYGEN_RESISTANCE";
-            var value = organelle.ToleranceModifierOxygen;
+            var value = organelle.ToleranceModifierOxygen * 100;
 
-            if (value > 0)
-            {
-                modifierInfo.ModifierValue = "+" + Localization.Translate("PERCENTAGE_VALUE")
-                    .FormatSafe((value * 100).ToString("F1", CultureInfo.CurrentCulture));
-            }
-            else
-            {
+            if (value < 0)
                 modifierInfo.AdjustValueColor(value);
-                modifierInfo.ModifierValue = Localization.Translate("PERCENTAGE_VALUE")
-                    .FormatSafe((value * 100).ToString("F1", CultureInfo.CurrentCulture));
-            }
+
+            modifierInfo.ModifierValue = Localization.Translate("PERCENTAGE_VALUE")
+                .FormatSafe(StringUtils.FormatPositiveWithLeadingPlus(value));
         }
 
         modifierInfo = selectionMenuTooltip.GetModifierInfo("uvResistance");
@@ -825,19 +810,13 @@ public partial class ToolTipManager : CanvasLayer
         if (modifierInfo != null)
         {
             modifierInfo.DisplayName = "UV_PROTECTION";
-            var value = organelle.ToleranceModifierUV;
+            var value = organelle.ToleranceModifierUV * 100;
 
-            if (value > 0)
-            {
-                modifierInfo.ModifierValue = "+" + Localization.Translate("PERCENTAGE_VALUE")
-                    .FormatSafe((value * 100).ToString("F1", CultureInfo.CurrentCulture));
-            }
-            else
-            {
+            if (value < 0)
                 modifierInfo.AdjustValueColor(value);
-                modifierInfo.ModifierValue = Localization.Translate("PERCENTAGE_VALUE")
-                    .FormatSafe((value * 100).ToString("F1", CultureInfo.CurrentCulture));
-            }
+
+            modifierInfo.ModifierValue = Localization.Translate("PERCENTAGE_VALUE")
+                .FormatSafe(StringUtils.FormatPositiveWithLeadingPlus(value));
         }
 
         modifierInfo = selectionMenuTooltip.GetModifierInfo("ammoniaCost");
