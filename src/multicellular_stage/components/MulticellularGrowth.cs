@@ -51,17 +51,12 @@ public struct MulticellularGrowth : IArchivableComponent
 
     public bool IsASpore;
 
+    public bool SpawnedInitialMassBuddingCells;
+
     public MulticellularGrowth(MulticellularSpecies species)
     {
-        // Start growing at the cell after the initial bud
-        // TODO: this needs changing when other reproduction methods are implemented (this same thing is also
-        // in ResetMulticellularProgress)
-        NextBodyPlanCellToGrowIndex = 1;
+        this.ResetGrowthProgress();
 
-        LostPartsOfBodyPlan = null;
-        CompoundsNeededForNextCell = null;
-        CompoundsUsedForMulticellularGrowth = null;
-        TotalNeededForMulticellularGrowth = null;
         ResumeBodyPlanAfterReplacingLost = null;
         EnoughResourcesForBudding = false;
 
@@ -199,8 +194,6 @@ public static class MulticellularGrowthHelpers
             recorder.Remove<MicrobeColony>(entity);
         }
 
-        var species = entity.Get<MulticellularSpeciesMember>().Species;
-
         worldSimulation.FinishRecordingEntityCommands(recorder);
     }
 
@@ -210,9 +203,11 @@ public static class MulticellularGrowthHelpers
     /// </summary>
     public static void ResetGrowthProgress(this ref MulticellularGrowth multicellularGrowth)
     {
-        // The first cell is the last to duplicate (budding reproduction), so the body plan starts filling at index 1
-        // Note that this is also set in the struct constructor
+        // Start growing cells starting with the second one. The first one is the lead cell and gets spawned
+        // immediately. Same goes for a few more cells if the species uses the mass budding reproduction method,
+        // but that is handled separately by MulticellularGrowthSystem
         multicellularGrowth.NextBodyPlanCellToGrowIndex = 1;
+        multicellularGrowth.SpawnedInitialMassBuddingCells = false;
         multicellularGrowth.EnoughResourcesForBudding = false;
 
         multicellularGrowth.CompoundsNeededForNextCell = null;
@@ -408,5 +403,24 @@ public static class MulticellularGrowthHelpers
         cellProperties.ReApplyCellTypeProperties(ref environmentalEffects, entity,
             multicellularSpeciesType.MulticellularCellType, multicellularSpeciesType.Species, totalSpecializationBonus,
             worldSimulation, workMemory1, workMemory2);
+    }
+
+    public static void SpawnInitialMassBuddingCells(this ref MulticellularGrowth multicellularGrowth, in Entity entity,
+        MulticellularSpecies species, IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment spawnEnvironment,
+        CommandBuffer recorder, ISpawnSystem notifySpawnTo)
+    {
+        if (multicellularGrowth.NextBodyPlanCellToGrowIndex != 1)
+        {
+            throw new Exception($"Tried to spawn initial mass budding cells ({species.ReadableName}) while some colony"
+                + $"cells were already grown ({multicellularGrowth.NextBodyPlanCellToGrowIndex})");
+        }
+
+        for (int i = 0; i < species.MassBuddingCellCount - 1; ++i)
+        {
+            multicellularGrowth.AddMulticellularGrowthCell(entity, species, worldSimulation, spawnEnvironment,
+                recorder, notifySpawnTo);
+        }
+
+        multicellularGrowth.SpawnedInitialMassBuddingCells = true;
     }
 }
