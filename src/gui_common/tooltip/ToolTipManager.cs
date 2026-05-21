@@ -771,13 +771,14 @@ public partial class ToolTipManager : CanvasLayer
 
             if (value > 0)
             {
-                modifierInfo.ModifierValue = "+" + Localization.Translate("TEMPERATURE_VALUE")
-                    .FormatSafe(value);
+                modifierInfo.ModifierValue = Localization.Translate("VALUE_WITH_UNIT_PLUS").FormatSafe(value,
+                    SimulationParameters.Instance.GetCompoundDefinition(Compound.Temperature).Unit);
             }
             else
             {
                 modifierInfo.AdjustValueColor(value);
-                modifierInfo.ModifierValue = Localization.Translate("TEMPERATURE_VALUE").FormatSafe(value);
+                modifierInfo.ModifierValue = Localization.Translate("VALUE_WITH_UNIT").FormatSafe(value,
+                    SimulationParameters.Instance.GetCompoundDefinition(Compound.Temperature).Unit);
             }
         }
 

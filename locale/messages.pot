@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-20 16:48+0200\n"
+"POT-Creation-Date: 2026-05-21 11:40+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2279,7 +2279,7 @@ msgstr ""
 msgid "DIFFICULTY_PRESET_VERY_EASY"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.cs:865
+#: ../src/gui_common/tooltip/ToolTipManager.cs:868
 msgid "DIGESTION_EFFICIENCY"
 msgstr ""
 
@@ -2287,7 +2287,7 @@ msgstr ""
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.cs:864
+#: ../src/gui_common/tooltip/ToolTipManager.cs:867
 msgid "DIGESTION_SPEED"
 msgstr ""
 
@@ -6901,10 +6901,10 @@ msgstr ""
 #: ../src/gui_common/menus/OptionsMenu.cs:976
 #: ../src/gui_common/menus/OptionsMenu.cs:2060
 #: ../src/gui_common/menus/PlanetStatistics.cs:113
-#: ../src/gui_common/tooltip/ToolTipManager.cs:809
-#: ../src/gui_common/tooltip/ToolTipManager.cs:815
-#: ../src/gui_common/tooltip/ToolTipManager.cs:829
-#: ../src/gui_common/tooltip/ToolTipManager.cs:835
+#: ../src/gui_common/tooltip/ToolTipManager.cs:812
+#: ../src/gui_common/tooltip/ToolTipManager.cs:818
+#: ../src/gui_common/tooltip/ToolTipManager.cs:832
+#: ../src/gui_common/tooltip/ToolTipManager.cs:838
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:565
 #: ../src/microbe_stage/editor/MutationPointsBar.cs:101
 #: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:776
@@ -7153,7 +7153,7 @@ msgstr ""
 msgid "PRESSURE_SHORT"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.cs:868
+#: ../src/gui_common/tooltip/ToolTipManager.cs:871
 msgid "PRESSURE_TOLERANCE"
 msgstr ""
 
@@ -7161,8 +7161,8 @@ msgstr ""
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.cs:791
-#: ../src/gui_common/tooltip/ToolTipManager.cs:796
+#: ../src/gui_common/tooltip/ToolTipManager.cs:794
+#: ../src/gui_common/tooltip/ToolTipManager.cs:799
 msgid "PRESSURE_VALUE"
 msgstr ""
 
@@ -7585,7 +7585,7 @@ msgstr ""
 msgid "ROTATION_COLON"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.cs:867
+#: ../src/gui_common/tooltip/ToolTipManager.cs:870
 msgid "ROTATION_FORCE"
 msgstr ""
 
@@ -8433,7 +8433,7 @@ msgstr ""
 msgid "STOP"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.cs:863
+#: ../src/gui_common/tooltip/ToolTipManager.cs:866
 msgid "STORAGE"
 msgstr ""
 
@@ -8689,17 +8689,12 @@ msgstr ""
 msgid "TEMPERATURE_SHORT"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.cs:869
+#: ../src/gui_common/tooltip/ToolTipManager.cs:872
 msgid "TEMPERATURE_TOLERANCE_RANGE"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:841
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.cs:772
-#: ../src/gui_common/tooltip/ToolTipManager.cs:778
-msgid "TEMPERATURE_VALUE"
 msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:525
@@ -8860,7 +8855,7 @@ msgstr ""
 msgid "THRIVIN_ACHIEVEMENT"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.cs:866
+#: ../src/gui_common/tooltip/ToolTipManager.cs:869
 msgid "THRUST_FORCE"
 msgstr ""
 
@@ -9744,6 +9739,7 @@ msgstr ""
 
 #: ../src/gui_common/CompoundAmount.cs:311
 #: ../src/gui_common/menus/PlanetStatistics.cs:114
+#: ../src/gui_common/tooltip/ToolTipManager.cs:780
 #: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:773
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:513
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:589
@@ -9755,6 +9751,7 @@ msgstr ""
 msgid "VALUE_WITH_UNIT"
 msgstr ""
 
+#: ../src/gui_common/tooltip/ToolTipManager.cs:774
 #: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:774
 msgid "VALUE_WITH_UNIT_PLUS"
 msgstr ""
