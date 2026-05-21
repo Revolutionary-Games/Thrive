@@ -249,6 +249,8 @@ public static class Constants
 
     public const float FLAGELLA_BASE_FORCE = 20.0f;
 
+    public const int FLAGELLA_FORCE_DISPLAY_DIVISOR = 100;
+
     public const float FLAGELLA_MAX_UPGRADE_LENGHT = 3;
     public const float FLAGELLA_MIN_UPGRADE_LENGHT = -1;
 

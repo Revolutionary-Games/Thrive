@@ -749,7 +749,7 @@ public partial class ToolTipManager : CanvasLayer
 
             modifierInfo.DisplayName = "THRUST_FORCE";
             modifierInfo.ModifierValue = "+" + Constants.FLAGELLA_BASE_FORCE * movementComponent.Momentum
-                / 100;
+                / Constants.FLAGELLA_FORCE_DISPLAY_DIVISOR;
         }
 
         modifierInfo = selectionMenuTooltip.GetModifierInfo("rotationForce");
