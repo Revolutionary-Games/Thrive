@@ -339,8 +339,14 @@ public static class MulticellularGrowthHelpers
 
             if (species.ReproductionMethod is MulticellularReproductionMethod.MassBudding)
             {
-                // TBD
-                return species.FirstCellTypeToSpawn().CalculateTotalCompositionList();
+                var total = new List<(Compound Compound, float AmountNeeded)>();
+
+                for (int i = 0; i < species.MassBuddingCellCount; i++)
+                {
+                    species.ModifiableGameplayCells[i].CalculateTotalCompositionList(total);
+                }
+
+                return total;
             }
 
             throw new NotImplementedException($"Reproduction method's reproduction cost calculation is" +
