@@ -711,6 +711,8 @@ public partial class ToolTipManager : CanvasLayer
     private void UpdateModifierInfoWithTranslations(OrganelleDefinition organelle,
         SelectionMenuToolTip selectionMenuTooltip)
     {
+        // TODO WARNING: This method does not change previously red (due to being negative) values to white if they
+        // are now positive. If organelle values dynamically change for any reason, this will have to be changed.
         var modifierInfo = selectionMenuTooltip.GetModifierInfo("storage");
 
         if (modifierInfo != null)
