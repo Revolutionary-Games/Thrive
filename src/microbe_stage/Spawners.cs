@@ -602,8 +602,7 @@ public static class SpawnHelpers
         MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.Bud)
     {
         var (recorder, _) = SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species, location,
-            aiControlled,
-            multicellularData, out _, multicellularSpawnState);
+            aiControlled, multicellularData, out _, multicellularSpawnState);
 
         FinalizeEntitySpawn(recorder, worldSimulation);
     }
