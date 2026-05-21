@@ -117,8 +117,10 @@ public partial class MulticellularGrowthSystem : BaseSystem<World, float>
             && !growth.SpawnedInitialMassBuddingCells)
         {
             var recorder = worldSimulation.StartRecordingEntityCommands();
+
             growth.SpawnInitialMassBuddingCells(entity, speciesData.Species, worldSimulation, spawnEnvironment,
                 recorder, spawnSystem);
+
             worldSimulation.FinishRecordingEntityCommands(recorder);
         }
 
