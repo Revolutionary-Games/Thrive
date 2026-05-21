@@ -1,0 +1,64 @@
+﻿name: Close Stale More-Reports-Wanted Issues
+
+on:
+  schedule:
+    - cron: '56 1 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  close-stale-issues:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Find and close stale "more-reports-wanted" issues
+        uses: actions/github-script@v7
+        with:
+          script: |
+            // 18 months is 548 days
+            const cutoffDays = 548;
+            const cutoff = new Date(Date.now() - cutoffDays * 24 * 60 * 60 * 1000);
+
+            const issues = await github.paginate(github.rest.issues.listForRepo, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'more-reports-wanted',
+              per_page: 100
+            });
+
+            let closedCount = 0;
+
+            for (const issue of issues) {
+              if (issue.pull_request) {
+                continue;
+              }
+
+              const createdAt = new Date(issue.created_at);
+
+              if (createdAt < cutoff) {
+                console.log(`Found stale issue #${issue.number}: "${issue.title}" (created ${createdAt.toISOString()})`);
+
+                // Add comment
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issue.number,
+                  body: `This issue has been open for a really long time with the "more-reports-wanted" label and it appears the bug has been not seen again. To focus our limited resources, this issue is being closed so that we can focus on more commonly encountered bugs. If this issue is still relevant and you have additional reports to share, please comment.`
+                });
+
+                // Close the issue
+                await github.rest.issues.update({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issue.number,
+                  state: 'closed'
+                });
+
+                closedCount++;
+              }
+            }
+
+            console.log(`Closed ${closedCount} stale issues with "more-reports-wanted" label`);
