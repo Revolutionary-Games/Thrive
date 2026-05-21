@@ -367,7 +367,15 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
     public override bool HasSystemsWithPendingOperations()
     {
-        return microbeVisualsSystem.HasPendingOperations();
+        // Note any visuals-affecting things added here needs to be added also for MicrobeVisualOnlySimulation
+
+        if (microbeVisualsSystem.HasPendingOperations())
+            return true;
+
+        if (delayedColonyOperationSystem.HasPendingEntities())
+            return true;
+
+        return false;
     }
 
     public override void FreeNodeResources()

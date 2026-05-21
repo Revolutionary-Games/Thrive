@@ -7,7 +7,8 @@ using Godot;
 using World = Arch.Core.World;
 
 /// <summary>
-///   Handles updating the state of <see cref="ColourAnimation"/> based on animations triggered elsewhere
+///   Handles updating the state of <see cref="ColourAnimation"/> based on animations triggered elsewhere.
+///   After animation finishes, resets the colour to the default colour.
 /// </summary>
 [RuntimeCost(2)]
 [RunsOnFrame]
@@ -54,6 +55,13 @@ public partial class ColourAnimationSystem : BaseSystem<World, float>
             {
                 // No new animation to run, stop processing this entity
                 colourAnimation.Animating = false;
+                colourAnimation.AnimationUserInfo = 0;
+
+                // Reset to the default colour so that no colour accidentally sticks
+                // TODO: maybe add a new property to allow the animation to keep colour on completion?
+                // TODO: also if we are far off from the default colour, should be quickly animate to it rather than
+                // abruptly jumping to it?
+                colourAnimation.AnimationTargetColour = colourAnimation.DefaultColour;
             }
         }
 

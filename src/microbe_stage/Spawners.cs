@@ -602,8 +602,7 @@ public static class SpawnHelpers
         MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.Offspring)
     {
         var (recorder, _) = SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species, location,
-            aiControlled,
-            multicellularData, out _, multicellularSpawnState);
+            aiControlled, multicellularData, out _, multicellularSpawnState);
 
         FinalizeEntitySpawn(recorder, worldSimulation);
     }
@@ -707,6 +706,8 @@ public static class SpawnHelpers
 
         // Needed for later calculations
         float totalSpecializationBonus;
+        MulticellularGrowth multicellularGrowth = default;
+        bool setMulticellularGrowth = false;
 
         int colonyMembersToAdd = 0;
         int fullColonyMemberCount = -1;
@@ -780,7 +781,7 @@ public static class SpawnHelpers
                     throw new ArgumentException("First Multicellular cell must have body plan index of 0");
                 }
 
-                var multicellularGrowth = new MulticellularGrowth(multicellularSpecies);
+                multicellularGrowth = new MulticellularGrowth(multicellularSpecies);
 
                 if (multicellularSpawnState == MulticellularSpawnState.Offspring)
                 {
@@ -794,15 +795,14 @@ public static class SpawnHelpers
                     resolvedCellType = multicellularSpecies.ColonyRootCellType();
                 }
 
+                // If grown as a full colony, or partial colony, we need to record the growth state here to not get
+                // duplicate cells
+                setMulticellularGrowth = true;
+
                 usedCellDefinition = resolvedCellType;
                 var properties = new CellProperties(usedCellDefinition);
                 membraneType = properties.MembraneType;
                 recorder.Set(entity, properties);
-
-                // This is not in the signature as this is a very specific case
-                // TODO: determine if this has negative effects and the signature should be adjusted (to split on
-                // this one more variable)
-                recorder.Add(entity, multicellularGrowth);
 
                 totalSpecializationBonus = resolvedCellType.CellTypeSpecializationBonus *
                     multicellularSpecies.GetAdjacencySpecializationBonus(multicellularData.CellBodyPlanIndex);
@@ -914,7 +914,7 @@ public static class SpawnHelpers
         recorder.Set(entity, new ReproductionStatus(species.BaseReproductionCost));
 
         // Visuals
-        var scale = usedCellDefinition.IsBacteria ? new Vector3(0.5f, 0.5f, 0.5f) : new Vector3(1, 1, 1);
+        var scale = usedCellDefinition.IsBacteria ? Vector3.One * Constants.BACTERIA_CELL_SCALE : Vector3.One;
 
         recorder.Set(entity, new SpatialInstance
         {
@@ -945,7 +945,7 @@ public static class SpawnHelpers
 
             AbsorptionRate = usedCellDefinition.MembraneType.ResourceAbsorptionFactor,
 
-            // AI requires this, player doesn't (or at least I can't remember right now that it would -hhyyrylainen)
+            // AI requires this, player doesn't (or at least I can't remember right now that it would -hhyyrylainen),
             // but it isn't too big a problem to also specify this for the player
             TotalAbsorbedCompounds = new Dictionary<Compound, float>(),
         });
@@ -1011,13 +1011,21 @@ public static class SpawnHelpers
             if (colonyMembersToAdd == fullColonyMemberCount)
             {
                 spawnLimitWeight += MicrobeColonyHelpers.SpawnAsFullyGrownMulticellularColony(entity, multicellular,
-                    spawnLimitWeight, recorder);
+                    ref multicellularGrowth, spawnLimitWeight, recorder);
             }
             else if (colonyMembersToAdd > 0)
             {
                 spawnLimitWeight += MicrobeColonyHelpers.SpawnAsPartialMulticellularColony(entity, spawnLimitWeight,
-                    colonyMembersToAdd, recorder);
+                    colonyMembersToAdd, ref multicellularGrowth, recorder);
             }
+        }
+
+        if (setMulticellularGrowth)
+        {
+            // This is not in the signature as this is a very specific case
+            // TODO: determine if this has negative effects and the signature should be adjusted (to split on
+            // this one more variable)
+            recorder.Add(entity, multicellularGrowth);
         }
 
         return spawnLimitWeight;

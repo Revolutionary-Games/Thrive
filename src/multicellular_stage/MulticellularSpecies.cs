@@ -518,6 +518,8 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
             hash += cell.GetVisualHashCode() ^ (ulong)cell.Position.GetHashCode();
         }
 
+        // Reproduction mode doesn't affect the visual hash code
+
         return hash;
     }
 
