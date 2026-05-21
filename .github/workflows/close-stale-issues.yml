@@ -21,12 +21,17 @@ jobs:
             const cutoffDays = 548;
             const cutoff = new Date(Date.now() - cutoffDays * 24 * 60 * 60 * 1000);
 
+            const requestHeaders = {
+              'X-GitHub-Api-Version': '2026-03-10'
+            };
+
             const issues = await github.paginate(github.rest.issues.listForRepo, {
               owner: context.repo.owner,
               repo: context.repo.repo,
               state: 'open',
               labels: 'more-reports-wanted',
-              per_page: 100
+              per_page: 100,
+              headers: requestHeaders
             });
 
             let closedCount = 0;
@@ -46,7 +51,8 @@ jobs:
                   owner: context.repo.owner,
                   repo: context.repo.repo,
                   issue_number: issue.number,
-                  body: `This issue has been open for a really long time with the "more-reports-wanted" label and it appears the bug has been not seen again. To focus our limited resources, this issue is being closed so that we can focus on more commonly encountered bugs. If this issue is still relevant and you have additional reports to share, please comment.`
+                  body: `This issue has been open for a really long time with the "more-reports-wanted" label and it appears the bug has been not seen again. To focus our limited resources, this issue is being closed so that we can focus on more commonly encountered bugs. If this issue is still relevant and you have additional reports to share, please comment.`,
+                  headers: requestHeaders
                 });
 
                 // Close the issue
@@ -55,7 +61,8 @@ jobs:
                   repo: context.repo.repo,
                   issue_number: issue.number,
                   state: 'closed',
-                  state_reason: 'not_planned'
+                  state_reason: 'not_planned',
+                  headers: requestHeaders
                 });
 
                 closedCount++;
