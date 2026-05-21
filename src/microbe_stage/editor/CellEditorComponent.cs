@@ -3454,7 +3454,7 @@ public partial class CellEditorComponent :
     /// <summary>
     ///   Holds data for the organelle suggestion calculation run
     /// </summary>
-    private class OrganelleSuggestionCalculation
+    private class OrganelleSuggestionCalculation : IDisposable
     {
         private readonly List<OrganelleDefinition> availableOrganelles = new();
         private readonly MicrobeSpecies calculationSpecies;
@@ -3628,6 +3628,11 @@ public partial class CellEditorComponent :
             }
 
             return false;
+        }
+
+        public void Dispose()
+        {
+            dataSetupLock.Dispose();
         }
 
         private void CopyPristineToCalculation()
