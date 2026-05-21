@@ -787,16 +787,16 @@ public partial class ToolTipManager : CanvasLayer
         if (modifierInfo != null)
         {
             modifierInfo.DisplayName = "PRESSURE_TOLERANCE";
-            var value = organelle.ToleranceModifierPressureTolerance;
+            var value = organelle.ToleranceModifierPressureTolerance / 1000;
 
             if (value > 0)
             {
-                modifierInfo.ModifierValue = "+" + Localization.Translate("PRESSURE_VALUE").FormatSafe(value / 1000);
+                modifierInfo.ModifierValue = Localization.Translate("VALUE_WITH_UNIT_PLUS").FormatSafe(value, "kPa");
             }
             else
             {
                 modifierInfo.AdjustValueColor(value);
-                modifierInfo.ModifierValue = Localization.Translate("PRESSURE_VALUE").FormatSafe(value / 1000);
+                modifierInfo.ModifierValue = Localization.Translate("VALUE_WITH_UNIT").FormatSafe(value, "kPa");
             }
         }
 
