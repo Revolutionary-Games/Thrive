@@ -241,9 +241,9 @@ public static class CellPropertiesHelpers
             IgnoredCollisionWith = entity,
         });
 
-        // Since the daughter spawns right next to the cell, it should face the same way to avoid colliding
+        // Since the daughter spawns right next to the cell, it should face the same way to avoid colliding.
         // This probably wastes a bit of memory but should be fine to overwrite the WorldPosition component like
-        // this
+        // this.
         recorder.Set(copyEntity, new WorldPosition(spawnPosition, position.Rotation));
 
         // TODO: should this also set an initial look direction that is the same?

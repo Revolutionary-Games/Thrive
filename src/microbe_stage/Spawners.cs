@@ -706,6 +706,8 @@ public static class SpawnHelpers
 
         // Needed for later calculations
         float totalSpecializationBonus;
+        MulticellularGrowth multicellularGrowth = default;
+        bool setMulticellularGrowth = false;
 
         if (species is MulticellularSpecies multicellularSpecies)
         {
@@ -749,7 +751,7 @@ public static class SpawnHelpers
                     throw new ArgumentException("First Multicellular cell must have body plan index of 0");
                 }
 
-                var multicellularGrowth = new MulticellularGrowth(multicellularSpecies);
+                multicellularGrowth = new MulticellularGrowth(multicellularSpecies);
 
                 if (multicellularSpawnState == MulticellularSpawnState.Bud)
                 {
@@ -763,15 +765,14 @@ public static class SpawnHelpers
                     resolvedCellType = multicellularSpecies.ColonyRootCellType();
                 }
 
+                // If grown as a full colony, or partial colony, we need to record the growth state here to not get
+                // duplicate cells
+                setMulticellularGrowth = true;
+
                 usedCellDefinition = resolvedCellType;
                 var properties = new CellProperties(usedCellDefinition);
                 membraneType = properties.MembraneType;
                 recorder.Set(entity, properties);
-
-                // This is not in the signature as this is a very specific case
-                // TODO: determine if this has negative effects and the signature should be adjusted (to split on
-                // this one more variable)
-                recorder.Add(entity, multicellularGrowth);
 
                 totalSpecializationBonus = resolvedCellType.CellTypeSpecializationBonus *
                     multicellularSpecies.GetAdjacencySpecializationBonus(multicellularData.CellBodyPlanIndex);
@@ -914,7 +915,7 @@ public static class SpawnHelpers
 
             AbsorptionRate = usedCellDefinition.MembraneType.ResourceAbsorptionFactor,
 
-            // AI requires this, player doesn't (or at least I can't remember right now that it would -hhyyrylainen)
+            // AI requires this, player doesn't (or at least I can't remember right now that it would -hhyyrylainen),
             // but it isn't too big a problem to also specify this for the player
             TotalAbsorbedCompounds = new Dictionary<Compound, float>(),
         });
@@ -977,12 +978,15 @@ public static class SpawnHelpers
 
         if (multicellularSpawnState != MulticellularSpawnState.Bud && multicellular != null)
         {
+            if (!setMulticellularGrowth)
+                throw new Exception("Logic error in spawning a multicellular cell, multicellular growth not set");
+
             switch (multicellularSpawnState)
             {
                 case MulticellularSpawnState.FullColony:
                     spawnLimitWeight +=
                         MicrobeColonyHelpers.SpawnAsFullyGrownMulticellularColony(entity, multicellular,
-                            spawnLimitWeight, recorder);
+                            ref multicellularGrowth, spawnLimitWeight, recorder);
                     break;
 
                 case MulticellularSpawnState.ChanceForFullColony:
@@ -993,7 +997,7 @@ public static class SpawnHelpers
                     if (random.NextDouble() < Constants.CHANCE_MULTICELLULAR_SPAWNS_GROWN)
                     {
                         spawnLimitWeight += MicrobeColonyHelpers.SpawnAsFullyGrownMulticellularColony(entity,
-                            multicellular, spawnLimitWeight, recorder);
+                            multicellular, ref multicellularGrowth, spawnLimitWeight, recorder);
                     }
                     else if (random.NextDouble() < Constants.CHANCE_MULTICELLULAR_SPAWNS_PARTLY_GROWN)
                     {
@@ -1013,7 +1017,7 @@ public static class SpawnHelpers
                         if (cellsToAdd > 0)
                         {
                             spawnLimitWeight += MicrobeColonyHelpers.SpawnAsPartialMulticellularColony(entity,
-                                spawnLimitWeight, cellsToAdd, recorder);
+                                spawnLimitWeight, cellsToAdd, ref multicellularGrowth, recorder);
                         }
                     }
 
@@ -1024,6 +1028,14 @@ public static class SpawnHelpers
                     throw new ArgumentOutOfRangeException(nameof(multicellularSpawnState), multicellularSpawnState,
                         null);
             }
+        }
+
+        if (setMulticellularGrowth)
+        {
+            // This is not in the signature as this is a very specific case
+            // TODO: determine if this has negative effects and the signature should be adjusted (to split on
+            // this one more variable)
+            recorder.Add(entity, multicellularGrowth);
         }
 
         return spawnLimitWeight;
