@@ -48,8 +48,6 @@ public partial class CellBodyPlanEditorComponent
     {
         var newCellCount = (int)count;
 
-        GD.Print($"{newCellCount} ({DesiredMassBuddingCellCount})");
-
         if (newCellCount == DesiredMassBuddingCellCount)
             return;
 
