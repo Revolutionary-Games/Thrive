@@ -3,8 +3,8 @@ using SharedBase.Archive;
 
 public class CellRemoveActionData : HexRemoveActionData<HexWithData<CellTemplate>, MulticellularSpecies>
 {
-    public CellRemoveActionData(HexWithData<CellTemplate> hex, Hex location, int orientation)
-        : base(hex, location, orientation)
+    public CellRemoveActionData(HexWithData<CellTemplate> hex, Hex location, int orientation) : base(hex, location,
+        orientation)
     {
     }
 

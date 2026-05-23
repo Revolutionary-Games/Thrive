@@ -249,8 +249,8 @@ public partial class CellBodyPlanEditorComponent :
     public CellType? SporeCellType { get; private set; }
 
     /// <summary>
-    ///   This variable should be clamped before use. It's intentional that it can exceed the amount of cells, so that
-    ///   e.g. cell removal action can be easily undone.
+    ///   This variable should be clamped before use. It's intentional that it can exceed the amount of cells, to make
+    ///   it easier to e.g. undo cell removal action.
     /// </summary>
     public int DesiredMassBuddingCellCount { get; private set; } = 1;
 
