@@ -145,7 +145,7 @@ public static class CellBodyPlanInternalCalculations
                     var baseCapacity = organelle.Definition.Components.Storage.Capacity;
                     var specificCapacity =
                         MicrobeInternalCalculations.GetAdditionalCapacityForOrganelle(organelle.Definition,
-                            organelle.Upgrades);
+                            organelle.Upgrades, cell.CellTypeSpecializationBonus);
 
                     if (specificCapacity.Compound != Compound.Hydrogensulfide)
                     {
