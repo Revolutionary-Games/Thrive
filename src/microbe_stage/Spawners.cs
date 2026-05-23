@@ -690,7 +690,7 @@ public static class SpawnHelpers
         ICellDefinition usedCellDefinition;
         MembraneType membraneType;
 
-        MulticellularSpecies? multicellular = null;
+        MulticellularSpecies? multicellularSpecies = species as MulticellularSpecies;
 
         var environmentalEffects = new MicrobeEnvironmentalEffects
         {
@@ -712,13 +712,12 @@ public static class SpawnHelpers
         int colonyMembersToAdd = 0;
         int fullColonyMemberCount = -1;
 
-        if (species is MulticellularSpecies multicellularSpecies)
+        if (multicellularSpecies != null)
         {
             fullColonyMemberCount = multicellularSpecies.ModifiableGameplayCells.Count - 1;
 
             var multicellularTolerances = spawnEnvironment.GetSpeciesTolerances(multicellularSpecies);
 
-            multicellular = multicellularSpecies;
             CellType resolvedCellType;
 
             if (multicellularData.MulticellularCellType != null)
@@ -1006,12 +1005,12 @@ public static class SpawnHelpers
 
         float spawnLimitWeight = OrganelleContainerHelpers.CalculateCellEntityWeight(organelleCount);
 
-        if (multicellular != null)
+        if (multicellularSpecies != null)
         {
             if (colonyMembersToAdd == fullColonyMemberCount)
             {
-                spawnLimitWeight += MicrobeColonyHelpers.SpawnAsFullyGrownMulticellularColony(entity, multicellular,
-                    ref multicellularGrowth, spawnLimitWeight, recorder);
+                spawnLimitWeight += MicrobeColonyHelpers.SpawnAsFullyGrownMulticellularColony(entity,
+                    multicellularSpecies, ref multicellularGrowth, spawnLimitWeight, recorder);
             }
             else if (colonyMembersToAdd > 0)
             {

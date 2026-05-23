@@ -23,16 +23,12 @@ public partial class CellBodyPlanEditorComponent
     private void DoCellRemoveAction(CellRemoveActionData data)
     {
         editedMicrobeCells.Remove(data.RemovedHex);
-
-        UpdateMassBuddingCellCountSlider();
     }
 
     [ArchiveAllowedMethod]
     private void UndoCellRemoveAction(CellRemoveActionData data)
     {
         editedMicrobeCells.AddFast(data.RemovedHex, hexTemporaryMemory, hexTemporaryMemory2);
-
-        UpdateMassBuddingCellCountSlider();
     }
 
     [ArchiveAllowedMethod]
