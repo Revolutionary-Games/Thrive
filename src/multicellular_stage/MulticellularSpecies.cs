@@ -83,10 +83,6 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 
     public IReadOnlyCellTypeDefinition? SporeCellType => ModifiableSporeCellType;
 
-    /// <summary>
-    ///   The amount of colony cells (including the lead cell) initially spawned if the species has the
-    ///   <see cref="MulticellularReproductionMethod.MassBudding"/> reproduction method
-    /// </summary>
     public int MassBuddingCellCount { get; set; } = 1;
 
     public ISimulationPhotographable.SimulationType SimulationToPhotograph =>
