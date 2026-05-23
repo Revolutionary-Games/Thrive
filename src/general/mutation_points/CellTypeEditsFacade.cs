@@ -94,7 +94,7 @@ public class CellTypeEditsFacade : EditsFacadeBase, IReadOnlyCellTypeDefinition,
     /// </summary>
     public string? SplitFromTypeName => originalCell.SplitFromTypeName;
 
-    public float SpecializationBonus =>
+    public float CellTypeSpecializationBonus =>
         throw new NotSupportedException("This class doesn't dynamically recalculate the specialization bonus");
 
     // TODO: check that this is right (there might sometimes be too many items in removedOrganelles)

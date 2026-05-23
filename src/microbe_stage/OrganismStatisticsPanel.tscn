@@ -24,7 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://dui1qqyh4jn7t" path="res://assets/textures/gui/bevel/HydrogenSulfide.svg" id="19_8sfn6"]
 [ext_resource type="LabelSettings" uid="uid://deaqhtet373fq" path="res://src/gui_common/fonts/Body-Regular-AlmostSmall-Yellow.tres" id="19_lhi3n"]
 
-[node name="OrganismStatisticsPanel" type="PanelContainer" unique_id=1690124975 node_paths=PackedStringArray("sizeLabel", "speedLabel", "rotationSpeedLabel", "hpLabel", "storageLabel", "digestionSpeedLabel", "digestionEfficiencyLabel", "hydrogenSulfideProtectionLabel", "ammoniaCostLabel", "phosphatesCostLabel", "digestionStatsSeparator", "generationLabel", "atpBalancePanel", "atpBalanceBarContainer", "atpBalanceLabel", "atpProductionLabel", "atpConsumptionLabel", "atpProductionBar", "atpConsumptionBar", "compoundBalance", "compoundStorageLastingTimes", "notEnoughStorageWarning", "calculateBalancesAsIfDay", "calculateBalancesWhenMoving", "processListButton", "titleLabel", "specializationValueLabel", "specializationTitleLabel")]
+[node name="OrganismStatisticsPanel" type="PanelContainer" unique_id=1690124975 node_paths=PackedStringArray("sizeLabel", "speedLabel", "rotationSpeedLabel", "hpLabel", "storageLabel", "digestionSpeedLabel", "digestionEfficiencyLabel", "hydrogenSulfideProtectionLabel", "ammoniaCostLabel", "phosphatesCostLabel", "digestionStatsSeparator", "generationLabel", "atpBalancePanel", "atpBalanceBarContainer", "atpBalanceLabel", "atpProductionLabel", "atpConsumptionLabel", "atpProductionBar", "atpConsumptionBar", "compoundBalance", "compoundStorageLastingTimes", "notEnoughStorageWarning", "calculateBalancesAsIfDay", "calculateBalancesWhenMoving", "processListButton", "titleLabel", "specializationValueLabel", "specializationTitleLabel", "specializationPosition", "mainScrollContainer")]
 size_flags_vertical = 3
 mouse_filter = 1
 theme = ExtResource("1_ca4to")
@@ -59,6 +59,8 @@ processListButton = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer
 titleLabel = NodePath("VBoxContainer/Header/Title")
 specializationValueLabel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/SpecializationValue")
 specializationTitleLabel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/SpecializationTitle")
+specializationPosition = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer")
+mainScrollContainer = NodePath("VBoxContainer/Body/ScrollContainer")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=188876858]
 layout_mode = 2

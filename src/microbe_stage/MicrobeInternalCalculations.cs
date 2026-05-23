@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Components;
 using Godot;
 using Systems;
 
@@ -43,29 +44,37 @@ public static class MicrobeInternalCalculations
 
     public static Vector3 GetOrganelleDirection(OrganelleTemplate organelle)
     {
-        return (Hex.AxialToCartesian(new Hex(0, 0)) - Hex.AxialToCartesian(organelle.Position)).Normalized();
+        Vector3 middle = Hex.AxialToCartesian(new Hex(0, 0));
+        var delta = middle - Hex.AxialToCartesian(organelle.Position);
+
+        if (delta == Vector3.Zero)
+            delta = CellPropertiesHelpers.DefaultVisualPos;
+
+        return delta.Normalized();
     }
 
-    public static float GetTotalNominalCapacity(IEnumerable<OrganelleTemplate> organelles)
+    public static float GetTotalNominalCapacity(IEnumerable<OrganelleTemplate> organelles,
+        float totalSpecializationBonus)
     {
-        return organelles.Sum(o => GetNominalCapacityForOrganelle(o.Definition, o.Upgrades));
+        return organelles.Sum(o => GetNominalCapacityForOrganelle(o.Definition, o.Upgrades,
+            totalSpecializationBonus));
     }
 
     public static Dictionary<Compound, float> GetTotalSpecificCapacity(IReadOnlyList<OrganelleTemplate> organelles,
-        out float nominalCapacity)
+        float totalSpecializationBonus, out float nominalCapacity)
     {
-        var totalNominalCap = GetTotalNominalCapacity(organelles);
+        var totalNominalCap = GetTotalNominalCapacity(organelles, totalSpecializationBonus);
         nominalCapacity = totalNominalCap;
 
         var capacities = new Dictionary<Compound, float>();
 
-        AddSpecificCapacity(organelles, capacities);
+        AddSpecificCapacity(organelles, capacities, totalSpecializationBonus);
 
         return capacities;
     }
 
     public static void AddSpecificCapacity(IReadOnlyList<OrganelleTemplate> organelles,
-        Dictionary<Compound, float> capacities)
+        Dictionary<Compound, float> capacities, float totalSpecializationBonus)
     {
         var count = organelles.Count;
 
@@ -74,7 +83,8 @@ public static class MicrobeInternalCalculations
         {
             var organelle = organelles[i];
 
-            var specificCapacity = GetAdditionalCapacityForOrganelle(organelle.Definition, organelle.Upgrades);
+            var specificCapacity = GetAdditionalCapacityForOrganelle(organelle.Definition, organelle.Upgrades,
+                totalSpecializationBonus);
 
             if (specificCapacity.Compound == Compound.Invalid)
                 continue;
@@ -86,13 +96,17 @@ public static class MicrobeInternalCalculations
     }
 
     /// <summary>
-    ///   Variant of <see cref="GetTotalSpecificCapacity(IReadOnlyList{OrganelleTemplate}, out float)"/> to update
-    ///   spawned microbe stats. The used <see cref="CompoundBag"/> must already have the correct nominal capacity set
-    ///   for this to work correctly.
+    ///   Variant of <see cref="GetTotalSpecificCapacity(IReadOnlyList{OrganelleTemplate}, float, out float)"/> to
+    ///   update spawned microbe stats. The used <see cref="CompoundBag"/> must already have the correct nominal
+    ///   capacity set for this to work correctly.
     /// </summary>
     /// <param name="compoundBag">Target compound bag to set info in (this doesn't update nominal capacity)</param>
     /// <param name="organelles">Organelles to find specific capacity from</param>
-    public static void UpdateSpecificCapacities(CompoundBag compoundBag, IReadOnlyList<PlacedOrganelle> organelles)
+    /// <param name="totalSpecializationBonus">
+    ///   The cell specialization bonus for this microbe/cell, including adjacency when relevant
+    /// </param>
+    public static void UpdateSpecificCapacities(CompoundBag compoundBag, IReadOnlyList<PlacedOrganelle> organelles,
+        float totalSpecializationBonus)
     {
         compoundBag.ClearSpecificCapacities();
 
@@ -100,7 +114,8 @@ public static class MicrobeInternalCalculations
         for (int i = 0; i < count; ++i)
         {
             var organelle = organelles[i];
-            var specificCapacity = GetAdditionalCapacityForOrganelle(organelle.Definition, organelle.Upgrades);
+            var specificCapacity = GetAdditionalCapacityForOrganelle(organelle.Definition, organelle.Upgrades,
+                totalSpecializationBonus);
 
             if (specificCapacity.Compound == Compound.Invalid)
                 continue;
@@ -110,7 +125,7 @@ public static class MicrobeInternalCalculations
     }
 
     public static float GetNominalCapacityForOrganelle(OrganelleDefinition definition,
-        IReadOnlyOrganelleUpgrades? upgrades)
+        IReadOnlyOrganelleUpgrades? upgrades, float totalSpecializationBonus)
     {
         if (upgrades?.CustomUpgradeData is StorageComponentUpgrades storage &&
             storage.SpecializedFor != Compound.Invalid)
@@ -121,11 +136,12 @@ public static class MicrobeInternalCalculations
         if (definition.Components.Storage == null)
             return 0;
 
-        return definition.Components.Storage!.Capacity;
+        return definition.Components.Storage!.Capacity * totalSpecializationBonus;
     }
 
     public static (Compound Compound, float Capacity)
-        GetAdditionalCapacityForOrganelle(OrganelleDefinition definition, IReadOnlyOrganelleUpgrades? upgrades)
+        GetAdditionalCapacityForOrganelle(OrganelleDefinition definition, IReadOnlyOrganelleUpgrades? upgrades,
+            float totalSpecializationBonus)
     {
         if (definition.Components.Storage == null)
             return (Compound.Invalid, 0);
@@ -136,7 +152,7 @@ public static class MicrobeInternalCalculations
             var specialization = storage.SpecializedFor;
             var capacity = definition.Components.Storage!.Capacity;
             var extraCapacity = capacity * Constants.VACUOLE_SPECIALIZED_MULTIPLIER;
-            return (specialization, extraCapacity);
+            return (specialization, extraCapacity * totalSpecializationBonus);
         }
 
         return (Compound.Invalid, 0);
@@ -150,7 +166,7 @@ public static class MicrobeInternalCalculations
 
     // TODO: maybe this should return a ValueTask as this is getting pretty computation intensive
     public static float CalculateSpeed(IReadOnlyList<OrganelleTemplate> organelles, MembraneType membraneType,
-        float membraneRigidity, bool isBacteria, bool useEstimate = false)
+        float membraneRigidity, bool isBacteria, float totalSpecializationBonus, bool useEstimate = false)
     {
         float shapeMass = 0;
 
@@ -252,6 +268,9 @@ public static class MicrobeInternalCalculations
 
         var finalMass = useEstimate ? massEstimate : shapeMass;
 
+        // Apply cell specialization bonus
+        organelleMovementForce *= totalSpecializationBonus;
+
         float finalSpeed = (baseMovementForce + organelleMovementForce) / finalMass;
 
         return finalSpeed;
@@ -295,10 +314,12 @@ public static class MicrobeInternalCalculations
     ///   Calculates the rotation speed for a cell. Note that higher value means slower rotation.
     /// </summary>
     /// <param name="organelles">The organelles the cell has with their positions for the calculations</param>
+    /// <param name="totalSpecializationBonus"> Cell specialization bonus, including adjacency if relevant</param>
     /// <returns>
     ///   The rotation speed value for putting in <see cref="Components.OrganelleContainer.RotationSpeed"/>
     /// </returns>
-    public static float CalculateRotationSpeed(IReadOnlyList<IPositionedOrganelle> organelles)
+    public static float CalculateRotationSpeed(IReadOnlyList<IPositionedOrganelle> organelles,
+        float totalSpecializationBonus)
     {
         // TODO: it would be very nice to be able to switch this back to a more physically accurate calculation using
         // the real physics shape here
@@ -326,6 +347,8 @@ public static class MicrobeInternalCalculations
                 ciliaFactor += Constants.CILIA_ROTATION_FACTOR + distance * Constants.CILIA_RADIUS_FACTOR_MULTIPLIER;
             }
         }
+
+        ciliaFactor *= totalSpecializationBonus;
 
         return inertia / (Constants.CELL_ROTATION_INFLECTION_INERTIA + ciliaFactor + inertia)
             * Constants.CELL_MAX_ROTATION + Constants.CELL_MIN_ROTATION;
@@ -359,15 +382,16 @@ public static class MicrobeInternalCalculations
         return density / totalVolume;
     }
 
-    public static float CalculateDigestionSpeed(int enzymeCount)
+    public static float CalculateDigestionSpeed(int enzymeCount, float totalSpecializationBonus)
     {
         var amount = Constants.ENGULF_COMPOUND_ABSORBING_PER_SECOND;
-        var buff = amount * Constants.ENZYME_DIGESTION_SPEED_UP_FRACTION * enzymeCount;
+        var buff = amount * Constants.ENZYME_DIGESTION_SPEED_UP_FRACTION * enzymeCount * totalSpecializationBonus;
 
         return amount + buff;
     }
 
-    public static float CalculateTotalDigestionSpeed(IEnumerable<OrganelleTemplate> organelles)
+    public static float CalculateTotalDigestionSpeed(IEnumerable<OrganelleTemplate> organelles,
+        float totalSpecializationBonus)
     {
         var multiplier = 0;
         foreach (var organelle in organelles)
@@ -376,13 +400,14 @@ public static class MicrobeInternalCalculations
                 ++multiplier;
         }
 
-        return CalculateDigestionSpeed(multiplier);
+        return CalculateDigestionSpeed(multiplier, totalSpecializationBonus);
     }
 
-    public static float CalculateDigestionEfficiency(int enzymeCount)
+    public static float CalculateDigestionEfficiency(int enzymeCount, float totalSpecializationBonus)
     {
         var absorption = Constants.ENGULF_BASE_COMPOUND_ABSORPTION_YIELD;
-        var buff = absorption * Constants.ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION * enzymeCount;
+        var buff = absorption * Constants.ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION * enzymeCount *
+            totalSpecializationBonus;
 
         return Math.Clamp(absorption + buff, 0.0f, Constants.ENZYME_DIGESTION_EFFICIENCY_MAXIMUM);
     }
@@ -390,7 +415,8 @@ public static class MicrobeInternalCalculations
     /// <summary>
     ///   Returns the efficiency of all enzymes present in the given organelles.
     /// </summary>
-    public static Dictionary<Enzyme, float> CalculateDigestionEfficiencies(IEnumerable<OrganelleTemplate> organelles)
+    public static Dictionary<Enzyme, float> CalculateDigestionEfficiencies(IEnumerable<OrganelleTemplate> organelles,
+        float totalSpecializationBonus)
     {
         var enzymes = new Dictionary<Enzyme, int>();
         var result = new Dictionary<Enzyme, float>();
@@ -410,11 +436,11 @@ public static class MicrobeInternalCalculations
             enzymes[enzyme] = count + 1;
         }
 
-        result[lipase] = CalculateDigestionEfficiency(0);
+        result[lipase] = CalculateDigestionEfficiency(0, totalSpecializationBonus);
 
         foreach (var enzyme in enzymes)
         {
-            result[enzyme.Key] = CalculateDigestionEfficiency(enzyme.Value);
+            result[enzyme.Key] = CalculateDigestionEfficiency(enzyme.Value, totalSpecializationBonus);
         }
 
         return result;
@@ -528,31 +554,29 @@ public static class MicrobeInternalCalculations
     /// </returns>
     public static Dictionary<Compound, (float TimeToFill, float Storage)> CalculateDayVaryingCompoundsFillTimes(
         IReadOnlyList<OrganelleTemplate> organelles, MembraneType membraneType, bool moving, bool playerSpecies,
-        BiomeConditions biomeConditions, ResolvedMicrobeTolerances environmentalTolerances,
-        WorldGenerationSettings worldSettings)
+        float totalSpecializationBonus, BiomeConditions biomeConditions,
+        ResolvedMicrobeTolerances environmentalTolerances, WorldGenerationSettings worldSettings)
     {
         var energyBalance = new EnergyBalanceInfoSimple();
 
-        // Note this assumes this is only used just for single cell types or microbe species!
-        var specialization = CalculateSpecializationBonus(organelles, new Dictionary<OrganelleDefinition, int>());
-
         var maximumMovementDirection = MaximumSpeedDirection(organelles);
-        ProcessSystem.ComputeEnergyBalanceSimple(organelles, biomeConditions, environmentalTolerances, specialization,
-            membraneType, maximumMovementDirection, moving, playerSpecies, worldSettings, CompoundAmountType.Biome,
-            null, energyBalance);
+        ProcessSystem.ComputeEnergyBalanceSimple(organelles, biomeConditions, environmentalTolerances,
+            totalSpecializationBonus, membraneType, maximumMovementDirection, moving, playerSpecies,
+            worldSettings, CompoundAmountType.Biome, null, energyBalance);
 
         var compoundBalances = new Dictionary<Compound, CompoundBalance>();
 
         ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles, biomeConditions, environmentalTolerances,
-            specialization, CompoundAmountType.Biome, energyBalance, compoundBalances);
+            totalSpecializationBonus, CompoundAmountType.Biome, energyBalance, compoundBalances);
 
         // TODO: is it fine to use energy balance calculated with the biome numbers here?
         var minimums = new Dictionary<Compound, CompoundBalance>();
 
         ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles, biomeConditions, environmentalTolerances,
-            specialization, CompoundAmountType.Minimum, energyBalance, minimums);
+            totalSpecializationBonus, CompoundAmountType.Minimum, energyBalance, minimums);
 
-        var cachedCapacities = GetTotalSpecificCapacity(organelles, out var cachedCapacity);
+        var cachedCapacities =
+            GetTotalSpecificCapacity(organelles, totalSpecializationBonus, out var cachedCapacity);
 
         var result = new Dictionary<Compound, (float TimeToFill, float Storage)>();
 
@@ -628,39 +652,38 @@ public static class MicrobeInternalCalculations
     /// </returns>
     public static (bool CanSurvive, Dictionary<Compound, float> RequiredStorage) CalculateNightStorageRequirements(
         IReadOnlyList<OrganelleTemplate> organelles, MembraneType membraneType, bool moving, bool playerSpecies,
-        BiomeConditions biomeConditions, ResolvedMicrobeTolerances environmentalTolerances,
-        WorldGenerationSettings worldSettings,
+        float totalSpecializationBonus, BiomeConditions biomeConditions,
+        ResolvedMicrobeTolerances environmentalTolerances, WorldGenerationSettings worldSettings,
         ref Dictionary<Compound, CompoundBalance>? dayCompoundBalances)
     {
-        // Note this assumes this is only used just for single cell types or microbe species!
-        var specialization = CalculateSpecializationBonus(organelles, new Dictionary<OrganelleDefinition, int>());
-
         if (dayCompoundBalances == null)
         {
             var energyBalance = new EnergyBalanceInfoSimple();
 
             ProcessSystem.ComputeEnergyBalanceSimple(organelles, biomeConditions, environmentalTolerances,
-                specialization, membraneType, Vector3.Forward, moving, playerSpecies, worldSettings,
+                totalSpecializationBonus, membraneType, Vector3.Forward, moving, playerSpecies, worldSettings,
                 CompoundAmountType.Biome, null, energyBalance);
 
             dayCompoundBalances = new Dictionary<Compound, CompoundBalance>();
 
             ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles, biomeConditions, environmentalTolerances,
-                specialization, CompoundAmountType.Biome, energyBalance, dayCompoundBalances);
+                totalSpecializationBonus, CompoundAmountType.Biome, energyBalance, dayCompoundBalances);
         }
 
         var energyBalanceAtMinimum = new EnergyBalanceInfoSimple();
 
-        ProcessSystem.ComputeEnergyBalanceSimple(organelles, biomeConditions, environmentalTolerances, specialization,
-            membraneType, Vector3.Forward, moving, playerSpecies, worldSettings, CompoundAmountType.Minimum, null,
+        ProcessSystem.ComputeEnergyBalanceSimple(organelles, biomeConditions, environmentalTolerances,
+            totalSpecializationBonus, membraneType, Vector3.Forward, moving, playerSpecies,
+            worldSettings, CompoundAmountType.Minimum, null,
             energyBalanceAtMinimum);
 
         var minimums = new Dictionary<Compound, CompoundBalance>();
 
         ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles, biomeConditions, environmentalTolerances,
-            specialization, CompoundAmountType.Minimum, energyBalanceAtMinimum, minimums);
+            totalSpecializationBonus, CompoundAmountType.Minimum, energyBalanceAtMinimum, minimums);
 
-        var cachedCapacities = GetTotalSpecificCapacity(organelles, out var cachedCapacity);
+        var cachedCapacities =
+            GetTotalSpecificCapacity(organelles, totalSpecializationBonus, out var cachedCapacity);
 
         var nightSeconds = worldSettings.DayLength * (1 - worldSettings.DaytimeFraction);
 
@@ -927,7 +950,8 @@ public static class MicrobeInternalCalculations
     }
 
     /// <summary>
-    ///   Calculates a specialization bonus for a cell type based on its organelles.
+    ///   Calculates a specialization bonus for a cell type based on its organelles. In case of a multicellular
+    ///   organism, this will need to be multiplied by the adjacency bonus for most purposes.
     /// </summary>
     /// <returns>A multiplier starting from 1 and going up as specialization improves</returns>
     public static float CalculateSpecializationBonus(IReadOnlyList<IReadOnlyOrganelleTemplate> organelles,

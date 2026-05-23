@@ -137,6 +137,11 @@ public partial class CellEditorComponent
 
         // TODO: dynamic MP PR had this line:
         // OnMembraneChanged();
+
+        // Make sure the preview visuals are up to date if we are on that tab so that undoing / redoing a move doesn't
+        // just not do anything. That may have been the reason for the dynamic MP PR TODO.
+        microbeVisualizationOrganellePositionsAreDirty = true;
+        UpdateCellVisualization();
     }
 
     [ArchiveAllowedMethod]
@@ -164,6 +169,11 @@ public partial class CellEditorComponent
 
         // TODO: dynamic MP PR had this line:
         // OnMembraneChanged();
+
+        // Make sure the preview visuals are up to date if we are on that tab so that undoing / redoing a move doesn't
+        // just not do anything. That may have been the reason for the dynamic MP PR TODO.
+        microbeVisualizationOrganellePositionsAreDirty = true;
+        UpdateCellVisualization();
     }
 
     [ArchiveAllowedMethod]

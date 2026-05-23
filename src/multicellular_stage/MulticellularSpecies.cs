@@ -10,7 +10,7 @@ using Systems;
 /// </summary>
 public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISimulationPhotographable
 {
-    public const ushort SERIALIZATION_VERSION = 2;
+    public const ushort SERIALIZATION_VERSION = 3;
 
     private readonly Dictionary<BiomeConditions, Dictionary<Compound, (float TimeToFill, float Storage)>>
         cachedFillTimes = new();
@@ -77,6 +77,12 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 
     public IReadOnlyList<IReadOnlyCellTypeDefinition> CellTypes => ModifiableCellTypes;
 
+    public MulticellularReproductionMethod ReproductionMethod { get; set; }
+
+    public CellType? ModifiableSporeCellType { get; set; }
+
+    public IReadOnlyCellTypeDefinition? SporeCellType => ModifiableSporeCellType;
+
     public ISimulationPhotographable.SimulationType SimulationToPhotograph =>
         ISimulationPhotographable.SimulationType.MicrobeGraphics;
 
@@ -124,6 +130,12 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
             }
         }
 
+        if (version >= 3)
+        {
+            instance.ReproductionMethod = (MulticellularReproductionMethod)reader.ReadInt32();
+            instance.ModifiableSporeCellType = reader.ReadObjectOrNull<CellType>();
+        }
+
         return instance;
     }
 
@@ -134,6 +146,9 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         writer.WriteObject(ModifiableGameplayCells);
         writer.WriteObject(ModifiableEditorCells);
         writer.WriteObject(ModifiableCellTypes);
+
+        writer.Write((int)ReproductionMethod);
+        writer.WriteObjectOrNull(ModifiableSporeCellType);
     }
 
     public override void OnEdited()
@@ -142,6 +157,8 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 
         // TODO: do we need to reposition for auto-evo?
         RepositionToOrigin();
+
+        bool sporeCellTypeInList = false;
 
         // Make certain these are all up to date
         foreach (var cellType in ModifiableCellTypes)
@@ -159,7 +176,16 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
             {
                 cellType.ModifiableOrganelles.Organelles[i].IsEndosymbiont = false;
             }
+
+            if (!sporeCellTypeInList && cellType == ModifiableSporeCellType)
+                sporeCellTypeInList = true;
         }
+
+        if (!sporeCellTypeInList && ModifiableSporeCellType != null)
+            throw new Exception($"Spore cell type isn't present in the cell type list: {ModifiableSporeCellType}");
+
+        if (ReproductionMethod == MulticellularReproductionMethod.Sporulation && ModifiableSporeCellType == null)
+            throw new Exception("Sporulation reproduction method requires a spore cell type to be set");
 
         if (modifiableEditorCells != null)
         {
@@ -191,6 +217,8 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
     public override void OnAttemptedInAutoEvo(bool refreshCache)
     {
         base.OnAttemptedInAutoEvo(refreshCache);
+
+        // TODO: in the future this will need to refresh specialization calculations for cell types
 
         UpdateInitialCompounds();
 
@@ -279,10 +307,14 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         {
             if (!cachedFillTimes.TryGetValue(biome, out compoundTimes))
             {
+                // This does not use the real specialization bonus to avoid underestimating how much single cells in
+                // unusual spawn situations (such as spores) need to survive the night
+                var totalSpecializationBonus = 1;
+
                 // TODO: should moving be false in some cases?
                 compoundTimes = MicrobeInternalCalculations.CalculateDayVaryingCompoundsFillTimes(
                     cellType.ModifiableOrganelles, cellType.MembraneType, true, PlayerSpecies,
-                    microbeSpawnEnvironment.CurrentBiome, resolvedTolerances,
+                    totalSpecializationBonus, microbeSpawnEnvironment.CurrentBiome, resolvedTolerances,
                     microbeSpawnEnvironment.WorldSettings);
                 cachedFillTimes[biome] = compoundTimes;
             }
@@ -342,7 +374,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         for (int i = 0; i < count; ++i)
         {
             var cell = ModifiableGameplayCells[i];
-            score += cell.CellType.SpecializationBonus * GetAdjacencySpecializationBonus(i);
+            score += cell.CellType.CellTypeSpecializationBonus * GetAdjacencySpecializationBonus(i);
         }
 
         return score / count;
@@ -387,6 +419,40 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         return ((MicrobeVisualOnlySimulation)worldSimulation).CalculateColonyPhotographDistance();
     }
 
+    /// <summary>
+    ///   The cell that gets produced by a fully grown colony that grows into its own organism.
+    ///   Might be the same as <see cref="ColonyRootCellType"/>, but might be a spore or a gamete
+    /// </summary>
+    public CellType FirstCellTypeToSpawn()
+    {
+        if (ReproductionMethod == MulticellularReproductionMethod.Budding)
+        {
+            return ModifiableGameplayCells[0].ModifiableCellType;
+        }
+
+        if (ReproductionMethod == MulticellularReproductionMethod.Sporulation)
+        {
+            if (ModifiableSporeCellType == null)
+            {
+                throw new Exception("A spore-reproducing species' spore cell type is unset:" +
+                    $"{FormattedName}");
+            }
+
+            return ModifiableSporeCellType;
+        }
+
+        throw new NotImplementedException($"Reproduction type not implemented: {ReproductionMethod}");
+    }
+
+    /// <summary>
+    ///   Returns the cell type of the cell that can directly grow into a full colony. In advanced reproduction
+    ///   methods, this cell can be created through spore germination or gamete fusion.
+    /// </summary>
+    public CellType ColonyRootCellType()
+    {
+        return ModifiableGameplayCells[0].ModifiableCellType;
+    }
+
     public override object Clone()
     {
         var result = new MulticellularSpecies(ID, Genus, Epithet);
@@ -417,8 +483,21 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 
         foreach (var cellType in ModifiableCellTypes)
         {
-            result.ModifiableCellTypes.Add((CellType)cellType.Clone());
+            var clonedType = (CellType)cellType.Clone();
+
+            result.ModifiableCellTypes.Add(clonedType);
+
+            if (cellType == ModifiableSporeCellType)
+                result.ModifiableSporeCellType = clonedType;
         }
+
+        if (ModifiableSporeCellType != null && result.ModifiableSporeCellType == null)
+        {
+            throw new Exception($"Cell type {ModifiableSporeCellType.ReadableName} not found while cloning" +
+                $"multicellular species: {ReadableName}");
+        }
+
+        result.ReproductionMethod = ReproductionMethod;
 
         return result;
     }

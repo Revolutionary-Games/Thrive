@@ -36,8 +36,8 @@ public class ChemoreceptorComponent : IOrganelleComponent
             GD.PrintErr("Chemoreceptor has no target compound or species, invalid configuration");
     }
 
-    public void UpdateAsync(ref OrganelleContainer organelleContainer, in Entity microbeEntity,
-        IWorldSimulation worldSimulation, float energycostMultiplier, float delta)
+    public void UpdateAsync(ref OrganelleContainer organelleContainer, ref SpecializationFactor specializationFactor,
+        in Entity microbeEntity, IWorldSimulation worldSimulation, float energyCostMultiplier, float delta)
     {
         if (targetCompound != Compound.Invalid)
         {

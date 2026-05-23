@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-08 16:35+0300\n"
-"PO-Revision-Date: 2026-05-07 19:05+0000\n"
+"POT-Creation-Date: 2026-05-18 10:19+0200\n"
+"PO-Revision-Date: 2026-05-16 02:04+0000\n"
 "Last-Translator: 归灵祈昱 <guilingqiyu@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://"
 "translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/"
@@ -3034,13 +3034,11 @@ msgstr "需要细胞核"
 msgid "INFO_BOX_SIZE"
 msgstr "大小（六边形数量）"
 
-#, fuzzy
 msgid "INFO_BOX_SIZE_PLAIN"
-msgstr "大小（六边形数量）"
+msgstr "大小"
 
-#, fuzzy
 msgid "INFO_BOX_STAGE"
-msgstr "储存空间"
+msgstr "阶段"
 
 msgid "INFO_BOX_STORAGE"
 msgstr "储存空间"
@@ -4890,9 +4888,8 @@ msgstr ""
 "使用了足够新的 GPU 或集成显卡，并尝试更新视频驱动程序。对于笔记本电脑，您可能"
 "需要强制使用专用的 AMD 或 Nvidia 显卡来运行 Thrive，而不是集成显卡。"
 
-#, fuzzy
 msgid "OPEN_EVOLUTIONARY_TREE"
-msgstr "进化树"
+msgstr "打开进化树"
 
 msgid "OPEN_FOLDER"
 msgstr "打开文件夹"
@@ -5121,9 +5118,8 @@ msgstr "转到上一页"
 msgid "PAGE_FORWARD"
 msgstr "转到下一页"
 
-#, fuzzy
 msgid "PAGE_PINNED"
-msgstr "页面标题"
+msgstr "已固定"
 
 msgid "PAGE_TITLE"
 msgstr "页面标题"
@@ -5261,9 +5257,8 @@ msgstr "物理条件"
 msgid "PHYSICAL_RESISTANCE"
 msgstr "物防"
 
-#, fuzzy
 msgid "PIN_BUTTON_TOOLTIP"
-msgstr "改变您的设置"
+msgstr "固定此页面，以免在切换至其他页面时被删除"
 
 msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
 msgstr "无法放置，因为当前的细胞膜与该细胞器不兼容"
@@ -6611,9 +6606,10 @@ msgstr "目前世界"
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr "树状进化图"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
-msgstr "打开Thrive百科"
+msgstr ""
+"该物种已灭绝，不再存在于这个世界上。因此，其详细信息已无从考证。该物种的 ID "
+"为 {0}。"
 
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr "打开Thrive百科"
@@ -6642,40 +6638,41 @@ msgstr "主页"
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "博物馆"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
-msgstr "主页"
+msgstr "灭绝物种 {0}"
 
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr "地区图"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
-msgstr "树状进化图"
+msgstr ""
+"目前，上方的按钮仅会打开整个演化树，而不会自动定位到该特定物种。此功能可能会"
+"在未来加入。"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_SPECIES_PAGE"
-msgstr "博物馆"
+msgstr "{0}"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
-msgstr "博物馆"
+msgstr "这一页列出了世上现存的物种。"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
-msgstr "博物馆"
+msgstr ""
+"{0} 是存在于这个世界上的一个物种。其当前种群数量为 {1}，分布于 {2} 个区域。它"
+"位于 {3}。\n"
+"\n"
+"请注意，除非固定此页面，否则在切换至其他页面时该页面将会消失。如果您觉得该物"
+"种很有趣并希望日后查阅，请固定此页面。"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
-msgstr "博物馆"
+msgstr ""
+"目前尚未固定任何物种，因此这里没有列出任何页面。您可以在游戏的其他地方点击某"
+"个物种进入其页面，然后将其固定。固定后，该页面便会显示在这里。"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
-msgstr "博物馆"
+msgstr "固定的物种"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
-msgstr "目前世界"
+msgstr "物种"
 
 msgid "THRIVE_LICENSES"
 msgstr "Thrive的许可证书"
@@ -11556,6 +11553,56 @@ msgstr ""
 #, fuzzy
 msgid "HYDROGEN_SULFIDE_PROTECTION_TOOLTIP"
 msgstr "硫化氢"
+
+msgid "BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "产生单个后代——新群落的根细胞。"
+
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
+msgstr ""
+"细胞特化能为细胞的几乎各个方面提供[b]加成[/b]：代谢过程速度、渗透压调节以及细"
+"胞器效率。\n"
+"\n"
+"高度的[b]特化[/b]能使细胞变得非常高效。\n"
+"\n"
+"您可以通过仅使用少数几种细胞器（甚至仅使用一种）来提升特化程度。\n"
+"\n"
+"尝试放置一个您当前拥有数量最多的细胞器来提升您的特化程度，或者放置其他类型的"
+"细胞器来[i]降低[/i]特化程度，看看会产生什么效果。"
+
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
+msgstr ""
+"在多细胞阶段，细胞特化机制依然生效，并会提供原有的加成。\n"
+"\n"
+"不过，该系统得到了扩展，加入了细胞相邻加成机制。同时，特化面板现在显示的是整"
+"个身体构型的[u]平均特化程度[/u]。\n"
+"\n"
+"当同类型的细胞被放置在相邻位置时，它们都会获得[b]额外[/b]的特化加成。\n"
+"\n"
+"您可以尝试将一个细胞放置在同类型细胞的旁边，就能看到指示加成的绿色箭头。"
+
+msgid "GERMINATE_SPORE"
+msgstr "萌发孢子"
+
+msgid "GERMINATE_SPORE_ACTION_TOOLTIP"
+msgstr "萌发孢子至群落"
+
+msgid "MICROBE_LOADING_TIP_23"
+msgstr ""
+"减少在一个细胞中放置的细胞器种类会提升你的特化加成，使该细胞中的每个细胞器都"
+"更强。"
+
+msgid "REPRODUCTION_SPORE"
+msgstr "孢子形成"
+
+msgid "SPORE_CELL_TYPE"
+msgstr "孢子细胞类型"
+
+msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
+msgstr ""
+"产生多个可选特化的后代，它们在转化为群落根细胞之前，能够寻找更好的环境。"
+
+msgid "WIKI_GLYCOLYSIS_COMMA_NITROGEN_FIXATION"
+msgstr "糖酵解，固氮作用"
 
 #~ msgid "AEROBIC_NITROGEN_FIXING"
 #~ msgstr "好氧固氮"

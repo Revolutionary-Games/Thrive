@@ -9,7 +9,7 @@ using Systems;
 /// <summary>
 ///   Manages the spawning of and processing compound clouds
 /// </summary>
-[RuntimeCost(35)]
+[RuntimeCost(17.5f)]
 public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveLoadedTracked, IArchiveUpdatable
 {
     public const ushort SERIALIZATION_VERSION = 1;

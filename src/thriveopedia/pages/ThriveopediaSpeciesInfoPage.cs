@@ -177,4 +177,10 @@ public partial class ThriveopediaSpeciesInfoPage : ThriveopediaPage, IThriveoped
         Pinned = pressed;
         CurrentGame.ThriveopediaData.SetPagePinned(this, Pinned);
     }
+
+    private void DummyTranslations()
+    {
+        // This translation is kept around in case we want a pinned checkbox back in the future
+        Localization.Translate("PAGE_PINNED");
+    }
 }

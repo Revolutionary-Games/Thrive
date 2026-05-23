@@ -53,8 +53,8 @@ public class SlimeJetComponent : IOrganelleComponent
         IsMucocyst = true;
     }
 
-    public void UpdateAsync(ref OrganelleContainer organelleContainer, in Entity microbeEntity,
-        IWorldSimulation worldSimulation, float energycostMultiplier, float delta)
+    public void UpdateAsync(ref OrganelleContainer organelleContainer, ref SpecializationFactor specializationFactor,
+        in Entity microbeEntity, IWorldSimulation worldSimulation, float energyCostMultiplier, float delta)
     {
         // All the logic for this ended up in MicrobeEmissionSystem and MicrobeMovementSystem, just the animation
         // applying is here anymore...

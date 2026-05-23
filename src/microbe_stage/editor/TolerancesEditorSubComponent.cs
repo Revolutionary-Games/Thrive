@@ -51,6 +51,9 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     private Slider oxygenResistanceSlider = null!;
 
     [Export]
+    private Control oxygenResistanceSpacer = null!;
+
+    [Export]
     private Slider uvResistanceSlider = null!;
 
     [Export]
@@ -240,6 +243,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         {
             // The latest data should have already been loaded into CurrentTolerances
 
+            SetOxygenSliderWidth();
             ApplyCurrentValuesToGUI();
         }
         else
@@ -248,6 +252,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
             var speciesTolerance = Editor.EditedBaseSpecies.Tolerances;
             CurrentTolerances.CopyFrom(speciesTolerance);
 
+            SetOxygenSliderWidth();
             ResetToCurrentSpeciesTolerances();
         }
 
@@ -338,9 +343,15 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         if (enableMicrobeDebugCode)
         {
             tempTolerances.CopyFrom(optimal);
+
+            // Note this assumes this is only used just for single cell types or microbe species!
+            var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(
+                Editor.EditedCellOrganelles ?? throw new Exception("Organelles not set"),
+                new Dictionary<OrganelleDefinition, int>());
+
             var optimalTest =
                 MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(tempTolerances,
-                    Editor.EditedCellOrganelles ?? throw new Exception("Organelles not set"),
+                    Editor.EditedCellOrganelles, specialization,
                     Editor.CurrentPatch.Biome);
 
             if (optimalTest.OverallScore is < 1 or > 1 + MathUtils.EPSILON)
@@ -454,6 +465,20 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         {
             GD.PrintErr("Tooltips not correctly found for tolerances editor");
         }
+    }
+
+    private void SetOxygenSliderWidth()
+    {
+        // Allow for bigger max oxygen tolerance range when loading older save or species that were
+        // created to fit into world with higher oxygen level
+        var oxygenMaxValue =
+            (float)(Math.Ceiling(CurrentTolerances.OxygenResistance / Constants.TOLERANCE_OXYGEN_STEP) *
+                Constants.TOLERANCE_OXYGEN_STEP);
+        var sliderMaxValue = Math.Max(Constants.TOLERANCE_OXYGEN_RANGE_MAX, oxygenMaxValue);
+
+        oxygenResistanceSlider.MaxValue = sliderMaxValue;
+        oxygenResistanceSlider.SetStretchRatio(sliderMaxValue);
+        oxygenResistanceSpacer.SetStretchRatio(1 - sliderMaxValue);
     }
 
     private void CalculateStatsAndShow(EnvironmentalTolerances calculationTolerances,

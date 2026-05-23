@@ -202,10 +202,12 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
             ProcessSpeedModifier = 1,
         };
 
+        var dummySpecializationBonus = 1;
+
         // Perform a full update apply with the general code method.
         ref var cellProperties = ref microbe.Get<CellProperties>();
         cellProperties.ReApplyCellTypeProperties(ref dummyEffects, microbe, species,
-            species, this, hexWorkData1, hexWorkData2);
+            species, dummySpecializationBonus, this, hexWorkData1, hexWorkData2);
 
         // TODO: update species member component if species changed?
     }
@@ -295,7 +297,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
         var radius = cellProperties.CreatedMembrane!.EncompassingCircleRadius;
 
         if (cellProperties.IsBacteria)
-            radius *= 0.5f;
+            radius *= Constants.BACTERIA_CELL_SCALE;
 
         var center = Vector3.Zero;
 

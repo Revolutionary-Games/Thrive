@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-08 16:35+0300\n"
-"PO-Revision-Date: 2026-05-07 19:05+0000\n"
+"POT-Creation-Date: 2026-05-18 10:19+0200\n"
+"PO-Revision-Date: 2026-05-15 16:14+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/tr/>\n"
@@ -3272,13 +3272,11 @@ msgstr "Hücre Çekirdeği Gerektirir"
 msgid "INFO_BOX_SIZE"
 msgstr "Büyüklük (Altıgenler)"
 
-#, fuzzy
 msgid "INFO_BOX_SIZE_PLAIN"
-msgstr "Büyüklük (Altıgenler)"
+msgstr "Büyüklük"
 
-#, fuzzy
 msgid "INFO_BOX_STAGE"
-msgstr "Depo"
+msgstr "Evre"
 
 msgid "INFO_BOX_STORAGE"
 msgstr "Depo"
@@ -5279,9 +5277,8 @@ msgstr ""
 "Thrive'ı çalıştırmak için, dahili grafiklerin yerine, harici AMD veya Nvidia "
 "grafiklerini kullanmaya zorlamanız gerekebilir."
 
-#, fuzzy
 msgid "OPEN_EVOLUTIONARY_TREE"
-msgstr "Evrim Ağacı"
+msgstr "Evrim Ağacını Aç"
 
 msgid "OPEN_FOLDER"
 msgstr "Klasörü Aç"
@@ -5530,9 +5527,8 @@ msgstr "Geri"
 msgid "PAGE_FORWARD"
 msgstr "İleri"
 
-#, fuzzy
 msgid "PAGE_PINNED"
-msgstr "Sayfa Başlığı"
+msgstr "Sabitlenmiş"
 
 msgid "PAGE_TITLE"
 msgstr "Sayfa Başlığı"
@@ -5682,9 +5678,10 @@ msgstr "Fiziksel Koşullar"
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Fiziksel Direnç"
 
-#, fuzzy
 msgid "PIN_BUTTON_TOOLTIP"
-msgstr "Ayarlarını değiştir"
+msgstr ""
+"Diğer sayfalara geçerken bu sayfanın silinmesi yerine, bu sayfayı yanınızda "
+"tutmak için sabitleyin"
 
 msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
 msgstr ""
@@ -7118,9 +7115,10 @@ msgstr "Mevcut Dünya"
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr "Evrim Ağacı"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
-msgstr "Thriveopedi'yi Aç"
+msgstr ""
+"Bu türün soyu tükendi ve artık bu dünyanın bir parçası değil. Bu nedenle, bu "
+"türün detayları artık bilinmiyor. Bu türün kimliği {0}."
 
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr "Thriveopedi'yi Aç"
@@ -7151,40 +7149,43 @@ msgstr "Ana Sayfa"
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Müze"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
-msgstr "Ana Sayfa"
+msgstr "Soyu Tükenen Tür {0}"
 
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr "Arazi Haritası"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
-msgstr "Evrim Ağacı"
+msgstr ""
+"Şu an için, yukarıdaki buton sadece genel evrim ağacını gösterir ve bu "
+"belirli türe otomatik olarak odaklanmaz. Bu özellik, gelecekte eklenebilir."
 
-#, fuzzy
 msgid "THRIVEOPEDIA_SPECIES_PAGE"
-msgstr "Müze"
+msgstr "{0}"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
-msgstr "Müze"
+msgstr "Bu sayfa, bu dünyada var olan türleri listeler."
 
-#, fuzzy
 msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
-msgstr "Müze"
+msgstr ""
+"{0}, bu dünyada var olan bir tür. Bu türün {1} değerinde bir mevcut "
+"popülasyonu var ve bu tür {2} bölgede bulunmaktadır. Bu tür, {3} içindedir.\n"
+"\n"
+"Bu sayfa sabitlenmediği sürece, bu sayfadan çıkıldığında sayfanın "
+"kaybolacağını unutmayın. Eğer bu tür tekrar incelemek isteyeceğiniz ilginç "
+"bir türse, bu sayfayı sabitleyin."
 
-#, fuzzy
 msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
-msgstr "Müze"
+msgstr ""
+"Henüz hiçbir tür sabitlenmedi. O yüzden, burada hiçbir sayfa listelenmiyor. "
+"Bir türün sayfasına ulaşmak için oyunun başka bir yerinde bu türe tıklayın "
+"ve sonra onu sabitleyin. Tür sabitlendiğinde, burada görünecektir."
 
-#, fuzzy
 msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
-msgstr "Müze"
+msgstr "Sabitlenen Türler"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
-msgstr "Mevcut Dünya"
+msgstr "Tür"
 
 msgid "THRIVE_LICENSES"
 msgstr "Thrive Lisansları"
@@ -13061,6 +13062,64 @@ msgstr ""
 #, fuzzy
 msgid "HYDROGEN_SULFIDE_PROTECTION_TOOLTIP"
 msgstr "Hidrojen Sülfür"
+
+msgid "BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "Tek bir yavru üretir; bu, yeni bir koloninin kök hücresidir."
+
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
+msgstr ""
+"Hücre özelleşmesi, bir hücreye neredeyse her yönden [b]bonuslar[/b] verir: "
+"İşlem hızı, ozmoregülasyon ve organel etkinliği.\n"
+"\n"
+"Yüksek [b]özelleşme[/b], daha etkili hücreler meydana getirir.\n"
+"\n"
+"Özelleşme, yalnızca birkaç organel türü, hatta yalnızca bir tanesi, "
+"kullanılarak arttırılabilir.\n"
+"\n"
+"Özelleşmenizi arttırmak için zaten fazlasına sahip olduğunuz bir organeli "
+"yerleştirmeyi deneyin ya da ne tür etkiye sahip olduğunu görmek üzere "
+"özelleşmeyi [i]azaltmak[/i] için başka bir organel türünü yerleştirmeyi "
+"deneyin."
+
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
+msgstr ""
+"Çok hücrelilerde, hücre özelleşmesi hala uygulanır ve var olan bonuslar "
+"verir.\n"
+"\n"
+"Ancak sistem, hücre bitişikliği bonuslarını içerecek şekilde genişletilir. "
+"Dahası, özelleşme artık bütün beden planı boyunca bir [u]ortalama özelleşme[/"
+"u] ekranı gösterir.\n"
+"\n"
+"Aynı tür hücreler birbirine yakın olarak yerleştirildiğinde, her bir hücre "
+"[b]ekstra[/b] özelleşme kazanır.\n"
+"\n"
+"Bonuslara işaret eden yeşil okları görmek için bir hücreyi aynı tür bir "
+"hücrenin yakınına yerleştirmeyi deneyin."
+
+msgid "GERMINATE_SPORE"
+msgstr "Spor geliştir"
+
+msgid "GERMINATE_SPORE_ACTION_TOOLTIP"
+msgstr "Sporu koloniye dönüştür"
+
+msgid "MICROBE_LOADING_TIP_23"
+msgstr ""
+"Bir hücrede daha az farklı türde organel yerleştirmek, özelleşme bonusunuzu "
+"arttırır. Bu durum, hücredeki her organeli daha güçlü yapar."
+
+msgid "REPRODUCTION_SPORE"
+msgstr "Sporlanma"
+
+msgid "SPORE_CELL_TYPE"
+msgstr "Spor hücresi türü"
+
+msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
+msgstr ""
+"Bir koloni kök hücresine dönüşmeden önce, daha iyi koşullar arayabilen, "
+"birden fazla isteğe bağlı olarak özelleşmiş yavru üretir."
+
+msgid "WIKI_GLYCOLYSIS_COMMA_NITROGEN_FIXATION"
+msgstr "Glikoliz, Azot Fiksasyonu"
 
 #~ msgid "AEROBIC_NITROGEN_FIXING"
 #~ msgstr "Oksijenli Azot Fiksasyonu"

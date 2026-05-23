@@ -33,6 +33,7 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(Engulfable))]
 [ReadsComponent(typeof(MicrobeColony))]
 [ReadsComponent(typeof(WorldPosition))]
+[WritesToComponent(typeof(MulticellularGrowth))]
 [RunsAfter(typeof(OrganelleComponentFetchSystem))]
 [RunsBefore(typeof(MicrobeMovementSystem))]
 [RunsBefore(typeof(MicrobeEmissionSystem))]
@@ -466,6 +467,17 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                 }
 
                 ai.HasBeenNearPlayer = true;
+            }
+        }
+
+        if (entity.Has<MulticellularGrowth>())
+        {
+            var growth = entity.Get<MulticellularGrowth>();
+
+            if (growth.IsASpore)
+            {
+                // TODO: add a smarter condition here for when the AI decides to germinate as a spore
+                control.GerminatingSpore = true;
             }
         }
 
@@ -1355,17 +1367,26 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
 
     private bool CanShootToxin(CompoundBag compounds, float speciesFocus)
     {
+        var storage = compounds.GetCapacityForCompound(Compound.Oxytoxy) * 0.99f;
+
+        // If a cell can't store toxin, cannot shoot it either
+        if (storage <= Constants.AI_SHOOT_TOXIN_AFTER)
+            return false;
+
         // Ensure that zero focus species don't constantly think they can fire toxins
-        return compounds.GetCompoundAmount(Compound.Oxytoxy) >
-            Math.Min(Constants.MAXIMUM_AGENT_EMISSION_AMOUNT * speciesFocus / Constants.MAX_SPECIES_FOCUS,
-                Constants.MINIMUM_AGENT_EMISSION_AMOUNT);
+        // And that otherwise focus nicely scales how many toxins are spewed before max damage
+        var shootThreshold =
+            Math.Clamp(Constants.MAXIMUM_AGENT_EMISSION_AMOUNT * (speciesFocus / Constants.MAX_SPECIES_FOCUS),
+                Constants.AI_SHOOT_TOXIN_AFTER, storage);
+
+        return compounds.GetCompoundAmount(Compound.Oxytoxy) > shootThreshold;
     }
 
     private void CleanMicrobeCache()
     {
-        // Skip when cache hasn't been updated in the meantime, this avoids unnecessarily clearing out a bunch of
+        // Skip when cache hasn't been updated in the meantime; this avoids unnecessarily clearing out a bunch of
         // data from the cache as after we clear the lists, the lists won't be filled again until the cache is
-        // rebuild
+        // rebuilt
         if (!microbeCacheBuilt)
             return;
 
