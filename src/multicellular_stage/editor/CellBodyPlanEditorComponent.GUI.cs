@@ -338,9 +338,18 @@ public partial class CellBodyPlanEditorComponent
     {
         reproductionMethodDropdown.Select((int)ReproductionMethod);
 
-        buddingReproductionSection.Visible = ReproductionMethod == MulticellularReproductionMethod.Budding;
-        sporeReproductionSection.Visible = ReproductionMethod == MulticellularReproductionMethod.Sporulation;
-        massBuddingReproductionSection.Visible = ReproductionMethod == MulticellularReproductionMethod.MassBudding;
+        switch (ReproductionMethod)
+        {
+            case MulticellularReproductionMethod.Budding:
+                buddingReproductionSection.Visible = true;
+                break;
+            case MulticellularReproductionMethod.Sporulation:
+                sporeReproductionSection.Visible = true;
+                break;
+            case MulticellularReproductionMethod.MassBudding:
+                massBuddingReproductionSection.Visible = true;
+                break;
+        }
     }
 
     private void UpdateSporeCellDropdown()
