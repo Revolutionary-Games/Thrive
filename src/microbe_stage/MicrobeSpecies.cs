@@ -326,13 +326,13 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
             InitialCompounds.Add(compoundBalance.Key, compoundInitialAmount);
         }
 
-        // // Reduce initial hydrogen sulfide level to the tolerable amount, so that the species don't take damage
-        // if (InitialCompounds.ContainsKey(Compound.Hydrogensulfide))
-        // {
-        //     var (hydrogenSulfideProtection, _) =
-        //         MicrobeInternalCalculations.CalculateHydrogenSulfideProtection(Organelles, CellTypeSpecializationBonus);
-        //     InitialCompounds[Compound.Hydrogensulfide] = hydrogenSulfideProtection;
-        // }
+        // Reduce initial hydrogen sulfide level to the tolerable amount, so that the species don't take damage
+        if (InitialCompounds.ContainsKey(Compound.Hydrogensulfide))
+        {
+            var (maxHdrogenSulfideRawProtection, _) =
+                MicrobeInternalCalculations.CalculateHydrogenSulfideProtection(Organelles, CellTypeSpecializationBonus);
+            InitialCompounds[Compound.Hydrogensulfide] = maxHdrogenSulfideRawProtection;
+        }
     }
 
     public override void HandleNightSpawnCompounds(CompoundBag targetStorage, ISpawnEnvironmentInfo spawnEnvironment)

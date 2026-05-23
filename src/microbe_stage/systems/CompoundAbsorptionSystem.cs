@@ -74,18 +74,12 @@ public partial class CompoundAbsorptionSystem : BaseSystem<World, float>
                 // Exception for hydrogen sulfide. Top only to the tolerable amount so that the cell doesn't lose health
                 if (usefulCompound.ID == Compound.Hydrogensulfide)
                 {
-                    if (entity.Has<SpeciesMember>())
-                    {
-                        var species = entity.Get<SpeciesMember>().Species;
-                        var hydrogenSulfideTolerance =
-                            species.InitialCompounds.GetValueOrDefault(Compound.Hydrogensulfide, 0);
-                        storage.Compounds.AddCompound(usefulCompound.ID,
-                            hydrogenSulfideTolerance - storage.Compounds.GetCompoundAmount(usefulCompound.ID));
-                    }
-                    else
-                    {
-                        GD.PrintErr("Entity has no SpeciesMember component");
-                    }
+                    var organelleContainer = entity.Get<OrganelleContainer>();
+                    storage.Compounds.AddCompound(usefulCompound.ID,
+                        organelleContainer.HydrogenSulfideProtectionFraction *
+                        storage.Compounds.
+                            GetCapacityForCompound(usefulCompound.ID) -
+                        storage.Compounds.GetCompoundAmount(usefulCompound.ID));
                 }
                 else
                 {

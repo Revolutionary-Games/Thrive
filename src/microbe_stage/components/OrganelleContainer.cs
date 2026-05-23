@@ -221,15 +221,15 @@ public static class OrganelleContainerHelpers
         var mucocystCount = reader.ReadInt32();
         var radiationProtection = reader.ReadInt32();
 
-        float hydrogenSulfideProtection;
+        float HydrogenSulfideProtectionFraction;
         if (version <= 1)
         {
             reader.ReadBool();
-            hydrogenSulfideProtection = float.MaxValue;
+            HydrogenSulfideProtectionFraction = 1f;
         }
         else
         {
-            hydrogenSulfideProtection = reader.ReadFloat();
+            HydrogenSulfideProtectionFraction = reader.ReadFloat();
         }
 
         var heatCollection = reader.ReadInt32();
@@ -250,7 +250,7 @@ public static class OrganelleContainerHelpers
             IronBreakdownEfficiency = ironBreakdownEfficiency,
             MucocystCount = mucocystCount,
             RadiationProtection = radiationProtection,
-            HydrogenSulfideProtectionFraction = hydrogenSulfideProtection,
+            HydrogenSulfideProtectionFraction = HydrogenSulfideProtectionFraction,
             HeatCollection = heatCollection,
             OrganellesCapacity = organellesCapacity,
             AverageToxinToxicity = averageToxinToxicity,

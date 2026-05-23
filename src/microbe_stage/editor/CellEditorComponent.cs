@@ -2538,6 +2538,7 @@ public partial class CellEditorComponent :
         organismStatisticsPanel.UpdateTotalDigestionSpeed(CalculateTotalDigestionSpeed());
         organismStatisticsPanel.UpdateDigestionEfficiencies(CalculateDigestionEfficiencies());
 
+        //todo shouldnt be updated in mulitcellular editor
         var (tolerance, capacity) = CalculateHydrogenSulfideProtection();
         organismStatisticsPanel.UpdateHydrogenSulfideProtection(tolerance, capacity);
 
