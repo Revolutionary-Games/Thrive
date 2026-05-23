@@ -289,7 +289,7 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
 
         if (actionData is MassBuddingCellCountActionData massBuddingCellCountActionData)
         {
-            massBuddingCellCountOverride = massBuddingCellCountActionData.NewCellCount;
+            massBuddingCellCountOverride = Math.Min(massBuddingCellCountActionData.NewCellCount, EditorCells.Count);
 
             return true;
         }

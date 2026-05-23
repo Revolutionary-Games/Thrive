@@ -46,12 +46,22 @@ public partial class CellBodyPlanEditorComponent
 
     public void OnMassBuddingCellCountChanged(float count)
     {
-        if ((int)count == MassBuddingCellCount)
+        var newCellCount = (int)count;
+
+        GD.Print($"{newCellCount} ({DesiredMassBuddingCellCount})");
+
+        if (newCellCount == DesiredMassBuddingCellCount)
+            return;
+
+        var maxValue = massBuddingCellCountSlider.MaxValue;
+
+        // Allow the desired value to be higher than max (to handle the case of cell removal)
+        if (newCellCount == maxValue && DesiredMassBuddingCellCount > maxValue)
             return;
 
         var action = new SingleEditorAction<MassBuddingCellCountActionData>(DoMassBuddingCellCountChangeAction,
             UndoMassBuddingCellCountChangeAction,
-            new MassBuddingCellCountActionData(MassBuddingCellCount, (int)count, editedMicrobeCells.Count));
+            new MassBuddingCellCountActionData(DesiredMassBuddingCellCount, newCellCount, editedMicrobeCells.Count));
 
         Editor.EnqueueAction(action);
 
@@ -358,6 +368,6 @@ public partial class CellBodyPlanEditorComponent
     private void UpdateMassBuddingCellCountSlider()
     {
         massBuddingCellCountSlider.MaxValue = editedMicrobeCells.Count;
-        massBuddingCellCountSlider.Value = MassBuddingCellCount;
+        massBuddingCellCountSlider.SetValueNoSignal(Math.Min(DesiredMassBuddingCellCount, editedMicrobeCells.Count));
     }
 }

@@ -248,7 +248,11 @@ public partial class CellBodyPlanEditorComponent :
 
     public CellType? SporeCellType { get; private set; }
 
-    public int MassBuddingCellCount { get; private set; } = 1;
+    /// <summary>
+    ///   This variable should be clamped before use. It's intentional that it can exceed the amount of cells, so that
+    ///   e.g. cell removal action can be easily undone.
+    /// </summary>
+    public int DesiredMassBuddingCellCount { get; private set; } = 1;
 
     protected override bool ShowFloatingLabels => ShowGrowthOrder;
 
@@ -449,7 +453,7 @@ public partial class CellBodyPlanEditorComponent :
 
         writer.Write((int)ReproductionMethod);
         writer.WriteObjectOrNull(SporeCellType);
-        writer.Write(MassBuddingCellCount);
+        writer.Write(DesiredMassBuddingCellCount);
     }
 
     public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
@@ -508,7 +512,7 @@ public partial class CellBodyPlanEditorComponent :
 
         if (version >= 6)
         {
-            MassBuddingCellCount = reader.ReadInt32();
+            DesiredMassBuddingCellCount = reader.ReadInt32();
         }
     }
 
@@ -532,7 +536,7 @@ public partial class CellBodyPlanEditorComponent :
 
         ReproductionMethod = multicellularSpecies.ReproductionMethod;
         SporeCellType = multicellularSpecies.ModifiableSporeCellType;
-        MassBuddingCellCount = multicellularSpecies.MassBuddingCellCount;
+        DesiredMassBuddingCellCount = multicellularSpecies.MassBuddingCellCount;
 
         UpdateGUIAfterLoadingSpecies(species);
 
@@ -612,7 +616,7 @@ public partial class CellBodyPlanEditorComponent :
 
         editedSpecies.ReproductionMethod = ReproductionMethod;
         editedSpecies.ModifiableSporeCellType = SporeCellType;
-        editedSpecies.MassBuddingCellCount = MassBuddingCellCount;
+        editedSpecies.MassBuddingCellCount = Math.Min(DesiredMassBuddingCellCount, editedMicrobeCells.Count);
 
         tempFreshlyUpdatedCells.Clear();
         editedSpecies.OnEdited();
@@ -877,7 +881,7 @@ public partial class CellBodyPlanEditorComponent :
 
         ++alreadyDeleted;
         return new SingleEditorAction<CellRemoveActionData>(DoCellRemoveAction, UndoCellRemoveAction,
-            new CellRemoveActionData(hexHere, MassBuddingCellCount));
+            new CellRemoveActionData(hexHere));
     }
 
     protected override float CalculateEditorArrowZPosition()
@@ -1152,7 +1156,7 @@ public partial class CellBodyPlanEditorComponent :
             if (occupied)
             {
                 action = new SingleEditorAction<CellRemoveActionData>(DoCellRemoveAction,
-                    UndoCellRemoveAction, new CellRemoveActionData(cell, MassBuddingCellCount));
+                    UndoCellRemoveAction, new CellRemoveActionData(cell));
             }
             else
             {

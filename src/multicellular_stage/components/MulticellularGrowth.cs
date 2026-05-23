@@ -341,7 +341,7 @@ public static class MulticellularGrowthHelpers
             {
                 var total = new List<(Compound Compound, float AmountNeeded)>();
 
-                for (int i = 0; i < species.MassBuddingCellCount; i++)
+                for (int i = 0; i < species.MassBuddingCellCount; ++i)
                 {
                     species.ModifiableGameplayCells[i].CalculateTotalCompositionList(total);
                 }

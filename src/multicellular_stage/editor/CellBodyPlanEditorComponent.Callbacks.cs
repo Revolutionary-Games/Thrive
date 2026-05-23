@@ -24,7 +24,6 @@ public partial class CellBodyPlanEditorComponent
     {
         editedMicrobeCells.Remove(data.RemovedHex);
 
-        MassBuddingCellCount = Math.Clamp(data.MassBuddingCellCount, 1, MassBuddingCellCount);
         UpdateMassBuddingCellCountSlider();
     }
 
@@ -33,7 +32,6 @@ public partial class CellBodyPlanEditorComponent
     {
         editedMicrobeCells.AddFast(data.RemovedHex, hexTemporaryMemory, hexTemporaryMemory2);
 
-        MassBuddingCellCount = data.MassBuddingCellCount;
         UpdateMassBuddingCellCountSlider();
     }
 
@@ -178,7 +176,7 @@ public partial class CellBodyPlanEditorComponent
     [ArchiveAllowedMethod]
     private void DoMassBuddingCellCountChangeAction(MassBuddingCellCountActionData data)
     {
-        MassBuddingCellCount = data.NewCellCount;
+        DesiredMassBuddingCellCount = data.NewCellCount;
 
         UpdateMassBuddingCellCountSlider();
     }
@@ -186,7 +184,7 @@ public partial class CellBodyPlanEditorComponent
     [ArchiveAllowedMethod]
     private void UndoMassBuddingCellCountChangeAction(MassBuddingCellCountActionData data)
     {
-        MassBuddingCellCount = data.OldCellCount;
+        DesiredMassBuddingCellCount = data.OldCellCount;
 
         UpdateMassBuddingCellCountSlider();
     }

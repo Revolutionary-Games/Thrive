@@ -963,7 +963,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
             float adjacencyBonus = 1.0f;
 
-            var growth = Player.Get<MulticellularGrowth>();
+            ref var growth = ref Player.Get<MulticellularGrowth>();
 
             growth.IsASpore = false;
 
