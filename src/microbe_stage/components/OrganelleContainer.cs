@@ -90,7 +90,7 @@ public struct OrganelleContainer : IArchivableComponent
     /// <summary>
     ///   Do the organelles provide hydrogen sulfide immunity
     /// </summary>
-    public float HydrogenSulfideProtection;
+    public float HydrogenSulfideProtectionFraction;
 
     /// <summary>
     ///   How many heat-collecting organelles this container has
@@ -191,7 +191,7 @@ public struct OrganelleContainer : IArchivableComponent
         writer.Write(IronBreakdownEfficiency);
         writer.Write(MucocystCount);
         writer.Write(RadiationProtection);
-        writer.Write(HydrogenSulfideProtection);
+        writer.Write(HydrogenSulfideProtectionFraction);
         writer.Write(HeatCollection);
         writer.Write(OrganellesCapacity);
         writer.Write(AverageToxinToxicity);
@@ -250,7 +250,7 @@ public static class OrganelleContainerHelpers
             IronBreakdownEfficiency = ironBreakdownEfficiency,
             MucocystCount = mucocystCount,
             RadiationProtection = radiationProtection,
-            HydrogenSulfideProtection = hydrogenSulfideProtection,
+            HydrogenSulfideProtectionFraction = hydrogenSulfideProtection,
             HeatCollection = heatCollection,
             OrganellesCapacity = organellesCapacity,
             AverageToxinToxicity = averageToxinToxicity,
@@ -619,7 +619,6 @@ public static class OrganelleContainerHelpers
         container.OrganellesCapacity = 0;
         container.HasSignalingAgent = false;
         container.HasBindingAgent = false;
-        container.HydrogenSulfideProtection = Constants.HYDROGEN_SULFIDE_DEFAULT_PROTECTION;
         container.HeatCollection = 0;
         container.OxygenUsingOrganelles = 0;
         container.RadiationProtection = 0;
@@ -638,6 +637,8 @@ public static class OrganelleContainerHelpers
 
         container.HexCount = container.Organelles.HexCount;
 
+        var hydrogenSulfideProtection = Constants.HYDROGEN_SULFIDE_DEFAULT_PROTECTION;
+        var hydrogenSulfideAdditionalCapacity = 0f;
         var organelles = container.Organelles;
         int count = organelles.Count;
 
@@ -709,11 +710,20 @@ public static class OrganelleContainerHelpers
                 ++container.HeatCollection;
 
             container.IronBreakdownEfficiency += organelleDefinition.IronBreakdownEfficiency;
-            container.HydrogenSulfideProtection += organelleDefinition.HydrogenSulfideProtection;
+            hydrogenSulfideProtection += organelleDefinition.HydrogenSulfideProtection;
 
             container.OrganellesCapacity +=
                 MicrobeInternalCalculations.GetNominalCapacityForOrganelle(organelleDefinition,
                     organelle.Upgrades, totalSpecializationBonus);
+
+            var (compound, additionalCapacity) = MicrobeInternalCalculations.GetAdditionalCapacityForOrganelle(
+                organelleDefinition,
+                organelle.Upgrades, totalSpecializationBonus);
+
+            if (compound == Compound.Hydrogensulfide)
+            {
+                hydrogenSulfideAdditionalCapacity += additionalCapacity;
+            }
 
             var enzymes = organelle.GetEnzymes();
 
@@ -738,6 +748,8 @@ public static class OrganelleContainerHelpers
             }
         }
 
+        container.HydrogenSulfideProtectionFraction = hydrogenSulfideProtection /
+            (container.OrganellesCapacity + hydrogenSulfideAdditionalCapacity);
         container.AverageToxinToxicity = rawToxicityValue / container.AgentVacuoleCount;
     }
 
