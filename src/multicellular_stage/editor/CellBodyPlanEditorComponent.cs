@@ -126,6 +126,9 @@ public partial class CellBodyPlanEditorComponent :
     private OrganismStatisticsPanel organismStatisticsPanel = null!;
 
     [Export]
+    private ScrollContainer rightPanelScrollContainer = null!;
+
+    [Export]
     private CustomConfirmationDialog negativeAtpPopup = null!;
 
     [Export]
@@ -808,7 +811,8 @@ public partial class CellBodyPlanEditorComponent :
     {
         if (AddCell(CellTypeFromName(activeActionName ?? throw new InvalidOperationException("no action active"))))
         {
-            // Placed a cell, could trigger a tutorial or something
+            // TODO: could send the cell data here
+            Editor.TutorialState.SendEvent(TutorialEventType.MulticellularEditorCellPlaced, EventArgs.Empty, this);
         }
     }
 

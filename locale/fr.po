@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-13 11:47+0200\n"
-"PO-Revision-Date: 2026-05-13 03:55+0000\n"
-"Last-Translator: blackjacksike <blackjacksike@protonmail.com>\n"
+"POT-Creation-Date: 2026-05-18 10:19+0200\n"
+"PO-Revision-Date: 2026-05-15 16:14+0000\n"
+"Last-Translator: Shigasaa <altitudes.etrangeres@ikmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -107,9 +107,6 @@ msgstr "Avancée"
 
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Ouvrir la vue de configuration avancée"
-
-msgid "AEROBIC_NITROGEN_FIXATION"
-msgstr "Fixation aérobique d'azote"
 
 msgid "AEROBIC_RESPIRATION"
 msgstr "Respiration aérobie"
@@ -1983,6 +1980,28 @@ msgstr ""
 
 #, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
+msgstr ""
+"Pour continuer a progresser, vous voudres placer un [b]noyau[/b].\n"
+"\n"
+"Ajouter un [b]noyau[/b] débloquera des organites plus complexes, comme les [b]agents liants[/b], qui vous permettent de vous lier avec d'autres cellules de votre espèce et de devenir [u]multicellulaire[/u].\n"
+"\n"
+"Essayez de placer un [b]noyau[/b] pour fermer ce tutoriel.\n"
+"\n"
+"Si votre cellule est pas encore prête pour le noyau, vous pouvez utiliser le [b]bouton « Annuler »[/b] pour [u]retirer[/u] le noyau."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
+msgstr ""
+"Pour continuer a progresser, vous voudres placer un [b]noyau[/b].\n"
+"\n"
+"Ajouter un [b]noyau[/b] débloquera des organites plus complexes, comme les [b]agents liants[/b], qui vous permettent de vous lier avec d'autres cellules de votre espèce et de devenir [u]multicellulaire[/u].\n"
+"\n"
+"Essayez de placer un [b]noyau[/b] pour fermer ce tutoriel.\n"
+"\n"
+"Si votre cellule est pas encore prête pour le noyau, vous pouvez utiliser le [b]bouton « Annuler »[/b] pour [u]retirer[/u] le noyau."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
 msgstr ""
 "Pour continuer a progresser, vous voudres placer un [b]noyau[/b].\n"
 "\n"
@@ -7690,6 +7709,7 @@ msgstr "Pas d'améliorations."
 msgid "WIKI_BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr "Chimiosynthèse bactérienne, glycolyse"
 
+#, fuzzy
 msgid "WIKI_BINDING_AGENT_EFFECTS"
 msgstr ""
 "Les cellules dotées d'[b]agents liants[/b] (ou les colonies contenant des cellules dotées d'[b]agents liants[/b]) peuvent entrer en mode liaison. En mode liaison, chaque cellule consomme [b]2[/b] [thrive:compound type=\"atp\"][/thrive:compound] supplémentaire. Le mode liaison se désactive au contact d'une cellule de la même espèce, et permet de réunir les cellules en une colonie. Le mode liaison peut également être désactivé manuellement.\n"
@@ -8315,7 +8335,7 @@ msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr "Pas d'améliorations."
 
 #, fuzzy
-msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+msgid "WIKI_GLYCOLYSIS_COMMA_NITROGEN_FIXATION"
 msgstr "Fixation anaérobique d'azote"
 
 #, fuzzy
@@ -9071,6 +9091,7 @@ msgstr ""
 msgid "WIKI_NITROGENASE_MODIFICATIONS"
 msgstr "Pas de modifications."
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_PROCESSES"
 msgstr ""
 "[b]Fixation anérobie de l'azote[/b] : [thrive:compound type=\"atp\"][/thrive:compound] + [thrive:compound type=\"nitrogen\"][/thrive:compound] → [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
@@ -9091,6 +9112,7 @@ msgstr ""
 msgid "WIKI_NITROGENASE_SCIENTIFIC_BACKGROUND"
 msgstr "La [color=#3796e1][url=https://fr.wikipedia.org/wiki/Nitrog%C3%A9nase]Nitrogénase[/url][/color] est une enzyme présente dans certaines bactéries Terriennes qui fixe le diazote atmosphérique (N<sub>2</sub>) en ammoniac (NH<sub>3</sub>). Ces microbes fixateurs d'azote soutiennent toute la biosphère, l'azote étant un composant essentiel de l'ADN et des protéines mais est inutilisable sous sa forme gazeuse par la plupart des organismes."
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_STRATEGY"
 msgstr ""
 "L'[thrive:compound type=\"ammonia\"][/thrive:compound] produit par la [b]nitrogénase[/b] contribue à accumuler des resources pour la reproduction. Les cellules ayant de la [b]nitrogénase[/b] doivent donc uniquement trouver du [thrive:compound type=\"phosphates\"][/thrive:compound] dans l'environnement pour se reproduire plus vite que la normale (la normale étant zéro si la reproduction passive est désactivée dans les paramètres de la partie). Une bonne stratégie est de chercher des fragments de [thrive:compound type=\"phosphates\"][/thrive:compound] à ingérer ou auxquels se coller.\n"
@@ -9139,6 +9161,7 @@ msgstr "Non"
 msgid "WIKI_NONE_COMMA_THIS_IS_THE_LAST_STAGE"
 msgstr "Aucun, c'est la dernière étape de jeu"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_EFFECTS"
 msgstr ""
 "Une fois qu'une cellule évolue un [b]noyau[/b], elle gagne la capacité d'évoluer de nombreuses autres [b]organites[/b] qui étaient auparavant verrouillés.\n"
@@ -9170,6 +9193,7 @@ msgstr "Pas de conditions."
 msgid "WIKI_NUCLEUS_SCIENTIFIC_BACKGROUND"
 msgstr "À venir"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_STRATEGY"
 msgstr ""
 "Réfléchissez bien avant d'ajouter un [b]noyau[/b] à votre cellule. Ces derniers sont cher à entretenir et ralentissent considérablement votre cellule. Assurez-vous donc d'avoir une balance en [thrive:compound type=\"atp\"][/thrive:compound] nettement positive et de pouvoir vous permettre un mode de vie plus sédentaire pendant une ou deux générations. Nous recommandons d'ajouter des [b][color=#3796e1][url=thriveopedia:cilia] cils[/url][/color][/b] et des [b][color=#3796e1][url=thriveopedia:flagellum]flagelles[/url][/color][/b] dans les générations suivantes afin de retrouver un peu de mobilité.\n"
@@ -10054,6 +10078,9 @@ msgstr "Zoomer"
 
 msgid "ZOOM_OUT"
 msgstr "Dézoomer"
+
+#~ msgid "AEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Fixation aérobique d'azote"
 
 #~ msgid "AEROBIC_NITROGEN_FIXING"
 #~ msgstr "Fixation aérobique d'azote"

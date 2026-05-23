@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-13 11:47+0200\n"
-"PO-Revision-Date: 2026-05-13 03:55+0000\n"
-"Last-Translator: Jan <jan_fue@icloud.com>\n"
+"POT-Creation-Date: 2026-05-18 10:19+0200\n"
+"PO-Revision-Date: 2026-05-15 16:14+0000\n"
+"Last-Translator: Matthias Ulbl <matthias.ulbl@gmx.at>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -107,9 +107,6 @@ msgstr "Fortgeschritten"
 
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Erweiterte Einstellungen anzeigen"
-
-msgid "AEROBIC_NITROGEN_FIXATION"
-msgstr "Aerobe Stickstofffixierung"
 
 msgid "AEROBIC_RESPIRATION"
 msgstr "Aerobe Atmung"
@@ -1977,6 +1974,28 @@ msgstr ""
 "Wenn deine Zelle noch nicht bereit für einen Zellkern ist, kannst du die [b]Rückgängig-Schaltfläche[/b] verwenden, um den Zellkern wieder zu [u]entfernen[/u]."
 
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
+msgstr ""
+"Um die weiterzuentwickeln wirst du wahrscheinlich einen [b]Zellkern[/b] platzieren wollen.\n"
+"\n"
+"Mit einem [b]Zellkern[/b] wird es möglich, weiterentwickelte Organellen zu platzieren, wie z.B. [b]Bindungswirkstoff[/b], die es erlauben, sich mit anderen Individuen deiner Spezies zu verbinden und [u]mehrzellig[/u] zu werden.\n"
+"\n"
+"Versuche einen [b]Zellkern[/b] zu platzieren, um dieses Tutorial zu schließen.\n"
+"\n"
+"Wenn deine Zelle noch nicht bereit für einen Zellkern ist, kannst du die [b]Rückgängig-Schaltfläche[/b] verwenden, um den Zellkern wieder zu [u]entfernen[/u]."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
+msgstr ""
+"Um die weiterzuentwickeln wirst du wahrscheinlich einen [b]Zellkern[/b] platzieren wollen.\n"
+"\n"
+"Mit einem [b]Zellkern[/b] wird es möglich, weiterentwickelte Organellen zu platzieren, wie z.B. [b]Bindungswirkstoff[/b], die es erlauben, sich mit anderen Individuen deiner Spezies zu verbinden und [u]mehrzellig[/u] zu werden.\n"
+"\n"
+"Versuche einen [b]Zellkern[/b] zu platzieren, um dieses Tutorial zu schließen.\n"
+"\n"
+"Wenn deine Zelle noch nicht bereit für einen Zellkern ist, kannst du die [b]Rückgängig-Schaltfläche[/b] verwenden, um den Zellkern wieder zu [u]entfernen[/u]."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
 msgstr ""
 "Um die weiterzuentwickeln wirst du wahrscheinlich einen [b]Zellkern[/b] platzieren wollen.\n"
 "\n"
@@ -7579,6 +7598,7 @@ msgstr "Keine Erweiterungen."
 msgid "WIKI_BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr "Bakterielle Chemosynthese, Glykolyse"
 
+#, fuzzy
 msgid "WIKI_BINDING_AGENT_EFFECTS"
 msgstr ""
 "Zellen mit [b]Bindungsstoffen[/b] (oder Kolonien, die Zellen mit [b]Bindungsstoffen[/b]) enthalten) können in den Bindungsmodus wechseln. Im Bindungsmodus verbraucht jede Zelle [b]+2[/b] [thrive:compound type=\"atp\"][/thrive:compound] zusätzllich. Der Bindungsmodus deaktiviert sich bei Kontakt mit einer Zelle derselben Spezies, wobei die Zellen zu einer Kolonie vereint werden. Der Bindungsmodus kann auch manuell deaktiviert werden.\n"
@@ -8047,7 +8067,7 @@ msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr "Keine Erweiterungen."
 
 #, fuzzy
-msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+msgid "WIKI_GLYCOLYSIS_COMMA_NITROGEN_FIXATION"
 msgstr "Anaerobe Stickstofffixierung"
 
 #, fuzzy
@@ -9601,6 +9621,9 @@ msgstr "Hereinzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Herauszoomen"
+
+#~ msgid "AEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Aerobe Stickstofffixierung"
 
 #~ msgid "AEROBIC_NITROGEN_FIXING"
 #~ msgstr "Aerobe Stickstofffixierung"

@@ -120,6 +120,16 @@ public enum TutorialEventType
     MicrobeEditorTabChanged,
 
     /// <summary>
+    ///   Player changed the multicellular editor tab, args is <see cref="StringEventArgs"/>
+    /// </summary>
+    MulticellularEditorTabChanged,
+
+    /// <summary>
+    ///   Player placed a cell in the multicellular editor
+    /// </summary>
+    MulticellularEditorCellPlaced,
+
+    /// <summary>
     ///   Player changed the <see cref="MicrobeEditorReportComponent"/> subtab, args is <see cref="StringEventArgs"/>
     /// </summary>
     ReportComponentSubtabChanged,

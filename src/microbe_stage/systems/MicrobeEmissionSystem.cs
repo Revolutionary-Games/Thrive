@@ -148,7 +148,7 @@ public partial class MicrobeEmissionSystem : BaseSystem<World, float>
             Constants.AGENT_EMISSION_DISTANCE_OFFSET;
 
         if (cellProperties.IsBacteria)
-            ejectionDistance *= 0.5f;
+            ejectionDistance *= Constants.BACTERIA_CELL_SCALE;
 
         // Find the direction the microbe is facing
         // (actual rotation, not LookAtPoint, also takes colony membership into account and uses the

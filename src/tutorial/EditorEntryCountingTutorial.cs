@@ -22,7 +22,7 @@ public abstract class EditorEntryCountingTutorial : TutorialPhase
     public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
         object sender)
     {
-        // We never want to consume these events so we ignore the return value
+        // We never want to consume these events, so we ignore the return value
         _ = CheckEventEditorEntryEvent(eventType);
 
         return false;

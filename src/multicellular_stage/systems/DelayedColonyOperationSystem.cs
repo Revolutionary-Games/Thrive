@@ -36,6 +36,12 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
     private readonly IMicrobeSpawnEnvironment spawnEnvironment;
     private readonly ISpawnSystem spawnSystem;
 
+    private readonly ForEach entityForEachMarker;
+
+    private readonly QueryDescription delayedOperationQuery = new QueryDescription().WithAll<DelayedMicrobeColony>();
+
+    private bool hasDelayed;
+
     public DelayedColonyOperationSystem(IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment spawnEnvironment,
         ISpawnSystem spawnSystem, World world) :
         base(world)
@@ -45,6 +51,8 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
         this.spawnSystem = spawnSystem;
 
         attachmentOrderComparer = new AttachmentOrderComparer();
+
+        entityForEachMarker = OnHasEntity;
     }
 
     public static void CreateDelayAttachedMicrobe(ref WorldPosition colonyPosition, in Entity colonyEntity,
@@ -110,6 +118,15 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
                 recorder.Add(member, originalEvents.CloneEventCallbacksForColonyMember());
             }
         }
+    }
+
+    public bool HasPendingEntities()
+    {
+        hasDelayed = false;
+
+        // TODO: is there more efficient way to check for pending entities than needing to loop each one?
+        World.Query(delayedOperationQuery, entityForEachMarker);
+        return hasDelayed;
     }
 
     public override void AfterUpdate(in float delta)
@@ -246,6 +263,11 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
     {
         var parentIndex = colony.CalculateSensibleParentIndexForMulticellular(ref entity.Get<AttachedToEntity>());
         colony.FinishQueuedMemberAdd(colonyEntity, parentIndex, entity, targetMemberIndex, recorder);
+    }
+
+    private void OnHasEntity(Entity entity)
+    {
+        hasDelayed = true;
     }
 
     private class AttachmentOrderComparer : IComparer<(Entity Cell, DelayedMicrobeColony Delayed)>

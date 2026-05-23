@@ -259,31 +259,6 @@ public class RunResults : IArchivable
             Math.Max(initialPopulationInPatch.Value, 0);
     }
 
-    public void KillSpeciesInPatch(Species species, Patch patch, bool refundMigrations = false)
-    {
-        AddPopulationResultForSpecies(species, patch, 0);
-
-        var speciesResult = results[species];
-
-        // We copy migration list to be able to modify it
-        foreach (var migration in speciesResult.SpreadToPatches.ToList())
-        {
-            if (speciesResult.SplitOff != null && speciesResult.SplitOffPatches?.Contains(patch) == true)
-                continue;
-
-            if (migration.To == patch)
-            {
-                speciesResult.SpreadToPatches.Remove(migration);
-
-                // We may still penalize the origin patch, the migration would just have died off on its way.
-                // TODO: It would be nice to leave some trace of this happening, so that it can be tracked
-                // why the population in this patch was reduced.
-                if (!refundMigrations)
-                    speciesResult.NewPopulationInPatches[migration.From] -= migration.Population;
-            }
-        }
-    }
-
     public void AddTrackedEnergyForSpecies(Species species, Patch patch, SelectionPressure pressure,
         float speciesFitness, float totalFitness, float speciesEnergy)
     {

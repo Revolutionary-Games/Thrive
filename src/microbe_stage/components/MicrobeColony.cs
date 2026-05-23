@@ -973,7 +973,7 @@ public static class MicrobeColonyHelpers
     /// </summary>
     /// <returns>How much the added colony members add entity weight</returns>
     public static float SpawnAsFullyGrownMulticellularColony(Entity entity, MulticellularSpecies species,
-        float originalWeight, CommandBuffer commandBuffer)
+        ref MulticellularGrowth multicellularGrowth, float originalWeight, CommandBuffer commandBuffer)
     {
         int members = species.ModifiableGameplayCells.Count - 1;
 
@@ -983,11 +983,15 @@ public static class MicrobeColonyHelpers
 
         SetupColonyWithMembersDelayed(entity, members, commandBuffer);
 
+        // All members are added, so mark as fully grown
+        multicellularGrowth.NextBodyPlanCellToGrowIndex = species.ModifiableGameplayCells.Count;
+        multicellularGrowth.CompoundsNeededForNextCell = null;
+
         return CalculateColonyAdditionalEntityWeight(originalWeight, members);
     }
 
     public static float SpawnAsPartialMulticellularColony(Entity entity, float originalWeight,
-        int membersToAdd, CommandBuffer commandBuffer)
+        int membersToAdd, ref MulticellularGrowth multicellularGrowth, CommandBuffer commandBuffer)
     {
         if (membersToAdd < 1)
         {
@@ -996,6 +1000,10 @@ public static class MicrobeColonyHelpers
         }
 
         SetupColonyWithMembersDelayed(entity, membersToAdd, commandBuffer);
+
+        // Adjust growth state to resume correctly after the added members
+        multicellularGrowth.NextBodyPlanCellToGrowIndex += membersToAdd;
+        multicellularGrowth.CompoundsNeededForNextCell = null;
 
         return CalculateColonyAdditionalEntityWeight(originalWeight, membersToAdd);
     }

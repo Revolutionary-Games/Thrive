@@ -89,6 +89,19 @@ public static class Constants
     public const float PLAYER_SPECIES_SPAWN_MULTIPLIER = 0.5f;
 
     /// <summary>
+    ///   Uniform scale used to render and simulate prokaryotic cells relative to their unscaled true size.
+    ///   Eukaryotes use the true scale for their size. So at present this makes bacteria half the size of eukaryotes.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This is extracted as a constant to not be a magic value all over the code, however, changing this would be
+    ///     a very major thing. So do not touch this! Changing this will break old saves, and some game logic still
+    ///     seems to depend on the hardcoded value, so changing this cannot be done easily.
+    ///   </para>
+    /// </remarks>
+    public const float BACTERIA_CELL_SCALE = 0.5f;
+
+    /// <summary>
     ///   Smaller spawn penalty to make binding agents easier to use with better player species spawn rates.
     /// </summary>
     public const float PLAYER_SPECIES_SPAWN_MULTIPLIER_BINDING_AGENTS = 0.7f;
@@ -493,11 +506,11 @@ public static class Constants
     /// </summary>
     public const float AGENT_EMISSION_VELOCITY = 25.0f;
 
-    public const float OXYTOXY_DAMAGE = 25.0f;
+    public const float OXYTOXY_DAMAGE = 20.0f;
 
-    public const float CYTOTOXIN_DAMAGE = 18.0f;
+    public const float CYTOTOXIN_DAMAGE = 14.0f;
 
-    public const float OXYGEN_INHIBITOR_DAMAGE = 23.0f;
+    public const float OXYGEN_INHIBITOR_DAMAGE = 19.0f;
 
     public const float CHANNEL_INHIBITOR_ATP_DEBUFF = 0.5f;
     public const float CHANNEL_INHIBITOR_DEBUFF_DURATION = 15;
@@ -634,7 +647,7 @@ public static class Constants
     /// <summary>
     ///   Cooldown between agent emissions, in seconds.
     /// </summary>
-    public const float AGENT_EMISSION_COOLDOWN = 2.0f;
+    public const float AGENT_EMISSION_COOLDOWN = 2.2f;
 
     /// <summary>
     ///   The minimum amount of oxytoxy (or any agent) fired in one shot.
@@ -645,6 +658,11 @@ public static class Constants
     ///   The maximum amount of oxytoxy (or any agent) fired in one shot.
     /// </summary>
     public const float MAXIMUM_AGENT_EMISSION_AMOUNT = 2.0f;
+
+    /// <summary>
+    ///   AI only consider shooting a toxin possible if it has this much toxin stored or more
+    /// </summary>
+    public const float AI_SHOOT_TOXIN_AFTER = 0.15f;
 
     /// <summary>
     ///   The time (in seconds) it takes a cloud being absorbed to halve its compounds.
