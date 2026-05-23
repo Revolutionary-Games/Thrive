@@ -330,7 +330,7 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         if (InitialCompounds.ContainsKey(Compound.Hydrogensulfide))
         {
             var (hydrogenSulfideProtection, _) =
-                MicrobeInternalCalculations.CalculateHydrogenSulfideProtection(Organelles);
+                MicrobeInternalCalculations.CalculateHydrogenSulfideProtection(Organelles, CellTypeSpecializationBonus);
             InitialCompounds[Compound.Hydrogensulfide] = hydrogenSulfideProtection;
         }
     }

@@ -447,7 +447,7 @@ public static class MicrobeInternalCalculations
     }
 
     public static (float Tolerance, float Capacity) CalculateHydrogenSulfideProtection(
-        IEnumerable<OrganelleTemplate> organelles)
+        IEnumerable<OrganelleTemplate> organelles, float totalSpecializationBonus)
     {
         float hydrogenSulfideProtection = Constants.HYDROGEN_SULFIDE_DEFAULT_PROTECTION;
         float hydrogenSulfideStorage = 0;
@@ -470,7 +470,7 @@ public static class MicrobeInternalCalculations
                 hydrogenSulfideStorage += baseCapacity;
             }
 
-            var specificCapacity = GetAdditionalCapacityForOrganelle(organelle.Definition, organelle.Upgrades);
+            var specificCapacity = GetAdditionalCapacityForOrganelle(organelle.Definition, organelle.Upgrades, totalSpecializationBonus);
             if (specificCapacity.Compound == Compound.Hydrogensulfide)
             {
                 hydrogenSulfideStorage += specificCapacity.Capacity;

@@ -1580,7 +1580,11 @@ public partial class CellEditorComponent :
 
     public (float Tolerance, float Capacity) CalculateHydrogenSulfideProtection()
     {
-        return MicrobeInternalCalculations.CalculateHydrogenSulfideProtection(editedMicrobeOrganelles);
+        // Treats cellTypeSpecializationBonus as totalSpecializationBonus, because adjacency is ignored in this editor.
+        var specialization =
+            MicrobeInternalCalculations.CalculateSpecializationBonus(editedMicrobeOrganelles.Organelles, tempMemory3);
+
+        return MicrobeInternalCalculations.CalculateHydrogenSulfideProtection(editedMicrobeOrganelles, specialization);
     }
 
     public (int AmmoniaCost, int PhosphatesCost) CalculateOrganellesCosts()

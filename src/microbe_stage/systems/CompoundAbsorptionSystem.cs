@@ -1,9 +1,9 @@
 ﻿namespace Systems;
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using AngleSharp.Common;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Arch.System;
@@ -74,7 +74,7 @@ public partial class CompoundAbsorptionSystem : BaseSystem<World, float>
                 if (usefulCompound.ID == Compound.Hydrogensulfide)
                 {
                     var species = entity.Get<Species>();
-                    var hydrogenSulfideTolerance = species.InitialCompounds.GetOrDefault(Compound.Hydrogensulfide, 0);
+                    var hydrogenSulfideTolerance = species.InitialCompounds.GetValueOrDefault(Compound.Hydrogensulfide, 0);
                     storage.Compounds.AddCompound(usefulCompound.ID,
                         hydrogenSulfideTolerance - storage.Compounds.GetCompoundAmount(usefulCompound.ID));
                 }
