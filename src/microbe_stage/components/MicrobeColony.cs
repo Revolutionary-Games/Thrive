@@ -756,7 +756,7 @@ public static class MicrobeColonyHelpers
                 continue;
             }
 
-            var newParent = colony.CalculateSensibleReParentIndex(ref next.Get<AttachedToEntity>(), ref next);
+            var newParent = colony.CalculateSensibleReParentIndex(ref next.Get<AttachedToEntity>(), in next);
             if (newParent != -1)
             {
                 colony.ColonyStructure[next] = colony.ColonyMembers[newParent];
@@ -1164,7 +1164,7 @@ public static class MicrobeColonyHelpers
     ///   An index if there is a suitable parent, -1 otherwise.
     /// </returns>
     public static int CalculateSensibleReParentIndex(this ref MicrobeColony colony,
-        ref AttachedToEntity attachedPosition, ref Entity forCell)
+        ref AttachedToEntity attachedPosition, in Entity forCell)
     {
         float bestDistance = float.MaxValue;
         int bestParentIndex = -1;
