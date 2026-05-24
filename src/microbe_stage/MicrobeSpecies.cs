@@ -329,9 +329,9 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         // Reduce initial hydrogen sulfide level to the tolerable amount, so that the species don't take damage
         if (InitialCompounds.ContainsKey(Compound.Hydrogensulfide))
         {
-            var (maxHdrogenSulfideRawProtection, _) =
+            var (maxHydrogenSulfideRawProtection, _) =
                 MicrobeInternalCalculations.CalculateHydrogenSulfideProtection(Organelles, CellTypeSpecializationBonus);
-            InitialCompounds[Compound.Hydrogensulfide] = maxHdrogenSulfideRawProtection;
+            InitialCompounds[Compound.Hydrogensulfide] = maxHydrogenSulfideRawProtection;
         }
     }
 
