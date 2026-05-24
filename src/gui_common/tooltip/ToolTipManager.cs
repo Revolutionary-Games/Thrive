@@ -750,8 +750,8 @@ public partial class ToolTipManager : CanvasLayer
                 ?? throw new InvalidOperationException("Movement component is null for organelle with thrust tooltip");
 
             modifierInfo.DisplayName = "THRUST_FORCE";
-            modifierInfo.ModifierValue = "+" + Constants.FLAGELLA_BASE_FORCE * movementComponent.Momentum
-                / Constants.FLAGELLA_FORCE_DISPLAY_DIVISOR;
+            modifierInfo.ModifierValue = "+" + MathF.Round(Constants.FLAGELLA_BASE_FORCE * movementComponent.Momentum
+                / Constants.FLAGELLA_FORCE_DISPLAY_DIVISOR);
         }
 
         modifierInfo = selectionMenuTooltip.GetModifierInfo("rotationForce");
@@ -767,7 +767,7 @@ public partial class ToolTipManager : CanvasLayer
         if (modifierInfo != null)
         {
             modifierInfo.DisplayName = "TEMPERATURE_TOLERANCE_RANGE";
-            var value = organelle.ToleranceModifierTemperatureRange;
+            var value = MathF.Round(organelle.ToleranceModifierTemperatureRange, 1);
 
             if (value < 0)
                 modifierInfo.AdjustValueColor(value);
@@ -782,7 +782,7 @@ public partial class ToolTipManager : CanvasLayer
         if (modifierInfo != null)
         {
             modifierInfo.DisplayName = "PRESSURE_TOLERANCE";
-            var value = organelle.ToleranceModifierPressureTolerance / 1000;
+            var value = MathF.Round(organelle.ToleranceModifierPressureTolerance / 1000, 1);
 
             if (value < 0)
                 modifierInfo.AdjustValueColor(value);
@@ -796,7 +796,7 @@ public partial class ToolTipManager : CanvasLayer
         if (modifierInfo != null)
         {
             modifierInfo.DisplayName = "OXYGEN_RESISTANCE";
-            var value = organelle.ToleranceModifierOxygen * 100;
+            var value = MathF.Round(organelle.ToleranceModifierOxygen * 100, 1);
 
             if (value < 0)
                 modifierInfo.AdjustValueColor(value);
@@ -810,7 +810,7 @@ public partial class ToolTipManager : CanvasLayer
         if (modifierInfo != null)
         {
             modifierInfo.DisplayName = "UV_PROTECTION";
-            var value = organelle.ToleranceModifierUV * 100;
+            var value = MathF.Round(organelle.ToleranceModifierUV * 100, 1);
 
             if (value < 0)
                 modifierInfo.AdjustValueColor(value);
