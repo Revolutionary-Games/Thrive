@@ -338,6 +338,10 @@ public partial class CellBodyPlanEditorComponent
     {
         reproductionMethodDropdown.Select((int)ReproductionMethod);
 
+        buddingReproductionSection.Visible = false;
+        sporeReproductionSection.Visible = false;
+        massBuddingReproductionSection.Visible = false;
+
         switch (ReproductionMethod)
         {
             case MulticellularReproductionMethod.Budding:
