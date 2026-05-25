@@ -792,6 +792,8 @@ public static class SpawnHelpers
                 else
                 {
                     resolvedCellType = multicellularSpecies.ColonyRootCellType();
+
+                    multicellularGrowth.SpawnedInitialMassBuddingCells = true;
                 }
 
                 // If grown as a full colony, or partial colony, we need to record the growth state here to not get

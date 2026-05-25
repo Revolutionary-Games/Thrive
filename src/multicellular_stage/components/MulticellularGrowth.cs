@@ -198,8 +198,8 @@ public static class MulticellularGrowthHelpers
     }
 
     /// <summary>
-    ///   Resets all growth progress tracking after exiting engulfment (which disbanded the entire colony) to grow the
-    ///   usual body plan as needed.
+    ///   Resets all growth progress to grow the normal body plan. Used after exiting engulfment (which disbands the
+    ///   colony), as well as after returning from the edtior
     /// </summary>
     public static void ResetGrowthProgress(this ref MulticellularGrowth multicellularGrowth)
     {
