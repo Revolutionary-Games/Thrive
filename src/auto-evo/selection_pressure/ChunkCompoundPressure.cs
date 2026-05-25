@@ -79,7 +79,12 @@ public class ChunkCompoundPressure : SelectionPressure
             throw new ArgumentException("Chunk does not exist in patch");
 
         if (species is not MicrobeSpecies microbeSpecies)
-            return 0;
+        {
+            if (species is not MulticellularSpecies)
+                return 0;
+
+            return 1;
+        }
 
         var score = 1.0f;
 

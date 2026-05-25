@@ -67,7 +67,12 @@ public class ReproductionCompoundPressure : SelectionPressure
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {
         if (species is not MicrobeSpecies microbeSpecies)
-            return 0;
+        {
+            if (species is not MulticellularSpecies)
+                return 0;
+
+            return 1;
+        }
 
         var activeProcessList = cache.GetActiveProcessList(microbeSpecies);
         var activity = microbeSpecies.Behaviour.Activity;

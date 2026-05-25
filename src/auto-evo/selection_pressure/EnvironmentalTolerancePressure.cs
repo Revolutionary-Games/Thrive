@@ -41,7 +41,12 @@ public class EnvironmentalTolerancePressure : SelectionPressure
     {
         // TODO: multicellular tolerance (only needed once multicellular works in general in auto-evo)
         if (species is not MicrobeSpecies microbeSpecies)
-            return 0;
+        {
+            if (species is not MulticellularSpecies)
+                return 0;
+
+            return 1;
+        }
 
         // Use scores to encourage species to be adapted to their environment
         return (float)MicrobeEnvironmentalToleranceCalculations.CalculateTotalToleranceScore(microbeSpecies,

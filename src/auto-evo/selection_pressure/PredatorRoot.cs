@@ -45,7 +45,12 @@ public class PredatorRoot : SelectionPressure
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {
         if (species is not MicrobeSpecies microbeSpecies)
-            return 0;
+        {
+            if (species is not MulticellularSpecies)
+                return 0;
+
+            return 1;
+        }
 
         var atpFromGlucose = cache.GetCompoundGeneratedFrom(glucose, atp, microbeSpecies, patch.Biome);
         var energyBalance = cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome);

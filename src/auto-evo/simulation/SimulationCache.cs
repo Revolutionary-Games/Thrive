@@ -340,10 +340,20 @@ public class SimulationCache
     public float GetPredationScore(Species predatorSpecies, Species preySpecies, BiomeConditions biomeConditions)
     {
         if (predatorSpecies is not MicrobeSpecies predator)
-            return 0;
+        {
+            if (predatorSpecies is not MulticellularSpecies)
+                return 0;
 
-        if (preySpecies is not MicrobeSpecies prey)
-            return 0;
+            return 1;
+        }
+
+        if (predatorSpecies is not MicrobeSpecies prey)
+        {
+            if (predatorSpecies is not MulticellularSpecies)
+                return 0;
+
+            return 1;
+        }
 
         // No cannibalism
         if (predator == prey)

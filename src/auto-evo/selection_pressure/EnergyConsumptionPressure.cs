@@ -43,7 +43,12 @@ public class EnergyConsumptionPressure : SelectionPressure
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {
         if (species is not MicrobeSpecies microbeSpecies)
-            return 0;
+        {
+            if (species is not MulticellularSpecies)
+                return 0;
+
+            return 1;
+        }
 
         var energyBalance = cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome);
         var activityScore = species.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;

@@ -42,7 +42,12 @@ public class MetabolicStabilityPressure : SelectionPressure
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {
         if (species is not MicrobeSpecies microbeSpecies)
-            return 0;
+        {
+            if (species is not MulticellularSpecies)
+                return 0;
+
+            return 1;
+        }
 
         if (cache.GetSpeedForSpecies(microbeSpecies) == 0)
         {
