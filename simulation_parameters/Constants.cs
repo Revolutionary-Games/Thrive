@@ -249,10 +249,7 @@ public static class Constants
 
     public const float FLAGELLA_BASE_FORCE = 20.0f;
 
-    /// <summary>
-    ///   TODO: this needs to be dynamically calculated: https://github.com/Revolutionary-Games/Thrive/issues/5591
-    /// </summary>
-    public const float FLAGELLA_SPEED_BONUS_DISPLAY = 0.7f;
+    public const int FLAGELLA_FORCE_DISPLAY_DIVISOR = 100;
 
     public const float FLAGELLA_MAX_UPGRADE_LENGHT = 3;
     public const float FLAGELLA_MIN_UPGRADE_LENGHT = -1;
@@ -303,6 +300,8 @@ public static class Constants
     public const float CILIA_ROTATION_FACTOR = 120000000.0f;
     public const float CILIA_RADIUS_FACTOR_MULTIPLIER = 8000000.0f;
     public const float CELL_TURN_INFLECTION_RADIANS = 0.4f;
+
+    public const float CILIA_ROTATION_FORCE_DISPLAY = CILIA_ROTATION_FACTOR / 1000000;
 
     // TODO: remove if these stay unused
     // // These speed values are also reversed like the above

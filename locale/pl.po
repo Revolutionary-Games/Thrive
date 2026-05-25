@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-22 16:57+0300\n"
+"POT-Creation-Date: 2026-05-25 18:16+0300\n"
 "PO-Revision-Date: 2026-05-17 08:05+0000\n"
 "Last-Translator: Miłosz Kaczmarczyk <149769453+RedMirrow@users.noreply.github.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -5265,6 +5265,10 @@ msgstr "Ciśnienie"
 msgid "PRESSURE_SHORT"
 msgstr "Ciśn."
 
+#, fuzzy
+msgid "PRESSURE_TOLERANCE"
+msgstr "Preferencję ciśnienia dla Twojego gatunku. Ustawiane oddzielnie jako minimalne i maksymalne. Kiedy warunki wykraczają poza ten przedział, dotkną Cię negatywne efekty. Zmień zakres przez odznaczenie checkboxów poniższej sliderów."
+
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "Preferencję ciśnienia dla Twojego gatunku. Ustawiane oddzielnie jako minimalne i maksymalne. Kiedy warunki wykraczają poza ten przedział, dotkną Cię negatywne efekty. Zmień zakres przez odznaczenie checkboxów poniższej sliderów."
 
@@ -5575,6 +5579,10 @@ msgid "ROTATE_RIGHT"
 msgstr "Obróć w prawo"
 
 msgid "ROTATION_COLON"
+msgstr "Populacja:"
+
+#, fuzzy
+msgid "ROTATION_FORCE"
 msgstr "Populacja:"
 
 msgid "RUNOFF_EVENT"
@@ -6102,9 +6110,6 @@ msgstr "Gatunek:"
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} z populacją: {1}"
 
-msgid "SPEED"
-msgstr "Szybkość"
-
 msgid "SPEED_COLON"
 msgstr "Szybkość:"
 
@@ -6412,6 +6417,10 @@ msgstr "Temperatura"
 msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
+#, fuzzy
+msgid "TEMPERATURE_TOLERANCE_RANGE"
+msgstr "Umiarkowany"
+
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr ""
 
@@ -6560,6 +6569,9 @@ msgstr "Licencje \"Thrive\""
 #, fuzzy
 msgid "THRIVIN_ACHIEVEMENT"
 msgstr "Bazowa prędkość"
+
+msgid "THRUST_FORCE"
+msgstr ""
 
 msgid "THYLAKOIDS"
 msgstr "Tylakoidy"
@@ -9568,6 +9580,9 @@ msgstr "Przybliż"
 
 msgid "ZOOM_OUT"
 msgstr "Oddal"
+
+#~ msgid "SPEED"
+#~ msgstr "Szybkość"
 
 #~ msgid "AEROBIC_NITROGEN_FIXATION"
 #~ msgstr "Tlenowe Wiązanie Azotu"

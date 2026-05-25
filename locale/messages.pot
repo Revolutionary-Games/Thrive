@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-22 16:57+0300\n"
+"POT-Creation-Date: 2026-05-25 18:16+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2279,7 +2279,7 @@ msgstr ""
 msgid "DIFFICULTY_PRESET_VERY_EASY"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.cs:746
+#: ../src/gui_common/tooltip/ToolTipManager.cs:847
 msgid "DIGESTION_EFFICIENCY"
 msgstr ""
 
@@ -2287,7 +2287,7 @@ msgstr ""
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.cs:745
+#: ../src/gui_common/tooltip/ToolTipManager.cs:846
 msgid "DIGESTION_SPEED"
 msgstr ""
 
@@ -6901,6 +6901,8 @@ msgstr ""
 #: ../src/gui_common/menus/OptionsMenu.cs:976
 #: ../src/gui_common/menus/OptionsMenu.cs:2060
 #: ../src/gui_common/menus/PlanetStatistics.cs:113
+#: ../src/gui_common/tooltip/ToolTipManager.cs:804
+#: ../src/gui_common/tooltip/ToolTipManager.cs:818
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:565
 #: ../src/microbe_stage/editor/MutationPointsBar.cs:101
 #: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:776
@@ -7147,6 +7149,10 @@ msgstr ""
 
 #: ../src/general/base_stage/CreatureStageHUDBase.cs:297
 msgid "PRESSURE_SHORT"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.cs:850
+msgid "PRESSURE_TOLERANCE"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:858
@@ -7570,6 +7576,10 @@ msgstr ""
 #: ../src/microbe_stage/OrganismStatisticsPanel.tscn:129
 #: ../src/multicellular_stage/editor/CellTypeTooltip.tscn:152
 msgid "ROTATION_COLON"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.cs:849
+msgid "ROTATION_FORCE"
 msgstr ""
 
 #: ../src/general/world_effects/patch_events/RunoffEvent.cs:216
@@ -8263,10 +8273,6 @@ msgstr ""
 msgid "SPECIES_WITH_POPULATION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.cs:747
-msgid "SPEED"
-msgstr ""
-
 #: ../src/microbe_stage/OrganismStatisticsPanel.tscn:123
 #: ../src/multicellular_stage/editor/CellTypeTooltip.tscn:145
 msgid "SPEED_COLON"
@@ -8420,7 +8426,7 @@ msgstr ""
 msgid "STOP"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.cs:744
+#: ../src/gui_common/tooltip/ToolTipManager.cs:845
 msgid "STORAGE"
 msgstr ""
 
@@ -8676,6 +8682,10 @@ msgstr ""
 msgid "TEMPERATURE_SHORT"
 msgstr ""
 
+#: ../src/gui_common/tooltip/ToolTipManager.cs:851
+msgid "TEMPERATURE_TOLERANCE_RANGE"
+msgstr ""
+
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:841
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr ""
@@ -8836,6 +8846,10 @@ msgstr ""
 
 #: ../simulation_parameters/common/achievements.json:88
 msgid "THRIVIN_ACHIEVEMENT"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.cs:848
+msgid "THRUST_FORCE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:356
@@ -9718,6 +9732,8 @@ msgstr ""
 
 #: ../src/gui_common/CompoundAmount.cs:311
 #: ../src/gui_common/menus/PlanetStatistics.cs:114
+#: ../src/gui_common/tooltip/ToolTipManager.cs:775
+#: ../src/gui_common/tooltip/ToolTipManager.cs:790
 #: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:773
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:513
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:589

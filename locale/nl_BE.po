@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-22 16:57+0300\n"
+"POT-Creation-Date: 2026-05-25 18:16+0300\n"
 "PO-Revision-Date: 2026-05-13 03:55+0000\n"
 "Last-Translator: Aquos Goatington <dries.hazenbosch@outlook.com>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -5499,6 +5499,10 @@ msgstr "Druk"
 msgid "PRESSURE_SHORT"
 msgstr "Druk"
 
+#, fuzzy
+msgid "PRESSURE_TOLERANCE"
+msgstr "De gewenste druk van je soort. Ingesteld met een minimum- en maximumwaarde als aparte schuifbalken. Wanneer jouw soort zich onder omstandigheden buiten dit bereik bevindt, zullen er veel negatieve effecten zijn. Verander de grootte van het bereik door het vakje onder de schuifbalken uit te vinken."
+
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "De gewenste druk van je soort. Ingesteld met een minimum- en maximumwaarde als aparte schuifbalken. Wanneer jouw soort zich onder omstandigheden buiten dit bereik bevindt, zullen er veel negatieve effecten zijn. Verander de grootte van het bereik door het vakje onder de schuifbalken uit te vinken."
 
@@ -5841,6 +5845,10 @@ msgstr "Draaien naar rechts"
 
 #, fuzzy
 msgid "ROTATION_COLON"
+msgstr "Totale populatie:"
+
+#, fuzzy
+msgid "ROTATION_FORCE"
 msgstr "Totale populatie:"
 
 msgid "RUNOFF_EVENT"
@@ -6393,9 +6401,6 @@ msgstr "Soorten:"
 msgid "SPECIES_WITH_POPULATION"
 msgstr "Soortenpopulatie"
 
-msgid "SPEED"
-msgstr "Snelheid"
-
 msgid "SPEED_COLON"
 msgstr "Snelheid:"
 
@@ -6710,6 +6715,10 @@ msgstr "Temperatuur"
 msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
+#, fuzzy
+msgid "TEMPERATURE_TOLERANCE_RANGE"
+msgstr "De gewenste temperatuur van je soort. Wanneer jouw soort zich in omstandigheden bevindt buiten het bereik rond de ideale temperatuur, zullen er negatieve effecten zijn dat het overleven bemoeilijkt. Pas uw organisme aan een zone waarin je wilt spelen via de schuifbalken."
+
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "De gewenste temperatuur van je soort. Wanneer jouw soort zich in omstandigheden bevindt buiten het bereik rond de ideale temperatuur, zullen er negatieve effecten zijn dat het overleven bemoeilijkt. Pas uw organisme aan een zone waarin je wilt spelen via de schuifbalken."
 
@@ -6856,6 +6865,9 @@ msgstr "Thrive Licenties"
 
 msgid "THRIVIN_ACHIEVEMENT"
 msgstr "Thrivin'"
+
+msgid "THRUST_FORCE"
+msgstr ""
 
 msgid "THYLAKOIDS"
 msgstr "Thylakoïden"
@@ -9874,6 +9886,9 @@ msgstr "Inzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
+
+#~ msgid "SPEED"
+#~ msgstr "Snelheid"
 
 #~ msgid "AEROBIC_NITROGEN_FIXATION"
 #~ msgstr "Anaerobe Stikstofbinding"
