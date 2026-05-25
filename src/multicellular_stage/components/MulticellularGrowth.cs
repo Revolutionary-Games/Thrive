@@ -15,7 +15,7 @@ using Systems;
 /// </summary>
 public struct MulticellularGrowth : IArchivableComponent
 {
-    public const ushort SERIALIZATION_VERSION = 2;
+    public const ushort SERIALIZATION_VERSION = 3;
 
     /// <summary>
     ///   List of cells that need to be regrown, after being lost, in
@@ -105,6 +105,7 @@ public struct MulticellularGrowth : IArchivableComponent
         writer.Write(EnoughResourcesForBudding);
 
         writer.Write(IsASpore);
+        writer.Write(SpawnedInitialMassBuddingCells);
     }
 }
 
@@ -139,6 +140,11 @@ public static class MulticellularGrowthHelpers
         if (version >= 2)
         {
             instance.IsASpore = reader.ReadBool();
+        }
+
+        if (version >= 3)
+        {
+            instance.SpawnedInitialMassBuddingCells = reader.ReadBool();
         }
 
         return instance;
