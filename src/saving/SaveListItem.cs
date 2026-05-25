@@ -58,6 +58,7 @@ public partial class SaveListItem : PanelContainer
     private int versionDifference;
 
     private bool loadingData;
+    private bool dataLoaded;
     private SaveInfoAndScreenshot? saveInfoLoadTask;
 
     private bool highlighted;
@@ -112,7 +113,6 @@ public partial class SaveListItem : PanelContainer
                 return;
 
             saveName = value;
-            LoadSaveData();
             UpdateName();
         }
     }
@@ -262,6 +262,7 @@ public partial class SaveListItem : PanelContainer
         }
 
         loadingData = false;
+        dataLoaded = true;
     }
 
     public override void _GuiInput(InputEvent @event)
@@ -279,6 +280,26 @@ public partial class SaveListItem : PanelContainer
                 OnSelect();
             }
         }
+    }
+
+    public void TriggerLoad()
+    {
+        if (dataLoaded || loadingData || saveInfoLoadTask != null)
+            return;
+
+        LoadSaveData();
+    }
+
+    public void CancelLoad()
+    {
+        if (dataLoaded || saveInfoLoadTask == null)
+            return;
+
+        if (!saveInfoLoadTask.Loaded)
+            ResourceManager.Instance.CancelLoad(saveInfoLoadTask);
+
+        saveInfoLoadTask = null;
+        loadingData = false;
     }
 
     public void LoadThisSave()
