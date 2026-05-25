@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-22 02:28+0300\n"
-"PO-Revision-Date: 2026-05-15 16:14+0000\n"
-"Last-Translator: Shigasaa <altitudes.etrangeres@ikmail.com>\n"
+"POT-Creation-Date: 2026-05-25 18:16+0300\n"
+"PO-Revision-Date: 2026-05-22 15:37+0000\n"
+"Last-Translator: Ptit Serpent <snake76930@gmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -5274,6 +5274,10 @@ msgid "PRESSURE_SHORT"
 msgstr "Press."
 
 #, fuzzy
+msgid "PRESSURE_TOLERANCE"
+msgstr "Retour au menu principal"
+
+#, fuzzy
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "Retour au menu principal"
 
@@ -5600,6 +5604,10 @@ msgid "ROTATE_RIGHT"
 msgstr "Tourner à droite"
 
 msgid "ROTATION_COLON"
+msgstr "Rotation :"
+
+#, fuzzy
+msgid "ROTATION_FORCE"
 msgstr "Rotation :"
 
 msgid "RUNOFF_EVENT"
@@ -6116,9 +6124,6 @@ msgstr "Espèce à trouver :"
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} avec population : {1}"
 
-msgid "SPEED"
-msgstr "Vitesse"
-
 msgid "SPEED_COLON"
 msgstr "Vitesse :"
 
@@ -6428,6 +6433,10 @@ msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
 #, fuzzy
+msgid "TEMPERATURE_TOLERANCE_RANGE"
+msgstr "Visitez notre page Patreon"
+
+#, fuzzy
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "Visitez notre page Patreon"
 
@@ -6576,6 +6585,9 @@ msgstr "Licences de Thrive"
 #, fuzzy
 msgid "THRIVIN_ACHIEVEMENT"
 msgstr "Mouvement de base"
+
+msgid "THRUST_FORCE"
+msgstr ""
 
 msgid "THYLAKOIDS"
 msgstr "Thylakoïdes"
@@ -7687,6 +7699,7 @@ msgstr "Nitrogénase"
 msgid "WIKI_AWARE_STAGE_UI"
 msgstr "Prochainement."
 
+#, fuzzy
 msgid "WIKI_AXON_EFFECTS"
 msgstr ""
 "Pour chaque cellule d'un organisme multicellulaire qui contient un [b]axone[/b], la puissance cérébrale de cet organisme augmentera proportionnellement au volume de cette cellule. Les cellules dotées d'[b]axones[/b] sont considérées comme possédant un tissu cérébral.\n"
@@ -7766,9 +7779,11 @@ msgstr ""
 msgid "WIKI_BINDING_AGENT_UPGRADES"
 msgstr "Pas d'améliorations."
 
+#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_EFFECTS"
 msgstr "Les cellules avec des [b]Vacuoles bioluminescentes[/b] sont plus résistantes à l'oxygène."
 
+#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_INTRO"
 msgstr "Produit de la [thrive:compound type=\"sunlight\"][/thrive:compound] et augmente la tolérance a l'oxygène de la cellule qui la possède."
 
@@ -7914,6 +7929,7 @@ msgstr ""
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_UPGRADES"
 msgstr "Pas d'améliorations."
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_EFFECTS"
 msgstr "Pas d'effets."
 
@@ -8653,6 +8669,7 @@ msgstr ""
 "\n"
 "Si vous survivez pendant vingt générations avec une population de 300, vous êtes considéré comme ayant \"gagné\" le jeu actuel. Vous pouvez toujours continuer à jouer comme vous le souhaitez."
 
+#, fuzzy
 msgid "WIKI_HYDROGENASE_EFFECTS"
 msgstr "Pas d'effets."
 
@@ -8848,6 +8865,7 @@ msgstr ""
 "\n"
 "Les pages ci-dessous expliquent différentes méchaniques. Ne vous gênez pas pour les naviguer pour des astuces ou de l'aide concernant le jeu."
 
+#, fuzzy
 msgid "WIKI_MELANOSOME_EFFECTS"
 msgstr "Pas d'effets."
 
@@ -8877,6 +8895,7 @@ msgstr "Les roches radioactives sont rare mais débordent d'énergie. La straté
 msgid "WIKI_MELANOSOME_UPGRADES"
 msgstr "Pas d'améliorations."
 
+#, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
 msgstr "Pas d'effets."
 
@@ -8990,6 +9009,7 @@ msgstr ""
 "L'Étage Microbe est le premier étage du jeu. L'étage commence avec la première espéce existante dans le monde, fraîche des origines primordiaux de la vie explorant les sources hydrothermales pangoniennes riches en nutriments. C'est ici oú le joueur assume le role d'une trés petite goutte prokaryotique de cytoplasme, un des rares individus de son espèce. Á ce point, le joueur doit compter sur trouver de l'éparce [thrive:compound type=\"glucose\"][/thrive:compound] pour survivre parce qu'il ne possède pas encore des moyens de processer des autres nutriments et chercher le [thrive:compound type=\"phosphates\"][/thrive:compound] et l'[thrive:compound type=\"ammonia\"][/thrive:compound] pour grandir en préparation pour la reproduction. Une fois que le joueur a attenu une taille suffisante il sera capable de se reproduire, qui amènera le joueur à l'éditeur de la microbe si il choisit de le faire.\n"
 "Au fil du jeu, le joueur adaptera progressivement sa cellule pour mieux survivre dans un monde qui devient de plus en plus hostile à chaque génération, et devra rivaliser avec de nouvelles espèces issues de la sienne."
 
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "Pas d'effets."
 
@@ -9089,6 +9109,7 @@ msgstr "Pas d'améliorations"
 msgid "WIKI_NATION_EDITOR"
 msgstr "Activer l'éditeur"
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "Pas d'effets."
 
@@ -9133,6 +9154,7 @@ msgstr ""
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "Pas d'améliorations."
 
+#, fuzzy
 msgid "WIKI_NITROPLAST_EFFECTS"
 msgstr "Pas d'effets."
 
@@ -9226,6 +9248,7 @@ msgstr ""
 "\n"
 "Sélectionnez un organite dans la liste ci-dessous pour en savoir plus."
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_EFFECTS"
 msgstr ""
 "Si une cellule possède au moins un [b]Toxisome[/b] ou une [b][color=#3796e1][url=thriveopedia:oxytoxy]Vacuole à toxines[/url][/color][/b], elle peut tirer des projectiles toxiques, en consommant l'[thrive:compound type=\"oxytoxy\"][/thrive:compound] stocké pour ce faire. Ces projectiles infligent des dégâts aux cellules d’autres espèces, mais ne blessent pas les membres de l’espèce qui les a tirés.\n"
@@ -9628,6 +9651,7 @@ msgstr ""
 msgid "WIKI_SIGNALING_AGENT_UPGRADES"
 msgstr "Pas d'améliorations."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_EFFECTS"
 msgstr ""
 "Perment a une cellule d'expulser du [thrive:compound type=\"mucilage\"][/thrive:compound] pour se propulser. Expulser du [thrive:compound type=\"mucilage\"][/thrive:compound] fournit beaucoup de vitesse pour un court laps de temps. Le jet peut être maintenu plus ou moins longtemps selon la quantité de [thrive:compound type=\"mucilage\"][/thrive:compound] disponible.\n"
@@ -9723,6 +9747,7 @@ msgstr "À venir"
 msgid "WIKI_TECH_EDITOR_COMMA_NATION_EDITOR_COMMA_SQUAD_EDITOR"
 msgstr "Editeur de corps, éditeur de cellule"
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr "Active la [i]vision thermique[/i], qui peut être activée et désactivée. Superpose la température relative de l'eau à l'écran. Les zones plus chaudes apparaissent plus rouges."
 
@@ -9765,6 +9790,7 @@ msgstr ""
 msgid "WIKI_THERMOPLAST_UPGRADES"
 msgstr "Pas d'améliorations."
 
+#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_EFFECTS"
 msgstr "Active la [i]vision thermique[/i], qui peut être activée et désactivée. Superpose la températire relative à l'écran. Les zones plus chaudes apparaissent plus rouge."
 
@@ -9809,6 +9835,7 @@ msgstr ""
 msgid "WIKI_THE_PATCH_MAP_THE_PATCH_MAP"
 msgstr "La [b]Carte des zones[/b] est une représentation de votre planète. Elle est composée de [b]Zones[/b] et de [b]Régions[/b] (expliquées ci-dessous). Chaque région contient plusieurs zones connectées (ou adjacentes) et est reliée à d'autres régions."
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_EFFECTS"
 msgstr "Pas d'effets spéciaux."
 
@@ -9876,6 +9903,7 @@ msgstr ""
 msgid "WIKI_TOXIN_VACUOLE_UPGRADES"
 msgstr "Pas d'améliorations."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_EFFECTS"
 msgstr "Pas d'effets."
 
@@ -10089,6 +10117,9 @@ msgstr "Zoomer"
 
 msgid "ZOOM_OUT"
 msgstr "Dézoomer"
+
+#~ msgid "SPEED"
+#~ msgstr "Vitesse"
 
 #~ msgid "AEROBIC_NITROGEN_FIXATION"
 #~ msgstr "Fixation aérobique d'azote"
