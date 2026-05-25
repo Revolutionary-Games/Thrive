@@ -10,7 +10,7 @@ using Systems;
 /// </summary>
 public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISimulationPhotographable
 {
-    public const ushort SERIALIZATION_VERSION = 3;
+    public const ushort SERIALIZATION_VERSION = 4;
 
     private readonly Dictionary<BiomeConditions, Dictionary<Compound, (float TimeToFill, float Storage)>>
         cachedFillTimes = new();
@@ -138,6 +138,11 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
             instance.ModifiableSporeCellType = reader.ReadObjectOrNull<CellType>();
         }
 
+        if (version >= 4)
+        {
+            instance.MassBuddingCellCount = reader.ReadInt32();
+        }
+
         return instance;
     }
 
@@ -151,6 +156,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 
         writer.Write((int)ReproductionMethod);
         writer.WriteObjectOrNull(ModifiableSporeCellType);
+        writer.Write(MassBuddingCellCount);
     }
 
     public override void OnEdited()
@@ -501,6 +507,8 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         }
 
         result.ReproductionMethod = ReproductionMethod;
+
+        result.MassBuddingCellCount = MassBuddingCellCount;
 
         return result;
     }
