@@ -6,7 +6,7 @@ using SharedBase.Archive;
 /// <summary>
 ///   Entities that despawn after a certain amount of time
 /// </summary>
-public struct TimedLife : IArchivableComponent
+public struct TimedLife(float timeToLiveRemaining) : IArchivableComponent
 {
     public const ushort SERIALIZATION_VERSION = 1;
 
@@ -21,36 +21,32 @@ public struct TimedLife : IArchivableComponent
     ///     re-apply it after the save is loaded.
     ///   </para>
     /// </remarks>
-    public OnTimeOver? CustomTimeOverCallback;
+    public OnTimeOver? CustomTimeOverCallback = null;
 
-    public float TimeToLiveRemaining;
+    public float TimeToLiveRemaining = timeToLiveRemaining;
 
     /// <summary>
     ///   When <see cref="FadeTimeRemainingSet"/> is true, this entity is fading out and the timed despawn system
     ///   will wait until this time is up as well
     /// </summary>
-    public float FadeTimeRemaining;
+    public float FadeTimeRemaining = -1;
 
-    public bool FadeTimeRemainingSet;
+    public bool FadeTimeRemainingSet = false;
 
-    public bool OnTimeOverTriggered;
+    public bool OnTimeOverTriggered = false;
 
-    public TimedLife(float timeToLiveRemaining)
-    {
-        CustomTimeOverCallback = null;
-        TimeToLiveRemaining = timeToLiveRemaining;
-
-        FadeTimeRemainingSet = false;
-        FadeTimeRemaining = -1;
-        OnTimeOverTriggered = false;
-    }
+    /// <summary>
+    ///   Pre-stored fade time from <see cref="FadeOutActions"/>, set when the callback is registered.
+    ///   Not serialized (transient state re-applied after load, like <see cref="CustomTimeOverCallback"/>).
+    /// </summary>
+    public float PreStoredFadeTime = -1;
 
     public delegate bool OnTimeOver(Entity entity, ref TimedLife timedLife);
 
-    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
-    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentTimedLife;
+    public readonly ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public readonly ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentTimedLife;
 
-    public void WriteToArchive(ISArchiveWriter writer)
+    public readonly void WriteToArchive(ISArchiveWriter writer)
     {
         writer.Write(TimeToLiveRemaining);
         writer.Write(FadeTimeRemaining);
