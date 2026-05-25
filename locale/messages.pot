@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-21 12:12+0200\n"
+"POT-Creation-Date: 2026-05-25 18:16+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -470,11 +470,11 @@ msgstr ""
 msgid "AUTO_EVO_RESULTS"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1274
+#: ../src/auto-evo/RunResults.cs:1249
 msgid "AUTO_EVO_RESULTS_GLOBAL_TITLE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1215
+#: ../src/auto-evo/RunResults.cs:1190
 msgid "AUTO_EVO_RESULTS_PATCH_TITLE"
 msgstr ""
 
@@ -1002,7 +1002,7 @@ msgstr ""
 msgid "CELL_STAT_STORAGE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:655
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:656
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
@@ -2279,7 +2279,7 @@ msgstr ""
 msgid "DIFFICULTY_PRESET_VERY_EASY"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.cs:868
+#: ../src/gui_common/tooltip/ToolTipManager.cs:847
 msgid "DIGESTION_EFFICIENCY"
 msgstr ""
 
@@ -2287,7 +2287,7 @@ msgstr ""
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.cs:867
+#: ../src/gui_common/tooltip/ToolTipManager.cs:846
 msgid "DIGESTION_SPEED"
 msgstr ""
 
@@ -2718,19 +2718,19 @@ msgstr ""
 msgid "ENERGY_COST_MULTIPLIER_EXPLANATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3312
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3318
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3147
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3153
 msgid "ENERGY_IN_PATCH_SHORT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3323
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3329
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3316
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3322
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
@@ -3184,7 +3184,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3329
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3335
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -3306,7 +3306,7 @@ msgstr ""
 msgid "GAME_SYSTEMS_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3247
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3253
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1080
 msgid "GATHERED_ENERGY_TOOLTIP"
 msgstr ""
@@ -3460,7 +3460,7 @@ msgstr ""
 msgid "GLOBAL_POPULATION_COLON"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1446
+#: ../src/auto-evo/RunResults.cs:1421
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
 
@@ -4606,7 +4606,7 @@ msgstr ""
 msgid "LARGE_SULFUR_CHUNK"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1938
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1939
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -6357,7 +6357,7 @@ msgid "NO_AI"
 msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:665
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3344
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3350
 msgid "NO_DATA_TO_SHOW"
 msgstr ""
 
@@ -6405,7 +6405,7 @@ msgstr ""
 msgid "NUCLEUS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1937
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1938
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -6429,8 +6429,8 @@ msgstr ""
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:25
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:35
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:45
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3158
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3170
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3164
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3176
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:154
 #: ../src/microbe_stage/MicrobeHUD.cs:785
 msgid "N_A"
@@ -6901,10 +6901,8 @@ msgstr ""
 #: ../src/gui_common/menus/OptionsMenu.cs:976
 #: ../src/gui_common/menus/OptionsMenu.cs:2060
 #: ../src/gui_common/menus/PlanetStatistics.cs:113
-#: ../src/gui_common/tooltip/ToolTipManager.cs:812
+#: ../src/gui_common/tooltip/ToolTipManager.cs:804
 #: ../src/gui_common/tooltip/ToolTipManager.cs:818
-#: ../src/gui_common/tooltip/ToolTipManager.cs:832
-#: ../src/gui_common/tooltip/ToolTipManager.cs:838
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:565
 #: ../src/microbe_stage/editor/MutationPointsBar.cs:101
 #: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:776
@@ -6991,7 +6989,7 @@ msgstr ""
 msgid "PIN_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2433
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2434
 msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
 msgstr ""
 
@@ -7094,15 +7092,15 @@ msgstr ""
 msgid "POPULATION_CAPITAL"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:937
+#: ../src/auto-evo/RunResults.cs:912
 msgid "POPULATION_COLON"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1069
+#: ../src/auto-evo/RunResults.cs:1044
 msgid "POPULATION_IN_PATCHES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3177
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3183
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr ""
 
@@ -7153,7 +7151,7 @@ msgstr ""
 msgid "PRESSURE_SHORT"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.cs:871
+#: ../src/gui_common/tooltip/ToolTipManager.cs:850
 msgid "PRESSURE_TOLERANCE"
 msgstr ""
 
@@ -7173,7 +7171,7 @@ msgstr ""
 msgid "PREVIEW_IMAGE_IS_TOO_LARGE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:950
+#: ../src/auto-evo/RunResults.cs:925
 msgid "PREVIOUS_COLON"
 msgstr ""
 
@@ -7580,7 +7578,7 @@ msgstr ""
 msgid "ROTATION_COLON"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.cs:870
+#: ../src/gui_common/tooltip/ToolTipManager.cs:849
 msgid "ROTATION_FORCE"
 msgstr ""
 
@@ -7601,27 +7599,27 @@ msgstr ""
 msgid "RUN_ONE_STEP"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1050
+#: ../src/auto-evo/RunResults.cs:1025
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1570
+#: ../src/auto-evo/RunResults.cs:1545
 msgid "RUN_RESULT_GENE_CODE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:981
+#: ../src/auto-evo/RunResults.cs:956
 msgid "RUN_RESULT_NICHE_FILL"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:984
+#: ../src/auto-evo/RunResults.cs:959
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:968
+#: ../src/auto-evo/RunResults.cs:943
 msgid "RUN_RESULT_SPLIT_FROM"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1001
+#: ../src/auto-evo/RunResults.cs:976
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr ""
 
@@ -8225,7 +8223,7 @@ msgstr ""
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1025
+#: ../src/auto-evo/RunResults.cs:1000
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr ""
 
@@ -8288,7 +8286,7 @@ msgstr ""
 msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1042
+#: ../src/auto-evo/RunResults.cs:1017
 msgid "SPREAD_TO_PATCHES"
 msgstr ""
 
@@ -8428,7 +8426,7 @@ msgstr ""
 msgid "STOP"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.cs:866
+#: ../src/gui_common/tooltip/ToolTipManager.cs:845
 msgid "STORAGE"
 msgstr ""
 
@@ -8684,7 +8682,7 @@ msgstr ""
 msgid "TEMPERATURE_SHORT"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.cs:872
+#: ../src/gui_common/tooltip/ToolTipManager.cs:851
 msgid "TEMPERATURE_TOLERANCE_RANGE"
 msgstr ""
 
@@ -8850,7 +8848,7 @@ msgstr ""
 msgid "THRIVIN_ACHIEVEMENT"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.cs:869
+#: ../src/gui_common/tooltip/ToolTipManager.cs:848
 msgid "THRUST_FORCE"
 msgstr ""
 
@@ -8878,7 +8876,7 @@ msgstr ""
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1471
+#: ../src/auto-evo/RunResults.cs:1446
 msgid "TIMELINE_NICHE_FILL"
 msgstr ""
 
@@ -8890,7 +8888,7 @@ msgstr ""
 msgid "TIMELINE_PLAYER_MIGRATED_TO"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1477
+#: ../src/auto-evo/RunResults.cs:1452
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 
@@ -8899,11 +8897,11 @@ msgstr ""
 msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1392
+#: ../src/auto-evo/RunResults.cs:1367
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1415
+#: ../src/auto-evo/RunResults.cs:1390
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr ""
 
@@ -8911,19 +8909,19 @@ msgstr ""
 msgid "TIMELINE_SPECIES_FOLLOWED"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1441
+#: ../src/auto-evo/RunResults.cs:1416
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1452
+#: ../src/auto-evo/RunResults.cs:1427
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1408 ../src/auto-evo/RunResults.cs:1429
+#: ../src/auto-evo/RunResults.cs:1383 ../src/auto-evo/RunResults.cs:1404
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1402 ../src/auto-evo/RunResults.cs:1423
+#: ../src/auto-evo/RunResults.cs:1377 ../src/auto-evo/RunResults.cs:1398
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr ""
 
@@ -9734,8 +9732,8 @@ msgstr ""
 
 #: ../src/gui_common/CompoundAmount.cs:311
 #: ../src/gui_common/menus/PlanetStatistics.cs:114
-#: ../src/gui_common/tooltip/ToolTipManager.cs:780
-#: ../src/gui_common/tooltip/ToolTipManager.cs:799
+#: ../src/gui_common/tooltip/ToolTipManager.cs:775
+#: ../src/gui_common/tooltip/ToolTipManager.cs:790
 #: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:773
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:513
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:589
@@ -9747,8 +9745,6 @@ msgstr ""
 msgid "VALUE_WITH_UNIT"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.cs:774
-#: ../src/gui_common/tooltip/ToolTipManager.cs:794
 #: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:774
 msgid "VALUE_WITH_UNIT_PLUS"
 msgstr ""
@@ -9881,11 +9877,11 @@ msgstr ""
 msgid "WELCOME_TO_THRIVEOPEDIA"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1148
+#: ../src/auto-evo/RunResults.cs:1123
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:946
+#: ../src/auto-evo/RunResults.cs:921
 msgid "WENT_EXTINCT_IN"
 msgstr ""
 
