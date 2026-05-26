@@ -122,6 +122,8 @@ public partial class MulticellularGrowthSystem : BaseSystem<World, float>
                 recorder, spawnSystem);
 
             worldSimulation.FinishRecordingEntityCommands(recorder);
+
+            return;
         }
 
         HandleMulticellularReproduction(ref growth, ref speciesData, compoundStorage.Compounds, ref organelleContainer,
