@@ -25,8 +25,8 @@ public partial class ThriveopediaExtinctSpeciesPage : ThriveopediaPage, IThriveo
         get;
         set
         {
-            PageName = $"species:{SpeciesId}";
             field = value;
+            PageName = $"species:{SpeciesId}";
         }
     }
 

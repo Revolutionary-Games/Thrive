@@ -64,7 +64,8 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
         pilusDensity = SimulationParameters.Instance.GetOrganelleType("pilus").Density;
 
         eukaryoticPilus = new Lazy<PhysicsShape>(() => CreatePilusShape(Constants.PILUS_PHYSICS_SIZE));
-        prokaryoticPilus = new Lazy<PhysicsShape>(() => CreatePilusShape(Constants.PILUS_PHYSICS_SIZE * 0.5f));
+        prokaryoticPilus = new Lazy<PhysicsShape>(() =>
+            CreatePilusShape(Constants.PILUS_PHYSICS_SIZE * Constants.BACTERIA_CELL_SCALE));
     }
 
     public sealed override void Dispose()
@@ -476,7 +477,7 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
         var externalPosition = cellProperties.CalculateExternalOrganellePosition(placedOrganelle.Position,
             placedOrganelle.Orientation, out var rotation);
 
-        var physicsScale = cellProperties.IsBacteria ? 0.5f : 1.0f;
+        var physicsScale = cellProperties.IsBacteria ? Constants.BACTERIA_CELL_SCALE : 1.0f;
 
         var (position, orientation) =
             placedOrganelle.CalculatePhysicsExternalTransform(externalPosition, rotation, physicsScale);

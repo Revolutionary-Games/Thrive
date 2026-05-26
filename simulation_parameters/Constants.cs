@@ -89,6 +89,19 @@ public static class Constants
     public const float PLAYER_SPECIES_SPAWN_MULTIPLIER = 0.5f;
 
     /// <summary>
+    ///   Uniform scale used to render and simulate prokaryotic cells relative to their unscaled true size.
+    ///   Eukaryotes use the true scale for their size. So at present this makes bacteria half the size of eukaryotes.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This is extracted as a constant to not be a magic value all over the code, however, changing this would be
+    ///     a very major thing. So do not touch this! Changing this will break old saves, and some game logic still
+    ///     seems to depend on the hardcoded value, so changing this cannot be done easily.
+    ///   </para>
+    /// </remarks>
+    public const float BACTERIA_CELL_SCALE = 0.5f;
+
+    /// <summary>
     ///   Smaller spawn penalty to make binding agents easier to use with better player species spawn rates.
     /// </summary>
     public const float PLAYER_SPECIES_SPAWN_MULTIPLIER_BINDING_AGENTS = 0.7f;
@@ -236,10 +249,7 @@ public static class Constants
 
     public const float FLAGELLA_BASE_FORCE = 20.0f;
 
-    /// <summary>
-    ///   TODO: this needs to be dynamically calculated: https://github.com/Revolutionary-Games/Thrive/issues/5591
-    /// </summary>
-    public const float FLAGELLA_SPEED_BONUS_DISPLAY = 0.7f;
+    public const int FLAGELLA_FORCE_DISPLAY_DIVISOR = 100;
 
     public const float FLAGELLA_MAX_UPGRADE_LENGHT = 3;
     public const float FLAGELLA_MIN_UPGRADE_LENGHT = -1;
@@ -290,6 +300,8 @@ public static class Constants
     public const float CILIA_ROTATION_FACTOR = 120000000.0f;
     public const float CILIA_RADIUS_FACTOR_MULTIPLIER = 8000000.0f;
     public const float CELL_TURN_INFLECTION_RADIANS = 0.4f;
+
+    public const float CILIA_ROTATION_FORCE_DISPLAY = CILIA_ROTATION_FACTOR / 1000000;
 
     // TODO: remove if these stay unused
     // // These speed values are also reversed like the above
@@ -2306,9 +2318,7 @@ public static class Constants
         "toggle_FPS",
     };
 
-    // TODO: switch to https once our runtime supports it: https://github.com/Revolutionary-Games/Thrive/issues/4100
-    // See: https://github.com/Revolutionary-Games/Thrive/pull/4097#issuecomment-1415301373
-    public static readonly Uri MainSiteFeedURL = new("http://thrivefeeds.b-cdn.net/feed.rss");
+    public static readonly Uri MainSiteFeedURL = new("https://thrivefeeds.b-cdn.net/feed.rss");
 
     public static readonly Regex NewsFeedRegexDeleteContent =
         new(@"\s*The\spost\s*.*appeared\sfirst\son.*Revolutionary\sGames\sStudio.*$");

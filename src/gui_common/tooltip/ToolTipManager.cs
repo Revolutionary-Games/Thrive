@@ -646,7 +646,13 @@ public partial class ToolTipManager : CanvasLayer
         if (organelle.Components.Movement != null)
         {
             tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
-                "res://assets/textures/gui/bevel/SpeedIcon.png", "speed");
+                "res://assets/textures/gui/bevel/SpeedIcon.png", "thrustForce");
+        }
+
+        if (organelle.Components.Cilia != null)
+        {
+            tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
+                "res://assets/textures/gui/bevel/RotationIcon.png", "rotationForce");
         }
 
         if (organelle.Components.Lysosome != null)
@@ -667,6 +673,30 @@ public partial class ToolTipManager : CanvasLayer
                 "res://assets/textures/gui/bevel/StorageIcon.png", "storage");
         }
 
+        if (organelle.ToleranceModifierTemperatureRange != 0)
+        {
+            tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
+                "res://assets/textures/gui/bevel/Temperature.svg", "temperatureTolerance");
+        }
+
+        if (organelle.ToleranceModifierPressureTolerance != 0)
+        {
+            tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
+                "res://assets/textures/gui/bevel/Pressure.svg", "pressureTolerance");
+        }
+
+        if (organelle.ToleranceModifierOxygen != 0)
+        {
+            tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
+                "res://assets/textures/gui/bevel/Oxygen.svg", "oxygenResistance");
+        }
+
+        if (organelle.ToleranceModifierUV != 0)
+        {
+            tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
+                "res://assets/textures/gui/bevel/Sunlight.svg", "uvResistance");
+        }
+
         tooltip.AddOrganelleCostInfo("AMMONIA_COST",
             "+" + organelle.InitialComposition.GetValueOrDefault(Compound.Ammonia, 0), 0,
             "res://assets/textures/gui/bevel/Ammonia.svg", "ammoniaCost");
@@ -681,6 +711,8 @@ public partial class ToolTipManager : CanvasLayer
     private void UpdateModifierInfoWithTranslations(OrganelleDefinition organelle,
         SelectionMenuToolTip selectionMenuTooltip)
     {
+        // TODO WARNING: This method does not change previously red (due to being negative) values to white if they
+        // are now positive. If organelle values dynamically change for any reason, this will have to be changed.
         var modifierInfo = selectionMenuTooltip.GetModifierInfo("storage");
 
         if (modifierInfo != null)
@@ -710,12 +742,81 @@ public partial class ToolTipManager : CanvasLayer
                     Constants.ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION).ToString("F1", CultureInfo.CurrentCulture));
         }
 
-        modifierInfo = selectionMenuTooltip.GetModifierInfo("speed");
+        modifierInfo = selectionMenuTooltip.GetModifierInfo("thrustForce");
 
         if (modifierInfo != null)
         {
-            modifierInfo.DisplayName = "SPEED";
-            modifierInfo.ModifierValue = "+" + Constants.FLAGELLA_SPEED_BONUS_DISPLAY;
+            var movementComponent = organelle.Components.Movement
+                ?? throw new InvalidOperationException("Movement component is null for organelle with thrust tooltip");
+
+            modifierInfo.DisplayName = "THRUST_FORCE";
+            modifierInfo.ModifierValue = "+" + MathF.Round(Constants.FLAGELLA_BASE_FORCE * movementComponent.Momentum
+                / Constants.FLAGELLA_FORCE_DISPLAY_DIVISOR);
+        }
+
+        modifierInfo = selectionMenuTooltip.GetModifierInfo("rotationForce");
+
+        if (modifierInfo != null)
+        {
+            modifierInfo.DisplayName = "ROTATION_FORCE";
+            modifierInfo.ModifierValue = "+" + Constants.CILIA_ROTATION_FORCE_DISPLAY;
+        }
+
+        modifierInfo = selectionMenuTooltip.GetModifierInfo("temperatureTolerance");
+
+        if (modifierInfo != null)
+        {
+            modifierInfo.DisplayName = "TEMPERATURE_TOLERANCE_RANGE";
+            var value = MathF.Round(organelle.ToleranceModifierTemperatureRange, 1);
+
+            if (value < 0)
+                modifierInfo.AdjustValueColor(value);
+
+            modifierInfo.ModifierValue = Localization.Translate("VALUE_WITH_UNIT").FormatSafe(
+                StringUtils.FormatPositiveWithLeadingPlus(value),
+                SimulationParameters.Instance.GetCompoundDefinition(Compound.Temperature).Unit);
+        }
+
+        modifierInfo = selectionMenuTooltip.GetModifierInfo("pressureTolerance");
+
+        if (modifierInfo != null)
+        {
+            modifierInfo.DisplayName = "PRESSURE_TOLERANCE";
+            var value = MathF.Round(organelle.ToleranceModifierPressureTolerance / 1000, 1);
+
+            if (value < 0)
+                modifierInfo.AdjustValueColor(value);
+
+            modifierInfo.ModifierValue = Localization.Translate("VALUE_WITH_UNIT").FormatSafe(
+                StringUtils.FormatPositiveWithLeadingPlus(value), "kPa");
+        }
+
+        modifierInfo = selectionMenuTooltip.GetModifierInfo("oxygenResistance");
+
+        if (modifierInfo != null)
+        {
+            modifierInfo.DisplayName = "OXYGEN_RESISTANCE";
+            var value = MathF.Round(organelle.ToleranceModifierOxygen * 100, 1);
+
+            if (value < 0)
+                modifierInfo.AdjustValueColor(value);
+
+            modifierInfo.ModifierValue = Localization.Translate("PERCENTAGE_VALUE")
+                .FormatSafe(StringUtils.FormatPositiveWithLeadingPlus(value));
+        }
+
+        modifierInfo = selectionMenuTooltip.GetModifierInfo("uvResistance");
+
+        if (modifierInfo != null)
+        {
+            modifierInfo.DisplayName = "UV_PROTECTION";
+            var value = MathF.Round(organelle.ToleranceModifierUV * 100, 1);
+
+            if (value < 0)
+                modifierInfo.AdjustValueColor(value);
+
+            modifierInfo.ModifierValue = Localization.Translate("PERCENTAGE_VALUE")
+                .FormatSafe(StringUtils.FormatPositiveWithLeadingPlus(value));
         }
 
         modifierInfo = selectionMenuTooltip.GetModifierInfo("ammoniaCost");
@@ -744,7 +845,10 @@ public partial class ToolTipManager : CanvasLayer
         Localization.Translate("STORAGE");
         Localization.Translate("DIGESTION_SPEED");
         Localization.Translate("DIGESTION_EFFICIENCY");
-        Localization.Translate("SPEED");
+        Localization.Translate("THRUST_FORCE");
+        Localization.Translate("ROTATION_FORCE");
+        Localization.Translate("PRESSURE_TOLERANCE");
+        Localization.Translate("TEMPERATURE_TOLERANCE_RANGE");
     }
 
     private void UpdateAutoScrollingOffset(double delta)
