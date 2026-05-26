@@ -506,7 +506,14 @@ public partial class CellBodyPlanEditorComponent :
 
         if (version >= 5)
         {
-            ReproductionMethod = (MulticellularReproductionMethod)reader.ReadInt32();
+            var reproductionMethodId = reader.ReadInt32();
+            if (version == 5 && reproductionMethodId == 1)
+            {
+                // Mass budding took sporulation's place in version 6, so we need a conversion
+                reproductionMethodId = 2;
+            }
+            ReproductionMethod = (MulticellularReproductionMethod)reproductionMethodId;
+
             SporeCellType = reader.ReadObjectOrNull<CellType>();
         }
 
