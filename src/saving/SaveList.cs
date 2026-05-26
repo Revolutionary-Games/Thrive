@@ -98,12 +98,12 @@ public partial class SaveList : ScrollContainer
     {
         listItemScene = GD.Load<PackedScene>("res://src/saving/SaveListItem.tscn");
 
-        GetVScrollBar().ValueChanged += _ => UpdateVisibleRange();
-        Resized += () =>
+        GetVScrollBar().Connect(Godot.Range.SignalName.ValueChanged, Callable.From<double>(_ => UpdateVisibleRange()));
+        Connect(Control.SignalName.Resized, Callable.From(() =>
         {
             cachedItemHeight = -1;
             UpdateVisibleRange();
-        };
+        }));
     }
 
     public override void _Process(double delta)
