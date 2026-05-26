@@ -32,10 +32,31 @@ public partial class MutationPointsBar : HBoxContainer
 #pragma warning restore CA2213
 
     private string freebuildingText = string.Empty;
+    private bool hasMutationPointDisplayState;
+    private bool lastFreebuilding;
+    private bool lastShowResultingPoints;
+    private double lastCurrentMutationPoints;
+    private double lastPossibleMutationPoints;
 
     public override void _Ready()
     {
         freebuildingText = Localization.Translate("FREEBUILDING");
+    }
+
+    public override void _Notification(int what)
+    {
+        base._Notification(what);
+
+        if (what != NotificationTranslationChanged)
+            return;
+
+        freebuildingText = Localization.Translate("FREEBUILDING");
+
+        if (hasMutationPointDisplayState)
+        {
+            UpdateMutationPoints(lastFreebuilding, lastShowResultingPoints, lastCurrentMutationPoints,
+                lastPossibleMutationPoints);
+        }
     }
 
     public void UpdateBar(double currentMutationPoints, double possibleMutationPoints, bool tween = true)
@@ -63,6 +84,12 @@ public partial class MutationPointsBar : HBoxContainer
     public void UpdateMutationPoints(bool freebuilding, bool showResultingPoints, double currentMutationPoints,
         double possibleMutationPoints)
     {
+        hasMutationPointDisplayState = true;
+        lastFreebuilding = freebuilding;
+        lastShowResultingPoints = showResultingPoints;
+        lastCurrentMutationPoints = currentMutationPoints;
+        lastPossibleMutationPoints = possibleMutationPoints;
+
         // Make sure tiny negative values aren't shown improperly
         if (currentMutationPoints < 0 && currentMutationPoints > Constants.ALLOWED_MP_OVERSHOOT)
             currentMutationPoints = 0;
@@ -82,35 +109,41 @@ public partial class MutationPointsBar : HBoxContainer
                 mutationPointsArrow.Show();
                 resultingMutationPointsLabel.Show();
 
-                currentMutationPointsLabel.Text = $"({currentMutationPoints:0.#}";
-                resultingMutationPointsLabel.Text = $"{possibleMutationPoints:F0})";
+                currentMutationPointsLabel.Text = FormatMutationPoints(
+                    "MUTATION_POINTS_CURRENT_WITH_RESULT",
+                    "MUTATION_POINTS_CURRENT_WITH_RESULT_WITH_PERCENTAGE",
+                    $"({currentMutationPoints:0.#}");
+                resultingMutationPointsLabel.Text = FormatMutationPoints(
+                    "MUTATION_POINTS_RESULTING",
+                    "MUTATION_POINTS_RESULTING_WITH_PERCENTAGE",
+                    $"{possibleMutationPoints:F0})");
             }
             else
             {
                 mutationPointsArrow.Hide();
                 resultingMutationPointsLabel.Hide();
 
-                currentMutationPointsLabel.Text = $"{currentMutationPoints:0.#}";
+                currentMutationPointsLabel.Text = FormatMutationPoints(
+                    "MUTATION_POINTS_CURRENT",
+                    "MUTATION_POINTS_CURRENT_WITH_PERCENTAGE",
+                    $"{currentMutationPoints:0.#}");
             }
 
-            // TODO: implement full support for free percentage symbol placement within the mutation points bar
-            // for now we detect a format we cannot support and suppress the percentage symbol
-            // The reason is that the "100 / 100" is logically the unit that is a percentage so we would need an
-            // approach where the percentage symbol can escape the current label and go all the way to the start.
-            // See: https://github.com/Revolutionary-Games/Thrive/issues/6584
-            if (ShowPercentageSymbol && Localization.Translate("PERCENTAGE_VALUE").EndsWith('%'))
-            {
-                baseMutationPointsLabel.Text = $"/ {Constants.BASE_MUTATION_POINTS:F0} %";
-            }
-            else
-            {
-                baseMutationPointsLabel.Text = $"/ {Constants.BASE_MUTATION_POINTS:F0}";
-            }
+            baseMutationPointsLabel.Text = FormatMutationPoints(
+                "MUTATION_POINTS_BASE",
+                "MUTATION_POINTS_BASE_WITH_PERCENTAGE",
+                $"{Constants.BASE_MUTATION_POINTS:F0}");
         }
     }
 
     public void PlayFlashAnimation()
     {
         animationPlayer.Play("FlashBar");
+    }
+
+    private string FormatMutationPoints(string normalTranslation, string percentageTranslation, string value)
+    {
+        return Localization.Translate(ShowPercentageSymbol ? percentageTranslation : normalTranslation)
+            .FormatSafe(value);
     }
 }
