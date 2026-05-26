@@ -81,7 +81,6 @@ public partial class SaveList : ScrollContainer
 
     private int previousFirstVisible = -1;
     private int previousLastVisible = -1;
-    private float cachedItemHeight = -1;
     private bool needsInitialVisibilityCheck;
 
     [Signal]
@@ -101,11 +100,7 @@ public partial class SaveList : ScrollContainer
         listItemScene = GD.Load<PackedScene>("res://src/saving/SaveListItem.tscn");
 
         GetVScrollBar().Connect(Range.SignalName.ValueChanged, Callable.From<double>(_ => UpdateVisibleRange()));
-        Connect(Control.SignalName.Resized, Callable.From(() =>
-        {
-            cachedItemHeight = -1;
-            UpdateVisibleRange();
-        }));
+        Connect(Control.SignalName.Resized, Callable.From(UpdateVisibleRange));
     }
 
     public override void _Process(double delta)
@@ -123,7 +118,7 @@ public partial class SaveList : ScrollContainer
         if (!isCurrentlyVisible)
             wasVisible = false;
 
-        if (needsInitialVisibilityCheck && GetItemHeight() > 0)
+        if (needsInitialVisibilityCheck && saveItemChildren.Count > 0 && saveItemChildren[0].Size.Y > 0)
         {
             needsInitialVisibilityCheck = false;
             UpdateVisibleRange();
@@ -207,7 +202,6 @@ public partial class SaveList : ScrollContainer
 
         previousFirstVisible = -1;
         previousLastVisible = -1;
-        cachedItemHeight = -1;
         needsInitialVisibilityCheck = false;
 
         saveItemChildren.Clear();
@@ -440,46 +434,44 @@ public partial class SaveList : ScrollContainer
         isLoadingSave = false;
     }
 
-    private float GetItemHeight()
-    {
-        if (cachedItemHeight > 0)
-            return cachedItemHeight;
-
-        if (saveItemChildren.Count == 0)
-            return -1;
-
-        var firstItem = saveItemChildren[0];
-        float height = firstItem.Size.Y;
-
-        if (height <= 0)
-            return -1;
-
-        cachedItemHeight = height + savesList.GetThemeConstant("separation");
-        return cachedItemHeight;
-    }
-
     private void UpdateVisibleRange()
     {
         if (!IsVisibleInTree())
-            return;
-
-        float itemHeight = GetItemHeight();
-        if (itemHeight <= 0)
             return;
 
         int itemCount = saveItemChildren.Count;
         if (itemCount == 0)
             return;
 
-        var firstItem = saveItemChildren[0];
-        float itemsStartY = firstItem.GlobalPosition.Y - GlobalPosition.Y + ScrollVertical;
+        float scrollTop = ScrollVertical;
+        float scrollBottom = scrollTop + Size.Y;
 
-        int first = Math.Max(0, (int)Math.Floor((ScrollVertical - itemsStartY) / itemHeight));
-        int last = Math.Min(itemCount - 1, (int)Math.Floor((ScrollVertical + Size.Y - itemsStartY) / itemHeight));
+        int first = -1;
+        int last = -1;
+        for (int i = 0; i < itemCount; ++i)
+        {
+            var item = saveItemChildren[i];
+            float itemTop = item.Position.Y;
+            float itemBottom = itemTop + item.Size.Y;
+
+            if (itemBottom > scrollTop && itemTop < scrollBottom)
+            {
+                if (first < 0)
+                    first = i;
+
+                last = i;
+            }
+            else if (first >= 0)
+            {
+                break;
+            }
+        }
+
+        if (first < 0)
+            return;
 
         int paddedFirst = Math.Max(0, first - Constants.SAVE_LIST_LAZY_LOAD_PADDING);
         int paddedLast = Math.Min(itemCount - 1, last + Constants.SAVE_LIST_LAZY_LOAD_PADDING);
-
         if (paddedFirst == previousFirstVisible && paddedLast == previousLastVisible)
             return;
 
