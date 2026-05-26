@@ -98,10 +98,10 @@ void fragment(){
         + normalmap2.y * BINORMAL;
 
     // Mix base normals with detail normals in some proportion (0.0 - 1.0)
-    adjustedNormals = normalize(mix(NORMAL, adjustedNormals, 0.2f));
+    adjustedNormals = normalize(mix(NORMAL, adjustedNormals, clamp(0.3f * wigglyNess, 0.0f, 0.2f)));
 
     ALBEDO = final.rgb;
-    ALPHA = fresnel(3.0, adjustedNormals, adjustedView) * round(cutoff);
+    ALPHA = fresnel((2.0f + clamp(1.5f * wigglyNess, 0.0f, 1.0f)), adjustedNormals, adjustedView) * round(cutoff);
     METALLIC = 0.0f;
     ROUGHNESS = 0.5f;
     SPECULAR = 1.0f;
