@@ -23,6 +23,8 @@ public partial class SaveList : ScrollContainer
     [Export]
     public bool LoadableItems = true;
 
+    private readonly List<SaveListItem> saveItemChildren = [];
+
 #pragma warning disable CA2213
     [Export]
     private Control loadingItem = null!;
@@ -77,8 +79,6 @@ public partial class SaveList : ScrollContainer
 
     private bool isLoadingSave;
 
-    private List<SaveListItem> saveItemChildren = [];
-
     private int previousFirstVisible = -1;
     private int previousLastVisible = -1;
     private bool needsInitialVisibilityCheck;
@@ -120,7 +120,6 @@ public partial class SaveList : ScrollContainer
 
         if (needsInitialVisibilityCheck && saveItemChildren.Count > 0 && saveItemChildren[0].Size.Y > 0)
         {
-            needsInitialVisibilityCheck = false;
             UpdateVisibleRange();
         }
 
@@ -438,6 +437,10 @@ public partial class SaveList : ScrollContainer
     {
         if (!IsVisibleInTree())
             return;
+
+        // This is reset here to ensure that if this were to somehow refresh while invisible, then the item visibility
+        // would be refreshed once this becomes visible.
+        needsInitialVisibilityCheck = false;
 
         int itemCount = saveItemChildren.Count;
         if (itemCount == 0)
