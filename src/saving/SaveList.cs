@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using Godot;
+using Range = Godot.Range;
 
 /// <summary>
 ///   A widget containing a list of saves
@@ -22,6 +22,8 @@ public partial class SaveList : ScrollContainer
 
     [Export]
     public bool LoadableItems = true;
+
+    private readonly List<SaveListItem> saveItemChildren = [];
 
 #pragma warning disable CA2213
     [Export]
@@ -77,6 +79,10 @@ public partial class SaveList : ScrollContainer
 
     private bool isLoadingSave;
 
+    private int previousFirstVisible = -1;
+    private int previousLastVisible = -1;
+    private bool needsInitialVisibilityCheck;
+
     [Signal]
     public delegate void OnSelectedChangedEventHandler();
 
@@ -92,6 +98,9 @@ public partial class SaveList : ScrollContainer
     public override void _Ready()
     {
         listItemScene = GD.Load<PackedScene>("res://src/saving/SaveListItem.tscn");
+
+        GetVScrollBar().Connect(Range.SignalName.ValueChanged, Callable.From<double>(_ => UpdateVisibleRange()));
+        Connect(Control.SignalName.Resized, Callable.From(UpdateVisibleRange));
     }
 
     public override void _Process(double delta)
@@ -108,6 +117,11 @@ public partial class SaveList : ScrollContainer
 
         if (!isCurrentlyVisible)
             wasVisible = false;
+
+        if (needsInitialVisibilityCheck && saveItemChildren.Count > 0 && saveItemChildren[0].Size.Y > 0)
+        {
+            UpdateVisibleRange();
+        }
 
         if (!refreshing)
             return;
@@ -155,6 +169,7 @@ public partial class SaveList : ScrollContainer
 
                 item.SaveName = save;
                 savesList.AddChild(item);
+                saveItemChildren.Add(item);
             }
         }
         else
@@ -164,11 +179,12 @@ public partial class SaveList : ScrollContainer
 
         loadingItem.Visible = false;
         refreshing = false;
+        needsInitialVisibilityCheck = true;
     }
 
     public IEnumerable<SaveListItem> GetSelectedItems()
     {
-        foreach (var child in savesList.GetChildren().OfType<SaveListItem>())
+        foreach (var child in saveItemChildren)
         {
             if (child.Selectable && child.Selected)
                 yield return child;
@@ -183,6 +199,11 @@ public partial class SaveList : ScrollContainer
         refreshing = true;
         refreshedAtLeastOnce = true;
 
+        previousFirstVisible = -1;
+        previousLastVisible = -1;
+        needsInitialVisibilityCheck = false;
+
+        saveItemChildren.Clear();
         savesList.QueueFreeChildren();
 
         loadingItem.Visible = true;
@@ -410,5 +431,75 @@ public partial class SaveList : ScrollContainer
         EmitSignal(SignalName.OnSaveLoaded, saveToBeLoaded);
         saveToBeLoaded = null;
         isLoadingSave = false;
+    }
+
+    private void UpdateVisibleRange()
+    {
+        if (!IsVisibleInTree())
+            return;
+
+        // This is reset here to ensure that if this were to somehow refresh while invisible, then the item visibility
+        // would be refreshed once this becomes visible.
+        needsInitialVisibilityCheck = false;
+
+        int itemCount = saveItemChildren.Count;
+        if (itemCount == 0)
+            return;
+
+        float scrollTop = ScrollVertical;
+        float scrollBottom = scrollTop + Size.Y;
+
+        int first = -1;
+        int last = -1;
+        for (int i = 0; i < itemCount; ++i)
+        {
+            var item = saveItemChildren[i];
+            float itemTop = item.Position.Y;
+            float itemBottom = itemTop + item.Size.Y;
+
+            if (itemBottom > scrollTop && itemTop < scrollBottom)
+            {
+                if (first < 0)
+                    first = i;
+
+                last = i;
+            }
+            else if (first >= 0)
+            {
+                break;
+            }
+        }
+
+        if (first < 0)
+            return;
+
+        int paddedFirst = Math.Max(0, first - Constants.SAVE_LIST_LAZY_LOAD_PADDING);
+        int paddedLast = Math.Min(itemCount - 1, last + Constants.SAVE_LIST_LAZY_LOAD_PADDING);
+        if (paddedFirst == previousFirstVisible && paddedLast == previousLastVisible)
+            return;
+
+        int oldFirst = previousFirstVisible;
+        int oldLast = previousLastVisible;
+
+        previousFirstVisible = paddedFirst;
+        previousLastVisible = paddedLast;
+
+        for (int i = paddedFirst; i <= paddedLast; ++i)
+        {
+            saveItemChildren[i].TriggerLoad();
+        }
+
+        if (oldFirst >= 0)
+        {
+            for (int i = oldFirst; i < paddedFirst; ++i)
+            {
+                saveItemChildren[i].CancelLoad();
+            }
+
+            for (int i = paddedLast + 1; i <= oldLast; ++i)
+            {
+                saveItemChildren[i].CancelLoad();
+            }
+        }
     }
 }
