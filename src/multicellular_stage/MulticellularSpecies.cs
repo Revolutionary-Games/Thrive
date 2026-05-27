@@ -195,9 +195,9 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         if (ReproductionMethod == MulticellularReproductionMethod.Sporulation && ModifiableSporeCellType == null)
             throw new Exception("Sporulation reproduction method requires a spore cell type to be set");
 
-        if (MassBuddingCellCount < 1 || MassBuddingCellCount >= ModifiableGameplayCells.Count)
+        if (MassBuddingCellCount < 1 || MassBuddingCellCount > ModifiableGameplayCells.Count)
             throw new Exception("Mass budding bud size can't be less than one or more than the total amount of cells in"
-            + "the colony");
+            + " the colony");
 
         if (modifiableEditorCells != null)
         {
