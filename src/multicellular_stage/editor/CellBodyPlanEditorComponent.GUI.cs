@@ -378,8 +378,10 @@ public partial class CellBodyPlanEditorComponent
 
     private void UpdateMassBuddingCellCountSlider()
     {
-        massBuddingCellCountSlider.MaxValue = editedMicrobeCells.Count;
-        massBuddingCellCountSlider.SetValueNoSignal(Math.Min(DesiredMassBuddingCellCount, editedMicrobeCells.Count));
+        var maxBudSize = CellBodyPlanInternalCalculations.MaxBudSize(editedMicrobeCells.Count);
+
+        massBuddingCellCountSlider.MaxValue = maxBudSize;
+        massBuddingCellCountSlider.SetValueNoSignal(Math.Min(DesiredMassBuddingCellCount, maxBudSize));
     }
 
     private int ReproductionMethodToIndex(MulticellularReproductionMethod reproductionMethod)

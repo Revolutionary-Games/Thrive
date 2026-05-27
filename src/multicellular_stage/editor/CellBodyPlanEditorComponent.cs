@@ -616,7 +616,8 @@ public partial class CellBodyPlanEditorComponent :
 
         editedSpecies.ReproductionMethod = ReproductionMethod;
         editedSpecies.ModifiableSporeCellType = SporeCellType;
-        editedSpecies.MassBuddingCellCount = Math.Min(DesiredMassBuddingCellCount, editedMicrobeCells.Count);
+        editedSpecies.MassBuddingCellCount = Math.Min(DesiredMassBuddingCellCount,
+            CellBodyPlanInternalCalculations.MaxBudSize(editedMicrobeCells.Count));
 
         tempFreshlyUpdatedCells.Clear();
         editedSpecies.OnEdited();
