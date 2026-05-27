@@ -15,7 +15,7 @@ public partial class CellBodyPlanEditorComponent
 
     public void OnReproductionMethodSelected(int selectedOption)
     {
-        var selectedMethod = (MulticellularReproductionMethod)selectedOption;
+        var selectedMethod = ReproductionMethodIndexToValue(selectedOption);
 
         if (ReproductionMethod == selectedMethod)
             return;
@@ -336,7 +336,7 @@ public partial class CellBodyPlanEditorComponent
 
     private void UpdateReproductionMethodChoice()
     {
-        reproductionMethodDropdown.Select((int)ReproductionMethod);
+        reproductionMethodDropdown.Select(ReproductionMethodToIndex(ReproductionMethod));
 
         buddingReproductionSection.Visible = false;
         sporeReproductionSection.Visible = false;
@@ -380,5 +380,35 @@ public partial class CellBodyPlanEditorComponent
     {
         massBuddingCellCountSlider.MaxValue = editedMicrobeCells.Count;
         massBuddingCellCountSlider.SetValueNoSignal(Math.Min(DesiredMassBuddingCellCount, editedMicrobeCells.Count));
+    }
+
+    private int ReproductionMethodToIndex(MulticellularReproductionMethod reproductionMethod)
+    {
+        switch (reproductionMethod)
+        {
+            case MulticellularReproductionMethod.Budding:
+                return 0;
+            case MulticellularReproductionMethod.Sporulation:
+                return 2;
+            case MulticellularReproductionMethod.MassBudding:
+                return 1;
+            default:
+                throw new Exception($"Invalid reproduction mode: {reproductionMethod}");
+        }
+    }
+
+    private MulticellularReproductionMethod ReproductionMethodIndexToValue(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                return MulticellularReproductionMethod.Budding;
+            case 1:
+                return MulticellularReproductionMethod.MassBudding;
+            case 2:
+                return MulticellularReproductionMethod.Sporulation;
+            default:
+                throw new Exception($"Invalid reproduction mode index: {index}");
+        }
     }
 }
