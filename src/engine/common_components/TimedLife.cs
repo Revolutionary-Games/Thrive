@@ -36,10 +36,10 @@ public struct TimedLife(float timeToLiveRemaining) : IArchivableComponent
     public bool OnTimeOverTriggered = false;
 
     /// <summary>
-    ///   Pre-stored fade time from <see cref="FadeOutActions"/>, set when the callback is registered.
-    ///   Not serialized (transient state re-applied after load, like <see cref="CustomTimeOverCallback"/>).
+    ///   User data that the setter of <see cref="CustomTimeOverCallback"/> can use to store state.
+    ///   Not serialized (transient state re-applied after a load, like <see cref="CustomTimeOverCallback"/>).
     /// </summary>
-    public float PreStoredFadeTime = -1;
+    public float CustomTimeOverUserData1 = -1;
 
     public delegate bool OnTimeOver(Entity entity, ref TimedLife timedLife);
 

@@ -27,6 +27,7 @@ using World = Arch.Core.World;
 [WritesToComponent(typeof(CompoundStorage))]
 [WritesToComponent(typeof(Physics))]
 [WritesToComponent(typeof(ManualPhysicsControl))]
+[RunsAfter(typeof(TimedLifeSystem))]
 [RuntimeCost(0.25f)]
 [RunsOnMainThread]
 public partial class FadeOutActionSystem : BaseSystem<World, float>
@@ -74,19 +75,20 @@ public partial class FadeOutActionSystem : BaseSystem<World, float>
 
         actions.CallbackRegistered = true;
 
-        timed.PreStoredFadeTime = actions.FadeTime;
+        // Set up the callback which ensures the main processing happens in our context
+        timed.CustomTimeOverUserData1 = actions.FadeTime;
         timed.CustomTimeOverCallback = cachedDelegate;
     }
 
     private bool PerformTimeOverActions(Entity entity, ref TimedLife timedLife)
     {
-        if (timedLife.PreStoredFadeTime <= 0)
+        if (timedLife.CustomTimeOverUserData1 <= 0)
         {
-            GD.PrintErr("Custom fade out actions fade time is zero");
+            GD.PrintErr("Custom fade out actions fade time is zero, can't use deferred custom callback");
             return true;
         }
 
-        timedLife.FadeTimeRemaining = timedLife.PreStoredFadeTime;
+        timedLife.FadeTimeRemaining = timedLife.CustomTimeOverUserData1;
         timedLife.FadeTimeRemainingSet = true;
 
         lock (queueLock)
@@ -99,6 +101,12 @@ public partial class FadeOutActionSystem : BaseSystem<World, float>
 
     private void ApplyFadeOutActions(Entity entity)
     {
+        if (!entity.IsAliveAndHas<FadeOutActions>())
+        {
+            GD.PrintErr("Queued entity has no fade out actions: ", entity);
+            return;
+        }
+
         ref var actions = ref entity.Get<FadeOutActions>();
 
         if (actions.DisableCollisions)
