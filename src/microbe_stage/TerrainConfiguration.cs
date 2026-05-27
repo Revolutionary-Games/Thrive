@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using SharedBase.Archive;
 using ThriveScriptsShared;
 
@@ -16,6 +17,13 @@ public class TerrainConfiguration : RegistryType
     public int MaxClusters;
 
     private int totalChance;
+
+    public enum RotationRandomization
+    {
+        Disabled,
+        Yaw,
+        Full,
+    }
 
     [JsonIgnore]
     public override ArchiveObjectType ArchiveObjectType =>
@@ -94,7 +102,8 @@ public class TerrainConfiguration : RegistryType
         public readonly Quaternion DefaultRotation = Quaternion.Identity;
 
         [JsonProperty]
-        public readonly bool RandomizeRotation;
+        [JsonConverter(typeof(StringEnumConverter))]
+        public readonly RotationRandomization RandomRotation;
 
         public void Check(string name)
         {
@@ -130,7 +139,8 @@ public class TerrainConfiguration : RegistryType
         public readonly Vector3 RelativePosition;
 
         [JsonProperty]
-        public readonly bool RandomizeRotation;
+        [JsonConverter(typeof(StringEnumConverter))]
+        public readonly RotationRandomization RandomRotation;
 
         public float Radius;
 
@@ -176,7 +186,8 @@ public class TerrainConfiguration : RegistryType
         public readonly int RelativeChance;
 
         [JsonProperty]
-        public readonly bool RandomizeRotation;
+        [JsonConverter(typeof(StringEnumConverter))]
+        public readonly RotationRandomization RandomRotation;
 
         /// <summary>
         ///   When true, the terrain will slide around other terrain to fit and spawn.

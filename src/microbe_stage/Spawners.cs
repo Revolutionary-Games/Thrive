@@ -1121,9 +1121,14 @@ public static class SpawnHelpers
         var entity = worldSimulation.CreateEntityDeferred(entityRecorder, TerrainSignature);
 
         Quaternion rotation;
-        if (chunkConfiguration.RandomizeRotation)
+        if (chunkConfiguration.RandomRotation == TerrainConfiguration.RotationRandomization.Yaw)
         {
             rotation = baseRotation * new Quaternion(Vector3.Up, random.NextSingle() * MathF.Tau);
+        }
+        else if (chunkConfiguration.RandomRotation == TerrainConfiguration.RotationRandomization.Full)
+        {
+            rotation = baseRotation * new Quaternion(Basis.FromEuler(new Vector3(random.NextSingle() * MathF.Tau,
+                random.NextSingle() * MathF.Tau, random.NextSingle() * MathF.Tau)));
         }
         else
         {

@@ -574,7 +574,7 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
 
         var clusterRotation = Quaternion.Identity;
 
-        if (cluster.RandomizeRotation)
+        if (cluster.RandomRotation != TerrainConfiguration.RotationRandomization.Disabled)
             clusterRotation = new Quaternion(Vector3.Up, random.NextSingle() * MathF.Tau);
 
         foreach (var terrainGroup in cluster.TerrainGroups)
@@ -584,7 +584,7 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
 
             var groupRotation = Quaternion.Identity;
 
-            if (terrainGroup.RandomizeRotation)
+            if (terrainGroup.RandomRotation != TerrainConfiguration.RotationRandomization.Disabled)
                 groupRotation = new Quaternion(Vector3.Up, random.NextSingle() * MathF.Tau);
 
             foreach (var chunk in terrainGroup.Chunks)
