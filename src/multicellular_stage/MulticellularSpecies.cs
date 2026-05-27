@@ -134,14 +134,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 
         if (version >= 3)
         {
-            var reproductionMethodId = reader.ReadInt32();
-            if (version == 3 && reproductionMethodId == 1)
-            {
-                // Mass budding took sporulation's place in version 4, so we need a conversion
-                reproductionMethodId = 2;
-            }
-            instance.ReproductionMethod = (MulticellularReproductionMethod)reproductionMethodId;
-
+            instance.ReproductionMethod = (MulticellularReproductionMethod)reader.ReadInt32();
             instance.ModifiableSporeCellType = reader.ReadObjectOrNull<CellType>();
         }
 
