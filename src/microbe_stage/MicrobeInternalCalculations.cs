@@ -450,9 +450,9 @@ public static class MicrobeInternalCalculations
         IEnumerable<OrganelleTemplate> organelles, float totalSpecializationBonus)
     {
         float hydrogenSulfideProtection = Constants.HYDROGEN_SULFIDE_DEFAULT_PROTECTION;
-        float hydrogenSulfideStorage = 0;
+        float hydrogenSulfideNominalStorage = 0;
+        float hydrogenSulfideAdditionalStorage = 0;
         float hydrogenSulfideOrganellesNumber = 0;
-        float organellesCount = 0;
 
         foreach (var organelle in organelles)
         {
@@ -462,30 +462,29 @@ public static class MicrobeInternalCalculations
                 ++hydrogenSulfideOrganellesNumber;
             }
 
-            ++organellesCount;
-
-            if (organelle.Definition.Components.Storage != null)
-            {
-                var baseCapacity = organelle.Definition.Components.Storage.Capacity;
-                hydrogenSulfideStorage += baseCapacity;
-            }
-
-            var specificCapacity = GetAdditionalCapacityForOrganelle(organelle.Definition, organelle.Upgrades, totalSpecializationBonus);
+            var specificCapacity =
+                GetAdditionalCapacityForOrganelle(organelle.Definition, organelle.Upgrades, totalSpecializationBonus);
             if (specificCapacity.Compound == Compound.Hydrogensulfide)
             {
-                hydrogenSulfideStorage += specificCapacity.Capacity;
+                hydrogenSulfideAdditionalStorage += specificCapacity.Capacity;
+            }
+            else if (specificCapacity.Compound == Compound.Invalid)
+            {
+                hydrogenSulfideNominalStorage += organelle.Definition.Components.Storage?.Capacity ?? 0;
             }
         }
 
+        var totalStorage = hydrogenSulfideNominalStorage * totalSpecializationBonus + hydrogenSulfideAdditionalStorage;
+
         // If there are enough organelles providing protection the cell gets full immunity
-        if (hydrogenSulfideOrganellesNumber / organellesCount >=
+        if (hydrogenSulfideOrganellesNumber / organelles.Count() >=
             Constants.HYDROGEN_SULFIDE_ORGANELLE_PROTECTION_CAP_FRACTION
-            || hydrogenSulfideProtection > hydrogenSulfideStorage)
+            || hydrogenSulfideProtection > totalStorage)
         {
-            hydrogenSulfideProtection = hydrogenSulfideStorage;
+            hydrogenSulfideProtection = totalStorage;
         }
 
-        return (hydrogenSulfideProtection, hydrogenSulfideStorage);
+        return (hydrogenSulfideProtection, totalStorage);
     }
 
     public static (int AmmoniaCost, int PhosphatesCost) CalculateOrganellesCosts(

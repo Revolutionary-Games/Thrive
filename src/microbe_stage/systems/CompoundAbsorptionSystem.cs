@@ -1,14 +1,12 @@
 ﻿namespace Systems;
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Arch.System;
 using Components;
-using Godot;
 
 /// <summary>
 ///   Handles absorbing compounds from <see cref="CompoundCloudSystem"/> into <see cref="CompoundStorage"/>
