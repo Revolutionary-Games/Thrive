@@ -754,6 +754,10 @@ public static class SpawnHelpers
                 {
                     random ??= new XoShiRo256plus();
 
+                    // Mass budding species should start with at least their bud already grown
+                    if (multicellularSpecies.ReproductionMethod == MulticellularReproductionMethod.MassBudding)
+                        colonyMembersToAdd = multicellularSpecies.MassBuddingCellCount - 1;
+
                     // Chance to spawn fully grown or partially grown
                     if (random.NextDouble() < Constants.CHANCE_MULTICELLULAR_SPAWNS_GROWN)
                     {
@@ -793,6 +797,7 @@ public static class SpawnHelpers
                 {
                     resolvedCellType = multicellularSpecies.ColonyRootCellType();
 
+                    // Partially or fully grown colonies already have their bud grown
                     multicellularGrowth.SpawnedInitialMassBuddingCells = true;
                 }
 
