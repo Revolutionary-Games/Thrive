@@ -182,11 +182,11 @@ public static class MulticellularGrowthHelpers
         // Clear variables
         multicellularGrowth.ResetGrowthProgress();
 
-        var recorder = worldSimulation.StartRecordingEntityCommands();
-
         // Delete the cells in our colony currently
         if (entity.Has<MicrobeColony>())
         {
+            var recorder = worldSimulation.StartRecordingEntityCommands();
+
             ref var colony = ref entity.Get<MicrobeColony>();
 
             foreach (var member in colony.ColonyMembers)
@@ -198,9 +198,9 @@ public static class MulticellularGrowthHelpers
             }
 
             recorder.Remove<MicrobeColony>(entity);
-        }
 
-        worldSimulation.FinishRecordingEntityCommands(recorder);
+            worldSimulation.FinishRecordingEntityCommands(recorder);
+        }
     }
 
     /// <summary>
