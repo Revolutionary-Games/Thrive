@@ -1,7 +1,9 @@
 ﻿namespace Systems;
 
 using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Threading;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Arch.System;
@@ -10,7 +12,9 @@ using Godot;
 using World = Arch.Core.World;
 
 /// <summary>
-///   Handles fading out animations on entities
+///   Handles fading out animations on entities. When an entity's <see cref="TimedLife"/> expires, the registered
+///   callback enqueues the entity, and this system applies the fade-out effects (physics, particles, dissolve,
+///   compound venting) during its own update on the main thread.
 /// </summary>
 /// <remarks>
 ///   <para>
@@ -18,27 +22,12 @@ using World = Arch.Core.World;
 ///     physics bodies. Same related to the spatial instance as this just can disable particles.
 ///   </para>
 /// </remarks>
-/// <remarks>
-///   <para>
-///     This is really marked as needing to run on the main thread because this modifies particle emitter emitting
-///     setting of Godot. NOTE: the callback is currently ran on the system that triggers the fade out to start
-///     this has various implications. See the TODO in the next section.
-///   </para>
-/// </remarks>
-/// <remarks>
-///   <para>
-///     TODO: due to the way this accesses things through a callback, all the attributes here might need to be
-///     copied to any of the systems that may trigger the callback. Fortunately this doesn't do very extensive
-///     writes so for now this is likely fine. A better way would be to queue the callback to trigger on this system
-///     once this system runs again on the main thread. Once done properly <see cref="TimedLifeSystem"/> can be marked
-///     as not needing to run on the main thread.
-///   </para>
-/// </remarks>
 [ReadsComponent(typeof(WorldPosition))]
 [ReadsComponent(typeof(SpatialInstance))]
 [WritesToComponent(typeof(CompoundStorage))]
 [WritesToComponent(typeof(Physics))]
 [WritesToComponent(typeof(ManualPhysicsControl))]
+[RunsAfter(typeof(TimedLifeSystem))]
 [RuntimeCost(0.25f)]
 [RunsOnMainThread]
 public partial class FadeOutActionSystem : BaseSystem<World, float>
@@ -47,6 +36,10 @@ public partial class FadeOutActionSystem : BaseSystem<World, float>
     private readonly CompoundCloudSystem? compoundCloudSystem;
 
     private readonly TimedLife.OnTimeOver cachedDelegate;
+
+    private readonly Lock queueLock = new();
+    private Queue<Entity> pendingFadeOutEntities = new();
+    private Queue<Entity> processingEntities = new();
 
     // TODO: Constants.SYSTEM_EXTREME_ENTITIES_PER_THREAD
     public FadeOutActionSystem(IWorldSimulation worldSimulation, CompoundCloudSystem? compoundCloudSystem,
@@ -58,6 +51,21 @@ public partial class FadeOutActionSystem : BaseSystem<World, float>
         cachedDelegate = PerformTimeOverActions;
     }
 
+    public override void BeforeUpdate(in float delta)
+    {
+        base.BeforeUpdate(in delta);
+
+        lock (queueLock)
+        {
+            (pendingFadeOutEntities, processingEntities) = (processingEntities, pendingFadeOutEntities);
+        }
+
+        while (processingEntities.Count > 0)
+        {
+            ApplyFadeOutActions(processingEntities.Dequeue());
+        }
+    }
+
     [Query]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update(ref FadeOutActions actions, ref TimedLife timed)
@@ -67,87 +75,71 @@ public partial class FadeOutActionSystem : BaseSystem<World, float>
 
         actions.CallbackRegistered = true;
 
-        // Register the callback which we use to trigger the actions for
+        // Set up the callback which ensures the main processing happens in our context
+        timed.CustomTimeOverUserData1 = actions.FadeTime;
         timed.CustomTimeOverCallback = cachedDelegate;
     }
 
     private bool PerformTimeOverActions(Entity entity, ref TimedLife timedLife)
     {
-        // This callback is triggered after this system has run already, so when debugging component access, this
-        // needs a slight modification
-        if (GenerateThreadedSystems.UseCheckedComponentAccess)
+        if (timedLife.CustomTimeOverUserData1 <= 0)
         {
-            // To actually make this work for safety checking the following list *must* match the attributes on
-            // this class
-            // TODO: the following should actually be put as component accesses on any systems that may trigger
-            // the callback. See the TODO comment on this class.
-            ComponentAccessChecks.ReportAllowedAccessType<FadeOutActions>();
-            ComponentAccessChecks.ReportAllowedAccessType<CompoundStorage>();
-            ComponentAccessChecks.ReportAllowedAccessType<WorldPosition>();
-            ComponentAccessChecks.ReportAllowedAccessType<SpatialInstance>();
-            ComponentAccessChecks.ReportAllowedAccessType<Physics>();
-            ComponentAccessChecks.ReportAllowedAccessType<ManualPhysicsControl>();
-        }
-
-        try
-        {
-            ref var actions = ref entity.Get<FadeOutActions>();
-
-            if (actions.FadeTime <= 0)
-            {
-                // For now this indicates bad data, but in the future we might get some more custom "time over"
-                // actions
-                GD.PrintErr("Custom fade out actions fade time is zero");
-                return true;
-            }
-
-            // TODO: the following should probably be queued to run on the main thread to solve problems related to
-            // accessing random components from a random system that happens to run the custom callback
-
-            timedLife.FadeTimeRemaining = actions.FadeTime;
-            timedLife.FadeTimeRemainingSet = true;
-
-            if (actions.DisableCollisions)
-                PerformPhysicsOperations(entity, actions.DisableCollisions);
-
-            if (actions.RemoveVelocity || actions.RemoveAngularVelocity)
-            {
-                PerformManualPhysicsControlOperations(entity, actions.RemoveVelocity,
-                    actions.RemoveAngularVelocity);
-            }
-
-            if (actions.DisableParticles)
-                DisableParticleEmission(entity);
-
-            if (actions.UsesMicrobialDissolveEffect)
-            {
-                entity.StartDissolveAnimation(worldSimulation, true, false);
-            }
-
-            // Fade actions can be used without a cloud simulation
-            if (actions.VentCompounds && compoundCloudSystem != null)
-            {
-                if (entity.Has<CompoundStorage>() && entity.Has<WorldPosition>())
-                {
-                    ref var position = ref entity.Get<WorldPosition>();
-                    ref var storage = ref entity.Get<CompoundStorage>();
-
-                    storage.VentAllCompounds(position.Position, compoundCloudSystem);
-                }
-                else
-                {
-                    GD.PrintErr("Cannot vent compounds on fade as entity has no compound storage " +
-                        "(or world position is missing)");
-                }
-            }
-
-            // Fade started, don't destroy yet
-            return false;
-        }
-        catch (Exception e)
-        {
-            GD.PrintErr("Failed to perform custom fade out actions on timer over: ", e);
+            GD.PrintErr("Custom fade out actions fade time is zero, can't use deferred custom callback");
             return true;
+        }
+
+        timedLife.FadeTimeRemaining = timedLife.CustomTimeOverUserData1;
+        timedLife.FadeTimeRemainingSet = true;
+
+        lock (queueLock)
+        {
+            pendingFadeOutEntities.Enqueue(entity);
+        }
+
+        return false;
+    }
+
+    private void ApplyFadeOutActions(Entity entity)
+    {
+        if (!entity.IsAliveAndHas<FadeOutActions>())
+        {
+            GD.PrintErr("Queued entity has no fade out actions: ", entity);
+            return;
+        }
+
+        ref var actions = ref entity.Get<FadeOutActions>();
+
+        if (actions.DisableCollisions)
+            PerformPhysicsOperations(entity, actions.DisableCollisions);
+
+        if (actions.RemoveVelocity || actions.RemoveAngularVelocity)
+        {
+            PerformManualPhysicsControlOperations(entity, actions.RemoveVelocity,
+                actions.RemoveAngularVelocity);
+        }
+
+        if (actions.DisableParticles)
+            DisableParticleEmission(entity);
+
+        if (actions.UsesMicrobialDissolveEffect)
+        {
+            entity.StartDissolveAnimation(worldSimulation, true, false);
+        }
+
+        if (actions.VentCompounds && compoundCloudSystem != null)
+        {
+            if (entity.Has<CompoundStorage>() && entity.Has<WorldPosition>())
+            {
+                ref var position = ref entity.Get<WorldPosition>();
+                ref var storage = ref entity.Get<CompoundStorage>();
+
+                storage.VentAllCompounds(position.Position, compoundCloudSystem);
+            }
+            else
+            {
+                GD.PrintErr("Cannot vent compounds on fade as entity has no compound storage " +
+                    "(or world position is missing)");
+            }
         }
     }
 

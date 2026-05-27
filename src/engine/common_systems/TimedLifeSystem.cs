@@ -8,21 +8,10 @@ using Components;
 /// <summary>
 ///   System that deletes nodes that are in the timed group after their lifespan expires.
 /// </summary>
-/// <remarks>
-///   <para>
-///     See the TODOs on <see cref="FadeOutActionSystem"/> why this is marked as needing to run on the main thread.
-///   </para>
-/// </remarks>
 [RuntimeCost(0.25f)]
-[RunsOnMainThread]
-public partial class TimedLifeSystem : BaseSystem<World, float>
+public partial class TimedLifeSystem(IEntityContainer entityContainer, World world) : BaseSystem<World, float>(world)
 {
-    private readonly IEntityContainer entityContainer;
-
-    public TimedLifeSystem(IEntityContainer entityContainer, World world) : base(world)
-    {
-        this.entityContainer = entityContainer;
-    }
+    private readonly IEntityContainer entityContainer = entityContainer;
 
     /// <summary>
     ///   Despawns all timed entities
