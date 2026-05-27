@@ -27,6 +27,7 @@ using World = Arch.Core.World;
 [WritesToComponent(typeof(CompoundStorage))]
 [WritesToComponent(typeof(Physics))]
 [WritesToComponent(typeof(ManualPhysicsControl))]
+[WritesToComponent(typeof(MicrobeShaderParameters))]
 [RunsAfter(typeof(TimedLifeSystem))]
 [RuntimeCost(0.25f)]
 [RunsOnMainThread]
