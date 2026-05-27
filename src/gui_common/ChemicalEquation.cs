@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
@@ -11,11 +12,13 @@ public partial class ChemicalEquation : CheckButton
     [Export]
     public LabelSettings DefaultTitleFont = null!;
 
+    private readonly StringName rotationName = new("rotation");
+
     [Export]
     private Label? title;
 
     [Export]
-    private TextureRect? spinner;
+    private TextureRect spinner = null!;
 
     [Export]
     private Control? spinnerController;
@@ -48,6 +51,8 @@ public partial class ChemicalEquation : CheckButton
     private Label? perSecondLabel;
     private Label? environmentSeparator;
     private CompoundListBox? environmentSection;
+
+    private ShaderMaterial spinnerMaterial = null!;
 #pragma warning restore CA2213
 
     private IProcessDisplayInfo? equationFromProcess;
@@ -179,6 +184,8 @@ public partial class ChemicalEquation : CheckButton
 
     public override void _Ready()
     {
+        spinnerMaterial = (ShaderMaterial)spinner.Material;
+
         UpdateEquation();
 
         RecalculateMinimumSize();
@@ -207,10 +214,8 @@ public partial class ChemicalEquation : CheckButton
                 currentSpinnerRotation += (float)delta * EquationFromProcess.CurrentSpeed * SpinnerBaseSpeed
                     * ExternalSpeedModifier;
 
-                // TODO: should we at some point subtract like 100000*360 from the spinner rotation to avoid float range
-                // exceeding?
-
-                spinner!.RotationDegrees = (int)currentSpinnerRotation % 360;
+                spinnerMaterial.SetShaderParameter(rotationName,
+                    currentSpinnerRotation % MathF.Tau);
             }
         }
 
@@ -226,6 +231,16 @@ public partial class ChemicalEquation : CheckButton
     public override void _Pressed()
     {
         ProcessEnabled = !ProcessEnabled;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            rotationName.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     private void OnTranslationsChanged()

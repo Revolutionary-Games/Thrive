@@ -17,7 +17,9 @@ public partial class LoadingScreen : Control
 
     private readonly Random random = new();
 
-    private readonly List<(Action Action, double Delay)> postLoadingActions = new();
+    private readonly List<(Action Action, double Delay)> postLoadingActions = [];
+
+    private readonly StringName rotationName = new("rotation");
 
 #pragma warning disable CA2213
     [Export]
@@ -36,10 +38,12 @@ public partial class LoadingScreen : Control
     private CustomRichTextLabel? tipLabel;
 
     [Export]
-    private Control spinner = null!;
+    private TextureRect spinner = null!;
 
     [Export]
     private Timer randomizeTimer = null!;
+
+    private ShaderMaterial spinnerMaterial = null!;
 #pragma warning restore CA2213
 
     private bool wasVisible;
@@ -161,6 +165,8 @@ public partial class LoadingScreen : Control
 
     public override void _Ready()
     {
+        spinnerMaterial = (ShaderMaterial)spinner.Material;
+
         UpdateMessage();
         UpdateDescription();
         UpdateTip();
@@ -200,12 +206,10 @@ public partial class LoadingScreen : Control
             return;
         }
 
-        // Spin the spinner
         totalElapsed += delta;
-
         elapsedSinceTipChange += delta;
-
-        spinner.Rotation = (float)(totalElapsed * SpinnerSpeed) % MathF.Tau;
+        spinnerMaterial.SetShaderParameter(rotationName,
+            (float)(totalElapsed * SpinnerSpeed) % MathF.Tau);
     }
 
     /// <summary>
@@ -305,7 +309,7 @@ public partial class LoadingScreen : Control
         {
             if (OverrideTips.EndsWith("Tips"))
             {
-                gameStateName = OverrideTips.Substring(0, OverrideTips.Length - 4);
+                gameStateName = OverrideTips[..^4];
             }
             else
             {
@@ -324,6 +328,16 @@ public partial class LoadingScreen : Control
 
         artworkRect.Image = GD.Load<Texture2D>(artwork.ResourcePath);
         ArtDescription = artwork.BuildDescription(true);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            rotationName.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     private void OnBecomeVisible()
