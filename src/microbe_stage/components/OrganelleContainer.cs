@@ -154,8 +154,8 @@ public struct OrganelleContainer : IArchivableComponent
     public bool OrganelleComponentsCached;
 
     /// <summary>
-    ///   Internal variable used by the <see cref="MicrobeVisualsSystem"/> to only create visuals for missing /
-    ///   removed organelles
+    ///   Internal variable used by the <see cref="MicrobeVisualsSystem"/> to only create wrapper nodes for missing
+    ///   organelles and delete removed organelle visual subtrees
     /// </summary>
     public Dictionary<PlacedOrganelle, Node3D>? CreatedOrganelleVisuals;
 
