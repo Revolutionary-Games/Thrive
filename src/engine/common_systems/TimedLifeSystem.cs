@@ -11,8 +11,6 @@ using Components;
 [RuntimeCost(0.25f)]
 public partial class TimedLifeSystem(IEntityContainer entityContainer, World world) : BaseSystem<World, float>(world)
 {
-    private readonly IEntityContainer entityContainer = entityContainer;
-
     /// <summary>
     ///   Despawns all timed entities
     /// </summary>

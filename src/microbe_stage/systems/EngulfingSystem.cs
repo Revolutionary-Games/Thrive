@@ -46,6 +46,7 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(WorldPosition))]
 [ReadsComponent(typeof(EntityRadiusInfo))]
 [ReadsComponent(typeof(SpeciesMember))]
+[ReadsComponent(typeof(EntityMaterial))]
 [RunsAfter(typeof(ColonyCompoundDistributionSystem))]
 [RunsAfter(typeof(PilusDamageSystem))]
 [RunsAfter(typeof(MicrobeVisualsSystem))]

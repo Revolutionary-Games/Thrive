@@ -30,6 +30,7 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(SpeciesMember))]
 [ReadsComponent(typeof(WorldPosition))]
 [ReadsComponent(typeof(MicrobeEventCallbacks))]
+[WritesToComponent(typeof(MulticellularGrowth))]
 [WritesToComponent(typeof(Health))]
 [WritesToComponent(typeof(MicrobeColony))]
 [RunsAfter(typeof(OsmoregulationAndHealingSystem))]
