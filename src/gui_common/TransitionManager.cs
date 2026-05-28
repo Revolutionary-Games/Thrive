@@ -164,7 +164,7 @@ public partial class TransitionManager : ControlWithInput
     public void AddSequence(ITransition transition, Action? onFinishedCallback = null, bool skippable = true,
         bool skipPrevious = true)
     {
-        AddSequence(new List<ITransition> { transition }, onFinishedCallback, skippable, skipPrevious);
+        AddSequence([transition], onFinishedCallback, skippable, skipPrevious);
     }
 
     /// <summary>
