@@ -333,6 +333,11 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             return;
         }
 
+        if (CheatManager.ForceSimulationSlowdown)
+        {
+            return;
+        }
+        
         var resultingModifier = fastModeEnabled ? Settings.Instance.AlternativeTimescale.Value : 1;
 
         stage.WorldSimulation.WorldTimeScale = resultingModifier;

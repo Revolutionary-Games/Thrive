@@ -117,6 +117,11 @@ public partial class CheatMenu : CustomWindow
         CheatManager.Speed = value;
     }
 
+    public void SetForceSimulationSlowdown(bool value)
+    {
+        CheatManager.ForceSimulationSlowdown = value;
+    }
+
     /// <summary>
     ///   Applies the currently applied cheats to the GUI.
     /// </summary>

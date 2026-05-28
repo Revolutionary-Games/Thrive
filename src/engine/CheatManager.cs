@@ -14,6 +14,7 @@ public static class CheatManager
     private static float speed;
     private static bool infiniteMP;
     private static bool moveToAnyPatch;
+    private static bool forceSimulationSlowdown;
 
     static CheatManager()
     {
@@ -46,6 +47,11 @@ public static class CheatManager
     ///   Fired whenever the player uses the "Unlock All Organelles" cheat
     /// </summary>
     public static event EventHandler<EventArgs>? OnUnlockAllOrganelles;
+
+    /// <summary>
+    ///   Fired whenever the player uses the "Force Slowdown" cheat
+    /// </summary>
+    public static event EventHandler<EventArgs>? OnNotifyForceSlowDown;
 
     /// <summary>
     ///   You automatically have 100% of all compounds
@@ -195,6 +201,22 @@ public static class CheatManager
     }
 
     /// <summary>
+    ///   Forces the simulation to run slower
+    /// </summary>
+    public static bool ForceSimulationSlowdown
+    {
+        get => forceSimulationSlowdown;
+        set
+        {
+            forceSimulationSlowdown = value;
+            NotifyForceSlowDown();
+
+            if (value)
+                AchievementsManager.ReportCheatsUsed();
+        }
+    }
+
+    /// <summary>
     ///   Forces the player microbe to duplicate without going to the editor
     /// </summary>
     public static void PlayerDuplication()
@@ -227,6 +249,12 @@ public static class CheatManager
     public static void UnlockAllOrganelles()
     {
         OnUnlockAllOrganelles?.Invoke(null, EventArgs.Empty);
+        AchievementsManager.ReportCheatsUsed();
+    }
+
+    public static void NotifyForceSlowDown()
+    {
+        OnNotifyForceSlowDown?.Invoke(null, EventArgs.Empty);
         AchievementsManager.ReportCheatsUsed();
     }
 
