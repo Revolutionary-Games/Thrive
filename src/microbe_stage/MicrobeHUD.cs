@@ -390,8 +390,8 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     {
         var fossils = FossilisedSpecies.CreateListOfFossils(false);
 
-        // TODO: buttons to fossilize multicellular species
-        stage!.WorldSimulation.EntitySystem.Query(new QueryDescription().WithAll<MicrobeSpeciesMember>(),
+        stage!.WorldSimulation.EntitySystem.Query(
+            new QueryDescription().WithAny<MicrobeSpeciesMember, MulticellularSpeciesMember>(),
             (Entity entity, ref SpeciesMember member) =>
             {
                 var species = member.Species;

@@ -249,10 +249,11 @@ public class FossilisedSpecies : IArchivable
     /// </summary>
     public void FossiliseToFile()
     {
-        if (Species is not MicrobeSpecies)
+        if (Species is not MicrobeSpecies and not MulticellularSpecies)
         {
             // At least multicellular species should in theory work already, but it is untested
-            throw new NotImplementedException("Saving non-microbe species is not yet implemented");
+            throw new NotImplementedException(
+                $"Saving a species of type {Species.GetType().Name} is not yet implemented");
         }
 
         // Set the version just before writing

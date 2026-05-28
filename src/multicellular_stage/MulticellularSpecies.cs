@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using Godot;
 using SharedBase.Archive;
@@ -514,6 +515,23 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         // Reproduction mode doesn't affect the visual hash code
 
         return hash;
+    }
+
+    public override string GetDetailString()
+    {
+        var reproductionType =
+            Localization.Translate(ReproductionMethod.GetAttribute<DescriptionAttribute>().Description);
+
+        return base.GetDetailString() + "\n" +
+            Localization.Translate("MULTICELLULAR_SPECIES_DETAIL_TEXT").FormatSafe(ModifiableGameplayCells.Count,
+                CellTypes.Count,
+                reproductionType) + "\n" +
+            Localization.Translate("TOLERANCE_DETAIL_TEXT").FormatSafe(Tolerances.PreferredTemperature,
+                Tolerances.TemperatureTolerance,
+                Tolerances.PressureMinimum,
+                Tolerances.PressureMinimum + Tolerances.PressureTolerance,
+                Math.Round(Tolerances.OxygenResistance * 100, 2),
+                Math.Round(Tolerances.UVResistance * 100, 2));
     }
 
     protected override Dictionary<Compound, float> CalculateBaseReproductionCost()
