@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using Godot;
 
 /// <summary>
@@ -46,6 +47,34 @@ public partial class ThriveopediaWikiPage : ThriveopediaPage, IThriveopediaPage
     public virtual string TranslatedPageName => Localization.Translate(PageContent.Name);
 
     public virtual string? ParentPageName => null;
+
+    public string? TranslatedPageBody
+    {
+        get
+        {
+            StringBuilder builder = new StringBuilder();
+            foreach (var item in PageContent.Sections)
+            {
+                builder.AppendLine(Localization.Translate(item.SectionBody));
+            }
+
+            return builder.ToString();
+        }
+    }
+
+    public string? TranslatedAdicionalSearchContent
+    {
+        get
+        {
+            StringBuilder builder = new StringBuilder();
+            foreach (var item in PageContent.InfoboxData)
+            {
+                builder.AppendLine($"{Localization.Translate(item.Name)} {Localization.Translate(item.DisplayedValue)}");
+            }
+
+            return builder.ToString();
+        }
+    }
 
     /// <summary>
     ///   Creates all wiki pages using the data in wiki.json, in order of their definition. In particular, parents must

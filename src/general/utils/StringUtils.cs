@@ -661,4 +661,43 @@ public static class StringUtils
             .Replace("LEFT_BRACE", "[").Replace("RIGHT_BRACE", "]")
             .Replace("LEFT_CURLY_BRACE", "{").Replace("RIGHT_CURLY_BRACE", "}");
     }
+
+    /// <summary>
+    /// Calculates the distance between two strings using Levenshtein distance
+    /// </summary>
+    public static int DoStringCostBettwen(string target, string match)
+    {
+        if (target.Length == 0 || match.Length == 0)
+        {
+            return Mathf.Max(target.Length, match.Length);
+        }
+
+        int[] prevrow = new int[target.Length];
+        int[] currrow = new int[target.Length];
+
+        for (int x = 0; x < target.Length; x++)
+        {
+            prevrow[x] = x;
+        }
+
+        for (int x = 1; x < match.Length; x++)
+        {
+            currrow[0] = x;
+            for (int y = 1; y < target.Length; y++)
+            {
+                int subCost = target[y] == match[x] ? 0 : 1;
+                int a = currrow[y - 1] + 1;
+                int b = prevrow[y] + 1;
+                int c = prevrow[y - 1] + subCost;
+                int min = Math.Min(a, b);
+                min = Math.Min(min, c);
+
+                currrow[y] = min;
+            }
+
+            currrow.CopyTo(prevrow, 0);
+        }
+
+        return currrow[target.Length - 1];
+    }
 }

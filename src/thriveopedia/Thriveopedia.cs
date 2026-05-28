@@ -765,10 +765,28 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
 
         var newTextLowercase = newText.ToLower(CultureInfo.CurrentCulture);
 
+        var distanceDictionary = new Dictionary<IThriveopediaPage, int>();
+
         foreach (var page in allPages)
         {
-            var visible = page.Key.TranslatedPageName.ToLower(CultureInfo.CurrentCulture)
-                .Contains(newTextLowercase);
+            string pagename = page.Key.TranslatedPageName.ToLower(CultureInfo.CurrentCulture);
+
+            distanceDictionary[page.Key] = StringUtils.DoStringCostBettwen(pagename, newTextLowercase);
+        }
+
+        // A thresold for similar results
+        var costThreshold = distanceDictionary.Values.Min() + 2;
+
+        foreach (var page in allPages)
+        {
+            string pagename = page.Key.TranslatedPageName.ToLower(CultureInfo.CurrentCulture);
+            string? pagecontent = page.Key.TranslatedPageBody?.ToLower(CultureInfo.CurrentCulture);
+            string? adicionalContent = page.Key.TranslatedAdicionalSearchContent?.ToLower(CultureInfo.CurrentCulture);
+
+            var fuzzySearch = distanceDictionary[page.Key] < costThreshold;
+            var bodySearch = pagecontent != null && pagecontent.Contains(newTextLowercase);
+            var addicionalSearch = adicionalContent != null && adicionalContent.Contains(newTextLowercase);
+            var visible = fuzzySearch || pagename.Contains(newTextLowercase) || bodySearch || addicionalSearch;
 
             if (visible && page.Key is ThriveopediaStagePage)
             {

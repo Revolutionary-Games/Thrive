@@ -14,6 +14,16 @@ public interface IThriveopediaPage
     public string TranslatedPageName { get; }
 
     /// <summary>
+    ///   The translated body text of this page.
+    /// </summary>
+    public string? TranslatedPageBody { get; }
+
+    /// <summary>
+    ///   Adicional translated content for the search function
+    /// </summary>
+    public string? TranslatedAdicionalSearchContent { get; }
+
+    /// <summary>
     ///   The internal name of the parent of this page in the tree, or null if this page is at the top level.
     /// </summary>
     public string? ParentPageName { get; }

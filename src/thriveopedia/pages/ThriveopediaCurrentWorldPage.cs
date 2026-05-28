@@ -18,6 +18,8 @@ public partial class ThriveopediaCurrentWorldPage : ThriveopediaPage, IThriveope
 
     public string PageName => "CurrentWorld";
     public string TranslatedPageName => Localization.Translate("THRIVEOPEDIA_CURRENT_WORLD_PAGE_TITLE");
+    public string? TranslatedPageBody => null;
+    public string? TranslatedAdicionalSearchContent => null;
 
     public string? ParentPageName => null;
 

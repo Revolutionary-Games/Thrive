@@ -30,6 +30,8 @@ public partial class ThriveopediaEvolutionaryTreePage : ThriveopediaPage, IThriv
     public string PageName => "EvolutionaryTree";
 
     public string TranslatedPageName => Localization.Translate("THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE");
+    public string? TranslatedPageBody => null;
+    public string? TranslatedAdicionalSearchContent => null;
 
     public string ParentPageName => "CurrentWorld";
 

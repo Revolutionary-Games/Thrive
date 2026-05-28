@@ -40,6 +40,8 @@ public partial class ThriveopediaSpeciesInfoPage : ThriveopediaPage, IThriveoped
 
     public string TranslatedPageName =>
         Localization.Translate("THRIVEOPEDIA_SPECIES_PAGE").FormatSafe(SpeciesToShow.FormattedName);
+    public string? TranslatedPageBody => null;
+    public string? TranslatedAdicionalSearchContent => null;
 
     public string ParentPageName => "WorldSpecies";
 

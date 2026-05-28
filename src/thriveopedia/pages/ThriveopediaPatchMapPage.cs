@@ -26,6 +26,8 @@ public partial class ThriveopediaPatchMapPage : ThriveopediaPage, IThriveopediaP
 
     public string PageName => "PatchMap";
     public string TranslatedPageName => Localization.Translate("THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE");
+    public string? TranslatedPageBody => null;
+    public string? TranslatedAdicionalSearchContent => null;
 
     public Action<Patch>? OnSelectedPatchChanged { get; set; }
 
