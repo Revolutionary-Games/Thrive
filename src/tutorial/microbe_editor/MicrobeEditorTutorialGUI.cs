@@ -53,6 +53,9 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
     private CustomWindow nucleusTutorial = null!;
 
     [Export]
+    private CustomWindow specializationTutorial = null!;
+
+    [Export]
     private CustomWindow bindingAgentsTutorial = null!;
 
     [Export]
@@ -540,6 +543,25 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
             else
             {
                 digestionStatTutorial.Hide();
+            }
+        }
+    }
+
+    public bool SpecializationTutorialVisible
+    {
+        get => specializationTutorial.Visible;
+        set
+        {
+            if (value == specializationTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                specializationTutorial.Show();
+            }
+            else
+            {
+                specializationTutorial.Hide();
             }
         }
     }

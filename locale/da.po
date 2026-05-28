@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-10 20:05+0300\n"
-"PO-Revision-Date: 2026-05-01 09:17+0000\n"
+"POT-Creation-Date: 2026-05-25 18:16+0300\n"
+"PO-Revision-Date: 2026-05-22 15:37+0000\n"
 "Last-Translator: Søren Hansen <pjuske4life@gmail.com>\n"
 "Language-Team: Danish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/da/>\n"
 "Language: da\n"
@@ -107,9 +107,6 @@ msgstr "Avanceret"
 
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Åben visning af avancerede indstillinger"
-
-msgid "AEROBIC_NITROGEN_FIXATION"
-msgstr "Aerob Kvælstoffiksering"
 
 msgid "AEROBIC_RESPIRATION"
 msgstr "Aerob respiration"
@@ -707,6 +704,7 @@ msgstr "Cellulose"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Denne membran har en væg, som resulterer i bedre overordnet beskyttelse imod skade, og særligt imod fysik skade. Det koster også mindre energi at holde sin form, men kan ikke hurtigt absorbere ressourcer, og er langsommere. [b]Cellulase kan fordøje denne væg[/b] hvilket gør den sårbar overfor opslugning af rovdyr."
 
+#, fuzzy
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
 msgstr ""
 "I flercelle viser dette den gennemsnitlige specialiseringsbonus for alle cellerne.\n"
@@ -1841,6 +1839,7 @@ msgstr "Dobbelt"
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
 msgstr "Dobbeltklik for at se i fuld skærm"
 
+#, fuzzy
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "En membran med to lag, den har bedre beskytelse mod skade og bruger mindre energi på ikke at miste formen. Cellen bevæger sig dog langsommere, og absorberingshastigheden af ressourcer sænkes også."
 
@@ -1965,6 +1964,28 @@ msgstr ""
 "Se om du har låst op for [b]bindingsagenter[/b] endnu. Hvis du har, så prøv at placere dem nu."
 
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
+msgstr ""
+"For at fortsætte udviklingen skal du før eller siden placere en [b]cellekerne[/b].\n"
+"\n"
+"Ved at tilføje en [b]cellekerne[/b] låser du op for mere avancerede organeller, såsom [b]bindingsagenter[/b], der tillader dig at binde dig med andre celler af din art for derved at blive [u]flercellet[/u].\n"
+"\n"
+"Prøv at placere en [b]cellekerne[/b] for at lukke denne vejledning.\n"
+"\n"
+"Hvis din celle endnu ikke er klar til en cellekerne, så brug [b]fortryd knappen[/b] til at [u]fjerne[/u] cellekernen igen."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
+msgstr ""
+"For at fortsætte udviklingen skal du før eller siden placere en [b]cellekerne[/b].\n"
+"\n"
+"Ved at tilføje en [b]cellekerne[/b] låser du op for mere avancerede organeller, såsom [b]bindingsagenter[/b], der tillader dig at binde dig med andre celler af din art for derved at blive [u]flercellet[/u].\n"
+"\n"
+"Prøv at placere en [b]cellekerne[/b] for at lukke denne vejledning.\n"
+"\n"
+"Hvis din celle endnu ikke er klar til en cellekerne, så brug [b]fortryd knappen[/b] til at [u]fjerne[/u] cellekernen igen."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
 msgstr ""
 "For at fortsætte udviklingen skal du før eller siden placere en [b]cellekerne[/b].\n"
 "\n"
@@ -3824,6 +3845,10 @@ msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] kan laves o
 msgid "MICROBE_LOADING_TIP_22"
 msgstr "Hvert besøg til editoren i Mikrobestadiet repræsenterer [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] milioner af års evolution."
 
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_23"
+msgstr "Jo flere (eller længere) flageller du har, desto hurtigere bevæger du dig - vroom vroom! Det koster dog mere ATP."
+
 msgid "MICROBE_LOADING_TIP_3"
 msgstr "Du kan opsluge klumper af flydende materiale, uanset om de er dele af døde celler eller mineraler."
 
@@ -5073,6 +5098,10 @@ msgstr "Tryk"
 msgid "PRESSURE_SHORT"
 msgstr "Tryk"
 
+#, fuzzy
+msgid "PRESSURE_TOLERANCE"
+msgstr "Din arts fortrukne tryk. Konfigureret som minimum og maksimum værdier med hver deres slider. Når forholdene er uden for det spænd vil det have en negativ effekt på din art. Ændre spændet ved at fjerne markeringen i afkrydsningsfeltet under slideren."
+
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "Din arts fortrukne tryk. Konfigureret som minimum og maksimum værdier med hver deres slider. Når forholdene er uden for det spænd vil det have en negativ effekt på din art. Ændre spændet ved at fjerne markeringen i afkrydsningsfeltet under slideren."
 
@@ -5374,6 +5403,10 @@ msgid "ROTATE_RIGHT"
 msgstr "Rotér højre"
 
 msgid "ROTATION_COLON"
+msgstr "Rotation:"
+
+#, fuzzy
+msgid "ROTATION_FORCE"
 msgstr "Rotation:"
 
 msgid "RUNOFF_EVENT"
@@ -5881,9 +5914,6 @@ msgstr "Art at finde:"
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} med bestand på: {1}"
 
-msgid "SPEED"
-msgstr "Hastighed"
-
 msgid "SPEED_COLON"
 msgstr "Hastighed:"
 
@@ -6178,6 +6208,10 @@ msgstr "Temperatur"
 msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
+#, fuzzy
+msgid "TEMPERATURE_TOLERANCE_RANGE"
+msgstr "Din arts foretrukne temperatur. Når foreholdne er uden for fleksibilitetsområdet omkring den ideelle temperatur, vil det have en negativ effekt der gør det sværere at overleve. Tilpas ved at bruge skyderne til de patches som du har tænkt dig at spille i."
+
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "Din arts foretrukne temperatur. Når foreholdne er uden for fleksibilitetsområdet omkring den ideelle temperatur, vil det have en negativ effekt der gør det sværere at overleve. Tilpas ved at bruge skyderne til de patches som du har tænkt dig at spille i."
 
@@ -6320,6 +6354,9 @@ msgstr "Thrive licenser"
 
 msgid "THRIVIN_ACHIEVEMENT"
 msgstr "Stortrives"
+
+msgid "THRUST_FORCE"
+msgstr ""
 
 msgid "THYLAKOIDS"
 msgstr "Thylakoider"
@@ -7413,9 +7450,11 @@ msgstr ""
 msgid "WIKI_BINDING_AGENT_UPGRADES"
 msgstr "Ingen opgraderinger."
 
+#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_EFFECTS"
 msgstr "Celler med [b]Bioluminescerende vakuoler[/b] har en øget ilttolerance."
 
+#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_INTRO"
 msgstr "Skaber [thrive:compound type=\"sunlight\"][/thrive:compound] og øger ilttolerancen for en celle der har den."
 
@@ -7515,6 +7554,7 @@ msgstr ""
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_UPGRADES"
 msgstr "Ingen opgraderinger."
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_EFFECTS"
 msgstr "Ingen effekter."
 
@@ -7717,7 +7757,8 @@ msgstr ""
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr "Ingen opgraderinger."
 
-msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+#, fuzzy
+msgid "WIKI_GLYCOLYSIS_COMMA_NITROGEN_FIXATION"
 msgstr "Glykolyse, Anaerob kvælstoffiksering"
 
 msgid "WIKI_HEADING_APPENDICES"
@@ -7868,6 +7909,7 @@ msgstr "3D Bevægelse"
 msgid "WIKI_HELP_AND_TIPS_MORE_GAME_INFO"
 msgstr "3D Bevægelse"
 
+#, fuzzy
 msgid "WIKI_HYDROGENASE_EFFECTS"
 msgstr "Ingen effekter."
 
@@ -7893,6 +7935,7 @@ msgstr ""
 msgid "WIKI_HYDROGENASE_UPGRADES"
 msgstr "Ingen opgraderinger."
 
+#, fuzzy
 msgid "WIKI_HYDROGENOSOME_EFFECTS"
 msgstr "Ingen effekter."
 
@@ -8007,6 +8050,7 @@ msgstr ""
 "\n"
 "Siden nedenunder forklarer de forskellige mekanikker. Du er velkommen til at gennemse siderne for råd og hjælp til spillet."
 
+#, fuzzy
 msgid "WIKI_MELANOSOME_EFFECTS"
 msgstr "Ingen effekter."
 
@@ -8037,6 +8081,7 @@ msgstr "3D Bevægelse"
 msgid "WIKI_MELANOSOME_UPGRADES"
 msgstr "Ingen opgraderinger."
 
+#, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
 msgstr "Ingen effekter."
 
@@ -8080,6 +8125,7 @@ msgstr ""
 msgid "WIKI_MICROBE_STAGE_INTRO"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "Ingen effekter."
 
@@ -8154,6 +8200,7 @@ msgstr "Ingen opgraderinger"
 msgid "WIKI_NATION_EDITOR"
 msgstr "Nationseditor"
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "Ingen effekter."
 
@@ -8178,6 +8225,7 @@ msgstr ""
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "Ingen opgraderinger."
 
+#, fuzzy
 msgid "WIKI_NITROPLAST_EFFECTS"
 msgstr "Ingen effekter."
 
@@ -8685,6 +8733,7 @@ msgstr ""
 msgid "WIKI_THE_PATCH_MAP_THE_PATCH_MAP"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_EFFECTS"
 msgstr "Ingen specielle effekter."
 
@@ -8733,6 +8782,7 @@ msgstr ""
 msgid "WIKI_TOXIN_VACUOLE_UPGRADES"
 msgstr "Ingen opgraderinger."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_EFFECTS"
 msgstr "Ingen effekter."
 
@@ -8917,6 +8967,12 @@ msgstr "Zoom ind"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom ud"
+
+#~ msgid "SPEED"
+#~ msgstr "Hastighed"
+
+#~ msgid "AEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Aerob Kvælstoffiksering"
 
 #~ msgid "AEROBIC_NITROGEN_FIXING"
 #~ msgstr "Aerob Kvælstoffiksering"

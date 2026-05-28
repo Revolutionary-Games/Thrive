@@ -391,12 +391,13 @@ public static class MulticellularGrowthHelpers
 
         ref var environmentalEffects = ref entity.Get<MicrobeEnvironmentalEffects>();
 
-        environmentalEffects.ApplyEffects(resolvedTolerances,
-            multicellularSpeciesType.MulticellularCellType.SpecializationBonus *
-            multicellularSpeciesType.Species.GetAdjacencySpecializationBonus(0), ref entity.Get<BioProcesses>());
+        var totalSpecializationBonus = multicellularSpeciesType.MulticellularCellType.CellTypeSpecializationBonus *
+            multicellularSpeciesType.Species.GetAdjacencySpecializationBonus(0);
+
+        environmentalEffects.ApplyEffects(resolvedTolerances, totalSpecializationBonus, ref entity.Get<BioProcesses>());
 
         cellProperties.ReApplyCellTypeProperties(ref environmentalEffects, entity,
-            multicellularSpeciesType.MulticellularCellType, multicellularSpeciesType.Species, worldSimulation,
-            workMemory1, workMemory2);
+            multicellularSpeciesType.MulticellularCellType, multicellularSpeciesType.Species, totalSpecializationBonus,
+            worldSimulation, workMemory1, workMemory2);
     }
 }

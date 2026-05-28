@@ -10,7 +10,7 @@
 [ext_resource type="FontVariation" uid="uid://cqork3l186w1c" path="res://assets/fonts/variants/Jura-Bold.tres" id="9_jkhed"]
 [ext_resource type="PackedScene" uid="uid://tna206f2gtkv" path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" id="10"]
 
-[node name="MicrobeEditorTutorialGUI" type="Control" unique_id=1798015826 node_paths=PackedStringArray("editorEntryReport", "patchMap", "cellEditorIntroduction", "cellEditorUndo", "cellEditorRedo", "cellEditorClosingWords", "autoEvoPrediction", "staySmallTutorial", "negativeAtpBalanceTutorial", "chemoreceptorPlacementTutorial", "madeNoChangesTutorial", "flagellumPlacementTutorial", "modifyOrganelleTutorial", "atpBalanceIntroduction", "nucleusTutorial", "bindingAgentsTutorial", "tolerancesTabTutorial", "openTolerancesTabTutorial", "earlyGameGoalTutorial", "compoundBalanceTutorial", "migrationTutorial", "foodChainTutorial", "digestionStatTutorial", "CellEditorUndoHighlight", "CellEditorRedoHighlight", "AutoEvoPredictionHighlight", "AtpBalanceBarHighlight", "CompoundBalanceHighlight")]
+[node name="MicrobeEditorTutorialGUI" type="Control" unique_id=1798015826 node_paths=PackedStringArray("editorEntryReport", "patchMap", "cellEditorIntroduction", "cellEditorUndo", "cellEditorRedo", "cellEditorClosingWords", "autoEvoPrediction", "staySmallTutorial", "negativeAtpBalanceTutorial", "chemoreceptorPlacementTutorial", "madeNoChangesTutorial", "flagellumPlacementTutorial", "modifyOrganelleTutorial", "atpBalanceIntroduction", "nucleusTutorial", "specializationTutorial", "bindingAgentsTutorial", "tolerancesTabTutorial", "openTolerancesTabTutorial", "earlyGameGoalTutorial", "compoundBalanceTutorial", "migrationTutorial", "foodChainTutorial", "digestionStatTutorial", "CellEditorUndoHighlight", "CellEditorRedoHighlight", "AutoEvoPredictionHighlight", "AtpBalanceBarHighlight", "CompoundBalanceHighlight")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -36,6 +36,7 @@ flagellumPlacementTutorial = NodePath("FlagellumPlacementTutorial")
 modifyOrganelleTutorial = NodePath("ModifyOrganelleTutorial")
 atpBalanceIntroduction = NodePath("AtpBalanceIntroduction")
 nucleusTutorial = NodePath("NucleusTutorial")
+specializationTutorial = NodePath("SpecializationTutorial")
 bindingAgentsTutorial = NodePath("BindingAgentsTutorial")
 tolerancesTabTutorial = NodePath("TolerancesTabTutorial")
 openTolerancesTabTutorial = NodePath("OpenTolerancesTabTutorial")
@@ -607,6 +608,24 @@ Description = "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 ShowDelay = 0.7
 PreventsMouseCaptureWhileOpen = true
 
+[node name="SpecializationTutorial" parent="." unique_id=1429245187 instance=ExtResource("8")]
+custom_minimum_size = Vector2(360, 300)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -423.0
+offset_top = -321.0
+offset_right = -9.0
+offset_bottom = 18.0
+grow_horizontal = 0
+grow_vertical = 2
+Description = "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
+ShowDelay = 0.7
+PreventsMouseCaptureWhileOpen = true
+
 [node name="BindingAgentsTutorial" type="Control" parent="." unique_id=926938060 node_paths=PackedStringArray("label")]
 visible = false
 custom_minimum_size = Vector2(360, 300)
@@ -804,6 +823,7 @@ text = "GOT_IT"
 [connection signal="hidden" from="OpenTolerancesTabTutorial" to="." method="OnSpecificCloseClicked" binds= ["OpenTolerancesTabTutorial"]]
 [connection signal="hidden" from="EarlyGoalTutorial" to="." method="OnSpecificCloseClicked" binds= ["EarlyGameGoalTutorial"]]
 [connection signal="hidden" from="NucleusTutorial" to="." method="OnSpecificCloseClicked" binds= ["NucleusTutorial"]]
+[connection signal="hidden" from="SpecializationTutorial" to="." method="OnSpecificCloseClicked" binds= ["MicrobeSpecializationTutorial"]]
 [connection signal="hidden" from="BindingAgentsTutorial" to="." method="OnSpecificCloseClicked" binds= ["BindingAgentsTutorial"]]
 [connection signal="pressed" from="BindingAgentsTutorial/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= ["BindingAgentsTutorial"]]
 [connection signal="hidden" from="CompoundBalanceTutorial" to="." method="OnSpecificCloseClicked" binds= ["CompoundBalancesTutorial"]]

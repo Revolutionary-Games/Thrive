@@ -126,6 +126,9 @@ public partial class CellBodyPlanEditorComponent :
     private OrganismStatisticsPanel organismStatisticsPanel = null!;
 
     [Export]
+    private ScrollContainer rightPanelScrollContainer = null!;
+
+    [Export]
     private CustomConfirmationDialog negativeAtpPopup = null!;
 
     [Export]
@@ -716,9 +719,7 @@ public partial class CellBodyPlanEditorComponent :
 
     public Dictionary<Compound, float> GetAdditionalCapacities(out float nominalCapacity)
     {
-        return CellBodyPlanInternalCalculations.GetTotalSpecificCapacity(
-            editedMicrobeCells.AsModifiable().Select(o => o.Data!),
-            out nominalCapacity);
+        return CellBodyPlanInternalCalculations.GetTotalSpecificCapacity(editedMicrobeCells, out nominalCapacity);
     }
 
     public void OnCurrentPatchUpdated(Patch patch)
@@ -810,7 +811,8 @@ public partial class CellBodyPlanEditorComponent :
     {
         if (AddCell(CellTypeFromName(activeActionName ?? throw new InvalidOperationException("no action active"))))
         {
-            // Placed a cell, could trigger a tutorial or something
+            // TODO: could send the cell data here
+            Editor.TutorialState.SendEvent(TutorialEventType.MulticellularEditorCellPlaced, EventArgs.Empty, this);
         }
     }
 
@@ -1351,18 +1353,19 @@ public partial class CellBodyPlanEditorComponent :
         var maximumMovementDirection =
             MicrobeInternalCalculations.MaximumSpeedDirection(cellType.ModifiableOrganelles);
 
-        var specialization =
+        // Deliberately uses cell type specialization bonus without adjacency,
+        // because this is for editor cell type tooltips
+        var totalSpecializationBonus =
             MicrobeInternalCalculations.CalculateSpecializationBonus(cellType.ModifiableOrganelles, tempMemory3);
 
         ProcessSystem.ComputeEnergyBalanceFull(cellType.ModifiableOrganelles, Editor.CurrentPatch.Biome,
-            environmentalTolerances, specialization,
-            cellType.MembraneType,
-            maximumMovementDirection, moving, true, Editor.CurrentGame.GameWorld.WorldSettings,
+            environmentalTolerances, totalSpecializationBonus, cellType.MembraneType, maximumMovementDirection,
+            moving, true, Editor.CurrentGame.GameWorld.WorldSettings,
             organismStatisticsPanel.CompoundAmountType, null, energyBalanceInfo);
 
         AddCellTypeCompoundBalance(balances, cellType.ModifiableOrganelles, organismStatisticsPanel.BalanceDisplayType,
             organismStatisticsPanel.CompoundAmountType, Editor.CurrentPatch.Biome, energyBalanceInfo,
-            environmentalTolerances, specialization);
+            environmentalTolerances, totalSpecializationBonus);
 
         tooltip.DisplayName = cellType.CellTypeName;
         tooltip.MutationPointCost = Math.Min(cellType.MPCost * Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier,
@@ -1370,7 +1373,7 @@ public partial class CellBodyPlanEditorComponent :
 
         tempCompoundSources.Clear();
         ProcessSystem.CalculateInputCompoundsNeededForOutputs(cellType.ModifiableOrganelles, Editor.CurrentPatch.Biome,
-            environmentalTolerances, specialization,
+            environmentalTolerances, totalSpecializationBonus,
             organismStatisticsPanel.CompoundAmountType, true, tempCompoundSources);
 
         Editor.CurrentPatch.Biome.GetProducedCompoundsThatDependOnVarying(tempCompoundSources,
@@ -1383,18 +1386,19 @@ public partial class CellBodyPlanEditorComponent :
         tooltip.UpdateHealthIndicator(MicrobeInternalCalculations.CalculateHealth(environmentalTolerances,
             cellType.MembraneType, cellType.MembraneRigidity));
 
-        tooltip.UpdateStorageIndicator(
-            MicrobeInternalCalculations.GetTotalNominalCapacity(cellType.ModifiableOrganelles));
+        tooltip.UpdateStorageIndicator(MicrobeInternalCalculations.GetTotalNominalCapacity(
+            cellType.ModifiableOrganelles, totalSpecializationBonus));
 
         tooltip.UpdateSpeedIndicator(MicrobeInternalCalculations.CalculateSpeed(cellType.ModifiableOrganelles,
-            cellType.MembraneType, cellType.MembraneRigidity, cellType.IsBacteria, false));
+            cellType.MembraneType, cellType.MembraneRigidity, cellType.IsBacteria, totalSpecializationBonus,
+            false));
 
-        tooltip.UpdateRotationSpeedIndicator(
-            MicrobeInternalCalculations.CalculateRotationSpeed(cellType.ModifiableOrganelles));
+        tooltip.UpdateRotationSpeedIndicator(MicrobeInternalCalculations.CalculateRotationSpeed(
+            cellType.ModifiableOrganelles, totalSpecializationBonus));
 
         tooltip.UpdateSizeIndicator(cellType.Organelles.Sum(o => o.Definition.HexCount));
-        tooltip.UpdateDigestionSpeedIndicator(
-            MicrobeInternalCalculations.CalculateTotalDigestionSpeed(cellType.ModifiableOrganelles));
+        tooltip.UpdateDigestionSpeedIndicator(MicrobeInternalCalculations.CalculateTotalDigestionSpeed(
+            cellType.ModifiableOrganelles, totalSpecializationBonus));
 
         button.ShowInsufficientATPWarning = energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumption;
 
@@ -1619,8 +1623,7 @@ public partial class CellBodyPlanEditorComponent :
                 amountType, biome, energyBalance, tolerances, totalSpecialization);
         }
 
-        specificStorages ??= CellBodyPlanInternalCalculations.GetTotalSpecificCapacity(cells.Select(o => o.Data!),
-            out nominalStorage);
+        specificStorages ??= CellBodyPlanInternalCalculations.GetTotalSpecificCapacity(cells, out nominalStorage);
 
         return ProcessSystem.ComputeCompoundFillTimes(compoundBalanceData, nominalStorage, specificStorages);
     }

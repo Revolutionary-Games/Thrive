@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-10 20:05+0300\n"
-"PO-Revision-Date: 2026-05-01 09:17+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2026-05-25 18:16+0300\n"
+"PO-Revision-Date: 2026-05-22 15:37+0000\n"
+"Last-Translator: DiversoCortez <decaiotreis@proton.me>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -107,9 +107,6 @@ msgstr "Avançado"
 
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Abrir as configurações avançadas"
-
-msgid "AEROBIC_NITROGEN_FIXATION"
-msgstr "Fixação Aeróbica de Nitrogênio"
 
 msgid "AEROBIC_RESPIRATION"
 msgstr "Respiração Aeróbica"
@@ -1849,6 +1846,7 @@ msgstr "Dupla"
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
 msgstr "Clique duas vezes para ver em tela cheia"
 
+#, fuzzy
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Uma membrana com duas camadas, tem melhor proteção contra dano e leva menos energia para não se deformar. No entanto, diminui um pouco sua velocidade e diminui a taxa em que pode absorver recursos."
 
@@ -1974,6 +1972,28 @@ msgstr ""
 "Se a sua célula não estiver pronta para o núcleo, você pode usar o  [b]botão de desfazer[/b] para [u]reverter[/u] o núcleo."
 
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
+msgstr ""
+"Para continuar progredindo, você eventualmente vai querer adicionar um [b]núcleo[/b].\n"
+"\n"
+"Adicionar o [b]núcleo[/b] irá desbloquear organelas mais avançadas, como o [b]agente ligante[/b], o qual te permitirá se ligar com outras células de sua espécie a virar [u]multicelMulticelularular[/u].\n"
+"\n"
+"Tente colocar um [b]núcleo[/b] para fechar este tutorial\n"
+"\n"
+"Se a sua célula não estiver pronta para o núcleo, você pode usar o  [b]botão de desfazer[/b] para [u]reverter[/u] o núcleo."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
+msgstr ""
+"Para continuar progredindo, você eventualmente vai querer adicionar um [b]núcleo[/b].\n"
+"\n"
+"Adicionar o [b]núcleo[/b] irá desbloquear organelas mais avançadas, como o [b]agente ligante[/b], o qual te permitirá se ligar com outras células de sua espécie a virar [u]multicelMulticelularular[/u].\n"
+"\n"
+"Tente colocar um [b]núcleo[/b] para fechar este tutorial\n"
+"\n"
+"Se a sua célula não estiver pronta para o núcleo, você pode usar o  [b]botão de desfazer[/b] para [u]reverter[/u] o núcleo."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
 msgstr ""
 "Para continuar progredindo, você eventualmente vai querer adicionar um [b]núcleo[/b].\n"
 "\n"
@@ -3839,6 +3859,10 @@ msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] pode ser co
 msgid "MICROBE_LOADING_TIP_22"
 msgstr "Cada visita ao editor no Estágio Microbial representa [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] milhão(ões) de anos de evolução."
 
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_23"
+msgstr "Quanto mais (ou mais longos) flagelos você tiver, mais rápido você vai - vrum vrum! Só que você gasta mais ATP."
+
 msgid "MICROBE_LOADING_TIP_3"
 msgstr "Você pode fagocitar pedaços de matéria flutuante, sejam eles partes de células mortas ou minerais."
 
@@ -5097,6 +5121,10 @@ msgstr "Pressão"
 msgid "PRESSURE_SHORT"
 msgstr "Pressão"
 
+#, fuzzy
+msgid "PRESSURE_TOLERANCE"
+msgstr "A pressão preferida pela sua espécie e a faixa de flexibilidade ao redor dela. Quando em condições fora dessa faixa, haverá diversos efeitos negativos na sua espécie. Mude a pressão preferida e a flexibilidade com os sliders."
+
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "A pressão preferida pela sua espécie e a faixa de flexibilidade ao redor dela. Quando em condições fora dessa faixa, haverá diversos efeitos negativos na sua espécie. Mude a pressão preferida e a flexibilidade com os sliders."
 
@@ -5407,6 +5435,10 @@ msgid "ROTATE_RIGHT"
 msgstr "Girar à direita"
 
 msgid "ROTATION_COLON"
+msgstr "Rotação:"
+
+#, fuzzy
+msgid "ROTATION_FORCE"
 msgstr "Rotação:"
 
 msgid "RUNOFF_EVENT"
@@ -5918,9 +5950,6 @@ msgstr "Espécies a Encontrar:"
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} com população: {1}"
 
-msgid "SPEED"
-msgstr "Velocidade"
-
 msgid "SPEED_COLON"
 msgstr "Velocidade:"
 
@@ -6215,6 +6244,10 @@ msgstr "Temperatura"
 msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
+#, fuzzy
+msgid "TEMPERATURE_TOLERANCE_RANGE"
+msgstr "A temperatura preferida pela sua espécie. Quando em condições fora da faixa de flexibilidade ao redor da temperatura ideal, haverá diversos efeitos negativos que tornarão sobreviver mais difícil. Adapte-se usando os sliders para as regiões em que você pretende jogar."
+
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "A temperatura preferida pela sua espécie. Quando em condições fora da faixa de flexibilidade ao redor da temperatura ideal, haverá diversos efeitos negativos que tornarão sobreviver mais difícil. Adapte-se usando os sliders para as regiões em que você pretende jogar."
 
@@ -6361,6 +6394,9 @@ msgstr "Licenças de Thrive"
 
 msgid "THRIVIN_ACHIEVEMENT"
 msgstr "Prosperar"
+
+msgid "THRUST_FORCE"
+msgstr ""
 
 msgid "THYLAKOIDS"
 msgstr "Tilacoides"
@@ -7404,6 +7440,7 @@ msgstr "Nitrogenase"
 msgid "WIKI_AWARE_STAGE_UI"
 msgstr "Em breve."
 
+#, fuzzy
 msgid "WIKI_AXON_EFFECTS"
 msgstr ""
 "Para cada célula em um organismo multicelular que contenha um [b]Axônio[/b], a capacidade cerebral desse organismo aumenta proporcionalmente ao volume da célula. Células com [b]Axônios[/b] são classificadas como tendo tipo de tecido cerebral.\n"
@@ -7592,6 +7629,7 @@ msgstr "Proteínas Quimiossintetizantes"
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_UPGRADES"
 msgstr "Sem melhoras."
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_EFFECTS"
 msgstr "Sem efeitos."
 
@@ -7856,7 +7894,8 @@ msgstr ""
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr "Sem melhoras."
 
-msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+#, fuzzy
+msgid "WIKI_GLYCOLYSIS_COMMA_NITROGEN_FIXATION"
 msgstr "Glicólise, Fixação Anaeróbica de Nitrogênio"
 
 msgid "WIKI_HEADING_APPENDICES"
@@ -8007,6 +8046,7 @@ msgstr "Processos"
 msgid "WIKI_HELP_AND_TIPS_MORE_GAME_INFO"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_HYDROGENASE_EFFECTS"
 msgstr "Sem efeitos."
 
@@ -8174,6 +8214,7 @@ msgstr "Mecânicas"
 msgid "WIKI_MECHANICS_ROOT_INTRO"
 msgstr "Axônio"
 
+#, fuzzy
 msgid "WIKI_MELANOSOME_EFFECTS"
 msgstr "Sem efeitos."
 
@@ -8203,6 +8244,7 @@ msgstr "Metabolossomos são aglomerados envoltos com cascas de proteínas. Eles 
 msgid "WIKI_MELANOSOME_UPGRADES"
 msgstr "Sem melhoras."
 
+#, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
 msgstr "Sem efeitos."
 
@@ -8317,6 +8359,7 @@ msgstr ""
 "\n"
 "Para sobreviver neste mundo hostil, você precisará coletar compostos e evoluir por gerações para competir contra outras espécies de micróbios."
 
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "Sem efeitos."
 
@@ -8417,6 +8460,7 @@ msgstr ""
 msgid "WIKI_NATION_EDITOR"
 msgstr "Editor de Nação"
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "Sem efeitos."
 
@@ -8449,6 +8493,7 @@ msgstr "Nitrogenase é uma enzima que consegue usar nitrogênio gasoso e energia
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "Sem melhoras."
 
+#, fuzzy
 msgid "WIKI_NITROPLAST_EFFECTS"
 msgstr "Sem efeitos."
 
@@ -8849,6 +8894,7 @@ msgstr "Agente de Sinalização"
 msgid "WIKI_SIGNALING_AGENT_UPGRADES"
 msgstr "Sem melhoras."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_EFFECTS"
 msgstr ""
 "Permite a uma célula ejetar [thrive:compound type=\"mucilage\"][/thrive:compound] para se impelir. Ejetar [thrive:compound type=\"mucilage\"][/thrive:compound] gera uma grande quantidade de velocidade por um período curto de tempo. A ejeção pode ser sustentada por mais tempo dependendo da quantidade disponível de [thrive:compound type=\"mucilage\"][/thrive:compound].\n"
@@ -9016,6 +9062,7 @@ msgstr "O termoplasto é uma estrutura de membrana dupla contendo pigmentos term
 msgid "WIKI_THE_PATCH_MAP_THE_PATCH_MAP"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_EFFECTS"
 msgstr "Sem efeitos especiais."
 
@@ -9091,6 +9138,7 @@ msgstr "O vacúolo de toxinas é um vacúolo que foi modificado para a produçã
 msgid "WIKI_TOXIN_VACUOLE_UPGRADES"
 msgstr "Sem melhoras."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_EFFECTS"
 msgstr "Sem efeitos."
 
@@ -9283,6 +9331,12 @@ msgstr "Aumentar o zoom"
 
 msgid "ZOOM_OUT"
 msgstr "Diminuir o zoom"
+
+#~ msgid "SPEED"
+#~ msgstr "Velocidade"
+
+#~ msgid "AEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Fixação Aeróbica de Nitrogênio"
 
 #~ msgid "AEROBIC_NITROGEN_FIXING"
 #~ msgstr "Fixação Aeróbica de Nitrogênio"

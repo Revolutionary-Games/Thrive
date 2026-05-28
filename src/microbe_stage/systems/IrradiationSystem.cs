@@ -59,7 +59,7 @@ public partial class IrradiationSystem(World world) : BaseSystem<World, float>(w
             if (source.Radius <= 0)
                 return;
 
-            // Setup detection when missing
+            // Set up detection when missing
             sensor.ActiveArea = CreateDetectorShape(source.Radius);
             sensor.ApplyNewShape = true;
         }

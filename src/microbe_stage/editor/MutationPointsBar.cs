@@ -82,7 +82,7 @@ public partial class MutationPointsBar : HBoxContainer
                 mutationPointsArrow.Show();
                 resultingMutationPointsLabel.Show();
 
-                currentMutationPointsLabel.Text = $"({currentMutationPoints:0.#}";
+                currentMutationPointsLabel.Text = $"({currentMutationPoints:0.##}";
                 resultingMutationPointsLabel.Text = $"{possibleMutationPoints:F0})";
             }
             else
@@ -90,7 +90,7 @@ public partial class MutationPointsBar : HBoxContainer
                 mutationPointsArrow.Hide();
                 resultingMutationPointsLabel.Hide();
 
-                currentMutationPointsLabel.Text = $"{currentMutationPoints:0.#}";
+                currentMutationPointsLabel.Text = $"{currentMutationPoints:0.##}";
             }
 
             // TODO: implement full support for free percentage symbol placement within the mutation points bar

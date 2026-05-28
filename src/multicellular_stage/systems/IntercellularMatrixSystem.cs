@@ -146,13 +146,6 @@ public partial class IntercellularMatrixSystem : BaseSystem<World, float>
         return (pointA, pointB);
     }
 
-    private static void RemoveConnection(ref IntercellularMatrix intercellularMatrix)
-    {
-        intercellularMatrix.GeneratedConnection?.QueueFree();
-        intercellularMatrix.GeneratedConnection = null;
-        intercellularMatrix.IsConnectionRedundant = false;
-    }
-
     private static void ApplyConnectionMaterialParameters(in Entity entity,
         ref IntercellularMatrix intercellularMatrix)
     {
@@ -194,7 +187,7 @@ public partial class IntercellularMatrixSystem : BaseSystem<World, float>
         {
             if (matrix.GeneratedConnection != null)
             {
-                RemoveConnection(ref matrix);
+                matrix.RemoveConnection();
             }
         }
     }

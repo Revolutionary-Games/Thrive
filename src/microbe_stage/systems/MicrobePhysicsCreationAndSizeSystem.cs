@@ -29,6 +29,7 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(OrganelleContainer))]
 [ReadsComponent(typeof(AttachedToEntity))]
 [ReadsComponent(typeof(SpatialAnimation))]
+[ReadsComponent(typeof(SpecializationFactor))]
 [RunsAfter(typeof(MicrobeVisualsSystem))]
 [RunsBefore(typeof(PhysicsBodyCreationSystem))]
 [RunsBefore(typeof(MicrobeReproductionSystem))]
@@ -63,7 +64,8 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
         pilusDensity = SimulationParameters.Instance.GetOrganelleType("pilus").Density;
 
         eukaryoticPilus = new Lazy<PhysicsShape>(() => CreatePilusShape(Constants.PILUS_PHYSICS_SIZE));
-        prokaryoticPilus = new Lazy<PhysicsShape>(() => CreatePilusShape(Constants.PILUS_PHYSICS_SIZE * 0.5f));
+        prokaryoticPilus = new Lazy<PhysicsShape>(() =>
+            CreatePilusShape(Constants.PILUS_PHYSICS_SIZE * Constants.BACTERIA_CELL_SCALE));
     }
 
     public sealed override void Dispose()
@@ -183,10 +185,12 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
 
             var oldShape = shapeHolder.Shape;
 
+            ref var specializationFactor = ref entity.Get<SpecializationFactor>();
+
             if (!requiresCompoundShape)
             {
                 shapeHolder.Shape = CreateSimpleMicrobeShape(ref extraData, ref organelles, ref cellProperties,
-                    rawData, count);
+                    ref specializationFactor, rawData, count);
             }
             else
             {
@@ -198,14 +202,14 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
                 {
                     var memberOrganelles = temporaryColonyMemberOrganelles.Value!;
                     shapeHolder.Shape = CreateCompoundMicrobeShape(ref extraData, ref organelles,
-                        ref cellProperties, entity, combinedData, memberOrganelles,
+                        ref cellProperties, ref specializationFactor, entity, combinedData, memberOrganelles,
                         rawData, count, colonyMembranes);
                 }
                 else
                 {
                     shapeHolder.Shape = CreateCompoundMicrobeShape(ref extraData, ref organelles,
-                        ref cellProperties, entity, combinedData, null, rawData, count,
-                        colonyMembranes);
+                        ref cellProperties, ref specializationFactor, entity, combinedData, null, rawData,
+                        count, colonyMembranes);
                 }
 
                 if (colonyMembranes != null)
@@ -238,9 +242,9 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
 
     private PhysicsShape CreateSimpleMicrobeShape(ref MicrobePhysicsExtraData extraData,
         ref OrganelleContainer organelles, ref CellProperties cellProperties,
-        Vector2[] membraneVertices, int vertexCount)
+        ref SpecializationFactor specializationFactor, Vector2[] membraneVertices, int vertexCount)
     {
-        UpdateRotationRate(ref organelles);
+        UpdateRotationRate(ref organelles, specializationFactor.TotalSpecializationBonus);
 
         var shape = PhysicsShape.GetOrCreateMicrobeShape(membraneVertices, vertexCount,
             MicrobeInternalCalculations.CalculateAverageDensity(organelles.Organelles!),
@@ -272,14 +276,14 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
     }
 
     private PhysicsShape CreateCompoundMicrobeShape(ref MicrobePhysicsExtraData extraData,
-        ref OrganelleContainer organelles, ref CellProperties cellProperties, in Entity entity,
-        List<(PhysicsShape Shape, Vector3 Position, Quaternion Rotation)> combinedData,
+        ref OrganelleContainer organelles, ref CellProperties cellProperties,
+        ref SpecializationFactor specializationFactor, in Entity entity, List<(PhysicsShape Shape, Vector3 Position,
+            Quaternion Rotation)> combinedData,
         List<(Entity Entity, OrganelleLayout<PlacedOrganelle> Organelles, Vector3 ExtraOffset,
-                Quaternion ExtraRotation)>?
-            memberOrganelles, Vector2[] membraneVertices, int vertexCount,
+            Quaternion ExtraRotation)>? memberOrganelles, Vector2[] membraneVertices, int vertexCount,
         List<(Membrane Membrane, bool Bacteria)>? colonyMembranes)
     {
-        UpdateRotationRate(ref organelles);
+        UpdateRotationRate(ref organelles, specializationFactor.TotalSpecializationBonus);
 
 #if DEBUG
         if (combinedData.Count > 0)
@@ -293,8 +297,8 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
 
         // Base microbe shape is always first
         combinedData.Add((
-            CreateSimpleMicrobeShape(ref extraData, ref organelles, ref cellProperties, membraneVertices,
-                vertexCount), Vector3.Zero, Quaternion.Identity));
+            CreateSimpleMicrobeShape(ref extraData, ref organelles, ref cellProperties, ref specializationFactor,
+                membraneVertices, vertexCount), Vector3.Zero, Quaternion.Identity));
 
         // Then the (potential) colony members
         if (colonyMembranes != null)
@@ -473,7 +477,7 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
         var externalPosition = cellProperties.CalculateExternalOrganellePosition(placedOrganelle.Position,
             placedOrganelle.Orientation, out var rotation);
 
-        var physicsScale = cellProperties.IsBacteria ? 0.5f : 1.0f;
+        var physicsScale = cellProperties.IsBacteria ? Constants.BACTERIA_CELL_SCALE : 1.0f;
 
         var (position, orientation) =
             placedOrganelle.CalculatePhysicsExternalTransform(externalPosition, rotation, physicsScale);
@@ -490,7 +494,7 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
     ///   Note that the PhysicsShape is not currently used in rotation calculations, and this code is here due to
     ///   an earlier version requiring it.
     /// </summary>
-    private void UpdateRotationRate(ref OrganelleContainer organelleContainer)
+    private void UpdateRotationRate(ref OrganelleContainer organelleContainer, float totalSpecializationBonus)
     {
         if (organelleContainer.Organelles == null)
         {
@@ -499,7 +503,8 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
         }
 
         organelleContainer.RotationSpeed =
-            MicrobeInternalCalculations.CalculateRotationSpeed(organelleContainer.Organelles.Organelles);
+            MicrobeInternalCalculations.CalculateRotationSpeed(organelleContainer.Organelles.Organelles,
+                totalSpecializationBonus);
     }
 
     private PhysicsShape CreatePilusShape(float size)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using System.Threading;
 using Arch.Core;
 using AutoEvo;
 using Godot;
@@ -38,6 +39,8 @@ public partial class CellEditorComponent :
     private readonly HashSet<Hex> islandsWorkMemory1 = new();
     private readonly List<Hex> islandsWorkMemory2 = new();
     private readonly Queue<Hex> islandsWorkMemory3 = new();
+
+    private readonly Dictionary<OrganelleDefinition, int> definitionCountWorkMemory = new();
 
     private readonly Dictionary<Compound, float> processSpeedWorkMemory = new();
 
@@ -1062,7 +1065,18 @@ public partial class CellEditorComponent :
         }
 
         if (shouldUpdatePosition)
+        {
             editedProperties.RepositionToOrigin();
+        }
+        else
+        {
+            // Even if not repositioning to origin, we still need to update this.
+            // This is because repositioning recalculates cell type specialization bonus. However, we must get that
+            // data updated during the editor to have it be correct without repositioning. Repositioning always
+            // would break the editor history, so that must absolutely be avoided until fully exiting the editor.
+            editedProperties.CellTypeSpecializationBonus = MicrobeInternalCalculations.CalculateSpecializationBonus(
+                editedProperties.ModifiableOrganelles, definitionCountWorkMemory);
+        }
 
         // Update bacteria status
         editedProperties.IsBacteria = !HasNucleus;
@@ -1300,8 +1314,12 @@ public partial class CellEditorComponent :
                 "In multicellular, the cell editor is not responsible for tolerances data");
         }
 
+        // Treats cellTypeSpecializationBonus as totalSpecializationBonus, because adjacency is ignored in this editor.
+        var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(
+            editedMicrobeOrganelles.Organelles, tempMemory3);
+
         return MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(tolerancesEditor.CurrentTolerances,
-            editedMicrobeOrganelles, Editor.CurrentPatch.Biome, excludePositiveBuffs);
+            editedMicrobeOrganelles, specialization, Editor.CurrentPatch.Biome, excludePositiveBuffs);
     }
 
     public void UpdatePatchDependentBalanceData()
@@ -1510,13 +1528,21 @@ public partial class CellEditorComponent :
 
     public float CalculateSpeed()
     {
+        // Treats cellTypeSpecializationBonus as totalSpecializationBonus, because adjacency is ignored in this editor.
+        var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(
+            editedMicrobeOrganelles.Organelles, tempMemory3);
+
         return MicrobeInternalCalculations.CalculateSpeed(editedMicrobeOrganelles.Organelles, Membrane, Rigidity,
-            !HasNucleus);
+            !HasNucleus, specialization);
     }
 
     public float CalculateRotationSpeed()
     {
-        return MicrobeInternalCalculations.CalculateRotationSpeed(editedMicrobeOrganelles.Organelles);
+        // Treats cellTypeSpecializationBonus as totalSpecializationBonus, because adjacency is ignored in this editor.
+        var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(
+            editedMicrobeOrganelles.Organelles, tempMemory3);
+
+        return MicrobeInternalCalculations.CalculateRotationSpeed(editedMicrobeOrganelles.Organelles, specialization);
     }
 
     public float CalculateHitpoints()
@@ -1526,17 +1552,31 @@ public partial class CellEditorComponent :
 
     public Dictionary<Compound, float> GetAdditionalCapacities(out float nominalCapacity)
     {
-        return MicrobeInternalCalculations.GetTotalSpecificCapacity(editedMicrobeOrganelles, out nominalCapacity);
+        // Treats cellTypeSpecializationBonus as totalSpecializationBonus, because adjacency is ignored in this editor.
+        var totalSpecializationBonus =
+            MicrobeInternalCalculations.CalculateSpecializationBonus(editedMicrobeOrganelles.Organelles, tempMemory3);
+
+        return MicrobeInternalCalculations.GetTotalSpecificCapacity(editedMicrobeOrganelles,
+            totalSpecializationBonus, out nominalCapacity);
     }
 
     public float CalculateTotalDigestionSpeed()
     {
-        return MicrobeInternalCalculations.CalculateTotalDigestionSpeed(editedMicrobeOrganelles);
+        // Treats cellTypeSpecializationBonus as totalSpecializationBonus, because adjacency is ignored in this editor.
+        var totalSpecializationBonus =
+            MicrobeInternalCalculations.CalculateSpecializationBonus(editedMicrobeOrganelles.Organelles, tempMemory3);
+
+        return MicrobeInternalCalculations.CalculateTotalDigestionSpeed(editedMicrobeOrganelles,
+            totalSpecializationBonus);
     }
 
     public Dictionary<Enzyme, float> CalculateDigestionEfficiencies()
     {
-        return MicrobeInternalCalculations.CalculateDigestionEfficiencies(editedMicrobeOrganelles);
+        // Treats cellTypeSpecializationBonus as totalSpecializationBonus, because adjacency is ignored in this editor.
+        var specialization =
+            MicrobeInternalCalculations.CalculateSpecializationBonus(editedMicrobeOrganelles.Organelles, tempMemory3);
+
+        return MicrobeInternalCalculations.CalculateDigestionEfficiencies(editedMicrobeOrganelles, specialization);
     }
 
     public (int AmmoniaCost, int PhosphatesCost) CalculateOrganellesCosts()
@@ -1832,7 +1872,7 @@ public partial class CellEditorComponent :
             IsBacteria = false,
 
             // Doesn't matter for visualization, but we want to set a valid value
-            SpecializationBonus = 1,
+            CellTypeSpecializationBonus = 1,
         };
 
         previewMicrobe = previewSimulation.CreateVisualisationMicrobe(previewMicrobeSpecies);
@@ -2149,6 +2189,7 @@ public partial class CellEditorComponent :
 
         var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(organelles);
 
+        // Treats cellTypeSpecializationBonus as totalSpecializationBonus, because adjacency is ignored in this editor.
         var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(organelles, tempMemory3);
 
         var tolerances = CalculateLatestTolerances();
@@ -2214,7 +2255,8 @@ public partial class CellEditorComponent :
                 goto case BalanceDisplayType.EnergyEquilibrium;
         }
 
-        specificStorages ??= MicrobeInternalCalculations.GetTotalSpecificCapacity(organelles, out nominalStorage);
+        specificStorages ??= MicrobeInternalCalculations.GetTotalSpecificCapacity(organelles,
+            specializationBonus, out nominalStorage);
 
         return ProcessSystem.ComputeCompoundFillTimes(compoundBalanceData, nominalStorage, specificStorages);
     }
@@ -2456,6 +2498,9 @@ public partial class CellEditorComponent :
 
         autoEvoPredictionDirty = true;
         suggestionDirty = true;
+
+        microbeVisualizationOrganellePositionsAreDirty = true;
+        organelleDataDirty = true;
     }
 
     private void OnRigidityChanged()
@@ -2951,13 +2996,18 @@ public partial class CellEditorComponent :
         target.Organelles.Clear();
 
         // TODO: if this is too slow to copy each organelle like this, we'll need to find a faster way to get the data
-        // in, perhaps by sharing the entire Organelles object
+        // in, but that will require more locking
         foreach (var entry in editedMicrobeOrganelles.Organelles)
         {
             if (entry.Definition == nucleus)
                 target.IsBacteria = false;
 
-            target.Organelles.AddFast(entry, hexTemporaryMemory, hexTemporaryMemory2);
+            // We have to clone here, as we might have a suggestion run ongoing when we modify the edited organelles
+            // already by, for example, moving something.
+            // This also wastes some memory, but for now this is basically impossible to avoid.
+            var newOrganelle = entry.Clone();
+
+            target.Organelles.AddFast(newOrganelle, hexTemporaryMemory, hexTemporaryMemory2);
         }
 
         // Copy behaviour if it is known
@@ -2966,6 +3016,9 @@ public partial class CellEditorComponent :
             // Make a clone to make sure data cannot change while running
             target.ModifiableBehaviour = ((IReadOnlyBehaviourDictionary)overwriteBehaviourForCalculations).Clone();
         }
+
+        target.CellTypeSpecializationBonus =
+            MicrobeInternalCalculations.CalculateSpecializationBonus(target.Organelles, definitionCountWorkMemory);
 
         // Copy tolerances
         target.ModifiableTolerances.CopyFrom(tolerancesEditor.CurrentTolerances);
@@ -3401,7 +3454,7 @@ public partial class CellEditorComponent :
     /// <summary>
     ///   Holds data for the organelle suggestion calculation run
     /// </summary>
-    private class OrganelleSuggestionCalculation
+    private class OrganelleSuggestionCalculation : IDisposable
     {
         private readonly List<OrganelleDefinition> availableOrganelles = new();
         private readonly MicrobeSpecies calculationSpecies;
@@ -3415,6 +3468,8 @@ public partial class CellEditorComponent :
         private readonly List<Hex> workMemory1 = new();
         private readonly List<Hex> workMemory2 = new();
         private readonly HashSet<Hex> workMemory3 = new();
+
+        private readonly SemaphoreSlim dataSetupLock = new(1, 1);
 
         private AutoEvoRun? currentRun;
         private BiomeConditions? biome;
@@ -3432,6 +3487,9 @@ public partial class CellEditorComponent :
         {
             pristineSpeciesCopy = initialSpeciesToCopy;
             calculationSpecies = initialSpeciesToCopy.Clone(true);
+            calculationSpecies.CellTypeSpecializationBonus =
+                MicrobeInternalCalculations.CalculateSpecializationBonus(initialSpeciesToCopy.Organelles,
+                    new Dictionary<OrganelleDefinition, int>());
             this.applyLatestEditsToSpecies = applyLatestEditsToSpecies;
             this.currentGameProperties = currentGameProperties;
             editorOpenedForSpecies = editedSpecies;
@@ -3449,7 +3507,8 @@ public partial class CellEditorComponent :
         public bool UsePurePopulationScore { get; set; }
 
         /// <summary>
-        ///   Set up this for a new suggestion calculation
+        ///   Set up this for a new suggestion calculation. Note that this can lock for a little bit if we just tried
+        ///   to start another run. So this may cause a lag spike in rare cases on the main thread.
         /// </summary>
         /// <param name="organellesToTry">Valid organelles to try in the suggestion</param>
         /// <param name="selectedPatch">Patch conditions to simulate in</param>
@@ -3465,17 +3524,25 @@ public partial class CellEditorComponent :
                 currentRun = null;
             }
 
-            availableOrganelles.Clear();
-            availableOrganelles.AddRange(organellesToTry);
+            dataSetupLock.Wait();
+            try
+            {
+                availableOrganelles.Clear();
+                availableOrganelles.AddRange(organellesToTry);
 
-            // Refresh the latest edits to our local pristine copy that is then used by a background thread
-            applyLatestEditsToSpecies(pristineSpeciesCopy);
+                // Refresh the latest edits to our local pristine copy that is then used by a background thread
+                applyLatestEditsToSpecies(pristineSpeciesCopy);
 
-            calculatedNoChange = false;
-            bestOrganelle = null;
-            bestResult = -1;
-            resultRead = false;
-            IsCompleted = false;
+                calculatedNoChange = false;
+                bestOrganelle = null;
+                bestResult = -1;
+                resultRead = false;
+                IsCompleted = false;
+            }
+            finally
+            {
+                dataSetupLock.Release();
+            }
 
             StartNextRun();
         }
@@ -3563,29 +3630,42 @@ public partial class CellEditorComponent :
             return false;
         }
 
+        public void Dispose()
+        {
+            dataSetupLock.Dispose();
+        }
+
         private void CopyPristineToCalculation()
         {
-            // TODO: there is duplication between this and CopyEditedPropertiesToSpecies
-            calculationSpecies.SpeciesColour = pristineSpeciesCopy.SpeciesColour;
-            calculationSpecies.MembraneType = pristineSpeciesCopy.MembraneType;
-            calculationSpecies.MembraneRigidity = pristineSpeciesCopy.MembraneRigidity;
-            calculationSpecies.IsBacteria = pristineSpeciesCopy.IsBacteria;
-
-            // This can't be undone but should be fine as the species to edit cannot change in the editor
-            if (pristineSpeciesCopy.PlayerSpecies)
-                calculationSpecies.BecomePlayerSpecies();
-
-            calculationSpecies.Organelles.Clear();
-
-            foreach (var entry in pristineSpeciesCopy.Organelles)
+            dataSetupLock.Wait();
+            try
             {
-                calculationSpecies.Organelles.AddFast(entry, workMemory1, workMemory2);
+                // TODO: there is duplication between this and CopyEditedPropertiesToSpecies
+                calculationSpecies.SpeciesColour = pristineSpeciesCopy.SpeciesColour;
+                calculationSpecies.MembraneType = pristineSpeciesCopy.MembraneType;
+                calculationSpecies.MembraneRigidity = pristineSpeciesCopy.MembraneRigidity;
+                calculationSpecies.IsBacteria = pristineSpeciesCopy.IsBacteria;
+
+                // This can't be undone but should be fine as the species to edit cannot change in the editor
+                if (pristineSpeciesCopy.PlayerSpecies)
+                    calculationSpecies.BecomePlayerSpecies();
+
+                calculationSpecies.Organelles.Clear();
+
+                foreach (var entry in pristineSpeciesCopy.Organelles)
+                {
+                    calculationSpecies.Organelles.AddFast(entry, workMemory1, workMemory2);
+                }
+
+                // The pristine copy is not modified, so it is safe to not clone here
+                calculationSpecies.ModifiableBehaviour = pristineSpeciesCopy.ModifiableBehaviour;
+
+                calculationSpecies.ModifiableTolerances.CopyFrom(pristineSpeciesCopy.Tolerances);
             }
-
-            // The pristine copy is not modified, so it is safe to not clone here
-            calculationSpecies.ModifiableBehaviour = pristineSpeciesCopy.ModifiableBehaviour;
-
-            calculationSpecies.ModifiableTolerances.CopyFrom(pristineSpeciesCopy.Tolerances);
+            finally
+            {
+                dataSetupLock.Release();
+            }
         }
 
         private bool StartNextRun()

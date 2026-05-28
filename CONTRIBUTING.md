@@ -16,6 +16,14 @@ consulting other team members are allowed to create issues about new
 or improved features. If someone else creates such an issue, that
 wasn't planned, it will be closed.
 
+The bug report issue template should be used for bug reports. And please ensure the 
+"triage" tag is set so that a team member then remembers to look at the issue and assign 
+proper labels.
+
+Issues that have not been confirmed by multiple people or a knowledgeable team member must 
+be tagged as "more-reports-wanted" so that we can track which bugs are common and which are 
+only seen once ever (and are such much lower priority to fix).
+
 ## Pull requests
 
 First select an issue to work on. We have some issues tagged as good
