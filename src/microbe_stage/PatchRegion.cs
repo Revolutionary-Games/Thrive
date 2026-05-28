@@ -13,7 +13,7 @@ public class PatchRegion : IArchivable
     public PatchRegion(int id, string name, RegionType regionType, Vector2 screenCoordinates)
     {
         ID = id;
-        Patches = new List<Patch>();
+        Patches = [];
         Name = name;
         Height = 0;
         Width = 0;
@@ -158,7 +158,7 @@ public class PatchRegion : IArchivable
 
         if (!PatchAdjacencies.TryGetValue(id, out var set))
         {
-            PatchAdjacencies[id] = new HashSet<Patch> { patch };
+            PatchAdjacencies[id] = [patch];
             return;
         }
 

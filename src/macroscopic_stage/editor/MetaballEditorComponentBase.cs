@@ -58,7 +58,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
 
     protected bool hoverMetaballsChanged = true;
 
-    protected List<TMetaball> hoverMetaballData = new();
+    protected List<TMetaball> hoverMetaballData = [];
 
     /// <summary>
     ///   Displays the structure of metaballs in the editor
@@ -78,14 +78,14 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
 
     private readonly NodePath positionReference = new("position");
 
-    private readonly List<Plane> cursorHitWorldPlanes = new()
-    {
-        new Plane(new Vector3(0, 0, -1), 0.0f),
-        new Plane(new Vector3(1, 0, 0), 0.0f),
-        new Plane(new Vector3(0, 0, 1), 0.0f),
-        new Plane(new Vector3(-1, 0, 0), 0.0f),
-        new Plane(new Vector3(0, 1, 0), 0.0f),
-    };
+    private readonly List<Plane> cursorHitWorldPlanes =
+    [
+        new(new Vector3(0, 0, -1), 0.0f),
+        new(new Vector3(1, 0, 0), 0.0f),
+        new(new Vector3(0, 0, 1), 0.0f),
+        new(new Vector3(-1, 0, 0), 0.0f),
+        new(new Vector3(0, 1, 0), 0.0f),
+    ];
 
     // Another section of Godot objects here as these are private (and not protected like the above set)
 #pragma warning disable CA2213

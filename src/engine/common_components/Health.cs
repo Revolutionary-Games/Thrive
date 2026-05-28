@@ -188,7 +188,7 @@ public static class HealthHelpers
         {
             // Create a new damage list, don't really care if due to data race some info is lost here, so we don't
             // immediately set the list here and lock it
-            damageList = new List<DamageEventNotice> { damageEvent };
+            damageList = [damageEvent];
 
             health.RecentDamageReceived = damageList;
         }
