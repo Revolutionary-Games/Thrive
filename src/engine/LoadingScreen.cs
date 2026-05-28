@@ -53,8 +53,8 @@ public partial class LoadingScreen : Control
     private string loadingDescription = string.Empty;
     private string? artDescription;
 
-    private double totalElapsed;
     private double elapsedSinceTipChange;
+    private float currentSpinnerRotation;
 
     private LoadingScreen()
     {
@@ -206,10 +206,11 @@ public partial class LoadingScreen : Control
             return;
         }
 
-        totalElapsed += delta;
         elapsedSinceTipChange += delta;
-        spinnerMaterial.SetShaderParameter(rotationName,
-            (float)(totalElapsed * SpinnerSpeed) % MathF.Tau);
+
+        currentSpinnerRotation += (float)(delta * SpinnerSpeed);
+        currentSpinnerRotation %= MathF.Tau;
+        spinnerMaterial.SetShaderParameter(rotationName, currentSpinnerRotation);
     }
 
     /// <summary>
@@ -343,7 +344,7 @@ public partial class LoadingScreen : Control
     private void OnBecomeVisible()
     {
         wasVisible = true;
-        totalElapsed = 0;
+        currentSpinnerRotation = 0;
 
         RandomizeContent();
 

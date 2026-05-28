@@ -211,11 +211,12 @@ public partial class ChemicalEquation : CheckButton
             // scrolling works)
             if (!PauseManager.Instance.Paused)
             {
-                currentSpinnerRotation += (float)delta * EquationFromProcess.CurrentSpeed * SpinnerBaseSpeed
-                    * ExternalSpeedModifier;
+                double totalSpeed = EquationFromProcess.CurrentSpeed * SpinnerBaseSpeed * ExternalSpeedModifier;
+                float rotationDelta = (float)(delta * totalSpeed);
+                currentSpinnerRotation += rotationDelta;
+                currentSpinnerRotation %= MathF.Tau;
 
-                spinnerMaterial.SetShaderParameter(rotationName,
-                    currentSpinnerRotation % MathF.Tau);
+                spinnerMaterial.SetShaderParameter(rotationName, currentSpinnerRotation);
             }
         }
 
