@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using Components;
 using Godot;
 
 /// <summary>
@@ -16,6 +17,8 @@ public partial class ProceduralDataCache : Node
 
     private readonly Dictionary<long, CacheEntry<CacheableShape>> loadedShapes = new();
 
+    private readonly Dictionary<long, CacheEntry<CacheableSimpleShape>> simpleShapes = new();
+
     private readonly Dictionary<long, CacheEntry<MembraneCollisionShape>> membraneCollisions = new();
 
     /// <summary>
@@ -24,7 +27,7 @@ public partial class ProceduralDataCache : Node
     ///   to perform the disposal of the object later to hopefully not dispose the object while the previous cache
     ///   writer is still using it.
     /// </summary>
-    private readonly List<IDisposable> conflictedEntriesToDispose = new();
+    private readonly List<IDisposable> conflictedEntriesToDispose = [];
 
     /// <summary>
     ///   When enabled, prefers older entries in the cache to not mess with already returned data being randomly
@@ -63,6 +66,11 @@ public partial class ProceduralDataCache : Node
         lock (loadedShapes)
         {
             ClearCacheData(loadedShapes);
+        }
+
+        lock (simpleShapes)
+        {
+            ClearCacheData(simpleShapes);
         }
 
         lock (membraneCollisions)
@@ -105,6 +113,11 @@ public partial class ProceduralDataCache : Node
         lock (loadedShapes)
         {
             CleanOldCacheEntriesIn(loadedShapes, Constants.PROCEDURAL_CACHE_LOADED_SHAPE_KEEP_TIME);
+        }
+
+        lock (simpleShapes)
+        {
+            CleanOldCacheEntriesIn(simpleShapes, Constants.PROCEDURAL_CACHE_SIMPLE_SHAPE_KEEP_TIME);
         }
 
         lock (membraneCollisions)
@@ -259,6 +272,50 @@ public partial class ProceduralDataCache : Node
         return hash;
     }
 
+    public PhysicsShape? ReadSimpleShape(SimpleShapeType type, float size, float density)
+    {
+        var hash = CacheableSimpleShape.CalculateHash(type, size, density);
+
+        lock (simpleShapes)
+        {
+            if (!simpleShapes.TryGetValue(hash, out var entry))
+                return null;
+
+#if DEBUG
+            if (entry.Value.Shape.Disposed)
+                throw new InvalidOperationException("Holder of a disposed shape was not removed from cache");
+#endif
+
+            entry.LastUsed = currentTime;
+            return entry.Value.Shape;
+        }
+    }
+
+    public long WriteSimpleShape(SimpleShapeType type, float size, float density, PhysicsShape shape)
+    {
+        var hash = CacheableSimpleShape.CalculateHash(type, size, density);
+
+        lock (simpleShapes)
+        {
+            if (simpleShapes.TryGetValue(hash, out var existing))
+            {
+                if (ReferenceEquals(existing.Value.Shape, shape))
+                {
+                    existing.LastUsed = currentTime;
+                    return hash;
+                }
+
+                // Same dispose-is-empty arrangement as WriteLoadedShape; see CacheableSimpleShape.Dispose.
+                Interlocked.Increment(ref wastedRecalculations);
+            }
+
+            simpleShapes[hash] = new CacheEntry<CacheableSimpleShape>(
+                new CacheableSimpleShape(shape, type, size, density), currentTime);
+        }
+
+        return hash;
+    }
+
     public MembraneCollisionShape? ReadMembraneCollisionShape(long hash)
     {
         lock (membraneCollisions)
@@ -380,35 +437,22 @@ public partial class ProceduralDataCache : Node
         entries.Clear();
     }
 
-    private class CacheEntry<T>
+    private class CacheEntry<T>(T value, float currentTime)
     {
         /// <summary>
         ///   The value stored in this entry
         /// </summary>
-        public readonly T Value;
+        public readonly T Value = value;
 
-        public float LastUsed;
-
-        public CacheEntry(T value, float currentTime)
-        {
-            Value = value;
-            LastUsed = currentTime;
-        }
+        public float LastUsed = currentTime;
     }
 
-    private class CacheableShape : ICacheableData
+    private class CacheableShape(PhysicsShape shape, string path, float density) : ICacheableData
     {
-        private readonly string path;
-        private readonly float density;
+        private readonly string path = path;
+        private readonly float density = density;
 
-        public CacheableShape(PhysicsShape shape, string path, float density)
-        {
-            this.path = path;
-            this.density = density;
-            Shape = shape;
-        }
-
-        public PhysicsShape Shape { get; }
+        public PhysicsShape Shape { get; } = shape;
 
         public static long CalculateHash(string path, float density)
         {
@@ -432,6 +476,41 @@ public partial class ProceduralDataCache : Node
         {
             // Don't dispose shape as something else might still be referring to it
             // Note that WriteLoadedShape relies on this dispose being actually empty
+            // Shape.Dispose();
+        }
+    }
+
+    private class CacheableSimpleShape(PhysicsShape shape, SimpleShapeType type, float size, float density)
+        : ICacheableData
+    {
+        private readonly SimpleShapeType type = type;
+        private readonly float size = size;
+        private readonly float density = density;
+
+        public PhysicsShape Shape { get; } = shape;
+
+        public static long CalculateHash(SimpleShapeType type, float size, float density)
+        {
+            return ((long)type << 56) ^ ((long)size.GetHashCode() << 24) ^ (uint)density.GetHashCode();
+        }
+
+        public bool MatchesCacheParameters(ICacheableData cacheData)
+        {
+            if (cacheData is CacheableSimpleShape otherShape)
+                return type == otherShape.type && size == otherShape.size && density == otherShape.density;
+
+            return false;
+        }
+
+        public long ComputeCacheHash()
+        {
+            return CalculateHash(type, size, density);
+        }
+
+        public void Dispose()
+        {
+            // Don't dispose shape as something else might still be referring to it
+            // Note that WriteSimpleShape relies on this dispose being actually empty
             // Shape.Dispose();
         }
     }
