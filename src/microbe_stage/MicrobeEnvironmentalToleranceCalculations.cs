@@ -331,12 +331,12 @@ public static class MicrobeEnvironmentalToleranceCalculations
             if (data.PerfectTemperatureAdjustment < 0)
             {
                 resultCallback.Invoke(Localization.Translate("TOLERANCES_TOO_HIGH_TEMPERATURE")
-                    .FormatSafe(Math.Round(-data.PerfectTemperatureAdjustment, 1)));
+                    .FormatSafe(Math.Round(-data.MinimumTemperatureAdjustment, 1)));
             }
             else
             {
                 resultCallback.Invoke(Localization.Translate("TOLERANCES_TOO_LOW_TEMPERATURE")
-                    .FormatSafe(Math.Round(data.PerfectTemperatureAdjustment, 1)));
+                    .FormatSafe(Math.Round(data.MinimumTemperatureAdjustment, 1)));
             }
         }
 
@@ -346,12 +346,12 @@ public static class MicrobeEnvironmentalToleranceCalculations
             {
                 // TODO: show the numbers in megapascals when makes sense
                 resultCallback.Invoke(Localization.Translate("TOLERANCES_TOO_HIGH_PRESSURE")
-                    .FormatSafe(Math.Round(-data.PerfectPressureAdjustment / 1000, 1)));
+                    .FormatSafe(Math.Round(-data.MinimumPressureAdjustment / 1000, 1)));
             }
             else
             {
                 resultCallback.Invoke(Localization.Translate("TOLERANCES_TOO_LOW_PRESSURE")
-                    .FormatSafe(Math.Round(data.PerfectPressureAdjustment / 1000, 1)));
+                    .FormatSafe(Math.Round(data.MinimumPressureAdjustment / 1000, 1)));
             }
         }
 
@@ -584,6 +584,21 @@ public static class MicrobeEnvironmentalToleranceCalculations
             result.TemperatureScore = 1;
         }
 
+        if (patchTemperature > speciesTolerances.PreferredTemperature + speciesTolerances.TemperatureTolerance)
+        {
+            result.MinimumTemperatureAdjustment = result.PerfectTemperatureAdjustment -
+                speciesTolerances.TemperatureTolerance;
+        }
+        else if (patchTemperature < speciesTolerances.PreferredTemperature - speciesTolerances.TemperatureTolerance)
+        {
+            result.MinimumTemperatureAdjustment = result.PerfectTemperatureAdjustment +
+                speciesTolerances.TemperatureTolerance;
+        }
+        else
+        {
+            result.MinimumTemperatureAdjustment = 0.0f;
+        }
+
         var pressureMaximum = speciesTolerances.PressureMinimum + speciesTolerances.PressureTolerance;
 
         // Pressure
@@ -602,6 +617,8 @@ public static class MicrobeEnvironmentalToleranceCalculations
                     Constants.TOLERANCE_MAXIMUM_SURVIVABLE_PRESSURE_DIFFERENCE;
             }
 
+            result.MinimumPressureAdjustment = result.PerfectPressureAdjustment - speciesTolerances.PressureTolerance;
+
             missingSomething = true;
         }
         else if (patchPressure < speciesTolerances.PressureMinimum)
@@ -617,6 +634,8 @@ public static class MicrobeEnvironmentalToleranceCalculations
                 result.PressureScore = 1 - (speciesTolerances.PressureMinimum - patchPressure) /
                     Constants.TOLERANCE_MAXIMUM_SURVIVABLE_PRESSURE_DIFFERENCE;
             }
+
+            result.MinimumPressureAdjustment = result.PerfectPressureAdjustment;
 
             missingSomething = true;
         }
@@ -644,6 +663,8 @@ public static class MicrobeEnvironmentalToleranceCalculations
 
                 result.PressureScore = 1;
             }
+
+            result.MinimumPressureAdjustment = 0.0f;
         }
 
         // Oxygen Resistance
