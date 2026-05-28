@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using SharedBase.Archive;
 using ThriveScriptsShared;
 
@@ -102,7 +101,6 @@ public class TerrainConfiguration : RegistryType
         public readonly Quaternion DefaultRotation = Quaternion.Identity;
 
         [JsonProperty]
-        [JsonConverter(typeof(StringEnumConverter))]
         public readonly RotationRandomization RandomRotation;
 
         public void Check(string name)
@@ -139,7 +137,6 @@ public class TerrainConfiguration : RegistryType
         public readonly Vector3 RelativePosition;
 
         [JsonProperty]
-        [JsonConverter(typeof(StringEnumConverter))]
         public readonly RotationRandomization RandomRotation;
 
         public float Radius;
@@ -186,7 +183,6 @@ public class TerrainConfiguration : RegistryType
         public readonly int RelativeChance;
 
         [JsonProperty]
-        [JsonConverter(typeof(StringEnumConverter))]
         public readonly RotationRandomization RandomRotation;
 
         /// <summary>
