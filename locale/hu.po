@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-08 16:35+0300\n"
-"PO-Revision-Date: 2026-05-01 09:17+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2026-05-25 18:16+0300\n"
+"PO-Revision-Date: 2026-05-13 03:55+0000\n"
+"Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
@@ -107,9 +107,6 @@ msgstr "Speciális"
 
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Speciális beállítási nézet megnyitása"
-
-msgid "AEROBIC_NITROGEN_FIXATION"
-msgstr "Aerob nitrogénkötés"
 
 #, fuzzy
 msgid "AEROBIC_RESPIRATION"
@@ -590,6 +587,10 @@ msgstr "Böngészés"
 
 msgid "BROWSE_WORKSHOP"
 msgstr "A műhely böngészése"
+
+#, fuzzy
+msgid "BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
 
 msgid "BUILD_CITY"
 msgstr "Város építése"
@@ -1919,6 +1920,7 @@ msgstr "Dupla"
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
 msgstr "Dupla kattintás a teljes képernyő nézetért"
 
+#, fuzzy
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Egy membrán, ami két rétegből áll. Jobb védelmet nyújt sérülések ellen, és kevesebb energia szükséges ahhoz, hogy ne deformálódjon el. Hátránya viszont, hogy lassítja a sejt bekebelező képességét."
 
@@ -2049,6 +2051,26 @@ msgstr ""
 
 #, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
+msgstr ""
+"Üdvözöllek a Sejtszerkesztőben.\n"
+"Itt megnézheted, hogy mi történt, mióta elkezdted a játékot, vagy mióta elhagytad a szerkesztőt. Ezek után pedig változtathatsz a fajodon.\n"
+"\n"
+"Ezen a lapon láthatsz egy jelentést, hogy mely fajok léteznek még rajtad kívül. Továbbá azt is megmutatja, hogy hol találhatóak, és mekkora a létszámuk. Plusz fent a változásokat is mutatja a környezetedben.\n"
+"\n"
+"A következő szerkesztő ablakba való lépéshez nyomd meg jobb lenti gombot."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
+msgstr ""
+"Üdvözöllek a Sejtszerkesztőben.\n"
+"Itt megnézheted, hogy mi történt, mióta elkezdted a játékot, vagy mióta elhagytad a szerkesztőt. Ezek után pedig változtathatsz a fajodon.\n"
+"\n"
+"Ezen a lapon láthatsz egy jelentést, hogy mely fajok léteznek még rajtad kívül. Továbbá azt is megmutatja, hogy hol találhatóak, és mekkora a létszámuk. Plusz fent a változásokat is mutatja a környezetedben.\n"
+"\n"
+"A következő szerkesztő ablakba való lépéshez nyomd meg jobb lenti gombot."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
 msgstr ""
 "Üdvözöllek a Sejtszerkesztőben.\n"
 "Itt megnézheted, hogy mi történt, mióta elkezdted a játékot, vagy mióta elhagytad a szerkesztőt. Ezek után pedig változtathatsz a fajodon.\n"
@@ -2765,6 +2787,14 @@ msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
 msgstr ""
 "Az aktív sejtek össze-vissza bolyonganak a vizekben, ha semmi érdekes nem történik.\n"
 "A rögzült sejtek inkább egy helyben maradva várnak a környezet változásaira, mielőtt cselekednek."
+
+#, fuzzy
+msgid "GERMINATE_SPORE"
+msgstr "Játék szüneteltetése"
+
+#, fuzzy
+msgid "GERMINATE_SPORE_ACTION_TOOLTIP"
+msgstr "Játék szüneteltetése"
 
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
@@ -4129,6 +4159,10 @@ msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy v
 
 #, fuzzy
 msgid "MICROBE_LOADING_TIP_22"
+msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy véletlen elkövetett hibát"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_23"
 msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy véletlen elkövetett hibát"
 
 #, fuzzy
@@ -5513,6 +5547,10 @@ msgid "PRESSURE_SHORT"
 msgstr "Nyomás"
 
 #, fuzzy
+msgid "PRESSURE_TOLERANCE"
+msgstr "Kilépés a főmenübe"
+
+#, fuzzy
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "Kilépés a főmenübe"
 
@@ -5700,6 +5738,10 @@ msgid "REPRODUCTION_METHOD"
 msgstr "Reprodukció:"
 
 #, fuzzy
+msgid "REPRODUCTION_SPORE"
+msgstr "Reprodukció"
+
+#, fuzzy
 msgid "REQUIRES_NUCLEUS"
 msgstr "Sejtmag"
 
@@ -5839,6 +5881,10 @@ msgid "ROTATE_RIGHT"
 msgstr "Forgatás jobbra"
 
 msgid "ROTATION_COLON"
+msgstr "Fordulás:"
+
+#, fuzzy
+msgid "ROTATION_FORCE"
 msgstr "Fordulás:"
 
 msgid "RUNOFF_EVENT"
@@ -6388,11 +6434,16 @@ msgstr "Fajok:"
 msgid "SPECIES_WITH_POPULATION"
 msgstr "A fajok populációi"
 
-msgid "SPEED"
-msgstr "Sebesség"
-
 msgid "SPEED_COLON"
 msgstr "Sebesség:"
+
+#, fuzzy
+msgid "SPORE_CELL_TYPE"
+msgstr "Új sejttípus létrehozása"
+
+#, fuzzy
+msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
 
 msgid "SPREAD_TO_PATCHES"
 msgstr "ezen patch-ekben terjed:"
@@ -6697,6 +6748,10 @@ msgid "TEMPERATURE_SHORT"
 msgstr "Hőm."
 
 #, fuzzy
+msgid "TEMPERATURE_TOLERANCE_RANGE"
+msgstr "Játék szüneteltetése"
+
+#, fuzzy
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "Játék szüneteltetése"
 
@@ -6835,6 +6890,9 @@ msgstr "Thrive licenszek"
 #, fuzzy
 msgid "THRIVIN_ACHIEVEMENT"
 msgstr "Alap mozgás"
+
+msgid "THRUST_FORCE"
+msgstr ""
 
 msgid "THYLAKOIDS"
 msgstr "Thilakoidok"
@@ -8347,7 +8405,7 @@ msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr ""
 
 #, fuzzy
-msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+msgid "WIKI_GLYCOLYSIS_COMMA_NITROGEN_FIXATION"
 msgstr "Anaerob Nitrifikáció"
 
 #, fuzzy
@@ -9848,6 +9906,12 @@ msgstr "Közelítés"
 msgid "ZOOM_OUT"
 msgstr "Távolodás"
 
+#~ msgid "SPEED"
+#~ msgstr "Sebesség"
+
+#~ msgid "AEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Aerob nitrogénkötés"
+
 #~ msgid "AEROBIC_NITROGEN_FIXING"
 #~ msgstr "Aerob nitrogénkötés"
 
@@ -9934,10 +9998,6 @@ msgstr "Távolodás"
 
 #~ msgid "PLANET_GENERATION_TEASER"
 #~ msgstr "Bolygó generálás hamarosan!"
-
-#, fuzzy
-#~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
-#~ msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
 
 #~ msgid "TO_BE_IMPLEMENTED"
 #~ msgstr "Fejlesztés alatt."

@@ -130,7 +130,7 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
             if (cellProperties.IsBacteria)
             {
                 if (!spatialInstance.ApplyVisualScale ||
-                    spatialInstance.VisualScale != new Vector3(0.5f, 0.5f, 0.5f))
+                    spatialInstance.VisualScale != Vector3.One * Constants.BACTERIA_CELL_SCALE)
                 {
                     GD.PrintErr("Microbe spatial component doesn't have scale correctly set for bacteria");
 
@@ -324,7 +324,13 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
                 transform = placedOrganelle.CalculateVisualsTransformExternal(externalPosition, rotation);
             }
 
-            if (!organelleContainer.CreatedOrganelleVisuals.ContainsKey(placedOrganelle))
+            if (organelleContainer.CreatedOrganelleVisuals.TryGetValue(placedOrganelle, out var existingWrapper))
+            {
+                // Existing visuals still need their wrapper transform refreshed when the membrane or physics shape
+                // changes.
+                existingWrapper.Transform = transform;
+            }
+            else
             {
                 // New visuals needed
 
@@ -343,7 +349,7 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
                 extraLayer.AddChild(visualsInstance);
                 parentNode.AddChild(extraLayer);
 
-                organelleContainer.CreatedOrganelleVisuals.Add(placedOrganelle, visualsInstance);
+                organelleContainer.CreatedOrganelleVisuals.Add(placedOrganelle, extraLayer);
             }
 
             // Visuals already exist

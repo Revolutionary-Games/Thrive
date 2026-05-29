@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-08 16:35+0300\n"
+"POT-Creation-Date: 2026-05-25 18:16+0300\n"
 "PO-Revision-Date: 2025-11-24 19:45+0000\n"
 "Last-Translator: Kristijan Miracevski <mircevskihristijan30@gmail.com>\n"
 "Language-Team: Macedonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/mk/>\n"
@@ -108,10 +108,6 @@ msgstr "Напредно"
 
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Отворете го приказот за напредно поставување"
-
-#, fuzzy
-msgid "AEROBIC_NITROGEN_FIXATION"
-msgstr "Аеробна фиксација на азот"
 
 msgid "AEROBIC_RESPIRATION"
 msgstr "Аеробна респирација"
@@ -596,6 +592,10 @@ msgstr "Прелистај"
 
 msgid "BROWSE_WORKSHOP"
 msgstr "Прелистајте ја работилницата"
+
+#, fuzzy
+msgid "BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(брзина со која мутираат видовите на вештачка интелигенција)"
 
 msgid "BUILD_CITY"
 msgstr "Изгради Град"
@@ -1867,6 +1867,14 @@ msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 msgstr "3Д Едитор"
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
+msgstr "3Д Едитор"
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
+msgstr "3Д Едитор"
+
+#, fuzzy
 msgid "EDIT_MICROBE_FIRST_TIME"
 msgstr "3Д Едитор"
 
@@ -2448,6 +2456,14 @@ msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
 msgstr ""
 "Активните микроби ќе трчаат и ќе паднат кога ништо интересно не се случи.\n"
 "Микробите кои седат ќе бидат неподвижни и ќе чекаат да се промени околината пред да дејствуваат."
+
+#, fuzzy
+msgid "GERMINATE_SPORE"
+msgstr "Додадете ново врзување на клучот"
+
+#, fuzzy
+msgid "GERMINATE_SPORE_ACTION_TOOLTIP"
+msgstr "Додадете ново врзување на клучот"
 
 msgid "GITHUB_TOOLTIP"
 msgstr ""
@@ -3710,6 +3726,10 @@ msgstr ""
 msgid "MICROBE_LOADING_TIP_22"
 msgstr ""
 
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_23"
+msgstr "3Д Едитор"
+
 msgid "MICROBE_LOADING_TIP_3"
 msgstr ""
 
@@ -4934,6 +4954,10 @@ msgid "PRESSURE_SHORT"
 msgstr ""
 
 #, fuzzy
+msgid "PRESSURE_TOLERANCE"
+msgstr "Префрлете се на фазата на будење. Достапно откако ќе имате доволно мозочна моќ (тип на ткиво со аксони)."
+
+#, fuzzy
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "Префрлете се на фазата на будење. Достапно откако ќе имате доволно мозочна моќ (тип на ткиво со аксони)."
 
@@ -5106,6 +5130,10 @@ msgstr "3Д Едитор"
 msgid "REPRODUCTION_METHOD"
 msgstr ""
 
+#, fuzzy
+msgid "REPRODUCTION_SPORE"
+msgstr "3Д Едитор"
+
 msgid "REQUIRES_NUCLEUS"
 msgstr ""
 
@@ -5239,6 +5267,10 @@ msgstr ""
 
 msgid "ROTATION_COLON"
 msgstr ""
+
+#, fuzzy
+msgid "ROTATION_FORCE"
+msgstr "3Д Едитор"
 
 msgid "RUNOFF_EVENT"
 msgstr ""
@@ -5718,11 +5750,19 @@ msgstr ""
 msgid "SPECIES_WITH_POPULATION"
 msgstr ""
 
-msgid "SPEED"
-msgstr ""
-
 msgid "SPEED_COLON"
 msgstr ""
+
+msgid "SPORE_CELL_TYPE"
+msgstr ""
+
+#, fuzzy
+msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
+msgstr ""
+"Агресивните микроби ќе го бркаат пленот на поголеми растојанија\n"
+"и имаат поголема веројатност да се борат со предатори кога ќе бидат нападнати.\n"
+"Мирните микроби нема да ги ангажираат другите на поголеми растојанија\n"
+"и имаат помала веројатност да користат токсини против предатори."
 
 msgid "SPREAD_TO_PATCHES"
 msgstr ""
@@ -6008,6 +6048,10 @@ msgid "TEMPERATURE_SHORT"
 msgstr ""
 
 #, fuzzy
+msgid "TEMPERATURE_TOLERANCE_RANGE"
+msgstr "Префрлете се на фазата на будење. Достапно откако ќе имате доволно мозочна моќ (тип на ткиво со аксони)."
+
+#, fuzzy
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "Префрлете се на фазата на будење. Достапно откако ќе имате доволно мозочна моќ (тип на ткиво со аксони)."
 
@@ -6124,6 +6168,9 @@ msgid "THRIVE_LICENSES"
 msgstr ""
 
 msgid "THRIVIN_ACHIEVEMENT"
+msgstr ""
+
+msgid "THRUST_FORCE"
 msgstr ""
 
 msgid "THYLAKOIDS"
@@ -7316,7 +7363,7 @@ msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr ""
 
 #, fuzzy
-msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+msgid "WIKI_GLYCOLYSIS_COMMA_NITROGEN_FIXATION"
 msgstr "Аеробна фиксација на азот"
 
 #, fuzzy
@@ -8585,6 +8632,10 @@ msgstr ""
 
 msgid "ZOOM_OUT"
 msgstr ""
+
+#, fuzzy
+#~ msgid "AEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Аеробна фиксација на азот"
 
 #~ msgid "AEROBIC_NITROGEN_FIXING"
 #~ msgstr "Аеробна фиксација на азот"

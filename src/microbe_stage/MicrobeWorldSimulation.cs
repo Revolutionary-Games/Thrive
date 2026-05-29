@@ -1,4 +1,6 @@
-﻿using Arch.Core;
+﻿using System.Collections.Generic;
+using Arch.Core;
+using Arch.Core.Extensions;
 using Components;
 using Godot;
 using SharedBase.Archive;
@@ -11,7 +13,7 @@ using World = Arch.Core.World;
 /// </summary>
 public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     // Base systems
     private AnimationControlSystem animationControlSystem = null!;
@@ -151,6 +153,28 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         reader.ReadObjectProperties(instance.FluidCurrentsSystem);
 
         instance.DeactivateWorldOnReadContext(reader);
+
+        if (version < 2)
+        {
+            // Add new SpecializationFactor component to all microbes as that is required to support older saves
+
+            var microbes = new List<Entity>();
+            instance.entities.Query(new QueryDescription().WithAll<CellProperties>(), microbes.Add);
+
+            foreach (var microbe in microbes)
+            {
+                if (!microbe.Has<SpecializationFactor>())
+                {
+                    microbe.Add(new SpecializationFactor
+                    {
+                        // We use 1 as a placeholder to not apply any bonuses. Things will get corrected the next time
+                        // the player goes to the editor
+                        TotalSpecializationBonus = 1,
+                    });
+                }
+            }
+        }
+
         return instance;
     }
 
@@ -183,7 +207,11 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         if (GenerateThreadedSystems.UseCheckedComponentAccess)
         {
-            GD.Print("Disallowing threaded execution to allow strict component thread checks to work");
+            GD.Print("Disallowing threaded execution to allow strict component thread checks to work, " +
+                "code must have been edited disabled parallel queries");
+
+            // We can't automatically turn off parallel queries, but we can force them to fail with this; code needs
+            // changes to work
             World.SharedJobScheduler = null;
         }
 
@@ -343,7 +371,15 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
     public override bool HasSystemsWithPendingOperations()
     {
-        return microbeVisualsSystem.HasPendingOperations();
+        // Note any visuals-affecting things added here needs to be added also for MicrobeVisualOnlySimulation
+
+        if (microbeVisualsSystem.HasPendingOperations())
+            return true;
+
+        if (delayedColonyOperationSystem.HasPendingEntities())
+            return true;
+
+        return false;
     }
 
     public override void FreeNodeResources()

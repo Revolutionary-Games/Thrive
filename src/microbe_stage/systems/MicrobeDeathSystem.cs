@@ -30,6 +30,7 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(SpeciesMember))]
 [ReadsComponent(typeof(WorldPosition))]
 [ReadsComponent(typeof(MicrobeEventCallbacks))]
+[WritesToComponent(typeof(MulticellularGrowth))]
 [WritesToComponent(typeof(Health))]
 [WritesToComponent(typeof(MicrobeColony))]
 [RunsAfter(typeof(OsmoregulationAndHealingSystem))]
@@ -144,7 +145,7 @@ public partial class MicrobeDeathSystem : BaseSystem<World, float>
             var chunkScale = 1.0f;
 
             if (isBacteria)
-                chunkScale = 0.5f;
+                chunkScale = Constants.BACTERIA_CELL_SCALE;
 
             var chunkType = new ChunkConfiguration
             {
@@ -509,7 +510,7 @@ public partial class MicrobeDeathSystem : BaseSystem<World, float>
             radius = cellProperties.CreatedMembrane.EncompassingCircleRadius;
 
             if (cellProperties.IsBacteria)
-                radius *= 0.5f;
+                radius *= Constants.BACTERIA_CELL_SCALE;
         }
 
         SpawnHelpers.SpawnCellBurstEffectWithoutFinalizing(recorder, worldSimulation, position.Position, radius);

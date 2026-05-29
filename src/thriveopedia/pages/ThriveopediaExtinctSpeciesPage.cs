@@ -5,6 +5,8 @@
 /// </summary>
 public partial class ThriveopediaExtinctSpeciesPage : ThriveopediaPage, IThriveopediaPage, ITransientPage
 {
+    // TODO: this should probably allow unpinning if the species was pinned before
+
 #pragma warning disable CA2213
     [Export]
     private CustomRichTextLabel mainText = null!;
@@ -23,8 +25,8 @@ public partial class ThriveopediaExtinctSpeciesPage : ThriveopediaPage, IThriveo
         get;
         set
         {
-            PageName = $"species:{SpeciesId}";
             field = value;
+            PageName = $"species:{SpeciesId}";
         }
     }
 

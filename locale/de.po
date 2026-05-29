@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-08 16:35+0300\n"
-"PO-Revision-Date: 2026-05-01 09:17+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2026-05-25 18:16+0300\n"
+"PO-Revision-Date: 2026-05-22 15:37+0000\n"
+"Last-Translator: Matthias Ulbl <matthias.ulbl@gmx.at>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -107,9 +107,6 @@ msgstr "Fortgeschritten"
 
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Erweiterte Einstellungen anzeigen"
-
-msgid "AEROBIC_NITROGEN_FIXATION"
-msgstr "Aerobe Stickstofffixierung"
 
 msgid "AEROBIC_RESPIRATION"
 msgstr "Aerobe Atmung"
@@ -588,6 +585,10 @@ msgstr "Stöbern"
 
 msgid "BROWSE_WORKSHOP"
 msgstr "Workshop durchsuchen"
+
+#, fuzzy
+msgid "BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(Erhalte passiv Reproduktionsfortschritt, auch wenn Du keine Ressourcen aktiv einsammelst)"
 
 msgid "BUILD_CITY"
 msgstr "Baue eine Stadt"
@@ -1847,6 +1848,7 @@ msgstr "Doppelte"
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
 msgstr "Doppelklicken zum Betrachten"
 
+#, fuzzy
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Als zweischichtige Membran bietet sie besseren Schutz vor Beschädigungen und benötigt weniger Energie, um sich nicht zu verformen. Allerdings verlangsamt sie die Zelle etwas und senkt die Geschwindigkeit, mit der sie Ressourcen absorbieren kann."
 
@@ -1972,6 +1974,28 @@ msgstr ""
 "Wenn deine Zelle noch nicht bereit für einen Zellkern ist, kannst du die [b]Rückgängig-Schaltfläche[/b] verwenden, um den Zellkern wieder zu [u]entfernen[/u]."
 
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
+msgstr ""
+"Um die weiterzuentwickeln wirst du wahrscheinlich einen [b]Zellkern[/b] platzieren wollen.\n"
+"\n"
+"Mit einem [b]Zellkern[/b] wird es möglich, weiterentwickelte Organellen zu platzieren, wie z.B. [b]Bindungswirkstoff[/b], die es erlauben, sich mit anderen Individuen deiner Spezies zu verbinden und [u]mehrzellig[/u] zu werden.\n"
+"\n"
+"Versuche einen [b]Zellkern[/b] zu platzieren, um dieses Tutorial zu schließen.\n"
+"\n"
+"Wenn deine Zelle noch nicht bereit für einen Zellkern ist, kannst du die [b]Rückgängig-Schaltfläche[/b] verwenden, um den Zellkern wieder zu [u]entfernen[/u]."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
+msgstr ""
+"Um die weiterzuentwickeln wirst du wahrscheinlich einen [b]Zellkern[/b] platzieren wollen.\n"
+"\n"
+"Mit einem [b]Zellkern[/b] wird es möglich, weiterentwickelte Organellen zu platzieren, wie z.B. [b]Bindungswirkstoff[/b], die es erlauben, sich mit anderen Individuen deiner Spezies zu verbinden und [u]mehrzellig[/u] zu werden.\n"
+"\n"
+"Versuche einen [b]Zellkern[/b] zu platzieren, um dieses Tutorial zu schließen.\n"
+"\n"
+"Wenn deine Zelle noch nicht bereit für einen Zellkern ist, kannst du die [b]Rückgängig-Schaltfläche[/b] verwenden, um den Zellkern wieder zu [u]entfernen[/u]."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
 msgstr ""
 "Um die weiterzuentwickeln wirst du wahrscheinlich einen [b]Zellkern[/b] platzieren wollen.\n"
 "\n"
@@ -2598,6 +2622,14 @@ msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
 msgstr ""
 "Aktive Mikroben taumeln umher, wenn nichts Interessantes passiert.\n"
 "Sessile Mikroben sind stationär und warten darauf, dass sich die Umgebung verändert, bevor sie handeln."
+
+#, fuzzy
+msgid "GERMINATE_SPORE"
+msgstr "Besuche unsere Patreon Seite"
+
+#, fuzzy
+msgid "GERMINATE_SPORE_ACTION_TOOLTIP"
+msgstr "Besuche unsere Patreon Seite"
 
 msgid "GITHUB_TOOLTIP"
 msgstr "Besuche unser GitHub Repositorium"
@@ -3854,6 +3886,10 @@ msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] kann durch 
 
 msgid "MICROBE_LOADING_TIP_22"
 msgstr "Jeder Besuch im Editor der Mikrobebühne stellt [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] Millionen Jahre der Evolution dar."
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_23"
+msgstr "Je mehr oder längere Geißeln du hast, desto schneller kannst du dich bewegen! Der ATP-Verbrauch steigt dadurch natürlich an."
 
 msgid "MICROBE_LOADING_TIP_3"
 msgstr "Du kannst schwebende Materieteilchen verschlingen, z.B. Bestandteile toter Zellen oder Mineralien."
@@ -5145,6 +5181,10 @@ msgstr "Druck"
 msgid "PRESSURE_SHORT"
 msgstr "Druck"
 
+#, fuzzy
+msgid "PRESSURE_TOLERANCE"
+msgstr "Der Umgebungsdruck, den deine Spezies bevorzugt. Minimal- und Maximalwerte können in separaten Schiebern eingestellt werden. Wenn die Umweltbedingungen außerhalb des Bereichs liegen, hat das viele negative Auswirkungen auf deine Spezies. Die Bereichsgröße kannst du mit der Checkbox unter den Schiebern verändern."
+
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "Der Umgebungsdruck, den deine Spezies bevorzugt. Minimal- und Maximalwerte können in separaten Schiebern eingestellt werden. Wenn die Umweltbedingungen außerhalb des Bereichs liegen, hat das viele negative Auswirkungen auf deine Spezies. Die Bereichsgröße kannst du mit der Checkbox unter den Schiebern verändern."
 
@@ -5322,6 +5362,10 @@ msgstr "Reproduktion:"
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproduktion:"
 
+#, fuzzy
+msgid "REPRODUCTION_SPORE"
+msgstr "Reproduktion"
+
 msgid "REQUIRES_NUCLEUS"
 msgstr "Benötigt Nukleus"
 
@@ -5463,6 +5507,10 @@ msgid "ROTATE_RIGHT"
 msgstr "Nach links rotieren"
 
 msgid "ROTATION_COLON"
+msgstr "Drehung:"
+
+#, fuzzy
+msgid "ROTATION_FORCE"
 msgstr "Drehung:"
 
 msgid "RUNOFF_EVENT"
@@ -5990,11 +6038,16 @@ msgstr "Suche nach Art:"
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} mit Bevölkerung: {1}"
 
-msgid "SPEED"
-msgstr "Geschwindigkeit"
-
 msgid "SPEED_COLON"
 msgstr "Geschwindigkeit:"
+
+#, fuzzy
+msgid "SPORE_CELL_TYPE"
+msgstr "Neuen Zellentyp erstellen"
+
+#, fuzzy
+msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(Erhalte passiv Reproduktionsfortschritt, auch wenn Du keine Ressourcen aktiv einsammelst)"
 
 msgid "SPREAD_TO_PATCHES"
 msgstr "Ausbreitung auf Gebiete:"
@@ -6290,6 +6343,10 @@ msgstr "Temperatur"
 msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
+#, fuzzy
+msgid "TEMPERATURE_TOLERANCE_RANGE"
+msgstr "Die bevorzugte Umgebungstemperatur deiner Spezies. In Umweltbereichen, die außerhalb des Toleranzbereichs um die ideale Temperatur liegen, gibt es negative Effekte, die das Überleben erschweren. Mit den Schiebereglern lässt sich der Temperaturbereich für die Gebiete anpassen, in denen deine Spezies leben soll."
+
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "Die bevorzugte Umgebungstemperatur deiner Spezies. In Umweltbereichen, die außerhalb des Toleranzbereichs um die ideale Temperatur liegen, gibt es negative Effekte, die das Überleben erschweren. Mit den Schiebereglern lässt sich der Temperaturbereich für die Gebiete anpassen, in denen deine Spezies leben soll."
 
@@ -6438,6 +6495,9 @@ msgstr "Thrive Lizenzen"
 #, fuzzy
 msgid "THRIVIN_ACHIEVEMENT"
 msgstr "Basisbewegung"
+
+msgid "THRUST_FORCE"
+msgstr ""
 
 msgid "THYLAKOIDS"
 msgstr "Thylakoide"
@@ -7550,6 +7610,7 @@ msgstr "Keine Erweiterungen."
 msgid "WIKI_BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr "Bakterielle Chemosynthese, Glykolyse"
 
+#, fuzzy
 msgid "WIKI_BINDING_AGENT_EFFECTS"
 msgstr ""
 "Zellen mit [b]Bindungsstoffen[/b] (oder Kolonien, die Zellen mit [b]Bindungsstoffen[/b]) enthalten) können in den Bindungsmodus wechseln. Im Bindungsmodus verbraucht jede Zelle [b]+2[/b] [thrive:compound type=\"atp\"][/thrive:compound] zusätzllich. Der Bindungsmodus deaktiviert sich bei Kontakt mit einer Zelle derselben Spezies, wobei die Zellen zu einer Kolonie vereint werden. Der Bindungsmodus kann auch manuell deaktiviert werden.\n"
@@ -8018,7 +8079,7 @@ msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr "Keine Erweiterungen."
 
 #, fuzzy
-msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+msgid "WIKI_GLYCOLYSIS_COMMA_NITROGEN_FIXATION"
 msgstr "Anaerobe Stickstofffixierung"
 
 #, fuzzy
@@ -8285,6 +8346,7 @@ msgstr ""
 msgid "WIKI_HELP_AND_TIPS_MORE_GAME_INFO"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_HYDROGENASE_EFFECTS"
 msgstr "Keine Effekte."
 
@@ -9370,6 +9432,7 @@ msgstr "Die Toxinvakuole ist eine Vakuole, die für die spezifische Produktion, 
 msgid "WIKI_TOXIN_VACUOLE_UPGRADES"
 msgstr "Die Toxinvakuole ist eine Vakuole, die für die spezifische Produktion, Lagerung und Sekretion von Oxytoxiden modifiziert wurde. Mehr Toxinvakuolen erhöhen die Geschwindigkeit, mit der Toxine freigesetzt werden können."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_EFFECTS"
 msgstr "Keine Effekte."
 
@@ -9573,6 +9636,12 @@ msgstr "Hereinzoomen"
 msgid "ZOOM_OUT"
 msgstr "Herauszoomen"
 
+#~ msgid "SPEED"
+#~ msgstr "Geschwindigkeit"
+
+#~ msgid "AEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Aerobe Stickstofffixierung"
+
 #~ msgid "AEROBIC_NITROGEN_FIXING"
 #~ msgstr "Aerobe Stickstofffixierung"
 
@@ -9668,9 +9737,6 @@ msgstr "Herauszoomen"
 
 #~ msgid "PLANET_GENERATION_TEASER"
 #~ msgstr "Planetenerstellung kommt bald!"
-
-#~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
-#~ msgstr "(Erhalte passiv Reproduktionsfortschritt, auch wenn Du keine Ressourcen aktiv einsammelst)"
 
 #~ msgid "TO_BE_IMPLEMENTED"
 #~ msgstr "Noch zu implementieren."

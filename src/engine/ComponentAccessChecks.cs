@@ -55,7 +55,8 @@ public static class ComponentAccessChecks
 public static class ComponentFetchHelpers
 {
     /// <summary>
-    ///   Checks that currently running system is allowed to access the given component and then access it like normal
+    ///   Checks that a currently running system is allowed to access the given component and then access it like
+    ///   normal
     /// </summary>
     /// <typeparam name="T">Type of component to try to access</typeparam>
     /// <returns>The component</returns>

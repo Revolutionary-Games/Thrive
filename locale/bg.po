@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-08 16:35+0300\n"
-"PO-Revision-Date: 2026-05-01 09:17+0000\n"
+"POT-Creation-Date: 2026-05-25 18:16+0300\n"
+"PO-Revision-Date: 2026-05-22 15:37+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
 "Language: bg\n"
@@ -111,9 +111,6 @@ msgstr "Разширени"
 
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Отваряне на разширените настройки"
-
-msgid "AEROBIC_NITROGEN_FIXATION"
-msgstr "Аеробна азотна фиксация"
 
 #, fuzzy
 msgid "AEROBIC_RESPIRATION"
@@ -599,6 +596,10 @@ msgstr "Търсене"
 
 msgid "BROWSE_WORKSHOP"
 msgstr "Работилница"
+
+#, fuzzy
+msgid "BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(създанията усвояват хранителните вещества от околната среда)"
 
 #, fuzzy
 msgid "BUILD_CITY"
@@ -1945,6 +1946,7 @@ msgstr "Двойна"
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
 msgstr "Натиснете двукратно за преглед на цял екран"
 
+#, fuzzy
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Това е мембрана с два слоя, която осигурява по-добра защита и се нуждае от по-малко енергия за да не се деформира. Недостатъците ѝ са, че клетката става по-бавна, както и усвояването на хранителните вещества."
 
@@ -2073,6 +2075,24 @@ msgstr ""
 
 #, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
+msgstr ""
+"Това е клетъчният редактор, тук може да добавяте или премахвате органели от Вашите създания, чрез наличните [b]мутационни точки[/b] (МТ) [thrive:icon]MP[/thrive:icon]. Всяко поколение разполага със [b]100 MT[/b] [thrive:icon]MP[/thrive:icon].\n"
+"\n"
+"Шестоъгълникът от цитоплазма в центъра на екрана е Вашата [b]клетка[/b].\n"
+"\n"
+"За да продължите, изберете органел от панела вляво. След това, натиснете с мишката до шестоъгълника за да го добавите към Вашето създание. Може да завъртите органелите чрез натискане на [thrive:input]e_rotate_left[/thrive:input] или [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
+msgstr ""
+"Това е клетъчният редактор, тук може да добавяте или премахвате органели от Вашите създания, чрез наличните [b]мутационни точки[/b] (МТ) [thrive:icon]MP[/thrive:icon]. Всяко поколение разполага със [b]100 MT[/b] [thrive:icon]MP[/thrive:icon].\n"
+"\n"
+"Шестоъгълникът от цитоплазма в центъра на екрана е Вашата [b]клетка[/b].\n"
+"\n"
+"За да продължите, изберете органел от панела вляво. След това, натиснете с мишката до шестоъгълника за да го добавите към Вашето създание. Може да завъртите органелите чрез натискане на [thrive:input]e_rotate_left[/thrive:input] или [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
 msgstr ""
 "Това е клетъчният редактор, тук може да добавяте или премахвате органели от Вашите създания, чрез наличните [b]мутационни точки[/b] (МТ) [thrive:icon]MP[/thrive:icon]. Всяко поколение разполага със [b]100 MT[/b] [thrive:icon]MP[/thrive:icon].\n"
 "\n"
@@ -2727,6 +2747,14 @@ msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
 msgstr ""
 "Енергичните микроби са в движение, дори да няма промени в околната среда.\n"
 "Мудните микроби не са в движение, докато няма промени в околната среда."
+
+#, fuzzy
+msgid "GERMINATE_SPORE"
+msgstr "Отваряне на страницата ни в „Patreon“"
+
+#, fuzzy
+msgid "GERMINATE_SPORE_ACTION_TOOLTIP"
+msgstr "Отваряне на страницата ни в „Patreon“"
 
 msgid "GITHUB_TOOLTIP"
 msgstr "Отваряне на хранилището ни в „GitHub“"
@@ -4079,6 +4107,10 @@ msgid "MICROBE_LOADING_TIP_22"
 msgstr "Натиснете бутона „Отмяна“ в редактора, ако допуснете грешка"
 
 #, fuzzy
+msgid "MICROBE_LOADING_TIP_23"
+msgstr "Натиснете бутона „Отмяна“ в редактора, ако допуснете грешка"
+
+#, fuzzy
 msgid "MICROBE_LOADING_TIP_3"
 msgstr "Натиснете бутона „Отмяна“ в редактора, ако допуснете грешка"
 
@@ -5427,6 +5459,10 @@ msgid "PRESSURE_SHORT"
 msgstr "Наляг."
 
 #, fuzzy
+msgid "PRESSURE_TOLERANCE"
+msgstr "Връщане в главното меню"
+
+#, fuzzy
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "Връщане в главното меню"
 
@@ -5606,6 +5642,10 @@ msgstr "Видове:"
 msgid "REPRODUCTION_METHOD"
 msgstr "Видове:"
 
+#, fuzzy
+msgid "REPRODUCTION_SPORE"
+msgstr "Възпроизвеждане"
+
 msgid "REQUIRES_NUCLEUS"
 msgstr "Нуждае се от ядро"
 
@@ -5740,6 +5780,10 @@ msgid "ROTATE_RIGHT"
 msgstr "Завъртане надясно"
 
 msgid "ROTATION_COLON"
+msgstr "Завъртане:"
+
+#, fuzzy
+msgid "ROTATION_FORCE"
 msgstr "Завъртане:"
 
 msgid "RUNOFF_EVENT"
@@ -6271,11 +6315,16 @@ msgstr "Има създания:"
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0}: {1} индивида"
 
-msgid "SPEED"
-msgstr "Скорост"
-
 msgid "SPEED_COLON"
 msgstr "Скорост:"
+
+#, fuzzy
+msgid "SPORE_CELL_TYPE"
+msgstr "Създаване на нова клетка"
+
+#, fuzzy
+msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(създанията усвояват хранителните вещества от околната среда)"
 
 msgid "SPREAD_TO_PATCHES"
 msgstr "текущо разпространение в зоните:"
@@ -6573,6 +6622,10 @@ msgid "TEMPERATURE_SHORT"
 msgstr "Темп."
 
 #, fuzzy
+msgid "TEMPERATURE_TOLERANCE_RANGE"
+msgstr "Отваряне на страницата ни в „Patreon“"
+
+#, fuzzy
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "Отваряне на страницата ни в „Patreon“"
 
@@ -6724,6 +6777,9 @@ msgstr "Лицензи на „Thrive“"
 #, fuzzy
 msgid "THRIVIN_ACHIEVEMENT"
 msgstr "Базово движение"
+
+msgid "THRUST_FORCE"
+msgstr ""
 
 msgid "THYLAKOIDS"
 msgstr "Тилакоиди"
@@ -8287,7 +8343,7 @@ msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr "Подлежи на уточняване"
 
 #, fuzzy
-msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+msgid "WIKI_GLYCOLYSIS_COMMA_NITROGEN_FIXATION"
 msgstr "Анаеробна азотна фиксация"
 
 #, fuzzy
@@ -9563,6 +9619,7 @@ msgstr "Подлежи на уточняване"
 msgid "WIKI_TOXIN_VACUOLE_UPGRADES"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_VACUOLE_EFFECTS"
 msgstr "Подлежи на уточняване"
 
@@ -9784,6 +9841,12 @@ msgstr "Приближаване"
 msgid "ZOOM_OUT"
 msgstr "Отдалечаване"
 
+#~ msgid "SPEED"
+#~ msgstr "Скорост"
+
+#~ msgid "AEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Аеробна азотна фиксация"
+
 #~ msgid "AEROBIC_NITROGEN_FIXING"
 #~ msgstr "Аеробна азотна фиксация"
 
@@ -9870,9 +9933,6 @@ msgstr "Отдалечаване"
 
 #~ msgid "PLANET_GENERATION_TEASER"
 #~ msgstr "Създаването на планетата е в процес на разработка!"
-
-#~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
-#~ msgstr "(създанията усвояват хранителните вещества от околната среда)"
 
 #~ msgid "TO_BE_IMPLEMENTED"
 #~ msgstr "В процес на разработка."

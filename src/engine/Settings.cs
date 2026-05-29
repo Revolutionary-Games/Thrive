@@ -575,7 +575,7 @@ public class Settings
     ///     when necessary)
     ///   </para>
     /// </remarks>
-    [JsonProperty(PropertyName = "CurrentControls2")]
+    [JsonProperty(PropertyName = "CurrentControls3")]
     public SettingValue<InputDataList> CurrentControls { get; private set; } =
         new(GetDefaultControls());
 

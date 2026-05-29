@@ -32,6 +32,7 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(SpeciesMember))]
 [WritesToComponent(typeof(ManualPhysicsControl))]
 [WritesToComponent(typeof(EntityLight))]
+[WritesToComponent(typeof(PhysicsSensor))]
 [RunsAfter(typeof(MicrobeMovementSystem))]
 [RunsAfter(typeof(OrganelleComponentFetchSystem))]
 [RunsBefore(typeof(PhysicsSensorSystem))]
@@ -78,7 +79,7 @@ public partial class OrganelleTickSystem : BaseSystem<World, float>
     [All<CompoundStorage, WorldPosition>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update([Data] in float delta, ref OrganelleContainer organelleContainer,
-        in SpeciesMember speciesMember, in Entity entity)
+        ref SpecializationFactor specializationFactor, in SpeciesMember speciesMember, in Entity entity)
     {
         if (organelleContainer.Organelles == null)
             return;
@@ -106,7 +107,8 @@ public partial class OrganelleTickSystem : BaseSystem<World, float>
                 var component = components[j];
 
                 // Organelles can do various things which is why we have the above "All" attribute
-                component.UpdateAsync(ref organelleContainer, entity, worldSimulation, energyCostMultiplier, delta);
+                component.UpdateAsync(ref organelleContainer, ref specializationFactor, entity, worldSimulation,
+                    energyCostMultiplier, delta);
 
                 if (component.UsesSyncProcess)
                     queuedSyncRuns.Push((component, entity));

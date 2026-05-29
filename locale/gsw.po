@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-08 16:35+0300\n"
-"PO-Revision-Date: 2026-04-10 22:42+0000\n"
+"POT-Creation-Date: 2026-05-25 18:16+0300\n"
+"PO-Revision-Date: 2026-05-13 03:55+0000\n"
 "Last-Translator: Argakyan <andrinmueller@hotmail.ch>\n"
 "Language-Team: Alemannic <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/gsw/>\n"
 "Language: gsw\n"
@@ -107,9 +107,6 @@ msgstr "Fortgschritte"
 
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Erwiiteriti Iistellige aazeige"
-
-msgid "AEROBIC_NITROGEN_FIXATION"
-msgstr "Aerobi Stickstofffixierig"
 
 msgid "AEROBIC_RESPIRATION"
 msgstr "Aerobi Atmig"
@@ -585,6 +582,10 @@ msgstr "Stöbere"
 
 msgid "BROWSE_WORKSHOP"
 msgstr "Workshop dursueche"
+
+#, fuzzy
+msgid "BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(Mutationsgschwindigkeit für KI-gstüürti Spezie)"
 
 msgid "BUILD_CITY"
 msgstr "Bou dini Stadt"
@@ -1843,6 +1844,7 @@ msgstr "Dopplet"
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
 msgstr "Doppelklicke zum Aaluege in Vollbildmodus"
 
+#, fuzzy
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "E zweischichtigi Membran bütet bessere Schutz vor Schade und benötigt weniger Energie um sich nöd z'deformiere. Sie verlangsamt allerdings d'Zelle und senkt ihri Fähigkeit Ressource z'absorbiere."
 
@@ -1967,6 +1969,28 @@ msgstr ""
 "Lueg nah, öb du [b]Bindemittel[/b] scho freigschalte hesch. Wenn dem so isch, versuech's z'platziere."
 
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
+msgstr ""
+"Um wiiter z'cho muesch irgendwenn en [b]Zellkern[/b]\n"
+"\n"
+"En [b]Zellkern[/b] tuet fortgschritteni Organelle freischalte, sowie [b]Bindemittel[/b] was es diir erlaubt dich mit andere Zelle us de gliiche Spezies z'verbinde und [b]multizellulär[/b] z'werde.\n"
+"\n"
+"Versuechs en [b]Nukleus[/b] z'platziere um das Tutorial z'schlüüse.\n"
+"\n"
+"Wenn dini Zelle nonig parat isch für en Zellkern, chasch de [b]rückgängig mache[/b] chnopf verwende um de Nukleus [u]rückgänig z'mache[/u]."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
+msgstr ""
+"Um wiiter z'cho muesch irgendwenn en [b]Zellkern[/b]\n"
+"\n"
+"En [b]Zellkern[/b] tuet fortgschritteni Organelle freischalte, sowie [b]Bindemittel[/b] was es diir erlaubt dich mit andere Zelle us de gliiche Spezies z'verbinde und [b]multizellulär[/b] z'werde.\n"
+"\n"
+"Versuechs en [b]Nukleus[/b] z'platziere um das Tutorial z'schlüüse.\n"
+"\n"
+"Wenn dini Zelle nonig parat isch für en Zellkern, chasch de [b]rückgängig mache[/b] chnopf verwende um de Nukleus [u]rückgänig z'mache[/u]."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
 msgstr ""
 "Um wiiter z'cho muesch irgendwenn en [b]Zellkern[/b]\n"
 "\n"
@@ -2586,6 +2610,14 @@ msgstr ""
 
 msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
 msgstr "(beiiflusst d'Frequenz und Uuswirckig vo Events wie Meteorite und Vulkanuusbrüch)"
+
+#, fuzzy
+msgid "GERMINATE_SPORE"
+msgstr "Gahne in Editor und bearbeite dini Spezies"
+
+#, fuzzy
+msgid "GERMINATE_SPORE_ACTION_TOOLTIP"
+msgstr "Gahne in Editor und bearbeite dini Spezies"
 
 msgid "GITHUB_TOOLTIP"
 msgstr "Bsuech oises GitHub Archiv"
@@ -3796,6 +3828,10 @@ msgstr ""
 msgid "MICROBE_LOADING_TIP_22"
 msgstr ""
 
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_23"
+msgstr "Pass uf grösseri Organisme uuf. Sie werdet dich fresse und verdaut z'werde isch kes Zuckerspiel!"
+
 msgid "MICROBE_LOADING_TIP_3"
 msgstr ""
 
@@ -4940,6 +4976,10 @@ msgstr ""
 msgid "PRESSURE_SHORT"
 msgstr ""
 
+#, fuzzy
+msgid "PRESSURE_TOLERANCE"
+msgstr "Toleranz"
+
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr ""
 
@@ -5107,6 +5147,10 @@ msgstr ""
 msgid "REPRODUCTION_METHOD"
 msgstr ""
 
+#, fuzzy
+msgid "REPRODUCTION_SPORE"
+msgstr "{0}-Verbruuch"
+
 msgid "REQUIRES_NUCLEUS"
 msgstr ""
 
@@ -5232,6 +5276,10 @@ msgstr ""
 
 msgid "ROTATION_COLON"
 msgstr ""
+
+#, fuzzy
+msgid "ROTATION_FORCE"
+msgstr "{0}-Verbruuch"
 
 msgid "RUNOFF_EVENT"
 msgstr ""
@@ -5711,11 +5759,16 @@ msgstr ""
 msgid "SPECIES_WITH_POPULATION"
 msgstr ""
 
-msgid "SPEED"
-msgstr ""
-
 msgid "SPEED_COLON"
 msgstr ""
+
+#, fuzzy
+msgid "SPORE_CELL_TYPE"
+msgstr "Neue Zelltyp erschaffe"
+
+#, fuzzy
+msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "Wenn dini jetzigi Mikrobe nöd a d'Umwelt aapasst isch, denn chasch zum Editor zrugg und öppis anderes probiere."
 
 msgid "SPREAD_TO_PATCHES"
 msgstr ""
@@ -5998,6 +6051,10 @@ msgstr ""
 msgid "TEMPERATURE_SHORT"
 msgstr ""
 
+#, fuzzy
+msgid "TEMPERATURE_TOLERANCE_RANGE"
+msgstr "(veränderet d'Aazahl a Arktische Meeresgebiete ide Welt)"
+
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr ""
 
@@ -6119,6 +6176,9 @@ msgstr ""
 
 msgid "THRIVIN_ACHIEVEMENT"
 msgstr "Am Gedeihe"
+
+msgid "THRUST_FORCE"
+msgstr ""
 
 msgid "THYLAKOIDS"
 msgstr ""
@@ -7263,8 +7323,9 @@ msgstr ""
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr ""
 
-msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
-msgstr ""
+#, fuzzy
+msgid "WIKI_GLYCOLYSIS_COMMA_NITROGEN_FIXATION"
+msgstr "Aerobi Stickstofffixierig"
 
 msgid "WIKI_HEADING_APPENDICES"
 msgstr ""

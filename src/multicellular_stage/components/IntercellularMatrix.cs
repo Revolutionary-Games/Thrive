@@ -2,6 +2,7 @@
 
 using Godot;
 using SharedBase.Archive;
+using Systems;
 
 public struct IntercellularMatrix : IArchivableComponent
 {
@@ -25,6 +26,17 @@ public struct IntercellularMatrix : IArchivableComponent
     public void WriteToArchive(ISArchiveWriter writer)
     {
         // Nothing to save
+    }
+
+    /// <summary>
+    ///   Removes this entity's connection. Note that if this cell is still a <see cref="MicrobeColonyMember"/>,
+    ///   the connection will be restored by <see cref="IntercellularMatrixSystem"/>.
+    /// </summary>
+    public void RemoveConnection()
+    {
+        GeneratedConnection?.QueueFree();
+        GeneratedConnection = null;
+        IsConnectionRedundant = false;
     }
 }
 
