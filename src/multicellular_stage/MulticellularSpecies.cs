@@ -213,6 +213,31 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 #if DEBUG
         ModifiableGameplayCells.ThrowIfCellsOverlap();
 #endif
+
+        foreach (var modifiableGameplayCell in ModifiableGameplayCells)
+        {
+            bool typeExists = false;
+
+            foreach (var typeDefinition in ModifiableCellTypes)
+            {
+                if (typeDefinition == modifiableGameplayCell.ModifiableCellType)
+                {
+                    typeExists = true;
+                    break;
+                }
+            }
+
+            if (!typeExists)
+            {
+#if DEBUG
+                throw new Exception($"Gameplay cell type {modifiableGameplayCell.ModifiableCellType} does not exist " +
+                    $"in species {FormattedIdentifier}");
+#else
+                GD.PrintErr($"Gameplay cell type {modifiableGameplayCell.ModifiableCellType} does not exist " +
+                    $"in species {FormattedIdentifier}");
+#endif
+            }
+        }
     }
 
     public override void OnAttemptedInAutoEvo(bool refreshCache)
