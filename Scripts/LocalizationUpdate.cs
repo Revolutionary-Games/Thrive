@@ -15,8 +15,9 @@ using ScriptsBase.Utilities;
 public class LocalizationUpdate : LocalizationUpdateBase<LocalizationOptionsBase>
 {
     // List of locales, edit this to add new ones:
-    private static readonly List<string> ThriveLocales = new()
-    {
+    private static readonly List<string> ThriveLocales =
+    [
+        "aeb",
         "ar",
         "af",
         "be",
@@ -70,7 +71,7 @@ public class LocalizationUpdate : LocalizationUpdateBase<LocalizationOptionsBase
         "lv",
         "zh_CN",
         "zh_TW",
-    };
+    ];
 
     /// <summary>
     ///   This variable holds what the translation system is looking for in C# code files
