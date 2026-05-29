@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-29 11:48+0300\n"
+"POT-Creation-Date: 2026-05-29 16:13+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -617,12 +617,12 @@ msgstr ""
 msgid "BATHYPELAGIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:966
+#: ../src/microbe_stage/MicrobeHUD.cs:973
 #: ../src/microbe_stage/MicrobeHUD.tscn:433
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:917
+#: ../src/microbe_stage/MicrobeHUD.cs:924
 #: ../src/microbe_stage/MicrobeHUD.tscn:426
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
@@ -774,7 +774,7 @@ msgstr ""
 msgid "BLUESKY_TOOLTIP"
 msgstr ""
 
-#: ../src/general/GameProperties.cs:176
+#: ../src/general/GameProperties.cs:190
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr ""
 
@@ -923,27 +923,27 @@ msgstr ""
 msgid "CARBON_DIOXIDE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:955
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:960
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:959
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:964
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:963
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:968
 msgid "CATEGORY_LITTLE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:957
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:962
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:961
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:966
 msgid "CATEGORY_SOME"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:965
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:970
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
@@ -2235,7 +2235,7 @@ msgstr ""
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:471 ../src/microbe_stage/MicrobeHUD.cs:476
+#: ../src/microbe_stage/MicrobeHUD.cs:478 ../src/microbe_stage/MicrobeHUD.cs:483
 msgid "DEVOURED"
 msgstr ""
 
@@ -3220,12 +3220,12 @@ msgstr ""
 msgid "FOSSILISATION_FAILED_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:838
+#: ../src/microbe_stage/MicrobeHUD.cs:845
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:16
 msgid "FOSSILISATION_HINT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:837
+#: ../src/microbe_stage/MicrobeHUD.cs:844
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
@@ -6005,6 +6005,10 @@ msgstr ""
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr ""
 
+#: ../src/multicellular_stage/MulticellularSpecies.cs:608
+msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
+msgstr ""
+
 #: ../simulation_parameters/common/gallery.json:66
 #: ../simulation_parameters/common/gallery.json:496
 #: ../simulation_parameters/common/wiki.json:2604
@@ -6432,7 +6436,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:3164
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:3176
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:154
-#: ../src/microbe_stage/MicrobeHUD.cs:785
+#: ../src/microbe_stage/MicrobeHUD.cs:792
 msgid "N_A"
 msgstr ""
 
@@ -6913,7 +6917,7 @@ msgstr ""
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:509
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:585
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:373
-#: ../src/microbe_stage/MicrobeHUD.cs:483
+#: ../src/microbe_stage/MicrobeHUD.cs:490
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:141
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:144
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:156
@@ -7020,7 +7024,7 @@ msgstr ""
 msgid "PLANET_STATISTICS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:820
+#: ../src/microbe_stage/MicrobeHUD.cs:827
 msgid "PLAYER"
 msgstr ""
 
@@ -7370,6 +7374,7 @@ msgid "REPRODUCTION_ASEXUAL"
 msgstr ""
 
 #: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:648
+#: ../src/multicellular_stage/MulticellularReproductionMethod.cs:5
 msgid "REPRODUCTION_BUDDING"
 msgstr ""
 
@@ -7394,6 +7399,7 @@ msgid "REPRODUCTION_METHOD"
 msgstr ""
 
 #: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:650
+#: ../src/multicellular_stage/MulticellularReproductionMethod.cs:8
 msgid "REPRODUCTION_SPORE"
 msgstr ""
 
@@ -9036,6 +9042,7 @@ msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeSpecies.cs:464
+#: ../src/multicellular_stage/MulticellularSpecies.cs:611
 msgid "TOLERANCE_DETAIL_TEXT"
 msgstr ""
 

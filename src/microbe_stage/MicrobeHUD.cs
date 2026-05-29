@@ -390,10 +390,17 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     {
         var fossils = FossilisedSpecies.CreateListOfFossils(false);
 
-        // TODO: buttons to fossilize multicellular species
-        stage!.WorldSimulation.EntitySystem.Query(new QueryDescription().WithAll<MicrobeSpeciesMember>(),
+        stage!.WorldSimulation.EntitySystem.Query(
+            new QueryDescription().WithAny<MicrobeSpeciesMember, MulticellularSpeciesMember>(),
             (Entity entity, ref SpeciesMember member) =>
             {
+                // Skip colony members and only show it on the main cell.
+                // Note that this also affects the microbe stage colonies, but it would be a bit harder to make sure
+                // those still had the buttons, but anyway the main cell in such colonies is also of the species other
+                // colony members are, so everything still works.
+                if (entity.Has<MicrobeColonyMember>())
+                    return;
+
                 var species = member.Species;
 
                 var button = FossilisationButtonScene.Instantiate<FossilisationButton>();
