@@ -1689,7 +1689,7 @@ public static class Constants
 
     public const float MINIMUM_RUNNABLE_PROCESS_FRACTION = 0.00001f;
 
-    public const float DEFAULT_PROCESS_SPINNER_SPEED = 365.0f;
+    public const float DEFAULT_PROCESS_SPINNER_SPEED = MathF.PI * 2.0f;
     public const float DEFAULT_PROCESS_STATISTICS_AVERAGE_INTERVAL = 0.4f;
 
     public const int COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR = 5;
@@ -1863,6 +1863,7 @@ public static class Constants
     public const string SAVE_BACKUP_SUFFIX = ".backup" + SAVE_EXTENSION_WITH_DOT;
 
     public const int SAVE_LIST_SCREENSHOT_HEIGHT = 720;
+    public const int SAVE_LIST_LAZY_LOAD_PADDING = 5;
     public const int FOSSILISED_PREVIEW_IMAGE_HEIGHT = 400;
 
     public const string FOSSIL_EXTENSION = "thrivefossil";

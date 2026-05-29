@@ -21,16 +21,16 @@ public partial class CellBodyPlanEditorComponent :
 
     private readonly Dictionary<string, CellTypeSelection> cellTypeSelectionButtons = new();
 
-    private readonly IndividualHexLayout<CellTemplate> tempFreshlyUpdatedCells = new();
+    private readonly IndividualHexLayout<CellTemplate> tempFreshlyUpdatedCells = [];
 
-    private readonly List<Hex> hexTemporaryMemory = new();
-    private readonly List<Hex> hexTemporaryMemory2 = new();
-    private readonly List<Hex> islandResults = new();
-    private readonly HashSet<Hex> islandsWorkMemory1 = new();
-    private readonly List<Hex> islandsWorkMemory2 = new();
+    private readonly List<Hex> hexTemporaryMemory = [];
+    private readonly List<Hex> hexTemporaryMemory2 = [];
+    private readonly List<Hex> islandResults = [];
+    private readonly HashSet<Hex> islandsWorkMemory1 = [];
+    private readonly List<Hex> islandsWorkMemory2 = [];
     private readonly Queue<Hex> islandsWorkMemory3 = new();
 
-    private readonly List<EditorUserOverride> ignoredEditorWarnings = new();
+    private readonly List<EditorUserOverride> ignoredEditorWarnings = [];
 
     private readonly Dictionary<Compound, float> processSpeedWorkMemory = new();
 
@@ -39,11 +39,11 @@ public partial class CellBodyPlanEditorComponent :
     /// <summary>
     ///   Stores cells that end up being disconnected from the colony because of growth order
     /// </summary>
-    private readonly HashSet<Hex> wrongGrowthOrderCells = new();
+    private readonly HashSet<Hex> wrongGrowthOrderCells = [];
 
     private readonly Dictionary<Compound, List<Compound>> tempCompoundSources = new();
 
-    private readonly HashSet<Compound> compoundsThatDependOnDay = new();
+    private readonly HashSet<Compound> compoundsThatDependOnDay = [];
 
 #pragma warning disable CA2213
 
@@ -162,8 +162,8 @@ public partial class CellBodyPlanEditorComponent :
 
     private IndividualHexLayout<CellTemplate> editedMicrobeCells = null!;
 
-    private List<IReadOnlyOrganelleTemplate> tempAllOrganelles = new();
-    private List<TweakedProcess> tempAllProcesses = new();
+    private List<IReadOnlyOrganelleTemplate> tempAllOrganelles = [];
+    private List<TweakedProcess> tempAllProcesses = [];
     private Dictionary<OrganelleDefinition, int> tempMemory3 = new();
 
     /// <summary>
@@ -394,7 +394,7 @@ public partial class CellBodyPlanEditorComponent :
 
             if (cellType != null)
             {
-                HashSet<(Hex Hex, int Orientation)> hoveredHexes = new();
+                HashSet<(Hex Hex, int Orientation)> hoveredHexes = [];
 
                 /*if (!componentBottomLeftButtons.SymmetryEnabled)
                     effectiveSymmetry = HexEditorSymmetry.None;*/
@@ -825,8 +825,7 @@ public partial class CellBodyPlanEditorComponent :
         else
         {
             moveOccupancies = GetMultiActionWithOccupancies(positions.Take(1).ToList(),
-                new List<HexWithData<CellTemplate>>
-                    { MovingPlacedHex }, true);
+                [MovingPlacedHex], true);
         }
 
         return Editor.WhatWouldActionsCost(moveOccupancies.Data);
@@ -1192,10 +1191,8 @@ public partial class CellBodyPlanEditorComponent :
         if (!IsMoveTargetValid(newLocation, newRotation, cell))
             return false;
 
-        var multiAction = GetMultiActionWithOccupancies(
-            new List<(Hex Hex, int Orientation)> { (newLocation, newRotation) },
-            new List<HexWithData<CellTemplate>> { cell },
-            true);
+        var multiAction = GetMultiActionWithOccupancies([(newLocation, newRotation)],
+            [cell], true);
 
         // Too low mutation points, cancel move
         if (Editor.MutationPoints < Editor.WhatWouldActionsCost(multiAction.Data))

@@ -28,7 +28,7 @@ public partial class OptionsMenu : ControlWithInput
     public float MaxRenderScale = 1.05f;
 
     [Export]
-    public float MinRenderScale = 0.80f;
+    public float MinRenderScale = 0.60f;
 
     [Export]
     public float RenderScaleStep = 0.025f;

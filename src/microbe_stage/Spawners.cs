@@ -494,13 +494,13 @@ public static class SpawnHelpers
         }
 
         // Chunks that don't dissolve naturally when running out of compounds, are despawned with a timer
-        // TODO: should this be forced if this chunk has no compounds? (at least ice shards probably wouldn't like
-        // this)
         if (timedLife)
         {
             commandRecorder.Set(entity, new TimedLife
             {
-                TimeToLiveRemaining = Constants.DESPAWNING_CHUNK_LIFETIME,
+                TimeToLiveRemaining = chunkType.LifetimeOverride > 0 ?
+                    chunkType.LifetimeOverride :
+                    Constants.DESPAWNING_CHUNK_LIFETIME,
             });
             commandRecorder.Set(entity, new FadeOutActions
             {

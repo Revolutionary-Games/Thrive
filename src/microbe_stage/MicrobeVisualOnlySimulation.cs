@@ -305,14 +305,19 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 
             foreach (var pair in organelles.CreatedOrganelleVisuals)
             {
+                var organelle = pair.Key;
+
                 // We don't need to account for internal organelles as they are located within the cell's radius
-                if (!pair.Key.Definition.PositionedExternally)
+                if (!organelle.Definition.PositionedExternally)
                     continue;
 
                 // TODO: is there another way to not need to call so many Godot data access methods here
                 // Organelle positions might be usable as the visual positions are derived from them, but this requires
                 // using the global translation for some reason as translation gives just 0 here and doesn't help.
-                var position = pair.Value.GlobalPosition;
+                var visual = organelle.OrganelleGraphics ?? throw new InvalidOperationException(
+                    "Created organelle visual cache should only contain organelles with graphics");
+
+                var position = visual.GlobalPosition;
 
                 // Assume that the organelle's radius is 1
                 const float organelleRadius = 1.0f;

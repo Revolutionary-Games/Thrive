@@ -60,8 +60,8 @@ public partial class LicensesDisplay : CustomWindow
         bool isSteamVersion = SteamHandler.IsTaggedSteamRelease();
 
         // These don't react to language change, but I doubt it's important enough to fix
-        licensesToShow = new List<(string Heading, Func<string> Content)>
-        {
+        licensesToShow =
+        [
             (string.Empty, isSteamVersion ? LoadSteamLicenseFile : () => LoadFile(Constants.LICENSE_FILE)),
             (string.Empty, () => LoadFile(Constants.ASSETS_README)),
             (string.Empty, () => LoadFile(Constants.ASSETS_LICENSE_FILE)),
@@ -69,7 +69,7 @@ public partial class LicensesDisplay : CustomWindow
             (string.Empty, () => LoadFile(Constants.EXTRA_THRIVE_LICENSE_FILE)),
             (string.Empty, () => LoadFile(Constants.GODOT_LICENSE_FILE)),
             (string.Empty, () => LoadFile(Constants.RUNTIME_LICENSE_FILE)),
-        };
+        ];
 
         if (!isSteamVersion)
         {

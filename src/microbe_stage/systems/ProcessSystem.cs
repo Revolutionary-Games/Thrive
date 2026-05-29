@@ -34,6 +34,7 @@ using World = Arch.Core.World;
 [RunsAfter(typeof(CompoundAbsorptionSystem))]
 [RunsBefore(typeof(OsmoregulationAndHealingSystem))]
 [RunsBefore(typeof(MicrobeMovementSystem))]
+[ReadsComponent(typeof(MicrobeEnvironmentalEffects))]
 [RunsOnMainThread]
 [RuntimeCost(26)]
 public partial class ProcessSystem : BaseSystem<World, float>
