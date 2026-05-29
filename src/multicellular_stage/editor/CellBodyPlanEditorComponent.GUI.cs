@@ -380,8 +380,12 @@ public partial class CellBodyPlanEditorComponent
     {
         var maxBudSize = CellBodyPlanInternalCalculations.MaxBudSize(editedMicrobeCells.Count);
 
+        var clampedBudSize = Math.Min(DesiredMassBuddingCellCount, maxBudSize);
+
         massBuddingCellCountSlider.MaxValue = maxBudSize;
-        massBuddingCellCountSlider.SetValueNoSignal(Math.Min(DesiredMassBuddingCellCount, maxBudSize));
+        massBuddingCellCountSlider.SetValueNoSignal(clampedBudSize);
+
+        massBuddingCellCountLabel.Text = clampedBudSize.ToString();
     }
 
     private int ReproductionMethodToIndex(MulticellularReproductionMethod reproductionMethod)

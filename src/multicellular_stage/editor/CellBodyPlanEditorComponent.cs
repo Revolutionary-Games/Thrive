@@ -145,6 +145,8 @@ public partial class CellBodyPlanEditorComponent :
 
     [Export]
     private Slider massBuddingCellCountSlider = null!;
+    [Export]
+    private Label massBuddingCellCountLabel = null!;
 
     [Export]
     private Control buddingReproductionSection = null!;
