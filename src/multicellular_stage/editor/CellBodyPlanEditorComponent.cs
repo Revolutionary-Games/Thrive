@@ -618,8 +618,14 @@ public partial class CellBodyPlanEditorComponent :
 
         editedSpecies.ReproductionMethod = ReproductionMethod;
         editedSpecies.ModifiableSporeCellType = SporeCellType;
-        editedSpecies.MassBuddingCellCount = Math.Min(DesiredMassBuddingCellCount,
-            CellBodyPlanInternalCalculations.MaxBudSize(editedMicrobeCells.Count));
+
+        // MassBuddingCellCount changes are free if the resulting reproduction method isn't mass budding, so this check
+        // needs to exist to prevent exploits
+        if (ReproductionMethod == MulticellularReproductionMethod.MassBudding)
+        {
+            editedSpecies.MassBuddingCellCount = Math.Min(DesiredMassBuddingCellCount,
+                CellBodyPlanInternalCalculations.MaxBudSize(editedMicrobeCells.Count));
+        }
 
         tempFreshlyUpdatedCells.Clear();
         editedSpecies.OnEdited();
