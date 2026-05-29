@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using Godot;
 using SharedBase.Archive;
@@ -226,6 +227,31 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 #if DEBUG
         ModifiableGameplayCells.ThrowIfCellsOverlap();
 #endif
+
+        foreach (var modifiableGameplayCell in ModifiableGameplayCells)
+        {
+            bool typeExists = false;
+
+            foreach (var typeDefinition in ModifiableCellTypes)
+            {
+                if (typeDefinition == modifiableGameplayCell.ModifiableCellType)
+                {
+                    typeExists = true;
+                    break;
+                }
+            }
+
+            if (!typeExists)
+            {
+#if DEBUG
+                throw new Exception($"Gameplay cell type {modifiableGameplayCell.ModifiableCellType} does not exist " +
+                    $"in species {FormattedIdentifier}");
+#else
+                GD.PrintErr($"Gameplay cell type {modifiableGameplayCell.ModifiableCellType} does not exist " +
+                    $"in species {FormattedIdentifier}");
+#endif
+            }
+        }
     }
 
     public override void OnAttemptedInAutoEvo(bool refreshCache)
@@ -355,22 +381,54 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 
         var casted = (MulticellularSpecies)mutation;
 
-        ModifiableGameplayCells.Clear();
-
         var workMemory1 = new List<Hex>();
         var workMemory2 = new List<Hex>();
 
-        foreach (var cellTemplate in casted.ModifiableGameplayCells)
-        {
-            ModifiableGameplayCells.AddFast((CellTemplate)cellTemplate.Clone(), workMemory1, workMemory2);
-        }
+        // We need to ensure each cell type is cloned just once so that references work
+        var typeMapping = new Dictionary<CellType, CellType>();
 
         ModifiableCellTypes.Clear();
 
         foreach (var cellType in casted.ModifiableCellTypes)
         {
-            ModifiableCellTypes.Add((CellType)cellType.Clone());
+            var clonedType = (CellType)cellType.Clone();
+            ModifiableCellTypes.Add(clonedType);
+            typeMapping[cellType] = clonedType;
+
+            if (cellType == casted.ModifiableSporeCellType)
+                ModifiableSporeCellType = clonedType;
         }
+
+        ModifiableGameplayCells.Clear();
+
+        foreach (var cellTemplate in casted.ModifiableGameplayCells)
+        {
+            var oldType = cellTemplate.ModifiableCellType;
+
+            if (!typeMapping.TryGetValue(oldType, out var newType))
+                throw new Exception("Cell type not found in species");
+
+            ModifiableGameplayCells.AddFast(new CellTemplate(newType, cellTemplate.Position, cellTemplate.Orientation),
+                workMemory1, workMemory2);
+        }
+
+        if (casted.ModifiableSporeCellType != null && ModifiableSporeCellType == null)
+        {
+            if (!typeMapping.TryGetValue(casted.ModifiableSporeCellType, out var newSporeType))
+                throw new Exception("Spore cell type not found in species");
+
+            ModifiableSporeCellType = newSporeType;
+        }
+        else if (casted.ModifiableSporeCellType == null)
+        {
+            ModifiableSporeCellType = null;
+        }
+
+        ReproductionMethod = casted.ReproductionMethod;
+
+        // Recalculate editor cells if they exist as they are now out of date
+        modifiableEditorCells = null;
+        readonlyIndividualLayoutAdapter = null;
 
         cachedFillTimes.Clear();
     }
@@ -488,9 +546,29 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         var workMemory1 = new List<Hex>();
         var workMemory2 = new List<Hex>();
 
+        // We need to ensure each cell type is cloned just once so that references work
+        var typeMapping = new Dictionary<CellType, CellType>();
+
+        foreach (var cellType in ModifiableCellTypes)
+        {
+            var clonedType = (CellType)cellType.Clone();
+            result.ModifiableCellTypes.Add(clonedType);
+            typeMapping[cellType] = clonedType;
+
+            if (cellType == ModifiableSporeCellType)
+                result.ModifiableSporeCellType = clonedType;
+        }
+
         foreach (var cellTemplate in ModifiableGameplayCells)
         {
-            result.ModifiableGameplayCells.AddFast((CellTemplate)cellTemplate.Clone(), workMemory1, workMemory2);
+            var oldType = cellTemplate.ModifiableCellType;
+
+            if (!typeMapping.TryGetValue(oldType, out var newType))
+                throw new Exception("Cell type not found in species");
+
+            result.ModifiableGameplayCells.AddFast(
+                new CellTemplate(newType, cellTemplate.Position, cellTemplate.Orientation),
+                workMemory1, workMemory2);
         }
 
         if (result.modifiableEditorCells == null)
@@ -502,19 +580,24 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
             result.modifiableEditorCells.Clear();
         }
 
-        foreach (var cellTemplate in (HexLayout<HexWithData<CellTemplate>>)ModifiableEditorCells)
+        foreach (var hexWithData in (HexLayout<HexWithData<CellTemplate>>)ModifiableEditorCells)
         {
-            result.modifiableEditorCells.AddFast(cellTemplate.Clone(), workMemory1, workMemory2);
-        }
+            var oldTemplate = hexWithData.Data;
+            CellTemplate? newTemplate = null;
 
-        foreach (var cellType in ModifiableCellTypes)
-        {
-            var clonedType = (CellType)cellType.Clone();
+            if (oldTemplate != null)
+            {
+                var oldType = oldTemplate.ModifiableCellType;
 
-            result.ModifiableCellTypes.Add(clonedType);
+                if (!typeMapping.TryGetValue(oldType, out var newType))
+                    throw new Exception("Cell type not found in species");
 
-            if (cellType == ModifiableSporeCellType)
-                result.ModifiableSporeCellType = clonedType;
+                newTemplate = new CellTemplate(newType, oldTemplate.Position, oldTemplate.Orientation);
+            }
+
+            result.modifiableEditorCells.AddFast(
+                new HexWithData<CellTemplate>(newTemplate, hexWithData.Position, hexWithData.Orientation),
+                workMemory1, workMemory2);
         }
 
         if (ModifiableSporeCellType != null && result.ModifiableSporeCellType == null)
@@ -542,6 +625,23 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         // Reproduction mode doesn't affect the visual hash code
 
         return hash;
+    }
+
+    public override string GetDetailString()
+    {
+        var reproductionType =
+            Localization.Translate(ReproductionMethod.GetAttribute<DescriptionAttribute>().Description);
+
+        return base.GetDetailString() + "\n" +
+            Localization.Translate("MULTICELLULAR_SPECIES_DETAIL_TEXT").FormatSafe(ModifiableGameplayCells.Count,
+                CellTypes.Count,
+                reproductionType) + "\n" +
+            Localization.Translate("TOLERANCE_DETAIL_TEXT").FormatSafe(Tolerances.PreferredTemperature,
+                Tolerances.TemperatureTolerance,
+                Tolerances.PressureMinimum,
+                Tolerances.PressureMinimum + Tolerances.PressureTolerance,
+                Math.Round(Tolerances.OxygenResistance * 100, 2),
+                Math.Round(Tolerances.UVResistance * 100, 2));
     }
 
     protected override Dictionary<Compound, float> CalculateBaseReproductionCost()

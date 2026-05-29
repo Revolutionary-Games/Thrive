@@ -199,8 +199,12 @@ public partial class FossilisationDialog : CustomWindow
             case MicrobeSpecies microbeSpecies:
                 savedSpecies = new FossilisedSpecies(
                     new FossilisedSpeciesInformation(FossilisedSpeciesInformation.SpeciesType.Microbe),
-                    microbeSpecies,
-                    speciesName);
+                    microbeSpecies, speciesName);
+                break;
+            case MulticellularSpecies multicellularSpecies:
+                savedSpecies = new FossilisedSpecies(
+                    new FossilisedSpeciesInformation(FossilisedSpeciesInformation.SpeciesType.Multicellular),
+                    multicellularSpecies, speciesName);
                 break;
             default:
                 throw new InvalidOperationException($"Unable to fossilise type {species.GetType()}");

@@ -13,7 +13,7 @@ using ScriptsBase.Utilities;
 
 public class CodeChecks : CodeChecksBase<Program.CheckOptions>
 {
-    private static readonly string[] FilesNotAllowedToHaveBom = { "global.json", "dotnet-tools.json" };
+    private static readonly string[] FilesNotAllowedToHaveBom = ["global.json", "dotnet-tools.json"];
 
     public CodeChecks(Program.CheckOptions opts,
         Func<LocalizationOptionsBase, CancellationToken, Task<bool>> runLocalizationTool) :
@@ -39,7 +39,7 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
                 new FileChecks(true,
                     new BomChecker(BomChecker.Mode.Required, ".cs", ".json")
                     {
-                        IgnoredFiles = new List<string>(FilesNotAllowedToHaveBom),
+                        IgnoredFiles = [..FilesNotAllowedToHaveBom],
                     },
                     new BomChecker(BomChecker.Mode.Disallowed, FilesNotAllowedToHaveBom),
                     new CfgCheck(thriveVersion),
