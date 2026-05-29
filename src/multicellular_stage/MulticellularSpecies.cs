@@ -270,11 +270,22 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
             ProcessSpeedModifier = 1,
         };
 
+        int initialCellCount = 1;
+
+        if (ReproductionMethod == MulticellularReproductionMethod.MassBudding)
+            initialCellCount = MassBuddingCellCount;
+
+        float storageCapacity = 0.0f;
+
         // We don't take specialization into account here, so we overestimate how much stuff is needed
-        ProcessSystem.ComputeCompoundBalance(ModifiableGameplayCells[0].ModifiableOrganelles,
-            biomeConditions, environmentalTolerances, 1, CompoundAmountType.Biome, false, compoundBalances);
-        var storageCapacity =
-            MicrobeInternalCalculations.CalculateCapacity(ModifiableGameplayCells[0].ModifiableOrganelles);
+        for (int i = 0; i < initialCellCount; ++i)
+        {
+            ProcessSystem.ComputeCompoundBalance(ModifiableGameplayCells[0].ModifiableOrganelles,
+                biomeConditions, environmentalTolerances, 1, CompoundAmountType.Biome, false, compoundBalances);
+
+            storageCapacity +=
+                MicrobeInternalCalculations.CalculateCapacity(ModifiableGameplayCells[i].ModifiableOrganelles);
+        }
 
         InitialCompounds.Clear();
 
