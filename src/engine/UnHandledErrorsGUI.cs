@@ -93,6 +93,14 @@ public partial class UnHandledErrorsGUI : Control
                 if (usesMods)
                     additionalContext = "(MODS ENABLED)\n" + additionalContext;
 
+                // On Windows, exception info contains "\r\n" style new lines which cause extra line breaks, so we
+                // remove those when detected
+                if (error.Contains("\r\n"))
+                    error = error.Replace("\r\n", "\n");
+
+                if (additionalContext.Contains("\r\n"))
+                    additionalContext = additionalContext.Replace("\r\n", "\n");
+
                 errorPopup.ExceptionInfo = error;
 
                 errorPopup.ExceptionExtraContext = additionalContext;
