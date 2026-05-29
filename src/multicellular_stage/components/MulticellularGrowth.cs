@@ -424,7 +424,7 @@ public static class MulticellularGrowthHelpers
         if (multicellularGrowth.NextBodyPlanCellToGrowIndex != 1)
         {
             GD.PrintErr($"Tried to spawn initial mass budding cells ({species.ReadableName}) while some colony"
-                + $" cells were already grown ({multicellularGrowth.NextBodyPlanCellToGrowIndex})");
+                + $" cells were already grown (x{multicellularGrowth.NextBodyPlanCellToGrowIndex})");
 
             multicellularGrowth.SpawnedInitialMassBuddingCells = true;
             return;
