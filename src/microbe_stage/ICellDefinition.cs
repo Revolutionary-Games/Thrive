@@ -103,7 +103,7 @@ public static class GeneralCellPropertiesHelpers
     {
         var result = new List<(Compound Compound, float Amount)>();
 
-        CalculateTotalCompositionList(definition, result);
+        definition.CalculateTotalCompositionList(result);
 
         return result;
     }
