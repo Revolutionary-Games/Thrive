@@ -219,12 +219,12 @@ public class LocalizationUpdate : LocalizationUpdateBase<LocalizationOptionsBase
 
     protected override List<TranslationExtractorBase> GetTranslationExtractors()
     {
-        return new List<TranslationExtractorBase>
-        {
+        return
+        [
             new CSharpTranslationExtractor(TranslatedFunctionNames),
             new JsonTranslationExtractor(TranslatedJSONKeys),
             new GodotSceneTranslationExtractor(TranslatedSceneProperties),
-        };
+        ];
     }
 
     protected override async Task<bool> PostProcessTranslations(CancellationToken cancellationToken)
