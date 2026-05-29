@@ -594,8 +594,8 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
                 var yOffset = new Vector3(0, random.NextSingle() * Constants.TERRAIN_HEIGHT_RANDOMNESS, 0);
 
                 SpawnHelpers.SpawnMicrobeTerrainWithoutFinalizing(recorder, worldSimulation,
-                    position + rotation * (terrainGroup.RelativePosition + chunk.RelativePosition) + yOffset,
-                    rotation, chunk, groupId, random);
+                    position + (clusterRotation * terrainGroup.RelativePosition)
+                    + (rotation * chunk.RelativePosition) + yOffset, rotation, chunk, groupId, random);
 
                 data.ExpectedMemberCount += 1;
             }
