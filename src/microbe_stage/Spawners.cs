@@ -790,8 +790,15 @@ public static class SpawnHelpers
                 {
                     resolvedCellType = multicellularSpecies.FirstCellTypeToSpawn();
 
-                    if (multicellularSpecies.ReproductionMethod == MulticellularReproductionMethod.Sporulation)
-                        multicellularGrowth.IsASpore = true;
+                    if (multicellularSpecies.ReproductionMethod != MulticellularReproductionMethod.MassBudding)
+                    {
+                        // Making sure that if the species' reproduction method changes later on, this cell won't
+                        // randomly try growing bud cells
+                        multicellularGrowth.SpawnedInitialMassBuddingCells = true;
+
+                        if (multicellularSpecies.ReproductionMethod == MulticellularReproductionMethod.Sporulation)
+                            multicellularGrowth.IsASpore = true;
+                    }
                 }
                 else
                 {
