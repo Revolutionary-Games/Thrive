@@ -93,12 +93,17 @@ public partial class UnHandledErrorsGUI : Control
                 if (usesMods)
                     additionalContext = "(MODS ENABLED)\n" + additionalContext;
 
-                // It seems like Godot interprets carriage return as a false newline. To prevent phantom lines in
-                // Windows, since exception stack traces are built with \r\n, we just remove all those carriage returns.
-                // This allocates a new string if carriage returns are found, but there's really no other option.
-                errorPopup.ExceptionInfo = error.Replace("\r", string.Empty);
+                // On Windows, exception info contains "\r\n" style new lines which cause extra line breaks, so we
+                // remove those when detected
+                if (error.Contains("\r\n"))
+                    error = error.Replace("\r\n", "\n");
 
-                errorPopup.ExceptionExtraContext = additionalContext.Replace("\r", string.Empty);
+                if (additionalContext.Contains("\r\n"))
+                    additionalContext = additionalContext.Replace("\r\n", "\n");
+
+                errorPopup.ExceptionInfo = error;
+
+                errorPopup.ExceptionExtraContext = additionalContext;
 
                 popupModsUsedWarning.Visible = usesMods;
 
