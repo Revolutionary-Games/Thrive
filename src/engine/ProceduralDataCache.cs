@@ -350,12 +350,31 @@ public partial class ProceduralDataCache : Node
         entries.Clear();
     }
 
-    // ReSharper disable NotAccessedPositionalProperty.Local
-    private readonly record struct LoadedShapeKey(string Path, float Density);
+    private readonly record struct LoadedShapeKey
+    {
+        public LoadedShapeKey(string path, float density)
+        {
+            Path = path;
+            Density = density;
+        }
 
-    private readonly record struct SimpleShapeKey(SimpleShapeType Type, float Size, float Density);
+        public string Path { get; }
+        public float Density { get; }
+    }
 
-    // ReSharper restore NotAccessedPositionalProperty.Local
+    private readonly record struct SimpleShapeKey
+    {
+        public SimpleShapeKey(SimpleShapeType type, float size, float density)
+        {
+            Type = type;
+            Size = size;
+            Density = density;
+        }
+
+        public SimpleShapeType Type { get; }
+        public float Size { get; }
+        public float Density { get; }
+    }
 
     private class CacheEntry<T>(T value, float currentTime)
     {
