@@ -14,6 +14,7 @@
 resource_local_to_scene = true
 shader = ExtResource("7_1oc4h")
 shader_parameter/rotation = 0.0
+shader_parameter/aspect = Vector2(1, 1)
 
 [sub_resource type="Theme" id="1"]
 default_font = ExtResource("5_wdgi7")
