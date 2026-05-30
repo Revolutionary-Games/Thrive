@@ -335,7 +335,7 @@ _data = {
 &"show": SubResource("44")
 }
 
-[node name="CellBodyPlanEditorComponent" type="Control" unique_id=2093309640 node_paths=PackedStringArray("structureTabButton", "reproductionTabButton", "behaviourTabButton", "growthOrderTabButton", "tolerancesTabButton", "structureTab", "reproductionTab", "behaviourEditor", "growthOrderTab", "growthOrderGUI", "showGrowthOrderCoordinates", "tolerancesEditor", "toleranceTab", "toleranceWarningContainer", "cellTypeSelectionList", "modifyTypeButton", "deleteTypeButton", "duplicateTypeButton", "cannotDeleteInUseTypeDialog", "duplicateCellTypeDialog", "duplicateCellTypeName", "cellPopupMenu", "organismStatisticsPanel", "rightPanelScrollContainer", "negativeAtpPopup", "wrongGrowthOrderPopup", "reproductionMethodDropdown", "sporeCellTypeDropdown", "buddingReproductionSection", "sporeReproductionSection", "hexPositionEffectsContainer", "floatingLabelContainer", "islandPopup", "componentBottomLeftButtons", "mutationPointsBar", "cancelButton", "finishButtonWarningBadge", "finishOrNextButton")]
+[node name="CellBodyPlanEditorComponent" type="Control" unique_id=2093309640 node_paths=PackedStringArray("structureTabButton", "reproductionTabButton", "behaviourTabButton", "growthOrderTabButton", "tolerancesTabButton", "structureTab", "reproductionTab", "behaviourEditor", "growthOrderTab", "growthOrderGUI", "showGrowthOrderCoordinates", "tolerancesEditor", "toleranceTab", "toleranceWarningContainer", "cellTypeSelectionList", "modifyTypeButton", "deleteTypeButton", "duplicateTypeButton", "cannotDeleteInUseTypeDialog", "duplicateCellTypeDialog", "duplicateCellTypeName", "cellPopupMenu", "organismStatisticsPanel", "rightPanelScrollContainer", "negativeAtpPopup", "wrongGrowthOrderPopup", "wrongSporeCellTypePopup", "reproductionMethodDropdown", "sporeCellTypeDropdown", "buddingReproductionSection", "sporeReproductionSection", "hexPositionEffectsContainer", "floatingLabelContainer", "islandPopup", "componentBottomLeftButtons", "mutationPointsBar", "cancelButton", "finishButtonWarningBadge", "finishOrNextButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -370,6 +370,7 @@ organismStatisticsPanel = NodePath("RightPanel/VBoxContainer/OrganismStatisticsP
 rightPanelScrollContainer = NodePath("RightPanel/VBoxContainer/OrganismStatisticsPanel/VBoxContainer/Body/ScrollContainer")
 negativeAtpPopup = NodePath("NegativeAtpWarning")
 wrongGrowthOrderPopup = NodePath("WrongGrowthOrderError")
+wrongSporeCellTypePopup = NodePath("WrongSporeCellType")
 toleranceWarningsFont = ExtResource("6_pwhoj")
 reproductionMethodDropdown = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/OptionButton")
 sporeCellTypeDropdown = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SporeOptions/HBoxContainer2/OptionButton")
@@ -893,6 +894,15 @@ offset_bottom = 85.0
 HideCancelButton = true
 DialogText = "WRONG_GROWTH_ORDER_TEXT"
 WindowTitle = "WRONG_GROWTH_ORDER"
+
+[node name="WrongSporeCellType" parent="." unique_id=1617431317 instance=ExtResource("7")]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 0
+offset_right = 600.0
+offset_bottom = 85.0
+HideCancelButton = true
+DialogText = "WRONG_OR_UNSET_SPORE_CELL_TYPE_TEXT"
+WindowTitle = "WRONG_OR_UNSET_SPORE_CELL_TYPE"
 
 [node name="CannotDeleteInUseType" parent="." unique_id=551020640 instance=ExtResource("7")]
 custom_minimum_size = Vector2(500, 0)

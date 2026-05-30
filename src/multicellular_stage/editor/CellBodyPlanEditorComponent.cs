@@ -135,6 +135,9 @@ public partial class CellBodyPlanEditorComponent :
     private CustomConfirmationDialog wrongGrowthOrderPopup = null!;
 
     [Export]
+    private CustomConfirmationDialog wrongSporeCellTypePopup = null!;
+
+    [Export]
     private LabelSettings toleranceWarningsFont = null!;
 
     [Export]
@@ -206,6 +209,15 @@ public partial class CellBodyPlanEditorComponent :
 
             if (wrongGrowthOrderCells.Count > 0)
                 return true;
+
+            if (ReproductionMethod == MulticellularReproductionMethod.Sporulation)
+            {
+                if (SporeCellType == null)
+                    return true;
+
+                if (!IsLegalSporeCellType(SporeCellType))
+                    return true;
+            }
 
             return false;
         }
@@ -621,6 +633,12 @@ public partial class CellBodyPlanEditorComponent :
         if (wrongGrowthOrderCells.Count > 0)
         {
             wrongGrowthOrderPopup.PopupCenteredShrink();
+            return false;
+        }
+
+        if (SporeCellType == null || !IsLegalSporeCellType(SporeCellType))
+        {
+            wrongSporeCellTypePopup.PopupCenteredShrink();
             return false;
         }
 
@@ -2018,5 +2036,35 @@ public partial class CellBodyPlanEditorComponent :
             default:
                 throw new Exception("Invalid selection menu tab");
         }
+    }
+
+    private CellType? PickAGoodSporeCellType()
+    {
+        UpdateCellTypesCounts();
+
+        foreach (var cellType in Editor.EditedSpecies.ModifiableCellTypes)
+        {
+            if (!IsLegalSporeCellTypeNoRecalculate(cellType))
+                continue;
+
+            return cellType;
+        }
+
+        return null;
+    }
+
+    private bool IsLegalSporeCellType(CellType type)
+    {
+        UpdateCellTypesCounts();
+
+        return IsLegalSporeCellTypeNoRecalculate(type);
+    }
+
+    private bool IsLegalSporeCellTypeNoRecalculate(CellType type)
+    {
+        if (cellTypesCount.ContainsKey(type) && cellTypesCount[type] != 0)
+            return false;
+
+        return true;
     }
 }
