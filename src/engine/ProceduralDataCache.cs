@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using Components;
 using Godot;
 
 /// <summary>
@@ -14,7 +15,9 @@ public partial class ProceduralDataCache : Node
 
     private readonly Dictionary<long, CacheEntry<MembranePointData>> membraneCache = new();
 
-    private readonly Dictionary<long, CacheEntry<CacheableShape>> loadedShapes = new();
+    private readonly ItemCache<LoadedShapeKey, PhysicsShape> loadedShapes = new();
+
+    private readonly ItemCache<SimpleShapeKey, PhysicsShape> simpleShapes = new();
 
     private readonly Dictionary<long, CacheEntry<MembraneCollisionShape>> membraneCollisions = new();
 
@@ -24,7 +27,7 @@ public partial class ProceduralDataCache : Node
     ///   to perform the disposal of the object later to hopefully not dispose the object while the previous cache
     ///   writer is still using it.
     /// </summary>
-    private readonly List<IDisposable> conflictedEntriesToDispose = new();
+    private readonly List<IDisposable> conflictedEntriesToDispose = [];
 
     /// <summary>
     ///   When enabled, prefers older entries in the cache to not mess with already returned data being randomly
@@ -60,10 +63,8 @@ public partial class ProceduralDataCache : Node
             ClearCacheData(membraneCache);
         }
 
-        lock (loadedShapes)
-        {
-            ClearCacheData(loadedShapes);
-        }
+        loadedShapes.Clear();
+        simpleShapes.Clear();
 
         lock (membraneCollisions)
         {
@@ -102,10 +103,8 @@ public partial class ProceduralDataCache : Node
             CleanOldCacheEntriesIn(membraneCache, Constants.PROCEDURAL_CACHE_MEMBRANE_KEEP_TIME);
         }
 
-        lock (loadedShapes)
-        {
-            CleanOldCacheEntriesIn(loadedShapes, Constants.PROCEDURAL_CACHE_LOADED_SHAPE_KEEP_TIME);
-        }
+        loadedShapes.Clean(currentTime, Constants.PROCEDURAL_CACHE_LOADED_SHAPE_KEEP_TIME);
+        simpleShapes.Clean(currentTime, Constants.PROCEDURAL_CACHE_SIMPLE_SHAPE_KEEP_TIME);
 
         lock (membraneCollisions)
         {
@@ -122,10 +121,11 @@ public partial class ProceduralDataCache : Node
             conflictedEntriesToDispose.Clear();
         }
 
-        if (wastedRecalculations > 10)
+        var totalWasted = Interlocked.Exchange(ref wastedRecalculations, 0)
+            + loadedShapes.TakeWastedWrites() + simpleShapes.TakeWastedWrites();
+        if (totalWasted > 10)
         {
-            GD.Print("Cache data computations that were duplicate work: " + wastedRecalculations);
-            wastedRecalculations = 0;
+            GD.Print("Cache data computations that were duplicate work: " + totalWasted);
         }
 
         // Would be better to make clearing this slightly rarer, but for now is probably fine to leverage the existing
@@ -211,52 +211,22 @@ public partial class ProceduralDataCache : Node
 
     public PhysicsShape? ReadLoadedShape(string filePath, float density)
     {
-        var hash = CacheableShape.CalculateHash(filePath, density);
-
-        lock (loadedShapes)
-        {
-            if (!loadedShapes.TryGetValue(hash, out var entry))
-                return null;
-
-#if DEBUG
-            if (entry.Value.Shape.Disposed)
-                throw new InvalidOperationException("Holder of a disposed shape was not removed from cache");
-#endif
-
-            entry.LastUsed = currentTime;
-            return entry.Value.Shape;
-        }
+        return loadedShapes.Read(new LoadedShapeKey(filePath, density), currentTime);
     }
 
-    public long WriteLoadedShape(string filePath, float density, PhysicsShape shape)
+    public void WriteLoadedShape(string filePath, float density, PhysicsShape shape)
     {
-        var hash = CacheableShape.CalculateHash(filePath, density);
+        loadedShapes.Write(new LoadedShapeKey(filePath, density), shape, currentTime);
+    }
 
-        lock (loadedShapes)
-        {
-            // This uses a bit special approach here as the data is not directly saved in the cache
-            if (loadedShapes.TryGetValue(hash, out var existing))
-            {
-                // Skip adding same object to the cache multiple times
-                if (ReferenceEquals(existing.Value.Shape, shape))
-                {
-                    existing.LastUsed = currentTime;
-                    return hash;
-                }
+    public PhysicsShape? ReadSimpleShape(SimpleShapeType type, float size, float density)
+    {
+        return simpleShapes.Read(new SimpleShapeKey(type, size, density), currentTime);
+    }
 
-                // Dispose doesn't do anything here so this is commented out in case refactoring this is necessary
-                // at some point, then use of TryUseExistingValueBeforeWrite might be required to be all safe
-                // existing.Value.Dispose();
-
-                // TODO: make this more accurate by checking if the data is actually same in the cache?
-                Interlocked.Increment(ref wastedRecalculations);
-            }
-
-            loadedShapes[hash] =
-                new CacheEntry<CacheableShape>(new CacheableShape(shape, filePath, density), currentTime);
-        }
-
-        return hash;
+    public void WriteSimpleShape(SimpleShapeType type, float size, float density, PhysicsShape shape)
+    {
+        simpleShapes.Write(new SimpleShapeKey(type, size, density), shape, currentTime);
     }
 
     public MembraneCollisionShape? ReadMembraneCollisionShape(long hash)
@@ -380,59 +350,17 @@ public partial class ProceduralDataCache : Node
         entries.Clear();
     }
 
-    private class CacheEntry<T>
+    // ReSharper disable NotAccessedPositionalProperty.Local
+    private readonly record struct LoadedShapeKey(string Path, float Density);
+
+    private readonly record struct SimpleShapeKey(SimpleShapeType Type, float Size, float Density);
+
+    // ReSharper restore NotAccessedPositionalProperty.Local
+
+    private class CacheEntry<T>(T value, float currentTime)
     {
-        /// <summary>
-        ///   The value stored in this entry
-        /// </summary>
-        public readonly T Value;
+        public readonly T Value = value;
 
-        public float LastUsed;
-
-        public CacheEntry(T value, float currentTime)
-        {
-            Value = value;
-            LastUsed = currentTime;
-        }
-    }
-
-    private class CacheableShape : ICacheableData
-    {
-        private readonly string path;
-        private readonly float density;
-
-        public CacheableShape(PhysicsShape shape, string path, float density)
-        {
-            this.path = path;
-            this.density = density;
-            Shape = shape;
-        }
-
-        public PhysicsShape Shape { get; }
-
-        public static long CalculateHash(string path, float density)
-        {
-            return path.GetHashCode() + ((long)density.GetHashCode() << 32);
-        }
-
-        public bool MatchesCacheParameters(ICacheableData cacheData)
-        {
-            if (cacheData is CacheableShape otherShape)
-                return path == otherShape.path && density == otherShape.density;
-
-            return false;
-        }
-
-        public long ComputeCacheHash()
-        {
-            return CalculateHash(path, density);
-        }
-
-        public void Dispose()
-        {
-            // Don't dispose shape as something else might still be referring to it
-            // Note that WriteLoadedShape relies on this dispose being actually empty
-            // Shape.Dispose();
-        }
+        public float LastUsed = currentTime;
     }
 }
