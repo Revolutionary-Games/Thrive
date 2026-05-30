@@ -82,7 +82,7 @@ public partial class CreditsScroll : Control
     public float FastForwardMultiplier { get; set; } = 4;
 
     [Export]
-    public string FastForwardAction { get; set; } = "g_sprint";
+    public StringName FastForwardAction { get; set; } = "g_sprint";
 
     [Export]
     public bool AutoStart { get; set; } = true;
@@ -121,13 +121,13 @@ public partial class CreditsScroll : Control
             return;
         }
 
-        if (Input.IsActionPressed(FastForwardAction))
+        if (Input.IsActionJustPressed(FastForwardAction))
         {
-            scrollSpeed = NormalScrollSpeed * FastForwardMultiplier;
+            scrollSpeed *= FastForwardMultiplier;
         }
-        else
+        else if (Input.IsActionJustReleased(FastForwardAction))
         {
-            scrollSpeed = NormalScrollSpeed;
+            scrollSpeed /= FastForwardMultiplier;
         }
 
         scrollOffset += (float)(delta * scrollSpeed);
@@ -209,6 +209,7 @@ public partial class CreditsScroll : Control
     {
         scrollOffset = 0;
         smoothOffset = 0;
+        scrollSpeed = NormalScrollSpeed;
         phase = CreditsPhase.GameName;
 
         logo.Visible = true;
@@ -442,7 +443,7 @@ public partial class CreditsScroll : Control
         assetsLicenseLabel.OnBecomeVisible += () =>
         {
             // As licenses are boring speed this up
-            scrollSpeed = NormalScrollSpeed * LicenseTextSpeedMultiplier;
+            scrollSpeed *= LicenseTextSpeedMultiplier;
 
             if (ShowGPLLicense && !steamVersion)
             {
