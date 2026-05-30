@@ -324,29 +324,10 @@ public partial class CellBodyPlanEditorComponent
         if (!sporeCellTypeDropdown.Visible)
             return;
 
-        UpdateCellTypesCounts();
-
         sporeCellTypeDropdown.Clear();
-
-        int i = 0;
         foreach (var cellType in Editor.EditedSpecies.ModifiableCellTypes)
         {
-            var adjustedType = GetEditedCellDataIfEdited(cellType);
-
-            if (cellType != SporeCellType && cellTypesCount.ContainsKey(adjustedType)
-                && cellTypesCount[adjustedType] != 0)
-            {
-                continue;
-            }
-
-            sporeCellTypeDropdown.AddItem(adjustedType.FormattedName);
-
-            if (cellType == SporeCellType)
-            {
-                sporeCellTypeDropdown.Select(i);
-            }
-
-            ++i;
+            sporeCellTypeDropdown.AddItem(cellType.FormattedName);
         }
 
         if (SporeCellType == null)
@@ -354,5 +335,7 @@ public partial class CellBodyPlanEditorComponent
             sporeCellTypeDropdown.Select(-1);
             return;
         }
+
+        sporeCellTypeDropdown.Select(Editor.EditedSpecies.ModifiableCellTypes.IndexOf(SporeCellType));
     }
 }
