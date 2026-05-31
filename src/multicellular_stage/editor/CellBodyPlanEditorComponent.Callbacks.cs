@@ -69,8 +69,6 @@ public partial class CellBodyPlanEditorComponent
         OnCellToPlaceSelected(data.CellType.CellTypeName);
 
         Editor.DirtyMutationPointsCache();
-
-        UpdateSporeCellDropdown();
     }
 
     [ArchiveAllowedMethod]
@@ -87,8 +85,6 @@ public partial class CellBodyPlanEditorComponent
         {
             SporeCellType = Editor.EditedSpecies.ModifiableCellTypes[0];
         }
-
-        UpdateSporeCellDropdown();
     }
 
     [ArchiveAllowedMethod]
@@ -151,20 +147,16 @@ public partial class CellBodyPlanEditorComponent
     private void DoSporeCellChangeAction(SporeCellTypeChangeActionData data)
     {
         SporeCellType = data.NewCellType;
-
-        UpdateSporeCellDropdown();
     }
 
     [ArchiveAllowedMethod]
     private void UndoSporeCellChangeAction(SporeCellTypeChangeActionData data)
     {
         SporeCellType = data.OldCellType;
-
-        UpdateSporeCellDropdown();
     }
 
     private void OnReproductionMethodChangedToSpore()
     {
-        UpdateSporeCellDropdown();
+        sporeCellTypeMakerButton.UpdateDisplayedCellType(SporeCellType);
     }
 }

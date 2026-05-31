@@ -40,8 +40,6 @@ public partial class CellBodyPlanEditorComponent
             UndoSporeCellChangeAction, new SporeCellTypeChangeActionData(SporeCellType, cellType));
 
         Editor.EnqueueAction(action);
-
-        UpdateSporeCellDropdown();
     }
 
     public void SendObjectsToTutorials(TutorialState tutorial, MulticellularEditorTutorialGUI gui)
@@ -191,7 +189,7 @@ public partial class CellBodyPlanEditorComponent
         organismStatisticsPanel.ApplyLightLevelSelection();
 
         UpdateReproductionMethodChoice();
-        UpdateSporeCellDropdown();
+        sporeCellTypeMakerButton.UpdateDisplayedCellType(SporeCellType);
 
         UpdateCancelButtonVisibility();
     }
@@ -317,11 +315,6 @@ public partial class CellBodyPlanEditorComponent
 
         buddingReproductionSection.Visible = ReproductionMethod == MulticellularReproductionMethod.Budding;
         sporeReproductionSection.Visible = ReproductionMethod == MulticellularReproductionMethod.Sporulation;
-    }
-
-    private void UpdateSporeCellDropdown()
-    {
-
     }
 
     private void OnSporeEditSelected()

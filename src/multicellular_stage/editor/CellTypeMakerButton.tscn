@@ -2,14 +2,19 @@
 
 [ext_resource type="Texture2D" uid="uid://cjsj3qxwiox43" path="res://assets/textures/gui/bevel/multicellularTimelineMembraneTouch.png" id="1_mg70m"]
 [ext_resource type="Script" uid="uid://gyhcyecjud67" path="res://src/multicellular_stage/editor/CellTypeMakerButton.cs" id="1_ojw5t"]
+[ext_resource type="Script" uid="uid://b0ycij328egrn" path="res://src/gui_common/SpeciesPreview.cs" id="3_1a2ow"]
+[ext_resource type="PackedScene" uid="uid://b5cbn7afnas1x" path="res://src/gui_common/PhotographablePreview.tscn" id="3_e6wau"]
 
-[node name="CellTypeMakerButton" type="PanelContainer" unique_id=1923596412]
+[node name="CellTypeMakerButton" type="PanelContainer" unique_id=1923596412 node_paths=PackedStringArray("sporeNameLabel", "addCellTypeIcon", "speciesPreview")]
 anchors_preset = 10
 anchor_right = 1.0
 grow_horizontal = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 script = ExtResource("1_ojw5t")
+sporeNameLabel = NodePath("MarginContainer/HBoxContainer/Label")
+addCellTypeIcon = NodePath("MarginContainer/HBoxContainer/Button/CenterContainer/TextureRect")
+speciesPreview = NodePath("MarginContainer/HBoxContainer/Button/CenterContainer/SpeciesPreview")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1871489063]
 layout_mode = 2
@@ -22,23 +27,32 @@ theme_override_constants/margin_bottom = 5
 layout_mode = 2
 
 [node name="Button" type="Button" parent="MarginContainer/HBoxContainer" unique_id=1027410278]
-custom_minimum_size = Vector2(75, 75)
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/Button" unique_id=1780161428]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/HBoxContainer/Button" unique_id=434998682]
+layout_mode = 0
+offset_right = 60.0
+offset_bottom = 60.0
+
+[node name="SpeciesPreview" parent="MarginContainer/HBoxContainer/Button/CenterContainer" unique_id=2089188422 instance=ExtResource("3_e6wau")]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("3_1a2ow")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/Button/CenterContainer" unique_id=1780161428]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("1_mg70m")
 expand_mode = 1
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer" unique_id=1973824256]
+editor_description = "PREVIEW"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-text = "CHOOSE_CELL_TYPE"
+text = "Spore cell type name or a prompt to add a new type"
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Button" to="." method="OnMainButtonClicked"]

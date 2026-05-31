@@ -141,7 +141,7 @@ public partial class CellBodyPlanEditorComponent :
     private OptionButton reproductionMethodDropdown = null!;
 
     [Export]
-    private OptionButton sporeCellTypeDropdown = null!;
+    private CellTypeMakerButton sporeCellTypeMakerButton = null!;
 
     [Export]
     private Control buddingReproductionSection = null!;
@@ -653,8 +653,10 @@ public partial class CellBodyPlanEditorComponent :
 
         UpdateSpecializationDisplay();
 
-        // In case the cell type's name was changed
-        UpdateSporeCellDropdown();
+        if (changedType == SporeCellType)
+        {
+            sporeCellTypeMakerButton.UpdateDisplayedCellType(SporeCellType);
+        }
     }
 
     /// <summary>
