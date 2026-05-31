@@ -178,6 +178,9 @@ public partial class CellBodyPlanEditorComponent :
     [Signal]
     public delegate void OnCellTypeToEditSelectedEventHandler(string name, bool switchTab);
 
+    [Signal]
+    public delegate void OnSporeSelectedToEditEventHandler();
+
     public enum SelectionMenuTab
     {
         Structure,

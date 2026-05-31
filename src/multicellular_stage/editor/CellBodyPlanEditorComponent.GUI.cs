@@ -321,21 +321,20 @@ public partial class CellBodyPlanEditorComponent
 
     private void UpdateSporeCellDropdown()
     {
-        if (!sporeCellTypeDropdown.Visible)
-            return;
 
-        sporeCellTypeDropdown.Clear();
-        foreach (var cellType in Editor.EditedSpecies.ModifiableCellTypes)
-        {
-            sporeCellTypeDropdown.AddItem(cellType.FormattedName);
-        }
+    }
 
+    private void OnSporeEditSelected()
+    {
         if (SporeCellType == null)
         {
-            sporeCellTypeDropdown.Select(-1);
-            return;
+            var splitFrom = Editor.EditedSpecies.ModifiableCellTypes[0];
+
+            SporeCellType ??= (CellType)splitFrom.Clone();
+            SporeCellType.CellTypeName = "Spore"; // TBD: Add a name picker or something
+            SporeCellType.SplitFromTypeName = splitFrom.CellTypeName;
         }
 
-        sporeCellTypeDropdown.Select(Editor.EditedSpecies.ModifiableCellTypes.IndexOf(SporeCellType));
+        EmitSignal(SignalName.OnSporeSelectedToEdit);
     }
 }
