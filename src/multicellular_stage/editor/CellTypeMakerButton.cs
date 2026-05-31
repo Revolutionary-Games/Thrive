@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Godot;
 
 /// <summary>
@@ -14,7 +14,7 @@ public partial class CellTypeMakerButton : Control
     private TextureRect addCellTypeIcon = null!;
 
     [Export]
-    private SpeciesPreview speciesPreview = null!;
+    private CellTypePreview cellTypePreview = null!;
 #pragma warning restore CA2213
 
     [Signal]
@@ -38,16 +38,15 @@ public partial class CellTypeMakerButton : Control
             sporeNameLabel.Text = Localization.Translate("CHOOSE_CELL_TYPE");
 
             addCellTypeIcon.Visible = true;
-            speciesPreview.Visible = false;
+            cellTypePreview.Visible = false;
             return;
         }
 
         sporeNameLabel.Text = assignedCellType.ReadableName;
 
         addCellTypeIcon.Visible = false;
-        speciesPreview.Visible = true;
+        cellTypePreview.Visible = true;
 
-        // TBD: Implement this correctly; with a small refactor around cell type texture generation or something
-        // speciesPreview.PreviewSpecies
+        cellTypePreview.PreviewCellType = assignedCellType;
     }
 }
