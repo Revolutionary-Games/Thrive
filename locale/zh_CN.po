@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-25 18:16+0300\n"
-"PO-Revision-Date: 2026-05-25 05:02+0000\n"
+"POT-Creation-Date: 2026-05-29 16:13+0300\n"
+"PO-Revision-Date: 2026-05-29 08:43+0000\n"
 "Last-Translator: Guno haozheum <guhaozhe@hsefz.cn>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -557,7 +557,7 @@ msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
 msgstr "含有反应位点的液泡，其中荧光素酶被消耗以释放可见光。人们推测，生物发光最初作为一种防御机制进化而来，以对抗 [thrive:compound type=\"oxygen\"][/thrive:compound]。当大氧化事件发生时，适应厌氧环境的微生物因氧气极高的反应性而面临诸多新问题，氧气的高反应性造成了大量损伤。这些液泡可被添加以增强抗氧能力并产生美丽的光芒。在未来，生物发光可能成为一种沟通方式。"
 
 msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
-msgstr "使用[thrive:compound type=\"atp\"][/thrive:compound]将[thrive:compound type=\"oxytoxy\"][/thrive:compound]转化为光。除了增加氧化抗性外，暂时对玩法没有影响。"
+msgstr "使用[thrive:compound type=\"atp\"][/thrive:compound]将[thrive:compound type=\"oxygen\"][/thrive:compound]转化为光。除了增加氧化抗性外，暂时对玩法没有影响。"
 
 msgid "BIOME_LABEL"
 msgstr "生物群系：{0}"
@@ -2023,7 +2023,7 @@ msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
 msgstr "内共生进度已满，请在编辑器中完成"
 
 msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
-msgstr "将内共生的目标转化为一个临时的细胞器，如果您成功存活到进入编辑器，内共生进度将会增加"
+msgstr "已将内共生的目标转化为一个临时的细胞器。如果您成功存活到进入编辑器，内共生进度将会增加"
 
 msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
 msgstr "内共生形态已经存在，进入编辑器以推进内共生进度"
@@ -4308,6 +4308,22 @@ msgstr "多细胞生物中的特化细胞是进化出真正器官的第一步。
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "该面板显示了您的群落的综合代谢过程，即所有细胞的代谢总和。请注意，与其他化合物不同，ATP 无法在细胞间共享。"
 
+#, fuzzy
+msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
+msgstr ""
+"[b]阶段[/b]\n"
+"  微生物\n"
+"[b]膜类型[/b]\n"
+"  {0}\n"
+"[b]膜刚度[/b]\n"
+"  {1}\n"
+"[b]基础速度[/b]\n"
+"  {2}\n"
+"[b]基础转动速度[/b]\n"
+"  {3}\n"
+"[b]基础六角格大小[/b]\n"
+"  {4}"
+
 msgid "MULTICELLULAR_STAGE"
 msgstr "多细胞阶段"
 
@@ -4331,7 +4347,7 @@ msgstr "（当启用多线程进行游戏逻辑更新时，游戏可能会因为
 
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
-"欢迎来到博物馆！在这里您可以欣赏许多在您游玩过程中被保存到化石中的众多物种。您甚至可以在自由编辑器中打开它们进行游戏。\n"
+"欢迎来到博物馆！在这里您可以欣赏在您游玩过程中被保存到化石中的众多物种。您甚至可以在自由编辑器中打开它们进行游戏。\n"
 "\n"
 "按下暂停键并在屏幕上选中一个微生物以以将该物种保存至化石中。"
 
@@ -5067,9 +5083,8 @@ msgstr "压力"
 msgid "PRESSURE_SHORT"
 msgstr "压力"
 
-#, fuzzy
 msgid "PRESSURE_TOLERANCE"
-msgstr "您的物种能适应的压力值。两个滑块可以分别设置最小值与最大值。当环境压力超出设定范围时，将对您的物种产生诸多负面影响。取消勾选滑块下方复选框即可调整压力范围大小。"
+msgstr "压力耐受性"
 
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "您的物种能适应的压力值。两个滑块可以分别设置最小值与最大值。当环境压力超出设定范围时，将对您的物种产生诸多负面影响。取消勾选滑块下方复选框即可调整压力范围大小。"
@@ -6172,9 +6187,8 @@ msgstr "温度"
 msgid "TEMPERATURE_SHORT"
 msgstr "温度"
 
-#, fuzzy
 msgid "TEMPERATURE_TOLERANCE_RANGE"
-msgstr "您的物种理想的温度。当环境温度超出理想温度的适应范围时，将产生不利影响，导致生存难度增加。请根据您想游玩的地区来调整适应参数滑块。"
+msgstr "温度适应范围"
 
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "您的物种理想的温度。当环境温度超出理想温度的适应范围时，将产生不利影响，导致生存难度增加。请根据您想游玩的地区来调整适应参数滑块。"
@@ -7371,7 +7385,7 @@ msgstr ""
 "\n"
 "当脑力达到 [b]+0.5[/b] 时，玩家进入感知阶段。 当脑力达到 [b]+5.0[/b] 时，玩家进入觉醒阶段。\n"
 "\n"
-"使[thrive:compound type=\"sunlight\"][/thrive:compound] [b]光照耐受性[/b]降低10%。"
+"使[thrive:compound type=\"sunlight\"][/thrive:compound] [b]紫外线耐受性[/b]降低10%。"
 
 msgid "WIKI_AXON_INTRO"
 msgstr "神经元之间的神经纤维，自[color=#3796e1][url=thriveopedia:macroscopic_stage]宏观阶段[/url][/color]起可用。这是提升生物脑力并迈向后续阶段的必要条件。"
@@ -7586,7 +7600,7 @@ msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_UPGRADES"
 msgstr "无升级。"
 
 msgid "WIKI_CHLOROPLAST_EFFECTS"
-msgstr "使[thrive:compound type=\"sunlight\"][/thrive:compound] [b]光照耐受性[/b]增加8%，[thrive:compound type=\"oxygen\"][/thrive:compound] [b] 氧耐受性[/b]增加3.5%。"
+msgstr "使[thrive:compound type=\"sunlight\"][/thrive:compound] [b]紫外线耐受性[/b]增加8%，[thrive:compound type=\"oxygen\"][/thrive:compound] [b] 氧耐受性[/b]增加3.5%。"
 
 msgid "WIKI_CHLOROPLAST_INTRO"
 msgstr ""
@@ -8503,7 +8517,7 @@ msgstr ""
 "以下页面解释了各种机制。欢迎浏览这些页面以获取游戏提示和帮助。"
 
 msgid "WIKI_MELANOSOME_EFFECTS"
-msgstr "使[thrive:compound type=\"sunlight\"][/thrive:compound] [b] 光照耐受性[/b]增加2%。"
+msgstr "使[thrive:compound type=\"sunlight\"][/thrive:compound] [b] 紫外线耐受性[/b]增加2%。"
 
 msgid "WIKI_MELANOSOME_INTRO"
 msgstr "[b]黑素体[/b]是进行[b]放射性合成[/b]的[color=#3796e1][url=thriveopedia:OrganellesRoot]细胞器[/url][/color]，该过程利用黑色素吸收辐射来捕获能量。"
@@ -9343,7 +9357,7 @@ msgstr ""
 "\n"
 "任何没有[b]黏液喷嘴[/b]的细胞进入[thrive:compound type=\"mucilage\"][/thrive:compound] 区域将会减慢速度。\n"
 "\n"
-"使[thrive:compound type=\"sunlight\"][/thrive:compound] [b]光照耐受性[/b]增加1%."
+"使[thrive:compound type=\"sunlight\"][/thrive:compound] [b]紫外线耐受性[/b]增加1%."
 
 msgid "WIKI_SLIME_JET_INTRO"
 msgstr ""
