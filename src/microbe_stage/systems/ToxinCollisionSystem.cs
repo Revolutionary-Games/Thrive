@@ -18,6 +18,7 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(Health))]
 [ReadsComponent(typeof(CellProperties))]
 [ReadsComponent(typeof(MicrobeColony))]
+[ReadsComponent(typeof(MicrobeColonyMember))]
 [ReadsComponent(typeof(MicrobePhysicsExtraData))]
 [ReadsComponent(typeof(OrganelleContainer))]
 [ReadsComponent(typeof(MicrobeEventCallbacks))]
@@ -277,7 +278,7 @@ public partial class ToxinCollisionSystem : BaseSystem<World, float>
         if (oxygenParts == 0)
             return 1;
 
-        // Oxygen targeting toxin has increased damage based on the amount of oxygen using parts
+        // Oxygen-targeting toxin has increased damage based on the number of oxygen-using parts
         if (toxinProperties.ToxinSubType == ToxinType.OxygenMetabolismInhibitor)
         {
             return 1 + Math.Min(oxygenParts * Constants.OXYGEN_INHIBITOR_DAMAGE_BUFF_PER_ORGANELLE,

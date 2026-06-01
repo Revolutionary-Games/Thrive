@@ -139,9 +139,10 @@ public partial class OrganelleUpgradeGUI : Control
                 generalUpgradeSelectorButtons[availableUpgrade.Key] = selectionButton;
             }
 
+            // Intentionally not using collection expression to avoid temporary memory allocation
             currentlySelectedGeneralUpgrades = organelle.Upgrades != null ?
                 new List<string>(organelle.Upgrades.UnlockedFeatures) :
-                new List<string>();
+                [];
 
             UpdateSelectedUpgradeButton();
 

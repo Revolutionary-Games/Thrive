@@ -24,7 +24,7 @@ public partial class ProceduralDataCache : Node
     ///   to perform the disposal of the object later to hopefully not dispose the object while the previous cache
     ///   writer is still using it.
     /// </summary>
-    private readonly List<IDisposable> conflictedEntriesToDispose = new();
+    private readonly List<IDisposable> conflictedEntriesToDispose = [];
 
     /// <summary>
     ///   When enabled, prefers older entries in the cache to not mess with already returned data being randomly

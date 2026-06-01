@@ -30,7 +30,7 @@ public class Patch : IArchivable
     /// </summary>
     private readonly Dictionary<Species, long> gameplayPopulations = new();
 
-    private Deque<PatchSnapshot> history = new();
+    private Deque<PatchSnapshot> history = [];
 
     public Patch(LocalizedString name, int id, Biome biomeTemplate, BiomeType biomeType, PatchRegion region,
         long additionalDataSeed)
@@ -83,7 +83,7 @@ public class Patch : IArchivable
 
     public BiomeType BiomeType { get; private set; }
 
-    public int[] Depth { get; private set; } = { -1, -1 };
+    public int[] Depth { get; private set; } = [-1, -1];
 
     /// <summary>
     ///   The visibility of this patch on the map
@@ -815,7 +815,7 @@ public class PatchSnapshot : ICloneable, IArchivable
     public BiomeConditions Biome;
     public string? Background;
 
-    public List<GameEventDescription> EventsLog = new();
+    public List<GameEventDescription> EventsLog = [];
 
     public Dictionary<PatchEventTypes, PatchEventProperties> ActivePatchEvents = new();
 
@@ -890,6 +890,9 @@ public class PatchSnapshot : ICloneable, IArchivable
             TimePeriod = TimePeriod,
             SpeciesInPatch = new Dictionary<Species, long>(SpeciesInPatch),
             RecordedSpeciesInfo = new Dictionary<Species, SpeciesInfo>(RecordedSpeciesInfo),
+
+            // It seems like a collection expression here allocates more temporary memory, so it is not used.
+            // ReSharper disable once UseCollectionExpression
             EventsLog = new List<GameEventDescription>(EventsLog),
             ActivePatchEvents = new Dictionary<PatchEventTypes, PatchEventProperties>(ActivePatchEvents),
         };

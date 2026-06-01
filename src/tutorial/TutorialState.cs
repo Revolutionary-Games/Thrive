@@ -594,8 +594,8 @@ public class TutorialState : ITutorialInput, IArchivable
 
     private List<TutorialPhase> BuildListOfAllTutorials()
     {
-        return new List<TutorialPhase>
-        {
+        return
+        [
             MicrobeStageWelcome,
             MicrobeMovement,
             MicrobeMovementExplanation,
@@ -643,6 +643,6 @@ public class TutorialState : ITutorialInput, IArchivable
             PausingTutorial,
             SpeciesMemberDiedTutorial,
             MulticellularSpecializationTutorial,
-        };
+        ];
     }
 }

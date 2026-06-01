@@ -23,6 +23,7 @@ using Godot;
 [WritesToComponent(typeof(BioProcesses))]
 [ReadsComponent(typeof(MulticellularSpeciesMember))]
 [ReadsComponent(typeof(WorldPosition))]
+[ReadsComponent(typeof(CompoundStorage))]
 [RunsAfter(typeof(ColonyBindingSystem))]
 [RuntimeCost(0.25f)]
 public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
