@@ -7,6 +7,7 @@ public enum MulticellularReproductionMethod
 
     [Description("REPRODUCTION_SPORE")]
     Sporulation,
+
     [Description("REPRODUCTION_MASS_BUDDING")]
     MassBudding,
 }
