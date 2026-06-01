@@ -1128,6 +1128,11 @@ public static class SpawnHelpers
         {
             rotation = baseRotation * new Quaternion(Vector3.Up, random.NextSingle() * MathF.Tau);
         }
+        else if (chunkConfiguration.RandomRotation == TerrainConfiguration.RotationRandomization.Slight)
+        {
+            rotation = baseRotation * new Quaternion(Basis.FromEuler(new Vector3(random.NextSingle() * 0.2f,
+                random.NextSingle() * MathF.Tau, random.NextSingle() * 0.2f)));
+        }
         else if (chunkConfiguration.RandomRotation == TerrainConfiguration.RotationRandomization.Full)
         {
             rotation = baseRotation * new Quaternion(Basis.FromEuler(new Vector3(random.NextSingle() * MathF.Tau,

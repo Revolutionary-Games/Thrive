@@ -21,6 +21,7 @@ public class TerrainConfiguration : RegistryType
     {
         Disabled,
         Yaw,
+        Slight,
         Full,
     }
 
