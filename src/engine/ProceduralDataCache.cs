@@ -362,31 +362,14 @@ public partial class ProceduralDataCache : Node
         entries.Clear();
     }
 
-    private readonly record struct LoadedShapeKey
-    {
-        public LoadedShapeKey(string path, float density)
-        {
-            Path = path;
-            Density = density;
-        }
+    // We use these just as keys for equality comparison, so it looks like the values are not used, but they are used
+    // in the dictionary implementations
+    // ReSharper disable NotAccessedPositionalProperty.Local
+    private readonly record struct LoadedShapeKey(string Path, float Density);
 
-        public string Path { get; }
-        public float Density { get; }
-    }
+    private readonly record struct SimpleShapeKey(SimpleShapeType Type, float Size, float Density);
 
-    private readonly record struct SimpleShapeKey
-    {
-        public SimpleShapeKey(SimpleShapeType type, float size, float density)
-        {
-            Type = type;
-            Size = size;
-            Density = density;
-        }
-
-        public SimpleShapeType Type { get; }
-        public float Size { get; }
-        public float Density { get; }
-    }
+    // ReSharper restore NotAccessedPositionalProperty.Local
 
     private class CacheEntry<T>(T value, float currentTime)
     {
