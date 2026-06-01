@@ -35,7 +35,7 @@ public partial class CellTypeMakerButton : Control
     {
         if (assignedCellType == null)
         {
-            sporeNameLabel.Text = Localization.Translate("CHOOSE_CELL_TYPE");
+            sporeNameLabel.Text = Localization.Translate("CLICK_TO_SET_CELL_TYPE");
 
             addCellTypeIcon.Visible = true;
             cellTypePreview.Visible = false;

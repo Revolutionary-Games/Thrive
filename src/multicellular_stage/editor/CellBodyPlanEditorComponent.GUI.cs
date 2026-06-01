@@ -29,19 +29,6 @@ public partial class CellBodyPlanEditorComponent
         UpdateReproductionMethodChoice();
     }
 
-    public void OnSporeCellTypeSelected(int selectedOption)
-    {
-        var cellType = Editor.EditedSpecies.ModifiableCellTypes[selectedOption];
-
-        if (cellType == SporeCellType)
-            return;
-
-        var action = new SingleEditorAction<SporeCellTypeChangeActionData>(DoSporeCellChangeAction,
-            UndoSporeCellChangeAction, new SporeCellTypeChangeActionData(SporeCellType, cellType));
-
-        Editor.EnqueueAction(action);
-    }
-
     public void SendObjectsToTutorials(TutorialState tutorial, MulticellularEditorTutorialGUI gui)
     {
         _ = tutorial;
@@ -323,11 +310,19 @@ public partial class CellBodyPlanEditorComponent
         {
             var splitFrom = Editor.EditedSpecies.ModifiableCellTypes[0];
 
-            SporeCellType ??= (CellType)splitFrom.Clone();
-            SporeCellType.CellTypeName = "Spore"; // TBD: Add a name picker or something
-            SporeCellType.SplitFromTypeName = splitFrom.CellTypeName;
+            var cellType = (CellType)splitFrom.Clone();
+            cellType.CellTypeName = Localization.Translate("DEFAULT_SPORE_CELL_TYPE_NAME");
+            cellType.SplitFromTypeName = splitFrom.CellTypeName;
+
+            var action = new SingleEditorAction<SporeCellTypeAddActionData>(DoSporeCellAddAction,
+                UndoSporeCellAddAction, new SporeCellTypeAddActionData(SporeCellType, cellType));
+
+            Editor.EnqueueAction(action);
         }
 
-        EmitSignal(SignalName.OnSporeSelectedToEdit);
+        if (SporeCellType != null)
+        {
+            EmitSignal(SignalName.OnCellTypeToEditSelected, SporeCellType.CellTypeName, true);
+        }
     }
 }

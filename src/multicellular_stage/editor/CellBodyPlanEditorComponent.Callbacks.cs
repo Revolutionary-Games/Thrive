@@ -46,29 +46,7 @@ public partial class CellBodyPlanEditorComponent
     [ArchiveAllowedMethod]
     private void DuplicateCellType(DuplicateDeleteCellTypeData data)
     {
-        var originalName = data.CellType.CellTypeName;
-        var count = 1;
-
-        // Renaming a cell doesn't create an editor action, so it's possible for someone to duplicate a cell type, undo
-        // the duplication, change another cell type's name to the old duplicate's name, then redo the duplication,
-        // which would lead to duplicate names, so this loop ensures the duplicated cell's name will be unique
-        while (!Editor.IsNewCellTypeNameValid(data.CellType.CellTypeName))
-        {
-            data.CellType.CellTypeName = $"{originalName} {count++}";
-        }
-
-        Editor.EditedSpecies.ModifiableCellTypes.Add(data.CellType);
-        GD.Print("New cell type created: ", data.CellType.CellTypeName);
-
-        EmitSignal(SignalName.OnCellTypeToEditSelected, data.CellType.CellTypeName, false);
-
-        UpdateCellTypeSelections();
-
-        UpdateCellTypesSecondaryInfo();
-
-        OnCellToPlaceSelected(data.CellType.CellTypeName);
-
-        Editor.DirtyMutationPointsCache();
+        OnCellTypeAdded(data.CellType);
     }
 
     [ArchiveAllowedMethod]
@@ -127,7 +105,9 @@ public partial class CellBodyPlanEditorComponent
         ReproductionMethod = data.NewReproductionMethod;
 
         if (ReproductionMethod == MulticellularReproductionMethod.Sporulation)
-            OnReproductionMethodChangedToSpore();
+        {
+            sporeCellTypeMakerButton.UpdateDisplayedCellType(SporeCellType);
+        }
 
         UpdateReproductionMethodChoice();
     }
@@ -138,25 +118,58 @@ public partial class CellBodyPlanEditorComponent
         ReproductionMethod = data.OldReproductionMethod;
 
         if (ReproductionMethod == MulticellularReproductionMethod.Sporulation)
-            OnReproductionMethodChangedToSpore();
+        {
+            sporeCellTypeMakerButton.UpdateDisplayedCellType(SporeCellType);
+        }
 
         UpdateReproductionMethodChoice();
     }
 
     [ArchiveAllowedMethod]
-    private void DoSporeCellChangeAction(SporeCellTypeChangeActionData data)
+    private void DoSporeCellAddAction(SporeCellTypeAddActionData data)
     {
+        OnCellTypeAdded(data.NewCellType);
+
         SporeCellType = data.NewCellType;
     }
 
     [ArchiveAllowedMethod]
-    private void UndoSporeCellChangeAction(SporeCellTypeChangeActionData data)
+    private void UndoSporeCellAddAction(SporeCellTypeAddActionData data)
     {
+        if (!Editor.EditedSpecies.ModifiableCellTypes.Remove(data.NewCellType))
+            GD.PrintErr("Failed to delete cell type from species");
+
+        UpdateCellTypeSelections();
+
+        Editor.DirtyMutationPointsCache();
+
         SporeCellType = data.OldCellType;
     }
 
-    private void OnReproductionMethodChangedToSpore()
+    private void OnCellTypeAdded(CellType added)
     {
-        sporeCellTypeMakerButton.UpdateDisplayedCellType(SporeCellType);
+        var originalName = added.CellTypeName;
+        var count = 1;
+
+        // Renaming a cell doesn't create an editor action, so it's possible for someone to duplicate a cell type, undo
+        // the duplication, change another cell type's name to the old duplicate's name, then redo the duplication,
+        // which would lead to duplicate names, so this loop ensures the duplicated cell's name will be unique
+        while (!Editor.IsNewCellTypeNameValid(added.CellTypeName))
+        {
+            added.CellTypeName = $"{originalName} {count++}";
+        }
+
+        Editor.EditedSpecies.ModifiableCellTypes.Add(added);
+        GD.Print("New cell type created: ", added.CellTypeName);
+
+        EmitSignal(SignalName.OnCellTypeToEditSelected, added.CellTypeName, false);
+
+        UpdateCellTypeSelections();
+
+        UpdateCellTypesSecondaryInfo();
+
+        OnCellToPlaceSelected(added.CellTypeName);
+
+        Editor.DirtyMutationPointsCache();
     }
 }

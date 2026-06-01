@@ -178,9 +178,6 @@ public partial class CellBodyPlanEditorComponent :
     [Signal]
     public delegate void OnCellTypeToEditSelectedEventHandler(string name, bool switchTab);
 
-    [Signal]
-    public delegate void OnSporeSelectedToEditEventHandler();
-
     public enum SelectionMenuTab
     {
         Structure,
@@ -1237,6 +1234,9 @@ public partial class CellBodyPlanEditorComponent :
         foreach (var cellType in Editor.EditedSpecies.ModifiableCellTypes.OrderBy(t => t.CellTypeName,
                      StringComparer.Ordinal))
         {
+            if (!DisplayCellType(cellType))
+                continue;
+
             if (!cellTypeSelectionButtons.TryGetValue(cellType.CellTypeName, out var control))
             {
                 // Need a new button
@@ -1287,7 +1287,7 @@ public partial class CellBodyPlanEditorComponent :
         // Delete no longer necessary buttons
         foreach (var key in cellTypeSelectionButtons.Keys.ToList())
         {
-            if (Editor.EditedSpecies.ModifiableCellTypes.All(t => t.CellTypeName != key))
+            if (Editor.EditedSpecies.ModifiableCellTypes.All(t => t.CellTypeName != key || !DisplayCellType(t)))
             {
                 var control = cellTypeSelectionButtons[key];
                 cellTypeSelectionButtons.Remove(key);
@@ -2020,5 +2020,14 @@ public partial class CellBodyPlanEditorComponent :
             default:
                 throw new Exception("Invalid selection menu tab");
         }
+    }
+
+    private bool DisplayCellType(CellType cellType)
+    {
+        // The spore is a specialized cell type
+        if (SporeCellType != null && cellType.CellTypeName == SporeCellType.CellTypeName)
+            return false;
+
+        return true;
     }
 }

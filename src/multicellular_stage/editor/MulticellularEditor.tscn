@@ -93,7 +93,6 @@ offset_bottom = 30.0
 visible = false
 
 [connection signal="OnCellTypeToEditSelected" from="EarlyMulticellularEditorGUI/CellBodyPlanEditorComponent" to="." method="OnStartEditingCellType"]
-[connection signal="OnSporeSelectedToEdit" from="EarlyMulticellularEditorGUI/CellBodyPlanEditorComponent" to="." method="OnStartEditingSporeCellType"]
 [connection signal="OnTabSelected" from="EarlyMulticellularEditorGUI/MicrobeEditorTabButtons" to="." method="SetEditorTab"]
 
 [editable path="EditorWorld"]

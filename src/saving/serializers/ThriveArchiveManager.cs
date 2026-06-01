@@ -684,9 +684,9 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MulticellularReproductionActionData,
             typeof(MulticellularReproductionActionData), MulticellularReproductionActionData.ReadFromArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.SporeCellTypeChangeActionData,
-            typeof(SporeCellTypeChangeActionData), SporeCellTypeChangeActionData.WriteToArchive);
+            typeof(SporeCellTypeAddActionData), SporeCellTypeAddActionData.WriteToArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.SporeCellTypeChangeActionData,
-            typeof(SporeCellTypeChangeActionData), SporeCellTypeChangeActionData.ReadFromArchive);
+            typeof(SporeCellTypeAddActionData), SporeCellTypeAddActionData.ReadFromArchive);
     }
 
     private void RegisterFossils()
