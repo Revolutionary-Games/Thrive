@@ -1755,6 +1755,7 @@ public static class Constants
     public const float PROCEDURAL_CACHE_MEMBRANE_KEEP_TIME = 500;
     public const float PROCEDURAL_CACHE_MICROBE_SHAPE_TIME = 7000;
     public const float PROCEDURAL_CACHE_LOADED_SHAPE_KEEP_TIME = 1000;
+    public const float PROCEDURAL_CACHE_SIMPLE_SHAPE_KEEP_TIME = 1000;
 
     // TODO: convert prototypes over to an ECS system as well
 
