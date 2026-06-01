@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using Components;
 using Godot;
@@ -28,6 +27,9 @@ public partial class ProceduralDataCache : Node
     ///   writer is still using it.
     /// </summary>
     private readonly List<IDisposable> conflictedEntriesToDispose = [];
+
+    private readonly List<KeyValuePair<long, CacheEntry<MembranePointData>>> temporaryList1 = [];
+    private readonly List<KeyValuePair<long, CacheEntry<MembraneCollisionShape>>> temporaryList2 = [];
 
     /// <summary>
     ///   When enabled, prefers older entries in the cache to not mess with already returned data being randomly
@@ -100,7 +102,7 @@ public partial class ProceduralDataCache : Node
 
         lock (membraneCache)
         {
-            CleanOldCacheEntriesIn(membraneCache, Constants.PROCEDURAL_CACHE_MEMBRANE_KEEP_TIME);
+            CleanOldCacheEntriesIn(membraneCache, temporaryList1, Constants.PROCEDURAL_CACHE_MEMBRANE_KEEP_TIME);
         }
 
         loadedShapes.Clean(currentTime, Constants.PROCEDURAL_CACHE_LOADED_SHAPE_KEEP_TIME);
@@ -108,7 +110,7 @@ public partial class ProceduralDataCache : Node
 
         lock (membraneCollisions)
         {
-            CleanOldCacheEntriesIn(membraneCollisions, Constants.PROCEDURAL_CACHE_MICROBE_SHAPE_TIME);
+            CleanOldCacheEntriesIn(membraneCollisions, temporaryList2, Constants.PROCEDURAL_CACHE_MICROBE_SHAPE_TIME);
         }
 
         lock (conflictedEntriesToDispose)
@@ -128,8 +130,8 @@ public partial class ProceduralDataCache : Node
             GD.Print("Cache data computations that were duplicate work: " + totalWasted);
         }
 
-        // Would be better to make clearing this slightly rarer, but for now is probably fine to leverage the existing
-        // processing interval here
+        // Would be better to make clearing this slightly rarer, but for now it is probably fine to leverage the
+        // existing processing interval here
         CacheableDataExtensions.ClearCollisionWarnings();
     }
 
@@ -319,7 +321,8 @@ public partial class ProceduralDataCache : Node
         return true;
     }
 
-    private void CleanOldCacheEntriesIn<TKey, T>(Dictionary<TKey, CacheEntry<T>> entries, float keepTime)
+    private void CleanOldCacheEntriesIn<TKey, T>(Dictionary<TKey, CacheEntry<T>> entries,
+        List<KeyValuePair<TKey, CacheEntry<T>>> temporaryList, float keepTime)
         where T : ICacheableData
         where TKey : notnull
     {
@@ -330,12 +333,21 @@ public partial class ProceduralDataCache : Node
         // ReSharper disable once InconsistentlySynchronizedField
         var cutoff = currentTime - keepTime;
 
-        // TODO: avoid this temporary list allocation here
-        foreach (var toRemove in entries.Where(e => e.Value.LastUsed < cutoff).ToList())
+        foreach (var toRemove in entries)
+        {
+            if (toRemove.Value.LastUsed < cutoff)
+            {
+                temporaryList.Add(toRemove);
+            }
+        }
+
+        foreach (var toRemove in temporaryList)
         {
             toRemove.Value.Value.Dispose();
             entries.Remove(toRemove.Key);
         }
+
+        temporaryList.Clear();
     }
 
     private void ClearCacheData<TKey, T>(Dictionary<TKey, CacheEntry<T>> entries)

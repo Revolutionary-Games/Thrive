@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 
 /// <summary>
@@ -17,6 +16,8 @@ public class ItemCache<TKey, TValue>
 {
     private readonly Dictionary<TKey, CacheEntry> entries = new();
     private readonly Lock gate = new();
+
+    private readonly List<KeyValuePair<TKey, CacheEntry>> tempList = new();
 
     private int wastedWrites;
 
@@ -86,12 +87,21 @@ public class ItemCache<TKey, TValue>
 
             var cutoff = currentTime - keepTime;
 
-            // TODO: avoid this temporary list allocation here
-            foreach (var toRemove in entries.Where(e => e.Value.LastUsed < cutoff).ToList())
+            foreach (var item in entries)
+            {
+                if (item.Value.LastUsed < cutoff)
+                {
+                    tempList.Add(item);
+                }
+            }
+
+            foreach (var toRemove in tempList)
             {
                 OnEvict(toRemove.Value.Value);
                 entries.Remove(toRemove.Key);
             }
+
+            tempList.Clear();
         }
     }
 
