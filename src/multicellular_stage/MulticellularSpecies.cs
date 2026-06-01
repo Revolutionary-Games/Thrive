@@ -306,7 +306,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         // We don't take specialization into account here, so we overestimate how much stuff is needed
         for (int i = 0; i < initialCellCount; ++i)
         {
-            ProcessSystem.ComputeCompoundBalance(ModifiableGameplayCells[0].ModifiableOrganelles,
+            ProcessSystem.ComputeCompoundBalance(ModifiableGameplayCells[i].ModifiableOrganelles,
                 biomeConditions, environmentalTolerances, 1, CompoundAmountType.Biome, false, compoundBalances);
 
             storageCapacity +=
