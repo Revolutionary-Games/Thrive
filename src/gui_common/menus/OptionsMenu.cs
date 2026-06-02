@@ -245,6 +245,12 @@ public partial class OptionsMenu : ControlWithInput
     private OptionButton cloudResolution = null!;
 
     [Export]
+    private HSlider alternativeTimescaleSlider = null!;
+
+    [Export]
+    private Label alternativeTimescaleLabel = null!;
+
+    [Export]
     private CheckButton runAutoEvoDuringGameplay = null!;
 
     [Export]
@@ -730,6 +736,7 @@ public partial class OptionsMenu : ControlWithInput
         // Performance
         cloudInterval.Selected = CloudIntervalToIndex(settings.CloudUpdateInterval);
         cloudResolution.Selected = CloudResolutionToIndex(settings.CloudResolution);
+        alternativeTimescaleSlider.Value = settings.AlternativeTimescale;
         runAutoEvoDuringGameplay.ButtonPressed = settings.RunAutoEvoDuringGamePlay;
         runGameSimulationMultithreaded.ButtonPressed = settings.RunGameSimulationMultithreaded;
         assumeHyperthreading.ButtonPressed = settings.AssumeCPUHasHyperthreading;
@@ -747,6 +754,7 @@ public partial class OptionsMenu : ControlWithInput
         maxMemoryItemsSlider.Value = settings.MemoryCacheMaxSize;
         maxMemoryOnlyCacheTimeSlider.Value = settings.MemoryOnlyCacheTime;
 
+        UpdateAlternativeTimescale();
         UpdateDetectedCPUCount();
         UpdateMaxCacheSize();
         UpdateMaxDiskCacheItemTime();
@@ -2495,6 +2503,23 @@ public partial class OptionsMenu : ControlWithInput
         Settings.Instance.CloudResolution.Value = CloudIndexToResolution(index);
 
         UpdateResetSaveButtonState();
+    }
+
+    private void OnAlternativeTimescaleChanged(float value)
+    {
+        if (isProgrammaticControlUpdateInProgress)
+            return;
+
+        Settings.Instance.AlternativeTimescale.Value = value;
+
+        UpdateResetSaveButtonState();
+        UpdateAlternativeTimescale();
+    }
+
+    private void UpdateAlternativeTimescale()
+    {
+        alternativeTimescaleLabel.Text = Convert.ToString(Settings.Instance.AlternativeTimescale.Value,
+            CultureInfo.InvariantCulture);
     }
 
     private void OnAutoEvoToggled(bool pressed)

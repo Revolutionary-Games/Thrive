@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-30 14:35-0700\n"
+"POT-Creation-Date: 2026-06-02 18:15-0600\n"
 "PO-Revision-Date: 2026-05-22 15:37+0000\n"
 "Last-Translator: Ptit Serpent <snake76930@gmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -170,6 +170,17 @@ msgstr "Vous êtes déja évolué"
 
 msgid "ALT"
 msgstr "Alt"
+
+#, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr ""
+"Les threads natifs sont utilisés pour des tâches différentes des threads gérés.\n"
+"Plus de threads sur des CPUs a plusieurs cores augmente généralement les performances jusqu'à un certain point\n"
+"une surabondance de threads diminuera les performances."
+
+#, fuzzy
+msgid "ALTERNATVE_TIMESCALE"
+msgstr ". Taux changent"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Toujours visible"
@@ -1848,10 +1859,6 @@ msgstr "Double-cliquer pour voir en plein écran"
 #, fuzzy
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Étant une membrane à double couche de phospholipides, elle offre une meilleure protection et demande peu d'énergie pour ne pas se déformer. Néanmoins, elle peut ralentir une cellule en terme de vitesse de locomotion et d'absorption de ressources."
-
-#, fuzzy
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "Mutliplier/diviser par deux la vitesse de jeu"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr "Faire glisser ça pour réordonner les objets avec la souris"
@@ -6145,6 +6152,10 @@ msgid "SPEED_COLON"
 msgstr "Vitesse :"
 
 #, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "Mutliplier/diviser par deux la vitesse de jeu"
+
+#, fuzzy
 msgid "SPORE_CELL_TYPE"
 msgstr "Créer un nouveau type de cellule"
 
@@ -10128,6 +10139,10 @@ msgstr "Zoomer"
 
 msgid "ZOOM_OUT"
 msgstr "Dézoomer"
+
+#, fuzzy
+#~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
+#~ msgstr "Mutliplier/diviser par deux la vitesse de jeu"
 
 #~ msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 #~ msgstr "Toutes les versions récentes ne sont pas affichées car il y en a trop"

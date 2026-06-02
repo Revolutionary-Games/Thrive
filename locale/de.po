@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-30 14:35-0700\n"
+"POT-Creation-Date: 2026-06-02 18:15-0600\n"
 "PO-Revision-Date: 2026-05-22 15:37+0000\n"
 "Last-Translator: Matthias Ulbl <matthias.ulbl@gmx.at>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -170,6 +170,17 @@ msgstr "Du bist bereits aufgestiegen"
 
 msgid "ALT"
 msgstr "Alt"
+
+#, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr ""
+"Native Threads werden für andere Aufgaben verwendet als Managed Threads.\n"
+"Mehrere Threads auf CPUs mit mehreren Kernen erhöhen die Leistung normalerweise bis zu einem gewissen Limit\n"
+"bei zu vielen Threads wird die Leistung aber irgendwann beginnen abzunehmen."
+
+#, fuzzy
+msgid "ALTERNATVE_TIMESCALE"
+msgstr ". Die Rate skaliert"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Dauerhaft sichtbar"
@@ -1851,9 +1862,6 @@ msgstr "Doppelklicken zum Betrachten"
 #, fuzzy
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Als zweischichtige Membran bietet sie besseren Schutz vor Beschädigungen und benötigt weniger Energie, um sich nicht zu verformen. Allerdings verlangsamt sie die Zelle etwas und senkt die Geschwindigkeit, mit der sie Ressourcen absorbieren kann."
-
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "ABC"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr "Mit der Maus ziehen um Objekte neu anzuordnen"
@@ -6070,6 +6078,10 @@ msgid "SPEED_COLON"
 msgstr "Geschwindigkeit:"
 
 #, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "ABC"
+
+#, fuzzy
 msgid "SPORE_CELL_TYPE"
 msgstr "Neuen Zellentyp erstellen"
 
@@ -9657,6 +9669,9 @@ msgstr "Hereinzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Herauszoomen"
+
+#~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
+#~ msgstr "ABC"
 
 #~ msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 #~ msgstr "Es werden nicht alle aktuellen Versionen angezeigt, da es zu viele gibt"

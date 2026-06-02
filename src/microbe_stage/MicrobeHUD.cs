@@ -164,6 +164,8 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         multicellularButton.Visible = false;
         macroscopicButton.Visible = false;
+
+        Settings.Instance.AlternativeTimescale.OnChanged += OnAlternativeTimescaleChanged;
     }
 
     public override void _EnterTree()
@@ -331,12 +333,12 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             return;
         }
 
-        var resultingModifier = fastModeEnabled ? 2 : 1;
+        var resultingModifier = fastModeEnabled ? Settings.Instance.AlternativeTimescale.Value : 1;
 
         stage.WorldSimulation.WorldTimeScale = resultingModifier;
 
         // Make sure the GUI state is consistent with the current speed
-        bottomLeftBar.SpeedModePressed = fastModeEnabled;
+        bottomLeftBar.SpeedButton.ButtonPressed = fastModeEnabled;
     }
 
     public override bool GetCurrentSpeedMode()
@@ -344,7 +346,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         if (stage == null)
             return false;
 
-        return stage.WorldSimulation.WorldTimeScale > 1;
+        return stage.WorldSimulation.WorldTimeScale != 1;
     }
 
     public void ShowSaveLoadAdvise()
@@ -831,6 +833,11 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
                 item.SetDescription($"{MathF.Round(health.CurrentHealth, 1)}/{MathF.Round(health.MaxHealth, 1)}");
             }
         }
+    }
+
+    private void OnAlternativeTimescaleChanged(float value)
+    {
+        ApplySpeedMode(GetCurrentSpeedMode());
     }
 
     /// <summary>

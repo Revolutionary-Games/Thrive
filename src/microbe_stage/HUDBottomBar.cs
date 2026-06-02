@@ -25,13 +25,13 @@ public partial class HUDBottomBar : HBoxContainer
 
 #pragma warning disable CA2213
     [Export]
+    public SpeedButton SpeedButton = null!;
+
+    [Export]
     private PlayButton pauseButton = null!;
 
     [Export]
     private TextureButton heatButton = null!;
-
-    [Export]
-    private BaseButton? speedButton;
 
     [Export]
     private TextureButton? compoundsButton;
@@ -49,9 +49,6 @@ public partial class HUDBottomBar : HBoxContainer
     private bool compoundsPressed = true;
     private bool environmentPressed = true;
     private bool processPanelPressed;
-
-    private bool speedModePressed;
-    private bool speedModeAvailable = true;
 
     [Signal]
     public delegate void OnPausePressedEventHandler(bool paused);
@@ -133,31 +130,6 @@ public partial class HUDBottomBar : HBoxContainer
     }
 
     [Export]
-    public bool SpeedModeAvailable
-    {
-        get => speedModeAvailable;
-        set
-        {
-            speedModeAvailable = value;
-
-            UpdateSpeedButton();
-        }
-    }
-
-    public bool SpeedModePressed
-    {
-        get => speedModePressed;
-        set
-        {
-            if (value == speedModePressed)
-                return;
-
-            speedModePressed = value;
-            UpdateSpeedButton();
-        }
-    }
-
-    [Export]
     public Control? ProcessPanelButtonControl { get; set; }
 
     public override void _Ready()
@@ -165,7 +137,6 @@ public partial class HUDBottomBar : HBoxContainer
         UpdateCompoundButton();
         UpdateEnvironmentButton();
         UpdateProcessPanelButton();
-        UpdateSpeedButton();
 
         UpdateButtonVisibility();
     }
@@ -245,22 +216,6 @@ public partial class HUDBottomBar : HBoxContainer
     private void UpdateProcessPanelButton()
     {
         processPanelButton?.ButtonPressed = ProcessesPressed;
-    }
-
-    private void SpeedButtonPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-        SpeedModePressed = !SpeedModePressed;
-        EmitSignal(SignalName.OnSpeedModeToggled, SpeedModePressed);
-    }
-
-    private void UpdateSpeedButton()
-    {
-        if (speedButton == null)
-            return;
-
-        speedButton.ButtonPressed = SpeedModePressed;
-        speedButton.Visible = speedModeAvailable;
     }
 
     private void UpdateButtonVisibility()

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-30 14:35-0700\n"
+"POT-Creation-Date: 2026-06-02 18:15-0600\n"
 "PO-Revision-Date: 2026-05-28 15:36+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
@@ -170,6 +170,16 @@ msgstr "You are already ascended"
 
 msgid "ALT"
 msgstr "Alt"
+
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr ""
+"Changes the alternate speed of the simulation.\n"
+"This speed can be used by pressing the button on the HUD\n"
+"that matches this value.\n"
+"Higher values may worsen performance."
+
+msgid "ALTERNATVE_TIMESCALE"
+msgstr "Alternative Timescale"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Always visible"
@@ -1838,9 +1848,6 @@ msgstr "Double click to view in fullscreen"
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "A membrane with two layers, it is more resistant to damage, especially toxins. However, it slows the cell down some and lowers the rate at which it can absorb resources."
-
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "Toggle between normal speed and double speed gameplay"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr "Drag this to reorder items with the mouse"
@@ -5901,6 +5908,9 @@ msgstr "{0} with population: {1}"
 msgid "SPEED_COLON"
 msgstr "Speed:"
 
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "Toggle between normal speed and alternative speed gameplay"
+
 msgid "SPORE_CELL_TYPE"
 msgstr "Spore cell type"
 
@@ -9852,6 +9862,9 @@ msgstr "Zoom in"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom out"
+
+#~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
+#~ msgstr "Toggle between normal speed and double speed gameplay"
 
 #~ msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 #~ msgstr "Not showing all recent versions as there are too many"

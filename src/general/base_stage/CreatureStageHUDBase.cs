@@ -1255,7 +1255,7 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
 
     private void UpdateSpeedModeDisplay()
     {
-        bottomLeftBar.SpeedModePressed = GetCurrentSpeedMode();
+        bottomLeftBar.SpeedButton.ButtonPressed = GetCurrentSpeedMode();
     }
 
     private void HeatViewButtonPressed(bool pressed)

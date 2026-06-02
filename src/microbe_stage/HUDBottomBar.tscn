@@ -11,21 +11,22 @@
 [ext_resource type="Texture2D" uid="uid://cmqynxgbt4jvj" path="res://assets/textures/gui/bevel/environmentButtonActive.png" id="10"]
 [ext_resource type="Texture2D" uid="uid://qqpvmk0a71tk" path="res://assets/textures/gui/bevel/MainMenuActive.png" id="11"]
 [ext_resource type="Texture2D" uid="uid://oq2xa0j5c6af" path="res://assets/textures/gui/bevel/MainMenuHover.png" id="12"]
-[ext_resource type="Texture2D" uid="uid://cq3ewq272kbxb" path="res://assets/textures/gui/bevel/Speed2XButton.svg" id="12_62oub"]
 [ext_resource type="Texture2D" uid="uid://r3tppwbfq4mw" path="res://assets/textures/gui/bevel/chemicalButton.svg" id="12_r44vw"]
 [ext_resource type="Texture2D" uid="uid://d2g6mdtpedlsu" path="res://assets/textures/gui/bevel/compoundsButtonHover.png" id="13"]
-[ext_resource type="Texture2D" uid="uid://gee04cb8dj2n" path="res://assets/textures/gui/bevel/Speed2XButtonActive.svg" id="13_k101w"]
 [ext_resource type="Texture2D" uid="uid://n0vyshk4aji7" path="res://assets/textures/gui/bevel/chemicalButtonActive.svg" id="13_qgxfk"]
-[ext_resource type="Texture2D" uid="uid://bioa58mwt4ob7" path="res://assets/textures/gui/bevel/Speed2XButtonHover.svg" id="14_pxurr"]
 [ext_resource type="Texture2D" uid="uid://ceko5ytw6ytnr" path="res://assets/textures/gui/bevel/chemicalButtonHover.svg" id="14_ti1r5"]
 [ext_resource type="Texture2D" uid="uid://csoia3qjosic0" path="res://assets/textures/gui/bevel/environmentButtonHover.png" id="15"]
-[ext_resource type="Texture2D" uid="uid://xq1p0mf4k8sq" path="res://assets/textures/gui/bevel/Speed2XButtonDisabled.svg" id="15_aq5wf"]
 [ext_resource type="Texture2D" uid="uid://dbudy6jb7bhad" path="res://assets/textures/gui/bevel/helpButtonHover.png" id="16"]
 [ext_resource type="Texture2D" uid="uid://doeuoye8slhmb" path="res://assets/textures/gui/bevel/searchButtonActive.png" id="17"]
 [ext_resource type="Texture2D" uid="uid://0wqh6lnuc71d" path="res://assets/textures/gui/bevel/statisticsButtonHover.png" id="18"]
+[ext_resource type="Texture2D" uid="uid://diggoda10kfmt" path="res://assets/textures/gui/bevel/button.svg" id="18_bvb6r"]
 [ext_resource type="Texture2D" uid="uid://dkxjcwkg2netf" path="res://assets/textures/gui/bevel/compoundsButtonActive.png" id="19"]
+[ext_resource type="Texture2D" uid="uid://dk38u8t166r53" path="res://assets/textures/gui/bevel/buttonActive.svg" id="19_kggoo"]
+[ext_resource type="Texture2D" uid="uid://bkwy8wv725emn" path="res://assets/textures/gui/bevel/buttonHover.svg" id="20_4yi7b"]
 [ext_resource type="Texture2D" uid="uid://dglc11477jgka" path="res://assets/textures/gui/bevel/helpButtonActive.png" id="21"]
+[ext_resource type="Texture2D" uid="uid://dc80ruc0bw3sb" path="res://assets/textures/gui/bevel/buttonDisabled.svg" id="21_ci2j4"]
 [ext_resource type="Texture2D" uid="uid://c8fnery2jphca" path="res://assets/textures/gui/bevel/searchButtonHover.png" id="22"]
+[ext_resource type="Script" uid="uid://do8l0bc7etxjc" path="res://src/microbe_stage/SpeedButton.cs" id="22_0o6rj"]
 [ext_resource type="Texture2D" uid="uid://c6rgyr5rhb352" path="res://assets/textures/gui/bevel/suicideButtonHover.png" id="23"]
 [ext_resource type="Texture2D" uid="uid://dt32f5t6b4u1u" path="res://assets/textures/gui/bevel/statisticsButtonActive.png" id="24"]
 [ext_resource type="Script" uid="uid://dijae13t7sqr" path="res://src/microbe_stage/HUDBottomBar.cs" id="26"]
@@ -34,9 +35,13 @@
 [ext_resource type="Texture2D" uid="uid://c64hu6j38lxjf" path="res://assets/textures/gui/bevel/ThermovisionButtonHover.svg" id="28_u7j1e"]
 [ext_resource type="Texture2D" uid="uid://dll34ycuw8wqn" path="res://assets/textures/gui/bevel/ThermovisionButtonDisabled.svg" id="29_l10eo"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_xy40k"]
+font_size = 21
+shadow_size = 0
+
 [sub_resource type="StyleBoxEmpty" id="27"]
 
-[node name="HUDBottomBar" type="HBoxContainer" unique_id=506249946 node_paths=PackedStringArray("pauseButton", "heatButton", "speedButton", "compoundsButton", "environmentButton", "processPanelButton", "suicideButton", "ProcessPanelButtonControl")]
+[node name="HUDBottomBar" type="HBoxContainer" unique_id=506249946 node_paths=PackedStringArray("pauseButton", "heatButton", "SpeedButton", "compoundsButton", "environmentButton", "processPanelButton", "suicideButton", "ProcessPanelButtonControl")]
 custom_minimum_size = Vector2(0, 35)
 anchors_preset = 2
 anchor_top = 1.0
@@ -47,7 +52,7 @@ grow_vertical = 0
 script = ExtResource("26")
 pauseButton = NodePath("PauseButtonMargin/PlayButton")
 heatButton = NodePath("HeatViewButton")
-speedButton = NodePath("SpeedButton")
+SpeedButton = NodePath("SpeedButton")
 compoundsButton = NodePath("CompoundsButton")
 environmentButton = NodePath("EnvironmentButton")
 processPanelButton = NodePath("ChemicalButton")
@@ -123,19 +128,32 @@ texture_hover = ExtResource("18")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="SpeedButton" type="TextureButton" parent="." unique_id=1625839572]
+[node name="SpeedButton" type="TextureButton" parent="." unique_id=1625839572 node_paths=PackedStringArray("label")]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-tooltip_text = "DOUBLE_SPEED_TOGGLE_TOOLTIP"
+tooltip_text = "SPEED_TOGGLE_TOOLTIP"
 focus_mode = 0
 toggle_mode = true
 action_mode = 0
-texture_normal = ExtResource("12_62oub")
-texture_pressed = ExtResource("13_k101w")
-texture_hover = ExtResource("14_pxurr")
-texture_disabled = ExtResource("15_aq5wf")
+texture_normal = ExtResource("18_bvb6r")
+texture_pressed = ExtResource("19_kggoo")
+texture_hover = ExtResource("20_4yi7b")
+texture_disabled = ExtResource("21_ci2j4")
 ignore_texture_size = true
 stretch_mode = 5
+script = ExtResource("22_0o6rj")
+label = NodePath("Label")
+
+[node name="Label" type="Label" parent="SpeedButton" unique_id=864557617]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_xy40k")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="SearchButton" type="TextureButton" parent="." unique_id=819359262]
 modulate = Color(0.384314, 0.384314, 0.384314, 1)
@@ -196,7 +214,6 @@ theme_override_styles/separator = SubResource("27")
 [connection signal="pressed" from="CompoundsButton" to="." method="CompoundsButtonPressed"]
 [connection signal="pressed" from="ChemicalButton" to="." method="ProcessButtonPressed"]
 [connection signal="pressed" from="StatisticsButton" to="." method="StatisticsButtonPressed"]
-[connection signal="pressed" from="SpeedButton" to="." method="SpeedButtonPressed"]
 [connection signal="pressed" from="SuicideButton" to="." method="SuicideButtonPressed"]
 [connection signal="pressed" from="QuestionMarkButton" to="." method="HelpButtonPressed"]
 [connection signal="toggled" from="HeatViewButton" to="." method="HeatButtonPressed"]
