@@ -20,16 +20,15 @@ public partial class CellTypeMakerButton : Control
     [Signal]
     public delegate void OnClickedEventHandler();
 
-    public void OnMainButtonClicked()
-    {
-        EmitSignal(SignalName.OnClicked);
-    }
-
     public override void _Ready()
     {
         UpdateDisplayedCellType(null);
     }
 
+    public void OnMainButtonClicked()
+    {
+        EmitSignal(SignalName.OnClicked);
+    }
 
     public void UpdateDisplayedCellType(CellType? assignedCellType)
     {
