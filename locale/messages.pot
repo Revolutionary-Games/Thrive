@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-29 16:13+0300\n"
+"POT-Creation-Date: 2026-05-30 14:35-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1041,7 +1041,7 @@ msgstr ""
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/ChemicalEquation.tscn:114
+#: ../src/gui_common/ChemicalEquation.tscn:115
 msgid "CHEMICAL_EQUATION_SPEED_EXPLANATION"
 msgstr ""
 
@@ -1209,7 +1209,6 @@ msgstr ""
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:95
 #: ../src/gui_common/charts/line/LineChart.tscn:215
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:91
-#: ../src/gui_common/menus/OptionsMenu.tscn:3457
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1381
 #: ../src/microbe_stage/editor/EndosymbiosisPopup.tscn:123
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:606
@@ -6113,6 +6112,10 @@ msgstr ""
 msgid "NEW"
 msgstr ""
 
+#: ../src/gui_common/PatchNotesDisplayer.tscn:71
+msgid "NEWER"
+msgstr ""
+
 #: ../src/saving/SaveList.tscn:67
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -6473,6 +6476,10 @@ msgstr ""
 msgid "OK"
 msgstr ""
 
+#: ../src/gui_common/PatchNotesDisplayer.tscn:78
+msgid "OLDER"
+msgstr ""
+
 #: ../src/saving/SaveList.tscn:73
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -6826,29 +6833,33 @@ msgstr ""
 msgid "PATCH_NAME"
 msgstr ""
 
-#: ../src/gui_common/PatchNotesDisplayer.cs:100
-#: ../src/gui_common/PatchNotesDisplayer.tscn:41
+#: ../src/gui_common/PatchNotesDisplayer.cs:110
+#: ../src/gui_common/PatchNotesDisplayer.tscn:44
 msgid "PATCH_NOTES_LAST_PLAYED_INFO"
 msgstr ""
 
-#: ../src/gui_common/PatchNotesDisplayer.cs:105
+#: ../src/gui_common/PatchNotesDisplayer.cs:115
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
+#: ../src/gui_common/PatchNotesDisplayer.tscn:59
+msgid "PATCH_NOTES_RECENT_BOUNDARY"
+msgstr ""
+
 #: ../src/gui_common/menus/OptionsMenu.tscn:3425
-#: ../src/gui_common/PatchNotesDisplayer.tscn:25
+#: ../src/gui_common/PatchNotesDisplayer.tscn:28
 msgid "PATCH_NOTES_TITLE"
 msgstr ""
 
-#: ../src/gui_common/PatchNotesList.cs:252
+#: ../src/gui_common/PatchNotesList.cs:226
 msgid "PATCH_NOTE_BULLET_POINT"
 msgstr ""
 
-#: ../src/gui_common/PatchNotesList.cs:251
+#: ../src/gui_common/PatchNotesList.cs:225
 msgid "PATCH_NOTE_CHANGES_HEADING"
 msgstr ""
 
-#: ../src/gui_common/PatchNotesList.cs:253
+#: ../src/gui_common/PatchNotesList.cs:227
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
 msgstr ""
 
@@ -7187,7 +7198,7 @@ msgstr ""
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr ""
 
-#: ../src/gui_common/ChemicalEquation.tscn:135
+#: ../src/gui_common/ChemicalEquation.tscn:136
 msgid "PROCESS_INACTIVE"
 msgstr ""
 
@@ -9066,10 +9077,6 @@ msgstr ""
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
-#: ../src/gui_common/PatchNotesList.cs:277
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
-msgstr ""
-
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1082
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr ""
@@ -9789,11 +9796,6 @@ msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:123
 msgid "VIEWER"
-msgstr ""
-
-#: ../src/gui_common/PatchNotesDisplayer.tscn:51
-#: ../src/gui_common/PatchNotesDisplayer.tscn:57
-msgid "VIEW_ALL"
 msgstr ""
 
 #: ../src/microbe_stage/OrganismStatisticsPanel.cs:626

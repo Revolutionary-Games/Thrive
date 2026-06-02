@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-29 16:13+0300\n"
+"POT-Creation-Date: 2026-05-30 14:35-0700\n"
 "PO-Revision-Date: 2026-05-29 08:43+0000\n"
 "Last-Translator: Guno haozheum <guhaozhe@hsefz.cn>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -4401,6 +4401,10 @@ msgstr ""
 msgid "NEW"
 msgstr "新的"
 
+#, fuzzy
+msgid "NEWER"
+msgstr "查看器"
+
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "这个存档是来自更新版本的Thrive的并且很可能不兼容。\n"
@@ -4599,6 +4603,10 @@ msgstr "访问Revolutionary Games的官方网站"
 
 msgid "OK"
 msgstr "好的"
+
+#, fuzzy
+msgid "OLDER"
+msgstr "打开文件夹"
 
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -4874,6 +4882,10 @@ msgstr "您上次玩Thrive的时间{0},目前已经有一个新版本发布了"
 
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr "您上次玩Thrive的时间{0},目前已经更新了{1}个版本"
+
+#, fuzzy
+msgid "PATCH_NOTES_RECENT_BOUNDARY"
+msgstr "— {0}"
 
 msgid "PATCH_NOTES_TITLE"
 msgstr "更新说明"
@@ -6491,9 +6503,6 @@ msgstr "工具"
 msgid "TOOL_HAND_AXE"
 msgstr "手斧"
 
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
-msgstr "因为最近版本太多而没有全部显示"
-
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "收集到的能量："
 
@@ -7201,9 +7210,6 @@ msgstr "{0}MiB"
 
 msgid "VIEWER"
 msgstr "查看器"
-
-msgid "VIEW_ALL"
-msgstr "查看所有"
 
 msgid "VIEW_CELL_PROCESSES"
 msgstr "查看生物代谢过程"
@@ -9856,6 +9862,12 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "缩小"
+
+#~ msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+#~ msgstr "因为最近版本太多而没有全部显示"
+
+#~ msgid "VIEW_ALL"
+#~ msgstr "查看所有"
 
 #, fuzzy
 #~ msgid "PRESSURE_VALUE"
