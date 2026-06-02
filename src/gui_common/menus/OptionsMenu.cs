@@ -955,6 +955,12 @@ public partial class OptionsMenu : ControlWithInput
             case OS.RenderingDriver.Opengl3:
                 usedRendererName.Text = Localization.Translate("DISPLAY_DRIVER_OPENGL");
                 break;
+            case OS.RenderingDriver.D3D12:
+                usedRendererName.Text = Localization.Translate("DISPLAY_DRIVER_DIRECT3D");
+                break;
+            case OS.RenderingDriver.Metal:
+                usedRendererName.Text = Localization.Translate("DISPLAY_DRIVER_METAL");
+                break;
             default:
                 // An unknown display driver is being used
                 usedRendererName.Text = Localization.Translate("UNKNOWN_DISPLAY_DRIVER");
