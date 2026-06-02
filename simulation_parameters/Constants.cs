@@ -1687,7 +1687,7 @@ public static class Constants
 
     public const float MINIMUM_RUNNABLE_PROCESS_FRACTION = 0.00001f;
 
-    public const float DEFAULT_PROCESS_SPINNER_SPEED = 365.0f;
+    public const float DEFAULT_PROCESS_SPINNER_SPEED = MathF.PI * 2.0f;
     public const float DEFAULT_PROCESS_STATISTICS_AVERAGE_INTERVAL = 0.4f;
 
     public const int COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR = 5;
@@ -1755,6 +1755,7 @@ public static class Constants
     public const float PROCEDURAL_CACHE_MEMBRANE_KEEP_TIME = 500;
     public const float PROCEDURAL_CACHE_MICROBE_SHAPE_TIME = 7000;
     public const float PROCEDURAL_CACHE_LOADED_SHAPE_KEEP_TIME = 1000;
+    public const float PROCEDURAL_CACHE_SIMPLE_SHAPE_KEEP_TIME = 1000;
 
     // TODO: convert prototypes over to an ECS system as well
 
@@ -2247,8 +2248,6 @@ public static class Constants
 
     public const int MAX_NEWS_FEED_ITEMS_TO_SHOW = 15;
     public const int MAX_NEWS_FEED_ITEM_LENGTH = 1000;
-
-    public const int MAX_RECENT_VERSIONS_TO_SHOW = 5;
 
     public const string CLICKABLE_TEXT_BBCODE = "[color=#3796e1]";
     public const string CLICKABLE_TEXT_BBCODE_END = "[/color]";

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-25 18:16+0300\n"
+"POT-Creation-Date: 2026-05-30 14:35-0700\n"
 "PO-Revision-Date: 2026-05-13 03:55+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -4717,6 +4717,22 @@ msgstr "Többsejtes szerkesztő"
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "(egyes opciók lehet, hogy elérhetetlenek lesznek a többi fázis elértével)"
 
+#, fuzzy
+msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
+msgstr ""
+"[b]Fázis[/b]\n"
+"  Sejt\n"
+"[b]Membrántípus[/b]\n"
+"  {0}\n"
+"[b]Membrán merevség[/b]\n"
+"  {1}\n"
+"[b]Alap sebesség[/b]\n"
+"  {2}\n"
+"[b]Alap fordulási sebesség[/b]\n"
+"  {3}\n"
+"[b]Alap hex méret[/b]\n"
+"  {4}"
+
 msgid "MULTICELLULAR_STAGE"
 msgstr "Többsejtes fázis"
 
@@ -4798,6 +4814,10 @@ msgstr ""
 
 msgid "NEW"
 msgstr "Új"
+
+#, fuzzy
+msgid "NEWER"
+msgstr "Galéria nézet"
 
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -5015,6 +5035,10 @@ msgstr "Öngyilkosság"
 
 msgid "OK"
 msgstr "OK"
+
+#, fuzzy
+msgid "OLDER"
+msgstr "Mappa megnyitása"
 
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -5325,6 +5349,10 @@ msgstr "Helyi adatok törlése"
 
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr "A legutóbb játszott verzió a Thrive {0} volt, azóta {1} új kiadás jelent meg"
+
+#, fuzzy
+msgid "PATCH_NOTES_RECENT_BOUNDARY"
+msgstr "— {0}"
 
 msgid "PATCH_NOTES_TITLE"
 msgstr ""
@@ -7080,9 +7108,6 @@ msgstr "Eszközök"
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
-msgstr ""
-
 #, fuzzy
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "Készítő:"
@@ -7812,10 +7837,6 @@ msgstr ""
 #, fuzzy
 msgid "VIEWER"
 msgstr "Galéria nézet"
-
-#, fuzzy
-msgid "VIEW_ALL"
-msgstr "Az összes tiltása"
 
 #, fuzzy
 msgid "VIEW_CELL_PROCESSES"
@@ -9905,6 +9926,10 @@ msgstr "Közelítés"
 
 msgid "ZOOM_OUT"
 msgstr "Távolodás"
+
+#, fuzzy
+#~ msgid "VIEW_ALL"
+#~ msgstr "Az összes tiltása"
 
 #~ msgid "SPEED"
 #~ msgstr "Sebesség"

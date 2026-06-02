@@ -8,6 +8,13 @@
 [ext_resource type="LabelSettings" uid="uid://4teclbsvoawb" path="res://src/gui_common/fonts/Body-Bold-Smaller-Red.tres" id="4_vbkf3"]
 [ext_resource type="Texture2D" uid="uid://bembxnxct020" path="res://assets/textures/gui/bevel/WhiteArrow.png" id="5_tr4hc"]
 [ext_resource type="FontFile" uid="uid://b62thy1er4r08" path="res://assets/fonts/Lato-Bold.ttf" id="5_wdgi7"]
+[ext_resource type="Shader" uid="uid://bul033somqtc6" path="res://shaders/SpinnerVertex.gdshader" id="7_1oc4h"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l0qs4"]
+resource_local_to_scene = true
+shader = ExtResource("7_1oc4h")
+shader_parameter/rotation = 0.0
+shader_parameter/aspect = Vector2(1, 1)
 
 [sub_resource type="Theme" id="1"]
 default_font = ExtResource("5_wdgi7")
@@ -66,11 +73,11 @@ custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 
 [node name="Spinner" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/SpinnerNode" unique_id=1148069507]
+material = SubResource("ShaderMaterial_l0qs4")
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 0
 offset_right = 32.0
 offset_bottom = 32.0
-pivot_offset = Vector2(16, 16)
 texture = ExtResource("3")
 expand_mode = 1
 stretch_mode = 5

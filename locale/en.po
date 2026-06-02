@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-25 18:16+0300\n"
-"PO-Revision-Date: 2026-05-13 16:42+0300\n"
+"POT-Creation-Date: 2026-05-30 14:35-0700\n"
+"PO-Revision-Date: 2026-05-28 15:36+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -4308,6 +4308,17 @@ msgstr "Specialized cells in multicellular are the first step towards proper org
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "This panel shows the combined processes of your colony, summed across all of its cells. Note that unlike other compounds, ATP isn't shared between cells."
 
+msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
+msgstr ""
+"[b]Stage[/b]\n"
+"  Multicellular\n"
+"[b]Cell Count[/b]\n"
+"  {0}\n"
+"[b]Cell Types[/b]\n"
+"  {1}\n"
+"[b]Reproduction Type[/b]\n"
+"  {2}"
+
 msgid "MULTICELLULAR_STAGE"
 msgstr "Multicellular Stage"
 
@@ -4384,6 +4395,9 @@ msgstr ""
 
 msgid "NEW"
 msgstr "New"
+
+msgid "NEWER"
+msgstr "Newer"
 
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -4583,6 +4597,9 @@ msgstr "Visit the official Revolutionary Games website"
 
 msgid "OK"
 msgstr "OK"
+
+msgid "OLDER"
+msgstr "Older"
 
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -4858,6 +4875,9 @@ msgstr "You last played Thrive {0}, since then there has been one new release"
 
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr "You last played Thrive {0}, since then there have been {1} new releases"
+
+msgid "PATCH_NOTES_RECENT_BOUNDARY"
+msgstr "You've seen all recent versions."
 
 msgid "PATCH_NOTES_TITLE"
 msgstr "Patch Notes"
@@ -6474,9 +6494,6 @@ msgstr "Tools"
 msgid "TOOL_HAND_AXE"
 msgstr "Hand Axe"
 
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
-msgstr "Not showing all recent versions as there are too many"
-
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "Gathered Energy:"
 
@@ -7184,9 +7201,6 @@ msgstr "{0} MiB"
 
 msgid "VIEWER"
 msgstr "Viewer"
-
-msgid "VIEW_ALL"
-msgstr "View All"
 
 msgid "VIEW_CELL_PROCESSES"
 msgstr "View Organism Processes"
@@ -9838,6 +9852,12 @@ msgstr "Zoom in"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom out"
+
+#~ msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+#~ msgstr "Not showing all recent versions as there are too many"
+
+#~ msgid "VIEW_ALL"
+#~ msgstr "View All"
 
 #~ msgid "PRESSURE_VALUE"
 #~ msgstr "{0} kPa"

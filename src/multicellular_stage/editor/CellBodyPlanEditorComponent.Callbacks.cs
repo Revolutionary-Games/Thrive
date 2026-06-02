@@ -104,6 +104,8 @@ public partial class CellBodyPlanEditorComponent
             UpdateAlreadyPlacedVisuals();
 
             // TODO: notify auto-evo prediction once that is done
+
+            UpdateSpecializationDisplay();
         }
         else
         {
@@ -120,6 +122,7 @@ public partial class CellBodyPlanEditorComponent
         data.MovedHex.Data.Position = data.OldLocation;
 
         UpdateAlreadyPlacedVisuals();
+        UpdateSpecializationDisplay();
     }
 
     [ArchiveAllowedMethod]
