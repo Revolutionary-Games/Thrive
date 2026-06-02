@@ -308,17 +308,27 @@ public partial class CellBodyPlanEditorComponent
     {
         if (SporeCellType == null)
         {
-            var splitFrom = Editor.EditedSpecies.ModifiableCellTypes[0];
-
-            var cellType = (CellType)splitFrom.Clone();
-            cellType.CellTypeName = Localization.Translate("DEFAULT_SPORE_CELL_TYPE_NAME");
-            cellType.SplitFromTypeName = splitFrom.CellTypeName;
-
-            var action = new SingleEditorAction<SporeCellTypeAddActionData>(DoSporeCellAddAction,
-                UndoSporeCellAddAction, new SporeCellTypeAddActionData(SporeCellType, cellType));
-
-            Editor.EnqueueAction(action);
+            cellTypePickerPopup.UpdateCellTypeList(Editor.EditedSpecies.ModifiableCellTypes);
+            cellTypePickerPopup.PopupCenteredShrink();
         }
+        else
+        {
+            EmitSignal(SignalName.OnCellTypeToEditSelected, SporeCellType.CellTypeName, true);
+        }
+    }
+
+    private void OnBaseCellTypeForSporeSelected(string baseCellTypeName)
+    {
+        var splitFrom = Editor.EditedSpecies.ModifiableCellTypes.First(a => a.CellTypeName == baseCellTypeName);
+
+        var cellType = (CellType)splitFrom.Clone();
+        cellType.CellTypeName = Localization.Translate("DEFAULT_SPORE_CELL_TYPE_NAME");
+        cellType.SplitFromTypeName = splitFrom.CellTypeName;
+
+        var action = new SingleEditorAction<SporeCellTypeAddActionData>(DoSporeCellAddAction,
+            UndoSporeCellAddAction, new SporeCellTypeAddActionData(SporeCellType, cellType));
+
+        Editor.EnqueueAction(action);
 
         if (SporeCellType != null)
         {

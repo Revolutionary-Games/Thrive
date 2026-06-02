@@ -144,6 +144,9 @@ public partial class CellBodyPlanEditorComponent :
     private CellTypeMakerButton sporeCellTypeMakerButton = null!;
 
     [Export]
+    private CellTypePickerPopup cellTypePickerPopup = null!;
+
+    [Export]
     private Control buddingReproductionSection = null!;
 
     [Export]

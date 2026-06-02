@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://deiselg5ajg3d"]
+
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_jktbi"]
+[ext_resource type="Script" uid="uid://or813gvjyrwf" path="res://src/multicellular_stage/editor/CellTypePickerPopup.cs" id="1_mmoc3"]
+[ext_resource type="PackedScene" uid="uid://cn0sqyg1htg45" path="res://src/multicellular_stage/editor/CellTypeSelection.tscn" id="3_jktbi"]
+
+[node name="CellTypePickerPopup" type="Control" unique_id=471568737 node_paths=PackedStringArray("cellTypeList")]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+theme = ExtResource("1_jktbi")
+script = ExtResource("1_mmoc3")
+cellTypeList = NodePath("VBoxContainer/HFlowContainer")
+cellTypeButton = ExtResource("3_jktbi")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1677620313]
+custom_minimum_size = Vector2(460, 400)
+layout_mode = 0
+offset_right = 460.0
+offset_bottom = 400.0
+
+[node name="HFlowContainer" type="HFlowContainer" parent="VBoxContainer" unique_id=1710921692]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button2" type="Button" parent="VBoxContainer" unique_id=1869179856]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "CANCEL"
+
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="Close"]
