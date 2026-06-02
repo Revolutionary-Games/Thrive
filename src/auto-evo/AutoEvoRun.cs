@@ -573,10 +573,8 @@ public class AutoEvoRun
             {
                 GatherInfo(runSteps);
 
-                // +2 is for this step and the result apply step
-                totalSteps = runSteps.Sum(s => s.TotalSteps) + 2;
-
                 Interlocked.Increment(ref completeSteps);
+                UpdateTotalStepsEstimate();
                 state = RunStage.Stepping;
                 return false;
             }
@@ -625,6 +623,8 @@ public class AutoEvoRun
                     }
                 }
 
+                UpdateTotalStepsEstimate();
+
                 return false;
             }
 
@@ -663,6 +663,21 @@ public class AutoEvoRun
 
         // Doing the steps counting this way is slightly faster than an increment after each step
         Interlocked.Add(ref completeSteps, steps);
+    }
+
+    private void UpdateTotalStepsEstimate()
+    {
+        var estimate = CompleteSteps + runSteps.Sum(s => s.TotalSteps) + 1;
+        int current;
+
+        do
+        {
+            current = totalSteps;
+
+            if (estimate <= current)
+                return;
+        }
+        while (Interlocked.CompareExchange(ref totalSteps, estimate, current) != current);
     }
 
     private void UpdateMap(bool playerCantGoExtinct)

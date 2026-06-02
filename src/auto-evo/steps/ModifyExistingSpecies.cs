@@ -15,6 +15,8 @@ public class ModifyExistingSpecies : IRunStep
 {
     // TODO: Possibly make this a performance setting?
     private const int TotalMutationsToTry = 20;
+    private const int FinalMutationPhases = 3;
+    private const int InitialMutationStepEstimatePerSpecies = 256;
 
     private static int autoEvoCacheCounter;
 
@@ -40,6 +42,7 @@ public class ModifyExistingSpecies : IRunStep
     private readonly List<Mutant> temporaryMutations2 = new();
 
     private readonly List<MicrobeSpecies> lastGeneratedMutations = new();
+    private readonly List<MicrobeSpecies> outOfSyncSpecies = new();
 
     private readonly Stack<SelectionPressure> pressureStack = new();
 
@@ -56,8 +59,14 @@ public class ModifyExistingSpecies : IRunStep
     private Dictionary<Species, long>.Enumerator speciesEnumerator;
 
     private Miche? miche;
+    private SpeciesMutationGenerationState? currentMutationGeneration;
 
     private Step step;
+    private int mutationStepEstimatePerSpecies = InitialMutationStepEstimatePerSpecies;
+    private int remainingPatchSpeciesToGenerate;
+    private int remainingOutOfSyncSpeciesToGenerate;
+    private int potentialOutOfSyncSpeciesToGenerate;
+    private bool collectedOutOfSyncSpecies;
 
     public ModifyExistingSpecies(Patch patch, SimulationCache cache, WorldGenerationSettings worldSettings,
         Random randomSeed)
@@ -70,8 +79,13 @@ public class ModifyExistingSpecies : IRunStep
 
         random = new XoShiRo256starstar(randomSeed.NextInt64());
 
-        // Patch species count is used to know how many steps there are to perform
-        TotalSteps = patch.SpeciesInPatch.Count;
+        foreach (var species in patch.SpeciesInPatch.Keys)
+        {
+            if (species is MicrobeSpecies)
+                ++remainingPatchSpeciesToGenerate;
+        }
+
+        SetTotalStepsEstimate(remainingPatchSpeciesToGenerate * mutationStepEstimatePerSpecies + FinalMutationPhases);
         speciesEnumerator = patch.SpeciesInPatch.GetEnumerator();
     }
 
@@ -89,10 +103,19 @@ public class ModifyExistingSpecies : IRunStep
         FinalApply,
     }
 
+    private enum MutationGenerationFramePhase
+    {
+        Initialize,
+        ProcessStrategies,
+        FinalizeLeaf,
+        PrepareChildren,
+        ProcessChildren,
+    }
+
     /// <summary>
     ///   See <see cref="Step"/> for explanation on the step count
     /// </summary>
-    public int TotalSteps => 4 + field;
+    public int TotalSteps { get; private set; }
 
     public bool CanRunConcurrently => true;
 
@@ -113,6 +136,10 @@ public class ModifyExistingSpecies : IRunStep
             miche.GetOccupants(speciesWorkMemory);
 
             miche.GetLeafNodes(nonEmptyLeafNodes, emptyLeafNodes, x => x.Occupant != null);
+
+            mutationStepEstimatePerSpecies = CalculateMutationStepEstimatePerSpecies(miche);
+            potentialOutOfSyncSpeciesToGenerate = Math.Max(0, speciesWorkMemory.Count - patch.SpeciesInPatch.Count);
+            UpdateMutationStepEstimate();
         }
 
         // This auto-evo step is split into sub steps so that each run doesn't take many seconds like it would
@@ -121,41 +148,22 @@ public class ModifyExistingSpecies : IRunStep
         {
             case Step.Mutations:
             {
-                // For each existing species, add adaptations based on the existing pressures
-
-                // Process mutations for one species per step
-                if (speciesEnumerator.MoveNext())
+                if (currentMutationGeneration == null && !TryStartNextMutationGeneration())
                 {
-                    var species = speciesEnumerator.Current.Key;
-
-                    if (species is MicrobeSpecies microbeSpecies)
-                    {
-                        GetMutationsForSpecies(microbeSpecies);
-                    }
+                    step = Step.MutationFilter;
+                    SetTotalStepsEstimate(FinalMutationPhases);
+                    speciesEnumerator = patch.SpeciesInPatch.GetEnumerator();
                 }
                 else
                 {
-                    // All mutations generated, next is the step to try them
-                    step = Step.MutationFilter;
-
-                    // Reset this for another enumeration later
-                    speciesEnumerator = patch.SpeciesInPatch.GetEnumerator();
-
-                    // Just for safety, generate any mutations still missing in case the miche data and species in
-                    // the patch are not in sync
-                    foreach (var species in speciesWorkMemory)
+                    if (currentMutationGeneration != null)
                     {
-                        if (patch.SpeciesInPatch.ContainsKey(species))
-                            continue;
-
-                        // This is really only a problem as this doesn't allow the splitting into steps to work well
-                        GD.PrintErr("Miche tree has a species not in the patch populations, still calculating " +
-                            "mutations for it");
-
-                        if (species is MicrobeSpecies microbeSpecies)
+                        if (currentMutationGeneration.RunStep())
                         {
-                            GetMutationsForSpecies(microbeSpecies);
+                            currentMutationGeneration = null;
                         }
+
+                        UpdateMutationStepEstimate();
                     }
                 }
 
@@ -185,6 +193,7 @@ public class ModifyExistingSpecies : IRunStep
 #endif
                 }
 
+                SetTotalStepsEstimate(2);
                 step = Step.MutationTest;
                 break;
             }
@@ -203,6 +212,7 @@ public class ModifyExistingSpecies : IRunStep
                 newOccupantsWorkMemory.Clear();
                 miche.GetOccupants(newOccupantsWorkMemory);
 
+                SetTotalStepsEstimate(1);
                 step = Step.FinalApply;
                 break;
             }
@@ -238,6 +248,7 @@ public class ModifyExistingSpecies : IRunStep
                     }
                 }
 
+                SetTotalStepsEstimate(0);
                 return true;
             }
 
@@ -317,17 +328,21 @@ public class ModifyExistingSpecies : IRunStep
         }
     }
 
-    private void GetMutationsForSpecies(MicrobeSpecies microbeSpecies)
+    private int CalculateMutationStepEstimatePerSpecies(Miche currentMiche)
     {
-        double totalMP = Constants.BASE_MUTATION_POINTS * worldSettings.AIMutationMultiplier;
+        var steps = 2 + currentMiche.Pressure.Mutations.Count * Constants.AUTO_EVO_MAX_MUTATION_RECURSIONS;
 
-        generateMutationsWorkingMemory.Clear();
-        pressureStack.Clear();
+        if (currentMiche.IsLeafNode())
+            return steps;
 
-        var inputSpecies = generateMutationsWorkingMemory.GetMutationsAtDepth(0);
-        inputSpecies.Add(new Mutant(microbeSpecies, totalMP));
+        steps += currentMiche.Children.Count + 1;
 
-        GenerateMutations(microbeSpecies, miche!, 1, false);
+        foreach (var child in currentMiche.Children)
+        {
+            steps += CalculateMutationStepEstimatePerSpecies(child);
+        }
+
+        return steps;
     }
 
     /// <summary>
@@ -359,169 +374,325 @@ public class ModifyExistingSpecies : IRunStep
         }
     }
 
-    /// <summary>
-    ///   Adds a new list of all possible species that might emerge in response to the provided pressures,
-    ///   as well as a copy of the original species to <see cref="mutationsToTry"/>.
-    /// </summary>
-    private void GenerateMutations(MicrobeSpecies baseSpecies, Miche currentMiche, int depth, bool lastChild)
+    private bool TryStartNextMutationGeneration()
     {
-        var baseSpeciesMutant = new Mutant(baseSpecies,
-            Constants.BASE_MUTATION_POINTS * worldSettings.AIMutationMultiplier);
+        while (speciesEnumerator.MoveNext())
+        {
+            if (speciesEnumerator.Current.Key is not MicrobeSpecies microbeSpecies)
+                continue;
 
-        var inputSpecies = generateMutationsWorkingMemory.GetMutationsAtDepth(depth - 1);
+            --remainingPatchSpeciesToGenerate;
+            currentMutationGeneration = new SpeciesMutationGenerationState(this, microbeSpecies, miche!,
+                mutationStepEstimatePerSpecies);
+            return true;
+        }
 
-        var outputSpecies = generateMutationsWorkingMemory.GetMutationsAtDepth(depth);
-        outputSpecies.Clear();
-        outputSpecies.AddRange(inputSpecies);
+        if (!collectedOutOfSyncSpecies)
+        {
+            collectedOutOfSyncSpecies = true;
+            outOfSyncSpecies.Clear();
 
-        pressureStack.Push(currentMiche.Pressure);
-        mutationSorter.Setup(baseSpecies, pressureStack);
+            foreach (var species in speciesWorkMemory)
+            {
+                if (patch.SpeciesInPatch.ContainsKey(species))
+                    continue;
 
-        // TODO: avoid this temporary memory allocation somehow (this is slightly tricky as this method is called
-        // recursively)
-        var mutations = currentMiche.Pressure.Mutations.ToArray();
-        mutations.Shuffle(random);
+                GD.PrintErr("Miche tree has a species not in the patch populations, still calculating mutations " +
+                    "for it");
 
-        bool lawk = worldSettings.LAWK;
+                if (species is MicrobeSpecies microbeSpecies)
+                {
+                    outOfSyncSpecies.Add(microbeSpecies);
+                }
+            }
+
+            remainingOutOfSyncSpeciesToGenerate = outOfSyncSpecies.Count;
+            potentialOutOfSyncSpeciesToGenerate = remainingOutOfSyncSpeciesToGenerate;
+        }
+
+        if (remainingOutOfSyncSpeciesToGenerate < 1)
+            return false;
+
+        var outOfSyncIndex = outOfSyncSpecies.Count - remainingOutOfSyncSpeciesToGenerate;
+        --remainingOutOfSyncSpeciesToGenerate;
+
+        currentMutationGeneration = new SpeciesMutationGenerationState(this, outOfSyncSpecies[outOfSyncIndex], miche!,
+            mutationStepEstimatePerSpecies);
+        return true;
+    }
+
+    private void UpdateMutationStepEstimate()
+    {
+        var remainingOutOfSyncSpecies = collectedOutOfSyncSpecies ?
+            remainingOutOfSyncSpeciesToGenerate :
+            potentialOutOfSyncSpeciesToGenerate;
+
+        SetTotalStepsEstimate((currentMutationGeneration?.RemainingStepEstimate ?? 0) +
+            (remainingPatchSpeciesToGenerate + remainingOutOfSyncSpecies) * mutationStepEstimatePerSpecies +
+            FinalMutationPhases);
+    }
+
+    private void SetTotalStepsEstimate(int estimate)
+    {
+        if (estimate > TotalSteps)
+            TotalSteps = estimate;
+    }
+
+    private void ProcessMutationRecursionStep(MicrobeSpecies baseSpecies, Mutant baseSpeciesMutant,
+        MutationGenerationFrame frame)
+    {
+        var mutationStrategy = frame.Mutations[frame.MutationStrategyIndex];
+
+        if (!frame.HasActiveStrategy)
+        {
+            temporaryMutations1.Clear();
+            temporaryMutations1.AddRange(frame.OutputSpecies);
+            temporaryMutations1.Add(baseSpeciesMutant);
+            frame.HasActiveStrategy = true;
+            frame.RecursionIndex = 0;
+        }
+
+        temporaryMutations2.Clear();
+
+        foreach (var speciesTuple in temporaryMutations1)
+        {
+            var mutated = mutationStrategy.MutationsOf(speciesTuple.Species, speciesTuple.MP, worldSettings.LAWK,
+                random, patch.Biome);
+
+            if (mutated == null)
+                continue;
+
+            foreach (var tuple in mutated)
+            {
+#if DEBUG
+                if (tuple.Species.AutoEvoAttemptCache != 0)
+                    throw new Exception("Mutation shouldn't have a cache number yet");
+#endif
+
+                tuple.Species.OnAttemptedInAutoEvo(true);
+            }
+
+            PruneMutations(temporaryMutations2, speciesTuple.Species, mutated, patch, cache, pressureStack);
+        }
+
+        temporaryMutations1.Clear();
+        PruneMutations(temporaryMutations1, baseSpecies, temporaryMutations2, patch, cache, pressureStack);
+
         var maxVariants = Constants.MAX_VARIANTS_IN_MUTATIONS;
         var halfMaxVariants = maxVariants / 2;
 
-        foreach (var mutationStrategy in mutations)
+        if (temporaryMutations1.Count + frame.OutputSpecies.Count > maxVariants)
         {
-            temporaryMutations1.Clear();
-            temporaryMutations1.AddRange(outputSpecies);
-            temporaryMutations1.Add(baseSpeciesMutant);
+            PruneMutations(temporaryMutations1, baseSpecies, frame.OutputSpecies, patch, cache, pressureStack);
+            GetTopMutations(temporaryMutations2, temporaryMutations1, halfMaxVariants, mutationSorter);
 
-            for (int i = 0; i < Constants.AUTO_EVO_MAX_MUTATION_RECURSIONS; ++i)
+            var remainingVariants = halfMaxVariants - temporaryMutations1.Count;
+            if (remainingVariants > 0)
             {
-                temporaryMutations2.Clear();
-
-                foreach (var speciesTuple in temporaryMutations1)
-                {
-                    // TODO: this seems like the longest part, so splitting this into multiple steps (maybe bundling
-                    // up mutation strategies) would be good to have the auto-evo steps flow more smoothly
-                    var mutated = mutationStrategy.MutationsOf(speciesTuple.Species, speciesTuple.MP, lawk, random,
-                        patch.Biome);
-
-                    if (mutated != null)
-                    {
-                        // Make sure the species stats are up to date as pruning will calculate scores etc.
-                        foreach (var tuple in mutated)
-                        {
-#if DEBUG
-                            if (tuple.Species.AutoEvoAttemptCache != 0)
-                                throw new Exception("Mutation shouldn't have a cache number yet");
-#endif
-
-                            tuple.Species.OnAttemptedInAutoEvo(true);
-
-                            // If the visual hash of a species needs to be consistent while in the cache, then this
-                            // would need to be called
-                            // tuple.Species.OnEdited();
-                        }
-
-                        PruneMutations(temporaryMutations2, speciesTuple.Species, mutated, patch, cache,
-                            pressureStack);
-                    }
-                }
-
                 temporaryMutations1.Clear();
-                PruneMutations(temporaryMutations1, baseSpecies, temporaryMutations2, patch, cache, pressureStack);
-
-                // This section is complicated to look at, but essentially:
-                // If the number of temporary species going into the next round would be too many,
-                // prune also the pre-mutation species, and then select the top + a random selection of all species
-                // But, if the number of species falls too low after pruning,
-                // fall back to selecting pre-pruning, pre-mutation species
-                if (temporaryMutations1.Count + outputSpecies.Count > maxVariants)
-                {
-                    PruneMutations(temporaryMutations1, baseSpecies, outputSpecies, patch, cache, pressureStack);
-                    GetTopMutations(temporaryMutations2, temporaryMutations1, halfMaxVariants, mutationSorter);
-
-                    var remainingVariants = halfMaxVariants - temporaryMutations1.Count;
-                    if (remainingVariants > 0)
-                    {
-                        temporaryMutations1.Clear();
-                        GetTopMutations(temporaryMutations1, outputSpecies, remainingVariants, mutationSorter);
-                        temporaryMutations2.AddRange(temporaryMutations1);
-                        AddRandomMutations(temporaryMutations2, outputSpecies, halfMaxVariants);
-                    }
-                    else
-                    {
-                        AddRandomMutations(temporaryMutations2, temporaryMutations1, halfMaxVariants / 2);
-                        temporaryMutations1.Clear();
-                        GetTopMutations(temporaryMutations1, outputSpecies, halfMaxVariants / 2, mutationSorter);
-                        temporaryMutations2.AddRange(temporaryMutations1);
-                    }
-
-                    outputSpecies.Clear();
-                    outputSpecies.AddRange(temporaryMutations2);
-                }
-                else
-                {
-                    outputSpecies.AddRange(temporaryMutations1);
-                }
-
-                if (temporaryMutations1.Count == 0)
-                    break;
-
-                if (!mutationStrategy.Repeatable)
-                    break;
+                GetTopMutations(temporaryMutations1, frame.OutputSpecies, remainingVariants, mutationSorter);
+                temporaryMutations2.AddRange(temporaryMutations1);
+                AddRandomMutations(temporaryMutations2, frame.OutputSpecies, halfMaxVariants);
             }
-        }
-
-        if (lastChild)
-            generateMutationsWorkingMemory.ClearDepth(depth - 1);
-
-        if (currentMiche.IsLeafNode())
-        {
-            lastGeneratedMutations.Clear();
-
-            GetTopMutations(temporaryMutations1, outputSpecies, worldSettings.AutoEvoConfiguration.MutationsPerSpecies,
-                mutationSorter);
-            foreach (var topMutation in temporaryMutations1)
+            else
             {
-                lastGeneratedMutations.Add(topMutation.Species);
+                AddRandomMutations(temporaryMutations2, temporaryMutations1, halfMaxVariants / 2);
+                temporaryMutations1.Clear();
+                GetTopMutations(temporaryMutations1, frame.OutputSpecies, halfMaxVariants / 2, mutationSorter);
+                temporaryMutations2.AddRange(temporaryMutations1);
             }
 
-            var resultType = (currentMiche.Occupant == baseSpecies) ?
-                RunResults.NewSpeciesType.SplitDueToMutation :
-                RunResults.NewSpeciesType.FillNiche;
-
-            foreach (var species in lastGeneratedMutations)
-            {
-                mutationsToTry.Add(new Mutation(baseSpecies, species, resultType));
-            }
-
-            pressureStack.Pop();
+            frame.OutputSpecies.Clear();
+            frame.OutputSpecies.AddRange(temporaryMutations2);
         }
         else
         {
-            // Prune out any results that don't improve this branch
-            temporaryMutations1.Clear();
-            PruneMutations(temporaryMutations1, baseSpecies, outputSpecies, patch, cache, pressureStack);
-            outputSpecies.Clear();
-            outputSpecies.AddRange(temporaryMutations1);
-
-            if (outputSpecies.Count != 0)
-            {
-                int childCount = currentMiche.Children.Count;
-                int index = 0;
-
-                foreach (var child in currentMiche.Children)
-                {
-                    bool isLast = index == childCount - 1;
-                    GenerateMutations(baseSpecies, child, depth + 1, isLast);
-                    ++index;
-                }
-            }
-
-            pressureStack.Pop();
+            frame.OutputSpecies.AddRange(temporaryMutations1);
         }
+
+        ++frame.RecursionIndex;
+
+        if (temporaryMutations1.Count != 0 && mutationStrategy.Repeatable &&
+            frame.RecursionIndex < Constants.AUTO_EVO_MAX_MUTATION_RECURSIONS)
+        {
+            return;
+        }
+
+        frame.HasActiveStrategy = false;
+        ++frame.MutationStrategyIndex;
+    }
+
+    private void FinalizeLeafMutations(MicrobeSpecies baseSpecies, Miche currentMiche, List<Mutant> outputSpecies)
+    {
+        lastGeneratedMutations.Clear();
+
+        GetTopMutations(temporaryMutations1, outputSpecies, worldSettings.AutoEvoConfiguration.MutationsPerSpecies,
+            mutationSorter);
+        foreach (var topMutation in temporaryMutations1)
+        {
+            lastGeneratedMutations.Add(topMutation.Species);
+        }
+
+        var resultType = currentMiche.Occupant == baseSpecies ?
+            RunResults.NewSpeciesType.SplitDueToMutation :
+            RunResults.NewSpeciesType.FillNiche;
+
+        foreach (var species in lastGeneratedMutations)
+        {
+            mutationsToTry.Add(new Mutation(baseSpecies, species, resultType));
+        }
+    }
+
+    private void PrepareChildren(MicrobeSpecies baseSpecies, List<Mutant> outputSpecies)
+    {
+        temporaryMutations1.Clear();
+        PruneMutations(temporaryMutations1, baseSpecies, outputSpecies, patch, cache, pressureStack);
+        outputSpecies.Clear();
+        outputSpecies.AddRange(temporaryMutations1);
     }
 
     private record struct Mutation(MicrobeSpecies ParentSpecies, MicrobeSpecies MutatedSpecies,
         RunResults.NewSpeciesType AddType);
+
+    private sealed class MutationGenerationFrame
+    {
+        public readonly Miche Miche;
+        public readonly int Depth;
+        public readonly bool LastChild;
+
+        public MutationGenerationFramePhase Phase;
+        public IMutationStrategy<MicrobeSpecies>[] Mutations = null!;
+        public List<Mutant> OutputSpecies = null!;
+        public Mutant BaseSpeciesMutant = null!;
+        public int MutationStrategyIndex;
+        public int RecursionIndex;
+        public int ChildIndex;
+        public bool HasActiveStrategy;
+
+        public MutationGenerationFrame(Miche miche, int depth, bool lastChild)
+        {
+            Miche = miche;
+            Depth = depth;
+            LastChild = lastChild;
+        }
+    }
+
+    private class SpeciesMutationGenerationState
+    {
+        private readonly ModifyExistingSpecies owner;
+        private readonly MicrobeSpecies baseSpecies;
+        private readonly Stack<MutationGenerationFrame> frameStack = new();
+
+        public SpeciesMutationGenerationState(ModifyExistingSpecies owner, MicrobeSpecies baseSpecies, Miche miche,
+            int stepEstimate)
+        {
+            this.owner = owner;
+            this.baseSpecies = baseSpecies;
+
+            owner.generateMutationsWorkingMemory.Clear();
+            owner.pressureStack.Clear();
+
+            var inputSpecies = owner.generateMutationsWorkingMemory.GetMutationsAtDepth(0);
+            inputSpecies.Add(new Mutant(baseSpecies,
+                Constants.BASE_MUTATION_POINTS * owner.worldSettings.AIMutationMultiplier));
+
+            frameStack.Push(new MutationGenerationFrame(miche, 1, false));
+            RemainingStepEstimate = stepEstimate;
+        }
+
+        public int RemainingStepEstimate { get; private set; }
+
+        public bool RunStep()
+        {
+            if (RemainingStepEstimate > 0)
+                --RemainingStepEstimate;
+
+            var currentFrame = frameStack.Peek();
+
+            switch (currentFrame.Phase)
+            {
+                case MutationGenerationFramePhase.Initialize:
+                {
+                    var inputSpecies = owner.generateMutationsWorkingMemory.GetMutationsAtDepth(currentFrame.Depth - 1);
+
+                    currentFrame.OutputSpecies =
+                        owner.generateMutationsWorkingMemory.GetMutationsAtDepth(currentFrame.Depth);
+                    currentFrame.OutputSpecies.Clear();
+                    currentFrame.OutputSpecies.AddRange(inputSpecies);
+                    currentFrame.BaseSpeciesMutant = new Mutant(baseSpecies,
+                        Constants.BASE_MUTATION_POINTS * owner.worldSettings.AIMutationMultiplier);
+
+                    owner.pressureStack.Push(currentFrame.Miche.Pressure);
+                    owner.mutationSorter.Setup(baseSpecies, owner.pressureStack);
+
+                    currentFrame.Mutations = currentFrame.Miche.Pressure.Mutations.ToArray();
+                    currentFrame.Mutations.Shuffle(owner.random);
+                    currentFrame.Phase = MutationGenerationFramePhase.ProcessStrategies;
+                    break;
+                }
+
+                case MutationGenerationFramePhase.ProcessStrategies:
+                {
+                    if (currentFrame.MutationStrategyIndex >= currentFrame.Mutations.Length)
+                    {
+                        currentFrame.Phase = currentFrame.Miche.IsLeafNode() ?
+                            MutationGenerationFramePhase.FinalizeLeaf :
+                            MutationGenerationFramePhase.PrepareChildren;
+                        break;
+                    }
+
+                    owner.ProcessMutationRecursionStep(baseSpecies, currentFrame.BaseSpeciesMutant, currentFrame);
+                    break;
+                }
+
+                case MutationGenerationFramePhase.FinalizeLeaf:
+                {
+                    owner.FinalizeLeafMutations(baseSpecies, currentFrame.Miche, currentFrame.OutputSpecies);
+                    FinishCurrentFrame();
+                    break;
+                }
+
+                case MutationGenerationFramePhase.PrepareChildren:
+                {
+                    owner.PrepareChildren(baseSpecies, currentFrame.OutputSpecies);
+                    currentFrame.Phase = MutationGenerationFramePhase.ProcessChildren;
+                    break;
+                }
+
+                case MutationGenerationFramePhase.ProcessChildren:
+                {
+                    if (currentFrame.OutputSpecies.Count == 0 ||
+                        currentFrame.ChildIndex >= currentFrame.Miche.Children.Count)
+                    {
+                        FinishCurrentFrame();
+                        break;
+                    }
+
+                    var child = currentFrame.Miche.Children[currentFrame.ChildIndex];
+                    var isLastChild = currentFrame.ChildIndex == currentFrame.Miche.Children.Count - 1;
+                    ++currentFrame.ChildIndex;
+                    frameStack.Push(new MutationGenerationFrame(child, currentFrame.Depth + 1, isLastChild));
+                    break;
+                }
+
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            return frameStack.Count == 0;
+        }
+
+        private void FinishCurrentFrame()
+        {
+            var finishedFrame = frameStack.Pop();
+            owner.pressureStack.Pop();
+
+            if (finishedFrame.LastChild)
+            {
+                owner.generateMutationsWorkingMemory.ClearDepth(finishedFrame.Depth - 1);
+            }
+        }
+    }
 
     /// <summary>
     ///   Working memory used to reduce memory allocations in <see cref="GenerateMutations"/>.
