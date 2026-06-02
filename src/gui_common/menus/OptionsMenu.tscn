@@ -3442,6 +3442,27 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 InsideDialogStyle = true
 
+[node name="Spacer" type="Control" parent="CenterContainer/PatchNotesBox/VBoxContainer" unique_id=465170599]
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PatchNotesBox/VBoxContainer" unique_id=795461258]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Close" type="Button" parent="CenterContainer/PatchNotesBox/VBoxContainer/HBoxContainer" unique_id=541843437]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("13_8qfyf")
+theme_override_font_sizes/font_size = 18
+text = "CLOSE"
+
+[node name="FocusGrabber" parent="CenterContainer/PatchNotesBox" unique_id=1848026907 instance=ExtResource("13")]
+layout_mode = 0
+Priority = 4
+NodeToGiveFocusTo = NodePath("../VBoxContainer/HBoxContainer/Close")
+GrabFocusWhenBecomingVisible = true
+SkipOverridingFocusForElements = Array[NodePath]([])
+
 [node name="ControllerDeadzoneConfiguration" parent="." unique_id=1725116846 instance=ExtResource("12")]
 layout_mode = 0
 anchors_preset = 0
@@ -3568,3 +3589,4 @@ grow_vertical = 1
 [connection signal="Canceled" from="CenterContainer/ConflictDialog" to="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/InputGroupList" method="OnConflictCancelled"]
 [connection signal="Confirmed" from="CenterContainer/ConflictDialog" to="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/InputGroupList" method="OnConflictConfirmed"]
 [connection signal="Confirmed" from="CenterContainer/ConfirmResetAchievements" to="." method="ConfirmResetAchievements"]
+[connection signal="pressed" from="CenterContainer/PatchNotesBox/VBoxContainer/HBoxContainer/Close" to="CenterContainer/PatchNotesBox" method="OnCloseButtonPressed"]
