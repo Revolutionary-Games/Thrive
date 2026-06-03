@@ -333,17 +333,22 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             return;
         }
 
-        if (CheatManager.ForceSimulationSlowdown)
+        if (Math.Abs(CheatManager.SimulationFactor - 1) > 0.01f)
         {
             return;
         }
-        
-        var resultingModifier = fastModeEnabled ? Settings.Instance.AlternativeTimescale.Value : 1;
-
-        stage.WorldSimulation.WorldTimeScale = resultingModifier;
 
         // Make sure the GUI state is consistent with the current speed
         bottomLeftBar.SpeedModePressed = fastModeEnabled;
+
+        UpdateSpeedMode();
+    }
+
+    public void UpdateSpeedMode()
+    {
+        var resultingModifier = bottomLeftBar.SpeedModePressed ? Settings.Instance.AlternativeTimescale.Value : 1;
+
+        stage?.WorldSimulation.WorldTimeScale = resultingModifier;
     }
 
     public override bool GetCurrentSpeedMode()

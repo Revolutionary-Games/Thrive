@@ -1,4 +1,5 @@
 ﻿using System;
+using Godot;
 
 /// <summary>
 ///   Handles the opening, closing and operations of the cheat menus
@@ -117,9 +118,29 @@ public partial class CheatMenu : CustomWindow
         CheatManager.Speed = value;
     }
 
-    public void SetForceSimulationSlowdown(bool value)
+    /// <summary>
+    ///   Sets the simulation factor nonlinearly
+    ///   for use by the cheatmenu so that:<br/>
+    ///   0 is 0.2.<br/>
+    ///   1 is 1.<br/>
+    ///   2 is 5.<br/>
+    ///   It's a linear interpolation inbetwen these values.
+    /// </summary>
+    public void SetNonlinearSimulationFactor(float value)
     {
-        CheatManager.ForceSimulationSlowdown = value;
+        if (value < 1.0f)
+        {
+            CheatManager.SimulationFactor = Mathf.Lerp(0.2f, 1.0f, value);
+        }
+        else
+        {
+            CheatManager.SimulationFactor = Mathf.Lerp(1.0f, 5.0f, value - 1.0f);
+        }
+    }
+
+    public void SetSimulationFactor(float value)
+    {
+        CheatManager.SimulationFactor = value;
     }
 
     /// <summary>

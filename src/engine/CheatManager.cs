@@ -14,7 +14,7 @@ public static class CheatManager
     private static float speed;
     private static bool infiniteMP;
     private static bool moveToAnyPatch;
-    private static bool forceSimulationSlowdown;
+    private static float simulationFactor;
 
     static CheatManager()
     {
@@ -49,9 +49,9 @@ public static class CheatManager
     public static event EventHandler<EventArgs>? OnUnlockAllOrganelles;
 
     /// <summary>
-    ///   Fired whenever the player uses the "Force Slowdown" cheat
+    ///   Fired whenever the player uses the "Simulation Factor" cheat
     /// </summary>
-    public static event EventHandler<EventArgs>? OnNotifyForceSlowDown;
+    public static event EventHandler<EventArgs>? OnNotifySimulationFactor;
 
     /// <summary>
     ///   You automatically have 100% of all compounds
@@ -201,17 +201,17 @@ public static class CheatManager
     }
 
     /// <summary>
-    ///   Forces the simulation to run slower
+    ///   Forces the simulation to by a factor
     /// </summary>
-    public static bool ForceSimulationSlowdown
+    public static float SimulationFactor
     {
-        get => forceSimulationSlowdown;
+        get => simulationFactor;
         set
         {
-            forceSimulationSlowdown = value;
-            NotifyForceSlowDown();
+            simulationFactor = value;
+            NotifySimulationFactor();
 
-            if (value)
+            if (Math.Abs(value - 1) > 0.01f)
                 AchievementsManager.ReportCheatsUsed();
         }
     }
@@ -252,9 +252,9 @@ public static class CheatManager
         AchievementsManager.ReportCheatsUsed();
     }
 
-    public static void NotifyForceSlowDown()
+    public static void NotifySimulationFactor()
     {
-        OnNotifyForceSlowDown?.Invoke(null, EventArgs.Empty);
+        OnNotifySimulationFactor?.Invoke(null, EventArgs.Empty);
         AchievementsManager.ReportCheatsUsed();
     }
 
@@ -272,6 +272,8 @@ public static class CheatManager
 
         InfiniteMP = false;
         MoveToAnyPatch = false;
+
+        simulationFactor = 1.0f;
     }
 
     public static void HideCheatMenus()

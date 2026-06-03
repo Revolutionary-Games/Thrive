@@ -275,7 +275,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         CheatManager.OnSpawnEnemyCheatUsed += OnSpawnEnemyCheatUsed;
         CheatManager.OnPlayerDuplicationCheatUsed += OnDuplicatePlayerCheatUsed;
         CheatManager.OnDespawnAllEntitiesCheatUsed += OnDespawnAllEntitiesCheatUsed;
-        CheatManager.OnNotifyForceSlowDown += OnNotifyForceSlowDown;
+        CheatManager.OnNotifySimulationFactor += OnNotifyForceSlowDown;
 
         // Re-register these callbacks in case it is necessary
         // The primary registration for this is in OnGameStarted
@@ -292,7 +292,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         CheatManager.OnSpawnEnemyCheatUsed -= OnSpawnEnemyCheatUsed;
         CheatManager.OnPlayerDuplicationCheatUsed -= OnDuplicatePlayerCheatUsed;
         CheatManager.OnDespawnAllEntitiesCheatUsed -= OnDespawnAllEntitiesCheatUsed;
-        CheatManager.OnNotifyForceSlowDown -= OnNotifyForceSlowDown;
+        CheatManager.OnNotifySimulationFactor -= OnNotifyForceSlowDown;
 
         DebugOverlays.Instance.OnWorldDisabled(WorldSimulation);
 
@@ -1814,7 +1814,16 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
     private void OnNotifyForceSlowDown(object? sender, EventArgs args)
     {
-        WorldSimulation.WorldTimeScale = CheatManager.ForceSimulationSlowdown ? 0.2f : 1;
+        if (Math.Abs(CheatManager.SimulationFactor - 1) > 0.01f)
+        {
+            WorldSimulation.WorldTimeScale = CheatManager.SimulationFactor;
+        }
+        else
+        {
+            WorldSimulation.WorldTimeScale = 1.0f;
+
+            HUD.UpdateSpeedMode();
+        }
     }
 
     /// <summary>
