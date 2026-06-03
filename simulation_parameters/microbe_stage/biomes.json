@@ -4878,9 +4878,9 @@
       }
     },
     "EnvironmentColour": {
-      "r": 0.341,
-      "g": 0.565,
-      "b": 0.706,
+      "r": 0.841,
+      "g": 0.765,
+      "b": 0.406,
       "a": 1
     },
     "WaterCurrents": {
@@ -5051,16 +5051,16 @@
           }
         },
         "radioactiveChunk": {
-          "Name": "RADIOACTIVE_CHUNK",
+          "Name": "RADIOACTIVE_CHUNK_BANANA",
           "Meshes": [
             {
-              "ScenePath": "res://assets/models/RadioactiveChunk1.tscn",
-              "ConvexShapePath": "res://assets/models/RadioactiveChunk1.shape"
+              "ScenePath": "res://assets/models/easter_eggs/RadioactiveBanana.tscn",
+              "ConvexShapePath": "res://assets/models/easter_eggs/PeeledBanana.shape"
             }
           ],
           "Density": 0.000025,
           "Dissolves": false,
-          "Radius": 10,
+          "Radius": 20,
           "ChunkScale": 1,
           "PhysicsDensity": 2500,
           "Size": 0,
@@ -5138,986 +5138,409 @@
               },
               "Chunks": [
                 {
-                  "Visuals": "ChalcopyriteTerrain1",
+                  "Visuals": "PyriteTerrain2",
                   "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
                   "Radius": 100,
                   "RelativePosition": {
-                    "x": -74,
-                    "y": -1,
-                    "z": 65
-                  },
-                  "RandomRotation": "Disabled"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": -74,
-                    "y": 0,
-                    "z": 52
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": -79,
-                    "y": 2,
-                    "z": 39
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": -76,
-                    "y": 3,
-                    "z": 34
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": -73,
-                    "y": 4,
-                    "z": 28
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": -68,
-                    "y": 5,
-                    "z": 21
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": -64,
-                    "y": 5,
-                    "z": 16
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": -58,
-                    "y": 5,
-                    "z": 10
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": -52,
-                    "y": 5,
-                    "z": 5
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": -45,
-                    "y": 5,
-                    "z": 0
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": -37,
-                    "y": 5,
-                    "z": -4
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": -28,
-                    "y": 5,
-                    "z": -7
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": -20,
-                    "y": 5,
-                    "z": -9
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": -11,
-                    "y": 5,
-                    "z": -10
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": 0,
-                    "y": 5,
-                    "z": -11
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": 13,
-                    "y": 5,
-                    "z": -10
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": 22,
-                    "y": 5,
-                    "z": -9
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": 31,
-                    "y": 5,
-                    "z": -7
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": 40,
-                    "y": 5,
-                    "z": -3
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": 48,
-                    "y": 5,
-                    "z": 1
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": 56,
-                    "y": 4,
-                    "z": 7
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": 63,
-                    "y": 3,
-                    "z": 13
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": 70,
-                    "y": 2,
-                    "z": 21
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": 75,
+                    "x": -55,
                     "y": 1,
-                    "z": 29
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": 81,
-                    "y": 0,
-                    "z": 37
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": 84,
-                    "y": -1,
-                    "z": 43
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": 80,
-                    "y": 0,
-                    "z": 40
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": 73,
-                    "y": -1,
-                    "z": 36
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": 66,
-                    "y": 2,
-                    "z": 30
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": 59,
-                    "y": 3,
-                    "z": 24
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": 51,
-                    "y": 4,
-                    "z": 19
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": 43,
-                    "y": 5,
-                    "z": 15
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": 34,
-                    "y": 5,
-                    "z": 12
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": 23,
-                    "y": 5,
-                    "z": 9
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": 12,
-                    "y": 5,
-                    "z": 7.5
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": 3,
-                    "y": 5,
-                    "z": 7
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": -7,
-                    "y": 5,
-                    "z": 7
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": -16,
-                    "y": 5,
-                    "z": 9
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": -28,
-                    "y": 5,
-                    "z": 11
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": -37,
-                    "y": 5,
-                    "z": 14
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": -46,
-                    "y": 5,
-                    "z": 18
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": -53,
-                    "y": 5,
-                    "z": 25
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": -61,
-                    "y": 4,
-                    "z": 32
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": -62,
-                    "y": 3,
-                    "z": 39
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": -70,
-                    "y": 2,
-                    "z": 42
-                  },
-                  "RandomRotation": "Yaw"
-                }
-              ],
-              "RandomRotation": "Disabled"
-            }
-          ],
-          "RandomRotation": "Yaw"
-        },
-        {
-          "RelativeChance": 1,
-          "TerrainGroups": [
-            {
-              "RelativePosition": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "Chunks": [
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": -63,
-                    "y": -1,
-                    "z": 61
-                  },
-                  "RandomRotation": "Disabled"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": -63,
-                    "y": 0,
-                    "z": 50
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": -65,
-                    "y": 2,
-                    "z": 37
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": -67,
-                    "y": 3,
-                    "z": 28
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": -65,
-                    "y": 4,
-                    "z": 18
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": -59,
-                    "y": 5,
-                    "z": 6
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": -47,
-                    "y": 5,
-                    "z": -3
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": -36,
-                    "y": 5,
-                    "z": -9
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": -27,
-                    "y": 5,
-                    "z": -12
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": -15,
-                    "y": 5,
-                    "z": -14
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": -5,
-                    "y": 5,
-                    "z": -15
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": 8,
-                    "y": 5,
-                    "z": -15
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": 19,
-                    "y": 5,
-                    "z": -14
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": 31,
-                    "y": 5,
-                    "z": -12
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": 43,
-                    "y": 5,
-                    "z": -9
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": 52,
-                    "y": 5,
-                    "z": -4
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": 61,
-                    "y": 5,
-                    "z": 2
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": 69,
-                    "y": 5,
-                    "z": 9
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": 75,
-                    "y": 4,
-                    "z": 18
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": 78,
-                    "y": 3,
-                    "z": 28
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": 83,
-                    "y": 0,
                     "z": 38
                   },
-                  "RandomRotation": "Yaw"
+                  "RandomRotation": "Disabled"
                 },
                 {
-                  "Visuals": "ChalcopyriteTerrain1",
+                  "Visuals": "PyriteTerrain2",
                   "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
                   "Radius": 100,
                   "RelativePosition": {
-                    "x": 78,
-                    "y": 1,
-                    "z": 35
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": 69,
-                    "y": 3,
-                    "z": 32
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": 60,
-                    "y": 4,
+                    "x": -55,
+                    "y": 0,
                     "z": 29
                   },
                   "RandomRotation": "Yaw"
                 },
                 {
-                  "Visuals": "ChalcopyriteTerrain1",
+                  "Visuals": "PyriteTerrain2",
                   "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
                   "Radius": 100,
                   "RelativePosition": {
-                    "x": 50,
-                    "y": 5,
-                    "z": 24
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": 39,
-                    "y": 5,
-                    "z": 19
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": 28,
-                    "y": 5,
+                    "x": -56,
+                    "y": 3,
                     "z": 15
                   },
                   "RandomRotation": "Yaw"
                 },
                 {
-                  "Visuals": "ChalcopyriteTerrain1",
+                  "Visuals": "PyriteTerrain2",
                   "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
                   "Radius": 100,
                   "RelativePosition": {
-                    "x": 17,
-                    "y": 5,
-                    "z": 11
+                    "x": -57,
+                    "y": 4,
+                    "z": 4
                   },
                   "RandomRotation": "Yaw"
                 },
                 {
-                  "Visuals": "ChalcopyriteTerrain1",
+                  "Visuals": "PyriteTerrain2",
                   "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
                   "Radius": 100,
                   "RelativePosition": {
-                    "x": 5,
+                    "x": -51,
                     "y": 5,
-                    "z": 9
+                    "z": -7
                   },
                   "RandomRotation": "Yaw"
                 },
                 {
-                  "Visuals": "ChalcopyriteTerrain1",
+                  "Visuals": "PyriteTerrain2",
                   "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
                   "Radius": 100,
                   "RelativePosition": {
-                    "x": -8,
+                    "x": -42,
                     "y": 5,
-                    "z": 11
+                    "z": -14
                   },
                   "RandomRotation": "Yaw"
                 },
                 {
-                  "Visuals": "ChalcopyriteTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": -20,
-                    "y": 5,
-                    "z": 14
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain1",
+                  "Visuals": "PyriteTerrain2",
                   "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
                   "Radius": 100,
                   "RelativePosition": {
                     "x": -31,
                     "y": 5,
-                    "z": 19
+                    "z": -19
                   },
                   "RandomRotation": "Yaw"
                 },
                 {
-                  "Visuals": "ChalcopyriteTerrain1",
+                  "Visuals": "PyriteTerrain2",
                   "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
                   "Radius": 100,
                   "RelativePosition": {
-                    "x": -40,
+                    "x": -21,
+                    "y": 5,
+                    "z": -21
+                  },
+                  "RandomRotation": "Yaw"
+                },
+                {
+                  "Visuals": "PyriteTerrain2",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
+                  "Radius": 100,
+                  "RelativePosition": {
+                    "x": -8,
+                    "y": 5,
+                    "z": -23
+                  },
+                  "RandomRotation": "Yaw"
+                },
+                {
+                  "Visuals": "PyriteTerrain2",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
+                  "Radius": 100,
+                  "RelativePosition": {
+                    "x": 3,
+                    "y": 5,
+                    "z": -23
+                  },
+                  "RandomRotation": "Yaw"
+                },
+                {
+                  "Visuals": "PyriteTerrain2",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
+                  "Radius": 100,
+                  "RelativePosition": {
+                    "x": 11,
+                    "y": 5,
+                    "z": -22
+                  },
+                  "RandomRotation": "Yaw"
+                },
+                {
+                  "Visuals": "PyriteTerrain2",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
+                  "Radius": 100,
+                  "RelativePosition": {
+                    "x": 21,
+                    "y": 5,
+                    "z": -21
+                  },
+                  "RandomRotation": "Yaw"
+                },
+                {
+                  "Visuals": "PyriteTerrain2",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
+                  "Radius": 100,
+                  "RelativePosition": {
+                    "x": 30,
+                    "y": 5,
+                    "z": -18
+                  },
+                  "RandomRotation": "Yaw"
+                },
+                {
+                  "Visuals": "PyriteTerrain2",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
+                  "Radius": 100,
+                  "RelativePosition": {
+                    "x": 38,
+                    "y": 5,
+                    "z": -14
+                  },
+                  "RandomRotation": "Yaw"
+                },
+                {
+                  "Visuals": "PyriteTerrain2",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
+                  "Radius": 100,
+                  "RelativePosition": {
+                    "x": 45,
+                    "y": 5,
+                    "z": -10
+                  },
+                  "RandomRotation": "Yaw"
+                },
+                {
+                  "Visuals": "PyriteTerrain2",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
+                  "Radius": 100,
+                  "RelativePosition": {
+                    "x": 51,
+                    "y": 5,
+                    "z": -4
+                  },
+                  "RandomRotation": "Yaw"
+                },
+                {
+                  "Visuals": "PyriteTerrain2",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
+                  "Radius": 100,
+                  "RelativePosition": {
+                    "x": 56,
                     "y": 4,
-                    "z": 27
+                    "z": 3
                   },
                   "RandomRotation": "Yaw"
                 },
                 {
-                  "Visuals": "ChalcopyriteTerrain1",
+                  "Visuals": "PyriteTerrain2",
                   "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
                   "Radius": 100,
                   "RelativePosition": {
-                    "x": -48,
+                    "x": 59,
                     "y": 3,
-                    "z": 35
+                    "z": 12
                   },
                   "RandomRotation": "Yaw"
                 },
                 {
-                  "Visuals": "ChalcopyriteTerrain1",
+                  "Visuals": "PyriteTerrain2",
                   "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
                   "Radius": 100,
                   "RelativePosition": {
-                    "x": -54,
-                    "y": 2,
-                    "z": 39
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain2",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk2.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": -51,
+                    "x": 63,
                     "y": 0,
                     "z": 20
                   },
                   "RandomRotation": "Yaw"
                 },
                 {
-                  "Visuals": "ChalcopyriteTerrain2",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk2.shape",
+                  "Visuals": "PyriteTerrain2",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
                   "Radius": 100,
                   "RelativePosition": {
-                    "x": -37,
-                    "y": 0,
-                    "z": 8
+                    "x": 52,
+                    "y": 3,
+                    "z": 15
                   },
                   "RandomRotation": "Yaw"
                 },
                 {
-                  "Visuals": "ChalcopyriteTerrain2",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk2.shape",
+                  "Visuals": "PyriteTerrain2",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
                   "Radius": 100,
                   "RelativePosition": {
-                    "x": -21,
-                    "y": 0,
-                    "z": 1
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain2",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk2.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": -3,
-                    "y": 0,
-                    "z": -2
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain2",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk2.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": 17,
-                    "y": 0,
-                    "z": 0
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain2",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk2.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": 34,
-                    "y": 0,
-                    "z": 4
-                  },
-                  "RandomRotation": "Yaw"
-                },
-                {
-                  "Visuals": "ChalcopyriteTerrain2",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk2.shape",
-                  "Radius": 100,
-                  "RelativePosition": {
-                    "x": 50,
-                    "y": 0,
+                    "x": 44,
+                    "y": 4,
                     "z": 12
                   },
                   "RandomRotation": "Yaw"
                 },
                 {
-                  "Visuals": "ChalcopyriteTerrain2",
+                  "Visuals": "PyriteTerrain2",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
+                  "Radius": 100,
+                  "RelativePosition": {
+                    "x": 36,
+                    "y": 5,
+                    "z": 8
+                  },
+                  "RandomRotation": "Yaw"
+                },
+                {
+                  "Visuals": "PyriteTerrain2",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
+                  "Radius": 100,
+                  "RelativePosition": {
+                    "x": 28,
+                    "y": 5,
+                    "z": 4
+                  },
+                  "RandomRotation": "Yaw"
+                },
+                {
+                  "Visuals": "PyriteTerrain2",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
+                  "Radius": 100,
+                  "RelativePosition": {
+                    "x": 21,
+                    "y": 5,
+                    "z": 1
+                  },
+                  "RandomRotation": "Yaw"
+                },
+                {
+                  "Visuals": "PyriteTerrain2",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
+                  "Radius": 100,
+                  "RelativePosition": {
+                    "x": 10,
+                    "y": 5,
+                    "z": -2
+                  },
+                  "RandomRotation": "Yaw"
+                },
+                {
+                  "Visuals": "PyriteTerrain2",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
+                  "Radius": 100,
+                  "RelativePosition": {
+                    "x": 0,
+                    "y": 5,
+                    "z": -4
+                  },
+                  "RandomRotation": "Yaw"
+                },
+                {
+                  "Visuals": "PyriteTerrain2",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
+                  "Radius": 100,
+                  "RelativePosition": {
+                    "x": -11,
+                    "y": 5,
+                    "z": -3
+                  },
+                  "RandomRotation": "Yaw"
+                },
+                {
+                  "Visuals": "PyriteTerrain2",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
+                  "Radius": 100,
+                  "RelativePosition": {
+                    "x": -20,
+                    "y": 5,
+                    "z": 0
+                  },
+                  "RandomRotation": "Yaw"
+                },
+                {
+                  "Visuals": "PyriteTerrain2",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
+                  "Radius": 100,
+                  "RelativePosition": {
+                    "x": -29,
+                    "y": 5,
+                    "z": 5
+                  },
+                  "RandomRotation": "Yaw"
+                },
+                {
+                  "Visuals": "PyriteTerrain2",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
+                  "Radius": 100,
+                  "RelativePosition": {
+                    "x": -36,
+                    "y": 4,
+                    "z": 11
+                  },
+                  "RandomRotation": "Yaw"
+                },
+                {
+                  "Visuals": "PyriteTerrain2",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
+                  "Radius": 100,
+                  "RelativePosition": {
+                    "x": -46,
+                    "y": 3,
+                    "z": 19
+                  },
+                  "RandomRotation": "Yaw"
+                },
+                {
+                  "Visuals": "PyriteTerrain1",
                   "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk2.shape",
                   "Radius": 100,
                   "RelativePosition": {
-                    "x": 63,
+                    "x": -45,
                     "y": 0,
-                    "z": 18
+                    "z": 3
+                  },
+                  "RandomRotation": "Yaw"
+                },
+                {
+                  "Visuals": "PyriteTerrain1",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk2.shape",
+                  "Radius": 100,
+                  "RelativePosition": {
+                    "x": -32,
+                    "y": 0,
+                    "z": -8
+                  },
+                  "RandomRotation": "Yaw"
+                },
+                {
+                  "Visuals": "PyriteTerrain1",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk2.shape",
+                  "Radius": 100,
+                  "RelativePosition": {
+                    "x": -11,
+                    "y": 0,
+                    "z": -15
+                  },
+                  "RandomRotation": "Yaw"
+                },
+                {
+                  "Visuals": "PyriteTerrain1",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk2.shape",
+                  "Radius": 100,
+                  "RelativePosition": {
+                    "x": 9,
+                    "y": 0,
+                    "z": -13
+                  },
+                  "RandomRotation": "Yaw"
+                },
+                {
+                  "Visuals": "PyriteTerrain1",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk2.shape",
+                  "Radius": 100,
+                  "RelativePosition": {
+                    "x": 27,
+                    "y": 0,
+                    "z": -8
+                  },
+                  "RandomRotation": "Yaw"
+                },
+                {
+                  "Visuals": "PyriteTerrain1",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk2.shape",
+                  "Radius": 100,
+                  "RelativePosition": {
+                    "x": 44,
+                    "y": 0,
+                    "z": 1
                   },
                   "RandomRotation": "Yaw"
                 }
@@ -6128,7 +5551,7 @@
           "RandomRotation": "Yaw"
         },
         {
-          "RelativeChance": 8,
+          "RelativeChance": 5,
           "TerrainGroups": [
             {
               "RelativePosition": {
@@ -6155,7 +5578,7 @@
           "RandomRotation": "Disabled"
         },
         {
-          "RelativeChance": 6,
+          "RelativeChance": 3,
           "TerrainGroups": [
             {
               "RelativePosition": {
@@ -6212,6 +5635,56 @@
             }
           ],
           "RandomRotation": "Disabled"
+        },
+        {
+          "RelativeChance": 1,
+          "TerrainGroups": [
+            {
+              "RelativePosition": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "Chunks": [
+                {
+                  "Visuals": "PyriteTerrain1",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/PyriteTerrainChunk1.shape",
+                  "Radius": 14.6,
+                  "RelativePosition": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "RandomRotation": "Full"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "RelativeChance": 1,
+          "TerrainGroups": [
+            {
+              "RelativePosition": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "Chunks": [
+                {
+                  "Visuals": "PyriteTerrain2",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/PyriteTerrainChunk2.shape",
+                  "Radius": 18,
+                  "RelativePosition": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "RandomRotation": "Full"
+                }
+              ]
+            }
+          ]
         }
       ]
     }

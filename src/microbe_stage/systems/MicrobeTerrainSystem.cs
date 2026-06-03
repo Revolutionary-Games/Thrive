@@ -79,8 +79,8 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
 
     public static Vector2I PositionToTerrainCell(Vector3 position)
     {
-        return new Vector2I((int)(position.X * Constants.TERRAIN_GRID_SIZE_INV),
-            (int)(position.Z * Constants.TERRAIN_GRID_SIZE_INV));
+        return new Vector2I((int)Math.Floor(position.X * Constants.TERRAIN_GRID_SIZE_INV),
+            (int)Math.Floor(position.Z * Constants.TERRAIN_GRID_SIZE_INV));
     }
 
     public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
