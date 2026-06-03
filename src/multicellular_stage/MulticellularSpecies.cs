@@ -11,7 +11,7 @@ using Systems;
 /// </summary>
 public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISimulationPhotographable
 {
-    public const ushort SERIALIZATION_VERSION = 3;
+    public const ushort SERIALIZATION_VERSION = 4;
 
     private readonly Dictionary<BiomeConditions, Dictionary<Compound, (float TimeToFill, float Storage)>>
         cachedFillTimes = new();
@@ -84,6 +84,8 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 
     public IReadOnlyCellTypeDefinition? SporeCellType => ModifiableSporeCellType;
 
+    public int MassBuddingCellCount { get; set; } = 1;
+
     public ISimulationPhotographable.SimulationType SimulationToPhotograph =>
         ISimulationPhotographable.SimulationType.MicrobeGraphics;
 
@@ -137,6 +139,11 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
             instance.ModifiableSporeCellType = reader.ReadObjectOrNull<CellType>();
         }
 
+        if (version >= 4)
+        {
+            instance.MassBuddingCellCount = reader.ReadInt32();
+        }
+
         return instance;
     }
 
@@ -150,6 +157,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 
         writer.Write((int)ReproductionMethod);
         writer.WriteObjectOrNull(ModifiableSporeCellType);
+        writer.Write(MassBuddingCellCount);
     }
 
     public override void OnEdited()
@@ -187,6 +195,12 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 
         if (ReproductionMethod == MulticellularReproductionMethod.Sporulation && ModifiableSporeCellType == null)
             throw new Exception("Sporulation reproduction method requires a spore cell type to be set");
+
+        if (MassBuddingCellCount < 1 || MassBuddingCellCount > ModifiableGameplayCells.Count)
+        {
+            throw new Exception("Mass budding bud size can't be less than one or more than the total amount of cells in"
+                + " the colony");
+        }
 
         if (modifiableEditorCells != null)
         {
@@ -282,11 +296,22 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
             ProcessSpeedModifier = 1,
         };
 
+        int initialCellCount = 1;
+
+        if (ReproductionMethod == MulticellularReproductionMethod.MassBudding)
+            initialCellCount = MassBuddingCellCount;
+
+        float storageCapacity = 0.0f;
+
         // We don't take specialization into account here, so we overestimate how much stuff is needed
-        ProcessSystem.ComputeCompoundBalance(ModifiableGameplayCells[0].ModifiableOrganelles,
-            biomeConditions, environmentalTolerances, 1, CompoundAmountType.Biome, false, compoundBalances);
-        var storageCapacity =
-            MicrobeInternalCalculations.CalculateCapacity(ModifiableGameplayCells[0].ModifiableOrganelles);
+        for (int i = 0; i < initialCellCount; ++i)
+        {
+            ProcessSystem.ComputeCompoundBalance(ModifiableGameplayCells[i].ModifiableOrganelles,
+                biomeConditions, environmentalTolerances, 1, CompoundAmountType.Biome, false, compoundBalances);
+
+            storageCapacity +=
+                MicrobeInternalCalculations.CalculateCapacity(ModifiableGameplayCells[i].ModifiableOrganelles);
+        }
 
         InitialCompounds.Clear();
 
@@ -483,7 +508,8 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
     /// </summary>
     public CellType FirstCellTypeToSpawn()
     {
-        if (ReproductionMethod == MulticellularReproductionMethod.Budding)
+        if (ReproductionMethod is MulticellularReproductionMethod.Budding
+            or MulticellularReproductionMethod.MassBudding)
         {
             return ModifiableGameplayCells[0].ModifiableCellType;
         }
@@ -581,6 +607,8 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         }
 
         result.ReproductionMethod = ReproductionMethod;
+
+        result.MassBuddingCellCount = MassBuddingCellCount;
 
         return result;
     }

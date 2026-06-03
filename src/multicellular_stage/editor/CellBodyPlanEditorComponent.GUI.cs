@@ -15,7 +15,7 @@ public partial class CellBodyPlanEditorComponent
 
     public void OnReproductionMethodSelected(int selectedOption)
     {
-        var selectedMethod = (MulticellularReproductionMethod)selectedOption;
+        var selectedMethod = ReproductionMethodIndexToValue(selectedOption);
 
         if (ReproductionMethod == selectedMethod)
             return;
@@ -42,6 +42,28 @@ public partial class CellBodyPlanEditorComponent
         Editor.EnqueueAction(action);
 
         UpdateSporeCellDropdown();
+    }
+
+    public void OnMassBuddingCellCountChanged(float count)
+    {
+        var newCellCount = (int)count;
+
+        if (newCellCount == DesiredMassBuddingCellCount)
+            return;
+
+        var maxValue = massBuddingCellCountSlider.MaxValue;
+
+        // Allow the desired value to be higher than max (to handle the case of cell removal)
+        if (newCellCount == maxValue && DesiredMassBuddingCellCount > maxValue)
+            return;
+
+        var action = new SingleEditorAction<MassBuddingCellCountActionData>(DoMassBuddingCellCountChangeAction,
+            UndoMassBuddingCellCountChangeAction,
+            new MassBuddingCellCountActionData(DesiredMassBuddingCellCount, newCellCount, editedMicrobeCells.Count));
+
+        Editor.EnqueueAction(action);
+
+        UpdateMassBuddingCellCountSlider();
     }
 
     public void SendObjectsToTutorials(TutorialState tutorial, MulticellularEditorTutorialGUI gui)
@@ -192,6 +214,7 @@ public partial class CellBodyPlanEditorComponent
 
         UpdateReproductionMethodChoice();
         UpdateSporeCellDropdown();
+        UpdateMassBuddingCellCountSlider();
 
         UpdateCancelButtonVisibility();
     }
@@ -313,10 +336,24 @@ public partial class CellBodyPlanEditorComponent
 
     private void UpdateReproductionMethodChoice()
     {
-        reproductionMethodDropdown.Select((int)ReproductionMethod);
+        reproductionMethodDropdown.Select(ReproductionMethodToIndex(ReproductionMethod));
 
-        buddingReproductionSection.Visible = ReproductionMethod == MulticellularReproductionMethod.Budding;
-        sporeReproductionSection.Visible = ReproductionMethod == MulticellularReproductionMethod.Sporulation;
+        buddingReproductionSection.Visible = false;
+        sporeReproductionSection.Visible = false;
+        massBuddingReproductionSection.Visible = false;
+
+        switch (ReproductionMethod)
+        {
+            case MulticellularReproductionMethod.Budding:
+                buddingReproductionSection.Visible = true;
+                break;
+            case MulticellularReproductionMethod.Sporulation:
+                sporeReproductionSection.Visible = true;
+                break;
+            case MulticellularReproductionMethod.MassBudding:
+                massBuddingReproductionSection.Visible = true;
+                break;
+        }
     }
 
     private void UpdateSporeCellDropdown()
@@ -337,5 +374,47 @@ public partial class CellBodyPlanEditorComponent
         }
 
         sporeCellTypeDropdown.Select(Editor.EditedSpecies.ModifiableCellTypes.IndexOf(SporeCellType));
+    }
+
+    private void UpdateMassBuddingCellCountSlider()
+    {
+        var maxBudSize = CellBodyPlanInternalCalculations.MaxBudSize(editedMicrobeCells.Count);
+
+        var clampedBudSize = Math.Min(DesiredMassBuddingCellCount, maxBudSize);
+
+        massBuddingCellCountSlider.MaxValue = maxBudSize;
+        massBuddingCellCountSlider.SetValueNoSignal(clampedBudSize);
+
+        massBuddingCellCountLabel.Text = clampedBudSize.ToString();
+    }
+
+    private int ReproductionMethodToIndex(MulticellularReproductionMethod reproductionMethod)
+    {
+        switch (reproductionMethod)
+        {
+            case MulticellularReproductionMethod.Budding:
+                return 0;
+            case MulticellularReproductionMethod.Sporulation:
+                return 2;
+            case MulticellularReproductionMethod.MassBudding:
+                return 1;
+            default:
+                throw new Exception($"Invalid reproduction mode: {reproductionMethod}");
+        }
+    }
+
+    private MulticellularReproductionMethod ReproductionMethodIndexToValue(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                return MulticellularReproductionMethod.Budding;
+            case 1:
+                return MulticellularReproductionMethod.MassBudding;
+            case 2:
+                return MulticellularReproductionMethod.Sporulation;
+            default:
+                throw new Exception($"Invalid reproduction mode index: {index}");
+        }
     }
 }

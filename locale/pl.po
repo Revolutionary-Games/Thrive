@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-30 14:35-0700\n"
+"POT-Creation-Date: 2026-06-03 09:18+0300\n"
 "PO-Revision-Date: 2026-05-25 05:02+0000\n"
 "Last-Translator: Sławomir Pitek <slawomir.k.pitek@gmail.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -3654,6 +3654,13 @@ msgstr "Marzec"
 msgid "MARINE_SNOW"
 msgstr "Śnieg morski"
 
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(biernie uzyskuj związki reprodukcji ze środowiska bez potrzeby robienia czegokolwiek)"
+
 msgid "MASTER_VOLUME"
 msgstr "Głośność ogólna"
 
@@ -5338,9 +5345,6 @@ msgstr "Menadżerzy"
 msgid "PROTEINS"
 msgstr "Białka"
 
-msgid "PROTOPLASM"
-msgstr "Protoplazma"
-
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requesty / Programowanie"
 
@@ -5463,6 +5467,10 @@ msgstr ""
 "Dzielenie się ze siostrzaną komórką daje jej połowę zmagazynowanych związków podczas wychodzenia z edytora.\n"
 "Zatrzymanie wszystkich jest samolubną opcją zostawienia związków jak są.\n"
 "Zawsze dopełnij wypełnia"
+
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "Pączkowanie"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Metoda Rozmnażania:"
@@ -9201,9 +9209,6 @@ msgstr "Oxytoksysoma"
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr "Pilus perforacyjny"
 
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "Protoplazma"
-
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "Rozmnażanie"
 
@@ -9292,37 +9297,6 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "Oddychanie Tlenowe"
-
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "Brak efektów."
-
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr ""
-"Znacznie ulepszona wersja [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytoplazmy[/url][/color][/b], mająca na celu zwiększenie przestrzeni magazynowanej dla gatunków niezależnych od gracza. Nie można jej dodać do komórek którymi grasz, ale może występować w komórkach, które fosylizowałeś ze środowiska.\n"
-"\n"
-"Wygląda jak [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytoplazma[/url][/color][/b] i dziedziczy wiele jej cech."
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr "Brak modyfikacji."
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr "Redukuje beztlenowo [thrive:compound]glukoza[/thrive:compound] wytwarzając [thrive:compound]atp[/thrive:compound]."
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr "Gracz nie możne wyewoluować [b]protoplazmy[/b]. Z kolei gatunki niezależne mogą je wytworzyć bez ograniczeń."
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-"Nie ma możliwości użycia [b]Protoplazmy[/b] w standardowych rozgrywkach. Gracz może jej używać tylko w trybie swobodnej budowy, korzystając z gatunku niezależnego od gracza, który został przez niego skamieniały w poprzedniej grze i który przypadkowo wyewoluował to organellum.\n"
-"\n"
-"Gdy już się pojawi, [b]Protoplazma[/b] jest strategicznym odpowiednikiem [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytoplazmy[/url][/color][/b], ale ma wyraźnie zwiększoną pojemność i wolniejszą produkcję [thrive:compound type=\"atp\"][/thrive:compound]. Komórki z [b]Protoplazmą[/b] mogą przetrwać znacznie dłużej bez znajdowania chmur związków chemicznych, czy konsumowania ofiar."
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr "Brak ulepszeń."
 
 msgid "WIKI_PULLING_CILIA"
 msgstr "Rzęski ciągnące"
@@ -9830,6 +9804,40 @@ msgstr "Przybliż"
 
 msgid "ZOOM_OUT"
 msgstr "Oddal"
+
+#~ msgid "PROTOPLASM"
+#~ msgstr "Protoplazma"
+
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "Protoplazma"
+
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "Brak efektów."
+
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr ""
+#~ "Znacznie ulepszona wersja [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytoplazmy[/url][/color][/b], mająca na celu zwiększenie przestrzeni magazynowanej dla gatunków niezależnych od gracza. Nie można jej dodać do komórek którymi grasz, ale może występować w komórkach, które fosylizowałeś ze środowiska.\n"
+#~ "\n"
+#~ "Wygląda jak [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytoplazma[/url][/color][/b] i dziedziczy wiele jej cech."
+
+#~ msgid "WIKI_PROTOPLASM_MODIFICATIONS"
+#~ msgstr "Brak modyfikacji."
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr "Redukuje beztlenowo [thrive:compound]glukoza[/thrive:compound] wytwarzając [thrive:compound]atp[/thrive:compound]."
+
+#~ msgid "WIKI_PROTOPLASM_REQUIREMENTS"
+#~ msgstr "Gracz nie możne wyewoluować [b]protoplazmy[/b]. Z kolei gatunki niezależne mogą je wytworzyć bez ograniczeń."
+
+#~ msgid "WIKI_PROTOPLASM_STRATEGY"
+#~ msgstr ""
+#~ "Nie ma możliwości użycia [b]Protoplazmy[/b] w standardowych rozgrywkach. Gracz może jej używać tylko w trybie swobodnej budowy, korzystając z gatunku niezależnego od gracza, który został przez niego skamieniały w poprzedniej grze i który przypadkowo wyewoluował to organellum.\n"
+#~ "\n"
+#~ "Gdy już się pojawi, [b]Protoplazma[/b] jest strategicznym odpowiednikiem [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytoplazmy[/url][/color][/b], ale ma wyraźnie zwiększoną pojemność i wolniejszą produkcję [thrive:compound type=\"atp\"][/thrive:compound]. Komórki z [b]Protoplazmą[/b] mogą przetrwać znacznie dłużej bez znajdowania chmur związków chemicznych, czy konsumowania ofiar."
+
+#~ msgid "WIKI_PROTOPLASM_UPGRADES"
+#~ msgstr "Brak ulepszeń."
 
 #~ msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 #~ msgstr "Nie wszystkie najnowsze wersje są wyświetlane ponieważ jest ich zbyt dużo"

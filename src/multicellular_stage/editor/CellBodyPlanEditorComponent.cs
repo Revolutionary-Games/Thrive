@@ -12,7 +12,7 @@ public partial class CellBodyPlanEditorComponent :
     HexEditorComponentBase<MulticellularEditor, CombinedEditorAction, EditorAction, HexWithData<CellTemplate>,
         MulticellularSpecies>, IArchiveUpdatable
 {
-    public const ushort SERIALIZATION_VERSION = 5;
+    public const ushort SERIALIZATION_VERSION = 6;
 
     [Export]
     public int MaxToleranceWarnings = 3;
@@ -144,10 +144,19 @@ public partial class CellBodyPlanEditorComponent :
     private OptionButton sporeCellTypeDropdown = null!;
 
     [Export]
+    private Slider massBuddingCellCountSlider = null!;
+
+    [Export]
+    private Label massBuddingCellCountLabel = null!;
+
+    [Export]
     private Control buddingReproductionSection = null!;
 
     [Export]
     private Control sporeReproductionSection = null!;
+
+    [Export]
+    private Control massBuddingReproductionSection = null!;
 #pragma warning restore CA2213
 
     private string newName = "unset";
@@ -241,6 +250,12 @@ public partial class CellBodyPlanEditorComponent :
     public MulticellularReproductionMethod ReproductionMethod { get; private set; }
 
     public CellType? SporeCellType { get; private set; }
+
+    /// <summary>
+    ///   This variable should be clamped before use. It's intentional that it can exceed the amount of cells, to make
+    ///   it easier to e.g. undo cell removal action.
+    /// </summary>
+    public int DesiredMassBuddingCellCount { get; private set; } = 1;
 
     protected override bool ShowFloatingLabels => ShowGrowthOrder;
 
@@ -441,6 +456,7 @@ public partial class CellBodyPlanEditorComponent :
 
         writer.Write((int)ReproductionMethod);
         writer.WriteObjectOrNull(SporeCellType);
+        writer.Write(DesiredMassBuddingCellCount);
     }
 
     public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
@@ -496,6 +512,11 @@ public partial class CellBodyPlanEditorComponent :
             ReproductionMethod = (MulticellularReproductionMethod)reader.ReadInt32();
             SporeCellType = reader.ReadObjectOrNull<CellType>();
         }
+
+        if (version >= 6)
+        {
+            DesiredMassBuddingCellCount = reader.ReadInt32();
+        }
     }
 
     public override void OnEditorSpeciesSetup(Species species)
@@ -514,8 +535,11 @@ public partial class CellBodyPlanEditorComponent :
 
         newName = species.FormattedName;
 
-        ReproductionMethod = ((MulticellularSpecies)species).ReproductionMethod;
-        SporeCellType = ((MulticellularSpecies)species).ModifiableSporeCellType;
+        var multicellularSpecies = (MulticellularSpecies)species;
+
+        ReproductionMethod = multicellularSpecies.ReproductionMethod;
+        SporeCellType = multicellularSpecies.ModifiableSporeCellType;
+        DesiredMassBuddingCellCount = multicellularSpecies.MassBuddingCellCount;
 
         UpdateGUIAfterLoadingSpecies(species);
 
@@ -595,6 +619,14 @@ public partial class CellBodyPlanEditorComponent :
 
         editedSpecies.ReproductionMethod = ReproductionMethod;
         editedSpecies.ModifiableSporeCellType = SporeCellType;
+
+        // MassBuddingCellCount changes are free if the resulting reproduction method isn't mass budding, so this check
+        // needs to exist to prevent exploits
+        if (ReproductionMethod == MulticellularReproductionMethod.MassBudding)
+        {
+            editedSpecies.MassBuddingCellCount = Math.Min(DesiredMassBuddingCellCount,
+                CellBodyPlanInternalCalculations.MaxBudSize(editedMicrobeCells.Count));
+        }
 
         tempFreshlyUpdatedCells.Clear();
         editedSpecies.OnEdited();
@@ -1490,6 +1522,8 @@ public partial class CellBodyPlanEditorComponent :
         tolerancesEditor.OnDataTolerancesDependOnChanged();
 
         UpdateSpecializationDisplay();
+
+        UpdateMassBuddingCellCountSlider();
     }
 
     private void UpdateStats()

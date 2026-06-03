@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-30 14:35-0700\n"
-"PO-Revision-Date: 2026-05-29 08:43+0000\n"
+"POT-Creation-Date: 2026-06-03 09:18+0300\n"
+"PO-Revision-Date: 2026-05-30 17:07+0000\n"
 "Last-Translator: Guno haozheum <guhaozhe@hsefz.cn>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -2655,7 +2655,7 @@ msgid "GOD_TOOLS_TITLE"
 msgstr "上帝工具"
 
 msgid "GOING_NUCLEAR"
-msgstr "核能先驱"
+msgstr "迈向真核"
 
 msgid "GOOGLY_EYE_CELL"
 msgstr "呆滞眼球细胞"
@@ -3576,6 +3576,13 @@ msgstr "三月"
 msgid "MARINE_SNOW"
 msgstr "海洋雪"
 
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "产生单个后代——新群落的根细胞。"
+
 msgid "MASTER_VOLUME"
 msgstr "主音量"
 
@@ -4308,21 +4315,16 @@ msgstr "多细胞生物中的特化细胞是进化出真正器官的第一步。
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "该面板显示了您的群落的综合代谢过程，即所有细胞的代谢总和。请注意，与其他化合物不同，ATP 无法在细胞间共享。"
 
-#, fuzzy
 msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]阶段[/b]\n"
-"  微生物\n"
-"[b]膜类型[/b]\n"
+"  多细胞生物\n"
+"[b]细胞数量[/b]\n"
 "  {0}\n"
-"[b]膜刚度[/b]\n"
+"[b]细胞类型[/b]\n"
 "  {1}\n"
-"[b]基础速度[/b]\n"
-"  {2}\n"
-"[b]基础转动速度[/b]\n"
-"  {3}\n"
-"[b]基础六角格大小[/b]\n"
-"  {4}"
+"[b]繁殖方式[/b]\n"
+"  {2}"
 
 msgid "MULTICELLULAR_STAGE"
 msgstr "多细胞阶段"
@@ -5143,9 +5145,6 @@ msgstr "项目管理团队"
 msgid "PROTEINS"
 msgstr "蛋白质"
 
-msgid "PROTOPLASM"
-msgstr "原生质"
-
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "合并请求/编程"
 
@@ -5263,6 +5262,10 @@ msgstr ""
 "「保留全部」是按原样保留所有储存的化合物的自私选择。\n"
 "「始终补满」会将所有化合物补充到细胞最初生成时的量。\n"
 "「更改区域时补充」只会在切换区域时补充到初始值。"
+
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "出芽"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "繁殖："
@@ -5398,9 +5401,8 @@ msgstr "向右转"
 msgid "ROTATION_COLON"
 msgstr "旋转："
 
-#, fuzzy
 msgid "ROTATION_FORCE"
-msgstr "旋转："
+msgstr "旋转力"
 
 msgid "RUNOFF_EVENT"
 msgstr "径流事件"
@@ -6149,7 +6151,7 @@ msgid "TASTE_THE_SUN"
 msgstr "品尝阳光"
 
 msgid "TASTY_RADIATION"
-msgstr "美味的辐射"
+msgstr "核能先驱"
 
 msgid "TECHNOLOGY_ASCENSION"
 msgstr "飞升"
@@ -6340,7 +6342,7 @@ msgid "THRIVIN_ACHIEVEMENT"
 msgstr "蓬勃发展"
 
 msgid "THRUST_FORCE"
-msgstr ""
+msgstr "推力"
 
 msgid "THYLAKOIDS"
 msgstr "类囊体"
@@ -9127,9 +9129,6 @@ msgstr "毒素体"
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr "掠食性菌毛"
 
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "原生质"
-
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "繁殖"
 
@@ -9218,42 +9217,6 @@ msgstr ""
 
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "蛋白呼吸作用"
-
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "无效果。"
-
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr ""
-"用以提升非玩家细胞的储存的[b][color=#3796e1][url=thriveopedia:cytoplasm]细胞质[/url][/color][/b]的显著增强版本。无法被添加到玩家细胞中，但可能在玩家从环境中化石化的细胞中出现。\n"
-"\n"
-"视觉上与[b][color=#3796e1][url=thriveopedia:cytoplasm]细胞质[/url][/color][/b]匹配并继承它的许多特性。"
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr "无修改。"
-
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr ""
-"[b]糖酵解[/b]: [thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"有着不同吞吐量的强化版本[b]细胞质糖酵解[/b]。"
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr "玩家无法进化[b]原生质[/b]。非玩家物种则无限制。"
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-"在一些地方，[b]原生质[/b]是[b][color=#3796e1][url=thriveopedia:cytoplasm]细胞质[/url][/color][/b]的别名，尽管它也可以表示细胞中的所有内容物，包括细胞核和周围的结构。\n"
-"\n"
-"在[color=#3796e1][url=https://en.wikipedia.org/wiki/Protoplasm]维基百科页面[/url][/color]上了解关于这个细胞器的更多内容。"
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-"在正常游戏中使用[b]原生质体[/b]是不可能的。玩家只有在自由建造模式中使用他们在先前游戏中化石化的非玩家物种恰好演化了它时才能使用它。\n"
-"\n"
-"当它真的出现时，[b]原生质体[/b]在策略上与[b][color=#3796e1][url=thriveopedia:cytoplasm]细胞质[/url][/color][/b]等效，但是有着显著增加的储存和更慢的[thrive:compound type=\"atp\"][/thrive:compound]生产。拥有[b]原生体质[/b]的细胞通常可以在不寻找化合物云或消化猎物的情况下存活更长时间。"
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr "无升级。"
 
 msgid "WIKI_PULLING_CILIA"
 msgstr "捕食性纤毛"
@@ -9862,6 +9825,48 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "缩小"
+
+#~ msgid "PROTOPLASM"
+#~ msgstr "原生质"
+
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "原生质"
+
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "无效果。"
+
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr ""
+#~ "用以提升非玩家细胞的储存的[b][color=#3796e1][url=thriveopedia:cytoplasm]细胞质[/url][/color][/b]的显著增强版本。无法被添加到玩家细胞中，但可能在玩家从环境中化石化的细胞中出现。\n"
+#~ "\n"
+#~ "视觉上与[b][color=#3796e1][url=thriveopedia:cytoplasm]细胞质[/url][/color][/b]匹配并继承它的许多特性。"
+
+#~ msgid "WIKI_PROTOPLASM_MODIFICATIONS"
+#~ msgstr "无修改。"
+
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr ""
+#~ "[b]糖酵解[/b]: [thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "有着不同吞吐量的强化版本[b]细胞质糖酵解[/b]。"
+
+#~ msgid "WIKI_PROTOPLASM_REQUIREMENTS"
+#~ msgstr "玩家无法进化[b]原生质[/b]。非玩家物种则无限制。"
+
+#~ msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
+#~ msgstr ""
+#~ "在一些地方，[b]原生质[/b]是[b][color=#3796e1][url=thriveopedia:cytoplasm]细胞质[/url][/color][/b]的别名，尽管它也可以表示细胞中的所有内容物，包括细胞核和周围的结构。\n"
+#~ "\n"
+#~ "在[color=#3796e1][url=https://en.wikipedia.org/wiki/Protoplasm]维基百科页面[/url][/color]上了解关于这个细胞器的更多内容。"
+
+#~ msgid "WIKI_PROTOPLASM_STRATEGY"
+#~ msgstr ""
+#~ "在正常游戏中使用[b]原生质体[/b]是不可能的。玩家只有在自由建造模式中使用他们在先前游戏中化石化的非玩家物种恰好演化了它时才能使用它。\n"
+#~ "\n"
+#~ "当它真的出现时，[b]原生质体[/b]在策略上与[b][color=#3796e1][url=thriveopedia:cytoplasm]细胞质[/url][/color][/b]等效，但是有着显著增加的储存和更慢的[thrive:compound type=\"atp\"][/thrive:compound]生产。拥有[b]原生体质[/b]的细胞通常可以在不寻找化合物云或消化猎物的情况下存活更长时间。"
+
+#~ msgid "WIKI_PROTOPLASM_UPGRADES"
+#~ msgstr "无升级。"
 
 #~ msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 #~ msgstr "因为最近版本太多而没有全部显示"
