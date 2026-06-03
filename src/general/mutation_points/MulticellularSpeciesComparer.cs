@@ -186,6 +186,12 @@ public class MulticellularSpeciesComparer
             cost += Constants.SPORE_CELL_TYPE_CHANGE_COST;
         }
 
+        if (speciesB.ReproductionMethod == MulticellularReproductionMethod.MassBudding)
+        {
+            cost += MathF.Abs(speciesA.MassBuddingCellCount - speciesB.MassBuddingCellCount)
+                * Constants.MASS_BUDDING_CELL_COUNT_CHANGE_COST;
+        }
+
         oldCells.Clear();
         newCells.Clear();
 

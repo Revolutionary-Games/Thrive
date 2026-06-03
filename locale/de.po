@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-30 14:35-0700\n"
+"POT-Creation-Date: 2026-06-03 12:08+0300\n"
 "PO-Revision-Date: 2026-05-22 15:37+0000\n"
 "Last-Translator: Matthias Ulbl <matthias.ulbl@gmx.at>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -170,6 +170,17 @@ msgstr "Du bist bereits aufgestiegen"
 
 msgid "ALT"
 msgstr "Alt"
+
+#, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr ""
+"Native Threads werden für andere Aufgaben verwendet als Managed Threads.\n"
+"Mehrere Threads auf CPUs mit mehreren Kernen erhöhen die Leistung normalerweise bis zu einem gewissen Limit\n"
+"bei zu vielen Threads wird die Leistung aber irgendwann beginnen abzunehmen."
+
+#, fuzzy
+msgid "ALTERNATVE_TIMESCALE"
+msgstr ". Die Rate skaliert"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Dauerhaft sichtbar"
@@ -1814,6 +1825,14 @@ msgstr "Verzerrung bei Mikroben-Hintergrund anwenden"
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Hintergrundpartikel anzeigen"
 
+#, fuzzy
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr "OpenGL"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_METAL"
+msgstr "OpenGL"
+
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr "OpenGL"
 
@@ -1851,9 +1870,6 @@ msgstr "Doppelklicken zum Betrachten"
 #, fuzzy
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Als zweischichtige Membran bietet sie besseren Schutz vor Beschädigungen und benötigt weniger Energie, um sich nicht zu verformen. Allerdings verlangsamt sie die Zelle etwas und senkt die Geschwindigkeit, mit der sie Ressourcen absorbieren kann."
-
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "ABC"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr "Mit der Maus ziehen um Objekte neu anzuordnen"
@@ -3630,6 +3646,13 @@ msgstr "März"
 msgid "MARINE_SNOW"
 msgstr "Meeresschnee"
 
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(Erhalte passiv Reproduktionsfortschritt, auch wenn Du keine Ressourcen aktiv einsammelst)"
+
 msgid "MASTER_VOLUME"
 msgstr "Gesamtlautstärke"
 
@@ -5263,9 +5286,6 @@ msgstr "Projektmanagement Team"
 msgid "PROTEINS"
 msgstr "Proteine"
 
-msgid "PROTOPLASM"
-msgstr "Protoplasma"
-
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requests / Programmierung"
 
@@ -5386,6 +5406,10 @@ msgstr "(Erhalte passiv Reproduktionsfortschritt, auch wenn Du keine Ressourcen 
 #, fuzzy
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 msgstr "Reproduktion:"
+
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "Knospend"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproduktion:"
@@ -6068,6 +6092,10 @@ msgstr "{0} mit Bevölkerung: {1}"
 
 msgid "SPEED_COLON"
 msgstr "Geschwindigkeit:"
+
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "ABC"
 
 #, fuzzy
 msgid "SPORE_CELL_TYPE"
@@ -9028,10 +9056,6 @@ msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr ""
 
 #, fuzzy
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "Protoplasma"
-
-#, fuzzy
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "Protoplasma"
 
@@ -9117,33 +9141,6 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "Aerobe Atmung"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "Protoplasma"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr "Protoplasma"
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr "Keine Änderungen."
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr "Wandelt [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound] um."
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr "Der Spieler kann kein [b]Protoplasma[/b] entwickeln. Nicht-Spieler Spezies können es entwickeln, ohne Einschränkungen."
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr "Keine Erweiterungen."
 
 msgid "WIKI_PULLING_CILIA"
 msgstr ""
@@ -9657,6 +9654,34 @@ msgstr "Hereinzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Herauszoomen"
+
+#~ msgid "PROTOPLASM"
+#~ msgstr "Protoplasma"
+
+#, fuzzy
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "Protoplasma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "Protoplasma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr "Protoplasma"
+
+#~ msgid "WIKI_PROTOPLASM_MODIFICATIONS"
+#~ msgstr "Keine Änderungen."
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr "Wandelt [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound] um."
+
+#~ msgid "WIKI_PROTOPLASM_REQUIREMENTS"
+#~ msgstr "Der Spieler kann kein [b]Protoplasma[/b] entwickeln. Nicht-Spieler Spezies können es entwickeln, ohne Einschränkungen."
+
+#~ msgid "WIKI_PROTOPLASM_UPGRADES"
+#~ msgstr "Keine Erweiterungen."
 
 #~ msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 #~ msgstr "Es werden nicht alle aktuellen Versionen angezeigt, da es zu viele gibt"
@@ -10323,9 +10348,6 @@ msgstr "Herauszoomen"
 
 #~ msgid "INTENSITY_OF"
 #~ msgstr "Intensität von"
-
-#~ msgid "DOT_RATE_SCALES"
-#~ msgstr ". Die Rate skaliert"
 
 #~ msgid "OXYGEN_DOT"
 #~ msgstr "Sauerstoff."

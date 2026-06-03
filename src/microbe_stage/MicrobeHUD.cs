@@ -170,12 +170,14 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     {
         base._EnterTree();
         Localization.Instance.OnTranslationsChanged += OnTranslationsChanged;
+        Settings.Instance.AlternativeTimescale.OnChanged += OnAlternativeTimescaleChanged;
     }
 
     public override void _ExitTree()
     {
         base._ExitTree();
         Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
+        Settings.Instance.AlternativeTimescale.OnChanged -= OnAlternativeTimescaleChanged;
     }
 
     public override void _Process(double delta)
@@ -331,7 +333,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             return;
         }
 
-        var resultingModifier = fastModeEnabled ? 2 : 1;
+        var resultingModifier = fastModeEnabled ? Settings.Instance.AlternativeTimescale.Value : 1;
 
         stage.WorldSimulation.WorldTimeScale = resultingModifier;
 
@@ -344,7 +346,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         if (stage == null)
             return false;
 
-        return stage.WorldSimulation.WorldTimeScale > 1;
+        return stage.WorldSimulation.WorldTimeScale != 1;
     }
 
     public void ShowSaveLoadAdvise()
@@ -831,6 +833,11 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
                 item.SetDescription($"{MathF.Round(health.CurrentHealth, 1)}/{MathF.Round(health.MaxHealth, 1)}");
             }
         }
+    }
+
+    private void OnAlternativeTimescaleChanged(float value)
+    {
+        ApplySpeedMode(GetCurrentSpeedMode());
     }
 
     /// <summary>

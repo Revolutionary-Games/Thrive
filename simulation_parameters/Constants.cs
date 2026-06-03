@@ -1214,6 +1214,8 @@ public static class Constants
 
     public const int SPORE_CELL_TYPE_CHANGE_COST = 10;
 
+    public const int MASS_BUDDING_CELL_COUNT_CHANGE_COST = 10;
+
     public const string ORGANELLE_UPGRADE_SPECIAL_NONE = "none";
 
     public const int METABALL_ADD_COST = 7;

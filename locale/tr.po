@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-30 14:35-0700\n"
-"PO-Revision-Date: 2026-05-26 19:13+0000\n"
+"POT-Creation-Date: 2026-06-03 12:08+0300\n"
+"PO-Revision-Date: 2026-06-03 07:14+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -170,6 +170,17 @@ msgstr "Evreni zaten tırmandınız"
 
 msgid "ALT"
 msgstr "Alt"
+
+#, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr ""
+"Yerel iş parçacıkları, yönetilen iş parçacıklarından farklı görevler için kullanılır.\n"
+"Çok çekirdekli işlemcilerde daha fazla iş parçacığı genellikle performansı belli bir sınıra kadar arttırır.\n"
+"Toplam iş parçacığı aşırı fazla ise performans azalmaya başlar."
+
+#, fuzzy
+msgid "ALTERNATVE_TIMESCALE"
+msgstr ". Oran doğru orantılı"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Her zaman görünür"
@@ -1802,6 +1813,14 @@ msgstr "Mikrop arkaplanlarına çarpıklık uygula"
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Arkaplan parçacıklarını göster"
 
+#, fuzzy
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr "OpenGL"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_METAL"
+msgstr "OpenGL"
+
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr "OpenGL"
 
@@ -1837,9 +1856,6 @@ msgstr "Tam ekranda görüntülemek için çift tıklayın"
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "İki katmanlı bir hücre zarıdır. Hasara karşı daha dayanıklıdır. Ancak hücreyi biraz yavaşlatır ve kaynakların emilim oranını düşürür."
-
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "Normal oyun hızı ve iki kat oyun hızı arasında geçiş yap"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr "Fare ile öğeleri yeniden sıralamak için bunu taşıyın"
@@ -3575,6 +3591,12 @@ msgstr "Mart"
 msgid "MARINE_SNOW"
 msgstr "Deniz karı"
 
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr "Başlangıçtaki hücre sayısı"
+
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "Birden fazla hücreyle başlayan bir yavru üretir."
+
 msgid "MASTER_VOLUME"
 msgstr "Ana ses"
 
@@ -4307,21 +4329,16 @@ msgstr "Çok hücrelideki özelleşmiş hücreler, tam organlara doğru ilk adı
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "Bu panel, koloninizin tüm hücrelerinin toplamını veren birleştirilmiş işlemleri gösterir. Diğer bileşiklerin aksine, ATP'nin hücreler arasında paylaşılmadığını unutmayın."
 
-#, fuzzy
 msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Evre[/b]\n"
-"  Mikrop\n"
-"[b]Hücre Zarı Türü[/b]\n"
+"  Çok Hücreli\n"
+"[b]Hücre Sayısı[/b]\n"
 "  {0}\n"
-"[b]Hücre Zarı Sertliği[/b]\n"
+"[b]Hücre Türleri[/b]\n"
 "  {1}\n"
-"[b]Temel Hız[/b]\n"
-"  {2}\n"
-"[b]Temel Dönme Hızı[/b]\n"
-"  {3}\n"
-"[b]Temel Altıgen Büyüklüğü[/b]\n"
-"  {4}"
+"[b]Üreme Türü[/b]\n"
+"  {2}"
 
 msgid "MULTICELLULAR_STAGE"
 msgstr "Çok Hücreli Evresi"
@@ -4400,9 +4417,8 @@ msgstr ""
 msgid "NEW"
 msgstr "Yeni"
 
-#, fuzzy
 msgid "NEWER"
-msgstr "Görüntüleyici"
+msgstr "Daha yeni"
 
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -4603,9 +4619,8 @@ msgstr "Revolutionary Games'in web sitesini ziyaret edin"
 msgid "OK"
 msgstr "Tamam"
 
-#, fuzzy
 msgid "OLDER"
-msgstr "Klasörü Aç"
+msgstr "Daha eski"
 
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -4882,9 +4897,8 @@ msgstr "En son Thrive'ın {0} sürümünü oynadınız, o zamandan beri yeni bir
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr "En son Thrive'ın {0} sürümünü oynadınız, o zamandan beri {1} yeni sürüm mevcut"
 
-#, fuzzy
 msgid "PATCH_NOTES_RECENT_BOUNDARY"
-msgstr "— {0}"
+msgstr "Yakın zamandaki bütün sürümleri gördünüz."
 
 msgid "PATCH_NOTES_TITLE"
 msgstr "Yama Notları"
@@ -5142,9 +5156,6 @@ msgstr "Proje Yönetim Ekibi"
 msgid "PROTEINS"
 msgstr "Proteinler"
 
-msgid "PROTOPLASM"
-msgstr "Protoplazma"
-
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Çekme İstekleri / Programlama"
 
@@ -5262,6 +5273,9 @@ msgstr ""
 "Hepsini tutma seçeneği, tüm depolanan bileşikleri olduğu gibi tutan çıkarcı bir seçenektir.\n"
 "Her zaman tamamen doldurma seçeneği, hücrenin başlangıçta sahip olduğu bileşik miktarı kadar bileşik ile hücreyi doldurur.\n"
 "Arazi değişikliğinde tamamen doldurma seçeneği, yalnızca arazi değiştirildiğinde başlangıçtaki bileşikler ile hücreyi doldurur."
+
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "Toplu Tomurcuklanma"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Üreme:"
@@ -5908,6 +5922,10 @@ msgstr "{0} türü {1} popülasyon ile"
 msgid "SPEED_COLON"
 msgstr "Hız:"
 
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "Normal oyun hızı ve iki kat oyun hızı arasında geçiş yap"
+
 msgid "SPORE_CELL_TYPE"
 msgstr "Spor hücresi türü"
 
@@ -6002,7 +6020,7 @@ msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Bilinmeyen bir Steam hatası meydana geldi"
 
 msgid "STEAM_INIT_FAILED"
-msgstr "Steam'i Başlatma Başarısız"
+msgstr "Steam'i Başlatma İşlemi Başarısız"
 
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
@@ -9120,9 +9138,6 @@ msgstr "Oksitoksizom"
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr "Delici Pilus"
 
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "Protoplazma"
-
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "Üreme"
 
@@ -9211,42 +9226,6 @@ msgstr ""
 
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "Protein Solunumu"
-
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "Etki yok."
-
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr ""
-"Oyuncu olmayan türler için depoyu arttırmak amacıyla tasarlanmış, [b][color=#3796e1][url=thriveopedia:cytoplasm]Sitoplazmanın[/url][/color][/b] önemli ölçüde gelişmiş bir biçimidir. Oyuncu hücrelere eklenemez ama oyuncunun ortamdan fosilleştirdiği hücrelerde mevcut olabilir.\n"
-"\n"
-"Görsel olarak [b][color=#3796e1][url=thriveopedia:cytoplasm]Sitoplazmaya[/url][/color][/b] benzer ve bu organelin birçok özelliğini alır."
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr "Değişiklikler yok."
-
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr ""
-"[b]Glikoliz[/b]: [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] → [thrive:compound type=\"atp\"]ATP[/thrive:compound]\n"
-"\n"
-"Farklı giren/ürün oranları ile [b]Sitoplazma Glikolizinin[/b] gelişmiş bir biçimidir."
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr "Oyuncu [b]Protoplazmayı[/b] evrimleştiremez. Oyuncu olmayan türler sınırlama olmadan yapabilir."
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-"Bazı yerlerde [b]Protoplazma[/b], [b][color=#3796e1][url=thriveopedia:cytoplasm]Sitoplazmanın[/url][/color][/b] başka bir adıdır. Ancak, çekirdek ve çevreleyen yapılar dahil, bir hücrenin tüm içeriği olarak da ifade edilebilir.\n"
-"\n"
-"Bu organelin [color=#3796e1][url=https://en.wikipedia.org/wiki/Protoplasm]Vikipedi sayfasından[/url][/color] daha fazlasını okuyun."
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-"Esas oyunda [b]Protoplazma[/b] kullanmak mümkün değildir. Oyuncu bu organeli yalnızca; eğer serbest yapım modunda bir önceki oyunda fossilleştirdiği oyuncu olmayan bir tür ile oynuyorsa, kullanabilir.\n"
-"\n"
-"Oyunda görüldüğünde, [b]Protoplazma[/b] stratejik olarak [b][color=#3796e1][url=thriveopedia:cytoplasm]Sitoplazmaya[/url][/color][/b] eşdeğerdir. Ancak deposu fazla ve [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimi yavaştır. [b]Protoplazmaya[/b] sahip hücreler genellikle bileşik bulutu bulmadan veya bir besin tüketmeden daha uzun süre hayatta kalabilir."
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr "Geliştirme yok."
 
 msgid "WIKI_PULLING_CILIA"
 msgstr "Çeken Siller"
@@ -9858,6 +9837,48 @@ msgstr "Yakınlaştır"
 
 msgid "ZOOM_OUT"
 msgstr "Uzaklaştır"
+
+#~ msgid "PROTOPLASM"
+#~ msgstr "Protoplazma"
+
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "Protoplazma"
+
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "Etki yok."
+
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr ""
+#~ "Oyuncu olmayan türler için depoyu arttırmak amacıyla tasarlanmış, [b][color=#3796e1][url=thriveopedia:cytoplasm]Sitoplazmanın[/url][/color][/b] önemli ölçüde gelişmiş bir biçimidir. Oyuncu hücrelere eklenemez ama oyuncunun ortamdan fosilleştirdiği hücrelerde mevcut olabilir.\n"
+#~ "\n"
+#~ "Görsel olarak [b][color=#3796e1][url=thriveopedia:cytoplasm]Sitoplazmaya[/url][/color][/b] benzer ve bu organelin birçok özelliğini alır."
+
+#~ msgid "WIKI_PROTOPLASM_MODIFICATIONS"
+#~ msgstr "Değişiklikler yok."
+
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr ""
+#~ "[b]Glikoliz[/b]: [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] → [thrive:compound type=\"atp\"]ATP[/thrive:compound]\n"
+#~ "\n"
+#~ "Farklı giren/ürün oranları ile [b]Sitoplazma Glikolizinin[/b] gelişmiş bir biçimidir."
+
+#~ msgid "WIKI_PROTOPLASM_REQUIREMENTS"
+#~ msgstr "Oyuncu [b]Protoplazmayı[/b] evrimleştiremez. Oyuncu olmayan türler sınırlama olmadan yapabilir."
+
+#~ msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
+#~ msgstr ""
+#~ "Bazı yerlerde [b]Protoplazma[/b], [b][color=#3796e1][url=thriveopedia:cytoplasm]Sitoplazmanın[/url][/color][/b] başka bir adıdır. Ancak, çekirdek ve çevreleyen yapılar dahil, bir hücrenin tüm içeriği olarak da ifade edilebilir.\n"
+#~ "\n"
+#~ "Bu organelin [color=#3796e1][url=https://en.wikipedia.org/wiki/Protoplasm]Vikipedi sayfasından[/url][/color] daha fazlasını okuyun."
+
+#~ msgid "WIKI_PROTOPLASM_STRATEGY"
+#~ msgstr ""
+#~ "Esas oyunda [b]Protoplazma[/b] kullanmak mümkün değildir. Oyuncu bu organeli yalnızca; eğer serbest yapım modunda bir önceki oyunda fossilleştirdiği oyuncu olmayan bir tür ile oynuyorsa, kullanabilir.\n"
+#~ "\n"
+#~ "Oyunda görüldüğünde, [b]Protoplazma[/b] stratejik olarak [b][color=#3796e1][url=thriveopedia:cytoplasm]Sitoplazmaya[/url][/color][/b] eşdeğerdir. Ancak deposu fazla ve [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimi yavaştır. [b]Protoplazmaya[/b] sahip hücreler genellikle bileşik bulutu bulmadan veya bir besin tüketmeden daha uzun süre hayatta kalabilir."
+
+#~ msgid "WIKI_PROTOPLASM_UPGRADES"
+#~ msgstr "Geliştirme yok."
 
 #~ msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 #~ msgstr "Çok fazla sürüm olduğundan bütün son sürümler gösterilemiyor"
@@ -10515,10 +10536,6 @@ msgstr "Uzaklaştır"
 
 #~ msgid "INTO"
 #~ msgstr "a/e"
-
-#, fuzzy
-#~ msgid "DOT_RATE_SCALES"
-#~ msgstr ". Oran doğru orantılı"
 
 #, fuzzy
 #~ msgid "OXYGEN_DOT"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-30 14:35-0700\n"
+"POT-Creation-Date: 2026-06-03 12:08+0300\n"
 "PO-Revision-Date: 2026-05-22 15:37+0000\n"
 "Last-Translator: William <William.berger@outlook.be>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -170,6 +170,17 @@ msgstr "Jij bent al verheven"
 
 msgid "ALT"
 msgstr "Alt"
+
+#, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr ""
+"Oorspronkelijke discussies worden gebruikt voor andere doelen dan onderhouden discussies.\n"
+"Meer discussies aan CPUs met veel kernen vergroten algemeen prestatie tot een limiet\n"
+"te veel totale discussies gaan prestatie verslechten."
+
+#, fuzzy
+msgid "ALTERNATVE_TIMESCALE"
+msgstr ". Beoordeel schalen"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Altijd Zichtbaar"
@@ -1872,6 +1883,14 @@ msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
 
 #, fuzzy
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr "Toon vaardigheden balk"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_METAL"
+msgstr "Toon vaardigheden balk"
+
+#, fuzzy
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr "Toon vaardigheden balk"
 
@@ -1912,10 +1931,6 @@ msgstr ""
 #, fuzzy
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Een membraan met twee lagen, heft een betere bescherming tegen schade en heeft minder energie nodig om zijn vorm te behouden. Daar komt tegenin dat het de cel vertraagt en de snelheid waarmee het grondstoffen absorbeert verkleint."
-
-#, fuzzy
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "Pauzeer het spel"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr ""
@@ -3859,6 +3874,13 @@ msgstr "Maart"
 msgid "MARINE_SNOW"
 msgstr "Mariene sneeuw"
 
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "{0} bevolking veranderd met {1} door: {2}"
+
 msgid "MASTER_VOLUME"
 msgstr "Meester volume"
 
@@ -5574,9 +5596,6 @@ msgstr "Project Management Team"
 msgid "PROTEINS"
 msgstr "Eiwitten"
 
-msgid "PROTOPLASM"
-msgstr "Protoplasma"
-
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull-verzoeken / programmering"
 
@@ -5708,6 +5727,10 @@ msgstr "{0} bevolking veranderd met {1} door: {2}"
 
 #, fuzzy
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
+msgstr "gereproduceerd"
+
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
 msgstr "gereproduceerd"
 
 #, fuzzy
@@ -6423,6 +6446,10 @@ msgstr "Soortenpopulatie"
 
 msgid "SPEED_COLON"
 msgstr "Snelheid:"
+
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "Pauzeer het spel"
 
 #, fuzzy
 msgid "SPORE_CELL_TYPE"
@@ -9248,9 +9275,6 @@ msgstr "Oxytoxisoom"
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr "Penetrerende Pilus"
 
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "Protoplasma"
-
 #, fuzzy
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "Protoplasma"
@@ -9322,33 +9346,6 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "Aërobe Ademhaling"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "Protoplasma"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr "Protoplasma"
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr "Verandert [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]."
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
 
 #, fuzzy
 msgid "WIKI_PULLING_CILIA"
@@ -9902,6 +9899,24 @@ msgstr "Inzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
+
+#~ msgid "PROTOPLASM"
+#~ msgstr "Protoplasma"
+
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "Protoplasma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "Protoplasma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr "Protoplasma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr "Verandert [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #, fuzzy
 #~ msgid "VIEW_ALL"
@@ -10519,9 +10534,6 @@ msgstr "Uitzoomen"
 
 #~ msgid "INTENSITY_OF"
 #~ msgstr "intensiteit van"
-
-#~ msgid "DOT_RATE_SCALES"
-#~ msgstr ". Beoordeel schalen"
 
 #~ msgid "OXYGEN_DOT"
 #~ msgstr "Zuurstof."

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-30 14:35-0700\n"
+"POT-Creation-Date: 2026-06-03 12:08+0300\n"
 "PO-Revision-Date: 2026-05-22 15:37+0000\n"
 "Last-Translator: Юфименко Микола <yufimenkokolja2012@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -170,6 +170,16 @@ msgstr "Ви вже піднеслися"
 
 msgid "ALT"
 msgstr "Alt"
+
+#, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr ""
+"Нативні потоки використовуються не для тих же завдань, що керовані потоки.\n"
+"Більше потоків на процесорах з великою кількістю ядер може загально збільшити продуктивність до певного обмеження\n"
+"занадто велика кількість потоків почне зменшувати продуктивність."
+
+msgid "ALTERNATVE_TIMESCALE"
+msgstr ""
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Завжди видимий"
@@ -1817,6 +1827,14 @@ msgstr "Показ частинок заднього плану"
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Показ частинок заднього плану"
 
+#, fuzzy
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr "OpenGL"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_METAL"
+msgstr "OpenGL"
+
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr "OpenGL"
 
@@ -1853,9 +1871,6 @@ msgstr "Двічі клікніть, щоб переглянути в повно
 #, fuzzy
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Мембрана з двома шарами, що має кращий захист від пошкоджень, та потребує менше енергії для збереження форми. Проте вона уповільнює клітину та поглинання ресурсів."
-
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "Увімкнути чи вимкнути подвійну швидкість гри"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr "Потяніть мишкою щоб змінити порядок"
@@ -3651,6 +3666,13 @@ msgstr "Березень"
 msgid "MARINE_SNOW"
 msgstr "Морський сніг"
 
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(що робити з поглинутими гравцем сполуками після виходу з редактора)"
+
 msgid "MASTER_VOLUME"
 msgstr "Загальна гучність"
 
@@ -5309,9 +5331,6 @@ msgstr "Команда з проджект менеджменту"
 msgid "PROTEINS"
 msgstr "Білки"
 
-msgid "PROTOPLASM"
-msgstr "Протоплазма"
-
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requests / Програмування"
 
@@ -5434,6 +5453,10 @@ msgstr ""
 "Залишення як є: егоїстично залишає всі зберігані сполуки як вони є.\n"
 "Завжди заповняти: заповнює будь-які сполуки до рівня, з яким клітина початково з'являється.\n"
 "Заповняти при зміні ділянки: заповнює до початкових значень сполук, але тільки якщо ділянка була змінена."
+
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "Брункування"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Розмножено:"
@@ -6100,6 +6123,10 @@ msgstr "{0} з популяції: {1}"
 
 msgid "SPEED_COLON"
 msgstr "Швидкість:"
+
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "Увімкнути чи вимкнути подвійну швидкість гри"
 
 #, fuzzy
 msgid "SPORE_CELL_TYPE"
@@ -8966,10 +8993,6 @@ msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr "Хижа ворсинка"
 
 #, fuzzy
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "Протоплазма"
-
-#, fuzzy
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "Протоплазма"
 
@@ -9051,33 +9074,6 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "Аеробне Дихання"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "Протоплазма"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr "Протоплазма"
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr "Перетворює [thrive:compound type=\"glucose\"][/thrive:compound] на [thrive:compound type=\"atp\"][/thrive:compound]."
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
 
 #, fuzzy
 msgid "WIKI_PULLING_CILIA"
@@ -9582,6 +9578,25 @@ msgstr "Приблизитись"
 
 msgid "ZOOM_OUT"
 msgstr "Віддалитись"
+
+#~ msgid "PROTOPLASM"
+#~ msgstr "Протоплазма"
+
+#, fuzzy
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "Протоплазма"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "Протоплазма"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr "Протоплазма"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr "Перетворює [thrive:compound type=\"glucose\"][/thrive:compound] на [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #~ msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 #~ msgstr "Не відображаються всі останні версії, оскільки їх забагато"

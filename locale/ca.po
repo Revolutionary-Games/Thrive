@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-30 14:35-0700\n"
+"POT-Creation-Date: 2026-06-03 12:08+0300\n"
 "PO-Revision-Date: 2026-05-13 03:55+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -176,6 +176,14 @@ msgstr ""
 
 msgid "ALT"
 msgstr "Alt"
+
+#, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr "Fils actuals:"
+
+#, fuzzy
+msgid "ALTERNATVE_TIMESCALE"
+msgstr ". La velocitat augmenta proporcionalment"
 
 #, fuzzy
 msgid "ALWAYS_VISIBLE"
@@ -1861,6 +1869,14 @@ msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Mostrar partícules de fons"
 
 #, fuzzy
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr "Mostrar noms de botons de selecció de parts"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_METAL"
+msgstr "Mostrar noms de botons de selecció de parts"
+
+#, fuzzy
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr "Mostrar noms de botons de selecció de parts"
 
@@ -1900,10 +1916,6 @@ msgstr "Doble clic per mostrar en pantalla completa"
 #, fuzzy
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Una membrana cel·lular formada per dues capes, que ofereix millor protecció i consumeix menys energia. No obstant, fa que la cèl·lula esdevingui més lenta. També redueix la velocitat a la qual s'absorbeixen els nutrients en entrar-hi en contacte."
-
-#, fuzzy
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "El valor utilitzat per generar el món, que ha de ser un nombre enter positiu"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr ""
@@ -3818,6 +3830,13 @@ msgstr "Març"
 msgid "MARINE_SNOW"
 msgstr "Neu marina"
 
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(velocitat a la qual les espècies de la IA muten)"
+
 msgid "MASTER_VOLUME"
 msgstr "Volum General"
 
@@ -5609,9 +5628,6 @@ msgstr "Equip de Gestió del Projecte"
 msgid "PROTEINS"
 msgstr "Proteïnes"
 
-msgid "PROTOPLASM"
-msgstr "protoplasma"
-
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requests / Programació"
 
@@ -5739,6 +5755,10 @@ msgstr "(velocitat a la qual les espècies de la IA muten)"
 #, fuzzy
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 msgstr "Reproducció:"
+
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "Gemmació"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproducció:"
@@ -6442,6 +6462,10 @@ msgstr "{0} amb població: {1}"
 
 msgid "SPEED_COLON"
 msgstr "Velocitat:"
+
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "El valor utilitzat per generar el món, que ha de ser un nombre enter positiu"
 
 #, fuzzy
 msgid "SPORE_CELL_TYPE"
@@ -9288,10 +9312,6 @@ msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr ""
 
 #, fuzzy
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "protoplasma"
-
-#, fuzzy
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "protoplasma"
 
@@ -9374,33 +9394,6 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "Respiració aeròbica"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "protoplasma"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr "protoplasma"
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]."
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
 
 msgid "WIKI_PULLING_CILIA"
 msgstr ""
@@ -9931,6 +9924,25 @@ msgstr "Enfocar la visió de la càmera"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom enfora"
+
+#~ msgid "PROTOPLASM"
+#~ msgstr "protoplasma"
+
+#, fuzzy
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "protoplasma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "protoplasma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr "protoplasma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #, fuzzy
 #~ msgid "VIEW_ALL"
@@ -10534,9 +10546,6 @@ msgstr "Zoom enfora"
 
 #~ msgid "INTO"
 #~ msgstr "dins"
-
-#~ msgid "DOT_RATE_SCALES"
-#~ msgstr ". La velocitat augmenta proporcionalment"
 
 #~ msgid "OXYGEN_DOT"
 #~ msgstr "Oxigen."

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-30 14:35-0700\n"
+"POT-Creation-Date: 2026-06-03 12:08+0300\n"
 "PO-Revision-Date: 2026-02-18 15:13+0000\n"
 "Last-Translator: Deleted User <noreply+90@weblate.org>\n"
 "Language-Team: Latvian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lv/>\n"
@@ -179,6 +179,13 @@ msgstr ""
 
 msgid "ALT"
 msgstr "Alt"
+
+#, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr "Esošie pavedieni:"
+
+msgid "ALTERNATVE_TIMESCALE"
+msgstr ""
 
 msgid "ALWAYS_VISIBLE"
 msgstr ""
@@ -1871,6 +1878,14 @@ msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
 
 #, fuzzy
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr "Automātiski saglabāt progresu spēles laikā"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_METAL"
+msgstr "Automātiski saglabāt progresu spēles laikā"
+
+#, fuzzy
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr "Automātiski saglabāt progresu spēles laikā"
 
@@ -1909,10 +1924,6 @@ msgstr ""
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
-
-#, fuzzy
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "Atsākt spēli"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr ""
@@ -3857,6 +3868,15 @@ msgstr ""
 msgid "MARINE_SNOW"
 msgstr "Jūras sniegs"
 
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr ""
+"Aktīvi mikrobi skraidīs apkārt un gāzīsies, kad nekas interesants nenotiek.\n"
+"Sēdošie mikrobi būs nekustīgi un gaidīs, kad vide mainīsies, pirms tie kaut ko dara."
+
 msgid "MASTER_VOLUME"
 msgstr "Skaļums"
 
@@ -5570,9 +5590,6 @@ msgstr ""
 msgid "PROTEINS"
 msgstr "Olbaltumvielas"
 
-msgid "PROTOPLASM"
-msgstr "Protoplazma"
-
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr ""
 
@@ -5699,6 +5716,10 @@ msgstr ""
 #, fuzzy
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 msgstr "ATP RAŽOŠANA IR PĀRĀK ZEMA!"
+
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "ATP ražošana"
 
 #, fuzzy
 msgid "REPRODUCTION_METHOD"
@@ -6400,6 +6421,10 @@ msgstr "Sugas populācija"
 
 msgid "SPEED_COLON"
 msgstr "Ātrums:"
+
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "Atsākt spēli"
 
 #, fuzzy
 msgid "SPORE_CELL_TYPE"
@@ -9173,10 +9198,6 @@ msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr ""
 
 #, fuzzy
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "Protoplazma"
-
-#, fuzzy
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "Protoplazma"
 
@@ -9258,33 +9279,6 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "Aerobiskā elpošana"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "Protoplazma"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr "Protoplazma"
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr "Pārveido [thrive:compound type=\"glucose\"][/thrive:compound] par [thrive:compound type=\"atp\"][/thrive:compound]."
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
 
 msgid "WIKI_PULLING_CILIA"
 msgstr ""
@@ -9806,6 +9800,25 @@ msgstr "Pietuvināt"
 
 msgid "ZOOM_OUT"
 msgstr "Attālināt"
+
+#~ msgid "PROTOPLASM"
+#~ msgstr "Protoplazma"
+
+#, fuzzy
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "Protoplazma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "Protoplazma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr "Protoplazma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr "Pārveido [thrive:compound type=\"glucose\"][/thrive:compound] par [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #, fuzzy
 #~ msgid "VIEW_ALL"

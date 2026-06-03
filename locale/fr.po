@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-30 14:35-0700\n"
+"POT-Creation-Date: 2026-06-03 12:08+0300\n"
 "PO-Revision-Date: 2026-05-22 15:37+0000\n"
 "Last-Translator: Ptit Serpent <snake76930@gmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -170,6 +170,17 @@ msgstr "Vous êtes déja évolué"
 
 msgid "ALT"
 msgstr "Alt"
+
+#, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr ""
+"Les threads natifs sont utilisés pour des tâches différentes des threads gérés.\n"
+"Plus de threads sur des CPUs a plusieurs cores augmente généralement les performances jusqu'à un certain point\n"
+"une surabondance de threads diminuera les performances."
+
+#, fuzzy
+msgid "ALTERNATVE_TIMESCALE"
+msgstr ". Taux changent"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Toujours visible"
@@ -1811,6 +1822,14 @@ msgstr "Appliquer une distortion aux microbes en arrière-plan"
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Afficher les particules en arrière-plan"
 
+#, fuzzy
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr "OpenGL"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_METAL"
+msgstr "OpenGL"
+
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr "OpenGL"
 
@@ -1848,10 +1867,6 @@ msgstr "Double-cliquer pour voir en plein écran"
 #, fuzzy
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Étant une membrane à double couche de phospholipides, elle offre une meilleure protection et demande peu d'énergie pour ne pas se déformer. Néanmoins, elle peut ralentir une cellule en terme de vitesse de locomotion et d'absorption de ressources."
-
-#, fuzzy
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "Mutliplier/diviser par deux la vitesse de jeu"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr "Faire glisser ça pour réordonner les objets avec la souris"
@@ -3674,6 +3689,13 @@ msgstr "Mars"
 msgid "MARINE_SNOW"
 msgstr "Neige marine"
 
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(obtenir passivement des composés de reproduction de l'environnement sans avoir à faire quoi que ce soit)"
+
 msgid "MASTER_VOLUME"
 msgstr "Volume principal"
 
@@ -5350,9 +5372,6 @@ msgstr "Équipe de gestion du projet"
 msgid "PROTEINS"
 msgstr "Protéines"
 
-msgid "PROTOPLASM"
-msgstr "Protoplasme"
-
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requests / Programmation"
 
@@ -5479,6 +5498,10 @@ msgstr ""
 "Tout conserver est l'option égoïste qui consiste à conserver tous les composés stockés tels quels.\n"
 "Toujours remplir tous les composés jusqu'à la quantité initiale générée par la cellule.\n"
 "Remplir les composés initiaux lors du changement de secteur, mais uniquement si le secteur a été modifié."
+
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "Bourgeonnement"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproduction :"
@@ -6143,6 +6166,10 @@ msgstr "{0} avec population : {1}"
 
 msgid "SPEED_COLON"
 msgstr "Vitesse :"
+
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "Mutliplier/diviser par deux la vitesse de jeu"
 
 #, fuzzy
 msgid "SPORE_CELL_TYPE"
@@ -9425,9 +9452,6 @@ msgstr "Oxytoxisome"
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr "Pilus perforant"
 
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "Protoplasme"
-
 #, fuzzy
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "Protoplasme"
@@ -9517,42 +9541,6 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "Respiration aérobie"
-
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "Pas d'effets."
-
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr ""
-"Une version améliorée du [b][color=#3796e1][url=thriveopedia:cytoplasm]cytoplasme[/url][/color][/b] pour augmenter les réserves des espèces de l'ordinateur. Ne peut pas être ajouté aux cellules du joueur, mais peut être présent dans les espèces qie le joueurs a fossilisé.\n"
-"\n"
-"est visuellement identique au [b][color=#3796e1][url=thriveopedia:cytoplasm]cytoplasme[/url][/color][/b] et hérite de la plupart de ses caractéristiques."
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr "Pas de modifications."
-
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr ""
-"[b]Glycolyse[/b] : [thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"Version améliorée de la [b]glycolyse cytoplasmique[/b] avec un rendement différent."
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr "Le joueur ne peut pas faire évoluer le [b]Protoplasme[/b]. Les espèces non-joueur peuvent le faire sans restrictions."
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-"Dans certains endroits, le [b]Protoplasme[/b] est un autre nom pour le [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytoplasme[/url][/color][/b], bien qu'il puisse aussi faire référence à l'ensemble du contenu d'une cellule, y compris le noyau et les structures environnantes.\n"
-"\n"
-"Lisez plus sur cette organelle sur sa [color=#3796e1][url=https://fr.wikipedia.org/wiki/Protoplasme]page Wikipédia[/url][/color]."
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-"Il n'est pas possible d'utiliser le [b]protoplasme[/b] dans les parties normales. Le joueur ne peut l'utiliser que s'il joue en mode de construction libre avec une espèce non-joueur qu'il a fossilisée dans une partie précédente et qui a évolué cette organelle.\n"
-"\n"
-"Lorsque le [b]protoplasme[/b] apparait, il est stratégiquement équivalent au [b][color=#3796e1][url=thriveopedia:cytoplasm]cytoplasme[/url][/color][/b], mais avec une capacité de stockage bienplus élevée et une production de [thrive:compound type=\"atp\"][/thrive:compound] plus lente. Les cellules avec du [b]protoplasme[/b] peuvent généralement survivre beaucoup plus longtemps sans trouver de nuages de composés ou consommer de proies."
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr "Pas d'améliorations."
 
 #, fuzzy
 msgid "WIKI_PULLING_CILIA"
@@ -10128,6 +10116,48 @@ msgstr "Zoomer"
 
 msgid "ZOOM_OUT"
 msgstr "Dézoomer"
+
+#~ msgid "PROTOPLASM"
+#~ msgstr "Protoplasme"
+
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "Protoplasme"
+
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "Pas d'effets."
+
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr ""
+#~ "Une version améliorée du [b][color=#3796e1][url=thriveopedia:cytoplasm]cytoplasme[/url][/color][/b] pour augmenter les réserves des espèces de l'ordinateur. Ne peut pas être ajouté aux cellules du joueur, mais peut être présent dans les espèces qie le joueurs a fossilisé.\n"
+#~ "\n"
+#~ "est visuellement identique au [b][color=#3796e1][url=thriveopedia:cytoplasm]cytoplasme[/url][/color][/b] et hérite de la plupart de ses caractéristiques."
+
+#~ msgid "WIKI_PROTOPLASM_MODIFICATIONS"
+#~ msgstr "Pas de modifications."
+
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr ""
+#~ "[b]Glycolyse[/b] : [thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Version améliorée de la [b]glycolyse cytoplasmique[/b] avec un rendement différent."
+
+#~ msgid "WIKI_PROTOPLASM_REQUIREMENTS"
+#~ msgstr "Le joueur ne peut pas faire évoluer le [b]Protoplasme[/b]. Les espèces non-joueur peuvent le faire sans restrictions."
+
+#~ msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
+#~ msgstr ""
+#~ "Dans certains endroits, le [b]Protoplasme[/b] est un autre nom pour le [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytoplasme[/url][/color][/b], bien qu'il puisse aussi faire référence à l'ensemble du contenu d'une cellule, y compris le noyau et les structures environnantes.\n"
+#~ "\n"
+#~ "Lisez plus sur cette organelle sur sa [color=#3796e1][url=https://fr.wikipedia.org/wiki/Protoplasme]page Wikipédia[/url][/color]."
+
+#~ msgid "WIKI_PROTOPLASM_STRATEGY"
+#~ msgstr ""
+#~ "Il n'est pas possible d'utiliser le [b]protoplasme[/b] dans les parties normales. Le joueur ne peut l'utiliser que s'il joue en mode de construction libre avec une espèce non-joueur qu'il a fossilisée dans une partie précédente et qui a évolué cette organelle.\n"
+#~ "\n"
+#~ "Lorsque le [b]protoplasme[/b] apparait, il est stratégiquement équivalent au [b][color=#3796e1][url=thriveopedia:cytoplasm]cytoplasme[/url][/color][/b], mais avec une capacité de stockage bienplus élevée et une production de [thrive:compound type=\"atp\"][/thrive:compound] plus lente. Les cellules avec du [b]protoplasme[/b] peuvent généralement survivre beaucoup plus longtemps sans trouver de nuages de composés ou consommer de proies."
+
+#~ msgid "WIKI_PROTOPLASM_UPGRADES"
+#~ msgstr "Pas d'améliorations."
 
 #~ msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 #~ msgstr "Toutes les versions récentes ne sont pas affichées car il y en a trop"
@@ -10788,9 +10818,6 @@ msgstr "Dézoomer"
 
 #~ msgid "INTO"
 #~ msgstr "en"
-
-#~ msgid "DOT_RATE_SCALES"
-#~ msgstr ". Taux changent"
 
 #~ msgid "OXYGEN_DOT"
 #~ msgstr "Oxygène."

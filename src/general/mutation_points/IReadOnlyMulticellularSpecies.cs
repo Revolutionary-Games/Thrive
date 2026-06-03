@@ -18,4 +18,10 @@ public interface IReadOnlyMulticellularSpecies : IReadOnlySpecies
     public MulticellularReproductionMethod ReproductionMethod { get; }
 
     public IReadOnlyCellTypeDefinition? SporeCellType { get; }
+
+    /// <summary>
+    ///   The amount of colony cells (including the lead cell) initially spawned if the species has the
+    ///   <see cref="MulticellularReproductionMethod.MassBudding"/> reproduction method
+    /// </summary>
+    public int MassBuddingCellCount { get; }
 }

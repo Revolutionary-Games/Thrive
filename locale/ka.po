@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-30 14:35-0700\n"
+"POT-Creation-Date: 2026-06-03 12:08+0300\n"
 "PO-Revision-Date: 2026-05-27 21:55+0000\n"
 "Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ka/>\n"
@@ -170,6 +170,13 @@ msgstr "თქვენ უკვე ახვედით"
 
 msgid "ALT"
 msgstr "Alt"
+
+#, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr "მცენარეული ლორწოს სეკრეცია, რომელიც თქვენს სიჩქარეს გაზრდის და შეამცირებს სიჩქარეს უჯრედებისას, რომლებიც ლორწოში გაიჭედნენ"
+
+msgid "ALTERNATVE_TIMESCALE"
+msgstr ""
 
 msgid "ALWAYS_VISIBLE"
 msgstr "ყოველთვის ხილული"
@@ -1736,6 +1743,14 @@ msgstr "მიკრობის ფონების დამახინჯ�
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "ფონური ნაწილაკების ჩვენება"
 
+#, fuzzy
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr "OpenGL"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_METAL"
+msgstr "OpenGL"
+
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr "OpenGL"
 
@@ -1771,9 +1786,6 @@ msgstr "ორმაგი წკაპი სრულ ეკრანზე �
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
-
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "გადართვა თამაშის ნორმალურ და ორმაგ სიჩქარეს შორის"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr "გადაათრიეთ ეს, რომ საგნები თაგუნათი გადაალაგოთ"
@@ -3460,6 +3472,13 @@ msgstr "მარტი"
 msgid "MARINE_SNOW"
 msgstr "ზღვის თოვლი"
 
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "აჩენს ერთ ნაშიერს—ახალი კოლონიის საწყის უჯრედს."
+
 msgid "MASTER_VOLUME"
 msgstr "საერთო ხმის დონე"
 
@@ -4949,9 +4968,6 @@ msgstr "პროექტის მართვის გუნდი"
 msgid "PROTEINS"
 msgstr "ცილები"
 
-msgid "PROTOPLASM"
-msgstr "პროტოპლაზმა"
-
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requests / პროგრამირება"
 
@@ -5064,6 +5080,10 @@ msgstr "(რა მოხდება, როცა მოთამაშის 
 
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 msgstr ""
+
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "გამრავლება"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "რეპროდუქცია:"
@@ -5691,6 +5711,10 @@ msgstr "{0} პოპულაციით: {1}"
 
 msgid "SPEED_COLON"
 msgstr "სიჩქარე:"
+
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "გადართვა თამაშის ნორმალურ და ორმაგ სიჩქარეს შორის"
 
 msgid "SPORE_CELL_TYPE"
 msgstr "სპორის უჯრედის ტიპი"
@@ -7919,9 +7943,6 @@ msgstr "ოქსიტოქსისომა"
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr "ბურღისებრი პილუსი"
 
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "პროტოპლაზმა"
-
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "რეპროდუქცია"
 
@@ -7990,33 +8011,6 @@ msgstr ""
 
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "ცილით სუნთქვა"
-
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "ეფექტების გარეშე."
-
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr "ცვლილებების გარეშე."
-
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr ""
-"[b]გლიკოლიზი[/b]: [thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"[b]ციტოპლაზმის გლიკოლიზის[/b] გაფართოებული ვერსია სხვადასხვა შეყვანა/გამოტანის სიჩქარეებით."
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr "მოთამაშე [b]პროტოპლაზმას[/b] ვერ განავითარებს. არამოთამაშის სახეობებს ეს შეზღუდვების გარეშე შეუძლია."
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr "გაუმჯობესებების გარეშე."
 
 msgid "WIKI_PULLING_CILIA"
 msgstr "წამწამის გამოქაჩვა"
@@ -8452,6 +8446,30 @@ msgstr "გადიდება"
 
 msgid "ZOOM_OUT"
 msgstr "დაპატარავება"
+
+#~ msgid "PROTOPLASM"
+#~ msgstr "პროტოპლაზმა"
+
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "პროტოპლაზმა"
+
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "ეფექტების გარეშე."
+
+#~ msgid "WIKI_PROTOPLASM_MODIFICATIONS"
+#~ msgstr "ცვლილებების გარეშე."
+
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr ""
+#~ "[b]გლიკოლიზი[/b]: [thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "[b]ციტოპლაზმის გლიკოლიზის[/b] გაფართოებული ვერსია სხვადასხვა შეყვანა/გამოტანის სიჩქარეებით."
+
+#~ msgid "WIKI_PROTOPLASM_REQUIREMENTS"
+#~ msgstr "მოთამაშე [b]პროტოპლაზმას[/b] ვერ განავითარებს. არამოთამაშის სახეობებს ეს შეზღუდვების გარეშე შეუძლია."
+
+#~ msgid "WIKI_PROTOPLASM_UPGRADES"
+#~ msgstr "გაუმჯობესებების გარეშე."
 
 #~ msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 #~ msgstr "არ ვაჩვენებ ყველა ბოლო ვერსიას, რადგან მათი რაოდენობა დიდია"
