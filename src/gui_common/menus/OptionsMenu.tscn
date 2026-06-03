@@ -1748,11 +1748,9 @@ tooltip_text = "RUN_AUTO_EVO_DURING_GAMEPLAY_TOOLTIP"
 mouse_filter = 0
 text = "0"
 
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2" unique_id=140535931]
+[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2" unique_id=943692612]
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
-size_flags_horizontal = 4
-theme_override_styles/separator = SubResource("StyleBoxEmpty_paabc")
 
 [node name="AlternativeTimescale" type="HSlider" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1169086084]
 layout_mode = 2
