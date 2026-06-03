@@ -181,6 +181,9 @@ public class Miche : IArchivable
     {
         ThrowIfLocked();
 
+        if (Readonly)
+            throw new InvalidOperationException("This miche tree is readonly (and somehow not locked)");
+
         Children.Add(newChild);
         newChild.Parent = this;
     }
