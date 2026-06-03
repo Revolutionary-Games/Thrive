@@ -164,20 +164,20 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         multicellularButton.Visible = false;
         macroscopicButton.Visible = false;
-
-        Settings.Instance.AlternativeTimescale.OnChanged += OnAlternativeTimescaleChanged;
     }
 
     public override void _EnterTree()
     {
         base._EnterTree();
         Localization.Instance.OnTranslationsChanged += OnTranslationsChanged;
+        Settings.Instance.AlternativeTimescale.OnChanged += OnAlternativeTimescaleChanged;
     }
 
     public override void _ExitTree()
     {
         base._ExitTree();
         Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
+        Settings.Instance.AlternativeTimescale.OnChanged -= OnAlternativeTimescaleChanged;
     }
 
     public override void _Process(double delta)
@@ -338,7 +338,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         stage.WorldSimulation.WorldTimeScale = resultingModifier;
 
         // Make sure the GUI state is consistent with the current speed
-        bottomLeftBar.SpeedButton.ButtonPressed = fastModeEnabled;
+        bottomLeftBar.SpeedModePressed = fastModeEnabled;
     }
 
     public override bool GetCurrentSpeedMode()

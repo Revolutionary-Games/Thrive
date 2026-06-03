@@ -28,20 +28,18 @@
 [ext_resource type="Texture2D" uid="uid://c8fnery2jphca" path="res://assets/textures/gui/bevel/searchButtonHover.png" id="22"]
 [ext_resource type="Script" uid="uid://do8l0bc7etxjc" path="res://src/microbe_stage/SpeedButton.cs" id="22_0o6rj"]
 [ext_resource type="Texture2D" uid="uid://c6rgyr5rhb352" path="res://assets/textures/gui/bevel/suicideButtonHover.png" id="23"]
+[ext_resource type="LabelSettings" uid="uid://cwi2hxs06xut5" path="res://src/gui_common/fonts/Body-Bold-Normal.tres" id="23_4yi7b"]
 [ext_resource type="Texture2D" uid="uid://dt32f5t6b4u1u" path="res://assets/textures/gui/bevel/statisticsButtonActive.png" id="24"]
+[ext_resource type="LabelSettings" uid="uid://chasppwihgufu" path="res://src/gui_common/fonts/Body-Bold-Small.tres" id="24_ci2j4"]
 [ext_resource type="Script" uid="uid://dijae13t7sqr" path="res://src/microbe_stage/HUDBottomBar.cs" id="26"]
 [ext_resource type="Texture2D" uid="uid://c2fhsjrbtkfs1" path="res://assets/textures/gui/bevel/ThermovisionButton.svg" id="26_guvij"]
 [ext_resource type="Texture2D" uid="uid://b31550jo4hwox" path="res://assets/textures/gui/bevel/ThermovisionButtonActive.svg" id="27_pc17v"]
 [ext_resource type="Texture2D" uid="uid://c64hu6j38lxjf" path="res://assets/textures/gui/bevel/ThermovisionButtonHover.svg" id="28_u7j1e"]
 [ext_resource type="Texture2D" uid="uid://dll34ycuw8wqn" path="res://assets/textures/gui/bevel/ThermovisionButtonDisabled.svg" id="29_l10eo"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_xy40k"]
-font_size = 21
-shadow_size = 0
-
 [sub_resource type="StyleBoxEmpty" id="27"]
 
-[node name="HUDBottomBar" type="HBoxContainer" unique_id=506249946 node_paths=PackedStringArray("pauseButton", "heatButton", "SpeedButton", "compoundsButton", "environmentButton", "processPanelButton", "suicideButton", "ProcessPanelButtonControl")]
+[node name="HUDBottomBar" type="HBoxContainer" unique_id=506249946 node_paths=PackedStringArray("pauseButton", "heatButton", "speedButton", "compoundsButton", "environmentButton", "processPanelButton", "suicideButton", "ProcessPanelButtonControl")]
 custom_minimum_size = Vector2(0, 35)
 anchors_preset = 2
 anchor_top = 1.0
@@ -52,7 +50,7 @@ grow_vertical = 0
 script = ExtResource("26")
 pauseButton = NodePath("PauseButtonMargin/PlayButton")
 heatButton = NodePath("HeatViewButton")
-SpeedButton = NodePath("SpeedButton")
+speedButton = NodePath("SpeedButton")
 compoundsButton = NodePath("CompoundsButton")
 environmentButton = NodePath("EnvironmentButton")
 processPanelButton = NodePath("ChemicalButton")
@@ -142,16 +140,20 @@ texture_disabled = ExtResource("21_ci2j4")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("22_0o6rj")
+normalSize = ExtResource("23_4yi7b")
+withDecimalSize = ExtResource("24_ci2j4")
 label = NodePath("Label")
 
 [node name="Label" type="Label" parent="SpeedButton" unique_id=864557617]
+editor_description = "PLACEHOLDER"
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-label_settings = SubResource("LabelSettings_xy40k")
+text = "2x"
+label_settings = ExtResource("23_4yi7b")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -214,6 +216,7 @@ theme_override_styles/separator = SubResource("27")
 [connection signal="pressed" from="CompoundsButton" to="." method="CompoundsButtonPressed"]
 [connection signal="pressed" from="ChemicalButton" to="." method="ProcessButtonPressed"]
 [connection signal="pressed" from="StatisticsButton" to="." method="StatisticsButtonPressed"]
+[connection signal="pressed" from="SpeedButton" to="." method="SpeedButtonPressed"]
 [connection signal="pressed" from="SuicideButton" to="." method="SuicideButtonPressed"]
 [connection signal="pressed" from="QuestionMarkButton" to="." method="HelpButtonPressed"]
 [connection signal="toggled" from="HeatViewButton" to="." method="HeatButtonPressed"]
