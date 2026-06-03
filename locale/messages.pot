@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-03 09:18+0300\n"
+"POT-Creation-Date: 2026-06-03 09:46+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2127,7 +2127,7 @@ msgstr ""
 msgid "DECREASE_ITEM_SIZE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.cs:1580
+#: ../src/gui_common/menus/OptionsMenu.cs:1586
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
@@ -2387,6 +2387,14 @@ msgstr ""
 
 #: ../src/gui_common/menus/OptionsMenu.tscn:850
 msgid "DISPLAY_BACKGROUND_PARTICLES"
+msgstr ""
+
+#: ../src/gui_common/menus/OptionsMenu.cs:959
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr ""
+
+#: ../src/gui_common/menus/OptionsMenu.cs:962
+msgid "DISPLAY_DRIVER_METAL"
 msgstr ""
 
 #: ../src/gui_common/menus/OptionsMenu.cs:956
@@ -4573,15 +4581,15 @@ msgstr ""
 msgid "LANGUAGE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.cs:1632
+#: ../src/gui_common/menus/OptionsMenu.cs:1638
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.cs:1628
+#: ../src/gui_common/menus/OptionsMenu.cs:1634
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.cs:1624
+#: ../src/gui_common/menus/OptionsMenu.cs:1630
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 
@@ -5237,8 +5245,8 @@ msgid "METRICS_CONTENT"
 msgstr ""
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:168
-#: ../src/gui_common/menus/OptionsMenu.cs:1708
-#: ../src/gui_common/menus/OptionsMenu.cs:2650
+#: ../src/gui_common/menus/OptionsMenu.cs:1714
+#: ../src/gui_common/menus/OptionsMenu.cs:2656
 #: ../src/saving/SaveManagerGUI.cs:115
 msgid "MIB_VALUE"
 msgstr ""
@@ -6908,8 +6916,8 @@ msgstr ""
 #: ../src/general/world_effects/GlucoseReductionEffect.cs:125
 #: ../src/general/WorldGenerationSettings.cs:381
 #: ../src/gui_common/CompoundAmount.cs:316
-#: ../src/gui_common/menus/OptionsMenu.cs:976
-#: ../src/gui_common/menus/OptionsMenu.cs:2060
+#: ../src/gui_common/menus/OptionsMenu.cs:982
+#: ../src/gui_common/menus/OptionsMenu.cs:2066
 #: ../src/gui_common/menus/PlanetStatistics.cs:113
 #: ../src/gui_common/tooltip/ToolTipManager.cs:804
 #: ../src/gui_common/tooltip/ToolTipManager.cs:818
@@ -9407,7 +9415,7 @@ msgstr ""
 msgid "UNBIND_HELP_TEXT"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.cs:1722
+#: ../src/gui_common/menus/OptionsMenu.cs:1728
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
 
@@ -9474,7 +9482,7 @@ msgstr ""
 msgid "UNKNOWN"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.cs:960
+#: ../src/gui_common/menus/OptionsMenu.cs:966
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr ""
 
@@ -9495,7 +9503,7 @@ msgstr ""
 msgid "UNKNOWN_SHORT"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.cs:1737
+#: ../src/gui_common/menus/OptionsMenu.cs:1743
 msgid "UNKNOWN_VERSION"
 msgstr ""
 
@@ -9785,7 +9793,7 @@ msgstr ""
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.cs:970
+#: ../src/gui_common/menus/OptionsMenu.cs:976
 #: ../src/gui_common/menus/OptionsMenu.tscn:1087
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
