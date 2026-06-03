@@ -21,7 +21,7 @@ public partial class ThriveopediaWorldSpeciesPage : ThriveopediaPage, IThriveope
     public string PageName => "WorldSpecies";
     public string TranslatedPageName => Localization.Translate("THRIVEOPEDIA_WORLD_SPECIES_TITLE");
     public string? TranslatedPageBody => null;
-    public string? TranslatedAdicionalSearchContent => null;
+    public string? TranslatedAdditionalSearchContent => null;
     public string ParentPageName => "CurrentWorld";
 
     public override void _Ready()

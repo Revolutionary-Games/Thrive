@@ -765,25 +765,27 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
 
         var newTextLowercase = newText.ToLower(CultureInfo.CurrentCulture);
 
-        var distanceDictionary = new Dictionary<IThriveopediaPage, int>();
+        var distanceDictionary = new int[allPages.Count];
+        int iterator = 0;
 
         foreach (var page in allPages)
         {
             string pagename = page.Key.TranslatedPageName.ToLower(CultureInfo.CurrentCulture);
-
-            distanceDictionary[page.Key] = StringUtils.DoStringCostBettwen(pagename, newTextLowercase);
+            distanceDictionary[iterator] = StringUtils.DoStringCostBetween(pagename, newTextLowercase);
+            ++iterator;
         }
 
         // A thresold for similar results
-        var costThreshold = distanceDictionary.Values.Min() + 2;
+        var costThreshold = distanceDictionary.Min() + 2;
+        iterator = 0;
 
         foreach (var page in allPages)
         {
             string pagename = page.Key.TranslatedPageName.ToLower(CultureInfo.CurrentCulture);
             string? pagecontent = page.Key.TranslatedPageBody?.ToLower(CultureInfo.CurrentCulture);
-            string? adicionalContent = page.Key.TranslatedAdicionalSearchContent?.ToLower(CultureInfo.CurrentCulture);
+            string? adicionalContent = page.Key.TranslatedAdditionalSearchContent?.ToLower(CultureInfo.CurrentCulture);
 
-            var fuzzySearch = distanceDictionary[page.Key] < costThreshold;
+            var fuzzySearch = distanceDictionary[iterator] < costThreshold;
             var bodySearch = pagecontent != null && pagecontent.Contains(newTextLowercase);
             var addicionalSearch = adicionalContent != null && adicionalContent.Contains(newTextLowercase);
             var visible = fuzzySearch || pagename.Contains(newTextLowercase) || bodySearch || addicionalSearch;
@@ -805,6 +807,8 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
             {
                 SetParentPagesVisibility(page.Value, true);
             }
+
+            ++iterator;
         }
     }
 

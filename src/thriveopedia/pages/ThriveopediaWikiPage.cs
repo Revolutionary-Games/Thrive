@@ -62,14 +62,15 @@ public partial class ThriveopediaWikiPage : ThriveopediaPage, IThriveopediaPage
         }
     }
 
-    public string? TranslatedAdicionalSearchContent
+    public string? TranslatedAdditionalSearchContent
     {
         get
         {
             StringBuilder builder = new StringBuilder();
             foreach (var item in PageContent.InfoboxData)
             {
-                builder.AppendLine($"{Localization.Translate(item.Name)} {Localization.Translate(item.DisplayedValue)}");
+                builder.AppendLine(Localization.Translate(item.Name));
+                builder.AppendLine(Localization.Translate(item.DisplayedValue));
             }
 
             return builder.ToString();

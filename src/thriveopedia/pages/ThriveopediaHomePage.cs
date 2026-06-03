@@ -8,5 +8,5 @@ public partial class ThriveopediaHomePage : ThriveopediaPage, IThriveopediaPage
 
     public string? ParentPageName => null;
     public string? TranslatedPageBody => null;
-    public string? TranslatedAdicionalSearchContent => null;
+    public string? TranslatedAdditionalSearchContent => null;
 }

@@ -31,7 +31,7 @@ public partial class ThriveopediaExtinctSpeciesPage : ThriveopediaPage, IThriveo
     }
 
     public string? TranslatedPageBody => null;
-    public string? TranslatedAdicionalSearchContent => null;
+    public string? TranslatedAdditionalSearchContent => null;
 
     public bool Pinned => false;
 
