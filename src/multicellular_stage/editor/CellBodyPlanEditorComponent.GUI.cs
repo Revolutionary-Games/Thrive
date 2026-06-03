@@ -317,6 +317,17 @@ public partial class CellBodyPlanEditorComponent
         }
     }
 
+    private void OnSporeResetSelected()
+    {
+        if (SporeCellType == null)
+            return;
+
+        var action = new SingleEditorAction<SporeCellTypeAddActionData>(UndoSporeCellAddAction,
+            DoSporeCellAddAction, new SporeCellTypeAddActionData(SporeCellType, true));
+
+        Editor.EnqueueAction(action);
+    }
+
     private void OnBaseCellTypeForSporeSelected(string baseCellTypeName)
     {
         var splitFrom = Editor.EditedSpecies.ModifiableCellTypes.First(a => a.CellTypeName == baseCellTypeName);
@@ -326,7 +337,7 @@ public partial class CellBodyPlanEditorComponent
         cellType.SplitFromTypeName = splitFrom.CellTypeName;
 
         var action = new SingleEditorAction<SporeCellTypeAddActionData>(DoSporeCellAddAction,
-            UndoSporeCellAddAction, new SporeCellTypeAddActionData(SporeCellType, cellType));
+            UndoSporeCellAddAction, new SporeCellTypeAddActionData(cellType, false));
 
         Editor.EnqueueAction(action);
 

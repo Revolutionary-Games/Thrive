@@ -653,7 +653,8 @@ public partial class CellBodyPlanEditorComponent :
 
         UpdateSpecializationDisplay();
 
-        sporeCellTypeMakerButton.UpdateDisplayedCellType(SporeCellType != null ? GetEditedCellDataIfEdited(SporeCellType) : null);
+        sporeCellTypeMakerButton.UpdateDisplayedCellType(SporeCellType != null ?
+            GetEditedCellDataIfEdited(SporeCellType) : null);
     }
 
     /// <summary>

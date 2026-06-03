@@ -5,8 +5,11 @@
 [ext_resource type="Script" uid="uid://c5mv2yrtry7bf" path="res://src/multicellular_stage/editor/CellTypePreview.cs" id="3_1a2ow"]
 [ext_resource type="PackedScene" uid="uid://b5cbn7afnas1x" path="res://src/gui_common/PhotographablePreview.tscn" id="3_e6wau"]
 [ext_resource type="LabelSettings" uid="uid://terwl7t76t4h" path="res://src/gui_common/fonts/Body-Regular-AlmostSmall.tres" id="5_iwjum"]
+[ext_resource type="Texture2D" uid="uid://3bj404a6bnwb" path="res://assets/textures/gui/bevel/trashButton.png" id="6_cpi50"]
+[ext_resource type="Texture2D" uid="uid://u85mqai0b0pt" path="res://assets/textures/gui/bevel/trashButtonActive.png" id="7_lrhwq"]
+[ext_resource type="Texture2D" uid="uid://cpqu1afcsgfr0" path="res://assets/textures/gui/bevel/trashButtonHover.png" id="8_1p2q0"]
 
-[node name="CellTypeMakerButton" type="PanelContainer" unique_id=1923596412 node_paths=PackedStringArray("sporeNameLabel", "addCellTypeIcon", "cellTypePreview")]
+[node name="CellTypeMakerButton" type="PanelContainer" unique_id=1923596412 node_paths=PackedStringArray("sporeNameLabel", "addCellTypeIcon", "cellTypePreview", "resetButton")]
 offset_right = 474.0
 offset_bottom = 70.0
 size_flags_horizontal = 3
@@ -15,6 +18,7 @@ script = ExtResource("1_ojw5t")
 sporeNameLabel = NodePath("MarginContainer/HBoxContainer/Label")
 addCellTypeIcon = NodePath("MarginContainer/HBoxContainer/Button/CenterContainer/TextureRect")
 cellTypePreview = NodePath("MarginContainer/HBoxContainer/Button/CenterContainer/SpeciesPreview")
+resetButton = NodePath("MarginContainer/Control/Button2")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1871489063]
 layout_mode = 2
@@ -56,4 +60,21 @@ size_flags_vertical = 1
 text = "Spore cell type name or a prompt to add a new type"
 label_settings = ExtResource("5_iwjum")
 
+[node name="Control" type="Control" parent="MarginContainer" unique_id=1854531774]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Button2" type="TextureButton" parent="MarginContainer/Control" unique_id=361671360]
+layout_mode = 0
+offset_left = 65.0
+offset_top = 35.0
+offset_right = 90.0
+offset_bottom = 60.0
+texture_normal = ExtResource("6_cpi50")
+texture_pressed = ExtResource("7_lrhwq")
+texture_hover = ExtResource("8_1p2q0")
+ignore_texture_size = true
+stretch_mode = 0
+
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Button" to="." method="OnMainButtonClicked"]
+[connection signal="pressed" from="MarginContainer/Control/Button2" to="." method="OnResetButtonClicked"]

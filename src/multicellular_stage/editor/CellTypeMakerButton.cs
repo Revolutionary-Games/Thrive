@@ -15,10 +15,16 @@ public partial class CellTypeMakerButton : Control
 
     [Export]
     private CellTypePreview cellTypePreview = null!;
+
+    [Export]
+    private Control resetButton = null!;
 #pragma warning restore CA2213
 
     [Signal]
     public delegate void OnClickedEventHandler();
+
+    [Signal]
+    public delegate void OnResetClickedEventHandler();
 
     public override void _Ready()
     {
@@ -30,6 +36,11 @@ public partial class CellTypeMakerButton : Control
         EmitSignal(SignalName.OnClicked);
     }
 
+    public void OnResetButtonClicked()
+    {
+        EmitSignal(SignalName.OnResetClicked);
+    }
+
     public void UpdateDisplayedCellType(CellType? assignedCellType)
     {
         if (assignedCellType == null)
@@ -38,6 +49,8 @@ public partial class CellTypeMakerButton : Control
 
             addCellTypeIcon.Visible = true;
             cellTypePreview.Visible = false;
+
+            resetButton.Visible = false;
             return;
         }
 
@@ -45,6 +58,8 @@ public partial class CellTypeMakerButton : Control
 
         addCellTypeIcon.Visible = false;
         cellTypePreview.Visible = true;
+
+        resetButton.Visible = true;
 
         cellTypePreview.PreviewCellType = assignedCellType;
     }

@@ -128,22 +128,26 @@ public partial class CellBodyPlanEditorComponent
     [ArchiveAllowedMethod]
     private void DoSporeCellAddAction(SporeCellTypeAddActionData data)
     {
-        OnCellTypeAdded(data.NewCellType);
+        OnCellTypeAdded(data.SporeCell);
 
-        SporeCellType = data.NewCellType;
+        SporeCellType = data.SporeCell;
+
+        sporeCellTypeMakerButton.UpdateDisplayedCellType(SporeCellType);
     }
 
     [ArchiveAllowedMethod]
     private void UndoSporeCellAddAction(SporeCellTypeAddActionData data)
     {
-        if (!Editor.EditedSpecies.ModifiableCellTypes.Remove(data.NewCellType))
+        if (!Editor.EditedSpecies.ModifiableCellTypes.Remove(data.SporeCell))
             GD.PrintErr("Failed to delete cell type from species");
 
         UpdateCellTypeSelections();
 
         Editor.DirtyMutationPointsCache();
 
-        SporeCellType = data.OldCellType;
+        SporeCellType = null;
+
+        sporeCellTypeMakerButton.UpdateDisplayedCellType(SporeCellType);
     }
 
     private void OnCellTypeAdded(CellType added)
