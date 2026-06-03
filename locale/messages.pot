@@ -9,7 +9,8 @@ msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-06-03 19:22+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE
+"\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1223,8 +1224,8 @@ msgstr ""
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1381
 #: ../src/microbe_stage/editor/EndosymbiosisPopup.tscn:123
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:606
-#: ../src/microbe_stage/ProcessPanel.tscn:122 ../src/modding/ModManager.tscn:698
-#: ../src/thriveopedia/Thriveopedia.tscn:322
+#: ../src/microbe_stage/ProcessPanel.tscn:122
+#: ../src/modding/ModManager.tscn:698 ../src/thriveopedia/Thriveopedia.tscn:322
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:224
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:320
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:437
@@ -2243,7 +2244,8 @@ msgstr ""
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:480 ../src/microbe_stage/MicrobeHUD.cs:485
+#: ../src/microbe_stage/MicrobeHUD.cs:480
+#: ../src/microbe_stage/MicrobeHUD.cs:485
 msgid "DEVOURED"
 msgstr ""
 
@@ -7554,7 +7556,8 @@ msgstr ""
 msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:694 ../src/general/PauseMenu.cs:481
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:694
+#: ../src/general/PauseMenu.cs:481
 #: ../src/gui_common/menus/PlanetCustomizerTool.tscn:194
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
@@ -12270,3 +12273,55 @@ msgstr ""
 msgid "ZOOM_OUT"
 msgstr ""
 
+#: ../src/microbe_stage/HUDBottomBar.tscn:129
+msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/organelles.json:173
+msgid "PROTOPLASM"
+msgstr ""
+
+#: ../src/gui_common/PatchNotesList.cs:277
+msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+msgstr ""
+
+#: ../src/gui_common/PatchNotesDisplayer.tscn:51
+#: ../src/gui_common/PatchNotesDisplayer.tscn:57
+msgid "VIEW_ALL"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1841
+msgid "WIKI_PAGE_PROTOPLASM"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1863
+msgid "WIKI_PROTOPLASM_EFFECTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1847
+msgid "WIKI_PROTOPLASM_INTRO"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1859
+msgid "WIKI_PROTOPLASM_MODIFICATIONS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1855
+msgid "WIKI_PROTOPLASM_PROCESSES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1851
+msgid "WIKI_PROTOPLASM_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1875
+msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1871
+msgid "WIKI_PROTOPLASM_STRATEGY"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1867
+msgid "WIKI_PROTOPLASM_UPGRADES"
+msgstr ""
