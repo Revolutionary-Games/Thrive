@@ -378,6 +378,9 @@ public class Settings
     [JsonProperty]
     public SettingValue<int> CloudResolution { get; private set; } = new(2);
 
+    [JsonProperty]
+    public SettingValue<float> AlternativeTimescale { get; private set; } = new(2.0f);
+
     /// <summary>
     ///   If true, an auto-evo run is started during gameplay, taking up one of the background threads.
     /// </summary>

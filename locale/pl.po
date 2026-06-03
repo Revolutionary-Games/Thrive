@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-03 09:46+0300\n"
+"POT-Creation-Date: 2026-06-03 12:08+0300\n"
 "PO-Revision-Date: 2026-05-25 05:02+0000\n"
 "Last-Translator: Sławomir Pitek <slawomir.k.pitek@gmail.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -170,6 +170,17 @@ msgstr "Już dokonałeś ascendencji"
 
 msgid "ALT"
 msgstr "Alt"
+
+#, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr ""
+"Wątki natywne są używane do innych zadań niż wątki zarządzane.\n"
+"Więcej wątków w procesorze z wieloma rdzeniamy zazwyczaj poprawia wydajność do pewnego limitu\n"
+"zbyt wiele wątków razem zacznie zmniejszać wydajność."
+
+#, fuzzy
+msgid "ALTERNATVE_TIMESCALE"
+msgstr ". Stosunek się skaluje"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Zawsze widoczne"
@@ -1865,9 +1876,6 @@ msgstr "Należy kliknąć dwa razy żeby przejść w tryb pełnego ekranu"
 #, fuzzy
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Błona dwuwarstwowa, która lepiej chroni przed uszkodzeniami i wymaga mniej energii, by utrzymać kształt - spowalnia jednak trochę ruch komórki oraz pochłanianie zasobów."
-
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "Przełącza między normalną i podwójną szybkością rozgrywki"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr "Przeciągnij to za pomocą myszy, aby zmienić kolejność elementów"
@@ -6150,6 +6158,10 @@ msgstr "{0} z populacją: {1}"
 
 msgid "SPEED_COLON"
 msgstr "Szybkość:"
+
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "Przełącza między normalną i podwójną szybkością rozgrywki"
 
 #, fuzzy
 msgid "SPORE_CELL_TYPE"
@@ -10536,9 +10548,6 @@ msgstr "Oddal"
 
 #~ msgid "INTENSITY_OF"
 #~ msgstr "intensywność"
-
-#~ msgid "DOT_RATE_SCALES"
-#~ msgstr ". Stosunek się skaluje"
 
 #~ msgid "OXYGEN_DOT"
 #~ msgstr "Tlen."

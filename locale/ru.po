@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-03 09:46+0300\n"
+"POT-Creation-Date: 2026-06-03 12:08+0300\n"
 "PO-Revision-Date: 2026-05-26 09:31+0000\n"
 "Last-Translator: ILIA RIABOV <ilyarya131@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -170,6 +170,16 @@ msgstr "Вы уже вознеслись"
 
 msgid "ALT"
 msgstr "Alt"
+
+#, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr ""
+"Собственные потоки используются для задач, отличных от управляемых потоков.\n"
+"Большее количество потоков на процессорах с большим количеством ядер обычно увеличивает производительность до предела. \n"
+"Слишком большое количество потоков начнет снижать производительность."
+
+msgid "ALTERNATVE_TIMESCALE"
+msgstr ""
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Всегда видна"
@@ -1846,9 +1856,6 @@ msgstr "Двойной клик для полноэкранного режима
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Двухслойная мембрана более стойкая к повреждению, особенно к токсинам. Однако она несколько замедляет скорость клетки и снижает скорость, с которой она может поглощать ресурсы."
-
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "Переключайтесь между нормальной и удвоенной скоростями игры"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr "Потяните мышкой для изменения порядка"
@@ -5925,6 +5932,10 @@ msgstr "{0} с численностью: {1}"
 
 msgid "SPEED_COLON"
 msgstr "Скорость:"
+
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "Переключайтесь между нормальной и удвоенной скоростями игры"
 
 msgid "SPORE_CELL_TYPE"
 msgstr "Тип споровых клеток"

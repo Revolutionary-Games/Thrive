@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-03 09:46+0300\n"
+"POT-Creation-Date: 2026-06-03 12:08+0300\n"
 "PO-Revision-Date: 2026-05-22 15:37+0000\n"
 "Last-Translator: Søren Hansen <pjuske4life@gmail.com>\n"
 "Language-Team: Danish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/da/>\n"
@@ -170,6 +170,16 @@ msgstr "Du er allerede opstået"
 
 msgid "ALT"
 msgstr "Alt"
+
+#, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr ""
+"Native tråde bruges til andre opgaver end managed tråde.\n"
+"Flere tråde på CPU’er med mange kerner øger generelt ydeevnen op til et vist punkt.\n"
+"For mange samlede tråde vil begynde at reducere ydeevnen."
+
+msgid "ALTERNATVE_TIMESCALE"
+msgstr ""
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Altid synlig"
@@ -1850,9 +1860,6 @@ msgstr "Dobbeltklik for at se i fuld skærm"
 #, fuzzy
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "En membran med to lag, den har bedre beskytelse mod skade og bruger mindre energi på ikke at miste formen. Cellen bevæger sig dog langsommere, og absorberingshastigheden af ressourcer sænkes også."
-
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "Skift mellem normal og dobbelt spilhastighed"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr "Hiv denne for at ændre rækkefølgen på genstandene med musen"
@@ -5960,6 +5967,10 @@ msgstr "{0} med bestand på: {1}"
 
 msgid "SPEED_COLON"
 msgstr "Hastighed:"
+
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "Skift mellem normal og dobbelt spilhastighed"
 
 #, fuzzy
 msgid "SPORE_CELL_TYPE"
