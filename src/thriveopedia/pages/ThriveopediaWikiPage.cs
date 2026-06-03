@@ -48,7 +48,7 @@ public partial class ThriveopediaWikiPage : ThriveopediaPage, IThriveopediaPage
 
     public virtual string? ParentPageName => null;
 
-    public string? TranslatedPageBody
+    public virtual string? TranslatedPageBody
     {
         get
         {
@@ -62,7 +62,7 @@ public partial class ThriveopediaWikiPage : ThriveopediaPage, IThriveopediaPage
         }
     }
 
-    public string? TranslatedAdditionalSearchContent
+    public virtual string? TranslatedAdditionalSearchContent
     {
         get
         {
