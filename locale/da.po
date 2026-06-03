@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-01 06:47+0300\n"
+"POT-Creation-Date: 2026-06-03 09:18+0300\n"
 "PO-Revision-Date: 2026-05-22 15:37+0000\n"
 "Last-Translator: Søren Hansen <pjuske4life@gmail.com>\n"
 "Language-Team: Danish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/da/>\n"
@@ -4432,6 +4432,10 @@ msgstr ""
 msgid "NEW"
 msgstr "Ny"
 
+#, fuzzy
+msgid "NEWER"
+msgstr "Viser"
+
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "Denne lagring er fra en nyere version af Thrive, og er højst sandsyneligt inkompatibel.\n"
@@ -4634,6 +4638,10 @@ msgstr "Besøg Revolutionary Games officielle hjemmeside"
 
 msgid "OK"
 msgstr "OK"
+
+#, fuzzy
+msgid "OLDER"
+msgstr "Åben mappe"
 
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -4912,6 +4920,10 @@ msgstr "Du spillede sidst Thrive {0}, siden da har der været en ny udgivelse"
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr "Du spillede sidst Thrive {0}, siden da har der været {1} nye udgivelser"
 
+#, fuzzy
+msgid "PATCH_NOTES_RECENT_BOUNDARY"
+msgstr "— {0}"
+
 msgid "PATCH_NOTES_TITLE"
 msgstr "Patch notes"
 
@@ -5171,9 +5183,6 @@ msgstr "Projekt Management Team"
 
 msgid "PROTEINS"
 msgstr "Proteiner"
-
-msgid "PROTOPLASM"
-msgstr "Protoplasma"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requests / Programmering"
@@ -6546,9 +6555,6 @@ msgstr "Værktøj"
 msgid "TOOL_HAND_AXE"
 msgstr "Håndøkse"
 
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
-msgstr "Viser ikke alle nylige versioner, da der er for mange"
-
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "Samlet energi:"
 
@@ -7257,9 +7263,6 @@ msgstr "{0} MiB"
 
 msgid "VIEWER"
 msgstr "Viser"
-
-msgid "VIEW_ALL"
-msgstr "Vis alle"
 
 msgid "VIEW_CELL_PROCESSES"
 msgstr "Vis organismeprocesser"
@@ -8451,9 +8454,6 @@ msgstr ""
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr ""
 
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr ""
-
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr ""
 
@@ -8519,30 +8519,6 @@ msgstr ""
 
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "Proteinrespiration"
-
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "Ingen effekter."
-
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr "Ingen modifikationer."
-
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr "Spilleren kan ikke udvikle [b]protoplasma[/b]. Ikke-spiller arter kan uden restriktioner."
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr "Ingen opgraderinger."
 
 msgid "WIKI_PULLING_CILIA"
 msgstr ""
@@ -8994,6 +8970,27 @@ msgstr "Zoom ind"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom ud"
+
+#~ msgid "PROTOPLASM"
+#~ msgstr "Protoplasma"
+
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "Ingen effekter."
+
+#~ msgid "WIKI_PROTOPLASM_MODIFICATIONS"
+#~ msgstr "Ingen modifikationer."
+
+#~ msgid "WIKI_PROTOPLASM_REQUIREMENTS"
+#~ msgstr "Spilleren kan ikke udvikle [b]protoplasma[/b]. Ikke-spiller arter kan uden restriktioner."
+
+#~ msgid "WIKI_PROTOPLASM_UPGRADES"
+#~ msgstr "Ingen opgraderinger."
+
+#~ msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+#~ msgstr "Viser ikke alle nylige versioner, da der er for mange"
+
+#~ msgid "VIEW_ALL"
+#~ msgstr "Vis alle"
 
 #~ msgid "SPEED"
 #~ msgstr "Hastighed"

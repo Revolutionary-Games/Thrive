@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-01 06:47+0300\n"
+"POT-Creation-Date: 2026-06-03 09:18+0300\n"
 "PO-Revision-Date: 2026-05-26 09:31+0000\n"
 "Last-Translator: ILIA RIABOV <ilyarya131@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -4408,6 +4408,10 @@ msgstr ""
 msgid "NEW"
 msgstr "Новый"
 
+#, fuzzy
+msgid "NEWER"
+msgstr "Просмотр"
+
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "Это сохранение из новых версий Thrive и, скорее всего, несовместимое.\n"
@@ -4606,6 +4610,10 @@ msgstr "Зайти на официальный сайт Revolutionary Games"
 
 msgid "OK"
 msgstr "ОК"
+
+#, fuzzy
+msgid "OLDER"
+msgstr "Открыть папку"
 
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -4882,6 +4890,10 @@ msgstr "Последний раз вы играли в Thrive версии {0} ,
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr "Вы играли в Thrive последний раз {0} , с того момента доступно {1} новых обновлений"
 
+#, fuzzy
+msgid "PATCH_NOTES_RECENT_BOUNDARY"
+msgstr "— {0}"
+
 msgid "PATCH_NOTES_TITLE"
 msgstr "Заметки обновлений"
 
@@ -5138,9 +5150,6 @@ msgstr "Команда Управления Проектом"
 
 msgid "PROTEINS"
 msgstr "Белки"
-
-msgid "PROTOPLASM"
-msgstr "Протоплазма"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requests / Программирование"
@@ -6503,9 +6512,6 @@ msgstr "Инструменты"
 msgid "TOOL_HAND_AXE"
 msgstr "Ручной Топор"
 
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
-msgstr "Слишком много недавних версий для отображения"
-
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "Полученная Энергия:"
 
@@ -7213,9 +7219,6 @@ msgstr "{0} МиБ"
 
 msgid "VIEWER"
 msgstr "Просмотр"
-
-msgid "VIEW_ALL"
-msgstr "Просмотреть всё"
 
 msgid "VIEW_CELL_PROCESSES"
 msgstr "Просмотреть Процессы Организма"
@@ -9136,9 +9139,6 @@ msgstr "Окситоксисома"
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr "Пронзающий пиль"
 
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "Протоплазма"
-
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "Воспроизводство"
 
@@ -9227,42 +9227,6 @@ msgstr ""
 
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "Белковое дыхание"
-
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "Нет эффектов."
-
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr ""
-"Значительно улучшенная версия [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytoplasm[/url][/color][/b], предназначенная для увеличения хранилища для неигровых видов. Не может быть добавлен в клетки игрока, но может присутствовать в клетках, которые игрок окаменил в окружающей среде.\n"
-"\n"
-"Визуально соответствует [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytoplasm[/url][/color][/b] и наследует многие его черты."
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr "Без модификаций."
-
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr ""
-"[b]Гликолиз[/b]: [thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"Расширенная версия [b]Цитоплазменного Гликолиза[/b] с другими скоростями."
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr "Игрок не может эволюционировать [b]Protoplasm[/b]. Неигровые виды могут делать это без ограничений."
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-"В некоторых местах [b]Протоплазма[/b] — это другое название для [b][color=#3796e1][url=thriveopedia:cytoplasm]Цитоплазмы[/url][/color][/b], хотя она также может относиться ко всему содержимому клетки, включая ядро и окружающие структуры.\n"
-"\n"
-"Подробнее об этой органелле на [color=#3796e1][url=https://en.wikipedia.org/wiki/Protoplasm]странице в Википедии[/url][/color]."
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-"Использовать [b]Протоплазму[/b] в обычных играх невозможно. Игрок может использовать ее, только если играет в режиме свободной постройки за неигровой вид, который он окаменел в предыдущей игре и у которого случайно развилась эта органелла.\n"
-"\n"
-"Когда она появляется, [b]Протоплазма[/b] стратегически эквивалентна [b][color=#3796e1][url=thriveopedia:cytoplasm]Цитоплазме[/url][/color][/b], но с заметно увеличенным запасом и более медленным производством [thrive:compound type=\"atp\"][/thrive:compound]. Клетки с [b]Протоплазмой[/b] обычно могут выживать гораздо дольше, не находя облака соединений или не потребляя добычу."
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr "Нет улучшений."
 
 msgid "WIKI_PULLING_CILIA"
 msgstr "Реснички"
@@ -9870,6 +9834,54 @@ msgstr "Увеличить масштаб"
 
 msgid "ZOOM_OUT"
 msgstr "Уменьшить масштаб"
+
+#~ msgid "PROTOPLASM"
+#~ msgstr "Протоплазма"
+
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "Протоплазма"
+
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "Нет эффектов."
+
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr ""
+#~ "Значительно улучшенная версия [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytoplasm[/url][/color][/b], предназначенная для увеличения хранилища для неигровых видов. Не может быть добавлен в клетки игрока, но может присутствовать в клетках, которые игрок окаменил в окружающей среде.\n"
+#~ "\n"
+#~ "Визуально соответствует [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytoplasm[/url][/color][/b] и наследует многие его черты."
+
+#~ msgid "WIKI_PROTOPLASM_MODIFICATIONS"
+#~ msgstr "Без модификаций."
+
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr ""
+#~ "[b]Гликолиз[/b]: [thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Расширенная версия [b]Цитоплазменного Гликолиза[/b] с другими скоростями."
+
+#~ msgid "WIKI_PROTOPLASM_REQUIREMENTS"
+#~ msgstr "Игрок не может эволюционировать [b]Protoplasm[/b]. Неигровые виды могут делать это без ограничений."
+
+#~ msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
+#~ msgstr ""
+#~ "В некоторых местах [b]Протоплазма[/b] — это другое название для [b][color=#3796e1][url=thriveopedia:cytoplasm]Цитоплазмы[/url][/color][/b], хотя она также может относиться ко всему содержимому клетки, включая ядро и окружающие структуры.\n"
+#~ "\n"
+#~ "Подробнее об этой органелле на [color=#3796e1][url=https://en.wikipedia.org/wiki/Protoplasm]странице в Википедии[/url][/color]."
+
+#~ msgid "WIKI_PROTOPLASM_STRATEGY"
+#~ msgstr ""
+#~ "Использовать [b]Протоплазму[/b] в обычных играх невозможно. Игрок может использовать ее, только если играет в режиме свободной постройки за неигровой вид, который он окаменел в предыдущей игре и у которого случайно развилась эта органелла.\n"
+#~ "\n"
+#~ "Когда она появляется, [b]Протоплазма[/b] стратегически эквивалентна [b][color=#3796e1][url=thriveopedia:cytoplasm]Цитоплазме[/url][/color][/b], но с заметно увеличенным запасом и более медленным производством [thrive:compound type=\"atp\"][/thrive:compound]. Клетки с [b]Протоплазмой[/b] обычно могут выживать гораздо дольше, не находя облака соединений или не потребляя добычу."
+
+#~ msgid "WIKI_PROTOPLASM_UPGRADES"
+#~ msgstr "Нет улучшений."
+
+#~ msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+#~ msgstr "Слишком много недавних версий для отображения"
+
+#~ msgid "VIEW_ALL"
+#~ msgstr "Просмотреть всё"
 
 #, fuzzy
 #~ msgid "PRESSURE_VALUE"

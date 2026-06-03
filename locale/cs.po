@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-01 06:47+0300\n"
+"POT-Creation-Date: 2026-06-03 09:18+0300\n"
 "PO-Revision-Date: 2026-05-17 08:05+0000\n"
 "Last-Translator: Tibor Šťastný <tiborstgame2@seznam.cz>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -4620,6 +4620,10 @@ msgstr ""
 msgid "NEW"
 msgstr "Nový"
 
+#, fuzzy
+msgid "NEWER"
+msgstr "Prohlížeč"
+
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "Tato uložená hra pochází z novější verze Thrive a je velmi pravděpodobně nekompatibilní.\n"
@@ -4825,6 +4829,10 @@ msgstr "Navštivte oficiální stránku Revolutionary Games"
 
 msgid "OK"
 msgstr "OK"
+
+#, fuzzy
+msgid "OLDER"
+msgstr "Otevřít složku"
 
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -5121,6 +5129,10 @@ msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
 #, fuzzy
+msgid "PATCH_NOTES_RECENT_BOUNDARY"
+msgstr "Pangoniánské ústí"
+
+#, fuzzy
 msgid "PATCH_NOTES_TITLE"
 msgstr "Odstranit místní data"
 
@@ -5399,9 +5411,6 @@ msgstr "Projektoví manažeři"
 
 msgid "PROTEINS"
 msgstr "Bílkoviny"
-
-msgid "PROTOPLASM"
-msgstr "Protoplazma"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Externí programátoři"
@@ -6831,9 +6840,6 @@ msgstr "Nástroje"
 msgid "TOOL_HAND_AXE"
 msgstr "Příruční sekerka"
 
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
-msgstr "Nezobrazují se všechny nedávno vydané verze, protože jich je příliš mnoho"
-
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "Nasbíraná energie:"
 
@@ -7566,9 +7572,6 @@ msgstr "{0} MiB"
 
 msgid "VIEWER"
 msgstr "Prohlížeč"
-
-msgid "VIEW_ALL"
-msgstr "Zobrazit vše"
 
 #, fuzzy
 msgid "VIEW_CELL_PROCESSES"
@@ -8948,10 +8951,6 @@ msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr ""
 
 #, fuzzy
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "Protoplazma"
-
-#, fuzzy
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "Protoplazma"
 
@@ -9033,33 +9032,6 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "Aerobní dýchání"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "Protoplazma"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr "Protoplazma"
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr "Přeměňuje [thrive:compound type=\"glucose\"]glukózu[/thrive:compound] na [thrive:compound type=\"atp\"]ATP[/thrive:compound]."
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
 
 #, fuzzy
 msgid "WIKI_PULLING_CILIA"
@@ -9578,6 +9550,31 @@ msgstr "Přiblížit"
 
 msgid "ZOOM_OUT"
 msgstr "Oddálit"
+
+#~ msgid "PROTOPLASM"
+#~ msgstr "Protoplazma"
+
+#, fuzzy
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "Protoplazma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "Protoplazma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr "Protoplazma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr "Přeměňuje [thrive:compound type=\"glucose\"]glukózu[/thrive:compound] na [thrive:compound type=\"atp\"]ATP[/thrive:compound]."
+
+#~ msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+#~ msgstr "Nezobrazují se všechny nedávno vydané verze, protože jich je příliš mnoho"
+
+#~ msgid "VIEW_ALL"
+#~ msgstr "Zobrazit vše"
 
 #~ msgid "SPEED"
 #~ msgstr "Rychlost"
@@ -10112,9 +10109,6 @@ msgstr "Oddálit"
 
 #~ msgid "PATCH_PANGONIAN_COAST"
 #~ msgstr "Pangoniánské pobřeží"
-
-#~ msgid "PATCH_PANGONIAN_ESTUARY"
-#~ msgstr "Pangoniánské ústí"
 
 #~ msgid "PATCH_CAVE"
 #~ msgstr "Jeskyně"
