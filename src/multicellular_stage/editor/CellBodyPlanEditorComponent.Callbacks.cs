@@ -170,4 +170,20 @@ public partial class CellBodyPlanEditorComponent
 
         UpdateSporeCellDropdown();
     }
+
+    [ArchiveAllowedMethod]
+    private void DoMassBuddingCellCountChangeAction(MassBuddingCellCountActionData data)
+    {
+        DesiredMassBuddingCellCount = data.NewCellCount;
+
+        UpdateMassBuddingCellCountSlider();
+    }
+
+    [ArchiveAllowedMethod]
+    private void UndoMassBuddingCellCountChangeAction(MassBuddingCellCountActionData data)
+    {
+        DesiredMassBuddingCellCount = data.OldCellCount;
+
+        UpdateMassBuddingCellCountSlider();
+    }
 }
