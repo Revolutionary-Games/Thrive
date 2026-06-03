@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-02 18:15-0600\n"
+"POT-Creation-Date: 2026-06-03 12:08+0300\n"
 "PO-Revision-Date: 2026-05-13 03:55+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -1882,6 +1882,14 @@ msgstr "הצג חלקיקי רקע"
 
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "הצג חלקיקי רקע"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr "הצג שמות כפתורי בחירת חלקים"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_METAL"
+msgstr "הצג שמות כפתורי בחירת חלקים"
 
 #, fuzzy
 msgid "DISPLAY_DRIVER_OPENGL"
@@ -3825,6 +3833,13 @@ msgstr "מרץ"
 msgid "MARINE_SNOW"
 msgstr "שלג ימי"
 
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(באופן פסיבי צובר תרכובות מהסביבה לתהליכי רבייה מבלי שצריך לעשות דבר)"
+
 msgid "MASTER_VOLUME"
 msgstr "עוצמה כללית"
 
@@ -5584,9 +5599,6 @@ msgstr "צוות ניהול פרויקט"
 msgid "PROTEINS"
 msgstr "חלבונים"
 
-msgid "PROTOPLASM"
-msgstr "פרוטופלזמה"
-
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "בקשות דרישה / תיכנות"
 
@@ -5712,6 +5724,10 @@ msgstr "(באופן פסיבי צובר תרכובות מהסביבה לתהלי
 #, fuzzy
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 msgstr "סוגי רבייה:"
+
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "הנצה"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "סוגי רבייה:"
@@ -9256,10 +9272,6 @@ msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr ""
 
 #, fuzzy
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "פרוטופלזמה"
-
-#, fuzzy
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "פרוטופלזמה"
 
@@ -9342,33 +9354,6 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "נשימה ארובית"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "פרוטופלזמה"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr "פרוטופלזמה"
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr "הופך [thrive:compound type=\"glucose\"][/thrive:compound] ל[thrive:compound type=\"atp\"][/thrive:compound]."
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
 
 msgid "WIKI_PULLING_CILIA"
 msgstr ""
@@ -9900,9 +9885,24 @@ msgstr "להתמקד"
 msgid "ZOOM_OUT"
 msgstr "זום החוצה"
 
+#~ msgid "PROTOPLASM"
+#~ msgstr "פרוטופלזמה"
+
 #, fuzzy
-#~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-#~ msgstr "הערך משומש ביצור העולם, ועל כך, שחייב להיות מספר שלם חיובי"
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "פרוטופלזמה"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "פרוטופלזמה"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr "פרוטופלזמה"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr "הופך [thrive:compound type=\"glucose\"][/thrive:compound] ל[thrive:compound type=\"atp\"][/thrive:compound]."
 
 #, fuzzy
 #~ msgid "VIEW_ALL"
@@ -10559,9 +10559,6 @@ msgstr "זום החוצה"
 #~ msgid "INTO"
 #~ msgstr "לתוך"
 
-#~ msgid "DOT_RATE_SCALES"
-#~ msgstr ". עולה בהתאם"
-
 #~ msgid "OXYGEN_DOT"
 #~ msgstr "חמצן."
 
@@ -10725,6 +10722,3 @@ msgstr "זום החוצה"
 #~ "אתה גם יכול לשנות מאפיינים אחרים של המין שלך בלשוניות האחרות של הערוך.\n"
 #~ "\n"
 #~ "בשביל להמשיך, בחר אברון מהחלונית שמשמאל (ציטופלזמה היינו התחלה טובה). ואז לחץ לחיצה שמאלית ליד המשושה שמוצג במרכז במסך בשביל להוסיף את האברון למין שלך."
-
-#~ msgid "PATCH_PANGONIAN_ESTUARY"
-#~ msgstr "אזור שפך הנהר"

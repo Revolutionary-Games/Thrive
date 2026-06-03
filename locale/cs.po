@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-02 18:15-0600\n"
+"POT-Creation-Date: 2026-06-03 12:08+0300\n"
 "PO-Revision-Date: 2026-05-17 08:05+0000\n"
 "Last-Translator: Tibor Šťastný <tiborstgame2@seznam.cz>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -1827,6 +1827,14 @@ msgstr "Zobrazení částic v pozadí"
 
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Zobrazení částic v pozadí"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr "OpenGL"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_METAL"
+msgstr "OpenGL"
 
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr "OpenGL"
@@ -3687,6 +3695,13 @@ msgstr "Březen"
 msgid "MARINE_SNOW"
 msgstr "Mořský sníh"
 
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(pasivní příjem reprodukčních sloučenin z prostředí bez toho aniž byste něco museli dělat)"
+
 msgid "MASTER_VOLUME"
 msgstr "Celková hlasitost"
 
@@ -5410,9 +5425,6 @@ msgstr "Projektoví manažeři"
 msgid "PROTEINS"
 msgstr "Bílkoviny"
 
-msgid "PROTOPLASM"
-msgstr "Protoplazma"
-
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Externí programátoři"
 
@@ -5533,6 +5545,10 @@ msgstr "(pasivní příjem reprodukčních sloučenin z prostředí bez toho ani
 #, fuzzy
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 msgstr "Reprodukce:"
+
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "Pučení"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reprodukce:"
@@ -8952,10 +8968,6 @@ msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr ""
 
 #, fuzzy
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "Protoplazma"
-
-#, fuzzy
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "Protoplazma"
 
@@ -9037,33 +9049,6 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "Aerobní dýchání"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "Protoplazma"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr "Protoplazma"
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr "Přeměňuje [thrive:compound type=\"glucose\"]glukózu[/thrive:compound] na [thrive:compound type=\"atp\"]ATP[/thrive:compound]."
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
 
 #, fuzzy
 msgid "WIKI_PULLING_CILIA"
@@ -9583,8 +9568,24 @@ msgstr "Přiblížit"
 msgid "ZOOM_OUT"
 msgstr "Oddálit"
 
-#~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-#~ msgstr "Přepnout mezi běžnou herní rychlostí a dvojnásoubnou rychlostí"
+#~ msgid "PROTOPLASM"
+#~ msgstr "Protoplazma"
+
+#, fuzzy
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "Protoplazma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "Protoplazma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr "Protoplazma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr "Přeměňuje [thrive:compound type=\"glucose\"]glukózu[/thrive:compound] na [thrive:compound type=\"atp\"]ATP[/thrive:compound]."
 
 #~ msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 #~ msgstr "Nezobrazují se všechny nedávno vydané verze, protože jich je příliš mnoho"
@@ -10241,9 +10242,6 @@ msgstr "Oddálit"
 #~ msgid "INTENSITY_OF"
 #~ msgstr "intenzita"
 
-#~ msgid "DOT_RATE_SCALES"
-#~ msgstr ". Stupnice hodnocení"
-
 #~ msgid "OXYGEN_DOT"
 #~ msgstr "Kyslík."
 
@@ -10365,6 +10363,3 @@ msgstr "Oddálit"
 #~ "Další vlastnosti tvého druhu můžeš změnit na dalších kartách editoru buněk.\n"
 #~ "\n"
 #~ "Pokračuj výběrem organely z panelu vlevo (cytoplazma je dobrá volba). Potom klikni levým tlačítkem vedle zobrazeného šestiúhelníku (Hexu) uprostřed obrazovky a přidej tuto organelu ke svému druhu."
-
-#~ msgid "PATCH_PANGONIAN_ESTUARY"
-#~ msgstr "Pangoniánské ústí"

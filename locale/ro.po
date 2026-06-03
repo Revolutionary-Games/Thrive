@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-02 18:15-0600\n"
+"POT-Creation-Date: 2026-06-03 12:08+0300\n"
 "PO-Revision-Date: 2025-01-21 12:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Romanian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ro/>\n"
@@ -1751,6 +1751,12 @@ msgid "DISPLAY_BACKGROUND_DISTORTION_EFFECT"
 msgstr ""
 
 msgid "DISPLAY_BACKGROUND_PARTICLES"
+msgstr ""
+
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr ""
+
+msgid "DISPLAY_DRIVER_METAL"
 msgstr ""
 
 msgid "DISPLAY_DRIVER_OPENGL"
@@ -3552,6 +3558,13 @@ msgstr ""
 msgid "MARINE_SNOW"
 msgstr ""
 
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(viteza cu care speciile IA suferă mutații)"
+
 msgid "MASTER_VOLUME"
 msgstr ""
 
@@ -5089,9 +5102,6 @@ msgstr ""
 msgid "PROTEINS"
 msgstr ""
 
-msgid "PROTOPLASM"
-msgstr ""
-
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr ""
 
@@ -5210,6 +5220,10 @@ msgstr "(viteza cu care speciile IA suferă mutații)"
 
 #, fuzzy
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
+msgstr "PRODUCȚIA DE ATP ESTE PREA MICĂ!"
+
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
 msgstr "PRODUCȚIA DE ATP ESTE PREA MICĂ!"
 
 msgid "REPRODUCTION_METHOD"
@@ -8526,10 +8540,6 @@ msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr "Producția ATP"
 
 #, fuzzy
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "Producția ATP"
-
-#, fuzzy
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "Producția ATP"
 
@@ -8608,32 +8618,6 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "{0} B"
-
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr ""
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr "PRODUCȚIA DE ATP ESTE PREA MICĂ!"
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr "Etapa Microbilor"
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
 
 msgid "WIKI_PULLING_CILIA"
 msgstr ""
@@ -9139,8 +9123,16 @@ msgid "ZOOM_OUT"
 msgstr ""
 
 #, fuzzy
-#~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-#~ msgstr "Treceți la etapa de trezire. Disponibil odată ce aveți creierul suficient de dezvoltat (tip de țesut cu axoni)."
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "Producția ATP"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr "PRODUCȚIA DE ATP ESTE PREA MICĂ!"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_STRATEGY"
+#~ msgstr "Etapa Microbilor"
 
 #, fuzzy
 #~ msgid "AEROBIC_NITROGEN_FIXATION"

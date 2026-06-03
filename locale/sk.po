@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-02 18:15-0600\n"
+"POT-Creation-Date: 2026-06-03 12:08+0300\n"
 "PO-Revision-Date: 2026-04-20 23:52+0000\n"
 "Last-Translator: LordZemiakus <kubo.van@gmail.com>\n"
 "Language-Team: Slovak <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sk/>\n"
@@ -1813,6 +1813,14 @@ msgstr "Zobraziť častice v pozadí"
 
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Zobraziť častice v pozadí"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr "Zobraziť názvy tlačidiel pri výbere častí"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_METAL"
+msgstr "Zobraziť názvy tlačidiel pri výbere častí"
 
 #, fuzzy
 msgid "DISPLAY_DRIVER_OPENGL"
@@ -3695,6 +3703,13 @@ msgstr "Marec"
 msgid "MARINE_SNOW"
 msgstr "Morský sneh"
 
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(rýchlosť, akou druhy AI mutujú)"
+
 msgid "MASTER_VOLUME"
 msgstr "Celková hlasitosť"
 
@@ -5332,9 +5347,6 @@ msgstr "Projektoví manažéri"
 msgid "PROTEINS"
 msgstr "Bielkoviny"
 
-msgid "PROTOPLASM"
-msgstr "Protoplazma"
-
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Externí programátori"
 
@@ -5460,6 +5472,10 @@ msgstr "(rýchlosť, akou druhy AI mutujú)"
 #, fuzzy
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 msgstr "Reprodukcia:"
+
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "Pučanie"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reprodukcia:"
@@ -8691,10 +8707,6 @@ msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr ""
 
 #, fuzzy
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "Protoplazma"
-
-#, fuzzy
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "Protoplazma"
 
@@ -8776,33 +8788,6 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "Aeróbne Dýchanie"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "Protoplazma"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr "Protoplazma"
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr "Premieňa [thrive:compound type=\"glucose\"]glukózu[/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound]."
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
 
 msgid "WIKI_PULLING_CILIA"
 msgstr ""
@@ -9317,9 +9302,24 @@ msgstr "Priblížiť"
 msgid "ZOOM_OUT"
 msgstr "Oddialiť"
 
+#~ msgid "PROTOPLASM"
+#~ msgstr "Protoplazma"
+
 #, fuzzy
-#~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-#~ msgstr "Hodnota, ktorá sa používa pri generovaní sveta (musí kladné byť číslo)"
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "Protoplazma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "Protoplazma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr "Protoplazma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr "Premieňa [thrive:compound type=\"glucose\"]glukózu[/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #, fuzzy
 #~ msgid "VIEW_ALL"

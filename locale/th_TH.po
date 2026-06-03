@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-02 18:15-0600\n"
+"POT-Creation-Date: 2026-06-03 12:08+0300\n"
 "PO-Revision-Date: 2026-04-22 18:35+0000\n"
 "Last-Translator: \"Georgi Georgiev (RacerBG)\" <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Thai <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/th/>\n"
@@ -1839,6 +1839,14 @@ msgstr ""
 
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr "ความสามารถ"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_METAL"
+msgstr "ความสามารถ"
 
 #, fuzzy
 msgid "DISPLAY_DRIVER_OPENGL"
@@ -3766,6 +3774,13 @@ msgstr ""
 msgid "MARINE_SNOW"
 msgstr "หิมะในทะเล"
 
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+
 msgid "MASTER_VOLUME"
 msgstr "ระดับเสียงหลัก"
 
@@ -5462,9 +5477,6 @@ msgstr ""
 msgid "PROTEINS"
 msgstr ""
 
-msgid "PROTOPLASM"
-msgstr "โปรโตพลาสซึม"
-
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr ""
 
@@ -5590,6 +5602,10 @@ msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} 
 
 #, fuzzy
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
+msgstr "ความละเอียด:"
+
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
 msgstr "ความละเอียด:"
 
 msgid "REPRODUCTION_METHOD"
@@ -9027,10 +9043,6 @@ msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr ""
 
 #, fuzzy
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "โปรโตพลาสซึม"
-
-#, fuzzy
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "โปรโตพลาสซึม"
 
@@ -9116,33 +9128,6 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "ระบบหายใจแบบแอโรบิค"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "โปรโตพลาสซึม"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr "โปรโตพลาสซึม"
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr "เปลี่ยน [thrive:compound]glucose[/thrive:compound] เป็น [thrive:compound]atp[/thrive:compound]"
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
 
 msgid "WIKI_PULLING_CILIA"
 msgstr ""
@@ -9667,9 +9652,24 @@ msgstr "ซูมเข้า"
 msgid "ZOOM_OUT"
 msgstr "ซูมออก"
 
+#~ msgid "PROTOPLASM"
+#~ msgstr "โปรโตพลาสซึม"
+
 #, fuzzy
-#~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-#~ msgstr "ดำเนินการต่อ"
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "โปรโตพลาสซึม"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "โปรโตพลาสซึม"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr "โปรโตพลาสซึม"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr "เปลี่ยน [thrive:compound]glucose[/thrive:compound] เป็น [thrive:compound]atp[/thrive:compound]"
 
 #~ msgid "SPEED"
 #~ msgstr "ความเร็ว"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-02 18:15-0600\n"
+"POT-Creation-Date: 2026-06-03 12:08+0300\n"
 "PO-Revision-Date: 2026-05-13 03:56+0000\n"
 "Last-Translator: Deleted User <noreply+56@weblate.org>\n"
 "Language-Team: Serbian (Cyrillic script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Cyrl/>\n"
@@ -1916,6 +1916,14 @@ msgstr ""
 
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr "Способности"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_METAL"
+msgstr "Способности"
 
 #, fuzzy
 msgid "DISPLAY_DRIVER_OPENGL"
@@ -3900,6 +3908,13 @@ msgstr ""
 msgid "MARINE_SNOW"
 msgstr "Морски снег"
 
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "Број популације од {0} променио се за {1} због: {2}"
+
 msgid "MASTER_VOLUME"
 msgstr "Главна јачина звука"
 
@@ -5666,9 +5681,6 @@ msgstr ""
 msgid "PROTEINS"
 msgstr "Протеини"
 
-msgid "PROTOPLASM"
-msgstr "Протоплазма"
-
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr ""
 
@@ -5798,6 +5810,10 @@ msgstr "Број популације од {0} променио се за {1} з
 
 #, fuzzy
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
+msgstr "Производи"
+
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
 msgstr "Производи"
 
 #, fuzzy
@@ -9461,10 +9477,6 @@ msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr ""
 
 #, fuzzy
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "Протоплазма"
-
-#, fuzzy
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "Протоплазма"
 
@@ -9557,33 +9569,6 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "Аеробно(кисеонично) дисање"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "Протоплазма"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr "Протоплазма"
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr "Лепљива унутрашњост ћелије. Цитоплазма је основна смеша јона, протеина и других супстанци растворених у води која испуњава унутрашњост ћелије. Једна од функција коју обавља је ферментација, претварање глукозе у ATP енергију. Да би ћелије којима недостају органели имали напреднији метаболизам, на то се ослањају у енергији. Такође се користи за складиштење молекула у ћелији и за повећање величине ћелије."
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
 
 msgid "WIKI_PULLING_CILIA"
 msgstr ""
@@ -10154,9 +10139,24 @@ msgstr "Зумирати"
 msgid "ZOOM_OUT"
 msgstr "Одзумирати"
 
+#~ msgid "PROTOPLASM"
+#~ msgstr "Протоплазма"
+
 #, fuzzy
-#~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-#~ msgstr "Наставити"
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "Протоплазма"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "Протоплазма"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr "Протоплазма"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr "Лепљива унутрашњост ћелије. Цитоплазма је основна смеша јона, протеина и других супстанци растворених у води која испуњава унутрашњост ћелије. Једна од функција коју обавља је ферментација, претварање глукозе у ATP енергију. Да би ћелије којима недостају органели имали напреднији метаболизам, на то се ослањају у енергији. Такође се користи за складиштење молекула у ћелији и за повећање величине ћелије."
 
 #~ msgid "SPEED"
 #~ msgstr "Брзина"
@@ -10737,9 +10737,6 @@ msgstr "Одзумирати"
 #~ msgid "INTENSITY_OF"
 #~ msgstr "интензитет"
 
-#~ msgid "DOT_RATE_SCALES"
-#~ msgstr ". Стопа скалира се"
-
 #~ msgid "OXYGEN_DOT"
 #~ msgstr "Кисеоник."
 
@@ -10866,6 +10863,3 @@ msgstr "Одзумирати"
 #~ "Такође можете променити друга својства своје врсте на другим картицама уређивача ћелија.\n"
 #~ "\n"
 #~ "Да бисте наставили, одаберите органелу са табле са леве стране (цитоплазма је добар избор). Затим кликните левим тастером миша поред шестерокута приказаног у средини екрана да бисте додали ту органелу својој врсти."
-
-#~ msgid "PATCH_PANGONIAN_ESTUARY"
-#~ msgstr "Пангонско Ушће"

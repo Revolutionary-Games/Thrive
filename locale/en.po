@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-02 18:15-0600\n"
+"POT-Creation-Date: 2026-06-03 12:08+0300\n"
 "PO-Revision-Date: 2026-06-03 11:14+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
@@ -1812,6 +1812,12 @@ msgstr "Apply distortion to microbe backgrounds"
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Display background particles"
 
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr "DirectX"
+
+msgid "DISPLAY_DRIVER_METAL"
+msgstr "Metal"
+
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr "OpenGL"
 
@@ -3582,6 +3588,12 @@ msgstr "March"
 msgid "MARINE_SNOW"
 msgstr "Marine snow"
 
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr "Initial cell count"
+
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "Produces an offspring that starts with multiple cells."
+
 msgid "MASTER_VOLUME"
 msgstr "Master volume"
 
@@ -5141,9 +5153,6 @@ msgstr "Project Management Team"
 msgid "PROTEINS"
 msgstr "Proteins"
 
-msgid "PROTOPLASM"
-msgstr "Protoplasm"
-
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requests / Programming"
 
@@ -5261,6 +5270,9 @@ msgstr ""
 "Keep all is the selfish option of keeping all stored compounds as-is.\n"
 "Always top up fills any compounds up to the amount the cell spawns initially with.\n"
 "Top up on patch change tops up to initial compounds but only if patch was changed."
+
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "Mass Budding"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproduction:"
@@ -9123,9 +9135,6 @@ msgstr "Oxytoxisome"
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr "Perforator Pilus"
 
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "Protoplasm"
-
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "Reproduction"
 
@@ -9214,42 +9223,6 @@ msgstr ""
 
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "Protein Respiration"
-
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "No effects."
-
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr ""
-"Significantly enhanced version of [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytoplasm[/url][/color][/b] intended to buff storage for non-player species. Can't be added to player cells, but may be present in cells the player has fossilised from the environment.\n"
-"\n"
-"Visually matches [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytoplasm[/url][/color][/b] and inherits many of its traits."
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr "No modifications."
-
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr ""
-"[b]Glycolysis[/b]: [thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"Enhanced version of [b]Cytoplasm Glycolysis[/b] with different input/output rates."
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr "The player cannot evolve [b]Protoplasm[/b]. Non-player species can with no restrictions."
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-"In some places, [b]Protoplasm[/b] is another name for [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytoplasm[/url][/color][/b], though it can also refer to all contents of a cell, including the nucleus and surrounding structures.\n"
-"\n"
-"Read more on this organelle's [color=#3796e1][url=https://en.wikipedia.org/wiki/Protoplasm]Wikipedia page[/url][/color]."
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-"It's not possible to use [b]Protoplasm[/b] in regular games. The player can only use it if they play in freebuild mode with a non-player species they fossilised in a previous game and that happens to have evolved this organelle.\n"
-"\n"
-"When it does appear, [b]Protoplasm[/b] is strategically equivalent to [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytoplasm[/url][/color][/b] but with notably increased storage and slower [thrive:compound type=\"atp\"][/thrive:compound] production. Cells with [b]Protoplasm[/b] can generally survive much longer without finding compound clouds or consuming prey."
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr "No upgrades."
 
 msgid "WIKI_PULLING_CILIA"
 msgstr "Pulling Cilia"
@@ -9864,6 +9837,48 @@ msgstr "Zoom out"
 
 #~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
 #~ msgstr "Toggle between normal speed and double speed gameplay"
+
+#~ msgid "PROTOPLASM"
+#~ msgstr "Protoplasm"
+
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "Protoplasm"
+
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "No effects."
+
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr ""
+#~ "Significantly enhanced version of [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytoplasm[/url][/color][/b] intended to buff storage for non-player species. Can't be added to player cells, but may be present in cells the player has fossilised from the environment.\n"
+#~ "\n"
+#~ "Visually matches [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytoplasm[/url][/color][/b] and inherits many of its traits."
+
+#~ msgid "WIKI_PROTOPLASM_MODIFICATIONS"
+#~ msgstr "No modifications."
+
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr ""
+#~ "[b]Glycolysis[/b]: [thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Enhanced version of [b]Cytoplasm Glycolysis[/b] with different input/output rates."
+
+#~ msgid "WIKI_PROTOPLASM_REQUIREMENTS"
+#~ msgstr "The player cannot evolve [b]Protoplasm[/b]. Non-player species can with no restrictions."
+
+#~ msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
+#~ msgstr ""
+#~ "In some places, [b]Protoplasm[/b] is another name for [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytoplasm[/url][/color][/b], though it can also refer to all contents of a cell, including the nucleus and surrounding structures.\n"
+#~ "\n"
+#~ "Read more on this organelle's [color=#3796e1][url=https://en.wikipedia.org/wiki/Protoplasm]Wikipedia page[/url][/color]."
+
+#~ msgid "WIKI_PROTOPLASM_STRATEGY"
+#~ msgstr ""
+#~ "It's not possible to use [b]Protoplasm[/b] in regular games. The player can only use it if they play in freebuild mode with a non-player species they fossilised in a previous game and that happens to have evolved this organelle.\n"
+#~ "\n"
+#~ "When it does appear, [b]Protoplasm[/b] is strategically equivalent to [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytoplasm[/url][/color][/b] but with notably increased storage and slower [thrive:compound type=\"atp\"][/thrive:compound] production. Cells with [b]Protoplasm[/b] can generally survive much longer without finding compound clouds or consuming prey."
+
+#~ msgid "WIKI_PROTOPLASM_UPGRADES"
+#~ msgstr "No upgrades."
 
 #~ msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 #~ msgstr "Not showing all recent versions as there are too many"

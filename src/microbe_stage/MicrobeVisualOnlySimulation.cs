@@ -38,7 +38,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
     public override ushort CurrentArchiveVersion => 1;
 
     public override ArchiveObjectType ArchiveObjectType =>
-        throw new NotSupportedException("This class is not meant t obe saved");
+        throw new NotSupportedException("This class is not meant to be saved");
 
     /// <summary>
     ///   Initialises this visual simulation for use

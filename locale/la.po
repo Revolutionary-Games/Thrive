@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-02 18:15-0600\n"
+"POT-Creation-Date: 2026-06-03 12:08+0300\n"
 "PO-Revision-Date: 2025-01-21 12:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Latin <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/la/>\n"
@@ -1746,6 +1746,12 @@ msgid "DISPLAY_BACKGROUND_DISTORTION_EFFECT"
 msgstr ""
 
 msgid "DISPLAY_BACKGROUND_PARTICLES"
+msgstr ""
+
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr ""
+
+msgid "DISPLAY_DRIVER_METAL"
 msgstr ""
 
 msgid "DISPLAY_DRIVER_OPENGL"
@@ -3490,6 +3496,13 @@ msgstr ""
 msgid "MARINE_SNOW"
 msgstr ""
 
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(velocitas ad quam AI species mutantes)"
+
 msgid "MASTER_VOLUME"
 msgstr ""
 
@@ -5016,9 +5029,6 @@ msgstr ""
 msgid "PROTEINS"
 msgstr ""
 
-msgid "PROTOPLASM"
-msgstr ""
-
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr ""
 
@@ -5135,6 +5145,10 @@ msgstr "(velocitas ad quam AI species mutantes)"
 
 #, fuzzy
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
+msgstr "PRODUCTIO DE ATP NIMIS PAULA!"
+
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
 msgstr "PRODUCTIO DE ATP NIMIS PAULA!"
 
 msgid "REPRODUCTION_METHOD"
@@ -8223,10 +8237,6 @@ msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr "Productio de ATP"
 
 #, fuzzy
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "Productio de ATP"
-
-#, fuzzy
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "Productio de ATP"
 
@@ -8306,33 +8316,6 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "Anaerobicum Nitrogenii Fingentem"
-
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr ""
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr "PRODUCTIO DE ATP NIMIS PAULA!"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr "Anaerobicum Nitrogenii Fingentem"
-
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
 
 msgid "WIKI_PULLING_CILIA"
 msgstr ""
@@ -8835,8 +8818,20 @@ msgid "ZOOM_OUT"
 msgstr ""
 
 #, fuzzy
-#~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-#~ msgstr "Movere ad Gradum Excitantem. In promptu cum semel satis mentis potentem habes (textus coporis generem cum axonibus)."
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "Productio de ATP"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr "PRODUCTIO DE ATP NIMIS PAULA!"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_MODIFICATIONS"
+#~ msgstr "Anaerobicum Nitrogenii Fingentem"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_STRATEGY"
+#~ msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
 
 #, fuzzy
 #~ msgid "AEROBIC_NITROGEN_FIXATION"

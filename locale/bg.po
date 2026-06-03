@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-02 18:15-0600\n"
+"POT-Creation-Date: 2026-06-03 12:08+0300\n"
 "PO-Revision-Date: 2026-05-22 15:37+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -1918,6 +1918,14 @@ msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Фонови частици"
 
 #, fuzzy
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr "Наименования на органелите"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_METAL"
+msgstr "Наименования на органелите"
+
+#, fuzzy
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr "Наименования на органелите"
 
@@ -3811,6 +3819,13 @@ msgstr "Март"
 msgid "MARINE_SNOW"
 msgstr "Морски сняг"
 
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(създанията усвояват хранителните вещества от околната среда)"
+
 msgid "MASTER_VOLUME"
 msgstr "Основен звук"
 
@@ -5546,9 +5561,6 @@ msgstr "Ръководители"
 msgid "PROTEINS"
 msgstr "Протеини"
 
-msgid "PROTOPLASM"
-msgstr "Протоплазма"
-
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Разработчици"
 
@@ -5670,6 +5682,10 @@ msgstr "(създанията усвояват хранителните веще
 #, fuzzy
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 msgstr "Видове:"
+
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "Пъпкуване"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Видове:"
@@ -9212,10 +9228,6 @@ msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr ""
 
 #, fuzzy
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "Протоплазма"
-
-#, fuzzy
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "Протоплазма"
 
@@ -9306,35 +9318,6 @@ msgstr "Подлежи на уточняване"
 #, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "Аеробно дишане"
-
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "Подлежи на уточняване"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr "Подлежи на уточняване"
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr "Подлежи на уточняване"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr "Подлежи на уточняване"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr "Подлежи на уточняване"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr "Подлежи на уточняване"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr "Подлежи на уточняване"
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr "Подлежи на уточняване"
 
 #, fuzzy
 msgid "WIKI_PULLING_CILIA"
@@ -9871,9 +9854,41 @@ msgstr "Приближаване"
 msgid "ZOOM_OUT"
 msgstr "Отдалечаване"
 
+#~ msgid "PROTOPLASM"
+#~ msgstr "Протоплазма"
+
 #, fuzzy
-#~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-#~ msgstr "Идентификаторът трябва да е положително цяло число"
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "Протоплазма"
+
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "Подлежи на уточняване"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr "Подлежи на уточняване"
+
+#~ msgid "WIKI_PROTOPLASM_MODIFICATIONS"
+#~ msgstr "Подлежи на уточняване"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr "Подлежи на уточняване"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_REQUIREMENTS"
+#~ msgstr "Подлежи на уточняване"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
+#~ msgstr "Подлежи на уточняване"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_STRATEGY"
+#~ msgstr "Подлежи на уточняване"
+
+#~ msgid "WIKI_PROTOPLASM_UPGRADES"
+#~ msgstr "Подлежи на уточняване"
 
 #~ msgid "VIEW_ALL"
 #~ msgstr "Всички версии"
@@ -10543,9 +10558,6 @@ msgstr "Отдалечаване"
 
 #~ msgid "INTO"
 #~ msgstr "в"
-
-#~ msgid "DOT_RATE_SCALES"
-#~ msgstr ". Количеството зависи"
 
 #~ msgid "OXYGEN_DOT"
 #~ msgstr "Кислород."
