@@ -3294,7 +3294,7 @@ public partial class CellEditorComponent :
             UpdateAutoEvoPredictionDetailsText();
         }
 
-        predictionMiches = results.GetMicheForPatch(Editor.CurrentPatch);
+        predictionMiches = results.GetModifiableMicheForPatch(Editor.CurrentPatch);
     }
 
     private void CreateAutoEvoPredictionDetailsText(
