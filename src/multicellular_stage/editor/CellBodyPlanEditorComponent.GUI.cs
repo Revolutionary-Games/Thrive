@@ -304,28 +304,18 @@ public partial class CellBodyPlanEditorComponent
         sporeReproductionSection.Visible = ReproductionMethod == MulticellularReproductionMethod.Sporulation;
     }
 
-    private void OnSporeEditSelected()
+    private void OnSporeEditClicked()
     {
         if (SporeCellType == null)
         {
-            cellTypePickerPopup.UpdateCellTypeList(Editor.EditedSpecies.ModifiableCellTypes);
+            cellTypePickerPopup.UpdateCellTypeList(Editor.EditedSpecies.ModifiableCellTypes,
+                OnBaseCellTypeForSporeSelected);
             cellTypePickerPopup.PopupCenteredShrink();
         }
         else
         {
             EmitSignal(SignalName.OnCellTypeToEditSelected, SporeCellType.CellTypeName, true);
         }
-    }
-
-    private void OnSporeResetSelected()
-    {
-        if (SporeCellType == null)
-            return;
-
-        var action = new SingleEditorAction<SporeCellTypeAddActionData>(UndoSporeCellAddAction,
-            DoSporeCellAddAction, new SporeCellTypeAddActionData(SporeCellType, true));
-
-        Editor.EnqueueAction(action);
     }
 
     private void OnBaseCellTypeForSporeSelected(string baseCellTypeName)
@@ -345,5 +335,16 @@ public partial class CellBodyPlanEditorComponent
         {
             EmitSignal(SignalName.OnCellTypeToEditSelected, SporeCellType.CellTypeName, true);
         }
+    }
+
+    private void OnSporeResetClicked()
+    {
+        if (SporeCellType == null)
+            return;
+
+        var action = new SingleEditorAction<SporeCellTypeAddActionData>(UndoSporeCellAddAction,
+            DoSporeCellAddAction, new SporeCellTypeAddActionData(SporeCellType, true));
+
+        Editor.EnqueueAction(action);
     }
 }

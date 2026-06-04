@@ -47,6 +47,8 @@ public partial class CellBodyPlanEditorComponent
     private void DuplicateCellType(DuplicateDeleteCellTypeData data)
     {
         OnCellTypeAdded(data.CellType);
+
+        OnCellToPlaceSelected(data.CellType.CellTypeName);
     }
 
     [ArchiveAllowedMethod]
@@ -128,6 +130,14 @@ public partial class CellBodyPlanEditorComponent
     [ArchiveAllowedMethod]
     private void DoSporeCellAddAction(SporeCellTypeAddActionData data)
     {
+        if (SporeCellType != null)
+        {
+            if (!Editor.EditedSpecies.ModifiableCellTypes.Remove(data.SporeCell))
+                GD.PrintErr("Failed to delete the spore cell type from species");
+
+            SporeCellType = null;
+        }
+
         OnCellTypeAdded(data.SporeCell);
 
         SporeCellType = data.SporeCell;
@@ -139,7 +149,7 @@ public partial class CellBodyPlanEditorComponent
     private void UndoSporeCellAddAction(SporeCellTypeAddActionData data)
     {
         if (!Editor.EditedSpecies.ModifiableCellTypes.Remove(data.SporeCell))
-            GD.PrintErr("Failed to delete cell type from species");
+            GD.PrintErr("Failed to delete the spore cell type from species");
 
         UpdateCellTypeSelections();
 
@@ -171,8 +181,6 @@ public partial class CellBodyPlanEditorComponent
         UpdateCellTypeSelections();
 
         UpdateCellTypesSecondaryInfo();
-
-        OnCellToPlaceSelected(added.CellTypeName);
 
         Editor.DirtyMutationPointsCache();
     }

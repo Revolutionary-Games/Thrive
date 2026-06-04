@@ -531,12 +531,6 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 
             if (cellType == ModifiableSporeCellType)
                 result.ModifiableSporeCellType = clonedType;
-            if (ModifiableSporeCellType != null)
-            {
-                var clonedSpore = (CellType)ModifiableSporeCellType.Clone();
-                result.ModifiableSporeCellType = clonedSpore;
-                typeMapping[result.ModifiableSporeCellType] = clonedSpore;
-            }
         }
 
         foreach (var cellTemplate in ModifiableGameplayCells)

@@ -7,6 +7,8 @@ using Godot;
 /// </summary>
 public partial class CellTypePickerPopup : CustomWindow
 {
+    private Action<string>? onChosenCellTypeCallback;
+
 #pragma warning disable CA2213
     [Export]
     private Control cellTypeList = null!;
@@ -15,11 +17,10 @@ public partial class CellTypePickerPopup : CustomWindow
     private PackedScene cellTypeButton = null!;
 #pragma warning restore CA2213
 
-    [Signal]
-    public delegate void OnCellTypePickedEventHandler(string name);
-
-    public void UpdateCellTypeList(List<CellType> types)
+    public void UpdateCellTypeList(List<CellType> types, Action<string> onChosenCellType)
     {
+        onChosenCellTypeCallback = onChosenCellType;
+
         cellTypeList.QueueFreeChildren();
 
         var buttonGroup = new ButtonGroup();
@@ -44,7 +45,7 @@ public partial class CellTypePickerPopup : CustomWindow
 
     private void OnCellTypeButtonClicked(string name)
     {
-        EmitSignal(SignalName.OnCellTypePicked, name);
+        onChosenCellTypeCallback?.Invoke(name);
         Close();
     }
 }

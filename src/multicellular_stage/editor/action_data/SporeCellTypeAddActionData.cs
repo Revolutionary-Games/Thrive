@@ -33,8 +33,18 @@ public class SporeCellTypeAddActionData : EditorCombinableActionData<Multicellul
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        var instance =
-            new SporeCellTypeAddActionData(reader.ReadObject<CellType>(), reader.ReadBool());
+        if (version == 1)
+        {
+            _ = reader.ReadObject<CellType>();
+
+            var instanceOld = new SporeCellTypeAddActionData(reader.ReadObject<CellType>(), false);
+
+            instanceOld.ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
+
+            return instanceOld;
+        }
+
+        var instance = new SporeCellTypeAddActionData(reader.ReadObject<CellType>(), reader.ReadBool());
 
         instance.ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
 

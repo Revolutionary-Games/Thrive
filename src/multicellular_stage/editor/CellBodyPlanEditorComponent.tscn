@@ -970,8 +970,8 @@ ShowToggles = false
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Delete" to="." method="OnDeleteCellTypePressed"]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/Duplicate" to="." method="OnTypeDuplicateStartPressed"]
 [connection signal="item_selected" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/OptionButton" to="." method="OnReproductionMethodSelected"]
-[connection signal="OnClicked" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SporeOptions/CellTypePicker" to="." method="OnSporeEditSelected"]
-[connection signal="OnResetClicked" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SporeOptions/CellTypePicker" to="." method="OnSporeResetSelected"]
+[connection signal="OnClicked" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SporeOptions/CellTypePicker" to="." method="OnSporeEditClicked"]
+[connection signal="OnResetClicked" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SporeOptions/CellTypePicker" to="." method="OnSporeResetClicked"]
 [connection signal="OnGrowthOrderChanged" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer/GrowthOrderPicker" to="." method="OnGrowthOrderChanged"]
 [connection signal="OrderReset" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer/GrowthOrderPicker" to="." method="OnResetGrowthOrderPressed"]
 [connection signal="toggled" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer/Coordinates" to="." method="OnGrowthOrderCoordinatesToggled"]
@@ -993,6 +993,5 @@ ShowToggles = false
 [connection signal="DeletePressed" from="CellPopupMenu" to="." method="OnDeletePressed"]
 [connection signal="ModifyPressed" from="CellPopupMenu" to="." method="OnModifyPressed"]
 [connection signal="MovePressed" from="CellPopupMenu" to="." method="OnMovePressed"]
-[connection signal="OnCellTypePicked" from="CellTypePickerPopup" to="." method="OnBaseCellTypeForSporeSelected"]
 
 [editable path="RightPanel/VBoxContainer/OrganismStatisticsPanel"]
