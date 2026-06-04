@@ -7,11 +7,16 @@ using Xoshiro.PRNG32;
 /// </summary>
 public partial class GuidanceLine : MeshInstance3D
 {
+    [Export]
+    public float InterpolateSpeed = 0.3f;
+
     private readonly XoShiRo128plus random = new();
 
     private Vector3 lineStart;
 
     private Vector3 lineEnd;
+
+    private Vector3 lineEndTarget;
 
     private Color colour = Colors.White;
 
@@ -57,6 +62,20 @@ public partial class GuidanceLine : MeshInstance3D
 
             dirty = true;
             lineEnd = value;
+        }
+    }
+
+    [Export]
+    public Vector3 LineEndTarget
+    {
+        get => lineEndTarget;
+        set
+        {
+            if (lineEndTarget == value && lineEnd == value)
+                return;
+
+            dirty = true;
+            lineEndTarget = value;
         }
     }
 
@@ -114,6 +133,8 @@ public partial class GuidanceLine : MeshInstance3D
 
         dirty = false;
         mesh.ClearSurfaces();
+
+        LineEnd = LineEnd.Lerp(LineEndTarget, InterpolateSpeed);
 
         // If there is no line to be drawn, don't draw one
         if (lineStart.IsEqualApprox(lineEnd))
