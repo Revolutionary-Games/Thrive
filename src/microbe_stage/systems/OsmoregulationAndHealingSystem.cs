@@ -25,6 +25,7 @@ using Godot;
 [ReadsComponent(typeof(MicrobeColony))]
 [ReadsComponent(typeof(MicrobeColonyMember))]
 [ReadsComponent(typeof(MicrobeEnvironmentalEffects))]
+[ReadsComponent(typeof(MicrobeEventCallbacks))]
 [RunsAfter(typeof(PilusDamageSystem))]
 [RunsAfter(typeof(DamageOnTouchSystem))]
 [RunsAfter(typeof(ToxinCollisionSystem))]

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-13 11:47+0200\n"
+"POT-Creation-Date: 2026-06-03 12:08+0300\n"
 "PO-Revision-Date: 2025-09-24 02:53+0000\n"
 "Last-Translator: Emanuel Gossain <thisisfor33@gmail.com>\n"
 "Language-Team: Croatian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hr/>\n"
@@ -108,9 +108,6 @@ msgstr "Napreduj"
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Prikaži dodatne postavke"
 
-msgid "AEROBIC_NITROGEN_FIXATION"
-msgstr "Aerobna fiksacija dušika"
-
 msgid "AEROBIC_RESPIRATION"
 msgstr "Aerobna fiksacija dušika"
 
@@ -172,6 +169,13 @@ msgid "ALREADY_ASCENDED"
 msgstr "Već si uzvišen"
 
 msgid "ALT"
+msgstr ""
+
+#, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr "Kreni u fazu buđenja. Moguće kada imaš dovoljno moždane snage (vrsta tkiva s aksionima)"
+
+msgid "ALTERNATVE_TIMESCALE"
 msgstr ""
 
 msgid "ALWAYS_VISIBLE"
@@ -1731,6 +1735,12 @@ msgstr ""
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
 
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr ""
+
+msgid "DISPLAY_DRIVER_METAL"
+msgstr ""
+
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr ""
 
@@ -1766,10 +1776,6 @@ msgstr ""
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
-
-#, fuzzy
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "Kreni u fazu buđenja. Moguće kada imaš dovoljno moždane snage (vrsta tkiva s aksionima)"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr ""
@@ -1875,6 +1881,24 @@ msgstr ""
 
 #, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
+msgstr ""
+"Ovo je uređivač stanica u kojem možete razvijati svoju vrstu trošeći bodove mutacije (MP). U svakoj generaciji uvijek ćete imati 100 MP za potrošiti, stoga nemojte štedjeti!\n"
+"\n"
+"Šesterokutna ćelija u središtu vašeg zaslona je vaša stanica, koja se sastoji od jednog dijela citoplazme.\n"
+"\n"
+"Za nastavak, odaberite novi dio s lijeve ploče. Zatim, lijevom tipkom miša kliknite pokraj postojeće ćelije da biste ga postavili. Možete rotirati dijelove pomoću [thrive:input]e_rotate_left[/thrive:input] i [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
+msgstr ""
+"Ovo je uređivač stanica u kojem možete razvijati svoju vrstu trošeći bodove mutacije (MP). U svakoj generaciji uvijek ćete imati 100 MP za potrošiti, stoga nemojte štedjeti!\n"
+"\n"
+"Šesterokutna ćelija u središtu vašeg zaslona je vaša stanica, koja se sastoji od jednog dijela citoplazme.\n"
+"\n"
+"Za nastavak, odaberite novi dio s lijeve ploče. Zatim, lijevom tipkom miša kliknite pokraj postojeće ćelije da biste ga postavili. Možete rotirati dijelove pomoću [thrive:input]e_rotate_left[/thrive:input] i [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
 msgstr ""
 "Ovo je uređivač stanica u kojem možete razvijati svoju vrstu trošeći bodove mutacije (MP). U svakoj generaciji uvijek ćete imati 100 MP za potrošiti, stoga nemojte štedjeti!\n"
 "\n"
@@ -3477,6 +3501,17 @@ msgstr ""
 msgid "MARINE_SNOW"
 msgstr ""
 
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr ""
+"Agresivni mikrobi će loviti plijen na većim udaljenostima\n"
+"i veća je šansa da će se braniti kada su napadnuti.\n"
+"Mirni mikrobi neće se baviti s drugima na većim udaljenostima\n"
+"i manja je šansa da će koristiti toksine protiv predatora."
+
 msgid "MASTER_VOLUME"
 msgstr ""
 
@@ -4262,6 +4297,22 @@ msgstr "Višestanični uređivač"
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "Višestanični stadij"
 
+#, fuzzy
+msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
+msgstr ""
+"[b]Stadij[/b]\n"
+"  Mikrob\n"
+"[b]Tip membrane[/b]\n"
+"  {0}\n"
+"[b]Krutost membrane[/b]\n"
+"  {1}\n"
+"[b]Osnovna brzina[/b]\n"
+"  {2}\n"
+"[b]Osnovna brzina rotacije[/b]\n"
+"  {3}\n"
+"[b]Osnova veličina, u ćelijama[/b]\n"
+"  {4}"
+
 msgid "MULTICELLULAR_STAGE"
 msgstr "Višestanični stadij"
 
@@ -4329,6 +4380,9 @@ msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 
 msgid "NEW"
+msgstr ""
+
+msgid "NEWER"
 msgstr ""
 
 msgid "NEWER_VERSION_LOADING_WARNING"
@@ -4527,6 +4581,9 @@ msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr ""
 
 msgid "OK"
+msgstr ""
+
+msgid "OLDER"
 msgstr ""
 
 msgid "OLDER_VERSION_LOADING_WARNING"
@@ -4807,6 +4864,9 @@ msgstr ""
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
+msgid "PATCH_NOTES_RECENT_BOUNDARY"
+msgstr ""
+
 msgid "PATCH_NOTES_TITLE"
 msgstr ""
 
@@ -5016,6 +5076,10 @@ msgid "PRESSURE_SHORT"
 msgstr ""
 
 #, fuzzy
+msgid "PRESSURE_TOLERANCE"
+msgstr "Kreni u fazu buđenja. Moguće kada imaš dovoljno moždane snage (vrsta tkiva s aksionima)"
+
+#, fuzzy
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "Kreni u fazu buđenja. Moguće kada imaš dovoljno moždane snage (vrsta tkiva s aksionima)"
 
@@ -5064,9 +5128,6 @@ msgid "PROJECT_MANAGEMENT_TEAM"
 msgstr ""
 
 msgid "PROTEINS"
-msgstr ""
-
-msgid "PROTOPLASM"
 msgstr ""
 
 msgid "PULL_REQUESTS_PROGRAMMING"
@@ -5187,6 +5248,14 @@ msgstr ""
 
 #, fuzzy
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
+msgstr ""
+"Agresivni mikrobi će loviti plijen na većim udaljenostima\n"
+"i veća je šansa da će se braniti kada su napadnuti.\n"
+"Mirni mikrobi neće se baviti s drugima na većim udaljenostima\n"
+"i manja je šansa da će koristiti toksine protiv predatora."
+
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
 msgstr ""
 "Agresivni mikrobi će loviti plijen na većim udaljenostima\n"
 "i veća je šansa da će se braniti kada su napadnuti.\n"
@@ -5336,6 +5405,14 @@ msgstr ""
 
 msgid "ROTATION_COLON"
 msgstr ""
+
+#, fuzzy
+msgid "ROTATION_FORCE"
+msgstr ""
+"Agresivni mikrobi će loviti plijen na većim udaljenostima\n"
+"i veća je šansa da će se braniti kada su napadnuti.\n"
+"Mirni mikrobi neće se baviti s drugima na većim udaljenostima\n"
+"i manja je šansa da će koristiti toksine protiv predatora."
 
 msgid "RUNOFF_EVENT"
 msgstr ""
@@ -5819,11 +5896,12 @@ msgstr ""
 msgid "SPECIES_WITH_POPULATION"
 msgstr ""
 
-msgid "SPEED"
-msgstr ""
-
 msgid "SPEED_COLON"
 msgstr ""
+
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "Kreni u fazu buđenja. Moguće kada imaš dovoljno moždane snage (vrsta tkiva s aksionima)"
 
 msgid "SPORE_CELL_TYPE"
 msgstr ""
@@ -6125,6 +6203,10 @@ msgid "TEMPERATURE_SHORT"
 msgstr ""
 
 #, fuzzy
+msgid "TEMPERATURE_TOLERANCE_RANGE"
+msgstr "Kreni u fazu buđenja. Moguće kada imaš dovoljno moždane snage (vrsta tkiva s aksionima)"
+
+#, fuzzy
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "Kreni u fazu buđenja. Moguće kada imaš dovoljno moždane snage (vrsta tkiva s aksionima)"
 
@@ -6271,6 +6353,9 @@ msgid "THRIVE_LICENSES"
 msgstr ""
 
 msgid "THRIVIN_ACHIEVEMENT"
+msgstr ""
+
+msgid "THRUST_FORCE"
 msgstr ""
 
 msgid "THYLAKOIDS"
@@ -6462,9 +6547,6 @@ msgid "TOOLS"
 msgstr ""
 
 msgid "TOOL_HAND_AXE"
-msgstr ""
-
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
 msgid "TOTAL_GATHERED_ENERGY_COLON"
@@ -7094,9 +7176,6 @@ msgstr ""
 msgid "VIEWER"
 msgstr ""
 
-msgid "VIEW_ALL"
-msgstr ""
-
 msgid "VIEW_CELL_PROCESSES"
 msgstr ""
 
@@ -7612,7 +7691,7 @@ msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr ""
 
 #, fuzzy
-msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+msgid "WIKI_GLYCOLYSIS_COMMA_NITROGEN_FIXATION"
 msgstr "Anaerobna fiksacija dušika"
 
 msgid "WIKI_HEADING_APPENDICES"
@@ -8429,9 +8508,6 @@ msgstr ""
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr ""
 
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr ""
-
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr ""
 
@@ -8500,30 +8576,6 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "Anaerobna fiksacija dušika"
-
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
 
 msgid "WIKI_PULLING_CILIA"
 msgstr ""
@@ -8994,6 +9046,9 @@ msgstr ""
 
 msgid "ZOOM_OUT"
 msgstr "Povećaj"
+
+#~ msgid "AEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Aerobna fiksacija dušika"
 
 #~ msgid "AEROBIC_NITROGEN_FIXING"
 #~ msgstr "Aerobna fiksacija dušika"

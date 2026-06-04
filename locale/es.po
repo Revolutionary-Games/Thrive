@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-13 11:47+0200\n"
-"PO-Revision-Date: 2026-05-13 03:55+0000\n"
-"Last-Translator: Levi Monjeau <iamaoenguin@gmail.com>\n"
+"POT-Creation-Date: 2026-06-03 12:08+0300\n"
+"PO-Revision-Date: 2026-05-22 15:37+0000\n"
+"Last-Translator: Jeremias <lejereagui@hotmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -108,9 +108,6 @@ msgstr "Avanzado"
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Abre las opciones avanzadas"
 
-msgid "AEROBIC_NITROGEN_FIXATION"
-msgstr "Fijación de nitrógeno anaeróbica"
-
 msgid "AEROBIC_RESPIRATION"
 msgstr "Respiración Aeróbica"
 
@@ -173,6 +170,14 @@ msgstr "Ya has ascendido"
 
 msgid "ALT"
 msgstr "Alt"
+
+#, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr "Hilos actuales:"
+
+#, fuzzy
+msgid "ALTERNATVE_TIMESCALE"
+msgstr ". La eficiencia escala"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Siempre visible"
@@ -1833,6 +1838,14 @@ msgstr "Aplicar distorsión a los fondos Microbio"
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Mostrar particular de fondo"
 
+#, fuzzy
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr "OpenGL"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_METAL"
+msgstr "OpenGL"
+
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr "OpenGL"
 
@@ -1871,9 +1884,6 @@ msgstr "Doble click para ver en pantalla completa"
 #, fuzzy
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Una membrana con dos capas; tiene mejor protección y consume menos energía. Sin embargo, reduce un poco la velocidad del movimiento y absorbe recursos más lentamente."
-
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "Alternar gameplay entre velocidad normal y 2x de velocidad"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr "Arrastra para reordenar los elementos con el ratón"
@@ -1993,6 +2003,24 @@ msgstr ""
 
 #, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
+msgstr ""
+"Este es el editor celular, donde vas a poder evolucionar tu especie gastanto punto de mutación (PM). Cada generación tendrás siempre 100 PM para gastar así que no te molestes en guardarlos!\n"
+"\n"
+"El hexágono en el centro de tu pantalla es tu célula, la cual está compuesta por una única parte de citoplasma.\n"
+"\n"
+"Para continuar, selecciona una parte del panel de la izquierda. Luego apreta click izquierdo al lado del hexágono para ubicarla. Puedes rotar partes con [thrive:input]e_rotate_left[/thrive:input] and [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
+msgstr ""
+"Este es el editor celular, donde vas a poder evolucionar tu especie gastanto punto de mutación (PM). Cada generación tendrás siempre 100 PM para gastar así que no te molestes en guardarlos!\n"
+"\n"
+"El hexágono en el centro de tu pantalla es tu célula, la cual está compuesta por una única parte de citoplasma.\n"
+"\n"
+"Para continuar, selecciona una parte del panel de la izquierda. Luego apreta click izquierdo al lado del hexágono para ubicarla. Puedes rotar partes con [thrive:input]e_rotate_left[/thrive:input] and [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
 msgstr ""
 "Este es el editor celular, donde vas a poder evolucionar tu especie gastanto punto de mutación (PM). Cada generación tendrás siempre 100 PM para gastar así que no te molestes en guardarlos!\n"
 "\n"
@@ -3640,6 +3668,13 @@ msgstr "Marzo"
 msgid "MARINE_SNOW"
 msgstr "Nieve marina"
 
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(recibe compuestos del ambiente de forma pasiva sin tener que realizar acciones)"
+
 msgid "MASTER_VOLUME"
 msgstr "Volumen general"
 
@@ -4467,6 +4502,22 @@ msgstr "Editor multicelular"
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "(ciertas características no estarán disponibles cuando llegues a ciertas etapas)"
 
+#, fuzzy
+msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
+msgstr ""
+"[b]Etapa[/b]\n"
+"  Microbio\n"
+"[b]Ype de Membrana[/b]\n"
+"  {0}\n"
+"[b]Rigidez de la Membrana[/b]\n"
+"  {1}\n"
+"[b]Velocidad[/b]\n"
+"  {2}\n"
+"[b]Rotación[/b]\n"
+"  {3}\n"
+"[b]Tamaño[/b]\n"
+"  {4}"
+
 msgid "MULTICELLULAR_STAGE"
 msgstr "Etapa multicelular"
 
@@ -4545,6 +4596,10 @@ msgstr ""
 
 msgid "NEW"
 msgstr "Nuevo"
+
+#, fuzzy
+msgid "NEWER"
+msgstr "Visualizador"
 
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -4768,6 +4823,10 @@ msgstr "Visitar la página web oficial de Revolutionary Games"
 
 msgid "OK"
 msgstr "OK"
+
+#, fuzzy
+msgid "OLDER"
+msgstr "Abrir carpeta"
 
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -5083,6 +5142,10 @@ msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr "La última vez que jugaste a Thrive fue {0}, desde entonces han habido {1} nuevos lanzamientos"
 
 #, fuzzy
+msgid "PATCH_NOTES_RECENT_BOUNDARY"
+msgstr "— {0}"
+
+#, fuzzy
 msgid "PATCH_NOTES_TITLE"
 msgstr "Título de la página"
 
@@ -5320,6 +5383,10 @@ msgid "PRESSURE_SHORT"
 msgstr "Pres."
 
 #, fuzzy
+msgid "PRESSURE_TOLERANCE"
+msgstr "Volver al menú principal"
+
+#, fuzzy
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "Volver al menú principal"
 
@@ -5370,9 +5437,6 @@ msgstr "Equipo de gestión de proyectos"
 
 msgid "PROTEINS"
 msgstr "Proteínas"
-
-msgid "PROTOPLASM"
-msgstr "Protoplasma"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requests / programación"
@@ -5498,6 +5562,10 @@ msgstr "(recibe compuestos del ambiente de forma pasiva sin tener que realizar a
 #, fuzzy
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 msgstr "Reproducción:"
+
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "Gemación"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproducción:"
@@ -5647,6 +5715,10 @@ msgid "ROTATE_RIGHT"
 msgstr "Girar a la derecha"
 
 msgid "ROTATION_COLON"
+msgstr "Rotación:"
+
+#, fuzzy
+msgid "ROTATION_FORCE"
 msgstr "Rotación:"
 
 msgid "RUNOFF_EVENT"
@@ -6192,11 +6264,12 @@ msgstr "Especies:"
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} con población: {1}"
 
-msgid "SPEED"
-msgstr "Velocidad"
-
 msgid "SPEED_COLON"
 msgstr "Velocidad:"
+
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "Alternar gameplay entre velocidad normal y 2x de velocidad"
 
 #, fuzzy
 msgid "SPORE_CELL_TYPE"
@@ -6526,6 +6599,10 @@ msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
 #, fuzzy
+msgid "TEMPERATURE_TOLERANCE_RANGE"
+msgstr "Visita nuestro Patreon"
+
+#, fuzzy
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "Visita nuestro Patreon"
 
@@ -6676,6 +6753,9 @@ msgstr "Licencias de Thrive"
 #, fuzzy
 msgid "THRIVIN_ACHIEVEMENT"
 msgstr "Movimiento Base"
+
+msgid "THRUST_FORCE"
+msgstr ""
 
 msgid "THYLAKOIDS"
 msgstr "Tilacoides"
@@ -6860,9 +6940,6 @@ msgstr "Herramientas"
 #, fuzzy
 msgid "TOOL_HAND_AXE"
 msgstr "Hacha de mano"
-
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
-msgstr "No se muestran todas las versiones recientes ya que son demasiadas"
 
 #, fuzzy
 msgid "TOTAL_GATHERED_ENERGY_COLON"
@@ -7639,10 +7716,6 @@ msgid "VIEWER"
 msgstr "Visualizador"
 
 #, fuzzy
-msgid "VIEW_ALL"
-msgstr "Deshabilitar todo"
-
-#, fuzzy
 msgid "VIEW_CELL_PROCESSES"
 msgstr "Aumenta la velocidad de rotación de células grandes."
 
@@ -8275,7 +8348,7 @@ msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr "Sin mejoras."
 
 #, fuzzy
-msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+msgid "WIKI_GLYCOLYSIS_COMMA_NITROGEN_FIXATION"
 msgstr "Fijación de Nitrógeno Anaeróbica"
 
 #, fuzzy
@@ -8907,6 +8980,7 @@ msgstr "nuestro Wiki"
 msgid "WIKI_NONE_COMMA_THIS_IS_THE_LAST_STAGE"
 msgstr "Ninguno/a, esta es la última etapa"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_EFFECTS"
 msgstr ""
 "Una vez que una célula evoluciona un [b]Núcleo[/b], gana la habilidad de evolucionar muchas otras [b]organelas[/b] que previamente estaban bloqueadas.\n"
@@ -9126,10 +9200,6 @@ msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr "Pilus Perforador"
 
 #, fuzzy
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "Protoplasma"
-
-#, fuzzy
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "Protoplasma"
 
@@ -9221,33 +9291,6 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "Respiración Aeróbica"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "Protoplasma"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr "Protoplasma"
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr "Sin Modificaciones."
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr "Convierte [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]."
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr "El jugador no puede evolucionar [b]Protoplasma[/b]. Las especies no jugables pueden hacerlo sin restricciones."
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr "Sin mejoras."
 
 #, fuzzy
 msgid "WIKI_PULLING_CILIA"
@@ -9566,6 +9609,7 @@ msgstr "La vacuola de toxinas es una vacuola modificada específicamente para la
 msgid "WIKI_TOXIN_VACUOLE_UPGRADES"
 msgstr "La vacuola de toxinas es una vacuola modificada específicamente para la producción, secreción y almacenamiento de toxinas. Más vacuolas de toxinas incrementan la velocidad a la que se pueden disparar las toxinas."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_EFFECTS"
 msgstr "Sin efectos."
 
@@ -9791,6 +9835,47 @@ msgstr "Hacer zoom"
 
 msgid "ZOOM_OUT"
 msgstr "Alejar el zoom"
+
+#~ msgid "PROTOPLASM"
+#~ msgstr "Protoplasma"
+
+#, fuzzy
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "Protoplasma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "Protoplasma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr "Protoplasma"
+
+#~ msgid "WIKI_PROTOPLASM_MODIFICATIONS"
+#~ msgstr "Sin Modificaciones."
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr "Convierte [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#~ msgid "WIKI_PROTOPLASM_REQUIREMENTS"
+#~ msgstr "El jugador no puede evolucionar [b]Protoplasma[/b]. Las especies no jugables pueden hacerlo sin restricciones."
+
+#~ msgid "WIKI_PROTOPLASM_UPGRADES"
+#~ msgstr "Sin mejoras."
+
+#~ msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+#~ msgstr "No se muestran todas las versiones recientes ya que son demasiadas"
+
+#, fuzzy
+#~ msgid "VIEW_ALL"
+#~ msgstr "Deshabilitar todo"
+
+#~ msgid "SPEED"
+#~ msgstr "Velocidad"
+
+#~ msgid "AEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Fijación de nitrógeno anaeróbica"
 
 #~ msgid "AEROBIC_NITROGEN_FIXING"
 #~ msgstr "Fijación de Nitrógeno Aeróbica"
@@ -10453,9 +10538,6 @@ msgstr "Alejar el zoom"
 
 #~ msgid "INTENSITY_OF"
 #~ msgstr "la intensidad de"
-
-#~ msgid "DOT_RATE_SCALES"
-#~ msgstr ". La eficiencia escala"
 
 #~ msgid "OXYGEN_DOT"
 #~ msgstr "Oxígeno."

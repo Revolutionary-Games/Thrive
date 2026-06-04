@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-13 11:47+0200\n"
-"PO-Revision-Date: 2026-05-12 14:09+0300\n"
+"POT-Creation-Date: 2026-06-03 12:08+0300\n"
+"PO-Revision-Date: 2026-06-03 11:14+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -108,9 +108,6 @@ msgstr "Advanced"
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Open the advanced setup view"
 
-msgid "AEROBIC_NITROGEN_FIXATION"
-msgstr "Aerobic Nitrogen Fixation"
-
 msgid "AEROBIC_RESPIRATION"
 msgstr "Aerobic Respiration"
 
@@ -173,6 +170,15 @@ msgstr "You are already ascended"
 
 msgid "ALT"
 msgstr "Alt"
+
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr ""
+"Changes the alternate speed of the simulation.\n"
+"This speed can be used by pressing the button on the HUD that matches this value.\n"
+"Higher values may require a very fast CPU to run."
+
+msgid "ALTERNATVE_TIMESCALE"
+msgstr "Alternative timescale"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Always visible"
@@ -1806,6 +1812,12 @@ msgstr "Apply distortion to microbe backgrounds"
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Display background particles"
 
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr "DirectX"
+
+msgid "DISPLAY_DRIVER_METAL"
+msgstr "Metal"
+
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr "OpenGL"
 
@@ -1841,9 +1853,6 @@ msgstr "Double click to view in fullscreen"
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "A membrane with two layers, it is more resistant to damage, especially toxins. However, it slows the cell down some and lowers the rate at which it can absorb resources."
-
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "Toggle between normal speed and double speed gameplay"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr "Drag this to reorder items with the mouse"
@@ -1971,6 +1980,26 @@ msgstr ""
 "Try placing a [b]nucleus[/b] to close this tutorial.\n"
 "\n"
 "If your cell is not ready for the nucleus yet, you can use the [b]undo button[/b] to [u]revert[/u] the nucleus."
+
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
+msgstr ""
+"Cell specialization gives [b]bonuses[/b] to almost all aspects of a cell: process speed, and organelle effects such as storage.\n"
+"\n"
+"High [b]specialization[/b] makes for very effective cells.\n"
+"\n"
+"Specialization can be increased by only using a few organelle types, or even just one. \n"
+"\n"
+"Try placing an organelle you already have the most of to increase your specialization or another type to [i]lower[/i] the specialization to see what effect that has."
+
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
+msgstr ""
+"In multicellular, cell specialization still applies and gives the existing bonuses.\n"
+"\n"
+"However, the system is expanded to include cell adjacency bonuses. And the specialization display now shows an [u]average specialization[/u] across the whole body plan.\n"
+"\n"
+"When cells of the same type are placed next to each other they each gain [b]extra[/b] specialization.\n"
+"\n"
+"Try placing a cell next to one of the same type to see the green arrows indicating bonuses."
 
 msgid "EDIT_MICROBE_FIRST_TIME"
 msgstr "Edit your microbe for the first time"
@@ -3559,6 +3588,12 @@ msgstr "March"
 msgid "MARINE_SNOW"
 msgstr "Marine snow"
 
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr "Initial cell count"
+
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "Produces an offspring that starts with multiple cells."
+
 msgid "MASTER_VOLUME"
 msgstr "Master volume"
 
@@ -4291,6 +4326,17 @@ msgstr "Specialized cells in multicellular are the first step towards proper org
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "This panel shows the combined processes of your colony, summed across all of its cells. Note that unlike other compounds, ATP isn't shared between cells."
 
+msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
+msgstr ""
+"[b]Stage[/b]\n"
+"  Multicellular\n"
+"[b]Cell Count[/b]\n"
+"  {0}\n"
+"[b]Cell Types[/b]\n"
+"  {1}\n"
+"[b]Reproduction Type[/b]\n"
+"  {2}"
+
 msgid "MULTICELLULAR_STAGE"
 msgstr "Multicellular Stage"
 
@@ -4367,6 +4413,9 @@ msgstr ""
 
 msgid "NEW"
 msgstr "New"
+
+msgid "NEWER"
+msgstr "Newer"
 
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -4566,6 +4615,9 @@ msgstr "Visit the official Revolutionary Games website"
 
 msgid "OK"
 msgstr "OK"
+
+msgid "OLDER"
+msgstr "Older"
 
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -4842,6 +4894,9 @@ msgstr "You last played Thrive {0}, since then there has been one new release"
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr "You last played Thrive {0}, since then there have been {1} new releases"
 
+msgid "PATCH_NOTES_RECENT_BOUNDARY"
+msgstr "You've seen all recent versions."
+
 msgid "PATCH_NOTES_TITLE"
 msgstr "Patch Notes"
 
@@ -5050,6 +5105,9 @@ msgstr "Pressure"
 msgid "PRESSURE_SHORT"
 msgstr "Press."
 
+msgid "PRESSURE_TOLERANCE"
+msgstr "Pressure Tolerance"
+
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "The pressure preferred by your species. Configured as a min and max values as separate sliders. When in conditions outside the range, there will be many negative effects on your species. Change the range size by unchecking the checkbox below the sliders."
 
@@ -5094,9 +5152,6 @@ msgstr "Project Management Team"
 
 msgid "PROTEINS"
 msgstr "Proteins"
-
-msgid "PROTOPLASM"
-msgstr "Protoplasm"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requests / Programming"
@@ -5215,6 +5270,9 @@ msgstr ""
 "Keep all is the selfish option of keeping all stored compounds as-is.\n"
 "Always top up fills any compounds up to the amount the cell spawns initially with.\n"
 "Top up on patch change tops up to initial compounds but only if patch was changed."
+
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "Mass Budding"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproduction:"
@@ -5349,6 +5407,9 @@ msgstr "Rotate right"
 
 msgid "ROTATION_COLON"
 msgstr "Rotation:"
+
+msgid "ROTATION_FORCE"
+msgstr "Rotation Force"
 
 msgid "RUNOFF_EVENT"
 msgstr "Runoff event"
@@ -5855,11 +5916,11 @@ msgstr "Species to Find:"
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} with population: {1}"
 
-msgid "SPEED"
-msgstr "Speed"
-
 msgid "SPEED_COLON"
 msgstr "Speed:"
+
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "Toggle between normal speed and alternative speed gameplay"
 
 msgid "SPORE_CELL_TYPE"
 msgstr "Spore cell type"
@@ -6150,6 +6211,9 @@ msgstr "Temperature"
 msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
+msgid "TEMPERATURE_TOLERANCE_RANGE"
+msgstr "Temperature Tolerance Range"
+
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "The temperature preferred by your species. When in conditions outside the flexibility range around the ideal temperature, there will be negative effects that make it harder to survive. Adapt using the sliders to the patches you plan to play in."
 
@@ -6286,6 +6350,9 @@ msgstr "Thrive Licenses"
 
 msgid "THRIVIN_ACHIEVEMENT"
 msgstr "Thrivin'"
+
+msgid "THRUST_FORCE"
+msgstr "Thrust"
 
 msgid "THYLAKOIDS"
 msgstr "Thylakoids"
@@ -6447,9 +6514,6 @@ msgstr "Tools"
 
 msgid "TOOL_HAND_AXE"
 msgstr "Hand Axe"
-
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
-msgstr "Not showing all recent versions as there are too many"
 
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "Gathered Energy:"
@@ -7159,9 +7223,6 @@ msgstr "{0} MiB"
 msgid "VIEWER"
 msgstr "Viewer"
 
-msgid "VIEW_ALL"
-msgstr "View All"
-
 msgid "VIEW_CELL_PROCESSES"
 msgstr "View Organism Processes"
 
@@ -7340,7 +7401,9 @@ msgid "WIKI_AXON_EFFECTS"
 msgstr ""
 "For each cell in a multicellular organism that contains an [b]Axon[/b], that organism's brain power increases proportionally to the volume of that cell. Cells with [b]Axons[/b] are classified as having brain tissue type.\n"
 "\n"
-"When brain power exceeds [b]+0.5[/b], the player enters the Aware Stage. When brain power exceeds [b]+5.0[/b], the player enters the Awakening Stage."
+"When brain power exceeds [b]+0.5[/b], the player enters the Aware Stage. When brain power exceeds [b]+5.0[/b], the player enters the Awakening Stage.\n"
+"\n"
+"Decreases [thrive:compound type=\"sunlight\"][/thrive:compound] [b]Resistance[/b] by 10%."
 
 msgid "WIKI_AXON_INTRO"
 msgstr "Nerve fibres between neurons, available from the [color=#3796e1][url=thriveopedia:macroscopic_stage]Macroscopic Stage[/url][/color]. Required to increase an organism's brain power and progress to future stages."
@@ -7370,7 +7433,9 @@ msgid "WIKI_BINDING_AGENT_EFFECTS"
 msgstr ""
 "Cells with [b]Binding Agents[/b] (or colonies containing cells with [b]Binding Agents[/b]) may enter binding mode. While in binding mode, each cell consumes an extra [b]+2[/b] [thrive:compound type=\"atp\"][/thrive:compound]. Binding mode deactivates on contact with a cell of the same species, joining the cells into a colony. Binding mode can also be deactivated manually.\n"
 "\n"
-"Cells in a colony share resources, dividing them equally between all cells. Colonies also benefit from reduced osmoregulation cost – each cell's osmoregulation cost reduces at a rate inversely proportional to the total number of colony members."
+"Cells in a colony share resources, dividing them equally between all cells. Colonies also benefit from reduced osmoregulation cost – each cell's osmoregulation cost reduces at a rate inversely proportional to the total number of colony members.\n"
+"\n"
+"Additionally cells in a colony share their received toxin load, meaning that damage is distributed across all members, making each one much harder to kill with toxin damage."
 
 msgid "WIKI_BINDING_AGENT_INTRO"
 msgstr ""
@@ -7410,10 +7475,10 @@ msgid "WIKI_BINDING_AGENT_UPGRADES"
 msgstr "No upgrades."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_EFFECTS"
-msgstr "Cells with [b]Bioluminescent Vacuoles[/b] have their Oxygen Tolerance increased."
+msgstr "Increases [thrive:compound type=\"oxygen\"][/thrive:compound] [b]Resistance[/b] by 15%."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_INTRO"
-msgstr "Creates [thrive:compound type=\"sunlight\"][/thrive:compound] and increases Oxygen Tolerance of a cell that has it."
+msgstr "Creates [thrive:compound type=\"sunlight\"][/thrive:compound] and increases [thrive:compound type=\"oxygen\"][/thrive:compound] of a cell that has it."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_MODIFICATIONS"
 msgstr "No modifications."
@@ -7552,7 +7617,7 @@ msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_UPGRADES"
 msgstr "No upgrades."
 
 msgid "WIKI_CHLOROPLAST_EFFECTS"
-msgstr "No effects."
+msgstr "Increases [thrive:compound type=\"sunlight\"][/thrive:compound] [b]Resistance[/b] by 8% and increases [thrive:compound type=\"oxygen\"][/thrive:compound] [b]Resistance[/b] by 3.5%."
 
 msgid "WIKI_CHLOROPLAST_INTRO"
 msgstr ""
@@ -7987,8 +8052,8 @@ msgstr ""
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr "No upgrades."
 
-msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
-msgstr "Glycolysis, Anaerobic Nitrogen Fixation"
+msgid "WIKI_GLYCOLYSIS_COMMA_NITROGEN_FIXATION"
+msgstr "Glycolysis, Nitrogen Fixation"
 
 msgid "WIKI_HEADING_APPENDICES"
 msgstr "Appendices"
@@ -8272,7 +8337,7 @@ msgstr ""
 "If you survive for twenty-five generations with 300 population and have placed 10 cells in multicellular, you are considered to have \"won\" the current game. You can still continue playing as you wish."
 
 msgid "WIKI_HYDROGENASE_EFFECTS"
-msgstr "No effects."
+msgstr "Decreases [thrive:compound type=\"oxygen\"][/thrive:compound] [b] Resistance[/b] by 4%."
 
 msgid "WIKI_HYDROGENASE_INTRO"
 msgstr "[b]Hydrogenase[/b] perform [b]Clostridial Fermentation[/b], a form of [b]Anaerobic Respiration[/b]. It is the conversion of [thrive:compound type=\"glucose\"][/thrive:compound] into [thrive:compound type=\"atp\"][/thrive:compound]. It is the first glucose-processing part the player has, and currently serves as the only anaerobic glucose-burning part."
@@ -8311,7 +8376,7 @@ msgid "WIKI_HYDROGENASE_UPGRADES"
 msgstr "No upgrades."
 
 msgid "WIKI_HYDROGENOSOME_EFFECTS"
-msgstr "No effects."
+msgstr "Decreases [thrive:compound type=\"oxygen\"][/thrive:compound] [b] Resistance[/b] by 7%."
 
 msgid "WIKI_HYDROGENOSOME_INTRO"
 msgstr "A [i]work horse of the cell[/i] found in many species. [b]Hydrogenosomes[/b] perform [b]Clostridial Fermentation[/b], a form of [b]Anaerobic Respiration[/b]. It is the conversion of [thrive:compound type=\"glucose\"][/thrive:compound] into [thrive:compound type=\"atp\"][/thrive:compound]. It is a membrane-bound equivalent of [b]Hydrogenase[/b], and currently serves as the only anaerobic glucose-burning [i]eukaryotic[/i] part."
@@ -8469,7 +8534,7 @@ msgstr ""
 "The below pages explain various mechanics. Feel free to browse the pages for tips and help with the game."
 
 msgid "WIKI_MELANOSOME_EFFECTS"
-msgstr "No effects."
+msgstr "Increases [thrive:compound type=\"sunlight\"][/thrive:compound] [b] Resistance[/b] by 2%."
 
 msgid "WIKI_MELANOSOME_INTRO"
 msgstr "[b]Melanosomes[/b] are [color=#3796e1][url=thriveopedia:OrganellesRoot]organelles[/url][/color] that perform [b]Radiosynthesis[/b], which captures energy from radiation by absorbing it using melanin."
@@ -8499,7 +8564,7 @@ msgid "WIKI_MELANOSOME_UPGRADES"
 msgstr "No upgrades."
 
 msgid "WIKI_METABOLOSOMES_EFFECTS"
-msgstr "No effects."
+msgstr "Increases [thrive:compound type=\"oxygen\"][/thrive:compound] [b] Resistance[/b] by 3.5%."
 
 msgid "WIKI_METABOLOSOMES_INTRO"
 msgstr "[b]Metabolosomes[/b] perform [b]Protein Respiration[/b], a form of [b]Aerobic Respiration[/b] inferior to that of [b][color=#3796e1][url=thriveopedia:mitochondrion]Mitochondria[/url][/color][/b]. It is the conversion of [thrive:compound type=\"glucose\"][/thrive:compound] into [thrive:compound type=\"atp\"][/thrive:compound] with the use of [thrive:compound type=\"oxygen\"][/thrive:compound]."
@@ -8671,7 +8736,7 @@ msgstr ""
 "The Microbe Stage is the first stage of the game. The stage begins with the first species to exist in the world, fresh from the primordial origins of life exploring the nutrient-rich Pangonian Vents. It is here that the player assumes the role of a tiny prokaryotic blob of cytoplasm, one of a few individuals of their species. At this point, the player must rely entirely on finding loose [thrive:compound type=\"glucose\"][/thrive:compound] to survive as they do not yet possess ways to process other nutrients and seek out [thrive:compound type=\"phosphates\"][/thrive:compound] and [thrive:compound type=\"ammonia\"][/thrive:compound] to grow bigger in preparation for reproduction. Once the player has reached a sufficient size they will be capable of reproducing, which will bring the player to the microbe editor should they choose to do so. As the game continues, the player will steadily adapt their cell to better survive in a world that grows gradually harsher each generation, and compete with new species that have arisen from the player's own."
 
 msgid "WIKI_MITOCHONDRION_EFFECTS"
-msgstr "No effects."
+msgstr "Increases [thrive:compound type=\"oxygen\"][/thrive:compound] [b] Resistance[/b] by 8%."
 
 msgid "WIKI_MITOCHONDRION_INTRO"
 msgstr "The powerhouse of the cell. [b]Mitochondria[/b] perform [b]Aerobic Respiration[/b], or the conversion of [thrive:compound type=\"glucose\"][/thrive:compound] into [thrive:compound type=\"atp\"][/thrive:compound] with the use of [thrive:compound type=\"oxygen\"][/thrive:compound]. [b]Mitochondria[/b] perform this function more efficiently than other organelles such as [b][color=#3796e1][url=thriveopedia:metabolosome]Metabolosomes[/url][/color][/b]."
@@ -8777,7 +8842,7 @@ msgid "WIKI_NATION_EDITOR"
 msgstr "Nation Editor"
 
 msgid "WIKI_NITROGENASE_EFFECTS"
-msgstr "No effects."
+msgstr "Decreases [thrive:compound type=\"oxygen\"][/thrive:compound] [b] Resistance[/b] by 1%."
 
 msgid "WIKI_NITROGENASE_INTRO"
 msgstr ""
@@ -8790,7 +8855,7 @@ msgstr "No modifications."
 
 msgid "WIKI_NITROGENASE_PROCESSES"
 msgstr ""
-"[b]Anaerobic Nitrogen Fixation[/b]: [thrive:compound type=\"atp\"][/thrive:compound] + [thrive:compound type=\"nitrogen\"][/thrive:compound] → [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
+"[b]Nitrogen Fixation[/b]: [thrive:compound type=\"atp\"][/thrive:compound] + [thrive:compound type=\"nitrogen\"][/thrive:compound] → [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
 "\n"
 "Fixes atmospheric [thrive:compound type=\"nitrogen\"][/thrive:compound] into [thrive:compound type=\"ammonia\"][/thrive:compound] by expending energy. Rate scales with the amount of environmental [thrive:compound type=\"nitrogen\"][/thrive:compound]. Less efficient than the equivalent process in the [b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]Nitroplast[/url][/color][/b].\n"
 "\n"
@@ -8811,13 +8876,13 @@ msgid "WIKI_NITROGENASE_STRATEGY"
 msgstr ""
 "The [thrive:compound type=\"ammonia\"][/thrive:compound] produced by [b]Nitrogenase[/b] contributes towards stored resources for reproduction. Cells with [b]Nitrogenase[/b] therefore need only find [thrive:compound type=\"phosphates\"][/thrive:compound] from the environment to reproduce at a faster rate than the base rate (the base rate is zero if passive reproduction progress is disabled in options for the current game). A good strategy is seeking out [thrive:compound type=\"phosphates\"][/thrive:compound] chunks to engulf or stay close to.\n"
 "\n"
-"Since [b]Anaerobic Nitrogen Fixation[/b] consumes [thrive:compound type=\"atp\"][/thrive:compound], you should have excess [thrive:compound type=\"atp\"][/thrive:compound] available before adding this organelle to your cell. The small amount of [b]Glycolysis[/b] performed by [b]Nitrogenase[/b] is not enough to offset its own osmoregulation cost."
+"Since [b]Nitrogen Fixation[/b] consumes [thrive:compound type=\"atp\"][/thrive:compound], you should have excess [thrive:compound type=\"atp\"][/thrive:compound] available before adding this organelle to your cell. The small amount of [b]Glycolysis[/b] performed by [b]Nitrogenase[/b] is not enough to offset its own osmoregulation cost."
 
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "No upgrades."
 
 msgid "WIKI_NITROPLAST_EFFECTS"
-msgstr "No effects."
+msgstr "Decreases [thrive:compound type=\"oxygen\"][/thrive:compound] [b] Resistance[/b] by 2%."
 
 msgid "WIKI_NITROPLAST_INTRO"
 msgstr "The Nitroplast is a membrane-bound organelle used to produce [thrive:compound type=\"ammonia\"][/thrive:compound], one of the components of growth for cellular reproduction. Performs [b]Nitrogen Fixation[/b] to convert gaseous [thrive:compound type=\"nitrogen\"][/thrive:compound] and [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:compound type=\"ammonia\"][/thrive:compound]. More efficient than the prokaryotic [b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrogenase[/url][/color][/b]."
@@ -8863,6 +8928,8 @@ msgstr ""
 "\n"
 "Cells with a [b]Nucleus[/b] take [b]50%[/b] less damage from any source except [i]starvation[/i] (damage due to not having any [thrive:compound type=\"atp\"][/thrive:compound]).\n"
 "\n"
+"Cells with a nucleus gain double the effects from Cell Specialization.\n"
+"\n"
 "A cell can only have at most one [b]Nucleus[/b] and it cannot be removed after it evolves."
 
 msgid "WIKI_NUCLEUS_INTRO"
@@ -8892,7 +8959,7 @@ msgid "WIKI_NUCLEUS_STRATEGY"
 msgstr ""
 "Think very hard before adding a [b]Nucleus[/b] to your cell. They are expensive to maintain and slow your cell down considerably, so ensure you have a significant positive [thrive:compound type=\"atp\"][/thrive:compound] balance and can afford a more sedate lifestyle for a generation or two. We recommend adding [b][color=#3796e1][url=thriveopedia:cilia]Cilia[/url][/color][/b] and [b][color=#3796e1][url=thriveopedia:flagellum]Flagella[/url][/color][/b] in subsequent generations to recover some agility.\n"
 "\n"
-"The benefits though are obvious. [i]Eukaryotes[/i] (cells with a [b]Nucleus[/b]) gain access to more versatile future upgrades than prokaryotes (cells without one).\n"
+"The benefits though are obvious. [i]Eukaryotes[/i] (cells with a [b]Nucleus[/b]) gain access to more versatile future upgrades than prokaryotes (cells without one). The doubling of cell specialization effects also makes all process parts more powerful, especially if your species is more specialized.\n"
 "\n"
 "[b]Organelles[/b] unlocked by the [b]Nucleus[/b] offer powerful new abilities, such as the [b][color=#3796e1][url=thriveopedia:signalingAgent]Signaling Agent[/url][/color][/b] and [b][color=#3796e1][url=thriveopedia:bindingAgent]Binding Agent[/url][/color][/b], or significant upgrades to existing abilities, such as [b][color=#3796e1][url=thriveopedia:mitochondrion]Mitochondria[/url][/color][/b] and [b][color=#3796e1][url=thriveopedia:thermoplast]Thermoplasts[/url][/color][/b]. We recommend replacing [i]prokaryotic[/i] [b]organelles[/b] with their more efficient [i]eukaryotic[/i] counterparts after adding a [b]Nucleus[/b] to improve [thrive:compound type=\"atp\"][/thrive:compound] production and better sustain your cell."
 
@@ -8913,7 +8980,9 @@ msgid "WIKI_OXYTOXISOME_EFFECTS"
 msgstr ""
 "If a cell has at least one [b]Toxisome[/b] or [b][color=#3796e1][url=thriveopedia:oxytoxy]Toxin Vacuole[/url][/color][/b], it can shoot toxin projectiles, draining stored [thrive:compound type=\"oxytoxy\"][/thrive:compound] to do so. These projectiles damage cells of other species, but don't harm members of the species that fired them.\n"
 "\n"
-"Damage scales with the amount of [thrive:compound type=\"oxytoxy\"][/thrive:compound] fired."
+"Damage scales with the amount of [thrive:compound type=\"oxytoxy\"][/thrive:compound] fired.\n"
+"\n"
+"Increases [thrive:compound type=\"oxygen\"][/thrive:compound] [b] Resistance[/b] by 0.5%."
 
 msgid "WIKI_OXYTOXISOME_INTRO"
 msgstr "Modified [b][color=#3796e1][url=thriveopedia:metabolosome]Metabolosome[/url][/color][/b] which produces [thrive:compound type=\"oxytoxy\"][/thrive:compound], an agent that can be fired as a toxic projectile. Inferior version of the [b][color=#3796e1][url=thriveopedia:oxytoxy]Toxin Vacuole[/url][/color][/b]."
@@ -9066,9 +9135,6 @@ msgstr "Oxytoxisome"
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr "Perforator Pilus"
 
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "Protoplasm"
-
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "Reproduction"
 
@@ -9157,42 +9223,6 @@ msgstr ""
 
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "Protein Respiration"
-
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "No effects."
-
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr ""
-"Significantly enhanced version of [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytoplasm[/url][/color][/b] intended to buff storage for non-player species. Can't be added to player cells, but may be present in cells the player has fossilised from the environment.\n"
-"\n"
-"Visually matches [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytoplasm[/url][/color][/b] and inherits many of its traits."
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr "No modifications."
-
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr ""
-"[b]Glycolysis[/b]: [thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"Enhanced version of [b]Cytoplasm Glycolysis[/b] with different input/output rates."
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr "The player cannot evolve [b]Protoplasm[/b]. Non-player species can with no restrictions."
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-"In some places, [b]Protoplasm[/b] is another name for [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytoplasm[/url][/color][/b], though it can also refer to all contents of a cell, including the nucleus and surrounding structures.\n"
-"\n"
-"Read more on this organelle's [color=#3796e1][url=https://en.wikipedia.org/wiki/Protoplasm]Wikipedia page[/url][/color]."
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-"It's not possible to use [b]Protoplasm[/b] in regular games. The player can only use it if they play in freebuild mode with a non-player species they fossilised in a previous game and that happens to have evolved this organelle.\n"
-"\n"
-"When it does appear, [b]Protoplasm[/b] is strategically equivalent to [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytoplasm[/url][/color][/b] but with notably increased storage and slower [thrive:compound type=\"atp\"][/thrive:compound] production. Cells with [b]Protoplasm[/b] can generally survive much longer without finding compound clouds or consuming prey."
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr "No upgrades."
 
 msgid "WIKI_PULLING_CILIA"
 msgstr "Pulling Cilia"
@@ -9300,7 +9330,9 @@ msgid "WIKI_SLIME_JET_EFFECTS"
 msgstr ""
 "Enables a cell to expel [thrive:compound type=\"mucilage\"][/thrive:compound] to propel itself. Expelling [thrive:compound type=\"mucilage\"][/thrive:compound] provides a large amount of speed for a short time. The burst can be sustained for longer depending on the amount of available [thrive:compound type=\"mucilage\"][/thrive:compound].\n"
 "\n"
-"Any cell without [b]Slime Jets[/b] which enters the resulting patch of [thrive:compound type=\"mucilage\"][/thrive:compound] will be slowed down."
+"Any cell without [b]Slime Jets[/b] which enters the resulting patch of [thrive:compound type=\"mucilage\"][/thrive:compound] will be slowed down.\n"
+"\n"
+"Increases [thrive:compound type=\"sunlight\"][/thrive:compound] [b] Resistance[/b] by 1%."
 
 msgid "WIKI_SLIME_JET_INTRO"
 msgstr ""
@@ -9414,7 +9446,10 @@ msgid "WIKI_TECH_EDITOR_COMMA_NATION_EDITOR_COMMA_SQUAD_EDITOR"
 msgstr "Tech Editor, Nation Editor, Squad Editor"
 
 msgid "WIKI_THERMOPLAST_EFFECTS"
-msgstr "Enables [i]thermal vision[/i], which can be toggled on and off. This overlays the relative temperature of the water onto the screen, with hotter areas looking more red."
+msgstr ""
+"Enables [i]thermal vision[/i], which can be toggled on and off. This overlays the relative temperature of the water onto the screen, with hotter areas looking more red.\n"
+"\n"
+"Increases [thrive:compound type=\"temperature\"][/thrive:compound] [b]Tolerance Range[/b] by 5 degrees in both directions."
 
 msgid "WIKI_THERMOPLAST_INTRO"
 msgstr ""
@@ -9461,7 +9496,10 @@ msgid "WIKI_THERMOPLAST_UPGRADES"
 msgstr "No upgrades."
 
 msgid "WIKI_THERMOSYNTHASE_EFFECTS"
-msgstr "Enables [i]thermal vision[/i], which can be toggled on and off. This overlays the relative temperature of the water onto the screen, with hotter areas looking more red."
+msgstr ""
+"Enables [i]thermal vision[/i], which can be toggled on and off. This overlays the relative temperature of the water onto the screen, with hotter areas looking more red.\n"
+"\n"
+"Increases [thrive:compound type=\"temperature\"][/thrive:compound] [b]Tolerance Range[/b] by 2 degrees in both directions."
 
 msgid "WIKI_THERMOSYNTHASE_INTRO"
 msgstr ""
@@ -9528,7 +9566,7 @@ msgid "WIKI_THE_PATCH_MAP_THE_PATCH_MAP"
 msgstr "The [b]Patch Map[/b] is a representation of your planet. It is comprised of [b]Patches[/b] and [b]Regions[/b] (explained below). Each region contains multiple connected (or adjacent) patches and is connected to other regions."
 
 msgid "WIKI_THYLAKOIDS_EFFECTS"
-msgstr "No special effects."
+msgstr "Increases [thrive:compound type=\"sunlight\"][/thrive:compound] by 3% and increases [thrive:compound type=\"oxygen\"][/thrive:compound] by 1.5%."
 
 msgid "WIKI_THYLAKOIDS_INTRO"
 msgstr ""
@@ -9576,7 +9614,9 @@ msgid "WIKI_TOXIN_VACUOLE_EFFECTS"
 msgstr ""
 "If a cell has at least one [b][color=#3796e1][url=thriveopedia:oxytoxyProteins]Oxytoxisome[/url][/color][/b] or [b]Toxin Vacuole[/b], it can shoot toxin projectiles, draining stored [thrive:compound type=\"oxytoxy\"][/thrive:compound] to do so. These projectiles damage cells of other species, but don't harm members of the species that fired them.\n"
 "\n"
-"Damage scales with the amount of [thrive:compound type=\"oxytoxy\"][/thrive:compound] fired."
+"Damage scales with the amount of [thrive:compound type=\"oxytoxy\"][/thrive:compound] fired.\n"
+"\n"
+"Increases [thrive:compound type=\"oxygen\"][/thrive:compound] [b] Resistance[/b] by 2%."
 
 msgid "WIKI_TOXIN_VACUOLE_INTRO"
 msgstr "Modified [b][color=#3796e1][url=thriveopedia:vacuole]Vacuole[/url][/color][/b] which produces [thrive:compound type=\"oxytoxy\"][/thrive:compound], an agent that can be fired as a toxic projectile. Superior version of the [b][color=#3796e1][url=thriveopedia:oxytoxyProteins]Oxytoxisome[/url][/color][/b]."
@@ -9609,7 +9649,7 @@ msgid "WIKI_TOXIN_VACUOLE_UPGRADES"
 msgstr "No upgrades."
 
 msgid "WIKI_VACUOLE_EFFECTS"
-msgstr "No effects."
+msgstr "Increases maximum [b]Pressure Tolerance[/b] by 400 kPa."
 
 msgid "WIKI_VACUOLE_INTRO"
 msgstr "Eukaryotic organelle which stores compounds much more densely than [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytoplasm[/url][/color][/b]. Can be specialised to increase storage even further."
@@ -9794,6 +9834,66 @@ msgstr "Zoom in"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom out"
+
+#~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
+#~ msgstr "Toggle between normal speed and double speed gameplay"
+
+#~ msgid "PROTOPLASM"
+#~ msgstr "Protoplasm"
+
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "Protoplasm"
+
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "No effects."
+
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr ""
+#~ "Significantly enhanced version of [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytoplasm[/url][/color][/b] intended to buff storage for non-player species. Can't be added to player cells, but may be present in cells the player has fossilised from the environment.\n"
+#~ "\n"
+#~ "Visually matches [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytoplasm[/url][/color][/b] and inherits many of its traits."
+
+#~ msgid "WIKI_PROTOPLASM_MODIFICATIONS"
+#~ msgstr "No modifications."
+
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr ""
+#~ "[b]Glycolysis[/b]: [thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Enhanced version of [b]Cytoplasm Glycolysis[/b] with different input/output rates."
+
+#~ msgid "WIKI_PROTOPLASM_REQUIREMENTS"
+#~ msgstr "The player cannot evolve [b]Protoplasm[/b]. Non-player species can with no restrictions."
+
+#~ msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
+#~ msgstr ""
+#~ "In some places, [b]Protoplasm[/b] is another name for [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytoplasm[/url][/color][/b], though it can also refer to all contents of a cell, including the nucleus and surrounding structures.\n"
+#~ "\n"
+#~ "Read more on this organelle's [color=#3796e1][url=https://en.wikipedia.org/wiki/Protoplasm]Wikipedia page[/url][/color]."
+
+#~ msgid "WIKI_PROTOPLASM_STRATEGY"
+#~ msgstr ""
+#~ "It's not possible to use [b]Protoplasm[/b] in regular games. The player can only use it if they play in freebuild mode with a non-player species they fossilised in a previous game and that happens to have evolved this organelle.\n"
+#~ "\n"
+#~ "When it does appear, [b]Protoplasm[/b] is strategically equivalent to [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytoplasm[/url][/color][/b] but with notably increased storage and slower [thrive:compound type=\"atp\"][/thrive:compound] production. Cells with [b]Protoplasm[/b] can generally survive much longer without finding compound clouds or consuming prey."
+
+#~ msgid "WIKI_PROTOPLASM_UPGRADES"
+#~ msgstr "No upgrades."
+
+#~ msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+#~ msgstr "Not showing all recent versions as there are too many"
+
+#~ msgid "VIEW_ALL"
+#~ msgstr "View All"
+
+#~ msgid "PRESSURE_VALUE"
+#~ msgstr "{0} kPa"
+
+#~ msgid "SPEED"
+#~ msgstr "Speed"
+
+#~ msgid "AEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Aerobic Nitrogen Fixation"
 
 #~ msgid "AEROBIC_NITROGEN_FIXING"
 #~ msgstr "Aerobic Nitrogen Fixation"

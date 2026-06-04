@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-13 11:47+0200\n"
+"POT-Creation-Date: 2026-06-03 12:08+0300\n"
 "PO-Revision-Date: 2026-05-13 03:55+0000\n"
 "Last-Translator: Argakyan <andrinmueller@hotmail.ch>\n"
 "Language-Team: Alemannic <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/gsw/>\n"
@@ -108,9 +108,6 @@ msgstr "Fortgschritte"
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Erwiiteriti Iistellige aazeige"
 
-msgid "AEROBIC_NITROGEN_FIXATION"
-msgstr "Aerobi Stickstofffixierig"
-
 msgid "AEROBIC_RESPIRATION"
 msgstr "Aerobi Atmig"
 
@@ -173,6 +170,16 @@ msgstr "Du bisch bereits uufgschtigge"
 
 msgid "ALT"
 msgstr "Alt"
+
+#, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr ""
+"Im Spieler-relative Bewegigsmodus sind d'Bewegigstaste relativ zum jetzige Ort vode Spielerzelle.\n"
+"Wemmer d'Muus bewegt änderet sich also wo sich \"forwärts\" befindet für d'Zelle.\n"
+"Das isch de Standartbewegigsmodus i Thrive."
+
+msgid "ALTERNATVE_TIMESCALE"
+msgstr ""
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Duurhaft sichtbar"
@@ -1813,6 +1820,14 @@ msgstr "Verzerrig bi Mikrobe-Hintergrund aawende"
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Hintergrundpartikel aazeige"
 
+#, fuzzy
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr "OpenGL"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_METAL"
+msgstr "OpenGL"
+
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr "OpenGL"
 
@@ -1850,9 +1865,6 @@ msgstr "Doppelklicke zum Aaluege in Vollbildmodus"
 #, fuzzy
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "E zweischichtigi Membran bütet bessere Schutz vor Schade und benötigt weniger Energie um sich nöd z'deformiere. Sie verlangsamt allerdings d'Zelle und senkt ihri Fähigkeit Ressource z'absorbiere."
-
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "Umschalt zwüschet normale und doppelte Gameplay-gschwindigkeit"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr "Mit de Muus zieh um Objekte neu aa z'ordne"
@@ -1972,6 +1984,28 @@ msgstr ""
 "Lueg nah, öb du [b]Bindemittel[/b] scho freigschalte hesch. Wenn dem so isch, versuech's z'platziere."
 
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
+msgstr ""
+"Um wiiter z'cho muesch irgendwenn en [b]Zellkern[/b]\n"
+"\n"
+"En [b]Zellkern[/b] tuet fortgschritteni Organelle freischalte, sowie [b]Bindemittel[/b] was es diir erlaubt dich mit andere Zelle us de gliiche Spezies z'verbinde und [b]multizellulär[/b] z'werde.\n"
+"\n"
+"Versuechs en [b]Nukleus[/b] z'platziere um das Tutorial z'schlüüse.\n"
+"\n"
+"Wenn dini Zelle nonig parat isch für en Zellkern, chasch de [b]rückgängig mache[/b] chnopf verwende um de Nukleus [u]rückgänig z'mache[/u]."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
+msgstr ""
+"Um wiiter z'cho muesch irgendwenn en [b]Zellkern[/b]\n"
+"\n"
+"En [b]Zellkern[/b] tuet fortgschritteni Organelle freischalte, sowie [b]Bindemittel[/b] was es diir erlaubt dich mit andere Zelle us de gliiche Spezies z'verbinde und [b]multizellulär[/b] z'werde.\n"
+"\n"
+"Versuechs en [b]Nukleus[/b] z'platziere um das Tutorial z'schlüüse.\n"
+"\n"
+"Wenn dini Zelle nonig parat isch für en Zellkern, chasch de [b]rückgängig mache[/b] chnopf verwende um de Nukleus [u]rückgänig z'mache[/u]."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
 msgstr ""
 "Um wiiter z'cho muesch irgendwenn en [b]Zellkern[/b]\n"
 "\n"
@@ -3577,6 +3611,13 @@ msgstr ""
 msgid "MARINE_SNOW"
 msgstr ""
 
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(Mutationsgschwindigkeit für KI-gstüürti Spezie)"
+
 msgid "MASTER_VOLUME"
 msgstr ""
 
@@ -4229,6 +4270,10 @@ msgstr "Wenn dini Bevölkerig auf Null keit, stirbsch du uus."
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "(einigi Funktione chönnd nümme verfüegbar siim, wenn du id nöchschti Stufe chunnsch)"
 
+#, fuzzy
+msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
+msgstr "(einigi Funktione chönnd nümme verfüegbar siim, wenn du id nöchschti Stufe chunnsch)"
+
 msgid "MULTICELLULAR_STAGE"
 msgstr ""
 
@@ -4296,6 +4341,9 @@ msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 
 msgid "NEW"
+msgstr ""
+
+msgid "NEWER"
 msgstr ""
 
 msgid "NEWER_VERSION_LOADING_WARNING"
@@ -4492,6 +4540,9 @@ msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr ""
 
 msgid "OK"
+msgstr ""
+
+msgid "OLDER"
 msgstr ""
 
 msgid "OLDER_VERSION_LOADING_WARNING"
@@ -4753,6 +4804,9 @@ msgstr ""
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
+msgid "PATCH_NOTES_RECENT_BOUNDARY"
+msgstr ""
+
 msgid "PATCH_NOTES_TITLE"
 msgstr ""
 
@@ -4957,6 +5011,10 @@ msgstr ""
 msgid "PRESSURE_SHORT"
 msgstr ""
 
+#, fuzzy
+msgid "PRESSURE_TOLERANCE"
+msgstr "Toleranz"
+
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr ""
 
@@ -5005,9 +5063,6 @@ msgid "PROJECT_MANAGEMENT_TEAM"
 msgstr ""
 
 msgid "PROTEINS"
-msgstr ""
-
-msgid "PROTOPLASM"
 msgstr ""
 
 msgid "PULL_REQUESTS_PROGRAMMING"
@@ -5120,6 +5175,10 @@ msgstr ""
 
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 msgstr ""
+
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "{0}-Verbruuch"
 
 msgid "REPRODUCTION_METHOD"
 msgstr ""
@@ -5253,6 +5312,10 @@ msgstr ""
 
 msgid "ROTATION_COLON"
 msgstr ""
+
+#, fuzzy
+msgid "ROTATION_FORCE"
+msgstr "{0}-Verbruuch"
 
 msgid "RUNOFF_EVENT"
 msgstr ""
@@ -5732,11 +5795,12 @@ msgstr ""
 msgid "SPECIES_WITH_POPULATION"
 msgstr ""
 
-msgid "SPEED"
-msgstr ""
-
 msgid "SPEED_COLON"
 msgstr ""
+
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "Umschalt zwüschet normale und doppelte Gameplay-gschwindigkeit"
 
 #, fuzzy
 msgid "SPORE_CELL_TYPE"
@@ -6027,6 +6091,10 @@ msgstr ""
 msgid "TEMPERATURE_SHORT"
 msgstr ""
 
+#, fuzzy
+msgid "TEMPERATURE_TOLERANCE_RANGE"
+msgstr "(veränderet d'Aazahl a Arktische Meeresgebiete ide Welt)"
+
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr ""
 
@@ -6148,6 +6216,9 @@ msgstr ""
 
 msgid "THRIVIN_ACHIEVEMENT"
 msgstr "Am Gedeihe"
+
+msgid "THRUST_FORCE"
+msgstr ""
 
 msgid "THYLAKOIDS"
 msgstr ""
@@ -6298,9 +6369,6 @@ msgid "TOOLS"
 msgstr ""
 
 msgid "TOOL_HAND_AXE"
-msgstr ""
-
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
 msgid "TOTAL_GATHERED_ENERGY_COLON"
@@ -6800,9 +6868,6 @@ msgstr ""
 msgid "VIEWER"
 msgstr ""
 
-msgid "VIEW_ALL"
-msgstr ""
-
 msgid "VIEW_CELL_PROCESSES"
 msgstr ""
 
@@ -7292,8 +7357,9 @@ msgstr ""
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr ""
 
-msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
-msgstr ""
+#, fuzzy
+msgid "WIKI_GLYCOLYSIS_COMMA_NITROGEN_FIXATION"
+msgstr "Aerobi Stickstofffixierig"
 
 msgid "WIKI_HEADING_APPENDICES"
 msgstr ""
@@ -7910,9 +7976,6 @@ msgstr ""
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr ""
 
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr ""
-
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr ""
 
@@ -7977,30 +8040,6 @@ msgid "WIKI_PERFORATOR_PILUS_UPGRADES"
 msgstr ""
 
 msgid "WIKI_PROTEIN_RESPIRATION"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
 msgstr ""
 
 msgid "WIKI_PULLING_CILIA"

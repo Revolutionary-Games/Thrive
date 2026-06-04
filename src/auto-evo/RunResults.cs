@@ -42,6 +42,11 @@ public class RunResults : IArchivable
     /// </summary>
     private readonly Dictionary<Patch, Miche> micheByPatch = new();
 
+    /// <summary>
+    ///   Miche-tree for readonly access. This is not saved.
+    /// </summary>
+    private readonly Dictionary<Patch, Miche> readonlyMicheByPatch = new();
+
     public enum NewSpeciesType
     {
         /// <summary>
@@ -118,6 +123,13 @@ public class RunResults : IArchivable
                 throw new InvalidOperationException("Patch already has a miche");
 
             miche.Lock();
+
+            lock (readonlyMicheByPatch)
+            {
+                var readonlyMiche = miche.DeepCopy();
+                readonlyMiche.SetReadOnly();
+                readonlyMicheByPatch[patch] = readonlyMiche;
+            }
         }
     }
 
@@ -257,31 +269,6 @@ public class RunResults : IArchivable
 
         results[species].NewPopulationInPatches[initialPopulationInPatch.Key] =
             Math.Max(initialPopulationInPatch.Value, 0);
-    }
-
-    public void KillSpeciesInPatch(Species species, Patch patch, bool refundMigrations = false)
-    {
-        AddPopulationResultForSpecies(species, patch, 0);
-
-        var speciesResult = results[species];
-
-        // We copy migration list to be able to modify it
-        foreach (var migration in speciesResult.SpreadToPatches.ToList())
-        {
-            if (speciesResult.SplitOff != null && speciesResult.SplitOffPatches?.Contains(patch) == true)
-                continue;
-
-            if (migration.To == patch)
-            {
-                speciesResult.SpreadToPatches.Remove(migration);
-
-                // We may still penalize the origin patch, the migration would just have died off on its way.
-                // TODO: It would be nice to leave some trace of this happening, so that it can be tracked
-                // why the population in this patch was reduced.
-                if (!refundMigrations)
-                    speciesResult.NewPopulationInPatches[migration.From] -= migration.Population;
-            }
-        }
     }
 
     public void AddTrackedEnergyForSpecies(Species species, Patch patch, SelectionPressure pressure,
@@ -550,7 +537,7 @@ public class RunResults : IArchivable
         world.Map.DiscardGameplayPopulations();
     }
 
-    public Miche GetMicheForPatch(Patch patch)
+    public Miche GetModifiableMicheForPatch(Patch patch)
     {
         lock (micheByPatch)
         {
@@ -561,12 +548,24 @@ public class RunResults : IArchivable
         }
     }
 
+    public Miche GetReadOnlyMicheForPatch(Patch patch)
+    {
+        lock (readonlyMicheByPatch)
+        {
+            if (!readonlyMicheByPatch.TryGetValue(patch, out var miche))
+                throw new ArgumentException("Readonly miche not found for " + patch.Name + " in MicheByPatch");
+
+            return miche;
+        }
+    }
+
     /// <summary>
     ///   Returns the miche by patch dictionary. Only for inspecting data after a run as this is not safe at all.
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     This should not be used in AutoEvo code, prefer <see cref="GetMicheForPatch"/>.
+    ///     This should not be used in AutoEvo code, prefer <see cref="GetModifiableMicheForPatch"/> or the readonly
+    ///     variant.
     ///   </para>
     /// </remarks>
     public Dictionary<Patch, Miche> InspectPatchMicheData()

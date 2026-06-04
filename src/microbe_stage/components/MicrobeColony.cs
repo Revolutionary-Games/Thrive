@@ -31,7 +31,7 @@ public struct MicrobeColony : IArchivableComponent
     public Entity Leader;
 
     /// <summary>
-    ///   This maps parent cells to their children in the colony hierarchy. All cells are merged into the leader,
+    ///   This maps child cells to their parents in the colony hierarchy. All cells are merged into the leader,
     ///   but certain operations like removing cells need to not leave gaps in the colony for that this is used to
     ///   detect which cells are also lost if one cell is lost. Key is the dependent cell and the value is its
     ///   parent.
@@ -177,7 +177,7 @@ public static class MicrobeColonyHelpers
     // from the colony class)
     // public static readonly ArrayPool<Entity> MicrobeColonyMemberListPool = ArrayPool<Entity>.Create(100, 50);
 
-    private static readonly List<Entity> DependentMembersToRemove = new();
+    private static readonly List<Entity> DependentMembersToReparent = new();
 
     public static MicrobeColony ReadFromArchive(ISArchiveReader reader, ushort version)
     {
@@ -725,27 +725,28 @@ public static class MicrobeColonyHelpers
 
         OnColonyMemberRemoved(removedMember, removedMemberIsLeader);
 
-        // Remove colony members that depend on the removed member
+        // Re-parent (when possible) or remove colony members that depend on the removed member
         foreach (var entry in colony.ColonyStructure)
         {
             if (entry.Value == removedMember)
-                DependentMembersToRemove.Add(entry.Key);
+                DependentMembersToReparent.Add(entry.Key);
         }
 
-        while (DependentMembersToRemove.Count > 0)
+        while (DependentMembersToReparent.Count > 0)
         {
-            var next = DependentMembersToRemove[DependentMembersToRemove.Count - 1];
+            var next = DependentMembersToReparent[DependentMembersToReparent.Count - 1];
 
             // This is this way around to support recursive calls also adding things here
-            DependentMembersToRemove.RemoveAt(DependentMembersToRemove.Count - 1);
+            DependentMembersToReparent.RemoveAt(DependentMembersToReparent.Count - 1);
 
             if (!next.IsAliveAndNotNull())
             {
                 // This entity is already dead, this should hopefully never trigger. If this does, then this would
                 // give some more info on a colony despawn crash problem.
-                GD.PrintErr("Dependent colony member to remove is already dead, doing only " +
+                GD.PrintErr("Dependent colony member to re-parent is already dead, doing only " +
                     "light fallback cleanup");
 
+                // It doesn't make sense to re-parent a dead cell
                 colony.ColonyStructure.Remove(next);
 
                 if (colony.ColonyMembers.Contains(next))
@@ -755,13 +756,21 @@ public static class MicrobeColonyHelpers
                 continue;
             }
 
+            var newParent = colony.CalculateSensibleReParentIndex(ref next.Get<AttachedToEntity>(), in next);
+            if (newParent != -1)
+            {
+                colony.ColonyStructure[next] = colony.ColonyMembers[newParent];
+                next.Get<IntercellularMatrix>().RemoveConnection();
+                continue;
+            }
+
             // This might stackoverflow if we have absolute, hugely nested cell colonies, but there would probably
             // need to be colonies with thousands of cells, which would already choke the game so that isn't much
             // of a concern
             if (!colony.RemoveFromColonyAndDisbandIfEmpty(colonyEntity, next, recorder))
             {
                 // Colony is entirely disbanded, doesn't make sense to continue removing things
-                DependentMembersToRemove.Clear();
+                DependentMembersToReparent.Clear();
                 return false;
             }
         }
@@ -964,7 +973,7 @@ public static class MicrobeColonyHelpers
     /// </summary>
     /// <returns>How much the added colony members add entity weight</returns>
     public static float SpawnAsFullyGrownMulticellularColony(Entity entity, MulticellularSpecies species,
-        float originalWeight, CommandBuffer commandBuffer)
+        ref MulticellularGrowth multicellularGrowth, float originalWeight, CommandBuffer commandBuffer)
     {
         int members = species.ModifiableGameplayCells.Count - 1;
 
@@ -974,11 +983,15 @@ public static class MicrobeColonyHelpers
 
         SetupColonyWithMembersDelayed(entity, members, commandBuffer);
 
+        // All members are added, so mark as fully grown
+        multicellularGrowth.NextBodyPlanCellToGrowIndex = species.ModifiableGameplayCells.Count;
+        multicellularGrowth.CompoundsNeededForNextCell = null;
+
         return CalculateColonyAdditionalEntityWeight(originalWeight, members);
     }
 
     public static float SpawnAsPartialMulticellularColony(Entity entity, float originalWeight,
-        int membersToAdd, CommandBuffer commandBuffer)
+        int membersToAdd, ref MulticellularGrowth multicellularGrowth, CommandBuffer commandBuffer)
     {
         if (membersToAdd < 1)
         {
@@ -987,6 +1000,10 @@ public static class MicrobeColonyHelpers
         }
 
         SetupColonyWithMembersDelayed(entity, membersToAdd, commandBuffer);
+
+        // Adjust growth state to resume correctly after the added members
+        multicellularGrowth.NextBodyPlanCellToGrowIndex += membersToAdd;
+        multicellularGrowth.CompoundsNeededForNextCell = null;
 
         return CalculateColonyAdditionalEntityWeight(originalWeight, membersToAdd);
     }
@@ -1135,6 +1152,72 @@ public static class MicrobeColonyHelpers
         // ReSharper disable once CompareOfFloatsByEqualityOperator
         if (bestDistance == float.MaxValue)
             GD.PrintErr("Could not find sensible parent index to attach to colony");
+
+        return bestParentIndex;
+    }
+
+    /// <summary>
+    ///   Finds a good cell to reparent <paramref name="forCell"/> to; avoids its descendants.
+    ///   Also avoids cells that are too far.
+    /// </summary>
+    /// <returns>
+    ///   An index if there is a suitable parent, -1 otherwise.
+    /// </returns>
+    public static int CalculateSensibleReParentIndex(this ref MicrobeColony colony,
+        ref AttachedToEntity attachedPosition, in Entity forCell)
+    {
+        float bestDistance = float.MaxValue;
+        int bestParentIndex = -1;
+        Entity bestParentEntity = Entity.Null;
+
+        float radius = forCell.Get<CellProperties>().Radius;
+
+        var members = colony.ColonyMembers;
+
+        for (int i = 0; i < members.Length; ++i)
+        {
+            var cell = members[i];
+
+            if (cell == forCell)
+                continue;
+
+            float distance;
+            if (i == 0)
+            {
+                // Colony leader has no attached to component
+                distance = attachedPosition.RelativePosition.LengthSquared();
+            }
+            else
+            {
+                distance = cell.Get<AttachedToEntity>().RelativePosition
+                    .DistanceSquaredTo(attachedPosition.RelativePosition);
+            }
+
+            if (distance < bestDistance)
+            {
+                // An arbitrary condition, feel free to change
+                float maxDistanceSquared = MathUtils.Square((radius + cell.Get<CellProperties>().Radius) * 3.0f);
+                if (distance > maxDistanceSquared)
+                    continue;
+
+                // Go up the member's parent tree to see if it's a descendant of forCell
+                // If bestParentEntity is reached, then this one is safe too (bestParentEntity was already checked)
+                Entity current = cell;
+                while (current != colony.Leader && current != forCell && current != bestParentEntity)
+                {
+                    current = colony.ColonyStructure[current];
+                }
+
+                if (current == forCell)
+                {
+                    // members[i] is a descendant of forCell and can't be its parent
+                    continue;
+                }
+
+                bestDistance = distance;
+                bestParentIndex = i;
+            }
+        }
 
         return bestParentIndex;
     }

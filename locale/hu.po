@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-13 11:47+0200\n"
+"POT-Creation-Date: 2026-06-03 12:08+0300\n"
 "PO-Revision-Date: 2026-05-13 03:55+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -108,9 +108,6 @@ msgstr "Speciális"
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Speciális beállítási nézet megnyitása"
 
-msgid "AEROBIC_NITROGEN_FIXATION"
-msgstr "Aerob nitrogénkötés"
-
 #, fuzzy
 msgid "AEROBIC_RESPIRATION"
 msgstr "Aerob légzés"
@@ -174,6 +171,13 @@ msgstr "Te már felemelkedtél"
 
 msgid "ALT"
 msgstr "Alt"
+
+#, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr "Észlelhető szálak:"
+
+msgid "ALTERNATVE_TIMESCALE"
+msgstr ""
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Mindig látható"
@@ -1886,6 +1890,14 @@ msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Háttérrészecskék megjelenítése"
 
 #, fuzzy
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr "Képesség sáv megjelenítése"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_METAL"
+msgstr "Képesség sáv megjelenítése"
+
+#, fuzzy
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr "Képesség sáv megjelenítése"
 
@@ -1926,10 +1938,6 @@ msgstr "Dupla kattintás a teljes képernyő nézetért"
 #, fuzzy
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Egy membrán, ami két rétegből áll. Jobb védelmet nyújt sérülések ellen, és kevesebb energia szükséges ahhoz, hogy ne deformálódjon el. Hátránya viszont, hogy lassítja a sejt bekebelező képességét."
-
-#, fuzzy
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "Az az érték, ami a világok generálásáért felelős. Ennek az értéknek pozitívnak kell lennie."
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr ""
@@ -2054,6 +2062,26 @@ msgstr ""
 
 #, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
+msgstr ""
+"Üdvözöllek a Sejtszerkesztőben.\n"
+"Itt megnézheted, hogy mi történt, mióta elkezdted a játékot, vagy mióta elhagytad a szerkesztőt. Ezek után pedig változtathatsz a fajodon.\n"
+"\n"
+"Ezen a lapon láthatsz egy jelentést, hogy mely fajok léteznek még rajtad kívül. Továbbá azt is megmutatja, hogy hol találhatóak, és mekkora a létszámuk. Plusz fent a változásokat is mutatja a környezetedben.\n"
+"\n"
+"A következő szerkesztő ablakba való lépéshez nyomd meg jobb lenti gombot."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
+msgstr ""
+"Üdvözöllek a Sejtszerkesztőben.\n"
+"Itt megnézheted, hogy mi történt, mióta elkezdted a játékot, vagy mióta elhagytad a szerkesztőt. Ezek után pedig változtathatsz a fajodon.\n"
+"\n"
+"Ezen a lapon láthatsz egy jelentést, hogy mely fajok léteznek még rajtad kívül. Továbbá azt is megmutatja, hogy hol találhatóak, és mekkora a létszámuk. Plusz fent a változásokat is mutatja a környezetedben.\n"
+"\n"
+"A következő szerkesztő ablakba való lépéshez nyomd meg jobb lenti gombot."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
 msgstr ""
 "Üdvözöllek a Sejtszerkesztőben.\n"
 "Itt megnézheted, hogy mi történt, mióta elkezdted a játékot, vagy mióta elhagytad a szerkesztőt. Ezek után pedig változtathatsz a fajodon.\n"
@@ -3846,6 +3874,13 @@ msgstr "Március"
 msgid "MARINE_SNOW"
 msgstr "Tengeri hó"
 
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
+
 msgid "MASTER_VOLUME"
 msgstr "Fő hangerő"
 
@@ -4700,6 +4735,22 @@ msgstr "Többsejtes szerkesztő"
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "(egyes opciók lehet, hogy elérhetetlenek lesznek a többi fázis elértével)"
 
+#, fuzzy
+msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
+msgstr ""
+"[b]Fázis[/b]\n"
+"  Sejt\n"
+"[b]Membrántípus[/b]\n"
+"  {0}\n"
+"[b]Membrán merevség[/b]\n"
+"  {1}\n"
+"[b]Alap sebesség[/b]\n"
+"  {2}\n"
+"[b]Alap fordulási sebesség[/b]\n"
+"  {3}\n"
+"[b]Alap hex méret[/b]\n"
+"  {4}"
+
 msgid "MULTICELLULAR_STAGE"
 msgstr "Többsejtes fázis"
 
@@ -4781,6 +4832,10 @@ msgstr ""
 
 msgid "NEW"
 msgstr "Új"
+
+#, fuzzy
+msgid "NEWER"
+msgstr "Galéria nézet"
 
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -4998,6 +5053,10 @@ msgstr "Öngyilkosság"
 
 msgid "OK"
 msgstr "OK"
+
+#, fuzzy
+msgid "OLDER"
+msgstr "Mappa megnyitása"
 
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -5309,6 +5368,10 @@ msgstr "Helyi adatok törlése"
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr "A legutóbb játszott verzió a Thrive {0} volt, azóta {1} új kiadás jelent meg"
 
+#, fuzzy
+msgid "PATCH_NOTES_RECENT_BOUNDARY"
+msgstr "— {0}"
+
 msgid "PATCH_NOTES_TITLE"
 msgstr ""
 
@@ -5530,6 +5593,10 @@ msgid "PRESSURE_SHORT"
 msgstr "Nyomás"
 
 #, fuzzy
+msgid "PRESSURE_TOLERANCE"
+msgstr "Kilépés a főmenübe"
+
+#, fuzzy
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "Kilépés a főmenübe"
 
@@ -5580,9 +5647,6 @@ msgstr "Projekt Menedzsment Csapat"
 
 msgid "PROTEINS"
 msgstr "Proteinek"
-
-msgid "PROTOPLASM"
-msgstr "Protoplazma"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull requestek / Programozás"
@@ -5712,6 +5776,10 @@ msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
 #, fuzzy
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 msgstr "Reprodukció:"
+
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "Bimbózás"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reprodukció:"
@@ -5860,6 +5928,10 @@ msgid "ROTATE_RIGHT"
 msgstr "Forgatás jobbra"
 
 msgid "ROTATION_COLON"
+msgstr "Fordulás:"
+
+#, fuzzy
+msgid "ROTATION_FORCE"
 msgstr "Fordulás:"
 
 msgid "RUNOFF_EVENT"
@@ -6409,11 +6481,12 @@ msgstr "Fajok:"
 msgid "SPECIES_WITH_POPULATION"
 msgstr "A fajok populációi"
 
-msgid "SPEED"
-msgstr "Sebesség"
-
 msgid "SPEED_COLON"
 msgstr "Sebesség:"
+
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "Az az érték, ami a világok generálásáért felelős. Ennek az értéknek pozitívnak kell lennie."
 
 #, fuzzy
 msgid "SPORE_CELL_TYPE"
@@ -6726,6 +6799,10 @@ msgid "TEMPERATURE_SHORT"
 msgstr "Hőm."
 
 #, fuzzy
+msgid "TEMPERATURE_TOLERANCE_RANGE"
+msgstr "Játék szüneteltetése"
+
+#, fuzzy
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "Játék szüneteltetése"
 
@@ -6864,6 +6941,9 @@ msgstr "Thrive licenszek"
 #, fuzzy
 msgid "THRIVIN_ACHIEVEMENT"
 msgstr "Alap mozgás"
+
+msgid "THRUST_FORCE"
+msgstr ""
 
 msgid "THYLAKOIDS"
 msgstr "Thilakoidok"
@@ -7049,9 +7129,6 @@ msgid "TOOLS"
 msgstr "Eszközök"
 
 msgid "TOOL_HAND_AXE"
-msgstr ""
-
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
 #, fuzzy
@@ -7785,10 +7862,6 @@ msgid "VIEWER"
 msgstr "Galéria nézet"
 
 #, fuzzy
-msgid "VIEW_ALL"
-msgstr "Az összes tiltása"
-
-#, fuzzy
 msgid "VIEW_CELL_PROCESSES"
 msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t alakít át [thrive:compound type=\"atp\"][/thrive:compound]-vé."
 
@@ -8376,7 +8449,7 @@ msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr ""
 
 #, fuzzy
-msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+msgid "WIKI_GLYCOLYSIS_COMMA_NITROGEN_FIXATION"
 msgstr "Anaerob Nitrifikáció"
 
 #, fuzzy
@@ -9238,10 +9311,6 @@ msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr ""
 
 #, fuzzy
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "Protoplazma"
-
-#, fuzzy
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "Protoplazma"
 
@@ -9323,33 +9392,6 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "Aerob légzés"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "Protoplazma"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr "Protoplazma"
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t alakít át [thrive:compound type=\"atp\"][/thrive:compound]-vé."
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
 
 #, fuzzy
 msgid "WIKI_PULLING_CILIA"
@@ -9876,6 +9918,35 @@ msgstr "Közelítés"
 
 msgid "ZOOM_OUT"
 msgstr "Távolodás"
+
+#~ msgid "PROTOPLASM"
+#~ msgstr "Protoplazma"
+
+#, fuzzy
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "Protoplazma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "Protoplazma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr "Protoplazma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t alakít át [thrive:compound type=\"atp\"][/thrive:compound]-vé."
+
+#, fuzzy
+#~ msgid "VIEW_ALL"
+#~ msgstr "Az összes tiltása"
+
+#~ msgid "SPEED"
+#~ msgstr "Sebesség"
+
+#~ msgid "AEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Aerob nitrogénkötés"
 
 #~ msgid "AEROBIC_NITROGEN_FIXING"
 #~ msgstr "Aerob nitrogénkötés"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-13 11:47+0200\n"
+"POT-Creation-Date: 2026-06-03 12:08+0300\n"
 "PO-Revision-Date: 2026-05-01 09:17+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -119,10 +119,6 @@ msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Pysäytysmenu"
 
 #, fuzzy
-msgid "AEROBIC_NITROGEN_FIXATION"
-msgstr "Anaerobinen typensidonta"
-
-#, fuzzy
 msgid "AEROBIC_RESPIRATION"
 msgstr "Soluhengitys"
 
@@ -181,6 +177,14 @@ msgstr "Olet jo noussut"
 
 msgid "ALT"
 msgstr "Alt"
+
+#, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr "Nykyinen suorittajien määrä:"
+
+#, fuzzy
+msgid "ALTERNATVE_TIMESCALE"
+msgstr ". Nopeus skaalautuu"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Aina näkyvä"
@@ -1920,6 +1924,14 @@ msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Näytä taustahiukkasia"
 
 #, fuzzy
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr "Näytä kykypalkki"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_METAL"
+msgstr "Näytä kykypalkki"
+
+#, fuzzy
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr "Näytä kykypalkki"
 
@@ -1959,10 +1971,6 @@ msgstr ""
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
-
-#, fuzzy
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "Laita peli tauolle"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr ""
@@ -2103,6 +2111,24 @@ msgstr ""
 
 #, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
+msgstr ""
+"Tämä on solueditori, jossa voit jalostaa lajiasi käyttämällä mutaatiopisteitä (MP). Jokaisella sukupolvella sinulla on 100MP:tä käytettävänä, eivätkä ne siirry seuraavalle sukupolvelle - älä siis turhaan säästä niitä!\n"
+"\n"
+"Hexa(goni) ruudun keskellä kuvastaa soluasi, joka muodostuu toistaiseksi yhdestä solulima-osasta.\n"
+"\n"
+"Valitse soluelinosa vasemmasta paneelista jatkaaksesi. Sitten klikkaa vasemmalla hiiren painikkeella hexaa, johon haluat osan sijoittaa. Voit kiertää osia painamalla A tai D."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
+msgstr ""
+"Tämä on solueditori, jossa voit jalostaa lajiasi käyttämällä mutaatiopisteitä (MP). Jokaisella sukupolvella sinulla on 100MP:tä käytettävänä, eivätkä ne siirry seuraavalle sukupolvelle - älä siis turhaan säästä niitä!\n"
+"\n"
+"Hexa(goni) ruudun keskellä kuvastaa soluasi, joka muodostuu toistaiseksi yhdestä solulima-osasta.\n"
+"\n"
+"Valitse soluelinosa vasemmasta paneelista jatkaaksesi. Sitten klikkaa vasemmalla hiiren painikkeella hexaa, johon haluat osan sijoittaa. Voit kiertää osia painamalla A tai D."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
 msgstr ""
 "Tämä on solueditori, jossa voit jalostaa lajiasi käyttämällä mutaatiopisteitä (MP). Jokaisella sukupolvella sinulla on 100MP:tä käytettävänä, eivätkä ne siirry seuraavalle sukupolvelle - älä siis turhaan säästä niitä!\n"
 "\n"
@@ -3917,6 +3943,13 @@ msgstr "Maaliskuu"
 msgid "MARINE_SNOW"
 msgstr "Leijuvat hiukkaset"
 
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
+
 msgid "MASTER_VOLUME"
 msgstr "Pää äänitaso"
 
@@ -4768,6 +4801,14 @@ msgstr "Monisoluinen editori"
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "Monisoluinen vaihe"
 
+#, fuzzy
+msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
+msgstr ""
+"Seuraa tarkoin alhaalla oikealla näkyviä palkkeja.\n"
+"Solusi kuolee, jos sen terveyspalkki loppuu.\n"
+"Terveyspalkkisi kasvaa silloin kun solullasi on ATP:tä.\n"
+"Pidä huolta, että keräät tarpeeksi glukoosia tuottaaksesi ATP:tä."
+
 msgid "MULTICELLULAR_STAGE"
 msgstr "Monisoluinen vaihe"
 
@@ -4852,6 +4893,10 @@ msgstr ""
 
 msgid "NEW"
 msgstr "Uusi"
+
+#, fuzzy
+msgid "NEWER"
+msgstr "Tarkastelija"
 
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -5070,6 +5115,10 @@ msgstr "Kuole"
 
 msgid "OK"
 msgstr "OK"
+
+#, fuzzy
+msgid "OLDER"
+msgstr "Avaa lokien kansio"
 
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -5391,6 +5440,10 @@ msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
 #, fuzzy
+msgid "PATCH_NOTES_RECENT_BOUNDARY"
+msgstr "Pangonian Estuaari"
+
+#, fuzzy
 msgid "PATCH_NOTES_TITLE"
 msgstr "Poista Paikallinen Data"
 
@@ -5622,6 +5675,10 @@ msgid "PRESSURE_SHORT"
 msgstr "Paine"
 
 #, fuzzy
+msgid "PRESSURE_TOLERANCE"
+msgstr "Palaa Päävalikkoon"
+
+#, fuzzy
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "Palaa Päävalikkoon"
 
@@ -5671,9 +5728,6 @@ msgstr ""
 
 msgid "PROTEINS"
 msgstr "Proteiini"
-
-msgid "PROTOPLASM"
-msgstr "Protoplasma"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requests / ohjelmointi"
@@ -5806,6 +5860,10 @@ msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Laji
 #, fuzzy
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 msgstr "Lisääntyminen:"
+
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "Orastuminen"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Lisääntyminen:"
@@ -5961,6 +6019,10 @@ msgid "ROTATE_RIGHT"
 msgstr "Käännä oikealle"
 
 msgid "ROTATION_COLON"
+msgstr "Pyöriminen:"
+
+#, fuzzy
+msgid "ROTATION_FORCE"
 msgstr "Pyöriminen:"
 
 msgid "RUNOFF_EVENT"
@@ -6525,11 +6587,12 @@ msgstr "Lajit:"
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0}:n populaatio: {1}"
 
-msgid "SPEED"
-msgstr "Nopeus"
-
 msgid "SPEED_COLON"
 msgstr "Nopeus:"
+
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "Laita peli tauolle"
 
 #, fuzzy
 msgid "SPORE_CELL_TYPE"
@@ -6851,6 +6914,10 @@ msgid "TEMPERATURE_SHORT"
 msgstr "Lämpö."
 
 #, fuzzy
+msgid "TEMPERATURE_TOLERANCE_RANGE"
+msgstr "Laita peli tauolle"
+
+#, fuzzy
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "Laita peli tauolle"
 
@@ -6993,6 +7060,9 @@ msgstr "Thriven lisenssit"
 #, fuzzy
 msgid "THRIVIN_ACHIEVEMENT"
 msgstr "Perus liikkuminen"
+
+msgid "THRUST_FORCE"
+msgstr ""
 
 msgid "THYLAKOIDS"
 msgstr "Tylakoidit"
@@ -7173,9 +7243,6 @@ msgid "TOOLS"
 msgstr "Työkalut"
 
 msgid "TOOL_HAND_AXE"
-msgstr ""
-
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
 #, fuzzy
@@ -7946,10 +8013,6 @@ msgid "VIEWER"
 msgstr "Tarkastelija"
 
 #, fuzzy
-msgid "VIEW_ALL"
-msgstr "Ei käytössä"
-
-#, fuzzy
 msgid "VIEW_CELL_PROCESSES"
 msgstr "Muuntaa [thrive:compound type=\"glucose\"]glukoosia [/thrive:compound] [thrive:compound type=\"atp\"][/thrive:compound]:ksi."
 
@@ -8557,7 +8620,7 @@ msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr ""
 
 #, fuzzy
-msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+msgid "WIKI_GLYCOLYSIS_COMMA_NITROGEN_FIXATION"
 msgstr "Anaerobinen typensidonta"
 
 #, fuzzy
@@ -9427,10 +9490,6 @@ msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr ""
 
 #, fuzzy
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "Protoplasma"
-
-#, fuzzy
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "Protoplasma"
 
@@ -9519,33 +9578,6 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "Soluhengitys"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "Protoplasma"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr "Protoplasma"
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr "Muuntaa [thrive:compound type=\"glucose\"]a [/thrive:compound] [thrive:compound type=\"atp\"][/thrive:compound]:ksi."
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
 
 msgid "WIKI_PULLING_CILIA"
 msgstr ""
@@ -10124,6 +10156,36 @@ msgstr "Zoomaa sisään"
 msgid "ZOOM_OUT"
 msgstr "Zoomaa ulospäin"
 
+#~ msgid "PROTOPLASM"
+#~ msgstr "Protoplasma"
+
+#, fuzzy
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "Protoplasma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "Protoplasma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr "Protoplasma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr "Muuntaa [thrive:compound type=\"glucose\"]a [/thrive:compound] [thrive:compound type=\"atp\"][/thrive:compound]:ksi."
+
+#, fuzzy
+#~ msgid "VIEW_ALL"
+#~ msgstr "Ei käytössä"
+
+#~ msgid "SPEED"
+#~ msgstr "Nopeus"
+
+#, fuzzy
+#~ msgid "AEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Anaerobinen typensidonta"
+
 #~ msgid "AEROBIC_NITROGEN_FIXING"
 #~ msgstr "Aerobinen typensidonta"
 
@@ -10645,9 +10707,6 @@ msgstr "Zoomaa ulospäin"
 #~ msgid "PATCH_PANGONIAN_COAST"
 #~ msgstr "Pangonian Rannikko"
 
-#~ msgid "PATCH_PANGONIAN_ESTUARY"
-#~ msgstr "Pangonian Estuaari"
-
 #~ msgid "PATCH_CAVE"
 #~ msgstr "Luola"
 
@@ -10748,9 +10807,6 @@ msgstr "Zoomaa ulospäin"
 
 #~ msgid "INTENSITY_OF"
 #~ msgstr "intensiteetistä riippuen"
-
-#~ msgid "DOT_RATE_SCALES"
-#~ msgstr ". Nopeus skaalautuu"
 
 #~ msgid "OXYGEN_DOT"
 #~ msgstr "Happi."

@@ -89,6 +89,19 @@ public static class Constants
     public const float PLAYER_SPECIES_SPAWN_MULTIPLIER = 0.5f;
 
     /// <summary>
+    ///   Uniform scale used to render and simulate prokaryotic cells relative to their unscaled true size.
+    ///   Eukaryotes use the true scale for their size. So at present this makes bacteria half the size of eukaryotes.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This is extracted as a constant to not be a magic value all over the code, however, changing this would be
+    ///     a very major thing. So do not touch this! Changing this will break old saves, and some game logic still
+    ///     seems to depend on the hardcoded value, so changing this cannot be done easily.
+    ///   </para>
+    /// </remarks>
+    public const float BACTERIA_CELL_SCALE = 0.5f;
+
+    /// <summary>
     ///   Smaller spawn penalty to make binding agents easier to use with better player species spawn rates.
     /// </summary>
     public const float PLAYER_SPECIES_SPAWN_MULTIPLIER_BINDING_AGENTS = 0.7f;
@@ -236,10 +249,7 @@ public static class Constants
 
     public const float FLAGELLA_BASE_FORCE = 20.0f;
 
-    /// <summary>
-    ///   TODO: this needs to be dynamically calculated: https://github.com/Revolutionary-Games/Thrive/issues/5591
-    /// </summary>
-    public const float FLAGELLA_SPEED_BONUS_DISPLAY = 0.7f;
+    public const int FLAGELLA_FORCE_DISPLAY_DIVISOR = 100;
 
     public const float FLAGELLA_MAX_UPGRADE_LENGHT = 3;
     public const float FLAGELLA_MIN_UPGRADE_LENGHT = -1;
@@ -290,6 +300,8 @@ public static class Constants
     public const float CILIA_ROTATION_FACTOR = 120000000.0f;
     public const float CILIA_RADIUS_FACTOR_MULTIPLIER = 8000000.0f;
     public const float CELL_TURN_INFLECTION_RADIANS = 0.4f;
+
+    public const float CILIA_ROTATION_FORCE_DISPLAY = CILIA_ROTATION_FACTOR / 1000000;
 
     // TODO: remove if these stay unused
     // // These speed values are also reversed like the above
@@ -493,11 +505,11 @@ public static class Constants
     /// </summary>
     public const float AGENT_EMISSION_VELOCITY = 25.0f;
 
-    public const float OXYTOXY_DAMAGE = 25.0f;
+    public const float OXYTOXY_DAMAGE = 20.0f;
 
-    public const float CYTOTOXIN_DAMAGE = 18.0f;
+    public const float CYTOTOXIN_DAMAGE = 14.0f;
 
-    public const float OXYGEN_INHIBITOR_DAMAGE = 23.0f;
+    public const float OXYGEN_INHIBITOR_DAMAGE = 19.0f;
 
     public const float CHANNEL_INHIBITOR_ATP_DEBUFF = 0.5f;
     public const float CHANNEL_INHIBITOR_DEBUFF_DURATION = 15;
@@ -634,7 +646,7 @@ public static class Constants
     /// <summary>
     ///   Cooldown between agent emissions, in seconds.
     /// </summary>
-    public const float AGENT_EMISSION_COOLDOWN = 2.0f;
+    public const float AGENT_EMISSION_COOLDOWN = 2.2f;
 
     /// <summary>
     ///   The minimum amount of oxytoxy (or any agent) fired in one shot.
@@ -645,6 +657,11 @@ public static class Constants
     ///   The maximum amount of oxytoxy (or any agent) fired in one shot.
     /// </summary>
     public const float MAXIMUM_AGENT_EMISSION_AMOUNT = 2.0f;
+
+    /// <summary>
+    ///   AI only consider shooting a toxin possible if it has this much toxin stored or more
+    /// </summary>
+    public const float AI_SHOOT_TOXIN_AFTER = 0.15f;
 
     /// <summary>
     ///   The time (in seconds) it takes a cloud being absorbed to halve its compounds.
@@ -1197,6 +1214,8 @@ public static class Constants
 
     public const int SPORE_CELL_TYPE_CHANGE_COST = 10;
 
+    public const int MASS_BUDDING_CELL_COUNT_CHANGE_COST = 10;
+
     public const string ORGANELLE_UPGRADE_SPECIAL_NONE = "none";
 
     public const int METABALL_ADD_COST = 7;
@@ -1681,7 +1700,7 @@ public static class Constants
 
     public const float MINIMUM_RUNNABLE_PROCESS_FRACTION = 0.00001f;
 
-    public const float DEFAULT_PROCESS_SPINNER_SPEED = 365.0f;
+    public const float DEFAULT_PROCESS_SPINNER_SPEED = MathF.PI * 2.0f;
     public const float DEFAULT_PROCESS_STATISTICS_AVERAGE_INTERVAL = 0.4f;
 
     public const int COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR = 5;
@@ -1749,6 +1768,7 @@ public static class Constants
     public const float PROCEDURAL_CACHE_MEMBRANE_KEEP_TIME = 500;
     public const float PROCEDURAL_CACHE_MICROBE_SHAPE_TIME = 7000;
     public const float PROCEDURAL_CACHE_LOADED_SHAPE_KEEP_TIME = 1000;
+    public const float PROCEDURAL_CACHE_SIMPLE_SHAPE_KEEP_TIME = 1000;
 
     // TODO: convert prototypes over to an ECS system as well
 
@@ -1855,6 +1875,7 @@ public static class Constants
     public const string SAVE_BACKUP_SUFFIX = ".backup" + SAVE_EXTENSION_WITH_DOT;
 
     public const int SAVE_LIST_SCREENSHOT_HEIGHT = 720;
+    public const int SAVE_LIST_LAZY_LOAD_PADDING = 5;
     public const int FOSSILISED_PREVIEW_IMAGE_HEIGHT = 400;
 
     public const string FOSSIL_EXTENSION = "thrivefossil";
@@ -2241,8 +2262,6 @@ public static class Constants
     public const int MAX_NEWS_FEED_ITEMS_TO_SHOW = 15;
     public const int MAX_NEWS_FEED_ITEM_LENGTH = 1000;
 
-    public const int MAX_RECENT_VERSIONS_TO_SHOW = 5;
-
     public const string CLICKABLE_TEXT_BBCODE = "[color=#3796e1]";
     public const string CLICKABLE_TEXT_BBCODE_END = "[/color]";
 
@@ -2312,9 +2331,7 @@ public static class Constants
         "toggle_FPS",
     };
 
-    // TODO: switch to https once our runtime supports it: https://github.com/Revolutionary-Games/Thrive/issues/4100
-    // See: https://github.com/Revolutionary-Games/Thrive/pull/4097#issuecomment-1415301373
-    public static readonly Uri MainSiteFeedURL = new("http://thrivefeeds.b-cdn.net/feed.rss");
+    public static readonly Uri MainSiteFeedURL = new("https://thrivefeeds.b-cdn.net/feed.rss");
 
     public static readonly Regex NewsFeedRegexDeleteContent =
         new(@"\s*The\spost\s*.*appeared\sfirst\son.*Revolutionary\sGames\sStudio.*$");

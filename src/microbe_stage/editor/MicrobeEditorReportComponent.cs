@@ -424,13 +424,8 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
     private void ShowExtraInfoOnSpecies(uint id)
     {
-        if (!Editor.CurrentGame.GameWorld.TryGetSpecies(id, out var species))
-        {
-            GD.PrintErr("Species not found for displaying extra info");
-            return;
-        }
-
-        Editor.OpenSpeciesInfoFor(species);
+        // Thriveopedia handles missing species info, so we don't need to check for it here
+        Editor.OpenSpeciesInfoFor(id);
     }
 
     private void UpdateReportTabStatistics()

@@ -105,10 +105,10 @@ public class ModifyExistingSpecies : IRunStep
 
     public bool RunStep(RunResults results)
     {
-        // Setup miche data if missing
+        // Set up miche data if missing
         if (miche == null)
         {
-            miche = results.GetMicheForPatch(patch);
+            miche = results.GetModifiableMicheForPatch(patch);
 
             miche.GetOccupants(speciesWorkMemory);
 

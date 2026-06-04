@@ -15,6 +15,8 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 {
     private readonly IMicrobeSpawnEnvironment dummyEnvironment = new DummyMicrobeSpawnEnvironment();
 
+    private readonly ISpawnSystem dummySpawnSystem = new DummySpawnSystem();
+
     private readonly List<Hex> hexWorkData1 = new();
     private readonly List<Hex> hexWorkData2 = new();
 
@@ -27,13 +29,16 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
     // This is Disposed indirectly
     private MicrobeVisualsSystem microbeVisualsSystem = null!;
 
+    // Multicellular visual-affecting systems we need to refer back to
+    private DelayedColonyOperationSystem delayedColonyOperationSystem = null!;
+
     private Node visualsParent = null!;
 #pragma warning restore CA2213
 
     public override ushort CurrentArchiveVersion => 1;
 
     public override ArchiveObjectType ArchiveObjectType =>
-        throw new NotSupportedException("This class is not meant t obe saved");
+        throw new NotSupportedException("This class is not meant to be saved");
 
     /// <summary>
     ///   Initialises this visual simulation for use
@@ -51,8 +56,12 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
         // TODO: but we cannot prevent this entity world from using multithreading
 
         microbeVisualsSystem = new MicrobeVisualsSystem(EntitySystem, null);
+        delayedColonyOperationSystem =
+            new DelayedColonyOperationSystem(this, dummyEnvironment, dummySpawnSystem, EntitySystem);
+
 #pragma warning disable SA1115
         simulationSystems = new Group<float>(simulationSystems.Name,
+            delayedColonyOperationSystem,
             microbeVisualsSystem,
 
             // Base systems
@@ -129,8 +138,10 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
     public Entity CreateVisualisationColony(MulticellularSpecies species)
     {
         // We pass AI-controlled true here to avoid creating player-specific data, but as we don't have the AI system,
-        // it is fine to create the AI properties as it won't actually do anything
-        SpawnHelpers.SpawnMicrobe(this, dummyEnvironment, species, Vector3.Zero, true);
+        // it is fine to create the AI properties as it won't actually do anything.
+        // Need to spawn the full colony here so that spore reproduction mode doesn't cause wrong results.
+        SpawnHelpers.SpawnMicrobe(this, dummyEnvironment, species, Vector3.Zero, true,
+            MulticellularSpawnState.FullColony);
 
         ProcessDelaySpawnedEntitiesImmediately();
 
@@ -139,22 +150,6 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 
         if (foundEntity == Entity.Null)
             throw new Exception("Could not find microbe entity that should have been created");
-
-        var recorder = StartRecordingEntityCommands();
-
-        var dummySpawnSystem = new DummySpawnSystem();
-
-        int count = species.ModifiableGameplayCells.Count;
-        for (int i = 1; i < count; ++i)
-        {
-            var cell = species.ModifiableGameplayCells[i];
-
-            DelayedColonyOperationSystem.CreateDelayAttachedMicrobe(ref foundEntity.Get<WorldPosition>(),
-                in foundEntity, i, cell, species, this, dummyEnvironment, recorder, dummySpawnSystem, false);
-        }
-
-        recorder.Playback(EntitySystem);
-        FinishRecordingEntityCommands(recorder);
 
         return foundEntity;
     }
@@ -297,7 +292,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
         var radius = cellProperties.CreatedMembrane!.EncompassingCircleRadius;
 
         if (cellProperties.IsBacteria)
-            radius *= 0.5f;
+            radius *= Constants.BACTERIA_CELL_SCALE;
 
         var center = Vector3.Zero;
 
@@ -310,14 +305,19 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 
             foreach (var pair in organelles.CreatedOrganelleVisuals)
             {
+                var organelle = pair.Key;
+
                 // We don't need to account for internal organelles as they are located within the cell's radius
-                if (!pair.Key.Definition.PositionedExternally)
+                if (!organelle.Definition.PositionedExternally)
                     continue;
 
                 // TODO: is there another way to not need to call so many Godot data access methods here
                 // Organelle positions might be usable as the visual positions are derived from them, but this requires
                 // using the global translation for some reason as translation gives just 0 here and doesn't help.
-                var position = pair.Value.GlobalPosition;
+                var visual = organelle.OrganelleGraphics ?? throw new InvalidOperationException(
+                    "Created organelle visual cache should only contain organelles with graphics");
+
+                var position = visual.GlobalPosition;
 
                 // Assume that the organelle's radius is 1
                 const float organelleRadius = 1.0f;
@@ -423,7 +423,15 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 
     public override bool HasSystemsWithPendingOperations()
     {
-        return microbeVisualsSystem.HasPendingOperations();
+        // This is mostly duplicated logic from MicrobeWorldSimulation.HasSystemsWithPendingOperations()
+
+        if (microbeVisualsSystem.HasPendingOperations())
+            return true;
+
+        if (delayedColonyOperationSystem.HasPendingEntities())
+            return true;
+
+        return false;
     }
 
     public override void WriteToArchive(ISArchiveWriter writer)

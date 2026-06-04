@@ -16,6 +16,8 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(SpatialInstance))]
 [ReadsComponent(typeof(CellProperties))]
 [ReadsComponent(typeof(SpatialAnimation))]
+[ReadsComponent(typeof(MicrobeColony))]
+[ReadsComponent(typeof(AttachedToEntity))]
 [RuntimeCost(0.25f)]
 [RunsOnMainThread]
 public partial class IntercellularMatrixSystem : BaseSystem<World, float>
@@ -30,7 +32,8 @@ public partial class IntercellularMatrixSystem : BaseSystem<World, float>
     }
 
     private static void AddIntercellularConnection(in Entity entity, ref IntercellularMatrix intercellularMatrix,
-        ref MicrobeColony colony, ref SpatialInstance spatialInstance, ref CellProperties cellProperties)
+        ref MicrobeColony colony, ref SpatialInstance spatialInstance, ref CellProperties cellProperties,
+        ref AttachedToEntity ourAttachedPosition)
     {
         var parentEntity = colony.ColonyStructure[entity];
 
@@ -53,8 +56,6 @@ public partial class IntercellularMatrixSystem : BaseSystem<World, float>
 
         if (parentEntity == colony.Leader)
         {
-            ref var ourAttachedPosition = ref entity.Get<AttachedToEntity>();
-
             targetRelativePos = -ourAttachedPosition.RelativePosition;
             ourRotation = ourAttachedPosition.RelativeRotation;
 
@@ -65,7 +66,6 @@ public partial class IntercellularMatrixSystem : BaseSystem<World, float>
         }
         else
         {
-            ref var ourAttachedPosition = ref entity.Get<AttachedToEntity>();
             ref var targetAttachedPosition = ref parentEntity.Get<AttachedToEntity>();
 
             targetRelativePos = targetAttachedPosition.RelativePosition
@@ -146,13 +146,6 @@ public partial class IntercellularMatrixSystem : BaseSystem<World, float>
         return (pointA, pointB);
     }
 
-    private static void RemoveConnection(ref IntercellularMatrix intercellularMatrix)
-    {
-        intercellularMatrix.GeneratedConnection?.QueueFree();
-        intercellularMatrix.GeneratedConnection = null;
-        intercellularMatrix.IsConnectionRedundant = false;
-    }
-
     private static void ApplyConnectionMaterialParameters(in Entity entity,
         ref IntercellularMatrix intercellularMatrix)
     {
@@ -187,14 +180,16 @@ public partial class IntercellularMatrixSystem : BaseSystem<World, float>
 
                 ref var colony = ref leader.Get<MicrobeColony>();
 
-                AddIntercellularConnection(entity, ref matrix, ref colony, ref spatialInstance, ref cellProperties);
+                ref var attachedTo = ref entity.Get<AttachedToEntity>();
+                AddIntercellularConnection(entity, ref matrix, ref colony, ref spatialInstance, ref cellProperties,
+                    ref attachedTo);
             }
         }
         else
         {
             if (matrix.GeneratedConnection != null)
             {
-                RemoveConnection(ref matrix);
+                matrix.RemoveConnection();
             }
         }
     }

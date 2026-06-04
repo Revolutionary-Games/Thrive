@@ -62,7 +62,8 @@ public partial class CreditsScroll : Control
     private Control developersHeading = null!;
 #pragma warning restore CA2213
 
-    private float normalScrollSpeed;
+    private float baseSpeed;
+    private float speedModifier = 1.0f;
 
     [Signal]
     public delegate void OnFinishedSignalEventHandler();
@@ -76,8 +77,13 @@ public partial class CreditsScroll : Control
     }
 
     [Export]
+    public float NormalScrollSpeed { get; set; } = 80;
 
-    public float ScrollSpeed { get; set; } = 80;
+    [Export]
+    public float FastForwardMultiplier { get; set; } = 4;
+
+    [Export]
+    public StringName FastForwardAction { get; set; } = "g_sprint";
 
     [Export]
     public bool AutoStart { get; set; } = true;
@@ -90,6 +96,8 @@ public partial class CreditsScroll : Control
 
     [Export]
     public LabelSettings SectionNameFont { get; set; } = null!;
+
+    private float CurrentScrollSpeed => baseSpeed * speedModifier;
 
     public override void _Ready()
     {
@@ -112,9 +120,18 @@ public partial class CreditsScroll : Control
     public override void _Process(double delta)
     {
         if (!scrolling || phase == CreditsPhase.NotRunning)
+        {
             return;
+        }
 
-        scrollOffset += (float)(delta * ScrollSpeed);
+        baseSpeed = NormalScrollSpeed;
+
+        if (Input.IsActionPressed(FastForwardAction))
+        {
+            baseSpeed *= FastForwardMultiplier;
+        }
+
+        scrollOffset += (float)(delta * CurrentScrollSpeed);
         smoothOffset = MathF.Round(scrollOffset);
 
         switch (phase)
@@ -191,9 +208,10 @@ public partial class CreditsScroll : Control
 
     private void Setup()
     {
-        normalScrollSpeed = ScrollSpeed;
         scrollOffset = 0;
         smoothOffset = 0;
+        baseSpeed = NormalScrollSpeed;
+        speedModifier = 1.0f;
         phase = CreditsPhase.GameName;
 
         logo.Visible = true;
@@ -427,7 +445,7 @@ public partial class CreditsScroll : Control
         assetsLicenseLabel.OnBecomeVisible += () =>
         {
             // As licenses are boring speed this up
-            ScrollSpeed = normalScrollSpeed * LicenseTextSpeedMultiplier;
+            speedModifier = LicenseTextSpeedMultiplier;
 
             if (ShowGPLLicense && !steamVersion)
             {
@@ -488,7 +506,7 @@ public partial class CreditsScroll : Control
                     secondEndMarker.OnBecomeVisible += () =>
                     {
                         // Restore normal speed after licenses are pretty much over
-                        ScrollSpeed = normalScrollSpeed;
+                        speedModifier = 1.0f;
                         LoadEndRemarks();
                     };
                 };

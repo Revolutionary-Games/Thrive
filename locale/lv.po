@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-13 11:47+0200\n"
+"POT-Creation-Date: 2026-06-03 12:08+0300\n"
 "PO-Revision-Date: 2026-02-18 15:13+0000\n"
 "Last-Translator: Deleted User <noreply+90@weblate.org>\n"
 "Language-Team: Latvian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lv/>\n"
@@ -116,10 +116,6 @@ msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
 
 #, fuzzy
-msgid "AEROBIC_NITROGEN_FIXATION"
-msgstr "Anaerobiskā slāpekļa fiksācija"
-
-#, fuzzy
 msgid "AEROBIC_RESPIRATION"
 msgstr "Aerobiskā elpošana"
 
@@ -183,6 +179,13 @@ msgstr ""
 
 msgid "ALT"
 msgstr "Alt"
+
+#, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr "Esošie pavedieni:"
+
+msgid "ALTERNATVE_TIMESCALE"
+msgstr ""
 
 msgid "ALWAYS_VISIBLE"
 msgstr ""
@@ -1875,6 +1878,14 @@ msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
 
 #, fuzzy
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr "Automātiski saglabāt progresu spēles laikā"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_METAL"
+msgstr "Automātiski saglabāt progresu spēles laikā"
+
+#, fuzzy
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr "Automātiski saglabāt progresu spēles laikā"
 
@@ -1913,10 +1924,6 @@ msgstr ""
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
-
-#, fuzzy
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "Atsākt spēli"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr ""
@@ -2046,6 +2053,40 @@ msgstr ""
 
 #, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
+msgstr ""
+"Prokariotu struktūras\n"
+"\n"
+"Metabolosomas: ražo ATP no glikozes\n"
+"\n"
+"Hemosintezējošas olbaltumvielas: No sērūdeņraža saražo uz pusi mazāk glikozes nekā hemoplasts, bet arī veic glikolīzi, aizņem 1 daļu\n"
+"\n"
+"Tilakoīdi: ražo 3 reizes mazāk glikozes nekā parasts hloroplasts, bet arī veic glikolīzi un aizņem 1 daļu\n"
+"\n"
+"Rusticianīns : pārvērš dzelzi ATP\n"
+"\n"
+"Nitrogenāze: no atmosfēras slāpekli un ATP ražo amonjaku\n"
+"\n"
+"Citoplazma: uzglabā savienojumus un veic glikolīzi (ražo ATP nelielos daudzumos)"
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
+msgstr ""
+"Prokariotu struktūras\n"
+"\n"
+"Metabolosomas: ražo ATP no glikozes\n"
+"\n"
+"Hemosintezējošas olbaltumvielas: No sērūdeņraža saražo uz pusi mazāk glikozes nekā hemoplasts, bet arī veic glikolīzi, aizņem 1 daļu\n"
+"\n"
+"Tilakoīdi: ražo 3 reizes mazāk glikozes nekā parasts hloroplasts, bet arī veic glikolīzi un aizņem 1 daļu\n"
+"\n"
+"Rusticianīns : pārvērš dzelzi ATP\n"
+"\n"
+"Nitrogenāze: no atmosfēras slāpekli un ATP ražo amonjaku\n"
+"\n"
+"Citoplazma: uzglabā savienojumus un veic glikolīzi (ražo ATP nelielos daudzumos)"
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
 msgstr ""
 "Prokariotu struktūras\n"
 "\n"
@@ -3827,6 +3868,15 @@ msgstr ""
 msgid "MARINE_SNOW"
 msgstr "Jūras sniegs"
 
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr ""
+"Aktīvi mikrobi skraidīs apkārt un gāzīsies, kad nekas interesants nenotiek.\n"
+"Sēdošie mikrobi būs nekustīgi un gaidīs, kad vide mainīsies, pirms tie kaut ko dara."
+
 msgid "MASTER_VOLUME"
 msgstr "Skaļums"
 
@@ -4622,6 +4672,23 @@ msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "Novietot organoīdu"
 
 #, fuzzy
+msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
+msgstr ""
+"Prokariotu struktūras\n"
+"\n"
+"Metabolosomas: ražo ATP no glikozes\n"
+"\n"
+"Hemosintezējošas olbaltumvielas: No sērūdeņraža saražo uz pusi mazāk glikozes nekā hemoplasts, bet arī veic glikolīzi, aizņem 1 daļu\n"
+"\n"
+"Tilakoīdi: ražo 3 reizes mazāk glikozes nekā parasts hloroplasts, bet arī veic glikolīzi un aizņem 1 daļu\n"
+"\n"
+"Rusticianīns : pārvērš dzelzi ATP\n"
+"\n"
+"Nitrogenāze: no atmosfēras slāpekli un ATP ražo amonjaku\n"
+"\n"
+"Citoplazma: uzglabā savienojumus un veic glikolīzi (ražo ATP nelielos daudzumos)"
+
+#, fuzzy
 msgid "MULTICELLULAR_STAGE"
 msgstr "Novietot organoīdu"
 
@@ -4704,6 +4771,9 @@ msgstr ""
 "Vai vēlies turpināt?"
 
 msgid "NEW"
+msgstr ""
+
+msgid "NEWER"
 msgstr ""
 
 msgid "NEWER_VERSION_LOADING_WARNING"
@@ -4914,6 +4984,10 @@ msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
 
 msgid "OK"
 msgstr "OK"
+
+#, fuzzy
+msgid "OLDER"
+msgstr "Atvērt mapi"
 
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -5236,6 +5310,9 @@ msgstr "Šūnas procesi"
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
+msgid "PATCH_NOTES_RECENT_BOUNDARY"
+msgstr ""
+
 #, fuzzy
 msgid "PATCH_NOTES_TITLE"
 msgstr "Šūnas procesi"
@@ -5458,6 +5535,10 @@ msgid "PRESSURE_SHORT"
 msgstr "Spied."
 
 #, fuzzy
+msgid "PRESSURE_TOLERANCE"
+msgstr "Atgriezties izvēlnē"
+
+#, fuzzy
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "Atgriezties izvēlnē"
 
@@ -5508,9 +5589,6 @@ msgstr ""
 
 msgid "PROTEINS"
 msgstr "Olbaltumvielas"
-
-msgid "PROTOPLASM"
-msgstr "Protoplazma"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr ""
@@ -5638,6 +5716,10 @@ msgstr ""
 #, fuzzy
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 msgstr "ATP RAŽOŠANA IR PĀRĀK ZEMA!"
+
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "ATP ražošana"
 
 #, fuzzy
 msgid "REPRODUCTION_METHOD"
@@ -5791,6 +5873,10 @@ msgstr "Pagriezt pa labi"
 
 #, fuzzy
 msgid "ROTATION_COLON"
+msgstr "Kopējā Populācija:"
+
+#, fuzzy
+msgid "ROTATION_FORCE"
 msgstr "Kopējā Populācija:"
 
 msgid "RUNOFF_EVENT"
@@ -6333,11 +6419,12 @@ msgstr "Suga:"
 msgid "SPECIES_WITH_POPULATION"
 msgstr "Sugas populācija"
 
-msgid "SPEED"
-msgstr "Ātrums"
-
 msgid "SPEED_COLON"
 msgstr "Ātrums:"
+
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "Atsākt spēli"
 
 #, fuzzy
 msgid "SPORE_CELL_TYPE"
@@ -6650,6 +6737,10 @@ msgid "TEMPERATURE_SHORT"
 msgstr "Temperatūra."
 
 #, fuzzy
+msgid "TEMPERATURE_TOLERANCE_RANGE"
+msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
+
+#, fuzzy
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
 
@@ -6808,6 +6899,9 @@ msgstr "Thrive Licences"
 #, fuzzy
 msgid "THRIVIN_ACHIEVEMENT"
 msgstr "Kustība"
+
+msgid "THRUST_FORCE"
+msgstr ""
 
 msgid "THYLAKOIDS"
 msgstr "Tilakoīdi"
@@ -6990,9 +7084,6 @@ msgid "TOOLS"
 msgstr "Instrumenti"
 
 msgid "TOOL_HAND_AXE"
-msgstr ""
-
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
 #, fuzzy
@@ -7735,10 +7826,6 @@ msgid "VIEWER"
 msgstr ""
 
 #, fuzzy
-msgid "VIEW_ALL"
-msgstr "Pārskatīt tagad"
-
-#, fuzzy
 msgid "VIEW_CELL_PROCESSES"
 msgstr "Pārveido [thrive:compound type=\"glucose\"][/thrive:compound] par [thrive:compound type=\"atp\"][/thrive:compound]."
 
@@ -8330,7 +8417,7 @@ msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr ""
 
 #, fuzzy
-msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+msgid "WIKI_GLYCOLYSIS_COMMA_NITROGEN_FIXATION"
 msgstr "Anaerobiskā slāpekļa fiksācija"
 
 #, fuzzy
@@ -9111,10 +9198,6 @@ msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr ""
 
 #, fuzzy
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "Protoplazma"
-
-#, fuzzy
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "Protoplazma"
 
@@ -9196,33 +9279,6 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "Aerobiskā elpošana"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "Protoplazma"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr "Protoplazma"
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr "Pārveido [thrive:compound type=\"glucose\"][/thrive:compound] par [thrive:compound type=\"atp\"][/thrive:compound]."
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
 
 msgid "WIKI_PULLING_CILIA"
 msgstr ""
@@ -9744,6 +9800,36 @@ msgstr "Pietuvināt"
 
 msgid "ZOOM_OUT"
 msgstr "Attālināt"
+
+#~ msgid "PROTOPLASM"
+#~ msgstr "Protoplazma"
+
+#, fuzzy
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "Protoplazma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "Protoplazma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr "Protoplazma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr "Pārveido [thrive:compound type=\"glucose\"][/thrive:compound] par [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+#~ msgid "VIEW_ALL"
+#~ msgstr "Pārskatīt tagad"
+
+#~ msgid "SPEED"
+#~ msgstr "Ātrums"
+
+#, fuzzy
+#~ msgid "AEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Anaerobiskā slāpekļa fiksācija"
 
 #~ msgid "AEROBIC_NITROGEN_FIXING"
 #~ msgstr "Aerobiskā slāpekļa fiksācija"

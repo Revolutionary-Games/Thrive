@@ -207,7 +207,11 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         if (GenerateThreadedSystems.UseCheckedComponentAccess)
         {
-            GD.Print("Disallowing threaded execution to allow strict component thread checks to work");
+            GD.Print("Disallowing threaded execution to allow strict component thread checks to work, " +
+                "code must have been edited disabled parallel queries");
+
+            // We can't automatically turn off parallel queries, but we can force them to fail with this; code needs
+            // changes to work
             World.SharedJobScheduler = null;
         }
 
@@ -367,7 +371,15 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
     public override bool HasSystemsWithPendingOperations()
     {
-        return microbeVisualsSystem.HasPendingOperations();
+        // Note any visuals-affecting things added here needs to be added also for MicrobeVisualOnlySimulation
+
+        if (microbeVisualsSystem.HasPendingOperations())
+            return true;
+
+        if (delayedColonyOperationSystem.HasPendingEntities())
+            return true;
+
+        return false;
     }
 
     public override void FreeNodeResources()

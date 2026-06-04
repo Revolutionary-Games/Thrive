@@ -104,7 +104,7 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
             }
 
             if (IsBacteria)
-                return raw * 0.5f;
+                return raw * Constants.BACTERIA_CELL_SCALE;
 
             return raw;
         }

@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-13 11:47+0200\n"
-"PO-Revision-Date: 2026-05-13 03:55+0000\n"
-"Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
+"POT-Creation-Date: 2026-06-03 12:08+0300\n"
+"PO-Revision-Date: 2026-05-22 15:37+0000\n"
+"Last-Translator: DiversoCortez <decaiotreis@proton.me>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -108,9 +108,6 @@ msgstr "Avançado"
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Abrir as configurações avançadas"
 
-msgid "AEROBIC_NITROGEN_FIXATION"
-msgstr "Fixação Aeróbica de Nitrogênio"
-
 msgid "AEROBIC_RESPIRATION"
 msgstr "Respiração Aeróbica"
 
@@ -173,6 +170,17 @@ msgstr "Você já está ascendido"
 
 msgid "ALT"
 msgstr "Alt"
+
+#, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr ""
+"No modo de movimento relativo ao jogador as teclas de movimento são relativas à rotação atual da célula do jogador.\n"
+"Então mover o cursor muda o que é considerado para frente para a célula.\n"
+"Este é o modo de movimento padrão do Thrive."
+
+#, fuzzy
+msgid "ALTERNATVE_TIMESCALE"
+msgstr ". Proporção aumenta"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Sempre visível"
@@ -1816,6 +1824,14 @@ msgstr "Aplicar distorção para o plano de fundo de micróbios"
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Mostrar partículas de fundo"
 
+#, fuzzy
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr "OpenGL"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_METAL"
+msgstr "OpenGL"
+
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr "OpenGL"
 
@@ -1852,9 +1868,6 @@ msgstr "Clique duas vezes para ver em tela cheia"
 #, fuzzy
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Uma membrana com duas camadas, tem melhor proteção contra dano e leva menos energia para não se deformar. No entanto, diminui um pouco sua velocidade e diminui a taxa em que pode absorver recursos."
-
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "Mude entre velocidade normal e dupla no jogo"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr "Arraste para reordenar itens com o mouse"
@@ -1975,6 +1988,28 @@ msgstr ""
 "Se a sua célula não estiver pronta para o núcleo, você pode usar o  [b]botão de desfazer[/b] para [u]reverter[/u] o núcleo."
 
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
+msgstr ""
+"Para continuar progredindo, você eventualmente vai querer adicionar um [b]núcleo[/b].\n"
+"\n"
+"Adicionar o [b]núcleo[/b] irá desbloquear organelas mais avançadas, como o [b]agente ligante[/b], o qual te permitirá se ligar com outras células de sua espécie a virar [u]multicelMulticelularular[/u].\n"
+"\n"
+"Tente colocar um [b]núcleo[/b] para fechar este tutorial\n"
+"\n"
+"Se a sua célula não estiver pronta para o núcleo, você pode usar o  [b]botão de desfazer[/b] para [u]reverter[/u] o núcleo."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
+msgstr ""
+"Para continuar progredindo, você eventualmente vai querer adicionar um [b]núcleo[/b].\n"
+"\n"
+"Adicionar o [b]núcleo[/b] irá desbloquear organelas mais avançadas, como o [b]agente ligante[/b], o qual te permitirá se ligar com outras células de sua espécie a virar [u]multicelMulticelularular[/u].\n"
+"\n"
+"Tente colocar um [b]núcleo[/b] para fechar este tutorial\n"
+"\n"
+"Se a sua célula não estiver pronta para o núcleo, você pode usar o  [b]botão de desfazer[/b] para [u]reverter[/u] o núcleo."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
 msgstr ""
 "Para continuar progredindo, você eventualmente vai querer adicionar um [b]núcleo[/b].\n"
 "\n"
@@ -3587,6 +3622,13 @@ msgstr "Março"
 msgid "MARINE_SNOW"
 msgstr "Neve marinha"
 
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(o que fazer com os compostos que o jogador havia guardado quando voltar para o estágio do editor)"
+
 msgid "MASTER_VOLUME"
 msgstr "Volume principal"
 
@@ -4330,6 +4372,22 @@ msgstr "Apesar das suas células dividirem compostos, cada célula precisa produ
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "(alguns recursos podem não estar disponíveis quando você alcançar os próximos estágios)"
 
+#, fuzzy
+msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
+msgstr ""
+"[b]Estágio[/b]\n"
+"  Microbial\n"
+"[b]Tipo de membrana[/b]\n"
+"  {0}\n"
+"[b]Rigidez da membrana[/b]\n"
+"  {1}\n"
+"[b]Velocidade[/b]\n"
+"  {2}\n"
+"[b]Velocidade de rotação[/b]\n"
+"  {3}\n"
+"[b]Tamanho em hexágonos[/b]\n"
+"  {4}"
+
 msgid "MULTICELLULAR_STAGE"
 msgstr "Estágio Multicelular"
 
@@ -4403,6 +4461,10 @@ msgstr ""
 
 msgid "NEW"
 msgstr "Novo"
+
+#, fuzzy
+msgid "NEWER"
+msgstr "Visualizador"
 
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -4606,6 +4668,10 @@ msgstr "Visite o site oficial do Revolutionary Games"
 
 msgid "OK"
 msgstr "OK"
+
+#, fuzzy
+msgid "OLDER"
+msgstr "Abrir Pasta"
 
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -4885,6 +4951,10 @@ msgstr "A última versão de Thrive que você jogou foi {0} e, desde então, hou
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr "A última versão de Thrive que você jogou foi {0} e, desde estão, houve {1} novos lançamentos"
 
+#, fuzzy
+msgid "PATCH_NOTES_RECENT_BOUNDARY"
+msgstr "— {0}"
+
 msgid "PATCH_NOTES_TITLE"
 msgstr "Notas de Atualização"
 
@@ -5102,6 +5172,10 @@ msgstr "Pressão"
 msgid "PRESSURE_SHORT"
 msgstr "Pressão"
 
+#, fuzzy
+msgid "PRESSURE_TOLERANCE"
+msgstr "A pressão preferida pela sua espécie e a faixa de flexibilidade ao redor dela. Quando em condições fora dessa faixa, haverá diversos efeitos negativos na sua espécie. Mude a pressão preferida e a flexibilidade com os sliders."
+
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "A pressão preferida pela sua espécie e a faixa de flexibilidade ao redor dela. Quando em condições fora dessa faixa, haverá diversos efeitos negativos na sua espécie. Mude a pressão preferida e a flexibilidade com os sliders."
 
@@ -5151,9 +5225,6 @@ msgstr "Equipe de Gestão do Projeto"
 
 msgid "PROTEINS"
 msgstr "Proteínas"
-
-msgid "PROTOPLASM"
-msgstr "Protoplasma"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requests / Programação"
@@ -5275,6 +5346,10 @@ msgstr ""
 "Manter tudo é a opção egoísta de manter todos os compostos guardados como estão.\n"
 "Sempre completar enche quaisquer compostos até a quantidade com que a célula inicialmente é gerada.\n"
 "Completar na mudança de região completa os compostos iniciais mas apenas se a região foi mudada."
+
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "Gemulação"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reprodução:"
@@ -5412,6 +5487,10 @@ msgid "ROTATE_RIGHT"
 msgstr "Girar à direita"
 
 msgid "ROTATION_COLON"
+msgstr "Rotação:"
+
+#, fuzzy
+msgid "ROTATION_FORCE"
 msgstr "Rotação:"
 
 msgid "RUNOFF_EVENT"
@@ -5923,11 +6002,12 @@ msgstr "Espécies a Encontrar:"
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} com população: {1}"
 
-msgid "SPEED"
-msgstr "Velocidade"
-
 msgid "SPEED_COLON"
 msgstr "Velocidade:"
+
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "Mude entre velocidade normal e dupla no jogo"
 
 #, fuzzy
 msgid "SPORE_CELL_TYPE"
@@ -6220,6 +6300,10 @@ msgstr "Temperatura"
 msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
+#, fuzzy
+msgid "TEMPERATURE_TOLERANCE_RANGE"
+msgstr "A temperatura preferida pela sua espécie. Quando em condições fora da faixa de flexibilidade ao redor da temperatura ideal, haverá diversos efeitos negativos que tornarão sobreviver mais difícil. Adapte-se usando os sliders para as regiões em que você pretende jogar."
+
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "A temperatura preferida pela sua espécie. Quando em condições fora da faixa de flexibilidade ao redor da temperatura ideal, haverá diversos efeitos negativos que tornarão sobreviver mais difícil. Adapte-se usando os sliders para as regiões em que você pretende jogar."
 
@@ -6366,6 +6450,9 @@ msgstr "Licenças de Thrive"
 
 msgid "THRIVIN_ACHIEVEMENT"
 msgstr "Prosperar"
+
+msgid "THRUST_FORCE"
+msgstr ""
 
 msgid "THYLAKOIDS"
 msgstr "Tilacoides"
@@ -6531,9 +6618,6 @@ msgstr "Ferramentas"
 
 msgid "TOOL_HAND_AXE"
 msgstr "Machado de Mão"
-
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
-msgstr "Existem versões recentes demais, então todas não estão sendo mostradas"
 
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "Energia Acumulada:"
@@ -7237,9 +7321,6 @@ msgstr "{0} MiB"
 msgid "VIEWER"
 msgstr "Visualizador"
 
-msgid "VIEW_ALL"
-msgstr "Ver Tudo"
-
 #, fuzzy
 msgid "VIEW_CELL_PROCESSES"
 msgstr "Ver Processos Celulares"
@@ -7409,6 +7490,7 @@ msgstr "Nitrogenase"
 msgid "WIKI_AWARE_STAGE_UI"
 msgstr "Em breve."
 
+#, fuzzy
 msgid "WIKI_AXON_EFFECTS"
 msgstr ""
 "Para cada célula em um organismo multicelular que contenha um [b]Axônio[/b], a capacidade cerebral desse organismo aumenta proporcionalmente ao volume da célula. Células com [b]Axônios[/b] são classificadas como tendo tipo de tecido cerebral.\n"
@@ -7597,6 +7679,7 @@ msgstr "Proteínas Quimiossintetizantes"
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_UPGRADES"
 msgstr "Sem melhoras."
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_EFFECTS"
 msgstr "Sem efeitos."
 
@@ -7861,7 +7944,8 @@ msgstr ""
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr "Sem melhoras."
 
-msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+#, fuzzy
+msgid "WIKI_GLYCOLYSIS_COMMA_NITROGEN_FIXATION"
 msgstr "Glicólise, Fixação Anaeróbica de Nitrogênio"
 
 msgid "WIKI_HEADING_APPENDICES"
@@ -8012,6 +8096,7 @@ msgstr "Processos"
 msgid "WIKI_HELP_AND_TIPS_MORE_GAME_INFO"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_HYDROGENASE_EFFECTS"
 msgstr "Sem efeitos."
 
@@ -8179,6 +8264,7 @@ msgstr "Mecânicas"
 msgid "WIKI_MECHANICS_ROOT_INTRO"
 msgstr "Axônio"
 
+#, fuzzy
 msgid "WIKI_MELANOSOME_EFFECTS"
 msgstr "Sem efeitos."
 
@@ -8208,6 +8294,7 @@ msgstr "Metabolossomos são aglomerados envoltos com cascas de proteínas. Eles 
 msgid "WIKI_MELANOSOME_UPGRADES"
 msgstr "Sem melhoras."
 
+#, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
 msgstr "Sem efeitos."
 
@@ -8322,6 +8409,7 @@ msgstr ""
 "\n"
 "Para sobreviver neste mundo hostil, você precisará coletar compostos e evoluir por gerações para competir contra outras espécies de micróbios."
 
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "Sem efeitos."
 
@@ -8422,6 +8510,7 @@ msgstr ""
 msgid "WIKI_NATION_EDITOR"
 msgstr "Editor de Nação"
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "Sem efeitos."
 
@@ -8454,6 +8543,7 @@ msgstr "Nitrogenase é uma enzima que consegue usar nitrogênio gasoso e energia
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "Sem melhoras."
 
+#, fuzzy
 msgid "WIKI_NITROPLAST_EFFECTS"
 msgstr "Sem efeitos."
 
@@ -8669,9 +8759,6 @@ msgstr "Oxitoxissoma"
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr "Pilus Perfurador"
 
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "Protoplasma"
-
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "Reprodução"
 
@@ -8745,32 +8832,6 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "Respiração Aeróbica"
-
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "Sem efeitos."
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr "Protoplasma"
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr "Sem modificações."
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound]."
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr "O jogador não pode evoluir [b]Protoplasma[/b]. Outras espécies podem fazê-lo sem restrições."
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr "Sem melhoras."
 
 #, fuzzy
 msgid "WIKI_PULLING_CILIA"
@@ -8854,6 +8915,7 @@ msgstr "Agente de Sinalização"
 msgid "WIKI_SIGNALING_AGENT_UPGRADES"
 msgstr "Sem melhoras."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_EFFECTS"
 msgstr ""
 "Permite a uma célula ejetar [thrive:compound type=\"mucilage\"][/thrive:compound] para se impelir. Ejetar [thrive:compound type=\"mucilage\"][/thrive:compound] gera uma grande quantidade de velocidade por um período curto de tempo. A ejeção pode ser sustentada por mais tempo dependendo da quantidade disponível de [thrive:compound type=\"mucilage\"][/thrive:compound].\n"
@@ -9021,6 +9083,7 @@ msgstr "O termoplasto é uma estrutura de membrana dupla contendo pigmentos term
 msgid "WIKI_THE_PATCH_MAP_THE_PATCH_MAP"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_EFFECTS"
 msgstr "Sem efeitos especiais."
 
@@ -9096,6 +9159,7 @@ msgstr "O vacúolo de toxinas é um vacúolo que foi modificado para a produçã
 msgid "WIKI_TOXIN_VACUOLE_UPGRADES"
 msgstr "Sem melhoras."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_EFFECTS"
 msgstr "Sem efeitos."
 
@@ -9288,6 +9352,44 @@ msgstr "Aumentar o zoom"
 
 msgid "ZOOM_OUT"
 msgstr "Diminuir o zoom"
+
+#~ msgid "PROTOPLASM"
+#~ msgstr "Protoplasma"
+
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "Protoplasma"
+
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "Sem efeitos."
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr "Protoplasma"
+
+#~ msgid "WIKI_PROTOPLASM_MODIFICATIONS"
+#~ msgstr "Sem modificações."
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#~ msgid "WIKI_PROTOPLASM_REQUIREMENTS"
+#~ msgstr "O jogador não pode evoluir [b]Protoplasma[/b]. Outras espécies podem fazê-lo sem restrições."
+
+#~ msgid "WIKI_PROTOPLASM_UPGRADES"
+#~ msgstr "Sem melhoras."
+
+#~ msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+#~ msgstr "Existem versões recentes demais, então todas não estão sendo mostradas"
+
+#~ msgid "VIEW_ALL"
+#~ msgstr "Ver Tudo"
+
+#~ msgid "SPEED"
+#~ msgstr "Velocidade"
+
+#~ msgid "AEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Fixação Aeróbica de Nitrogênio"
 
 #~ msgid "AEROBIC_NITROGEN_FIXING"
 #~ msgstr "Fixação Aeróbica de Nitrogênio"
@@ -9940,9 +10042,6 @@ msgstr "Diminuir o zoom"
 
 #~ msgid "INTO"
 #~ msgstr "em"
-
-#~ msgid "DOT_RATE_SCALES"
-#~ msgstr ". Proporção aumenta"
 
 #~ msgid "OXYGEN_DOT"
 #~ msgstr "Oxigênio."

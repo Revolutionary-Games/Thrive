@@ -667,7 +667,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
                 radius = membraneData.Radius;
 
                 if (microbeSpecies.IsBacteria)
-                    radius *= 0.5f;
+                    radius *= Constants.BACTERIA_CELL_SCALE;
             }
 
             resolvedSpeciesRadii[species] = radius;
@@ -963,13 +963,16 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
             float adjacencyBonus = 1.0f;
 
-            Player.Get<MulticellularGrowth>().IsASpore = false;
+            ref var growth = ref Player.Get<MulticellularGrowth>();
+
+            growth.IsASpore = false;
 
             if (multicellularSpeciesType.Species.ReproductionMethod == MulticellularReproductionMethod.Sporulation)
             {
-                Player.Get<MulticellularGrowth>().IsASpore = true;
+                growth.IsASpore = true;
             }
-            else if (multicellularSpeciesType.Species.ReproductionMethod == MulticellularReproductionMethod.Budding)
+            else if (multicellularSpeciesType.Species.ReproductionMethod is MulticellularReproductionMethod.Budding
+                     or MulticellularReproductionMethod.MassBudding)
             {
                 adjacencyBonus = multicellularSpeciesType.Species.GetAdjacencySpecializationBonus(0);
             }

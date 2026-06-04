@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-13 11:47+0200\n"
+"POT-Creation-Date: 2026-06-03 12:08+0300\n"
 "PO-Revision-Date: 2025-11-01 17:05+0000\n"
 "Last-Translator: nam123depchai <amnickw@gmail.com>\n"
 "Language-Team: Vietnamese <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/vi/>\n"
@@ -108,9 +108,6 @@ msgstr "Nâng cao"
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Mở giao diện thiết lập nâng cao"
 
-msgid "AEROBIC_NITROGEN_FIXATION"
-msgstr "Cố định đạm hiếu khí"
-
 msgid "AEROBIC_RESPIRATION"
 msgstr "Hô hấp hiếu khí"
 
@@ -173,6 +170,12 @@ msgstr "Bạn đã thăng hoa rồi"
 
 msgid "ALT"
 msgstr "Alt"
+
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr ""
+
+msgid "ALTERNATVE_TIMESCALE"
+msgstr ""
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Luôn hiển thị"
@@ -1691,6 +1694,12 @@ msgstr ""
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
 
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr ""
+
+msgid "DISPLAY_DRIVER_METAL"
+msgstr ""
+
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr ""
 
@@ -1725,9 +1734,6 @@ msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
 msgstr ""
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
-msgstr ""
-
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
 msgstr ""
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
@@ -1842,6 +1848,28 @@ msgstr ""
 
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 msgstr ""
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
+msgstr ""
+"Chào mừng trở lại Trình chỉnh sửa Vi sinh vật. Bạn sẽ quay lại đây mỗi khi sinh sản.\n"
+"\n"
+"Màn hình Báo cáo cung cấp cho bạn danh sách các thay đổi trong khu vực bạn đang chiếm giữ. Hãy thử khám phá các công cụ khác nhau mà bạn có để tìm hiểu thêm về các sự kiện trong thế giới của bạn!\n"
+"\n"
+"Sau khi xem xét những gì đã xảy ra, bạn có thể [b]thực hiện các thay đổi[/b] để thích nghi với loài của mình.\n"
+"\n"
+"Khi sẵn sàng, nhấn nút \"tiếp theo\" ở góc dưới bên phải để tiếp tục."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
+msgstr ""
+"Chào mừng trở lại Trình chỉnh sửa Vi sinh vật. Bạn sẽ quay lại đây mỗi khi sinh sản.\n"
+"\n"
+"Màn hình Báo cáo cung cấp cho bạn danh sách các thay đổi trong khu vực bạn đang chiếm giữ. Hãy thử khám phá các công cụ khác nhau mà bạn có để tìm hiểu thêm về các sự kiện trong thế giới của bạn!\n"
+"\n"
+"Sau khi xem xét những gì đã xảy ra, bạn có thể [b]thực hiện các thay đổi[/b] để thích nghi với loài của mình.\n"
+"\n"
+"Khi sẵn sàng, nhấn nút \"tiếp theo\" ở góc dưới bên phải để tiếp tục."
 
 msgid "EDIT_MICROBE_FIRST_TIME"
 msgstr ""
@@ -3371,6 +3399,13 @@ msgstr ""
 msgid "MARINE_SNOW"
 msgstr ""
 
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(tốc độ mà loài AI đột biến)"
+
 msgid "MASTER_VOLUME"
 msgstr ""
 
@@ -4021,6 +4056,10 @@ msgstr "Tất cả các hướng dẫn sẽ được hiển thị lại. Khi tù
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "Tất cả các hướng dẫn sẽ được hiển thị lại. Khi tùy chọn này tắt, chỉ những hướng dẫn chưa từng xuất hiện mới được hiển thị. Việc tắt tùy chọn này vẫn an toàn ngay cả khi bạn chơi lần đầu."
 
+#, fuzzy
+msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
+msgstr "Tất cả các hướng dẫn sẽ được hiển thị lại. Khi tùy chọn này tắt, chỉ những hướng dẫn chưa từng xuất hiện mới được hiển thị. Việc tắt tùy chọn này vẫn an toàn ngay cả khi bạn chơi lần đầu."
+
 msgid "MULTICELLULAR_STAGE"
 msgstr ""
 
@@ -4088,6 +4127,9 @@ msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 
 msgid "NEW"
+msgstr ""
+
+msgid "NEWER"
 msgstr ""
 
 msgid "NEWER_VERSION_LOADING_WARNING"
@@ -4284,6 +4326,9 @@ msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr ""
 
 msgid "OK"
+msgstr ""
+
+msgid "OLDER"
 msgstr ""
 
 msgid "OLDER_VERSION_LOADING_WARNING"
@@ -4544,6 +4589,9 @@ msgstr ""
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
+msgid "PATCH_NOTES_RECENT_BOUNDARY"
+msgstr ""
+
 msgid "PATCH_NOTES_TITLE"
 msgstr ""
 
@@ -4744,6 +4792,9 @@ msgstr ""
 msgid "PRESSURE_SHORT"
 msgstr ""
 
+msgid "PRESSURE_TOLERANCE"
+msgstr ""
+
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr ""
 
@@ -4792,9 +4843,6 @@ msgid "PROJECT_MANAGEMENT_TEAM"
 msgstr ""
 
 msgid "PROTEINS"
-msgstr ""
-
-msgid "PROTOPLASM"
 msgstr ""
 
 msgid "PULL_REQUESTS_PROGRAMMING"
@@ -4908,6 +4956,10 @@ msgstr ""
 
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 msgstr ""
+
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "Sản xuất ATP"
 
 msgid "REPRODUCTION_METHOD"
 msgstr ""
@@ -5041,6 +5093,10 @@ msgstr ""
 
 msgid "ROTATION_COLON"
 msgstr ""
+
+#, fuzzy
+msgid "ROTATION_FORCE"
+msgstr "Sản xuất ATP"
 
 msgid "RUNOFF_EVENT"
 msgstr ""
@@ -5513,11 +5569,12 @@ msgstr ""
 msgid "SPECIES_WITH_POPULATION"
 msgstr ""
 
-msgid "SPEED"
-msgstr ""
-
 msgid "SPEED_COLON"
 msgstr ""
+
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "Thoát khỏi trò chơi"
 
 msgid "SPORE_CELL_TYPE"
 msgstr ""
@@ -5806,6 +5863,10 @@ msgstr ""
 msgid "TEMPERATURE_SHORT"
 msgstr ""
 
+#, fuzzy
+msgid "TEMPERATURE_TOLERANCE_RANGE"
+msgstr "(tốc độ mà loài AI đột biến)"
+
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr ""
 
@@ -5922,6 +5983,9 @@ msgid "THRIVE_LICENSES"
 msgstr ""
 
 msgid "THRIVIN_ACHIEVEMENT"
+msgstr ""
+
+msgid "THRUST_FORCE"
 msgstr ""
 
 msgid "THYLAKOIDS"
@@ -6072,9 +6136,6 @@ msgid "TOOLS"
 msgstr ""
 
 msgid "TOOL_HAND_AXE"
-msgstr ""
-
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
 msgid "TOTAL_GATHERED_ENERGY_COLON"
@@ -6572,9 +6633,6 @@ msgstr ""
 msgid "VIEWER"
 msgstr ""
 
-msgid "VIEW_ALL"
-msgstr ""
-
 msgid "VIEW_CELL_PROCESSES"
 msgstr ""
 
@@ -7064,8 +7122,9 @@ msgstr ""
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr ""
 
-msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
-msgstr ""
+#, fuzzy
+msgid "WIKI_GLYCOLYSIS_COMMA_NITROGEN_FIXATION"
+msgstr "Cố định đạm hiếu khí"
 
 msgid "WIKI_HEADING_APPENDICES"
 msgstr ""
@@ -7679,9 +7738,6 @@ msgstr ""
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr ""
 
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr ""
-
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr ""
 
@@ -7746,30 +7802,6 @@ msgid "WIKI_PERFORATOR_PILUS_UPGRADES"
 msgstr ""
 
 msgid "WIKI_PROTEIN_RESPIRATION"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
 msgstr ""
 
 msgid "WIKI_PULLING_CILIA"

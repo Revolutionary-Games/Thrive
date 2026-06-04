@@ -335,7 +335,7 @@ _data = {
 &"show": SubResource("44")
 }
 
-[node name="CellBodyPlanEditorComponent" type="Control" unique_id=2093309640 node_paths=PackedStringArray("structureTabButton", "reproductionTabButton", "behaviourTabButton", "growthOrderTabButton", "tolerancesTabButton", "structureTab", "reproductionTab", "behaviourEditor", "growthOrderTab", "growthOrderGUI", "showGrowthOrderCoordinates", "tolerancesEditor", "toleranceTab", "toleranceWarningContainer", "cellTypeSelectionList", "modifyTypeButton", "deleteTypeButton", "duplicateTypeButton", "cannotDeleteInUseTypeDialog", "duplicateCellTypeDialog", "duplicateCellTypeName", "cellPopupMenu", "organismStatisticsPanel", "negativeAtpPopup", "wrongGrowthOrderPopup", "reproductionMethodDropdown", "sporeCellTypeDropdown", "buddingReproductionSection", "sporeReproductionSection", "hexPositionEffectsContainer", "floatingLabelContainer", "islandPopup", "componentBottomLeftButtons", "mutationPointsBar", "cancelButton", "finishButtonWarningBadge", "finishOrNextButton")]
+[node name="CellBodyPlanEditorComponent" type="Control" unique_id=2093309640 node_paths=PackedStringArray("structureTabButton", "reproductionTabButton", "behaviourTabButton", "growthOrderTabButton", "tolerancesTabButton", "structureTab", "reproductionTab", "behaviourEditor", "growthOrderTab", "growthOrderGUI", "showGrowthOrderCoordinates", "tolerancesEditor", "toleranceTab", "toleranceWarningContainer", "cellTypeSelectionList", "modifyTypeButton", "deleteTypeButton", "duplicateTypeButton", "cannotDeleteInUseTypeDialog", "duplicateCellTypeDialog", "duplicateCellTypeName", "cellPopupMenu", "organismStatisticsPanel", "rightPanelScrollContainer", "negativeAtpPopup", "wrongGrowthOrderPopup", "reproductionMethodDropdown", "sporeCellTypeDropdown", "massBuddingCellCountSlider", "massBuddingCellCountLabel", "buddingReproductionSection", "sporeReproductionSection", "massBuddingReproductionSection", "hexPositionEffectsContainer", "floatingLabelContainer", "islandPopup", "componentBottomLeftButtons", "mutationPointsBar", "cancelButton", "finishButtonWarningBadge", "finishOrNextButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -367,13 +367,17 @@ duplicateCellTypeDialog = NodePath("NewCellTypeSetup")
 duplicateCellTypeName = NodePath("NewCellTypeSetup/VBoxContainer2/NewName")
 cellPopupMenu = NodePath("CellPopupMenu")
 organismStatisticsPanel = NodePath("RightPanel/VBoxContainer/OrganismStatisticsPanel")
+rightPanelScrollContainer = NodePath("RightPanel/VBoxContainer/OrganismStatisticsPanel/VBoxContainer/Body/ScrollContainer")
 negativeAtpPopup = NodePath("NegativeAtpWarning")
 wrongGrowthOrderPopup = NodePath("WrongGrowthOrderError")
 toleranceWarningsFont = ExtResource("6_pwhoj")
 reproductionMethodDropdown = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/OptionButton")
 sporeCellTypeDropdown = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SporeOptions/HBoxContainer2/OptionButton")
+massBuddingCellCountSlider = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/MassBuddingOptions/HBoxContainer/HSlider")
+massBuddingCellCountLabel = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/MassBuddingOptions/HBoxContainer/Label2")
 buddingReproductionSection = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/BuddingOptions")
 sporeReproductionSection = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SporeOptions")
+massBuddingReproductionSection = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/MassBuddingOptions")
 hexPositionEffectsContainer = NodePath("AdjacencyFactorsContainer")
 hexEffectFont = ExtResource("4_h03u7")
 floatingLabelContainer = NodePath("GrowthOrderNumberContainer")
@@ -643,11 +647,13 @@ autowrap_mode = 3
 [node name="OptionButton" type="OptionButton" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1393943288]
 layout_mode = 2
 selected = 0
-item_count = 2
+item_count = 3
 popup/item_0/text = "REPRODUCTION_BUDDING"
 popup/item_0/id = 0
-popup/item_1/text = "REPRODUCTION_SPORE"
-popup/item_1/id = 1
+popup/item_1/text = "REPRODUCTION_MASS_BUDDING"
+popup/item_1/id = 2
+popup/item_2/text = "REPRODUCTION_SPORE"
+popup/item_2/id = 1
 
 [node name="BuddingOptions" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer" unique_id=929510710]
 visible = false
@@ -688,6 +694,44 @@ autowrap_mode = 3
 
 [node name="OptionButton" type="OptionButton" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SporeOptions/HBoxContainer2" unique_id=671089156]
 layout_mode = 2
+
+[node name="MassBuddingOptions" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer" unique_id=734059329]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/MassBuddingOptions" unique_id=88169692]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+label_settings = ExtResource("9_hioid")
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/MassBuddingOptions" unique_id=1604561210]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/MassBuddingOptions/HBoxContainer" unique_id=713662367]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "MASS_BUDDING_CELL_COUNT"
+label_settings = ExtResource("10_kypsq")
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HSlider" type="HSlider" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/MassBuddingOptions/HBoxContainer" unique_id=703401679]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+min_value = 1.0
+max_value = 1.0
+value = 1.0
+rounded = true
+
+[node name="Label2" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/MassBuddingOptions/HBoxContainer" unique_id=225121192]
+layout_mode = 2
+label_settings = ExtResource("10_kypsq")
 
 [node name="Behaviour" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" unique_id=766902860 instance=ExtResource("9")]
 visible = false
@@ -976,6 +1020,7 @@ ShowToggles = false
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/Duplicate" to="." method="OnTypeDuplicateStartPressed"]
 [connection signal="item_selected" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/OptionButton" to="." method="OnReproductionMethodSelected"]
 [connection signal="item_selected" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SporeOptions/HBoxContainer2/OptionButton" to="." method="OnSporeCellTypeSelected"]
+[connection signal="value_changed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/MassBuddingOptions/HBoxContainer/HSlider" to="." method="OnMassBuddingCellCountChanged"]
 [connection signal="OnGrowthOrderChanged" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer/GrowthOrderPicker" to="." method="OnGrowthOrderChanged"]
 [connection signal="OrderReset" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer/GrowthOrderPicker" to="." method="OnResetGrowthOrderPressed"]
 [connection signal="toggled" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer/Coordinates" to="." method="OnGrowthOrderCoordinatesToggled"]
@@ -997,3 +1042,5 @@ ShowToggles = false
 [connection signal="DeletePressed" from="CellPopupMenu" to="." method="OnDeletePressed"]
 [connection signal="ModifyPressed" from="CellPopupMenu" to="." method="OnModifyPressed"]
 [connection signal="MovePressed" from="CellPopupMenu" to="." method="OnMovePressed"]
+
+[editable path="RightPanel/VBoxContainer/OrganismStatisticsPanel"]

@@ -23,6 +23,7 @@ using Godot;
 [WritesToComponent(typeof(BioProcesses))]
 [ReadsComponent(typeof(MulticellularSpeciesMember))]
 [ReadsComponent(typeof(WorldPosition))]
+[ReadsComponent(typeof(CompoundStorage))]
 [RunsAfter(typeof(ColonyBindingSystem))]
 [RuntimeCost(0.25f)]
 public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
@@ -36,6 +37,12 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
     private readonly IMicrobeSpawnEnvironment spawnEnvironment;
     private readonly ISpawnSystem spawnSystem;
 
+    private readonly ForEach entityForEachMarker;
+
+    private readonly QueryDescription delayedOperationQuery = new QueryDescription().WithAll<DelayedMicrobeColony>();
+
+    private bool hasDelayed;
+
     public DelayedColonyOperationSystem(IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment spawnEnvironment,
         ISpawnSystem spawnSystem, World world) :
         base(world)
@@ -45,6 +52,8 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
         this.spawnSystem = spawnSystem;
 
         attachmentOrderComparer = new AttachmentOrderComparer();
+
+        entityForEachMarker = OnHasEntity;
     }
 
     public static void CreateDelayAttachedMicrobe(ref WorldPosition colonyPosition, in Entity colonyEntity,
@@ -75,8 +84,8 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
 
         var weight = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species,
             colonyPosition.Position + colonyPosition.Rotation * attachPosition.RelativePosition, true,
-            (cellTemplate.ModifiableCellType, bodyPlanIndex), recorder, out var member, MulticellularSpawnState.Bud,
-            giveStartingCompounds);
+            (cellTemplate.ModifiableCellType, bodyPlanIndex), recorder, out var member,
+            MulticellularSpawnState.Offspring, giveStartingCompounds);
 
         // Register with the spawn system to allow this entity to despawn if it gets cut off from the colony later
         // or attaching fails
@@ -110,6 +119,15 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
                 recorder.Add(member, originalEvents.CloneEventCallbacksForColonyMember());
             }
         }
+    }
+
+    public bool HasPendingEntities()
+    {
+        hasDelayed = false;
+
+        // TODO: is there more efficient way to check for pending entities than needing to loop each one?
+        World.Query(delayedOperationQuery, entityForEachMarker);
+        return hasDelayed;
     }
 
     public override void AfterUpdate(in float delta)
@@ -227,9 +245,8 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
         for (int i = bodyPlanIndex; i < bodyPlanIndex + members && i < species.Species.ModifiableGameplayCells.Count;
              ++i)
         {
-            CreateDelayAttachedMicrobe(ref parentPosition, entity, bodyPlanIndex++,
-                species.Species.ModifiableGameplayCells[i], species.Species, worldSimulation, spawnEnvironment,
-                recorder, spawnSystem, true, playAnimation);
+            CreateDelayAttachedMicrobe(ref parentPosition, entity, i, species.Species.ModifiableGameplayCells[i],
+                species.Species, worldSimulation, spawnEnvironment, recorder, spawnSystem, true, playAnimation);
 
             added = true;
         }
@@ -246,6 +263,11 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
     {
         var parentIndex = colony.CalculateSensibleParentIndexForMulticellular(ref entity.Get<AttachedToEntity>());
         colony.FinishQueuedMemberAdd(colonyEntity, parentIndex, entity, targetMemberIndex, recorder);
+    }
+
+    private void OnHasEntity(Entity entity)
+    {
+        hasDelayed = true;
     }
 
     private class AttachmentOrderComparer : IComparer<(Entity Cell, DelayedMicrobeColony Delayed)>

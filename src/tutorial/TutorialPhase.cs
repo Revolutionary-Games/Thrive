@@ -78,6 +78,11 @@ public abstract class TutorialPhase : IArchiveUpdatable
         DefaultGUIStateHandle();
     }
 
+    public virtual void ApplyGUIState(MulticellularEditorTutorialGUI gui)
+    {
+        DefaultGUIStateHandle();
+    }
+
     /// <summary>
     ///   Checks (and handles) tutorial events that this tutorial reacts to
     /// </summary>

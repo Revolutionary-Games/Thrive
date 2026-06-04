@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-13 11:47+0200\n"
-"PO-Revision-Date: 2026-05-13 03:55+0000\n"
+"POT-Creation-Date: 2026-06-03 12:08+0300\n"
+"PO-Revision-Date: 2026-05-17 08:05+0000\n"
 "Last-Translator: Tibor Šťastný <tiborstgame2@seznam.cz>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
 "Language: cs\n"
@@ -111,10 +111,6 @@ msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Otevřít náhled pokročilého nastavení"
 
 #, fuzzy
-msgid "AEROBIC_NITROGEN_FIXATION"
-msgstr "Anaerobní fixace dusíku"
-
-#, fuzzy
 msgid "AEROBIC_RESPIRATION"
 msgstr "Aerobní dýchání"
 
@@ -166,6 +162,14 @@ msgstr "Jste již povzneseni"
 
 msgid "ALT"
 msgstr "Alt"
+
+#, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr "Současná vlákna:"
+
+#, fuzzy
+msgid "ALTERNATVE_TIMESCALE"
+msgstr ". Stupnice hodnocení"
 
 #, fuzzy
 msgid "ALWAYS_VISIBLE"
@@ -407,10 +411,10 @@ msgid "AVAILABLE_MODS"
 msgstr "Dostupné mody"
 
 msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
-msgstr ""
+msgstr "Průměrná hodnota povrchového CO2"
 
 msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
-msgstr ""
+msgstr "Průměrná hodnota intenzity povrchového světla"
 
 msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
 msgstr ""
@@ -419,10 +423,10 @@ msgid "AVERAGE_SURFACE_OTHER_LEVEL"
 msgstr ""
 
 msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
-msgstr ""
+msgstr "Průměrná hodnota kyslíku na povrchu"
 
 msgid "AVERAGE_SURFACE_TEMPERATURE"
-msgstr ""
+msgstr "Průměrná teplota na povrchu"
 
 msgid "AWAKENING_STAGE"
 msgstr "Fáze Probuzení"
@@ -654,7 +658,7 @@ msgid "CANNOT_ENGULF"
 msgstr "Nedokáže pohlcovat"
 
 msgid "CANNOT_IMPROVE_PERFECTION"
-msgstr ""
+msgstr "Nemůžete vylepšit dokonalost"
 
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr "Nelze umístit masovou kouli do jeho stromu potomků"
@@ -872,19 +876,19 @@ msgid "CLICK_TO_SELECT"
 msgstr "Vybrat"
 
 msgid "CLIMATE_INSTABILITY"
-msgstr ""
+msgstr "Nestabilita podnebí"
 
 msgid "CLIMATE_INSTABILITY_EXPLANATION"
 msgstr "(ovlivňuje frekvenci a závažnost událostí v sektorech jako je například globální zalednění)"
 
 msgid "CLIMATE_STABILITY_AVERAGE"
-msgstr ""
+msgstr "Průměrný"
 
 msgid "CLIMATE_STABILITY_STABLE"
-msgstr ""
+msgstr "Stabilní"
 
 msgid "CLIMATE_STABILITY_UNSTABLE"
-msgstr ""
+msgstr "Nestabilní"
 
 msgid "CLOSE"
 msgstr "Zavřít"
@@ -892,9 +896,8 @@ msgstr "Zavřít"
 msgid "CLOSE_OPTIONS"
 msgstr "Zavřít možnosti?"
 
-#, fuzzy
 msgid "CLOSTRIDIAL_FERMENTATION"
-msgstr "Klostridiová fermentace"
+msgstr "Klostridiové kvašení"
 
 #, fuzzy
 msgid "CLOUD_BENCHMARK"
@@ -971,7 +974,7 @@ msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Jas (intenzita barvy)"
 
 msgid "COMMAND_INPUT_LINE_EDIT"
-msgstr ""
+msgstr "Vložte příkaz"
 
 msgid "COMMON_ABILITIES"
 msgstr "Společné schopnosti"
@@ -1072,7 +1075,7 @@ msgid "COMPOUND_LEVEL_LOW"
 msgstr "Nízká"
 
 msgid "COMPOUND_LEVEL_VERY_HIGH"
-msgstr ""
+msgstr "Velice vysoká"
 
 msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr "Velmi nízká"
@@ -1825,6 +1828,14 @@ msgstr "Zobrazení částic v pozadí"
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Zobrazení částic v pozadí"
 
+#, fuzzy
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr "OpenGL"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_METAL"
+msgstr "OpenGL"
+
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr "OpenGL"
 
@@ -1861,9 +1872,6 @@ msgstr "Dvojklikem zobrazíte v celé obrazovce"
 #, fuzzy
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Membrána se dvěma vrstvami má lepší ochranu proti poškození a potřebuje méně energie k zabránění deformace. Avšak zpomaluje buňku a snižuje rychlost, kterou může absorbovat zdroje."
-
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "Přepnout mezi běžnou herní rychlostí a dvojnásoubnou rychlostí"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr ""
@@ -1983,6 +1991,24 @@ msgstr ""
 
 #, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
+msgstr ""
+"Toto je editor buněk, kde můžete vyvinout svůj druh utrácením mutačních bodů (MP). Při každé nové generaci vždy začínáte se 100 MP na utracení, takže nemá cenu šetřit!\n"
+"\n"
+"Hex uprostřed obrazovky je vaše buňka, která se skládá z jedné cytoplazmy.\n"
+"\n"
+"Abyste pokračovali, vyberte jednu s částí v levém panelu. Poté ho umístíte vedle hexu kliknutím levého tlačítka myši. Můžete s částmi otáčet pomocí [thrive:input]e_rotate_left[/thrive:input] a [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
+msgstr ""
+"Toto je editor buněk, kde můžete vyvinout svůj druh utrácením mutačních bodů (MP). Při každé nové generaci vždy začínáte se 100 MP na utracení, takže nemá cenu šetřit!\n"
+"\n"
+"Hex uprostřed obrazovky je vaše buňka, která se skládá z jedné cytoplazmy.\n"
+"\n"
+"Abyste pokračovali, vyberte jednu s částí v levém panelu. Poté ho umístíte vedle hexu kliknutím levého tlačítka myši. Můžete s částmi otáčet pomocí [thrive:input]e_rotate_left[/thrive:input] a [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
 msgstr ""
 "Toto je editor buněk, kde můžete vyvinout svůj druh utrácením mutačních bodů (MP). Při každé nové generaci vždy začínáte se 100 MP na utracení, takže nemá cenu šetřit!\n"
 "\n"
@@ -2121,7 +2147,7 @@ msgid "ENERGY_SUMMARY_LINE"
 msgstr "Celková získaná energie je {0} s individuálními náklady {1}, což vede k nekorigované populaci {2}"
 
 msgid "ENGULF_CELL_OR_CHUNK"
-msgstr ""
+msgstr "Pohlť jinou buňku nebo úlomek"
 
 #, fuzzy
 msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
@@ -2204,6 +2230,8 @@ msgstr ""
 
 msgid "EVENT_METEOR_GLUCOSE"
 msgstr ""
+"Pád glukózového meteoritu\n"
+"Zvýšil hodnoty oxidu uhličitého a glukózy."
 
 msgid "EVENT_METEOR_IRON"
 msgstr ""
@@ -2227,6 +2255,9 @@ msgstr ""
 
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
+"Pád sírového meteoritu\n"
+"Zvýšil hodnoty Oxidu uhličitého a síry\n"
+"Rozpadl se na sírové úlomky."
 
 msgid "EVENT_RUNOFF_TOOLTIP"
 msgstr ""
@@ -2617,7 +2648,7 @@ msgid "GENERAL_LOADING_TIP_7"
 msgstr "Pokud tvá populace spadne na nulu, tak vyhyneš."
 
 msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
-msgstr ""
+msgstr "Vytvoř více glukózy než spotřebuješ fotosyntézou"
 
 msgid "GENERATIONS"
 msgstr "Generace"
@@ -2658,7 +2689,7 @@ msgid "GLES3"
 msgstr "GLES3"
 
 msgid "GLOBAL_GLACIATION_END_EVENT_LOG"
-msgstr ""
+msgstr "Globální zalednění skončilo ve všech povrchových sektorech"
 
 #, fuzzy
 msgid "GLOBAL_GLACIATION_EVENT"
@@ -2669,13 +2700,13 @@ msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
 msgstr "Přejděte do fáze Probuzení. Dostupné, jakmile máte dostatečnou sílu mozku (typ tkáně s axony)."
 
 msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
-msgstr ""
+msgstr "Globální zalednění nastane za {0} generací"
 
 msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_SINGULAR"
-msgstr ""
+msgstr "Globální zalednění nastane za {0} generaci"
 
 msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
-msgstr ""
+msgstr "Globální zalednění začalo ve všech povrchových sektorech"
 
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
@@ -2871,7 +2902,7 @@ msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr ""
 
 msgid "IGNORE_FURTHER_ERRORS"
-msgstr ""
+msgstr "Ignorovat další chyby"
 
 #, fuzzy
 msgid "IMAGE_FILE_TYPES"
@@ -3096,7 +3127,7 @@ msgid "IRON"
 msgstr "Železo"
 
 msgid "IRON_LEVELS"
-msgstr ""
+msgstr "Hodnoty železa"
 
 msgid "IRON_OXIDATION"
 msgstr "Rezivění"
@@ -3664,6 +3695,13 @@ msgstr "Březen"
 msgid "MARINE_SNOW"
 msgstr "Mořský sníh"
 
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(pasivní příjem reprodukčních sloučenin z prostředí bez toho aniž byste něco museli dělat)"
+
 msgid "MASTER_VOLUME"
 msgstr "Celková hlasitost"
 
@@ -3757,13 +3795,13 @@ msgid "META_THREADS_TOOLTIP"
 msgstr "Navštivte náš profil na Threads."
 
 msgid "METEOR_IMPACT_EVENT"
-msgstr ""
+msgstr "Pád meteoru"
 
 msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
-msgstr ""
+msgstr "Pád meteoru zasáhl {0} sektorů"
 
 msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
-msgstr ""
+msgstr "Pád meteoru zasáhl {0} sektor"
 
 msgid "METRICS"
 msgstr "Metriky výkonu"
@@ -4501,6 +4539,22 @@ msgstr "Mnohobuněčný Editor"
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "(některé funkce možná nebudou přístupné jakmile se dostanete do dalších období)"
 
+#, fuzzy
+msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
+msgstr ""
+"[b]Období[/b]\n"
+"Mikrobiální\n"
+"[b]Typ Membrány[/b]\n"
+"{0}\n"
+"[b]Pevnost Membrány[/b]\n"
+"{1}\n"
+"[b]Základní Rychlost[/b]\n"
+"{2}\n"
+"[b]Základní Rychlost Rotace[/b]\n"
+"{3}\n"
+"[b]Základní Velikost Hexu[/b]\n"
+"{4}"
+
 msgid "MULTICELLULAR_STAGE"
 msgstr "Mnohobuněčné Období"
 
@@ -4579,6 +4633,10 @@ msgstr ""
 msgid "NEW"
 msgstr "Nový"
 
+#, fuzzy
+msgid "NEWER"
+msgstr "Prohlížeč"
+
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "Tato uložená hra pochází z novější verze Thrive a je velmi pravděpodobně nekompatibilní.\n"
@@ -4651,7 +4709,7 @@ msgid "NOTHING_HERE"
 msgstr "Nic zde není"
 
 msgid "NOTHING_TO_INTERACT_WITH"
-msgstr ""
+msgstr "Nic tu není"
 
 msgid "NOTICE_BINDING_OUT_OF_ATP"
 msgstr "Rušení spojovacího módu z důvodu nedostatku ATP"
@@ -4784,6 +4842,10 @@ msgstr "Navštivte oficiální stránku Revolutionary Games"
 
 msgid "OK"
 msgstr "OK"
+
+#, fuzzy
+msgid "OLDER"
+msgstr "Otevřít složku"
 
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -5080,6 +5142,10 @@ msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
 #, fuzzy
+msgid "PATCH_NOTES_RECENT_BOUNDARY"
+msgstr "Pangoniánské ústí"
+
+#, fuzzy
 msgid "PATCH_NOTES_TITLE"
 msgstr "Odstranit místní data"
 
@@ -5304,6 +5370,10 @@ msgid "PRESSURE_SHORT"
 msgstr "Tlak"
 
 #, fuzzy
+msgid "PRESSURE_TOLERANCE"
+msgstr "Návrat do hlavního menu"
+
+#, fuzzy
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "Návrat do hlavního menu"
 
@@ -5354,9 +5424,6 @@ msgstr "Projektoví manažeři"
 
 msgid "PROTEINS"
 msgstr "Bílkoviny"
-
-msgid "PROTOPLASM"
-msgstr "Protoplazma"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Externí programátoři"
@@ -5478,6 +5545,10 @@ msgstr "(pasivní příjem reprodukčních sloučenin z prostředí bez toho ani
 #, fuzzy
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 msgstr "Reprodukce:"
+
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "Pučení"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reprodukce:"
@@ -5627,6 +5698,10 @@ msgid "ROTATE_RIGHT"
 msgstr "Otočit doprava"
 
 msgid "ROTATION_COLON"
+msgstr "Rotace:"
+
+#, fuzzy
+msgid "ROTATION_FORCE"
 msgstr "Rotace:"
 
 msgid "RUNOFF_EVENT"
@@ -6161,11 +6236,12 @@ msgstr "Druh:"
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} s populací: {1}"
 
-msgid "SPEED"
-msgstr "Rychlost"
-
 msgid "SPEED_COLON"
 msgstr "Rychlost:"
+
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "Přepnout mezi běžnou herní rychlostí a dvojnásoubnou rychlostí"
 
 #, fuzzy
 msgid "SPORE_CELL_TYPE"
@@ -6471,6 +6547,10 @@ msgstr "Teplota"
 msgid "TEMPERATURE_SHORT"
 msgstr "Teplota"
 
+#, fuzzy
+msgid "TEMPERATURE_TOLERANCE_RANGE"
+msgstr "Teplota tolerovaná tvým druhem. Pokud jsi v podmínkách, které nespadají do rozsahu tvé tolerance teploty, tak utrpíš negativní následky, které ti ztíží přežívání. Adaptuj se s využitím posuvníků na sektory, ve kterých chceš žít."
+
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "Teplota tolerovaná tvým druhem. Pokud jsi v podmínkách, které nespadají do rozsahu tvé tolerance teploty, tak utrpíš negativní následky, které ti ztíží přežívání. Adaptuj se s využitím posuvníků na sektory, ve kterých chceš žít."
 
@@ -6608,6 +6688,9 @@ msgstr "Thrive Licence"
 
 msgid "THRIVIN_ACHIEVEMENT"
 msgstr "Prosperující"
+
+msgid "THRUST_FORCE"
+msgstr ""
 
 msgid "THYLAKOIDS"
 msgstr "Thylakoidy"
@@ -6774,9 +6857,6 @@ msgstr "Nástroje"
 msgid "TOOL_HAND_AXE"
 msgstr "Příruční sekerka"
 
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
-msgstr "Nezobrazují se všechny nedávno vydané verze, protože jich je příliš mnoho"
-
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "Nasbíraná energie:"
 
@@ -6784,7 +6864,7 @@ msgid "TOTAL_SAVES"
 msgstr "Celkem úložných souborů:"
 
 msgid "TOXIN_CHANNEL_INHIBITOR"
-msgstr ""
+msgstr "Inhibitor kanálu"
 
 #, fuzzy
 msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
@@ -7510,9 +7590,6 @@ msgstr "{0} MiB"
 msgid "VIEWER"
 msgstr "Prohlížeč"
 
-msgid "VIEW_ALL"
-msgstr "Zobrazit vše"
-
 #, fuzzy
 msgid "VIEW_CELL_PROCESSES"
 msgstr "Zobrazit buněčné pochody"
@@ -8092,7 +8169,7 @@ msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr ""
 
 #, fuzzy
-msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+msgid "WIKI_GLYCOLYSIS_COMMA_NITROGEN_FIXATION"
 msgstr "Anaerobní fixace dusíku"
 
 #, fuzzy
@@ -8891,10 +8968,6 @@ msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr ""
 
 #, fuzzy
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "Protoplazma"
-
-#, fuzzy
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "Protoplazma"
 
@@ -8976,33 +9049,6 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "Aerobní dýchání"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "Protoplazma"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr "Protoplazma"
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr "Přeměňuje [thrive:compound type=\"glucose\"]glukózu[/thrive:compound] na [thrive:compound type=\"atp\"]ATP[/thrive:compound]."
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
 
 #, fuzzy
 msgid "WIKI_PULLING_CILIA"
@@ -9521,6 +9567,38 @@ msgstr "Přiblížit"
 
 msgid "ZOOM_OUT"
 msgstr "Oddálit"
+
+#~ msgid "PROTOPLASM"
+#~ msgstr "Protoplazma"
+
+#, fuzzy
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "Protoplazma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "Protoplazma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr "Protoplazma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr "Přeměňuje [thrive:compound type=\"glucose\"]glukózu[/thrive:compound] na [thrive:compound type=\"atp\"]ATP[/thrive:compound]."
+
+#~ msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+#~ msgstr "Nezobrazují se všechny nedávno vydané verze, protože jich je příliš mnoho"
+
+#~ msgid "VIEW_ALL"
+#~ msgstr "Zobrazit vše"
+
+#~ msgid "SPEED"
+#~ msgstr "Rychlost"
+
+#, fuzzy
+#~ msgid "AEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Anaerobní fixace dusíku"
 
 #~ msgid "AEROBIC_NITROGEN_FIXING"
 #~ msgstr "Aerobní fixace dusíku"
@@ -10049,9 +10127,6 @@ msgstr "Oddálit"
 #~ msgid "PATCH_PANGONIAN_COAST"
 #~ msgstr "Pangoniánské pobřeží"
 
-#~ msgid "PATCH_PANGONIAN_ESTUARY"
-#~ msgstr "Pangoniánské ústí"
-
 #~ msgid "PATCH_CAVE"
 #~ msgstr "Jeskyně"
 
@@ -10166,9 +10241,6 @@ msgstr "Oddálit"
 
 #~ msgid "INTENSITY_OF"
 #~ msgstr "intenzita"
-
-#~ msgid "DOT_RATE_SCALES"
-#~ msgstr ". Stupnice hodnocení"
 
 #~ msgid "OXYGEN_DOT"
 #~ msgstr "Kyslík."

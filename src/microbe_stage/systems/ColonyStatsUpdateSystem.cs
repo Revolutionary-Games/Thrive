@@ -12,6 +12,8 @@ using Components;
 /// </summary>
 [WritesToComponent(typeof(Spawned))]
 [ReadsComponent(typeof(MicrobeColonyMember))]
+[ReadsComponent(typeof(OrganelleContainer))]
+[ReadsComponent(typeof(CellProperties))]
 [RunsAfter(typeof(SpawnSystem))]
 [RunsAfter(typeof(MulticellularGrowthSystem))]
 [RuntimeCost(0.25f)]
