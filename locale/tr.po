@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-06-03 12:08+0300\n"
-"PO-Revision-Date: 2026-06-03 07:14+0000\n"
+"PO-Revision-Date: 2026-06-04 01:56+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -171,16 +171,14 @@ msgstr "Evreni zaten tırmandınız"
 msgid "ALT"
 msgstr "Alt"
 
-#, fuzzy
 msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
 msgstr ""
-"Yerel iş parçacıkları, yönetilen iş parçacıklarından farklı görevler için kullanılır.\n"
-"Çok çekirdekli işlemcilerde daha fazla iş parçacığı genellikle performansı belli bir sınıra kadar arttırır.\n"
-"Toplam iş parçacığı aşırı fazla ise performans azalmaya başlar."
+"Simülasyonun alternatif hızını değiştirir.\n"
+"Bu hız, arayüzde bulunan ve bu değerle eşleşen butona basılarak kullanılabilir.\n"
+"Daha yüksek değerler, çalıştırmak için daha hızlı bir işlemci gerektirebilir."
 
-#, fuzzy
 msgid "ALTERNATVE_TIMESCALE"
-msgstr ". Oran doğru orantılı"
+msgstr "Alternatif zaman ölçeği"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Her zaman görünür"
@@ -1813,13 +1811,11 @@ msgstr "Mikrop arkaplanlarına çarpıklık uygula"
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Arkaplan parçacıklarını göster"
 
-#, fuzzy
 msgid "DISPLAY_DRIVER_DIRECT3D"
-msgstr "OpenGL"
+msgstr "DirectX"
 
-#, fuzzy
 msgid "DISPLAY_DRIVER_METAL"
-msgstr "OpenGL"
+msgstr "Metal"
 
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr "OpenGL"
@@ -5922,9 +5918,8 @@ msgstr "{0} türü {1} popülasyon ile"
 msgid "SPEED_COLON"
 msgstr "Hız:"
 
-#, fuzzy
 msgid "SPEED_TOGGLE_TOOLTIP"
-msgstr "Normal oyun hızı ve iki kat oyun hızı arasında geçiş yap"
+msgstr "Normal oyun hızı ve alternatif oyun hızı arasında geçiş yap"
 
 msgid "SPORE_CELL_TYPE"
 msgstr "Spor hücresi türü"
