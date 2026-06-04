@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-22 16:57+0300\n"
+"POT-Creation-Date: 2026-06-03 20:10+0100\n"
 "PO-Revision-Date: 2026-05-13 03:55+0000\n"
 "Last-Translator: Telegina Alexandra <teleginaaleksandra1@gmail.com>\n"
 "Language-Team: Esperanto <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/eo/>\n"
@@ -178,6 +178,14 @@ msgstr ""
 
 msgid "ALT"
 msgstr "Alt"
+
+#, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr "Nunaj fadenoj:"
+
+#, fuzzy
+msgid "ALTERNATVE_TIMESCALE"
+msgstr ". Takso-skalo"
 
 msgid "ALWAYS_VISIBLE"
 msgstr ""
@@ -1907,6 +1915,14 @@ msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
 
 #, fuzzy
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr "Kapabloj"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_METAL"
+msgstr "Kapabloj"
+
+#, fuzzy
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr "Kapabloj"
 
@@ -1948,10 +1964,6 @@ msgstr ""
 #, fuzzy
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Membrano kun du tavoloj, ĝi havas pli bonan protekton kontraŭ damaĝo kaj bezonas malpli da energio por ne misformi. Tamen ĝi iom malrapidigas la ĉelon kaj malpliigas la rapidon, per kiu ĝi povas sorbi rimedojn."
-
-#, fuzzy
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "Rekomenci"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr ""
@@ -3897,6 +3909,13 @@ msgstr ""
 msgid "MARINE_SNOW"
 msgstr "Mara neĝo"
 
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
+
 msgid "MASTER_VOLUME"
 msgstr "Ĉefa laŭ t"
 
@@ -4742,6 +4761,14 @@ msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "Disloku organeton"
 
 #, fuzzy
+msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
+msgstr ""
+"Rigardu vian sanstaton apud la ATP-breto (malsupre dekstre).\n"
+"Via ĉelo mortas, se ĝi elĉerpiĝas.\n"
+"Vi regeneras sanon dum vi havas ATP-ojn.\n"
+"Certigu kolekti sufiĉe da glukozo por produkti ATP-ojn."
+
+#, fuzzy
 msgid "MULTICELLULAR_STAGE"
 msgstr "Disloku organeton"
 
@@ -4819,6 +4846,9 @@ msgstr ""
 "Ĉu vi volas daŭrigi?"
 
 msgid "NEW"
+msgstr ""
+
+msgid "NEWER"
 msgstr ""
 
 msgid "NEWER_VERSION_LOADING_WARNING"
@@ -5049,6 +5079,10 @@ msgstr "Aldonunovan funkcion por klavo"
 
 msgid "OK"
 msgstr "JES"
+
+#, fuzzy
+msgid "OLDER"
+msgstr "Malfermu Dosierujon de Registroj"
 
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -5364,6 +5398,10 @@ msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
 #, fuzzy
+msgid "PATCH_NOTES_RECENT_BOUNDARY"
+msgstr "Pangonia Estuaro"
+
+#, fuzzy
 msgid "PATCH_NOTES_TITLE"
 msgstr "Ĉelaj Procezoj"
 
@@ -5596,6 +5634,10 @@ msgid "PRESSURE_SHORT"
 msgstr "Premo."
 
 #, fuzzy
+msgid "PRESSURE_TOLERANCE"
+msgstr "Revenu al Menuo"
+
+#, fuzzy
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "Revenu al Menuo"
 
@@ -5647,9 +5689,6 @@ msgstr ""
 msgid "PROTEINS"
 msgstr "Proteinoj"
 
-msgid "PROTOPLASM"
-msgstr "Protoplasmo"
-
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr ""
 
@@ -5684,6 +5723,10 @@ msgstr "Spirado"
 
 #, fuzzy
 msgid "RADIOACTIVE_CHUNK"
+msgstr "Granda Fera Peco"
+
+#, fuzzy
+msgid "RADIOACTIVE_CHUNK_BANANA"
 msgstr "Granda Fera Peco"
 
 #, fuzzy
@@ -5778,6 +5821,10 @@ msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
 
 #, fuzzy
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
+msgstr "reproduktis"
+
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
 msgstr "reproduktis"
 
 #, fuzzy
@@ -5936,6 +5983,10 @@ msgstr "Rotaciu dekstren"
 
 #, fuzzy
 msgid "ROTATION_COLON"
+msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
+
+#, fuzzy
+msgid "ROTATION_FORCE"
 msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
 
 msgid "RUNOFF_EVENT"
@@ -6517,11 +6568,12 @@ msgstr "Specioj:"
 msgid "SPECIES_WITH_POPULATION"
 msgstr "Specio loĝantaro"
 
-msgid "SPEED"
-msgstr "Rapideco"
-
 msgid "SPEED_COLON"
 msgstr "Rapideco:"
+
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "Rekomenci"
 
 #, fuzzy
 msgid "SPORE_CELL_TYPE"
@@ -6843,6 +6895,10 @@ msgid "TEMPERATURE_SHORT"
 msgstr "Tеmp."
 
 #, fuzzy
+msgid "TEMPERATURE_TOLERANCE_RANGE"
+msgstr "Aldonunovan funkcion por klavo"
+
+#, fuzzy
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
 
@@ -6985,6 +7041,9 @@ msgstr ""
 #, fuzzy
 msgid "THRIVIN_ACHIEVEMENT"
 msgstr "Baza Movado"
+
+msgid "THRUST_FORCE"
+msgstr ""
 
 msgid "THYLAKOIDS"
 msgstr "Tilakoidoj"
@@ -7161,9 +7220,6 @@ msgid "TOOLS"
 msgstr "Iloj"
 
 msgid "TOOL_HAND_AXE"
-msgstr ""
-
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
 #, fuzzy
@@ -7931,9 +7987,6 @@ msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
 msgid "VIEWER"
-msgstr ""
-
-msgid "VIEW_ALL"
 msgstr ""
 
 #, fuzzy
@@ -9449,10 +9502,6 @@ msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr ""
 
 #, fuzzy
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "Protoplasmo"
-
-#, fuzzy
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "Protoplasmo"
 
@@ -9545,33 +9594,6 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "Spirado"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "Protoplasmo"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr "Protoplasmo"
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr "Transformas [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]."
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
 
 msgid "WIKI_PULLING_CILIA"
 msgstr ""
@@ -10144,6 +10166,32 @@ msgid "ZOOM_OUT"
 msgstr "Malzomu"
 
 #, fuzzy
+#~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
+#~ msgstr "Rekomenci"
+
+#~ msgid "PROTOPLASM"
+#~ msgstr "Protoplasmo"
+
+#, fuzzy
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "Protoplasmo"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "Protoplasmo"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr "Protoplasmo"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr "Transformas [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#~ msgid "SPEED"
+#~ msgstr "Rapideco"
+
+#, fuzzy
 #~ msgid "AEROBIC_NITROGEN_FIXATION"
 #~ msgstr "Malaerobia Nitrogena Riparado"
 
@@ -10607,9 +10655,6 @@ msgstr "Malzomu"
 #~ msgid "PATCH_PANGONIAN_COAST"
 #~ msgstr "Pangonia Marbordo"
 
-#~ msgid "PATCH_PANGONIAN_ESTUARY"
-#~ msgstr "Pangonia Estuaro"
-
 #~ msgid "PATCH_CAVE"
 #~ msgstr "Kaverno"
 
@@ -10718,9 +10763,6 @@ msgstr "Malzomu"
 
 #~ msgid "INTENSITY_OF"
 #~ msgstr "intenseco de"
-
-#~ msgid "DOT_RATE_SCALES"
-#~ msgstr ". Takso-skalo"
 
 #~ msgid "OXYGEN_DOT"
 #~ msgstr "Oksigeno."
@@ -10839,3 +10881,9 @@ msgstr "Malzomu"
 #~ "Vi ankaŭ povas ŝanĝi aliajn ecojn de via specio en la aliaj langetoj de la ĉela redaktilo.\n"
 #~ "\n"
 #~ "Por daŭrigi, elektu organeton el la maldekstra panelo (citoplasmo estas bona elekto). Poste maldekstre alklaku apud la sesangulo montrita meze de la ekrano por aldoni tiun organeton al via specio."
+
+#~ msgid "PATCH_PANGONIAN_ESTUARY"
+#~ msgstr "Pangonia Estuaro"
+
+#~ msgid "DOT_RATE_SCALES"
+#~ msgstr ". Takso-skalo"

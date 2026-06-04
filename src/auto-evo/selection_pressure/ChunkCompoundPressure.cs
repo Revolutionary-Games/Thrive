@@ -5,7 +5,7 @@ using SharedBase.Archive;
 
 public class ChunkCompoundPressure : SelectionPressure
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     // Needed for translation extraction
     // ReSharper disable ArrangeObjectCreationWhenTypeEvident
@@ -22,9 +22,11 @@ public class ChunkCompoundPressure : SelectionPressure
     private readonly CompoundDefinition compound;
     private readonly CompoundDefinition compoundOut;
 
+    private readonly bool isDayNightCycleEnabled;
+
     public ChunkCompoundPressure(string chunkType, LocalizedString readableName, Compound compound,
-        Compound compoundOut, float weight) : base(weight, [
-        RemoveOrganelle.ThatCreateCompound(compoundOut),
+        Compound compoundOut, bool isDayNightCycleEnabled, float weight) : base(weight, [
+        new RemoveOrganelle(_ => true),
         new AddOrganelleAnywhere(organelle => organelle.HasChemoreceptorComponent),
         new AddOrganelleAnywhere(organelle => organelle.InternalName == "vacuole"),
         AddOrganelleAnywhere.ThatConvertBetweenCompounds(compound, compoundOut),
@@ -33,6 +35,15 @@ public class ChunkCompoundPressure : SelectionPressure
             new ChemoreceptorUpgrades(compound, null, Constants.CHEMORECEPTOR_RANGE_DEFAULT,
                 Constants.CHEMORECEPTOR_AMOUNT_DEFAULT, SimulationParameters.GetCompound(compound).Colour)),
         new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Activity, 150.0f),
+        new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Activity, -150.0f),
+        new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Aggression, 50.0f),
+        new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Aggression, -150.0f),
+        new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Fear, 150.0f),
+        new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Fear, -150.0f),
+        new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Focus, 150.0f),
+        new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Focus, -150.0f),
+        new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Opportunism, 150.0f),
+        new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Opportunism, -150.0f),
         new ChangeMembraneType("single"),
         new ChangeMembraneType("double"),
     ])
@@ -41,6 +52,7 @@ public class ChunkCompoundPressure : SelectionPressure
         this.compoundOut = SimulationParameters.GetCompound(compoundOut);
         this.chunkType = chunkType;
         this.readableName = readableName;
+        this.isDayNightCycleEnabled = isDayNightCycleEnabled;
     }
 
     public override LocalizedString Name => NameString;
@@ -50,15 +62,29 @@ public class ChunkCompoundPressure : SelectionPressure
     public override ArchiveObjectType ArchiveObjectType =>
         (ArchiveObjectType)ThriveArchiveObjectType.ChunkCompoundPressure;
 
-    public static ChunkCompoundPressure ReadFromArchive(ISArchiveReader reader, ushort version,
-        int referenceId)
+    public static ChunkCompoundPressure ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        var instance = new ChunkCompoundPressure(reader.ReadString() ?? throw new NullArchiveObjectException(),
-            reader.ReadObject<LocalizedString>(), (Compound)reader.ReadInt32(), (Compound)reader.ReadInt32(),
-            reader.ReadFloat());
+        var chunkType = reader.ReadString();
+        var readableName = reader.ReadObject<LocalizedString>();
+        var compound = (Compound)reader.ReadInt32();
+        var compoundOut = (Compound)reader.ReadInt32();
+        bool isDayNightCycleEnabled;
+
+        if (version >= 2)
+        {
+            isDayNightCycleEnabled = reader.ReadBool();
+        }
+        else
+        {
+            isDayNightCycleEnabled = true;
+        }
+
+        var instance = new ChunkCompoundPressure(chunkType ?? throw new NullArchiveObjectException(),
+            readableName, compound, compoundOut,
+            isDayNightCycleEnabled, reader.ReadFloat());
 
         instance.ReadBasePropertiesFromArchive(reader, 1);
         return instance;
@@ -70,6 +96,7 @@ public class ChunkCompoundPressure : SelectionPressure
         writer.WriteObject(readableName);
         writer.Write((int)compound.ID);
         writer.Write((int)compoundOut.ID);
+        writer.Write(isDayNightCycleEnabled);
         base.WriteToArchive(writer);
     }
 
@@ -91,23 +118,54 @@ public class ChunkCompoundPressure : SelectionPressure
         // Speed is not too important to chunk microbes, but all else being the same faster is better than slower
         score += MathF.Pow(cache.GetSpeedForSpecies(microbeSpecies), 0.4f);
 
+        // Diminishing returns on storage
+        score += (MathF.Pow(microbeSpecies.StorageCapacities.Nominal + 1, 0.8f) - 1) / 0.8f;
+
         // Additional bonus from chemoreceptor
         var chemoreceptorScore = cache.GetChemoreceptorChunkScore(microbeSpecies, chunk, compound);
 
-        // modify score by activity
-        var activityFraction = microbeSpecies.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
+        var activity = microbeSpecies.Behaviour.Activity;
 
-        score = (score + chemoreceptorScore) * activityFraction
-            + score * (1 - activityFraction) * Constants.AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION;
+        // Species that are less active during the night get a penalty to their activity
+        if (isDayNightCycleEnabled && cache.GetUsesVaryingCompoundsForSpecies(microbeSpecies, patch.Biome))
+        {
+            var multiplier = activity / Constants.AI_ACTIVITY_TO_BE_FULLY_ACTIVE_DURING_NIGHT;
 
-        // Diminishing returns on storage
-        score += (MathF.Pow(microbeSpecies.StorageCapacities.Nominal + 1, 0.8f) - 1) / 0.8f;
+            multiplier = Math.Max(multiplier, Constants.AUTO_EVO_MAX_NIGHT_SESSILITY_COLLECTING_PENALTY);
+
+            if (multiplier <= 1)
+                activity *= multiplier;
+        }
+
+        // modify score by activity and focus
+        var activityScore = MathF.Pow(activity / Constants.MAX_SPECIES_ACTIVITY, 0.4f);
+        var focusScore = 1 + MathF.Pow(microbeSpecies.Behaviour.Focus / Constants.MAX_SPECIES_ACTIVITY, 0.4f)
+            * Constants.AUTO_EVO_MAX_FOCUS_CHUNK_BONUS;
+
+        score = (score + chemoreceptorScore) * activityScore * focusScore
+            + score * (1 - activityScore * focusScore) * Constants.AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION;
+
+        // compound collection is reduced if you are running away from predators instead
+        var fearFraction = microbeSpecies.Behaviour.Fear / Constants.MAX_SPECIES_FEAR;
+
+        score *= 1 - fearFraction * Constants.AUTO_EVO_MAX_FEAR_GATHERING_PENALTY;
 
         // If the species can't engulf, then they are dependent on only eating the runoff compounds
         if (!microbeSpecies.CanEngulf ||
             cache.GetBaseHexSizeForSpecies(microbeSpecies) < chunk.Size * Constants.ENGULF_SIZE_RATIO_REQ)
         {
             score *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;
+
+            // cloud compound collection is reduced if you are chasing prey instead
+            var aggressionFraction = microbeSpecies.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
+
+            score *= 1 - aggressionFraction * Constants.AUTO_EVO_MAX_AGGRESSION_GATHERING_PENALTY;
+        }
+        else
+        {
+            var opportunismFraction = MathF.Pow(
+                microbeSpecies.Behaviour.Opportunism / Constants.MAX_SPECIES_ACTIVITY, 0.5f);
+            score *= 1 + opportunismFraction * Constants.AUTO_EVO_MAX_OPPORTUNISM_BONUS;
         }
 
         float compoundATP;

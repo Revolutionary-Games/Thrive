@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-22 16:57+0300\n"
-"PO-Revision-Date: 2026-05-18 18:34+0000\n"
+"POT-Creation-Date: 2026-06-03 20:10+0100\n"
+"PO-Revision-Date: 2026-06-04 01:56+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -170,6 +170,15 @@ msgstr "Evreni zaten tırmandınız"
 
 msgid "ALT"
 msgstr "Alt"
+
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr ""
+"Simülasyonun alternatif hızını değiştirir.\n"
+"Bu hız, arayüzde bulunan ve bu değerle eşleşen butona basılarak kullanılabilir.\n"
+"Daha yüksek değerler, çalıştırmak için daha hızlı bir işlemci gerektirebilir."
+
+msgid "ALTERNATVE_TIMESCALE"
+msgstr "Alternatif zaman ölçeği"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Her zaman görünür"
@@ -1802,6 +1811,12 @@ msgstr "Mikrop arkaplanlarına çarpıklık uygula"
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Arkaplan parçacıklarını göster"
 
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr "DirectX"
+
+msgid "DISPLAY_DRIVER_METAL"
+msgstr "Metal"
+
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr "OpenGL"
 
@@ -1837,9 +1852,6 @@ msgstr "Tam ekranda görüntülemek için çift tıklayın"
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "İki katmanlı bir hücre zarıdır. Hasara karşı daha dayanıklıdır. Ancak hücreyi biraz yavaşlatır ve kaynakların emilim oranını düşürür."
-
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "Normal oyun hızı ve iki kat oyun hızı arasında geçiş yap"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr "Fare ile öğeleri yeniden sıralamak için bunu taşıyın"
@@ -3575,6 +3587,12 @@ msgstr "Mart"
 msgid "MARINE_SNOW"
 msgstr "Deniz karı"
 
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr "Başlangıçtaki hücre sayısı"
+
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "Birden fazla hücreyle başlayan bir yavru üretir."
+
 msgid "MASTER_VOLUME"
 msgstr "Ana ses"
 
@@ -4307,6 +4325,17 @@ msgstr "Çok hücrelideki özelleşmiş hücreler, tam organlara doğru ilk adı
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "Bu panel, koloninizin tüm hücrelerinin toplamını veren birleştirilmiş işlemleri gösterir. Diğer bileşiklerin aksine, ATP'nin hücreler arasında paylaşılmadığını unutmayın."
 
+msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
+msgstr ""
+"[b]Evre[/b]\n"
+"  Çok Hücreli\n"
+"[b]Hücre Sayısı[/b]\n"
+"  {0}\n"
+"[b]Hücre Türleri[/b]\n"
+"  {1}\n"
+"[b]Üreme Türü[/b]\n"
+"  {2}"
+
 msgid "MULTICELLULAR_STAGE"
 msgstr "Çok Hücreli Evresi"
 
@@ -4383,6 +4412,9 @@ msgstr ""
 
 msgid "NEW"
 msgstr "Yeni"
+
+msgid "NEWER"
+msgstr "Daha yeni"
 
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -4582,6 +4614,9 @@ msgstr "Revolutionary Games'in web sitesini ziyaret edin"
 
 msgid "OK"
 msgstr "Tamam"
+
+msgid "OLDER"
+msgstr "Daha eski"
 
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -4858,6 +4893,9 @@ msgstr "En son Thrive'ın {0} sürümünü oynadınız, o zamandan beri yeni bir
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr "En son Thrive'ın {0} sürümünü oynadınız, o zamandan beri {1} yeni sürüm mevcut"
 
+msgid "PATCH_NOTES_RECENT_BOUNDARY"
+msgstr "Yakın zamandaki bütün sürümleri gördünüz."
+
 msgid "PATCH_NOTES_TITLE"
 msgstr "Yama Notları"
 
@@ -5066,6 +5104,9 @@ msgstr "Basınç"
 msgid "PRESSURE_SHORT"
 msgstr "Bsnç."
 
+msgid "PRESSURE_TOLERANCE"
+msgstr "Basınç Direnci"
+
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "Türünüzün tercih ettiği basınç ve onun etrafındaki hassasiyet aralığıdır. Bu aralığın dışında kalan koşullarda, türünüzün üzerinde birçok olumsuz etki olur. Kaydırma butonları ile, tercih edilen basıncı ve hassasiyeti değiştirin."
 
@@ -5111,9 +5152,6 @@ msgstr "Proje Yönetim Ekibi"
 msgid "PROTEINS"
 msgstr "Proteinler"
 
-msgid "PROTOPLASM"
-msgstr "Protoplazma"
-
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Çekme İstekleri / Programlama"
 
@@ -5144,6 +5182,10 @@ msgid "RADIATION_LEVELS"
 msgstr "Radyasyon seviyesi"
 
 msgid "RADIOACTIVE_CHUNK"
+msgstr "Radyoaktif Taş Parçası"
+
+#, fuzzy
+msgid "RADIOACTIVE_CHUNK_BANANA"
 msgstr "Radyoaktif Taş Parçası"
 
 msgid "RADIOSYNTHESIS"
@@ -5231,6 +5273,9 @@ msgstr ""
 "Hepsini tutma seçeneği, tüm depolanan bileşikleri olduğu gibi tutan çıkarcı bir seçenektir.\n"
 "Her zaman tamamen doldurma seçeneği, hücrenin başlangıçta sahip olduğu bileşik miktarı kadar bileşik ile hücreyi doldurur.\n"
 "Arazi değişikliğinde tamamen doldurma seçeneği, yalnızca arazi değiştirildiğinde başlangıçtaki bileşikler ile hücreyi doldurur."
+
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "Toplu Tomurcuklanma"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Üreme:"
@@ -5365,6 +5410,9 @@ msgstr "Sağa döndür"
 
 msgid "ROTATION_COLON"
 msgstr "Dönme:"
+
+msgid "ROTATION_FORCE"
+msgstr "Dönme Kuvveti"
 
 msgid "RUNOFF_EVENT"
 msgstr "Yüzey akışı olayı"
@@ -5871,11 +5919,11 @@ msgstr "Bulunacak Türler:"
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} türü {1} popülasyon ile"
 
-msgid "SPEED"
-msgstr "Hız"
-
 msgid "SPEED_COLON"
 msgstr "Hız:"
+
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "Normal oyun hızı ve alternatif oyun hızı arasında geçiş yap"
 
 msgid "SPORE_CELL_TYPE"
 msgstr "Spor hücresi türü"
@@ -5971,7 +6019,7 @@ msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Bilinmeyen bir Steam hatası meydana geldi"
 
 msgid "STEAM_INIT_FAILED"
-msgstr "Steam'i Başlatma Başarısız"
+msgstr "Steam'i Başlatma İşlemi Başarısız"
 
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
@@ -6166,6 +6214,9 @@ msgstr "Sıcaklık"
 msgid "TEMPERATURE_SHORT"
 msgstr "Sıc."
 
+msgid "TEMPERATURE_TOLERANCE_RANGE"
+msgstr "Sıcaklık Direnci Aralığı"
+
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "Türünüz tarafından tercih edilen sıcaklıktır. İdeal sıcaklığın etrafındaki hassasiyet aralığının dışında kalan koşullarda, hayatta kalmayı zorlaştıran olumsuz etkiler meydana gelir. Kaydırma butonlarını kullanarak oynamayı planladığınız arazilere uyum sağlayın."
 
@@ -6302,6 +6353,9 @@ msgstr "Thrive Lisansları"
 
 msgid "THRIVIN_ACHIEVEMENT"
 msgstr "Gelişmeyi Başarmak"
+
+msgid "THRUST_FORCE"
+msgstr "Dönme"
 
 msgid "THYLAKOIDS"
 msgstr "Tilakoidler"
@@ -6463,9 +6517,6 @@ msgstr "Araçlar"
 
 msgid "TOOL_HAND_AXE"
 msgstr "El Baltası"
-
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
-msgstr "Çok fazla sürüm olduğundan bütün son sürümler gösterilemiyor"
 
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "Kazanılan Enerji:"
@@ -7175,9 +7226,6 @@ msgstr "{0} MiB"
 msgid "VIEWER"
 msgstr "Görüntüleyici"
 
-msgid "VIEW_ALL"
-msgstr "Tümünü Görüntüle"
-
 msgid "VIEW_CELL_PROCESSES"
 msgstr "Organizma İşlemlerini İncele"
 
@@ -7356,7 +7404,9 @@ msgid "WIKI_AXON_EFFECTS"
 msgstr ""
 "Çok hücreli bir organizmada, [b]Akson[/b] içeren her hücre için, organizmanın zihin gücü o hücrenin hacmi ile doğru orantılı olarak artar. [b]Aksonlu[/b] hücreler, beyin dokusu türüne sahip olarak sınıflandırılır.\n"
 "\n"
-"Zihin gücü[b]+0.5'i[/b] aştığında, oyuncu Farkındalık Evresi'ne girer. Zihin gücü[b]+5.0'ı[/b] aştığında, oyuncu Uyanış Evresi'ne girer."
+"Zihin gücü[b]+0.5'i[/b] aştığında, oyuncu Farkındalık Evresi'ne girer. Zihin gücü[b]+5.0'ı[/b] aştığında, oyuncu Uyanış Evresi'ne girer.\n"
+"\n"
+"[thrive:compound type=\"sunlight\"]Güneş Işığı[/thrive:compound] [b]Direncini[/b] %10 azaltır."
 
 msgid "WIKI_AXON_INTRO"
 msgstr "[color=#3796e1][url=thriveopedia:macroscopic_stage]Makroskopik Evresi'nde[/url][/color] mevcut olan, nöronlar arasındaki sinir lifleridir. Bu organel, bir organizmanın zihin gücünü arttırmada ve sonraki evrelere ilerlemesinde gereklidir."
@@ -7428,10 +7478,10 @@ msgid "WIKI_BINDING_AGENT_UPGRADES"
 msgstr "Geliştirme yok."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_EFFECTS"
-msgstr "[b]Biyolüminesan Kofullu[/b] hücrelerin Oksijen Toleransı artmış olur."
+msgstr "[thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound] [b]Direncini[/b] %15 arttırır."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_INTRO"
-msgstr "[thrive:compound type=\"sunlight\"]Güneş ışığı[/thrive:compound] oluşturur ve buna sahip olan bir hücrenin Oksijen Toleransını arttırır."
+msgstr "[thrive:compound type=\"sunlight\"]Güneş ışığı[/thrive:compound] oluşturur ve buna sahip olan bir hücrenin [thrive:compound type=\"oxygen\"]oksijenini[/thrive:compound] arttırır."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_MODIFICATIONS"
 msgstr "Değişiklikler yok."
@@ -7570,7 +7620,7 @@ msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_UPGRADES"
 msgstr "Geliştirme yok."
 
 msgid "WIKI_CHLOROPLAST_EFFECTS"
-msgstr "Etki yok."
+msgstr "[thrive:compound type=\"sunlight\"]Güneş Işığı[/thrive:compound] [b]Direncini[/b] %8 arttırır ve [thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound] [b]Direncini[/b] %3.5 arttırır."
 
 msgid "WIKI_CHLOROPLAST_INTRO"
 msgstr ""
@@ -8289,7 +8339,7 @@ msgstr ""
 "Eğer 300 popülasyon ile yirmi beş kuşak boyunca hayatta kalır ve çok hücrelide 10 tane hücre yerleştirmiş olursanız, mevcut oyunu \"kazanmış\" sayılırsınız. Yine de, oyunu dilediğiniz gibi oynamaya devam edebilirsiniz."
 
 msgid "WIKI_HYDROGENASE_EFFECTS"
-msgstr "Etki yok."
+msgstr "[thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound] [b]Direncini[/b] %4 azaltır."
 
 msgid "WIKI_HYDROGENASE_INTRO"
 msgstr "[b]Hidrojenaz[/b], [b]Oksijensiz Solunumun[/b] bir biçimi olan [b]Gazlı Fermentasyonu[/b] yapar. Bu işlem [thrive:compound type=\"glucose\"]glukozun[/thrive:compound], [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürülmesi işlemidir. Bu parça, oyuncunun sahip olduğu glukoz işleyen ilk parçadır ve şu an için oksijen olmadan glukoz yakan tek parça olarak işlev görmektedir."
@@ -8328,7 +8378,7 @@ msgid "WIKI_HYDROGENASE_UPGRADES"
 msgstr "Geliştirme yok."
 
 msgid "WIKI_HYDROGENOSOME_EFFECTS"
-msgstr "Etki yok."
+msgstr "[thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound] [b]Direncini[/b] %7 azaltır."
 
 msgid "WIKI_HYDROGENOSOME_INTRO"
 msgstr "Birçok türde bulunan bu organel, [i]hücrenin çalışma gücüdür[/i]. [b]Hidrojenozomlar[/b], [b]Oksijensiz Solunumun[/b] bir biçimi olan [b]Gazlı Fermentasyonu[/b] yapar. Bu işlem [thrive:compound type=\"glucose\"]glukozun[/thrive:compound], [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürülmesi işlemidir. Bu parça, [b]Hidrojenazın[/b] zarlı bir karşılığıdır ve şu an için oksijen olmadan glukoz yakan tek [i]ökaryotik[/i] parça olarak işlev görmektedir."
@@ -8486,7 +8536,7 @@ msgstr ""
 "Aşağıdaki sayfalar, birçok mekaniği açıklamaktadır. Oyunla ilgili ipuçları ve yardım için bu sayfalarda rahatça gezinebilirsiniz."
 
 msgid "WIKI_MELANOSOME_EFFECTS"
-msgstr "Etki yok."
+msgstr "[thrive:compound type=\"sunlight\"]Güneş Işığı[/thrive:compound] [b]Direncini[/b] %2 arttırır."
 
 msgid "WIKI_MELANOSOME_INTRO"
 msgstr "[b]Melanozomlar[/b], [b]Radyosentez[/b] yapan [color=#3796e1][url=thriveopedia:OrganellesRoot]organellerdir[/url][/color]. Bu işlem, radyasyondaki enerjiyi melaninleri kullanıp emerek alır."
@@ -8516,7 +8566,7 @@ msgid "WIKI_MELANOSOME_UPGRADES"
 msgstr "Geliştirme yok."
 
 msgid "WIKI_METABOLOSOMES_EFFECTS"
-msgstr "Etki yok."
+msgstr "[thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound] [b]Direncini[/b] %3.5 arttırır."
 
 msgid "WIKI_METABOLOSOMES_INTRO"
 msgstr "[b]Metabolozomlar[/b], [b]Oksijenli Solunumun[/b] bir biçimi olan ve [b][color=#3796e1][url=thriveopedia:mitochondrion]Mitokondrilerdekinden[/url][/color][/b] aşağı olan [b]Protein Solunumunu[/b] gerçekleştirir. Bu işlem, [thrive:compound type=\"glucose\"]glukozun[/thrive:compound], [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] kullanılarak [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürülmesidir."
@@ -8688,7 +8738,7 @@ msgstr ""
 "Mikrop Evresi, oyunun ilk evresidir. Bu evre, yaşamın ilk kökenlerinden canlı olarak çıkan ve dünyada var olan ilk türün besin açısından zengin Pangonian Bacaları'nı keşfetmesiyle başlar. Bu noktada oyuncu, türünün birkaç bireyinden biri olan küçük bir prokaryotik sitoplazma parçasının kontrolünü üstlenir. Oyuncu, henüz diğer besin maddelerini işleme yollarına sahip olmadığından, tamamen serbest halde duran [thrive:compound type=\"glucose\"]glukozu[/thrive:compound] bulmaya muhtaçtır ve büyüyüp üremeye hazırlanmak için [thrive:compound type=\"phosphates\"]fosfat[/thrive:compound] ve [thrive:compound type=\"ammonia\"]amonyak[/thrive:compound] aramak zorundadır. Oyuncu, yeterli büyüklüğe ulaştığında üreyebilecek ve isterse mikrop editörüne geçebilecektir. Oyun ilerledikçe, oyuncu her kuşakta git gide daha sert hale gelen bir dünyada kendi hücresinin hayatta kalma yeteneğini sürekli geliştirecek ve kendi türünden türeyen yeni türlerle rekabet edecektir."
 
 msgid "WIKI_MITOCHONDRION_EFFECTS"
-msgstr "Etki yok."
+msgstr "[thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound] [b]Direncini[/b] %8 arttırır."
 
 msgid "WIKI_MITOCHONDRION_INTRO"
 msgstr "Hücrenin güç merkezidir. [b]Mitokondriler[/b], [thrive:compound type=\"oxygen\"]oksijeni[/thrive:compound] kullanarak [thrive:compound type=\"glucose\"]glukozun[/thrive:compound], [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürülmesini sağlayan [b]Oksijenli Solunumu[/b] gerçekleştirir. [b]Mitokondriler[/b] bu işlevi [b][color=#3796e1][url=thriveopedia:metabolosome]Metabolozomlar[/url][/color][/b] gibi organellerden daha verimli bir şekilde gerçekleştirir."
@@ -8794,7 +8844,7 @@ msgid "WIKI_NATION_EDITOR"
 msgstr "Ulus Editörü"
 
 msgid "WIKI_NITROGENASE_EFFECTS"
-msgstr "Etki yok."
+msgstr "[thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound] [b]Direncini[/b] %1 azaltır."
 
 msgid "WIKI_NITROGENASE_INTRO"
 msgstr ""
@@ -8834,7 +8884,7 @@ msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "Geliştirme yok."
 
 msgid "WIKI_NITROPLAST_EFFECTS"
-msgstr "Etki yok."
+msgstr "[thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound] [b]Direncini[/b] %2 azaltır."
 
 msgid "WIKI_NITROPLAST_INTRO"
 msgstr "Nitroplast, hücresel üreme için büyüme bileşenlerinden biri olan [thrive:compound type=\"nitrogen\"]azotu[/thrive:compound] üretmek için kullanılan zarlı bir organeldir. Bu organel, [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] gazı ve [thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"ammonia\"]amonyağa[/thrive:compound] dönüştürmek için [b]Azot Fiksasyonu[/b] yapar. Bu organel, prokaryotik [b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrojenazdan[/url][/color][/b] daha verimlidir."
@@ -8932,7 +8982,9 @@ msgid "WIKI_OXYTOXISOME_EFFECTS"
 msgstr ""
 "Eğer bir hücre en az bir [b]Toksizom[/b] veya [b][color=#3796e1][url=thriveopedia:oxytoxy]Toksin Kofuluna[/url][/color][/b] sahipse, toksin ateşleyebilir. Bunu yapmak, saklanan [thrive:compound type=\"oxytoxy\"]OksiToksi NT'leri[/thrive:compound] tüketir. Bu mermiler, diğer hücre türlerine hasar verir ama toksini ateşleyen türün üyelerine zarar vermez.\n"
 "\n"
-"Hasar, ateş edilen [thrive:compound type=\"oxytoxy\"]OksiToksi NT[/thrive:compound] miktarı ile doğru orantılıdır."
+"Hasar, ateş edilen [thrive:compound type=\"oxytoxy\"]OksiToksi NT[/thrive:compound] miktarı ile doğru orantılıdır.\n"
+"\n"
+"[thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound] [b]Direncini[/b] %0.5 arttırır."
 
 msgid "WIKI_OXYTOXISOME_INTRO"
 msgstr "Toksin mermi olarak ateşlenebilen bir ajan olan [thrive:compound type=\"oxytoxy\"]OksiToksi NT'yi[/thrive:compound] üreten değiştirilmiş [b][color=#3796e1][url=thriveopedia:metabolosome]Metabolozomdur[/url][/color][/b]. Bu organel, [b][color=#3796e1][url=thriveopedia:oxytoxy]Toksin Kofulunun[/url][/color][/b] aşağı bir çeşididir."
@@ -9085,9 +9137,6 @@ msgstr "Oksitoksizom"
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr "Delici Pilus"
 
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "Protoplazma"
-
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "Üreme"
 
@@ -9176,42 +9225,6 @@ msgstr ""
 
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "Protein Solunumu"
-
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "Etki yok."
-
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr ""
-"Oyuncu olmayan türler için depoyu arttırmak amacıyla tasarlanmış, [b][color=#3796e1][url=thriveopedia:cytoplasm]Sitoplazmanın[/url][/color][/b] önemli ölçüde gelişmiş bir biçimidir. Oyuncu hücrelere eklenemez ama oyuncunun ortamdan fosilleştirdiği hücrelerde mevcut olabilir.\n"
-"\n"
-"Görsel olarak [b][color=#3796e1][url=thriveopedia:cytoplasm]Sitoplazmaya[/url][/color][/b] benzer ve bu organelin birçok özelliğini alır."
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr "Değişiklikler yok."
-
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr ""
-"[b]Glikoliz[/b]: [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] → [thrive:compound type=\"atp\"]ATP[/thrive:compound]\n"
-"\n"
-"Farklı giren/ürün oranları ile [b]Sitoplazma Glikolizinin[/b] gelişmiş bir biçimidir."
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr "Oyuncu [b]Protoplazmayı[/b] evrimleştiremez. Oyuncu olmayan türler sınırlama olmadan yapabilir."
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-"Bazı yerlerde [b]Protoplazma[/b], [b][color=#3796e1][url=thriveopedia:cytoplasm]Sitoplazmanın[/url][/color][/b] başka bir adıdır. Ancak, çekirdek ve çevreleyen yapılar dahil, bir hücrenin tüm içeriği olarak da ifade edilebilir.\n"
-"\n"
-"Bu organelin [color=#3796e1][url=https://en.wikipedia.org/wiki/Protoplasm]Vikipedi sayfasından[/url][/color] daha fazlasını okuyun."
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-"Esas oyunda [b]Protoplazma[/b] kullanmak mümkün değildir. Oyuncu bu organeli yalnızca; eğer serbest yapım modunda bir önceki oyunda fossilleştirdiği oyuncu olmayan bir tür ile oynuyorsa, kullanabilir.\n"
-"\n"
-"Oyunda görüldüğünde, [b]Protoplazma[/b] stratejik olarak [b][color=#3796e1][url=thriveopedia:cytoplasm]Sitoplazmaya[/url][/color][/b] eşdeğerdir. Ancak deposu fazla ve [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimi yavaştır. [b]Protoplazmaya[/b] sahip hücreler genellikle bileşik bulutu bulmadan veya bir besin tüketmeden daha uzun süre hayatta kalabilir."
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr "Geliştirme yok."
 
 msgid "WIKI_PULLING_CILIA"
 msgstr "Çeken Siller"
@@ -9319,7 +9332,9 @@ msgid "WIKI_SLIME_JET_EFFECTS"
 msgstr ""
 "Hücrenin kendini ileri doğru itmesi için [thrive:compound type=\"mucilage\"]Müsilaj[/thrive:compound] salma yeteneğini etkinleştirir. [thrive:compound type=\"mucilage\"]Müsilaj[/thrive:compound] salmak, kısa süreliğine büyük miktarda hız sağlar. Mevcut [thrive:compound type=\"mucilage\"]Müsilaj[/thrive:compound] miktarına bağlı olarak, dinlenip hareket etme eylemi daha uzun sürdürülebilir.\n"
 "\n"
-"[b]Balçık Fışkırtıcıları[/b] olmayan ve ortaya çıkan [thrive:compound type=\"mucilage\"]Müsilajın[/thrive:compound] olduğu alana giren herhangi bir hücre yavaşlar."
+"[b]Balçık Fışkırtıcıları[/b] olmayan ve ortaya çıkan [thrive:compound type=\"mucilage\"]Müsilajın[/thrive:compound] olduğu alana giren herhangi bir hücre yavaşlar.\n"
+"\n"
+"[thrive:compound type=\"sunlight\"]Güneş Işığı[/thrive:compound] [b]Direncini[/b] %1 arttırır."
 
 msgid "WIKI_SLIME_JET_INTRO"
 msgstr ""
@@ -9433,7 +9448,10 @@ msgid "WIKI_TECH_EDITOR_COMMA_NATION_EDITOR_COMMA_SQUAD_EDITOR"
 msgstr "Teknoloji Editörü, Ulus Editörü, Birlik Editörü"
 
 msgid "WIKI_THERMOPLAST_EFFECTS"
-msgstr "İstenildiğinde, açılıp kapatılabilen [i]termal görüşü[/i] etkinleştirir. Bu özellik, suyun görece sıcaklık dağılımını ekrana yansıtır; daha sıcak bölgeler daha kırmızı görünür."
+msgstr ""
+"Açılıp kapatılabilen [i]termal görüşü[/i] etkinleştirir. Bu özellik, suyun görece sıcaklık dağılımını ekrana yansıtır; daha sıcak bölgeler daha kırmızı görünür.\n"
+"\n"
+"[thrive:compound type=\"temperature\"]Sıcaklık[/thrive:compound] [b]Tolerans Aralığını[/b] her iki yönde 5 derece arttırır."
 
 msgid "WIKI_THERMOPLAST_INTRO"
 msgstr ""
@@ -9480,7 +9498,10 @@ msgid "WIKI_THERMOPLAST_UPGRADES"
 msgstr "Geliştirme yok."
 
 msgid "WIKI_THERMOSYNTHASE_EFFECTS"
-msgstr "İstenildiğinde, açılıp kapatılabilen [i]termal görüşü[/i] etkinleştirir. Bu özellik, suyun görece sıcaklık dağılımını ekrana yansıtır; daha sıcak bölgeler daha kırmızı görünür."
+msgstr ""
+"Açılıp kapatılabilen [i]termal görüşü[/i] etkinleştirir. Bu özellik, suyun görece sıcaklık dağılımını ekrana yansıtır; daha sıcak bölgeler daha kırmızı görünür.\n"
+"\n"
+"[thrive:compound type=\"temperature\"]Sıcaklık[/thrive:compound] [b]Tolerans Aralığını[/b] her iki yönde 2 derece arttırır."
 
 msgid "WIKI_THERMOSYNTHASE_INTRO"
 msgstr ""
@@ -9547,7 +9568,7 @@ msgid "WIKI_THE_PATCH_MAP_THE_PATCH_MAP"
 msgstr "[b]Arazi Haritası[/b] gezegeninizin bir gösterimidir. Bu harita, [b]Arazilerden[/b] ve [b]Bölgelerden[/b] oluşur (aşağıda açıklanmaktadır). Her bölge, birçok bağlantılı (ya da komşu) araziyi kapsar ve diğer bölgelere bağlıdır."
 
 msgid "WIKI_THYLAKOIDS_EFFECTS"
-msgstr "Özel etki yok."
+msgstr "[thrive:compound type=\"sunlight\"]Güneş Işığını[/thrive:compound] %3 arttırır ve [thrive:compound type=\"oxygen\"]Oksijeni[/thrive:compound] %1.5 arttırır."
 
 msgid "WIKI_THYLAKOIDS_INTRO"
 msgstr ""
@@ -9595,7 +9616,9 @@ msgid "WIKI_TOXIN_VACUOLE_EFFECTS"
 msgstr ""
 "Eğer bir hücre en az bir [b]Oksitoksizom[/b] veya [b][color=#3796e1][url=thriveopedia:oxytoxy]Toksin Kofuluna[/url][/color][/b] sahipse, toksin ateşleyebilir. Bunu yapmak, saklanan [thrive:compound type=\"oxytoxy\"]OksiToksi NT'leri[/thrive:compound] tüketir. Bu mermiler, diğer hücre türlerine hasar verir ama toksini ateşleyen türün üyelerine zarar vermez.\n"
 "\n"
-"Hasar, ateş edilen [thrive:compound type=\"oxytoxy\"]OksiToksi NT[/thrive:compound] miktarı ile doğru orantılıdır."
+"Hasar, ateş edilen [thrive:compound type=\"oxytoxy\"]OksiToksi NT[/thrive:compound] miktarı ile doğru orantılıdır.\n"
+"\n"
+"[thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound] [b]Direncini[/b] %2 arttırır."
 
 msgid "WIKI_TOXIN_VACUOLE_INTRO"
 msgstr "Toksin mermi olarak ateşlenebilen bir ajan olan [thrive:compound type=\"oxytoxy\"]OksiToksi NT'yi[/thrive:compound] üreten değiştirilmiş [b][color=#3796e1][url=thriveopedia:vacuole]Kofuldur[/url][/color][/b]. Bu organel, [b][color=#3796e1][url=thriveopedia:oxytoxyProteins]Oksitoksizomun[/url][/color][/b] üstün bir çeşididir."
@@ -9628,7 +9651,7 @@ msgid "WIKI_TOXIN_VACUOLE_UPGRADES"
 msgstr "Geliştirme yok."
 
 msgid "WIKI_VACUOLE_EFFECTS"
-msgstr "Etki yok."
+msgstr "Maksimum [b]Basınç Direncini[/b] 400 kPa arttırır."
 
 msgid "WIKI_VACUOLE_INTRO"
 msgstr "Bileşikleri, [b][color=#3796e1][url=thriveopedia:cytoplasm]Sitoplazmadan[/url][/color][/b] çok daha yoğun şekilde depolayan bir ökaryotik organeldir. Depoyu daha da arttırmak için özelleştirilebilir."
@@ -9813,6 +9836,68 @@ msgstr "Yakınlaştır"
 
 msgid "ZOOM_OUT"
 msgstr "Uzaklaştır"
+
+#~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
+#~ msgstr "Normal oyun hızı ve iki kat oyun hızı arasında geçiş yap"
+
+#~ msgid "PROTOPLASM"
+#~ msgstr "Protoplazma"
+
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "Protoplazma"
+
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "Etki yok."
+
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr ""
+#~ "Oyuncu olmayan türler için depoyu arttırmak amacıyla tasarlanmış, [b][color=#3796e1][url=thriveopedia:cytoplasm]Sitoplazmanın[/url][/color][/b] önemli ölçüde gelişmiş bir biçimidir. Oyuncu hücrelere eklenemez ama oyuncunun ortamdan fosilleştirdiği hücrelerde mevcut olabilir.\n"
+#~ "\n"
+#~ "Görsel olarak [b][color=#3796e1][url=thriveopedia:cytoplasm]Sitoplazmaya[/url][/color][/b] benzer ve bu organelin birçok özelliğini alır."
+
+#~ msgid "WIKI_PROTOPLASM_MODIFICATIONS"
+#~ msgstr "Değişiklikler yok."
+
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr ""
+#~ "[b]Glikoliz[/b]: [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] → [thrive:compound type=\"atp\"]ATP[/thrive:compound]\n"
+#~ "\n"
+#~ "Farklı giren/ürün oranları ile [b]Sitoplazma Glikolizinin[/b] gelişmiş bir biçimidir."
+
+#~ msgid "WIKI_PROTOPLASM_REQUIREMENTS"
+#~ msgstr "Oyuncu [b]Protoplazmayı[/b] evrimleştiremez. Oyuncu olmayan türler sınırlama olmadan yapabilir."
+
+#~ msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
+#~ msgstr ""
+#~ "Bazı yerlerde [b]Protoplazma[/b], [b][color=#3796e1][url=thriveopedia:cytoplasm]Sitoplazmanın[/url][/color][/b] başka bir adıdır. Ancak, çekirdek ve çevreleyen yapılar dahil, bir hücrenin tüm içeriği olarak da ifade edilebilir.\n"
+#~ "\n"
+#~ "Bu organelin [color=#3796e1][url=https://en.wikipedia.org/wiki/Protoplasm]Vikipedi sayfasından[/url][/color] daha fazlasını okuyun."
+
+#~ msgid "WIKI_PROTOPLASM_STRATEGY"
+#~ msgstr ""
+#~ "Esas oyunda [b]Protoplazma[/b] kullanmak mümkün değildir. Oyuncu bu organeli yalnızca; eğer serbest yapım modunda bir önceki oyunda fossilleştirdiği oyuncu olmayan bir tür ile oynuyorsa, kullanabilir.\n"
+#~ "\n"
+#~ "Oyunda görüldüğünde, [b]Protoplazma[/b] stratejik olarak [b][color=#3796e1][url=thriveopedia:cytoplasm]Sitoplazmaya[/url][/color][/b] eşdeğerdir. Ancak deposu fazla ve [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimi yavaştır. [b]Protoplazmaya[/b] sahip hücreler genellikle bileşik bulutu bulmadan veya bir besin tüketmeden daha uzun süre hayatta kalabilir."
+
+#~ msgid "WIKI_PROTOPLASM_UPGRADES"
+#~ msgstr "Geliştirme yok."
+
+#~ msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+#~ msgstr "Çok fazla sürüm olduğundan bütün son sürümler gösterilemiyor"
+
+#~ msgid "VIEW_ALL"
+#~ msgstr "Tümünü Görüntüle"
+
+#, fuzzy
+#~ msgid "PRESSURE_VALUE"
+#~ msgstr "Basınç"
+
+#, fuzzy
+#~ msgid "TEMPERATURE_VALUE"
+#~ msgstr "Sıcaklık"
+
+#~ msgid "SPEED"
+#~ msgstr "Hız"
 
 #~ msgid "AEROBIC_NITROGEN_FIXATION"
 #~ msgstr "Oksijenli Azot Fiksasyonu"
@@ -10455,10 +10540,6 @@ msgstr "Uzaklaştır"
 #~ msgstr "a/e"
 
 #, fuzzy
-#~ msgid "DOT_RATE_SCALES"
-#~ msgstr ". Oran doğru orantılı"
-
-#, fuzzy
 #~ msgid "OXYGEN_DOT"
 #~ msgstr "Oksijen."
 
@@ -10664,3 +10745,7 @@ msgstr "Uzaklaştır"
 #~ "Ayrıca hücre editörünün diğer sekmelerinde türünün başka özelliklerini değiştirebilirsin.\n"
 #~ "\n"
 #~ "Devam etmek için, soldaki panelden bir organel seç (sitoplazma iyi bir seçim). Sonra türüne seçtiğin organeli eklemek için ekranın ortasında bulunan altıgenin yanına sol tıkla."
+
+#, fuzzy
+#~ msgid "DOT_RATE_SCALES"
+#~ msgstr ". Oran doğru orantılı"

@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-22 16:57+0300\n"
-"PO-Revision-Date: 2026-05-13 03:55+0000\n"
-"Last-Translator: Aquos Goatington <dries.hazenbosch@outlook.com>\n"
+"POT-Creation-Date: 2026-06-03 20:10+0100\n"
+"PO-Revision-Date: 2026-05-22 15:37+0000\n"
+"Last-Translator: William <William.berger@outlook.be>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
 "Language: nl_BE\n"
 "MIME-Version: 1.0\n"
@@ -170,6 +170,17 @@ msgstr "Jij bent al verheven"
 
 msgid "ALT"
 msgstr "Alt"
+
+#, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr ""
+"Oorspronkelijke discussies worden gebruikt voor andere doelen dan onderhouden discussies.\n"
+"Meer discussies aan CPUs met veel kernen vergroten algemeen prestatie tot een limiet\n"
+"te veel totale discussies gaan prestatie verslechten."
+
+#, fuzzy
+msgid "ALTERNATVE_TIMESCALE"
+msgstr ". Beoordeel schalen"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Altijd Zichtbaar"
@@ -1872,6 +1883,14 @@ msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
 
 #, fuzzy
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr "Toon vaardigheden balk"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_METAL"
+msgstr "Toon vaardigheden balk"
+
+#, fuzzy
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr "Toon vaardigheden balk"
 
@@ -1912,10 +1931,6 @@ msgstr ""
 #, fuzzy
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Een membraan met twee lagen, heft een betere bescherming tegen schade en heeft minder energie nodig om zijn vorm te behouden. Daar komt tegenin dat het de cel vertraagt en de snelheid waarmee het grondstoffen absorbeert verkleint."
-
-#, fuzzy
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "Pauzeer het spel"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr ""
@@ -3859,6 +3874,13 @@ msgstr "Maart"
 msgid "MARINE_SNOW"
 msgstr "Mariene sneeuw"
 
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "{0} bevolking veranderd met {1} door: {2}"
+
 msgid "MASTER_VOLUME"
 msgstr "Meester volume"
 
@@ -4658,6 +4680,14 @@ msgstr "Meercellige bewerker"
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "Meercellige Fase"
 
+#, fuzzy
+msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
+msgstr ""
+"Houd je gezondheidsbalk naast de ATP-balk (rechtsonder) in de gaten.\n"
+"Je cel sterft als hij geen gezondheid meer heeft.\n"
+"Je regenereert gezondheid terwijl je ATP hebt.\n"
+"Zorg ervoor dat u voldoende glucose verzamelt om ATP te produceren."
+
 msgid "MULTICELLULAR_STAGE"
 msgstr "Meercellige Fase"
 
@@ -4739,6 +4769,10 @@ msgstr ""
 
 msgid "NEW"
 msgstr "Nieuw"
+
+#, fuzzy
+msgid "NEWER"
+msgstr "Kijker"
 
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -4952,6 +4986,10 @@ msgstr "Zelfmoord"
 
 msgid "OK"
 msgstr "OK"
+
+#, fuzzy
+msgid "OLDER"
+msgstr "Open Map"
 
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -5276,6 +5314,10 @@ msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
 #, fuzzy
+msgid "PATCH_NOTES_RECENT_BOUNDARY"
+msgstr "Pangonische zeearm"
+
+#, fuzzy
 msgid "PATCH_NOTES_TITLE"
 msgstr "Verwijder lokale Data"
 
@@ -5499,6 +5541,10 @@ msgstr "Druk"
 msgid "PRESSURE_SHORT"
 msgstr "Druk"
 
+#, fuzzy
+msgid "PRESSURE_TOLERANCE"
+msgstr "De gewenste druk van je soort. Ingesteld met een minimum- en maximumwaarde als aparte schuifbalken. Wanneer jouw soort zich onder omstandigheden buiten dit bereik bevindt, zullen er veel negatieve effecten zijn. Verander de grootte van het bereik door het vakje onder de schuifbalken uit te vinken."
+
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "De gewenste druk van je soort. Ingesteld met een minimum- en maximumwaarde als aparte schuifbalken. Wanneer jouw soort zich onder omstandigheden buiten dit bereik bevindt, zullen er veel negatieve effecten zijn. Verander de grootte van het bereik door het vakje onder de schuifbalken uit te vinken."
 
@@ -5550,9 +5596,6 @@ msgstr "Project Management Team"
 msgid "PROTEINS"
 msgstr "Eiwitten"
 
-msgid "PROTOPLASM"
-msgstr "Protoplasma"
-
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull-verzoeken / programmering"
 
@@ -5588,6 +5631,10 @@ msgstr "Aërobe Ademhaling"
 
 #, fuzzy
 msgid "RADIOACTIVE_CHUNK"
+msgstr "Groot Brok Ijzer"
+
+#, fuzzy
+msgid "RADIOACTIVE_CHUNK_BANANA"
 msgstr "Groot Brok Ijzer"
 
 #, fuzzy
@@ -5684,6 +5731,10 @@ msgstr "{0} bevolking veranderd met {1} door: {2}"
 
 #, fuzzy
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
+msgstr "gereproduceerd"
+
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
 msgstr "gereproduceerd"
 
 #, fuzzy
@@ -5841,6 +5892,10 @@ msgstr "Draaien naar rechts"
 
 #, fuzzy
 msgid "ROTATION_COLON"
+msgstr "Totale populatie:"
+
+#, fuzzy
+msgid "ROTATION_FORCE"
 msgstr "Totale populatie:"
 
 msgid "RUNOFF_EVENT"
@@ -6393,11 +6448,12 @@ msgstr "Soorten:"
 msgid "SPECIES_WITH_POPULATION"
 msgstr "Soortenpopulatie"
 
-msgid "SPEED"
-msgstr "Snelheid"
-
 msgid "SPEED_COLON"
 msgstr "Snelheid:"
+
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "Pauzeer het spel"
 
 #, fuzzy
 msgid "SPORE_CELL_TYPE"
@@ -6710,6 +6766,10 @@ msgstr "Temperatuur"
 msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
+#, fuzzy
+msgid "TEMPERATURE_TOLERANCE_RANGE"
+msgstr "De gewenste temperatuur van je soort. Wanneer jouw soort zich in omstandigheden bevindt buiten het bereik rond de ideale temperatuur, zullen er negatieve effecten zijn dat het overleven bemoeilijkt. Pas uw organisme aan een zone waarin je wilt spelen via de schuifbalken."
+
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "De gewenste temperatuur van je soort. Wanneer jouw soort zich in omstandigheden bevindt buiten het bereik rond de ideale temperatuur, zullen er negatieve effecten zijn dat het overleven bemoeilijkt. Pas uw organisme aan een zone waarin je wilt spelen via de schuifbalken."
 
@@ -6856,6 +6916,9 @@ msgstr "Thrive Licenties"
 
 msgid "THRIVIN_ACHIEVEMENT"
 msgstr "Thrivin'"
+
+msgid "THRUST_FORCE"
+msgstr ""
 
 msgid "THYLAKOIDS"
 msgstr "Thylakoïden"
@@ -7028,9 +7091,6 @@ msgid "TOOLS"
 msgstr "Hulpmiddelen"
 
 msgid "TOOL_HAND_AXE"
-msgstr ""
-
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
 msgid "TOTAL_GATHERED_ENERGY_COLON"
@@ -7791,10 +7851,6 @@ msgid "VIEWER"
 msgstr "Kijker"
 
 #, fuzzy
-msgid "VIEW_ALL"
-msgstr "Alles uitschakelen"
-
-#, fuzzy
 msgid "VIEW_CELL_PROCESSES"
 msgstr "Verandert [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]."
 
@@ -8175,6 +8231,7 @@ msgstr "Chemosynthetiserende Proteïnes"
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_UPGRADES"
 msgstr "Chemosynthetiserende Proteïnes"
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_EFFECTS"
 msgstr "Geen effecten."
 
@@ -8859,6 +8916,7 @@ msgstr ""
 "\n"
 "Om te overleven in deze vijandige wereld, moet je alle verbindingen die je kunt vinden verzamelen en elke generatie evolueren om te concurreren met de andere soorten microben."
 
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "Geen gevolgen."
 
@@ -9221,9 +9279,6 @@ msgstr "Oxytoxisoom"
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr "Penetrerende Pilus"
 
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "Protoplasma"
-
 #, fuzzy
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "Protoplasma"
@@ -9295,33 +9350,6 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "Aërobe Ademhaling"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "Protoplasma"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr "Protoplasma"
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr "Verandert [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]."
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
 
 #, fuzzy
 msgid "WIKI_PULLING_CILIA"
@@ -9581,6 +9609,7 @@ msgstr "De thermoplast is een door twee membranen omsloten celorganel dat warmte
 msgid "WIKI_THE_PATCH_MAP_THE_PATCH_MAP"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_EFFECTS"
 msgstr "Geen speciale effecten."
 
@@ -9874,6 +9903,35 @@ msgstr "Inzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
+
+#, fuzzy
+#~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
+#~ msgstr "Pauzeer het spel"
+
+#~ msgid "PROTOPLASM"
+#~ msgstr "Protoplasma"
+
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "Protoplasma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "Protoplasma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr "Protoplasma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr "Verandert [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+#~ msgid "VIEW_ALL"
+#~ msgstr "Alles uitschakelen"
+
+#~ msgid "SPEED"
+#~ msgstr "Snelheid"
 
 #~ msgid "AEROBIC_NITROGEN_FIXATION"
 #~ msgstr "Anaerobe Stikstofbinding"
@@ -10370,9 +10428,6 @@ msgstr "Uitzoomen"
 #~ msgid "PATCH_PANGONIAN_COAST"
 #~ msgstr "Pangonische kust"
 
-#~ msgid "PATCH_PANGONIAN_ESTUARY"
-#~ msgstr "Pangonische zeearm"
-
 #~ msgid "PATCH_CAVE"
 #~ msgstr "Grot"
 
@@ -10487,9 +10542,6 @@ msgstr "Uitzoomen"
 
 #~ msgid "INTENSITY_OF"
 #~ msgstr "intensiteit van"
-
-#~ msgid "DOT_RATE_SCALES"
-#~ msgstr ". Beoordeel schalen"
 
 #~ msgid "OXYGEN_DOT"
 #~ msgstr "Zuurstof."
@@ -10616,3 +10668,9 @@ msgstr "Uitzoomen"
 #~ "Je kan ook andere eigenschappen van je soort aanpassen in de andere tabbladen van de cel editor.\n"
 #~ "\n"
 #~ "Om verder te gaan selecteer je een organel van het paneel aan de linkerkant (cytoplasma is een goede keuze). Klik dan met de linkermuisknop naast de zeshoek die getoond is in het midden van het scherm om dat organel toe te voegen aan je soort."
+
+#~ msgid "PATCH_PANGONIAN_ESTUARY"
+#~ msgstr "Pangonische zeearm"
+
+#~ msgid "DOT_RATE_SCALES"
+#~ msgstr ". Beoordeel schalen"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-22 16:57+0300\n"
+"POT-Creation-Date: 2026-06-03 20:10+0100\n"
 "PO-Revision-Date: 2026-05-13 03:55+0000\n"
 "Last-Translator: Nozt <alib.athq@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
@@ -183,6 +183,13 @@ msgstr "Kamu sudah menaik"
 
 msgid "ALT"
 msgstr "Alt"
+
+#, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr "Simpan dan lanjut"
+
+msgid "ALTERNATVE_TIMESCALE"
+msgstr ""
 
 #, fuzzy
 msgid "ALWAYS_VISIBLE"
@@ -1881,6 +1888,14 @@ msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
 
 #, fuzzy
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr "Tampilkan Bilah Kemampuan Sel"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_METAL"
+msgstr "Tampilkan Bilah Kemampuan Sel"
+
+#, fuzzy
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr "Tampilkan Bilah Kemampuan Sel"
 
@@ -1922,10 +1937,6 @@ msgstr ""
 #, fuzzy
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Membran dengan dua lapis, memiliki perlindungan yang lebih baik terhadap kerusakan dan memerlukan lebih sedikit energi agar tak berubah bentuk. Namun, memperlambat sel dan mengurangi laju kemampuannya menyerap sumber daya."
-
-#, fuzzy
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "Lanjutkan"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr ""
@@ -3864,6 +3875,13 @@ msgstr ""
 msgid "MARINE_SNOW"
 msgstr "Salju laut"
 
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "{0} populasi berubah {1} karena: {2}"
+
 msgid "MASTER_VOLUME"
 msgstr "Volume master"
 
@@ -4707,6 +4725,22 @@ msgstr "Editor Multiseluler"
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "Tahapan Multiseluler"
 
+#, fuzzy
+msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
+msgstr ""
+"[b]Fase[/b]\n"
+"  Mikroba\n"
+"[b]Tipe Membran[/b]\n"
+"  {0}\n"
+"[b]Ketegaran Membran[/b]\n"
+"  {1}\n"
+"[b]Kecepatan Dasar[/b]\n"
+"  {2}\n"
+"[b]Kecepatan Rotasi Dasar[/b]\n"
+"  {3}\n"
+"[b]Jumlah Hex Dasar[/b]\n"
+"  {4}"
+
 msgid "MULTICELLULAR_STAGE"
 msgstr "Tahapan Multiseluler"
 
@@ -4783,6 +4817,10 @@ msgstr ""
 
 msgid "NEW"
 msgstr ""
+
+#, fuzzy
+msgid "NEWER"
+msgstr "Tampilan"
 
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -5003,6 +5041,10 @@ msgstr "Tambah keybind baru"
 
 msgid "OK"
 msgstr "OK"
+
+#, fuzzy
+msgid "OLDER"
+msgstr "Buka Folder Catatan"
 
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -5317,6 +5359,10 @@ msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
 #, fuzzy
+msgid "PATCH_NOTES_RECENT_BOUNDARY"
+msgstr "Muara Pangonia"
+
+#, fuzzy
 msgid "PATCH_NOTES_TITLE"
 msgstr "Proses Sel"
 
@@ -5549,6 +5595,10 @@ msgid "PRESSURE_SHORT"
 msgstr "Tekanan"
 
 #, fuzzy
+msgid "PRESSURE_TOLERANCE"
+msgstr "Kembali ke Menu"
+
+#, fuzzy
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "Kembali ke Menu"
 
@@ -5601,9 +5651,6 @@ msgstr "Kepala Manager Proyek"
 msgid "PROTEINS"
 msgstr "Protein"
 
-msgid "PROTOPLASM"
-msgstr "Protoplasma"
-
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr ""
 
@@ -5637,6 +5684,10 @@ msgstr "Respirasi Aerob"
 
 #, fuzzy
 msgid "RADIOACTIVE_CHUNK"
+msgstr "Potongan Besi Besar"
+
+#, fuzzy
+msgid "RADIOACTIVE_CHUNK_BANANA"
 msgstr "Potongan Besi Besar"
 
 #, fuzzy
@@ -5730,6 +5781,10 @@ msgstr "{0} populasi berubah {1} karena: {2}"
 #, fuzzy
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 msgstr "Reproduksi:"
+
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "Tunas"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproduksi:"
@@ -5885,6 +5940,10 @@ msgstr "Putar kanan"
 
 #, fuzzy
 msgid "ROTATION_COLON"
+msgstr "{0} populasi berubah {1} karena: {2}"
+
+#, fuzzy
+msgid "ROTATION_FORCE"
 msgstr "{0} populasi berubah {1} karena: {2}"
 
 msgid "RUNOFF_EVENT"
@@ -6451,11 +6510,12 @@ msgstr "Spesies:"
 msgid "SPECIES_WITH_POPULATION"
 msgstr "Populasi Spesies"
 
-msgid "SPEED"
-msgstr "Kecepatan"
-
 msgid "SPEED_COLON"
 msgstr "Kecepatan:"
+
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "Lanjutkan"
 
 #, fuzzy
 msgid "SPORE_CELL_TYPE"
@@ -6773,6 +6833,10 @@ msgid "TEMPERATURE_SHORT"
 msgstr "Suhu"
 
 #, fuzzy
+msgid "TEMPERATURE_TOLERANCE_RANGE"
+msgstr "Tambah keybind baru"
+
+#, fuzzy
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "Tambah keybind baru"
 
@@ -6937,6 +7001,9 @@ msgstr "Lisensi dan Libraries yang Digunakan"
 #, fuzzy
 msgid "THRIVIN_ACHIEVEMENT"
 msgstr "Pergerakan Dasar"
+
+msgid "THRUST_FORCE"
+msgstr ""
 
 msgid "THYLAKOIDS"
 msgstr "Tilakoid"
@@ -7116,9 +7183,6 @@ msgid "TOOLS"
 msgstr "Alat"
 
 msgid "TOOL_HAND_AXE"
-msgstr ""
-
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
 #, fuzzy
@@ -7883,9 +7947,6 @@ msgstr ""
 
 msgid "VIEWER"
 msgstr "Tampilan"
-
-msgid "VIEW_ALL"
-msgstr ""
 
 #, fuzzy
 msgid "VIEW_CELL_PROCESSES"
@@ -9287,10 +9348,6 @@ msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr ""
 
 #, fuzzy
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "Protoplasma"
-
-#, fuzzy
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "Protoplasma"
 
@@ -9372,33 +9429,6 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "Respirasi Aerob"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "Protoplasma"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr "Protoplasma"
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr "Mengubah [thrive:compound type=\"glucose\"][/thrive:compound] menjadi [thrive:compound type=\"atp\"][/thrive:compound]"
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
 
 msgid "WIKI_PULLING_CILIA"
 msgstr ""
@@ -9924,6 +9954,32 @@ msgstr "Perbesar"
 msgid "ZOOM_OUT"
 msgstr "Perkecil"
 
+#, fuzzy
+#~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
+#~ msgstr "Lanjutkan"
+
+#~ msgid "PROTOPLASM"
+#~ msgstr "Protoplasma"
+
+#, fuzzy
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "Protoplasma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "Protoplasma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr "Protoplasma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr "Mengubah [thrive:compound type=\"glucose\"][/thrive:compound] menjadi [thrive:compound type=\"atp\"][/thrive:compound]"
+
+#~ msgid "SPEED"
+#~ msgstr "Kecepatan"
+
 #~ msgid "AEROBIC_NITROGEN_FIXATION"
 #~ msgstr "Fiksasi Nitrogen Aerobik"
 
@@ -10400,9 +10456,6 @@ msgstr "Perkecil"
 #~ msgid "PATCH_PANGONIAN_COAST"
 #~ msgstr "Pesisir Pangonia"
 
-#~ msgid "PATCH_PANGONIAN_ESTUARY"
-#~ msgstr "Muara Pangonia"
-
 #~ msgid "PATCH_CAVE"
 #~ msgstr "Gua"
 
@@ -10476,3 +10529,6 @@ msgstr "Perkecil"
 #~ "Kamu juga bisa mengubah ciri lain dari spesiesmu di tab berbeda di editor sel.\n"
 #~ "\n"
 #~ "Untuk lanjut, pilih organel dari panel di sebelah kiri (sitoplasma adalah pilihan yang baik). Kemudian klik kiri disebelah hex yang ditampilkan di pertengahan layar untuk menambahkan organel pada spesiesmu."
+
+#~ msgid "PATCH_PANGONIAN_ESTUARY"
+#~ msgstr "Muara Pangonia"

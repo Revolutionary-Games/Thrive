@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-22 16:57+0300\n"
+"POT-Creation-Date: 2026-06-03 20:10+0100\n"
 "PO-Revision-Date: 2026-05-13 03:55+0000\n"
 "Last-Translator: Anelle Lisetter Viktoria Rodin <lisete.rodin@gmail.com>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
@@ -189,6 +189,13 @@ msgstr ""
 
 msgid "ALT"
 msgstr "ALT"
+
+#, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr "Praegused lõimed:"
+
+msgid "ALTERNATVE_TIMESCALE"
+msgstr ""
 
 #, fuzzy
 msgid "ALWAYS_VISIBLE"
@@ -1919,6 +1926,14 @@ msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
 
 #, fuzzy
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr "Kuvamisvõimaluste riba"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_METAL"
+msgstr "Kuvamisvõimaluste riba"
+
+#, fuzzy
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr "Kuvamisvõimaluste riba"
 
@@ -1959,10 +1974,6 @@ msgstr ""
 #, fuzzy
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Kahekihiline membraan kaitseb paremini kahjustuste eest ja võtab vähem energiat, et mitte deformeeruda. Siiski aeglustab see raku tööd ja aeglustab ressursside neelamise kiirust."
-
-#, fuzzy
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "Peata mäng"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr ""
@@ -3959,6 +3970,13 @@ msgstr "märtsil"
 msgid "MARINE_SNOW"
 msgstr "Mere lumi"
 
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. Lõpliku populatsiooni määrab kogu energia, mida liik suudab püüda, ja kulu liigi isendi kohta. Auto-evo kasutab lihtsustatud tegelikkuse mudelit, et arvutada, kui hästi liigid toimivad, võttes aluseks energia, mida nad suudavad koguda. Iga toiduallika puhul näidatakse, et liik saab sellest palju energiat. Lisaks kuvatakse sellest allikast saadaolev koguenergia. See, kui suur osa liikide koguenergiast võidab, põhineb sellel, kui suur on sobivus võrreldes kogu sobivusega. Fitness on mõõdik selle kohta, kui hästi liik suudab seda toiduallikat kasutada."
+
 msgid "MASTER_VOLUME"
 msgstr "Master helitugevus"
 
@@ -4840,6 +4858,14 @@ msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
 
 #, fuzzy
+msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
+msgstr ""
+"Hoidke oma terviseribal silm peal ATP riba kõrval (all paremal).\n"
+"Teie rakk sureb, kui selle tervis otsa saab.\n"
+"Kui teil on ATP, taastate tervist.\n"
+"Veenduge, et kogute piisavalt glükoosi ATP tootmiseks."
+
+#, fuzzy
 msgid "MULTICELLULAR_STAGE"
 msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
 
@@ -4925,6 +4951,10 @@ msgstr ""
 
 msgid "NEW"
 msgstr "Uus"
+
+#, fuzzy
+msgid "NEWER"
+msgstr "Vaataja"
 
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -5140,6 +5170,10 @@ msgstr "vabasurm"
 
 msgid "OK"
 msgstr "Okei"
+
+#, fuzzy
+msgid "OLDER"
+msgstr "Ava kaust"
 
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -5459,6 +5493,10 @@ msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
 #, fuzzy
+msgid "PATCH_NOTES_RECENT_BOUNDARY"
+msgstr "Pangoonia suudmeala"
+
+#, fuzzy
 msgid "PATCH_NOTES_TITLE"
 msgstr "Eemaldage kohalikud andmed"
 
@@ -5687,6 +5725,10 @@ msgid "PRESSURE_SHORT"
 msgstr "Surve."
 
 #, fuzzy
+msgid "PRESSURE_TOLERANCE"
+msgstr "Tagasi menüüsse"
+
+#, fuzzy
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "Tagasi menüüsse"
 
@@ -5738,9 +5780,6 @@ msgstr "Projektijuhtimise meeskond"
 msgid "PROTEINS"
 msgstr "Valgud"
 
-msgid "PROTOPLASM"
-msgstr "Protoplasma"
-
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Tõmbetaotlused / programmeerimine"
 
@@ -5776,6 +5815,10 @@ msgstr "Aeroobne hingamine"
 
 #, fuzzy
 msgid "RADIOACTIVE_CHUNK"
+msgstr "Suur raua tükk"
+
+#, fuzzy
+msgid "RADIOACTIVE_CHUNK_BANANA"
 msgstr "Suur raua tükk"
 
 #, fuzzy
@@ -5871,6 +5914,10 @@ msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. L
 #, fuzzy
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 msgstr "Paljundamine:"
+
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "lootustandev"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Paljundamine:"
@@ -6025,6 +6072,10 @@ msgstr "Pöörake paremale"
 
 #, fuzzy
 msgid "ROTATION_COLON"
+msgstr "elanikkond:"
+
+#, fuzzy
+msgid "ROTATION_FORCE"
 msgstr "elanikkond:"
 
 msgid "RUNOFF_EVENT"
@@ -6583,11 +6634,12 @@ msgstr "Liigid:"
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} elanikkonnaga: {1}"
 
-msgid "SPEED"
-msgstr "Kiirus"
-
 msgid "SPEED_COLON"
 msgstr "Kiirus:"
+
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "Peata mäng"
 
 #, fuzzy
 msgid "SPORE_CELL_TYPE"
@@ -6907,6 +6959,10 @@ msgid "TEMPERATURE_SHORT"
 msgstr "temperatuur."
 
 #, fuzzy
+msgid "TEMPERATURE_TOLERANCE_RANGE"
+msgstr "Peata mäng"
+
+#, fuzzy
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "Peata mäng"
 
@@ -7056,6 +7112,9 @@ msgstr "Thrive litsentsid"
 #, fuzzy
 msgid "THRIVIN_ACHIEVEMENT"
 msgstr "Aluse liikumine"
+
+msgid "THRUST_FORCE"
+msgstr ""
 
 msgid "THYLAKOIDS"
 msgstr "Tülakoidid"
@@ -7238,9 +7297,6 @@ msgid "TOOLS"
 msgstr "Tööriistad"
 
 msgid "TOOL_HAND_AXE"
-msgstr ""
-
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
 #, fuzzy
@@ -8009,10 +8065,6 @@ msgstr ""
 
 msgid "VIEWER"
 msgstr "Vaataja"
-
-#, fuzzy
-msgid "VIEW_ALL"
-msgstr "Keela kõik"
 
 #, fuzzy
 msgid "VIEW_CELL_PROCESSES"
@@ -9504,10 +9556,6 @@ msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr ""
 
 #, fuzzy
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "Protoplasma"
-
-#, fuzzy
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "Protoplasma"
 
@@ -9596,33 +9644,6 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "Aeroobne hingamine"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "Protoplasma"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr "Protoplasma"
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr "Muudab [thrive:compound type=\"glucose\"][/thrive:compound] tüübiks [thrive:compound type=\"atp\"][/thrive:compound]."
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
 
 msgid "WIKI_PULLING_CILIA"
 msgstr ""
@@ -10198,6 +10219,36 @@ msgid "ZOOM_OUT"
 msgstr "Suumi välja"
 
 #, fuzzy
+#~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
+#~ msgstr "Peata mäng"
+
+#~ msgid "PROTOPLASM"
+#~ msgstr "Protoplasma"
+
+#, fuzzy
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "Protoplasma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "Protoplasma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr "Protoplasma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr "Muudab [thrive:compound type=\"glucose\"][/thrive:compound] tüübiks [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+#~ msgid "VIEW_ALL"
+#~ msgstr "Keela kõik"
+
+#~ msgid "SPEED"
+#~ msgstr "Kiirus"
+
+#, fuzzy
 #~ msgid "AEROBIC_NITROGEN_FIXATION"
 #~ msgstr "Anaeroobne lämmastiku fikseerimine"
 
@@ -10724,9 +10775,6 @@ msgstr "Suumi välja"
 #~ msgid "PATCH_PANGONIAN_COAST"
 #~ msgstr "Pangoonia rannik"
 
-#~ msgid "PATCH_PANGONIAN_ESTUARY"
-#~ msgstr "Pangoonia suudmeala"
-
 #~ msgid "PATCH_CAVE"
 #~ msgstr "Koobas"
 
@@ -10752,3 +10800,6 @@ msgstr "Suumi välja"
 
 #~ msgid "PRODUCES"
 #~ msgstr "Toodab"
+
+#~ msgid "PATCH_PANGONIAN_ESTUARY"
+#~ msgstr "Pangoonia suudmeala"

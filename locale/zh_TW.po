@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-22 16:57+0300\n"
-"PO-Revision-Date: 2026-05-17 08:05+0000\n"
-"Last-Translator: xzihnago <xzihnago@gmail.com>\n"
+"POT-Creation-Date: 2026-06-03 20:10+0100\n"
+"PO-Revision-Date: 2026-05-22 15:37+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
@@ -170,6 +170,16 @@ msgstr "您已經飛昇了"
 
 msgid "ALT"
 msgstr "Alt"
+
+#, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr ""
+"本機執行緒用於與託管執行緒不同的任務。\n"
+"多核心 CPU 上的更多執行緒通常會將效能提高到極限\n"
+"太多的總執行緒數將會降低效能。"
+
+msgid "ALTERNATVE_TIMESCALE"
+msgstr ""
 
 msgid "ALWAYS_VISIBLE"
 msgstr "總是可見"
@@ -1803,6 +1813,14 @@ msgstr "微生物背景扭曲"
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "顯示背景粒子"
 
+#, fuzzy
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr "OpenGL"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_METAL"
+msgstr "OpenGL"
+
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr "OpenGL"
 
@@ -1838,9 +1856,6 @@ msgstr "雙擊即可全螢幕檢視"
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "有兩層的細胞膜，對傷害有更好的防護能力，尤其是毒素侵害。然而，它會減慢細胞的移動速度並降低其吸收資源的速率。"
-
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "在正常與雙倍遊戲速度之間切換"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr "用滑鼠拖曳以重新排序"
@@ -3586,6 +3601,13 @@ msgstr "三月"
 msgid "MARINE_SNOW"
 msgstr "海洋雪"
 
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "產生單一後代——新群落的根細胞。"
+
 msgid "MASTER_VOLUME"
 msgstr "主音量"
 
@@ -4325,6 +4347,22 @@ msgstr "雖然您的細胞共享化合物，但每個細胞都需要生產自己
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "此面板顯示的是您的細胞群的綜合代謝過程，即所有細胞的代謝總和。請注意，與其他化合物不同，ATP 無法在細胞間共享。"
 
+#, fuzzy
+msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
+msgstr ""
+"[b]階段[/b]\n"
+"  微生物\n"
+"[b]膜類型[/b]\n"
+"  {0}\n"
+"[b]膜剛性[/b]\n"
+"  {1}\n"
+"[b]基本速度[/b]\n"
+"   {2}\n"
+"[b]基本轉動速度[/b]\n"
+"  {3}\n"
+"[b]基本六邊形網格大小[/b]\n"
+"  {4}"
+
 msgid "MULTICELLULAR_STAGE"
 msgstr "多細胞階段"
 
@@ -4401,6 +4439,10 @@ msgstr ""
 
 msgid "NEW"
 msgstr "新增"
+
+#, fuzzy
+msgid "NEWER"
+msgstr "檢視器"
 
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -4604,6 +4646,10 @@ msgstr "造訪 Revolutionary Games 官方網站"
 
 msgid "OK"
 msgstr "確認"
+
+#, fuzzy
+msgid "OLDER"
+msgstr "開啟資料夾"
 
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -4882,6 +4928,10 @@ msgstr "您上次遊玩 Thrive 的版本是 {0}，在此之後又發布了一個
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr "您上次遊玩 Thrive 的版本是 {0}，在此之後已經發布了 {1} 個新版本"
 
+#, fuzzy
+msgid "PATCH_NOTES_RECENT_BOUNDARY"
+msgstr "—{0}"
+
 msgid "PATCH_NOTES_TITLE"
 msgstr "更新說明"
 
@@ -5091,6 +5141,10 @@ msgstr "壓力"
 msgid "PRESSURE_SHORT"
 msgstr "壓力"
 
+#, fuzzy
+msgid "PRESSURE_TOLERANCE"
+msgstr "您的物種所偏好的壓力以及適應範圍。當處於範圍之外的條件時，您的物種將受到許多負面影響。使用滑桿更改偏好壓力與適應範圍。"
+
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "您的物種所偏好的壓力以及適應範圍。當處於範圍之外的條件時，您的物種將受到許多負面影響。使用滑桿更改偏好壓力與適應範圍。"
 
@@ -5138,9 +5192,6 @@ msgstr "專案管理團隊"
 msgid "PROTEINS"
 msgstr "蛋白質"
 
-msgid "PROTOPLASM"
-msgstr "原生質"
-
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "PR／程式設計"
 
@@ -5171,6 +5222,10 @@ msgid "RADIATION_LEVELS"
 msgstr "輻射量"
 
 msgid "RADIOACTIVE_CHUNK"
+msgstr "放射性岩塊"
+
+#, fuzzy
+msgid "RADIOACTIVE_CHUNK_BANANA"
 msgstr "放射性岩塊"
 
 msgid "RADIOSYNTHESIS"
@@ -5258,6 +5313,10 @@ msgstr ""
 "「保留全部」是按原樣保留所有儲存的化合物的自私選擇。\n"
 "「始終補充至初始值」 會將所有化合物補充到細胞最初生成時的量。\n"
 "「區域更改時補充」 僅在切換區域時將化合物補充到初始值。"
+
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "出芽生殖"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "繁殖："
@@ -5392,6 +5451,10 @@ msgid "ROTATE_RIGHT"
 msgstr "向右旋轉"
 
 msgid "ROTATION_COLON"
+msgstr "旋轉："
+
+#, fuzzy
+msgid "ROTATION_FORCE"
 msgstr "旋轉："
 
 msgid "RUNOFF_EVENT"
@@ -5899,11 +5962,12 @@ msgstr "尋找物種："
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} 的物種量：{1}"
 
-msgid "SPEED"
-msgstr "速度"
-
 msgid "SPEED_COLON"
 msgstr "速度："
+
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "在正常與雙倍遊戲速度之間切換"
 
 #, fuzzy
 msgid "SPORE_CELL_TYPE"
@@ -6196,6 +6260,10 @@ msgstr "溫度"
 msgid "TEMPERATURE_SHORT"
 msgstr "溫度"
 
+#, fuzzy
+msgid "TEMPERATURE_TOLERANCE_RANGE"
+msgstr "您的物種所偏好的溫度。當處於理想溫度適應範圍之外的條件時，就會產生負面影響，使生存變得更加困難。使用滑桿來調整並適應您計劃遊玩的區域。"
+
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "您的物種所偏好的溫度。當處於理想溫度適應範圍之外的條件時，就會產生負面影響，使生存變得更加困難。使用滑桿來調整並適應您計劃遊玩的區域。"
 
@@ -6338,6 +6406,9 @@ msgstr "Thrive 授權條款"
 
 msgid "THRIVIN_ACHIEVEMENT"
 msgstr "蓬勃發展"
+
+msgid "THRUST_FORCE"
+msgstr ""
 
 msgid "THYLAKOIDS"
 msgstr "類囊體"
@@ -6499,9 +6570,6 @@ msgstr "工具"
 
 msgid "TOOL_HAND_AXE"
 msgstr "手斧"
-
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
-msgstr "未顯示所有最近版本，因為版本過多"
 
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "已收集能量："
@@ -7212,9 +7280,6 @@ msgstr "{0} MiB"
 msgid "VIEWER"
 msgstr "檢視器"
 
-msgid "VIEW_ALL"
-msgstr "查看所有"
-
 msgid "VIEW_CELL_PROCESSES"
 msgstr "查看生物代謝過程"
 
@@ -7389,6 +7454,7 @@ msgstr ""
 msgid "WIKI_AWARE_STAGE_UI"
 msgstr "即將推出。"
 
+#, fuzzy
 msgid "WIKI_AXON_EFFECTS"
 msgstr ""
 "對於包含[b]軸突[/b]的多細胞生物中的每個細胞，該生物體的腦力與該細胞的體積成比例地增加。具有[b]軸突[/b]的細胞將被分類為腦組織類型。\n"
@@ -7463,9 +7529,11 @@ msgstr ""
 msgid "WIKI_BINDING_AGENT_UPGRADES"
 msgstr "無升級。"
 
+#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_EFFECTS"
 msgstr "具有[b]生物發光液泡[/b]的細胞耐氧性增加。"
 
+#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_INTRO"
 msgstr "產生[thrive:compound type=\"sunlight\"][/thrive:compound] 並提高該細胞的氧耐受性。"
 
@@ -7605,6 +7673,7 @@ msgstr ""
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_UPGRADES"
 msgstr "無升級。"
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_EFFECTS"
 msgstr "無效果。"
 
@@ -8321,6 +8390,7 @@ msgstr ""
 "\n"
 "如果您能存活 25 世代，並擁有 300 物種量，並且在多細胞階段下放置了 10 個細胞，就算是「贏」了這局遊戲。您仍然可以繼續遊玩。"
 
+#, fuzzy
 msgid "WIKI_HYDROGENASE_EFFECTS"
 msgstr "無效果。"
 
@@ -8360,6 +8430,7 @@ msgstr ""
 msgid "WIKI_HYDROGENASE_UPGRADES"
 msgstr "無升級。"
 
+#, fuzzy
 msgid "WIKI_HYDROGENOSOME_EFFECTS"
 msgstr "無效果。"
 
@@ -8518,6 +8589,7 @@ msgstr ""
 "\n"
 "以下頁面解釋了各種機制。請隨意瀏覽頁面以獲取遊戲提示與幫助。"
 
+#, fuzzy
 msgid "WIKI_MELANOSOME_EFFECTS"
 msgstr "無效果。"
 
@@ -8548,6 +8620,7 @@ msgstr "放射性岩塊雖然稀有，但蘊含豐富的能量。利用放射合
 msgid "WIKI_MELANOSOME_UPGRADES"
 msgstr "無升級。"
 
+#, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
 msgstr "無效果。"
 
@@ -8704,6 +8777,7 @@ msgstr ""
 "\n"
 "微生物階段是遊戲的第一個階段。該階段從世界上最早出現的物種開始，它們剛從生命的原始起源中誕生，探索營養豐富的海底熱泉。在這裡，玩家扮演一個微小的原核細胞質團塊，它是其物種中為數不多的個體之一。此時，玩家必須完全依賴尋找散落的[thrive:compound type=\"glucose\"][/thrive:compound] 來生存，因為他們尚未擁有處理其他營養物質的能力，並且需要尋找[thrive:compound type=\"phosphates\"][/thrive:compound] 與[thrive:compound type=\"ammonia\"][/thrive:compound] 來成長壯大，以準備進行繁殖。一旦玩家達到足夠的大小，他們將能夠進行繁殖，並帶領玩家進入微生物編輯器。隨著遊戲的進行，玩家將逐漸改造自己的細胞，以更好地在一個每一代都逐漸變得更加嚴酷的世界中生存，並與由玩家物種演化而來的新物種競爭。"
 
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "無效果。"
 
@@ -8810,6 +8884,7 @@ msgstr "無升級"
 msgid "WIKI_NATION_EDITOR"
 msgstr "國家編輯器"
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "無效果。"
 
@@ -8853,6 +8928,7 @@ msgstr ""
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "無升級。"
 
+#, fuzzy
 msgid "WIKI_NITROPLAST_EFFECTS"
 msgstr "無效果。"
 
@@ -8950,6 +9026,7 @@ msgstr ""
 "\n"
 "從下面的清單中選擇一種細胞器以了解更多資訊。"
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_EFFECTS"
 msgstr ""
 "如果細胞至少有一個[b]毒素體[/b]或[b][color=#3796e1][url=thriveopedia:oxytoxy]毒素液泡[/url][/color][/b]，它可以發射毒素彈，排出儲存的[thrive:compound type=\"oxytoxy\"][/thrive:compound] 來做這件事。這些彈體會損害其他物種的細胞，但不會傷害發射者同物種的成員。\n"
@@ -9107,9 +9184,6 @@ msgstr "氧化毒酶體"
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr "掠食性菌毛"
 
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "原生質"
-
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "繁殖"
 
@@ -9198,42 +9272,6 @@ msgstr ""
 
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "蛋白質呼吸"
-
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "無效果。"
-
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr ""
-"[b][color=#3796e1][url=thriveopedia:cytoplasm]細胞質[/url][/color][/b]的顯著增強版本，旨在增強非玩家物種的儲存能力。無法添加到玩家細胞中，但可能存在於玩家從環境中化石化的細胞中。\n"
-"\n"
-"視覺上匹配[b][color=#3796e1][url=thriveopedia:cytoplasm]細胞質[/url][/color][/b]並繼承了它的許多特徵。"
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr "無修改。"
-
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr ""
-"[b]糖解[/b]：[thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"不同輸入／輸出速率的[b]細胞質糖解[/b]的增強版本。"
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr "玩家無法演化[b]原生質[/b]。非玩家物種則無限制。"
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-"在某些地方，[b]原生質[/b]是[b][color=#3796e1][url=thriveopedia:cytoplasm]細胞質[/url][/color][/b]的別名，儘管它也可以指細胞的所有內容物，包括細胞核與周圍結構。\n"
-"\n"
-"閱讀更多關於該細胞器的資訊 [color=#3796e1][url=https://en.wikipedia.org/wiki/Protoplasm]Wikipedia 頁面[/url][/color]。"
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-"在常規遊戲中不可能使用[b]原生質[/b]。玩家只有在自由建構模式下開啟在先前的遊戲中化石化的非玩家物種，且該物種恰好演化了這種細胞器時才能使用它。\n"
-"\n"
-"當它確實出現時，[b]原生質[/b]在策略上等同於[b][color=#3796e1][url=thriveopedia:cytoplasm]細胞質[/url][/color][/b]，但顯著增加儲存空間與較慢的[thrive:compound type=\"atp\"][/thrive:compound] 生產。具有[b]原生質[/b]的細胞通常可以存活更長時間，而無需尋找化合物雲或消化獵物。"
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr "無升級。"
 
 msgid "WIKI_PULLING_CILIA"
 msgstr "捕食纖毛"
@@ -9337,6 +9375,7 @@ msgstr ""
 msgid "WIKI_SIGNALING_AGENT_UPGRADES"
 msgstr "無升級。"
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_EFFECTS"
 msgstr ""
 "使細胞能夠噴射[thrive:compound type=\"mucilage\"][/thrive:compound] 以推動自己。噴射[thrive:compound type=\"mucilage\"][/thrive:compound] 可在短時間內大幅提高速度。根據可用的[thrive:compound type=\"mucilage\"][/thrive:compound] 量，爆發可以持續更長時間。\n"
@@ -9454,6 +9493,7 @@ msgstr "待定"
 msgid "WIKI_TECH_EDITOR_COMMA_NATION_EDITOR_COMMA_SQUAD_EDITOR"
 msgstr "科技編輯器、國家編輯器、隊伍編輯器"
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr "啟用[i]熱視覺[/i]，可切換開關。這會將水的相對溫度疊加顯示到螢幕上，溫度較高的區域會顯示得更紅。"
 
@@ -9501,6 +9541,7 @@ msgstr ""
 msgid "WIKI_THERMOPLAST_UPGRADES"
 msgstr "無升級。"
 
+#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_EFFECTS"
 msgstr "啟用[i]熱視覺[/i]，可切換開關。這會將水的相對溫度疊加顯示到螢幕上，溫度較高的區域會顯示得更紅。"
 
@@ -9568,6 +9609,7 @@ msgstr ""
 msgid "WIKI_THE_PATCH_MAP_THE_PATCH_MAP"
 msgstr "[b]區域地圖[/b]代表您的星球。它由[b]區域[/b]與[b]地域[/b]組成（如下所述）。每個區域包含多個連接的（或相鄰的）區域並連接到其他地域。"
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_EFFECTS"
 msgstr "無特殊效果。"
 
@@ -9613,6 +9655,7 @@ msgstr ""
 msgid "WIKI_THYLAKOIDS_UPGRADES"
 msgstr "無升級。"
 
+#, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_EFFECTS"
 msgstr ""
 "如果細胞至少有一個[b][color=#3796e1][url=thriveopedia:oxytoxyProteins]氧化毒酶體[/url][/color][/b]或[b]毒素液泡[/b]，它可以發射毒素彈，排出儲存的[thrive:compound type=\"oxytoxy\"][/thrive:compound] 來做這件事。這些彈體會損害其他物種的細胞，但不會傷害發射者同物種的成員。\n"
@@ -9649,6 +9692,7 @@ msgstr "與[b][color=#3796e1][url=thriveopedia:oxytoxyProteins]氧化毒酶體[/
 msgid "WIKI_TOXIN_VACUOLE_UPGRADES"
 msgstr "無升級。"
 
+#, fuzzy
 msgid "WIKI_VACUOLE_EFFECTS"
 msgstr "無效果。"
 
@@ -9835,6 +9879,60 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "縮小"
+
+#~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
+#~ msgstr "在正常與雙倍遊戲速度之間切換"
+
+#~ msgid "PROTOPLASM"
+#~ msgstr "原生質"
+
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "原生質"
+
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "無效果。"
+
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr ""
+#~ "[b][color=#3796e1][url=thriveopedia:cytoplasm]細胞質[/url][/color][/b]的顯著增強版本，旨在增強非玩家物種的儲存能力。無法添加到玩家細胞中，但可能存在於玩家從環境中化石化的細胞中。\n"
+#~ "\n"
+#~ "視覺上匹配[b][color=#3796e1][url=thriveopedia:cytoplasm]細胞質[/url][/color][/b]並繼承了它的許多特徵。"
+
+#~ msgid "WIKI_PROTOPLASM_MODIFICATIONS"
+#~ msgstr "無修改。"
+
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr ""
+#~ "[b]糖解[/b]：[thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "不同輸入／輸出速率的[b]細胞質糖解[/b]的增強版本。"
+
+#~ msgid "WIKI_PROTOPLASM_REQUIREMENTS"
+#~ msgstr "玩家無法演化[b]原生質[/b]。非玩家物種則無限制。"
+
+#~ msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
+#~ msgstr ""
+#~ "在某些地方，[b]原生質[/b]是[b][color=#3796e1][url=thriveopedia:cytoplasm]細胞質[/url][/color][/b]的別名，儘管它也可以指細胞的所有內容物，包括細胞核與周圍結構。\n"
+#~ "\n"
+#~ "閱讀更多關於該細胞器的資訊 [color=#3796e1][url=https://en.wikipedia.org/wiki/Protoplasm]Wikipedia 頁面[/url][/color]。"
+
+#~ msgid "WIKI_PROTOPLASM_STRATEGY"
+#~ msgstr ""
+#~ "在常規遊戲中不可能使用[b]原生質[/b]。玩家只有在自由建構模式下開啟在先前的遊戲中化石化的非玩家物種，且該物種恰好演化了這種細胞器時才能使用它。\n"
+#~ "\n"
+#~ "當它確實出現時，[b]原生質[/b]在策略上等同於[b][color=#3796e1][url=thriveopedia:cytoplasm]細胞質[/url][/color][/b]，但顯著增加儲存空間與較慢的[thrive:compound type=\"atp\"][/thrive:compound] 生產。具有[b]原生質[/b]的細胞通常可以存活更長時間，而無需尋找化合物雲或消化獵物。"
+
+#~ msgid "WIKI_PROTOPLASM_UPGRADES"
+#~ msgstr "無升級。"
+
+#~ msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+#~ msgstr "未顯示所有最近版本，因為版本過多"
+
+#~ msgid "VIEW_ALL"
+#~ msgstr "查看所有"
+
+#~ msgid "SPEED"
+#~ msgstr "速度"
 
 #~ msgid "AEROBIC_NITROGEN_FIXATION"
 #~ msgstr "有氧固氮"

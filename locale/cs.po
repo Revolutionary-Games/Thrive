@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-22 16:57+0300\n"
+"POT-Creation-Date: 2026-06-03 20:10+0100\n"
 "PO-Revision-Date: 2026-05-17 08:05+0000\n"
 "Last-Translator: Tibor Šťastný <tiborstgame2@seznam.cz>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -162,6 +162,14 @@ msgstr "Jste již povzneseni"
 
 msgid "ALT"
 msgstr "Alt"
+
+#, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr "Současná vlákna:"
+
+#, fuzzy
+msgid "ALTERNATVE_TIMESCALE"
+msgstr ". Stupnice hodnocení"
 
 #, fuzzy
 msgid "ALWAYS_VISIBLE"
@@ -1820,6 +1828,14 @@ msgstr "Zobrazení částic v pozadí"
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Zobrazení částic v pozadí"
 
+#, fuzzy
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr "OpenGL"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_METAL"
+msgstr "OpenGL"
+
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr "OpenGL"
 
@@ -1856,9 +1872,6 @@ msgstr "Dvojklikem zobrazíte v celé obrazovce"
 #, fuzzy
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Membrána se dvěma vrstvami má lepší ochranu proti poškození a potřebuje méně energie k zabránění deformace. Avšak zpomaluje buňku a snižuje rychlost, kterou může absorbovat zdroje."
-
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "Přepnout mezi běžnou herní rychlostí a dvojnásoubnou rychlostí"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr ""
@@ -3682,6 +3695,13 @@ msgstr "Březen"
 msgid "MARINE_SNOW"
 msgstr "Mořský sníh"
 
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(pasivní příjem reprodukčních sloučenin z prostředí bez toho aniž byste něco museli dělat)"
+
 msgid "MASTER_VOLUME"
 msgstr "Celková hlasitost"
 
@@ -4519,6 +4539,22 @@ msgstr "Mnohobuněčný Editor"
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "(některé funkce možná nebudou přístupné jakmile se dostanete do dalších období)"
 
+#, fuzzy
+msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
+msgstr ""
+"[b]Období[/b]\n"
+"Mikrobiální\n"
+"[b]Typ Membrány[/b]\n"
+"{0}\n"
+"[b]Pevnost Membrány[/b]\n"
+"{1}\n"
+"[b]Základní Rychlost[/b]\n"
+"{2}\n"
+"[b]Základní Rychlost Rotace[/b]\n"
+"{3}\n"
+"[b]Základní Velikost Hexu[/b]\n"
+"{4}"
+
 msgid "MULTICELLULAR_STAGE"
 msgstr "Mnohobuněčné Období"
 
@@ -4596,6 +4632,10 @@ msgstr ""
 
 msgid "NEW"
 msgstr "Nový"
+
+#, fuzzy
+msgid "NEWER"
+msgstr "Prohlížeč"
 
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -4802,6 +4842,10 @@ msgstr "Navštivte oficiální stránku Revolutionary Games"
 
 msgid "OK"
 msgstr "OK"
+
+#, fuzzy
+msgid "OLDER"
+msgstr "Otevřít složku"
 
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -5098,6 +5142,10 @@ msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
 #, fuzzy
+msgid "PATCH_NOTES_RECENT_BOUNDARY"
+msgstr "Pangoniánské ústí"
+
+#, fuzzy
 msgid "PATCH_NOTES_TITLE"
 msgstr "Odstranit místní data"
 
@@ -5322,6 +5370,10 @@ msgid "PRESSURE_SHORT"
 msgstr "Tlak"
 
 #, fuzzy
+msgid "PRESSURE_TOLERANCE"
+msgstr "Návrat do hlavního menu"
+
+#, fuzzy
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "Návrat do hlavního menu"
 
@@ -5373,9 +5425,6 @@ msgstr "Projektoví manažeři"
 msgid "PROTEINS"
 msgstr "Bílkoviny"
 
-msgid "PROTOPLASM"
-msgstr "Protoplazma"
-
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Externí programátoři"
 
@@ -5409,6 +5458,10 @@ msgstr "Aerobní dýchání"
 
 #, fuzzy
 msgid "RADIOACTIVE_CHUNK"
+msgstr "Velký kus železa"
+
+#, fuzzy
+msgid "RADIOACTIVE_CHUNK_BANANA"
 msgstr "Velký kus železa"
 
 msgid "RADIOSYNTHESIS"
@@ -5496,6 +5549,10 @@ msgstr "(pasivní příjem reprodukčních sloučenin z prostředí bez toho ani
 #, fuzzy
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 msgstr "Reprodukce:"
+
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "Pučení"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reprodukce:"
@@ -5645,6 +5702,10 @@ msgid "ROTATE_RIGHT"
 msgstr "Otočit doprava"
 
 msgid "ROTATION_COLON"
+msgstr "Rotace:"
+
+#, fuzzy
+msgid "ROTATION_FORCE"
 msgstr "Rotace:"
 
 msgid "RUNOFF_EVENT"
@@ -6179,11 +6240,12 @@ msgstr "Druh:"
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} s populací: {1}"
 
-msgid "SPEED"
-msgstr "Rychlost"
-
 msgid "SPEED_COLON"
 msgstr "Rychlost:"
+
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "Přepnout mezi běžnou herní rychlostí a dvojnásoubnou rychlostí"
 
 #, fuzzy
 msgid "SPORE_CELL_TYPE"
@@ -6489,6 +6551,10 @@ msgstr "Teplota"
 msgid "TEMPERATURE_SHORT"
 msgstr "Teplota"
 
+#, fuzzy
+msgid "TEMPERATURE_TOLERANCE_RANGE"
+msgstr "Teplota tolerovaná tvým druhem. Pokud jsi v podmínkách, které nespadají do rozsahu tvé tolerance teploty, tak utrpíš negativní následky, které ti ztíží přežívání. Adaptuj se s využitím posuvníků na sektory, ve kterých chceš žít."
+
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "Teplota tolerovaná tvým druhem. Pokud jsi v podmínkách, které nespadají do rozsahu tvé tolerance teploty, tak utrpíš negativní následky, které ti ztíží přežívání. Adaptuj se s využitím posuvníků na sektory, ve kterých chceš žít."
 
@@ -6626,6 +6692,9 @@ msgstr "Thrive Licence"
 
 msgid "THRIVIN_ACHIEVEMENT"
 msgstr "Prosperující"
+
+msgid "THRUST_FORCE"
+msgstr ""
 
 msgid "THYLAKOIDS"
 msgstr "Thylakoidy"
@@ -6791,9 +6860,6 @@ msgstr "Nástroje"
 
 msgid "TOOL_HAND_AXE"
 msgstr "Příruční sekerka"
-
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
-msgstr "Nezobrazují se všechny nedávno vydané verze, protože jich je příliš mnoho"
 
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "Nasbíraná energie:"
@@ -7527,9 +7593,6 @@ msgstr "{0} MiB"
 
 msgid "VIEWER"
 msgstr "Prohlížeč"
-
-msgid "VIEW_ALL"
-msgstr "Zobrazit vše"
 
 #, fuzzy
 msgid "VIEW_CELL_PROCESSES"
@@ -8909,10 +8972,6 @@ msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr ""
 
 #, fuzzy
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "Protoplazma"
-
-#, fuzzy
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "Protoplazma"
 
@@ -8994,33 +9053,6 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "Aerobní dýchání"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "Protoplazma"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr "Protoplazma"
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr "Přeměňuje [thrive:compound type=\"glucose\"]glukózu[/thrive:compound] na [thrive:compound type=\"atp\"]ATP[/thrive:compound]."
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
 
 #, fuzzy
 msgid "WIKI_PULLING_CILIA"
@@ -9539,6 +9571,37 @@ msgstr "Přiblížit"
 
 msgid "ZOOM_OUT"
 msgstr "Oddálit"
+
+#~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
+#~ msgstr "Přepnout mezi běžnou herní rychlostí a dvojnásoubnou rychlostí"
+
+#~ msgid "PROTOPLASM"
+#~ msgstr "Protoplazma"
+
+#, fuzzy
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "Protoplazma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "Protoplazma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr "Protoplazma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr "Přeměňuje [thrive:compound type=\"glucose\"]glukózu[/thrive:compound] na [thrive:compound type=\"atp\"]ATP[/thrive:compound]."
+
+#~ msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+#~ msgstr "Nezobrazují se všechny nedávno vydané verze, protože jich je příliš mnoho"
+
+#~ msgid "VIEW_ALL"
+#~ msgstr "Zobrazit vše"
+
+#~ msgid "SPEED"
+#~ msgstr "Rychlost"
 
 #, fuzzy
 #~ msgid "AEROBIC_NITROGEN_FIXATION"
@@ -10071,9 +10134,6 @@ msgstr "Oddálit"
 #~ msgid "PATCH_PANGONIAN_COAST"
 #~ msgstr "Pangoniánské pobřeží"
 
-#~ msgid "PATCH_PANGONIAN_ESTUARY"
-#~ msgstr "Pangoniánské ústí"
-
 #~ msgid "PATCH_CAVE"
 #~ msgstr "Jeskyně"
 
@@ -10188,9 +10248,6 @@ msgstr "Oddálit"
 
 #~ msgid "INTENSITY_OF"
 #~ msgstr "intenzita"
-
-#~ msgid "DOT_RATE_SCALES"
-#~ msgstr ". Stupnice hodnocení"
 
 #~ msgid "OXYGEN_DOT"
 #~ msgstr "Kyslík."
@@ -10313,3 +10370,9 @@ msgstr "Oddálit"
 #~ "Další vlastnosti tvého druhu můžeš změnit na dalších kartách editoru buněk.\n"
 #~ "\n"
 #~ "Pokračuj výběrem organely z panelu vlevo (cytoplazma je dobrá volba). Potom klikni levým tlačítkem vedle zobrazeného šestiúhelníku (Hexu) uprostřed obrazovky a přidej tuto organelu ke svému druhu."
+
+#~ msgid "PATCH_PANGONIAN_ESTUARY"
+#~ msgstr "Pangoniánské ústí"
+
+#~ msgid "DOT_RATE_SCALES"
+#~ msgstr ". Stupnice hodnocení"

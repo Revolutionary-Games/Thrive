@@ -32,7 +32,7 @@ region_rect = Rect2(0, 0, 258, 1)
 
 [sub_resource type="StyleBoxEmpty" id="7"]
 
-[node name="OptionsMenu" type="Control" unique_id=1262351791 node_paths=PackedStringArray("backButton", "resetButton", "saveButton", "tabButtons", "graphicsButton", "soundButton", "performanceButton", "inputsButton", "miscButton", "graphicsTab", "vsync", "graphicsPreset", "displayOptionContainer", "display", "resolution", "displayMode", "antiAliasingMode", "msaaSection", "msaaResolution", "renderScale", "renderScaleLabel", "upscalingMethod", "upscalingSharpening", "maxFramesPerSecond", "colourblindSetting", "chromaticAberrationToggle", "chromaticAberrationSlider", "controllerPromptType", "displayAbilitiesHotBarToggle", "anisotropicFilterLevel", "currentGUIScaleDisplay", "damageEffect", "strainVisibility", "displayBackgroundParticlesToggle", "guiLightEffectsToggle", "displayPartNamesToggle", "displayMenu3DBackgroundsToggle", "displayMicrobeBackgroundDistortionToggle", "lowQualityBackgroundBlurToggle", "microbeCurrentParticles", "bloomEffectToggle", "bloomSlider", "blurSlider", "gpuName", "usedRendererName", "videoMemory", "soundTab", "masterVolume", "masterMuted", "musicVolume", "musicMuted", "ambianceVolume", "ambianceMuted", "sfxVolume", "sfxMuted", "guiVolume", "guiMuted", "audioOutputDeviceSelection", "languageSelection", "resetLanguageButton", "languageProgressLabel", "performanceTab", "cloudInterval", "cloudResolutionTitle", "cloudResolution", "runAutoEvoDuringGameplay", "runGameSimulationMultithreaded", "detectedCPUCount", "activeThreadCount", "assumeHyperthreading", "useManualThreadCount", "threadCountSlider", "useManualNativeThreadCount", "nativeThreadCountSlider", "maxSpawnedEntities", "useDiskCaching", "maxCacheSizeSlider", "maxCacheSizeLabel", "currentCacheSize", "maxMemoryCacheTimeSlider", "maxMemoryCacheTimeLabel", "maxDiskCacheTimeSlider", "maxDiskCacheTimeLabel", "maxMemoryItemsSlider", "maxMemoryItemsLabel", "maxMemoryOnlyCacheTimeSlider", "maxMemoryOnlyCacheTimeLabel", "inputsTab", "mouseAxisSensitivitiesBound", "mouseHorizontalSensitivity", "mouseHorizontalInverted", "mouseVerticalSensitivity", "mouseVerticalInverted", "mouseWindowSizeScaling", "mouseWindowSizeScalingWithLogicalSize", "controllerAxisSensitivitiesBound", "controllerHorizontalSensitivity", "controllerHorizontalInverted", "controllerVerticalSensitivity", "controllerVerticalInverted", "twoDimensionalMovement", "threeDimensionalMovement", "mouseEdgePanEnabled", "mouseEdgePanSensitivity", "inputGroupList", "deadzoneConfigurationPopup", "miscTab", "playIntro", "playMicrobeIntro", "cheats", "tutorialsEnabledOnNewGame", "autoSave", "maxAutoSaves", "maxQuickSaves", "customUsernameEnabled", "customUsername", "webFeedsEnabled", "microbeRippleEffect", "microbeCameraTilt", "showNewPatchNotes", "dismissedNoticeCount", "screenEffectSelect", "commitLabel", "builtAtLabel", "tutorialsEnabled", "tutorialsEnabledContainer", "unsavedProgressWarningEnabled", "resetAchievementsButton", "screenshotDirectoryWarningBox", "backConfirmationBox", "defaultsConfirmationBox", "confirmAchievementsReset", "errorAcceptBox", "patchNotesBox", "patchNotesDisplayer")]
+[node name="OptionsMenu" type="Control" unique_id=1262351791 node_paths=PackedStringArray("backButton", "resetButton", "saveButton", "tabButtons", "graphicsButton", "soundButton", "performanceButton", "inputsButton", "miscButton", "graphicsTab", "vsync", "graphicsPreset", "displayOptionContainer", "display", "resolution", "displayMode", "antiAliasingMode", "msaaSection", "msaaResolution", "renderScale", "renderScaleLabel", "upscalingMethod", "upscalingSharpening", "maxFramesPerSecond", "colourblindSetting", "chromaticAberrationToggle", "chromaticAberrationSlider", "controllerPromptType", "displayAbilitiesHotBarToggle", "anisotropicFilterLevel", "currentGUIScaleDisplay", "damageEffect", "strainVisibility", "displayBackgroundParticlesToggle", "guiLightEffectsToggle", "displayPartNamesToggle", "displayMenu3DBackgroundsToggle", "displayMicrobeBackgroundDistortionToggle", "lowQualityBackgroundBlurToggle", "microbeCurrentParticles", "bloomEffectToggle", "bloomSlider", "blurSlider", "gpuName", "usedRendererName", "videoMemory", "soundTab", "masterVolume", "masterMuted", "musicVolume", "musicMuted", "ambianceVolume", "ambianceMuted", "sfxVolume", "sfxMuted", "guiVolume", "guiMuted", "audioOutputDeviceSelection", "languageSelection", "resetLanguageButton", "languageProgressLabel", "performanceTab", "cloudInterval", "cloudResolutionTitle", "cloudResolution", "alternativeTimescaleSlider", "alternativeTimescaleLabel", "runAutoEvoDuringGameplay", "runGameSimulationMultithreaded", "detectedCPUCount", "activeThreadCount", "assumeHyperthreading", "useManualThreadCount", "threadCountSlider", "useManualNativeThreadCount", "nativeThreadCountSlider", "maxSpawnedEntities", "useDiskCaching", "maxCacheSizeSlider", "maxCacheSizeLabel", "currentCacheSize", "maxMemoryCacheTimeSlider", "maxMemoryCacheTimeLabel", "maxDiskCacheTimeSlider", "maxDiskCacheTimeLabel", "maxMemoryItemsSlider", "maxMemoryItemsLabel", "maxMemoryOnlyCacheTimeSlider", "maxMemoryOnlyCacheTimeLabel", "inputsTab", "mouseAxisSensitivitiesBound", "mouseHorizontalSensitivity", "mouseHorizontalInverted", "mouseVerticalSensitivity", "mouseVerticalInverted", "mouseWindowSizeScaling", "mouseWindowSizeScalingWithLogicalSize", "controllerAxisSensitivitiesBound", "controllerHorizontalSensitivity", "controllerHorizontalInverted", "controllerVerticalSensitivity", "controllerVerticalInverted", "twoDimensionalMovement", "threeDimensionalMovement", "mouseEdgePanEnabled", "mouseEdgePanSensitivity", "inputGroupList", "deadzoneConfigurationPopup", "miscTab", "playIntro", "playMicrobeIntro", "cheats", "tutorialsEnabledOnNewGame", "autoSave", "maxAutoSaves", "maxQuickSaves", "customUsernameEnabled", "customUsername", "webFeedsEnabled", "microbeRippleEffect", "microbeCameraTilt", "showNewPatchNotes", "dismissedNoticeCount", "screenEffectSelect", "commitLabel", "builtAtLabel", "tutorialsEnabled", "tutorialsEnabledContainer", "unsavedProgressWarningEnabled", "resetAchievementsButton", "screenshotDirectoryWarningBox", "backConfirmationBox", "defaultsConfirmationBox", "confirmAchievementsReset", "errorAcceptBox", "patchNotesBox", "patchNotesDisplayer")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -111,6 +111,8 @@ performanceTab = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxConta
 cloudInterval = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer3/HBoxContainer/CloudInterval")
 cloudResolutionTitle = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/CloudResolution")
 cloudResolution = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/CloudResolution/HBoxContainer/CloudResolution")
+alternativeTimescaleSlider = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/AlternativeTimescale")
+alternativeTimescaleLabel = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2/DesiredAlternativeTimescale")
 runAutoEvoDuringGameplay = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer/RunAutoEvoDuringGameplay")
 runGameSimulationMultithreaded = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer5/HBoxContainer/RunMultithreadedSimulation")
 detectedCPUCount = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer7/HBoxContainer/CPUCount")
@@ -267,7 +269,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 follow_focus = true
-scroll_vertical = 100
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer" unique_id=1767206395]
 layout_mode = 2
@@ -1722,6 +1723,45 @@ label_settings = ExtResource("8_jegpj")
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/separator = SubResource("8")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1804118085]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=156407542]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2" unique_id=1610604014]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "ALTERNATIVE_TIMESCALE_TOOLTIP"
+mouse_filter = 0
+text = "ALTERNATVE_TIMESCALE"
+autowrap_mode = 2
+
+[node name="DesiredAlternativeTimescale" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2" unique_id=1969406069]
+layout_mode = 2
+tooltip_text = "ALTERNATIVE_TIMESCALE_TOOLTIP"
+mouse_filter = 0
+text = "0"
+
+[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2" unique_id=943692612]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="AlternativeTimescale" type="HSlider" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1169086084]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 2.0
+tooltip_text = "ALTERNATIVE_TIMESCALE_TOOLTIP"
+min_value = 1.1
+max_value = 5.0
+step = 0.1
+value = 2.0
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1475870408]
 layout_mode = 2
@@ -3524,6 +3564,7 @@ grow_vertical = 1
 [connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer/TranslationSiteButton" to="." method="OnTranslationSitePressed"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer3/HBoxContainer/CloudInterval" to="." method="OnCloudIntervalSelected"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/CloudResolution/HBoxContainer/CloudResolution" to="." method="OnCloudResolutionSelected"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/AlternativeTimescale" to="." method="OnAlternativeTimescaleChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer/RunAutoEvoDuringGameplay" to="." method="OnAutoEvoToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer5/HBoxContainer/RunMultithreadedSimulation" to="." method="OnRunSimulationMultithreadedToggled"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer6/HBoxContainer/MaxSpawnedEntities" to="." method="OnMaxSpawnedEntitiesSelected"]

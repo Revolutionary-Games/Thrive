@@ -504,14 +504,17 @@ public class SimulationCache
         }
 
         var aggressionScore = predator.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
-        var activityScore = predator.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
+        var activityScore = MathF.Pow(predator.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY, 0.5f);
+        var opportunismScore = predator.Behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
+        var focusScore = predator.Behaviour.Focus / Constants.MAX_SPECIES_FOCUS;
 
         var preyFearScore = prey.Behaviour.Fear / Constants.MAX_SPECIES_FEAR;
         var preyAggressionScore = prey.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
         var preyOpportunismScore = prey.Behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
+        var preyFocusScore = prey.Behaviour.Focus / Constants.MAX_SPECIES_FOCUS;
 
         // prey's effectiveness at running away depends on how quickly they choose to run away
-        preySpeed *= preyFearScore;
+        preySpeed *= preyFearScore * (1 - preyAggressionScore);
 
         // Sprinting calculations
         var predatorSprintSpeed = predatorSpeed * sprintMultiplier;
@@ -691,11 +694,20 @@ public class SimulationCache
 
             // Active hunting is more effective for active species
             catchScore *= activityScore;
+            catchScore *= 1 + focusScore;
 
             // ... but you may also catch them by luck (e.g. when they run into you),
             // Prey that can't turn away fast enough are more likely to get caught.
             accidentalCatchScore = Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY *
                 strongPullingCiliaModifier * preyRotationModifier;
+
+            // Less cautious and more focused prey are slightly more likely to get into a dangerous situation
+            var opportunismPenalty = MathF.Pow(preyOpportunismScore, 1.5f)
+                * Constants.AUTO_EVO_MAX_OPPORTUNISM_PENALTY;
+            var focusPenalty = MathF.Pow(preyFocusScore, 1.5f)
+                * Constants.AUTO_EVO_MAX_FOCUS_PENALTY;
+            catchScore *= 1 + opportunismPenalty * (1 + focusPenalty);
+            accidentalCatchScore *= 1 + opportunismPenalty * (1 + focusPenalty);
         }
 
         // targets that resist physical damage are of course less vulnerable to it
@@ -714,7 +726,7 @@ public class SimulationCache
         defensivePilusScore += defensiveInjectisomeScore;
 
         // defensive pili need to be turned directly away from the predator to work
-        defensivePilusScore *= preyRotationModifier * preyFearScore;
+        defensivePilusScore *= preyRotationModifier * preyFearScore * (1 - preyAggressionScore);
 
         // Calling for allies helps with combat.
         if (hasSignallingAgent)
@@ -723,12 +735,10 @@ public class SimulationCache
             preyPilusScore *= signallingBonus;
 
         // Use catch score for Pili
-        pilusScore -= defensivePilusScore;
-        if (pilusScore < 0)
-            pilusScore = 0;
+        pilusScore /= Math.Max(1, defensivePilusScore);
         pilusScore *= catchScore + accidentalCatchScore;
 
-        // Prey can use offensive pili for defense in these encounters, but only if they have the right behaviour
+        // Prey can use offensive pili for defense in these encounters, but only if they have the right behavior
         preyPilusScore *= (catchScore + accidentalCatchScore) * preyRotationModifier * defenseScoreModifier *
             preyAggressionScore * (1 - preyFearScore);
 
@@ -755,10 +765,7 @@ public class SimulationCache
             // Engulfing prey by luck is especially easy if you are huge.
             // This is also used to incentivize size in microbe species.
             engulfmentScore = (catchScore + accidentalCatchScore * predatorHexSize) *
-                (Constants.AUTO_EVO_ENGULF_PREDATION_SCORE - defensivePilusScore - totalPreyToxinContent);
-            if (engulfmentScore < 0)
-                engulfmentScore = 0;
-
+                (Constants.AUTO_EVO_ENGULF_PREDATION_SCORE / Math.Max(1, defensivePilusScore + totalPreyToxinContent));
             engulfmentScore *= enzymesScore;
         }
 
@@ -780,6 +787,10 @@ public class SimulationCache
             damagingToxinScore += channelInhibitorScore;
         if (predatorInhibitedPreyEnergyProduction < predatorOsmoregulationCost)
             damagingToxinScore += channelInhibitorScore;
+
+        // MicrobeAISystem makes prey not fire toxins against predators under this condition
+        if (preyFearScore >= preyAggressionScore)
+            preyDamagingToxinScore = 0;
 
         if (damagingToxinScore > 0)
         {
@@ -824,6 +835,7 @@ public class SimulationCache
 
             // Active hunting is more effective for active species
             damagingToxinScore *= activityScore;
+            damagingToxinScore *= 1 + focusScore;
         }
 
         if (preyDamagingToxinScore > 0)
@@ -882,9 +894,10 @@ public class SimulationCache
         if (predatorSlimeJetScore > 0)
             preySlimeJetScore = 0;
 
-        cached = scoreMultiplier * aggressionScore *
-            (pilusScore + engulfmentScore + damagingToxinScore) - (preySlimeJetScore + preyMucocystsScore +
-                preyPilusScore + preyDamagingToxinScore);
+        cached = scoreMultiplier * MathF.Pow(aggressionScore, 0.5f) *
+            (1 + MathF.Pow(opportunismScore, 0.5f * Constants.AUTO_EVO_MAX_OPPORTUNISM_BONUS)) *
+            ((pilusScore + engulfmentScore + damagingToxinScore) /
+                Math.Max(1, preySlimeJetScore + preyMucocystsScore + preyPilusScore + preyDamagingToxinScore));
         if (cached < 0)
             cached = 0;
 

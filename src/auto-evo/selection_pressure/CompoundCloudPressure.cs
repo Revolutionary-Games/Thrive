@@ -5,7 +5,7 @@ using SharedBase.Archive;
 
 public class CompoundCloudPressure : SelectionPressure
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     // Needed for translation extraction
     // ReSharper disable ArrangeObjectCreationWhenTypeEvident
@@ -13,21 +13,33 @@ public class CompoundCloudPressure : SelectionPressure
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
+    private readonly CompoundDefinition atp = SimulationParameters.GetCompound(Compound.ATP);
+
     private readonly Compound compound;
+    private readonly CompoundDefinition compoundOut;
 
     private readonly CompoundDefinition compoundDefinition;
 
     private readonly bool isDayNightCycleEnabled;
 
-    public CompoundCloudPressure(Compound compound, bool isDayNightCycleEnabled, float weight) :
+    public CompoundCloudPressure(Compound compound, Compound compoundOut, bool isDayNightCycleEnabled, float weight) :
         base(weight, [
-            RemoveOrganelle.ThatCreateCompound(Compound.Glucose),
+            new RemoveOrganelle(_ => true),
             AddOrganelleAnywhere.ThatUseCompound(compound),
             new AddOrganelleAnywhere(organelle => organelle.HasChemoreceptorComponent),
             new UpgradeOrganelle(organelle => organelle.HasChemoreceptorComponent,
                 new ChemoreceptorUpgrades(compound, null, Constants.CHEMORECEPTOR_RANGE_DEFAULT,
                     Constants.CHEMORECEPTOR_AMOUNT_DEFAULT, SimulationParameters.GetCompound(compound).Colour)),
             new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Activity, 150.0f),
+            new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Activity, -150.0f),
+            new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Aggression, 50.0f),
+            new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Aggression, -150.0f),
+            new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Fear, 150.0f),
+            new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Fear, -150.0f),
+            new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Focus, 150.0f),
+            new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Focus, -150.0f),
+            new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Opportunism, 150.0f),
+            new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Opportunism, -150.0f),
         ])
     {
         compoundDefinition = SimulationParameters.GetCompound(compound);
@@ -36,6 +48,7 @@ public class CompoundCloudPressure : SelectionPressure
             throw new ArgumentException("Given compound to cloud pressure is not of cloud type");
 
         this.compound = compound;
+        this.compoundOut = SimulationParameters.GetCompound(compoundOut);
         this.isDayNightCycleEnabled = isDayNightCycleEnabled;
     }
 
@@ -46,13 +59,32 @@ public class CompoundCloudPressure : SelectionPressure
     public override ArchiveObjectType ArchiveObjectType =>
         (ArchiveObjectType)ThriveArchiveObjectType.CompoundCloudPressure;
 
-    public static CompoundCloudPressure ReadFromArchive(ISArchiveReader reader, ushort version,
-        int referenceId)
+    public static CompoundCloudPressure ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        var instance = new CompoundCloudPressure((Compound)reader.ReadInt32(), reader.ReadBool(), reader.ReadFloat());
+        var compound = (Compound)reader.ReadInt32();
+        Compound compoundOut;
+
+        if (version >= 2)
+        {
+            compoundOut = (Compound)reader.ReadInt32();
+        }
+        else
+        {
+            if (compound == Compound.Hydrogensulfide)
+            {
+                compoundOut = Compound.Glucose;
+            }
+            else
+            {
+                compoundOut = Compound.ATP;
+            }
+        }
+
+        var instance = new CompoundCloudPressure(compound, compoundOut, reader.ReadBool(),
+            reader.ReadFloat());
 
         instance.ReadBasePropertiesFromArchive(reader, 1);
         return instance;
@@ -61,6 +93,7 @@ public class CompoundCloudPressure : SelectionPressure
     public override void WriteToArchive(ISArchiveWriter writer)
     {
         writer.Write((int)compound);
+        writer.Write((int)compoundOut.ID);
         writer.Write(isDayNightCycleEnabled);
         base.WriteToArchive(writer);
     }
@@ -77,29 +110,59 @@ public class CompoundCloudPressure : SelectionPressure
 
         var score = MathF.Pow(cache.GetSpeedForSpecies(microbeSpecies), 0.6f);
 
+        // Diminishing returns on storage
+        score += (MathF.Pow(microbeSpecies.StorageCapacities.Nominal + 1, 0.8f) - 1) / 0.8f;
+
+        var chemoreceptorScore = cache.GetChemoreceptorCloudScore(microbeSpecies, compoundDefinition, patch.Biome);
+
         var activity = microbeSpecies.Behaviour.Activity;
 
-        // Species that are less active during the night get a small penalty here based on their activity
+        // Species that are less active during the night get a penalty to their activity
         if (isDayNightCycleEnabled && cache.GetUsesVaryingCompoundsForSpecies(microbeSpecies, patch.Biome))
         {
             var multiplier = activity / Constants.AI_ACTIVITY_TO_BE_FULLY_ACTIVE_DURING_NIGHT;
 
-            // Make the multiplier less extreme
-            multiplier *= Constants.AUTO_EVO_NIGHT_SESSILITY_COLLECTING_PENALTY_MULTIPLIER;
-
             multiplier = Math.Max(multiplier, Constants.AUTO_EVO_MAX_NIGHT_SESSILITY_COLLECTING_PENALTY);
 
             if (multiplier <= 1)
-                score *= multiplier;
+                activity *= multiplier;
         }
 
-        var chemoreceptorScore = cache.GetChemoreceptorCloudScore(microbeSpecies, compoundDefinition, patch.Biome);
+        // modify score by activity and focus
+        var activityScore = MathF.Pow(activity / Constants.MAX_SPECIES_ACTIVITY, 0.4f);
+        var focusScore = 1 + MathF.Pow(microbeSpecies.Behaviour.Focus / Constants.MAX_SPECIES_ACTIVITY, 0.4f) *
+            Constants.AUTO_EVO_MAX_FOCUS_CLOUD_BONUS;
 
-        // modify score by activity
-        var activityFraction = activity / Constants.MAX_SPECIES_ACTIVITY;
+        score = (score + chemoreceptorScore) * activityScore * focusScore
+            + score * (1 - activityScore * focusScore) * Constants.AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION;
 
-        score = (score + chemoreceptorScore) * activityFraction
-            + score * (1 - activityFraction) * Constants.AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION;
+        // cloud compound collection is reduced if you are chasing prey or running away from predators instead
+        // the same goes for chasing chunks
+        var aggressionFraction = microbeSpecies.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
+        var fearFraction = microbeSpecies.Behaviour.Fear / Constants.MAX_SPECIES_FEAR;
+        var opportunismFraction = microbeSpecies.Behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
+
+        score *= (1 - aggressionFraction * Constants.AUTO_EVO_MAX_AGGRESSION_GATHERING_PENALTY)
+            * (1 - fearFraction * Constants.AUTO_EVO_MAX_FEAR_GATHERING_PENALTY)
+            * (1 - opportunismFraction * Constants.AUTO_EVO_MAX_OPPORTUNISM_PENALTY);
+
+        float compoundATP;
+        if (compoundOut != atp)
+        {
+            var compoundOutGenerated =
+                cache.GetCompoundGeneratedFrom(compoundDefinition, compoundOut, microbeSpecies, patch.Biome);
+            compoundATP = cache.GetCompoundConversionScoreForSpecies(compoundOut, atp, microbeSpecies) *
+                compoundOutGenerated;
+        }
+        else
+        {
+            compoundATP = cache.GetCompoundGeneratedFrom(compoundDefinition, atp, microbeSpecies, patch.Biome);
+        }
+
+        var energyBalance = cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome);
+
+        // Penalize species that don't produce enough ATP to survive from just the compound in this cloud
+        score *= MathF.Min(compoundATP / energyBalance.TotalConsumption, 1);
 
         return score;
     }

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-22 16:57+0300\n"
+"POT-Creation-Date: 2026-06-03 20:10+0100\n"
 "PO-Revision-Date: 2026-05-13 03:56+0000\n"
 "Last-Translator: Deleted User <noreply+56@weblate.org>\n"
 "Language-Team: Serbian (Cyrillic script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Cyrl/>\n"
@@ -182,6 +182,14 @@ msgstr ""
 
 msgid "ALT"
 msgstr "Alt"
+
+#, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr "Сачувај и настави"
+
+#, fuzzy
+msgid "ALTERNATVE_TIMESCALE"
+msgstr ". Стопа скалира се"
 
 msgid "ALWAYS_VISIBLE"
 msgstr ""
@@ -1910,6 +1918,14 @@ msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
 
 #, fuzzy
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr "Способности"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_METAL"
+msgstr "Способности"
+
+#, fuzzy
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr "Способности"
 
@@ -1951,10 +1967,6 @@ msgstr ""
 #, fuzzy
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Мембрана са два слоја, има бољу заштиту од оштећења и узима мање енергије да се не деформише. Међутим, то успорава ћелију и смањује брзину којом може да апсорбује ресурсе."
-
-#, fuzzy
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "Наставити"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr ""
@@ -3896,6 +3908,13 @@ msgstr ""
 msgid "MARINE_SNOW"
 msgstr "Морски снег"
 
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "Број популације од {0} променио се за {1} због: {2}"
+
 msgid "MASTER_VOLUME"
 msgstr "Главна јачина звука"
 
@@ -4744,6 +4763,14 @@ msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "Поставите органелу"
 
 #, fuzzy
+msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
+msgstr ""
+"Припазите на своју здравствену траку поред ATP траке (доле десно).\n"
+"Ваша ћелија ће умрети ако остане без здравља.\n"
+"Обнављате здравље док имате ATP.\n"
+"Обавезно сакупите довољно глукозе за производњу ATP."
+
+#, fuzzy
 msgid "MULTICELLULAR_STAGE"
 msgstr "Поставите органелу"
 
@@ -4821,6 +4848,9 @@ msgstr ""
 "Да ли желите да наставите?"
 
 msgid "NEW"
+msgstr ""
+
+msgid "NEWER"
 msgstr ""
 
 msgid "NEWER_VERSION_LOADING_WARNING"
@@ -5052,6 +5082,9 @@ msgstr "Додајте ново везивање тастера"
 
 msgid "OK"
 msgstr "У реду"
+
+msgid "OLDER"
+msgstr ""
 
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -5364,6 +5397,10 @@ msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
 #, fuzzy
+msgid "PATCH_NOTES_RECENT_BOUNDARY"
+msgstr "Пангонско Ушће"
+
+#, fuzzy
 msgid "PATCH_NOTES_TITLE"
 msgstr "ВИ СТЕ ПРОСПЕРИРАЛИ!"
 
@@ -5593,6 +5630,10 @@ msgid "PRESSURE_SHORT"
 msgstr "Прити."
 
 #, fuzzy
+msgid "PRESSURE_TOLERANCE"
+msgstr "Вратите се у Мени"
+
+#, fuzzy
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "Вратите се у Мени"
 
@@ -5640,9 +5681,6 @@ msgstr ""
 msgid "PROTEINS"
 msgstr "Протеини"
 
-msgid "PROTOPLASM"
-msgstr "Протоплазма"
-
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr ""
 
@@ -5677,6 +5715,10 @@ msgstr "Аеробно(кисеонично) дисање"
 
 #, fuzzy
 msgid "RADIOACTIVE_CHUNK"
+msgstr "Велики комад гвожђа"
+
+#, fuzzy
+msgid "RADIOACTIVE_CHUNK_BANANA"
 msgstr "Велики комад гвожђа"
 
 #, fuzzy
@@ -5772,6 +5814,10 @@ msgstr "Број популације од {0} променио се за {1} з
 
 #, fuzzy
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
+msgstr "Производи"
+
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
 msgstr "Производи"
 
 #, fuzzy
@@ -5930,6 +5976,10 @@ msgstr "Ротирајте десно"
 
 #, fuzzy
 msgid "ROTATION_COLON"
+msgstr "популација:"
+
+#, fuzzy
+msgid "ROTATION_FORCE"
 msgstr "популација:"
 
 msgid "RUNOFF_EVENT"
@@ -6510,11 +6560,12 @@ msgstr "Врсте:"
 msgid "SPECIES_WITH_POPULATION"
 msgstr "Врсте:"
 
-msgid "SPEED"
-msgstr "Брзина"
-
 msgid "SPEED_COLON"
 msgstr "Брзина:"
+
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "Наставити"
 
 #, fuzzy
 msgid "SPORE_CELL_TYPE"
@@ -6835,6 +6886,10 @@ msgid "TEMPERATURE_SHORT"
 msgstr "Темп."
 
 #, fuzzy
+msgid "TEMPERATURE_TOLERANCE_RANGE"
+msgstr "Додајте ново везивање тастера"
+
+#, fuzzy
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
@@ -6977,6 +7032,9 @@ msgstr ""
 #, fuzzy
 msgid "THRIVIN_ACHIEVEMENT"
 msgstr "Подразумевано Кретање"
+
+msgid "THRUST_FORCE"
+msgstr ""
 
 msgid "THYLAKOIDS"
 msgstr "Тилакоиди"
@@ -7150,9 +7208,6 @@ msgid "TOOLS"
 msgstr "Алати"
 
 msgid "TOOL_HAND_AXE"
-msgstr ""
-
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
 #, fuzzy
@@ -7914,9 +7969,6 @@ msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
 msgid "VIEWER"
-msgstr ""
-
-msgid "VIEW_ALL"
 msgstr ""
 
 #, fuzzy
@@ -9429,10 +9481,6 @@ msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr ""
 
 #, fuzzy
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "Протоплазма"
-
-#, fuzzy
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "Протоплазма"
 
@@ -9525,33 +9573,6 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "Аеробно(кисеонично) дисање"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "Протоплазма"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr "Протоплазма"
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr "Лепљива унутрашњост ћелије. Цитоплазма је основна смеша јона, протеина и других супстанци растворених у води која испуњава унутрашњост ћелије. Једна од функција коју обавља је ферментација, претварање глукозе у ATP енергију. Да би ћелије којима недостају органели имали напреднији метаболизам, на то се ослањају у енергији. Такође се користи за складиштење молекула у ћелији и за повећање величине ћелије."
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
 
 msgid "WIKI_PULLING_CILIA"
 msgstr ""
@@ -10123,6 +10144,32 @@ msgid "ZOOM_OUT"
 msgstr "Одзумирати"
 
 #, fuzzy
+#~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
+#~ msgstr "Наставити"
+
+#~ msgid "PROTOPLASM"
+#~ msgstr "Протоплазма"
+
+#, fuzzy
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "Протоплазма"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "Протоплазма"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr "Протоплазма"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr "Лепљива унутрашњост ћелије. Цитоплазма је основна смеша јона, протеина и других супстанци растворених у води која испуњава унутрашњост ћелије. Једна од функција коју обавља је ферментација, претварање глукозе у ATP енергију. Да би ћелије којима недостају органели имали напреднији метаболизам, на то се ослањају у енергији. Такође се користи за складиштење молекула у ћелији и за повећање величине ћелије."
+
+#~ msgid "SPEED"
+#~ msgstr "Брзина"
+
+#, fuzzy
 #~ msgid "AEROBIC_NITROGEN_FIXATION"
 #~ msgstr "Анаеробна Фиксација Азота"
 
@@ -10589,9 +10636,6 @@ msgstr "Одзумирати"
 #~ msgid "PATCH_PANGONIAN_COAST"
 #~ msgstr "Пангонска Обала"
 
-#~ msgid "PATCH_PANGONIAN_ESTUARY"
-#~ msgstr "Пангонско Ушће"
-
 #~ msgid "PATCH_CAVE"
 #~ msgstr "Пећина"
 
@@ -10700,9 +10744,6 @@ msgstr "Одзумирати"
 
 #~ msgid "INTENSITY_OF"
 #~ msgstr "интензитет"
-
-#~ msgid "DOT_RATE_SCALES"
-#~ msgstr ". Стопа скалира се"
 
 #~ msgid "OXYGEN_DOT"
 #~ msgstr "Кисеоник."
@@ -10830,3 +10871,9 @@ msgstr "Одзумирати"
 #~ "Такође можете променити друга својства своје врсте на другим картицама уређивача ћелија.\n"
 #~ "\n"
 #~ "Да бисте наставили, одаберите органелу са табле са леве стране (цитоплазма је добар избор). Затим кликните левим тастером миша поред шестерокута приказаног у средини екрана да бисте додали ту органелу својој врсти."
+
+#~ msgid "PATCH_PANGONIAN_ESTUARY"
+#~ msgstr "Пангонско Ушће"
+
+#~ msgid "DOT_RATE_SCALES"
+#~ msgstr ". Стопа скалира се"

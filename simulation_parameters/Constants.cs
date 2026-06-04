@@ -249,10 +249,7 @@ public static class Constants
 
     public const float FLAGELLA_BASE_FORCE = 20.0f;
 
-    /// <summary>
-    ///   TODO: this needs to be dynamically calculated: https://github.com/Revolutionary-Games/Thrive/issues/5591
-    /// </summary>
-    public const float FLAGELLA_SPEED_BONUS_DISPLAY = 0.7f;
+    public const int FLAGELLA_FORCE_DISPLAY_DIVISOR = 100;
 
     public const float FLAGELLA_MAX_UPGRADE_LENGHT = 3;
     public const float FLAGELLA_MIN_UPGRADE_LENGHT = -1;
@@ -303,6 +300,8 @@ public static class Constants
     public const float CILIA_ROTATION_FACTOR = 120000000.0f;
     public const float CILIA_RADIUS_FACTOR_MULTIPLIER = 8000000.0f;
     public const float CELL_TURN_INFLECTION_RADIANS = 0.4f;
+
+    public const float CILIA_ROTATION_FORCE_DISPLAY = CILIA_ROTATION_FACTOR / 1000000;
 
     // TODO: remove if these stay unused
     // // These speed values are also reversed like the above
@@ -1215,6 +1214,8 @@ public static class Constants
 
     public const int SPORE_CELL_TYPE_CHANGE_COST = 10;
 
+    public const int MASS_BUDDING_CELL_COUNT_CHANGE_COST = 10;
+
     public const string ORGANELLE_UPGRADE_SPECIAL_NONE = "none";
 
     public const int METABALL_ADD_COST = 7;
@@ -1293,7 +1294,7 @@ public static class Constants
 
     // Mutation Variables
     public const int MAX_VARIANTS_PER_MUTATION = 50;
-    public const int MAX_VARIANTS_IN_MUTATIONS = 30;
+    public const int MAX_VARIANTS_IN_MUTATIONS = 25;
     public const float MUTATION_BACTERIA_TO_EUKARYOTE = 0.01f;
     public const float MUTATION_CREATION_RATE = 0.25f;
     public const float MUTATION_NEW_ORGANELLE_CHANCE = 0.25f;
@@ -1384,7 +1385,7 @@ public static class Constants
     public const float AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION = 0.1f;
     public const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.4f;
 
-    public const float AUTO_EVO_ENGULF_PREDATION_SCORE = 100;
+    public const float AUTO_EVO_ENGULF_PREDATION_SCORE = 150;
     public const float AUTO_EVO_PILUS_PREDATION_SCORE = 5000;
     public const float AUTO_EVO_PILUS_DEFENSE_SCORE = 2000;
     public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 90000;
@@ -1409,6 +1410,17 @@ public static class Constants
     public const float AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION = 0.1f;
     public const float AUTO_EVO_REPRODUCTION_COMPOUND_PRODUCTION_SCORE = 3000.0f;
     public const float AUTO_EVO_REPRODUCTION_COMPOUND_COST_WEAKENING_MODIFIER = 0.2f;
+    public const float AUTO_EVO_SPRINTING_CONSUMPTION = 0.1f;
+
+    public const float AUTO_EVO_MAX_AGGRESSION_ENERGY_PENALTY = 0.8f;
+    public const float AUTO_EVO_MAX_AGGRESSION_GATHERING_PENALTY = 0.1f;
+    public const float AUTO_EVO_MAX_FEAR_ENERGY_PENALTY = 0.005f;
+    public const float AUTO_EVO_MAX_FEAR_GATHERING_PENALTY = 0.000f;
+    public const float AUTO_EVO_MAX_OPPORTUNISM_BONUS = 0.4f;
+    public const float AUTO_EVO_MAX_OPPORTUNISM_PENALTY = 0.05f;
+    public const float AUTO_EVO_MAX_FOCUS_CHUNK_BONUS = 0.9f;
+    public const float AUTO_EVO_MAX_FOCUS_CLOUD_BONUS = 0.5f;
+    public const float AUTO_EVO_MAX_FOCUS_PENALTY = 0.1f;
 
     public const float AUTO_EVO_PREDATION_DEFENSE_SCORE_MODIFIER = 0.5f;
 
@@ -1448,7 +1460,7 @@ public static class Constants
     public const int AUTO_EVO_MAX_MUTATION_RECURSIONS = 3;
 
     public const int AUTO_EVO_ORGANELLE_ADD_ATTEMPTS = 15;
-    public const int AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS = 15;
+    public const int AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS = 10;
     public const int AUTO_EVO_ORGANELLE_UPGRADE_ATTEMPTS = 5;
 
     /// <summary>
@@ -1688,7 +1700,7 @@ public static class Constants
 
     public const float MINIMUM_RUNNABLE_PROCESS_FRACTION = 0.00001f;
 
-    public const float DEFAULT_PROCESS_SPINNER_SPEED = 365.0f;
+    public const float DEFAULT_PROCESS_SPINNER_SPEED = MathF.PI * 2.0f;
     public const float DEFAULT_PROCESS_STATISTICS_AVERAGE_INTERVAL = 0.4f;
 
     public const int COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR = 5;
@@ -1756,6 +1768,7 @@ public static class Constants
     public const float PROCEDURAL_CACHE_MEMBRANE_KEEP_TIME = 500;
     public const float PROCEDURAL_CACHE_MICROBE_SHAPE_TIME = 7000;
     public const float PROCEDURAL_CACHE_LOADED_SHAPE_KEEP_TIME = 1000;
+    public const float PROCEDURAL_CACHE_SIMPLE_SHAPE_KEEP_TIME = 1000;
 
     // TODO: convert prototypes over to an ECS system as well
 
@@ -1862,6 +1875,7 @@ public static class Constants
     public const string SAVE_BACKUP_SUFFIX = ".backup" + SAVE_EXTENSION_WITH_DOT;
 
     public const int SAVE_LIST_SCREENSHOT_HEIGHT = 720;
+    public const int SAVE_LIST_LAZY_LOAD_PADDING = 5;
     public const int FOSSILISED_PREVIEW_IMAGE_HEIGHT = 400;
 
     public const string FOSSIL_EXTENSION = "thrivefossil";
@@ -2248,8 +2262,6 @@ public static class Constants
     public const int MAX_NEWS_FEED_ITEMS_TO_SHOW = 15;
     public const int MAX_NEWS_FEED_ITEM_LENGTH = 1000;
 
-    public const int MAX_RECENT_VERSIONS_TO_SHOW = 5;
-
     public const string CLICKABLE_TEXT_BBCODE = "[color=#3796e1]";
     public const string CLICKABLE_TEXT_BBCODE_END = "[/color]";
 
@@ -2319,9 +2331,7 @@ public static class Constants
         "toggle_FPS",
     };
 
-    // TODO: switch to https once our runtime supports it: https://github.com/Revolutionary-Games/Thrive/issues/4100
-    // See: https://github.com/Revolutionary-Games/Thrive/pull/4097#issuecomment-1415301373
-    public static readonly Uri MainSiteFeedURL = new("http://thrivefeeds.b-cdn.net/feed.rss");
+    public static readonly Uri MainSiteFeedURL = new("https://thrivefeeds.b-cdn.net/feed.rss");
 
     public static readonly Regex NewsFeedRegexDeleteContent =
         new(@"\s*The\spost\s*.*appeared\sfirst\son.*Revolutionary\sGames\sStudio.*$");

@@ -30,7 +30,9 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(WorldPosition))]
 [ReadsComponent(typeof(MicrobeEventCallbacks))]
 [ReadsComponent(typeof(MicrobeColony))]
+[ReadsComponent(typeof(SoundEffectPlayer))]
 [WritesToComponent(typeof(Engulfable))]
+[WritesToComponent(typeof(Engulfer))]
 [WritesToComponent(typeof(ReadableName))]
 [WritesToComponent(typeof(SpatialInstance))]
 [WritesToComponent(typeof(OrganelleContainer))]
@@ -38,6 +40,8 @@ using World = Arch.Core.World;
 [WritesToComponent(typeof(ColourAnimation))]
 [WritesToComponent(typeof(CellProperties))]
 [WritesToComponent(typeof(BioProcesses))]
+[WritesToComponent(typeof(SpecializationFactor))]
+[WritesToComponent(typeof(EntityLight))]
 [RunsAfter(typeof(ProcessSystem))]
 [RunsAfter(typeof(ColonyCompoundDistributionSystem))]
 [RuntimeCost(4, false)]
@@ -112,6 +116,19 @@ public partial class MulticellularGrowthSystem : BaseSystem<World, float>
         // multicellular). This is not a colony-aware check but probably good enough.
         if (microbeControl.State == MicrobeState.MucocystShield)
             return;
+
+        if (speciesData.Species.ReproductionMethod == MulticellularReproductionMethod.MassBudding
+            && !growth.SpawnedInitialMassBuddingCells)
+        {
+            var recorder = worldSimulation.StartRecordingEntityCommands();
+
+            growth.SpawnInitialMassBuddingCells(entity, speciesData.Species, worldSimulation, spawnEnvironment,
+                recorder, spawnSystem);
+
+            worldSimulation.FinishRecordingEntityCommands(recorder);
+
+            return;
+        }
 
         HandleMulticellularReproduction(ref growth, ref speciesData, compoundStorage.Compounds, ref organelleContainer,
             ref status, ref baseReproduction, entity, delta);

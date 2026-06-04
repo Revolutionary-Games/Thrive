@@ -262,10 +262,14 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
 
         ProcessDestroyQueue();
 
+        bool hadInvokes = false;
+
         lock (queuedInvokes)
         {
             while (queuedInvokes.Count > 0)
             {
+                hadInvokes = true;
+
                 try
                 {
                     queuedInvokes.Dequeue().Invoke();
@@ -278,6 +282,13 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
                         Debugger.Break();
                 }
             }
+        }
+
+        // Run commands again in case invokes did something
+        if (hadInvokes)
+        {
+            ApplyRecordedCommands();
+            ProcessDestroyQueue();
         }
 
         if (useNormalPhysics)

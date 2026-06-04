@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-22 16:57+0300\n"
+"POT-Creation-Date: 2026-06-03 20:10+0100\n"
 "PO-Revision-Date: 2026-05-13 03:55+0000\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -170,6 +170,14 @@ msgstr "Sei già asceso"
 
 msgid "ALT"
 msgstr "Alt"
+
+#, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr "Thread attuali:"
+
+#, fuzzy
+msgid "ALTERNATVE_TIMESCALE"
+msgstr ". La produzione aumenta"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Sempre visibile"
@@ -1831,6 +1839,14 @@ msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Mostra particelle di sfondo"
 
 #, fuzzy
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr "Mostra i nomi dei pulsanti di selezione delle parti"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_METAL"
+msgstr "Mostra i nomi dei pulsanti di selezione delle parti"
+
+#, fuzzy
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr "Mostra i nomi dei pulsanti di selezione delle parti"
 
@@ -1870,10 +1886,6 @@ msgstr "Fai doppio click per visualizzare a schermo intero"
 #, fuzzy
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Una membrana a due strati. Offre una migliore protezione ai danni e richiede meno energia per non deformarsi. Tuttavia, rallenta un po' la cellula e la sua capacità di assorbire i nutrienti."
-
-#, fuzzy
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "Il valore usato per generare il mondo; deve essere un numero intero positivo"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr "Trascina questo per riordinare gli oggetti con il mouse"
@@ -3779,6 +3791,13 @@ msgstr "Marzo"
 msgid "MARINE_SNOW"
 msgstr "Neve marina"
 
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(ottieni composti riproduttivi in modo passivo dall'ambiente, senza dover far nulla)"
+
 msgid "MASTER_VOLUME"
 msgstr "Volume principale"
 
@@ -4637,6 +4656,22 @@ msgstr "Editor Multicellulare"
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "(alcune features potrebbero non essere disponibili nelle fasi successive)"
 
+#, fuzzy
+msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
+msgstr ""
+"[b]Fase[/b]\n"
+"  Microbica\n"
+"[b]Tipo di membrana[/b]\n"
+"  {0}\n"
+"[b]Rigidità della membrana[/b]\n"
+"  {1}\n"
+"[b]Velocità di base[/b]\n"
+"  {2}\n"
+"[b]Velocità rotazionale di base[/b]\n"
+"  {3}\n"
+"[b]Dimensioni di base in esagoni[/b]\n"
+"  {4}"
+
 msgid "MULTICELLULAR_STAGE"
 msgstr "Fase Multicellulare"
 
@@ -4715,6 +4750,10 @@ msgstr ""
 
 msgid "NEW"
 msgstr "Nuova"
+
+#, fuzzy
+msgid "NEWER"
+msgstr "Visualizzatore"
 
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -4931,6 +4970,10 @@ msgstr "Autodistruzione"
 
 msgid "OK"
 msgstr "OK"
+
+#, fuzzy
+msgid "OLDER"
+msgstr "Apri cartella"
 
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -5245,6 +5288,10 @@ msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
 #, fuzzy
+msgid "PATCH_NOTES_RECENT_BOUNDARY"
+msgstr "Estuario Pangoniano"
+
+#, fuzzy
 msgid "PATCH_NOTES_TITLE"
 msgstr "Rimuovi Dati Locali"
 
@@ -5473,6 +5520,10 @@ msgid "PRESSURE_SHORT"
 msgstr "Press."
 
 #, fuzzy
+msgid "PRESSURE_TOLERANCE"
+msgstr "Torna al menù principale"
+
+#, fuzzy
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "Torna al menù principale"
 
@@ -5524,9 +5575,6 @@ msgstr "Squadra Gestori del Progetto"
 msgid "PROTEINS"
 msgstr "Proteine"
 
-msgid "PROTOPLASM"
-msgstr "Protoplasma"
-
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull request / programmazione"
 
@@ -5561,6 +5609,10 @@ msgstr "Respirazione aerobica"
 
 #, fuzzy
 msgid "RADIOACTIVE_CHUNK"
+msgstr "Frammento di fosfato grande"
+
+#, fuzzy
+msgid "RADIOACTIVE_CHUNK_BANANA"
 msgstr "Frammento di fosfato grande"
 
 #, fuzzy
@@ -5654,6 +5706,10 @@ msgstr "(ottieni composti riproduttivi in modo passivo dall'ambiente, senza dove
 #, fuzzy
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 msgstr "Riproduzione:"
+
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "Gemmazione"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Riproduzione:"
@@ -5806,6 +5862,10 @@ msgid "ROTATE_RIGHT"
 msgstr "Ruota a destra"
 
 msgid "ROTATION_COLON"
+msgstr "Rotazione:"
+
+#, fuzzy
+msgid "ROTATION_FORCE"
 msgstr "Rotazione:"
 
 msgid "RUNOFF_EVENT"
@@ -6346,11 +6406,12 @@ msgstr "Specie:"
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} con popolazione: {1}"
 
-msgid "SPEED"
-msgstr "Velocità"
-
 msgid "SPEED_COLON"
 msgstr "Velocità:"
+
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "Il valore usato per generare il mondo; deve essere un numero intero positivo"
 
 #, fuzzy
 msgid "SPORE_CELL_TYPE"
@@ -6660,6 +6721,10 @@ msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
 #, fuzzy
+msgid "TEMPERATURE_TOLERANCE_RANGE"
+msgstr "Metti in pausa il gioco"
+
+#, fuzzy
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "Metti in pausa il gioco"
 
@@ -6823,6 +6888,9 @@ msgstr "Licenze Thrive"
 #, fuzzy
 msgid "THRIVIN_ACHIEVEMENT"
 msgstr "Movimento di Base"
+
+msgid "THRUST_FORCE"
+msgstr ""
 
 msgid "THYLAKOIDS"
 msgstr "Tilacoidi"
@@ -7005,9 +7073,6 @@ msgid "TOOLS"
 msgstr "Strumenti"
 
 msgid "TOOL_HAND_AXE"
-msgstr ""
-
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
 #, fuzzy
@@ -7779,10 +7844,6 @@ msgstr "{0} MiB"
 
 msgid "VIEWER"
 msgstr "Visualizzatore"
-
-#, fuzzy
-msgid "VIEW_ALL"
-msgstr "Disattiva tutte"
 
 #, fuzzy
 msgid "VIEW_CELL_PROCESSES"
@@ -9192,10 +9253,6 @@ msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr ""
 
 #, fuzzy
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "Protoplasma"
-
-#, fuzzy
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "Protoplasma"
 
@@ -9278,33 +9335,6 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "Respirazione aerobica"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "Protoplasma"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr "Protoplasma"
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr "Trasforma il [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]."
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
 
 msgid "WIKI_PULLING_CILIA"
 msgstr ""
@@ -9837,6 +9867,36 @@ msgstr "Zoom avanti"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom indietro"
+
+#, fuzzy
+#~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
+#~ msgstr "Il valore usato per generare il mondo; deve essere un numero intero positivo"
+
+#~ msgid "PROTOPLASM"
+#~ msgstr "Protoplasma"
+
+#, fuzzy
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "Protoplasma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "Protoplasma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr "Protoplasma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr "Trasforma il [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+#~ msgid "VIEW_ALL"
+#~ msgstr "Disattiva tutte"
+
+#~ msgid "SPEED"
+#~ msgstr "Velocità"
 
 #~ msgid "AEROBIC_NITROGEN_FIXATION"
 #~ msgstr "Azotofissazione aerobica"
@@ -10378,9 +10438,6 @@ msgstr "Zoom indietro"
 #~ msgid "PATCH_PANGONIAN_COAST"
 #~ msgstr "Costa Pangoniana"
 
-#~ msgid "PATCH_PANGONIAN_ESTUARY"
-#~ msgstr "Estuario Pangoniano"
-
 #~ msgid "PATCH_CAVE"
 #~ msgstr "Grotta"
 
@@ -10467,9 +10524,6 @@ msgstr "Zoom indietro"
 
 #~ msgid "INTO"
 #~ msgstr "in"
-
-#~ msgid "DOT_RATE_SCALES"
-#~ msgstr ". La produzione aumenta"
 
 #~ msgid "OXYGEN_DOT"
 #~ msgstr "Ossigeno."
@@ -10620,3 +10674,9 @@ msgstr "Zoom indietro"
 #~ "Ci sono anche altre proprietà, che puoi cambiare negli appositi pannelli.\n"
 #~ "\n"
 #~ "Per continuare, scegli un organulo dal pannello a sinistra (il citoplasma è una buona scelta). Poi, fai clic sinistro vicino all'esagono al centro dello schermo per aggiungere quell'organulo alla tua specie."
+
+#~ msgid "PATCH_PANGONIAN_ESTUARY"
+#~ msgstr "Estuario Pangoniano"
+
+#~ msgid "DOT_RATE_SCALES"
+#~ msgstr ". La produzione aumenta"

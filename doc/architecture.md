@@ -186,6 +186,7 @@ step to switch component access to check the changes. On a system with
 unix tools, you can run the following command in terminal:
 ```sh
 find src -name "*.cs" | grep -v "ComponentAccessCheck" | xargs -I {} sed -i 's/\.Get</.GetChecked</g' {}
+find src -name "*.cs" | xargs -I {} sed -i 's/Query(Parallel = true)/Query(Parallel = false)/g' {}
 ```
 
 Thrive will now throw an exception when it is detected that a
@@ -197,6 +198,7 @@ changes related to the component checks, either git reset files or run
 the following reversing command:
 ```sh
 find src -name "*.cs" | grep -v "ComponentAccessCheck" | xargs -I {} sed -i 's/\.GetChecked</.Get</g' {}
+find src -name "*.cs" | xargs -I {} sed -i 's/Query(Parallel = false)/Query(Parallel = true)/g' {}
 ```
 
 Setting `MeasureThreadWaits` enables measuring relative wait times of

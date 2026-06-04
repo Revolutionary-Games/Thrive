@@ -75,7 +75,6 @@ public class ReproductionCompoundPressure : SelectionPressure
         }
 
         var activeProcessList = cache.GetActiveProcessList(microbeSpecies);
-        var activity = microbeSpecies.Behaviour.Activity;
 
         // Let the miche function even at a compound level of 0
         var compoundAmount = 1.0f;
@@ -89,27 +88,31 @@ public class ReproductionCompoundPressure : SelectionPressure
 
         var score = MathF.Pow(cache.GetSpeedForSpecies(microbeSpecies), 0.6f);
 
-        // Species that are less active during the night get a small penalty here based on their activity
-        if (isDayNightCycleEnabled && cache.GetUsesVaryingCompoundsForSpecies(microbeSpecies, patch.Biome))
-        {
-            var multiplier = activity / Constants.AI_ACTIVITY_TO_BE_FULLY_ACTIVE_DURING_NIGHT;
-
-            // Make the multiplier less extreme
-            multiplier *= Constants.AUTO_EVO_NIGHT_SESSILITY_COLLECTING_PENALTY_MULTIPLIER;
-
-            multiplier = Math.Max(multiplier, Constants.AUTO_EVO_MAX_NIGHT_SESSILITY_COLLECTING_PENALTY);
-
-            if (multiplier <= 1)
-                score *= multiplier;
-        }
-
         var chemoreceptorScore = cache.GetChemoreceptorCloudScore(microbeSpecies, compoundDefinition, patch.Biome);
-        score += chemoreceptorScore;
+
+        // Diminishing returns on storage
+        var capacitiesScore = (MathF.Pow(microbeSpecies.StorageCapacities.Nominal + 1, 0.8f) - 1) * 1.25f;
+        score += capacitiesScore;
+
+        // cloud compound collection is reduced if you are chasing prey or running away from predators instead
+        var aggressionPenaltyMultiplier = 1 -
+            microbeSpecies.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION *
+            Constants.AUTO_EVO_MAX_AGGRESSION_GATHERING_PENALTY;
+        var fearPenaltyMultiplier = 1 - microbeSpecies.Behaviour.Fear / Constants.MAX_SPECIES_FEAR *
+            Constants.AUTO_EVO_MAX_FEAR_GATHERING_PENALTY;
+
+        score *= aggressionPenaltyMultiplier * fearPenaltyMultiplier;
+        chemoreceptorScore *= aggressionPenaltyMultiplier * fearPenaltyMultiplier;
+
+        // modify score by how much compound is available for collection
+        score *= compoundAmount;
+        chemoreceptorScore *= compoundAmount;
 
         // Precompute some scores to only resolve once.
-        var capacitiesScore = (MathF.Pow(microbeSpecies.StorageCapacities.Nominal + 1, 0.8f) - 1) * 1.25f;
         var speedScore = MathF.Pow(cache.GetSpeedForSpecies(microbeSpecies), 0.4f);
         var baseMicrobeHexSize = cache.GetBaseHexSizeForSpecies(microbeSpecies);
+        var opportunismFraction = MathF.Pow(
+            microbeSpecies.Behaviour.Opportunism / Constants.MAX_SPECIES_ACTIVITY, 0.5f);
 
         // Combine with compound amounts and scores from all chunks
         foreach (var chunk in patch.Biome.Chunks.Values)
@@ -127,45 +130,67 @@ public class ReproductionCompoundPressure : SelectionPressure
                 // Diminishing returns on storage
                 chunkScore += capacitiesScore;
 
+                // compound collection is reduced if you are running away from predators instead
+                chunkScore *= fearPenaltyMultiplier;
+
                 // If the species can't engulf, then they are dependent on only eating the runoff compounds
                 if (!microbeSpecies.CanEngulf ||
                     baseMicrobeHexSize < chunk.Size * Constants.ENGULF_SIZE_RATIO_REQ)
                 {
                     chunkScore *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;
-                }
+                    chunkChemoreceptorScore *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;
 
-                chemoreceptorScore += chunkChemoreceptorScore;
-                score += chunkScore;
+                    // cloud compound collection is reduced if you are chasing prey instead
+                    chunkScore *= aggressionPenaltyMultiplier;
+                    chunkChemoreceptorScore *= aggressionPenaltyMultiplier;
+                }
+                else
+                {
+                    score *= 1 + opportunismFraction * Constants.AUTO_EVO_MAX_OPPORTUNISM_BONUS;
+                }
 
                 if (!chunk.Compounds.TryGetValue(compoundDefinition.ID, out var chunkCompoundAmount))
                     throw new ArgumentException("Chunk does not contain compound");
 
                 var ventedCompound = MathF.Pow(chunkCompoundAmount.Amount, Constants.AUTO_EVO_CHUNK_AMOUNT_NERF);
 
-                compoundAmount += ventedCompound;
+                // modify score by how much compound is available for collection
+                chemoreceptorScore += chunkChemoreceptorScore * ventedCompound;
+                score += chunkScore * ventedCompound;
             }
         }
 
-        // modify score by how much compound is available for collection
-        score *= compoundAmount;
-        chemoreceptorScore *= compoundAmount;
+        var finalScore = 0.1f;
+
+        var activity = microbeSpecies.Behaviour.Activity;
+
+        // Species that are less active during the night get a penalty to their activity
+        if (isDayNightCycleEnabled && cache.GetUsesVaryingCompoundsForSpecies(microbeSpecies, patch.Biome))
+        {
+            var multiplier = activity / Constants.AI_ACTIVITY_TO_BE_FULLY_ACTIVE_DURING_NIGHT;
+
+            multiplier = Math.Max(multiplier, Constants.AUTO_EVO_MAX_NIGHT_SESSILITY_COLLECTING_PENALTY);
+
+            if (multiplier <= 1)
+                activity *= multiplier;
+        }
+
+        // modify score by activity and focus
+        var activityScore = MathF.Pow(activity / Constants.MAX_SPECIES_ACTIVITY, 0.4f);
+        var focusScore = MathF.Pow(microbeSpecies.Behaviour.Focus / Constants.MAX_SPECIES_ACTIVITY, 0.4f);
+
+        finalScore += (score + chemoreceptorScore) * activityScore * focusScore;
+        finalScore += score * (1 - activityScore * focusScore) *
+            Constants.AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION;
 
         // Score from organelles that produce this compound
         foreach (var process in activeProcessList)
         {
             if (process.Process.Outputs.TryGetValue(compoundDefinition, out var producedCompoundAmount))
             {
-                score += producedCompoundAmount * Constants.AUTO_EVO_REPRODUCTION_COMPOUND_PRODUCTION_SCORE;
+                finalScore += producedCompoundAmount * Constants.AUTO_EVO_REPRODUCTION_COMPOUND_PRODUCTION_SCORE;
             }
         }
-
-        var finalScore = 0.1f;
-
-        // modify score by activity
-        var activityFraction = activity / Constants.MAX_SPECIES_ACTIVITY;
-
-        finalScore += (score + chemoreceptorScore) * activityFraction;
-        finalScore += score * (1 - activityFraction) * Constants.AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION;
 
         // Take into account how much compound the species needs to collect
         finalScore /= species.TotalReproductionCost[compound] * mildingModifier;

@@ -32,6 +32,7 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(SpeciesMember))]
 [WritesToComponent(typeof(ManualPhysicsControl))]
 [WritesToComponent(typeof(EntityLight))]
+[WritesToComponent(typeof(PhysicsSensor))]
 [RunsAfter(typeof(MicrobeMovementSystem))]
 [RunsAfter(typeof(OrganelleComponentFetchSystem))]
 [RunsBefore(typeof(PhysicsSensorSystem))]
