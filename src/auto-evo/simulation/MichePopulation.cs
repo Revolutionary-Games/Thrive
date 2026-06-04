@@ -210,7 +210,7 @@ public static class MichePopulation
         bool trackEnergy = simulationConfiguration.CollectEnergyInformation;
 
         // Note that this modifies the miche tree while simulating
-        var miche = populations.GetMicheForPatch(patch);
+        var miche = populations.GetModifiableMicheForPatch(patch);
 
         var species = new HashSet<Species>();
 

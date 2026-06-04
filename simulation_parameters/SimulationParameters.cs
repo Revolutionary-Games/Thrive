@@ -26,6 +26,10 @@ public partial class SimulationParameters : Node
     /// </summary>
     private readonly List<CompoundDefinition> compoundDefinitions = [];
 
+    // Old save compatibility helpers
+    private readonly Dictionary<string, OrganelleDefinition> dummyOrganelles = new();
+
+    // Main data dictionaries
     private Dictionary<string, MembraneType> membranes = null!;
     private Dictionary<string, Background> backgrounds = null!;
     private Dictionary<string, Biome> biomes = null!;
@@ -260,7 +264,20 @@ public partial class SimulationParameters : Node
 
     public OrganelleDefinition GetOrganelleType(string name)
     {
-        return organelles[name];
+        if (organelles.TryGetValue(name, out var organelle))
+            return organelle;
+
+        if (dummyOrganelles.TryGetValue(name, out var dummyOrganelle))
+        {
+            // Dummy organelles are meant to be loaded and then discarded and not kept around
+            if (dummyOrganelle.InternalName == name)
+                throw new InvalidOperationException("Dummy organelle name shouldn't match internal name");
+
+            GD.Print($"Using dummy organelle for {name}, this should be used for compatibility only");
+            return dummyOrganelle;
+        }
+
+        throw new Exception("Organelle not found: " + name);
     }
 
     /// <summary>
@@ -601,6 +618,16 @@ public partial class SimulationParameters : Node
             throw new InvalidOperationException("Ran out of BioProcess IDs");
 
         return ++bioProcessIdCounter;
+    }
+
+    public void RegisterDummyCompatibilityOrganelleForLoad(OrganelleDefinition dummyOrganelle, string name)
+    {
+        dummyOrganelles[name] = dummyOrganelle;
+    }
+
+    public void RemoveDummyCompatibilityOrganelles()
+    {
+        dummyOrganelles.Clear();
     }
 
     /// <summary>
