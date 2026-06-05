@@ -1828,8 +1828,6 @@ public static class Constants
 
     public const string LAST_PLAYED_VERSION_FILE = "user://last_played_version.txt";
 
-    public const string LICENSE_FILE = "res://LICENSE.txt";
-    public const string STEAM_LICENSE_FILE = "res://doc/steam_license_readme.txt";
     public const string ASSETS_README = "res://assets/README.txt";
     public const string ASSETS_LICENSE_FILE = "res://assets/LICENSE.txt";
     public const string GODOT_LICENSE_FILE = "res://doc/GodotLicense.txt";
