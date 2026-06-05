@@ -36,7 +36,7 @@ public partial class CellTypePickerPopup : CustomWindow
             button.Name = cellType.CellTypeName;
 
             button.ShowMPIcon = false;
-            button.MPCost = Constants.SPORE_CELL_TYPE_CHANGE_COST;
+            button.MPCost = 0.0;
 
             button.Connect(CellTypeSelection.SignalName.OnPartSelected,
                 new Callable(this, MethodName.OnCellTypeButtonClicked));

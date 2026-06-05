@@ -273,9 +273,16 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
             return true;
         }
 
-        if (actionData is SporeCellTypeAddActionData sporeCellTypeChangeActionData)
+        if (actionData is SporeCellTypeAddActionData sporeCellTypeAddActionData)
         {
-            sporeCellTypeOverride = cellTypes.ResolveCellDefinition(sporeCellTypeChangeActionData.SporeCell);
+            if (!sporeCellTypeAddActionData.Delete)
+            {
+                sporeCellTypeOverride = cellTypes.ResolveCellDefinition(sporeCellTypeAddActionData.SporeCell);
+            }
+            else
+            {
+                sporeCellTypeOverride = null;
+            }
 
             return true;
         }
