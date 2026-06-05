@@ -176,6 +176,8 @@ public partial class CellBodyPlanEditorComponent :
 
     private bool showGrowthOrderNumbers;
 
+    private CellType? sporeCellType;
+
     private EnergyBalanceInfoFull? energyBalanceInfo;
 
     [Signal]
@@ -243,7 +245,19 @@ public partial class CellBodyPlanEditorComponent :
 
     public MulticellularReproductionMethod ReproductionMethod { get; private set; }
 
-    public CellType? SporeCellType { get; private set; }
+    public CellType? SporeCellType
+    {
+        get => sporeCellType;
+        set
+        {
+            if (sporeCellType == value)
+                return;
+
+            sporeCellType = value;
+
+            UpdateSpecialCellTypeDisplays();
+        }
+    }
 
     protected override bool ShowFloatingLabels => ShowGrowthOrder;
 
@@ -653,8 +667,7 @@ public partial class CellBodyPlanEditorComponent :
 
         UpdateSpecializationDisplay();
 
-        sporeCellTypeMakerButton.UpdateDisplayedCellType(SporeCellType != null ?
-            GetEditedCellDataIfEdited(SporeCellType) : null);
+        UpdateSpecialCellTypeDisplays();
     }
 
     /// <summary>

@@ -108,7 +108,7 @@ public partial class CellBodyPlanEditorComponent
 
         if (ReproductionMethod == MulticellularReproductionMethod.Sporulation)
         {
-            sporeCellTypeMakerButton.UpdateDisplayedCellType(SporeCellType);
+            UpdateSpecialCellTypeDisplays();
         }
 
         UpdateReproductionMethodChoice();
@@ -121,7 +121,7 @@ public partial class CellBodyPlanEditorComponent
 
         if (ReproductionMethod == MulticellularReproductionMethod.Sporulation)
         {
-            sporeCellTypeMakerButton.UpdateDisplayedCellType(SporeCellType);
+            UpdateSpecialCellTypeDisplays();
         }
 
         UpdateReproductionMethodChoice();
@@ -141,8 +141,6 @@ public partial class CellBodyPlanEditorComponent
         OnCellTypeAdded(data.SporeCell);
 
         SporeCellType = data.SporeCell;
-
-        sporeCellTypeMakerButton.UpdateDisplayedCellType(SporeCellType);
     }
 
     [ArchiveAllowedMethod]
@@ -156,8 +154,6 @@ public partial class CellBodyPlanEditorComponent
         Editor.DirtyMutationPointsCache();
 
         SporeCellType = null;
-
-        sporeCellTypeMakerButton.UpdateDisplayedCellType(SporeCellType);
     }
 
     private void OnCellTypeAdded(CellType added)

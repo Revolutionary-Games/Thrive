@@ -176,7 +176,7 @@ public partial class CellBodyPlanEditorComponent
         organismStatisticsPanel.ApplyLightLevelSelection();
 
         UpdateReproductionMethodChoice();
-        sporeCellTypeMakerButton.UpdateDisplayedCellType(SporeCellType);
+        UpdateSpecialCellTypeDisplays();
 
         UpdateCancelButtonVisibility();
     }
@@ -346,5 +346,11 @@ public partial class CellBodyPlanEditorComponent
             DoSporeCellAddAction, new SporeCellTypeAddActionData(SporeCellType, true));
 
         Editor.EnqueueAction(action);
+    }
+
+    private void UpdateSpecialCellTypeDisplays()
+    {
+        sporeCellTypeMakerButton.UpdateDisplayedCellType(SporeCellType == null ? null :
+            GetEditedCellDataIfEdited(SporeCellType));
     }
 }
