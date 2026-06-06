@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
 using Godot;
 
 /// <summary>
@@ -52,6 +53,9 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
     [Export]
     private Tree pageTree = null!;
 
+    [Export]
+    private Timer searchThrottling = null!;
+
     /// <summary>
     ///   The home page for the Thriveopedia. Keep a special reference so we can return to it easily.
     /// </summary>
@@ -94,6 +98,22 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
     ///   The currently selected stage to view
     /// </summary>
     private Stage currentSelectedStage;
+
+    /// <summary>
+    ///   Has the input field changed while it still running a background search.
+    ///   After the search is completed a new one whit the currSearchText will start
+    /// </summary>
+    private bool requestingNewSearch = false;
+
+    /// <summary>
+    ///   Is currently running a background search.
+    /// </summary>
+    private bool runningBackgroundSearch = false;
+
+    /// <summary>
+    ///   The current text to search in the next background search.
+    /// </summary>
+    private string currSearchText = string.Empty;
 
     [Signal]
     public delegate void OnThriveopediaClosedEventHandler();
@@ -761,7 +781,30 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
 
     private void OnSearchUpdated(string newText)
     {
-        stageDropdown.Visible = false;
+        currSearchText = newText;
+        if (runningBackgroundSearch)
+        {
+            requestingNewSearch = true;
+        }
+        else
+        {
+            searchThrottling.Start();
+        }
+    }
+
+    private void BeginBackgroundSearch()
+    {
+        if (!runningBackgroundSearch)
+        {
+            runningBackgroundSearch = true;
+            TaskExecutor.Instance.AddTask(new Task(() => DoBackgroundPageSearch(currSearchText)));
+        }
+    }
+
+    private void DoBackgroundPageSearch(string newText)
+    {
+        // stageDropdown.Visible = false;
+        stageDropdown.SetDeferred(TreeItem.PropertyName.Visible, false);
 
         var newTextLowercase = newText.ToLower(CultureInfo.CurrentCulture);
 
@@ -771,24 +814,26 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
         foreach (var page in allPages)
         {
             string pagename = page.Key.TranslatedPageName.ToLower(CultureInfo.CurrentCulture);
+
             distanceDictionary[iterator] = StringUtils.DoStringCostBetween(pagename, newTextLowercase);
             ++iterator;
         }
 
-        // A thresold for similar results
+        // A threshold for similar results
         var costThreshold = distanceDictionary.Min() + 2;
         iterator = 0;
 
         foreach (var page in allPages)
         {
-            string pagename = page.Key.TranslatedPageName.ToLower(CultureInfo.CurrentCulture);
-            string? pagecontent = page.Key.TranslatedPageBody?.ToLower(CultureInfo.CurrentCulture);
-            string? adicionalContent = page.Key.TranslatedAdditionalSearchContent?.ToLower(CultureInfo.CurrentCulture);
+            string pageName = page.Key.TranslatedPageName.ToLower(CultureInfo.CurrentCulture);
+            string? pageContent = page.Key.TranslatedPageBody?.ToLower(CultureInfo.CurrentCulture);
+            string? additionalContent = page.Key.TranslatedAdditionalSearchContent?.ToLower(CultureInfo.CurrentCulture);
 
-            var fuzzySearch = distanceDictionary[iterator] < costThreshold;
-            var bodySearch = pagecontent != null && pagecontent.Contains(newTextLowercase);
-            var addicionalSearch = adicionalContent != null && adicionalContent.Contains(newTextLowercase);
-            var visible = fuzzySearch || pagename.Contains(newTextLowercase) || bodySearch || addicionalSearch;
+            // This is one big line so that the code can skip early once one passes
+            var visible = distanceDictionary[iterator] < costThreshold
+                || pageName.Contains(newTextLowercase)
+                || (pageContent != null && pageContent.Contains(newTextLowercase))
+                || (additionalContent != null && additionalContent.Contains(newTextLowercase));
 
             if (visible && page.Key is ThriveopediaStagePage)
             {
@@ -797,18 +842,30 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
 
                 if (!stageDropdown.Visible)
                 {
-                    stageDropdown.Visible = true;
+                    // stageDropdown.Visible = true;
+                    stageDropdown.SetDeferred(TreeItem.PropertyName.Visible, true);
                     SetParentPagesVisibility(stageDropdown, true);
                 }
             }
 
-            page.Value.Visible = visible;
+            // page.Value.Visible = visible;
+            page.Value.SetDeferred(TreeItem.PropertyName.Visible, visible);
             if (visible)
             {
                 SetParentPagesVisibility(page.Value, true);
             }
 
             ++iterator;
+        }
+
+        if (requestingNewSearch)
+        {
+            TaskExecutor.Instance.AddTask(new Task(() => DoBackgroundPageSearch(currSearchText)));
+            requestingNewSearch = false;
+        }
+        else
+        {
+            runningBackgroundSearch = false;
         }
     }
 
@@ -821,7 +878,8 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
 
         if (parent != null)
         {
-            parent.Visible = visible;
+            // parent.Visible = visible;
+            parent.SetDeferred(TreeItem.PropertyName.Visible, visible);
             SetParentPagesVisibility(parent, visible);
         }
     }

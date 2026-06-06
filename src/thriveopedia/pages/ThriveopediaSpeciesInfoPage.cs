@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Globalization;
+using System.Text;
 using Godot;
 
 /// <summary>
@@ -43,7 +44,28 @@ public partial class ThriveopediaSpeciesInfoPage : ThriveopediaPage, IThriveoped
 
     public string? TranslatedPageBody => null;
 
-    public string? TranslatedAdditionalSearchContent => null;
+    public string TranslatedAdditionalSearchContent
+    {
+        get
+        {
+            StringBuilder builder = new StringBuilder();
+
+            if (SpeciesToShow is MulticellularSpecies)
+            {
+                builder.AppendLine(Localization.Translate("MULTICELLULAR"));
+            }
+
+            if (SpeciesToShow is MicrobeSpecies)
+            {
+                builder.AppendLine(Localization.Translate("MICROBE"));
+            }
+
+            // Maybe in the future add the ability to search by "toxin" for toxic species
+            // or by organelle name for species that have them
+
+            return builder.ToString();
+        }
+    }
 
     public string ParentPageName => "WorldSpecies";
 

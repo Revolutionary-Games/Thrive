@@ -177,7 +177,7 @@ _data = {
 &"RESET": SubResource("3")
 }
 
-[node name="Thriveopedia" type="Control" unique_id=164322853 node_paths=PackedStringArray("backButton", "forwardButton", "pageContainer", "pageTreeContainer", "pageTreeContainerAnim", "pageTitle", "viewOnlineButton", "pageTree", "homePage")]
+[node name="Thriveopedia" type="Control" unique_id=164322853 node_paths=PackedStringArray("backButton", "forwardButton", "pageContainer", "pageTreeContainer", "pageTreeContainerAnim", "pageTitle", "viewOnlineButton", "pageTree", "searchThrottling", "homePage")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -194,7 +194,13 @@ pageTreeContainerAnim = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/A
 pageTitle = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/PageTitle")
 viewOnlineButton = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/ViewOnlineButton")
 pageTree = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/Control/PanelContainer/MarginContainer/VBoxContainer/PageTree")
+searchThrottling = NodePath("SearchThrottling")
 homePage = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer/ThriveopediaHomePage")
+
+[node name="SearchThrottling" type="Timer" parent="." unique_id=1395351612]
+wait_time = 0.1
+one_shot = true
+ignore_time_scale = true
 
 [node name="Overlay" type="ColorRect" parent="." unique_id=80300234]
 layout_mode = 0
@@ -394,6 +400,7 @@ layout_mode = 2
 root_node = NodePath("../Control/PanelContainer/MarginContainer")
 libraries/ = SubResource("AnimationLibrary_4nf6r")
 
+[connection signal="timeout" from="SearchThrottling" to="." method="BeginBackgroundSearch"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/CollapseTreeButton" to="." method="OnCollapseTreePressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/BackButton" to="." method="OnBackPressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/ForwardButton" to="." method="OnForwardPressed"]
