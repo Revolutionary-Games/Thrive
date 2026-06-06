@@ -103,10 +103,11 @@ public partial class GuidanceLine : MeshInstance3D
         if (!dirty)
             return;
 
-        dirty = false;
         mesh.ClearSurfaces();
 
         lineEnd = lineEnd.Lerp(lineEndTarget, InterpolateSpeed);
+
+        dirty = lineEnd.Round() != lineEndTarget.Round();
 
         // If there is no line to be drawn, don't draw one
         if (lineStart.IsEqualApprox(lineEnd))
