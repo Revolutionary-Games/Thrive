@@ -14,7 +14,7 @@ public partial class GuidanceLine : MeshInstance3D
 
     private Vector3 lineStart;
 
-    private Vector3 lineEnd;
+    private Vector3 lineEnd = new(0, 0, 0);
 
     private Vector3 lineEndTarget;
 
@@ -48,34 +48,6 @@ public partial class GuidanceLine : MeshInstance3D
 
             dirty = true;
             lineStart = value;
-        }
-    }
-
-    [Export]
-    public Vector3 LineEnd
-    {
-        get => lineEnd;
-        set
-        {
-            if (lineEnd == value)
-                return;
-
-            dirty = true;
-            lineEnd = value;
-        }
-    }
-
-    [Export]
-    public Vector3 LineEndTarget
-    {
-        get => lineEndTarget;
-        set
-        {
-            if (lineEndTarget == value && lineEnd == value)
-                return;
-
-            dirty = true;
-            lineEndTarget = value;
         }
     }
 
@@ -134,7 +106,7 @@ public partial class GuidanceLine : MeshInstance3D
         dirty = false;
         mesh.ClearSurfaces();
 
-        LineEnd = LineEnd.Lerp(LineEndTarget, InterpolateSpeed);
+        lineEnd = lineEnd.Lerp(lineEndTarget, InterpolateSpeed);
 
         // If there is no line to be drawn, don't draw one
         if (lineStart.IsEqualApprox(lineEnd))
@@ -164,11 +136,26 @@ public partial class GuidanceLine : MeshInstance3D
 
         Vector3 yOffsetVector = new Vector3(0.0f, yOffset, 0.0f);
 
-        mesh.SurfaceAddVertex(LineEnd + yOffsetVector);
+        mesh.SurfaceAddVertex(lineEnd + yOffsetVector);
         mesh.SurfaceAddVertex(LineStart + lineNormal * lineWidth + yOffsetVector);
         mesh.SurfaceAddVertex(LineStart - lineNormal * lineWidth + yOffsetVector);
 
         mesh.SurfaceEnd();
         mesh.SurfaceSetMaterial(0, lineMaterial);
+    }
+
+    public void SetLineEnd(Vector3 value, bool interpolate = true)
+    {
+        if (interpolate && value != lineEnd && value != lineEndTarget)
+        {
+            lineEndTarget = value;
+            dirty = true;
+        }
+        else if (!interpolate && value != lineEnd)
+        {
+            lineEnd = value;
+            lineEndTarget = value;
+            dirty = true;
+        }
     }
 }
