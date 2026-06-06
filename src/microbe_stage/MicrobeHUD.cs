@@ -333,13 +333,13 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             return;
         }
 
+        // Make sure the GUI state is consistent with the current speed
+        bottomLeftBar.SpeedModePressed = fastModeEnabled;
+
         if (Math.Abs(CheatManager.SimulationFactor - 1) > 0.01f)
         {
             return;
         }
-
-        // Make sure the GUI state is consistent with the current speed
-        bottomLeftBar.SpeedModePressed = fastModeEnabled;
 
         UpdateSpeedMode();
     }
@@ -356,7 +356,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         if (stage == null)
             return false;
 
-        return stage.WorldSimulation.WorldTimeScale != 1;
+        return bottomLeftBar.SpeedModePressed;
     }
 
     public void ShowSaveLoadAdvise()

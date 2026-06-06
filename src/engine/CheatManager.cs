@@ -201,7 +201,7 @@ public static class CheatManager
     }
 
     /// <summary>
-    ///   Forces the simulation to by a factor
+    ///   Multiplies the WorldTimescale of the current WorldSimulation by this factor
     /// </summary>
     public static float SimulationFactor
     {
