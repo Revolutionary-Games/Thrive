@@ -16,8 +16,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 0
 script = ExtResource("1_ojw5t")
 sporeNameLabel = NodePath("MarginContainer/HBoxContainer/Label")
-addCellTypeIcon = NodePath("MarginContainer/HBoxContainer/Button/CenterContainer/TextureRect")
-cellTypePreview = NodePath("MarginContainer/HBoxContainer/Button/CenterContainer/SpeciesPreview")
+addCellTypeIcon = NodePath("MarginContainer/HBoxContainer/Button/TextureRect")
+cellTypePreview = NodePath("MarginContainer/HBoxContainer/Button/SpeciesPreview")
 resetButton = NodePath("MarginContainer/Control/Button2")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1871489063]
@@ -34,23 +34,32 @@ layout_mode = 2
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/HBoxContainer/Button" unique_id=434998682]
-layout_mode = 0
-offset_right = 60.0
-offset_bottom = 60.0
-
-[node name="SpeciesPreview" parent="MarginContainer/HBoxContainer/Button/CenterContainer" unique_id=2089188422 instance=ExtResource("3_e6wau")]
-visible = false
-layout_mode = 2
-mouse_filter = 2
-script = ExtResource("3_1a2ow")
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/Button/CenterContainer" unique_id=1780161428]
-custom_minimum_size = Vector2(48, 48)
-layout_mode = 2
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/Button" unique_id=1780161428]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = -6.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("4_cpi50")
 expand_mode = 1
+
+[node name="SpeciesPreview" parent="MarginContainer/HBoxContainer/Button" unique_id=2089188422 instance=ExtResource("3_e6wau")]
+visible = false
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("3_1a2ow")
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer" unique_id=1973824256]
 editor_description = "PLACEHOLDER"

@@ -135,6 +135,9 @@ public partial class CellBodyPlanEditorComponent :
     private CustomConfirmationDialog wrongGrowthOrderPopup = null!;
 
     [Export]
+    private CustomConfirmationDialog noSporeCellTypeSetPopup = null!;
+
+    [Export]
     private LabelSettings toleranceWarningsFont = null!;
 
     [Export]
@@ -210,6 +213,9 @@ public partial class CellBodyPlanEditorComponent :
                 return true;
 
             if (wrongGrowthOrderCells.Count > 0)
+                return true;
+
+            if (ReproductionMethod == MulticellularReproductionMethod.Sporulation && SporeCellType == null)
                 return true;
 
             return false;
@@ -638,6 +644,12 @@ public partial class CellBodyPlanEditorComponent :
         if (wrongGrowthOrderCells.Count > 0)
         {
             wrongGrowthOrderPopup.PopupCenteredShrink();
+            return false;
+        }
+
+        if (ReproductionMethod == MulticellularReproductionMethod.Sporulation && SporeCellType == null)
+        {
+            noSporeCellTypeSetPopup.PopupCenteredShrink();
             return false;
         }
 
