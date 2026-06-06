@@ -103,12 +103,12 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
     ///   Has the input field changed while it still running a background search.
     ///   After the search is completed a new one whit the currSearchText will start
     /// </summary>
-    private bool requestingNewSearch = false;
+    private bool requestingNewSearch;
 
     /// <summary>
     ///   Is currently running a background search.
     /// </summary>
-    private bool runningBackgroundSearch = false;
+    private bool runningBackgroundSearch;
 
     /// <summary>
     ///   The current text to search in the next background search.
