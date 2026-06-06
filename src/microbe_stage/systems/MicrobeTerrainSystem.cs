@@ -463,7 +463,7 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
                 SpawnCluster(baseCell, cluster, recorder, spawned, random, out succeeded);
                 break;
             case TerrainConfiguration.TerrainSpawnStrategy.Vent:
-                SpawnCluster(baseCell, cluster, recorder, spawned, random, out succeeded);
+                SpawnVentTerrain(baseCell, cluster, recorder, spawned, random, out succeeded);
                 break;
         }
     }
@@ -517,19 +517,17 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
                     // Try sliding to make both clusters fit
                     if (cluster.SlideToFit && !adjusted)
                     {
-                        // TODO: this could alternatively not take a random angle but instead just slide outwards
-                        // to the closest edge with a normalized vector from CenterPosition to position
+                        var overlap = (alreadySpawned.OverlapRadius + currentOverlap) - MathF.Sqrt(distanceSquared);
+                        var slideVector = new Vector3(MathF.Cos(slideAngleIfNeeded), 0,
+                            MathF.Sin(slideAngleIfNeeded)) * overlap * 1.02f;
+                        position += slideVector;
 
-                        // var overlap = (alreadySpawned.OverlapRadius + currentOverlap) - MathF.Sqrt(distanceSquared);
-                        // var slideVector = new Vector3(MathF.Cos(slideAngleIfNeeded), 0,
-                        //                       MathF.Sin(slideAngleIfNeeded)) * overlap * 1.02f;
-                        // position += (alreadySpawned.CenterPosition - position).Normalized() * slideVector;
-
-                        var neededDistance = alreadySpawned.OverlapRadius + currentOverlap;
-                        var offset = new Vector3(MathF.Cos(slideAngleIfNeeded), 0,
-                            MathF.Sin(slideAngleIfNeeded)) * neededDistance * 1.02f;
-
-                        position = alreadySpawned.CenterPosition + offset;
+                        //
+                        // var neededDistance = (float)Math.Sqrt(distanceSquared);
+                        // var offset = new Vector3(MathF.Cos(slideAngleIfNeeded), 0,
+                        //     MathF.Sin(slideAngleIfNeeded)) * neededDistance * 1.02f;
+                        //
+                        // position = alreadySpawned.CenterPosition + offset;
 
                         // Make sure the position is not outside the target grid
                         if (position.X < minX || position.X > maxX || position.Z < minZ || position.Z > maxZ)
@@ -625,9 +623,9 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
         TerrainConfiguration.TerrainClusterConfiguration cluster,
         CommandBuffer recorder, List<SpawnedTerrainCluster> spawned, XoShiRo128starstar random, out bool succeeded)
     {
-        var startingPosition = GetSpawnStartingPosition(baseCell, spawned, cluster, random, out bool skipSpawn);
+        var startingPosition = GetSpawnStartingPosition(baseCell, spawned, cluster, random, out bool tooCloseToPlayer);
 
-        if (skipSpawn)
+        if (tooCloseToPlayer)
         {
             succeeded = true;
             return;
@@ -679,6 +677,103 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
         spawned.Add(new SpawnedTerrainCluster(position, cluster.OverallRadius, groupData,
             cluster.OverallOverlapRadius));
         succeeded = true;
+    }
+
+    private void SpawnVentTerrain(Vector2I baseCell, TerrainConfiguration.TerrainClusterConfiguration cluster,
+        CommandBuffer recorder, List<SpawnedTerrainCluster> spawned,
+        XoShiRo128starstar random, out bool succeeded)
+    {
+        var terrainGroup = cluster.TerrainGroups[0];
+        var radius = terrainGroup.Radius;
+        var layers = random.Next(Constants.TERRAIN_VENT_RINGS_MIN, Constants.TERRAIN_VENT_RINGS_MAX);
+
+        cluster.OverallRadius = radius * (layers + Constants.TERRAIN_VENT_OVERLAP_MARGIN);
+        cluster.OverallOverlapRadius = cluster.OverallRadius;
+
+        var startingPosition = GetSpawnStartingPosition(baseCell, spawned, cluster, random, out bool tooCloseToPlayer);
+
+        if (tooCloseToPlayer)
+        {
+            succeeded = true;
+            return;
+        }
+
+        if (startingPosition is null)
+        {
+            succeeded = false;
+            return;
+        }
+
+        var position = startingPosition.Value;
+
+        var overlaps = OverlapsWithAlreadySpawned(spawned, position, cluster.OverallOverlapRadius);
+        if (overlaps)
+        {
+            succeeded = false;
+            return;
+        }
+
+        var chunksPositions = GetNewVentTerrainPositions(radius, position, random, layers);
+
+        var clusterRotation = Quaternion.Identity;
+
+        if (cluster.RandomRotation != TerrainConfiguration.RotationRandomization.Disabled)
+            clusterRotation = new Quaternion(Vector3.Up, random.NextSingle() * MathF.Tau);
+
+        var groupId = nextGroupId++;
+        var groupData = new SpawnedTerrainGroup(position, terrainGroup.Radius, groupId);
+
+        var groupRotation = Quaternion.Identity;
+
+        if (terrainGroup.RandomRotation != TerrainConfiguration.RotationRandomization.Disabled)
+            groupRotation = new Quaternion(Vector3.Up, random.NextSingle() * MathF.Tau);
+
+        foreach (var chunkPosition in chunksPositions)
+        {
+            var chunk = terrainGroup.Chunks[random.Next(terrainGroup.Chunks.Count)];
+            var rotation = clusterRotation * groupRotation;
+
+            var yOffset = new Vector3(0, random.NextSingle() * Constants.TERRAIN_HEIGHT_RANDOMNESS, 0);
+
+            SpawnHelpers.SpawnMicrobeTerrainWithoutFinalizing(recorder, worldSimulation,
+                (clusterRotation * terrainGroup.RelativePosition)
+                + (rotation * chunkPosition) + yOffset, rotation, chunk, groupId, random);
+
+            groupData.ExpectedMemberCount += 1;
+        }
+
+        spawned.Add(new SpawnedTerrainCluster(position, cluster.OverallRadius, [groupData],
+            cluster.OverallOverlapRadius));
+        succeeded = true;
+    }
+
+    private List<Vector3> GetNewVentTerrainPositions(float radius,
+        Vector3 chunkGroupPosition,
+        XoShiRo128starstar random, int layers)
+    {
+        var segments = Constants.TERRAIN_VENT_SEGMENTS;
+        var segmentRadius = radius;
+        var yLevel = Constants.TERRAIN_VENT_RING_HEIGHT_REDUCTION * layers + Constants.TERRAIN_VENT_OUTER_RING_HEIGHT;
+
+        var chunksPositions = new List<Vector3>();
+
+        for (var j = 0; j < layers; ++j)
+        {
+            for (var i = 0; i < segments; ++i)
+            {
+                var angle = i * MathF.Tau / segments;
+                var x = chunkGroupPosition.X + MathF.Cos(angle) * segmentRadius + random.Next(-2, 2);
+                var z = chunkGroupPosition.Z + MathF.Sin(angle) * segmentRadius + random.Next(-2, 2);
+                var position = new Vector3(x, yLevel + random.Next(-1, 1), z);
+                chunksPositions.Add(position);
+            }
+
+            yLevel -= Constants.TERRAIN_VENT_RING_HEIGHT_REDUCTION;
+            segments += Constants.TERRAIN_VENT_SEGMENTS;
+            segmentRadius += radius;
+        }
+
+        return chunksPositions;
     }
 
     private void FetchSpawnedChunksToOurData()
