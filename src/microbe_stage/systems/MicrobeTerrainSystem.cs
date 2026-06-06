@@ -468,44 +468,114 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
         }
     }
 
-    private (bool SkipSpawn, Vector3? Position) GetSpawnStartingPosition(Vector2I baseCell,
-        List<SpawnedTerrainCluster> spawned, XoShiRo128starstar random, float overlapRadius = 0.0f)
+    private Vector3? GetSpawnStartingPosition(Vector2I baseCell,
+        List<SpawnedTerrainCluster> spawned, TerrainConfiguration.TerrainClusterConfiguration cluster,
+        XoShiRo128starstar random, out bool tooCloseToPlayer)
     {
-        var (minX, maxX, minZ, maxZ) = GetCellBordersForGroup(baseCell, overlapRadius);
+        var overallRadius = cluster.OverallRadius;
+        var currentOverlap = cluster.OverallOverlapRadius;
+
+        var (minX, maxX, minZ, maxZ) = GetCellBorders(baseCell, overallRadius);
 
         var rangeX = maxX - minX;
         var rangeZ = maxZ - minZ;
 
         var playerCheckSquared = MathUtils.Square(playerProtectionRadius);
 
+        tooCloseToPlayer = false;
+
         for (int i = 0; i < maxSpawnAttempts; ++i)
         {
             var position = new Vector3(minX + random.NextFloat() * rangeX, 0, minZ + random.NextFloat() * rangeZ);
 
-            if (position.DistanceSquaredTo(playerPosition) + MathUtils.Square(overlapRadius) < playerCheckSquared)
+            // Keep randomness more consistent
+            float slideAngleIfNeeded = random.NextFloat() * MathF.PI * 2;
+
+            if (position.DistanceSquaredTo(playerPosition) < playerCheckSquared)
             {
                 // Too close to the player, don't spawn
                 // This returns true now so that the player position doesn't affect the final terrain configuration
                 // so that the seed leads to a reproducible terrain result
-                return (true, null);
+                tooCloseToPlayer = true;
+                return null;
             }
 
-            var overlaps = OverlapsWithAlreadySpawned(spawned, position);
+            bool overlaps = false;
+            bool adjusted = false;
+
+            while (true)
+            {
+                bool retry = false;
+
+                // Then check against already spawned terrain
+                foreach (var alreadySpawned in spawned)
+                {
+                    var distanceSquared = position.DistanceSquaredTo(alreadySpawned.CenterPosition);
+                    if (distanceSquared >= MathUtils.Square(alreadySpawned.OverlapRadius + currentOverlap))
+                        continue;
+
+                    // Try sliding to make both clusters fit
+                    if (cluster.SlideToFit && !adjusted)
+                    {
+                        // TODO: this could alternatively not take a random angle but instead just slide outwards
+                        // to the closest edge with a normalized vector from CenterPosition to position
+
+                        // var overlap = (alreadySpawned.OverlapRadius + currentOverlap) - MathF.Sqrt(distanceSquared);
+                        // var slideVector = new Vector3(MathF.Cos(slideAngleIfNeeded), 0,
+                        //                       MathF.Sin(slideAngleIfNeeded)) * overlap * 1.02f;
+                        // position += (alreadySpawned.CenterPosition - position).Normalized() * slideVector;
+
+                        var neededDistance = alreadySpawned.OverlapRadius + currentOverlap;
+                        var offset = new Vector3(MathF.Cos(slideAngleIfNeeded), 0,
+                            MathF.Sin(slideAngleIfNeeded)) * neededDistance * 1.02f;
+
+                        position = alreadySpawned.CenterPosition + offset;
+
+                        // Make sure the position is not outside the target grid
+                        if (position.X < minX || position.X > maxX || position.Z < minZ || position.Z > maxZ)
+                        {
+                            overlaps = true;
+                            break;
+                        }
+
+#if DEBUG
+                        var newDistance = position.DistanceSquaredTo(alreadySpawned.CenterPosition);
+                        if (newDistance < MathUtils.Square(alreadySpawned.OverlapRadius + currentOverlap))
+                        {
+                            GD.Print($"Still overlaps after sliding with the original, " +
+                                $"old dist: {MathF.Sqrt(distanceSquared)} new: {MathF.Sqrt(newDistance)}, " +
+                                $"needed distance: {alreadySpawned.OverlapRadius + currentOverlap}");
+                        }
+#endif
+
+                        retry = true;
+                        adjusted = true;
+                        break;
+                    }
+
+                    // Will overlap existing
+                    overlaps = true;
+                    break;
+                }
+
+                if (retry)
+                    continue;
+
+                break;
+            }
 
             if (overlaps)
-            {
                 continue;
-            }
 
-            return (false, position);
+            return position;
         }
 
-        return (false, null);
+        return null;
     }
 
     private bool IsPositionInCell(Vector3 position, Vector2I cell, float overlapRadius = 0)
     {
-        var (minX, maxX, minZ, maxZ) = GetCellBordersForGroup(cell, overlapRadius);
+        var (minX, maxX, minZ, maxZ) = GetCellBorders(cell, overlapRadius);
 
         var playerCheckSquared = MathUtils.Square(playerProtectionRadius);
 
@@ -521,7 +591,7 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
             position.Z >= minZ && position.Z <= maxZ;
     }
 
-    private (float MinX, float MaxX, float MinZ, float MaxZ) GetCellBordersForGroup(Vector2I baseCell,
+    private (float MinX, float MaxX, float MinZ, float MaxZ) GetCellBorders(Vector2I baseCell,
         float overlapRadius)
     {
         var minX = baseCell.X * Constants.TERRAIN_GRID_SIZE + Constants.TERRAIN_EDGE_PROTECTION_SIZE + overlapRadius;
@@ -555,8 +625,7 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
         TerrainConfiguration.TerrainClusterConfiguration cluster,
         CommandBuffer recorder, List<SpawnedTerrainCluster> spawned, XoShiRo128starstar random, out bool succeeded)
     {
-        var (skipSpawn, startingPosition) =
-            GetSpawnStartingPosition(baseCell, spawned, random);
+        var startingPosition = GetSpawnStartingPosition(baseCell, spawned, cluster, random, out bool skipSpawn);
 
         if (skipSpawn)
         {
