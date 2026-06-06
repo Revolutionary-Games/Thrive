@@ -25,6 +25,12 @@ public class TerrainConfiguration : RegistryType
         Full,
     }
 
+    public enum TerrainSpawnStrategy
+    {
+        Manual,
+        Vent,
+    }
+
     [JsonIgnore]
     public override ArchiveObjectType ArchiveObjectType =>
         (ArchiveObjectType)ThriveArchiveObjectType.TerrainConfiguration;
@@ -185,6 +191,9 @@ public class TerrainConfiguration : RegistryType
 
         [JsonProperty]
         public readonly RotationRandomization RandomRotation;
+
+        [JsonProperty]
+        public readonly TerrainSpawnStrategy SpawnStrategy = TerrainSpawnStrategy.Manual;
 
         /// <summary>
         ///   When true, the terrain will slide around other terrain to fit and spawn.
