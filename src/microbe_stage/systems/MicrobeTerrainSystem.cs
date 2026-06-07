@@ -517,17 +517,22 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
                     // Try sliding to make both clusters fit
                     if (cluster.SlideToFit && !adjusted)
                     {
-                        var overlap = (alreadySpawned.OverlapRadius + currentOverlap) - MathF.Sqrt(distanceSquared);
-                        var slideVector = new Vector3(MathF.Cos(slideAngleIfNeeded), 0,
-                            MathF.Sin(slideAngleIfNeeded)) * overlap * 1.02f;
-                        position += slideVector;
+                        var offset = position - alreadySpawned.CenterPosition;
 
-                        //
-                        // var neededDistance = (float)Math.Sqrt(distanceSquared);
-                        // var offset = new Vector3(MathF.Cos(slideAngleIfNeeded), 0,
-                        //     MathF.Sin(slideAngleIfNeeded)) * neededDistance * 1.02f;
-                        //
-                        // position = alreadySpawned.CenterPosition + offset;
+                        if (distanceSquared < 1e-8f)
+                        {
+                            // In case the position is exactly on top of the existing cluster
+                            offset = new Vector3(MathF.Cos(slideAngleIfNeeded),
+                                0,
+                                MathF.Sin(slideAngleIfNeeded));
+                            distanceSquared = offset.LengthSquared();
+                        }
+
+                        var distance = MathF.Sqrt(distanceSquared);
+                        var overlap = alreadySpawned.OverlapRadius + currentOverlap - distance;
+                        var slideVector = offset / distance * overlap * 1.02f;
+
+                        position += slideVector;
 
                         // Make sure the position is not outside the target grid
                         if (position.X < minX || position.X > maxX || position.Z < minZ || position.Z > maxZ)
@@ -684,11 +689,11 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
         XoShiRo128starstar random, out bool succeeded)
     {
         var terrainGroup = cluster.TerrainGroups[0];
-        var radius = terrainGroup.Radius;
+        var terrainGroupRadius = terrainGroup.Radius;
         var layers = random.Next(Constants.TERRAIN_VENT_RINGS_MIN, Constants.TERRAIN_VENT_RINGS_MAX);
 
-        cluster.OverallRadius = radius * (layers + Constants.TERRAIN_VENT_OVERLAP_MARGIN);
-        cluster.OverallOverlapRadius = cluster.OverallRadius;
+        cluster.OverallRadius = terrainGroupRadius * layers;
+        cluster.OverallOverlapRadius = terrainGroupRadius * (layers + Constants.TERRAIN_VENT_OVERLAP_MARGIN);
 
         var startingPosition = GetSpawnStartingPosition(baseCell, spawned, cluster, random, out bool tooCloseToPlayer);
 
@@ -713,7 +718,7 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
             return;
         }
 
-        var chunksPositions = GetNewVentTerrainPositions(radius, position, random, layers);
+        var chunksPositions = GetNewVentTerrainPositions(terrainGroupRadius, position, random, layers);
 
         var clusterRotation = Quaternion.Identity;
 
@@ -735,12 +740,18 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
 
             var yOffset = new Vector3(0, random.NextSingle() * Constants.TERRAIN_HEIGHT_RANDOMNESS, 0);
 
-            SpawnHelpers.SpawnMicrobeTerrainWithoutFinalizing(recorder, worldSimulation,
+            SpawnHelpers.SpawnMicrobeTerrainWithoutCollisionWithoutFinalizing(recorder, worldSimulation,
                 (clusterRotation * terrainGroup.RelativePosition)
                 + (rotation * chunkPosition) + yOffset, rotation, chunk, groupId, random);
 
             groupData.ExpectedMemberCount += 1;
         }
+
+        var collisionShape = PhysicsShape.CreateSphere(cluster.OverallRadius);
+        SpawnHelpers.SpawnCollisionWithoutFinalizing(recorder, worldSimulation, position, groupId, random,
+            collisionShape);
+
+        groupData.ExpectedMemberCount += 1;
 
         spawned.Add(new SpawnedTerrainCluster(position, cluster.OverallRadius, [groupData],
             cluster.OverallOverlapRadius));
