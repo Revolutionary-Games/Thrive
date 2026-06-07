@@ -548,8 +548,203 @@
       "MaxClusters": 5,
       "PotentialClusters": [
         {
-          "RelativeChance": 10,
+          "RelativeChance": 2,
           "SpawnStrategy": "Vent",
+          "TerrainGroups": [
+            {
+              "RelativePosition": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "Chunks": [
+                {
+                  "Visuals": "PyriteTerrain1",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/PyriteTerrainChunk1.shape",
+                  "Radius": 15,
+                  "RelativePosition": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "RandomRotation": "Slight"
+                },
+                {
+                  "Visuals": "PyriteTerrain2",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/PyriteTerrainChunk2.shape",
+                  "Radius": 15,
+                  "RelativePosition": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "RandomRotation": "Slight"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "RelativeChance": 2,
+          "SpawnStrategy": "Vent",
+          "TerrainGroups": [
+            {
+              "RelativePosition": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "Chunks": [
+                {
+                  "Visuals": "CalciteTerrainChunk1",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/CalciteTerrainChunk1.shape",
+                  "Radius": 15,
+                  "RelativePosition": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "RandomRotation": "Slight"
+                },
+                {
+                  "Visuals": "CalciteTerrainChunk2",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/CalciteTerrainChunk2.shape",
+                  "Radius": 15,
+                  "RelativePosition": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "RandomRotation": "Slight"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "RelativeChance": 1,
+          "SpawnStrategy": "Vent",
+          "TerrainGroups": [
+            {
+              "RelativePosition": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "Chunks": [
+                {
+                  "Visuals": "ChalcopyriteTerrain1",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
+                  "Radius": 14.8,
+                  "RelativePosition": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "RandomRotation": "Slight"
+                },
+                {
+                  "Visuals": "ChalcopyriteTerrain2",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk2.shape",
+                  "Radius": 14.8,
+                  "RelativePosition": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "RandomRotation": "Slight"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "RelativeChance": 2,
+          "SpawnStrategy": "Vent",
+          "TerrainGroups": [
+            {
+              "RelativePosition": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "Chunks": [
+                {
+                  "Visuals": "SerpentiniteTerrain1",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/SerpentiniteTerrainChunk1.shape",
+                  "Radius": 15,
+                  "RelativePosition": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "RandomRotation": "Full"
+                },
+                {
+                  "Visuals": "SerpentiniteTerrain2",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/SerpentiniteTerrainChunk2.shape",
+                  "Radius": 15,
+                  "RelativePosition": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "RandomRotation": "Full"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "RelativeChance": 2,
+          "SpawnStrategy": "Vent",
+          "TerrainGroups": [
+            {
+              "RelativePosition": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "Chunks": [
+                {
+                  "Visuals": "QuartzTerrain1",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/QuartzTerrainChunk1.shape",
+                  "Radius": 12,
+                  "RelativePosition": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "RandomRotation": "Slight"
+                },
+                {
+                  "Visuals": "QuartzTerrain2",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/QuartzTerrainChunk2.shape",
+                  "Radius": 12,
+                  "RelativePosition": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "RandomRotation": "Slight"
+                },
+                {
+                  "Visuals": "QuartzTerrain3",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/QuartzTerrainChunk3.shape",
+                  "Radius": 12,
+                  "RelativePosition": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "RandomRotation": "Slight"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "RelativeChance": 3,
           "TerrainGroups": [
             {
               "RelativePosition": {
@@ -574,7 +769,7 @@
           ]
         },
         {
-          "RelativeChance": 1,
+          "RelativeChance": 3,
           "TerrainGroups": [
             {
               "RelativePosition": {
@@ -599,7 +794,7 @@
           ]
         },
         {
-          "RelativeChance": 1,
+          "RelativeChance": 3,
           "TerrainGroups": [
             {
               "RelativePosition": {
@@ -624,7 +819,7 @@
           ]
         },
         {
-          "RelativeChance": 1,
+          "RelativeChance": 3,
           "TerrainGroups": [
             {
               "RelativePosition": {
@@ -649,7 +844,7 @@
           ]
         },
         {
-          "RelativeChance": 1,
+          "RelativeChance": 3,
           "TerrainGroups": [
             {
               "RelativePosition": {
@@ -674,7 +869,7 @@
           ]
         },
         {
-          "RelativeChance": 1,
+          "RelativeChance": 3,
           "TerrainGroups": [
             {
               "RelativePosition": {
@@ -699,7 +894,7 @@
           ]
         },
         {
-          "RelativeChance": 1,
+          "RelativeChance": 3,
           "TerrainGroups": [
             {
               "RelativePosition": {
@@ -724,7 +919,7 @@
           ]
         },
         {
-          "RelativeChance": 1,
+          "RelativeChance": 3,
           "TerrainGroups": [
             {
               "RelativePosition": {
@@ -749,7 +944,7 @@
           ]
         },
         {
-          "RelativeChance": 1,
+          "RelativeChance": 3,
           "TerrainGroups": [
             {
               "RelativePosition": {
@@ -774,7 +969,7 @@
           ]
         },
         {
-          "RelativeChance": 1,
+          "RelativeChance": 3,
           "TerrainGroups": [
             {
               "RelativePosition": {
@@ -799,7 +994,7 @@
           ]
         },
         {
-          "RelativeChance": 1,
+          "RelativeChance": 3,
           "TerrainGroups": [
             {
               "RelativePosition": {
@@ -824,7 +1019,7 @@
           ]
         },
         {
-          "RelativeChance": 1,
+          "RelativeChance": 3,
           "TerrainGroups": [
             {
               "RelativePosition": {
@@ -849,7 +1044,7 @@
           ]
         },
         {
-          "RelativeChance": 1,
+          "RelativeChance": 3,
           "TerrainGroups": [
             {
               "RelativePosition": {
