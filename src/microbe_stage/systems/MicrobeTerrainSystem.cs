@@ -690,7 +690,7 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
     {
         var terrainGroup = cluster.TerrainGroups[0];
         var terrainGroupRadius = terrainGroup.Radius;
-        var layers = random.Next(Constants.TERRAIN_VENT_RINGS_MIN, Constants.TERRAIN_VENT_RINGS_MAX);
+        var layers = random.Next(cluster.DynamicParameters.MinSegments, cluster.DynamicParameters.MaxSegments);
 
         cluster.OverallRadius = terrainGroupRadius * layers;
         cluster.OverallOverlapRadius = terrainGroupRadius * (layers + Constants.TERRAIN_VENT_OVERLAP_MARGIN);
@@ -718,7 +718,7 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
             return;
         }
 
-        var chunksPositions = GetNewVentTerrainPositions(terrainGroupRadius, position, random, layers);
+        var chunksPositions = GetNewVentTerrainPositions(cluster, terrainGroupRadius, position, random, layers);
 
         var clusterRotation = Quaternion.Identity;
 
@@ -758,11 +758,10 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
         succeeded = true;
     }
 
-    private List<Vector3> GetNewVentTerrainPositions(float radius,
-        Vector3 chunkGroupPosition,
-        XoShiRo128starstar random, int layers)
+    private List<Vector3> GetNewVentTerrainPositions(TerrainConfiguration.TerrainClusterConfiguration cluster,
+        float radius, Vector3 chunkGroupPosition, XoShiRo128starstar random, int layers)
     {
-        var segments = Constants.TERRAIN_VENT_SEGMENTS;
+        var segmentSize = cluster.DynamicParameters.SegmentSize;
         var segmentRadius = radius;
         var yLevel = Constants.TERRAIN_VENT_RING_HEIGHT_REDUCTION * layers + Constants.TERRAIN_VENT_OUTER_RING_HEIGHT;
 
@@ -770,9 +769,9 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
 
         for (var j = 0; j < layers; ++j)
         {
-            for (var i = 0; i < segments; ++i)
+            for (var i = 0; i < segmentSize; ++i)
             {
-                var angle = i * MathF.Tau / segments;
+                var angle = i * MathF.Tau / segmentSize;
                 var x = chunkGroupPosition.X + MathF.Cos(angle) * segmentRadius + random.Next(-2, 2);
                 var z = chunkGroupPosition.Z + MathF.Sin(angle) * segmentRadius + random.Next(-2, 2);
                 var position = new Vector3(x, yLevel + random.Next(-1, 1), z);
@@ -780,7 +779,7 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
             }
 
             yLevel -= Constants.TERRAIN_VENT_RING_HEIGHT_REDUCTION;
-            segments += Constants.TERRAIN_VENT_SEGMENTS;
+            segmentSize += cluster.DynamicParameters.SegmentSize;
             segmentRadius += radius;
         }
 
