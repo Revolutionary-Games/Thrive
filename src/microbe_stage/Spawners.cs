@@ -1210,33 +1210,6 @@ public static class SpawnHelpers
         entityRecorder.Set<StaticBodyMarker>(entity);
     }
 
-    private static Quaternion GetTerrainChunkRotation(Quaternion baseRotation,
-        TerrainConfiguration.TerrainChunkConfiguration chunkConfiguration,
-        Random random)
-    {
-        Quaternion rotation;
-        if (chunkConfiguration.RandomRotation == TerrainConfiguration.RotationRandomization.Yaw)
-        {
-            rotation = baseRotation * new Quaternion(Vector3.Up, random.NextSingle() * MathF.Tau);
-        }
-        else if (chunkConfiguration.RandomRotation == TerrainConfiguration.RotationRandomization.Slight)
-        {
-            rotation = baseRotation * new Quaternion(Basis.FromEuler(new Vector3(random.NextSingle() * 0.2f,
-                random.NextSingle() * MathF.Tau, random.NextSingle() * 0.2f)));
-        }
-        else if (chunkConfiguration.RandomRotation == TerrainConfiguration.RotationRandomization.Full)
-        {
-            rotation = baseRotation * new Quaternion(Basis.FromEuler(new Vector3(random.NextSingle() * MathF.Tau,
-                random.NextSingle() * MathF.Tau, random.NextSingle() * MathF.Tau)));
-        }
-        else
-        {
-            rotation = baseRotation * chunkConfiguration.DefaultRotation;
-        }
-
-        return rotation;
-    }
-
     // TODO: move further stage spawners to their own file
     public static MacroscopicCreature SpawnCreature(Species species, Vector3 location,
         Node worldRoot, PackedScene multicellularScene, bool aiControlled, ISpawnSystem spawnSystem,
@@ -1457,6 +1430,33 @@ public static class SpawnHelpers
     public static PackedScene LoadFleetScene()
     {
         return GD.Load<PackedScene>("res://src/space_stage/SpaceFleet.tscn");
+    }
+
+    private static Quaternion GetTerrainChunkRotation(Quaternion baseRotation,
+        TerrainConfiguration.TerrainChunkConfiguration chunkConfiguration,
+        Random random)
+    {
+        Quaternion rotation;
+        if (chunkConfiguration.RandomRotation == TerrainConfiguration.RotationRandomization.Yaw)
+        {
+            rotation = baseRotation * new Quaternion(Vector3.Up, random.NextSingle() * MathF.Tau);
+        }
+        else if (chunkConfiguration.RandomRotation == TerrainConfiguration.RotationRandomization.Slight)
+        {
+            rotation = baseRotation * new Quaternion(Basis.FromEuler(new Vector3(random.NextSingle() * 0.2f,
+                random.NextSingle() * MathF.Tau, random.NextSingle() * 0.2f)));
+        }
+        else if (chunkConfiguration.RandomRotation == TerrainConfiguration.RotationRandomization.Full)
+        {
+            rotation = baseRotation * new Quaternion(Basis.FromEuler(new Vector3(random.NextSingle() * MathF.Tau,
+                random.NextSingle() * MathF.Tau, random.NextSingle() * MathF.Tau)));
+        }
+        else
+        {
+            rotation = baseRotation * chunkConfiguration.DefaultRotation;
+        }
+
+        return rotation;
     }
 
     private static Quaternion RandomRotationForResourceEntity(Random random)

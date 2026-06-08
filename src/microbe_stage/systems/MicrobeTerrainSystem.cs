@@ -519,7 +519,7 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
                     {
                         var offset = position - alreadySpawned.CenterPosition;
 
-                        if (distanceSquared < 1e-8f)
+                        if (distanceSquared < 1e-8)
                         {
                             // In case the position is exactly on top of the existing cluster
                             offset = new Vector3(MathF.Cos(slideAngleIfNeeded),
