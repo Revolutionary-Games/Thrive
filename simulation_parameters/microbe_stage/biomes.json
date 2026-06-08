@@ -551,7 +551,7 @@
           "RelativeChance": 2,
           "SpawnStrategy": "Vent",
           "DynamicParameters": {
-            "MinSegments": 2,
+            "MinSegments": 3,
             "MaxSegments": 5,
             "SegmentSize": 6
           },
@@ -595,7 +595,7 @@
           "DynamicParameters": {
             "MinSegments": 2,
             "MaxSegments": 5,
-            "SegmentSize": 6
+            "SegmentSize": 7
           },
           "TerrainGroups": [
             {
@@ -608,24 +608,24 @@
                 {
                   "Visuals": "CalciteTerrainChunk1",
                   "CollisionShapePath": "res://assets/models/microbe_terrain/CalciteTerrainChunk1.shape",
-                  "Radius": 15,
+                  "Radius": 15.5,
                   "RelativePosition": {
                     "x": 0,
                     "y": 0,
                     "z": 0
                   },
-                  "RandomRotation": "Slight"
+                  "RandomRotation": "Yaw"
                 },
                 {
                   "Visuals": "CalciteTerrainChunk2",
                   "CollisionShapePath": "res://assets/models/microbe_terrain/CalciteTerrainChunk2.shape",
-                  "Radius": 15,
+                  "Radius": 15.5,
                   "RelativePosition": {
                     "x": 0,
                     "y": 0,
                     "z": 0
                   },
-                  "RandomRotation": "Slight"
+                  "RandomRotation": "Yaw"
                 }
               ]
             }
@@ -719,9 +719,9 @@
           "RelativeChance": 2,
           "SpawnStrategy": "Vent",
           "DynamicParameters": {
-            "MinSegments": 2,
-            "MaxSegments": 5,
-            "SegmentSize": 6
+            "MinSegments": 3,
+            "MaxSegments": 6,
+            "SegmentSize": 7
           },
           "TerrainGroups": [
             {
@@ -740,7 +740,7 @@
                     "y": 0,
                     "z": 0
                   },
-                  "RandomRotation": "Slight"
+                  "RandomRotation": "Yaw"
                 },
                 {
                   "Visuals": "QuartzTerrain2",
@@ -751,7 +751,7 @@
                     "y": 0,
                     "z": 0
                   },
-                  "RandomRotation": "Slight"
+                  "RandomRotation": "Yaw"
                 },
                 {
                   "Visuals": "QuartzTerrain3",
@@ -762,7 +762,7 @@
                     "y": 0,
                     "z": 0
                   },
-                  "RandomRotation": "Slight"
+                  "RandomRotation": "Yaw"
                 }
               ]
             }
