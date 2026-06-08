@@ -7,14 +7,11 @@ using Xoshiro.PRNG32;
 /// </summary>
 public partial class GuidanceLine : MeshInstance3D
 {
-    [Export]
-    public float InterpolateSpeed = 0.3f;
-
     private readonly XoShiRo128plus random = new();
 
     private Vector3 lineStart;
 
-    private Vector3 lineEnd = new(0, 0, 0);
+    private Vector3 lineEnd;
 
     private Vector3 lineEndTarget;
 
@@ -25,6 +22,9 @@ public partial class GuidanceLine : MeshInstance3D
     private bool dirty = true;
 
     private float yOffset;
+
+    [Export]
+    private float interpolateSpeed;
 
     // Assigned as a child resource so this should be disposed of automatically
 #pragma warning disable CA2213
@@ -105,7 +105,7 @@ public partial class GuidanceLine : MeshInstance3D
 
         mesh.ClearSurfaces();
 
-        lineEnd = lineEnd.Lerp(lineEndTarget, InterpolateSpeed);
+        lineEnd = lineEnd.Lerp(lineEndTarget, interpolateSpeed);
 
         dirty = lineEnd.Round() != lineEndTarget.Round();
 
