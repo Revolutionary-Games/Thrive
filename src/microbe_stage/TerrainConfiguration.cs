@@ -246,6 +246,12 @@ public class TerrainConfiguration : RegistryType
                         "MaxSegments must be greater than or equal to MinSegments");
                 }
 
+                if (DynamicParameters.MaxSegments <= 0 || DynamicParameters.MinSegments <= 0)
+                {
+                    throw new InvalidRegistryDataException(name, GetType().Name,
+                        "MaxSegments and MinSegments must be greater than 0");
+                }
+
                 if (DynamicParameters.SegmentSize <= 0)
                 {
                     throw new InvalidRegistryDataException(name, GetType().Name, "SegmentSize must be greater than 0");
