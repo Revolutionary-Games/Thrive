@@ -152,6 +152,67 @@ public class SimulationCache
         return cached;
     }
 
+    public EnergyBalanceInfoSimple GetEnergyBalanceForSpecies(MulticellularSpecies species,
+        BiomeConditions biomeConditions)
+    {
+        // TODO: this gets called an absolute ton with the new auto-evo so a more efficient caching method (to allow
+        // different species but with same organelles to be able to use the same cache value) would be nice here
+
+#if USE_HASHED_SCORE_KEYS
+        var key = (ulong)(uint)biomeConditions.GetHashCode() << 32 | (uint)GetSpeciesCacheKey(species);
+#else
+        var key = (GetSpeciesCacheKey(species), biomeConditions);
+#endif
+        ref var balance = ref CollectionsMarshal.GetValueRefOrNullRef(cachedSimpleEnergyBalances, key);
+        if (!Unsafe.IsNullRef(ref balance))
+        {
+            return balance;
+        }
+
+        var environmentalTolerances = GetEnvironmentalTolerances(species, biomeConditions);
+
+        var cached = new EnergyBalanceInfoSimple();
+
+        // Currently ComputeEnergyBalanceSimple is not setup to safely add onto existing energy balances, so we need to
+        // add up from a temporary balance per cell.
+        var cellBalance = new EnergyBalanceInfoSimple();
+
+        foreach (var cellType in species.CellTypes)
+        {
+            // Perhaps this should instead take a MaximumSpeedDirection of the organism as a whole?
+            var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(cellType.Organelles);
+
+            var cellTypeSpecializationBonus = cellType.CellTypeSpecializationBonus;
+
+            foreach (var hex in species.EditorCells)
+            {
+                if (hex.Data == null)
+                    throw new ArgumentException("editor cell does not have celltemplate set");
+
+                var cell = hex.Data;
+
+                if (cell.CellType != cellType)
+                    continue;
+
+                cellBalance.Clear();
+
+                var totalSpecializationBonus = cellTypeSpecializationBonus *
+                    CellBodyPlanInternalCalculations.GetAdjacencySpecializationBonusFromBodyPlan(cell,
+                        species.EditorCells);
+
+                // Auto-evo uses the average values of compound during the course of a simulated day
+                ProcessSystem.ComputeEnergyBalanceSimple(cellType.Organelles, biomeConditions, environmentalTolerances,
+                    totalSpecializationBonus, cellType.MembraneType, maximumMovementDirection, true,
+                    species.PlayerSpecies, worldSettings, CompoundAmountType.Average, this, cellBalance);
+
+                cached.Add(cellBalance);
+            }
+        }
+
+        cachedSimpleEnergyBalances.Add(key, cached);
+        return cached;
+    }
+
     // TODO: Both of these seem like something that could easily be stored on the species with OnEdited
     // And also *not* caching them at all is much slower (so if not cached in species, they must be cached here)
     public float GetSpeedForSpecies(MicrobeSpecies species)
@@ -456,7 +517,7 @@ public class SimulationCache
         var preySpeed = GetSpeedForSpecies(prey);
         var preyRotationSpeed = GetRotationSpeedForSpecies(prey);
         var slowedPreySpeed = preySpeed;
-        var preyIndividualCost = MichePopulation.CalculateMicrobeIndividualCost(prey, biomeConditions, this);
+        var preyIndividualCost = MichePopulation.CalculateIndividualCost(prey, biomeConditions, this);
         var preyEnergyBalance = GetEnergyBalanceForSpecies(prey, biomeConditions);
         var preyOsmoregulationCost = preyEnergyBalance.Osmoregulation;
 
@@ -1313,6 +1374,18 @@ public class SimulationCache
         // This method is faster when not using caching
         // With cache: 1 692 ms for 1,882 million calls
         // Without caching: 132 ms for 2,095 million calls
+
+        var tolerances = MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(species, biomeConditions);
+
+        var result = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(tolerances);
+
+        return result;
+    }
+
+    public ResolvedMicrobeTolerances GetEnvironmentalTolerances(MulticellularSpecies species,
+        BiomeConditions biomeConditions)
+    {
+        // Not yet known whether this is faster with or without caching
 
         var tolerances = MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(species, biomeConditions);
 

@@ -222,7 +222,7 @@ public class ModifyExistingSpecies : IRunStep
                     }
 
                     var newPopulation =
-                        MichePopulation.CalculateMicrobePopulationInPatch(mutation.MutatedSpecies, miche!, patch,
+                        MichePopulation.CalculatePopulationInPatch(mutation.MutatedSpecies, miche!, patch,
                             cache);
 
                     if (newPopulation > Constants.AUTO_EVO_MINIMUM_VIABLE_POPULATION)
