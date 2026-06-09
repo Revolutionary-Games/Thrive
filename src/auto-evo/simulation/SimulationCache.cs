@@ -408,9 +408,9 @@ public class SimulationCache
             return 1;
         }
 
-        if (predatorSpecies is not MicrobeSpecies prey)
+        if (preySpecies is not MicrobeSpecies prey)
         {
-            if (predatorSpecies is not MulticellularSpecies)
+            if (preySpecies is not MulticellularSpecies)
                 return 0;
 
             return 1;
