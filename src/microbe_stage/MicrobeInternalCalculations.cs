@@ -1045,8 +1045,6 @@ public static class MicrobeInternalCalculations
     private static Vector3 ChooseFromSymmetricFlagella(IReadOnlyCollection<IReadOnlyOrganelleTemplate> organelles,
         IReadOnlyOrganelleTemplate testedOrganelle, Vector3 maximumMovementDirection)
     {
-        int organelleCount = organelles.Count;
-
         foreach (var organelle in organelles)
         {
             if (!organelle.Definition.HasMovementComponent)
