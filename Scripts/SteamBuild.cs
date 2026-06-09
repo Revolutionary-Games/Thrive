@@ -102,7 +102,7 @@ public static class SteamBuild
     {
         if (platform == SteamPlatform.Mac)
         {
-            // Mac requires architecture specific references
+            // Mac requires architecture-specific references
 
             return
                 $"{STEAMWORKS_REFERENCE_START}.arm64\" {CONDITION_MAC_ARM64}><HintPath>" +
