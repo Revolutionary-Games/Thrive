@@ -100,7 +100,6 @@ public class CompoundCloudPressure : SelectionPressure
 
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {
-        float score;
         float speed;
         float chemoreceptorScore;
         float compoundATP;
@@ -157,7 +156,7 @@ public class CompoundCloudPressure : SelectionPressure
             return 0;
         }
 
-        score = MathF.Pow(speed, 0.6f);
+        var score = MathF.Pow(speed, 0.6f);
 
         // Diminishing returns on storage
         score += (MathF.Pow(nominalStorageCapacity + 1, 0.8f) - 1) / 0.8f;
