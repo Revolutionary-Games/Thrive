@@ -213,6 +213,25 @@ public class SimulationCache
         return cached;
     }
 
+    public EnergyBalanceInfoSimple GetEnergyBalanceForCellType(IReadOnlyCellTypeDefinition celltype,
+        MulticellularSpecies species, BiomeConditions biomeConditions)
+    {
+        var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(celltype.Organelles);
+
+        // TODO: check if caching instances of these objects would be better than always recreating
+        var cached = new EnergyBalanceInfoSimple();
+
+        var totalSpecializationBonus = celltype.CellTypeSpecializationBonus;
+
+        // Auto-evo uses the average values of compound during the course of a simulated day
+        ProcessSystem.ComputeEnergyBalanceSimple(celltype.Organelles, biomeConditions,
+            GetEnvironmentalTolerances(species, biomeConditions), totalSpecializationBonus, celltype.MembraneType,
+            maximumMovementDirection, true, species.PlayerSpecies, worldSettings, CompoundAmountType.Average, this,
+            cached);
+
+        return cached;
+    }
+
     // TODO: Both of these seem like something that could easily be stored on the species with OnEdited
     // And also *not* caching them at all is much slower (so if not cached in species, they must be cached here)
     public float GetSpeedForSpecies(MicrobeSpecies species)
