@@ -96,6 +96,21 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
     public override ArchiveObjectType ArchiveObjectType =>
         (ArchiveObjectType)ThriveArchiveObjectType.MulticellularSpecies;
 
+    // TODO: precalculate this as it'll help auto-evo quite a bit
+    /// <summary>
+    ///   Compound capacities members of this species can store in their default configurations
+    /// </summary>
+    public (float Nominal, Dictionary<Compound, float> Specific) StorageCapacities
+    {
+        get
+        {
+            var specific =
+                CellBodyPlanInternalCalculations.GetTotalSpecificCapacity(ModifiableEditorCells, out var nominal);
+
+            return (nominal, specific);
+        }
+    }
+
     public static MulticellularSpecies ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
