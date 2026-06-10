@@ -641,6 +641,38 @@ public static class MicrobeInternalCalculations
         return false;
     }
 
+    public static bool UsesDayVaryingCompounds(IReadOnlyCollection<IReadOnlyOrganelleTemplate> organelles,
+        BiomeConditions biomeConditions, HashSet<BioProcess>? usedProcessesCache)
+    {
+        if (usedProcessesCache == null)
+        {
+            usedProcessesCache = new HashSet<BioProcess>(organelles.Count + 1);
+        }
+        else
+        {
+            usedProcessesCache.Clear();
+        }
+
+        foreach (var organelle in organelles)
+        {
+            foreach (var tweakedProcess in organelle.Definition.RunnableProcesses)
+            {
+                usedProcessesCache.Add(tweakedProcess.Process);
+            }
+        }
+
+        foreach (var usedProcess in usedProcessesCache)
+        {
+            foreach (var input in usedProcess.Inputs)
+            {
+                if (biomeConditions.IsVaryingCompound(input.Key.ID))
+                    return true;
+            }
+        }
+
+        return false;
+    }
+
     /// <summary>
     ///   Calculates how much storage is needed to survive the night for a cell.
     /// </summary>

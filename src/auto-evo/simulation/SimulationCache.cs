@@ -419,6 +419,33 @@ public class SimulationCache
         return cached;
     }
 
+    public float GetCompoundGeneratedFrom(CompoundDefinition fromCompound, CompoundDefinition toCompound,
+        MulticellularSpecies species, BiomeConditions biomeConditions)
+    {
+        // This method has not yet been profiled for the decision on using caching or not
+        var cached = 0.0f;
+
+        var activeProcessList = GetActiveProcessList(species);
+        var tolerances = GetEnvironmentalTolerances(species, biomeConditions);
+
+        foreach (var process in activeProcessList)
+        {
+            if (process.Process.Inputs.ContainsKey(fromCompound))
+            {
+                if (process.Process.Outputs.TryGetValue(toCompound, out var outputAmount))
+                {
+                    var processSpeed =
+                        GetProcessMaximumSpeed(process, tolerances.ProcessSpeedModifier, biomeConditions)
+                            .CurrentSpeed;
+
+                    cached += outputAmount * processSpeed;
+                }
+            }
+        }
+
+        return cached;
+    }
+
     /// <summary>
     ///   Calculates a maximum speed for a process that can happen given the environmental. Environmental compounds
     ///   are always used at the average amount in auto-evo.
@@ -1062,6 +1089,40 @@ public class SimulationCache
         return cached;
     }
 
+    public bool GetUsesVaryingCompoundsForSpecies(MulticellularSpecies species, BiomeConditions biomeConditions)
+    {
+#if CHECK_HASH_CODE_REUSED_INSTANCES
+        CheckSpecies(species);
+#endif
+
+        // Disabling this cache makes this ever so slightly slower
+        var key = (GetSpeciesCacheKey(species), biomeConditions);
+
+        ref var usesVarying = ref CollectionsMarshal.GetValueRefOrNullRef(cachedUsesVaryingCompounds, key);
+        if (!Unsafe.IsNullRef(ref usesVarying))
+        {
+            return usesVarying;
+        }
+
+        var cached = false;
+
+        foreach (var hex in species.EditorCells)
+        {
+            var cell = hex.Data;
+            if (cell != null)
+            {
+                if (cached)
+                    break;
+
+                cached = MicrobeInternalCalculations.UsesDayVaryingCompounds(cell.Organelles,
+                    biomeConditions, null);
+            }
+        }
+
+        cachedUsesVaryingCompounds.Add(key, cached);
+        return cached;
+    }
+
     public float GetChemoreceptorCloudScore(MicrobeSpecies species, CompoundDefinition compound,
         BiomeConditions biomeConditions)
     {
@@ -1078,7 +1139,54 @@ public class SimulationCache
                 continue;
 
             if (organelleTargetCompound == compound.ID)
+            {
                 hasChemoreceptor = true;
+                break;
+            }
+        }
+
+        if (hasChemoreceptor)
+        {
+            if (biomeConditions.AverageCompounds.TryGetValue(compound.ID, out var compoundData) &&
+                compoundData.Density > 0)
+            {
+                cached = Constants.AUTO_EVO_CHEMORECEPTOR_BASE_SCORE
+                    + Constants.AUTO_EVO_CHEMORECEPTOR_VARIABLE_CLOUD_SCORE
+                    / (compoundData.Density * compoundData.Amount);
+            }
+        }
+
+        return cached;
+    }
+
+    public float GetChemoreceptorCloudScore(MulticellularSpecies species, CompoundDefinition compound,
+        BiomeConditions biomeConditions)
+    {
+        // This method has not yet been profiled for the decision on using caching or not
+
+        var cached = 0.0f;
+        var hasChemoreceptor = false;
+        foreach (var hex in species.EditorCells)
+        {
+            if (hasChemoreceptor)
+                break;
+
+            var cell = hex.Data;
+            if (cell != null)
+            {
+                foreach (var organelle in cell.CellType.Organelles)
+                {
+                    var organelleTargetCompound = organelle.GetActiveTargetCompound();
+                    if (organelleTargetCompound == Compound.Invalid)
+                        continue;
+
+                    if (organelleTargetCompound == compound.ID)
+                    {
+                        hasChemoreceptor = true;
+                        break;
+                    }
+                }
+            }
         }
 
         if (hasChemoreceptor)
