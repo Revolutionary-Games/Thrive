@@ -352,6 +352,42 @@ public class SimulationCache
         return cached;
     }
 
+    public float GetCompoundConversionScoreForSpecies(CompoundDefinition fromCompound, CompoundDefinition toCompound,
+        MulticellularSpecies species)
+    {
+        // Not yet tested whether this method is faster with or without caching
+
+        var compoundIn = 0.0f;
+        var compoundOut = 0.0f;
+        var activeProcessList = GetActiveProcessList(species);
+
+        // For maximum efficiency, as this is called an absolute ton, the following approach is used
+        foreach (var process in activeProcessList)
+        {
+            if (process.Process.Inputs.TryGetValue(fromCompound, out var inputAmount))
+            {
+                if (process.Process.Outputs.TryGetValue(toCompound, out var outputAmount))
+                {
+                    // We don't multiply by speed here as it is about pure efficiency
+                    compoundIn += inputAmount;
+                    compoundOut += outputAmount;
+                }
+            }
+        }
+
+        float cached;
+        if (compoundIn <= 0)
+        {
+            cached = 0;
+        }
+        else
+        {
+            cached = compoundOut / compoundIn;
+        }
+
+        return cached;
+    }
+
     public float GetCompoundGeneratedFrom(CompoundDefinition fromCompound, CompoundDefinition toCompound,
         MicrobeSpecies species, BiomeConditions biomeConditions)
     {
@@ -1131,6 +1167,35 @@ public class SimulationCache
 
         // TODO: a buffer of process lists (to make small list allocations rarer) (as cached is null here if not found)
         ProcessSystem.ComputeActiveProcessList(microbeSpecies.Organelles, ref cached);
+
+        cachedProcessLists.Add(key, cached);
+        return cached;
+    }
+
+    public List<TweakedProcess> GetActiveProcessList(MulticellularSpecies multicellularSpecies)
+    {
+#if CHECK_HASH_CODE_REUSED_INSTANCES
+        CheckSpecies(microbeSpecies);
+#endif
+
+        var key = GetSpeciesCacheKey(multicellularSpecies);
+        if (cachedProcessLists.TryGetValue(key, out var cached))
+        {
+            return cached;
+        }
+
+        List<IReadOnlyOrganelleTemplate> allOrganelles = [];
+
+        foreach (var cell in multicellularSpecies.EditorCells)
+        {
+            foreach (var organelle in cell.Data!.CellType.Organelles)
+            {
+                allOrganelles.Add(organelle);
+            }
+        }
+
+        // TODO: a buffer of process lists (to make small list allocations rarer) (as cached is null here if not found)
+        ProcessSystem.ComputeActiveProcessList(allOrganelles, ref cached);
 
         cachedProcessLists.Add(key, cached);
         return cached;

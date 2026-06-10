@@ -62,15 +62,13 @@ public class CompoundConversionEfficiencyPressure : SelectionPressure
 
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {
-        if (species is not MicrobeSpecies microbeSpecies)
-        {
-            if (species is not MulticellularSpecies)
-                return 0;
+        if (species is MicrobeSpecies microbeSpecies)
+            return cache.GetCompoundConversionScoreForSpecies(FromCompound, ToCompound, microbeSpecies);
 
-            return 1;
-        }
+        if (species is MulticellularSpecies multicellularSpecies)
+            return cache.GetCompoundConversionScoreForSpecies(FromCompound, ToCompound, multicellularSpecies);
 
-        return cache.GetCompoundConversionScoreForSpecies(FromCompound, ToCompound, microbeSpecies);
+        return 0;
     }
 
     public override float GetEnergy(Patch patch)
