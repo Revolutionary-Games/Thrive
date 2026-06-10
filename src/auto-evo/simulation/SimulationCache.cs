@@ -241,6 +241,26 @@ public class SimulationCache
         return cached;
     }
 
+    public float GetSpeedForSpecies(MulticellularSpecies species)
+    {
+#if CHECK_HASH_CODE_REUSED_INSTANCES
+        CheckSpecies(species);
+#endif
+
+        var key = GetSpeciesCacheKey(species);
+
+        ref var speed = ref CollectionsMarshal.GetValueRefOrNullRef(cachedBaseSpeeds, key);
+        if (!Unsafe.IsNullRef(ref speed))
+        {
+            return speed;
+        }
+
+        var cached = CellBodyPlanInternalCalculations.CalculateSpeed(species.ModifiableEditorCells);
+
+        cachedBaseSpeeds.Add(key, cached);
+        return cached;
+    }
+
     public float GetBaseHexSizeForSpecies(MicrobeSpecies species)
     {
 #if CHECK_HASH_CODE_REUSED_INSTANCES
