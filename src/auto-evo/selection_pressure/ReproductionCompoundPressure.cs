@@ -1,6 +1,7 @@
 ﻿namespace AutoEvo;
 
 using System;
+using System.Collections.Generic;
 using SharedBase.Archive;
 
 public class ReproductionCompoundPressure : SelectionPressure
@@ -66,15 +67,41 @@ public class ReproductionCompoundPressure : SelectionPressure
 
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {
-        if (species is not MicrobeSpecies microbeSpecies)
+        float speed;
+        float chemoreceptorScore;
+        float nominalStorageCapacity;
+        bool usesVaryingCompounds;
+
+        var microbeBaseHexSize = 0.0f;
+        var microbeCanEngulf = false;
+
+        List<TweakedProcess> activeProcessList;
+
+        var activity = species.Behaviour.Activity;
+
+        if (species is MicrobeSpecies microbeSpecies)
         {
-            if (species is not MulticellularSpecies)
-                return 0;
-
-            return 1;
+            speed = cache.GetSpeedForSpecies(microbeSpecies);
+            nominalStorageCapacity = microbeSpecies.StorageCapacities.Nominal;
+            usesVaryingCompounds = cache.GetUsesVaryingCompoundsForSpecies(microbeSpecies, patch.Biome);
+            chemoreceptorScore = cache.GetChemoreceptorCloudScore(microbeSpecies, compoundDefinition, patch.Biome);
+            activeProcessList = cache.GetActiveProcessList(microbeSpecies);
+            microbeBaseHexSize = cache.GetBaseHexSizeForSpecies(microbeSpecies);
+            microbeCanEngulf = microbeSpecies.CanEngulf;
         }
-
-        var activeProcessList = cache.GetActiveProcessList(microbeSpecies);
+        else if (species is MulticellularSpecies multicellularSpecies)
+        {
+            speed = cache.GetSpeedForSpecies(multicellularSpecies);
+            nominalStorageCapacity = multicellularSpecies.StorageCapacities.Nominal;
+            usesVaryingCompounds = cache.GetUsesVaryingCompoundsForSpecies(multicellularSpecies, patch.Biome);
+            chemoreceptorScore = cache.GetChemoreceptorCloudScore(multicellularSpecies, compoundDefinition,
+                patch.Biome);
+            activeProcessList = cache.GetActiveProcessList(multicellularSpecies);
+        }
+        else
+        {
+            return 0;
+        }
 
         // Let the miche function even at a compound level of 0
         var compoundAmount = 1.0f;
@@ -86,19 +113,17 @@ public class ReproductionCompoundPressure : SelectionPressure
             compoundAmount += compoundData.Density * compoundData.Amount;
         }
 
-        var score = MathF.Pow(cache.GetSpeedForSpecies(microbeSpecies), 0.6f);
-
-        var chemoreceptorScore = cache.GetChemoreceptorCloudScore(microbeSpecies, compoundDefinition, patch.Biome);
+        var score = MathF.Pow(speed, 0.6f);
 
         // Diminishing returns on storage
-        var capacitiesScore = (MathF.Pow(microbeSpecies.StorageCapacities.Nominal + 1, 0.8f) - 1) * 1.25f;
+        var capacitiesScore = (MathF.Pow(nominalStorageCapacity + 1, 0.8f) - 1) * 1.25f;
         score += capacitiesScore;
 
         // cloud compound collection is reduced if you are chasing prey or running away from predators instead
         var aggressionPenaltyMultiplier = 1 -
-            microbeSpecies.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION *
+            species.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION *
             Constants.AUTO_EVO_MAX_AGGRESSION_GATHERING_PENALTY;
-        var fearPenaltyMultiplier = 1 - microbeSpecies.Behaviour.Fear / Constants.MAX_SPECIES_FEAR *
+        var fearPenaltyMultiplier = 1 - species.Behaviour.Fear / Constants.MAX_SPECIES_FEAR *
             Constants.AUTO_EVO_MAX_FEAR_GATHERING_PENALTY;
 
         score *= aggressionPenaltyMultiplier * fearPenaltyMultiplier;
@@ -109,18 +134,51 @@ public class ReproductionCompoundPressure : SelectionPressure
         chemoreceptorScore *= compoundAmount;
 
         // Precompute some scores to only resolve once.
-        var speedScore = MathF.Pow(cache.GetSpeedForSpecies(microbeSpecies), 0.4f);
-        var baseMicrobeHexSize = cache.GetBaseHexSizeForSpecies(microbeSpecies);
-        var opportunismFraction = MathF.Pow(
-            microbeSpecies.Behaviour.Opportunism / Constants.MAX_SPECIES_ACTIVITY, 0.5f);
+        var speedScore = MathF.Pow(speed, 0.4f);
+
+        var opportunismFraction = MathF.Pow(species.Behaviour.Opportunism / Constants.MAX_SPECIES_ACTIVITY, 0.5f);
 
         // Combine with compound amounts and scores from all chunks
         foreach (var chunk in patch.Biome.Chunks.Values)
         {
+            var canEngulfChunk = false;
             if (chunk.Compounds != null && chunk.Compounds.ContainsKey(compound))
             {
-                var chunkChemoreceptorScore =
-                    cache.GetChemoreceptorChunkScore(microbeSpecies, chunk, compoundDefinition);
+                var chunkChemoreceptorScore = 0.0f;
+                if (species is MicrobeSpecies microbe)
+                {
+                    chunkChemoreceptorScore = cache.GetChemoreceptorChunkScore(microbe, chunk, compoundDefinition);
+
+                    if (microbeCanEngulf && microbeBaseHexSize > chunk.Size * Constants.ENGULF_SIZE_RATIO_REQ)
+                        canEngulfChunk = true;
+                }
+
+                if (species is MulticellularSpecies multicellularSpecies)
+                {
+                    chunkChemoreceptorScore = cache.GetChemoreceptorChunkScore(multicellularSpecies, chunk,
+                        compoundDefinition);
+
+                    foreach (var cellType in multicellularSpecies.CellTypes)
+                    {
+                        if (canEngulfChunk)
+                            break;
+
+                        if (cellType.MembraneType.CanEngulf &&
+                            cache.GetBaseHexSizeForCellType(cellType) > chunk.Size * Constants.ENGULF_SIZE_RATIO_REQ)
+                        {
+                            foreach (var hex in multicellularSpecies.EditorCells)
+                            {
+                                var cell = hex.Data;
+                                if (cell != null && cell.CellType == cellType)
+                                {
+                                    canEngulfChunk = true;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+
                 var chunkScore = 1.0f;
 
                 // Speed is not too important to chunk microbes,
@@ -134,8 +192,7 @@ public class ReproductionCompoundPressure : SelectionPressure
                 chunkScore *= fearPenaltyMultiplier;
 
                 // If the species can't engulf, then they are dependent on only eating the runoff compounds
-                if (!microbeSpecies.CanEngulf ||
-                    baseMicrobeHexSize < chunk.Size * Constants.ENGULF_SIZE_RATIO_REQ)
+                if (!canEngulfChunk)
                 {
                     chunkScore *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;
                     chunkChemoreceptorScore *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;
@@ -162,10 +219,8 @@ public class ReproductionCompoundPressure : SelectionPressure
 
         var finalScore = 0.1f;
 
-        var activity = microbeSpecies.Behaviour.Activity;
-
         // Species that are less active during the night get a penalty to their activity
-        if (isDayNightCycleEnabled && cache.GetUsesVaryingCompoundsForSpecies(microbeSpecies, patch.Biome))
+        if (isDayNightCycleEnabled && usesVaryingCompounds)
         {
             var multiplier = activity / Constants.AI_ACTIVITY_TO_BE_FULLY_ACTIVE_DURING_NIGHT;
 
@@ -177,7 +232,7 @@ public class ReproductionCompoundPressure : SelectionPressure
 
         // modify score by activity and focus
         var activityScore = MathF.Pow(activity / Constants.MAX_SPECIES_ACTIVITY, 0.4f);
-        var focusScore = MathF.Pow(microbeSpecies.Behaviour.Focus / Constants.MAX_SPECIES_ACTIVITY, 0.4f);
+        var focusScore = MathF.Pow(species.Behaviour.Focus / Constants.MAX_SPECIES_ACTIVITY, 0.4f);
 
         finalScore += (score + chemoreceptorScore) * activityScore * focusScore;
         finalScore += score * (1 - activityScore * focusScore) *
