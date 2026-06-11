@@ -1,6 +1,7 @@
 ﻿namespace AutoEvo;
 
 using System;
+using System.Collections.Generic;
 using SharedBase.Archive;
 
 public class MaintainCompoundPressure : SelectionPressure
@@ -50,21 +51,27 @@ public class MaintainCompoundPressure : SelectionPressure
 
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {
-        if (species is not MicrobeSpecies microbeSpecies)
+        List<TweakedProcess> activeProcessList;
+        ResolvedMicrobeTolerances resolvedTolerances;
+        var biomeConditions = patch.Biome;
+
+        if (species is MicrobeSpecies microbeSpecies)
         {
-            if (species is not MulticellularSpecies)
-                return 0;
-
-            return 1;
+            activeProcessList = cache.GetActiveProcessList(microbeSpecies);
+            resolvedTolerances = cache.GetEnvironmentalTolerances(microbeSpecies, biomeConditions);
         }
-
-        var activeProcessList = cache.GetActiveProcessList(microbeSpecies);
+        else if (species is MulticellularSpecies multicellularSpecies)
+        {
+            activeProcessList = cache.GetActiveProcessList(multicellularSpecies);
+            resolvedTolerances = cache.GetEnvironmentalTolerances(multicellularSpecies, biomeConditions);
+        }
+        else
+        {
+            return 0;
+        }
 
         var compoundUsed = 0.0f;
         var compoundCreated = 0.0f;
-
-        var biomeConditions = patch.Biome;
-        var resolvedTolerances = cache.GetEnvironmentalTolerances(microbeSpecies, biomeConditions);
 
         foreach (var process in activeProcessList)
         {
