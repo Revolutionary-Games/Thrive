@@ -1246,6 +1246,53 @@ public class SimulationCache
         return cached;
     }
 
+    public float GetChemoreceptorChunkScore(MulticellularSpecies species, ChunkConfiguration chunk,
+        CompoundDefinition compound)
+    {
+        // This method has not yet been profiled for the decision on using caching or not
+
+        // Need to have chemoreceptor to be able to "smell" chunks
+        var cached = 0.0f;
+        var hasChemoreceptor = false;
+        foreach (var hex in species.EditorCells)
+        {
+            if (hasChemoreceptor)
+                break;
+
+            var cell = hex.Data;
+            if (cell != null)
+            {
+                foreach (var organelle in cell.CellType.Organelles)
+                {
+                    var organelleTargetCompound = organelle.GetActiveTargetCompound();
+                    if (organelleTargetCompound == Compound.Invalid)
+                        continue;
+
+                    if (organelleTargetCompound == compound.ID)
+                    {
+                        hasChemoreceptor = true;
+                        break;
+                    }
+                }
+            }
+        }
+
+        // If the chunk doesn't spawn, it doesn't give any of its compound
+        if (hasChemoreceptor && chunk.Density > 0)
+        {
+            // We use null suppression here
+            // as this method is only meant to be called on chunks that are known to contain the given compound
+            if (!chunk.Compounds!.TryGetValue(compound.ID, out var compoundAmount))
+                throw new ArgumentException("Chunk does not contain compound");
+
+            cached = Constants.AUTO_EVO_CHEMORECEPTOR_BASE_SCORE
+                + Constants.AUTO_EVO_CHEMORECEPTOR_VARIABLE_CHUNK_SCORE
+                / (chunk.Density * MathF.Pow(compoundAmount.Amount, Constants.AUTO_EVO_CHUNK_AMOUNT_NERF));
+        }
+
+        return cached;
+    }
+
     public bool MatchesSettings(WorldGenerationSettings checkAgainst)
     {
         return worldSettings.Equals(checkAgainst);

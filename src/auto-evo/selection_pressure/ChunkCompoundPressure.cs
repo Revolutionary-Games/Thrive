@@ -119,7 +119,7 @@ public class ChunkCompoundPressure : SelectionPressure
             speed = cache.GetSpeedForSpecies(microbeSpecies);
             nominalStorageCapacity = microbeSpecies.StorageCapacities.Nominal;
             usesVaryingCompounds = cache.GetUsesVaryingCompoundsForSpecies(microbeSpecies, patch.Biome);
-            chemoreceptorScore = cache.GetChemoreceptorCloudScore(microbeSpecies, compound, patch.Biome);
+            chemoreceptorScore = cache.GetChemoreceptorChunkScore(microbeSpecies, chunk, compound);
             energyBalance = cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome);
 
             if (microbeSpecies.CanEngulf &&
@@ -145,8 +145,7 @@ public class ChunkCompoundPressure : SelectionPressure
             speed = cache.GetSpeedForSpecies(multicellularSpecies);
             nominalStorageCapacity = multicellularSpecies.StorageCapacities.Nominal;
             usesVaryingCompounds = cache.GetUsesVaryingCompoundsForSpecies(multicellularSpecies, patch.Biome);
-            chemoreceptorScore = cache.GetChemoreceptorCloudScore(multicellularSpecies, compound,
-                patch.Biome);
+            chemoreceptorScore = cache.GetChemoreceptorChunkScore(multicellularSpecies, chunk, compound);
             energyBalance = cache.GetEnergyBalanceForSpecies(multicellularSpecies, patch.Biome);
 
             foreach (var cellType in multicellularSpecies.CellTypes)
