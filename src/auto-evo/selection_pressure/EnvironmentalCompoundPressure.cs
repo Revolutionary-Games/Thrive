@@ -81,26 +81,40 @@ public class EnvironmentalCompoundPressure : SelectionPressure
 
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {
-        if (species is not MicrobeSpecies microbeSpecies)
+        if (species is MicrobeSpecies microbeSpecies)
         {
-            if (species is not MulticellularSpecies)
-                return 0;
+            var amountCreated = cache.GetCompoundGeneratedFrom(compound, createdCompound, microbeSpecies, patch.Biome);
 
-            return 1;
+            if (createdCompound.ID == Compound.Glucose)
+            {
+                amountCreated *=
+                    cache.GetCompoundConversionScoreForSpecies(createdCompound, atp, microbeSpecies);
+            }
+
+            var energyBalance = cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome);
+
+            // Penalize Species that cannot rely exclusively on this compound
+            return MathF.Min(amountCreated / energyBalance.TotalConsumption, 1);
         }
 
-        var amountCreated = cache.GetCompoundGeneratedFrom(compound, createdCompound, microbeSpecies, patch.Biome);
-
-        if (createdCompound.ID == Compound.Glucose)
+        if (species is MulticellularSpecies multicellularSpecies)
         {
-            amountCreated *=
-                cache.GetCompoundConversionScoreForSpecies(createdCompound, atp, microbeSpecies);
+            var amountCreated = cache.GetCompoundGeneratedFrom(compound, createdCompound,
+                multicellularSpecies, patch.Biome);
+
+            if (createdCompound.ID == Compound.Glucose)
+            {
+                amountCreated *=
+                    cache.GetCompoundConversionScoreForSpecies(createdCompound, atp, multicellularSpecies);
+            }
+
+            var energyBalance = cache.GetEnergyBalanceForSpecies(multicellularSpecies, patch.Biome);
+
+            // Penalize Species that cannot rely exclusively on this compound
+            return MathF.Min(amountCreated / energyBalance.TotalConsumption, 1);
         }
 
-        var energyBalance = cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome);
-
-        // Penalize Species that cannot rely exclusively on this compound
-        return MathF.Min(amountCreated / energyBalance.TotalConsumption, 1);
+        return 0;
     }
 
     public override float GetEnergy(Patch patch)
