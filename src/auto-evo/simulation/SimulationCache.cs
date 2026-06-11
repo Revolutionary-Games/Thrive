@@ -300,6 +300,13 @@ public class SimulationCache
         return cached;
     }
 
+    public float GetBaseHexSizeForCellType(IReadOnlyCellTypeDefinition cellType)
+    {
+        // Not yet profiled to decide whether this should be cached or not
+
+        return cellType.BaseHexSize;
+    }
+
     public float GetRotationSpeedForSpecies(MicrobeSpecies species)
     {
         // TODO: this might be useful to cache though this is just used from a single place (though targeted
