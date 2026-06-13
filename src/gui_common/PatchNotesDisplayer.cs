@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
 using Godot;
 
 /// <summary>
@@ -8,6 +9,10 @@ public partial class PatchNotesDisplayer : VBoxContainer
 {
     [Export]
     public bool InsideDialogStyle;
+
+    private const int VersionsPerPage = 5;
+
+    private readonly List<string> allVersions = [];
 
 #pragma warning disable CA2213
     [Export]
@@ -20,25 +25,40 @@ public partial class PatchNotesDisplayer : VBoxContainer
     private Label newVersionsCountLabel = null!;
 
     [Export]
-    private Button viewAllButton = null!;
+    private Label recentBoundaryLabel = null!;
 
     [Export]
-    private Button viewAllButtonOutsideScroll = null!;
+    private ScrollContainer scrollContainer = null!;
+
+    [Export]
+    private Button newerButton = null!;
+
+    [Export]
+    private Button olderButton = null!;
+
 #pragma warning restore CA2213
+
+    private int currentVersionIndex;
+
+    /// <summary>
+    ///   Count of versions newer than the player's last-played version. Acts as a hard page boundary in main-menu
+    ///   mode so the first page only shows the recent set (capped by <see cref="VersionsPerPage"/>). Zero when
+    ///   not in main-menu mode (e.g. options-menu "show latest").
+    /// </summary>
+    private int recentVersionsCount;
 
     public override void _Ready()
     {
-        patchNotes.Visible = false;
-        newVersionsCountLabel.Visible = false;
-
         if (InsideDialogStyle)
         {
             title.Visible = false;
             patchNotes.StyleWithBackground = false;
-
-            viewAllButton.Visible = false;
-            viewAllButtonOutsideScroll.Visible = true;
         }
+
+        newVersionsCountLabel.Visible = false;
+        recentBoundaryLabel.Visible = false;
+
+        RebuildVersionList();
     }
 
     public bool ShowIfNewPatchNotesExist()
@@ -57,9 +77,8 @@ public partial class PatchNotesDisplayer : VBoxContainer
         if (VersionUtils.Compare(currentVersion, lastPlayed) <= 0)
             return false;
 
-        // Find the oldest patch notes we should show, and count how many versions there's been
+        // Count how many versions have been released since the player last played
         int newVersions = 0;
-        string? oldestToShow = null;
 
         foreach (var entry in SimulationParameters.Instance.GetPatchNotes())
         {
@@ -72,11 +91,6 @@ public partial class PatchNotesDisplayer : VBoxContainer
                 continue;
 
             ++newVersions;
-
-            if (oldestToShow == null || VersionUtils.Compare(entry.Key, oldestToShow) < 0)
-            {
-                oldestToShow = entry.Key;
-            }
         }
 
         if (newVersions < 1)
@@ -86,13 +100,9 @@ public partial class PatchNotesDisplayer : VBoxContainer
             return false;
         }
 
-        // Show the right notes
-        patchNotes.ShowAll = false;
-        patchNotes.FilterNewestVersion = currentVersion;
-        patchNotes.FilterOldestVersion = oldestToShow;
-
-        // And then make it visible to refresh its data
-        patchNotes.Visible = true;
+        recentVersionsCount = newVersions;
+        currentVersionIndex = 0;
+        ShowVersionAtCurrentIndex();
 
         // Setup text to show how many new versions there are
         if (newVersions == 1)
@@ -113,27 +123,92 @@ public partial class PatchNotesDisplayer : VBoxContainer
 
     public void ShowLatest()
     {
-        var latestVersion = SimulationParameters.Instance.GetPatchNotes().Last();
-
-        patchNotes.ShowAll = false;
-        patchNotes.FilterNewestVersion = latestVersion.Key;
-        patchNotes.FilterOldestVersion = latestVersion.Key;
-        patchNotes.Visible = true;
-
-        newVersionsCountLabel.Visible = false;
-
-        viewAllButton.Disabled = false;
-        viewAllButtonOutsideScroll.Disabled = false;
+        if (allVersions.Count > 0)
+        {
+            recentVersionsCount = 0;
+            currentVersionIndex = 0;
+            ShowVersionAtCurrentIndex();
+        }
     }
 
-    private void OnViewAllPressed()
+    private void RebuildVersionList()
+    {
+        allVersions.Clear();
+
+        foreach (var entry in SimulationParameters.Instance.GetPatchNotes())
+        {
+            allVersions.Add(entry.Key);
+        }
+
+        // Newest first for navigation
+        allVersions.Reverse();
+    }
+
+    private void ShowVersionAtCurrentIndex()
+    {
+        if (allVersions.Count == 0)
+            return;
+
+        var pageEndExclusive = GetPageEnd(currentVersionIndex);
+
+        patchNotes.FilterNewestVersion = allVersions[currentVersionIndex];
+        patchNotes.FilterOldestVersion = allVersions[pageEndExclusive - 1];
+
+        scrollContainer.ScrollVertical = 0;
+
+        newerButton.Disabled = currentVersionIndex == 0;
+        olderButton.Disabled = pageEndExclusive >= allVersions.Count;
+        recentBoundaryLabel.Visible = recentVersionsCount > 0 && pageEndExclusive == recentVersionsCount;
+    }
+
+    /// <summary>
+    ///   Returns the exclusive end index of the page that starts at <paramref name="start"/>. Clamped to the recent
+    ///   set boundary so that boundary always falls on a page break.
+    /// </summary>
+    private int GetPageEnd(int start)
+    {
+        var end = Math.Min(start + VersionsPerPage, allVersions.Count);
+
+        if (recentVersionsCount > 0 && start < recentVersionsCount && recentVersionsCount < end)
+            end = recentVersionsCount;
+
+        return end;
+    }
+
+    private int GetPrevPageStart(int currentStart)
+    {
+        // Walk forward from 0; the previous page is the one whose end matches currentStart.
+        var start = 0;
+        while (true)
+        {
+            var end = GetPageEnd(start);
+            if (end >= currentStart)
+                return start;
+
+            start = end;
+        }
+    }
+
+    private void OnOlderButtonPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        viewAllButton.Disabled = true;
-        viewAllButtonOutsideScroll.Disabled = true;
+        var pageEnd = GetPageEnd(currentVersionIndex);
+        if (pageEnd < allVersions.Count)
+        {
+            currentVersionIndex = pageEnd;
+            ShowVersionAtCurrentIndex();
+        }
+    }
 
-        patchNotes.ShowAll = true;
-        patchNotes.Visible = true;
+    private void OnNewerButtonPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        if (currentVersionIndex > 0)
+        {
+            currentVersionIndex = GetPrevPageStart(currentVersionIndex);
+            ShowVersionAtCurrentIndex();
+        }
     }
 }

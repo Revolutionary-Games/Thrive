@@ -84,8 +84,8 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
 
         var weight = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species,
             colonyPosition.Position + colonyPosition.Rotation * attachPosition.RelativePosition, true,
-            (cellTemplate.ModifiableCellType, bodyPlanIndex), recorder, out var member, MulticellularSpawnState.Bud,
-            giveStartingCompounds);
+            (cellTemplate.ModifiableCellType, bodyPlanIndex), recorder, out var member,
+            MulticellularSpawnState.Offspring, giveStartingCompounds);
 
         // Register with the spawn system to allow this entity to despawn if it gets cut off from the colony later
         // or attaching fails
@@ -245,9 +245,8 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
         for (int i = bodyPlanIndex; i < bodyPlanIndex + members && i < species.Species.ModifiableGameplayCells.Count;
              ++i)
         {
-            CreateDelayAttachedMicrobe(ref parentPosition, entity, bodyPlanIndex++,
-                species.Species.ModifiableGameplayCells[i], species.Species, worldSimulation, spawnEnvironment,
-                recorder, spawnSystem, true, playAnimation);
+            CreateDelayAttachedMicrobe(ref parentPosition, entity, i, species.Species.ModifiableGameplayCells[i],
+                species.Species, worldSimulation, spawnEnvironment, recorder, spawnSystem, true, playAnimation);
 
             added = true;
         }

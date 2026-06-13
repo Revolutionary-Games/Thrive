@@ -1,11 +1,11 @@
-FROM fedora:43
+FROM fedora:44
 
 RUN dnf install -y --setopt=deltarpm=false git git-lfs unzip wget dotnet-sdk-10.0 \
     gettext p7zip fontconfig && dnf clean all
 RUN git lfs install
 
 # Godot install
-ENV GODOT_VERSION "4.6.2"
+ENV GODOT_VERSION "4.6.3"
 
 RUN wget https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_mono_linux_x86_64.zip \
     && wget https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_mono_export_templates.tpz \

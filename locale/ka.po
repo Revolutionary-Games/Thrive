@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-25 18:16+0300\n"
-"PO-Revision-Date: 2026-05-22 15:37+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2026-06-03 20:10+0100\n"
+"PO-Revision-Date: 2026-06-04 08:52+0000\n"
+"Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ka/>\n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
@@ -170,6 +170,13 @@ msgstr "თქვენ უკვე ახვედით"
 
 msgid "ALT"
 msgstr "Alt"
+
+#, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr "მცენარეული ლორწოს სეკრეცია, რომელიც თქვენს სიჩქარეს გაზრდის და შეამცირებს სიჩქარეს უჯრედებისას, რომლებიც ლორწოში გაიჭედნენ"
+
+msgid "ALTERNATVE_TIMESCALE"
+msgstr ""
 
 msgid "ALWAYS_VISIBLE"
 msgstr "ყოველთვის ხილული"
@@ -1736,6 +1743,14 @@ msgstr "მიკრობის ფონების დამახინჯ�
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "ფონური ნაწილაკების ჩვენება"
 
+#, fuzzy
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr "OpenGL"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_METAL"
+msgstr "OpenGL"
+
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr "OpenGL"
 
@@ -1771,9 +1786,6 @@ msgstr "ორმაგი წკაპი სრულ ეკრანზე �
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
-
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "გადართვა თამაშის ნორმალურ და ორმაგ სიჩქარეს შორის"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr "გადაათრიეთ ეს, რომ საგნები თაგუნათი გადაალაგოთ"
@@ -3460,6 +3472,13 @@ msgstr "მარტი"
 msgid "MARINE_SNOW"
 msgstr "ზღვის თოვლი"
 
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "აჩენს ერთ ნაშიერს—ახალი კოლონიის საწყის უჯრედს."
+
 msgid "MASTER_VOLUME"
 msgstr "საერთო ხმის დონე"
 
@@ -4128,12 +4147,22 @@ msgstr "მაშინ, როცა თქვენი უჯრედებ�
 msgid "MULTICELLULAR_LOADING_TIP_6"
 msgstr "მაშინ, როცა თქვენი უჯრედები იყოფენ ნაერთებს, თითოეულ უჯრედს თავისი [thrive:compound type=\"atp\"][/thrive:compound]-ის გამომუშავება სჭირდება. ნებისმიერი უჯრედი, რომელიც მას იყენებს, უმისოდ დაიღუპება."
 
-#, fuzzy
 msgid "MULTICELLULAR_LOADING_TIP_7"
-msgstr "მაშინ, როცა თქვენი უჯრედები იყოფენ ნაერთებს, თითოეულ უჯრედს თავისი [thrive:compound type=\"atp\"][/thrive:compound]-ის გამომუშავება სჭირდება. ნებისმიერი უჯრედი, რომელიც მას იყენებს, უმისოდ დაიღუპება."
+msgstr "სპეციალიზებული უჯრედები მრავალუჯრედიანში პირველი ნაბიჯია სწორ ორგანოებამდე. ერთი ტიპის უჯრედების საწყისი კლასტერები დროთა განმავლობაში ქსოვილად გადაიქცევა."
 
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "ეს პანელი აჩვენებს თქვენი კოლონიის კომბინირებულ პროცესებს ყველა მისი უჯრედებისთვის. დაიმახსოვრეთ, რომ სხვა ნაერთებისგან განსხვავებით ატფ უჯრედებს შორის გაზიარებული არაა."
+
+msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
+msgstr ""
+"[b]ფაზა[/b]\n"
+"  მრავალუჯრედიანი\n"
+"[b]უჯრედების რაოდენობა[/b]\n"
+"  {0}\n"
+"[b]უჯრედის ტიპები[/b]\n"
+"  {1}\n"
+"[b]გამრავლების ტიპი[/b]\n"
+"  {2}"
 
 msgid "MULTICELLULAR_STAGE"
 msgstr "მრავალუჯრედიანი ფაზა"
@@ -4205,6 +4234,10 @@ msgstr ""
 
 msgid "NEW"
 msgstr "ახალი"
+
+#, fuzzy
+msgid "NEWER"
+msgstr "ნახვა"
 
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -4404,6 +4437,10 @@ msgstr "ეწვიეთ Revolutionary Games-ის ოფიციალუ�
 
 msgid "OK"
 msgstr "დიახ"
+
+#, fuzzy
+msgid "OLDER"
+msgstr "საქაღალდის გახსნა"
 
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -4669,6 +4706,9 @@ msgstr "ბოლოს ითამაშეთ Thrive {0}. მას შემ
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr "ბოლოს ითამაშეთ Thrive {0}. მას შემდეგ {1} ახალი ვერსია გამოვიდა"
 
+msgid "PATCH_NOTES_RECENT_BOUNDARY"
+msgstr "თქვენ ყველა უახლესი ვერსია იხილეთ."
+
 msgid "PATCH_NOTES_TITLE"
 msgstr "პაჩის შენიშვნები"
 
@@ -4874,9 +4914,8 @@ msgstr "წნევა"
 msgid "PRESSURE_SHORT"
 msgstr "წნევ."
 
-#, fuzzy
 msgid "PRESSURE_TOLERANCE"
-msgstr "წნევ."
+msgstr "წნევის გამძლეობა"
 
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr ""
@@ -4923,9 +4962,6 @@ msgstr "პროექტის მართვის გუნდი"
 msgid "PROTEINS"
 msgstr "ცილები"
 
-msgid "PROTOPLASM"
-msgstr "პროტოპლაზმა"
-
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requests / პროგრამირება"
 
@@ -4956,6 +4992,10 @@ msgid "RADIATION_LEVELS"
 msgstr "რადიაციის დონე"
 
 msgid "RADIOACTIVE_CHUNK"
+msgstr "რადიაქტიური ქვის ნატეხი"
+
+#, fuzzy
+msgid "RADIOACTIVE_CHUNK_BANANA"
 msgstr "რადიაქტიური ქვის ნატეხი"
 
 msgid "RADIOSYNTHESIS"
@@ -5038,6 +5078,10 @@ msgstr "(რა მოხდება, როცა მოთამაშის 
 
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 msgstr ""
+
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "გამრავლება"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "რეპროდუქცია:"
@@ -5173,9 +5217,8 @@ msgstr "შებრუნება მარჯვნივ"
 msgid "ROTATION_COLON"
 msgstr "ბრუნვა:"
 
-#, fuzzy
 msgid "ROTATION_FORCE"
-msgstr "ბრუნვა:"
+msgstr "ბრუნვის ძალა"
 
 msgid "RUNOFF_EVENT"
 msgstr "გალღობის მოვლენა"
@@ -5667,6 +5710,10 @@ msgstr "{0} პოპულაციით: {1}"
 msgid "SPEED_COLON"
 msgstr "სიჩქარე:"
 
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "გადართვა თამაშის ნორმალურ და ორმაგ სიჩქარეს შორის"
+
 msgid "SPORE_CELL_TYPE"
 msgstr "სპორის უჯრედის ტიპი"
 
@@ -5952,9 +5999,8 @@ msgstr "ტემპერატურა"
 msgid "TEMPERATURE_SHORT"
 msgstr "ტემპ."
 
-#, fuzzy
 msgid "TEMPERATURE_TOLERANCE_RANGE"
-msgstr "ზომიერი"
+msgstr "ტემპერატურის გამძლეობის შუალედი"
 
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr ""
@@ -6243,9 +6289,6 @@ msgstr "ხელსაწყოები"
 
 msgid "TOOL_HAND_AXE"
 msgstr "ცული"
-
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
-msgstr "არ ვაჩვენებ ყველა ბოლო ვერსიას, რადგან მათი რაოდენობა დიდია"
 
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "მოგროვებული ენერგია:"
@@ -6778,9 +6821,6 @@ msgstr "{0} მიბ"
 msgid "VIEWER"
 msgstr "ნახვა"
 
-msgid "VIEW_ALL"
-msgstr "ყველას ნახვა"
-
 msgid "VIEW_CELL_PROCESSES"
 msgstr "ორგანიზმის პროცესების ნახვა"
 
@@ -6991,13 +7031,11 @@ msgstr ""
 msgid "WIKI_BINDING_AGENT_UPGRADES"
 msgstr "გაუმჯობესებების გარეშე."
 
-#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_EFFECTS"
-msgstr "[b]ბიოლუმინესცენტური ვაკუოლების[/b] მქონე უჯრედებს გაზრდილი მედეგობა აქვთ ჟანგბადის მიმართ."
+msgstr "ზრდის [thrive:compound type=\"oxygen\"][/thrive:compound] [b]გამძლეობას[/b] 15%-ით."
 
-#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_INTRO"
-msgstr "ქმნის [thrive:compound type=\"sunlight\"][/thrive:compound] და ზრდის ჟანგბადის მიმართ მედეგობას უჯრედებისთვის, რომლებსაც ის უკვე აქვთ."
+msgstr "ქმნის [thrive:compound type=\"sunlight\"][/thrive:compound] და ზრდის [thrive:compound type=\"oxygen\"][/thrive:compound] უჯრედში, რომელშიც ის არსებობს."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_MODIFICATIONS"
 msgstr "ცვლილებების გარეშე."
@@ -7093,9 +7131,8 @@ msgstr ""
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_UPGRADES"
 msgstr "გაუმჯობესებების გარეშე."
 
-#, fuzzy
 msgid "WIKI_CHLOROPLAST_EFFECTS"
-msgstr "ეფექტების გარეშე."
+msgstr "ზრდის [thrive:compound type=\"sunlight\"][/thrive:compound] [b]გამძლეობას[/b] 8%-ით და ზრდის [thrive:compound type=\"oxygen\"][/thrive:compound] [b]გამძლეობას[/b] 3.5%-ით."
 
 msgid "WIKI_CHLOROPLAST_INTRO"
 msgstr ""
@@ -7412,9 +7449,8 @@ msgstr ""
 msgid "WIKI_HELP_AND_TIPS_MORE_GAME_INFO"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_HYDROGENASE_EFFECTS"
-msgstr "ეფექტების გარეშე."
+msgstr "ამცირებს [thrive:compound type=\"oxygen\"][/thrive:compound] [b] გამძლეობას[/b] 4%-ით."
 
 msgid "WIKI_HYDROGENASE_INTRO"
 msgstr ""
@@ -7437,9 +7473,8 @@ msgstr ""
 msgid "WIKI_HYDROGENASE_UPGRADES"
 msgstr "გაუმჯობესებების გარეშე."
 
-#, fuzzy
 msgid "WIKI_HYDROGENOSOME_EFFECTS"
-msgstr "ეფექტების გარეშე."
+msgstr "ამცირებს [thrive:compound type=\"oxygen\"][/thrive:compound] [b] გამძლეობას[/b] 7%-ით."
 
 msgid "WIKI_HYDROGENOSOME_INTRO"
 msgstr ""
@@ -7536,9 +7571,8 @@ msgstr "მექანიკა"
 msgid "WIKI_MECHANICS_ROOT_INTRO"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_MELANOSOME_EFFECTS"
-msgstr "ეფექტების გარეშე."
+msgstr "ზრდის [thrive:compound type=\"sunlight\"][/thrive:compound] [b] გამძლეობას[/b] 2%-ით."
 
 msgid "WIKI_MELANOSOME_INTRO"
 msgstr "[b]მელანოზომები[/b] [color=#3796e1][url=thriveopedia:OrganellesRoot]ორგანელებია[/url][/color], რომლებიც [b]რადიოსინთეზით არიან დაკავებულები[/b], ანუ, ენერგიას რადიაციისგან იღებს, მათი მელანინით ჩაჭერის საშუალებით."
@@ -7564,9 +7598,8 @@ msgstr "რადიაქტიური ქვები ისვიათი�
 msgid "WIKI_MELANOSOME_UPGRADES"
 msgstr "გაუმჯობესებების გარეშე."
 
-#, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
-msgstr "ეფექტების გარეშე."
+msgstr "ზრდის [thrive:compound type=\"oxygen\"][/thrive:compound] [b] გამძლეობას[/b] 3.5%-ით."
 
 msgid "WIKI_METABOLOSOMES_INTRO"
 msgstr ""
@@ -7607,9 +7640,8 @@ msgstr "არსებობს ცალკე თამაშის დიზ
 msgid "WIKI_MICROBE_STAGE_INTRO"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_MITOCHONDRION_EFFECTS"
-msgstr "ეფექტების გარეშე."
+msgstr "ზრდის [thrive:compound type=\"oxygen\"][/thrive:compound] [b] გამძლეობას[/b] 8%-ით."
 
 msgid "WIKI_MITOCHONDRION_INTRO"
 msgstr ""
@@ -7682,9 +7714,8 @@ msgstr "გაუმჯობესებების გარეშე"
 msgid "WIKI_NATION_EDITOR"
 msgstr "ნაციის რედაქტორი"
 
-#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
-msgstr "ეფექტების გარეშე."
+msgstr "ამცირებს [thrive:compound type=\"oxygen\"][/thrive:compound] [b] გამძლეობას[/b] 1%-ით."
 
 msgid "WIKI_NITROGENASE_INTRO"
 msgstr ""
@@ -7707,9 +7738,8 @@ msgstr ""
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "გაუმჯობესებების გარეშე."
 
-#, fuzzy
 msgid "WIKI_NITROPLAST_EFFECTS"
-msgstr "ეფექტების გარეშე."
+msgstr "ამცირებს [thrive:compound type=\"oxygen\"][/thrive:compound] [b] გამძლეობას[/b] 2%-ით."
 
 msgid "WIKI_NITROPLAST_INTRO"
 msgstr ""
@@ -7911,9 +7941,6 @@ msgstr "ოქსიტოქსისომა"
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr "ბურღისებრი პილუსი"
 
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "პროტოპლაზმა"
-
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "რეპროდუქცია"
 
@@ -7982,33 +8009,6 @@ msgstr ""
 
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "ცილით სუნთქვა"
-
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "ეფექტების გარეშე."
-
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr "ცვლილებების გარეშე."
-
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr ""
-"[b]გლიკოლიზი[/b]: [thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"[b]ციტოპლაზმის გლიკოლიზის[/b] გაფართოებული ვერსია სხვადასხვა შეყვანა/გამოტანის სიჩქარეებით."
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr "მოთამაშე [b]პროტოპლაზმას[/b] ვერ განავითარებს. არამოთამაშის სახეობებს ეს შეზღუდვების გარეშე შეუძლია."
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr "გაუმჯობესებების გარეშე."
 
 msgid "WIKI_PULLING_CILIA"
 msgstr "წამწამის გამოქაჩვა"
@@ -8213,9 +8213,8 @@ msgstr ""
 msgid "WIKI_THE_PATCH_MAP_THE_PATCH_MAP"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_THYLAKOIDS_EFFECTS"
-msgstr "სპეციალური ეფექტების გარეშე."
+msgstr "ზრდის [thrive:compound type=\"sunlight\"][/thrive:compound] 3%-ით და ზრდის [thrive:compound type=\"oxygen\"][/thrive:compound] 1.5%-ით."
 
 msgid "WIKI_THYLAKOIDS_INTRO"
 msgstr ""
@@ -8262,9 +8261,8 @@ msgstr ""
 msgid "WIKI_TOXIN_VACUOLE_UPGRADES"
 msgstr "გაუმჯობესებების გარეშე."
 
-#, fuzzy
 msgid "WIKI_VACUOLE_EFFECTS"
-msgstr "ეფექტების გარეშე."
+msgstr "ზრდის მაქსიმალური [b]წნევის გამძლეობას[/b] by 400 კპა-ით."
 
 msgid "WIKI_VACUOLE_INTRO"
 msgstr "ევკარიოტული ორგანელა, რომელიც ნაერთებს უფრო მკვრივად ინახავს, ვიდრე [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytoplasm[/url][/color][/b]. შეიძლება ისწავლოს, რომ კიდევ უფრო გაზარდოს საცავი."
@@ -8446,6 +8444,39 @@ msgstr "გადიდება"
 
 msgid "ZOOM_OUT"
 msgstr "დაპატარავება"
+
+#~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
+#~ msgstr "გადართვა თამაშის ნორმალურ და ორმაგ სიჩქარეს შორის"
+
+#~ msgid "PROTOPLASM"
+#~ msgstr "პროტოპლაზმა"
+
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "პროტოპლაზმა"
+
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "ეფექტების გარეშე."
+
+#~ msgid "WIKI_PROTOPLASM_MODIFICATIONS"
+#~ msgstr "ცვლილებების გარეშე."
+
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr ""
+#~ "[b]გლიკოლიზი[/b]: [thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "[b]ციტოპლაზმის გლიკოლიზის[/b] გაფართოებული ვერსია სხვადასხვა შეყვანა/გამოტანის სიჩქარეებით."
+
+#~ msgid "WIKI_PROTOPLASM_REQUIREMENTS"
+#~ msgstr "მოთამაშე [b]პროტოპლაზმას[/b] ვერ განავითარებს. არამოთამაშის სახეობებს ეს შეზღუდვების გარეშე შეუძლია."
+
+#~ msgid "WIKI_PROTOPLASM_UPGRADES"
+#~ msgstr "გაუმჯობესებების გარეშე."
+
+#~ msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+#~ msgstr "არ ვაჩვენებ ყველა ბოლო ვერსიას, რადგან მათი რაოდენობა დიდია"
+
+#~ msgid "VIEW_ALL"
+#~ msgstr "ყველას ნახვა"
 
 #~ msgid "SPEED"
 #~ msgstr "სიჩქარე"

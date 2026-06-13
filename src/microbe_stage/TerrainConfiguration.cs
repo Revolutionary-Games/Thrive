@@ -17,6 +17,14 @@ public class TerrainConfiguration : RegistryType
 
     private int totalChance;
 
+    public enum RotationRandomization
+    {
+        Disabled,
+        Yaw,
+        Slight,
+        Full,
+    }
+
     [JsonIgnore]
     public override ArchiveObjectType ArchiveObjectType =>
         (ArchiveObjectType)ThriveArchiveObjectType.TerrainConfiguration;
@@ -94,7 +102,7 @@ public class TerrainConfiguration : RegistryType
         public readonly Quaternion DefaultRotation = Quaternion.Identity;
 
         [JsonProperty]
-        public readonly bool RandomizeRotation;
+        public readonly RotationRandomization RandomRotation;
 
         public void Check(string name)
         {
@@ -130,7 +138,7 @@ public class TerrainConfiguration : RegistryType
         public readonly Vector3 RelativePosition;
 
         [JsonProperty]
-        public readonly bool RandomizeRotation;
+        public readonly RotationRandomization RandomRotation;
 
         public float Radius;
 
@@ -176,7 +184,7 @@ public class TerrainConfiguration : RegistryType
         public readonly int RelativeChance;
 
         [JsonProperty]
-        public readonly bool RandomizeRotation;
+        public readonly RotationRandomization RandomRotation;
 
         /// <summary>
         ///   When true, the terrain will slide around other terrain to fit and spawn.

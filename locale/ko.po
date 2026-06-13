@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-25 18:16+0300\n"
+"POT-Creation-Date: 2026-06-03 20:10+0100\n"
 "PO-Revision-Date: 2026-05-13 03:55+0000\n"
 "Last-Translator: 0nmyhead <jg020135@naver.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -182,6 +182,14 @@ msgstr "당신은 이미 초월했습니다"
 
 msgid "ALT"
 msgstr "Alt"
+
+#, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr "저장 및 계속"
+
+#, fuzzy
+msgid "ALTERNATVE_TIMESCALE"
+msgstr ". 비율"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "언제나 보임"
@@ -1918,6 +1926,14 @@ msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "배경 효과 입자 보이기"
 
 #, fuzzy
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr "능력"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_METAL"
+msgstr "능력"
+
+#, fuzzy
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr "능력"
 
@@ -1959,10 +1975,6 @@ msgstr ""
 #, fuzzy
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "두 개의 층이있는 막으로써 피해로부터 더 잘 보호되고 무너지지 않는데 더 적은 에너지를 사용합니다. 그러나 세포의 속도와 자원 흡수 또한 더욱 느려집니다 ."
-
-#, fuzzy
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "재개"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr ""
@@ -3876,6 +3888,13 @@ msgstr ""
 msgid "MARINE_SNOW"
 msgstr "바다눈"
 
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(번식에 필요한 화합물을 아무 것도 하지 않아도 환경에서 자동으로 수집)"
+
 msgid "MASTER_VOLUME"
 msgstr "주 음량"
 
@@ -4702,6 +4721,14 @@ msgstr "다세포 편집기"
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "다세포 단계"
 
+#, fuzzy
+msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
+msgstr ""
+"ATP 막대 옆의 생명력 막대를 주시하세요(오른쪽 아래).\n"
+"생명력이 모두 떨어지면 세포는 죽게 됩니다.\n"
+"ATP가 있다면 재생할 것입니다.\n"
+"ATP를 만들기 위하여 충분한 포도당을 수집하세요."
+
 msgid "MULTICELLULAR_STAGE"
 msgstr "다세포 단계"
 
@@ -4779,6 +4806,10 @@ msgstr ""
 
 msgid "NEW"
 msgstr ""
+
+#, fuzzy
+msgid "NEWER"
+msgstr "뷰어"
 
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -5006,6 +5037,10 @@ msgstr "새로운 키 배치 추가"
 
 msgid "OK"
 msgstr "확인"
+
+#, fuzzy
+msgid "OLDER"
+msgstr "로그 폴더 열기"
 
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -5320,6 +5355,10 @@ msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
 #, fuzzy
+msgid "PATCH_NOTES_RECENT_BOUNDARY"
+msgstr "Pangonian 어귀"
+
+#, fuzzy
 msgid "PATCH_NOTES_TITLE"
 msgstr "세포 진행률"
 
@@ -5602,9 +5641,6 @@ msgstr ""
 msgid "PROTEINS"
 msgstr "단백질"
 
-msgid "PROTOPLASM"
-msgstr "원형질"
-
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr ""
 
@@ -5639,6 +5675,10 @@ msgstr "호흡"
 
 #, fuzzy
 msgid "RADIOACTIVE_CHUNK"
+msgstr "큰 철 덩어리"
+
+#, fuzzy
+msgid "RADIOACTIVE_CHUNK_BANANA"
 msgstr "큰 철 덩어리"
 
 #, fuzzy
@@ -5734,6 +5774,10 @@ msgstr "(번식에 필요한 화합물을 아무 것도 하지 않아도 환경�
 
 #, fuzzy
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
+msgstr "생산"
+
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
 msgstr "생산"
 
 #, fuzzy
@@ -6468,6 +6512,10 @@ msgid "SPEED_COLON"
 msgstr "속도:"
 
 #, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "재개"
+
+#, fuzzy
 msgid "SPORE_CELL_TYPE"
 msgstr "새 저장 생성"
 
@@ -7097,9 +7145,6 @@ msgid "TOOLS"
 msgstr "도구"
 
 msgid "TOOL_HAND_AXE"
-msgstr ""
-
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
 #, fuzzy
@@ -7864,9 +7909,6 @@ msgstr ""
 
 msgid "VIEWER"
 msgstr "뷰어"
-
-msgid "VIEW_ALL"
-msgstr ""
 
 #, fuzzy
 msgid "VIEW_CELL_PROCESSES"
@@ -9272,10 +9314,6 @@ msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr ""
 
 #, fuzzy
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "원형질"
-
-#, fuzzy
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "원형질"
 
@@ -9358,33 +9396,6 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "호흡"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "원형질"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr "원형질"
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr "끈적끈적한 세포 내부. 세포질은 이온, 단백질 및 세포 내부를 채우는 물에 용해된 기타 물질의 기본 혼합물입니다. 이것의 기능 중 하나는 발효를 통해 포도당을 ATP 에너지로 전환시키는 것 입니다. 세포 소 기관이 부족하고 세포가 더 발전된 신진 대사를 하는 경우, 에너지에 더욱 의존하게 됩니다. 또한 분자를 세포에 저장하고 세포의 크기를 성장시키는 데 사용됩니다."
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
 
 msgid "WIKI_PULLING_CILIA"
 msgstr ""
@@ -9930,6 +9941,29 @@ msgstr "확대"
 msgid "ZOOM_OUT"
 msgstr "축소"
 
+#, fuzzy
+#~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
+#~ msgstr "재개"
+
+#~ msgid "PROTOPLASM"
+#~ msgstr "원형질"
+
+#, fuzzy
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "원형질"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "원형질"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr "원형질"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr "끈적끈적한 세포 내부. 세포질은 이온, 단백질 및 세포 내부를 채우는 물에 용해된 기타 물질의 기본 혼합물입니다. 이것의 기능 중 하나는 발효를 통해 포도당을 ATP 에너지로 전환시키는 것 입니다. 세포 소 기관이 부족하고 세포가 더 발전된 신진 대사를 하는 경우, 에너지에 더욱 의존하게 됩니다. 또한 분자를 세포에 저장하고 세포의 크기를 성장시키는 데 사용됩니다."
+
 #~ msgid "SPEED"
 #~ msgstr "속도"
 
@@ -10398,10 +10432,6 @@ msgstr "축소"
 #~ msgid "PATCH_PANGONIAN_COAST"
 #~ msgstr "Pangonian 연안"
 
-#, fuzzy
-#~ msgid "PATCH_PANGONIAN_ESTUARY"
-#~ msgstr "Pangonian 어귀"
-
 #~ msgid "PATCH_CAVE"
 #~ msgstr "동굴"
 
@@ -10512,9 +10542,6 @@ msgstr "축소"
 
 #~ msgid "INTENSITY_OF"
 #~ msgstr "강도"
-
-#~ msgid "DOT_RATE_SCALES"
-#~ msgstr ". 비율"
 
 #~ msgid "OXYGEN_DOT"
 #~ msgstr "산소."
@@ -10639,3 +10666,10 @@ msgstr "축소"
 #~ "세포 편집기의 다른 탭에서 당신의 종의 다른 속성 또한 변경할 수 있습니다.\n"
 #~ "\n"
 #~ "계속하려면, 패널의 왼쪽에 있는 세포 기관 (세포질이 좋겠죠)을 선택하세요. 그리고 화면 중앙에 표시된 세포칸 옆을 마우스 왼쪽 버튼으로 클릭해서 세포 기관을 종에 추가하세요."
+
+#, fuzzy
+#~ msgid "PATCH_PANGONIAN_ESTUARY"
+#~ msgstr "Pangonian 어귀"
+
+#~ msgid "DOT_RATE_SCALES"
+#~ msgstr ". 비율"

@@ -170,12 +170,14 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     {
         base._EnterTree();
         Localization.Instance.OnTranslationsChanged += OnTranslationsChanged;
+        Settings.Instance.AlternativeTimescale.OnChanged += OnAlternativeTimescaleChanged;
     }
 
     public override void _ExitTree()
     {
         base._ExitTree();
         Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
+        Settings.Instance.AlternativeTimescale.OnChanged -= OnAlternativeTimescaleChanged;
     }
 
     public override void _Process(double delta)
@@ -331,7 +333,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             return;
         }
 
-        var resultingModifier = fastModeEnabled ? 2 : 1;
+        var resultingModifier = fastModeEnabled ? Settings.Instance.AlternativeTimescale.Value : 1;
 
         stage.WorldSimulation.WorldTimeScale = resultingModifier;
 
@@ -344,7 +346,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         if (stage == null)
             return false;
 
-        return stage.WorldSimulation.WorldTimeScale > 1;
+        return stage.WorldSimulation.WorldTimeScale != 1;
     }
 
     public void ShowSaveLoadAdvise()
@@ -390,10 +392,17 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     {
         var fossils = FossilisedSpecies.CreateListOfFossils(false);
 
-        // TODO: buttons to fossilize multicellular species
-        stage!.WorldSimulation.EntitySystem.Query(new QueryDescription().WithAll<MicrobeSpeciesMember>(),
+        stage!.WorldSimulation.EntitySystem.Query(
+            new QueryDescription().WithAny<MicrobeSpeciesMember, MulticellularSpeciesMember>(),
             (Entity entity, ref SpeciesMember member) =>
             {
+                // Skip colony members and only show it on the main cell.
+                // Note that this also affects the microbe stage colonies, but it would be a bit harder to make sure
+                // those still had the buttons, but anyway the main cell in such colonies is also of the species other
+                // colony members are, so everything still works.
+                if (entity.Has<MicrobeColonyMember>())
+                    return;
+
                 var species = member.Species;
 
                 var button = FossilisationButtonScene.Instantiate<FossilisationButton>();
@@ -824,6 +833,11 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
                 item.SetDescription($"{MathF.Round(health.CurrentHealth, 1)}/{MathF.Round(health.MaxHealth, 1)}");
             }
         }
+    }
+
+    private void OnAlternativeTimescaleChanged(float value)
+    {
+        ApplySpeedMode(GetCurrentSpeedMode());
     }
 
     /// <summary>

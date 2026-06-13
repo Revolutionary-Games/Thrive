@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Components;
+using Godot;
 using SharedBase.Archive;
 
 public class ReproductionStatistic : IStatistic, IArchiveUpdatable
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     public int TimesReproduced { get; private set; }
 
@@ -60,7 +62,38 @@ public class ReproductionStatistic : IStatistic, IArchiveUpdatable
 
         TimesReproduced = reader.ReadInt32();
         ReproducedInBiomes = reader.ReadObject<Dictionary<Biome, int>>();
-        ReproducedWithOrganelle = reader.ReadObject<Dictionary<OrganelleDefinition, ReproductionOrganelleData>>();
+
+        if (version < 2)
+        {
+            // We need to allow dummy-loading protoplasm and then remove it.
+            // The instance won't match the one used in UnlockProgress, so the internal name has to match for us to
+            // also remove the dummy protoplasm reference in reproduction statistics.
+            var dummyPlasm = new OrganelleDefinition
+            {
+                InternalName = "dummy_protoplasm",
+                Name = "dummy_protoplasm",
+            };
+
+            SimulationParameters.Instance.RegisterDummyCompatibilityOrganelleForLoad(dummyPlasm, "protoplasm");
+
+            ReproducedWithOrganelle = reader.ReadObject<Dictionary<OrganelleDefinition, ReproductionOrganelleData>>();
+
+            SimulationParameters.Instance.RemoveDummyCompatibilityOrganelles();
+
+            var keys = ReproducedWithOrganelle.Keys.Where(o => o.InternalName == dummyPlasm.InternalName).ToList();
+
+            foreach (var key in keys)
+            {
+                if (ReproducedWithOrganelle.Remove(key))
+                {
+                    GD.Print("Loaded and removed old protoplasm reference in reproduction statistics");
+                }
+            }
+        }
+        else
+        {
+            ReproducedWithOrganelle = reader.ReadObject<Dictionary<OrganelleDefinition, ReproductionOrganelleData>>();
+        }
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

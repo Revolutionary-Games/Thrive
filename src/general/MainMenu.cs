@@ -446,7 +446,7 @@ public partial class MainMenu : NodeWithInput
     {
         var random = new XoShiRo128starstar();
 
-        // Some of the 3D backgrounds render very incorrectly in opengl so they are disabled (even with Godot 4 this
+        // Some of the 3D backgrounds render very incorrectly in OpenGL, so they are disabled (even with Godot 4 this
         // hasn't improved a lot)
         if (Settings.Instance.Menu3DBackgroundEnabled &&
             FeatureInformation.GetVideoDriver() != OS.RenderingDriver.Opengl3)

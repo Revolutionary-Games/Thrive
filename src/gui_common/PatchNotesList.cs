@@ -9,8 +9,6 @@ using ThriveScriptsShared;
 /// </summary>
 public partial class PatchNotesList : VBoxContainer
 {
-    private bool showAll = true;
-
     private string? filterOldestVersion;
     private string? filterNewestVersion;
 
@@ -29,24 +27,7 @@ public partial class PatchNotesList : VBoxContainer
 #pragma warning restore CA2213
 
     /// <summary>
-    ///   If true shows all of the existing patch notes
-    /// </summary>
-    [Export]
-    public bool ShowAll
-    {
-        get => showAll;
-        set
-        {
-            if (showAll == value)
-                return;
-
-            showAll = value;
-            dirty = true;
-        }
-    }
-
-    /// <summary>
-    ///   If set and <see cref="ShowAll"/> is not true then versions older than this are not displayed
+    ///   If set, versions older than this are not displayed
     /// </summary>
     [Export]
     public string? FilterOldestVersion
@@ -177,6 +158,7 @@ public partial class PatchNotesList : VBoxContainer
             if (!thingsToShowComputeResults.IsCompleted)
                 return;
 
+            this.QueueFreeChildren();
             BuildNotesList(thingsToShowComputeResults.Result);
 
             thingsToShowComputeResults.Dispose();
@@ -193,17 +175,9 @@ public partial class PatchNotesList : VBoxContainer
         var oldest = FilterOldestVersion;
         var newest = FilterNewestVersion;
 
-        if (ShowAll)
-        {
-            oldest = null;
-            newest = null;
-        }
-
         thingsToShowComputeResults =
             new Task<List<(string Version, VersionPatchNotes Notes)>>(() => CalculateVersionsToShow(oldest, newest));
         TaskExecutor.Instance.AddTask(thingsToShowComputeResults);
-
-        this.QueueFreeChildren();
 
         dirty = false;
     }
@@ -254,40 +228,11 @@ public partial class PatchNotesList : VBoxContainer
 
         var subHeadingFontPath = SubHeadingFont.Font.ResourcePath;
 
-        int itemsLeft = showAll ? int.MaxValue : Constants.MAX_RECENT_VERSIONS_TO_SHOW;
-
         // This could use the same approach as ThriveFeedDisplayer to build only one object per frame, but
         // as this is usually empty or just shows the latest patch notes, that wouldn't help in the common case at all
         foreach (var (version, versionPatchNotes) in notes)
         {
             Container itemContainer;
-
-            // When showing too many things, show instead text that not all are shown and then quit the loop
-            if (--itemsLeft <= 0)
-            {
-                itemContainer = new VBoxContainer();
-
-                itemContainer.AddChild(new Control
-                {
-                    CustomMinimumSize = new Vector2(1, 3),
-                });
-
-                itemContainer.AddChild(new Label
-                {
-                    Text = Localization.Translate("TOO_MANY_RECENT_VERSIONS_TO_SHOW"),
-                    AutowrapMode = TextServer.AutowrapMode.WordSmart,
-                    CustomMinimumSize = new Vector2(100, 0),
-                    HorizontalAlignment = HorizontalAlignment.Center,
-                });
-
-                itemContainer.AddChild(new Control
-                {
-                    CustomMinimumSize = new Vector2(1, 3),
-                });
-
-                AddChild(itemContainer);
-                break;
-            }
 
             if (StyleWithBackground)
             {

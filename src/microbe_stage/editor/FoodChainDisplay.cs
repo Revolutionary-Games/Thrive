@@ -78,7 +78,10 @@ public partial class FoodChainDisplay : Control
         // TODO: reuse possible nodes
         graphNodes.Clear();
 
-        var micheTree = autoEvoResults.GetMicheForPatch(forPatch);
+        // The modifiable miche is the final one that was used to calculate real populations.
+        // So it should be fully accurate here. However, there's reports every now and then about non-sensical food
+        // chain displays.
+        var micheTree = autoEvoResults.GetModifiableMicheForPatch(forPatch);
 
         var seenSpecies = new HashSet<Species>();
 

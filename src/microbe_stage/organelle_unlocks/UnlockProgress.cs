@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Godot;
 using SharedBase.Archive;
 using UnlockConstraints;
 
@@ -8,11 +9,11 @@ using UnlockConstraints;
 /// </summary>
 public class UnlockProgress : IArchiveUpdatable
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     /// <summary>
     ///   The organelles that the player can use.
-    ///   The default value is the by default unlocked organelles (ones without a condition)
+    ///   The default value is, by-default, unlocked organelles (ones without a condition)
     /// </summary>
     private readonly HashSet<OrganelleDefinition> unlockedOrganelles =
         SimulationParameters.Instance.GetAllOrganelles().Where(o => o.UnlockConditions == null)
@@ -53,7 +54,7 @@ public class UnlockProgress : IArchiveUpdatable
     }
 
     /// <summary>
-    ///   Undoes an organelle unlock. Should be used sparingly, for example good to use when the user can undo an
+    ///   Undoes an organelle unlock. Should be used sparingly, for example, good to use when the user can undo an
     ///   action that unlocked something
     /// </summary>
     /// <returns>True when could be performed, false if the organelle was not marked as unlocked</returns>
@@ -126,9 +127,34 @@ public class UnlockProgress : IArchiveUpdatable
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
         unlockedOrganelles.Clear();
-        foreach (var item in reader.ReadObject<HashSet<OrganelleDefinition>>())
+
+        if (version < 2)
         {
-            unlockedOrganelles.Add(item);
+            // We need to allow dummy-loading protoplasm and then remove it
+            var dummyPlasm = new OrganelleDefinition
+            {
+                InternalName = "dummy_protoplasm",
+                Name = "dummy_protoplasm",
+            };
+
+            SimulationParameters.Instance.RegisterDummyCompatibilityOrganelleForLoad(dummyPlasm, "protoplasm");
+
+            foreach (var item in reader.ReadObject<HashSet<OrganelleDefinition>>())
+            {
+                unlockedOrganelles.Add(item);
+            }
+
+            SimulationParameters.Instance.RemoveDummyCompatibilityOrganelles();
+
+            if (unlockedOrganelles.RemoveWhere(o => o.InternalName == dummyPlasm.InternalName) > 0)
+                GD.Print("Loaded and removed old protoplasm reference in unlocks");
+        }
+        else
+        {
+            foreach (var item in reader.ReadObject<HashSet<OrganelleDefinition>>())
+            {
+                unlockedOrganelles.Add(item);
+            }
         }
 
         recentlyUnlocked.Clear();

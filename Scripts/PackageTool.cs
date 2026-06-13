@@ -17,6 +17,7 @@ using ScriptsBase.ToolBases;
 using ScriptsBase.Utilities;
 using SharedBase.Models;
 using SharedBase.Utilities;
+using ThriveScriptsShared;
 
 public class PackageTool : PackageToolBase<Program.PackageOptions>
 {
@@ -26,8 +27,6 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
     private const string STEAM_BUILD_MESSAGE = "This is the Steam build. This can only be distributed by " +
         "Revolutionary Games Studio (under a special license) due to Steam being incompatible with the GPL license!";
-
-    private const string STEAM_README_TEMPLATE = "doc/steam_license_readme.txt";
 
     private const string MONO_IDENTIFIER = ".mono.";
 
@@ -161,7 +160,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
     private string ReadmeFile => Path.Join(options.OutputFolder, "README.txt");
     private string RevisionFile => Path.Join(options.OutputFolder, "revision.txt");
-    private string SteamLicenseFile => Path.Join(options.OutputFolder, "LICENSE_steam.txt");
+    private string SteamLicenseFile => Path.Join(options.OutputFolder, "steam_LICENSE.txt");
 
     public static async Task EnsureGodotIgnoreFileExistsInFolder(string folder)
     {
@@ -374,7 +373,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         }
         else
         {
-            // Force disable Steam for unsupported platforms
+            // Force-disable Steam for unsupported platforms
             if (!await SteamBuild.SetBuildMode(false, true, cancellationToken, SteamBuild.SteamPlatform.Linux))
             {
                 ColourConsole.WriteErrorLine("Failed to set Steam to not be used mode");
@@ -747,10 +746,10 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
                 yield return fileToPackage;
             }
         }
-
-        // TODO: use LicensesDisplay.LoadSteamLicenseFile to generate this
-        // if (steamMode)
-        //     yield return new FileToPackage(SteamLicenseFile, "LICENSE.txt");
+        else
+        {
+            yield return new FileToPackage(SteamLicenseFile, "LICENSE.txt");
+        }
     }
 
     private static string MacZipInFolder(string folder)
@@ -1025,6 +1024,11 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
                 "This version of Thrive is specially licensed and *not* under the GPLv3 license.");
             await readme.WriteLineAsync(string.Empty);
             await readme.WriteLineAsync("Exact commit this build is made from is in revision.txt");
+
+            // Create a Steam licence file
+            await using var steamLicense = File.CreateText(SteamLicenseFile);
+            var text = LicenseText.LoadSteamLicenseFile(false, LicenseText.LoadFileStandard);
+            await steamLicense.WriteLineAsync(text);
         }
 
         cancellationToken.ThrowIfCancellationRequested();

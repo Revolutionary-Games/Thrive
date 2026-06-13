@@ -112,21 +112,35 @@ public class GameProperties : IArchivable
     ///     colony
     ///   </para>s
     /// </remarks>
-    public static GameProperties StartNewMulticellularGame(WorldGenerationSettings settings, bool freebuild = false)
+    public static GameProperties StartNewMulticellularGame(WorldGenerationSettings settings, bool freebuild = false,
+        Species? startingSpecies = null)
     {
+        if (startingSpecies != null)
+        {
+            if (startingSpecies is not MulticellularSpecies)
+            {
+                throw new ArgumentException(
+                    "Starting species must be a multicellular species for a multicellular game");
+            }
+        }
+
         settings.Origin = WorldGenerationSettings.LifeOrigin.Pond;
 
-        var game = new GameProperties(settings);
+        var game = new GameProperties(settings, startingSpecies);
 
         OxygenateWorld(game.GameWorld.Map);
 
-        // Modify the player species to actually make sense to be in the multicellular stage
-        var playerSpecies = MakePlayerOrganellesMakeSenseForMulticellular(game);
+        // Don't modify starting species if given an exact species
+        if (startingSpecies == null)
+        {
+            // Modify the player species to actually make sense to be in the multicellular stage
+            var playerSpecies = MakePlayerOrganellesMakeSenseForMulticellular(game);
 
-        var finalSpecies = game.GameWorld.ChangeSpeciesToMulticellular(playerSpecies, !freebuild);
+            var finalSpecies = game.GameWorld.ChangeSpeciesToMulticellular(playerSpecies, !freebuild);
 
-        // Make the player species match tolerances as they may have changed due to the species change
-        GameWorld.SetSpeciesInitialTolerances(finalSpecies, game.GameWorld.Map, null);
+            // Make the player species match tolerances as they may have changed due to the species change
+            GameWorld.SetSpeciesInitialTolerances(finalSpecies, game.GameWorld.Map, null);
+        }
 
         // TODO: generate multicellular species for freebuild
         if (freebuild)

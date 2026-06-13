@@ -117,6 +117,19 @@ public partial class MulticellularGrowthSystem : BaseSystem<World, float>
         if (microbeControl.State == MicrobeState.MucocystShield)
             return;
 
+        if (speciesData.Species.ReproductionMethod == MulticellularReproductionMethod.MassBudding
+            && !growth.SpawnedInitialMassBuddingCells)
+        {
+            var recorder = worldSimulation.StartRecordingEntityCommands();
+
+            growth.SpawnInitialMassBuddingCells(entity, speciesData.Species, worldSimulation, spawnEnvironment,
+                recorder, spawnSystem);
+
+            worldSimulation.FinishRecordingEntityCommands(recorder);
+
+            return;
+        }
+
         HandleMulticellularReproduction(ref growth, ref speciesData, compoundStorage.Compounds, ref organelleContainer,
             ref status, ref baseReproduction, entity, delta);
     }

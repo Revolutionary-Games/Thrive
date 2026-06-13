@@ -212,4 +212,12 @@ public static class CellBodyPlanInternalCalculations
 
         return 1 + bonus;
     }
+
+    /// <summary>
+    ///   Returns the maximum allowed bud size for a colony of a given max size.
+    /// </summary>
+    public static int MaxBudSize(int cellCount)
+    {
+        return cellCount / 2 + 1;
+    }
 }

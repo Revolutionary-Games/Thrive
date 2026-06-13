@@ -105,10 +105,10 @@ public class ModifyExistingSpecies : IRunStep
 
     public bool RunStep(RunResults results)
     {
-        // Setup miche data if missing
+        // Set up miche data if missing
         if (miche == null)
         {
-            miche = results.GetMicheForPatch(patch);
+            miche = results.GetModifiableMicheForPatch(patch);
 
             miche.GetOccupants(speciesWorkMemory);
 
@@ -130,7 +130,7 @@ public class ModifyExistingSpecies : IRunStep
 
                     if (species is MicrobeSpecies microbeSpecies)
                     {
-                        GetMutationsForSpecies(microbeSpecies);
+                        GetMutationsForSpecies(microbeSpecies, patch.SpeciesInPatch.Count);
                     }
                 }
                 else
@@ -154,7 +154,7 @@ public class ModifyExistingSpecies : IRunStep
 
                         if (species is MicrobeSpecies microbeSpecies)
                         {
-                            GetMutationsForSpecies(microbeSpecies);
+                            GetMutationsForSpecies(microbeSpecies, patch.SpeciesInPatch.Count);
                         }
                     }
                 }
@@ -317,7 +317,7 @@ public class ModifyExistingSpecies : IRunStep
         }
     }
 
-    private void GetMutationsForSpecies(MicrobeSpecies microbeSpecies)
+    private void GetMutationsForSpecies(MicrobeSpecies microbeSpecies, int speciesInPatch)
     {
         double totalMP = Constants.BASE_MUTATION_POINTS * worldSettings.AIMutationMultiplier;
 
@@ -327,7 +327,7 @@ public class ModifyExistingSpecies : IRunStep
         var inputSpecies = generateMutationsWorkingMemory.GetMutationsAtDepth(0);
         inputSpecies.Add(new Mutant(microbeSpecies, totalMP));
 
-        GenerateMutations(microbeSpecies, miche!, 1, false);
+        GenerateMutations(microbeSpecies, miche!, 1, false, speciesInPatch);
     }
 
     /// <summary>
@@ -363,7 +363,8 @@ public class ModifyExistingSpecies : IRunStep
     ///   Adds a new list of all possible species that might emerge in response to the provided pressures,
     ///   as well as a copy of the original species to <see cref="mutationsToTry"/>.
     /// </summary>
-    private void GenerateMutations(MicrobeSpecies baseSpecies, Miche currentMiche, int depth, bool lastChild)
+    private void GenerateMutations(MicrobeSpecies baseSpecies, Miche currentMiche, int depth, bool lastChild,
+        int speciesInPatch)
     {
         var baseSpeciesMutant = new Mutant(baseSpecies,
             Constants.BASE_MUTATION_POINTS * worldSettings.AIMutationMultiplier);
@@ -384,6 +385,11 @@ public class ModifyExistingSpecies : IRunStep
 
         bool lawk = worldSettings.LAWK;
         var maxVariants = Constants.MAX_VARIANTS_IN_MUTATIONS;
+
+        // lower max variants for predation miches because compared to others it creates a lot of similar mutations
+        if (currentMiche.Pressure is PredationEffectivenessPressure)
+            maxVariants = Math.Max(maxVariants / speciesInPatch, 5);
+
         var halfMaxVariants = maxVariants / 2;
 
         foreach (var mutationStrategy in mutations)
@@ -511,7 +517,7 @@ public class ModifyExistingSpecies : IRunStep
                 foreach (var child in currentMiche.Children)
                 {
                     bool isLast = index == childCount - 1;
-                    GenerateMutations(baseSpecies, child, depth + 1, isLast);
+                    GenerateMutations(baseSpecies, child, depth + 1, isLast, speciesInPatch);
                     ++index;
                 }
             }

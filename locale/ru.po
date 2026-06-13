@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-25 18:16+0300\n"
-"PO-Revision-Date: 2026-05-22 15:37+0000\n"
-"Last-Translator: br1llz <anmaxutkin@yandex.ru>\n"
+"POT-Creation-Date: 2026-06-03 20:10+0100\n"
+"PO-Revision-Date: 2026-05-26 09:31+0000\n"
+"Last-Translator: ILIA RIABOV <ilyarya131@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -170,6 +170,16 @@ msgstr "Вы уже вознеслись"
 
 msgid "ALT"
 msgstr "Alt"
+
+#, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr ""
+"Собственные потоки используются для задач, отличных от управляемых потоков.\n"
+"Большее количество потоков на процессорах с большим количеством ядер обычно увеличивает производительность до предела. \n"
+"Слишком большое количество потоков начнет снижать производительность."
+
+msgid "ALTERNATVE_TIMESCALE"
+msgstr ""
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Всегда видна"
@@ -1803,6 +1813,14 @@ msgstr "Применить искажение к задним фонам Мик�
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Отображение фоновых частиц"
 
+#, fuzzy
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr "OpenGL"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_METAL"
+msgstr "OpenGL"
+
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr "OpenGL"
 
@@ -1838,9 +1856,6 @@ msgstr "Двойной клик для полноэкранного режима
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Двухслойная мембрана более стойкая к повреждению, особенно к токсинам. Однако она несколько замедляет скорость клетки и снижает скорость, с которой она может поглощать ресурсы."
-
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "Переключайтесь между нормальной и удвоенной скоростями игры"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr "Потяните мышкой для изменения порядка"
@@ -1969,10 +1984,9 @@ msgstr ""
 "\n"
 "Если ваша клетка ещё не готова к содержанию Ядра, то вы можете нажать на [b]кнопку отмены[/b]; это [u]удалит Ядро[/u], вернув всё на круги своя."
 
-#, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
 msgstr ""
-"Специализация Клетки даёт [b]Бонусыs[/b]почти что всем Аспектам Клетки: Скорости Процессов, Осморегуляции, и Эффективности Органелл.\n"
+"Специализация клетки даёт [b]бонусы[/b]почти что всем аспектам клетки: скорости процессов, и эффектов органелл, например хранение.\n"
 "\n"
 "Высокая Специализация создаёт Крайне Эффективные Клетки.\n"
 "\n"
@@ -3577,6 +3591,13 @@ msgstr "Март"
 msgid "MARINE_SNOW"
 msgstr "Морской снег"
 
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "Производит единственное потомство—корневую клетку новой колонии."
+
 msgid "MASTER_VOLUME"
 msgstr "Общая громкость"
 
@@ -4309,6 +4330,22 @@ msgstr "Специализированные клетки в многоклет�
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "На этой панели показаны совокупные процессы в вашей колонии, суммированные по всем клеткам. Обратите внимание, что, в отличие от других соединений, АТФ не распределяется между клетками."
 
+#, fuzzy
+msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
+msgstr ""
+"[b]Этап[/b]\n"
+"  Микроб\n"
+"[b]Тип мембраны[/b]\n"
+"  {0}\n"
+"[b]Жёсткость Мембраны[/b]\n"
+"  {1}\n"
+"[b]Базовая скорость[/b]\n"
+"  {2}\n"
+"[b]Базовая скорость поворота[/b]\n"
+"  {3}\n"
+"[b]Базовый размер (в клетках)[/b]\n"
+"  {4}"
+
 msgid "MULTICELLULAR_STAGE"
 msgstr "Многоклеточная стадия"
 
@@ -4385,6 +4422,10 @@ msgstr ""
 
 msgid "NEW"
 msgstr "Новый"
+
+#, fuzzy
+msgid "NEWER"
+msgstr "Просмотр"
 
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -4584,6 +4625,10 @@ msgstr "Зайти на официальный сайт Revolutionary Games"
 
 msgid "OK"
 msgstr "ОК"
+
+#, fuzzy
+msgid "OLDER"
+msgstr "Открыть папку"
 
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -4860,6 +4905,10 @@ msgstr "Последний раз вы играли в Thrive версии {0} ,
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr "Вы играли в Thrive последний раз {0} , с того момента доступно {1} новых обновлений"
 
+#, fuzzy
+msgid "PATCH_NOTES_RECENT_BOUNDARY"
+msgstr "— {0}"
+
 msgid "PATCH_NOTES_TITLE"
 msgstr "Заметки обновлений"
 
@@ -5117,9 +5166,6 @@ msgstr "Команда Управления Проектом"
 msgid "PROTEINS"
 msgstr "Белки"
 
-msgid "PROTOPLASM"
-msgstr "Протоплазма"
-
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requests / Программирование"
 
@@ -5150,6 +5196,10 @@ msgid "RADIATION_LEVELS"
 msgstr "Уровень Излучения"
 
 msgid "RADIOACTIVE_CHUNK"
+msgstr "Глыба радиоактивного камня"
+
+#, fuzzy
+msgid "RADIOACTIVE_CHUNK_BANANA"
 msgstr "Глыба радиоактивного камня"
 
 msgid "RADIOSYNTHESIS"
@@ -5237,6 +5287,10 @@ msgstr ""
 "Оставить все — эгоистичный вариант сохранения всех хранящихся соединений как есть.\n"
 "Всегда добивайте до краев все вещества до уровня, с которым появились.\n"
 "Пополнение при смене биома восполняет исходные соединения, но только если биом был изменен."
+
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "Размножение"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Воспроизведение:"
@@ -5372,9 +5426,8 @@ msgstr "Повернуть вправо"
 msgid "ROTATION_COLON"
 msgstr "Поворот:"
 
-#, fuzzy
 msgid "ROTATION_FORCE"
-msgstr "Поворот:"
+msgstr "Сила Поворота"
 
 msgid "RUNOFF_EVENT"
 msgstr "Событие стока"
@@ -5883,6 +5936,10 @@ msgstr "{0} с численностью: {1}"
 
 msgid "SPEED_COLON"
 msgstr "Скорость:"
+
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "Переключайтесь между нормальной и удвоенной скоростями игры"
 
 msgid "SPORE_CELL_TYPE"
 msgstr "Тип споровых клеток"
@@ -6477,9 +6534,6 @@ msgstr "Инструменты"
 
 msgid "TOOL_HAND_AXE"
 msgstr "Ручной Топор"
-
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
-msgstr "Слишком много недавних версий для отображения"
 
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "Полученная Энергия:"
@@ -7188,9 +7242,6 @@ msgstr "{0} МиБ"
 
 msgid "VIEWER"
 msgstr "Просмотр"
-
-msgid "VIEW_ALL"
-msgstr "Просмотреть всё"
 
 msgid "VIEW_CELL_PROCESSES"
 msgstr "Просмотреть Процессы Организма"
@@ -9111,9 +9162,6 @@ msgstr "Окситоксисома"
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr "Пронзающий пиль"
 
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "Протоплазма"
-
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "Воспроизводство"
 
@@ -9202,42 +9250,6 @@ msgstr ""
 
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "Белковое дыхание"
-
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "Нет эффектов."
-
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr ""
-"Значительно улучшенная версия [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytoplasm[/url][/color][/b], предназначенная для увеличения хранилища для неигровых видов. Не может быть добавлен в клетки игрока, но может присутствовать в клетках, которые игрок окаменил в окружающей среде.\n"
-"\n"
-"Визуально соответствует [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytoplasm[/url][/color][/b] и наследует многие его черты."
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr "Без модификаций."
-
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr ""
-"[b]Гликолиз[/b]: [thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"Расширенная версия [b]Цитоплазменного Гликолиза[/b] с другими скоростями."
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr "Игрок не может эволюционировать [b]Protoplasm[/b]. Неигровые виды могут делать это без ограничений."
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-"В некоторых местах [b]Протоплазма[/b] — это другое название для [b][color=#3796e1][url=thriveopedia:cytoplasm]Цитоплазмы[/url][/color][/b], хотя она также может относиться ко всему содержимому клетки, включая ядро и окружающие структуры.\n"
-"\n"
-"Подробнее об этой органелле на [color=#3796e1][url=https://en.wikipedia.org/wiki/Protoplasm]странице в Википедии[/url][/color]."
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-"Использовать [b]Протоплазму[/b] в обычных играх невозможно. Игрок может использовать ее, только если играет в режиме свободной постройки за неигровой вид, который он окаменел в предыдущей игре и у которого случайно развилась эта органелла.\n"
-"\n"
-"Когда она появляется, [b]Протоплазма[/b] стратегически эквивалентна [b][color=#3796e1][url=thriveopedia:cytoplasm]Цитоплазме[/url][/color][/b], но с заметно увеличенным запасом и более медленным производством [thrive:compound type=\"atp\"][/thrive:compound]. Клетки с [b]Протоплазмой[/b] обычно могут выживать гораздо дольше, не находя облака соединений или не потребляя добычу."
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr "Нет улучшений."
 
 msgid "WIKI_PULLING_CILIA"
 msgstr "Реснички"
@@ -9845,6 +9857,57 @@ msgstr "Увеличить масштаб"
 
 msgid "ZOOM_OUT"
 msgstr "Уменьшить масштаб"
+
+#~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
+#~ msgstr "Переключайтесь между нормальной и удвоенной скоростями игры"
+
+#~ msgid "PROTOPLASM"
+#~ msgstr "Протоплазма"
+
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "Протоплазма"
+
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "Нет эффектов."
+
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr ""
+#~ "Значительно улучшенная версия [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytoplasm[/url][/color][/b], предназначенная для увеличения хранилища для неигровых видов. Не может быть добавлен в клетки игрока, но может присутствовать в клетках, которые игрок окаменил в окружающей среде.\n"
+#~ "\n"
+#~ "Визуально соответствует [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytoplasm[/url][/color][/b] и наследует многие его черты."
+
+#~ msgid "WIKI_PROTOPLASM_MODIFICATIONS"
+#~ msgstr "Без модификаций."
+
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr ""
+#~ "[b]Гликолиз[/b]: [thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Расширенная версия [b]Цитоплазменного Гликолиза[/b] с другими скоростями."
+
+#~ msgid "WIKI_PROTOPLASM_REQUIREMENTS"
+#~ msgstr "Игрок не может эволюционировать [b]Protoplasm[/b]. Неигровые виды могут делать это без ограничений."
+
+#~ msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
+#~ msgstr ""
+#~ "В некоторых местах [b]Протоплазма[/b] — это другое название для [b][color=#3796e1][url=thriveopedia:cytoplasm]Цитоплазмы[/url][/color][/b], хотя она также может относиться ко всему содержимому клетки, включая ядро и окружающие структуры.\n"
+#~ "\n"
+#~ "Подробнее об этой органелле на [color=#3796e1][url=https://en.wikipedia.org/wiki/Protoplasm]странице в Википедии[/url][/color]."
+
+#~ msgid "WIKI_PROTOPLASM_STRATEGY"
+#~ msgstr ""
+#~ "Использовать [b]Протоплазму[/b] в обычных играх невозможно. Игрок может использовать ее, только если играет в режиме свободной постройки за неигровой вид, который он окаменел в предыдущей игре и у которого случайно развилась эта органелла.\n"
+#~ "\n"
+#~ "Когда она появляется, [b]Протоплазма[/b] стратегически эквивалентна [b][color=#3796e1][url=thriveopedia:cytoplasm]Цитоплазме[/url][/color][/b], но с заметно увеличенным запасом и более медленным производством [thrive:compound type=\"atp\"][/thrive:compound]. Клетки с [b]Протоплазмой[/b] обычно могут выживать гораздо дольше, не находя облака соединений или не потребляя добычу."
+
+#~ msgid "WIKI_PROTOPLASM_UPGRADES"
+#~ msgstr "Нет улучшений."
+
+#~ msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+#~ msgstr "Слишком много недавних версий для отображения"
+
+#~ msgid "VIEW_ALL"
+#~ msgstr "Просмотреть всё"
 
 #, fuzzy
 #~ msgid "PRESSURE_VALUE"

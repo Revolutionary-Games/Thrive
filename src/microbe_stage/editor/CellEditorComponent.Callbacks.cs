@@ -290,10 +290,6 @@ public partial class CellEditorComponent
     private void DoRigidityChangeAction(RigidityActionData data)
     {
         Rigidity = data.NewRigidity;
-
-        // TODO: when rigidity affects auto-evo this also needs to re-run the prediction, though there should probably
-        // be some kind of throttling, this also applies to the behaviour values
-
         OnRigidityChanged();
     }
 

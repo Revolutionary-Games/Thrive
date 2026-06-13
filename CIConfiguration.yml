@@ -2,19 +2,19 @@ version: 1
 
 jobs:
   build:
-    image: thrive/godot-ci:v33
+    image: thrive/godot-ci:v34
     cache:
       loadFrom:
-        - v17-{Branch}-build
-        - v17-master-build
-      writeTo: v17-{Branch}-build
+        - v18-{Branch}-build
+        - v18-master-build
+      writeTo: v18-{Branch}-build
       shared:
         .git/lfs: v9-lfs
-        .import: v16-import
-        builds: v8-builds
-        native_libs: v2-native
+        .import: v17-import
+        builds: v9-builds
+        native_libs: v3-native
       system:
-        /root/.nuget: v8-nuget
+        /root/.nuget: v9-nuget
     steps:
       # Doesn't seem required for Godot 4
       # - run:
@@ -36,7 +36,7 @@ jobs:
          name: Upload devbuilds
          command: dotnet run --project Scripts -- upload
   jetbrains:
-    image: thrive/godot-ci:v33
+    image: thrive/godot-ci:v34
     cache:
       loadFrom:
         - v12-{Branch}-jetbrains
@@ -45,7 +45,7 @@ jobs:
       shared:
         .git/lfs: v9-jet-lfs
       system:
-        /root/.nuget: v8-nuget
+        /root/.nuget: v9-nuget
     artifacts:
       paths:
         - files_to_check.txt
@@ -94,17 +94,17 @@ jobs:
                 rm -f cleanup_diff.patch
             fi
   format_test:
-    image: thrive/godot-ci:v33
+    image: thrive/godot-ci:v34
     cache:
       loadFrom:
-        - v13-{Branch}-format
-        - v13-master-format
-      writeTo: v13-{Branch}-format
+        - v14-{Branch}-format
+        - v14-master-format
+      writeTo: v14-{Branch}-format
       shared:
         .git/lfs: v9-lfs
-        native_libs: v2-native
+        native_libs: v3-native
       system:
-        /root/.nuget: v8-nuget
+        /root/.nuget: v9-nuget
     artifacts:
       paths:
         - format_diff.patch

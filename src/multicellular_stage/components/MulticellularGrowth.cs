@@ -15,7 +15,7 @@ using Systems;
 /// </summary>
 public struct MulticellularGrowth : IArchivableComponent
 {
-    public const ushort SERIALIZATION_VERSION = 2;
+    public const ushort SERIALIZATION_VERSION = 3;
 
     /// <summary>
     ///   List of cells that need to be regrown, after being lost, in
@@ -51,17 +51,12 @@ public struct MulticellularGrowth : IArchivableComponent
 
     public bool IsASpore;
 
+    public bool SpawnedInitialMassBuddingCells;
+
     public MulticellularGrowth(MulticellularSpecies species)
     {
-        // Start growing at the cell after the initial bud
-        // TODO: this needs changing when other reproduction methods are implemented (this same thing is also
-        // in ResetMulticellularProgress)
-        NextBodyPlanCellToGrowIndex = 1;
+        this.ResetGrowthProgress();
 
-        LostPartsOfBodyPlan = null;
-        CompoundsNeededForNextCell = null;
-        CompoundsUsedForMulticellularGrowth = null;
-        TotalNeededForMulticellularGrowth = null;
         ResumeBodyPlanAfterReplacingLost = null;
         EnoughResourcesForBudding = false;
 
@@ -110,6 +105,7 @@ public struct MulticellularGrowth : IArchivableComponent
         writer.Write(EnoughResourcesForBudding);
 
         writer.Write(IsASpore);
+        writer.Write(SpawnedInitialMassBuddingCells);
     }
 }
 
@@ -146,6 +142,11 @@ public static class MulticellularGrowthHelpers
             instance.IsASpore = reader.ReadBool();
         }
 
+        if (version >= 3)
+        {
+            instance.SpawnedInitialMassBuddingCells = reader.ReadBool();
+        }
+
         return instance;
     }
 
@@ -179,7 +180,7 @@ public static class MulticellularGrowthHelpers
         in Entity entity, IWorldSimulation worldSimulation)
     {
         // Clear variables
-        multicellularGrowth.OnLeadCellEjectedFromEngulfment();
+        multicellularGrowth.ResetGrowthProgress();
 
         // Delete the cells in our colony currently
         if (entity.Has<MicrobeColony>())
@@ -197,19 +198,22 @@ public static class MulticellularGrowthHelpers
             }
 
             recorder.Remove<MicrobeColony>(entity);
+
             worldSimulation.FinishRecordingEntityCommands(recorder);
         }
     }
 
     /// <summary>
-    ///   Resets all growth progress tracking after exiting engulfment (which disbanded the entire colony) to grow the
-    ///   usual body plan as needed.
+    ///   Resets all growth progress to grow the normal body plan. Used after exiting engulfment (which disbands the
+    ///   colony), as well as after returning from the edtior
     /// </summary>
-    public static void OnLeadCellEjectedFromEngulfment(this ref MulticellularGrowth multicellularGrowth)
+    public static void ResetGrowthProgress(this ref MulticellularGrowth multicellularGrowth)
     {
-        // The first cell is the last to duplicate (budding reproduction), so the body plan starts filling at index 1
-        // Note that this is also set in the struct constructor
+        // Start growing cells starting with the second one. The first one is the lead cell and gets spawned
+        // immediately. Same goes for a few more cells if the species uses the mass budding reproduction method,
+        // but that is handled separately by MulticellularGrowthSystem
         multicellularGrowth.NextBodyPlanCellToGrowIndex = 1;
+        multicellularGrowth.SpawnedInitialMassBuddingCells = false;
         multicellularGrowth.EnoughResourcesForBudding = false;
 
         multicellularGrowth.CompoundsNeededForNextCell = null;
@@ -339,6 +343,18 @@ public static class MulticellularGrowthHelpers
                 return species.FirstCellTypeToSpawn().CalculateTotalCompositionList();
             }
 
+            if (species.ReproductionMethod is MulticellularReproductionMethod.MassBudding)
+            {
+                var total = new List<(Compound Compound, float AmountNeeded)>();
+
+                for (int i = 0; i < species.MassBuddingCellCount; ++i)
+                {
+                    species.ModifiableGameplayCells[i].CalculateTotalCompositionList(total);
+                }
+
+                return total;
+            }
+
             throw new NotImplementedException($"Reproduction method's reproduction cost calculation is" +
                 $"unimplemented: {species.ReproductionMethod}");
         }
@@ -399,5 +415,27 @@ public static class MulticellularGrowthHelpers
         cellProperties.ReApplyCellTypeProperties(ref environmentalEffects, entity,
             multicellularSpeciesType.MulticellularCellType, multicellularSpeciesType.Species, totalSpecializationBonus,
             worldSimulation, workMemory1, workMemory2);
+    }
+
+    public static void SpawnInitialMassBuddingCells(this ref MulticellularGrowth multicellularGrowth, in Entity entity,
+        MulticellularSpecies species, IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment spawnEnvironment,
+        CommandBuffer recorder, ISpawnSystem notifySpawnTo)
+    {
+        if (multicellularGrowth.NextBodyPlanCellToGrowIndex != 1)
+        {
+            GD.PrintErr($"Tried to spawn initial mass budding cells ({species.ReadableName}) while some colony"
+                + $" cells were already grown (x{multicellularGrowth.NextBodyPlanCellToGrowIndex})");
+
+            multicellularGrowth.SpawnedInitialMassBuddingCells = true;
+            return;
+        }
+
+        for (int i = 0; i < species.MassBuddingCellCount - 1; ++i)
+        {
+            multicellularGrowth.AddMulticellularGrowthCell(entity, species, worldSimulation, spawnEnvironment,
+                recorder, notifySpawnTo);
+        }
+
+        multicellularGrowth.SpawnedInitialMassBuddingCells = true;
     }
 }

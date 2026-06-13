@@ -207,7 +207,7 @@ public static class CellPropertiesHelpers
     public static void Divide(this ref CellProperties cellProperties, ref OrganelleContainer organelles,
         in Entity entity, Species species, IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment spawnEnvironment,
         ISpawnSystem spawnerToRegisterWith, ModifyDividedCellCallback? customizeCallback,
-        MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.Bud)
+        MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.Offspring)
     {
         if (organelles.Organelles == null)
             throw new InvalidOperationException("Organelles not initialized");

@@ -47,8 +47,17 @@ public partial class SpeciesDetailsPanelWithFossilisation : VBoxContainer
 
     private void OnFossilisePressed()
     {
-        if (previewSpecies is not MicrobeSpecies)
-            throw new NotImplementedException("Saving non-microbe species is not yet implemented");
+        if (previewSpecies == null)
+        {
+            GD.PrintErr("No species selected");
+            return;
+        }
+
+        if (previewSpecies is not MicrobeSpecies and not MulticellularSpecies)
+        {
+            throw new NotImplementedException(
+                $"Saving species of type {previewSpecies.GetType().Name} is not yet implemented");
+        }
 
         fossilisationDialog.SelectedSpecies = previewSpecies;
         fossilisationDialog.PopupCenteredShrink();

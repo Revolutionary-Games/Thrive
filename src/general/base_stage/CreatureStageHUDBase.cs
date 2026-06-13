@@ -644,9 +644,14 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
             fossilisationDialog.SelectedSpecies = button.AttachedEntity.Get<MicrobeSpeciesMember>().Species;
             fossilisationDialog.PopupCenteredShrink();
         }
+        else if (button.AttachedEntity.Has<MulticellularSpeciesMember>())
+        {
+            fossilisationDialog.SelectedSpecies = button.AttachedEntity.Get<MulticellularSpeciesMember>().Species;
+            fossilisationDialog.PopupCenteredShrink();
+        }
         else
         {
-            throw new NotImplementedException("Saving non-microbe species is not yet implemented");
+            throw new NotImplementedException("Saving species of this type is not yet implemented");
         }
     }
 
