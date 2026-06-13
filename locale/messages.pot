@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-03 15:50+0100\n"
+"POT-Creation-Date: 2026-06-13 22:47+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -627,12 +627,12 @@ msgstr ""
 msgid "BATHYPELAGIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:985
+#: ../src/microbe_stage/MicrobeHUD.cs:990
 #: ../src/microbe_stage/MicrobeHUD.tscn:433
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:936
+#: ../src/microbe_stage/MicrobeHUD.cs:941
 #: ../src/microbe_stage/MicrobeHUD.tscn:426
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
@@ -1031,7 +1031,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:334
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:11
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:24
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:23
 msgid "CHEATS"
 msgstr ""
 
@@ -2207,7 +2207,7 @@ msgstr ""
 msgid "DESCRIPTION_TOO_LONG"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:108
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:107
 msgid "DESPAWN_ENTITIES"
 msgstr ""
 
@@ -2243,7 +2243,7 @@ msgstr ""
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:485 ../src/microbe_stage/MicrobeHUD.cs:490
+#: ../src/microbe_stage/MicrobeHUD.cs:490 ../src/microbe_stage/MicrobeHUD.cs:495
 msgid "DEVOURED"
 msgstr ""
 
@@ -2841,7 +2841,7 @@ msgstr ""
 msgid "ESCAPE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:2211
+#: ../src/microbe_stage/MicrobeStage.cs:2210
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -3232,12 +3232,12 @@ msgstr ""
 msgid "FOSSILISATION_FAILED_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:857
+#: ../src/microbe_stage/MicrobeHUD.cs:862
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:16
 msgid "FOSSILISATION_HINT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:856
+#: ../src/microbe_stage/MicrobeHUD.cs:861
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
@@ -3494,7 +3494,7 @@ msgstr ""
 msgid "GLYCOLYSIS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:43
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:42
 msgid "GODMODE"
 msgstr ""
 
@@ -3772,7 +3772,7 @@ msgstr ""
 msgid "INDUSTRIAL_STAGE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:37
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:36
 msgid "INFINITE_COMPOUNDS"
 msgstr ""
 
@@ -4918,7 +4918,7 @@ msgstr ""
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1384
+#: ../src/microbe_stage/MicrobeStage.cs:1383
 msgid "LOADING_MICROBE_STAGE"
 msgstr ""
 
@@ -4926,7 +4926,7 @@ msgstr ""
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1380
+#: ../src/microbe_stage/MicrobeStage.cs:1379
 msgid "LOADING_MULTICELLULAR_STAGE"
 msgstr ""
 
@@ -4976,7 +4976,7 @@ msgstr ""
 msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:117
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:116
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr ""
 
@@ -5074,7 +5074,7 @@ msgstr ""
 msgid "MAKE_NO_CHANGES_IN_EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:123
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:122
 msgid "MANUALLY_SET_TIME"
 msgstr ""
 
@@ -6368,7 +6368,7 @@ msgstr ""
 msgid "NOVEMBER"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:49
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:48
 msgid "NO_AI"
 msgstr ""
 
@@ -6448,7 +6448,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:3164
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:3176
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:154
-#: ../src/microbe_stage/MicrobeHUD.cs:799
+#: ../src/microbe_stage/MicrobeHUD.cs:804
 msgid "N_A"
 msgstr ""
 
@@ -6937,7 +6937,7 @@ msgstr ""
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:509
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:585
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:373
-#: ../src/microbe_stage/MicrobeHUD.cs:497
+#: ../src/microbe_stage/MicrobeHUD.cs:502
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:141
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:144
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:156
@@ -7044,7 +7044,7 @@ msgstr ""
 msgid "PLANET_STATISTICS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:834
+#: ../src/microbe_stage/MicrobeHUD.cs:839
 msgid "PLAYER"
 msgstr ""
 
@@ -7060,7 +7060,7 @@ msgstr ""
 msgid "PLAYER_DIED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:98
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:97
 msgid "PLAYER_DUPLICATE"
 msgstr ""
 
@@ -7081,7 +7081,7 @@ msgstr ""
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:80
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:79
 msgid "PLAYER_SPEED"
 msgstr ""
 
@@ -8080,7 +8080,7 @@ msgstr ""
 msgid "SIMULATION_CONFIG"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:62
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:61
 msgid "SIMULATION_FACTOR"
 msgstr ""
 
@@ -8213,11 +8213,11 @@ msgstr ""
 msgid "SPAWN_AMMONIA"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:103
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:102
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1772
+#: ../src/microbe_stage/MicrobeStage.cs:1771
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -8553,11 +8553,11 @@ msgstr ""
 msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:2209
+#: ../src/microbe_stage/MicrobeStage.cs:2208
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:2210
+#: ../src/microbe_stage/MicrobeStage.cs:2209
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
@@ -8927,8 +8927,8 @@ msgstr ""
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:772
-#: ../src/microbe_stage/MicrobeStage.cs:776
+#: ../src/microbe_stage/MicrobeStage.cs:771
+#: ../src/microbe_stage/MicrobeStage.cs:775
 msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr ""
 
@@ -8964,7 +8964,7 @@ msgstr ""
 msgid "TIME_INDICATOR_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:130
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:129
 msgid "TIME_OF_DAY"
 msgstr ""
 
@@ -9525,7 +9525,7 @@ msgstr ""
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:55
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:54
 msgid "UNLIMIT_GROWTH_SPEED"
 msgstr ""
 
