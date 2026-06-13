@@ -96,6 +96,45 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
     public override ArchiveObjectType ArchiveObjectType =>
         (ArchiveObjectType)ThriveArchiveObjectType.MulticellularSpecies;
 
+    /// <summary>
+    ///   Total hex size of all cells in the species put together
+    /// </summary>
+    public float BaseHexSize
+    {
+        get
+        {
+            var totalsize = 0.0f;
+            foreach (var cellType in CellTypes)
+            {
+                var cellCount = 0;
+                foreach (var hex in EditorCells)
+                {
+                    var cell = hex.Data;
+                    if (cell != null && cell.CellType == cellType)
+                        ++cellCount;
+                }
+
+                if (cellCount > 0)
+                {
+                    var cellSize = 0.0f;
+
+                    var organelles = cellType.Organelles;
+                    foreach (var organelle in organelles)
+                    {
+                        cellSize += organelle.Definition.HexCount;
+                    }
+
+                    if (cellType.IsBacteria)
+                        return cellSize * Constants.BACTERIA_CELL_SCALE;
+
+                    totalsize += cellSize;
+                }
+            }
+
+            return totalsize;
+        }
+    }
+
     // TODO: precalculate this as it'll help auto-evo quite a bit
     /// <summary>
     ///   Compound capacities members of this species can store in their default configurations
