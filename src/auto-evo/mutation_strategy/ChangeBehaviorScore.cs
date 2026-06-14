@@ -30,7 +30,7 @@ public class ChangeBehaviorScore : IMutationStrategy<Species>
     public List<Mutant>? MutationsOf(Species baseSpecies, double mp, bool lawk,
         Random random, BiomeConditions biomeToConsider)
     {
-        if (baseSpecies is not MicrobeSpecies)
+        if (baseSpecies is not MicrobeSpecies and not MulticellularSpecies)
             return null;
 
         // TODO: Make random something passed in
@@ -39,7 +39,7 @@ public class ChangeBehaviorScore : IMutationStrategy<Species>
         if (Math.Abs(change) < 1)
             return null;
 
-        var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
+        var newSpecies = (Species)baseSpecies.Clone();
 
         switch (attribute)
         {
