@@ -17,7 +17,7 @@ public class ModifyEnvironmentalTolerance : IMutationStrategy<Species>
     public List<Mutant>? MutationsOf(Species baseSpecies, double mp, bool lawk,
         Random random, BiomeConditions biomeToConsider)
     {
-        if (baseSpecies is not MicrobeSpecies baseMicrobeSpecies)
+        if (baseSpecies is not MicrobeSpecies and not MulticellularSpecies)
             return null;
 
         if (mp <= 0)
@@ -27,8 +27,18 @@ public class ModifyEnvironmentalTolerance : IMutationStrategy<Species>
         var originalMp = mp;
 #endif
 
-        var score = MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(baseMicrobeSpecies,
-            biomeToConsider);
+        var score = default(ToleranceResult);
+        if (baseSpecies is MicrobeSpecies baseMicrobeSpecies)
+        {
+            score = MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(baseMicrobeSpecies,
+                biomeToConsider);
+        }
+
+        if (baseSpecies is MulticellularSpecies baseMulticellularSpecies)
+        {
+            score = MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(baseMulticellularSpecies,
+                biomeToConsider);
+        }
 
         // This is outside the if statement to have a slightly more consistent number of random calls (though this
         // might not really matter in practice)
@@ -210,13 +220,24 @@ public class ModifyEnvironmentalTolerance : IMutationStrategy<Species>
 
         // TODO: could do a shallower clone here as organelles won't be modified, so this doesn't need to clone
         // anything except the tolerances
-        var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
+        var newSpecies = (Species)baseSpecies.Clone();
         newSpecies.ModifiableTolerances.CopyFrom(newTolerances);
 
 #if DEBUG
         newSpecies.ModifiableTolerances.SanityCheck();
 
-        var newScore = MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(newSpecies, biomeToConsider);
+        var newScore = default(ToleranceResult);
+        if (baseSpecies is MicrobeSpecies newMicrobeSpecies)
+        {
+            newScore = MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(newMicrobeSpecies,
+                biomeToConsider);
+        }
+
+        if (baseSpecies is MulticellularSpecies newMulticellularSpecies)
+        {
+            newScore = MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(newMulticellularSpecies,
+                biomeToConsider);
+        }
 
         // As auto-evo can evolve to *reduce* perfect adaptability, only check that the score improved if the scores
         // are below 1. Due to some edge-cases, we need to compare individual score components separately to detect a
