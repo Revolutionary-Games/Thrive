@@ -477,7 +477,7 @@ public partial class MicrobeBenchmark : BenchmarkBase
 
         for (int i = 0; i < SPECIES_COUNT; ++i)
         {
-            var species = CommonMutationFunctions.GenerateRandomSpecies(world.NewMicrobeSpecies(
+            var species = CommonMutationFunctions.GenerateRandomMicrobeSpecies(world.NewMicrobeSpecies(
                     nameGenerator.GenerateNameSection(random),
                     nameGenerator.GenerateNameSection(random, true)), dummyPatch, workMemory, random,
                 random.Next(200, 500));

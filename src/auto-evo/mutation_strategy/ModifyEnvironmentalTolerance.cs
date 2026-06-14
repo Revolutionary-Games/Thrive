@@ -6,7 +6,7 @@ using System.Diagnostics;
 using Godot;
 using static CommonMutationFunctions;
 
-public class ModifyEnvironmentalTolerance : IMutationStrategy<MicrobeSpecies>
+public class ModifyEnvironmentalTolerance : IMutationStrategy<Species>
 {
     /// <summary>
     ///   Not repeatable as this strategy always uses as much MP as possible to reach the optimal environmental
@@ -14,9 +14,12 @@ public class ModifyEnvironmentalTolerance : IMutationStrategy<MicrobeSpecies>
     /// </summary>
     public bool Repeatable => false;
 
-    public List<Mutant>? MutationsOf(MicrobeSpecies baseSpecies, double mp, bool lawk,
+    public List<Mutant>? MutationsOf(Species baseSpecies, double mp, bool lawk,
         Random random, BiomeConditions biomeToConsider)
     {
+        if (baseSpecies is not MicrobeSpecies baseMicrobeSpecies)
+            return null;
+
         if (mp <= 0)
             return null;
 
@@ -24,7 +27,8 @@ public class ModifyEnvironmentalTolerance : IMutationStrategy<MicrobeSpecies>
         var originalMp = mp;
 #endif
 
-        var score = MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(baseSpecies, biomeToConsider);
+        var score = MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(baseMicrobeSpecies,
+            biomeToConsider);
 
         // This is outside the if statement to have a slightly more consistent number of random calls (though this
         // might not really matter in practice)

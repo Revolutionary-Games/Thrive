@@ -69,12 +69,15 @@ public static class CommonMutationFunctions
         Back,
     }
 
-    public static MicrobeSpecies GenerateRandomSpecies(MicrobeSpecies mutated, Patch forPatch,
+    public static MicrobeSpecies GenerateRandomMicrobeSpecies(Species mutated, Patch forPatch,
         MutationWorkMemory workMemory, Random random, double mp = 300)
     {
+        if (mutated is not MicrobeSpecies mutatedMicrobe)
+            throw new ArgumentException("Wrong species type passed to GenerateRandomMicrobeSpecies");
+
         var mutationStrategy = new AddOrganelleAnywhere(_ => true);
 
-        GameWorld.SetInitialSpeciesProperties(mutated, workMemory.WorkingMemory1, workMemory.WorkingMemory2);
+        GameWorld.SetInitialSpeciesProperties(mutatedMicrobe, workMemory.WorkingMemory1, workMemory.WorkingMemory2);
 
         while (mp > 0)
         {
@@ -87,11 +90,11 @@ public static class CommonMutationFunctions
             mutated = mutation.Species;
             mp -= mutation.MP;
 
-            MutationLogicFunctions.ColourNewMicrobeSpecies(random, mutated);
+            MutationLogicFunctions.ColourNewMicrobeSpecies(random, mutatedMicrobe);
         }
 
-        mutated.ModifiableTolerances.CopyFrom(forPatch.GenerateTolerancesForMicrobe(mutated.Organelles,
-            MicrobeInternalCalculations.CalculateSpecializationBonus(mutated.Organelles,
+        mutated.ModifiableTolerances.CopyFrom(forPatch.GenerateTolerancesForMicrobe(mutatedMicrobe.Organelles,
+            MicrobeInternalCalculations.CalculateSpecializationBonus(mutatedMicrobe.Organelles,
                 new Dictionary<OrganelleDefinition, int>())));
 
         // Override the default species starting name to have more variability in the names
@@ -101,7 +104,7 @@ public static class CommonMutationFunctions
 
         mutated.OnEdited();
 
-        return mutated;
+        return mutatedMicrobe;
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -440,5 +443,5 @@ public static class CommonMutationFunctions
 
     // TODO: this would be really nice to convert into a struct record as the mutation strategies generate a lot of
     // these, which in turn makes a lot of small objects just to hold the species reference and one double.
-    public record Mutant(MicrobeSpecies Species, double MP);
+    public record Mutant(Species Species, double MP);
 }

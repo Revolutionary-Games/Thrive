@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using static CommonMutationFunctions;
 
-public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
+public class RemoveOrganelle : IMutationStrategy<Species>
 {
     public static OrganelleDefinition Nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
     public Func<OrganelleDefinition, bool> Criteria;
@@ -47,16 +47,19 @@ public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
 
     // ReSharper restore InvokeAsExtensionMethod
 
-    public List<Mutant>? MutationsOf(MicrobeSpecies baseSpecies, double mp, bool lawk,
+    public List<Mutant>? MutationsOf(Species baseSpecies, double mp, bool lawk,
         Random random, BiomeConditions biomeToConsider)
     {
+        if (baseSpecies is not MicrobeSpecies baseMicrobeSpecies)
+            return null;
+
         if (mp < Constants.ORGANELLE_REMOVE_COST)
             return null;
 
-        if (baseSpecies.Organelles.Count <= 1)
+        if (baseMicrobeSpecies.Organelles.Count <= 1)
             return null;
 
-        var organelles = baseSpecies.Organelles.Where(x => Criteria(x.Definition))
+        var organelles = baseMicrobeSpecies.Organelles.Where(x => Criteria(x.Definition))
             .OrderBy(_ => random.Next()).Take(Constants.AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS);
 
         List<Mutant>? mutated = null;
@@ -70,15 +73,15 @@ public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
                 continue;
 
             // Don't clone organelles as we want to do those ourselves
-            var newSpecies = baseSpecies.Clone(false);
+            var newSpecies = baseMicrobeSpecies.Clone(false);
 
             workMemory ??= new MutationWorkMemory();
 
             // Is this the best way to do this? Probably not, but this is how mutations.cs does is
             // and the other way outright did not work
             // This is now slightly improved - hhyyrylainen
-            var baseOrganelles = baseSpecies.Organelles.Organelles;
-            var count = baseSpecies.Organelles.Count;
+            var baseOrganelles = baseMicrobeSpecies.Organelles.Organelles;
+            var count = baseMicrobeSpecies.Organelles.Count;
 
             for (var i = 0; i < count; ++i)
             {
@@ -89,10 +92,11 @@ public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
 
                 // Copy the organelle
                 var newOrganelle = parentOrganelle.Clone();
-                newSpecies.Organelles.AddIfPossible(newOrganelle, workMemory.WorkingMemory1, workMemory.WorkingMemory2);
+                baseMicrobeSpecies.Organelles.AddIfPossible(newOrganelle, workMemory.WorkingMemory1,
+                    workMemory.WorkingMemory2);
             }
 
-            AttachIslandHexes(newSpecies.Organelles, workMemory);
+            AttachIslandHexes(baseMicrobeSpecies.Organelles, workMemory);
 
             mutated ??= new List<Mutant>();
             mutated.Add(new Mutant(newSpecies, mp - Constants.ORGANELLE_REMOVE_COST));
