@@ -236,6 +236,15 @@ public class ModifyExistingSpecies : IRunStep
                                 parentMicrobeSpecies);
                         }
 
+                        if (mutation.MutatedSpecies is MulticellularSpecies multicellularSpecies &&
+                            mutation.ParentSpecies is MulticellularSpecies parentMulticellularSpecies)
+                        {
+                            MutationLogicFunctions.NameNewMulticellularSpecies(multicellularSpecies,
+                                parentMulticellularSpecies);
+                            MutationLogicFunctions.ColourNewMulticellularSpecies(random, multicellularSpecies,
+                                parentMulticellularSpecies);
+                        }
+
                         results.AddPossibleMutation(mutation.MutatedSpecies,
                             new KeyValuePair<Patch, long>(patch, newPopulation), mutation.AddType,
                             mutation.ParentSpecies);
