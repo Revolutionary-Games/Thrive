@@ -23,6 +23,14 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
     private bool disposed;
 
     public MembranePointData(Vector2[] hexPositions, int hexPositionCount, MembraneType type,
+        IReadOnlyList<Vector2> verticesToCopy, Vector2[] multicellularPositions,
+        Vector2 cellPositionInMulticellular) : this(hexPositions, hexPositionCount, type, verticesToCopy)
+    {
+        MulticellularPositions = multicellularPositions;
+        CellPositionInMulticellular = cellPositionInMulticellular;
+    }
+
+    public MembranePointData(Vector2[] hexPositions, int hexPositionCount, MembraneType type,
         IReadOnlyList<Vector2> verticesToCopy)
     {
         HexPositions = hexPositions;
@@ -54,6 +62,14 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
 
         Vertices2D = copyTarget;
         VertexCount = count;
+
+        var vertexCenter = Vector2.Zero;
+        foreach (var vertex in Vertices2D)
+        {
+            vertexCenter += vertex;
+        }
+
+        VertexCenter = vertexCenter / count;
     }
 
     ~MembranePointData()
@@ -72,12 +88,21 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
     /// </summary>
     public Vector2[] HexPositions { get; }
 
+    /// <summary>
+    ///   Positions of other cells in multicellular organism
+    /// </summary>
+    public Vector2[]? MulticellularPositions { get; }
+
+    public Vector2? CellPositionInMulticellular { get; }
+
     public int HexPositionCount { get; }
 
     public MembraneType Type { get; }
 
     // TODO: check all uses when switching this
     public Vector2[] Vertices2D { get; }
+
+    public Vector2 VertexCenter { get; }
 
     public int VertexCount { get; }
 
@@ -174,6 +199,16 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
 
         ArrayPool<Vector2>.Shared.Return(Vertices2D);
     }
+}
+
+public sealed class NeighbourData
+{
+    public long SingleCellHash;
+    public Vector2 CellPosition;
+    public Vector2[] HexPositions;
+    public int HexCount;
+    public MembraneType Type;
+    public MembranePointData PointData;
 }
 
 /// <summary>

@@ -303,6 +303,23 @@ public partial class ProceduralDataCache : Node
         }
 
         // Data didn't match after all, there's a hash collision
+        // Print debug info to help diagnose why different data produced the same hash
+        try
+        {
+            if (typeof(T) == typeof(MembranePointData) && existing.Value is MembranePointData oldM && newValue is MembranePointData newM)
+            {
+                GD.Print($"Hash collision detected for hash {hash}. existing.VertexCount={oldM.VertexCount}, new.VertexCount={newM.VertexCount}");
+            }
+            else
+            {
+                GD.Print($"Hash collision detected for hash {hash}. Type={typeof(T)}");
+            }
+        }
+        catch (Exception)
+        {
+            // Ignore any debug printing errors
+        }
+
         CacheableDataExtensions.OnCacheHashCollision<T>(hash);
 
         if (!onConflictPreferOlder)

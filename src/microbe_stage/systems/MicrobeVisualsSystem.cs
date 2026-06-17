@@ -154,8 +154,23 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
 
         ref var materialStorage = ref entity.Get<EntityMaterial>();
 
+        MembranePointData? data;
+
         // Background thread membrane generation
-        var data = GetMembraneDataIfReadyOrStartGenerating(ref cellProperties, ref organelleContainer);
+        if (entity.Has<MulticellularSpeciesMember>())
+        {
+            var multi = entity.Get<MulticellularSpeciesMember>();
+
+            // Only get the membrane for THIS entity's cell (not all cells in the colony)
+            var cellIndex = multi.MulticellularBodyPlanPartIndex;
+            var cell = multi.Species.ModifiableGameplayCells[cellIndex];
+            data = GetMulticellularMembraneDataIfReadyOrStartGenerating(cell, cell.ModifiableOrganelles, ref multi,
+                cellIndex);
+        }
+        else
+        {
+            data = GetMembraneDataIfReadyOrStartGenerating(ref cellProperties, ref organelleContainer);
+        }
 
         if (data == null)
         {
@@ -226,8 +241,10 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         {
             // TODO: hopefully this can't get into a permanent loop where 2 conflicting membranes want to
             // re-generate on each game update cycle
-            if (!cachedMembrane.MembraneDataFieldsEqual(hexes, hexCount, cellProperties.MembraneType))
+            if (!cachedMembrane.MembraneDataFieldsEqual(hexes, hexCount, cellProperties.MembraneType, null, null))
             {
+                GD.Print(
+                    $"Cache equality mismatch for hash {hash}. cached.VertexCount={cachedMembrane.VertexCount}, hexCount={hexCount}");
                 CacheableDataExtensions.OnCacheHashCollision<MembranePointData>(hash);
                 cachedMembrane = null;
             }
@@ -255,6 +272,86 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         }
 
         membranesToGenerate.Enqueue(new MembraneGenerationParameters(hexes, hexCount, cellProperties.MembraneType));
+
+        // Immediately start some jobs to give background threads something to do while the main thread is busy
+        // potentially setting up other visuals
+        StartMembraneGenerationJobs();
+
+        return null;
+    }
+
+    private MembranePointData? GetMulticellularMembraneDataIfReadyOrStartGenerating(CellTemplate cellProperties,
+        OrganelleLayout<OrganelleTemplate> organelleContainer, ref MulticellularSpeciesMember multicellular,
+        int cellIndex)
+    {
+        // TODO: should we consider the situation where a membrane was requested on the previous update but is not
+        // ready yet? This causes extra memory usage here in those cases.
+        var hexes = MembraneComputationHelpers.PrepareHexPositionsForMembraneCalculations(organelleContainer.Organelles,
+            out var hexCount);
+
+        List<Vector2> positions = new List<Vector2>();
+
+        foreach (var cell in multicellular.Species.ModifiableGameplayCells)
+        {
+            var cartesian = Hex.AxialToCartesian(cell.Position);
+            positions.Add(new Vector2(cartesian.X, cartesian.Z) * Constants.MULTICELLULAR_CELL_DISTANCE_MULTIPLIER);
+        }
+
+        var positionsArray = positions.ToArray();
+
+        // Use the actual cell index to get the correct position for this specific cell
+        var thisCartesian =
+            Hex.AxialToCartesian(multicellular.Species
+                .ModifiableGameplayCells[cellIndex].Position);
+        var cellPositionInMulticellular = new Vector2(thisCartesian.X, thisCartesian.Z) *
+            Constants.MULTICELLULAR_CELL_DISTANCE_MULTIPLIER;
+
+        // Use the simple hash function that includes all parameters
+        var hash = MembraneComputationHelpers.ComputeMembraneDataHash(hexes, hexCount, cellProperties.MembraneType,
+            positionsArray, cellPositionInMulticellular);
+
+        var cachedMembrane = ProceduralDataCache.Instance.ReadMembraneData(hash);
+
+        if (cachedMembrane != null)
+        {
+            // TODO: hopefully this can't get into a permanent loop where 2 conflicting membranes want to
+            // re-generate on each game update cycle
+            if (!cachedMembrane.MembraneDataFieldsEqual(hexes, hexCount, cellProperties.MembraneType, positionsArray,
+                    cellPositionInMulticellular))
+            {
+                GD.Print(
+                    $"Multicell cache equality mismatch for hash {hash}." +
+                    $"\n  positions: {cachedMembrane.CellPositionInMulticellular} vs {cellPositionInMulticellular}" +
+                    $"\n  hexes: {cachedMembrane.HexPositionCount} vs {hexCount}" +
+                    $"\n  positions: {cachedMembrane.MulticellularPositions?.Length} vs {positionsArray.Length}");
+                CacheableDataExtensions.OnCacheHashCollision<MembranePointData>(hash);
+                cachedMembrane = null;
+            }
+        }
+
+        if (cachedMembrane != null)
+        {
+            // Membrane was ready now
+            return cachedMembrane;
+        }
+
+        // Need to generate a new membrane
+
+        lock (pendingGenerationsOfMembraneHashes)
+        {
+            if (!pendingGenerationsOfMembraneHashes.Add(hash))
+            {
+                // Already queued, don't need to queue again
+
+                // Return the unnecessary array that there won't be a cache entry to hold to the pool
+                ArrayPool<Vector2>.Shared.Return(hexes);
+
+                return null;
+            }
+        }
+
+        membranesToGenerate.Enqueue(new MembraneGenerationParameters(hexes, hexCount, cellProperties.MembraneType,
+            positionsArray, cellPositionInMulticellular));
 
         // Immediately start some jobs to give background threads something to do while the main thread is busy
         // potentially setting up other visuals
@@ -424,20 +521,19 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         // Process membrane generation requests until empty
         while (membranesToGenerate.TryDequeue(out var generationParameters))
         {
-            var generator = MembraneShapeGenerator.GetThreadSpecificGenerator();
+            // Use coordinator to handle both single-cell and multicellular two-pass generation.
+            var writtenHashes = MembraneGenerationCoordinator.HandleGenerationRequest(ref generationParameters);
 
-            var cacheEntry = generator.GenerateShape(ref generationParameters);
-
-            // Cache entry now owns the array data that was in the generationParameters and will return it to the
-            // pool when the cache disposes it
-            var hash = ProceduralDataCache.Instance.WriteMembraneData(ref cacheEntry);
-
-            // TODO: already generate the 3D points here for use on the main thread for faster membrane creation?
-
+            // writtenHashes contains the cache hashes that correspond to the final results that should be removed
+            // from the pending set. For single-cell requests this is the single written hash. For multicellular
+            // requests this will contain the multicellular-modified hash for this cell when available.
             lock (pendingGenerationsOfMembraneHashes)
             {
-                if (!pendingGenerationsOfMembraneHashes.Remove(hash))
-                    GD.PrintErr("Membrane generation result is a hash that wasn't in the pending hashes");
+                foreach (var hash in writtenHashes)
+                {
+                    if (!pendingGenerationsOfMembraneHashes.Remove(hash))
+                        GD.PrintErr("Membrane generation result is a hash that wasn't in the pending hashes");
+                }
             }
 
             // TODO: can we always rely on the dynamic data cache or should we have an explicit method for

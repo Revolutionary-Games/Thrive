@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using Godot;
 using Array = Godot.Collections.Array;
@@ -52,7 +53,8 @@ public class MembraneShapeGenerator
     ///   Computed data in a cache entry format (to be used with <see cref="ProceduralDataCache"/>, which should be
     ///   checked for existing data before computing new data)
     /// </returns>
-    public MembranePointData GenerateShape(Vector2[] hexPositions, int hexCount, MembraneType membraneType)
+    public MembranePointData GenerateMicrobeShape(Vector2[] hexPositions, int hexCount, MembraneType membraneType,
+        bool isMulticellular)
     {
         // The length in pixels (probably not accurate?) of a side of the square that bounds the membrane.
         // Half the side length of the original square that is compressed to make the membrane.
@@ -105,22 +107,33 @@ public class MembraneShapeGenerator
         }
 
         // ReSharper restore PossibleLossOfFraction
-
-        // Get new membrane points for vertices2D
-        GenerateMembranePoints(hexPositions, hexCount, membraneType);
+        GenerateMembranePoints(hexPositions, hexCount, membraneType, isMulticellular);
 
         // This makes a copy of the vertices so the data is safe to modify in further calls to this method
         return new MembranePointData(hexPositions, hexCount, membraneType, vertices2D);
     }
 
-    public MembranePointData GenerateShape(ref MembraneGenerationParameters parameters)
+    public MembranePointData GenerateMulticellularMembrane(MembranePointData baseData, NeighbourData[] neighboursData,
+        Vector2[] multicellularPositions, Vector2 thisCellPosition)
     {
-        return GenerateShape(parameters.HexPositions, parameters.HexPositionCount, parameters.Type);
+        vertices2D.Clear();
+
+        for (int i = 0; i < baseData.VertexCount; ++i)
+        {
+            vertices2D.Add(baseData.Vertices2D[i]);
+        }
+
+        GenerateMulticellularMembrane(neighboursData, thisCellPosition);
+
+        return new MembranePointData(baseData.HexPositions, baseData.HexPositionCount, baseData.Type,
+            vertices2D, multicellularPositions, thisCellPosition);
     }
 
-    public MembranePointData GenerateShape(IMembraneDataSource parameters)
+    public MembranePointData GenerateMicrobeShape(ref MembraneGenerationParameters parameters,
+        bool isMulticellular = false)
     {
-        return GenerateShape(parameters.HexPositions, parameters.HexPositionCount, parameters.Type);
+        return GenerateMicrobeShape(parameters.HexPositions, parameters.HexPositionCount, parameters.Type,
+            isMulticellular);
     }
 
     /// <summary>
@@ -462,7 +475,8 @@ public class MembraneShapeGenerator
         return generatedMesh;
     }
 
-    private void GenerateMembranePoints(Vector2[] hexPositions, int hexCount, MembraneType membraneType)
+    private void GenerateMembranePoints(Vector2[] hexPositions, int hexCount, MembraneType membraneType,
+        bool isMulticellular)
     {
         // Move all the points in the source buffer close to organelles
         // This operation used to be iterative but this is now a much faster version that moves things all the way in
@@ -525,6 +539,14 @@ public class MembraneShapeGenerator
             }
         }
 
+        if (isMulticellular)
+            return;
+
+        MakeMembraneWavier(membraneType, circumference);
+    }
+
+    private void MakeMembraneWavier(MembraneType membraneType, float circumference)
+    {
         float waveFrequency = 2.0f * MathF.PI * Constants.MEMBRANE_NUMBER_OF_WAVES / vertices2D.Count;
 
         float heightMultiplier = membraneType.CellWall ?
@@ -548,5 +570,225 @@ public class MembraneShapeGenerator
 
             vertices2D[i] = point + movement;
         }
+    }
+
+    private void GenerateMulticellularMembrane(NeighbourData[] neighboursData, Vector2 cellPosition)
+    {
+        var averagePointPosition = Vector2.Zero;
+
+        foreach (var vertex in vertices2D)
+        {
+            averagePointPosition += vertex;
+        }
+
+        averagePointPosition /= vertices2D.Count;
+
+        // GD.Print("Before");
+        // GD.Print(string.Join(",", vertices2D.Select(v => $"({v.X + cellPosition.X},{v.Y + cellPosition.Y})")));
+
+        // GD.Print(string.Join(",", vertices2D.Select(v => $"({v.X},{v.Y})")));
+        // GD.Print($"{average.X},{average.Y}, " +
+        //     string.Join(",", cellPositions.Select(v => $"({v.X},{v.Y})")));
+
+        foreach (var neighbourData in neighboursData)
+        {
+            var otherCellPosition = neighbourData.CellPosition;
+            var otherCellAverage = neighbourData.PointData.VertexCenter;
+
+            if ((MathF.Abs(otherCellPosition.X - cellPosition.X) < 0.01f &&
+                    MathF.Abs(otherCellPosition.Y - cellPosition.Y) < 0.01f) ||
+                otherCellPosition.DistanceTo(cellPosition) > 20)
+            {
+                continue;
+            }
+
+            var localNeighbourAvaragePointPosition = otherCellAverage + otherCellPosition - cellPosition;
+
+            var middlePoint = (averagePointPosition + localNeighbourAvaragePointPosition) / 2;
+
+            var tangentPoint1 = 0;
+            var tangentPoint2 = 0;
+            var maxPositiveAngle = 0.0f;
+            var maxNegativeAngle = 0.0f;
+
+            var skipped = false;
+
+            for (var i = 0; i < vertices2D.Count; i++)
+            {
+                var point = vertices2D[i];
+                var angle = Angle(averagePointPosition, middlePoint, point);
+
+                if (angle > maxPositiveAngle)
+                {
+                    maxPositiveAngle = angle;
+                    tangentPoint1 = i;
+
+                    if (angle > 90)
+                    {
+                        GD.PrintErr("Middle point inside cell membrane. Skipping multicellular generation");
+                        skipped = true;
+                        break;
+                    }
+                }
+                else if (angle < maxNegativeAngle)
+                {
+                    maxNegativeAngle = angle;
+                    tangentPoint2 = i;
+
+                    if (angle < -90)
+                    {
+                        GD.PrintErr("Middle point inside cell membrane. Skipping multicellular generation");
+                        skipped = true;
+                        break;
+                    }
+                }
+            }
+
+            // GD.Print($"{string.Join(",", vertices2D.Select(v => $"({v.X},{v.Y})"))}\n");
+            // GD.Print($"{string.Join(",", neighbourData.PointData.Vertices2D.Select(v => $"({v.X},{v.Y})"))}\n");
+            // GD.Print(
+            //     $"{string.Join(",", neighbourData.PointData.Vertices2D.Select(v => $"{localNeighbourAvaragePointPosition + v},"))}\n");
+            for (var i = 0; i < neighbourData.PointData.Vertices2D.Length; i++)
+            {
+                var point = neighbourData.PointData.Vertices2D[i];
+                var angle = Angle(localNeighbourAvaragePointPosition + point, middlePoint,
+                    localNeighbourAvaragePointPosition);
+                GD.Print(
+                    $"{localNeighbourAvaragePointPosition + point}, {middlePoint}, {localNeighbourAvaragePointPosition} => {angle}");
+
+                if (angle is > 90 or < -90)
+                {
+                    GD.PrintErr("Middle point inside THE OTHER cell membrane. Skipping multicellular generation");
+
+                    // skipped = true;
+                    // break;
+                }
+            }
+
+            if (skipped)
+                return;
+
+            var castDirection = middlePoint - averagePointPosition;
+            if (castDirection.LengthSquared() < 1e-6f)
+                continue;
+
+            castDirection = castDirection.Normalized();
+
+            int n = vertices2D.Count;
+
+            var coneEdgeA = vertices2D[tangentPoint1] - middlePoint;
+            var coneEdgeB = vertices2D[tangentPoint2] - middlePoint;
+
+            if (coneEdgeA.LengthSquared() < 1e-6f || coneEdgeB.LengthSquared() < 1e-6f)
+                continue;
+
+            // define from which index of verices2D to which index the points should be moved
+            int forwardLength = (tangentPoint2 - tangentPoint1 + n) % n;
+            int backwardLength = (tangentPoint1 - tangentPoint2 + n) % n;
+
+            int indexStart, indexEnd;
+            if (forwardLength <= backwardLength)
+            {
+                indexStart = tangentPoint1;
+                indexEnd = tangentPoint1 + forwardLength;
+            }
+            else
+            {
+                indexStart = tangentPoint2;
+                indexEnd = tangentPoint2 + backwardLength;
+            }
+
+            // GD.Print($"Tan1: {tangentPoint1}, Tan2: {tangentPoint2}, start: {start}, end: {end}");
+
+            for (var i = indexStart; i < indexEnd; i++)
+            {
+                var point = vertices2D[i % n];
+
+                var hitLeftConeBoundary = FindRayLineIntersection(point,
+                    castDirection,
+                    middlePoint,
+                    coneEdgeA,
+                    out float distanceToLeftBoundary);
+
+                var hitRightConeBoundary = FindRayLineIntersection(point,
+                    castDirection,
+                    middlePoint,
+                    coneEdgeB,
+                    out float distanceToRightBoundary);
+
+                var projectedOntoLeftBoundary = hitLeftConeBoundary ?
+                    point + castDirection * distanceToLeftBoundary :
+                    vertices2D[tangentPoint1];
+
+                var projectedOntoRightBoundary = hitRightConeBoundary ?
+                    point + castDirection * distanceToRightBoundary :
+                    vertices2D[tangentPoint2];
+
+                var leftBoundaryIsCloser =
+                    hitLeftConeBoundary &&
+                    (!hitRightConeBoundary || MathF.Abs(distanceToLeftBoundary) < MathF.Abs(distanceToRightBoundary));
+
+                if (leftBoundaryIsCloser)
+                {
+                    vertices2D[i % n] = projectedOntoLeftBoundary;
+                }
+                else if (hitRightConeBoundary)
+                {
+                    vertices2D[i % n] = projectedOntoRightBoundary;
+                }
+            }
+
+            // GD.Print("AFTER");
+            // GD.Print(string.Join(",",
+            // vertices2D.Select(v => $"({v.X + cellPosition.X},{v.Y + cellPosition.Y})")));
+        }
+
+        // GD.Print(
+        //     $"Middle ({middlePoint.X}, {middlePoint.Y}), 1: ({tangentPoint1.X}, {tangentPoint1.Y}), 2: ({tangentPoint2.X}, {tangentPoint2.Y})");
+    }
+
+    /// <summary>
+    /// Finds the intersection
+    /// Returns false when the ray and line are parallel.
+    /// rayDistance may be negative, meaning the intersection
+    /// lies behind rayOrigin relative to rayDirection.
+    /// </summary>
+    private bool FindRayLineIntersection(Vector2 rayOrigin,
+        Vector2 rayDirection,
+        Vector2 linePoint,
+        Vector2 lineDirection,
+        out float rayDistance)
+    {
+        float determinant =
+            rayDirection.X * lineDirection.Y -
+            rayDirection.Y * lineDirection.X;
+
+        rayDistance = 0;
+
+        // Parallel lines
+        if (MathF.Abs(determinant) < 1e-6f)
+            return false;
+
+        Vector2 offset = linePoint - rayOrigin;
+
+        rayDistance =
+            (offset.X * lineDirection.Y -
+                offset.Y * lineDirection.X) / determinant;
+
+        return true;
+    }
+
+    private float Angle(Vector2 a, Vector2 b, Vector2 c)
+    {
+        var ba = a - b;
+        var bc = c - b;
+
+        var angle = ba.AngleTo(bc) * 180f / MathF.PI;
+        if (angle > 180)
+        {
+            angle -= 360;
+        }
+
+        return angle;
     }
 }
