@@ -114,7 +114,8 @@ public class MembraneShapeGenerator
     }
 
     public MembranePointData GenerateMulticellularMembrane(MembranePointData baseData, NeighbourData[] neighboursData,
-        Vector2[] multicellularPositions, Vector2 thisCellPosition)
+        Vector2[] multicellularPositions, Vector2 thisCellPosition, int thisCellOrientation,
+        int[]? multicellularOrientations)
     {
         vertices2D.Clear();
 
@@ -123,10 +124,10 @@ public class MembraneShapeGenerator
             vertices2D.Add(baseData.Vertices2D[i]);
         }
 
-        GenerateMulticellularMembrane(neighboursData, thisCellPosition);
+        GenerateMulticellularMembrane(neighboursData, thisCellPosition, thisCellOrientation);
 
         return new MembranePointData(baseData.HexPositions, baseData.HexPositionCount, baseData.Type,
-            vertices2D, multicellularPositions, thisCellPosition);
+            vertices2D, multicellularPositions, thisCellPosition, multicellularOrientations, thisCellOrientation);
     }
 
     public MembranePointData GenerateMicrobeShape(ref MembraneGenerationParameters parameters,
@@ -302,6 +303,13 @@ public class MembraneShapeGenerator
 
             writeIndex += 3;
         }
+    }
+
+    // rotate helper: rotate a vector around origin
+    private static Vector2 Rotate(Vector2 v, float angle)
+    {
+        (float s, float c) = MathF.SinCos(angle);
+        return new Vector2(c * v.X - s * v.Y, s * v.X + c * v.Y);
     }
 
     /// <summary>
@@ -572,179 +580,233 @@ public class MembraneShapeGenerator
         }
     }
 
-    private void GenerateMulticellularMembrane(NeighbourData[] neighboursData, Vector2 cellPosition)
+    private void GenerateMulticellularMembrane(NeighbourData[] neighboursData, Vector2 cellPosition,
+        int thisCellOrientation)
     {
-        var averagePointPosition = Vector2.Zero;
+        float thisAngle = thisCellOrientation * (MathF.PI / 3f);
 
-        foreach (var vertex in vertices2D)
-        {
-            averagePointPosition += vertex;
-        }
+        var averageVertex = GetAverageVertex(vertices2D);
 
-        averagePointPosition /= vertices2D.Count;
+        GD.Print("Original:");
+        GD.Print(string.Join(",",
+            vertices2D.Select(v => $"({v.X},{v.Y})")));
 
-        // GD.Print("Before");
-        // GD.Print(string.Join(",", vertices2D.Select(v => $"({v.X + cellPosition.X},{v.Y + cellPosition.Y})")));
-
-        // GD.Print(string.Join(",", vertices2D.Select(v => $"({v.X},{v.Y})")));
-        // GD.Print($"{average.X},{average.Y}, " +
-        //     string.Join(",", cellPositions.Select(v => $"({v.X},{v.Y})")));
-
+        // Process neighbours using rotated coordinates
         foreach (var neighbourData in neighboursData)
         {
             var otherCellPosition = neighbourData.CellPosition;
-            var otherCellAverage = neighbourData.PointData.VertexCenter;
 
-            if ((MathF.Abs(otherCellPosition.X - cellPosition.X) < 0.01f &&
-                    MathF.Abs(otherCellPosition.Y - cellPosition.Y) < 0.01f) ||
+            if (otherCellPosition.DistanceTo(cellPosition) < 0.01f ||
                 otherCellPosition.DistanceTo(cellPosition) > 20)
-            {
-                continue;
-            }
-
-            var localNeighbourAvaragePointPosition = otherCellAverage + otherCellPosition - cellPosition;
-
-            var middlePoint = (averagePointPosition + localNeighbourAvaragePointPosition) / 2;
-
-            var tangentPoint1 = 0;
-            var tangentPoint2 = 0;
-            var maxPositiveAngle = 0.0f;
-            var maxNegativeAngle = 0.0f;
-
-            var skipped = false;
-
-            for (var i = 0; i < vertices2D.Count; i++)
-            {
-                var point = vertices2D[i];
-                var angle = Angle(averagePointPosition, middlePoint, point);
-
-                if (angle > maxPositiveAngle)
-                {
-                    maxPositiveAngle = angle;
-                    tangentPoint1 = i;
-
-                    if (angle > 90)
-                    {
-                        GD.PrintErr("Middle point inside cell membrane. Skipping multicellular generation");
-                        skipped = true;
-                        break;
-                    }
-                }
-                else if (angle < maxNegativeAngle)
-                {
-                    maxNegativeAngle = angle;
-                    tangentPoint2 = i;
-
-                    if (angle < -90)
-                    {
-                        GD.PrintErr("Middle point inside cell membrane. Skipping multicellular generation");
-                        skipped = true;
-                        break;
-                    }
-                }
-            }
-
-            // GD.Print($"{string.Join(",", vertices2D.Select(v => $"({v.X},{v.Y})"))}\n");
-            // GD.Print($"{string.Join(",", neighbourData.PointData.Vertices2D.Select(v => $"({v.X},{v.Y})"))}\n");
-            // GD.Print(
-            //     $"{string.Join(",", neighbourData.PointData.Vertices2D.Select(v => $"{localNeighbourAvaragePointPosition + v},"))}\n");
-            for (var i = 0; i < neighbourData.PointData.Vertices2D.Length; i++)
-            {
-                var point = neighbourData.PointData.Vertices2D[i];
-                var angle = Angle(localNeighbourAvaragePointPosition + point, middlePoint,
-                    localNeighbourAvaragePointPosition);
-                GD.Print(
-                    $"{localNeighbourAvaragePointPosition + point}, {middlePoint}, {localNeighbourAvaragePointPosition} => {angle}");
-
-                if (angle is > 90 or < -90)
-                {
-                    GD.PrintErr("Middle point inside THE OTHER cell membrane. Skipping multicellular generation");
-
-                    // skipped = true;
-                    // break;
-                }
-            }
-
-            if (skipped)
-                return;
-
-            var castDirection = middlePoint - averagePointPosition;
-            if (castDirection.LengthSquared() < 1e-6f)
                 continue;
 
-            castDirection = castDirection.Normalized();
+            var neighbourVertices = RotateNeighbourVertices(neighbourData, thisAngle);
 
-            int n = vertices2D.Count;
+            // The world-space offset from this cell to the neighbour,
+            // rotated into this cell's local space
+            var worldOffset = otherCellPosition - cellPosition;
+            var localOffset = Rotate(worldOffset, -thisAngle);
 
-            var coneEdgeA = vertices2D[tangentPoint1] - middlePoint;
-            var coneEdgeB = vertices2D[tangentPoint2] - middlePoint;
+            var localNeighbourAverageVertex = GetAverageVertex(neighbourVertices);
 
-            if (coneEdgeA.LengthSquared() < 1e-6f || coneEdgeB.LengthSquared() < 1e-6f)
+            // Neighbour average in this cell's local space
+            localNeighbourAverageVertex += localOffset;
+
+            var middlePointBetweenAvarageVertices = (averageVertex + localNeighbourAverageVertex) / 2;
+
+            GD.Print("Neighbour:");
+            GD.Print(string.Join(",",
+                neighbourVertices.Select(v => $"({v.X + localOffset.X},{v.Y + localOffset.Y})")));
+
+            GD.Print($"cellPosition point: {cellPosition}");
+            GD.Print($"otherCellPosition point: {otherCellPosition}");
+            GD.Print($"localOffset point: {localOffset}");
+            GD.Print($"averageVertex point: {averageVertex}");
+            GD.Print($"localNeighbourAverageVertex point: {localNeighbourAverageVertex}");
+            GD.Print($"middlePointBetweenAvarageVertices point: {middlePointBetweenAvarageVertices}");
+
+            var skipGeneration = IsPointInsideMembrane(averageVertex, middlePointBetweenAvarageVertices,
+                out var tangentPoint1, out var tangentPoint2);
+            skipGeneration = skipGeneration || IsPointInsideNeighbourMembrane(neighbourVertices,
+                localNeighbourAverageVertex, localOffset, middlePointBetweenAvarageVertices);
+
+            if (skipGeneration)
                 continue;
 
-            // define from which index of verices2D to which index the points should be moved
-            int forwardLength = (tangentPoint2 - tangentPoint1 + n) % n;
-            int backwardLength = (tangentPoint1 - tangentPoint2 + n) % n;
+            CastVerticesOntoTheCone(middlePointBetweenAvarageVertices, averageVertex, tangentPoint1, tangentPoint2);
 
-            int indexStart, indexEnd;
-            if (forwardLength <= backwardLength)
-            {
-                indexStart = tangentPoint1;
-                indexEnd = tangentPoint1 + forwardLength;
-            }
-            else
-            {
-                indexStart = tangentPoint2;
-                indexEnd = tangentPoint2 + backwardLength;
-            }
-
-            // GD.Print($"Tan1: {tangentPoint1}, Tan2: {tangentPoint2}, start: {start}, end: {end}");
-
-            for (var i = indexStart; i < indexEnd; i++)
-            {
-                var point = vertices2D[i % n];
-
-                var hitLeftConeBoundary = FindRayLineIntersection(point,
-                    castDirection,
-                    middlePoint,
-                    coneEdgeA,
-                    out float distanceToLeftBoundary);
-
-                var hitRightConeBoundary = FindRayLineIntersection(point,
-                    castDirection,
-                    middlePoint,
-                    coneEdgeB,
-                    out float distanceToRightBoundary);
-
-                var projectedOntoLeftBoundary = hitLeftConeBoundary ?
-                    point + castDirection * distanceToLeftBoundary :
-                    vertices2D[tangentPoint1];
-
-                var projectedOntoRightBoundary = hitRightConeBoundary ?
-                    point + castDirection * distanceToRightBoundary :
-                    vertices2D[tangentPoint2];
-
-                var leftBoundaryIsCloser =
-                    hitLeftConeBoundary &&
-                    (!hitRightConeBoundary || MathF.Abs(distanceToLeftBoundary) < MathF.Abs(distanceToRightBoundary));
-
-                if (leftBoundaryIsCloser)
-                {
-                    vertices2D[i % n] = projectedOntoLeftBoundary;
-                }
-                else if (hitRightConeBoundary)
-                {
-                    vertices2D[i % n] = projectedOntoRightBoundary;
-                }
-            }
-
-            // GD.Print("AFTER");
+            // GD.Print("AFTER point cast");
             // GD.Print(string.Join(",",
-            // vertices2D.Select(v => $"({v.X + cellPosition.X},{v.Y + cellPosition.Y})")));
+            //     vertices2D.Select(v => $"({v.X + cellPosition.X},{v.Y + cellPosition.Y})")));
         }
 
         // GD.Print(
         //     $"Middle ({middlePoint.X}, {middlePoint.Y}), 1: ({tangentPoint1.X}, {tangentPoint1.Y}), 2: ({tangentPoint2.X}, {tangentPoint2.Y})");
+    }
+
+    private void CastVerticesOntoTheCone(Vector2 middlePointBetweenAvarageVertices, Vector2 averageVertex,
+        int tangentPoint1, int tangentPoint2)
+    {
+        var castDirection = middlePointBetweenAvarageVertices - averageVertex;
+        if (castDirection.LengthSquared() < 1e-6f)
+            return;
+
+        castDirection = castDirection.Normalized();
+
+        int n = vertices2D.Count;
+
+        var coneEdgeA = vertices2D[tangentPoint1] - middlePointBetweenAvarageVertices;
+        var coneEdgeB = vertices2D[tangentPoint2] - middlePointBetweenAvarageVertices;
+
+        if (coneEdgeA.LengthSquared() < 1e-6f || coneEdgeB.LengthSquared() < 1e-6f)
+            return;
+
+        // define from which index of verices2D to which index the points should be moved
+        int forwardLength = (tangentPoint2 - tangentPoint1 + n) % n;
+        int backwardLength = (tangentPoint1 - tangentPoint2 + n) % n;
+
+        GetIterationIndices(tangentPoint1, tangentPoint2, forwardLength, backwardLength, out var indexStart,
+            out var indexEnd);
+
+        for (var i = indexStart; i < indexEnd; i++)
+        {
+            var point = vertices2D[i % n];
+
+            var hitLeftConeBoundary = FindRayLineIntersection(point, castDirection, middlePointBetweenAvarageVertices,
+                coneEdgeA, out float distanceToLeftBoundary);
+
+            var hitRightConeBoundary = FindRayLineIntersection(point, castDirection, middlePointBetweenAvarageVertices,
+                coneEdgeB, out float distanceToRightBoundary);
+
+            var projectedOntoLeftBoundary = hitLeftConeBoundary ?
+                point + castDirection * distanceToLeftBoundary :
+                vertices2D[tangentPoint1];
+
+            var projectedOntoRightBoundary = hitRightConeBoundary ?
+                point + castDirection * distanceToRightBoundary :
+                vertices2D[tangentPoint2];
+
+            var leftBoundaryIsCloser =
+                hitLeftConeBoundary &&
+                (!hitRightConeBoundary || MathF.Abs(distanceToLeftBoundary) < MathF.Abs(distanceToRightBoundary));
+
+            if (leftBoundaryIsCloser)
+            {
+                vertices2D[i % n] = projectedOntoLeftBoundary;
+            }
+            else if (hitRightConeBoundary)
+            {
+                vertices2D[i % n] = projectedOntoRightBoundary;
+            }
+        }
+    }
+
+    private static void GetIterationIndices(int tangentPoint1, int tangentPoint2, int forwardLength, int backwardLength,
+        out int indexStart, out int indexEnd)
+    {
+        if (forwardLength <= backwardLength)
+        {
+            indexStart = tangentPoint1;
+            indexEnd = tangentPoint1 + forwardLength;
+        }
+        else
+        {
+            indexStart = tangentPoint2;
+            indexEnd = tangentPoint2 + backwardLength;
+        }
+    }
+
+    private bool IsPointInsideNeighbourMembrane(List<Vector2> neighbourVertices, Vector2 localNeighbourAverageVertex,
+        Vector2 localOffset, Vector2 middlePointBetweenAvarageVertices)
+    {
+        for (var i = 0; i < neighbourVertices.Count; i++)
+        {
+            var point = neighbourVertices[i];
+            var angle = Angle(localOffset + point, middlePointBetweenAvarageVertices,
+                localNeighbourAverageVertex);
+
+            GD.Print(
+                $"{localOffset + point}, {middlePointBetweenAvarageVertices}, {localNeighbourAverageVertex} => {angle}");
+
+            if (angle is > 90 or < -90)
+            {
+                GD.PrintErr("Middle point inside THE OTHER cell membrane. Skipping multicellular generation");
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private bool IsPointInsideMembrane(Vector2 averageVertex, Vector2 middlePointBetweenAvarageVertices,
+        out int tangentPoint1, out int tangentPoint2)
+    {
+        tangentPoint1 = 0;
+        tangentPoint2 = 0;
+        var maxPositiveAngle = 0.0f;
+        var maxNegativeAngle = 0.0f;
+
+        for (var i = 0; i < vertices2D.Count; i++)
+        {
+            var point = vertices2D[i];
+            var angle = Angle(averageVertex, middlePointBetweenAvarageVertices, point);
+
+            GD.Print($"{averageVertex}, {middlePointBetweenAvarageVertices}, {point} => {angle}");
+
+            if (angle > maxPositiveAngle)
+            {
+                maxPositiveAngle = angle;
+                tangentPoint1 = i;
+
+                if (angle > 90)
+                {
+                    GD.PrintErr("Middle point inside cell membrane. Skipping multicellular generation");
+                    return true;
+                }
+            }
+            else if (angle < maxNegativeAngle)
+            {
+                maxNegativeAngle = angle;
+                tangentPoint2 = i;
+
+                if (angle < -90)
+                {
+                    GD.PrintErr("Middle point inside cell membrane. Skipping multicellular generation");
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    private static List<Vector2> RotateNeighbourVertices(NeighbourData neighbourData, float thisAngle)
+    {
+        // Neighbour vertices are in neighbour's local space.
+        // To bring them into THIS cell's local space:
+        //   1. rotate by neighbourOrientation (orient them in world space)
+        //   2. counter-rotate by thisAngle (bring into this cell's local space)
+        float neighbourAngle = neighbourData.Orientation * (MathF.PI / 3f);
+        float relativeAngle = neighbourAngle - thisAngle;
+
+        var neighbourVertices = neighbourData.PointData.Vertices2D.ToList();
+        if (relativeAngle != 0)
+        {
+            for (int i = 0; i < neighbourVertices.Count; ++i)
+                neighbourVertices[i] = Rotate(neighbourVertices[i], relativeAngle);
+        }
+
+        return neighbourVertices;
+    }
+
+    private Vector2 GetAverageVertex(List<Vector2> vertices)
+    {
+        var averageVertex = Vector2.Zero;
+        foreach (var vertex in vertices)
+            averageVertex += vertex;
+        averageVertex /= vertices.Count;
+
+        return averageVertex;
     }
 
     /// <summary>

@@ -24,10 +24,13 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
 
     public MembranePointData(Vector2[] hexPositions, int hexPositionCount, MembraneType type,
         IReadOnlyList<Vector2> verticesToCopy, Vector2[] multicellularPositions,
-        Vector2 cellPositionInMulticellular) : this(hexPositions, hexPositionCount, type, verticesToCopy)
+        Vector2 cellPositionInMulticellular, int[]? multicellularOrientations = null, int? cellOrientation = null)
+        : this(hexPositions, hexPositionCount, type, verticesToCopy)
     {
         MulticellularPositions = multicellularPositions;
         CellPositionInMulticellular = cellPositionInMulticellular;
+        MulticellularOrientations = multicellularOrientations;
+        CellOrientation = cellOrientation;
     }
 
     public MembranePointData(Vector2[] hexPositions, int hexPositionCount, MembraneType type,
@@ -53,23 +56,18 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
         // Copy the membrane data, this copied array can then be referenced by Membrane instances as long as there
         // might exist a reference to this class instance (that's why it is only released in the finalizer)
         int count = verticesToCopy.Count;
-        var copyTarget = ArrayPool<Vector2>.Shared.Rent(count);
 
+        // Allocate an exact-length array and copy the data. Using an array rented from ArrayPool
+        // can leave trailing default(Vector2) entries when the rented buffer is larger than count.
+        // Expose an exact-length array so callers don't accidentally iterate over unused (0,0) slots.
+        var exact = new Vector2[count];
         for (int i = 0; i < count; ++i)
         {
-            copyTarget[i] = verticesToCopy[i];
+            exact[i] = verticesToCopy[i];
         }
 
-        Vertices2D = copyTarget;
+        Vertices2D = exact;
         VertexCount = count;
-
-        var vertexCenter = Vector2.Zero;
-        foreach (var vertex in Vertices2D)
-        {
-            vertexCenter += vertex;
-        }
-
-        VertexCenter = vertexCenter / count;
     }
 
     ~MembranePointData()
@@ -95,14 +93,16 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
 
     public Vector2? CellPositionInMulticellular { get; }
 
+    public int[]? MulticellularOrientations { get; }
+
+    public int? CellOrientation { get; }
+
     public int HexPositionCount { get; }
 
     public MembraneType Type { get; }
 
     // TODO: check all uses when switching this
     public Vector2[] Vertices2D { get; }
-
-    public Vector2 VertexCenter { get; }
 
     public int VertexCount { get; }
 
@@ -197,7 +197,7 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
         if (finalEngulfMesh.IsValueCreated)
             finalEngulfMesh.Value.Mesh.Dispose();
 
-        ArrayPool<Vector2>.Shared.Return(Vertices2D);
+        // Vertices2D was allocated to exact length on the heap; nothing to return to ArrayPool here.
     }
 }
 
@@ -209,6 +209,7 @@ public sealed class NeighbourData
     public int HexCount;
     public MembraneType Type;
     public MembranePointData PointData;
+    public int Orientation;
 }
 
 /// <summary>

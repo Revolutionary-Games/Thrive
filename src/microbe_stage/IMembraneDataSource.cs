@@ -14,6 +14,12 @@ public interface IMembraneDataSource
     public Vector2[]? MulticellularPositions { get; }
 
     public Vector2? CellPositionInMulticellular { get; }
+
+    // Optional per-cell orientations for multicellular arrangements. Values are 0..5 (hex rotations).
+    public int[]? MulticellularOrientations { get; }
+
+    // Orientation of this cell within the multicellular arrangement (0..5). Null for single-cell generation.
+    public int? CellOrientation { get; }
     public MembraneType Type { get; }
 }
 
@@ -23,10 +29,13 @@ public interface IMembraneDataSource
 public struct MembraneGenerationParameters : IMembraneDataSource
 {
     public MembraneGenerationParameters(Vector2[] hexPositions, int hexPositionCount, MembraneType type,
-        Vector2[] multicellularPositions, Vector2 thisCellPosition) : this(hexPositions, hexPositionCount, type)
+        Vector2[] multicellularPositions, Vector2 thisCellPosition, int[]? multicellularOrientations, int? thisCellOrientation)
+        : this(hexPositions, hexPositionCount, type)
     {
         MulticellularPositions = multicellularPositions;
         CellPositionInMulticellular = thisCellPosition;
+        MulticellularOrientations = multicellularOrientations;
+        CellOrientation = thisCellOrientation;
     }
 
     public MembraneGenerationParameters(Vector2[] hexPositions, int hexPositionCount, MembraneType type)
@@ -35,6 +44,10 @@ public struct MembraneGenerationParameters : IMembraneDataSource
         HexPositionCount = hexPositionCount;
         Type = type;
     }
+
+    public int[]? MulticellularOrientations { get; }
+
+    public int? CellOrientation { get; }
 
     public Vector2[] HexPositions { get; }
 
@@ -128,7 +141,8 @@ public static class MembraneComputationHelpers
     }
 
     public static long ComputeMembraneDataHash(Vector2[] positions, int count, MembraneType type,
-        Vector2[]? multicellularPositions = null, Vector2? cellPositionInMulticellular = null)
+        Vector2[]? multicellularPositions = null, Vector2? cellPositionInMulticellular = null,
+        int[]? multicellularOrientations = null, int? cellOrientation = null)
     {
         var nameHash = type.InternalName.GetHashCode();
 
@@ -159,25 +173,35 @@ public static class MembraneComputationHelpers
                 }
             }
 
+            if (cellOrientation != null)
+            {
+                hash = (hash * 1099511628211L) ^ cellOrientation.Value;
+            }
+
+            if (multicellularOrientations != null)
+            {
+                for (int i = 0; i < multicellularOrientations.Length; ++i)
+                {
+                    hash = (hash * 1099511628211L) ^ multicellularOrientations[i];
+                }
+            }
+
             return hash;
         }
     }
 
-    public static long ComputeMembraneDataHash(this IMembraneDataSource dataSource)
-    {
-        return ComputeMembraneDataHash(dataSource.HexPositions, dataSource.HexPositionCount, dataSource.Type,
-            dataSource.MulticellularPositions, dataSource.CellPositionInMulticellular);
-    }
+    
 
     public static bool MembraneDataFieldsEqual(this IMembraneDataSource dataSource, IMembraneDataSource other)
     {
-        return dataSource.MembraneDataFieldsEqual(other.HexPositions, other.HexPositionCount, other.Type,
-            other.MulticellularPositions, other.CellPositionInMulticellular);
+            return dataSource.MembraneDataFieldsEqual(other.HexPositions, other.HexPositionCount, other.Type,
+                other.MulticellularPositions, other.CellPositionInMulticellular, other.MulticellularOrientations,
+                other.CellOrientation);
     }
 
 public static bool MembraneDataFieldsEqual(this IMembraneDataSource dataSource, Vector2[] otherPoints,
     int otherPointCount, MembraneType otherType, Vector2[]? multicellularPositions,
-    Vector2? cellPositionInMulticellular)
+    Vector2? cellPositionInMulticellular, int[]? multicellularOrientations = null, int? cellOrientationInMulticellular = null)
 {
     if (!dataSource.Type.Equals(otherType))
     {
@@ -223,6 +247,34 @@ public static bool MembraneDataFieldsEqual(this IMembraneDataSource dataSource, 
         }
     }
 
+    // Compare multicellular orientations if either side has them
+    if (dataSource.MulticellularOrientations != null || multicellularOrientations != null)
+    {
+        if (dataSource.MulticellularOrientations == null || multicellularOrientations == null)
+        {
+            GD.Print($"MulticellularOrientations null mismatch: source={dataSource.MulticellularOrientations == null} " +
+                $"other={multicellularOrientations == null}");
+            return false;
+        }
+
+        if (dataSource.MulticellularOrientations.Length != multicellularOrientations.Length)
+        {
+            GD.Print($"MulticellularOrientations.Length: {dataSource.MulticellularOrientations.Length} != " +
+                $"{multicellularOrientations.Length}");
+            return false;
+        }
+
+        for (int i = 0; i < dataSource.MulticellularOrientations.Length; ++i)
+        {
+            if (dataSource.MulticellularOrientations[i] != multicellularOrientations[i])
+            {
+                GD.Print($"MulticellularOrientations[{i}]: {dataSource.MulticellularOrientations[i]} != " +
+                    $"{multicellularOrientations[i]}");
+                return false;
+            }
+        }
+    }
+
     if (dataSource.CellPositionInMulticellular != null)
     {
         if (cellPositionInMulticellular == null)
@@ -248,6 +300,30 @@ public static bool MembraneDataFieldsEqual(this IMembraneDataSource dataSource, 
         }
     }
 
+    // Compare cell orientation
+    if (dataSource.CellOrientation != null)
+    {
+        if (cellOrientationInMulticellular == null)
+        {
+            GD.Print($"CellOrientation null mismatch: source={dataSource.CellOrientation} other=null");
+            return false;
+        }
+
+        if (!dataSource.CellOrientation.Equals(cellOrientationInMulticellular))
+        {
+            GD.Print($"CellOrientation: {dataSource.CellOrientation} != {cellOrientationInMulticellular}");
+            return false;
+        }
+    }
+    else
+    {
+        if (cellOrientationInMulticellular != null)
+        {
+            GD.Print($"CellOrientation null mismatch: source=null other={cellOrientationInMulticellular}");
+            return false;
+        }
+    }
+
     for (int i = 0; i < count; ++i)
     {
         if (sourcePoints[i] != otherPoints[i])
@@ -259,6 +335,13 @@ public static bool MembraneDataFieldsEqual(this IMembraneDataSource dataSource, 
 
     return true;
 }
+
+    public static long ComputeMembraneDataHash(this IMembraneDataSource dataSource)
+    {
+        return ComputeMembraneDataHash(dataSource.HexPositions, dataSource.HexPositionCount, dataSource.Type,
+            dataSource.MulticellularPositions, dataSource.CellPositionInMulticellular, dataSource.MulticellularOrientations,
+            dataSource.CellOrientation);
+    }
 
     private class HexPositionComparer : IComparer<Vector2>
     {

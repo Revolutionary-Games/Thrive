@@ -33,14 +33,19 @@ public static class MembraneGenerationCoordinator
         }
 
         var multicellularPositions = generationParameters.MulticellularPositions!;
+        var multicellularOrientations = generationParameters.MulticellularOrientations;
         var cellPosition = generationParameters.CellPositionInMulticellular!.Value;
+        var cellOrientation = generationParameters.CellOrientation;
 
         // This is the hash the CALLER registered in pendingGenerationsOfMembraneHashes
-        var registeredHash = MembraneComputationHelpers.ComputeMembraneDataHash(generationParameters.HexPositions,
-            generationParameters.HexPositionCount,
-            generationParameters.Type,
-            multicellularPositions,
-            cellPosition);
+        var registeredHash = MembraneComputationHelpers.ComputeMembraneDataHash(
+            positions: generationParameters.HexPositions,
+            count: generationParameters.HexPositionCount,
+            type: generationParameters.Type,
+            multicellularPositions: multicellularPositions,
+            cellPositionInMulticellular: cellPosition,
+            multicellularOrientations: multicellularOrientations,
+            cellOrientation: cellOrientation);
 
         // If the final multicellular membrane is already cached, just return the registered hash to unblock it
         var existing = ProceduralDataCache.Instance.ReadMembraneData(registeredHash);
@@ -64,6 +69,7 @@ public static class MembraneGenerationCoordinator
             Type = generationParameters.Type,
             PointData = singleCellMembranePointData,
         };
+        singleCellData.Orientation = cellOrientation ?? 0;
 
         tracker.NeighboursData[CellKey(cellPosition)] = singleCellData;
 
@@ -82,12 +88,39 @@ public static class MembraneGenerationCoordinator
         foreach (var entry in tracker.NeighboursData.Values)
         {
             var multicellularMembrane = generator.GenerateMulticellularMembrane(entry.PointData, neighboursData,
-                multicellularPositions, entry.CellPosition);
+                multicellularPositions, entry.CellPosition, entry.Orientation, multicellularOrientations);
 
             // Compute the exact hash the caller registered for this cell
-            var entryRegisteredHash = MembraneComputationHelpers.ComputeMembraneDataHash(entry.HexPositions,
-                entry.HexCount, entry.Type,
-                multicellularPositions, entry.CellPosition);
+            var entryRegisteredHash = MembraneComputationHelpers.ComputeMembraneDataHash(
+                positions: entry.HexPositions,
+                count: entry.HexCount,
+                type: entry.Type,
+                multicellularPositions: multicellularPositions,
+                cellPositionInMulticellular: entry.CellPosition,
+                multicellularOrientations: multicellularOrientations,
+                cellOrientation: entry.Orientation);
+
+            // Print membrane vertices adjusted by the cell's multicellular world position
+            try
+            {
+                var verts = multicellularMembrane.Vertices2D;
+                int vcount = multicellularMembrane.VertexCount;
+                var sb = new System.Text.StringBuilder();
+                for (int vi = 0; vi < vcount; ++vi)
+                {
+                    var v = verts[vi];
+                    float wx = v.X + entry.CellPosition.X;
+                    float wy = v.Y + entry.CellPosition.Y;
+                    sb.Append('(').Append(wx).Append(',').Append(wy).Append(')');
+                    if (vi < vcount - 1) sb.Append(',');
+                }
+
+                GD.Print($"Membrane vertices for cell at ({entry.CellPosition.X},{entry.CellPosition.Y}): {sb}");
+            }
+            catch (Exception e)
+            {
+                GD.PrintErr($"Failed printing multicellular membrane vertices: {e}");
+            }
 
             ProceduralDataCache.Instance.WriteMembraneData(ref multicellularMembrane);
             resolvedHashes.Add(entryRegisteredHash);
