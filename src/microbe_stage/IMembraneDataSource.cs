@@ -29,7 +29,8 @@ public interface IMembraneDataSource
 public struct MembraneGenerationParameters : IMembraneDataSource
 {
     public MembraneGenerationParameters(Vector2[] hexPositions, int hexPositionCount, MembraneType type,
-        Vector2[] multicellularPositions, Vector2 thisCellPosition, int[]? multicellularOrientations, int? thisCellOrientation)
+        Vector2[] multicellularPositions, Vector2 thisCellPosition, int[]? multicellularOrientations,
+        int? thisCellOrientation)
         : this(hexPositions, hexPositionCount, type)
     {
         MulticellularPositions = multicellularPositions;
@@ -190,156 +191,158 @@ public static class MembraneComputationHelpers
         }
     }
 
-    
-
     public static bool MembraneDataFieldsEqual(this IMembraneDataSource dataSource, IMembraneDataSource other)
     {
-            return dataSource.MembraneDataFieldsEqual(other.HexPositions, other.HexPositionCount, other.Type,
-                other.MulticellularPositions, other.CellPositionInMulticellular, other.MulticellularOrientations,
-                other.CellOrientation);
+        return dataSource.MembraneDataFieldsEqual(other.HexPositions, other.HexPositionCount, other.Type,
+            other.MulticellularPositions, other.CellPositionInMulticellular, other.MulticellularOrientations,
+            other.CellOrientation);
     }
 
-public static bool MembraneDataFieldsEqual(this IMembraneDataSource dataSource, Vector2[] otherPoints,
-    int otherPointCount, MembraneType otherType, Vector2[]? multicellularPositions,
-    Vector2? cellPositionInMulticellular, int[]? multicellularOrientations = null, int? cellOrientationInMulticellular = null)
-{
-    if (!dataSource.Type.Equals(otherType))
+    public static bool MembraneDataFieldsEqual(this IMembraneDataSource dataSource, Vector2[] otherPoints,
+        int otherPointCount, MembraneType otherType, Vector2[]? multicellularPositions,
+        Vector2? cellPositionInMulticellular, int[]? multicellularOrientations = null,
+        int? cellOrientationInMulticellular = null)
     {
-        GD.Print($"Type: {dataSource.Type} != {otherType}");
-        return false;
-    }
-
-    if (dataSource.HexPositionCount != otherPointCount)
-    {
-        GD.Print($"HexPositionCount: {dataSource.HexPositionCount} != {otherPointCount}");
-        return false;
-    }
-
-    var count = dataSource.HexPositionCount;
-
-    var sourcePoints = dataSource.HexPositions;
-
-    // Compare multicellular positions array if either side has it
-    if (dataSource.MulticellularPositions != null || multicellularPositions != null)
-    {
-        if (dataSource.MulticellularPositions == null || multicellularPositions == null)
+        if (!dataSource.Type.Equals(otherType))
         {
-            GD.Print($"MulticellularPositions null mismatch: source={dataSource.MulticellularPositions == null} " +
-                $"other={multicellularPositions == null}");
+            GD.Print($"Type: {dataSource.Type} != {otherType}");
             return false;
         }
 
-        if (dataSource.MulticellularPositions.Length != multicellularPositions.Length)
+        if (dataSource.HexPositionCount != otherPointCount)
         {
-            GD.Print($"MulticellularPositions.Length: {dataSource.MulticellularPositions.Length} != " +
-                $"{multicellularPositions.Length}");
+            GD.Print($"HexPositionCount: {dataSource.HexPositionCount} != {otherPointCount}");
             return false;
         }
 
-        for (int i = 0; i < dataSource.MulticellularPositions.Length; ++i)
+        var count = dataSource.HexPositionCount;
+
+        var sourcePoints = dataSource.HexPositions;
+
+        // Compare multicellular positions array if either side has it
+        if (dataSource.MulticellularPositions != null || multicellularPositions != null)
         {
-            if (dataSource.MulticellularPositions[i] != multicellularPositions[i])
+            if (dataSource.MulticellularPositions == null || multicellularPositions == null)
             {
-                GD.Print($"MulticellularPositions[{i}]: {dataSource.MulticellularPositions[i]} != " +
-                    $"{multicellularPositions[i]}");
+                GD.Print($"MulticellularPositions null mismatch: source={dataSource.MulticellularPositions == null} " +
+                    $"other={multicellularPositions == null}");
+                return false;
+            }
+
+            if (dataSource.MulticellularPositions.Length != multicellularPositions.Length)
+            {
+                GD.Print($"MulticellularPositions.Length: {dataSource.MulticellularPositions.Length} != " +
+                    $"{multicellularPositions.Length}");
+                return false;
+            }
+
+            for (int i = 0; i < dataSource.MulticellularPositions.Length; ++i)
+            {
+                if (dataSource.MulticellularPositions[i] != multicellularPositions[i])
+                {
+                    GD.Print($"MulticellularPositions[{i}]: {dataSource.MulticellularPositions[i]} != " +
+                        $"{multicellularPositions[i]}");
+                    return false;
+                }
+            }
+        }
+
+        // Compare multicellular orientations if either side has them
+        if (dataSource.MulticellularOrientations != null || multicellularOrientations != null)
+        {
+            if (dataSource.MulticellularOrientations == null || multicellularOrientations == null)
+            {
+                GD.Print(
+                    $"MulticellularOrientations null mismatch: source={dataSource.MulticellularOrientations == null} " +
+                    $"other={multicellularOrientations == null}");
+                return false;
+            }
+
+            if (dataSource.MulticellularOrientations.Length != multicellularOrientations.Length)
+            {
+                GD.Print($"MulticellularOrientations.Length: {dataSource.MulticellularOrientations.Length} != " +
+                    $"{multicellularOrientations.Length}");
+                return false;
+            }
+
+            for (int i = 0; i < dataSource.MulticellularOrientations.Length; ++i)
+            {
+                if (dataSource.MulticellularOrientations[i] != multicellularOrientations[i])
+                {
+                    GD.Print($"MulticellularOrientations[{i}]: {dataSource.MulticellularOrientations[i]} != " +
+                        $"{multicellularOrientations[i]}");
+                    return false;
+                }
+            }
+        }
+
+        if (dataSource.CellPositionInMulticellular != null)
+        {
+            if (cellPositionInMulticellular == null)
+            {
+                GD.Print(
+                    $"CellPositionInMulticellular null mismatch: source={dataSource.CellPositionInMulticellular} " +
+                    $"other=null");
+                return false;
+            }
+
+            if (!dataSource.CellPositionInMulticellular.Equals(cellPositionInMulticellular))
+            {
+                GD.Print($"CellPositionInMulticellular: {dataSource.CellPositionInMulticellular} != " +
+                    $"{cellPositionInMulticellular}");
                 return false;
             }
         }
-    }
-
-    // Compare multicellular orientations if either side has them
-    if (dataSource.MulticellularOrientations != null || multicellularOrientations != null)
-    {
-        if (dataSource.MulticellularOrientations == null || multicellularOrientations == null)
+        else
         {
-            GD.Print($"MulticellularOrientations null mismatch: source={dataSource.MulticellularOrientations == null} " +
-                $"other={multicellularOrientations == null}");
-            return false;
-        }
-
-        if (dataSource.MulticellularOrientations.Length != multicellularOrientations.Length)
-        {
-            GD.Print($"MulticellularOrientations.Length: {dataSource.MulticellularOrientations.Length} != " +
-                $"{multicellularOrientations.Length}");
-            return false;
-        }
-
-        for (int i = 0; i < dataSource.MulticellularOrientations.Length; ++i)
-        {
-            if (dataSource.MulticellularOrientations[i] != multicellularOrientations[i])
+            if (cellPositionInMulticellular != null)
             {
-                GD.Print($"MulticellularOrientations[{i}]: {dataSource.MulticellularOrientations[i]} != " +
-                    $"{multicellularOrientations[i]}");
+                GD.Print($"CellPositionInMulticellular null mismatch: source=null other={cellPositionInMulticellular}");
                 return false;
             }
         }
-    }
 
-    if (dataSource.CellPositionInMulticellular != null)
-    {
-        if (cellPositionInMulticellular == null)
+        // Compare cell orientation
+        if (dataSource.CellOrientation != null)
         {
-            GD.Print($"CellPositionInMulticellular null mismatch: source={dataSource.CellPositionInMulticellular} " +
-                $"other=null");
-            return false;
-        }
+            if (cellOrientationInMulticellular == null)
+            {
+                GD.Print($"CellOrientation null mismatch: source={dataSource.CellOrientation} other=null");
+                return false;
+            }
 
-        if (!dataSource.CellPositionInMulticellular.Equals(cellPositionInMulticellular))
-        {
-            GD.Print($"CellPositionInMulticellular: {dataSource.CellPositionInMulticellular} != " +
-                $"{cellPositionInMulticellular}");
-            return false;
+            if (!dataSource.CellOrientation.Equals(cellOrientationInMulticellular))
+            {
+                GD.Print($"CellOrientation: {dataSource.CellOrientation} != {cellOrientationInMulticellular}");
+                return false;
+            }
         }
-    }
-    else
-    {
-        if (cellPositionInMulticellular != null)
+        else
         {
-            GD.Print($"CellPositionInMulticellular null mismatch: source=null other={cellPositionInMulticellular}");
-            return false;
-        }
-    }
-
-    // Compare cell orientation
-    if (dataSource.CellOrientation != null)
-    {
-        if (cellOrientationInMulticellular == null)
-        {
-            GD.Print($"CellOrientation null mismatch: source={dataSource.CellOrientation} other=null");
-            return false;
+            if (cellOrientationInMulticellular != null)
+            {
+                GD.Print($"CellOrientation null mismatch: source=null other={cellOrientationInMulticellular}");
+                return false;
+            }
         }
 
-        if (!dataSource.CellOrientation.Equals(cellOrientationInMulticellular))
+        for (int i = 0; i < count; ++i)
         {
-            GD.Print($"CellOrientation: {dataSource.CellOrientation} != {cellOrientationInMulticellular}");
-            return false;
+            if (sourcePoints[i] != otherPoints[i])
+            {
+                GD.Print($"HexPositions[{i}]: {sourcePoints[i]} != {otherPoints[i]}");
+                return false;
+            }
         }
-    }
-    else
-    {
-        if (cellOrientationInMulticellular != null)
-        {
-            GD.Print($"CellOrientation null mismatch: source=null other={cellOrientationInMulticellular}");
-            return false;
-        }
-    }
 
-    for (int i = 0; i < count; ++i)
-    {
-        if (sourcePoints[i] != otherPoints[i])
-        {
-            GD.Print($"HexPositions[{i}]: {sourcePoints[i]} != {otherPoints[i]}");
-            return false;
-        }
+        return true;
     }
-
-    return true;
-}
 
     public static long ComputeMembraneDataHash(this IMembraneDataSource dataSource)
     {
         return ComputeMembraneDataHash(dataSource.HexPositions, dataSource.HexPositionCount, dataSource.Type,
-            dataSource.MulticellularPositions, dataSource.CellPositionInMulticellular, dataSource.MulticellularOrientations,
+            dataSource.MulticellularPositions, dataSource.CellPositionInMulticellular,
+            dataSource.MulticellularOrientations,
             dataSource.CellOrientation);
     }
 
