@@ -313,7 +313,8 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
 
         // Use the simple hash function that includes all parameters
         var hash = MembraneComputationHelpers.ComputeMembraneDataHash(hexes, hexCount, cellProperties.MembraneType,
-            positionsArray, cellPositionInMulticellular, orientations, multicellular.Species.ModifiableGameplayCells[cellIndex].Orientation);
+            positionsArray, cellPositionInMulticellular, orientations,
+            multicellular.Species.ModifiableGameplayCells[cellIndex].Orientation);
 
         var cachedMembrane = ProceduralDataCache.Instance.ReadMembraneData(hash);
 
@@ -322,10 +323,10 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
             // TODO: hopefully this can't get into a permanent loop where 2 conflicting membranes want to
             // re-generate on each game update cycle
             if (!cachedMembrane.MembraneDataFieldsEqual(hexes, hexCount, cellProperties.MembraneType, positionsArray,
-                    cellPositionInMulticellular, orientations, multicellular.Species.ModifiableGameplayCells[cellIndex].Orientation))
+                    cellPositionInMulticellular, orientations,
+                    multicellular.Species.ModifiableGameplayCells[cellIndex].Orientation))
             {
-                GD.Print(
-                    $"Multicell cache equality mismatch for hash {hash}." +
+                GD.Print($"Multicell cache equality mismatch for hash {hash}." +
                     $"\n  positions: {cachedMembrane.CellPositionInMulticellular} vs {cellPositionInMulticellular}" +
                     $"\n  hexes: {cachedMembrane.HexPositionCount} vs {hexCount}" +
                     $"\n  positions: {cachedMembrane.MulticellularPositions?.Length} vs {positionsArray.Length}");
@@ -356,7 +357,8 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         }
 
         membranesToGenerate.Enqueue(new MembraneGenerationParameters(hexes, hexCount, cellProperties.MembraneType,
-            positionsArray, cellPositionInMulticellular, orientations, multicellular.Species.ModifiableGameplayCells[cellIndex].Orientation));
+            positionsArray, cellPositionInMulticellular, orientations,
+            multicellular.Species.ModifiableGameplayCells[cellIndex].Orientation));
 
         // Immediately start some jobs to give background threads something to do while the main thread is busy
         // potentially setting up other visuals

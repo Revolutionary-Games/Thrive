@@ -133,8 +133,8 @@ public class MembraneShapeGenerator
     public MembranePointData GenerateMicrobeShape(ref MembraneGenerationParameters parameters,
         bool isMulticellular = false)
     {
-        return GenerateMicrobeShape(parameters.HexPositions, parameters.HexPositionCount, parameters.Type,
-            isMulticellular);
+        return GenerateMicrobeShape(parameters.HexPositions, parameters.HexPositionCount,
+            parameters.Type, isMulticellular);
     }
 
     /// <summary>
@@ -320,9 +320,9 @@ public class MembraneShapeGenerator
         // Average of all outline points
         Vector3 center = Vector3.Zero;
 
-        foreach (var point in vertices2D)
+        for (int i = 0; i < vertexCount; ++i)
         {
-            center += new Vector3(point.X, 0.0f, point.Y);
+            center += new Vector3(vertices2D[i].X, 0.0f, vertices2D[i].Y);
         }
 
         center /= vertexCount;
@@ -649,7 +649,8 @@ public class MembraneShapeGenerator
 
             GetTangentPoints(averageVertex, middlePointBetweenAvarageVertices,
                 out var tangentPointIndex1, out var tangentPointIndex2);
-            CastVerticesOntoTheCone(middlePointBetweenAvarageVertices, averageVertex, tangentPointIndex1, tangentPointIndex2);
+            CastVerticesOntoTheCone(middlePointBetweenAvarageVertices, averageVertex, tangentPointIndex1,
+                tangentPointIndex2);
 
             // CastVerticesOntoTheArch(middlePointBetweenAvarageVertices, averageVertex, tangentPointIndex1,
             //     tangentPointIndex2);
@@ -659,8 +660,7 @@ public class MembraneShapeGenerator
         // GD.Print(string.Join(",",
         //     vertices2D.Select(v => $"({v.X},{v.Y})")));
     }
-    
-    
+
     private void CastVerticesOntoTheCone(Vector2 middlePointBetweenAvarageVertices, Vector2 averageVertex,
         int tangentPoint1, int tangentPoint2)
     {
@@ -717,7 +717,7 @@ public class MembraneShapeGenerator
             }
         }
     }
-    
+
     /// <summary>
     /// Finds the intersection
     /// Returns false when the ray and line are parallel.
@@ -820,7 +820,8 @@ public class MembraneShapeGenerator
         return (b.X - a.X) * (p.Y - a.Y) - (b.Y - a.Y) * (p.X - a.X);
     }
 
-    private static List<Vector2> RotateNeighbourVertices(NeighbourData neighbourData, float thisAngle)
+    private static List<Vector2>
+        RotateNeighbourVertices(NeighbourData neighbourData, float thisAngle)
     {
         // Neighbour vertices are in neighbour's local space.
         // To bring them into THIS cell's local space:
@@ -829,7 +830,9 @@ public class MembraneShapeGenerator
         float neighbourAngle = neighbourData.Orientation * (MathF.PI / 3f);
         float relativeAngle = neighbourAngle - thisAngle;
 
-        var neighbourVertices = neighbourData.PointData.Vertices2D.ToList();
+        var neighbourVertices = new List<Vector2>(neighbourData.PointData.VertexCount);
+        for (int i = 0; i < neighbourData.PointData.VertexCount; ++i)
+            neighbourVertices.Add(neighbourData.PointData.Vertices2D[i]);
         if (relativeAngle != 0)
         {
             for (int i = 0; i < neighbourVertices.Count; ++i)

@@ -23,50 +23,31 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
     private bool disposed;
 
     public MembranePointData(Vector2[] hexPositions, int hexPositionCount, MembraneType type,
-        IReadOnlyList<Vector2> verticesToCopy, Vector2[] multicellularPositions,
-        Vector2 cellPositionInMulticellular, int[]? multicellularOrientations = null, int? cellOrientation = null)
-        : this(hexPositions, hexPositionCount, type, verticesToCopy)
-    {
-        MulticellularPositions = multicellularPositions;
-        CellPositionInMulticellular = cellPositionInMulticellular;
-        MulticellularOrientations = multicellularOrientations;
-        CellOrientation = cellOrientation;
-    }
-
-    public MembranePointData(Vector2[] hexPositions, int hexPositionCount, MembraneType type,
-        IReadOnlyList<Vector2> verticesToCopy)
+        IReadOnlyList<Vector2> verticesToCopy,
+        Vector2[]? multicellularPositions = null, Vector2? cellPositionInMulticellular = null,
+        int[]? multicellularOrientations = null, int? cellOrientation = null)
     {
         HexPositions = hexPositions;
         Type = type;
         HexPositionCount = hexPositionCount;
+        MulticellularPositions = multicellularPositions;
+        CellPositionInMulticellular = cellPositionInMulticellular;
+        MulticellularOrientations = multicellularOrientations;
+        CellOrientation = cellOrientation;
 
-        // Setup mesh to be generated (on the main thread) only when required
         finalMesh = new Lazy<(ArrayMesh Mesh, int SurfaceIndex)>(() =>
-        {
-            var generator = MembraneShapeGenerator.GetThreadSpecificGenerator();
-            return generator.GenerateMesh(this);
-        });
+            MembraneShapeGenerator.GetThreadSpecificGenerator().GenerateMesh(this));
 
         finalEngulfMesh = new Lazy<(ArrayMesh Mesh, int SurfaceIndex)>(() =>
-        {
-            var generator = MembraneShapeGenerator.GetThreadSpecificGenerator();
-            return generator.GenerateEngulfMesh(this);
-        });
+            MembraneShapeGenerator.GetThreadSpecificGenerator().GenerateEngulfMesh(this));
 
-        // Copy the membrane data, this copied array can then be referenced by Membrane instances as long as there
-        // might exist a reference to this class instance (that's why it is only released in the finalizer)
         int count = verticesToCopy.Count;
 
-        // Allocate an exact-length array and copy the data. Using an array rented from ArrayPool
-        // can leave trailing default(Vector2) entries when the rented buffer is larger than count.
-        // Expose an exact-length array so callers don't accidentally iterate over unused (0,0) slots.
-        var exact = new Vector2[count];
+        var copyTarget = ArrayPool<Vector2>.Shared.Rent(count);
         for (int i = 0; i < count; ++i)
-        {
-            exact[i] = verticesToCopy[i];
-        }
+            copyTarget[i] = verticesToCopy[i];
+        Vertices2D = copyTarget;
 
-        Vertices2D = exact;
         VertexCount = count;
     }
 
@@ -171,9 +152,9 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
     {
         float distanceSquared = 0;
 
-        foreach (var vertex in Vertices2D)
+        for (int i = 0; i < VertexCount; ++i)
         {
-            var currentDistance = vertex.LengthSquared();
+            var currentDistance = Vertices2D[i].LengthSquared();
             if (currentDistance > distanceSquared)
                 distanceSquared = currentDistance;
         }
@@ -197,7 +178,7 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
         if (finalEngulfMesh.IsValueCreated)
             finalEngulfMesh.Value.Mesh.Dispose();
 
-        // Vertices2D was allocated to exact length on the heap; nothing to return to ArrayPool here.
+        ArrayPool<Vector2>.Shared.Return(Vertices2D);
     }
 }
 
