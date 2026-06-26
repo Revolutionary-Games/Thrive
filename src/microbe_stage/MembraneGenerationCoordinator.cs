@@ -62,12 +62,12 @@ public static class MembraneGenerationCoordinator
 
         var singleCellData = new NeighbourData
         {
-            SingleCellHash = registeredHash, // store the multicell hash so we can resolve it later
+            SingleCellHash = registeredHash,
             CellPosition = cellPosition,
             HexPositions = generationParameters.HexPositions,
             HexCount = generationParameters.HexPositionCount,
             Type = generationParameters.Type,
-            PointData = singleCellMembranePointData,
+            OriginalPointData = singleCellMembranePointData,
         };
         singleCellData.Orientation = cellOrientation ?? 0;
 
@@ -82,45 +82,22 @@ public static class MembraneGenerationCoordinator
         if (!tracker.TryBeginSecondPass())
             return new List<long>();
 
-        var neighboursData = tracker.NeighboursData.Values.ToArray();
         var resolvedHashes = new List<long>();
 
-        foreach (var entry in tracker.NeighboursData.Values)
+        foreach (var (key, data) in tracker.NeighboursData)
         {
-            var multicellularMembrane = generator.GenerateMulticellularMembrane(entry.PointData, neighboursData,
-                multicellularPositions, entry.CellPosition, entry.Orientation, multicellularOrientations);
+            var multicellularMembrane = generator.GenerateMulticellularMembrane(key, tracker.NeighboursData,
+                multicellularPositions, multicellularOrientations);
 
             // Compute the exact hash the caller registered for this cell
             var entryRegisteredHash = MembraneComputationHelpers.ComputeMembraneDataHash(
-                positions: entry.HexPositions,
-                count: entry.HexCount,
-                type: entry.Type,
+                positions: data.HexPositions,
+                count: data.HexCount,
+                type: data.Type,
                 multicellularPositions: multicellularPositions,
-                cellPositionInMulticellular: entry.CellPosition,
+                cellPositionInMulticellular: data.CellPosition,
                 multicellularOrientations: multicellularOrientations,
-                cellOrientation: entry.Orientation);
-
-            // Print membrane vertices adjusted by the cell's multicellular world position
-            try
-            {
-                var verts = multicellularMembrane.Vertices2D;
-                int vcount = multicellularMembrane.VertexCount;
-                var sb = new System.Text.StringBuilder();
-                for (int vi = 0; vi < vcount; ++vi)
-                {
-                    var v = verts[vi];
-                    float wx = v.X + entry.CellPosition.X;
-                    float wy = v.Y + entry.CellPosition.Y;
-                    sb.Append('(').Append(wx).Append(',').Append(wy).Append(')');
-                    if (vi < vcount - 1) sb.Append(',');
-                }
-
-                GD.Print($"Membrane vertices for cell at ({entry.CellPosition.X},{entry.CellPosition.Y}): {sb}");
-            }
-            catch (Exception e)
-            {
-                GD.PrintErr($"Failed printing multicellular membrane vertices: {e}");
-            }
+                cellOrientation: data.Orientation);
 
             ProceduralDataCache.Instance.WriteMembraneData(ref multicellularMembrane);
             resolvedHashes.Add(entryRegisteredHash);

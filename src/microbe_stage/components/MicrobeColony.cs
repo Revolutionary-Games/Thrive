@@ -1602,6 +1602,16 @@ public static class MicrobeColonyHelpers
 
         // TODO: maybe in some situations creating the compound bag could be entirely safely skipped here
         colony.GetCompounds().UpdateColonyMembers(colony.ColonyMembers);
+
+        // Reset membrane visuals for all colony members so they recalculate with the new colony structure
+        foreach (var member in colony.ColonyMembers)
+        {
+            if (member.IsAlive() && member.Has<OrganelleContainer>())
+            {
+                ref var organelleContainer = ref member.Get<OrganelleContainer>();
+                organelleContainer.OrganelleVisualsCreated = false;
+            }
+        }
     }
 
     /// <summary>

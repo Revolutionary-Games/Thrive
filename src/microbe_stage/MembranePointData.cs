@@ -186,10 +186,11 @@ public sealed class NeighbourData
 {
     public long SingleCellHash;
     public Vector2 CellPosition;
-    public Vector2[] HexPositions;
+    public Vector2[] HexPositions = null!;
     public int HexCount;
-    public MembraneType Type;
-    public MembranePointData PointData;
+    public MembraneType Type = null!;
+    public MembranePointData OriginalPointData = null!;
+    public MembranePointData ModifiedPointData = null!;
     public int Orientation;
 }
 

@@ -5,6 +5,7 @@ using System.Buffers;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -156,16 +157,55 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
 
         MembranePointData? data;
 
+        if (entity.Has<MicrobeColonyMember>())
+        {
+            var member = entity.Get<MicrobeColonyMember>();
+
+            // Only get the membrane for THIS entity's cell (not all cells in the colony)
+            // var cellIndex = member.MulticellularBodyPlanPartIndex;
+            // var cell = member.Species.ModifiableGameplayCells[cellIndex];
+
+            var colonyLeader = member.ColonyLeader.Get<MicrobeColony>();
+            var members = colonyLeader.ColonyMembers;
+            var structure = colonyLeader.ColonyStructure;
+            GD.Print();
+        }
+
         // Background thread membrane generation
         if (entity.Has<MulticellularSpeciesMember>())
         {
-            var multi = entity.Get<MulticellularSpeciesMember>();
+            Entity colonyLeader;
+            if (entity.Has<MicrobeColonyMember>())
+            {
+                colonyLeader = entity.Get<MicrobeColonyMember>().ColonyLeader;
+            }
+            else
+            {
+                colonyLeader = entity;
+            }
 
-            // Only get the membrane for THIS entity's cell (not all cells in the colony)
-            var cellIndex = multi.MulticellularBodyPlanPartIndex;
-            var cell = multi.Species.ModifiableGameplayCells[cellIndex];
-            data = GetMulticellularMembraneDataIfReadyOrStartGenerating(cell, cell.ModifiableOrganelles, ref multi,
-                cellIndex);
+            var speciesMember = entity.Get<MulticellularSpeciesMember>();
+
+            if (colonyLeader.Has<MulticellularGrowth>())
+            {
+                var growthOrder = colonyLeader.Get<MulticellularGrowth>();
+                var nextBodyPlanCellToGrowIndex = growthOrder.NextBodyPlanCellToGrowIndex;
+                var lostCells = (growthOrder.LostPartsOfBodyPlan ?? []).ToHashSet();
+
+                // var nextBodyPlanCellToGrowIndex = speciesMember.Species.ModifiableGameplayCells.Count;
+                // HashSet<int> lostCells = [];
+
+                // Only get the membrane for THIS entity's cell (not all cells in the colony)
+                var cellIndex = speciesMember.MulticellularBodyPlanPartIndex;
+                var cell = speciesMember.Species.ModifiableGameplayCells[cellIndex];
+                data = GetMulticellularMembraneDataIfReadyOrStartGenerating(cell, cell.ModifiableOrganelles,
+                    ref speciesMember,
+                    cellIndex, nextBodyPlanCellToGrowIndex, lostCells);
+            }
+            else
+            {
+                data = GetMembraneDataIfReadyOrStartGenerating(ref cellProperties, ref organelleContainer);
+            }
         }
         else
         {
@@ -282,7 +322,7 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
 
     private MembranePointData? GetMulticellularMembraneDataIfReadyOrStartGenerating(CellTemplate cellProperties,
         OrganelleLayout<OrganelleTemplate> organelleContainer, ref MulticellularSpeciesMember multicellular,
-        int cellIndex)
+        int currentCellIndex, int nextBodyPlanCellToGrowIndex, HashSet<int> lostCells)
     {
         // TODO: should we consider the situation where a membrane was requested on the previous update but is not
         // ready yet? This causes extra memory usage here in those cases.
@@ -290,31 +330,33 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
             out var hexCount);
 
         List<Vector2> positions = new List<Vector2>();
+        List<int> orientations = new List<int>();
 
-        foreach (var cell in multicellular.Species.ModifiableGameplayCells)
+        for (int i = 0; i < nextBodyPlanCellToGrowIndex; ++i)
         {
+            if (lostCells.Contains(i))
+                continue;
+
+            var cell = multicellular.Species.ModifiableGameplayCells[i];
             var cartesian = Hex.AxialToCartesian(cell.Position);
             positions.Add(new Vector2(cartesian.X, cartesian.Z) * Constants.MULTICELLULAR_CELL_DISTANCE_MULTIPLIER);
+            orientations.Add(multicellular.Species.ModifiableGameplayCells[i].Orientation);
         }
 
         var positionsArray = positions.ToArray();
-
-        // Build orientations array matching the positions order
-        var orientations = new int[multicellular.Species.ModifiableGameplayCells.Count];
-        for (int i = 0; i < orientations.Length; ++i)
-            orientations[i] = multicellular.Species.ModifiableGameplayCells[i].Orientation;
+        var rotationsArray = orientations.ToArray();
 
         // Use the actual cell index to get the correct position for this specific cell
         var thisCartesian =
             Hex.AxialToCartesian(multicellular.Species
-                .ModifiableGameplayCells[cellIndex].Position);
+                .ModifiableGameplayCells[currentCellIndex].Position);
         var cellPositionInMulticellular = new Vector2(thisCartesian.X, thisCartesian.Z) *
             Constants.MULTICELLULAR_CELL_DISTANCE_MULTIPLIER;
 
         // Use the simple hash function that includes all parameters
         var hash = MembraneComputationHelpers.ComputeMembraneDataHash(hexes, hexCount, cellProperties.MembraneType,
-            positionsArray, cellPositionInMulticellular, orientations,
-            multicellular.Species.ModifiableGameplayCells[cellIndex].Orientation);
+            positionsArray, cellPositionInMulticellular, rotationsArray,
+            multicellular.Species.ModifiableGameplayCells[currentCellIndex].Orientation);
 
         var cachedMembrane = ProceduralDataCache.Instance.ReadMembraneData(hash);
 
@@ -323,15 +365,22 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
             // TODO: hopefully this can't get into a permanent loop where 2 conflicting membranes want to
             // re-generate on each game update cycle
             if (!cachedMembrane.MembraneDataFieldsEqual(hexes, hexCount, cellProperties.MembraneType, positionsArray,
-                    cellPositionInMulticellular, orientations,
-                    multicellular.Species.ModifiableGameplayCells[cellIndex].Orientation))
+                    cellPositionInMulticellular, rotationsArray,
+                    multicellular.Species.ModifiableGameplayCells[currentCellIndex].Orientation))
             {
                 GD.Print($"Multicell cache equality mismatch for hash {hash}." +
                     $"\n  positions: {cachedMembrane.CellPositionInMulticellular} vs {cellPositionInMulticellular}" +
                     $"\n  hexes: {cachedMembrane.HexPositionCount} vs {hexCount}" +
-                    $"\n  positions: {cachedMembrane.MulticellularPositions?.Length} vs {positionsArray.Length}");
+                    $"\n  positions: {cachedMembrane.MulticellularPositions?.Length} vs {positionsArray.Length}" +
+                    $"\n  cellIndex: {currentCellIndex}" +
+                    $"\n  orientation: {cachedMembrane.CellOrientation} vs {multicellular.Species.ModifiableGameplayCells[currentCellIndex].Orientation}" +
+                    $"\n  cached hex[0..4]: {HexDump(cachedMembrane.HexPositions, cachedMembrane.HexPositionCount)}" +
+                    $"\n  request hex[0..4]: {HexDump(hexes, hexCount)}" +
+                    $"\n  cached multicellularPos[0..4]: {PosDump(cachedMembrane.MulticellularPositions)}" +
+                    $"\n  request multicellularPos[0..4]: {PosDump(positionsArray)}");
                 CacheableDataExtensions.OnCacheHashCollision<MembranePointData>(hash);
                 cachedMembrane = null;
+
             }
         }
 
@@ -357,14 +406,27 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         }
 
         membranesToGenerate.Enqueue(new MembraneGenerationParameters(hexes, hexCount, cellProperties.MembraneType,
-            positionsArray, cellPositionInMulticellular, orientations,
-            multicellular.Species.ModifiableGameplayCells[cellIndex].Orientation));
+            positionsArray, cellPositionInMulticellular, rotationsArray,
+            multicellular.Species.ModifiableGameplayCells[currentCellIndex].Orientation));
 
         // Immediately start some jobs to give background threads something to do while the main thread is busy
         // potentially setting up other visuals
         StartMembraneGenerationJobs();
 
         return null;
+    }
+    
+    private static string HexDump(Vector2[] arr, int count)
+    {
+        int n = Math.Min(5, count);
+        return string.Join(", ", Enumerable.Range(0, n).Select(i => arr[i].ToString()));
+    }
+
+    private static string PosDump(Vector2[]? arr)
+    {
+        if (arr == null) return "null";
+        int n = Math.Min(5, arr.Length);
+        return string.Join(", ", Enumerable.Range(0, n).Select(i => arr[i].ToString()));
     }
 
     private void SetMembraneDisplayData(Membrane membrane, MembranePointData cacheData,
