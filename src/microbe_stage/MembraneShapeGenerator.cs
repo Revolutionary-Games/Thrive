@@ -2,7 +2,6 @@
 using System.Buffers;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using Godot;
 using Array = Godot.Collections.Array;
@@ -56,7 +55,7 @@ public class MembraneShapeGenerator
     ///   checked for existing data before computing new data)
     /// </returns>
     public MembranePointData GenerateMicrobeShape(Vector2[] hexPositions, int hexCount, MembraneType membraneType,
-        bool isMulticellular)
+        bool isMulticellular = false)
     {
         // The length in pixels (probably not accurate?) of a side of the square that bounds the membrane.
         // Half the side length of the original square that is compressed to make the membrane.
@@ -706,7 +705,7 @@ public class MembraneShapeGenerator
 
         castDirection = castDirection.Normalized();
 
-        int n = vertices2D.Count;
+        int pointsCount = vertices2D.Count;
 
         var coneEdgeA = vertices2D[tangentPoint1] - middlePointBetweenAvarageVertices;
         var coneEdgeB = vertices2D[tangentPoint2] - middlePointBetweenAvarageVertices;
@@ -715,8 +714,8 @@ public class MembraneShapeGenerator
             return;
 
         // define from which index of verices2D to which index the points should be moved
-        int forwardLength = (tangentPoint2 - tangentPoint1 + n) % n;
-        int backwardLength = (tangentPoint1 - tangentPoint2 + n) % n;
+        int forwardLength = (tangentPoint2 - tangentPoint1 + pointsCount) % pointsCount;
+        int backwardLength = (tangentPoint1 - tangentPoint2 + pointsCount) % pointsCount;
 
         GetIterationIndices(tangentPoint1, tangentPoint2, forwardLength, backwardLength, out var indexStart,
             out var indexEnd);
@@ -727,8 +726,8 @@ public class MembraneShapeGenerator
         // Check every other vertex to reduce calculations
         for (var i = indexStart; i < indexEnd; i++)
         {
-            int idx = i % n;
-            var point = vertices2D[idx];
+            int index = i % pointsCount;
+            var point = vertices2D[index];
 
             var hitLeftConeBoundary = FindRayLineIntersection(point, castDirection, middlePointBetweenAvarageVertices,
                 coneEdgeA, out float distanceToLeftBoundary);
@@ -762,7 +761,7 @@ public class MembraneShapeGenerator
                 return;
             }
 
-            validCasts[idx] = newPosition;
+            validCasts[index] = newPosition;
 
             foreach (var otherNeighbour in otherNeighbours)
             {
@@ -778,22 +777,25 @@ public class MembraneShapeGenerator
             vertices2D[kvp.Key] = kvp.Value;
         }
 
-        SmoothVertexRegion(indexStart, indexEnd, n, 1);
+        SmoothVertexRegion(indexStart, indexEnd, pointsCount);
     }
 
-    private void SmoothVertexRegion(int indexStart, int indexEnd, int n, int iterations = 2)
+    private void SmoothVertexRegion(int indexStart, int indexEnd, int pointCount)
     {
-        for (int iter = 0; iter < iterations; iter++)
+        for (int i = indexStart; i < indexEnd; i++)
         {
-            for (int i = indexStart + 1; i < indexEnd - 1; i++)
-            {
-                int idx = i % n;
-                int prev = (i - 1) % n;
-                int next = (i + 1) % n;
+            int index = i % pointCount;
+            int previousPointIndex = (i - 1) % pointCount;
+            int nextPointIndex = (i + 1) % pointCount;
 
-                // Simple average of neighbors — pulls sharp corners toward center
-                vertices2D[idx] = (vertices2D[prev] + 1 * vertices2D[idx] + vertices2D[next]) * 0.3333f;
+            if (previousPointIndex < 0)
+            {
+                previousPointIndex += pointCount;
             }
+
+            // Simple average of neighbors — pulls sharp corners toward center
+            vertices2D[index] = (vertices2D[previousPointIndex] + 1 * vertices2D[index] + vertices2D[nextPointIndex]) *
+                0.3333f;
         }
     }
 

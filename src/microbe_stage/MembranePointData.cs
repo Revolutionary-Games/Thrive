@@ -23,8 +23,8 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
     private bool disposed;
 
     public MembranePointData(Vector2[] hexPositions, int hexPositionCount, MembraneType type,
-        IReadOnlyList<Vector2> verticesToCopy,
-        Vector2[]? multicellularPositions = null, Vector2? cellPositionInMulticellular = null,
+        IReadOnlyList<Vector2> verticesToCopy, Vector2[]? multicellularPositions = null,
+        Vector2? cellPositionInMulticellular = null,
         int[]? multicellularOrientations = null, int? cellOrientation = null)
     {
         HexPositions = hexPositions;
@@ -35,19 +35,24 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
         MulticellularOrientations = multicellularOrientations;
         CellOrientation = cellOrientation;
 
+        // Setup mesh to be generated (on the main thread) only when required
         finalMesh = new Lazy<(ArrayMesh Mesh, int SurfaceIndex)>(() =>
             MembraneShapeGenerator.GetThreadSpecificGenerator().GenerateMesh(this));
 
         finalEngulfMesh = new Lazy<(ArrayMesh Mesh, int SurfaceIndex)>(() =>
             MembraneShapeGenerator.GetThreadSpecificGenerator().GenerateEngulfMesh(this));
 
+        // Copy the membrane data, this copied array can then be referenced by Membrane instances as long as there
+        // might exist a reference to this class instance (that's why it is only released in the finalizer)
         int count = verticesToCopy.Count;
-
         var copyTarget = ArrayPool<Vector2>.Shared.Rent(count);
-        for (int i = 0; i < count; ++i)
-            copyTarget[i] = verticesToCopy[i];
-        Vertices2D = copyTarget;
 
+        for (int i = 0; i < count; ++i)
+        {
+            copyTarget[i] = verticesToCopy[i];
+        }
+
+        Vertices2D = copyTarget;
         VertexCount = count;
     }
 
@@ -72,6 +77,7 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
     /// </summary>
     public Vector2[]? MulticellularPositions { get; }
 
+    // TODO: add summaries
     public Vector2? CellPositionInMulticellular { get; }
 
     public int[]? MulticellularOrientations { get; }
@@ -186,11 +192,7 @@ public sealed class NeighbourData
 {
     public long SingleCellHash;
     public Vector2 CellPosition;
-    public Vector2[] HexPositions = null!;
-    public int HexCount;
-    public MembraneType Type = null!;
     public MembranePointData OriginalPointData = null!;
-    public MembranePointData ModifiedPointData = null!;
     public int Orientation;
 }
 

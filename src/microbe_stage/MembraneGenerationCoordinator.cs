@@ -62,9 +62,6 @@ public static class MembraneGenerationCoordinator
         {
             SingleCellHash = registeredHash,
             CellPosition = cellPosition,
-            HexPositions = generationParameters.HexPositions,
-            HexCount = generationParameters.HexPositionCount,
-            Type = generationParameters.Type,
             OriginalPointData = singleCellMembranePointData,
             Orientation = cellOrientation ?? 0,
         };
