@@ -1,15 +1,13 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using Godot;
 
 /// <summary>
 ///   Coordinator that implements two-pass membrane generation for multicellular bodies.
-///   - First pass: generate base membranes per cell ignoring multicellular positions
-///   - Second pass: when all bases for a colony exist, generate modified membranes that include the multicellular
-///     adjustments and write those to the procedural cache.
+///   - First pass: generate base membranes per cell
+///   - Second pass: generate modified membranes that include the multicellular adjustments.
 /// </summary>
 public static class MembraneGenerationCoordinator
 {
@@ -22,10 +20,10 @@ public static class MembraneGenerationCoordinator
     public static List<long> HandleGenerationRequest(ref MembraneGenerationParameters generationParameters)
     {
         var generator = MembraneShapeGenerator.GetThreadSpecificGenerator();
+        var isSingleCell = generationParameters.MulticellularPositions == null ||
+            generationParameters.CellPositionInMulticellular == null;
 
-        // Single-cell path — unchanged
-        if (generationParameters.MulticellularPositions == null ||
-            generationParameters.CellPositionInMulticellular == null)
+        if (isSingleCell)
         {
             var membranePointData = generator.GenerateMicrobeShape(ref generationParameters);
             var hash = ProceduralDataCache.Instance.WriteMembraneData(ref membranePointData);
@@ -37,7 +35,6 @@ public static class MembraneGenerationCoordinator
         var cellPosition = generationParameters.CellPositionInMulticellular!.Value;
         var cellOrientation = generationParameters.CellOrientation;
 
-        // This is the hash the CALLER registered in pendingGenerationsOfMembraneHashes
         var registeredHash = MembraneComputationHelpers.ComputeMembraneDataHash(
             positions: generationParameters.HexPositions,
             count: generationParameters.HexPositionCount,
@@ -47,11 +44,12 @@ public static class MembraneGenerationCoordinator
             multicellularOrientations: multicellularOrientations,
             cellOrientation: cellOrientation);
 
-        // If the final multicellular membrane is already cached, just return the registered hash to unblock it
+        // If the final multicellular membrane is already cached, just return it
         var existing = ProceduralDataCache.Instance.ReadMembraneData(registeredHash);
         if (existing != null)
             return new List<long> { registeredHash };
 
+        // TODO: this should be written into cache!
         // Pass 1: generate the base (single-cell) shape — do NOT write this to the cache under its
         // single-cell hash, because that would pollute lookups; keep it only in NeighbourData.
         var singleCellMembranePointData = generator.GenerateMicrobeShape(ref generationParameters, true);
@@ -68,15 +66,16 @@ public static class MembraneGenerationCoordinator
             HexCount = generationParameters.HexPositionCount,
             Type = generationParameters.Type,
             OriginalPointData = singleCellMembranePointData,
+            Orientation = cellOrientation ?? 0,
         };
-        singleCellData.Orientation = cellOrientation ?? 0;
 
         tracker.NeighboursData[CellKey(cellPosition)] = singleCellData;
 
-        // Colony not yet complete — tell the caller their hash is still pending (return empty)
+        // Colony not yet complete — return empty
         if (tracker.NeighboursData.Count < tracker.ExpectedCount)
             return new List<long>();
 
+        // TODO: maybe allow it to be multithreaded!
         // Pass 2: all base membranes are ready; generate multicellular-adjusted versions.
         // Use a flag to ensure exactly one thread executes the second pass.
         if (!tracker.TryBeginSecondPass())
@@ -89,18 +88,8 @@ public static class MembraneGenerationCoordinator
             var multicellularMembrane = generator.GenerateMulticellularMembrane(key, tracker.NeighboursData,
                 multicellularPositions, multicellularOrientations);
 
-            // Compute the exact hash the caller registered for this cell
-            var entryRegisteredHash = MembraneComputationHelpers.ComputeMembraneDataHash(
-                positions: data.HexPositions,
-                count: data.HexCount,
-                type: data.Type,
-                multicellularPositions: multicellularPositions,
-                cellPositionInMulticellular: data.CellPosition,
-                multicellularOrientations: multicellularOrientations,
-                cellOrientation: data.Orientation);
-
             ProceduralDataCache.Instance.WriteMembraneData(ref multicellularMembrane);
-            resolvedHashes.Add(entryRegisteredHash);
+            resolvedHashes.Add(data.SingleCellHash);
         }
 
         Trackers.TryRemove(colonyKey, out _);
@@ -109,6 +98,7 @@ public static class MembraneGenerationCoordinator
         return resolvedHashes;
     }
 
+    // TODO: is there a better way to calculate the key? maybe just some hash instead of string key...
     private static string CellKey(Vector2 v)
     {
         return BitConverter.SingleToInt32Bits(v.X) + ":" + BitConverter.SingleToInt32Bits(v.Y);
@@ -141,10 +131,12 @@ public static class MembraneGenerationCoordinator
     {
         public int ExpectedCount;
         public ConcurrentDictionary<string, NeighbourData> NeighboursData = new();
-        private int _secondPassStarted;
+        private int secondPassStarted;
 
         /// <returns>True if THIS caller should run the second pass; false if another thread beat it</returns>
-        public bool TryBeginSecondPass() =>
-            Interlocked.CompareExchange(ref _secondPassStarted, 1, 0) == 0;
+        public bool TryBeginSecondPass()
+        {
+            return Interlocked.CompareExchange(ref secondPassStarted, 1, 0) == 0;
+        }
     }
 }

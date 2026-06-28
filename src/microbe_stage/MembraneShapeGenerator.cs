@@ -133,6 +133,13 @@ public class MembraneShapeGenerator
 
         GenerateMulticellularMembrane(thisCellKey, neighboursData);
 
+        // Apply the same waviness pass used for single-cell membranes
+        float circumference = 0.0f;
+        for (int i = 0, end = vertices2D.Count; i < end; ++i)
+            circumference += (vertices2D[(i + 1) % end] - vertices2D[i]).Length();
+
+        MakeMembraneWavier(originalPointData.Type, circumference);
+
         int hexCount = originalPointData.HexPositionCount;
         var hexCopy = ArrayPool<Vector2>.Shared.Rent(hexCount);
         originalPointData.HexPositions.AsSpan(0, hexCount).CopyTo(hexCopy);
@@ -665,6 +672,9 @@ public class MembraneShapeGenerator
             if (skipGeneration)
                 continue;
 
+            middlePointBetweenAvarageVertices +=
+                (middlePointBetweenAvarageVertices - averageVertex).Normalized() * 0.5f;
+
             GetTangentPoints(averageVertex, middlePointBetweenAvarageVertices,
                 out var tangentPointIndex1, out var tangentPointIndex2);
 
@@ -680,9 +690,6 @@ public class MembraneShapeGenerator
 
             CastVerticesOntoTheCone(middlePointBetweenAvarageVertices, averageVertex, tangentPointIndex1,
                 tangentPointIndex2, neighbourVertices, otherNeighbours);
-
-            // CastVerticesOntoTheArch(middlePointBetweenAvarageVertices, averageVertex, tangentPointIndex1,
-            //     tangentPointIndex2);
         }
 
         // GD.Print("After:");
@@ -741,7 +748,7 @@ public class MembraneShapeGenerator
                 hitLeftConeBoundary &&
                 (!hitRightConeBoundary || MathF.Abs(distanceToLeftBoundary) < MathF.Abs(distanceToRightBoundary));
 
-            Vector2 newPosition = Vector2.Zero;
+            Vector2 newPosition;
             if (leftBoundaryIsCloser)
             {
                 newPosition = projectedOntoLeftBoundary;
@@ -752,35 +759,41 @@ public class MembraneShapeGenerator
             }
             else
             {
-                continue; // No valid projection, skip this vertex
+                return;
             }
 
-            // Check if the new position is inside the current neighbour or any other neighbour
-            bool isInsideAnyNeighbour = IsInsideConvexPolygon(neighbourVertices, newPosition);
+            validCasts[idx] = newPosition;
 
-            if (!isInsideAnyNeighbour)
+            foreach (var otherNeighbour in otherNeighbours)
             {
-                foreach (var otherNeighbour in otherNeighbours)
+                if (IsInsideConvexPolygon(otherNeighbour, newPosition))
                 {
-                    if (IsInsideConvexPolygon(otherNeighbour, newPosition))
-                    {
-                        isInsideAnyNeighbour = true;
-                        return;
-                    }
+                    return;
                 }
-            }
-
-            // Only store the cast if it's not inside any neighbour cell
-            if (!isInsideAnyNeighbour)
-            {
-                validCasts[idx] = newPosition;
             }
         }
 
-        // Apply only the safe casts
         foreach (var kvp in validCasts)
         {
             vertices2D[kvp.Key] = kvp.Value;
+        }
+
+        SmoothVertexRegion(indexStart, indexEnd, n, 1);
+    }
+
+    private void SmoothVertexRegion(int indexStart, int indexEnd, int n, int iterations = 2)
+    {
+        for (int iter = 0; iter < iterations; iter++)
+        {
+            for (int i = indexStart + 1; i < indexEnd - 1; i++)
+            {
+                int idx = i % n;
+                int prev = (i - 1) % n;
+                int next = (i + 1) % n;
+
+                // Simple average of neighbors — pulls sharp corners toward center
+                vertices2D[idx] = (vertices2D[prev] + 1 * vertices2D[idx] + vertices2D[next]) * 0.3333f;
+            }
         }
     }
 
@@ -930,121 +943,6 @@ public class MembraneShapeGenerator
         }
 
         return angle;
-    }
-
-    private void CastVerticesOntoTheArch(Vector2 middlePointBetweenAverageVertices, Vector2 averageVertex,
-        int tangentPointIndex1, int tangentPointIndex2)
-    {
-        var castDirection = middlePointBetweenAverageVertices - averageVertex;
-        if (castDirection.LengthSquared() < 1e-6f)
-            return;
-
-        castDirection = castDirection.Normalized();
-
-        int n = vertices2D.Count;
-
-        var tangentPoint1 = vertices2D[tangentPointIndex1];
-        var tangentPoint2 = vertices2D[tangentPointIndex2];
-
-        BuildArc(tangentPoint1, middlePointBetweenAverageVertices, castDirection,
-            out Vector2 centerLeft, out float radiusLeft);
-        BuildArc(tangentPoint2, middlePointBetweenAverageVertices, castDirection,
-            out Vector2 centerRight, out float radiusRight);
-
-        if (radiusLeft < 1e-6f || radiusRight < 1e-6f)
-            return;
-
-        int forwardLength = (tangentPointIndex2 - tangentPointIndex1 + n) % n;
-        int backwardLength = (tangentPointIndex1 - tangentPointIndex2 + n) % n;
-
-        GetIterationIndices(tangentPointIndex1, tangentPointIndex2, forwardLength, backwardLength,
-            out var indexStart, out var indexEnd);
-
-        // Side discriminator: project onto the perpendicular of castDirection
-        var sideAxis = new Vector2(-castDirection.Y, castDirection.X);
-        float middleSide = middlePointBetweenAverageVertices.Dot(sideAxis);
-
-        for (int i = indexStart; i < indexEnd; i++)
-        {
-            int idx = i % n;
-            var point = vertices2D[idx];
-
-            // Determine which arch this vertex belongs to
-            float pointSide = point.Dot(sideAxis);
-            bool useLeftArc = pointSide <= middleSide;
-
-            Vector2 arcCenter = useLeftArc ? centerLeft : centerRight;
-            float arcRadius = useLeftArc ? radiusLeft : radiusRight;
-
-            bool hit = FindRayCircleIntersection(point, castDirection, arcCenter, arcRadius,
-                out float t);
-
-            if (hit)
-                vertices2D[idx] = point + castDirection * t;
-        }
-    }
-
-    /// <summary>
-    /// Builds a circular arc through two endpoints whose center lies on the
-    /// perpendicular bisector of the chord, pushed away from castDirection.
-    /// </summary>
-    private void BuildArc(Vector2 tangentPoint, Vector2 middlePoint, Vector2 castDirection,
-        out Vector2 circleCenterPoint, out float circleRadius)
-    {
-        var chordMidpoint = (tangentPoint + middlePoint) / 2f;
-        var chordVector = middlePoint - tangentPoint;
-
-        // Perpendicular to the chord, pointing away from castDirection so the arc bulges toward the cast origin
-        var bisectorDirection = new Vector2(-chordVector.Y, chordVector.X);
-        if (bisectorDirection.Dot(castDirection) > 0f)
-            bisectorDirection = -bisectorDirection;
-
-        const float arcCurvatureMultiplier = 3.5f;
-        float halfChordLength = chordVector.Length() / 2f;
-        float centerOffset = halfChordLength * arcCurvatureMultiplier;
-
-        circleCenterPoint = chordMidpoint + bisectorDirection.Normalized() * centerOffset;
-        circleRadius = (middlePoint - circleCenterPoint).Length();
-    }
-
-    private bool FindRayCircleIntersection(Vector2 rayOrigin, Vector2 rayDirection,
-        Vector2 circleCenter, float circleRadius, out float distanceAlongRay)
-    {
-        distanceAlongRay = 0f;
-        var originToCenter = rayOrigin - circleCenter;
-
-        // With a normalized rayDirection, the quadratic simplifies from
-        // at² + bt + c = 0  to  t² + bt + c = 0
-        float projectionOntoRay = originToCenter.Dot(rayDirection);
-        float originToCenterSquared = originToCenter.Dot(originToCenter);
-        float radiusSquared = circleRadius * circleRadius;
-
-        float discriminant = projectionOntoRay * projectionOntoRay - (originToCenterSquared - radiusSquared);
-
-        if (discriminant < 0f)
-            return false;
-
-        float sqrtDiscriminant = MathF.Sqrt(discriminant);
-        float nearIntersection = -projectionOntoRay - sqrtDiscriminant;
-        float farIntersection = -projectionOntoRay + sqrtDiscriminant;
-
-        // Prefer the nearest forward hit; fall back to the least-negative (closest behind)
-        if (nearIntersection >= 0f)
-        {
-            distanceAlongRay = nearIntersection;
-        }
-        else if (farIntersection >= 0f)
-        {
-            distanceAlongRay = farIntersection;
-        }
-        else
-        {
-            distanceAlongRay = MathF.Abs(nearIntersection) < MathF.Abs(farIntersection) ?
-                nearIntersection :
-                farIntersection;
-        }
-
-        return true;
     }
 
     /// <summary>

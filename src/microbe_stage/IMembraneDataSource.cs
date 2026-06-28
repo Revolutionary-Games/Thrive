@@ -145,45 +145,49 @@ public static class MembraneComputationHelpers
         Vector2[]? multicellularPositions = null, Vector2? cellPositionInMulticellular = null,
         int[]? multicellularOrientations = null, int? cellOrientation = null)
     {
+        const long prime1 = 1099511628211L;
+        const long prime2 = 1409;
+        const long prime3 = 7793;
+
         var nameHash = type.InternalName.GetHashCode();
 
         unchecked
         {
-            long hash = 1409 + nameHash + ((long)nameHash << 28);
+            long hash = prime2 + nameHash + ((long)nameHash << 28);
 
-            hash ^= (count + 1) * 7793;
+            hash ^= (count + 1) * prime3;
 
             for (int i = 0; i < count; ++i)
             {
-                hash = (hash * 1099511628211L) ^ BitConverter.SingleToInt32Bits(positions[i].X);
-                hash = (hash * 1099511628211L) ^ BitConverter.SingleToInt32Bits(positions[i].Y);
+                hash = (hash * prime1) ^ BitConverter.SingleToInt32Bits(positions[i].X);
+                hash = (hash * prime1) ^ BitConverter.SingleToInt32Bits(positions[i].Y);
             }
 
             if (cellPositionInMulticellular != null)
             {
-                hash = (hash * 1099511628211L) ^ BitConverter.SingleToInt32Bits(cellPositionInMulticellular.Value.X);
-                hash = (hash * 1099511628211L) ^ BitConverter.SingleToInt32Bits(cellPositionInMulticellular.Value.Y);
+                hash = (hash * prime1) ^ BitConverter.SingleToInt32Bits(cellPositionInMulticellular.Value.X);
+                hash = (hash * prime1) ^ BitConverter.SingleToInt32Bits(cellPositionInMulticellular.Value.Y);
             }
 
             if (multicellularPositions != null)
             {
                 for (int i = 0; i < multicellularPositions.Length; ++i)
                 {
-                    hash = (hash * 1099511628211L) ^ BitConverter.SingleToInt32Bits(multicellularPositions[i].X);
-                    hash = (hash * 1099511628211L) ^ BitConverter.SingleToInt32Bits(multicellularPositions[i].Y);
+                    hash = (hash * prime1) ^ BitConverter.SingleToInt32Bits(multicellularPositions[i].X);
+                    hash = (hash * prime1) ^ BitConverter.SingleToInt32Bits(multicellularPositions[i].Y);
                 }
             }
 
             if (cellOrientation != null)
             {
-                hash = (hash * 1099511628211L) ^ cellOrientation.Value;
+                hash = (hash * prime1) ^ cellOrientation.Value;
             }
 
             if (multicellularOrientations != null)
             {
                 for (int i = 0; i < multicellularOrientations.Length; ++i)
                 {
-                    hash = (hash * 1099511628211L) ^ multicellularOrientations[i];
+                    hash = (hash * prime1) ^ multicellularOrientations[i];
                 }
             }
 

@@ -345,18 +345,17 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
 
         var positionsArray = positions.ToArray();
         var rotationsArray = orientations.ToArray();
+        var currentCell = multicellular.Species.ModifiableGameplayCells[currentCellIndex];
 
         // Use the actual cell index to get the correct position for this specific cell
         var thisCartesian =
-            Hex.AxialToCartesian(multicellular.Species
-                .ModifiableGameplayCells[currentCellIndex].Position);
+            Hex.AxialToCartesian(currentCell.Position);
         var cellPositionInMulticellular = new Vector2(thisCartesian.X, thisCartesian.Z) *
             Constants.MULTICELLULAR_CELL_DISTANCE_MULTIPLIER;
 
         // Use the simple hash function that includes all parameters
         var hash = MembraneComputationHelpers.ComputeMembraneDataHash(hexes, hexCount, cellProperties.MembraneType,
-            positionsArray, cellPositionInMulticellular, rotationsArray,
-            multicellular.Species.ModifiableGameplayCells[currentCellIndex].Orientation);
+            positionsArray, cellPositionInMulticellular, rotationsArray, currentCell.Orientation);
 
         var cachedMembrane = ProceduralDataCache.Instance.ReadMembraneData(hash);
 
@@ -365,22 +364,10 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
             // TODO: hopefully this can't get into a permanent loop where 2 conflicting membranes want to
             // re-generate on each game update cycle
             if (!cachedMembrane.MembraneDataFieldsEqual(hexes, hexCount, cellProperties.MembraneType, positionsArray,
-                    cellPositionInMulticellular, rotationsArray,
-                    multicellular.Species.ModifiableGameplayCells[currentCellIndex].Orientation))
+                    cellPositionInMulticellular, rotationsArray, currentCell.Orientation))
             {
-                GD.Print($"Multicell cache equality mismatch for hash {hash}." +
-                    $"\n  positions: {cachedMembrane.CellPositionInMulticellular} vs {cellPositionInMulticellular}" +
-                    $"\n  hexes: {cachedMembrane.HexPositionCount} vs {hexCount}" +
-                    $"\n  positions: {cachedMembrane.MulticellularPositions?.Length} vs {positionsArray.Length}" +
-                    $"\n  cellIndex: {currentCellIndex}" +
-                    $"\n  orientation: {cachedMembrane.CellOrientation} vs {multicellular.Species.ModifiableGameplayCells[currentCellIndex].Orientation}" +
-                    $"\n  cached hex[0..4]: {HexDump(cachedMembrane.HexPositions, cachedMembrane.HexPositionCount)}" +
-                    $"\n  request hex[0..4]: {HexDump(hexes, hexCount)}" +
-                    $"\n  cached multicellularPos[0..4]: {PosDump(cachedMembrane.MulticellularPositions)}" +
-                    $"\n  request multicellularPos[0..4]: {PosDump(positionsArray)}");
                 CacheableDataExtensions.OnCacheHashCollision<MembranePointData>(hash);
                 cachedMembrane = null;
-
             }
         }
 
@@ -414,19 +401,6 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         StartMembraneGenerationJobs();
 
         return null;
-    }
-    
-    private static string HexDump(Vector2[] arr, int count)
-    {
-        int n = Math.Min(5, count);
-        return string.Join(", ", Enumerable.Range(0, n).Select(i => arr[i].ToString()));
-    }
-
-    private static string PosDump(Vector2[]? arr)
-    {
-        if (arr == null) return "null";
-        int n = Math.Min(5, arr.Length);
-        return string.Join(", ", Enumerable.Range(0, n).Select(i => arr[i].ToString()));
     }
 
     private void SetMembraneDisplayData(Membrane membrane, MembranePointData cacheData,
