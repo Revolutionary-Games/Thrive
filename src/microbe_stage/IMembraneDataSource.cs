@@ -218,7 +218,8 @@ public static class MembraneComputationHelpers
         if (dataSource.HexPositionCount != otherPointCount)
         {
             GD.PrintErr(
-                $"Membrane cache HexPositionCount mismatch: {dataSource.HexPositionCount} != {otherPointCount}");
+                $"Membrane cache HexPositionCount mismatch: " +
+                $"{dataSource.HexPositionCount} != {otherPointCount}");
             return false;
         }
 
@@ -231,7 +232,8 @@ public static class MembraneComputationHelpers
             if (dataSource.MulticellularPositions == null || multicellularPositions == null)
             {
                 GD.PrintErr(
-                    $"Membrane cache MulticellularPositions null mismatch: source={dataSource.MulticellularPositions == null} " +
+                    $"Membrane cache MulticellularPositions null mismatch: " +
+                    $"source={dataSource.MulticellularPositions == null} " +
                     $"other={multicellularPositions == null}");
                 return false;
             }
@@ -239,7 +241,8 @@ public static class MembraneComputationHelpers
             if (dataSource.MulticellularPositions.Length != multicellularPositions.Length)
             {
                 GD.PrintErr(
-                    $"Membrane cache MulticellularPositions.Length mismatch: {dataSource.MulticellularPositions.Length} != " +
+                    $"Membrane cache MulticellularPositions.Length mismatch: " +
+                    $"{dataSource.MulticellularPositions.Length} != " +
                     $"{multicellularPositions.Length}");
                 return false;
             }
@@ -249,7 +252,8 @@ public static class MembraneComputationHelpers
                 if (dataSource.MulticellularPositions[i] != multicellularPositions[i])
                 {
                     GD.PrintErr(
-                        $"Membrane cache MulticellularPositions[{i}] mismatch: {dataSource.MulticellularPositions[i]} != " +
+                        $"Membrane cache MulticellularPositions[{i}] mismatch: " +
+                        $"{dataSource.MulticellularPositions[i]} != " +
                         $"{multicellularPositions[i]}");
                     return false;
                 }
@@ -261,7 +265,8 @@ public static class MembraneComputationHelpers
             if (dataSource.MulticellularOrientations == null || multicellularOrientations == null)
             {
                 GD.PrintErr(
-                    $"Membrane cache MulticellularOrientations null mismatch: source={dataSource.MulticellularOrientations == null} " +
+                    $"Membrane cache MulticellularOrientations null mismatch: " +
+                    $"source={dataSource.MulticellularOrientations == null} " +
                     $"other={multicellularOrientations == null}");
                 return false;
             }
@@ -269,7 +274,8 @@ public static class MembraneComputationHelpers
             if (dataSource.MulticellularOrientations.Length != multicellularOrientations.Length)
             {
                 GD.PrintErr(
-                    $"Membrane cache MulticellularOrientations length mismatch: {dataSource.MulticellularOrientations.Length} != " +
+                    $"Membrane cache MulticellularOrientations length mismatch:" +
+                    $" {dataSource.MulticellularOrientations.Length} != " +
                     $"{multicellularOrientations.Length}");
                 return false;
             }
@@ -279,7 +285,8 @@ public static class MembraneComputationHelpers
                 if (dataSource.MulticellularOrientations[i] != multicellularOrientations[i])
                 {
                     GD.PrintErr(
-                        $"Membrane cache MulticellularOrientations[{i}] mismatch: {dataSource.MulticellularOrientations[i]} != " +
+                        $"Membrane cache MulticellularOrientations[{i}] mismatch: " +
+                        $"{dataSource.MulticellularOrientations[i]} != " +
                         $"{multicellularOrientations[i]}");
                     return false;
                 }
@@ -297,7 +304,8 @@ public static class MembraneComputationHelpers
             if (!dataSource.CellPositionInMulticellular.Equals(cellPositionInMulticellular))
             {
                 GD.PrintErr(
-                    $"Membrane cache CellPositionInMulticellular mismatch: {dataSource.CellPositionInMulticellular} != " +
+                    $"Membrane cache CellPositionInMulticellular mismatch: " +
+                    $"{dataSource.CellPositionInMulticellular} != " +
                     $"{cellPositionInMulticellular}");
                 return false;
             }
@@ -322,7 +330,8 @@ public static class MembraneComputationHelpers
             if (!dataSource.CellOrientation.Equals(cellOrientationInMulticellular))
             {
                 GD.PrintErr(
-                    $"Membrane cache CellOrientation mismatch: {dataSource.CellOrientation} != {cellOrientationInMulticellular}");
+                    $"Membrane cache CellOrientation mismatch: " +
+                    $"{dataSource.CellOrientation} != {cellOrientationInMulticellular}");
                 return false;
             }
         }
@@ -339,7 +348,8 @@ public static class MembraneComputationHelpers
         {
             if (sourcePoints[i] != otherPoints[i])
             {
-                GD.PrintErr($"Membrane cache HexPositions[{i}] mismatch: {sourcePoints[i]} != {otherPoints[i]}");
+                GD.PrintErr($"Membrane cache HexPositions[{i}] mismatch: " +
+                    $"{sourcePoints[i]} != {otherPoints[i]}");
                 return false;
             }
         }

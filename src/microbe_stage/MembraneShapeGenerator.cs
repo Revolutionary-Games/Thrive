@@ -523,7 +523,7 @@ public class MembraneShapeGenerator
         // Determine winding from the first edge so we know which sign = "inside"
         float firstCross = Cross(vertices[0], vertices[1], point);
 
-        for (int i = 1; i < n; i++)
+        for (int i = 1; i < n; ++i)
         {
             var a = vertices[i];
             var b = vertices[(i + 1) % n];
@@ -687,7 +687,8 @@ public class MembraneShapeGenerator
 
             var pullDirection = (middlePoint - cellAverageVertex).Normalized();
 
-            // extend the middle point a little bit away from middle point, so that vertices smoothing doesn't create a big gap
+            // extend the middle point a little bit away from middle point,
+            // so that vertices smoothing doesn't create a big gap
             middlePoint += pullDirection * Constants.MEMBRANE_MIDDLE_POINT_OVERREACH;
 
             CalculateTangentPoints(cellAverageVertex, middlePoint,
@@ -699,8 +700,8 @@ public class MembraneShapeGenerator
     }
 
     /// <summary>
-    ///  Calculates weighted middle point between cells' average vertex, based on how much the membrane reaches out
-    ///  from that average point to the other average point
+    ///   Calculates weighted middle point between cells' average vertex, based on how much the membrane reaches out
+    ///   from that average point to the other average point
     /// </summary>
     private Vector2 GetMiddlePoint(Vector2 averageVertex, Vector2 neighbourAverageVertex,
         List<Vector2> neighbourVertices)
@@ -769,7 +770,7 @@ public class MembraneShapeGenerator
         int tangentPointIndexA, int tangentPointIndexB, string currentNeighbourKey)
     {
         var castDirection = middlePoint - averageVertex;
-        if (castDirection.LengthSquared() < 1e-6f)
+        if (castDirection.LengthSquared() < MathUtils.EPSILON)
             return;
 
         castDirection = castDirection.Normalized();
@@ -777,7 +778,7 @@ public class MembraneShapeGenerator
         var tangentLineA = vertices2D[tangentPointIndexA] - middlePoint;
         var tangentLineB = vertices2D[tangentPointIndexB] - middlePoint;
 
-        if (tangentLineA.LengthSquared() < 1e-6f || tangentLineB.LengthSquared() < 1e-6f)
+        if (tangentLineA.LengthSquared() < MathUtils.EPSILON || tangentLineB.LengthSquared() < MathUtils.EPSILON)
             return;
 
         CalculateIterationIndices(tangentPointIndexA, tangentPointIndexB, out var indexStart,
@@ -786,7 +787,7 @@ public class MembraneShapeGenerator
         // Store casts in a temporary dictionary before applying them
         validPointsCasts.Clear();
 
-        for (var i = indexStart; i < indexEnd; i++)
+        for (var i = indexStart; i < indexEnd; ++i)
         {
             int index = i % vertices2D.Count;
             var point = vertices2D[index];
@@ -837,7 +838,7 @@ public class MembraneShapeGenerator
     {
         var vertexCount = vertices2D.Count;
 
-        for (int i = indexStart; i < indexEnd; i++)
+        for (int i = indexStart; i < indexEnd; ++i)
         {
             int index = i % vertexCount;
             int previousPointIndex = (i + vertexCount - 1) % vertexCount;
@@ -849,10 +850,8 @@ public class MembraneShapeGenerator
     }
 
     /// <summary>
-    /// Finds the intersection
-    /// Returns false when the ray and line are parallel.
-    /// rayDistance may be negative, meaning the intersection
-    /// lies behind rayOrigin relative to rayDirection.
+    ///   Finds the intersection. Returns false when the ray and line are parallel.
+    ///   RayDistance may be negative, meaning the intersection lies behind rayOrigin relative to rayDirection.
     /// </summary>
     private bool CalculateRayLineIntersection(Vector2 rayOrigin, Vector2 rayDirection, Vector2 linePoint,
         Vector2 lineDirection, out float rayDistance)
@@ -864,8 +863,10 @@ public class MembraneShapeGenerator
         rayDistance = 0;
 
         // Parallel lines
-        if (MathF.Abs(determinant) < 1e-6f)
+        if (MathF.Abs(determinant) < MathUtils.EPSILON)
+        {
             return false;
+        }
 
         Vector2 offset = linePoint - rayOrigin;
         rayDistance = (offset.X * lineDirection.Y - offset.Y * lineDirection.X) / determinant;
@@ -903,7 +904,7 @@ public class MembraneShapeGenerator
         var maxPositiveAngle = 0.0f;
         var maxNegativeAngle = 0.0f;
 
-        for (var i = 0; i < vertices2D.Count; i++)
+        for (var i = 0; i < vertices2D.Count; ++i)
         {
             var point = vertices2D[i];
             var angle = Angle(averageVertex, middlePointBetweenAvarageVertices, point);
@@ -936,7 +937,7 @@ public class MembraneShapeGenerator
         var ba = a - b;
         var bc = c - b;
 
-        var angle = ba.AngleTo(bc) * 180f / MathF.PI;
+        var angle = ba.AngleTo(bc) * MathUtils.DEGREES_TO_RADIANS;
         if (angle > 180)
         {
             angle -= 360;
@@ -946,14 +947,14 @@ public class MembraneShapeGenerator
     }
 
     /// <summary>
-    /// Finds the vertex closest to the half-line from <paramref name="origin"/> toward <paramref name="target"/>,
-    /// and returns its projection distance along that direction.
+    ///   Finds the vertex closest to the half-line from <paramref name="origin"/> toward <paramref name="target"/>,
+    ///   and returns its projection distance along that direction.
     /// </summary>
     private float GetMembraneReachToward(List<Vector2> vertices, Vector2 origin, Vector2 target)
     {
         var direction = (target - origin).Normalized();
         float minDistToRay = float.MaxValue;
-        float bestProjection = 0f;
+        float bestProjection = 0.0f;
 
         foreach (var vertex in vertices)
         {
@@ -961,7 +962,7 @@ public class MembraneShapeGenerator
             float projection = toVertex.Dot(direction);
 
             // Only consider vertices on the forward half
-            if (projection <= 0f)
+            if (projection <= 0.0f)
                 continue;
 
             // Perpendicular distance from vertex to the ray

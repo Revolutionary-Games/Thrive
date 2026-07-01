@@ -155,7 +155,7 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
 
         ref var materialStorage = ref entity.Get<EntityMaterial>();
 
-        MembranePointData? data = null;
+        MembranePointData? data;
 
         // Background thread membrane generation
         if (entity.Has<MulticellularSpeciesMember>())

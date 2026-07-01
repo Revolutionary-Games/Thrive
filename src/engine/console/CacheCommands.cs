@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 
 // Commands related to cache management for developers
 public static class CacheCommands
@@ -10,4 +10,3 @@ public static class CacheCommands
         context.Print("Cleared membrane cache.");
     }
 }
-
