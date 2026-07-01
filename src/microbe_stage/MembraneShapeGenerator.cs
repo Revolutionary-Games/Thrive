@@ -33,6 +33,12 @@ public class MembraneShapeGenerator
     /// </summary>
     private readonly List<Vector2> vertices2D = new();
 
+    private readonly List<string> closeNeighboursKeys = new();
+
+    private readonly Dictionary<string, List<Vector2>> neighboursProcessedVertices = new();
+
+    private readonly Dictionary<int, Vector2> validPointsCasts = new();
+
     /// <summary>
     ///   Buffer for starting points when generating membrane data
     /// </summary>
@@ -324,11 +330,10 @@ public class MembraneShapeGenerator
         }
     }
 
-    // rotate helper: rotate a vector around origin
-    private static Vector2 Rotate(Vector2 v, float angle)
+    private static Vector2 RotatePoint(Vector2 point, float angle)
     {
-        (float s, float c) = MathF.SinCos(angle);
-        return new Vector2(c * v.X - s * v.Y, s * v.X + c * v.Y);
+        (float sin, float cos) = MathF.SinCos(angle);
+        return new Vector2(cos * point.X - sin * point.Y, sin * point.X + cos * point.Y);
     }
 
     /// <summary>
@@ -502,6 +507,62 @@ public class MembraneShapeGenerator
         return generatedMesh;
     }
 
+    // 2D cross product of vectors (b-a) and (p-a).
+    // Positive = p is left of edge a→b, negative = right, zero = collinear.
+    private static float Cross(Vector2 a, Vector2 b, Vector2 p)
+    {
+        return (b - a).Cross(p - a);
+    }
+
+    private static bool IsInsideConvexPolygon(List<Vector2> vertices, Vector2 point)
+    {
+        int n = vertices.Count;
+        if (n < 3)
+            return false;
+
+        // Determine winding from the first edge so we know which sign = "inside"
+        float firstCross = Cross(vertices[0], vertices[1], point);
+
+        for (int i = 1; i < n; i++)
+        {
+            var a = vertices[i];
+            var b = vertices[(i + 1) % n];
+            float cross = Cross(a, b, point);
+
+            // If the sign flips, the point is outside (or on) this edge
+            if (firstCross * cross < 0)
+                return false;
+        }
+
+        return true;
+    }
+
+    private static List<Vector2> RotateNeighbourVertices(NeighbourData neighbourData, float thisAngle)
+    {
+        // Neighbour vertices are in neighbour's local space.
+        // To bring them into THIS cell's local space:
+        //   1. rotate by neighbourOrientation (orient them in world space)
+        //   2. counter-rotate by thisAngle (bring into this cell's local space)
+        float neighbourAngle = GetOrientationAngle(neighbourData.Orientation);
+        float relativeAngle = neighbourAngle - thisAngle;
+
+        var neighbourVertices = new List<Vector2>(neighbourData.OriginalPointData.VertexCount);
+        for (int i = 0; i < neighbourData.OriginalPointData.VertexCount; ++i)
+            neighbourVertices.Add(neighbourData.OriginalPointData.Vertices2D[i]);
+        if (relativeAngle != 0)
+        {
+            for (int i = 0; i < neighbourVertices.Count; ++i)
+                neighbourVertices[i] = RotatePoint(neighbourVertices[i], relativeAngle);
+        }
+
+        return neighbourVertices;
+    }
+
+    private static float GetOrientationAngle(int orientation)
+    {
+        return orientation * MathF.PI * 0.3333333f;
+    }
+
     private void GenerateMembranePoints(Vector2[] hexPositions, int hexCount, MembraneType membraneType,
         bool isMulticellular)
     {
@@ -602,200 +663,188 @@ public class MembraneShapeGenerator
     private void GenerateMulticellularMembrane(string thisCellKey,
         ConcurrentDictionary<string, NeighbourData> neighboursData)
     {
-        var currentCellData = neighboursData[thisCellKey];
-        var thisCellPosition = currentCellData.CellPosition;
-        var thisCellOrientation = currentCellData.Orientation;
-        float thisAngle = thisCellOrientation * (MathF.PI / 3f);
+        var cellData = neighboursData[thisCellKey];
+        var cellPosition = cellData.CellPosition;
+        var cellOrientation = cellData.Orientation;
+        var cellAngle = GetOrientationAngle(cellOrientation);
+        var cellAverageVertex = GetAverageVertex(vertices2D);
 
-        var averageVertex = GetAverageVertex(vertices2D);
+        GetCloseNeighbours(thisCellKey, neighboursData, cellPosition);
+        PreProcessNeighbourVertices(neighboursData, cellAngle, cellPosition);
 
-        List<string> closeNeighbours = [];
+        foreach (var neighbourKey in closeNeighboursKeys)
+        {
+            var neighbourVertices = neighboursProcessedVertices[neighbourKey];
+            var neighbourAverageVertex = GetAverageVertex(neighbourVertices);
+            var middlePoint = GetMiddlePoint(cellAverageVertex, neighbourAverageVertex, neighbourVertices);
+
+            // This might happen if cells are close to each other
+            var isMiddlePointInsideMembrane = IsInsideConvexPolygon(vertices2D, middlePoint) ||
+                IsInsideConvexPolygon(neighbourVertices, middlePoint);
+
+            if (isMiddlePointInsideMembrane)
+                continue;
+
+            var pullDirection = (middlePoint - cellAverageVertex).Normalized();
+
+            // extend the middle point a little bit away from middle point, so that vertices smoothing doesn't create a big gap
+            middlePoint += pullDirection * Constants.MEMBRANE_MIDDLE_POINT_OVERREACH;
+
+            CalculateTangentPoints(cellAverageVertex, middlePoint,
+                out var tangentPointIndexA, out var tangentPointIndexB);
+
+            CastVerticesOntoTheTangentLines(middlePoint, cellAverageVertex, tangentPointIndexA,
+                tangentPointIndexB, neighbourKey);
+        }
+    }
+
+    /// <summary>
+    ///  Calculates weighted middle point between cells' average vertex, based on how much the membrane reaches out
+    ///  from that average point to the other average point
+    /// </summary>
+    private Vector2 GetMiddlePoint(Vector2 averageVertex, Vector2 neighbourAverageVertex,
+        List<Vector2> neighbourVertices)
+    {
+        // Find how far each cell's membrane reaches toward the other
+        float thisReach = GetMembraneReachToward(vertices2D, averageVertex, neighbourAverageVertex);
+        float neighbourReach = GetMembraneReachToward(neighbourVertices, neighbourAverageVertex, averageVertex);
+
+        float totalReach = thisReach + neighbourReach;
+
+        // Fallback to just the middle just in case
+        float calculatedReach = totalReach > 0 ? thisReach / totalReach : 0.5f;
+
+        // Weighted middle point
+        var middlePoint = averageVertex + (neighbourAverageVertex - averageVertex) * calculatedReach;
+        return middlePoint;
+    }
+
+    private void GetCloseNeighbours(string thisCellKey, ConcurrentDictionary<string, NeighbourData> neighboursData,
+        Vector2 thisCellPosition)
+    {
+        closeNeighboursKeys.Clear();
 
         foreach (var (neighbourKey, neighbourData) in neighboursData)
         {
             var otherCellPosition = neighbourData.CellPosition;
 
             if (neighbourKey != thisCellKey &&
-                otherCellPosition.DistanceTo(thisCellPosition) <= 20)
+                otherCellPosition.DistanceTo(thisCellPosition) <= Constants.MEMBRANE_NEIGHBOUR_MAX_DISTANCE)
             {
-                closeNeighbours.Add(neighbourKey);
+                closeNeighboursKeys.Add(neighbourKey);
             }
         }
+    }
 
-        // Pre-process all close neighbours: rotate and offset their vertices
-        var allNeighbourVertices = new Dictionary<string, List<Vector2>>();
-        foreach (var neighbourKey in closeNeighbours)
+    /// <summary>
+    ///   Rotates and shifts neighbours in relation to the main cell
+    /// </summary>
+    private void PreProcessNeighbourVertices(ConcurrentDictionary<string, NeighbourData> neighboursData,
+        float thisAngle, Vector2 thisCellPosition)
+    {
+        neighboursProcessedVertices.Clear();
+
+        foreach (var neighbourKey in closeNeighboursKeys)
         {
             var neighbourData = neighboursData[neighbourKey];
             var neighbourVertices = RotateNeighbourVertices(neighbourData, thisAngle);
 
             var worldOffset = neighbourData.CellPosition - thisCellPosition;
-            var localOffset = Rotate(worldOffset, -thisAngle);
+            var localOffset = RotatePoint(worldOffset, -thisAngle);
 
             for (int i = 0; i < neighbourVertices.Count; ++i)
             {
                 neighbourVertices[i] += localOffset;
             }
 
-            allNeighbourVertices[neighbourKey] = neighbourVertices;
+            neighboursProcessedVertices[neighbourKey] = neighbourVertices;
         }
-
-        // Process neighbours using rotated coordinates
-        foreach (var neighbourKey in closeNeighbours)
-        {
-            var neighbourData = neighboursData[neighbourKey];
-            var otherCellPosition = neighbourData.CellPosition;
-
-            if (neighbourKey == thisCellKey ||
-                otherCellPosition.DistanceTo(thisCellPosition) > 20)
-                continue;
-
-            var neighbourVertices = allNeighbourVertices[neighbourKey];
-            var localNeighbourAverageVertex = GetAverageVertex(neighbourVertices);
-
-            // Find how far each cell's membrane reaches toward the other
-            float thisReach = GetMembraneReachToward(vertices2D, averageVertex, localNeighbourAverageVertex);
-            float neighbourReach =
-                GetMembraneReachToward(neighbourVertices, localNeighbourAverageVertex, averageVertex);
-
-            // Weight the point: cells with more reach "pull" the point toward themselves
-            // i.e. a bigger membrane contribution means the junction sits closer to you
-            float totalReach = thisReach + neighbourReach;
-            float t = (totalReach > 0) ? thisReach / totalReach : 0.5f;
-
-            var middlePointBetweenAvarageVertices = averageVertex + (localNeighbourAverageVertex - averageVertex) * t;
-
-            var skipGeneration = IsInsideConvexPolygon(vertices2D, middlePointBetweenAvarageVertices) ||
-                IsInsideConvexPolygon(neighbourVertices, middlePointBetweenAvarageVertices);
-
-            if (skipGeneration)
-                continue;
-
-            middlePointBetweenAvarageVertices +=
-                (middlePointBetweenAvarageVertices - averageVertex).Normalized() * 0.5f;
-
-            GetTangentPoints(averageVertex, middlePointBetweenAvarageVertices,
-                out var tangentPointIndex1, out var tangentPointIndex2);
-
-            // Collect all other close neighbors to check for collisions
-            var otherNeighbours = new List<List<Vector2>>();
-            foreach (var otherNeighbourKey in closeNeighbours)
-            {
-                if (otherNeighbourKey == neighbourKey)
-                    continue;
-
-                otherNeighbours.Add(allNeighbourVertices[otherNeighbourKey]);
-            }
-
-            CastVerticesOntoTheCone(middlePointBetweenAvarageVertices, averageVertex, tangentPointIndex1,
-                tangentPointIndex2, neighbourVertices, otherNeighbours);
-        }
-
-        // GD.Print("After:");
-        // GD.Print(string.Join(",",
-        //     vertices2D.Select(v => $"({v.X},{v.Y})")));
     }
 
-    private void CastVerticesOntoTheCone(Vector2 middlePointBetweenAvarageVertices, Vector2 averageVertex,
-        int tangentPoint1, int tangentPoint2, List<Vector2> neighbourVertices, List<List<Vector2>> otherNeighbours)
+    /// <summary>
+    ///   Cast the vertices between tangent point on to the lines created by tangent points and middle point
+    ///   int the direction of averageVertext->middlePoint
+    /// </summary>
+    private void CastVerticesOntoTheTangentLines(Vector2 middlePoint, Vector2 averageVertex,
+        int tangentPointIndexA, int tangentPointIndexB, string currentNeighbourKey)
     {
-        var castDirection = middlePointBetweenAvarageVertices - averageVertex;
+        var castDirection = middlePoint - averageVertex;
         if (castDirection.LengthSquared() < 1e-6f)
             return;
 
         castDirection = castDirection.Normalized();
 
-        int pointsCount = vertices2D.Count;
+        var tangentLineA = vertices2D[tangentPointIndexA] - middlePoint;
+        var tangentLineB = vertices2D[tangentPointIndexB] - middlePoint;
 
-        var coneEdgeA = vertices2D[tangentPoint1] - middlePointBetweenAvarageVertices;
-        var coneEdgeB = vertices2D[tangentPoint2] - middlePointBetweenAvarageVertices;
-
-        if (coneEdgeA.LengthSquared() < 1e-6f || coneEdgeB.LengthSquared() < 1e-6f)
+        if (tangentLineA.LengthSquared() < 1e-6f || tangentLineB.LengthSquared() < 1e-6f)
             return;
 
-        // define from which index of verices2D to which index the points should be moved
-        int forwardLength = (tangentPoint2 - tangentPoint1 + pointsCount) % pointsCount;
-        int backwardLength = (tangentPoint1 - tangentPoint2 + pointsCount) % pointsCount;
-
-        GetIterationIndices(tangentPoint1, tangentPoint2, forwardLength, backwardLength, out var indexStart,
+        CalculateIterationIndices(tangentPointIndexA, tangentPointIndexB, out var indexStart,
             out var indexEnd);
 
         // Store casts in a temporary dictionary before applying them
-        var validCasts = new Dictionary<int, Vector2>();
+        validPointsCasts.Clear();
 
-        // Check every other vertex to reduce calculations
         for (var i = indexStart; i < indexEnd; i++)
         {
-            int index = i % pointsCount;
+            int index = i % vertices2D.Count;
             var point = vertices2D[index];
 
-            var hitLeftConeBoundary = FindRayLineIntersection(point, castDirection, middlePointBetweenAvarageVertices,
-                coneEdgeA, out float distanceToLeftBoundary);
+            var hitLineA = CalculateRayLineIntersection(point, castDirection, middlePoint,
+                tangentLineA, out float distanceToLeftBoundary);
 
-            var hitRightConeBoundary = FindRayLineIntersection(point, castDirection, middlePointBetweenAvarageVertices,
-                coneEdgeB, out float distanceToRightBoundary);
+            var hitLineB = CalculateRayLineIntersection(point, castDirection, middlePoint,
+                tangentLineB, out float distanceToRightBoundary);
 
-            var projectedOntoLeftBoundary = hitLeftConeBoundary ?
-                point + castDirection * distanceToLeftBoundary :
-                vertices2D[tangentPoint1];
-
-            var projectedOntoRightBoundary = hitRightConeBoundary ?
-                point + castDirection * distanceToRightBoundary :
-                vertices2D[tangentPoint2];
-
-            var leftBoundaryIsCloser =
-                hitLeftConeBoundary &&
-                (!hitRightConeBoundary || MathF.Abs(distanceToLeftBoundary) < MathF.Abs(distanceToRightBoundary));
-
-            Vector2 newPosition;
-            if (leftBoundaryIsCloser)
+            if (!hitLineA || !hitLineB)
             {
-                newPosition = projectedOntoLeftBoundary;
-            }
-            else if (hitRightConeBoundary)
-            {
-                newPosition = projectedOntoRightBoundary;
-            }
-            else
-            {
+                GD.PrintErr($"Failed to find intersection for membrane point with tangent lines");
                 return;
             }
 
-            validCasts[index] = newPosition;
+            var pointProjectedOntoLineA = point + castDirection * distanceToLeftBoundary;
+            var pointProjectedOntoLineB = point + castDirection * distanceToRightBoundary;
+            var newPosition = MathF.Abs(distanceToLeftBoundary) < MathF.Abs(distanceToRightBoundary) ?
+                pointProjectedOntoLineA :
+                pointProjectedOntoLineB;
 
-            foreach (var otherNeighbour in otherNeighbours)
+            validPointsCasts.Add(index, newPosition);
+
+            foreach (var otherNeighbourKey in closeNeighboursKeys)
             {
-                if (IsInsideConvexPolygon(otherNeighbour, newPosition))
+                if (otherNeighbourKey == currentNeighbourKey)
+                {
+                    continue;
+                }
+
+                if (IsInsideConvexPolygon(neighboursProcessedVertices[otherNeighbourKey], newPosition))
                 {
                     return;
                 }
             }
         }
 
-        foreach (var kvp in validCasts)
+        foreach (var castPoints in validPointsCasts)
         {
-            vertices2D[kvp.Key] = kvp.Value;
+            vertices2D[castPoints.Key] = castPoints.Value;
         }
 
-        SmoothVertexRegion(indexStart, indexEnd, pointsCount);
+        SmoothVertexRegion(indexStart, indexEnd);
     }
 
-    private void SmoothVertexRegion(int indexStart, int indexEnd, int pointCount)
+    private void SmoothVertexRegion(int indexStart, int indexEnd)
     {
+        var vertexCount = vertices2D.Count;
+
         for (int i = indexStart; i < indexEnd; i++)
         {
-            int index = i % pointCount;
-            int previousPointIndex = (i - 1) % pointCount;
-            int nextPointIndex = (i + 1) % pointCount;
+            int index = i % vertexCount;
+            int previousPointIndex = (i + vertexCount - 1) % vertexCount;
+            int nextPointIndex = (i + 1) % vertexCount;
 
-            if (previousPointIndex < 0)
-            {
-                previousPointIndex += pointCount;
-            }
-
-            // Simple average of neighbors — pulls sharp corners toward center
-            vertices2D[index] = (vertices2D[previousPointIndex] + 1 * vertices2D[index] + vertices2D[nextPointIndex]) *
-                0.3333f;
+            vertices2D[index] = (vertices2D[previousPointIndex] + vertices2D[index] + vertices2D[nextPointIndex]) *
+                0.333333f;
         }
     }
 
@@ -805,11 +854,8 @@ public class MembraneShapeGenerator
     /// rayDistance may be negative, meaning the intersection
     /// lies behind rayOrigin relative to rayDirection.
     /// </summary>
-    private bool FindRayLineIntersection(Vector2 rayOrigin,
-        Vector2 rayDirection,
-        Vector2 linePoint,
-        Vector2 lineDirection,
-        out float rayDistance)
+    private bool CalculateRayLineIntersection(Vector2 rayOrigin, Vector2 rayDirection, Vector2 linePoint,
+        Vector2 lineDirection, out float rayDistance)
     {
         float determinant =
             rayDirection.X * lineDirection.Y -
@@ -822,30 +868,34 @@ public class MembraneShapeGenerator
             return false;
 
         Vector2 offset = linePoint - rayOrigin;
-
-        rayDistance =
-            (offset.X * lineDirection.Y -
-                offset.Y * lineDirection.X) / determinant;
-
+        rayDistance = (offset.X * lineDirection.Y - offset.Y * lineDirection.X) / determinant;
         return true;
     }
 
-    private static void GetIterationIndices(int tangentPoint1, int tangentPoint2, int forwardLength, int backwardLength,
+    /// <summary>
+    ///   Define from which index of verices2D to which index the points should be moved
+    /// </summary>
+    private void CalculateIterationIndices(int tangentPointIndexA, int tangentPointIndexB,
         out int indexStart, out int indexEnd)
     {
+        var vertexCount = vertices2D.Count;
+
+        int forwardLength = (tangentPointIndexB - tangentPointIndexA + vertexCount) % vertexCount;
+        int backwardLength = (tangentPointIndexA - tangentPointIndexB + vertexCount) % vertexCount;
+
         if (forwardLength <= backwardLength)
         {
-            indexStart = tangentPoint1;
-            indexEnd = tangentPoint1 + forwardLength;
+            indexStart = tangentPointIndexA;
+            indexEnd = tangentPointIndexA + forwardLength;
         }
         else
         {
-            indexStart = tangentPoint2;
-            indexEnd = tangentPoint2 + backwardLength;
+            indexStart = tangentPointIndexB;
+            indexEnd = tangentPointIndexB + backwardLength;
         }
     }
 
-    private void GetTangentPoints(Vector2 averageVertex, Vector2 middlePointBetweenAvarageVertices,
+    private void CalculateTangentPoints(Vector2 averageVertex, Vector2 middlePointBetweenAvarageVertices,
         out int tangentPointIndex1, out int tangentPointIndex2)
     {
         tangentPointIndex1 = 0;
@@ -869,58 +919,6 @@ public class MembraneShapeGenerator
                 tangentPointIndex2 = i;
             }
         }
-    }
-
-    private static bool IsInsideConvexPolygon(List<Vector2> vertices, Vector2 point)
-    {
-        int n = vertices.Count;
-        if (n < 3)
-            return false;
-
-        // Determine winding from the first edge so we know which sign = "inside"
-        float firstCross = Cross(vertices[0], vertices[1], point);
-
-        for (int i = 1; i < n; i++)
-        {
-            var a = vertices[i];
-            var b = vertices[(i + 1) % n];
-            float cross = Cross(a, b, point);
-
-            // If the sign flips, the point is outside (or on) this edge
-            if (firstCross * cross < 0)
-                return false;
-        }
-
-        return true;
-    }
-
-    // 2D cross product of vectors (b-a) and (p-a).
-    // Positive = p is left of edge a→b, negative = right, zero = collinear.
-    private static float Cross(Vector2 a, Vector2 b, Vector2 p)
-    {
-        return (b.X - a.X) * (p.Y - a.Y) - (b.Y - a.Y) * (p.X - a.X);
-    }
-
-    private static List<Vector2>
-        RotateNeighbourVertices(NeighbourData neighbourData, float thisAngle)
-    {
-        // Neighbour vertices are in neighbour's local space.
-        // To bring them into THIS cell's local space:
-        //   1. rotate by neighbourOrientation (orient them in world space)
-        //   2. counter-rotate by thisAngle (bring into this cell's local space)
-        float neighbourAngle = neighbourData.Orientation * (MathF.PI / 3f);
-        float relativeAngle = neighbourAngle - thisAngle;
-
-        var neighbourVertices = new List<Vector2>(neighbourData.OriginalPointData.VertexCount);
-        for (int i = 0; i < neighbourData.OriginalPointData.VertexCount; ++i)
-            neighbourVertices.Add(neighbourData.OriginalPointData.Vertices2D[i]);
-        if (relativeAngle != 0)
-        {
-            for (int i = 0; i < neighbourVertices.Count; ++i)
-                neighbourVertices[i] = Rotate(neighbourVertices[i], relativeAngle);
-        }
-
-        return neighbourVertices;
     }
 
     private Vector2 GetAverageVertex(List<Vector2> vertices)
