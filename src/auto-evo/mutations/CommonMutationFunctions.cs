@@ -69,6 +69,17 @@ public static class CommonMutationFunctions
         Back,
     }
 
+    /// <summary>
+    ///   Which adjacency direction to check/place hexes in, relative to existing hexes
+    /// </summary>
+    public enum AdjacencyDirection
+    {
+        Front,
+        SideFront,
+        SideRear,
+        Rear,
+    }
+
     public static MicrobeSpecies GenerateRandomMicrobeSpecies(Species mutated, Patch forPatch,
         MutationWorkMemory workMemory, Random random, double mp = 300)
     {
@@ -230,6 +241,113 @@ public static class CommonMutationFunctions
         }
     }
 
+    /// <summary>
+    ///   Places cells of a given type adjacent in one direction to cells of a given type
+    /// </summary>
+    public static bool AddCellsAdjacent(MulticellularSpecies newSpecies, ref double mp,
+        IndividualHexLayout<CellTemplate> baseSpeciesCells, int baseCellsCount, CellType baseCellType,
+        CellType newCellType, int mpCost, AdjacencyDirection direction, List<Hex> workMemory1, List<Hex> workMemory2)
+    {
+        var newCells = new IndividualHexLayout<CellTemplate>();
+
+        // copy over all existing cells
+        foreach (var hex in newSpecies.ModifiableEditorCells)
+        {
+            var cell = hex.Data;
+            if (cell != null)
+            {
+                newCells.AddFast(new HexWithData<CellTemplate>(new CellTemplate(cell.ModifiableCellType,
+                        cell.Position, cell.Orientation), cell.Position, cell.Orientation),
+                    workMemory1, workMemory2);
+            }
+        }
+
+        for (int j = 0; j < baseCellsCount; ++j)
+        {
+            var baseHex = baseSpeciesCells[j];
+            if (mpCost > mp)
+                return false;
+
+            var baseCell = baseHex.Data;
+            if (baseCell != null && baseCell.CellType == baseCellType)
+            {
+                switch (direction)
+                {
+                    case AdjacencyDirection.Front:
+                        var newCellFront = GetAdjacentPosition(baseCell, Hex.HexSide.Top,
+                            baseHex.Position, newCellType, newCells);
+
+                        if (newCellFront == null)
+                            continue;
+
+                        mp -= mpCost;
+
+                        newCells.AddFast(newCellFront, workMemory1, workMemory2);
+                        break;
+                    case AdjacencyDirection.Rear:
+                        var newCellRear = GetAdjacentPosition(baseCell, Hex.HexSide.Bottom,
+                            baseHex.Position, newCellType, newCells);
+
+                        if (newCellRear == null)
+                            continue;
+
+                        mp -= mpCost;
+
+                        newCells.AddFast(newCellRear, workMemory1, workMemory2);
+                        break;
+                    case AdjacencyDirection.SideFront:
+                        var newCellFrontLeft = GetAdjacentPosition(baseCell,
+                            Hex.HexSide.TopLeft, baseHex.Position, newCellType, newCells);
+
+                        if (newCellFrontLeft != null)
+                        {
+                            mp -= mpCost;
+                            newCells.AddFast(newCellFrontLeft, workMemory1, workMemory2);
+                        }
+
+                        var newCellFrontRight = GetAdjacentPosition(baseCell,
+                            Hex.HexSide.TopRight, baseHex.Position, newCellType, newCells);
+
+                        if (newCellFrontRight != null)
+                        {
+                            mp -= mpCost;
+                            newCells.AddFast(newCellFrontRight, workMemory1, workMemory2);
+                        }
+
+                        break;
+                    case AdjacencyDirection.SideRear:
+                        var newCellRearLeft = GetAdjacentPosition(baseCell,
+                            Hex.HexSide.BottomLeft, baseHex.Position, newCellType, newCells);
+
+                        if (newCellRearLeft != null)
+                        {
+                            mp -= mpCost;
+                            newCells.AddFast(newCellRearLeft, workMemory1, workMemory2);
+                        }
+
+                        var newCellRearRight = GetAdjacentPosition(baseCell,
+                            Hex.HexSide.BottomRight, baseHex.Position, newCellType, newCells);
+
+                        if (newCellRearRight != null)
+                        {
+                            mp -= mpCost;
+                            newCells.AddFast(newCellRearRight, workMemory1, workMemory2);
+                        }
+
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
+                }
+            }
+        }
+
+        MulticellularLayoutHelpers.UpdateGameplayLayout(newSpecies.ModifiableGameplayCells,
+            newSpecies.ModifiableEditorCells, newCells, AlgorithmQuality.Low,
+            new List<Hex>(), new List<Hex>());
+
+        return true;
+    }
+
     private static OrganelleTemplate? GetRealisticPosition(OrganelleDefinition organelle,
         OrganelleLayout<OrganelleTemplate> existingOrganelles, Direction direction, List<Hex> workMemory1,
         HashSet<Hex> workMemory2, Random random)
@@ -366,6 +484,23 @@ public static class CommonMutationFunctions
                 result.Position = new Hex(0, r);
                 return result;
             }
+        }
+
+        return null;
+    }
+
+    private static HexWithData<CellTemplate>? GetAdjacentPosition(IReadOnlyCellTemplate cellTemplate, Hex.HexSide side,
+        Hex oldHex, CellType newCellType, IndividualHexLayout<CellTemplate> existingCells)
+    {
+        var newHexPosition = Hex.HexNeighbourOffset[side] + oldHex;
+        var orientation = cellTemplate.Orientation;
+
+        var newCellTemplate = new CellTemplate(newCellType, newHexPosition, orientation);
+        var result = new HexWithData<CellTemplate>(newCellTemplate, newHexPosition, orientation);
+
+        if (existingCells.CanPlace(result.Position))
+        {
+            return result;
         }
 
         return null;
