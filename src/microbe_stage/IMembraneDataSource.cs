@@ -15,6 +15,7 @@ public interface IMembraneDataSource
     public int[]? MulticellularOrientations { get; }
     public int? CellOrientation { get; }
     public MembraneType Type { get; }
+    public bool IsPreMulticellularStretch { get; }
 }
 
 /// <summary>
@@ -24,13 +25,14 @@ public struct MembraneGenerationParameters : IMembraneDataSource
 {
     public MembraneGenerationParameters(Vector2[] hexPositions, int hexPositionCount, MembraneType type,
         Vector2[] multicellularPositions, Vector2 thisCellPosition, int[]? multicellularOrientations,
-        int? thisCellOrientation)
+        int? thisCellOrientation, bool isPreMulticellularStretch = false)
         : this(hexPositions, hexPositionCount, type)
     {
         MulticellularPositions = multicellularPositions;
         CellPositionInMulticellular = thisCellPosition;
         MulticellularOrientations = multicellularOrientations;
         CellOrientation = thisCellOrientation;
+        IsPreMulticellularStretch = isPreMulticellularStretch;
     }
 
     public MembraneGenerationParameters(Vector2[] hexPositions, int hexPositionCount, MembraneType type)
@@ -53,6 +55,8 @@ public struct MembraneGenerationParameters : IMembraneDataSource
     public int HexPositionCount { get; }
 
     public MembraneType Type { get; }
+
+    public bool IsPreMulticellularStretch { get; set; }
 }
 
 /// <summary>
@@ -113,7 +117,7 @@ public static class MembraneComputationHelpers
 
         var cache = ProceduralDataCache.Instance;
 
-        var hash = ComputeMembraneDataHash(hexes, length, membraneType);
+        var hash = ComputeMembraneDataHash(new MembraneGenerationParameters(hexes, length, membraneType));
 
         var result = cache.ReadMembraneData(hash);
 
@@ -137,59 +141,49 @@ public static class MembraneComputationHelpers
 
     public static long ComputeMembraneDataHash(this IMembraneDataSource dataSource)
     {
-        return ComputeMembraneDataHash(dataSource.HexPositions, dataSource.HexPositionCount, dataSource.Type,
-            dataSource.MulticellularPositions, dataSource.CellPositionInMulticellular,
-            dataSource.MulticellularOrientations,
-            dataSource.CellOrientation);
-    }
-
-    public static long ComputeMembraneDataHash(Vector2[] positions, int count, MembraneType type,
-        Vector2[]? multicellularPositions = null, Vector2? cellPositionInMulticellular = null,
-        int[]? multicellularOrientations = null, int? cellOrientation = null)
-    {
         const long prime1 = 1099511628211L;
         const long prime2 = 1409;
         const long prime3 = 7793;
 
-        var nameHash = type.InternalName.GetHashCode();
+        var nameHash = dataSource.Type.InternalName.GetHashCode();
 
         unchecked
         {
             long hash = prime2 + nameHash + ((long)nameHash << 28);
 
-            hash ^= (count + 1) * prime3;
+            hash ^= (dataSource.HexPositionCount + 1) * prime3;
 
-            for (int i = 0; i < count; ++i)
+            for (int i = 0; i < dataSource.HexPositionCount; ++i)
             {
-                hash = (hash * prime1) ^ BitConverter.SingleToInt32Bits(positions[i].X);
-                hash = (hash * prime1) ^ BitConverter.SingleToInt32Bits(positions[i].Y);
+                hash = (hash * prime1) ^ BitConverter.SingleToInt32Bits(dataSource.HexPositions[i].X);
+                hash = (hash * prime1) ^ BitConverter.SingleToInt32Bits(dataSource.HexPositions[i].Y);
             }
 
-            if (cellPositionInMulticellular != null)
+            if (dataSource.CellPositionInMulticellular != null)
             {
-                hash = (hash * prime1) ^ BitConverter.SingleToInt32Bits(cellPositionInMulticellular.Value.X);
-                hash = (hash * prime1) ^ BitConverter.SingleToInt32Bits(cellPositionInMulticellular.Value.Y);
+                hash = (hash * prime1) ^ BitConverter.SingleToInt32Bits(dataSource.CellPositionInMulticellular.Value.X);
+                hash = (hash * prime1) ^ BitConverter.SingleToInt32Bits(dataSource.CellPositionInMulticellular.Value.Y);
             }
 
-            if (multicellularPositions != null)
+            if (dataSource.MulticellularPositions != null)
             {
-                for (int i = 0; i < multicellularPositions.Length; ++i)
+                for (int i = 0; i < dataSource.MulticellularPositions.Length; ++i)
                 {
-                    hash = (hash * prime1) ^ BitConverter.SingleToInt32Bits(multicellularPositions[i].X);
-                    hash = (hash * prime1) ^ BitConverter.SingleToInt32Bits(multicellularPositions[i].Y);
+                    hash = (hash * prime1) ^ BitConverter.SingleToInt32Bits(dataSource.MulticellularPositions[i].X);
+                    hash = (hash * prime1) ^ BitConverter.SingleToInt32Bits(dataSource.MulticellularPositions[i].Y);
                 }
             }
 
-            if (cellOrientation != null)
+            if (dataSource.CellOrientation != null)
             {
-                hash = (hash * prime1) ^ cellOrientation.Value;
+                hash = (hash * prime1) ^ dataSource.CellOrientation.Value;
             }
 
-            if (multicellularOrientations != null)
+            if (dataSource.MulticellularOrientations != null)
             {
-                for (int i = 0; i < multicellularOrientations.Length; ++i)
+                for (int i = 0; i < dataSource.MulticellularOrientations.Length; ++i)
                 {
-                    hash = (hash * prime1) ^ multicellularOrientations[i];
+                    hash = (hash * prime1) ^ dataSource.MulticellularOrientations[i];
                 }
             }
 
@@ -217,8 +211,7 @@ public static class MembraneComputationHelpers
 
         if (dataSource.HexPositionCount != otherPointCount)
         {
-            GD.PrintErr(
-                $"Membrane cache HexPositionCount mismatch: " +
+            GD.PrintErr("Membrane cache HexPositionCount mismatch: " +
                 $"{dataSource.HexPositionCount} != {otherPointCount}");
             return false;
         }
@@ -231,8 +224,7 @@ public static class MembraneComputationHelpers
         {
             if (dataSource.MulticellularPositions == null || multicellularPositions == null)
             {
-                GD.PrintErr(
-                    $"Membrane cache MulticellularPositions null mismatch: " +
+                GD.PrintErr("Membrane cache MulticellularPositions null mismatch: " +
                     $"source={dataSource.MulticellularPositions == null} " +
                     $"other={multicellularPositions == null}");
                 return false;
@@ -240,8 +232,7 @@ public static class MembraneComputationHelpers
 
             if (dataSource.MulticellularPositions.Length != multicellularPositions.Length)
             {
-                GD.PrintErr(
-                    $"Membrane cache MulticellularPositions.Length mismatch: " +
+                GD.PrintErr("Membrane cache MulticellularPositions.Length mismatch: " +
                     $"{dataSource.MulticellularPositions.Length} != " +
                     $"{multicellularPositions.Length}");
                 return false;
@@ -251,8 +242,7 @@ public static class MembraneComputationHelpers
             {
                 if (dataSource.MulticellularPositions[i] != multicellularPositions[i])
                 {
-                    GD.PrintErr(
-                        $"Membrane cache MulticellularPositions[{i}] mismatch: " +
+                    GD.PrintErr($"Membrane cache MulticellularPositions[{i}] mismatch: " +
                         $"{dataSource.MulticellularPositions[i]} != " +
                         $"{multicellularPositions[i]}");
                     return false;
@@ -264,8 +254,7 @@ public static class MembraneComputationHelpers
         {
             if (dataSource.MulticellularOrientations == null || multicellularOrientations == null)
             {
-                GD.PrintErr(
-                    $"Membrane cache MulticellularOrientations null mismatch: " +
+                GD.PrintErr("Membrane cache MulticellularOrientations null mismatch: " +
                     $"source={dataSource.MulticellularOrientations == null} " +
                     $"other={multicellularOrientations == null}");
                 return false;
@@ -273,8 +262,7 @@ public static class MembraneComputationHelpers
 
             if (dataSource.MulticellularOrientations.Length != multicellularOrientations.Length)
             {
-                GD.PrintErr(
-                    $"Membrane cache MulticellularOrientations length mismatch:" +
+                GD.PrintErr("Membrane cache MulticellularOrientations length mismatch:" +
                     $" {dataSource.MulticellularOrientations.Length} != " +
                     $"{multicellularOrientations.Length}");
                 return false;
@@ -284,8 +272,7 @@ public static class MembraneComputationHelpers
             {
                 if (dataSource.MulticellularOrientations[i] != multicellularOrientations[i])
                 {
-                    GD.PrintErr(
-                        $"Membrane cache MulticellularOrientations[{i}] mismatch: " +
+                    GD.PrintErr($"Membrane cache MulticellularOrientations[{i}] mismatch: " +
                         $"{dataSource.MulticellularOrientations[i]} != " +
                         $"{multicellularOrientations[i]}");
                     return false;
@@ -303,8 +290,7 @@ public static class MembraneComputationHelpers
 
             if (!dataSource.CellPositionInMulticellular.Equals(cellPositionInMulticellular))
             {
-                GD.PrintErr(
-                    $"Membrane cache CellPositionInMulticellular mismatch: " +
+                GD.PrintErr("Membrane cache CellPositionInMulticellular mismatch: " +
                     $"{dataSource.CellPositionInMulticellular} != " +
                     $"{cellPositionInMulticellular}");
                 return false;
@@ -329,8 +315,7 @@ public static class MembraneComputationHelpers
 
             if (!dataSource.CellOrientation.Equals(cellOrientationInMulticellular))
             {
-                GD.PrintErr(
-                    $"Membrane cache CellOrientation mismatch: " +
+                GD.PrintErr("Membrane cache CellOrientation mismatch: " +
                     $"{dataSource.CellOrientation} != {cellOrientationInMulticellular}");
                 return false;
             }

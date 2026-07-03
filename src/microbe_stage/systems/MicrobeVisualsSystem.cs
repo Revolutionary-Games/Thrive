@@ -258,7 +258,8 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         var hexes = MembraneComputationHelpers.PrepareHexPositionsForMembraneCalculations(
             organelleContainer.Organelles!.Organelles, out var hexCount);
 
-        var hash = MembraneComputationHelpers.ComputeMembraneDataHash(hexes, hexCount, cellProperties.MembraneType);
+        var hash = MembraneComputationHelpers.ComputeMembraneDataHash(
+            new MembraneGenerationParameters(hexes, hexCount, cellProperties.MembraneType));
 
         var cachedMembrane = ProceduralDataCache.Instance.ReadMembraneData(hash);
 
@@ -336,8 +337,9 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         var cellPositionInMulticellular = new Vector2(cellPosition.X, cellPosition.Z) *
             Constants.MULTICELLULAR_CELL_DISTANCE_MULTIPLIER;
 
-        var hash = MembraneComputationHelpers.ComputeMembraneDataHash(hexes, hexCount, cellProperties.MembraneType,
-            positionsArray, cellPositionInMulticellular, rotationsArray, currentCell.Orientation);
+        var hash = MembraneComputationHelpers.ComputeMembraneDataHash(new MembraneGenerationParameters(hexes, hexCount,
+            cellProperties.MembraneType,
+            positionsArray, cellPositionInMulticellular, rotationsArray, currentCell.Orientation));
 
         var cachedMembrane = ProceduralDataCache.Instance.ReadMembraneData(hash);
 

@@ -5,17 +5,16 @@ using System.Threading;
 using Godot;
 
 /// <summary>
-///   Coordinator that implements two-pass membrane generation for multicellular bodies.
+///   Coordinator that implements two-pass membrane generation.
 ///   - First pass: generate base membranes per cell
-///   - Second pass: generate modified membranes that include the multicellular adjustments.
+///   - Second pass: generate stetched multicellular membranes if needed.
 /// </summary>
 public static class MembraneGenerationCoordinator
 {
     private static readonly ConcurrentDictionary<long, ColonyTracker> Trackers = new();
 
     /// <summary>
-    ///   Handles membrane generation requests. For single-cell
-    ///   requests the list contains one hash.
+    ///   Handles membrane generation requests. For single-cell requests the list contains one hash.
     /// </summary>
     public static List<long> HandleGenerationRequest(ref MembraneGenerationParameters generationParameters)
     {
@@ -35,24 +34,21 @@ public static class MembraneGenerationCoordinator
         var cellPosition = generationParameters.CellPositionInMulticellular!.Value;
         var cellOrientation = generationParameters.CellOrientation;
 
-        var registeredHash = MembraneComputationHelpers.ComputeMembraneDataHash(
-            positions: generationParameters.HexPositions,
-            count: generationParameters.HexPositionCount,
-            type: generationParameters.Type,
-            multicellularPositions: multicellularPositions,
-            cellPositionInMulticellular: cellPosition,
-            multicellularOrientations: multicellularOrientations,
-            cellOrientation: cellOrientation);
+        var registeredHash = MembraneComputationHelpers.ComputeMembraneDataHash(generationParameters);
 
         // If the final multicellular membrane is already cached, just return it
         var existing = ProceduralDataCache.Instance.ReadMembraneData(registeredHash);
         if (existing != null)
             return new List<long> { registeredHash };
 
-        // TODO: this should be written into cache!
-        // Pass 1: generate the base (single-cell) shape — do NOT write this to the cache under its
-        // single-cell hash, because that would pollute lookups; keep it only in NeighbourData.
-        var singleCellMembranePointData = generator.GenerateMicrobeShape(ref generationParameters, true);
+        generationParameters.IsPreMulticellularStretch = true;
+
+        var singleCellMembranePointData = ProceduralDataCache.Instance.ReadMembraneData(registeredHash);
+        if (singleCellMembranePointData == null)
+        {
+            singleCellMembranePointData = generator.GenerateMicrobeShape(ref generationParameters, true);
+            ProceduralDataCache.Instance.WriteMembraneData(ref singleCellMembranePointData);
+        }
 
         var colonyKey = ComputeColonyKey(multicellularPositions);
         var tracker = Trackers.GetOrAdd(colonyKey,
@@ -73,8 +69,7 @@ public static class MembraneGenerationCoordinator
             return new List<long>();
 
         // TODO: maybe allow it to be multithreaded!
-        // Pass 2: all base membranes are ready; generate multicellular-adjusted versions.
-        // Use a flag to ensure exactly one thread executes the second pass.
+        // Pass 2: all base membranes are ready. Use a flag to ensure exactly one thread executes the second pass.
         if (!tracker.TryBeginSecondPass())
             return new List<long>();
 
@@ -95,10 +90,17 @@ public static class MembraneGenerationCoordinator
         return resolvedHashes;
     }
 
-    // TODO: is there a better way to calculate the key? maybe just some hash instead of string key...
-    private static string CellKey(Vector2 v)
+    private static long CellKey(Vector2 position)
     {
-        return BitConverter.SingleToInt32Bits(v.X) + ":" + BitConverter.SingleToInt32Bits(v.Y);
+        const long prime = 1099511628211L;
+
+        long hash = prime;
+        hash ^= BitConverter.SingleToInt32Bits(position.X);
+        hash *= prime;
+        hash ^= BitConverter.SingleToInt32Bits(position.Y);
+        hash *= prime;
+
+        return hash;
     }
 
     private static long ComputeColonyKey(Vector2[] positions)
@@ -127,10 +129,13 @@ public static class MembraneGenerationCoordinator
     private class ColonyTracker
     {
         public int ExpectedCount;
-        public ConcurrentDictionary<string, NeighbourData> NeighboursData = new();
+        public ConcurrentDictionary<long, NeighbourData> NeighboursData = new();
         private int secondPassStarted;
 
-        /// <returns>True if THIS caller should run the second pass; false if another thread beat it</returns>
+        /// <summary>
+        ///   Returns true if the current thread should run the second pass
+        ///   and false if another thread already runs the second pass
+        /// </summary>
         public bool TryBeginSecondPass()
         {
             return Interlocked.CompareExchange(ref secondPassStarted, 1, 0) == 0;

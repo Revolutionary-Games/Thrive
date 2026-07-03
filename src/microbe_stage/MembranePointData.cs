@@ -24,8 +24,8 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
 
     public MembranePointData(Vector2[] hexPositions, int hexPositionCount, MembraneType type,
         IReadOnlyList<Vector2> verticesToCopy, Vector2[]? multicellularPositions = null,
-        Vector2? cellPositionInMulticellular = null,
-        int[]? multicellularOrientations = null, int? cellOrientation = null)
+        Vector2? cellPositionInMulticellular = null, int[]? multicellularOrientations = null,
+        int? cellOrientation = null, bool isPreMulticellularStretch = false)
     {
         HexPositions = hexPositions;
         Type = type;
@@ -34,6 +34,7 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
         CellPositionInMulticellular = cellPositionInMulticellular;
         MulticellularOrientations = multicellularOrientations;
         CellOrientation = cellOrientation;
+        IsPreMulticellularStretch = isPreMulticellularStretch;
 
         // Setup mesh to be generated (on the main thread) only when required
         finalMesh = new Lazy<(ArrayMesh Mesh, int SurfaceIndex)>(() =>
@@ -83,6 +84,7 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
     public int[]? MulticellularOrientations { get; }
 
     public int? CellOrientation { get; }
+    public bool IsPreMulticellularStretch { get; }
 
     public int HexPositionCount { get; }
 

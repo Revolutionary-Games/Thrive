@@ -170,17 +170,6 @@ public partial class ProceduralDataCache : Node
         }
     }
 
-    /// <summary>
-    ///   Clears the cached membrane point data. Intended for developer/cheat use.
-    /// </summary>
-    public void ClearMembraneCache()
-    {
-        lock (membraneCache)
-        {
-            ClearCacheData(membraneCache);
-        }
-    }
-
     public MembranePointData? ReadMembraneData(long hash)
     {
         lock (membraneCache)
