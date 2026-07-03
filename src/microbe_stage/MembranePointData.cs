@@ -196,6 +196,18 @@ public sealed class NeighbourData
     public Vector2 CellPosition;
     public MembranePointData OriginalPointData = null!;
     public int Orientation;
+
+    /// <summary>
+    ///   Modified vertices separate from original. Used to persist changes across multiple calls to
+    ///   GenerateMulticellularMembrane.
+    /// </summary>
+    public List<Vector2>? ModifiedVertices;
+
+    /// <summary>
+    ///   Tracks which cell pairs have already been processed to avoid duplicate work when the relationship
+    ///   reverses (i.e., when this cell was a neighbor and is now the current cell).
+    /// </summary>
+    public HashSet<long> ProcessedNeighbours = new();
 }
 
 /// <summary>
