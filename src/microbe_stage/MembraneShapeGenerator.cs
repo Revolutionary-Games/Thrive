@@ -591,28 +591,32 @@ public class MembraneShapeGenerator
     ///   Finds the vertex closest to the half-line from <paramref name="origin"/> toward <paramref name="target"/>,
     ///   and returns its projection distance along that direction.
     /// </summary>
-    private static float GetMembraneReachToward(List<Vector2> vertices, Vector2 origin, Vector2 target)
+    private static float GetMembraneReachToward(List<Vector2> vertices, Vector2 origin, Vector2 target,
+        out int closestVertexIndex)
     {
         var direction = (target - origin).Normalized();
-        float minDistToRay = float.MaxValue;
+        float minDistanceToRay = float.MaxValue;
         float bestProjection = 0.0f;
+        closestVertexIndex = 0;
 
-        foreach (var vertex in vertices)
+        for (int i = 0; i < vertices.Count; ++i)
         {
-            var toVertex = vertex - origin;
-            float projection = toVertex.Dot(direction);
+            var vertex = vertices[i];
+            var directionToVertex = vertex - origin;
+            float projection = directionToVertex.Dot(direction);
 
             // Only consider vertices on the forward half
             if (projection <= 0.0f)
                 continue;
 
             // Perpendicular distance from vertex to the ray
-            float distToRay = (toVertex - direction * projection).Length();
+            float distanceToRay = (directionToVertex - direction * projection).Length();
 
-            if (distToRay < minDistToRay)
+            if (distanceToRay < minDistanceToRay)
             {
-                minDistToRay = distToRay;
+                minDistanceToRay = distanceToRay;
                 bestProjection = projection;
+                closestVertexIndex = i;
             }
         }
 
@@ -758,7 +762,8 @@ public class MembraneShapeGenerator
         {
             var neighbourVertices = neighboursProcessedVertices[neighbourKey];
             var neighbourAverageVertex = GetAverageVertex(neighbourVertices);
-            var middlePoint = GetMiddlePoint(cellAverageVertex, neighbourAverageVertex, neighbourVertices);
+            var middlePoint = GetMiddlePoint(cellAverageVertex, neighbourAverageVertex, neighbourVertices,
+                out var closestVertexIndex);
 
             // This might happen if cells are close to each other
             var isMiddlePointInsideMembrane = IsInsideConvexPolygon(vertices2D, middlePoint) ||
@@ -777,7 +782,7 @@ public class MembraneShapeGenerator
                 out var tangentPointIndexA, out var tangentPointIndexB);
 
             CastVerticesOntoTheTangentLines(middlePoint, cellAverageVertex, tangentPointIndexA,
-                tangentPointIndexB, neighbourKey);
+                tangentPointIndexB, neighbourKey, closestVertexIndex);
         }
     }
 
@@ -786,11 +791,12 @@ public class MembraneShapeGenerator
     ///   from that average point to the other average point
     /// </summary>
     private Vector2 GetMiddlePoint(Vector2 averageVertex, Vector2 neighbourAverageVertex,
-        List<Vector2> neighbourVertices)
+        List<Vector2> neighbourVertices, out int closestVertexIndex)
     {
         // Find how far each cell's membrane reaches toward the other
-        float thisReach = GetMembraneReachToward(vertices2D, averageVertex, neighbourAverageVertex);
-        float neighbourReach = GetMembraneReachToward(neighbourVertices, neighbourAverageVertex, averageVertex);
+        float thisReach = GetMembraneReachToward(vertices2D, averageVertex, neighbourAverageVertex,
+            out closestVertexIndex);
+        float neighbourReach = GetMembraneReachToward(neighbourVertices, neighbourAverageVertex, averageVertex, out _);
 
         float totalReach = thisReach + neighbourReach;
 
@@ -849,7 +855,7 @@ public class MembraneShapeGenerator
     ///   int the direction of averageVertext->middlePoint
     /// </summary>
     private void CastVerticesOntoTheTangentLines(Vector2 middlePoint, Vector2 averageVertex,
-        int tangentPointIndexA, int tangentPointIndexB, long currentNeighbourKey)
+        int tangentPointIndexA, int tangentPointIndexB, long currentNeighbourKey, int closestVertexIndex)
     {
         var castDirection = middlePoint - averageVertex;
         if (castDirection.LengthSquared() < MathUtils.EPSILON)
@@ -863,7 +869,8 @@ public class MembraneShapeGenerator
         if (tangentLineA.LengthSquared() < MathUtils.EPSILON || tangentLineB.LengthSquared() < MathUtils.EPSILON)
             return;
 
-        CalculateIterationIndices(tangentPointIndexA, tangentPointIndexB, out var indexStart, out var indexEnd);
+        CalculateIterationIndices(tangentPointIndexA, tangentPointIndexB, closestVertexIndex, out var indexStart,
+            out var indexEnd);
 
         // Store casts in a temporary dictionary before applying them
         validPointsCasts.Clear();
@@ -933,7 +940,7 @@ public class MembraneShapeGenerator
     /// <summary>
     ///   Define from which index of verices2D to which index the points should be moved
     /// </summary>
-    private void CalculateIterationIndices(int tangentPointIndexA, int tangentPointIndexB,
+    private void CalculateIterationIndices(int tangentPointIndexA, int tangentPointIndexB, int reachVertexIndex,
         out int indexStart, out int indexEnd)
     {
         var vertexCount = vertices2D.Count;
@@ -941,16 +948,17 @@ public class MembraneShapeGenerator
         int forwardLength = (tangentPointIndexB - tangentPointIndexA + vertexCount) % vertexCount;
         int backwardLength = (tangentPointIndexA - tangentPointIndexB + vertexCount) % vertexCount;
 
-        if (forwardLength <= backwardLength)
+        int reachOffsetFromA = (reachVertexIndex - tangentPointIndexA + vertexCount) % vertexCount;
+
+        if (reachOffsetFromA <= forwardLength)
         {
             indexStart = tangentPointIndexA;
             indexEnd = tangentPointIndexA + forwardLength;
+            return;
         }
-        else
-        {
-            indexStart = tangentPointIndexB;
-            indexEnd = tangentPointIndexB + backwardLength;
-        }
+
+        indexStart = tangentPointIndexB;
+        indexEnd = tangentPointIndexB + backwardLength;
     }
 
     /// <summary>
