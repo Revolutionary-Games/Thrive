@@ -548,13 +548,12 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         // Process membrane generation requests until empty
         while (membranesToGenerate.TryDequeue(out var generationParameters))
         {
-            // TODO: does it have to be a list?
             // Use coordinator to handle both single-cell and multicellular two-pass generation.
             var writtenHashes = MembraneGenerationCoordinator.HandleGenerationRequest(ref generationParameters);
 
             // writtenHashes contains the cache hashes that correspond to the final results that should be removed
             // from the pending set. For single-cell requests this is the single written hash. For multicellular
-            // requests this will contain the multicellular-modified hash for this cell when available.
+            // requests this will contain the multicellular hash for this cell when available.
             lock (pendingGenerationsOfMembraneHashes)
             {
                 foreach (var hash in writtenHashes)
