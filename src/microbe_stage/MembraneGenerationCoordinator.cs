@@ -68,7 +68,6 @@ public static class MembraneGenerationCoordinator
         if (tracker.NeighboursData.Count < tracker.ExpectedCount)
             return new List<long>();
 
-        // TODO: maybe allow it to be multithreaded!
         // Pass 2: all base membranes are ready. Use a flag to ensure exactly one thread executes the second pass.
         if (!tracker.TryBeginSecondPass())
             return new List<long>();

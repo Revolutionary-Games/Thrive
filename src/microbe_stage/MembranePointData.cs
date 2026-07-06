@@ -73,20 +73,32 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
     /// </summary>
     public Vector2[] HexPositions { get; }
 
+    public int HexPositionCount { get; }
+
     /// <summary>
     ///   Positions of other cells in multicellular organism
     /// </summary>
     public Vector2[]? MulticellularPositions { get; }
 
-    // TODO: add summaries
+    /// <summary>
+    ///   Position of current cell in multicellular body plan
+    /// </summary>
     public Vector2? CellPositionInMulticellular { get; }
 
+    /// <summary>
+    ///   Orientations of other cells in multicellular organism
+    /// </summary>
     public int[]? MulticellularOrientations { get; }
 
+    /// <summary>
+    ///   Orientation of current cell in multicellular body plan
+    /// </summary>
     public int? CellOrientation { get; }
-    public bool IsPreMulticellularStretch { get; }
 
-    public int HexPositionCount { get; }
+    /// <summary>
+    ///   Flag used for differentiation in caching when retrieving single cell membrane before and after stretching
+    /// </summary>
+    public bool IsPreMulticellularStretch { get; }
 
     public MembraneType Type { get; }
 
