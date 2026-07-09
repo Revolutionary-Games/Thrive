@@ -34,17 +34,6 @@ public class MembraneShapeGenerator
     private readonly List<Vector2> vertices2D = new();
 
     /// <summary>
-    ///   Stores the original unmodified vertices during multicellular processing
-    /// </summary>
-    private readonly List<Vector2> originalVertices2D = new();
-
-    /// <summary>
-    ///   Stores the neighbours' original vertices that have been rotated and shifted to current cells reference point
-    ///   during multicellular processing
-    /// </summary>
-    private readonly Dictionary<long, List<Vector2>> originalNeighboursVertices = new();
-
-    /// <summary>
     ///   Stores the neighbours' stretched vertices that have been rotated and shifted to current cells reference point
     ///   during multicellular processing
     /// </summary>
@@ -173,8 +162,10 @@ public class MembraneShapeGenerator
         // ReSharper restore PossibleLossOfFraction
         GenerateMembranePoints(hexPositions, hexCount, membraneType, isMulticellular);
 
+        var averagePoint = GetAverageVertex();
+
         // This makes a copy of the vertices so the data is safe to modify in further calls to this method
-        return new MembranePointData(hexPositions, hexCount, membraneType, vertices2D);
+        return new MembranePointData(hexPositions, hexCount, membraneType, vertices2D, averagePoint);
     }
 
     /// <summary>
@@ -205,8 +196,9 @@ public class MembraneShapeGenerator
         var hexCopy = ArrayPool<Vector2>.Shared.Rent(hexCount);
         originalPointData.HexPositions.AsSpan(0, hexCount).CopyTo(hexCopy);
 
-        return new MembranePointData(hexCopy, hexCount, originalPointData.Type, vertices2D, multicellularPositions,
-            thisCellPosition, multicellularOrientations, thisCellOrientation);
+        return new MembranePointData(hexCopy, hexCount, originalPointData.Type, vertices2D,
+            originalPointData.AverageVertex, multicellularPositions, thisCellPosition, multicellularOrientations,
+            thisCellOrientation);
     }
 
     /// <summary>
@@ -554,26 +546,26 @@ public class MembraneShapeGenerator
         return generatedMesh;
     }
 
-    // 2D cross product of vectors (b-a) and (p-a).
-    // Positive = p is left of edge a→b, negative = right, zero = collinear.
     private static float Cross(Vector2 a, Vector2 b, Vector2 p)
     {
+        // 2D cross product of vectors (b-a) and (p-a).
+        // Positive = p is left of edge a→b, negative = right, zero = collinear.
         return (b - a).Cross(p - a);
     }
 
     private static bool IsInsideConvexPolygon(List<Vector2> vertices, Vector2 point)
     {
-        int n = vertices.Count;
-        if (n < 3)
+        int verticesCount = vertices.Count;
+        if (verticesCount < 3)
             return false;
 
         // Determine winding from the first edge so we know which sign = "inside"
         float firstCross = Cross(vertices[0], vertices[1], point);
 
-        for (int i = 1; i < n; ++i)
+        for (int i = 1; i < verticesCount; ++i)
         {
             var a = vertices[i];
-            var b = vertices[(i + 1) % n];
+            var b = vertices[(i + 1) % verticesCount];
             float cross = Cross(a, b, point);
 
             // If the sign flips, the point is outside (or on) this edge
@@ -587,16 +579,6 @@ public class MembraneShapeGenerator
     private static float GetOrientationAngle(int orientation)
     {
         return orientation * MathF.PI * 0.3333333f;
-    }
-
-    private static Vector2 GetAverageVertex(List<Vector2> vertices)
-    {
-        var averageVertex = Vector2.Zero;
-        foreach (var vertex in vertices)
-            averageVertex += vertex;
-        averageVertex /= vertices.Count;
-
-        return averageVertex;
     }
 
     private static float Angle(Vector2 a, Vector2 b, Vector2 c)
@@ -723,6 +705,16 @@ public class MembraneShapeGenerator
         indexEnd = tangentPointIndexB + backwardLength;
     }
 
+    private Vector2 GetAverageVertex()
+    {
+        var averageVertex = Vector2.Zero;
+        foreach (var vertex in vertices2D)
+            averageVertex += vertex;
+        averageVertex /= vertices2D.Count;
+
+        return averageVertex;
+    }
+
     private void GenerateMembranePoints(Vector2[] hexPositions, int hexCount, MembraneType membraneType,
         bool isMulticellular)
     {
@@ -831,7 +823,7 @@ public class MembraneShapeGenerator
         var cellPosition = cellData.CellPosition;
         var cellOrientation = cellData.Orientation;
         var cellAngle = GetOrientationAngle(cellOrientation);
-        var cellAverageVertex = GetAverageVertex(originalVertices2D);
+        var cellAverageVertex = cellData.OriginalPointData.AverageVertex;
 
         GetCloseNeighbours(neighboursData, cellPosition);
         RotateAndShiftCloseNeighbours(neighboursData, cellAngle, cellPosition);
@@ -849,9 +841,8 @@ public class MembraneShapeGenerator
             neighbourCellKey = neighbourKey;
 
             var editableNeighbourVertices = editableNeighboursVertices[neighbourKey];
-            var originalNeighbourVertices = originalNeighboursVertices[neighbourKey];
 
-            var neighbourAverageVertex = GetAverageVertex(originalNeighbourVertices);
+            var neighbourAverageVertex = neighbourData.AverageVertex;
 
             var middlePoint = GetMiddlePoint(editableNeighbourVertices, cellAverageVertex, neighbourAverageVertex,
                 out var closestCellVertexIndex, out var closestNeighbourVertexIndex);
@@ -912,7 +903,6 @@ public class MembraneShapeGenerator
     private void RotateAndShiftCloseNeighbours(ConcurrentDictionary<long, NeighbourData> neighboursData,
         float thisAngle, Vector2 thisCellPosition)
     {
-        originalNeighboursVertices.Clear();
         editableNeighboursVertices.Clear();
         neighbourShifts.Clear();
         neighbourRotations.Clear();
@@ -929,20 +919,16 @@ public class MembraneShapeGenerator
 
             var vertexCount = neighbourData.OriginalPointData.VertexCount;
 
-            var originalList = new List<Vector2>(vertexCount);
+            // TODO: This allocates memory. Maybe change it to use ArrayPool<>
             var shiftedList = new List<Vector2>(vertexCount);
-            originalNeighboursVertices.Add(neighbourKey, originalList);
             editableNeighboursVertices.Add(neighbourKey, shiftedList);
 
             if (neighbourData.ModifiedVertices != null)
             {
                 for (int i = 0; i < vertexCount; ++i)
                 {
-                    var original = neighbourData.OriginalPointData.Vertices2D[i];
                     var modified = neighbourData.ModifiedVertices[i];
-                    var transformedOriginal = RotatePoint(original, relativeAngle) + localOffset;
                     var transformedModified = RotatePoint(modified, relativeAngle) + localOffset;
-                    originalList.Add(transformedOriginal);
                     shiftedList.Add(transformedModified);
                 }
             }
@@ -952,10 +938,12 @@ public class MembraneShapeGenerator
                 {
                     var original = neighbourData.OriginalPointData.Vertices2D[i];
                     var transformedOriginal = RotatePoint(original, relativeAngle) + localOffset;
-                    originalList.Add(transformedOriginal);
                     shiftedList.Add(transformedOriginal);
                 }
             }
+
+            neighbourData.AverageVertex =
+                RotatePoint(neighbourData.OriginalPointData.AverageVertex, relativeAngle) + localOffset;
 
             neighbourShifts[neighbourKey] = localOffset;
             neighbourRotations[neighbourKey] = relativeAngle;
@@ -965,13 +953,11 @@ public class MembraneShapeGenerator
     private void SetCellVertices(NeighbourData currentCellData)
     {
         vertices2D.Clear();
-        originalVertices2D.Clear();
 
         if (currentCellData.ModifiedVertices != null)
         {
             for (int i = 0; i < currentCellData.OriginalPointData.VertexCount; ++i)
             {
-                originalVertices2D.Add(currentCellData.OriginalPointData.Vertices2D[i]);
                 vertices2D.Add(currentCellData.ModifiedVertices[i]);
             }
         }
@@ -979,7 +965,6 @@ public class MembraneShapeGenerator
         {
             for (int i = 0; i < currentCellData.OriginalPointData.VertexCount; ++i)
             {
-                originalVertices2D.Add(currentCellData.OriginalPointData.Vertices2D[i]);
                 vertices2D.Add(currentCellData.OriginalPointData.Vertices2D[i]);
             }
         }

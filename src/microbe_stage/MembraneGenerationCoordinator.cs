@@ -34,7 +34,7 @@ public static class MembraneGenerationCoordinator
         var cellPosition = generationParameters.CellPositionInMulticellular!.Value;
         var cellOrientation = generationParameters.CellOrientation;
 
-        var registeredHash = MembraneComputationHelpers.ComputeMembraneDataHash(generationParameters);
+        var registeredHash = generationParameters.ComputeMembraneDataHash();
 
         // If the final multicellular membrane is already cached, just return it
         var existing = ProceduralDataCache.Instance.ReadMembraneData(registeredHash);
@@ -58,6 +58,7 @@ public static class MembraneGenerationCoordinator
         {
             SingleCellHash = registeredHash,
             CellPosition = cellPosition,
+            AverageVertex = singleCellMembranePointData.AverageVertex,
             OriginalPointData = singleCellMembranePointData,
             Orientation = cellOrientation ?? 0,
         };

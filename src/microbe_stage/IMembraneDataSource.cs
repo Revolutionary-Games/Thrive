@@ -117,7 +117,7 @@ public static class MembraneComputationHelpers
 
         var cache = ProceduralDataCache.Instance;
 
-        var hash = ComputeMembraneDataHash(new MembraneGenerationParameters(hexes, length, membraneType));
+        var hash = new MembraneGenerationParameters(hexes, length, membraneType).ComputeMembraneDataHash();
 
         var result = cache.ReadMembraneData(hash);
 
@@ -185,6 +185,11 @@ public static class MembraneComputationHelpers
                 {
                     hash = (hash * prime1) ^ dataSource.MulticellularOrientations[i];
                 }
+            }
+
+            if (dataSource.IsPreMulticellularStretch)
+            {
+                hash = (hash * prime1) ^ 1;
             }
 
             return hash;

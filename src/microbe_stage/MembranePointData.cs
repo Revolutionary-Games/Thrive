@@ -23,13 +23,14 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
     private bool disposed;
 
     public MembranePointData(Vector2[] hexPositions, int hexPositionCount, MembraneType type,
-        IReadOnlyList<Vector2> verticesToCopy, Vector2[]? multicellularPositions = null,
+        IReadOnlyList<Vector2> verticesToCopy, Vector2 averageVertex, Vector2[]? multicellularPositions = null,
         Vector2? cellPositionInMulticellular = null, int[]? multicellularOrientations = null,
         int? cellOrientation = null, bool isPreMulticellularStretch = false)
     {
         HexPositions = hexPositions;
         Type = type;
         HexPositionCount = hexPositionCount;
+        AverageVertex = averageVertex;
         MulticellularPositions = multicellularPositions;
         CellPositionInMulticellular = cellPositionInMulticellular;
         MulticellularOrientations = multicellularOrientations;
@@ -74,6 +75,11 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
     public Vector2[] HexPositions { get; }
 
     public int HexPositionCount { get; }
+
+    /// <summary>
+    ///   Avarage position of all vertices of the membrane
+    /// </summary>
+    public Vector2 AverageVertex { get; }
 
     /// <summary>
     ///   Positions of other cells in multicellular organism
@@ -206,6 +212,7 @@ public sealed class NeighbourData
 {
     public long SingleCellHash;
     public Vector2 CellPosition;
+    public Vector2 AverageVertex;
     public MembranePointData OriginalPointData = null!;
     public int Orientation;
 
@@ -217,7 +224,7 @@ public sealed class NeighbourData
 
     /// <summary>
     ///   Tracks which cell pairs have already been processed to avoid duplicate work when the relationship
-    ///   reverses (i.e., when this cell was a neighbor and is now the current cell).
+    ///   reverses (when the cell was a neighbor and is now the current cell).
     /// </summary>
     public HashSet<long> ProcessedNeighbours = new();
 }

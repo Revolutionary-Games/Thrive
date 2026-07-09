@@ -5,7 +5,6 @@ using System.Buffers;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -36,6 +35,9 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
 
     private readonly List<ShaderMaterial> tempMaterialsList = new();
     private readonly List<PlacedOrganelle> tempVisualsToDelete = new();
+    private readonly HashSet<int> lostCells = new();
+    private readonly List<Vector2> cellsPositions = new();
+    private readonly List<int> cellsOrientations = new();
 
     /// <summary>
     ///   Used to detect which organelle graphics are no longer used and should be deleted
@@ -176,14 +178,22 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
             {
                 var growthOrder = colonyLeader.Get<MulticellularGrowth>();
                 var nextBodyPlanCellToGrowIndex = growthOrder.NextBodyPlanCellToGrowIndex;
-                var lostCells = (growthOrder.LostPartsOfBodyPlan ?? []).ToHashSet();
+
+                if (growthOrder.LostPartsOfBodyPlan != null)
+                {
+                    lostCells.Clear();
+
+                    foreach (var lostPart in growthOrder.LostPartsOfBodyPlan)
+                    {
+                        lostCells.Add(lostPart);
+                    }
+                }
 
                 // Only get the membrane for THIS entity's cell (not all cells in the colony)
                 var cellIndex = speciesMember.MulticellularBodyPlanPartIndex;
                 var cell = speciesMember.Species.ModifiableGameplayCells[cellIndex];
                 data = GetMulticellularMembraneDataIfReadyOrStartGenerating(cell, cell.ModifiableOrganelles,
-                    ref speciesMember,
-                    cellIndex, nextBodyPlanCellToGrowIndex, lostCells);
+                    ref speciesMember, cellIndex, nextBodyPlanCellToGrowIndex);
             }
             else
             {
@@ -258,8 +268,8 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         var hexes = MembraneComputationHelpers.PrepareHexPositionsForMembraneCalculations(
             organelleContainer.Organelles!.Organelles, out var hexCount);
 
-        var hash = MembraneComputationHelpers.ComputeMembraneDataHash(
-            new MembraneGenerationParameters(hexes, hexCount, cellProperties.MembraneType));
+        var hash = new MembraneGenerationParameters(hexes, hexCount, cellProperties.MembraneType)
+            .ComputeMembraneDataHash();
 
         var cachedMembrane = ProceduralDataCache.Instance.ReadMembraneData(hash);
 
@@ -306,16 +316,16 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
 
     private MembranePointData? GetMulticellularMembraneDataIfReadyOrStartGenerating(CellTemplate cellProperties,
         OrganelleLayout<OrganelleTemplate> organelleContainer, ref MulticellularSpeciesMember multicellular,
-        int currentCellIndex, int nextBodyPlanCellToGrowIndex, HashSet<int> lostCells)
+        int currentCellIndex, int nextBodyPlanCellToGrowIndex)
     {
         // TODO: should we consider the situation where a membrane was requested on the previous update but is not
         // ready yet? This causes extra memory usage here in those cases.
         var hexes = MembraneComputationHelpers.PrepareHexPositionsForMembraneCalculations(organelleContainer.Organelles,
             out var hexCount);
 
-        // TODO: make them into array. is nextBodyPlanCellToGrowIndex - lostCells.Count() size okay?
-        List<Vector2> cellsPositions = new List<Vector2>();
-        List<int> cellsOrientations = new List<int>();
+        // TODO: make them into array. but (nextBodyPlanCellToGrowIndex - lostCells.Count()) size is not always okay...
+        cellsPositions.Clear();
+        cellsOrientations.Clear();
 
         for (int i = 0; i < nextBodyPlanCellToGrowIndex; ++i)
         {
@@ -337,9 +347,8 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         var cellPositionInMulticellular = new Vector2(cellPosition.X, cellPosition.Z) *
             Constants.MULTICELLULAR_CELL_DISTANCE_MULTIPLIER;
 
-        var hash = MembraneComputationHelpers.ComputeMembraneDataHash(new MembraneGenerationParameters(hexes, hexCount,
-            cellProperties.MembraneType,
-            positionsArray, cellPositionInMulticellular, rotationsArray, currentCell.Orientation));
+        var hash = new MembraneGenerationParameters(hexes, hexCount, cellProperties.MembraneType, positionsArray,
+            cellPositionInMulticellular, rotationsArray, currentCell.Orientation).ComputeMembraneDataHash();
 
         var cachedMembrane = ProceduralDataCache.Instance.ReadMembraneData(hash);
 
