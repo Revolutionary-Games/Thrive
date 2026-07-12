@@ -183,8 +183,10 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
     {
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.GameProperties, typeof(GameProperties),
             GameProperties.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CheatManagerState, typeof(CheatManagerState),
+           CheatManagerState.ReadFromArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.GameWorld, typeof(GameWorld),
-            GameWorld.ReadFromArchive);
+           GameWorld.ReadFromArchive);
 
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.WorldGenerationSettings,
             typeof(WorldGenerationSettings),

@@ -176,7 +176,6 @@ public partial class MainMenu : NodeWithInput
 
     public static void OnEnteringGame(bool cheatsUsed, bool freebuild)
     {
-        CheatManager.OnCheatsDisabled();
         SaveHelper.ClearLastSaveTime();
         LastPlayedVersion.MarkCurrentVersionAsPlayed();
         AchievementsManager.ReportNewGameStarted(cheatsUsed);
