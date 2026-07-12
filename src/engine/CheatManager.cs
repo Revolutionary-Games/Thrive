@@ -1,5 +1,4 @@
 ﻿using System;
-using Godot;
 
 /// <summary>
 ///   Static class that holds information about currently activated cheats
@@ -266,7 +265,6 @@ public static class CheatManager
     /// </summary>
     public static CheatManagerState CaptureState()
     {
-        GD.Print("Move to patch save: " + MoveToAnyPatch);
         return new CheatManagerState(InfiniteCompounds, GodMode, NoAI, UnlimitedGrowthSpeed,
             LockTime, ManuallySetTime, Speed, InfiniteMP, MoveToAnyPatch, DayNightFraction);
     }
@@ -276,7 +274,6 @@ public static class CheatManager
     /// </summary>
     public static void RestoreState(CheatManagerState state)
     {
-        GD.Print("Move to patch load: " + state.MoveToAnyPatch);
         InfiniteCompounds = state.InfiniteCompounds;
         GodMode = state.GodMode;
         NoAI = state.NoAI;
