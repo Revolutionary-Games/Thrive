@@ -23,7 +23,7 @@ RUN wget https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}
     && rm -rf templates godot_dir
 
 # Godot pck tool
-ENV PCK_TOOL_VERSION "v2.2"
+ENV PCK_TOOL_VERSION "v2.3"
 
 RUN wget https://github.com/hhyyrylainen/GodotPckTool/releases/download/${PCK_TOOL_VERSION}/godotpcktool -O /usr/bin/godotpcktool && \
     chmod +x /usr/bin/godotpcktool
