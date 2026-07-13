@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.Text;
@@ -50,18 +51,36 @@ public partial class ThriveopediaSpeciesInfoPage : ThriveopediaPage, IThriveoped
         {
             StringBuilder builder = new StringBuilder();
 
-            if (SpeciesToShow is MulticellularSpecies)
+            // Todo:find a way to avoid making new hashsets everytime this is requested
+            HashSet<string> organelleNames = new HashSet<string>();
+
+            if (SpeciesToShow is MulticellularSpecies multicellularSpecies)
             {
                 builder.AppendLine(Localization.Translate("MULTICELLULAR"));
+
+                foreach (CellTemplate cell in multicellularSpecies.ModifiableGameplayCells)
+                {
+                    foreach (IReadOnlyOrganelleTemplate organelle in cell.Organelles)
+                    {
+                        organelleNames.Add(organelle.Definition.ReadableName);
+                    }
+                }
             }
 
-            if (SpeciesToShow is MicrobeSpecies)
+            if (SpeciesToShow is MicrobeSpecies microbeSpecies)
             {
                 builder.AppendLine(Localization.Translate("MICROBE"));
+
+                foreach (OrganelleTemplate organelle in microbeSpecies.Organelles)
+                {
+                    organelleNames.Add(organelle.Definition.ReadableName);
+                }
             }
 
-            // Maybe in the future add the ability to search by "toxin" for toxic species
-            // or by organelle name for species that have them
+            foreach (var item in organelleNames)
+            {
+                builder.AppendLine(item);
+            }
 
             return builder.ToString();
         }
