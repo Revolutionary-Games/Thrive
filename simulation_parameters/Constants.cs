@@ -1294,7 +1294,7 @@ public static class Constants
 
     // Mutation Variables
     public const int MAX_VARIANTS_PER_MUTATION = 50;
-    public const int MAX_VARIANTS_IN_MUTATIONS = 30;
+    public const int MAX_VARIANTS_IN_MUTATIONS = 25;
     public const float MUTATION_BACTERIA_TO_EUKARYOTE = 0.01f;
     public const float MUTATION_CREATION_RATE = 0.25f;
     public const float MUTATION_NEW_ORGANELLE_CHANCE = 0.25f;
@@ -1385,7 +1385,7 @@ public static class Constants
     public const float AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION = 0.1f;
     public const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.4f;
 
-    public const float AUTO_EVO_ENGULF_PREDATION_SCORE = 100;
+    public const float AUTO_EVO_ENGULF_PREDATION_SCORE = 150;
     public const float AUTO_EVO_PILUS_PREDATION_SCORE = 5000;
     public const float AUTO_EVO_PILUS_DEFENSE_SCORE = 2000;
     public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 90000;
@@ -1410,6 +1410,17 @@ public static class Constants
     public const float AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION = 0.1f;
     public const float AUTO_EVO_REPRODUCTION_COMPOUND_PRODUCTION_SCORE = 3000.0f;
     public const float AUTO_EVO_REPRODUCTION_COMPOUND_COST_WEAKENING_MODIFIER = 0.2f;
+    public const float AUTO_EVO_SPRINTING_CONSUMPTION = 0.1f;
+
+    public const float AUTO_EVO_MAX_AGGRESSION_ENERGY_PENALTY = 0.8f;
+    public const float AUTO_EVO_MAX_AGGRESSION_GATHERING_PENALTY = 0.1f;
+    public const float AUTO_EVO_MAX_FEAR_ENERGY_PENALTY = 0.005f;
+    public const float AUTO_EVO_MAX_FEAR_GATHERING_PENALTY = 0.000f;
+    public const float AUTO_EVO_MAX_OPPORTUNISM_BONUS = 0.4f;
+    public const float AUTO_EVO_MAX_OPPORTUNISM_PENALTY = 0.05f;
+    public const float AUTO_EVO_MAX_FOCUS_CHUNK_BONUS = 0.9f;
+    public const float AUTO_EVO_MAX_FOCUS_CLOUD_BONUS = 0.5f;
+    public const float AUTO_EVO_MAX_FOCUS_PENALTY = 0.1f;
 
     public const float AUTO_EVO_PREDATION_DEFENSE_SCORE_MODIFIER = 0.5f;
 
@@ -1449,7 +1460,7 @@ public static class Constants
     public const int AUTO_EVO_MAX_MUTATION_RECURSIONS = 3;
 
     public const int AUTO_EVO_ORGANELLE_ADD_ATTEMPTS = 15;
-    public const int AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS = 15;
+    public const int AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS = 10;
     public const int AUTO_EVO_ORGANELLE_UPGRADE_ATTEMPTS = 5;
 
     /// <summary>
@@ -1817,8 +1828,6 @@ public static class Constants
 
     public const string LAST_PLAYED_VERSION_FILE = "user://last_played_version.txt";
 
-    public const string LICENSE_FILE = "res://LICENSE.txt";
-    public const string STEAM_LICENSE_FILE = "res://doc/steam_license_readme.txt";
     public const string ASSETS_README = "res://assets/README.txt";
     public const string ASSETS_LICENSE_FILE = "res://assets/LICENSE.txt";
     public const string GODOT_LICENSE_FILE = "res://doc/GodotLicense.txt";

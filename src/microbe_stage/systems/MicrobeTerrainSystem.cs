@@ -79,8 +79,8 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
 
     public static Vector2I PositionToTerrainCell(Vector3 position)
     {
-        return new Vector2I((int)(position.X * Constants.TERRAIN_GRID_SIZE_INV),
-            (int)(position.Z * Constants.TERRAIN_GRID_SIZE_INV));
+        return new Vector2I((int)Math.Floor(position.X * Constants.TERRAIN_GRID_SIZE_INV),
+            (int)Math.Floor(position.Z * Constants.TERRAIN_GRID_SIZE_INV));
     }
 
     public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
@@ -574,7 +574,7 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
 
         var clusterRotation = Quaternion.Identity;
 
-        if (cluster.RandomizeRotation)
+        if (cluster.RandomRotation != TerrainConfiguration.RotationRandomization.Disabled)
             clusterRotation = new Quaternion(Vector3.Up, random.NextSingle() * MathF.Tau);
 
         foreach (var terrainGroup in cluster.TerrainGroups)
@@ -584,7 +584,7 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
 
             var groupRotation = Quaternion.Identity;
 
-            if (terrainGroup.RandomizeRotation)
+            if (terrainGroup.RandomRotation != TerrainConfiguration.RotationRandomization.Disabled)
                 groupRotation = new Quaternion(Vector3.Up, random.NextSingle() * MathF.Tau);
 
             foreach (var chunk in terrainGroup.Chunks)
@@ -594,8 +594,8 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
                 var yOffset = new Vector3(0, random.NextSingle() * Constants.TERRAIN_HEIGHT_RANDOMNESS, 0);
 
                 SpawnHelpers.SpawnMicrobeTerrainWithoutFinalizing(recorder, worldSimulation,
-                    position + rotation * (terrainGroup.RelativePosition + chunk.RelativePosition) + yOffset,
-                    rotation, chunk, groupId, random);
+                    position + (clusterRotation * terrainGroup.RelativePosition)
+                    + (rotation * chunk.RelativePosition) + yOffset, rotation, chunk, groupId, random);
 
                 data.ExpectedMemberCount += 1;
             }

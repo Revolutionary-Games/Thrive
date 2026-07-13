@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Godot;
+using ThriveScriptsShared;
 
 /// <summary>
 ///   Shows the game credits by scrolling them up from the bottom of the screen
@@ -406,7 +407,7 @@ public partial class CreditsScroll : Control
         var licenseTextLabel =
             steamVersion ?
                 CreateTextPart(offset, LicensesDisplay.LoadSteamLicenseFile()) :
-                CreateFileLoadedPart(offset, Constants.LICENSE_FILE);
+                CreateTextPart(offset, LicenseText.LoadNormalLicenseText(true, LicensesDisplay.LoadFile));
         offset += (int)licenseTextLabel.Height + ExtraOffsetAfterTeam;
 
         // This is purposefully not translatable
@@ -480,7 +481,7 @@ public partial class CreditsScroll : Control
     {
         // For some reason these really long texts seem to be a bit off in terms of the height, so even though we
         // don't add any height here, we still leave a pretty huge blank gap
-        // To try to combat these the Godot license is last of the shown licenses
+        // To try to combat these the Godot licence is last of the shown licences
         var godotLicenseLabel =
             CreateFileLoadedPart(GetNextDynamicSectionOffset() + OffsetBeforeNextDynamicPart,
                 Constants.GODOT_LICENSE_FILE);
@@ -493,7 +494,7 @@ public partial class CreditsScroll : Control
 
             endOfLicensesMarker.OnBecomeVisible += () =>
             {
-                // Show the runtime licenses
+                // Show the runtime licences
                 var runtimeLicenseLabel =
                     CreateFileLoadedPart(GetNextDynamicSectionOffset() + OffsetBeforeNextDynamicPart,
                         Constants.RUNTIME_LICENSE_FILE);
@@ -505,7 +506,7 @@ public partial class CreditsScroll : Control
 
                     secondEndMarker.OnBecomeVisible += () =>
                     {
-                        // Restore normal speed after licenses are pretty much over
+                        // Restore normal speed after licences are pretty much over
                         speedModifier = 1.0f;
                         LoadEndRemarks();
                     };

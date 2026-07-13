@@ -52,6 +52,11 @@ public class Miche : IArchivable
         Pressure = pressure;
     }
 
+    /// <summary>
+    ///   If true, species cannot be inserted any more
+    /// </summary>
+    public bool Readonly { get; private set; }
+
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.Miche;
     public bool CanBeReferencedInArchive => true;
@@ -176,6 +181,9 @@ public class Miche : IArchivable
     {
         ThrowIfLocked();
 
+        if (Readonly)
+            throw new InvalidOperationException("This miche tree is readonly (and somehow not locked)");
+
         Children.Add(newChild);
         newChild.Parent = this;
     }
@@ -186,7 +194,7 @@ public class Miche : IArchivable
     /// <param name="species">Species to try to insert</param>
     /// <param name="patch">Patch this miche is in for calculating scores</param>
     /// <param name="scoresSoFar">
-    ///   Scores generated so far. If not called recursively just pass in null. Not modified by this method.
+    ///   Scores generated so far. If not called recursively, just pass in null. Not modified by this method.
     /// </param>
     /// <param name="cache">Data cache for faster calculation</param>
     /// <param name="dry">If true the species is not inserted but only checked if it could be inserted</param>
@@ -198,6 +206,9 @@ public class Miche : IArchivable
     public bool InsertSpecies(Species species, Patch patch, Dictionary<Species, float>? scoresSoFar,
         SimulationCache cache, bool dry, InsertWorkingMemory workingMemory, int depth = 0)
     {
+        if (Readonly && !dry)
+            throw new InvalidOperationException("This miche tree is readonly and cannot be modified");
+
         var myScore = Pressure.Score(species, patch, cache);
 
         // Prune branch if species fails any pressures
@@ -248,7 +259,7 @@ public class Miche : IArchivable
         }
 
         // We check here to see if scores more than 0, because
-        // scores is relative to the inserted species
+        // scores are relative to the inserted species
         if (IsLeafNode())
         {
             if (newScores.TryGetValue(Occupant!, out var value))
@@ -312,6 +323,21 @@ public class Miche : IArchivable
             throw new InvalidOperationException("Miche is already locked");
 
         locked = true;
+    }
+
+    public void SetReadOnly()
+    {
+        if (Readonly)
+            return;
+
+        Readonly = true;
+        if (!locked)
+            Lock();
+
+        foreach (var child in Children)
+        {
+            child.SetReadOnly();
+        }
     }
 
     public override int GetHashCode()
