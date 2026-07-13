@@ -24,7 +24,7 @@ public class RegisterNewSpecies : IRunStep
         var currentSpecies = new HashSet<Species>();
         foreach (var patch in world.Map.Patches)
         {
-            results.GetMicheForPatch(patch.Value).GetOccupants(currentSpecies);
+            results.GetModifiableMicheForPatch(patch.Value).GetOccupants(currentSpecies);
         }
 
         var extinctSpecies = new HashSet<Species>();

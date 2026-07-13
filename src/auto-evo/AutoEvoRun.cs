@@ -418,6 +418,8 @@ public class AutoEvoRun
             }
         }
 
+        // Start with concurrent steps. No two steps may modify the same miche tree at the same time
+
         foreach (var entry in map.Patches)
         {
             steps.Enqueue(new ModifyExistingSpecies(entry.Value, new SimulationCache(worldSettings), worldSettings,
@@ -428,6 +430,8 @@ public class AutoEvoRun
         {
             steps.Enqueue(new MigrateSpecies(species, map, worldSettings, new SimulationCache(worldSettings), random));
         }
+
+        // End concurrent steps.
 
         // The new populations don't depend on the mutations but will take into account changes in the miche tree.
         // This is so that when the player edits their species, the other species they are competing
