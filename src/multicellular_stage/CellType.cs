@@ -52,7 +52,7 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
     public OrganelleLayout<OrganelleTemplate> ModifiableOrganelles { get; }
 
     public string CellTypeName { get; set; } = "error";
-    public int MPCost { get; set; } = 15;
+    public int MPCost { get; set; } = Constants.CELL_ADD_COST;
 
     public string? SplitFromTypeName { get; set; }
 

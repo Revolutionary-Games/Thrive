@@ -1208,6 +1208,9 @@ public static class Constants
     public const int ORGANELLE_MOVE_COST = 5;
     public const int ORGANELLE_CHEAPEST_COST = 20;
 
+    // This can be set per cell type, but is currently always constant
+    public const int CELL_ADD_COST = 15;
+
     public const int CELL_REMOVE_COST = 5;
 
     public const int MULTICELLULAR_REPRODUCTION_METHOD_CHANGE_COST = 50;
