@@ -38,6 +38,8 @@ public partial class ThriveopediaSpeciesInfoPage : ThriveopediaPage, IThriveoped
 
     private string cachedName = "ERROR_UNINITIALIZED_SPECIES_INFO";
 
+    private string? cacheTranslatedAdditionalSearchContent;
+
     public string PageName => cachedName;
 
     public string TranslatedPageName =>
@@ -49,6 +51,11 @@ public partial class ThriveopediaSpeciesInfoPage : ThriveopediaPage, IThriveoped
     {
         get
         {
+            if (cacheTranslatedAdditionalSearchContent != null)
+            {
+                return cacheTranslatedAdditionalSearchContent;
+            }
+
             StringBuilder builder = new StringBuilder();
 
             // Todo:find a way to avoid making new hashsets everytime this is requested
@@ -82,7 +89,9 @@ public partial class ThriveopediaSpeciesInfoPage : ThriveopediaPage, IThriveoped
                 builder.AppendLine(item);
             }
 
-            return builder.ToString();
+            cacheTranslatedAdditionalSearchContent = builder.ToString();
+
+            return cacheTranslatedAdditionalSearchContent;
         }
     }
 
@@ -168,6 +177,8 @@ public partial class ThriveopediaSpeciesInfoPage : ThriveopediaPage, IThriveoped
 
         mainText.ExtendedBbcode = Localization.Translate("THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT")
             .FormatSafe(SpeciesToShow.FormattedNameBbCode, population.FormatNumber(), areas, stageText);
+
+        cacheTranslatedAdditionalSearchContent = null;
 
         UpdateInfoBox();
     }

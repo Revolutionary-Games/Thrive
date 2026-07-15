@@ -53,9 +53,6 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
     [Export]
     private Tree pageTree = null!;
 
-    [Export]
-    private Timer searchThrottling = null!;
-
     /// <summary>
     ///   The home page for the Thriveopedia. Keep a special reference so we can return to it easily.
     /// </summary>
@@ -109,6 +106,17 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
     ///   Is currently running a background search.
     /// </summary>
     private bool runningBackgroundSearch;
+
+    /// <summary>
+    ///   Tracks the amount of time since the last update on the search
+    /// </summary>
+    private double searchTimer;
+
+    /// <summary>
+    ///   Tracks if at the threshold of <see cref="searchTimer"/>
+    ///   if it should start a new background search
+    /// </summary>
+    private bool trackSearchTimer;
 
     /// <summary>
     ///   The current text to search in the next background search.
@@ -238,6 +246,16 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
 
         ThriveopediaManager.RemoveActiveThriveopedia(this);
         Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
+    }
+
+    public override void _Process(double delta)
+    {
+        searchTimer += delta;
+        if (trackSearchTimer && searchTimer > 0.1d)
+        {
+            BeginBackgroundSearch();
+            trackSearchTimer = false;
+        }
     }
 
     public override void _Notification(int what)
@@ -788,7 +806,8 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
         }
         else
         {
-            searchThrottling.Start();
+            searchTimer = 0.0d;
+            trackSearchTimer = true;
         }
     }
 
@@ -803,12 +822,10 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
 
     private void DoBackgroundPageSearch(string newText)
     {
-        // stageDropdown.Visible = false;
-        stageDropdown.SetDeferred(TreeItem.PropertyName.Visible, false);
-
         var newTextLowercase = newText.ToLower(CultureInfo.CurrentCulture);
 
         var distanceDictionary = new int[allPages.Count];
+        var visibilityDictionary = new bool[allPages.Count];
         int iterator = 0;
 
         foreach (var page in allPages)
@@ -816,6 +833,7 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
             string pagename = page.Key.TranslatedPageName.ToLower(CultureInfo.CurrentCulture);
 
             distanceDictionary[iterator] = StringUtils.DoStringCostBetween(pagename, newTextLowercase);
+            visibilityDictionary[iterator] = false;
             ++iterator;
         }
 
@@ -835,28 +853,40 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
                 || (pageContent != null && pageContent.Contains(newTextLowercase))
                 || (additionalContent != null && additionalContent.Contains(newTextLowercase));
 
-            if (visible && page.Key is ThriveopediaStagePage)
-            {
-                // A stage page was found, so the stage dropdown should be shown (instead of individual pages)
-                visible = false;
-
-                if (!stageDropdown.Visible)
-                {
-                    // stageDropdown.Visible = true;
-                    stageDropdown.SetDeferred(TreeItem.PropertyName.Visible, true);
-                    SetParentPagesVisibility(stageDropdown, true);
-                }
-            }
-
-            // page.Value.Visible = visible;
-            page.Value.SetDeferred(TreeItem.PropertyName.Visible, visible);
-            if (visible)
-            {
-                SetParentPagesVisibility(page.Value, true);
-            }
-
+            visibilityDictionary[iterator] = visible;
             ++iterator;
         }
+
+        Invoke.Instance.Queue(() =>
+        {
+            stageDropdown.Visible = false;
+
+            iterator = 0;
+            foreach (var page in allPages)
+            {
+                bool isVisible = visibilityDictionary[iterator];
+
+                if (isVisible && page.Key is ThriveopediaStagePage)
+                {
+                    // A stage page was found, so the stage dropdown should be shown (instead of individual pages)
+                    isVisible = false;
+
+                    if (!stageDropdown.Visible)
+                    {
+                        stageDropdown.Visible = true;
+                        SetParentPagesVisibility(stageDropdown, true);
+                    }
+                }
+
+                page.Value.Visible = isVisible;
+                if (isVisible)
+                {
+                    SetParentPagesVisibility(page.Value, true);
+                }
+
+                ++iterator;
+            }
+        });
 
         if (requestingNewSearch)
         {
@@ -878,8 +908,7 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
 
         if (parent != null)
         {
-            // parent.Visible = visible;
-            parent.SetDeferred(TreeItem.PropertyName.Visible, visible);
+            parent.Visible = visible;
             SetParentPagesVisibility(parent, visible);
         }
     }

@@ -18,6 +18,8 @@ public partial class ThriveopediaWikiPage : ThriveopediaPage, IThriveopediaPage
     [Export]
     private Container noticeContainer = null!;
 
+    private string? cacheTranslatedPageBody;
+
 #pragma warning restore CA2213
 
     protected ThriveopediaWikiPage()
@@ -52,13 +54,18 @@ public partial class ThriveopediaWikiPage : ThriveopediaPage, IThriveopediaPage
     {
         get
         {
-            StringBuilder builder = new StringBuilder();
-            foreach (var item in PageContent.Sections)
+            if (cacheTranslatedPageBody == null)
             {
-                builder.AppendLine(Localization.Translate(item.SectionBody));
+                StringBuilder builder = new StringBuilder();
+                foreach (var item in PageContent.Sections)
+                {
+                    builder.AppendLine(Localization.Translate(item.SectionBody));
+                }
+
+                cacheTranslatedPageBody = builder.ToString();
             }
 
-            return builder.ToString();
+            return cacheTranslatedPageBody;
         }
     }
 
