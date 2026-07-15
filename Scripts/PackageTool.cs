@@ -687,8 +687,18 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         if (options.Dehydrated)
         {
             // After normal packaging, move it to the devbuilds folder for the upload script
+            Directory.CreateDirectory(Dehydration.DEVBUILDS_FOLDER);
             var target = Path.Join(Dehydration.DEVBUILDS_FOLDER, Path.GetFileName(folderOrArchive));
-            File.Move(folderOrArchive, target, true);
+
+            if (Directory.Exists(folderOrArchive))
+            {
+                Directory.Move(folderOrArchive, target);
+                ColourConsole.WriteWarningLine("Dehydrated build is not an archive, it might not work for upload");
+            }
+            else
+            {
+                File.Move(folderOrArchive, target, true);
+            }
 
             if (cacheForNextMetaToWrite == null)
             {
