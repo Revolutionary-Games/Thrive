@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-06-03 20:10+0100\n"
-"PO-Revision-Date: 2026-06-05 12:52+0000\n"
+"PO-Revision-Date: 2026-06-05 15:45+0000\n"
 "Last-Translator: 归灵祈昱 <guilingqiyu@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -1812,11 +1812,9 @@ msgstr "微生物背景扭曲"
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "显示背景粒子"
 
-#, fuzzy
 msgid "DISPLAY_DRIVER_DIRECT3D"
 msgstr "DirectX"
 
-#, fuzzy
 msgid "DISPLAY_DRIVER_METAL"
 msgstr "Metal"
 
@@ -4897,7 +4895,7 @@ msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr "您上次玩Thrive的时间{0},目前已经更新了{1}个版本"
 
 msgid "PATCH_NOTES_RECENT_BOUNDARY"
-msgstr "已浏览全部近期版本"
+msgstr "已浏览全部近期版本。"
 
 msgid "PATCH_NOTES_TITLE"
 msgstr "更新说明"
@@ -5924,7 +5922,6 @@ msgstr "{0}的种群数量：{1}"
 msgid "SPEED_COLON"
 msgstr "速度："
 
-#, fuzzy
 msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr "在正常与倍速的游戏速度之间切换"
 
@@ -7483,9 +7480,8 @@ msgstr "无升级。"
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_EFFECTS"
 msgstr "使[thrive:compound type=\"oxygen\"][/thrive:compound] [b]氧耐受性[/b]提高15%。"
 
-#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_INTRO"
-msgstr "产生 [thrive:compound type=\"sunlight\"][/thrive:compound]，并提高拥有它的细胞的氧耐受性。"
+msgstr "产生 [thrive:compound type=\"sunlight\"][/thrive:compound]，并提高拥有它的细胞的[thrive:compound type=\"oxygen\"][/thrive:compound]。"
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_MODIFICATIONS"
 msgstr "无修改。"
@@ -8570,9 +8566,8 @@ msgstr "放射性岩石虽然十分稀有，但一旦被发现，就能提供丰
 msgid "WIKI_MELANOSOME_UPGRADES"
 msgstr "无升级。"
 
-#, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
-msgstr "无效果。"
+msgstr "提高3.5%[thrive:compound type=\"oxygen\"][/thrive:compound] [b]抗性[/b]。"
 
 msgid "WIKI_METABOLOSOMES_INTRO"
 msgstr "[b]代谢体[/b]进行[b]蛋白质呼吸[/b]，一种劣于[b][color=#3796e1][url=thriveopedia:mitochondrion]线粒体[/url][/color][/b]的[b]有氧呼吸[/b]。它使用[thrive:compound type=\"oxygen\"][/thrive:compound]把[thrive:compound type=\"glucose\"][/thrive:compound]转化为[thrive:compound type=\"atp\"][/thrive:compound]。"
@@ -8743,9 +8738,8 @@ msgstr ""
 "\n"
 "微生物阶段是游戏的第一阶段。该阶段始于世界上第一个存在的物种，刚从生命的原始起源中诞生，正在探索营养丰富的潘戈尼亚热液喷口。在这里，玩家扮演一团微小的原核细胞质，它是该物种中为数不多的个体之一。此时，玩家必须完全依赖寻找游离的 [thrive:compound type=\"glucose\"][/thrive:compound] 来生存，因为他们尚不具备处理其他营养物质的方法；同时必须寻找 [thrive:compound type=\"phosphates\"][/thrive:compound] 和 [thrive:compound type=\"ammonia\"][/thrive:compound] 使得身体长大，为繁殖做准备。一旦玩家达到足够的大小，就将具备繁殖能力；如果玩家选择繁殖，将进入微生物编辑器。随着游戏的继续，玩家将不断改造他们的细胞，以便在每一代都逐渐变得更严酷的世界中更好地生存，并与从玩家自身演化而来的新物种进行竞争。"
 
-#, fuzzy
 msgid "WIKI_MITOCHONDRION_EFFECTS"
-msgstr "无效果。"
+msgstr "提高8%[thrive:compound type=\"oxygen\"][/thrive:compound] [b]抗性[/b]。"
 
 msgid "WIKI_MITOCHONDRION_INTRO"
 msgstr "细胞的发电厂。[b]线粒体[/b]进行[b]有氧呼吸[/b]，或者说用[thrive:compound type=\"oxygen\"][/thrive:compound]把[thrive:compound type=\"glucose\"]转化为[thrive:compound type=\"atp\"][/thrive:compound]。[b]线粒体[/b]执行这项功能的效率高于例如[b][color=#3796e1][url=thriveopedia:metabolosome]代谢体[/url][/color][/b]的其他细胞器。"
@@ -8850,9 +8844,8 @@ msgstr "无升级"
 msgid "WIKI_NATION_EDITOR"
 msgstr "国家编辑器"
 
-#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
-msgstr "无效果。"
+msgstr "降低1%[thrive:compound type=\"oxygen\"][/thrive:compound] [b]抗性[/b]。"
 
 msgid "WIKI_NITROGENASE_INTRO"
 msgstr ""
@@ -9455,9 +9448,11 @@ msgstr "待定"
 msgid "WIKI_TECH_EDITOR_COMMA_NATION_EDITOR_COMMA_SQUAD_EDITOR"
 msgstr "技术编辑器，国家编辑器，队伍编辑器"
 
-#, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
-msgstr "开启[i]热视觉[/i]，可以自由切换开关。该功能会在屏幕上叠加水的相对温度分布，较热的区域显示为更深的红色。"
+msgstr ""
+"启用[i]热视觉[/i]，该功能可随时开启或关闭。这会在屏幕上叠加显示水体的相对温度，温度越高的区域颜色越红。\n"
+"\n"
+"使 [thrive:compound type=\"temperature\"][/thrive:compound] [b]耐受范围[/b]双向各扩大 5 度。"
 
 msgid "WIKI_THERMOPLAST_INTRO"
 msgstr ""
@@ -9503,9 +9498,11 @@ msgstr ""
 msgid "WIKI_THERMOPLAST_UPGRADES"
 msgstr "无升级。"
 
-#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_EFFECTS"
-msgstr "开启[i]热视觉[/i]，可以自由切换开关。该功能会在屏幕上叠加水的相对温度分布，较热的区域显示为更深的红色。"
+msgstr ""
+"启用[i]热视觉[/i]，该功能可随时开启或关闭。这会在屏幕上叠加显示水体的相对温度，温度越高的区域颜色越红。\n"
+"\n"
+"使 [thrive:compound type=\"temperature\"][/thrive:compound] [b]耐受范围[/b]双向各扩大 5 度。"
 
 msgid "WIKI_THERMOSYNTHASE_INTRO"
 msgstr ""
@@ -9571,9 +9568,8 @@ msgstr ""
 msgid "WIKI_THE_PATCH_MAP_THE_PATCH_MAP"
 msgstr "[b]地区图[/b]表示您的星球，由 [b]地区[/b] 和 [b]区域[/b] 组成（如下所述）。每个区域包括多个相连或相邻的地区，并与其他区域相连。"
 
-#, fuzzy
 msgid "WIKI_THYLAKOIDS_EFFECTS"
-msgstr "无特殊效果。"
+msgstr "使 [thrive:compound type=\"sunlight\"][/thrive:compound] 增加 3%，并使 [thrive:compound type=\"oxygen\"][/thrive:compound] 增加 1.5%。"
 
 msgid "WIKI_THYLAKOIDS_INTRO"
 msgstr ""
@@ -9617,12 +9613,13 @@ msgstr ""
 msgid "WIKI_THYLAKOIDS_UPGRADES"
 msgstr "无升级。"
 
-#, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_EFFECTS"
 msgstr ""
-"如果细胞至少有一个[b][color=#3796e1][url=thriveopedia:oxytoxyProteins]氧化毒素酶体[/url][/color][/b]或[b]毒素液泡[/b]，它可以发射毒素弹，通过排出储存的[thrive:compound type=\"oxytoxy\"][/thrive:compound] 来做到。 这些弹体会损害其他物种的细胞，但不会伤害发射者同物种的成员。\n"
+"如果细胞拥有至少一个[b][color=#3796e1][url=thriveopedia:oxytoxyProteins]氧毒素体[/url][/color][/b]或[b]毒素液泡[/b]，就可以发射毒素射弹，并在此过程中消耗储存的 [thrive:compound type=\"oxytoxy\"][/thrive:compound]。这些射弹会对其他物种的细胞造成伤害，但不会伤害同物种的成员。\n"
 "\n"
-"伤害与发射的[thrive:compound type=\"oxytoxy\"][/thrive:compound] 量成正比。"
+"伤害与发射的 [thrive:compound type=\"oxytoxy\"][/thrive:compound] 数量成正比。\n"
+"\n"
+"增加 2% [thrive:compound type=\"oxygen\"][/thrive:compound] [b]抗性[/b]。"
 
 msgid "WIKI_TOXIN_VACUOLE_INTRO"
 msgstr "修改过的[b][color=#3796e1][url=thriveopedia:vacuole]液泡[/url][/color][/b]，生产[thrive:compound type=\"oxytoxy\"][/thrive:compound] ，可以作为发射毒素弹的部件。 [b][color=#3796e1][url=thriveopedia:oxytoxyProteins]氧化毒酶体（毒素体）[/url][/color][/b]的高级版本。"
