@@ -126,6 +126,13 @@ public static class CommonMutationFunctions
             workMemory2, workMemory3, random);
     }
 
+    public static bool AddOrganelle(OrganelleDefinition organelle, Direction direction, CellType cellType,
+        List<Hex> workMemory1, List<Hex> workMemory2, HashSet<Hex> workMemory3, Random random)
+    {
+        return AddOrganelleWithStrategy(OrganelleAddStrategy.Realistic, organelle, direction, cellType, workMemory1,
+            workMemory2, workMemory3, random);
+    }
+
     public static bool AddOrganelleWithStrategy(OrganelleAddStrategy strategy, OrganelleDefinition organelle,
         Direction direction, MicrobeSpecies newSpecies, List<Hex> workMemory1, List<Hex> workMemory2,
         HashSet<Hex> workMemory3, Random random)
@@ -161,6 +168,46 @@ public static class CommonMutationFunctions
         if (organelle == Nucleus)
         {
             newSpecies.IsBacteria = false;
+        }
+
+        return true;
+    }
+
+    public static bool AddOrganelleWithStrategy(OrganelleAddStrategy strategy, OrganelleDefinition organelle,
+        Direction direction, CellType cellType, List<Hex> workMemory1, List<Hex> workMemory2,
+        HashSet<Hex> workMemory3, Random random)
+    {
+        OrganelleTemplate? position;
+
+        switch (strategy)
+        {
+            case OrganelleAddStrategy.Realistic:
+                position = GetRealisticPosition(organelle, cellType.ModifiableOrganelles, direction, workMemory1,
+                    workMemory3, random);
+                break;
+            case OrganelleAddStrategy.Spiral:
+                position = GetSpiralPosition(organelle, cellType.ModifiableOrganelles, workMemory1, workMemory3);
+                break;
+            case OrganelleAddStrategy.Front:
+                position = GetFrontPosition(organelle, cellType.ModifiableOrganelles, workMemory1, workMemory3);
+                break;
+            case OrganelleAddStrategy.Back:
+                position = GetBackPosition(organelle, cellType.ModifiableOrganelles, workMemory1, workMemory3);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(strategy), strategy, null);
+        }
+
+        // We return early as not being able to add an organelle is not a critical failure
+        if (position == null)
+            return false;
+
+        cellType.ModifiableOrganelles.AddFast(position, workMemory1, workMemory2);
+
+        // This should not be possible in the current state, but I am leaving it for now just in case
+        if (organelle == Nucleus)
+        {
+            cellType.IsBacteria = false;
         }
 
         return true;
