@@ -29,7 +29,7 @@ public class ProliferateCells : IMutationStrategy<Species>
         var workMemory1 = new List<Hex>();
         var workMemory2 = new List<Hex>();
 
-        var baseCellTypes = baseMulticellularSpecies.ModifiableCellTypes;
+        var baseCellTypes = baseMulticellularSpecies.CellTypes;
         int baseCellTypesCount = baseCellTypes.Count;
 
         var baseCells = baseMulticellularSpecies.ModifiableEditorCells;

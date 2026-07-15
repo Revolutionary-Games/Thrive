@@ -245,8 +245,9 @@ public static class CommonMutationFunctions
     ///   Places cells of a given type adjacent in one direction to cells of a given type
     /// </summary>
     public static bool AddCellsAdjacent(MulticellularSpecies newSpecies, ref double mp,
-        IndividualHexLayout<CellTemplate> baseSpeciesCells, int baseCellsCount, CellType baseCellType,
-        CellType newCellType, int mpCost, AdjacencyDirection direction, List<Hex> workMemory1, List<Hex> workMemory2)
+        IndividualHexLayout<CellTemplate> baseSpeciesCells, int baseCellsCount,
+        IReadOnlyCellTypeDefinition baseCellType, CellType newCellType, int mpCost, AdjacencyDirection direction,
+        List<Hex> workMemory1, List<Hex> workMemory2)
     {
         var newCells = new IndividualHexLayout<CellTemplate>();
 
