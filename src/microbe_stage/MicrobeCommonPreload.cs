@@ -18,6 +18,6 @@ public partial class MicrobeCommonPreload : Node3D
     {
         var pos = GlobalPosition;
         guidance.LineStart = pos + Vector3.Left * 2;
-        guidance.LineEnd = pos + Vector3.Right * 2;
+        guidance.SetLineEnd(pos + Vector3.Right * 2, false);
     }
 }

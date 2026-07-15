@@ -435,7 +435,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
                 start.Y = 0;
 
                 guidanceLine.LineStart = start;
-                guidanceLine.LineEnd = guidancePosition.Value;
+                guidanceLine.SetLineEnd(guidancePosition.Value);
             }
             else
             {
@@ -2038,7 +2038,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             // The target needs to be updated for entities with a position.
             if (chemoreception.TargetEntity.IsAliveAndHas<WorldPosition>())
             {
-                chemoreception.Line.LineEnd = chemoreception.TargetEntity.Get<WorldPosition>().Position;
+                chemoreception.Line.SetLineEnd(chemoreception.TargetEntity.Get<WorldPosition>().Position);
             }
         }
     }
@@ -2054,15 +2054,16 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
             AddChild(line);
             chemoreceptionLines.Add((line, potentialTargetEntity));
+            chemoreceptionLines[index].Line.SetLineEnd(lineEnd, false);
         }
         else
         {
             chemoreceptionLines[index] = (chemoreceptionLines[index].Line, potentialTargetEntity);
+            chemoreceptionLines[index].Line.SetLineEnd(lineEnd);
         }
 
         chemoreceptionLines[index].Line.Colour = colour;
         chemoreceptionLines[index].Line.LineStart = lineStart;
-        chemoreceptionLines[index].Line.LineEnd = lineEnd;
         chemoreceptionLines[index].Line.Visible = visible;
     }
 
