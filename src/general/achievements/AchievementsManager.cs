@@ -93,6 +93,10 @@ public partial class AchievementsManager : Node
 
     public static bool HasUsedCheats => playerHasCheated;
 
+    public bool IsInvalidData => invalidData;
+
+    public bool IsLoaded => loaded;
+
     public static void ReportNewGameStarted(bool alreadyCheated)
     {
         if (playerInFreebuild)
@@ -722,12 +726,11 @@ public partial class AchievementsManager : Node
             {
                 GD.PrintErr("Error while loading achievements data: ", e);
 
-                // TODO: if players hit this too often we might just need to have a popup warning about this and
-                // asking if the player would like to reset their achievements data or quit the game
-                GD.PrintErr("QUITTING THE GAME AS ACHIEVEMENT DATA IS NOT GOOD!");
+                // The main menu will show a "confirm to quit" popup, so we don't quit here any more
+                GD.PrintErr("THE GAME AS ACHIEVEMENT DATA IS NOT GOOD!");
                 GD.Print("Achievements data can be reset by deleting: " +
                     ProjectSettings.GlobalizePath(Constants.ACHIEVEMENTS_PROGRESS_SAVE));
-                Invoke.Instance.Perform(() => SceneManager.Instance.QuitDueToError());
+                invalidData = true;
 
                 // Unblock the main thread if it is waiting for it
                 loaded = true;

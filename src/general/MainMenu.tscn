@@ -118,7 +118,7 @@ _data = {
 &"RESET": SubResource("Animation_qunue")
 }
 
-[node name="MainMenu" type="Control" unique_id=1952085578 node_paths=PackedStringArray("thriveLogo", "modManager", "galleryViewer", "newsFeed", "newsFeedDisabler", "patchNotes", "patchNotesDisabler", "feedPositioner", "creditsContainer", "credits", "licensesDisplay", "achievementsView", "freebuildButton", "multicellularFreebuildButton", "autoEvoExploringButton", "planetCustomizationButton", "microbeBenchmarkButton", "exitToLauncherButton", "storeLoggedInDisplay", "socialMediaContainer", "websiteButtonsContainer", "itchButton", "patreonButton", "openGlPopup", "modLoadFailures", "steamFailedPopup", "safeModeWarning", "modsInstalledButNotEnabledWarning", "lowPerformanceWarning", "thanksDialog", "menus")]
+[node name="MainMenu" type="Control" unique_id=1952085578 node_paths=PackedStringArray("thriveLogo", "modManager", "galleryViewer", "newsFeed", "newsFeedDisabler", "patchNotes", "patchNotesDisabler", "feedPositioner", "creditsContainer", "credits", "licensesDisplay", "achievementsView", "freebuildButton", "multicellularFreebuildButton", "autoEvoExploringButton", "planetCustomizationButton", "microbeBenchmarkButton", "exitToLauncherButton", "storeLoggedInDisplay", "socialMediaContainer", "websiteButtonsContainer", "itchButton", "patreonButton", "openGlPopup", "modLoadFailures", "steamFailedPopup", "achievementsFailedPopup", "safeModeWarning", "modsInstalledButNotEnabledWarning", "lowPerformanceWarning", "thanksDialog", "menus")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -155,6 +155,7 @@ patreonButton = NodePath("MenuContainers/SocialMedia/PatreonButton")
 openGlPopup = NodePath("OpenGLWarningPopup")
 modLoadFailures = NodePath("ModFailureDialog")
 steamFailedPopup = NodePath("SteamFailedDialog")
+achievementsFailedPopup = NodePath("AchievementsFailedDialog")
 safeModeWarning = NodePath("SafeModeWarningDialog")
 modsInstalledButNotEnabledWarning = NodePath("ModsInstalledButNothingEnabledWarning")
 lowPerformanceWarning = NodePath("LowPerformanceDialog")
@@ -971,6 +972,14 @@ DialogText = "LOW_MENU_PERFORMANCE_DESCRIPTION"
 WindowTitle = "LOW_MENU_PERFORMANCE"
 ShowCloseButton = false
 
+[node name="AchievementsFailedDialog" parent="." unique_id=314159265 instance=ExtResource("4")]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+DialogText = "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+WindowTitle = "ACHIEVEMENTS_LOAD_FAILED"
+
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/MainMenu/NewGame" to="." method="NewGamePressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/MainMenu/LoadGame" to="." method="LoadGamePressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/MainMenu/Options" to="." method="OptionsPressed"]
@@ -1029,3 +1038,4 @@ ShowCloseButton = false
 [connection signal="OnClosed" from="AchievementsView" to="." method="OnReturnFromAchievements"]
 [connection signal="OnClosed" from="ModManager" to="." method="OnReturnFromMods"]
 [connection signal="Confirmed" from="LowPerformanceDialog" to="." method="OnLowPerformanceDialogConfirmed"]
+[connection signal="Canceled" from="AchievementsFailedDialog" to="." method="QuitPressed"]
