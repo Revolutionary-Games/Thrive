@@ -1801,6 +1801,7 @@ public static class Constants
 
     public const string ACHIEVEMENTS_CONFIGURATION = "res://simulation_parameters/common/achievements.json";
     public const string ACHIEVEMENTS_PROGRESS_SAVE = "user://achievements.bin";
+    public const string ACHIEVEMENTS_PROGRESS_SAVE_TEMP = "user://achievements.bin.new";
 
     public const string TUTORIAL_DATA_FILE = "user://tutorials.json.gz";
 
