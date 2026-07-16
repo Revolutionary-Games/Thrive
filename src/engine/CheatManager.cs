@@ -255,7 +255,6 @@ public static class CheatManager
     public static void NotifySimulationFactor()
     {
         OnNotifySimulationFactor?.Invoke(null, EventArgs.Empty);
-        AchievementsManager.ReportCheatsUsed();
     }
 
     public static void DisableAllCheats()
@@ -273,7 +272,7 @@ public static class CheatManager
         InfiniteMP = false;
         MoveToAnyPatch = false;
 
-        simulationFactor = 1.0f;
+        SimulationFactor = 1.0f;
     }
 
     public static void HideCheatMenus()

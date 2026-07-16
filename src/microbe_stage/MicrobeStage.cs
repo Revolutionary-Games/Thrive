@@ -1283,6 +1283,9 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         // Reset any cheat state if there was some active
         CurrentGame!.GameWorld.WorldSettings.Difficulty.ClearGrowthRateLimitOverride();
+
+        // This assumes that the WorldTimeScale comes from the speedup button
+        HUD.ApplySpeedMode(WorldSimulation.WorldTimeScale > 1.0f);
     }
 
     protected override void OnGameStarted()
@@ -1820,8 +1823,6 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         }
         else
         {
-            WorldSimulation.WorldTimeScale = 1.0f;
-
             HUD.UpdateSpeedMode();
         }
     }
