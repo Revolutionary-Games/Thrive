@@ -379,15 +379,15 @@ public static class MulticellularGrowthHelpers
         multicellularGrowth.TotalNeededForMulticellularGrowth.Merge(species.BaseReproductionCost);
     }
 
-    public static void GerminateSpore(this ref MulticellularGrowth multicellularGrowth,
+    public static bool GerminateSpore(this ref MulticellularGrowth multicellularGrowth,
         in Entity entity, IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment microbeSpawnEnvironment,
         List<Hex> workMemory1, List<Hex> workMemory2)
     {
         if (!entity.Has<MulticellularSpeciesMember>())
-            return;
+            return false;
 
         if (!multicellularGrowth.IsASpore)
-            return;
+            return false;
 
         ref var control = ref entity.Get<MicrobeControl>();
 
@@ -415,6 +415,8 @@ public static class MulticellularGrowthHelpers
         cellProperties.ReApplyCellTypeProperties(ref environmentalEffects, entity,
             multicellularSpeciesType.MulticellularCellType, multicellularSpeciesType.Species, totalSpecializationBonus,
             worldSimulation, workMemory1, workMemory2);
+
+        return true;
     }
 
     public static void SpawnInitialMassBuddingCells(this ref MulticellularGrowth multicellularGrowth, in Entity entity,
