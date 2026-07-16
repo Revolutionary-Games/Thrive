@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-03 20:10+0100\n"
+"POT-Creation-Date: 2026-07-16 10:28+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -58,9 +58,17 @@ msgstr ""
 msgid "ACCEPT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:460 ../src/general/PauseMenu.tscn:236
+#: ../src/general/MainMenu.tscn:461 ../src/general/PauseMenu.tscn:236
 #: ../src/gui_common/menus/AchievementsView.tscn:29
 msgid "ACHIEVEMENTS"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:981
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr ""
+
+#: ../src/general/MainMenu.cs:304 ../src/general/MainMenu.tscn:980
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
 msgstr ""
 
 #: ../src/gui_common/menus/AchievementsView.cs:40
@@ -282,7 +290,7 @@ msgstr ""
 msgid "APPLY_CHANGES"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:561
+#: ../src/gui_common/CreditsScroll.cs:562
 msgid "APRIL"
 msgstr ""
 
@@ -306,7 +314,7 @@ msgstr ""
 msgid "ART_BY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:474
+#: ../src/general/MainMenu.tscn:475
 msgid "ART_GALLERY"
 msgstr ""
 
@@ -409,7 +417,7 @@ msgstr ""
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:569
+#: ../src/gui_common/CreditsScroll.cs:570
 msgid "AUGUST"
 msgstr ""
 
@@ -463,7 +471,7 @@ msgstr ""
 msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:404
+#: ../src/general/MainMenu.tscn:405
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr ""
 
@@ -480,11 +488,11 @@ msgstr ""
 msgid "AUTO_EVO_RESULTS"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1249
+#: ../src/auto-evo/RunResults.cs:1273
 msgid "AUTO_EVO_RESULTS_GLOBAL_TITLE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1190
+#: ../src/auto-evo/RunResults.cs:1214
 msgid "AUTO_EVO_RESULTS_PATCH_TITLE"
 msgstr ""
 
@@ -553,8 +561,8 @@ msgid "AWARE_STAGE"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:686
-#: ../src/general/MainMenu.tscn:432 ../src/general/MainMenu.tscn:498
-#: ../src/general/MainMenu.tscn:546 ../src/general/MainMenu.tscn:888
+#: ../src/general/MainMenu.tscn:433 ../src/general/MainMenu.tscn:499
+#: ../src/general/MainMenu.tscn:547 ../src/general/MainMenu.tscn:889
 #: ../src/general/NewGameSettings.tscn:1073 ../src/general/PauseMenu.tscn:289
 #: ../src/gui_common/menus/AchievementsView.tscn:53
 #: ../src/gui_common/menus/OptionsMenu.tscn:3333
@@ -671,7 +679,7 @@ msgstr ""
 msgid "BELOW_SEA_LEVEL"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:422
+#: ../src/general/MainMenu.tscn:423
 msgid "BENCHMARKS"
 msgstr ""
 
@@ -715,7 +723,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:5759
 #: ../simulation_parameters/microbe_stage/biomes.json:6035
 #: ../simulation_parameters/microbe_stage/biomes.json:6242
-#: ../src/auto-evo/AutoEvoGlobalCache.cs:72
+#: ../src/auto-evo/AutoEvoGlobalCache.cs:73
 msgid "BIG_IRON_CHUNK"
 msgstr ""
 
@@ -780,7 +788,7 @@ msgstr ""
 msgid "BLOOM_RENDER_EFFECT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:826
+#: ../src/general/MainMenu.tscn:827
 msgid "BLUESKY_TOOLTIP"
 msgstr ""
 
@@ -1155,8 +1163,8 @@ msgstr ""
 msgid "CHUNK_CELL_CORPSE_PART"
 msgstr ""
 
-#: ../src/auto-evo/selection_pressure/ChunkCompoundPressure.cs:131
-#: ../src/auto-evo/selection_pressure/ChunkCompoundPressure.cs:161
+#: ../src/auto-evo/selection_pressure/ChunkCompoundPressure.cs:189
+#: ../src/auto-evo/selection_pressure/ChunkCompoundPressure.cs:219
 msgid "CHUNK_FOOD_SOURCE"
 msgstr ""
 
@@ -1341,19 +1349,19 @@ msgstr ""
 msgid "COMMON_EDITING_AND_STRATEGY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:607
+#: ../src/general/MainMenu.tscn:608
 msgid "COMMUNITY_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:602
+#: ../src/general/MainMenu.tscn:603
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:634
+#: ../src/general/MainMenu.tscn:635
 msgid "COMMUNITY_WIKI"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:629
+#: ../src/general/MainMenu.tscn:630
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -1416,7 +1424,7 @@ msgstr ""
 msgid "COMPOUND_CLOUDS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:528
+#: ../src/general/MainMenu.tscn:529
 msgid "COMPOUND_CLOUD_BENCHMARK"
 msgstr ""
 
@@ -1433,7 +1441,7 @@ msgstr ""
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
 msgstr ""
 
-#: ../src/auto-evo/selection_pressure/CompoundCloudPressure.cs:114
+#: ../src/auto-evo/selection_pressure/CompoundCloudPressure.cs:177
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr ""
 
@@ -1503,7 +1511,7 @@ msgstr ""
 msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr ""
 
-#: ../src/auto-evo/selection_pressure/ReproductionCompoundPressure.cs:178
+#: ../src/auto-evo/selection_pressure/ReproductionCompoundPressure.cs:203
 msgid "COMPOUND_REPRODUCTION_SOURCE"
 msgstr ""
 
@@ -1978,7 +1986,7 @@ msgstr ""
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:350
+#: ../src/general/MainMenu.tscn:351
 msgid "CREDITS"
 msgstr ""
 
@@ -1996,7 +2004,7 @@ msgstr ""
 msgid "CURRENT_CACHE_SIZE_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:292
+#: ../src/gui_common/CreditsScroll.cs:293
 msgid "CURRENT_DEVELOPERS"
 msgstr ""
 
@@ -2129,7 +2137,7 @@ msgstr ""
 msgid "DEBUG_PANEL"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:577
+#: ../src/gui_common/CreditsScroll.cs:578
 msgid "DECEMBER"
 msgstr ""
 
@@ -2223,11 +2231,11 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:616
+#: ../src/general/MainMenu.tscn:617
 msgid "DEVELOPMENT_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:611
+#: ../src/general/MainMenu.tscn:612
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -2235,11 +2243,11 @@ msgstr ""
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:625
+#: ../src/general/MainMenu.tscn:626
 msgid "DEVELOPMENT_WIKI"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:620
+#: ../src/general/MainMenu.tscn:621
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -2247,7 +2255,7 @@ msgstr ""
 msgid "DEVOURED"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:551
+#: ../src/gui_common/CreditsScroll.cs:552
 msgid "DEV_BUILD_PATRONS"
 msgstr ""
 
@@ -2355,7 +2363,7 @@ msgstr ""
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:769
+#: ../src/general/MainMenu.tscn:770
 msgid "DISCORD_TOOLTIP"
 msgstr ""
 
@@ -2427,7 +2435,7 @@ msgstr ""
 msgid "DISPLAY_SELECTION"
 msgstr ""
 
-#: ../src/auto-evo/selection_pressure/EnvironmentalCompoundPressure.cs:97
+#: ../src/auto-evo/selection_pressure/EnvironmentalCompoundPressure.cs:108
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr ""
 
@@ -2435,7 +2443,7 @@ msgstr ""
 msgid "DOES_NOT_USE_FEATURE"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:365
+#: ../src/gui_common/CreditsScroll.cs:366
 msgid "DONATIONS"
 msgstr ""
 
@@ -2718,7 +2726,7 @@ msgstr ""
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr ""
 
-#: ../src/auto-evo/selection_pressure/EnergyConsumptionPressure.cs:11
+#: ../src/auto-evo/selection_pressure/EnergyConsumptionPressure.cs:12
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr ""
 
@@ -2841,7 +2849,7 @@ msgstr ""
 msgid "ESCAPE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:2194
+#: ../src/microbe_stage/MicrobeStage.cs:2195
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -2931,7 +2939,7 @@ msgstr ""
 msgid "EXIT_EDITOR"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:357
+#: ../src/general/MainMenu.tscn:358
 msgid "EXIT_TO_LAUNCHER"
 msgstr ""
 
@@ -2994,7 +3002,7 @@ msgstr ""
 msgid "EXTINCT_SPECIES"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:344
+#: ../src/general/MainMenu.tscn:345
 msgid "EXTRAS"
 msgstr ""
 
@@ -3002,7 +3010,7 @@ msgstr ""
 msgid "EXTRA_OPTIONS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:782
+#: ../src/general/MainMenu.tscn:783
 msgid "FACEBOOK_TOOLTIP"
 msgstr ""
 
@@ -3038,7 +3046,7 @@ msgstr ""
 msgid "FEATURE_ENABLED"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:557
+#: ../src/gui_common/CreditsScroll.cs:558
 msgid "FEBRUARY"
 msgstr ""
 
@@ -3310,7 +3318,7 @@ msgstr ""
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:541
+#: ../src/gui_common/CreditsScroll.cs:542
 msgid "GAME_DESIGN_TEAM"
 msgstr ""
 
@@ -3432,7 +3440,7 @@ msgstr ""
 msgid "GERMINATE_SPORE_ACTION_TOOLTIP"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:725
+#: ../src/general/MainMenu.tscn:726
 msgid "GITHUB_TOOLTIP"
 msgstr ""
 
@@ -3472,7 +3480,7 @@ msgstr ""
 msgid "GLOBAL_POPULATION_COLON"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1421
+#: ../src/auto-evo/RunResults.cs:1445
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
 
@@ -3528,7 +3536,7 @@ msgstr ""
 msgid "GOT_IT"
 msgstr ""
 
-#: ../src/gui_common/dialogs/LicensesDisplay.cs:76
+#: ../src/gui_common/dialogs/LicensesDisplay.cs:62
 msgid "GPL_LICENSE_HEADING"
 msgstr ""
 
@@ -3544,7 +3552,7 @@ msgstr ""
 msgid "GRAPHICS_PRESET"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:535
+#: ../src/gui_common/CreditsScroll.cs:536
 msgid "GRAPHICS_TEAM"
 msgstr ""
 
@@ -4197,7 +4205,7 @@ msgstr ""
 msgid "INSPECTOR"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:804
+#: ../src/general/MainMenu.tscn:805
 msgid "INSTAGRAM_TOOLTIP"
 msgstr ""
 
@@ -4350,7 +4358,7 @@ msgstr ""
 msgid "IRON_OXIDATION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:703
+#: ../src/general/MainMenu.tscn:704
 msgid "ITCH_TOOLTIP"
 msgstr ""
 
@@ -4363,15 +4371,15 @@ msgstr ""
 msgid "ITEM_NAME_SEPARATOR"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:555
+#: ../src/gui_common/CreditsScroll.cs:556
 msgid "JANUARY"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:567
+#: ../src/gui_common/CreditsScroll.cs:568
 msgid "JULY"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:565
+#: ../src/gui_common/CreditsScroll.cs:566
 msgid "JUNE"
 msgstr ""
 
@@ -4604,7 +4612,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:4442
 #: ../simulation_parameters/microbe_stage/biomes.json:6113
 #: ../simulation_parameters/microbe_stage/biomes.json:6320
-#: ../src/auto-evo/AutoEvoGlobalCache.cs:84
+#: ../src/auto-evo/AutoEvoGlobalCache.cs:87
 msgid "LARGE_SULFUR_CHUNK"
 msgstr ""
 
@@ -4694,63 +4702,63 @@ msgstr ""
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:254
+#: ../src/gui_common/CreditsScroll.cs:255
 msgid "LEAD_ARTIST"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:255
+#: ../src/gui_common/CreditsScroll.cs:256
 msgid "LEAD_ARTISTS"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:236
+#: ../src/gui_common/CreditsScroll.cs:237
 msgid "LEAD_DEVELOPERS"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:272
+#: ../src/gui_common/CreditsScroll.cs:273
 msgid "LEAD_GAME_DESIGNER"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:273
+#: ../src/gui_common/CreditsScroll.cs:274
 msgid "LEAD_GAME_DESIGNERS"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:267
+#: ../src/gui_common/CreditsScroll.cs:268
 msgid "LEAD_OUTREACH_PEOPLE"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:266
+#: ../src/gui_common/CreditsScroll.cs:267
 msgid "LEAD_OUTREACH_PERSON"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:242
+#: ../src/gui_common/CreditsScroll.cs:243
 msgid "LEAD_PROGRAMMER"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:243
+#: ../src/gui_common/CreditsScroll.cs:244
 msgid "LEAD_PROGRAMMERS"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:284
+#: ../src/gui_common/CreditsScroll.cs:285
 msgid "LEAD_PROJECT_MANAGER"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:285
+#: ../src/gui_common/CreditsScroll.cs:286
 msgid "LEAD_PROJECT_MANAGERS"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:278
+#: ../src/gui_common/CreditsScroll.cs:279
 msgid "LEAD_TESTER"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:279
+#: ../src/gui_common/CreditsScroll.cs:280
 msgid "LEAD_TESTERS"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:248
+#: ../src/gui_common/CreditsScroll.cs:249
 msgid "LEAD_THEORIST"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:249
+#: ../src/gui_common/CreditsScroll.cs:250
 msgid "LEAD_THEORISTS"
 msgstr ""
 
@@ -4762,7 +4770,7 @@ msgstr ""
 msgid "LEFT_MOUSE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:481
+#: ../src/general/MainMenu.tscn:482
 msgid "LICENSES"
 msgstr ""
 
@@ -4875,7 +4883,7 @@ msgstr ""
 msgid "LINE_COLOUR"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:558
+#: ../src/general/MainMenu.tscn:559
 msgid "LINKS_TITLE"
 msgstr ""
 
@@ -4943,12 +4951,12 @@ msgstr ""
 msgid "LOAD_FINISHED"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:319 ../src/general/PauseMenu.tscn:225
+#: ../src/general/MainMenu.tscn:320 ../src/general/PauseMenu.tscn:225
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:137
 msgid "LOAD_GAME"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:317 ../src/general/PauseMenu.tscn:224
+#: ../src/general/MainMenu.tscn:318 ../src/general/PauseMenu.tscn:224
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -5004,11 +5012,11 @@ msgstr ""
 msgid "LOWER_VALUE_MAKES_SHARPER_IMAGE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:971
+#: ../src/general/MainMenu.tscn:972
 msgid "LOW_MENU_PERFORMANCE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:970
+#: ../src/general/MainMenu.tscn:971
 msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
 msgstr ""
 
@@ -5082,7 +5090,7 @@ msgstr ""
 msgid "MAP"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:559
+#: ../src/gui_common/CreditsScroll.cs:560
 msgid "MARCH"
 msgstr ""
 
@@ -5106,7 +5114,7 @@ msgstr ""
 msgid "MASTER_VOLUME"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:815
+#: ../src/general/MainMenu.tscn:816
 msgid "MASTODON_TOOLTIP"
 msgstr ""
 
@@ -5137,7 +5145,7 @@ msgstr ""
 msgid "MAX_VISIBLE_DATASET_WARNING"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:563
+#: ../src/gui_common/CreditsScroll.cs:564
 msgid "MAY"
 msgstr ""
 
@@ -5171,7 +5179,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:4419
 #: ../simulation_parameters/microbe_stage/biomes.json:6090
 #: ../simulation_parameters/microbe_stage/biomes.json:6297
-#: ../src/auto-evo/AutoEvoGlobalCache.cs:82
+#: ../src/auto-evo/AutoEvoGlobalCache.cs:84
 msgid "MEDIUM_SULFUR_CHUNK"
 msgstr ""
 
@@ -5225,7 +5233,7 @@ msgstr ""
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:747
+#: ../src/general/MainMenu.tscn:748
 msgid "META_THREADS_TOOLTIP"
 msgstr ""
 
@@ -5344,7 +5352,7 @@ msgid "MICROBES_COUNT"
 msgstr ""
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:41
-#: ../src/general/MainMenu.tscn:519
+#: ../src/general/MainMenu.tscn:520
 msgid "MICROBE_BENCHMARK"
 msgstr ""
 
@@ -5366,7 +5374,7 @@ msgstr ""
 msgid "MICROBE_ENZYME_STATISTICS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:388
+#: ../src/general/MainMenu.tscn:389
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr ""
 
@@ -5683,7 +5691,7 @@ msgstr ""
 msgid "MODIFY_TYPE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:467
+#: ../src/general/MainMenu.tscn:468
 msgid "MODS"
 msgstr ""
 
@@ -5692,7 +5700,7 @@ msgstr ""
 msgid "MODS_ARE_ENABLED"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:923
+#: ../src/general/MainMenu.tscn:924
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -5778,11 +5786,11 @@ msgstr ""
 msgid "MOD_LICENSE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:941
+#: ../src/general/MainMenu.tscn:942
 msgid "MOD_LOAD_ERRORS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:939
+#: ../src/general/MainMenu.tscn:940
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr ""
 
@@ -5979,7 +5987,7 @@ msgstr ""
 msgid "MULTICELLULAR_EDITOR"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:395
+#: ../src/general/MainMenu.tscn:396
 msgid "MULTICELLULAR_FREEBUILD_EDITOR"
 msgstr ""
 
@@ -6015,7 +6023,7 @@ msgstr ""
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr ""
 
-#: ../src/multicellular_stage/MulticellularSpecies.cs:636
+#: ../src/multicellular_stage/MulticellularSpecies.cs:638
 msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
 msgstr ""
 
@@ -6135,11 +6143,11 @@ msgstr ""
 msgid "NEWS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:312
+#: ../src/general/MainMenu.tscn:313
 msgid "NEW_GAME"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:307
+#: ../src/general/MainMenu.tscn:308
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -6364,7 +6372,7 @@ msgstr ""
 msgid "NOT_STARTED_DOT"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:575
+#: ../src/gui_common/CreditsScroll.cs:576
 msgid "NOVEMBER"
 msgstr ""
 
@@ -6389,7 +6397,7 @@ msgstr ""
 msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:924
+#: ../src/general/MainMenu.tscn:925
 msgid "NO_MODS_ENABLED"
 msgstr ""
 
@@ -6462,7 +6470,7 @@ msgstr ""
 msgid "N_TIMES"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:573
+#: ../src/gui_common/CreditsScroll.cs:574
 msgid "OCTOBER"
 msgstr ""
 
@@ -6470,11 +6478,11 @@ msgstr ""
 msgid "OFF"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:598
+#: ../src/general/MainMenu.tscn:599
 msgid "OFFICIAL_WEBSITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:589
+#: ../src/general/MainMenu.tscn:590
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -6493,11 +6501,11 @@ msgstr ""
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:913
+#: ../src/general/MainMenu.tscn:914
 msgid "OPENGL_MODE_WARNING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:912
+#: ../src/general/MainMenu.tscn:913
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr ""
 
@@ -6582,11 +6590,11 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:326 ../src/general/PauseMenu.tscn:253
+#: ../src/general/MainMenu.tscn:327 ../src/general/PauseMenu.tscn:253
 msgid "OPTIONS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:324 ../src/general/PauseMenu.tscn:252
+#: ../src/general/MainMenu.tscn:325 ../src/general/PauseMenu.tscn:252
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -6710,11 +6718,11 @@ msgstr ""
 msgid "OUTDATED_NOTICE"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:539
+#: ../src/gui_common/CreditsScroll.cs:540
 msgid "OUTREACH_TEAM"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:324
+#: ../src/gui_common/CreditsScroll.cs:325
 msgid "OUTSIDE_CONTRIBUTORS"
 msgstr ""
 
@@ -6809,7 +6817,7 @@ msgstr ""
 msgid "PAN_CAMERA_UP"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:308
+#: ../src/gui_common/CreditsScroll.cs:309
 msgid "PAST_DEVELOPERS"
 msgstr ""
 
@@ -6872,11 +6880,11 @@ msgstr ""
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:714
+#: ../src/general/MainMenu.tscn:715
 msgid "PATREON_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:342
+#: ../src/gui_common/CreditsScroll.cs:343
 msgid "PATRONS"
 msgstr ""
 
@@ -7026,7 +7034,7 @@ msgstr ""
 msgid "PLANET"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:413
+#: ../src/general/MainMenu.tscn:414
 msgid "PLANET_CUSTOMIZER"
 msgstr ""
 
@@ -7116,11 +7124,11 @@ msgstr ""
 msgid "POPULATION_CAPITAL"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:912
+#: ../src/auto-evo/RunResults.cs:936
 msgid "POPULATION_COLON"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1044
+#: ../src/auto-evo/RunResults.cs:1068
 msgid "POPULATION_IN_PATCHES"
 msgstr ""
 
@@ -7132,7 +7140,7 @@ msgstr ""
 msgid "POSITION_NUMBER"
 msgstr ""
 
-#: ../src/auto-evo/selection_pressure/PredationEffectivenessPressure.cs:117
+#: ../src/auto-evo/selection_pressure/PredationEffectivenessPressure.cs:124
 msgid "PREDATION_FOOD_SOURCE"
 msgstr ""
 
@@ -7195,7 +7203,7 @@ msgstr ""
 msgid "PREVIEW_IMAGE_IS_TOO_LARGE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:925
+#: ../src/auto-evo/RunResults.cs:949
 msgid "PREVIOUS_COLON"
 msgstr ""
 
@@ -7230,11 +7238,11 @@ msgstr ""
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:531
+#: ../src/gui_common/CreditsScroll.cs:532
 msgid "PROGRAMMING_TEAM"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:545
+#: ../src/gui_common/CreditsScroll.cs:546
 msgid "PROJECT_MANAGEMENT_TEAM"
 msgstr ""
 
@@ -7242,7 +7250,7 @@ msgstr ""
 msgid "PROTEINS"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:547
+#: ../src/gui_common/CreditsScroll.cs:548
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr ""
 
@@ -7258,11 +7266,11 @@ msgstr ""
 msgid "QUICK_SAVE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:367
+#: ../src/general/MainMenu.tscn:368
 msgid "QUIT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:355 ../src/general/MainMenu.tscn:362
+#: ../src/general/MainMenu.tscn:356 ../src/general/MainMenu.tscn:363
 #: ../src/general/PauseMenu.tscn:264
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr ""
@@ -7284,7 +7292,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:451
 #: ../simulation_parameters/microbe_stage/biomes.json:3292
 #: ../simulation_parameters/microbe_stage/biomes.json:6182
-#: ../src/auto-evo/AutoEvoGlobalCache.cs:93
+#: ../src/auto-evo/AutoEvoGlobalCache.cs:97
 msgid "RADIOACTIVE_CHUNK"
 msgstr ""
 
@@ -7340,7 +7348,7 @@ msgstr ""
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:758
+#: ../src/general/MainMenu.tscn:759
 msgid "REDDIT_TOOLTIP"
 msgstr ""
 
@@ -7373,7 +7381,7 @@ msgstr ""
 msgid "REPORT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:642 ../src/general/PauseMenu.tscn:247
+#: ../src/general/MainMenu.tscn:643 ../src/general/PauseMenu.tscn:247
 msgid "REPORT_BUG"
 msgstr ""
 
@@ -7575,7 +7583,7 @@ msgstr ""
 msgid "REVERT_TO_EDITOR_PROMPT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:680
+#: ../src/general/MainMenu.tscn:681
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr ""
 
@@ -7629,27 +7637,27 @@ msgstr ""
 msgid "RUN_ONE_STEP"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1025
+#: ../src/auto-evo/RunResults.cs:1049
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1545
+#: ../src/auto-evo/RunResults.cs:1569
 msgid "RUN_RESULT_GENE_CODE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:956
+#: ../src/auto-evo/RunResults.cs:980
 msgid "RUN_RESULT_NICHE_FILL"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:959
+#: ../src/auto-evo/RunResults.cs:983
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:943
+#: ../src/auto-evo/RunResults.cs:967
 msgid "RUN_RESULT_SPLIT_FROM"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:976
+#: ../src/auto-evo/RunResults.cs:1000
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr ""
 
@@ -7677,11 +7685,11 @@ msgstr ""
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:933
+#: ../src/general/MainMenu.tscn:934
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:934
+#: ../src/general/MainMenu.tscn:935
 msgid "SAFE_MODE_TITLE"
 msgstr ""
 
@@ -7943,7 +7951,7 @@ msgstr ""
 msgid "SELECT_VACUOLE_COMPOUND_COLON"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:571
+#: ../src/gui_common/CreditsScroll.cs:572
 msgid "SEPTEMBER"
 msgstr ""
 
@@ -8123,7 +8131,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:5723
 #: ../simulation_parameters/microbe_stage/biomes.json:5999
 #: ../simulation_parameters/microbe_stage/biomes.json:6206
-#: ../src/auto-evo/AutoEvoGlobalCache.cs:70
+#: ../src/auto-evo/AutoEvoGlobalCache.cs:71
 msgid "SMALL_IRON_CHUNK"
 msgstr ""
 
@@ -8153,7 +8161,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:4388
 #: ../simulation_parameters/microbe_stage/biomes.json:6063
 #: ../simulation_parameters/microbe_stage/biomes.json:6270
-#: ../src/auto-evo/AutoEvoGlobalCache.cs:80
+#: ../src/auto-evo/AutoEvoGlobalCache.cs:81
 msgid "SMALL_SULFUR_CHUNK"
 msgstr ""
 
@@ -8173,15 +8181,15 @@ msgstr ""
 msgid "SOUND"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:537
+#: ../src/gui_common/CreditsScroll.cs:538
 msgid "SOUND_TEAM"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:260
+#: ../src/gui_common/CreditsScroll.cs:261
 msgid "SOUND_TEAM_LEAD"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:261
+#: ../src/gui_common/CreditsScroll.cs:262
 msgid "SOUND_TEAM_LEADS"
 msgstr ""
 
@@ -8253,7 +8261,7 @@ msgstr ""
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1000
+#: ../src/auto-evo/RunResults.cs:1024
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr ""
 
@@ -8320,7 +8328,7 @@ msgstr ""
 msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1017
+#: ../src/auto-evo/RunResults.cs:1041
 msgid "SPREAD_TO_PATCHES"
 msgstr ""
 
@@ -8440,15 +8448,15 @@ msgstr ""
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:962
+#: ../src/general/MainMenu.tscn:963
 msgid "STEAM_INIT_FAILED"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:961
+#: ../src/general/MainMenu.tscn:962
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:692
+#: ../src/general/MainMenu.tscn:693
 msgid "STEAM_TOOLTIP"
 msgstr ""
 
@@ -8474,7 +8482,7 @@ msgstr ""
 msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
 msgstr ""
 
-#: ../src/general/MainMenu.cs:586
+#: ../src/general/MainMenu.cs:602
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
 
@@ -8552,11 +8560,11 @@ msgstr ""
 msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:2192
+#: ../src/microbe_stage/MicrobeStage.cs:2193
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:2193
+#: ../src/microbe_stage/MicrobeStage.cs:2194
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
@@ -8576,7 +8584,7 @@ msgstr ""
 msgid "SUNLIGHT"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:553
+#: ../src/gui_common/CreditsScroll.cs:554
 msgid "SUPPORTER_PATRONS"
 msgstr ""
 
@@ -8724,23 +8732,23 @@ msgstr ""
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:543
+#: ../src/gui_common/CreditsScroll.cs:544
 msgid "TESTING_TEAM"
 msgstr ""
 
-#: ../src/general/MainMenu.cs:267 ../src/general/MainMenu.tscn:952
+#: ../src/general/MainMenu.cs:272 ../src/general/MainMenu.tscn:953
 msgid "THANKS_FOR_BUYING_THRIVE_2"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:521
+#: ../src/gui_common/CreditsScroll.cs:522
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:953
+#: ../src/general/MainMenu.tscn:954
 msgid "THANK_YOU_TITLE"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:533
+#: ../src/gui_common/CreditsScroll.cs:534
 msgid "THEORY_TEAM"
 msgstr ""
 
@@ -8803,7 +8811,7 @@ msgstr ""
 msgid "THREADS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:453 ../src/general/PauseMenu.tscn:231
+#: ../src/general/MainMenu.tscn:454 ../src/general/PauseMenu.tscn:231
 msgid "THRIVEOPEDIA"
 msgstr ""
 
@@ -8910,7 +8918,7 @@ msgstr ""
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1446
+#: ../src/auto-evo/RunResults.cs:1470
 msgid "TIMELINE_NICHE_FILL"
 msgstr ""
 
@@ -8922,7 +8930,7 @@ msgstr ""
 msgid "TIMELINE_PLAYER_MIGRATED_TO"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1452
+#: ../src/auto-evo/RunResults.cs:1476
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 
@@ -8931,11 +8939,11 @@ msgstr ""
 msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1367
+#: ../src/auto-evo/RunResults.cs:1391
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1390
+#: ../src/auto-evo/RunResults.cs:1414
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr ""
 
@@ -8943,19 +8951,19 @@ msgstr ""
 msgid "TIMELINE_SPECIES_FOLLOWED"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1416
+#: ../src/auto-evo/RunResults.cs:1440
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1427
+#: ../src/auto-evo/RunResults.cs:1451
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1383 ../src/auto-evo/RunResults.cs:1404
+#: ../src/auto-evo/RunResults.cs:1407 ../src/auto-evo/RunResults.cs:1428
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1377 ../src/auto-evo/RunResults.cs:1398
+#: ../src/auto-evo/RunResults.cs:1401 ../src/auto-evo/RunResults.cs:1422
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr ""
 
@@ -9070,7 +9078,7 @@ msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeSpecies.cs:464
-#: ../src/multicellular_stage/MulticellularSpecies.cs:639
+#: ../src/multicellular_stage/MulticellularSpecies.cs:641
 msgid "TOLERANCE_DETAIL_TEXT"
 msgstr ""
 
@@ -9086,7 +9094,7 @@ msgstr ""
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:332
+#: ../src/general/MainMenu.tscn:333
 msgid "TOOLS"
 msgstr ""
 
@@ -9216,7 +9224,7 @@ msgstr ""
 msgid "TOXISOME_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:388
+#: ../src/gui_common/CreditsScroll.cs:389
 msgid "TRANSLATORS"
 msgstr ""
 
@@ -9680,7 +9688,7 @@ msgstr ""
 msgid "UPWELLING_EVENT"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:402
+#: ../src/gui_common/CreditsScroll.cs:403
 msgid "USED_LIBRARIES_LICENSES"
 msgstr ""
 
@@ -9845,7 +9853,7 @@ msgstr ""
 msgid "VIEW_PENDING_ACTIONS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:338
+#: ../src/general/MainMenu.tscn:339
 msgid "VIEW_SOURCE_CODE"
 msgstr ""
 
@@ -9853,7 +9861,7 @@ msgstr ""
 msgid "VIEW_TEXT_REPORT"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:549
+#: ../src/gui_common/CreditsScroll.cs:550
 msgid "VIP_PATRONS"
 msgstr ""
 
@@ -9869,7 +9877,7 @@ msgstr ""
 msgid "VISIBLE_WHEN_OVER_ZERO"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:488 ../src/general/MainMenu.tscn:655
+#: ../src/general/MainMenu.tscn:489 ../src/general/MainMenu.tscn:656
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
@@ -9903,11 +9911,11 @@ msgstr ""
 msgid "WELCOME_TO_THRIVEOPEDIA"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1123
+#: ../src/auto-evo/RunResults.cs:1147
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:921
+#: ../src/auto-evo/RunResults.cs:945
 msgid "WENT_EXTINCT_IN"
 msgstr ""
 
@@ -12230,7 +12238,7 @@ msgstr ""
 msgid "XBOX_SERIES"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:793
+#: ../src/general/MainMenu.tscn:794
 msgid "X_TWITTER_TOOLTIP"
 msgstr ""
 
@@ -12246,15 +12254,15 @@ msgstr ""
 msgid "YET_TO_BE_IMPLEMENTED_NOTICE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:736
+#: ../src/general/MainMenu.tscn:737
 msgid "YOUTUBE_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:327
+#: ../src/gui_common/CreditsScroll.cs:328
 msgid "YOU_CAN_MAKE_PULL_REQUEST"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:348
+#: ../src/gui_common/CreditsScroll.cs:349
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr ""
 
