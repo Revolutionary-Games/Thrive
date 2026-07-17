@@ -11,7 +11,7 @@ using Xoshiro.PRNG64;
 /// </summary>
 public class GameProperties : IArchivable
 {
-    public const int SERIALIZATION_VERSION = 2;
+    public const int SERIALIZATION_VERSION = 3;
 
     private readonly Dictionary<string, bool> setBoolStatuses;
 
@@ -46,6 +46,11 @@ public class GameProperties : IArchivable
     ///   True if the player has cheated in this game
     /// </summary>
     public bool CheatsUsed { get; private set; }
+
+    /// <summary>
+    ///   Holds the state of all cheats used in this game
+    /// </summary>
+    public CheatManagerState SavedCheats { get; set; } = new();
 
     /// <summary>
     ///   True when the player is currently ascended and should be allowed to do anything
@@ -324,6 +329,12 @@ public class GameProperties : IArchivable
         if (version > 1)
             instance.ThriveopediaData = reader.ReadObject<ThriveopediaGameData>();
 
+        if (version > 2)
+        {
+            instance.SavedCheats = reader.ReadObject<CheatManagerState>();
+            CheatManager.RestoreState(instance.SavedCheats);
+        }
+
         return instance;
     }
 
@@ -345,6 +356,9 @@ public class GameProperties : IArchivable
         // writer.WriteObject(TechWeb);
 
         writer.WriteObject(ThriveopediaData);
+
+        SavedCheats = CheatManager.CaptureState();
+        writer.WriteObject(SavedCheats);
     }
 
     /// <summary>

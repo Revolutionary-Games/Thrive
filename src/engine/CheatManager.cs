@@ -259,4 +259,30 @@ public static class CheatManager
         DisableAllCheats();
         HideCheatMenus();
     }
+
+    /// <summary>
+    ///   Captures the current state of all cheats for saving
+    /// </summary>
+    public static CheatManagerState CaptureState()
+    {
+        return new CheatManagerState(InfiniteCompounds, GodMode, NoAI, UnlimitedGrowthSpeed,
+            LockTime, ManuallySetTime, Speed, InfiniteMP, MoveToAnyPatch, DayNightFraction);
+    }
+
+    /// <summary>
+    ///   Restores cheat state from saved data
+    /// </summary>
+    public static void RestoreState(CheatManagerState state)
+    {
+        InfiniteCompounds = state.InfiniteCompounds;
+        GodMode = state.GodMode;
+        NoAI = state.NoAI;
+        UnlimitedGrowthSpeed = state.UnlimitedGrowthSpeed;
+        LockTime = state.LockTime;
+        ManuallySetTime = state.ManuallySetTime;
+        Speed = state.Speed;
+        InfiniteMP = state.InfiniteMP;
+        MoveToAnyPatch = state.MoveToAnyPatch;
+        DayNightFraction = state.DayNightFraction;
+    }
 }
