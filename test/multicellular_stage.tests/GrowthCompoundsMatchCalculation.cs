@@ -77,6 +77,8 @@ public class GrowthCompoundsMatchCalculation
             },
         });
 
+        readyReported = false;
+
         Assertions.AssertThat(microbe.Get<MulticellularGrowth>().IsFullyGrownMulticellular).IsFalse();
 
         var calculatedGrowthNeeds = new Dictionary<Compound, float>();
@@ -127,7 +129,209 @@ public class GrowthCompoundsMatchCalculation
         Assertions.AssertThat(growth.TotalNeededForMulticellularGrowth).IsNotNull();
 
         var usedSameAmount =
-            growth.CompoundsUsedForMulticellularGrowth!.DictionaryEqualsApprox(growth.TotalNeededForMulticellularGrowth!, 0.0001f);
+            growth.CompoundsUsedForMulticellularGrowth!.DictionaryEqualsApprox(
+                growth.TotalNeededForMulticellularGrowth!, 0.0001f);
+        Assertions.AssertThat(usedSameAmount).IsTrue();
+
+        // Finally, check that the actual resource usage matches the calculated one
+        var pass = growth.CompoundsUsedForMulticellularGrowth!.DictionaryEqualsApprox(calculatedGrowthNeeds, 0.0001f);
+
+        Assertions.AssertThat(pass).IsTrue();
+    }
+
+    [TestCase]
+    public void TestBuddingMatchesExpected()
+    {
+        using var worldSimulation = new TestWorldSimulation();
+        var gameWorld = new GameWorld(new WorldGenerationSettings());
+        var spawnEnvironment = new DummyMicrobeSpawnEnvironment();
+        var growthSystem = new MulticellularGrowthSystem(worldSimulation, spawnEnvironment,
+            new DummySpawnSystem(), worldSimulation.EntitySystem);
+        growthSystem.SetWorld(gameWorld);
+
+        var simulationParameters = SimulationParameters.Instance;
+
+        // Set up a test species
+        var species = new MulticellularSpecies(1, "Test", "budding");
+
+        var mainType =
+            new CellType(new OrganelleLayout<OrganelleTemplate>([
+                    new OrganelleTemplate(simulationParameters.GetOrganelleType("nucleus"), new Hex(0, 0), 0),
+                    new OrganelleTemplate(simulationParameters.GetOrganelleType("cytoplasm"), new Hex(5, 0), 0),
+                ], null, null),
+                simulationParameters.GetMembrane("single"));
+        species.ModifiableCellTypes.Add(mainType);
+
+        // Final colony size 2
+        species.ModifiableGameplayCells.AddFast(new CellTemplate(mainType, new Hex(0, 0), 0),
+            new List<Hex>(), new List<Hex>());
+        species.ModifiableGameplayCells.AddFast(new CellTemplate(mainType, new Hex(10, 0), 0),
+            new List<Hex>(), new List<Hex>());
+
+        species.ReproductionMethod = MulticellularReproductionMethod.Budding;
+        species.OnEdited();
+
+        // Spawn a cell of the type for the "player"
+        SpawnHelpers.SpawnMicrobe(worldSimulation, spawnEnvironment, species, new Vector3(0, 0, 0), false,
+            MulticellularSpawnState.Offspring);
+        worldSimulation.ProcessAll(0.1f);
+
+        // Get the cell
+        var microbe =
+            new FirstEntityGrabber(new QueryDescription().WithAll<PlayerMarker>(), worldSimulation.EntitySystem).Found;
+
+        // Add callbacks to not split automatically on being ready
+        microbe.Add(new MicrobeEventCallbacks
+        {
+            OnReproductionStatus = (entity, ready) =>
+            {
+                if (entity == microbe && ready)
+                    readyReported = true;
+
+                if (entity != microbe)
+                    throw new Exception("Wrong entity reported for callback");
+            },
+        });
+
+        readyReported = false;
+
+        var calculatedGrowthNeeds = new Dictionary<Compound, float>();
+        microbe.Get<OrganelleContainer>().CalculateTotalReproductionCompounds(microbe, species, calculatedGrowthNeeds);
+
+        ref var storage = ref microbe.Get<CompoundStorage>();
+
+        Assertions.AssertThat(readyReported).IsFalse();
+
+        // Then simulate it growing
+        for (int i = 0; i < 1000; ++i)
+        {
+            // Give some growth resources
+            storage.Compounds.AddCompound(Compound.Ammonia, 10);
+            storage.Compounds.AddCompound(Compound.Phosphates, 10);
+
+            growthSystem.Update(0.1f);
+            worldSimulation.ProcessAll(0.1f);
+
+            // Stop immediately once ready
+            if (readyReported)
+                break;
+        }
+
+        Assertions.AssertThat(readyReported).IsTrue();
+
+        // And check that the actual compounds usage is correct to the estimated one
+        var growth = microbe.Get<MulticellularGrowth>();
+
+        Assertions.AssertThat(growth.IsFullyGrownMulticellular).IsTrue();
+        Assertions.AssertThat(growth.EnoughResourcesForBudding).IsTrue();
+        Assertions.AssertThat(growth.CompoundsUsedForMulticellularGrowth).IsNotNull();
+        Assertions.AssertThat(growth.TotalNeededForMulticellularGrowth).IsNotNull();
+
+        var usedSameAmount =
+            growth.CompoundsUsedForMulticellularGrowth!.DictionaryEqualsApprox(
+                growth.TotalNeededForMulticellularGrowth!, 0.0001f);
+        Assertions.AssertThat(usedSameAmount).IsTrue();
+
+        // Finally, check that the actual resource usage matches the calculated one
+        var pass = growth.CompoundsUsedForMulticellularGrowth!.DictionaryEqualsApprox(calculatedGrowthNeeds, 0.0001f);
+
+        Assertions.AssertThat(pass).IsTrue();
+    }
+
+    [TestCase]
+    public void TestMassBuddingMatchesExpected()
+    {
+        using var worldSimulation = new TestWorldSimulation();
+        var gameWorld = new GameWorld(new WorldGenerationSettings());
+        var spawnEnvironment = new DummyMicrobeSpawnEnvironment();
+        var growthSystem = new MulticellularGrowthSystem(worldSimulation, spawnEnvironment,
+            new DummySpawnSystem(), worldSimulation.EntitySystem);
+        growthSystem.SetWorld(gameWorld);
+
+        var simulationParameters = SimulationParameters.Instance;
+
+        // Set up a test species
+        var species = new MulticellularSpecies(1, "Test", "massbudding");
+
+        var mainType =
+            new CellType(new OrganelleLayout<OrganelleTemplate>([
+                    new OrganelleTemplate(simulationParameters.GetOrganelleType("nucleus"), new Hex(0, 0), 0),
+                    new OrganelleTemplate(simulationParameters.GetOrganelleType("cytoplasm"), new Hex(5, 0), 0),
+                ], null, null),
+                simulationParameters.GetMembrane("single"));
+        species.ModifiableCellTypes.Add(mainType);
+
+        // Final colony size 3, initial bud 2
+        species.ModifiableGameplayCells.AddFast(new CellTemplate(mainType, new Hex(0, 0), 0),
+            new List<Hex>(), new List<Hex>());
+        species.ModifiableGameplayCells.AddFast(new CellTemplate(mainType, new Hex(10, 0), 0),
+            new List<Hex>(), new List<Hex>());
+        species.ModifiableGameplayCells.AddFast(new CellTemplate(mainType, new Hex(0, 10), 0),
+            new List<Hex>(), new List<Hex>());
+
+        species.ReproductionMethod = MulticellularReproductionMethod.MassBudding;
+        species.MassBuddingCellCount = 2;
+        species.OnEdited();
+
+        // Spawn a cell of the type for the "player"
+        SpawnHelpers.SpawnMicrobe(worldSimulation, spawnEnvironment, species, new Vector3(0, 0, 0), false,
+            MulticellularSpawnState.Offspring);
+        worldSimulation.ProcessAll(0.1f);
+
+        // Get the cell
+        var microbe =
+            new FirstEntityGrabber(new QueryDescription().WithAll<PlayerMarker>(), worldSimulation.EntitySystem).Found;
+
+        // Add callbacks to not split automatically on being ready
+        microbe.Add(new MicrobeEventCallbacks
+        {
+            OnReproductionStatus = (entity, ready) =>
+            {
+                if (entity == microbe && ready)
+                    readyReported = true;
+
+                if (entity != microbe)
+                    throw new Exception("Wrong entity reported for callback");
+            },
+        });
+
+        readyReported = false;
+
+        var calculatedGrowthNeeds = new Dictionary<Compound, float>();
+        microbe.Get<OrganelleContainer>().CalculateTotalReproductionCompounds(microbe, species, calculatedGrowthNeeds);
+
+        ref var storage = ref microbe.Get<CompoundStorage>();
+
+        Assertions.AssertThat(readyReported).IsFalse();
+
+        // Then simulate it growing
+        for (int i = 0; i < 1000; ++i)
+        {
+            // Give some growth resources
+            storage.Compounds.AddCompound(Compound.Ammonia, 10);
+            storage.Compounds.AddCompound(Compound.Phosphates, 10);
+
+            growthSystem.Update(0.1f);
+            worldSimulation.ProcessAll(0.1f);
+
+            // Stop immediately once ready
+            if (readyReported)
+                break;
+        }
+
+        Assertions.AssertThat(readyReported).IsTrue();
+
+        // And check that the actual compounds usage is correct to the estimated one
+        var growth = microbe.Get<MulticellularGrowth>();
+
+        Assertions.AssertThat(growth.IsFullyGrownMulticellular).IsTrue();
+        Assertions.AssertThat(growth.EnoughResourcesForBudding).IsTrue();
+        Assertions.AssertThat(growth.CompoundsUsedForMulticellularGrowth).IsNotNull();
+        Assertions.AssertThat(growth.TotalNeededForMulticellularGrowth).IsNotNull();
+
+        var usedSameAmount =
+            growth.CompoundsUsedForMulticellularGrowth!.DictionaryEqualsApprox(
+                growth.TotalNeededForMulticellularGrowth!, 0.0001f);
         Assertions.AssertThat(usedSameAmount).IsTrue();
 
         // Finally, check that the actual resource usage matches the calculated one
