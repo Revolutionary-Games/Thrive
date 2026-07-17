@@ -230,7 +230,8 @@ public class TestWorldSimulation : IWorldSimulation
 
     private void ApplyRecordedCommands()
     {
-        // TODO: logic verification against leaked recorders
+        // TODO: logic verification against leaked recorders (somehow if possible to write)
+        _ = totalCreatedRecorders;
 
         if (nonEmptyRecorders.Count < 1)
             return;
