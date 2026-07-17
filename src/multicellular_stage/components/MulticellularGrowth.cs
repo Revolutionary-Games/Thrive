@@ -66,8 +66,12 @@ public struct MulticellularGrowth : IArchivableComponent
         this.CalculateTotalBodyPlanCompounds(species);
     }
 
+    /// <summary>
+    ///   If the colony is fully grown (and is not a spore as the initial spore may not be the same as the grown
+    ///   colony even if there's just one cell as the spore type can be different)
+    /// </summary>
     public bool IsFullyGrownMulticellular => NextBodyPlanCellToGrowIndex >=
-        (TargetCellLayout?.Count ?? throw new InvalidOperationException("Unknown full layout"));
+        (TargetCellLayout?.Count ?? throw new InvalidOperationException("Unknown full layout")) && !IsASpore;
 
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
     public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentMulticellularGrowth;
