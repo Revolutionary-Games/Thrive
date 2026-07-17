@@ -624,9 +624,7 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
         writer.Write(minimumTimeBetweenLogicUpdates);
         writer.Write(RunAI);
         writer.Write(PlayerPosition);
-
-        // Reset the WorldTimeScale in case the CheatManager.SimulationFactor since cheats are not saved
-        writer.Write(Math.Abs(CheatManager.SimulationFactor - 1) > 0.01f ? 1.0f : WorldTimeScale);
+        writer.Write(WorldTimeScale);
     }
 
     protected virtual void ReadBasePropertiesFromArchive(ISArchiveReader reader, ushort version)

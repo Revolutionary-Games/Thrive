@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-16 15:33+0100\n"
-"PO-Revision-Date: 2026-05-22 15:37+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2026-07-17 15:57+0100\n"
+"PO-Revision-Date: 2026-07-08 12:56+0000\n"
+"Last-Translator: xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
@@ -1813,13 +1813,11 @@ msgstr "微生物背景扭曲"
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "顯示背景粒子"
 
-#, fuzzy
 msgid "DISPLAY_DRIVER_DIRECT3D"
-msgstr "OpenGL"
+msgstr "DirectX"
 
-#, fuzzy
 msgid "DISPLAY_DRIVER_METAL"
-msgstr "OpenGL"
+msgstr "Metal"
 
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr "OpenGL"
@@ -2828,7 +2826,7 @@ msgid "ID_NUMBER"
 msgstr "ID 號碼"
 
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
-msgstr "（取決於渲染模式與解析度提升方式，並非所有方法都可用）"
+msgstr "（取決於渲染模式與超分辨率方式，並非所有方法都可用）"
 
 msgid "IGNORE_FURTHER_ERRORS"
 msgstr "忽略其他錯誤"
@@ -2898,13 +2896,11 @@ msgstr "需要細胞核"
 msgid "INFO_BOX_SIZE"
 msgstr "大小（六邊形）"
 
-#, fuzzy
 msgid "INFO_BOX_SIZE_PLAIN"
-msgstr "大小（六邊形）"
+msgstr "大小"
 
-#, fuzzy
 msgid "INFO_BOX_STAGE"
-msgstr "儲存空間"
+msgstr "階段"
 
 msgid "INFO_BOX_STORAGE"
 msgstr "儲存空間"
@@ -3518,19 +3514,17 @@ msgstr "L"
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "鎖定晝夜循環"
 
-#, fuzzy
 msgid "LOOK_LEFT"
-msgstr "←"
+msgstr "視角左移"
 
-#, fuzzy
 msgid "LOOK_RIGHT"
-msgstr "→"
+msgstr "視角右移"
 
 msgid "LOOK_SCREEN_DOWN_OR_3D_TOWARDS_UP"
-msgstr ""
+msgstr "視角下移（或在 3D 模式中上移）"
 
 msgid "LOOK_SCREEN_UP_OR_3D_TOWARDS_DOWN"
-msgstr ""
+msgstr "視角上移（或在 3D 模式中下移）"
 
 msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
 msgstr "（較低的值可提高性能）"
@@ -3602,11 +3596,10 @@ msgid "MARINE_SNOW"
 msgstr "海洋雪"
 
 msgid "MASS_BUDDING_CELL_COUNT"
-msgstr ""
+msgstr "起始細胞數量"
 
-#, fuzzy
 msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
-msgstr "產生單一後代——新群落的根細胞。"
+msgstr "產生的後代初始即由多個細胞構成。"
 
 msgid "MASTER_VOLUME"
 msgstr "主音量"
@@ -7180,16 +7173,16 @@ msgid "UPLOAD_SUCCEEDED"
 msgstr "上傳成功"
 
 msgid "UPSCALE_BILINEAR"
-msgstr "雙線性解析度提升"
+msgstr "雙線性超分辨率"
 
 msgid "UPSCALE_FSR_1"
-msgstr "FSR 1 解析度提升"
+msgstr "FSR 1 超分辨率"
 
 msgid "UPSCALE_FSR_22"
-msgstr "FSR 2.2 解析度提升"
+msgstr "FSR 2.2 超分辨率"
 
 msgid "UPSCALE_METHOD"
-msgstr "解析度提升方法："
+msgstr "超分辨率方法："
 
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr "FSR 銳化"
@@ -9883,6 +9876,9 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "縮小"
+
+#~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
+#~ msgstr "在正常與雙倍遊戲速度之間切換"
 
 #~ msgid "PROTOPLASM"
 #~ msgstr "原生質"

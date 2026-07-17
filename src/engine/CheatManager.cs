@@ -14,7 +14,7 @@ public static class CheatManager
     private static float speed;
     private static bool infiniteMP;
     private static bool moveToAnyPatch;
-    private static float simulationFactor;
+    private static float simulationFactor = 1;
 
     static CheatManager()
     {

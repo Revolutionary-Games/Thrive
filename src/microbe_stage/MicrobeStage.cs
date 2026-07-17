@@ -1817,14 +1817,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
     private void OnNotifyForceSlowDown(object? sender, EventArgs args)
     {
-        if (Math.Abs(CheatManager.SimulationFactor - 1) > 0.01f)
-        {
-            WorldSimulation.WorldTimeScale = CheatManager.SimulationFactor;
-        }
-        else
-        {
-            HUD.UpdateSpeedMode();
-        }
+        HUD.UpdateSpeedMode();
     }
 
     /// <summary>
