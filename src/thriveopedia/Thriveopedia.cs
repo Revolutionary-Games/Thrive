@@ -843,6 +843,9 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
 
         foreach (var page in allPages)
         {
+            // todo: maybe switch ToLower whit something else since it does return "a copy"
+            // when it should just directly edit the string
+
             string pageName = page.Key.TranslatedPageName.ToLower(CultureInfo.CurrentCulture);
             string? pageContent = page.Key.TranslatedPageBody?.ToLower(CultureInfo.CurrentCulture);
             string? additionalContent = page.Key.TranslatedAdditionalSearchContent?.ToLower(CultureInfo.CurrentCulture);
