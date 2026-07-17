@@ -364,18 +364,53 @@ public static class MulticellularGrowthHelpers
     }
 
     public static void CalculateTotalBodyPlanCompounds(this ref MulticellularGrowth multicellularGrowth,
-        Species species)
+        MulticellularSpecies species)
     {
         multicellularGrowth.TotalNeededForMulticellularGrowth ??= new Dictionary<Compound, float>();
         multicellularGrowth.TotalNeededForMulticellularGrowth.Clear();
 
-        foreach (var cell in multicellularGrowth.TargetCellLayout ??
-                 throw new InvalidOperationException("Unknown target layout"))
+        var layout = multicellularGrowth.TargetCellLayout ??
+            throw new InvalidOperationException("Unknown target layout");
+
+        int nextCellCostToCalculate = 0;
+
+        // First, calculate reproduction cost based on the type
+        switch (species.ReproductionMethod)
         {
-            multicellularGrowth.TotalNeededForMulticellularGrowth.Merge(cell.ModifiableCellType
+            case MulticellularReproductionMethod.Budding:
+                // Base budding is the simple case that has no adjustments needed
+                break;
+            case MulticellularReproductionMethod.MassBudding:
+                // When growing mass budding technically skips the first cells, but they are taken as an extra cost
+                // at the end, so it should all balance out
+                break;
+
+            case MulticellularReproductionMethod.Sporulation:
+            {
+                if (species.ModifiableSporeCellType == null)
+                    throw new InvalidOperationException("Species has no spore cell type but uses spore reproduction");
+
+                // Sporulation skips the first cell but adds the spore cost
+                multicellularGrowth.TotalNeededForMulticellularGrowth.Merge(species.ModifiableSporeCellType
+                    .CalculateTotalComposition());
+                nextCellCostToCalculate = 1;
+                break;
+            }
+
+            default:
+                throw new ArgumentOutOfRangeException(
+                    $"Reproduction method's precalculated cost is unimplemented for: {species.ReproductionMethod}");
+        }
+
+        // Then add the remaining cost from rest of the body that needs to grow
+        int count = layout.Count;
+        for (int i = nextCellCostToCalculate; i < count; ++i)
+        {
+            multicellularGrowth.TotalNeededForMulticellularGrowth.Merge(layout[i].ModifiableCellType
                 .CalculateTotalComposition());
         }
 
+        // And finally, add the base reproduction cost
         multicellularGrowth.TotalNeededForMulticellularGrowth.Merge(species.BaseReproductionCost);
     }
 

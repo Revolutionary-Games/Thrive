@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Components;
@@ -11,6 +12,8 @@ using Test.Utils;
 [RequireGodotRuntime]
 public class GrowthCompoundsMatchCalculation
 {
+    private bool readyReported;
+
     [TestCase]
     public void TestSingleSporeCellMatchesExpected()
     {
@@ -61,17 +64,42 @@ public class GrowthCompoundsMatchCalculation
         var microbe =
             new FirstEntityGrabber(new QueryDescription().WithAll<PlayerMarker>(), worldSimulation.EntitySystem).Found;
 
+        // Add callbacks to not split automatically on being ready
+        microbe.Add(new MicrobeEventCallbacks
+        {
+            OnReproductionStatus = (entity, ready) =>
+            {
+                if (entity == microbe && ready)
+                    readyReported = true;
+
+                if (entity != microbe)
+                    throw new Exception("Wrong entity reported for callback");
+            },
+        });
+
         Assertions.AssertThat(microbe.Get<MulticellularGrowth>().IsFullyGrownMulticellular).IsFalse();
+
+        var calculatedGrowthNeeds = new Dictionary<Compound, float>();
+        microbe.Get<OrganelleContainer>().CalculateTotalReproductionCompounds(microbe, species, calculatedGrowthNeeds);
 
         var germinated = microbe.Get<MulticellularGrowth>()
             .GerminateSpore(microbe, worldSimulation, spawnEnvironment, new List<Hex>(), new List<Hex>());
 
         Assertions.AssertThat(germinated).IsTrue();
 
-        Assertions.AssertThat(microbe.Get<MulticellularGrowth>().IsFullyGrownMulticellular).IsFalse();
+        // As the species has just one cell, it is fully grown
+        // Assertions.AssertThat(microbe.Get<MulticellularGrowth>().IsFullyGrownMulticellular).IsFalse();
         Assertions.AssertThat(microbe.Get<MulticellularGrowth>().EnoughResourcesForBudding).IsFalse();
 
+        // Make sure this didn't change in between
+        var calculatedGrowthNeeds2 = new Dictionary<Compound, float>();
+        microbe.Get<OrganelleContainer>().CalculateTotalReproductionCompounds(microbe, species, calculatedGrowthNeeds2);
+
+        Assertions.AssertThat(calculatedGrowthNeeds.DictionaryEquals(calculatedGrowthNeeds2)).IsTrue();
+
         ref var storage = ref microbe.Get<CompoundStorage>();
+
+        Assertions.AssertThat(readyReported).IsFalse();
 
         // Then simulate it growing
         for (int i = 0; i < 1000; ++i)
@@ -82,12 +110,29 @@ public class GrowthCompoundsMatchCalculation
 
             growthSystem.Update(0.1f);
             worldSimulation.ProcessAll(0.1f);
+
+            // Stop immediately once ready
+            if (readyReported)
+                break;
         }
+
+        Assertions.AssertThat(readyReported).IsTrue();
 
         // And check that the actual compounds usage is correct to the estimated one
         var growth = microbe.Get<MulticellularGrowth>();
 
         Assertions.AssertThat(growth.IsFullyGrownMulticellular).IsTrue();
         Assertions.AssertThat(growth.EnoughResourcesForBudding).IsTrue();
+        Assertions.AssertThat(growth.CompoundsUsedForMulticellularGrowth).IsNotNull();
+        Assertions.AssertThat(growth.TotalNeededForMulticellularGrowth).IsNotNull();
+
+        var usedSameAmount =
+            growth.CompoundsUsedForMulticellularGrowth!.DictionaryEqualsApprox(growth.TotalNeededForMulticellularGrowth!, 0.0001f);
+        Assertions.AssertThat(usedSameAmount).IsTrue();
+
+        // Finally, check that the actual resource usage matches the calculated one
+        var pass = growth.CompoundsUsedForMulticellularGrowth!.DictionaryEqualsApprox(calculatedGrowthNeeds, 0.0001f);
+
+        Assertions.AssertThat(pass).IsTrue();
     }
 }
