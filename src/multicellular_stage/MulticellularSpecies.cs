@@ -267,6 +267,19 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         cachedFillTimes.Clear();
     }
 
+    /// <summary>
+    ///   Used for a lighter refresh when multicellular membrane has changed *after* exiting the editor and OnEdited
+    ///   is already called.
+    /// </summary>
+    public void NotifyMembraneTypeChanged()
+    {
+        base.OnAttemptedInAutoEvo(false);
+
+        UpdateInitialCompounds();
+
+        cachedFillTimes.Clear();
+    }
+
     public override bool RepositionToOrigin()
     {
         // TODO: should this actually reposition things as the cell at index 0 is always the colony leader so if it
