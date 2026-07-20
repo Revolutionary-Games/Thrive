@@ -2554,23 +2554,35 @@ public partial class CellEditorComponent :
             tooltip?.IncompatibleOrganelles?.Clear();
         }
 
-        foreach (var organelle in editedMicrobeOrganelles)
+        if (IsMacroscopicEditor)
         {
-            if (organelle.Definition.IncompatibleMembranes == null)
-                continue;
-
-            foreach (var membrane in organelle.Definition.IncompatibleMembranes)
+            // Lock all due to being in macroscopic
+            foreach (var membrane in membraneSelectionElements)
             {
-                if (!membraneSelectionElements.TryGetValue(membrane, out var button))
+                membrane.Value.Locked = true;
+            }
+        }
+        else
+        {
+            // Lock only membranes that are incompatible with current organelles
+            foreach (var organelle in editedMicrobeOrganelles)
+            {
+                if (organelle.Definition.IncompatibleMembranes == null)
                     continue;
 
-                button.Locked = true;
-
-                var tooltip = GetSelectionTooltip(membrane.InternalName, "membraneSelection");
-                if (tooltip != null)
+                foreach (var membrane in organelle.Definition.IncompatibleMembranes)
                 {
-                    tooltip.IncompatibleOrganelles ??= new HashSet<OrganelleDefinition>();
-                    tooltip.IncompatibleOrganelles.Add(organelle.Definition);
+                    if (!membraneSelectionElements.TryGetValue(membrane, out var button))
+                        continue;
+
+                    button.Locked = true;
+
+                    var tooltip = GetSelectionTooltip(membrane.InternalName, "membraneSelection");
+                    if (tooltip != null)
+                    {
+                        tooltip.IncompatibleOrganelles ??= new HashSet<OrganelleDefinition>();
+                        tooltip.IncompatibleOrganelles.Add(organelle.Definition);
+                    }
                 }
             }
         }
@@ -2578,7 +2590,16 @@ public partial class CellEditorComponent :
         foreach (var membrane in membraneSelectionElements)
         {
             var tooltip = GetSelectionTooltip(membrane.Key.InternalName, "membraneSelection");
-            tooltip?.UpdateIncompatibleOrganelles();
+
+            if (IsMacroscopicEditor)
+            {
+                // In macroscopic editor, lock all tooltips due to it
+                tooltip?.LockDueToMacroscopic();
+            }
+            else
+            {
+                tooltip?.UpdateIncompatibleOrganelles();
+            }
         }
     }
 
@@ -2882,8 +2903,8 @@ public partial class CellEditorComponent :
                 new Callable(this, nameof(OnMembraneSelected)));
         }
 
-        // Multicellular parts only available (visible) in multicellular
-        // For now there aren't any multicellular specific organelles so the section is hidden
+        // Multicellular parts only available (visible) in multicellular.
+        // For now, there aren't any multicellular specific organelles so the section is hidden.
         partsSelectionContainer.GetNode<CollapsibleList>(nameof(OrganelleDefinition.OrganelleGroup.Multicellular))
             .Visible = false;
 
