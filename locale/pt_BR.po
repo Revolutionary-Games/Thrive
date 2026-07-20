@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-20 11:09+0300\n"
+"POT-Creation-Date: 2026-07-20 16:41+0300\n"
 "PO-Revision-Date: 2026-05-22 15:37+0000\n"
 "Last-Translator: DiversoCortez <decaiotreis@proton.me>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -765,6 +765,17 @@ msgstr "Nome do Tipo de Célula"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Notas de mudança são muito longas"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr "Tipos de Membranas"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr "(gera um mapa de regiões ou usa o layout clássico)"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Mudar a simetria"
@@ -2871,6 +2882,10 @@ msgstr "[b]Dados das Membranas:[/b]"
 msgid "INCOMPATIBLE_ORGANELLE_LIST"
 msgstr "Múltiplas Organelas"
 
+#, fuzzy
+msgid "INCOMPATIBLE_STAGE_LIST"
+msgstr "[b]Dados das Membranas:[/b]"
+
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Aumentar tamanho do objeto"
 
@@ -3602,6 +3617,10 @@ msgstr "Síntese de Macrolídeo"
 
 msgid "MACROSCOPIC"
 msgstr "Macroscópico"
+
+#, fuzzy
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr "Jato de Slime"
 
 msgid "MACROSCOPIC_EDITOR"
 msgstr "Editor Macroscópico"
@@ -4589,6 +4608,10 @@ msgstr "O editor está pronto para ser utilizado"
 
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "Não está adaptado para as condições da região atual. Mude as condições preferidas ou faixas de tolerância para remover as desvantagens."
+
+#, fuzzy
+msgid "NOT_ENOUGH_MUTATION_POINTS"
+msgstr "Pontos de Mutação"
 
 msgid "NOT_STARTED_DOT"
 msgstr "Não começou."
@@ -9891,9 +9914,6 @@ msgstr "Diminuir o zoom"
 
 #~ msgid "PATCH_MAP_TYPE_CLASSIC"
 #~ msgstr "Clássico"
-
-#~ msgid "PATCH_MAP_TYPE_EXPLANATION"
-#~ msgstr "(gera um mapa de regiões ou usa o layout clássico)"
 
 #~ msgid "PATCH_MAP_TYPE_PROCEDURAL"
 #~ msgstr "Gerado"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-20 11:09+0300\n"
+"POT-Creation-Date: 2026-07-20 16:41+0300\n"
 "PO-Revision-Date: 2026-05-25 05:02+0000\n"
 "Last-Translator: Sławomir Pitek <slawomir.k.pitek@gmail.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -765,6 +765,17 @@ msgstr "Nazwa Rodzaju Komórki"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Opis zmian jest zbyt długi"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr "Rodzaje błony lub ściany komórkowej"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr "(generuj mapę obszarów proceduralnie lub użyj klasycznego układu)"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Zmień symetrię"
@@ -2890,6 +2901,10 @@ msgid "INCOMPATIBLE_ORGANELLE_LIST"
 msgstr "Niekompatybilne z położonymi organellami: {0}"
 
 #, fuzzy
+msgid "INCOMPATIBLE_STAGE_LIST"
+msgstr "Niekompatybilne z membranami: {0}"
+
+#, fuzzy
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Stwórz Nowy"
 
@@ -3647,6 +3662,9 @@ msgstr "Synteza śluzu"
 
 msgid "MACROSCOPIC"
 msgstr "Makroskopijny"
+
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr ""
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4708,6 +4726,10 @@ msgstr "Można rozpocząć edycję"
 
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "Brak adaptacji do bieżącego obszaru. Zmień preferowane warunki lub tolerancję aby pozbyć się negatywnych efektów."
+
+#, fuzzy
+msgid "NOT_ENOUGH_MUTATION_POINTS"
+msgstr "Punkty Mutacji"
 
 msgid "NOT_STARTED_DOT"
 msgstr "Nie zaczęto."
@@ -10367,9 +10389,6 @@ msgstr "Oddal"
 
 #~ msgid "PATCH_MAP_TYPE_CLASSIC"
 #~ msgstr "Klasyczny"
-
-#~ msgid "PATCH_MAP_TYPE_EXPLANATION"
-#~ msgstr "(generuj mapę obszarów proceduralnie lub użyj klasycznego układu)"
 
 #~ msgid "PATCH_MAP_TYPE_PROCEDURAL"
 #~ msgstr "Proceduralny"

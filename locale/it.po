@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-20 11:09+0300\n"
+"POT-Creation-Date: 2026-07-20 16:41+0300\n"
 "PO-Revision-Date: 2026-06-23 18:50+0000\n"
 "Last-Translator: dani racc <dani16.racco@gmail.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -757,6 +757,17 @@ msgstr "Nome del tipo di cellula"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Le note sull'aggiornamento sono troppo lughe"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr "Tipi di membrana"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr "(genera una mappa delle zone proceduralmente o usa il layout classico)"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Cambia la simmetria"
@@ -2977,6 +2988,10 @@ msgid "INCOMPATIBLE_ORGANELLE_LIST"
 msgstr "Organuli multipli"
 
 #, fuzzy
+msgid "INCOMPATIBLE_STAGE_LIST"
+msgstr "[b]Dati sulle membrane:[/b]"
+
+#, fuzzy
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Crea nuovo elemento"
 
@@ -3766,6 +3781,10 @@ msgstr "Sintesi della mucillagine"
 #, fuzzy
 msgid "MACROSCOPIC"
 msgstr "Diventa macroscopico ({0}/{1})"
+
+#, fuzzy
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr "Propulsore a melma"
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4887,6 +4906,10 @@ msgstr "pronti ad entrare nell'Editor"
 #, fuzzy
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "Trova la zona corrente"
+
+#, fuzzy
+msgid "NOT_ENOUGH_MUTATION_POINTS"
+msgstr "Punti Mutazione"
 
 msgid "NOT_STARTED_DOT"
 msgstr "Processo non iniziato."
@@ -10379,9 +10402,6 @@ msgstr "Zoom indietro"
 
 #~ msgid "PATCH_MAP_TYPE_CLASSIC"
 #~ msgstr "Classica"
-
-#~ msgid "PATCH_MAP_TYPE_EXPLANATION"
-#~ msgstr "(genera una mappa delle zone proceduralmente o usa il layout classico)"
 
 #~ msgid "PATCH_MAP_TYPE_PROCEDURAL"
 #~ msgstr "Procedurale"
