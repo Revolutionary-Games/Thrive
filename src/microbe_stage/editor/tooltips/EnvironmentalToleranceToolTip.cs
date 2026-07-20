@@ -19,6 +19,9 @@ public partial class EnvironmentalToleranceToolTip : Control, ICustomToolTip
     private CustomRichTextLabel descriptionLabel = null!;
 
     [Export]
+    private CustomRichTextLabel extraDescription = null!;
+
+    [Export]
     private ModifierInfoLabel osmoregulationLabel = null!;
 
     [Export]
@@ -69,6 +72,9 @@ public partial class EnvironmentalToleranceToolTip : Control, ICustomToolTip
     public string? Description { get; set; }
 
     [Export]
+    public string? ExtraTextAfterDescription { get; set; }
+
+    [Export]
     public float DisplayDelay { get; set; }
 
     public ToolTipPositioning Positioning { get; set; } = ToolTipPositioning.ControlBottomRightCorner;
@@ -84,6 +90,12 @@ public partial class EnvironmentalToleranceToolTip : Control, ICustomToolTip
         base._Ready();
 
         descriptionLabel.ExtendedBbcode = Description;
+        if (ExtraTextAfterDescription != null)
+        {
+            extraDescription.ExtendedBbcode = ExtraTextAfterDescription;
+            extraDescription.Visible = true;
+        }
+
         badlyAdaptedWarning.Visible = false;
 
         defaultStatFont = healthLabel.ModifierValueFont;

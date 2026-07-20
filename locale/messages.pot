@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-16 10:28+0300\n"
+"POT-Creation-Date: 2026-07-20 11:09+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3597,7 +3597,7 @@ msgstr ""
 msgid "HEALTH"
 msgstr ""
 
-#: ../src/microbe_stage/editor/tooltips/EnvironmentalToleranceToolTip.tscn:127
+#: ../src/microbe_stage/editor/tooltips/EnvironmentalToleranceToolTip.tscn:134
 msgid "HEALTH_MODIFIER"
 msgstr ""
 
@@ -6323,7 +6323,7 @@ msgstr ""
 msgid "NOTICE_ENGULFING_OUT_OF_ATP"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:277
+#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:281
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr ""
 
@@ -6364,7 +6364,7 @@ msgstr ""
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/tooltips/EnvironmentalToleranceToolTip.tscn:102
+#: ../src/microbe_stage/editor/tooltips/EnvironmentalToleranceToolTip.tscn:103
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr ""
 
@@ -6460,7 +6460,7 @@ msgstr ""
 msgid "N_A"
 msgstr ""
 
-#: ../src/microbe_stage/editor/tooltips/EnvironmentalToleranceToolTip.tscn:81
+#: ../src/microbe_stage/editor/tooltips/EnvironmentalToleranceToolTip.tscn:82
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:81
 #: ../src/multicellular_stage/editor/CellTypeTooltip.tscn:107
 msgid "N_A_MP"
@@ -6695,7 +6695,7 @@ msgstr ""
 msgid "OSMOREGULATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/tooltips/EnvironmentalToleranceToolTip.tscn:121
+#: ../src/microbe_stage/editor/tooltips/EnvironmentalToleranceToolTip.tscn:128
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:127
 msgid "OSMOREGULATION_COST"
 msgstr ""
@@ -6749,9 +6749,13 @@ msgid "OXYGEN_INHIBITOR_SYNTHESIS"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:875
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:883
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:884
 #: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:410
 msgid "OXYGEN_RESISTANCE"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:877
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:876
@@ -6938,7 +6942,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:565
 #: ../src/microbe_stage/editor/MutationPointsBar.cs:101
 #: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:776
-#: ../src/microbe_stage/editor/tooltips/EnvironmentalToleranceToolTip.cs:98
+#: ../src/microbe_stage/editor/tooltips/EnvironmentalToleranceToolTip.cs:110
 #: ../src/microbe_stage/editor/tooltips/StatModifierToolTip.cs:172
 #: ../src/microbe_stage/editor/tooltips/StatModifierToolTip.cs:259
 #: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.cs:54
@@ -6960,7 +6964,7 @@ msgstr ""
 msgid "PERCENTAGE_VALUE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/tooltips/EnvironmentalToleranceToolTip.tscn:144
+#: ../src/microbe_stage/editor/tooltips/EnvironmentalToleranceToolTip.tscn:151
 msgid "PERFECT_ADAPTATION_DESCRIPTION"
 msgstr ""
 
@@ -7234,7 +7238,7 @@ msgstr ""
 msgid "PROCESS_PANEL_TITLE_MICROBE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/tooltips/EnvironmentalToleranceToolTip.tscn:133
+#: ../src/microbe_stage/editor/tooltips/EnvironmentalToleranceToolTip.tscn:140
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr ""
 
@@ -9084,8 +9088,8 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:849
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:866
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:884
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:901
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:885
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:902
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
 msgstr ""
 
@@ -9720,13 +9724,13 @@ msgstr ""
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:892
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:900
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:893
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:901
 #: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:532
 msgid "UV_PROTECTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:893
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:894
 msgid "UV_TOLERANCE_TOOLTIP"
 msgstr ""
 
