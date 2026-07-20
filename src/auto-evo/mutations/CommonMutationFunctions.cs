@@ -537,23 +537,6 @@ public static class CommonMutationFunctions
         return null;
     }
 
-    private static HexWithData<CellTemplate>? GetAdjacentPosition(IReadOnlyCellTemplate cellTemplate, Hex.HexSide side,
-        Hex oldHex, CellType newCellType, IndividualHexLayout<CellTemplate> existingCells)
-    {
-        var newHexPosition = Hex.HexNeighbourOffset[side] + oldHex;
-        var orientation = cellTemplate.Orientation;
-
-        var newCellTemplate = new CellTemplate(newCellType, newHexPosition, orientation);
-        var result = new HexWithData<CellTemplate>(newCellTemplate, newHexPosition, orientation);
-
-        if (existingCells.CanPlace(result.Position))
-        {
-            return result;
-        }
-
-        return null;
-    }
-
     private static OrganelleTemplate? GetBackPosition(OrganelleDefinition organelle,
         OrganelleLayout<OrganelleTemplate> existingOrganelles, List<Hex> workMemory1, HashSet<Hex> workMemory2)
     {
@@ -569,6 +552,23 @@ public static class CommonMutationFunctions
                 result.Position = new Hex(0, r);
                 return result;
             }
+        }
+
+        return null;
+    }
+
+    private static HexWithData<CellTemplate>? GetAdjacentPosition(IReadOnlyCellTemplate cellTemplate, Hex.HexSide side,
+        Hex oldHex, CellType newCellType, IndividualHexLayout<CellTemplate> existingCells)
+    {
+        var newHexPosition = Hex.HexNeighbourOffset[side] + oldHex;
+        var orientation = cellTemplate.Orientation;
+
+        var newCellTemplate = new CellTemplate(newCellType, newHexPosition, orientation);
+        var result = new HexWithData<CellTemplate>(newCellTemplate, newHexPosition, orientation);
+
+        if (existingCells.CanPlace(result.Position))
+        {
+            return result;
         }
 
         return null;
