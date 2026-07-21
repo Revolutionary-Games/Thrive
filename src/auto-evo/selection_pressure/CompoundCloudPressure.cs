@@ -40,6 +40,8 @@ public class CompoundCloudPressure : SelectionPressure
             new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Focus, -150.0f),
             new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Opportunism, 150.0f),
             new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Opportunism, -150.0f),
+            AddCellWithOrganelle.ThatUseCompound(compound),
+            new AddCellWithOrganelle(organelle => organelle.HasChemoreceptorComponent),
         ])
     {
         compoundDefinition = SimulationParameters.GetCompound(compound);

@@ -60,6 +60,13 @@ public class PredationEffectivenessPressure : SelectionPressure
             new UpgradeOrganelle(organelle => organelle.HasChemoreceptorComponent,
                 new ChemoreceptorUpgrades(Compound.Invalid, prey, Constants.CHEMORECEPTOR_RANGE_DEFAULT,
                     Constants.CHEMORECEPTOR_AMOUNT_DEFAULT, prey.SpeciesColour)),
+            AddCellWithOrganelle.ThatCreateCompound(Compound.Oxytoxy, CommonMutationFunctions.Direction.Front),
+            new AddCellWithOrganelle(organelle => organelle.HasLysosomeComponent,
+                CommonMutationFunctions.Direction.Front),
+            new AddCellWithOrganelle(organelle => organelle.HasPilusComponent,
+                CommonMutationFunctions.Direction.Front),
+            new AddCellWithOrganelle(organelle => organelle.HasMovementComponent,
+                CommonMutationFunctions.Direction.Rear),
         ])
     {
         Prey = prey;

@@ -35,6 +35,7 @@ public class EnvironmentalCompoundPressure : SelectionPressure
             new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Focus, -150.0f),
             new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Opportunism, 50.0f),
             new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Opportunism, -150.0f),
+            AddCellWithOrganelle.ThatUseCompound(compound),
         ])
     {
         this.compound = SimulationParameters.GetCompound(compound);

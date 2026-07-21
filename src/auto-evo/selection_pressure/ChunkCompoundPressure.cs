@@ -46,6 +46,10 @@ public class ChunkCompoundPressure : SelectionPressure
         new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Opportunism, -150.0f),
         new ChangeMembraneType("single"),
         new ChangeMembraneType("double"),
+        AddCellWithOrganelle.ThatConvertBetweenCompounds(compound, compoundOut),
+        AddCellWithOrganelle.ThatUseCompound(compoundOut),
+        new AddCellWithOrganelle(organelle => organelle.HasChemoreceptorComponent),
+        new AddCellWithOrganelle(organelle => organelle.InternalName == "vacuole"),
     ])
     {
         this.compound = SimulationParameters.GetCompound(compound);

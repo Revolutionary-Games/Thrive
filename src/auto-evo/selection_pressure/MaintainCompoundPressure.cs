@@ -19,6 +19,7 @@ public class MaintainCompoundPressure : SelectionPressure
     public MaintainCompoundPressure(Compound compound, float weight) : base(weight, [
         AddOrganelleAnywhere.ThatCreateCompound(compound),
         RemoveOrganelle.ThatUseCompound(compound),
+        AddCellWithOrganelle.ThatCreateCompound(compound),
     ])
     {
         this.compound = SimulationParameters.GetCompound(compound);

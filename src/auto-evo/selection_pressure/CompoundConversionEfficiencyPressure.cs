@@ -25,6 +25,7 @@ public class CompoundConversionEfficiencyPressure : SelectionPressure
         base(weight, [
             RemoveOrganelle.ThatCreateCompound(outCompound),
             AddOrganelleAnywhere.ThatConvertBetweenCompounds(compound, outCompound),
+            AddCellWithOrganelle.ThatConvertBetweenCompounds(compound, outCompound),
         ])
     {
         FromCompound = SimulationParameters.GetCompound(compound);
