@@ -213,6 +213,50 @@ public static class CommonMutationFunctions
         return true;
     }
 
+    public static bool AddCellCenterline(Direction direction, CellType newCellType, MulticellularSpecies newSpecies,
+        IndividualHexLayout<CellTemplate> existingCells, List<Hex> workMemory1, List<Hex> workMemory2, Random random)
+    {
+        HexWithData<CellTemplate>? position;
+
+        var newCells = new IndividualHexLayout<CellTemplate>();
+
+        // copy over all existing cells
+        foreach (var hex in newSpecies.ModifiableEditorCells)
+        {
+            var cell = hex.Data;
+            if (cell != null)
+            {
+                newCells.AddFast(new HexWithData<CellTemplate>(new CellTemplate(cell.ModifiableCellType,
+                        cell.Position, cell.Orientation), cell.Position, cell.Orientation),
+                    workMemory1, workMemory2);
+            }
+        }
+
+        switch (direction)
+        {
+            case Direction.Front:
+                position = GetCenterlineFrontPosition(newCellType, existingCells);
+                break;
+            case Direction.Rear:
+                position = GetCenterlineRearPosition(newCellType, existingCells);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
+        }
+
+        // We return early as not being able to add a cell is not a critical failure
+        if (position == null)
+            return false;
+
+        newCells.AddFast(position, workMemory1, workMemory2);
+
+        MulticellularLayoutHelpers.UpdateGameplayLayout(newSpecies.ModifiableGameplayCells,
+            newSpecies.ModifiableEditorCells, newCells, AlgorithmQuality.Low,
+            new List<Hex>(), new List<Hex>());
+
+        return true;
+    }
+
     public static void AttachIslandHexes(OrganelleLayout<OrganelleTemplate> organelles, MutationWorkMemory workMemory)
     {
         HashSet<Hex>? mainHexes = null;
@@ -569,6 +613,42 @@ public static class CommonMutationFunctions
         if (existingCells.CanPlace(result.Position))
         {
             return result;
+        }
+
+        return null;
+    }
+
+    private static HexWithData<CellTemplate>? GetCenterlineFrontPosition(CellType newCellType,
+        IndividualHexLayout<CellTemplate> existingCells)
+    {
+        // Assume can't be placed at 0,0 so start at -1
+        for (int r = -1; r > -Constants.DIRECTION_ORGANELLE_CHECK_MAX_DISTANCE; --r)
+        {
+            var newHexPosition = new Hex(0, r);
+            if (existingCells.CanPlace(newHexPosition))
+            {
+                var result = new HexWithData<CellTemplate>(new CellTemplate(newCellType, newHexPosition, 0),
+                    newHexPosition, 0);
+                return result;
+            }
+        }
+
+        return null;
+    }
+
+    private static HexWithData<CellTemplate>? GetCenterlineRearPosition(CellType newCellType,
+        IndividualHexLayout<CellTemplate> existingCells)
+    {
+        // Assume can't be placed at 0,0 so start at -1
+        for (int r = 1; r > -Constants.DIRECTION_ORGANELLE_CHECK_MAX_DISTANCE; ++r)
+        {
+            var newHexPosition = new Hex(0, r);
+            if (existingCells.CanPlace(newHexPosition))
+            {
+                var result = new HexWithData<CellTemplate>(new CellTemplate(newCellType, newHexPosition, 0),
+                    newHexPosition, 0);
+                return result;
+            }
         }
 
         return null;
