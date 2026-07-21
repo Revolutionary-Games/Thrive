@@ -125,6 +125,18 @@ public class MutationLogicFunctions
                 Math.Clamp(oldColour.G + greenShift, 0, 1),
                 Math.Clamp(oldColour.B + blueShift, 0, 1));
         }
+
+        var newColour = newSpecies.SpeciesColour;
+        foreach (var cellType in newSpecies.ModifiableCellTypes)
+        {
+            redShift = (float)(random.NextDouble() - 0.5f) * Constants.AUTO_EVO_COLOR_CHANGE_MAX_STEP;
+            greenShift = (float)(random.NextDouble() - 0.5f) * Constants.AUTO_EVO_COLOR_CHANGE_MAX_STEP;
+            blueShift = (float)(random.NextDouble() - 0.5f) * Constants.AUTO_EVO_COLOR_CHANGE_MAX_STEP;
+
+            cellType.Colour = new Color(Math.Clamp(newColour.R + redShift, 0, 1),
+                Math.Clamp(newColour.G + greenShift, 0, 1),
+                Math.Clamp(newColour.B + blueShift, 0, 1));
+        }
     }
 
     private static bool MicrobeSpeciesIsNewGenus(MicrobeSpecies species1, MicrobeSpecies species2)
