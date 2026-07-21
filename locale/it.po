@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-03 20:10+0100\n"
-"PO-Revision-Date: 2026-05-13 03:55+0000\n"
-"Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
+"POT-Creation-Date: 2026-07-20 16:41+0300\n"
+"PO-Revision-Date: 2026-06-23 18:50+0000\n"
+"Last-Translator: dani racc <dani16.racco@gmail.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -51,6 +51,14 @@ msgstr "Accetta"
 
 msgid "ACHIEVEMENTS"
 msgstr "Obiettivi"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr "Obiettivi {0} / {1}"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr "L'aggiornamento del salvataggio specificato non è riuscito a causa del seguente errore:"
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr "Obiettivi {0} / {1}"
@@ -171,13 +179,16 @@ msgstr "Sei già asceso"
 msgid "ALT"
 msgstr "Alt"
 
-#, fuzzy
 msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
-msgstr "Thread attuali:"
+msgstr ""
+"Modifica la velocità alternativa della simulazione.\n"
+"\n"
+"Questa velocità può essere selezionata premendo il pulsante corrispondente sul HUD.\n"
+"\n"
+"Valori più elevati potrebbero richiedere una CPU molto potente."
 
-#, fuzzy
 msgid "ALTERNATVE_TIMESCALE"
-msgstr ". La produzione aumenta"
+msgstr "Scala temporale alternativa"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Sempre visibile"
@@ -215,9 +226,8 @@ msgstr "FXAA"
 msgid "ANTI_ALIASING_MODE"
 msgstr "Modalità Anti-aliasing:"
 
-#, fuzzy
 msgid "ANTI_ALIASING_MSAA"
-msgstr "Anti-aliasing multicampionamento [MSAA]:"
+msgstr "Anti-aliasing multicampionamento [MSAA]"
 
 msgid "ANTI_ALIASING_TAA"
 msgstr "TAA"
@@ -271,7 +281,6 @@ msgstr "Fase di Ascensione"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "La classe dell'assembly è richiesta quando l'assembly è specificato"
 
-#, fuzzy
 msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr "La classe dell'assembly è richiesta quando la modalità Auto Harmony è selezionata"
 
@@ -342,7 +351,6 @@ msgstr "Agosto"
 msgid "AUTO"
 msgstr "Automatica"
 
-#, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Questo pannello mostra i numeri in base ai quali l'Auto-Evo fa la sua previsione. La popolazione è determinata dall'energia totale che una specie è in grado di catturare e il costo energetico per esemplare. Questo è un modello semplificato della realtà, che calcola le prestazioni di ciascuna specie in base all'energia che è in grado di raccogliere. Per ogni fonte di cibo è mostrata la quantità di energia derivata. In più, è mostrata l'energia totale disponibile da quella fonte. La frazione che la specie guadagna rispetto all'energia totale dipende dal valore di idoneità rispetto all'idoneità totale. L'idoneità è una misura di quanto bene la specie sa utilizzare quella fonte di cibo."
 
@@ -357,7 +365,6 @@ msgstr ""
 "Questo pannello mostra la popolazione prevista dall'Auto-Evo per la specie modificata.\n"
 "La simulazione di popolazione eseguita dall'Auto-Evo è uno dei due fattori che ha effetto sulla tua popolazione (l'altro è la tua prestazione personale)."
 
-#, fuzzy
 msgid "AUTO-EVO_RESULTS_TITLE"
 msgstr "Risultati dell'Auto-Evo:"
 
@@ -376,7 +383,6 @@ msgstr "Salvataggio automatico durante il gioco"
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
-#, fuzzy
 msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
 msgstr "Strumento di esplorazione Auto-Evo"
 
@@ -593,7 +599,6 @@ msgstr "Naviga"
 msgid "BROWSE_WORKSHOP"
 msgstr "Naviga il Workshop"
 
-#, fuzzy
 msgid "BUDDING_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "(ottieni composti riproduttivi in modo passivo dall'ambiente, senza dover far nulla)"
 
@@ -752,6 +757,17 @@ msgstr "Nome del tipo di cellula"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Le note sull'aggiornamento sono troppo lughe"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr "Tipi di membrana"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr "(genera una mappa delle zone proceduralmente o usa il layout classico)"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Cambia la simmetria"
@@ -1891,7 +1907,7 @@ msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr "Trascina questo per riordinare gli oggetti con il mouse"
 
 msgid "DUMP_SCENE_TREE"
-msgstr ""
+msgstr "AlberoScenografico"
 
 msgid "DUPLICATE_TYPE"
 msgstr "Duplica tipo"
@@ -2260,6 +2276,9 @@ msgstr "Carica automaticamente patch Harmony dall'Assembly (non richiede di spec
 
 msgid "EVENT_METEOR_RADIOACTIVE"
 msgstr ""
+"Impatto di un meteorite radioattivo\n"
+"Aumento dei livelli di anidride carbonica.\n"
+"Generazione di frammenti radioattivi."
 
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
@@ -2781,7 +2800,7 @@ msgid "GOD_TOOLS_TITLE"
 msgstr "Tempo trascorso: {0:#,#} anni"
 
 msgid "GOING_NUCLEAR"
-msgstr ""
+msgstr "Andando vero il nucleare"
 
 msgid "GOOGLY_EYE_CELL"
 msgstr "Cellula Grandocchi"
@@ -2870,7 +2889,7 @@ msgid "HOLD_TO_SHOW_CURSOR"
 msgstr "Tieni premuto per mostrare il cursore"
 
 msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
-msgstr ""
+msgstr "Premere [thrive:input]g_free_cursor[/thrive:input] per cursore"
 
 #, fuzzy
 msgid "HOLD_TO_SKIP_CREDITS"
@@ -2951,10 +2970,10 @@ msgid "ID_NUMBER"
 msgstr "Numero ID"
 
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
-msgstr ""
+msgstr "(a seconda della modalità di rendering e dell'upscaling, non tutti i metodi sono disponibili)"
 
 msgid "IGNORE_FURTHER_ERRORS"
-msgstr ""
+msgstr "ignorare errori ulteriori"
 
 #, fuzzy
 msgid "IMAGE_FILE_TYPES"
@@ -2967,6 +2986,10 @@ msgstr "[b]Dati sulle membrane:[/b]"
 #, fuzzy
 msgid "INCOMPATIBLE_ORGANELLE_LIST"
 msgstr "Organuli multipli"
+
+#, fuzzy
+msgid "INCOMPATIBLE_STAGE_LIST"
+msgstr "[b]Dati sulle membrane:[/b]"
 
 #, fuzzy
 msgid "INCREASE_ITEM_SIZE"
@@ -3202,7 +3225,7 @@ msgid "IRON"
 msgstr "Ferro"
 
 msgid "IRON_LEVELS"
-msgstr ""
+msgstr "Livello Ferro"
 
 #, fuzzy
 msgid "IRON_OXIDATION"
@@ -3707,17 +3730,17 @@ msgid "LOOK_RIGHT"
 msgstr "🡒 Freccia destra"
 
 msgid "LOOK_SCREEN_DOWN_OR_3D_TOWARDS_UP"
-msgstr ""
+msgstr "Guarda lo schermo fisso verso il basso oppure guarda verso l'alto in 3d"
 
 msgid "LOOK_SCREEN_UP_OR_3D_TOWARDS_DOWN"
-msgstr ""
+msgstr "Guarda lo schermo fisso verso l'alto o guarda verso l'alto in 3D"
 
 #, fuzzy
 msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
 msgstr "(valori più elevati migliorano le prestazioni)"
 
 msgid "LOWER_VALUE_MAKES_SHARPER_IMAGE"
-msgstr ""
+msgstr "(valori più bassi producono un'immagine più nitida)"
 
 #, fuzzy
 msgid "LOW_MENU_PERFORMANCE"
@@ -3736,7 +3759,7 @@ msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 msgstr "Sfocatura dello sfondo:"
 
 msgid "LUCIFERASE"
-msgstr ""
+msgstr "Luciferasi"
 
 #, fuzzy
 msgid "LUCIFERASE_SYNTHESIS"
@@ -3760,6 +3783,10 @@ msgid "MACROSCOPIC"
 msgstr "Diventa macroscopico ({0}/{1})"
 
 #, fuzzy
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr "Propulsore a melma"
+
+#, fuzzy
 msgid "MACROSCOPIC_EDITOR"
 msgstr "Caricamento dell'Editor Microbico"
 
@@ -3780,7 +3807,7 @@ msgid "MAKE_NO_CHANGES_IN_EDITOR"
 msgstr "Cambiamenti:"
 
 msgid "MANUALLY_SET_TIME"
-msgstr ""
+msgstr "Impostare tempo diurno manualmente"
 
 msgid "MAP"
 msgstr "Mappa"
@@ -3792,7 +3819,7 @@ msgid "MARINE_SNOW"
 msgstr "Neve marina"
 
 msgid "MASS_BUDDING_CELL_COUNT"
-msgstr ""
+msgstr "Conteggio iniziale delle cellule"
 
 #, fuzzy
 msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
@@ -3897,7 +3924,7 @@ msgstr ""
 "Siccome i thread di hyperthreading non sono veloci quanto veri core di CPU, ciò influenza il numero di thread di default."
 
 msgid "METEOR_IMPACT_EVENT"
-msgstr ""
+msgstr "Evento impatto meteore"
 
 msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
 msgstr ""
@@ -3944,14 +3971,14 @@ msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
 msgstr "Nuova specie: [b][u]{0}[/u][/b] si è diramata da [b][u]{1}[/u][/b] a causa di pressioni selettive diverse"
 
 msgid "MICHE_CHUNK_PRESSURE"
-msgstr ""
+msgstr "Pressione pezzo localizzato"
 
 #, fuzzy
 msgid "MICHE_COMPOUND_CLOUD_PRESSURE"
 msgstr "Nuvole di composti"
 
 msgid "MICHE_COMPOUND_EFFICIENCY_PRESSURE"
-msgstr ""
+msgstr "Composto conversione efficienza pressione"
 
 msgid "MICHE_DETAIL_TEXT"
 msgstr ""
@@ -3967,23 +3994,23 @@ msgid "MICHE_ENDOSYMBIOSIS_SELECTION_PRESSURE"
 msgstr "Nuova specie: [b][u]{0}[/u][/b] si è diramata da [b][u]{1}[/u][/b] a causa di pressioni selettive diverse"
 
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
-msgstr ""
+msgstr "Pressione composto ambientale"
 
 #, fuzzy
 msgid "MICHE_ENVIRONMENTAL_TOLERANCE"
 msgstr "Ambiente"
 
 msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
-msgstr ""
+msgstr "Mantener pressione del composto"
 
 msgid "MICHE_METABOLIC_STABILITY_PRESSURE"
-msgstr ""
+msgstr "Stabilità pressione metabolica"
 
 msgid "MICHE_NO_OP_PRESSURE"
-msgstr ""
+msgstr "assenza operazione pressione"
 
 msgid "MICHE_PREDATION_EFFECTIVENESS_PRESSURE"
-msgstr ""
+msgstr "Predazione efficienza pressione"
 
 #, fuzzy
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
@@ -3994,14 +4021,14 @@ msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
 msgstr "Riproduzione:"
 
 msgid "MICHE_ROOT_PRESSURE"
-msgstr ""
+msgstr "Pressione radicale"
 
 #, fuzzy
 msgid "MICHE_TEMPERATURE_SESSILITY_PRESSURE"
 msgstr "Predazione di {0}"
 
 msgid "MICHE_TREE"
-msgstr ""
+msgstr "Mica minerale"
 
 #, fuzzy
 msgid "MICROBE"
@@ -4259,7 +4286,7 @@ msgstr ""
 "Assicurati di raccogliere abbastanza glucosio per produrre ATP."
 
 msgid "MIGRATION_STATUS_DESTINATION_NOT_SELECTED"
-msgstr ""
+msgstr "Andando a migrare la popolazione da {0}  a ..."
 
 #, fuzzy
 msgid "MIGRATION_STATUS_TEXT"
@@ -4278,7 +4305,7 @@ msgstr ""
 "e sono meno inclini a sparare tossine ai propri predatori."
 
 msgid "MIGRATION_STEP_ONLY_ONE_ALLOWED"
-msgstr ""
+msgstr "È possibile eseguire una sola migrazione per sessione dell'editor. Di seguito è possibile visualizzare la migrazione in coda e mantenerla o annullarla per crearne una diversa."
 
 #, fuzzy
 msgid "MIGRATION_STEP_POPULATION_EXPLANATION"
@@ -4347,7 +4374,7 @@ msgid "MODELS"
 msgstr "Modelli"
 
 msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
-msgstr ""
+msgstr "La modalità di movimento 2D può essere modificata in qualsiasi momento nel menu delle opzioni."
 
 msgid "MODIFY"
 msgstr "Modifica"
@@ -4486,13 +4513,13 @@ msgid "MORE_INFO_PROMPT"
 msgstr "Mostra più info"
 
 msgid "MOUSE_EDGE_PANNING_OPTION"
-msgstr ""
+msgstr "Panoramica strategica quando il cursore si trova sul bordo dello schermo"
 
 msgid "MOUSE_LOOK_SENSITIVITY"
 msgstr "Sensibilità della visuale con il mouse"
 
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
-msgstr ""
+msgstr "Scalatura della sensibilità del mouse in base alle dimensioni della finestra"
 
 msgid "MOVE"
 msgstr "Sposta"
@@ -4688,7 +4715,7 @@ msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Anti-aliasing multicampionamento [MSAA]:"
 
 msgid "MULTITHREADED_SIMULATION_ENABLED"
-msgstr ""
+msgstr "Esegui la simulazione di gioco con più stringhe di codice"
 
 #, fuzzy
 msgid "MULTITHREADED_SIMULATION_EXPLANATION"
@@ -4700,6 +4727,9 @@ msgstr ""
 
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
+"Benvenuti al museo! Qui potrete ammirare le numerose specie che avete fossilizzato nel corso delle vostre partite. Potete persino giocare con una specie aprendola nell'editor di costruzione libera.\n"
+"\n"
+"Per fossilizzare una specie durante il gioco, premete il pulsante di pausa. Quindi selezionate un microbo sullo schermo per fossilizzarne la specie."
 
 msgid "MUSIC"
 msgstr "Musica"
@@ -4850,7 +4880,7 @@ msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr "La dimensione corrente della cellula non è sufficiente per inghiottire il bersaglio"
 
 msgid "NOTICE_ENGULF_STORAGE_FULL"
-msgstr ""
+msgstr "Spazio insufficiente nel deposito di materia ingerita per inglobare il bersaglio"
 
 msgid "NOTICE_HIT_BY_ATP_TOXIN"
 msgstr "La produzione di ATP è inibita da una tossina"
@@ -4871,11 +4901,15 @@ msgid "NOTICE_RADIATION_DAMAGE"
 msgstr "Danneggiato da eccessive radiazioni"
 
 msgid "NOTICE_READY_TO_EDIT"
-msgstr ""
+msgstr "pronti ad entrare nell'Editor"
 
 #, fuzzy
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "Trova la zona corrente"
+
+#, fuzzy
+msgid "NOT_ENOUGH_MUTATION_POINTS"
+msgstr "Punti Mutazione"
 
 msgid "NOT_STARTED_DOT"
 msgstr "Processo non iniziato."
@@ -5199,6 +5233,10 @@ msgid "OXYGEN_RESISTANCE"
 msgstr "Resistenza alle Tossine"
 
 #, fuzzy
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
+msgstr "Resistenza alle Tossine"
+
+#, fuzzy
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr ""
 "In questa sezione è riportato il bilancio totale (produzione - consumo) per ciascun composto.\n"
@@ -5285,7 +5323,7 @@ msgid "PATCH_NOTES_LAST_PLAYED_INFO"
 msgstr "Rimuovi Dati Locali"
 
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
-msgstr ""
+msgstr "l'ultima volta che hai giocato a thrive era il {0}, ci sono stati nuovi {1} aggiornamenti"
 
 #, fuzzy
 msgid "PATCH_NOTES_RECENT_BOUNDARY"
@@ -5340,7 +5378,7 @@ msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
 msgstr "Stai eseguendo Thrive con GLES2. Ciò non è collaudato a dovere, ed è probabile che causi problemi. Prova ad aggiornare i tuoi driver video e/o a forzare la grafica AMD o Nvidia a eseguire Thrive."
 
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
-msgstr ""
+msgstr "Completamento del processo di endosimbiosi in attesa"
 
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
@@ -5391,7 +5429,7 @@ msgid "PIN_BUTTON_TOOLTIP"
 msgstr "Modifica le impostazioni di gioco"
 
 msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
-msgstr ""
+msgstr "Posizionamento bloccato perché la membrana attuale è incompatibile con questo organello"
 
 msgid "PLACE_ORGANELLE"
 msgstr "Posiziona organulo"
@@ -5633,10 +5671,10 @@ msgid "RAW_VALUE_COLON"
 msgstr "Nuovo nome:"
 
 msgid "REACH_GENERATION_15_WITH_A_SPECIES"
-msgstr ""
+msgstr "Raggiungi la generazione 15 con una singola specie con almeno difficoltà normale"
 
 msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
-msgstr ""
+msgstr "Raggiungi la generazione {0}/{1} con una singola specie con almeno difficoltà normale"
 
 #, fuzzy
 msgid "REACH_MULTICELLULAR_STAGE"
@@ -5737,7 +5775,7 @@ msgid "RESET_DEADZONES"
 msgstr "Ripristinare le impostazioni predefinite?"
 
 msgid "RESET_DISMISSED_POPUPS"
-msgstr ""
+msgstr "Reimposta popup chiusi"
 
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Ripristinare i comandi?"
@@ -5869,7 +5907,7 @@ msgid "ROTATION_FORCE"
 msgstr "Rotazione:"
 
 msgid "RUNOFF_EVENT"
-msgstr ""
+msgstr "Evento di deflusso"
 
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Esegui Auto-Evo in gioco"
@@ -6019,7 +6057,7 @@ msgid "SCALING_ON"
 msgstr "Agente di Segnalazione"
 
 msgid "SCALING_ON_INVERSE"
-msgstr ""
+msgstr "Scalato inversamente"
 
 #, fuzzy
 msgid "SCREEN_EFFECT"
@@ -6034,7 +6072,7 @@ msgid "SCREEN_EFFECT_GAMEBOY_COLOR"
 msgstr "Effetti esterni:"
 
 msgid "SCREEN_EFFECT_GREYSCALE"
-msgstr ""
+msgstr "Scalagrigia"
 
 #, fuzzy
 msgid "SCREEN_EFFECT_NONE"
@@ -6055,7 +6093,7 @@ msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Cerca..."
 
 msgid "SEARCH_PLACEHOLDER"
-msgstr ""
+msgstr "Cercare..."
 
 msgid "SEARCH_RADIUS"
 msgstr "Raggio di ricerca:"
@@ -6126,7 +6164,7 @@ msgid "SELECT_SPACE_STRUCTURE_TITLE"
 msgstr "Struttura"
 
 msgid "SELECT_STRUCTURE_POPUP_TITLE"
-msgstr ""
+msgstr "Seleziona Struttura da posizionare"
 
 msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
 msgstr "Seleziona un tipo di tessuto dal pannello Editor"
@@ -6198,7 +6236,7 @@ msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "Abilita/disabilita la finestra di avvertimento sui progressi non salvati quando il giocatore tenta di chiudere il gioco."
 
 msgid "SHOW_WEB_NEWS_FEED"
-msgstr ""
+msgstr "Mostra il feed di notizie di Thrive (scaricato da Internet)"
 
 #, fuzzy
 msgid "SIDEROPHORE_ACTION_TOOLTIP"
@@ -6285,7 +6323,7 @@ msgid "SMALL_SULFUR_CHUNK"
 msgstr "Frammento di ferro piccolo"
 
 msgid "SNOWFLAKE"
-msgstr ""
+msgstr "Fiocco di neve"
 
 #, fuzzy
 msgid "SOCIETY_STAGE"
@@ -6319,7 +6357,7 @@ msgid "SPACE_STRUCTURE_NO_EXTRA_DESCRIPTION"
 msgstr "Struttura"
 
 msgid "SPACE_STRUCTURE_WAITING_CONSTRUCTION"
-msgstr ""
+msgstr "Struttura sta aspettando per la flotta e risorse necessarie per la costruzione:{0}"
 
 msgid "SPAWN_AMMONIA"
 msgstr "Genera ammoniaca"
@@ -6443,7 +6481,7 @@ msgid "STARTING"
 msgstr "Avvio"
 
 msgid "START_CALIBRATION"
-msgstr ""
+msgstr "Inizia calibrazione"
 
 #, fuzzy
 msgid "START_GAME"
@@ -6465,10 +6503,10 @@ msgid "STAT_BASE_MOVEMENT_REDUCTION"
 msgstr "Movimento di Base"
 
 msgid "STAT_DAMAGE"
-msgstr ""
+msgstr "Danno"
 
 msgid "STAT_DAMAGE_PER_OXYGEN"
-msgstr ""
+msgstr "Scala del danno per organello ossigenato"
 
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr "Inizializzazione della libreria client Steam fallita"
@@ -6540,7 +6578,7 @@ msgid "STORAGE_COLON"
 msgstr "Spazio di stoccaggio:"
 
 msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
-msgstr ""
+msgstr "secondi di"
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Hai effettuato l'accesso come: {0}"
@@ -6550,7 +6588,7 @@ msgid "STRAIN_BAR_TOOLTIP"
 msgstr "Metti in pausa il gioco"
 
 msgid "STRAIN_BAR_VISIBILITY"
-msgstr ""
+msgstr "Visibilità barra di tensione"
 
 #, fuzzy
 msgid "STRATEGY_STAGES"
@@ -6566,17 +6604,17 @@ msgid "STRUCTURE"
 msgstr "Struttura"
 
 msgid "STRUCTURE_ASCENSION_GATE"
-msgstr ""
+msgstr "Cancelli ascensionale"
 
 #, fuzzy
 msgid "STRUCTURE_DYSON_SWARM"
 msgstr "Struttura"
 
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
-msgstr ""
+msgstr "I materiali necessari per la costruzione sono stati depositati"
 
 msgid "STRUCTURE_HUNTER_GATHERER_LODGE"
-msgstr ""
+msgstr "Rifugio cacciatori-raccoglitori"
 
 msgid "STRUCTURE_IN_PROGRESS_CONSTRUCTION"
 msgstr ""
@@ -6673,16 +6711,16 @@ msgid "TASTY_RADIATION"
 msgstr "Respirazione aerobica"
 
 msgid "TECHNOLOGY_ASCENSION"
-msgstr ""
+msgstr "Ascensione"
 
 msgid "TECHNOLOGY_HUNTER_GATHERING"
-msgstr ""
+msgstr "Raccoglitore-cacciatore"
 
 msgid "TECHNOLOGY_LEVEL_ADVANCED_SPACE"
-msgstr ""
+msgstr "spazio avanzato"
 
 msgid "TECHNOLOGY_LEVEL_INDUSTRIAL"
-msgstr ""
+msgstr "Industriale"
 
 msgid "TECHNOLOGY_LEVEL_PRE_SOCIETY"
 msgstr ""
@@ -6691,10 +6729,10 @@ msgid "TECHNOLOGY_LEVEL_PRIMITIVE"
 msgstr ""
 
 msgid "TECHNOLOGY_LEVEL_SCIFI"
-msgstr ""
+msgstr "Fantascienza"
 
 msgid "TECHNOLOGY_LEVEL_SPACE_AGE"
-msgstr ""
+msgstr "Età dello spazio"
 
 msgid "TECHNOLOGY_REQUIRED_LEVEL"
 msgstr ""
@@ -6709,7 +6747,7 @@ msgid "TECHNOLOGY_SOCIETY_CENTER"
 msgstr ""
 
 msgid "TECHNOLOGY_STEAM_POWER"
-msgstr ""
+msgstr "potenza Vapore"
 
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
@@ -6801,29 +6839,29 @@ msgid "THREADS"
 msgstr "Thread:"
 
 msgid "THRIVEOPEDIA"
-msgstr ""
+msgstr "Prosperapedia"
 
 msgid "THRIVEOPEDIA_CURRENT_WORLD_PAGE_TITLE"
-msgstr ""
+msgstr "Mondo corrente"
 
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
-msgstr ""
+msgstr "Albero genealogico evolutivo"
 
 #, fuzzy
 msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
 msgstr "Specie estinte"
 
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
-msgstr ""
+msgstr "Apri la prosperapedia"
 
 msgid "THRIVEOPEDIA_HOME_INFO"
 msgstr ""
 
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
-msgstr ""
+msgstr "Casa"
 
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
-msgstr ""
+msgstr "Museo"
 
 #, fuzzy
 msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
@@ -6873,10 +6911,10 @@ msgstr ""
 "  {4}"
 
 msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
-msgstr ""
+msgstr "Nessuna specie è stata ancora aggiunta ai preferiti, quindi non ci sono pagine corrispondenti in questo elenco. Clicca su una specie in un'altra sezione del gioco per accedere alla sua pagina e poi aggiungila ai preferiti. Una volta aggiunta, apparirà qui."
 
 msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
-msgstr ""
+msgstr "Specie selezionate"
 
 #, fuzzy
 msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
@@ -6959,7 +6997,7 @@ msgid "TIME_INDICATOR_TOOLTIP"
 msgstr "Tempo trascorso: {0:#,#} anni"
 
 msgid "TIME_OF_DAY"
-msgstr ""
+msgstr "Tempo"
 
 msgid "TITLE_COLON"
 msgstr "Titolo:"
@@ -7014,7 +7052,7 @@ msgid "TOGGLE_MUCOCYST_DEFENCE"
 msgstr "Attiva/disattiva schermo intero"
 
 msgid "TOGGLE_NAVIGATION_TREE"
-msgstr ""
+msgstr "Attivare albero navigazione"
 
 msgid "TOGGLE_PAUSE"
 msgstr "Metti in pausa"
@@ -7043,7 +7081,7 @@ msgid "TOLERANCES_TOO_LOW_UV_PROTECTION"
 msgstr "{0}: +{1} ATP"
 
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
-msgstr ""
+msgstr "Non adattato alle attuali condizioni ambientali. Costo di osmoregolazione {0}%, velocità del bioprocesso {1}%, salute {2}%"
 
 #, fuzzy
 msgid "TOLERANCE_DETAIL_TEXT"
@@ -7083,7 +7121,7 @@ msgid "TOTAL_SAVES"
 msgstr "Salvataggi totali:"
 
 msgid "TOXIN_CHANNEL_INHIBITOR"
-msgstr ""
+msgstr "Inhibitore del canale"
 
 #, fuzzy
 msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
@@ -7115,7 +7153,7 @@ msgid "TOXIN_MACROLIDE_DESCRIPTION"
 msgstr "Il vacuolo tossine è un vacuolo che è stato modificato per la produzione, l'immagazzinamento e la secrezione di [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Più vacuoli tossine hai, più rapidamente sarai in grado di rilasciare le tossine."
 
 msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
-msgstr ""
+msgstr "Cianuro"
 
 #, fuzzy
 msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
@@ -7585,7 +7623,7 @@ msgid "UNIT_ADVANCED_SPACESHIP"
 msgstr ""
 
 msgid "UNIT_SIMPLE_ROCKET"
-msgstr ""
+msgstr "Razzo semplice"
 
 msgid "UNKNOWN"
 msgstr "Tasto sconosciuto"
@@ -7801,7 +7839,7 @@ msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr "Aumenta lo spazio di stoccaggio della cellula."
 
 msgid "VALUE_MODIFIER"
-msgstr ""
+msgstr "Modificatore"
 
 msgid "VALUE_OFFSET"
 msgstr ""
@@ -7870,7 +7908,7 @@ msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "{1} {0}o/a"
 
 msgid "VIEW_PENDING_ACTIONS"
-msgstr ""
+msgstr "Guarda ora"
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Vedi codice sorgente"
@@ -8041,7 +8079,7 @@ msgid "WIKI_AXON_INTRO"
 msgstr ""
 
 msgid "WIKI_AXON_MODIFICATIONS"
-msgstr ""
+msgstr "Nessuna modificazione."
 
 #, fuzzy
 msgid "WIKI_AXON_PROCESSES"
@@ -8051,13 +8089,13 @@ msgid "WIKI_AXON_REQUIREMENTS"
 msgstr ""
 
 msgid "WIKI_AXON_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "L'assone è una lunga e sottile estensione che va da una cellula neuronale a un'altra cellula, che può essere un'altra cellula neuronale o una cellula muscolare, tra molti altri tipi di cellule, e permette il passaggio di informazioni sotto forma di segnali elettrici tra due o più cellule. Questo a sua volta consente a un organismo di rispondere a stimoli esterni, come un improvviso aumento di temperatura, un graffio o persino l'odore di un letto che raggiunge alcune cellule sensoriali."
 
 msgid "WIKI_AXON_STRATEGY"
 msgstr ""
 
 msgid "WIKI_AXON_UPGRADES"
-msgstr ""
+msgstr "Nessun miglioramento."
 
 #, fuzzy
 msgid "WIKI_BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
@@ -8128,7 +8166,7 @@ msgid "WIKI_BIOLUMINESCENT_VACUOLE_UPGRADES"
 msgstr "Vacuolo bioluminescente"
 
 msgid "WIKI_BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
-msgstr ""
+msgstr "editore Piano corporeo, editore cellula"
 
 #, fuzzy
 msgid "WIKI_CHEMOPLAST_EFFECTS"
@@ -8438,6 +8476,9 @@ msgstr ""
 
 msgid "WIKI_FLAGELLUM_STRATEGY"
 msgstr ""
+"La velocità è importante sia per i predatori che per le prede, quindi i [b]Flagelli[/b] sono una presenza comune nell'ambiente microbico. A meno che la tua cellula non sia prevalentemente sessile, ti consigliamo di aggiungere almeno alcuni [b]Flagelli[/b] per aiutarti a inseguire e sfuggire alle altre cellule, soprattutto per compensare la diminuzione di velocità dopo l'evoluzione di un [b][color=#3796e1][url=thriveopedia:nucleus]Nucleo[/url][/color][/b].\n"
+"\n"
+"Fai attenzione all'equilibrio [thrive:compound type=\"atp\"][/thrive:compound] della tua cellula. È possibile che una cellula sopravviva con un bilancio complessivo negativo se si muove solo a brevi intervalli e produce abbastanza [thrive:compound type=\"atp\"][/thrive:compound] per sostenersi quando il consumo indotto dai [b]Flagelli[/b] viene ignorato."
 
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr ""
@@ -8478,7 +8519,7 @@ msgid "WIKI_HEADING_EDITOR"
 msgstr "Agente legante"
 
 msgid "WIKI_HEADING_EFFECTS"
-msgstr ""
+msgstr "effetti"
 
 #, fuzzy
 msgid "WIKI_HEADING_ENVIRONMENTAL_GASSES"
@@ -8489,7 +8530,7 @@ msgid "WIKI_HEADING_FEATURES"
 msgstr "Permette di legarsi ad altre cellule: è il primo passo verso la multicellularità. All'interno di una colonia, le tue cellule si scambiano i composti liberamente, ma non puoi attivare l'editor. Per farlo, devi prima lasciarla."
 
 msgid "WIKI_HEADING_FOG_OF_WAR"
-msgstr ""
+msgstr "Nebbia di guerra"
 
 #, fuzzy
 msgid "WIKI_HEADING_GAMEPLAY"
@@ -8519,17 +8560,17 @@ msgid "WIKI_HEADING_MICROBE_STAGE_TIPS"
 msgstr "Fase Microbica"
 
 msgid "WIKI_HEADING_MODIFICATIONS"
-msgstr ""
+msgstr "Modifiche"
 
 #, fuzzy
 msgid "WIKI_HEADING_MORE_GAME_INFO"
 msgstr "Fase Microbica"
 
 msgid "WIKI_HEADING_MUTATIONS_AND_MUTATION_POINTS"
-msgstr ""
+msgstr "Mutazioni e punti mutazione"
 
 msgid "WIKI_HEADING_OVERVIEW"
-msgstr ""
+msgstr "prospettiva"
 
 #, fuzzy
 msgid "WIKI_HEADING_PATCHES"
@@ -8540,16 +8581,16 @@ msgid "WIKI_HEADING_PHYSICAL_CONDITIONS"
 msgstr "Condizioni fisiche"
 
 msgid "WIKI_HEADING_PROCESSES"
-msgstr ""
+msgstr "processi"
 
 msgid "WIKI_HEADING_REPRODUCTION_IN_THE_MICROBE_STAGE"
-msgstr ""
+msgstr "riproduzione nello stadio microbico"
 
 msgid "WIKI_HEADING_REQUIREMENTS"
 msgstr ""
 
 msgid "WIKI_HEADING_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Sfondo scientifico"
 
 msgid "WIKI_HEADING_STRATEGY"
 msgstr ""
@@ -8681,7 +8722,7 @@ msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
 msgstr "Agente legante"
 
 msgid "WIKI_INDUSTRIAL_STAGE_OVERVIEW"
-msgstr ""
+msgstr "La fase industriale ruoterà principalmente attorno alla popolazione. La popolazione aumenterà vertiginosamente. L'economia fiorirà. Le guerre diventeranno più vaste e sanguinose. I consumi e l'inquinamento aumenteranno. Tutto ciò sarà la conseguenza dell'aumento del numero di individui della specie del giocatore nel mondo. Questo sarà reso possibile dai progressi in medicina, agricoltura, igiene, logistica, refrigerazione e trasporti. Tali progressi porteranno a un'impennata demografica, che a sua volta catalizzerà la Rivoluzione Industriale, la quale di fatto genererà nuove riforme militari, scientifiche, economiche e politiche."
 
 #, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
@@ -10361,9 +10402,6 @@ msgstr "Zoom indietro"
 
 #~ msgid "PATCH_MAP_TYPE_CLASSIC"
 #~ msgstr "Classica"
-
-#~ msgid "PATCH_MAP_TYPE_EXPLANATION"
-#~ msgstr "(genera una mappa delle zone proceduralmente o usa il layout classico)"
 
 #~ msgid "PATCH_MAP_TYPE_PROCEDURAL"
 #~ msgstr "Procedurale"

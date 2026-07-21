@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-03 20:10+0100\n"
+"POT-Creation-Date: 2026-07-20 16:41+0300\n"
 "PO-Revision-Date: 2026-05-22 15:37+0000\n"
 "Last-Translator: Jeremias <lejereagui@hotmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
@@ -51,6 +51,14 @@ msgstr "Aceptar"
 
 msgid "ACHIEVEMENTS"
 msgstr "Logros"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr "Logros {0}/{1}"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr "Actualizando el archivo de guardado especificado debido al siguiente error:"
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr "Logros {0}/{1}"
@@ -755,6 +763,17 @@ msgstr "Nombre del tipo de célula"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Las notas de cambios son demasiado largas"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr "Tipos de Membrana"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr "(usar generación de zonas procesalmente o usar el diseño clásico)"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Cambiar la simetría"
@@ -2890,6 +2909,10 @@ msgstr "  Estadísticas del Organismo"
 msgid "INCOMPATIBLE_ORGANELLE_LIST"
 msgstr "Multiples Orgánulos"
 
+#, fuzzy
+msgid "INCOMPATIBLE_STAGE_LIST"
+msgstr "  Estadísticas del Organismo"
+
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Aumentar tamaño del objeto"
 
@@ -3636,6 +3659,10 @@ msgstr "Síntesis de Macrólidos"
 
 msgid "MACROSCOPIC"
 msgstr "Macroscópico"
+
+#, fuzzy
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr "Jet de Slime"
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4731,6 +4758,10 @@ msgstr "Ya se puede acceder al editor"
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "Ir a Zona Actual"
 
+#, fuzzy
+msgid "NOT_ENOUGH_MUTATION_POINTS"
+msgstr "Puntos de Mutación"
+
 msgid "NOT_STARTED_DOT"
 msgstr "Sin iniciar."
 
@@ -5052,6 +5083,10 @@ msgstr "Síntesis de OxiToxi"
 
 #, fuzzy
 msgid "OXYGEN_RESISTANCE"
+msgstr "Resistencia Tóxica"
+
+#, fuzzy
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
 msgstr "Resistencia Tóxica"
 
 #, fuzzy
@@ -10359,9 +10394,6 @@ msgstr "Alejar el zoom"
 
 #~ msgid "PATCH_MAP_TYPE_CLASSIC"
 #~ msgstr "Clásico"
-
-#~ msgid "PATCH_MAP_TYPE_EXPLANATION"
-#~ msgstr "(usar generación de zonas procesalmente o usar el diseño clásico)"
 
 #~ msgid "PATCH_MAP_TYPE_PROCEDURAL"
 #~ msgstr "Generación Procesal"

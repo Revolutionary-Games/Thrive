@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-03 20:10+0100\n"
+"POT-Creation-Date: 2026-07-20 16:41+0300\n"
 "PO-Revision-Date: 2023-02-06 07:13+0000\n"
 "Last-Translator: jan-sopi <jansopi303@genocide.fun>\n"
 "Language-Team: Toki Pona <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tok/>\n"
@@ -51,6 +51,13 @@ msgstr ""
 
 msgid "ACHIEVEMENTS"
 msgstr ""
+
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr ""
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr ""
@@ -744,6 +751,16 @@ msgid "CELL_TYPE_NAME"
 msgstr ""
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
+msgstr ""
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr ""
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
 msgstr ""
 
 msgid "CHANGE_THE_SYMMETRY"
@@ -2738,6 +2755,23 @@ msgstr ""
 msgid "INCOMPATIBLE_ORGANELLE_LIST"
 msgstr ""
 
+#, fuzzy
+msgid "INCOMPATIBLE_STAGE_LIST"
+msgstr ""
+"[b]tenpo lon:[/b]\n"
+"  {0}\n"
+"[b]kule ale:[/b]\n"
+"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule  {1}; nanpa pi weka lon nanpa {2}\n"
+"[b]kule lon tenpo ni:[/b]\n"
+"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {3}; nanpa pi weka lon nanpa {4}\n"
+"[b]kule lon ma:[/b]\n"
+"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {5}; nanpa pi weka lon nanpa {6}\n"
+"[b]lon ale lon ma:[/b]\n"
+"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {7}; nanpa pi weka lon nanpa {8}\n"
+"[b]suli pi sike ante:[/b]\n"
+"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {9}; nanpa pi weka lon nanpa {10}\n"
+"[b]sona pi tomo lon sike:[/b]"
+
 msgid "INCREASE_ITEM_SIZE"
 msgstr ""
 
@@ -3465,6 +3499,10 @@ msgstr "kama ante pi sike ante"
 
 msgid "MACROSCOPIC"
 msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4463,6 +4501,9 @@ msgstr ""
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr ""
 
+msgid "NOT_ENOUGH_MUTATION_POINTS"
+msgstr ""
+
 msgid "NOT_STARTED_DOT"
 msgstr ""
 
@@ -4737,6 +4778,9 @@ msgid "OXYGEN_INHIBITOR_SYNTHESIS"
 msgstr ""
 
 msgid "OXYGEN_RESISTANCE"
+msgstr ""
+
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
 msgstr ""
 
 #, fuzzy

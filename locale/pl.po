@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-03 20:10+0100\n"
-"PO-Revision-Date: 2026-05-25 05:02+0000\n"
-"Last-Translator: Sławomir Pitek <slawomir.k.pitek@gmail.com>\n"
+"POT-Creation-Date: 2026-07-20 16:41+0300\n"
+"PO-Revision-Date: 2026-07-21 00:00+0000\n"
+"Last-Translator: DrAlienizer <dr4gonizer@proton.me>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -51,6 +51,14 @@ msgstr "Akceptuj"
 
 msgid "ACHIEVEMENTS"
 msgstr "Osiągnięcia"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr "Osiągnięcia {0} / {1}"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr "Aktualizacja wybranego zapisu zawiodła przez następujący błąd:"
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr "Osiągnięcia {0} / {1}"
@@ -757,6 +765,17 @@ msgstr "Nazwa Rodzaju Komórki"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Opis zmian jest zbyt długi"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr "Rodzaje błony lub ściany komórkowej"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr "(generuj mapę obszarów proceduralnie lub użyj klasycznego układu)"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Zmień symetrię"
@@ -2882,6 +2901,10 @@ msgid "INCOMPATIBLE_ORGANELLE_LIST"
 msgstr "Niekompatybilne z położonymi organellami: {0}"
 
 #, fuzzy
+msgid "INCOMPATIBLE_STAGE_LIST"
+msgstr "Niekompatybilne z membranami: {0}"
+
+#, fuzzy
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Stwórz Nowy"
 
@@ -3639,6 +3662,9 @@ msgstr "Synteza śluzu"
 
 msgid "MACROSCOPIC"
 msgstr "Makroskopijny"
+
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr ""
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4701,6 +4727,10 @@ msgstr "Można rozpocząć edycję"
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "Brak adaptacji do bieżącego obszaru. Zmień preferowane warunki lub tolerancję aby pozbyć się negatywnych efektów."
 
+#, fuzzy
+msgid "NOT_ENOUGH_MUTATION_POINTS"
+msgstr "Punkty Mutacji"
+
 msgid "NOT_STARTED_DOT"
 msgstr "Nie zaczęto."
 
@@ -4806,9 +4836,8 @@ msgstr ""
 msgid "OPENGL_MODE_WARNING"
 msgstr "Ostrzeżenie Tryb GLES2"
 
-#, fuzzy
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
-msgstr "Uruchomiłeś Thrive w GLES2. Jest to poważnie nietestowane i prawdopodobnie spowoduje problemy. Zaaktualizuj sterowniki graficzne i/lub wymuś użycie grafiki AMD lub Nvidia do uruchamiania Trive."
+msgstr "Używasz Thrive z OpenGL. To rozwiązanie jest słabo przetestowane i prawdopodobnie spowoduje problemy. Upewnij się, że korzystasz z wystarczająco nowej karty graficznej lub zintegrowanej grafiki oraz spróbuj zaktualizować sterowniki wideo. W przypadku laptopów może być konieczne wymuszenie używania dedykowanej grafiki AMD lub Nvidia zamiast zintegrowanej, aby uruchomić Thrive."
 
 #, fuzzy
 msgid "OPEN_EVOLUTIONARY_TREE"
@@ -5006,6 +5035,10 @@ msgstr "Synteza OxyToxy"
 
 #, fuzzy
 msgid "OXYGEN_RESISTANCE"
+msgstr "Odporność Na Toksyny"
+
+#, fuzzy
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
 msgstr "Odporność Na Toksyny"
 
 #, fuzzy
@@ -6996,13 +7029,15 @@ msgstr ""
 "\n"
 "Innym sposobem aby w małym stopniu zwiększyć [b] prędkość poruszania[/b] [thrive:icon]MovementIcon[/thrive:icon] jest sprawienie aby twoja membrana była bardziej płynna w [u]zakładce membrany[/u]."
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
 msgstr ""
-"Nie dokonałeś żadnych zmian w swoim gatunku.\n"
+"To jest widok łańcucha pokarmowego.\n"
 "\n"
-"Kiedy wyjdziesz z edytora[u]nie będziesz mógł edytować swojego gatunku dopóki znów się nie rozmnożysz[/u].\n"
-"Aby czynić postępy w grze musisz ewoluować, więc edycja gatunku jest zalecana przy większości wizyt w edytorze."
+"Pokazuje, z jakich źródeł pożywienia korzysta każdy gatunek w obecnym obszarze.\n"
+"\n"
+"Widoczne są tutaj relacje drapieżnik-ofiara oraz środowiskowe źródła pokarmu.\n"
+"\n"
+"Te informacje mogą się przydać w planowaniu ewolucji twojego gatunku, ale na początku gry możesz zignorować ten ekran, jeśli jego zawartość jest dla ciebie niejasna."
 
 msgid "TUTORIAL_MICROBE_EDITOR_MIGRATION"
 msgstr ""
@@ -8977,7 +9012,7 @@ msgstr "Dostępne tylko od Fazy Wielokomórkowej."
 
 #, fuzzy
 msgid "WIKI_MYOFIBRIL_SCIENTIFIC_BACKGROUND"
-msgstr "Wkrótce"
+msgstr "[color=#3796e1][url=https://en.wikipedia.org/wiki/Myofibril][b]Miofibryle[/b][/url][/color] to długie, wrzecionowate organelle, które zawsze znajdują się w \"Komórkach Mięśniowych”. Służą one przede wszystkim do skurczu i rozluźniania mięśni, umożliwiając stworzeniu poruszanie określonymi częściami ciała, takimi jak nogi, ramiona czy otwór gębowy."
 
 msgid "WIKI_MYOFIBRIL_STRATEGY"
 msgstr "Zalecamy aby dodać jeden [b]Miofibryl[/b] do paru rodzajów komórek w twoim wielokomórkowym organizmie, jednak dodawanie więcej niż jednego jest zbędne. Na ten moment kolejne [b]Miofibryle[/b] nie zapewniają żadnych korzyści."
@@ -10355,9 +10390,6 @@ msgstr "Oddal"
 
 #~ msgid "PATCH_MAP_TYPE_CLASSIC"
 #~ msgstr "Klasyczny"
-
-#~ msgid "PATCH_MAP_TYPE_EXPLANATION"
-#~ msgstr "(generuj mapę obszarów proceduralnie lub użyj klasycznego układu)"
 
 #~ msgid "PATCH_MAP_TYPE_PROCEDURAL"
 #~ msgstr "Proceduralny"

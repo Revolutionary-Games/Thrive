@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-03 20:10+0100\n"
+"POT-Creation-Date: 2026-07-20 16:41+0300\n"
 "PO-Revision-Date: 2026-05-13 03:55+0000\n"
 "Last-Translator: Argakyan <andrinmueller@hotmail.ch>\n"
 "Language-Team: Alemannic <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/gsw/>\n"
@@ -51,6 +51,14 @@ msgstr "Akzeptiere"
 
 msgid "ACHIEVEMENTS"
 msgstr "Uuszeichnige"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr "Uuszeichnige"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr "Fossildatei hett mer nöd chönne lösche"
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr ""
@@ -752,6 +760,21 @@ msgstr "Zelletypname"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Änderigsnotize sind z'lang"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr ""
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr ""
+"Du chasch jetzt i d'Weltruumphase übere, idem du dis erschte Ruumschiff startisch.\n"
+"\n"
+"Im Moment isches ide Prototype nöd möglich zu dim Planete zrugg z'gah, aber de eventuelli Plan isches flüssig inne und use z'zoome bi Planete ide Weltruumphase.\n"
+"\n"
+"S'abbreche vom Start wird s'Ruumschiff zerstöre. Wettsch s'Ruumschiff starte?"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Ändere vode Symmetrie"
@@ -2863,6 +2886,10 @@ msgstr "E zweischichtigi Membran bütet bessere Schutz vor Schade und benötigt 
 msgid "INCOMPATIBLE_ORGANELLE_LIST"
 msgstr "Trennti Organelle"
 
+#, fuzzy
+msgid "INCOMPATIBLE_STAGE_LIST"
+msgstr "E zweischichtigi Membran bütet bessere Schutz vor Schade und benötigt weniger Energie um sich nöd z'deformiere. Sie verlangsamt allerdings d'Zelle und senkt ihri Fähigkeit Ressource z'absorbiere."
+
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Objektgrössi erhöhe"
 
@@ -3580,6 +3607,9 @@ msgid "MACROLIDE_SYNTHESIS"
 msgstr ""
 
 msgid "MACROSCOPIC"
+msgstr ""
+
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr ""
 
 #, fuzzy
@@ -4458,6 +4488,9 @@ msgstr ""
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr ""
 
+msgid "NOT_ENOUGH_MUTATION_POINTS"
+msgstr ""
+
 msgid "NOT_STARTED_DOT"
 msgstr ""
 
@@ -4728,6 +4761,10 @@ msgstr ""
 
 msgid "OXYGEN_RESISTANCE"
 msgstr ""
+
+#, fuzzy
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
+msgstr "Trennti Organelle"
 
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr ""

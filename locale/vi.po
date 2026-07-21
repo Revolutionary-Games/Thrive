@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-03 20:10+0100\n"
-"PO-Revision-Date: 2025-11-01 17:05+0000\n"
+"POT-Creation-Date: 2026-07-20 16:41+0300\n"
+"PO-Revision-Date: 2026-06-11 13:41+0000\n"
 "Last-Translator: nam123depchai <amnickw@gmail.com>\n"
 "Language-Team: Vietnamese <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/vi/>\n"
 "Language: vi\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.11.4\n"
+"X-Generator: Weblate 5.16.1\n"
 "Generated-By: Babel 2.10.3\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -51,6 +51,14 @@ msgstr "Chấp nhận"
 
 msgid "ACHIEVEMENTS"
 msgstr "Thành tựu"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr "Thành tựu {0} / {1}"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr "Mod tuyệt vời của tôi"
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr "Thành tựu {0} / {1}"
@@ -173,9 +181,12 @@ msgstr "Alt"
 
 msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
 msgstr ""
+"Thay đổi tốc độ thay thế của mô phỏng.  \n"
+"Tốc độ này có thể dùng bằng cách nhấn nút trên HUD có giá trị tương ứng.  \n"
+"Giá trị cao hơn có thể cần CPU rất mạnh để chạy."
 
 msgid "ALTERNATVE_TIMESCALE"
-msgstr ""
+msgstr "Thời gian thay thế"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Luôn hiển thị"
@@ -363,443 +374,474 @@ msgid "AUTO-EVO_STRENGHT_MULTIPLIER"
 msgstr "Sức mạnh auto-evo tác động lên người chơi"
 
 msgid "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
-msgstr ""
+msgstr "(tỉ lệ phần trăm thay đổi dân số mà tự động-evo áp dụng cho loài người chơi)"
 
 msgid "AUTOSAVE_DURING_THE_GAME"
-msgstr ""
+msgstr "Tự động lưu trong trò chơi"
 
 msgid "AUTO_EVO"
-msgstr ""
+msgstr "Tự động‑Tiến hoá"
 
 msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
-msgstr ""
+msgstr "Sử dụng trong Trình Duyệt Auto-Evo"
 
 msgid "AUTO_EVO_EXPLORING_TOOL"
-msgstr ""
+msgstr "Công Cụ Khám Phá Auto-Evo"
 
 msgid "AUTO_EVO_FAILED"
-msgstr ""
+msgstr "Auto-evo không chạy được"
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
-msgstr ""
+msgstr "Kết quả Auto-evo bị thiếu. Nếu bạn tải bản lưu cũ, điều này là bình thường. Nếu không phải, vui lòng báo lỗi và gửi file nhật ký trò chơi cho chúng tôi."
 
 msgid "AUTO_EVO_RESULTS"
-msgstr ""
+msgstr "Kết quả Auto-evo:"
 
 msgid "AUTO_EVO_RESULTS_GLOBAL_TITLE"
-msgstr ""
+msgstr "Kết quả toàn cầu"
 
 msgid "AUTO_EVO_RESULTS_PATCH_TITLE"
-msgstr ""
+msgstr "Kết quả Đợt Đã Chọn"
 
 msgid "AUTO_EVO_RUN_STATUS"
-msgstr ""
+msgstr "trạng thái chạy:"
 
 msgid "AUTO_EVO_STATUS_COLON"
-msgstr ""
+msgstr "Trạng thái Auto-evo:"
 
 msgid "AUTO_MOVE_FORWARDS"
-msgstr ""
+msgstr "Di chuyển tự động về phía trước"
 
 msgid "AUTO_RESOLUTION"
-msgstr ""
+msgstr "Tự động ({0}x{1})"
 
 msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
-msgstr ""
+msgstr "Các dự án xây dựng khả dụng"
 
 msgid "AVAILABLE_MODS"
-msgstr ""
+msgstr "Các Mod có sẵn"
 
 msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
-msgstr ""
+msgstr "Mức CO₂ trung bình trên bề mặt"
 
 msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
-msgstr ""
+msgstr "Mức ánh sáng bề mặt trung bình"
 
 msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
-msgstr ""
+msgstr "Mức nitơ bề mặt trung bình"
 
 msgid "AVERAGE_SURFACE_OTHER_LEVEL"
-msgstr ""
+msgstr "Mức bề mặt trung bình của các khí khác"
 
 msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
-msgstr ""
+msgstr "Mức oxy bề mặt trung bình"
 
 msgid "AVERAGE_SURFACE_TEMPERATURE"
-msgstr ""
+msgstr "Nhiệt độ bề mặt trung bình"
 
 msgid "AWAKENING_STAGE"
-msgstr ""
+msgstr "Giai đoạn Thức tỉnh"
 
 msgid "AWARE_STAGE"
-msgstr ""
+msgstr "Giai đoạn Nhận Thức"
 
 msgid "BACK"
-msgstr ""
+msgstr "Quay lại"
 
 msgid "BACKGROUND_BLUR"
-msgstr ""
+msgstr "Mờ nền:"
 
 msgid "BACKSLASH"
-msgstr ""
+msgstr "Dấu gạch chéo ngược"
 
 msgid "BACKSPACE"
-msgstr ""
+msgstr "Xóa lùi"
 
 msgid "BACK_TO_SETTINGS"
-msgstr ""
+msgstr "Quay lại Cài đặt"
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
-msgstr ""
+msgstr "Cú pháp Nhiệt vi khuẩn"
 
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
-msgstr ""
+msgstr "Tính như là ngày"
 
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
-msgstr ""
+msgstr "Khi bật, các số trong bảng này được tính như thể luôn là ngày"
 
 msgid "BALANCE_DISPLAY_WHILE_MOVING"
-msgstr ""
+msgstr "Bao gồm chi phí di chuyển"
 
 msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
-msgstr ""
+msgstr "Khi bật, tính cân bằng và các số khác trong bảng này giả sử tế bào luôn di chuyển"
 
 msgid "BASE_MOBILITY"
-msgstr ""
+msgstr "Độ di chuyển cơ bản"
 
 msgid "BASE_MOVEMENT"
-msgstr ""
+msgstr "Di chuyển cơ bản"
 
 msgid "BASIC_VIEW"
-msgstr ""
+msgstr "Cơ bản"
 
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Quay lại màn hình cài đặt cơ bản"
 
 msgid "BATHYPELAGIC"
-msgstr ""
+msgstr "Thủy sâu"
 
 msgid "BECOME_MACROSCOPIC"
-msgstr ""
+msgstr "Trở thành Vĩ mô ({0}/{1})"
 
 msgid "BECOME_MULTICELLULAR"
-msgstr ""
+msgstr "Trở thành đa tế bào ({0}/{1})"
 
 msgid "BEGIN_THRIVING"
-msgstr ""
+msgstr "Bắt đầu Phát Triển"
 
 msgid "BEHAVIOUR"
-msgstr ""
+msgstr "Hành vi"
 
 msgid "BEHAVIOUR_ACTIVITY"
-msgstr ""
+msgstr "Hoạt động"
 
 msgid "BEHAVIOUR_AGGRESSION"
-msgstr ""
+msgstr "Ác tính"
 
 msgid "BEHAVIOUR_FEAR"
-msgstr ""
+msgstr "Sợ"
 
 msgid "BEHAVIOUR_FOCUS"
-msgstr ""
+msgstr "Tiêu điểm"
 
 msgid "BEHAVIOUR_OPPORTUNISM"
-msgstr ""
+msgstr "Cơ hội"
 
 msgid "BELOW_SEA_LEVEL"
-msgstr ""
+msgstr "{0}-{1}m dưới mực nước biển"
 
 msgid "BENCHMARKS"
-msgstr ""
+msgstr "Tiêu chuẩn"
 
 msgid "BENCHMARK_FINISHED"
-msgstr ""
+msgstr "Bản kiểm tra hoàn thành"
 
 msgid "BENCHMARK_PHASE"
-msgstr ""
+msgstr "Giai đoạn đo chuẩn:"
 
 msgid "BENCHMARK_RESULTS_COLON"
-msgstr ""
+msgstr "Kết quả:"
 
 msgid "BEST_PATCH_COLON"
-msgstr ""
+msgstr "Bản vá tốt nhất:"
 
 msgid "BETTER_TOGETHER"
-msgstr ""
+msgstr "Tốt Hơn Khi Cùng Nhau"
 
 msgid "BEYOND_THE_CELL"
-msgstr ""
+msgstr "Vượt qua Tế bào"
 
 msgid "BIG_IRON_CHUNK"
-msgstr ""
+msgstr "Mảnh Sắt Lớn"
 
 msgid "BIG_IRON_CHUNK_BANANA"
-msgstr ""
+msgstr "Miếng Chuối Sắt Lớn"
 
 msgid "BIG_PHOSPHATE_CHUNK"
-msgstr ""
+msgstr "Khối Phốt Pho Lớn"
 
 msgid "BIG_PHOSPHATE_CHUNK_BANANA"
-msgstr ""
+msgstr "Miếng chuối phosphat lớn"
 
 msgid "BILLION_ABBREVIATION"
-msgstr ""
+msgstr "{0} t"
 
 msgid "BINDING_AGENT"
-msgstr ""
+msgstr "Chất kết dính"
 
 msgid "BINDING_AGENT_DESCRIPTION"
-msgstr ""
+msgstr "Cho phép liên kết với các tế bào khác. Đây là bước đầu tiên hướng tới đa bào. Khi tế bào của bạn là một phần của lũy thừa, các hợp chất được chia sẻ giữa các tế bào. Bạn không thể vào trình chỉnh sửa khi là thành phần của lũy thừa, vì vậy cần tách liên kết sau khi đã thu thập đủ hợp chất để chia tế bào."
 
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Nhấn [thrive:input]g_toggle_binding[/thrive:input] để bật/tắt chế độ liên kết. Khi ở chế độ này, chạm vào các tế bào cùng loài để gắn chúng vào đại dương của bạn. Để rời đại dương, nhấn [thrive:input]g_unbind_all[/thrive:input]. Bạn không thể vào trình chỉnh sửa khi đã liên kết với các tế bào khác."
 
 msgid "BIND_AXES_SENSITIVITY"
-msgstr ""
+msgstr "Gắn trục lại"
 
 msgid "BIOLUMINESCENT_VACUOLE"
-msgstr ""
+msgstr "Bong bóng Phát sáng Tự nhiên"
 
 msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
-msgstr ""
+msgstr "Một bào nang chứa các vị trí phản ứng nơi luciferase bị tiêu thụ để phát ra ánh sáng nhìn thấy được. Người ta giả thuyết rằng phát sáng sinh học ban đầu tiến hóa như một cơ chế bảo vệ chống lại [thrive:compound type=\"oxygen\"][/thrive:compound]. Khi sự kiện oxy hoá lớn xảy ra, các vi sinh vật quen với môi trường kỵ khí gặp rất nhiều vấn đề mới do độ phản ứng cực cao của oxy gây thiệt hại nghiêm trọng. Các bào nang này có thể được thêm vào để tăng khả năng chịu oxy và tạo ra ánh sáng đẹp mắt. Trong tương lai, phát sáng sinh học có thể trở thành một phương tiện giao tiếp."
 
 msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Sử dụng [thrive:compound type=\"atp\"][/thrive:compound] để chuyển [thrive:compound type=\"oxygen\"][/thrive:compound] thành ánh sáng. Hiện chưa có tác động gameplay nào khác, chỉ tăng khả năng chịu oxy."
 
 msgid "BIOME_LABEL"
-msgstr ""
+msgstr "Sinh cảnh: {0}"
 
 msgid "BLOOM_RENDER_EFFECT"
-msgstr ""
+msgstr "Hiệu ứng nở hoa:"
 
 msgid "BLUESKY_TOOLTIP"
-msgstr ""
+msgstr "Xem hồ sơ Bluesky của chúng tôi"
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
-msgstr ""
+msgstr "Nơ-ron"
 
 msgid "BRAVE"
-msgstr ""
+msgstr "Can đảm"
 
 msgid "BROWSE"
-msgstr ""
+msgstr "Duyệt"
 
 msgid "BROWSE_WORKSHOP"
-msgstr ""
+msgstr "Duyệt Workshop"
 
 #, fuzzy
 msgid "BUDDING_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "(tốc độ mà loài AI đột biến)"
 
 msgid "BUILD_CITY"
-msgstr ""
+msgstr "Xây thành phố"
 
 msgid "BUILD_QUEUE"
-msgstr ""
+msgstr "Hàng đợi Xây dựng"
 
 msgid "BUILD_STRUCTURE"
-msgstr ""
+msgstr "Xây dựng cấu trúc"
 
 msgid "BY"
-msgstr ""
+msgstr "Bởi:"
 
 msgid "BY_REVOLUTIONARY_GAMES"
-msgstr ""
+msgstr "Bởi Revolutionary Games Studio"
 
 msgid "CACHE_DISK_MAX_TIME"
-msgstr ""
+msgstr "Thời gian tối đa giữ mục trên đĩa trước khi xóa"
 
 msgid "CACHE_MEMORY_MAX_ITEMS"
-msgstr ""
+msgstr "Số mục cache tối đa lưu trong bộ nhớ"
 
 msgid "CACHE_TIME_MEMORY"
-msgstr ""
+msgstr "Bao lâu để giữ mục cache trong bộ nhớ?"
 
 msgid "CACHE_TIME_MEMORY_ONLY"
-msgstr ""
+msgstr "Thời gian cache khi chỉ dùng bộ nhớ"
 
 msgid "CACHING_TITLE"
-msgstr ""
+msgstr "Bộ nhớ đệm"
 
 msgid "CALCIUM_CARBONATE"
-msgstr ""
+msgstr "Canxi cacbonat"
 
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
-msgstr ""
+msgstr "Màng này có vỏ cứng mạnh làm bằng canxi cacbonat. Nó dễ dàng chịu được sát thương và tốn ít năng lượng hơn để không biến dạng. Nhược điểm của vỏ nặng là tế bào di chuyển chậm hơn và cần thời gian lâu hơn để hấp thụ tài nguyên."
 
 msgid "CAMERA"
-msgstr ""
+msgstr "Camera"
 
 msgid "CANCEL"
-msgstr ""
+msgstr "Hủy"
 
 msgid "CANCEL_ACTION_CAPITAL"
-msgstr ""
+msgstr "HỦY HÀNH ĐỘNG"
 
 msgid "CANCEL_CURRENT_ACTION"
-msgstr ""
+msgstr "Hủy hành động hiện tại"
 
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
-msgstr ""
+msgstr "Một loại tế bào đang được dùng trong kế hoạch cơ thể không thể xóa được"
 
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
-msgstr ""
+msgstr "Không thể xóa Loại Ô đã dùng"
 
 msgid "CANNOT_ENGULF"
-msgstr ""
+msgstr "Không nuốt được"
 
 msgid "CANNOT_IMPROVE_PERFECTION"
-msgstr ""
+msgstr "Không thể cải thiện được sự hoàn hảo"
 
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
-msgstr ""
+msgstr "Không thể di chuyển metaball vào cây con cháu của nó"
 
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE"
-msgstr ""
+msgstr "Lượng năng lực não hiện nay quá thấp để duy trì giai đoạn này. Quay lại các giai đoạn hiện chưa được cho phép, vui lòng tăng năng lực não để tiếp tục."
 
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE_TITLE"
-msgstr ""
+msgstr "Không thể giảm năng lực não để quay lại giai đoạn"
 
 msgid "CANNOT_WRITE_SAVE"
-msgstr ""
+msgstr "Không thể ghi lưu"
 
 msgid "CANT_LOAD_MOD_INFO"
-msgstr ""
+msgstr "Không thể tải thông tin mod cho {0}"
 
 msgid "CAPSLOCK"
-msgstr ""
+msgstr "Caps Lock"
 
 msgid "CARBON_DIOXIDE"
-msgstr ""
+msgstr "Cacbon Dioxit"
 
 msgid "CATEGORY_AN_ABUNDANCE"
-msgstr ""
+msgstr "sự phong phú"
 
 msgid "CATEGORY_A_FAIR_AMOUNT"
-msgstr ""
+msgstr "một lượng đáng kể"
 
 msgid "CATEGORY_LITTLE"
-msgstr ""
+msgstr "nhỏ"
 
 msgid "CATEGORY_QUITE_A_BIT"
-msgstr ""
+msgstr "khá nhiều"
 
 msgid "CATEGORY_SOME"
-msgstr ""
+msgstr "một số"
 
 msgid "CATEGORY_VERY_LITTLE"
-msgstr ""
+msgstr "rất ít"
 
 msgid "CAUTIOUS"
-msgstr ""
+msgstr "Cẩn thận"
 
 msgid "CELL"
-msgstr ""
+msgstr "Tế bào"
 
 msgid "CELLS"
-msgstr ""
+msgstr "Tế bào"
 
 msgid "CELLULASE"
-msgstr ""
+msgstr "Enzim cellulase"
 
 msgid "CELLULASE_DESCRIPTION"
-msgstr ""
+msgstr "Cellulase cho phép tế bào phá vỡ màng cellulose. Mỗi lần thêm sẽ tăng hiệu quả."
 
 msgid "CELLULOSE"
-msgstr ""
+msgstr "Cellulose"
 
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
-msgstr ""
+msgstr "Màng này có tường ngăn, giúp bảo vệ tốt hơn trước sát thương chung và đặc biệt là sát thương vật lý. Nó cũng tiêu tốn ít năng lượng hơn để duy trì hình dạng, nhưng không thể hấp thụ tài nguyên nhanh và di chuyển chậm hơn. [b]Cellulase có thể tiêu hoại tường này[/b] khiến nó dễ bị nuốt chửng bởi kẻ săn mồi."
 
-#, fuzzy
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
-msgstr "Thoát khỏi trò chơi"
+msgstr ""
+"Trong đa bào, đây là mức thưởng chuyên môn trung bình của tất cả các tế bào, bao gồm cả thưởng kề cận.\n"
+"Thưởng hiện tại là {0}% từ {1} tế bào.\n"
+"Loại chuyên môn cao nhất là {3} với thưởng {2}%.\n"
+"Để tăng, hãy làm các loại tế bào chuyên môn hơn, thêm nhiều hơn loại tế bào chuyên môn nhất\n"
+"hoặc đặt các tế bào cùng loại sát cánh nhau."
 
-#, fuzzy
 msgid "CELL_SPECIALIZATION_TOOLTIP"
-msgstr "Thoát khỏi trò chơi"
+msgstr ""
+"Chuyên hoá một tế bào để sử dụng ít loại bào tử hơn sẽ tăng hiệu quả của tất cả các bào tử trong tế bào đó.  \n"
+"Hiệu lực hiện tại là {0}% (cường độ tối đa tăng theo kích thước tế bào cho tới {3} ô lục giác)  \n"
+"Hiệu lực hiện tại được cấp vì có {1} ô {2}.  \n"
+"Hiệu lực tăng khi đặt nhiều bào tử của loại phổ biến nhất và loại bỏ các bào tử loại khác."
 
 msgid "CELL_STAT_ROTATION_TOOLTIP"
 msgstr ""
+"Tốc độ quay của tế bào. Tế bào lớn quay chậm hơn, nhưng có thể thêm lông mao để bù đắp.  \n"
+"Vị trí bào tử ảnh hưởng tới tốc độ quay; bào tử càng xa trung tâm thì làm giảm tốc độ quay càng nhiều."
 
 msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr ""
+"Tốc độ tế bào. Lưu ý rằng do hạn chế của thuật toán tính toán, giá trị chỉ là ước lượng.\n"
+"Ví dụ, khi thay đổi độ dài sợi lông, các giá trị tốc độ có thể không hợp lý và không khớp với thực tế trong giai đoạn.\n"
+"Đây là vấn đề đã biết nhưng chưa được khắc phục vì có độ ưu tiên thấp hơn nhiều vấn đề và tính năng khác."
 
 msgid "CELL_STAT_STORAGE_TOOLTIP"
 msgstr ""
+"Dung lượng lưu trữ của tế bào. Lưu trữ cao cho phép chứa nhiều hợp chất hơn cùng lúc.\n"
+"Các tế bào lưu trữ cao có thể sử dụng chiến lược không di chuyển liên tục mà phải nạp lại ATP một thời gian rồi mới di chuyển.\n"
+"Lưu ý rằng lượng lưu trữ thấp có thể gây thiếu ATP ngay cả khi cân bằng ATP dương. Những vấn đề này có thể tệ hơn do độ trễ hoặc hiệu suất trò chơi kém. Thêm dung lượng lưu trữ sẽ giúp cải thiện."
 
 msgid "CELL_TYPE_NAME"
-msgstr ""
+msgstr "Tên Loại Tế Bào"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
+msgstr "Ghi chú thay đổi quá dài"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr ""
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr "(tốc độ mà loài AI đột biến)"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
 msgstr ""
 
 msgid "CHANGE_THE_SYMMETRY"
-msgstr ""
+msgstr "Thay đổi đối xứng"
 
 msgid "CHANNEL_INHIBITOR_TOXIN_SYNTHESIS"
-msgstr ""
+msgstr "Ký hợp chất ức chế kênh"
 
 msgid "CHEATS"
-msgstr ""
+msgstr "Mẹo"
 
 msgid "CHEATS_USED_NOTICE"
-msgstr ""
+msgstr "Đã sử dụng cheat trong lần chơi này."
 
 msgid "CHEAT_KEYS_ENABLED"
-msgstr ""
+msgstr "Phím gian lận đã bật"
 
 msgid "CHEAT_MENU"
-msgstr ""
+msgstr "Menu gian lận"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
-msgstr ""
+msgstr "Hiển thị / ẩn quá trình tế bào"
 
 #, fuzzy
 msgid "CHEMICAL_EQUATION_SPEED_EXPLANATION"
 msgstr "(tốc độ mà loài AI đột biến)"
 
 msgid "CHEMOPLAST"
-msgstr ""
+msgstr "Cemo"
 
 msgid "CHEMOPLAST_DESCRIPTION"
-msgstr ""
+msgstr "Chemoplast là cấu trúc màng kép chứa protein có khả năng chuyển đổi [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], khí [thrive:compound type=\"carbondioxide\"][/thrive:compound] và nước thành [thrive:compound type=\"glucose\"][/thrive:compound] trong quá trình gọi là [b]khổng sinh sulfua hydrogen[/b]. Tốc độ sản xuất [thrive:compound type=\"glucose\"][/thrive:compound] của nó tỉ lệ với nồng độ [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Biến [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] thành [thrive:compound type=\"glucose\"][/thrive:compound]. Tốc độ tỷ lệ với nồng độ của [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
 msgid "CHEMORECEPTOR"
-msgstr ""
+msgstr "Cảm biến hoá học"
 
 msgid "CHEMORECEPTOR_DESCRIPTION"
-msgstr ""
+msgstr "Tế bào “nhìn” bằng cảm nhận hoá học. Đây là cách tế bào thu thập thông tin môi trường. Thêm bào quan này tượng trưng cho việc tiến hoá cảm nhận hoá học tinh vi hơn. Khi người chơi có tầm nhìn ngay cả ở giai đoạn tế bào, nó được biểu thị bằng một đường chỉ ra ngoài màn hình, cho thấy các hợp chất hoặc loài lân cận mà người chơi chưa nhìn thấy."
 
 msgid "CHEMORECEPTOR_MINIMUM_AMOUNT_TOOLTIP"
 msgstr ""
+"Đặt ngưỡng phát hiện hợp chất. Giá trị thấp có thể chỉ ra vết hợp chất mỏng manh, có thể không đủ lượng hữu ích.  \n"
+"Một chiến lược ví dụ là tăng bán kính tìm kiếm và lượng tối thiểu để phát hiện đám mây dày đặc nhất gần nhất.  \n"
+"Cảm biến hoá học ngửi từng điểm riêng lẻ trong “đám mây” hợp chất, không phải toàn bộ trong một đám mây."
 
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Bộ cảm biến hoá học cho phép phát hiện các hợp chất và tế bào cụ thể từ xa hơn. Sửa đổi sau khi đặt để chọn loại hợp chất hoặc loài và màu đường dẫn."
 
 msgid "CHEMORECEPTOR_SEARCH_RADIUS_TOOLTIP"
 msgstr ""
+"Đặt khoảng cách tối đa mà thụ thể hoá học này quét để tìm mục tiêu.  \n"
+"Có thể dùng để, ví dụ, ngăn các tế bào chậm chỉ vào nguồn tài nguyên có thể biến mất trước khi chúng tới bằng cách giảm khoảng cách.  \n"
+"Ngược lại, tăng khoảng cách có thể chỉ vào các mục tiêu xa hơn, nhưng chúng có thể khó đạt được trước khi biến mất."
 
 msgid "CHEMOSYNTHESIS"
-msgstr ""
+msgstr "Quang hợp sinh hoá"
 
 msgid "CHEMOSYNTHESIZING_PROTEINS"
-msgstr ""
+msgstr "Protein Tổng Hợp Hoá Học"
 
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
-msgstr ""
+msgstr "Protein hóa học tổng hợp là những cụm protein nhỏ trong tế bào chất, có khả năng chuyển đổi [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], khí [thrive:compound type=\"carbondioxide\"][/thrive:compound] và nước thành [thrive:compound type=\"glucose\"][/thrive:compound] qua quá trình [b]hóa học sulfua hydro nhẹ[/b]. Tốc độ sản xuất [thrive:compound type=\"glucose\"][/thrive:compound] tăng theo nồng độ [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Vì các protein này treo thẳng trong tế bào chất, dịch môi trường thực hiện một phần [b]gllicolysis[/b]."
 
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Biến [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] thành [thrive:compound type=\"glucose\"][/thrive:compound]. Tốc độ tỷ lệ với nồng độ [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Cũng chuyển [thrive:compound type=\"glucose\"][/thrive:compound] thành [thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "CHEMO_SYNTHESIS"
-msgstr ""
+msgstr "Quang hợp hoá học"
 
 msgid "CHITIN"
-msgstr ""
+msgstr "Chitin"
 
 msgid "CHITINASE"
 msgstr ""
@@ -874,7 +916,7 @@ msgid "CLOSE"
 msgstr ""
 
 msgid "CLOSE_OPTIONS"
-msgstr ""
+msgstr "Đóng tùy chọn?"
 
 msgid "CLOSTRIDIAL_FERMENTATION"
 msgstr ""
@@ -962,115 +1004,123 @@ msgid "COMMUNITY_WIKI"
 msgstr ""
 
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Hãy ghé thăm trang cộng đồng wiki của chúng tôi"
 
 msgid "COMPILED_AT_COLON"
-msgstr ""
+msgstr "Được xây dựng tại:"
 
 msgid "COMPLETE_ACTION"
-msgstr ""
+msgstr "Hoàn thành"
 
 msgid "COMPOUNDS"
-msgstr ""
+msgstr "Hợp chất"
 
 msgid "COMPOUNDS_AT_EQUILIBRIUM"
-msgstr ""
+msgstr "Cân bằng ở trạng thái cân bằng"
 
 msgid "COMPOUNDS_AT_MAX_SPEED"
-msgstr ""
+msgstr "Cân bằng ở tốc độ tối đa"
 
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
-msgstr ""
+msgstr "Hiển thị / ẩn hợp chất"
 
 msgid "COMPOUNDS_COLON"
-msgstr ""
+msgstr "Hợp chất:"
 
 msgid "COMPOUND_BALANCE_FILL_TIME"
-msgstr ""
+msgstr "(đầy kho trong {0} s)"
 
 msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
-msgstr ""
+msgstr "(đầy kho trong {0} s, lâu hơn thời gian ánh sáng khả dụng {1} s)"
 
 msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
 msgstr ""
+"Chế độ tính cân bằng hợp chất, ví dụ: tốc độ tối đa giả định mọi quá trình chạy ở tốc độ tối đa\n"
+"trong khi cân bằng tính khi các quá trình chỉ chạy đủ nhanh để ATP không âm."
 
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr ""
 
 msgid "COMPOUND_BALANCE_TOOLTIP"
 msgstr ""
+"Phần này hiển thị tổng cân bằng (sản xuất - tiêu thụ) cho mỗi hợp chất.\n"
+"Ví dụ, để tạo tế bào thực vật cân bằng glucose cần phải dương đáng kể."
 
 msgid "COMPOUND_CLOUDS"
-msgstr ""
+msgstr "Mây hợp chất"
 
 msgid "COMPOUND_CLOUD_BENCHMARK"
-msgstr ""
+msgstr "Tiêu chuẩn Đám mây Hợp chất"
 
 msgid "COMPOUND_CLOUD_DENSITY"
-msgstr ""
+msgstr "Mật độ đám mây hợp chất"
 
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
-msgstr ""
+msgstr "(mật độ mây hợp chất trong môi trường)"
 
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
-msgstr ""
+msgstr "nồng độ {0} đã giảm {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
-msgstr ""
+msgstr "Tiêu thụ {0}"
 
 msgid "COMPOUND_HANDLE_KEEP"
-msgstr ""
+msgstr "Giữ Tất Cả"
 
 msgid "COMPOUND_HANDLE_SPLIT_SISTER"
-msgstr ""
+msgstr "Tách Vùng Tế Bào Chị"
 
 msgid "COMPOUND_HANDLE_TOP_UP"
-msgstr ""
+msgstr "Luôn nạp tới mức ban đầu"
 
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
-msgstr ""
+msgstr "Tăng cấp khi đổi bản vá"
 
 msgid "COMPOUND_LEVEL_AVERAGE"
-msgstr ""
+msgstr "Trung bình"
 
 msgid "COMPOUND_LEVEL_HIGH"
-msgstr ""
+msgstr "Cao"
 
 msgid "COMPOUND_LEVEL_LOW"
-msgstr ""
+msgstr "Thấp"
 
 msgid "COMPOUND_LEVEL_VERY_HIGH"
-msgstr ""
+msgstr "Rất cao"
 
 msgid "COMPOUND_LEVEL_VERY_LOW"
-msgstr ""
+msgstr "Rất thấp"
 
 msgid "COMPOUND_REPRODUCTION_SOURCE"
-msgstr ""
+msgstr "{0} tiêu thụ"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
-msgstr ""
+msgstr "(không đủ để kéo dài qua đêm, dài {0} giây)"
 
 msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
-msgstr ""
+msgstr "Chỉ {1} [thrive:compound type=\"{0}\"][/thrive:compound] có thể tạo ra vào ban ngày, nhưng để sống qua đêm cần {2}."
 
 msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
-msgstr ""
+msgstr "Không đủ không gian lưu trữ cho [thrive:compound type=\"{0}\"][/thrive:compound] vì đêm kéo dài {2} giây, nhưng kho chỉ chứa {1} giây chất."
 
 msgid "COMPOUND_STORAGE_STATS_TITLE"
-msgstr ""
+msgstr "Dung lượng lưu trữ"
 
 msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
 msgstr ""
+"Phần này cho biết thời gian tế bào tiêu thụ từng loại hợp chất khi bắt đầu từ kho lưu trữ đầy.\n"
+"Các số này luôn được tính như lúc ban đêm và dùng để kiểm tra liệu tế bào có đủ lưu trữ\n"
+"để sống qua cả đêm hay không. Bỏ chọn “tốn năng lượng di chuyển” sẽ đưa ra các số tối thiểu để\n"
+"sống sót khi không di chuyển suốt đêm để tiết kiệm năng lượng."
 
 msgid "COMPOUND_TO_FIND"
-msgstr ""
+msgstr "Hợp chất cần tìm:"
 
 msgid "CONCEPT_ART"
-msgstr ""
+msgstr "Nghệ thuật concept"
 
 msgid "CONFIG"
-msgstr ""
+msgstr "Cấu hình"
 
 msgid "CONFIRM_CAPITAL"
 msgstr ""
@@ -1103,7 +1153,7 @@ msgid "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
 msgstr ""
 
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Bắt đầu trò chơi với các cài đặt này"
 
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr ""
@@ -1223,7 +1273,7 @@ msgid "CONTROLLER_BUTTON_PS_L3"
 msgstr ""
 
 msgid "CONTROLLER_BUTTON_PS_OPTIONS"
-msgstr ""
+msgstr "Tùy chọn"
 
 msgid "CONTROLLER_BUTTON_PS_R1"
 msgstr ""
@@ -1563,199 +1613,219 @@ msgid "DESPAWN_ENTITIES"
 msgstr ""
 
 msgid "DETECTED_CPU_COUNT"
-msgstr ""
+msgstr "Phát hiện số CPU:"
 
 msgid "DEVBUILD_VERSION_INFO"
 msgstr ""
+"Bản phát triển {0}\n"
+"trên nhánh {1} vào lúc {2}\n"
+"{3}"
 
 msgid "DEVELOPERS"
-msgstr ""
+msgstr "Nhà phát triển"
 
 msgid "DEVELOPMENT_FORUM"
-msgstr ""
+msgstr "Diễn đàn Phát triển"
 
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Xem cập nhật phát triển trên diễn đàn của chúng tôi"
 
 msgid "DEVELOPMENT_SUPPORTED_BY"
-msgstr ""
+msgstr "Phát triển được hỗ trợ bởi Revolutionary Games Studio ry"
 
 msgid "DEVELOPMENT_WIKI"
-msgstr ""
+msgstr "Wiki phát triển"
 
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Truy cập wiki nhà phát triển"
 
 msgid "DEVOURED"
-msgstr ""
+msgstr "Đã nuốt"
 
 msgid "DEV_BUILD_PATRONS"
-msgstr ""
+msgstr "Những người ủng hộ Devbuilds"
 
 msgid "DIFFICULTY"
-msgstr ""
+msgstr "Độ khó"
 
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr ""
+"Cài đặt độ khó: {0}\n"
+"Hệ số chi phí đột biến: {1}\n"
+"Tốc độ đột biến AI: {2}\n"
+"Mật độ đám mây hợp chất: {3}\n"
+"Hình phạt dân số khi chết: {4}\n"
+"Giữ lại glucose môi trường: {5}\n"
+"Hệ số chi phí điều chỉnh thẩm thấu: {6}\n"
+"Đám mây glucose miễn phí khi rời trình chỉnh sửa: {7}\n"
+"Giới hạn sử dụng hợp chất tăng trưởng: {8}"
 
 msgid "DIFFICULTY_PRESET"
-msgstr ""
+msgstr "Cài đặt độ khó"
 
 msgid "DIFFICULTY_PRESET_CUSTOM"
-msgstr ""
+msgstr "Tùy chỉnh"
 
 msgid "DIFFICULTY_PRESET_EASY"
-msgstr ""
+msgstr "Dễ dàng"
 
 msgid "DIFFICULTY_PRESET_HARD"
-msgstr ""
+msgstr "Khó"
 
 msgid "DIFFICULTY_PRESET_NORMAL"
-msgstr ""
+msgstr "Bình thường"
 
 msgid "DIFFICULTY_PRESET_VERY_EASY"
-msgstr ""
+msgstr "Rất Dễ"
 
 msgid "DIGESTION_EFFICIENCY"
-msgstr ""
+msgstr "Hiệu suất tiêu hoá"
 
 msgid "DIGESTION_EFFICIENCY_COLON"
-msgstr ""
+msgstr "Hiệu suất Tiêu hoá:"
 
 msgid "DIGESTION_SPEED"
-msgstr ""
+msgstr "Tốc độ tiêu hóa"
 
 msgid "DIGESTION_SPEED_COLON"
-msgstr ""
+msgstr "Tốc độ tiêu hoá:"
 
 msgid "DIGESTION_SPEED_VALUE"
-msgstr ""
+msgstr "{0}/s"
 
 msgid "DISABLED"
-msgstr ""
+msgstr "Vô hiệu hoá"
 
 msgid "DISABLE_ALL"
-msgstr ""
+msgstr "Tắt Tất Cả"
 
 msgid "DISCARD_AND_CONTINUE"
-msgstr ""
+msgstr "Bỏ và tiếp tục"
 
 msgid "DISCARD_CHANGES"
-msgstr ""
+msgstr "Bỏ thay đổi"
 
 msgid "DISCARD_MIGRATION"
-msgstr ""
+msgstr "Bãi bỏ Di cư"
 
 msgid "DISCONNECTED_CELLS"
-msgstr ""
+msgstr "Các tế bào bị ngắt kết nối"
 
 msgid "DISCONNECTED_CELLS_TEXT"
-msgstr ""
+msgstr "Một hoặc nhiều ô chưa được kết nối. Vui lòng kết nối tất cả ô đã đặt với nhau để tiếp tục."
 
 msgid "DISCONNECTED_METABALLS"
-msgstr ""
+msgstr "Mất kết nối Metaballs"
 
 msgid "DISCONNECTED_METABALLS_TEXT"
 msgstr ""
+"Có những metaball đã đặt mà không nối với phần còn lại.\n"
+"Vui lòng di chuyển tất cả các metaball đã đặt sang gần các metaball khác để tiếp tục."
 
 msgid "DISCONNECTED_ORGANELLES"
-msgstr ""
+msgstr "Bào quan bị tách rời"
 
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
+"Có các bào quan đã đặt nhưng chưa kết nối với phần còn lại.\n"
+"Vui lòng kết nối tất cả các bào quan đã đặt với nhau hoặc hoàn tác các thay đổi."
 
 msgid "DISCORD_TOOLTIP"
-msgstr ""
+msgstr "Tham gia máy chủ Discord cộng đồng"
 
 msgid "DISK_CACHE_TOOLTIP"
 msgstr ""
+"Khi bật, một số dữ liệu tốn công tạo sẽ được ghi lên đĩa để tải nhanh hơn khi cần lại.  \n"
+"Nếu tắt, chỉ sử dụng bộ nhớ đệm trong RAM."
 
 msgid "DISMISSED_POPUPS_COLON"
-msgstr ""
+msgstr "Cửa sổ đã đóng:"
 
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
+"Đây là số cửa sổ bật lên đã bị người dùng tắt vĩnh viễn.  \n"
+"Nếu một số cửa sổ thực sự cần thiết bị tắt, nút bên cạnh có thể dùng để hiện lại tất cả các cửa sổ đã tắt."
 
 msgid "DISMISS_INFORMATION_PERMANENTLY"
-msgstr ""
+msgstr "Không hiển thị lại nữa"
 
 msgid "DISMISS_WARNING_PERMANENTLY"
-msgstr ""
+msgstr "Không cảnh báo lại"
 
 msgid "DISPLAY_3D_MENU_BACKGROUNDS"
-msgstr ""
+msgstr "Hiển thị nền menu 3D"
 
 msgid "DISPLAY_ABILITIES_BAR"
-msgstr ""
+msgstr "Hiển thị thanh kỹ năng"
 
 msgid "DISPLAY_BACKGROUND_DISTORTION_EFFECT"
-msgstr ""
+msgstr "Áp dụng biến dạng cho nền vi sinh vật"
 
 msgid "DISPLAY_BACKGROUND_PARTICLES"
-msgstr ""
+msgstr "Hiển thị hạt nền"
 
 msgid "DISPLAY_DRIVER_DIRECT3D"
-msgstr ""
+msgstr "DirectX"
 
 msgid "DISPLAY_DRIVER_METAL"
-msgstr ""
+msgstr "Kim loại"
 
 msgid "DISPLAY_DRIVER_OPENGL"
-msgstr ""
+msgstr "OpenGL"
 
 msgid "DISPLAY_DRIVER_VULKAN"
-msgstr ""
+msgstr "Vulkan"
 
 msgid "DISPLAY_MODE"
-msgstr ""
+msgstr "Chế độ hiển thị:"
 
 msgid "DISPLAY_PART_NAMES"
-msgstr ""
+msgstr "Hiển thị tên nút chọn bộ phận"
 
 msgid "DISPLAY_SELECTION"
-msgstr ""
+msgstr "Màn hình:"
 
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
-msgstr ""
+msgstr "Nguồn thức ăn môi trường đồng đều của {0}"
 
 msgid "DOES_NOT_USE_FEATURE"
-msgstr ""
+msgstr "Không"
 
 msgid "DONATIONS"
-msgstr ""
+msgstr "Ủng hộ"
 
 msgid "DOT_DOT_DOT"
-msgstr ""
+msgstr "..."
 
 msgid "DOUBLE"
-msgstr ""
+msgstr "Gấp đôi"
 
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
-msgstr ""
+msgstr "Nhấp đúp để xem toàn màn hình"
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
-msgstr ""
+msgstr "Màng hai lớp, chịu đựng hư hại tốt hơn, đặc biệt là chất độc. Tuy nhiên, nó làm chậm tế bào và giảm tốc độ hấp thụ tài nguyên."
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
-msgstr ""
+msgstr "Kéo để sắp xếp lại mục bằng chuột"
 
 msgid "DUMP_SCENE_TREE"
-msgstr ""
+msgstr "Xuất SceneTree"
 
 msgid "DUPLICATE_TYPE"
-msgstr ""
+msgstr "Nhân bản Kiểu"
 
 msgid "EASTEREGG_MESSAGE_1"
-msgstr ""
+msgstr "Thông tin thú vị: Didinium và Paramecium là ví dụ điển hình về mối quan hệ ăn‑thức ăn đã được nghiên cứu trong nhiều thập kỷ. Bạn là Didinium hay Paramecium? Kẻ săn mồi hay con mồi?"
 
 msgid "EASTEREGG_MESSAGE_10"
-msgstr ""
+msgstr "ĐỒNG VẬT RỖ RẠN!!"
 
 msgid "EASTEREGG_MESSAGE_11"
-msgstr ""
+msgstr "Smeltal kim loại."
 
 msgid "EASTEREGG_MESSAGE_12"
-msgstr ""
+msgstr "Những tế bào xanh đó."
 
 msgid "EASTEREGG_MESSAGE_13"
 msgstr ""
@@ -1815,13 +1885,13 @@ msgid "EDITING_TITLE"
 msgstr ""
 
 msgid "EDITOR"
-msgstr ""
+msgstr "Biên tập viên"
 
 msgid "EDITORS_AND_MUTATIONS_BUTTON"
-msgstr ""
+msgstr "Biên tập và Đột biến"
 
 msgid "EDITOR_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Vào trình chỉnh sửa và thay đổi loài của bạn"
 
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
@@ -1845,6 +1915,13 @@ msgstr ""
 
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_BINDING_AGENTS"
 msgstr ""
+"Để trở thành đa bào, bạn sẽ cần cuối cùng đặt [b]chất kết dính[/b].\n"
+"\n"
+"[b]Chất kết dính[/b] là chìa khóa để trở thành đa bào, cho phép bạn gắn kết với các tế bào khác và tạo thành các định cư.\n"
+"\n"
+"Tuy nhiên, chất kết dính là một bào quan phải được [u]mở khóa[/u] bằng cách duy trì dư thừa [thrive:compound type=\"atp\"].\n"
+"\n"
+"Hãy kiểm tra xem bạn đã mở khóa [b]chất kết dính[/b] chưa. Nếu rồi, hãy thử đặt chúng ngay."
 
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 msgstr ""
@@ -2167,7 +2244,7 @@ msgid "EXTRAS"
 msgstr ""
 
 msgid "EXTRA_OPTIONS"
-msgstr ""
+msgstr "Tùy chọn thêm"
 
 msgid "FACEBOOK_TOOLTIP"
 msgstr ""
@@ -2230,7 +2307,7 @@ msgid "FINISHED_DOT"
 msgstr ""
 
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
-msgstr ""
+msgstr "Hoàn tất chỉnh sửa và quay lại môi trường"
 
 msgid "FINISH_ONE_GENERATION"
 msgstr ""
@@ -2533,12 +2610,16 @@ msgstr ""
 
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
+"Bật hiệu ứng nhấp nháy ánh sáng trên giao diện (ví dụ nút chỉnh sửa nhấp nháy).\n"
+"\n"
+"Nếu bạn gặp lỗi một phần nút chỉnh sửa biến mất,\n"
+"có thể tắt tính năng này để kiểm tra xem vấn đề có được giải quyết không."
 
 msgid "GUI_SCALE_INCREASED_SIZE_NOTE"
 msgstr ""
 
 msgid "GUI_SCALE_OPTION"
-msgstr ""
+msgstr "Hệ số tỷ lệ:"
 
 msgid "GUI_TAB_NAVIGATION"
 msgstr ""
@@ -2661,6 +2742,9 @@ msgid "INCOMPATIBLE_MEMBRANE_LIST"
 msgstr ""
 
 msgid "INCOMPATIBLE_ORGANELLE_LIST"
+msgstr ""
+
+msgid "INCOMPATIBLE_STAGE_LIST"
 msgstr ""
 
 msgid "INCREASE_ITEM_SIZE"
@@ -3055,7 +3139,7 @@ msgid "LARGE_SULFUR_CHUNK"
 msgstr ""
 
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
-msgstr ""
+msgstr "Không thể xóa bào quan cuối cùng"
 
 msgid "LAUNCH0"
 msgstr ""
@@ -3187,7 +3271,7 @@ msgid "LIFE_ORIGIN_POND"
 msgstr ""
 
 msgid "LIFE_ORIGIN_TOOLTIP"
-msgstr ""
+msgstr "Một số tùy chọn có thể bị vô hiệu hoá nếu chỉ bật LAWK"
 
 msgid "LIFE_ORIGIN_VENTS"
 msgstr ""
@@ -3344,6 +3428,9 @@ msgstr ""
 
 msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
 msgstr ""
+"Tốc độ khung trung bình của bạn rất thấp. \n"
+"Nền menu 3D đang bật, có thể tiêu tốn nhiều tài nguyên hệ thống. Tắt tùy chọn này có thể tăng hiệu năng đáng kể.\n"
+"Bạn có muốn tắt ngay bây giờ không?"
 
 msgid "LOW_QUALITY_BACKGROUND_BLUR"
 msgstr ""
@@ -3370,6 +3457,9 @@ msgid "MACROLIDE_SYNTHESIS"
 msgstr ""
 
 msgid "MACROSCOPIC"
+msgstr ""
+
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr ""
 
 msgid "MACROSCOPIC_EDITOR"
@@ -3691,6 +3781,11 @@ msgstr ""
 
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
+"Để điều khiển tế bào, dùng các phím hiển thị gần tế bào (giữa màn hình) để di chuyển và chuột để điều chỉnh hướng.\n"
+"\n"
+"[b]Bạn có thể đổi chế độ di chuyển trong mục cài đặt.[/b]\n"
+"\n"
+"Hãy thử mọi phím trong vài giây để tiếp tục."
 
 msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 msgstr ""
@@ -3798,7 +3893,7 @@ msgid "MODELS"
 msgstr ""
 
 msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
-msgstr ""
+msgstr "Chế độ di chuyển 2D có thể thay đổi trong menu tùy chọn bất cứ lúc nào."
 
 msgid "MODIFY"
 msgstr ""
@@ -3930,7 +4025,7 @@ msgid "MORE_INFO_PROMPT"
 msgstr ""
 
 msgid "MOUSE_EDGE_PANNING_OPTION"
-msgstr ""
+msgstr "Góc nhìn chiến lược khi con trỏ ở cạnh màn hình"
 
 msgid "MOUSE_LOOK_SENSITIVITY"
 msgstr ""
@@ -4139,68 +4234,68 @@ msgid "NEWS"
 msgstr ""
 
 msgid "NEW_GAME"
-msgstr ""
+msgstr "Trò chơi mới"
 
 msgid "NEW_GAME_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Bắt đầu trò chơi mới"
 
 msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
-msgstr ""
+msgstr "Lưu ý: bạn có thể thay đổi các tùy chọn hiệu năng bất kỳ lúc nào trong [color=#3796e1][url=thrive://GUI/OptionsMenu/Performance]menu tùy chọn[/url][/color] để cải thiện hiệu suất trò chơi"
 
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
-msgstr ""
+msgstr "Mod tuyệt vời của tôi"
 
 msgid "NEW_NAME"
-msgstr ""
+msgstr "Tên Mới"
 
 msgid "NEW_NAME_COLON"
-msgstr ""
+msgstr "Tên mới:"
 
 msgid "NEXT_CAPITAL"
-msgstr ""
+msgstr "TIẾP"
 
 msgid "NEXT_EDITOR_TAB"
-msgstr ""
+msgstr "Chuyển tới tab biên tập tiếp theo"
 
 msgid "NITROGEN"
-msgstr ""
+msgstr "Nitơ"
 
 msgid "NITROGENASE"
-msgstr ""
+msgstr "Nitrogenase"
 
 msgid "NITROGENASE_DESCRIPTION"
-msgstr ""
+msgstr "Nitrogenase là một protein có khả năng sử dụng khí [thrive:compound type=\"nitrogen\"][/thrive:compound] và năng lượng tế bào dưới dạng [thrive:compound type=\"atp\"][/thrive:compound] để tạo ra [thrive:compound type=\"ammonia\"][/thrive:compound], một dưỡng chất quan trọng cho sự phát triển của tế bào. Đây là quá trình được gọi là [b]cố định nitơ kỵ khí[/b]. Vì nitrogenase được treo trực tiếp trong bào tương, chất lỏng xung quanh thực hiện một số [b]gllycolysis[/b]."
 
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Biến đổi [thrive:compound type=\"atp\"][/thrive:compound] thành [thrive:compound type=\"ammonia\"][/thrive:compound]. Tốc độ tăng lên theo nồng độ của [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
 #, fuzzy
 msgid "NITROGEN_FIXATION"
 msgstr "Cố định đạm hiếu khí"
 
 msgid "NITROPLAST"
-msgstr ""
+msgstr "Nitroplast"
 
 msgid "NITROPLAST_DESCRIPTION"
-msgstr ""
+msgstr "Nitroplast là một bào tử liên quan tới màng, có thể sử dụng khí [thrive:compound type=\"nitrogen\"][/thrive:compound] và [thrive:compound type=\"atp\"][/thrive:compound] để tạo ra [thrive:compound type=\"ammonia\"][/thrive:compound], một chất dinh dưỡng thiết yếu cho sự phát triển của tế bào. Đây là quá trình được gọi là [b]cố định nitrogen[/b]."
 
 msgid "NITROPLAST_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Chuyển đổi [thrive:compound type=\"atp\"][/thrive:compound] thành [thrive:compound type=\"ammonia\"][/thrive:compound]. Tốc độ tỷ lệ với nồng độ của [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
 msgid "NONE"
-msgstr ""
+msgstr "Không có"
 
 msgid "NORMAL"
-msgstr ""
+msgstr "Bình thường"
 
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
-msgstr ""
+msgstr "Màng cơ bản nhất, ít bảo vệ trước tổn thương và cần nhiều năng lượng để không biến dạng. Ưu điểm: giúp tế bào di chuyển và hấp thu chất dinh dưỡng nhanh chóng."
 
 msgid "NOTHING_HERE"
 msgstr "Không có gì ở đây"
 
 msgid "NOTHING_TO_INTERACT_WITH"
-msgstr ""
+msgstr "Không có gì để tương tác"
 
 msgid "NOTICE_BINDING_OUT_OF_ATP"
 msgstr "Thoát chế độ gán phím do hết ATP"
@@ -4242,6 +4337,9 @@ msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
+msgstr ""
+
+msgid "NOT_ENOUGH_MUTATION_POINTS"
 msgstr ""
 
 msgid "NOT_STARTED_DOT"
@@ -4291,6 +4389,8 @@ msgstr ""
 
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
+"Không thể xóa hạt nhân vì đây là tiến hóa không đảo ngược.\n"
+"Tuy nhiên nếu được đặt trong phiên hiện tại, vẫn cho phép hoàn tác hoặc làm lại."
 
 msgid "NUCLEUS_DESCRIPTION"
 msgstr ""
@@ -4401,10 +4501,10 @@ msgid "OPPORTUNISTIC"
 msgstr ""
 
 msgid "OPTIONS"
-msgstr ""
+msgstr "Tùy chọn"
 
 msgid "OPTIONS_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Thay đổi cài đặt"
 
 msgid "ORGANELLES"
 msgstr ""
@@ -4513,6 +4613,10 @@ msgstr ""
 
 msgid "OXYGEN_RESISTANCE"
 msgstr ""
+
+#, fuzzy
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
+msgstr "Bào quan bị tách rời"
 
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr ""
@@ -4858,211 +4962,220 @@ msgid "QUICK_SAVE"
 msgstr ""
 
 msgid "QUIT"
-msgstr ""
+msgstr "Thoát"
 
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Thoát khỏi trò chơi"
 
 msgid "QUIT_GAME_WARNING"
 msgstr ""
+"Bạn có chắc muốn thoát trò chơi không?\n"
+"Bạn sẽ mất mọi tiến trình chưa lưu."
 
 msgid "RADIATION"
-msgstr ""
+msgstr "Phóng xạ"
 
 #, fuzzy
 msgid "RADIATION_LEVELS"
 msgstr "Xóa"
 
 msgid "RADIOACTIVE_CHUNK"
-msgstr ""
+msgstr "Khối Đá Phóng Xạ"
 
 msgid "RADIOACTIVE_CHUNK_BANANA"
-msgstr ""
+msgstr "Miếng Chuối Phóng Xạ"
 
 msgid "RADIOSYNTHESIS"
-msgstr ""
+msgstr "Tổng hợp phóng xạ"
 
 msgid "RANDOMIZE_SPECIES_NAME"
-msgstr ""
+msgstr "Ngẫu nhiên tên loài"
 
 msgid "RANDOM_SEED_TOOLTIP"
-msgstr ""
+msgstr "Giá trị dùng để tạo thế giới, phải là số nguyên dương"
 
 msgid "RAW"
-msgstr ""
+msgstr "Thô"
 
 msgid "RAW_VALUE_COLON"
-msgstr ""
+msgstr "Thô:"
 
 msgid "REACH_GENERATION_15_WITH_A_SPECIES"
-msgstr ""
+msgstr "Đạt thế hệ 15 với một loài duy nhất, độ khó ít nhất là bình thường"
 
 msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
-msgstr ""
+msgstr "Đạt thế hệ {0}/{1} với một loài duy nhất, độ khó ít nhất bình thường"
 
 msgid "REACH_MULTICELLULAR_STAGE"
-msgstr ""
+msgstr "Đạt giai đoạn đa bào"
 
 msgid "READING_SAVE_DATA"
-msgstr ""
+msgstr "Đang đọc dữ liệu lưu"
 
 msgid "READY"
-msgstr ""
+msgstr "Sẵn sàng"
 
 msgid "RECOMMENDED_THRIVE_VERSION"
-msgstr ""
+msgstr "Khuyên dùng Thrive:"
 
 msgid "REDDIT_TOOLTIP"
-msgstr ""
+msgstr "Thăm subreddit của chúng tôi"
 
 msgid "REDO"
-msgstr ""
+msgstr "Hoàn tác"
 
 msgid "REDO_THE_LAST_ACTION"
-msgstr ""
+msgstr "Làm lại hành động cuối cùng"
 
 msgid "REFRESH"
-msgstr ""
+msgstr "Làm mới"
 
 msgid "REGENERATE_BUTTON"
-msgstr ""
+msgstr "Tái tạo Thế giới"
 
 msgid "REGIONS_NUMBER"
-msgstr ""
+msgstr "Số khu vực:"
 
 msgid "RENDER_SCALE"
-msgstr ""
+msgstr "Tỷ lệ độ phân giải"
 
 msgid "REPORT"
-msgstr ""
+msgstr "Báo cáo"
 
 msgid "REPORT_BUG"
-msgstr ""
+msgstr "Báo cáo Lỗi"
 
 msgid "REPRODUCED"
-msgstr ""
+msgstr "sinh sản"
 
 msgid "REPRODUCTION"
-msgstr ""
+msgstr "Sinh sản"
 
 msgid "REPRODUCTION_ASEXUAL"
-msgstr ""
+msgstr "Vô tính"
 
 msgid "REPRODUCTION_BUDDING"
-msgstr ""
+msgstr "Mầm"
 
 msgid "REPRODUCTION_COMPOUNDS_MODE"
-msgstr ""
+msgstr "Hợp chất khi thoát trình chỉnh sửa:"
 
 msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
-msgstr ""
+msgstr "(cách xử lý các hợp chất đã lưu khi quay lại màn chơi từ trình chỉnh sửa)"
 
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 msgstr ""
+"Cấu hình những gì xảy ra với các hợp chất đã lưu khi vào trình chỉnh sửa.  \n"
+"Phân chia với tế bào chị sẽ chuyển một nửa các hợp chất đã lưu cho chúng khi thoát trình chỉnh sửa.  \n"
+"Giữ toàn bộ là tùy chọn ích kỷ, giữ lại mọi hợp chất như hiện tại.  \n"
+"Luôn bổ sung sẽ nạp đầy bất kỳ hợp chất nào lên mức ban đầu khi tế bào sinh ra.  \n"
+"Bổ sung khi thay vùng sẽ nạp lên mức ban đầu nhưng chỉ khi vùng đã thay đổi."
 
 #, fuzzy
 msgid "REPRODUCTION_MASS_BUDDING"
 msgstr "Sản xuất ATP"
 
 msgid "REPRODUCTION_METHOD"
-msgstr ""
+msgstr "Sinh sản:"
 
 #, fuzzy
 msgid "REPRODUCTION_SPORE"
 msgstr "Sản xuất ATP"
 
 msgid "REQUIRES_NUCLEUS"
-msgstr ""
+msgstr "Yêu cầu nhân"
 
 msgid "RESEARCH"
-msgstr ""
+msgstr "Nghiên cứu"
 
 msgid "RESET"
-msgstr ""
+msgstr "Đặt lại"
 
 msgid "RESET_ACHIEVEMENTS"
-msgstr ""
+msgstr "Đặt lại thành tựu"
 
 msgid "RESET_DEADZONES"
-msgstr ""
+msgstr "Đặt lại vùng chết"
 
 msgid "RESET_DISMISSED_POPUPS"
-msgstr ""
+msgstr "Đặt lại các popup đã tắt"
 
 msgid "RESET_INPUTS_TO_DEFAULTS"
-msgstr ""
+msgstr "Đặt lại các đầu vào về mặc định?"
 
 msgid "RESET_ITEM_ORDER_TO_DEFAULT"
-msgstr ""
+msgstr "Đặt lại thứ tự mục về mặc định"
 
 msgid "RESET_KEYBINDINGS"
-msgstr ""
+msgstr "Đặt lại phím tắt"
 
 msgid "RESET_SETTINGS_TO_DEFAULTS"
-msgstr ""
+msgstr "Mặc định"
 
 msgid "RESET_SHOWN_TUTORIALS"
-msgstr ""
+msgstr "Đặt lại các hướng dẫn đã xem"
 
 msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
-msgstr ""
+msgstr "Đánh dấu tất cả hướng dẫn chưa được xem. Điều này sẽ hiển thị lại mọi hướng dẫn."
 
 msgid "RESET_TO_DEFAULTS"
-msgstr ""
+msgstr "Đặt lại về mặc định?"
 
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
-msgstr ""
+msgstr "Kháng ăn trầm cơ bản"
 
 msgid "RESIZE_METABALL_TOOLTIP"
-msgstr ""
+msgstr "Đặt kích thước metaball sẽ đặt. Hoặc thay đổi bằng phím tắt."
 
 msgid "RESOLUTION"
-msgstr ""
+msgstr "Độ phân giải:"
 
 msgid "RESOURCE_ABSORBTION_SPEED"
-msgstr ""
+msgstr "Tốc độ hấp thụ tài nguyên"
 
 msgid "RESOURCE_AMOUNT_SHORT"
-msgstr ""
+msgstr "{0}: {1}"
 
 msgid "RESOURCE_ENERGY"
-msgstr ""
+msgstr "Năng lượng"
 
 msgid "RESOURCE_FOOD"
-msgstr ""
+msgstr "Thức ăn"
 
 msgid "RESOURCE_ROCK"
-msgstr ""
+msgstr "Đá"
 
 msgid "RESOURCE_WOOD"
-msgstr ""
+msgstr "Gỗ"
 
 msgid "RESPIRATION"
-msgstr ""
+msgstr "Hô hấp hiếu khí"
 
 msgid "RESPONSIVE"
-msgstr ""
+msgstr "Phản hồi"
 
 msgid "RESTART_REQUIRED"
-msgstr ""
+msgstr "Cần Khởi Động Lại"
 
 msgid "RESUME"
 msgstr "Tiếp tục"
 
 msgid "RESUME_TOOLTIP"
-msgstr ""
+msgstr "Tiếp tục trò chơi"
 
 msgid "RETURN_TO_MENU"
-msgstr ""
+msgstr "Quay lại Menu"
 
 msgid "RETURN_TO_MENU_TOOLTIP"
-msgstr ""
+msgstr "Thoát về menu chính"
 
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
+"Bạn có chắc muốn quay lại menu chính?\n"
+"Bạn sẽ mất mọi tiến độ chưa lưu."
 
 msgid "REVEAL_ALL_PATCHES"
-msgstr ""
+msgstr "Hiện tất cả các bản vá"
 
 msgid "REVERT_TO_EDITOR"
 msgstr "Quay lại Trình chỉnh sửa"
@@ -5071,47 +5184,51 @@ msgid "REVERT_TO_EDITOR_EXPLANATION"
 msgstr "Nếu vi sinh vật hiện tại của bạn không thể sống sót trong môi trường này, bạn có thể quay lại lần trước khi ở trong trình chỉnh sửa và thử một hướng khác."
 
 msgid "REVERT_TO_EDITOR_PROMPT"
-msgstr ""
+msgstr "Quay lại Trình chỉnh sửa?"
 
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
-msgstr ""
+msgstr "Thăm các trang chính thức của Revolutionary Games"
 
 msgid "RIGHT_ARROW"
-msgstr ""
+msgstr "→"
 
 msgid "RIGHT_MOUSE"
-msgstr ""
+msgstr "Nhấn chuột phải"
 
 msgid "RIGID"
-msgstr ""
+msgstr "Cứng"
 
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
-msgstr ""
+msgstr "Màng tế bào cứng hơn chống hư hại tốt hơn, nhưng khiến tế bào di chuyển khó khăn hơn."
 
 msgid "ROTATE_LEFT"
-msgstr ""
+msgstr "Xoay trái"
 
 msgid "ROTATE_RIGHT"
-msgstr ""
+msgstr "Xoay sang phải"
 
 msgid "ROTATION_COLON"
-msgstr ""
+msgstr "Xoay:"
 
 #, fuzzy
 msgid "ROTATION_FORCE"
 msgstr "Sản xuất ATP"
 
 msgid "RUNOFF_EVENT"
-msgstr ""
+msgstr "Sự kiện chảy tràn"
 
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
-msgstr ""
+msgstr "Chạy auto-evo trong lúc chơi"
 
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY_TOOLTIP"
 msgstr ""
+"Khi bật, auto‑evo sẽ bắt đầu trong khi chơi để giảm thời gian tải.  \n"
+"Điều này có thể gây lag thêm trên máy có ít lõi CPU.  \n"
+"Nếu tắt, auto‑evo chỉ chạy trong màn hình tải, nhưng vẫn sẽ hoạt động.  \n"
+"Không thể tắt hoàn toàn auto‑evo vì nó là phần cốt lõi của trò chơi."
 
 msgid "RUN_ONE_STEP"
-msgstr ""
+msgstr "Chạy một bước"
 
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr ""
@@ -5148,6 +5265,14 @@ msgstr ""
 
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
+"Thrive đã khởi động ở chế độ an toàn do lỗi khởi động trước đó.\n"
+"\n"
+"Nguyên nhân có thể là một mod hoặc trình phát video. Để đề phòng, việc tải mod có thể đã bị bỏ qua và/hoặc video có thể đã bị tắt. Điều này sẽ kéo dài cho đến khi Thrive được khởi động lại.\n"
+"\n"
+"Trước khi khởi động lại, vui lòng tắt bất kỳ mod nào có thể gây vấn đề hoặc không tương thích với phiên bản hiện tại của Thrive (bạn có thể xem log của lần khởi động trước để xác định mod gây ra lỗi).\n"
+"Đối với các vấn đề liên quan tới trình phát video, hãy dùng tùy chọn trong launcher để buộc tắt video.\n"
+"\n"
+"Nếu không khắc phục nguyên nhân gây lỗi khởi động, bạn sẽ phải khởi động lại và để Thrive bị treo nhiều lần để quay lại chế độ an toàn."
 
 msgid "SAFE_MODE_TITLE"
 msgstr ""
@@ -5321,7 +5446,7 @@ msgid "SELECT_MOVEMENT_MODE_TITLE"
 msgstr ""
 
 msgid "SELECT_OPTION"
-msgstr ""
+msgstr "Chọn một tùy chọn"
 
 msgid "SELECT_PREVIEW_IMAGE"
 msgstr ""
@@ -5345,7 +5470,7 @@ msgid "SESSILE"
 msgstr ""
 
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
-msgstr ""
+msgstr "Giá trị này chỉ áp dụng cho các trò chơi mới bắt đầu sau khi thay đổi tùy chọn này"
 
 msgid "SFX_VOLUME"
 msgstr ""
@@ -5378,13 +5503,16 @@ msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr ""
 
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
-msgstr ""
+msgstr "Hiển thị hướng dẫn (trong trò chơi hiện tại)"
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
-msgstr ""
+msgstr "Hiển thị hướng dẫn (trong trò mới)"
 
 msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
 msgstr ""
+"Hiển thị hoặc tắt hoàn toàn hướng dẫn. Không khuyến nghị tắt tính năng này.\n"
+"Thay vào đó, khi bắt đầu trò chơi mới, tắt tất cả hướng dẫn sẽ chỉ hiển thị những hướng dẫn bạn chưa từng xem.\n"
+"Cách này rất được đề xuất vì các hướng dẫn mới được thêm thường xuyên, nếu không sẽ bị người chơi đã từng chơi Thrive bỏ lỡ."
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr ""
@@ -5878,6 +6006,11 @@ msgstr ""
 
 msgid "THANKS_FOR_BUYING_THRIVE_2"
 msgstr ""
+"Cảm ơn bạn đã hỗ trợ phát triển Thrive bằng cách mua bản này từ [color=#3796e1][url={0}]{1}[/url][/color]!\n"
+"\n"
+"Tốc độ phát triển tiếp tục của Thrive phụ thuộc vào mức độ hỗ trợ chúng tôi nhận được. Bạn có thể tìm hiểu thêm tại [color=#3796e1][url={2}]trang web của chúng tôi[/url][/color] hoặc qua các mạng xã hội liên kết ở góc trái dưới màn hình.\n"
+"\n"
+"Nếu muốn xem Thrive Launcher trước khi khởi động Thrive, hãy sử dụng nút trong menu chính để thoát về launcher và tắt chế độ liền mạch trong tùy chọn của launcher."
 
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
@@ -6235,31 +6368,83 @@ msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr ""
 
 msgid "TUTORIAL"
-msgstr ""
+msgstr "Hướng dẫn"
 
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
+"Thanh ATP bên phải cho thấy lượng [thrive:compound type=\"atp\"][/thrive:compound] tế bào sản xuất so với tiêu thụ. Nếu thanh trên ngắn hơn thanh dưới, bạn chưa tạo đủ [thrive:compound type=\"atp\"][/thrive:compound].\n"
+"\n"
+"Thanh dưới bao gồm chi phí [b]điều chỉnh thẩm thấu[/b] [thrive:icon]OsmoIcon[/thrive:icon] và chi phí [b]di chuyển[/b] [thrive:icon]MovementIcon[/thrive:icon]. [b]Điều chỉnh thẩm thấu[/b] [thrive:icon]OsmoIcon[/thrive:icon] là [u]chi phí cơ bản để tồn tại[/u]. Mỗi bộ phận bạn thêm sẽ làm tăng chi phí này. Bạn không phải trả chi phí [b]di chuyển[/b] [thrive:icon]MovementIcon[/thrive:icon] khi không di chuyển.\n"
+"\n"
+"Nếu sản xuất [thrive:compound type=\"atp\"][/thrive:compound] của bạn âm, hãy tăng sản xuất hoặc thêm [b]bộ lưu trữ[/b] [thrive:icon]StorageIcon[/thrive:icon] để di chuyển bật nhảy."
 
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
+"Bảng này hiển thị dự đoán năng lượng thu thập tổng cộng trong tương lai của bạn (và dân số trong ngoặc). Các con số này được lấy từ mô phỏng [b]auto-evo[/b].\n"
+"\n"
+"Chúng không tính đến hiệu suất cá nhân của bạn. Vì vậy trong bản vá hiện tại, các số cuối cùng sẽ khác so với khi chỉ dựa vào auto-evo. Dân số loài của bạn giảm mỗi khi tế bào chết, và tăng mỗi khi bạn vào cửa sổ chỉnh sửa.\n"
+"\n"
+"Bạn nên cố gắng duy trì các con số này ngay cả trong các bản vá mà bạn không tham gia trực tiếp.\n"
+"\n"
+"Bạn có thể xem thông tin chi tiết hơn về dự đoán bằng cách [b]nhấn nút dấu hỏi trong bảng. Nhấn để tiếp tục.[/b]"
 
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
+"Đây là [b]trình chỉnh sửa vi sinh vật[/b], nơi bạn có thể tiến hóa loài mình bằng cách tiêu tốn [b]điểm đột biến[/b] (MP) [thrive:icon]MP[/thrive:icon]. Mỗi thế hệ bạn luôn có [b]100 MP[/b] [thrive:icon]MP[/thrive:icon] để chi tiêu, vì vậy đừng lo lưu trữ!\n"
+"\n"
+"Hình lục giác ở trung tâm màn hình là loài của bạn. Hiện nó chỉ là một vi sinh vật đơn giản.\n"
+"\n"
+"Để tiếp tục, chọn một bộ phận từ bảng bên trái. Sau đó nhấp chuột trái cạnh hình lục giác để đặt. Bạn có thể xoay các bộ phận bằng [thrive:input]e_rotate_left[/thrive:input] và [thrive:input]e_rotate_right[/thrive:input].\n"
+"\n"
+"Một bước tiến hóa an toàn đầu tiên là thêm 1–2 miếng tế bào chất hoặc [b]hydrogenase[/b] vào loài của bạn."
 
 msgid "TUTORIAL_MICROBE_EDITOR_CHEMORECEPTOR"
 msgstr ""
+"Bạn có thể thêm một bào quan [b]chemoreceptor[/b] vào tế bào.\n"
+"\n"
+"Chemoreceptor tăng khả năng cảm nhận môi trường của loài bạn.\n"
+"\n"
+"Đặt một cái sẽ cho phép bạn phát hiện các hợp chất như [thrive:compound type=\"glucose\"][/thrive:compound] và dẫn đường tới chúng. Nó cũng có thể dùng để phát hiện tế bào của các loài khác."
 
 msgid "TUTORIAL_MICROBE_EDITOR_COMPOUND_BALANCES"
 msgstr ""
+"Đây là màn hình cân bằng hợp chất. Nó hiển thị tổng lượng sử dụng và sản xuất hợp chất của tất cả các quá trình tế bào.\n"
+"\n"
+"Đây là công cụ rất quan trọng để kiểm tra hiệu quả của các cơ quan tế bào không sản xuất trực tiếp [thrive:compound type=\"atp\"][/thrive:compound] vì chúng [b]sẽ không xuất hiện[/b] trên thanh cân bằng ATP.\n"
+"\n"
+"Ví dụ, quá trình quang hợp có thể cân bằng bằng màn hình này; cần có đủ lượng glucose do [b]quang hợp[/b] tạo ra để có cân bằng dương cho [thrive:compound type=\"glucose\"][/thrive:compound] nhằm tạo ra một thực vật thành công.\n"
+"\n"
+"Hiểu rằng một số cơ quan tế bào tạo ra [u]sản phẩm trung gian[/u] mà chỉ [i]sau đó[/i] được chuyển đổi thành [thrive:compound type=\"atp\"][/thrive:compound] là khái niệm then chốt trong các đường chuyển hoá nâng cao. Thời gian lưu trữ dưới màn hình này cũng sẽ trở nên quan trọng đối với các tế bào tiên tiến."
 
 msgid "TUTORIAL_MICROBE_EDITOR_DIGESTION_STAT"
 msgstr ""
+"Các thống kê tốc độ và hiệu quả tiêu hoá có thể xem ở phía dưới bảng Thống kê Sinh vật.\n"
+"\n"
+"Tăng các thống kê này làm cho [u]săn lùng trở nên hiệu quả hơn[/u]. Lysosome cũng có thể được chỉnh sửa để cung cấp các [b]enzyme[/b] khác nhau.\n"
+"\n"
+"Các loại enzyme mới cho phép ăn các loại mồi khác mà có thể không chịu được tiêu hoá cơ bản. Mỗi loại enzyme có chỉ số hiệu quả riêng.\n"
+"\n"
+"Bạn có thể xem hiệu quả từng loại bằng cách di chuột qua chỉ số hiệu quả. Chuyên môn hoá một loại tăng hiệu quả nhưng giảm đa dạng mồi."
 
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
+"Thích nghi khó khăn. Có nhiều nguồn [thrive:compound type=\"atp\"][/thrive:compound], nhưng không phải nơi nào cũng dùng được. Bạn có thể dùng mọi tab và bảng ở đây để đưa ra quyết định sáng suốt nhất, hoặc chỉ thử một cách và xem kết quả!\n"
+"\n"
+"Nhớ nhé: [u]nếu bạn không tạo đủ [thrive:compound type=\"atp\"][/thrive:compound] thì sẽ không sống sót[/u].\n"
+"\n"
+"Một lối sống tìm [thrive:compound type=\"glucose\"][/thrive:compound] và chuyển thành [thrive:compound type=\"atp\"][/thrive:compound] sẽ hiện tại hiệu quả, nhưng glucose tự nhiên sẽ giảm theo mỗi thế hệ.\n"
+"\n"
+"Cuối cùng, bạn có thể đổi tên loài bằng cách nhấn vào tên ở góc trái dưới và chỉnh sửa văn bản."
 
 msgid "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
 msgstr ""
+"[b]Flagella[/b] đẩy vi sinh vật của bạn theo hướng ngược lại với vị trí chúng được đặt.\n"
+"\n"
+"Đặt một sợi lông trên mặt đối diện với mũi tên tiến sẽ đẩy vi sinh vật của bạn tiến về phía trước. [b]Slime Jets[/b] cũng được đặt tương tự.\n"
+"\n"
+"Flagella tiêu thụ rất nhiều [thrive:compound type=\"atp\"][/thrive:compound], vì vậy chúng không phù hợp với các tế bào nhỏ.\n"
+"\n"
+"Một cách khác để tăng nhẹ [b]tốc độ di chuyển[/b] [thrive:icon]MovementIcon[/thrive:icon] là làm màng tế bào mềm hơn trong [u]tab màng[/u]."
 
 msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
 msgstr ""
@@ -6284,6 +6469,13 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
+"Việc gỡ bỏ bào tử cũng tiêu tốn [b]MP[/b] [thrive:icon]MP[/thrive:icon] vì đó là một đột biến của loài bạn, [u]trừ khi chúng được đặt trong phiên chỉnh sửa hiện tại[/u].\n"
+"\n"
+"Bạn có thể nhấp chuột phải vào bào tử để mở [b]menu bào tử[/b] và chọn tùy chọn xóa để loại bỏ chúng.\n"
+"\n"
+"Nếu bạn phạm sai lầm, bạn có thể hoàn tác bất kỳ thay đổi nào trong trình chỉnh sửa.\n"
+"\n"
+"Nhấn nút hoàn tác để tiếp tục."
 
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
@@ -6388,7 +6580,7 @@ msgid "UNDO"
 msgstr ""
 
 msgid "UNDO_THE_LAST_ACTION"
-msgstr ""
+msgstr "Hoàn tác hành động cuối cùng"
 
 msgid "UNHANDLED_ERROR_COUNT"
 msgstr ""

@@ -760,7 +760,15 @@ public static class MicrobeColonyHelpers
             if (newParent != -1)
             {
                 colony.ColonyStructure[next] = colony.ColonyMembers[newParent];
-                next.Get<IntercellularMatrix>().RemoveConnection();
+                if (next.Has<IntercellularMatrix>())
+                {
+                    next.Get<IntercellularMatrix>().RemoveConnection();
+                }
+                else
+                {
+                    GD.PrintErr("IntercellularMatrix missing from colony member on disband unexpectedly: ", next);
+                }
+
                 continue;
             }
 

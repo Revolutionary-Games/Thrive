@@ -25,7 +25,7 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="EnvironmentalToleranceToolTip" type="PanelContainer" unique_id=953946608 node_paths=PackedStringArray("nameLabel", "mpLabel", "descriptionLabel", "osmoregulationLabel", "healthLabel", "processSpeedLabel", "badlyAdaptedWarning")]
+[node name="EnvironmentalToleranceToolTip" type="PanelContainer" unique_id=953946608 node_paths=PackedStringArray("nameLabel", "mpLabel", "descriptionLabel", "extraDescription", "osmoregulationLabel", "healthLabel", "processSpeedLabel", "badlyAdaptedWarning")]
 custom_minimum_size = Vector2(400, 0)
 offset_top = 1.0
 offset_right = 400.0
@@ -37,6 +37,7 @@ script = ExtResource("2_y5oj5")
 nameLabel = NodePath("MarginContainer/VBoxContainer/Header/Title")
 mpLabel = NodePath("MarginContainer/VBoxContainer/Header/MP/Value")
 descriptionLabel = NodePath("MarginContainer/VBoxContainer/StatDescription")
+extraDescription = NodePath("MarginContainer/VBoxContainer/ExtraDescriptionText")
 osmoregulationLabel = NodePath("MarginContainer/VBoxContainer/ModifierList/OsmoregulationCost")
 healthLabel = NodePath("MarginContainer/VBoxContainer/ModifierList/HealthModifier")
 processSpeedLabel = NodePath("MarginContainer/VBoxContainer/ModifierList/ProcessSpeed")
@@ -104,6 +105,12 @@ label_settings = ExtResource("6_jnaox")
 autowrap_mode = 3
 
 [node name="StatDescription" parent="MarginContainer/VBoxContainer" unique_id=1473679431 instance=ExtResource("7_14lq1")]
+layout_mode = 2
+mouse_filter = 2
+fit_content = true
+
+[node name="ExtraDescriptionText" parent="MarginContainer/VBoxContainer" unique_id=2045918816 instance=ExtResource("7_14lq1")]
+visible = false
 layout_mode = 2
 mouse_filter = 2
 fit_content = true
