@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
+using System.Text;
 using Godot;
 
 /// <summary>
@@ -36,10 +38,62 @@ public partial class ThriveopediaSpeciesInfoPage : ThriveopediaPage, IThriveoped
 
     private string cachedName = "ERROR_UNINITIALIZED_SPECIES_INFO";
 
+    private string? cacheTranslatedAdditionalSearchContent;
+
     public string PageName => cachedName;
 
     public string TranslatedPageName =>
         Localization.Translate("THRIVEOPEDIA_SPECIES_PAGE").FormatSafe(SpeciesToShow.FormattedName);
+
+    public string? TranslatedPageBody => null;
+
+    public string TranslatedAdditionalSearchContent
+    {
+        get
+        {
+            if (cacheTranslatedAdditionalSearchContent != null)
+            {
+                return cacheTranslatedAdditionalSearchContent;
+            }
+
+            StringBuilder builder = new StringBuilder();
+
+            // Todo:find a way to avoid making new hashsets everytime this is requested
+            HashSet<string> organelleNames = new HashSet<string>();
+
+            if (SpeciesToShow is MulticellularSpecies multicellularSpecies)
+            {
+                builder.AppendLine(Localization.Translate("MULTICELLULAR"));
+
+                foreach (CellTemplate cell in multicellularSpecies.ModifiableGameplayCells)
+                {
+                    foreach (IReadOnlyOrganelleTemplate organelle in cell.Organelles)
+                    {
+                        organelleNames.Add(organelle.Definition.ReadableName);
+                    }
+                }
+            }
+
+            if (SpeciesToShow is MicrobeSpecies microbeSpecies)
+            {
+                builder.AppendLine(Localization.Translate("MICROBE"));
+
+                foreach (OrganelleTemplate organelle in microbeSpecies.Organelles)
+                {
+                    organelleNames.Add(organelle.Definition.ReadableName);
+                }
+            }
+
+            foreach (var item in organelleNames)
+            {
+                builder.AppendLine(item);
+            }
+
+            cacheTranslatedAdditionalSearchContent = builder.ToString();
+
+            return cacheTranslatedAdditionalSearchContent;
+        }
+    }
 
     public string ParentPageName => "WorldSpecies";
 
@@ -123,6 +177,8 @@ public partial class ThriveopediaSpeciesInfoPage : ThriveopediaPage, IThriveoped
 
         mainText.ExtendedBbcode = Localization.Translate("THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT")
             .FormatSafe(SpeciesToShow.FormattedNameBbCode, population.FormatNumber(), areas, stageText);
+
+        cacheTranslatedAdditionalSearchContent = null;
 
         UpdateInfoBox();
     }

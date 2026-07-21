@@ -177,7 +177,7 @@ _data = {
 &"RESET": SubResource("3")
 }
 
-[node name="Thriveopedia" type="Control" unique_id=164322853 node_paths=PackedStringArray("backButton", "forwardButton", "pageContainer", "pageTreeContainer", "pageTreeContainerAnim", "pageTitle", "viewOnlineButton", "pageTree", "homePage")]
+[node name="Thriveopedia" type="Control" unique_id=164322853 node_paths=PackedStringArray("backButton", "forwardButton", "pageContainer", "pageTreeContainer", "pageTreeContainerAnim", "pageTitle", "viewOnlineButton", "pageTree", "searchThrottling", "homePage")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
 using Godot;
 
 /// <summary>
@@ -94,6 +95,33 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
     ///   The currently selected stage to view
     /// </summary>
     private Stage currentSelectedStage;
+
+    /// <summary>
+    ///   Has the input field changed while it still running a background search.
+    ///   After the search is completed a new one whit the currSearchText will start
+    /// </summary>
+    private bool requestingNewSearch;
+
+    /// <summary>
+    ///   Is currently running a background search.
+    /// </summary>
+    private bool runningBackgroundSearch;
+
+    /// <summary>
+    ///   Tracks the amount of time since the last update on the search
+    /// </summary>
+    private double searchTimer;
+
+    /// <summary>
+    ///   Tracks if at the threshold of <see cref="searchTimer"/>
+    ///   if it should start a new background search
+    /// </summary>
+    private bool trackSearchTimer;
+
+    /// <summary>
+    ///   The current text to search in the next background search.
+    /// </summary>
+    private string currSearchText = string.Empty;
 
     [Signal]
     public delegate void OnThriveopediaClosedEventHandler();
@@ -218,6 +246,16 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
 
         ThriveopediaManager.RemoveActiveThriveopedia(this);
         Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
+    }
+
+    public override void _Process(double delta)
+    {
+        searchTimer += delta;
+        if (trackSearchTimer && searchTimer > 0.1d)
+        {
+            BeginBackgroundSearch();
+            trackSearchTimer = false;
+        }
     }
 
     public override void _Notification(int what)
@@ -761,32 +799,103 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
 
     private void OnSearchUpdated(string newText)
     {
-        stageDropdown.Visible = false;
+        currSearchText = newText;
+        if (runningBackgroundSearch)
+        {
+            requestingNewSearch = true;
+        }
+        else
+        {
+            searchTimer = 0.0d;
+            trackSearchTimer = true;
+        }
+    }
 
+    private void BeginBackgroundSearch()
+    {
+        if (!runningBackgroundSearch)
+        {
+            runningBackgroundSearch = true;
+            TaskExecutor.Instance.AddTask(new Task(() => DoBackgroundPageSearch(currSearchText)));
+        }
+    }
+
+    private void DoBackgroundPageSearch(string newText)
+    {
         var newTextLowercase = newText.ToLower(CultureInfo.CurrentCulture);
+
+        var distanceDictionary = new int[allPages.Count];
+        var visibilityDictionary = new bool[allPages.Count];
+        int iterator = 0;
 
         foreach (var page in allPages)
         {
-            var visible = page.Key.TranslatedPageName.ToLower(CultureInfo.CurrentCulture)
-                .Contains(newTextLowercase);
+            string pagename = page.Key.TranslatedPageName.ToLower(CultureInfo.CurrentCulture);
 
-            if (visible && page.Key is ThriveopediaStagePage)
+            distanceDictionary[iterator] = StringUtils.DoStringCostBetween(pagename, newTextLowercase);
+            visibilityDictionary[iterator] = false;
+            ++iterator;
+        }
+
+        // A threshold for similar results
+        var costThreshold = distanceDictionary.Min() + 2;
+        iterator = 0;
+
+        foreach (var page in allPages)
+        {
+            string pageName = page.Key.TranslatedPageName.ToLower(CultureInfo.CurrentCulture);
+            string? pageContent = page.Key.TranslatedPageBody?.ToLower(CultureInfo.CurrentCulture);
+            string? additionalContent = page.Key.TranslatedAdditionalSearchContent?.ToLower(CultureInfo.CurrentCulture);
+
+            // This is one big line so that the code can skip early once one passes
+            var visible = distanceDictionary[iterator] < costThreshold
+                || pageName.Contains(newTextLowercase)
+                || (pageContent != null && pageContent.Contains(newTextLowercase))
+                || (additionalContent != null && additionalContent.Contains(newTextLowercase));
+
+            visibilityDictionary[iterator] = visible;
+            ++iterator;
+        }
+
+        Invoke.Instance.Queue(() =>
+        {
+            stageDropdown.Visible = false;
+
+            iterator = 0;
+            foreach (var page in allPages)
             {
-                // A stage page was found, so the stage dropdown should be shown (instead of individual pages)
-                visible = false;
+                bool isVisible = visibilityDictionary[iterator];
 
-                if (!stageDropdown.Visible)
+                if (isVisible && page.Key is ThriveopediaStagePage)
                 {
-                    stageDropdown.Visible = true;
-                    SetParentPagesVisibility(stageDropdown, true);
-                }
-            }
+                    // A stage page was found, so the stage dropdown should be shown (instead of individual pages)
+                    isVisible = false;
 
-            page.Value.Visible = visible;
-            if (visible)
-            {
-                SetParentPagesVisibility(page.Value, true);
+                    if (!stageDropdown.Visible)
+                    {
+                        stageDropdown.Visible = true;
+                        SetParentPagesVisibility(stageDropdown, true);
+                    }
+                }
+
+                page.Value.Visible = isVisible;
+                if (isVisible)
+                {
+                    SetParentPagesVisibility(page.Value, true);
+                }
+
+                ++iterator;
             }
+        });
+
+        if (requestingNewSearch)
+        {
+            TaskExecutor.Instance.AddTask(new Task(() => DoBackgroundPageSearch(currSearchText)));
+            requestingNewSearch = false;
+        }
+        else
+        {
+            runningBackgroundSearch = false;
         }
     }
 

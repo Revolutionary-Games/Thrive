@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using Godot;
 
 /// <summary>
@@ -16,6 +17,8 @@ public partial class ThriveopediaWikiPage : ThriveopediaPage, IThriveopediaPage
 
     [Export]
     private Container noticeContainer = null!;
+
+    private string? cacheTranslatedPageBody;
 
 #pragma warning restore CA2213
 
@@ -46,6 +49,40 @@ public partial class ThriveopediaWikiPage : ThriveopediaPage, IThriveopediaPage
     public virtual string TranslatedPageName => Localization.Translate(PageContent.Name);
 
     public virtual string? ParentPageName => null;
+
+    public virtual string TranslatedPageBody
+    {
+        get
+        {
+            if (cacheTranslatedPageBody == null)
+            {
+                StringBuilder builder = new StringBuilder();
+                foreach (var item in PageContent.Sections)
+                {
+                    builder.AppendLine(Localization.Translate(item.SectionBody));
+                }
+
+                cacheTranslatedPageBody = builder.ToString();
+            }
+
+            return cacheTranslatedPageBody;
+        }
+    }
+
+    public virtual string TranslatedAdditionalSearchContent
+    {
+        get
+        {
+            StringBuilder builder = new StringBuilder();
+            foreach (var item in PageContent.InfoboxData)
+            {
+                builder.AppendLine(Localization.Translate(item.Name));
+                builder.AppendLine(Localization.Translate(item.DisplayedValue));
+            }
+
+            return builder.ToString();
+        }
+    }
 
     /// <summary>
     ///   Creates all wiki pages using the data in wiki.json, in order of their definition. In particular, parents must

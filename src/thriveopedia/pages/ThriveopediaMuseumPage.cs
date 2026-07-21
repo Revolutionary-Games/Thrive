@@ -49,6 +49,8 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPag
 
     public string PageName => "Museum";
     public string TranslatedPageName => Localization.Translate("THRIVEOPEDIA_MUSEUM_PAGE_TITLE");
+    public string? TranslatedPageBody => null;
+    public string? TranslatedAdditionalSearchContent => null;
 
     public string? ParentPageName => null;
 
