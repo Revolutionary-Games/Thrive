@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-20 11:09+0300\n"
+"POT-Creation-Date: 2026-07-20 16:41+0300\n"
 "PO-Revision-Date: 2026-05-22 15:37+0000\n"
 "Last-Translator: William <William.berger@outlook.be>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -769,6 +769,19 @@ msgstr "Celtypenaam"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Veranderingsnotities zijn te lang"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr "Membraantypes"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr ""
+"Actieve microben rennen en tuimelen als er niets interessants gebeurt.\n"
+"Sessiele microben zullen stationair zijn en wachten tot de omgeving verandert voordat ze handelen."
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Verander de symmetrie"
@@ -3044,6 +3057,10 @@ msgid "INCOMPATIBLE_ORGANELLE_LIST"
 msgstr "Meerdere Organellen"
 
 #, fuzzy
+msgid "INCOMPATIBLE_STAGE_LIST"
+msgstr "  {0}: Gevonden in {1} soort(en), gemiddeld {2} per soort"
+
+#, fuzzy
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Maak Nieuw"
 
@@ -3848,6 +3865,10 @@ msgstr "Chemosynthese"
 #, fuzzy
 msgid "MACROSCOPIC"
 msgstr "Word Macroscopisch ({0}/{1})"
+
+#, fuzzy
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr "Slijmspuwer"
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4903,6 +4924,10 @@ msgstr "Bewerker is nu klaar om er in te gaan"
 #, fuzzy
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "Ongeldige mod icoon map"
+
+#, fuzzy
+msgid "NOT_ENOUGH_MUTATION_POINTS"
+msgstr "Mutatiepunten"
 
 #, fuzzy
 msgid "NOT_STARTED_DOT"
@@ -10373,12 +10398,6 @@ msgstr "Uitzoomen"
 #, fuzzy
 #~ msgid "PATCH_MAP_TYPE"
 #~ msgstr "Kaart met plekken"
-
-#, fuzzy
-#~ msgid "PATCH_MAP_TYPE_EXPLANATION"
-#~ msgstr ""
-#~ "Actieve microben rennen en tuimelen als er niets interessants gebeurt.\n"
-#~ "Sessiele microben zullen stationair zijn en wachten tot de omgeving verandert voordat ze handelen."
 
 #, fuzzy
 #~ msgid "LOOKING_AT"
