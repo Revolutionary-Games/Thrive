@@ -560,7 +560,7 @@ public static class CommonMutationFunctions
     private static HexWithData<CellTemplate>? GetAdjacentPosition(IReadOnlyCellTemplate cellTemplate, Hex.HexSide side,
         Hex oldHex, CellType newCellType, IndividualHexLayout<CellTemplate> existingCells)
     {
-        var newHexPosition = Hex.HexNeighbourOffset[side] + oldHex;
+        var newHexPosition = oldHex - Hex.HexNeighbourOffset[side];
         var orientation = cellTemplate.Orientation;
 
         var newCellTemplate = new CellTemplate(newCellType, newHexPosition, orientation);
