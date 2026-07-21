@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-07-20 16:41+0300\n"
-"PO-Revision-Date: 2026-05-25 05:02+0000\n"
-"Last-Translator: Sławomir Pitek <slawomir.k.pitek@gmail.com>\n"
+"PO-Revision-Date: 2026-07-21 00:00+0000\n"
+"Last-Translator: DrAlienizer <dr4gonizer@proton.me>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -4836,9 +4836,8 @@ msgstr ""
 msgid "OPENGL_MODE_WARNING"
 msgstr "Ostrzeżenie Tryb GLES2"
 
-#, fuzzy
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
-msgstr "Uruchomiłeś Thrive w GLES2. Jest to poważnie nietestowane i prawdopodobnie spowoduje problemy. Zaaktualizuj sterowniki graficzne i/lub wymuś użycie grafiki AMD lub Nvidia do uruchamiania Trive."
+msgstr "Używasz Thrive z OpenGL. To rozwiązanie jest słabo przetestowane i prawdopodobnie spowoduje problemy. Upewnij się, że korzystasz z wystarczająco nowej karty graficznej lub zintegrowanej grafiki oraz spróbuj zaktualizować sterowniki wideo. W przypadku laptopów może być konieczne wymuszenie używania dedykowanej grafiki AMD lub Nvidia zamiast zintegrowanej, aby uruchomić Thrive."
 
 #, fuzzy
 msgid "OPEN_EVOLUTIONARY_TREE"
@@ -7030,13 +7029,15 @@ msgstr ""
 "\n"
 "Innym sposobem aby w małym stopniu zwiększyć [b] prędkość poruszania[/b] [thrive:icon]MovementIcon[/thrive:icon] jest sprawienie aby twoja membrana była bardziej płynna w [u]zakładce membrany[/u]."
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
 msgstr ""
-"Nie dokonałeś żadnych zmian w swoim gatunku.\n"
+"To jest widok łańcucha pokarmowego.\n"
 "\n"
-"Kiedy wyjdziesz z edytora[u]nie będziesz mógł edytować swojego gatunku dopóki znów się nie rozmnożysz[/u].\n"
-"Aby czynić postępy w grze musisz ewoluować, więc edycja gatunku jest zalecana przy większości wizyt w edytorze."
+"Pokazuje, z jakich źródeł pożywienia korzysta każdy gatunek w obecnym obszarze.\n"
+"\n"
+"Widoczne są tutaj relacje drapieżnik-ofiara oraz środowiskowe źródła pokarmu.\n"
+"\n"
+"Te informacje mogą się przydać w planowaniu ewolucji twojego gatunku, ale na początku gry możesz zignorować ten ekran, jeśli jego zawartość jest dla ciebie niejasna."
 
 msgid "TUTORIAL_MICROBE_EDITOR_MIGRATION"
 msgstr ""
@@ -9011,7 +9012,7 @@ msgstr "Dostępne tylko od Fazy Wielokomórkowej."
 
 #, fuzzy
 msgid "WIKI_MYOFIBRIL_SCIENTIFIC_BACKGROUND"
-msgstr "Wkrótce"
+msgstr "[color=#3796e1][url=https://en.wikipedia.org/wiki/Myofibril][b]Miofibryle[/b][/url][/color] to długie, wrzecionowate organelle, które zawsze znajdują się w \"Komórkach Mięśniowych”. Służą one przede wszystkim do skurczu i rozluźniania mięśni, umożliwiając stworzeniu poruszanie określonymi częściami ciała, takimi jak nogi, ramiona czy otwór gębowy."
 
 msgid "WIKI_MYOFIBRIL_STRATEGY"
 msgstr "Zalecamy aby dodać jeden [b]Miofibryl[/b] do paru rodzajów komórek w twoim wielokomórkowym organizmie, jednak dodawanie więcej niż jednego jest zbędne. Na ten moment kolejne [b]Miofibryle[/b] nie zapewniają żadnych korzyści."
