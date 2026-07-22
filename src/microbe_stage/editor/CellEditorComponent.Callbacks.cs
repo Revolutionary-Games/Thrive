@@ -375,7 +375,7 @@ public partial class CellEditorComponent
                     "so using data from that to get the done endosymbiosis data");
 
                 // Well, this ends up doing nothing, so this data is hopefully correct
-                data.RelatedEndosymbiosisAction = data.RelatedEndosymbiosisAction;
+                // data.RelatedEndosymbiosisAction = data.RelatedEndosymbiosisAction;
             }
         }
 
