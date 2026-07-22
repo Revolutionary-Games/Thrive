@@ -60,7 +60,7 @@ public partial class CellEditorComponent
     {
         if (!editedMicrobeOrganelles.Remove(data.PlacedHex))
         {
-            ThrowIfNotMulticellular();
+            ThrowIfNotMulticellularOrMacroscopic();
 
             var newlyInitializedOrganelle = editedMicrobeOrganelles.First(o => o.Position == data.PlacedHex.Position);
             data.PlacedHex = newlyInitializedOrganelle;
@@ -87,7 +87,7 @@ public partial class CellEditorComponent
         {
             // TODO: it seems very rarely this can be hit in "normal" microbe freebuild by spamming undo and redo with
             // new cell button sprinkled in (reproduction steps for the bug are unconfirmed)
-            ThrowIfNotMulticellular();
+            ThrowIfNotMulticellularOrMacroscopic();
 
             var newlyInitializedOrganelle = editedMicrobeOrganelles.First(o => o.Position == data.RemovedHex.Position);
             data.RemovedHex = newlyInitializedOrganelle;
@@ -105,7 +105,7 @@ public partial class CellEditorComponent
     [ArchiveAllowedMethod]
     private void DoOrganelleMoveAction(OrganelleMoveActionData data)
     {
-        if (IsMulticellularEditor)
+        if (IsMulticellularEditor || IsMacroscopicEditor)
         {
             // Try to recover if there is a new organelle instance we should act on instead
             var newlyInitializedOrganelle = editedMicrobeOrganelles.FirstOrDefault(o =>
@@ -147,7 +147,7 @@ public partial class CellEditorComponent
     [ArchiveAllowedMethod]
     private void UndoOrganelleMoveAction(OrganelleMoveActionData data)
     {
-        if (IsMulticellularEditor)
+        if (IsMulticellularEditor || IsMacroscopicEditor)
         {
             // Try to recover if there is a new organelle instance we should act on instead
             var newlyInitializedOrganelle = editedMicrobeOrganelles.FirstOrDefault(o =>
@@ -317,6 +317,8 @@ public partial class CellEditorComponent
     [ArchiveAllowedMethod]
     private void DoOrganelleUpgradeAction(OrganelleUpgradeActionData data)
     {
+        // TODO: does this need a similar check as for move actions in multicellular?
+
         data.UpgradedOrganelle.ModifiableUpgrades = data.NewUpgrades;
 
         microbeVisualizationOrganellePositionsAreDirty = true;
@@ -327,6 +329,8 @@ public partial class CellEditorComponent
     [ArchiveAllowedMethod]
     private void UndoOrganelleUpgradeAction(OrganelleUpgradeActionData data)
     {
+        // TODO: does this need a similar check as for move actions in multicellular?
+
         data.UpgradedOrganelle.ModifiableUpgrades = data.OldUpgrades;
 
         microbeVisualizationOrganellePositionsAreDirty = true;
@@ -471,17 +475,19 @@ public partial class CellEditorComponent
     ///   in the meantime since they were performed. For sanity checking's sake, we throw an exception in those cases
     ///   if they are reached in non-multicellular editor mode.
     /// </summary>
-    /// <exception cref="InvalidOperationException">The exception thrown if we aren't in multicellular</exception>
-    private void ThrowIfNotMulticellular()
+    /// <exception cref="InvalidOperationException">
+    ///   The exception thrown if we aren't in multicellular or macroscopic
+    /// </exception>
+    private void ThrowIfNotMulticellularOrMacroscopic()
     {
-        if (!IsMulticellularEditor)
+        if (!IsMulticellularEditor && !IsMacroscopicEditor)
         {
 #if DEBUG
             if (Debugger.IsAttached)
                 Debugger.Break();
 #endif
 
-            throw new InvalidOperationException("This operation should only happen in multicellular");
+            throw new InvalidOperationException("This operation should only happen in multicellular or macroscopic");
         }
     }
 }
