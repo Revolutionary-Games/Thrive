@@ -874,6 +874,7 @@ offset_top = 0.0
 offset_bottom = 283.0
 DisplayName = "OXYGEN_RESISTANCE"
 Description = "OXYGEN_TOLERANCE_TOOLTIP"
+ExtraTextAfterDescription = "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
 
 [node name="oxygenResistanceModifier" parent="GroupHolder/tolerances" unique_id=657784372 instance=ExtResource("15_l158n")]
 visible = false

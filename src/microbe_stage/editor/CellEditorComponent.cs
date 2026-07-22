@@ -134,6 +134,9 @@ public partial class CellEditorComponent :
     private CustomConfirmationDialog pendingEndosymbiosisPopup = null!;
 
     [Export]
+    private CustomConfirmationDialog organismMembraneChangePopup = null!;
+
+    [Export]
     private Button endosymbiosisButton = null!;
 
     [Export]
@@ -222,6 +225,8 @@ public partial class CellEditorComponent :
     private PendingAutoEvoPrediction? waitingForPrediction;
     private LocalizedStringBuilder? predictionDetailsText;
     private BehaviourDictionary? overwriteBehaviourForCalculations;
+
+    private string? pendingWholeOrganismMembraneChangeTo;
 
     private Miche? predictionMiches;
 
@@ -1398,6 +1403,47 @@ public partial class CellEditorComponent :
         if (Membrane.Equals(membrane))
             return;
 
+        if (IsMacroscopicEditor)
+        {
+            // Membrane type is no longer allowed to change in macroscopic editor
+            GD.Print("Cannot change membrane type in macroscopic stage");
+            ToolTipManager.Instance.ShowPopup(Localization.Translate("MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"), 5);
+
+            // Reset the button states back
+            Invoke.Instance.Perform(() => UpdateMembraneButtons(Membrane.InternalName));
+
+            return;
+        }
+
+        if (IsMulticellularEditor)
+        {
+            // Can change membrane, but it is a more complex operation that takes the entire editor cycle.
+            // We don't check for incompatible organelles here as the buttons should have been locked by the usual
+            // logic already.
+            GD.Print("Starting to ask about membrane changing");
+
+            if (Editor.MutationPoints < Constants.BASE_MUTATION_POINTS)
+            {
+                organismMembraneChangePopup.DialogText =
+                    TranslationServer.Translate("CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP");
+                organismMembraneChangePopup.SetConfirmDisabled(true);
+            }
+            else
+            {
+                organismMembraneChangePopup.DialogText = "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION";
+                organismMembraneChangePopup.SetConfirmDisabled(false);
+            }
+
+            // Show a popup asking if the player wants to switch membranes and exit the editor
+            organismMembraneChangePopup.PopupCenteredShrink();
+
+            pendingWholeOrganismMembraneChangeTo = membraneName;
+
+            // Reset the button states back so that they aren't confusing
+            Invoke.Instance.Perform(() => UpdateMembraneButtons(Membrane.InternalName));
+            return;
+        }
+
         var action = new SingleEditorAction<MembraneActionData>(DoMembraneChangeAction, UndoMembraneChangeAction,
             new MembraneActionData(Membrane, membrane));
 
@@ -1408,6 +1454,26 @@ public partial class CellEditorComponent :
 
         UpdatePartsAvailability(PlacedUniqueOrganelles.ToList());
         UpdateOrganelleUnlockTooltips(false);
+    }
+
+    public void OnAcceptMembraneChange()
+    {
+        if (string.IsNullOrEmpty(pendingWholeOrganismMembraneChangeTo))
+        {
+            GD.PrintErr("No pending membrane change");
+            return;
+        }
+
+        // This is a bit of a hack to call the parent like this, but this is just one place that needs this so, no real
+        // point yet to do a nicer design.
+        if (Editor is not MulticellularEditor multicellular)
+        {
+            GD.PrintErr("Not in a multicellular editor");
+            return;
+        }
+
+        multicellular.OnDoMembraneChange(pendingWholeOrganismMembraneChangeTo);
+        pendingWholeOrganismMembraneChangeTo = null;
     }
 
     public void OnRigidityChanged(int desiredRigidity)
@@ -2554,23 +2620,35 @@ public partial class CellEditorComponent :
             tooltip?.IncompatibleOrganelles?.Clear();
         }
 
-        foreach (var organelle in editedMicrobeOrganelles)
+        if (IsMacroscopicEditor)
         {
-            if (organelle.Definition.IncompatibleMembranes == null)
-                continue;
-
-            foreach (var membrane in organelle.Definition.IncompatibleMembranes)
+            // Lock all due to being in macroscopic
+            foreach (var membrane in membraneSelectionElements)
             {
-                if (!membraneSelectionElements.TryGetValue(membrane, out var button))
+                membrane.Value.Locked = true;
+            }
+        }
+        else
+        {
+            // Lock only membranes that are incompatible with current organelles
+            foreach (var organelle in editedMicrobeOrganelles)
+            {
+                if (organelle.Definition.IncompatibleMembranes == null)
                     continue;
 
-                button.Locked = true;
-
-                var tooltip = GetSelectionTooltip(membrane.InternalName, "membraneSelection");
-                if (tooltip != null)
+                foreach (var membrane in organelle.Definition.IncompatibleMembranes)
                 {
-                    tooltip.IncompatibleOrganelles ??= new HashSet<OrganelleDefinition>();
-                    tooltip.IncompatibleOrganelles.Add(organelle.Definition);
+                    if (!membraneSelectionElements.TryGetValue(membrane, out var button))
+                        continue;
+
+                    button.Locked = true;
+
+                    var tooltip = GetSelectionTooltip(membrane.InternalName, "membraneSelection");
+                    if (tooltip != null)
+                    {
+                        tooltip.IncompatibleOrganelles ??= new HashSet<OrganelleDefinition>();
+                        tooltip.IncompatibleOrganelles.Add(organelle.Definition);
+                    }
                 }
             }
         }
@@ -2578,7 +2656,16 @@ public partial class CellEditorComponent :
         foreach (var membrane in membraneSelectionElements)
         {
             var tooltip = GetSelectionTooltip(membrane.Key.InternalName, "membraneSelection");
-            tooltip?.UpdateIncompatibleOrganelles();
+
+            if (IsMacroscopicEditor)
+            {
+                // In macroscopic editor, lock all tooltips due to it
+                tooltip?.LockDueToMacroscopic();
+            }
+            else
+            {
+                tooltip?.UpdateIncompatibleOrganelles();
+            }
         }
     }
 
@@ -2869,7 +2956,17 @@ public partial class CellEditorComponent :
             control.PartIcon = membraneType.LoadedIcon;
             control.PartName = membraneType.UntranslatedName;
             control.SelectionGroup = membraneButtonGroup;
-            control.MPCost = Math.Min(membraneType.EditorCost * CostMultiplier, Constants.MAX_SINGLE_EDIT_MP_COST);
+
+            // In multicellular changing membrane costs all MP
+            if (IsMulticellularEditor || IsMacroscopicEditor)
+            {
+                control.MPCost = Constants.BASE_MUTATION_POINTS;
+            }
+            else
+            {
+                control.MPCost = Math.Min(membraneType.EditorCost * CostMultiplier, Constants.MAX_SINGLE_EDIT_MP_COST);
+            }
+
             control.Name = membraneType.InternalName;
 
             control.RegisterToolTipForControl(membraneType.InternalName, "membraneSelection");
@@ -2882,8 +2979,8 @@ public partial class CellEditorComponent :
                 new Callable(this, nameof(OnMembraneSelected)));
         }
 
-        // Multicellular parts only available (visible) in multicellular
-        // For now there aren't any multicellular specific organelles so the section is hidden
+        // Multicellular parts only available (visible) in multicellular.
+        // For now, there aren't any multicellular specific organelles so the section is hidden.
         partsSelectionContainer.GetNode<CollapsibleList>(nameof(OrganelleDefinition.OrganelleGroup.Multicellular))
             .Visible = false;
 

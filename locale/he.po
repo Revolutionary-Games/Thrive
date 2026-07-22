@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-03 20:10+0100\n"
+"POT-Creation-Date: 2026-07-20 16:41+0300\n"
 "PO-Revision-Date: 2026-05-13 03:55+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -53,6 +53,14 @@ msgstr ""
 #, fuzzy
 msgid "ACHIEVEMENTS"
 msgstr "מהירות בסיסית"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr "מהירות בסיסית"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr "שדרוג שמירה שצוינה נכשלה בעקבות השגיאה הבאה:"
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr ""
@@ -761,6 +769,17 @@ msgstr "שם סוג תא"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "הערות שינוי ארוכות מידי"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr "סוגי קרום"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr "(מייצר מפת אזורים פרוצדורלית או השתמש בפריסה הקלאסית)"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "שנה סימטריה"
@@ -3015,6 +3034,10 @@ msgid "INCOMPATIBLE_ORGANELLE_LIST"
 msgstr "שכפל אברונים"
 
 #, fuzzy
+msgid "INCOMPATIBLE_STAGE_LIST"
+msgstr "סטטיסטיקת האורגניזם"
+
+#, fuzzy
 msgid "INCREASE_ITEM_SIZE"
 msgstr "יוצר חדש"
 
@@ -3800,6 +3823,10 @@ msgstr "ייצור ריר"
 #, fuzzy
 msgid "MACROSCOPIC"
 msgstr "להפוך למקרוסקופי ({0}/{1})"
+
+#, fuzzy
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr "סילון ריר"
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4905,6 +4932,10 @@ msgstr ""
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "מצא את האזור הנוכחי"
 
+#, fuzzy
+msgid "NOT_ENOUGH_MUTATION_POINTS"
+msgstr "נקודות מוטציה"
+
 msgid "NOT_STARTED_DOT"
 msgstr "לא התחיל."
 
@@ -5223,6 +5254,10 @@ msgstr "סינתזת \"אוקסיטוקסי\""
 
 #, fuzzy
 msgid "OXYGEN_RESISTANCE"
+msgstr "עמידות לרעלים"
+
+#, fuzzy
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
 msgstr "עמידות לרעלים"
 
 #, fuzzy
@@ -10396,9 +10431,6 @@ msgstr "זום החוצה"
 
 #~ msgid "PATCH_MAP_TYPE_CLASSIC"
 #~ msgstr "קלאסי"
-
-#~ msgid "PATCH_MAP_TYPE_EXPLANATION"
-#~ msgstr "(מייצר מפת אזורים פרוצדורלית או השתמש בפריסה הקלאסית)"
 
 #~ msgid "PATCH_MAP_TYPE_PROCEDURAL"
 #~ msgstr "פרוצדורלי"

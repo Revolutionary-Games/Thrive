@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-03 20:10+0100\n"
-"PO-Revision-Date: 2026-05-22 15:37+0000\n"
-"Last-Translator: Matthias Ulbl <matthias.ulbl@gmx.at>\n"
+"POT-Creation-Date: 2026-07-20 16:41+0300\n"
+"PO-Revision-Date: 2026-06-19 06:42+0000\n"
+"Last-Translator: Hendrik Paetz <hendrikpaetz@gmx.de>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -51,6 +51,16 @@ msgstr "Akzeptieren"
 
 msgid "ACHIEVEMENTS"
 msgstr "Errungenschaften"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr "Errungenschaften {0} / {1}"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr ""
+"Die Aktualisierung der angegebenen Sicherung ist aufgrund des folgenden Fehlers fehlgeschlagen:\n"
+"{0}"
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr "Errungenschaften {0} / {1}"
@@ -344,7 +354,6 @@ msgstr "August"
 msgid "AUTO"
 msgstr "Auto"
 
-#, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Diese Tafel zeigt die Werte an, mit denen die Auto-Evo-Vorhersage arbeitet. Die Gesamtenergie, die eine Spezies aufnehmen kann und die Kosten pro Einzeltier der Spezies bestimmen die endgültige Population. Auto-Evo verwendet ein vereinfachtes Modell der Realität, um zu berechnen, wie gut die Spezies auf der Basis der von ihnen erbeuteten Energie abschneiden. Für jede Nahrungsquelle wird angezeigt, wie viel Energie die Art aus ihr gewinnt. Zusätzlich wird die Gesamtenergie, die aus dieser Quelle zur Verfügung steht, angezeigt. Der Anteil, den die Art an der Gesamtenergie gewinnt, basiert darauf, wie groß die Fitness im Vergleich zur Gesamtfitness ist. Die Fitness ist ein Maß dafür, wie gut die Spezies diese Nahrungsquelle verwerten kann."
 
@@ -432,9 +441,8 @@ msgstr "Durchschnittliches Vorkommen anderer Gase an der Oberfläche"
 msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
 msgstr "Durchschnittliche O2 Menge an der Oberfläche"
 
-#, fuzzy
 msgid "AVERAGE_SURFACE_TEMPERATURE"
-msgstr "Durchschnittliches Vorkommen anderer Gase an der Oberfläche"
+msgstr "Durchschnittliche Öberflächentemperatur"
 
 msgid "AWAKENING_STAGE"
 msgstr "Phase des Erwachens"
@@ -727,11 +735,12 @@ msgstr ""
 "Rotationsrate der Zelle. Größere Zellen drehen sich langsamer, aber Zilien können dies ausgleichen.\n"
 "Die Platzierung der Organellen beeinflusst die Rotation, wobei Organellen, die weiter vom Zentrum entfernt sind, die Rotation stärker reduzieren."
 
-#, fuzzy
 msgid "CELL_SPECIALIZATION_TOOLTIP"
 msgstr ""
-"Rotationsrate der Zelle. Größere Zellen drehen sich langsamer, aber Zilien können dies ausgleichen.\n"
-"Die Platzierung der Organellen beeinflusst die Rotation, wobei Organellen, die weiter vom Zentrum entfernt sind, die Rotation stärker reduzieren."
+"Eine Zelle auf weniger Organellentypen zu spezialisieren, gewährt einen Bonus auf die Effektivität aller Organellen dieser Zelle.\n"
+"Der aktuelle Bonus beträgt {0}% (Der maximale Bonus erhöht sich mit der Zellgröße bis zu {3} Hexagonen.)\n"
+"Der aktuelle Bonus wird gewährt, da {1} {2} Hexagone vorhanden sind.\n"
+"Der Bonus erhöht sich, wenn mehr Organellen des selben Typs platziert werden und andere Organellen entfernt werden."
 
 msgid "CELL_STAT_ROTATION_TOOLTIP"
 msgstr ""
@@ -757,6 +766,17 @@ msgstr "Zellentypname"
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Änderungsnotizen sind zu lang"
 
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr "Membrantypen"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr "(Generiere eine Gebietskarte prozedural oder benutze die klassische Anordnung)"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
+
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Ändern der Symmetrie"
 
@@ -778,9 +798,11 @@ msgstr "Cheatmenü"
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Zellprozesse ein-/ausblenden"
 
-#, fuzzy
 msgid "CHEMICAL_EQUATION_SPEED_EXPLANATION"
-msgstr "(Mutationsgeschwindigkeit für KI-gesteuerte Spezies)"
+msgstr ""
+"Diese Leiste zeigt den Geschwindigkeitsmultiplikator des Prozesses an.\n"
+"Er hängt von der Menge der Organellen ab, die diesen Prozess ausführen und in bestimmten Prozessen von den Umweltbedingungen.\n"
+"Der Geschwindigkeitsmultiplikator kann in ATP-produzierenden Prozessen begrenzt werden, falls andere Prozesse bereits genug produzieren."
 
 msgid "CHEMOPLAST"
 msgstr "Chemoplast"
@@ -982,7 +1004,7 @@ msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Hellwert, Helligkeit oder Intensität der Farbe"
 
 msgid "COMMAND_INPUT_LINE_EDIT"
-msgstr ""
+msgstr "Befehl einfügen"
 
 msgid "COMMON_ABILITIES"
 msgstr "Allgemeine Fähigkeiten"
@@ -1490,7 +1512,6 @@ msgstr ""
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "AKTUELLE POSITION"
 
-#, fuzzy
 msgid "CURRENT_PARTICLES_ALL"
 msgstr "Alle"
 
@@ -1733,9 +1754,8 @@ msgstr "Schwer"
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "Normal"
 
-#, fuzzy
 msgid "DIFFICULTY_PRESET_VERY_EASY"
-msgstr "Leicht"
+msgstr "Sehr Leicht"
 
 msgid "DIGESTION_EFFICIENCY"
 msgstr "Verdauungseffizienz"
@@ -2116,13 +2136,12 @@ msgstr ""
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr "Druck durch Substanzen aufrecht erhalten"
 
-#, fuzzy
 msgid "ENERGY_COST_MULTIPLIER"
-msgstr "Mutationskostenmultiplikator"
+msgstr "Energiekostenmultiplikator"
 
 #, fuzzy
 msgid "ENERGY_COST_MULTIPLIER_EXPLANATION"
-msgstr "(Kosten für Organellen, Membranen und andere Gegenstände im Editor)"
+msgstr "(Multiplikator der Energiekosten für die Spielerspezies)"
 
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energie in {0} für {1}"
@@ -2502,9 +2521,8 @@ msgstr "Lokale Daten entfernen"
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
 msgstr "Lokale Daten zu diesem Item entfernen. Dies ist hilfreich, wenn du die falsche ID angegeben hast oder eine Version als neues Item hochladen willst."
 
-#, fuzzy
 msgid "FORM_CELL_COLONY"
-msgstr "Speicherplatz:"
+msgstr "Gründe eine Zellkolonie"
 
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Fehler: {0}"
@@ -2530,13 +2548,11 @@ msgstr "Diese Art fossilisieren (ist bereits fossilisiert)"
 msgid "FOSSILISE"
 msgstr "Versteinern"
 
-#, fuzzy
 msgid "FOSSIL_DATA_LOAD_FAILED"
-msgstr "Löschung des Fossils fehlgeschlagen"
+msgstr "Laden der Fossildaten fehlgeschlagen"
 
-#, fuzzy
 msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
-msgstr "Fossil-Datei konnte nicht gelöscht werden"
+msgstr "Die Fossil-Datei konnte nicht gelesen werden, weil sie entweder veraltet oder ungültig ist"
 
 msgid "FOSSIL_DELETION_FAILED"
 msgstr "Löschung des Fossils fehlgeschlagen"
@@ -2633,11 +2649,8 @@ msgstr "moderat"
 msgid "GEOLOGICAL_ACTIVITY_DORMANT"
 msgstr "ruhig"
 
-#, fuzzy
 msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
-msgstr ""
-"Aktive Mikroben taumeln umher, wenn nichts Interessantes passiert.\n"
-"Sessile Mikroben sind stationär und warten darauf, dass sich die Umgebung verändert, bevor sie handeln."
+msgstr "(beeinflusst die Häufigkeit und Stärke von Ereignissen wie Meteoritenschauern und Vulkanausbrüchen)"
 
 #, fuzzy
 msgid "GERMINATE_SPORE"
@@ -2877,6 +2890,10 @@ msgstr "[b]Membrandaten:[/b]"
 msgid "INCOMPATIBLE_ORGANELLE_LIST"
 msgstr "Mehrere Organellen"
 
+#, fuzzy
+msgid "INCOMPATIBLE_STAGE_LIST"
+msgstr "[b]Membrandaten:[/b]"
+
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Neu erstellen"
 
@@ -2914,9 +2931,8 @@ msgstr "Interner (Ordner-)Name:"
 msgid "INFO_BOX_MASS"
 msgstr "Masse"
 
-#, fuzzy
 msgid "INFO_BOX_NEXT_STAGE"
-msgstr "DU HAST DICH ENTWICKELT!"
+msgstr "Nächstes Stadium"
 
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr "Osmoregulierungskosten"
@@ -2930,25 +2946,20 @@ msgstr "Keine Prozesse"
 msgid "INFO_BOX_REQUIRES_NUCLEUS"
 msgstr "Benötigt Nukleus"
 
-#, fuzzy
 msgid "INFO_BOX_SIZE"
-msgstr "DU HAST DICH ENTWICKELT!"
+msgstr "Größe (Hexagone)"
 
-#, fuzzy
 msgid "INFO_BOX_SIZE_PLAIN"
-msgstr "DU HAST DICH ENTWICKELT!"
+msgstr "Größe"
 
-#, fuzzy
 msgid "INFO_BOX_STAGE"
-msgstr "DU HAST DICH ENTWICKELT!"
+msgstr "Stadium"
 
-#, fuzzy
 msgid "INFO_BOX_STORAGE"
-msgstr "DU HAST DICH ENTWICKELT!"
+msgstr "Speicher"
 
-#, fuzzy
 msgid "INFO_BOX_UNIQUE"
-msgstr "DU HAST DICH ENTWICKELT!"
+msgstr "Einzigartig"
 
 msgid "INFO_BOX_UPGRADES"
 msgstr "Erweiterungen"
@@ -3614,6 +3625,10 @@ msgstr "Makrolid-Synthese"
 
 msgid "MACROSCOPIC"
 msgstr "Makroskopisch"
+
+#, fuzzy
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr "Schleimdüse"
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4620,6 +4635,10 @@ msgstr "Der Editor steht jetzt zur Verfügung"
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "Nicht an die Umweltbedingungen im aktuellen Gebiet angepasst. Ändere die bevorzugten Bedingungen oder Toleranzgrenzen um die negativen Auswirkungen zu vermeiden."
 
+#, fuzzy
+msgid "NOT_ENOUGH_MUTATION_POINTS"
+msgstr "Mutationspunkte"
+
 msgid "NOT_STARTED_DOT"
 msgstr "Nicht begonnen."
 
@@ -4923,6 +4942,10 @@ msgstr "OxyToxid-Synthese"
 
 #, fuzzy
 msgid "OXYGEN_RESISTANCE"
+msgstr "Toxin-Resistenz"
+
+#, fuzzy
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
 msgstr "Toxin-Resistenz"
 
 #, fuzzy
@@ -10170,9 +10193,6 @@ msgstr "Herauszoomen"
 
 #~ msgid "PATCH_MAP_TYPE_CLASSIC"
 #~ msgstr "Klassisch"
-
-#~ msgid "PATCH_MAP_TYPE_EXPLANATION"
-#~ msgstr "(Generiere eine Gebietskarte prozedural oder benutze die klassische Anordnung)"
 
 #~ msgid "PATCH_MAP_TYPE_PROCEDURAL"
 #~ msgstr "Prozedural"
