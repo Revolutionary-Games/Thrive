@@ -400,7 +400,28 @@ public partial class CellEditorComponent
     {
         if (!editedMicrobeOrganelles.Remove(data.PlacedOrganelle))
         {
-            throw new Exception("Couldn't find endosymbiont placement to remove");
+            // In multicellular, the editor can be reinitialized, so we need to match position and type to find what to
+            // remove
+            bool found = false;
+
+            if (IsMulticellularEditor || IsMacroscopicEditor)
+            {
+                foreach (var editedMicrobeOrganelle in editedMicrobeOrganelles)
+                {
+                    if (editedMicrobeOrganelle.Position == data.PlacedOrganelle.Position &&
+                        editedMicrobeOrganelle.Definition == data.PlacedOrganelle.Definition)
+                    {
+                        found = true;
+                        if (!editedMicrobeOrganelles.Remove(editedMicrobeOrganelle))
+                            throw new Exception("Edited organelle remove failed on removing endosymbiont");
+
+                        break;
+                    }
+                }
+            }
+
+            if (!found)
+                throw new Exception("Couldn't find endosymbiont placement to remove");
         }
 
         // Undo unlock if required
