@@ -136,13 +136,39 @@ public class RemoveOrganelle : IMutationStrategy<Species>
                         continue;
 
                     // Don't clone organelles as we want to do those ourselves
-                    var newSpecies = (MulticellularSpecies)baseMulticellularSpecies.Clone();
-                    var newCellTypeOrganelles =
-                        newSpecies.ModifiableCellTypes[i].ModifiableOrganelles;
-                    newCellTypeOrganelles.Clear();
+                    var newSpecies = baseMulticellularSpecies.Clone(false);
+                    var newCellType = newSpecies.ModifiableCellTypes[i];
+                    var newCellTypeOrganelles = newCellType.ModifiableOrganelles;
 
                     workMemory ??= new MutationWorkMemory();
 
+                    // Clone organelles for the cell types not currently targeted
+                    for (var j = 0; j < cellTypeCount; ++j)
+                    {
+                        var clonedCellType = newSpecies.ModifiableCellTypes[j];
+
+                        if (clonedCellType == newCellType)
+                            continue;
+
+                        var parentCellTypeOrganelles =
+                            baseMulticellularSpecies.ModifiableCellTypes[j].ModifiableOrganelles;
+                        var copyOrganelleCount = parentCellTypeOrganelles.Count;
+
+                        for (var k = 0; k < copyOrganelleCount; ++k)
+                        {
+                            var parentOrganelle = parentCellTypeOrganelles[k];
+
+                            if (parentOrganelle == organelle)
+                                continue;
+
+                            // Copy the organelle
+                            var copiedOrganelle = parentOrganelle.Clone();
+                            clonedCellType.ModifiableOrganelles.AddFast(copiedOrganelle,
+                                workMemory.WorkingMemory1, workMemory.WorkingMemory2);
+                        }
+                    }
+
+                    // Clone the organelles for the targeted cell type, excluding the targeted organelle
                     // Is this the best way to do this?
                     var baseOrganelles = baseCellType.ModifiableOrganelles;
                     var organelleCount = baseCellType.Organelles.Count;
@@ -156,7 +182,7 @@ public class RemoveOrganelle : IMutationStrategy<Species>
 
                         // Copy the organelle
                         var newOrganelle = parentOrganelle.Clone();
-                        newCellTypeOrganelles.AddIfPossible(newOrganelle, workMemory.WorkingMemory1,
+                        newCellTypeOrganelles.AddFast(newOrganelle, workMemory.WorkingMemory1,
                             workMemory.WorkingMemory2);
                     }
 
