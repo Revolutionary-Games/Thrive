@@ -48,7 +48,7 @@ public static class MichePopulation
     /// <summary>
     ///   Estimates the initial population numbers
     /// </summary>
-    public static int CalculateMicrobePopulationInPatch(Species species, Miche miche,
+    public static int CalculatePopulationInPatch(Species species, Miche miche,
         Patch patch, SimulationCache cache)
     {
         // This assumes that only leaf nodes have energy, but the way Selection Pressures are designed
@@ -56,7 +56,7 @@ public static class MichePopulation
         var leafNodes = new List<Miche>();
         miche.GetLeafNodes(leafNodes, x => x.Occupant == species);
 
-        var individualCost = CalculateMicrobeIndividualCost(species, patch.Biome, cache);
+        var individualCost = CalculateIndividualCost(species, patch.Biome, cache);
 
         return (int)(leafNodes.Sum(x => x.Pressure.GetEnergy(patch)) / individualCost);
     }
@@ -66,16 +66,26 @@ public static class MichePopulation
     ///   energy per species.
     /// </summary>
     /// <returns>Cost of individual population unit of a species</returns>
-    public static float CalculateMicrobeIndividualCost(Species species, BiomeConditions biomeConditions,
+    public static float CalculateIndividualCost(Species species, BiomeConditions biomeConditions,
         SimulationCache cache)
     {
-        if (species is not MicrobeSpecies microbeSpecies)
-            throw new ArgumentException("Unhandled species type passed");
+        if (species is MicrobeSpecies microbeSpecies)
+        {
+            var energyBalanceInfo = cache.GetEnergyBalanceForSpecies(microbeSpecies, biomeConditions);
 
-        var energyBalanceInfo = cache.GetEnergyBalanceForSpecies(microbeSpecies, biomeConditions);
+            return energyBalanceInfo.TotalConsumptionStationary + energyBalanceInfo.TotalMovement
+                * species.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
+        }
 
-        return energyBalanceInfo.TotalConsumptionStationary + energyBalanceInfo.TotalMovement
-            * species.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
+        if (species is MulticellularSpecies multicellularSpecies)
+        {
+            var energyBalanceInfo = cache.GetEnergyBalanceForSpecies(multicellularSpecies, biomeConditions);
+
+            return energyBalanceInfo.TotalConsumptionStationary + energyBalanceInfo.TotalMovement
+                * species.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
+        }
+
+        throw new ArgumentException("Unhandled species type passed");
     }
 
     /// <summary>
@@ -257,7 +267,7 @@ public static class MichePopulation
             node.BackTraversal(currentBackTraversal);
             foreach (var currentSpecies in species)
             {
-                if (currentSpecies is not MicrobeSpecies microbeSpecies)
+                if (currentSpecies is not MicrobeSpecies and not MulticellularSpecies)
                     continue;
 
                 // TODO: When supporting multicellular species replace the MicrobeSpecies check
@@ -267,7 +277,7 @@ public static class MichePopulation
 
                 foreach (var currentMiche in currentBackTraversal)
                 {
-                    var rawScore = cache.GetPressureScore(currentMiche.Pressure, patch, microbeSpecies);
+                    var rawScore = cache.GetPressureScore(currentMiche.Pressure, patch, currentSpecies);
 
                     if (rawScore <= 0)
                     {
@@ -325,14 +335,14 @@ public static class MichePopulation
 
         foreach (var currentSpecies in species)
         {
-            if (currentSpecies is not MicrobeSpecies microbeSpecies)
+            if (currentSpecies is not MicrobeSpecies and not MulticellularSpecies)
             {
                 var population = simulationConfiguration.Results.GetPopulationInPatch(currentSpecies, patch);
                 populations.AddPopulationResultForSpecies(currentSpecies, patch, population);
                 continue;
             }
 
-            var individualCost = CalculateMicrobeIndividualCost(microbeSpecies, patch.Biome, cache);
+            var individualCost = CalculateIndividualCost(currentSpecies, patch.Biome, cache);
             long newPopulation = (long)(energyDictionary[currentSpecies] / individualCost);
 
             // Remove any species that don't hold a miche

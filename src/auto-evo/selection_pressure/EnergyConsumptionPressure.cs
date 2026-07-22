@@ -43,14 +43,45 @@ public class EnergyConsumptionPressure : SelectionPressure
 
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {
-        if (species is not MicrobeSpecies microbeSpecies)
-            return 0;
+        EnergyBalanceInfoSimple energyBalance;
 
-        var energyBalance = cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome);
+        // Modifier to fit the current mechanics of the Binding Agent. This should probably be removed or adjusted if
+        // being in a colony no longer reduces osmoregulation cost.
+        var bindingModifier = 1.0f;
+
+        if (species is MicrobeSpecies microbeSpecies)
+        {
+            energyBalance = cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome);
+
+            MicrobeInternalCalculations.GetBindingAndSignalling(microbeSpecies.Organelles.Organelles,
+                out var hasBindingAgent, out var hasSignallingAgent);
+
+            if (hasBindingAgent)
+            {
+                if (hasSignallingAgent)
+                {
+                    bindingModifier *= 1 -
+                        Constants.AUTO_EVO_COLONY_OSMOREGULATION_BONUS * Constants.AUTO_EVO_SIGNALLING_BONUS;
+                }
+                else
+                {
+                    bindingModifier *= 1 - Constants.AUTO_EVO_COLONY_OSMOREGULATION_BONUS;
+                }
+            }
+        }
+        else if (species is MulticellularSpecies multicellularSpecies)
+        {
+            energyBalance = cache.GetEnergyBalanceForSpecies(multicellularSpecies, patch.Biome);
+        }
+        else
+        {
+            return 0.0f;
+        }
+
         var inactivityScore = 1 - MathF.Pow(species.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY, 1.2f);
         var focusScore = MathF.Pow(species.Behaviour.Focus / Constants.MAX_SPECIES_FOCUS, 1.2f);
-        var fearScore = MathF.Pow(microbeSpecies.Behaviour.Fear / Constants.MAX_SPECIES_FEAR, 1.5f);
-        var agressionScore = MathF.Pow(microbeSpecies.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION, 1.5f);
+        var fearScore = MathF.Pow(species.Behaviour.Fear / Constants.MAX_SPECIES_FEAR, 1.5f);
+        var agressionScore = MathF.Pow(species.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION, 1.5f);
         inactivityScore *= 1 - focusScore;
 
         // even inactive species still spend energy when chasing prey or running away from predators
@@ -61,26 +92,6 @@ public class EnergyConsumptionPressure : SelectionPressure
         var energyConsumption = inactivityScore * energyBalance.TotalConsumptionStationary;
         energyConsumption += (1 - inactivityScore) * (energyBalance.TotalConsumption +
             energyBalance.BaseMovement * Constants.AUTO_EVO_SPRINTING_CONSUMPTION * focusScore * agressionScore);
-
-        // Modifier to fit the current mechanics of the Binding Agent. This should probably be removed or adjusted if
-        // being in a colony no longer reduces osmoregulation cost.
-        var bindingModifier = 1.0f;
-
-        MicrobeInternalCalculations.GetBindingAndSignalling(microbeSpecies.Organelles.Organelles,
-            out var hasBindingAgent, out var hasSignallingAgent);
-
-        if (hasBindingAgent)
-        {
-            if (hasSignallingAgent)
-            {
-                bindingModifier *= 1 -
-                    Constants.AUTO_EVO_COLONY_OSMOREGULATION_BONUS * Constants.AUTO_EVO_SIGNALLING_BONUS;
-            }
-            else
-            {
-                bindingModifier *= 1 - Constants.AUTO_EVO_COLONY_OSMOREGULATION_BONUS;
-            }
-        }
 
         var score = 1 / (energyConsumption * bindingModifier);
 

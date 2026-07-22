@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using static CommonMutationFunctions;
 
-public class ChangeMembraneType : IMutationStrategy<MicrobeSpecies>
+public class ChangeMembraneType : IMutationStrategy<Species>
 {
     private MembraneType membraneType;
 
@@ -15,16 +15,19 @@ public class ChangeMembraneType : IMutationStrategy<MicrobeSpecies>
 
     public bool Repeatable => false;
 
-    public List<Mutant>? MutationsOf(MicrobeSpecies baseSpecies, double mp, bool lawk,
+    public List<Mutant>? MutationsOf(Species baseSpecies, double mp, bool lawk,
         Random random, BiomeConditions biomeToConsider)
     {
-        if (baseSpecies.MembraneType == membraneType)
+        if (baseSpecies is not MicrobeSpecies baseMicrobeSpecies)
+            return null;
+
+        if (baseMicrobeSpecies.MembraneType == membraneType)
             return null;
 
         if (mp < membraneType.EditorCost)
             return null;
 
-        var organelles = baseSpecies.Organelles;
+        var organelles = baseMicrobeSpecies.Organelles;
 
         for (int i = 0; i < organelles.Count; ++i)
         {

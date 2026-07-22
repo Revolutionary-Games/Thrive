@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using static CommonMutationFunctions;
 
-public class ChangeMembraneRigidity : IMutationStrategy<MicrobeSpecies>
+public class ChangeMembraneRigidity : IMutationStrategy<Species>
 {
     public bool Lower;
 
@@ -15,19 +15,22 @@ public class ChangeMembraneRigidity : IMutationStrategy<MicrobeSpecies>
 
     public bool Repeatable => true;
 
-    public List<Mutant>? MutationsOf(MicrobeSpecies baseSpecies, double mp, bool lawk,
+    public List<Mutant>? MutationsOf(Species baseSpecies, double mp, bool lawk,
         Random random, BiomeConditions biomeToConsider)
     {
+        if (baseSpecies is not MicrobeSpecies baseMicrobeSpecies)
+            return null;
+
         const float change = Constants.AUTO_EVO_MUTATION_RIGIDITY_STEP;
         const float mpCost = change * 10 * 2;
 
         if (mp < mpCost)
             return null;
 
-        if (Lower && baseSpecies.MembraneRigidity == -1.0f)
+        if (Lower && baseMicrobeSpecies.MembraneRigidity == -1.0f)
             return null;
 
-        if (!Lower && baseSpecies.MembraneRigidity == 1.0f)
+        if (!Lower && baseMicrobeSpecies.MembraneRigidity == 1.0f)
             return null;
 
         var newSpecies = (MicrobeSpecies)baseSpecies.Clone();

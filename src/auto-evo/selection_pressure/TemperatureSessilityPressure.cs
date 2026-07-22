@@ -47,7 +47,7 @@ public class TemperatureSessilityPressure : SelectionPressure
     /// </summary>
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {
-        if (species is not MicrobeSpecies microbeSpecies)
+        if (species is not MicrobeSpecies and not MulticellularSpecies)
             return 0;
 
         // Get temperature from the patch
@@ -62,7 +62,7 @@ public class TemperatureSessilityPressure : SelectionPressure
 
         // Calculate score based on activity (higher activity = higher score for mobile behavior)
         // The more active the species, the higher the score
-        float activityScore = microbeSpecies.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
+        float activityScore = species.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
         return activityScore;
     }
 

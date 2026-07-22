@@ -9,7 +9,7 @@ using System.Linq;
 /// <summary>
 ///   Base mutation strategy for mutations that modify organelles (with upgrades)
 /// </summary>
-public abstract class ModifyOrganelleBase : IMutationStrategy<MicrobeSpecies>
+public abstract class ModifyOrganelleBase : IMutationStrategy<Species>
 {
     protected readonly FrozenSet<OrganelleDefinition> allOrganelles;
 
@@ -28,9 +28,12 @@ public abstract class ModifyOrganelleBase : IMutationStrategy<MicrobeSpecies>
     /// </summary>
     public abstract bool ExpectedToCostMP { get; }
 
-    public List<CommonMutationFunctions.Mutant>? MutationsOf(MicrobeSpecies baseSpecies, double mp, bool lawk,
+    public List<CommonMutationFunctions.Mutant>? MutationsOf(Species baseSpecies, double mp, bool lawk,
         Random random, BiomeConditions biomeToConsider)
     {
+        if (baseSpecies is not MicrobeSpecies baseMicrobeSpecies)
+            return null;
+
         // While some upgrades are free, it still might be good to stop looking for mutations once something has
         // consumed all the remaining MP
         if (allOrganelles.Count == 0 || (mp <= 0 && ExpectedToCostMP))
@@ -42,7 +45,7 @@ public abstract class ModifyOrganelleBase : IMutationStrategy<MicrobeSpecies>
         List<int>? organelleIndexesToMutate = null;
 
         // Manual looping to avoid one enumerator allocation per call
-        var organelleList = baseSpecies.Organelles.Organelles;
+        var organelleList = baseMicrobeSpecies.Organelles.Organelles;
         var organelleCount = organelleList.Count;
         for (var i = 0; i < organelleCount; ++i)
         {
@@ -77,7 +80,7 @@ public abstract class ModifyOrganelleBase : IMutationStrategy<MicrobeSpecies>
             int organelleToMutate = organelleIndexesToMutate[i];
 
             // We manually clone organelles to save on memory allocation
-            var newSpecies = baseSpecies.Clone(false);
+            var newSpecies = baseMicrobeSpecies.Clone(false);
 
             bool mutatedOrganelle = false;
             double mpCost = 0;

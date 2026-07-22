@@ -39,7 +39,7 @@ public class ModifyExistingSpecies : IRunStep
     private readonly List<Mutant> temporaryMutations1 = new();
     private readonly List<Mutant> temporaryMutations2 = new();
 
-    private readonly List<MicrobeSpecies> lastGeneratedMutations = new();
+    private readonly List<Species> lastGeneratedMutations = new();
 
     private readonly Stack<SelectionPressure> pressureStack = new();
 
@@ -48,7 +48,7 @@ public class ModifyExistingSpecies : IRunStep
     private readonly Random random;
 
     private readonly List<Mutation> mutationsToTry = new();
-    private readonly HashSet<MicrobeSpecies> handledMutations = new();
+    private readonly HashSet<Species> handledMutations = new();
 
     private readonly List<Miche> nonEmptyLeafNodes = new();
     private readonly List<Miche> emptyLeafNodes = new();
@@ -128,9 +128,9 @@ public class ModifyExistingSpecies : IRunStep
                 {
                     var species = speciesEnumerator.Current.Key;
 
-                    if (species is MicrobeSpecies microbeSpecies)
+                    if (species is MicrobeSpecies or MulticellularSpecies)
                     {
-                        GetMutationsForSpecies(microbeSpecies, patch.SpeciesInPatch.Count);
+                        GetMutationsForSpecies(species, patch.SpeciesInPatch.Count);
                     }
                 }
                 else
@@ -222,15 +222,28 @@ public class ModifyExistingSpecies : IRunStep
                     }
 
                     var newPopulation =
-                        MichePopulation.CalculateMicrobePopulationInPatch(mutation.MutatedSpecies, miche!, patch,
+                        MichePopulation.CalculatePopulationInPatch(mutation.MutatedSpecies, miche!, patch,
                             cache);
 
                     if (newPopulation > Constants.AUTO_EVO_MINIMUM_VIABLE_POPULATION)
                     {
                         // Only apply a new name and colour to results that are actually kept
-                        MutationLogicFunctions.NameNewMicrobeSpecies(mutation.MutatedSpecies, mutation.ParentSpecies);
-                        MutationLogicFunctions.ColourNewMicrobeSpecies(random, mutation.MutatedSpecies,
-                            mutation.ParentSpecies);
+                        if (mutation.MutatedSpecies is MicrobeSpecies microbeSpecies &&
+                            mutation.ParentSpecies is MicrobeSpecies parentMicrobeSpecies)
+                        {
+                            MutationLogicFunctions.NameNewMicrobeSpecies(microbeSpecies, parentMicrobeSpecies);
+                            MutationLogicFunctions.ColourNewMicrobeSpecies(random, microbeSpecies,
+                                parentMicrobeSpecies);
+                        }
+
+                        if (mutation.MutatedSpecies is MulticellularSpecies multicellularSpecies &&
+                            mutation.ParentSpecies is MulticellularSpecies parentMulticellularSpecies)
+                        {
+                            MutationLogicFunctions.NameNewMulticellularSpecies(multicellularSpecies,
+                                parentMulticellularSpecies);
+                            MutationLogicFunctions.ColourNewMulticellularSpecies(random, multicellularSpecies,
+                                parentMulticellularSpecies);
+                        }
 
                         results.AddPossibleMutation(mutation.MutatedSpecies,
                             new KeyValuePair<Patch, long>(patch, newPopulation), mutation.AddType,
@@ -249,7 +262,7 @@ public class ModifyExistingSpecies : IRunStep
         return false;
     }
 
-    private static void PruneMutations(List<Mutant> addResultsTo, MicrobeSpecies baseSpecies,
+    private static void PruneMutations(List<Mutant> addResultsTo, Species baseSpecies,
         List<Mutant> mutated, Patch patch, SimulationCache cache,
         Stack<SelectionPressure> selectionPressures)
     {
@@ -317,7 +330,7 @@ public class ModifyExistingSpecies : IRunStep
         }
     }
 
-    private void GetMutationsForSpecies(MicrobeSpecies microbeSpecies, int speciesInPatch)
+    private void GetMutationsForSpecies(Species species, int speciesInPatch)
     {
         double totalMP = Constants.BASE_MUTATION_POINTS * worldSettings.AIMutationMultiplier;
 
@@ -325,9 +338,9 @@ public class ModifyExistingSpecies : IRunStep
         pressureStack.Clear();
 
         var inputSpecies = generateMutationsWorkingMemory.GetMutationsAtDepth(0);
-        inputSpecies.Add(new Mutant(microbeSpecies, totalMP));
+        inputSpecies.Add(new Mutant(species, totalMP));
 
-        GenerateMutations(microbeSpecies, miche!, 1, false, speciesInPatch);
+        GenerateMutations(species, miche!, 1, false, speciesInPatch);
     }
 
     /// <summary>
@@ -363,7 +376,7 @@ public class ModifyExistingSpecies : IRunStep
     ///   Adds a new list of all possible species that might emerge in response to the provided pressures,
     ///   as well as a copy of the original species to <see cref="mutationsToTry"/>.
     /// </summary>
-    private void GenerateMutations(MicrobeSpecies baseSpecies, Miche currentMiche, int depth, bool lastChild,
+    private void GenerateMutations(Species baseSpecies, Miche currentMiche, int depth, bool lastChild,
         int speciesInPatch)
     {
         var baseSpeciesMutant = new Mutant(baseSpecies,
@@ -526,7 +539,7 @@ public class ModifyExistingSpecies : IRunStep
         }
     }
 
-    private record struct Mutation(MicrobeSpecies ParentSpecies, MicrobeSpecies MutatedSpecies,
+    private record struct Mutation(Species ParentSpecies, Species MutatedSpecies,
         RunResults.NewSpeciesType AddType);
 
     /// <summary>
@@ -567,9 +580,9 @@ public class ModifyExistingSpecies : IRunStep
 
         // This directly references to the stack type to avoid an enumerator allocation in the foreach loop in Compare
         private Stack<SelectionPressure> pressures = null!;
-        private MicrobeSpecies baseSpecies = null!;
+        private Species baseSpecies = null!;
 
-        public void Setup(MicrobeSpecies species, Stack<SelectionPressure> selectionPressures)
+        public void Setup(Species species, Stack<SelectionPressure> selectionPressures)
         {
             pressures = selectionPressures;
             baseSpecies = species;

@@ -1,6 +1,7 @@
 ﻿namespace AutoEvo;
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
@@ -15,6 +16,26 @@ public class MutationLogicFunctions
         }
 
         if (MicrobeSpeciesIsNewGenus(newSpecies, parentSpecies))
+        {
+            newSpecies.Genus = SimulationParameters.Instance.NameGenerator.GenerateNameSection();
+        }
+        else
+        {
+            newSpecies.Genus = parentSpecies.Genus;
+        }
+
+        newSpecies.Epithet = SimulationParameters.Instance.NameGenerator.GenerateNameSection(null, true);
+    }
+
+    public static void NameNewMulticellularSpecies(MulticellularSpecies newSpecies, MulticellularSpecies parentSpecies)
+    {
+        // If for some silly reason the species are the same don't rename
+        if (newSpecies == parentSpecies)
+        {
+            return;
+        }
+
+        if (MulticellularSpeciesIsNewGenus(newSpecies, parentSpecies))
         {
             newSpecies.Genus = SimulationParameters.Instance.NameGenerator.GenerateNameSection();
         }
@@ -66,10 +87,83 @@ public class MutationLogicFunctions
         }
     }
 
+    public static void ColourNewMulticellularSpecies(Random random, MulticellularSpecies newSpecies,
+        MulticellularSpecies? parentSpecies = null)
+    {
+        // If for some silly reason the species are the same don't recolor
+        if (parentSpecies != null && newSpecies == parentSpecies)
+        {
+            return;
+        }
+
+        var oldColour = newSpecies.SpeciesColour;
+
+        float redShift;
+        float greenShift;
+        float blueShift;
+
+        // make sure that species mutated from player have visibly different color
+        if (parentSpecies?.PlayerSpecies == true)
+        {
+            redShift = random.Next(0.25f, 0.75f);
+            greenShift = random.Next(0.25f, 0.75f);
+            blueShift = random.Next(0.25f, 0.75f);
+
+            var red = (oldColour.R + redShift) % 1.0f;
+            var green = (oldColour.G + greenShift) % 1.0f;
+            var blue = (oldColour.B + blueShift) % 1.0f;
+
+            newSpecies.SpeciesColour = new Color(red, green, blue);
+        }
+        else
+        {
+            redShift = (float)(random.NextDouble() - 0.5f) * Constants.AUTO_EVO_COLOR_CHANGE_MAX_STEP;
+            greenShift = (float)(random.NextDouble() - 0.5f) * Constants.AUTO_EVO_COLOR_CHANGE_MAX_STEP;
+            blueShift = (float)(random.NextDouble() - 0.5f) * Constants.AUTO_EVO_COLOR_CHANGE_MAX_STEP;
+
+            newSpecies.SpeciesColour = new Color(Math.Clamp(oldColour.R + redShift, 0, 1),
+                Math.Clamp(oldColour.G + greenShift, 0, 1),
+                Math.Clamp(oldColour.B + blueShift, 0, 1));
+        }
+
+        var newColour = newSpecies.SpeciesColour;
+        foreach (var cellType in newSpecies.ModifiableCellTypes)
+        {
+            redShift = (float)(random.NextDouble() - 0.5f) * Constants.AUTO_EVO_COLOR_CHANGE_MAX_STEP;
+            greenShift = (float)(random.NextDouble() - 0.5f) * Constants.AUTO_EVO_COLOR_CHANGE_MAX_STEP;
+            blueShift = (float)(random.NextDouble() - 0.5f) * Constants.AUTO_EVO_COLOR_CHANGE_MAX_STEP;
+
+            cellType.Colour = new Color(Math.Clamp(newColour.R + redShift, 0, 1),
+                Math.Clamp(newColour.G + greenShift, 0, 1),
+                Math.Clamp(newColour.B + blueShift, 0, 1));
+        }
+    }
+
     private static bool MicrobeSpeciesIsNewGenus(MicrobeSpecies species1, MicrobeSpecies species2)
     {
         var species1UniqueOrganelles = species1.Organelles.Select(o => o.Definition).ToHashSet();
         var species2UniqueOrganelles = species2.Organelles.Select(o => o.Definition).ToHashSet();
+
+        return species1UniqueOrganelles.Union(species2UniqueOrganelles).Count()
+            - species1UniqueOrganelles.Intersect(species2UniqueOrganelles).Count()
+            >= Constants.DIFFERENCES_FOR_GENUS_SPLIT;
+    }
+
+    private static bool MulticellularSpeciesIsNewGenus(MulticellularSpecies species1, MulticellularSpecies species2)
+    {
+        var species1UniqueOrganelles = new HashSet<OrganelleDefinition>();
+        foreach (var cellType in species1.CellTypes)
+        {
+            var uniqueOrganelles = cellType.Organelles.Select(o => o.Definition).ToHashSet();
+            species1UniqueOrganelles.UnionWith(uniqueOrganelles);
+        }
+
+        var species2UniqueOrganelles = new HashSet<OrganelleDefinition>();
+        foreach (var cellType in species2.CellTypes)
+        {
+            var uniqueOrganelles = cellType.Organelles.Select(o => o.Definition).ToHashSet();
+            species2UniqueOrganelles.UnionWith(uniqueOrganelles);
+        }
 
         return species1UniqueOrganelles.Union(species2UniqueOrganelles).Count()
             - species1UniqueOrganelles.Intersect(species2UniqueOrganelles).Count()

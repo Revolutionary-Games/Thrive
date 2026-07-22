@@ -46,6 +46,10 @@ public class ChunkCompoundPressure : SelectionPressure
         new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Opportunism, -150.0f),
         new ChangeMembraneType("single"),
         new ChangeMembraneType("double"),
+        AddCellWithOrganelle.ThatConvertBetweenCompounds(compound, compoundOut),
+        AddCellWithOrganelle.ThatUseCompound(compoundOut),
+        new AddCellWithOrganelle(organelle => organelle.HasChemoreceptorComponent),
+        new AddCellWithOrganelle(organelle => organelle.InternalName == "vacuole"),
     ])
     {
         this.compound = SimulationParameters.GetCompound(compound);
@@ -105,24 +109,99 @@ public class ChunkCompoundPressure : SelectionPressure
         if (!patch.Biome.Chunks.TryGetValue(chunkType, out var chunk))
             throw new ArgumentException("Chunk does not exist in patch");
 
-        if (species is not MicrobeSpecies microbeSpecies)
+        float speed;
+        float chemoreceptorScore;
+        float compoundATP;
+        float nominalStorageCapacity;
+        bool usesVaryingCompounds;
+        var canEngulf = false;
+
+        EnergyBalanceInfoSimple energyBalance;
+
+        if (species is MicrobeSpecies microbeSpecies)
+        {
+            speed = cache.GetSpeedForSpecies(microbeSpecies);
+            nominalStorageCapacity = microbeSpecies.StorageCapacities.Nominal;
+            usesVaryingCompounds = cache.GetUsesVaryingCompoundsForSpecies(microbeSpecies, patch.Biome);
+            chemoreceptorScore = cache.GetChemoreceptorChunkScore(microbeSpecies, chunk, compound);
+            energyBalance = cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome);
+
+            if (microbeSpecies.CanEngulf &&
+                cache.GetBaseHexSizeForSpecies(microbeSpecies) > chunk.Size * Constants.ENGULF_SIZE_RATIO_REQ)
+            {
+                canEngulf = true;
+            }
+
+            if (compoundOut != atp)
+            {
+                var compoundOutGenerated =
+                    cache.GetCompoundGeneratedFrom(compound, compoundOut, microbeSpecies, patch.Biome);
+                compoundATP = cache.GetCompoundConversionScoreForSpecies(compoundOut, atp, microbeSpecies) *
+                    compoundOutGenerated;
+            }
+            else
+            {
+                compoundATP = cache.GetCompoundGeneratedFrom(compound, atp, microbeSpecies, patch.Biome);
+            }
+        }
+        else if (species is MulticellularSpecies multicellularSpecies)
+        {
+            speed = cache.GetSpeedForSpecies(multicellularSpecies);
+            nominalStorageCapacity = multicellularSpecies.StorageCapacities.Nominal;
+            usesVaryingCompounds = cache.GetUsesVaryingCompoundsForSpecies(multicellularSpecies, patch.Biome);
+            chemoreceptorScore = cache.GetChemoreceptorChunkScore(multicellularSpecies, chunk, compound);
+            energyBalance = cache.GetEnergyBalanceForSpecies(multicellularSpecies, patch.Biome);
+
+            foreach (var cellType in multicellularSpecies.CellTypes)
+            {
+                if (canEngulf)
+                    break;
+
+                if (cellType.MembraneType.CanEngulf &&
+                    cache.GetBaseHexSizeForCellType(cellType) > chunk.Size * Constants.ENGULF_SIZE_RATIO_REQ)
+                {
+                    foreach (var hex in multicellularSpecies.EditorCells)
+                    {
+                        var cell = hex.Data;
+                        if (cell != null && cell.CellType == cellType)
+                        {
+                            canEngulf = true;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            if (compoundOut != atp)
+            {
+                var compoundOutGenerated =
+                    cache.GetCompoundGeneratedFrom(compound, compoundOut, multicellularSpecies, patch.Biome);
+                compoundATP = cache.GetCompoundConversionScoreForSpecies(compoundOut, atp, multicellularSpecies) *
+                    compoundOutGenerated;
+            }
+            else
+            {
+                compoundATP = cache.GetCompoundGeneratedFrom(compound, atp, multicellularSpecies,
+                    patch.Biome);
+            }
+        }
+        else
+        {
             return 0;
+        }
 
         var score = 1.0f;
 
         // Speed is not too important to chunk microbes, but all else being the same faster is better than slower
-        score += MathF.Pow(cache.GetSpeedForSpecies(microbeSpecies), 0.4f);
+        score += MathF.Pow(speed, 0.4f);
 
         // Diminishing returns on storage
-        score += (MathF.Pow(microbeSpecies.StorageCapacities.Nominal + 1, 0.8f) - 1) / 0.8f;
+        score += (MathF.Pow(nominalStorageCapacity + 1, 0.8f) - 1) / 0.8f;
 
-        // Additional bonus from chemoreceptor
-        var chemoreceptorScore = cache.GetChemoreceptorChunkScore(microbeSpecies, chunk, compound);
-
-        var activity = microbeSpecies.Behaviour.Activity;
+        var activity = species.Behaviour.Activity;
 
         // Species that are less active during the night get a penalty to their activity
-        if (isDayNightCycleEnabled && cache.GetUsesVaryingCompoundsForSpecies(microbeSpecies, patch.Biome))
+        if (isDayNightCycleEnabled && usesVaryingCompounds)
         {
             var multiplier = activity / Constants.AI_ACTIVITY_TO_BE_FULLY_ACTIVE_DURING_NIGHT;
 
@@ -134,49 +213,32 @@ public class ChunkCompoundPressure : SelectionPressure
 
         // modify score by activity and focus
         var activityScore = MathF.Pow(activity / Constants.MAX_SPECIES_ACTIVITY, 0.4f);
-        var focusScore = 1 + MathF.Pow(microbeSpecies.Behaviour.Focus / Constants.MAX_SPECIES_ACTIVITY, 0.4f)
+        var focusScore = 1 + MathF.Pow(species.Behaviour.Focus / Constants.MAX_SPECIES_ACTIVITY, 0.4f)
             * Constants.AUTO_EVO_MAX_FOCUS_CHUNK_BONUS;
 
         score = (score + chemoreceptorScore) * activityScore * focusScore
             + score * (1 - activityScore * focusScore) * Constants.AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION;
 
         // compound collection is reduced if you are running away from predators instead
-        var fearFraction = microbeSpecies.Behaviour.Fear / Constants.MAX_SPECIES_FEAR;
+        var fearFraction = species.Behaviour.Fear / Constants.MAX_SPECIES_FEAR;
 
         score *= 1 - fearFraction * Constants.AUTO_EVO_MAX_FEAR_GATHERING_PENALTY;
 
         // If the species can't engulf, then they are dependent on only eating the runoff compounds
-        if (!microbeSpecies.CanEngulf ||
-            cache.GetBaseHexSizeForSpecies(microbeSpecies) < chunk.Size * Constants.ENGULF_SIZE_RATIO_REQ)
+        if (!canEngulf)
         {
             score *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;
 
             // cloud compound collection is reduced if you are chasing prey instead
-            var aggressionFraction = microbeSpecies.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
+            var aggressionFraction = species.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
 
             score *= 1 - aggressionFraction * Constants.AUTO_EVO_MAX_AGGRESSION_GATHERING_PENALTY;
         }
         else
         {
-            var opportunismFraction = MathF.Pow(
-                microbeSpecies.Behaviour.Opportunism / Constants.MAX_SPECIES_ACTIVITY, 0.5f);
+            var opportunismFraction = MathF.Pow(species.Behaviour.Opportunism / Constants.MAX_SPECIES_ACTIVITY, 0.5f);
             score *= 1 + opportunismFraction * Constants.AUTO_EVO_MAX_OPPORTUNISM_BONUS;
         }
-
-        float compoundATP;
-        if (compoundOut != atp)
-        {
-            var compoundOutGenerated =
-                cache.GetCompoundGeneratedFrom(compound, compoundOut, microbeSpecies, patch.Biome);
-            compoundATP = cache.GetCompoundConversionScoreForSpecies(compoundOut, atp, microbeSpecies) *
-                compoundOutGenerated;
-        }
-        else
-        {
-            compoundATP = cache.GetCompoundGeneratedFrom(compound, atp, microbeSpecies, patch.Biome);
-        }
-
-        var energyBalance = cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome);
 
         // Penalize species that don't produce enough ATP to survive from just the compound generated by the chunk
         score *= MathF.Min(compoundATP / energyBalance.TotalConsumption, 1);

@@ -25,6 +25,7 @@ public class CompoundConversionEfficiencyPressure : SelectionPressure
         base(weight, [
             RemoveOrganelle.ThatCreateCompound(outCompound),
             AddOrganelleAnywhere.ThatConvertBetweenCompounds(compound, outCompound),
+            AddCellWithOrganelle.ThatConvertBetweenCompounds(compound, outCompound),
         ])
     {
         FromCompound = SimulationParameters.GetCompound(compound);
@@ -62,10 +63,13 @@ public class CompoundConversionEfficiencyPressure : SelectionPressure
 
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {
-        if (species is not MicrobeSpecies microbeSpecies)
-            return 0;
+        if (species is MicrobeSpecies microbeSpecies)
+            return cache.GetCompoundConversionScoreForSpecies(FromCompound, ToCompound, microbeSpecies);
 
-        return cache.GetCompoundConversionScoreForSpecies(FromCompound, ToCompound, microbeSpecies);
+        if (species is MulticellularSpecies multicellularSpecies)
+            return cache.GetCompoundConversionScoreForSpecies(FromCompound, ToCompound, multicellularSpecies);
+
+        return 0;
     }
 
     public override float GetEnergy(Patch patch)

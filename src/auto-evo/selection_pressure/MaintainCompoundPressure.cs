@@ -1,6 +1,7 @@
 ﻿namespace AutoEvo;
 
 using System;
+using System.Collections.Generic;
 using SharedBase.Archive;
 
 public class MaintainCompoundPressure : SelectionPressure
@@ -18,6 +19,7 @@ public class MaintainCompoundPressure : SelectionPressure
     public MaintainCompoundPressure(Compound compound, float weight) : base(weight, [
         AddOrganelleAnywhere.ThatCreateCompound(compound),
         RemoveOrganelle.ThatUseCompound(compound),
+        AddCellWithOrganelle.ThatCreateCompound(compound),
     ])
     {
         this.compound = SimulationParameters.GetCompound(compound);
@@ -50,16 +52,27 @@ public class MaintainCompoundPressure : SelectionPressure
 
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {
-        if (species is not MicrobeSpecies microbeSpecies)
-            return 0;
+        List<TweakedProcess> activeProcessList;
+        ResolvedMicrobeTolerances resolvedTolerances;
+        var biomeConditions = patch.Biome;
 
-        var activeProcessList = cache.GetActiveProcessList(microbeSpecies);
+        if (species is MicrobeSpecies microbeSpecies)
+        {
+            activeProcessList = cache.GetActiveProcessList(microbeSpecies);
+            resolvedTolerances = cache.GetEnvironmentalTolerances(microbeSpecies, biomeConditions);
+        }
+        else if (species is MulticellularSpecies multicellularSpecies)
+        {
+            activeProcessList = cache.GetActiveProcessList(multicellularSpecies);
+            resolvedTolerances = cache.GetEnvironmentalTolerances(multicellularSpecies, biomeConditions);
+        }
+        else
+        {
+            return 0;
+        }
 
         var compoundUsed = 0.0f;
         var compoundCreated = 0.0f;
-
-        var biomeConditions = patch.Biome;
-        var resolvedTolerances = cache.GetEnvironmentalTolerances(microbeSpecies, biomeConditions);
 
         foreach (var process in activeProcessList)
         {

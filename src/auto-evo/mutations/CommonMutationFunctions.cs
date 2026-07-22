@@ -69,12 +69,26 @@ public static class CommonMutationFunctions
         Back,
     }
 
-    public static MicrobeSpecies GenerateRandomSpecies(MicrobeSpecies mutated, Patch forPatch,
+    /// <summary>
+    ///   Which adjacency direction to check/place hexes in, relative to existing hexes
+    /// </summary>
+    public enum AdjacencyDirection
+    {
+        Front,
+        SideFront,
+        SideRear,
+        Rear,
+    }
+
+    public static MicrobeSpecies GenerateRandomMicrobeSpecies(Species mutated, Patch forPatch,
         MutationWorkMemory workMemory, Random random, double mp = 300)
     {
+        if (mutated is not MicrobeSpecies mutatedMicrobe)
+            throw new ArgumentException("Wrong species type passed to GenerateRandomMicrobeSpecies");
+
         var mutationStrategy = new AddOrganelleAnywhere(_ => true);
 
-        GameWorld.SetInitialSpeciesProperties(mutated, workMemory.WorkingMemory1, workMemory.WorkingMemory2);
+        GameWorld.SetInitialSpeciesProperties(mutatedMicrobe, workMemory.WorkingMemory1, workMemory.WorkingMemory2);
 
         while (mp > 0)
         {
@@ -87,11 +101,11 @@ public static class CommonMutationFunctions
             mutated = mutation.Species;
             mp -= mutation.MP;
 
-            MutationLogicFunctions.ColourNewMicrobeSpecies(random, mutated);
+            MutationLogicFunctions.ColourNewMicrobeSpecies(random, mutatedMicrobe);
         }
 
-        mutated.ModifiableTolerances.CopyFrom(forPatch.GenerateTolerancesForMicrobe(mutated.Organelles,
-            MicrobeInternalCalculations.CalculateSpecializationBonus(mutated.Organelles,
+        mutated.ModifiableTolerances.CopyFrom(forPatch.GenerateTolerancesForMicrobe(mutatedMicrobe.Organelles,
+            MicrobeInternalCalculations.CalculateSpecializationBonus(mutatedMicrobe.Organelles,
                 new Dictionary<OrganelleDefinition, int>())));
 
         // Override the default species starting name to have more variability in the names
@@ -101,7 +115,7 @@ public static class CommonMutationFunctions
 
         mutated.OnEdited();
 
-        return mutated;
+        return mutatedMicrobe;
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -109,6 +123,13 @@ public static class CommonMutationFunctions
         List<Hex> workMemory1, List<Hex> workMemory2, HashSet<Hex> workMemory3, Random random)
     {
         return AddOrganelleWithStrategy(OrganelleAddStrategy.Realistic, organelle, direction, newSpecies, workMemory1,
+            workMemory2, workMemory3, random);
+    }
+
+    public static bool AddOrganelle(OrganelleDefinition organelle, Direction direction, CellType cellType,
+        List<Hex> workMemory1, List<Hex> workMemory2, HashSet<Hex> workMemory3, Random random)
+    {
+        return AddOrganelleWithStrategy(OrganelleAddStrategy.Realistic, organelle, direction, cellType, workMemory1,
             workMemory2, workMemory3, random);
     }
 
@@ -148,6 +169,90 @@ public static class CommonMutationFunctions
         {
             newSpecies.IsBacteria = false;
         }
+
+        return true;
+    }
+
+    public static bool AddOrganelleWithStrategy(OrganelleAddStrategy strategy, OrganelleDefinition organelle,
+        Direction direction, CellType cellType, List<Hex> workMemory1, List<Hex> workMemory2,
+        HashSet<Hex> workMemory3, Random random)
+    {
+        OrganelleTemplate? position;
+
+        switch (strategy)
+        {
+            case OrganelleAddStrategy.Realistic:
+                position = GetRealisticPosition(organelle, cellType.ModifiableOrganelles, direction, workMemory1,
+                    workMemory3, random);
+                break;
+            case OrganelleAddStrategy.Spiral:
+                position = GetSpiralPosition(organelle, cellType.ModifiableOrganelles, workMemory1, workMemory3);
+                break;
+            case OrganelleAddStrategy.Front:
+                position = GetFrontPosition(organelle, cellType.ModifiableOrganelles, workMemory1, workMemory3);
+                break;
+            case OrganelleAddStrategy.Back:
+                position = GetBackPosition(organelle, cellType.ModifiableOrganelles, workMemory1, workMemory3);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(strategy), strategy, null);
+        }
+
+        // We return early as not being able to add an organelle is not a critical failure
+        if (position == null)
+            return false;
+
+        cellType.ModifiableOrganelles.AddFast(position, workMemory1, workMemory2);
+
+        // This should not be possible in the current state, but I am leaving it for now just in case
+        if (organelle == Nucleus)
+        {
+            cellType.IsBacteria = false;
+        }
+
+        return true;
+    }
+
+    public static bool AddCellCenterline(Direction direction, CellType newCellType, MulticellularSpecies newSpecies,
+        IndividualHexLayout<CellTemplate> existingCells, List<Hex> workMemory1, List<Hex> workMemory2, Random random)
+    {
+        HexWithData<CellTemplate>? position;
+
+        var newCells = new IndividualHexLayout<CellTemplate>();
+
+        // copy over all existing cells
+        foreach (var hex in newSpecies.ModifiableEditorCells)
+        {
+            var cell = hex.Data;
+            if (cell != null)
+            {
+                newCells.AddFast(new HexWithData<CellTemplate>(new CellTemplate(cell.ModifiableCellType,
+                        cell.Position, cell.Orientation), cell.Position, cell.Orientation),
+                    workMemory1, workMemory2);
+            }
+        }
+
+        switch (direction)
+        {
+            case Direction.Front:
+                position = GetCenterlineFrontPosition(newCellType, existingCells);
+                break;
+            case Direction.Rear:
+                position = GetCenterlineRearPosition(newCellType, existingCells);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
+        }
+
+        // We return early as not being able to add a cell is not a critical failure
+        if (position == null)
+            return false;
+
+        newCells.AddFast(position, workMemory1, workMemory2);
+
+        MulticellularLayoutHelpers.UpdateGameplayLayout(newSpecies.ModifiableGameplayCells,
+            newSpecies.ModifiableEditorCells, newCells, AlgorithmQuality.Low,
+            new List<Hex>(), new List<Hex>());
 
         return true;
     }
@@ -225,6 +330,114 @@ public static class CommonMutationFunctions
             organelles.GetIslandHexes(islandHexes, workMemory.WorkingMemory3, workMemory.WorkingMemory2,
                 workMemory.WorkingMemory4);
         }
+    }
+
+    /// <summary>
+    ///   Places cells of a given type adjacent in one direction to cells of a given type
+    /// </summary>
+    public static bool AddCellsAdjacent(MulticellularSpecies newSpecies, ref double mp,
+        IndividualHexLayout<CellTemplate> baseSpeciesCells, int baseCellsCount,
+        IReadOnlyCellTypeDefinition baseCellType, CellType newCellType, int mpCost, AdjacencyDirection direction,
+        List<Hex> workMemory1, List<Hex> workMemory2)
+    {
+        var newCells = new IndividualHexLayout<CellTemplate>();
+
+        // copy over all existing cells
+        foreach (var hex in newSpecies.ModifiableEditorCells)
+        {
+            var cell = hex.Data;
+            if (cell != null)
+            {
+                newCells.AddFast(new HexWithData<CellTemplate>(new CellTemplate(cell.ModifiableCellType,
+                        cell.Position, cell.Orientation), cell.Position, cell.Orientation),
+                    workMemory1, workMemory2);
+            }
+        }
+
+        for (int j = 0; j < baseCellsCount; ++j)
+        {
+            var baseHex = baseSpeciesCells[j];
+            if (mpCost > mp)
+                return false;
+
+            var baseCell = baseHex.Data;
+            if (baseCell != null && baseCell.CellType == baseCellType)
+            {
+                switch (direction)
+                {
+                    case AdjacencyDirection.Front:
+                        var newCellFront = GetAdjacentPosition(baseCell, Hex.HexSide.Top,
+                            baseHex.Position, newCellType, newCells);
+
+                        if (newCellFront == null)
+                            continue;
+
+                        mp -= mpCost;
+
+                        newCells.AddFast(newCellFront, workMemory1, workMemory2);
+                        break;
+                    case AdjacencyDirection.Rear:
+                        var newCellRear = GetAdjacentPosition(baseCell, Hex.HexSide.Bottom,
+                            baseHex.Position, newCellType, newCells);
+
+                        if (newCellRear == null)
+                            continue;
+
+                        mp -= mpCost;
+
+                        newCells.AddFast(newCellRear, workMemory1, workMemory2);
+                        break;
+                    case AdjacencyDirection.SideFront:
+                        var newCellFrontLeft = GetAdjacentPosition(baseCell,
+                            Hex.HexSide.TopLeft, baseHex.Position, newCellType, newCells);
+
+                        if (newCellFrontLeft != null)
+                        {
+                            mp -= mpCost;
+                            newCells.AddFast(newCellFrontLeft, workMemory1, workMemory2);
+                        }
+
+                        var newCellFrontRight = GetAdjacentPosition(baseCell,
+                            Hex.HexSide.TopRight, baseHex.Position, newCellType, newCells);
+
+                        if (newCellFrontRight != null)
+                        {
+                            mp -= mpCost;
+                            newCells.AddFast(newCellFrontRight, workMemory1, workMemory2);
+                        }
+
+                        break;
+                    case AdjacencyDirection.SideRear:
+                        var newCellRearLeft = GetAdjacentPosition(baseCell,
+                            Hex.HexSide.BottomLeft, baseHex.Position, newCellType, newCells);
+
+                        if (newCellRearLeft != null)
+                        {
+                            mp -= mpCost;
+                            newCells.AddFast(newCellRearLeft, workMemory1, workMemory2);
+                        }
+
+                        var newCellRearRight = GetAdjacentPosition(baseCell,
+                            Hex.HexSide.BottomRight, baseHex.Position, newCellType, newCells);
+
+                        if (newCellRearRight != null)
+                        {
+                            mp -= mpCost;
+                            newCells.AddFast(newCellRearRight, workMemory1, workMemory2);
+                        }
+
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
+                }
+            }
+        }
+
+        MulticellularLayoutHelpers.UpdateGameplayLayout(newSpecies.ModifiableGameplayCells,
+            newSpecies.ModifiableEditorCells, newCells, AlgorithmQuality.Low,
+            new List<Hex>(), new List<Hex>());
+
+        return true;
     }
 
     private static OrganelleTemplate? GetRealisticPosition(OrganelleDefinition organelle,
@@ -388,6 +601,59 @@ public static class CommonMutationFunctions
         return null;
     }
 
+    private static HexWithData<CellTemplate>? GetAdjacentPosition(IReadOnlyCellTemplate cellTemplate, Hex.HexSide side,
+        Hex oldHex, CellType newCellType, IndividualHexLayout<CellTemplate> existingCells)
+    {
+        var newHexPosition = oldHex - Hex.HexNeighbourOffset[side];
+        var orientation = cellTemplate.Orientation;
+
+        var newCellTemplate = new CellTemplate(newCellType, newHexPosition, orientation);
+        var result = new HexWithData<CellTemplate>(newCellTemplate, newHexPosition, orientation);
+
+        if (existingCells.CanPlace(result.Position))
+        {
+            return result;
+        }
+
+        return null;
+    }
+
+    private static HexWithData<CellTemplate>? GetCenterlineFrontPosition(CellType newCellType,
+        IndividualHexLayout<CellTemplate> existingCells)
+    {
+        // Assume can't be placed at 0,0 so start at -1
+        for (int r = -1; r > -Constants.DIRECTION_ORGANELLE_CHECK_MAX_DISTANCE; --r)
+        {
+            var newHexPosition = new Hex(0, r);
+            if (existingCells.CanPlace(newHexPosition))
+            {
+                var result = new HexWithData<CellTemplate>(new CellTemplate(newCellType, newHexPosition, 0),
+                    newHexPosition, 0);
+                return result;
+            }
+        }
+
+        return null;
+    }
+
+    private static HexWithData<CellTemplate>? GetCenterlineRearPosition(CellType newCellType,
+        IndividualHexLayout<CellTemplate> existingCells)
+    {
+        // Assume can't be placed at 0,0 so start at -1
+        for (int r = 1; r > -Constants.DIRECTION_ORGANELLE_CHECK_MAX_DISTANCE; ++r)
+        {
+            var newHexPosition = new Hex(0, r);
+            if (existingCells.CanPlace(newHexPosition))
+            {
+                var result = new HexWithData<CellTemplate>(new CellTemplate(newCellType, newHexPosition, 0),
+                    newHexPosition, 0);
+                return result;
+            }
+        }
+
+        return null;
+    }
+
     private static Hex.HexSide[] SideTraversalOrder(Hex hex, Direction direction, Random random)
     {
         if (hex.Q < 0)
@@ -440,5 +706,5 @@ public static class CommonMutationFunctions
 
     // TODO: this would be really nice to convert into a struct record as the mutation strategies generate a lot of
     // these, which in turn makes a lot of small objects just to hold the species reference and one double.
-    public record Mutant(MicrobeSpecies Species, double MP);
+    public record Mutant(Species Species, double MP);
 }

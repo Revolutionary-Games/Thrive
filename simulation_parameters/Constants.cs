@@ -1208,6 +1208,9 @@ public static class Constants
     public const int ORGANELLE_MOVE_COST = 5;
     public const int ORGANELLE_CHEAPEST_COST = 20;
 
+    // This can be set per cell type, but is currently always constant
+    public const int CELL_ADD_COST = 15;
+
     public const int CELL_REMOVE_COST = 5;
 
     public const int MULTICELLULAR_REPRODUCTION_METHOD_CHANGE_COST = 50;
@@ -1375,13 +1378,13 @@ public static class Constants
     public const int DIFFERENCES_FOR_GENUS_SPLIT = 1;
 
     /// <summary>
-    ///   Populations of species that are under this will be killed off by auto-evo
+    ///   Populations of species that are under this will be killed off by auto-evo (perhaps should depend on size?)
     /// </summary>
-    public const int AUTO_EVO_MINIMUM_VIABLE_POPULATION = 30;
+    public const int AUTO_EVO_MINIMUM_VIABLE_POPULATION = 5;
 
     // Auto evo population algorithm tweak variables
     // TODO: move all of these into auto-evo_parameters.json
-    public const int AUTO_EVO_MINIMUM_MOVE_POPULATION = 300;
+    public const int AUTO_EVO_MINIMUM_MOVE_POPULATION = 50;
     public const float AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION = 0.1f;
     public const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.4f;
 
