@@ -608,6 +608,11 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 
     public override object Clone()
     {
+        return Clone(true);
+    }
+
+    public MulticellularSpecies Clone(bool cloneOrganelles)
+    {
         var result = new MulticellularSpecies(ID, Genus, Epithet);
 
         ClonePropertiesTo(result);
@@ -620,7 +625,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 
         foreach (var cellType in ModifiableCellTypes)
         {
-            var clonedType = (CellType)cellType.Clone();
+            var clonedType = cellType.Clone(cloneOrganelles);
             result.ModifiableCellTypes.Add(clonedType);
             typeMapping[cellType] = clonedType;
 
