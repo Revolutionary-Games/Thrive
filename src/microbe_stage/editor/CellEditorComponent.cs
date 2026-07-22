@@ -1286,7 +1286,16 @@ public partial class CellEditorComponent :
 
         if (!IsMacroscopicEditor)
         {
-            UpdateEndosymbiosisSpeciesData();
+            // Don't update species-related data if we are in multicellular mode and species is not set yet
+            if (Editor.EditedCellProperties == null)
+            {
+                GD.Print("Multicellular editor has not set a cell type to edit yet, " +
+                    "not refreshing endosymbiosis for cell editor component");
+            }
+            else
+            {
+                UpdateEndosymbiosisSpeciesData();
+            }
         }
 
         // Redo suggestion calculations as they could depend on the patch data (though at the time of writing this is
