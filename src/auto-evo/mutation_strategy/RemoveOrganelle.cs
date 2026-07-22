@@ -163,7 +163,7 @@ public class RemoveOrganelle : IMutationStrategy<Species>
 
                             // Copy the organelle
                             var copiedOrganelle = parentOrganelle.Clone();
-                            clonedCellType.ModifiableOrganelles.AddFast(copiedOrganelle,
+                            clonedCellType.ModifiableOrganelles.AddIfPossible(copiedOrganelle,
                                 workMemory.WorkingMemory1, workMemory.WorkingMemory2);
                         }
                     }
@@ -182,7 +182,7 @@ public class RemoveOrganelle : IMutationStrategy<Species>
 
                         // Copy the organelle
                         var newOrganelle = parentOrganelle.Clone();
-                        newCellTypeOrganelles.AddFast(newOrganelle, workMemory.WorkingMemory1,
+                        newCellTypeOrganelles.AddIfPossible(newOrganelle, workMemory.WorkingMemory1,
                             workMemory.WorkingMemory2);
                     }
 
