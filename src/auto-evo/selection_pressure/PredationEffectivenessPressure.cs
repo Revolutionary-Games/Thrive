@@ -26,6 +26,8 @@ public class PredationEffectivenessPressure : SelectionPressure
             AddOrganelleAnywhere.ThatCreateCompound(Compound.Oxytoxy),
             new AddOrganelleAnywhere(organelle => organelle.HasMovementComponent,
                 CommonMutationFunctions.Direction.Rear),
+            new AddOrganelleAnywhere(organelle => organelle.HasCiliaComponent,
+                CommonMutationFunctions.Direction.Front),
             new MoveOrganelleBack(organelle => organelle.HasMovementComponent),
             new UpgradeToxinOrganelle(organelle => organelle.HasAgentVacuoleComponent, "oxytoxy", false,
                 UpgradeToxinOrganelle.MutationDirection.Both),
@@ -67,6 +69,8 @@ public class PredationEffectivenessPressure : SelectionPressure
                 CommonMutationFunctions.Direction.Front),
             new AddCellWithOrganelle(organelle => organelle.HasMovementComponent,
                 CommonMutationFunctions.Direction.Rear),
+            new AddCellWithOrganelle(organelle => organelle.HasCiliaComponent,
+                CommonMutationFunctions.Direction.Front),
         ])
     {
         Prey = prey;
