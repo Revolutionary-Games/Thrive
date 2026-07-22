@@ -1031,6 +1031,10 @@ WindowTitle = "PENDING_ENDOSYMBIOSIS_TITLE"
 
 [node name="EndosymbiosisPopup" parent="." unique_id=1781593876 instance=ExtResource("23_hoe4k")]
 layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 460.0
+offset_bottom = 400.0
 IsMulticellular = true
 
 [connection signal="gui_input" from="." to="." method="OnHexEditorGuiInput"]
@@ -1072,6 +1076,8 @@ IsMulticellular = true
 [connection signal="MovePressed" from="CellPopupMenu" to="." method="OnMovePressed"]
 [connection signal="Canceled" from="CompleteEndosymbiosisWarning" to="." method="ConfirmFinishEditingWithEndosymbiosis"]
 [connection signal="Confirmed" from="CompleteEndosymbiosisWarning" to="." method="OnEndosymbiosisButtonPressed"]
+[connection signal="EndosymbiosisCancelled" from="EndosymbiosisPopup" to="." method="OnAbandonEndosymbiosisOperation"]
+[connection signal="SpeciesSelected" from="EndosymbiosisPopup" to="." method="OnEndosymbiosisSelected"]
 
 [editable path="RightPanel/VBoxContainer/OrganismStatisticsPanel"]
 [editable path="CompleteEndosymbiosisWarning"]
