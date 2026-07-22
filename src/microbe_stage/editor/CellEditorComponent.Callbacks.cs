@@ -360,8 +360,24 @@ public partial class CellEditorComponent
         }
 
         // With the endosymbiosis place done, the current endosymbiosis action is done
-        data.RelatedEndosymbiosisAction =
-            Editor.EditedBaseSpecies.Endosymbiosis.MarkEndosymbiosisDone(data.RelatedEndosymbiosisAction);
+        try
+        {
+            data.RelatedEndosymbiosisAction =
+                Editor.EditedBaseSpecies.Endosymbiosis.MarkEndosymbiosisDone(data.RelatedEndosymbiosisAction);
+        }
+        catch (InvalidOperationException e)
+        {
+            GD.PrintErr("Unusual condition in marking endosymbiosis done: ", e);
+
+            if (!Editor.EditedBaseSpecies.Endosymbiosis.HasInProgressEndosymbiosis)
+            {
+                GD.Print("Player probably canceled the endosymbiosis but redid the endosymbiont placement, " +
+                    "so using data from that to get the done endosymbiosis data");
+
+                // Well, this ends up doing nothing, so this data is hopefully correct
+                data.RelatedEndosymbiosisAction = data.RelatedEndosymbiosisAction;
+            }
+        }
 
         // Restore any inprogress data we overwrote on undo
         if (data.OverriddenEndosymbiosisOnUndo != null)
