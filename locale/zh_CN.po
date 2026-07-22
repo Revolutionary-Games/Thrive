@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-20 16:41+0300\n"
+"POT-Creation-Date: 2026-07-22 10:29+0300\n"
 "PO-Revision-Date: 2026-07-20 10:36+0000\n"
 "Last-Translator: 归灵祈昱 <guilingqiyu@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -2085,6 +2085,10 @@ msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
 msgstr "该物种不能被转化成任何细胞器"
 
 msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+msgstr "为了增加内共生进度，目标物种需要被胞吞并转化为一个临时细胞器（同一时间最多只能有一个）。一旦您带着临时细胞器进入编辑器进度就会被保存。"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION_MULTICELLULAR"
 msgstr "为了增加内共生进度，目标物种需要被胞吞并转化为一个临时细胞器（同一时间最多只能有一个）。一旦您带着临时细胞器进入编辑器进度就会被保存。"
 
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
@@ -4981,6 +4985,10 @@ msgid "PEACEFUL"
 msgstr "和平"
 
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "一个内共生进度已满，您可以把对应物种作为细胞器放置在细胞中来完结它。建议您尽快这样做因为在这之前您不能在内共生方面取得新的进展。您现在要查看内共生进程吗？"
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION_MULTICELLULAR"
 msgstr "一个内共生进度已满，您可以把对应物种作为细胞器放置在细胞中来完结它。建议您尽快这样做因为在这之前您不能在内共生方面取得新的进展。您现在要查看内共生进程吗？"
 
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
