@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-07-20 16:41+0300\n"
-"PO-Revision-Date: 2026-07-21 00:00+0000\n"
+"PO-Revision-Date: 2026-07-22 04:07+0000\n"
 "Last-Translator: DrAlienizer <dr4gonizer@proton.me>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
@@ -1188,9 +1188,8 @@ msgstr "Niektóre ustawienia są nieważnie"
 msgid "CONFIRM_RESET_ACHIEVEMENTS"
 msgstr "Na pewno zresetować osiągnięcia?"
 
-#, fuzzy
 msgid "CONFIRM_RESET_ACHIEVEMENTS_DESCRIPTION"
-msgstr "Przekształca [thrive:compound type=\"atp\"][/thrive:compound] w [thrive:compound type=\"ammonia\"]Amoniak[/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"nitrogen\"]Azotu[/thrive:compound]."
+msgstr "Czy naprawdę chcesz NIEODWRACALNIE zresetować WSZYSTKIE osiągnięcia i powiązane statystyki? Wszystkie postępy w kierunku zdobycia osiągnięć zostaną utracone i będziesz musiał zdobywać każde z nich od nowa."
 
 msgid "CONSTRUCTION_UNIT_NAME"
 msgstr "Jednostka: {0}"
@@ -6330,9 +6329,10 @@ msgstr "sekund"
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Zalogowano jako: {0}"
 
-#, fuzzy
 msgid "STRAIN_BAR_TOOLTIP"
-msgstr "Odwiedź naszego Patreona"
+msgstr ""
+"Ten pasek pokazuje aktualne zmęczenie związane ze sprintem. Im bardziej wypełniony, tym więcej ATP zużywa dalszy sprint.\n"
+"Odzyskiwanie sił po sprincie również zużywa dodatkowe ATP dopóki pasek się nie opróżni."
 
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr "Widoczność paska obciążenia"
@@ -6638,9 +6638,8 @@ msgstr "Muzeum"
 msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
 msgstr "Muzeum"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
-msgstr "Muzeum"
+msgstr "Ta strona jest pusta, gdyż żaden gatunek nie został jeszcze przypięty. Kliknij gatunek w innej części gry, aby przejść do jego strony i go przypiąć. Po przypięciu pojawi się on tutaj."
 
 #, fuzzy
 msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
@@ -6925,9 +6924,8 @@ msgstr "Przekształca [thrive:compound type=\"atp\"][/thrive:compound] w [thrive
 msgid "TOXISOME"
 msgstr "Toksysom"
 
-#, fuzzy
 msgid "TOXISOME_DESCRIPTION"
-msgstr "Lizosom jest organellą przymocowaną do błony komórkowej która zawiera hydrolityczne enzymy które mogą rozbijać wiele biomolekuł. Lizosomy umożliwiają komórce trawienie materiałów przyjmowanych poprzez endocytozę oraz oczyszczanie odpadów komórki w procesie zwanym [b]autofagią[/b]."
+msgstr "Zmodyfikowany metabolosom odpowiedzialny za syntezę prymitywnej formy czynnika toksycznego [thrive:compound type=\\\"oxytoxy\\\"]Oksytoksyny[/thrive:compound]. W menu modyfikacji można przełączać typ i efekty wytwarzanych toksyn, których produkcja może wymagać [thrive:compound type=\\\"oxygen\\\"]tlenu[/thrive:compound]."
 
 msgid "TRANSLATORS"
 msgstr "Tłumacze"
@@ -7175,12 +7173,11 @@ msgstr ""
 "\n"
 "Fotosynteza jest nieskuteczna w porze nocnej. Dlatego wszystkie komórki, które polegają na [b]fotosyntezie[/b], muszą mieć wystarczającą przestrzeń magazynową dla związków [thrive:icon]StorageIcon[/thrive:icon], aby przetrwać noc."
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
-"Trudno ci? Sprawdź menu pomocy. Możesz je otworzyć klikając na znak zapytania w lewym dolnym rogu.\n"
+"Jeśli nadal potrzebujesz więcej wskazówek, sprawdź menu pomocy. Zawsze możesz je otworzyć klikając przycisk ze znakiem zapytania w lewym dolnym rogu.\n"
 "\n"
-"Jeszcze jedna wskazówka: możesz zwiększyć pole widzenia za pomocą kółka myszy."
+"Jeszcze jedna wskazówka: możesz oddalić widok za pomocą [thrive:input]g_zoom_out[/thrive:input]."
 
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
@@ -7250,7 +7247,7 @@ msgstr ""
 
 #, fuzzy
 msgid "TUTORIAL_REPLAY_ALL_EXPLANATION"
-msgstr "(Niektóre organelle będą mieć warunki odblokowania wymagane by je postawić)"
+msgstr "Wszystkie samouczki zostaną pokazane ponownie. Gdy ta opcja jest wyłączona, będą wyświetlane tylko te samouczki, które jeszcze nie zostały pokazane. Można wyłączyć tę opcję nawet podczas pierwszego przejścia gry."
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Oglądaj Teraz"
@@ -9100,6 +9097,9 @@ msgstr "Brak wymagań, pomijając wystarczającą ilość miejsca."
 
 msgid "WIKI_NUCLEUS_SCIENTIFIC_BACKGROUND"
 msgstr ""
+"[color=#3796e1][url=https://pl.wikipedia.org/wiki/Jądro_komórkowe]Jądra komórkowe[/url][/color] występują w niemal wszystkich komórkach eukariotycznych, gdzie pełnią kluczową rolę w ochronie materiału genetycznego organizmu oraz regulacji ekspresji genów.\n"
+"\n"
+"Dokładny sposób ewolucji jąder komórkowych pozostaje niejasny. Zdaniem niektórych badaczy mogły powstać w wyniku endosymbiozy, np. jako komórka archeona, która wniknęła do komórki bakteryjnej; według innych, wyewoluowały z wirusów lub powstały, gdy pojedyncza komórka wytworzyła dodatkową błonę wewnętrzną, a pierwotna komórka przekształciła się w jądro."
 
 msgid "WIKI_NUCLEUS_STRATEGY"
 msgstr ""
