@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Buffers;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using Godot;
 using Array = Godot.Collections.Array;
@@ -37,12 +39,44 @@ public class MembraneShapeGenerator
     private readonly List<Vector2> startingBuffer = new();
 
     /// <summary>
+    ///   How sharply the gate for the superformula blending is. It is the reciprocal of the smooth union operation
+    ///   factor.
+    /// </summary>
+    private float superformulaEnvelopeSharpness = 5.0f;
+
+    /// <summary>
+    ///   Scale factor applied to every superformula radius sample.
+    /// </summary>
+    private float superformulaEnvelopeScale = 4.0f;
+
+    public Superformula? SuperformulaEnvelope { get; private set; } = new Superformula(1, 4, 3, 5);
+
+    /// <summary>
     ///   Gets a generator for the current thread. This is required to be used as the generators are not thread safe.
     /// </summary>
     /// <returns>A generator that can be used by the calling thread</returns>
     public static MembraneShapeGenerator GetThreadSpecificGenerator()
     {
         return ThreadLocalGenerator.Value!;
+    }
+
+    /// <summary>
+    ///   Configures superformula parameters.
+    /// </summary>
+    public void ConfigureSuperformula(int n1, int n2, int n3, int m, float sharpness = 5.0f, float scale = 4.0f)
+    {
+        SuperformulaEnvelope = new Superformula(n1, n2, n3, m);
+
+        superformulaEnvelopeSharpness = sharpness;
+        superformulaEnvelopeScale = scale;
+    }
+
+    /// <summary>
+    ///   Disables the superformula envelope.
+    /// </summary>
+    public void ClearSuperformula()
+    {
+        SuperformulaEnvelope = null;
     }
 
     /// <summary>
@@ -54,60 +88,17 @@ public class MembraneShapeGenerator
     /// </returns>
     public MembranePointData GenerateShape(Vector2[] hexPositions, int hexCount, MembraneType membraneType)
     {
-        // The length in pixels (probably not accurate?) of a side of the square that bounds the membrane.
-        // Half the side length of the original square that is compressed to make the membrane.
-        int cellDimensions = 10;
+        bool useSuperformula = UsesSuperformulaEnvelope(membraneType);
 
-        for (int i = 0; i < hexCount; ++i)
+        if (useSuperformula)
         {
-            var pos = hexPositions[i];
-            if (MathF.Abs(pos.X) + 1 > cellDimensions)
-            {
-                cellDimensions = (int)MathF.Abs(pos.X) + 1;
-            }
-
-            if (MathF.Abs(pos.Y) + 1 > cellDimensions)
-            {
-                cellDimensions = (int)MathF.Abs(pos.Y) + 1;
-            }
+            GenerateSuperformulaEnvelope(hexPositions, hexCount);
         }
-
-        // Make the length longer to guarantee that everything fits easily inside the square
-        cellDimensions *= 100;
-
-        startingBuffer.Clear();
-
-        // Integer divides are intentional here
-        // ReSharper disable PossibleLossOfFraction
-
-        for (int i = MembraneResolution; i > 0; i--)
+        else
         {
-            startingBuffer.Add(new Vector2(-cellDimensions,
-                cellDimensions - 2 * cellDimensions / MembraneResolution * i));
+            // This uses the original generation pipeline
+            GenerateBlobEnvelope(hexPositions, hexCount, membraneType);
         }
-
-        for (int i = MembraneResolution; i > 0; i--)
-        {
-            startingBuffer.Add(new Vector2(cellDimensions - 2 * cellDimensions / MembraneResolution * i,
-                cellDimensions));
-        }
-
-        for (int i = MembraneResolution; i > 0; i--)
-        {
-            startingBuffer.Add(new Vector2(cellDimensions,
-                -cellDimensions + 2 * cellDimensions / MembraneResolution * i));
-        }
-
-        for (int i = MembraneResolution; i > 0; i--)
-        {
-            startingBuffer.Add(new Vector2(-cellDimensions + 2 * cellDimensions / MembraneResolution * i,
-                -cellDimensions));
-        }
-
-        // ReSharper restore PossibleLossOfFraction
-
-        // Get new membrane points for vertices2D
-        GenerateMembranePoints(hexPositions, hexCount, membraneType);
 
         // This makes a copy of the vertices so the data is safe to modify in further calls to this method
         return new MembranePointData(hexPositions, hexCount, membraneType, vertices2D);
@@ -462,6 +453,127 @@ public class MembraneShapeGenerator
         return generatedMesh;
     }
 
+    private static float SampleRadius(ReadOnlySpan<(double Rho, double Theta)> polarData, double theta)
+    {
+        int n = polarData.Length;
+
+        switch (n)
+        {
+            case 0:
+                return 1.0f;
+            case 1:
+                (double r, double _) = polarData[0];
+                return (float)r;
+        }
+
+        int low = 0, high = n - 1;
+
+        while (low < high)
+        {
+            int mid = low + high >> 1;
+            double midT = polarData[mid].Theta;
+
+            if (midT < theta)
+                low = mid + 1;
+            else
+                high = mid;
+        }
+
+        // low is the first index with angle >= theta.
+        int iB = low;
+        int iA = (iB - 1 + n) % n;
+
+        (double rA, double tA) = polarData[iA];
+        (double rB, double tB) = polarData[iB];
+
+        double dT = tB - tA;
+
+        if (Math.Abs(dT) < 1e-9)
+            return (float)rA;
+
+        if (dT > Math.PI)
+            dT -= 2.0 * Math.PI;
+
+        if (dT < -Math.PI)
+            dT += 2.0 * Math.PI;
+
+        double offset = theta - tA;
+
+        if (offset > Math.PI)
+            offset -= 2.0 * Math.PI;
+
+        if (offset < -Math.PI)
+            offset += 2.0 * Math.PI;
+
+        double t = Math.Clamp(offset / dT, 0.0, 1.0);
+
+        return (float)(rA + t * (rB - rA));
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private bool UsesSuperformulaEnvelope(MembraneType membraneType)
+    {
+        return true; //SuperformulaEnvelope.HasValue && membraneType.InternalName == "silica";
+    }
+
+    private void GenerateBlobEnvelope(Vector2[] hexPositions, int hexCount, MembraneType membraneType)
+    {
+        // The length in pixels (probably not accurate?) of a side of the square that bounds the membrane.
+        // Half the side length of the original square that is compressed to make the membrane.
+        int cellDimensions = 10;
+
+        for (int i = 0; i < hexCount; ++i)
+        {
+            var pos = hexPositions[i];
+            if (MathF.Abs(pos.X) + 1 > cellDimensions)
+            {
+                cellDimensions = (int)MathF.Abs(pos.X) + 1;
+            }
+
+            if (MathF.Abs(pos.Y) + 1 > cellDimensions)
+            {
+                cellDimensions = (int)MathF.Abs(pos.Y) + 1;
+            }
+        }
+
+        // Make the length longer to guarantee that everything fits easily inside the square
+        cellDimensions *= 100;
+
+        startingBuffer.Clear();
+
+        // Integer divides are intentional here
+        // ReSharper disable PossibleLossOfFraction
+
+        for (int i = MembraneResolution; i > 0; i--)
+        {
+            startingBuffer.Add(new Vector2(-cellDimensions,
+                cellDimensions - 2 * cellDimensions / MembraneResolution * i));
+        }
+
+        for (int i = MembraneResolution; i > 0; i--)
+        {
+            startingBuffer.Add(new Vector2(cellDimensions - 2 * cellDimensions / MembraneResolution * i,
+                cellDimensions));
+        }
+
+        for (int i = MembraneResolution; i > 0; i--)
+        {
+            startingBuffer.Add(new Vector2(cellDimensions,
+                -cellDimensions + 2 * cellDimensions / MembraneResolution * i));
+        }
+
+        for (int i = MembraneResolution; i > 0; i--)
+        {
+            startingBuffer.Add(new Vector2(-cellDimensions + 2 * cellDimensions / MembraneResolution * i,
+                -cellDimensions));
+        }
+
+        // ReSharper restore PossibleLossOfFraction
+
+        // Get new membrane points for vertices2D
+        GenerateMembranePoints(hexPositions, hexCount, membraneType);
+    }
+
     private void GenerateMembranePoints(Vector2[] hexPositions, int hexCount, MembraneType membraneType)
     {
         // Move all the points in the source buffer close to organelles
@@ -474,7 +586,9 @@ public class MembraneShapeGenerator
             var direction = (startingBuffer[i] - closestOrganelle).Normalized();
             var movement = direction * Constants.MEMBRANE_ROOM_FOR_ORGANELLES;
 
-            startingBuffer[i] = closestOrganelle + movement;
+            var newPosition = closestOrganelle + movement;
+
+            startingBuffer[i] = newPosition;
         }
 
         float circumference = 0.0f;
@@ -548,5 +662,78 @@ public class MembraneShapeGenerator
 
             vertices2D[i] = point + movement;
         }
+    }
+
+    private void GenerateSuperformulaEnvelope(Vector2[] hexPositions, int hexCount)
+    {
+        var superformula = SuperformulaEnvelope!.Value;
+        var polarData = superformula.PolarData;
+
+        // Find extreme values and the center of the hex collection.
+        float maxX = float.MinValue, maxY = float.MinValue;
+        float minX = float.MaxValue, minY = float.MaxValue;
+        foreach (var (organellePositionX, organellePositionY) in hexPositions)
+        {
+            if (organellePositionX > maxX)
+                maxX = organellePositionX;
+
+            if (organellePositionY > maxY)
+                maxY = organellePositionY;
+
+            if (organellePositionX < minX)
+                minX = organellePositionX;
+
+            if (organellePositionY < minY)
+                minY = organellePositionY;
+        }
+
+        var center = new Vector2(maxX + minX, maxY + minY) / 2.0f;
+
+        var hexPositionsTranslated = ArrayPool<Vector2>.Shared.Rent(hexCount);
+
+        // Translate hexes to local space
+        for (int i = 0; i < hexCount; ++i)
+        {
+            hexPositionsTranslated[i] = hexPositions[i] - center;
+        }
+
+        // Map everything
+        var amplitudeX = MathF.Max(MathF.Abs(maxX - minX) / 2.0f, 1.0f);
+        var amplitudeY = MathF.Max(MathF.Abs(maxY - minY) / 2.0f, 1.0f);
+        var factor = 1.0f / (superformulaEnvelopeSharpness * superformulaEnvelopeSharpness);
+
+        vertices2D.Clear();
+        vertices2D.Capacity = polarData.Length;
+
+        for (int i = 0, end = polarData.Length; i < end; ++i)
+        {
+            double theta = polarData[i].Theta;
+
+            Vector2 rayDirection = new Vector2((float)Math.Cos(theta), (float)Math.Sin(theta));
+
+            float signedRadius = SampleRadius(polarData, theta) * superformulaEnvelopeScale;
+
+            float ellipseRadius = amplitudeX * amplitudeY / MathF.Sqrt(MathF.Pow(amplitudeY * rayDirection.X, 2) +
+                MathF.Pow(amplitudeX * rayDirection.Y, 2));
+
+            float stretchedSignedRadius = signedRadius * ellipseRadius;
+
+            Vector2 pointAtInfinity = rayDirection * 100000.0f;
+            Vector2 closestOrganelle = FindClosestOrganelleHex(hexPositionsTranslated, hexCount, pointAtInfinity);
+
+            float organelleProjection = closestOrganelle.Dot(rayDirection) + Constants.MEMBRANE_ROOM_FOR_ORGANELLES;
+            float difference = stretchedSignedRadius - organelleProjection;
+
+            // Custom math magic that acts as a smooth max function. It uses a modified hyperbola to join the operand
+            // values.
+            float union = 0.5f * (MathF.Sqrt(factor + difference * difference) + stretchedSignedRadius +
+                organelleProjection);
+
+            Vector2 point = rayDirection * union;
+
+            vertices2D.Add(point + center);
+        }
+
+        ArrayPool<Vector2>.Shared.Return(hexPositionsTranslated);
     }
 }
