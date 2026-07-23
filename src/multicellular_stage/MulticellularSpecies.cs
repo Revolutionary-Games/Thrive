@@ -314,7 +314,12 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
     {
         base.OnAttemptedInAutoEvo(refreshCache);
 
-        // TODO: in the future this will need to refresh specialization calculations for cell types
+        // Refresh specialization calculations for all cell types
+        for (int i = 0; i < CellTypes.Count; ++i)
+        {
+            var cellType = ModifiableCellTypes[i];
+            cellType.CalculateSpecialization();
+        }
 
         UpdateInitialCompounds();
 
