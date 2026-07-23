@@ -139,6 +139,11 @@ public partial class ThriveopediaWikiPage : ThriveopediaPage, IThriveopediaPage
             AddSection(section);
     }
 
+    public override void OnTranslationsChanged()
+    {
+        cacheTranslatedPageBody = null;
+    }
+
     public virtual void OnSelectedStageChanged()
     {
         EmitSignal(SignalName.OnStageChanged);

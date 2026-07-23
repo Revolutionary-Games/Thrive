@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
-using System.Text;
 using Godot;
 
 /// <summary>
@@ -10,12 +8,6 @@ using Godot;
 /// </summary>
 public partial class ThriveopediaSpeciesInfoPage : ThriveopediaPage, IThriveopediaPage, ITransientPage
 {
-    /// <summary>
-    ///   This is a shared resource used in the construction of the TranslatedAdditionalSearchContent
-    ///   This is being done to reduce the amount of HashSets being made when requesting
-    /// </summary>
-    private static readonly HashSet<string> HashSetPool = new();
-
 #pragma warning disable CA2213
     [Export]
     private CustomRichTextLabel mainText = null!;
@@ -57,48 +49,7 @@ public partial class ThriveopediaSpeciesInfoPage : ThriveopediaPage, IThriveoped
     {
         get
         {
-            if (cacheTranslatedAdditionalSearchContent != null)
-            {
-                return cacheTranslatedAdditionalSearchContent;
-            }
-
-            StringBuilder builder = new StringBuilder();
-
-            if (SpeciesToShow is MulticellularSpecies multicellularSpecies)
-            {
-                builder.AppendLine(Localization.Translate("MULTICELLULAR"));
-
-                foreach (CellTemplate cell in multicellularSpecies.ModifiableGameplayCells)
-                {
-                    foreach (IReadOnlyOrganelleTemplate organelle in cell.Organelles)
-                    {
-                        HashSetPool.Add(organelle.Definition.ReadableName);
-                    }
-                }
-            }
-
-            if (SpeciesToShow is MicrobeSpecies microbeSpecies)
-            {
-                builder.AppendLine(Localization.Translate("MICROBE"));
-
-                foreach (OrganelleTemplate organelle in microbeSpecies.Organelles)
-                {
-                    HashSetPool.Add(organelle.Definition.ReadableName);
-                }
-            }
-
-            foreach (var item in HashSetPool)
-            {
-                builder.AppendLine(item);
-            }
-
-            builder.AppendLine(Localization.Translate("THRIVEOPEDIA_SPECIES_PAGE_SEARCHTAGS"));
-
-            cacheTranslatedAdditionalSearchContent = builder.ToString();
-
-            HashSetPool.Clear();
-
-            return cacheTranslatedAdditionalSearchContent;
+            return Localization.Translate("THRIVEOPEDIA_SPECIES_PAGE_SEARCHTAGS");
         }
     }
 

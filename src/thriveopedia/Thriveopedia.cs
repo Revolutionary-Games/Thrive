@@ -98,7 +98,7 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
 
     /// <summary>
     ///   Has the input field changed while it still running a background search.
-    ///   After the search is completed a new one whit the currSearchText will start
+    ///   After the search is completed a new one whit the <see cref="currentSearchText"/> will start
     /// </summary>
     private bool requestingNewSearch;
 
@@ -119,9 +119,9 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
     private bool trackSearchTimer;
 
     /// <summary>
-    ///   The current text to search in the next background search.
+    ///   The text to search in the next background search.
     /// </summary>
-    private string currSearchText = string.Empty;
+    private string currentSearchText = string.Empty;
 
     [Signal]
     public delegate void OnThriveopediaClosedEventHandler();
@@ -251,7 +251,7 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
     public override void _Process(double delta)
     {
         searchTimer += delta;
-        if (trackSearchTimer && searchTimer > 0.1d)
+        if (trackSearchTimer && searchTimer > 0.1)
         {
             BeginBackgroundSearch();
             trackSearchTimer = false;
@@ -799,14 +799,14 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
 
     private void OnSearchUpdated(string newText)
     {
-        currSearchText = newText;
+        currentSearchText = newText;
         if (runningBackgroundSearch)
         {
             requestingNewSearch = true;
         }
         else
         {
-            searchTimer = 0.0d;
+            searchTimer = 0;
             trackSearchTimer = true;
         }
     }
@@ -816,7 +816,7 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
         if (!runningBackgroundSearch)
         {
             runningBackgroundSearch = true;
-            TaskExecutor.Instance.AddTask(new Task(() => DoBackgroundPageSearch(currSearchText)));
+            TaskExecutor.Instance.AddTask(new Task(() => DoBackgroundPageSearch(currentSearchText)));
         }
     }
 
@@ -843,7 +843,7 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
 
         foreach (var page in allPages)
         {
-            // todo: maybe switch ToLower whit something else since it does return "a copy"
+            // TODO: maybe switch ToLower whit something else since it does return "a copy"
             // when it should just directly edit the string
 
             string pageName = page.Key.TranslatedPageName.ToLower(CultureInfo.CurrentCulture);
@@ -893,7 +893,7 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
 
         if (requestingNewSearch)
         {
-            TaskExecutor.Instance.AddTask(new Task(() => DoBackgroundPageSearch(currSearchText)));
+            TaskExecutor.Instance.AddTask(new Task(() => DoBackgroundPageSearch(currentSearchText)));
             requestingNewSearch = false;
         }
         else
