@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-07-22 10:29+0300\n"
-"PO-Revision-Date: 2026-07-20 10:36+0000\n"
+"PO-Revision-Date: 2026-07-21 11:03+0000\n"
 "Last-Translator: 归灵祈昱 <guilingqiyu@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -55,11 +55,10 @@ msgstr "成就"
 msgid "ACHIEVEMENTS_LOAD_FAILED"
 msgstr "成就数据加载失败"
 
-#, fuzzy
 msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
 msgstr ""
 "成就的数据文件可能损坏了。\n"
-"数据可以通过删除下列内容来重置，这会丢失所有的进度:\n"
+"数据可以通过删除下列内容来重置，这会丢失所有的成就进度:\n"
 "{0}\n"
 "你想在没有成就的情况下继续游戏吗？\n"
 "按下取消将退出游戏。"
@@ -763,16 +762,26 @@ msgstr "细胞类型名称"
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "更改说明太长了"
 
-#, fuzzy
 msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
-msgstr "细胞膜类型"
+msgstr "更改细胞膜类型"
 
-#, fuzzy
 msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
-msgstr "（生成地区图或使用经典地区图）"
+msgstr ""
+"在多细胞阶段仍可改变细胞膜类型，但难度会更大。\n"
+"在宏观阶段将完全无法再改变细胞膜类型。\n"
+"现在改变细胞膜需要所有细胞类型一次性全部转变为新类型。\n"
+"这需要消耗所有的突变点数 [thrive:icon]MP[/thrive:icon] 来进行此更改。\n"
+"并且会退出编辑器以应用此更改。\n"
+"要将细胞膜更改为所选类型吗？"
 
 msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
 msgstr ""
+"在多细胞阶段仍可改变细胞膜类型，但难度会大得多。 \n"
+"在宏观阶段将完全无法再改变细胞膜类型。 \n"
+"现在改变细胞膜需要所有细胞类型一次性全部转变为新类型。 \n"
+"这需要消耗所有的突变点数 [thrive:icon]MP[/thrive:icon] 来进行此更改。 \n"
+"并且会退出编辑器以应用此更改。 \n"
+"[b]MP不足。[/b]如果您仍需改变细胞膜，您可以撤销此次进化的全部更改。"
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "改变对称"
@@ -2862,9 +2871,8 @@ msgstr "与以下细胞膜不兼容：{0}"
 msgid "INCOMPATIBLE_ORGANELLE_LIST"
 msgstr "与以下放置的细胞器不兼容：{0}"
 
-#, fuzzy
 msgid "INCOMPATIBLE_STAGE_LIST"
-msgstr "与以下细胞膜不兼容：{0}"
+msgstr "无法在该阶段更改：{0}"
 
 msgid "INCREASE_ITEM_SIZE"
 msgstr "放大物体"
@@ -3592,14 +3600,8 @@ msgstr "大环内酯物合成"
 msgid "MACROSCOPIC"
 msgstr "宏观生物"
 
-#, fuzzy
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
-msgstr ""
-"在此阶段，玩家仍能编辑细胞类型，但不再是将它们放入细胞结构图中，而是将细胞类型作为组织块使用，并将其放置在全 3D 的宏观身体蓝图编辑器中。该编辑器基于放置和编辑代表物种结构的变形球。\n"
-"\n"
-"玩家变成了宏观生物。这改变了游戏的尺度，使微生物不再可见，玩家的操作也从放置单个细胞转变为塑造组织。\n"
-"\n"
-"有一个单独的「宏观阶段游戏设计方案」页面更详细地描述了该阶段的机制。"
+msgstr "宏观阶段，细胞膜无法再被更改"
 
 msgid "MACROSCOPIC_EDITOR"
 msgstr "宏观生物编辑器"
@@ -4570,9 +4572,8 @@ msgstr "现在可以进入编辑器"
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "不适应当前地区状况。请调整偏好条件或适应范围以移除减益效果。"
 
-#, fuzzy
 msgid "NOT_ENOUGH_MUTATION_POINTS"
-msgstr "变异点"
+msgstr "突变点数不足"
 
 msgid "NOT_STARTED_DOT"
 msgstr "未开始。"
@@ -4861,9 +4862,8 @@ msgstr "氰化物合成"
 msgid "OXYGEN_RESISTANCE"
 msgstr "抗氧化性"
 
-#, fuzzy
 msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
-msgstr "抗氧化性"
+msgstr "高氧抗性需要通过添加能够提供这种抗性的细胞器来实现，因为氧气耐受性滑块的可调节范围有限。"
 
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr "您的物种能耐受多少氧化损伤而不受到负面影响。如果所处区域的氧气浓度超过耐受阈值，您将受到负面效果。"

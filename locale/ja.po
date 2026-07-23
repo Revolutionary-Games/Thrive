@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-07-22 10:29+0300\n"
-"PO-Revision-Date: 2025-11-14 11:00+0000\n"
-"Last-Translator: Sur3 <sur3@gmx.de>\n"
+"PO-Revision-Date: 2026-07-22 04:07+0000\n"
+"Last-Translator: 4sokay8 <kwi.tns11@gmail.com>\n"
 "Language-Team: Japanese <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.11.4\n"
+"X-Generator: Weblate 5.16.1\n"
 "Generated-By: Thrive.Scripts 1.2.0.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -52,13 +52,16 @@ msgstr "適用"
 msgid "ACHIEVEMENTS"
 msgstr "実績"
 
-#, fuzzy
 msgid "ACHIEVEMENTS_LOAD_FAILED"
-msgstr "実績 {0} / {1}"
+msgstr "実績のロードに失敗しました"
 
-#, fuzzy
 msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
-msgstr "キチナーゼは、細胞がキチン膜を分解できるようにします。追加するごとに効果が高まります。"
+msgstr ""
+"実績のデータファイルが破損している可能性があります。\n"
+"データをリセットすることができますが、全ての実績の進捗が削除され失われます:\n"
+"{0}\n"
+"実績なしでプレイを続けますか？\n"
+"キャンセルを押すとゲームを終了します。"
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr "実績 {0} / {1}"
@@ -181,6 +184,9 @@ msgstr "Alt"
 
 msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
 msgstr ""
+"このシミュレーションのスピードを変更します。\n"
+"この値に一致するHUDのボタンを押すことで、そのスピードを使用できます。\n"
+"高い値にする場合は、高速なCPUが必要になる可能性があります。"
 
 msgid "ALTERNATVE_TIMESCALE"
 msgstr ""
@@ -276,9 +282,8 @@ msgstr "完全進化ステージ"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "アセンブリが指定されている場合は、Mod のアセンブリクラスが必要です"
 
-#, fuzzy
 msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
-msgstr "自動 Harmony が有効な場合は、Mod のアセンブリ定義が必要です"
+msgstr "Modのクラスが指定されている場合は、アセンブリが必要です"
 
 msgid "ASSUME_HYPERTHREADING"
 msgstr "CPU にハイパースレッディングが有効であると仮定する"
@@ -433,9 +438,8 @@ msgstr "平均表面その他ガス濃度"
 msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
 msgstr "平均表面酸素濃度"
 
-#, fuzzy
 msgid "AVERAGE_SURFACE_TEMPERATURE"
-msgstr "平均表面その他ガス濃度"
+msgstr "平均表面温度"
 
 msgid "AWAKENING_STAGE"
 msgstr "覚醒ステージ"
@@ -759,16 +763,16 @@ msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "変更内容が長すぎます"
 
 msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
-msgstr ""
+msgstr "膜の種類を変更する"
 
-#, fuzzy
 msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
 msgstr ""
-"宇宙ステージへ進むことができます。\n"
-"最初の宇宙船を打ち上げることで、宇宙ステージへ進むことが可能です。\n"
-"\n"
-"現時点のプロトタイプでは惑星に戻ることはできませんが、最終的には宇宙ステージで惑星を滑らかにズームイン・ズームアウトできるようになる予定です。\n"
-"打ち上げをキャンセルすると、宇宙船ユニットは破壊されます。打ち上げますか？"
+"多細胞ステージでも膜の変更は可能ですが、それはかなり難しくなります。\n"
+"巨視ステージでは膜の変更はできなくなります。\n"
+"膜を変更するには、一度に全ての細胞のタイプを新しいタイプに変える必要があります。\n"
+"この変更には全ての変異ポイント[thrive:icon]MP[/thrive:icon]を消費しなければいけません。\n"
+"また、これを行うと、変更を適用するためエディターを終了します。\n"
+"膜を選択したタイプに変更しますか？"
 
 msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
 msgstr ""
@@ -998,7 +1002,7 @@ msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "明度値（色の明るさや強さ）"
 
 msgid "COMMAND_INPUT_LINE_EDIT"
-msgstr ""
+msgstr "コマンドを書き入れる"
 
 msgid "COMMON_ABILITIES"
 msgstr "共通能力"
@@ -1176,16 +1180,16 @@ msgstr ""
 "打ち上げをキャンセルすると、宇宙船ユニットは破壊されます。打ち上げますか？"
 
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "この設定でゲームを始める"
 
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
-msgstr ""
+msgstr "一部の設定が無効なものになっています"
 
 msgid "CONFIRM_RESET_ACHIEVEMENTS"
-msgstr ""
+msgstr "実績のリセットを行いますか？"
 
 msgid "CONFIRM_RESET_ACHIEVEMENTS_DESCRIPTION"
-msgstr ""
+msgstr "本当に全ての実績とそれに関連する統計をリセットしてもよろしいですか？この操作は取り消すことができず、全ての実績と実績への進捗がリセットされた状態で、あなたは最初からやり直すことになります。"
 
 msgid "CONSTRUCTION_UNIT_NAME"
 msgstr ""
@@ -1485,9 +1489,10 @@ msgstr ""
 msgid "CURRENT_DILUTION"
 msgstr "現在の行動をキャンセル"
 
-#, fuzzy
 msgid "CURRENT_DILUTION_TOOLTIP"
-msgstr "現在の行動をキャンセル"
+msgstr ""
+"化合物が希釈されました。\n"
+"以下の成分の濃度が低下します:"
 
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr ""
