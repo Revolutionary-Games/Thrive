@@ -49,13 +49,14 @@ public partial class CameraFollowSystem : BaseSystem<World, float>
         if (!cameraUsed)
         {
             // Update camera without a target
-            Camera?.UpdateCameraPosition(delta, null);
+            Camera?.UpdateCameraTargets(delta, null);
         }
     }
 
     [Query]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update([Data] in float delta, ref CameraFollowTarget followTarget, ref WorldPosition position)
+    private void Update([Data] in float delta, ref CameraFollowTarget followTarget, ref WorldPosition worldPosition,
+        ref PhysicsShapeHolder shapeHolder)
     {
         if (followTarget.Disabled)
             return;
@@ -74,9 +75,11 @@ public partial class CameraFollowSystem : BaseSystem<World, float>
 
         cameraUsed = true;
 
-        if (Camera != null)
+        if (Camera != null && shapeHolder.Shape != null)
         {
-            Camera.UpdateCameraPosition(delta, position.Position);
+            // This is required due to the weird way Jolt physics gives us the body's position:
+            // return mPosition - mRotation * mShape->GetCenterOfMass();
+            Camera.UpdateCameraTargets(delta, worldPosition.Position + worldPosition.Rotation * shapeHolder.Shape.CenterOfMass);
         }
         else if (!warnedAboutMissingCamera)
         {

@@ -610,6 +610,22 @@ void PhysicalWorld::ReadBodyTransform(
     }
 }
 
+void PhysicalWorld::ReadBodyCenterOfMassPosition(JPH::BodyID bodyId, JPH::RVec3& positionReceiver) const
+{
+    JPH::BodyLockRead lock(physicsSystem->GetBodyLockInterface(), bodyId);
+    if (lock.Succeeded()) [[likely]]
+    {
+        const JPH::Body& body = lock.GetBody();
+
+        positionReceiver = body.GetCenterOfMassPosition();
+    }
+    else
+    {
+        LOG_ERROR("Couldn't lock body for reading center of mass");
+        std::memset(&positionReceiver, 0, sizeof(positionReceiver));
+    }
+}
+
 void PhysicalWorld::ReadBodyVelocity(
     JPH::BodyID bodyId, JPH::Vec3& velocityReceiver, JPH::Vec3& angularVelocityReceiver) const
 {
