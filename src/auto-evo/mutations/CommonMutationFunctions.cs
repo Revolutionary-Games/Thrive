@@ -218,20 +218,6 @@ public static class CommonMutationFunctions
     {
         HexWithData<CellTemplate>? position;
 
-        var newCells = new IndividualHexLayout<CellTemplate>();
-
-        // copy over all existing cells
-        foreach (var hex in newSpecies.ModifiableEditorCells)
-        {
-            var cell = hex.Data;
-            if (cell != null)
-            {
-                newCells.AddFast(new HexWithData<CellTemplate>(new CellTemplate(cell.ModifiableCellType,
-                        cell.Position, cell.Orientation), cell.Position, cell.Orientation),
-                    workMemory1, workMemory2);
-            }
-        }
-
         switch (direction)
         {
             case Direction.Front:
@@ -248,11 +234,7 @@ public static class CommonMutationFunctions
         if (position == null)
             return false;
 
-        newCells.AddFast(position, workMemory1, workMemory2);
-
-        MulticellularLayoutHelpers.UpdateGameplayLayout(newSpecies.ModifiableGameplayCells,
-            newSpecies.ModifiableEditorCells, newCells, AlgorithmQuality.Low,
-            new List<Hex>(), new List<Hex>());
+        newSpecies.ModifiableEditorCells.AddFast(position, workMemory1, workMemory2);
 
         return true;
     }
@@ -340,19 +322,7 @@ public static class CommonMutationFunctions
         IReadOnlyCellTypeDefinition baseCellType, CellType newCellType, int mpCost, AdjacencyDirection direction,
         List<Hex> workMemory1, List<Hex> workMemory2)
     {
-        var newCells = new IndividualHexLayout<CellTemplate>();
-
-        // copy over all existing cells
-        foreach (var hex in newSpecies.ModifiableEditorCells)
-        {
-            var cell = hex.Data;
-            if (cell != null)
-            {
-                newCells.AddFast(new HexWithData<CellTemplate>(new CellTemplate(cell.ModifiableCellType,
-                        cell.Position, cell.Orientation), cell.Position, cell.Orientation),
-                    workMemory1, workMemory2);
-            }
-        }
+        var newCells = newSpecies.ModifiableEditorCells;
 
         for (int j = 0; j < baseCellsCount; ++j)
         {
@@ -432,10 +402,6 @@ public static class CommonMutationFunctions
                 }
             }
         }
-
-        MulticellularLayoutHelpers.UpdateGameplayLayout(newSpecies.ModifiableGameplayCells,
-            newSpecies.ModifiableEditorCells, newCells, AlgorithmQuality.Low,
-            new List<Hex>(), new List<Hex>());
 
         return true;
     }
