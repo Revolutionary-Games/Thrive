@@ -36,8 +36,6 @@ public partial class ThriveopediaSpeciesInfoPage : ThriveopediaPage, IThriveoped
 
     private string cachedName = "ERROR_UNINITIALIZED_SPECIES_INFO";
 
-    private string? cacheTranslatedAdditionalSearchContent;
-
     public string PageName => cachedName;
 
     public string TranslatedPageName =>
@@ -135,8 +133,6 @@ public partial class ThriveopediaSpeciesInfoPage : ThriveopediaPage, IThriveoped
 
         mainText.ExtendedBbcode = Localization.Translate("THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT")
             .FormatSafe(SpeciesToShow.FormattedNameBbCode, population.FormatNumber(), areas, stageText);
-
-        cacheTranslatedAdditionalSearchContent = null;
 
         UpdateInfoBox();
     }
