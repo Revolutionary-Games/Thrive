@@ -124,7 +124,7 @@ public partial class CheatMenu : CustomWindow
     ///   0 is 0.2.<br/>
     ///   1 is 1.<br/>
     ///   2 is 5.<br/>
-    ///   It's a linear interpolation inbetwen these values.
+    ///   It's a linear interpolation inbetween these values.
     /// </summary>
     public void SetNonlinearSimulationFactor(float value)
     {
