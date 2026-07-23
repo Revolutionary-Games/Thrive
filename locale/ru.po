@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-20 16:41+0300\n"
+"POT-Creation-Date: 2026-07-22 10:29+0300\n"
 "PO-Revision-Date: 2026-06-24 07:38+0000\n"
 "Last-Translator: ILIA RIABOV <ilyarya131@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -2081,6 +2081,10 @@ msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
 msgstr "Этот вид не может быть ассимилирован в подходящую органеллу"
 
 msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+msgstr "Для увеличения прогресса эндосимбиоза, кандидат должен быть поглощен, чтобы он автоматически (без участия игрока) превратился во временную органеллу (В клетке-хозяине может быть лишь одна временная органелла). Прогресс сохраняется если вы заходите в редактор с временной органеллой."
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION_MULTICELLULAR"
 msgstr "Для увеличения прогресса эндосимбиоза, кандидат должен быть поглощен, чтобы он автоматически (без участия игрока) превратился во временную органеллу (В клетке-хозяине может быть лишь одна временная органелла). Прогресс сохраняется если вы заходите в редактор с временной органеллой."
 
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
@@ -4977,6 +4981,10 @@ msgid "PEACEFUL"
 msgstr "Мирный"
 
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Процесс эндосимбиоза может быть завершен коли вы поставите ассимилированного микроба как органеллу. Рекомендуется сделать это как можно раньше, поскольку при преодолении данной точки дальнейший прогресс эндосимбиоза конкретно с этим эндосимбионтом не возможен. Посмотреть прогресс эндосимбиоза?"
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION_MULTICELLULAR"
 msgstr "Процесс эндосимбиоза может быть завершен коли вы поставите ассимилированного микроба как органеллу. Рекомендуется сделать это как можно раньше, поскольку при преодолении данной точки дальнейший прогресс эндосимбиоза конкретно с этим эндосимбионтом не возможен. Посмотреть прогресс эндосимбиоза?"
 
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"

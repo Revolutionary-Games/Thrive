@@ -704,6 +704,25 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         {
             // Player is a multicellular species, go to multicellular editor
 
+            // Also need to update endosymbiosis info from all colony members
+            if (Player.Has<MicrobeColony>())
+            {
+                ref var colony = ref Player.Get<MicrobeColony>();
+                foreach (var member in colony.ColonyMembers)
+                {
+                    // Skip duplicate counting
+                    if (member == Player)
+                        continue;
+
+                    if (member.Has<TemporaryEndosymbiontInfo>())
+                    {
+                        ref var endosymbiontInfo = ref member.Get<TemporaryEndosymbiontInfo>();
+
+                        endosymbiontInfo.UpdateEndosymbiosisProgress(member.Get<SpeciesMember>().Species);
+                    }
+                }
+            }
+
             var scene = SceneManager.Instance.LoadScene(MainGameState.MulticellularEditor);
 
             sceneInstance = scene.Instantiate();
@@ -716,7 +735,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         }
         else
         {
-            // This might not be required anymore but just for extra safety this is here
+            // This might not be required any more, but just for extra safety this is here
             if (Player.Has<MicrobeColony>())
             {
                 GD.PrintErr("Editor button was enabled and pressed while the player is in a colony");
@@ -833,8 +852,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             throw new Exception("failed to keep the current scene root");
         }
 
-        // TODO: allow endosymbiosis in multicellular (if we want to)
-        GameWorld.PlayerSpecies.Endosymbiosis.CancelAllEndosymbiosisTargets();
+        // We now allow endosymbiosis in multicellular, so we don't cancel endosymbiosis here
 
         MovingToEditor = false;
     }
@@ -889,6 +907,12 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         // TODO: Implement unlock statistics for the macroscopic stage before removing this
         GameWorld.UnlockProgress.UnlockAll = true;
+
+        if (GameWorld.PlayerSpecies != modifiedSpecies)
+            GD.PrintErr("Player species did not get updated");
+
+        // Endosymbiosis is no longer possible in macroscopic
+        GameWorld.PlayerSpecies.Endosymbiosis.CancelAllEndosymbiosisTargets();
 
         MovingToEditor = false;
     }

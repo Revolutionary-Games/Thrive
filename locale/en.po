@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-20 16:41+0300\n"
-"PO-Revision-Date: 2026-07-20 16:56+0300\n"
+"POT-Creation-Date: 2026-07-22 10:29+0300\n"
+"PO-Revision-Date: 2026-07-22 10:34+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -2095,6 +2095,9 @@ msgstr "This species cannot be turned into any valid organelle"
 
 msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
 msgstr "To progress an endosymbiosis process, the target species needs to be engulfed to turn it into a temporary organelle (only one can be present at once). Then progress is saved once you make it to the editor with the temporary organelle present."
+
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION_MULTICELLULAR"
+msgstr "To progress an endosymbiosis process, the target species needs to be engulfed to turn it into a temporary organelle (only one can be present at once in a single cell). Then progress is saved once you make it to the editor with the temporary organelle(s) present. Placing the finished endosymbiont can only be done in the cell editor tab."
 
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
 msgstr "Prokaryotes can have at most one endosymbiont"
@@ -4982,6 +4985,9 @@ msgstr "Peaceful"
 
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
 msgstr "There is a completed endosymbiosis process that can be finalized by placing it as an organelle. It is recommended to do this as soon as possible as no further progress on endosymbiosis can be made until that is done. View the endosymbiosis progress now?"
+
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION_MULTICELLULAR"
+msgstr "There is a completed endosymbiosis process that can be finalized by placing it as an organelle. It is recommended to do this as soon as possible as no further progress on endosymbiosis can be made until that is done. The organelle needs to be placed into a cell type in the cell editor. View the endosymbiosis status now?"
 
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
 msgstr "Pending Endosymbiosis Process Completion"

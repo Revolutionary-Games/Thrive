@@ -586,9 +586,10 @@ public partial class CellEditorComponent :
             behaviourEditor.Init(owningEditor, fresh);
             tolerancesEditor.Init(owningEditor, fresh);
         }
-        else
+
+        if (IsMacroscopicEditor)
         {
-            // Endosymbiosis is not managed through this component in multicellular
+            // Endosymbiosis is no longer possible
             endosymbiosisButton.Visible = false;
         }
 
@@ -1278,10 +1279,23 @@ public partial class CellEditorComponent :
 
         if (!IsMulticellularEditor)
         {
-            // Refresh tolerances data for the new patch
+            // Refresh tolerance data for the new patch
             tolerancesEditor.OnDataTolerancesDependOnChanged();
             TriggerOnTolerancesChanged(tolerancesEditor.CurrentTolerances);
-            UpdateEndosymbiosisSpeciesData();
+        }
+
+        if (!IsMacroscopicEditor)
+        {
+            // Don't update species-related data if we are in multicellular mode and species is not set yet
+            if (Editor.EditedCellProperties == null)
+            {
+                GD.Print("Multicellular editor has not set a cell type to edit yet, " +
+                    "not refreshing endosymbiosis for cell editor component");
+            }
+            else
+            {
+                UpdateEndosymbiosisSpeciesData();
+            }
         }
 
         // Redo suggestion calculations as they could depend on the patch data (though at the time of writing this is
@@ -1568,7 +1582,7 @@ public partial class CellEditorComponent :
     {
         var endosymbiontPlace = typeof(EndosymbiontPlaceActionData);
 
-        // Most likely better to enumerate multiple times rather than allocate temporary memory
+        // Most likely better to enumerate multiple times rather than allocate temporary memory.
         // ReSharper disable PossibleMultipleEnumeration
         foreach (var data in actions)
         {
@@ -1898,7 +1912,7 @@ public partial class CellEditorComponent :
 
         EnqueueAction(action);
 
-        // Note that due to undo/redo this can trigger multiple times so any achievement about multiple endosymbiosis
+        // Note that due to undo/redo this can trigger multiple times, so any achievement about multiple endosymbiosis
         // completions would require changing this
         AchievementEvents.ReportEndosymbiosisCompleted();
 
