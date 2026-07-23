@@ -23,24 +23,26 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
     private bool disposed;
 
     public MembranePointData(Vector2[] hexPositions, int hexPositionCount, MembraneType type,
-        IReadOnlyList<Vector2> verticesToCopy)
+        IReadOnlyList<Vector2> verticesToCopy, Vector2 averageVertex, Vector2[]? multicellularPositions = null,
+        Vector2? cellPositionInMulticellular = null, int[]? multicellularOrientations = null,
+        int? cellOrientation = null, bool isPreMulticellularStretch = false)
     {
         HexPositions = hexPositions;
         Type = type;
         HexPositionCount = hexPositionCount;
+        AverageVertex = averageVertex;
+        MulticellularPositions = multicellularPositions;
+        CellPositionInMulticellular = cellPositionInMulticellular;
+        MulticellularOrientations = multicellularOrientations;
+        CellOrientation = cellOrientation;
+        IsPreMulticellularStretch = isPreMulticellularStretch;
 
         // Setup mesh to be generated (on the main thread) only when required
         finalMesh = new Lazy<(ArrayMesh Mesh, int SurfaceIndex)>(() =>
-        {
-            var generator = MembraneShapeGenerator.GetThreadSpecificGenerator();
-            return generator.GenerateMesh(this);
-        });
+            MembraneShapeGenerator.GetThreadSpecificGenerator().GenerateMesh(this));
 
         finalEngulfMesh = new Lazy<(ArrayMesh Mesh, int SurfaceIndex)>(() =>
-        {
-            var generator = MembraneShapeGenerator.GetThreadSpecificGenerator();
-            return generator.GenerateEngulfMesh(this);
-        });
+            MembraneShapeGenerator.GetThreadSpecificGenerator().GenerateEngulfMesh(this));
 
         // Copy the membrane data, this copied array can then be referenced by Membrane instances as long as there
         // might exist a reference to this class instance (that's why it is only released in the finalizer)
@@ -73,6 +75,36 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
     public Vector2[] HexPositions { get; }
 
     public int HexPositionCount { get; }
+
+    /// <summary>
+    ///   Avarage position of all vertices of the membrane
+    /// </summary>
+    public Vector2 AverageVertex { get; }
+
+    /// <summary>
+    ///   Positions of other cells in multicellular organism
+    /// </summary>
+    public Vector2[]? MulticellularPositions { get; }
+
+    /// <summary>
+    ///   Position of current cell in multicellular body plan
+    /// </summary>
+    public Vector2? CellPositionInMulticellular { get; }
+
+    /// <summary>
+    ///   Orientations of other cells in multicellular organism
+    /// </summary>
+    public int[]? MulticellularOrientations { get; }
+
+    /// <summary>
+    ///   Orientation of current cell in multicellular body plan
+    /// </summary>
+    public int? CellOrientation { get; }
+
+    /// <summary>
+    ///   Flag used for differentiation in caching when retrieving single cell membrane before and after stretching
+    /// </summary>
+    public bool IsPreMulticellularStretch { get; }
 
     public MembraneType Type { get; }
 
@@ -146,9 +178,9 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
     {
         float distanceSquared = 0;
 
-        foreach (var vertex in Vertices2D)
+        for (int i = 0; i < VertexCount; ++i)
         {
-            var currentDistance = vertex.LengthSquared();
+            var currentDistance = Vertices2D[i].LengthSquared();
             if (currentDistance > distanceSquared)
                 distanceSquared = currentDistance;
         }
@@ -174,6 +206,27 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
 
         ArrayPool<Vector2>.Shared.Return(Vertices2D);
     }
+}
+
+public sealed class NeighbourData
+{
+    public long SingleCellHash;
+    public Vector2 CellPosition;
+    public Vector2 AverageVertex;
+    public MembranePointData OriginalPointData = null!;
+    public int Orientation;
+
+    /// <summary>
+    ///   Modified vertices separate from original. Used to persist changes across multiple calls to
+    ///   GenerateMulticellularMembrane.
+    /// </summary>
+    public List<Vector2>? ModifiedVertices;
+
+    /// <summary>
+    ///   Tracks which cell pairs have already been processed to avoid duplicate work when the relationship
+    ///   reverses (when the cell was a neighbor and is now the current cell).
+    /// </summary>
+    public HashSet<long> ProcessedNeighbours = new();
 }
 
 /// <summary>
