@@ -748,7 +748,7 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
         }
 
         var collisionShape = PhysicsShape.CreateSphere(cluster.OverallRadius);
-        SpawnHelpers.SpawnCollisionWithoutFinalizing(recorder, worldSimulation, position, groupId, random,
+        SpawnHelpers.SpawnTerrainCollisionWithoutFinalizing(recorder, worldSimulation, position, groupId, random,
             collisionShape);
 
         groupData.ExpectedMemberCount += 1;

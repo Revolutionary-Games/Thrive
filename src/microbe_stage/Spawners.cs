@@ -147,8 +147,7 @@ public static class SpawnHelpers
         typeof(StaticBodyMarker));
 
     private static readonly Signature TerrainCollisionShapeSignature = new(typeof(WorldPosition),
-        typeof(SpatialInstance), typeof(MicrobeTerrainChunk), typeof(Physics), typeof(PhysicsShapeHolder),
-        typeof(StaticBodyMarker));
+        typeof(MicrobeTerrainChunk), typeof(Physics), typeof(PhysicsShapeHolder), typeof(StaticBodyMarker));
 
     [Flags]
     private enum ChunkComponentFlag : short
@@ -1185,7 +1184,7 @@ public static class SpawnHelpers
         entityRecorder.Set<StaticBodyMarker>(entity);
     }
 
-    public static void SpawnCollisionWithoutFinalizing(CommandBuffer entityRecorder,
+    public static void SpawnTerrainCollisionWithoutFinalizing(CommandBuffer entityRecorder,
         IWorldSimulation worldSimulation, Vector3 location, uint groupId, Random random, PhysicsShape shape)
     {
         var entity = worldSimulation.CreateEntityDeferred(entityRecorder, TerrainCollisionShapeSignature);
@@ -1193,7 +1192,6 @@ public static class SpawnHelpers
 
         entityRecorder.Set(entity, new WorldPosition(location, rotation));
 
-        entityRecorder.Set<SpatialInstance>(entity);
 
         entityRecorder.Set<Physics>(entity);
         entityRecorder.Set(entity, new PhysicsShapeHolder
