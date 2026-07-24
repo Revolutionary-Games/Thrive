@@ -672,20 +672,20 @@ public static class StringUtils
             return Math.Max(target.Length, match.Length);
         }
 
-        int[] previousRow = new int[target.Length];
-        int[] currentRow = new int[target.Length];
+        int[] previousRow = new int[target.Length + 1];
+        int[] currentRow = new int[target.Length + 1];
 
-        for (int x = 0; x < target.Length; ++x)
+        for (int x = 0; x < target.Length + 1; ++x)
         {
             previousRow[x] = x;
         }
 
-        for (int x = 1; x < match.Length; ++x)
+        for (int x = 1; x < match.Length + 1; ++x)
         {
             currentRow[0] = x;
-            for (int y = 1; y < target.Length; ++y)
+            for (int y = 1; y < target.Length + 1; ++y)
             {
-                int subCost = target[y] == match[x] ? 0 : 1;
+                int subCost = target[y - 1] == match[x - 1] ? 0 : 1;
                 int a = currentRow[y - 1] + 1;
                 int b = previousRow[y] + 1;
                 int c = previousRow[y - 1] + subCost;
@@ -698,6 +698,6 @@ public static class StringUtils
             currentRow.CopyTo(previousRow, 0);
         }
 
-        return currentRow[target.Length - 1];
+        return currentRow[target.Length];
     }
 }

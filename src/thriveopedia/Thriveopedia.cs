@@ -97,8 +97,8 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
     private Stage currentSelectedStage;
 
     /// <summary>
-    ///   Has the input field changed while it still running a background search.
-    ///   After the search is completed a new one whit the <see cref="currentSearchText"/> will start
+    ///   Has the input field changed while it still running a background search?
+    ///   Then after the search is completed a new one whit the <see cref="currentSearchText"/> will start
     /// </summary>
     private bool requestingNewSearch;
 
@@ -113,15 +113,26 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
     private double searchTimer;
 
     /// <summary>
-    ///   Tracks if at the threshold of <see cref="searchTimer"/>
-    ///   if it should start a new background search
-    /// </summary>
-    private bool trackSearchTimer;
-
-    /// <summary>
     ///   The text to search in the next background search.
     /// </summary>
     private string currentSearchText = string.Empty;
+
+    /// <summary>
+    ///   Has the Search bar updated after the start of a new Search?
+    /// </summary>
+    private bool isSearchDirty;
+
+    /// <summary>
+    ///   Reusable string distance array for <see cref="DoBackgroundPageSearch(string)"/>.
+    ///   This array will increase when needed
+    /// </summary>
+    private int[] searchDistanceArray = Array.Empty<int>();
+
+    /// <summary>
+    ///   Reusable visibility array for <see cref="DoBackgroundPageSearch(string)"/>.
+    ///   This array will increase when needed
+    /// </summary>
+    private bool[] searchDistancevisibility = Array.Empty<bool>();
 
     [Signal]
     public delegate void OnThriveopediaClosedEventHandler();
@@ -251,10 +262,9 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
     public override void _Process(double delta)
     {
         searchTimer += delta;
-        if (trackSearchTimer && searchTimer > 0.1)
+        if (isSearchDirty && searchTimer > 0.1)
         {
             BeginBackgroundSearch();
-            trackSearchTimer = false;
         }
     }
 
@@ -799,46 +809,53 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
 
     private void OnSearchUpdated(string newText)
     {
+        isSearchDirty = true;
         currentSearchText = newText;
+
         if (runningBackgroundSearch)
         {
             requestingNewSearch = true;
         }
-        else
-        {
-            searchTimer = 0;
-            trackSearchTimer = true;
-        }
+
+        searchTimer = 0;
     }
 
     private void BeginBackgroundSearch()
     {
         if (!runningBackgroundSearch)
         {
+            isSearchDirty = false;
             runningBackgroundSearch = true;
+            requestingNewSearch = false;
             TaskExecutor.Instance.AddTask(new Task(() => DoBackgroundPageSearch(currentSearchText)));
         }
     }
 
     private void DoBackgroundPageSearch(string newText)
     {
+        isSearchDirty = false;
+
         var newTextLowercase = newText.ToLower(CultureInfo.CurrentCulture);
 
-        var distanceDictionary = new int[allPages.Count];
-        var visibilityDictionary = new bool[allPages.Count];
+        if (allPages.Count > searchDistanceArray.Length)
+        {
+            searchDistanceArray = new int[allPages.Count];
+            searchDistancevisibility = new bool[allPages.Count];
+        }
+
         int iterator = 0;
 
         foreach (var page in allPages)
         {
             string pagename = page.Key.TranslatedPageName.ToLower(CultureInfo.CurrentCulture);
 
-            distanceDictionary[iterator] = StringUtils.DoStringCostBetween(pagename, newTextLowercase);
-            visibilityDictionary[iterator] = false;
+            searchDistanceArray[iterator] = StringUtils.DoStringCostBetween(pagename, newTextLowercase);
+            searchDistancevisibility[iterator] = false;
             ++iterator;
         }
 
         // A threshold for similar results
-        var costThreshold = distanceDictionary.Min() + 2;
+        var costThreshold = searchDistanceArray.Min();
         iterator = 0;
 
         foreach (var page in allPages)
@@ -851,12 +868,12 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
             string? additionalContent = page.Key.TranslatedAdditionalSearchContent?.ToLower(CultureInfo.CurrentCulture);
 
             // This is one big line so that the code can skip early once one passes
-            var visible = distanceDictionary[iterator] < costThreshold
+            var visible = searchDistanceArray[iterator] <= costThreshold
                 || pageName.Contains(newTextLowercase)
                 || (pageContent != null && pageContent.Contains(newTextLowercase))
                 || (additionalContent != null && additionalContent.Contains(newTextLowercase));
 
-            visibilityDictionary[iterator] = visible;
+            searchDistancevisibility[iterator] = visible;
             ++iterator;
         }
 
@@ -867,7 +884,7 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
             iterator = 0;
             foreach (var page in allPages)
             {
-                bool isVisible = visibilityDictionary[iterator];
+                bool isVisible = searchDistancevisibility[iterator];
 
                 if (isVisible && page.Key is ThriveopediaStagePage)
                 {

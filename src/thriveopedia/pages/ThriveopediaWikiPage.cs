@@ -20,6 +20,8 @@ public partial class ThriveopediaWikiPage : ThriveopediaPage, IThriveopediaPage
 
     private string? cacheTranslatedPageBody;
 
+    private string? cacheTranslatedAdditionalSearchContent;
+
 #pragma warning restore CA2213
 
     protected ThriveopediaWikiPage()
@@ -73,14 +75,19 @@ public partial class ThriveopediaWikiPage : ThriveopediaPage, IThriveopediaPage
     {
         get
         {
-            StringBuilder builder = new StringBuilder();
-            foreach (var item in PageContent.InfoboxData)
+            if (cacheTranslatedAdditionalSearchContent == null)
             {
-                builder.AppendLine(Localization.Translate(item.Name));
-                builder.AppendLine(Localization.Translate(item.DisplayedValue));
+                StringBuilder builder = new StringBuilder();
+                foreach (var item in PageContent.InfoboxData)
+                {
+                    builder.AppendLine(Localization.Translate(item.Name));
+                    builder.AppendLine(Localization.Translate(item.DisplayedValue));
+                }
+
+                cacheTranslatedAdditionalSearchContent = builder.ToString();
             }
 
-            return builder.ToString();
+            return cacheTranslatedAdditionalSearchContent;
         }
     }
 
@@ -142,6 +149,7 @@ public partial class ThriveopediaWikiPage : ThriveopediaPage, IThriveopediaPage
     public override void OnTranslationsChanged()
     {
         cacheTranslatedPageBody = null;
+        cacheTranslatedAdditionalSearchContent = null;
     }
 
     public virtual void OnSelectedStageChanged()
