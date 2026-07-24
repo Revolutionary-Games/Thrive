@@ -1307,6 +1307,8 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         // Reset any cheat state if there was some active
         CurrentGame!.GameWorld.WorldSettings.Difficulty.ClearGrowthRateLimitOverride();
+
+        HUD.UpdateSpeedMode();
     }
 
     protected override void OnGameStarted()
