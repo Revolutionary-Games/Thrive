@@ -397,9 +397,6 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
         UpdateProcessPanel();
 
         UpdateFossilisationButtons();
-
-        // This would be kind of hard to make a non-polling approach for updating the button status
-        UpdateSpeedModeDisplay();
     }
 
     public void SendObjectsToTutorials(TutorialState tutorialState)
