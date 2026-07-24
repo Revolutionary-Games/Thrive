@@ -127,15 +127,27 @@ public class MutationLogicFunctions
         }
 
         var newColour = newSpecies.SpeciesColour;
-        foreach (var cellType in newSpecies.ModifiableCellTypes)
-        {
-            redShift = (float)(random.NextDouble() - 0.5f) * Constants.AUTO_EVO_COLOR_CHANGE_MAX_STEP;
-            greenShift = (float)(random.NextDouble() - 0.5f) * Constants.AUTO_EVO_COLOR_CHANGE_MAX_STEP;
-            blueShift = (float)(random.NextDouble() - 0.5f) * Constants.AUTO_EVO_COLOR_CHANGE_MAX_STEP;
 
-            cellType.Colour = new Color(Math.Clamp(newColour.R + redShift, 0, 1),
-                Math.Clamp(newColour.G + greenShift, 0, 1),
-                Math.Clamp(newColour.B + blueShift, 0, 1));
+        for (int i = 0; i < newSpecies.CellTypes.Count; ++i)
+        {
+            // Have the first cellType match the species color
+            var cellType = newSpecies.ModifiableCellTypes[i];
+            if (i == 0)
+            {
+                cellType.Colour = newColour;
+                continue;
+            }
+
+            // Remaining celltypes get at least some color variation from the baseline
+            redShift = random.Next(0.25f, 0.75f) * Constants.AUTO_EVO_COLOR_CHANGE_MAX_STEP;
+            greenShift = random.Next(0.25f, 0.75f) * Constants.AUTO_EVO_COLOR_CHANGE_MAX_STEP;
+            blueShift = random.Next(0.25f, 0.75f) * Constants.AUTO_EVO_COLOR_CHANGE_MAX_STEP;
+
+            var red = (oldColour.R + redShift) % 1.0f;
+            var green = (oldColour.G + greenShift) % 1.0f;
+            var blue = (oldColour.B + blueShift) % 1.0f;
+
+            cellType.Colour = new Color(red, green, blue);
         }
     }
 
