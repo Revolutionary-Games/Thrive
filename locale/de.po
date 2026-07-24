@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-17 15:57+0100\n"
+"POT-Creation-Date: 2026-07-22 10:29+0300\n"
 "PO-Revision-Date: 2026-06-19 06:42+0000\n"
 "Last-Translator: Hendrik Paetz <hendrikpaetz@gmx.de>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -51,6 +51,16 @@ msgstr "Akzeptieren"
 
 msgid "ACHIEVEMENTS"
 msgstr "Errungenschaften"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr "Errungenschaften {0} / {1}"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr ""
+"Die Aktualisierung der angegebenen Sicherung ist aufgrund des folgenden Fehlers fehlgeschlagen:\n"
+"{0}"
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr "Errungenschaften {0} / {1}"
@@ -755,6 +765,17 @@ msgstr "Zellentypname"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Änderungsnotizen sind zu lang"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr "Membrantypen"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr "(Generiere eine Gebietskarte prozedural oder benutze die klassische Anordnung)"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Ändern der Symmetrie"
@@ -2084,6 +2105,10 @@ msgstr "Diese Spezies kann nicht in eine Organelle umgewandelt werden"
 msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
 msgstr "Der Endosymbiose-Prozess schreitet fort, wenn die Zielspezies verschlungen wurde und in eine temporäre Organelle umgewandelt wurde (immer nur eine möglich). Der Fortschritt wird nur gespeichert, wenn die Zelle bis zur nächsten Editor-Sitzung mit dieser temporären Organelle überlebt."
 
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION_MULTICELLULAR"
+msgstr "Der Endosymbiose-Prozess schreitet fort, wenn die Zielspezies verschlungen wurde und in eine temporäre Organelle umgewandelt wurde (immer nur eine möglich). Der Fortschritt wird nur gespeichert, wenn die Zelle bis zur nächsten Editor-Sitzung mit dieser temporären Organelle überlebt."
+
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
 msgstr "Prokaryoten können höchstens einen Endosymbionten haben"
 
@@ -2869,6 +2894,10 @@ msgstr "[b]Membrandaten:[/b]"
 msgid "INCOMPATIBLE_ORGANELLE_LIST"
 msgstr "Mehrere Organellen"
 
+#, fuzzy
+msgid "INCOMPATIBLE_STAGE_LIST"
+msgstr "[b]Membrandaten:[/b]"
+
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Neu erstellen"
 
@@ -3600,6 +3629,10 @@ msgstr "Makrolid-Synthese"
 
 msgid "MACROSCOPIC"
 msgstr "Makroskopisch"
+
+#, fuzzy
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr "Schleimdüse"
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4606,6 +4639,10 @@ msgstr "Der Editor steht jetzt zur Verfügung"
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "Nicht an die Umweltbedingungen im aktuellen Gebiet angepasst. Ändere die bevorzugten Bedingungen oder Toleranzgrenzen um die negativen Auswirkungen zu vermeiden."
 
+#, fuzzy
+msgid "NOT_ENOUGH_MUTATION_POINTS"
+msgstr "Mutationspunkte"
+
 msgid "NOT_STARTED_DOT"
 msgstr "Nicht begonnen."
 
@@ -4912,6 +4949,10 @@ msgid "OXYGEN_RESISTANCE"
 msgstr "Toxin-Resistenz"
 
 #, fuzzy
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
+msgstr "Toxin-Resistenz"
+
+#, fuzzy
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr "Substanzen ein-/ausblenden"
 
@@ -5038,6 +5079,10 @@ msgstr "Friedlich"
 
 #, fuzzy
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Du betreibst Thrive mit GLES2. Dies ist schwerwiegend ungetestet und wird wahrscheinlich Probleme verursachen. Versuche deine Grafiktreiber zu aktualisieren und/oder die Verwendung von AMD- oder Nvidia-Grafiken zur Ausführung von Thrive zu erzwingen."
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION_MULTICELLULAR"
 msgstr "Du betreibst Thrive mit GLES2. Dies ist schwerwiegend ungetestet und wird wahrscheinlich Probleme verursachen. Versuche deine Grafiktreiber zu aktualisieren und/oder die Verwendung von AMD- oder Nvidia-Grafiken zur Ausführung von Thrive zu erzwingen."
 
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
@@ -10160,9 +10205,6 @@ msgstr "Herauszoomen"
 
 #~ msgid "PATCH_MAP_TYPE_CLASSIC"
 #~ msgstr "Klassisch"
-
-#~ msgid "PATCH_MAP_TYPE_EXPLANATION"
-#~ msgstr "(Generiere eine Gebietskarte prozedural oder benutze die klassische Anordnung)"
 
 #~ msgid "PATCH_MAP_TYPE_PROCEDURAL"
 #~ msgstr "Prozedural"

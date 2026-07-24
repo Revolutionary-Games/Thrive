@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-17 15:57+0100\n"
+"POT-Creation-Date: 2026-07-22 10:29+0300\n"
 "PO-Revision-Date: 2026-05-22 15:37+0000\n"
 "Last-Translator: Søren Hansen <pjuske4life@gmail.com>\n"
 "Language-Team: Danish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/da/>\n"
@@ -51,6 +51,14 @@ msgstr "Accepter"
 
 msgid "ACHIEVEMENTS"
 msgstr "Præstationer"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr "Præstationer {0} / {1}"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr "Opgradering af den specificerede lagring fejlede pga. følgende fejl:"
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr "Præstationer {0} / {1}"
@@ -754,6 +762,22 @@ msgstr "Celletype navn"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Ændringsnoter er for lange"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr "Membran typer"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr ""
+"Du kan nu fortsætte til Rumstadiet ved at opsende din første rumskib.\n"
+"\n"
+"Lige nu kan du ikke i prototypen vende tilbage til din planet, men den fremtidige plan er at man i Rumstadiet kan zoome gnidningsfrit ind og ud af planter.\n"
+"\n"
+"Hvis du annullerer opsendelsen vil det ødelægge rumskibet. Opsend rumskibet?"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Ændre symmetrien"
@@ -2073,6 +2097,10 @@ msgstr "Denne art kan ikke blive lavet om til en gyldig organel"
 msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
 msgstr "For at fortsætte endosymbioseprocesen, så skal den udvalgte art opsluges for at lave den om til en midlertidig organel (kun en kan vær til stede af gangen). Fremskridt er gemt så snart du når til editoren med den midlertidige organel tilstede."
 
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION_MULTICELLULAR"
+msgstr "For at fortsætte endosymbioseprocesen, så skal den udvalgte art opsluges for at lave den om til en midlertidig organel (kun en kan vær til stede af gangen). Fremskridt er gemt så snart du når til editoren med den midlertidige organel tilstede."
+
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
 msgstr "Prokaryoter kan højst have en endosymbiont"
 
@@ -2851,6 +2879,10 @@ msgstr "[b]Membraner Data:[/b]"
 msgid "INCOMPATIBLE_ORGANELLE_LIST"
 msgstr "Adskillelige organeller"
 
+#, fuzzy
+msgid "INCOMPATIBLE_STAGE_LIST"
+msgstr "[b]Membraner Data:[/b]"
+
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Forøg objekt størrelse"
 
@@ -3580,6 +3612,9 @@ msgstr "Makrolidsyntese"
 
 msgid "MACROSCOPIC"
 msgstr "Makroskopisk"
+
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr ""
 
 msgid "MACROSCOPIC_EDITOR"
 msgstr "Makroskopisk editor"
@@ -4567,6 +4602,10 @@ msgstr "Editoren er nu klar til at tilgås"
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "Ikke tilpasset nuværende områdes forhold. Ændre de foretrukne forhold eller toleranceområde for at fjerne de negative effekter."
 
+#, fuzzy
+msgid "NOT_ENOUGH_MUTATION_POINTS"
+msgstr "Mutationspoint"
+
 msgid "NOT_STARTED_DOT"
 msgstr "Ikke startet."
 
@@ -4857,6 +4896,10 @@ msgstr "Ilthæmmer-syntese"
 msgid "OXYGEN_RESISTANCE"
 msgstr "Iltresistensen"
 
+#, fuzzy
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
+msgstr "Iltresistensen"
+
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr "Hvor meget ilt-baseret skade din art kan afbøde før effekten bliver skadefuld. Hvis du er i en patch med for meget ilt i forhold til din resistens, vil det have negative konsekvenser."
 
@@ -4979,6 +5022,10 @@ msgid "PEACEFUL"
 msgstr "Fredfyldt"
 
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Der er en færdiggjort endosymbioseproces der kan afsluttes ved at placere den som en organel. Det anbefales at gøre det så snart som muligt, da der ikke kan gøres yderligere fremskridt med endosymbiose før det er gjort. Se endosymbiose fremskridtet nu?"
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION_MULTICELLULAR"
 msgstr "Der er en færdiggjort endosymbioseproces der kan afsluttes ved at placere den som en organel. Det anbefales at gøre det så snart som muligt, da der ikke kan gøres yderligere fremskridt med endosymbiose før det er gjort. Se endosymbiose fremskridtet nu?"
 
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"

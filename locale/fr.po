@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-17 15:57+0100\n"
+"POT-Creation-Date: 2026-07-22 10:29+0300\n"
 "PO-Revision-Date: 2026-05-22 15:37+0000\n"
 "Last-Translator: Ptit Serpent <snake76930@gmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -51,6 +51,14 @@ msgstr "Accepter"
 
 msgid "ACHIEVEMENTS"
 msgstr "Succès"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr "Succès {0} / {1}"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr "La mise à jour de la sauvegarde a échouée à cause de cette erreur :"
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr "Succès {0} / {1}"
@@ -752,6 +760,17 @@ msgstr "Nom du type de cellule"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Les notes de changement sont trop longues"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr "Types de membrane"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr "(générer une carte des secteurs procéduralement ou utiliser la disposition par défaut)"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Modifier la symétrie"
@@ -2092,6 +2111,10 @@ msgstr "Cette espèce ne peut être transformée en aucun organite valide"
 msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
 msgstr "Pour réaliser le processus d'endosymbiose, l'espèce cible doit être ingérée pour être transformée en organite temporaire (une seule espèce peut être présente à la fois). L'avancement est sauvegardé si vous atteignez l'éditeur tout en possédant un organite temporaire."
 
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION_MULTICELLULAR"
+msgstr "Pour réaliser le processus d'endosymbiose, l'espèce cible doit être ingérée pour être transformée en organite temporaire (une seule espèce peut être présente à la fois). L'avancement est sauvegardé si vous atteignez l'éditeur tout en possédant un organite temporaire."
+
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
 msgstr "Les procaryotes ne peuvent avoir au maximum qu'un seul endosymbiote"
 
@@ -2917,6 +2940,10 @@ msgid "INCOMPATIBLE_ORGANELLE_LIST"
 msgstr "Plusieurs organites"
 
 #, fuzzy
+msgid "INCOMPATIBLE_STAGE_LIST"
+msgstr "[b]Données sur les membranes :[/b]"
+
+#, fuzzy
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Augmenter la taille de l'objet"
 
@@ -3659,6 +3686,10 @@ msgstr "Synthèse de macrolide"
 
 msgid "MACROSCOPIC"
 msgstr "Macroscopique"
+
+#, fuzzy
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr "Prochainement."
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4707,6 +4738,10 @@ msgstr "Vous pouvez maintenant accéder à l'éditeur"
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "Inadapté aux conditions du secteur actuel. Changez les conditions optimales ou les plages de tolérances pour retirer les débuffs."
 
+#, fuzzy
+msgid "NOT_ENOUGH_MUTATION_POINTS"
+msgstr "Points de mutation"
+
 msgid "NOT_STARTED_DOT"
 msgstr "Non commencé."
 
@@ -5009,6 +5044,10 @@ msgid "OXYGEN_RESISTANCE"
 msgstr "Résistance à l'oxygène"
 
 #, fuzzy
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
+msgstr "Résistance à l'oxygène"
+
+#, fuzzy
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr ""
 "Cette section montre la balance totale (production - consommation) pour chaque composé.\n"
@@ -5135,6 +5174,10 @@ msgstr "Pacifique"
 
 #, fuzzy
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Le processus d'endosymbiose est terminé et peut être finalisé en le plaçant en tant qu'organite. Il est recommandé de le faire dès que possible, car aucun autre progrès dans le processus d'endosymbiose ne sera possible avant cela. Consulter la progression de l'endosymbiose maintenant ?"
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION_MULTICELLULAR"
 msgstr "Le processus d'endosymbiose est terminé et peut être finalisé en le plaçant en tant qu'organite. Il est recommandé de le faire dès que possible, car aucun autre progrès dans le processus d'endosymbiose ne sera possible avant cela. Consulter la progression de l'endosymbiose maintenant ?"
 
 #, fuzzy
@@ -10674,9 +10717,6 @@ msgstr "Dézoomer"
 
 #~ msgid "PATCH_MAP_TYPE_CLASSIC"
 #~ msgstr "Classique"
-
-#~ msgid "PATCH_MAP_TYPE_EXPLANATION"
-#~ msgstr "(générer une carte des secteurs procéduralement ou utiliser la disposition par défaut)"
 
 #~ msgid "PATCH_MAP_TYPE_PROCEDURAL"
 #~ msgstr "Procédural"

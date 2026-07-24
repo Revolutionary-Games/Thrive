@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-17 15:57+0100\n"
-"PO-Revision-Date: 2026-07-17 15:58+0100\n"
+"POT-Creation-Date: 2026-07-22 10:29+0300\n"
+"PO-Revision-Date: 2026-07-22 10:34+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -51,6 +51,17 @@ msgstr "Accept"
 
 msgid "ACHIEVEMENTS"
 msgstr "Achievements"
+
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr "Achievements Data Load Failed"
+
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr ""
+"Achievements data file may be corrupted.\n"
+"The data can be reset, which will lose all achievement progress, by deleting:\n"
+"{0}\n"
+"Do you want to continue playing without achievements?\n"
+"Pressing cancel will exit the game."
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr "Achievements {0} / {1}"
@@ -750,6 +761,27 @@ msgstr "Cell Type Name"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Change notes are too long"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr "Change Membrane Type"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr ""
+"Changing membrane type is still possible in the Multicellular Stage, but much harder.\n"
+"In the Macroscopic Stage it will not be possible any more to change membrane type at all.\n"
+"Changing the membrane now requires all cell types to change at once to the new type.\n"
+"This requires all mutation points [thrive:icon]MP[/thrive:icon] to be spent on this change.\n"
+"And this will exit the editor to apply the change.\n"
+"Change membranes to the selected type?"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
+"Changing membrane type is still possible in the Multicellular Stage, but much harder.\r\n"
+"In the Macroscopic Stage it will not be possible any more to change membrane type at all.\r\n"
+"Changing the membrane now requires all cell types to change at once to the new type.\r\n"
+"This requires all mutation points [thrive:icon]MP[/thrive:icon] to be spent on this change.\r\n"
+"And this will exit the editor to apply the change.\r\n"
+"[b]Not enough MP.[/b] You can undo all changes if you need to change the membrane."
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Change the symmetry"
@@ -2064,6 +2096,9 @@ msgstr "This species cannot be turned into any valid organelle"
 msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
 msgstr "To progress an endosymbiosis process, the target species needs to be engulfed to turn it into a temporary organelle (only one can be present at once). Then progress is saved once you make it to the editor with the temporary organelle present."
 
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION_MULTICELLULAR"
+msgstr "To progress an endosymbiosis process, the target species needs to be engulfed to turn it into a temporary organelle (only one can be present at once in a single cell). Then progress is saved once you make it to the editor with the temporary organelle(s) present. Placing the finished endosymbiont can only be done in the cell editor tab."
+
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
 msgstr "Prokaryotes can have at most one endosymbiont"
 
@@ -2835,6 +2870,9 @@ msgstr "Incompatible with membranes: {0}"
 msgid "INCOMPATIBLE_ORGANELLE_LIST"
 msgstr "Incompatible with placed organelles: {0}"
 
+msgid "INCOMPATIBLE_STAGE_LIST"
+msgstr "Cannot be changed in stages: {0}"
+
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Increase object size"
 
@@ -3560,6 +3598,9 @@ msgstr "Macrolide Synthesis"
 
 msgid "MACROSCOPIC"
 msgstr "Macroscopic"
+
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr "Membrane can no longer be changed in the Macroscopic Stage"
 
 msgid "MACROSCOPIC_EDITOR"
 msgstr "Macroscopic Editor"
@@ -4530,6 +4571,9 @@ msgstr "Editor is now ready to be entered"
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "Not adapted to current patch conditions. Change the preferred conditions or tolerance ranges to remove the debuffs."
 
+msgid "NOT_ENOUGH_MUTATION_POINTS"
+msgstr "Not enough Mutation Points"
+
 msgid "NOT_STARTED_DOT"
 msgstr "Not started."
 
@@ -4817,6 +4861,9 @@ msgstr "Oxygen Inhibitor Synthesis"
 msgid "OXYGEN_RESISTANCE"
 msgstr "Oxygen Resistance"
 
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
+msgstr "High oxygen resistance requires adding organelles that provide such resistance as the tolerance slider for oxygen has a limited range."
+
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr "How much oxygen-caused damage your species can mitigate before harmful effects. If you are in a patch with too much oxygen compared to your resistance, you will receive negative effects."
 
@@ -4938,6 +4985,9 @@ msgstr "Peaceful"
 
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
 msgstr "There is a completed endosymbiosis process that can be finalized by placing it as an organelle. It is recommended to do this as soon as possible as no further progress on endosymbiosis can be made until that is done. View the endosymbiosis progress now?"
+
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION_MULTICELLULAR"
+msgstr "There is a completed endosymbiosis process that can be finalized by placing it as an organelle. It is recommended to do this as soon as possible as no further progress on endosymbiosis can be made until that is done. The organelle needs to be placed into a cell type in the cell editor. View the endosymbiosis status now?"
 
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
 msgstr "Pending Endosymbiosis Process Completion"
@@ -10177,9 +10227,6 @@ msgstr "Zoom out"
 
 #~ msgid "PATCH_MAP_TYPE_CLASSIC"
 #~ msgstr "Classic"
-
-#~ msgid "PATCH_MAP_TYPE_EXPLANATION"
-#~ msgstr "(generate a patch map procedurally or use the classic layout)"
 
 #~ msgid "PATCH_MAP_TYPE_PROCEDURAL"
 #~ msgstr "Procedural"

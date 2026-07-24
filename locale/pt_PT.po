@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-17 15:57+0100\n"
+"POT-Creation-Date: 2026-07-22 10:29+0300\n"
 "PO-Revision-Date: 2026-05-22 15:37+0000\n"
 "Last-Translator: AegisTTN <gamemastermine042004@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
@@ -53,6 +53,14 @@ msgstr ""
 #, fuzzy
 msgid "ACHIEVEMENTS"
 msgstr "Movimento Base"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr "Movimento Base"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr "Atualizar o jogo guardado selecionado falhou devido ao seguinte erro:"
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr ""
@@ -766,6 +774,19 @@ msgstr "Nome do tipo de célula"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Notas de alteração são demasiado longas"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr "Tipos de Membrana"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr ""
+"Micróbios ativos irão correr e cair quando nada de interessante acontecer.\n"
+"Micróbios sésseis ficarão parados e esperarão que o ambiente mude antes de agir."
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Mudar simetria"
@@ -2133,6 +2154,13 @@ msgstr ""
 "e podem ser mais ambicioso em relação aos pedaços.\n"
 "Micróbios reativos mudarão para novos alvos depois de algum tempo."
 
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION_MULTICELLULAR"
+msgstr ""
+"Os micróbios focados irão procurar por pedaços ou presas em distâncias maiores\n"
+"e podem ser mais ambicioso em relação aos pedaços.\n"
+"Micróbios reativos mudarão para novos alvos depois de algum tempo."
+
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
 msgstr ""
 
@@ -2936,6 +2964,10 @@ msgid "INCOMPATIBLE_ORGANELLE_LIST"
 msgstr "Múltiplos Organelos"
 
 #, fuzzy
+msgid "INCOMPATIBLE_STAGE_LIST"
+msgstr "  {0}: Encontrado em {1} espécies, com uma média de {2} cada"
+
+#, fuzzy
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Criar Novo"
 
@@ -3700,6 +3732,10 @@ msgstr "Quimiossíntese"
 #, fuzzy
 msgid "MACROSCOPIC"
 msgstr "Tornar-se Macroscópico ({0}/{1})"
+
+#, fuzzy
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr "Sem efeitos."
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4780,6 +4816,10 @@ msgstr "O editor está pronto para ser utilizado"
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "Encontrar Região Atual"
 
+#, fuzzy
+msgid "NOT_ENOUGH_MUTATION_POINTS"
+msgstr "Pontos de Mutação"
+
 msgid "NOT_STARTED_DOT"
 msgstr "Não iniciada."
 
@@ -5088,6 +5128,10 @@ msgid "OXYGEN_RESISTANCE"
 msgstr "Resistência a Toxinas"
 
 #, fuzzy
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
+msgstr "Resistência a Toxinas"
+
+#, fuzzy
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr "Mostrar / ocultar compostos"
 
@@ -5219,6 +5263,10 @@ msgstr "Pacífico"
 
 #, fuzzy
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Estás a executar o Thrive com GLES2. Esta versão não foi testada severamente e pode causar problemas. Experimente atualizar os drivers da placa gráfica e/ou forçar a utilização da placa gráfica da AMD ou Nvidia."
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION_MULTICELLULAR"
 msgstr "Estás a executar o Thrive com GLES2. Esta versão não foi testada severamente e pode causar problemas. Experimente atualizar os drivers da placa gráfica e/ou forçar a utilização da placa gráfica da AMD ou Nvidia."
 
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
@@ -10132,12 +10180,6 @@ msgstr "Reduzir"
 #, fuzzy
 #~ msgid "PATCH_MAP_TYPE"
 #~ msgstr "Mapa de Regiões"
-
-#, fuzzy
-#~ msgid "PATCH_MAP_TYPE_EXPLANATION"
-#~ msgstr ""
-#~ "Micróbios ativos irão correr e cair quando nada de interessante acontecer.\n"
-#~ "Micróbios sésseis ficarão parados e esperarão que o ambiente mude antes de agir."
 
 #, fuzzy
 #~ msgid "LOOKING_AT"

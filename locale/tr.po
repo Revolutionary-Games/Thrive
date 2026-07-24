@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-17 15:57+0100\n"
-"PO-Revision-Date: 2026-06-05 01:41+0000\n"
+"POT-Creation-Date: 2026-07-22 10:29+0300\n"
+"PO-Revision-Date: 2026-07-22 04:07+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -51,6 +51,17 @@ msgstr "Kabul et"
 
 msgid "ACHIEVEMENTS"
 msgstr "Başarımlar"
+
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr "Başarımlar Verisini Yükleme İşlemi Başarısız"
+
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr ""
+"Başarımlar veri dosyası bozuk olabilir.\n"
+"Veriler, aşağıdaki dosya silinerek sıfırlanabilir; bu işlem, bütün başarım ilerlemesinin kaybedilmesine neden olacaktır:\n"
+"{0}\n"
+"Başarımlar olmadan oynamaya devam etmek ister misiniz?\n"
+"İptal butonuna basmak sizi oyundan çıkaracaktır."
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr "Başarımlar {0} / {1}"
@@ -749,6 +760,27 @@ msgstr "Hücre Türü İsmi"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Değişiklik notları çok uzun"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr "Hücre Zarı Türünü Değiştir"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr ""
+"Çok Hücreli Evresi'nde hücre zarı türünü değiştirmek hala mümkündür, ancak çok daha zordur.\n"
+"Makroskopik Evresi'nde hücre zarı türünü değiştirmek artık hiçbir şekilde mümkün olmayacaktır.\n"
+"Hücre zarını şimdi değiştirmek, tüm hücre türlerinin aynı anda yeni türe geçmesini gerektirir.\n"
+"Bu işlem, tüm mutasyon puanlarının [thrive:icon]MP[/thrive:icon] bu değişikliğe harcanmasını gerektirir\n"
+"ve değişikliği uygulamak için editörden çıkış yapar.\n"
+"Hücre zarları, seçilen türe değiştirilsin mi?"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
+"Çok Hücreli Evresi'nde hücre zarı türünü değiştirmek hala mümkündür, ancak çok daha zordur.\n"
+"Makroskopik Evresi'nde hücre zarı türünü değiştirmek artık hiçbir şekilde mümkün olmayacaktır.\n"
+"Hücre zarını şimdi değiştirmek, tüm hücre türlerinin aynı anda yeni türe geçmesini gerektirir.\n"
+"Bu işlem, tüm mutasyon puanlarının [thrive:icon]MP[/thrive:icon] bu değişikliğe harcanmasını gerektirir\n"
+"ve değişikliği uygulamak için editörden çıkış yapar.\n"
+"[b]Yeterli MP yok.[/b] Hücre zarını değiştirmeniz gerekirse, tüm değişiklikleri geri alabilirsiniz."
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Simetriyi değiştir"
@@ -2063,6 +2095,10 @@ msgstr "Bu tür, geçerli herhangi bir organele dönüştürülemez"
 msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
 msgstr "Endosimbiyoz işlemini ilerletmek için hedef türün geçici bir organele dönüşmek üzere yutulması gerekir (tek seferde, yalnızca bir tane bulunabilir). Mevcut geçici organel ile editöre ulaştığınızda, ardından ilerlemeniz kaydedilir."
 
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION_MULTICELLULAR"
+msgstr "Endosimbiyoz işlemini ilerletmek için hedef türün geçici bir organele dönüşmek üzere yutulması gerekir (tek seferde, yalnızca bir tane bulunabilir). Mevcut geçici organel ile editöre ulaştığınızda, ardından ilerlemeniz kaydedilir."
+
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
 msgstr "Prokaryotlar en fazla bir endosimbiyonta sahip olabilir"
 
@@ -2834,6 +2870,9 @@ msgstr "Hücre zarları ile uyumlu değil: {0}"
 msgid "INCOMPATIBLE_ORGANELLE_LIST"
 msgstr "Yerleştirilmiş organeller ile uyumlu değil: {0}"
 
+msgid "INCOMPATIBLE_STAGE_LIST"
+msgstr "Bu evrelerde değiştirilemez: {0}"
+
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Nesne büyüklüğünü arttır"
 
@@ -3559,6 +3598,9 @@ msgstr "Makrolid Sentezi"
 
 msgid "MACROSCOPIC"
 msgstr "Makroskopik"
+
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr "Hücre zarı, artık Makroskopik Evresi'nde değiştirilemez"
 
 msgid "MACROSCOPIC_EDITOR"
 msgstr "Makroskopik Editörü"
@@ -4529,6 +4571,9 @@ msgstr "Editör, şimdi girilmek için hazır"
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "Bu tür, mevcut çevresel koşullara uyum sağlayamaz. Dezavantajları kaldırmak için tercih edilen koşulları ya da tolerans aralığını değiştirin."
 
+msgid "NOT_ENOUGH_MUTATION_POINTS"
+msgstr "Yeterli Mutasyon Puanı yok"
+
 msgid "NOT_STARTED_DOT"
 msgstr "Başlatılmadı."
 
@@ -4816,6 +4861,9 @@ msgstr "Oksijen İnhibitörü Sentezi"
 msgid "OXYGEN_RESISTANCE"
 msgstr "Oksijen Direnci"
 
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
+msgstr "Tolerans kaydırma butonu, oksijen için sınırlı bir aralığa sahip olduğu için yüksek oksijen direnci, böyle bir direnç sağlayan organeller eklemeyi gerektirir."
+
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr "Zararlı etkilere maruz kalmadan önce türünüzün oksijen kaynaklı hasarı ne kadar azaltabileceğini gösterir. Eğer direncinize kıyasla çok fazla oksijen olan bir arazide bulunuyorsanız, olumsuz etkilerle karşılaşırsınız."
 
@@ -4936,6 +4984,10 @@ msgid "PEACEFUL"
 msgstr "Barışçıl"
 
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Tamamlanmış bir endosimbiyoz işlemi var ve bu işlem, bir organel olarak yerleştirilerek sonlandırılabilir. Endosimbiyoz üzerinde daha fazla ilerleme yapılabilmesi için bunun mümkün olduğunca hızlı yapılması önerilir. Endosimbiyoz ilerlemesini şimdi görüntülemek ister misiniz?"
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION_MULTICELLULAR"
 msgstr "Tamamlanmış bir endosimbiyoz işlemi var ve bu işlem, bir organel olarak yerleştirilerek sonlandırılabilir. Endosimbiyoz üzerinde daha fazla ilerleme yapılabilmesi için bunun mümkün olduğunca hızlı yapılması önerilir. Endosimbiyoz ilerlemesini şimdi görüntülemek ister misiniz?"
 
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
@@ -10364,9 +10416,6 @@ msgstr "Uzaklaştır"
 
 #~ msgid "PATCH_MAP_TYPE_CLASSIC"
 #~ msgstr "Klasik"
-
-#~ msgid "PATCH_MAP_TYPE_EXPLANATION"
-#~ msgstr "(yöntemsel olarak bir arazi haritası oluştur veya klasik düzeni kullan)"
 
 #~ msgid "PATCH_MAP_TYPE_PROCEDURAL"
 #~ msgstr "Yöntemsel"

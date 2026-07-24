@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-17 15:57+0100\n"
+"POT-Creation-Date: 2026-07-22 10:29+0300\n"
 "PO-Revision-Date: 2026-05-22 15:37+0000\n"
 "Last-Translator: William <William.berger@outlook.be>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -51,6 +51,14 @@ msgstr "Accepteren"
 
 msgid "ACHIEVEMENTS"
 msgstr "Prestaties"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr "Prestaties {0} / {1}"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr "Het upgraden van de geselecteerde save is gefaald door de volgende error:"
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr "Prestaties {0} / {1}"
@@ -761,6 +769,19 @@ msgstr "Celtypenaam"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Veranderingsnotities zijn te lang"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr "Membraantypes"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr ""
+"Actieve microben rennen en tuimelen als er niets interessants gebeurt.\n"
+"Sessiele microben zullen stationair zijn en wachten tot de omgeving verandert voordat ze handelen."
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Verander de symmetrie"
@@ -2175,6 +2196,13 @@ msgstr ""
 "en misschien veel ambitieuzer over brokken zijn.\n"
 "Responsieve microben zullen sneller overschakelen naar nieuwe doelen."
 
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION_MULTICELLULAR"
+msgstr ""
+"Gefocuste microben zullen over grotere afstanden naar brokken of prooien zoeken\n"
+"en misschien veel ambitieuzer over brokken zijn.\n"
+"Responsieve microben zullen sneller overschakelen naar nieuwe doelen."
+
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
 msgstr ""
 
@@ -3036,6 +3064,10 @@ msgid "INCOMPATIBLE_ORGANELLE_LIST"
 msgstr "Meerdere Organellen"
 
 #, fuzzy
+msgid "INCOMPATIBLE_STAGE_LIST"
+msgstr "  {0}: Gevonden in {1} soort(en), gemiddeld {2} per soort"
+
+#, fuzzy
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Maak Nieuw"
 
@@ -3840,6 +3872,10 @@ msgstr "Chemosynthese"
 #, fuzzy
 msgid "MACROSCOPIC"
 msgstr "Word Macroscopisch ({0}/{1})"
+
+#, fuzzy
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr "Slijmspuwer"
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4897,6 +4933,10 @@ msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "Ongeldige mod icoon map"
 
 #, fuzzy
+msgid "NOT_ENOUGH_MUTATION_POINTS"
+msgstr "Mutatiepunten"
+
+#, fuzzy
 msgid "NOT_STARTED_DOT"
 msgstr "Onvoltooid."
 
@@ -5224,6 +5264,10 @@ msgstr "OxyToxy Synthese"
 msgid "OXYGEN_RESISTANCE"
 msgstr "Zuurstof Resistentie"
 
+#, fuzzy
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
+msgstr "Zuurstof Resistentie"
+
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr "Hoeveelheid door zuurstof veroorzaakte schade je soort kan verdragen voordat schadelijke effecten zich vertonen. Je zal negatieve gevolgen ervaren als jij je in een zone met te veel zuurstof bevindt vergeleken met je weerstand ervoor."
 
@@ -5363,6 +5407,10 @@ msgstr "Vreedzaam"
 
 #, fuzzy
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Je gebruikt GLES2 om Thrive uit te voeren. Dit is ernstig ongetest en zal waarschijnlijk problemen veroorzaken. Probeer je video drivers te updaten en/of gebruik te maken van AMD of Nvidia graphics om Thrive uit te voeren."
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION_MULTICELLULAR"
 msgstr "Je gebruikt GLES2 om Thrive uit te voeren. Dit is ernstig ongetest en zal waarschijnlijk problemen veroorzaken. Probeer je video drivers te updaten en/of gebruik te maken van AMD of Nvidia graphics om Thrive uit te voeren."
 
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
@@ -10365,12 +10413,6 @@ msgstr "Uitzoomen"
 #, fuzzy
 #~ msgid "PATCH_MAP_TYPE"
 #~ msgstr "Kaart met plekken"
-
-#, fuzzy
-#~ msgid "PATCH_MAP_TYPE_EXPLANATION"
-#~ msgstr ""
-#~ "Actieve microben rennen en tuimelen als er niets interessants gebeurt.\n"
-#~ "Sessiele microben zullen stationair zijn en wachten tot de omgeving verandert voordat ze handelen."
 
 #, fuzzy
 #~ msgid "LOOKING_AT"

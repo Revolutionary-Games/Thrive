@@ -127,6 +127,9 @@ public partial class MainMenu : NodeWithInput
     private CustomConfirmationDialog steamFailedPopup = null!;
 
     [Export]
+    private CustomConfirmationDialog achievementsFailedPopup = null!;
+
+    [Export]
     private CustomWindow safeModeWarning = null!;
 
     [Export]
@@ -148,6 +151,8 @@ public partial class MainMenu : NodeWithInput
     private Array<Node>? menuArray;
 
     private bool introVideoPassed;
+
+    private bool achievementErrorShown;
 
     private double timerForStartupSuccess = Constants.MAIN_MENU_TIME_BEFORE_STARTUP_SUCCESS;
 
@@ -288,6 +293,17 @@ public partial class MainMenu : NodeWithInput
                         steamFailedPopup.PopupCenteredShrink();
                     }
                 }
+            }
+
+            // Show an achievement error popup. In Steam mode the Steam failure to load popup acts as this
+            if (!achievementErrorShown && AchievementsManager.Instance.IsLoaded &&
+                AchievementsManager.Instance.IsInvalidData && !SteamHandler.IsTaggedSteamRelease())
+            {
+                achievementErrorShown = true;
+                GD.PrintErr("Achievements data is invalid, showing failure popup asking the player to quit");
+                achievementsFailedPopup.DialogText = Localization.Translate("ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION")
+                    .FormatSafe(ProjectSettings.GlobalizePath(Constants.ACHIEVEMENTS_PROGRESS_SAVE));
+                achievementsFailedPopup.PopupCenteredShrink();
             }
 
             // Low menu performance will never be warned about if the popup has been dismissed,

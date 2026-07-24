@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-17 15:57+0100\n"
+"POT-Creation-Date: 2026-07-22 10:29+0300\n"
 "PO-Revision-Date: 2026-02-18 15:13+0000\n"
 "Last-Translator: Deleted User <noreply+90@weblate.org>\n"
 "Language-Team: Latvian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lv/>\n"
@@ -53,6 +53,14 @@ msgstr ""
 #, fuzzy
 msgid "ACHIEVEMENTS"
 msgstr "Kustība"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr "Kustība"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr "Apraksts:"
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr ""
@@ -782,6 +790,19 @@ msgstr ""
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Izmaiņas piezīmes ir pārāk garas"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr "Membrānas veidi"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr ""
+"Aktīvi mikrobi skraidīs apkārt un gāzīsies, kad nekas interesants nenotiek.\n"
+"Sēdošie mikrobi būs nekustīgi un gaidīs, kad vide mainīsies, pirms tie kaut ko dara."
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Izmainīt simetriju"
@@ -2181,6 +2202,13 @@ msgstr ""
 "un visticamāk būs ambiciozāki par gabaliem.\n"
 "Atsaucīgi mikrobi ātrāk pāries uz jauniem mērķiem."
 
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION_MULTICELLULAR"
+msgstr ""
+"Koncentrēti mikrobi meklēs gabalus vai upurus tālas distances\n"
+"un visticamāk būs ambiciozāki par gabaliem.\n"
+"Atsaucīgi mikrobi ātrāk pāries uz jauniem mērķiem."
+
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
 msgstr ""
 
@@ -3034,6 +3062,10 @@ msgid "INCOMPATIBLE_ORGANELLE_LIST"
 msgstr "Novietot organoīdu"
 
 #, fuzzy
+msgid "INCOMPATIBLE_STAGE_LIST"
+msgstr "Organisma statistika"
+
+#, fuzzy
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Izveidot Jaunu"
 
@@ -3832,6 +3864,10 @@ msgstr "Hemosintēze"
 
 msgid "MACROSCOPIC"
 msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr "Kodols"
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4895,6 +4931,10 @@ msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "Atcelt pašreizējo darbību"
 
 #, fuzzy
+msgid "NOT_ENOUGH_MUTATION_POINTS"
+msgstr "Mutācijas punkti"
+
+#, fuzzy
 msgid "NOT_STARTED_DOT"
 msgstr "Atcelts."
 
@@ -5224,6 +5264,10 @@ msgid "OXYGEN_RESISTANCE"
 msgstr "Izturība pret toksīniem"
 
 #, fuzzy
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
+msgstr "Izturība pret toksīniem"
+
+#, fuzzy
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
 
@@ -5358,6 +5402,14 @@ msgstr ""
 
 #, fuzzy
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr ""
+"Bailīgie mikrobi muks tālas distances\n"
+"un visbiežāk muks no plēsējiem kopumā.\n"
+"Drosmīgos mikrobus neiebiedēs apkārtējie plēsēji\n"
+"un visbiežāk uzbruks pretī."
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION_MULTICELLULAR"
 msgstr ""
 "Bailīgie mikrobi muks tālas distances\n"
 "un visbiežāk muks no plēsējiem kopumā.\n"
@@ -10210,12 +10262,6 @@ msgstr "Attālināt"
 #, fuzzy
 #~ msgid "ENABLED"
 #~ msgstr "Ieslēgt redaktoru"
-
-#, fuzzy
-#~ msgid "PATCH_MAP_TYPE_EXPLANATION"
-#~ msgstr ""
-#~ "Aktīvi mikrobi skraidīs apkārt un gāzīsies, kad nekas interesants nenotiek.\n"
-#~ "Sēdošie mikrobi būs nekustīgi un gaidīs, kad vide mainīsies, pirms tie kaut ko dara."
 
 #, fuzzy
 #~ msgid "LOOKING_AT"

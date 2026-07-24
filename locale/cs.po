@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-17 15:57+0100\n"
+"POT-Creation-Date: 2026-07-22 10:29+0300\n"
 "PO-Revision-Date: 2026-05-17 08:05+0000\n"
 "Last-Translator: Tibor Šťastný <tiborstgame2@seznam.cz>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -52,6 +52,14 @@ msgstr "Přijmout"
 
 msgid "ACHIEVEMENTS"
 msgstr "Úspěchy"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr "Úspěchy {0} / {1}"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr "Převod vybrané uložené hry na novější verzi selhal kvůli následující chybě:"
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr "Úspěchy {0} / {1}"
@@ -750,6 +758,17 @@ msgstr "Název typu buňky"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Poznámky ke změnám jsou příliš dlouhé"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr "Typy membrán"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr "(vygeneruje mapu prostředí buď procedurálně nebo použitím klasického rozložení)"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Změnit symetrii"
@@ -2093,6 +2112,13 @@ msgstr ""
 "Reagující mikroby se dříve přepnou na nové cíle."
 
 #, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION_MULTICELLULAR"
+msgstr ""
+"Soustředění mikrobi budou hledat kousky nebo kořist na větší vzdálenosti \n"
+"a mohou být mnohem náročnější na kusy.\n"
+"Reagující mikroby se dříve přepnou na nové cíle."
+
+#, fuzzy
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
 msgstr "Prokaryota mohou mít nejvýše jednoho endosymbionta"
 
@@ -2917,6 +2943,10 @@ msgid "INCOMPATIBLE_ORGANELLE_LIST"
 msgstr "Více organel"
 
 #, fuzzy
+msgid "INCOMPATIBLE_STAGE_LIST"
+msgstr "[b]Membránová data:[/b]"
+
+#, fuzzy
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Vytvořit nový"
 
@@ -3666,6 +3696,10 @@ msgstr "Syntéza makrolidu"
 
 msgid "MACROSCOPIC"
 msgstr "Makroskopický"
+
+#, fuzzy
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr "Slizová tryska"
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4754,6 +4788,10 @@ msgstr "Editor je připraven pro vstup"
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "Nalézt nynější prostředí"
 
+#, fuzzy
+msgid "NOT_ENOUGH_MUTATION_POINTS"
+msgstr "Body mutace"
+
 msgid "NOT_STARTED_DOT"
 msgstr "Nebylo začato."
 
@@ -5057,6 +5095,10 @@ msgid "OXYGEN_RESISTANCE"
 msgstr "Rezistence vůči kyslíku"
 
 #, fuzzy
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
+msgstr "Rezistence vůči kyslíku"
+
+#, fuzzy
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr "Zobrazit / skrýt sloučeniny"
 
@@ -5187,6 +5229,10 @@ msgstr "Mírumilovnost"
 
 #, fuzzy
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Spouštíte Thrive pomocí OpenGLES2. Tato možnost není otestovaná a může způsobovat problémy. Zkuste aktualizovat grafické ovladače nebo vynutit použití AMD nebo Nvidia grafiky pro spuštění Thrive."
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION_MULTICELLULAR"
 msgstr "Spouštíte Thrive pomocí OpenGLES2. Tato možnost není otestovaná a může způsobovat problémy. Zkuste aktualizovat grafické ovladače nebo vynutit použití AMD nebo Nvidia grafiky pro spuštění Thrive."
 
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
@@ -10069,9 +10115,6 @@ msgstr "Oddálit"
 
 #~ msgid "PATCH_MAP_TYPE_CLASSIC"
 #~ msgstr "Klasické"
-
-#~ msgid "PATCH_MAP_TYPE_EXPLANATION"
-#~ msgstr "(vygeneruje mapu prostředí buď procedurálně nebo použitím klasického rozložení)"
 
 #~ msgid "PATCH_MAP_TYPE_PROCEDURAL"
 #~ msgstr "Procedurální"

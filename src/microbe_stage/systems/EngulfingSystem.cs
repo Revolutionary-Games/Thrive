@@ -2035,9 +2035,10 @@ public partial class EngulfingSystem : BaseSystem<World, float>
         {
             // TODO: check if this code is bad now because it is not as easy to access the digestible property of a
             // compound (this doesn't use a local reference to the simulation parameters as that would cause a lambda
-            // capture)
+            // capture).
+            // Oxytoxy is not counted in digestion progress as it is just for dealing damage during the process.
             engulfable.InitialTotalEngulfableCompounds = engulfableEntity.Get<CompoundStorage>().Compounds
-                .Where(c => SimulationParameters.GetCompound(c.Key).Digestible)
+                .Where(c => SimulationParameters.GetCompound(c.Key).Digestible && c.Key != Compound.Oxytoxy)
                 .Sum(c => c.Value);
 
 #if DEBUG

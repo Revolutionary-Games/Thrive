@@ -37,6 +37,9 @@ public class EndosymbiosisData : IArchiveUpdatable
     public List<Endosymbiont>? Endosymbionts { get; private set; }
 
     [JsonIgnore]
+    public bool HasInProgressEndosymbiosis => StartedEndosymbiosis != null;
+
+    [JsonIgnore]
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
 
     [JsonIgnore]

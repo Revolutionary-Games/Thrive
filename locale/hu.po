@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-17 15:57+0100\n"
+"POT-Creation-Date: 2026-07-22 10:29+0300\n"
 "PO-Revision-Date: 2026-05-13 03:55+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -51,6 +51,16 @@ msgstr "Elfogad"
 
 msgid "ACHIEVEMENTS"
 msgstr "Teljesítmények"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr "Teljesítmények:{0}/{1}"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr ""
+"Ezen mentés frissítése nem sikerült a következő hiba miatt:\n"
+"{0}"
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr "Teljesítmények:{0}/{1}"
@@ -745,6 +755,17 @@ msgstr "Sejttípus neve"
 #, fuzzy
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "A leírás túl hosszú"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr "Membrán típusok"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr "(procedurális patch térkép generálása, vagy a klasszikus elrendezés használata)"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Szimmetria változtatása"
@@ -2169,6 +2190,12 @@ msgstr ""
 "A fókuszált sejtek nagyobb távolságokat tesznek meg táplálék reményében.\n"
 "A reszponzív sejtek hamar új célpontokat keresnek."
 
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION_MULTICELLULAR"
+msgstr ""
+"A fókuszált sejtek nagyobb távolságokat tesznek meg táplálék reményében.\n"
+"A reszponzív sejtek hamar új célpontokat keresnek."
+
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
 msgstr "Prokariótáknak csak egy endoszimbiótája lehet"
 
@@ -3053,6 +3080,10 @@ msgid "INCOMPATIBLE_ORGANELLE_LIST"
 msgstr "Sejtszervecske elhelyezése"
 
 #, fuzzy
+msgid "INCOMPATIBLE_STAGE_LIST"
+msgstr "{0}: Megtalálható a {1} fajokban, átlagosan {2} darabja"
+
+#, fuzzy
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Új létrehozása"
 
@@ -3841,6 +3872,10 @@ msgstr "Nyálka szintézis"
 #, fuzzy
 msgid "MACROSCOPIC"
 msgstr "Makroszkopikussá válni ({0}/{1})"
+
+#, fuzzy
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr "Nyálka jet"
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4960,6 +4995,10 @@ msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "Jelenlegi patch-re ugrás"
 
 #, fuzzy
+msgid "NOT_ENOUGH_MUTATION_POINTS"
+msgstr "Mutáció pont"
+
+#, fuzzy
 msgid "NOT_STARTED_DOT"
 msgstr "Megszakítva."
 
@@ -5284,6 +5323,10 @@ msgid "OXYGEN_RESISTANCE"
 msgstr "Méreg elleni állóképesség"
 
 #, fuzzy
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
+msgstr "Méreg elleni állóképesség"
+
+#, fuzzy
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr "Az összetevők mutatása / elrejtése"
 
@@ -5415,6 +5458,10 @@ msgid "PEACEFUL"
 msgstr "Békés"
 
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Befejezett endoszimbiózis folyamat van, amelyet egy organellumként való elhelyezéssel lehet véglegesíteni. Ajánlott ezt a lehető leghamarabb megtenni, mert további endoszimbiózis fejlődés nem lehetséges, amíg ez nem történik meg. Megnézed most az endoszimbiózis állását?"
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION_MULTICELLULAR"
 msgstr "Befejezett endoszimbiózis folyamat van, amelyet egy organellumként való elhelyezéssel lehet véglegesíteni. Ajánlott ezt a lehető leghamarabb megtenni, mert további endoszimbiózis fejlődés nem lehetséges, amíg ez nem történik meg. Megnézed most az endoszimbiózis állását?"
 
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
@@ -10375,9 +10422,6 @@ msgstr "Távolodás"
 
 #~ msgid "PATCH_MAP_TYPE_CLASSIC"
 #~ msgstr "Klasszikus"
-
-#~ msgid "PATCH_MAP_TYPE_EXPLANATION"
-#~ msgstr "(procedurális patch térkép generálása, vagy a klasszikus elrendezés használata)"
 
 #~ msgid "PATCH_MAP_TYPE_PROCEDURAL"
 #~ msgstr "Procedurális"
