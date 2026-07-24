@@ -341,6 +341,7 @@ public partial class CellBodyPlanEditorComponent
         buddingReproductionSection.Visible = false;
         sporeReproductionSection.Visible = false;
         massBuddingReproductionSection.Visible = false;
+        sexualReproductionSection.Visible = false;
 
         switch (ReproductionMethod)
         {
@@ -352,6 +353,10 @@ public partial class CellBodyPlanEditorComponent
                 break;
             case MulticellularReproductionMethod.MassBudding:
                 massBuddingReproductionSection.Visible = true;
+                break;
+            case MulticellularReproductionMethod.SexualIsogamy:
+            case MulticellularReproductionMethod.SexualAnisogamy:
+                sexualReproductionSection.Visible = true;
                 break;
         }
     }
@@ -398,6 +403,8 @@ public partial class CellBodyPlanEditorComponent
                 return 2;
             case MulticellularReproductionMethod.MassBudding:
                 return 1;
+            case MulticellularReproductionMethod.SexualIsogamy or MulticellularReproductionMethod.SexualAnisogamy:
+                return 3;
             default:
                 throw new Exception($"Invalid reproduction mode: {reproductionMethod}");
         }
@@ -413,6 +420,8 @@ public partial class CellBodyPlanEditorComponent
                 return MulticellularReproductionMethod.MassBudding;
             case 2:
                 return MulticellularReproductionMethod.Sporulation;
+            case 3:
+                return MulticellularReproductionMethod.SexualIsogamy;
             default:
                 throw new Exception($"Invalid reproduction mode index: {index}");
         }

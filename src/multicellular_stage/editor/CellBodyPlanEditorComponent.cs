@@ -165,6 +165,9 @@ public partial class CellBodyPlanEditorComponent :
     private Control sporeReproductionSection = null!;
 
     [Export]
+    private Control sexualReproductionSection = null!;
+
+    [Export]
     private Control massBuddingReproductionSection = null!;
 #pragma warning restore CA2213
 
