@@ -185,6 +185,19 @@ public class MulticellularSpeciesComparer
             // The reproduction method is sporulation (and it wasn't changed), but the spore cell type is different
             cost += Constants.SPORE_CELL_TYPE_CHANGE_COST;
         }
+        else if (speciesA.ReproductionMethod == MulticellularReproductionMethod.SexualIsogamy
+                 && speciesA.GameteTypeA!.CellTypeName != speciesB.GameteTypeA?.CellTypeName)
+        {
+            cost += Constants.SPORE_CELL_TYPE_CHANGE_COST;
+        }
+        else if (speciesA.ReproductionMethod == MulticellularReproductionMethod.SexualAnisogamy)
+        {
+            if (speciesA.GameteTypeA!.CellTypeName != speciesB.GameteTypeA?.CellTypeName)
+                cost += Constants.SPORE_CELL_TYPE_CHANGE_COST;
+
+            if (speciesA.GameteTypeB!.CellTypeName != speciesB.GameteTypeB?.CellTypeName)
+                cost += Constants.SPORE_CELL_TYPE_CHANGE_COST;
+        }
 
         if (speciesB.ReproductionMethod == MulticellularReproductionMethod.MassBudding)
         {

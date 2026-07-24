@@ -11,7 +11,7 @@ using Systems;
 /// </summary>
 public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISimulationPhotographable
 {
-    public const ushort SERIALIZATION_VERSION = 4;
+    public const ushort SERIALIZATION_VERSION = 5;
 
     private readonly Dictionary<BiomeConditions, Dictionary<Compound, (float TimeToFill, float Storage)>>
         cachedFillTimes = new();
@@ -86,6 +86,14 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 
     public IReadOnlyCellTypeDefinition? SporeCellType => ModifiableSporeCellType;
 
+    public CellType? ModifiableGameteTypeA { get; set; }
+
+    public IReadOnlyCellTypeDefinition? GameteTypeA => ModifiableGameteTypeA;
+
+    public CellType? ModifiableGameteTypeB { get; set; }
+
+    public IReadOnlyCellTypeDefinition? GameteTypeB => ModifiableGameteTypeB;
+
     public int MassBuddingCellCount { get; set; } = 1;
 
     public ISimulationPhotographable.SimulationType SimulationToPhotograph =>
@@ -146,6 +154,12 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
             instance.MassBuddingCellCount = reader.ReadInt32();
         }
 
+        if (version >= 5)
+        {
+            instance.ModifiableGameteTypeA = reader.ReadObjectOrNull<CellType>();
+            instance.ModifiableGameteTypeB = reader.ReadObjectOrNull<CellType>();
+        }
+
         return instance;
     }
 
@@ -160,6 +174,8 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         writer.Write((int)ReproductionMethod);
         writer.WriteObjectOrNull(ModifiableSporeCellType);
         writer.Write(MassBuddingCellCount);
+        writer.WriteObjectOrNull(ModifiableGameteTypeA);
+        writer.WriteObjectOrNull(ModifiableGameteTypeB);
     }
 
     public override void OnEdited()
@@ -170,6 +186,8 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         RepositionToOrigin();
 
         bool sporeCellTypeInList = false;
+        bool gameteTypeAInList = false;
+        bool gameteTypeBInList = false;
 
         // Make certain these are all up to date
         foreach (var cellType in ModifiableCellTypes)
@@ -190,13 +208,35 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 
             if (!sporeCellTypeInList && cellType == ModifiableSporeCellType)
                 sporeCellTypeInList = true;
+
+            if (!gameteTypeAInList && cellType == ModifiableGameteTypeA)
+                gameteTypeAInList = true;
+
+            if (!gameteTypeBInList && cellType == ModifiableGameteTypeB)
+                gameteTypeBInList = true;
         }
 
         if (!sporeCellTypeInList && ModifiableSporeCellType != null)
             throw new Exception($"Spore cell type isn't present in the cell type list: {ModifiableSporeCellType}");
 
+        if (!gameteTypeAInList && ModifiableGameteTypeA != null)
+            throw new Exception($"Gamete type A isn't present in the cell type list: {ModifiableGameteTypeA}");
+
+        if (!gameteTypeBInList && ModifiableGameteTypeB != null)
+            throw new Exception($"Gamete type B isn't present in the cell type list: {ModifiableGameteTypeB}");
+
         if (ReproductionMethod == MulticellularReproductionMethod.Sporulation && ModifiableSporeCellType == null)
             throw new Exception("Sporulation reproduction method requires a spore cell type to be set");
+
+        if (ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy && ModifiableGameteTypeA == null)
+            throw new Exception("Sexual isogamy reproduction method requires a gamete type A to be set");
+
+        if (ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy
+                or MulticellularReproductionMethod.SexualAnisogamy &&
+            (ModifiableGameteTypeA == null || ModifiableGameteTypeB == null))
+        {
+            throw new Exception("Sexual reproduction method requires a gamete type A and B to be set");
+        }
 
         if (MassBuddingCellCount < 1 || MassBuddingCellCount > ModifiableGameplayCells.Count)
         {
@@ -373,8 +413,8 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         {
             if (!cachedFillTimes.TryGetValue(biome, out compoundTimes))
             {
-                // This does not use the real specialization bonus to avoid underestimating how much single cells in
-                // unusual spawn situations (such as spores) need to survive the night
+                // This does not use the real specialization bonus to avoid underestimating how many compounds
+                // single cells in unusual spawn situations (such as spores) need to survive the night
                 var totalSpecializationBonus = 1;
 
                 // TODO: should moving be false in some cases?
@@ -412,6 +452,12 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 
             if (cellType == casted.ModifiableSporeCellType)
                 ModifiableSporeCellType = clonedType;
+
+            if (cellType == casted.ModifiableGameteTypeA)
+                ModifiableGameteTypeA = clonedType;
+
+            if (cellType == casted.ModifiableGameteTypeB)
+                ModifiableGameteTypeB = clonedType;
         }
 
         ModifiableGameplayCells.Clear();
@@ -437,6 +483,30 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         else if (casted.ModifiableSporeCellType == null)
         {
             ModifiableSporeCellType = null;
+        }
+
+        if (casted.ModifiableGameteTypeA != null && ModifiableGameteTypeA == null)
+        {
+            if (!typeMapping.TryGetValue(casted.ModifiableGameteTypeA, out var newGameteType))
+                throw new Exception("Gamete type A not found in species");
+
+            ModifiableGameteTypeA = newGameteType;
+        }
+        else if (casted.ModifiableGameteTypeA == null)
+        {
+            ModifiableGameteTypeA = null;
+        }
+
+        if (casted.ModifiableGameteTypeB != null && ModifiableGameteTypeB == null)
+        {
+            if (!typeMapping.TryGetValue(casted.ModifiableGameteTypeB, out var newGameteType))
+                throw new Exception("Gamete type B not found in species");
+
+            ModifiableGameteTypeB = newGameteType;
+        }
+        else if (casted.ModifiableGameteTypeB == null)
+        {
+            ModifiableGameteTypeB = null;
         }
 
         ReproductionMethod = casted.ReproductionMethod;
@@ -519,12 +589,14 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 
     /// <summary>
     ///   The cell that gets produced by a fully grown colony that grows into its own organism.
-    ///   Might be the same as <see cref="ColonyRootCellType"/>, but might be a spore or a gamete
+    ///   Might be the same as <see cref="ColonyRootCellType"/>, but might be a spore (gametes use a separate system
+    ///   to spawn them)
     /// </summary>
     public CellType FirstCellTypeToSpawn()
     {
         if (ReproductionMethod is MulticellularReproductionMethod.Budding
-            or MulticellularReproductionMethod.MassBudding)
+            or MulticellularReproductionMethod.MassBudding or MulticellularReproductionMethod.SexualIsogamy
+            or MulticellularReproductionMethod.SexualAnisogamy)
         {
             return ModifiableGameplayCells[0].ModifiableCellType;
         }

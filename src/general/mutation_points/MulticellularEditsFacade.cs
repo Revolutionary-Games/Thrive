@@ -21,6 +21,8 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
     private bool overrideReproductionMethod;
 
     private IReadOnlyCellTypeDefinition? sporeCellTypeOverride;
+    private IReadOnlyCellTypeDefinition? gameteACellTypeOverride;
+    private IReadOnlyCellTypeDefinition? gameteBCellTypeOverride;
 
     private int massBuddingCellCountOverride = -1;
 
@@ -43,6 +45,9 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
         overrideReproductionMethod ? reproductionMethod : multicellularSpecies.ReproductionMethod;
 
     public IReadOnlyCellTypeDefinition? SporeCellType => sporeCellTypeOverride ?? multicellularSpecies.SporeCellType;
+
+    public IReadOnlyCellTypeDefinition? GameteTypeA => gameteACellTypeOverride ?? multicellularSpecies.GameteTypeA;
+    public IReadOnlyCellTypeDefinition? GameteTypeB => gameteBCellTypeOverride ?? multicellularSpecies.GameteTypeB;
 
     public int MassBuddingCellCount =>
         massBuddingCellCountOverride == -1 ? multicellularSpecies.MassBuddingCellCount : massBuddingCellCountOverride;
@@ -143,6 +148,8 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
         overrideReproductionMethod = false;
 
         sporeCellTypeOverride = null;
+        gameteACellTypeOverride = null;
+        gameteBCellTypeOverride = null;
 
         massBuddingCellCountOverride = -1;
     }
