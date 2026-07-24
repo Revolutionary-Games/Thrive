@@ -177,6 +177,14 @@ public class ModifyExistingSpecies : IRunStep
 
                 foreach (var mutation in mutationsToTry)
                 {
+                    // For Multicellular species, we need to calculate the gameplay shape here
+                    if (mutation.MutatedSpecies is MulticellularSpecies multicellularMutant)
+                    {
+                        MulticellularLayoutHelpers.UpdateGameplayLayout(multicellularMutant.ModifiableGameplayCells,
+                            multicellularMutant.ModifiableEditorCells, AlgorithmQuality.Low,
+                            new List<Hex>(), new List<Hex>());
+                    }
+
                     mutation.MutatedSpecies.OnEdited();
 
 #if DEBUG

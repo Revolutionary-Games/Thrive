@@ -189,6 +189,31 @@ public static class MulticellularLayoutHelpers
     }
 
     /// <summary>
+    ///   This variant is for auto-evo, converting a species' editor cells directly to gameplay cells
+    /// </summary>
+    public static void UpdateGameplayLayout(CellLayout<CellTemplate> targetGameplayLayout,
+        IndividualHexLayout<CellTemplate> targetEditorLayout, AlgorithmQuality algorithmQuality,
+        List<Hex> hexTemporaryMemory, List<Hex> hexTemporaryMemory2)
+    {
+        var source = new IndividualHexLayout<CellTemplate>();
+
+        // copy over all existing cells
+        foreach (var hex in targetEditorLayout)
+        {
+            var cell = hex.Data;
+            if (cell != null)
+            {
+                source.AddFast(new HexWithData<CellTemplate>(new CellTemplate(cell.ModifiableCellType,
+                        cell.Position, cell.Orientation), cell.Position, cell.Orientation),
+                    new List<Hex>(), new List<Hex>());
+            }
+        }
+
+        UpdateGameplayLayout(targetGameplayLayout, targetEditorLayout, source, algorithmQuality, hexTemporaryMemory,
+            hexTemporaryMemory2);
+    }
+
+    /// <summary>
     ///   Generates a cell layout from the gameplay layout. To be used if there's no editor layout yet for a species.
     /// </summary>
     public static void GenerateEditorLayoutFromGameplayLayout(IndividualHexLayout<CellTemplate> target,

@@ -321,24 +321,6 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
             cellType.CalculateSpecialization();
         }
 
-        var newCells = new IndividualHexLayout<CellTemplate>();
-
-        // copy over all existing cells
-        foreach (var hex in ModifiableEditorCells)
-        {
-            var cell = hex.Data;
-            if (cell != null)
-            {
-                newCells.AddFast(new HexWithData<CellTemplate>(new CellTemplate(cell.ModifiableCellType,
-                        cell.Position, cell.Orientation), cell.Position, cell.Orientation),
-                    new List<Hex>(), new List<Hex>());
-            }
-        }
-
-        MulticellularLayoutHelpers.UpdateGameplayLayout(ModifiableGameplayCells,
-            ModifiableEditorCells, newCells, AlgorithmQuality.Low,
-            new List<Hex>(), new List<Hex>());
-
         UpdateInitialCompounds();
 
         cachedFillTimes.Clear();
