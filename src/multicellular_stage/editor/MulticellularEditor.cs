@@ -52,6 +52,11 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
     /// </summary>
     private CellType? selectedCellTypeToEdit;
 
+    /// <summary>
+    ///   Handles the membrane changes in multicellular
+    /// </summary>
+    private MembraneType? specialMembraneToSwitchOnExit;
+
     private Dictionary<OrganelleDefinition, int> tempMemory1 = new();
 
     public override bool CanCancelAction
@@ -202,6 +207,15 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         UpdateAutoEvoToReportTab();
     }
 
+    public override bool EnqueueAction(EditorAction action)
+    {
+        // Doing anything prevents membrane change from happening afterwards, just so there's no way to optimize MP
+        // usage by failing to change and then doing an edit and then succeeding
+        specialMembraneToSwitchOnExit = null;
+
+        return base.EnqueueAction(action);
+    }
+
     public override void SetEditorObjectVisibility(bool shown)
     {
         base.SetEditorObjectVisibility(shown);
@@ -285,6 +299,37 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         SwapEditorTabIfNeeded(history.ActionToUndo());
 
         base.Undo();
+    }
+
+    /// <summary>
+    ///   In multicellular a species must have uniform membranes, so this method is called to trigger a special switch
+    ///   to exit the editor with all membranes set to the same value.
+    /// </summary>
+    /// <param name="newMembraneName">Name of the new membrane type</param>
+    public void OnDoMembraneChange(string newMembraneName)
+    {
+        var membrane = SimulationParameters.Instance.GetMembrane(newMembraneName);
+
+        // Make sure that we still have full mutation points
+        DirtyMutationPointsCache();
+
+        if (MutationPoints < Constants.BASE_MUTATION_POINTS)
+        {
+            GD.Print("Not enough mutation points to change membrane");
+            ToolTipManager.Instance.ShowPopup(Localization.Translate("NOT_ENOUGH_MUTATION_POINTS"), 3);
+            return;
+        }
+
+        specialMembraneToSwitchOnExit = membrane;
+
+        if (!OnFinishEditing(null))
+        {
+            GD.Print("Couldn't exit the editor due to a problem and apply new membrane");
+            specialMembraneToSwitchOnExit = null;
+        }
+
+        // We can't unset the membrane in all cases as there's a timed animation on the exit and only then the callback
+        // needing it will run
     }
 
     public ToleranceResult CalculateRawTolerances(bool excludePositiveBuffs = false)
@@ -573,6 +618,23 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         selectedCellTypeToEdit = null;
 
         base.OnEditorExitTransitionFinished();
+    }
+
+    protected override void OnAppliedEdits()
+    {
+        if (specialMembraneToSwitchOnExit == null)
+            return;
+
+        GD.Print("Applying membrane change for multicellular species to: ", specialMembraneToSwitchOnExit.Name);
+
+        // TODO: should this apply to special cell types as well?
+        foreach (var cellType in EditedSpecies.ModifiableCellTypes)
+        {
+            cellType.MembraneType = specialMembraneToSwitchOnExit;
+        }
+
+        // A light refresh of data to not have to do potentially very expensive repositioning algorithm
+        EditedSpecies.NotifyMembraneTypeChanged();
     }
 
     private void OnRevealAllPatchesCheatUsed(object? sender, EventArgs args)

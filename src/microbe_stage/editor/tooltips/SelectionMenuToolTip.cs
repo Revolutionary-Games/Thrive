@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -440,6 +441,22 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
 
         incompatibleMembranesLabel.Text
             = Localization.Translate("INCOMPATIBLE_ORGANELLE_LIST").FormatSafe(stringBuilder.ToString());
+    }
+
+    /// <summary>
+    ///   Uses the same label as incompatible membranes but shows info about a state being incompatible
+    /// </summary>
+    public void LockDueToMacroscopic()
+    {
+        incompatibleMembranesLabel.Visible = true;
+
+        stringBuilder.Clear();
+
+        stringBuilder.Append(
+            Localization.Translate(Stage.MacroscopicStage.GetAttribute<DescriptionAttribute>().Description));
+
+        incompatibleMembranesLabel.Text
+            = Localization.Translate("INCOMPATIBLE_STAGE_LIST").FormatSafe(stringBuilder.ToString());
     }
 
     private void UpdateName()

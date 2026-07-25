@@ -454,8 +454,8 @@ public partial class MicrobeReproductionSystem : BaseSystem<World, float>
             {
                 var organelle = organelles.Organelles[i];
 
-                // In the second phase all unique organelles are given compounds
-                // It used to be that only the nucleus was given compounds here
+                // In the second phase all unique organelles are given compounds.
+                // It used to be that only the nucleus was given compounds here.
                 if (!organelle.Definition.Unique)
                     continue;
 

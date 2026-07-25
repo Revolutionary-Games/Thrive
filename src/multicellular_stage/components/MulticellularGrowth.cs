@@ -66,8 +66,12 @@ public struct MulticellularGrowth : IArchivableComponent
         this.CalculateTotalBodyPlanCompounds(species);
     }
 
+    /// <summary>
+    ///   If the colony is fully grown (and is not a spore as the initial spore may not be the same as the grown
+    ///   colony even if there's just one cell as the spore type can be different)
+    /// </summary>
     public bool IsFullyGrownMulticellular => NextBodyPlanCellToGrowIndex >=
-        (TargetCellLayout?.Count ?? throw new InvalidOperationException("Unknown full layout"));
+        (TargetCellLayout?.Count ?? throw new InvalidOperationException("Unknown full layout")) && !IsASpore;
 
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
     public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentMulticellularGrowth;
@@ -364,30 +368,65 @@ public static class MulticellularGrowthHelpers
     }
 
     public static void CalculateTotalBodyPlanCompounds(this ref MulticellularGrowth multicellularGrowth,
-        Species species)
+        MulticellularSpecies species)
     {
         multicellularGrowth.TotalNeededForMulticellularGrowth ??= new Dictionary<Compound, float>();
         multicellularGrowth.TotalNeededForMulticellularGrowth.Clear();
 
-        foreach (var cell in multicellularGrowth.TargetCellLayout ??
-                 throw new InvalidOperationException("Unknown target layout"))
+        var layout = multicellularGrowth.TargetCellLayout ??
+            throw new InvalidOperationException("Unknown target layout");
+
+        int nextCellCostToCalculate = 0;
+
+        // First, calculate reproduction cost based on the type
+        switch (species.ReproductionMethod)
         {
-            multicellularGrowth.TotalNeededForMulticellularGrowth.Merge(cell.ModifiableCellType
+            case MulticellularReproductionMethod.Budding:
+                // Base budding is the simple case that has no adjustments needed
+                break;
+            case MulticellularReproductionMethod.MassBudding:
+                // When growing mass budding technically skips the first cells, but they are taken as an extra cost
+                // at the end, so it should all balance out
+                break;
+
+            case MulticellularReproductionMethod.Sporulation:
+            {
+                if (species.ModifiableSporeCellType == null)
+                    throw new InvalidOperationException("Species has no spore cell type but uses spore reproduction");
+
+                // Sporulation skips the first cell but adds the spore cost
+                multicellularGrowth.TotalNeededForMulticellularGrowth.Merge(species.ModifiableSporeCellType
+                    .CalculateTotalComposition());
+                nextCellCostToCalculate = 1;
+                break;
+            }
+
+            default:
+                throw new ArgumentOutOfRangeException(
+                    $"Reproduction method's precalculated cost is unimplemented for: {species.ReproductionMethod}");
+        }
+
+        // Then add the remaining cost from rest of the body that needs to grow
+        int count = layout.Count;
+        for (int i = nextCellCostToCalculate; i < count; ++i)
+        {
+            multicellularGrowth.TotalNeededForMulticellularGrowth.Merge(layout[i].ModifiableCellType
                 .CalculateTotalComposition());
         }
 
+        // And finally, add the base reproduction cost
         multicellularGrowth.TotalNeededForMulticellularGrowth.Merge(species.BaseReproductionCost);
     }
 
-    public static void GerminateSpore(this ref MulticellularGrowth multicellularGrowth,
+    public static bool GerminateSpore(this ref MulticellularGrowth multicellularGrowth,
         in Entity entity, IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment microbeSpawnEnvironment,
         List<Hex> workMemory1, List<Hex> workMemory2)
     {
         if (!entity.Has<MulticellularSpeciesMember>())
-            return;
+            return false;
 
         if (!multicellularGrowth.IsASpore)
-            return;
+            return false;
 
         ref var control = ref entity.Get<MicrobeControl>();
 
@@ -415,6 +454,8 @@ public static class MulticellularGrowthHelpers
         cellProperties.ReApplyCellTypeProperties(ref environmentalEffects, entity,
             multicellularSpeciesType.MulticellularCellType, multicellularSpeciesType.Species, totalSpecializationBonus,
             worldSimulation, workMemory1, workMemory2);
+
+        return true;
     }
 
     public static void SpawnInitialMassBuddingCells(this ref MulticellularGrowth multicellularGrowth, in Entity entity,
