@@ -1192,7 +1192,6 @@ public static class SpawnHelpers
 
         entityRecorder.Set(entity, new WorldPosition(location, rotation));
 
-
         entityRecorder.Set<Physics>(entity);
         entityRecorder.Set(entity, new PhysicsShapeHolder
         {
