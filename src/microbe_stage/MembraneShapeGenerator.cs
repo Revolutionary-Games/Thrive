@@ -96,7 +96,7 @@ public class MembraneShapeGenerator
         bool isMulticellular = false)
     {
         return GenerateMicrobeShape(parameters.HexPositions, parameters.HexPositionCount,
-            parameters.Type, isMulticellular);
+            parameters.Type, isMulticellular, parameters.ColonyKey);
     }
 
     /// <summary>
@@ -107,7 +107,7 @@ public class MembraneShapeGenerator
     ///   checked for existing data before computing new data)
     /// </returns>
     public MembranePointData GenerateMicrobeShape(Vector2[] hexPositions, int hexCount, MembraneType membraneType,
-        bool isMulticellular = false)
+        bool isMulticellular = false, long? colonyKey = null)
     {
         // The length in pixels (probably not accurate?) of a side of the square that bounds the membrane.
         // Half the side length of the original square that is compressed to make the membrane.
@@ -165,7 +165,8 @@ public class MembraneShapeGenerator
         var averagePoint = GetAverageVertex();
 
         // This makes a copy of the vertices so the data is safe to modify in further calls to this method
-        return new MembranePointData(hexPositions, hexCount, membraneType, vertices2D, averagePoint);
+        return new MembranePointData(hexPositions, hexCount, membraneType, vertices2D, averagePoint, null,
+            null, null, null, isMulticellular, colonyKey);
     }
 
     /// <summary>
@@ -196,9 +197,11 @@ public class MembraneShapeGenerator
         var hexCopy = ArrayPool<Vector2>.Shared.Rent(hexCount);
         originalPointData.HexPositions.AsSpan(0, hexCount).CopyTo(hexCopy);
 
+        var colonyKey = MembraneGenerationCoordinator.ComputeColonyKey(multicellularPositions, multicellularOrientations);
+
         return new MembranePointData(hexCopy, hexCount, originalPointData.Type, vertices2D,
             originalPointData.AverageVertex, multicellularPositions, thisCellPosition, multicellularOrientations,
-            thisCellOrientation);
+            thisCellOrientation, false, colonyKey);
     }
 
     /// <summary>

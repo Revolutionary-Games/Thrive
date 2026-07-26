@@ -50,7 +50,18 @@ public static class MembraneGenerationCoordinator
             ProceduralDataCache.Instance.WriteMembraneData(ref singleCellMembranePointData);
         }
 
-        var colonyKey = ComputeColonyKey(multicellularPositions);
+        // Prefer the ColonyKey provided in generationParameters if available. Otherwise compute or fetch a cached
+        // colony key for this colony. generationParameters may not carry a reference to the species, so fall back
+        // to computing directly if necessary.
+        long colonyKey;
+        if (generationParameters.ColonyKey != null)
+        {
+            colonyKey = generationParameters.ColonyKey.Value;
+        }
+        else
+        {
+            colonyKey = ComputeColonyKey(multicellularPositions, multicellularOrientations);
+        }
         var tracker = Trackers.GetOrAdd(colonyKey,
             _ => new ColonyTracker { ExpectedCount = multicellularPositions.Length });
 
@@ -103,7 +114,7 @@ public static class MembraneGenerationCoordinator
         return hash;
     }
 
-    private static long ComputeColonyKey(Vector2[] positions)
+    public static long ComputeColonyKey(Vector2[] positions, int[]? orientations = null)
     {
         unchecked
         {
@@ -120,6 +131,12 @@ public static class MembraneGenerationCoordinator
                 hash *= prime;
                 hash ^= BitConverter.SingleToInt32Bits(positions[i].Y) * prime;
                 hash *= prime;
+
+                if (orientations != null && i < orientations.Length)
+                {
+                    hash ^= orientations[i] * prime;
+                    hash *= prime;
+                }
             }
 
             return hash;

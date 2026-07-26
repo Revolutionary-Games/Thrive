@@ -176,7 +176,7 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
 
             if (colonyLeader.Has<MulticellularGrowth>())
             {
-                var growthOrder = colonyLeader.Get<MulticellularGrowth>();
+                ref var growthOrder = ref colonyLeader.Get<MulticellularGrowth>();
                 var nextBodyPlanCellToGrowIndex = growthOrder.NextBodyPlanCellToGrowIndex;
 
                 if (growthOrder.LostPartsOfBodyPlan != null)
@@ -193,7 +193,7 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
                 var cellIndex = speciesMember.MulticellularBodyPlanPartIndex;
                 var cell = speciesMember.Species.ModifiableGameplayCells[cellIndex];
                 data = GetMulticellularMembraneDataIfReadyOrStartGenerating(cell, cell.ModifiableOrganelles,
-                    ref speciesMember, cellIndex, nextBodyPlanCellToGrowIndex);
+                    ref speciesMember, ref growthOrder, cellIndex, nextBodyPlanCellToGrowIndex);
             }
             else
             {
@@ -316,7 +316,7 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
 
     private MembranePointData? GetMulticellularMembraneDataIfReadyOrStartGenerating(CellTemplate cellProperties,
         OrganelleLayout<OrganelleTemplate> organelleContainer, ref MulticellularSpeciesMember multicellular,
-        int currentCellIndex, int nextBodyPlanCellToGrowIndex)
+        ref MulticellularGrowth growthOrder, int currentCellIndex, int nextBodyPlanCellToGrowIndex)
     {
         // TODO: should we consider the situation where a membrane was requested on the previous update but is not
         // ready yet? This causes extra memory usage here in those cases.
@@ -347,8 +347,19 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         var cellPositionInMulticellular = new Vector2(cellPosition.X, cellPosition.Z) *
             Constants.MULTICELLULAR_CELL_DISTANCE_MULTIPLIER;
 
+        long colonyKey;
+        if (growthOrder.ColonyKey != null)
+        {
+            colonyKey = growthOrder.ColonyKey.Value;
+        }
+        else
+        {
+            colonyKey = MembraneGenerationCoordinator.ComputeColonyKey(positionsArray, rotationsArray);
+            growthOrder.ColonyKey = colonyKey;
+        }
+
         var hash = new MembraneGenerationParameters(hexes, hexCount, cellProperties.MembraneType, positionsArray,
-            cellPositionInMulticellular, rotationsArray, currentCell.Orientation).ComputeMembraneDataHash();
+            cellPositionInMulticellular, rotationsArray, currentCell.Orientation, colonyKey).ComputeMembraneDataHash();
 
         var cachedMembrane = ProceduralDataCache.Instance.ReadMembraneData(hash);
 
@@ -356,8 +367,8 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         {
             // TODO: hopefully this can't get into a permanent loop where 2 conflicting membranes want to
             // re-generate on each game update cycle
-            if (!cachedMembrane.MembraneDataFieldsEqual(hexes, hexCount, cellProperties.MembraneType, positionsArray,
-                    cellPositionInMulticellular, rotationsArray, currentCell.Orientation))
+            if (!cachedMembrane.MembraneDataFieldsEqual(hexes, hexCount, cellProperties.MembraneType,
+                    cellPositionInMulticellular, currentCell.Orientation, colonyKey))
             {
                 CacheableDataExtensions.OnCacheHashCollision<MembranePointData>(hash);
                 cachedMembrane = null;
@@ -366,7 +377,7 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
 
         if (cachedMembrane != null)
         {
-            // Membrane was ready now
+            // Membrane is ready now
             return cachedMembrane;
         }
 
@@ -387,7 +398,7 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
 
         membranesToGenerate.Enqueue(new MembraneGenerationParameters(hexes, hexCount, cellProperties.MembraneType,
             positionsArray, cellPositionInMulticellular, rotationsArray,
-            multicellular.Species.ModifiableGameplayCells[currentCellIndex].Orientation));
+            multicellular.Species.ModifiableGameplayCells[currentCellIndex].Orientation, colonyKey));
 
         // Immediately start some jobs to give background threads something to do while the main thread is busy
         // potentially setting up other visuals

@@ -25,7 +25,7 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
     public MembranePointData(Vector2[] hexPositions, int hexPositionCount, MembraneType type,
         IReadOnlyList<Vector2> verticesToCopy, Vector2 averageVertex, Vector2[]? multicellularPositions = null,
         Vector2? cellPositionInMulticellular = null, int[]? multicellularOrientations = null,
-        int? cellOrientation = null, bool isPreMulticellularStretch = false)
+        int? cellOrientation = null, bool isPreMulticellularStretch = false, long? colonyKey = null)
     {
         HexPositions = hexPositions;
         Type = type;
@@ -35,6 +35,7 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
         CellPositionInMulticellular = cellPositionInMulticellular;
         MulticellularOrientations = multicellularOrientations;
         CellOrientation = cellOrientation;
+        ColonyKey = colonyKey;
         IsPreMulticellularStretch = isPreMulticellularStretch;
 
         // Setup mesh to be generated (on the main thread) only when required
@@ -100,6 +101,11 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
     ///   Orientation of current cell in multicellular body plan
     /// </summary>
     public int? CellOrientation { get; }
+
+    /// <summary>
+    ///   Precomputed colony key that encodes neighbour positions and rotations for caching/equality.
+    /// </summary>
+    public long? ColonyKey { get; }
 
     /// <summary>
     ///   Flag used for differentiation in caching when retrieving single cell membrane before and after stretching

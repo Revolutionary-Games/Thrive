@@ -53,6 +53,8 @@ public struct MulticellularGrowth : IArchivableComponent
 
     public bool SpawnedInitialMassBuddingCells;
 
+    public long? ColonyKey;
+
     public MulticellularGrowth(MulticellularSpecies species)
     {
         this.ResetGrowthProgress();
@@ -64,6 +66,7 @@ public struct MulticellularGrowth : IArchivableComponent
 
         // This is updated by ReApplyCellTypeProperties when needed
         this.CalculateTotalBodyPlanCompounds(species);
+        ColonyKey = null;
     }
 
     public bool IsFullyGrownMulticellular => NextBodyPlanCellToGrowIndex >=
@@ -174,6 +177,8 @@ public static class MulticellularGrowthHelpers
 
         ++multicellularGrowth.NextBodyPlanCellToGrowIndex;
         multicellularGrowth.CompoundsNeededForNextCell = null;
+
+        multicellularGrowth.ColonyKey = null;
     }
 
     public static void ResetMulticellularProgress(this ref MulticellularGrowth multicellularGrowth,
@@ -220,6 +225,7 @@ public static class MulticellularGrowthHelpers
         multicellularGrowth.CompoundsUsedForMulticellularGrowth = null;
 
         multicellularGrowth.TotalNeededForMulticellularGrowth = null;
+        multicellularGrowth.ColonyKey = null;
     }
 
     public static void OnMulticellularColonyCellLost(this ref MulticellularGrowth multicellularGrowth,
@@ -254,6 +260,7 @@ public static class MulticellularGrowthHelpers
             return;
 
         multicellularGrowth.LostPartsOfBodyPlan.Add(lostPartIndex);
+        multicellularGrowth.ColonyKey = null;
         organelleContainer.AllOrganellesDivided = false;
 
         if (multicellularGrowth.ResumeBodyPlanAfterReplacingLost != null)
