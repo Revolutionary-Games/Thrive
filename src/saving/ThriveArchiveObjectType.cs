@@ -323,6 +323,8 @@ public enum ThriveArchiveObjectType : uint
     TutorialMulticellularSpecializationTutorial = 4403,
     MassBuddingCellCountActionData = 4404,
     TestWorldSimulation = 4405,
+    GameteACellTypeChangeActionData = 4406,
+    GameteBCellTypeChangeActionData = 4407,
 
     // Special flag types
     ExtendedOrganelleLayout = OrganelleLayout | ArchiveObjectType.ExtendedTypeFlag,
