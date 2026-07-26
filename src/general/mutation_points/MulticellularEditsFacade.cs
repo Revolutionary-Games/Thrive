@@ -294,6 +294,20 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
             return true;
         }
 
+        if (actionData is GameteACellTypeChangeActionData gameteACellTypeChangeActionData)
+        {
+            gameteACellTypeOverride = cellTypes.ResolveCellDefinition(gameteACellTypeChangeActionData.NewCellType);
+
+            return true;
+        }
+
+        if (actionData is GameteBCellTypeChangeActionData gameteBCellTypeChangeActionData)
+        {
+            gameteBCellTypeOverride = cellTypes.ResolveCellDefinition(gameteBCellTypeChangeActionData.NewCellType);
+
+            return true;
+        }
+
         if (actionData is MassBuddingCellCountActionData massBuddingCellCountActionData)
         {
             massBuddingCellCountOverride = Math.Min(massBuddingCellCountActionData.NewCellCount,
