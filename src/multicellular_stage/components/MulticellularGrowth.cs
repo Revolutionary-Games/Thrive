@@ -55,6 +55,17 @@ public struct MulticellularGrowth : IArchivableComponent
 
     public long? ColonyKey;
 
+    /// <summary>
+    ///   Cached positions of all cells in the colony (used for membrane generation). Valid only together with
+    ///   <see cref="ColonyKey"/> — invalidated at the same sites.
+    /// </summary>
+    public Vector2[]? ColonyPositions;
+
+    /// <summary>
+    ///   Cached orientations of all cells in the colony, paired with <see cref="ColonyPositions"/>.
+    /// </summary>
+    public int[]? ColonyOrientations;
+
     public MulticellularGrowth(MulticellularSpecies species)
     {
         this.ResetGrowthProgress();
@@ -67,6 +78,8 @@ public struct MulticellularGrowth : IArchivableComponent
         // This is updated by ReApplyCellTypeProperties when needed
         this.CalculateTotalBodyPlanCompounds(species);
         ColonyKey = null;
+        ColonyPositions = null;
+        ColonyOrientations = null;
     }
 
     public bool IsFullyGrownMulticellular => NextBodyPlanCellToGrowIndex >=
@@ -179,6 +192,8 @@ public static class MulticellularGrowthHelpers
         multicellularGrowth.CompoundsNeededForNextCell = null;
 
         multicellularGrowth.ColonyKey = null;
+        multicellularGrowth.ColonyPositions = null;
+        multicellularGrowth.ColonyOrientations = null;
     }
 
     public static void ResetMulticellularProgress(this ref MulticellularGrowth multicellularGrowth,
@@ -226,6 +241,8 @@ public static class MulticellularGrowthHelpers
 
         multicellularGrowth.TotalNeededForMulticellularGrowth = null;
         multicellularGrowth.ColonyKey = null;
+        multicellularGrowth.ColonyPositions = null;
+        multicellularGrowth.ColonyOrientations = null;
     }
 
     public static void OnMulticellularColonyCellLost(this ref MulticellularGrowth multicellularGrowth,
@@ -261,6 +278,8 @@ public static class MulticellularGrowthHelpers
 
         multicellularGrowth.LostPartsOfBodyPlan.Add(lostPartIndex);
         multicellularGrowth.ColonyKey = null;
+        multicellularGrowth.ColonyPositions = null;
+        multicellularGrowth.ColonyOrientations = null;
         organelleContainer.AllOrganellesDivided = false;
 
         if (multicellularGrowth.ResumeBodyPlanAfterReplacingLost != null)

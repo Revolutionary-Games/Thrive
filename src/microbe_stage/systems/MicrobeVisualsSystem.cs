@@ -323,40 +323,62 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         var hexes = MembraneComputationHelpers.PrepareHexPositionsForMembraneCalculations(organelleContainer.Organelles,
             out var hexCount);
 
-        // TODO: make them into array. but (nextBodyPlanCellToGrowIndex - lostCells.Count()) size is not always okay...
-        cellsPositions.Clear();
-        cellsOrientations.Clear();
+        Vector2[] positionsArray;
+        int[] rotationsArray;
+        long colonyKey;
 
-        for (int i = 0; i < nextBodyPlanCellToGrowIndex; ++i)
+        // Reuse cached colony layout data as long as nothing about the colony's composition has changed since it was
+        // computed. This avoids rebuilding these arrays (and the ToArray allocations) every frame for every cell in
+        // the colony — only the cell(s) processed right after a composition change pay this cost.
+        if (growthOrder.ColonyKey != null && growthOrder.ColonyPositions != null &&
+            growthOrder.ColonyOrientations != null)
         {
-            if (lostCells.Contains(i))
-                continue;
-
-            var cell = multicellular.Species.ModifiableGameplayCells[i];
-            var cellPosistion = Hex.AxialToCartesian(cell.Position);
-            cellsPositions.Add(new Vector2(cellPosistion.X, cellPosistion.Z) *
-                Constants.MULTICELLULAR_CELL_DISTANCE_MULTIPLIER);
-            cellsOrientations.Add(multicellular.Species.ModifiableGameplayCells[i].Orientation);
+            colonyKey = growthOrder.ColonyKey.Value;
+            positionsArray = growthOrder.ColonyPositions;
+            rotationsArray = growthOrder.ColonyOrientations;
         }
+        else
+        {
+            // First pass: count how many cells are actually still present (nextBodyPlanCellToGrowIndex alone isn't
+            // enough since some indices in that range may be in lostCells)
+            int cellCount = 0;
+            for (int i = 0; i < nextBodyPlanCellToGrowIndex; ++i)
+            {
+                if (!lostCells.Contains(i))
+                    ++cellCount;
+            }
 
-        var positionsArray = cellsPositions.ToArray();
-        var rotationsArray = cellsOrientations.ToArray();
+            positionsArray = new Vector2[cellCount];
+            rotationsArray = new int[cellCount];
+
+            // Second pass: write directly into the correctly sized arrays, no intermediate list needed
+            int writeIndex = 0;
+            for (int i = 0; i < nextBodyPlanCellToGrowIndex; ++i)
+            {
+                if (lostCells.Contains(i))
+                    continue;
+
+                var cell = multicellular.Species.ModifiableGameplayCells[i];
+                var cellPosistion = Hex.AxialToCartesian(cell.Position);
+
+                positionsArray[writeIndex] = new Vector2(cellPosistion.X, cellPosistion.Z) *
+                    Constants.MULTICELLULAR_CELL_DISTANCE_MULTIPLIER;
+                rotationsArray[writeIndex] = cell.Orientation;
+
+                ++writeIndex;
+            }
+
+            colonyKey = MembraneGenerationCoordinator.ComputeColonyKey(positionsArray, rotationsArray);
+
+            growthOrder.ColonyKey = colonyKey;
+            growthOrder.ColonyPositions = positionsArray;
+            growthOrder.ColonyOrientations = rotationsArray;
+        }
 
         var currentCell = multicellular.Species.ModifiableGameplayCells[currentCellIndex];
         var cellPosition = Hex.AxialToCartesian(currentCell.Position);
         var cellPositionInMulticellular = new Vector2(cellPosition.X, cellPosition.Z) *
             Constants.MULTICELLULAR_CELL_DISTANCE_MULTIPLIER;
-
-        long colonyKey;
-        if (growthOrder.ColonyKey != null)
-        {
-            colonyKey = growthOrder.ColonyKey.Value;
-        }
-        else
-        {
-            colonyKey = MembraneGenerationCoordinator.ComputeColonyKey(positionsArray, rotationsArray);
-            growthOrder.ColonyKey = colonyKey;
-        }
 
         var hash = new MembraneGenerationParameters(hexes, hexCount, cellProperties.MembraneType, positionsArray,
             cellPositionInMulticellular, rotationsArray, currentCell.Orientation, colonyKey).ComputeMembraneDataHash();
