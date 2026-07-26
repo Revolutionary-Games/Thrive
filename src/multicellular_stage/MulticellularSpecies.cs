@@ -644,6 +644,12 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 
             if (cellType == ModifiableSporeCellType)
                 result.ModifiableSporeCellType = clonedType;
+
+            if (cellType == ModifiableGameteTypeA)
+                result.ModifiableGameteTypeA = clonedType;
+
+            if (cellType == ModifiableGameteTypeB)
+                result.ModifiableGameteTypeB = clonedType;
         }
 
         foreach (var cellTemplate in ModifiableGameplayCells)
@@ -690,6 +696,18 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         if (ModifiableSporeCellType != null && result.ModifiableSporeCellType == null)
         {
             throw new Exception($"Cell type {ModifiableSporeCellType.ReadableName} not found while cloning" +
+                $"multicellular species: {ReadableName}");
+        }
+
+        if (ModifiableGameteTypeA != null && result.ModifiableGameteTypeA == null)
+        {
+            throw new Exception($"Cell type {ModifiableGameteTypeA.ReadableName} not found while cloning" +
+                $"multicellular species: {ReadableName}");
+        }
+
+        if (ModifiableGameteTypeB != null && result.ModifiableGameteTypeB == null)
+        {
+            throw new Exception($"Cell type {ModifiableGameteTypeB.ReadableName} not found while cloning" +
                 $"multicellular species: {ReadableName}");
         }
 
