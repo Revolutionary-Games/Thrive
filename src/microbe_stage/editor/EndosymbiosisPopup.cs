@@ -4,12 +4,15 @@ using System.Linq;
 using Godot;
 
 /// <summary>
-///   GUI for the player to manage endosymbiosis process
+///   GUI for the player to manage the endosymbiosis process
 /// </summary>
 public partial class EndosymbiosisPopup : CustomWindow
 {
     [Export]
     public bool Lawk;
+
+    [Export]
+    public bool IsMulticellular;
 
     private readonly List<uint> currentPatchSpeciesIds = new();
 
@@ -110,7 +113,20 @@ public partial class EndosymbiosisPopup : CustomWindow
 
         if (endosymbiosisData.StartedEndosymbiosis != null)
         {
+            if (IsMulticellular)
+            {
+                // Show special explanation in multicellular
+                inProgressAdviceLabel.Text =
+                    Localization.Translate("ENDOSYMBIOSIS_PROGRESSING_EXPLANATION_MULTICELLULAR");
+            }
+            else
+            {
+                // Reset to default value
+                inProgressAdviceLabel.Text = "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION";
+            }
+
             inProgressAdviceLabel.Visible = true;
+
             ShowInProgressData(endosymbiosisData.StartedEndosymbiosis);
         }
         else if (limited)
@@ -134,8 +150,17 @@ public partial class EndosymbiosisPopup : CustomWindow
         display.SetSpecies(startedData.Species);
         display.UpdateProgress(startedData.RequiredCount, startedData.CurrentlyAcquiredCount, startedData.IsComplete);
 
-        display.Connect(EndosymbiosisProgressDisplay.SignalName.OnFinished,
-            new Callable(this, nameof(OnEndosymbiosisFinished)));
+        if (IsMulticellular)
+        {
+            // Multicellular only allows finishing endosymbiosis on a cell type
+            display.HideFinishButton();
+        }
+        else
+        {
+            display.Connect(EndosymbiosisProgressDisplay.SignalName.OnFinished,
+                new Callable(this, nameof(OnEndosymbiosisFinished)));
+        }
+
         display.Connect(EndosymbiosisProgressDisplay.SignalName.OnCancelled,
             new Callable(this, nameof(OnEndosymbiosisCancelled)));
 

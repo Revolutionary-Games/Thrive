@@ -13,7 +13,7 @@ using SharedBase.Archive;
 /// </summary>
 public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     [Export(PropertyHint.ColorNoAlpha)]
     public Color IngestedMatterBarFillColour = new(0.88f, 0.49f, 0.49f);
@@ -333,12 +333,24 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             return;
         }
 
-        var resultingModifier = fastModeEnabled ? Settings.Instance.AlternativeTimescale.Value : 1;
-
-        stage.WorldSimulation.WorldTimeScale = resultingModifier;
-
         // Make sure the GUI state is consistent with the current speed
         bottomLeftBar.SpeedModePressed = fastModeEnabled;
+
+        UpdateSpeedMode();
+    }
+
+    public void UpdateSpeedMode()
+    {
+        if (Math.Abs(CheatManager.SimulationFactor - 1) > 0.01f)
+        {
+            stage?.WorldSimulation.WorldTimeScale = CheatManager.SimulationFactor;
+        }
+        else
+        {
+            var resultingModifier = bottomLeftBar.SpeedModePressed ? Settings.Instance.AlternativeTimescale.Value : 1;
+
+            stage?.WorldSimulation.WorldTimeScale = resultingModifier;
+        }
     }
 
     public override bool GetCurrentSpeedMode()
@@ -346,7 +358,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         if (stage == null)
             return false;
 
-        return stage.WorldSimulation.WorldTimeScale != 1;
+        return bottomLeftBar.SpeedModePressed;
     }
 
     public void ShowSaveLoadAdvise()
@@ -363,6 +375,8 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     {
         writer.Write(SERIALIZATION_VERSION_CREATURE);
         WriteBasePropertiesToArchive(writer);
+
+        writer.Write(bottomLeftBar.SpeedModePressed);
     }
 
     public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
@@ -372,6 +386,9 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         // The base version is different from ours
         ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
+
+        if (version > 1)
+            bottomLeftBar.SpeedModePressed = reader.ReadBool();
     }
 
     protected override void UpdateFossilisationButtonStates()

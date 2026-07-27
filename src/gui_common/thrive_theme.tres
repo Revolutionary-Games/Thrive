@@ -214,11 +214,15 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxFlat" id="15"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h0fwy"]
+content_margin_top = 3.0
+content_margin_bottom = 3.0
 bg_color = Color(0, 0, 0, 1)
-border_width_top = 3
-border_width_bottom = 3
 border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxTexture" id="16"]
 texture = ExtResource("4")
@@ -553,11 +557,15 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxFlat" id="38"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_35ahv"]
+content_margin_left = 3.0
+content_margin_right = 3.0
 bg_color = Color(0, 0, 0, 1)
-border_width_left = 3
-border_width_right = 3
 border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n1ih5"]
 texture = ExtResource("20_4os0c")
@@ -749,6 +757,8 @@ GraphNode/styles/selectedframe = null
 GridContainer/constants/hseparation = 4
 GridContainer/constants/vseparation = 4
 HBoxContainer/constants/separation = 4
+HScrollBar/constants/padding_bottom = 0
+HScrollBar/constants/padding_top = 0
 HScrollBar/icons/decrement = null
 HScrollBar/icons/decrement_highlight = null
 HScrollBar/icons/increment = null
@@ -756,7 +766,7 @@ HScrollBar/icons/increment_highlight = null
 HScrollBar/styles/grabber = SubResource("12")
 HScrollBar/styles/grabber_highlight = SubResource("13")
 HScrollBar/styles/grabber_pressed = SubResource("14")
-HScrollBar/styles/scroll = SubResource("15")
+HScrollBar/styles/scroll = SubResource("StyleBoxFlat_h0fwy")
 HScrollBar/styles/scroll_focus = null
 HSeparator/constants/separation = 4
 HSeparator/styles/separator = SubResource("16")
@@ -1034,6 +1044,8 @@ Tree/styles/title_button_hover = null
 Tree/styles/title_button_normal = null
 Tree/styles/title_button_pressed = null
 VBoxContainer/constants/separation = 4
+VScrollBar/constants/padding_left = 0
+VScrollBar/constants/padding_right = 0
 VScrollBar/icons/decrement = null
 VScrollBar/icons/decrement_highlight = null
 VScrollBar/icons/increment = null
@@ -1041,7 +1053,7 @@ VScrollBar/icons/increment_highlight = null
 VScrollBar/styles/grabber = SubResource("35")
 VScrollBar/styles/grabber_highlight = SubResource("36")
 VScrollBar/styles/grabber_pressed = SubResource("37")
-VScrollBar/styles/scroll = SubResource("38")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_35ahv")
 VScrollBar/styles/scroll_focus = null
 VSeparator/constants/separation = 4
 VSeparator/styles/separator = SubResource("StyleBoxTexture_n1ih5")

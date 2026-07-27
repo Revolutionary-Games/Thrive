@@ -332,7 +332,7 @@ public partial class MulticellularGrowthSystem : BaseSystem<World, float>
             // spam, and for consistency with non-multicellular microbes
             baseReproduction.SetupRequiredBaseReproductionCompounds(species);
 
-            // Total cost may have changed so recalculate that
+            // Total cost may have changed, so recalculate that
             multicellularGrowth.CalculateTotalBodyPlanCompounds(species);
 
             SpawnMulticellularOffspring(ref organelles, in entity, species);

@@ -417,4 +417,73 @@ public partial class CellBodyPlanEditorComponent
                 throw new Exception($"Invalid reproduction mode index: {index}");
         }
     }
+
+    // These next 4 methods related to endosymbiosis are copied from the CellEditor as there's no easy way to share
+    // this code
+    private void UpdateEndosymbiosisSpeciesData()
+    {
+        // Multicellular is never prokaryotic so we don't read the flag here whether it is bacteria or not
+        endosymbiosisPopup.UpdateData(Editor.EditedBaseSpecies.Endosymbiosis,
+            false, Editor.CurrentPatch.SpeciesInPatch.Keys);
+    }
+
+    private void OnEndosymbiosisSelected(int targetSpecies, string targetOrganelle, int cost)
+    {
+        if (Editor.EditedBaseSpecies.Endosymbiosis.StartedEndosymbiosis != null)
+        {
+            GD.PrintErr("Already has endosymbiosis in-progress");
+            PlayInvalidActionSound();
+            endosymbiosisPopup.Hide();
+            return;
+        }
+
+        var organelle = SimulationParameters.Instance.GetOrganelleType(targetOrganelle);
+
+        if (!Editor.EditedBaseSpecies.Endosymbiosis.StartEndosymbiosis(targetSpecies, organelle, cost))
+        {
+            GD.PrintErr("Endosymbiosis failed to be started");
+            PlayInvalidActionSound();
+        }
+    }
+
+    private void OnAbandonEndosymbiosisOperation(int targetSpeciesId)
+    {
+        if (!Editor.EditedBaseSpecies.Endosymbiosis.CancelEndosymbiosisTarget(targetSpeciesId))
+        {
+            GD.PrintErr("Couldn't cancel endosymbiosis operation on target species: ", targetSpeciesId);
+            PlayInvalidActionSound();
+        }
+    }
+
+    private void OnEndosymbiosisButtonPressed()
+    {
+        // Disallow if currently has an inprogress action as that would complicate logic and allow rare bugs
+        if (CanCancelAction)
+        {
+            GD.Print("Not allowing opening endosymbiosis menu with a pending action");
+            return;
+        }
+
+        GUICommon.Instance.PlayButtonPressSound();
+
+        endosymbiosisPopup.Lawk = Editor.CurrentGame.GameWorld.WorldSettings.LAWK;
+
+        UpdateEndosymbiosisSpeciesData();
+
+        endosymbiosisPopup.OpenCentered(false);
+    }
+
+    private void ConfirmFinishEditingWithEndosymbiosis()
+    {
+        if (OnFinish == null)
+        {
+            GD.PrintErr("Confirmed editing for multicellular when finish callback is not set");
+            return;
+        }
+
+        GUICommon.Instance.PlayButtonPressSound();
+
+        ignoredEditorWarnings.Add(EditorUserOverride.EndosymbiosisPending);
+        OnFinish.Invoke(ignoredEditorWarnings);
+    }
 }

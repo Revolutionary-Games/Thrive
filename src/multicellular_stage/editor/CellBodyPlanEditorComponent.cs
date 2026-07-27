@@ -103,6 +103,15 @@ public partial class CellBodyPlanEditorComponent :
     private Button duplicateTypeButton = null!;
 
     [Export]
+    private Button endosymbiosisButton = null!;
+
+    [Export]
+    private EndosymbiosisPopup endosymbiosisPopup = null!;
+
+    [Export]
+    private CustomConfirmationDialog pendingEndosymbiosisPopup = null!;
+
+    [Export]
     private CustomWindow cannotDeleteInUseTypeDialog = null!;
 
     [Export]
@@ -216,6 +225,9 @@ public partial class CellBodyPlanEditorComponent :
             if (wrongGrowthOrderCells.Count > 0)
                 return true;
 
+            if (HasFinishedPendingEndosymbiosis)
+                return true;
+
             return false;
         }
     }
@@ -225,6 +237,12 @@ public partial class CellBodyPlanEditorComponent :
     ///   outdated data from the species object.
     /// </summary>
     public CellTypeEditsHolder? CellTypeVisualsOverride { get; set; }
+
+    /// <summary>
+    ///   True when there are pending endosymbiosis actions. Only works after the editor is fully initialized.
+    /// </summary>
+    public bool HasFinishedPendingEndosymbiosis =>
+        Editor.EditorReady && Editor.EditedBaseSpecies.Endosymbiosis.HasCompleteEndosymbiosis();
 
     public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
 
@@ -656,6 +674,13 @@ public partial class CellBodyPlanEditorComponent :
             return false;
         }
 
+        // Show a warning if the editor has an endosymbiosis that should be finished
+        if (HasFinishedPendingEndosymbiosis && !editorUserOverrides.Contains(EditorUserOverride.EndosymbiosisPending))
+        {
+            pendingEndosymbiosisPopup.PopupCenteredShrink();
+            return false;
+        }
+
         return true;
     }
 
@@ -765,6 +790,8 @@ public partial class CellBodyPlanEditorComponent :
 
         tolerancesEditor.OnDataTolerancesDependOnChanged();
         OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
+
+        UpdateEndosymbiosisSpeciesData();
     }
 
     /// <summary>

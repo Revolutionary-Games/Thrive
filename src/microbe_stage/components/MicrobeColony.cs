@@ -566,8 +566,8 @@ public static class MicrobeColonyHelpers
         // When converting all uses of the member list need to be checked as this is set in quite many places
         var newMembers = new Entity[colony.ColonyMembers.Length + 1];
 
-        // Specifying an index after all items is the same as specifying last. This makes sure that slightly out
-        // of sync data in delayed apply colony membership doesn't cause issues.
+        // Specifying an index after all items is the same as specifying last. This makes sure that slightly out-of-
+        // sync data in delayed apply colony membership doesn't cause issues.
         if (intendedNewMemberIndex >= newMembers.Length)
             intendedNewMemberIndex = newMembers.Length - 1;
 
@@ -760,7 +760,15 @@ public static class MicrobeColonyHelpers
             if (newParent != -1)
             {
                 colony.ColonyStructure[next] = colony.ColonyMembers[newParent];
-                next.Get<IntercellularMatrix>().RemoveConnection();
+                if (next.Has<IntercellularMatrix>())
+                {
+                    next.Get<IntercellularMatrix>().RemoveConnection();
+                }
+                else
+                {
+                    GD.PrintErr("IntercellularMatrix missing from colony member on disband unexpectedly: ", next);
+                }
+
                 continue;
             }
 
