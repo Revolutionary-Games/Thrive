@@ -34,20 +34,15 @@ public class MembraneShapeGenerator
     private readonly List<Vector2> vertices2D = new();
 
     /// <summary>
-    ///   Stores the neighbours' stretched vertices that have been rotated and shifted to current cells reference point
-    ///   during multicellular processing
+    ///   Pool of scratch objects, sized to the largest neighbour count seen so far.
+    ///   Bounded by max simultaneous neighbours a cell can have, NOT by total cells ever processed.
     /// </summary>
-    private readonly Dictionary<long, List<Vector2>> editableNeighboursVertices = new();
+    private readonly List<NeighbourWorkingData> neighbourWorkingDataPool = new();
 
     /// <summary>
-    ///   Stores the neighbours' vertices shifts during multicellular processing for 'unshifting' purposes
+    ///   Maps a neighbour's key -> its slot index in <see cref="neighbourWorkingDataPool"/> for the current call only.
     /// </summary>
-    private readonly Dictionary<long, Vector2> neighbourShifts = new();
-
-    /// <summary>
-    ///   Stores the neighbours' vertices rotation angles during multicellular processing for 'unrotating' purposes
-    /// </summary>
-    private readonly Dictionary<long, float> neighbourRotations = new();
+    private readonly Dictionary<long, int> neighbourKeyToSlot = new();
 
     /// <summary>
     ///   Stores key of the neighbours that are in the vicinity of the current cell
@@ -197,7 +192,8 @@ public class MembraneShapeGenerator
         var hexCopy = ArrayPool<Vector2>.Shared.Rent(hexCount);
         originalPointData.HexPositions.AsSpan(0, hexCount).CopyTo(hexCopy);
 
-        var colonyKey = MembraneGenerationCoordinator.ComputeColonyKey(multicellularPositions, multicellularOrientations);
+        var colonyKey =
+            MembraneGenerationCoordinator.ComputeColonyKey(multicellularPositions, multicellularOrientations);
 
         return new MembranePointData(hexCopy, hexCount, originalPointData.Type, vertices2D,
             originalPointData.AverageVertex, multicellularPositions, thisCellPosition, multicellularOrientations,
@@ -843,7 +839,8 @@ public class MembraneShapeGenerator
             neighbourData.ProcessedNeighbours.Add(currentCellKey);
             neighbourCellKey = neighbourKey;
 
-            var editableNeighbourVertices = editableNeighboursVertices[neighbourKey];
+            var neighbourCell = neighbourWorkingDataPool[neighbourKeyToSlot[neighbourKey]];
+            var editableNeighbourVertices = neighbourCell.ShiftedVertices;
 
             var neighbourAverageVertex = neighbourData.AverageVertex;
 
@@ -876,8 +873,8 @@ public class MembraneShapeGenerator
             neighbourData.ModifiedVertices.Clear();
 
             // Revert the preprocessing transform (subtract local offset, counter-rotate) and store.
-            var storedLocalOffset = neighbourShifts[neighbourKey];
-            var storedRelativeAngle = neighbourRotations[neighbourKey];
+            var storedLocalOffset = neighbourCell.Shift;
+            var storedRelativeAngle = neighbourCell.Rotation;
 
             for (int i = 0; i < editableNeighbourVertices.Count; ++i)
             {
@@ -901,18 +898,29 @@ public class MembraneShapeGenerator
 
     /// <summary>
     ///   Preprocess all neighbours in closeNeighboursKeys by rotating and shifting their original vertices
-    ///   into this cell's local space, storing results in dictionaries to avoid per-iteration allocations.
+    ///   into this cell's local space, storing results in <see cref="NeighbourWorkingData"/> to avoid
+    ///   per-iteration allocations.
     /// </summary>
     private void RotateAndShiftCloseNeighbours(ConcurrentDictionary<long, NeighbourData> neighboursData,
         float thisAngle, Vector2 thisCellPosition)
     {
-        editableNeighboursVertices.Clear();
-        neighbourShifts.Clear();
-        neighbourRotations.Clear();
+        neighbourKeyToSlot.Clear();
 
-        foreach (var neighbourKey in closeNeighboursKeys)
+        for (int slot = 0; slot < closeNeighboursKeys.Count; ++slot)
         {
+            var neighbourKey = closeNeighboursKeys[slot];
             var neighbourData = neighboursData[neighbourKey];
+
+            // Grow the pool only if this call needs more slots than we've ever needed before.
+            if (slot >= neighbourWorkingDataPool.Count)
+            {
+                neighbourWorkingDataPool.Add(new NeighbourWorkingData());
+            }
+
+            var neighbourCell = neighbourWorkingDataPool[slot];
+            neighbourCell.ShiftedVertices.Clear();
+
+            neighbourKeyToSlot[neighbourKey] = slot;
 
             var neighbourAngle = GetOrientationAngle(neighbourData.Orientation);
             var relativeAngle = neighbourAngle - thisAngle;
@@ -922,17 +930,12 @@ public class MembraneShapeGenerator
 
             var vertexCount = neighbourData.OriginalPointData.VertexCount;
 
-            // TODO: This allocates memory. Maybe change it to use ArrayPool<>
-            var shiftedList = new List<Vector2>(vertexCount);
-            editableNeighboursVertices.Add(neighbourKey, shiftedList);
-
             if (neighbourData.ModifiedVertices != null)
             {
                 for (int i = 0; i < vertexCount; ++i)
                 {
                     var modified = neighbourData.ModifiedVertices[i];
-                    var transformedModified = RotatePoint(modified, relativeAngle) + localOffset;
-                    shiftedList.Add(transformedModified);
+                    neighbourCell.ShiftedVertices.Add(RotatePoint(modified, relativeAngle) + localOffset);
                 }
             }
             else
@@ -940,16 +943,15 @@ public class MembraneShapeGenerator
                 for (int i = 0; i < vertexCount; ++i)
                 {
                     var original = neighbourData.OriginalPointData.Vertices2D[i];
-                    var transformedOriginal = RotatePoint(original, relativeAngle) + localOffset;
-                    shiftedList.Add(transformedOriginal);
+                    neighbourCell.ShiftedVertices.Add(RotatePoint(original, relativeAngle) + localOffset);
                 }
             }
 
             neighbourData.AverageVertex =
                 RotatePoint(neighbourData.OriginalPointData.AverageVertex, relativeAngle) + localOffset;
 
-            neighbourShifts[neighbourKey] = localOffset;
-            neighbourRotations[neighbourKey] = relativeAngle;
+            neighbourCell.Shift = localOffset;
+            neighbourCell.Rotation = relativeAngle;
         }
     }
 
@@ -1111,13 +1113,12 @@ public class MembraneShapeGenerator
                 if (otherNeighbourKey == neighbourCellKey || otherNeighbourKey == currentCellKey)
                     continue;
 
-                if (editableNeighboursVertices.TryGetValue(otherNeighbourKey, out var otherNeighbourVerts))
+                var otherNeighbourCell = neighbourWorkingDataPool[neighbourKeyToSlot[otherNeighbourKey]];
+
+                if (IsInsideConvexPolygon(otherNeighbourCell.ShiftedVertices, newPosition))
                 {
-                    if (IsInsideConvexPolygon(otherNeighbourVerts, newPosition))
-                    {
-                        // Reject this cast if it would put a vertex inside another neighbour.
-                        return false;
-                    }
+                    // Reject this cast if it would put a vertex inside another neighbour.
+                    return false;
                 }
             }
         }
@@ -1153,5 +1154,21 @@ public class MembraneShapeGenerator
                 tangentPointIndexB = i;
             }
         }
+    }
+
+    /// <summary>
+    ///   Per-neighbour data used during a single <see cref="GenerateMulticellularMembrane"/> call. Reused
+    ///   across calls to reduce number of allocations.
+    /// </summary>
+    private sealed class NeighbourWorkingData
+    {
+        /// <summary>
+        ///   The neighbour's vertices, rotated and shifted into the current cell's local reference frame.
+        ///   Cleared and refilled in place rather than reallocated when this slot is reused.
+        /// </summary>
+        public readonly List<Vector2> ShiftedVertices = new();
+
+        public Vector2 Shift;
+        public float Rotation;
     }
 }

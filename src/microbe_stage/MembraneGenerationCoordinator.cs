@@ -62,6 +62,7 @@ public static class MembraneGenerationCoordinator
         {
             colonyKey = ComputeColonyKey(multicellularPositions, multicellularOrientations);
         }
+
         var tracker = Trackers.GetOrAdd(colonyKey,
             _ => new ColonyTracker { ExpectedCount = multicellularPositions.Length });
 
@@ -101,19 +102,6 @@ public static class MembraneGenerationCoordinator
         return resolvedHashes;
     }
 
-    private static long CellKey(Vector2 position)
-    {
-        const long prime = 1099511628211L;
-
-        long hash = prime;
-        hash ^= BitConverter.SingleToInt32Bits(position.X);
-        hash *= prime;
-        hash ^= BitConverter.SingleToInt32Bits(position.Y);
-        hash *= prime;
-
-        return hash;
-    }
-
     public static long ComputeColonyKey(Vector2[] positions, int[]? orientations = null)
     {
         unchecked
@@ -141,6 +129,19 @@ public static class MembraneGenerationCoordinator
 
             return hash;
         }
+    }
+
+    private static long CellKey(Vector2 position)
+    {
+        const long prime = 1099511628211L;
+
+        long hash = prime;
+        hash ^= BitConverter.SingleToInt32Bits(position.X);
+        hash *= prime;
+        hash ^= BitConverter.SingleToInt32Bits(position.Y);
+        hash *= prime;
+
+        return hash;
     }
 
     private class ColonyTracker

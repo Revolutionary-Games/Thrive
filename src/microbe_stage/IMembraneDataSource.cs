@@ -194,98 +194,98 @@ public static class MembraneComputationHelpers
     }
 
     public static bool MembraneDataFieldsEqual(this IMembraneDataSource dataSource, IMembraneDataSource other)
-{
-    return dataSource.MembraneDataFieldsEqual(other.HexPositions, other.HexPositionCount, other.Type,
-        other.CellPositionInMulticellular, other.CellOrientation, other.ColonyKey);
-}
-
-public static bool MembraneDataFieldsEqual(this IMembraneDataSource dataSource, Vector2[] otherPoints,
-    int otherPointCount, MembraneType otherType, Vector2? cellPositionInMulticellular = null,
-    int? cellOrientationInMulticellular = null, long? otherColonyKey = null)
-{
-    if (!dataSource.Type.Equals(otherType))
     {
-        GD.PrintErr($"Membrane cache Type mismatch: {dataSource.Type} != {otherType}");
-        return false;
+        return dataSource.MembraneDataFieldsEqual(other.HexPositions, other.HexPositionCount, other.Type,
+            other.CellPositionInMulticellular, other.CellOrientation, other.ColonyKey);
     }
 
-    if (dataSource.HexPositionCount != otherPointCount)
+    public static bool MembraneDataFieldsEqual(this IMembraneDataSource dataSource, Vector2[] otherPoints,
+        int otherPointCount, MembraneType otherType, Vector2? cellPositionInMulticellular = null,
+        int? cellOrientationInMulticellular = null, long? otherColonyKey = null)
     {
-        GD.PrintErr("Membrane cache HexPositionCount mismatch: " +
-            $"{dataSource.HexPositionCount} != {otherPointCount}");
-        return false;
+        if (!dataSource.Type.Equals(otherType))
+        {
+            GD.PrintErr($"Membrane cache Type mismatch: {dataSource.Type} != {otherType}");
+            return false;
+        }
+
+        if (dataSource.HexPositionCount != otherPointCount)
+        {
+            GD.PrintErr("Membrane cache HexPositionCount mismatch: " +
+                $"{dataSource.HexPositionCount} != {otherPointCount}");
+            return false;
+        }
+
+        var count = dataSource.HexPositionCount;
+
+        var sourcePoints = dataSource.HexPositions;
+
+        // Per-cell position must match — this is what actually distinguishes cells within the same colony
+        if (dataSource.CellPositionInMulticellular != null || cellPositionInMulticellular != null)
+        {
+            if (dataSource.CellPositionInMulticellular == null || cellPositionInMulticellular == null)
+            {
+                GD.PrintErr("Membrane cache CellPositionInMulticellular null mismatch: " +
+                    $"source={dataSource.CellPositionInMulticellular == null} " +
+                    $"other={cellPositionInMulticellular == null}");
+                return false;
+            }
+
+            if (!dataSource.CellPositionInMulticellular.Value.Equals(cellPositionInMulticellular.Value))
+            {
+                GD.PrintErr("Membrane cache CellPositionInMulticellular mismatch: " +
+                    $"{dataSource.CellPositionInMulticellular} != {cellPositionInMulticellular}");
+                return false;
+            }
+        }
+
+        if (dataSource.CellOrientation != null || cellOrientationInMulticellular != null)
+        {
+            if (dataSource.CellOrientation == null || cellOrientationInMulticellular == null)
+            {
+                GD.PrintErr("Membrane cache CellOrientation null mismatch: " +
+                    $"source={dataSource.CellOrientation == null} " +
+                    $"other={cellOrientationInMulticellular == null}");
+                return false;
+            }
+
+            if (dataSource.CellOrientation.Value != cellOrientationInMulticellular.Value)
+            {
+                GD.PrintErr("Membrane cache CellOrientation mismatch: " +
+                    $"{dataSource.CellOrientation} != {cellOrientationInMulticellular}");
+                return false;
+            }
+        }
+
+        if (dataSource.ColonyKey != null || otherColonyKey != null)
+        {
+            if (dataSource.ColonyKey == null || otherColonyKey == null)
+            {
+                GD.PrintErr("Membrane cache ColonyKey null mismatch: " +
+                    $"source={dataSource.ColonyKey == null} other={otherColonyKey == null}");
+                return false;
+            }
+
+            if (dataSource.ColonyKey.Value != otherColonyKey.Value)
+            {
+                GD.PrintErr(
+                    $"Membrane cache ColonyKey mismatch: {dataSource.ColonyKey.Value} != {otherColonyKey.Value}");
+                return false;
+            }
+        }
+
+        for (int i = 0; i < count; ++i)
+        {
+            if (sourcePoints[i] != otherPoints[i])
+            {
+                GD.PrintErr($"Membrane cache HexPositions[{i}] mismatch: " +
+                    $"{sourcePoints[i]} != {otherPoints[i]}");
+                return false;
+            }
+        }
+
+        return true;
     }
-
-    var count = dataSource.HexPositionCount;
-
-    var sourcePoints = dataSource.HexPositions;
-
-    // Per-cell position must match — this is what actually distinguishes cells within the same colony
-    if (dataSource.CellPositionInMulticellular != null || cellPositionInMulticellular != null)
-    {
-        if (dataSource.CellPositionInMulticellular == null || cellPositionInMulticellular == null)
-        {
-            GD.PrintErr("Membrane cache CellPositionInMulticellular null mismatch: " +
-                $"source={dataSource.CellPositionInMulticellular == null} " +
-                $"other={cellPositionInMulticellular == null}");
-            return false;
-        }
-
-        if (!dataSource.CellPositionInMulticellular.Value.Equals(cellPositionInMulticellular.Value))
-        {
-            GD.PrintErr("Membrane cache CellPositionInMulticellular mismatch: " +
-                $"{dataSource.CellPositionInMulticellular} != {cellPositionInMulticellular}");
-            return false;
-        }
-    }
-
-    if (dataSource.CellOrientation != null || cellOrientationInMulticellular != null)
-    {
-        if (dataSource.CellOrientation == null || cellOrientationInMulticellular == null)
-        {
-            GD.PrintErr("Membrane cache CellOrientation null mismatch: " +
-                $"source={dataSource.CellOrientation == null} " +
-                $"other={cellOrientationInMulticellular == null}");
-            return false;
-        }
-
-        if (dataSource.CellOrientation.Value != cellOrientationInMulticellular.Value)
-        {
-            GD.PrintErr("Membrane cache CellOrientation mismatch: " +
-                $"{dataSource.CellOrientation} != {cellOrientationInMulticellular}");
-            return false;
-        }
-    }
-
-    if (dataSource.ColonyKey != null || otherColonyKey != null)
-    {
-        if (dataSource.ColonyKey == null || otherColonyKey == null)
-        {
-            GD.PrintErr("Membrane cache ColonyKey null mismatch: " +
-                $"source={dataSource.ColonyKey == null} other={otherColonyKey == null}");
-            return false;
-        }
-
-        if (dataSource.ColonyKey.Value != otherColonyKey.Value)
-        {
-            GD.PrintErr(
-                $"Membrane cache ColonyKey mismatch: {dataSource.ColonyKey.Value} != {otherColonyKey.Value}");
-            return false;
-        }
-    }
-
-    for (int i = 0; i < count; ++i)
-    {
-        if (sourcePoints[i] != otherPoints[i])
-        {
-            GD.PrintErr($"Membrane cache HexPositions[{i}] mismatch: " +
-                $"{sourcePoints[i]} != {otherPoints[i]}");
-            return false;
-        }
-    }
-
-    return true;
-}
 
     private class HexPositionComparer : IComparer<Vector2>
     {
