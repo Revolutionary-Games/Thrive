@@ -82,6 +82,8 @@ public class EnvironmentalCompoundPressure : SelectionPressure
 
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {
+        var energyBalance = cache.GetEnergyBalanceForSpecies(species, patch.Biome);
+
         if (species is MicrobeSpecies microbeSpecies)
         {
             var amountCreated = cache.GetCompoundGeneratedFrom(compound, createdCompound, microbeSpecies, patch.Biome);
@@ -91,8 +93,6 @@ public class EnvironmentalCompoundPressure : SelectionPressure
                 amountCreated *=
                     cache.GetCompoundConversionScoreForSpecies(createdCompound, atp, microbeSpecies);
             }
-
-            var energyBalance = cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome);
 
             // Penalize Species that cannot rely exclusively on this compound
             return MathF.Min(amountCreated / energyBalance.TotalConsumption, 1);
@@ -108,8 +108,6 @@ public class EnvironmentalCompoundPressure : SelectionPressure
                 amountCreated *=
                     cache.GetCompoundConversionScoreForSpecies(createdCompound, atp, multicellularSpecies);
             }
-
-            var energyBalance = cache.GetEnergyBalanceForSpecies(multicellularSpecies, patch.Biome);
 
             // Penalize Species that cannot rely exclusively on this compound
             return MathF.Min(amountCreated / energyBalance.TotalConsumption, 1);

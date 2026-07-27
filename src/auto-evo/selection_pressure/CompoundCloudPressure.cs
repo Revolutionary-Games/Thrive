@@ -109,7 +109,6 @@ public class CompoundCloudPressure : SelectionPressure
         bool usesVaryingCompounds;
 
         var activity = species.Behaviour.Activity;
-        EnergyBalanceInfoSimple energyBalance;
 
         if (species is MicrobeSpecies microbeSpecies)
         {
@@ -117,7 +116,6 @@ public class CompoundCloudPressure : SelectionPressure
             nominalStorageCapacity = microbeSpecies.StorageCapacities.Nominal;
             usesVaryingCompounds = cache.GetUsesVaryingCompoundsForSpecies(microbeSpecies, patch.Biome);
             chemoreceptorScore = cache.GetChemoreceptorCloudScore(microbeSpecies, compoundDefinition, patch.Biome);
-            energyBalance = cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome);
 
             if (compoundOut != atp)
             {
@@ -138,7 +136,6 @@ public class CompoundCloudPressure : SelectionPressure
             usesVaryingCompounds = cache.GetUsesVaryingCompoundsForSpecies(multicellularSpecies, patch.Biome);
             chemoreceptorScore = cache.GetChemoreceptorCloudScore(multicellularSpecies, compoundDefinition,
                 patch.Biome);
-            energyBalance = cache.GetEnergyBalanceForSpecies(multicellularSpecies, patch.Biome);
 
             if (compoundOut != atp)
             {
@@ -157,6 +154,8 @@ public class CompoundCloudPressure : SelectionPressure
         {
             throw new ArgumentException("Wrong type of Species passed to Microbe/Multicellular Species miche tree");
         }
+
+        var energyBalance = cache.GetEnergyBalanceForSpecies(species, patch.Biome);
 
         var score = MathF.Pow(speed, 0.6f);
 

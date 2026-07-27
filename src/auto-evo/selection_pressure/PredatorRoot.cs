@@ -1,5 +1,6 @@
 ﻿namespace AutoEvo;
 
+using System;
 using SharedBase.Archive;
 
 public class PredatorRoot : SelectionPressure
@@ -46,21 +47,18 @@ public class PredatorRoot : SelectionPressure
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {
         float atpFromGlucose;
-        EnergyBalanceInfoSimple energyBalance;
 
         if (species is MicrobeSpecies microbeSpecies)
         {
             atpFromGlucose = cache.GetCompoundGeneratedFrom(glucose, atp, microbeSpecies, patch.Biome);
-            energyBalance = cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome);
         }
         else if (species is MulticellularSpecies multicellularSpecies)
         {
             atpFromGlucose = cache.GetCompoundGeneratedFrom(glucose, atp, multicellularSpecies, patch.Biome);
-            energyBalance = cache.GetEnergyBalanceForSpecies(multicellularSpecies, patch.Biome);
         }
         else
         {
-            return 0;
+            throw new ArgumentException("Wrong type of Species passed to Microbe/Multicellular Species miche tree");
         }
 
         // ensure that the predator is at least slightly willing to hunt
@@ -70,6 +68,7 @@ public class PredatorRoot : SelectionPressure
         }
 
         // Ensure that a predator can actually survive off of only glucose
+        var energyBalance = cache.GetEnergyBalanceForSpecies(species, patch.Biome);
         if (atpFromGlucose >= energyBalance.TotalConsumption)
         {
             return 1;

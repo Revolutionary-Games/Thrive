@@ -69,23 +69,15 @@ public static class MichePopulation
     public static float CalculateIndividualCost(Species species, BiomeConditions biomeConditions,
         SimulationCache cache)
     {
-        if (species is MicrobeSpecies microbeSpecies)
+        if (species is not MicrobeSpecies and not MulticellularSpecies)
         {
-            var energyBalanceInfo = cache.GetEnergyBalanceForSpecies(microbeSpecies, biomeConditions);
-
-            return energyBalanceInfo.TotalConsumptionStationary + energyBalanceInfo.TotalMovement
-                * species.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
+            throw new ArgumentException("Unhandled species type passed");
         }
 
-        if (species is MulticellularSpecies multicellularSpecies)
-        {
-            var energyBalanceInfo = cache.GetEnergyBalanceForSpecies(multicellularSpecies, biomeConditions);
+        var energyBalanceInfo = cache.GetEnergyBalanceForSpecies(species, biomeConditions);
 
-            return energyBalanceInfo.TotalConsumptionStationary + energyBalanceInfo.TotalMovement
-                * species.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
-        }
-
-        throw new ArgumentException("Unhandled species type passed");
+        return energyBalanceInfo.TotalConsumptionStationary + energyBalanceInfo.TotalMovement
+            * species.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
     }
 
     /// <summary>

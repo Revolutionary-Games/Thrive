@@ -43,16 +43,12 @@ public class EnergyConsumptionPressure : SelectionPressure
 
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {
-        EnergyBalanceInfoSimple energyBalance;
-
         // Modifier to fit the current mechanics of the Binding Agent. This should probably be removed or adjusted if
         // being in a colony no longer reduces osmoregulation cost.
         var bindingModifier = 1.0f;
 
         if (species is MicrobeSpecies microbeSpecies)
         {
-            energyBalance = cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome);
-
             MicrobeInternalCalculations.GetBindingAndSignalling(microbeSpecies.Organelles.Organelles,
                 out var hasBindingAgent, out var hasSignallingAgent);
 
@@ -69,15 +65,12 @@ public class EnergyConsumptionPressure : SelectionPressure
                 }
             }
         }
-        else if (species is MulticellularSpecies multicellularSpecies)
-        {
-            energyBalance = cache.GetEnergyBalanceForSpecies(multicellularSpecies, patch.Biome);
-        }
-        else
+        else if (species is not MulticellularSpecies)
         {
             throw new ArgumentException("Wrong type of Species passed to Microbe/Multicellular Species miche tree");
         }
 
+        var energyBalance = cache.GetEnergyBalanceForSpecies(species, patch.Biome);
         var inactivityScore = 1 - MathF.Pow(species.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY, 1.2f);
         var focusScore = MathF.Pow(species.Behaviour.Focus / Constants.MAX_SPECIES_FOCUS, 1.2f);
         var fearScore = MathF.Pow(species.Behaviour.Fear / Constants.MAX_SPECIES_FEAR, 1.5f);

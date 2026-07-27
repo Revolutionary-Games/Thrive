@@ -116,15 +116,12 @@ public class ChunkCompoundPressure : SelectionPressure
         bool usesVaryingCompounds;
         var canEngulf = false;
 
-        EnergyBalanceInfoSimple energyBalance;
-
         if (species is MicrobeSpecies microbeSpecies)
         {
             speed = cache.GetSpeedForSpecies(microbeSpecies);
             nominalStorageCapacity = microbeSpecies.StorageCapacities.Nominal;
             usesVaryingCompounds = cache.GetUsesVaryingCompoundsForSpecies(microbeSpecies, patch.Biome);
             chemoreceptorScore = cache.GetChemoreceptorChunkScore(microbeSpecies, chunk, compound);
-            energyBalance = cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome);
 
             if (microbeSpecies.CanEngulf &&
                 cache.GetBaseHexSizeForSpecies(microbeSpecies) > chunk.Size * Constants.ENGULF_SIZE_RATIO_REQ)
@@ -150,7 +147,6 @@ public class ChunkCompoundPressure : SelectionPressure
             nominalStorageCapacity = multicellularSpecies.StorageCapacities.Nominal;
             usesVaryingCompounds = cache.GetUsesVaryingCompoundsForSpecies(multicellularSpecies, patch.Biome);
             chemoreceptorScore = cache.GetChemoreceptorChunkScore(multicellularSpecies, chunk, compound);
-            energyBalance = cache.GetEnergyBalanceForSpecies(multicellularSpecies, patch.Biome);
 
             foreach (var cellType in multicellularSpecies.CellTypes)
             {
@@ -189,6 +185,8 @@ public class ChunkCompoundPressure : SelectionPressure
         {
             throw new ArgumentException("Wrong type of Species passed to Microbe/Multicellular Species miche tree");
         }
+
+        var energyBalance = cache.GetEnergyBalanceForSpecies(species, patch.Biome);
 
         var score = 1.0f;
 
