@@ -359,7 +359,34 @@ public static class MulticellularGrowthHelpers
                 return total;
             }
 
-            throw new NotImplementedException($"Reproduction method's reproduction cost calculation is" +
+            if (species.ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy)
+            {
+                return species.ModifiableGameteTypeA?.CalculateTotalCompositionList() ??
+                    throw new Exception("Species using sexual reproduction is missing a gamete type");
+            }
+
+            if (species.ReproductionMethod is MulticellularReproductionMethod.SexualAnisogamy)
+            {
+                // Just need compounds for the gamete cell, however, as we don't track the sex, just take an average
+                var result = species.ModifiableGameteTypeA?.CalculateTotalCompositionList() ??
+                    throw new Exception("Species using sexual reproduction is missing a gamete type");
+
+                if (species.ModifiableGameteTypeB == null)
+                    throw new Exception("Species using sexual reproduction is missing a gamete type");
+
+                species.ModifiableGameteTypeB.CalculateTotalCompositionList(result);
+
+                int count = result.Count;
+                for (int i = 0; i < count; ++i)
+                {
+                    var (type, amount) = result[i];
+                    result[i] = (type, amount * 0.5f);
+                }
+
+                return result;
+            }
+
+            throw new NotImplementedException($"Reproduction method's reproduction cost calculation is " +
                 $"unimplemented: {species.ReproductionMethod}");
         }
 
@@ -397,6 +424,39 @@ public static class MulticellularGrowthHelpers
                 // Sporulation skips the first cell but adds the spore cost
                 multicellularGrowth.TotalNeededForMulticellularGrowth.Merge(species.ModifiableSporeCellType
                     .CalculateTotalComposition());
+                nextCellCostToCalculate = 1;
+                break;
+            }
+
+            case MulticellularReproductionMethod.SexualIsogamy:
+            {
+                if (species.ModifiableGameteTypeA == null)
+                    throw new InvalidOperationException("Species has no gamete A type but uses sexual reproduction");
+
+                multicellularGrowth.TotalNeededForMulticellularGrowth.Merge(species.ModifiableGameteTypeA
+                    .CalculateTotalComposition());
+                nextCellCostToCalculate = 1;
+                break;
+            }
+
+            case MulticellularReproductionMethod.SexualAnisogamy:
+            {
+                if (species.ModifiableGameteTypeA == null || species.ModifiableGameteTypeB == null)
+                {
+                    throw new InvalidOperationException(
+                        "Species has a missing gamete type type but uses sexual reproduction");
+                }
+
+                // Take an average of the two gametes as we don't represent cell sexes (yet)
+                var localCost = species.ModifiableGameteTypeA.CalculateTotalComposition();
+                localCost.Merge(species.ModifiableGameteTypeB.CalculateTotalComposition());
+
+                foreach (var localCostKey in localCost.Keys)
+                {
+                    localCost[localCostKey] /= 2;
+                }
+
+                multicellularGrowth.TotalNeededForMulticellularGrowth.Merge(localCost);
                 nextCellCostToCalculate = 1;
                 break;
             }

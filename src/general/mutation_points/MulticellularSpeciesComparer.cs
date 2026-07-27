@@ -177,7 +177,24 @@ public class MulticellularSpeciesComparer
 
         if (speciesA.ReproductionMethod != speciesB.ReproductionMethod)
         {
-            cost += Constants.MULTICELLULAR_REPRODUCTION_METHOD_CHANGE_COST;
+            // Anisogamy "upgrade" cost if switching to that
+            if (speciesB.ReproductionMethod == MulticellularReproductionMethod.SexualAnisogamy)
+            {
+                // If not switching from the base sexual reproduction, then the cost is even higher
+                if (speciesA.ReproductionMethod != MulticellularReproductionMethod.SexualIsogamy)
+                    cost += Constants.MULTICELLULAR_REPRODUCTION_METHOD_CHANGE_COST;
+
+                cost += Constants.MULTICELLULAR_ANISOGAMY_UPGRADE_COST;
+
+                // Upgrading doesn't let changing the original gamete cell for free.
+                // If upgrading from random mode, then the gamete A might be missing.
+                if (speciesA.GameteTypeA?.CellTypeName != speciesB.GameteTypeA?.CellTypeName)
+                    cost += Constants.GAMETE_CELL_TYPE_CHANGE_COST;
+            }
+            else
+            {
+                cost += Constants.MULTICELLULAR_REPRODUCTION_METHOD_CHANGE_COST;
+            }
         }
         else if (speciesA.ReproductionMethod == MulticellularReproductionMethod.Sporulation
                  && speciesA.SporeCellType!.CellTypeName != speciesB.SporeCellType?.CellTypeName)
@@ -193,10 +210,10 @@ public class MulticellularSpeciesComparer
         else if (speciesA.ReproductionMethod == MulticellularReproductionMethod.SexualAnisogamy)
         {
             if (speciesA.GameteTypeA!.CellTypeName != speciesB.GameteTypeA?.CellTypeName)
-                cost += Constants.SPORE_CELL_TYPE_CHANGE_COST;
+                cost += Constants.GAMETE_CELL_TYPE_CHANGE_COST;
 
             if (speciesA.GameteTypeB!.CellTypeName != speciesB.GameteTypeB?.CellTypeName)
-                cost += Constants.SPORE_CELL_TYPE_CHANGE_COST;
+                cost += Constants.GAMETE_CELL_TYPE_CHANGE_COST;
         }
 
         if (speciesB.ReproductionMethod == MulticellularReproductionMethod.MassBudding)
