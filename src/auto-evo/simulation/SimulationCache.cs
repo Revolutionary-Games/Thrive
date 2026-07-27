@@ -294,26 +294,6 @@ public class SimulationCache
         return cached;
     }
 
-    public float GetBaseHexSizeForSpecies(MulticellularSpecies species)
-    {
-#if CHECK_HASH_CODE_REUSED_INSTANCES
-        CheckSpecies(species);
-#endif
-
-        var key = GetSpeciesCacheKey(species);
-
-        ref var size = ref CollectionsMarshal.GetValueRefOrNullRef(cachedBaseHexSizes, key);
-        if (!Unsafe.IsNullRef(ref size))
-        {
-            return size;
-        }
-
-        var cached = species.BaseHexSize;
-
-        cachedBaseHexSizes.Add(key, cached);
-        return cached;
-    }
-
     public float GetBaseHexSizeForCellType(IReadOnlyCellTypeDefinition cellType)
     {
         // Not yet profiled to decide whether this should be cached or not
