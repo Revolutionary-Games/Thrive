@@ -81,7 +81,8 @@ public class AddCellWithOrganelle : IMutationStrategy<Species>
         if (baseSpecies is not MulticellularSpecies baseMulticellularSpecies)
             return null;
 
-        if (mp < Constants.ORGANELLE_CHEAPEST_COST * Constants.MULTICELLULAR_EDITOR_COST_FACTOR)
+        if (mp < Constants.ORGANELLE_CHEAPEST_COST * Constants.MULTICELLULAR_EDITOR_COST_FACTOR &&
+            mp < Constants.CELL_ADD_COST)
             return null;
 
         var organelles = allOrganelles.OrderBy(_ => random.Next())
@@ -132,42 +133,27 @@ public class AddCellWithOrganelle : IMutationStrategy<Species>
             // Otherwise, create a new Cell Type with this Organelle, and place a new cell on the center line.
             if (highestTargetOrganelleCount > 0)
             {
-                var newSpecies = (MulticellularSpecies)baseMulticellularSpecies.Clone();
                 var baseCellType = baseCellTypes[mostSuitableIndex];
-                var newCellType = newSpecies.ModifiableCellTypes[mostSuitableIndex];
 
-                if (AddCellsAdjacent(newSpecies, ref mp, baseCells, baseCellsCount, baseCellType, newCellType,
-                        newCellType.MPCost, AdjacencyDirection.Front, workMemory1, workMemory2))
+                foreach (var adjacencyDirection in
+                         Enum.GetValues(typeof(AdjacencyDirection)).Cast<AdjacencyDirection>())
                 {
-                    mutated.Add(new Mutant(newSpecies, mp));
-                }
+                    var newSpecies = (MulticellularSpecies)baseMulticellularSpecies.Clone();
+                    var newCellType = newSpecies.ModifiableCellTypes[mostSuitableIndex];
 
-                newSpecies = (MulticellularSpecies)baseMulticellularSpecies.Clone();
-                newCellType = newSpecies.ModifiableCellTypes[mostSuitableIndex];
-                if (AddCellsAdjacent(newSpecies, ref mp, baseCells, baseCellsCount, baseCellType, newCellType,
-                        newCellType.MPCost, AdjacencyDirection.SideFront, workMemory1, workMemory2))
-                {
-                    mutated.Add(new Mutant(newSpecies, mp));
-                }
-
-                newSpecies = (MulticellularSpecies)baseMulticellularSpecies.Clone();
-                newCellType = newSpecies.ModifiableCellTypes[mostSuitableIndex];
-                if (AddCellsAdjacent(newSpecies, ref mp, baseCells, baseCellsCount, baseCellType, newCellType,
-                        newCellType.MPCost, AdjacencyDirection.SideRear, workMemory1, workMemory2))
-                {
-                    mutated.Add(new Mutant(newSpecies, mp));
-                }
-
-                newSpecies = (MulticellularSpecies)baseMulticellularSpecies.Clone();
-                newCellType = newSpecies.ModifiableCellTypes[mostSuitableIndex];
-                if (AddCellsAdjacent(newSpecies, ref mp, baseCells, baseCellsCount, baseCellType, newCellType,
-                        newCellType.MPCost, AdjacencyDirection.Rear, workMemory1, workMemory2))
-                {
-                    mutated.Add(new Mutant(newSpecies, mp));
+                    if (AddCellsAdjacent(newSpecies, ref mp, baseCells, baseCellsCount, baseCellType, newCellType,
+                            newCellType.MPCost, adjacencyDirection, workMemory1, workMemory2))
+                    {
+                        mutated.Add(new Mutant(newSpecies, mp));
+                    }
                 }
             }
             else
             {
+                if (mp < organelle.MPCost * Constants.MULTICELLULAR_EDITOR_COST_FACTOR + Constants.CELL_ADD_COST)
+                    return null;
+
+                // We take the smallest exising cell type as a template to add the new organelle to
                 var smallestCellSize = baseMulticellularSpecies.CellTypes[0].BaseHexSize;
                 var smallestCellIndex = 0;
                 var newSpecies = (MulticellularSpecies)baseMulticellularSpecies.Clone();
@@ -197,7 +183,8 @@ public class AddCellWithOrganelle : IMutationStrategy<Species>
                 if (!AddOrganelle(organelle, direction, newCellType, workMemory1, workMemory2, workMemory3, random))
                     continue;
 
-                var cellTypes = newSpecies.ModifiableCellTypes;
+                mp -= organelle.MPCost * Constants.MULTICELLULAR_EDITOR_COST_FACTOR;
+
                 newCellType.CellTypeName = organelle.Name;
 
                 // This part is used for MP calculations in the player editor, so might not be required?
@@ -206,43 +193,22 @@ public class AddCellWithOrganelle : IMutationStrategy<Species>
                 switch (direction)
                 {
                     case Direction.Front:
-                        cellTypes.Add(newCellType);
-                        if (AddCellCenterline(Direction.Front, newCellType, newSpecies,
-                                newSpecies.ModifiableEditorCells, workMemory1, workMemory2, random))
-                        {
-                            mutated.Add(new Mutant(newSpecies, mp
-                                - Constants.MULTICELLULAR_EDITOR_COST_FACTOR * organelle.MPCost - newCellType.MPCost));
-                        }
-
+                        TryAddCenterlineCellMutant(Direction.Front, newCellType, newSpecies, workMemory1, workMemory2,
+                            random, mp, mutated);
                         break;
                     case Direction.Rear:
-                        cellTypes.Add(newCellType);
-                        if (AddCellCenterline(Direction.Rear, newCellType, newSpecies,
-                                newSpecies.ModifiableEditorCells, workMemory1, workMemory2, random))
-                        {
-                            mutated.Add(new Mutant(newSpecies, mp
-                                - Constants.MULTICELLULAR_EDITOR_COST_FACTOR * organelle.MPCost - newCellType.MPCost));
-                        }
-
+                        TryAddCenterlineCellMutant(Direction.Rear, newCellType, newSpecies, workMemory1, workMemory2,
+                            random, mp, mutated);
                         break;
                     case Direction.Neutral:
+                        // For neutral positioning organelles, we create a mutant for adding the new celltype both to
+                        // the front and the rear
                         var newSpeciesFront = (MulticellularSpecies)newSpecies.Clone();
-                        newSpeciesFront.ModifiableCellTypes.Add(newCellType);
-                        if (AddCellCenterline(Direction.Front, newCellType, newSpeciesFront,
-                                newSpeciesFront.ModifiableEditorCells, workMemory1, workMemory2, random))
-                        {
-                            mutated.Add(new Mutant(newSpeciesFront, mp
-                                - Constants.MULTICELLULAR_EDITOR_COST_FACTOR * organelle.MPCost - newCellType.MPCost));
-                        }
+                        TryAddCenterlineCellMutant(Direction.Front, newCellType, newSpeciesFront, workMemory1,
+                            workMemory2, random, mp, mutated);
 
-                        cellTypes.Add(newCellType);
-                        if (AddCellCenterline(Direction.Rear, newCellType, newSpecies,
-                                newSpecies.ModifiableEditorCells, workMemory1, workMemory2, random))
-                        {
-                            mutated.Add(new Mutant(newSpecies, mp
-                                - Constants.MULTICELLULAR_EDITOR_COST_FACTOR * organelle.MPCost - newCellType.MPCost));
-                        }
-
+                        TryAddCenterlineCellMutant(Direction.Rear, newCellType, newSpecies, workMemory1, workMemory2,
+                            random, mp, mutated);
                         break;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
@@ -260,5 +226,20 @@ public class AddCellWithOrganelle : IMutationStrategy<Species>
     {
         return organelle.AutoEvoCanPlace &&
             organelle.EditorButtonGroup != OrganelleDefinition.OrganelleGroup.Macroscopic;
+    }
+
+    /// <summary>
+    ///   Try to add a new mutant with a new celltype placed on its centerline (front or rear)
+    /// </summary>
+    private static void TryAddCenterlineCellMutant(Direction direction, CellType newCellType,
+        MulticellularSpecies newSpecies, List<Hex> workMemory1, List<Hex> workMemory2, Random random, double mp,
+        List<Mutant> mutated)
+    {
+        newSpecies.ModifiableCellTypes.Add(newCellType);
+        if (AddCellCenterline(direction, newCellType, newSpecies,
+                newSpecies.ModifiableEditorCells, workMemory1, workMemory2, random))
+        {
+            mutated.Add(new Mutant(newSpecies, mp - newCellType.MPCost));
+        }
     }
 }
