@@ -75,7 +75,7 @@ public class EnergyConsumptionPressure : SelectionPressure
         }
         else
         {
-            return 0.0f;
+            throw new ArgumentException("Wrong type of Species passed to Microbe/Multicellular Species miche tree");
         }
 
         var inactivityScore = 1 - MathF.Pow(species.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY, 1.2f);

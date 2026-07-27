@@ -1,5 +1,7 @@
 ﻿namespace AutoEvo;
 
+using System;
+using Godot;
 using SharedBase.Archive;
 
 public class MetabolicStabilityPressure : SelectionPressure
@@ -60,6 +62,8 @@ public class MetabolicStabilityPressure : SelectionPressure
                 // Only punish non-sessile species for not being able to move continuously
                 return 1.0f - microbeSpecies.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
             }
+
+            return 0.0f;
         }
 
         if (species is MulticellularSpecies multicellularSpecies)
@@ -92,7 +96,8 @@ public class MetabolicStabilityPressure : SelectionPressure
             return 1.0f;
         }
 
-        return 0.0f;
+        GD.Print(species.ReadableName);
+        throw new ArgumentException("Wrong type of Species passed to Microbe/Multicellular Species miche tree");
     }
 
     public override float GetEnergy(Patch patch)

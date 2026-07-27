@@ -1,5 +1,6 @@
 ﻿namespace AutoEvo;
 
+using System;
 using SharedBase.Archive;
 
 /// <summary>
@@ -48,7 +49,7 @@ public class TemperatureSessilityPressure : SelectionPressure
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {
         if (species is not MicrobeSpecies and not MulticellularSpecies)
-            return 0;
+            throw new ArgumentException("Wrong type of Species passed to Microbe/Multicellular Species miche tree");
 
         // Get temperature from the patch
         if (!patch.Biome.TryGetCompound(Compound.Temperature, CompoundAmountType.Biome, out var temperatureAmount))

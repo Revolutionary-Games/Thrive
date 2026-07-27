@@ -539,12 +539,12 @@ public class SimulationCache
     {
         if (predatorSpecies is not MicrobeSpecies and not MulticellularSpecies)
         {
-            return 0;
+            throw new ArgumentException("Wrong type of Species passed to Microbe/Multicellular Species miche tree");
         }
 
         if (preySpecies is not MicrobeSpecies and not MulticellularSpecies)
         {
-            return 0;
+            throw new ArgumentException("Wrong type of Species passed to Microbe/Multicellular Species miche tree");
         }
 
         // No cannibalism

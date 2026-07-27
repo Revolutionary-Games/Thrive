@@ -187,7 +187,7 @@ public class ChunkCompoundPressure : SelectionPressure
         }
         else
         {
-            return 0;
+            throw new ArgumentException("Wrong type of Species passed to Microbe/Multicellular Species miche tree");
         }
 
         var score = 1.0f;

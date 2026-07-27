@@ -155,7 +155,7 @@ public class CompoundCloudPressure : SelectionPressure
         }
         else
         {
-            return 0;
+            throw new ArgumentException("Wrong type of Species passed to Microbe/Multicellular Species miche tree");
         }
 
         var score = MathF.Pow(speed, 0.6f);

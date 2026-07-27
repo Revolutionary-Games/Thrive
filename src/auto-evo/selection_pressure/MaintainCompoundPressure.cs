@@ -68,7 +68,7 @@ public class MaintainCompoundPressure : SelectionPressure
         }
         else
         {
-            return 0;
+            throw new ArgumentException("Wrong type of Species passed to Microbe/Multicellular Species miche tree");
         }
 
         var compoundUsed = 0.0f;

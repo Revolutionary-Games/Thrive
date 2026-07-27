@@ -1,5 +1,6 @@
 ﻿namespace AutoEvo;
 
+using System;
 using SharedBase.Archive;
 
 /// <summary>
@@ -52,8 +53,8 @@ public class EnvironmentalTolerancePressure : SelectionPressure
                 patch.Biome);
         }
 
-        // return 0 if given species type is unhandled.
-        return 0;
+        // throw an exception if given species type is unhandled.
+        throw new ArgumentException("Wrong type of Species passed to Microbe/Multicellular Species miche tree");
     }
 
     public override float GetEnergy(Patch patch)

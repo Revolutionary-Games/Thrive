@@ -115,7 +115,7 @@ public class EnvironmentalCompoundPressure : SelectionPressure
             return MathF.Min(amountCreated / energyBalance.TotalConsumption, 1);
         }
 
-        return 0;
+        throw new ArgumentException("Wrong type of Species passed to Microbe/Multicellular Species miche tree");
     }
 
     public override float GetEnergy(Patch patch)

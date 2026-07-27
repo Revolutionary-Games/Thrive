@@ -102,7 +102,7 @@ public class ReproductionCompoundPressure : SelectionPressure
         }
         else
         {
-            return 0;
+            throw new ArgumentException("Wrong type of Species passed to Microbe/Multicellular Species miche tree");
         }
 
         // Let the miche function even at a compound level of 0

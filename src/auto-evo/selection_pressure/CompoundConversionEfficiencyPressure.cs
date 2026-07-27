@@ -1,5 +1,6 @@
 ﻿namespace AutoEvo;
 
+using System;
 using SharedBase.Archive;
 
 public class CompoundConversionEfficiencyPressure : SelectionPressure
@@ -69,7 +70,7 @@ public class CompoundConversionEfficiencyPressure : SelectionPressure
         if (species is MulticellularSpecies multicellularSpecies)
             return cache.GetCompoundConversionScoreForSpecies(FromCompound, ToCompound, multicellularSpecies);
 
-        return 0;
+        throw new ArgumentException("Wrong type of Species passed to Microbe/Multicellular Species miche tree");
     }
 
     public override float GetEnergy(Patch patch)
