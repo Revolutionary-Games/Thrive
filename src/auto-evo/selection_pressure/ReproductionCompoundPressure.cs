@@ -69,7 +69,6 @@ public class ReproductionCompoundPressure : SelectionPressure
 
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {
-        float speed;
         float chemoreceptorScore;
         float nominalStorageCapacity;
         bool usesVaryingCompounds;
@@ -83,7 +82,6 @@ public class ReproductionCompoundPressure : SelectionPressure
 
         if (species is MicrobeSpecies microbeSpecies)
         {
-            speed = cache.GetSpeedForSpecies(microbeSpecies);
             nominalStorageCapacity = microbeSpecies.StorageCapacities.Nominal;
             usesVaryingCompounds = cache.GetUsesVaryingCompoundsForSpecies(microbeSpecies, patch.Biome);
             chemoreceptorScore = cache.GetChemoreceptorCloudScore(microbeSpecies, compoundDefinition, patch.Biome);
@@ -93,7 +91,6 @@ public class ReproductionCompoundPressure : SelectionPressure
         }
         else if (species is MulticellularSpecies multicellularSpecies)
         {
-            speed = cache.GetSpeedForSpecies(multicellularSpecies);
             nominalStorageCapacity = multicellularSpecies.StorageCapacities.Nominal;
             usesVaryingCompounds = cache.GetUsesVaryingCompoundsForSpecies(multicellularSpecies, patch.Biome);
             chemoreceptorScore = cache.GetChemoreceptorCloudScore(multicellularSpecies, compoundDefinition,
@@ -115,6 +112,7 @@ public class ReproductionCompoundPressure : SelectionPressure
             compoundAmount += compoundData.Density * compoundData.Amount;
         }
 
+        var speed = cache.GetSpeedForSpecies(species);
         var score = MathF.Pow(speed, 0.6f);
 
         // Diminishing returns on storage

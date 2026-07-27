@@ -224,7 +224,7 @@ public class SimulationCache
 
     // TODO: Both of these seem like something that could easily be stored on the species with OnEdited
     // And also *not* caching them at all is much slower (so if not cached in species, they must be cached here)
-    public float GetSpeedForSpecies(MicrobeSpecies species)
+    public float GetSpeedForSpecies(Species species)
     {
 #if CHECK_HASH_CODE_REUSED_INSTANCES
         CheckSpecies(species);
@@ -238,33 +238,25 @@ public class SimulationCache
             return speed;
         }
 
-        var organelles = species.Organelles;
-
-        // For MicrobeSpecies, Cell Type Specialization = Total Specialization Bonus
-        var totalSpecializationBonus = species.CellTypeSpecializationBonus;
-
-        var cached = MicrobeInternalCalculations.CalculateSpeed(organelles.Organelles, species.MembraneType,
-            species.MembraneRigidity, species.IsBacteria, totalSpecializationBonus, true);
-
-        cachedBaseSpeeds.Add(key, cached);
-        return cached;
-    }
-
-    public float GetSpeedForSpecies(MulticellularSpecies species)
-    {
-#if CHECK_HASH_CODE_REUSED_INSTANCES
-        CheckSpecies(species);
-#endif
-
-        var key = GetSpeciesCacheKey(species);
-
-        ref var speed = ref CollectionsMarshal.GetValueRefOrNullRef(cachedBaseSpeeds, key);
-        if (!Unsafe.IsNullRef(ref speed))
+        float cached;
+        if (species is MicrobeSpecies microbeSpecies)
         {
-            return speed;
-        }
+            var organelles = microbeSpecies.Organelles;
 
-        var cached = CellBodyPlanInternalCalculations.CalculateSpeed(species.ModifiableEditorCells);
+            // For MicrobeSpecies, Cell Type Specialization = Total Specialization Bonus
+            var totalSpecializationBonus = microbeSpecies.CellTypeSpecializationBonus;
+
+            cached = MicrobeInternalCalculations.CalculateSpeed(organelles.Organelles, microbeSpecies.MembraneType,
+                microbeSpecies.MembraneRigidity, microbeSpecies.IsBacteria, totalSpecializationBonus, true);
+        }
+        else if (species is MulticellularSpecies multicellularSpecies)
+        {
+            cached = CellBodyPlanInternalCalculations.CalculateSpeed(multicellularSpecies.ModifiableEditorCells);
+        }
+        else
+        {
+            throw new ArgumentException("Incompatible species type given");
+        }
 
         cachedBaseSpeeds.Add(key, cached);
         return cached;
@@ -647,7 +639,6 @@ public class SimulationCache
         var enzymesScore = 0.0f;
 
         float preyHexSize;
-        float preySpeed;
         float preyRotationSpeed;
         float preyIndividualCost;
         var preyHP = 1.0f;
@@ -655,7 +646,6 @@ public class SimulationCache
         float preyPhysicalResistance;
         float preyStorageNominal;
 
-        float predatorSpeed;
         float predatorRotationSpeed;
         float predatorHexSize;
         PredationToolsRawScores preyToolScores;
@@ -676,7 +666,6 @@ public class SimulationCache
             preyHexSize = GetBaseHexSizeForSpecies(microbePrey);
             smallestPreyHexSize = preyHexSize;
             dissolverEnzyme = microbePrey.MembraneType.DissolverEnzyme;
-            preySpeed = GetSpeedForSpecies(microbePrey);
             preyRotationSpeed = GetRotationSpeedForSpecies(microbePrey);
             preyIndividualCost = MichePopulation.CalculateIndividualCost(microbePrey, biomeConditions, this);
             preyStorageNominal = microbePrey.StorageCapacities.Nominal;
@@ -707,7 +696,6 @@ public class SimulationCache
             preyToolScores = GetPredationToolsRawScores(multicellularPrey);
             preyHexSize = GetBaseHexSizeForSpecies(multicellularPrey);
             smallestPreyHexSize = preyHexSize;
-            preySpeed = GetSpeedForSpecies(multicellularPrey);
             preyRotationSpeed = GetRotationSpeedForSpecies(multicellularPrey);
             preyIndividualCost = MichePopulation.CalculateIndividualCost(multicellularPrey, biomeConditions, this);
             preyStorageNominal = multicellularPrey.StorageCapacities.Nominal;
@@ -775,7 +763,6 @@ public class SimulationCache
 
             // TODO: If these two methods were combined it might result in better performance with needing just
             // one dictionary lookup
-            predatorSpeed = GetSpeedForSpecies(microbePredator);
             predatorRotationSpeed = GetRotationSpeedForSpecies(microbePredator);
             predatorHP = microbePredator.MembraneType.Hitpoints + microbePredator.MembraneRigidity *
                 membraneRigidityHitpointsModifier;
@@ -811,7 +798,6 @@ public class SimulationCache
         {
             predatorHexSize = GetBaseHexSizeForSpecies(multicellularPredator);
 
-            predatorSpeed = GetSpeedForSpecies(multicellularPredator);
             predatorRotationSpeed = GetRotationSpeedForSpecies(multicellularPredator);
 
             predatorStorageNominal = multicellularPredator.StorageCapacities.Nominal;
@@ -893,9 +879,11 @@ public class SimulationCache
         // (Predation Score is reduced to 0 anyway if the "prey" has a higher predation score to the predator)
         var defenseScoreModifier = Constants.AUTO_EVO_PREDATION_DEFENSE_SCORE_MODIFIER;
 
+        var predatorSpeed = GetSpeedForSpecies(predatorSpecies);
         var predatorEnergyBalance = GetEnergyBalanceForSpecies(predatorSpecies, biomeConditions);
         var predatorOsmoregulationCost = predatorEnergyBalance.Osmoregulation;
 
+        var preySpeed = GetSpeedForSpecies(preySpecies);
         var slowedPreySpeed = preySpeed;
         var preyEnergyBalance = GetEnergyBalanceForSpecies(preySpecies, biomeConditions);
         var preyOsmoregulationCost = preyEnergyBalance.Osmoregulation;

@@ -109,7 +109,6 @@ public class ChunkCompoundPressure : SelectionPressure
         if (!patch.Biome.Chunks.TryGetValue(chunkType, out var chunk))
             throw new ArgumentException("Chunk does not exist in patch");
 
-        float speed;
         float chemoreceptorScore;
         float compoundATP;
         float nominalStorageCapacity;
@@ -118,7 +117,6 @@ public class ChunkCompoundPressure : SelectionPressure
 
         if (species is MicrobeSpecies microbeSpecies)
         {
-            speed = cache.GetSpeedForSpecies(microbeSpecies);
             nominalStorageCapacity = microbeSpecies.StorageCapacities.Nominal;
             usesVaryingCompounds = cache.GetUsesVaryingCompoundsForSpecies(microbeSpecies, patch.Biome);
             chemoreceptorScore = cache.GetChemoreceptorChunkScore(microbeSpecies, chunk, compound);
@@ -143,7 +141,6 @@ public class ChunkCompoundPressure : SelectionPressure
         }
         else if (species is MulticellularSpecies multicellularSpecies)
         {
-            speed = cache.GetSpeedForSpecies(multicellularSpecies);
             nominalStorageCapacity = multicellularSpecies.StorageCapacities.Nominal;
             usesVaryingCompounds = cache.GetUsesVaryingCompoundsForSpecies(multicellularSpecies, patch.Biome);
             chemoreceptorScore = cache.GetChemoreceptorChunkScore(multicellularSpecies, chunk, compound);
@@ -191,6 +188,7 @@ public class ChunkCompoundPressure : SelectionPressure
         var score = 1.0f;
 
         // Speed is not too important to chunk microbes, but all else being the same faster is better than slower
+        var speed = cache.GetSpeedForSpecies(species);
         score += MathF.Pow(speed, 0.4f);
 
         // Diminishing returns on storage

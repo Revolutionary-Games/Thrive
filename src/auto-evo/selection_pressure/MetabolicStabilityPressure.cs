@@ -43,13 +43,13 @@ public class MetabolicStabilityPressure : SelectionPressure
 
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {
-        if (species is MicrobeSpecies microbeSpecies)
+        if (cache.GetSpeedForSpecies(species) == 0)
         {
-            if (cache.GetSpeedForSpecies(microbeSpecies) == 0)
-            {
-                return 0.0f;
-            }
+            return 0.0f;
+        }
 
+        if (species is MicrobeSpecies)
+        {
             var energyBalance = cache.GetEnergyBalanceForSpecies(species, patch.Biome);
 
             if (energyBalance.FinalBalance > 0)
@@ -60,7 +60,7 @@ public class MetabolicStabilityPressure : SelectionPressure
             if (energyBalance.FinalBalanceStationary > 0)
             {
                 // Only punish non-sessile species for not being able to move continuously
-                return 1.0f - microbeSpecies.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
+                return 1.0f - species.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
             }
 
             return 0.0f;
@@ -68,11 +68,6 @@ public class MetabolicStabilityPressure : SelectionPressure
 
         if (species is MulticellularSpecies multicellularSpecies)
         {
-            if (cache.GetSpeedForSpecies(multicellularSpecies) == 0)
-            {
-                return 0.0f;
-            }
-
             // for metabolic stability in Multicellular species, we care for individual cells instead of the whole
             // species, because ATP is per-cell.
             // We take cell types instead of individual cells because it's faster, matches what the player gets warnings
@@ -86,7 +81,7 @@ public class MetabolicStabilityPressure : SelectionPressure
                     if (energyBalance.FinalBalanceStationary > 0)
                     {
                         // Only punish non-sessile species for not being able to move continuously
-                        return 1.0f - multicellularSpecies.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
+                        return 1.0f - species.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
                     }
 
                     return 0.0f;
