@@ -152,6 +152,7 @@ public partial class CellBodyPlanEditorComponent
         }
 
         UpdateReproductionMethodChoice();
+        UpdateAnisogamyStateAndCost();
     }
 
     [ArchiveAllowedMethod]
@@ -169,6 +170,7 @@ public partial class CellBodyPlanEditorComponent
         }
 
         UpdateReproductionMethodChoice();
+        UpdateAnisogamyStateAndCost();
     }
 
     [ArchiveAllowedMethod]

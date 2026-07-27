@@ -153,12 +153,6 @@ public partial class CellBodyPlanEditorComponent :
     private OptionButton sporeCellTypeDropdown = null!;
 
     [Export]
-    private OptionButton gameteACellTypeDropdown = null!;
-
-    [Export]
-    private OptionButton gameteBCellTypeDropdown = null!;
-
-    [Export]
     private Slider massBuddingCellCountSlider = null!;
 
     [Export]
@@ -172,6 +166,27 @@ public partial class CellBodyPlanEditorComponent :
 
     [Export]
     private Control sexualReproductionSection = null!;
+
+    [Export]
+    private OptionButton gameteACellTypeDropdown = null!;
+
+    [Export]
+    private OptionButton gameteBCellTypeDropdown = null!;
+
+    [Export]
+    private Button sexualAnisogamyUpgradeButton = null!;
+
+    [Export]
+    private Container anisogamySettingsContainer = null!;
+
+    [Export]
+    private Button playerGameteSelectionA = null!;
+
+    [Export]
+    private Label gameteSelectionALabel = null!;
+
+    [Export]
+    private Button playerGameteSelectionB = null!;
 
     [Export]
     private Control massBuddingReproductionSection = null!;
@@ -275,6 +290,8 @@ public partial class CellBodyPlanEditorComponent :
     }
 
     public MulticellularReproductionMethod ReproductionMethod { get; private set; }
+
+    public GameteType SelectedGameteTypeForPlayer { get; private set; } = GameteType.A;
 
     public CellType? SporeCellType { get; private set; }
 
@@ -588,6 +605,8 @@ public partial class CellBodyPlanEditorComponent :
 
         // Make sure initial tolerance warnings are shown
         OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
+
+        UpdateAnisogamyStateAndCost();
     }
 
     public override void OnFinishEditing()
@@ -667,6 +686,36 @@ public partial class CellBodyPlanEditorComponent :
         {
             editedSpecies.MassBuddingCellCount = Math.Min(DesiredMassBuddingCellCount,
                 CellBodyPlanInternalCalculations.MaxBudSize(editedMicrobeCells.Count));
+        }
+
+        if (ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy
+            or MulticellularReproductionMethod.SexualAnisogamy)
+        {
+            editedSpecies.ModifiableGameteTypeA = GameteACellType;
+
+            if (ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy)
+            {
+                // Isogamy doesn't allow changing this
+                editedSpecies.PlayerGamete = GameteType.A;
+            }
+            else
+            {
+                editedSpecies.PlayerGamete = SelectedGameteTypeForPlayer;
+            }
+        }
+        else
+        {
+            editedSpecies.ModifiableGameteTypeA = null;
+            editedSpecies.PlayerGamete = GameteType.All;
+        }
+
+        if (ReproductionMethod is MulticellularReproductionMethod.SexualAnisogamy)
+        {
+            editedSpecies.ModifiableGameteTypeB = GameteBCellType;
+        }
+        else
+        {
+            editedSpecies.ModifiableGameteTypeB = null;
         }
 
         tempFreshlyUpdatedCells.Clear();
