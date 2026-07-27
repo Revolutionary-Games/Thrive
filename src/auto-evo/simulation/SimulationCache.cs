@@ -262,7 +262,7 @@ public class SimulationCache
         return cached;
     }
 
-    public float GetBaseHexSizeForSpecies(MicrobeSpecies species)
+    public float GetBaseHexSizeForSpecies(Species species)
     {
 #if CHECK_HASH_CODE_REUSED_INSTANCES
         CheckSpecies(species);
@@ -276,7 +276,19 @@ public class SimulationCache
             return size;
         }
 
-        var cached = species.BaseHexSize;
+        float cached;
+        if (species is MicrobeSpecies microbeSpecies)
+        {
+            cached = microbeSpecies.BaseHexSize;
+        }
+        else if (species is MulticellularSpecies multicellularSpecies)
+        {
+            cached = CellBodyPlanInternalCalculations.CalculateSpeed(multicellularSpecies.ModifiableEditorCells);
+        }
+        else
+        {
+            throw new ArgumentException("Incompatible species type given");
+        }
 
         cachedBaseHexSizes.Add(key, cached);
         return cached;
@@ -638,7 +650,6 @@ public class SimulationCache
         var dissolverEnzyme = Constants.LIPASE_ENZYME;
         var enzymesScore = 0.0f;
 
-        float preyHexSize;
         float preyRotationSpeed;
         float preyIndividualCost;
         var preyHP = 1.0f;
@@ -647,7 +658,6 @@ public class SimulationCache
         float preyStorageNominal;
 
         float predatorRotationSpeed;
-        float predatorHexSize;
         PredationToolsRawScores preyToolScores;
         var predatorHP = 1.0f;
         float predatorToxinResistance;
@@ -660,10 +670,10 @@ public class SimulationCache
         var predatorOxygenUsingOrganellesCount = 0;
         var preyOxygenUsingOrganellesCount = 0;
 
+        var preyHexSize = GetBaseHexSizeForSpecies(preySpecies);
         if (preySpecies is MicrobeSpecies microbePrey)
         {
             preyToolScores = GetPredationToolsRawScores(microbePrey);
-            preyHexSize = GetBaseHexSizeForSpecies(microbePrey);
             smallestPreyHexSize = preyHexSize;
             dissolverEnzyme = microbePrey.MembraneType.DissolverEnzyme;
             preyRotationSpeed = GetRotationSpeedForSpecies(microbePrey);
@@ -694,7 +704,6 @@ public class SimulationCache
         else if (preySpecies is MulticellularSpecies multicellularPrey)
         {
             preyToolScores = GetPredationToolsRawScores(multicellularPrey);
-            preyHexSize = GetBaseHexSizeForSpecies(multicellularPrey);
             smallestPreyHexSize = preyHexSize;
             preyRotationSpeed = GetRotationSpeedForSpecies(multicellularPrey);
             preyIndividualCost = MichePopulation.CalculateIndividualCost(multicellularPrey, biomeConditions, this);
@@ -757,10 +766,9 @@ public class SimulationCache
             return 0;
         }
 
+        var predatorHexSize = GetBaseHexSizeForSpecies(predatorSpecies);
         if (predatorSpecies is MicrobeSpecies microbePredator)
         {
-            predatorHexSize = GetBaseHexSizeForSpecies(microbePredator);
-
             // TODO: If these two methods were combined it might result in better performance with needing just
             // one dictionary lookup
             predatorRotationSpeed = GetRotationSpeedForSpecies(microbePredator);
@@ -796,8 +804,6 @@ public class SimulationCache
         }
         else if (predatorSpecies is MulticellularSpecies multicellularPredator)
         {
-            predatorHexSize = GetBaseHexSizeForSpecies(multicellularPredator);
-
             predatorRotationSpeed = GetRotationSpeedForSpecies(multicellularPredator);
 
             predatorStorageNominal = multicellularPredator.StorageCapacities.Nominal;
