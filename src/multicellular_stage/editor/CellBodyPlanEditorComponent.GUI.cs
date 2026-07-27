@@ -44,6 +44,36 @@ public partial class CellBodyPlanEditorComponent
         UpdateSporeCellDropdown();
     }
 
+    public void OnGameteACellTypeSelected(int selectedOption)
+    {
+        var cellType = Editor.EditedSpecies.ModifiableCellTypes[selectedOption];
+
+        if (cellType == GameteACellType)
+            return;
+
+        var action = new SingleEditorAction<GameteACellTypeChangeActionData>(DoGameteACellChangeAction,
+            UndoGameteACellChangeAction, new GameteACellTypeChangeActionData(GameteACellType, cellType));
+
+        Editor.EnqueueAction(action);
+
+        UpdateGameteDropdowns();
+    }
+
+    public void OnGameteBCellTypeSelected(int selectedOption)
+    {
+        var cellType = Editor.EditedSpecies.ModifiableCellTypes[selectedOption];
+
+        if (cellType == GameteBCellType)
+            return;
+
+        var action = new SingleEditorAction<GameteBCellTypeChangeActionData>(DoGameteBCellChangeAction,
+            UndoGameteBCellChangeAction, new GameteBCellTypeChangeActionData(GameteBCellType, cellType));
+
+        Editor.EnqueueAction(action);
+
+        UpdateGameteDropdowns();
+    }
+
     public void OnMassBuddingCellCountChanged(float count)
     {
         var newCellCount = (int)count;
@@ -214,6 +244,7 @@ public partial class CellBodyPlanEditorComponent
 
         UpdateReproductionMethodChoice();
         UpdateSporeCellDropdown();
+        UpdateGameteDropdowns();
         UpdateMassBuddingCellCountSlider();
 
         UpdateCancelButtonVisibility();
@@ -379,6 +410,47 @@ public partial class CellBodyPlanEditorComponent
         }
 
         sporeCellTypeDropdown.Select(Editor.EditedSpecies.ModifiableCellTypes.IndexOf(SporeCellType));
+    }
+
+    private void UpdateGameteDropdowns()
+    {
+        if (gameteACellTypeDropdown.Visible)
+        {
+            gameteACellTypeDropdown.Clear();
+
+            foreach (var cellType in Editor.EditedSpecies.ModifiableCellTypes)
+            {
+                gameteACellTypeDropdown.AddItem(cellType.FormattedName);
+            }
+
+            if (GameteACellType == null)
+            {
+                gameteACellTypeDropdown.Select(-1);
+            }
+            else
+            {
+                gameteACellTypeDropdown.Select(Editor.EditedSpecies.ModifiableCellTypes.IndexOf(GameteACellType));
+            }
+        }
+
+        if (!gameteBCellTypeDropdown.Visible)
+            return;
+
+        gameteBCellTypeDropdown.Clear();
+
+        foreach (var cellType in Editor.EditedSpecies.ModifiableCellTypes)
+        {
+            gameteBCellTypeDropdown.AddItem(cellType.FormattedName);
+        }
+
+        if (GameteBCellType == null)
+        {
+            gameteBCellTypeDropdown.Select(-1);
+        }
+        else
+        {
+            gameteBCellTypeDropdown.Select(Editor.EditedSpecies.ModifiableCellTypes.IndexOf(GameteBCellType));
+        }
     }
 
     private void UpdateMassBuddingCellCountSlider()

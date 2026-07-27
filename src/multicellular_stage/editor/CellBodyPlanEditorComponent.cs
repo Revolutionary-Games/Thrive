@@ -12,7 +12,7 @@ public partial class CellBodyPlanEditorComponent :
     HexEditorComponentBase<MulticellularEditor, CombinedEditorAction, EditorAction, HexWithData<CellTemplate>,
         MulticellularSpecies>, IArchiveUpdatable
 {
-    public const ushort SERIALIZATION_VERSION = 6;
+    public const ushort SERIALIZATION_VERSION = 7;
 
     [Export]
     public int MaxToleranceWarnings = 3;
@@ -153,6 +153,12 @@ public partial class CellBodyPlanEditorComponent :
     private OptionButton sporeCellTypeDropdown = null!;
 
     [Export]
+    private OptionButton gameteACellTypeDropdown = null!;
+
+    [Export]
+    private OptionButton gameteBCellTypeDropdown = null!;
+
+    [Export]
     private Slider massBuddingCellCountSlider = null!;
 
     [Export]
@@ -271,6 +277,10 @@ public partial class CellBodyPlanEditorComponent :
     public MulticellularReproductionMethod ReproductionMethod { get; private set; }
 
     public CellType? SporeCellType { get; private set; }
+
+    public CellType? GameteACellType { get; private set; }
+
+    public CellType? GameteBCellType { get; private set; }
 
     /// <summary>
     ///   This variable should be clamped before use. It's intentional that it can exceed the amount of cells, to make
@@ -478,6 +488,8 @@ public partial class CellBodyPlanEditorComponent :
         writer.Write((int)ReproductionMethod);
         writer.WriteObjectOrNull(SporeCellType);
         writer.Write(DesiredMassBuddingCellCount);
+        writer.WriteObjectOrNull(GameteACellType);
+        writer.WriteObjectOrNull(GameteBCellType);
     }
 
     public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
@@ -538,6 +550,12 @@ public partial class CellBodyPlanEditorComponent :
         {
             DesiredMassBuddingCellCount = reader.ReadInt32();
         }
+
+        if (version >= 7)
+        {
+            GameteACellType = reader.ReadObjectOrNull<CellType>();
+            GameteBCellType = reader.ReadObjectOrNull<CellType>();
+        }
     }
 
     public override void OnEditorSpeciesSetup(Species species)
@@ -560,6 +578,8 @@ public partial class CellBodyPlanEditorComponent :
 
         ReproductionMethod = multicellularSpecies.ReproductionMethod;
         SporeCellType = multicellularSpecies.ModifiableSporeCellType;
+        GameteACellType = multicellularSpecies.ModifiableGameteTypeA;
+        GameteBCellType = multicellularSpecies.ModifiableGameteTypeB;
         DesiredMassBuddingCellCount = multicellularSpecies.MassBuddingCellCount;
 
         UpdateGUIAfterLoadingSpecies(species);
@@ -712,6 +732,7 @@ public partial class CellBodyPlanEditorComponent :
 
         // In case the cell type's name was changed
         UpdateSporeCellDropdown();
+        UpdateGameteDropdowns();
     }
 
     /// <summary>
