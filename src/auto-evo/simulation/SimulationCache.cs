@@ -283,7 +283,7 @@ public class SimulationCache
         }
         else if (species is MulticellularSpecies multicellularSpecies)
         {
-            cached = CellBodyPlanInternalCalculations.CalculateSpeed(multicellularSpecies.ModifiableEditorCells);
+            cached = multicellularSpecies.BaseHexSize;
         }
         else
         {
