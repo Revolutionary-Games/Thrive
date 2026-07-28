@@ -135,16 +135,16 @@ public class AddCellWithOrganelle : IMutationStrategy<Species>
             {
                 var baseCellType = baseCellTypes[mostSuitableIndex];
 
-                foreach (var adjacencyDirection in
-                         Enum.GetValues(typeof(AdjacencyDirection)).Cast<AdjacencyDirection>())
+                foreach (var adjacencyDirection in Enum.GetValues<AdjacencyDirection>())
                 {
                     var newSpecies = (MulticellularSpecies)baseMulticellularSpecies.Clone();
+                    var newMP = mp;
                     var newCellType = newSpecies.ModifiableCellTypes[mostSuitableIndex];
 
-                    if (AddCellsAdjacent(newSpecies, ref mp, baseCells, baseCellsCount, baseCellType, newCellType,
+                    if (AddCellsAdjacent(newSpecies, ref newMP, baseCells, baseCellsCount, baseCellType, newCellType,
                             newCellType.MPCost, adjacencyDirection, workMemory1, workMemory2))
                     {
-                        mutated.Add(new Mutant(newSpecies, mp));
+                        mutated.Add(new Mutant(newSpecies, newMP));
                     }
                 }
             }
