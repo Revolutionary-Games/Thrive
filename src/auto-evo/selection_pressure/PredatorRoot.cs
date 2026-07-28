@@ -46,20 +46,8 @@ public class PredatorRoot : SelectionPressure
 
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {
-        float atpFromGlucose;
-
-        if (species is MicrobeSpecies microbeSpecies)
-        {
-            atpFromGlucose = cache.GetCompoundGeneratedFrom(glucose, atp, microbeSpecies, patch.Biome);
-        }
-        else if (species is MulticellularSpecies multicellularSpecies)
-        {
-            atpFromGlucose = cache.GetCompoundGeneratedFrom(glucose, atp, multicellularSpecies, patch.Biome);
-        }
-        else
-        {
+        if (species is not MicrobeSpecies and not MulticellularSpecies)
             throw new ArgumentException("Wrong type of Species passed to Microbe/Multicellular Species miche tree");
-        }
 
         // ensure that the predator is at least slightly willing to hunt
         if (species.Behaviour.Aggression == 0)
@@ -68,7 +56,9 @@ public class PredatorRoot : SelectionPressure
         }
 
         // Ensure that a predator can actually survive off of only glucose
+        var atpFromGlucose = cache.GetCompoundGeneratedFrom(glucose, atp, species, patch.Biome);
         var energyBalance = cache.GetEnergyBalanceForSpecies(species, patch.Biome);
+
         if (atpFromGlucose >= energyBalance.TotalConsumption)
         {
             return 1;

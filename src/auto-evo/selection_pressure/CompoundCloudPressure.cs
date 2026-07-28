@@ -102,50 +102,18 @@ public class CompoundCloudPressure : SelectionPressure
 
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {
-        float chemoreceptorScore;
         float compoundATP;
         float nominalStorageCapacity;
-        bool usesVaryingCompounds;
 
         var activity = species.Behaviour.Activity;
 
         if (species is MicrobeSpecies microbeSpecies)
         {
             nominalStorageCapacity = microbeSpecies.StorageCapacities.Nominal;
-            usesVaryingCompounds = cache.GetUsesVaryingCompoundsForSpecies(microbeSpecies, patch.Biome);
-            chemoreceptorScore = cache.GetChemoreceptorCloudScore(microbeSpecies, compoundDefinition, patch.Biome);
-
-            if (compoundOut != atp)
-            {
-                var compoundOutGenerated =
-                    cache.GetCompoundGeneratedFrom(compoundDefinition, compoundOut, microbeSpecies, patch.Biome);
-                compoundATP = cache.GetCompoundConversionScoreForSpecies(compoundOut, atp, microbeSpecies) *
-                    compoundOutGenerated;
-            }
-            else
-            {
-                compoundATP = cache.GetCompoundGeneratedFrom(compoundDefinition, atp, microbeSpecies, patch.Biome);
-            }
         }
         else if (species is MulticellularSpecies multicellularSpecies)
         {
             nominalStorageCapacity = multicellularSpecies.StorageCapacities.Nominal;
-            usesVaryingCompounds = cache.GetUsesVaryingCompoundsForSpecies(multicellularSpecies, patch.Biome);
-            chemoreceptorScore = cache.GetChemoreceptorCloudScore(multicellularSpecies, compoundDefinition,
-                patch.Biome);
-
-            if (compoundOut != atp)
-            {
-                var compoundOutGenerated =
-                    cache.GetCompoundGeneratedFrom(compoundDefinition, compoundOut, multicellularSpecies, patch.Biome);
-                compoundATP = cache.GetCompoundConversionScoreForSpecies(compoundOut, atp, multicellularSpecies) *
-                    compoundOutGenerated;
-            }
-            else
-            {
-                compoundATP = cache.GetCompoundGeneratedFrom(compoundDefinition, atp, multicellularSpecies,
-                    patch.Biome);
-            }
         }
         else
         {
@@ -161,7 +129,7 @@ public class CompoundCloudPressure : SelectionPressure
         score += (MathF.Pow(nominalStorageCapacity + 1, 0.8f) - 1) / 0.8f;
 
         // Species that are less active during the night get a penalty to their activity
-        if (isDayNightCycleEnabled && usesVaryingCompounds)
+        if (isDayNightCycleEnabled && cache.GetUsesVaryingCompoundsForSpecies(species, patch.Biome))
         {
             var multiplier = activity / Constants.AI_ACTIVITY_TO_BE_FULLY_ACTIVE_DURING_NIGHT;
 
@@ -175,6 +143,9 @@ public class CompoundCloudPressure : SelectionPressure
         var activityScore = MathF.Pow(activity / Constants.MAX_SPECIES_ACTIVITY, 0.4f);
         var focusScore = 1 + MathF.Pow(species.Behaviour.Focus / Constants.MAX_SPECIES_ACTIVITY, 0.4f) *
             Constants.AUTO_EVO_MAX_FOCUS_CLOUD_BONUS;
+
+        // Bonus from chemoreceptor
+        var chemoreceptorScore = cache.GetChemoreceptorCloudScore(species, compoundDefinition, patch.Biome);
 
         score = (score + chemoreceptorScore) * activityScore * focusScore
             + score * (1 - activityScore * focusScore) * Constants.AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION;
@@ -190,6 +161,18 @@ public class CompoundCloudPressure : SelectionPressure
             * (1 - opportunismFraction * Constants.AUTO_EVO_MAX_OPPORTUNISM_PENALTY);
 
         // Penalize species that don't produce enough ATP to survive from just the compound in this cloud
+        if (compoundOut != atp)
+        {
+            var compoundOutGenerated =
+                cache.GetCompoundGeneratedFrom(compoundDefinition, compoundOut, species, patch.Biome);
+            compoundATP = cache.GetCompoundConversionScoreForSpecies(compoundOut, atp, species) *
+                compoundOutGenerated;
+        }
+        else
+        {
+            compoundATP = cache.GetCompoundGeneratedFrom(compoundDefinition, atp, species, patch.Biome);
+        }
+
         score *= MathF.Min(compoundATP / energyBalance.TotalConsumption, 1);
 
         return score;

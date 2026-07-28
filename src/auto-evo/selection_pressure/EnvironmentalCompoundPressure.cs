@@ -82,38 +82,19 @@ public class EnvironmentalCompoundPressure : SelectionPressure
 
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {
+        if (species is not MicrobeSpecies and not MulticellularSpecies)
+            throw new ArgumentException("Wrong type of Species passed to Microbe/Multicellular Species miche tree");
+
+        var amountCreated = cache.GetCompoundGeneratedFrom(compound, createdCompound, species, patch.Biome);
+        if (createdCompound.ID == Compound.Glucose)
+        {
+            amountCreated *=
+                cache.GetCompoundConversionScoreForSpecies(createdCompound, atp, species);
+        }
+
+        // Penalize Species that cannot rely exclusively on this compound
         var energyBalance = cache.GetEnergyBalanceForSpecies(species, patch.Biome);
-
-        if (species is MicrobeSpecies microbeSpecies)
-        {
-            var amountCreated = cache.GetCompoundGeneratedFrom(compound, createdCompound, microbeSpecies, patch.Biome);
-
-            if (createdCompound.ID == Compound.Glucose)
-            {
-                amountCreated *=
-                    cache.GetCompoundConversionScoreForSpecies(createdCompound, atp, microbeSpecies);
-            }
-
-            // Penalize Species that cannot rely exclusively on this compound
-            return MathF.Min(amountCreated / energyBalance.TotalConsumption, 1);
-        }
-
-        if (species is MulticellularSpecies multicellularSpecies)
-        {
-            var amountCreated = cache.GetCompoundGeneratedFrom(compound, createdCompound,
-                multicellularSpecies, patch.Biome);
-
-            if (createdCompound.ID == Compound.Glucose)
-            {
-                amountCreated *=
-                    cache.GetCompoundConversionScoreForSpecies(createdCompound, atp, multicellularSpecies);
-            }
-
-            // Penalize Species that cannot rely exclusively on this compound
-            return MathF.Min(amountCreated / energyBalance.TotalConsumption, 1);
-        }
-
-        throw new ArgumentException("Wrong type of Species passed to Microbe/Multicellular Species miche tree");
+        return MathF.Min(amountCreated / energyBalance.TotalConsumption, 1);
     }
 
     public override float GetEnergy(Patch patch)

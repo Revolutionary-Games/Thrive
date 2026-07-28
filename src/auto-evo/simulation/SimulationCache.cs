@@ -141,22 +141,21 @@ public class SimulationCache
 
         var cached = new EnergyBalanceInfoSimple();
 
+        var environmentalTolerances = GetEnvironmentalTolerances(species, biomeConditions);
         if (species is MicrobeSpecies microbeSpecies)
         {
-            var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(microbeSpecies.Organelles);
+            var maximumMovementDirection =
+                MicrobeInternalCalculations.MaximumSpeedDirection(microbeSpecies.Organelles);
             var totalSpecializationBonus = microbeSpecies.CellTypeSpecializationBonus;
 
             // Auto-evo uses the average values of compound during the course of a simulated day
             ProcessSystem.ComputeEnergyBalanceSimple(microbeSpecies.Organelles, biomeConditions,
-                GetEnvironmentalTolerances(microbeSpecies, biomeConditions), totalSpecializationBonus,
-                microbeSpecies.MembraneType, maximumMovementDirection, true, species.PlayerSpecies, worldSettings,
-                CompoundAmountType.Average, this,
-                cached);
+                environmentalTolerances, totalSpecializationBonus, microbeSpecies.MembraneType,
+                maximumMovementDirection, true, species.PlayerSpecies, worldSettings,
+                CompoundAmountType.Average, this, cached);
         }
         else if (species is MulticellularSpecies multicellularSpecies)
         {
-            var environmentalTolerances = GetEnvironmentalTolerances(multicellularSpecies, biomeConditions);
-
             // Currently ComputeEnergyBalanceSimple is not setup to safely add onto existing energy balances, so we need
             // to add up from a temporary balance per cell.
             var cellBalance = new EnergyBalanceInfoSimple();
@@ -326,9 +325,9 @@ public class SimulationCache
     }
 
     public float GetCompoundConversionScoreForSpecies(CompoundDefinition fromCompound, CompoundDefinition toCompound,
-        MicrobeSpecies species)
+        Species species)
     {
-        // This method is faster when not using caching
+        // This method was faster (for MicrobeSpecies) when not using caching (not tested for MulticellularSpecies)
         // With cache: 3 925 ms for 1,470 million calls
         // Without caching: 2 284 ms for 1,291 million calls
 
@@ -363,46 +362,10 @@ public class SimulationCache
         return cached;
     }
 
-    public float GetCompoundConversionScoreForSpecies(CompoundDefinition fromCompound, CompoundDefinition toCompound,
-        MulticellularSpecies species)
-    {
-        // Not yet tested whether this method is faster with or without caching
-
-        var compoundIn = 0.0f;
-        var compoundOut = 0.0f;
-        var activeProcessList = GetActiveProcessList(species);
-
-        // For maximum efficiency, as this is called an absolute ton, the following approach is used
-        foreach (var process in activeProcessList)
-        {
-            if (process.Process.Inputs.TryGetValue(fromCompound, out var inputAmount))
-            {
-                if (process.Process.Outputs.TryGetValue(toCompound, out var outputAmount))
-                {
-                    // We don't multiply by speed here as it is about pure efficiency
-                    compoundIn += inputAmount;
-                    compoundOut += outputAmount;
-                }
-            }
-        }
-
-        float cached;
-        if (compoundIn <= 0)
-        {
-            cached = 0;
-        }
-        else
-        {
-            cached = compoundOut / compoundIn;
-        }
-
-        return cached;
-    }
-
     public float GetCompoundGeneratedFrom(CompoundDefinition fromCompound, CompoundDefinition toCompound,
-        MicrobeSpecies species, BiomeConditions biomeConditions)
+        Species species, BiomeConditions biomeConditions)
     {
-        // This method is faster when not using caching
+        // This method was faster for microbe species when not using caching
         // With cache: 2 408 ms for 776 344 calls
         // Without caching: 1 257 ms for 680 411 calls
 
@@ -410,33 +373,6 @@ public class SimulationCache
 
         var activeProcessList = GetActiveProcessList(species);
 
-        var tolerances = GetEnvironmentalTolerances(species, biomeConditions);
-
-        foreach (var process in activeProcessList)
-        {
-            if (process.Process.Inputs.ContainsKey(fromCompound))
-            {
-                if (process.Process.Outputs.TryGetValue(toCompound, out var outputAmount))
-                {
-                    var processSpeed =
-                        GetProcessMaximumSpeed(process, tolerances.ProcessSpeedModifier, biomeConditions)
-                            .CurrentSpeed;
-
-                    cached += outputAmount * processSpeed;
-                }
-            }
-        }
-
-        return cached;
-    }
-
-    public float GetCompoundGeneratedFrom(CompoundDefinition fromCompound, CompoundDefinition toCompound,
-        MulticellularSpecies species, BiomeConditions biomeConditions)
-    {
-        // This method has not yet been profiled for the decision on using caching or not
-        var cached = 0.0f;
-
-        var activeProcessList = GetActiveProcessList(species);
         var tolerances = GetEnvironmentalTolerances(species, biomeConditions);
 
         foreach (var process in activeProcessList)
@@ -632,7 +568,6 @@ public class SimulationCache
         var dissolverEnzyme = Constants.LIPASE_ENZYME;
         var enzymesScore = 0.0f;
 
-        float preyIndividualCost;
         var preyHP = 1.0f;
         float preyToxinResistance;
         float preyPhysicalResistance;
@@ -656,7 +591,6 @@ public class SimulationCache
             preyToolScores = GetPredationToolsRawScores(microbePrey);
             smallestPreyHexSize = preyHexSize;
             dissolverEnzyme = microbePrey.MembraneType.DissolverEnzyme;
-            preyIndividualCost = MichePopulation.CalculateIndividualCost(microbePrey, biomeConditions, this);
             preyStorageNominal = microbePrey.StorageCapacities.Nominal;
 
             // uses an HP estimate without taking into account environmental tolerance effect
@@ -684,7 +618,6 @@ public class SimulationCache
         {
             preyToolScores = GetPredationToolsRawScores(multicellularPrey);
             smallestPreyHexSize = preyHexSize;
-            preyIndividualCost = MichePopulation.CalculateIndividualCost(multicellularPrey, biomeConditions, this);
             preyStorageNominal = multicellularPrey.StorageCapacities.Nominal;
 
             var totalToxinResistance = 0.0f;
@@ -870,6 +803,7 @@ public class SimulationCache
         var slowedPreySpeed = preySpeed;
         var preyEnergyBalance = GetEnergyBalanceForSpecies(preySpecies, biomeConditions);
         var preyOsmoregulationCost = preyEnergyBalance.Osmoregulation;
+        var preyIndividualCost = MichePopulation.CalculateIndividualCost(preySpecies, biomeConditions, this);
 
         var toxicity = predatorToolScores.AverageToxicity;
         var macrolideScore = predatorToolScores.MacrolideScore;
@@ -1266,28 +1200,7 @@ public class SimulationCache
         return cached;
     }
 
-    public bool GetUsesVaryingCompoundsForSpecies(MicrobeSpecies species, BiomeConditions biomeConditions)
-    {
-#if CHECK_HASH_CODE_REUSED_INSTANCES
-        CheckSpecies(species);
-#endif
-
-        // Disabling this cache makes this ever so slightly slower
-        var key = (GetSpeciesCacheKey(species), biomeConditions);
-
-        ref var usesVarying = ref CollectionsMarshal.GetValueRefOrNullRef(cachedUsesVaryingCompounds, key);
-        if (!Unsafe.IsNullRef(ref usesVarying))
-        {
-            return usesVarying;
-        }
-
-        var cached = MicrobeInternalCalculations.UsesDayVaryingCompounds(species.Organelles, biomeConditions, null);
-
-        cachedUsesVaryingCompounds.Add(key, cached);
-        return cached;
-    }
-
-    public bool GetUsesVaryingCompoundsForSpecies(MulticellularSpecies species, BiomeConditions biomeConditions)
+    public bool GetUsesVaryingCompoundsForSpecies(Species species, BiomeConditions biomeConditions)
     {
 #if CHECK_HASH_CODE_REUSED_INSTANCES
         CheckSpecies(species);
@@ -1303,89 +1216,88 @@ public class SimulationCache
         }
 
         var cached = false;
-
-        foreach (var hex in species.EditorCells)
+        if (species is MicrobeSpecies microbeSpecies)
         {
-            var cell = hex.Data;
-            if (cell != null)
+            cached = MicrobeInternalCalculations.UsesDayVaryingCompounds(microbeSpecies.Organelles, biomeConditions,
+                null);
+        }
+        else if (species is MulticellularSpecies multicellularSpecies)
+        {
+            foreach (var hex in multicellularSpecies.EditorCells)
             {
-                if (cached)
-                    break;
+                var cell = hex.Data;
+                if (cell != null)
+                {
+                    if (cached)
+                        break;
 
-                cached = MicrobeInternalCalculations.UsesDayVaryingCompounds(cell.Organelles,
-                    biomeConditions, null);
+                    cached = MicrobeInternalCalculations.UsesDayVaryingCompounds(cell.Organelles,
+                        biomeConditions, null);
+                }
             }
+        }
+        else
+        {
+            throw new ArgumentException("Incompatible species type given");
         }
 
         cachedUsesVaryingCompounds.Add(key, cached);
         return cached;
     }
 
-    public float GetChemoreceptorCloudScore(MicrobeSpecies species, CompoundDefinition compound,
+    public float GetChemoreceptorCloudScore(Species species, CompoundDefinition compound,
         BiomeConditions biomeConditions)
     {
-        // This method is faster when not using caching
+        // This method was for microbe species faster when not using caching
+        // Measurement for microbe species only:
         // With cache: 2 192 ms for 1,245 million calls
         // Without caching: 762 ms for 1,096 million calls
 
         var cached = 0.0f;
-        var hasChemoreceptor = false;
-        foreach (var organelle in species.Organelles.Organelles)
-        {
-            var organelleTargetCompound = organelle.GetActiveTargetCompound();
-            if (organelleTargetCompound == Compound.Invalid)
-                continue;
 
-            if (organelleTargetCompound == compound.ID)
+        // Need to have chemoreceptor to be able to "smell" clouds
+        var hasChemoreceptor = false;
+        if (species is MicrobeSpecies microbeSpecies)
+        {
+            foreach (var organelle in microbeSpecies.Organelles.Organelles)
             {
-                hasChemoreceptor = true;
-                break;
+                var organelleTargetCompound = organelle.GetActiveTargetCompound();
+                if (organelleTargetCompound == Compound.Invalid)
+                    continue;
+
+                if (organelleTargetCompound == compound.ID)
+                    hasChemoreceptor = true;
             }
         }
-
-        if (hasChemoreceptor)
+        else if (species is MulticellularSpecies multicellularSpecies)
         {
-            if (biomeConditions.AverageCompounds.TryGetValue(compound.ID, out var compoundData) &&
-                compoundData.Density > 0)
+            foreach (var hex in multicellularSpecies.EditorCells)
             {
-                cached = Constants.AUTO_EVO_CHEMORECEPTOR_BASE_SCORE
-                    + Constants.AUTO_EVO_CHEMORECEPTOR_VARIABLE_CLOUD_SCORE
-                    / (compoundData.Density * compoundData.Amount);
-            }
-        }
+                if (hasChemoreceptor)
+                    break;
 
-        return cached;
-    }
-
-    public float GetChemoreceptorCloudScore(MulticellularSpecies species, CompoundDefinition compound,
-        BiomeConditions biomeConditions)
-    {
-        // This method has not yet been profiled for the decision on using caching or not
-
-        var cached = 0.0f;
-        var hasChemoreceptor = false;
-        foreach (var hex in species.EditorCells)
-        {
-            if (hasChemoreceptor)
-                break;
-
-            var cell = hex.Data;
-            if (cell != null)
-            {
-                foreach (var organelle in cell.CellType.Organelles)
+                var cell = hex.Data;
+                if (cell != null)
                 {
-                    var organelleTargetCompound = organelle.GetActiveTargetCompound();
-                    if (organelleTargetCompound == Compound.Invalid)
-                        continue;
-
-                    if (organelleTargetCompound == compound.ID)
+                    foreach (var organelle in cell.CellType.Organelles)
                     {
-                        hasChemoreceptor = true;
-                        break;
+                        var organelleTargetCompound = organelle.GetActiveTargetCompound();
+                        if (organelleTargetCompound == Compound.Invalid)
+                            continue;
+
+                        if (organelleTargetCompound == compound.ID)
+                        {
+                            hasChemoreceptor = true;
+                            break;
+                        }
                     }
                 }
             }
         }
+        else
+        {
+            throw new ArgumentException("Incompatible species type given");
+        }
 
         if (hasChemoreceptor)
         {
@@ -1401,71 +1313,61 @@ public class SimulationCache
         return cached;
     }
 
-    public float GetChemoreceptorChunkScore(MicrobeSpecies species, ChunkConfiguration chunk,
+    public float GetChemoreceptorChunkScore(Species species, ChunkConfiguration chunk,
         CompoundDefinition compound)
     {
         // This method is faster when not using caching
         // With cache: 3 977 ms for 2,005 million calls
         // Without caching: 916 ms for 1,285 million calls
 
-        // Need to have chemoreceptor to be able to "smell" chunks
         var cached = 0.0f;
-        var hasChemoreceptor = false;
-        foreach (var organelle in species.Organelles.Organelles)
-        {
-            var organelleTargetCompound = organelle.GetActiveTargetCompound();
-            if (organelleTargetCompound == Compound.Invalid)
-                continue;
-
-            if (organelleTargetCompound == compound.ID)
-                hasChemoreceptor = true;
-        }
 
         // If the chunk doesn't spawn, it doesn't give any of its compound
-        if (hasChemoreceptor && chunk.Density > 0)
-        {
-            // We use null suppression here
-            // as this method is only meant to be called on chunks that are known to contain the given compound
-            if (!chunk.Compounds!.TryGetValue(compound.ID, out var compoundAmount))
-                throw new ArgumentException("Chunk does not contain compound");
-
-            cached = Constants.AUTO_EVO_CHEMORECEPTOR_BASE_SCORE
-                + Constants.AUTO_EVO_CHEMORECEPTOR_VARIABLE_CHUNK_SCORE
-                / (chunk.Density * MathF.Pow(compoundAmount.Amount, Constants.AUTO_EVO_CHUNK_AMOUNT_NERF));
-        }
-
-        return cached;
-    }
-
-    public float GetChemoreceptorChunkScore(MulticellularSpecies species, ChunkConfiguration chunk,
-        CompoundDefinition compound)
-    {
-        // This method has not yet been profiled for the decision on using caching or not
+        if (chunk.Density <= 0)
+            return cached;
 
         // Need to have chemoreceptor to be able to "smell" chunks
-        var cached = 0.0f;
         var hasChemoreceptor = false;
-        foreach (var hex in species.EditorCells)
+        if (species is MicrobeSpecies microbeSpecies)
         {
-            if (hasChemoreceptor)
-                break;
-
-            var cell = hex.Data;
-            if (cell != null)
+            foreach (var organelle in microbeSpecies.Organelles.Organelles)
             {
-                foreach (var organelle in cell.CellType.Organelles)
-                {
-                    var organelleTargetCompound = organelle.GetActiveTargetCompound();
-                    if (organelleTargetCompound == Compound.Invalid)
-                        continue;
+                var organelleTargetCompound = organelle.GetActiveTargetCompound();
+                if (organelleTargetCompound == Compound.Invalid)
+                    continue;
 
-                    if (organelleTargetCompound == compound.ID)
+                if (organelleTargetCompound == compound.ID)
+                    hasChemoreceptor = true;
+            }
+        }
+        else if (species is MulticellularSpecies multicellularSpecies)
+        {
+            foreach (var hex in multicellularSpecies.EditorCells)
+            {
+                if (hasChemoreceptor)
+                    break;
+
+                var cell = hex.Data;
+                if (cell != null)
+                {
+                    foreach (var organelle in cell.CellType.Organelles)
                     {
-                        hasChemoreceptor = true;
-                        break;
+                        var organelleTargetCompound = organelle.GetActiveTargetCompound();
+                        if (organelleTargetCompound == Compound.Invalid)
+                            continue;
+
+                        if (organelleTargetCompound == compound.ID)
+                        {
+                            hasChemoreceptor = true;
+                            break;
+                        }
                     }
                 }
             }
+        }
+        else
+        {
+            throw new ArgumentException("Incompatible species type given");
         }
 
         // If the chunk doesn't spawn, it doesn't give any of its compound
@@ -1506,49 +1408,41 @@ public class SimulationCache
         cachedProcessLists.Clear();
     }
 
-    public List<TweakedProcess> GetActiveProcessList(MicrobeSpecies microbeSpecies)
+    public List<TweakedProcess> GetActiveProcessList(Species species)
     {
 #if CHECK_HASH_CODE_REUSED_INSTANCES
         CheckSpecies(microbeSpecies);
 #endif
 
-        var key = GetSpeciesCacheKey(microbeSpecies);
+        var key = GetSpeciesCacheKey(species);
         if (cachedProcessLists.TryGetValue(key, out var cached))
         {
             return cached;
         }
 
         // TODO: a buffer of process lists (to make small list allocations rarer) (as cached is null here if not found)
-        ProcessSystem.ComputeActiveProcessList(microbeSpecies.Organelles, ref cached);
-
-        cachedProcessLists.Add(key, cached);
-        return cached;
-    }
-
-    public List<TweakedProcess> GetActiveProcessList(MulticellularSpecies multicellularSpecies)
-    {
-#if CHECK_HASH_CODE_REUSED_INSTANCES
-        CheckSpecies(microbeSpecies);
-#endif
-
-        var key = GetSpeciesCacheKey(multicellularSpecies);
-        if (cachedProcessLists.TryGetValue(key, out var cached))
+        if (species is MicrobeSpecies microbeSpecies)
         {
-            return cached;
+            ProcessSystem.ComputeActiveProcessList(microbeSpecies.Organelles, ref cached);
         }
-
-        List<IReadOnlyOrganelleTemplate> allOrganelles = [];
-
-        foreach (var cell in multicellularSpecies.EditorCells)
+        else if (species is MulticellularSpecies multicellularSpecies)
         {
-            foreach (var organelle in cell.Data!.CellType.Organelles)
+            List<IReadOnlyOrganelleTemplate> allOrganelles = [];
+
+            foreach (var cell in multicellularSpecies.EditorCells)
             {
-                allOrganelles.Add(organelle);
+                foreach (var organelle in cell.Data!.CellType.Organelles)
+                {
+                    allOrganelles.Add(organelle);
+                }
             }
-        }
 
-        // TODO: a buffer of process lists (to make small list allocations rarer) (as cached is null here if not found)
-        ProcessSystem.ComputeActiveProcessList(allOrganelles, ref cached);
+            ProcessSystem.ComputeActiveProcessList(allOrganelles, ref cached);
+        }
+        else
+        {
+            throw new ArgumentException("Incompatible species type given");
+        }
 
         cachedProcessLists.Add(key, cached);
         return cached;
@@ -2174,30 +2068,31 @@ public class SimulationCache
         return enzymesScore;
     }
 
-    public ResolvedMicrobeTolerances GetEnvironmentalTolerances(MicrobeSpecies species,
+    public ResolvedMicrobeTolerances GetEnvironmentalTolerances(Species species,
         BiomeConditions biomeConditions)
     {
         // This method is faster when not using caching
         // With cache: 1 692 ms for 1,882 million calls
         // Without caching: 132 ms for 2,095 million calls
+        // Not yet known whether this is faster with or without caching for MulticellularSpecies
 
-        var tolerances = MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(species, biomeConditions);
+        if (species is MicrobeSpecies microbeSpecies)
+        {
+            var tolerances =
+                MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(microbeSpecies, biomeConditions);
 
-        var result = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(tolerances);
+            return MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(tolerances);
+        }
 
-        return result;
-    }
+        if (species is MulticellularSpecies multicellularSpecies)
+        {
+            var tolerances =
+                MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(multicellularSpecies, biomeConditions);
 
-    public ResolvedMicrobeTolerances GetEnvironmentalTolerances(MulticellularSpecies species,
-        BiomeConditions biomeConditions)
-    {
-        // Not yet known whether this is faster with or without caching
+            return MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(tolerances);
+        }
 
-        var tolerances = MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(species, biomeConditions);
-
-        var result = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(tolerances);
-
-        return result;
+        throw new ArgumentException("Incompatible species type given");
     }
 
     /// <summary>
