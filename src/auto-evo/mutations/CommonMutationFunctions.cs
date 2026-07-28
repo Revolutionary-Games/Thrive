@@ -369,6 +369,9 @@ public static class CommonMutationFunctions
 
                         if (newCellFrontRight != null)
                         {
+                            if (mpCost > mp)
+                                return false;
+
                             mp -= mpCost;
                             newCells.AddFast(newCellFrontRight, workMemory1, workMemory2);
                         }
@@ -389,6 +392,9 @@ public static class CommonMutationFunctions
 
                         if (newCellRearRight != null)
                         {
+                            if (mpCost > mp)
+                                return false;
+
                             mp -= mpCost;
                             newCells.AddFast(newCellRearRight, workMemory1, workMemory2);
                         }
