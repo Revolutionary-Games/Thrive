@@ -91,11 +91,11 @@ public class RemoveOrganelle : IMutationStrategy<Species>
 
                     // Copy the organelle
                     var newOrganelle = parentOrganelle.Clone();
-                    baseMicrobeSpecies.Organelles.AddIfPossible(newOrganelle, workMemory.WorkingMemory1,
+                    newSpecies.Organelles.AddIfPossible(newOrganelle, workMemory.WorkingMemory1,
                         workMemory.WorkingMemory2);
                 }
 
-                AttachIslandHexes(baseMicrobeSpecies.Organelles, workMemory);
+                AttachIslandHexes(newSpecies.Organelles, workMemory);
 
                 mutated ??= new List<Mutant>();
                 mutated.Add(new Mutant(newSpecies, mp - Constants.ORGANELLE_REMOVE_COST));
@@ -118,7 +118,7 @@ public class RemoveOrganelle : IMutationStrategy<Species>
             {
                 var baseCellType = baseMulticellularSpecies.ModifiableCellTypes[i];
                 if (baseCellType.Organelles.Count <= 1)
-                    return null;
+                    continue;
 
                 var organelles = baseCellType.Organelles.Where(x => Criteria(x.Definition))
                     .OrderBy(_ => random.Next()).Take(Constants.AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS);
