@@ -80,15 +80,12 @@ public static class CommonMutationFunctions
         Rear,
     }
 
-    public static MicrobeSpecies GenerateRandomMicrobeSpecies(Species mutated, Patch forPatch,
+    public static MicrobeSpecies GenerateRandomMicrobeSpecies(MicrobeSpecies mutated, Patch forPatch,
         MutationWorkMemory workMemory, Random random, double mp = 300)
     {
-        if (mutated is not MicrobeSpecies mutatedMicrobe)
-            throw new ArgumentException("Wrong species type passed to GenerateRandomMicrobeSpecies");
-
         var mutationStrategy = new AddOrganelleAnywhere(_ => true);
 
-        GameWorld.SetInitialSpeciesProperties(mutatedMicrobe, workMemory.WorkingMemory1, workMemory.WorkingMemory2);
+        GameWorld.SetInitialSpeciesProperties(mutated, workMemory.WorkingMemory1, workMemory.WorkingMemory2);
 
         while (mp > 0)
         {
@@ -98,14 +95,14 @@ public static class CommonMutationFunctions
             if (mutation == null)
                 break;
 
-            mutated = mutation.Species;
+            mutated = mutation.Species as MicrobeSpecies ?? throw new InvalidOperationException();
             mp -= mutation.MP;
 
-            MutationLogicFunctions.ColourNewMicrobeSpecies(random, mutatedMicrobe);
+            MutationLogicFunctions.ColourNewMicrobeSpecies(random, mutated);
         }
 
-        mutated.ModifiableTolerances.CopyFrom(forPatch.GenerateTolerancesForMicrobe(mutatedMicrobe.Organelles,
-            MicrobeInternalCalculations.CalculateSpecializationBonus(mutatedMicrobe.Organelles,
+        mutated.ModifiableTolerances.CopyFrom(forPatch.GenerateTolerancesForMicrobe(mutated.Organelles,
+            MicrobeInternalCalculations.CalculateSpecializationBonus(mutated.Organelles,
                 new Dictionary<OrganelleDefinition, int>())));
 
         // Override the default species starting name to have more variability in the names
@@ -115,7 +112,7 @@ public static class CommonMutationFunctions
 
         mutated.OnEdited();
 
-        return mutatedMicrobe;
+        return mutated;
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
