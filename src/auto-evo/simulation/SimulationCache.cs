@@ -724,8 +724,8 @@ public class SimulationCache
                     dissolverEnzyme = cellType.MembraneType.DissolverEnzyme;
                 }
 
-                totalToxinResistance += cellType.MembraneType.ToxinResistance;
-                totalPhysicalResistance += cellType.MembraneType.PhysicalResistance;
+                totalToxinResistance += cellCount * cellType.MembraneType.ToxinResistance;
+                totalPhysicalResistance += cellCount * cellType.MembraneType.PhysicalResistance;
 
                 foreach (var organelle in cellType.Organelles)
                 {
@@ -827,8 +827,8 @@ public class SimulationCache
                     cellTypeHP *= 2;
 
                 predatorHP += cellCount * cellTypeHP;
-                totalToxinResistance += cellType.MembraneType.ToxinResistance;
-                totalPhysicalResistance += cellType.MembraneType.PhysicalResistance;
+                totalToxinResistance += cellCount * cellType.MembraneType.ToxinResistance;
+                totalPhysicalResistance += cellCount * cellType.MembraneType.PhysicalResistance;
 
                 foreach (var organelle in cellType.Organelles)
                 {
