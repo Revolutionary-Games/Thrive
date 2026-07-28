@@ -1805,7 +1805,7 @@ public class SimulationCache
 
         var averageToxicity = 0.0f;
         var totalToxicity = 0.0f;
-        var totalToxinScore = 0.0f;
+        var totalToxinAmount = 0.0f;
         var everyToxinScore = 0.0f;
         var oxytoxyScore = 0.0f;
         var cytotoxinScore = 0.0f;
@@ -1839,6 +1839,7 @@ public class SimulationCache
 
         foreach (var cellType in multicellularSpecies.CellTypes)
         {
+            var cellTypeToxinAmount = 0.0f;
             var cellTypeToxinOrganellesCount = 0;
             var cellTypeToxinTypesCount = 0;
             var cellTypePilusCount = 0.0f;
@@ -1939,7 +1940,7 @@ public class SimulationCache
 
                     totalToxicity += organelle.GetActiveToxicity();
                     cellTypeToxinOrganellesCount += 1;
-                    totalToxinScore += toxinAmount * Constants.AUTO_EVO_TOXIN_PREDATION_SCORE;
+                    cellTypeToxinAmount += toxinAmount;
                 }
             }
 
@@ -1956,18 +1957,16 @@ public class SimulationCache
                     injectisomeCount += cellTypeInjectisomeCount;
                     defensivePilusCount += cellTypeDefensivePilusCount;
                     defensiveInjectisomeCount += cellTypeDefensiveInjectisomeCount;
-                    slimeJetsCount += cellTypeSlimeJetsCount;
                     mucocystsCount += cellTypeMucocystsCount;
-                    pullingCiliasCount += cellTypePullingCiliasCount;
                     slimeJetsMultiplier *= cellTypeSlimeJetsMultiplier;
 
                     // application of specializationBonus to appropriate scores
                     var specializationBonus = cellType.CellTypeSpecializationBonus *
                         CellBodyPlanInternalCalculations.GetAdjacencySpecializationBonusFromBodyPlan(cell, cells);
 
-                    totalToxinScore *= specializationBonus;
-                    slimeJetsCount *= specializationBonus;
-                    pullingCiliasCount *= specializationBonus;
+                    totalToxinAmount += cellTypeToxinAmount * specializationBonus;
+                    slimeJetsCount += cellTypeSlimeJetsCount * specializationBonus;
+                    pullingCiliasCount += cellTypePullingCiliasCount * specializationBonus;
                 }
             }
         }
@@ -1981,7 +1980,7 @@ public class SimulationCache
         // Pooled production of toxin compound, equally distributed among all available toxin types (firing in sequence)
         if (totalToxinTypesCount != 0)
         {
-            everyToxinScore = totalToxinScore / totalToxinTypesCount;
+            everyToxinScore = totalToxinAmount * Constants.AUTO_EVO_TOXIN_PREDATION_SCORE / totalToxinTypesCount;
         }
 
         if (hasOxytoxy)
