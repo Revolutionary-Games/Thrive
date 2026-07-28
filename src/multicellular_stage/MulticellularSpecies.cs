@@ -105,7 +105,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
     {
         get
         {
-            var totalsize = 0.0f;
+            var totalSize = 0.0f;
             foreach (var cellType in CellTypes)
             {
                 var cellCount = 0;
@@ -127,13 +127,13 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
                     }
 
                     if (cellType.IsBacteria)
-                        return cellSize * Constants.BACTERIA_CELL_SCALE;
+                        cellSize *= Constants.BACTERIA_CELL_SCALE;
 
-                    totalsize += cellSize;
+                    totalSize += cellSize * cellCount;
                 }
             }
 
-            return totalsize;
+            return totalSize;
         }
     }
 
