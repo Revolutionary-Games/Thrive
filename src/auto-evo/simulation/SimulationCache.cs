@@ -301,26 +301,28 @@ public class SimulationCache
         return cellType.BaseHexSize;
     }
 
-    public float GetRotationSpeedForSpecies(MicrobeSpecies species)
+    public float GetRotationSpeedForSpecies(Species species)
     {
         // TODO: this might be useful to cache though this is just used from a single place (though targeted
         // prey species by multiple predators might benefit ever so slightly, but it seems kind of unlikely).
         // A more useful thing would be to cache this directly in the species when calculating other movement cached
         // properties.
-        var organelles = species.Organelles;
+        if (species is MicrobeSpecies microbeSpecies)
+        {
+            var organelles = microbeSpecies.Organelles;
 
-        // For MicrobeSpecies, Cell Type Specialization = Total Specialization Bonus
-        var totalSpecializationBonus = species.CellTypeSpecializationBonus;
+            // For MicrobeSpecies, Cell Type Specialization = Total Specialization Bonus
+            var totalSpecializationBonus = microbeSpecies.CellTypeSpecializationBonus;
 
-        return MicrobeInternalCalculations.CalculateRotationSpeed(organelles.Organelles, totalSpecializationBonus);
-    }
+            return MicrobeInternalCalculations.CalculateRotationSpeed(organelles.Organelles, totalSpecializationBonus);
+        }
 
-    public float GetRotationSpeedForSpecies(MulticellularSpecies species)
-    {
-        // TODO: this might be useful to cache though this is just used from a single place
-        // A more useful thing would be to cache this directly in the species when calculating other movement cached
-        // properties.
-        return CellBodyPlanInternalCalculations.CalculateRotationSpeed(species.ModifiableEditorCells);
+        if (species is MulticellularSpecies multicellularSpecies)
+        {
+            return CellBodyPlanInternalCalculations.CalculateRotationSpeed(multicellularSpecies.ModifiableEditorCells);
+        }
+
+        throw new ArgumentException("Incompatible species type given");
     }
 
     public float GetCompoundConversionScoreForSpecies(CompoundDefinition fromCompound, CompoundDefinition toCompound,
@@ -630,14 +632,12 @@ public class SimulationCache
         var dissolverEnzyme = Constants.LIPASE_ENZYME;
         var enzymesScore = 0.0f;
 
-        float preyRotationSpeed;
         float preyIndividualCost;
         var preyHP = 1.0f;
         float preyToxinResistance;
         float preyPhysicalResistance;
         float preyStorageNominal;
 
-        float predatorRotationSpeed;
         PredationToolsRawScores preyToolScores;
         var predatorHP = 1.0f;
         float predatorToxinResistance;
@@ -656,7 +656,6 @@ public class SimulationCache
             preyToolScores = GetPredationToolsRawScores(microbePrey);
             smallestPreyHexSize = preyHexSize;
             dissolverEnzyme = microbePrey.MembraneType.DissolverEnzyme;
-            preyRotationSpeed = GetRotationSpeedForSpecies(microbePrey);
             preyIndividualCost = MichePopulation.CalculateIndividualCost(microbePrey, biomeConditions, this);
             preyStorageNominal = microbePrey.StorageCapacities.Nominal;
 
@@ -685,7 +684,6 @@ public class SimulationCache
         {
             preyToolScores = GetPredationToolsRawScores(multicellularPrey);
             smallestPreyHexSize = preyHexSize;
-            preyRotationSpeed = GetRotationSpeedForSpecies(multicellularPrey);
             preyIndividualCost = MichePopulation.CalculateIndividualCost(multicellularPrey, biomeConditions, this);
             preyStorageNominal = multicellularPrey.StorageCapacities.Nominal;
 
@@ -751,7 +749,6 @@ public class SimulationCache
         {
             // TODO: If these two methods were combined it might result in better performance with needing just
             // one dictionary lookup
-            predatorRotationSpeed = GetRotationSpeedForSpecies(microbePredator);
             predatorHP = microbePredator.MembraneType.Hitpoints + microbePredator.MembraneRigidity *
                 membraneRigidityHitpointsModifier;
 
@@ -784,8 +781,6 @@ public class SimulationCache
         }
         else if (predatorSpecies is MulticellularSpecies multicellularPredator)
         {
-            predatorRotationSpeed = GetRotationSpeedForSpecies(multicellularPredator);
-
             predatorStorageNominal = multicellularPredator.StorageCapacities.Nominal;
 
             var totalToxinResistance = 0.0f;
@@ -866,10 +861,12 @@ public class SimulationCache
         var defenseScoreModifier = Constants.AUTO_EVO_PREDATION_DEFENSE_SCORE_MODIFIER;
 
         var predatorSpeed = GetSpeedForSpecies(predatorSpecies);
+        var predatorRotationSpeed = GetRotationSpeedForSpecies(predatorSpecies);
         var predatorEnergyBalance = GetEnergyBalanceForSpecies(predatorSpecies, biomeConditions);
         var predatorOsmoregulationCost = predatorEnergyBalance.Osmoregulation;
 
         var preySpeed = GetSpeedForSpecies(preySpecies);
+        var preyRotationSpeed = GetRotationSpeedForSpecies(preySpecies);
         var slowedPreySpeed = preySpeed;
         var preyEnergyBalance = GetEnergyBalanceForSpecies(preySpecies, biomeConditions);
         var preyOsmoregulationCost = preyEnergyBalance.Osmoregulation;
