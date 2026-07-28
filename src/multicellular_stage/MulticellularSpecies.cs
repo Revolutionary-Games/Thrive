@@ -228,14 +228,18 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         if (ReproductionMethod == MulticellularReproductionMethod.Sporulation && ModifiableSporeCellType == null)
             throw new Exception("Sporulation reproduction method requires a spore cell type to be set");
 
-        if (ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy && ModifiableGameteTypeA == null)
-            throw new Exception("Sexual isogamy reproduction method requires a gamete type A to be set");
-
         if (ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy
-                or MulticellularReproductionMethod.SexualAnisogamy &&
-            (ModifiableGameteTypeA == null || ModifiableGameteTypeB == null))
+            or MulticellularReproductionMethod.SexualAnisogamy)
         {
-            throw new Exception("Sexual reproduction method requires a gamete type A and B to be set");
+            if (ModifiableGameteTypeA == null)
+                throw new Exception("Sexual reproduction method requires a gamete type A to be set");
+
+            if (ReproductionMethod == MulticellularReproductionMethod.SexualAnisogamy && ModifiableGameteTypeB == null)
+                throw new Exception("Sexual reproduction method requires a gamete type A and B to be set");
+
+            // This check is because the growth system is not set up to handle less than two cells on shooting a gamete
+            if (ModifiableGameplayCells.Count < 2)
+                throw new Exception("Sexual reproduction method requires at least two gameplay cells");
         }
 
         if (MassBuddingCellCount < 1 || MassBuddingCellCount > ModifiableGameplayCells.Count)

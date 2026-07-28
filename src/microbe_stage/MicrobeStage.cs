@@ -277,8 +277,8 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         CheatManager.OnDespawnAllEntitiesCheatUsed += OnDespawnAllEntitiesCheatUsed;
         CheatManager.OnNotifySimulationFactor += OnNotifyForceSlowDown;
 
-        // Re-register these callbacks in case it is necessary
-        // The primary registration for this is in OnGameStarted
+        // Re-register these callbacks in case it is necessary.
+        // The primary registration for this is in OnGameStarted.
         if (CurrentGame != null && HUD != null!)
         {
             TutorialState.GlucoseCollecting.OnOpened += SetupPlayerForGlucoseCollecting;
@@ -582,6 +582,75 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
     public void ToggleSpeedMode()
     {
         HUD.ApplySpeedMode(!HUD.GetCurrentSpeedMode());
+    }
+
+    public bool PlayerUsesSexualReproduction()
+    {
+        if (HasAlivePlayer)
+        {
+            if (Player.TryGet(out MulticellularSpeciesMember speciesMember))
+            {
+                return speciesMember.Species.ReproductionMethod is MulticellularReproductionMethod.SexualAnisogamy
+                    or MulticellularReproductionMethod.SexualIsogamy;
+            }
+        }
+
+        // Look in the species to find info
+        if (GameWorld.PlayerSpecies is MulticellularSpecies directMulticell)
+        {
+            return directMulticell.ReproductionMethod is MulticellularReproductionMethod.SexualAnisogamy
+                or MulticellularReproductionMethod.SexualIsogamy;
+        }
+
+        // Not multicellular or info not available
+        return false;
+    }
+
+    public void PlayerShootGamete()
+    {
+        if (!HasAlivePlayer || CurrentGame == null)
+            return;
+
+        if (!Player.Has<MulticellularGrowth>() || !Player.Has<MulticellularSpeciesMember>())
+            return;
+
+        if (!Player.Has<MicrobeColony>())
+        {
+            ToolTipManager.Instance.ShowPopup(
+                Localization.Translate("ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"), 5);
+            return;
+        }
+
+        ref var growth = ref Player.Get<MulticellularGrowth>();
+        ref var colony = ref Player.Get<MicrobeColony>();
+        ref var species = ref Player.Get<MulticellularSpeciesMember>();
+
+        if (growth.IsASpore)
+            return;
+
+        bool canShootGamete = false;
+
+        if (growth.EnoughResourcesForBudding)
+        {
+            canShootGamete = true;
+        }
+        else if (CurrentGame.FreeBuild)
+        {
+            // Can shoot anyway in freebuild at any time
+            canShootGamete = true;
+        }
+
+        if (!canShootGamete)
+            return;
+
+        try
+        {
+            growth.ShootGamete(ref colony, Player, species.Species, WorldSimulation, this, true);
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr("Multicellular gamete spawn failed: ", e);
+        }
     }
 
     public override void SetSpecialViewMode(ViewMode mode)
