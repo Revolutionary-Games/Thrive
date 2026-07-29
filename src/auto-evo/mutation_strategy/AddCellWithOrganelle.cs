@@ -103,27 +103,9 @@ public class AddCellWithOrganelle : IMutationStrategy<Species>
             var baseCellTypes = baseMulticellularSpecies.CellTypes;
             var baseCellTypesCount = baseCellTypes.Count;
 
-            var highestTargetOrganelleCount = 0;
-            var mostSuitableIndex = 0;
-
             // Determine which Cell Type carries the most of this organelle
-            for (int i = 0; i < baseCellTypesCount; ++i)
-            {
-                var baseCellType = baseCellTypes[i];
-                var targetOrganelleCount = 0;
-
-                foreach (var placedOrganelle in baseCellType.Organelles)
-                {
-                    if (placedOrganelle.Definition == organelle)
-                        ++targetOrganelleCount;
-                }
-
-                if (targetOrganelleCount > highestTargetOrganelleCount)
-                {
-                    highestTargetOrganelleCount = targetOrganelleCount;
-                    mostSuitableIndex = i;
-                }
-            }
+            var mostSuitableIndex = FindMostSuitedCellType(baseCellTypesCount, baseCellTypes, organelle,
+                out var highestTargetOrganelleCount);
 
             var baseCells = baseMulticellularSpecies.ModifiableEditorCells;
             int baseCellsCount = baseCells.Count;
@@ -133,20 +115,8 @@ public class AddCellWithOrganelle : IMutationStrategy<Species>
             // Otherwise, create a new Cell Type with this Organelle, and place a new cell on the center line.
             if (highestTargetOrganelleCount > 0)
             {
-                var baseCellType = baseCellTypes[mostSuitableIndex];
-
-                foreach (var adjacencyDirection in Enum.GetValues<AdjacencyDirection>())
-                {
-                    var newSpecies = (MulticellularSpecies)baseMulticellularSpecies.Clone();
-                    var newMP = mp;
-                    var newCellType = newSpecies.ModifiableCellTypes[mostSuitableIndex];
-
-                    if (AddCellsAdjacent(newSpecies, ref newMP, baseCells, baseCellsCount, baseCellType, newCellType,
-                            newCellType.MPCost, adjacencyDirection, workMemory1, workMemory2))
-                    {
-                        mutated.Add(new Mutant(newSpecies, newMP));
-                    }
-                }
+                AddExistingCellType(mp, baseCellTypes, mostSuitableIndex, baseMulticellularSpecies, baseCells,
+                    baseCellsCount, workMemory1, workMemory2, mutated);
             }
             else
             {
@@ -217,6 +187,61 @@ public class AddCellWithOrganelle : IMutationStrategy<Species>
         }
 
         return mutated;
+    }
+
+    /// <summary>
+    ///   Find the celltype most suitable to place to gain more of this organelle
+    /// </summary>
+    private static int FindMostSuitedCellType(int baseCellTypesCount,
+        IReadOnlyList<IReadOnlyCellTypeDefinition> baseCellTypes, OrganelleDefinition organelle,
+        out int highestTargetOrganelleCount)
+    {
+        var mostSuitableIndex = 0;
+        highestTargetOrganelleCount = 0;
+
+        for (int i = 0; i < baseCellTypesCount; ++i)
+        {
+            var baseCellType = baseCellTypes[i];
+            var targetOrganelleCount = 0;
+
+            foreach (var placedOrganelle in baseCellType.Organelles)
+            {
+                if (placedOrganelle.Definition == organelle)
+                    ++targetOrganelleCount;
+            }
+
+            if (targetOrganelleCount > highestTargetOrganelleCount)
+            {
+                highestTargetOrganelleCount = targetOrganelleCount;
+                mostSuitableIndex = i;
+            }
+        }
+
+        return mostSuitableIndex;
+    }
+
+    /// <summary>
+    ///   Try to add more cells of a celltype adjacent to cells of the same type, creating mutants for each direction
+    /// </summary>
+    private static void AddExistingCellType(double mp, IReadOnlyList<IReadOnlyCellTypeDefinition> baseCellTypes,
+        int mostSuitableIndex, MulticellularSpecies baseMulticellularSpecies,
+        IndividualHexLayout<CellTemplate> baseCells, int baseCellsCount, List<Hex> workMemory1, List<Hex> workMemory2,
+        List<Mutant> mutated)
+    {
+        var baseCellType = baseCellTypes[mostSuitableIndex];
+
+        foreach (var adjacencyDirection in Enum.GetValues<AdjacencyDirection>())
+        {
+            var newSpecies = (MulticellularSpecies)baseMulticellularSpecies.Clone();
+            var newMP = mp;
+            var newCellType = newSpecies.ModifiableCellTypes[mostSuitableIndex];
+
+            if (AddCellsAdjacent(newSpecies, ref newMP, baseCells, baseCellsCount, baseCellType, newCellType,
+                    newCellType.MPCost, adjacencyDirection, workMemory1, workMemory2))
+            {
+                mutated.Add(new Mutant(newSpecies, newMP));
+            }
+        }
     }
 
     /// <summary>
