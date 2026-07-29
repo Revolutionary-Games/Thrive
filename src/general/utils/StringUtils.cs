@@ -665,27 +665,28 @@ public static class StringUtils
     /// <summary>
     ///   Calculates the distance between two strings using Levenshtein distance
     /// </summary>
-    public static int DoStringCostBetween(string target, string match)
+    public static int DoStringCostBetween(string first, string second)
     {
-        if (target.Length == 0 || match.Length == 0)
-        {
-            return Math.Max(target.Length, match.Length);
-        }
+        if (first.Length == 0)
+            return second.Length;
 
-        int[] previousRow = new int[target.Length + 1];
-        int[] currentRow = new int[target.Length + 1];
+        if (second.Length == 0)
+            return first.Length;
 
-        for (int x = 0; x < target.Length + 1; ++x)
+        int[] previousRow = new int[first.Length + 1];
+        int[] currentRow = new int[first.Length + 1];
+
+        for (int x = 0; x < first.Length + 1; ++x)
         {
             previousRow[x] = x;
         }
 
-        for (int x = 1; x < match.Length + 1; ++x)
+        for (int x = 1; x < second.Length + 1; ++x)
         {
             currentRow[0] = x;
-            for (int y = 1; y < target.Length + 1; ++y)
+            for (int y = 1; y < first.Length + 1; ++y)
             {
-                int subCost = target[y - 1] == match[x - 1] ? 0 : 1;
+                int subCost = first[y - 1] == second[x - 1] ? 0 : 1;
                 int a = currentRow[y - 1] + 1;
                 int b = previousRow[y] + 1;
                 int c = previousRow[y - 1] + subCost;
@@ -698,6 +699,6 @@ public static class StringUtils
             currentRow.CopyTo(previousRow, 0);
         }
 
-        return currentRow[target.Length];
+        return currentRow[first.Length];
     }
 }
