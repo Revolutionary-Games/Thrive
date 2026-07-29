@@ -325,6 +325,7 @@ public enum ThriveArchiveObjectType : uint
     TestWorldSimulation = 4405,
     GameteACellTypeChangeActionData = 4406,
     GameteBCellTypeChangeActionData = 4407,
+    ComponentGameteCell = 4408,
 
     // Special flag types
     ExtendedOrganelleLayout = OrganelleLayout | ArchiveObjectType.ExtendedTypeFlag,
