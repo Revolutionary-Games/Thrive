@@ -711,6 +711,8 @@ public static class SpawnHelpers
 
         int colonyMembersToAdd = 0;
         int fullColonyMemberCount = -1;
+        bool isGameteSpawn = multicellularData.CellBodyPlanIndex == -1 && aiControlled &&
+            multicellularSpawnState == MulticellularSpawnState.Offspring && multicellularSpecies != null;
 
         if (multicellularSpecies != null)
         {
@@ -736,8 +738,16 @@ public static class SpawnHelpers
                 membraneType = properties.MembraneType;
                 recorder.Set(entity, properties);
 
-                totalSpecializationBonus = resolvedCellType.CellTypeSpecializationBonus *
-                    multicellularSpecies.GetAdjacencySpecializationBonus(multicellularData.CellBodyPlanIndex);
+                if (isGameteSpawn)
+                {
+                    // Special gamete spawn
+                    totalSpecializationBonus = resolvedCellType.CellTypeSpecializationBonus;
+                }
+                else
+                {
+                    totalSpecializationBonus = resolvedCellType.CellTypeSpecializationBonus *
+                        multicellularSpecies.GetAdjacencySpecializationBonus(multicellularData.CellBodyPlanIndex);
+                }
 
                 recorder.Set(entity, new SpecializationFactor
                 {
@@ -828,15 +838,18 @@ public static class SpawnHelpers
                 environmentalEffects.ApplyEffects(multicellularTolerances, totalSpecializationBonus, ref bioProcesses);
             }
 
+            if (!isGameteSpawn)
+            {
 #if DEBUG
-            if (multicellularData.CellBodyPlanIndex >= multicellularSpecies.ModifiableGameplayCells.Count)
-                throw new InvalidOperationException("Bad body plan index was generated for a cell");
+                if (multicellularData.CellBodyPlanIndex >= multicellularSpecies.ModifiableGameplayCells.Count)
+                    throw new InvalidOperationException("Bad body plan index was generated for a cell");
 #endif
 
-            recorder.Set(entity, new MulticellularSpeciesMember(multicellularSpecies, resolvedCellType,
-                multicellularData.CellBodyPlanIndex));
+                recorder.Set(entity, new MulticellularSpeciesMember(multicellularSpecies, resolvedCellType,
+                    multicellularData.CellBodyPlanIndex));
 
-            recorder.Set<IntercellularMatrix>(entity);
+                recorder.Set<IntercellularMatrix>(entity);
+            }
         }
         else if (species is MicrobeSpecies microbeSpecies)
         {
@@ -1042,6 +1055,41 @@ public static class SpawnHelpers
         }
 
         return spawnLimitWeight;
+    }
+
+    public static void SpawnGamete(IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment spawnEnvironment,
+        Species species, Vector3 location, Vector3 initialVelocity, GameteType gamete, CellType gameteType,
+        bool aiGamete, Entity shootingEntity)
+    {
+        // We use the gamete type and -1 as the index to spawn this cell in a bit special state
+        var (recorder, _) = SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species, location,
+            true, (gameteType, -1), out var entity, MulticellularSpawnState.Offspring);
+
+        // Override some things to make the cell work like a gamete
+
+        recorder.Add(entity, new GameteCell
+        {
+            ForSpecies = species,
+            IsPlayer = !aiGamete,
+            ThisGameteType = gamete,
+        });
+
+        var customizedPhysics = PhysicsHelpers.CreatePhysicsForMicrobe();
+        customizedPhysics.Velocity = initialVelocity;
+
+        recorder.Set(entity, customizedPhysics);
+        recorder.Remove<MicrobeAI>(entity);
+        recorder.Remove<SurvivalStatistics>(entity);
+        recorder.Remove<MulticellularGrowth>(entity);
+
+        // Disable collision with the shooting enemy
+        recorder.Set(entity, new CollisionManagement
+        {
+            RecordActiveCollisions = Constants.MAX_SIMULTANEOUS_COLLISIONS_SMALL,
+            IgnoredCollisionsWith = [shootingEntity],
+        });
+
+        FinalizeEntitySpawn(recorder, worldSimulation);
     }
 
     /// <summary>

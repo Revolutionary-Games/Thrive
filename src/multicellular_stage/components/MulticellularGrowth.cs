@@ -478,6 +478,90 @@ public static class MulticellularGrowthHelpers
         multicellularGrowth.TotalNeededForMulticellularGrowth.Merge(species.BaseReproductionCost);
     }
 
+    /// <summary>
+    ///   Shoots a gamete cell from the given entity.
+    /// </summary>
+    public static void ShootGamete(this ref MulticellularGrowth multicellularGrowth, ref MicrobeColony colony,
+        in Entity entity, MulticellularSpecies species, IWorldSimulation worldSimulation,
+        IMicrobeSpawnEnvironment spawnEnvironment, bool isPlayer)
+    {
+        var targetGamete = GameteType.All;
+
+        // Pick gender from entity ID, except for the player it is set on the species
+        if (isPlayer)
+        {
+            targetGamete = species.PlayerGamete;
+        }
+        else
+        {
+            if (entity.Id % 2 == 0)
+            {
+                targetGamete = GameteType.A;
+            }
+            else
+            {
+                targetGamete = GameteType.B;
+            }
+        }
+
+        if (species.ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy)
+        {
+            // Same gamete type so doesn't matter
+            targetGamete = GameteType.All;
+        }
+
+        // Get the cell type used for the gamete
+        CellType? targetCellType;
+        if (targetGamete == GameteType.B)
+        {
+            targetCellType = species.ModifiableGameteTypeB;
+        }
+        else
+        {
+            targetCellType = species.ModifiableGameteTypeA;
+        }
+
+        if (targetCellType == null)
+        {
+            GD.PrintErr("Species is missing configured gamete type that should have been spawned");
+            return;
+        }
+
+        ref var position = ref entity.Get<WorldPosition>();
+
+        Vector3 initialVelocity = (position.Rotation * Vector3.Forward) * 100;
+        Vector3 initialPosition = position.Position;
+
+        // Find the closest cell towards the initial velocity and pick it
+        float distance = float.MaxValue;
+
+        foreach (var colonyMember in colony.ColonyMembers)
+        {
+            try
+            {
+                var memberPosition = colonyMember.Get<WorldPosition>().Position;
+                var newDistance = memberPosition.DistanceSquaredTo(initialVelocity);
+                if (newDistance < distance)
+                {
+                    distance = newDistance;
+                    initialPosition = memberPosition;
+                }
+            }
+            catch (Exception e)
+            {
+                GD.PrintErr("Couldn't check colony member for gamete shooting position: ", e);
+            }
+        }
+
+        SpawnHelpers.SpawnGamete(worldSimulation, spawnEnvironment, species, initialPosition, initialVelocity,
+            targetGamete, targetCellType, true, entity);
+
+        // Need to gather resources again.
+        // Gamete consumed the resources.
+        multicellularGrowth.EnoughResourcesForBudding = false;
+        multicellularGrowth.CompoundsNeededForNextCell = null;
+    }
+
     public static bool GerminateSpore(this ref MulticellularGrowth multicellularGrowth,
         in Entity entity, IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment microbeSpawnEnvironment,
         List<Hex> workMemory1, List<Hex> workMemory2)
