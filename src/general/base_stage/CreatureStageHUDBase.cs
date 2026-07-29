@@ -362,6 +362,18 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
         allAgents.Add(Compound.Mucilage);
     }
 
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+        InputManager.RegisterReceiver(this);
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        InputManager.UnregisterReceiver(this);
+    }
+
     public void Init(TStage containedInStage)
     {
         stage = containedInStage;
@@ -425,6 +437,7 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
         GUICommon.Instance.PlayCustomSound(MicrobePickupOrganelleSound);
 
         editorButton.ShowReproductionDialog();
+        editorButton.SetNormalStyle();
 
         HUDMessages.ShowMessage(Localization.Translate("NOTICE_READY_TO_EDIT"), DisplayDuration.Long);
     }
@@ -459,7 +472,8 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
         stage?.OnSuicide();
     }
 
-    public void EditorButtonPressed()
+    [RunOnKeyDown("g_reproduce")]
+    public virtual void EditorButtonPressed()
     {
         if (editorButton.Disabled)
         {

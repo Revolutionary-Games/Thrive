@@ -1167,6 +1167,11 @@ public static class Constants
     public const int CREATURE_DEATH_POPULATION_LOSS = -30;
     public const int CREATURE_REPRODUCE_POPULATION_GAIN = 50;
 
+    /// <summary>
+    ///   Gametes are shot a lot, so their population gain is limited
+    /// </summary>
+    public const int CREATURE_PRODUCE_GAMETE_POPULATION_GAIN = 5;
+
     // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4694
     public const int CREATURE_KILL_POPULATION_GAIN = 50;
     public const int CREATURE_SCAVENGE_POPULATION_GAIN = 10;
