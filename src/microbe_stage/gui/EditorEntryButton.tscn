@@ -223,6 +223,7 @@ offset_left = 60.0
 offset_top = 100.0
 offset_right = 100.0
 offset_bottom = 140.0
+mouse_filter = 2
 ActionName = "g_reproduce"
 
 [connection signal="mouse_entered" from="." to="." method="OnEditorButtonMouseEnter"]

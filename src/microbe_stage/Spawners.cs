@@ -1082,6 +1082,18 @@ public static class SpawnHelpers
         recorder.Remove<SurvivalStatistics>(entity);
         recorder.Remove<MulticellularGrowth>(entity);
 
+        // Keep looking initially in the shoot direction
+        recorder.Set(entity, new MicrobeControl(location)
+        {
+            LookAtPoint = location + initialVelocity * 10,
+            MovementDirection = Vector3.Forward,
+        });
+
+        // And spawn with the rotation already set so the cell doesn't turn on spawning
+        recorder.Set(entity,
+            new WorldPosition(location,
+                Basis.LookingAt(location + initialVelocity * 10, Vector3.Up).GetRotationQuaternion()));
+
         // Disable collision with the shooting enemy
         recorder.Set(entity, new CollisionManagement
         {
