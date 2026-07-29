@@ -180,6 +180,7 @@ public class ModifyExistingSpecies : IRunStep
                     // For Multicellular species, we need to calculate the gameplay shape here
                     if (mutation.MutatedSpecies is MulticellularSpecies multicellularMutant)
                     {
+                        multicellularMutant.RepositionCellTypesToOrigin();
                         MulticellularLayoutHelpers.UpdateGameplayLayout(multicellularMutant.ModifiableGameplayCells,
                             multicellularMutant.ModifiableEditorCells, AlgorithmQuality.Low,
                             new List<Hex>(), new List<Hex>());
