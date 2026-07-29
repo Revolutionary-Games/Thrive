@@ -485,7 +485,7 @@ public static class MulticellularGrowthHelpers
         in Entity entity, MulticellularSpecies species, IWorldSimulation worldSimulation,
         IMicrobeSpawnEnvironment spawnEnvironment, bool isPlayer)
     {
-        var targetGamete = GameteType.All;
+        GameteType targetGamete;
 
         // Pick gender from entity ID, except for the player it is set on the species
         if (isPlayer)
