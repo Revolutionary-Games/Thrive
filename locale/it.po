@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-07-22 10:29+0300\n"
-"PO-Revision-Date: 2026-07-24 04:57+0000\n"
+"PO-Revision-Date: 2026-07-29 00:10+0000\n"
 "Last-Translator: Giacomo La Serra <laserragiacomo1@gmail.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
 "Language: it\n"
@@ -2647,15 +2647,15 @@ msgstr "Impossibile caricare i dati del fossile"
 
 #, fuzzy
 msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
-msgstr "L'aggiornamento del salvataggio specificato non è riuscito a causa del seguente errore:"
+msgstr "Impossibile leggere il file del fossile perché i dati sono obsoleti o non validi"
 
 #, fuzzy
 msgid "FOSSIL_DELETION_FAILED"
-msgstr "Creazione della mod fallita"
+msgstr "Impossibile Eliminare il Fossile"
 
 #, fuzzy
 msgid "FOSSIL_DELETION_FAILED_DESCRIPTION"
-msgstr "L'aggiornamento del salvataggio specificato non è riuscito a causa del seguente errore:"
+msgstr "Impossibile eliminare il file del fossile."
 
 msgid "FOUR_TIMES"
 msgstr "4x"
@@ -2689,49 +2689,50 @@ msgstr "Visualizzatore galleria"
 
 #, fuzzy
 msgid "GAMEPLAY_BASICS_TITLE"
-msgstr "Squadra Progettisti di Gioco"
+msgstr "Basi del Gameplay"
 
 msgid "GAME_DESIGN_TEAM"
 msgstr "Squadra Progettisti di Gioco"
 
 #, fuzzy
 msgid "GAME_SYSTEMS_TITLE"
-msgstr "Squadra Progettisti di Gioco"
+msgstr "Sistemi di Gioco"
 
 #, fuzzy
 msgid "GATHERED_ENERGY_TOOLTIP"
-msgstr "Metti in pausa il gioco"
+msgstr ""
+"Mostra l'energia totale prevista raccolta dalla tua specie in tutti i biomi e la popolazione risultante (tra parentesi).\n"
+"Energia precedente: {0}"
 
 msgid "GENERAL"
 msgstr "Generale"
 
 #, fuzzy
 msgid "GENERAL_LOADING_TIP_1"
-msgstr "Nell'editor, premi il tasto \"Annulla l'ultima azione\" per correggere eventuali errori"
+msgstr "Premi il pulsante Annulla nell'editor per correggere un errore"
 
 #, fuzzy
 msgid "GENERAL_LOADING_TIP_2"
-msgstr "Nell'editor, premi il tasto \"Annulla l'ultima azione\" per correggere eventuali errori"
+msgstr "Fai attenzione agli organismi più grandi. Ti mangeranno, e farsi digerire non è affatto divertente!"
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_3"
-msgstr "Nell'editor, premi il tasto \"Annulla l'ultima azione\" per correggere eventuali errori"
+msgstr "Fai attenzione a non cacciare ripetutamente la stessa specie, potresti portarla all'estinzione. Anche le altre specie possono fare lo stesso."
 
 #, fuzzy
 msgid "GENERAL_LOADING_TIP_4"
-msgstr "Nell'editor, premi il tasto \"Annulla l'ultima azione\" per correggere eventuali errori"
+msgstr "A volte è meglio semplicemente scappare."
 
 #, fuzzy
 msgid "GENERAL_LOADING_TIP_5"
-msgstr "Nell'editor, premi il tasto \"Annulla l'ultima azione\" per correggere eventuali errori"
+msgstr "Anche se Auto-Evo prevede un calo della tua popolazione, puoi comunque farla aumentare giocando bene."
 
 #, fuzzy
 msgid "GENERAL_LOADING_TIP_6"
-msgstr "Nell'editor, premi il tasto \"Annulla l'ultima azione\" per correggere eventuali errori"
+msgstr "Non dimenticare, puoi usare il pannello nell'angolo in alto a destra dello schermo per vedere cosa si trova sotto il cursore."
 
 #, fuzzy
 msgid "GENERAL_LOADING_TIP_7"
-msgstr "Nell'editor, premi il tasto \"Annulla l'ultima azione\" per correggere eventuali errori"
+msgstr "Se la tua popolazione scende a zero, ti estinguerai."
 
 msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
 msgstr "Generare più glucosio di quanto ne usi tramite fotosintesi"
@@ -2756,21 +2757,19 @@ msgstr "Dormiente"
 
 #, fuzzy
 msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
-msgstr ""
-"I microbi attivi corrono e saltano anche quando non accade nulla di interessante.\n"
-"I microbi sessili sono stazionari e aspettano cambiamenti nell'ambiente prima di agire."
+msgstr "(influisce sulla frequenza e sull'intensità degli eventi, come gli impatti di meteoriti e le eruzioni vulcaniche)"
 
 #, fuzzy
 msgid "GERMINATE_SPORE"
-msgstr "Metti in pausa il gioco"
+msgstr "Fai germinare la spora"
 
 #, fuzzy
 msgid "GERMINATE_SPORE_ACTION_TOOLTIP"
-msgstr "Metti in pausa il gioco"
+msgstr "Fai germinare la spora in una colonia"
 
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
-msgstr "Esci dal gioco"
+msgstr "Visita il nostro repositorio su GitHub"
 
 msgid "GLES3"
 msgstr "GLES3"
@@ -2778,13 +2777,16 @@ msgstr "GLES3"
 msgid "GLOBAL_GLACIATION_END_EVENT_LOG"
 msgstr "L'evento di glaciazione globale è terminata su tutte le zone in superficie"
 
-#, fuzzy
 msgid "GLOBAL_GLACIATION_EVENT"
-msgstr "Popolazione totale:"
+msgstr "Evento di glaciazione globale"
 
 #, fuzzy
 msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
-msgstr "Spostati alla Fase di Risveglio. Disponibile una volta che hai abbastanza Potenza Cerebale (un tipo di tessuto con assoni)"
+msgstr ""
+"Evento di glaciazione globale\n"
+"L'evento è stato causato dall'aumento della concentrazione di ossigeno nell'atmosfera.\n"
+"Persisterà per diverse generazioni, riducendo la luce solare e la temperatura.\n"
+"In questi biomi ora compariranno anche blocchi di ghiaccio."
 
 msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
 msgstr "Evento di glaciazione globale arriverà tra {0} generazioni"
@@ -2800,7 +2802,7 @@ msgstr "G"
 
 #, fuzzy
 msgid "GLOBAL_POPULATION_COLON"
-msgstr "Popolazione totale:"
+msgstr "Popolazione Globale:"
 
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Parte della popolazione di [b][u]{0}[/u][/b] è migrata da {1} a {2}"
@@ -2813,7 +2815,7 @@ msgstr "La concentrazione di glucosio è diminuita drasticamente!"
 
 #, fuzzy
 msgid "GLUCOSE_LEVEL"
-msgstr "{0}-{1}m sotto il livello del mare"
+msgstr "Livello di Glucosio"
 
 msgid "GLYCOLYSIS"
 msgstr "Glicolisi"
@@ -2823,7 +2825,7 @@ msgstr "Modalità Dio"
 
 #, fuzzy
 msgid "GOD_TOOLS_TITLE"
-msgstr "Tempo trascorso: {0:#,#} anni"
+msgstr "Strumenti Divini"
 
 msgid "GOING_NUCLEAR"
 msgstr "Andando vero il nucleare"
@@ -2845,14 +2847,14 @@ msgstr "Grafica"
 
 #, fuzzy
 msgid "GRAPHICS_PRESET"
-msgstr "Squadra Grafici"
+msgstr "Preset Grafico:"
 
 msgid "GRAPHICS_TEAM"
 msgstr "Squadra Grafici"
 
 #, fuzzy
 msgid "GROWTH_ORDER"
-msgstr "Normale"
+msgstr "Ordine di Crescita"
 
 msgid "GUI"
 msgstr "GUI"
@@ -2864,17 +2866,16 @@ msgstr ""
 "Nel caso dovessi riscontrare un bug per cui alcune parti del pulsante dell'editor spariscono,\n"
 "puoi provare a disattivare questa opzione per risolverlo."
 
-#, fuzzy
 msgid "GUI_SCALE_INCREASED_SIZE_NOTE"
-msgstr "(valori più elevati migliorano le prestazioni)"
+msgstr "(nota: aumentare la scala dell'interfaccia è una funzionalità sperimentale e potrebbe causare la visualizzazione di alcuni elementi fuori dallo schermo)"
 
 #, fuzzy
 msgid "GUI_SCALE_OPTION"
-msgstr "Chiudere le opzioni?"
+msgstr "Moltiplicatore della Scala:"
 
 #, fuzzy
 msgid "GUI_TAB_NAVIGATION"
-msgstr "{0}mila"
+msgstr "Navigazione con il tasto Tab"
 
 msgid "GUI_VOLUME"
 msgstr "Volume della GUI"
@@ -2887,7 +2888,10 @@ msgstr "Modificatore salute"
 
 #, fuzzy
 msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
-msgstr "Carica automaticamente patch Harmony dall'Assembly (non richiede di specificare la classe della mod)"
+msgstr ""
+"Questa barra mostra la temperatura attuale della tua cellula. Gli indicatori gialli mostrano l'intervallo di temperatura in cui la produzione di energia è efficace.\n"
+"La barra verticale bianca indica la temperatura dell'ambiente, verso la quale la barra tenderà.\n"
+"L'indicatore sotto la barra cambia colore quando viene prodotta energia."
 
 msgid "HELP"
 msgstr "Aiuto"
@@ -2906,7 +2910,7 @@ msgstr "Tieni premuto per alternare le modalità di spostamento e rotazione"
 
 #, fuzzy
 msgid "HOLD_FOR_PAN_WITH_MOUSE"
-msgstr "Tieni premuto per alternare le modalità di spostamento e rotazione"
+msgstr "Tieni premuto per spostare la visuale con il mouse"
 
 msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "Tieni premuto per mostrare i comandi di branco"
@@ -2919,7 +2923,7 @@ msgstr "Premere [thrive:input]g_free_cursor[/thrive:input] per cursore"
 
 #, fuzzy
 msgid "HOLD_TO_SKIP_CREDITS"
-msgstr "Tieni premuto per mostrare il cursore"
+msgstr "Tieni premuto per saltare"
 
 #, fuzzy
 msgid "HOME"
@@ -2927,7 +2931,7 @@ msgstr "Home"
 
 #, fuzzy
 msgid "HORIZONTAL_COLON"
-msgstr "Versione:"
+msgstr "Orizzontale:"
 
 msgid "HORIZONTAL_WITH_AXIS_NAME_COLON"
 msgstr "Orizzontale (Asse:{0})"
@@ -2943,38 +2947,38 @@ msgstr "{0} (x{1})"
 
 #, fuzzy
 msgid "HYDROGENASE"
-msgstr "Idrogeno solforato"
+msgstr "Idrogenasi"
 
 #, fuzzy
 msgid "HYDROGENASE_DESCRIPTION"
-msgstr "La nitrogenasi è una proteina che converte l'[thrive:compound type=\"nitrogen\"][/thrive:compound] gassoso e l'energia della cellula (in forma di [thrive:compound type=\"atp\"][/thrive:compound]) in [thrive:compound type=\"ammonia\"][/thrive:compound], un nutriente essenziale per la crescita delle cellule. Questo processo si chiama [b]azotofissazione anaerobica[/b]. Siccome la nitrogenasi è sospesa direttamente nel citoplasma, il fuido circostante produce piccole quantità di [thrive:compound type=\"atp\"][/thrive:compound] tramite [b]glicolisi[/b]."
+msgstr "Fermenta il [thrive:compound type=\"glucose\"][/thrive:compound] per ottenere energia e produce sottoprodotti come l'idrogeno. È più efficace dei metabolosomi a basse concentrazioni di [thrive:compound type=\"oxygen\"][/thrive:compound]. Molti organismi che vivono in ambienti anossici lo utilizzano come fonte primaria di energia."
 
 #, fuzzy
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
-msgstr "Trasforma l'[thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound]. Il tasso aumenta con la concentrazione di [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+msgstr "Trasforma il [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #, fuzzy
 msgid "HYDROGENOSOME"
-msgstr "Idrogeno solforato"
+msgstr "Idrogenosoma"
 
 #, fuzzy
 msgid "HYDROGENOSOME_DESCRIPTION"
-msgstr "La nitrogenasi è una proteina che converte l'[thrive:compound type=\"nitrogen\"][/thrive:compound] gassoso e l'energia della cellula (in forma di [thrive:compound type=\"atp\"][/thrive:compound]) in [thrive:compound type=\"ammonia\"][/thrive:compound], un nutriente essenziale per la crescita delle cellule. Questo processo si chiama [b]azotofissazione anaerobica[/b]. Siccome la nitrogenasi è sospesa direttamente nel citoplasma, il fuido circostante produce piccole quantità di [thrive:compound type=\"atp\"][/thrive:compound] tramite [b]glicolisi[/b]."
+msgstr "Fermenta il [thrive:compound type=\"glucose\"][/thrive:compound] per ottenere energia e produce sottoprodotti come l'idrogeno. L'idrogenosoma è un organello delimitato da una membrana e ricco di proteine ed enzimi. Si tratta di un procariote assimilato dal suo ospite eucariote. È più efficace dell'idrogenasi e, a basse concentrazioni di [thrive:compound type=\"oxygen\"][/thrive:compound], è più efficace del mitocondrio. Molti organismi che vivono in ambienti anossici utilizzano pile di idrogenosomi come fonte primaria di energia."
 
 #, fuzzy
 msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
-msgstr "Trasforma l'[thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound]. Il tasso aumenta con la concentrazione di [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+msgstr "Trasforma il [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "HYDROGEN_SULFIDE"
 msgstr "Idrogeno solforato"
 
 #, fuzzy
 msgid "HYDROGEN_SULFIDE_LEVELS"
-msgstr "Idrogeno solforato"
+msgstr "Solfuro di Idrogeno"
 
 #, fuzzy
 msgid "ICESHARD"
-msgstr "Scheggia di ghiaccio"
+msgstr "Piccola Scheggia di Ghiaccio"
 
 msgid "ICESHELF"
 msgstr "Banchina glaciale"
@@ -2987,7 +2991,7 @@ msgstr "Piccola lastra di ghiaccio"
 
 #, fuzzy
 msgid "ICE_SNOWFLAKE_BIG"
-msgstr "Grande lastra di ghiaccio"
+msgstr "Grande Frammento di ghiaccio"
 
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr "L'ID non è un numero valido"
@@ -3003,31 +3007,31 @@ msgstr "ignorare errori ulteriori"
 
 #, fuzzy
 msgid "IMAGE_FILE_TYPES"
-msgstr "Tipi di membrana"
+msgstr "File Immagini Supportate"
 
 #, fuzzy
 msgid "INCOMPATIBLE_MEMBRANE_LIST"
-msgstr "[b]Dati sulle membrane:[/b]"
+msgstr "Incompatibile con le membrane: {0}"
 
 #, fuzzy
 msgid "INCOMPATIBLE_ORGANELLE_LIST"
-msgstr "Organuli multipli"
+msgstr "Incompatibile con gli organelli già posizionati: {0}"
 
 #, fuzzy
 msgid "INCOMPATIBLE_STAGE_LIST"
-msgstr "[b]Dati sulle membrane:[/b]"
+msgstr "Non può essere modificato nelle fasi: {0}"
 
 #, fuzzy
 msgid "INCREASE_ITEM_SIZE"
-msgstr "Crea nuovo elemento"
+msgstr "Aumenta la dimensione dell'oggetto"
 
 #, fuzzy
 msgid "INDICATOR_SPECIES_IS_NEW"
-msgstr "Specie estinte"
+msgstr "Indica che questa specie è nuova in questo bioma o nel mondo"
 
 #, fuzzy
 msgid "INDICATOR_SPECIES_MUTATED"
-msgstr "Permetti alle specie di non mutare (se una buona mutazione non è trovata)"
+msgstr "Indica che questa specie ha subito una mutazione durante questo ciclo di Auto-Evo"
 
 msgid "INDUSTRIAL_STAGE"
 msgstr "Stadio industriale"
@@ -3040,65 +3044,65 @@ msgstr "PM infiniti"
 
 #, fuzzy
 msgid "INFO_BOX_COST"
-msgstr "HAI PROSPERATO!"
+msgstr "Costo Base (MP)"
 
 #, fuzzy
 msgid "INFO_BOX_EDITORS"
-msgstr "HAI PROSPERATO!"
+msgstr "Editor"
 
 msgid "INFO_BOX_ENZYMES"
 msgstr "Enzimi"
 
 #, fuzzy
 msgid "INFO_BOX_GAMEPLAY_TYPE"
-msgstr "Costo di osmoregolazione"
+msgstr "Tipo di Gameplay"
 
 #, fuzzy
 msgid "INFO_BOX_INTERNAL_NAME"
-msgstr "Nome interno (della cartella):"
+msgstr "Nome Interno"
 
 msgid "INFO_BOX_MASS"
 msgstr "Massa"
 
 #, fuzzy
 msgid "INFO_BOX_NEXT_STAGE"
-msgstr "HAI PROSPERATO!"
+msgstr "Prossima Fase"
 
 #, fuzzy
 msgid "INFO_BOX_OSMOREGULATION_COST"
-msgstr "Costo di osmoregolazione"
+msgstr "Costo dell'Osmoregolazione"
 
 #, fuzzy
 msgid "INFO_BOX_PREVIOUS_STAGE"
-msgstr "Nessun processo"
+msgstr "Fase Precedente"
 
 #, fuzzy
 msgid "INFO_BOX_PROCESSES"
-msgstr "Nessun processo"
+msgstr "Processi"
 
 #, fuzzy
 msgid "INFO_BOX_REQUIRES_NUCLEUS"
-msgstr "Richiede nucleo"
+msgstr "Richiede Nucleo"
 
 #, fuzzy
 msgid "INFO_BOX_SIZE"
-msgstr "HAI PROSPERATO!"
+msgstr "Dimensioni (Esagoni)"
 
 #, fuzzy
 msgid "INFO_BOX_SIZE_PLAIN"
-msgstr "HAI PROSPERATO!"
+msgstr "Dimensione"
 
 #, fuzzy
 msgid "INFO_BOX_STAGE"
-msgstr "HAI PROSPERATO!"
+msgstr "Fase"
 
 #, fuzzy
 msgid "INFO_BOX_STORAGE"
-msgstr "HAI PROSPERATO!"
+msgstr "Stoccaggio"
 
 #, fuzzy
 msgid "INFO_BOX_UNIQUE"
-msgstr "HAI PROSPERATO!"
+msgstr "Unico"
 
 msgid "INFO_BOX_UPGRADES"
 msgstr "Aggiornamenti"
@@ -3108,79 +3112,79 @@ msgstr "Materia ingerita"
 
 #, fuzzy
 msgid "INIT_NEW_WORLD_TOOLTIP"
-msgstr "Tempo trascorso: {0:#,#} anni"
+msgstr "Crea un nuovo mondo"
 
 msgid "INPUTS"
 msgstr "Controlli"
 
 #, fuzzy
 msgid "INPUT_NAME_BUILD_STRUCTURE"
-msgstr "Completa una generazione"
+msgstr "Costruisci una struttura"
 
 #, fuzzy
 msgid "INPUT_NAME_INTERACTION"
-msgstr "Completa una generazione"
+msgstr "Interagisci con l'oggetto"
 
 #, fuzzy
 msgid "INPUT_NAME_OPEN_INVENTORY"
-msgstr "Completa una generazione"
+msgstr "Mostra/Nascondi la schermata dell'inventario"
 
 msgid "INSPECT"
 msgstr "Ispeziona"
 
 #, fuzzy
 msgid "INSPECTOR"
-msgstr "Ispeziona"
+msgstr "Ispettore"
 
 #, fuzzy
 msgid "INSTAGRAM_TOOLTIP"
-msgstr "Metti in pausa il gioco"
+msgstr "Visita la nostra pagina Instagram"
 
 #, fuzzy
 msgid "INSTANT_KILL_PROTECTION"
-msgstr "{0}: +{1} ATP"
+msgstr "Protezione dalla morte istantanea"
 
 #, fuzzy
 msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
-msgstr "(proporzione di glucosio conservata nell'ambiente all'inizio di ciascuna generazione)"
+msgstr "(i danni che ucciderebbero un giocatore con molta salute ti lasceranno invece con una piccola quantità di salute)"
 
 #, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
-msgstr "Tasso mutazione IA"
+msgstr "Attiva il Portale dell'Ascensione"
 
 #, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION_MISSING_ENERGY"
-msgstr "Tasso mutazione IA"
+msgstr "Attiva il Portale dell'Ascensione (ENERGIA INSUFFICIENTE)"
 
 #, fuzzy
 msgid "INTERACTION_CONSTRUCT"
-msgstr "Tasso mutazione IA"
+msgstr "Termina la Costruzione"
 
 msgid "INTERACTION_CONSTRUCT_MISSING_DEPOSITED_MATERIALS"
 msgstr "Concludi costruzione (mancano i materiali richiesti)"
 
 #, fuzzy
 msgid "INTERACTION_CRAFT"
-msgstr "Tasso mutazione IA"
+msgstr "Crea..."
 
 #, fuzzy
 msgid "INTERACTION_DEPOSIT_RESOURCES"
-msgstr "Tasso mutazione IA"
+msgstr "Deposita i Materiali"
 
 msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
 msgstr "Deposita i materiali (nessun oggetto idoneo trasportato)"
 
 #, fuzzy
 msgid "INTERACTION_DESTROY"
-msgstr "Tasso mutazione IA"
+msgstr "Distruggi"
 
 #, fuzzy
 msgid "INTERACTION_FOUND_SETTLEMENT"
-msgstr "Tasso mutazione IA"
+msgstr "Fonda un Insediamento"
 
 #, fuzzy
 msgid "INTERACTION_HARVEST"
-msgstr "Tasso mutazione IA"
+msgstr "Raccogli"
 
 msgid "INTERACTION_HARVEST_CANNOT_MISSING_TOOL"
 msgstr "Raccogli (MANCA EQUIPAGGIAMENTO: {0})"
@@ -3229,7 +3233,7 @@ msgstr "Oggetti a terra"
 
 #, fuzzy
 msgid "INVENTORY_TITLE"
-msgstr "\"{0}\" - {1}"
+msgstr "Inventario"
 
 msgid "INVENTORY_TOGGLE_CRAFTING"
 msgstr "Crafting"
@@ -3255,18 +3259,18 @@ msgstr "Livello Ferro"
 
 #, fuzzy
 msgid "IRON_OXIDATION"
-msgstr "Donazioni"
+msgstr "Ossidazione del Ferro"
 
 #, fuzzy
 msgid "ITCH_TOOLTIP"
-msgstr "Esci dal gioco"
+msgstr "Visita la nostra pagina Itch.io"
 
 msgid "ITEM_AT_2D_COORDINATES"
 msgstr "{0} a ({1},{2})"
 
 #, fuzzy
 msgid "ITEM_NAME_SEPARATOR"
-msgstr "Completa una generazione"
+msgstr ":"
 
 msgid "JANUARY"
 msgstr "Gennaio"
@@ -3279,14 +3283,14 @@ msgstr "Giugno"
 
 #, fuzzy
 msgid "KEEP_MIGRATION"
-msgstr "Respirazione aerobica"
+msgstr "Mantieni la Migrazione"
 
 msgid "KEY_BACK"
 msgstr "Indietro"
 
 #, fuzzy
 msgid "KEY_BACKTAB"
-msgstr "Indietro"
+msgstr "Maiusc + Tab"
 
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
@@ -3319,7 +3323,7 @@ msgstr "Avanti"
 
 #, fuzzy
 msgid "KEY_GLOBE"
-msgstr "Home"
+msgstr "Tasto Globo"
 
 msgid "KEY_HELP"
 msgstr "Aiuto"
@@ -3332,18 +3336,18 @@ msgstr "Homepage"
 
 #, fuzzy
 msgid "KEY_HYPER"
-msgstr "Aiuto"
+msgstr "Hyper"
 
 msgid "KEY_INSERT"
 msgstr "Ins"
 
 #, fuzzy
 msgid "KEY_JIS_EISU"
-msgstr "Ins"
+msgstr "Tasto JIS Eisu"
 
 #, fuzzy
 msgid "KEY_JIS_KANA"
-msgstr "Standby"
+msgstr "Tasto Jis Kana"
 
 msgid "KEY_LEFT"
 msgstr "🡐 Freccia sinistra"
@@ -3353,7 +3357,7 @@ msgstr "Menù"
 
 #, fuzzy
 msgid "KEY_META"
-msgstr "Tab"
+msgstr "Meta"
 
 msgid "KEY_OPENURL"
 msgstr "Apri URL"
@@ -3387,11 +3391,11 @@ msgstr "🡑 Freccia in alto"
 
 #, fuzzy
 msgid "KILL_50_MICROBES"
-msgstr "Nitrogenasi"
+msgstr "Uccidi 50 microbi"
 
 #, fuzzy
 msgid "KILL_MICROBES_PROGRESS"
-msgstr "Editor Microbico"
+msgstr "Uccidi {0} / {1} microbi"
 
 msgid "KILO_ABBREVIATION"
 msgstr "{0}mila"
@@ -3458,7 +3462,7 @@ msgstr "Questa traduzione è molto incompleta ({0}% fatto). Perfavore, aiutaci!"
 
 #, fuzzy
 msgid "LARGE_SULFUR_CHUNK"
-msgstr "Frammento di ferro piccolo"
+msgstr "Grande Frammento di Zolfo"
 
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Impossibile eliminare l'ultimo organulo"
@@ -3606,31 +3610,32 @@ msgstr "Media"
 
 #, fuzzy
 msgid "LIGHT_LEVEL_CURRENT"
-msgstr "Notte"
+msgstr "Attuale"
 
 msgid "LIGHT_LEVEL_DAY"
 msgstr "Giorno"
 
+#, fuzzy
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
-msgstr ""
+msgstr "{0} a mezzogiorno"
 
 msgid "LIGHT_LEVEL_NIGHT"
 msgstr "Notte"
 
 #, fuzzy
 msgid "LIGHT_MAX"
-msgstr "Luce"
+msgstr "Luce massima"
 
 msgid "LIMIT_EXTREME"
 msgstr "Estremo"
 
 #, fuzzy
 msgid "LIMIT_GROWTH_RATE"
-msgstr "Normale"
+msgstr "Limita l'uso dei composti per la crescita"
 
 #, fuzzy
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
-msgstr "(velocità di mutazione delle specie controllate dall'intelligenza artificiale)"
+msgstr "(se attivata, limita la velocità di crescita, se disattivata, la velocità di crescita dipende solo dai composti disponibili)"
 
 msgid "LIMIT_HUGE"
 msgstr "Enorme"
