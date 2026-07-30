@@ -1058,11 +1058,11 @@ public static class SpawnHelpers
     }
 
     public static void SpawnGamete(IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment spawnEnvironment,
-        Species species, Vector3 location, Vector3 initialVelocity, GameteType gamete, CellType gameteType,
-        bool aiGamete, Entity shootingEntity)
+        ISpawnSystem spawnerToRegisterWith, Species species, Vector3 location, Vector3 initialVelocity,
+        GameteType gamete, CellType gameteType, bool aiGamete, Entity shootingEntity)
     {
         // We use the gamete type and -1 as the index to spawn this cell in a bit special state
-        var (recorder, _) = SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species, location,
+        var (recorder, weight) = SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species, location,
             true, (gameteType, -1), out var entity, MulticellularSpawnState.Offspring);
 
         // Override some things to make the cell work like a gamete
@@ -1072,6 +1072,14 @@ public static class SpawnHelpers
             ForSpecies = species,
             IsPlayer = !aiGamete,
             ThisGameteType = gamete,
+            EmittedBy = shootingEntity,
+        });
+
+        recorder.Add(entity, new PhysicsSensor
+        {
+            ActiveArea = null,
+            MaxActiveContacts = 8,
+            DetectSleepingBodies = false,
         });
 
         var customizedPhysics = PhysicsHelpers.CreatePhysicsForMicrobe();
@@ -1081,6 +1089,12 @@ public static class SpawnHelpers
         recorder.Remove<MicrobeAI>(entity);
         recorder.Remove<SurvivalStatistics>(entity);
         recorder.Remove<MulticellularGrowth>(entity);
+        recorder.Remove<MulticellularSpeciesMember>(entity);
+        recorder.Remove<CompoundAbsorber>(entity);
+        recorder.Remove<UnneededCompoundVenter>(entity);
+        recorder.Remove<Engulfer>(entity);
+        recorder.Remove<ReproductionStatus>(entity);
+        recorder.Remove<CommandSignaler>(entity);
 
         // Keep looking initially in the shoot direction
         recorder.Set(entity, new MicrobeControl(location)
@@ -1100,6 +1114,12 @@ public static class SpawnHelpers
             RecordActiveCollisions = Constants.MAX_SIMULTANEOUS_COLLISIONS_SMALL,
             IgnoredCollisionsWith = [shootingEntity],
         });
+
+        recorder.Set(entity, new ReadableName(new LocalizedString("GAMETE_CELL_ENTITY_NAME", species.FormattedName)));
+
+        // Make it despawn like normal
+        spawnerToRegisterWith.NotifyExternalEntitySpawned(entity, recorder,
+            Constants.MICROBE_DESPAWN_RADIUS_SQUARED, weight);
 
         FinalizeEntitySpawn(recorder, worldSimulation);
     }

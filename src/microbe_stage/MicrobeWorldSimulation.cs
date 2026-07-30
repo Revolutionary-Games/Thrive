@@ -93,6 +93,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
     private DelayedColonyOperationSystem delayedColonyOperationSystem = null!;
     private MulticellularGrowthSystem multicellularGrowthSystem = null!;
     private IntercellularMatrixSystem intercellularMatrixSystem = null!;
+    private GameteSystem gameteSystem = null!;
 
 #pragma warning disable CA2213
     private Node visualsParent = null!;
@@ -312,6 +313,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         multicellularGrowthSystem =
             new MulticellularGrowthSystem(this, spawnEnvironment, SpawnSystem, EntitySystem);
         intercellularMatrixSystem = new IntercellularMatrixSystem(EntitySystem);
+        gameteSystem = new GameteSystem(this, spawnEnvironment, SpawnSystem, EntitySystem);
 
         CloudSystem = cloudSystem;
 
@@ -346,6 +348,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         organelleTickSystem.SetWorld(currentGame.GameWorld);
         microbeMovementSystem.SetWorld(currentGame.GameWorld);
         colonyBindingSystem.SetWorld(currentGame.GameWorld);
+        gameteSystem.SetWorld(currentGame.GameWorld);
 
         CloudSystem.Init(FluidCurrentsSystem);
     }
@@ -551,6 +554,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
                 delayedColonyOperationSystem.Dispose();
                 multicellularGrowthSystem.Dispose();
                 intercellularMatrixSystem.Dispose();
+                gameteSystem.Dispose();
 
                 CameraFollowSystem.Dispose();
                 ProcessSystem.Dispose();

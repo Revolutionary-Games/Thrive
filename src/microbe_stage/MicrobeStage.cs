@@ -645,7 +645,8 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         try
         {
-            growth.ShootGamete(ref colony, Player, species.Species, WorldSimulation, this, true);
+            growth.ShootGamete(ref colony, Player, species.Species, WorldSimulation, this, WorldSimulation.SpawnSystem,
+                true);
         }
         catch (Exception e)
         {

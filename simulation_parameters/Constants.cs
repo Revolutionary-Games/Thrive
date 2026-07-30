@@ -1166,6 +1166,7 @@ public static class Constants
     // Darwinian Evo Values
     public const int CREATURE_DEATH_POPULATION_LOSS = -30;
     public const int CREATURE_REPRODUCE_POPULATION_GAIN = 50;
+    public const int CREATURE_REPRODUCE_SEXUAL_POPULATION_GAIN = CREATURE_REPRODUCE_POPULATION_GAIN * 3;
 
     /// <summary>
     ///   Gametes are shot a lot, so their population gain is limited

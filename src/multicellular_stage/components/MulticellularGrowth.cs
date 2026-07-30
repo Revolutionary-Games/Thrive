@@ -483,7 +483,7 @@ public static class MulticellularGrowthHelpers
     /// </summary>
     public static void ShootGamete(this ref MulticellularGrowth multicellularGrowth, ref MicrobeColony colony,
         in Entity entity, MulticellularSpecies species, IWorldSimulation worldSimulation,
-        IMicrobeSpawnEnvironment spawnEnvironment, bool isPlayer)
+        IMicrobeSpawnEnvironment spawnEnvironment, ISpawnSystem spawnerToRegisterWith, bool isPlayer)
     {
         GameteType targetGamete;
 
@@ -553,7 +553,8 @@ public static class MulticellularGrowthHelpers
             }
         }
 
-        SpawnHelpers.SpawnGamete(worldSimulation, spawnEnvironment, species, initialPosition, initialVelocity,
+        SpawnHelpers.SpawnGamete(worldSimulation, spawnEnvironment, spawnerToRegisterWith, species, initialPosition,
+            initialVelocity,
             targetGamete, targetCellType, true, entity);
 
         // Need to gather resources again.

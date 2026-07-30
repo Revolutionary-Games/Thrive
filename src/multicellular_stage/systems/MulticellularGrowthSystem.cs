@@ -412,7 +412,7 @@ public partial class MulticellularGrowthSystem : BaseSystem<World, float>
 
         try
         {
-            growth.ShootGamete(ref colony, entity, species, worldSimulation, spawnEnvironment, false);
+            growth.ShootGamete(ref colony, entity, species, worldSimulation, spawnEnvironment, spawnSystem, false);
         }
         catch (Exception e)
         {

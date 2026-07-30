@@ -14,8 +14,20 @@ public struct GameteCell : IArchivableComponent
 
     public Species ForSpecies;
 
+    public Entity EmittedBy;
     public Entity LockedOntoTarget;
+    public Entity MergingWith;
+
+    // TODO: use to increase the force
+    public float MergingTimePassed;
+
     public bool HasTarget;
+    public bool IsMerging;
+
+    /// <summary>
+    ///   Once set to true, this gamete cell will not do anything again.
+    /// </summary>
+    public bool IsUsed;
 
     public bool IsPlayer;
 
@@ -30,9 +42,14 @@ public struct GameteCell : IArchivableComponent
     {
         writer.Write((int)ThisGameteType);
         writer.WriteObject(ForSpecies);
+        writer.WriteAnyRegisteredValueAsObject(EmittedBy);
         writer.WriteAnyRegisteredValueAsObject(LockedOntoTarget);
+        writer.WriteAnyRegisteredValueAsObject(MergingWith);
+        writer.Write(MergingTimePassed);
         writer.Write(HasTarget);
+        writer.Write(IsMerging);
         writer.Write(IsPlayer);
+        writer.Write(IsUsed);
     }
 }
 
@@ -47,9 +64,14 @@ public static class GameteCellHelpers
         {
             ThisGameteType = (GameteType)reader.ReadInt32(),
             ForSpecies = reader.ReadObject<Species>(),
+            EmittedBy = reader.ReadObject<Entity>(),
             LockedOntoTarget = reader.ReadObject<Entity>(),
+            MergingWith = reader.ReadObject<Entity>(),
+            MergingTimePassed = reader.ReadFloat(),
             HasTarget = reader.ReadBool(),
+            IsMerging = reader.ReadBool(),
             IsPlayer = reader.ReadBool(),
+            IsUsed = reader.ReadBool(),
         };
 
         return result;
