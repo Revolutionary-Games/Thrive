@@ -228,6 +228,10 @@ public class AddCellWithOrganelle : IMutationStrategy<Species>
         IndividualHexLayout<CellTemplate> baseCells, int baseCellsCount, List<Hex> workMemory1, List<Hex> workMemory2,
         List<Mutant> mutated)
     {
+        // We put a hard cap of 20 cells for Multicellular species
+        if (baseCellsCount >= Constants.AUTO_EVO_MAX_CELL_COUNT)
+            return;
+
         var baseCellType = baseCellTypes[mostSuitableIndex];
 
         foreach (var adjacencyDirection in Enum.GetValues<AdjacencyDirection>())
@@ -239,6 +243,9 @@ public class AddCellWithOrganelle : IMutationStrategy<Species>
             if (AddCellsAdjacent(newSpecies, ref newMP, baseCells, baseCellsCount, baseCellType, newCellType,
                     newCellType.MPCost, adjacencyDirection, workMemory1, workMemory2))
             {
+                if (newSpecies.EditorCells.Count >= Constants.AUTO_EVO_MAX_CELL_COUNT)
+                    return;
+
                 mutated.Add(new Mutant(newSpecies, newMP));
             }
         }
