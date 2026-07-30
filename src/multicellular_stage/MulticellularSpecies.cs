@@ -512,6 +512,33 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
                 ModifiableSporeCellType = clonedType;
         }
 
+        if (modifiableEditorCells == null)
+        {
+            modifiableEditorCells = new IndividualHexLayout<CellTemplate>();
+        }
+        else
+        {
+            modifiableEditorCells.Clear();
+        }
+
+        foreach (var hexWithData in casted.ModifiableEditorCells)
+        {
+            var oldTemplate = hexWithData.Data;
+
+            if (oldTemplate != null)
+            {
+                var oldType = oldTemplate.ModifiableCellType;
+
+                if (!typeMapping.TryGetValue(oldType, out var newType))
+                    throw new Exception("Cell type not found in species");
+
+                var newTemplate = new CellTemplate(newType, oldTemplate.Position, oldTemplate.Orientation);
+                modifiableEditorCells.AddFast(
+                    new HexWithData<CellTemplate>(newTemplate, hexWithData.Position, hexWithData.Orientation),
+                    workMemory1, workMemory2);
+            }
+        }
+
         ModifiableGameplayCells.Clear();
 
         foreach (var cellTemplate in casted.ModifiableGameplayCells)
@@ -539,8 +566,6 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 
         ReproductionMethod = casted.ReproductionMethod;
 
-        // Recalculate editor cells if they exist as they are now out of date
-        modifiableEditorCells = null;
         readonlyIndividualLayoutAdapter = null;
 
         cachedFillTimes.Clear();
