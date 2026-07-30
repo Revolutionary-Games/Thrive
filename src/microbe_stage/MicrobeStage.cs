@@ -15,7 +15,7 @@ using SharedBase.Archive;
 public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>, IMicrobeSpawnEnvironment,
     IArchivable
 {
-    public const int SERIALIZATION_VERSION = 1;
+    public const int SERIALIZATION_VERSION = 2;
 
     private readonly Dictionary<MicrobeSpecies, ResolvedMicrobeTolerances> resolvedTolerancesCache = new();
 
@@ -110,6 +110,19 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
     /// </summary>
     private bool switchedPatchInEditorForCompounds;
 
+    // Variables for gamete-based editor entry
+    private bool gametesMerging;
+    private Entity mergingGamete1 = Entity.Null;
+    private Entity mergingGamete2 = Entity.Null;
+    private Vector3 gameteMergeLocation = Vector3.Zero;
+    private float gameteMergingTimer;
+    private float oldCameraZoomBeforeMerge = -1;
+
+    /// <summary>
+    ///   Used to know when the player didn't scientifically split from another cell
+    /// </summary>
+    private bool playerGrewFromGamete;
+
     public CompoundCloudSystem Clouds { get; private set; } = null!;
 
     /// <summary>
@@ -200,6 +213,21 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         instance.SavedPatchManagerPatch = reader.ReadObjectOrNull<Patch>();
         instance.SavedPatchManagerBrightness = reader.ReadFloat();
 
+        if (version > 1)
+        {
+            instance.gametesMerging = reader.ReadBool();
+
+            // See the write method.
+
+            // instance.mergingGamete1 = reader.ReadObject<Entity>();
+            // instance.mergingGamete2 = reader.ReadObject<Entity>();
+
+            instance.gameteMergeLocation = reader.ReadVector3();
+            instance.gameteMergingTimer = reader.ReadFloat();
+            instance.oldCameraZoomBeforeMerge = reader.ReadFloat();
+            instance.playerGrewFromGamete = reader.ReadBool();
+        }
+
         return instance;
     }
 
@@ -221,6 +249,18 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         writer.WriteObjectProperties(HUD);
         writer.WriteObjectOrNull(SavedPatchManagerPatch);
         writer.Write(SavedPatchManagerBrightness);
+        writer.Write(gametesMerging);
+
+        // Gametes cannot be easily saved and loaded in the world (we would need marker components). Instead, they are
+        // marked as not needing saving.
+
+        // writer.WriteAnyRegisteredValueAsObject(mergingGamete1);
+        // writer.WriteAnyRegisteredValueAsObject(mergingGamete2);
+
+        writer.Write(gameteMergeLocation);
+        writer.Write(gameteMergingTimer);
+        writer.Write(oldCameraZoomBeforeMerge);
+        writer.Write(playerGrewFromGamete);
     }
 
     /// <summary>
@@ -526,6 +566,11 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             HUD.UpdateRadiationBar(0, 1, 1);
         }
 
+        if (gametesMerging)
+        {
+            UpdateGameteMergeAnimation(delta);
+        }
+
         UpdateLinePlayerPosition();
     }
 
@@ -609,6 +654,10 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
     public void PlayerShootGamete()
     {
         if (!HasAlivePlayer || CurrentGame == null)
+            return;
+
+        // If a gamete already hit something, don't allow spamming the button any more
+        if (gametesMerging)
             return;
 
         if (!Player.Has<MulticellularGrowth>() || !Player.Has<MulticellularSpeciesMember>())
@@ -755,6 +804,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         if (!HasPlayer || Player.Get<Health>().Dead || PlayerIsEngulfed(Player))
         {
             GD.PrintErr("Player object disappeared, died, or was engulfed while transitioning to the editor");
+            OnStopGameteMerge();
             HUD.OnCancelEditorEntry();
             return;
         }
@@ -828,6 +878,25 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         RecordPlayerReproduction();
 
+        // If doing gamete merge, teleport the player there to prepare the player for the next life
+        if (gametesMerging)
+        {
+            GD.Print("Entering editor after gamete merge, so teleporting the player to the target position");
+            playerGrewFromGamete = true;
+            ref var physics = ref Player.Get<Physics>();
+            ref var position = ref Player.Get<WorldPosition>();
+            physics.TeleportTo(ref position, gameteMergeLocation, WorldSimulation);
+
+            // And despawn the gametes
+            if (mergingGamete1.IsAliveAndNotNull())
+                WorldSimulation.DestroyEntity(mergingGamete1);
+            if (mergingGamete2.IsAliveAndNotNull())
+                WorldSimulation.DestroyEntity(mergingGamete2);
+
+            mergingGamete1 = Entity.Null;
+            mergingGamete2 = Entity.Null;
+        }
+
         PauseMenu.Instance.ReportStageTransition();
 
         // We don't free this here as the editor will return to this scene
@@ -847,6 +916,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         if (!HasPlayer || Player.Get<Health>().Dead || !Player.Has<MicrobeColony>() || PlayerIsEngulfed(Player))
         {
             GD.PrintErr("Player object disappeared or died (or not in a colony) while trying to become multicellular");
+            OnStopGameteMerge();
             HUD.OnCancelEditorEntry();
             return;
         }
@@ -881,9 +951,9 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         var playerSpeciesMicrobes = GetAllPlayerSpeciesMicrobes();
 
-        // Re-apply species here so that the player cell knows it is multicellular after this
-        // Also apply species here to other members of the player's previous species
-        // This prevents previous members of the player's colony from immediately being hostile
+        // Re-apply species here so that the player cell knows it is multicellular after this.
+        // Also, apply species here to other members of the player's previous species.
+        // This prevents previous members of the player's colony from immediately being hostile.
         bool playerHandled = false;
 
         var multicellularSpecies = GameWorld.ChangeSpeciesToMulticellular(previousSpecies, true);
@@ -1002,6 +1072,31 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         {
             Clouds.AddCloud(Compound.Glucose, 200000.0f,
                 Player.Get<WorldPosition>().Position + new Vector3(0.0f, 0.0f, -25.0f));
+        }
+
+        // Ensure gamete merge status is not ongoing
+        OnStopGameteMerge();
+
+        if (oldCameraZoomBeforeMerge > 0)
+        {
+            GD.Print("Restoring camera height to state before gamete animation: ", oldCameraZoomBeforeMerge);
+            Camera.CameraHeight = oldCameraZoomBeforeMerge;
+            oldCameraZoomBeforeMerge = 0;
+        }
+
+        WorldSimulation.CameraFollowSystem.Disabled = false;
+
+        // When true, another cell is spawned next to the player that they scientifically speaking would have split
+        // from
+        bool spawnAnotherCell = true;
+
+        // If using sexual reproduction, do not spawn another member as we came from a gamete merge
+        if (playerGrewFromGamete)
+        {
+            spawnAnotherCell = false;
+            playerGrewFromGamete = false;
+
+            GD.Print("Player grew from gamete, so not spawning another cell");
         }
 
         // Check win conditions
@@ -1144,39 +1239,42 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         switchedPatchInEditorForCompounds = false;
 
-        // Spawn another cell from the player species
-        // This needs to be done after updating the player so that multicellular organisms are accurately separated
-        cellProperties.Divide(ref Player.Get<OrganelleContainer>(), Player, playerSpecies, WorldSimulation,
-            this, WorldSimulation.SpawnSystem, (ref daughter, commandBuffer) =>
-            {
-                // Mark as a player-reproduced entity
-                commandBuffer.Add(daughter, new PlayerOffspring
-                {
-                    OffspringOrderNumber = ++playerOffspringTotalCount,
-                });
-
-                // If multicellular, we want that other cell colony to be fully grown to show budding in action
-            }, MulticellularSpawnState.FullColony);
-
-        // This is queued to run on the world after the next update as that's when the duplicate entity will spawn
-        // The entity is not forced to spawn here immediately to reduce the lag impact that is already caused by
-        // switching from the editor back to the stage scene
-        WorldSimulation.Invoke(() =>
+        // Spawn another cell from the player species.
+        if (spawnAnotherCell)
         {
-            // We need to find the entity reference of the offspring that was spawned last frame
-            var doNotDespawn = PlayerOffspringHelpers.FindLatestSpawnedOffspring(WorldSimulation.EntitySystem);
+            // This needs to be done after updating the player so that multicellular organisms are accurately separated.
+            cellProperties.Divide(ref Player.Get<OrganelleContainer>(), Player, playerSpecies, WorldSimulation,
+                this, WorldSimulation.SpawnSystem, (ref daughter, commandBuffer) =>
+                {
+                    // Mark as a player-reproduced entity
+                    commandBuffer.Add(daughter, new PlayerOffspring
+                    {
+                        OffspringOrderNumber = ++playerOffspringTotalCount,
+                    });
+
+                    // If multicellular, we want that other cell colony to be fully grown to show budding in action
+                }, MulticellularSpawnState.FullColony);
+
+            // This is queued to run on the world after the next update as that's when the duplicate entity will spawn.
+            // The entity is not forced to spawn here immediately to reduce the lag impact that is already caused by
+            // switching from the editor back to the stage scene.
+            WorldSimulation.Invoke(() =>
+            {
+                // We need to find the entity reference of the offspring that was spawned last frame
+                var doNotDespawn = PlayerOffspringHelpers.FindLatestSpawnedOffspring(WorldSimulation.EntitySystem);
 
 #if DEBUG
-            if (doNotDespawn.IsAliveAndNotNull() && !doNotDespawn.Has<Spawned>())
-            {
-                throw new Exception(
-                    "Spawned player offspring has no spawned component, microbe reproduction method is" +
-                    "working incorrectly");
-            }
+                if (doNotDespawn.IsAliveAndNotNull() && !doNotDespawn.Has<Spawned>())
+                {
+                    throw new Exception(
+                        "Spawned player offspring has no spawned component, microbe reproduction method is" +
+                        "working incorrectly");
+                }
 #endif
 
-            WorldSimulation.SpawnSystem.EnsureEntityLimitAfterPlayerReproduction(playerPosition, doNotDespawn);
-        });
+                WorldSimulation.SpawnSystem.EnsureEntityLimitAfterPlayerReproduction(playerPosition, doNotDespawn);
+            });
+        }
 
         // Handle the compound modes
         if (topUp)
@@ -1233,7 +1331,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         if (TutorialState.Enabled && !TutorialState.ProcessPanelTutorial.Complete)
         {
-            // Ensure the player accepts the glucose, this only really happens when going directly from starting in
+            // Ensure the player accepts the glucose; this only really happens when going directly from starting in
             // the editor to the game
             playerCompounds.SetUseful(Compound.Glucose);
 
@@ -1341,6 +1439,10 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         // Hook up the simulation to some of the other systems
         WorldSimulation.CameraFollowSystem.Camera = Camera;
+
+        // Restore disable state if someone saved and loaded during the camera animation of gamete merging
+        WorldSimulation.CameraFollowSystem.Disabled = gametesMerging;
+
         HoverInfo.PhysicalWorld = WorldSimulation.PhysicalWorld;
         WorldSimulation.FluidCurrentsSystem.FluidCurrentDisplay = fluidCurrentDisplay;
 
@@ -1349,6 +1451,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         tutorialGUI.EventReceiver = TutorialState;
         HUD.SendObjectsToTutorials(TutorialState);
+        WorldSimulation.GameteSystem.SetPlayerGameteCallback(OnPlayerGameteMerged);
 
         ProceduralDataCache.Instance.OnEnterState(MainGameState.MicrobeStage);
 
@@ -1921,6 +2024,12 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
     {
         HandlePlayerDeath();
 
+        if (gametesMerging)
+        {
+            GD.Print("Player died during gamete merging");
+            OnStopGameteMerge();
+        }
+
         bool engulfed = PlayerIsEngulfed(player);
 
         // Engulfing death has a different tutorial
@@ -2180,6 +2289,80 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         {
             GD.PrintErr("Couldn't read player health: " + e);
             return false;
+        }
+    }
+
+    private void OnPlayerGameteMerged(Entity playerGamete, Entity otherGamete, Vector3 location)
+    {
+        if (gametesMerging)
+        {
+            // Player gametes are already being merged
+            GD.Print("Player gametes are already being merged, ignoring a new callback");
+            WorldSimulation.DestroyEntity(playerGamete);
+            WorldSimulation.DestroyEntity(otherGamete);
+            return;
+        }
+
+        // Player gamete merged so change camera to be there and then automatically enter the editor
+        gametesMerging = true;
+        gameteMergeLocation = location;
+        mergingGamete1 = playerGamete;
+        mergingGamete2 = otherGamete;
+        gameteMergingTimer = 0;
+        oldCameraZoomBeforeMerge = Camera.CameraHeight;
+
+        // As we can't easily load or save these entities, we will just destroy them on save if someone saves during
+        // this animation.
+        WorldSimulation.ReportEntityDyingSoon(mergingGamete1);
+        WorldSimulation.ReportEntityDyingSoon(mergingGamete2);
+
+        // Take control of the camera until the editor is exited
+        WorldSimulation.CameraFollowSystem.Disabled = true;
+
+        // Stop the movement of the two gamete physics bodies so that they do not move during the merge animation
+        try
+        {
+            ref var playerPhysics = ref playerGamete.Get<Physics>();
+            if (playerPhysics.IsBodyEffectivelyEnabled())
+                WorldSimulation.PhysicalWorld.SetOnlyBodyVelocity(playerPhysics.Body!, Vector3.Zero);
+
+            ref var otherPhysics = ref otherGamete.Get<Physics>();
+            if (otherPhysics.IsBodyEffectivelyEnabled())
+                WorldSimulation.PhysicalWorld.SetOnlyBodyVelocity(otherPhysics.Body!, Vector3.Zero);
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr("Failed to stop gamete movement on animation start to enter the editor");
+        }
+    }
+
+    private void OnStopGameteMerge()
+    {
+        if (gametesMerging)
+        {
+            gametesMerging = false;
+            WorldSimulation.CameraFollowSystem.Disabled = false;
+        }
+    }
+
+    private void UpdateGameteMergeAnimation(double delta)
+    {
+        gameteMergingTimer += (float)delta;
+        var target = Camera.Position.Slerp(gameteMergeLocation, 0.6f * (float)delta);
+        Camera.UpdateCameraPosition(delta, target);
+
+        // Zoom in the camera during the animation
+        Camera.CameraHeight = Math.Max(Camera.CameraHeight - 14 * (float)delta, Camera.MinCameraHeight + 5);
+
+        if (gameteMergingTimer > 5)
+        {
+            if (!MovingToEditor)
+            {
+                GD.Print("Gamete animation done, starting move to editor");
+                MovingToEditor = true;
+                HUD.EnsureGameIsUnpausedForEditor();
+                TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.3f, MoveToEditor, false);
+            }
         }
     }
 

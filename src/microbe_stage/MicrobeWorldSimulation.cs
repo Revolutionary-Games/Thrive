@@ -125,6 +125,8 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
     public FluidCurrentsSystem FluidCurrentsSystem { get; private set; } = null!;
 
+    public GameteSystem GameteSystem => gameteSystem;
+
     public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
 
     public override ArchiveObjectType ArchiveObjectType =>

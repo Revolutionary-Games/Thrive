@@ -554,8 +554,7 @@ public static class MulticellularGrowthHelpers
         }
 
         SpawnHelpers.SpawnGamete(worldSimulation, spawnEnvironment, spawnerToRegisterWith, species, initialPosition,
-            initialVelocity,
-            targetGamete, targetCellType, true, entity);
+            initialVelocity, targetGamete, targetCellType, !isPlayer, entity);
 
         // Need to gather resources again.
         // Gamete consumed the resources.

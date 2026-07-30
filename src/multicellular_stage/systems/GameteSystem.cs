@@ -13,18 +13,26 @@ using World = Arch.Core.World;
 /// <summary>
 ///   A system that handles gamete movement "AI" and collisions that spawn new cells.
 /// </summary>
+/// <remarks>
+///   <para>
+///     This runs on the main thread as the gamete callback for the player reads a bit of Godot data.
+///   </para>
+/// </remarks>
 [ReadsComponent(typeof(CellProperties))]
 [ReadsComponent(typeof(WorldPosition))]
-[ReadsComponent(typeof(Physics))]
 [WritesToComponent(typeof(PhysicsSensor))]
+[RunsOnMainThread]
 public partial class GameteSystem : BaseSystem<World, float>
 {
     private const float CloseMergeDistanceSquared = 10.0f;
+    private const float GametePushTogetherForce = 45000;
 
     private readonly IWorldSimulation worldSimulation;
     private readonly IMicrobeSpawnEnvironment spawnEnvironment;
     private readonly ISpawnSystem spawnSystem;
     private GameWorld? gameWorld;
+
+    private Action<Entity, Entity, Vector3>? playerGameteCallback;
 
     public GameteSystem(IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment spawnEnvironment,
         ISpawnSystem spawnSystem, World world) :
@@ -40,12 +48,34 @@ public partial class GameteSystem : BaseSystem<World, float>
         gameWorld = world;
     }
 
+    /// <summary>
+    ///   Set a callback that runs when a player gamete hits something and merges. This overrides the usual behaviour
+    ///   of despawning the gametes and spawning a cell.
+    /// </summary>
+    /// <param name="callback">Callback to trigger</param>
+    public void SetPlayerGameteCallback(Action<Entity, Entity, Vector3> callback)
+    {
+        playerGameteCallback = callback;
+    }
+
+    public void ClearPlayerGameteCallback()
+    {
+        playerGameteCallback = null;
+    }
+
     public override void BeforeUpdate(in float delta)
     {
         base.BeforeUpdate(in delta);
 
         if (gameWorld == null)
             throw new InvalidOperationException("World not set");
+    }
+
+    public override void Dispose()
+    {
+        base.Dispose();
+        playerGameteCallback = null;
+        gameWorld = null;
     }
 
     [Query]
@@ -105,7 +135,7 @@ public partial class GameteSystem : BaseSystem<World, float>
         in Entity entity)
     {
         Entity bestTarget = Entity.Null;
-        float bestDistSq = float.MaxValue;
+        float bestDistance = float.MaxValue;
         ref var sensor = ref entity.Get<PhysicsSensor>();
         Vector3 lookPosition = default;
 
@@ -126,10 +156,10 @@ public partial class GameteSystem : BaseSystem<World, float>
                 gamete.EmittedBy != otherGamete.EmittedBy)
             {
                 var otherPosition = other.Get<WorldPosition>().Position;
-                var distSq = (otherPosition - position.Position).LengthSquared();
-                if (distSq < bestDistSq)
+                var squaredDistance = (otherPosition - position.Position).LengthSquared();
+                if (squaredDistance < bestDistance)
                 {
-                    bestDistSq = distSq;
+                    bestDistance = squaredDistance;
                     bestTarget = other;
                     lookPosition = otherPosition;
                 }
@@ -189,20 +219,31 @@ public partial class GameteSystem : BaseSystem<World, float>
     private void HandleMerging(float delta, ref GameteCell gamete, ref Physics physics, ref WorldPosition position,
         ref MicrobeControl control, in Entity entity)
     {
+        // TODO: maybe invalidate if distance has become too large for some reason?
         if (!gamete.MergingWith.IsAliveAndHas<GameteCell>() || !gamete.MergingWith.Has<WorldPosition>())
         {
-            // Target invalid. Go back to normal
+            // Target invalid. Go back to normal.
             gamete.IsMerging = false;
             gamete.MergingWith = Entity.Null;
             return;
         }
 
+#if DEBUG
+        if (gamete.MergingWith == entity)
+        {
+            GD.PrintErr("Gamete trying to merge with itself");
+
+            if (Debugger.IsAttached)
+                Debugger.Break();
+        }
+#endif
+
         var otherPos = gamete.MergingWith.Get<WorldPosition>().Position;
-        var diff = otherPos - position.Position;
-        var distSq = diff.LengthSquared();
+        var vectorToOther = otherPos - position.Position;
+        var distanceSquared = vectorToOther.LengthSquared();
 
         // Finish merging once close enough
-        if (distSq <= CloseMergeDistanceSquared)
+        if (distanceSquared <= CloseMergeDistanceSquared)
         {
             // Only one of the merging gametes should spawn the offspring
             if (entity.Id < gamete.MergingWith.Id)
@@ -216,12 +257,20 @@ public partial class GameteSystem : BaseSystem<World, float>
                     // Mark the other as used as well so it does nothing
                     otherGamete.IsUsed = true;
 
-                    bool despawn = SpawnOffspring(ref gamete, ref otherGamete, position.Position);
+                    bool despawn = SpawnOffspring(ref gamete, entity, ref otherGamete, gamete.MergingWith,
+                        position.Position);
 
                     if (despawn)
                     {
                         worldSimulation.DestroyEntity(entity);
                         worldSimulation.DestroyEntity(gamete.MergingWith);
+                    }
+                    else
+                    {
+                        // Mark as used so that the entities won't be processed again (the special callback that took
+                        // over, needs to handle deleting etc.)
+                        gamete.IsUsed = true;
+                        otherGamete.IsUsed = true;
                     }
                 }
                 catch (Exception e)
@@ -239,19 +288,50 @@ public partial class GameteSystem : BaseSystem<World, float>
 
         // Apply increasing physical force to move centres together.
         gamete.MergingTimePassed += delta;
-        physics.QueuedImpulse += diff.Normalized() * 5000.0f * delta * gamete.MergingTimePassed;
+        physics.QueuedImpulse +=
+            vectorToOther.Normalized() * GametePushTogetherForce * delta * Math.Min(gamete.MergingTimePassed, 30);
         physics.QueuedForceApplied = false;
 
         // When merging only use slow movement (as we have detected something nearby)
-        control.MovementDirection = Vector3.Forward * 0.5f;
+        if(gamete.MergingTimePassed < 5)
+        {
+            control.MovementDirection = Vector3.Forward * 0.5f;
+        }
+        else if(gamete.MergingTimePassed < 10)
+        {
+            control.MovementDirection = Vector3.Forward * 0.3f;
+        }
+        else
+        {
+            control.MovementDirection = Vector3.Forward * 0.1f;
+        }
+
+        // And make sure this always looks as the other gamete cell
+        control.LookAtPoint = otherPos;
     }
 
-    private bool SpawnOffspring(ref GameteCell gamete, ref GameteCell otherGamete, Vector3 spawnPosition)
+    private bool SpawnOffspring(ref GameteCell gamete, in Entity entity, ref GameteCell otherGamete,
+        in Entity otherEntity, Vector3 spawnPosition)
     {
         if (gamete.IsPlayer || otherGamete.IsPlayer)
         {
-            // TODO: a callback and returning false to not despawn things immediately (the stage will despawn them)
-            // return false;
+            GD.Print("Player gamete has managed to merge");
+
+            if (playerGameteCallback != null)
+            {
+                if (gamete.IsPlayer)
+                {
+                    playerGameteCallback(entity, otherEntity, spawnPosition);
+                }
+                else
+                {
+                    playerGameteCallback(otherEntity, entity, spawnPosition);
+                }
+
+                return false;
+            }
+
+            GD.Print("Player gamete callback is unset!");
         }
 
         var (recorder, weight) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment,
@@ -272,6 +352,10 @@ public partial class GameteSystem : BaseSystem<World, float>
         return true;
     }
 
+    /// <summary>
+    ///   Basic gamete compatibility check that doesn't check for species compatibility
+    /// </summary>
+    /// <returns>True on being compatible</returns>
     private bool IsCompatible(GameteType a, GameteType b)
     {
         if (a == GameteType.All || b == GameteType.All)
