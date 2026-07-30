@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-07-22 10:29+0300\n"
-"PO-Revision-Date: 2026-07-20 07:12+0000\n"
+"PO-Revision-Date: 2026-07-30 04:16+0000\n"
 "Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ka/>\n"
 "Language: ka\n"
@@ -758,9 +758,8 @@ msgstr "უჯრედის ტიპის სახელი"
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "ცვლილების შენიშვნები მეტისმეტად გრძელია"
 
-#, fuzzy
 msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
-msgstr "მემბრანის ტიპები"
+msgstr "მემბრანის ტიპის შეცვლა"
 
 #, fuzzy
 msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
@@ -2757,9 +2756,8 @@ msgstr "შეუთავსებელია მემბრანებთ�
 msgid "INCOMPATIBLE_ORGANELLE_LIST"
 msgstr "შეუთავსებელია მოთავსებულ ორგანელებთან: {0}"
 
-#, fuzzy
 msgid "INCOMPATIBLE_STAGE_LIST"
-msgstr "შეუთავსებელია მემბრანებთან: {0}"
+msgstr "ვერ შეიცვლება ფაზებში: {0}"
 
 msgid "INCREASE_ITEM_SIZE"
 msgstr "ობიექტის ზომის გაზრდა"
@@ -3472,7 +3470,7 @@ msgid "MACROSCOPIC"
 msgstr "მაკროსკოპული"
 
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
-msgstr ""
+msgstr "მაკროსკოპულ ფაზაში მემბრანას ვეღარ შეცვლით"
 
 msgid "MACROSCOPIC_EDITOR"
 msgstr "მაკროსკოპული რედაქტორი"
@@ -4379,9 +4377,8 @@ msgstr "რედაქტორი ახლა ხელმისაწვდ�
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "მიმდინარე ბიომის პირობებთან შეგუებული არაა. შეცვალეთ სასურველი პირობები, ან გამძლეობის შუალედები, რომ მოაცილოთ უარყოფითი ეფექტები."
 
-#, fuzzy
 msgid "NOT_ENOUGH_MUTATION_POINTS"
-msgstr "მუტაციის ქულები"
+msgstr "არასაკმარისი მუტაციის ქულები"
 
 msgid "NOT_STARTED_DOT"
 msgstr "არ დაწყებულა."
@@ -5598,9 +5595,10 @@ msgstr ""
 msgid "SIMULATION_CONFIG"
 msgstr "სიმულაცია"
 
-#, fuzzy
 msgid "SIMULATION_FACTOR"
-msgstr "სიმულაცია"
+msgstr ""
+"სიმულაციის\n"
+"კოეფიციენტი"
 
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
