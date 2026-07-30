@@ -953,7 +953,7 @@ bool PhysicalWorld::RemoveCollisionIgnore(PhysicsBody& body, const PhysicsBody& 
     return changes;
 }
 
-void PhysicalWorld::SetCollisionIgnores(PhysicsBody& body, PhysicsBody* const& ignoredBodies, int ignoreCount)
+void PhysicalWorld::SetCollisionIgnores(PhysicsBody& body, PhysicsBody* const* ignoredBodies, int ignoreCount)
 {
     body.SetCollisionIgnores(ignoredBodies, ignoreCount);
 

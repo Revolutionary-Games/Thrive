@@ -149,7 +149,7 @@ public:
     /// \param ignoredBodies list of bodies to ignore (should be a pointer to array of references)
     /// \param ignoreCount specifies the length of the ignoredBodies array, note that instead of passing an array of
     /// length 0 calling ClearCollisionIgnores is preferred
-    void SetCollisionIgnores(PhysicsBody& body, PhysicsBody* const& ignoredBodies, int ignoreCount);
+    void SetCollisionIgnores(PhysicsBody& body, PhysicsBody* const* ignoredBodies, int ignoreCount);
 
     /// \brief More efficient variant of clearing all ignores and setting just one
     void SetSingleCollisionIgnore(PhysicsBody& body, const PhysicsBody& onlyIgnoredBody);

@@ -435,7 +435,7 @@ void PhysicsBodySetCollisionIgnores(
 {
     reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
         ->SetCollisionIgnores(*reinterpret_cast<Thrive::Physics::PhysicsBody*>(body),
-            reinterpret_cast<Thrive::Physics::PhysicsBody*&>(ignoredBodies), count);
+            reinterpret_cast<Thrive::Physics::PhysicsBody* const*>(ignoredBodies), count);
 }
 
 void PhysicsBodyClearAndSetSingleIgnore(PhysicalWorld* physicalWorld, PhysicsBody* body, PhysicsBody* onlyIgnoredBody)
