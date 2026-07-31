@@ -106,8 +106,9 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         get
         {
             var totalSize = 0.0f;
-            foreach (var cellType in CellTypes)
+            for (var i = 0; i < CellTypes.Count; ++i)
             {
+                var cellType = CellTypes[i];
                 var cellCount = 0;
                 foreach (var hex in EditorCells)
                 {
@@ -521,8 +522,10 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
             modifiableEditorCells.Clear();
         }
 
-        foreach (var hexWithData in casted.ModifiableEditorCells)
+        var castedModifiableEditorCells = casted.ModifiableEditorCells;
+        for (var i = 0; i < castedModifiableEditorCells.Count; ++i)
         {
+            var hexWithData = castedModifiableEditorCells[i];
             var oldTemplate = hexWithData.Data;
 
             if (oldTemplate != null)

@@ -143,8 +143,10 @@ public class ReproductionCompoundPressure : SelectionPressure
 
                 if (species is MulticellularSpecies multicellularSpecies)
                 {
-                    foreach (var cellType in multicellularSpecies.CellTypes)
+                    var cellTypes = multicellularSpecies.CellTypes;
+                    for (var i = 0; i < cellTypes.Count; ++i)
                     {
+                        var cellType = cellTypes[i];
                         if (canEngulfChunk)
                             break;
 

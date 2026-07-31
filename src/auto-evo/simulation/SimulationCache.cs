@@ -160,8 +160,11 @@ public class SimulationCache
             // to add up from a temporary balance per cell.
             var cellBalance = new EnergyBalanceInfoSimple();
 
-            foreach (var cellType in multicellularSpecies.CellTypes)
+            var cellTypes = multicellularSpecies.CellTypes;
+            for (var i = 0; i < cellTypes.Count; ++i)
             {
+                var cellType = cellTypes[i];
+
                 // Perhaps this should instead take a MaximumSpeedDirection of the organism as a whole?
                 var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(cellType.Organelles);
 
@@ -493,8 +496,10 @@ public class SimulationCache
         else if (predatorSpecies is MulticellularSpecies multicellularSpecies)
         {
             predatorToolScores = GetPredationToolsRawScores(multicellularSpecies);
-            foreach (var cellType in multicellularSpecies.CellTypes)
+            var cellTypes = multicellularSpecies.CellTypes;
+            for (var i = 0; i < cellTypes.Count; ++i)
             {
+                var cellType = cellTypes[i];
                 if (canEngulf)
                     break;
 
@@ -625,8 +630,11 @@ public class SimulationCache
             var cells = multicellularPrey.EditorCells;
             var totalCellCount = cells.Count;
 
-            foreach (var cellType in multicellularPrey.CellTypes)
+            var cellTypes = multicellularPrey.CellTypes;
+            for (var i = 0; i < cellTypes.Count; ++i)
             {
+                var cellType = cellTypes[i];
+
                 var cellCount = 0;
                 foreach (var hex in multicellularPrey.EditorCells)
                 {
@@ -721,8 +729,11 @@ public class SimulationCache
             var cells = multicellularPredator.EditorCells;
             var totalCellCount = cells.Count;
 
-            foreach (var cellType in multicellularPredator.CellTypes)
+            var cellTypes = multicellularPredator.CellTypes;
+            for (var i = 0; i < cellTypes.Count; ++i)
             {
+                var cellType = cellTypes[i];
+
                 var cellCount = 0;
                 var cellTypeHexSize = GetBaseHexSizeForCellType(cellType);
 
@@ -1259,8 +1270,11 @@ public class SimulationCache
         var hasChemoreceptor = false;
         if (species is MicrobeSpecies microbeSpecies)
         {
-            foreach (var organelle in microbeSpecies.Organelles.Organelles)
+            var organelles = microbeSpecies.Organelles.Organelles;
+            for (var i = 0; i < organelles.Count; ++i)
             {
+                var organelle = organelles[i];
+
                 var organelleTargetCompound = organelle.GetActiveTargetCompound();
                 if (organelleTargetCompound == Compound.Invalid)
                     continue;
@@ -1330,8 +1344,11 @@ public class SimulationCache
         var hasChemoreceptor = false;
         if (species is MicrobeSpecies microbeSpecies)
         {
-            foreach (var organelle in microbeSpecies.Organelles.Organelles)
+            var organelles = microbeSpecies.Organelles.Organelles;
+            for (var i = 0; i < organelles.Count; ++i)
             {
+                var organelle = organelles[i];
+
                 var organelleTargetCompound = organelle.GetActiveTargetCompound();
                 if (organelleTargetCompound == Compound.Invalid)
                     continue;
@@ -1728,8 +1745,11 @@ public class SimulationCache
         var hasChannelInhibitor = false;
         var hasOxygenMetabolismInhibitor = false;
 
-        foreach (var cellType in multicellularSpecies.CellTypes)
+        var cellTypes = multicellularSpecies.CellTypes;
+        for (var i = 0; i < cellTypes.Count; ++i)
         {
+            var cellType = cellTypes[i];
+
             var cellTypeToxinAmount = 0.0f;
             var cellTypeToxinOrganellesCount = 0;
             var cellTypeToxinTypesCount = 0;
@@ -2039,8 +2059,10 @@ public class SimulationCache
     public float GetEnzymesScore(MulticellularSpecies multicellularSpecies, string dissolverEnzyme, float preyHexSize,
         float enzymesScore)
     {
-        foreach (var cellType in multicellularSpecies.CellTypes)
+        var cellTypes = multicellularSpecies.CellTypes;
+        for (var i = 0; i < cellTypes.Count; ++i)
         {
+            var cellType = cellTypes[i];
             if (!cellType.MembraneType.CanEngulf)
                 continue;
 

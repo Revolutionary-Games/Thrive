@@ -126,8 +126,10 @@ public class ChunkCompoundPressure : SelectionPressure
         {
             nominalStorageCapacity = multicellularSpecies.StorageCapacities.Nominal;
 
-            foreach (var cellType in multicellularSpecies.CellTypes)
+            var cellTypes = multicellularSpecies.CellTypes;
+            for (var i = 0; i < cellTypes.Count; ++i)
             {
+                var cellType = cellTypes[i];
                 if (canEngulf)
                     break;
 

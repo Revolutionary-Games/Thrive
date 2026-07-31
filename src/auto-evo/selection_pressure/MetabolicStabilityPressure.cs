@@ -72,8 +72,10 @@ public class MetabolicStabilityPressure : SelectionPressure
             // species, because ATP is per-cell.
             // We take cell types instead of individual cells because it's faster, matches what the player gets warnings
             // for, and makes it easier to place new cells in hexes where they might have less adjacency.
-            foreach (var cellType in multicellularSpecies.CellTypes)
+            var cellTypes = multicellularSpecies.CellTypes;
+            for (var i = 0; i < cellTypes.Count; ++i)
             {
+                var cellType = cellTypes[i];
                 var energyBalance = cache.GetEnergyBalanceForCellType(cellType, multicellularSpecies, patch.Biome);
 
                 if (energyBalance.FinalBalance < 0)
