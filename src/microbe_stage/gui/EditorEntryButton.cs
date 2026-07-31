@@ -117,6 +117,10 @@ public partial class EditorEntryButton : TextureButton
 
     public void SetNormalStyle()
     {
+        // If not changed away from a special style, do nothing
+        if (originalButtonNormal == null)
+            return;
+
         TextureNormal = originalButtonNormal;
         TexturePressed = originalButtonPressed;
         TextureHover = originalButtonHover;
