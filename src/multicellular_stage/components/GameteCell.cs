@@ -33,7 +33,6 @@ public struct GameteCell : IArchivableComponent
 
     // Not saved as this is temporary data
     public bool IsSensorCreated;
-    public bool IsListeningForCollisions;
 
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
     public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentGameteCell;
