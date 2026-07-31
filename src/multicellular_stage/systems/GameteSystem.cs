@@ -154,7 +154,7 @@ public partial class GameteSystem : BaseSystem<World, float>
 
             // Don't allow self-fertilization but require same species and compatible types
             if (gamete.ForSpecies == otherGamete.ForSpecies &&
-                IsCompatible(gamete.ThisGameteType, otherGamete.ThisGameteType) &&
+                GameteHelpers.IsCompatible(gamete.ThisGameteType, otherGamete.ThisGameteType) &&
                 gamete.EmittedBy != otherGamete.EmittedBy)
             {
                 var otherPosition = other.Get<WorldPosition>().Position;
@@ -206,7 +206,7 @@ public partial class GameteSystem : BaseSystem<World, float>
             ref var otherGamete = ref other.Get<GameteCell>();
 
             if (gamete.ForSpecies == otherGamete.ForSpecies &&
-                IsCompatible(gamete.ThisGameteType, otherGamete.ThisGameteType) &&
+                GameteHelpers.IsCompatible(gamete.ThisGameteType, otherGamete.ThisGameteType) &&
                 gamete.EmittedBy != otherGamete.EmittedBy)
             {
                 // Start merging
@@ -368,21 +368,5 @@ public partial class GameteSystem : BaseSystem<World, float>
 
         // Did normal spawn immediately, can despawn now
         return true;
-    }
-
-    /// <summary>
-    ///   Basic gamete compatibility check that doesn't check for species compatibility
-    /// </summary>
-    /// <returns>True on being compatible</returns>
-    private bool IsCompatible(GameteType a, GameteType b)
-    {
-        if (a == GameteType.All || b == GameteType.All)
-            return true;
-        if (a == GameteType.A && b == GameteType.B)
-            return true;
-        if (a == GameteType.B && b == GameteType.A)
-            return true;
-
-        return false;
     }
 }
