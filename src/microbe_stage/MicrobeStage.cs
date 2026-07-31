@@ -690,7 +690,11 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         }
 
         if (!canShootGamete)
+        {
+            // TODO: detect if the editor cheat was used and allow once
+            GD.Print("Not enough resources to fire gamete yet (and not in freebuild)");
             return;
+        }
 
         try
         {
