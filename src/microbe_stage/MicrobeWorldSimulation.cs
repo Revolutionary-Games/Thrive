@@ -269,7 +269,8 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         microbeMovementSystem = new MicrobeMovementSystem(this, PhysicalWorld, EntitySystem);
 
         irradiationSystem = new IrradiationSystem(EntitySystem);
-        microbeAI = new MicrobeAISystem(cloudSystem, spawnEnvironment.DaylightInfo, EntitySystem);
+        microbeAI = new MicrobeAISystem(cloudSystem, spawnEnvironment.DaylightInfo, this, spawnEnvironment, SpawnSystem,
+            EntitySystem);
         microbeCollisionSoundSystem = new MicrobeCollisionSoundSystem(EntitySystem);
         microbeEmissionSystem = new MicrobeEmissionSystem(this, cloudSystem, EntitySystem);
 
