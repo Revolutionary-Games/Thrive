@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Arch.Buffer;
 using Arch.Core;
@@ -73,7 +74,7 @@ public static class SpawnHelpers
         typeof(MicrobeTemporaryEffects), typeof(CollisionManagement), typeof(PhysicsShapeHolder),
         typeof(MicrobeControl), typeof(ManualPhysicsControl), typeof(MicrobeStatus), typeof(Health),
         typeof(MicrobeEnvironmentalEffects), typeof(CommandSignaler), typeof(StrainAffected), typeof(CurrentAffected),
-        typeof(Selectable), typeof(ReadableName), typeof(SpecializationFactor),
+        typeof(Selectable), typeof(ReadableName), typeof(SpecializationFactor), typeof(MicrobeSex),
 
         // Player-specific components
         typeof(PlayerMarker), typeof(SoundListener), typeof(EntityLight),
@@ -92,7 +93,7 @@ public static class SpawnHelpers
         typeof(MicrobeTemporaryEffects), typeof(CollisionManagement), typeof(PhysicsShapeHolder),
         typeof(MicrobeControl), typeof(ManualPhysicsControl), typeof(MicrobeStatus), typeof(Health),
         typeof(MicrobeEnvironmentalEffects), typeof(CommandSignaler), typeof(StrainAffected), typeof(CurrentAffected),
-        typeof(Selectable), typeof(ReadableName), typeof(SpecializationFactor),
+        typeof(Selectable), typeof(ReadableName), typeof(SpecializationFactor), typeof(MicrobeSex),
 
         // AI-specific components
         typeof(MicrobeAI), typeof(SurvivalStatistics),
@@ -111,7 +112,7 @@ public static class SpawnHelpers
         typeof(MicrobeTemporaryEffects), typeof(CollisionManagement), typeof(PhysicsShapeHolder),
         typeof(MicrobeControl), typeof(ManualPhysicsControl), typeof(MicrobeStatus), typeof(Health),
         typeof(MicrobeEnvironmentalEffects), typeof(CommandSignaler), typeof(StrainAffected), typeof(CurrentAffected),
-        typeof(Selectable), typeof(ReadableName), typeof(SpecializationFactor),
+        typeof(Selectable), typeof(ReadableName), typeof(SpecializationFactor), typeof(MicrobeSex),
 
         // Player-specific components
         typeof(PlayerMarker), typeof(SoundListener), typeof(EntityLight),
@@ -130,7 +131,7 @@ public static class SpawnHelpers
         typeof(MicrobeTemporaryEffects), typeof(CollisionManagement), typeof(PhysicsShapeHolder),
         typeof(MicrobeControl), typeof(ManualPhysicsControl), typeof(MicrobeStatus), typeof(Health),
         typeof(MicrobeEnvironmentalEffects), typeof(CommandSignaler), typeof(StrainAffected), typeof(CurrentAffected),
-        typeof(Selectable), typeof(ReadableName), typeof(SpecializationFactor),
+        typeof(Selectable), typeof(ReadableName), typeof(SpecializationFactor), typeof(MicrobeSex),
 
         // AI-specific components
         typeof(MicrobeAI), typeof(SurvivalStatistics),
@@ -589,40 +590,39 @@ public static class SpawnHelpers
     }
 
     public static void SpawnMicrobe(IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment spawnEnvironment,
-        Species species, Vector3 location, bool aiControlled,
+        Species species, Vector3 location, bool aiControlled, GameteType sex,
         MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.Offspring)
     {
         SpawnMicrobe(worldSimulation, spawnEnvironment, species, location, aiControlled, (null, 0),
-            multicellularSpawnState);
+            sex, multicellularSpawnState);
     }
 
     public static void SpawnMicrobe(IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment spawnEnvironment,
         Species species, Vector3 location, bool aiControlled,
-        (CellType? MulticellularCellType, int CellBodyPlanIndex) multicellularData,
+        (CellType? MulticellularCellType, int CellBodyPlanIndex) multicellularData, GameteType sex,
         MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.Offspring)
     {
         var (recorder, _) = SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species, location,
-            aiControlled, multicellularData, out _, multicellularSpawnState);
+            aiControlled, multicellularData, sex, out _, multicellularSpawnState);
 
         FinalizeEntitySpawn(recorder, worldSimulation);
     }
 
     public static (CommandBuffer Recorder, float Weight) SpawnMicrobeWithoutFinalizing(IWorldSimulation worldSimulation,
-        IMicrobeSpawnEnvironment spawnEnvironment, Species species,
-        Vector3 location, bool aiControlled, (CellType? MulticellularCellType, int CellBodyPlanIndex) multicellularData,
-        out Entity entity, MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.Offspring,
-        Random? random = null)
+        IMicrobeSpawnEnvironment spawnEnvironment, Species species, Vector3 location, bool aiControlled,
+        (CellType? MulticellularCellType, int CellBodyPlanIndex) multicellularData,
+        GameteType sex, out Entity entity,
+        MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.Offspring, Random? random = null)
     {
         var recorder = worldSimulation.StartRecordingEntityCommands();
         return (recorder, SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species, location,
-            aiControlled, multicellularData, recorder, out entity, multicellularSpawnState, true, random));
+            aiControlled, multicellularData, recorder, out entity, multicellularSpawnState, sex, true, random));
     }
 
     public static float SpawnMicrobeWithoutFinalizing(IWorldSimulation worldSimulation,
         IMicrobeSpawnEnvironment spawnEnvironment, Species species,
         Vector3 location, bool aiControlled, (CellType? MulticellularCellType, int CellBodyPlanIndex) multicellularData,
-        CommandBuffer recorder, out Entity entity,
-        MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.Offspring,
+        CommandBuffer recorder, out Entity entity, MulticellularSpawnState multicellularSpawnState, GameteType sex,
         bool giveInitialCompounds = true, Random? random = null)
     {
         // If this method is modified, it must be ensured that CellPropertiesHelpers.ReApplyCellTypeProperties and
@@ -716,6 +716,22 @@ public static class SpawnHelpers
 
         if (multicellularSpecies != null)
         {
+#if DEBUG
+            if (sex == GameteType.All &&
+                multicellularSpecies.ReproductionMethod is MulticellularReproductionMethod.SexualAnisogamy)
+            {
+                GD.PrintErr(
+                    "Multicellular cell spawned that is gamete type all even though the species uses anisogamy");
+                if (Debugger.IsAttached)
+                    Debugger.Break();
+            }
+#endif
+
+            recorder.Set(entity, new MicrobeSex
+            {
+                Sex = sex,
+            });
+
             fullColonyMemberCount = multicellularSpecies.ModifiableGameplayCells.Count - 1;
 
             var multicellularTolerances = spawnEnvironment.GetSpeciesTolerances(multicellularSpecies);
@@ -856,6 +872,12 @@ public static class SpawnHelpers
             recorder.Set(entity, new MicrobeSpeciesMember
             {
                 Species = microbeSpecies,
+            });
+
+            // Single-cells don't have sex
+            recorder.Set(entity, new MicrobeSex
+            {
+                Sex = GameteType.All,
             });
 
             usedCellDefinition = microbeSpecies;
@@ -1063,7 +1085,7 @@ public static class SpawnHelpers
     {
         // We use the gamete type and -1 as the index to spawn this cell in a bit special state
         var (recorder, weight) = SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species, location,
-            true, (gameteType, -1), out var entity, MulticellularSpawnState.Offspring);
+            true, (gameteType, -1), gamete, out var entity, MulticellularSpawnState.Offspring);
 
         // Override some things to make the cell work like a gamete
 
@@ -1164,10 +1186,10 @@ public static class SpawnHelpers
     }
 
     public static (CommandBuffer Recorder, float Weight) SpawnBacteriaSwarmMember(IWorldSimulation worldSimulation,
-        IMicrobeSpawnEnvironment spawnEnvironment, Species species,
+        IMicrobeSpawnEnvironment spawnEnvironment, Species species, GameteType sex,
         Vector3 location, out Entity entity)
     {
-        return SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species, location, true, (null, 0),
+        return SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species, location, true, (null, 0), sex,
             out entity, MulticellularSpawnState.Offspring);
     }
 
@@ -1611,14 +1633,28 @@ public class MicrobeSpawner(Species species, IMicrobeSpawnEnvironment spawnEnvir
 
         bool bacteria = false;
 
+        GameteType sex;
+
         if (microbeSpecies != null)
+        {
             bacteria = microbeSpecies.IsBacteria;
+            sex = GameteType.All;
+        }
+        else if (Species is MulticellularSpecies multicellularSpecies)
+        {
+            sex = multicellularSpecies.PickSpawnGameteType(random);
+        }
+        else
+        {
+            GD.PrintErr("Unknown species type spawned: ", Species.GetType().FullName);
+            sex = GameteType.All;
+        }
 
         var firstSpawn = new SingleItemSpawnQueue((out entity) =>
         {
             // The true here is that this is AI-controlled
             var (recorder, weight) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironmentSource,
-                Species, location, true, (null, 0), out entity, MulticellularSpawnState.ChanceForFullColony);
+                Species, location, true, (null, 0), sex, out entity, MulticellularSpawnState.ChanceForFullColony);
 
             ModLoader.ModInterface.TriggerOnMicrobeSpawned(entity, recorder);
 
@@ -1634,7 +1670,7 @@ public class MicrobeSpawner(Species species, IMicrobeSpawnEnvironment spawnEnvir
         if (microbeSpecies == null)
             throw new Exception("Logic error in microbe species not being set");
 
-        // More complex, first need to do a normal spawn, and then continue onto bacteria swarm ones so we use a
+        // More complex, first need to do normal spawn and then continue onto bacteria swarm ones, so we use a
         // combined queue specifically written for this use case
 
         var stateData = SpawnHelpers.CalculateBacteriaSwarmPositions(location, microbeSpecies, random);
@@ -1646,7 +1682,7 @@ public class MicrobeSpawner(Species species, IMicrobeSpawnEnvironment spawnEnvir
         var swarmQueue = new CallbackSpawnQueue<List<Vector3>>((positions, out entity) =>
         {
             var (recorder, weight) = SpawnHelpers.SpawnBacteriaSwarmMember(worldSimulation, spawnEnvironmentSource,
-                Species, positions[0], out entity);
+                Species, sex, positions[0], out entity);
 
             positions.RemoveAt(0);
 

@@ -31,6 +31,7 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(MicrobeEventCallbacks))]
 [ReadsComponent(typeof(MicrobeColony))]
 [ReadsComponent(typeof(SoundEffectPlayer))]
+[ReadsComponent(typeof(MicrobeSex))]
 [WritesToComponent(typeof(Engulfable))]
 [WritesToComponent(typeof(Engulfer))]
 [WritesToComponent(typeof(ReadableName))]

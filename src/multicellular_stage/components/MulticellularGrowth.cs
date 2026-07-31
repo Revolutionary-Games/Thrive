@@ -485,24 +485,8 @@ public static class MulticellularGrowthHelpers
         in Entity entity, MulticellularSpecies species, IWorldSimulation worldSimulation,
         IMicrobeSpawnEnvironment spawnEnvironment, ISpawnSystem spawnerToRegisterWith, bool isPlayer)
     {
-        GameteType targetGamete;
-
-        // Pick gender from entity ID, except for the player it is set on the species
-        if (isPlayer)
-        {
-            targetGamete = species.PlayerGamete;
-        }
-        else
-        {
-            if (entity.Id % 2 == 0)
-            {
-                targetGamete = GameteType.A;
-            }
-            else
-            {
-                targetGamete = GameteType.B;
-            }
-        }
+        // Pick the cell's sex to shoot a gamete
+        var targetGamete = entity.Get<MicrobeSex>().Sex;
 
         if (species.ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy)
         {

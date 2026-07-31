@@ -118,7 +118,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 
         // We pass AI-controlled true here to avoid creating player-specific data, but as we don't have the AI system,
         // it is fine to create the AI properties as it won't actually do anything
-        SpawnHelpers.SpawnMicrobe(this, dummyEnvironment, species, Vector3.Zero, true);
+        SpawnHelpers.SpawnMicrobe(this, dummyEnvironment, species, Vector3.Zero, true, GameteType.All);
 
         ProcessDelaySpawnedEntitiesImmediately();
 
@@ -137,11 +137,19 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
     /// <returns>The colony's root cell entity</returns>
     public Entity CreateVisualisationColony(MulticellularSpecies species)
     {
+        var sex = GameteType.All;
+
+        // This is needed only to quiet a warning on spawn
+        if (species.ReproductionMethod is MulticellularReproductionMethod.SexualAnisogamy)
+        {
+            sex = GameteType.A;
+        }
+
         // We pass AI-controlled true here to avoid creating player-specific data, but as we don't have the AI system,
         // it is fine to create the AI properties as it won't actually do anything.
         // Need to spawn the full colony here so that spore reproduction mode doesn't cause wrong results.
         SpawnHelpers.SpawnMicrobe(this, dummyEnvironment, species, Vector3.Zero, true,
-            MulticellularSpawnState.FullColony);
+            sex, MulticellularSpawnState.FullColony);
 
         ProcessDelaySpawnedEntitiesImmediately();
 

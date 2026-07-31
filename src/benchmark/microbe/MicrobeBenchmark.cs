@@ -522,7 +522,7 @@ public partial class MicrobeBenchmark : BenchmarkBase
     private void SpawnMicrobe(Vector3 position)
     {
         SpawnHelpers.SpawnMicrobe(microbeSimulation!, dummyEnvironment,
-            generatedSpecies[spawnCounter % generatedSpecies.Count], position, true);
+            generatedSpecies[spawnCounter % generatedSpecies.Count], position, true, GameteType.All);
 
         spawnedSomething = true;
         ++spawnCounter;

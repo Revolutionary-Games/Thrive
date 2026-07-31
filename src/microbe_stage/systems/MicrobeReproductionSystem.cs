@@ -38,6 +38,7 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(MicrobeControl))]
 [ReadsComponent(typeof(MicrobeEnvironmentalEffects))]
 [ReadsComponent(typeof(SpecializationFactor))]
+[ReadsComponent(typeof(MicrobeSex))]
 [RunsAfter(typeof(OsmoregulationAndHealingSystem))]
 [RunsAfter(typeof(ProcessSystem))]
 [RuntimeCost(10)]

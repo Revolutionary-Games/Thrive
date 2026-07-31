@@ -178,6 +178,15 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         writer.WriteObjectOrNull(ModifiableGameteTypeB);
     }
 
+    public GameteType PickSpawnGameteType(Random random)
+    {
+        // If not using anisogamy, sexes are the same
+        if (ReproductionMethod is not MulticellularReproductionMethod.SexualAnisogamy)
+            return GameteType.All;
+
+        return random.Next(0, 2) == 0 ? GameteType.A : GameteType.B;
+    }
+
     public override void OnEdited()
     {
         base.OnEdited();

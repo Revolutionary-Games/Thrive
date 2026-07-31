@@ -1205,6 +1205,25 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             }
         }
 
+        // Update player sex if it was changed in the editor
+        var playerSex = GameteType.All;
+
+        // Set the type selected in the editor
+        if (GameWorld.PlayerSpecies is MulticellularSpecies multicellularSpecies)
+        {
+            playerSex = multicellularSpecies.PlayerGamete;
+        }
+
+        if (Player.Has<MicrobeSex>())
+        {
+            ref var sexComponent = ref Player.Get<MicrobeSex>();
+            sexComponent.Sex = playerSex;
+        }
+        else
+        {
+            Player.Add(new MicrobeSex { Sex = playerSex });
+        }
+
         UpdateZoomLevels(playerIsMulticellular);
 
         Player.Set(environmentalEffects);
@@ -1517,9 +1536,17 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             WorldSimulation.ClearPlayerLocationDependentCaches();
         }
 
+        var playerSex = GameteType.All;
+
+        // Set the type selected in the editor
+        if (GameWorld.PlayerSpecies is MulticellularSpecies multicellularSpecies)
+        {
+            playerSex = multicellularSpecies.PlayerGamete;
+        }
+
         var (recorder, _) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(WorldSimulation, this,
             GameWorld.PlayerSpecies,
-            spawnLocation, false, (null, 0), out var entityRecord);
+            spawnLocation, false, (null, 0), playerSex, out var entityRecord);
 
         recorder.Add(entityRecord, new MicrobeEventCallbacks
         {
@@ -1980,8 +2007,15 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         var playerPosition = Player.Get<WorldPosition>().Position;
 
+        var sex = GameteType.All;
+
+        if (randomSpecies is MulticellularSpecies multicellularSpecies)
+        {
+            sex = multicellularSpecies.PickSpawnGameteType(random);
+        }
+
         var (recorder, weight) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(WorldSimulation, this,
-            randomSpecies, playerPosition + Vector3.Forward * 20, true, (null, 0), out var entity);
+            randomSpecies, playerPosition + Vector3.Forward * 20, true, (null, 0), sex, out var entity);
 
         // Make the cell despawn like normal
         WorldSimulation.SpawnSystem.NotifyExternalEntitySpawned(entity, recorder,

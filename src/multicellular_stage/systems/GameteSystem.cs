@@ -8,6 +8,7 @@ using Arch.Core.Extensions;
 using Arch.System;
 using Components;
 using Godot;
+using Xoshiro.PRNG32;
 using World = Arch.Core.World;
 
 /// <summary>
@@ -30,6 +31,7 @@ public partial class GameteSystem : BaseSystem<World, float>
     private readonly IWorldSimulation worldSimulation;
     private readonly IMicrobeSpawnEnvironment spawnEnvironment;
     private readonly ISpawnSystem spawnSystem;
+    private readonly XoShiRo128starstar random = new();
     private GameWorld? gameWorld;
 
     private Action<Entity, Entity, Vector3>? playerGameteCallback;
@@ -347,9 +349,12 @@ public partial class GameteSystem : BaseSystem<World, float>
             GD.Print("Player gamete callback is unset!");
         }
 
+        // Randomly pick one of the gamete sexes for the offspring
+        var offspringSex = random.Next(0, 2) == 0 ? gamete.ThisGameteType : otherGamete.ThisGameteType;
+
         var (recorder, weight) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment,
-            gamete.ForSpecies, spawnPosition, true, (null, 0), out var spawnedEntity,
-            MulticellularSpawnState.Offspring);
+            gamete.ForSpecies, spawnPosition, true, (null, 0),
+            offspringSex, out var spawnedEntity, MulticellularSpawnState.Offspring);
 
         // Make it despawn like normal
         spawnSystem.NotifyExternalEntitySpawned(spawnedEntity, recorder,
