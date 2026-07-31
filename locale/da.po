@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-22 10:29+0300\n"
+"POT-Creation-Date: 2026-07-31 15:31+0300\n"
 "PO-Revision-Date: 2026-05-22 15:37+0000\n"
 "Last-Translator: Søren Hansen <pjuske4life@gmail.com>\n"
 "Language-Team: Danish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/da/>\n"
@@ -2211,6 +2211,9 @@ msgstr "Nyhedshentning fejlede"
 msgid "ERROR_LOADING"
 msgstr "Indhenting mislykkedes"
 
+msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
+
 msgid "ERROR_SAVING"
 msgstr "Lagring mislykkedes"
 
@@ -2585,6 +2588,35 @@ msgstr "Gallerifremviser"
 
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr "Grundlæggende gameplay"
+
+#, fuzzy
+msgid "GAMETE_CELL_ENTITY_NAME"
+msgstr "Stam"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE"
+msgstr "Skab en ny celle type"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_A"
+msgstr "Celletype navn"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_B"
+msgstr "Skab en ny celle type"
+
+#, fuzzy
+msgid "GAMETE_PRODUCED"
+msgstr "reproduceret"
+
+#, fuzzy
+msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+msgstr ""
+"Denne sektion viser den totale ATP (energi) balance for den nuværende celle.\n"
+"For at kunne overleve kræver det at balancen er positiv. Stillestående celler kan overveje en balance hvor bevægelse er udelukket.\n"
+"Dropdownen nedenunder kan bruges til at checke hvad der ville ske hvis cellen ikke havde adgang til nogle af de ressourcer nødvendige for at producere ATP.\n"
+"F.eks. kan nogle celler kun vedligeholde en positiv ATP balance når de har flere forskellige stoftyper til at skabe ATP med på en gang.\n"
+"Disse typer celler er sværere at spille, da de kræver at man har flere forskellige typer stoffer lageret på en gang for at kunne overleve."
 
 msgid "GAME_DESIGN_TEAM"
 msgstr "Spildesign team"
@@ -4599,6 +4631,10 @@ msgstr "Skadet af for meget stråling"
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "Editoren er nu klar til at tilgås"
 
+#, fuzzy
+msgid "NOTICE_READY_TO_SHOOT_GAMETE"
+msgstr "Editoren er nu klar til at tilgås"
+
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "Ikke tilpasset nuværende områdes forhold. Ændre de foretrukne forhold eller toleranceområde for at fjerne de negative effekter."
 
@@ -4781,6 +4817,10 @@ msgstr "Indstillinger"
 
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Skift dine indstillinger"
+
+#, fuzzy
+msgid "OPTION_USED_FOR_PLAYER"
+msgstr "Pauset."
 
 msgid "ORGANELLES"
 msgstr "Organeller"
@@ -5342,6 +5382,10 @@ msgstr "Anmeld"
 msgid "REPORT_BUG"
 msgstr "Anmeld en fejl"
 
+#, fuzzy
+msgid "REPRODUCE"
+msgstr "reproduceret"
+
 msgid "REPRODUCED"
 msgstr "reproduceret"
 
@@ -5374,6 +5418,18 @@ msgstr "Spirende"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproduktion:"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL"
+msgstr "Aseksuel"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
+msgstr "Aseksuel"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ISOGAMY"
+msgstr "Aseksuel"
 
 #, fuzzy
 msgid "REPRODUCTION_SPORE"
@@ -5778,6 +5834,17 @@ msgstr "Stillestående"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "Denne værdi er kun gældende for nye spil startet efter indstillingen er ændret"
 
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr "(hvad der sker med stofferne som spilleren har lagret når man vender tilbage til stadiet fra editoren)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(hvad der sker med stofferne som spilleren har lagret når man vender tilbage til stadiet fra editoren)"
+
+msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+msgstr ""
+
 msgid "SFX_VOLUME"
 msgstr "SFX lydstyrke"
 
@@ -5846,6 +5913,14 @@ msgstr "Hold [thrive:input]g_pack_commands[/thrive:input] nede for at åbne en m
 
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "Bliv aggressiv"
+
+#, fuzzy
+msgid "SIGNAL_COMMAND_CALL_MATE"
+msgstr "Bevæg jer til mig"
+
+#, fuzzy
+msgid "SIGNAL_COMMAND_FIRE_GAMETES"
+msgstr "Flygt"
 
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr "Flygt"

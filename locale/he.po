@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-22 10:29+0300\n"
+"POT-Creation-Date: 2026-07-31 15:31+0300\n"
 "PO-Revision-Date: 2026-05-13 03:55+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -2304,6 +2304,9 @@ msgstr "תקלה ביצירת מידע על המוד"
 msgid "ERROR_LOADING"
 msgstr "טוען שגיאה"
 
+msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
+
 msgid "ERROR_SAVING"
 msgstr "שומר שגיאה"
 
@@ -2720,6 +2723,30 @@ msgstr "מציג גלריה"
 #, fuzzy
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr "צוות מעצבי משחק"
+
+#, fuzzy
+msgid "GAMETE_CELL_ENTITY_NAME"
+msgstr "גזע"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE"
+msgstr "יצירת סוג תא חדש"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_A"
+msgstr "שם סוג תא"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_B"
+msgstr "יצירת סוג תא חדש"
+
+#, fuzzy
+msgid "GAMETE_PRODUCED"
+msgstr "התרבה"
+
+#, fuzzy
+msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+msgstr "הראה/החבא תרכובות"
 
 msgid "GAME_DESIGN_TEAM"
 msgstr "צוות מעצבי משחק"
@@ -4935,6 +4962,9 @@ msgstr ""
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
+msgid "NOTICE_READY_TO_SHOOT_GAMETE"
+msgstr ""
+
 #, fuzzy
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "מצא את האזור הנוכחי"
@@ -5129,6 +5159,10 @@ msgstr "אפשרויות"
 
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "שנה את ההגדרות שלך"
+
+#, fuzzy
+msgid "OPTION_USED_FOR_PLAYER"
+msgstr "הושהה."
 
 msgid "ORGANELLES"
 msgstr "אברונים"
@@ -5751,6 +5785,10 @@ msgstr "תסקיר"
 msgid "REPORT_BUG"
 msgstr "תסקיר"
 
+#, fuzzy
+msgid "REPRODUCE"
+msgstr "התרבה"
+
 msgid "REPRODUCED"
 msgstr "התרבה"
 
@@ -5781,6 +5819,18 @@ msgstr "הנצה"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "סוגי רבייה:"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL"
+msgstr "א-מינית"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
+msgstr "א-מינית"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ISOGAMY"
+msgstr "א-מינית"
 
 #, fuzzy
 msgid "REPRODUCTION_SPORE"
@@ -6207,6 +6257,18 @@ msgstr "נייח"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "ערך זה חל רק על שמירות חדשות לאחר שינויו"
 
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr "(באופן פסיבי צובר תרכובות מהסביבה לתהליכי רבייה מבלי שצריך לעשות דבר)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(באופן פסיבי צובר תרכובות מהסביבה לתהליכי רבייה מבלי שצריך לעשות דבר)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+msgstr "השג באופן פסיבי התקדמות הרבייה"
+
 msgid "SFX_VOLUME"
 msgstr "עוצמת אפקטים"
 
@@ -6282,6 +6344,14 @@ msgstr "החזק [thrive:input]g_pack_commands[/thrive:input] בשביל לפת�
 
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "להפוך לתוקפני"
+
+#, fuzzy
+msgid "SIGNAL_COMMAND_CALL_MATE"
+msgstr "זוזו אליי"
+
+#, fuzzy
+msgid "SIGNAL_COMMAND_FIRE_GAMETES"
+msgstr "ברחו"
 
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr "ברחו"
@@ -10077,9 +10147,6 @@ msgstr "זום החוצה"
 
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "כימוליתו-אוטוטרופי מברזל"
-
-#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
-#~ msgstr "השג באופן פסיבי התקדמות הרבייה"
 
 #, fuzzy
 #~ msgid "MIGRATE"

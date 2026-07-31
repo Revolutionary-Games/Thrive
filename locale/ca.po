@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-22 10:29+0300\n"
+"POT-Creation-Date: 2026-07-31 15:31+0300\n"
 "PO-Revision-Date: 2026-05-13 03:55+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -2290,6 +2290,9 @@ msgstr "Error creant l'arxiu d'informació del mod"
 msgid "ERROR_LOADING"
 msgstr "Error durant la càrrega"
 
+msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
+
 msgid "ERROR_SAVING"
 msgstr "Error amb l'acció de guardat"
 
@@ -2710,6 +2713,30 @@ msgstr "Visor de la Galeria"
 #, fuzzy
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr "Equip de disseny del joc"
+
+#, fuzzy
+msgid "GAMETE_CELL_ENTITY_NAME"
+msgstr "Arrel"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE"
+msgstr "Crear un nou Tipus de Cèl·lula"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_A"
+msgstr "Nom del Tipus de Cèl·lula"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_B"
+msgstr "Crear un nou Tipus de Cèl·lula"
+
+#, fuzzy
+msgid "GAMETE_PRODUCED"
+msgstr "reproducció"
+
+#, fuzzy
+msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+msgstr "Mostrar / amagar l'entorn i els compostos"
 
 msgid "GAME_DESIGN_TEAM"
 msgstr "Equip de disseny del joc"
@@ -4961,6 +4988,9 @@ msgstr ""
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
+msgid "NOTICE_READY_TO_SHOOT_GAMETE"
+msgstr ""
+
 #, fuzzy
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "Trobar l'Ecosistema Actual"
@@ -5159,6 +5189,10 @@ msgstr "Opcions"
 
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Canviar la configuració"
+
+#, fuzzy
+msgid "OPTION_USED_FOR_PLAYER"
+msgstr "PAUSAT"
 
 msgid "ORGANELLES"
 msgstr "Orgànuls"
@@ -5782,6 +5816,10 @@ msgstr "Informe"
 msgid "REPORT_BUG"
 msgstr "Informe"
 
+#, fuzzy
+msgid "REPRODUCE"
+msgstr "reproducció"
+
 msgid "REPRODUCED"
 msgstr "reproducció"
 
@@ -5812,6 +5850,18 @@ msgstr "Gemmació"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproducció:"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL"
+msgstr "Asexual"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
+msgstr "Asexual"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ISOGAMY"
+msgstr "Asexual"
 
 #, fuzzy
 msgid "REPRODUCTION_SPORE"
@@ -6246,6 +6296,18 @@ msgstr "Sèssil"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "Aquest valor només s'aplicarà a les partides iniciades després de canviar la opció"
 
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr "(velocitat a la qual les espècies de la IA muten)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(velocitat a la qual les espècies de la IA muten)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+msgstr "(velocitat a la qual les espècies de la IA muten)"
+
 msgid "SFX_VOLUME"
 msgstr "Volum SFX"
 
@@ -6321,6 +6383,14 @@ msgstr "Mantingues [thrive:input]g_pack_commands[/thrive:input] premut per obrir
 
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "Torna't agressiu"
+
+#, fuzzy
+msgid "SIGNAL_COMMAND_CALL_MATE"
+msgstr "Mou-te cap a mi"
+
+#, fuzzy
+msgid "SIGNAL_COMMAND_FIRE_GAMETES"
+msgstr "Fuig"
 
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr "Fuig"
@@ -10117,10 +10187,6 @@ msgstr "Zoom enfora"
 
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "Quimiolitoautotròfia basada en Ferro"
-
-#, fuzzy
-#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
-#~ msgstr "(velocitat a la qual les espècies de la IA muten)"
 
 #, fuzzy
 #~ msgid "MIGRATE"

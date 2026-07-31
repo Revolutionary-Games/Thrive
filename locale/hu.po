@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-22 10:29+0300\n"
+"POT-Creation-Date: 2026-07-31 15:31+0300\n"
 "PO-Revision-Date: 2026-05-13 03:55+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -2315,6 +2315,9 @@ msgstr "Hiba a mod fájllá való átalakítása közben"
 msgid "ERROR_LOADING"
 msgstr "Betöltési hiba"
 
+msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
+
 msgid "ERROR_SAVING"
 msgstr "Mentési hiba"
 
@@ -2756,6 +2759,35 @@ msgstr "Galéria nézet"
 #, fuzzy
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr "Játéktervező csapat"
+
+#, fuzzy
+msgid "GAMETE_CELL_ENTITY_NAME"
+msgstr "Tő"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE"
+msgstr "Új sejttípus létrehozása"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_A"
+msgstr "Sejttípus neve"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_B"
+msgstr "Új sejttípus létrehozása"
+
+#, fuzzy
+msgid "GAMETE_PRODUCED"
+msgstr "reprodukálva"
+
+#, fuzzy
+msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+msgstr ""
+"Ez a szakasz megmutatja a jelenlegi sejt összes ATP (energia) egyenlegét.\n"
+"A túléléshez az egyenlegnek pozitívnak kell lennie. A helyhez kötött sejtek esetében az egyenleg mozgás nélkül is pozitívnak tekinthető.\n"
+"Az alábbi legördülő menü segítségével ellenőrizheted, mi történne, ha a sejt nem jutna bizonyos ATP-termeléshez szükséges forráshoz.\n"
+"Például egyes sejtek csak akkor tudják fenntartani a pozitív ATP-egyenleget, ha egyszerre több különböző vegyületből tudnak ATP-t előállítani.\n"
+"Az ilyen sejtek irányítása nehezebb, mivel egyszerre többféle vegyületet kell tárolniuk a túléléshez."
 
 msgid "GAME_DESIGN_TEAM"
 msgstr "Játéktervező csapat"
@@ -4991,6 +5023,10 @@ msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
 #, fuzzy
+msgid "NOTICE_READY_TO_SHOOT_GAMETE"
+msgstr "Sérülés túlzott sugárzás miatt"
+
+#, fuzzy
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "Jelenlegi patch-re ugrás"
 
@@ -5190,6 +5226,10 @@ msgstr "Beállítások"
 
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Változtasd meg beállításaidat"
+
+#, fuzzy
+msgid "OPTION_USED_FOR_PLAYER"
+msgstr "Játék szüneteltetése"
 
 msgid "ORGANELLES"
 msgstr "Sejtszervecskék"
@@ -5803,6 +5843,10 @@ msgstr "Jelentés"
 msgid "REPORT_BUG"
 msgstr "Jelentés"
 
+#, fuzzy
+msgid "REPRODUCE"
+msgstr "reprodukálva"
+
 msgid "REPRODUCED"
 msgstr "reprodukálva"
 
@@ -5834,6 +5878,18 @@ msgstr "Bimbózás"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reprodukció:"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL"
+msgstr "Reprodukció"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
+msgstr "Reprodukció"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ISOGAMY"
+msgstr "Reprodukció"
 
 #, fuzzy
 msgid "REPRODUCTION_SPORE"
@@ -6267,6 +6323,18 @@ msgstr "Rögzült"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "Ez az opció csak az ezután elkezdett új játékokra vonatkozik"
 
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
+
 msgid "SFX_VOLUME"
 msgstr "SFX hangerő"
 
@@ -6343,6 +6411,14 @@ msgstr "[thrive:compound type=\"iron\"][/thrive:compound]-at alakít át [thrive
 
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr ""
+
+#, fuzzy
+msgid "SIGNAL_COMMAND_CALL_MATE"
+msgstr "Menekülés"
+
+#, fuzzy
+msgid "SIGNAL_COMMAND_FIRE_GAMETES"
+msgstr "Menekülés"
 
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr "Menekülés"
@@ -10111,10 +10187,6 @@ msgstr "Távolodás"
 
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "Vas oxidálása"
-
-#, fuzzy
-#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
-#~ msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
 
 #~ msgid "MIGRATE"
 #~ msgstr "Vándorlás"

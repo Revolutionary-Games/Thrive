@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-22 10:29+0300\n"
+"POT-Creation-Date: 2026-07-31 15:31+0300\n"
 "PO-Revision-Date: 2026-04-22 18:35+0000\n"
 "Last-Translator: \"Georgi Georgiev (RacerBG)\" <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -2363,6 +2363,9 @@ msgstr "Öppna Skärmbildsmapp"
 msgid "ERROR_LOADING"
 msgstr "Laddningsfel"
 
+msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
+
 msgid "ERROR_SAVING"
 msgstr "Sparningsfel"
 
@@ -2771,6 +2774,35 @@ msgstr ""
 #, fuzzy
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr "Spel Design"
+
+#, fuzzy
+msgid "GAMETE_CELL_ENTITY_NAME"
+msgstr "Stam"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE"
+msgstr "Skapa Ny Sparfil"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_A"
+msgstr "Celltyp namn"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_B"
+msgstr "Skapa Ny Sparfil"
+
+#, fuzzy
+msgid "GAMETE_PRODUCED"
+msgstr "Producerar"
+
+#, fuzzy
+msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+msgstr ""
+"Den här sektionen visar ATP-saldot (energi) för den aktuella cellen.\n"
+"För att kunna överleva måste saldot vara positivt. För sessila celler är omtanken kring saldot utom rörelsekostnaden övervägt.\n"
+"Nedrullningsmenyn nedan kan användas för att kontrollera vad som skulle hända om cellen inte hade någon resurs tillgänglig att göra ATP med.\n"
+"Till exempel kan vissa celler bara upprätthålla ett positivt ATP-saldo när de har flera sammansättningar att göra ATP från samtidigt.\n"
+"Dessa typer av celler kan vara svårare att spela som eftersom de kräver att flera sammanställningar lagras samtidigt."
 
 msgid "GAME_DESIGN_TEAM"
 msgstr "Spel Design"
@@ -4954,6 +4986,9 @@ msgstr ""
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
+msgid "NOTICE_READY_TO_SHOOT_GAMETE"
+msgstr ""
+
 #, fuzzy
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "Avbryt denna handling"
@@ -5147,6 +5182,10 @@ msgstr "Inställningar"
 #, fuzzy
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Hjälp"
+
+#, fuzzy
+msgid "OPTION_USED_FOR_PLAYER"
+msgstr "Avbruten."
 
 msgid "ORGANELLES"
 msgstr "Organeller"
@@ -5777,6 +5816,10 @@ msgid "REPORT_BUG"
 msgstr "Rapportera"
 
 #, fuzzy
+msgid "REPRODUCE"
+msgstr "Producerar"
+
+#, fuzzy
 msgid "REPRODUCED"
 msgstr "Producerar"
 
@@ -5809,6 +5852,18 @@ msgstr "Producerar"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproduktion:"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL"
+msgstr "Fortplantning"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
+msgstr "Fortplantning"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ISOGAMY"
+msgstr "Fortplantning"
 
 #, fuzzy
 msgid "REPRODUCTION_SPORE"
@@ -6250,6 +6305,18 @@ msgstr "Stillastående"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
+
 msgid "SFX_VOLUME"
 msgstr "SFX Volym"
 
@@ -6334,6 +6401,14 @@ msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr ""
 "There is a conflict with {0}.\n"
 "Vill du ta bort inputen från {1}?"
+
+#, fuzzy
+msgid "SIGNAL_COMMAND_CALL_MATE"
+msgstr "Fly"
+
+#, fuzzy
+msgid "SIGNAL_COMMAND_FIRE_GAMETES"
+msgstr "Fly"
 
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr "Fly"
@@ -10030,10 +10105,6 @@ msgstr "Zooma ut"
 
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "Järnkemolitoautotrofi"
-
-#, fuzzy
-#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
-#~ msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
 
 #, fuzzy
 #~ msgid "THANKS_FOR_BUYING_THRIVE"

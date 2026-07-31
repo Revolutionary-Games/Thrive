@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-22 10:29+0300\n"
+"POT-Creation-Date: 2026-07-31 15:31+0300\n"
 "PO-Revision-Date: 2026-07-29 18:01+0000\n"
 "Last-Translator: Crispy-Mate <kristijan.richter@googlemail.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -2230,6 +2230,9 @@ msgstr "Fehler beim Nachrichtenabruf"
 msgid "ERROR_LOADING"
 msgstr "Fehler beim Laden"
 
+msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
+
 msgid "ERROR_SAVING"
 msgstr "Fehler beim Speichern"
 
@@ -2607,6 +2610,35 @@ msgstr "Kunstgalerie"
 
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr "Grundlagen des Spiels"
+
+#, fuzzy
+msgid "GAMETE_CELL_ENTITY_NAME"
+msgstr "Stamm"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE"
+msgstr "Neuen Zellentyp erstellen"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_A"
+msgstr "Zellentypname"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_B"
+msgstr "Neuen Zellentyp erstellen"
+
+#, fuzzy
+msgid "GAMETE_PRODUCED"
+msgstr "Reproduktion"
+
+#, fuzzy
+msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+msgstr ""
+"Hier wird der Gesamt-ATP-Haushalt der Zelle angezeigt.\n"
+"Der ATP-Haushalt muss positiv sein, damit die Zelle überlebt. Für Sessile Zellen kann ein positiver ATP-Haushalt (ohne Bewegung) ausreichend sein.\n"
+"Mit dem unteren Dropdown-Menü lässt sich simulieren, was passiert, wenn bestimmte Ressourcen zur ATP-Produktion nicht vorhanden wären.\n"
+"Manche Zellen brauchen beispielsweise mehrere Substanzen gleichzeitig, damit ihr ATP-Haushalt positiv bleibt.\n"
+"Solche Zellen sind schwieriger am Leben zu erhalten, da sie mehrere Substanzen zum Überleben brauchen."
 
 msgid "GAME_DESIGN_TEAM"
 msgstr "Spieldesigner Team"
@@ -4648,6 +4680,10 @@ msgstr "Schaden durch zu viel Strahlung"
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "Der Editor steht jetzt zur Verfügung"
 
+#, fuzzy
+msgid "NOTICE_READY_TO_SHOOT_GAMETE"
+msgstr "Der Editor steht jetzt zur Verfügung"
+
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "Nicht an die Umweltbedingungen im aktuellen Gebiet angepasst. Ändere die bevorzugten Bedingungen oder Toleranzgrenzen um die negativen Auswirkungen zu vermeiden."
 
@@ -4831,6 +4867,10 @@ msgstr "Einstellungen"
 
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Einstellungen ändern"
+
+#, fuzzy
+msgid "OPTION_USED_FOR_PLAYER"
+msgstr "Pausiert."
 
 msgid "ORGANELLES"
 msgstr "Organellen"
@@ -5424,6 +5464,10 @@ msgstr "Bericht"
 msgid "REPORT_BUG"
 msgstr "Bug-Report senden"
 
+#, fuzzy
+msgid "REPRODUCE"
+msgstr "Reproduktion"
+
 msgid "REPRODUCED"
 msgstr "Reproduktion"
 
@@ -5454,6 +5498,18 @@ msgstr "Knospend"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproduktion:"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL"
+msgstr "Asexuell"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
+msgstr "Asexuell"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ISOGAMY"
+msgstr "Asexuell"
 
 #, fuzzy
 msgid "REPRODUCTION_SPORE"
@@ -5882,6 +5938,18 @@ msgstr "Sessil"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "Diese Option wird erst nach einem Neustart angewendet"
 
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr "(Erhalte passiv Reproduktionsfortschritt, auch wenn Du keine Ressourcen aktiv einsammelst)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(Erhalte passiv Reproduktionsfortschritt, auch wenn Du keine Ressourcen aktiv einsammelst)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+msgstr "Passiven Reproduktionsfortschritt erhalten"
+
 msgid "SFX_VOLUME"
 msgstr "Effektlautstärke"
 
@@ -5952,6 +6020,14 @@ msgstr "Drücke [thrive:input]g_pack_commands[/thrive:input], um ein Menü zu ö
 
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "Werde aggressiv"
+
+#, fuzzy
+msgid "SIGNAL_COMMAND_CALL_MATE"
+msgstr "Bewege dich zu mir"
+
+#, fuzzy
+msgid "SIGNAL_COMMAND_FIRE_GAMETES"
+msgstr "Fliehe"
 
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr "Fliehe"
@@ -9852,9 +9928,6 @@ msgstr "Herauszoomen"
 #, fuzzy
 #~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
 #~ msgstr "Gesamtpopulation:"
-
-#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
-#~ msgstr "Passiven Reproduktionsfortschritt erhalten"
 
 #, fuzzy
 #~ msgid "MIGRATE"
