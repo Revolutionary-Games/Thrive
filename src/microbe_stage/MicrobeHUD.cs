@@ -329,7 +329,18 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             (Localization.Translate("SIGNAL_COMMAND_AGGRESSION"), (int)MicrobeSignalCommand.BecomeAggressive),
         };
 
-        // TODO: calling mate action
+        if (player.Has<MulticellularSpeciesMember>())
+        {
+            var species = player.Get<MulticellularSpeciesMember>().Species;
+
+            if (species.ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy
+                or MulticellularReproductionMethod.SexualAnisogamy)
+            {
+                choices.Add((Localization.Translate("SIGNAL_COMMAND_CALL_MATE"), (int)MicrobeSignalCommand.CallMate));
+                choices.Add((Localization.Translate("SIGNAL_COMMAND_FIRE_GAMETES"),
+                    (int)MicrobeSignalCommand.ShootGamete));
+            }
+        }
 
         packControlRadial.Radial.CenterText = Localization.Translate("SIGNAL_TO_EMIT");
 
