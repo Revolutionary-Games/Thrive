@@ -475,7 +475,9 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                             {
                                 if (!GameteHelpers.IsCompatible(entity.Get<MicrobeSex>().Sex,
                                         signaling.ReceivedCommandFromEntity.Get<MicrobeSex>().Sex))
+                                {
                                     compatible = false;
+                                }
 
                                 if (compatible)
                                 {
@@ -490,8 +492,6 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                             if (compatible)
                             {
                                 // React to signal by moving close enough
-                                GD.Print("Reacting to mate call");
-
                                 if (distanceSquared > Constants.GAMETE_MATE_CALL_TARGET_DISTANCE_SQUARED)
                                 {
                                     ai.MoveToLocation(signalerPosition, ref control, entity);
@@ -562,14 +562,13 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
 
                                 var currentLookDirection = position.Rotation * Vector3.Forward;
 
-                                // Would be pretty weird to fail this check here, but as we need to safely cast anyway
+                                // Would be pretty weird to fail this check here, but as we need to safely cast anyway,
                                 // it is merged into this if.
                                 if (currentLookDirection.Normalized()
                                         .AngleTo((control.LookAtPoint - position.Position).Normalized()) < 0.3f &&
                                     ourSpecies.Species is MulticellularSpecies multicellularSpecies)
                                 {
                                     // Close enough angle, can shoot gamete
-                                    GD.Print("Shooting gamete due to request");
                                     ai.TimeSinceGameteShoot = 0;
                                     try
                                     {

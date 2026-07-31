@@ -1241,7 +1241,7 @@ public static class Constants
 
     public const float GAMETE_FORCE_SHOOT_INTERVAL = 10;
     public const float GAMETE_FORCE_SHOOT_DISTANCE_SQUARED = 80 * 80;
-    public const float GAMETE_MATE_CALL_MAX_DISTANCE_SQUARED = 150 * 150;
+    public const float GAMETE_MATE_CALL_MAX_DISTANCE_SQUARED = 550 * 550;
     public const float GAMETE_MATE_CALL_TARGET_DISTANCE_SQUARED = 50 * 50;
 
     // Corpse info
