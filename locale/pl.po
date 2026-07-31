@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-22 10:29+0300\n"
+"POT-Creation-Date: 2026-07-31 15:31+0300\n"
 "PO-Revision-Date: 2026-07-22 04:07+0000\n"
 "Last-Translator: DrAlienizer <dr4gonizer@proton.me>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -2221,6 +2221,9 @@ msgstr "Błąd Pobierania Wiadomości"
 msgid "ERROR_LOADING"
 msgstr "Błąd wczytywania"
 
+msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
+
 msgid "ERROR_SAVING"
 msgstr "Błąd zapisu"
 
@@ -2597,6 +2600,35 @@ msgstr "Przeglądarka Galerii"
 
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr "Podstawy rozgrywki"
+
+#, fuzzy
+msgid "GAMETE_CELL_ENTITY_NAME"
+msgstr "Komórka Macierzysta"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE"
+msgstr "Stwórz Nowy Typ Komórki"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_A"
+msgstr "Nazwa Rodzaju Komórki"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_B"
+msgstr "Stwórz Nowy Typ Komórki"
+
+#, fuzzy
+msgid "GAMETE_PRODUCED"
+msgstr "rozmnożyły się"
+
+#, fuzzy
+msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+msgstr ""
+"Ta część pokazuje całkowity bilans ATP (energii) obecnej komórki.\n"
+"Py przetrwać, bilans musi być pozytywny. Dla komórek osiadłych bilans może być pozytywny jedynie w bezruchu.\n"
+"Rozwijane menu poniżej można wykorzystać do sprawdzenia, co by się stało, gdyby komórka nie miała dostępu do zasobów, z których mogłaby produkować ATP.\n"
+"Na przykład, niektóre komórki są zdolne do utrzymywania pozytywnego bilansu ATP jedynie gdy równocześnie mają wiele rodzajów związków do produkcji ATP.\n"
+"Rozgrywka takimi komórkami jest trudniejsza, ponieważ do przetrwania wymagają równoczesnego składowania wielu rodzajów związków."
 
 msgid "GAME_DESIGN_TEAM"
 msgstr "Designerzy Gry"
@@ -4727,6 +4759,10 @@ msgstr "Obrażenia spowodowane promieniowaniem"
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "Można rozpocząć edycję"
 
+#, fuzzy
+msgid "NOTICE_READY_TO_SHOOT_GAMETE"
+msgstr "Można rozpocząć edycję"
+
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "Brak adaptacji do bieżącego obszaru. Zmień preferowane warunki lub tolerancję aby pozbyć się negatywnych efektów."
 
@@ -4918,6 +4954,10 @@ msgstr "Opcje"
 
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Zmień swoje ustawienia"
+
+#, fuzzy
+msgid "OPTION_USED_FOR_PLAYER"
+msgstr "Spauzowano."
 
 msgid "ORGANELLES"
 msgstr "Organella komórkowe"
@@ -5500,6 +5540,10 @@ msgstr "Raport"
 msgid "REPORT_BUG"
 msgstr "Zgłoś Buga"
 
+#, fuzzy
+msgid "REPRODUCE"
+msgstr "rozmnożyły się"
+
 msgid "REPRODUCED"
 msgstr "rozmnożyły się"
 
@@ -5534,6 +5578,18 @@ msgstr "Pączkowanie"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Metoda Rozmnażania:"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL"
+msgstr "Aseksualne"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
+msgstr "Aseksualne"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ISOGAMY"
+msgstr "Aseksualne"
 
 #, fuzzy
 msgid "REPRODUCTION_SPORE"
@@ -5943,6 +5999,18 @@ msgstr "Osiadłość"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "Ta wartość stosuje się tylko do gier rozpoczętych po zmianie tej opcji"
 
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr "(biernie uzyskuj związki reprodukcji ze środowiska bez potrzeby robienia czegokolwiek)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(biernie uzyskuj związki reprodukcji ze środowiska bez potrzeby robienia czegokolwiek)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+msgstr "Biernie uzyskuj postęp reprodukcji"
+
 msgid "SFX_VOLUME"
 msgstr "Głośność efektów dźwiękowych"
 
@@ -6017,6 +6085,14 @@ msgstr "Przytrzymaj [thrive:input]g_pack_commands[/thrive:input] żeby otworzyć
 
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "Zareaguj Agresją"
+
+#, fuzzy
+msgid "SIGNAL_COMMAND_CALL_MATE"
+msgstr "Zbliż się do mnie"
+
+#, fuzzy
+msgid "SIGNAL_COMMAND_FIRE_GAMETES"
+msgstr "Uciekaj"
 
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr "Uciekaj"
@@ -10024,9 +10100,6 @@ msgstr "Oddal"
 
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "Utlenianie Żelaza"
-
-#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
-#~ msgstr "Biernie uzyskuj postęp reprodukcji"
 
 #, fuzzy
 #~ msgid "MIGRATE"

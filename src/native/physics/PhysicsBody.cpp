@@ -93,13 +93,13 @@ bool PhysicsBody::RemoveCollisionIgnore(const PhysicsBody& noLongerIgnored) noex
     return false;
 }
 
-void PhysicsBody::SetCollisionIgnores(PhysicsBody* const& ignoredBodies, int ignoreCount) noexcept
+void PhysicsBody::SetCollisionIgnores(PhysicsBody* const* ignoredBodies, int ignoreCount) noexcept
 {
     ignoredCollisions.clear();
 
     for (int i = 0; i < ignoreCount; ++i)
     {
-        ignoredCollisions.emplace_back(ignoredBodies[i].GetId());
+        ignoredCollisions.emplace_back(ignoredBodies[i]->GetId());
     }
 }
 

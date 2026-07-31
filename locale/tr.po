@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-22 10:29+0300\n"
+"POT-Creation-Date: 2026-07-31 15:31+0300\n"
 "PO-Revision-Date: 2026-07-27 14:20+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -2206,6 +2206,9 @@ msgstr "Haberleri Alma Hatası"
 msgid "ERROR_LOADING"
 msgstr "Yükleme Hatası"
 
+msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
+
 msgid "ERROR_SAVING"
 msgstr "Kaydetme Hatası"
 
@@ -2579,6 +2582,35 @@ msgstr "Galeri Görüntüleyicisi"
 
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr "Oynanış Bilgileri"
+
+#, fuzzy
+msgid "GAMETE_CELL_ENTITY_NAME"
+msgstr "Kök"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE"
+msgstr "Yeni Hücre Türü Oluştur"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_A"
+msgstr "Hücre Türü İsmi"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_B"
+msgstr "Yeni Hücre Türü Oluştur"
+
+#, fuzzy
+msgid "GAMETE_PRODUCED"
+msgstr "çoğaldı"
+
+#, fuzzy
+msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+msgstr ""
+"Bu bölüm, mevcut hücrenin toplam ATP (enerji) tutarını gösterir.\n"
+"Hayatta kalmak için bu tutarın pozitif olması gerekir. Durağan hücreler, hareket haricindeki tutarı pozitif olarak sayabilir.\n"
+"Aşağıdaki açılan menü, hücre ATP üretmek için bazı kaynaklara sahip olmadığında neler olacağını incelemek için kullanılabilir.\n"
+"Örneğin, bazı hücreler yalnızca, aynı anda ATP üreten birden fazla bileşik türüne sahip olduğunda, pozitif bir ATP tutarı sağlayabilir.\n"
+"Bu tür hücreler ile oynamak daha zordur. Çünkü, hayatta kalmak için, bu hücrelerin birden fazla bileşik türünü aynı anda depolamaları gerekir."
 
 msgid "GAME_DESIGN_TEAM"
 msgstr "Oyun Tasarım Ekibi"
@@ -4567,6 +4599,10 @@ msgstr "Aşırı radyasyondan hasar alınıyor"
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "Editör, şimdi girilmek için hazır"
 
+#, fuzzy
+msgid "NOTICE_READY_TO_SHOOT_GAMETE"
+msgstr "Editör, şimdi girilmek için hazır"
+
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "Bu tür, mevcut çevresel koşullara uyum sağlayamaz. Dezavantajları kaldırmak için tercih edilen koşulları ya da tolerans aralığını değiştirin."
 
@@ -4745,6 +4781,10 @@ msgstr "Ayarlar"
 
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Ayarlarını değiştir"
+
+#, fuzzy
+msgid "OPTION_USED_FOR_PLAYER"
+msgstr "Duraklatıldı."
 
 msgid "ORGANELLES"
 msgstr "Organeller"
@@ -5297,6 +5337,10 @@ msgstr "Rapor"
 msgid "REPORT_BUG"
 msgstr "Bir Hata Bildir"
 
+#, fuzzy
+msgid "REPRODUCE"
+msgstr "çoğaldı"
+
 msgid "REPRODUCED"
 msgstr "çoğaldı"
 
@@ -5328,6 +5372,18 @@ msgstr "Toplu Tomurcuklanma"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Üreme:"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL"
+msgstr "Eşeysiz"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
+msgstr "Eşeysiz"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ISOGAMY"
+msgstr "Eşeysiz"
 
 msgid "REPRODUCTION_SPORE"
 msgstr "Sporlanma"
@@ -5730,6 +5786,18 @@ msgstr "Durağan"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "Bu ayar değiştirilirse, değişiklik yalnızca yeni başlatılan oyunlara uygulanır"
 
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr "Bir koloni kök hücresine dönüşmeden önce, daha iyi koşullar arayabilen, birden fazla isteğe bağlı olarak özelleşmiş yavru üretir."
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "Bir koloni kök hücresine dönüşmeden önce, daha iyi koşullar arayabilen, birden fazla isteğe bağlı olarak özelleşmiş yavru üretir."
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+msgstr "Üreme işlemini pasif olarak gerçekleştir"
+
 msgid "SFX_VOLUME"
 msgstr "Ses efektleri"
 
@@ -5798,6 +5866,14 @@ msgstr "Türünüzün diğer üyelerine komut vermede kullanılan menüyü açma
 
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "Saldırgan Ol"
+
+#, fuzzy
+msgid "SIGNAL_COMMAND_CALL_MATE"
+msgstr "Bana Doğru Hareket Et"
+
+#, fuzzy
+msgid "SIGNAL_COMMAND_FIRE_GAMETES"
+msgstr "Kaç"
 
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr "Kaç"
@@ -10053,9 +10129,6 @@ msgstr "Uzaklaştır"
 
 #~ msgid "SHOW_TUTORIALS"
 #~ msgstr "Rehberi göster"
-
-#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
-#~ msgstr "Üreme işlemini pasif olarak gerçekleştir"
 
 #~ msgid "MIGRATE"
 #~ msgstr "Göç et"

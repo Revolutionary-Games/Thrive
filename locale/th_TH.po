@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-22 10:29+0300\n"
+"POT-Creation-Date: 2026-07-31 15:31+0300\n"
 "PO-Revision-Date: 2026-04-22 18:35+0000\n"
 "Last-Translator: \"Georgi Georgiev (RacerBG)\" <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Thai <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/th/>\n"
@@ -2270,6 +2270,9 @@ msgstr "เปิดโฟลเดอร์สกรีนช็อต"
 msgid "ERROR_LOADING"
 msgstr ""
 
+msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
+
 msgid "ERROR_SAVING"
 msgstr ""
 
@@ -2665,6 +2668,30 @@ msgstr ""
 #, fuzzy
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr "\"{0}\" - {1}"
+
+#, fuzzy
+msgid "GAMETE_CELL_ENTITY_NAME"
+msgstr "ชื่อผู้ใช้ที่กำหนดเอง:"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE"
+msgstr "สร้างจุลินทรีย์ใหม่"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_A"
+msgstr "สร้างจุลินทรีย์ใหม่"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_B"
+msgstr "สร้างจุลินทรีย์ใหม่"
+
+#, fuzzy
+msgid "GAMETE_PRODUCED"
+msgstr "ผลิต"
+
+#, fuzzy
+msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+msgstr "ดำเนินการต่อ"
 
 msgid "GAME_DESIGN_TEAM"
 msgstr ""
@@ -4822,6 +4849,9 @@ msgstr ""
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
+msgid "NOTICE_READY_TO_SHOOT_GAMETE"
+msgstr ""
+
 #, fuzzy
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "ยกเลิกการกระทำปัจจุบัน"
@@ -5019,6 +5049,10 @@ msgstr "ตั้งค่า"
 #, fuzzy
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "ดำเนินการต่อ"
+
+#, fuzzy
+msgid "OPTION_USED_FOR_PLAYER"
+msgstr "ยกเลิก"
 
 msgid "ORGANELLES"
 msgstr ""
@@ -5623,6 +5657,10 @@ msgstr ""
 msgid "REPORT_BUG"
 msgstr ""
 
+#, fuzzy
+msgid "REPRODUCE"
+msgstr "ผลิต"
+
 msgid "REPRODUCED"
 msgstr ""
 
@@ -5655,6 +5693,18 @@ msgstr "ความละเอียด:"
 
 msgid "REPRODUCTION_METHOD"
 msgstr ""
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL"
+msgstr "ความละเอียด:"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
+msgstr "ความละเอียด:"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ISOGAMY"
+msgstr "ความละเอียด:"
 
 #, fuzzy
 msgid "REPRODUCTION_SPORE"
@@ -6095,6 +6145,18 @@ msgstr ""
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "ค่านี้ใช้กับเกมใหม่ที่เริ่มหลังจากเปลี่ยนตัวเลือกนี้เท่านั้น"
 
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+
 msgid "SFX_VOLUME"
 msgstr "ปริมาณ SFX"
 
@@ -6183,6 +6245,18 @@ msgstr "Nitrogenase เป็นโปรตีนที่สามารถใ
 
 #, fuzzy
 msgid "SIGNAL_COMMAND_AGGRESSION"
+msgstr ""
+"มีข้อขัดแย้งกับ {0}\n"
+"คุณต้องการลบข้อมูลที่ป้อนออกจาก {1} หรือไม่?"
+
+#, fuzzy
+msgid "SIGNAL_COMMAND_CALL_MATE"
+msgstr ""
+"มีข้อขัดแย้งกับ {0}\n"
+"คุณต้องการลบข้อมูลที่ป้อนออกจาก {1} หรือไม่?"
+
+#, fuzzy
+msgid "SIGNAL_COMMAND_FIRE_GAMETES"
 msgstr ""
 "มีข้อขัดแย้งกับ {0}\n"
 "คุณต้องการลบข้อมูลที่ป้อนออกจาก {1} หรือไม่?"
@@ -9805,10 +9879,6 @@ msgstr "ซูมออก"
 #~ msgstr "เหล็กเคโมลิโทออโตโทรฟี"
 
 #, fuzzy
-#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
-#~ msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
-
-#, fuzzy
 #~ msgid "MIGRATE"
 #~ msgstr "ประเมินค่า"
 
@@ -10155,9 +10225,6 @@ msgstr "ซูมออก"
 
 #~ msgid "OXYGEN_DOT"
 #~ msgstr "ออกซิเจน."
-
-#~ msgid "PRODUCES"
-#~ msgstr "ผลิต"
 
 #~ msgid "DOT_RATE_SCALES_WITH"
 #~ msgstr ". ให้คะแนนเครื่องชั่งด้วย"

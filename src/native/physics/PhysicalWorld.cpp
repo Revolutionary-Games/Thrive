@@ -629,8 +629,10 @@ void PhysicalWorld::ReadBodyVelocity(
     }
 }
 
-void PhysicalWorld::GiveImpulse(JPH::BodyID bodyId, JPH::Vec3Arg impulse, bool activate)
+void PhysicalWorld::GiveImpulse(JPH::BodyID bodyId, JPH::Vec3Arg impulse)
 {
+    bool activate = false;
+
     {
         JPH::BodyLockWrite lock(physicsSystem->GetBodyLockInterface(), bodyId);
         if (!lock.Succeeded()) [[unlikely]]
@@ -642,14 +644,13 @@ void PhysicalWorld::GiveImpulse(JPH::BodyID bodyId, JPH::Vec3Arg impulse, bool a
         JPH::Body& body = lock.GetBody();
         body.AddImpulse(impulse);
 
-        if (activate)
-        {
-            // Reset activation variable to false if activation is not actually required
-            if (body.IsActive() || body.GetLinearVelocity().IsNearZero(BodyActivationMovementThreshold))
-            {
-                activate = false;
-            }
-        }
+        // Activation is mandatory if the velocity is non-zero
+        if (!impulse.IsNearZero())
+            activate = true;
+
+        // Reset activation variable to false if activation is not actually required
+        if (activate && body.IsActive())
+            activate = false;
     }
 
     if (activate)
@@ -659,8 +660,10 @@ void PhysicalWorld::GiveImpulse(JPH::BodyID bodyId, JPH::Vec3Arg impulse, bool a
     }
 }
 
-void PhysicalWorld::SetVelocity(JPH::BodyID bodyId, JPH::Vec3Arg velocity, bool activate)
+void PhysicalWorld::SetVelocity(JPH::BodyID bodyId, JPH::Vec3Arg velocity)
 {
+    bool activate = false;
+
     {
         JPH::BodyLockWrite lock(physicsSystem->GetBodyLockInterface(), bodyId);
         if (!lock.Succeeded()) [[unlikely]]
@@ -672,13 +675,13 @@ void PhysicalWorld::SetVelocity(JPH::BodyID bodyId, JPH::Vec3Arg velocity, bool 
         JPH::Body& body = lock.GetBody();
         body.SetLinearVelocityClamped(velocity);
 
-        if (activate)
-        {
-            if (body.IsActive() || velocity.IsNearZero(BodyActivationMovementThreshold))
-            {
-                activate = false;
-            }
-        }
+        // Activation is mandatory if body has velocity
+        if (!velocity.IsNearZero())
+            activate = true;
+
+        // Reset activation variable to false if activation is not actually required
+        if (activate && body.IsActive())
+            activate = false;
     }
 
     if (activate)
@@ -687,8 +690,10 @@ void PhysicalWorld::SetVelocity(JPH::BodyID bodyId, JPH::Vec3Arg velocity, bool 
     }
 }
 
-void PhysicalWorld::SetAngularVelocity(JPH::BodyID bodyId, JPH::Vec3Arg velocity, bool activate)
+void PhysicalWorld::SetAngularVelocity(JPH::BodyID bodyId, JPH::Vec3Arg velocity)
 {
+    bool activate = false;
+
     {
         JPH::BodyLockWrite lock(physicsSystem->GetBodyLockInterface(), bodyId);
         if (!lock.Succeeded()) [[unlikely]]
@@ -700,13 +705,13 @@ void PhysicalWorld::SetAngularVelocity(JPH::BodyID bodyId, JPH::Vec3Arg velocity
         JPH::Body& body = lock.GetBody();
         body.SetAngularVelocityClamped(velocity);
 
-        if (activate)
-        {
-            if (body.IsActive() || velocity.IsNearZero(BodyActivationMovementThreshold))
-            {
-                activate = false;
-            }
-        }
+        // Jolt requires activation if body has velocity
+        if (!velocity.IsNearZero())
+            activate = true;
+
+        // Reset activation variable to false if activation is not actually required
+        if (activate && body.IsActive())
+            activate = false;
     }
 
     if (activate)
@@ -715,8 +720,10 @@ void PhysicalWorld::SetAngularVelocity(JPH::BodyID bodyId, JPH::Vec3Arg velocity
     }
 }
 
-void PhysicalWorld::GiveAngularImpulse(JPH::BodyID bodyId, JPH::Vec3Arg impulse, bool activate)
+void PhysicalWorld::GiveAngularImpulse(JPH::BodyID bodyId, JPH::Vec3Arg impulse)
 {
+    bool activate = false;
+
     {
         JPH::BodyLockWrite lock(physicsSystem->GetBodyLockInterface(), bodyId);
         if (!lock.Succeeded()) [[unlikely]]
@@ -728,13 +735,13 @@ void PhysicalWorld::GiveAngularImpulse(JPH::BodyID bodyId, JPH::Vec3Arg impulse,
         JPH::Body& body = lock.GetBody();
         body.AddAngularImpulse(impulse);
 
-        if (activate)
-        {
-            if (body.IsActive() || body.GetAngularVelocity().IsNearZero(BodyActivationMovementThreshold))
-            {
-                activate = false;
-            }
-        }
+        // Jolt requires activation if body has velocity
+        if (!impulse.IsNearZero())
+            activate = true;
+
+        // Reset activation variable to false if activation is not actually required
+        if (activate && body.IsActive())
+            activate = false;
     }
 
     if (activate)
@@ -744,8 +751,10 @@ void PhysicalWorld::GiveAngularImpulse(JPH::BodyID bodyId, JPH::Vec3Arg impulse,
 }
 
 void PhysicalWorld::SetVelocityAndAngularVelocity(
-    JPH::BodyID bodyId, JPH::Vec3Arg velocity, JPH::Vec3Arg angularVelocity, bool activate)
+    JPH::BodyID bodyId, JPH::Vec3Arg velocity, JPH::Vec3Arg angularVelocity)
 {
+    bool activate = false;
+
     {
         JPH::BodyLockWrite lock(physicsSystem->GetBodyLockInterface(), bodyId);
         if (!lock.Succeeded()) [[unlikely]]
@@ -758,16 +767,13 @@ void PhysicalWorld::SetVelocityAndAngularVelocity(
         body.SetLinearVelocityClamped(velocity);
         body.SetAngularVelocityClamped(angularVelocity);
 
-        if (activate)
-        {
-            // Activate if either linear or angular velocity is enough
-            if (body.IsActive() ||
-                (body.GetLinearVelocity().IsNearZero(BodyActivationMovementThreshold) &&
-                    body.GetAngularVelocity().IsNearZero(BodyActivationMovementThreshold)))
-            {
-                activate = false;
-            }
-        }
+        // Activation is now mandatory if body has velocity
+        if (!velocity.IsNearZero() || !angularVelocity.IsNearZero())
+            activate = true;
+
+        // Reset activation variable to false if activation is not actually required
+        if (activate && body.IsActive())
+            activate = false;
     }
 
     if (activate)
@@ -947,7 +953,7 @@ bool PhysicalWorld::RemoveCollisionIgnore(PhysicsBody& body, const PhysicsBody& 
     return changes;
 }
 
-void PhysicalWorld::SetCollisionIgnores(PhysicsBody& body, PhysicsBody* const& ignoredBodies, int ignoreCount)
+void PhysicalWorld::SetCollisionIgnores(PhysicsBody& body, PhysicsBody* const* ignoredBodies, int ignoreCount)
 {
     body.SetCollisionIgnores(ignoredBodies, ignoreCount);
 
@@ -1511,9 +1517,12 @@ void PhysicalWorld::ApplyBodyControl(PhysicsBody& bodyWrapper, float delta)
 
     float angle;
     difference.GetAxisAngle(axis, angle);
-    body.SetAngularVelocityClamped(axis * (angle / controlState->rotationRate * normalizedDelta));
+    const auto angularVelocity = axis * (angle / controlState->rotationRate * normalizedDelta);
+    body.SetAngularVelocityClamped(angularVelocity);
 
-    // TODO: should enough applied angular velocity also wake up the body?
+    // Jolt requires bodies with velocity to wake up
+    if (!body.IsActive() && !angularVelocity.IsNearZero()) [[unlikely]]
+        physicsSystem->GetBodyInterfaceNoLock().ActivateBody(bodyId);
 }
 
 #pragma clang diagnostic push

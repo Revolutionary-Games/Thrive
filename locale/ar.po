@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-22 10:29+0300\n"
+"POT-Creation-Date: 2026-07-31 15:31+0300\n"
 "PO-Revision-Date: 2026-01-08 20:20+0000\n"
 "Last-Translator: khalid <khalid50540@gmail.com>\n"
 "Language-Team: Arabic <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ar/>\n"
@@ -2084,6 +2084,9 @@ msgstr ""
 msgid "ERROR_LOADING"
 msgstr ""
 
+msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
+
 msgid "ERROR_SAVING"
 msgstr ""
 
@@ -2431,6 +2434,26 @@ msgstr ""
 
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr ""
+
+msgid "GAMETE_CELL_ENTITY_NAME"
+msgstr ""
+
+msgid "GAMETE_CELL_TYPE"
+msgstr ""
+
+msgid "GAMETE_CELL_TYPE_A"
+msgstr ""
+
+msgid "GAMETE_CELL_TYPE_B"
+msgstr ""
+
+#, fuzzy
+msgid "GAMETE_PRODUCED"
+msgstr "معدل انتاج الطاقة"
+
+#, fuzzy
+msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
 
 msgid "GAME_DESIGN_TEAM"
 msgstr ""
@@ -4467,6 +4490,9 @@ msgstr ""
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
+msgid "NOTICE_READY_TO_SHOOT_GAMETE"
+msgstr ""
+
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr ""
 
@@ -4639,6 +4665,10 @@ msgstr "الخيارات"
 
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "تغيير الإعدادات"
+
+#, fuzzy
+msgid "OPTION_USED_FOR_PLAYER"
+msgstr "توقف مؤقت."
 
 msgid "ORGANELLES"
 msgstr "العضيات الخلوية"
@@ -5198,6 +5228,10 @@ msgstr ""
 msgid "REPORT_BUG"
 msgstr ""
 
+#, fuzzy
+msgid "REPRODUCE"
+msgstr "{0} الاستهلاك"
+
 msgid "REPRODUCED"
 msgstr ""
 
@@ -5227,6 +5261,18 @@ msgstr "فترة الميكروبات"
 
 msgid "REPRODUCTION_METHOD"
 msgstr ""
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL"
+msgstr "{0} الاستهلاك"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
+msgstr "{0} الاستهلاك"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ISOGAMY"
+msgstr "{0} الاستهلاك"
 
 #, fuzzy
 msgid "REPRODUCTION_SPORE"
@@ -5616,6 +5662,21 @@ msgstr ""
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "سوف تتطبق هذه القيمة للتخزينات المستقبلية فقط بعد تعديل هذا الخيار"
 
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr ""
+"الميكروبات النشطة سوف تهييم وتمرح اذا لم يحدث شي مثير للاهتمام.\n"
+"الميكروبات الراكدة ستكون ثابتة في مكانها وتنتظر حدوث تغير في محيطه قبل اتخاذ اي قرار."
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
+msgstr ""
+"الميكروبات النشطة سوف تهييم وتمرح اذا لم يحدث شي مثير للاهتمام.\n"
+"الميكروبات الراكدة ستكون ثابتة في مكانها وتنتظر حدوث تغير في محيطه قبل اتخاذ اي قرار."
+
+msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+msgstr ""
+
 msgid "SFX_VOLUME"
 msgstr "مستوى صوت التأثيرات"
 
@@ -5682,6 +5743,12 @@ msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
 
 msgid "SIGNAL_COMMAND_AGGRESSION"
+msgstr ""
+
+msgid "SIGNAL_COMMAND_CALL_MATE"
+msgstr ""
+
+msgid "SIGNAL_COMMAND_FIRE_GAMETES"
 msgstr ""
 
 msgid "SIGNAL_COMMAND_FLEE"

@@ -13,6 +13,8 @@ public partial class CellBodyPlanEditorComponent
 
     private int usedToleranceWarnings;
 
+    private bool changingPlayerGameteTypeAutomatically;
+
     public void OnReproductionMethodSelected(int selectedOption)
     {
         var selectedMethod = ReproductionMethodIndexToValue(selectedOption);
@@ -42,6 +44,36 @@ public partial class CellBodyPlanEditorComponent
         Editor.EnqueueAction(action);
 
         UpdateSporeCellDropdown();
+    }
+
+    public void OnGameteACellTypeSelected(int selectedOption)
+    {
+        var cellType = Editor.EditedSpecies.ModifiableCellTypes[selectedOption];
+
+        if (cellType == GameteACellType)
+            return;
+
+        var action = new SingleEditorAction<GameteACellTypeChangeActionData>(DoGameteACellChangeAction,
+            UndoGameteACellChangeAction, new GameteACellTypeChangeActionData(GameteACellType, cellType));
+
+        Editor.EnqueueAction(action);
+
+        UpdateGameteDropdowns();
+    }
+
+    public void OnGameteBCellTypeSelected(int selectedOption)
+    {
+        var cellType = Editor.EditedSpecies.ModifiableCellTypes[selectedOption];
+
+        if (cellType == GameteBCellType)
+            return;
+
+        var action = new SingleEditorAction<GameteBCellTypeChangeActionData>(DoGameteBCellChangeAction,
+            UndoGameteBCellChangeAction, new GameteBCellTypeChangeActionData(GameteBCellType, cellType));
+
+        Editor.EnqueueAction(action);
+
+        UpdateGameteDropdowns();
     }
 
     public void OnMassBuddingCellCountChanged(float count)
@@ -214,6 +246,7 @@ public partial class CellBodyPlanEditorComponent
 
         UpdateReproductionMethodChoice();
         UpdateSporeCellDropdown();
+        UpdateGameteDropdowns();
         UpdateMassBuddingCellCountSlider();
 
         UpdateCancelButtonVisibility();
@@ -341,6 +374,7 @@ public partial class CellBodyPlanEditorComponent
         buddingReproductionSection.Visible = false;
         sporeReproductionSection.Visible = false;
         massBuddingReproductionSection.Visible = false;
+        sexualReproductionSection.Visible = false;
 
         switch (ReproductionMethod)
         {
@@ -352,6 +386,10 @@ public partial class CellBodyPlanEditorComponent
                 break;
             case MulticellularReproductionMethod.MassBudding:
                 massBuddingReproductionSection.Visible = true;
+                break;
+            case MulticellularReproductionMethod.SexualIsogamy:
+            case MulticellularReproductionMethod.SexualAnisogamy:
+                sexualReproductionSection.Visible = true;
                 break;
         }
     }
@@ -376,6 +414,148 @@ public partial class CellBodyPlanEditorComponent
         sporeCellTypeDropdown.Select(Editor.EditedSpecies.ModifiableCellTypes.IndexOf(SporeCellType));
     }
 
+    private void UpdateGameteDropdowns()
+    {
+        if (gameteACellTypeDropdown.Visible)
+        {
+            gameteACellTypeDropdown.Clear();
+
+            foreach (var cellType in Editor.EditedSpecies.ModifiableCellTypes)
+            {
+                gameteACellTypeDropdown.AddItem(cellType.FormattedName);
+            }
+
+            if (GameteACellType == null)
+            {
+                gameteACellTypeDropdown.Select(-1);
+            }
+            else
+            {
+                gameteACellTypeDropdown.Select(Editor.EditedSpecies.ModifiableCellTypes.IndexOf(GameteACellType));
+            }
+        }
+
+        if (!gameteBCellTypeDropdown.Visible)
+            return;
+
+        gameteBCellTypeDropdown.Clear();
+
+        foreach (var cellType in Editor.EditedSpecies.ModifiableCellTypes)
+        {
+            gameteBCellTypeDropdown.AddItem(cellType.FormattedName);
+        }
+
+        if (GameteBCellType == null)
+        {
+            gameteBCellTypeDropdown.Select(-1);
+        }
+        else
+        {
+            gameteBCellTypeDropdown.Select(Editor.EditedSpecies.ModifiableCellTypes.IndexOf(GameteBCellType));
+        }
+    }
+
+    private void UpdateAnisogamyStateAndCost()
+    {
+        if (ReproductionMethod == MulticellularReproductionMethod.SexualAnisogamy)
+        {
+            sexualAnisogamyUpgradeButton.Visible = false;
+            anisogamySettingsContainer.Visible = true;
+            gameteSelectionALabel.Text = Localization.Translate("GAMETE_CELL_TYPE_A");
+        }
+        else
+        {
+            sexualAnisogamyUpgradeButton.Visible = true;
+            sexualAnisogamyUpgradeButton.Text =
+                Localization.Translate("SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY")
+                    .FormatSafe(Math.Round(Constants.MULTICELLULAR_ANISOGAMY_UPGRADE_COST *
+                        Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier));
+
+            anisogamySettingsContainer.Visible = false;
+            gameteSelectionALabel.Text = Localization.Translate("GAMETE_CELL_TYPE");
+        }
+
+        // Update also the selected gamete type for the player
+        UpdateSelectedPlayerGameteType();
+    }
+
+    private void UpdateSelectedPlayerGameteType()
+    {
+        changingPlayerGameteTypeAutomatically = true;
+        try
+        {
+            // If not using sexual reproduction, select the default option
+            if (ReproductionMethod is not MulticellularReproductionMethod.SexualIsogamy
+                and not MulticellularReproductionMethod.SexualAnisogamy)
+            {
+                playerGameteSelectionA.ButtonPressed = true;
+                return;
+            }
+
+            if (SelectedGameteTypeForPlayer is GameteType.A or GameteType.All)
+            {
+                playerGameteSelectionA.ButtonPressed = true;
+                playerGameteSelectionB.ButtonPressed = false;
+            }
+            else
+            {
+                playerGameteSelectionB.ButtonPressed = true;
+                playerGameteSelectionA.ButtonPressed = false;
+            }
+        }
+        finally
+        {
+            changingPlayerGameteTypeAutomatically = false;
+        }
+    }
+
+    private void UpdateToAnisogamy()
+    {
+        if (ReproductionMethod == MulticellularReproductionMethod.SexualAnisogamy)
+            return;
+
+        if (ReproductionMethod != MulticellularReproductionMethod.SexualIsogamy)
+        {
+            GD.PrintErr("Invalid reproduction method to upgrade to anisogamy to");
+            return;
+        }
+
+        GUICommon.Instance.PlayButtonPressSound();
+
+        var action = new SingleEditorAction<MulticellularReproductionActionData>(DoReproductionMethodChangeAction,
+            UndoReproductionMethodChangeAction,
+            new MulticellularReproductionActionData(ReproductionMethod,
+                MulticellularReproductionMethod.SexualAnisogamy));
+
+        Editor.EnqueueAction(action);
+
+        UpdateAnisogamyStateAndCost();
+    }
+
+    private void OnPlayerSetGameteA(bool pressed)
+    {
+        if (!pressed)
+            return;
+
+        if (SelectedGameteTypeForPlayer == GameteType.A)
+            return;
+
+        GUICommon.Instance.PlayButtonPressSound();
+        SelectedGameteTypeForPlayer = GameteType.A;
+    }
+
+    private void OnPlayerSetGameteB(bool pressed)
+    {
+        if (!pressed)
+            return;
+
+        if (SelectedGameteTypeForPlayer == GameteType.B)
+            return;
+
+        GUICommon.Instance.PlayButtonPressSound();
+        SelectedGameteTypeForPlayer = GameteType.B;
+    }
+
     private void UpdateMassBuddingCellCountSlider()
     {
         var maxBudSize = CellBodyPlanInternalCalculations.MaxBudSize(editedMicrobeCells.Count);
@@ -398,6 +578,8 @@ public partial class CellBodyPlanEditorComponent
                 return 2;
             case MulticellularReproductionMethod.MassBudding:
                 return 1;
+            case MulticellularReproductionMethod.SexualIsogamy or MulticellularReproductionMethod.SexualAnisogamy:
+                return 3;
             default:
                 throw new Exception($"Invalid reproduction mode: {reproductionMethod}");
         }
@@ -413,6 +595,8 @@ public partial class CellBodyPlanEditorComponent
                 return MulticellularReproductionMethod.MassBudding;
             case 2:
                 return MulticellularReproductionMethod.Sporulation;
+            case 3:
+                return MulticellularReproductionMethod.SexualIsogamy;
             default:
                 throw new Exception($"Invalid reproduction mode index: {index}");
         }

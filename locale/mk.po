@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-22 10:29+0300\n"
+"POT-Creation-Date: 2026-07-31 15:31+0300\n"
 "PO-Revision-Date: 2025-11-24 19:45+0000\n"
 "Last-Translator: Kristijan Miracevski <mircevskihristijan30@gmail.com>\n"
 "Language-Team: Macedonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/mk/>\n"
@@ -2077,6 +2077,9 @@ msgstr ""
 msgid "ERROR_LOADING"
 msgstr ""
 
+msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
+
 msgid "ERROR_SAVING"
 msgstr ""
 
@@ -2425,6 +2428,31 @@ msgstr ""
 
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr ""
+
+msgid "GAMETE_CELL_ENTITY_NAME"
+msgstr ""
+
+msgid "GAMETE_CELL_TYPE"
+msgstr ""
+
+msgid "GAMETE_CELL_TYPE_A"
+msgstr ""
+
+msgid "GAMETE_CELL_TYPE_B"
+msgstr ""
+
+#, fuzzy
+msgid "GAMETE_PRODUCED"
+msgstr "ATP продукција"
+
+#, fuzzy
+msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+msgstr ""
+"Овој дел го прикажува вкупниот биланс на ATP (енергија) на моменталната клетка.\n"
+"За да преживее, билансот треба да биде позитивен. За сесилните клетки, тие може да го сметаат балансот за позитивен без движење.\n"
+"Паѓачкото мени подолу може да се користи за да се провери што би се случило ако клетката немала достапни ресурси за производство на ATP.\n"
+"На пример, некои клетки можат да одржат позитивен баланс на ATP само кога имаат повеќе типови соединенија за производство на ATP одеднаш.\n"
+"Овие типови клетки се потешки за користење бидејќи бараат складирање на повеќе типови соединенија одеднаш за да преживеат."
 
 msgid "GAME_DESIGN_TEAM"
 msgstr ""
@@ -4456,6 +4484,9 @@ msgstr ""
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
+msgid "NOTICE_READY_TO_SHOOT_GAMETE"
+msgstr ""
+
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr ""
 
@@ -4625,6 +4656,9 @@ msgid "OPTIONS"
 msgstr ""
 
 msgid "OPTIONS_BUTTON_TOOLTIP"
+msgstr ""
+
+msgid "OPTION_USED_FOR_PLAYER"
 msgstr ""
 
 msgid "ORGANELLES"
@@ -5189,6 +5223,10 @@ msgstr ""
 msgid "REPORT_BUG"
 msgstr ""
 
+#, fuzzy
+msgid "REPRODUCE"
+msgstr "3Д Едитор"
+
 msgid "REPRODUCED"
 msgstr ""
 
@@ -5218,6 +5256,18 @@ msgstr "3Д Едитор"
 
 msgid "REPRODUCTION_METHOD"
 msgstr ""
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL"
+msgstr "3Д Едитор"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
+msgstr "3Д Едитор"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ISOGAMY"
+msgstr "3Д Едитор"
 
 #, fuzzy
 msgid "REPRODUCTION_SPORE"
@@ -5608,6 +5658,25 @@ msgstr ""
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr ""
+"Агресивните микроби ќе го бркаат пленот на поголеми растојанија\n"
+"и имаат поголема веројатност да се борат со предатори кога ќе бидат нападнати.\n"
+"Мирните микроби нема да ги ангажираат другите на поголеми растојанија\n"
+"и имаат помала веројатност да користат токсини против предатори."
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
+msgstr ""
+"Агресивните микроби ќе го бркаат пленот на поголеми растојанија\n"
+"и имаат поголема веројатност да се борат со предатори кога ќе бидат нападнати.\n"
+"Мирните микроби нема да ги ангажираат другите на поголеми растојанија\n"
+"и имаат помала веројатност да користат токсини против предатори."
+
+msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+msgstr ""
+
 msgid "SFX_VOLUME"
 msgstr ""
 
@@ -5675,6 +5744,12 @@ msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
 
 msgid "SIGNAL_COMMAND_AGGRESSION"
+msgstr ""
+
+msgid "SIGNAL_COMMAND_CALL_MATE"
+msgstr ""
+
+msgid "SIGNAL_COMMAND_FIRE_GAMETES"
 msgstr ""
 
 msgid "SIGNAL_COMMAND_FLEE"

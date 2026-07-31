@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-22 10:29+0300\n"
+"POT-Creation-Date: 2026-07-31 15:31+0300\n"
 "PO-Revision-Date: 2026-05-22 15:37+0000\n"
 "Last-Translator: William <William.berger@outlook.be>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -2326,6 +2326,9 @@ msgstr "Error bij het maken van het bestand voor de mod info"
 msgid "ERROR_LOADING"
 msgstr "Fout bij het laden"
 
+msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
+
 msgid "ERROR_SAVING"
 msgstr "Fout bij het opslaan"
 
@@ -2742,6 +2745,35 @@ msgstr ""
 #, fuzzy
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr "Game-ontwerpteam"
+
+#, fuzzy
+msgid "GAMETE_CELL_ENTITY_NAME"
+msgstr "Aangepaste gebruikersnaam:"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE"
+msgstr "Maak Een Nieuw Celtype"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_A"
+msgstr "Celtypenaam"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_B"
+msgstr "Maak Een Nieuw Celtype"
+
+#, fuzzy
+msgid "GAMETE_PRODUCED"
+msgstr "gereproduceerd"
+
+#, fuzzy
+msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+msgstr ""
+"Dit deel toont de totale ATP (energie)-balans aan van de huidige cel.\n"
+"Om te overleven moet het positief zijn. Voor sessiele cellen wordt het als positief beschouwd wanneer beweging buiten beschouwing wordt gelaten..\n"
+"Het dropdownmenu hieronder kan gebruikt worden om te zien wat er zou gebeuren als de cel niet sommige stoffen beschikbaar had om er ATP van te maken.\n"
+"Sommige cellen kunnen bijvoorbeeld alleen een positief ATP-balans houden wanneer zij meerdere stoftypes hebben om er tegelijk ATP van te maken.\n"
+"Die soorten cellen zijn moeilijker om te spelen omdat ze meerdere stoffen tegelijk in opslag nodig hebben om te overleven."
 
 msgid "GAME_DESIGN_TEAM"
 msgstr "Game-ontwerpteam"
@@ -4929,6 +4961,10 @@ msgid "NOTICE_READY_TO_EDIT"
 msgstr "Bewerker is nu klaar om er in te gaan"
 
 #, fuzzy
+msgid "NOTICE_READY_TO_SHOOT_GAMETE"
+msgstr "Bewerker is nu klaar om er in te gaan"
+
+#, fuzzy
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "Ongeldige mod icoon map"
 
@@ -5123,6 +5159,10 @@ msgstr "Opties"
 #, fuzzy
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Help"
+
+#, fuzzy
+msgid "OPTION_USED_FOR_PLAYER"
+msgstr "Pauzeer het spel"
 
 msgid "ORGANELLES"
 msgstr "Organellen"
@@ -5754,6 +5794,10 @@ msgstr "Rapport"
 msgid "REPORT_BUG"
 msgstr "Rapport"
 
+#, fuzzy
+msgid "REPRODUCE"
+msgstr "gereproduceerd"
+
 msgid "REPRODUCED"
 msgstr "gereproduceerd"
 
@@ -5788,6 +5832,18 @@ msgstr "gereproduceerd"
 #, fuzzy
 msgid "REPRODUCTION_METHOD"
 msgstr "gereproduceerd"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL"
+msgstr "ATP Productie"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
+msgstr "ATP Productie"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ISOGAMY"
+msgstr "ATP Productie"
 
 #, fuzzy
 msgid "REPRODUCTION_SPORE"
@@ -6233,6 +6289,18 @@ msgstr "Zittend"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "Deze waarde is alleen van toepassing op nieuwe games die zijn gestart nadat deze optie is gewijzigd"
 
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr "{0} bevolking veranderd met {1} door: {2}"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "{0} bevolking veranderd met {1} door: {2}"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+msgstr "{0} bevolking veranderd met {1} door: {2}"
+
 msgid "SFX_VOLUME"
 msgstr "Volume Geluidseffecten"
 
@@ -6314,6 +6382,14 @@ msgstr "Druk [thrive:input]g_toggle_binding[/thrive:input] om verbinding modus t
 #, fuzzy
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "Verbindings agent"
+
+#, fuzzy
+msgid "SIGNAL_COMMAND_CALL_MATE"
+msgstr "Beweeg Naar Mij"
+
+#, fuzzy
+msgid "SIGNAL_COMMAND_FIRE_GAMETES"
+msgstr "Vlucht"
 
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr "Vlucht"
@@ -10085,10 +10161,6 @@ msgstr "Uitzoomen"
 
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "Ijzer Chemolithoautotrofie"
-
-#, fuzzy
-#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
-#~ msgstr "{0} bevolking veranderd met {1} door: {2}"
 
 #, fuzzy
 #~ msgid "MIGRATE"

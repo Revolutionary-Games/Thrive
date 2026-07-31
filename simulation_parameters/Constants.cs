@@ -1166,6 +1166,12 @@ public static class Constants
     // Darwinian Evo Values
     public const int CREATURE_DEATH_POPULATION_LOSS = -30;
     public const int CREATURE_REPRODUCE_POPULATION_GAIN = 50;
+    public const int CREATURE_REPRODUCE_SEXUAL_POPULATION_GAIN = CREATURE_REPRODUCE_POPULATION_GAIN * 3;
+
+    /// <summary>
+    ///   Gametes are shot a lot, so their population gain is limited
+    /// </summary>
+    public const int CREATURE_PRODUCE_GAMETE_POPULATION_GAIN = 5;
 
     // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4694
     public const int CREATURE_KILL_POPULATION_GAIN = 50;
@@ -1214,6 +1220,9 @@ public static class Constants
 
     public const int SPORE_CELL_TYPE_CHANGE_COST = 10;
 
+    public const int GAMETE_CELL_TYPE_CHANGE_COST = 10;
+    public const int MULTICELLULAR_ANISOGAMY_UPGRADE_COST = 50;
+
     public const int MASS_BUDDING_CELL_COUNT_CHANGE_COST = 10;
 
     public const string ORGANELLE_UPGRADE_SPECIAL_NONE = "none";
@@ -1226,6 +1235,14 @@ public static class Constants
     public const float METABALL_MIN_SIZE = 0.4f;
     public const float METABALL_SIZE_STEP = 0.1f;
     public const float METABALL_MAX_SIZE = 5.0f;
+
+    public const float GAMETE_MERGE_DISTANCE_SQUARED = 4 * 4;
+    public const float GAMETE_INITIAL_VELOCITY = 90;
+
+    public const float GAMETE_FORCE_SHOOT_INTERVAL = 10;
+    public const float GAMETE_FORCE_SHOOT_DISTANCE_SQUARED = 80 * 80;
+    public const float GAMETE_MATE_CALL_MAX_DISTANCE_SQUARED = 550 * 550;
+    public const float GAMETE_MATE_CALL_TARGET_DISTANCE_SQUARED = 50 * 50;
 
     // Corpse info
     public const float CORPSE_COMPOUND_COMPENSATION = 85.0f;

@@ -42,7 +42,8 @@ public class MicrobeGrowthCompoundsMatchCalculation
         species.OnEdited();
 
         // Spawn a cell of the type for the "player"
-        SpawnHelpers.SpawnMicrobe(worldSimulation, spawnEnvironment, species, new Vector3(0, 0, 0), false);
+        SpawnHelpers.SpawnMicrobe(worldSimulation, spawnEnvironment, species, new Vector3(0, 0, 0), false,
+            GameteType.All);
         worldSimulation.ProcessAll(0.1f);
 
         // Get the cell
