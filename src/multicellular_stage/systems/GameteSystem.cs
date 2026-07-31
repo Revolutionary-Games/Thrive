@@ -24,8 +24,8 @@ using World = Arch.Core.World;
 [RunsOnMainThread]
 public partial class GameteSystem : BaseSystem<World, float>
 {
-    private const float CloseMergeDistanceSquared = 10.0f;
     private const float GametePushTogetherForce = 45000;
+    private const float GametePushTogetherForceSmall = 10000;
 
     private readonly IWorldSimulation worldSimulation;
     private readonly IMicrobeSpawnEnvironment spawnEnvironment;
@@ -168,6 +168,7 @@ public partial class GameteSystem : BaseSystem<World, float>
 
         if (bestTarget == Entity.Null)
         {
+            // TODO: if we have a target that isn't too far away, we might want to keep it
             gamete.HasTarget = false;
             return false;
         }
@@ -243,7 +244,7 @@ public partial class GameteSystem : BaseSystem<World, float>
         var distanceSquared = vectorToOther.LengthSquared();
 
         // Finish merging once close enough
-        if (distanceSquared <= CloseMergeDistanceSquared)
+        if (distanceSquared <= Constants.GAMETE_MERGE_DISTANCE_SQUARED)
         {
             // Only one of the merging gametes should spawn the offspring
             if (entity.Id < gamete.MergingWith.Id)
@@ -288,16 +289,28 @@ public partial class GameteSystem : BaseSystem<World, float>
 
         // Apply increasing physical force to move centres together.
         gamete.MergingTimePassed += delta;
-        physics.QueuedImpulse +=
-            vectorToOther.Normalized() * GametePushTogetherForce * delta * Math.Min(gamete.MergingTimePassed, 30);
+
+        // Asymmetric thrust so that the cells don't circle endlessly
+        Vector3 force;
+        if (entity.Id < gamete.MergingWith.Id)
+        {
+            force = vectorToOther.Normalized() * GametePushTogetherForce * delta *
+                Math.Min(gamete.MergingTimePassed, 30);
+        }
+        else
+        {
+            force = vectorToOther.Normalized() * GametePushTogetherForceSmall * delta;
+        }
+
+        physics.QueuedImpulse += force;
         physics.QueuedForceApplied = false;
 
         // When merging only use slow movement (as we have detected something nearby)
-        if(gamete.MergingTimePassed < 5)
+        if (gamete.MergingTimePassed < 5)
         {
             control.MovementDirection = Vector3.Forward * 0.5f;
         }
-        else if(gamete.MergingTimePassed < 10)
+        else if (gamete.MergingTimePassed < 10)
         {
             control.MovementDirection = Vector3.Forward * 0.3f;
         }

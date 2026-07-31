@@ -529,7 +529,7 @@ public static class MulticellularGrowthHelpers
 
         ref var position = ref entity.Get<WorldPosition>();
 
-        Vector3 initialVelocity = (position.Rotation * Vector3.Forward) * 100;
+        Vector3 initialVelocity = (position.Rotation * Vector3.Forward) * Constants.GAMETE_INITIAL_VELOCITY;
         Vector3 initialPosition = position.Position;
 
         // Find the closest cell towards the initial velocity and pick it

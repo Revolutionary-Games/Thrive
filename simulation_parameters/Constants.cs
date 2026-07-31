@@ -1236,6 +1236,9 @@ public static class Constants
     public const float METABALL_SIZE_STEP = 0.1f;
     public const float METABALL_MAX_SIZE = 5.0f;
 
+    public const float GAMETE_MERGE_DISTANCE_SQUARED = 4 * 4;
+    public const float GAMETE_INITIAL_VELOCITY = 90;
+
     // Corpse info
     public const float CORPSE_COMPOUND_COMPENSATION = 85.0f;
     public const int CORPSE_CHUNK_DIVISOR = 3;
