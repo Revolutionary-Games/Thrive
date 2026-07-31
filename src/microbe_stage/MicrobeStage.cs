@@ -2370,7 +2370,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         }
         catch (Exception e)
         {
-            GD.PrintErr("Failed to stop gamete movement on animation start to enter the editor");
+            GD.PrintErr("Failed to stop gamete movement on animation start to enter the editor: ", e);
         }
     }
 
