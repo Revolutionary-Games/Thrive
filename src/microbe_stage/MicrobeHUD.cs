@@ -238,7 +238,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         editorButton.ShowReproductionDialog();
 
-        HUDMessages.ShowMessage(Localization.Translate("NOTICE_READY_TO_SHOOT_GAMETE"), DisplayDuration.Normal);
+        HUDMessages.ShowMessage(Localization.Translate("NOTICE_READY_TO_SHOOT_GAMETE"), DisplayDuration.Long);
 
         editorButton.SetGameteStyle();
     }
