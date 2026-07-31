@@ -191,16 +191,16 @@ public static class MulticellularLayoutHelpers
     /// <summary>
     ///   This variant is for auto-evo, converting a species' editor cells directly to gameplay cells
     /// </summary>
-    public static void UpdateGameplayLayout(CellLayout<CellTemplate> targetGameplayLayout,
-        IndividualHexLayout<CellTemplate> targetEditorLayout, AlgorithmQuality algorithmQuality,
-        List<Hex> hexTemporaryMemory, List<Hex> hexTemporaryMemory2)
+    public static void UpdateGameplayLayoutForAutoEvo(CellLayout<CellTemplate> targetGameplayLayout,
+        IndividualHexLayout<CellTemplate> targetEditorLayout, List<Hex> hexTemporaryMemory,
+        List<Hex> hexTemporaryMemory2)
     {
         var source = new IndividualHexLayout<CellTemplate>();
 
         // copy over all existing cells
-        foreach (var hex in targetEditorLayout)
+        for (var i = 0; i < targetEditorLayout.Count; ++i)
         {
-            var cell = hex.Data;
+            var cell = targetEditorLayout[i].Data;
             if (cell != null)
             {
                 source.AddFast(new HexWithData<CellTemplate>(new CellTemplate(cell.ModifiableCellType,
@@ -209,7 +209,7 @@ public static class MulticellularLayoutHelpers
             }
         }
 
-        UpdateGameplayLayout(targetGameplayLayout, targetEditorLayout, source, algorithmQuality, hexTemporaryMemory,
+        UpdateGameplayLayout(targetGameplayLayout, targetEditorLayout, source, AlgorithmQuality.Low, hexTemporaryMemory,
             hexTemporaryMemory2);
     }
 

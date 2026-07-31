@@ -181,8 +181,8 @@ public class ModifyExistingSpecies : IRunStep
                     if (mutation.MutatedSpecies is MulticellularSpecies multicellularMutant)
                     {
                         multicellularMutant.RepositionCellTypesToOrigin();
-                        MulticellularLayoutHelpers.UpdateGameplayLayout(multicellularMutant.ModifiableGameplayCells,
-                            multicellularMutant.ModifiableEditorCells, AlgorithmQuality.Low,
+                        MulticellularLayoutHelpers.UpdateGameplayLayoutForAutoEvo(
+                            multicellularMutant.ModifiableGameplayCells, multicellularMutant.ModifiableEditorCells,
                             new List<Hex>(), new List<Hex>());
                     }
 
