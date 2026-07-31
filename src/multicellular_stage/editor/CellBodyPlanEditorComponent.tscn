@@ -789,6 +789,7 @@ layout_mode = 2
 
 [node name="PlayerGameteA" type="CheckBox" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SexualOptions/VBoxContainer" unique_id=148611283]
 layout_mode = 2
+tooltip_text = "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
 button_pressed = true
 button_group = SubResource("ButtonGroup_mpm3q")
 text = "OPTION_USED_FOR_PLAYER"
@@ -796,6 +797,7 @@ text = "OPTION_USED_FOR_PLAYER"
 [node name="AnisogamyUpgrade" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SexualOptions" unique_id=2112537341]
 layout_mode = 2
 text = "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+autowrap_mode = 2
 
 [node name="Label2" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SexualOptions" unique_id=1861062998]
 custom_minimum_size = Vector2(30, 0)
@@ -824,6 +826,7 @@ layout_mode = 2
 
 [node name="PlayerGameteB" type="CheckBox" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SexualOptions/SecondGameteSelection" unique_id=348452921]
 layout_mode = 2
+tooltip_text = "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
 button_group = SubResource("ButtonGroup_mpm3q")
 text = "OPTION_USED_FOR_PLAYER"
 
