@@ -80,6 +80,9 @@ extern "C"
     [[maybe_unused]] THRIVE_NATIVE_API void ReadPhysicsBodyTransform(
         PhysicalWorld* physicalWorld, PhysicsBody* body, JVec3* positionReceiver, JQuat* rotationReceiver);
 
+    [[maybe_unused]] THRIVE_NATIVE_API void ReadPhysicsBodyCenterOfMass(
+        PhysicalWorld* physicalWorld, PhysicsBody* body, JVec3* positionReceiver);
+
     [[maybe_unused]] THRIVE_NATIVE_API void ReadPhysicsBodyVelocity(
         PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3* velocityReceiver, JVecF3* angularVelocityReceiver);
 
@@ -209,6 +212,8 @@ extern "C"
     [[maybe_unused]] THRIVE_NATIVE_API void ReleaseShape(PhysicsShape* shape);
 
     [[maybe_unused]] THRIVE_NATIVE_API float ShapeGetMass(PhysicsShape* shape);
+
+    [[maybe_unused]] THRIVE_NATIVE_API JVecF3 ShapeGetCenterOfMass(PhysicsShape* shape);
 
     [[maybe_unused]] THRIVE_NATIVE_API JVecF3 ShapeCalculateResultingAngularVelocity(
         PhysicsShape* shape, JVecF3 appliedTorque, float deltaTime = 1);

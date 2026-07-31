@@ -321,7 +321,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         editorGrid.Position = camera!.CursorWorldPos;
         editorGrid.Visible = Editor.ShowHover && !ForceHideHover;
 
-        camera.UpdateCameraPosition(delta, cameraFollow.GlobalPosition);
+        camera.UpdateCameraTargets(delta, cameraFollow.GlobalPosition);
 
         UpdateFloatingLabelPositions();
 
