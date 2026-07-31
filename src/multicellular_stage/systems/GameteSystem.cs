@@ -1,4 +1,4 @@
-namespace Systems;
+﻿namespace Systems;
 
 using System;
 using System.Diagnostics;
@@ -99,7 +99,7 @@ public partial class GameteSystem : BaseSystem<World, float>
         // Initialize sensor if not created
         if (!gamete.IsSensorCreated && cellProperties.CreatedMembrane != null)
         {
-            InitializeSensor(ref gamete, ref cellProperties, entity);
+            SetupSensor(ref gamete, ref cellProperties, entity);
         }
 
         // Detection logic
@@ -120,7 +120,7 @@ public partial class GameteSystem : BaseSystem<World, float>
         HandleCollisions(ref gamete, ref collisionManagement, entity);
     }
 
-    private void InitializeSensor(ref GameteCell gamete, ref CellProperties cellProperties, in Entity entity)
+    private void SetupSensor(ref GameteCell gamete, ref CellProperties cellProperties, in Entity entity)
     {
         // Radius based on membrane (no bacteria adjustment as they shouldn't be doing sexual reproduction anyway)
         var radius = cellProperties.CreatedMembrane!.EncompassingCircleRadius;
@@ -142,7 +142,7 @@ public partial class GameteSystem : BaseSystem<World, float>
         Vector3 lookPosition = default;
 
         var count = sensor.GetActiveCollisions(out var collisions);
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < count; ++i)
         {
             var other = collisions![i].SecondEntity;
             if (other == entity || !other.IsAliveAndHas<GameteCell>() || !other.Has<WorldPosition>())
@@ -194,7 +194,7 @@ public partial class GameteSystem : BaseSystem<World, float>
 #endif
 
         var count = collisionManagement.GetActiveCollisions(out var collisions);
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < count; ++i)
         {
             var other = collisions![i].SecondEntity;
             if (other == entity || !other.IsAliveAndHas<GameteCell>())

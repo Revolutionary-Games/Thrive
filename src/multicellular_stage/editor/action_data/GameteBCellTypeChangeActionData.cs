@@ -27,7 +27,8 @@ public class GameteBCellTypeChangeActionData : EditorCombinableActionData<Multic
         writer.WriteObject((GameteBCellTypeChangeActionData)obj);
     }
 
-    public static GameteBCellTypeChangeActionData ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    public static GameteBCellTypeChangeActionData ReadFromArchive(ISArchiveReader reader, ushort version,
+        int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
