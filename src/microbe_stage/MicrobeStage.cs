@@ -1090,8 +1090,8 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         WorldSimulation.CameraFollowSystem.Disabled = false;
 
-        // When true, another cell is spawned next to the player that they scientifically speaking would have split
-        // from
+        // When true, another cell is spawned next to the player that, scientifically speaking, the player would have
+        // split from
         bool spawnAnotherCell = true;
 
         // If using sexual reproduction, do not spawn another member as we came from a gamete merge
@@ -1351,6 +1351,9 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             HUD.ShowEnvironmentPanel();
             environmentPanelAutomaticallyOpened = true;
         }
+
+        // Despawn player gametes to prevent accidentally immediately triggering the editor entry again
+        DespawnPlayerGametes();
 
         if (TutorialState.Enabled && !TutorialState.ProcessPanelTutorial.Complete)
         {
@@ -2402,6 +2405,20 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
                 TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.3f, MoveToEditor, false);
             }
         }
+    }
+
+    private void DespawnPlayerGametes()
+    {
+        OnStopGameteMerge();
+
+        WorldSimulation.EntitySystem.Query<GameteCell>(new QueryDescription().WithAll<GameteCell>(),
+            (entity, ref gamete) =>
+            {
+                if (gamete.IsPlayer)
+                {
+                    WorldSimulation.DestroyEntity(entity);
+                }
+            });
     }
 
     private void ClearResolvedTolerancesCache()
