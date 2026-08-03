@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://drtupj52wg8wn"]
+
+[sub_resource type="Environment" id="Environment_m2g58"]
+
+[sub_resource type="Compositor" id="Compositor_8ykry"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n4y2n"]
+albedo_color = Color(0, 1, 0.043137256, 1)
+metallic = 0.49
+
+[sub_resource type="SphereMesh" id="SphereMesh_m2g58"]
+material = SubResource("StandardMaterial3D_n4y2n")
+radius = 1000.0
+height = 2000.0
+
+[node name="CloudSky" type="Node" unique_id=103953243]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=422753990]
+environment = SubResource("Environment_m2g58")
+compositor = SubResource("Compositor_8ykry")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=2097667316]
+transform = Transform3D(0.98409724, 7.98059e-08, 0.1776307, -0.060220204, 0.94077986, 0.3336273, -0.16711122, -0.33901858, 0.9258187, 0, 1250, 0)
+current = true
+fov = 70.0
+far = 50000.0
+
+[node name="DummyPlanet" type="MeshInstance3D" parent="." unique_id=1259534746]
+mesh = SubResource("SphereMesh_m2g58")
