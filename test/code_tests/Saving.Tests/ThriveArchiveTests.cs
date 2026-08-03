@@ -12,6 +12,10 @@ using Godot;
 using SharedBase.Archive;
 using Xunit;
 
+/// <summary>
+///   Tests game save low-level features. This is in a collection to hopefully fix this test randomly failing.
+/// </summary>
+[Collection("World serialization")]
 public class ThriveArchiveTests
 {
     private readonly ThriveArchiveManager manager = new();
