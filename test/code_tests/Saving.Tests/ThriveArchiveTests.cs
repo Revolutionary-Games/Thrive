@@ -257,6 +257,15 @@ public class ThriveArchiveTests
         var read = reader.ReadObjectOrNull<World>();
         manager.OnFinishRead(reader);
 
+        // Test that second write results in the same bytes
+        var memoryStream2 = new MemoryStream();
+        var writer2 = new SArchiveMemoryWriter(memoryStream2, manager);
+        manager.OnStartNewWrite(writer2);
+        writer2.WriteAnyRegisteredValueAsObject(originalWorld);
+        manager.OnFinishWrite(writer2);
+
+        Assert.Equal(memoryStream.ToArray(), memoryStream2.ToArray());
+
         Assert.NotNull(read);
         Assert.Equal(originalWorld.Size, read.Size);
 
