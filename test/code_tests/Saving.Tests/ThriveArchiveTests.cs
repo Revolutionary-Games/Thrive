@@ -271,8 +271,20 @@ public class ThriveArchiveTests
         });
 
         Assert.NotEqual(Entity.Null, readEntity);
-        Assert.Equal(originalEntity1.Get<WorldPosition>(), readEntity.Get<WorldPosition>());
         Assert.Equal(originalEntity1.Get<PlayerMarker>(), readEntity.Get<PlayerMarker>());
+
+        // Compare value by value as this test for some reason seems flaky
+        var originalPosition = originalEntity1.Get<WorldPosition>();
+        var readPosition = readEntity.Get<WorldPosition>();
+
+        Assert.Equal(originalPosition.Position.X, readPosition.Position.X);
+        Assert.Equal(originalPosition.Position.Y, readPosition.Position.Y);
+        Assert.Equal(originalPosition.Position.Z, readPosition.Position.Z);
+
+        Assert.Equal(originalPosition.Rotation.X, readPosition.Rotation.X);
+        Assert.Equal(originalPosition.Rotation.Y, readPosition.Rotation.Y);
+        Assert.Equal(originalPosition.Rotation.Z, readPosition.Rotation.Z);
+        Assert.Equal(originalPosition.Rotation.W, readPosition.Rotation.W);
     }
 
     [Fact]
