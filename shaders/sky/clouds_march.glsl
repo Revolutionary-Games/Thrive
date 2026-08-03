@@ -28,7 +28,7 @@ bool ray_sphere(vec3 ro, vec3 rd, vec3 center, float radius, out float t0, out f
     return true;
 }
 
-const float base_scale = 0.001;
+const float base_scale = 0.000001;
 const float detail_scale = 0.005;
 const float density_multiplier = 1.0;
 const vec3 wind = vec3(1.0, 0.0, 0.0);
@@ -135,7 +135,7 @@ void main() {
         float base_fbm = base.g * 0.625 + base.b * 0.25 + base.a * 0.125;
 
         float hg = height_gradient(shell_frac);
-        float coverage = 0.5; // uniform for now, weather-map channel later
+        float coverage = 0.3; // uniform for now, weather-map channel later
 
         float density = clamp(remap(shape, 1.0 - coverage, 1.0, 0.0, 1.0), 0.0, 1.0);
         density *= hg;

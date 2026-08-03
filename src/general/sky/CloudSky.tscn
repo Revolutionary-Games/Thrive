@@ -1,8 +1,21 @@
 [gd_scene format=3 uid="uid://drtupj52wg8wn"]
 
+[ext_resource type="Script" uid="uid://bpmfib2hf13bd" path="res://src/general/sky/VolumetricCloudsEffect.cs" id="1_fijo7"]
+
 [sub_resource type="Environment" id="Environment_m2g58"]
 
+[sub_resource type="CompositorEffect" id="CompositorEffect_2qku0"]
+resource_local_to_scene = false
+resource_name = ""
+enabled = true
+effect_callback_type = 4
+needs_motion_vectors = false
+needs_normal_roughness = false
+script = ExtResource("1_fijo7")
+metadata/_custom_type_script = "uid://bpmfib2hf13bd"
+
 [sub_resource type="Compositor" id="Compositor_8ykry"]
+compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_2qku0")])
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n4y2n"]
 albedo_color = Color(0, 1, 0.043137256, 1)

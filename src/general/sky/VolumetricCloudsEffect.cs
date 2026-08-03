@@ -49,9 +49,6 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     public VolumetricCloudsEffect()
     {
         EffectCallbackType = EffectCallbackTypeEnum.PostTransparent;
-        AccessResolvedDepth = true;
-
-        LoadResources();
     }
 
     public override void _Notification(int what)
@@ -86,9 +83,6 @@ public partial class VolumetricCloudsEffect : CompositorEffect
 
     public override void _RenderCallback(int effectCallbackType, RenderData renderData)
     {
-        if (Engine.IsEditorHint())
-            return;
-
         switch (state)
         {
             case 0: // kick off async load once
