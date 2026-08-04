@@ -12,7 +12,7 @@ public class ColonyCompoundBagTests
     [TestCase]
     public void DistributeCompoundSurplusBalancesUsefulCompoundsByCapacity()
     {
-        using var world = World.Create();
+        using var world = ThriveWorld.Create();
         var firstBag = CreateBag(10, Compound.Ammonia);
         var secondBag = CreateBag(20, Compound.Ammonia);
         var colonyBag = CreateColonyBag(world, firstBag, secondBag);
@@ -28,7 +28,7 @@ public class ColonyCompoundBagTests
     [TestCase]
     public void DistributeCompoundSurplusLeavesAlreadyBalancedCompoundsUntouched()
     {
-        using var world = World.Create();
+        using var world = ThriveWorld.Create();
         var firstBag = CreateBag(10, Compound.Ammonia);
         var secondBag = CreateBag(20, Compound.Ammonia);
         var colonyBag = CreateColonyBag(world, firstBag, secondBag);
@@ -45,7 +45,7 @@ public class ColonyCompoundBagTests
     [TestCase]
     public void DistributeCompoundSurplusLeavesNonDistributableCompoundsUntouched()
     {
-        using var world = World.Create();
+        using var world = ThriveWorld.Create();
         var firstBag = CreateBag(10);
         var secondBag = CreateBag(20);
         var colonyBag = CreateColonyBag(world, firstBag, secondBag);
@@ -61,7 +61,7 @@ public class ColonyCompoundBagTests
     [TestCase]
     public void DistributeCompoundSurplusSkipsCompoundsThatAreNotUsefulAnywhere()
     {
-        using var world = World.Create();
+        using var world = ThriveWorld.Create();
         var firstBag = CreateBag(10);
         var secondBag = CreateBag(20);
         var colonyBag = CreateColonyBag(world, firstBag, secondBag);
@@ -77,7 +77,7 @@ public class ColonyCompoundBagTests
     [TestCase]
     public void DistributeCompoundSurplusClearsSummedCompoundsBufferBetweenRuns()
     {
-        using var world = World.Create();
+        using var world = ThriveWorld.Create();
         var firstBag = CreateBag(10, Compound.Ammonia, Compound.Phosphates);
         var secondBag = CreateBag(20, Compound.Ammonia, Compound.Phosphates);
         var colonyBag = CreateColonyBag(world, firstBag, secondBag);
@@ -100,7 +100,7 @@ public class ColonyCompoundBagTests
     [TestCase]
     public void DistributeCompoundSurplusSkipsUsefulCompoundsWithZeroCapacity()
     {
-        using var world = World.Create();
+        using var world = ThriveWorld.Create();
         var firstBag = CreateBag(0, Compound.Glucose);
         var secondBag = CreateBag(0, Compound.Glucose);
         var colonyBag = CreateColonyBag(world, firstBag, secondBag);
@@ -119,7 +119,7 @@ public class ColonyCompoundBagTests
         // This is a test case against this bug:
         // https://community.revolutionarygamesstudio.com/t/infinite-toxins-in-multicellular/8970
 
-        using var world = World.Create();
+        using var world = ThriveWorld.Create();
         var firstBag = CreateBag(9.75f, Compound.Oxygen, Compound.Glucose, Compound.ATP,
             Compound.Carbondioxide, Compound.Iron, Compound.Nitrogen, Compound.Ammonia, Compound.Hydrogensulfide,
             Compound.Sunlight);

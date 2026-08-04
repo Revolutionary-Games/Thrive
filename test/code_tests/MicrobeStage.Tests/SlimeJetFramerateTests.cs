@@ -1,7 +1,6 @@
 ﻿namespace ThriveTest.MicrobeStage;
 
 using System;
-using Arch.Core;
 using Godot;
 using Xunit;
 
@@ -10,7 +9,7 @@ public class SlimeJetFramerateTests
     [Fact]
     public void SlimeJet_ForceIsNotFramerateDependent()
     {
-        using var world = World.Create();
+        using var world = ThriveWorld.Create();
         var entity = world.Create();
 
         var jet = new SlimeJetComponent

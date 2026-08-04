@@ -154,7 +154,7 @@ public static class EntityWorldSerializers
         var manager = (ISaveContext)reader.ReadManager;
 
         // Start the new world
-        var world = World.Create();
+        var world = ThriveWorld.Create();
 
         if (manager.ProcessedEntityWorld != null)
             throw new FormatException("Entity World deserialization is not re-entrant");

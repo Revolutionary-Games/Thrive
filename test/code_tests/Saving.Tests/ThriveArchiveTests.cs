@@ -251,7 +251,7 @@ public class ThriveArchiveTests
         var writer = new SArchiveMemoryWriter(memoryStream, manager);
         var reader = new SArchiveMemoryReader(memoryStream, manager);
 
-        using var originalWorld = World.Create();
+        using var originalWorld = ThriveWorld.Create();
         var originalEntity1 = originalWorld.Create();
 
         // It's apparently safe to refer to numeric types from Godot in the tests
