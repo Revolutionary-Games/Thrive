@@ -1752,6 +1752,7 @@ public class SimulationCache
             var cellTypeToxinAmount = 0.0f;
             var cellTypeToxinOrganellesCount = 0;
             var cellTypeToxinTypesCount = 0;
+            var cellTypeToxicity = 0.0f;
             var cellTypePilusCount = 0.0f;
             var cellTypeInjectisomeCount = 0.0f;
             var cellTypeDefensivePilusCount = 0.0f;
@@ -1848,7 +1849,7 @@ public class SimulationCache
                         hasOxygenMetabolismInhibitor = true;
                     }
 
-                    totalToxicity += organelle.GetActiveToxicity();
+                    cellTypeToxicity += organelle.GetActiveToxicity();
                     cellTypeToxinOrganellesCount += 1;
                     cellTypeToxinAmount += toxinAmount;
                 }
@@ -1863,6 +1864,7 @@ public class SimulationCache
                 {
                     totalToxinOrganellesCount += cellTypeToxinOrganellesCount;
                     totalToxinTypesCount += cellTypeToxinTypesCount;
+                    totalToxicity += cellTypeToxicity;
                     pilusCount += cellTypePilusCount;
                     injectisomeCount += cellTypeInjectisomeCount;
                     defensivePilusCount += cellTypeDefensivePilusCount;
