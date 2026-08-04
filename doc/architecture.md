@@ -95,6 +95,16 @@ touches or just reads. The info on which components are used is very
 important to be correct so that thread safety guarantees work (see the
 next section on thread safety).
 
+### World and Component Creation
+
+To create a world it must be done through `ThriveWorld.Create()` to safely initialize 
+components on first usage. This must be used instead of creating worlds directly! This is 
+because the component initialization is not thread safe.
+
+Any new component types must be assured are initialized by `ThriveWorld` to function 
+correctly. This is done through a few key attributes / inheritance to automatically detect 
+everything.
+
 ### Thread Safety
 
 To improve the game performance a lot, multiple threads are used to
