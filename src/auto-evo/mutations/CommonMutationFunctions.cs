@@ -319,13 +319,14 @@ public static class CommonMutationFunctions
         IReadOnlyCellTypeDefinition baseCellType, CellType newCellType, int mpCost, AdjacencyDirection direction,
         List<Hex> workMemory1, List<Hex> workMemory2)
     {
+        if (mpCost > mp)
+            return false;
+
         var newCells = newSpecies.ModifiableEditorCells;
 
         for (int j = 0; j < baseCellsCount; ++j)
         {
             var baseHex = baseSpeciesCells[j];
-            if (mpCost > mp)
-                return false;
 
             var baseCell = baseHex.Data;
             if (baseCell != null && baseCell.CellType == baseCellType)
@@ -333,71 +334,35 @@ public static class CommonMutationFunctions
                 switch (direction)
                 {
                     case AdjacencyDirection.Front:
-                        var newCellFront = GetAdjacentPosition(baseCell, Hex.HexSide.Top,
-                            baseHex.Position, newCellType, newCells);
+                        if (!TryAddNewCell(ref mp, newCellType, mpCost, workMemory1, workMemory2, baseCell,
+                                Hex.HexSide.Top, baseHex, newCells))
+                            return false;
 
-                        if (newCellFront == null)
-                            continue;
-
-                        mp -= mpCost;
-
-                        newCells.AddFast(newCellFront, workMemory1, workMemory2);
                         break;
                     case AdjacencyDirection.Rear:
-                        var newCellRear = GetAdjacentPosition(baseCell, Hex.HexSide.Bottom,
-                            baseHex.Position, newCellType, newCells);
+                        if (!TryAddNewCell(ref mp, newCellType, mpCost, workMemory1, workMemory2, baseCell,
+                                Hex.HexSide.Bottom, baseHex, newCells))
+                            return false;
 
-                        if (newCellRear == null)
-                            continue;
-
-                        mp -= mpCost;
-
-                        newCells.AddFast(newCellRear, workMemory1, workMemory2);
                         break;
                     case AdjacencyDirection.SideFront:
-                        var newCellFrontLeft = GetAdjacentPosition(baseCell,
-                            Hex.HexSide.TopLeft, baseHex.Position, newCellType, newCells);
+                        if (!TryAddNewCell(ref mp, newCellType, mpCost, workMemory1, workMemory2, baseCell,
+                                Hex.HexSide.TopLeft, baseHex, newCells))
+                            return false;
 
-                        if (newCellFrontLeft != null)
-                        {
-                            mp -= mpCost;
-                            newCells.AddFast(newCellFrontLeft, workMemory1, workMemory2);
-                        }
-
-                        var newCellFrontRight = GetAdjacentPosition(baseCell,
-                            Hex.HexSide.TopRight, baseHex.Position, newCellType, newCells);
-
-                        if (newCellFrontRight != null)
-                        {
-                            if (mpCost > mp)
-                                return false;
-
-                            mp -= mpCost;
-                            newCells.AddFast(newCellFrontRight, workMemory1, workMemory2);
-                        }
+                        if (!TryAddNewCell(ref mp, newCellType, mpCost, workMemory1, workMemory2, baseCell,
+                                Hex.HexSide.TopRight, baseHex, newCells))
+                            return false;
 
                         break;
                     case AdjacencyDirection.SideRear:
-                        var newCellRearLeft = GetAdjacentPosition(baseCell,
-                            Hex.HexSide.BottomLeft, baseHex.Position, newCellType, newCells);
+                        if (!TryAddNewCell(ref mp, newCellType, mpCost, workMemory1, workMemory2, baseCell,
+                                Hex.HexSide.BottomLeft, baseHex, newCells))
+                            return false;
 
-                        if (newCellRearLeft != null)
-                        {
-                            mp -= mpCost;
-                            newCells.AddFast(newCellRearLeft, workMemory1, workMemory2);
-                        }
-
-                        var newCellRearRight = GetAdjacentPosition(baseCell,
-                            Hex.HexSide.BottomRight, baseHex.Position, newCellType, newCells);
-
-                        if (newCellRearRight != null)
-                        {
-                            if (mpCost > mp)
-                                return false;
-
-                            mp -= mpCost;
-                            newCells.AddFast(newCellRearRight, workMemory1, workMemory2);
-                        }
+                        if (!TryAddNewCell(ref mp, newCellType, mpCost, workMemory1, workMemory2, baseCell,
+                                Hex.HexSide.BottomRight, baseHex, newCells))
+                            return false;
 
                         break;
                     default:
@@ -406,6 +371,27 @@ public static class CommonMutationFunctions
             }
         }
 
+        return true;
+    }
+
+    private static bool TryAddNewCell(ref double mp, CellType newCellType, int mpCost, List<Hex> workMemory1,
+        List<Hex> workMemory2, CellTemplate baseCell, Hex.HexSide hexSide, IReadOnlyHexWithData<CellTemplate> baseHex,
+        IndividualHexLayout<CellTemplate> newCells)
+    {
+        var newCellFront = GetAdjacentPosition(baseCell, hexSide,
+            baseHex.Position, newCellType, newCells);
+
+        // We only consider the mutation attempt failed if there is space for a cell, but we do not have the mp to place
+        // a cell in that place
+        if (newCellFront == null)
+            return true;
+
+        if (mpCost > mp)
+            return false;
+
+        mp -= mpCost;
+
+        newCells.AddFast(newCellFront, workMemory1, workMemory2);
         return true;
     }
 
