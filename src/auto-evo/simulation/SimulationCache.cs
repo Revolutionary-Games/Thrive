@@ -751,8 +751,7 @@ public class SimulationCache
                             var cellEnzymesScore = GetEnzymesScore(cellType, dissolverEnzyme,
                                 cellTypeSpecializationBonus * CellBodyPlanInternalCalculations
                                     .GetAdjacencySpecializationBonusFromBodyPlan(cell, cells));
-                            if (cellEnzymesScore > enzymesScore)
-                                enzymesScore = cellEnzymesScore;
+                            enzymesScore = Math.Max(cellEnzymesScore, enzymesScore);
                         }
                     }
                 }
