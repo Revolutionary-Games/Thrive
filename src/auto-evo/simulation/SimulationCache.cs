@@ -737,7 +737,7 @@ public class SimulationCache
                 var cellCount = 0;
                 var cellTypeHexSize = GetBaseHexSizeForCellType(cellType);
 
-                var cellTypeSpecializationbonus = cellType.CellTypeSpecializationBonus;
+                var cellTypeSpecializationBonus = cellType.CellTypeSpecializationBonus;
 
                 foreach (var hex in cells)
                 {
@@ -749,7 +749,7 @@ public class SimulationCache
                             cellTypeHexSize / smallestPreyHexSize >= Constants.ENGULF_SIZE_RATIO_REQ)
                         {
                             var cellEnzymesScore = GetEnzymesScore(cellType, dissolverEnzyme,
-                                cellTypeSpecializationbonus * CellBodyPlanInternalCalculations
+                                cellTypeSpecializationBonus * CellBodyPlanInternalCalculations
                                     .GetAdjacencySpecializationBonusFromBodyPlan(cell, cells));
                             if (cellEnzymesScore > enzymesScore)
                                 enzymesScore = cellEnzymesScore;
