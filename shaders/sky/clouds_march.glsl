@@ -126,7 +126,8 @@ void main() {
     // March: density + beer
     const int STEPS = 48;
     float dt = (march_end - march_start) / float(STEPS);
-    float t = march_start;
+    float jitter = fract(sin(dot(vec2(px), vec2(12.9898, 78.233))) * 43758.5453);
+    float t = march_start + dt * jitter;
     float transmittance = 1.0;
 
     for (int i = 0; i < STEPS; i++) {
@@ -147,12 +148,21 @@ void main() {
         float density = clamp(remap(shape, 1.0 - coverage, 1.0, 0.0, 1.0), 0.0, 1.0);
         density *= hg;
 
-        /*
-        vec3 detail_pos = pos * detail_scale + wind * time;
-        float detail = texture(detail_noise, detail_pos).r;
-        float erosion = detail * (1.0 - shell_frac);
+        // --- detail erosion: re-sample the SAME base volume at a smaller tile ---
+        // smaller tile => higher world-frequency => fine edge detail, no extra texture
+        float detail_tile_size = cloud_tile_size / 8.0;
+        vec3 detail_pos = rel / detail_tile_size;
+        vec4 detail_sample = texture(base_noise, detail_pos);
+
+        // build a detail FBM from the Worley channels (GBA are Worley at rising freq)
+        float detail_fbm = detail_sample.g * 0.625 + detail_sample.b * 0.25 + detail_sample.a * 0.125;
+
+        // erode more aggressively low in the shell (billowy bases), less at the top
+        float erosion = detail_fbm * (1.0 - shell_frac);
+
+        // carve the detail into the density's edges
         density = clamp(remap(density, erosion * 0.2, 1.0, 0.0, 1.0), 0.0, 1.0);
-        */
+        // --- end detail erosion ---
 
         density *= density_multiplier;
 

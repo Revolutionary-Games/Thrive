@@ -150,6 +150,8 @@ public static class NoiseUtils
 
     public static ImageTexture3D BakePerlinWorleyChunkParallel(int size, int seed)
     {
+        GD.Print($"Baking Perlin-Worley noise chunk of size {size}.");
+
         var buffers = new byte[size][];
         float sizeFloat = size;
         Parallel.For(0, size, z =>
