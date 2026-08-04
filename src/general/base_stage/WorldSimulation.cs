@@ -60,7 +60,7 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
 
     public WorldSimulation()
     {
-        entities = World.Create();
+        entities = ThriveWorld.Create();
         entitiesToNotSave = new UnsavedEntities(queuedForDelete);
     }
 

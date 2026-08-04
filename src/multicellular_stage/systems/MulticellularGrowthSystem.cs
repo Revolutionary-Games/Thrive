@@ -400,6 +400,11 @@ public partial class MulticellularGrowthSystem : BaseSystem<World, float>
         // Skip reproducing if we would go too much over the entity limit
         if (!spawnSystem.IsUnderEntityLimitForReproducing())
         {
+            // Consume the resources to make sure the limit isn't immediately hit again as all cells will be able to
+            // reproduce instantly if the entity count lowers
+            growth.EnoughResourcesForBudding = false;
+            growth.CompoundsNeededForNextCell = null;
+
             return;
         }
 

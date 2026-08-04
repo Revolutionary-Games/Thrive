@@ -11,10 +11,21 @@ using global::Saving.Serializers;
 using Godot;
 using SharedBase.Archive;
 using Xunit;
+using Xunit.Abstractions;
 
+/// <summary>
+///   Tests game save low-level features. This is in a collection to hopefully fix this test randomly failing.
+/// </summary>
+[Collection("World serialization")]
 public class ThriveArchiveTests
 {
+    private readonly ITestOutputHelper output;
     private readonly ThriveArchiveManager manager = new();
+
+    public ThriveArchiveTests(ITestOutputHelper output)
+    {
+        this.output = output;
+    }
 
     // Very important to ensure type mapping is unique. If this fails, then the newly added bad types need numbers
     // incremented
@@ -240,7 +251,7 @@ public class ThriveArchiveTests
         var writer = new SArchiveMemoryWriter(memoryStream, manager);
         var reader = new SArchiveMemoryReader(memoryStream, manager);
 
-        var originalWorld = World.Create();
+        using var originalWorld = ThriveWorld.Create();
         var originalEntity1 = originalWorld.Create();
 
         // It's apparently safe to refer to numeric types from Godot in the tests
@@ -251,14 +262,112 @@ public class ThriveArchiveTests
         writer.WriteAnyRegisteredValueAsObject(originalWorld);
         manager.OnFinishWrite(writer);
 
+        // Test that second write results in the same bytes
+        var memoryStream2 = new MemoryStream();
+        var writer2 = new SArchiveMemoryWriter(memoryStream2, manager);
+        manager.OnStartNewWrite(writer2);
+        writer2.WriteAnyRegisteredValueAsObject(originalWorld);
+        manager.OnFinishWrite(writer2);
+
+        var asArray = memoryStream.ToArray();
+        Assert.Equal(asArray, memoryStream2.ToArray());
+
+        // Ensure the bytes are exactly as expected to reduce potential sources of the world read errors in CI only.
+        // Due to test ordering, the ID of the world can change, so we need to put those changing bytes in here.
+        var worldIdBytes = BitConverter.GetBytes(originalWorld.Id);
+        var expectedData = new byte[]
+        {
+            17,
+            130,
+            16,
+            0,
+            0,
+            0,
+            0,
+            0,
+
+            // NOTE: only first byte is validated, might need to flip the remaining bytes to be *before* to work
+            worldIdBytes[0],
+            worldIdBytes[1],
+            worldIdBytes[2],
+            worldIdBytes[3],
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            worldIdBytes[0],
+            worldIdBytes[1],
+            worldIdBytes[2],
+            worldIdBytes[3],
+            1,
+            0,
+            0,
+            0,
+            2,
+            208,
+            16,
+            0,
+            1,
+            0,
+            0,
+            128,
+            191,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            128,
+            63,
+            193,
+            16,
+            0,
+            1,
+            0,
+        };
+
+        Assert.Equal(expectedData.Length, asArray.Length);
+        for (int i = 0; i < expectedData.Length; ++i)
+        {
+            if (expectedData[i] != asArray[i])
+            {
+                Assert.Fail($"Expected byte at index {i} to be {expectedData[i]} but it was {asArray[i]}");
+            }
+        }
+
+        // Then read the data
         manager.OnStartNewRead(reader);
         memoryStream.Seek(0, SeekOrigin.Begin);
 
-        var read = reader.ReadObjectOrNull<World>();
+        using var read = reader.ReadObjectOrNull<World>();
         manager.OnFinishRead(reader);
 
         Assert.NotNull(read);
         Assert.Equal(originalWorld.Size, read.Size);
+
+        Assert.NotEqual(originalWorld.Id, read.Id);
 
         Entity readEntity = Entity.Null;
 
@@ -272,11 +381,19 @@ public class ThriveArchiveTests
 
         Assert.NotEqual(Entity.Null, readEntity);
         Assert.Equal(originalEntity1.Get<PlayerMarker>(), readEntity.Get<PlayerMarker>());
+        Assert.NotEqual(originalEntity1.WorldId, readEntity.WorldId);
+        Assert.Equal(originalWorld.Id, originalEntity1.WorldId);
+        Assert.Equal(read.Id, readEntity.WorldId);
 
-        // Compare value by value as this test for some reason seems flaky
         var originalPosition = originalEntity1.Get<WorldPosition>();
         var readPosition = readEntity.Get<WorldPosition>();
 
+        output.WriteLine("Original position is: " + originalPosition.Position);
+        output.WriteLine("Original rotation is: " + originalPosition.Rotation);
+        output.WriteLine("Read position is: " + readPosition.Position);
+        output.WriteLine("Read rotation is: " + readPosition.Rotation);
+
+        // Compare value by value as this test for some reason seems flaky
         Assert.Equal(originalPosition.Position.X, readPosition.Position.X);
         Assert.Equal(originalPosition.Position.Y, readPosition.Position.Y);
         Assert.Equal(originalPosition.Position.Z, readPosition.Position.Z);

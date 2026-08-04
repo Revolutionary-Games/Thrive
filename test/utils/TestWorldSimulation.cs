@@ -17,7 +17,7 @@ public class TestWorldSimulation : IWorldSimulation
     private readonly HashSet<CommandBuffer> nonEmptyRecorders = new();
     private int totalCreatedRecorders;
 
-    public World EntitySystem { get; } = World.Create();
+    public World EntitySystem { get; } = ThriveWorld.Create();
     public bool Processing { get; set; }
     public float WorldTimeScale { get; set; } = 1;
 

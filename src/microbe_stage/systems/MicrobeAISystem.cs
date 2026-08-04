@@ -570,15 +570,23 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                                 {
                                     // Close enough angle, can shoot gamete
                                     ai.TimeSinceGameteShoot = 0;
-                                    try
+
+                                    // Only shoot gamete if we are below entity limit, or if the player requested
+                                    // it specifically, for obvious gameplay reasons (not getting stuck out of the
+                                    // editor)
+                                    if (spawnSystem.IsUnderEntityLimitForReproducing() ||
+                                        signaling.ReceivedCommandFromEntity.Has<PlayerMarker>())
                                     {
-                                        growth.ShootGamete(ref entity.Get<MicrobeColony>(), entity,
-                                            multicellularSpecies, worldSimulation, spawnEnvironment, spawnSystem,
-                                            false);
-                                    }
-                                    catch (Exception e)
-                                    {
-                                        GD.PrintErr("Failed to shoot gamete as an AI: ", e);
+                                        try
+                                        {
+                                            growth.ShootGamete(ref entity.Get<MicrobeColony>(), entity,
+                                                multicellularSpecies, worldSimulation, spawnEnvironment, spawnSystem,
+                                                false);
+                                        }
+                                        catch (Exception e)
+                                        {
+                                            GD.PrintErr("Failed to shoot gamete as an AI: ", e);
+                                        }
                                     }
                                 }
 
