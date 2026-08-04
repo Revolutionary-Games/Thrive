@@ -7,13 +7,17 @@ layout(rgba16f, set = 0, binding = 0) uniform image2D color_image;
 layout(set = 0, binding = 1) uniform sampler2D depth_sampler;
 layout(set = 0, binding = 2) uniform sampler3D base_noise;
 
-layout(push_constant, std430) uniform Params {
-    mat4 inv_projection;      // reconstruct world ray
-    vec4 cam_pos;             // .xyz world camera position
+layout(set = 0, binding = 3, std140) uniform Params {
     vec4 planet_center;       // .xyz
     vec4 shell;               // .x = inner radius (R + h0), .y = outer radius (R + h1)
     vec4 screen_size_padded;  // padded, .zw unused.
+    vec4 cam_pos;             // .xyz world camera position
 } p;
+
+layout(push_constant, std430) uniform Matrices {
+    mat4 inv_projection;      // reconstruct world ray
+    mat4 cam_transform;
+} m;
 
 // === Ray/sphere: returns (near, far) t along ray, or miss ===
 bool ray_sphere(vec3 ro, vec3 rd, vec3 center, float radius, out float t0, out float t1) {
@@ -28,7 +32,8 @@ bool ray_sphere(vec3 ro, vec3 rd, vec3 center, float radius, out float t0, out f
     return true;
 }
 
-const float base_scale = 0.000001;
+const float base_scale = 0.001;
+const float cloud_tile_size = 200.0;
 const float detail_scale = 0.005;
 const float density_multiplier = 1.0;
 const vec3 wind = vec3(1.0, 0.0, 0.0);
@@ -50,25 +55,26 @@ void main() {
     vec2 screen_size = p.screen_size_padded.xy;
     vec2 uv = (vec2(px) + 0.5) / screen_size;
     vec2 ndc = uv * 2.0 - 1.0;
-    vec4 near_h = p.inv_projection * vec4(ndc, 0.0, 1.0);
-    vec4 far_h  = p.inv_projection * vec4(ndc, 1.0, 1.0);
-    vec3 world_near = near_h.xyz / near_h.w;
-    vec3 world_far  = far_h.xyz  / far_h.w;
-    vec3 rd = normalize(world_far - world_near);
+
+    vec4 target = m.inv_projection * vec4(ndc.x, ndc.y, 1.0, 1.0);
+    vec3 view_rd = normalize(target.xyz / target.w);
+    
+    vec3 rd = normalize((m.cam_transform * vec4(view_rd, 0.0)).xyz);
+    
     vec3 ro = p.cam_pos.xyz;
     vec3 center = p.planet_center.xyz;
 
     float outer = p.shell.y;
     float inner = p.shell.x;
 
-    // Convert to a world-space t_max along rd. For M0 you can start with t_max = large
-    // and add proper depth clamping once the ray reconstruction is confirmed correct.
     float t_max = 1e9;
     float raw_depth = texelFetch(depth_sampler, px, 0).r;
+    
     if (raw_depth > 0.0) {
-        vec4 clip = vec4(ndc, raw_depth, 1.0);
-        vec4 world_h = p.inv_projection * clip;
-        vec3 world_pos = world_h.xyz / world_h.w;
+        vec4 view_pos = m.inv_projection * vec4(ndc, raw_depth, 1.0);
+        view_pos.xyz /= view_pos.w;
+        
+        vec3 world_pos = (m.cam_transform * vec4(view_pos.xyz, 1.0)).xyz;
         t_max = length(world_pos - ro);
     }
 
@@ -127,7 +133,8 @@ void main() {
         vec3 pos = ro + rd * t;
         float h = length(pos - p.planet_center.xyz);
         float shell_frac = clamp((h - inner) / (outer - inner), 0.0, 1.0);
-        vec3 sample_pos = pos * base_scale + wind * time;
+        vec3 rel = pos - center;
+        vec3 sample_pos = rel / cloud_tile_size;
         vec4 base = texture(base_noise, sample_pos);
         float shape = base.r;
 

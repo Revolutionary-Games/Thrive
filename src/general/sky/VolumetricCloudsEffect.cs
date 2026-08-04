@@ -13,13 +13,13 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     public Vector3 PlanetCenter = Vector3.Zero;
 
     [Export]
-    public float PlanetRadius = 6_000_000.0f;
+    public float PlanetRadius = 2000.0f;
 
     [Export]
-    public float CloudInnerHeight = 1500.0f;
+    public float CloudInnerHeight = 100.0f;
 
     [Export]
-    public float CloudOuterHeight = 4000.0f;
+    public float CloudOuterHeight = 200.0f;
 
     [Export]
     public int Seed = 1234;
@@ -150,24 +150,38 @@ public partial class VolumetricCloudsEffect : CompositorEffect
             noiseTextureUniform.AddId(noiseSampler);
             noiseTextureUniform.AddId(noiseTexture);
 
-            var uniforms = new Godot.Collections.Array<RDUniform> { colorUniform, depthUniform, noiseTextureUniform };
-
-            Rid uniformSet = renderingDevice.UniformSetCreate(uniforms, shader, 0);
-
-            if (!uniformSet.IsValid)
-                continue;
-
             var renderSceneData = renderData.GetRenderSceneData();
             var projection = renderSceneData.GetViewProjection(view);
             var inverseProjection = projection.Inverse();
             var cameraTransform = renderSceneData.GetCamTransform();
             var cameraPosition = cameraTransform.Origin;
             var cameraProjection = new Projection(cameraTransform);
-            var inverseViewProjection = cameraProjection * inverseProjection;
 
-            byte[] pushConstantBytes = BuildPushConstant(inverseViewProjection, cameraPosition, PlanetCenter,
-                PlanetRadius + CloudInnerHeight, PlanetRadius + CloudOuterHeight,
-                new Vector2(size.X, size.Y));
+            byte[] pushConstantBytes = BuildPushConstant(inverseProjection, cameraProjection);
+            byte[] paramUniformBytes = BuildParamUniform(PlanetCenter, PlanetRadius + CloudInnerHeight,
+                PlanetRadius + CloudOuterHeight, new Vector2(size.X, size.Y), cameraPosition);
+
+            Rid paramUboId = renderingDevice.UniformBufferCreate((uint)paramUniformBytes.Length, paramUniformBytes);
+
+            if (!paramUboId.IsValid)
+                continue;
+
+            var paramUniform = new RDUniform
+            {
+                UniformType = RenderingDevice.UniformType.UniformBuffer,
+                Binding = 3,
+            };
+            paramUniform.AddId(paramUboId);
+
+            var uniforms = new Godot.Collections.Array<RDUniform>
+            {
+                colorUniform, depthUniform, noiseTextureUniform, paramUniform,
+            };
+
+            Rid uniformSet = renderingDevice.UniformSetCreate(uniforms, shader, 0);
+
+            if (!uniformSet.IsValid)
+                continue;
 
             long computeList = renderingDevice.ComputeListBegin();
             renderingDevice.ComputeListBindComputePipeline(computeList, pipeline);
@@ -177,11 +191,11 @@ public partial class VolumetricCloudsEffect : CompositorEffect
             renderingDevice.ComputeListEnd();
 
             renderingDevice.FreeRid(uniformSet);
+            renderingDevice.FreeRid(paramUboId);
         }
     }
 
-    private static byte[] BuildPushConstant(Projection invViewProjection, Vector3 cameraPos, Vector3 planetCenter,
-        float innerRadius, float outerRadius, Vector2 screenSize)
+    private static byte[] BuildPushConstant(Projection invViewProjection, Projection camProjection)
     {
         var bytes = new byte[128];
         int o = 0;
@@ -192,8 +206,20 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         o = WriteVec4(bytes, o, invViewProjection.Z);
         o = WriteVec4(bytes, o, invViewProjection.W);
 
-        // camera pos
-        o = WriteVec4(bytes, o, new Vector4(cameraPos.X, cameraPos.Y, cameraPos.Z, 0f));
+        // mat4 cam_transform
+        o = WriteVec4(bytes, o, camProjection.X);
+        o = WriteVec4(bytes, o, camProjection.Y);
+        o = WriteVec4(bytes, o, camProjection.Z);
+        _ = WriteVec4(bytes, o, camProjection.W);
+
+        return bytes;
+    }
+
+    private static byte[] BuildParamUniform(Vector3 planetCenter, float innerRadius, float outerRadius,
+        Vector2 screenSize, Vector3 cameraPosition)
+    {
+        var bytes = new byte[64];
+        int o = 0;
 
         // vec4 planet_center
         o = WriteVec4(bytes, o, new Vector4(planetCenter.X, planetCenter.Y, planetCenter.Z, 0f));
@@ -201,9 +227,11 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         // vec4 shell
         o = WriteVec4(bytes, o, new Vector4(innerRadius, outerRadius, 0f, 0f));
 
-        // vec2 screen_size
-        o = WriteFloat(bytes, o, screenSize.X);
-        _ = WriteFloat(bytes, o, screenSize.Y);
+        // vec4 screen_size_padded
+        o = WriteVec4(bytes, o, new Vector4(screenSize.X, screenSize.Y, 0f, 0f));
+
+        // vec4 cam_pos
+        _ = WriteVec4(bytes, o, new Vector4(cameraPosition.X, cameraPosition.Y, cameraPosition.Z, 0f));
 
         return bytes;
     }
