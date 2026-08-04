@@ -10,7 +10,7 @@ public class SlimeJetFramerateTests
     [Fact]
     public void SlimeJet_ForceIsNotFramerateDependent()
     {
-        var world = World.Create();
+        using var world = World.Create();
         var entity = world.Create();
 
         var jet = new SlimeJetComponent

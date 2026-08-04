@@ -251,7 +251,7 @@ public class ThriveArchiveTests
         var writer = new SArchiveMemoryWriter(memoryStream, manager);
         var reader = new SArchiveMemoryReader(memoryStream, manager);
 
-        var originalWorld = World.Create();
+        using var originalWorld = World.Create();
         var originalEntity1 = originalWorld.Create();
 
         // It's apparently safe to refer to numeric types from Godot in the tests
@@ -272,7 +272,9 @@ public class ThriveArchiveTests
         var asArray = memoryStream.ToArray();
         Assert.Equal(asArray, memoryStream2.ToArray());
 
-        // Ensure the bytes are exactly as expected to reduce potential sources of the world read errors in CI only
+        // Ensure the bytes are exactly as expected to reduce potential sources of the world read errors in CI only.
+        // Due to test ordering the ID of the world can change, so we need to put those changing bytes in here.
+        var worldIdBytes = BitConverter.GetBytes(originalWorld.Id);
         var expectedData = new byte[]
         {
             17,
@@ -283,10 +285,12 @@ public class ThriveArchiveTests
             0,
             0,
             0,
-            0,
-            0,
-            0,
-            0,
+
+            // NOTE: only first byte is validated, might need to flip the remaining bytes to be *before* to work
+            worldIdBytes[0],
+            worldIdBytes[1],
+            worldIdBytes[2],
+            worldIdBytes[3],
             1,
             0,
             0,
@@ -296,10 +300,10 @@ public class ThriveArchiveTests
             0,
             0,
             0,
-            0,
-            0,
-            0,
-            0,
+            worldIdBytes[0],
+            worldIdBytes[1],
+            worldIdBytes[2],
+            worldIdBytes[3],
             1,
             0,
             0,
