@@ -38,6 +38,10 @@ const float detail_scale = 0.005;
 const float density_multiplier = 1.0;
 const vec3 wind = vec3(1.0, 0.0, 0.0);
 const float time = 0.0;
+const float scatter_strength = 1.0;
+
+const int LIGHT_STEPS = 6;
+const float LIGHT_STEP_SIZE = 0.05;
 
 float height_gradient(float shell_frac) {
     return smoothstep(0.0, 0.1, shell_frac) * smoothstep(1.0, 0.6, shell_frac);
@@ -45,6 +49,66 @@ float height_gradient(float shell_frac) {
 
 float remap(float v, float inMin, float inMax, float outMin, float outMax) {
     return outMin + (v - inMin) / (inMax - inMin) * (outMax - outMin);
+}
+
+// Henyey-Greenstein phase function
+float henyey_greenstein(float cos_angle, float g) {
+    float g2 = g * g;
+    return (1.0 - g2) / (4.0 * 3.14159265 * pow(1.0 + g2 - 2.0 * g * cos_angle, 1.5));
+}
+
+// Beer-Powder: Beer attenuation + powder
+float beer_powder(float density_along_light) {
+    float beer = exp(-density_along_light);
+    float powder = 1.0 - exp(-density_along_light * 2.0);
+    return beer * powder * 2.0; // the 2.0 renormalizes the powder dip
+}
+
+vec3 sky_color(vec3 rd) {
+    float up = clamp(rd.y * 0.5 + 0.5, 0.0, 1.0); // 0 horizon, 1 zenith
+    vec3 zenith  = vec3(0.25, 0.45, 0.85);
+    vec3 horizon = vec3(0.55, 0.72, 0.90);
+    return mix(horizon, zenith, up);
+}
+
+vec3 aces(vec3 x) {
+    return clamp((x * (2.51 * x + 0.03)) / (x * (2.43 * x + 0.59) + 0.14), 0.0, 1.0);
+}
+
+float sample_density(vec3 pos, float shell_frac, vec3 center) {
+    vec3 rel = pos - center;
+    vec3 sample_pos = rel / cloud_tile_size;
+    vec4 base = texture(base_noise, sample_pos);
+    float shape = base.r;
+
+    float hg_grad = height_gradient(shell_frac);
+    float coverage = 0.3;
+    float density = clamp(remap(shape, 1.0 - coverage, 1.0, 0.0, 1.0), 0.0, 1.0);
+    density *= hg_grad;
+
+    // detail erosion
+    vec3 detail_pos = rel / (cloud_tile_size / 8.0);
+    vec4 detail = texture(base_noise, detail_pos);
+    float detail_fbm = detail.g * 0.625 + detail.b * 0.25 + detail.a * 0.125;
+    float erosion = detail_fbm * (1.0 - shell_frac);
+    density = clamp(remap(density, erosion * 0.2, 1.0, 0.0, 1.0), 0.0, 1.0);
+
+    return density * density_multiplier;
+}
+
+float light_march(vec3 pos, vec3 sun_dir, float inner, float outer, vec3 center) {
+    float shell_thickness = outer - inner;
+    float step_len = shell_thickness * LIGHT_STEP_SIZE;
+    float optical_depth = 0.0;
+    vec3 lp = pos;
+    for (int j = 0; j < LIGHT_STEPS; j++) {
+        lp += sun_dir * step_len;
+        float h = length(lp - center);
+        float sf = clamp((h - inner) / (outer - inner), 0.0, 1.0);
+        float d = sample_density(lp, sf, center);
+        optical_depth += d * step_len;
+    }
+    return optical_depth;
 }
 
 void main() {
@@ -124,60 +188,53 @@ void main() {
     }
 
     // March: density + beer
-    const int STEPS = 48;
+    const int STEPS = 96;
     float dt = (march_end - march_start) / float(STEPS);
     float jitter = fract(sin(dot(vec2(px), vec2(12.9898, 78.233))) * 43758.5453);
     float t = march_start + dt * jitter;
+    vec3 sun_dir = normalize(vec3(1.0, 1.0, 1.0));
+    float cos_angle = dot(rd, sun_dir);
+    float phase = henyey_greenstein(cos_angle, 0.1); // g=0.3 forward scatter; tune 0.1-0.5
+
+    vec3 sun_color = vec3(1.0, 0.92, 0.78);   // warm sunlight
+    vec3 ambient   = vec3(0.45, 0.55, 0.7) * 0.5; 
+    vec3 accumulated_light = vec3(0.0);
     float transmittance = 1.0;
 
     for (int i = 0; i < STEPS; i++) {
         vec3 pos = ro + rd * t;
-        float h = length(pos - p.planet_center.xyz);
+        float h = length(pos - center);
         float shell_frac = clamp((h - inner) / (outer - inner), 0.0, 1.0);
-        vec3 rel = pos - center;
-        vec3 sample_pos = rel / cloud_tile_size;
-        vec4 base = texture(base_noise, sample_pos);
-        float shape = base.r;
 
-        // low-freq erosion FBM from GBA
-        float base_fbm = base.g * 0.625 + base.b * 0.25 + base.a * 0.125;
+        float density = sample_density(pos, shell_frac, center);
 
-        float hg = height_gradient(shell_frac);
-        float coverage = 0.3; // uniform for now, weather-map channel later
+        if (density > 0.001) {
+            // how much sunlight reaches this point
+            float light_optical_depth = light_march(pos, sun_dir, inner, outer, center);
+            float light_transmittance = beer_powder(light_optical_depth);
 
-        float density = clamp(remap(shape, 1.0 - coverage, 1.0, 0.0, 1.0), 0.0, 1.0);
-        density *= hg;
+            // light scattered toward the eye from this sample
+            vec3 sample_light = sun_color * light_transmittance * phase  + ambient * 0.3;
+            accumulated_light += transmittance * sample_light * density * dt * scatter_strength;
 
-        // --- detail erosion: re-sample the SAME base volume at a smaller tile ---
-        // smaller tile => higher world-frequency => fine edge detail, no extra texture
-        float detail_tile_size = cloud_tile_size / 8.0;
-        vec3 detail_pos = rel / detail_tile_size;
-        vec4 detail_sample = texture(base_noise, detail_pos);
+            transmittance *= exp(-density * dt);
 
-        // build a detail FBM from the Worley channels (GBA are Worley at rising freq)
-        float detail_fbm = detail_sample.g * 0.625 + detail_sample.b * 0.25 + detail_sample.a * 0.125;
-
-        // erode more aggressively low in the shell (billowy bases), less at the top
-        float erosion = detail_fbm * (1.0 - shell_frac);
-
-        // carve the detail into the density's edges
-        density = clamp(remap(density, erosion * 0.2, 1.0, 0.0, 1.0), 0.0, 1.0);
-        // --- end detail erosion ---
-
-        density *= density_multiplier;
-
-        // Beer-Lambert
-        float extinction = density * dt;
-        transmittance *= exp(-extinction);
-        if (transmittance < 0.01)
-            break;
+            if (transmittance < 0.01)
+                break;
+        }
         t += dt;
     }
 
-    // Grey cloud
     float cloud_alpha = 1.0 - transmittance;
-    vec3 cloud_color = vec3(0.8);
-    vec4 scene = imageLoad(color_image, px);
-    vec3 outc = mix(scene.rgb, cloud_color, cloud_alpha);
-    imageStore(color_image, px, vec4(outc, scene.a));
+    vec3 scene = imageLoad(color_image, px).rgb;
+
+    vec3 sky = sky_color(rd);
+    sky += sun_color * pow(max(dot(rd, sun_dir), 0.0), 8.0) * 0.5; // sun glow
+    vec3 bg = (raw_depth > 0.0) ? scene : sky;
+
+    vec3 outc = bg * transmittance + accumulated_light;
+    outc = outc / (outc + vec3(1.0)); // Reinhardt
+    float lum = dot(outc, vec3(0.2126, 0.7152, 0.0722));
+    outc = mix(vec3(lum), outc, 1.3);
+    imageStore(color_image, px, vec4(outc, 1.0));
 }
