@@ -153,7 +153,7 @@ public class AddCellWithOrganelle : IMutationStrategy<Species>
                 if (!AddOrganelle(organelle, direction, newCellType, workMemory1, workMemory2, workMemory3, random))
                     continue;
 
-                mp -= organelle.MPCost * Constants.MULTICELLULAR_EDITOR_COST_FACTOR;
+                var newMp = mp - organelle.MPCost * Constants.MULTICELLULAR_EDITOR_COST_FACTOR;
 
                 newCellType.CellTypeName = organelle.Name;
 
@@ -164,21 +164,22 @@ public class AddCellWithOrganelle : IMutationStrategy<Species>
                 {
                     case Direction.Front:
                         TryAddCenterlineCellMutant(Direction.Front, newCellType, newSpecies, workMemory1, workMemory2,
-                            random, mp, mutated);
+                            random, newMp, mutated);
                         break;
                     case Direction.Rear:
                         TryAddCenterlineCellMutant(Direction.Rear, newCellType, newSpecies, workMemory1, workMemory2,
-                            random, mp, mutated);
+                            random, newMp, mutated);
                         break;
                     case Direction.Neutral:
                         // For neutral positioning organelles, we create a mutant for adding the new celltype both to
                         // the front and the rear
                         var newSpeciesFront = (MulticellularSpecies)newSpecies.Clone();
-                        TryAddCenterlineCellMutant(Direction.Front, newCellType, newSpeciesFront, workMemory1,
-                            workMemory2, random, mp, mutated);
+                        var newCellTypeFront = (CellType)newCellType.Clone();
+                        TryAddCenterlineCellMutant(Direction.Front, newCellTypeFront, newSpeciesFront, workMemory1,
+                            workMemory2, random, newMp, mutated);
 
                         TryAddCenterlineCellMutant(Direction.Rear, newCellType, newSpecies, workMemory1, workMemory2,
-                            random, mp, mutated);
+                            random, newMp, mutated);
                         break;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
@@ -237,16 +238,16 @@ public class AddCellWithOrganelle : IMutationStrategy<Species>
         foreach (var adjacencyDirection in Enum.GetValues<AdjacencyDirection>())
         {
             var newSpecies = (MulticellularSpecies)baseMulticellularSpecies.Clone();
-            var newMP = mp;
+            var newMp = mp;
             var newCellType = newSpecies.ModifiableCellTypes[mostSuitableIndex];
 
-            if (AddCellsAdjacent(newSpecies, ref newMP, baseCells, baseCellsCount, baseCellType, newCellType,
+            if (AddCellsAdjacent(newSpecies, ref newMp, baseCells, baseCellsCount, baseCellType, newCellType,
                     newCellType.MPCost, adjacencyDirection, workMemory1, workMemory2))
             {
                 if (newSpecies.EditorCells.Count >= Constants.AUTO_EVO_MAX_CELL_COUNT)
                     return;
 
-                mutated.Add(new Mutant(newSpecies, newMP));
+                mutated.Add(new Mutant(newSpecies, newMp));
             }
         }
     }
