@@ -197,8 +197,10 @@ public static class MulticellularLayoutHelpers
     {
         var source = new IndividualHexLayout<CellTemplate>();
 
+        var targetEditorLayoutCount = targetEditorLayout.Count;
+
         // copy over all existing cells
-        for (var i = 0; i < targetEditorLayout.Count; ++i)
+        for (var i = 0; i < targetEditorLayoutCount; ++i)
         {
             var cell = targetEditorLayout[i].Data;
             if (cell != null)
