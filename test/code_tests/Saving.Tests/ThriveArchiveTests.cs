@@ -273,7 +273,7 @@ public class ThriveArchiveTests
         Assert.Equal(asArray, memoryStream2.ToArray());
 
         // Ensure the bytes are exactly as expected to reduce potential sources of the world read errors in CI only.
-        // Due to test ordering the ID of the world can change, so we need to put those changing bytes in here.
+        // Due to test ordering, the ID of the world can change, so we need to put those changing bytes in here.
         var worldIdBytes = BitConverter.GetBytes(originalWorld.Id);
         var expectedData = new byte[]
         {
@@ -361,7 +361,7 @@ public class ThriveArchiveTests
         manager.OnStartNewRead(reader);
         memoryStream.Seek(0, SeekOrigin.Begin);
 
-        var read = reader.ReadObjectOrNull<World>();
+        using var read = reader.ReadObjectOrNull<World>();
         manager.OnFinishRead(reader);
 
         Assert.NotNull(read);
