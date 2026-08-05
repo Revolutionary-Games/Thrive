@@ -29,14 +29,6 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
     private readonly Stack<IThriveopediaPage> pageFuture = new();
 
     /// <summary>
-    ///   this is a thread lock for
-    ///   <see cref="runningBackgroundSearch"/>
-    ///   <see cref="isSearchDirty"/>
-    ///   <see cref="requestingNewSearch"/>
-    /// </summary>
-    private readonly object threadBackgroundLock = new();
-
-    /// <summary>
     ///   A lock to avoid <see cref="DoBackgroundPageSearch(string)"/> and a <see cref="Invoke"/> task from
     ///   using the arrays at the same time
     /// </summary>
@@ -837,19 +829,16 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
 
     private void BeginBackgroundSearch()
     {
-        lock (threadBackgroundLock)
+        if (!isSearchDirty)
+            return;
+
+        if (runningBackgroundSearch)
         {
-            if (!isSearchDirty)
-                return;
-
-            if (runningBackgroundSearch)
-            {
-                requestingNewSearch = true;
-                return;
-            }
-
-            runningBackgroundSearch = true;
+            requestingNewSearch = true;
+            return;
         }
+
+        runningBackgroundSearch = true;
 
         if (!presearchCache)
         {
@@ -898,7 +887,7 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
             iterator = 0;
             foreach (var page in allPages)
             {
-                // TODO: maybe switch ToLower whit something else since it does return "a copy"
+                // TODO: maybe switch ToLower with something else since it does return "a copy"
                 // when it should just directly edit the string
 
                 string pageName = page.Key.TranslatedPageName.ToLower(CultureInfo.CurrentCulture);
@@ -918,51 +907,53 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
             }
         }
 
-        Invoke.Instance.Queue(() =>
+        Invoke.Instance.Queue(ApplyVisibilityResults);
+    }
+
+    private void ApplyVisibilityResults()
+    {
+        stageDropdown.Visible = false;
+
+        lock (backgroundThreadArrayLock)
         {
-            stageDropdown.Visible = false;
-            lock (backgroundThreadArrayLock)
+            // a fail check incase a new page was added in between calculating visibility and applying
+            bool countfail = allPages.Count > visibilityArray.Length;
+            int iterator = 0;
+            foreach (var page in allPages)
             {
-                int iterator = 0;
-                foreach (var page in allPages)
+                bool isVisible = countfail ? true : visibilityArray[iterator];
+
+                if (isVisible && page.Key is ThriveopediaStagePage)
                 {
-                    bool isVisible = visibilityArray[iterator];
+                    // A stage page was found, so the stage dropdown should be shown (instead of individual pages)
+                    isVisible = false;
 
-                    if (isVisible && page.Key is ThriveopediaStagePage)
+                    if (!stageDropdown.Visible)
                     {
-                        // A stage page was found, so the stage dropdown should be shown (instead of individual pages)
-                        isVisible = false;
-
-                        if (!stageDropdown.Visible)
-                        {
-                            stageDropdown.Visible = true;
-                            SetParentPagesVisibility(stageDropdown, true);
-                        }
+                        stageDropdown.Visible = true;
+                        SetParentPagesVisibility(stageDropdown, true);
                     }
-
-                    page.Value.Visible = isVisible;
-                    if (isVisible)
-                    {
-                        SetParentPagesVisibility(page.Value, true);
-                    }
-
-                    ++iterator;
                 }
-            }
-        });
 
-        lock (threadBackgroundLock)
+                page.Value.Visible = isVisible;
+                if (isVisible)
+                {
+                    SetParentPagesVisibility(page.Value, true);
+                }
+
+                ++iterator;
+            }
+        }
+
+        if (requestingNewSearch)
         {
-            if (requestingNewSearch)
-            {
-                isSearchDirty = false;
-                TaskExecutor.Instance.AddTask(new Task(() => DoBackgroundPageSearch(currentSearchText)));
-                requestingNewSearch = false;
-            }
-            else
-            {
-                runningBackgroundSearch = false;
-            }
+            isSearchDirty = false;
+            TaskExecutor.Instance.AddTask(new Task(() => DoBackgroundPageSearch(currentSearchText)));
+            requestingNewSearch = false;
+        }
+        else
+        {
+            runningBackgroundSearch = false;
         }
     }
 
