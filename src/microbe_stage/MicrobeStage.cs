@@ -2578,6 +2578,12 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             return;
         }
 
+        if (!playerGamete.Has<GameteCell>() || !otherGamete.Has<GameteCell>())
+        {
+            GD.PrintErr("Gametes merge callback called on things that aren't gametes");
+            return;
+        }
+
         // Player gamete merged so change camera to be there and then automatically enter the editor
         gametesMerging = true;
         gameteMergeLocation = location;
