@@ -13,9 +13,14 @@ using SharedBase.Archive;
 /// </summary>
 [SceneLoadedClass("res://src/microbe_stage/MicrobeStage.tscn")]
 public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>, IMicrobeSpawnEnvironment,
-    IArchivable
+    IArchivable, IEditorMovableStage
 {
     public const int SERIALIZATION_VERSION = 2;
+
+    /// <summary>
+    ///   Current stage for the move to editor console command
+    /// </summary>
+    public static WeakReference<IEditorMovableStage>? CurrentActiveStage;
 
     private readonly Dictionary<MicrobeSpecies, ResolvedMicrobeTolerances> resolvedTolerancesCache = new();
 
@@ -164,6 +169,8 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         get => patchManager == null! ? tempPatchManagerBrightness : patchManager.ReadBrightnessForSave();
         set => tempPatchManagerBrightness = value;
     }
+
+    public bool IsDisposed { get; private set; }
 
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.MicrobeStage;
@@ -324,6 +331,8 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             TutorialState.GlucoseCollecting.OnOpened += SetupPlayerForGlucoseCollecting;
             TutorialState.DayNightTutorial.OnOpened += HUD.CloseProcessPanel;
         }
+
+        CurrentActiveStage = new WeakReference<IEditorMovableStage>(this);
     }
 
     public override void _ExitTree()
@@ -340,6 +349,11 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         {
             TutorialState.GlucoseCollecting.OnOpened -= SetupPlayerForGlucoseCollecting;
             TutorialState.DayNightTutorial.OnOpened -= HUD.CloseProcessPanel;
+        }
+
+        if (CurrentActiveStage != null && CurrentActiveStage.TryGetTarget(out var stage) && stage == this)
+        {
+            CurrentActiveStage = null;
         }
     }
 
@@ -1843,9 +1857,36 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         SaveHelper.Save(name, this);
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        IsDisposed = true;
+        base.Dispose(disposing);
+    }
+
+    [Command("edit", true, "Move immediately to the editor in supported stages")]
+    private static bool MoveStageToEditorCommand(CommandContext context)
+    {
+        var targetWeak = CurrentActiveStage;
+
+        if (targetWeak != null && targetWeak.TryGetTarget(out var stage) && !stage.IsDisposed)
+        {
+            if (stage.MovingToEditor)
+            {
+                context.PrintErr("Already marked as moving to the editor");
+                return false;
+            }
+
+            stage.MoveToEditor();
+            return true;
+        }
+
+        context.PrintErr("No active stage that can move to the editor");
+        return false;
+    }
+
     private static float CalculateMulticellularTerrainCollisionRadius(MulticellularSpecies multicellularSpecies)
     {
-        // Very similar code to the multicellular photo taking code
+        // Very similar code to the multicellular photo-taking code
         var cells = multicellularSpecies.ModifiableGameplayCells;
         var cellCount = cells.Count;
 
