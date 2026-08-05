@@ -160,6 +160,11 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
             instance.ModifiableGameteTypeB = reader.ReadObjectOrNull<CellType>();
         }
 
+        if (version >= 6)
+        {
+            instance.PlayerGamete = (GameteType)reader.ReadInt32();
+        }
+
         return instance;
     }
 
@@ -176,6 +181,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         writer.Write(MassBuddingCellCount);
         writer.WriteObjectOrNull(ModifiableGameteTypeA);
         writer.WriteObjectOrNull(ModifiableGameteTypeB);
+        writer.Write((int)PlayerGamete);
     }
 
     public GameteType PickSpawnGameteType(Random random)
