@@ -15,7 +15,7 @@ using SharedBase.Archive;
 public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>, IMicrobeSpawnEnvironment,
     IArchivable, IEditorMovableStage
 {
-    public const int SERIALIZATION_VERSION = 2;
+    public const int SERIALIZATION_VERSION = 3;
 
     /// <summary>
     ///   Current stage for the move to editor console command
@@ -54,6 +54,9 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
     [Export]
     private GuidanceLine guidanceLine = null!;
+
+    [Export]
+    private GuidanceLine mateGuidanceLine = null!;
 
     [Export]
     private MicrobeWorldEnvironment microbeWorldEnvironment = null!;
@@ -127,6 +130,16 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
     ///   Used to know when the player didn't scientifically split from another cell
     /// </summary>
     private bool playerGrewFromGamete;
+
+    private MicrobeSignalCommand playerCurrentSignal = MicrobeSignalCommand.None;
+    private float playerCurrentSignalActiveSeconds;
+
+    // Player sexual reproduction helper code
+    private float compatibleMateSpawnedLast = 1000;
+    private float matePositionLastUpdated = 1000;
+    private float matePositionLineActiveSeconds;
+    private Vector3 matePosition = Vector3.Zero;
+    private bool matePositionFound;
 
     public CompoundCloudSystem Clouds { get; private set; } = null!;
 
@@ -235,6 +248,16 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             instance.playerGrewFromGamete = reader.ReadBool();
         }
 
+        if (version > 2)
+        {
+            instance.playerCurrentSignal = (MicrobeSignalCommand)reader.ReadInt32();
+            instance.playerCurrentSignalActiveSeconds = reader.ReadFloat();
+            instance.compatibleMateSpawnedLast = reader.ReadFloat();
+            instance.matePositionLastUpdated = reader.ReadFloat();
+            instance.matePositionLineActiveSeconds = reader.ReadFloat();
+            instance.matePosition = reader.ReadVector3();
+        }
+
         return instance;
     }
 
@@ -268,6 +291,14 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         writer.Write(gameteMergingTimer);
         writer.Write(oldCameraZoomBeforeMerge);
         writer.Write(playerGrewFromGamete);
+
+        writer.Write((int)playerCurrentSignal);
+        writer.Write(playerCurrentSignalActiveSeconds);
+
+        writer.Write(compatibleMateSpawnedLast);
+        writer.Write(matePositionLastUpdated);
+        writer.Write(matePositionLineActiveSeconds);
+        writer.Write(matePosition);
     }
 
     /// <summary>
@@ -572,10 +603,13 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             {
                 GD.PrintErr("Player process component is missing speed statistics");
             }
+
+            HandlePlayerSignals((float)delta);
         }
         else
         {
             guidanceLine.Visible = false;
+            mateGuidanceLine.Visible = false;
 
             HUD.UpdateRadiationBar(0, 1, 1);
         }
@@ -2030,6 +2064,165 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             });
 
         return result;
+    }
+
+    private void HandlePlayerSignals(float delta)
+    {
+        ref var signal = ref Player.Get<CommandSignaler>();
+        compatibleMateSpawnedLast += delta;
+        matePositionLastUpdated += delta;
+
+        if (signal.Command == MicrobeSignalCommand.None)
+        {
+            playerCurrentSignal = MicrobeSignalCommand.None;
+            playerCurrentSignalActiveSeconds = 0;
+            matePositionFound = false;
+            mateGuidanceLine.Visible = false;
+            return;
+        }
+
+        bool changed = playerCurrentSignal != signal.Command;
+        if (changed)
+        {
+            playerCurrentSignal = signal.Command;
+            playerCurrentSignalActiveSeconds = 0;
+
+            if (playerCurrentSignal == MicrobeSignalCommand.CallMate)
+            {
+                matePositionLineActiveSeconds = 0;
+                matePositionLastUpdated = 1000;
+            }
+        }
+        else
+        {
+            playerCurrentSignalActiveSeconds += delta;
+        }
+
+        if (playerCurrentSignal == MicrobeSignalCommand.CallMate)
+        {
+            matePositionLineActiveSeconds += delta;
+
+            // The query is deliberately throttled as it scans the entity world
+            if (matePositionLastUpdated >= 1.0f / 3.0f)
+            {
+                matePositionLastUpdated = 0;
+                matePositionFound = TryFindPlayerCompatibleMate(out matePosition);
+            }
+
+            mateGuidanceLine.Visible = GameWorld.WorldSettings.Difficulty.ShowMatePosition &&
+                matePositionFound && matePositionLineActiveSeconds < 60;
+
+            if (!matePositionFound && GameWorld.WorldSettings.Difficulty.SpawnCompatibleMateOnCall &&
+                compatibleMateSpawnedLast > 90)
+            {
+                GD.Print("Spawning compatible mate for the player as they called for one");
+                compatibleMateSpawnedLast = 0;
+                SpawnCompatibleMate();
+            }
+        }
+        else
+        {
+            mateGuidanceLine.Visible = false;
+
+            if (playerCurrentSignal == MicrobeSignalCommand.ShootGamete &&
+                playerCurrentSignalActiveSeconds >= 15)
+            {
+                // Reset gamete shoot command as it is more of a "one-off" command, so it helps if the player needs to
+                // retrigger it again for playability
+                signal.Command = MicrobeSignalCommand.None;
+                playerCurrentSignal = MicrobeSignalCommand.None;
+            }
+        }
+
+        if (mateGuidanceLine.Visible)
+        {
+            var start = Camera.GlobalPosition;
+            start.Y = 0;
+            mateGuidanceLine.LineStart = start;
+            mateGuidanceLine.SetLineEnd(matePosition);
+        }
+    }
+
+    private bool TryFindPlayerCompatibleMate(out Vector3 position)
+    {
+        position = Vector3.Zero;
+        if (!HasAlivePlayer || !Player.Has<MicrobeSex>())
+            return false;
+
+        var playerSpecies = Player.Get<SpeciesMember>().Species;
+        var playerSex = Player.Get<MicrobeSex>().Sex;
+        var playerPosition = Player.Get<WorldPosition>().Position;
+        var nearestDistanceSquared = Constants.GAMETE_MATE_CALL_MAX_DISTANCE_SQUARED;
+        var foundPosition = Vector3.Zero;
+        var found = false;
+
+        WorldSimulation.EntitySystem.Query(
+            new QueryDescription().WithAll<SpeciesMember, WorldPosition, Health, MicrobeSex, MulticellularGrowth>(),
+            (Entity entity, ref SpeciesMember species, ref WorldPosition candidatePosition, ref Health health,
+                ref MicrobeSex sex, ref MulticellularGrowth growth) =>
+            {
+                if (entity == Player || health.Dead || species.Species != playerSpecies ||
+                    !growth.IsFullyGrownMulticellular || !GameteHelpers.IsCompatible(playerSex, sex.Sex))
+                {
+                    return;
+                }
+
+                var distanceSquared = playerPosition.DistanceSquaredTo(candidatePosition.Position);
+                if (distanceSquared < nearestDistanceSquared)
+                {
+                    nearestDistanceSquared = distanceSquared;
+                    foundPosition = candidatePosition.Position;
+                    found = true;
+                }
+            });
+
+        position = foundPosition;
+        return found;
+    }
+
+    private void SpawnCompatibleMate()
+    {
+        if (GameWorld.PlayerSpecies is not MulticellularSpecies species || !HasAlivePlayer ||
+            !Player.Has<WorldPosition>())
+        {
+            return;
+        }
+
+        var playerPosition = Player.Get<WorldPosition>().Position;
+        var spawnDistance = Constants.MICROBE_SPAWN_RADIUS;
+        Vector3 spawnPosition = default;
+        var radius = GetSpeciesTerrainCollisionRadius(species);
+        bool foundSpawnPosition = false;
+
+        for (int i = 0; i < 50; ++i)
+        {
+            var angle = random.NextFloat() * MathF.Tau;
+            spawnPosition = playerPosition + new Vector3(MathF.Cos(angle), 0, MathF.Sin(angle)) * spawnDistance;
+            if (!WorldSimulation.MicrobeTerrainSystem.IsPositionBlocked(spawnPosition, radius))
+            {
+                foundSpawnPosition = true;
+                break;
+            }
+        }
+
+        if (!foundSpawnPosition)
+        {
+            GD.Print("Couldn't find a suitable position to spawn a compatible mate");
+            return;
+        }
+
+        // Pick compatible sex for the spawned microbe
+        var sex = species.ReproductionMethod == MulticellularReproductionMethod.SexualAnisogamy ?
+            (Player.Get<MicrobeSex>().Sex == GameteType.A ? GameteType.B : GameteType.A) :
+            GameteType.All;
+
+        var (recorder, weight) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(WorldSimulation, this, species,
+            spawnPosition, true, (null, 0), sex, out var entity, MulticellularSpawnState.FullColony);
+
+        // Use a higher despawn radius to prevent the spawned microbe from despawning immediately
+        WorldSimulation.SpawnSystem.NotifyExternalEntitySpawned(entity, recorder,
+            Constants.MICROBE_DESPAWN_RADIUS_SQUARED * 1.25f, weight);
+        SpawnHelpers.FinalizeEntitySpawn(recorder, WorldSimulation);
     }
 
     private void OnSpawnEnemyCheatUsed(object? sender, EventArgs e)
