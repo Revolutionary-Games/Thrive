@@ -54,8 +54,8 @@ public class PhysicalWorld : IDisposable
     public float AveragePhysicsDuration => NativeMethods.PhysicalWorldGetPhysicsAverageTime(AccessWorldInternal());
 
     /// <summary>
-    ///   Used to turn off metrics reporting when game is closing to no longer access metrics object which may be
-    ///   disposed already
+    ///   Used to turn off metrics reporting when the game is closing to no longer access metrics object which may be
+    ///   disposed of already
     /// </summary>
     public bool DisablePhysicsTimeRecording { get; set; }
 
@@ -65,7 +65,7 @@ public class PhysicalWorld : IDisposable
     }
 
     /// <summary>
-    ///   Steps the physics simulation forward, if enough time has passed
+    ///   Steps the physics simulation forward if enough time has passed
     /// </summary>
     /// <param name="delta">Time since the last call of this method</param>
     /// <returns>True when at least one physics simulation step was performed</returns>
@@ -110,16 +110,20 @@ public class PhysicalWorld : IDisposable
     /// <summary>
     ///   Creates a new moving body
     /// </summary>
-    /// <param name="shape">The shape for the body</param>
+    /// <param name="shape">The shape of the body</param>
     /// <param name="position">Initial position of the body</param>
     /// <param name="rotation">Initial rotation of the body</param>
     /// <param name="addToWorld">
-    ///   If false then the body won't be automatically added to the world and <see cref="AddBody"/> needs to be called
+    ///   If false, then the body won't be automatically added to the world and <see cref="AddBody"/> needs to be
+    ///   called
     /// </param>
     /// <returns>The created physics body instance</returns>
     public NativePhysicsBody CreateMovingBody(PhysicsShape shape, Vector3 position, Quaternion rotation,
         bool addToWorld = true)
     {
+        if (!position.IsFinite() || !rotation.IsFinite())
+            throw new ArgumentException("Position and rotation must be finite");
+
         return new NativePhysicsBody(NativeMethods.PhysicalWorldCreateMovingBody(AccessWorldInternal(),
             shape.AccessShapeInternal(), new JVec3(position), new JQuat(rotation), addToWorld));
     }
@@ -135,6 +139,9 @@ public class PhysicalWorld : IDisposable
         if (lockedAxes.LengthSquared() < MathUtils.EPSILON)
             throw new ArgumentException("Locked axes needs to specify at least one locked axis", nameof(lockedAxes));
 
+        if (!position.IsFinite() || !rotation.IsFinite())
+            throw new ArgumentException("Position and rotation must be finite");
+
         return new NativePhysicsBody(NativeMethods.PhysicalWorldCreateMovingBodyWithAxisLock(AccessWorldInternal(),
             shape.AccessShapeInternal(), new JVec3(position), new JQuat(rotation), new JVecF3(lockedAxes), lockRotation,
             addToWorld));
@@ -143,6 +150,9 @@ public class PhysicalWorld : IDisposable
     public NativePhysicsBody CreateStaticBody(PhysicsShape shape, Vector3 position, Quaternion rotation,
         bool addToWorld = true)
     {
+        if (!position.IsFinite() || !rotation.IsFinite())
+            throw new ArgumentException("Position and rotation must be finite");
+
         return new NativePhysicsBody(NativeMethods.PhysicalWorldCreateStaticBody(AccessWorldInternal(),
             shape.AccessShapeInternal(),
             new JVec3(position), new JQuat(rotation), addToWorld));
@@ -151,6 +161,9 @@ public class PhysicalWorld : IDisposable
     public NativePhysicsBody CreateSensor(PhysicsShape shape, Vector3 position, Quaternion rotation,
         bool detectSleepingBodies, bool detectStaticBodies = false)
     {
+        if (!position.IsFinite() || !rotation.IsFinite())
+            throw new ArgumentException("Position and rotation must be finite");
+
         return new NativePhysicsBody(NativeMethods.PhysicalWorldCreateSensor(AccessWorldInternal(),
             shape.AccessShapeInternal(),
             new JVec3(position), new JQuat(rotation), detectSleepingBodies, detectStaticBodies));
@@ -160,7 +173,7 @@ public class PhysicalWorld : IDisposable
     ///   Adds an existing body back to this world
     /// </summary>
     /// <param name="body">The body to add</param>
-    /// <param name="activate">When true the body is activated (wakes from sleep etc.)</param>
+    /// <param name="activate">When true, the body is activated (wakes from sleep etc.)</param>
     public void AddBody(NativePhysicsBody body, bool activate = true)
     {
         NativeMethods.PhysicalWorldAddBody(AccessWorldInternal(), body.AccessBodyInternal(), activate);
@@ -181,8 +194,8 @@ public class PhysicalWorld : IDisposable
     /// </summary>
     /// <param name="body">Body to be destroyed immediately. No longer valid for any physics calls after this</param>
     /// <param name="dispose">
-    ///   When true the body is disposed automatically. If false the caller can call dispose when it wants to or
-    ///   not call it at all, which should be fine but then the body wrapper object may exist for a long time.
+    ///   When true, the body is disposed of automatically. If false, the caller can call Dispose when it wants to or
+    ///   not call it at all, which should be fine, but then the body wrapper object may exist for a long time.
     /// </param>
     public void DestroyBody(NativePhysicsBody body, bool dispose = true)
     {
@@ -244,6 +257,11 @@ public class PhysicalWorld : IDisposable
         if (body.IsDetached)
             throw new ArgumentException("Cannot give impulse to a detached body");
 
+#if DEBUG
+        if (!impulse.IsFinite())
+            throw new ArgumentException("Impulse must be finite");
+#endif
+
         NativeMethods.GiveImpulse(AccessWorldInternal(), body.AccessBodyInternal(), new JVecF3(impulse));
     }
 
@@ -252,12 +270,17 @@ public class PhysicalWorld : IDisposable
         if (body.IsDetached)
             throw new ArgumentException("Cannot give angular impulse to a detached body");
 
+#if DEBUG
+        if (!angularImpulse.IsFinite())
+            throw new ArgumentException("Angular impulse must be finite");
+#endif
+
         NativeMethods.GiveAngularImpulse(AccessWorldInternal(), body.AccessBodyInternal(), new JVecF3(angularImpulse));
     }
 
     /// <summary>
     ///   Applies microbe movement control on a physics body. Note that there has to be at least one active physics
-    ///   body (not sleeping) to have this apply. If there are no active physics bodies this has no effect.
+    ///   body (not sleeping) to have this apply. If there are no active physics bodies, this has no effect.
     /// </summary>
     /// <param name="body">The physics body to control</param>
     /// <param name="movementImpulse">World-space movement vector</param>
@@ -274,6 +297,9 @@ public class PhysicalWorld : IDisposable
 
         if (rotationSpeedDivisor <= 0)
             throw new ArgumentException("Rotation speed can't be zero or negative");
+
+        if (!movementImpulse.IsFinite() || !lookDirection.IsFinite())
+            throw new ArgumentException("Movement impulse and direction must be finite");
 #endif
 
         // Too low speed divisor causes too fast rotation and instability that way
@@ -301,11 +327,21 @@ public class PhysicalWorld : IDisposable
 
     public void SetBodyPosition(NativePhysicsBody body, Vector3 position)
     {
+#if DEBUG
+        if (!position.IsFinite())
+            throw new ArgumentException("Position must be finite");
+#endif
+
         NativeMethods.SetBodyPosition(AccessWorldInternal(), body.AccessBodyInternal(), new JVec3(position));
     }
 
     public void SetBodyPositionAndRotation(NativePhysicsBody body, Vector3 position, Quaternion rotation)
     {
+#if DEBUG
+        if (!position.IsFinite() || !rotation.IsFinite())
+            throw new ArgumentException("Position and rotation must be finite");
+#endif
+
         NativeMethods.SetBodyPositionAndRotation(AccessWorldInternal(), body.AccessBodyInternal(), new JVec3(position),
             new JQuat(rotation));
     }
@@ -315,6 +351,11 @@ public class PhysicalWorld : IDisposable
     /// </summary>
     public void SetBodyVelocity(NativePhysicsBody body, Vector3 velocity, Vector3 angularVelocity)
     {
+#if DEBUG
+        if (!velocity.IsFinite() || !angularVelocity.IsFinite())
+            throw new ArgumentException("Velocity and angular velocity must be finite");
+#endif
+
         NativeMethods.SetBodyVelocityAndAngularVelocity(AccessWorldInternal(), body.AccessBodyInternal(),
             new JVecF3(velocity), new JVecF3(angularVelocity));
     }
@@ -326,11 +367,21 @@ public class PhysicalWorld : IDisposable
     /// </summary>
     public void SetOnlyBodyVelocity(NativePhysicsBody body, Vector3 velocity)
     {
+#if DEBUG
+        if (!velocity.IsFinite())
+            throw new ArgumentException("Velocity must be finite");
+#endif
+
         NativeMethods.SetBodyVelocity(AccessWorldInternal(), body.AccessBodyInternal(), new JVecF3(velocity));
     }
 
     public void SetOnlyBodyAngularVelocity(NativePhysicsBody body, Vector3 angularVelocity)
     {
+#if DEBUG
+        if (!angularVelocity.IsFinite())
+            throw new ArgumentException("Velocity must be finite");
+#endif
+
         NativeMethods.SetBodyAngularVelocity(AccessWorldInternal(), body.AccessBodyInternal(),
             new JVecF3(angularVelocity));
     }
@@ -362,6 +413,11 @@ public class PhysicalWorld : IDisposable
     /// <param name="lockRotation">When true also locks rotation to only happen around the given axis</param>
     public void AddAxisLockConstraint(NativePhysicsBody body, Vector3 axis, bool lockRotation)
     {
+#if DEBUG
+        if (!axis.IsFinite())
+            throw new ArgumentException("Axis must be finite");
+#endif
+
         NativeMethods.PhysicsBodyAddAxisLock(AccessWorldInternal(), body.AccessBodyInternal(), new JVecF3(axis),
             lockRotation);
     }
