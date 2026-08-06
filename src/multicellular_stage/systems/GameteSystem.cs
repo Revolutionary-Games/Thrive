@@ -209,10 +209,23 @@ public partial class GameteSystem : BaseSystem<World, float>
                 GameteHelpers.IsCompatible(gamete.ThisGameteType, otherGamete.ThisGameteType) &&
                 gamete.EmittedBy != otherGamete.EmittedBy)
             {
+                if (!(otherGamete.MergingWith == Entity.Null || otherGamete.MergingWith.IsAllZero()) ||
+                    otherGamete.IsMerging)
+                {
+                    // Don't try to merge with something already merging
+                    continue;
+                }
+
                 // Start merging
                 gamete.IsMerging = true;
                 gamete.MergingTimePassed = 0;
                 gamete.MergingWith = other;
+
+                // Make sure the other is also targeting us
+                otherGamete.IsMerging = true;
+                otherGamete.MergingTimePassed = 0;
+                otherGamete.MergingWith = entity;
+
                 collisionManagement.AddTemporaryCollisionIgnoreWith(other);
                 break;
             }
