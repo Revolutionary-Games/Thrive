@@ -124,6 +124,12 @@ public class PhysicalWorld : IDisposable
         if (!position.IsFinite() || !rotation.IsFinite())
             throw new ArgumentException("Position and rotation must be finite");
 
+#if DEBUG
+        var mass = shape.GetMass();
+        if (mass is <= 0 or float.NaN)
+            throw new ArgumentException("Movable shape must have a valid mass", nameof(shape));
+#endif
+
         return new NativePhysicsBody(NativeMethods.PhysicalWorldCreateMovingBody(AccessWorldInternal(),
             shape.AccessShapeInternal(), new JVec3(position), new JQuat(rotation), addToWorld));
     }
@@ -141,6 +147,12 @@ public class PhysicalWorld : IDisposable
 
         if (!position.IsFinite() || !rotation.IsFinite())
             throw new ArgumentException("Position and rotation must be finite");
+
+#if DEBUG
+        var mass = shape.GetMass();
+        if (mass is <= 0 or float.NaN)
+            throw new ArgumentException("Movable shape must have a valid mass", nameof(shape));
+#endif
 
         return new NativePhysicsBody(NativeMethods.PhysicalWorldCreateMovingBodyWithAxisLock(AccessWorldInternal(),
             shape.AccessShapeInternal(), new JVec3(position), new JQuat(rotation), new JVecF3(lockedAxes), lockRotation,
