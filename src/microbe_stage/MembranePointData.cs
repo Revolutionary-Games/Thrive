@@ -23,19 +23,22 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
     private bool disposed;
 
     public MembranePointData(Vector2[] hexPositions, int hexPositionCount, MembraneType type,
-        IReadOnlyList<Vector2> verticesToCopy, Vector2 averageVertex, Vector2[]? multicellularPositions = null,
-        Vector2? cellPositionInMulticellular = null, int[]? multicellularOrientations = null,
-        int? cellOrientation = null, bool isPreMulticellularStretch = false, long? colonyKey = null)
+        IReadOnlyList<Vector2> verticesToCopy, MulticellularMembraneData currentCellMulticellularMembraneData,
+        long colonyKey, bool isPreMulticellularStretch = false) : this(hexPositions,
+        hexPositionCount, type, verticesToCopy, isPreMulticellularStretch)
+    {
+        CurrentCellMulticellularMembraneData = currentCellMulticellularMembraneData;
+        ColonyKey = colonyKey;
+        IsMulticellularMembraneDataValid = true;
+        IsColonyKeyValid = true;
+    }
+
+    public MembranePointData(Vector2[] hexPositions, int hexPositionCount, MembraneType type,
+        IReadOnlyList<Vector2> verticesToCopy, bool isPreMulticellularStretch = false)
     {
         HexPositions = hexPositions;
         Type = type;
         HexPositionCount = hexPositionCount;
-        AverageVertex = averageVertex;
-        MulticellularPositions = multicellularPositions;
-        CellPositionInMulticellular = cellPositionInMulticellular;
-        MulticellularOrientations = multicellularOrientations;
-        CellOrientation = cellOrientation;
-        ColonyKey = colonyKey;
         IsPreMulticellularStretch = isPreMulticellularStretch;
 
         // Setup mesh to be generated (on the main thread) only when required
@@ -77,40 +80,12 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
 
     public int HexPositionCount { get; }
 
-    /// <summary>
-    ///   Avarage position of all vertices of the membrane
-    /// </summary>
-    public Vector2 AverageVertex { get; }
-
-    /// <summary>
-    ///   Positions of other cells in multicellular organism
-    /// </summary>
-    public Vector2[]? MulticellularPositions { get; }
-
-    /// <summary>
-    ///   Position of current cell in multicellular body plan
-    /// </summary>
-    public Vector2? CellPositionInMulticellular { get; }
-
-    /// <summary>
-    ///   Orientations of other cells in multicellular organism
-    /// </summary>
-    public int[]? MulticellularOrientations { get; }
-
-    /// <summary>
-    ///   Orientation of current cell in multicellular body plan
-    /// </summary>
-    public int? CellOrientation { get; }
+    public MulticellularMembraneData CurrentCellMulticellularMembraneData { get; }
 
     /// <summary>
     ///   Precomputed colony key that encodes neighbour positions and rotations for caching/equality.
     /// </summary>
-    public long? ColonyKey { get; }
-
-    /// <summary>
-    ///   Flag used for differentiation in caching when retrieving single cell membrane before and after stretching
-    /// </summary>
-    public bool IsPreMulticellularStretch { get; }
+    public long ColonyKey { get; }
 
     public MembraneType Type { get; }
 
@@ -152,6 +127,15 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
 
     public bool Disposed => disposed;
 
+    /// <summary>
+    ///   Flag used for differentiation in caching when retrieving single cell membrane before and after stretching
+    /// </summary>
+    public bool IsPreMulticellularStretch { get; }
+
+    public bool IsMulticellularMembraneDataValid { get; }
+
+    public bool IsColonyKeyValid { get; }
+
     public bool MatchesCacheParameters(ICacheableData cacheData)
     {
         if (cacheData is IMembraneDataSource data)
@@ -184,7 +168,8 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
     {
         float distanceSquared = 0;
 
-        for (int i = 0; i < VertexCount; ++i)
+        var vertexCount = VertexCount;
+        for (int i = 0; i < vertexCount; ++i)
         {
             var currentDistance = Vertices2D[i].LengthSquared();
             if (currentDistance > distanceSquared)
@@ -217,10 +202,11 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
 public sealed class NeighbourData
 {
     public long SingleCellHash;
-    public Vector2 CellPosition;
-    public Vector2 AverageVertex;
-    public MembranePointData OriginalPointData = null!;
-    public int Orientation;
+    public Vector2 OriginalAverageVertex;
+    public Vector2 LocalAverageVertex;
+    public MembranePointData OriginalPointData;
+
+    public MulticellularMembraneData MulticellularMembraneData;
 
     /// <summary>
     ///   Modified vertices separate from original. Used to persist changes across multiple calls to
@@ -233,6 +219,33 @@ public sealed class NeighbourData
     ///   reverses (when the cell was a neighbor and is now the current cell).
     /// </summary>
     public HashSet<long> ProcessedNeighbours = new();
+
+    public NeighbourData(long singleCellHash, MulticellularMembraneData multicellularMembraneData,
+        MembranePointData originalPointData)
+    {
+        SingleCellHash = singleCellHash;
+        OriginalPointData = originalPointData;
+        MulticellularMembraneData = multicellularMembraneData;
+        OriginalAverageVertex = GetAverageVertex();
+    }
+
+    private Vector2 GetAverageVertex()
+    {
+        var vertexCount = OriginalPointData.VertexCount;
+
+        if (vertexCount == 0)
+            throw new InvalidOperationException("Cannot calculate average vertex with zero vertices");
+
+        var averageVertex = Vector2.Zero;
+        for (int i = 0; i < vertexCount; ++i)
+        {
+            averageVertex += OriginalPointData.Vertices2D[i];
+        }
+
+        averageVertex /= vertexCount;
+
+        return averageVertex;
+    }
 }
 
 /// <summary>

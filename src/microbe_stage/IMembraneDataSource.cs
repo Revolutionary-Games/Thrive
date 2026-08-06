@@ -10,13 +10,24 @@ public interface IMembraneDataSource
 {
     public Vector2[] HexPositions { get; }
     public int HexPositionCount { get; }
-    public Vector2[]? MulticellularPositions { get; }
-    public Vector2? CellPositionInMulticellular { get; }
-    public int[]? MulticellularOrientations { get; }
-    public int? CellOrientation { get; }
-    public long? ColonyKey { get; }
+    public MulticellularMembraneData CurrentCellMulticellularMembraneData { get; }
+    public long ColonyKey { get; }
     public MembraneType Type { get; }
     public bool IsPreMulticellularStretch { get; }
+    bool IsMulticellularMembraneDataValid { get; }
+    bool IsColonyKeyValid { get; }
+}
+
+public struct MulticellularMembraneData
+{
+    public MulticellularMembraneData(Vector2 position, int orientation)
+    {
+        Position = position;
+        Orientation = orientation;
+    }
+
+    public Vector2 Position { get; }
+    public int Orientation { get; }
 }
 
 /// <summary>
@@ -25,16 +36,16 @@ public interface IMembraneDataSource
 public struct MembraneGenerationParameters : IMembraneDataSource
 {
     public MembraneGenerationParameters(Vector2[] hexPositions, int hexPositionCount, MembraneType type,
-        Vector2[] multicellularPositions, Vector2 thisCellPosition, int[]? multicellularOrientations,
-        int? thisCellOrientation, long? colonyKey = null, bool isPreMulticellularStretch = false)
+        MulticellularMembraneData currentCellMulticellularMembraneData, MulticellularMembraneData[] grownCellsData,
+        long colonyKey, bool isPreMulticellularStretch = false)
         : this(hexPositions, hexPositionCount, type)
     {
-        MulticellularPositions = multicellularPositions;
-        CellPositionInMulticellular = thisCellPosition;
-        MulticellularOrientations = multicellularOrientations;
-        CellOrientation = thisCellOrientation;
+        CurrentCellMulticellularMembraneData = currentCellMulticellularMembraneData;
+        GrownCellsData = grownCellsData;
         ColonyKey = colonyKey;
         IsPreMulticellularStretch = isPreMulticellularStretch;
+        IsMulticellularMembraneDataValid = true;
+        IsColonyKeyValid = true;
     }
 
     public MembraneGenerationParameters(Vector2[] hexPositions, int hexPositionCount, MembraneType type)
@@ -44,23 +55,21 @@ public struct MembraneGenerationParameters : IMembraneDataSource
         Type = type;
     }
 
-    public int[]? MulticellularOrientations { get; }
-
-    public int? CellOrientation { get; }
-
-    public long? ColonyKey { get; }
+    public long ColonyKey { get; }
 
     public Vector2[] HexPositions { get; }
 
-    public Vector2[]? MulticellularPositions { get; }
+    public MulticellularMembraneData CurrentCellMulticellularMembraneData { get; }
 
-    public Vector2? CellPositionInMulticellular { get; }
+    public MulticellularMembraneData[] GrownCellsData { get; } = [];
 
     public int HexPositionCount { get; }
 
     public MembraneType Type { get; }
 
     public bool IsPreMulticellularStretch { get; set; }
+    public bool IsMulticellularMembraneDataValid { get; }
+    public bool IsColonyKeyValid { get; }
 }
 
 /// <summary>
@@ -159,29 +168,26 @@ public static class MembraneComputationHelpers
 
             for (int i = 0; i < dataSource.HexPositionCount; ++i)
             {
-                hash = (hash * prime1) ^ BitConverter.SingleToInt32Bits(dataSource.HexPositions[i].X);
-                hash = (hash * prime1) ^ BitConverter.SingleToInt32Bits(dataSource.HexPositions[i].Y);
+                var position = dataSource.HexPositions[i];
+                hash = (hash * prime1) ^ BitConverter.SingleToInt32Bits(position.X);
+                hash = (hash * prime1) ^ BitConverter.SingleToInt32Bits(position.Y);
             }
 
             // NOTE: ColonyKey alone is the same for every cell in a colony, so it cannot be the only thing
             // distinguishing membrane data between cells that share a hex layout. The per-cell position/orientation
             // must also be part of the hash.
-            if (dataSource.CellPositionInMulticellular != null)
+            if (dataSource.IsMulticellularMembraneDataValid)
             {
                 hash = (hash * prime1) ^
-                    BitConverter.SingleToInt32Bits(dataSource.CellPositionInMulticellular.Value.X);
+                    BitConverter.SingleToInt32Bits(dataSource.CurrentCellMulticellularMembraneData.Position.X);
                 hash = (hash * prime1) ^
-                    BitConverter.SingleToInt32Bits(dataSource.CellPositionInMulticellular.Value.Y);
+                    BitConverter.SingleToInt32Bits(dataSource.CurrentCellMulticellularMembraneData.Position.Y);
+                hash = (hash * prime1) ^ dataSource.CurrentCellMulticellularMembraneData.Orientation;
             }
 
-            if (dataSource.CellOrientation != null)
+            if (dataSource.IsColonyKeyValid)
             {
-                hash = (hash * prime1) ^ dataSource.CellOrientation.Value;
-            }
-
-            if (dataSource.ColonyKey != null)
-            {
-                hash = (hash * prime1) ^ dataSource.ColonyKey.Value;
+                hash = (hash * prime1) ^ dataSource.ColonyKey;
             }
 
             if (dataSource.IsPreMulticellularStretch)
@@ -196,12 +202,13 @@ public static class MembraneComputationHelpers
     public static bool MembraneDataFieldsEqual(this IMembraneDataSource dataSource, IMembraneDataSource other)
     {
         return dataSource.MembraneDataFieldsEqual(other.HexPositions, other.HexPositionCount, other.Type,
-            other.CellPositionInMulticellular, other.CellOrientation, other.ColonyKey);
+            other.CurrentCellMulticellularMembraneData, other.ColonyKey, other.IsMulticellularMembraneDataValid,
+            other.IsColonyKeyValid);
     }
 
     public static bool MembraneDataFieldsEqual(this IMembraneDataSource dataSource, Vector2[] otherPoints,
-        int otherPointCount, MembraneType otherType, Vector2? cellPositionInMulticellular = null,
-        int? cellOrientationInMulticellular = null, long? otherColonyKey = null)
+        int otherPointCount, MembraneType otherType, MulticellularMembraneData otherMulticellularMembraneData,
+        long otherColonyKey, bool isOtherMulticellularMembraneDataValid, bool isOtherColonyKeyValid)
     {
         if (!dataSource.Type.Equals(otherType))
         {
@@ -220,59 +227,55 @@ public static class MembraneComputationHelpers
 
         var sourcePoints = dataSource.HexPositions;
 
-        // Per-cell position must match — this is what actually distinguishes cells within the same colony
-        if (dataSource.CellPositionInMulticellular != null || cellPositionInMulticellular != null)
+#if DEBUG
+
+        if (dataSource.IsMulticellularMembraneDataValid || isOtherMulticellularMembraneDataValid)
         {
-            if (dataSource.CellPositionInMulticellular == null || cellPositionInMulticellular == null)
+            if (!dataSource.IsMulticellularMembraneDataValid || !isOtherMulticellularMembraneDataValid)
             {
-                GD.PrintErr("Membrane cache CellPositionInMulticellular null mismatch: " +
-                    $"source={dataSource.CellPositionInMulticellular == null} " +
-                    $"other={cellPositionInMulticellular == null}");
+                GD.PrintErr("Membrane cache IsMulticellularMembraneDataValid mismatch: " +
+                    $"source={dataSource.IsMulticellularMembraneDataValid} " +
+                    $"other={isOtherMulticellularMembraneDataValid}");
                 return false;
             }
 
-            if (!dataSource.CellPositionInMulticellular.Value.Equals(cellPositionInMulticellular.Value))
+            if (!dataSource.CurrentCellMulticellularMembraneData.Position.Equals(otherMulticellularMembraneData
+                    .Position))
             {
                 GD.PrintErr("Membrane cache CellPositionInMulticellular mismatch: " +
-                    $"{dataSource.CellPositionInMulticellular} != {cellPositionInMulticellular}");
-                return false;
-            }
-        }
-
-        if (dataSource.CellOrientation != null || cellOrientationInMulticellular != null)
-        {
-            if (dataSource.CellOrientation == null || cellOrientationInMulticellular == null)
-            {
-                GD.PrintErr("Membrane cache CellOrientation null mismatch: " +
-                    $"source={dataSource.CellOrientation == null} " +
-                    $"other={cellOrientationInMulticellular == null}");
+                    $"{dataSource.CurrentCellMulticellularMembraneData.Position} " +
+                    $"!= {otherMulticellularMembraneData.Position}");
                 return false;
             }
 
-            if (dataSource.CellOrientation.Value != cellOrientationInMulticellular.Value)
+            if (dataSource.CurrentCellMulticellularMembraneData.Orientation !=
+                otherMulticellularMembraneData.Orientation)
             {
                 GD.PrintErr("Membrane cache CellOrientation mismatch: " +
-                    $"{dataSource.CellOrientation} != {cellOrientationInMulticellular}");
+                    $"{dataSource.CurrentCellMulticellularMembraneData.Orientation} " +
+                    $"!= {otherMulticellularMembraneData.Orientation}");
                 return false;
             }
         }
 
-        if (dataSource.ColonyKey != null || otherColonyKey != null)
+        if (dataSource.IsColonyKeyValid || isOtherColonyKeyValid)
         {
-            if (dataSource.ColonyKey == null || otherColonyKey == null)
+            if (!dataSource.IsColonyKeyValid || !isOtherColonyKeyValid)
             {
-                GD.PrintErr("Membrane cache ColonyKey null mismatch: " +
-                    $"source={dataSource.ColonyKey == null} other={otherColonyKey == null}");
+                GD.PrintErr("Membrane cache IsColonyKeyValid mismatch: " +
+                    $"source={dataSource.IsColonyKeyValid} " +
+                    $"other={isOtherColonyKeyValid}");
                 return false;
             }
 
-            if (dataSource.ColonyKey.Value != otherColonyKey.Value)
+            if (dataSource.ColonyKey != otherColonyKey)
             {
-                GD.PrintErr(
-                    $"Membrane cache ColonyKey mismatch: {dataSource.ColonyKey.Value} != {otherColonyKey.Value}");
+                GD.PrintErr($"Membrane cache ColonyKey mismatch: {dataSource.ColonyKey} != {otherColonyKey}");
                 return false;
             }
         }
+
+#endif
 
         for (int i = 0; i < count; ++i)
         {

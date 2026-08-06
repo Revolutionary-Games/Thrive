@@ -19,6 +19,7 @@ using World = Arch.Core.World;
 ///   Generates the visuals needed for microbes. Handles the membrane and organelle graphics. Attaching to the
 ///   Godot scene tree is handled by <see cref="SpatialAttachSystem"/>
 /// </summary>
+[WritesToComponent(typeof(MulticellularGrowth))]
 [RunsBefore(typeof(SpatialAttachSystem))]
 [RunsBefore(typeof(EntityMaterialFetchSystem))]
 [RunsBefore(typeof(SpatialPositionSystem))]
@@ -36,8 +37,6 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
     private readonly List<ShaderMaterial> tempMaterialsList = new();
     private readonly List<PlacedOrganelle> tempVisualsToDelete = new();
     private readonly HashSet<int> lostCells = new();
-    private readonly List<Vector2> cellsPositions = new();
-    private readonly List<int> cellsOrientations = new();
 
     /// <summary>
     ///   Used to detect which organelle graphics are no longer used and should be deleted
@@ -157,53 +156,48 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
 
         ref var materialStorage = ref entity.Get<EntityMaterial>();
 
-        MembranePointData? data;
+        MembranePointData? data = null;
+        bool useSingleCellMembraneGeneration = true;
 
-        // Background thread membrane generation
         if (entity.Has<MulticellularSpeciesMember>())
         {
-            Entity colonyLeader;
-            if (entity.Has<MicrobeColonyMember>())
-            {
-                colonyLeader = entity.Get<MicrobeColonyMember>().ColonyLeader;
-            }
-            else
-            {
-                colonyLeader = entity;
-            }
-
-            var speciesMember = entity.Get<MulticellularSpeciesMember>();
+            var colonyLeader = entity.Has<MicrobeColonyMember>() ?
+                entity.Get<MicrobeColonyMember>().ColonyLeader :
+                entity;
 
             if (colonyLeader.Has<MulticellularGrowth>())
             {
                 ref var growthOrder = ref colonyLeader.Get<MulticellularGrowth>();
-                var nextBodyPlanCellToGrowIndex = growthOrder.NextBodyPlanCellToGrowIndex;
 
-                if (growthOrder.LostPartsOfBodyPlan != null)
+                if (!growthOrder.IsASpore)
                 {
+                    useSingleCellMembraneGeneration = false;
+
+                    var speciesMember = entity.Get<MulticellularSpeciesMember>();
+                    var nextBodyPlanCellToGrowIndex = growthOrder.NextBodyPlanCellToGrowIndex;
+
                     lostCells.Clear();
 
-                    foreach (var lostPart in growthOrder.LostPartsOfBodyPlan)
+                    if (growthOrder.LostPartsOfBodyPlan != null)
                     {
-                        lostCells.Add(lostPart);
+                        foreach (var lostPart in growthOrder.LostPartsOfBodyPlan)
+                        {
+                            lostCells.Add(lostPart);
+                        }
                     }
-                }
 
-                // Only get the membrane for THIS entity's cell (not all cells in the colony)
-                var cellIndex = speciesMember.MulticellularBodyPlanPartIndex;
-                var cell = speciesMember.Species.ModifiableGameplayCells[cellIndex];
-                data = GetMulticellularMembraneDataIfReadyOrStartGenerating(cell, cell.ModifiableOrganelles,
-                    ref speciesMember, ref growthOrder, cellIndex, nextBodyPlanCellToGrowIndex);
-            }
-            else
-            {
-                // Multicellular organism with 1 cell without MicrobeColony
-                data = GetSingleCellMembraneDataIfReadyOrStartGenerating(ref cellProperties, ref organelleContainer);
+                    // Only get the membrane for THIS entity's cell (not all cells in the colony)
+                    var cellIndex = speciesMember.MulticellularBodyPlanPartIndex;
+                    var cell = speciesMember.Species.ModifiableGameplayCells[cellIndex];
+                    data = GetMulticellularMembraneDataIfReadyOrStartGenerating(cell, cell.ModifiableOrganelles,
+                        ref speciesMember, ref growthOrder, cellIndex, nextBodyPlanCellToGrowIndex);
+                }
             }
         }
-        else
+
+        // This case covers non-multicellular cells, spores, and single-cell multicellular organisms without a colony
+        if (useSingleCellMembraneGeneration)
         {
-            // Single cell organism
             data = GetSingleCellMembraneDataIfReadyOrStartGenerating(ref cellProperties, ref organelleContainer);
         }
 
@@ -268,8 +262,10 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         var hexes = MembraneComputationHelpers.PrepareHexPositionsForMembraneCalculations(
             organelleContainer.Organelles!.Organelles, out var hexCount);
 
-        var hash = new MembraneGenerationParameters(hexes, hexCount, cellProperties.MembraneType)
-            .ComputeMembraneDataHash();
+        var membraneGenereationParameters =
+            new MembraneGenerationParameters(hexes, hexCount, cellProperties.MembraneType);
+
+        var hash = membraneGenereationParameters.ComputeMembraneDataHash();
 
         var cachedMembrane = ProceduralDataCache.Instance.ReadMembraneData(hash);
 
@@ -277,7 +273,7 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         {
             // TODO: hopefully this can't get into a permanent loop where 2 conflicting membranes want to
             // re-generate on each game update cycle
-            if (!cachedMembrane.MembraneDataFieldsEqual(hexes, hexCount, cellProperties.MembraneType))
+            if (!cachedMembrane.MembraneDataFieldsEqual(membraneGenereationParameters))
             {
                 CacheableDataExtensions.OnCacheHashCollision<MembranePointData>(hash);
                 cachedMembrane = null;
@@ -323,19 +319,16 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         var hexes = MembraneComputationHelpers.PrepareHexPositionsForMembraneCalculations(organelleContainer.Organelles,
             out var hexCount);
 
-        Vector2[] positionsArray;
-        int[] rotationsArray;
+        MulticellularMembraneData[] grownCellsData;
         long colonyKey;
 
         // Reuse cached colony layout data as long as nothing about the colony's composition has changed since it was
         // computed. This avoids rebuilding these arrays (and the ToArray allocations) every frame for every cell in
         // the colony — only the cell(s) processed right after a composition change pay this cost.
-        if (growthOrder.ColonyKey != null && growthOrder.ColonyPositions != null &&
-            growthOrder.ColonyOrientations != null)
+        if (growthOrder.IsColonyKeyValid && growthOrder.GrownCellsData != null)
         {
-            colonyKey = growthOrder.ColonyKey.Value;
-            positionsArray = growthOrder.ColonyPositions;
-            rotationsArray = growthOrder.ColonyOrientations;
+            colonyKey = growthOrder.ColonyKey;
+            grownCellsData = growthOrder.GrownCellsData;
         }
         else
         {
@@ -348,8 +341,7 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
                     ++cellCount;
             }
 
-            positionsArray = new Vector2[cellCount];
-            rotationsArray = new int[cellCount];
+            grownCellsData = new MulticellularMembraneData[cellCount];
 
             // Second pass: write directly into the correctly sized arrays, no intermediate list needed
             int writeIndex = 0;
@@ -361,18 +353,18 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
                 var cell = multicellular.Species.ModifiableGameplayCells[i];
                 var cellPosistion = Hex.AxialToCartesian(cell.Position);
 
-                positionsArray[writeIndex] = new Vector2(cellPosistion.X, cellPosistion.Z) *
-                    Constants.MULTICELLULAR_CELL_DISTANCE_MULTIPLIER;
-                rotationsArray[writeIndex] = cell.Orientation;
+                grownCellsData[writeIndex] = new MulticellularMembraneData(
+                    new Vector2(cellPosistion.X, cellPosistion.Z) * Constants.MULTICELLULAR_CELL_DISTANCE_MULTIPLIER,
+                    cell.Orientation);
 
                 ++writeIndex;
             }
 
-            colonyKey = MembraneGenerationCoordinator.ComputeColonyKey(positionsArray, rotationsArray);
+            colonyKey = MembraneGenerationCoordinator.ComputeColonyKey(grownCellsData);
 
             growthOrder.ColonyKey = colonyKey;
-            growthOrder.ColonyPositions = positionsArray;
-            growthOrder.ColonyOrientations = rotationsArray;
+            growthOrder.IsColonyKeyValid = true;
+            growthOrder.GrownCellsData = grownCellsData;
         }
 
         var currentCell = multicellular.Species.ModifiableGameplayCells[currentCellIndex];
@@ -380,8 +372,13 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         var cellPositionInMulticellular = new Vector2(cellPosition.X, cellPosition.Z) *
             Constants.MULTICELLULAR_CELL_DISTANCE_MULTIPLIER;
 
-        var hash = new MembraneGenerationParameters(hexes, hexCount, cellProperties.MembraneType, positionsArray,
-            cellPositionInMulticellular, rotationsArray, currentCell.Orientation, colonyKey).ComputeMembraneDataHash();
+        var multicellularMembraneData =
+            new MulticellularMembraneData(cellPositionInMulticellular, currentCell.Orientation);
+
+        var membraneGenerationParameters = new MembraneGenerationParameters(hexes, hexCount,
+            cellProperties.MembraneType, multicellularMembraneData, grownCellsData, colonyKey);
+
+        var hash = membraneGenerationParameters.ComputeMembraneDataHash();
 
         var cachedMembrane = ProceduralDataCache.Instance.ReadMembraneData(hash);
 
@@ -389,8 +386,7 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         {
             // TODO: hopefully this can't get into a permanent loop where 2 conflicting membranes want to
             // re-generate on each game update cycle
-            if (!cachedMembrane.MembraneDataFieldsEqual(hexes, hexCount, cellProperties.MembraneType,
-                    cellPositionInMulticellular, currentCell.Orientation, colonyKey))
+            if (!cachedMembrane.MembraneDataFieldsEqual(membraneGenerationParameters))
             {
                 CacheableDataExtensions.OnCacheHashCollision<MembranePointData>(hash);
                 cachedMembrane = null;
@@ -418,9 +414,11 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
             }
         }
 
+        var cellData = new MulticellularMembraneData(cellPositionInMulticellular,
+            multicellular.Species.ModifiableGameplayCells[currentCellIndex].Orientation);
+
         membranesToGenerate.Enqueue(new MembraneGenerationParameters(hexes, hexCount, cellProperties.MembraneType,
-            positionsArray, cellPositionInMulticellular, rotationsArray,
-            multicellular.Species.ModifiableGameplayCells[currentCellIndex].Orientation, colonyKey));
+            cellData, grownCellsData, colonyKey));
 
         // Immediately start some jobs to give background threads something to do while the main thread is busy
         // potentially setting up other visuals
@@ -591,14 +589,14 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         while (membranesToGenerate.TryDequeue(out var generationParameters))
         {
             // Use coordinator to handle both single-cell and multicellular two-pass generation.
-            var writtenHashes = MembraneGenerationCoordinator.HandleGenerationRequest(ref generationParameters);
+            var hashedMembranes = MembraneGenerationCoordinator.HandleGenerationRequest(ref generationParameters);
 
             // writtenHashes contains the cache hashes that correspond to the final results that should be removed
             // from the pending set. For single-cell requests this is the single written hash. For multicellular
             // requests this will contain the multicellular hash for this cell when available.
             lock (pendingGenerationsOfMembraneHashes)
             {
-                foreach (var hash in writtenHashes)
+                foreach (var hash in hashedMembranes)
                 {
                     if (!pendingGenerationsOfMembraneHashes.Remove(hash))
                         GD.PrintErr("Membrane generation result is a hash that wasn't in the pending hashes");

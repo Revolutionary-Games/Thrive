@@ -18,91 +18,92 @@ public static class MembraneGenerationCoordinator
     /// </summary>
     public static List<long> HandleGenerationRequest(ref MembraneGenerationParameters generationParameters)
     {
+        var hashedMembranes = new List<long>();
         var generator = MembraneShapeGenerator.GetThreadSpecificGenerator();
-        var isSingleCell = generationParameters.MulticellularPositions == null ||
-            generationParameters.CellPositionInMulticellular == null;
+        var isSingleCell = generationParameters.GrownCellsData.Length == 0 ||
+            !generationParameters.IsMulticellularMembraneDataValid;
 
         if (isSingleCell)
         {
             var membranePointData = generator.GenerateMicrobeShape(ref generationParameters);
             var hash = ProceduralDataCache.Instance.WriteMembraneData(ref membranePointData);
-            return new List<long> { hash };
+            hashedMembranes.Add(hash);
+            return hashedMembranes;
         }
-
-        var multicellularPositions = generationParameters.MulticellularPositions!;
-        var multicellularOrientations = generationParameters.MulticellularOrientations;
-        var cellPosition = generationParameters.CellPositionInMulticellular!.Value;
-        var cellOrientation = generationParameters.CellOrientation;
 
         var registeredHash = generationParameters.ComputeMembraneDataHash();
 
         // If the final multicellular membrane is already cached, just return it
         var existing = ProceduralDataCache.Instance.ReadMembraneData(registeredHash);
         if (existing != null)
-            return new List<long> { registeredHash };
+        {
+            hashedMembranes.Add(registeredHash);
+            return hashedMembranes;
+        }
 
         generationParameters.IsPreMulticellularStretch = true;
 
-        var singleCellMembranePointData = ProceduralDataCache.Instance.ReadMembraneData(registeredHash);
+        var stretchedHash = generationParameters.ComputeMembraneDataHash();
+        var singleCellMembranePointData = ProceduralDataCache.Instance.ReadMembraneData(stretchedHash);
         if (singleCellMembranePointData == null)
         {
             singleCellMembranePointData = generator.GenerateMicrobeShape(ref generationParameters, true);
             ProceduralDataCache.Instance.WriteMembraneData(ref singleCellMembranePointData);
         }
 
+        var grownCellsData = generationParameters.GrownCellsData;
+        var cellPosition = generationParameters.CurrentCellMulticellularMembraneData.Position;
+        var cellOrientation = generationParameters.CurrentCellMulticellularMembraneData.Orientation;
+
         // Prefer the ColonyKey provided in generationParameters if available. Otherwise compute or fetch a cached
         // colony key for this colony. generationParameters may not carry a reference to the species, so fall back
         // to computing directly if necessary.
         long colonyKey;
-        if (generationParameters.ColonyKey != null)
+        if (generationParameters.IsColonyKeyValid)
         {
-            colonyKey = generationParameters.ColonyKey.Value;
+            colonyKey = generationParameters.ColonyKey;
         }
         else
         {
-            colonyKey = ComputeColonyKey(multicellularPositions, multicellularOrientations);
+            colonyKey = ComputeColonyKey(grownCellsData);
         }
 
         var tracker = Trackers.GetOrAdd(colonyKey,
-            _ => new ColonyTracker { ExpectedCount = multicellularPositions.Length });
+            _ => new ColonyTracker { ExpectedCount = grownCellsData.Length });
 
-        var singleCellData = new NeighbourData
-        {
-            SingleCellHash = registeredHash,
-            CellPosition = cellPosition,
-            AverageVertex = singleCellMembranePointData.AverageVertex,
-            OriginalPointData = singleCellMembranePointData,
-            Orientation = cellOrientation ?? 0,
-        };
+        var multicellularMembraneData = new MulticellularMembraneData(cellPosition, cellOrientation);
+
+        var singleCellData = new NeighbourData(registeredHash, multicellularMembraneData, singleCellMembranePointData);
 
         tracker.NeighboursData[CellKey(cellPosition)] = singleCellData;
 
+        // TODO: Maybe implement a system that clears trackers every now and then that are inactive
+        // for too long to avoid potential memory leaks
+
         // Colony not yet complete — return empty
         if (tracker.NeighboursData.Count < tracker.ExpectedCount)
-            return new List<long>();
+            return hashedMembranes;
 
         // Pass 2: all base membranes are ready. Use a flag to ensure exactly one thread executes the second pass.
         if (!tracker.TryBeginSecondPass())
-            return new List<long>();
+            return hashedMembranes;
 
-        var resolvedHashes = new List<long>();
-
+        // Return ALL resolved hashes so every cell's pending entry gets cleared
         foreach (var (key, data) in tracker.NeighboursData)
         {
-            var multicellularMembrane = generator.GenerateMulticellularMembrane(key, tracker.NeighboursData,
-                multicellularPositions, multicellularOrientations);
+            var multicellularMembrane =
+                generator.GenerateMulticellularMembrane(key, tracker.NeighboursData, grownCellsData);
 
             ProceduralDataCache.Instance.WriteMembraneData(ref multicellularMembrane);
-            resolvedHashes.Add(data.SingleCellHash);
+            hashedMembranes.Add(data.SingleCellHash);
         }
 
         Trackers.TryRemove(colonyKey, out _);
 
-        // Return ALL resolved hashes so every cell's pending entry gets cleared
-        return resolvedHashes;
+        return hashedMembranes;
     }
 
-    public static long ComputeColonyKey(Vector2[] positions, int[]? orientations = null)
+    public static long ComputeColonyKey(MulticellularMembraneData[] cellsData)
     {
         unchecked
         {
@@ -110,21 +111,18 @@ public static class MembraneGenerationCoordinator
             const long prime = 1099511628211L;
 
             long hash = offset;
-            hash ^= positions.Length;
+            hash ^= cellsData.Length;
             hash *= prime;
 
-            for (int i = 0; i < positions.Length; ++i)
+            for (int i = 0; i < cellsData.Length; ++i)
             {
-                hash ^= BitConverter.SingleToInt32Bits(positions[i].X) * prime;
+                var cell = cellsData[i];
+                hash ^= BitConverter.SingleToInt32Bits(cell.Position.X) * prime;
                 hash *= prime;
-                hash ^= BitConverter.SingleToInt32Bits(positions[i].Y) * prime;
+                hash ^= BitConverter.SingleToInt32Bits(cell.Position.Y) * prime;
                 hash *= prime;
-
-                if (orientations != null && i < orientations.Length)
-                {
-                    hash ^= orientations[i] * prime;
-                    hash *= prime;
-                }
+                hash ^= cell.Orientation * prime;
+                hash *= prime;
             }
 
             return hash;

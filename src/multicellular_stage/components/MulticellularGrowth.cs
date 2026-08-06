@@ -35,6 +35,12 @@ public struct MulticellularGrowth : IArchivableComponent
     /// </summary>
     public CellLayout<CellTemplate>? TargetCellLayout;
 
+    /// <summary>
+    ///   Cached positions and rotation of all cells in the colony (used for membrane generation).
+    ///   Valid only together with <see cref="ColonyKey"/> — invalidated at the same sites.
+    /// </summary>
+    public MulticellularMembraneData[]? GrownCellsData;
+
     // TODO: switch this to non-nullable (and add a separate variable indicating if replacing something)
     /// <summary>
     ///   Once all lost body plan parts have been grown, this is the index the growing resumes at
@@ -47,24 +53,15 @@ public struct MulticellularGrowth : IArchivableComponent
 
     public int NextBodyPlanCellToGrowIndex;
 
+    public long ColonyKey;
+
+    public bool IsColonyKeyValid;
+
     public bool EnoughResourcesForBudding;
 
     public bool IsASpore;
 
     public bool SpawnedInitialMassBuddingCells;
-
-    public long? ColonyKey;
-
-    /// <summary>
-    ///   Cached positions of all cells in the colony (used for membrane generation). Valid only together with
-    ///   <see cref="ColonyKey"/> — invalidated at the same sites.
-    /// </summary>
-    public Vector2[]? ColonyPositions;
-
-    /// <summary>
-    ///   Cached orientations of all cells in the colony, paired with <see cref="ColonyPositions"/>.
-    /// </summary>
-    public int[]? ColonyOrientations;
 
     public MulticellularGrowth(MulticellularSpecies species)
     {
@@ -77,9 +74,8 @@ public struct MulticellularGrowth : IArchivableComponent
 
         // This is updated by ReApplyCellTypeProperties when needed
         this.CalculateTotalBodyPlanCompounds(species);
-        ColonyKey = null;
-        ColonyPositions = null;
-        ColonyOrientations = null;
+        IsColonyKeyValid = false;
+        GrownCellsData = null;
     }
 
     /// <summary>
@@ -195,9 +191,8 @@ public static class MulticellularGrowthHelpers
         ++multicellularGrowth.NextBodyPlanCellToGrowIndex;
         multicellularGrowth.CompoundsNeededForNextCell = null;
 
-        multicellularGrowth.ColonyKey = null;
-        multicellularGrowth.ColonyPositions = null;
-        multicellularGrowth.ColonyOrientations = null;
+        multicellularGrowth.IsColonyKeyValid = false;
+        multicellularGrowth.GrownCellsData = null;
     }
 
     public static void ResetMulticellularProgress(this ref MulticellularGrowth multicellularGrowth,
@@ -244,9 +239,8 @@ public static class MulticellularGrowthHelpers
         multicellularGrowth.CompoundsUsedForMulticellularGrowth = null;
 
         multicellularGrowth.TotalNeededForMulticellularGrowth = null;
-        multicellularGrowth.ColonyKey = null;
-        multicellularGrowth.ColonyPositions = null;
-        multicellularGrowth.ColonyOrientations = null;
+        multicellularGrowth.IsColonyKeyValid = false;
+        multicellularGrowth.GrownCellsData = null;
     }
 
     public static void OnMulticellularColonyCellLost(this ref MulticellularGrowth multicellularGrowth,
@@ -281,9 +275,8 @@ public static class MulticellularGrowthHelpers
             return;
 
         multicellularGrowth.LostPartsOfBodyPlan.Add(lostPartIndex);
-        multicellularGrowth.ColonyKey = null;
-        multicellularGrowth.ColonyPositions = null;
-        multicellularGrowth.ColonyOrientations = null;
+        multicellularGrowth.IsColonyKeyValid = false;
+        multicellularGrowth.GrownCellsData = null;
         organelleContainer.AllOrganellesDivided = false;
 
         if (multicellularGrowth.ResumeBodyPlanAfterReplacingLost != null)
