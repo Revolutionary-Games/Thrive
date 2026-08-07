@@ -869,20 +869,26 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
                 visibilityArray = new bool[allPages.Count];
             }
 
+            int lowestRawError = int.MaxValue;
+
             int iterator = 0;
             foreach (var page in allPages)
             {
                 string pageName = page.Key.TranslatedPageName.ToLower(CultureInfo.CurrentCulture);
 
+                int costbetween = StringUtils.DoStringCostBetween(pageName, newText);
+
+                lowestRawError = Math.Min(lowestRawError, costbetween);
+
                 // removes the error from strings being bigger than the search text
-                searchDistanceArray[iterator] = StringUtils.DoStringCostBetween(pageName, newText)
-                    - Math.Max(0, pageName.Length - newText.Length);
+                searchDistanceArray[iterator] = costbetween - Math.Max(0, pageName.Length - newText.Length);
                 visibilityArray[iterator] = false;
                 ++iterator;
             }
 
             // A threshold for similar results
             var costThreshold = searchDistanceArray.Take(allPages.Count).Min() + 1;
+            bool titleSearchOnly = lowestRawError < 2;
 
             iterator = 0;
             foreach (var page in allPages)
@@ -890,17 +896,22 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
                 // TODO: maybe switch ToLower with something else since it does return "a copy"
                 // when it should just directly edit the string
 
-                string pageName = page.Key.TranslatedPageName.ToLower(CultureInfo.CurrentCulture);
-                string? pageContent = page.Key.TranslatedPageBody?.ToLower(CultureInfo.CurrentCulture);
-                string? additionalContent =
-                    page.Key.TranslatedAdditionalSearchContent?.ToLower(CultureInfo.CurrentCulture);
+                bool visible = false;
 
-                // This is one big line so that the code can skip early once one passes
-                var visible = newText == string.Empty
-                    || searchDistanceArray[iterator] <= costThreshold
-                    || pageName.Contains(newText)
-                    || (pageContent != null && pageContent.Contains(newText))
-                    || (additionalContent != null && additionalContent.Contains(newText));
+                string pageName = page.Key.TranslatedPageName.ToLower(CultureInfo.CurrentCulture);
+                if (newText == string.Empty
+                    || searchDistanceArray[iterator] <= costThreshold || pageName.Contains(newText))
+                    visible = true;
+
+                if (!visible && !titleSearchOnly)
+                {
+                    string? pageContent = page.Key.TranslatedPageBody?.ToLower(CultureInfo.CurrentCulture);
+                    string? additionalContent =
+                        page.Key.TranslatedAdditionalSearchContent?.ToLower(CultureInfo.CurrentCulture);
+                    if ((pageContent != null && pageContent.Contains(newText))
+                        || (additionalContent != null && additionalContent.Contains(newText)))
+                        visible = true;
+                }
 
                 visibilityArray[iterator] = visible;
                 ++iterator;
