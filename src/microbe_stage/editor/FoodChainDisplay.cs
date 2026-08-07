@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
+using System.Threading.Tasks;
 using AutoEvo;
 using Godot;
-using GraphShape.Algorithms.Layout;
-using QuikGraph;
-using QuikGraph.Algorithms;
+using Sugiyama;
 
 /// <summary>
 ///   Displays a food chain from auto-evo results in the GUI for the player to inspect. This node should be put inside
@@ -13,17 +12,13 @@ using QuikGraph.Algorithms;
 /// </summary>
 public partial class FoodChainDisplay : Control
 {
-    /// <summary>
-    ///   Used to run the graph layout algorithm. So this is a variant of this food chain in graph-library specific
-    ///   data format.
-    /// </summary>
-    private readonly AdjacencyGraph<GraphNode, Edge<GraphNode>> layoutGraph = new();
-
     private readonly List<GraphNode> graphNodes = new();
 
     private readonly HashSet<(Control Start, Control End)> lines = new();
 
     private readonly List<Species> workMemory = new();
+
+    private Task<Dictionary<GraphNode, Vector2>>? pendingLayout;
 
 #pragma warning disable CA2213
     private PackedScene speciesResultButtonScene = null!;
@@ -50,6 +45,26 @@ public partial class FoodChainDisplay : Control
 
     public override void _Process(double delta)
     {
+        if (pendingLayout is { IsCompleted: true } layoutTask)
+        {
+            pendingLayout = null;
+
+            try
+            {
+                foreach (var (node, position) in layoutTask.GetAwaiter().GetResult())
+                {
+                    node.ReportComputedGraphPosition(position);
+                }
+
+                ApplyGraphPositions();
+                CreateLines();
+            }
+            catch (Exception e)
+            {
+                GD.PrintErr("Food chain graph layout failed: ", e);
+            }
+        }
+
         // TODO: mouse hover on lines to show more info
     }
 
@@ -136,18 +151,14 @@ public partial class FoodChainDisplay : Control
         foreach (var species in seenSpecies)
         {
             // This doesn't use GetSpeciesResultForInternalUse as this doesn't just care about the localized names of
-            // energy sources, but also the types for more smart display in a graph like format
+            // energy sources, but also the types for smarter display in a graph like format
 
             BuildMicheEnergyNodes(micheTree, species, forPatch);
         }
 
         GenerateGraphGraphics(autoEvoResults, forPatch);
 
-        LayoutGraph();
-
-        ApplyGraphPositions();
-
-        CreateLines();
+        StartGraphLayout();
     }
 
     public Vector2 CalculateAverageNodePosition()
@@ -190,96 +201,76 @@ public partial class FoodChainDisplay : Control
         }
     }
 
-    private void LayoutGraph()
+    private static Dictionary<GraphNode, Vector2> ComputeGraphLayout(
+        List<(GraphNode Node, string Id, Vector2 Size)> layoutInputs, Vector2 margin)
     {
-        layoutGraph.Clear();
+        var nodeIds = new Dictionary<GraphNode, string>(layoutInputs.Count);
+        var layoutNodes = new List<LayoutNode>(layoutInputs.Count);
+        var layoutEdges = new List<LayoutEdge>();
 
-        // Create the graph data object with the nodes and connections
-        foreach (var node in graphNodes)
+        foreach (var (node, id, size) in layoutInputs)
         {
-            layoutGraph.AddVertex(node);
+            nodeIds.Add(node, id);
+            layoutNodes.Add(new LayoutNode(id, size.X, size.Y));
         }
 
-        foreach (var source in graphNodes)
+        foreach (var (source, _, _) in layoutInputs)
         {
-            foreach (var targetNode in source.Links)
+            foreach (var target in source.Links)
             {
-                layoutGraph.AddEdge(new Edge<GraphNode>(source, targetNode));
+                layoutEdges.Add(new LayoutEdge(nodeIds[source], nodeIds[target]));
             }
         }
 
-        // Then calculate a layout for them
-        // Set an absolute deadline of 15 seconds to not totally freeze the game (could switch to a background layout)
-        var cancellationSource = new CancellationTokenSource();
-        cancellationSource.CancelAfter(TimeSpan.FromSeconds(15));
+        // TD keeps the same visual orientation as the old BottomToTop GraphShape layout.
+        var graph = new LayoutGraph(Sugiyama.LayoutDirection.TD, layoutNodes, layoutEdges, []);
 
-        var layoutAlgorithm =
-            new SugiyamaLayoutAlgorithm<GraphNode, Edge<GraphNode>, AdjacencyGraph<GraphNode, Edge<GraphNode>>>(
-                layoutGraph, new SugiyamaLayoutParameters
-                {
-                    Direction = GraphShape.Algorithms.Layout.LayoutDirection.BottomToTop,
-                    LayerGap = 150,
-                    SliceGap = 140,
-                    MinimizeEdgeLength = false,
-                    OptimizeWidth = true,
-                    EdgeRouting = SugiyamaEdgeRouting.Traditional,
-                });
-
-        // Different algorithms to try if the above one isn't perfect
-        // DoubleTreeLayoutAlgorithm
-        // CompoundFDPLayoutAlgorithm
-        // SimpleTreeLayoutAlgorithm
-        // RandomLayoutAlgorithm
-        // LinLogLayoutAlgorithm
-        // KKLayoutAlgorithm
-        // ISOMLayoutAlgorithm
-        // CircularLayoutAlgorithm
-        // BalloonTreeLayoutAlgorithm
-
-        // FRLayoutAlgorithm seems to fail often so it is not usable with our data
-
-        layoutAlgorithm.Compute();
-        cancellationSource.Token.Register(layoutAlgorithm.Abort);
-
-        if (layoutAlgorithm.State != ComputationState.Finished)
-            GD.PrintErr("Graph layout algorithm didn't finish");
-
-        // Convert graph coordinates so they are all on-screen
-        double xOffset = 0;
-        double yOffset = 0;
-
-        foreach (var point in layoutAlgorithm.VerticesPositions.Values)
+        // Set an absolute deadline of 15 seconds to not totally freeze the game.
+        using var cancellationSource = new CancellationTokenSource(TimeSpan.FromSeconds(15));
+        var result = SugiyamaLayout.Compute(graph, new LayoutOptions
         {
-            if (point.X < xOffset)
-                xOffset = point.X;
+            Padding = 0,
+            NodeSpacing = 140,
+            LayerSpacing = 150,
+            SeparateComponents = false,
+            CancellationToken = cancellationSource.Token,
+        });
 
-            if (point.Y < yOffset)
-                yOffset = point.Y;
+        var positions = new Dictionary<string, LayoutNodeResult>(result.Nodes.Count);
+        foreach (var node in result.Nodes)
+        {
+            positions.Add(node.Id, node);
         }
 
-        // Convert the offsets to positive to make them cancel out then the most negative positions below
-        xOffset = Math.Abs(xOffset);
-        yOffset = Math.Abs(yOffset);
-
-        // And add base margin from this
-        // As well as size from the species buttons to be able to center align the controls on the generated points
-        // without anything getting cutoff
-        xOffset += Margin.X + EstimatedSpeciesButtonSize.X;
-        yOffset += Margin.Y + EstimatedSpeciesButtonSize.Y;
-
-        // Apply the calculated positions to the nodes
-        // TODO: convert from horizontal to vertical graph layout
-        foreach (var node in graphNodes)
+        var computedPositions = new Dictionary<GraphNode, Vector2>(layoutInputs.Count);
+        foreach (var (node, id, size) in layoutInputs)
         {
-            if (!layoutAlgorithm.VerticesPositions.TryGetValue(node, out var position))
+            if (!positions.TryGetValue(id, out var position))
                 continue;
 
-            // Round the positions to get integer coordinates which are less blurry for text
-            node.ReportComputedGraphPosition(new Vector2((float)Math.Round(position.X + xOffset),
-                (float)Math.Round(position.Y + yOffset)));
+            // Round the positions to get integer coordinates which are less blurry for text.
+            computedPositions.Add(node, new Vector2((float)Math.Round(position.X + size.X * 0.5f + margin.X),
+                (float)Math.Round(position.Y + size.Y * 0.5f + margin.Y)));
         }
 
-        // Mirror the vertical axis to make the graph more similar to a food chain which his usually seen top down
+        return computedPositions;
+    }
+
+    private void StartGraphLayout()
+    {
+        lines.Clear();
+        QueueRedraw();
+
+        var layoutInputs = new List<(GraphNode Node, string Id, Vector2 Size)>(graphNodes.Count);
+        for (int i = 0; i < graphNodes.Count; ++i)
+        {
+            var node = graphNodes[i];
+            layoutInputs.Add((node, $"node_{i}", node.GetControlSize()));
+        }
+
+        var layoutTask = new Task<Dictionary<GraphNode, Vector2>>(() => ComputeGraphLayout(layoutInputs, Margin));
+        pendingLayout = layoutTask;
+        TaskExecutor.Instance.AddTask(layoutTask);
     }
 
     private void ApplyGraphPositions()
@@ -300,7 +291,6 @@ public partial class FoodChainDisplay : Control
     {
         lines.Clear();
 
-        // TODO: get this from the graph to follow the wanted contours
         // Generate lines list
         foreach (var graphNode in graphNodes)
         {
@@ -318,7 +308,7 @@ public partial class FoodChainDisplay : Control
             }
         }
 
-        // Queue a redraw to draw all the connection lines again
+        // Queue a redrawing to draw all the connection lines again
         QueueRedraw();
     }
 
@@ -562,7 +552,6 @@ public partial class FoodChainDisplay : Control
             EnvironmentalCompound,
         }
 
-        // TODO: try to hook this up to GraphShape
         public Vector2 GetControlSize()
         {
             if (CreatedControl == null)
@@ -591,7 +580,7 @@ public partial class FoodChainDisplay : Control
 
             var halfSize = CreatedControl.Size * 0.5f;
 
-            // Center on the graph point so that different sized controls look good
+            // Center on the graph point so that different-sized controls look good
             CreatedControl.Position = graphPosition - halfSize;
 
             float right = graphPosition.X + halfSize.X;
