@@ -2125,7 +2125,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             mateGuidanceLine.Visible = false;
 
             if (playerCurrentSignal == MicrobeSignalCommand.ShootGamete &&
-                playerCurrentSignalActiveSeconds >= 15)
+                playerCurrentSignalActiveSeconds >= Constants.SIGNAL_GAMETE_TURN_OFF_AFTER)
             {
                 // Reset gamete shoot command as it is more of a "one-off" command, so it helps if the player needs to
                 // retrigger it again for playability

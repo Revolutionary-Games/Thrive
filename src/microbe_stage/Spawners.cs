@@ -3,7 +3,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using Arch.Buffer;
 using Arch.Core;
@@ -721,9 +720,8 @@ public static class SpawnHelpers
                 multicellularSpecies.ReproductionMethod is MulticellularReproductionMethod.SexualAnisogamy)
             {
                 GD.PrintErr(
-                    "Multicellular cell spawned that is gamete type all even though the species uses anisogamy");
-                if (Debugger.IsAttached)
-                    Debugger.Break();
+                    "Multicellular cell spawned that is gamete type all even though the species uses anisogamy. " +
+                    "This can be caused by existing entities growing further cells.");
             }
 #endif
 

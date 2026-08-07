@@ -12,7 +12,7 @@ public partial class CellBodyPlanEditorComponent :
     HexEditorComponentBase<MulticellularEditor, CombinedEditorAction, EditorAction, HexWithData<CellTemplate>,
         MulticellularSpecies>, IArchiveUpdatable
 {
-    public const ushort SERIALIZATION_VERSION = 7;
+    public const ushort SERIALIZATION_VERSION = 8;
 
     [Export]
     public int MaxToleranceWarnings = 3;
@@ -361,6 +361,8 @@ public partial class CellBodyPlanEditorComponent :
             newName = Editor.EditedSpecies.FormattedName;
 
             tolerancesEditor.OnEditorSpeciesSetup(Editor.EditedBaseSpecies);
+
+            UpdateAnisogamyStateAndCost();
         }
 
         organismStatisticsPanel.UpdateLightSelectionPanelVisibility(
@@ -507,6 +509,7 @@ public partial class CellBodyPlanEditorComponent :
         writer.Write(DesiredMassBuddingCellCount);
         writer.WriteObjectOrNull(GameteACellType);
         writer.WriteObjectOrNull(GameteBCellType);
+        writer.Write((int)SelectedGameteTypeForPlayer);
     }
 
     public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
@@ -573,6 +576,11 @@ public partial class CellBodyPlanEditorComponent :
             GameteACellType = reader.ReadObjectOrNull<CellType>();
             GameteBCellType = reader.ReadObjectOrNull<CellType>();
         }
+
+        if (version >= 8)
+        {
+            SelectedGameteTypeForPlayer = (GameteType)reader.ReadInt32();
+        }
     }
 
     public override void OnEditorSpeciesSetup(Species species)
@@ -598,6 +606,7 @@ public partial class CellBodyPlanEditorComponent :
         GameteACellType = multicellularSpecies.ModifiableGameteTypeA;
         GameteBCellType = multicellularSpecies.ModifiableGameteTypeB;
         DesiredMassBuddingCellCount = multicellularSpecies.MassBuddingCellCount;
+        SelectedGameteTypeForPlayer = species.PlayerGamete;
 
         UpdateGUIAfterLoadingSpecies(species);
 

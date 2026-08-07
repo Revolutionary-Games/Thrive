@@ -1239,6 +1239,11 @@ public static class Constants
     public const float GAMETE_MERGE_DISTANCE_SQUARED = 4 * 4;
     public const float GAMETE_INITIAL_VELOCITY = 90;
 
+    /// <summary>
+    ///   Automatically stops the player gamete shoot signal after this time
+    /// </summary>
+    public const float SIGNAL_GAMETE_TURN_OFF_AFTER = 20;
+
     public const float GAMETE_FORCE_SHOOT_INTERVAL = 10;
     public const float GAMETE_FORCE_SHOOT_DISTANCE_SQUARED = 80 * 80;
     public const float GAMETE_MATE_CALL_MAX_DISTANCE_SQUARED = 550 * 550;

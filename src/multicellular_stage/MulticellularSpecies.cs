@@ -11,7 +11,7 @@ using Systems;
 /// </summary>
 public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISimulationPhotographable
 {
-    public const ushort SERIALIZATION_VERSION = 5;
+    public const ushort SERIALIZATION_VERSION = 6;
 
     private readonly Dictionary<BiomeConditions, Dictionary<Compound, (float TimeToFill, float Storage)>>
         cachedFillTimes = new();
@@ -160,6 +160,11 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
             instance.ModifiableGameteTypeB = reader.ReadObjectOrNull<CellType>();
         }
 
+        if (version >= 6)
+        {
+            instance.PlayerGamete = (GameteType)reader.ReadInt32();
+        }
+
         return instance;
     }
 
@@ -176,6 +181,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         writer.Write(MassBuddingCellCount);
         writer.WriteObjectOrNull(ModifiableGameteTypeA);
         writer.WriteObjectOrNull(ModifiableGameteTypeB);
+        writer.Write((int)PlayerGamete);
     }
 
     public GameteType PickSpawnGameteType(Random random)
