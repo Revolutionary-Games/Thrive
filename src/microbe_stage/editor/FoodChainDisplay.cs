@@ -208,10 +208,20 @@ public partial class FoodChainDisplay : Control
         var layoutNodes = new List<LayoutNode>(layoutInputs.Count);
         var layoutEdges = new List<LayoutEdge>();
 
-        foreach (var (node, id, size) in layoutInputs)
+        // To get nice uniform spacing, we fake the size of all nodes to be the biggest one
+        Vector2 nodeSize = new Vector2(0, 0);
+        foreach (var (_, _, size) in layoutInputs)
+        {
+            if (size.X > nodeSize.X || size.Y > nodeSize.Y)
+            {
+                nodeSize = size;
+            }
+        }
+
+        foreach (var (node, id, _) in layoutInputs)
         {
             nodeIds.Add(node, id);
-            layoutNodes.Add(new LayoutNode(id, size.X, size.Y));
+            layoutNodes.Add(new LayoutNode(id, nodeSize.X, nodeSize.Y));
         }
 
         foreach (var (source, _, _) in layoutInputs)
@@ -230,9 +240,9 @@ public partial class FoodChainDisplay : Control
         var result = SugiyamaLayout.Compute(graph, new LayoutOptions
         {
             Padding = 0,
-            NodeSpacing = 140,
+            NodeSpacing = 2 + nodeSize.X,
             LayerSpacing = 150,
-            SeparateComponents = false,
+            SeparateComponents = true,
             CancellationToken = cancellationSource.Token,
         });
 
@@ -242,15 +252,18 @@ public partial class FoodChainDisplay : Control
             positions.Add(node.Id, node);
         }
 
+        var offset = new Vector2(100, 100);
+
         var computedPositions = new Dictionary<GraphNode, Vector2>(layoutInputs.Count);
-        foreach (var (node, id, size) in layoutInputs)
+        foreach (var (node, id, _) in layoutInputs)
         {
             if (!positions.TryGetValue(id, out var position))
                 continue;
 
-            // Round the positions to get integer coordinates which are less blurry for text.
-            computedPositions.Add(node, new Vector2((float)Math.Round(position.X + size.X * 0.5f + margin.X),
-                (float)Math.Round(position.Y + size.Y * 0.5f + margin.Y)));
+            // Coordinates are in real range, so no need to change them. But we apply an offset
+            // to get things more even in the display margins.
+            computedPositions.Add(node,
+                new Vector2((float)Math.Round(position.X), (float)Math.Round(position.Y)) + offset);
         }
 
         return computedPositions;
@@ -291,7 +304,7 @@ public partial class FoodChainDisplay : Control
     {
         lines.Clear();
 
-        // Generate lines list
+        // Generate the line list
         foreach (var graphNode in graphNodes)
         {
             foreach (var nodeLink in graphNode.Links)
