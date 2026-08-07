@@ -252,8 +252,6 @@ public partial class FoodChainDisplay : Control
             positions.Add(node.Id, node);
         }
 
-        var offset = new Vector2(100, 100);
-
         var computedPositions = new Dictionary<GraphNode, Vector2>(layoutInputs.Count);
         foreach (var (node, id, _) in layoutInputs)
         {
@@ -263,7 +261,7 @@ public partial class FoodChainDisplay : Control
             // Coordinates are in real range, so no need to change them. But we apply an offset
             // to get things more even in the display margins.
             computedPositions.Add(node,
-                new Vector2((float)Math.Round(position.X), (float)Math.Round(position.Y)) + offset);
+                new Vector2((float)Math.Round(position.X), (float)Math.Round(position.Y)) + margin);
         }
 
         return computedPositions;
@@ -281,7 +279,8 @@ public partial class FoodChainDisplay : Control
             layoutInputs.Add((node, $"node_{i}", node.GetControlSize()));
         }
 
-        var layoutTask = new Task<Dictionary<GraphNode, Vector2>>(() => ComputeGraphLayout(layoutInputs, Margin));
+        var layoutTask =
+            new Task<Dictionary<GraphNode, Vector2>>(() => ComputeGraphLayout(layoutInputs, Margin * 0.5f));
         pendingLayout = layoutTask;
         TaskExecutor.Instance.AddTask(layoutTask);
     }
