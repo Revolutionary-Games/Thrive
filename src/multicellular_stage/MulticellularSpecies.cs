@@ -106,6 +106,61 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
     public override ArchiveObjectType ArchiveObjectType =>
         (ArchiveObjectType)ThriveArchiveObjectType.MulticellularSpecies;
 
+    /// <summary>
+    ///   Total hex size of all cells in the species put together
+    /// </summary>
+    public float BaseHexSize
+    {
+        get
+        {
+            var totalSize = 0.0f;
+            for (var i = 0; i < CellTypes.Count; ++i)
+            {
+                var cellType = CellTypes[i];
+                var cellCount = 0;
+                foreach (var hex in EditorCells)
+                {
+                    var cell = hex.Data;
+                    if (cell != null && cell.CellType == cellType)
+                        ++cellCount;
+                }
+
+                if (cellCount > 0)
+                {
+                    var cellSize = 0.0f;
+
+                    var organelles = cellType.Organelles;
+                    foreach (var organelle in organelles)
+                    {
+                        cellSize += organelle.Definition.HexCount;
+                    }
+
+                    if (cellType.IsBacteria)
+                        cellSize *= Constants.BACTERIA_CELL_SCALE;
+
+                    totalSize += cellSize * cellCount;
+                }
+            }
+
+            return totalSize;
+        }
+    }
+
+    // TODO: precalculate this as it'll help auto-evo quite a bit
+    /// <summary>
+    ///   Compound capacities members of this species can store in their default configurations
+    /// </summary>
+    public (float Nominal, Dictionary<Compound, float> Specific) StorageCapacities
+    {
+        get
+        {
+            var specific =
+                CellBodyPlanInternalCalculations.GetTotalSpecificCapacity(ModifiableEditorCells, out var nominal);
+
+            return (nominal, specific);
+        }
+    }
+
     public static MulticellularSpecies ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
@@ -319,7 +374,12 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
     {
         base.OnAttemptedInAutoEvo(refreshCache);
 
-        // TODO: in the future this will need to refresh specialization calculations for cell types
+        // Refresh specialization calculations for all cell types
+        for (int i = 0; i < CellTypes.Count; ++i)
+        {
+            var cellType = ModifiableCellTypes[i];
+            cellType.CalculateSpecialization();
+        }
 
         UpdateInitialCompounds();
 
@@ -349,6 +409,45 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         changes |= RepositionEditorCells();
 
         return changes;
+    }
+
+    public void RepositionCellTypesToOrigin()
+    {
+        bool neededTwoShifts = false;
+
+        foreach (var cellType in ModifiableCellTypes)
+        {
+            if (cellType.RepositionToOrigin())
+            {
+                // It seems like in very rare cases a cell type requires two shifts of the layout to fix it, and then
+                // it stops shifting. So we take the slight performance hit here and try to shift everything twice
+                // in case some type needs it.
+                if (cellType.RepositionToOrigin())
+                {
+                    GD.Print($"Did a second shift for cell type: {cellType.CellTypeName}");
+                    neededTwoShifts = true;
+                }
+            }
+        }
+
+        // Safety check against cell layouts that forever want to shift (this causes layout overlap errors)
+        foreach (var cellType in ModifiableCellTypes)
+        {
+            if (cellType.RepositionToOrigin())
+            {
+                GD.PrintErr("Cell type shouldn't get a second move to origin");
+                LogInterceptor.ForwardCaughtError(new Exception(
+                        "Detected a cell layout that infinitely shifts around the origin, this will break " +
+                        "multicellular cell positioning!"),
+                    "Please include a save or screenshot of your species' cell types with the report");
+                break;
+            }
+        }
+
+        if (neededTwoShifts)
+        {
+            GD.Print("Some cell types required two shifts to get organelles centered around the origin");
+        }
     }
 
     public override void UpdateInitialCompounds()
@@ -479,6 +578,35 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
                 ModifiableGameteTypeB = clonedType;
         }
 
+        if (modifiableEditorCells == null)
+        {
+            modifiableEditorCells = new IndividualHexLayout<CellTemplate>();
+        }
+        else
+        {
+            modifiableEditorCells.Clear();
+        }
+
+        var castedModifiableEditorCells = casted.ModifiableEditorCells;
+        for (var i = 0; i < castedModifiableEditorCells.Count; ++i)
+        {
+            var hexWithData = castedModifiableEditorCells[i];
+            var oldTemplate = hexWithData.Data;
+
+            if (oldTemplate != null)
+            {
+                var oldType = oldTemplate.ModifiableCellType;
+
+                if (!typeMapping.TryGetValue(oldType, out var newType))
+                    throw new Exception("Cell type not found in species");
+
+                var newTemplate = new CellTemplate(newType, oldTemplate.Position, oldTemplate.Orientation);
+                modifiableEditorCells.AddFast(
+                    new HexWithData<CellTemplate>(newTemplate, hexWithData.Position, hexWithData.Orientation),
+                    workMemory1, workMemory2);
+            }
+        }
+
         ModifiableGameplayCells.Clear();
 
         foreach (var cellTemplate in casted.ModifiableGameplayCells)
@@ -530,8 +658,6 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 
         ReproductionMethod = casted.ReproductionMethod;
 
-        // Recalculate editor cells if they exist as they are now out of date
-        modifiableEditorCells = null;
         readonlyIndividualLayoutAdapter = null;
 
         cachedFillTimes.Clear();
@@ -645,6 +771,11 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 
     public override object Clone()
     {
+        return Clone(true);
+    }
+
+    public MulticellularSpecies Clone(bool cloneOrganelles)
+    {
         var result = new MulticellularSpecies(ID, Genus, Epithet);
 
         ClonePropertiesTo(result);
@@ -657,7 +788,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 
         foreach (var cellType in ModifiableCellTypes)
         {
-            var clonedType = (CellType)cellType.Clone();
+            var clonedType = cellType.Clone(cloneOrganelles);
             result.ModifiableCellTypes.Add(clonedType);
             typeMapping[cellType] = clonedType;
 

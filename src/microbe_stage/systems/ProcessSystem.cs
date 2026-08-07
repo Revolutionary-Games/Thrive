@@ -264,6 +264,56 @@ public partial class ProcessSystem : BaseSystem<World, float>
     }
 
     /// <summary>
+    ///   Computes the simple energy balance for the given organelles in biome
+    /// </summary>
+    /// <param name="organelles">The organelles to compute the balance with</param>
+    /// <param name="biome">The conditions the organelles are simulated in</param>
+    /// <param name="environmentTolerances">Environmental tolerances that affect the processes</param>
+    /// <param name="totalSpecializationBonus">
+    ///   Cell type specialization factor (1 is default). This should include any adjacency bonuses when relevant.
+    ///   (cells in a multicellular species)
+    /// </param>
+    /// <param name="membrane">The membrane type to adjust the energy balance with</param>
+    /// <param name="onlyMovementInDirection">
+    ///   Only movement organelles that can move in this (cell origin relative) direction are calculated. Other
+    ///   movement organelles are assumed to be inactive in the balance calculation.
+    /// </param>
+    /// <param name="includeMovementCost">
+    ///   Only when true are movement-related energy costs included in the calculation. When false base movement data
+    ///   is provided, but it is not taken into account in the sums, but total movement cost is not calculated. If that
+    ///   is required, then include movement cost parameter should be set to true, and from the result the variables
+    ///   giving balance without movement should be used as an alternative to setting this false.
+    /// </param>
+    /// <param name="isPlayerSpecies">Whether this microbe is a member of the player's species</param>
+    /// <param name="worldSettings">The world generation settings for this game</param>
+    /// <param name="amountType">Specifies how changes during an in-game day are taken into account</param>
+    /// <param name="cache">Auto-Evo Cache for speeding up the function</param>
+    /// <param name="result">
+    ///   The resulting energy balance.
+    /// </param>
+    public static void ComputeEnergyBalanceSimple(IReadOnlyCollection<IReadOnlyOrganelleTemplate> organelles,
+        IBiomeConditions biome, in ResolvedMicrobeTolerances environmentTolerances, float totalSpecializationBonus,
+        MembraneType membrane, Vector3 onlyMovementInDirection,
+        bool includeMovementCost, bool isPlayerSpecies, WorldGenerationSettings worldSettings,
+        CompoundAmountType amountType, SimulationCache? cache,
+        EnergyBalanceInfoSimple result)
+    {
+#if DEBUG
+        if (result is EnergyBalanceInfoFull)
+        {
+            if (Debugger.IsAttached)
+                Debugger.Break();
+
+            throw new ArgumentException("Call the full result variant when you have a full result object " +
+                "(otherwise it won't be filled correctly)");
+        }
+#endif
+
+        CalculateSimplePartOfEnergyBalance(organelles, biome, environmentTolerances, totalSpecializationBonus, membrane,
+            onlyMovementInDirection, includeMovementCost, isPlayerSpecies, worldSettings, amountType, cache, result);
+    }
+
+    /// <summary>
     ///   Computes the full energy balance for the given organelles in biome
     /// </summary>
     /// <param name="organelles">The organelles to compute the balance with</param>
@@ -555,6 +605,37 @@ public partial class ProcessSystem : BaseSystem<World, float>
     /// </summary>
     public static (float Production, float Consumption) CalculateOrganelleATPBalance(OrganelleTemplate organelle,
         IBiomeConditions biome, CompoundAmountType amountType, float speedModifier, SimulationCache? cache)
+    {
+        float processATPProduction = 0.0f;
+        float processATPConsumption = 0.0f;
+
+        foreach (var process in organelle.Definition.RunnableProcesses)
+        {
+            ProcessSpeedInformation processData;
+            if (cache != null && amountType == CompoundAmountType.Average)
+            {
+                processData = cache.GetProcessMaximumSpeed(process, speedModifier, biome);
+            }
+            else
+            {
+                processData = CalculateProcessMaximumSpeed(process, speedModifier, biome, amountType, true);
+            }
+
+            var amount = processData.ATPConsumption;
+            if (amount > 0)
+                processATPConsumption += amount;
+
+            amount = processData.ATPProduction;
+            if (amount > 0)
+                processATPProduction += amount;
+        }
+
+        return (processATPProduction, processATPConsumption);
+    }
+
+    public static (float Production, float Consumption) CalculateOrganelleATPBalance(
+        IReadOnlyOrganelleTemplate organelle, IBiomeConditions biome, CompoundAmountType amountType,
+        float speedModifier, SimulationCache? cache)
     {
         float processATPProduction = 0.0f;
         float processATPConsumption = 0.0f;
@@ -988,7 +1069,138 @@ public partial class ProcessSystem : BaseSystem<World, float>
         result.FinalBalanceStationary = result.TotalProduction - result.TotalConsumptionStationary;
     }
 
+    private static void CalculateSimplePartOfEnergyBalance(IReadOnlyCollection<IReadOnlyOrganelleTemplate> organelles,
+        IBiomeConditions biome, in ResolvedMicrobeTolerances environmentTolerances, float specializationFactor,
+        MembraneType membrane, Vector3 onlyMovementInDirection, bool includeMovementCost, bool isPlayerSpecies,
+        WorldGenerationSettings worldSettings, CompoundAmountType amountType,
+        SimulationCache? cache, EnergyBalanceInfoSimple result)
+    {
+        if (specializationFactor <= 0)
+            throw new ArgumentException("Uninitialized specialization factor value", nameof(specializationFactor));
+
+        var processATPProduction = 0.0f;
+        var processATPConsumption = 0.0f;
+        var movementATPConsumption = 0.0f;
+
+        int hexCount = 0;
+
+        var speedModifier = environmentTolerances.ProcessSpeedModifier * specializationFactor;
+
+        foreach (var organelle in organelles)
+        {
+            var (production, consumption) = CalculateOrganelleATPBalance(organelle, biome, amountType,
+                speedModifier, cache);
+
+            processATPProduction += production;
+            processATPConsumption += consumption;
+
+            // Take special cell components that take energy into account
+            if (TryGetMovementCostForOrganelle(includeMovementCost, organelle, onlyMovementInDirection, out var cost))
+            {
+                movementATPConsumption += cost;
+                result.Flagella += cost;
+            }
+
+            if (includeMovementCost && organelle.Definition.HasCiliaComponent)
+            {
+                var amount = Constants.CILIA_ENERGY_COST;
+
+                movementATPConsumption += amount;
+                result.Cilia += amount;
+            }
+
+            // Store hex count
+            hexCount += organelle.Definition.HexCount;
+        }
+
+        var baseMovement = Constants.BASE_MOVEMENT_ATP_COST * hexCount;
+        result.BaseMovement += baseMovement;
+
+        if (includeMovementCost)
+        {
+            // Add movement consumption together
+            result.TotalMovement += movementATPConsumption + baseMovement;
+        }
+        else
+        {
+            result.TotalMovement = -1;
+        }
+
+        // Calculate the osmoregulation
+        var osmoregulation = Constants.ATP_COST_FOR_OSMOREGULATION * hexCount *
+            membrane.OsmoregulationFactor;
+
+#if DEBUG
+        if (environmentTolerances.OsmoregulationModifier <= 0)
+            throw new ArgumentException("Uninitialized environmental tolerances");
+#endif
+
+        osmoregulation *= environmentTolerances.OsmoregulationModifier;
+
+        // Apply energy cost multiplier from difficulty setting to player species
+        if (isPlayerSpecies)
+        {
+            var energyCostMultiplier = worldSettings.EnergyCostMultiplier;
+
+            osmoregulation *= energyCostMultiplier;
+            result.TotalMovement *= energyCostMultiplier;
+            result.BaseMovement *= energyCostMultiplier;
+            result.Flagella *= energyCostMultiplier;
+            result.Cilia *= energyCostMultiplier;
+        }
+
+        result.Osmoregulation += osmoregulation;
+
+        // Compute totals
+        result.TotalProduction += processATPProduction;
+        result.TotalConsumptionStationary += processATPConsumption + osmoregulation;
+
+        if (includeMovementCost)
+        {
+            result.TotalConsumption = result.TotalConsumptionStationary + result.TotalMovement;
+        }
+        else
+        {
+            result.TotalConsumption = result.TotalConsumptionStationary;
+        }
+
+        result.FinalBalance = result.TotalProduction - result.TotalConsumption;
+        result.FinalBalanceStationary = result.TotalProduction - result.TotalConsumptionStationary;
+    }
+
     private static bool TryGetMovementCostForOrganelle(bool includeMovementCost, OrganelleTemplate organelle,
+        Vector3 onlyMovementInDirection, out float movementCost)
+    {
+        if (!includeMovementCost || !organelle.Definition.HasMovementComponent)
+        {
+            movementCost = 0;
+            return false;
+        }
+
+        float amount;
+
+        if (organelle.Upgrades?.CustomUpgradeData is FlagellumUpgrades flagellumUpgrades)
+        {
+            amount = Constants.FLAGELLA_ENERGY_COST + flagellumUpgrades.LengthFraction
+                * Constants.FLAGELLA_MAX_UPGRADE_ATP_USAGE;
+        }
+        else
+        {
+            amount = Constants.FLAGELLA_ENERGY_COST;
+        }
+
+        movementCost = amount;
+
+        var organelleDirection = MicrobeInternalCalculations.GetOrganelleDirection(organelle);
+        if (organelleDirection.Dot(onlyMovementInDirection) > 0)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    private static bool TryGetMovementCostForOrganelle(bool includeMovementCost, IReadOnlyOrganelleTemplate organelle,
         Vector3 onlyMovementInDirection, out float movementCost)
     {
         if (!includeMovementCost || !organelle.Definition.HasMovementComponent)

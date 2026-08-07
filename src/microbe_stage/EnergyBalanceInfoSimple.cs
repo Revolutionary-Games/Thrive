@@ -61,4 +61,35 @@ public class EnergyBalanceInfoSimple
     ///   Final balance of ATP when a microbe is stationary (running processes + osmoregulation)
     /// </summary>
     public float FinalBalanceStationary { get; set; }
+
+    /// <summary>
+    ///   Adds to the EnergyBalance all values from the other given EnergyBalance
+    /// </summary>
+    public void Add(EnergyBalanceInfoSimple energyBalanceInfoSimple)
+    {
+        BaseMovement += energyBalanceInfoSimple.BaseMovement;
+        Flagella += energyBalanceInfoSimple.Flagella;
+        Cilia += energyBalanceInfoSimple.Cilia;
+        TotalMovement += energyBalanceInfoSimple.TotalMovement;
+        Osmoregulation += energyBalanceInfoSimple.Osmoregulation;
+        TotalProduction += energyBalanceInfoSimple.TotalProduction;
+        TotalConsumption += energyBalanceInfoSimple.TotalConsumption;
+        TotalConsumptionStationary += energyBalanceInfoSimple.TotalConsumptionStationary;
+        FinalBalance += energyBalanceInfoSimple.FinalBalance;
+        FinalBalanceStationary += energyBalanceInfoSimple.FinalBalanceStationary;
+    }
+
+    public void Clear()
+    {
+        BaseMovement = 0;
+        Flagella = 0;
+        Cilia = 0;
+        TotalMovement = 0;
+        Osmoregulation = 0;
+        TotalProduction = 0;
+        TotalConsumption = 0;
+        TotalConsumptionStationary = 0;
+        FinalBalance = 0;
+        FinalBalanceStationary = 0;
+    }
 }

@@ -52,7 +52,7 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
     public OrganelleLayout<OrganelleTemplate> ModifiableOrganelles { get; }
 
     public string CellTypeName { get; set; } = "error";
-    public int MPCost { get; set; } = 15;
+    public int MPCost { get; set; } = Constants.CELL_ADD_COST;
 
     public string? SplitFromTypeName { get; set; }
 
@@ -248,6 +248,11 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
 
     public object Clone()
     {
+        return Clone(true);
+    }
+
+    public CellType Clone(bool cloneOrganelles)
+    {
         var result = new CellType(MembraneType)
         {
             CellTypeName = CellTypeName,
@@ -261,9 +266,12 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
         var workMemory1 = new List<Hex>();
         var workMemory2 = new List<Hex>();
 
-        foreach (var organelle in Organelles)
+        if (cloneOrganelles)
         {
-            result.ModifiableOrganelles.AddFast(organelle.Clone(), workMemory1, workMemory2);
+            foreach (var organelle in Organelles)
+            {
+                result.ModifiableOrganelles.AddFast(organelle.Clone(), workMemory1, workMemory2);
+            }
         }
 
         return result;

@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using static CommonMutationFunctions;
 
-public class ChangeBehaviorScore : IMutationStrategy<MicrobeSpecies>
+public class ChangeBehaviorScore : IMutationStrategy<Species>
 {
     private readonly BehaviorAttribute attribute;
     private readonly float maxChange;
@@ -27,16 +27,19 @@ public class ChangeBehaviorScore : IMutationStrategy<MicrobeSpecies>
     // As it cost no MP the mutation code could just repeat this forever
     public bool Repeatable => false;
 
-    public List<Mutant>? MutationsOf(MicrobeSpecies baseSpecies, double mp, bool lawk,
+    public List<Mutant>? MutationsOf(Species baseSpecies, double mp, bool lawk,
         Random random, BiomeConditions biomeToConsider)
     {
+        if (baseSpecies is not MicrobeSpecies and not MulticellularSpecies)
+            return null;
+
         // TODO: Make random something passed in
         var change = (float)random.NextDouble() * maxChange;
 
         if (Math.Abs(change) < 1)
             return null;
 
-        var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
+        var newSpecies = (Species)baseSpecies.Clone();
 
         switch (attribute)
         {

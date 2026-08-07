@@ -42,7 +42,47 @@ public static class MicrobeInternalCalculations
         return maximumMovementDirection;
     }
 
+    public static Vector3 MaximumSpeedDirection(IReadOnlyCollection<IReadOnlyOrganelleTemplate> organelles)
+    {
+        Vector3 maximumMovementDirection = Vector3.Zero;
+
+        foreach (var organelle in organelles)
+        {
+            if (!organelle.Definition.HasMovementComponent)
+                continue;
+
+            maximumMovementDirection += GetOrganelleDirection(organelle);
+        }
+
+        // After calculating the sum of all organelle directions we subtract the movement components which
+        // are symmetric, and we choose the one who would benefit the max-speed the most.
+        foreach (var organelle in organelles)
+        {
+            if (!organelle.Definition.HasMovementComponent)
+                continue;
+
+            maximumMovementDirection = ChooseFromSymmetricFlagella(organelles, organelle, maximumMovementDirection);
+        }
+
+        // If the flagella are positioned symmetrically we assume the forward position as default
+        if (maximumMovementDirection == Vector3.Zero)
+            return Vector3.Forward;
+
+        return maximumMovementDirection;
+    }
+
     public static Vector3 GetOrganelleDirection(OrganelleTemplate organelle)
+    {
+        Vector3 middle = Hex.AxialToCartesian(new Hex(0, 0));
+        var delta = middle - Hex.AxialToCartesian(organelle.Position);
+
+        if (delta == Vector3.Zero)
+            delta = CellPropertiesHelpers.DefaultVisualPos;
+
+        return delta.Normalized();
+    }
+
+    public static Vector3 GetOrganelleDirection(IReadOnlyOrganelleTemplate organelle)
     {
         Vector3 middle = Hex.AxialToCartesian(new Hex(0, 0));
         var delta = middle - Hex.AxialToCartesian(organelle.Position);
@@ -601,6 +641,38 @@ public static class MicrobeInternalCalculations
         return false;
     }
 
+    public static bool UsesDayVaryingCompounds(IReadOnlyCollection<IReadOnlyOrganelleTemplate> organelles,
+        BiomeConditions biomeConditions, HashSet<BioProcess>? usedProcessesCache)
+    {
+        if (usedProcessesCache == null)
+        {
+            usedProcessesCache = new HashSet<BioProcess>(organelles.Count + 1);
+        }
+        else
+        {
+            usedProcessesCache.Clear();
+        }
+
+        foreach (var organelle in organelles)
+        {
+            foreach (var tweakedProcess in organelle.Definition.RunnableProcesses)
+            {
+                usedProcessesCache.Add(tweakedProcess.Process);
+            }
+        }
+
+        foreach (var usedProcess in usedProcessesCache)
+        {
+            foreach (var input in usedProcess.Inputs)
+            {
+                if (biomeConditions.IsVaryingCompound(input.Key.ID))
+                    return true;
+            }
+        }
+
+        return false;
+    }
+
     /// <summary>
     ///   Calculates how much storage is needed to survive the night for a cell.
     /// </summary>
@@ -982,6 +1054,31 @@ public static class MicrobeInternalCalculations
         for (int i = 0; i < organelleCount; ++i)
         {
             var organelle = organelles[i];
+            if (!organelle.Definition.HasMovementComponent)
+                continue;
+
+            if (organelle != testedOrganelle &&
+                organelle.Position + testedOrganelle.Position == new Hex(0, 0))
+            {
+                var organelleLength = (maximumMovementDirection - GetOrganelleDirection(organelle)).Length();
+                var testedOrganelleLength = (maximumMovementDirection -
+                    GetOrganelleDirection(testedOrganelle)).Length();
+
+                if (organelleLength > testedOrganelleLength)
+                    return maximumMovementDirection;
+
+                return maximumMovementDirection - GetOrganelleDirection(testedOrganelle);
+            }
+        }
+
+        return maximumMovementDirection;
+    }
+
+    private static Vector3 ChooseFromSymmetricFlagella(IReadOnlyCollection<IReadOnlyOrganelleTemplate> organelles,
+        IReadOnlyOrganelleTemplate testedOrganelle, Vector3 maximumMovementDirection)
+    {
+        foreach (var organelle in organelles)
+        {
             if (!organelle.Definition.HasMovementComponent)
                 continue;
 

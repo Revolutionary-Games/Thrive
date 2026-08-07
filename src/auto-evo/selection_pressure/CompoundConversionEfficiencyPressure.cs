@@ -1,5 +1,6 @@
 ﻿namespace AutoEvo;
 
+using System;
 using SharedBase.Archive;
 
 public class CompoundConversionEfficiencyPressure : SelectionPressure
@@ -25,6 +26,7 @@ public class CompoundConversionEfficiencyPressure : SelectionPressure
         base(weight, [
             RemoveOrganelle.ThatCreateCompound(outCompound),
             AddOrganelleAnywhere.ThatConvertBetweenCompounds(compound, outCompound),
+            AddCellWithOrganelle.ThatConvertBetweenCompounds(compound, outCompound),
         ])
     {
         FromCompound = SimulationParameters.GetCompound(compound);
@@ -62,10 +64,10 @@ public class CompoundConversionEfficiencyPressure : SelectionPressure
 
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {
-        if (species is not MicrobeSpecies microbeSpecies)
-            return 0;
+        if (species is not MicrobeSpecies and not MulticellularSpecies)
+            throw new ArgumentException("Wrong type of Species passed to Microbe/Multicellular Species miche tree");
 
-        return cache.GetCompoundConversionScoreForSpecies(FromCompound, ToCompound, microbeSpecies);
+        return cache.GetCompoundConversionScoreForSpecies(FromCompound, ToCompound, species);
     }
 
     public override float GetEnergy(Patch patch)

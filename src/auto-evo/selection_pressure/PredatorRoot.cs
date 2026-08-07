@@ -1,5 +1,6 @@
 ﻿namespace AutoEvo;
 
+using System;
 using SharedBase.Archive;
 
 public class PredatorRoot : SelectionPressure
@@ -45,19 +46,19 @@ public class PredatorRoot : SelectionPressure
 
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {
-        if (species is not MicrobeSpecies microbeSpecies)
-            return 0;
-
-        var atpFromGlucose = cache.GetCompoundGeneratedFrom(glucose, atp, microbeSpecies, patch.Biome);
-        var energyBalance = cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome);
+        if (species is not MicrobeSpecies and not MulticellularSpecies)
+            throw new ArgumentException("Wrong type of Species passed to Microbe/Multicellular Species miche tree");
 
         // ensure that the predator is at least slightly willing to hunt
-        if (microbeSpecies.Behaviour.Aggression == 0)
+        if (species.Behaviour.Aggression == 0)
         {
             return 0;
         }
 
         // Ensure that a predator can actually survive off of only glucose
+        var atpFromGlucose = cache.GetCompoundGeneratedFrom(glucose, atp, species, patch.Biome);
+        var energyBalance = cache.GetEnergyBalanceForSpecies(species, patch.Biome);
+
         if (atpFromGlucose >= energyBalance.TotalConsumption)
         {
             return 1;

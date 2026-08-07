@@ -40,6 +40,13 @@ public class GeneralAvoidPredationSelectionPressure : SelectionPressure
         new ChangeMembraneRigidity(false),
         new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Fear, 50.0f),
         new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Aggression, 50.0f),
+        AddCellWithOrganelle.ThatCreateCompound(Compound.Oxytoxy),
+        new AddCellWithOrganelle(organelle => organelle.HasPilusComponent,
+            CommonMutationFunctions.Direction.Rear),
+        new AddCellWithOrganelle(organelle => organelle.HasSlimeJetComponent,
+            CommonMutationFunctions.Direction.Rear),
+        new AddCellWithOrganelle(organelle => organelle.HasMovementComponent,
+            CommonMutationFunctions.Direction.Rear),
     ])
     {
     }

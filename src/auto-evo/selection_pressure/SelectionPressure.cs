@@ -13,9 +13,9 @@ public abstract class SelectionPressure : IArchivable
 
     public readonly float Weight;
 
-    public readonly List<IMutationStrategy<MicrobeSpecies>> Mutations;
+    public readonly List<IMutationStrategy<Species>> Mutations;
 
-    public SelectionPressure(float weight, List<IMutationStrategy<MicrobeSpecies>> mutations)
+    public SelectionPressure(float weight, List<IMutationStrategy<Species>> mutations)
     {
         Weight = weight;
         Mutations = mutations;

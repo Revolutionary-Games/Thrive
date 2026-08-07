@@ -1,5 +1,7 @@
 ﻿namespace AutoEvo;
 
+using System;
+using Godot;
 using SharedBase.Archive;
 
 public class MetabolicStabilityPressure : SelectionPressure
@@ -41,28 +43,58 @@ public class MetabolicStabilityPressure : SelectionPressure
 
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {
-        if (species is not MicrobeSpecies microbeSpecies)
-            return 0;
-
-        if (cache.GetSpeedForSpecies(microbeSpecies) == 0)
+        if (cache.GetSpeedForSpecies(species) == 0)
         {
             return 0.0f;
         }
 
-        var energyBalance = cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome);
-
-        if (energyBalance.FinalBalance > 0)
+        if (species is MicrobeSpecies)
         {
+            var energyBalance = cache.GetEnergyBalanceForSpecies(species, patch.Biome);
+
+            if (energyBalance.FinalBalance > 0)
+            {
+                return 1.0f;
+            }
+
+            if (energyBalance.FinalBalanceStationary > 0)
+            {
+                // Only punish non-sessile species for not being able to move continuously
+                return 1.0f - species.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
+            }
+
+            return 0.0f;
+        }
+
+        if (species is MulticellularSpecies multicellularSpecies)
+        {
+            // for metabolic stability in Multicellular species, we care for individual cells instead of the whole
+            // species, because ATP is per-cell.
+            // We take cell types instead of individual cells because it's faster, matches what the player gets warnings
+            // for, and makes it easier to place new cells in hexes where they might have less adjacency.
+            var cellTypes = multicellularSpecies.CellTypes;
+            for (var i = 0; i < cellTypes.Count; ++i)
+            {
+                var cellType = cellTypes[i];
+                var energyBalance = cache.GetEnergyBalanceForCellType(cellType, multicellularSpecies, patch.Biome);
+
+                if (energyBalance.FinalBalance < 0)
+                {
+                    if (energyBalance.FinalBalanceStationary > 0)
+                    {
+                        // Only punish non-sessile species for not being able to move continuously
+                        return 1.0f - species.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
+                    }
+
+                    return 0.0f;
+                }
+            }
+
             return 1.0f;
         }
 
-        if (energyBalance.FinalBalanceStationary > 0)
-        {
-            // Only punish non-sessile species for not being able to move continuously
-            return 1.0f - microbeSpecies.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
-        }
-
-        return 0.0f;
+        GD.Print(species.ReadableName);
+        throw new ArgumentException("Wrong type of Species passed to Microbe/Multicellular Species miche tree");
     }
 
     public override float GetEnergy(Patch patch)

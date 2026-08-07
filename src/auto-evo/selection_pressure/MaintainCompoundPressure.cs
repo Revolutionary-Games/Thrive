@@ -18,6 +18,7 @@ public class MaintainCompoundPressure : SelectionPressure
     public MaintainCompoundPressure(Compound compound, float weight) : base(weight, [
         AddOrganelleAnywhere.ThatCreateCompound(compound),
         RemoveOrganelle.ThatUseCompound(compound),
+        AddCellWithOrganelle.ThatCreateCompound(compound),
     ])
     {
         this.compound = SimulationParameters.GetCompound(compound);
@@ -50,16 +51,12 @@ public class MaintainCompoundPressure : SelectionPressure
 
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {
-        if (species is not MicrobeSpecies microbeSpecies)
-            return 0;
-
-        var activeProcessList = cache.GetActiveProcessList(microbeSpecies);
+        var activeProcessList = cache.GetActiveProcessList(species);
+        var biomeConditions = patch.Biome;
+        var resolvedTolerances = cache.GetEnvironmentalTolerances(species, biomeConditions);
 
         var compoundUsed = 0.0f;
         var compoundCreated = 0.0f;
-
-        var biomeConditions = patch.Biome;
-        var resolvedTolerances = cache.GetEnvironmentalTolerances(microbeSpecies, biomeConditions);
 
         foreach (var process in activeProcessList)
         {

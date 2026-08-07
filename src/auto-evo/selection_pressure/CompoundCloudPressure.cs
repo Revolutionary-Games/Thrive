@@ -40,6 +40,8 @@ public class CompoundCloudPressure : SelectionPressure
             new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Focus, -150.0f),
             new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Opportunism, 150.0f),
             new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Opportunism, -150.0f),
+            AddCellWithOrganelle.ThatUseCompound(compound),
+            new AddCellWithOrganelle(organelle => organelle.HasChemoreceptorComponent),
         ])
     {
         compoundDefinition = SimulationParameters.GetCompound(compound);
@@ -100,20 +102,34 @@ public class CompoundCloudPressure : SelectionPressure
 
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {
-        if (species is not MicrobeSpecies microbeSpecies)
-            return 0;
+        float compoundATP;
+        float nominalStorageCapacity;
 
-        var score = MathF.Pow(cache.GetSpeedForSpecies(microbeSpecies), 0.6f);
+        var activity = species.Behaviour.Activity;
+
+        if (species is MicrobeSpecies microbeSpecies)
+        {
+            nominalStorageCapacity = microbeSpecies.StorageCapacities.Nominal;
+        }
+        else if (species is MulticellularSpecies multicellularSpecies)
+        {
+            nominalStorageCapacity = multicellularSpecies.StorageCapacities.Nominal;
+        }
+        else
+        {
+            throw new ArgumentException("Wrong type of Species passed to Microbe/Multicellular Species miche tree");
+        }
+
+        var energyBalance = cache.GetEnergyBalanceForSpecies(species, patch.Biome);
+
+        var speed = cache.GetSpeedForSpecies(species);
+        var score = MathF.Pow(speed, 0.6f);
 
         // Diminishing returns on storage
-        score += (MathF.Pow(microbeSpecies.StorageCapacities.Nominal + 1, 0.8f) - 1) / 0.8f;
-
-        var chemoreceptorScore = cache.GetChemoreceptorCloudScore(microbeSpecies, compoundDefinition, patch.Biome);
-
-        var activity = microbeSpecies.Behaviour.Activity;
+        score += (MathF.Pow(nominalStorageCapacity + 1, 0.8f) - 1) / 0.8f;
 
         // Species that are less active during the night get a penalty to their activity
-        if (isDayNightCycleEnabled && cache.GetUsesVaryingCompoundsForSpecies(microbeSpecies, patch.Biome))
+        if (isDayNightCycleEnabled && cache.GetUsesVaryingCompoundsForSpecies(species, patch.Biome))
         {
             var multiplier = activity / Constants.AI_ACTIVITY_TO_BE_FULLY_ACTIVE_DURING_NIGHT;
 
@@ -125,38 +141,38 @@ public class CompoundCloudPressure : SelectionPressure
 
         // modify score by activity and focus
         var activityScore = MathF.Pow(activity / Constants.MAX_SPECIES_ACTIVITY, 0.4f);
-        var focusScore = 1 + MathF.Pow(microbeSpecies.Behaviour.Focus / Constants.MAX_SPECIES_ACTIVITY, 0.4f) *
+        var focusScore = 1 + MathF.Pow(species.Behaviour.Focus / Constants.MAX_SPECIES_ACTIVITY, 0.4f) *
             Constants.AUTO_EVO_MAX_FOCUS_CLOUD_BONUS;
+
+        // Bonus from chemoreceptor
+        var chemoreceptorScore = cache.GetChemoreceptorCloudScore(species, compoundDefinition, patch.Biome);
 
         score = (score + chemoreceptorScore) * activityScore * focusScore
             + score * (1 - activityScore * focusScore) * Constants.AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION;
 
         // cloud compound collection is reduced if you are chasing prey or running away from predators instead
         // the same goes for chasing chunks
-        var aggressionFraction = microbeSpecies.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
-        var fearFraction = microbeSpecies.Behaviour.Fear / Constants.MAX_SPECIES_FEAR;
-        var opportunismFraction = microbeSpecies.Behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
+        var aggressionFraction = species.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
+        var fearFraction = species.Behaviour.Fear / Constants.MAX_SPECIES_FEAR;
+        var opportunismFraction = species.Behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
 
         score *= (1 - aggressionFraction * Constants.AUTO_EVO_MAX_AGGRESSION_GATHERING_PENALTY)
             * (1 - fearFraction * Constants.AUTO_EVO_MAX_FEAR_GATHERING_PENALTY)
             * (1 - opportunismFraction * Constants.AUTO_EVO_MAX_OPPORTUNISM_PENALTY);
 
-        float compoundATP;
+        // Penalize species that don't produce enough ATP to survive from just the compound in this cloud
         if (compoundOut != atp)
         {
             var compoundOutGenerated =
-                cache.GetCompoundGeneratedFrom(compoundDefinition, compoundOut, microbeSpecies, patch.Biome);
-            compoundATP = cache.GetCompoundConversionScoreForSpecies(compoundOut, atp, microbeSpecies) *
+                cache.GetCompoundGeneratedFrom(compoundDefinition, compoundOut, species, patch.Biome);
+            compoundATP = cache.GetCompoundConversionScoreForSpecies(compoundOut, atp, species) *
                 compoundOutGenerated;
         }
         else
         {
-            compoundATP = cache.GetCompoundGeneratedFrom(compoundDefinition, atp, microbeSpecies, patch.Biome);
+            compoundATP = cache.GetCompoundGeneratedFrom(compoundDefinition, atp, species, patch.Biome);
         }
 
-        var energyBalance = cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome);
-
-        // Penalize species that don't produce enough ATP to survive from just the compound in this cloud
         score *= MathF.Min(compoundATP / energyBalance.TotalConsumption, 1);
 
         return score;

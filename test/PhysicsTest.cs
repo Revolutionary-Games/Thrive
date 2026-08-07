@@ -591,9 +591,8 @@ public partial class PhysicsTest : Node
 
         // Generate a random, pretty big microbe species to use for testing
         var microbeSpecies =
-            CommonMutationFunctions.GenerateRandomSpecies(new MicrobeSpecies(1, string.Empty, string.Empty), dummyPatch,
-                workMemory,
-                random);
+            CommonMutationFunctions.GenerateRandomMicrobeSpecies(new MicrobeSpecies(1, string.Empty,
+                string.Empty), dummyPatch, workMemory, random);
 
         testMicrobeOrganellePositions =
             microbeSpecies.Organelles.Select(o => new JVecF3(Hex.AxialToCartesian(o.Position))).ToArray();

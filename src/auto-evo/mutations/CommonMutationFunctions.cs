@@ -69,7 +69,18 @@ public static class CommonMutationFunctions
         Back,
     }
 
-    public static MicrobeSpecies GenerateRandomSpecies(MicrobeSpecies mutated, Patch forPatch,
+    /// <summary>
+    ///   Which adjacency direction to check/place hexes in, relative to existing hexes
+    /// </summary>
+    public enum AdjacencyDirection
+    {
+        Front,
+        SideFront,
+        SideRear,
+        Rear,
+    }
+
+    public static MicrobeSpecies GenerateRandomMicrobeSpecies(MicrobeSpecies mutated, Patch forPatch,
         MutationWorkMemory workMemory, Random random, double mp = 300)
     {
         var mutationStrategy = new AddOrganelleAnywhere(_ => true);
@@ -84,7 +95,7 @@ public static class CommonMutationFunctions
             if (mutation == null)
                 break;
 
-            mutated = mutation.Species;
+            mutated = mutation.Species as MicrobeSpecies ?? throw new InvalidOperationException();
             mp -= mutation.MP;
 
             MutationLogicFunctions.ColourNewMicrobeSpecies(random, mutated);
@@ -109,6 +120,13 @@ public static class CommonMutationFunctions
         List<Hex> workMemory1, List<Hex> workMemory2, HashSet<Hex> workMemory3, Random random)
     {
         return AddOrganelleWithStrategy(OrganelleAddStrategy.Realistic, organelle, direction, newSpecies, workMemory1,
+            workMemory2, workMemory3, random);
+    }
+
+    public static bool AddOrganelle(OrganelleDefinition organelle, Direction direction, CellType cellType,
+        List<Hex> workMemory1, List<Hex> workMemory2, HashSet<Hex> workMemory3, Random random)
+    {
+        return AddOrganelleWithStrategy(OrganelleAddStrategy.Realistic, organelle, direction, cellType, workMemory1,
             workMemory2, workMemory3, random);
     }
 
@@ -148,6 +166,72 @@ public static class CommonMutationFunctions
         {
             newSpecies.IsBacteria = false;
         }
+
+        return true;
+    }
+
+    public static bool AddOrganelleWithStrategy(OrganelleAddStrategy strategy, OrganelleDefinition organelle,
+        Direction direction, CellType cellType, List<Hex> workMemory1, List<Hex> workMemory2,
+        HashSet<Hex> workMemory3, Random random)
+    {
+        OrganelleTemplate? position;
+
+        switch (strategy)
+        {
+            case OrganelleAddStrategy.Realistic:
+                position = GetRealisticPosition(organelle, cellType.ModifiableOrganelles, direction, workMemory1,
+                    workMemory3, random);
+                break;
+            case OrganelleAddStrategy.Spiral:
+                position = GetSpiralPosition(organelle, cellType.ModifiableOrganelles, workMemory1, workMemory3);
+                break;
+            case OrganelleAddStrategy.Front:
+                position = GetFrontPosition(organelle, cellType.ModifiableOrganelles, workMemory1, workMemory3);
+                break;
+            case OrganelleAddStrategy.Back:
+                position = GetBackPosition(organelle, cellType.ModifiableOrganelles, workMemory1, workMemory3);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(strategy), strategy, null);
+        }
+
+        // We return early as not being able to add an organelle is not a critical failure
+        if (position == null)
+            return false;
+
+        cellType.ModifiableOrganelles.AddFast(position, workMemory1, workMemory2);
+
+        // This should not be possible in the current state, but I am leaving it for now just in case
+        if (organelle == Nucleus)
+        {
+            cellType.IsBacteria = false;
+        }
+
+        return true;
+    }
+
+    public static bool AddCellCenterline(Direction direction, CellType newCellType, MulticellularSpecies newSpecies,
+        IndividualHexLayout<CellTemplate> existingCells, List<Hex> workMemory1, List<Hex> workMemory2, Random random)
+    {
+        HexWithData<CellTemplate>? position;
+
+        switch (direction)
+        {
+            case Direction.Front:
+                position = GetCenterlineFrontPosition(newCellType, existingCells);
+                break;
+            case Direction.Rear:
+                position = GetCenterlineRearPosition(newCellType, existingCells);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
+        }
+
+        // We return early as not being able to add a cell is not a critical failure
+        if (position == null)
+            return false;
+
+        newSpecies.ModifiableEditorCells.AddFast(position, workMemory1, workMemory2);
 
         return true;
     }
@@ -225,6 +309,90 @@ public static class CommonMutationFunctions
             organelles.GetIslandHexes(islandHexes, workMemory.WorkingMemory3, workMemory.WorkingMemory2,
                 workMemory.WorkingMemory4);
         }
+    }
+
+    /// <summary>
+    ///   Places cells of a given type adjacent in one direction to cells of a given type
+    /// </summary>
+    public static bool AddCellsAdjacent(MulticellularSpecies newSpecies, ref double mp,
+        IndividualHexLayout<CellTemplate> baseSpeciesCells, int baseCellsCount,
+        IReadOnlyCellTypeDefinition baseCellType, CellType newCellType, int mpCost, AdjacencyDirection direction,
+        List<Hex> workMemory1, List<Hex> workMemory2)
+    {
+        if (mpCost > mp)
+            return false;
+
+        var newCells = newSpecies.ModifiableEditorCells;
+
+        for (int j = 0; j < baseCellsCount; ++j)
+        {
+            var baseHex = baseSpeciesCells[j];
+
+            var baseCell = baseHex.Data;
+            if (baseCell != null && baseCell.CellType == baseCellType)
+            {
+                switch (direction)
+                {
+                    case AdjacencyDirection.Front:
+                        if (!TryAddNewCell(ref mp, newCellType, mpCost, workMemory1, workMemory2, baseCell,
+                                Hex.HexSide.Top, baseHex, newCells))
+                            return false;
+
+                        break;
+                    case AdjacencyDirection.Rear:
+                        if (!TryAddNewCell(ref mp, newCellType, mpCost, workMemory1, workMemory2, baseCell,
+                                Hex.HexSide.Bottom, baseHex, newCells))
+                            return false;
+
+                        break;
+                    case AdjacencyDirection.SideFront:
+                        if (!TryAddNewCell(ref mp, newCellType, mpCost, workMemory1, workMemory2, baseCell,
+                                Hex.HexSide.TopLeft, baseHex, newCells))
+                            return false;
+
+                        if (!TryAddNewCell(ref mp, newCellType, mpCost, workMemory1, workMemory2, baseCell,
+                                Hex.HexSide.TopRight, baseHex, newCells))
+                            return false;
+
+                        break;
+                    case AdjacencyDirection.SideRear:
+                        if (!TryAddNewCell(ref mp, newCellType, mpCost, workMemory1, workMemory2, baseCell,
+                                Hex.HexSide.BottomLeft, baseHex, newCells))
+                            return false;
+
+                        if (!TryAddNewCell(ref mp, newCellType, mpCost, workMemory1, workMemory2, baseCell,
+                                Hex.HexSide.BottomRight, baseHex, newCells))
+                            return false;
+
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
+                }
+            }
+        }
+
+        return true;
+    }
+
+    private static bool TryAddNewCell(ref double mp, CellType newCellType, int mpCost, List<Hex> workMemory1,
+        List<Hex> workMemory2, CellTemplate baseCell, Hex.HexSide hexSide, IReadOnlyHexWithData<CellTemplate> baseHex,
+        IndividualHexLayout<CellTemplate> newCells)
+    {
+        var newCellFront = GetAdjacentPosition(baseCell, hexSide,
+            baseHex.Position, newCellType, newCells);
+
+        // We only consider the mutation attempt failed if there is space for a cell, but we do not have the mp to place
+        // a cell in that place
+        if (newCellFront == null)
+            return true;
+
+        if (mpCost > mp)
+            return false;
+
+        mp -= mpCost;
+
+        newCells.AddFast(newCellFront, workMemory1, workMemory2);
+        return true;
     }
 
     private static OrganelleTemplate? GetRealisticPosition(OrganelleDefinition organelle,
@@ -388,6 +556,59 @@ public static class CommonMutationFunctions
         return null;
     }
 
+    private static HexWithData<CellTemplate>? GetAdjacentPosition(IReadOnlyCellTemplate cellTemplate, Hex.HexSide side,
+        Hex oldHex, CellType newCellType, IndividualHexLayout<CellTemplate> existingCells)
+    {
+        var newHexPosition = oldHex - Hex.HexNeighbourOffset[side];
+        var orientation = cellTemplate.Orientation;
+
+        var newCellTemplate = new CellTemplate(newCellType, newHexPosition, orientation);
+        var result = new HexWithData<CellTemplate>(newCellTemplate, newHexPosition, orientation);
+
+        if (existingCells.CanPlace(result.Position))
+        {
+            return result;
+        }
+
+        return null;
+    }
+
+    private static HexWithData<CellTemplate>? GetCenterlineFrontPosition(CellType newCellType,
+        IndividualHexLayout<CellTemplate> existingCells)
+    {
+        // Assume can't be placed at 0,0 so start at -1
+        for (int r = -1; r > -Constants.DIRECTION_ORGANELLE_CHECK_MAX_DISTANCE; --r)
+        {
+            var newHexPosition = new Hex(0, r);
+            if (existingCells.CanPlace(newHexPosition))
+            {
+                var result = new HexWithData<CellTemplate>(new CellTemplate(newCellType, newHexPosition, 0),
+                    newHexPosition, 0);
+                return result;
+            }
+        }
+
+        return null;
+    }
+
+    private static HexWithData<CellTemplate>? GetCenterlineRearPosition(CellType newCellType,
+        IndividualHexLayout<CellTemplate> existingCells)
+    {
+        // Assume can't be placed at 0,0 so start at -1
+        for (int r = 1; r < Constants.DIRECTION_ORGANELLE_CHECK_MAX_DISTANCE; ++r)
+        {
+            var newHexPosition = new Hex(0, r);
+            if (existingCells.CanPlace(newHexPosition))
+            {
+                var result = new HexWithData<CellTemplate>(new CellTemplate(newCellType, newHexPosition, 0),
+                    newHexPosition, 0);
+                return result;
+            }
+        }
+
+        return null;
+    }
+
     private static Hex.HexSide[] SideTraversalOrder(Hex hex, Direction direction, Random random)
     {
         if (hex.Q < 0)
@@ -440,5 +661,5 @@ public static class CommonMutationFunctions
 
     // TODO: this would be really nice to convert into a struct record as the mutation strategies generate a lot of
     // these, which in turn makes a lot of small objects just to hold the species reference and one double.
-    public record Mutant(MicrobeSpecies Species, double MP);
+    public record Mutant(Species Species, double MP);
 }

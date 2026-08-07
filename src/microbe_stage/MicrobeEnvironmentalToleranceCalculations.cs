@@ -25,6 +25,12 @@ public static class MicrobeEnvironmentalToleranceCalculations
         return score.OverallScore;
     }
 
+    public static double CalculateTotalToleranceScore(MulticellularSpecies species, BiomeConditions environment)
+    {
+        var score = CalculateTolerances(species, environment);
+        return score.OverallScore;
+    }
+
     public static ToleranceResult CalculateTolerances(MicrobeSpecies species, IBiomeConditions environment)
     {
         return CalculateTolerances(species.Tolerances, species.Organelles, species.CellTypeSpecializationBonus,

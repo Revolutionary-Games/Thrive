@@ -8,7 +8,7 @@ using static CommonMutationFunctions;
 /// <summary>
 ///   Adds a random, valid organelle to a valid position. Doesn't place multicellular or later organelles.
 /// </summary>
-public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
+public class AddOrganelleAnywhere : IMutationStrategy<Species>
 {
     private readonly Direction direction;
     private readonly OrganelleDefinition[] allOrganelles;
@@ -77,9 +77,12 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
         return ThatConvertBetweenCompounds(fromCompoundResolved, toCompoundResolved, direction);
     }
 
-    public List<Mutant>? MutationsOf(MicrobeSpecies baseSpecies, double mp, bool lawk,
+    public List<Mutant>? MutationsOf(Species baseSpecies, double mp, bool lawk,
         Random random, BiomeConditions biomeToConsider)
     {
+        if (baseSpecies is not MicrobeSpecies baseMicrobeSpecies)
+            return null;
+
         if (mp < Constants.ORGANELLE_CHEAPEST_COST)
             return null;
 
@@ -108,14 +111,14 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
             if (!organelle.LAWK && lawk)
                 continue;
 
-            if (organelle.RequiresNucleus && baseSpecies.IsBacteria)
+            if (organelle.RequiresNucleus && baseMicrobeSpecies.IsBacteria)
                 continue;
 
-            if (organelle.IsIncompatibleWithMembrane(baseSpecies.MembraneType))
+            if (organelle.IsIncompatibleWithMembrane(baseMicrobeSpecies.MembraneType))
                 continue;
 
             // Don't add duplicate unique organelles
-            if (organelle.Unique && baseSpecies.Organelles.Select(x => x.Definition).Contains(organelle))
+            if (organelle.Unique && baseMicrobeSpecies.Organelles.Select(x => x.Definition).Contains(organelle))
                 continue;
 
             var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
