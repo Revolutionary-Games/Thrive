@@ -610,7 +610,7 @@ public class MembraneShapeGenerator
                 continue;
 
             // Perpendicular distance from vertex to the ray
-            float distanceToRay = (directionToVertex - direction * projection).Length();
+            float distanceToRay = (directionToVertex - direction * projection).LengthSquared();
 
             if (distanceToRay < minDistanceToRay)
             {

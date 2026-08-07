@@ -14,8 +14,8 @@ public interface IMembraneDataSource
     public long ColonyKey { get; }
     public MembraneType Type { get; }
     public bool IsPreMulticellularStretch { get; }
-    bool IsMulticellularMembraneDataValid { get; }
-    bool IsColonyKeyValid { get; }
+    public bool IsMulticellularMembraneDataValid { get; }
+    public bool IsColonyKeyValid { get; }
 }
 
 public struct MulticellularMembraneData
