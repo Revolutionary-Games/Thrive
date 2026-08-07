@@ -10,7 +10,24 @@ public interface IMembraneDataSource
 {
     public Vector2[] HexPositions { get; }
     public int HexPositionCount { get; }
+    public MulticellularMembraneData CurrentCellMulticellularMembraneData { get; }
+    public long ColonyKey { get; }
     public MembraneType Type { get; }
+    public bool IsPreMulticellularStretch { get; }
+    public bool IsMulticellularMembraneDataValid { get; }
+    public bool IsColonyKeyValid { get; }
+}
+
+public struct MulticellularMembraneData
+{
+    public MulticellularMembraneData(Vector2 position, int orientation)
+    {
+        Position = position;
+        Orientation = orientation;
+    }
+
+    public Vector2 Position { get; }
+    public int Orientation { get; }
 }
 
 /// <summary>
@@ -18,6 +35,19 @@ public interface IMembraneDataSource
 /// </summary>
 public struct MembraneGenerationParameters : IMembraneDataSource
 {
+    public MembraneGenerationParameters(Vector2[] hexPositions, int hexPositionCount, MembraneType type,
+        MulticellularMembraneData currentCellMulticellularMembraneData, MulticellularMembraneData[] grownCellsData,
+        long colonyKey, bool isPreMulticellularStretch = false)
+        : this(hexPositions, hexPositionCount, type)
+    {
+        CurrentCellMulticellularMembraneData = currentCellMulticellularMembraneData;
+        GrownCellsData = grownCellsData;
+        ColonyKey = colonyKey;
+        IsPreMulticellularStretch = isPreMulticellularStretch;
+        IsMulticellularMembraneDataValid = true;
+        IsColonyKeyValid = true;
+    }
+
     public MembraneGenerationParameters(Vector2[] hexPositions, int hexPositionCount, MembraneType type)
     {
         HexPositions = hexPositions;
@@ -25,10 +55,21 @@ public struct MembraneGenerationParameters : IMembraneDataSource
         Type = type;
     }
 
+    public long ColonyKey { get; }
+
     public Vector2[] HexPositions { get; }
+
+    public MulticellularMembraneData CurrentCellMulticellularMembraneData { get; }
+
+    public MulticellularMembraneData[] GrownCellsData { get; } = [];
+
     public int HexPositionCount { get; }
 
     public MembraneType Type { get; }
+
+    public bool IsPreMulticellularStretch { get; set; }
+    public bool IsMulticellularMembraneDataValid { get; }
+    public bool IsColonyKeyValid { get; }
 }
 
 /// <summary>
@@ -89,7 +130,7 @@ public static class MembraneComputationHelpers
 
         var cache = ProceduralDataCache.Instance;
 
-        var hash = ComputeMembraneDataHash(hexes, length, membraneType);
+        var hash = new MembraneGenerationParameters(hexes, length, membraneType).ComputeMembraneDataHash();
 
         var result = cache.ReadMembraneData(hash);
 
@@ -105,63 +146,145 @@ public static class MembraneComputationHelpers
         // Need to compute the data now, it doesn't exist in the cache
         var generator = MembraneShapeGenerator.GetThreadSpecificGenerator();
 
-        result = generator.GenerateShape(hexes, length, membraneType);
+        result = generator.GenerateMicrobeShape(hexes, length, membraneType);
 
         cache.WriteMembraneData(ref result);
         return result;
     }
 
-    public static long ComputeMembraneDataHash(Vector2[] positions, int count, MembraneType type)
+    public static long ComputeMembraneDataHash(this IMembraneDataSource dataSource)
     {
-        var nameHash = type.InternalName.GetHashCode();
+        const long prime1 = 1099511628211L;
+        const long prime2 = 1409;
+        const long prime3 = 7793;
+
+        var nameHash = dataSource.Type.InternalName.GetHashCode();
 
         unchecked
         {
-            long hash = 1409 + nameHash + ((long)nameHash << 28);
+            long hash = prime2 + nameHash + ((long)nameHash << 28);
 
-            hash ^= (count + 1) * 7793;
-            int hashMultiply = 1;
+            hash ^= (dataSource.HexPositionCount + 1) * prime3;
 
-            for (int i = 0; i < count; ++i)
+            for (int i = 0; i < dataSource.HexPositionCount; ++i)
             {
-                var posHash = positions[i].GetHashCode();
+                var position = dataSource.HexPositions[i];
+                hash = (hash * prime1) ^ BitConverter.SingleToInt32Bits(position.X);
+                hash = (hash * prime1) ^ BitConverter.SingleToInt32Bits(position.Y);
+            }
 
-                // TODO: switch to using rotate left here once we can (after Godot 4)
-                hash ^= (hashMultiply * posHash) ^ ((5081L * hashMultiply * hashMultiply + posHash) << 32);
-                ++hashMultiply;
+            // NOTE: ColonyKey alone is the same for every cell in a colony, so it cannot be the only thing
+            // distinguishing membrane data between cells that share a hex layout. The per-cell position/orientation
+            // must also be part of the hash.
+            if (dataSource.IsMulticellularMembraneDataValid)
+            {
+                hash = (hash * prime1) ^
+                    BitConverter.SingleToInt32Bits(dataSource.CurrentCellMulticellularMembraneData.Position.X);
+                hash = (hash * prime1) ^
+                    BitConverter.SingleToInt32Bits(dataSource.CurrentCellMulticellularMembraneData.Position.Y);
+                hash = (hash * prime1) ^ dataSource.CurrentCellMulticellularMembraneData.Orientation;
+            }
+
+            if (dataSource.IsColonyKeyValid)
+            {
+                hash = (hash * prime1) ^ dataSource.ColonyKey;
+            }
+
+            if (dataSource.IsPreMulticellularStretch)
+            {
+                hash = (hash * prime1) ^ 1;
             }
 
             return hash;
         }
     }
 
-    public static long ComputeMembraneDataHash(this IMembraneDataSource dataSource)
-    {
-        return ComputeMembraneDataHash(dataSource.HexPositions, dataSource.HexPositionCount, dataSource.Type);
-    }
-
     public static bool MembraneDataFieldsEqual(this IMembraneDataSource dataSource, IMembraneDataSource other)
     {
-        return dataSource.MembraneDataFieldsEqual(other.HexPositions, other.HexPositionCount, other.Type);
+        return dataSource.MembraneDataFieldsEqual(other.HexPositions, other.HexPositionCount, other.Type,
+            other.CurrentCellMulticellularMembraneData, other.ColonyKey, other.IsMulticellularMembraneDataValid,
+            other.IsColonyKeyValid);
     }
 
     public static bool MembraneDataFieldsEqual(this IMembraneDataSource dataSource, Vector2[] otherPoints,
-        int otherPointCount, MembraneType otherType)
+        int otherPointCount, MembraneType otherType, MulticellularMembraneData otherMulticellularMembraneData,
+        long otherColonyKey, bool isOtherMulticellularMembraneDataValid, bool isOtherColonyKeyValid)
     {
         if (!dataSource.Type.Equals(otherType))
+        {
+            GD.PrintErr($"Membrane cache Type mismatch: {dataSource.Type} != {otherType}");
             return false;
+        }
 
         if (dataSource.HexPositionCount != otherPointCount)
+        {
+            GD.PrintErr("Membrane cache HexPositionCount mismatch: " +
+                $"{dataSource.HexPositionCount} != {otherPointCount}");
             return false;
+        }
 
         var count = dataSource.HexPositionCount;
 
         var sourcePoints = dataSource.HexPositions;
 
+#if DEBUG
+
+        if (dataSource.IsMulticellularMembraneDataValid || isOtherMulticellularMembraneDataValid)
+        {
+            if (!dataSource.IsMulticellularMembraneDataValid || !isOtherMulticellularMembraneDataValid)
+            {
+                GD.PrintErr("Membrane cache IsMulticellularMembraneDataValid mismatch: " +
+                    $"source={dataSource.IsMulticellularMembraneDataValid} " +
+                    $"other={isOtherMulticellularMembraneDataValid}");
+                return false;
+            }
+
+            if (!dataSource.CurrentCellMulticellularMembraneData.Position.Equals(otherMulticellularMembraneData
+                    .Position))
+            {
+                GD.PrintErr("Membrane cache CellPositionInMulticellular mismatch: " +
+                    $"{dataSource.CurrentCellMulticellularMembraneData.Position} " +
+                    $"!= {otherMulticellularMembraneData.Position}");
+                return false;
+            }
+
+            if (dataSource.CurrentCellMulticellularMembraneData.Orientation !=
+                otherMulticellularMembraneData.Orientation)
+            {
+                GD.PrintErr("Membrane cache CellOrientation mismatch: " +
+                    $"{dataSource.CurrentCellMulticellularMembraneData.Orientation} " +
+                    $"!= {otherMulticellularMembraneData.Orientation}");
+                return false;
+            }
+        }
+
+        if (dataSource.IsColonyKeyValid || isOtherColonyKeyValid)
+        {
+            if (!dataSource.IsColonyKeyValid || !isOtherColonyKeyValid)
+            {
+                GD.PrintErr("Membrane cache IsColonyKeyValid mismatch: " +
+                    $"source={dataSource.IsColonyKeyValid} " +
+                    $"other={isOtherColonyKeyValid}");
+                return false;
+            }
+
+            if (dataSource.ColonyKey != otherColonyKey)
+            {
+                GD.PrintErr($"Membrane cache ColonyKey mismatch: {dataSource.ColonyKey} != {otherColonyKey}");
+                return false;
+            }
+        }
+
+#endif
+
         for (int i = 0; i < count; ++i)
         {
             if (sourcePoints[i] != otherPoints[i])
+            {
+                GD.PrintErr($"Membrane cache HexPositions[{i}] mismatch: " +
+                    $"{sourcePoints[i]} != {otherPoints[i]}");
                 return false;
+            }
         }
 
         return true;

@@ -23,24 +23,30 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
     private bool disposed;
 
     public MembranePointData(Vector2[] hexPositions, int hexPositionCount, MembraneType type,
-        IReadOnlyList<Vector2> verticesToCopy)
+        IReadOnlyList<Vector2> verticesToCopy, MulticellularMembraneData currentCellMulticellularMembraneData,
+        long colonyKey, bool isPreMulticellularStretch = false) : this(hexPositions,
+        hexPositionCount, type, verticesToCopy, isPreMulticellularStretch)
+    {
+        CurrentCellMulticellularMembraneData = currentCellMulticellularMembraneData;
+        ColonyKey = colonyKey;
+        IsMulticellularMembraneDataValid = true;
+        IsColonyKeyValid = true;
+    }
+
+    public MembranePointData(Vector2[] hexPositions, int hexPositionCount, MembraneType type,
+        IReadOnlyList<Vector2> verticesToCopy, bool isPreMulticellularStretch = false)
     {
         HexPositions = hexPositions;
         Type = type;
         HexPositionCount = hexPositionCount;
+        IsPreMulticellularStretch = isPreMulticellularStretch;
 
         // Setup mesh to be generated (on the main thread) only when required
         finalMesh = new Lazy<(ArrayMesh Mesh, int SurfaceIndex)>(() =>
-        {
-            var generator = MembraneShapeGenerator.GetThreadSpecificGenerator();
-            return generator.GenerateMesh(this);
-        });
+            MembraneShapeGenerator.GetThreadSpecificGenerator().GenerateMesh(this));
 
         finalEngulfMesh = new Lazy<(ArrayMesh Mesh, int SurfaceIndex)>(() =>
-        {
-            var generator = MembraneShapeGenerator.GetThreadSpecificGenerator();
-            return generator.GenerateEngulfMesh(this);
-        });
+            MembraneShapeGenerator.GetThreadSpecificGenerator().GenerateEngulfMesh(this));
 
         // Copy the membrane data, this copied array can then be referenced by Membrane instances as long as there
         // might exist a reference to this class instance (that's why it is only released in the finalizer)
@@ -73,6 +79,13 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
     public Vector2[] HexPositions { get; }
 
     public int HexPositionCount { get; }
+
+    public MulticellularMembraneData CurrentCellMulticellularMembraneData { get; }
+
+    /// <summary>
+    ///   Precomputed colony key that encodes neighbour positions and rotations for caching/equality.
+    /// </summary>
+    public long ColonyKey { get; }
 
     public MembraneType Type { get; }
 
@@ -114,6 +127,15 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
 
     public bool Disposed => disposed;
 
+    /// <summary>
+    ///   Flag used for differentiation in caching when retrieving single cell membrane before and after stretching
+    /// </summary>
+    public bool IsPreMulticellularStretch { get; }
+
+    public bool IsMulticellularMembraneDataValid { get; }
+
+    public bool IsColonyKeyValid { get; }
+
     public bool MatchesCacheParameters(ICacheableData cacheData)
     {
         if (cacheData is IMembraneDataSource data)
@@ -146,9 +168,10 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
     {
         float distanceSquared = 0;
 
-        foreach (var vertex in Vertices2D)
+        var vertexCount = VertexCount;
+        for (int i = 0; i < vertexCount; ++i)
         {
-            var currentDistance = vertex.LengthSquared();
+            var currentDistance = Vertices2D[i].LengthSquared();
             if (currentDistance > distanceSquared)
                 distanceSquared = currentDistance;
         }
@@ -173,6 +196,55 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
             finalEngulfMesh.Value.Mesh.Dispose();
 
         ArrayPool<Vector2>.Shared.Return(Vertices2D);
+    }
+}
+
+public sealed class NeighbourData
+{
+    public long SingleCellHash;
+    public Vector2 OriginalAverageVertex;
+    public Vector2 LocalAverageVertex;
+    public MembranePointData OriginalPointData;
+
+    public MulticellularMembraneData MulticellularMembraneData;
+
+    /// <summary>
+    ///   Modified vertices separate from original. Used to persist changes across multiple calls to
+    ///   GenerateMulticellularMembrane.
+    /// </summary>
+    public List<Vector2>? ModifiedVertices;
+
+    /// <summary>
+    ///   Tracks which cell pairs have already been processed to avoid duplicate work when the relationship
+    ///   reverses (when the cell was a neighbor and is now the current cell).
+    /// </summary>
+    public HashSet<long> ProcessedNeighbours = new();
+
+    public NeighbourData(long singleCellHash, MulticellularMembraneData multicellularMembraneData,
+        MembranePointData originalPointData)
+    {
+        SingleCellHash = singleCellHash;
+        OriginalPointData = originalPointData;
+        MulticellularMembraneData = multicellularMembraneData;
+        OriginalAverageVertex = GetAverageVertex();
+    }
+
+    private Vector2 GetAverageVertex()
+    {
+        var vertexCount = OriginalPointData.VertexCount;
+
+        if (vertexCount == 0)
+            throw new InvalidOperationException("Cannot calculate average vertex with zero vertices");
+
+        var averageVertex = Vector2.Zero;
+        for (int i = 0; i < vertexCount; ++i)
+        {
+            averageVertex += OriginalPointData.Vertices2D[i];
+        }
+
+        averageVertex /= vertexCount;
+
+        return averageVertex;
     }
 }
 

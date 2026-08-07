@@ -35,6 +35,12 @@ public struct MulticellularGrowth : IArchivableComponent
     /// </summary>
     public CellLayout<CellTemplate>? TargetCellLayout;
 
+    /// <summary>
+    ///   Cached positions and rotation of all cells in the colony (used for membrane generation).
+    ///   Valid only together with <see cref="ColonyKey"/> — invalidated at the same sites.
+    /// </summary>
+    public MulticellularMembraneData[]? GrownCellsData;
+
     // TODO: switch this to non-nullable (and add a separate variable indicating if replacing something)
     /// <summary>
     ///   Once all lost body plan parts have been grown, this is the index the growing resumes at
@@ -46,6 +52,10 @@ public struct MulticellularGrowth : IArchivableComponent
     // should be allowed to resume growing
 
     public int NextBodyPlanCellToGrowIndex;
+
+    public long ColonyKey;
+
+    public bool IsColonyKeyValid;
 
     public bool EnoughResourcesForBudding;
 
@@ -64,6 +74,8 @@ public struct MulticellularGrowth : IArchivableComponent
 
         // This is updated by ReApplyCellTypeProperties when needed
         this.CalculateTotalBodyPlanCompounds(species);
+        IsColonyKeyValid = false;
+        GrownCellsData = null;
     }
 
     /// <summary>
@@ -178,6 +190,9 @@ public static class MulticellularGrowthHelpers
 
         ++multicellularGrowth.NextBodyPlanCellToGrowIndex;
         multicellularGrowth.CompoundsNeededForNextCell = null;
+
+        multicellularGrowth.IsColonyKeyValid = false;
+        multicellularGrowth.GrownCellsData = null;
     }
 
     public static void ResetMulticellularProgress(this ref MulticellularGrowth multicellularGrowth,
@@ -224,6 +239,8 @@ public static class MulticellularGrowthHelpers
         multicellularGrowth.CompoundsUsedForMulticellularGrowth = null;
 
         multicellularGrowth.TotalNeededForMulticellularGrowth = null;
+        multicellularGrowth.IsColonyKeyValid = false;
+        multicellularGrowth.GrownCellsData = null;
     }
 
     public static void OnMulticellularColonyCellLost(this ref MulticellularGrowth multicellularGrowth,
@@ -258,6 +275,8 @@ public static class MulticellularGrowthHelpers
             return;
 
         multicellularGrowth.LostPartsOfBodyPlan.Add(lostPartIndex);
+        multicellularGrowth.IsColonyKeyValid = false;
+        multicellularGrowth.GrownCellsData = null;
         organelleContainer.AllOrganellesDivided = false;
 
         if (multicellularGrowth.ResumeBodyPlanAfterReplacingLost != null)
