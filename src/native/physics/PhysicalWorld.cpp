@@ -43,6 +43,8 @@ namespace Thrive::Physics
 
 // #define CHECK_ROTATION_PROBLEMS
 
+// #define ROTATE_ONLY_ON_ALLOWED_AXES
+
 class PhysicalWorld::Pimpl
 {
 public:
@@ -1517,7 +1519,22 @@ void PhysicalWorld::ApplyBodyControl(PhysicsBody& bodyWrapper, float delta)
 
     float angle;
     difference.GetAxisAngle(axis, angle);
-    const auto angularVelocity = axis * (angle / controlState->rotationRate * normalizedDelta);
+    auto angularVelocity = axis * (angle / controlState->rotationRate * normalizedDelta);
+
+#ifdef ROTATE_ONLY_ON_ALLOWED_AXES
+    // Limit rotation based on body.GetMotionProperties()->GetAllowedDOFs()
+    const auto allowedDOFs = body.GetMotionProperties()->GetAllowedDOFs();
+
+    if ((allowedDOFs & JPH::EAllowedDOFs::RotationX) == JPH::EAllowedDOFs::None)
+        angularVelocity.SetX(0);
+
+    if ((allowedDOFs & JPH::EAllowedDOFs::RotationY) == JPH::EAllowedDOFs::None)
+        angularVelocity.SetY(0);
+
+    if ((allowedDOFs & JPH::EAllowedDOFs::RotationZ) == JPH::EAllowedDOFs::None)
+        angularVelocity.SetZ(0);
+#endif // ROTATE_ONLY_ON_ALLOWED_AXES
+
     body.SetAngularVelocityClamped(angularVelocity);
 
     // Jolt requires bodies with velocity to wake up
