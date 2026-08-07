@@ -6,7 +6,7 @@ using Godot;
 
 public class MutationLogicFunctions
 {
-    public static void NameNewMicrobeSpecies(MicrobeSpecies newSpecies, MicrobeSpecies parentSpecies)
+    public static void NameNewMicrobeSpecies(MicrobeSpecies newSpecies, MicrobeSpecies parentSpecies, Patch? forPatch)
     {
         // If for some silly reason the species are the same don't rename
         if (newSpecies == parentSpecies)
@@ -14,16 +14,11 @@ public class MutationLogicFunctions
             return;
         }
 
-        if (MicrobeSpeciesIsNewGenus(newSpecies, parentSpecies))
-        {
-            newSpecies.Genus = SimulationParameters.Instance.NameGenerator.GenerateNameSection();
-        }
-        else
-        {
-            newSpecies.Genus = parentSpecies.Genus;
-        }
-
-        newSpecies.Epithet = SimulationParameters.Instance.NameGenerator.GenerateNameSection(null, true);
+        // Genus check is now handled inside GenerateGenusName
+        newSpecies.Genus = SimulationParameters.Instance.NameGenerator.GenerateGenusName(null, parentSpecies,
+            newSpecies);
+        newSpecies.Epithet = SimulationParameters.Instance.NameGenerator.GenerateEpithetName(null, parentSpecies,
+            newSpecies, forPatch);
     }
 
     public static void ColourNewMicrobeSpecies(Random random, MicrobeSpecies newSpecies,

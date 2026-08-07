@@ -272,9 +272,8 @@ public partial class EditorComponentBottomLeftButtons : MarginContainer
 
         if (HandleRandomSpeciesName)
         {
-            var nameGenerator = SimulationParameters.Instance.NameGenerator;
-            var randomizedName = nameGenerator.GenerateNameSection() + " " +
-                nameGenerator.GenerateNameSection(null, true);
+            var editor = GetParent<CellEditorComponent>();
+            var randomizedName = editor.GenerateRandomName();
 
             speciesNameEdit.Text = randomizedName;
             OnNameTextChanged(randomizedName);

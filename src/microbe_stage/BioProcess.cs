@@ -6,7 +6,7 @@ using ThriveScriptsShared;
 /// <summary>
 ///   Definition of a bio process that cells can do in the form of a TweakedProcess.
 /// </summary>
-public class BioProcess : RegistryType
+public class BioProcess : RegistryType, INameGenerationTarget
 {
     /// <summary>
     ///   User visible pretty name
