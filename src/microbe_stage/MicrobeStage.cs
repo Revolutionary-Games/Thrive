@@ -1151,7 +1151,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             // lost after other colony members are deleted
             if (Player.TryGet<MicrobeColony>(out var colony))
             {
-                foreach (var compound in MicrobeColonyHelpers.GetCompounds(ref colony).GetCompoundDictionary())
+                foreach (var compound in colony.GetCompounds().GetCompoundDictionary())
                 {
                     Player.Get<CompoundStorage>().Compounds.Compounds[compound.Key] = compound.Value;
                 }
