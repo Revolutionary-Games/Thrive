@@ -1147,16 +1147,6 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         if (playerIsMulticellular)
         {
-            // If the player has a colony, all resources need to be transferred to the stem cell to avoid them being
-            // lost after other colony members are deleted
-            if (Player.TryGet<MicrobeColony>(out var colony))
-            {
-                foreach (var compound in colony.GetCompounds().GetCompoundDictionary())
-                {
-                    Player.Get<CompoundStorage>().Compounds.Compounds[compound.Key] = compound.Value;
-                }
-            }
-
             ref var multicellularSpeciesType = ref Player.Get<MulticellularSpeciesMember>();
 
             var resolvedTolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(
@@ -1180,6 +1170,18 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
                      or MulticellularReproductionMethod.MassBudding)
             {
                 adjacencyBonus = multicellularSpeciesType.Species.GetAdjacencySpecializationBonus(0);
+            }
+
+            // If the player has a colony, all resources need to be transferred to the stem cell to avoid them being
+            // lost after other colony members are deleted
+            if (Player.TryGet<MicrobeColony>(out var colony))
+            {
+                growth.DelayedCompoundStorage ??= new Dictionary<Compound, float>();
+
+                foreach (var compound in colony.GetCompounds().GetCompoundDictionary())
+                {
+                    growth.DelayedCompoundStorage[compound.Key] = compound.Value;
+                }
             }
 
             var totalSpecializationBonus = multicellularSpeciesType.MulticellularCellType.CellTypeSpecializationBonus *
