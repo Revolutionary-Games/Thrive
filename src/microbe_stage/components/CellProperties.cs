@@ -520,6 +520,7 @@ public static class CellPropertiesHelpers
         ref var spatial = ref entity.Get<SpatialInstance>();
 
         spatial.VisualScale = cellProperties.IsBacteria ? Vector3.One * Constants.BACTERIA_CELL_SCALE : Vector3.One;
+        spatial.ApplyVisualScale = true;
 
         ref var organelleContainer = ref entity.Get<OrganelleContainer>();
 
