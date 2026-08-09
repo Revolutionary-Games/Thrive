@@ -56,7 +56,7 @@ public struct MulticellularGrowth : IArchivableComponent
     /// <summary>
     ///   What compounds need to be added after mass budding is done that otherwise would be over limit
     /// </summary>
-    public Dictionary<Compound, float>? DelayedCompoundStorage;
+    public Dictionary<Compound, float>? MassBuddingDelayedCompoundStorage;
 
     public MulticellularGrowth(MulticellularSpecies species)
     {

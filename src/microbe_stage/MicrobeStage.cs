@@ -1143,6 +1143,8 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         // Update the player's cell
         ref var cellProperties = ref Player.Get<CellProperties>();
 
+        ref var compoundStorage = ref Player.Get<CompoundStorage>();
+
         bool playerIsMulticellular = Player.Has<MulticellularSpeciesMember>();
 
         if (playerIsMulticellular)
@@ -1176,11 +1178,11 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             // lost after other colony members are deleted
             if (Player.TryGet<MicrobeColony>(out var colony))
             {
-                growth.DelayedCompoundStorage ??= new Dictionary<Compound, float>();
+                var compounds = compoundStorage.Compounds.Compounds;
 
                 foreach (var compound in colony.GetCompounds().GetCompoundDictionary())
                 {
-                    growth.DelayedCompoundStorage[compound.Key] = compound.Value;
+                    compounds[compound.Key] = compound.Value;
                 }
             }
 
@@ -1309,6 +1311,36 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
                 WorldSimulation.SpawnSystem.EnsureEntityLimitAfterPlayerReproduction(playerPosition, doNotDespawn);
             });
+        }
+
+        // After compounds are redistributed, send whatever was given to the player to the delayed storage.
+        // If the player's reproduction method isn't mass budding, just ensure that the compounds are under capacity.
+        if (playerIsMulticellular)
+        {
+            ref var multicellularSpeciesType = ref Player.Get<MulticellularSpeciesMember>();
+
+            var compounds = compoundStorage.Compounds.Compounds;
+
+            if (multicellularSpeciesType.Species.ReproductionMethod == MulticellularReproductionMethod.MassBudding)
+            {
+                ref var growth = ref Player.Get<MulticellularGrowth>();
+                growth.MassBuddingDelayedCompoundStorage ??= new Dictionary<Compound, float>();
+
+                foreach (var compound in compounds)
+                {
+                    growth.MassBuddingDelayedCompoundStorage[compound.Key] = compound.Value;
+                }
+
+                compounds.Clear();
+            }
+            else
+            {
+                foreach (var compound in compounds)
+                {
+                    compounds[compound.Key] = MathF.Min(compound.Value,
+                        compoundStorage.Compounds.GetCapacityForCompound(compound.Key, true));
+                }
+            }
         }
 
         // Handle the compound modes

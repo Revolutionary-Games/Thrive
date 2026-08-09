@@ -141,18 +141,18 @@ public partial class MulticellularGrowthSystem : BaseSystem<World, float>
             }
         }
 
-        if (growth.DelayedCompoundStorage != null && entity.Has<MicrobeColony>()
+        if (growth.MassBuddingDelayedCompoundStorage != null && entity.Has<MicrobeColony>()
             && (growth.MassBuddingState == MulticellularMassBuddingState.Spawned
                 || speciesData.Species.ReproductionMethod != MulticellularReproductionMethod.MassBudding))
         {
             var bag = entity.Get<MicrobeColony>().GetCompounds();
 
-            foreach (var compound in growth.DelayedCompoundStorage)
+            foreach (var compound in growth.MassBuddingDelayedCompoundStorage)
             {
                 bag.AddCompound(compound.Key, compound.Value);
             }
 
-            growth.DelayedCompoundStorage.Clear();
+            growth.MassBuddingDelayedCompoundStorage.Clear();
         }
 
         HandleMulticellularReproduction(ref growth, ref speciesData, compoundStorage.Compounds, ref organelleContainer,
