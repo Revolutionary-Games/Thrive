@@ -160,7 +160,8 @@ public static class MulticellularGrowthHelpers
             else
             {
                 instance.MassBuddingState = reader.ReadBool() ?
-                    MulticellularMassBuddingState.Spawned : MulticellularMassBuddingState.NotSpawned;
+                    MulticellularMassBuddingState.Spawned :
+                    MulticellularMassBuddingState.NotSpawned;
             }
         }
 

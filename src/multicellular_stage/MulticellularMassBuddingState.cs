@@ -1,4 +1,4 @@
-public enum MulticellularMassBuddingState
+﻿public enum MulticellularMassBuddingState
 {
     NotSpawned,
     Spawning,
