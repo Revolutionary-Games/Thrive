@@ -51,7 +51,7 @@ public struct MulticellularGrowth : IArchivableComponent
 
     public bool IsASpore;
 
-    public MassBuddingState SpawnedInitialMassBuddingCells = MassBuddingState.NotSpawned;
+    public MulticellularMassBuddingState MassBuddingState = MulticellularMassBuddingState.NotSpawned;
 
     /// <summary>
     ///   What compounds need to be added after mass budding is done that otherwise would be over limit
@@ -69,13 +69,6 @@ public struct MulticellularGrowth : IArchivableComponent
 
         // This is updated by ReApplyCellTypeProperties when needed
         this.CalculateTotalBodyPlanCompounds(species);
-    }
-
-    public enum MassBuddingState
-    {
-        NotSpawned,
-        Spawning,
-        Spawned,
     }
 
     /// <summary>
@@ -121,7 +114,7 @@ public struct MulticellularGrowth : IArchivableComponent
         writer.Write(EnoughResourcesForBudding);
 
         writer.Write(IsASpore);
-        writer.Write((int)SpawnedInitialMassBuddingCells);
+        writer.Write((int)MassBuddingState);
     }
 }
 
@@ -162,12 +155,12 @@ public static class MulticellularGrowthHelpers
         {
             if (version >= 4)
             {
-                instance.SpawnedInitialMassBuddingCells = (MulticellularGrowth.MassBuddingState)reader.ReadInt32();
+                instance.MassBuddingState = (MulticellularMassBuddingState)reader.ReadInt32();
             }
             else
             {
-                instance.SpawnedInitialMassBuddingCells = reader.ReadBool() ?
-                    MulticellularGrowth.MassBuddingState.Spawned : MulticellularGrowth.MassBuddingState.NotSpawned;
+                instance.MassBuddingState = reader.ReadBool() ?
+                    MulticellularMassBuddingState.Spawned : MulticellularMassBuddingState.NotSpawned;
             }
         }
 
@@ -237,7 +230,7 @@ public static class MulticellularGrowthHelpers
         // immediately. Same goes for a few more cells if the species uses the mass budding reproduction method,
         // but that is handled separately by MulticellularGrowthSystem
         multicellularGrowth.NextBodyPlanCellToGrowIndex = 1;
-        multicellularGrowth.SpawnedInitialMassBuddingCells = MulticellularGrowth.MassBuddingState.NotSpawned;
+        multicellularGrowth.MassBuddingState = MulticellularMassBuddingState.NotSpawned;
         multicellularGrowth.EnoughResourcesForBudding = false;
 
         multicellularGrowth.CompoundsNeededForNextCell = null;
@@ -615,7 +608,7 @@ public static class MulticellularGrowthHelpers
             GD.PrintErr($"Tried to spawn initial mass budding cells ({species.ReadableName}) while some colony"
                 + $" cells were already grown (x{multicellularGrowth.NextBodyPlanCellToGrowIndex})");
 
-            multicellularGrowth.SpawnedInitialMassBuddingCells = MulticellularGrowth.MassBuddingState.Spawned;
+            multicellularGrowth.MassBuddingState = MulticellularMassBuddingState.Spawned;
             return;
         }
 
@@ -625,6 +618,6 @@ public static class MulticellularGrowthHelpers
                 recorder, notifySpawnTo);
         }
 
-        multicellularGrowth.SpawnedInitialMassBuddingCells = MulticellularGrowth.MassBuddingState.Spawning;
+        multicellularGrowth.MassBuddingState = MulticellularMassBuddingState.Spawning;
     }
 }

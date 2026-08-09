@@ -820,8 +820,7 @@ public static class SpawnHelpers
                     {
                         // Making sure that if the species' reproduction method changes later on, this cell won't
                         // randomly try growing bud cells
-                        multicellularGrowth.SpawnedInitialMassBuddingCells
-                            = MulticellularGrowth.MassBuddingState.NotSpawned;
+                        multicellularGrowth.MassBuddingState = MulticellularMassBuddingState.NotSpawned;
 
                         if (multicellularSpecies.ReproductionMethod == MulticellularReproductionMethod.Sporulation)
                             multicellularGrowth.IsASpore = true;
@@ -832,7 +831,7 @@ public static class SpawnHelpers
                     resolvedCellType = multicellularSpecies.ColonyRootCellType();
 
                     // Partially or fully grown colonies already have their bud grown
-                    multicellularGrowth.SpawnedInitialMassBuddingCells = MulticellularGrowth.MassBuddingState.Spawned;
+                    multicellularGrowth.MassBuddingState = MulticellularMassBuddingState.Spawned;
                 }
 
                 // If grown as a full colony, or partial colony, we need to record the growth state here to not get

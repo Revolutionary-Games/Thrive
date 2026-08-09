@@ -119,7 +119,7 @@ public partial class MulticellularGrowthSystem : BaseSystem<World, float>
             return;
 
         if (speciesData.Species.ReproductionMethod == MulticellularReproductionMethod.MassBudding
-            && growth.SpawnedInitialMassBuddingCells == MulticellularGrowth.MassBuddingState.NotSpawned)
+            && growth.MassBuddingState == MulticellularMassBuddingState.NotSpawned)
         {
             var recorder = worldSimulation.StartRecordingEntityCommands();
 
@@ -132,17 +132,17 @@ public partial class MulticellularGrowthSystem : BaseSystem<World, float>
         }
 
         if (speciesData.Species.ReproductionMethod == MulticellularReproductionMethod.MassBudding
-            && growth.SpawnedInitialMassBuddingCells == MulticellularGrowth.MassBuddingState.Spawning)
+            && growth.MassBuddingState == MulticellularMassBuddingState.Spawning)
         {
             if (entity.TryGet<MicrobeColony>(out var colony)
                 && colony.ColonyMembers.Length == speciesData.Species.MassBuddingCellCount)
             {
-                growth.SpawnedInitialMassBuddingCells = MulticellularGrowth.MassBuddingState.Spawned;
+                growth.MassBuddingState = MulticellularMassBuddingState.Spawned;
             }
         }
 
         if (growth.DelayedCompoundStorage != null && entity.Has<MicrobeColony>()
-            && (growth.SpawnedInitialMassBuddingCells == MulticellularGrowth.MassBuddingState.Spawned
+            && (growth.MassBuddingState == MulticellularMassBuddingState.Spawned
                 || speciesData.Species.ReproductionMethod != MulticellularReproductionMethod.MassBudding))
         {
             var bag = entity.Get<MicrobeColony>().GetCompounds();
