@@ -35,7 +35,17 @@ public partial class IntercellularMatrixSystem : BaseSystem<World, float>
         ref MicrobeColony colony, ref SpatialInstance spatialInstance, ref CellProperties cellProperties,
         ref AttachedToEntity ourAttachedPosition)
     {
-        var parentEntity = colony.ColonyStructure[entity];
+        Entity parentEntity;
+
+        try
+        {
+            parentEntity = colony.ColonyStructure[entity];
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr("Invalid colony structure data in intercellular matrix creation: ", e);
+            return;
+        }
 
         var instance = spatialInstance.GraphicalInstance;
         if (instance == null)
