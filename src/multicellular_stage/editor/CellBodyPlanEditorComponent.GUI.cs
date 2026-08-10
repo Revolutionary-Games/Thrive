@@ -468,8 +468,9 @@ public partial class CellBodyPlanEditorComponent
             sexualAnisogamyUpgradeButton.Visible = true;
             sexualAnisogamyUpgradeButton.Text =
                 Localization.Translate("SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY")
-                    .FormatSafe(Math.Round(Constants.MULTICELLULAR_ANISOGAMY_UPGRADE_COST *
-                        Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier, 1));
+                    .FormatSafe(Math.Min(Constants.MAX_SINGLE_EDIT_MP_COST, Math.Round(
+                        Constants.MULTICELLULAR_ANISOGAMY_UPGRADE_COST *
+                        Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier, 1)));
 
             anisogamySettingsContainer.Visible = false;
             gameteSelectionALabel.Text = Localization.Translate("GAMETE_CELL_TYPE");
