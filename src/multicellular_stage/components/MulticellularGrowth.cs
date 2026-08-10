@@ -115,6 +115,15 @@ public struct MulticellularGrowth : IArchivableComponent
 
         writer.Write(IsASpore);
         writer.Write((int)MassBuddingState);
+
+        if (MassBuddingDelayedCompoundStorage != null)
+        {
+            writer.WriteObject(MassBuddingDelayedCompoundStorage);
+        }
+        else
+        {
+            writer.WriteNullObject();
+        }
     }
 }
 
@@ -156,6 +165,8 @@ public static class MulticellularGrowthHelpers
             if (version >= 4)
             {
                 instance.MassBuddingState = (MulticellularMassBuddingState)reader.ReadInt32();
+
+                instance.MassBuddingDelayedCompoundStorage = reader.ReadObjectOrNull<Dictionary<Compound, float>>();
             }
             else
             {
