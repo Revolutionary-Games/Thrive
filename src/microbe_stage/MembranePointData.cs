@@ -23,7 +23,8 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
     private bool disposed;
 
     public MembranePointData(Vector2[] hexPositions, int hexPositionCount, MembraneType type,
-        IReadOnlyList<Vector2> verticesToCopy, MulticellularMembraneGenerationCellData currentCellMulticellularMembraneGenerationCellData,
+        IReadOnlyList<Vector2> verticesToCopy,
+        MulticellularMembraneGenerationCellData currentCellMulticellularMembraneGenerationCellData,
         long colonyKey, bool isPreMulticellularStretch = false) : this(hexPositions,
         hexPositionCount, type, verticesToCopy, isPreMulticellularStretch)
     {
@@ -220,7 +221,8 @@ public sealed class NeighbourData
     /// </summary>
     public HashSet<long> ProcessedNeighbours = new();
 
-    public NeighbourData(long singleCellHash, MulticellularMembraneGenerationCellData multicellularMembraneGenerationCellData,
+    public NeighbourData(long singleCellHash,
+        MulticellularMembraneGenerationCellData multicellularMembraneGenerationCellData,
         MembranePointData originalPointData)
     {
         SingleCellHash = singleCellHash;

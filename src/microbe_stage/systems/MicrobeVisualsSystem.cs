@@ -376,7 +376,8 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
             new MulticellularMembraneGenerationCellData(cellPositionInMulticellular, currentCell.Orientation);
 
         var membraneGenerationParameters = new MembraneGenerationParameters(hexes, hexCount,
-            cellProperties.MembraneType, multicellularMembraneData, grownCellsData, colonyKey, multicellular.Species.ID);
+            cellProperties.MembraneType, multicellularMembraneData, grownCellsData, colonyKey,
+            multicellular.Species.ID);
 
         var hash = membraneGenerationParameters.ComputeMembraneDataHash();
 

@@ -192,7 +192,8 @@ public class MembraneShapeGenerator
         var colonyKey =
             MembraneGenerationCoordinator.ComputeColonyKey(cellsData);
 
-        var multicellularMembraneData = new MulticellularMembraneGenerationCellData(thisCellPosition, thisCellOrientation);
+        var multicellularMembraneData =
+            new MulticellularMembraneGenerationCellData(thisCellPosition, thisCellOrientation);
 
         return new MembranePointData(hexCopy, hexCount, originalPointData.Type, vertices2D, multicellularMembraneData,
             colonyKey, false);
