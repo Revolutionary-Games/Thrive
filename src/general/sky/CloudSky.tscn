@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://bpmfib2hf13bd" path="res://src/general/sky/VolumetricCloudsEffect.cs" id="1_fijo7"]
 
 [sub_resource type="Environment" id="Environment_m2g58"]
+tonemap_mode = 4
+tonemap_agx_white = 6.0
 
 [sub_resource type="CompositorEffect" id="CompositorEffect_vknin"]
 resource_local_to_scene = false
@@ -13,8 +15,9 @@ needs_motion_vectors = false
 needs_normal_roughness = false
 script = ExtResource("1_fijo7")
 PlanetRadius = 1000.0
-CloudInnerHeight = 10.0
-CloudOuterHeight = 100.0
+CloudInnerHeight = 2.0
+CloudOuterHeight = 50.0
+Coverage = 0.26
 metadata/_custom_type_script = "uid://bpmfib2hf13bd"
 
 [sub_resource type="Compositor" id="Compositor_8ykry"]

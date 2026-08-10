@@ -25,9 +25,9 @@ layout(push_constant, std430) uniform Matrices {
 // Tunables. Perhaps these should be in an UBO later
 // ---------------------------------------------------------------------------
 const int   MS_OCTAVES        = 3;      // multiple-scattering approximation octaves
-const float MS_ATTENUATION    = 0.55;   // energy falloff per octave
+const float MS_ATTENUATION    = 0.65;   // energy falloff per octave
 const float PHASE_G           = 0.8;    // forward lobe eccentricity
-const float PHASE_BACK_MIX    = 0.3;    // weight of the backward lobe
+const float PHASE_BACK_MIX    = 0.15;   // weight of the backward lobe
 const float DETAIL_FREQ       = 8.0;    // detail tile = base tile / DETAIL_FREQ
 const float COARSE_STEP_SCALE = 3.0;    // empty-space skip multiplier
 const int   EMPTY_RUN_LIMIT   = 8;      // fine steps of nothing before going coarse again
@@ -37,8 +37,26 @@ const vec3  SUN_TINT          = vec3(1.0, 0.95, 0.87);
 const vec3  AMBIENT_TINT      = vec3(0.42, 0.55, 0.78);
 const float AMBIENT_ENERGY    = 1.2;
 const float AMBIENT_BASE_MUL  = 0.25;   // ambient at cloud base vs. cloud top
+const float DISTANCE_LOD      = 0.00015; // step growth per unit of distance
 
 const float PI = 3.14159265359;
+
+// Globals
+// Using globals here for the ray marching step to keep the code clean.
+vec3  g_ro;
+vec3  g_rd;
+vec3  g_center;
+vec3  g_sun_dir;
+vec3  g_sun_energy;
+vec3  g_ambient_energy;
+float g_inner;
+float g_outer;
+float g_thickness;
+float g_cos_angle;
+float g_jitter;
+
+vec3  g_accumulated   = vec3(0.0);
+float g_transmittance = 1.0;
 
 // ---------------------------------------------------------------------------
 // Utility
@@ -76,7 +94,7 @@ float henyey_greenstein(float cos_angle, float g) {
 // Dual-lobe: forward scatter for silverlining.
 float dual_lobe(float cos_angle, float g) {
     return mix(henyey_greenstein(cos_angle, g),
-               henyey_greenstein(cos_angle, -g * 0.4),
+               henyey_greenstein(cos_angle, -g * 0.25),
                PHASE_BACK_MIX);
 }
 
@@ -125,18 +143,18 @@ float sample_density(vec3 rel, float shell_frac, bool cheap) {
 }
 
 // Shadow ray toward the sun.
-float light_march(vec3 rel, vec3 sun_dir, float inner, float thickness) {
+float light_march(vec3 rel) {
     int steps = int(p.quality.y);
-    float step_len = thickness * LIGHT_STEP_FRAC;
+    float step_len = g_thickness * LIGHT_STEP_FRAC;
     float optical_depth = 0.0;
     vec3 lp = rel;
 
     for (int j = 0; j < steps; j++) {
-        lp += sun_dir * step_len;
+        lp += g_sun_dir * step_len;
         float h = length(lp);
-        if (h < inner || h > inner + thickness)
+        if (h < g_inner || h > g_outer)
             break;
-        float sf = (h - inner) / thickness;
+        float sf = (h - g_inner) / g_thickness;
         optical_depth += sample_density(lp, sf, true) * step_len;
         step_len *= LIGHT_STEP_GROW;
     }
@@ -144,101 +162,37 @@ float light_march(vec3 rel, vec3 sun_dir, float inner, float thickness) {
     return optical_depth;
 }
 
-// ---------------------------------------------------------------------------
-void main() {
-    ivec2 px = ivec2(gl_GlobalInvocationID.xy);
-    if (px.x >= int(p.screen_size.x) || px.y >= int(p.screen_size.y))
+// Ray march
+void march_segment(float seg_start, float seg_end, float dt_base, int max_iter) {
+    if (seg_end <= seg_start || g_transmittance < 0.01)
         return;
 
-    vec2 uv = (vec2(px) + 0.5) * p.screen_size.zw;
-    vec2 ndc = uv * 2.0 - 1.0;
-
-    vec4 target = m.inv_projection * vec4(ndc, 1.0, 1.0);
-    vec3 view_rd = normalize(target.xyz / target.w);
-    vec3 rd = normalize((m.cam_transform * vec4(view_rd, 0.0)).xyz);
-
-    vec3 ro = p.cam_pos.xyz;
-    vec3 center = p.planet_center.xyz;
-    float inner = p.shell.x;
-    float outer = p.shell.y;
-    float thickness = outer - inner;
-
-    // Opaque
-    float t_max = p.quality.z;
-    float raw_depth = texelFetch(depth_sampler, px, 0).r;
-    if (raw_depth > 0.0) {
-        vec4 view_pos = m.inv_projection * vec4(ndc, raw_depth, 1.0);
-        view_pos.xyz /= view_pos.w;
-        vec3 world_pos = (m.cam_transform * vec4(view_pos.xyz, 1.0)).xyz;
-        t_max = min(t_max, length(world_pos - ro));
-    }
-
-    // Shell
-    float ot0, ot1, it0, it1;
-    bool hit_outer = ray_sphere(ro, rd, center, outer, ot0, ot1);
-    if (!hit_outer || ot1 <= 0.0)
-        return;
-
-    bool hit_inner = ray_sphere(ro, rd, center, inner, it0, it1);
-    float cam_r = length(ro - center);
-    float march_start, march_end;
-
-    if (cam_r > outer) {
-        march_start = ot0;
-        march_end = (hit_inner && it0 > 0.0) ? it0 : ot1;
-    } else if (cam_r < inner) {
-        if (!hit_inner)
-            return;
-        march_start = it1;
-        march_end = ot1;
-    } else {
-        march_start = 0.0;
-        march_end = (hit_inner && it0 > 0.0) ? it0 : ot1;
-    }
-
-    march_start = max(march_start, 0.0);
-    march_end = min(march_end, t_max);
-    if (march_end <= march_start)
-        return;
-
-    // Step calculation
-    int base_steps = int(p.quality.x);
-    int max_iter = base_steps * 3;
-    float march_len = march_end - march_start;
-    float dt_fine = max(thickness / float(base_steps), march_len / float(max_iter));
-    float dt_coarse = dt_fine * COARSE_STEP_SCALE;
-
-    // Raymarch
-    vec3 sun_dir = normalize(p.sun.xyz);
-    float cos_angle = dot(rd, sun_dir);
-    vec3 sun_energy = SUN_TINT * p.sun.w;
-    vec3 ambient_energy = AMBIENT_TINT * AMBIENT_ENERGY;
-
-    float t = march_start + dt_fine * ign(vec2(px));
-    vec3 accumulated = vec3(0.0);
-    float transmittance = 1.0;
+    float t = seg_start + dt_base * g_jitter;
     bool coarse = true;
     int empty_run = 0;
 
     for (int i = 0; i < max_iter; i++) {
-        if (t >= march_end)
+        if (t >= seg_end)
             break;
 
-        vec3 rel = ro + rd * t - center;
+        float dt_fine = dt_base * (1.0 + t * DISTANCE_LOD);
+        float dt_coarse = dt_fine * COARSE_STEP_SCALE;
+
+        vec3 rel = g_ro + g_rd * t - g_center;
         float h = length(rel);
 
-        if (h < inner || h > outer) {
+        if (h < g_inner || h > g_outer) {
             t += coarse ? dt_coarse : dt_fine;
             continue;
         }
 
-        float shell_frac = (h - inner) / thickness;
+        float shell_frac = (h - g_inner) / g_thickness;
 
         if (coarse) {
             if (sample_density(rel, shell_frac, true) > 0.0) {
                 coarse = false;
                 empty_run = 0;
-                t = max(t - dt_coarse, march_start);
+                t = max(t - dt_coarse, seg_start);
                 continue;
             }
             t += dt_coarse;
@@ -257,30 +211,107 @@ void main() {
         }
         empty_run = 0;
 
-        float light_optical_depth = light_march(rel, sun_dir, inner, thickness);
-        float scatter = multi_scatter(light_optical_depth, cos_angle);
+        float light_optical_depth = light_march(rel);
+        float scatter = multi_scatter(light_optical_depth, g_cos_angle);
 
         float powder = 1.0 - exp(-density * 2.0);
-        powder = mix(1.0, powder, clamp(-cos_angle * 0.5 + 0.5, 0.0, 1.0));
+        powder = mix(1.0, powder, clamp(-g_cos_angle * 0.5 + 0.5, 0.0, 1.0));
 
-        vec3 source = sun_energy * scatter * powder
-                    + ambient_energy * mix(AMBIENT_BASE_MUL, 1.0, shell_frac);
+        vec3 source = g_sun_energy * scatter * powder
+                    + g_ambient_energy * mix(AMBIENT_BASE_MUL, 1.0, shell_frac);
 
         float step_transmittance = exp(-density * dt_fine);
-        accumulated += transmittance * source * (1.0 - step_transmittance);
-        transmittance *= step_transmittance;
+        g_accumulated += g_transmittance * source * (1.0 - step_transmittance);
+        g_transmittance *= step_transmittance;
 
-        if (transmittance < 0.01) {
-            transmittance = 0.0;
-            break;
+        if (g_transmittance < 0.01) {
+            g_transmittance = 0.0;
+            return;
         }
 
         t += dt_fine;
     }
+}
 
-    // Composite
+// ---------------------------------------------------------------------------
+void main() {
+    ivec2 px = ivec2(gl_GlobalInvocationID.xy);
+    if (px.x >= int(p.screen_size.x) || px.y >= int(p.screen_size.y))
+        return;
+
+    vec2 uv = (vec2(px) + 0.5) * p.screen_size.zw;
+    vec2 ndc = uv * 2.0 - 1.0;
+
+    vec4 target = m.inv_projection * vec4(ndc, 1.0, 1.0);
+    vec3 view_rd = normalize(target.xyz / target.w);
+
+    // Set up ray marching globals.
+    g_rd = normalize((m.cam_transform * vec4(view_rd, 0.0)).xyz);
+    g_ro = p.cam_pos.xyz;
+    g_center = p.planet_center.xyz;
+    g_inner = p.shell.x;
+    g_outer = p.shell.y;
+    g_thickness = g_outer - g_inner;
+    g_sun_dir = normalize(p.sun.xyz);
+    g_cos_angle = dot(g_rd, g_sun_dir);
+    g_sun_energy = SUN_TINT * p.sun.w;
+    g_ambient_energy = AMBIENT_TINT * AMBIENT_ENERGY;
+    g_jitter = ign(vec2(px));
+
+    // Opaque
+    float t_max = p.quality.z;
+    float raw_depth = texelFetch(depth_sampler, px, 0).r;
+    if (raw_depth > 0.0) {
+        vec4 view_pos = m.inv_projection * vec4(ndc, raw_depth, 1.0);
+        view_pos.xyz /= view_pos.w;
+        vec3 world_pos = (m.cam_transform * vec4(view_pos.xyz, 1.0)).xyz;
+        t_max = min(t_max, length(world_pos - g_ro));
+    }
+
+    // Shell
+    float ot0, ot1, it0, it1;
+
+    if (!ray_sphere(g_ro, g_rd, g_center, g_outer, ot0, ot1))
+        return;
+
+    float o0 = max(ot0, 0.0);
+    float o1 = min(ot1, t_max);
+    if (o1 <= o0)
+        return;
+
+    bool hit_inner = ray_sphere(g_ro, g_rd, g_center, g_inner, it0, it1);
+
+    float a0, a1, b0, b1;
+    if (!hit_inner || it1 <= 0.0) {
+        a0 = o0; a1 = o1;
+        b0 = 0.0; b1 = 0.0;
+    } else {
+        float i0 = clamp(it0, o0, o1);
+        float i1 = clamp(it1, o0, o1);
+        a0 = o0; a1 = i0;
+        b0 = i1; b1 = o1;
+    }
+
+    // Step calculation & raymarch
+    int base_steps = int(p.quality.x);
+    int max_iter = base_steps * 3;
+
+    float len_a = max(a1 - a0, 0.0);
+    float len_b = max(b1 - b0, 0.0);
+    float total_len = len_a + len_b;
+    if (total_len <= 0.0)
+        return;
+
+    float dt_base = max(g_thickness / float(base_steps), total_len / float(max_iter));
+
+    int iter_a = max(int(float(max_iter) * (len_a / total_len)), 1);
+    int iter_b = max(max_iter - iter_a, 1);
+
+    march_segment(a0, a1, dt_base, iter_a);
+    march_segment(b0, b1, dt_base, iter_b);
+
     vec3 scene = imageLoad(color_image, px).rgb;
-    vec3 outc = scene * transmittance + accumulated;
+    vec3 outc = scene * g_transmittance + g_accumulated;
 
     imageStore(color_image, px, vec4(outc, 1.0));
 }
