@@ -36,13 +36,15 @@ public struct MulticellularMembraneGenerationCellData
 public struct MembraneGenerationParameters : IMembraneDataSource
 {
     public MembraneGenerationParameters(Vector2[] hexPositions, int hexPositionCount, MembraneType type,
-        MulticellularMembraneGenerationCellData currentCellMulticellularMembraneGenerationCellData, MulticellularMembraneGenerationCellData[] grownCellsData,
-        long colonyKey, bool isPreMulticellularStretch = false)
+        MulticellularMembraneGenerationCellData currentCellMulticellularMembraneGenerationCellData,
+        MulticellularMembraneGenerationCellData[] grownCellsData,
+        long colonyKey, uint speciesId, bool isPreMulticellularStretch = false)
         : this(hexPositions, hexPositionCount, type)
     {
         CurrentCellMulticellularMembraneGenerationCellData = currentCellMulticellularMembraneGenerationCellData;
         GrownCellsData = grownCellsData;
         ColonyKey = colonyKey;
+        SpeciesId = speciesId;
         IsPreMulticellularStretch = isPreMulticellularStretch;
         IsMulticellularMembraneDataValid = true;
         IsColonyKeyValid = true;
@@ -55,17 +57,19 @@ public struct MembraneGenerationParameters : IMembraneDataSource
         Type = type;
     }
 
-    public long ColonyKey { get; }
-
     public Vector2[] HexPositions { get; }
 
     public MulticellularMembraneGenerationCellData CurrentCellMulticellularMembraneGenerationCellData { get; }
 
     public MulticellularMembraneGenerationCellData[] GrownCellsData { get; } = [];
 
+    public MembraneType Type { get; }
+
+    public long ColonyKey { get; }
+
     public int HexPositionCount { get; }
 
-    public MembraneType Type { get; }
+    public uint SpeciesId { get; }
 
     public bool IsPreMulticellularStretch { get; set; }
     public bool IsMulticellularMembraneDataValid { get; }
@@ -179,9 +183,11 @@ public static class MembraneComputationHelpers
             if (dataSource.IsMulticellularMembraneDataValid)
             {
                 hash = (hash * prime1) ^
-                    BitConverter.SingleToInt32Bits(dataSource.CurrentCellMulticellularMembraneGenerationCellData.Position.X);
+                    BitConverter.SingleToInt32Bits(dataSource.CurrentCellMulticellularMembraneGenerationCellData
+                        .Position.X);
                 hash = (hash * prime1) ^
-                    BitConverter.SingleToInt32Bits(dataSource.CurrentCellMulticellularMembraneGenerationCellData.Position.Y);
+                    BitConverter.SingleToInt32Bits(dataSource.CurrentCellMulticellularMembraneGenerationCellData
+                        .Position.Y);
                 hash = (hash * prime1) ^ dataSource.CurrentCellMulticellularMembraneGenerationCellData.Orientation;
             }
 
@@ -202,12 +208,14 @@ public static class MembraneComputationHelpers
     public static bool MembraneDataFieldsEqual(this IMembraneDataSource dataSource, IMembraneDataSource other)
     {
         return dataSource.MembraneDataFieldsEqual(other.HexPositions, other.HexPositionCount, other.Type,
-            other.CurrentCellMulticellularMembraneGenerationCellData, other.ColonyKey, other.IsMulticellularMembraneDataValid,
+            other.CurrentCellMulticellularMembraneGenerationCellData, other.ColonyKey,
+            other.IsMulticellularMembraneDataValid,
             other.IsColonyKeyValid);
     }
 
     public static bool MembraneDataFieldsEqual(this IMembraneDataSource dataSource, Vector2[] otherPoints,
-        int otherPointCount, MembraneType otherType, MulticellularMembraneGenerationCellData otherMulticellularMembraneGenerationCellData,
+        int otherPointCount, MembraneType otherType,
+        MulticellularMembraneGenerationCellData otherMulticellularMembraneGenerationCellData,
         long otherColonyKey, bool isOtherMulticellularMembraneDataValid, bool isOtherColonyKeyValid)
     {
         if (!dataSource.Type.Equals(otherType))
@@ -239,8 +247,9 @@ public static class MembraneComputationHelpers
                 return false;
             }
 
-            if (!dataSource.CurrentCellMulticellularMembraneGenerationCellData.Position.Equals(otherMulticellularMembraneGenerationCellData
-                    .Position))
+            if (!dataSource.CurrentCellMulticellularMembraneGenerationCellData.Position.Equals(
+                    otherMulticellularMembraneGenerationCellData
+                        .Position))
             {
                 GD.PrintErr("Membrane cache CellPositionInMulticellular mismatch: " +
                     $"{dataSource.CurrentCellMulticellularMembraneGenerationCellData.Position} " +

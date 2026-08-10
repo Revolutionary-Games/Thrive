@@ -55,20 +55,9 @@ public static class MembraneGenerationCoordinator
         var cellPosition = generationParameters.CurrentCellMulticellularMembraneGenerationCellData.Position;
         var cellOrientation = generationParameters.CurrentCellMulticellularMembraneGenerationCellData.Orientation;
 
-        // Prefer the ColonyKey provided in generationParameters if available. Otherwise compute or fetch a cached
-        // colony key for this colony. generationParameters may not carry a reference to the species, so fall back
-        // to computing directly if necessary.
-        long colonyKey;
-        if (generationParameters.IsColonyKeyValid)
-        {
-            colonyKey = generationParameters.ColonyKey;
-        }
-        else
-        {
-            colonyKey = ComputeColonyKey(grownCellsData);
-        }
+        var colonyTrackerKey = GetColonyTrackerKey(generationParameters, grownCellsData);
 
-        var tracker = Trackers.GetOrAdd(colonyKey,
+        var tracker = Trackers.GetOrAdd(colonyTrackerKey,
             _ => new ColonyTracker { ExpectedCount = grownCellsData.Length });
 
         var multicellularMembraneData = new MulticellularMembraneGenerationCellData(cellPosition, cellOrientation);
@@ -98,7 +87,7 @@ public static class MembraneGenerationCoordinator
             hashedMembranes.Add(data.SingleCellHash);
         }
 
-        Trackers.TryRemove(colonyKey, out _);
+        Trackers.TryRemove(colonyTrackerKey, out _);
 
         return hashedMembranes;
     }
@@ -127,6 +116,34 @@ public static class MembraneGenerationCoordinator
 
             return hash;
         }
+    }
+
+    private static long GetColonyTrackerKey(MembraneGenerationParameters generationParameters,
+        MulticellularMembraneGenerationCellData[] grownCellsData)
+    {
+        const long prime = 1099511628211L;
+        long colonyKey;
+
+        // Prefer the ColonyKey provided in generationParameters if available. Otherwise compute or fetch a cached
+        // colony key for this colony. generationParameters may not carry a reference to the species, so fall back
+        // to computing directly if necessary.
+        if (generationParameters.IsColonyKeyValid)
+        {
+            colonyKey = generationParameters.ColonyKey;
+        }
+        else
+        {
+            colonyKey = ComputeColonyKey(grownCellsData);
+        }
+
+        unchecked
+        {
+            // Use species ID in case there is another multicellular spiecies with the same cell positions and rotations
+            colonyKey ^= generationParameters.SpeciesId * prime;
+            colonyKey *= prime;
+        }
+
+        return colonyKey;
     }
 
     private static long CellKey(Vector2 position)

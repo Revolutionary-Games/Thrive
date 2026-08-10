@@ -376,7 +376,7 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
             new MulticellularMembraneGenerationCellData(cellPositionInMulticellular, currentCell.Orientation);
 
         var membraneGenerationParameters = new MembraneGenerationParameters(hexes, hexCount,
-            cellProperties.MembraneType, multicellularMembraneData, grownCellsData, colonyKey);
+            cellProperties.MembraneType, multicellularMembraneData, grownCellsData, colonyKey, multicellular.Species.ID);
 
         var hash = membraneGenerationParameters.ComputeMembraneDataHash();
 
@@ -418,7 +418,7 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
             multicellular.Species.ModifiableGameplayCells[currentCellIndex].Orientation);
 
         membranesToGenerate.Enqueue(new MembraneGenerationParameters(hexes, hexCount, cellProperties.MembraneType,
-            cellData, grownCellsData, colonyKey));
+            cellData, grownCellsData, colonyKey, multicellular.Species.ID));
 
         // Immediately start some jobs to give background threads something to do while the main thread is busy
         // potentially setting up other visuals
