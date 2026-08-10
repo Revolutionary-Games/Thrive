@@ -186,8 +186,8 @@ public class MulticellularSpeciesComparer
                 if (speciesA.ReproductionMethod != MulticellularReproductionMethod.SexualIsogamy)
                     reproductionCost += Constants.MULTICELLULAR_REPRODUCTION_METHOD_CHANGE_COST;
 
-                // TODO: should this cost be *not* capped to the single action cost?
-                reproductionCost += Constants.MULTICELLULAR_ANISOGAMY_UPGRADE_COST;
+                // Note anisogamy upgrade cost is *not* capped to the single action cost!
+                cost += Math.Min(Constants.MULTICELLULAR_ANISOGAMY_UPGRADE_COST * costMultiplier, maxSingleActionCost);
 
                 // Upgrading doesn't let changing the original gamete cell for free.
                 // If upgrading from random mode, then the gamete A might be missing.
