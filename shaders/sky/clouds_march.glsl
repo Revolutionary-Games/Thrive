@@ -3,14 +3,15 @@
 
 layout(local_size_x = 8, local_size_y = 8, local_size_z = 1) in;
 
-layout(rgba16f, set = 0, binding = 0) uniform image2D color_image;
-layout(set = 0, binding = 1) uniform sampler2D depth_sampler;
+layout(rgba16f, set = 0, binding = 0) uniform image2D cloud_target;
+layout(set = 0, binding = 1) uniform sampler2D depth_sampler;   // FULL resolution
 layout(set = 0, binding = 2) uniform sampler3D base_noise;
 
 layout(set = 0, binding = 3, std140) uniform Params {
     vec4 planet_center;   // .xyz center                          .w unused
     vec4 shell;           // .x inner R, .y outer R, .z tile size,.w density multiplier
     vec4 screen_size;     // .xy size,   .zw 1/size
+    vec4 march_size;      // .xy MARCH res, .zw 1/MARCH res
     vec4 cam_pos;         // .xyz world camera position           .w unused
     vec4 sun;             // .xyz direction TOWARD sun (unit)     .w sun energy
     vec4 quality;         // .x base steps, .y light steps, .z max march dist, .w coverage
@@ -24,19 +25,20 @@ layout(push_constant, std430) uniform Matrices {
 // ---------------------------------------------------------------------------
 // Tunables. Perhaps these should be in an UBO later
 // ---------------------------------------------------------------------------
-const int   MS_OCTAVES        = 3;      // multiple-scattering approximation octaves
-const float MS_ATTENUATION    = 0.65;   // energy falloff per octave
-const float PHASE_G           = 0.8;    // forward lobe eccentricity
-const float PHASE_BACK_MIX    = 0.15;   // weight of the backward lobe
-const float DETAIL_FREQ       = 8.0;    // detail tile = base tile / DETAIL_FREQ
-const float COARSE_STEP_SCALE = 3.0;    // empty-space skip multiplier
-const int   EMPTY_RUN_LIMIT   = 8;      // fine steps of nothing before going coarse again
-const float LIGHT_STEP_FRAC   = 0.06;   // first light step as a fraction of shell thickness
-const float LIGHT_STEP_GROW   = 1.45;   // light steps grow exponentially (cone-ish)
+const int   MS_OCTAVES        = 3;       // multiple-scattering approximation octaves
+const float MS_ATTENUATION    = 0.55;    // energy falloff per octave
+const float PHASE_G           = 0.8;     // forward lobe eccentricity
+const float PHASE_BACK_G      = 0.25;    // backward lobe as a fraction of PHASE_G
+const float PHASE_BACK_MIX    = 0.15;    // weight of the backward lobe
+const float DETAIL_FREQ       = 8.0;     // detail tile = base tile / DETAIL_FREQ
+const float COARSE_STEP_SCALE = 3.0;     // empty-space skip multiplier
+const int   EMPTY_RUN_LIMIT   = 8;       // fine steps of nothing before going coarse again
+const float LIGHT_STEP_FRAC   = 0.06;    // first light step as a fraction of shell thickness
+const float LIGHT_STEP_GROW   = 1.45;    // light steps grow exponentially (cone-ish)
 const vec3  SUN_TINT          = vec3(1.0, 0.95, 0.87);
 const vec3  AMBIENT_TINT      = vec3(0.42, 0.55, 0.78);
 const float AMBIENT_ENERGY    = 1.2;
-const float AMBIENT_BASE_MUL  = 0.25;   // ambient at cloud base vs. cloud top
+const float AMBIENT_BASE_MUL  = 0.25;    // ambient at cloud base vs. cloud top
 const float DISTANCE_LOD      = 0.00015; // step growth per unit of distance
 
 const float PI = 3.14159265359;
@@ -55,8 +57,8 @@ float g_thickness;
 float g_cos_angle;
 float g_jitter;
 
-vec3  g_accumulated   = vec3(0.0);
-float g_transmittance = 1.0;
+vec3  g_accumulated;
+float g_transmittance;
 
 // ---------------------------------------------------------------------------
 // Utility
@@ -233,19 +235,15 @@ void march_segment(float seg_start, float seg_end, float dt_base, int max_iter) 
     }
 }
 
-// ---------------------------------------------------------------------------
-void main() {
-    ivec2 px = ivec2(gl_GlobalInvocationID.xy);
-    if (px.x >= int(p.screen_size.x) || px.y >= int(p.screen_size.y))
-        return;
+vec4 compute_clouds(ivec2 px) {
+    const vec4 NO_CLOUD = vec4(0.0, 0.0, 0.0, 1.0);
 
-    vec2 uv = (vec2(px) + 0.5) * p.screen_size.zw;
+    vec2 uv = (vec2(px) + 0.5) * p.march_size.zw;
     vec2 ndc = uv * 2.0 - 1.0;
 
     vec4 target = m.inv_projection * vec4(ndc, 1.0, 1.0);
     vec3 view_rd = normalize(target.xyz / target.w);
 
-    // Set up ray marching globals.
     g_rd = normalize((m.cam_transform * vec4(view_rd, 0.0)).xyz);
     g_ro = p.cam_pos.xyz;
     g_center = p.planet_center.xyz;
@@ -257,10 +255,15 @@ void main() {
     g_sun_energy = SUN_TINT * p.sun.w;
     g_ambient_energy = AMBIENT_TINT * AMBIENT_ENERGY;
     g_jitter = ign(vec2(px));
+    g_accumulated = vec3(0.0);
+    g_transmittance = 1.0;
 
     // Opaque
+    ivec2 depth_px = ivec2((vec2(px) + 0.5) * p.march_size.zw * p.screen_size.xy);
+    depth_px = clamp(depth_px, ivec2(0), ivec2(p.screen_size.xy) - 1);
+
     float t_max = p.quality.z;
-    float raw_depth = texelFetch(depth_sampler, px, 0).r;
+    float raw_depth = texelFetch(depth_sampler, depth_px, 0).r;
     if (raw_depth > 0.0) {
         vec4 view_pos = m.inv_projection * vec4(ndc, raw_depth, 1.0);
         view_pos.xyz /= view_pos.w;
@@ -272,12 +275,12 @@ void main() {
     float ot0, ot1, it0, it1;
 
     if (!ray_sphere(g_ro, g_rd, g_center, g_outer, ot0, ot1))
-        return;
+        return NO_CLOUD;
 
     float o0 = max(ot0, 0.0);
     float o1 = min(ot1, t_max);
     if (o1 <= o0)
-        return;
+        return NO_CLOUD;
 
     bool hit_inner = ray_sphere(g_ro, g_rd, g_center, g_inner, it0, it1);
 
@@ -292,7 +295,7 @@ void main() {
         b0 = i1; b1 = o1;
     }
 
-    // Step calculation & raymarch
+    // Step calculation
     int base_steps = int(p.quality.x);
     int max_iter = base_steps * 3;
 
@@ -300,7 +303,7 @@ void main() {
     float len_b = max(b1 - b0, 0.0);
     float total_len = len_a + len_b;
     if (total_len <= 0.0)
-        return;
+        return NO_CLOUD;
 
     float dt_base = max(g_thickness / float(base_steps), total_len / float(max_iter));
 
@@ -310,8 +313,15 @@ void main() {
     march_segment(a0, a1, dt_base, iter_a);
     march_segment(b0, b1, dt_base, iter_b);
 
-    vec3 scene = imageLoad(color_image, px).rgb;
-    vec3 outc = scene * g_transmittance + g_accumulated;
-
-    imageStore(color_image, px, vec4(outc, 1.0));
+    return vec4(g_accumulated, g_transmittance);
 }
+
+// ---------------------------------------------------------------------------
+void main() {
+    ivec2 px = ivec2(gl_GlobalInvocationID.xy);
+    if (px.x >= int(p.march_size.x) || px.y >= int(p.march_size.y))
+        return;
+
+    imageStore(cloud_target, px, compute_clouds(px));
+}
+

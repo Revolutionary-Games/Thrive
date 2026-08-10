@@ -47,9 +47,16 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     [Export]
     public float MaxMarchDistance = 8000.0f;
 
+    [Export(PropertyHint.Range, "1,4,1")]
+    public int ResolutionDivisor = 2;
+
+    [Export]
+    public bool ProfileGpu;
+
     private const string SkyResourcesDir = "res://assets/textures/sky/";
     private const string NoiseProfileFileName = "cloud_base_128.res";
-    private const string SkyShaderFileName = "res://shaders/sky/clouds_march.glsl";
+    private const string RaymarcherShaderFileName = "res://shaders/sky/clouds_march.glsl";
+    private const string UpsamplerShaderFileName = "res://shaders/sky/upsampler.glsl";
 
     [ExportToolButton("Reload Pipeline")]
     private Callable ReloadPipelineCallable => new(this, MethodName.Reload);
@@ -57,17 +64,29 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     [ExportToolButton("Generate Noise Profile")]
     private Callable GenerateNoiseProfileResourceCallable => new(this, MethodName.GenerateNoiseProfileResource);
 
+    [ExportToolButton("Dump GPU profiler data")]
+    private Callable DumpGpuProfilerData => new(this, MethodName.ReportTimestamps);
+
     private RenderingDevice? renderingDevice;
     private Rid depthSampler;
     private Rid noiseSampler;
-    private Rid shader;
-    private Rid pipeline;
+    private Rid rayMarcherShader;
+    private Rid upsamplerShader;
+    private Rid rayMarcherPipeline;
+    private Rid upsamplerPipeline;
     private Rid noiseTexture;
 
-    private RDShaderSpirV loadedSpirv = null!;
+    private RDShaderSpirV rayMarcherSpirv = null!;
+    private RDShaderSpirV upsamplerSpirv = null!;
     private ImageTexture3D noiseProfile = null!;
 
+    private static readonly StringName CloudContext = "volumetric_clouds";
+    private static readonly StringName CloudTextureName = "cloud_half";
+
     private volatile int state;
+
+    private Vector2I currentCloudSize = Vector2I.Zero;
+    private uint currentCloudViews;
 
     public VolumetricCloudsEffect()
     {
@@ -83,24 +102,21 @@ public partial class VolumetricCloudsEffect : CompositorEffect
             return;
 
         var rd = renderingDevice;
-        var pipelineRid = pipeline;
-        var shaderRid = shader;
-        var depthSamplerRid = depthSampler;
-        var noiseSamplerRid = noiseSampler;
+        var rids = new[]
+        {
+            rayMarcherPipeline, rayMarcherShader, upsamplerPipeline, upsamplerShader, depthSampler, noiseSampler,
+        };
 
         RenderingServer.CallOnRenderThread(Callable.From(() =>
         {
             var current = RenderingServer.GetRenderingDevice();
-            if (current != null && current == rd)
+            if (current is null || current != rd)
+                return;
+
+            foreach (var rid in rids)
             {
-                if (pipelineRid.IsValid)
-                    rd.FreeRid(pipelineRid);
-                if (shaderRid.IsValid)
-                    rd.FreeRid(shaderRid);
-                if (depthSamplerRid.IsValid)
-                    rd.FreeRid(depthSamplerRid);
-                if (noiseSamplerRid.IsValid)
-                    rd.FreeRid(noiseSamplerRid);
+                if (rid.IsValid)
+                    rd.FreeRid(rid);
             }
         }));
     }
@@ -111,6 +127,8 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         {
             case 0: // kick off async load once
                 state = 1;
+
+                // TODO: defer this and then render to avoid I/O on the render thread.
                 LoadResources();
                 state = 2;
                 return;
@@ -127,7 +145,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
                 break;
         }
 
-        if (renderingDevice is null || !pipeline.IsValid)
+        if (renderingDevice is null || !rayMarcherPipeline.IsValid || !upsamplerPipeline.IsValid)
             return;
 
         if (effectCallbackType != (int)EffectCallbackTypeEnum.PostTransparent)
@@ -142,80 +160,130 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         if (size.X == 0 || size.Y == 0)
             return;
 
-        uint xGroups = ((uint)size.X + 7) / 8;
-        uint yGroups = ((uint)size.Y + 7) / 8;
+        int divisor = Math.Max(ResolutionDivisor, 1);
+        var marchSize = new Vector2I(
+            Math.Max((size.X + divisor - 1) / divisor, 1),
+            Math.Max((size.Y + divisor - 1) / divisor, 1));
 
         uint viewCount = sceneBuffers.GetViewCount();
+
+        EnsureCloudTexture(sceneBuffers, marchSize, viewCount);
+
+        uint marchGroupsX = ((uint)marchSize.X + 7) / 8;
+        uint marchGroupsY = ((uint)marchSize.Y + 7) / 8;
+        uint fullGroupsX = ((uint)size.X + 7) / 8;
+        uint fullGroupsY = ((uint)size.Y + 7) / 8;
+
         for (uint view = 0; view < viewCount; view++)
         {
             Rid color = sceneBuffers.GetColorLayer(view);
             Rid depth = sceneBuffers.GetDepthLayer(view);
+            Rid cloudTexture = sceneBuffers.GetTextureSlice(CloudContext, CloudTextureName, view, 0, 1, 1);
 
-            var colorUniform = new RDUniform
-            {
-                UniformType = RenderingDevice.UniformType.Image,
-                Binding = 0,
-            };
-            colorUniform.AddId(color);
-
-            var depthUniform = new RDUniform
-            {
-                UniformType = RenderingDevice.UniformType.SamplerWithTexture,
-                Binding = 1,
-            };
-            depthUniform.AddId(depthSampler);
-            depthUniform.AddId(depth);
-
-            var noiseTextureUniform = new RDUniform
-            {
-                UniformType = RenderingDevice.UniformType.SamplerWithTexture,
-                Binding = 2,
-            };
-            noiseTextureUniform.AddId(noiseSampler);
-            noiseTextureUniform.AddId(noiseTexture);
-
-            var renderSceneData = renderData.GetRenderSceneData();
-            var projection = renderSceneData.GetViewProjection(view);
-            var inverseProjection = projection.Inverse();
-            var cameraTransform = renderSceneData.GetCamTransform();
-            var cameraPosition = cameraTransform.Origin;
-            var cameraProjection = new Projection(cameraTransform);
-
-            byte[] pushConstantBytes = BuildPushConstant(inverseProjection, cameraProjection);
-            byte[] paramUniformBytes = BuildParamUniform(new Vector2(size.X, size.Y), cameraPosition);
-
-            Rid paramUboId = renderingDevice.UniformBufferCreate((uint)paramUniformBytes.Length, paramUniformBytes);
-
-            if (!paramUboId.IsValid)
+            if (!cloudTexture.IsValid)
                 continue;
 
-            var paramUniform = new RDUniform
-            {
-                UniformType = RenderingDevice.UniformType.UniformBuffer,
-                Binding = 3,
-            };
-            paramUniform.AddId(paramUboId);
+            var projection = sceneData.GetViewProjection(view);
+            var cameraTransform = sceneData.GetCamTransform();
 
-            var uniforms = new Godot.Collections.Array<RDUniform>
-            {
-                colorUniform, depthUniform, noiseTextureUniform, paramUniform,
-            };
+            byte[] pushConstantBytes = BuildPushConstant(projection.Inverse(), new Projection(cameraTransform));
+            byte[] paramBytes = BuildParamUniform(size, marchSize, cameraTransform.Origin);
 
-            Rid uniformSet = renderingDevice.UniformSetCreate(uniforms, shader, 0);
-
-            if (!uniformSet.IsValid)
+            Rid paramUbo = renderingDevice.UniformBufferCreate((uint)paramBytes.Length, paramBytes);
+            if (!paramUbo.IsValid)
                 continue;
 
-            long computeList = renderingDevice.ComputeListBegin();
-            renderingDevice.ComputeListBindComputePipeline(computeList, pipeline);
-            renderingDevice.ComputeListBindUniformSet(computeList, uniformSet, 0);
-            renderingDevice.ComputeListSetPushConstant(computeList, pushConstantBytes, (uint)pushConstantBytes.Length);
-            renderingDevice.ComputeListDispatch(computeList, xGroups, yGroups, 1);
-            renderingDevice.ComputeListEnd();
+            // Pass 1: ray marcher.
+            var marchUniforms = new Godot.Collections.Array<RDUniform>
+            {
+                MakeImage(0, cloudTexture),
+                MakeSampled(1, depthSampler, depth),
+                MakeSampled(2, noiseSampler, noiseTexture),
+                MakeUniformBuffer(3, paramUbo),
+            };
 
-            renderingDevice.FreeRid(uniformSet);
-            renderingDevice.FreeRid(paramUboId);
+            Rid marchSet = renderingDevice.UniformSetCreate(marchUniforms, rayMarcherShader, 0);
+
+            // Pass 2: bilateral resolve and composite
+            var upsampleUniforms = new Godot.Collections.Array<RDUniform>
+            {
+                MakeImage(0, color),
+                MakeSampled(1, depthSampler, depth),
+                MakeSampled(2, depthSampler, cloudTexture),
+                MakeUniformBuffer(3, paramUbo),
+            };
+
+            Rid upsampleSet = renderingDevice.UniformSetCreate(upsampleUniforms, upsamplerShader, 0);
+
+            if (marchSet.IsValid && upsampleSet.IsValid)
+            {
+                if (ProfileGpu)
+                    renderingDevice.CaptureTimestamp("clouds_march_begin");
+
+                long list = renderingDevice.ComputeListBegin();
+                renderingDevice.ComputeListBindComputePipeline(list, rayMarcherPipeline);
+                renderingDevice.ComputeListBindUniformSet(list, marchSet, 0);
+                renderingDevice.ComputeListSetPushConstant(list, pushConstantBytes,
+                    (uint)pushConstantBytes.Length);
+                renderingDevice.ComputeListDispatch(list, marchGroupsX, marchGroupsY, 1);
+                renderingDevice.ComputeListEnd();
+
+                if (ProfileGpu)
+                    renderingDevice.CaptureTimestamp("clouds_upsample_begin");
+
+                list = renderingDevice.ComputeListBegin();
+                renderingDevice.ComputeListBindComputePipeline(list, upsamplerPipeline);
+                renderingDevice.ComputeListBindUniformSet(list, upsampleSet, 0);
+                renderingDevice.ComputeListSetPushConstant(list, pushConstantBytes,
+                    (uint)pushConstantBytes.Length);
+                renderingDevice.ComputeListDispatch(list, fullGroupsX, fullGroupsY, 1);
+                renderingDevice.ComputeListEnd();
+
+                if (ProfileGpu)
+                    renderingDevice.CaptureTimestamp("clouds_end");
+            }
+
+            if (marchSet.IsValid)
+                renderingDevice.FreeRid(marchSet);
+            if (upsampleSet.IsValid)
+                renderingDevice.FreeRid(upsampleSet);
+
+            renderingDevice.FreeRid(paramUbo);
         }
+    }
+
+    private static RDUniform MakeImage(int binding, Rid texture)
+    {
+        var uniform = new RDUniform
+        {
+            UniformType = RenderingDevice.UniformType.Image,
+            Binding = binding,
+        };
+        uniform.AddId(texture);
+        return uniform;
+    }
+
+    private static RDUniform MakeSampled(int binding, Rid sampler, Rid texture)
+    {
+        var uniform = new RDUniform
+        {
+            UniformType = RenderingDevice.UniformType.SamplerWithTexture,
+            Binding = binding,
+        };
+        uniform.AddId(sampler);
+        uniform.AddId(texture);
+        return uniform;
+    }
+
+    private static RDUniform MakeUniformBuffer(int binding, Rid buffer)
+    {
+        var uniform = new RDUniform
+        {
+            UniformType = RenderingDevice.UniformType.UniformBuffer,
+            Binding = binding,
+        };
+        uniform.AddId(buffer);
+        return uniform;
     }
 
     private static byte[] BuildPushConstant(Projection invViewProjection, Projection camProjection)
@@ -253,30 +321,63 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         return offset;
     }
 
-    private byte[] BuildParamUniform(Vector2 size, Vector3 cameraPosition)
+    private static RDShaderSpirV LoadSpirV(string path)
     {
-        var bytes = new byte[96];
+        var shaderFile = ResourceLoader.Load<RDShaderFile>(path, cacheMode: ResourceLoader.CacheMode.Ignore);
+        var spirv = shaderFile.GetSpirV();
+
+        return spirv.CompileErrorCompute != string.Empty ?
+            throw new Exception($"Error in shader {path}: {spirv.CompileErrorCompute}") : spirv;
+    }
+
+    private void EnsureCloudTexture(RenderSceneBuffersRD sceneBuffers, Vector2I marchSize, uint viewCount)
+    {
+        bool exists = sceneBuffers.HasTexture(CloudContext, CloudTextureName);
+
+        if (exists && currentCloudSize == marchSize && currentCloudViews == viewCount)
+            return;
+
+        if (exists)
+            sceneBuffers.ClearContext(CloudContext);
+
+        const uint usage = (uint)(RenderingDevice.TextureUsageBits.StorageBit |
+            RenderingDevice.TextureUsageBits.SamplingBit);
+
+        sceneBuffers.CreateTexture(CloudContext, CloudTextureName,
+            RenderingDevice.DataFormat.R16G16B16A16Sfloat, usage,
+            RenderingDevice.TextureSamples.Samples1, marchSize, viewCount, 1, true, false);
+
+        currentCloudSize = marchSize;
+        currentCloudViews = viewCount;
+    }
+
+    private byte[] BuildParamUniform(Vector2I fullSize, Vector2I marchSize, Vector3 cameraPosition)
+    {
+        var bytes = new byte[128];
         int o = 0;
-        o = WriteVec4(bytes, o, new Vector4(PlanetCenter.X, PlanetCenter.Y, PlanetCenter.Z, 0f));
+
+        o = WriteVec4(bytes, o, new Vector4(PlanetCenter.X, PlanetCenter.Y, PlanetCenter.Z, 0.0f));
         o = WriteVec4(bytes, o, new Vector4(PlanetRadius + CloudInnerHeight, PlanetRadius + CloudOuterHeight,
             CloudTileSize, DensityMultiplier));
-        o = WriteVec4(bytes, o, new Vector4(size.X, size.Y, 1f / size.X, 1f / size.Y));
-        o = WriteVec4(bytes, o, new Vector4(cameraPosition.X, cameraPosition.Y, cameraPosition.Z, 0f));
+        o = WriteVec4(bytes, o, new Vector4(fullSize.X, fullSize.Y, 1.0f / fullSize.X, 1.0f / fullSize.Y));
+        o = WriteVec4(bytes, o, new Vector4(marchSize.X, marchSize.Y, 1.0f / marchSize.X, 1.0f / marchSize.Y));
+        o = WriteVec4(bytes, o, new Vector4(cameraPosition.X, cameraPosition.Y, cameraPosition.Z, 0.0f));
 
         var sun = SunDirection.Normalized();
         o = WriteVec4(bytes, o, new Vector4(sun.X, sun.Y, sun.Z, SunEnergy));
+
         _ = WriteVec4(bytes, o, new Vector4(MarchSteps, LightSteps, MaxMarchDistance, Coverage));
+
         return bytes;
     }
 
     private void LoadResources()
     {
-        var shaderFile = ResourceLoader.Load<RDShaderFile>(SkyShaderFileName,
-            cacheMode: ResourceLoader.CacheMode.Ignore);
-        loadedSpirv = shaderFile.GetSpirV();
+        rayMarcherSpirv = LoadSpirV(RaymarcherShaderFileName);
+        upsamplerSpirv = LoadSpirV(UpsamplerShaderFileName);
 
-        if (loadedSpirv.CompileErrorCompute != string.Empty)
-            throw new Exception("Error in shader clouds_march.glsl " + loadedSpirv.CompileErrorCompute);
+        if (rayMarcherSpirv.CompileErrorCompute != string.Empty)
+            throw new Exception("Error in shader clouds_march.glsl " + rayMarcherSpirv.CompileErrorCompute);
 
         const string noiseProfilePath = SkyResourcesDir + NoiseProfileFileName;
         if (ResourceLoader.Exists(noiseProfilePath))
@@ -294,35 +395,35 @@ public partial class VolumetricCloudsEffect : CompositorEffect
 
     private void InitializeCompute()
     {
-        if (loadedSpirv == null!)
+        if (rayMarcherSpirv == null! || upsamplerSpirv == null!)
             throw new Exception("Resources have not been loaded yet.");
 
         renderingDevice = RenderingServer.GetRenderingDevice();
         if (renderingDevice is null)
             return;
 
-        shader = renderingDevice.ShaderCreateFromSpirV(loadedSpirv);
-        pipeline = renderingDevice.ComputePipelineCreate(shader);
+        rayMarcherShader = renderingDevice.ShaderCreateFromSpirV(rayMarcherSpirv);
+        rayMarcherPipeline = renderingDevice.ComputePipelineCreate(rayMarcherShader);
 
-        var samplerState = new RDSamplerState
+        upsamplerShader = renderingDevice.ShaderCreateFromSpirV(upsamplerSpirv);
+        upsamplerPipeline = renderingDevice.ComputePipelineCreate(upsamplerShader);
+
+        depthSampler = renderingDevice.SamplerCreate(new RDSamplerState
         {
             MagFilter = RenderingDevice.SamplerFilter.Nearest,
             MinFilter = RenderingDevice.SamplerFilter.Nearest,
             RepeatU = RenderingDevice.SamplerRepeatMode.ClampToEdge,
             RepeatV = RenderingDevice.SamplerRepeatMode.ClampToEdge,
-        };
+        });
 
-        depthSampler = renderingDevice.SamplerCreate(samplerState);
-
-        var noiseSamplerState = new RDSamplerState
+        noiseSampler = renderingDevice.SamplerCreate(new RDSamplerState
         {
             MagFilter = RenderingDevice.SamplerFilter.Linear,
             MinFilter = RenderingDevice.SamplerFilter.Linear,
             RepeatU = RenderingDevice.SamplerRepeatMode.Repeat,
             RepeatV = RenderingDevice.SamplerRepeatMode.Repeat,
             RepeatW = RenderingDevice.SamplerRepeatMode.Repeat,
-        };
-        noiseSampler = renderingDevice.SamplerCreate(noiseSamplerState);
+        });
 
         if (noiseProfile is null)
             throw new Exception("Invalid noise texture");
@@ -334,25 +435,37 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     {
         FreeRids();
 
-        pipeline = default;
-        shader = default;
+        rayMarcherPipeline = default;
+        rayMarcherShader = default;
+        upsamplerPipeline = default;
+        upsamplerShader = default;
         depthSampler = default;
         noiseSampler = default;
         noiseTexture = default;
 
         state = 0;
+
+        currentCloudSize = Vector2I.Zero;
+        currentCloudViews = 0;
     }
 
     private void FreeRids()
     {
-        if (shader.IsValid)
-            renderingDevice?.FreeRid(shader);
+        if (renderingDevice is null)
+            return;
+
+        if (rayMarcherShader.IsValid)
+            renderingDevice.FreeRid(rayMarcherShader);
         if (depthSampler.IsValid)
-            renderingDevice?.FreeRid(depthSampler);
+            renderingDevice.FreeRid(depthSampler);
         if (noiseSampler.IsValid)
-            renderingDevice?.FreeRid(noiseSampler);
-        if (pipeline.IsValid)
-            renderingDevice?.FreeRid(pipeline);
+            renderingDevice.FreeRid(noiseSampler);
+        if (rayMarcherPipeline.IsValid)
+            renderingDevice.FreeRid(rayMarcherPipeline);
+        if (upsamplerPipeline.IsValid)
+            renderingDevice.FreeRid(upsamplerPipeline);
+        if (upsamplerShader.IsValid)
+            renderingDevice.FreeRid(upsamplerShader);
     }
 
     private void Reload()
@@ -365,6 +478,28 @@ public partial class VolumetricCloudsEffect : CompositorEffect
 
             GD.Print("Sky renderer pipeline reloaded.");
         }));
+    }
+
+    private void ReportTimestamps()
+    {
+        if (renderingDevice is null)
+            return;
+
+        uint count = renderingDevice.GetCapturedTimestampsCount();
+        ulong previous = 0;
+        string previousName = string.Empty;
+
+        for (uint i = 0; i < count; i++)
+        {
+            string name = renderingDevice.GetCapturedTimestampName(i);
+            ulong gpuTime = renderingDevice.GetCapturedTimestampGpuTime(i);
+
+            if (previousName.StartsWith("clouds_"))
+                GD.Print($"{previousName} -> {name}: {gpuTime - previous}");
+
+            previous = gpuTime;
+            previousName = name;
+        }
     }
 
     /// <summary>

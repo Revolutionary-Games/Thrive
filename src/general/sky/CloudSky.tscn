@@ -17,7 +17,7 @@ script = ExtResource("1_fijo7")
 PlanetRadius = 1000.0
 CloudInnerHeight = 2.0
 CloudOuterHeight = 50.0
-Coverage = 0.26
+ProfileGpu = true
 metadata/_custom_type_script = "uid://bpmfib2hf13bd"
 
 [sub_resource type="Compositor" id="Compositor_8ykry"]
@@ -39,7 +39,7 @@ environment = SubResource("Environment_m2g58")
 compositor = SubResource("Compositor_8ykry")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=2097667316]
-transform = Transform3D(0.98409724, 7.98059e-08, 0.1776307, -0.060220204, 0.94077986, 0.3336273, -0.16711122, -0.33901858, 0.9258187, 0, 1250, 0)
+transform = Transform3D(0.98409724, 7.98059e-08, 0.1776307, -0.060220204, 0.94077986, 0.3336273, -0.16711122, -0.33901858, 0.9258187, 0, 1040, 0)
 current = true
 fov = 70.0
 far = 50000.0
