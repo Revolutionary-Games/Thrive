@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Godot;
 
 /// <summary>
@@ -23,6 +22,30 @@ public partial class VolumetricCloudsEffect : CompositorEffect
 
     [Export]
     public int Seed = 1234;
+
+    [Export]
+    public Vector3 SunDirection = new Vector3(0.4f, 0.8f, 0.3f).Normalized();
+
+    [Export]
+    public float SunEnergy = 25.0f;
+
+    [Export]
+    public float CloudTileSize = 200.0f;
+
+    [Export]
+    public float DensityMultiplier = 1.0f;
+
+    [Export]
+    public float Coverage = 0.3f;
+
+    [Export]
+    public int MarchSteps = 64;
+
+    [Export]
+    public int LightSteps = 6;
+
+    [Export]
+    public float MaxMarchDistance = 8000.0f;
 
     private const string SkyResourcesDir = "res://assets/textures/sky/";
     private const string NoiseProfileFileName = "cloud_base_128.res";
@@ -49,6 +72,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     public VolumetricCloudsEffect()
     {
         EffectCallbackType = EffectCallbackTypeEnum.PostTransparent;
+        AccessResolvedDepth = true;
     }
 
     public override void _Notification(int what)
@@ -158,8 +182,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
             var cameraProjection = new Projection(cameraTransform);
 
             byte[] pushConstantBytes = BuildPushConstant(inverseProjection, cameraProjection);
-            byte[] paramUniformBytes = BuildParamUniform(PlanetCenter, PlanetRadius + CloudInnerHeight,
-                PlanetRadius + CloudOuterHeight, new Vector2(size.X, size.Y), cameraPosition);
+            byte[] paramUniformBytes = BuildParamUniform(new Vector2(size.X, size.Y), cameraPosition);
 
             Rid paramUboId = renderingDevice.UniformBufferCreate((uint)paramUniformBytes.Length, paramUniformBytes);
 
@@ -215,27 +238,6 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         return bytes;
     }
 
-    private static byte[] BuildParamUniform(Vector3 planetCenter, float innerRadius, float outerRadius,
-        Vector2 screenSize, Vector3 cameraPosition)
-    {
-        var bytes = new byte[64];
-        int o = 0;
-
-        // vec4 planet_center
-        o = WriteVec4(bytes, o, new Vector4(planetCenter.X, planetCenter.Y, planetCenter.Z, 0f));
-
-        // vec4 shell
-        o = WriteVec4(bytes, o, new Vector4(innerRadius, outerRadius, 0f, 0f));
-
-        // vec4 screen_size_padded
-        o = WriteVec4(bytes, o, new Vector4(screenSize.X, screenSize.Y, 0f, 0f));
-
-        // vec4 cam_pos
-        _ = WriteVec4(bytes, o, new Vector4(cameraPosition.X, cameraPosition.Y, cameraPosition.Z, 0f));
-
-        return bytes;
-    }
-
     private static int WriteFloat(byte[] buf, int offset, float v)
     {
         BitConverter.GetBytes(v).CopyTo(buf, offset);
@@ -249,6 +251,22 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         offset = WriteFloat(buf, offset, v.Z);
         offset = WriteFloat(buf, offset, v.W);
         return offset;
+    }
+
+    private byte[] BuildParamUniform(Vector2 size, Vector3 cameraPosition)
+    {
+        var bytes = new byte[96];
+        int o = 0;
+        o = WriteVec4(bytes, o, new Vector4(PlanetCenter.X, PlanetCenter.Y, PlanetCenter.Z, 0f));
+        o = WriteVec4(bytes, o, new Vector4(PlanetRadius + CloudInnerHeight, PlanetRadius + CloudOuterHeight,
+            CloudTileSize, DensityMultiplier));
+        o = WriteVec4(bytes, o, new Vector4(size.X, size.Y, 1f / size.X, 1f / size.Y));
+        o = WriteVec4(bytes, o, new Vector4(cameraPosition.X, cameraPosition.Y, cameraPosition.Z, 0f));
+
+        var sun = SunDirection.Normalized();
+        o = WriteVec4(bytes, o, new Vector4(sun.X, sun.Y, sun.Z, SunEnergy));
+        _ = WriteVec4(bytes, o, new Vector4(MarchSteps, LightSteps, MaxMarchDistance, Coverage));
+        return bytes;
     }
 
     private void LoadResources()
@@ -333,6 +351,8 @@ public partial class VolumetricCloudsEffect : CompositorEffect
             renderingDevice?.FreeRid(depthSampler);
         if (noiseSampler.IsValid)
             renderingDevice?.FreeRid(noiseSampler);
+        if (pipeline.IsValid)
+            renderingDevice?.FreeRid(pipeline);
     }
 
     private void Reload()
