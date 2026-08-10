@@ -221,6 +221,61 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         }
     }
 
+    public override void ShowReproductionDialog()
+    {
+        if (stage == null || !stage.PlayerUsesSexualReproduction())
+        {
+            base.ShowReproductionDialog();
+            return;
+        }
+
+        // Special logic for sexual reproduction
+        if (!editorButton.Disabled || stage?.HasPlayer != true || stage.MovingToEditor)
+            return;
+
+        // TODO: a shorter sound?
+        GUICommon.Instance.PlayCustomSound(MicrobePickupOrganelleSound);
+
+        editorButton.ShowReproductionDialog();
+
+        HUDMessages.ShowMessage(Localization.Translate("NOTICE_READY_TO_SHOOT_GAMETE"), DisplayDuration.Long);
+
+        editorButton.SetGameteStyle();
+    }
+
+    public override void EditorButtonPressed()
+    {
+        if (editorButton.Disabled)
+        {
+            base.EditorButtonPressed();
+            return;
+        }
+
+        if (stage == null)
+        {
+            GD.PrintErr("No stage set on editor button press");
+            return;
+        }
+
+        if (stage.HasAlivePlayer)
+        {
+            if (stage.PlayerUsesSexualReproduction())
+            {
+                // If the player is using sexual reproduction, instead shoot a gamete
+                GUICommon.Instance.PlayButtonPressSound();
+
+                stage.PlayerShootGamete();
+
+                // Disable button until it becomes available again after player gets more resources to shoot again
+                editorButton.Disabled = true;
+
+                return;
+            }
+        }
+
+        base.EditorButtonPressed();
+    }
+
     public void ClearSignalingCommandsOnEditorExitIfNecessary(Entity player)
     {
         if (!player.Has<CommandSignaler>())
@@ -273,6 +328,19 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             (Localization.Translate("SIGNAL_COMMAND_FLEE"), (int)MicrobeSignalCommand.FleeFromMe),
             (Localization.Translate("SIGNAL_COMMAND_AGGRESSION"), (int)MicrobeSignalCommand.BecomeAggressive),
         };
+
+        if (player.Has<MulticellularSpeciesMember>())
+        {
+            var species = player.Get<MulticellularSpeciesMember>().Species;
+
+            if (species.ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy
+                or MulticellularReproductionMethod.SexualAnisogamy)
+            {
+                choices.Add((Localization.Translate("SIGNAL_COMMAND_CALL_MATE"), (int)MicrobeSignalCommand.CallMate));
+                choices.Add((Localization.Translate("SIGNAL_COMMAND_FIRE_GAMETES"),
+                    (int)MicrobeSignalCommand.ShootGamete));
+            }
+        }
 
         packControlRadial.Radial.CenterText = Localization.Translate("SIGNAL_TO_EMIT");
 

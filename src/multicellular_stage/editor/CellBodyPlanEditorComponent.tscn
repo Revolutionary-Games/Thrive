@@ -94,6 +94,8 @@ corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxEmpty" id="8"]
 
+[sub_resource type="ButtonGroup" id="ButtonGroup_mpm3q"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_50jhs"]
 
 [sub_resource type="StyleBoxEmpty" id="14"]
@@ -336,7 +338,7 @@ _data = {
 &"show": SubResource("44")
 }
 
-[node name="CellBodyPlanEditorComponent" type="Control" unique_id=2093309640 node_paths=PackedStringArray("structureTabButton", "reproductionTabButton", "behaviourTabButton", "growthOrderTabButton", "tolerancesTabButton", "structureTab", "reproductionTab", "behaviourEditor", "growthOrderTab", "growthOrderGUI", "showGrowthOrderCoordinates", "tolerancesEditor", "toleranceTab", "toleranceWarningContainer", "cellTypeSelectionList", "modifyTypeButton", "deleteTypeButton", "duplicateTypeButton", "endosymbiosisButton", "endosymbiosisPopup", "pendingEndosymbiosisPopup", "cannotDeleteInUseTypeDialog", "duplicateCellTypeDialog", "duplicateCellTypeName", "cellPopupMenu", "organismStatisticsPanel", "rightPanelScrollContainer", "negativeAtpPopup", "wrongGrowthOrderPopup", "reproductionMethodDropdown", "sporeCellTypeDropdown", "massBuddingCellCountSlider", "massBuddingCellCountLabel", "buddingReproductionSection", "sporeReproductionSection", "massBuddingReproductionSection", "hexPositionEffectsContainer", "floatingLabelContainer", "islandPopup", "componentBottomLeftButtons", "mutationPointsBar", "cancelButton", "finishButtonWarningBadge", "finishOrNextButton")]
+[node name="CellBodyPlanEditorComponent" type="Control" unique_id=2093309640 node_paths=PackedStringArray("structureTabButton", "reproductionTabButton", "behaviourTabButton", "growthOrderTabButton", "tolerancesTabButton", "structureTab", "reproductionTab", "behaviourEditor", "growthOrderTab", "growthOrderGUI", "showGrowthOrderCoordinates", "tolerancesEditor", "toleranceTab", "toleranceWarningContainer", "cellTypeSelectionList", "modifyTypeButton", "deleteTypeButton", "duplicateTypeButton", "endosymbiosisButton", "endosymbiosisPopup", "pendingEndosymbiosisPopup", "cannotDeleteInUseTypeDialog", "duplicateCellTypeDialog", "duplicateCellTypeName", "cellPopupMenu", "organismStatisticsPanel", "rightPanelScrollContainer", "negativeAtpPopup", "wrongGrowthOrderPopup", "reproductionMethodDropdown", "sporeCellTypeDropdown", "massBuddingCellCountSlider", "massBuddingCellCountLabel", "buddingReproductionSection", "sporeReproductionSection", "sexualReproductionSection", "gameteACellTypeDropdown", "gameteBCellTypeDropdown", "sexualAnisogamyUpgradeButton", "anisogamySettingsContainer", "playerGameteSelectionA", "gameteSelectionALabel", "playerGameteSelectionB", "massBuddingReproductionSection", "hexPositionEffectsContainer", "floatingLabelContainer", "islandPopup", "componentBottomLeftButtons", "mutationPointsBar", "cancelButton", "finishButtonWarningBadge", "finishOrNextButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -381,6 +383,14 @@ massBuddingCellCountSlider = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginC
 massBuddingCellCountLabel = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/MassBuddingOptions/HBoxContainer/Label2")
 buddingReproductionSection = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/BuddingOptions")
 sporeReproductionSection = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SporeOptions")
+sexualReproductionSection = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SexualOptions")
+gameteACellTypeDropdown = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SexualOptions/VBoxContainer/HBoxContainer2/GameteSelectionA")
+gameteBCellTypeDropdown = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SexualOptions/SecondGameteSelection/HBoxContainer3/GameteSelectionB")
+sexualAnisogamyUpgradeButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SexualOptions/AnisogamyUpgrade")
+anisogamySettingsContainer = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SexualOptions/SecondGameteSelection")
+playerGameteSelectionA = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SexualOptions/VBoxContainer/PlayerGameteA")
+gameteSelectionALabel = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SexualOptions/VBoxContainer/HBoxContainer2/GameteALabel")
+playerGameteSelectionB = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SexualOptions/SecondGameteSelection/PlayerGameteB")
 massBuddingReproductionSection = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/MassBuddingOptions")
 hexPositionEffectsContainer = NodePath("AdjacencyFactorsContainer")
 hexEffectFont = ExtResource("4_h03u7")
@@ -659,13 +669,15 @@ autowrap_mode = 3
 [node name="OptionButton" type="OptionButton" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1393943288]
 layout_mode = 2
 selected = 0
-item_count = 3
+item_count = 4
 popup/item_0/text = "REPRODUCTION_BUDDING"
 popup/item_0/id = 0
 popup/item_1/text = "REPRODUCTION_MASS_BUDDING"
 popup/item_1/id = 2
 popup/item_2/text = "REPRODUCTION_SPORE"
 popup/item_2/id = 1
+popup/item_3/text = "REPRODUCTION_SEXUAL"
+popup/item_3/id = 3
 
 [node name="BuddingOptions" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer" unique_id=929510710]
 visible = false
@@ -744,6 +756,82 @@ rounded = true
 [node name="Label2" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/MassBuddingOptions/HBoxContainer" unique_id=225121192]
 layout_mode = 2
 label_settings = ExtResource("10_kypsq")
+
+[node name="SexualOptions" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1620224562]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SexualOptions" unique_id=286515128]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
+label_settings = ExtResource("9_hioid")
+autowrap_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SexualOptions" unique_id=1276339526]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SexualOptions/VBoxContainer" unique_id=1187384466]
+layout_mode = 2
+
+[node name="GameteALabel" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SexualOptions/VBoxContainer/HBoxContainer2" unique_id=516779224]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "GAMETE_CELL_TYPE"
+label_settings = ExtResource("10_kypsq")
+autowrap_mode = 3
+
+[node name="GameteSelectionA" type="OptionButton" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SexualOptions/VBoxContainer/HBoxContainer2" unique_id=1993721883]
+layout_mode = 2
+
+[node name="PlayerGameteA" type="CheckBox" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SexualOptions/VBoxContainer" unique_id=148611283]
+layout_mode = 2
+tooltip_text = "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+button_pressed = true
+button_group = SubResource("ButtonGroup_mpm3q")
+text = "OPTION_USED_FOR_PLAYER"
+
+[node name="AnisogamyUpgrade" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SexualOptions" unique_id=2112537341]
+layout_mode = 2
+text = "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+autowrap_mode = 2
+
+[node name="Label2" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SexualOptions" unique_id=1861062998]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+label_settings = ExtResource("9_hioid")
+autowrap_mode = 3
+
+[node name="SecondGameteSelection" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SexualOptions" unique_id=1843073678]
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SexualOptions/SecondGameteSelection" unique_id=1595183341]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SexualOptions/SecondGameteSelection/HBoxContainer3" unique_id=1177493969]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "GAMETE_CELL_TYPE_B"
+label_settings = ExtResource("10_kypsq")
+autowrap_mode = 3
+
+[node name="GameteSelectionB" type="OptionButton" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SexualOptions/SecondGameteSelection/HBoxContainer3" unique_id=1317398325]
+layout_mode = 2
+
+[node name="PlayerGameteB" type="CheckBox" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SexualOptions/SecondGameteSelection" unique_id=348452921]
+layout_mode = 2
+tooltip_text = "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+button_group = SubResource("ButtonGroup_mpm3q")
+text = "OPTION_USED_FOR_PLAYER"
+
+[node name="Spacer" type="Control" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SexualOptions" unique_id=779114911]
+layout_mode = 2
 
 [node name="Behaviour" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" unique_id=766902860 instance=ExtResource("9")]
 visible = false
@@ -1053,6 +1141,11 @@ IsMulticellular = true
 [connection signal="item_selected" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/OptionButton" to="." method="OnReproductionMethodSelected"]
 [connection signal="item_selected" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SporeOptions/HBoxContainer2/OptionButton" to="." method="OnSporeCellTypeSelected"]
 [connection signal="value_changed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/MassBuddingOptions/HBoxContainer/HSlider" to="." method="OnMassBuddingCellCountChanged"]
+[connection signal="item_selected" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SexualOptions/VBoxContainer/HBoxContainer2/GameteSelectionA" to="." method="OnGameteACellTypeSelected"]
+[connection signal="toggled" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SexualOptions/VBoxContainer/PlayerGameteA" to="." method="OnPlayerSetGameteA"]
+[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SexualOptions/AnisogamyUpgrade" to="." method="UpdateToAnisogamy"]
+[connection signal="item_selected" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SexualOptions/SecondGameteSelection/HBoxContainer3/GameteSelectionB" to="." method="OnGameteBCellTypeSelected"]
+[connection signal="toggled" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SexualOptions/SecondGameteSelection/PlayerGameteB" to="." method="OnPlayerSetGameteB"]
 [connection signal="OnGrowthOrderChanged" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer/GrowthOrderPicker" to="." method="OnGrowthOrderChanged"]
 [connection signal="OrderReset" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer/GrowthOrderPicker" to="." method="OnResetGrowthOrderPressed"]
 [connection signal="toggled" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer/Coordinates" to="." method="OnGrowthOrderCoordinatesToggled"]

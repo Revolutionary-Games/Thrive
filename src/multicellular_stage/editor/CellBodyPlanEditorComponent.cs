@@ -12,7 +12,7 @@ public partial class CellBodyPlanEditorComponent :
     HexEditorComponentBase<MulticellularEditor, CombinedEditorAction, EditorAction, HexWithData<CellTemplate>,
         MulticellularSpecies>, IArchiveUpdatable
 {
-    public const ushort SERIALIZATION_VERSION = 6;
+    public const ushort SERIALIZATION_VERSION = 8;
 
     [Export]
     public int MaxToleranceWarnings = 3;
@@ -165,6 +165,30 @@ public partial class CellBodyPlanEditorComponent :
     private Control sporeReproductionSection = null!;
 
     [Export]
+    private Control sexualReproductionSection = null!;
+
+    [Export]
+    private OptionButton gameteACellTypeDropdown = null!;
+
+    [Export]
+    private OptionButton gameteBCellTypeDropdown = null!;
+
+    [Export]
+    private Button sexualAnisogamyUpgradeButton = null!;
+
+    [Export]
+    private Container anisogamySettingsContainer = null!;
+
+    [Export]
+    private Button playerGameteSelectionA = null!;
+
+    [Export]
+    private Label gameteSelectionALabel = null!;
+
+    [Export]
+    private Button playerGameteSelectionB = null!;
+
+    [Export]
     private Control massBuddingReproductionSection = null!;
 #pragma warning restore CA2213
 
@@ -267,7 +291,13 @@ public partial class CellBodyPlanEditorComponent :
 
     public MulticellularReproductionMethod ReproductionMethod { get; private set; }
 
+    public GameteType SelectedGameteTypeForPlayer { get; private set; } = GameteType.A;
+
     public CellType? SporeCellType { get; private set; }
+
+    public CellType? GameteACellType { get; private set; }
+
+    public CellType? GameteBCellType { get; private set; }
 
     /// <summary>
     ///   This variable should be clamped before use. It's intentional that it can exceed the amount of cells, to make
@@ -331,6 +361,8 @@ public partial class CellBodyPlanEditorComponent :
             newName = Editor.EditedSpecies.FormattedName;
 
             tolerancesEditor.OnEditorSpeciesSetup(Editor.EditedBaseSpecies);
+
+            UpdateAnisogamyStateAndCost();
         }
 
         organismStatisticsPanel.UpdateLightSelectionPanelVisibility(
@@ -475,6 +507,9 @@ public partial class CellBodyPlanEditorComponent :
         writer.Write((int)ReproductionMethod);
         writer.WriteObjectOrNull(SporeCellType);
         writer.Write(DesiredMassBuddingCellCount);
+        writer.WriteObjectOrNull(GameteACellType);
+        writer.WriteObjectOrNull(GameteBCellType);
+        writer.Write((int)SelectedGameteTypeForPlayer);
     }
 
     public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
@@ -535,6 +570,17 @@ public partial class CellBodyPlanEditorComponent :
         {
             DesiredMassBuddingCellCount = reader.ReadInt32();
         }
+
+        if (version >= 7)
+        {
+            GameteACellType = reader.ReadObjectOrNull<CellType>();
+            GameteBCellType = reader.ReadObjectOrNull<CellType>();
+        }
+
+        if (version >= 8)
+        {
+            SelectedGameteTypeForPlayer = (GameteType)reader.ReadInt32();
+        }
     }
 
     public override void OnEditorSpeciesSetup(Species species)
@@ -557,7 +603,10 @@ public partial class CellBodyPlanEditorComponent :
 
         ReproductionMethod = multicellularSpecies.ReproductionMethod;
         SporeCellType = multicellularSpecies.ModifiableSporeCellType;
+        GameteACellType = multicellularSpecies.ModifiableGameteTypeA;
+        GameteBCellType = multicellularSpecies.ModifiableGameteTypeB;
         DesiredMassBuddingCellCount = multicellularSpecies.MassBuddingCellCount;
+        SelectedGameteTypeForPlayer = species.PlayerGamete;
 
         UpdateGUIAfterLoadingSpecies(species);
 
@@ -565,6 +614,8 @@ public partial class CellBodyPlanEditorComponent :
 
         // Make sure initial tolerance warnings are shown
         OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
+
+        UpdateAnisogamyStateAndCost();
     }
 
     public override void OnFinishEditing()
@@ -646,6 +697,36 @@ public partial class CellBodyPlanEditorComponent :
                 CellBodyPlanInternalCalculations.MaxBudSize(editedMicrobeCells.Count));
         }
 
+        if (ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy
+            or MulticellularReproductionMethod.SexualAnisogamy)
+        {
+            editedSpecies.ModifiableGameteTypeA = GameteACellType;
+
+            if (ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy)
+            {
+                // Isogamy doesn't allow changing this
+                editedSpecies.PlayerGamete = GameteType.A;
+            }
+            else
+            {
+                editedSpecies.PlayerGamete = SelectedGameteTypeForPlayer;
+            }
+        }
+        else
+        {
+            editedSpecies.ModifiableGameteTypeA = null;
+            editedSpecies.PlayerGamete = GameteType.All;
+        }
+
+        if (ReproductionMethod is MulticellularReproductionMethod.SexualAnisogamy)
+        {
+            editedSpecies.ModifiableGameteTypeB = GameteBCellType;
+        }
+        else
+        {
+            editedSpecies.ModifiableGameteTypeB = null;
+        }
+
         tempFreshlyUpdatedCells.Clear();
         editedSpecies.OnEdited();
 
@@ -671,6 +752,15 @@ public partial class CellBodyPlanEditorComponent :
         if (wrongGrowthOrderCells.Count > 0)
         {
             wrongGrowthOrderPopup.PopupCenteredShrink();
+            return false;
+        }
+
+        // This is checked due to a species data requirement
+        if (ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy
+                or MulticellularReproductionMethod.SexualAnisogamy && editedMicrobeCells.Count < 2)
+        {
+            ToolTipManager.Instance.ShowPopup(
+                Localization.Translate("ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"), 5);
             return false;
         }
 
@@ -709,6 +799,7 @@ public partial class CellBodyPlanEditorComponent :
 
         // In case the cell type's name was changed
         UpdateSporeCellDropdown();
+        UpdateGameteDropdowns();
     }
 
     /// <summary>

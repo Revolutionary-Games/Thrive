@@ -362,6 +362,18 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
         allAgents.Add(Compound.Mucilage);
     }
 
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+        InputManager.RegisterReceiver(this);
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        InputManager.UnregisterReceiver(this);
+    }
+
     public void Init(TStage containedInStage)
     {
         stage = containedInStage;
@@ -414,7 +426,7 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
     /// <summary>
     ///   Enables the editor button.
     /// </summary>
-    public void ShowReproductionDialog()
+    public virtual void ShowReproductionDialog()
     {
         if (!editorButton.Disabled || stage?.HasPlayer != true)
             return;
@@ -425,6 +437,7 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
         GUICommon.Instance.PlayCustomSound(MicrobePickupOrganelleSound);
 
         editorButton.ShowReproductionDialog();
+        editorButton.SetNormalStyle();
 
         HUDMessages.ShowMessage(Localization.Translate("NOTICE_READY_TO_EDIT"), DisplayDuration.Long);
     }
@@ -459,8 +472,16 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
         stage?.OnSuicide();
     }
 
-    public void EditorButtonPressed()
+    [RunOnKeyDown("g_reproduce")]
+    public virtual void EditorButtonPressed()
     {
+        if (editorButton.Disabled)
+        {
+            // Ignore if button is not ready yet
+            GD.Print("Editor button press triggered, but the button is not ready");
+            return;
+        }
+
         GD.Print("Move to editor pressed");
 
         // TODO: find out when this can happen (this happened when a really laggy save was loaded and the editor button
@@ -471,6 +492,17 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
             return;
         }
 
+        StartMoveToEditor();
+    }
+
+    public bool StartMoveToEditor()
+    {
+        if (stage?.HasPlayer != true)
+        {
+            GD.Print("Cannot move to editor as no player exists");
+            return false;
+        }
+
         // To prevent being clicked twice
         editorButton.Disabled = true;
 
@@ -479,6 +511,7 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.3f, stage.MoveToEditor, false);
 
         stage.MovingToEditor = true;
+        return true;
     }
 
     /// <summary>

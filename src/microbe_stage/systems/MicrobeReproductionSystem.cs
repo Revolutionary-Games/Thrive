@@ -38,6 +38,7 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(MicrobeControl))]
 [ReadsComponent(typeof(MicrobeEnvironmentalEffects))]
 [ReadsComponent(typeof(SpecializationFactor))]
+[ReadsComponent(typeof(MicrobeSex))]
 [RunsAfter(typeof(OsmoregulationAndHealingSystem))]
 [RunsAfter(typeof(ProcessSystem))]
 [RuntimeCost(10)]
@@ -301,7 +302,7 @@ public partial class MicrobeReproductionSystem : BaseSystem<World, float>
     [Query(Parallel = true)]
     [All<CellProperties, MicrobeSpeciesMember, BioProcesses, WorldPosition, MicrobeEnvironmentalEffects, Engulfable,
         Engulfer>]
-    [None<AttachedToEntity, MulticellularSpeciesMember>]
+    [None<AttachedToEntity, MulticellularSpeciesMember, GameteCell>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update(ref OrganelleContainer organelles, ref MicrobeControl microbeControl, ref Health health,
         ref CompoundStorage compoundStorage, ref MicrobeStatus status, ref ReproductionStatus reproductionStatus,

@@ -51,12 +51,12 @@ public partial class PhysicsBodyControlSystem : BaseSystem<World, float>
 
         if (!physics.QueuedForceApplied)
         {
-            physicalWorld.GiveImpulse(body, physics.QueuedImpulse, true);
+            physicalWorld.GiveImpulse(body, physics.QueuedImpulse);
             physics.QueuedImpulse = Vector3.Zero;
 
             if (!physics.QueuedAngularImpulse.IsZeroApprox())
             {
-                physicalWorld.GiveAngularImpulse(body, physics.QueuedAngularImpulse, true);
+                physicalWorld.GiveAngularImpulse(body, physics.QueuedAngularImpulse);
                 physics.QueuedAngularImpulse = Vector3.Zero;
             }
 
@@ -84,15 +84,15 @@ public partial class PhysicsBodyControlSystem : BaseSystem<World, float>
 
             if (control.ImpulseToGive != Vector3.Zero)
             {
-                // To not have objects that sit around until touched and then shoot off at high velocity we
-                // automatically activate bodies that have accumulated enough linear speed
-                physicalWorld.GiveImpulse(body, control.ImpulseToGive, true);
+                // This automatically activates the body to not accumulate a ton of force while stationary
+                // (and sleeping)
+                physicalWorld.GiveImpulse(body, control.ImpulseToGive);
                 control.ImpulseToGive = Vector3.Zero;
             }
 
             if (control.AngularImpulseToGive != Vector3.Zero)
             {
-                physicalWorld.GiveAngularImpulse(body, control.AngularImpulseToGive, true);
+                physicalWorld.GiveAngularImpulse(body, control.AngularImpulseToGive);
                 control.AngularImpulseToGive = Vector3.Zero;
             }
 

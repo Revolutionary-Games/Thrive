@@ -14,7 +14,7 @@ using Systems;
 /// </summary>
 public struct MicrobeAI : IArchivableComponent
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     public float TimeUntilNextThink;
 
@@ -33,6 +33,9 @@ public struct MicrobeAI : IArchivableComponent
     ///   before resuming motion.
     /// </summary>
     public float ATPThreshold;
+
+    public float TimeSinceGameteShoot;
+    public float TimeUntilMateCallCheck;
 
     /// <summary>
     ///   Stores the value of microbe.totalAbsorbedCompound at tick t-1 before it is cleared and updated at tick t.
@@ -76,6 +79,9 @@ public struct MicrobeAI : IArchivableComponent
         {
             writer.WriteObject(PreviouslyAbsorbedCompounds);
         }
+
+        writer.Write(TimeSinceGameteShoot);
+        writer.Write(TimeUntilMateCallCheck);
     }
 }
 
@@ -107,6 +113,12 @@ public static class MicrobeAIHelpers
         }
 
         instance.PreviouslyAbsorbedCompounds = reader.ReadObjectOrNull<Dictionary<Compound, float>>();
+
+        if (version > 1)
+        {
+            instance.TimeSinceGameteShoot = reader.ReadFloat();
+            instance.TimeUntilMateCallCheck = reader.ReadFloat();
+        }
 
         return instance;
     }
