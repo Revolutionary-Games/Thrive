@@ -23,11 +23,11 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
     private bool disposed;
 
     public MembranePointData(Vector2[] hexPositions, int hexPositionCount, MembraneType type,
-        IReadOnlyList<Vector2> verticesToCopy, MulticellularMembraneData currentCellMulticellularMembraneData,
+        IReadOnlyList<Vector2> verticesToCopy, MulticellularMembraneGenerationCellData currentCellMulticellularMembraneGenerationCellData,
         long colonyKey, bool isPreMulticellularStretch = false) : this(hexPositions,
         hexPositionCount, type, verticesToCopy, isPreMulticellularStretch)
     {
-        CurrentCellMulticellularMembraneData = currentCellMulticellularMembraneData;
+        CurrentCellMulticellularMembraneGenerationCellData = currentCellMulticellularMembraneGenerationCellData;
         ColonyKey = colonyKey;
         IsMulticellularMembraneDataValid = true;
         IsColonyKeyValid = true;
@@ -80,7 +80,7 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
 
     public int HexPositionCount { get; }
 
-    public MulticellularMembraneData CurrentCellMulticellularMembraneData { get; }
+    public MulticellularMembraneGenerationCellData CurrentCellMulticellularMembraneGenerationCellData { get; }
 
     /// <summary>
     ///   Precomputed colony key that encodes neighbour positions and rotations for caching/equality.
@@ -206,7 +206,7 @@ public sealed class NeighbourData
     public Vector2 LocalAverageVertex;
     public MembranePointData OriginalPointData;
 
-    public MulticellularMembraneData MulticellularMembraneData;
+    public MulticellularMembraneGenerationCellData MulticellularMembraneGenerationCellData;
 
     /// <summary>
     ///   Modified vertices separate from original. Used to persist changes across multiple calls to
@@ -220,12 +220,12 @@ public sealed class NeighbourData
     /// </summary>
     public HashSet<long> ProcessedNeighbours = new();
 
-    public NeighbourData(long singleCellHash, MulticellularMembraneData multicellularMembraneData,
+    public NeighbourData(long singleCellHash, MulticellularMembraneGenerationCellData multicellularMembraneGenerationCellData,
         MembranePointData originalPointData)
     {
         SingleCellHash = singleCellHash;
         OriginalPointData = originalPointData;
-        MulticellularMembraneData = multicellularMembraneData;
+        MulticellularMembraneGenerationCellData = multicellularMembraneGenerationCellData;
         OriginalAverageVertex = GetAverageVertex();
     }
 

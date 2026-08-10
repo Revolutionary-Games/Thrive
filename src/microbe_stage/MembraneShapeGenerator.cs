@@ -167,13 +167,13 @@ public class MembraneShapeGenerator
     /// </summary>
     public MembranePointData GenerateMulticellularMembrane(long thisCellKey,
         ConcurrentDictionary<long, NeighbourData> neighboursData,
-        MulticellularMembraneData[] cellsData)
+        MulticellularMembraneGenerationCellData[] cellsData)
     {
         currentCellKey = thisCellKey;
         var currentCellData = neighboursData[currentCellKey];
         var originalPointData = currentCellData.OriginalPointData;
-        var thisCellPosition = currentCellData.MulticellularMembraneData.Position;
-        var thisCellOrientation = currentCellData.MulticellularMembraneData.Orientation;
+        var thisCellPosition = currentCellData.MulticellularMembraneGenerationCellData.Position;
+        var thisCellOrientation = currentCellData.MulticellularMembraneGenerationCellData.Orientation;
 
         SetCellVertices(currentCellData);
         GenerateMulticellularMembrane(currentCellData, neighboursData);
@@ -192,7 +192,7 @@ public class MembraneShapeGenerator
         var colonyKey =
             MembraneGenerationCoordinator.ComputeColonyKey(cellsData);
 
-        var multicellularMembraneData = new MulticellularMembraneData(thisCellPosition, thisCellOrientation);
+        var multicellularMembraneData = new MulticellularMembraneGenerationCellData(thisCellPosition, thisCellOrientation);
 
         return new MembranePointData(hexCopy, hexCount, originalPointData.Type, vertices2D, multicellularMembraneData,
             colonyKey, false);
@@ -802,8 +802,8 @@ public class MembraneShapeGenerator
     private void GenerateMulticellularMembrane(NeighbourData cellData,
         ConcurrentDictionary<long, NeighbourData> neighboursData)
     {
-        var cellPosition = cellData.MulticellularMembraneData.Position;
-        var cellOrientation = cellData.MulticellularMembraneData.Orientation;
+        var cellPosition = cellData.MulticellularMembraneGenerationCellData.Position;
+        var cellOrientation = cellData.MulticellularMembraneGenerationCellData.Orientation;
         var cellAngle = GetOrientationAngle(cellOrientation);
         var cellAverageVertex = cellData.OriginalAverageVertex;
 
@@ -882,7 +882,8 @@ public class MembraneShapeGenerator
     /// <summary>
     ///   Preprocess all neighbours in closeNeighboursKeys by rotating and shifting their original vertices
     ///   into this cell's local space, storing results in <see cref="NeighbourWorkingData"/> to avoid
-    ///   per-iteration allocations.
+    ///   per-iteration allocations. Membrane generation can give different result depending on which
+    ///   cells are processed first.
     /// </summary>
     private void RotateAndShiftCloseNeighbours(ConcurrentDictionary<long, NeighbourData> neighboursData,
         float thisAngle, Vector2 thisCellPosition, Vector2 thisCellAverageVertex)
@@ -905,10 +906,10 @@ public class MembraneShapeGenerator
 
             neighbourKeyToSlot[neighbourKey] = slot;
 
-            var neighbourAngle = GetOrientationAngle(neighbourData.MulticellularMembraneData.Orientation);
+            var neighbourAngle = GetOrientationAngle(neighbourData.MulticellularMembraneGenerationCellData.Orientation);
             var relativeAngle = neighbourAngle - thisAngle;
 
-            var worldOffset = neighbourData.MulticellularMembraneData.Position - thisCellPosition;
+            var worldOffset = neighbourData.MulticellularMembraneGenerationCellData.Position - thisCellPosition;
             var localOffset = RotatePoint(worldOffset, -thisAngle);
 
             var vertexCount = neighbourData.OriginalPointData.VertexCount;
@@ -992,7 +993,7 @@ public class MembraneShapeGenerator
 
         foreach (var (neighbourKey, neighbourData) in neighboursData)
         {
-            var otherCellPosition = neighbourData.MulticellularMembraneData.Position;
+            var otherCellPosition = neighbourData.MulticellularMembraneGenerationCellData.Position;
 
             if (neighbourKey != currentCellKey &&
                 otherCellPosition.DistanceSquaredTo(thisCellPosition) <=

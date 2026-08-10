@@ -39,7 +39,7 @@ public struct MulticellularGrowth : IArchivableComponent
     ///   Cached positions and rotation of all cells in the colony (used for membrane generation).
     ///   Valid only together with <see cref="ColonyKey"/> — invalidated at the same sites.
     /// </summary>
-    public MulticellularMembraneData[]? GrownCellsData;
+    public MulticellularMembraneGenerationCellData[]? GrownCellsData;
 
     // TODO: switch this to non-nullable (and add a separate variable indicating if replacing something)
     /// <summary>
@@ -47,13 +47,12 @@ public struct MulticellularGrowth : IArchivableComponent
     /// </summary>
     public int? ResumeBodyPlanAfterReplacingLost;
 
+    public long ColonyKey;
+
     // TODO: MulticellularBodyPlanPartIndex used to be here, now it is in MulticellularSpeciesMember
     // which means that a new system is needed to create MulticellularGrowth components on ejected cells that
     // should be allowed to resume growing
-
     public int NextBodyPlanCellToGrowIndex;
-
-    public long ColonyKey;
 
     public bool IsColonyKeyValid;
 

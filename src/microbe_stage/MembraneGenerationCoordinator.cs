@@ -52,8 +52,8 @@ public static class MembraneGenerationCoordinator
         }
 
         var grownCellsData = generationParameters.GrownCellsData;
-        var cellPosition = generationParameters.CurrentCellMulticellularMembraneData.Position;
-        var cellOrientation = generationParameters.CurrentCellMulticellularMembraneData.Orientation;
+        var cellPosition = generationParameters.CurrentCellMulticellularMembraneGenerationCellData.Position;
+        var cellOrientation = generationParameters.CurrentCellMulticellularMembraneGenerationCellData.Orientation;
 
         // Prefer the ColonyKey provided in generationParameters if available. Otherwise compute or fetch a cached
         // colony key for this colony. generationParameters may not carry a reference to the species, so fall back
@@ -71,7 +71,7 @@ public static class MembraneGenerationCoordinator
         var tracker = Trackers.GetOrAdd(colonyKey,
             _ => new ColonyTracker { ExpectedCount = grownCellsData.Length });
 
-        var multicellularMembraneData = new MulticellularMembraneData(cellPosition, cellOrientation);
+        var multicellularMembraneData = new MulticellularMembraneGenerationCellData(cellPosition, cellOrientation);
 
         var singleCellData = new NeighbourData(registeredHash, multicellularMembraneData, singleCellMembranePointData);
 
@@ -103,7 +103,7 @@ public static class MembraneGenerationCoordinator
         return hashedMembranes;
     }
 
-    public static long ComputeColonyKey(MulticellularMembraneData[] cellsData)
+    public static long ComputeColonyKey(MulticellularMembraneGenerationCellData[] cellsData)
     {
         unchecked
         {

@@ -10,7 +10,7 @@ public interface IMembraneDataSource
 {
     public Vector2[] HexPositions { get; }
     public int HexPositionCount { get; }
-    public MulticellularMembraneData CurrentCellMulticellularMembraneData { get; }
+    public MulticellularMembraneGenerationCellData CurrentCellMulticellularMembraneGenerationCellData { get; }
     public long ColonyKey { get; }
     public MembraneType Type { get; }
     public bool IsPreMulticellularStretch { get; }
@@ -18,9 +18,9 @@ public interface IMembraneDataSource
     public bool IsColonyKeyValid { get; }
 }
 
-public struct MulticellularMembraneData
+public struct MulticellularMembraneGenerationCellData
 {
-    public MulticellularMembraneData(Vector2 position, int orientation)
+    public MulticellularMembraneGenerationCellData(Vector2 position, int orientation)
     {
         Position = position;
         Orientation = orientation;
@@ -36,11 +36,11 @@ public struct MulticellularMembraneData
 public struct MembraneGenerationParameters : IMembraneDataSource
 {
     public MembraneGenerationParameters(Vector2[] hexPositions, int hexPositionCount, MembraneType type,
-        MulticellularMembraneData currentCellMulticellularMembraneData, MulticellularMembraneData[] grownCellsData,
+        MulticellularMembraneGenerationCellData currentCellMulticellularMembraneGenerationCellData, MulticellularMembraneGenerationCellData[] grownCellsData,
         long colonyKey, bool isPreMulticellularStretch = false)
         : this(hexPositions, hexPositionCount, type)
     {
-        CurrentCellMulticellularMembraneData = currentCellMulticellularMembraneData;
+        CurrentCellMulticellularMembraneGenerationCellData = currentCellMulticellularMembraneGenerationCellData;
         GrownCellsData = grownCellsData;
         ColonyKey = colonyKey;
         IsPreMulticellularStretch = isPreMulticellularStretch;
@@ -59,9 +59,9 @@ public struct MembraneGenerationParameters : IMembraneDataSource
 
     public Vector2[] HexPositions { get; }
 
-    public MulticellularMembraneData CurrentCellMulticellularMembraneData { get; }
+    public MulticellularMembraneGenerationCellData CurrentCellMulticellularMembraneGenerationCellData { get; }
 
-    public MulticellularMembraneData[] GrownCellsData { get; } = [];
+    public MulticellularMembraneGenerationCellData[] GrownCellsData { get; } = [];
 
     public int HexPositionCount { get; }
 
@@ -179,10 +179,10 @@ public static class MembraneComputationHelpers
             if (dataSource.IsMulticellularMembraneDataValid)
             {
                 hash = (hash * prime1) ^
-                    BitConverter.SingleToInt32Bits(dataSource.CurrentCellMulticellularMembraneData.Position.X);
+                    BitConverter.SingleToInt32Bits(dataSource.CurrentCellMulticellularMembraneGenerationCellData.Position.X);
                 hash = (hash * prime1) ^
-                    BitConverter.SingleToInt32Bits(dataSource.CurrentCellMulticellularMembraneData.Position.Y);
-                hash = (hash * prime1) ^ dataSource.CurrentCellMulticellularMembraneData.Orientation;
+                    BitConverter.SingleToInt32Bits(dataSource.CurrentCellMulticellularMembraneGenerationCellData.Position.Y);
+                hash = (hash * prime1) ^ dataSource.CurrentCellMulticellularMembraneGenerationCellData.Orientation;
             }
 
             if (dataSource.IsColonyKeyValid)
@@ -202,12 +202,12 @@ public static class MembraneComputationHelpers
     public static bool MembraneDataFieldsEqual(this IMembraneDataSource dataSource, IMembraneDataSource other)
     {
         return dataSource.MembraneDataFieldsEqual(other.HexPositions, other.HexPositionCount, other.Type,
-            other.CurrentCellMulticellularMembraneData, other.ColonyKey, other.IsMulticellularMembraneDataValid,
+            other.CurrentCellMulticellularMembraneGenerationCellData, other.ColonyKey, other.IsMulticellularMembraneDataValid,
             other.IsColonyKeyValid);
     }
 
     public static bool MembraneDataFieldsEqual(this IMembraneDataSource dataSource, Vector2[] otherPoints,
-        int otherPointCount, MembraneType otherType, MulticellularMembraneData otherMulticellularMembraneData,
+        int otherPointCount, MembraneType otherType, MulticellularMembraneGenerationCellData otherMulticellularMembraneGenerationCellData,
         long otherColonyKey, bool isOtherMulticellularMembraneDataValid, bool isOtherColonyKeyValid)
     {
         if (!dataSource.Type.Equals(otherType))
@@ -239,21 +239,21 @@ public static class MembraneComputationHelpers
                 return false;
             }
 
-            if (!dataSource.CurrentCellMulticellularMembraneData.Position.Equals(otherMulticellularMembraneData
+            if (!dataSource.CurrentCellMulticellularMembraneGenerationCellData.Position.Equals(otherMulticellularMembraneGenerationCellData
                     .Position))
             {
                 GD.PrintErr("Membrane cache CellPositionInMulticellular mismatch: " +
-                    $"{dataSource.CurrentCellMulticellularMembraneData.Position} " +
-                    $"!= {otherMulticellularMembraneData.Position}");
+                    $"{dataSource.CurrentCellMulticellularMembraneGenerationCellData.Position} " +
+                    $"!= {otherMulticellularMembraneGenerationCellData.Position}");
                 return false;
             }
 
-            if (dataSource.CurrentCellMulticellularMembraneData.Orientation !=
-                otherMulticellularMembraneData.Orientation)
+            if (dataSource.CurrentCellMulticellularMembraneGenerationCellData.Orientation !=
+                otherMulticellularMembraneGenerationCellData.Orientation)
             {
                 GD.PrintErr("Membrane cache CellOrientation mismatch: " +
-                    $"{dataSource.CurrentCellMulticellularMembraneData.Orientation} " +
-                    $"!= {otherMulticellularMembraneData.Orientation}");
+                    $"{dataSource.CurrentCellMulticellularMembraneGenerationCellData.Orientation} " +
+                    $"!= {otherMulticellularMembraneGenerationCellData.Orientation}");
                 return false;
             }
         }

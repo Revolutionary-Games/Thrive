@@ -319,7 +319,7 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         var hexes = MembraneComputationHelpers.PrepareHexPositionsForMembraneCalculations(organelleContainer.Organelles,
             out var hexCount);
 
-        MulticellularMembraneData[] grownCellsData;
+        MulticellularMembraneGenerationCellData[] grownCellsData;
         long colonyKey;
 
         // Reuse cached colony layout data as long as nothing about the colony's composition has changed since it was
@@ -341,7 +341,7 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
                     ++cellCount;
             }
 
-            grownCellsData = new MulticellularMembraneData[cellCount];
+            grownCellsData = new MulticellularMembraneGenerationCellData[cellCount];
 
             // Second pass: write directly into the correctly sized arrays, no intermediate list needed
             int writeIndex = 0;
@@ -353,7 +353,7 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
                 var cell = multicellular.Species.ModifiableGameplayCells[i];
                 var cellPosistion = Hex.AxialToCartesian(cell.Position);
 
-                grownCellsData[writeIndex] = new MulticellularMembraneData(
+                grownCellsData[writeIndex] = new MulticellularMembraneGenerationCellData(
                     new Vector2(cellPosistion.X, cellPosistion.Z) * Constants.MULTICELLULAR_CELL_DISTANCE_MULTIPLIER,
                     cell.Orientation);
 
@@ -373,7 +373,7 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
             Constants.MULTICELLULAR_CELL_DISTANCE_MULTIPLIER;
 
         var multicellularMembraneData =
-            new MulticellularMembraneData(cellPositionInMulticellular, currentCell.Orientation);
+            new MulticellularMembraneGenerationCellData(cellPositionInMulticellular, currentCell.Orientation);
 
         var membraneGenerationParameters = new MembraneGenerationParameters(hexes, hexCount,
             cellProperties.MembraneType, multicellularMembraneData, grownCellsData, colonyKey);
@@ -414,7 +414,7 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
             }
         }
 
-        var cellData = new MulticellularMembraneData(cellPositionInMulticellular,
+        var cellData = new MulticellularMembraneGenerationCellData(cellPositionInMulticellular,
             multicellular.Species.ModifiableGameplayCells[currentCellIndex].Orientation);
 
         membranesToGenerate.Enqueue(new MembraneGenerationParameters(hexes, hexCount, cellProperties.MembraneType,
