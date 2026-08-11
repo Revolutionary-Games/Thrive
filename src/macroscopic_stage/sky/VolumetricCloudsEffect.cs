@@ -454,7 +454,8 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         const string noiseProfilePath = SkyResourcesDir + NoiseProfileFileName;
         if (ResourceLoader.Exists(noiseProfilePath))
         {
-            noiseProfile = ResourceLoader.Load<ImageTexture3D>(noiseProfilePath);
+            noiseProfile = ResourceLoader.Load<ImageTexture3D>(noiseProfilePath,
+                cacheMode: ResourceLoader.CacheMode.Replace);
         }
         else
         {
