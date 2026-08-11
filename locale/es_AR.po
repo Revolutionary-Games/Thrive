@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-27 14:48+0200\n"
-"PO-Revision-Date: 2025-11-23 10:05+0000\n"
-"Last-Translator: Ariadna Gorosterrazu Ghezzi <ariadnagorosterrazu@gmail.com>\n"
+"POT-Creation-Date: 2026-08-11 10:42+0300\n"
+"PO-Revision-Date: 2026-08-03 00:15+0000\n"
+"Last-Translator: Boberto KK <ulisesdecotto@gmail.com>\n"
 "Language-Team: Spanish (Argentina) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es_AR/>\n"
 "Language: es_AR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11.4\n"
+"X-Generator: Weblate 5.16.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -50,9 +50,16 @@ msgstr "Abisopelágico"
 msgid "ACCEPT"
 msgstr "Aceptar"
 
-#, fuzzy
 msgid "ACHIEVEMENTS"
-msgstr "Movimiento basal"
+msgstr "Logros"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr "Carga de datos de logros falló"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr "población:"
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr "Logros {0} / {1}"
@@ -109,12 +116,6 @@ msgstr "Avanzado"
 
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Abrir opciones avanzadas"
-
-msgid "AEROBIC_NITROGEN_FIXATION"
-msgstr "Fijación aeróbica de nitrógeno"
-
-msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "Fijación aeróbica de nitrógeno"
 
 msgid "AEROBIC_RESPIRATION"
 msgstr "Respiración aeróbica"
@@ -180,6 +181,14 @@ msgstr "Tu especie ya ha ascendido"
 msgid "ALT"
 msgstr "Alt"
 
+#, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr "Hilos actuales:"
+
+#, fuzzy
+msgid "ALTERNATVE_TIMESCALE"
+msgstr "Escala de tiempo alternativa"
+
 msgid "ALWAYS_VISIBLE"
 msgstr "Siempre visible"
 
@@ -189,13 +198,11 @@ msgstr "Volumen del ambiente"
 msgid "AMMONIA"
 msgstr "Amoníaco"
 
-#, fuzzy
 msgid "AMMONIA_COST"
-msgstr "Amoníaco"
+msgstr "Costo de Amoníaco"
 
-#, fuzzy
 msgid "AMMONIA_LEVELS"
-msgstr "Amoníaco"
+msgstr "Nivel de Amoníaco"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Cantidad de autoguardados a almacenar:"
@@ -203,14 +210,11 @@ msgstr "Cantidad de autoguardados a almacenar:"
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Cantidad de guardados rápidos a almacenar:"
 
-msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "Fijación anaeróbica de nitrógeno"
-
 msgid "AND_UNLOCK_CONDITION"
 msgstr "y"
 
 msgid "ANISOTROPIC_FILTERING"
-msgstr ""
+msgstr "Filtro anisotrópico:"
 
 msgid "ANTIALIASING_MSAA_TAA"
 msgstr ""
@@ -623,6 +627,10 @@ msgstr "Buscar"
 msgid "BROWSE_WORKSHOP"
 msgstr "Navegar Workshop"
 
+#, fuzzy
+msgid "BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(densidad de las nubes de compuestos en el ambiente)"
+
 msgid "BUILD_CITY"
 msgstr "Construir una ciudad"
 
@@ -771,6 +779,16 @@ msgstr ""
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr ""
 
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr ""
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr "Normal"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
+
 msgid "CHANGE_THE_SYMMETRY"
 msgstr ""
 
@@ -793,6 +811,10 @@ msgstr "Menú de Chetos"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
+
+#, fuzzy
+msgid "CHEMICAL_EQUATION_SPEED_EXPLANATION"
+msgstr "(Velocidad en la que las especies guiadas por IA mutan)"
 
 msgid "CHEMOPLAST"
 msgstr "Quimioplastia"
@@ -1702,6 +1724,9 @@ msgstr ""
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr ""
 
+msgid "DIFFICULTY_PRESET_VERY_EASY"
+msgstr ""
+
 msgid "DIGESTION_EFFICIENCY"
 msgstr ""
 
@@ -1787,6 +1812,14 @@ msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
 
 #, fuzzy
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr "Barrita de habilidades (recomendado)"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_METAL"
+msgstr "Barrita de habilidades (recomendado)"
+
+#, fuzzy
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr "Barrita de habilidades (recomendado)"
 
@@ -1828,10 +1861,6 @@ msgstr ""
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
-
-#, fuzzy
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "Activar/Desactivar engullir"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr ""
@@ -1986,6 +2015,36 @@ msgstr ""
 "Nitrogenasa: Convierte el nitrógeno atmosférico en amoníaco y consume ATP."
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
+msgstr ""
+"Estructuras Procarioticas\n"
+"\n"
+"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
+"\n"
+"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
+"\n"
+"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
+"\n"
+"Rusticianina: Convierte el hierro en ATP.\n"
+"\n"
+"Nitrogenasa: Convierte el nitrógeno atmosférico en amoníaco y consume ATP."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
+msgstr ""
+"Estructuras Procarioticas\n"
+"\n"
+"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
+"\n"
+"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
+"\n"
+"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
+"\n"
+"Rusticianina: Convierte el hierro en ATP.\n"
+"\n"
+"Nitrogenasa: Convierte el nitrógeno atmosférico en amoníaco y consume ATP."
+
+#, fuzzy
 msgid "EDIT_MICROBE_FIRST_TIME"
 msgstr "Recién levantado"
 
@@ -2059,6 +2118,10 @@ msgstr ""
 msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
 msgstr "Normal"
 
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION_MULTICELLULAR"
+msgstr "Normal"
+
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
 msgstr ""
 
@@ -2087,6 +2150,14 @@ msgstr ""
 #, fuzzy
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr "Nubes de componentes"
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER"
+msgstr "Nubes de componentes"
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER_EXPLANATION"
+msgstr "Este panel muestra los números que utiliza auto-evo para predecir. La energía total que una especie es capaz de capturar y el costo por individuo de la especie determina la población final. Auto-evo utiliza un modelo simplificado de la realidad para calcular qué tan bien se desempeñan las especies, basándose en la energía que pueden recolectar. Por cada fuente de alimento se muestra cuánta energía obtiene la especie. Adicionalmente, se muestra la energía total disponible de esa fuente. La fracción que la especie obtiene de la energía total disponible está basada en qué tan grande es la Aptitud comparada a la Aptitud total. La Aptitud es una métrica de qué tan bien la especie puede utilizar una fuente de alimento."
 
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
@@ -2162,6 +2233,9 @@ msgstr ""
 msgid "ERROR_LOADING"
 msgstr ""
 
+msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
+
 msgid "ERROR_SAVING"
 msgstr ""
 
@@ -2225,6 +2299,9 @@ msgid "EXACT_VERSION_TOOLTIP"
 msgstr ""
 
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
+msgstr ""
+
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE_JUKEBOX"
 msgstr ""
 
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
@@ -2542,6 +2619,31 @@ msgstr ""
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr "\" {0} \" - {1}"
 
+msgid "GAMETE_CELL_ENTITY_NAME"
+msgstr ""
+
+msgid "GAMETE_CELL_TYPE"
+msgstr ""
+
+msgid "GAMETE_CELL_TYPE_A"
+msgstr ""
+
+msgid "GAMETE_CELL_TYPE_B"
+msgstr ""
+
+#, fuzzy
+msgid "GAMETE_PRODUCED"
+msgstr "Producción de ATP"
+
+#, fuzzy
+msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+msgstr ""
+"Esta sección muestra el balance total de ATP (energía) de la célula actual.\n"
+"Para poder sobrevivir, el balance tiene que ser positivo. Para las célular sésiles se puede considerar el balance positivo con el movimiento excluído.\n"
+"El menú desplegable de ahí abajo lo podés usar para chequear que pasaría si la célula no tuviese ningún recurso disponible para poder crear ATP.\n"
+"Por ejemplo, algunas células solo pueden mantener un balance de ATP positivo cuando tienen múltiples tipos de componentes de los que pueden crear ATP al mísmo tiempo.\n"
+"Ese tipo de células son más difíciles de jugar porque requieren que almacenes varios tipos de componentes al mísmo tiempo para poder sobrevivir."
+
 msgid "GAME_DESIGN_TEAM"
 msgstr ""
 
@@ -2610,6 +2712,14 @@ msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
 msgstr ""
 "Los microbios activos van deambular cuando no pase nada interesante.\n"
 "Los microbios tranquilos van a estar quietos y esperando a que algo cambie antes de actuar."
+
+#, fuzzy
+msgid "GERMINATE_SPORE"
+msgstr "Disparar toxina"
+
+#, fuzzy
+msgid "GERMINATE_SPORE_ACTION_TOOLTIP"
+msgstr "Disparar toxina"
 
 msgid "GITHUB_TOOLTIP"
 msgstr ""
@@ -2841,6 +2951,18 @@ msgstr ""
 msgid "IMAGE_FILE_TYPES"
 msgstr ""
 
+#, fuzzy
+msgid "INCOMPATIBLE_MEMBRANE_LIST"
+msgstr "Mover organela"
+
+#, fuzzy
+msgid "INCOMPATIBLE_ORGANELLE_LIST"
+msgstr "Poner organela"
+
+#, fuzzy
+msgid "INCOMPATIBLE_STAGE_LIST"
+msgstr "Mover organela"
+
 msgid "INCREASE_ITEM_SIZE"
 msgstr ""
 
@@ -2899,6 +3021,14 @@ msgstr "Núcleo"
 
 msgid "INFO_BOX_SIZE"
 msgstr ""
+
+#, fuzzy
+msgid "INFO_BOX_SIZE_PLAIN"
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
+#, fuzzy
+msgid "INFO_BOX_STAGE"
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 msgid "INFO_BOX_STORAGE"
 msgstr ""
@@ -3534,6 +3664,20 @@ msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr ""
 
 #, fuzzy
+msgid "LOOK_LEFT"
+msgstr "Flechita a la izquierda"
+
+#, fuzzy
+msgid "LOOK_RIGHT"
+msgstr "Flechita a la derecha"
+
+msgid "LOOK_SCREEN_DOWN_OR_3D_TOWARDS_UP"
+msgstr ""
+
+msgid "LOOK_SCREEN_UP_OR_3D_TOWARDS_DOWN"
+msgstr ""
+
+#, fuzzy
 msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
 msgstr "(mayor valor te queman la pc)"
 
@@ -3582,6 +3726,10 @@ msgid "MACROSCOPIC"
 msgstr "Volverte re chiquito ({0}/{1})"
 
 #, fuzzy
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr "Núcleo"
+
+#, fuzzy
 msgid "MACROSCOPIC_EDITOR"
 msgstr "Poner organela"
 
@@ -3614,6 +3762,13 @@ msgstr ""
 #, fuzzy
 msgid "MARINE_SNOW"
 msgstr "Nieve marina(?"
+
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(densidad de las nubes de compuestos en el ambiente)"
 
 msgid "MASTER_VOLUME"
 msgstr "Volumen maestro"
@@ -3903,6 +4058,10 @@ msgstr "Presiona el botón de deshacer en el editor para corregir el error"
 
 #, fuzzy
 msgid "MICROBE_LOADING_TIP_22"
+msgstr "Presiona el botón de deshacer en el editor para corregir el error"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_23"
 msgstr "Presiona el botón de deshacer en el editor para corregir el error"
 
 #, fuzzy
@@ -4383,8 +4542,47 @@ msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Poner organela"
 
 #, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_2"
+msgstr "Poner organela"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_3"
+msgstr "Poner organela"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_4"
+msgstr "Poner organela"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_5"
+msgstr "Poner organela"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_6"
+msgstr "Poner organela"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_7"
+msgstr "Poner organela"
+
+#, fuzzy
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "Poner organela"
+
+#, fuzzy
+msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
+msgstr ""
+"Estructuras Procarioticas\n"
+"\n"
+"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
+"\n"
+"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
+"\n"
+"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
+"\n"
+"Rusticianina: Convierte el hierro en ATP.\n"
+"\n"
+"Nitrogenasa: Convierte el nitrógeno atmosférico en amoníaco y consume ATP."
 
 #, fuzzy
 msgid "MULTICELLULAR_STAGE"
@@ -4462,6 +4660,9 @@ msgstr ""
 msgid "NEW"
 msgstr ""
 
+msgid "NEWER"
+msgstr ""
+
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 
@@ -4506,6 +4707,10 @@ msgstr ""
 
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
+
+#, fuzzy
+msgid "NITROGEN_FIXATION"
+msgstr "Fijación aeróbica de nitrógeno"
 
 #, fuzzy
 msgid "NITROPLAST"
@@ -4574,9 +4779,15 @@ msgstr ""
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
+msgid "NOTICE_READY_TO_SHOOT_GAMETE"
+msgstr ""
+
 #, fuzzy
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "Cancelar acción actual"
+
+msgid "NOT_ENOUGH_MUTATION_POINTS"
+msgstr ""
 
 #, fuzzy
 msgid "NOT_STARTED_DOT"
@@ -4668,6 +4879,9 @@ msgstr ""
 msgid "OK"
 msgstr ""
 
+msgid "OLDER"
+msgstr ""
+
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 
@@ -4678,6 +4892,10 @@ msgstr "GLES2 advertencia de modo"
 #, fuzzy
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr "Estas abriendo Thrive mediante GLES2. Esto esta casi totalmente sin probar y seguro se te crashea o bugea. Intenta pibe actualizar tus controladores de video y/o fuerce el uso de gráficos AMD o Nvidia para ejecutar Thrive sin que se te trabe."
+
+#, fuzzy
+msgid "OPEN_EVOLUTIONARY_TREE"
+msgstr "Ayudame a traducir el juego bro"
 
 msgid "OPEN_FOLDER"
 msgstr ""
@@ -4744,6 +4962,10 @@ msgstr "Opciones"
 
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr ""
+
+#, fuzzy
+msgid "OPTION_USED_FOR_PLAYER"
+msgstr "Abortado."
 
 msgid "ORGANELLES"
 msgstr ""
@@ -4834,12 +5056,6 @@ msgstr ""
 msgid "OSMOREGULATION_COST"
 msgstr ""
 
-msgid "OSMOREGULATION_COST_MULTIPLIER"
-msgstr ""
-
-msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
-msgstr ""
-
 #, fuzzy
 msgid "OTHER_COMPOUNDS"
 msgstr "Nubes de componentes"
@@ -4881,6 +5097,10 @@ msgid "OXYGEN_RESISTANCE"
 msgstr ""
 
 #, fuzzy
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
+msgstr "Mover organela"
+
+#, fuzzy
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr "Anda a la etapa del despertar. Solo cuando dejes de ser un boludo ( El tipo de tejido son axones)."
 
@@ -4907,6 +5127,10 @@ msgstr "Borrar"
 #, fuzzy
 msgid "PAGE_FORWARD"
 msgstr "tecla \"Foward\" (f9 aveces)"
+
+#, fuzzy
+msgid "PAGE_PINNED"
+msgstr "\" {0} \" - {1}"
 
 #, fuzzy
 msgid "PAGE_TITLE"
@@ -4959,6 +5183,9 @@ msgstr "\" {0} \" - {1}"
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
+msgid "PATCH_NOTES_RECENT_BOUNDARY"
+msgstr ""
+
 #, fuzzy
 msgid "PATCH_NOTES_TITLE"
 msgstr "\" {0} \" - {1}"
@@ -5003,6 +5230,10 @@ msgstr ""
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
 msgstr "Estas abriendo Thrive mediante GLES2. Esto esta casi totalmente sin probar y seguro se te crashea o bugea. Intenta pibe actualizar tus controladores de video y/o fuerce el uso de gráficos AMD o Nvidia para ejecutar Thrive sin que se te trabe."
 
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION_MULTICELLULAR"
+msgstr "Estas abriendo Thrive mediante GLES2. Esto esta casi totalmente sin probar y seguro se te crashea o bugea. Intenta pibe actualizar tus controladores de video y/o fuerce el uso de gráficos AMD o Nvidia para ejecutar Thrive sin que se te trabe."
+
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
 msgstr ""
 
@@ -5043,6 +5274,13 @@ msgid "PHYSICAL_CONDITIONS"
 msgstr ""
 
 msgid "PHYSICAL_RESISTANCE"
+msgstr ""
+
+#, fuzzy
+msgid "PIN_BUTTON_TOOLTIP"
+msgstr "Agrega un nuevo control personalizado"
+
+msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
 msgstr ""
 
 msgid "PLACE_ORGANELLE"
@@ -5167,6 +5405,15 @@ msgid "PRESSURE_SHORT"
 msgstr ""
 
 #, fuzzy
+msgid "PRESSURE_TOLERANCE"
+msgstr ""
+"Esta sección muestra el balance total de ATP (energía) de la célula actual.\n"
+"Para poder sobrevivir, el balance tiene que ser positivo. Para las célular sésiles se puede considerar el balance positivo con el movimiento excluído.\n"
+"El menú desplegable de ahí abajo lo podés usar para chequear que pasaría si la célula no tuviese ningún recurso disponible para poder crear ATP.\n"
+"Por ejemplo, algunas células solo pueden mantener un balance de ATP positivo cuando tienen múltiples tipos de componentes de los que pueden crear ATP al mísmo tiempo.\n"
+"Ese tipo de células son más difíciles de jugar porque requieren que almacenes varios tipos de componentes al mísmo tiempo para poder sobrevivir."
+
+#, fuzzy
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr ""
 "Esta sección muestra el balance total de ATP (energía) de la célula actual.\n"
@@ -5194,6 +5441,9 @@ msgstr ""
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr ""
 
+msgid "PROCESS_INACTIVE"
+msgstr ""
+
 #, fuzzy
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
 msgstr ""
@@ -5211,15 +5461,6 @@ msgstr ""
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr ""
 
-#, fuzzy
-msgid "PROCESS_TOGGLE_TOOLTIP"
-msgstr ""
-"Esta sección muestra el balance total de ATP (energía) de la célula actual.\n"
-"Para poder sobrevivir, el balance tiene que ser positivo. Para las célular sésiles se puede considerar el balance positivo con el movimiento excluído.\n"
-"El menú desplegable de ahí abajo lo podés usar para chequear que pasaría si la célula no tuviese ningún recurso disponible para poder crear ATP.\n"
-"Por ejemplo, algunas células solo pueden mantener un balance de ATP positivo cuando tienen múltiples tipos de componentes de los que pueden crear ATP al mísmo tiempo.\n"
-"Ese tipo de células son más difíciles de jugar porque requieren que almacenes varios tipos de componentes al mísmo tiempo para poder sobrevivir."
-
 msgid "PROGRAMMING_TEAM"
 msgstr ""
 
@@ -5228,9 +5469,6 @@ msgstr ""
 
 msgid "PROTEINS"
 msgstr ""
-
-msgid "PROTOPLASM"
-msgstr "Protoplasma"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr ""
@@ -5264,6 +5502,10 @@ msgstr "Resolución:"
 
 #, fuzzy
 msgid "RADIOACTIVE_CHUNK"
+msgstr "Pedazo grande de fosfato"
+
+#, fuzzy
+msgid "RADIOACTIVE_CHUNK_BANANA"
 msgstr "Pedazo grande de fosfato"
 
 #, fuzzy
@@ -5330,6 +5572,10 @@ msgstr ""
 msgid "REPORT_BUG"
 msgstr ""
 
+#, fuzzy
+msgid "REPRODUCE"
+msgstr "Resolución:"
+
 msgid "REPRODUCED"
 msgstr ""
 
@@ -5356,8 +5602,28 @@ msgstr "(densidad de las nubes de compuestos en el ambiente)"
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 msgstr "Resolución:"
 
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "Resolución:"
+
 msgid "REPRODUCTION_METHOD"
 msgstr ""
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL"
+msgstr "Resolución:"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
+msgstr "Resolución:"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ISOGAMY"
+msgstr "Resolución:"
+
+#, fuzzy
+msgid "REPRODUCTION_SPORE"
+msgstr "Resolución:"
 
 #, fuzzy
 msgid "REQUIRES_NUCLEUS"
@@ -5492,6 +5758,10 @@ msgstr ""
 
 #, fuzzy
 msgid "ROTATION_COLON"
+msgstr "población:"
+
+#, fuzzy
+msgid "ROTATION_FORCE"
 msgstr "población:"
 
 msgid "RUNOFF_EVENT"
@@ -5760,6 +6030,17 @@ msgstr ""
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr "(densidad de las nubes de compuestos en el ambiente)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(densidad de las nubes de compuestos en el ambiente)"
+
+msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+msgstr ""
+
 msgid "SFX_VOLUME"
 msgstr "Volumen de efectos"
 
@@ -5785,6 +6066,14 @@ msgstr ""
 #, fuzzy
 msgid "SHOW_MAP"
 msgstr "Mostrar mini-tutorial"
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION"
+msgstr "Mostrar mini-tutorial"
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION_EXPLANATION"
+msgstr "Normal"
 
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr ""
@@ -5840,6 +6129,18 @@ msgstr ""
 "Agente de \n"
 "vinculación"
 
+#, fuzzy
+msgid "SIGNAL_COMMAND_CALL_MATE"
+msgstr ""
+"Agente de \n"
+"vinculación"
+
+#, fuzzy
+msgid "SIGNAL_COMMAND_FIRE_GAMETES"
+msgstr ""
+"Agente de \n"
+"vinculación"
+
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr ""
 
@@ -5867,6 +6168,10 @@ msgstr ""
 
 #, fuzzy
 msgid "SIMULATION_CONFIG"
+msgstr "población:"
+
+#, fuzzy
+msgid "SIMULATION_FACTOR"
 msgstr "población:"
 
 msgid "SIXTEEN_TIMES"
@@ -5956,6 +6261,14 @@ msgstr ""
 msgid "SPAWN_GLUCOSE"
 msgstr "Spawnear glucosa"
 
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL"
+msgstr "Spawnear amoníaco"
+
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL_EXPLANATION"
+msgstr "(Velocidad en la que las especies guiadas por IA mutan)"
+
 msgid "SPAWN_PHOSPHATES"
 msgstr "Spawnear fosfato"
 
@@ -6020,11 +6333,19 @@ msgstr "población:"
 msgid "SPECIES_WITH_POPULATION"
 msgstr "población:"
 
-msgid "SPEED"
-msgstr ""
-
 msgid "SPEED_COLON"
 msgstr ""
+
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "Activar/Desactivar engullir"
+
+msgid "SPORE_CELL_TYPE"
+msgstr ""
+
+#, fuzzy
+msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(densidad de las nubes de compuestos en el ambiente)"
 
 #, fuzzy
 msgid "SPREAD_TO_PATCHES"
@@ -6321,6 +6642,15 @@ msgid "TEMPERATURE_SHORT"
 msgstr ""
 
 #, fuzzy
+msgid "TEMPERATURE_TOLERANCE_RANGE"
+msgstr ""
+"Esta sección muestra el balance total de ATP (energía) de la célula actual.\n"
+"Para poder sobrevivir, el balance tiene que ser positivo. Para las célular sésiles se puede considerar el balance positivo con el movimiento excluído.\n"
+"El menú desplegable de ahí abajo lo podés usar para chequear que pasaría si la célula no tuviese ningún recurso disponible para poder crear ATP.\n"
+"Por ejemplo, algunas células solo pueden mantener un balance de ATP positivo cuando tienen múltiples tipos de componentes de los que pueden crear ATP al mísmo tiempo.\n"
+"Ese tipo de células son más difíciles de jugar porque requieren que almacenes varios tipos de componentes al mísmo tiempo para poder sobrevivir."
+
+#, fuzzy
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr ""
 "Esta sección muestra el balance total de ATP (energía) de la célula actual.\n"
@@ -6400,6 +6730,9 @@ msgstr ""
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr ""
 
+msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
+msgstr ""
+
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr ""
 
@@ -6409,11 +6742,82 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVEOPEDIA_MUSEUM_PAGE_SEARCHTAGS"
+msgstr "población:"
+
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVEOPEDIA_ORGANELLE_SEARCHTAGS"
+msgstr "\" {0} \" - {1}"
+
+msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
+msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_SEARCHTAGS"
+msgstr "población:"
+
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
+msgstr ""
+"Estructuras Procarioticas\n"
+"\n"
+"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
+"\n"
+"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
+"\n"
+"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
+"\n"
+"Rusticianina: Convierte el hierro en ATP.\n"
+"\n"
+"Nitrogenasa: Convierte el nitrógeno atmosférico en amoníaco y consume ATP."
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE"
+msgstr "No mutar (Solo si no hay buenas mutaciones)"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
+msgstr "población:"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
+msgstr ""
+"Estructuras Procarioticas\n"
+"\n"
+"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
+"\n"
+"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
+"\n"
+"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
+"\n"
+"Rusticianina: Convierte el hierro en ATP.\n"
+"\n"
+"Nitrogenasa: Convierte el nitrógeno atmosférico en amoníaco y consume ATP."
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
+msgstr ""
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
+msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_SEARCHTAGS"
+msgstr "No mutar (Solo si no hay buenas mutaciones)"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_SEARCHTAGS"
+msgstr "\" {0} \" - {1}"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
+msgstr "\" {0} \" - {1}"
 
 msgid "THRIVE_LICENSES"
 msgstr ""
@@ -6421,6 +6825,9 @@ msgstr ""
 #, fuzzy
 msgid "THRIVIN_ACHIEVEMENT"
 msgstr "Movimiento basal"
+
+msgid "THRUST_FORCE"
+msgstr ""
 
 msgid "THYLAKOIDS"
 msgstr "Tilacoides"
@@ -6615,9 +7022,6 @@ msgid "TOOLS"
 msgstr "Herramientas"
 
 msgid "TOOL_HAND_AXE"
-msgstr ""
-
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
 #, fuzzy
@@ -7262,9 +7666,6 @@ msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
 msgid "VIEWER"
-msgstr ""
-
-msgid "VIEW_ALL"
 msgstr ""
 
 #, fuzzy
@@ -7936,7 +8337,7 @@ msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr "Flagelo"
 
 #, fuzzy
-msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+msgid "WIKI_GLYCOLYSIS_COMMA_NITROGEN_FIXATION"
 msgstr "Fijación aeróbica de nitrógeno"
 
 #, fuzzy
@@ -8797,10 +9198,6 @@ msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr "Protoplasma"
 
 #, fuzzy
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "Protoplasma"
-
-#, fuzzy
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "Protoplasma"
 
@@ -8897,38 +9294,6 @@ msgstr "Cloroplasto"
 #, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "Aberración cromática:"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "Protoplasma"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr "Protoplasma"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr "población:"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr "Protoplasma"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr "Protoplasma"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr "población:"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr "Cloroplasto"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr "Cloroplasto"
 
 #, fuzzy
 msgid "WIKI_PULLING_CILIA"
@@ -9508,6 +9873,67 @@ msgstr "Acercar la pantalla"
 
 msgid "ZOOM_OUT"
 msgstr "Alejar la pantalla"
+
+#, fuzzy
+#~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
+#~ msgstr "Activar/Desactivar engullir"
+
+#~ msgid "PROTOPLASM"
+#~ msgstr "Protoplasma"
+
+#, fuzzy
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "Protoplasma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "Protoplasma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr "Protoplasma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_MODIFICATIONS"
+#~ msgstr "población:"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr "Protoplasma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_REQUIREMENTS"
+#~ msgstr "Protoplasma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
+#~ msgstr "población:"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_STRATEGY"
+#~ msgstr "Cloroplasto"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_UPGRADES"
+#~ msgstr "Cloroplasto"
+
+#~ msgid "AEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Fijación aeróbica de nitrógeno"
+
+#~ msgid "AEROBIC_NITROGEN_FIXING"
+#~ msgstr "Fijación aeróbica de nitrógeno"
+
+#~ msgid "ANAEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Fijación anaeróbica de nitrógeno"
+
+#, fuzzy
+#~ msgid "PROCESS_TOGGLE_TOOLTIP"
+#~ msgstr ""
+#~ "Esta sección muestra el balance total de ATP (energía) de la célula actual.\n"
+#~ "Para poder sobrevivir, el balance tiene que ser positivo. Para las célular sésiles se puede considerar el balance positivo con el movimiento excluído.\n"
+#~ "El menú desplegable de ahí abajo lo podés usar para chequear que pasaría si la célula no tuviese ningún recurso disponible para poder crear ATP.\n"
+#~ "Por ejemplo, algunas células solo pueden mantener un balance de ATP positivo cuando tienen múltiples tipos de componentes de los que pueden crear ATP al mísmo tiempo.\n"
+#~ "Ese tipo de células son más difíciles de jugar porque requieren que almacenes varios tipos de componentes al mísmo tiempo para poder sobrevivir."
 
 #, fuzzy
 #~ msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"

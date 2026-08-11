@@ -11,7 +11,7 @@ using Xoshiro.PRNG64;
 /// </summary>
 public class GameProperties : IArchivable
 {
-    public const int SERIALIZATION_VERSION = 1;
+    public const int SERIALIZATION_VERSION = 2;
 
     private readonly Dictionary<string, bool> setBoolStatuses;
 
@@ -72,6 +72,11 @@ public class GameProperties : IArchivable
     /// </summary>
     public Guid PlaythroughID { get; private set; } = Guid.NewGuid();
 
+    /// <summary>
+    ///   Playthrough-specific Thriveopedia data that is saved.
+    /// </summary>
+    public ThriveopediaGameData ThriveopediaData { get; private set; } = new();
+
     public TechWeb TechWeb { get; private set; } = new();
 
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
@@ -107,21 +112,35 @@ public class GameProperties : IArchivable
     ///     colony
     ///   </para>s
     /// </remarks>
-    public static GameProperties StartNewMulticellularGame(WorldGenerationSettings settings, bool freebuild = false)
+    public static GameProperties StartNewMulticellularGame(WorldGenerationSettings settings, bool freebuild = false,
+        Species? startingSpecies = null)
     {
+        if (startingSpecies != null)
+        {
+            if (startingSpecies is not MulticellularSpecies)
+            {
+                throw new ArgumentException(
+                    "Starting species must be a multicellular species for a multicellular game");
+            }
+        }
+
         settings.Origin = WorldGenerationSettings.LifeOrigin.Pond;
 
-        var game = new GameProperties(settings);
+        var game = new GameProperties(settings, startingSpecies);
 
         OxygenateWorld(game.GameWorld.Map);
 
-        // Modify the player species to actually make sense to be in the multicellular stage
-        var playerSpecies = MakePlayerOrganellesMakeSenseForMulticellular(game);
+        // Don't modify starting species if given an exact species
+        if (startingSpecies == null)
+        {
+            // Modify the player species to actually make sense to be in the multicellular stage
+            var playerSpecies = MakePlayerOrganellesMakeSenseForMulticellular(game);
 
-        var finalSpecies = game.GameWorld.ChangeSpeciesToMulticellular(playerSpecies, !freebuild);
+            var finalSpecies = game.GameWorld.ChangeSpeciesToMulticellular(playerSpecies, !freebuild);
 
-        // Make the player species match tolerances as they may have changed due to the species change
-        GameWorld.SetSpeciesInitialTolerances(finalSpecies, game.GameWorld.Map, null);
+            // Make the player species match tolerances as they may have changed due to the species change
+            GameWorld.SetSpeciesInitialTolerances(finalSpecies, game.GameWorld.Map, null);
+        }
 
         // TODO: generate multicellular species for freebuild
         if (freebuild)
@@ -302,6 +321,9 @@ public class GameProperties : IArchivable
         // Not saved currently
         // instance.TechWeb = reader.ReadObject<TechWeb>();
 
+        if (version > 1)
+            instance.ThriveopediaData = reader.ReadObject<ThriveopediaGameData>();
+
         return instance;
     }
 
@@ -321,6 +343,8 @@ public class GameProperties : IArchivable
         // Not saved for now as this is only used in the prototypes
 
         // writer.WriteObject(TechWeb);
+
+        writer.WriteObject(ThriveopediaData);
     }
 
     /// <summary>
@@ -617,7 +641,7 @@ public class GameProperties : IArchivable
         // Need to ensure the world has a custom difficulty we can modify here
         var modifiedDifficulty = GameWorld.WorldSettings.Difficulty.Clone();
 
-        modifiedDifficulty.OsmoregulationMultiplier *= osmoregulationMultiplier;
+        modifiedDifficulty.EnergyCostMultiplier *= osmoregulationMultiplier;
 
         GameWorld.WorldSettings.Difficulty = modifiedDifficulty;
     }

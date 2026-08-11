@@ -16,5 +16,16 @@ public interface IOrganelleUpgrader
     /// </returns>
     public bool ApplyChanges(ICellEditorComponent editorComponent, OrganelleUpgrades organelleUpgrades);
 
+    /// <summary>
+    ///   Returns true when the currently selected settings match the organelle's implicit default upgrade state
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This is used to avoid creating a history action when an organelle with no stored upgrade data is opened
+    ///     and accepted without changing anything.
+    ///   </para>
+    /// </remarks>
+    public bool IsCurrentStateDefault();
+
     public Vector2 GetMinDialogSize();
 }

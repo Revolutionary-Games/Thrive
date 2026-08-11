@@ -19,6 +19,9 @@ public partial class MicrobeCheatMenu : CheatMenu
     private CheckBox unlimitGrowthSpeed = null!;
 
     [Export]
+    private Slider simulationFactor = null!;
+
+    [Export]
     private CheckBox lockTime = null!;
 
     [Export]

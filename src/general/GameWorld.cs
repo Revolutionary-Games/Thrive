@@ -260,7 +260,8 @@ public class GameWorld : IArchivable
 
         if (species is MicrobeSpecies microbeSpecies)
         {
-            species.ModifiableTolerances.CopyFrom(patch.GenerateTolerancesForMicrobe(microbeSpecies.Organelles));
+            species.ModifiableTolerances.CopyFrom(patch.GenerateTolerancesForMicrobe(microbeSpecies.Organelles,
+                microbeSpecies.CellTypeSpecializationBonus));
         }
         else if (species is MulticellularSpecies multicellularSpecies)
         {

@@ -141,6 +141,18 @@ public partial class ToxinUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         return true;
     }
 
+    public bool IsCurrentStateDefault()
+    {
+        var selectedIndex = toxinTypeSelection.Selected;
+
+        if (selectedIndex < 0)
+            return false;
+
+        return (ToxinType)toxinTypeSelection.GetItemId(selectedIndex) == ToxinType.Cytotoxin &&
+            MathUtils.IsEqualApproximately((float)toxicitySlider.Value, Constants.DEFAULT_TOXICITY,
+                MathUtils.EPSILON);
+    }
+
     public Vector2 GetMinDialogSize()
     {
         return new Vector2(350, 380);

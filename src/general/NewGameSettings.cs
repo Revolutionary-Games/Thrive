@@ -103,10 +103,10 @@ public partial class NewGameSettings : ControlWithInput
     private LineEdit glucoseDecayRateReadout = null!;
 
     [Export]
-    private HSlider osmoregulationMultiplier = null!;
+    private HSlider energyCostMultiplier = null!;
 
     [Export]
-    private LineEdit osmoregulationMultiplierReadout = null!;
+    private LineEdit energyCostMultiplierReadout = null!;
 
     [Export]
     private HSlider autoEvoStrengthMultiplier = null!;
@@ -137,6 +137,12 @@ public partial class NewGameSettings : ControlWithInput
 
     [Export]
     private CheckButton organelleUnlocksEnabled = null!;
+
+    [Export]
+    private CheckButton spawnCompatibleMateOnCall = null!;
+
+    [Export]
+    private CheckButton showMatePosition = null!;
 
     // Planet controls
     [Export]
@@ -236,8 +242,8 @@ public partial class NewGameSettings : ControlWithInput
         playerDeathPopulationPenalty.MaxValue = Constants.MAX_PLAYER_DEATH_POPULATION_PENALTY;
         glucoseDecayRate.MinValue = Constants.MIN_GLUCOSE_DECAY * 100;
         glucoseDecayRate.MaxValue = Constants.MAX_GLUCOSE_DECAY * 100;
-        osmoregulationMultiplier.MinValue = Constants.MIN_OSMOREGULATION_MULTIPLIER;
-        osmoregulationMultiplier.MaxValue = Constants.MAX_OSMOREGULATION_MULTIPLIER;
+        energyCostMultiplier.MinValue = Constants.MIN_ENERGYCOST_MULTIPLIER;
+        energyCostMultiplier.MaxValue = Constants.MAX_ENERGYCOST_MULTIPLIER;
         autoEvoStrengthMultiplier.MinValue = Constants.MIN_AUTO_EVO_STRENGTH_MULTIPLIER;
         autoEvoStrengthMultiplier.MaxValue = Constants.MAX_AUTO_EVO_STRENGTH_MULTIPLIER;
 
@@ -320,7 +326,7 @@ public partial class NewGameSettings : ControlWithInput
         playerSpeciesAIPopulationStrength.Value = difficulty.PlayerSpeciesAIPopulationStrength;
         UpdatePlayerPopulationStrengthReadout(difficulty.PlayerSpeciesAIPopulationStrength);
         glucoseDecayRate.Value = difficulty.GlucoseDecay * 100;
-        osmoregulationMultiplier.Value = difficulty.OsmoregulationMultiplier;
+        energyCostMultiplier.Value = difficulty.EnergyCostMultiplier;
         autoEvoStrengthMultiplier.Value = difficulty.PlayerAutoEvoStrength;
         fogOfWarModeDropdown.Selected = (int)difficulty.FogOfWarMode;
 
@@ -336,6 +342,8 @@ public partial class NewGameSettings : ControlWithInput
         limitGrowthRateButton.ButtonPressed = difficulty.LimitGrowthRate;
         instantKillProtection.ButtonPressed = difficulty.InstantKillProtection;
         organelleUnlocksEnabled.ButtonPressed = difficulty.OrganelleUnlocksEnabled;
+        spawnCompatibleMateOnCall.ButtonPressed = difficulty.SpawnCompatibleMateOnCall;
+        showMatePosition.ButtonPressed = difficulty.ShowMatePosition;
 
         UpdateFogOfWarModeDescription(difficulty.FogOfWarMode);
         UpdateSelectedDifficultyPresetControl();
@@ -470,7 +478,7 @@ public partial class NewGameSettings : ControlWithInput
                 PlayerDeathPopulationPenalty = (float)playerDeathPopulationPenalty.Value,
                 PlayerSpeciesAIPopulationStrength = (float)playerSpeciesAIPopulationStrength.Value,
                 GlucoseDecay = (float)glucoseDecayRate.Value * 0.01f,
-                OsmoregulationMultiplier = (float)osmoregulationMultiplier.Value,
+                EnergyCostMultiplier = (float)energyCostMultiplier.Value,
                 PlayerAutoEvoStrength = (float)autoEvoStrengthMultiplier.Value,
                 ReproductionCompounds = SelectedReproductionCompounds,
                 FogOfWarMode = (FogOfWarMode)fogOfWarModeDropdown.Selected,
@@ -479,6 +487,8 @@ public partial class NewGameSettings : ControlWithInput
                 LimitGrowthRate = limitGrowthRateButton.ButtonPressed,
                 InstantKillProtection = instantKillProtection.ButtonPressed,
                 OrganelleUnlocksEnabled = organelleUnlocksEnabled.ButtonPressed,
+                SpawnCompatibleMateOnCall = spawnCompatibleMateOnCall.ButtonPressed,
+                ShowMatePosition = showMatePosition.ButtonPressed,
             };
 
             settings.Difficulty = customDifficulty;
@@ -637,7 +647,7 @@ public partial class NewGameSettings : ControlWithInput
         playerDeathPopulationPenalty.Value = preset.PlayerDeathPopulationPenalty;
         playerSpeciesAIPopulationStrength.Value = preset.PlayerSpeciesAIPopulationStrength;
         glucoseDecayRate.Value = preset.GlucoseDecay * 100;
-        osmoregulationMultiplier.Value = preset.OsmoregulationMultiplier;
+        energyCostMultiplier.Value = preset.EnergyCostMultiplier;
         autoEvoStrengthMultiplier.Value = preset.PlayerAutoEvoStrength;
         fogOfWarModeDropdown.Selected = (int)preset.FogOfWarMode;
         reproductionCompoundsDropdown.Selected =
@@ -647,6 +657,8 @@ public partial class NewGameSettings : ControlWithInput
         limitGrowthRateButton.ButtonPressed = preset.LimitGrowthRate;
         instantKillProtection.ButtonPressed = preset.InstantKillProtection;
         organelleUnlocksEnabled.ButtonPressed = preset.OrganelleUnlocksEnabled;
+        spawnCompatibleMateOnCall.ButtonPressed = preset.SpawnCompatibleMateOnCall;
+        showMatePosition.ButtonPressed = preset.ShowMatePosition;
 
         UpdateFogOfWarModeDescription(preset.FogOfWarMode);
 
@@ -685,7 +697,7 @@ public partial class NewGameSettings : ControlWithInput
             if ((int)glucoseDecayRate.Value != (int)(preset.GlucoseDecay * 100))
                 continue;
 
-            if (Math.Abs((float)osmoregulationMultiplier.Value - preset.OsmoregulationMultiplier) > MathUtils.EPSILON)
+            if (Math.Abs((float)energyCostMultiplier.Value - preset.EnergyCostMultiplier) > MathUtils.EPSILON)
                 continue;
 
             if (Math.Abs((float)autoEvoStrengthMultiplier.Value - preset.PlayerAutoEvoStrength) > MathUtils.EPSILON)
@@ -710,6 +722,12 @@ public partial class NewGameSettings : ControlWithInput
                 continue;
 
             if (organelleUnlocksEnabled.ButtonPressed != preset.OrganelleUnlocksEnabled)
+                continue;
+
+            if (spawnCompatibleMateOnCall.ButtonPressed != preset.SpawnCompatibleMateOnCall)
+                continue;
+
+            if (showMatePosition.ButtonPressed != preset.ShowMatePosition)
                 continue;
 
             // If all values are equal to the values for a preset, use that preset
@@ -777,10 +795,10 @@ public partial class NewGameSettings : ControlWithInput
         UpdateSelectedDifficultyPresetControl();
     }
 
-    private void OnOsmoregulationMultiplierValueChanged(double amount)
+    private void OnEnergyCostMultiplierValueChanged(double amount)
     {
         amount = Math.Round(amount, 1);
-        osmoregulationMultiplierReadout.Text = amount.ToString(CultureInfo.CurrentCulture);
+        energyCostMultiplierReadout.Text = amount.ToString(CultureInfo.CurrentCulture);
 
         UpdateSelectedDifficultyPresetControl();
     }
@@ -857,6 +875,18 @@ public partial class NewGameSettings : ControlWithInput
     }
 
     private void OnOrganelleUnlocksToggled(bool pressed)
+    {
+        _ = pressed;
+        UpdateSelectedDifficultyPresetControl();
+    }
+
+    private void OnSpawnCompatibleMateOnCallToggled(bool pressed)
+    {
+        _ = pressed;
+        UpdateSelectedDifficultyPresetControl();
+    }
+
+    private void OnShowMatePositionToggled(bool pressed)
     {
         _ = pressed;
         UpdateSelectedDifficultyPresetControl();

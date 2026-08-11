@@ -12,7 +12,7 @@ using Systems;
 /// </summary>
 public struct MicrobeControl : IArchivableComponent
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     /// <summary>
     ///   The point towards which the microbe will move to point to
@@ -95,6 +95,11 @@ public struct MicrobeControl : IArchivableComponent
     public bool MucocystEffectsApplied;
 
     /// <summary>
+    ///   Whether this microbe is going to germinate next frame
+    /// </summary>
+    public bool GerminatingSpore;
+
+    /// <summary>
     ///   Constructs an instance with a sensible <see cref="LookAtPoint"/> set
     /// </summary>
     /// <param name="startingPosition">World position this entity is starting at</param>
@@ -111,6 +116,7 @@ public struct MicrobeControl : IArchivableComponent
         SlowedBySlime = false;
         Sprinting = false;
         MucocystEffectsApplied = false;
+        GerminatingSpore = false;
     }
 
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
@@ -133,6 +139,7 @@ public struct MicrobeControl : IArchivableComponent
         writer.Write(OutOfSprint);
         writer.Write(Sprinting);
         writer.Write(MucocystEffectsApplied);
+        writer.Write(GerminatingSpore);
     }
 }
 
@@ -159,6 +166,7 @@ public static class MicrobeControlHelpers
             OutOfSprint = reader.ReadBool(),
             Sprinting = reader.ReadBool(),
             MucocystEffectsApplied = reader.ReadBool(),
+            GerminatingSpore = version > 1 && reader.ReadBool(),
         };
     }
 

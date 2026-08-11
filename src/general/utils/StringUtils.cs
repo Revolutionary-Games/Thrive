@@ -661,4 +661,44 @@ public static class StringUtils
             .Replace("LEFT_BRACE", "[").Replace("RIGHT_BRACE", "]")
             .Replace("LEFT_CURLY_BRACE", "{").Replace("RIGHT_CURLY_BRACE", "}");
     }
+
+    /// <summary>
+    ///   Calculates the distance between two strings using Levenshtein distance
+    /// </summary>
+    public static int DoStringCostBetween(string first, string second)
+    {
+        if (first.Length == 0)
+            return second.Length;
+
+        if (second.Length == 0)
+            return first.Length;
+
+        int[] previousRow = new int[first.Length + 1];
+        int[] currentRow = new int[first.Length + 1];
+
+        for (int x = 0; x < first.Length + 1; ++x)
+        {
+            previousRow[x] = x;
+        }
+
+        for (int x = 1; x < second.Length + 1; ++x)
+        {
+            currentRow[0] = x;
+            for (int y = 1; y < first.Length + 1; ++y)
+            {
+                int subCost = first[y - 1] == second[x - 1] ? 0 : 1;
+                int a = currentRow[y - 1] + 1;
+                int b = previousRow[y] + 1;
+                int c = previousRow[y - 1] + subCost;
+                int min = Math.Min(a, b);
+                min = Math.Min(min, c);
+
+                currentRow[y] = min;
+            }
+
+            currentRow.CopyTo(previousRow, 0);
+        }
+
+        return currentRow[first.Length];
+    }
 }

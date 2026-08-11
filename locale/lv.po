@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-27 14:48+0200\n"
+"POT-Creation-Date: 2026-08-11 10:42+0300\n"
 "PO-Revision-Date: 2026-02-18 15:13+0000\n"
 "Last-Translator: Deleted User <noreply+90@weblate.org>\n"
 "Language-Team: Latvian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lv/>\n"
@@ -53,6 +53,14 @@ msgstr ""
 #, fuzzy
 msgid "ACHIEVEMENTS"
 msgstr "Kustība"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr "Kustība"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr "Apraksts:"
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr ""
@@ -114,13 +122,6 @@ msgstr ""
 #, fuzzy
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
-
-#, fuzzy
-msgid "AEROBIC_NITROGEN_FIXATION"
-msgstr "Anaerobiskā slāpekļa fiksācija"
-
-msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "Aerobiskā slāpekļa fiksācija"
 
 #, fuzzy
 msgid "AEROBIC_RESPIRATION"
@@ -187,6 +188,13 @@ msgstr ""
 msgid "ALT"
 msgstr "Alt"
 
+#, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr "Esošie pavedieni:"
+
+msgid "ALTERNATVE_TIMESCALE"
+msgstr ""
+
 msgid "ALWAYS_VISIBLE"
 msgstr ""
 
@@ -209,9 +217,6 @@ msgstr "Automātisko saglabāšanas failu daudzums:"
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Ātru saglabāšanas failu daudzums:"
-
-msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "Anaerobiskā slāpekļa fiksācija"
 
 #, fuzzy
 msgid "AND_UNLOCK_CONDITION"
@@ -626,6 +631,12 @@ msgid "BROWSE_WORKSHOP"
 msgstr ""
 
 #, fuzzy
+msgid "BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr ""
+"Aktīvi mikrobi skraidīs apkārt un gāzīsies, kad nekas interesants nenotiek.\n"
+"Sēdošie mikrobi būs nekustīgi un gaidīs, kad vide mainīsies, pirms tie kaut ko dara."
+
+#, fuzzy
 msgid "BUILD_CITY"
 msgstr "Struktūra"
 
@@ -780,6 +791,19 @@ msgstr ""
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Izmaiņas piezīmes ir pārāk garas"
 
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr "Membrānas veidi"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr ""
+"Aktīvi mikrobi skraidīs apkārt un gāzīsies, kad nekas interesants nenotiek.\n"
+"Sēdošie mikrobi būs nekustīgi un gaidīs, kad vide mainīsies, pirms tie kaut ko dara."
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
+
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Izmainīt simetriju"
 
@@ -802,6 +826,12 @@ msgstr "Krāpšanās izvēlne (Čīti)"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
+
+#, fuzzy
+msgid "CHEMICAL_EQUATION_SPEED_EXPLANATION"
+msgstr ""
+"Aktīvi mikrobi skraidīs apkārt un gāzīsies, kad nekas interesants nenotiek.\n"
+"Sēdošie mikrobi būs nekustīgi un gaidīs, kad vide mainīsies, pirms tie kaut ko dara."
 
 msgid "CHEMOPLAST"
 msgstr "Hemoplasts"
@@ -1776,6 +1806,9 @@ msgstr ""
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr ""
 
+msgid "DIFFICULTY_PRESET_VERY_EASY"
+msgstr ""
+
 msgid "DIGESTION_EFFICIENCY"
 msgstr ""
 
@@ -1866,6 +1899,14 @@ msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
 
 #, fuzzy
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr "Automātiski saglabāt progresu spēles laikā"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_METAL"
+msgstr "Automātiski saglabāt progresu spēles laikā"
+
+#, fuzzy
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr "Automātiski saglabāt progresu spēles laikā"
 
@@ -1904,10 +1945,6 @@ msgstr ""
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
-
-#, fuzzy
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "Atsākt spēli"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr ""
@@ -2053,6 +2090,40 @@ msgstr ""
 "Citoplazma: uzglabā savienojumus un veic glikolīzi (ražo ATP nelielos daudzumos)"
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
+msgstr ""
+"Prokariotu struktūras\n"
+"\n"
+"Metabolosomas: ražo ATP no glikozes\n"
+"\n"
+"Hemosintezējošas olbaltumvielas: No sērūdeņraža saražo uz pusi mazāk glikozes nekā hemoplasts, bet arī veic glikolīzi, aizņem 1 daļu\n"
+"\n"
+"Tilakoīdi: ražo 3 reizes mazāk glikozes nekā parasts hloroplasts, bet arī veic glikolīzi un aizņem 1 daļu\n"
+"\n"
+"Rusticianīns : pārvērš dzelzi ATP\n"
+"\n"
+"Nitrogenāze: no atmosfēras slāpekli un ATP ražo amonjaku\n"
+"\n"
+"Citoplazma: uzglabā savienojumus un veic glikolīzi (ražo ATP nelielos daudzumos)"
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
+msgstr ""
+"Prokariotu struktūras\n"
+"\n"
+"Metabolosomas: ražo ATP no glikozes\n"
+"\n"
+"Hemosintezējošas olbaltumvielas: No sērūdeņraža saražo uz pusi mazāk glikozes nekā hemoplasts, bet arī veic glikolīzi, aizņem 1 daļu\n"
+"\n"
+"Tilakoīdi: ražo 3 reizes mazāk glikozes nekā parasts hloroplasts, bet arī veic glikolīzi un aizņem 1 daļu\n"
+"\n"
+"Rusticianīns : pārvērš dzelzi ATP\n"
+"\n"
+"Nitrogenāze: no atmosfēras slāpekli un ATP ražo amonjaku\n"
+"\n"
+"Citoplazma: uzglabā savienojumus un veic glikolīzi (ražo ATP nelielos daudzumos)"
+
+#, fuzzy
 msgid "EDIT_MICROBE_FIRST_TIME"
 msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] un peli, lai kustētos. [thrive:input]g_fire_toxin[/thrive:input], lai šautu [thrive:compound type=\"oxytoxy\"][/thrive:compound], ja jums ir toksīnu vakuola. [thrive:input]g_toggle_engulf[/thrive:input], lai pārslēgtu aprīšanas režīmu. Jūs varat attālinātas un pietuvināties ar peles riteni."
 
@@ -2131,6 +2202,13 @@ msgstr ""
 "un visticamāk būs ambiciozāki par gabaliem.\n"
 "Atsaucīgi mikrobi ātrāk pāries uz jauniem mērķiem."
 
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION_MULTICELLULAR"
+msgstr ""
+"Koncentrēti mikrobi meklēs gabalus vai upurus tālas distances\n"
+"un visticamāk būs ambiciozāki par gabaliem.\n"
+"Atsaucīgi mikrobi ātrāk pāries uz jauniem mērķiem."
+
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
 msgstr ""
 
@@ -2162,6 +2240,16 @@ msgstr "{0}: +{1} ATP"
 #, fuzzy
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr "Savienojumu mākonis"
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER"
+msgstr "Osmoregulācijas izmaksas"
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER_EXPLANATION"
+msgstr ""
+"Aktīvi mikrobi skraidīs apkārt un gāzīsies, kad nekas interesants nenotiek.\n"
+"Sēdošie mikrobi būs nekustīgi un gaidīs, kad vide mainīsies, pirms tie kaut ko dara."
 
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
@@ -2245,6 +2333,9 @@ msgstr "Kļūme veidojot mapi modifikācijai"
 msgid "ERROR_LOADING"
 msgstr ""
 
+msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
+
 msgid "ERROR_SAVING"
 msgstr ""
 
@@ -2313,6 +2404,9 @@ msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
 
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
+msgstr ""
+
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE_JUKEBOX"
 msgstr ""
 
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
@@ -2653,6 +2747,30 @@ msgstr ""
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr "Šūnas procesi"
 
+#, fuzzy
+msgid "GAMETE_CELL_ENTITY_NAME"
+msgstr "Pielāgots lietotājvards:"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE"
+msgstr "Izveidot jaunu saglabāšanas failu"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_A"
+msgstr "Izveidot jaunu saglabāšanas failu"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_B"
+msgstr "Izveidot jaunu saglabāšanas failu"
+
+#, fuzzy
+msgid "GAMETE_PRODUCED"
+msgstr "ATP ražošana"
+
+#, fuzzy
+msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
+
 msgid "GAME_DESIGN_TEAM"
 msgstr ""
 
@@ -2723,6 +2841,14 @@ msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
 msgstr ""
 "Aktīvi mikrobi skraidīs apkārt un gāzīsies, kad nekas interesants nenotiek.\n"
 "Sēdošie mikrobi būs nekustīgi un gaidīs, kad vide mainīsies, pirms tie kaut ko dara."
+
+#, fuzzy
+msgid "GERMINATE_SPORE"
+msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
+
+#, fuzzy
+msgid "GERMINATE_SPORE_ACTION_TOOLTIP"
+msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
 
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
@@ -2955,6 +3081,18 @@ msgid "IMAGE_FILE_TYPES"
 msgstr "Membrānas veidi"
 
 #, fuzzy
+msgid "INCOMPATIBLE_MEMBRANE_LIST"
+msgstr "Organisma statistika"
+
+#, fuzzy
+msgid "INCOMPATIBLE_ORGANELLE_LIST"
+msgstr "Novietot organoīdu"
+
+#, fuzzy
+msgid "INCOMPATIBLE_STAGE_LIST"
+msgstr "Organisma statistika"
+
+#, fuzzy
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Izveidot Jaunu"
 
@@ -3017,6 +3155,14 @@ msgstr "Kodols"
 
 msgid "INFO_BOX_SIZE"
 msgstr ""
+
+#, fuzzy
+msgid "INFO_BOX_SIZE_PLAIN"
+msgstr "Uzglabāšana"
+
+#, fuzzy
+msgid "INFO_BOX_STAGE"
+msgstr "Uzglabāšana"
 
 #, fuzzy
 msgid "INFO_BOX_STORAGE"
@@ -3687,6 +3833,20 @@ msgstr ""
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr ""
 
+#, fuzzy
+msgid "LOOK_LEFT"
+msgstr "Pārvietoties pa kreisi"
+
+#, fuzzy
+msgid "LOOK_RIGHT"
+msgstr "Pārvietoties pa labi"
+
+msgid "LOOK_SCREEN_DOWN_OR_3D_TOWARDS_UP"
+msgstr ""
+
+msgid "LOOK_SCREEN_UP_OR_3D_TOWARDS_DOWN"
+msgstr ""
+
 msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
 msgstr ""
 
@@ -3733,6 +3893,10 @@ msgid "MACROSCOPIC"
 msgstr ""
 
 #, fuzzy
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr "Kodols"
+
+#, fuzzy
 msgid "MACROSCOPIC_EDITOR"
 msgstr "Novietot organoīdu"
 
@@ -3766,6 +3930,15 @@ msgstr ""
 
 msgid "MARINE_SNOW"
 msgstr "Jūras sniegs"
+
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr ""
+"Aktīvi mikrobi skraidīs apkārt un gāzīsies, kad nekas interesants nenotiek.\n"
+"Sēdošie mikrobi būs nekustīgi un gaidīs, kad vide mainīsies, pirms tie kaut ko dara."
 
 msgid "MASTER_VOLUME"
 msgstr "Skaļums"
@@ -4038,6 +4211,10 @@ msgstr "Lai labotu kļūdu redaktorā, nospied \"atsaukt\""
 
 #, fuzzy
 msgid "MICROBE_LOADING_TIP_22"
+msgstr "Lai labotu kļūdu redaktorā, nospied \"atsaukt\""
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_23"
 msgstr "Lai labotu kļūdu redaktorā, nospied \"atsaukt\""
 
 #, fuzzy
@@ -4530,8 +4707,49 @@ msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Novietot organoīdu"
 
 #, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_2"
+msgstr "Novietot organoīdu"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_3"
+msgstr "Novietot organoīdu"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_4"
+msgstr "Novietot organoīdu"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_5"
+msgstr "Novietot organoīdu"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_6"
+msgstr "Novietot organoīdu"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_7"
+msgstr "Novietot organoīdu"
+
+#, fuzzy
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "Novietot organoīdu"
+
+#, fuzzy
+msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
+msgstr ""
+"Prokariotu struktūras\n"
+"\n"
+"Metabolosomas: ražo ATP no glikozes\n"
+"\n"
+"Hemosintezējošas olbaltumvielas: No sērūdeņraža saražo uz pusi mazāk glikozes nekā hemoplasts, bet arī veic glikolīzi, aizņem 1 daļu\n"
+"\n"
+"Tilakoīdi: ražo 3 reizes mazāk glikozes nekā parasts hloroplasts, bet arī veic glikolīzi un aizņem 1 daļu\n"
+"\n"
+"Rusticianīns : pārvērš dzelzi ATP\n"
+"\n"
+"Nitrogenāze: no atmosfēras slāpekli un ATP ražo amonjaku\n"
+"\n"
+"Citoplazma: uzglabā savienojumus un veic glikolīzi (ražo ATP nelielos daudzumos)"
 
 #, fuzzy
 msgid "MULTICELLULAR_STAGE"
@@ -4618,6 +4836,9 @@ msgstr ""
 msgid "NEW"
 msgstr ""
 
+msgid "NEWER"
+msgstr ""
+
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 
@@ -4662,6 +4883,10 @@ msgstr ""
 
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
+
+#, fuzzy
+msgid "NITROGEN_FIXATION"
+msgstr "Anaerobiskā slāpekļa fiksācija"
 
 msgid "NITROPLAST"
 msgstr "Slāpekļa fiksējošs plastids"
@@ -4728,9 +4953,16 @@ msgstr ""
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
+msgid "NOTICE_READY_TO_SHOOT_GAMETE"
+msgstr ""
+
 #, fuzzy
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "Atcelt pašreizējo darbību"
+
+#, fuzzy
+msgid "NOT_ENOUGH_MUTATION_POINTS"
+msgstr "Mutācijas punkti"
 
 #, fuzzy
 msgid "NOT_STARTED_DOT"
@@ -4823,6 +5055,10 @@ msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
 msgid "OK"
 msgstr "OK"
 
+#, fuzzy
+msgid "OLDER"
+msgstr "Atvērt mapi"
+
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 
@@ -4839,6 +5075,10 @@ msgstr ""
 "un visbiežāk muks no plēsējiem kopumā.\n"
 "Drosmīgos mikrobus neiebiedēs apkārtējie plēsēji\n"
 "un visbiežāk uzbruks pretī."
+
+#, fuzzy
+msgid "OPEN_EVOLUTIONARY_TREE"
+msgstr "Palīdziet tulkot spēli"
 
 msgid "OPEN_FOLDER"
 msgstr "Atvērt mapi"
@@ -4912,6 +5152,10 @@ msgstr "Opcijas"
 #, fuzzy
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
+
+#, fuzzy
+msgid "OPTION_USED_FOR_PLAYER"
+msgstr "Atcelts."
 
 msgid "ORGANELLES"
 msgstr "Organoīdi"
@@ -5011,14 +5255,6 @@ msgid "OSMOREGULATION_COST"
 msgstr "Osmoregulācijas izmaksas"
 
 #, fuzzy
-msgid "OSMOREGULATION_COST_MULTIPLIER"
-msgstr "Osmoregulācijas izmaksas"
-
-#, fuzzy
-msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
-msgstr "Osmoregulācijas izmaksas"
-
-#, fuzzy
 msgid "OTHER_COMPOUNDS"
 msgstr "Savienojumi"
 
@@ -5062,6 +5298,10 @@ msgid "OXYGEN_RESISTANCE"
 msgstr "Izturība pret toksīniem"
 
 #, fuzzy
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
+msgstr "Izturība pret toksīniem"
+
+#, fuzzy
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
 
@@ -5088,6 +5328,10 @@ msgstr "Atpakaļ"
 #, fuzzy
 msgid "PAGE_FORWARD"
 msgstr "Pārvietoties uz priekšu"
+
+#, fuzzy
+msgid "PAGE_PINNED"
+msgstr "Šūnas procesi"
 
 #, fuzzy
 msgid "PAGE_TITLE"
@@ -5144,6 +5388,9 @@ msgstr "Šūnas procesi"
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
+msgid "PATCH_NOTES_RECENT_BOUNDARY"
+msgstr ""
+
 #, fuzzy
 msgid "PATCH_NOTES_TITLE"
 msgstr "Šūnas procesi"
@@ -5195,6 +5442,14 @@ msgstr ""
 "Drosmīgos mikrobus neiebiedēs apkārtējie plēsēji\n"
 "un visbiežāk uzbruks pretī."
 
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION_MULTICELLULAR"
+msgstr ""
+"Bailīgie mikrobi muks tālas distances\n"
+"un visbiežāk muks no plēsējiem kopumā.\n"
+"Drosmīgos mikrobus neiebiedēs apkārtējie plēsēji\n"
+"un visbiežāk uzbruks pretī."
+
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
 msgstr ""
 
@@ -5235,6 +5490,13 @@ msgid "PHYSICAL_CONDITIONS"
 msgstr "Fiziskie apstākļi"
 
 msgid "PHYSICAL_RESISTANCE"
+msgstr ""
+
+#, fuzzy
+msgid "PIN_BUTTON_TOOLTIP"
+msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
+
+msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
 msgstr ""
 
 msgid "PLACE_ORGANELLE"
@@ -5359,6 +5621,10 @@ msgid "PRESSURE_SHORT"
 msgstr "Spied."
 
 #, fuzzy
+msgid "PRESSURE_TOLERANCE"
+msgstr "Atgriezties izvēlnē"
+
+#, fuzzy
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "Atgriezties izvēlnē"
 
@@ -5382,6 +5648,10 @@ msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr ""
 
 #, fuzzy
+msgid "PROCESS_INACTIVE"
+msgstr "Šūnas procesi"
+
+#, fuzzy
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
 msgstr "Šūnas procesi"
 
@@ -5397,10 +5667,6 @@ msgstr "Šūnas procesi"
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Šūnas procesi"
 
-#, fuzzy
-msgid "PROCESS_TOGGLE_TOOLTIP"
-msgstr "Atgriezties izvēlnē"
-
 msgid "PROGRAMMING_TEAM"
 msgstr ""
 
@@ -5409,9 +5675,6 @@ msgstr ""
 
 msgid "PROTEINS"
 msgstr "Olbaltumvielas"
-
-msgid "PROTOPLASM"
-msgstr "Protoplazma"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr ""
@@ -5444,6 +5707,10 @@ msgstr "Aerobiskā elpošana"
 
 #, fuzzy
 msgid "RADIOACTIVE_CHUNK"
+msgstr "Liels dzelzs gabals"
+
+#, fuzzy
+msgid "RADIOACTIVE_CHUNK_BANANA"
 msgstr "Liels dzelzs gabals"
 
 #, fuzzy
@@ -5512,6 +5779,10 @@ msgstr ""
 msgid "REPORT_BUG"
 msgstr ""
 
+#, fuzzy
+msgid "REPRODUCE"
+msgstr "ATP ražošana"
+
 msgid "REPRODUCED"
 msgstr ""
 
@@ -5541,8 +5812,28 @@ msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 msgstr "ATP RAŽOŠANA IR PĀRĀK ZEMA!"
 
 #, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "ATP ražošana"
+
+#, fuzzy
 msgid "REPRODUCTION_METHOD"
 msgstr "ATP RAŽOŠANA IR PĀRĀK ZEMA!"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL"
+msgstr "ATP ražošana"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
+msgstr "ATP ražošana"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ISOGAMY"
+msgstr "ATP ražošana"
+
+#, fuzzy
+msgid "REPRODUCTION_SPORE"
+msgstr "ATP ražošana"
 
 #, fuzzy
 msgid "REQUIRES_NUCLEUS"
@@ -5688,6 +5979,10 @@ msgstr "Pagriezt pa labi"
 
 #, fuzzy
 msgid "ROTATION_COLON"
+msgstr "Kopējā Populācija:"
+
+#, fuzzy
+msgid "ROTATION_FORCE"
 msgstr "Kopējā Populācija:"
 
 msgid "RUNOFF_EVENT"
@@ -5964,6 +6259,24 @@ msgstr ""
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr ""
+"Aktīvi mikrobi skraidīs apkārt un gāzīsies, kad nekas interesants nenotiek.\n"
+"Sēdošie mikrobi būs nekustīgi un gaidīs, kad vide mainīsies, pirms tie kaut ko dara."
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
+msgstr ""
+"Aktīvi mikrobi skraidīs apkārt un gāzīsies, kad nekas interesants nenotiek.\n"
+"Sēdošie mikrobi būs nekustīgi un gaidīs, kad vide mainīsies, pirms tie kaut ko dara."
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+msgstr ""
+"Aktīvi mikrobi skraidīs apkārt un gāzīsies, kad nekas interesants nenotiek.\n"
+"Sēdošie mikrobi būs nekustīgi un gaidīs, kad vide mainīsies, pirms tie kaut ko dara."
+
 msgid "SFX_VOLUME"
 msgstr "SFX skaļums"
 
@@ -5991,6 +6304,18 @@ msgstr "Rādīt tutoriālus"
 #, fuzzy
 msgid "SHOW_MAP"
 msgstr "Rādīt palīdzību"
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION"
+msgstr "Rādīt palīdzību"
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION_EXPLANATION"
+msgstr ""
+"Agresīvi mikrobi savu upuri dzīs ļoti tālas distances\n"
+"un ir tie, kuri visbiežāk cīnīsies ar plēsējiem, kad tie uzbrūk.\n"
+"Miermīlīgi mikrobrobi necīnīsies ar citiem pāri tālām distancēm\n"
+"un retāk lietos toksīnus pret plēsējiem."
 
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
@@ -6045,6 +6370,14 @@ msgstr "Spiediet [thrive:input]g_toggle_binding[/thrive:input] , lai pārslēgtu
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "Saistviela"
 
+#, fuzzy
+msgid "SIGNAL_COMMAND_CALL_MATE"
+msgstr "Saistviela"
+
+#, fuzzy
+msgid "SIGNAL_COMMAND_FIRE_GAMETES"
+msgstr "Saistviela"
+
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr ""
 
@@ -6069,6 +6402,10 @@ msgstr ""
 
 #, fuzzy
 msgid "SIMULATION_CONFIG"
+msgstr "Osmoregulācijas izmaksas"
+
+#, fuzzy
+msgid "SIMULATION_FACTOR"
 msgstr "Osmoregulācijas izmaksas"
 
 #, fuzzy
@@ -6160,6 +6497,16 @@ msgstr ""
 msgid "SPAWN_GLUCOSE"
 msgstr "Iespavnot glikozi"
 
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL"
+msgstr "Iespavnot amonjaku"
+
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL_EXPLANATION"
+msgstr ""
+"Aktīvi mikrobi skraidīs apkārt un gāzīsies, kad nekas interesants nenotiek.\n"
+"Sēdošie mikrobi būs nekustīgi un gaidīs, kad vide mainīsies, pirms tie kaut ko dara."
+
 msgid "SPAWN_PHOSPHATES"
 msgstr "Iespavnot fosfātu"
 
@@ -6230,11 +6577,22 @@ msgstr "Suga:"
 msgid "SPECIES_WITH_POPULATION"
 msgstr "Sugas populācija"
 
-msgid "SPEED"
-msgstr "Ātrums"
-
 msgid "SPEED_COLON"
 msgstr "Ātrums:"
+
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "Atsākt spēli"
+
+#, fuzzy
+msgid "SPORE_CELL_TYPE"
+msgstr "Izveidot jaunu saglabāšanas failu"
+
+#, fuzzy
+msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
+msgstr ""
+"Aktīvi mikrobi skraidīs apkārt un gāzīsies, kad nekas interesants nenotiek.\n"
+"Sēdošie mikrobi būs nekustīgi un gaidīs, kad vide mainīsies, pirms tie kaut ko dara."
 
 #, fuzzy
 msgid "SPREAD_TO_PATCHES"
@@ -6537,6 +6895,10 @@ msgid "TEMPERATURE_SHORT"
 msgstr "Temperatūra."
 
 #, fuzzy
+msgid "TEMPERATURE_TOLERANCE_RANGE"
+msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
+
+#, fuzzy
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
 
@@ -6614,6 +6976,10 @@ msgstr ""
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
+msgstr "Izmirusi suga"
+
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr ""
 
@@ -6623,11 +6989,87 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVEOPEDIA_MUSEUM_PAGE_SEARCHTAGS"
+msgstr "Apraksts:"
+
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVEOPEDIA_ORGANELLE_SEARCHTAGS"
+msgstr "Šūnas procesi"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
+msgstr "Izmirusi suga"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_SEARCHTAGS"
+msgstr "Apraksts:"
+
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
+msgstr ""
+"Prokariotu struktūras\n"
+"\n"
+"Metabolosomas: ražo ATP no glikozes\n"
+"\n"
+"Hemosintezējošas olbaltumvielas: No sērūdeņraža saražo uz pusi mazāk glikozes nekā hemoplasts, bet arī veic glikolīzi, aizņem 1 daļu\n"
+"\n"
+"Tilakoīdi: ražo 3 reizes mazāk glikozes nekā parasts hloroplasts, bet arī veic glikolīzi un aizņem 1 daļu\n"
+"\n"
+"Rusticianīns : pārvērš dzelzi ATP\n"
+"\n"
+"Nitrogenāze: no atmosfēras slāpekli un ATP ražo amonjaku\n"
+"\n"
+"Citoplazma: uzglabā savienojumus un veic glikolīzi (ražo ATP nelielos daudzumos)"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE"
+msgstr "Satur mutāciju"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
+msgstr "Apraksts:"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
+msgstr ""
+"Prokariotu struktūras\n"
+"\n"
+"Metabolosomas: ražo ATP no glikozes\n"
+"\n"
+"Hemosintezējošas olbaltumvielas: No sērūdeņraža saražo uz pusi mazāk glikozes nekā hemoplasts, bet arī veic glikolīzi, aizņem 1 daļu\n"
+"\n"
+"Tilakoīdi: ražo 3 reizes mazāk glikozes nekā parasts hloroplasts, bet arī veic glikolīzi un aizņem 1 daļu\n"
+"\n"
+"Rusticianīns : pārvērš dzelzi ATP\n"
+"\n"
+"Nitrogenāze: no atmosfēras slāpekli un ATP ražo amonjaku\n"
+"\n"
+"Citoplazma: uzglabā savienojumus un veic glikolīzi (ražo ATP nelielos daudzumos)"
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
+msgstr ""
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
+msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_SEARCHTAGS"
+msgstr "Satur mutāciju"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_SEARCHTAGS"
+msgstr "Šūnas procesi"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
+msgstr "Šūnas procesi"
 
 msgid "THRIVE_LICENSES"
 msgstr "Thrive Licences"
@@ -6635,6 +7077,9 @@ msgstr "Thrive Licences"
 #, fuzzy
 msgid "THRIVIN_ACHIEVEMENT"
 msgstr "Kustība"
+
+msgid "THRUST_FORCE"
+msgstr ""
 
 msgid "THYLAKOIDS"
 msgstr "Tilakoīdi"
@@ -6817,9 +7262,6 @@ msgid "TOOLS"
 msgstr "Instrumenti"
 
 msgid "TOOL_HAND_AXE"
-msgstr ""
-
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
 #, fuzzy
@@ -7562,10 +8004,6 @@ msgid "VIEWER"
 msgstr ""
 
 #, fuzzy
-msgid "VIEW_ALL"
-msgstr "Pārskatīt tagad"
-
-#, fuzzy
 msgid "VIEW_CELL_PROCESSES"
 msgstr "Pārveido [thrive:compound type=\"glucose\"][/thrive:compound] par [thrive:compound type=\"atp\"][/thrive:compound]."
 
@@ -8157,7 +8595,7 @@ msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr ""
 
 #, fuzzy
-msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+msgid "WIKI_GLYCOLYSIS_COMMA_NITROGEN_FIXATION"
 msgstr "Anaerobiskā slāpekļa fiksācija"
 
 #, fuzzy
@@ -8938,10 +9376,6 @@ msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr ""
 
 #, fuzzy
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "Protoplazma"
-
-#, fuzzy
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "Protoplazma"
 
@@ -9023,33 +9457,6 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "Aerobiskā elpošana"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "Protoplazma"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr "Protoplazma"
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr "Pārveido [thrive:compound type=\"glucose\"][/thrive:compound] par [thrive:compound type=\"atp\"][/thrive:compound]."
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
 
 msgid "WIKI_PULLING_CILIA"
 msgstr ""
@@ -9573,6 +9980,50 @@ msgid "ZOOM_OUT"
 msgstr "Attālināt"
 
 #, fuzzy
+#~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
+#~ msgstr "Atsākt spēli"
+
+#~ msgid "PROTOPLASM"
+#~ msgstr "Protoplazma"
+
+#, fuzzy
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "Protoplazma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "Protoplazma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr "Protoplazma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr "Pārveido [thrive:compound type=\"glucose\"][/thrive:compound] par [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+#~ msgid "VIEW_ALL"
+#~ msgstr "Pārskatīt tagad"
+
+#~ msgid "SPEED"
+#~ msgstr "Ātrums"
+
+#, fuzzy
+#~ msgid "AEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Anaerobiskā slāpekļa fiksācija"
+
+#~ msgid "AEROBIC_NITROGEN_FIXING"
+#~ msgstr "Aerobiskā slāpekļa fiksācija"
+
+#~ msgid "ANAEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Anaerobiskā slāpekļa fiksācija"
+
+#, fuzzy
+#~ msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
+#~ msgstr "Osmoregulācijas izmaksas"
+
+#, fuzzy
 #~ msgid "KEEP_CURRENT_SHORT"
 #~ msgstr "Temperatūra."
 
@@ -9609,12 +10060,6 @@ msgstr "Attālināt"
 #~ msgstr "Šūnas procesi"
 
 #, fuzzy
-#~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
-#~ msgstr ""
-#~ "Aktīvi mikrobi skraidīs apkārt un gāzīsies, kad nekas interesants nenotiek.\n"
-#~ "Sēdošie mikrobi būs nekustīgi un gaidīs, kad vide mainīsies, pirms tie kaut ko dara."
-
-#, fuzzy
 #~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 #~ msgstr ""
 #~ "Prokariotu struktūras\n"
@@ -9637,12 +10082,6 @@ msgstr "Attālināt"
 
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "Dzelža Ķīmolitoautotrofija"
-
-#, fuzzy
-#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
-#~ msgstr ""
-#~ "Aktīvi mikrobi skraidīs apkārt un gāzīsies, kad nekas interesants nenotiek.\n"
-#~ "Sēdošie mikrobi būs nekustīgi un gaidīs, kad vide mainīsies, pirms tie kaut ko dara."
 
 #, fuzzy
 #~ msgid "THANKS_FOR_BUYING_THRIVE"
@@ -9935,12 +10374,6 @@ msgstr "Attālināt"
 #, fuzzy
 #~ msgid "ENABLED"
 #~ msgstr "Ieslēgt redaktoru"
-
-#, fuzzy
-#~ msgid "PATCH_MAP_TYPE_EXPLANATION"
-#~ msgstr ""
-#~ "Aktīvi mikrobi skraidīs apkārt un gāzīsies, kad nekas interesants nenotiek.\n"
-#~ "Sēdošie mikrobi būs nekustīgi un gaidīs, kad vide mainīsies, pirms tie kaut ko dara."
 
 #, fuzzy
 #~ msgid "LOOKING_AT"

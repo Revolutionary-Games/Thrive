@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-27 14:48+0200\n"
-"PO-Revision-Date: 2025-05-25 15:00+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2026-08-11 10:42+0300\n"
+"PO-Revision-Date: 2026-05-11 14:00+0000\n"
+"Last-Translator: Eimantas <mazeika.eimantas@gmail.com>\n"
 "Language-Team: Lithuanian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lt/>\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n % 10 == 1 && (n % 100 < 11 || n % 100 > 19)) ? 0 : ((n % 10 >= 2 && n % 10 <= 9 && (n % 100 < 11 || n % 100 > 19)) ? 1 : 2);\n"
-"X-Generator: Weblate 5.11.4\n"
+"X-Generator: Weblate 5.16.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -40,28 +40,34 @@ msgstr "Nutraukti"
 msgid "ABORTED_DOT"
 msgstr "Nutrauktas."
 
-#, fuzzy
 msgid "ABSORBERS_COUNT"
-msgstr "Mikroorganizmo būsena"
+msgstr "Absorberiai:"
 
 msgid "ABYSSOPELAGIC"
 msgstr "Bedugnė"
 
 msgid "ACCEPT"
-msgstr ""
+msgstr "Patvirtinti"
+
+msgid "ACHIEVEMENTS"
+msgstr "Pasiekimai"
 
 #, fuzzy
-msgid "ACHIEVEMENTS"
-msgstr "Bazinis Judėjimas"
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr "Pasiekimai {0} / {1}"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr "Elemento aprašymas:"
 
 msgid "ACHIEVEMENTS_TOTAL"
-msgstr ""
+msgstr "Pasiekimai {0} / {1}"
 
 msgid "ACHIEVEMENT_ACHIEVED"
-msgstr ""
+msgstr "Pasiekti"
 
 msgid "ACHIEVEMENT_LOCKED"
-msgstr ""
+msgstr "Užrakinti"
 
 msgid "ACTION_AWAKEN"
 msgstr "Nubusti ({0:F1} / {1:F1})"
@@ -110,25 +116,17 @@ msgstr "Pažengęs"
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Atidaryti papildomų nustatymų langą"
 
-#, fuzzy
-msgid "AEROBIC_NITROGEN_FIXATION"
-msgstr "Anaerobinė Azoto Fiksacija"
-
-msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "Aerobinė Azoto Fiksacija"
-
-#, fuzzy
 msgid "AEROBIC_RESPIRATION"
-msgstr "Anaerobinė Azoto Fiksacija"
+msgstr "Aerobinis Kvėpavimas"
 
 msgid "AGENTS"
 msgstr "Agentai"
 
 msgid "AGENTS_COLON"
-msgstr "Menininkas:"
+msgstr "Agentas:"
 
 msgid "AGENT_NAME"
-msgstr "{0} Menininkas"
+msgstr "{0} Agentas"
 
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
@@ -149,23 +147,15 @@ msgstr "(greitis, kuriuo DI rūšys mutuoja)"
 msgid "ALL"
 msgstr "Visi"
 
-#, fuzzy
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION"
-msgstr "Leisti rūšims nemutuoti (jei nerandama geros mutacijos)"
+msgstr "Leisti pasikeisti į giminingą rūšį po išnykimo"
 
-#, fuzzy
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION_EXPLANATION"
-msgstr ""
-"Nusileidimas panaikins jūsų pakilusio statusą ir grąžins jus į Mikrobų Etapą. Iš ten galėsite vėl pereiti žaidimą, išsaugoję dabartinį išsaugojimą.\n"
-"\n"
-"Už naująjį peržaidimą gausite nusileidimo privilegiją. Būsimoje versijoje galėsite patys pasirinkti šį privalumą, tačiau kol kas jis visada bus 20 % sumažėjęs osmoreguliacijos koeficientas.\n"
-"\n"
-"Kai patvirtinsite nusileidimą, galėsite redaguoti žaidimo nustatymus ir pasirinkti naują pasaulio sėklą, kad galėtumėte žaisti kitame žemėlapyje arba, pavyzdžiui, išjungti LAWK."
+msgstr "(išnykimo atveju, leidžia tęsti žaidimą su kita rūšimi, užuot jį užbaigus)"
 
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Bendros Visų Pasaulių Statistikos"
 
-#, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 "[b]Kartos:[/b]\n"
@@ -180,6 +170,7 @@ msgstr ""
 "  Vidutiniškai {7}; Standartinis nuokrypis {8}\n"
 "[b]Mikrobų Rūšių Vidutinis Šešiakampių Dydis:[/b]\n"
 "  Vidutiniškai {9}; Standartinis nuokrypis {10}\n"
+"\n"
 "[b]Bendrieji Organelių Duomenys:[/b]"
 
 msgid "ALREADY_ASCENDED"
@@ -189,8 +180,14 @@ msgid "ALT"
 msgstr "Alt"
 
 #, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr "Gijų skaičius:"
+
+msgid "ALTERNATVE_TIMESCALE"
+msgstr ""
+
 msgid "ALWAYS_VISIBLE"
-msgstr "Matomas"
+msgstr "Visada Matomas"
 
 msgid "AMBIANCE_VOLUME"
 msgstr "Foninis garsumas"
@@ -198,13 +195,11 @@ msgstr "Foninis garsumas"
 msgid "AMMONIA"
 msgstr "Amoniakas"
 
-#, fuzzy
 msgid "AMMONIA_COST"
-msgstr "Amoniakas"
+msgstr "Amoniako Kaina:"
 
-#, fuzzy
 msgid "AMMONIA_LEVELS"
-msgstr "Amoniakas"
+msgstr "Amoniako lygis"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Saugomų automatinių išsaugojimų skaičius:"
@@ -212,11 +207,8 @@ msgstr "Saugomų automatinių išsaugojimų skaičius:"
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Saugomų greitųjų išsaugojimų skaičius:"
 
-msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "Anaerobinė Azoto Fiksacija"
-
 msgid "AND_UNLOCK_CONDITION"
-msgstr ""
+msgstr "ir"
 
 msgid "ANISOTROPIC_FILTERING"
 msgstr ""
@@ -319,14 +311,13 @@ msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
 msgstr ""
 
 msgid "ATP_BALANCE_WITHOUT_GLUCOSE"
-msgstr ""
+msgstr "Be gliukozės"
 
 msgid "ATP_BALANCE_WITHOUT_HYDROGEN_SULFIDE"
-msgstr ""
+msgstr "Be vandenilio sulfido"
 
-#, fuzzy
 msgid "ATP_BALANCE_WITHOUT_IRON"
-msgstr "ATP balansas"
+msgstr "Be geležies"
 
 msgid "ATP_BALANCE_WITH_ALL_COMPOUNDS"
 msgstr ""
@@ -367,9 +358,8 @@ msgstr ""
 "Šiame skydelyje parodytas tikėtinas redaguotų rūšių populiacijų skaičius pagal Auto-evo.\n"
 "Auto-evo atlieka populiacijos modeliavimą, kuris yra kita dalis (be jūsų pačių veiklos), daranti įtaką jūsų populiacijai."
 
-#, fuzzy
 msgid "AUTO-EVO_RESULTS_TITLE"
-msgstr "Auto-evo rezultatai:"
+msgstr "Auto-Evo Rezultatai"
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% atlikta. {1:n0}/{2:n0} žingsniai."
@@ -616,6 +606,10 @@ msgstr "Naršyti"
 msgid "BROWSE_WORKSHOP"
 msgstr "Naršyti Workshop"
 
+#, fuzzy
+msgid "BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(greitis, kuriuo DI rūšys mutuoja)"
+
 msgid "BUILD_CITY"
 msgstr "Sukurti Miestą"
 
@@ -763,6 +757,21 @@ msgstr "Ląstelės Tipo Pavadinimas"
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Pakeitimų pastabos yra per ilgos"
 
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr ""
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr ""
+"Dabar galite pereiti į Kosmoso Etapą ir paleisti pirmąjį erdvėlaivį.\n"
+"\n"
+"Kol kas prototipuose negalite grįžti į savo planetą, tačiau planuojama, kad Kosmoso Etape bus galima sklandžiai priartinti ir atitolinti planetas.\n"
+"\n"
+"Atšaukus paleidimą, erdvėlaivio vienetas bus sunaikintas. Paleisti erdvėlaivį?"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
+
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Pakeisti simetriją"
 
@@ -784,6 +793,10 @@ msgstr "Sukčiavimo meniu"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Rodyti / slėpti ląstelių procesus"
+
+#, fuzzy
+msgid "CHEMICAL_EQUATION_SPEED_EXPLANATION"
+msgstr "(greitis, kuriuo DI rūšys mutuoja)"
 
 msgid "CHEMOPLAST"
 msgstr "Chemoplastas"
@@ -1698,6 +1711,7 @@ msgstr ""
 msgid "DESCEND_CONFIRMATION"
 msgstr ""
 
+#, fuzzy
 msgid "DESCEND_CONFIRMATION_EXPLANATION"
 msgstr ""
 "Nusileidimas panaikins jūsų pakilusio statusą ir grąžins jus į Mikrobų Etapą. Iš ten galėsite vėl pereiti žaidimą, išsaugoję dabartinį išsaugojimą.\n"
@@ -1773,6 +1787,10 @@ msgstr "Sunkus"
 
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "Vidutinis"
+
+#, fuzzy
+msgid "DIFFICULTY_PRESET_VERY_EASY"
+msgstr "Lengvas"
 
 msgid "DIGESTION_EFFICIENCY"
 msgstr ""
@@ -1856,6 +1874,12 @@ msgstr ""
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
 
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr ""
+
+msgid "DISPLAY_DRIVER_METAL"
+msgstr ""
+
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr ""
 
@@ -1891,10 +1915,6 @@ msgstr "Spustelėkite du kartus peržiūrai pilname ekrane"
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
-
-#, fuzzy
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas skaičius"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr ""
@@ -2000,6 +2020,14 @@ msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 msgstr "Chemoreceptorius"
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
+msgstr "Chemoreceptorius"
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
+msgstr "Chemoreceptorius"
+
+#, fuzzy
 msgid "EDIT_MICROBE_FIRST_TIME"
 msgstr "Bendri Redaktoriaus ir Strategijos Etapai"
 
@@ -2075,6 +2103,10 @@ msgstr ""
 msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
 msgstr "(pradžios vieta)"
 
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION_MULTICELLULAR"
+msgstr "(pradžios vieta)"
+
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
 msgstr ""
 
@@ -2104,6 +2136,14 @@ msgstr ""
 #, fuzzy
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr "Junginių debesys"
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER"
+msgstr "Mutacijos sąnaudų daugiklis"
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER_EXPLANATION"
+msgstr "(organelių sąnaudos, membranos ir kiti elementai redaktoriuje)"
 
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
@@ -2181,6 +2221,9 @@ msgstr ""
 msgid "ERROR_LOADING"
 msgstr ""
 
+msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
+
 msgid "ERROR_SAVING"
 msgstr ""
 
@@ -2244,6 +2287,9 @@ msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Baigti žaidimą"
 
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
+msgstr ""
+
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE_JUKEBOX"
 msgstr ""
 
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
@@ -2556,6 +2602,30 @@ msgstr "Galerijos žiūryklė"
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas skaičius"
 
+#, fuzzy
+msgid "GAMETE_CELL_ENTITY_NAME"
+msgstr "Ląstelės Tipo Pavadinimas"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE"
+msgstr "Ląstelės Tipo Pavadinimas"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_A"
+msgstr "Ląstelės Tipo Pavadinimas"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_B"
+msgstr "Ląstelės Tipo Pavadinimas"
+
+#, fuzzy
+msgid "GAMETE_PRODUCED"
+msgstr "ATP Gamyba"
+
+#, fuzzy
+msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+msgstr "Rodyti / slėpti junginius"
+
 msgid "GAME_DESIGN_TEAM"
 msgstr ""
 
@@ -2618,6 +2688,14 @@ msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
 msgstr ""
 "Aktyvūs mikrobai bėgs ir kris kai nieko įdomaus nevyksta.\n"
 "Sėslūs mikrobai bus stacionarūs ir lauks, kol aplinka pasikeis, prieš veikdami."
+
+#, fuzzy
+msgid "GERMINATE_SPORE"
+msgstr "Baigti žaidimą"
+
+#, fuzzy
+msgid "GERMINATE_SPORE_ACTION_TOOLTIP"
+msgstr "Baigti žaidimą"
 
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
@@ -2842,6 +2920,18 @@ msgid "IMAGE_FILE_TYPES"
 msgstr ""
 
 #, fuzzy
+msgid "INCOMPATIBLE_MEMBRANE_LIST"
+msgstr "Tam, kad atrakinti redaktorių ir dauginimąsi tau reikės surinkti [thrive:compound type=\"ammonia\"][/thrive:compound] (Oranžinis Debesis) ir [thrive:compound type=\"phosphates\"][/thrive:compound] (Purpurinis Debesis)."
+
+#, fuzzy
+msgid "INCOMPATIBLE_ORGANELLE_LIST"
+msgstr "Tam, kad atrakinti redaktorių ir dauginimąsi tau reikės surinkti [thrive:compound type=\"ammonia\"][/thrive:compound] (Oranžinis Debesis) ir [thrive:compound type=\"phosphates\"][/thrive:compound] (Purpurinis Debesis)."
+
+#, fuzzy
+msgid "INCOMPATIBLE_STAGE_LIST"
+msgstr "Tam, kad atrakinti redaktorių ir dauginimąsi tau reikės surinkti [thrive:compound type=\"ammonia\"][/thrive:compound] (Oranžinis Debesis) ir [thrive:compound type=\"phosphates\"][/thrive:compound] (Purpurinis Debesis)."
+
+#, fuzzy
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Sukurti naują"
 
@@ -2902,6 +2992,14 @@ msgstr ""
 
 msgid "INFO_BOX_SIZE"
 msgstr ""
+
+#, fuzzy
+msgid "INFO_BOX_SIZE_PLAIN"
+msgstr "Mikroorganizmo būsena"
+
+#, fuzzy
+msgid "INFO_BOX_STAGE"
+msgstr "Mikroorganizmo būsena"
 
 msgid "INFO_BOX_STORAGE"
 msgstr ""
@@ -3529,6 +3627,19 @@ msgstr ""
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr ""
 
+msgid "LOOK_LEFT"
+msgstr ""
+
+#, fuzzy
+msgid "LOOK_RIGHT"
+msgstr "Lengvas"
+
+msgid "LOOK_SCREEN_DOWN_OR_3D_TOWARDS_UP"
+msgstr ""
+
+msgid "LOOK_SCREEN_UP_OR_3D_TOWARDS_DOWN"
+msgstr ""
+
 msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
 msgstr ""
 
@@ -3573,6 +3684,10 @@ msgid "MACROSCOPIC"
 msgstr "Tapti Makroskopiniu ({0}/{1})"
 
 #, fuzzy
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr "Mikroorganizmo būsena"
+
+#, fuzzy
 msgid "MACROSCOPIC_EDITOR"
 msgstr "Tapti Makroskopiniu ({0}/{1})"
 
@@ -3603,6 +3718,13 @@ msgstr ""
 
 msgid "MARINE_SNOW"
 msgstr ""
+
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(greitis, kuriuo DI rūšys mutuoja)"
 
 msgid "MASTER_VOLUME"
 msgstr ""
@@ -3873,6 +3995,10 @@ msgstr "Mikroorganizmų redaktorius"
 
 #, fuzzy
 msgid "MICROBE_LOADING_TIP_22"
+msgstr "Mikroorganizmų redaktorius"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_23"
 msgstr "Mikroorganizmų redaktorius"
 
 #, fuzzy
@@ -4300,8 +4426,36 @@ msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Daugialąstis"
 
 #, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_2"
+msgstr "Daugialąstis"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_3"
+msgstr "Daugialąstis"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_4"
+msgstr "Daugialąstis"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_5"
+msgstr "Daugialąstis"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_6"
+msgstr "Daugialąstis"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_7"
+msgstr "Daugialąstis"
+
+#, fuzzy
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "Elemento aprašymas:"
+
+#, fuzzy
+msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
+msgstr "Mikroorganizmo būsena"
 
 msgid "MULTICELLULAR_STAGE"
 msgstr ""
@@ -4379,6 +4533,10 @@ msgstr ""
 msgid "NEW"
 msgstr ""
 
+#, fuzzy
+msgid "NEWER"
+msgstr "Galerijos žiūryklė"
+
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 
@@ -4420,6 +4578,10 @@ msgstr ""
 
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
+
+#, fuzzy
+msgid "NITROGEN_FIXATION"
+msgstr "Anaerobinė Azoto Fiksacija"
 
 msgid "NITROPLAST"
 msgstr ""
@@ -4486,7 +4648,13 @@ msgstr ""
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
+msgid "NOTICE_READY_TO_SHOOT_GAMETE"
+msgstr ""
+
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
+msgstr ""
+
+msgid "NOT_ENOUGH_MUTATION_POINTS"
 msgstr ""
 
 msgid "NOT_STARTED_DOT"
@@ -4578,6 +4746,9 @@ msgstr "Įkelti anksčiau išsaugotus žaidimus"
 msgid "OK"
 msgstr "Gerai"
 
+msgid "OLDER"
+msgstr ""
+
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 
@@ -4587,6 +4758,10 @@ msgstr ""
 #, fuzzy
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr "(pradžios vieta)"
+
+#, fuzzy
+msgid "OPEN_EVOLUTIONARY_TREE"
+msgstr "Pagal Revolutionary Games Studio"
 
 msgid "OPEN_FOLDER"
 msgstr ""
@@ -4652,6 +4827,9 @@ msgstr "Nustatymai"
 
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Pakeisti nustatymus"
+
+msgid "OPTION_USED_FOR_PLAYER"
+msgstr ""
 
 msgid "ORGANELLES"
 msgstr ""
@@ -4736,12 +4914,6 @@ msgstr ""
 msgid "OSMOREGULATION_COST"
 msgstr ""
 
-msgid "OSMOREGULATION_COST_MULTIPLIER"
-msgstr "Osmoreguliacijos sąnaudų daugiklis"
-
-msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
-msgstr ""
-
 #, fuzzy
 msgid "OTHER_COMPOUNDS"
 msgstr "Junginiai"
@@ -4780,6 +4952,9 @@ msgstr "Mikroorganizmo būsena"
 msgid "OXYGEN_RESISTANCE"
 msgstr ""
 
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
+msgstr ""
+
 #, fuzzy
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr "Rodyti / slėpti junginius"
@@ -4804,6 +4979,9 @@ msgid "PAGE_BACK"
 msgstr "Atgal"
 
 msgid "PAGE_FORWARD"
+msgstr ""
+
+msgid "PAGE_PINNED"
 msgstr ""
 
 msgid "PAGE_TITLE"
@@ -4856,6 +5034,9 @@ msgstr ""
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
+msgid "PATCH_NOTES_RECENT_BOUNDARY"
+msgstr ""
+
 msgid "PATCH_NOTES_TITLE"
 msgstr ""
 
@@ -4900,6 +5081,10 @@ msgstr ""
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
 msgstr "(pradžios vieta)"
 
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION_MULTICELLULAR"
+msgstr "(pradžios vieta)"
+
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
 msgstr ""
 
@@ -4941,6 +5126,13 @@ msgid "PHYSICAL_CONDITIONS"
 msgstr ""
 
 msgid "PHYSICAL_RESISTANCE"
+msgstr ""
+
+#, fuzzy
+msgid "PIN_BUTTON_TOOLTIP"
+msgstr "Pakeisti nustatymus"
+
+msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
 msgstr ""
 
 msgid "PLACE_ORGANELLE"
@@ -5061,6 +5253,10 @@ msgid "PRESSURE_SHORT"
 msgstr "Spaud."
 
 #, fuzzy
+msgid "PRESSURE_TOLERANCE"
+msgstr "Rodyti / slėpti junginius"
+
+#, fuzzy
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "Rodyti / slėpti junginius"
 
@@ -5082,6 +5278,9 @@ msgstr "Apdorojami įkrauti objektai"
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr ""
 
+msgid "PROCESS_INACTIVE"
+msgstr ""
+
 #, fuzzy
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
 msgstr ""
@@ -5099,10 +5298,6 @@ msgstr ""
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr ""
 
-#, fuzzy
-msgid "PROCESS_TOGGLE_TOOLTIP"
-msgstr "Rodyti / slėpti junginius"
-
 msgid "PROGRAMMING_TEAM"
 msgstr ""
 
@@ -5110,9 +5305,6 @@ msgid "PROJECT_MANAGEMENT_TEAM"
 msgstr ""
 
 msgid "PROTEINS"
-msgstr ""
-
-msgid "PROTOPLASM"
 msgstr ""
 
 msgid "PULL_REQUESTS_PROGRAMMING"
@@ -5147,6 +5339,10 @@ msgstr "Aprašymas:"
 
 #, fuzzy
 msgid "RADIOACTIVE_CHUNK"
+msgstr "Didelis Geležies Gabalas"
+
+#, fuzzy
+msgid "RADIOACTIVE_CHUNK_BANANA"
 msgstr "Didelis Geležies Gabalas"
 
 #, fuzzy
@@ -5216,6 +5412,10 @@ msgstr ""
 msgid "REPORT_BUG"
 msgstr ""
 
+#, fuzzy
+msgid "REPRODUCE"
+msgstr "{0} suvartojimas"
+
 msgid "REPRODUCED"
 msgstr ""
 
@@ -5240,8 +5440,28 @@ msgstr "(greitis, kuriuo DI rūšys mutuoja)"
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 msgstr "ATP GAMYBA PER MAŽA!"
 
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "ATP GAMYBA PER MAŽA!"
+
 msgid "REPRODUCTION_METHOD"
 msgstr ""
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL"
+msgstr "{0} suvartojimas"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
+msgstr "{0} suvartojimas"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ISOGAMY"
+msgstr "{0} suvartojimas"
+
+#, fuzzy
+msgid "REPRODUCTION_SPORE"
+msgstr "{0} suvartojimas"
 
 msgid "REQUIRES_NUCLEUS"
 msgstr ""
@@ -5379,6 +5599,10 @@ msgstr ""
 
 msgid "ROTATION_COLON"
 msgstr ""
+
+#, fuzzy
+msgid "ROTATION_FORCE"
+msgstr "{0} suvartojimas"
 
 msgid "RUNOFF_EVENT"
 msgstr ""
@@ -5634,6 +5858,18 @@ msgstr ""
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr "(greitis, kuriuo DI rūšys mutuoja)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(greitis, kuriuo DI rūšys mutuoja)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+msgstr "(greitis, kuriuo DI rūšys mutuoja)"
+
 msgid "SFX_VOLUME"
 msgstr ""
 
@@ -5660,6 +5896,19 @@ msgstr "Elemento pavadinimas:"
 
 msgid "SHOW_MAP"
 msgstr ""
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION"
+msgstr "Elemento aprašymas:"
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION_EXPLANATION"
+msgstr ""
+"Nusileidimas panaikins jūsų pakilusio statusą ir grąžins jus į Mikrobų Etapą. Iš ten galėsite vėl pereiti žaidimą, išsaugoję dabartinį išsaugojimą.\n"
+"\n"
+"Už naująjį peržaidimą gausite nusileidimo privilegiją. Būsimoje versijoje galėsite patys pasirinkti šį privalumą, tačiau kol kas jis visada bus 20 % sumažėjęs osmoreguliacijos koeficientas.\n"
+"\n"
+"Kai patvirtinsite nusileidimą, galėsite redaguoti žaidimo nustatymus ir pasirinkti naują pasaulio sėklą, kad galėtumėte žaisti kitame žemėlapyje arba, pavyzdžiui, išjungti LAWK."
 
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr ""
@@ -5706,6 +5955,12 @@ msgstr ""
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr ""
 
+msgid "SIGNAL_COMMAND_CALL_MATE"
+msgstr ""
+
+msgid "SIGNAL_COMMAND_FIRE_GAMETES"
+msgstr ""
+
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr ""
 
@@ -5729,6 +5984,10 @@ msgstr ""
 
 msgid "SIMULATION_CONFIG"
 msgstr ""
+
+#, fuzzy
+msgid "SIMULATION_FACTOR"
+msgstr "DI mutacijos greitis"
 
 msgid "SIXTEEN_TIMES"
 msgstr ""
@@ -5773,23 +6032,22 @@ msgid "SOCIETY_STAGE"
 msgstr "Mikroorganizmo būsena"
 
 msgid "SOUND"
-msgstr ""
+msgstr "Garsas"
 
 msgid "SOUND_TEAM"
-msgstr ""
+msgstr "Garso Komanda"
 
 msgid "SOUND_TEAM_LEAD"
-msgstr ""
+msgstr "Garso Komandos Lyderis"
 
 msgid "SOUND_TEAM_LEADS"
-msgstr ""
+msgstr "Garso Komandos Lyderiai"
 
 msgid "SPACE"
-msgstr ""
+msgstr "Kosmosas"
 
-#, fuzzy
 msgid "SPACE_STAGE"
-msgstr "Mikroorganizmo būsena"
+msgstr "Kosmoso Etapas"
 
 msgid "SPACE_STRUCTURE_HAS_RESOURCES"
 msgstr ""
@@ -5812,12 +6070,18 @@ msgstr ""
 msgid "SPAWN_GLUCOSE"
 msgstr ""
 
-msgid "SPAWN_PHOSPHATES"
+msgid "SPAWN_MATE_ON_CALL"
 msgstr ""
 
 #, fuzzy
+msgid "SPAWN_MATE_ON_CALL_EXPLANATION"
+msgstr "(greitis, kuriuo DI rūšys mutuoja)"
+
+msgid "SPAWN_PHOSPHATES"
+msgstr ""
+
 msgid "SPECIALIZATION_COLON"
-msgstr "Aprašymas:"
+msgstr "Specializacija:"
 
 msgid "SPECIAL_MOUSE_1"
 msgstr ""
@@ -5835,16 +6099,16 @@ msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 
 msgid "SPECIES_HAS_A_MUTATION"
-msgstr ""
+msgstr "mutavo"
 
 msgid "SPECIES_IN_CURRENT_PATCH"
-msgstr ""
+msgstr "Rūšys dabartiniame sektoriuje"
 
 msgid "SPECIES_IN_OTHER_PATCHES"
-msgstr ""
+msgstr "Rūšys kituose sektoriuose"
 
 msgid "SPECIES_LIST"
-msgstr ""
+msgstr "Rūšių sąrašas"
 
 msgid "SPECIES_MEMBER_IMPACT_ON_POP"
 msgstr ""
@@ -5854,7 +6118,7 @@ msgid "SPECIES_MEMBER_IMPACT_ON_POPULATION_EXPLANATION"
 msgstr "(organelių sąnaudos, membranos ir kiti elementai redaktoriuje)"
 
 msgid "SPECIES_NAME_DOT_DOT_DOT"
-msgstr ""
+msgstr "Rūšies pavadinimas..."
 
 msgid "SPECIES_NAME_TOO_LONG_POPUP"
 msgstr ""
@@ -5871,11 +6135,20 @@ msgstr ""
 msgid "SPECIES_WITH_POPULATION"
 msgstr ""
 
-msgid "SPEED"
-msgstr ""
-
 msgid "SPEED_COLON"
 msgstr ""
+
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas skaičius"
+
+#, fuzzy
+msgid "SPORE_CELL_TYPE"
+msgstr "Ląstelės Tipo Pavadinimas"
+
+#, fuzzy
+msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(greitis, kuriuo DI rūšys mutuoja)"
 
 msgid "SPREAD_TO_PATCHES"
 msgstr ""
@@ -5900,9 +6173,8 @@ msgstr ""
 msgid "START_CALIBRATION"
 msgstr ""
 
-#, fuzzy
 msgid "START_GAME"
-msgstr "Meno galerija"
+msgstr "Pradėti žaidimą"
 
 msgid "START_RESEARCH"
 msgstr ""
@@ -5946,7 +6218,7 @@ msgid "STEAM_ERROR_DUPLICATE_NAME"
 msgstr ""
 
 msgid "STEAM_ERROR_FILE_NOT_FOUND"
-msgstr ""
+msgstr "Failas nerastas"
 
 msgid "STEAM_ERROR_INSUFFICIENT_PRIVILEGE"
 msgstr ""
@@ -5977,9 +6249,8 @@ msgstr "Išsaugojimas nepavyko"
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr "Elemento aprašymas:"
 
-#, fuzzy
 msgid "STEAM_TOOLTIP"
-msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas skaičius"
+msgstr "Aplankyti Steam puslapį"
 
 msgid "STEM_CELL_NAME"
 msgstr ""
@@ -6023,7 +6294,7 @@ msgid "STRUCTURE_ASCENSION_GATE"
 msgstr ""
 
 msgid "STRUCTURE_DYSON_SWARM"
-msgstr ""
+msgstr "Dysono Spiečius"
 
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
 msgstr ""
@@ -6044,19 +6315,19 @@ msgid "STRUCTURE_SELECTION_MENU_ENTRY_NOT_ENOUGH_RESOURCES"
 msgstr ""
 
 msgid "STRUCTURE_SOCIETY_CENTER"
-msgstr ""
+msgstr "Visuomenės Centras"
 
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
-msgstr ""
+msgstr "Garu Varomas Fabrikas"
 
 msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
 msgstr ""
 
 msgid "SUCCESSFUL_KILL"
-msgstr ""
+msgstr "sėkminga medžioklė"
 
 msgid "SUCCESSFUL_SCAVENGE"
-msgstr ""
+msgstr "sėkmingas rinkimas"
 
 msgid "SUCCESS_BUT_MISSING_ID"
 msgstr ""
@@ -6065,26 +6336,26 @@ msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr ""
 
 msgid "SUNLIGHT"
-msgstr ""
+msgstr "Saulės Šviesa"
 
 msgid "SUPPORTER_PATRONS"
-msgstr ""
+msgstr "Rėmėjai"
 
 msgid "SURVIVAL_TITLE"
-msgstr ""
+msgstr "Išlikimas"
 
 #, fuzzy
 msgid "SURVIVE_WITH_A_NUCLEUS"
 msgstr "Chemoplastas"
 
 msgid "SWITCH_TO_FRONT_CAMERA"
-msgstr "Perjungti į priekinę kamerą"
+msgstr "Perjungti į priekinį kameros rodinį"
 
 msgid "SWITCH_TO_RIGHT_CAMERA"
-msgstr ""
+msgstr "Perjungti į dešinį kameros rodinį"
 
 msgid "SWITCH_TO_TOP_CAMERA"
-msgstr ""
+msgstr "Perjungti į viršaus kameros rodinį"
 
 msgid "SYSREQ"
 msgstr ""
@@ -6127,56 +6398,60 @@ msgid "TECHNOLOGY_ASCENSION"
 msgstr ""
 
 msgid "TECHNOLOGY_HUNTER_GATHERING"
-msgstr ""
+msgstr "Medžiotojai-Rinkėjai"
 
 msgid "TECHNOLOGY_LEVEL_ADVANCED_SPACE"
-msgstr ""
+msgstr "Pažengęs Komoso Amžius"
 
 msgid "TECHNOLOGY_LEVEL_INDUSTRIAL"
-msgstr ""
+msgstr "Industrialicija"
 
 msgid "TECHNOLOGY_LEVEL_PRE_SOCIETY"
-msgstr ""
+msgstr "Ikivisuomenė"
 
 msgid "TECHNOLOGY_LEVEL_PRIMITIVE"
-msgstr ""
+msgstr "Primitivus"
 
 msgid "TECHNOLOGY_LEVEL_SCIFI"
-msgstr ""
+msgstr "Mokslinė fantastika"
 
 msgid "TECHNOLOGY_LEVEL_SPACE_AGE"
-msgstr ""
+msgstr "Kosmoso Amžius"
 
 msgid "TECHNOLOGY_REQUIRED_LEVEL"
-msgstr ""
+msgstr "Reikalingas technologijos lygis: {0}"
 
 msgid "TECHNOLOGY_ROCKETRY"
-msgstr ""
+msgstr "Raketų Mokslas"
 
 msgid "TECHNOLOGY_SIMPLE_STONE_TOOLS"
-msgstr ""
+msgstr "Paprasti Akmens Įrankiai"
 
 msgid "TECHNOLOGY_SOCIETY_CENTER"
-msgstr ""
+msgstr "Bendruomės centro statyba"
 
 msgid "TECHNOLOGY_STEAM_POWER"
-msgstr ""
+msgstr "Garo galia"
 
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
-msgstr ""
+msgstr "Atrakinta technologija: {0}"
 
 msgid "TEMPERATURE"
 msgstr "Temperatūra"
 
 msgid "TEMPERATURE_SHORT"
-msgstr ""
+msgstr "Temp."
+
+#, fuzzy
+msgid "TEMPERATURE_TOLERANCE_RANGE"
+msgstr "Baigti žaidimą"
 
 #, fuzzy
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "Baigti žaidimą"
 
 msgid "TESTING_TEAM"
-msgstr ""
+msgstr "Testavimo Komanda"
 
 msgid "THANKS_FOR_BUYING_THRIVE_2"
 msgstr ""
@@ -6185,10 +6460,10 @@ msgid "THANKS_FOR_PLAYING"
 msgstr ""
 
 msgid "THANK_YOU_TITLE"
-msgstr ""
+msgstr "Ačiū Jums"
 
 msgid "THEORY_TEAM"
-msgstr ""
+msgstr "Teorijos Komanda"
 
 msgid "THERMOPLAST"
 msgstr ""
@@ -6244,6 +6519,9 @@ msgstr ""
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr ""
 
+msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
+msgstr ""
+
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr ""
 
@@ -6253,18 +6531,69 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVEOPEDIA_MUSEUM_PAGE_SEARCHTAGS"
+msgstr "Šiame puslapyje pateiktas sąrašas visų rūšių egzistuojančių šiame pasaulyje."
+
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_ORGANELLE_SEARCHTAGS"
+msgstr "Rūšis"
+
+msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
+msgstr "Išnykusios Rūšys {0}"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_SEARCHTAGS"
+msgstr "Šiame puslapyje pateiktas sąrašas visų rūšių egzistuojančių šiame pasaulyje."
 
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr ""
 
-msgid "THRIVE_LICENSES"
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
+msgstr "Mikroorganizmo būsena"
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE"
+msgstr "{0}"
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
+msgstr "Šiame puslapyje pateiktas sąrašas visų rūšių egzistuojančių šiame pasaulyje."
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
 msgstr ""
+"{0} yra rūšis, kuri egzistuoja šiame pasaulyje. Dabartinė rūšies populiacija yra {1} ir ji yra paplitusi {2} regione(-uose). Ji yra {3}.\n"
+"\n"
+"Arkreipkite dėmesį, kad šis puslapis pradings jei nuo jo nunaviguosite ir jis nebus prisegtas. Prisekite šį puslapį, jei ši rūšis jums įdomi ir norite ją įsiminti."
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
+msgstr ""
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
+msgstr "Prisegtos rūšys"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_SEARCHTAGS"
+msgstr "{0}"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_SEARCHTAGS"
+msgstr "Rūšis"
+
+msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
+msgstr "Rūšis"
+
+msgid "THRIVE_LICENSES"
+msgstr "Thrive Licenzijos"
 
 #, fuzzy
 msgid "THRIVIN_ACHIEVEMENT"
 msgstr "Bazinis Judėjimas"
+
+msgid "THRUST_FORCE"
+msgstr ""
 
 msgid "THYLAKOIDS"
 msgstr ""
@@ -6423,9 +6752,6 @@ msgid "TOOLS"
 msgstr "Įrankiai"
 
 msgid "TOOL_HAND_AXE"
-msgstr ""
-
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
 msgid "TOTAL_GATHERED_ENERGY_COLON"
@@ -6976,9 +7302,6 @@ msgstr ""
 #, fuzzy
 msgid "VIEWER"
 msgstr "Galerijos žiūryklė"
-
-msgid "VIEW_ALL"
-msgstr ""
 
 #, fuzzy
 msgid "VIEW_CELL_PROCESSES"
@@ -7607,7 +7930,7 @@ msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr "Chemoplastas yra dvigubos membranos struktūra, kurioje yra baltymų, galinčių paversti [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], dujinį [thrive:compound type=\"carbondioxide\"][/thrive:compound] ir vandenį į [thrive:compound type=\"glucose\"][/thrive:compound], vykstant procesui, vadinamam [b]vandenilio sulfido chemosinteze[/b]. Jo [thrive:compound type=\"glucose\"][/thrive:compound] gamybos greitis priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos."
 
 #, fuzzy
-msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+msgid "WIKI_GLYCOLYSIS_COMMA_NITROGEN_FIXATION"
 msgstr "Anaerobinė Azoto Fiksacija"
 
 #, fuzzy
@@ -8416,10 +8739,6 @@ msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr "Chloroplastas"
 
 #, fuzzy
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "Chloroplastas"
-
-#, fuzzy
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "ATP Gamyba"
 
@@ -8506,38 +8825,6 @@ msgstr "Chloroplastas yra dviguba membraninė struktūra, kurioje membraniniuose
 #, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "{0} Mlrd"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "Chloroplastas yra dviguba membraninė struktūra, kurioje membraniniuose maišeliuose yra šviesai jautrių pigmentų. Tai prokariotas, kurį perėmė ir panaudojo eukariotinis šeimininkas. Chloroplaste esantys pigmentai gali naudoti šviesos energiją ir gaminti [thrive:compound type=\"glucose\"][/thrive:compound] ir [thrive:compound type=\"carbondioxide\"][/thrive:compound] iš dujinės [thrive:compound type=\"glucose\"][/thrive:compound] ir vandeninės [thrive:compound type=\"carbondioxide\"][/thrive:compound], vykstant procesui, vadinamam [b]fotosinteze[/b]. Šie pigmentai taip pat suteikia išskirtinę spalvą. Greitis, kuriuo gaminama [thrive:compound type=\"glucose\"][/thrive:compound], priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos ir [thrive:compound type=\"sunlight\"][/thrive:compound] intensyvumo."
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr "Chloroplastas yra dviguba membraninė struktūra, kurioje membraniniuose maišeliuose yra šviesai jautrių pigmentų. Tai prokariotas, kurį perėmė ir panaudojo eukariotinis šeimininkas. Chloroplaste esantys pigmentai gali naudoti šviesos energiją ir gaminti [thrive:compound type=\"glucose\"][/thrive:compound] ir [thrive:compound type=\"carbondioxide\"][/thrive:compound] iš dujinės [thrive:compound type=\"glucose\"][/thrive:compound] ir vandeninės [thrive:compound type=\"carbondioxide\"][/thrive:compound], vykstant procesui, vadinamam [b]fotosinteze[/b]. Šie pigmentai taip pat suteikia išskirtinę spalvą. Greitis, kuriuo gaminama [thrive:compound type=\"glucose\"][/thrive:compound], priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos ir [thrive:compound type=\"sunlight\"][/thrive:compound] intensyvumo."
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr "Chloroplastas yra dviguba membraninė struktūra, kurioje membraniniuose maišeliuose yra šviesai jautrių pigmentų. Tai prokariotas, kurį perėmė ir panaudojo eukariotinis šeimininkas. Chloroplaste esantys pigmentai gali naudoti šviesos energiją ir gaminti [thrive:compound type=\"glucose\"][/thrive:compound] ir [thrive:compound type=\"carbondioxide\"][/thrive:compound] iš dujinės [thrive:compound type=\"glucose\"][/thrive:compound] ir vandeninės [thrive:compound type=\"carbondioxide\"][/thrive:compound], vykstant procesui, vadinamam [b]fotosinteze[/b]. Šie pigmentai taip pat suteikia išskirtinę spalvą. Greitis, kuriuo gaminama [thrive:compound type=\"glucose\"][/thrive:compound], priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos ir [thrive:compound type=\"sunlight\"][/thrive:compound] intensyvumo."
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr "Gamina [thrive:compound type=\"glucose\"][/thrive:compound]. Greitis priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos ir [thrive:compound type=\"sunlight\"][/thrive:compound] intensyvumo."
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr "Visos ląstelės \"mato\" tik per chemorecepciją. Taip ląstelės gauna informaciją apie jas supančią aplinką. Šios organelės pridėjimas reiškia, kad chemorecepcija tobulėja. Kadangi žaidėjui suteikiamas regėjimas net ląstelių etape, tai vaizduojama linija, nukreipta už matomos ekrano srities ribų ir rodanti netoliese esančius junginius, kurių žaidėjas dar nematė."
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr "Chloroplastas yra dviguba membraninė struktūra, kurioje membraniniuose maišeliuose yra šviesai jautrių pigmentų. Tai prokariotas, kurį perėmė ir panaudojo eukariotinis šeimininkas. Chloroplaste esantys pigmentai gali naudoti šviesos energiją ir gaminti [thrive:compound type=\"glucose\"][/thrive:compound] ir [thrive:compound type=\"carbondioxide\"][/thrive:compound] iš dujinės [thrive:compound type=\"glucose\"][/thrive:compound] ir vandeninės [thrive:compound type=\"carbondioxide\"][/thrive:compound], vykstant procesui, vadinamam [b]fotosinteze[/b]. Šie pigmentai taip pat suteikia išskirtinę spalvą. Greitis, kuriuo gaminama [thrive:compound type=\"glucose\"][/thrive:compound], priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos ir [thrive:compound type=\"sunlight\"][/thrive:compound] intensyvumo."
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr "Chloroplastas yra dviguba membraninė struktūra, kurioje membraniniuose maišeliuose yra šviesai jautrių pigmentų. Tai prokariotas, kurį perėmė ir panaudojo eukariotinis šeimininkas. Chloroplaste esantys pigmentai gali naudoti šviesos energiją ir gaminti [thrive:compound type=\"glucose\"][/thrive:compound] ir [thrive:compound type=\"carbondioxide\"][/thrive:compound] iš dujinės [thrive:compound type=\"glucose\"][/thrive:compound] ir vandeninės [thrive:compound type=\"carbondioxide\"][/thrive:compound], vykstant procesui, vadinamam [b]fotosinteze[/b]. Šie pigmentai taip pat suteikia išskirtinę spalvą. Greitis, kuriuo gaminama [thrive:compound type=\"glucose\"][/thrive:compound], priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos ir [thrive:compound type=\"sunlight\"][/thrive:compound] intensyvumo."
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr "Chloroplastas yra dviguba membraninė struktūra, kurioje membraniniuose maišeliuose yra šviesai jautrių pigmentų. Tai prokariotas, kurį perėmė ir panaudojo eukariotinis šeimininkas. Chloroplaste esantys pigmentai gali naudoti šviesos energiją ir gaminti [thrive:compound type=\"glucose\"][/thrive:compound] ir [thrive:compound type=\"carbondioxide\"][/thrive:compound] iš dujinės [thrive:compound type=\"glucose\"][/thrive:compound] ir vandeninės [thrive:compound type=\"carbondioxide\"][/thrive:compound], vykstant procesui, vadinamam [b]fotosinteze[/b]. Šie pigmentai taip pat suteikia išskirtinę spalvą. Greitis, kuriuo gaminama [thrive:compound type=\"glucose\"][/thrive:compound], priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos ir [thrive:compound type=\"sunlight\"][/thrive:compound] intensyvumo."
 
 #, fuzzy
 msgid "WIKI_PULLING_CILIA"
@@ -9069,6 +9356,62 @@ msgid "ZOOM_OUT"
 msgstr ""
 
 #, fuzzy
+#~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
+#~ msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas skaičius"
+
+#, fuzzy
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "Chloroplastas"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "Chloroplastas yra dviguba membraninė struktūra, kurioje membraniniuose maišeliuose yra šviesai jautrių pigmentų. Tai prokariotas, kurį perėmė ir panaudojo eukariotinis šeimininkas. Chloroplaste esantys pigmentai gali naudoti šviesos energiją ir gaminti [thrive:compound type=\"glucose\"][/thrive:compound] ir [thrive:compound type=\"carbondioxide\"][/thrive:compound] iš dujinės [thrive:compound type=\"glucose\"][/thrive:compound] ir vandeninės [thrive:compound type=\"carbondioxide\"][/thrive:compound], vykstant procesui, vadinamam [b]fotosinteze[/b]. Šie pigmentai taip pat suteikia išskirtinę spalvą. Greitis, kuriuo gaminama [thrive:compound type=\"glucose\"][/thrive:compound], priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos ir [thrive:compound type=\"sunlight\"][/thrive:compound] intensyvumo."
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr "Chloroplastas yra dviguba membraninė struktūra, kurioje membraniniuose maišeliuose yra šviesai jautrių pigmentų. Tai prokariotas, kurį perėmė ir panaudojo eukariotinis šeimininkas. Chloroplaste esantys pigmentai gali naudoti šviesos energiją ir gaminti [thrive:compound type=\"glucose\"][/thrive:compound] ir [thrive:compound type=\"carbondioxide\"][/thrive:compound] iš dujinės [thrive:compound type=\"glucose\"][/thrive:compound] ir vandeninės [thrive:compound type=\"carbondioxide\"][/thrive:compound], vykstant procesui, vadinamam [b]fotosinteze[/b]. Šie pigmentai taip pat suteikia išskirtinę spalvą. Greitis, kuriuo gaminama [thrive:compound type=\"glucose\"][/thrive:compound], priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos ir [thrive:compound type=\"sunlight\"][/thrive:compound] intensyvumo."
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_MODIFICATIONS"
+#~ msgstr "Chloroplastas yra dviguba membraninė struktūra, kurioje membraniniuose maišeliuose yra šviesai jautrių pigmentų. Tai prokariotas, kurį perėmė ir panaudojo eukariotinis šeimininkas. Chloroplaste esantys pigmentai gali naudoti šviesos energiją ir gaminti [thrive:compound type=\"glucose\"][/thrive:compound] ir [thrive:compound type=\"carbondioxide\"][/thrive:compound] iš dujinės [thrive:compound type=\"glucose\"][/thrive:compound] ir vandeninės [thrive:compound type=\"carbondioxide\"][/thrive:compound], vykstant procesui, vadinamam [b]fotosinteze[/b]. Šie pigmentai taip pat suteikia išskirtinę spalvą. Greitis, kuriuo gaminama [thrive:compound type=\"glucose\"][/thrive:compound], priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos ir [thrive:compound type=\"sunlight\"][/thrive:compound] intensyvumo."
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr "Gamina [thrive:compound type=\"glucose\"][/thrive:compound]. Greitis priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos ir [thrive:compound type=\"sunlight\"][/thrive:compound] intensyvumo."
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_REQUIREMENTS"
+#~ msgstr "Visos ląstelės \"mato\" tik per chemorecepciją. Taip ląstelės gauna informaciją apie jas supančią aplinką. Šios organelės pridėjimas reiškia, kad chemorecepcija tobulėja. Kadangi žaidėjui suteikiamas regėjimas net ląstelių etape, tai vaizduojama linija, nukreipta už matomos ekrano srities ribų ir rodanti netoliese esančius junginius, kurių žaidėjas dar nematė."
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
+#~ msgstr "Chloroplastas yra dviguba membraninė struktūra, kurioje membraniniuose maišeliuose yra šviesai jautrių pigmentų. Tai prokariotas, kurį perėmė ir panaudojo eukariotinis šeimininkas. Chloroplaste esantys pigmentai gali naudoti šviesos energiją ir gaminti [thrive:compound type=\"glucose\"][/thrive:compound] ir [thrive:compound type=\"carbondioxide\"][/thrive:compound] iš dujinės [thrive:compound type=\"glucose\"][/thrive:compound] ir vandeninės [thrive:compound type=\"carbondioxide\"][/thrive:compound], vykstant procesui, vadinamam [b]fotosinteze[/b]. Šie pigmentai taip pat suteikia išskirtinę spalvą. Greitis, kuriuo gaminama [thrive:compound type=\"glucose\"][/thrive:compound], priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos ir [thrive:compound type=\"sunlight\"][/thrive:compound] intensyvumo."
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_STRATEGY"
+#~ msgstr "Chloroplastas yra dviguba membraninė struktūra, kurioje membraniniuose maišeliuose yra šviesai jautrių pigmentų. Tai prokariotas, kurį perėmė ir panaudojo eukariotinis šeimininkas. Chloroplaste esantys pigmentai gali naudoti šviesos energiją ir gaminti [thrive:compound type=\"glucose\"][/thrive:compound] ir [thrive:compound type=\"carbondioxide\"][/thrive:compound] iš dujinės [thrive:compound type=\"glucose\"][/thrive:compound] ir vandeninės [thrive:compound type=\"carbondioxide\"][/thrive:compound], vykstant procesui, vadinamam [b]fotosinteze[/b]. Šie pigmentai taip pat suteikia išskirtinę spalvą. Greitis, kuriuo gaminama [thrive:compound type=\"glucose\"][/thrive:compound], priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos ir [thrive:compound type=\"sunlight\"][/thrive:compound] intensyvumo."
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_UPGRADES"
+#~ msgstr "Chloroplastas yra dviguba membraninė struktūra, kurioje membraniniuose maišeliuose yra šviesai jautrių pigmentų. Tai prokariotas, kurį perėmė ir panaudojo eukariotinis šeimininkas. Chloroplaste esantys pigmentai gali naudoti šviesos energiją ir gaminti [thrive:compound type=\"glucose\"][/thrive:compound] ir [thrive:compound type=\"carbondioxide\"][/thrive:compound] iš dujinės [thrive:compound type=\"glucose\"][/thrive:compound] ir vandeninės [thrive:compound type=\"carbondioxide\"][/thrive:compound], vykstant procesui, vadinamam [b]fotosinteze[/b]. Šie pigmentai taip pat suteikia išskirtinę spalvą. Greitis, kuriuo gaminama [thrive:compound type=\"glucose\"][/thrive:compound], priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos ir [thrive:compound type=\"sunlight\"][/thrive:compound] intensyvumo."
+
+#~ msgid "AEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Aerobinis Azoto Fiksavimas"
+
+#~ msgid "AEROBIC_NITROGEN_FIXING"
+#~ msgstr "Aerobinė Azoto Fiksacija"
+
+#~ msgid "ANAEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Anaerobinė Azoto Fiksacija"
+
+#~ msgid "OSMOREGULATION_COST_MULTIPLIER"
+#~ msgstr "Osmoreguliacijos sąnaudų daugiklis"
+
+#, fuzzy
+#~ msgid "PROCESS_TOGGLE_TOOLTIP"
+#~ msgstr "Rodyti / slėpti junginius"
+
+#, fuzzy
 #~ msgid "KEEP_CURRENT_SHORT"
 #~ msgstr "Spaud."
 
@@ -9101,20 +9444,12 @@ msgstr ""
 #~ msgstr "{0}-{1}m žemiau jūros lygio"
 
 #, fuzzy
-#~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
-#~ msgstr "(greitis, kuriuo DI rūšys mutuoja)"
-
-#, fuzzy
 #~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 #~ msgstr "Mikroorganizmo būsena"
 
 #, fuzzy
 #~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
 #~ msgstr "Sumažinti Perpus Populiaciją"
-
-#, fuzzy
-#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
-#~ msgstr "(greitis, kuriuo DI rūšys mutuoja)"
 
 #, fuzzy
 #~ msgid "WIKI_RADIOSYNTHESIS"

@@ -39,6 +39,8 @@ public partial class CameraFollowSystem : BaseSystem<World, float>
     [JsonIgnore]
     public IGameCamera? Camera { get; set; }
 
+    public bool Disabled { get; set; }
+
     public override void BeforeUpdate(in float delta)
     {
         cameraUsed = false;
@@ -46,6 +48,9 @@ public partial class CameraFollowSystem : BaseSystem<World, float>
 
     public override void AfterUpdate(in float delta)
     {
+        if (Disabled)
+            return;
+
         if (!cameraUsed)
         {
             // Update camera without a target
@@ -57,6 +62,9 @@ public partial class CameraFollowSystem : BaseSystem<World, float>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update([Data] in float delta, ref CameraFollowTarget followTarget, ref WorldPosition position)
     {
+        if (Disabled)
+            return;
+
         if (followTarget.Disabled)
             return;
 

@@ -48,6 +48,8 @@ public class MacroscopicSpecies : Species, IReadOnlyMacroscopicSpecies
         ((MetaballLayout<MacroscopicMetaball>)ModifiableBodyLayout).Select(m => m.ModifiableCellType).Distinct()
         .SelectMany(c => c.ModifiableOrganelles);
 
+    public override Stage StageForDisplay => Stage.MacroscopicStage;
+
     public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
 
     public override ArchiveObjectType ArchiveObjectType =>

@@ -78,7 +78,7 @@ public class CellTypeFacadeHelper
     /// </summary>
     /// <param name="cellDefinition">Raw type definition</param>
     /// <returns>Either a wrapped value or the plain value if it is not overwritten</returns>
-    public IReadOnlyCellDefinition? ResolveCellDefinition(IReadOnlyCellTypeDefinition? cellDefinition)
+    public IReadOnlyCellTypeDefinition? ResolveCellDefinition(IReadOnlyCellTypeDefinition? cellDefinition)
     {
         if (cellDefinition == null)
             return cellDefinition;

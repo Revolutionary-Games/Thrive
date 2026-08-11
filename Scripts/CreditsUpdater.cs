@@ -43,12 +43,12 @@ public static class CreditsUpdater
 
     private static readonly TimeSpan FileAgeThreshold = TimeSpan.FromDays(1);
 
-    private static readonly HashSet<string> IgnoredWeblateUsers = new()
-    {
+    private static readonly HashSet<string> IgnoredWeblateUsers =
+    [
         "noreply+90@weblate.org",
         "Deleted User",
         "Weblate Admin",
-    };
+    ];
 
     public static async Task<bool> Run(CancellationToken cancellationToken)
     {
@@ -229,7 +229,7 @@ public static class CreditsUpdater
 
                 if (!activeSection.TryGetValue(team, out var teamMembers))
                 {
-                    teamMembers = new List<Credits.DeveloperPerson>();
+                    teamMembers = [];
                     activeSection[team] = teamMembers;
                 }
 
@@ -300,7 +300,7 @@ public static class CreditsUpdater
 
                 if (!yearData.TryGetValue(month, out var monthData))
                 {
-                    monthData = new List<string>();
+                    monthData = [];
                     yearData[month] = monthData;
                 }
 

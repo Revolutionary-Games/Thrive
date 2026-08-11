@@ -13,7 +13,7 @@ using SharedBase.Archive;
 /// </summary>
 public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     [Export(PropertyHint.ColorNoAlpha)]
     public Color IngestedMatterBarFillColour = new(0.88f, 0.49f, 0.49f);
@@ -48,6 +48,9 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     [Export]
     private ActionButton siderophoreHotkey = null!;
+
+    [Export]
+    private ActionButton germinateSporeHotkey = null!;
 
     [Export]
     private Button multicellularButton = null!;
@@ -120,6 +123,9 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     public delegate void OnSprintButtonPressedEventHandler();
 
     [Signal]
+    public delegate void OnGerminateSporeButtonPressedEventHandler();
+
+    [Signal]
     public delegate void OnAcceptRevertToEditorEventHandler();
 
     [Signal]
@@ -164,12 +170,14 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     {
         base._EnterTree();
         Localization.Instance.OnTranslationsChanged += OnTranslationsChanged;
+        Settings.Instance.AlternativeTimescale.OnChanged += OnAlternativeTimescaleChanged;
     }
 
     public override void _ExitTree()
     {
         base._ExitTree();
         Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
+        Settings.Instance.AlternativeTimescale.OnChanged -= OnAlternativeTimescaleChanged;
     }
 
     public override void _Process(double delta)
@@ -213,6 +221,91 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         }
     }
 
+    public override void ShowReproductionDialog()
+    {
+        if (stage == null || !stage.PlayerUsesSexualReproduction())
+        {
+            base.ShowReproductionDialog();
+            return;
+        }
+
+        // Special logic for sexual reproduction
+        if (!editorButton.Disabled || stage?.HasPlayer != true || stage.MovingToEditor)
+            return;
+
+        // TODO: a shorter sound?
+        GUICommon.Instance.PlayCustomSound(MicrobePickupOrganelleSound);
+
+        editorButton.ShowReproductionDialog();
+
+        HUDMessages.ShowMessage(Localization.Translate("NOTICE_READY_TO_SHOOT_GAMETE"), DisplayDuration.Long);
+
+        editorButton.SetGameteStyle();
+    }
+
+    public override void EditorButtonPressed()
+    {
+        if (editorButton.Disabled)
+        {
+            base.EditorButtonPressed();
+            return;
+        }
+
+        if (stage == null)
+        {
+            GD.PrintErr("No stage set on editor button press");
+            return;
+        }
+
+        if (stage.HasAlivePlayer)
+        {
+            if (stage.PlayerUsesSexualReproduction())
+            {
+                // If the player is using sexual reproduction, instead shoot a gamete
+                GUICommon.Instance.PlayButtonPressSound();
+
+                stage.PlayerShootGamete();
+
+                // Disable button until it becomes available again after player gets more resources to shoot again
+                editorButton.Disabled = true;
+
+                return;
+            }
+        }
+
+        base.EditorButtonPressed();
+    }
+
+    public void ClearSignalingCommandsOnEditorExitIfNecessary(Entity player)
+    {
+        if (!player.Has<CommandSignaler>())
+            return;
+
+        ref var signaler = ref player.Get<CommandSignaler>();
+        ref var organelles = ref player.Get<OrganelleContainer>();
+
+        if (player.Has<MicrobeColony>())
+        {
+            ref var colony = ref player.Get<MicrobeColony>();
+
+            colony.GetColonySpecialOrganelles(out _, out _, out _, out var hasSignalingAgent);
+
+            if (hasSignalingAgent)
+            {
+                return;
+            }
+        }
+        else if (organelles.HasSignalingAgent)
+        {
+            return;
+        }
+
+        packControlRadial.Hide();
+        signalingAgentMenuOpenForMicrobe = null;
+
+        signaler.QueuedSignalingCommand = MicrobeSignalCommand.None;
+    }
+
     public void ShowSignalingCommandsMenu(Entity player)
     {
         if (!player.IsAliveAndHas<CommandSignaler>())
@@ -235,6 +328,19 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             (Localization.Translate("SIGNAL_COMMAND_FLEE"), (int)MicrobeSignalCommand.FleeFromMe),
             (Localization.Translate("SIGNAL_COMMAND_AGGRESSION"), (int)MicrobeSignalCommand.BecomeAggressive),
         };
+
+        if (player.Has<MulticellularSpeciesMember>())
+        {
+            var species = player.Get<MulticellularSpeciesMember>().Species;
+
+            if (species.ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy
+                or MulticellularReproductionMethod.SexualAnisogamy)
+            {
+                choices.Add((Localization.Translate("SIGNAL_COMMAND_CALL_MATE"), (int)MicrobeSignalCommand.CallMate));
+                choices.Add((Localization.Translate("SIGNAL_COMMAND_FIRE_GAMETES"),
+                    (int)MicrobeSignalCommand.ShootGamete));
+            }
+        }
 
         packControlRadial.Radial.CenterText = Localization.Translate("SIGNAL_TO_EMIT");
 
@@ -295,12 +401,24 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             return;
         }
 
-        var resultingModifier = fastModeEnabled ? 2 : 1;
-
-        stage.WorldSimulation.WorldTimeScale = resultingModifier;
-
         // Make sure the GUI state is consistent with the current speed
         bottomLeftBar.SpeedModePressed = fastModeEnabled;
+
+        UpdateSpeedMode();
+    }
+
+    public void UpdateSpeedMode()
+    {
+        if (Math.Abs(CheatManager.SimulationFactor - 1) > 0.01f)
+        {
+            stage?.WorldSimulation.WorldTimeScale = CheatManager.SimulationFactor;
+        }
+        else
+        {
+            var resultingModifier = bottomLeftBar.SpeedModePressed ? Settings.Instance.AlternativeTimescale.Value : 1;
+
+            stage?.WorldSimulation.WorldTimeScale = resultingModifier;
+        }
     }
 
     public override bool GetCurrentSpeedMode()
@@ -308,7 +426,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         if (stage == null)
             return false;
 
-        return stage.WorldSimulation.WorldTimeScale > 1;
+        return bottomLeftBar.SpeedModePressed;
     }
 
     public void ShowSaveLoadAdvise()
@@ -325,6 +443,8 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     {
         writer.Write(SERIALIZATION_VERSION_CREATURE);
         WriteBasePropertiesToArchive(writer);
+
+        writer.Write(bottomLeftBar.SpeedModePressed);
     }
 
     public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
@@ -334,6 +454,9 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         // The base version is different from ours
         ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
+
+        if (version > 1)
+            bottomLeftBar.SpeedModePressed = reader.ReadBool();
     }
 
     protected override void UpdateFossilisationButtonStates()
@@ -354,10 +477,17 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     {
         var fossils = FossilisedSpecies.CreateListOfFossils(false);
 
-        // TODO: buttons to fossilize multicellular species
-        stage!.WorldSimulation.EntitySystem.Query(new QueryDescription().WithAll<MicrobeSpeciesMember>(),
+        stage!.WorldSimulation.EntitySystem.Query(
+            new QueryDescription().WithAny<MicrobeSpeciesMember, MulticellularSpeciesMember>(),
             (Entity entity, ref SpeciesMember member) =>
             {
+                // Skip colony members and only show it on the main cell.
+                // Note that this also affects the microbe stage colonies, but it would be a bit harder to make sure
+                // those still had the buttons, but anyway the main cell in such colonies is also of the species other
+                // colony members are, so everything still works.
+                if (entity.Has<MicrobeColonyMember>())
+                    return;
+
                 var species = member.Species;
 
                 var button = FossilisationButtonScene.Instantiate<FossilisationButton>();
@@ -403,8 +533,24 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         if (stage == null)
             throw new InvalidOperationException("UpdateHealth called before stage is set");
 
-        // Normal health update if there is a player and the player was not engulfed
-        if (stage.HasPlayer &&
+        var playerAlive = false;
+        var playerEngulfed = false;
+
+        if (stage.HasPlayer)
+        {
+            ref var health = ref stage.Player.Get<Health>();
+            ref var engulfable = ref stage.Player.Get<Engulfable>();
+
+            playerAlive = !health.Dead;
+            playerEngulfed = engulfable.PhagocytosisStep != PhagocytosisPhase.None;
+
+            // Reset engulfed status to avoid the "devoured" text unnecessarily
+            if (!playerEngulfed)
+                playerWasDigested = false;
+        }
+
+        // Normal health update if there is a player and the player was not digesting
+        if (stage.HasPlayer && playerAlive &&
             stage.Player.Get<Engulfable>().PhagocytosisStep is PhagocytosisPhase.None or PhagocytosisPhase.Ingestion)
         {
             playerWasDigested = false;
@@ -419,9 +565,15 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             Localization.Translate("DEVOURED") :
             hp.ToString(CultureInfo.CurrentCulture);
 
-        // Update to the player's current digested progress, unless the player does not exist
-        if (stage.HasPlayer)
+        if (stage.HasPlayer && !playerAlive && playerEngulfed)
         {
+            hpText = Localization.Translate("DEVOURED");
+            playerWasDigested = true;
+            FlashHealthBar(new Color(0.96f, 0.5f, 0.27f), delta);
+        }
+        else if (stage.HasPlayer && (playerEngulfed || playerWasDigested))
+        {
+            // Update to the player's current digested progress, unless the player does not exist
             var percentageValue = Localization.Translate("PERCENTAGE_VALUE");
 
             // Show the digestion progress to the player
@@ -453,6 +605,8 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     {
         if (!stage!.Player.IsAliveAndHas<StrainAffected>())
         {
+            // This should never trigger as long as this method is called only when the player is alive.
+            // But this legacy error-checking code might as well be kept.
             if (!playerMissingStrainAffected)
             {
                 GD.PrintErr("Player is missing StrainAffected component");
@@ -542,7 +696,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         ingestedMatterBar.UpdateValue(GetPlayerUsedIngestionCapacity(), maxSize);
     }
 
-    protected override IEnumerable<IProcessDisplayInfo>? GetPlayerProcessStatistics()
+    protected override IEnumerable<IProcessDisplayInfo> GetPlayerProcessStatistics()
     {
         foreach (var process in organismProcesses)
         {
@@ -550,63 +704,34 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             process.Value.Marked = false;
         }
 
-        var playerProcesses = stage!.Player.Get<BioProcesses>().ProcessStatistics?.Processes;
-
-        if (playerProcesses == null)
+        if (stage!.Player.TryGet<MicrobeColony>(out var colony))
         {
-            GD.PrintErr("Player process statistics are uninitialized, can't display them in the process panel");
-
-            return null;
-        }
-
-        foreach (var process in playerProcesses)
-        {
-            var display = process.Value.ComputeAverageValues();
-
-            if (!organismProcesses.TryGetValue(process.Key.Process, out var stats))
+            foreach (var colonyMember in colony.ColonyMembers)
             {
-                stats = new SummedProcessStatistics(display);
-                organismProcesses[process.Key.Process] = stats;
-            }
-            else
-            {
-                stats.AddProcess(display);
-            }
-
-            stats.Marked = true;
-        }
-
-        if (stage.Player.TryGet<MicrobeColony>(out var colony))
-        {
-            for (int i = 1; i < colony.ColonyMembers.Length; ++i)
-            {
-                var colonyMemberProcesses = colony.ColonyMembers[i].Get<BioProcesses>().ProcessStatistics?.Processes;
-
-                if (colonyMemberProcesses == null)
+                if (colonyMember.TryGet<BioProcesses>(out var stats) && stats.ProcessStatistics != null)
+                {
+                    foreach (var process in stats.ProcessStatistics.Processes)
+                    {
+                        AddStatisticsToProcesses(process.Value, organismProcesses);
+                    }
+                }
+                else
                 {
                     GD.PrintErr(
                         "Colony member process statistics are uninitialized, can't display them in the process panel");
-
-                    continue;
-                }
-
-                foreach (var process in colonyMemberProcesses)
-                {
-                    var display = process.Value.ComputeAverageValues();
-
-                    if (!organismProcesses.TryGetValue(process.Key.Process, out var stats))
-                    {
-                        stats = new SummedProcessStatistics(display);
-                        organismProcesses[process.Key.Process] = stats;
-                    }
-                    else
-                    {
-                        stats.AddProcess(display);
-                    }
-
-                    stats.Marked = true;
                 }
             }
+        }
+        else if (stage!.Player.TryGet<BioProcesses>(out var stats) && stats.ProcessStatistics != null)
+        {
+            foreach (var process in stats.ProcessStatistics.Processes)
+            {
+                AddStatisticsToProcesses(process.Value, organismProcesses);
+            }
+        }
+        else
+        {
+            GD.PrintErr("Player process statistics are uninitialized, can't display them in the process panel");
         }
 
         // Clear unmarked items
@@ -718,6 +843,15 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         bindingModeHotkey.ButtonPressed = control.State == MicrobeState.Binding;
 
+        if (player.TryGet<MulticellularGrowth>(out var growth))
+        {
+            germinateSporeHotkey.Visible = growth.IsASpore;
+        }
+        else
+        {
+            germinateSporeHotkey.Visible = false;
+        }
+
         if (unbindAllHotkey.ActionNameAsStringName != null)
             unbindAllHotkey.ButtonPressed = Input.IsActionPressed(unbindAllHotkey.ActionNameAsStringName);
 
@@ -784,6 +918,11 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
                 item.SetDescription($"{MathF.Round(health.CurrentHealth, 1)}/{MathF.Round(health.MaxHealth, 1)}");
             }
         }
+    }
+
+    private void OnAlternativeTimescaleChanged(float value)
+    {
+        ApplySpeedMode(GetCurrentSpeedMode());
     }
 
     /// <summary>
@@ -1087,6 +1226,11 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         EmitSignal(SignalName.OnSprintButtonPressed);
     }
 
+    private void OnGerminateSporePressed()
+    {
+        EmitSignal(SignalName.OnGerminateSporeButtonPressed);
+    }
+
     private void OnTranslationsChanged()
     {
         UpdateColonySizeForMulticellular();
@@ -1146,6 +1290,19 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
                 activeProcesses[i] = process;
             }
         }
+    }
+
+    private void AddStatisticsToProcesses(SingleProcessStatistics stats,
+        Dictionary<BioProcess, SummedProcessStatistics> processes)
+    {
+        if (!processes.TryGetValue(stats.Process.Process, out var value))
+        {
+            value = new SummedProcessStatistics(stats.Process);
+            processes.Add(stats.Process.Process, value);
+        }
+
+        value.SumWithStatistics(stats);
+        value.Marked = true;
     }
 
     private void OnRevertPromptClosed()

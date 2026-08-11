@@ -53,8 +53,8 @@ public class SlimeJetComponent : IOrganelleComponent
         IsMucocyst = true;
     }
 
-    public void UpdateAsync(ref OrganelleContainer organelleContainer, in Entity microbeEntity,
-        IWorldSimulation worldSimulation, float delta)
+    public void UpdateAsync(ref OrganelleContainer organelleContainer, ref SpecializationFactor specializationFactor,
+        in Entity microbeEntity, IWorldSimulation worldSimulation, float energyCostMultiplier, float delta)
     {
         // All the logic for this ended up in MicrobeEmissionSystem and MicrobeMovementSystem, just the animation
         // applying is here anymore...
@@ -75,11 +75,11 @@ public class SlimeJetComponent : IOrganelleComponent
         if (!parentOrganelle.OrganelleAnimation.IsPlaying())
             parentOrganelle.OrganelleAnimation.Play(SlimeJetAnimationName);
 
-        // animationDirty is not set false here as otherwise we won't know when the playing stops and we need to
+        // animationDirty is not set false here as otherwise we won't know when the playing stops, and we need to
         // start the animation again to keep playing if the jet is active for long
     }
 
-    public void AddQueuedForce(in Entity entity, float slimeAmount)
+    public void AddQueuedForce(in Entity entity, float slimeAmount, float delta)
     {
         if (!Active)
         {
@@ -87,7 +87,10 @@ public class SlimeJetComponent : IOrganelleComponent
             return;
         }
 
-        queuedForce += CalculateMovementForce(entity, slimeAmount);
+        if (delta <= 0)
+            return;
+
+        queuedForce += CalculateMovementForce(entity, slimeAmount) / delta;
     }
 
     public void ConsumeMovementForce(out Vector3 force)

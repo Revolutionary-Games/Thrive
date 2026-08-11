@@ -35,10 +35,10 @@
     "Name": "PHOTOSYNTHESIS",
     "Inputs": {
       "sunlight": 1,
-      "carbondioxide": 0.27
+      "carbondioxide": 0.15
     },
     "Outputs": {
-      "glucose": 0.36,
+      "glucose": 0.10,
       "oxygen": 0.27
     }
   },
@@ -48,7 +48,7 @@
       "atp": 8
     },
     "Outputs": {
-      "oxytoxy": 1.4
+      "oxytoxy": 1.2
     }
   },
   "bacterial_cytotoxinSynthesis": {
@@ -57,7 +57,7 @@
       "atp": 3
     },
     "Outputs": {
-      "oxytoxy": 0.22
+      "oxytoxy": 0.18
     }
   },
   "oxytoxySynthesis": {
@@ -67,17 +67,17 @@
       "atp": 8
     },
     "Outputs": {
-      "oxytoxy": 1.5
+      "oxytoxy": 1.2
     }
   },
   "bacterial_oxytoxySynthesis": {
     "Name": "OXYTOXY_SYNTHESIS",
     "Inputs": {
-      "oxygen": 0.21,
+      "oxygen": 0.17,
       "atp": 3
     },
     "Outputs": {
-      "oxytoxy": 0.21
+      "oxytoxy": 0.17
     }
   },
   "macrolideSynthesis": {
@@ -86,7 +86,7 @@
       "atp": 8
     },
     "Outputs": {
-      "oxytoxy": 1.6
+      "oxytoxy": 1.3
     }
   },
   "bacterial_macrolideSynthesis": {
@@ -95,7 +95,7 @@
       "atp": 3
     },
     "Outputs": {
-      "oxytoxy": 0.16
+      "oxytoxy": 0.13
     }
   },
   "channelInhibitorSynthesis": {
@@ -104,7 +104,7 @@
       "atp": 8
     },
     "Outputs": {
-      "oxytoxy": 1.4
+      "oxytoxy": 1.1
     }
   },
   "bacterial_channelInhibitorSynthesis": {
@@ -113,7 +113,7 @@
       "atp": 3
     },
     "Outputs": {
-      "oxytoxy": 0.14
+      "oxytoxy": 0.11
     }
   },
   "oxygenInhibitorSynthesis": {
@@ -123,7 +123,7 @@
       "atp": 8
     },
     "Outputs": {
-      "oxytoxy": 1.5
+      "oxytoxy": 1.2
     }
   },
   "bacterial_oxygenInhibitorSynthesis": {
@@ -133,7 +133,7 @@
       "atp": 3
     },
     "Outputs": {
-      "oxytoxy": 0.15
+      "oxytoxy": 0.12
     }
   },
   "mucilage_synthesis": {
@@ -152,7 +152,7 @@
       "carbondioxide": 0.09
     },
     "Outputs": {
-      "glucose": 0.075
+      "glucose": 0.1
     },
     "IsMetabolismProcess": true
   },
@@ -168,18 +168,17 @@
     "IsMetabolismProcess": true
   },
   "nitrogenFixing": {
-    "Name": "AEROBIC_NITROGEN_FIXING",
+    "Name": "NITROGEN_FIXATION",
     "Inputs": {
-      "oxygen": 0.21,
       "nitrogen": 1,
-      "atp": 2.5
+      "atp": 6.5
     },
     "Outputs": {
-      "ammonia": 0.16
+      "ammonia": 0.24
     }
   },
   "nitrogenaseReaction": {
-    "Name": "ANAEROBIC_NITROGEN_FIXATION",
+    "Name": "NITROGEN_FIXATION",
     "Inputs": {
       "nitrogen": 1,
       "atp": 2.5
@@ -227,7 +226,7 @@
       "carbondioxide": 0.081
     },
     "Outputs": {
-      "glucose": 0.03,
+      "glucose": 0.015,
       "oxygen": 0.081
     }
   },

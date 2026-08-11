@@ -9,7 +9,7 @@ using SharedBase.Archive;
 /// </summary>
 public struct ChunkConfiguration : IEquatable<ChunkConfiguration>, IArchivable
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     public string Name;
 
@@ -60,6 +60,12 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>, IArchivable
     /// </summary>
     public string? DissolverEnzyme;
 
+    /// <summary>
+    ///   If above zero, this overrides the lifetime of this chunk if this is a timed chunk.
+    ///   Value is in seconds.
+    /// </summary>
+    public int LifetimeOverride;
+
     [JsonIgnore]
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
 
@@ -109,6 +115,7 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>, IArchivable
             Compounds = reader.ReadObjectOrNull<Dictionary<Compound, ChunkCompound>>(),
             EasterEgg = reader.ReadBool(),
             DissolverEnzyme = reader.ReadString(),
+            LifetimeOverride = version >= 2 ? reader.ReadInt32() : 0,
         };
     }
 
@@ -143,6 +150,7 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>, IArchivable
 
         writer.Write(EasterEgg);
         writer.Write(DissolverEnzyme);
+        writer.Write(LifetimeOverride);
     }
 
     public override bool Equals(object? obj)
@@ -176,6 +184,7 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>, IArchivable
             EasterEgg == other.EasterEgg &&
             DamageType == other.DamageType &&
             DissolverEnzyme == other.DissolverEnzyme &&
+            LifetimeOverride == other.LifetimeOverride &&
             Equals(Compounds, other.Compounds);
     }
 

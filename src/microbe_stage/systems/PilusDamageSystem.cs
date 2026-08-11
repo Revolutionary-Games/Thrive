@@ -75,17 +75,17 @@ public partial class PilusDamageSystem : BaseSystem<World, float>
                 if (collision.SecondEntity.Get<MicrobeColony>().GetMicrobeFromSubShape(ref otherExtraData,
                         collision.SecondSubShapeData, out var hitEntity))
                 {
-                    DealPilusDamage(ref ourExtraData, ref collision, hitEntity, isPlayer);
+                    DealPilusDamage(ref ourExtraData, ref collision, hitEntity, collision.SecondEntity, isPlayer);
                     continue;
                 }
             }
 
-            DealPilusDamage(ref ourExtraData, ref collision, collision.SecondEntity, isPlayer);
+            DealPilusDamage(ref ourExtraData, ref collision, collision.SecondEntity, collision.SecondEntity, isPlayer);
         }
     }
 
     private void DealPilusDamage(ref MicrobePhysicsExtraData ourExtraData, ref PhysicsCollision collision,
-        in Entity targetEntity, bool playerDealsDamage)
+        in Entity targetEntity, in Entity overallColony, bool playerDealsDamage)
     {
         // Skip applying damage while the previous damage cooldown is still active
         ref var cooldown = ref collision.SecondEntity.Get<DamageCooldown>();
@@ -97,10 +97,9 @@ public partial class PilusDamageSystem : BaseSystem<World, float>
 
         if (ourExtraData.IsSubShapeInjectisomeIfIsPilus(collision.FirstSubShapeData))
         {
-            // Injectisome attack
-            targetHealth.DealMicrobeDamage(ref collision.SecondEntity.Get<CellProperties>(), collision.SecondEntity,
-                Constants.INJECTISOME_BASE_DAMAGE, "injectisome",
-                HealthHelpers.GetInstantKillProtectionThreshold(targetEntity));
+            // Injectisome attack, which distributes damage as it is a toxin
+            HealthHelpers.DealDistributedMicrobeDamage(overallColony, Constants.INJECTISOME_BASE_DAMAGE, "injectisome",
+                HealthHelpers.GetInstantKillProtectionThreshold(overallColony));
 
             cooldown.StartInjectisomeCooldown();
             return;

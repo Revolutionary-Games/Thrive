@@ -146,7 +146,7 @@ public partial class PatchMapDrawer : Control
     public Action<PatchMapDrawer>? OnSelectedPatchChanged { get; set; }
 
     /// <summary>
-    ///   Player species ID for player population indicator (dots on patch map)
+    ///   Player species ID for player population indicator (dots on the patch map)
     /// </summary>
     public uint PlayerSpeciesID { get; set; }
 
@@ -309,14 +309,15 @@ public partial class PatchMapDrawer : Control
     }
 
     /// <summary>
-    ///   If two segments parallel to axis intersect each other.
+    ///   If two segments parallel to the axis intersect each other.
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     True if intersect at endpoint. And true if the two segments are collinear and has common points.
+    ///     True if intersect at the endpoint. And true if the two segments are collinear and have common points.
     ///   </para>
     ///   <para>
-    ///     Doesn't use `Geometry.SegmentIntersectsSegment2d()` because it isn't handling intersection at endpoint well.
+    ///     Doesn't use `Geometry.SegmentIntersectsSegment2d()`, because it doesn't handle intersection at the endpoint
+    ///     well.
     ///   </para>
     /// </remarks>
     /// <returns>True if intersect</returns>
@@ -647,9 +648,9 @@ public partial class PatchMapDrawer : Control
     }
 
     /// <summary>
-    ///   Get the least intersecting path from start region to end region. This is achieved by first calculating all
-    ///   possible paths, then figuring out which one has highest priority. If several paths are equally good, return
-    ///   the one with the least intersections.
+    ///   Get the least intersecting path from the start region to the end region. This is achieved by first
+    ///   calculating all possible paths, then figuring out which one has the highest priority. If several paths are
+    ///   equally good, return the one with the fewest intersections.
     /// </summary>
     /// <remarks>
     ///   <para>
@@ -840,7 +841,7 @@ public partial class PatchMapDrawer : Control
             {
                 var connectionsToDirection = connectionsToDirections[direction];
 
-                // Only when we have more than 1 connections do we need to offset them
+                // Only when we have more than 1 connection do we need to offset them
                 if (connectionsToDirection.Count <= 1)
                     continue;
 
@@ -893,15 +894,15 @@ public partial class PatchMapDrawer : Control
     }
 
     /// <summary>
-    ///   Calculate priority of a path for sorting.
+    ///   Calculate the priority of a path for sorting.
     /// </summary>
     private (int RegionIntersectionCount, int PathIntersectionCount, int StartPointOverlapCount, int Priority)
         CalculatePathPriorityTuple((Vector2[] Path, int Priority) pathPriorityTuple)
     {
         var (path, priority) = pathPriorityTuple;
 
-        // Intersections with regions are considered worse than that with lines.
-        // So an intersect with region adds count by 10.
+        // Intersections with regions are considered worse than those with lines.
+        // So an intersecting region adds count by 10.
         int regionIntersectionCount = 0;
         int pathIntersectionCount = 0;
         int startPointOverlapCount = 0;
@@ -937,46 +938,46 @@ public partial class PatchMapDrawer : Control
                 }
             }
 
-            // If the endpoint is the same, it is regarded as the two lines intersects but it actually isn't.
+            // If the endpoint is the same, it is regarded as the two lines intersect, but it actually isn't.
             if (path[0] == target[0])
             {
                 --pathIntersectionCount;
 
-                // And if they goes the same direction, the second segment intersects but it actually isn't either.
+                // And if they go in the same direction, the second segment intersects, but it actually isn't either.
                 if (Math.Abs((path[1] - path[0]).AngleTo(target[1] - target[0])) < MathUtils.EPSILON)
                 {
                     --pathIntersectionCount;
                     ++startPointOverlapCount;
                 }
             }
-            else if (path[0] == target[target.Length - 1])
+            else if (path[0] == target[^1])
             {
                 --pathIntersectionCount;
 
-                if (Math.Abs((path[1] - path[0]).AngleTo(target[target.Length - 2] - target[target.Length - 1]))
+                if (Math.Abs((path[1] - path[0]).AngleTo(target[^2] - target[^1]))
                     < MathUtils.EPSILON)
                 {
                     --pathIntersectionCount;
                     ++startPointOverlapCount;
                 }
             }
-            else if (path[path.Length - 1] == target[0])
+            else if (path[^1] == target[0])
             {
                 --pathIntersectionCount;
 
-                if (Math.Abs((path[path.Length - 2] - path[path.Length - 1]).AngleTo(target[1] - target[0]))
+                if (Math.Abs((path[^2] - path[^1]).AngleTo(target[1] - target[0]))
                     < MathUtils.EPSILON)
                 {
                     --pathIntersectionCount;
                     ++startPointOverlapCount;
                 }
             }
-            else if (path[path.Length - 1] == target[target.Length - 1])
+            else if (path[^1] == target[^1])
             {
                 --pathIntersectionCount;
 
-                if (Math.Abs((path[path.Length - 2] - path[path.Length - 1]).AngleTo(target[target.Length - 2] -
-                        target[target.Length - 1])) < MathUtils.EPSILON)
+                if (Math.Abs((path[^2] - path[^1]).AngleTo(target[^2] -
+                        target[^1])) < MathUtils.EPSILON)
                 {
                     --pathIntersectionCount;
                     ++startPointOverlapCount;
@@ -1007,7 +1008,7 @@ public partial class PatchMapDrawer : Control
 
     private void DrawPatchLinks()
     {
-        // This ends up drawing duplicates but that doesn't seem problematic ATM
+        // This ends up drawing duplicates, but that doesn't seem problematic ATM
         foreach (var patch in Map!.Patches.Values)
         {
             foreach (var adjacent in patch.Adjacent)
@@ -1084,7 +1085,7 @@ public partial class PatchMapDrawer : Control
             {
                 SelectedPatch = null;
 
-                // Changing the selected patch already updates the node selections so we skip a duplicate call with
+                // Changing the selected patch already updates the node selections, so we skip a duplicate call with
                 // this flag
                 runNodeSelectionsUpdate = false;
             }
@@ -1125,7 +1126,7 @@ public partial class PatchMapDrawer : Control
             }
             else if (playerSpecies is MulticellularSpecies)
             {
-                // for now we use this constant until multicellular gets its own auto-evo
+                // for now, we use this constant until multicellular gets its own auto-evo
                 speciesSizeModifier = Constants.MULTICELLULAR_LIFE_INDICATOR_MODIFIER;
             }
 
@@ -1195,7 +1196,7 @@ public partial class PatchMapDrawer : Control
                 new Vector2(patchCenter.X, intermediate.Y);
             Vector2[] path = [patchCenter, middlePoint, intermediate, regionPoint];
 
-            // If the path is highlighted then create it later to be on top of other paths
+            // If the path is highlighted, then create it later to be on top of other paths
             if (!highlight)
             {
                 CreateConnectionLine(path, InterConnectionColor);
@@ -1263,7 +1264,7 @@ public partial class PatchMapDrawer : Control
         PatchRegion startRegion, Color color, bool reversed)
     {
         var startingPoint = reversed ?
-            startingConnection.Points[startingConnection.Points.Length - 1] :
+            startingConnection.Points[^1] :
             startingConnection.Points[0];
 
         var adjacencies = startRegion.PatchAdjacencies[targetRegion.ID];
@@ -1271,7 +1272,7 @@ public partial class PatchMapDrawer : Control
         // Generate a list of patches to connect to
         var patches = targetRegion.Patches
             .Where(p => p.Visibility == MapElementVisibility.Unknown)
-            .Where(p => adjacencies.Contains(p));
+            .Where(adjacencies.Contains);
 
         foreach (var targetPatch in patches)
         {
@@ -1279,7 +1280,8 @@ public partial class PatchMapDrawer : Control
             var endingPoint = targetPatch.ScreenCoordinates + patchSize / 2;
 
             // Draw a straight line if possible
-            if (endingPoint.X == startingPoint.X || endingPoint.Y == startingPoint.Y)
+            if (Math.Abs(endingPoint.X - startingPoint.X) < MathUtils.EPSILON ||
+                Math.Abs(endingPoint.Y - startingPoint.Y) < MathUtils.EPSILON)
             {
                 var straightPoints = new[]
                 {
@@ -1332,7 +1334,7 @@ public partial class PatchMapDrawer : Control
 
         if (!endingRegion.Patches
                 .Where(p => p.Visibility == MapElementVisibility.Unknown)
-                .Any(p => adjacencies.Contains(p)))
+                .Any(adjacencies.Contains))
         {
             ApplyFadeToLine(line, reversed);
         }

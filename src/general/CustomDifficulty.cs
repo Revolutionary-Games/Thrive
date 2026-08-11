@@ -5,7 +5,7 @@
 /// </summary>
 public class CustomDifficulty : IDifficulty
 {
-    public const ushort SERIALIZATION_VERSION = 3;
+    public const ushort SERIALIZATION_VERSION = 4;
 
     private bool applyGrowthOverride;
     private bool growthLimitOverride;
@@ -17,7 +17,7 @@ public class CustomDifficulty : IDifficulty
     public float CompoundDensity { get; set; }
     public float PlayerDeathPopulationPenalty { get; set; }
     public float GlucoseDecay { get; set; }
-    public float OsmoregulationMultiplier { get; set; }
+    public float EnergyCostMultiplier { get; set; }
 
     /// <summary>
     ///   The default value is picked here to preserve the old behaviour when loading older saves.
@@ -54,6 +54,10 @@ public class CustomDifficulty : IDifficulty
 
     public bool OrganelleUnlocksEnabled { get; set; }
 
+    public bool SpawnCompatibleMateOnCall { get; set; }
+
+    public bool ShowMatePosition { get; set; }
+
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.CustomDifficulty;
     public bool CanBeReferencedInArchive => false;
@@ -70,7 +74,7 @@ public class CustomDifficulty : IDifficulty
             CompoundDensity = reader.ReadFloat(),
             PlayerDeathPopulationPenalty = reader.ReadFloat(),
             GlucoseDecay = reader.ReadFloat(),
-            OsmoregulationMultiplier = reader.ReadFloat(),
+            EnergyCostMultiplier = reader.ReadFloat(),
             PlayerAutoEvoStrength = reader.ReadFloat(),
             PlayerSpeciesAIPopulationStrength = reader.ReadFloat(),
             FreeGlucoseCloud = reader.ReadBool(),
@@ -94,6 +98,12 @@ public class CustomDifficulty : IDifficulty
             instance.InstantKillProtection = true;
         }
 
+        if (version > 3)
+        {
+            instance.SpawnCompatibleMateOnCall = reader.ReadBool();
+            instance.ShowMatePosition = reader.ReadBool();
+        }
+
         return instance;
     }
 
@@ -104,7 +114,7 @@ public class CustomDifficulty : IDifficulty
         writer.Write(CompoundDensity);
         writer.Write(PlayerDeathPopulationPenalty);
         writer.Write(GlucoseDecay);
-        writer.Write(OsmoregulationMultiplier);
+        writer.Write(EnergyCostMultiplier);
         writer.Write(PlayerAutoEvoStrength);
         writer.Write(PlayerSpeciesAIPopulationStrength);
         writer.Write(FreeGlucoseCloud);
@@ -118,6 +128,10 @@ public class CustomDifficulty : IDifficulty
 
         // Version 3 fields that were added after
         writer.Write(InstantKillProtection);
+
+        // Version 4 fields that were added after
+        writer.Write(SpawnCompatibleMateOnCall);
+        writer.Write(ShowMatePosition);
     }
 
     public void SetGrowthRateLimitCheatOverride(bool newLimitSetting)

@@ -15,6 +15,16 @@ public partial class ToolTipManager : CanvasLayer
     /// </summary>
     public const string DEFAULT_GROUP_NAME = "default";
 
+    private const double AUTO_SCROLLING_DELAY = 2.0f;
+    private const float AUTO_SCROLLING_SPEED = 40.0f;
+
+    /// <summary>
+    ///   How many frames (game updates) a tooltip stays transparent before it is made visible to avoid re-layout
+    ///   causing visible jumps to a tooltip that just appeared. This has to be at least 3 to remove the flicker, 2
+    ///   is too little.
+    /// </summary>
+    private const int TOOLTIP_INVISIBLE_FRAMES = 3;
+
     private static ToolTipManager? instance;
 
     /// <summary>
@@ -30,20 +40,32 @@ public partial class ToolTipManager : CanvasLayer
 #pragma warning restore CA2213
 
     private bool display;
+    private int tooltipNonTransparentDelay;
     private double displayTimer;
     private double hideTimer;
 
     /// <summary>
-    ///   Flags whether MainToolTip should be shown temporarily (automatically hides once timer reaches threshold).
+    ///   Flags whether MainToolTip should be shown temporarily (automatically hides once the timer reaches
+    ///   the threshold).
     /// </summary>
     private bool currentIsTemporary;
 
     private Vector2 lastMousePosition;
 
-    private ICustomToolTip? mainToolTip;
     private ICustomToolTip? previousToolTip;
 
+    /// <summary>
+    ///   Used to know what the last hidden tooltip is (even if it was a while ago) to know when the same tooltip is
+    ///   shown again, used to reduce flicker.
+    /// </summary>
+    private WeakReference<ICustomToolTip>? lastHiddenToolTip;
+
     private bool nodeReferencesResolved;
+
+    private double currentAutoScrollingDelay = AUTO_SCROLLING_DELAY;
+    private float currentAutoScrollingOffset;
+    private bool isAutoScrollingMovingDown = true;
+    private bool visibleLastFrame;
 
     private ToolTipManager()
     {
@@ -60,11 +82,14 @@ public partial class ToolTipManager : CanvasLayer
     /// </summary>
     public ICustomToolTip? MainToolTip
     {
-        get => mainToolTip;
+        get;
         set
         {
-            previousToolTip = mainToolTip;
-            mainToolTip = value;
+            if (field != value)
+                ResetAutoScrolling();
+
+            previousToolTip = field;
+            field = value;
         }
     }
 
@@ -456,13 +481,29 @@ public partial class ToolTipManager : CanvasLayer
                 newPos.Y = position.Y + offset.Y;
         }
 
+        UpdateAutoScrollingOffset(delta);
+
         // Clamp tooltip position so it doesn't go offscreen
         // TODO: Take into account viewport (window) resizing for the offsetting.
         MainToolTip.ToolTipNode.Position = new Vector2(
             Math.Clamp(newPos.X, 0, Math.Max(screenRect.Size.X - tooltipSize.X, 0)),
-            Math.Clamp(newPos.Y, 0, Math.Max(screenRect.Size.Y - tooltipSize.Y, 0)));
+            Math.Clamp(newPos.Y, 0, Math.Max(screenRect.Size.Y - tooltipSize.Y, 0)) + currentAutoScrollingOffset);
 
         MainToolTip.ToolTipNode.Size = Vector2.Zero;
+
+        // Handle initial transparency to avoid visual jumps in position after the initial display.
+        // Being transparent but `Visible` allows the layout and position to settle before we make the tooltip
+        // user-visible.
+        if (tooltipNonTransparentDelay > 0 && delta > 0)
+        {
+            if (--tooltipNonTransparentDelay <= 0)
+            {
+                // The initial show made things transparent, so we are only responsible for making things visible again
+                MainToolTip.ToolTipNode.Modulate = Colors.White;
+            }
+
+            return;
+        }
 
         // Handle temporary tooltips/popup
         if (currentIsTemporary && hideTimer >= 0)
@@ -515,6 +556,32 @@ public partial class ToolTipManager : CanvasLayer
         {
             case ToolTipTransitioning.Immediate:
             {
+                // When becoming visible, tooltips will flicker for one frame, so we force them transparent.
+                // This only applies on the initial display when the tooltip needs to lay out its content.
+                // The tooltip processing later will make it then visible.
+                if (visible)
+                {
+                    bool doTransparencyFix = true;
+
+                    // If we just hid this tooltip, we don't need to re-layout it, so we don't need to use the
+                    // invisible time
+                    if (lastHiddenToolTip != null && lastHiddenToolTip.TryGetTarget(out var lastHidden))
+                    {
+                        if (lastHidden == tooltip)
+                            doTransparencyFix = false;
+                    }
+
+                    if (doTransparencyFix)
+                    {
+                        tooltip.ToolTipNode.Modulate = Colors.Transparent;
+                        tooltipNonTransparentDelay = TOOLTIP_INVISIBLE_FRAMES;
+                    }
+                }
+                else
+                {
+                    lastHiddenToolTip = new WeakReference<ICustomToolTip>(tooltip);
+                }
+
                 tooltip.ToolTipNode.Visible = visible;
                 break;
             }
@@ -579,7 +646,13 @@ public partial class ToolTipManager : CanvasLayer
         if (organelle.Components.Movement != null)
         {
             tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
-                "res://assets/textures/gui/bevel/SpeedIcon.png", "speed");
+                "res://assets/textures/gui/bevel/SpeedIcon.png", "thrustForce");
+        }
+
+        if (organelle.Components.Cilia != null)
+        {
+            tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
+                "res://assets/textures/gui/bevel/RotationIcon.png", "rotationForce");
         }
 
         if (organelle.Components.Lysosome != null)
@@ -600,6 +673,30 @@ public partial class ToolTipManager : CanvasLayer
                 "res://assets/textures/gui/bevel/StorageIcon.png", "storage");
         }
 
+        if (organelle.ToleranceModifierTemperatureRange != 0)
+        {
+            tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
+                "res://assets/textures/gui/bevel/Temperature.svg", "temperatureTolerance");
+        }
+
+        if (organelle.ToleranceModifierPressureTolerance != 0)
+        {
+            tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
+                "res://assets/textures/gui/bevel/Pressure.svg", "pressureTolerance");
+        }
+
+        if (organelle.ToleranceModifierOxygen != 0)
+        {
+            tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
+                "res://assets/textures/gui/bevel/Oxygen.svg", "oxygenResistance");
+        }
+
+        if (organelle.ToleranceModifierUV != 0)
+        {
+            tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
+                "res://assets/textures/gui/bevel/Sunlight.svg", "uvResistance");
+        }
+
         tooltip.AddOrganelleCostInfo("AMMONIA_COST",
             "+" + organelle.InitialComposition.GetValueOrDefault(Compound.Ammonia, 0), 0,
             "res://assets/textures/gui/bevel/Ammonia.svg", "ammoniaCost");
@@ -614,6 +711,8 @@ public partial class ToolTipManager : CanvasLayer
     private void UpdateModifierInfoWithTranslations(OrganelleDefinition organelle,
         SelectionMenuToolTip selectionMenuTooltip)
     {
+        // TODO WARNING: This method does not change previously red (due to being negative) values to white if they
+        // are now positive. If organelle values dynamically change for any reason, this will have to be changed.
         var modifierInfo = selectionMenuTooltip.GetModifierInfo("storage");
 
         if (modifierInfo != null)
@@ -643,12 +742,81 @@ public partial class ToolTipManager : CanvasLayer
                     Constants.ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION).ToString("F1", CultureInfo.CurrentCulture));
         }
 
-        modifierInfo = selectionMenuTooltip.GetModifierInfo("speed");
+        modifierInfo = selectionMenuTooltip.GetModifierInfo("thrustForce");
 
         if (modifierInfo != null)
         {
-            modifierInfo.DisplayName = "SPEED";
-            modifierInfo.ModifierValue = "+" + Constants.FLAGELLA_SPEED_BONUS_DISPLAY;
+            var movementComponent = organelle.Components.Movement
+                ?? throw new InvalidOperationException("Movement component is null for organelle with thrust tooltip");
+
+            modifierInfo.DisplayName = "THRUST_FORCE";
+            modifierInfo.ModifierValue = "+" + MathF.Round(Constants.FLAGELLA_BASE_FORCE * movementComponent.Momentum
+                / Constants.FLAGELLA_FORCE_DISPLAY_DIVISOR);
+        }
+
+        modifierInfo = selectionMenuTooltip.GetModifierInfo("rotationForce");
+
+        if (modifierInfo != null)
+        {
+            modifierInfo.DisplayName = "ROTATION_FORCE";
+            modifierInfo.ModifierValue = "+" + Constants.CILIA_ROTATION_FORCE_DISPLAY;
+        }
+
+        modifierInfo = selectionMenuTooltip.GetModifierInfo("temperatureTolerance");
+
+        if (modifierInfo != null)
+        {
+            modifierInfo.DisplayName = "TEMPERATURE_TOLERANCE_RANGE";
+            var value = MathF.Round(organelle.ToleranceModifierTemperatureRange, 1);
+
+            if (value < 0)
+                modifierInfo.AdjustValueColor(value);
+
+            modifierInfo.ModifierValue = Localization.Translate("VALUE_WITH_UNIT").FormatSafe(
+                StringUtils.FormatPositiveWithLeadingPlus(value),
+                SimulationParameters.Instance.GetCompoundDefinition(Compound.Temperature).Unit);
+        }
+
+        modifierInfo = selectionMenuTooltip.GetModifierInfo("pressureTolerance");
+
+        if (modifierInfo != null)
+        {
+            modifierInfo.DisplayName = "PRESSURE_TOLERANCE";
+            var value = MathF.Round(organelle.ToleranceModifierPressureTolerance / 1000, 1);
+
+            if (value < 0)
+                modifierInfo.AdjustValueColor(value);
+
+            modifierInfo.ModifierValue = Localization.Translate("VALUE_WITH_UNIT").FormatSafe(
+                StringUtils.FormatPositiveWithLeadingPlus(value), "kPa");
+        }
+
+        modifierInfo = selectionMenuTooltip.GetModifierInfo("oxygenResistance");
+
+        if (modifierInfo != null)
+        {
+            modifierInfo.DisplayName = "OXYGEN_RESISTANCE";
+            var value = MathF.Round(organelle.ToleranceModifierOxygen * 100, 1);
+
+            if (value < 0)
+                modifierInfo.AdjustValueColor(value);
+
+            modifierInfo.ModifierValue = Localization.Translate("PERCENTAGE_VALUE")
+                .FormatSafe(StringUtils.FormatPositiveWithLeadingPlus(value));
+        }
+
+        modifierInfo = selectionMenuTooltip.GetModifierInfo("uvResistance");
+
+        if (modifierInfo != null)
+        {
+            modifierInfo.DisplayName = "UV_PROTECTION";
+            var value = MathF.Round(organelle.ToleranceModifierUV * 100, 1);
+
+            if (value < 0)
+                modifierInfo.AdjustValueColor(value);
+
+            modifierInfo.ModifierValue = Localization.Translate("PERCENTAGE_VALUE")
+                .FormatSafe(StringUtils.FormatPositiveWithLeadingPlus(value));
         }
 
         modifierInfo = selectionMenuTooltip.GetModifierInfo("ammoniaCost");
@@ -677,6 +845,61 @@ public partial class ToolTipManager : CanvasLayer
         Localization.Translate("STORAGE");
         Localization.Translate("DIGESTION_SPEED");
         Localization.Translate("DIGESTION_EFFICIENCY");
-        Localization.Translate("SPEED");
+        Localization.Translate("THRUST_FORCE");
+        Localization.Translate("ROTATION_FORCE");
+        Localization.Translate("PRESSURE_TOLERANCE");
+        Localization.Translate("TEMPERATURE_TOLERANCE_RANGE");
+    }
+
+    private void UpdateAutoScrollingOffset(double delta)
+    {
+        if (MainToolTip == null)
+            throw new InvalidOperationException("This is only valid when there is an active tooltip");
+
+        if (currentAutoScrollingDelay <= 0.0)
+        {
+            var scrollHeightThreshold = groupHolder.GetViewportRect().Size.Y;
+
+            float excessHeight = MainToolTip.ToolTipNode.GetMinimumSize().Y - scrollHeightThreshold;
+
+            if (excessHeight <= 0.0f)
+            {
+                currentAutoScrollingOffset = 0.0f;
+                return;
+            }
+
+            if (isAutoScrollingMovingDown)
+            {
+                // To move the content down, the tooltip has to go up
+                currentAutoScrollingOffset -= (float)delta * AUTO_SCROLLING_SPEED;
+
+                if (currentAutoScrollingOffset < -excessHeight)
+                {
+                    currentAutoScrollingOffset = -excessHeight;
+                    currentAutoScrollingDelay = AUTO_SCROLLING_DELAY;
+                    isAutoScrollingMovingDown = false;
+                }
+            }
+            else
+            {
+                currentAutoScrollingOffset += (float)delta * AUTO_SCROLLING_SPEED;
+
+                if (currentAutoScrollingOffset > 0.0f)
+                {
+                    ResetAutoScrolling();
+                }
+            }
+        }
+        else
+        {
+            currentAutoScrollingDelay -= delta;
+        }
+    }
+
+    private void ResetAutoScrolling()
+    {
+        currentAutoScrollingOffset = 0.0f;
+        currentAutoScrollingDelay = AUTO_SCROLLING_DELAY;
+        isAutoScrollingMovingDown = true;
     }
 }

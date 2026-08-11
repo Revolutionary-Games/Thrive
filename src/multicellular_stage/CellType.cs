@@ -57,9 +57,9 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
     public string? SplitFromTypeName { get; set; }
 
     /// <summary>
-    ///   Cached specialization bonus for this cell type.
+    ///   Cached specialization bonus for this cell type (excluding any adjacency effects!).
     /// </summary>
-    public float SpecializationBonus { get; set; }
+    public float CellTypeSpecializationBonus { get; set; }
 
     public MembraneType MembraneType { get; set; }
     public float MembraneRigidity { get; set; }
@@ -107,12 +107,12 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
 
         if (version > 2)
         {
-            result.SpecializationBonus = reader.ReadFloat();
+            result.CellTypeSpecializationBonus = reader.ReadFloat();
         }
         else
         {
             // Just like microbes, older cell types will get eventually updated by something to have a valid value
-            result.SpecializationBonus = 1;
+            result.CellTypeSpecializationBonus = 1;
         }
 
         return result;
@@ -132,16 +132,17 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
 
         writer.Write(SplitFromTypeName);
 
-        writer.Write(SpecializationBonus);
+        writer.Write(CellTypeSpecializationBonus);
     }
 
     public bool RepositionToOrigin()
     {
         var changes = ModifiableOrganelles.RepositionToOrigin();
-        CalculateRotationSpeed();
 
         // We don't have another on-edit callback, so we do this update here
         CalculateSpecialization();
+
+        CalculateRotationSpeed();
 
         return changes;
     }
@@ -189,7 +190,7 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
 
     public void CalculateSpecialization()
     {
-        SpecializationBonus =
+        CellTypeSpecializationBonus =
             MicrobeInternalCalculations.CalculateSpecializationBonus(ModifiableOrganelles,
                 new Dictionary<OrganelleDefinition, int>());
     }
@@ -242,7 +243,7 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
         Colour = otherType.Colour;
         MembraneRigidity = otherType.MembraneRigidity;
 
-        SpecializationBonus = otherType.SpecializationBonus;
+        CellTypeSpecializationBonus = otherType.CellTypeSpecializationBonus;
     }
 
     public object Clone()
@@ -254,7 +255,7 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
             MembraneRigidity = MembraneRigidity,
             Colour = Colour,
             IsBacteria = IsBacteria,
-            SpecializationBonus = SpecializationBonus,
+            CellTypeSpecializationBonus = CellTypeSpecializationBonus,
         };
 
         var workMemory1 = new List<Hex>();
@@ -322,6 +323,7 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
     private void CalculateRotationSpeed()
     {
         // TODO: switch this to use a read only interface
-        BaseRotationSpeed = MicrobeInternalCalculations.CalculateRotationSpeed(ModifiableOrganelles.Organelles);
+        BaseRotationSpeed = MicrobeInternalCalculations.CalculateRotationSpeed(ModifiableOrganelles.Organelles,
+            CellTypeSpecializationBonus);
     }
 }

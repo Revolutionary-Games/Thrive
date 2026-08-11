@@ -123,6 +123,8 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.Save, typeof(Save), Save.ReadFromArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.SaveInformation, typeof(SaveInformation),
             SaveInformation.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.JukeboxPlaybackState,
+            typeof(JukeboxPlaybackState), JukeboxPlaybackState.ReadFromArchive);
 
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.LocalizedString, typeof(LocalizedString),
             LocalizedString.WriteToArchive);
@@ -359,6 +361,11 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
             typeof(PatchEventProperties), PatchEventProperties.WriteToArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.PatchEventProperties,
             typeof(PatchEventProperties), PatchEventProperties.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ThriveopediaGameData,
+            typeof(ThriveopediaGameData), ThriveopediaGameData.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ThriveopediaGameData,
+            typeof(ThriveopediaGameData), ThriveopediaGameData.ReadFromArchive);
     }
 
     private void RegisterComponentParts()
@@ -660,18 +667,46 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
             typeof(CellPlacementActionData), CellPlacementActionData.WriteToArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CellPlacementActionData,
             typeof(CellPlacementActionData), CellPlacementActionData.ReadFromArchive);
+
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CellMoveActionData,
             typeof(CellMoveActionData), CellMoveActionData.WriteToArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CellMoveActionData,
             typeof(CellMoveActionData), CellMoveActionData.ReadFromArchive);
+
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CellRemoveActionData,
             typeof(CellRemoveActionData), CellRemoveActionData.WriteToArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CellRemoveActionData,
             typeof(CellRemoveActionData), CellRemoveActionData.ReadFromArchive);
+
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.DuplicateDeleteCellTypeData,
             typeof(DuplicateDeleteCellTypeData), DuplicateDeleteCellTypeData.WriteToArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.DuplicateDeleteCellTypeData,
             typeof(DuplicateDeleteCellTypeData), DuplicateDeleteCellTypeData.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MulticellularReproductionActionData,
+            typeof(MulticellularReproductionActionData), MulticellularReproductionActionData.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MulticellularReproductionActionData,
+            typeof(MulticellularReproductionActionData), MulticellularReproductionActionData.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.SporeCellTypeChangeActionData,
+            typeof(SporeCellTypeChangeActionData), SporeCellTypeChangeActionData.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.SporeCellTypeChangeActionData,
+            typeof(SporeCellTypeChangeActionData), SporeCellTypeChangeActionData.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MassBuddingCellCountActionData,
+            typeof(MassBuddingCellCountActionData), MassBuddingCellCountActionData.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MassBuddingCellCountActionData,
+            typeof(MassBuddingCellCountActionData), MassBuddingCellCountActionData.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.GameteACellTypeChangeActionData,
+            typeof(GameteACellTypeChangeActionData), GameteACellTypeChangeActionData.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.GameteACellTypeChangeActionData,
+            typeof(GameteACellTypeChangeActionData), GameteACellTypeChangeActionData.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.GameteBCellTypeChangeActionData,
+            typeof(GameteBCellTypeChangeActionData), GameteBCellTypeChangeActionData.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.GameteBCellTypeChangeActionData,
+            typeof(GameteBCellTypeChangeActionData), GameteBCellTypeChangeActionData.ReadFromArchive);
     }
 
     private void RegisterFossils()

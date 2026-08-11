@@ -21,6 +21,7 @@ add_library(thrive_native SHARED
   core/Spinlock.hpp
   core/TaskSystem.cpp core/TaskSystem.hpp
   core/Time.hpp
+  helpers/BoostThrowException.cpp
   helpers/CPUCheck.hpp
   physics/BodyActivationListener.cpp physics/BodyActivationListener.hpp
   physics/BodyControlState.hpp

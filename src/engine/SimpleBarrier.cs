@@ -37,17 +37,14 @@ public class SimpleBarrier
 
             // phase change
             Interlocked.Increment(ref currentPhase);
+            CPUHelpers.SignalEvent();
         }
         else
         {
             while (currentPhase == phase)
             {
-                // TODO: Use the ARM instruction WFE on ARM.
-
                 CPUHelpers.HyperThreadPause();
             }
         }
-
-        // TODO: Use the ARM instruction SEV on ARM.
     }
 }

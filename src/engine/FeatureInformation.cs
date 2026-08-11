@@ -71,8 +71,31 @@ public static class FeatureInformation
 
     private static OS.RenderingDriver DetectRenderer()
     {
-        // TODO: switch to a proper approach when Godot adds support for reading this
-        // For now OpenGL is detected by not having available to the modern rendering engine
+        var renderer = RenderingServer.GetCurrentRenderingDriverName();
+        switch (renderer)
+        {
+            case "vulkan":
+                return OS.RenderingDriver.Vulkan;
+            case "d3d12":
+                return OS.RenderingDriver.D3D12;
+            case "metal":
+                return OS.RenderingDriver.Metal;
+            case "opengl3":
+                return OS.RenderingDriver.Opengl3;
+
+            // These are theoretically slightly different, but Godot doesn't provide enum values for them
+            case "opengl3_es":
+                return OS.RenderingDriver.Opengl3;
+            case "opengl3_angle":
+                return OS.RenderingDriver.Opengl3;
+
+            default:
+                GD.PrintErr("Unknown rendering driver name: ", renderer);
+                break;
+        }
+
+        // Fall back to basic detection if name-matching failed
+
         if (RenderingServer.GetRenderingDevice() == null)
             return OS.RenderingDriver.Opengl3;
 

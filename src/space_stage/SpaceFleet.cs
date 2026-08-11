@@ -38,7 +38,7 @@ public partial class SpaceFleet : Node3D, IEntityWithNameLabel, IStrategicUnit
     public string UnitScreenTitle => Localization.Translate("NAME_LABEL_FLEET").FormatSafe(UnitName, CombatPower);
 
     [JsonProperty]
-    public Deque<IUnitOrder> QueuedOrders { get; private set; } = new();
+    public Deque<IUnitOrder> QueuedOrders { get; private set; } = [];
 
     // TODO: fleet colour to show empire colour on the name labels
 
@@ -159,7 +159,7 @@ public partial class SpaceFleet : Node3D, IEntityWithNameLabel, IStrategicUnit
     /// </summary>
     private void SetShips(UnitType ship)
     {
-        ships = new List<UnitType> { ship };
+        ships = [ship];
 
         // TODO: proper positioning and scaling and rotation for multiple ships
         visualsParent.AddChild(ship.WorldRepresentationSpace.Instantiate());

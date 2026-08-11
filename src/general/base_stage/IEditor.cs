@@ -120,6 +120,8 @@ public interface IEditor : ISaveLoadedTracked
     /// <param name="species">The species to open info for</param>
     public void OpenSpeciesInfoFor(Species species);
 
+    public void OpenSpeciesInfoFor(uint speciesId);
+
     /// <summary>
     ///   Calculates the next generation time. Used to precalculate timings for future events.
     /// </summary>

@@ -151,13 +151,14 @@ public static class ColourAnimationHelpers
     }
 
     /// <summary>
-    ///   Stops animations and resets to default colour (and forces a colour update to happen)
+    ///   Stops animations and resets to the default colour (and forces a colour update to happen)
     /// </summary>
     public static void ResetColour(this ref ColourAnimation animation)
     {
         animation.AnimationTargetColour = animation.DefaultColour;
 
         animation.Animating = false;
+        animation.AnimationUserInfo = 0;
         animation.ColourApplied = false;
     }
 
@@ -186,6 +187,5 @@ public static class ColourAnimationHelpers
 
         animation.AnimationStartColour = animation.CurrentColour;
         animation.AnimationElapsed = 0;
-        animation.AnimationUserInfo = 0;
     }
 }

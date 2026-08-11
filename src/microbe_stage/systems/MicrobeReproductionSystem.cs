@@ -37,6 +37,8 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(SoundEffectPlayer))]
 [ReadsComponent(typeof(MicrobeControl))]
 [ReadsComponent(typeof(MicrobeEnvironmentalEffects))]
+[ReadsComponent(typeof(SpecializationFactor))]
+[ReadsComponent(typeof(MicrobeSex))]
 [RunsAfter(typeof(OsmoregulationAndHealingSystem))]
 [RunsAfter(typeof(ProcessSystem))]
 [RuntimeCost(10)]
@@ -71,16 +73,22 @@ public partial class MicrobeReproductionSystem : BaseSystem<World, float>
 
     public static (float RemainingAllowedCompoundUse, float RemainingFreeCompounds)
         CalculateFreeCompoundsAndLimits(WorldGenerationSettings worldSettings, int hexCount, bool isMulticellular,
-            float delta)
+            int cellCount, float delta)
     {
         // TODO: make the current patch affect this?
-        // TODO: make being in a colony affect this
         float remainingFreeCompounds = Constants.MICROBE_REPRODUCTION_FREE_COMPOUNDS *
             (hexCount * Constants.MICROBE_REPRODUCTION_FREE_RATE_FROM_HEX + 1.0f) * delta;
 
-        // TODO: some scaling based on the number of cells in the colony to not have a major slog?
         if (isMulticellular)
+        {
+            var baseAmount = remainingFreeCompounds;
+
             remainingFreeCompounds *= Constants.MULTICELLULAR_REPRODUCTION_COMPOUND_MULTIPLIER;
+
+            // Give more free compounds for multicellular colonies
+            remainingFreeCompounds += baseAmount * (cellCount - 1) *
+                Constants.MULTICELLULAR_REPRODUCTION_COMPOUND_FROM_EACH_EXTRA_CELL;
+        }
 
         float remainingAllowedCompoundUse = float.MaxValue;
 
@@ -294,7 +302,7 @@ public partial class MicrobeReproductionSystem : BaseSystem<World, float>
     [Query(Parallel = true)]
     [All<CellProperties, MicrobeSpeciesMember, BioProcesses, WorldPosition, MicrobeEnvironmentalEffects, Engulfable,
         Engulfer>]
-    [None<AttachedToEntity, MulticellularSpeciesMember>]
+    [None<AttachedToEntity, MulticellularSpeciesMember, GameteCell>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update(ref OrganelleContainer organelles, ref MicrobeControl microbeControl, ref Health health,
         ref CompoundStorage compoundStorage, ref MicrobeStatus status, ref ReproductionStatus reproductionStatus,
@@ -321,7 +329,7 @@ public partial class MicrobeReproductionSystem : BaseSystem<World, float>
         if (isInColony)
         {
             var (_, freeCompounds) = CalculateFreeCompoundsAndLimits(gameWorld!.WorldSettings, organelles.HexCount,
-                false, reproductionDelta);
+                false, 1, reproductionDelta);
 
             var species = entity.Get<MicrobeSpeciesMember>().Species;
 
@@ -345,7 +353,7 @@ public partial class MicrobeReproductionSystem : BaseSystem<World, float>
     }
 
     /// <summary>
-    ///   Handles feeding the organelles in a microbe in order for them to split. After all are split the microbe
+    ///   Handles feeding the organelles in a microbe in order for them to split. After all are split, the microbe
     ///   is ready to reproduce. This is allowed to be called only for non-multicellular growth only (and not in
     ///   a cell colony)
     /// </summary>
@@ -363,7 +371,7 @@ public partial class MicrobeReproductionSystem : BaseSystem<World, float>
             return;
 
         var (remainingAllowedCompoundUse, remainingFreeCompounds) =
-            CalculateFreeCompoundsAndLimits(gameWorld!.WorldSettings, organelles.HexCount, false,
+            CalculateFreeCompoundsAndLimits(gameWorld!.WorldSettings, organelles.HexCount, false, 1,
                 reproductionDelta);
 
         var compounds = storage.Compounds;
@@ -447,8 +455,8 @@ public partial class MicrobeReproductionSystem : BaseSystem<World, float>
             {
                 var organelle = organelles.Organelles[i];
 
-                // In the second phase all unique organelles are given compounds
-                // It used to be that only the nucleus was given compounds here
+                // In the second phase all unique organelles are given compounds.
+                // It used to be that only the nucleus was given compounds here.
                 if (!organelle.Definition.Unique)
                     continue;
 
@@ -508,7 +516,7 @@ public partial class MicrobeReproductionSystem : BaseSystem<World, float>
             // help to complicate things by trying to fetch these before the loop
             organelles.OnOrganellesChanged(ref storage, ref entity.Get<BioProcesses>(),
                 ref entity.Get<Engulfer>(), ref entity.Get<Engulfable>(),
-                ref entity.Get<CellProperties>());
+                ref entity.Get<CellProperties>(), ref entity.Get<SpecializationFactor>());
 
             if (entity.Has<MicrobeEventCallbacks>())
             {
@@ -599,8 +607,8 @@ public partial class MicrobeReproductionSystem : BaseSystem<World, float>
 
             // Return the first cell to its normal, non-duplicated cell arrangement and spawn a daughter cell
             organelles.ResetOrganelleLayout(ref entity.Get<CompoundStorage>(),
-                ref entity.Get<BioProcesses>(), ref environmentalEffects,
-                entity, species, species, worldSimulation, workData1, workData2);
+                ref entity.Get<BioProcesses>(), ref entity.Get<SpecializationFactor>(),
+                in environmentalEffects, entity, species, species, worldSimulation, workData1, workData2);
 
             // This is purely inside this lock to suppress a warning on worldSimulation
             cellProperties.Divide(ref organelles, entity, species, worldSimulation, spawnEnvironment,

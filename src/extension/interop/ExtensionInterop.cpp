@@ -7,6 +7,7 @@ BEGIN_GODOT_INCLUDES;
 #include <godot_cpp/core/object.hpp>
 #include <godot_cpp/variant/variant.hpp>
 #include <godot_cpp/variant/vector3.hpp>
+#include <godot_cpp/variant/color.hpp>
 END_GODOT_INCLUDES;
 
 #include "atlas/atlas_unwrap.hpp"
@@ -28,17 +29,27 @@ int32_t ExtensionGetVersion(ThriveConfig* thriveConfig)
 // ------------------------------------ //
 static_assert(
     sizeof(godot::Vector3) == sizeof(JVecF3), "for efficiency these are assumed to have the same memory layout");
-
 static_assert(
     sizeof(godot::Color) == sizeof(JColour), "for efficiency these are assumed to have the same memory layout");
 
-void DebugDrawerAddLine(DebugDrawer* drawerInstance, JVecF3* from, JVecF3* to, JColour* colour)
+// Explicit conversions to Godot types from wider types
+static inline godot::Vector3 ToGodotVec3(const JVec3& v)
 {
-    // This is called from C# directly with the Godot variants of the classes so this assumes that is so and casts
-    // things
-    reinterpret_cast<Thrive::DebugDrawer*>(drawerInstance)
-        ->AddLine(*reinterpret_cast<godot::Vector3*>(from), *reinterpret_cast<godot::Vector3*>(to),
-            *reinterpret_cast<godot::Color*>(colour));
+    return {static_cast<float>(v.X), static_cast<float>(v.Y), static_cast<float>(v.Z)};
+}
+
+static inline godot::Color ToGodotColor(const JColour& c)
+{
+    return {c.R, c.G, c.B, c.A};
+}
+
+void DebugDrawerAddLine(DebugDrawer* drawerInstance, JVec3* from, JVec3* to, JColour* colour)
+{
+    auto* drawer = reinterpret_cast<Thrive::DebugDrawer*>(drawerInstance);
+    if (!drawer || !from || !to || !colour)
+        return;
+
+    drawer->AddLine(ToGodotVec3(*from), ToGodotVec3(*to), ToGodotColor(*colour));
 }
 
 bool ArrayMeshUnwrap(GodotVariant* mesh, float texelSize)
@@ -62,8 +73,11 @@ bool ArrayMeshUnwrap(GodotVariant* mesh, float texelSize)
     return Thrive::Unwrap(*arrayMesh, texelSize);
 }
 
-void DebugDrawerAddPoint(DebugDrawer* drawerInstance, JVecF3* position, JColour* colour)
+void DebugDrawerAddPoint(DebugDrawer* drawerInstance, JVec3* position, JColour* colour)
 {
-    reinterpret_cast<Thrive::DebugDrawer*>(drawerInstance)
-        ->AddPoint(*reinterpret_cast<godot::Vector3*>(position), *reinterpret_cast<godot::Color*>(colour));
+    auto* drawer = reinterpret_cast<Thrive::DebugDrawer*>(drawerInstance);
+    if (!drawer || !position || !colour)
+        return;
+
+    drawer->AddPoint(ToGodotVec3(*position), ToGodotColor(*colour));
 }

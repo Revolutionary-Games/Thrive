@@ -127,6 +127,24 @@ public partial class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         return true;
     }
 
+    public bool IsCurrentStateDefault()
+    {
+        if (shownCompoundChoices == null || targetTypeSelector.Selected != (int)TargetType.Compound ||
+            compoundsSelector.Selected < 0)
+        {
+            return false;
+        }
+
+        var selectedCompound = shownCompoundChoices[compoundsSelector.Selected];
+
+        return selectedCompound.ID == Constants.CHEMORECEPTOR_DEFAULT_COMPOUND &&
+            MathUtils.IsEqualApproximately((float)maximumDistanceSlider.Value,
+                Constants.CHEMORECEPTOR_RANGE_DEFAULT, MathUtils.EPSILON) &&
+            MathUtils.IsEqualApproximately((float)minimumAmountSlider.Value,
+                Constants.CHEMORECEPTOR_AMOUNT_DEFAULT, MathUtils.EPSILON) &&
+            colourSelector.Color == selectedCompound.Colour;
+    }
+
     public void SelectionChanged(int index)
     {
         ApplySelectionColour();

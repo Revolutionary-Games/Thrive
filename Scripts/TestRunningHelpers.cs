@@ -53,7 +53,7 @@ public static class TestRunningHelpers
                                                          <Parameters>--headless</Parameters>
                                                          <DisplayName>FullyQualifiedName</DisplayName>
                                                          <CaptureStdOut>true</CaptureStdOut>
-                                                         <CompileProcessTimeout>120000</CompileProcessTimeout>
+                                                         <CompileProcessTimeout>300000</CompileProcessTimeout>
                                                      </GdUnit4>
                                                  </RunSettings>
                                                  """;

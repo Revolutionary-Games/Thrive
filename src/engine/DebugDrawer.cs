@@ -121,7 +121,7 @@ public partial class DebugDrawer : ControlWithInput
             return;
         }
 
-        NativeMethods.DebugDrawerAddLine(nativeInstance, from, to, color);
+        NativeMethods.DebugDrawerAddLine(nativeInstance, new JVec3(from), new JVec3(to), new JColour(color));
     }
 
     public void DebugPoint(Vector3 position, Color color)
@@ -132,7 +132,7 @@ public partial class DebugDrawer : ControlWithInput
             return;
         }
 
-        NativeMethods.DebugDrawerAddPoint(nativeInstance, position, color);
+        NativeMethods.DebugDrawerAddPoint(nativeInstance, new JVec3(position), new JColour(color));
     }
 
     [RunOnKeyDown("d_physics_debug", Priority = -2)]
@@ -196,8 +196,8 @@ internal static partial class NativeMethods
 {
     [DllImport("thrive_extension")]
     internal static extern void
-        DebugDrawerAddLine(IntPtr drawerInstance, in Vector3 from, in Vector3 to, in Color colour);
+        DebugDrawerAddLine(IntPtr drawerInstance, in JVec3 from, in JVec3 to, in JColour colour);
 
     [DllImport("thrive_extension")]
-    internal static extern void DebugDrawerAddPoint(IntPtr drawerInstance, in Vector3 position, in Color colour);
+    internal static extern void DebugDrawerAddPoint(IntPtr drawerInstance, in JVec3 position, in JColour colour);
 }

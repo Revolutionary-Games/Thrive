@@ -619,6 +619,7 @@ public static class SaveHelper
         {
             GameState = gameState,
             Info = { Type = type },
+            JukeboxPlaybackState = Jukebox.HasInstance ? Jukebox.Instance.PlaybackState : null,
             Screenshot = ScreenShotTaker.Instance.GetViewportTextureAsImage(),
         };
     }

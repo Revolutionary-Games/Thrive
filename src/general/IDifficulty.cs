@@ -34,7 +34,7 @@ public interface IDifficulty : IRegistryAssignable, IArchivable
     /// <summary>
     ///   Multiplier for player species osmoregulation cost
     /// </summary>
-    public float OsmoregulationMultiplier { get; }
+    public float EnergyCostMultiplier { get; }
 
     /// <summary>
     ///   Multiplier on how strong of an effect the auto-evo has on the player population (0-1).
@@ -82,6 +82,16 @@ public interface IDifficulty : IRegistryAssignable, IArchivable
     public bool OrganelleUnlocksEnabled { get; }
 
     /// <summary>
+    ///   When true, a compatible mate will spawn when the player calls for one if one doesn't exist
+    /// </summary>
+    public bool SpawnCompatibleMateOnCall { get; }
+
+    /// <summary>
+    ///   Shows to the player the mate's position
+    /// </summary>
+    public bool ShowMatePosition { get; }
+
+    /// <summary>
     ///   Sets a temporary value that overrides the normal growth rate
     /// </summary>
     public void SetGrowthRateLimitCheatOverride(bool limitGrowthRate);
@@ -100,7 +110,7 @@ public static class DifficultyHelpers
             CompoundDensity = difficulty.CompoundDensity,
             PlayerDeathPopulationPenalty = difficulty.PlayerDeathPopulationPenalty,
             GlucoseDecay = difficulty.GlucoseDecay,
-            OsmoregulationMultiplier = difficulty.OsmoregulationMultiplier,
+            EnergyCostMultiplier = difficulty.EnergyCostMultiplier,
             PlayerAutoEvoStrength = difficulty.PlayerAutoEvoStrength,
             FreeGlucoseCloud = difficulty.FreeGlucoseCloud,
             SwitchSpeciesOnExtinction = difficulty.SwitchSpeciesOnExtinction,
@@ -108,6 +118,8 @@ public static class DifficultyHelpers
             FogOfWarMode = difficulty.FogOfWarMode,
             InstantKillProtection = difficulty.InstantKillProtection,
             OrganelleUnlocksEnabled = difficulty.OrganelleUnlocksEnabled,
+            SpawnCompatibleMateOnCall = difficulty.SpawnCompatibleMateOnCall,
+            ShowMatePosition = difficulty.ShowMatePosition,
         };
     }
 
@@ -121,7 +133,7 @@ public static class DifficultyHelpers
             $", Compound density: {difficulty.CompoundDensity}" +
             $", Player death population penalty: {difficulty.PlayerDeathPopulationPenalty}" +
             $", Glucose decay: {difficulty.GlucoseDecay}" +
-            $", Osmoregulation multiplier: {difficulty.OsmoregulationMultiplier}" +
+            $", Energy cost multiplier: {difficulty.EnergyCostMultiplier}" +
             $", auto-evo strength: {difficulty.PlayerAutoEvoStrength}" +
             $", AI dying strength: {difficulty.PlayerSpeciesAIPopulationStrength}" +
             $", Free glucose cloud: {difficulty.FreeGlucoseCloud}" +
@@ -129,6 +141,8 @@ public static class DifficultyHelpers
             $", Limit Growth Rate: {difficulty.LimitGrowthRate}" +
             $", Fog Of War Mode: {difficulty.FogOfWarMode}" +
             $", Instant Kill Protection: {difficulty.InstantKillProtection}" +
-            $", Organelle Unlocks Enabled: {difficulty.OrganelleUnlocksEnabled}";
+            $", Organelle Unlocks Enabled: {difficulty.OrganelleUnlocksEnabled}" +
+            $", Spawn Compatible Mate On Call: {difficulty.SpawnCompatibleMateOnCall}" +
+            $", Show Mate Position: {difficulty.ShowMatePosition}";
     }
 }

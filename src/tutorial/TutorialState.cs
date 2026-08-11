@@ -10,7 +10,7 @@ using Tutorial;
 /// </summary>
 public class TutorialState : ITutorialInput, IArchivable
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     /// <summary>
     ///   True when the tutorial has paused the game
@@ -91,6 +91,10 @@ public class TutorialState : ITutorialInput, IArchivable
     public CompoundBalancesTutorial CompoundBalancesTutorial { get; private set; } = new();
 
     public FoodChainTabTutorial FoodChainTabTutorial { get; private set; } = new();
+
+    public MicrobeSpecializationTutorial MicrobeSpecializationTutorial { get; private set; } = new();
+
+    public MulticellularSpecializationTutorial MulticellularSpecializationTutorial { get; private set; } = new();
 
     public LeaveColonyTutorial LeaveColonyTutorial { get; private set; } = new();
 
@@ -213,6 +217,12 @@ public class TutorialState : ITutorialInput, IArchivable
         reader.ReadObjectProperties(instance.NucleusTutorial);
         reader.ReadObjectProperties(instance.BindingAgentsTutorial);
 
+        if (version > 1)
+        {
+            reader.ReadObjectProperties(instance.MicrobeSpecializationTutorial);
+            reader.ReadObjectProperties(instance.MulticellularSpecializationTutorial);
+        }
+
         if (instance.DisableShowingAlreadySeenTutorials)
         {
             instance.OnCompleteTutorialsAlreadySeen();
@@ -274,6 +284,8 @@ public class TutorialState : ITutorialInput, IArchivable
         writer.WriteObjectProperties(EarlyGameGoalTutorial);
         writer.WriteObjectProperties(NucleusTutorial);
         writer.WriteObjectProperties(BindingAgentsTutorial);
+        writer.WriteObjectProperties(MicrobeSpecializationTutorial);
+        writer.WriteObjectProperties(MulticellularSpecializationTutorial);
     }
 
     /// <summary>
@@ -511,6 +523,9 @@ public class TutorialState : ITutorialInput, IArchivable
             case MicrobeEditorTutorialGUI casted:
                 ApplySpecificGUI(casted);
                 break;
+            case MulticellularEditorTutorialGUI casted:
+                ApplySpecificGUI(casted);
+                break;
             default:
                 throw new ArgumentException("Unhandled GUI class in ApplyGUIState");
         }
@@ -526,6 +541,12 @@ public class TutorialState : ITutorialInput, IArchivable
     }
 
     private void ApplySpecificGUI(MicrobeEditorTutorialGUI gui)
+    {
+        foreach (var tutorial in Tutorials)
+            tutorial.ApplyGUIState(gui);
+    }
+
+    private void ApplySpecificGUI(MulticellularEditorTutorialGUI gui)
     {
         foreach (var tutorial in Tutorials)
             tutorial.ApplyGUIState(gui);
@@ -573,8 +594,8 @@ public class TutorialState : ITutorialInput, IArchivable
 
     private List<TutorialPhase> BuildListOfAllTutorials()
     {
-        return new List<TutorialPhase>
-        {
+        return
+        [
             MicrobeStageWelcome,
             MicrobeMovement,
             MicrobeMovementExplanation,
@@ -595,6 +616,7 @@ public class TutorialState : ITutorialInput, IArchivable
             MigrationTutorial,
             CellEditorIntroduction,
             NucleusTutorial,
+            MicrobeSpecializationTutorial,
             BindingAgentsTutorial,
             EditorUndoTutorial,
             EditorRedoTutorial,
@@ -620,6 +642,7 @@ public class TutorialState : ITutorialInput, IArchivable
             NegativeAtpBalanceTutorial,
             PausingTutorial,
             SpeciesMemberDiedTutorial,
-        };
+            MulticellularSpecializationTutorial,
+        ];
     }
 }

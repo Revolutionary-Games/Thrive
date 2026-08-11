@@ -13,6 +13,8 @@ public partial class GuidanceLine : MeshInstance3D
 
     private Vector3 lineEnd;
 
+    private Vector3 lineEndTarget;
+
     private Color colour = Colors.White;
 
     private float lineWidth = 0.3f;
@@ -20,6 +22,9 @@ public partial class GuidanceLine : MeshInstance3D
     private bool dirty = true;
 
     private float yOffset;
+
+    [Export]
+    private float interpolateSpeed;
 
     // Assigned as a child resource so this should be disposed of automatically
 #pragma warning disable CA2213
@@ -43,20 +48,6 @@ public partial class GuidanceLine : MeshInstance3D
 
             dirty = true;
             lineStart = value;
-        }
-    }
-
-    [Export]
-    public Vector3 LineEnd
-    {
-        get => lineEnd;
-        set
-        {
-            if (lineEnd == value)
-                return;
-
-            dirty = true;
-            lineEnd = value;
         }
     }
 
@@ -112,8 +103,11 @@ public partial class GuidanceLine : MeshInstance3D
         if (!dirty)
             return;
 
-        dirty = false;
         mesh.ClearSurfaces();
+
+        lineEnd = lineEnd.Lerp(lineEndTarget, interpolateSpeed);
+
+        dirty = lineEnd.Round() != lineEndTarget.Round();
 
         // If there is no line to be drawn, don't draw one
         if (lineStart.IsEqualApprox(lineEnd))
@@ -143,11 +137,26 @@ public partial class GuidanceLine : MeshInstance3D
 
         Vector3 yOffsetVector = new Vector3(0.0f, yOffset, 0.0f);
 
-        mesh.SurfaceAddVertex(LineEnd + yOffsetVector);
+        mesh.SurfaceAddVertex(lineEnd + yOffsetVector);
         mesh.SurfaceAddVertex(LineStart + lineNormal * lineWidth + yOffsetVector);
         mesh.SurfaceAddVertex(LineStart - lineNormal * lineWidth + yOffsetVector);
 
         mesh.SurfaceEnd();
         mesh.SurfaceSetMaterial(0, lineMaterial);
+    }
+
+    public void SetLineEnd(Vector3 value, bool interpolate = true)
+    {
+        if (interpolate && value != lineEnd && value != lineEndTarget)
+        {
+            lineEndTarget = value;
+            dirty = true;
+        }
+        else if (!interpolate && value != lineEnd)
+        {
+            lineEnd = value;
+            lineEndTarget = value;
+            dirty = true;
+        }
     }
 }

@@ -49,6 +49,8 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPag
 
     public string PageName => "Museum";
     public string TranslatedPageName => Localization.Translate("THRIVEOPEDIA_MUSEUM_PAGE_TITLE");
+    public string? TranslatedPageBody => null;
+    public string TranslatedAdditionalSearchContent => Localization.Translate("THRIVEOPEDIA_MUSEUM_PAGE_SEARCHTAGS");
 
     public string? ParentPageName => null;
 
@@ -225,9 +227,11 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPag
             return;
         }
 
-        if (speciesPreviewPanel.PreviewSpecies is not MicrobeSpecies)
+        // NOTE: relaxing this check needs changes in TransitionToFreebuild
+        if (speciesPreviewPanel.PreviewSpecies is not MicrobeSpecies and not MulticellularSpecies)
         {
-            GD.PrintErr("Loading non-microbe species is not yet implemented");
+            GD.PrintErr(
+                $"Loading species of type {speciesPreviewPanel.PreviewSpecies.GetType().Name} is not yet implemented");
             return;
         }
 
@@ -250,16 +254,35 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPag
         {
             MainMenu.OnEnteringGame(false, true);
 
-            // Instantiate a new editor scene
-            var editor = SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor).Instantiate<MicrobeEditor>();
+            Node? scene;
+            if (startingSpecies is MicrobeSpecies)
+            {
+                // Instantiate a new editor scene
+                var editor = SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor).Instantiate<MicrobeEditor>();
 
-            // Start a freebuild game with the selected species
-            editor.CurrentGame = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings(), true,
-                (Species)startingSpecies.Clone());
+                // Start a freebuild game with the selected species
+                editor.CurrentGame = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings(), true,
+                    (Species)startingSpecies.Clone());
+                scene = editor;
+            }
+            else if (startingSpecies is MulticellularSpecies)
+            {
+                var editor = SceneManager.Instance.LoadScene(MainGameState.MulticellularEditor)
+                    .Instantiate<MulticellularEditor>();
+
+                editor.CurrentGame = GameProperties.StartNewMulticellularGame(new WorldGenerationSettings(), true,
+                    (Species)startingSpecies.Clone());
+                scene = editor;
+            }
+            else
+            {
+                throw new InvalidOperationException("Unimplemented species type for freebuild");
+            }
+
             AchievementsManager.ReportEnteredFreebuild();
 
             // Switch to the editor scene
-            SceneManager.Instance.SwitchToScene(editor);
+            SceneManager.Instance.SwitchToScene(scene);
         }, false);
     }
 

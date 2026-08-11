@@ -242,6 +242,22 @@ public static class NativeInterop
         NativeMethods.SetNativeExecutorThreads(threads);
     }
 
+    public static bool TryArmWaitForEvent()
+    {
+        if (!nativeLoadSucceeded)
+            return false;
+
+        return NativeMethods.ArmWaitForEvent();
+    }
+
+    public static bool TryArmDataMemoryBarrierAndSendEvent()
+    {
+        if (!nativeLoadSucceeded)
+            return false;
+
+        return NativeMethods.ArmDataMemoryBarrierAndSendEvent();
+    }
+
     private static CPUCheckResult CheckCPUFeaturesFull()
     {
         var result = CPUCheckResult.CPUCheckSuccess;
@@ -813,6 +829,16 @@ internal static partial class NativeMethods
 
     [DllImport("thrive_native")]
     internal static extern int GetNativeExecutorThreads();
+
+    [SuppressGCTransition]
+    [DllImport("thrive_native")]
+    [return: MarshalAs(UnmanagedType.I1)]
+    internal static extern bool ArmWaitForEvent();
+
+    [SuppressGCTransition]
+    [DllImport("thrive_native")]
+    [return: MarshalAs(UnmanagedType.I1)]
+    internal static extern bool ArmDataMemoryBarrierAndSendEvent();
 
     // The wrapper-specific methods are in their respective files like PhysicalWorld.cs etc.
 }

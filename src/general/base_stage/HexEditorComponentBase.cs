@@ -68,6 +68,12 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     [Export]
     protected MeshInstance3D editorGrid = null!;
 
+    [Export]
+    protected Control? hexPositionEffectsContainer;
+
+    [Export]
+    protected Font hexEffectFont = null!;
+
     protected Material invalidMaterial = null!;
     protected Material validMaterial = null!;
     protected Material oldMaterial = null!;
@@ -105,7 +111,9 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
 
     private readonly NodePath positionZReference = new("position:z");
 
-    // This is separate from the other Godot resources as this is private and they are protected
+    private readonly List<HexAdjacencyDrawElement> hexDrawList = new();
+
+    // This is different from the other Godot resources as this is private and they are protected
 #pragma warning disable CA2213
     [Export]
     private CustomConfirmationDialog islandPopup = null!;
@@ -218,6 +226,13 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
 
         camera!.Connect(MicrobeCamera.SignalName.OnZoomChanged, new Callable(this, nameof(OnZoomChanged)));
 
+        if (hexPositionEffectsContainer != null)
+        {
+            // This is hidden just in the Godot Editor for clarity, so always show it in the game
+            hexPositionEffectsContainer.Visible = true;
+            hexPositionEffectsContainer.Connect(CanvasItem.SignalName.Draw, Callable.From(DrawHexPositionEffects));
+        }
+
         LoadHexMaterials();
         LoadScenes();
         LoadAudioStreams();
@@ -309,6 +324,8 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         camera.UpdateCameraPosition(delta, cameraFollow.GlobalPosition);
 
         UpdateFloatingLabelPositions();
+
+        ResetHexAdjacencyDisplay();
     }
 
     public override void WritePropertiesToArchive(ISArchiveWriter writer)
@@ -349,7 +366,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     }
 
     /// <summary>
-    ///   Set tab specific editor world object visibility
+    ///   Set tab-specific editor world object visibility
     /// </summary>
     /// <param name="shown">True if they should be visible</param>
     public virtual void SetEditorWorldTabSpecificObjectVisibility(bool shown)
@@ -616,7 +633,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         var actions = new List<TAction>();
         int alreadyDeleted = 0;
 
-        RunWithSymmetry(hex.Q, hex.R, (q, r, _) =>
+        RunWithSymmetry(hex.Q, hex.R, (q, r, _, _) =>
         {
             var removed = TryCreateRemoveHexAtAction(new Hex(q, r), ref alreadyDeleted);
 
@@ -878,13 +895,15 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     }
 
     /// <summary>
-    ///   Runs given callback for all symmetry positions and rotations
+    ///   Runs the given callback for all symmetry positions and rotations
     /// </summary>
     /// <param name="q">The base q</param>
     /// <param name="r">The base r value of the coordinate</param>
-    /// <param name="callback">The callback that is called based on symmetry, parameters are: q, r, rotation</param>
+    /// <param name="callback">
+    ///   The callback that is called based on symmetry, parameters are: q, r, rotation, isMain
+    /// </param>
     /// <param name="overrideSymmetry">If set, overrides the current symmetry</param>
-    protected void RunWithSymmetry(int q, int r, Action<int, int, int> callback,
+    protected void RunWithSymmetry(int q, int r, Action<int, int, int, bool> callback,
         HexEditorSymmetry? overrideSymmetry = null)
     {
         overrideSymmetry ??= Symmetry;
@@ -893,17 +912,17 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         {
             case HexEditorSymmetry.None:
             {
-                callback(q, r, placementRotation);
+                callback(q, r, placementRotation, true);
                 break;
             }
 
             case HexEditorSymmetry.XAxisSymmetry:
             {
-                callback(q, r, placementRotation);
+                callback(q, r, placementRotation, true);
 
                 if (q != -1 * q || r != r + q)
                 {
-                    callback(-1 * q, r + q, 6 + (-1 * placementRotation));
+                    callback(-1 * q, r + q, 6 + (-1 * placementRotation), false);
                 }
 
                 break;
@@ -911,17 +930,17 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
 
             case HexEditorSymmetry.FourWaySymmetry:
             {
-                callback(q, r, placementRotation);
+                callback(q, r, placementRotation, true);
 
                 if (q != -1 * q || r != r + q)
                 {
-                    callback(-1 * q, r + q, 6 + (-1 * placementRotation));
-                    callback(-1 * q, -1 * r, (placementRotation + 3) % 6);
-                    callback(q, -1 * (r + q), 9 + (-1 * placementRotation) % 6);
+                    callback(-1 * q, r + q, 6 + (-1 * placementRotation), false);
+                    callback(-1 * q, -1 * r, (placementRotation + 3) % 6, false);
+                    callback(q, -1 * (r + q), 9 + (-1 * placementRotation) % 6, false);
                 }
                 else
                 {
-                    callback(-1 * q, -1 * r, (placementRotation + 3) % 6);
+                    callback(-1 * q, -1 * r, (placementRotation + 3) % 6, false);
                 }
 
                 break;
@@ -929,12 +948,12 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
 
             case HexEditorSymmetry.SixWaySymmetry:
             {
-                callback(q, r, placementRotation);
-                callback(-1 * r, r + q, (placementRotation + 1) % 6);
-                callback(-1 * (r + q), q, (placementRotation + 2) % 6);
-                callback(-1 * q, -1 * r, (placementRotation + 3) % 6);
-                callback(r, -1 * (r + q), (placementRotation + 4) % 6);
-                callback(r + q, -1 * q, (placementRotation + 5) % 6);
+                callback(q, r, placementRotation, true);
+                callback(-1 * r, r + q, (placementRotation + 1) % 6, false);
+                callback(-1 * (r + q), q, (placementRotation + 2) % 6, false);
+                callback(-1 * q, -1 * r, (placementRotation + 3) % 6, false);
+                callback(r, -1 * (r + q), (placementRotation + 4) % 6, false);
+                callback(r + q, -1 * q, (placementRotation + 5) % 6, false);
                 break;
             }
         }
@@ -1194,6 +1213,55 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         componentBottomLeftButtons.SymmetryEnabled = !CanCancelAction;
     }
 
+    protected void ResetHexAdjacencyDisplay()
+    {
+        if (hexPositionEffectsContainer == null)
+            return;
+
+        bool reset = false;
+
+        foreach (var element in hexDrawList)
+        {
+            if (element.Used)
+            {
+                reset = true;
+                element.Used = false;
+            }
+        }
+
+        if (reset)
+            hexPositionEffectsContainer.QueueRedraw();
+    }
+
+    protected void DisplayHexAdjacencyEffect(Hex targetHex, Hex sourceHex, string text, Color arrowColour)
+    {
+        if (hexPositionEffectsContainer == null)
+        {
+            GD.PrintErr("Hex position effects container is null so draw request is being ignored");
+            return;
+        }
+
+        bool alreadyHandled = false;
+
+        foreach (var existing in hexDrawList)
+        {
+            if (!existing.Used)
+            {
+                alreadyHandled = true;
+
+                existing.Update(targetHex, sourceHex, text, arrowColour);
+                break;
+            }
+        }
+
+        if (!alreadyHandled)
+        {
+            hexDrawList.Add(new HexAdjacencyDrawElement(targetHex, sourceHex, text, arrowColour) { Used = true });
+        }
+
+        hexPositionEffectsContainer.QueueRedraw();
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -1228,6 +1296,58 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         }
     }
 
+    private void DrawHexPositionEffects()
+    {
+        if (hexPositionEffectsContainer == null)
+            return;
+
+        const int arrowWidth = 3;
+        const float arrowHandLength = 11.0f;
+        const float arrowHandAngle = (float)Math.PI / 4;
+        const int textSize = 20;
+
+        foreach (var element in hexDrawList)
+        {
+            if (!element.Used)
+                continue;
+
+            var position1 = camera!.UnprojectPosition(Hex.AxialToCartesian(element.SourceHex));
+
+            // Draw lines where those are set
+            if (element.SourceHex != element.TargetHex)
+            {
+                var position2 = camera!.UnprojectPosition(Hex.AxialToCartesian(element.TargetHex));
+                hexPositionEffectsContainer.DrawLine(position1, position2, element.ArrowColour, arrowWidth, true);
+
+                // Draw the arrow hands
+                var direction = (position2 - position1).Normalized();
+                var backwards = -direction;
+
+                var arrowTip = position2 + backwards * (arrowWidth / 2.2f);
+
+                var arrowHand1 = arrowTip + backwards.Rotated(arrowHandAngle) * arrowHandLength;
+                var arrowHand2 = arrowTip + backwards.Rotated(-arrowHandAngle) * arrowHandLength;
+
+                hexPositionEffectsContainer.DrawLine(arrowTip, arrowHand1, element.ArrowColour, arrowWidth, true);
+                hexPositionEffectsContainer.DrawLine(arrowTip, arrowHand2, element.ArrowColour, arrowWidth, true);
+            }
+
+            // Draw text if set
+            if (!string.IsNullOrEmpty(element.Text))
+            {
+                // Offset the horizontal position so that it matches the centre of the position
+                var textWidth = hexEffectFont.GetStringSize(element.Text, HorizontalAlignment.Left, -1, textSize);
+
+                // The Y-position seems trickier. Might need to get like the font baseline here or something, but this
+                // math works well enough
+                textWidth.Y = -textWidth.Y * 0.5f;
+
+                hexPositionEffectsContainer.DrawString(hexEffectFont, position1 - textWidth * 0.5f,
+                    element.Text, HorizontalAlignment.Left, -1, textSize);
+            }
+        }
+    }
+
     /// <summary>
     ///   Moves the camera in a direction (note that height (y-axis) should not be used)
     /// </summary>
@@ -1256,5 +1376,24 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         public bool Active { get; set; } = true;
 
         public Vector3 TargetPosition { get; set; }
+    }
+
+    private class HexAdjacencyDrawElement(Hex targetHex, Hex sourceHex, string text, Color arrowColour)
+    {
+        public Hex TargetHex { get; set; } = targetHex;
+        public Hex SourceHex { get; set; } = sourceHex;
+        public string Text { get; set; } = text;
+        public Color ArrowColour { get; set; } = arrowColour;
+
+        public bool Used { get; set; }
+
+        public void Update(Hex to, Hex from, string text, Color color)
+        {
+            Used = true;
+            TargetHex = to;
+            SourceHex = from;
+            Text = text;
+            ArrowColour = color;
+        }
     }
 }

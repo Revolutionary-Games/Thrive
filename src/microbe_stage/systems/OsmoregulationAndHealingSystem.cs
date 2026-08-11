@@ -25,6 +25,7 @@ using Godot;
 [ReadsComponent(typeof(MicrobeColony))]
 [ReadsComponent(typeof(MicrobeColonyMember))]
 [ReadsComponent(typeof(MicrobeEnvironmentalEffects))]
+[ReadsComponent(typeof(MicrobeEventCallbacks))]
 [RunsAfter(typeof(PilusDamageSystem))]
 [RunsAfter(typeof(DamageOnTouchSystem))]
 [RunsAfter(typeof(ToxinCollisionSystem))]
@@ -165,7 +166,7 @@ public partial class OsmoregulationAndHealingSystem : BaseSystem<World, float>
 
         // Only player species benefits from lowered osmoregulation
         if (playerSpecies)
-            osmoregulationCost *= gameWorld!.WorldSettings.OsmoregulationMultiplier;
+            osmoregulationCost *= gameWorld!.WorldSettings.EnergyCostMultiplier;
 
         compounds.TakeCompound(Compound.ATP, osmoregulationCost);
     }

@@ -145,41 +145,6 @@
     "EndosymbiosisUnlocks": "nitrogenfixingplastid",
     "EquivalentInSpecializationTo": "nitrogenfixingplastid"
   },
-  "protoplasm": {
-    "MPCost": 55,
-    "InitialComposition": {
-      "ammonia": 1,
-      "phosphates": 1
-    },
-    "Hexes": [
-      {
-        "q": 0,
-        "r": 0
-      }
-    ],
-    "Processes": {
-      "glycolysis": 1
-    },
-    "Components": {
-      "Storage": {
-        "Capacity": 15
-      }
-    },
-    "AutoEvoCanPlace": false,
-    "Density": 1100,
-    "CorpseChunkGraphics": {
-      "ScenePath": "res://assets/models/organelles/Cytoplasm.tscn"
-    },
-    "Name": "PROTOPLASM",
-    "Description": "CYTOPLASM_DESCRIPTION",
-    "ProcessesDescription": "CYTOPLASM_PROCESSES_DESCRIPTION",
-    "ProductionColour": "#1db7c5",
-    "ConsumptionColour": "#c51d38",
-    "IconPath": "res://assets/textures/gui/bevel/parts/CytoplasmIcon.png",
-    "EditorButtonGroup": "Hidden",
-    "EditorButtonOrder": 5,
-    "EquivalentInSpecializationTo": "cytoplasm"
-  },
   "chemoSynthesizingProteins": {
     "MPCost": 45,
     "InitialComposition": {
@@ -347,7 +312,7 @@
     },
     "ToleranceEffects": {
       "UV": 0.03,
-      "Oxygen": 0.01
+      "Oxygen": 0.015
     },
     "Density": 1600,
     "Graphics": {
@@ -393,7 +358,7 @@
       }
     },
     "ToleranceEffects": {
-      "Oxygen": 0.03
+      "Oxygen": 0.035
     },
     "Density": 1000,
     "Graphics": {
@@ -439,7 +404,7 @@
       }
     },
     "ToleranceEffects": {
-      "Oxygen": -0.03
+      "Oxygen": -0.04
     },
     "Density": 1000,
     "Graphics": {
@@ -481,7 +446,7 @@
       }
     },
     "ToleranceEffects": {
-      "Oxygen": -0.06
+      "Oxygen": -0.07
     },
     "Density": 1000,
     "Graphics": {
@@ -750,7 +715,7 @@
       }
     },
     "ToleranceEffects": {
-      "Oxygen": 0.06
+      "Oxygen": 0.08
     },
     "Density": 1000,
     "Graphics": {
@@ -804,7 +769,7 @@
       }
     },
     "ToleranceEffects": {
-      "Oxygen": 0.01
+      "Oxygen": 0.02
     },
     "Density": 1100,
     "Graphics": {
@@ -954,7 +919,7 @@
     },
     "ToleranceEffects": {
       "UV": 0.08,
-      "Oxygen": 0.02
+      "Oxygen": 0.035
     },
     "Density": 1800,
     "Graphics": {
@@ -1567,6 +1532,12 @@
     "IconPath": "res://assets/textures/gui/bevel/parts/MyofibrilIcon.png",
     "RequiresNucleus": true,
     "EditorButtonGroup": "Macroscopic",
-    "EditorButtonOrder": 2
+    "EditorButtonOrder": 2,
+    "IncompatibleMembraneNames": [
+      "cellulose",
+      "chitin",
+      "calciumCarbonate",
+      "silica"
+    ]
   }
 }

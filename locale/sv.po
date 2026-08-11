@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-27 14:48+0200\n"
-"PO-Revision-Date: 2026-02-18 15:14+0000\n"
-"Last-Translator: mattealex <mattias304@hotmail.com>\n"
+"POT-Creation-Date: 2026-08-11 10:42+0300\n"
+"PO-Revision-Date: 2026-04-22 18:35+0000\n"
+"Last-Translator: \"Georgi Georgiev (RacerBG)\" <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.15.2\n"
+"X-Generator: Weblate 5.16.1\n"
 "Generated-By: Babel 2.9.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -52,6 +52,14 @@ msgstr "Acceptera"
 #, fuzzy
 msgid "ACHIEVEMENTS"
 msgstr "Grundrörelse"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr "Grundrörelse"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr ""
@@ -109,12 +117,6 @@ msgstr "Avancerat"
 
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Öppna vyn för avancerade inställningar"
-
-msgid "AEROBIC_NITROGEN_FIXATION"
-msgstr "Aerob Kvävefixering"
-
-msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "Aerob Kvävefixering"
 
 msgid "AEROBIC_RESPIRATION"
 msgstr "Aerob Andning"
@@ -179,6 +181,14 @@ msgstr "Du är redan upplyst"
 msgid "ALT"
 msgstr "ALT"
 
+#, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr "Nuvarande trådar:"
+
+#, fuzzy
+msgid "ALTERNATVE_TIMESCALE"
+msgstr ". Betygsskalor"
+
 msgid "ALWAYS_VISIBLE"
 msgstr "Alltid synlig"
 
@@ -200,9 +210,6 @@ msgstr "Antal autosparningar att behålla:"
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Antal quicksaves att behålla:"
-
-msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "Anaerob kvävefixering"
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr "och"
@@ -622,6 +629,10 @@ msgid "BROWSE_WORKSHOP"
 msgstr "Bläddra genom Workshop"
 
 #, fuzzy
+msgid "BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
+
+#, fuzzy
 msgid "BUILD_CITY"
 msgstr "Struktur"
 
@@ -775,6 +786,17 @@ msgstr "Celltyp namn"
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "ATP PRODUKTION FÖR LÅG!"
 
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr "Membrantyper"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
+
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Ändra symmetrin"
 
@@ -797,6 +819,10 @@ msgstr "Fusk meny"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Visa / göm cellprocesser"
+
+#, fuzzy
+msgid "CHEMICAL_EQUATION_SPEED_EXPLANATION"
+msgstr "(hur snabbt AI arter muterar)"
 
 msgid "CHEMOPLAST"
 msgstr "Kemoplast"
@@ -1791,6 +1817,10 @@ msgstr "Svår"
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "Normal"
 
+#, fuzzy
+msgid "DIFFICULTY_PRESET_VERY_EASY"
+msgstr "Lätt"
+
 msgid "DIGESTION_EFFICIENCY"
 msgstr ""
 
@@ -1893,6 +1923,14 @@ msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
 
 #, fuzzy
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr "Visa förmågor"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_METAL"
+msgstr "Visa förmågor"
+
+#, fuzzy
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr "Visa förmågor"
 
@@ -1932,10 +1970,6 @@ msgstr ""
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
-
-#, fuzzy
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "Fortsätt"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr ""
@@ -2080,6 +2114,40 @@ msgstr ""
 "Cytoplasmer: Har lagringsutrymme och utför glykolys (producerar små mängder ATP)"
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
+msgstr ""
+"Prokaryota strukturer\n"
+"\n"
+"Metabolosomer: Producerar ATP från glukos\n"
+"\n"
+"Kemosyntiserande proteiner: Producerar hälften av glukosen ur svavelväte som en kemoplast, men utför också glykolys, tar upp 1 hex\n"
+"\n"
+"Thylakoider: Producerar 1/3 av mängden glukos som en normal kloroplast, men utför också glykolys och tar upp 1 Hex\n"
+"\n"
+"Rusticyanin: Omvandlar järn till ATP\n"
+"\n"
+"Nitrogenas: Konverterar atmosfäriskt kväve och ATP till ammoniak anaerobt\n"
+"\n"
+"Cytoplasmer: Har lagringsutrymme och utför glykolys (producerar små mängder ATP)"
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
+msgstr ""
+"Prokaryota strukturer\n"
+"\n"
+"Metabolosomer: Producerar ATP från glukos\n"
+"\n"
+"Kemosyntiserande proteiner: Producerar hälften av glukosen ur svavelväte som en kemoplast, men utför också glykolys, tar upp 1 hex\n"
+"\n"
+"Thylakoider: Producerar 1/3 av mängden glukos som en normal kloroplast, men utför också glykolys och tar upp 1 Hex\n"
+"\n"
+"Rusticyanin: Omvandlar järn till ATP\n"
+"\n"
+"Nitrogenas: Konverterar atmosfäriskt kväve och ATP till ammoniak anaerobt\n"
+"\n"
+"Cytoplasmer: Har lagringsutrymme och utför glykolys (producerar små mängder ATP)"
+
+#, fuzzy
 msgid "EDIT_MICROBE_FIRST_TIME"
 msgstr "Mikrob Stadiet"
 
@@ -2161,6 +2229,14 @@ msgstr ""
 "Fredliga mikrober attackerar inte andra över större avstånd\n"
 "och har lägre sannolikhet att använda gifter mot rovdjur."
 
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION_MULTICELLULAR"
+msgstr ""
+"Aggressiva mikrober jagar byte över större avstånd\n"
+"och har större sannolikhet att kämpa emot när rovdjur attackerar.\n"
+"Fredliga mikrober attackerar inte andra över större avstånd\n"
+"och har lägre sannolikhet att använda gifter mot rovdjur."
+
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
 msgstr ""
 
@@ -2193,6 +2269,14 @@ msgstr "{0}:+{1} ATP"
 #, fuzzy
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr "Molekylmoln"
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER"
+msgstr "Osmoreguleringskost"
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER_EXPLANATION"
+msgstr "Osmoreguleringskost"
 
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
@@ -2279,6 +2363,9 @@ msgstr "Öppna Skärmbildsmapp"
 msgid "ERROR_LOADING"
 msgstr "Laddningsfel"
 
+msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
+
 msgid "ERROR_SAVING"
 msgstr "Sparningsfel"
 
@@ -2346,6 +2433,10 @@ msgstr "Självmord"
 
 #, fuzzy
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
+msgstr "Ett undantag har uppstått medan sparad data laddades"
+
+#, fuzzy
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE_JUKEBOX"
 msgstr "Ett undantag har uppstått medan sparad data laddades"
 
 #, fuzzy
@@ -2684,6 +2775,35 @@ msgstr ""
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr "Spel Design"
 
+#, fuzzy
+msgid "GAMETE_CELL_ENTITY_NAME"
+msgstr "Stam"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE"
+msgstr "Skapa Ny Sparfil"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_A"
+msgstr "Celltyp namn"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_B"
+msgstr "Skapa Ny Sparfil"
+
+#, fuzzy
+msgid "GAMETE_PRODUCED"
+msgstr "Producerar"
+
+#, fuzzy
+msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+msgstr ""
+"Den här sektionen visar ATP-saldot (energi) för den aktuella cellen.\n"
+"För att kunna överleva måste saldot vara positivt. För sessila celler är omtanken kring saldot utom rörelsekostnaden övervägt.\n"
+"Nedrullningsmenyn nedan kan användas för att kontrollera vad som skulle hända om cellen inte hade någon resurs tillgänglig att göra ATP med.\n"
+"Till exempel kan vissa celler bara upprätthålla ett positivt ATP-saldo när de har flera sammansättningar att göra ATP från samtidigt.\n"
+"Dessa typer av celler kan vara svårare att spela som eftersom de kräver att flera sammanställningar lagras samtidigt."
+
 msgid "GAME_DESIGN_TEAM"
 msgstr "Spel Design"
 
@@ -2753,6 +2873,14 @@ msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
 msgstr ""
 "Aktiva mikrober springer och rullar omkring när ingenting händer.\n"
 "Sessila mikrober sitter still och väntar på att omgivningen ändrar sig innan de agerar."
+
+#, fuzzy
+msgid "GERMINATE_SPORE"
+msgstr "Självmord"
+
+#, fuzzy
+msgid "GERMINATE_SPORE_ACTION_TOOLTIP"
+msgstr "Självmord"
 
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
@@ -2988,6 +3116,18 @@ msgid "IMAGE_FILE_TYPES"
 msgstr "Membrantyper"
 
 #, fuzzy
+msgid "INCOMPATIBLE_MEMBRANE_LIST"
+msgstr "Organismstatistik"
+
+#, fuzzy
+msgid "INCOMPATIBLE_ORGANELLE_LIST"
+msgstr "Placera organell"
+
+#, fuzzy
+msgid "INCOMPATIBLE_STAGE_LIST"
+msgstr "Organismstatistik"
+
+#, fuzzy
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Skapa Ny Sparfil"
 
@@ -3051,6 +3191,14 @@ msgstr "Kärna"
 
 #, fuzzy
 msgid "INFO_BOX_SIZE"
+msgstr "DU HAR FRODATS!"
+
+#, fuzzy
+msgid "INFO_BOX_SIZE_PLAIN"
+msgstr "DU HAR FRODATS!"
+
+#, fuzzy
+msgid "INFO_BOX_STAGE"
 msgstr "DU HAR FRODATS!"
 
 #, fuzzy
@@ -3707,6 +3855,20 @@ msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr ""
 
 #, fuzzy
+msgid "LOOK_LEFT"
+msgstr "Vänster"
+
+#, fuzzy
+msgid "LOOK_RIGHT"
+msgstr "Höger"
+
+msgid "LOOK_SCREEN_DOWN_OR_3D_TOWARDS_UP"
+msgstr ""
+
+msgid "LOOK_SCREEN_UP_OR_3D_TOWARDS_DOWN"
+msgstr ""
+
+#, fuzzy
 msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
 msgstr "(högre värden ökar spelhastighet)"
 
@@ -3754,6 +3916,10 @@ msgid "MACROSCOPIC"
 msgstr "Bli Makroskopisk ({0}/{1})"
 
 #, fuzzy
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr "Slemmstråle"
+
+#, fuzzy
 msgid "MACROSCOPIC_EDITOR"
 msgstr "Laddar mikrobredigerare"
 
@@ -3784,6 +3950,13 @@ msgstr "Mars"
 
 msgid "MARINE_SNOW"
 msgstr "Marinsnö"
+
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
 
 msgid "MASTER_VOLUME"
 msgstr "Huvudvolym"
@@ -4070,6 +4243,10 @@ msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
 
 #, fuzzy
 msgid "MICROBE_LOADING_TIP_22"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_23"
 msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
 
 #, fuzzy
@@ -4560,8 +4737,48 @@ msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Flercellig Redigerare"
 
 #, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_2"
+msgstr "Flercellig Redigerare"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_3"
+msgstr "Flercellig Redigerare"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_4"
+msgstr "Flercellig Redigerare"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_5"
+msgstr "Flercellig Redigerare"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_6"
+msgstr "Flercellig Redigerare"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_7"
+msgstr "Flercellig Redigerare"
+
+#, fuzzy
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "Flercelligt Stadie"
+
+#, fuzzy
+msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
+msgstr ""
+"[b]Stadie[/b]\n"
+"  Mikrob\n"
+"[b]Membrantyp[/b]\n"
+"  {0}\n"
+"[b]Membranstelhet[/b]\n"
+"  {1}\n"
+"[b]Grundhastighet[/b]\n"
+"  {2}\n"
+"[b]Grunrotationshastighet[/b]\n"
+"  {3}\n"
+"[b]Grundhexstorlek[/b]\n"
+"  {4}"
 
 msgid "MULTICELLULAR_STAGE"
 msgstr "Flercelligt Stadie"
@@ -4645,6 +4862,10 @@ msgstr ""
 msgid "NEW"
 msgstr "Ny"
 
+#, fuzzy
+msgid "NEWER"
+msgstr "Visare eller åskådare, beroende på situation"
+
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 
@@ -4692,6 +4913,10 @@ msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellul
 #, fuzzy
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+
+#, fuzzy
+msgid "NITROGEN_FIXATION"
+msgstr "Aerob Kvävefixering"
 
 msgid "NITROPLAST"
 msgstr "Kväve-Fixande Plastid"
@@ -4761,9 +4986,16 @@ msgstr ""
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
+msgid "NOTICE_READY_TO_SHOOT_GAMETE"
+msgstr ""
+
 #, fuzzy
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "Avbryt denna handling"
+
+#, fuzzy
+msgid "NOT_ENOUGH_MUTATION_POINTS"
+msgstr "Mutationspoäng"
 
 #, fuzzy
 msgid "NOT_STARTED_DOT"
@@ -4822,6 +5054,7 @@ msgstr ""
 msgid "NUCLEUS_DESCRIPTION"
 msgstr ""
 
+#, fuzzy
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr "Möjliggör utveckligen av komplexare membranbundna organeller. Kostar en stor mängd ATP att underhålla. Denna utveckling går inte att ångra."
 
@@ -4858,6 +5091,10 @@ msgstr "Självmord"
 msgid "OK"
 msgstr "OK"
 
+#, fuzzy
+msgid "OLDER"
+msgstr "Öppna Logmapp"
+
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 
@@ -4868,6 +5105,10 @@ msgstr "GLES2 Läges Varning"
 #, fuzzy
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr "Du kör just nu Thrive med GLES2. Detta är väldigt otestat och kommer troligen att orsaka problem. Försök att updatera dina video drivers och/eller tvinga AMD eller Nvidia grafik för att använda till att köra Thrive."
+
+#, fuzzy
+msgid "OPEN_EVOLUTIONARY_TREE"
+msgstr "Av Revolutionary Games Studio"
 
 #, fuzzy
 msgid "OPEN_FOLDER"
@@ -4941,6 +5182,10 @@ msgstr "Inställningar"
 #, fuzzy
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Hjälp"
+
+#, fuzzy
+msgid "OPTION_USED_FOR_PLAYER"
+msgstr "Avbruten."
 
 msgid "ORGANELLES"
 msgstr "Organeller"
@@ -5040,14 +5285,6 @@ msgid "OSMOREGULATION_COST"
 msgstr "Osmoreguleringskost"
 
 #, fuzzy
-msgid "OSMOREGULATION_COST_MULTIPLIER"
-msgstr "Osmoreguleringskost"
-
-#, fuzzy
-msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
-msgstr "Osmoreguleringskost"
-
-#, fuzzy
 msgid "OTHER_COMPOUNDS"
 msgstr "Föreningar"
 
@@ -5090,6 +5327,10 @@ msgid "OXYGEN_RESISTANCE"
 msgstr ""
 
 #, fuzzy
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
+msgstr "Bortkopplade Organeller"
+
+#, fuzzy
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr "Hjälp"
 
@@ -5116,6 +5357,10 @@ msgstr "Bakåt"
 #, fuzzy
 msgid "PAGE_FORWARD"
 msgstr "Framåt"
+
+#, fuzzy
+msgid "PAGE_PINNED"
+msgstr "Cellprocesser"
 
 #, fuzzy
 msgid "PAGE_TITLE"
@@ -5173,6 +5418,9 @@ msgstr "Cellprocesser"
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
+msgid "PATCH_NOTES_RECENT_BOUNDARY"
+msgstr ""
+
 #, fuzzy
 msgid "PATCH_NOTES_TITLE"
 msgstr "Cellprocesser"
@@ -5223,6 +5471,10 @@ msgstr "Fredlig"
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
 msgstr "Du kör just nu Thrive med GLES2. Detta är väldigt otestat och kommer troligen att orsaka problem. Försök att updatera dina video drivers och/eller tvinga AMD eller Nvidia grafik för att använda till att köra Thrive."
 
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION_MULTICELLULAR"
+msgstr "Du kör just nu Thrive med GLES2. Detta är väldigt otestat och kommer troligen att orsaka problem. Försök att updatera dina video drivers och/eller tvinga AMD eller Nvidia grafik för att använda till att köra Thrive."
+
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
 msgstr ""
 
@@ -5263,6 +5515,13 @@ msgid "PHYSICAL_CONDITIONS"
 msgstr "Fysisk Mående"
 
 msgid "PHYSICAL_RESISTANCE"
+msgstr ""
+
+#, fuzzy
+msgid "PIN_BUTTON_TOOLTIP"
+msgstr "Hjälp"
+
+msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
 msgstr ""
 
 msgid "PLACE_ORGANELLE"
@@ -5393,6 +5652,10 @@ msgid "PRESSURE_SHORT"
 msgstr "Tryck"
 
 #, fuzzy
+msgid "PRESSURE_TOLERANCE"
+msgstr "Tillbaka till Menyn"
+
+#, fuzzy
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "Tillbaka till Menyn"
 
@@ -5411,8 +5674,13 @@ msgstr "föregående:"
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr ""
 
+#, fuzzy
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
+
+#, fuzzy
+msgid "PROCESS_INACTIVE"
+msgstr "Cellprocesser"
 
 #, fuzzy
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
@@ -5430,10 +5698,6 @@ msgstr "Cellprocesser"
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Cellprocesser"
 
-#, fuzzy
-msgid "PROCESS_TOGGLE_TOOLTIP"
-msgstr "Tillbaka till Menyn"
-
 msgid "PROGRAMMING_TEAM"
 msgstr "Programmering"
 
@@ -5442,9 +5706,6 @@ msgstr "Projektledning"
 
 msgid "PROTEINS"
 msgstr "Proteiner"
-
-msgid "PROTOPLASM"
-msgstr "Protoplasma"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requests / Programmering"
@@ -5480,6 +5741,10 @@ msgstr "Anding"
 
 #, fuzzy
 msgid "RADIOACTIVE_CHUNK"
+msgstr "Stor järnbit"
+
+#, fuzzy
+msgid "RADIOACTIVE_CHUNK_BANANA"
 msgstr "Stor järnbit"
 
 #, fuzzy
@@ -5551,6 +5816,10 @@ msgid "REPORT_BUG"
 msgstr "Rapportera"
 
 #, fuzzy
+msgid "REPRODUCE"
+msgstr "Producerar"
+
+#, fuzzy
 msgid "REPRODUCED"
 msgstr "Producerar"
 
@@ -5577,8 +5846,28 @@ msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 msgstr "Reproduktion:"
 
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "Producerar"
+
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproduktion:"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL"
+msgstr "Fortplantning"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
+msgstr "Fortplantning"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ISOGAMY"
+msgstr "Fortplantning"
+
+#, fuzzy
+msgid "REPRODUCTION_SPORE"
+msgstr "Fortplantning"
 
 #, fuzzy
 msgid "REQUIRES_NUCLEUS"
@@ -5727,6 +6016,10 @@ msgstr "Snurra höger"
 
 #, fuzzy
 msgid "ROTATION_COLON"
+msgstr "befolkning:"
+
+#, fuzzy
+msgid "ROTATION_FORCE"
 msgstr "befolkning:"
 
 msgid "RUNOFF_EVENT"
@@ -6012,6 +6305,18 @@ msgstr "Stillastående"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
+
 msgid "SFX_VOLUME"
 msgstr "SFX Volym"
 
@@ -6039,6 +6344,18 @@ msgstr "Visa handledningar"
 #, fuzzy
 msgid "SHOW_MAP"
 msgstr "Visa hjälp"
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION"
+msgstr "Visa hjälp"
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION_EXPLANATION"
+msgstr ""
+"Aggressiva mikrober jagar byte över större avstånd\n"
+"och har större sannolikhet att kämpa emot när rovdjur attackerar.\n"
+"Fredliga mikrober attackerar inte andra över större avstånd\n"
+"och har lägre sannolikhet att använda gifter mot rovdjur."
 
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
@@ -6097,6 +6414,14 @@ msgstr ""
 "There is a conflict with {0}.\n"
 "Vill du ta bort inputen från {1}?"
 
+#, fuzzy
+msgid "SIGNAL_COMMAND_CALL_MATE"
+msgstr "Fly"
+
+#, fuzzy
+msgid "SIGNAL_COMMAND_FIRE_GAMETES"
+msgstr "Fly"
+
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr "Fly"
 
@@ -6123,6 +6448,10 @@ msgstr ""
 
 #, fuzzy
 msgid "SIMULATION_CONFIG"
+msgstr "Osmoreguleringskost"
+
+#, fuzzy
+msgid "SIMULATION_FACTOR"
 msgstr "Osmoreguleringskost"
 
 msgid "SIXTEEN_TIMES"
@@ -6212,6 +6541,14 @@ msgstr ""
 msgid "SPAWN_GLUCOSE"
 msgstr "Spawna glukos"
 
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL"
+msgstr "Spawna ammoniak"
+
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL_EXPLANATION"
+msgstr "(hur snabbt AI arter muterar)"
+
 msgid "SPAWN_PHOSPHATES"
 msgstr "Spawna fosfat"
 
@@ -6288,11 +6625,20 @@ msgstr "Arter:"
 msgid "SPECIES_WITH_POPULATION"
 msgstr "Artbefolkning"
 
-msgid "SPEED"
-msgstr "Hastighet"
-
 msgid "SPEED_COLON"
 msgstr "Hastighet:"
+
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "Fortsätt"
+
+#, fuzzy
+msgid "SPORE_CELL_TYPE"
+msgstr "Skapa Ny Sparfil"
+
+#, fuzzy
+msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
 
 msgid "SPREAD_TO_PATCHES"
 msgstr "sprid till platser:"
@@ -6595,6 +6941,10 @@ msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
 #, fuzzy
+msgid "TEMPERATURE_TOLERANCE_RANGE"
+msgstr "Självmord"
+
+#, fuzzy
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "Självmord"
 
@@ -6679,6 +7029,10 @@ msgstr ""
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
+msgstr "UTROTNING"
+
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr ""
 
@@ -6688,11 +7042,85 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVEOPEDIA_MUSEUM_PAGE_SEARCHTAGS"
+msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
+
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVEOPEDIA_ORGANELLE_SEARCHTAGS"
+msgstr "Nuvarande utvecklare"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
+msgstr "UTROTNING"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_SEARCHTAGS"
+msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
+
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
+msgstr ""
+"[b]Stadie[/b]\n"
+"  Mikrob\n"
+"[b]Membrantyp[/b]\n"
+"  {0}\n"
+"[b]Membranstelhet[/b]\n"
+"  {1}\n"
+"[b]Grundhastighet[/b]\n"
+"  {2}\n"
+"[b]Grunrotationshastighet[/b]\n"
+"  {3}\n"
+"[b]Grundhexstorlek[/b]\n"
+"  {4}"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE"
+msgstr "Tillåt att arter inte muteras (om inga bra mutationer hittas)"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
+msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
+msgstr ""
+"[b]Stadie[/b]\n"
+"  Mikrob\n"
+"[b]Membrantyp[/b]\n"
+"  {0}\n"
+"[b]Membranstelhet[/b]\n"
+"  {1}\n"
+"[b]Grundhastighet[/b]\n"
+"  {2}\n"
+"[b]Grunrotationshastighet[/b]\n"
+"  {3}\n"
+"[b]Grundhexstorlek[/b]\n"
+"  {4}"
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
+msgstr ""
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
+msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_SEARCHTAGS"
+msgstr "Tillåt att arter inte muteras (om inga bra mutationer hittas)"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_SEARCHTAGS"
+msgstr "Nuvarande utvecklare"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
+msgstr "Nuvarande utvecklare"
 
 msgid "THRIVE_LICENSES"
 msgstr ""
@@ -6700,6 +7128,9 @@ msgstr ""
 #, fuzzy
 msgid "THRIVIN_ACHIEVEMENT"
 msgstr "Grundrörelse"
+
+msgid "THRUST_FORCE"
+msgstr ""
 
 msgid "THYLAKOIDS"
 msgstr "Thylakoider"
@@ -6901,9 +7332,6 @@ msgid "TOOLS"
 msgstr "Verktyg"
 
 msgid "TOOL_HAND_AXE"
-msgstr ""
-
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
 #, fuzzy
@@ -7599,9 +8027,6 @@ msgstr ""
 msgid "VIEWER"
 msgstr "Visare eller åskådare, beroende på situation"
 
-msgid "VIEW_ALL"
-msgstr ""
-
 #, fuzzy
 msgid "VIEW_CELL_PROCESSES"
 msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
@@ -8194,7 +8619,7 @@ msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr ""
 
 #, fuzzy
-msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+msgid "WIKI_GLYCOLYSIS_COMMA_NITROGEN_FIXATION"
 msgstr "Anaerob kvävefixering"
 
 #, fuzzy
@@ -8976,10 +9401,6 @@ msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr ""
 
 #, fuzzy
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "Protoplasma"
-
-#, fuzzy
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "Protoplasma"
 
@@ -9062,33 +9483,6 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "Anding"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "Protoplasma"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr "Protoplasma"
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
 
 msgid "WIKI_PULLING_CILIA"
 msgstr ""
@@ -9619,6 +10013,45 @@ msgid "ZOOM_OUT"
 msgstr "Zooma ut"
 
 #, fuzzy
+#~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
+#~ msgstr "Fortsätt"
+
+#~ msgid "PROTOPLASM"
+#~ msgstr "Protoplasma"
+
+#, fuzzy
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "Protoplasma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "Protoplasma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr "Protoplasma"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
+
+#~ msgid "SPEED"
+#~ msgstr "Hastighet"
+
+#~ msgid "AEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Aerob Kvävefixering"
+
+#~ msgid "AEROBIC_NITROGEN_FIXING"
+#~ msgstr "Aerob Kvävefixering"
+
+#~ msgid "ANAEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Anaerob kvävefixering"
+
+#, fuzzy
+#~ msgid "PROCESS_TOGGLE_TOOLTIP"
+#~ msgstr "Tillbaka till Menyn"
+
+#, fuzzy
 #~ msgid "KEEP_CURRENT_SHORT"
 #~ msgstr "Nuvarande utvecklare"
 
@@ -9691,10 +10124,6 @@ msgstr "Zooma ut"
 #~ msgstr "Liten"
 
 #, fuzzy
-#~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
-#~ msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
-
-#, fuzzy
 #~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 #~ msgstr ""
 #~ "[b]Stadie[/b]\n"
@@ -9716,10 +10145,6 @@ msgstr "Zooma ut"
 
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "Järnkemolitoautotrofi"
-
-#, fuzzy
-#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
-#~ msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
 
 #, fuzzy
 #~ msgid "THANKS_FOR_BUYING_THRIVE"
@@ -10166,9 +10591,6 @@ msgstr "Zooma ut"
 #~ msgid "INTENSITY_OF"
 #~ msgstr "intensivitet av"
 
-#~ msgid "DOT_RATE_SCALES"
-#~ msgstr ". Betygsskalor"
-
 #~ msgid "OXYGEN_DOT"
 #~ msgstr "Syre."
 
@@ -10275,3 +10697,6 @@ msgstr "Zooma ut"
 #, fuzzy
 #~ msgid "EVENT_TOOLTIP_ERUPTION"
 #~ msgstr "{0}:+{1} ATP"
+
+#~ msgid "DOT_RATE_SCALES"
+#~ msgstr ". Betygsskalor"

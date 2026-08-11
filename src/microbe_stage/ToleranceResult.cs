@@ -18,9 +18,12 @@ public struct ToleranceResult
     /// </summary>
     public float TemperatureRangeSizeAdjustment;
 
+    public float MinimumTemperatureAdjustment;
+
     public double PressureScore;
     public float PerfectPressureAdjustment;
     public float PressureRangeSizeAdjustment;
+    public float MinimumPressureAdjustment;
 
     public double OxygenScore;
     public float PerfectOxygenAdjustment;

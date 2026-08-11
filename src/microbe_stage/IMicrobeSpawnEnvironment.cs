@@ -13,6 +13,8 @@ public interface IMicrobeSpawnEnvironment : ISpawnEnvironmentInfo
     public ResolvedMicrobeTolerances GetSpeciesTolerances(MicrobeSpecies microbeSpecies);
 
     public ResolvedMicrobeTolerances GetSpeciesTolerances(MulticellularSpecies multicellularSpecies);
+
+    public float GetSpeciesTerrainCollisionRadius(Species species);
 }
 
 public class DummyMicrobeSpawnEnvironment : IMicrobeSpawnEnvironment
@@ -45,5 +47,10 @@ public class DummyMicrobeSpawnEnvironment : IMicrobeSpawnEnvironment
             OsmoregulationModifier = 1,
             HealthModifier = 1,
         };
+    }
+
+    public float GetSpeciesTerrainCollisionRadius(Species species)
+    {
+        return Spawner.DEFAULT_SPAWN_RADIUS;
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using System.Threading;
 using Arch.Core;
 using AutoEvo;
 using Godot;
@@ -38,6 +39,8 @@ public partial class CellEditorComponent :
     private readonly HashSet<Hex> islandsWorkMemory1 = new();
     private readonly List<Hex> islandsWorkMemory2 = new();
     private readonly Queue<Hex> islandsWorkMemory3 = new();
+
+    private readonly Dictionary<OrganelleDefinition, int> definitionCountWorkMemory = new();
 
     private readonly Dictionary<Compound, float> processSpeedWorkMemory = new();
 
@@ -131,6 +134,9 @@ public partial class CellEditorComponent :
     private CustomConfirmationDialog pendingEndosymbiosisPopup = null!;
 
     [Export]
+    private CustomConfirmationDialog organismMembraneChangePopup = null!;
+
+    [Export]
     private Button endosymbiosisButton = null!;
 
     [Export]
@@ -219,6 +225,8 @@ public partial class CellEditorComponent :
     private PendingAutoEvoPrediction? waitingForPrediction;
     private LocalizedStringBuilder? predictionDetailsText;
     private BehaviourDictionary? overwriteBehaviourForCalculations;
+
+    private string? pendingWholeOrganismMembraneChangeTo;
 
     private Miche? predictionMiches;
 
@@ -578,9 +586,10 @@ public partial class CellEditorComponent :
             behaviourEditor.Init(owningEditor, fresh);
             tolerancesEditor.Init(owningEditor, fresh);
         }
-        else
+
+        if (IsMacroscopicEditor)
         {
-            // Endosymbiosis is not managed through this component in multicellular
+            // Endosymbiosis is no longer possible
             endosymbiosisButton.Visible = false;
         }
 
@@ -801,7 +810,7 @@ public partial class CellEditorComponent :
                     effectiveSymmetry = HexEditorSymmetry.None;
 
                 RunWithSymmetry(q, r,
-                    (finalQ, finalR, rotation) =>
+                    (finalQ, finalR, rotation, _) =>
                     {
                         RenderHighlightedOrganelle(finalQ, finalR, rotation, shownOrganelle, MovingPlacedHex?.Upgrades);
 
@@ -1062,7 +1071,18 @@ public partial class CellEditorComponent :
         }
 
         if (shouldUpdatePosition)
+        {
             editedProperties.RepositionToOrigin();
+        }
+        else
+        {
+            // Even if not repositioning to origin, we still need to update this.
+            // This is because repositioning recalculates cell type specialization bonus. However, we must get that
+            // data updated during the editor to have it be correct without repositioning. Repositioning always
+            // would break the editor history, so that must absolutely be avoided until fully exiting the editor.
+            editedProperties.CellTypeSpecializationBonus = MicrobeInternalCalculations.CalculateSpecializationBonus(
+                editedProperties.ModifiableOrganelles, definitionCountWorkMemory);
+        }
 
         // Update bacteria status
         editedProperties.IsBacteria = !HasNucleus;
@@ -1259,10 +1279,23 @@ public partial class CellEditorComponent :
 
         if (!IsMulticellularEditor)
         {
-            // Refresh tolerances data for the new patch
+            // Refresh tolerance data for the new patch
             tolerancesEditor.OnDataTolerancesDependOnChanged();
             TriggerOnTolerancesChanged(tolerancesEditor.CurrentTolerances);
-            UpdateEndosymbiosisSpeciesData();
+        }
+
+        if (!IsMacroscopicEditor)
+        {
+            // Don't update species-related data if we are in multicellular mode and species is not set yet
+            if (Editor.EditedCellProperties == null)
+            {
+                GD.Print("Multicellular editor has not set a cell type to edit yet, " +
+                    "not refreshing endosymbiosis for cell editor component");
+            }
+            else
+            {
+                UpdateEndosymbiosisSpeciesData();
+            }
         }
 
         // Redo suggestion calculations as they could depend on the patch data (though at the time of writing this is
@@ -1300,8 +1333,12 @@ public partial class CellEditorComponent :
                 "In multicellular, the cell editor is not responsible for tolerances data");
         }
 
+        // Treats cellTypeSpecializationBonus as totalSpecializationBonus, because adjacency is ignored in this editor.
+        var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(
+            editedMicrobeOrganelles.Organelles, tempMemory3);
+
         return MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(tolerancesEditor.CurrentTolerances,
-            editedMicrobeOrganelles, Editor.CurrentPatch.Biome, excludePositiveBuffs);
+            editedMicrobeOrganelles, specialization, Editor.CurrentPatch.Biome, excludePositiveBuffs);
     }
 
     public void UpdatePatchDependentBalanceData()
@@ -1380,6 +1417,47 @@ public partial class CellEditorComponent :
         if (Membrane.Equals(membrane))
             return;
 
+        if (IsMacroscopicEditor)
+        {
+            // Membrane type is no longer allowed to change in macroscopic editor
+            GD.Print("Cannot change membrane type in macroscopic stage");
+            ToolTipManager.Instance.ShowPopup(Localization.Translate("MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"), 5);
+
+            // Reset the button states back
+            Invoke.Instance.Perform(() => UpdateMembraneButtons(Membrane.InternalName));
+
+            return;
+        }
+
+        if (IsMulticellularEditor)
+        {
+            // Can change membrane, but it is a more complex operation that takes the entire editor cycle.
+            // We don't check for incompatible organelles here as the buttons should have been locked by the usual
+            // logic already.
+            GD.Print("Starting to ask about membrane changing");
+
+            if (Editor.MutationPoints < Constants.BASE_MUTATION_POINTS)
+            {
+                organismMembraneChangePopup.DialogText =
+                    TranslationServer.Translate("CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP");
+                organismMembraneChangePopup.SetConfirmDisabled(true);
+            }
+            else
+            {
+                organismMembraneChangePopup.DialogText = "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION";
+                organismMembraneChangePopup.SetConfirmDisabled(false);
+            }
+
+            // Show a popup asking if the player wants to switch membranes and exit the editor
+            organismMembraneChangePopup.PopupCenteredShrink();
+
+            pendingWholeOrganismMembraneChangeTo = membraneName;
+
+            // Reset the button states back so that they aren't confusing
+            Invoke.Instance.Perform(() => UpdateMembraneButtons(Membrane.InternalName));
+            return;
+        }
+
         var action = new SingleEditorAction<MembraneActionData>(DoMembraneChangeAction, UndoMembraneChangeAction,
             new MembraneActionData(Membrane, membrane));
 
@@ -1387,6 +1465,29 @@ public partial class CellEditorComponent :
 
         // In case the action failed, we need to make sure the membrane buttons are updated properly
         UpdateMembraneButtons(Membrane.InternalName);
+
+        UpdatePartsAvailability(PlacedUniqueOrganelles.ToList());
+        UpdateOrganelleUnlockTooltips(false);
+    }
+
+    public void OnAcceptMembraneChange()
+    {
+        if (string.IsNullOrEmpty(pendingWholeOrganismMembraneChangeTo))
+        {
+            GD.PrintErr("No pending membrane change");
+            return;
+        }
+
+        // This is a bit of a hack to call the parent like this, but this is just one place that needs this so, no real
+        // point yet to do a nicer design.
+        if (Editor is not MulticellularEditor multicellular)
+        {
+            GD.PrintErr("Not in a multicellular editor");
+            return;
+        }
+
+        multicellular.OnDoMembraneChange(pendingWholeOrganismMembraneChangeTo);
+        pendingWholeOrganismMembraneChangeTo = null;
     }
 
     public void OnRigidityChanged(int desiredRigidity)
@@ -1462,7 +1563,7 @@ public partial class CellEditorComponent :
         // This is a list to preserve order, Distinct is used later to ensure no duplicate organelles are added
         var organelles = new List<OrganelleTemplate>();
 
-        RunWithSymmetry(q, r, (symmetryQ, symmetryR, _) =>
+        RunWithSymmetry(q, r, (symmetryQ, symmetryR, _, _) =>
         {
             var organelle = editedMicrobeOrganelles.GetElementAt(new Hex(symmetryQ, symmetryR), hexTemporaryMemory);
 
@@ -1481,7 +1582,7 @@ public partial class CellEditorComponent :
     {
         var endosymbiontPlace = typeof(EndosymbiontPlaceActionData);
 
-        // Most likely better to enumerate multiple times rather than allocate temporary memory
+        // Most likely better to enumerate multiple times rather than allocate temporary memory.
         // ReSharper disable PossibleMultipleEnumeration
         foreach (var data in actions)
         {
@@ -1507,13 +1608,21 @@ public partial class CellEditorComponent :
 
     public float CalculateSpeed()
     {
+        // Treats cellTypeSpecializationBonus as totalSpecializationBonus, because adjacency is ignored in this editor.
+        var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(
+            editedMicrobeOrganelles.Organelles, tempMemory3);
+
         return MicrobeInternalCalculations.CalculateSpeed(editedMicrobeOrganelles.Organelles, Membrane, Rigidity,
-            !HasNucleus);
+            !HasNucleus, specialization);
     }
 
     public float CalculateRotationSpeed()
     {
-        return MicrobeInternalCalculations.CalculateRotationSpeed(editedMicrobeOrganelles.Organelles);
+        // Treats cellTypeSpecializationBonus as totalSpecializationBonus, because adjacency is ignored in this editor.
+        var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(
+            editedMicrobeOrganelles.Organelles, tempMemory3);
+
+        return MicrobeInternalCalculations.CalculateRotationSpeed(editedMicrobeOrganelles.Organelles, specialization);
     }
 
     public float CalculateHitpoints()
@@ -1523,17 +1632,31 @@ public partial class CellEditorComponent :
 
     public Dictionary<Compound, float> GetAdditionalCapacities(out float nominalCapacity)
     {
-        return MicrobeInternalCalculations.GetTotalSpecificCapacity(editedMicrobeOrganelles, out nominalCapacity);
+        // Treats cellTypeSpecializationBonus as totalSpecializationBonus, because adjacency is ignored in this editor.
+        var totalSpecializationBonus =
+            MicrobeInternalCalculations.CalculateSpecializationBonus(editedMicrobeOrganelles.Organelles, tempMemory3);
+
+        return MicrobeInternalCalculations.GetTotalSpecificCapacity(editedMicrobeOrganelles,
+            totalSpecializationBonus, out nominalCapacity);
     }
 
     public float CalculateTotalDigestionSpeed()
     {
-        return MicrobeInternalCalculations.CalculateTotalDigestionSpeed(editedMicrobeOrganelles);
+        // Treats cellTypeSpecializationBonus as totalSpecializationBonus, because adjacency is ignored in this editor.
+        var totalSpecializationBonus =
+            MicrobeInternalCalculations.CalculateSpecializationBonus(editedMicrobeOrganelles.Organelles, tempMemory3);
+
+        return MicrobeInternalCalculations.CalculateTotalDigestionSpeed(editedMicrobeOrganelles,
+            totalSpecializationBonus);
     }
 
     public Dictionary<Enzyme, float> CalculateDigestionEfficiencies()
     {
-        return MicrobeInternalCalculations.CalculateDigestionEfficiencies(editedMicrobeOrganelles);
+        // Treats cellTypeSpecializationBonus as totalSpecializationBonus, because adjacency is ignored in this editor.
+        var specialization =
+            MicrobeInternalCalculations.CalculateSpecializationBonus(editedMicrobeOrganelles.Organelles, tempMemory3);
+
+        return MicrobeInternalCalculations.CalculateDigestionEfficiencies(editedMicrobeOrganelles, specialization);
     }
 
     public (int AmmoniaCost, int PhosphatesCost) CalculateOrganellesCosts()
@@ -1789,7 +1912,7 @@ public partial class CellEditorComponent :
 
         EnqueueAction(action);
 
-        // Note that due to undo/redo this can trigger multiple times so any achievement about multiple endosymbiosis
+        // Note that due to undo/redo this can trigger multiple times, so any achievement about multiple endosymbiosis
         // completions would require changing this
         AchievementEvents.ReportEndosymbiosisCompleted();
 
@@ -1829,7 +1952,7 @@ public partial class CellEditorComponent :
             IsBacteria = false,
 
             // Doesn't matter for visualization, but we want to set a valid value
-            SpecializationBonus = 1,
+            CellTypeSpecializationBonus = 1,
         };
 
         previewMicrobe = previewSimulation.CreateVisualisationMicrobe(previewMicrobeSpecies);
@@ -2146,6 +2269,7 @@ public partial class CellEditorComponent :
 
         var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(organelles);
 
+        // Treats cellTypeSpecializationBonus as totalSpecializationBonus, because adjacency is ignored in this editor.
         var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(organelles, tempMemory3);
 
         var tolerances = CalculateLatestTolerances();
@@ -2211,7 +2335,8 @@ public partial class CellEditorComponent :
                 goto case BalanceDisplayType.EnergyEquilibrium;
         }
 
-        specificStorages ??= MicrobeInternalCalculations.GetTotalSpecificCapacity(organelles, out nominalStorage);
+        specificStorages ??= MicrobeInternalCalculations.GetTotalSpecificCapacity(organelles,
+            specializationBonus, out nominalStorage);
 
         return ProcessSystem.ComputeCompoundFillTimes(compoundBalanceData, nominalStorage, specificStorages);
     }
@@ -2302,7 +2427,7 @@ public partial class CellEditorComponent :
             componentBottomLeftButtons.SymmetryEnabled ? null : HexEditorSymmetry.None;
 
         RunWithSymmetry(q, r,
-            (attemptQ, attemptR, rotation) =>
+            (attemptQ, attemptR, rotation, _) =>
             {
                 var organelle = new OrganelleTemplate(GetOrganelleDefinition(organelleType),
                     new Hex(attemptQ, attemptR), rotation);
@@ -2371,11 +2496,24 @@ public partial class CellEditorComponent :
 
     private CombinedEditorAction? CreateAddOrganelleAction(OrganelleTemplate organelle)
     {
-        // 1 - you put a unique organelle (means only one instance allowed), but you already have it
-        // 2 - you put an organelle that requires nucleus, but you don't have one
-        if ((organelle.Definition.Unique && HasOrganelle(organelle.Definition)) ||
-            (organelle.Definition.RequiresNucleus && !HasNucleus))
+        if (organelle.Definition.Unique && HasOrganelle(organelle.Definition))
         {
+            // You put a unique organelle (means only one instance allowed), but you already have it
+            return null;
+        }
+
+        if (organelle.Definition.RequiresNucleus && !HasNucleus)
+        {
+            // You put an organelle that requires nucleus, but you don't have one
+            return null;
+        }
+
+        if (organelle.Definition.IsIncompatibleWithMembrane(Membrane))
+        {
+            // You put an organelle incompatible with the current membrane
+            ToolTipManager.Instance.ShowPopup(Localization.Translate("PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"),
+                1.5f);
+
             return null;
         }
 
@@ -2440,6 +2578,9 @@ public partial class CellEditorComponent :
 
         autoEvoPredictionDirty = true;
         suggestionDirty = true;
+
+        microbeVisualizationOrganellePositionsAreDirty = true;
+        organelleDataDirty = true;
     }
 
     private void OnRigidityChanged()
@@ -2473,13 +2614,72 @@ public partial class CellEditorComponent :
     }
 
     /// <summary>
-    ///   Lock / unlock the organelles that need a nucleus
+    ///   Lock / unlock the organelles that need a nucleus or have other requirements
     /// </summary>
-    private void UpdatePartsAvailability(List<OrganelleDefinition> placedUniqueOrganelleNames)
+    private void UpdatePartsAvailability(List<OrganelleDefinition> placedUniqueOrganelles)
     {
         foreach (var organelle in placeablePartSelectionElements.Keys)
         {
-            UpdatePartAvailability(placedUniqueOrganelleNames, organelle);
+            UpdatePartAvailability(placedUniqueOrganelles, organelle);
+        }
+    }
+
+    private void UpdateMembraneAvailability()
+    {
+        foreach (var membrane in membraneSelectionElements)
+        {
+            membrane.Value.Locked = false;
+
+            var tooltip = GetSelectionTooltip(membrane.Key.InternalName, "membraneSelection");
+            tooltip?.IncompatibleOrganelles?.Clear();
+        }
+
+        if (IsMacroscopicEditor)
+        {
+            // Lock all due to being in macroscopic
+            foreach (var membrane in membraneSelectionElements)
+            {
+                membrane.Value.Locked = true;
+            }
+        }
+        else
+        {
+            // Lock only membranes that are incompatible with current organelles
+            foreach (var organelle in editedMicrobeOrganelles)
+            {
+                if (organelle.Definition.IncompatibleMembranes == null)
+                    continue;
+
+                foreach (var membrane in organelle.Definition.IncompatibleMembranes)
+                {
+                    if (!membraneSelectionElements.TryGetValue(membrane, out var button))
+                        continue;
+
+                    button.Locked = true;
+
+                    var tooltip = GetSelectionTooltip(membrane.InternalName, "membraneSelection");
+                    if (tooltip != null)
+                    {
+                        tooltip.IncompatibleOrganelles ??= new HashSet<OrganelleDefinition>();
+                        tooltip.IncompatibleOrganelles.Add(organelle.Definition);
+                    }
+                }
+            }
+        }
+
+        foreach (var membrane in membraneSelectionElements)
+        {
+            var tooltip = GetSelectionTooltip(membrane.Key.InternalName, "membraneSelection");
+
+            if (IsMacroscopicEditor)
+            {
+                // In macroscopic editor, lock all tooltips due to it
+                tooltip?.LockDueToMacroscopic();
+            }
+            else
+            {
+                tooltip?.UpdateIncompatibleOrganelles();
+            }
         }
     }
 
@@ -2552,6 +2752,8 @@ public partial class CellEditorComponent :
         UpdateGrowthOrderUI();
 
         UpdateSpecializationDisplay();
+
+        UpdateMembraneAvailability();
     }
 
     /// <summary>
@@ -2682,16 +2884,21 @@ public partial class CellEditorComponent :
     /// <summary>
     ///   Lock / unlock organelle buttons that need a nucleus or are already placed (if unique)
     /// </summary>
-    private void UpdatePartAvailability(List<OrganelleDefinition> placedUniqueOrganelleNames,
+    private void UpdatePartAvailability(List<OrganelleDefinition> placedUniqueOrganelles,
         OrganelleDefinition organelle)
     {
         var item = placeablePartSelectionElements[organelle];
 
-        if (organelle.Unique && placedUniqueOrganelleNames.Contains(organelle))
+        if (organelle.Unique && placedUniqueOrganelles.Contains(organelle))
         {
             item.Locked = true;
         }
-        else if (organelle.RequiresNucleus && !placedUniqueOrganelleNames.Contains(nucleus))
+        else if (organelle.RequiresNucleus && !placedUniqueOrganelles.Contains(nucleus))
+        {
+            item.Locked = true;
+        }
+        else if (organelle.IncompatibleMembraneNames != null
+                 && organelle.IncompatibleMembraneNames.Contains(Membrane.InternalName))
         {
             item.Locked = true;
         }
@@ -2763,7 +2970,17 @@ public partial class CellEditorComponent :
             control.PartIcon = membraneType.LoadedIcon;
             control.PartName = membraneType.UntranslatedName;
             control.SelectionGroup = membraneButtonGroup;
-            control.MPCost = Math.Min(membraneType.EditorCost * CostMultiplier, Constants.MAX_SINGLE_EDIT_MP_COST);
+
+            // In multicellular changing membrane costs all MP
+            if (IsMulticellularEditor || IsMacroscopicEditor)
+            {
+                control.MPCost = Constants.BASE_MUTATION_POINTS;
+            }
+            else
+            {
+                control.MPCost = Math.Min(membraneType.EditorCost * CostMultiplier, Constants.MAX_SINGLE_EDIT_MP_COST);
+            }
+
             control.Name = membraneType.InternalName;
 
             control.RegisterToolTipForControl(membraneType.InternalName, "membraneSelection");
@@ -2776,8 +2993,8 @@ public partial class CellEditorComponent :
                 new Callable(this, nameof(OnMembraneSelected)));
         }
 
-        // Multicellular parts only available (visible) in multicellular
-        // For now there aren't any multicellular specific organelles so the section is hidden
+        // Multicellular parts only available (visible) in multicellular.
+        // For now, there aren't any multicellular specific organelles so the section is hidden.
         partsSelectionContainer.GetNode<CollapsibleList>(nameof(OrganelleDefinition.OrganelleGroup.Multicellular))
             .Visible = false;
 
@@ -2890,13 +3107,18 @@ public partial class CellEditorComponent :
         target.Organelles.Clear();
 
         // TODO: if this is too slow to copy each organelle like this, we'll need to find a faster way to get the data
-        // in, perhaps by sharing the entire Organelles object
+        // in, but that will require more locking
         foreach (var entry in editedMicrobeOrganelles.Organelles)
         {
             if (entry.Definition == nucleus)
                 target.IsBacteria = false;
 
-            target.Organelles.AddFast(entry, hexTemporaryMemory, hexTemporaryMemory2);
+            // We have to clone here, as we might have a suggestion run ongoing when we modify the edited organelles
+            // already by, for example, moving something.
+            // This also wastes some memory, but for now this is basically impossible to avoid.
+            var newOrganelle = entry.Clone();
+
+            target.Organelles.AddFast(newOrganelle, hexTemporaryMemory, hexTemporaryMemory2);
         }
 
         // Copy behaviour if it is known
@@ -2905,6 +3127,9 @@ public partial class CellEditorComponent :
             // Make a clone to make sure data cannot change while running
             target.ModifiableBehaviour = ((IReadOnlyBehaviourDictionary)overwriteBehaviourForCalculations).Clone();
         }
+
+        target.CellTypeSpecializationBonus =
+            MicrobeInternalCalculations.CalculateSpecializationBonus(target.Organelles, definitionCountWorkMemory);
 
         // Copy tolerances
         target.ModifiableTolerances.CopyFrom(tolerancesEditor.CurrentTolerances);
@@ -3180,7 +3405,7 @@ public partial class CellEditorComponent :
             UpdateAutoEvoPredictionDetailsText();
         }
 
-        predictionMiches = results.GetMicheForPatch(Editor.CurrentPatch);
+        predictionMiches = results.GetModifiableMicheForPatch(Editor.CurrentPatch);
     }
 
     private void CreateAutoEvoPredictionDetailsText(
@@ -3340,7 +3565,7 @@ public partial class CellEditorComponent :
     /// <summary>
     ///   Holds data for the organelle suggestion calculation run
     /// </summary>
-    private class OrganelleSuggestionCalculation
+    private class OrganelleSuggestionCalculation : IDisposable
     {
         private readonly List<OrganelleDefinition> availableOrganelles = new();
         private readonly MicrobeSpecies calculationSpecies;
@@ -3354,6 +3579,8 @@ public partial class CellEditorComponent :
         private readonly List<Hex> workMemory1 = new();
         private readonly List<Hex> workMemory2 = new();
         private readonly HashSet<Hex> workMemory3 = new();
+
+        private readonly SemaphoreSlim dataSetupLock = new(1, 1);
 
         private AutoEvoRun? currentRun;
         private BiomeConditions? biome;
@@ -3371,6 +3598,9 @@ public partial class CellEditorComponent :
         {
             pristineSpeciesCopy = initialSpeciesToCopy;
             calculationSpecies = initialSpeciesToCopy.Clone(true);
+            calculationSpecies.CellTypeSpecializationBonus =
+                MicrobeInternalCalculations.CalculateSpecializationBonus(initialSpeciesToCopy.Organelles,
+                    new Dictionary<OrganelleDefinition, int>());
             this.applyLatestEditsToSpecies = applyLatestEditsToSpecies;
             this.currentGameProperties = currentGameProperties;
             editorOpenedForSpecies = editedSpecies;
@@ -3388,7 +3618,8 @@ public partial class CellEditorComponent :
         public bool UsePurePopulationScore { get; set; }
 
         /// <summary>
-        ///   Set up this for a new suggestion calculation
+        ///   Set up this for a new suggestion calculation. Note that this can lock for a little bit if we just tried
+        ///   to start another run. So this may cause a lag spike in rare cases on the main thread.
         /// </summary>
         /// <param name="organellesToTry">Valid organelles to try in the suggestion</param>
         /// <param name="selectedPatch">Patch conditions to simulate in</param>
@@ -3404,17 +3635,25 @@ public partial class CellEditorComponent :
                 currentRun = null;
             }
 
-            availableOrganelles.Clear();
-            availableOrganelles.AddRange(organellesToTry);
+            dataSetupLock.Wait();
+            try
+            {
+                availableOrganelles.Clear();
+                availableOrganelles.AddRange(organellesToTry);
 
-            // Refresh the latest edits to our local pristine copy that is then used by a background thread
-            applyLatestEditsToSpecies(pristineSpeciesCopy);
+                // Refresh the latest edits to our local pristine copy that is then used by a background thread
+                applyLatestEditsToSpecies(pristineSpeciesCopy);
 
-            calculatedNoChange = false;
-            bestOrganelle = null;
-            bestResult = -1;
-            resultRead = false;
-            IsCompleted = false;
+                calculatedNoChange = false;
+                bestOrganelle = null;
+                bestResult = -1;
+                resultRead = false;
+                IsCompleted = false;
+            }
+            finally
+            {
+                dataSetupLock.Release();
+            }
 
             StartNextRun();
         }
@@ -3502,29 +3741,42 @@ public partial class CellEditorComponent :
             return false;
         }
 
+        public void Dispose()
+        {
+            dataSetupLock.Dispose();
+        }
+
         private void CopyPristineToCalculation()
         {
-            // TODO: there is duplication between this and CopyEditedPropertiesToSpecies
-            calculationSpecies.SpeciesColour = pristineSpeciesCopy.SpeciesColour;
-            calculationSpecies.MembraneType = pristineSpeciesCopy.MembraneType;
-            calculationSpecies.MembraneRigidity = pristineSpeciesCopy.MembraneRigidity;
-            calculationSpecies.IsBacteria = pristineSpeciesCopy.IsBacteria;
-
-            // This can't be undone but should be fine as the species to edit cannot change in the editor
-            if (pristineSpeciesCopy.PlayerSpecies)
-                calculationSpecies.BecomePlayerSpecies();
-
-            calculationSpecies.Organelles.Clear();
-
-            foreach (var entry in pristineSpeciesCopy.Organelles)
+            dataSetupLock.Wait();
+            try
             {
-                calculationSpecies.Organelles.AddFast(entry, workMemory1, workMemory2);
+                // TODO: there is duplication between this and CopyEditedPropertiesToSpecies
+                calculationSpecies.SpeciesColour = pristineSpeciesCopy.SpeciesColour;
+                calculationSpecies.MembraneType = pristineSpeciesCopy.MembraneType;
+                calculationSpecies.MembraneRigidity = pristineSpeciesCopy.MembraneRigidity;
+                calculationSpecies.IsBacteria = pristineSpeciesCopy.IsBacteria;
+
+                // This can't be undone but should be fine as the species to edit cannot change in the editor
+                if (pristineSpeciesCopy.PlayerSpecies)
+                    calculationSpecies.BecomePlayerSpecies();
+
+                calculationSpecies.Organelles.Clear();
+
+                foreach (var entry in pristineSpeciesCopy.Organelles)
+                {
+                    calculationSpecies.Organelles.AddFast(entry, workMemory1, workMemory2);
+                }
+
+                // The pristine copy is not modified, so it is safe to not clone here
+                calculationSpecies.ModifiableBehaviour = pristineSpeciesCopy.ModifiableBehaviour;
+
+                calculationSpecies.ModifiableTolerances.CopyFrom(pristineSpeciesCopy.Tolerances);
             }
-
-            // The pristine copy is not modified, so it is safe to not clone here
-            calculationSpecies.ModifiableBehaviour = pristineSpeciesCopy.ModifiableBehaviour;
-
-            calculationSpecies.ModifiableTolerances.CopyFrom(pristineSpeciesCopy.Tolerances);
+            finally
+            {
+                dataSetupLock.Release();
+            }
         }
 
         private bool StartNextRun()

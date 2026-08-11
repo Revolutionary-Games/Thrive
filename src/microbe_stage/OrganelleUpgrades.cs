@@ -14,7 +14,7 @@ public class OrganelleUpgrades : IEquatable<OrganelleUpgrades>, IArchivable, IRe
     ///   A list of "feature" names that have been unlocked for this organelle. Depends on the organelle components
     ///   what names they look for.
     /// </summary>
-    public List<string> ModifiableUnlockedFeatures { get; set; } = new();
+    public List<string> ModifiableUnlockedFeatures { get; set; } = [];
 
     public IReadOnlyList<string> UnlockedFeatures => ModifiableUnlockedFeatures;
 

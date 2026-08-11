@@ -33,6 +33,8 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     [Export]
     private Control noCellTypeSelected = null!;
+
+    private MulticellularEditorTutorialGUI tutorialGUI = null!;
 #pragma warning restore CA2213
 
     /// <summary>
@@ -49,6 +51,11 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
     ///   data when reading this.
     /// </summary>
     private CellType? selectedCellTypeToEdit;
+
+    /// <summary>
+    ///   Handles the membrane changes in multicellular
+    /// </summary>
+    private MembraneType? specialMembraneToSwitchOnExit;
 
     private Dictionary<OrganelleDefinition, int> tempMemory1 = new();
 
@@ -97,6 +104,8 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
     protected override string MusicCategory => "MulticellularEditor";
 
     protected override MainGameState ReturnToState => MainGameState.MicrobeStage;
+
+    protected override string TipsCategoryOverrideForLoading => "MulticellularStageTips";
 
     protected override string EditorLoadingMessage =>
         Localization.Translate("LOADING_MULTICELLULAR_EDITOR");
@@ -164,6 +173,13 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         writer.WriteObjectOrNull(editedSpecies);
     }
 
+    public override void _Ready()
+    {
+        base._Ready();
+
+        tutorialGUI.Visible = true;
+    }
+
     public override void _EnterTree()
     {
         base._EnterTree();
@@ -189,6 +205,15 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         }
 
         UpdateAutoEvoToReportTab();
+    }
+
+    public override bool EnqueueAction(EditorAction action)
+    {
+        // Doing anything prevents membrane change from happening afterwards, just so there's no way to optimize MP
+        // usage by failing to change and then doing an edit and then succeeding
+        specialMembraneToSwitchOnExit = null;
+
+        return base.EnqueueAction(action);
     }
 
     public override void SetEditorObjectVisibility(bool shown)
@@ -276,6 +301,37 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         base.Undo();
     }
 
+    /// <summary>
+    ///   In multicellular a species must have uniform membranes, so this method is called to trigger a special switch
+    ///   to exit the editor with all membranes set to the same value.
+    /// </summary>
+    /// <param name="newMembraneName">Name of the new membrane type</param>
+    public void OnDoMembraneChange(string newMembraneName)
+    {
+        var membrane = SimulationParameters.Instance.GetMembrane(newMembraneName);
+
+        // Make sure that we still have full mutation points
+        DirtyMutationPointsCache();
+
+        if (MutationPoints < Constants.BASE_MUTATION_POINTS)
+        {
+            GD.Print("Not enough mutation points to change membrane");
+            ToolTipManager.Instance.ShowPopup(Localization.Translate("NOT_ENOUGH_MUTATION_POINTS"), 3);
+            return;
+        }
+
+        specialMembraneToSwitchOnExit = membrane;
+
+        if (!OnFinishEditing(null))
+        {
+            GD.Print("Couldn't exit the editor due to a problem and apply new membrane");
+            specialMembraneToSwitchOnExit = null;
+        }
+
+        // We can't unset the membrane in all cases as there's a timed animation on the exit and only then the callback
+        // needing it will run
+    }
+
     public ToleranceResult CalculateRawTolerances(bool excludePositiveBuffs = false)
     {
         return bodyPlanEditorTab.CalculateRawTolerances(excludePositiveBuffs);
@@ -313,6 +369,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     protected override void ResolveDerivedTypeNodeReferences()
     {
+        tutorialGUI = GetNode<MulticellularEditorTutorialGUI>("TutorialGUI");
     }
 
     protected override void InitEditor(bool fresh)
@@ -325,6 +382,13 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         base.InitEditor(fresh);
 
         reportTab.UpdateReportTabPatchSelector();
+
+        // Make tutorials run
+        cellEditorTab.TutorialState = TutorialState;
+        tutorialGUI.EventReceiver = TutorialState;
+
+        // Send highlighted controls to the tutorial system
+        bodyPlanEditorTab.SendObjectsToTutorials(TutorialState, tutorialGUI);
 
         if (fresh)
         {
@@ -460,6 +524,10 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     protected override void ApplyEditorTab()
     {
+        // Similar trigger for tutorials as for the MicrobeEditor
+        TutorialState.SendEvent(TutorialEventType.MulticellularEditorTabChanged,
+            new StringEventArgs(selectedEditorTab.ToString()), this);
+
         // Hide all
         reportTab.Hide();
         patchMapTab.Hide();
@@ -550,6 +618,23 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         selectedCellTypeToEdit = null;
 
         base.OnEditorExitTransitionFinished();
+    }
+
+    protected override void OnAppliedEdits()
+    {
+        if (specialMembraneToSwitchOnExit == null)
+            return;
+
+        GD.Print("Applying membrane change for multicellular species to: ", specialMembraneToSwitchOnExit.Name);
+
+        // TODO: should this apply to special cell types as well?
+        foreach (var cellType in EditedSpecies.ModifiableCellTypes)
+        {
+            cellType.MembraneType = specialMembraneToSwitchOnExit;
+        }
+
+        // A light refresh of data to not have to do potentially very expensive repositioning algorithm
+        EditedSpecies.NotifyMembraneTypeChanged();
     }
 
     private void OnRevealAllPatchesCheatUsed(object? sender, EventArgs args)
@@ -767,15 +852,29 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
         foreach (var cellType in editedSpecies.ModifiableCellTypes)
         {
+            // We could calculate the max specialization, but for simplicity we just find the first one
+            var placedCell =
+                editedSpecies.EditorCells.FirstOrDefault(c => c.Data!.CellType.CellTypeName == cellType.CellTypeName);
+
+            if (placedCell == null)
+            {
+                // There are no cells of this type in the body plan, so ignore it in unlock data calculations
+                continue;
+            }
+
             var cellEnergyBalance = new EnergyBalanceInfoSimple();
 
-            // TODO: specialization from positions (GetAdjacencySpecializationBonus)
             var specialization =
                 MicrobeInternalCalculations.CalculateSpecializationBonus(cellType.ModifiableOrganelles.Organelles,
                     tempMemory1);
 
+            var adjacencySpecialization =
+                CellBodyPlanInternalCalculations.GetAdjacencySpecializationBonusFromBodyPlan(placedCell.Data!,
+                    editedSpecies.EditorCells);
+
+            var totalSpecialization = specialization * adjacencySpecialization;
             ProcessSystem.ComputeEnergyBalanceSimple(cellType.ModifiableOrganelles.Organelles, CurrentPatch.Biome,
-                in tolerances, specialization, cellType.MembraneType, Vector3.Zero, false, true,
+                in tolerances, totalSpecialization, cellType.MembraneType, Vector3.Zero, false, true,
                 CurrentGame.GameWorld.WorldSettings, CompoundAmountType.Maximum, null, cellEnergyBalance);
 
             GetBestEnergyBalanceProperties(energyBalance, cellEnergyBalance);

@@ -12,7 +12,7 @@ public partial class CellBodyPlanEditorComponent :
     HexEditorComponentBase<MulticellularEditor, CombinedEditorAction, EditorAction, HexWithData<CellTemplate>,
         MulticellularSpecies>, IArchiveUpdatable
 {
-    public const ushort SERIALIZATION_VERSION = 4;
+    public const ushort SERIALIZATION_VERSION = 8;
 
     [Export]
     public int MaxToleranceWarnings = 3;
@@ -21,16 +21,16 @@ public partial class CellBodyPlanEditorComponent :
 
     private readonly Dictionary<string, CellTypeSelection> cellTypeSelectionButtons = new();
 
-    private readonly IndividualHexLayout<CellTemplate> tempFreshlyUpdatedCells = new();
+    private readonly IndividualHexLayout<CellTemplate> tempFreshlyUpdatedCells = [];
 
-    private readonly List<Hex> hexTemporaryMemory = new();
-    private readonly List<Hex> hexTemporaryMemory2 = new();
-    private readonly List<Hex> islandResults = new();
-    private readonly HashSet<Hex> islandsWorkMemory1 = new();
-    private readonly List<Hex> islandsWorkMemory2 = new();
+    private readonly List<Hex> hexTemporaryMemory = [];
+    private readonly List<Hex> hexTemporaryMemory2 = [];
+    private readonly List<Hex> islandResults = [];
+    private readonly HashSet<Hex> islandsWorkMemory1 = [];
+    private readonly List<Hex> islandsWorkMemory2 = [];
     private readonly Queue<Hex> islandsWorkMemory3 = new();
 
-    private readonly List<EditorUserOverride> ignoredEditorWarnings = new();
+    private readonly List<EditorUserOverride> ignoredEditorWarnings = [];
 
     private readonly Dictionary<Compound, float> processSpeedWorkMemory = new();
 
@@ -39,11 +39,11 @@ public partial class CellBodyPlanEditorComponent :
     /// <summary>
     ///   Stores cells that end up being disconnected from the colony because of growth order
     /// </summary>
-    private readonly HashSet<Hex> wrongGrowthOrderCells = new();
+    private readonly HashSet<Hex> wrongGrowthOrderCells = [];
 
     private readonly Dictionary<Compound, List<Compound>> tempCompoundSources = new();
 
-    private readonly HashSet<Compound> compoundsThatDependOnDay = new();
+    private readonly HashSet<Compound> compoundsThatDependOnDay = [];
 
 #pragma warning disable CA2213
 
@@ -103,6 +103,15 @@ public partial class CellBodyPlanEditorComponent :
     private Button duplicateTypeButton = null!;
 
     [Export]
+    private Button endosymbiosisButton = null!;
+
+    [Export]
+    private EndosymbiosisPopup endosymbiosisPopup = null!;
+
+    [Export]
+    private CustomConfirmationDialog pendingEndosymbiosisPopup = null!;
+
+    [Export]
     private CustomWindow cannotDeleteInUseTypeDialog = null!;
 
     [Export]
@@ -126,6 +135,9 @@ public partial class CellBodyPlanEditorComponent :
     private OrganismStatisticsPanel organismStatisticsPanel = null!;
 
     [Export]
+    private ScrollContainer rightPanelScrollContainer = null!;
+
+    [Export]
     private CustomConfirmationDialog negativeAtpPopup = null!;
 
     [Export]
@@ -133,14 +145,59 @@ public partial class CellBodyPlanEditorComponent :
 
     [Export]
     private LabelSettings toleranceWarningsFont = null!;
+
+    [Export]
+    private OptionButton reproductionMethodDropdown = null!;
+
+    [Export]
+    private OptionButton sporeCellTypeDropdown = null!;
+
+    [Export]
+    private Slider massBuddingCellCountSlider = null!;
+
+    [Export]
+    private Label massBuddingCellCountLabel = null!;
+
+    [Export]
+    private Control buddingReproductionSection = null!;
+
+    [Export]
+    private Control sporeReproductionSection = null!;
+
+    [Export]
+    private Control sexualReproductionSection = null!;
+
+    [Export]
+    private OptionButton gameteACellTypeDropdown = null!;
+
+    [Export]
+    private OptionButton gameteBCellTypeDropdown = null!;
+
+    [Export]
+    private Button sexualAnisogamyUpgradeButton = null!;
+
+    [Export]
+    private Container anisogamySettingsContainer = null!;
+
+    [Export]
+    private Button playerGameteSelectionA = null!;
+
+    [Export]
+    private Label gameteSelectionALabel = null!;
+
+    [Export]
+    private Button playerGameteSelectionB = null!;
+
+    [Export]
+    private Control massBuddingReproductionSection = null!;
 #pragma warning restore CA2213
 
     private string newName = "unset";
 
     private IndividualHexLayout<CellTemplate> editedMicrobeCells = null!;
 
-    private List<IReadOnlyOrganelleTemplate> tempAllOrganelles = new();
-    private List<TweakedProcess> tempAllProcesses = new();
+    private List<IReadOnlyOrganelleTemplate> tempAllOrganelles = [];
+    private List<TweakedProcess> tempAllProcesses = [];
     private Dictionary<OrganelleDefinition, int> tempMemory3 = new();
 
     /// <summary>
@@ -192,6 +249,9 @@ public partial class CellBodyPlanEditorComponent :
             if (wrongGrowthOrderCells.Count > 0)
                 return true;
 
+            if (HasFinishedPendingEndosymbiosis)
+                return true;
+
             return false;
         }
     }
@@ -201,6 +261,12 @@ public partial class CellBodyPlanEditorComponent :
     ///   outdated data from the species object.
     /// </summary>
     public CellTypeEditsHolder? CellTypeVisualsOverride { get; set; }
+
+    /// <summary>
+    ///   True when there are pending endosymbiosis actions. Only works after the editor is fully initialized.
+    /// </summary>
+    public bool HasFinishedPendingEndosymbiosis =>
+        Editor.EditorReady && Editor.EditedBaseSpecies.Endosymbiosis.HasCompleteEndosymbiosis();
 
     public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
 
@@ -222,6 +288,22 @@ public partial class CellBodyPlanEditorComponent :
             UpdateGrowthOrderUI();
         }
     }
+
+    public MulticellularReproductionMethod ReproductionMethod { get; private set; }
+
+    public GameteType SelectedGameteTypeForPlayer { get; private set; } = GameteType.A;
+
+    public CellType? SporeCellType { get; private set; }
+
+    public CellType? GameteACellType { get; private set; }
+
+    public CellType? GameteBCellType { get; private set; }
+
+    /// <summary>
+    ///   This variable should be clamped before use. It's intentional that it can exceed the amount of cells, to make
+    ///   it easier to e.g. undo cell removal action.
+    /// </summary>
+    public int DesiredMassBuddingCellCount { get; private set; } = 1;
 
     protected override bool ShowFloatingLabels => ShowGrowthOrder;
 
@@ -279,6 +361,8 @@ public partial class CellBodyPlanEditorComponent :
             newName = Editor.EditedSpecies.FormattedName;
 
             tolerancesEditor.OnEditorSpeciesSetup(Editor.EditedBaseSpecies);
+
+            UpdateAnisogamyStateAndCost();
         }
 
         organismStatisticsPanel.UpdateLightSelectionPanelVisibility(
@@ -361,15 +445,15 @@ public partial class CellBodyPlanEditorComponent :
 
             if (cellType != null)
             {
-                HashSet<(Hex Hex, int Orientation)> hoveredHexes = new();
+                HashSet<(Hex Hex, int Orientation)> hoveredHexes = [];
 
                 /*if (!componentBottomLeftButtons.SymmetryEnabled)
                     effectiveSymmetry = HexEditorSymmetry.None;*/
 
                 RunWithSymmetry(q, r,
-                    (finalQ, finalR, rotation) =>
+                    (finalQ, finalR, rotation, main) =>
                     {
-                        RenderHighlightedCell(finalQ, finalR, rotation, cellType);
+                        RenderHighlightedCell(finalQ, finalR, rotation, cellType, main);
 
                         var finalHex = new Hex(finalQ, finalR);
 
@@ -419,6 +503,13 @@ public partial class CellBodyPlanEditorComponent :
         writer.WriteObjectProperties(growthOrderGUI);
 
         writer.WriteObjectProperties(tolerancesEditor);
+
+        writer.Write((int)ReproductionMethod);
+        writer.WriteObjectOrNull(SporeCellType);
+        writer.Write(DesiredMassBuddingCellCount);
+        writer.WriteObjectOrNull(GameteACellType);
+        writer.WriteObjectOrNull(GameteBCellType);
+        writer.Write((int)SelectedGameteTypeForPlayer);
     }
 
     public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
@@ -468,6 +559,28 @@ public partial class CellBodyPlanEditorComponent :
         {
             reader.ReadObjectProperties(tolerancesEditor);
         }
+
+        if (version >= 5)
+        {
+            ReproductionMethod = (MulticellularReproductionMethod)reader.ReadInt32();
+            SporeCellType = reader.ReadObjectOrNull<CellType>();
+        }
+
+        if (version >= 6)
+        {
+            DesiredMassBuddingCellCount = reader.ReadInt32();
+        }
+
+        if (version >= 7)
+        {
+            GameteACellType = reader.ReadObjectOrNull<CellType>();
+            GameteBCellType = reader.ReadObjectOrNull<CellType>();
+        }
+
+        if (version >= 8)
+        {
+            SelectedGameteTypeForPlayer = (GameteType)reader.ReadInt32();
+        }
     }
 
     public override void OnEditorSpeciesSetup(Species species)
@@ -486,12 +599,23 @@ public partial class CellBodyPlanEditorComponent :
 
         newName = species.FormattedName;
 
+        var multicellularSpecies = (MulticellularSpecies)species;
+
+        ReproductionMethod = multicellularSpecies.ReproductionMethod;
+        SporeCellType = multicellularSpecies.ModifiableSporeCellType;
+        GameteACellType = multicellularSpecies.ModifiableGameteTypeA;
+        GameteBCellType = multicellularSpecies.ModifiableGameteTypeB;
+        DesiredMassBuddingCellCount = multicellularSpecies.MassBuddingCellCount;
+        SelectedGameteTypeForPlayer = species.PlayerGamete;
+
         UpdateGUIAfterLoadingSpecies(species);
 
         UpdateArrow(false);
 
         // Make sure initial tolerance warnings are shown
         OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
+
+        UpdateAnisogamyStateAndCost();
     }
 
     public override void OnFinishEditing()
@@ -562,6 +686,47 @@ public partial class CellBodyPlanEditorComponent :
             editedSpecies.ModifiableEditorCells, editedMicrobeCells, AlgorithmQuality.High, hexTemporaryMemory,
             hexTemporaryMemory2);
 
+        editedSpecies.ReproductionMethod = ReproductionMethod;
+        editedSpecies.ModifiableSporeCellType = SporeCellType;
+
+        // MassBuddingCellCount changes are free if the resulting reproduction method isn't mass budding, so this check
+        // needs to exist to prevent exploits
+        if (ReproductionMethod == MulticellularReproductionMethod.MassBudding)
+        {
+            editedSpecies.MassBuddingCellCount = Math.Min(DesiredMassBuddingCellCount,
+                CellBodyPlanInternalCalculations.MaxBudSize(editedMicrobeCells.Count));
+        }
+
+        if (ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy
+            or MulticellularReproductionMethod.SexualAnisogamy)
+        {
+            editedSpecies.ModifiableGameteTypeA = GameteACellType;
+
+            if (ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy)
+            {
+                // Isogamy doesn't allow changing this
+                editedSpecies.PlayerGamete = GameteType.A;
+            }
+            else
+            {
+                editedSpecies.PlayerGamete = SelectedGameteTypeForPlayer;
+            }
+        }
+        else
+        {
+            editedSpecies.ModifiableGameteTypeA = null;
+            editedSpecies.PlayerGamete = GameteType.All;
+        }
+
+        if (ReproductionMethod is MulticellularReproductionMethod.SexualAnisogamy)
+        {
+            editedSpecies.ModifiableGameteTypeB = GameteBCellType;
+        }
+        else
+        {
+            editedSpecies.ModifiableGameteTypeB = null;
+        }
+
         tempFreshlyUpdatedCells.Clear();
         editedSpecies.OnEdited();
 
@@ -590,6 +755,22 @@ public partial class CellBodyPlanEditorComponent :
             return false;
         }
 
+        // This is checked due to a species data requirement
+        if (ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy
+                or MulticellularReproductionMethod.SexualAnisogamy && editedMicrobeCells.Count < 2)
+        {
+            ToolTipManager.Instance.ShowPopup(
+                Localization.Translate("ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"), 5);
+            return false;
+        }
+
+        // Show a warning if the editor has an endosymbiosis that should be finished
+        if (HasFinishedPendingEndosymbiosis && !editorUserOverrides.Contains(EditorUserOverride.EndosymbiosisPending))
+        {
+            pendingEndosymbiosisPopup.PopupCenteredShrink();
+            return false;
+        }
+
         return true;
     }
 
@@ -615,6 +796,10 @@ public partial class CellBodyPlanEditorComponent :
         UpdateFinishButtonWarningVisibility();
 
         UpdateSpecializationDisplay();
+
+        // In case the cell type's name was changed
+        UpdateSporeCellDropdown();
+        UpdateGameteDropdowns();
     }
 
     /// <summary>
@@ -664,7 +849,7 @@ public partial class CellBodyPlanEditorComponent :
 
         var cells = new List<HexWithData<CellTemplate>>();
 
-        RunWithSymmetry(q, r, (symmetryQ, symmetryR, _) =>
+        RunWithSymmetry(q, r, (symmetryQ, symmetryR, _, _) =>
         {
             var cell = editedMicrobeCells.AsModifiable()
                 .GetElementAt(new Hex(symmetryQ, symmetryR), hexTemporaryMemory);
@@ -682,9 +867,7 @@ public partial class CellBodyPlanEditorComponent :
 
     public Dictionary<Compound, float> GetAdditionalCapacities(out float nominalCapacity)
     {
-        return CellBodyPlanInternalCalculations.GetTotalSpecificCapacity(
-            editedMicrobeCells.AsModifiable().Select(o => o.Data!),
-            out nominalCapacity);
+        return CellBodyPlanInternalCalculations.GetTotalSpecificCapacity(editedMicrobeCells, out nominalCapacity);
     }
 
     public void OnCurrentPatchUpdated(Patch patch)
@@ -698,6 +881,8 @@ public partial class CellBodyPlanEditorComponent :
 
         tolerancesEditor.OnDataTolerancesDependOnChanged();
         OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
+
+        UpdateEndosymbiosisSpeciesData();
     }
 
     /// <summary>
@@ -765,8 +950,7 @@ public partial class CellBodyPlanEditorComponent :
         else
         {
             moveOccupancies = GetMultiActionWithOccupancies(positions.Take(1).ToList(),
-                new List<HexWithData<CellTemplate>>
-                    { MovingPlacedHex }, true);
+                [MovingPlacedHex], true);
         }
 
         return Editor.WhatWouldActionsCost(moveOccupancies.Data);
@@ -776,7 +960,8 @@ public partial class CellBodyPlanEditorComponent :
     {
         if (AddCell(CellTypeFromName(activeActionName ?? throw new InvalidOperationException("no action active"))))
         {
-            // Placed a cell, could trigger a tutorial or something
+            // TODO: could send the cell data here
+            Editor.TutorialState.SendEvent(TutorialEventType.MulticellularEditorCellPlaced, EventArgs.Empty, this);
         }
     }
 
@@ -791,7 +976,7 @@ public partial class CellBodyPlanEditorComponent :
 
     protected override bool IsMoveTargetValid(Hex position, int rotation, HexWithData<CellTemplate> cell)
     {
-        return editedMicrobeCells.CanPlace(cell, hexTemporaryMemory, hexTemporaryMemory2);
+        return editedMicrobeCells.CanPlace(position);
     }
 
     protected override void OnCurrentActionCanceled()
@@ -904,7 +1089,7 @@ public partial class CellBodyPlanEditorComponent :
         cellPopupMenu.EnableMoveOption = editedMicrobeCells.Count > 1;
     }
 
-    private void RenderHighlightedCell(int q, int r, int rotation, CellType cellToPlace)
+    private void RenderHighlightedCell(int q, int r, int rotation, CellType cellToPlace, bool isMainPosition)
     {
         if (MovingPlacedHex == null && activeActionName == null)
             return;
@@ -915,8 +1100,58 @@ public partial class CellBodyPlanEditorComponent :
 
         bool showModel = !hadDuplicate;
 
-        // When force updating this has to run to make sure the cell holder has been forced to refresh so that when
-        // it becomes visible it doesn't have outdated graphics on it
+        if (!hadDuplicate || isMainPosition)
+        {
+            // We are hovering over an existing hex, show its adjacency effects
+            // Or placing a new cell
+            var text = "+" + Localization.Translate("PERCENTAGE_VALUE")
+                .FormatSafe(Math.Round(100 * Constants.CELL_ADJACENCY_SPECIALIZATION_BONUS));
+
+            float totalBonus = 0;
+
+            // If placing on existing cell, check that type to show existing info, otherwise use the cell to place
+            var cellToCheckAgainst = hadDuplicate ?
+                editedMicrobeCells.AsModifiable().GetElementAt(new Hex(q, r), hexTemporaryMemory)?.Data!
+                    .ModifiableCellType :
+                cellToPlace;
+
+            // If we for some reason didn't get the main cell type, use the cell to place as a fallback
+            cellToCheckAgainst ??= cellToPlace;
+
+            foreach (var (_, offset) in Hex.HexNeighbourOffset)
+            {
+                var positionToCheck = new Hex(q + offset.Q, r + offset.R);
+
+                var cellAtPosition =
+                    editedMicrobeCells.AsModifiable().GetElementAt(positionToCheck, hexTemporaryMemory);
+
+                if (cellAtPosition == null)
+                    continue;
+
+                // For now cell adjacency only looks at the type, so we can easily re-calculate that here
+                if (GetEditedCellDataIfEdited(cellAtPosition.Data!.ModifiableCellType) !=
+                    GetEditedCellDataIfEdited(cellToCheckAgainst))
+                {
+                    continue;
+                }
+
+                totalBonus += Constants.CELL_ADJACENCY_SPECIALIZATION_BONUS;
+                DisplayHexAdjacencyEffect(new Hex(q, r), positionToCheck, text, Colors.LightGreen);
+            }
+
+            if (totalBonus > 0)
+            {
+                // TODO: show total bonus number
+                text = "+" + Localization.Translate("PERCENTAGE_VALUE")
+                    .FormatSafe(Math.Round(100 * totalBonus));
+
+                // We just draw the text here and not the line
+                DisplayHexAdjacencyEffect(new Hex(q, r), new Hex(q, r), text, Colors.White);
+            }
+        }
+
+        // When force updating, this has to run to make sure the cell holder has been forced to refresh so that when
+        // it becomes visible, it doesn't have outdated graphics on it
         if (showModel || forceUpdateCellGraphics)
         {
             var cartesianPosition = Hex.AxialToCartesian(new Hex(q, r));
@@ -960,7 +1195,7 @@ public partial class CellBodyPlanEditorComponent :
         var usedHexes = new HashSet<Hex>();
 
         RunWithSymmetry(q, r,
-            (attemptQ, attemptR, rotation) =>
+            (attemptQ, attemptR, rotation, _) =>
             {
                 var hex = new Hex(attemptQ, attemptR);
 
@@ -1081,10 +1316,8 @@ public partial class CellBodyPlanEditorComponent :
         if (!IsMoveTargetValid(newLocation, newRotation, cell))
             return false;
 
-        var multiAction = GetMultiActionWithOccupancies(
-            new List<(Hex Hex, int Orientation)> { (newLocation, newRotation) },
-            new List<HexWithData<CellTemplate>> { cell },
-            true);
+        var multiAction = GetMultiActionWithOccupancies([(newLocation, newRotation)],
+            [cell], true);
 
         // Too low mutation points, cancel move
         if (Editor.MutationPoints < Editor.WhatWouldActionsCost(multiAction.Data))
@@ -1267,18 +1500,19 @@ public partial class CellBodyPlanEditorComponent :
         var maximumMovementDirection =
             MicrobeInternalCalculations.MaximumSpeedDirection(cellType.ModifiableOrganelles);
 
-        var specialization =
+        // Deliberately uses cell type specialization bonus without adjacency,
+        // because this is for editor cell type tooltips
+        var totalSpecializationBonus =
             MicrobeInternalCalculations.CalculateSpecializationBonus(cellType.ModifiableOrganelles, tempMemory3);
 
         ProcessSystem.ComputeEnergyBalanceFull(cellType.ModifiableOrganelles, Editor.CurrentPatch.Biome,
-            environmentalTolerances, specialization,
-            cellType.MembraneType,
-            maximumMovementDirection, moving, true, Editor.CurrentGame.GameWorld.WorldSettings,
+            environmentalTolerances, totalSpecializationBonus, cellType.MembraneType, maximumMovementDirection,
+            moving, true, Editor.CurrentGame.GameWorld.WorldSettings,
             organismStatisticsPanel.CompoundAmountType, null, energyBalanceInfo);
 
         AddCellTypeCompoundBalance(balances, cellType.ModifiableOrganelles, organismStatisticsPanel.BalanceDisplayType,
             organismStatisticsPanel.CompoundAmountType, Editor.CurrentPatch.Biome, energyBalanceInfo,
-            environmentalTolerances, specialization);
+            environmentalTolerances, totalSpecializationBonus);
 
         tooltip.DisplayName = cellType.CellTypeName;
         tooltip.MutationPointCost = Math.Min(cellType.MPCost * Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier,
@@ -1286,7 +1520,7 @@ public partial class CellBodyPlanEditorComponent :
 
         tempCompoundSources.Clear();
         ProcessSystem.CalculateInputCompoundsNeededForOutputs(cellType.ModifiableOrganelles, Editor.CurrentPatch.Biome,
-            environmentalTolerances, specialization,
+            environmentalTolerances, totalSpecializationBonus,
             organismStatisticsPanel.CompoundAmountType, true, tempCompoundSources);
 
         Editor.CurrentPatch.Biome.GetProducedCompoundsThatDependOnVarying(tempCompoundSources,
@@ -1299,18 +1533,19 @@ public partial class CellBodyPlanEditorComponent :
         tooltip.UpdateHealthIndicator(MicrobeInternalCalculations.CalculateHealth(environmentalTolerances,
             cellType.MembraneType, cellType.MembraneRigidity));
 
-        tooltip.UpdateStorageIndicator(
-            MicrobeInternalCalculations.GetTotalNominalCapacity(cellType.ModifiableOrganelles));
+        tooltip.UpdateStorageIndicator(MicrobeInternalCalculations.GetTotalNominalCapacity(
+            cellType.ModifiableOrganelles, totalSpecializationBonus));
 
         tooltip.UpdateSpeedIndicator(MicrobeInternalCalculations.CalculateSpeed(cellType.ModifiableOrganelles,
-            cellType.MembraneType, cellType.MembraneRigidity, cellType.IsBacteria, false));
+            cellType.MembraneType, cellType.MembraneRigidity, cellType.IsBacteria, totalSpecializationBonus,
+            false));
 
-        tooltip.UpdateRotationSpeedIndicator(
-            MicrobeInternalCalculations.CalculateRotationSpeed(cellType.ModifiableOrganelles));
+        tooltip.UpdateRotationSpeedIndicator(MicrobeInternalCalculations.CalculateRotationSpeed(
+            cellType.ModifiableOrganelles, totalSpecializationBonus));
 
         tooltip.UpdateSizeIndicator(cellType.Organelles.Sum(o => o.Definition.HexCount));
-        tooltip.UpdateDigestionSpeedIndicator(
-            MicrobeInternalCalculations.CalculateTotalDigestionSpeed(cellType.ModifiableOrganelles));
+        tooltip.UpdateDigestionSpeedIndicator(MicrobeInternalCalculations.CalculateTotalDigestionSpeed(
+            cellType.ModifiableOrganelles, totalSpecializationBonus));
 
         button.ShowInsufficientATPWarning = energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumption;
 
@@ -1405,6 +1640,8 @@ public partial class CellBodyPlanEditorComponent :
         tolerancesEditor.OnDataTolerancesDependOnChanged();
 
         UpdateSpecializationDisplay();
+
+        UpdateMassBuddingCellCountSlider();
     }
 
     private void UpdateStats()
@@ -1466,16 +1703,17 @@ public partial class CellBodyPlanEditorComponent :
 
         tempCompoundSources.Clear();
 
-        // TODO: improve performance by calculating the balance per cell type
         foreach (var hex in cells)
         {
             var specialization =
                 MicrobeInternalCalculations.CalculateSpecializationBonus(hex.Data!.ModifiableOrganelles, tempMemory3);
+            var adjacencySpecialization =
+                CellBodyPlanInternalCalculations.GetAdjacencySpecializationBonusFromBodyPlan(hex.Data, cells);
 
-            // TODO: adjacency bonuses from body plan (GetAdjacencySpecializationBonus)
+            var totalSpecialization = specialization * adjacencySpecialization;
 
             ProcessSystem.ComputeEnergyBalanceFull(hex.Data.ModifiableOrganelles, conditionsData,
-                environmentalTolerances, specialization, hex.Data.MembraneType,
+                environmentalTolerances, totalSpecialization, hex.Data.MembraneType,
                 maximumMovementDirection, moving, true, Editor.CurrentGame.GameWorld.WorldSettings,
                 organismStatisticsPanel.CompoundAmountType, null, energyBalanceInfo);
 
@@ -1525,15 +1763,16 @@ public partial class CellBodyPlanEditorComponent :
             var organelles = GetEditedCellDataIfEdited(cell.Data!.ModifiableCellType).ModifiableOrganelles;
             var specialization =
                 MicrobeInternalCalculations.CalculateSpecializationBonus(organelles, tempMemory3);
+            var adjacencySpecialization =
+                CellBodyPlanInternalCalculations.GetAdjacencySpecializationBonusFromBodyPlan(cell.Data, cells);
 
-            // TODO: efficiency from cell layout positions (GetAdjacencySpecializationBonus)
+            var totalSpecialization = specialization * adjacencySpecialization;
 
             AddCellTypeCompoundBalance(compoundBalanceData, organelles, calculationType,
-                amountType, biome, energyBalance, tolerances, specialization);
+                amountType, biome, energyBalance, tolerances, totalSpecialization);
         }
 
-        specificStorages ??= CellBodyPlanInternalCalculations.GetTotalSpecificCapacity(cells.Select(o => o.Data!),
-            out nominalStorage);
+        specificStorages ??= CellBodyPlanInternalCalculations.GetTotalSpecificCapacity(cells, out nominalStorage);
 
         return ProcessSystem.ComputeCompoundFillTimes(compoundBalanceData, nominalStorage, specificStorages);
     }

@@ -27,6 +27,7 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(AttachedToEntity))]
 [ReadsComponent(typeof(MicrobeColony))]
 [ReadsComponent(typeof(MicrobeTemporaryEffects))]
+[ReadsComponent(typeof(SpeciesMember))]
 [RunsAfter(typeof(PhysicsBodyCreationSystem))]
 [RunsAfter(typeof(PhysicsBodyDisablingSystem))]
 [RunsBefore(typeof(PhysicsBodyControlSystem))]
@@ -37,12 +38,25 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
     private readonly IWorldSimulation worldSimulation;
     private readonly PhysicalWorld physicalWorld;
 
+    private GameWorld? gameWorld;
+
     // TODO: Constants.SYSTEM_HIGHER_ENTITIES_PER_THREAD
     public MicrobeMovementSystem(IWorldSimulation worldSimulation, PhysicalWorld physicalWorld, World world) :
         base(world)
     {
         this.worldSimulation = worldSimulation;
         this.physicalWorld = physicalWorld;
+    }
+
+    public void SetWorld(GameWorld world)
+    {
+        gameWorld = world;
+    }
+
+    public override void BeforeUpdate(in float delta)
+    {
+        if (gameWorld == null)
+            throw new InvalidOperationException("GameWorld not set");
     }
 
     private static float CalculateRotationSpeed(in Entity entity, ref OrganelleContainer organelles)
@@ -69,7 +83,8 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
     private void Update([Data] in float delta, ref Physics physics, ref OrganelleContainer organelles,
         ref MicrobeControl control, ref StrainAffected strainAffected, ref Health health, ref WorldPosition position,
         ref CompoundStorage compoundStorage, ref CellProperties cellProperties,
-        ref MicrobeTemporaryEffects microbeTemporaryEffects, in Entity entity)
+        ref MicrobeTemporaryEffects microbeTemporaryEffects, ref SpecializationFactor specializationFactor,
+        in SpeciesMember speciesMember, Entity entity)
     {
         if (!physics.IsBodyEffectivelyEnabled())
             return;
@@ -149,9 +164,15 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
 
         var rotationSpeed = CalculateRotationSpeed(entity, ref organelles);
 
+        // Set up energy cost modifier for movement energy usage.
+        var energyCostMultiplier = 1.0f;
+        if (speciesMember.Species.PlayerSpecies)
+            energyCostMultiplier *= gameWorld!.WorldSettings.EnergyCostMultiplier;
+
         var movementImpulse =
             CalculateMovementForce(entity, ref control, ref cellProperties, ref position, ref organelles,
-                ref microbeTemporaryEffects, ref strainAffected, compoundStorage.Compounds, delta);
+                ref microbeTemporaryEffects, ref strainAffected, compoundStorage.Compounds,
+                specializationFactor.TotalSpecializationBonus, energyCostMultiplier, delta);
 
         if (control.State == MicrobeState.MucocystShield)
         {
@@ -165,7 +186,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
     private Vector3 CalculateMovementForce(in Entity entity, ref MicrobeControl control,
         ref CellProperties cellProperties, ref WorldPosition position,
         ref OrganelleContainer organelles, ref MicrobeTemporaryEffects temporaryEffects, ref StrainAffected strain,
-        CompoundBag compounds, float delta)
+        CompoundBag compounds, float totalSpecializationBonus, float energyCostMultiplier, float delta)
     {
         float strainMultiplier;
 
@@ -182,12 +203,17 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
                 // This is calculated similarly to the regular movement cost for consistency
                 // TODO: is it fine for this to be so punishing? By taking the base movement cost here even though
                 // the cell is not moving (this could take just the portion of strain multiplier that is above 1)
-                var strainCost = Constants.BASE_MOVEMENT_ATP_COST * organelles.HexCount * delta * strainMultiplier;
+                var strainCost = Constants.BASE_MOVEMENT_ATP_COST * organelles.HexCount * delta * strainMultiplier
+                    * energyCostMultiplier;
+
                 compounds.TakeCompound(Compound.ATP, strainCost);
             }
 
             // Slime jets work even when not holding down any movement keys
-            var jetMovement = CalculateMovementFromSlimeJets(ref organelles);
+            var jetMovement = CalculateMovementFromSlimeJets(ref organelles, totalSpecializationBonus);
+
+            if (entity.Has<MicrobeColony>())
+                jetMovement += CalculateColonyMovementFromSlimeJets(entity);
 
             if (jetMovement == Vector3.Zero)
                 return Vector3.Zero;
@@ -223,7 +249,8 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
 
         // Length is multiplied here so that cells that set very slow movement speed don't need to pay the entire
         // movement cost
-        var cost = Constants.BASE_MOVEMENT_ATP_COST * organelles.HexCount * length * delta * strainMultiplier;
+        var cost = Constants.BASE_MOVEMENT_ATP_COST * organelles.HexCount * length * delta * strainMultiplier *
+            energyCostMultiplier;
 
         var got = compounds.TakeCompound(Compound.ATP, cost);
 
@@ -247,14 +274,18 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
         }
 
         // Speed from flagella (these also take ATP otherwise they won't work)
+        var thrustForce = 0.0f;
+
         if (organelles.ThrustComponents != null && control.MovementDirection != Vector3.Zero)
         {
             foreach (var flagellum in organelles.ThrustComponents)
             {
-                force += flagellum.UseForMovement(control.MovementDirection, compounds, Quaternion.Identity,
-                    cellProperties.IsBacteria, delta);
+                thrustForce += flagellum.UseForMovement(control.MovementDirection, compounds, Quaternion.Identity,
+                    cellProperties.IsBacteria, energyCostMultiplier, delta);
             }
         }
+
+        force += thrustForce * totalSpecializationBonus;
 
         force *= cellProperties.MembraneType.MovementFactor -
             cellProperties.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER;
@@ -277,7 +308,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
             try
             {
                 CalculateColonyImpactOnMovementForce(ref entity.Get<MicrobeColony>(), control.MovementDirection,
-                    cellProperties.IsBacteria, delta, ref force);
+                    cellProperties.IsBacteria, energyCostMultiplier, delta, ref force);
             }
             catch (Exception e)
             {
@@ -313,52 +344,11 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
 
         // Speed from jets (these are related to a non-rotated state of the cell so this is done before rotating
         // by the transform)
-        movementVector += CalculateMovementFromSlimeJets(ref organelles);
+        movementVector += CalculateMovementFromSlimeJets(ref organelles, totalSpecializationBonus);
 
         // Handle colony jets
         if (hasColony)
-        {
-            // This can trigger similar errors as general colony movement calculation, so we use similar protection
-            // here
-            try
-            {
-                // This is a duplicate fetch of this component, but this method would get pretty ugly / would need to
-                // be split into many methods to allow sharing the variable
-                ref var colony = ref entity.Get<MicrobeColony>();
-
-                foreach (var colonyMember in colony.ColonyMembers)
-                {
-                    // This doesn't really hurt as the slime jets were consumed above, but for consistency with
-                    // basically all other places code like this is needed we skip the leader here
-                    if (colonyMember == entity)
-                        continue;
-
-                    if (!colonyMember.IsAliveAndHas<OrganelleContainer>())
-                    {
-                        throw new Exception("Invalid colony member that doesn't have OrganelleContainer for jets: " +
-                            colonyMember);
-                    }
-
-                    ref var memberOrganelles = ref colonyMember.Get<OrganelleContainer>();
-
-                    movementVector += CalculateMovementFromSlimeJets(ref memberOrganelles);
-                }
-            }
-            catch (Exception e)
-            {
-                // TODO: try to find out the real root cause of this problem rather than detecting and force disbanding
-                // the colony here. Note there's similar block of code for the general movement
-                GD.PrintErr("Error calculating colony jet movement: " + e);
-
-                var entityId = entity;
-
-                Invoke.Instance.Perform(() =>
-                {
-                    GD.PrintErr("Force disbanding the colony that is in invalid state, entity: ", entityId);
-                    MicrobeColonyHelpers.UnbindAllOutsideGameUpdate(entityId, worldSimulation, true);
-                });
-            }
-        }
+            movementVector += CalculateColonyMovementFromSlimeJets(entity);
 
         // MovementDirection is proportional to the current cell rotation, so we need to rotate the movement
         // vector to work correctly
@@ -371,7 +361,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
         return strainFraction * Constants.STRAIN_TO_ATP_USAGE_COEFFICIENT + 1.0f;
     }
 
-    private Vector3 CalculateMovementFromSlimeJets(ref OrganelleContainer organelles)
+    private Vector3 CalculateMovementFromSlimeJets(ref OrganelleContainer organelles, float specializationBonus)
     {
         var movementVector = Vector3.Zero;
 
@@ -385,15 +375,62 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
                 // It might be better to consume the queued force always, but this probably results at most in just
                 // one extra frame of thrust whenever the jets are engaged
                 jet.ConsumeMovementForce(out var jetForce);
-                movementVector += jetForce;
+                movementVector += jetForce * specializationBonus;
             }
         }
 
         return movementVector;
     }
 
+    private Vector3 CalculateColonyMovementFromSlimeJets(in Entity entity)
+    {
+        var movementVector = Vector3.Zero;
+
+        // This can trigger similar errors as general colony movement calculation, so we use similar protection here
+        try
+        {
+            ref var colony = ref entity.Get<MicrobeColony>();
+
+            foreach (var colonyMember in colony.ColonyMembers)
+            {
+                // This doesn't really hurt as the slime jets were consumed above, but for consistency with basically
+                // all other places code like this is needed we skip the leader here
+                if (colonyMember == entity)
+                    continue;
+
+                if (!colonyMember.IsAliveAndHas<OrganelleContainer>())
+                {
+                    throw new Exception("Invalid colony member that doesn't have OrganelleContainer for jets: " +
+                        colonyMember);
+                }
+
+                ref var memberOrganelles = ref colonyMember.Get<OrganelleContainer>();
+                ref var specializationFactor = ref colonyMember.Get<SpecializationFactor>();
+
+                movementVector += CalculateMovementFromSlimeJets(ref memberOrganelles,
+                    specializationFactor.TotalSpecializationBonus);
+            }
+        }
+        catch (Exception e)
+        {
+            // TODO: try to find out the real root cause of this problem rather than detecting and force disbanding
+            // the colony here. Note there's similar block of code for the general movement
+            GD.PrintErr("Error calculating colony jet movement: " + e);
+
+            var entityId = entity;
+
+            Invoke.Instance.Perform(() =>
+            {
+                GD.PrintErr("Force disbanding the colony that is in invalid state, entity: ", entityId);
+                MicrobeColonyHelpers.UnbindAllOutsideGameUpdate(entityId, worldSimulation, true);
+            });
+        }
+
+        return movementVector;
+    }
+
     private void CalculateColonyImpactOnMovementForce(ref MicrobeColony microbeColony, Vector3 movementDirection,
-        bool isBacteria, float delta, ref float force)
+        bool isBacteria, float energyCostMultiplier, float delta, ref float force)
     {
         // If this method is updated, the CalculateSpeed() method in CellBodyPlanInternalCalculations.cs
         // also has to be changed
@@ -428,7 +465,8 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
                 foreach (var flagellum in organelles.ThrustComponents)
                 {
                     force += flagellum.UseForMovement(movementDirection, compounds,
-                        relativeRotation, isBacteria, delta) * Constants.CELL_COLONY_MOVEMENT_FORCE_MULTIPLIER;
+                        relativeRotation, isBacteria, energyCostMultiplier,
+                        delta) * Constants.CELL_COLONY_MOVEMENT_FORCE_MULTIPLIER;
                 }
             }
         }

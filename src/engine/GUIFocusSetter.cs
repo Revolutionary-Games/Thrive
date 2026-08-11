@@ -95,10 +95,10 @@ public partial class GUIFocusSetter : Control
 
             var currentPath = currentlyFocused.GetPath().ToString();
 
-            // The rules for where not to steal focus only applies when the full override option is not used
+            // The rules for where not to steal focus only apply when the full override option is not used
             if (!grabber.CheckAlwaysOverrideFocusAndReset())
             {
-                if (grabber.SkipOverridingFocusForElementStrings.Any(p => currentPath.StartsWith(p)))
+                if (grabber.SkipOverridingFocusForElementStrings.Any(currentPath.StartsWith))
                     return;
             }
 

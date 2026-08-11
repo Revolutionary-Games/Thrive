@@ -91,7 +91,7 @@ public class MicrobeEditsFacade : SpeciesEditsFacade, IReadOnlyMicrobeSpecies,
     /// </summary>
     public string? SplitFromTypeName => microbeSpecies.SplitFromTypeName;
 
-    public float SpecializationBonus =>
+    public float CellTypeSpecializationBonus =>
         throw new NotSupportedException("This class doesn't dynamically recalculate the specialization bonus");
 
     public int Count

@@ -76,7 +76,7 @@ public struct CellProperties : IArchivableComponent
         ShapeCreated = false;
     }
 
-    public float Radius => IsBacteria ? UnadjustedRadius * 0.5f : UnadjustedRadius;
+    public float Radius => IsBacteria ? UnadjustedRadius * Constants.BACTERIA_CELL_SCALE : UnadjustedRadius;
 
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
     public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentCellProperties;
@@ -186,8 +186,13 @@ public static class CellPropertiesHelpers
     {
         float amount = compounds.TakeCompound(compound, maxAmount);
 
-        cellProperties.SpawnEjectedCompound(ref cellPosition, compoundCloudSystem, compound, amount, direction,
-            displacement);
+        if (!cellProperties.SpawnEjectedCompound(ref cellPosition, compoundCloudSystem, compound, amount, direction,
+                displacement))
+        {
+            // If membrane was not ready, we didn't eject anything
+            return 0;
+        }
+
         return amount;
     }
 
@@ -196,19 +201,26 @@ public static class CellPropertiesHelpers
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     Now with multicellular colonies are also allowed to divide so there's no longer a check against that
+    ///     Now with multicellular colonies are also allowed to divide, so there's no longer a check against that
     ///   </para>
     /// </remarks>
     public static void Divide(this ref CellProperties cellProperties, ref OrganelleContainer organelles,
         in Entity entity, Species species, IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment spawnEnvironment,
         ISpawnSystem spawnerToRegisterWith, ModifyDividedCellCallback? customizeCallback,
-        MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.Bud)
+        MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.Offspring)
     {
         if (organelles.Organelles == null)
             throw new InvalidOperationException("Organelles not initialized");
 
         if (entity.Has<MicrobeColonyMember>())
             throw new ArgumentException("Cell that is a colony member (non-leader) can't divide");
+
+        // This is asexual reproduction, so pick the same sex as the parent entity
+        GameteType sex = GameteType.All;
+        if (entity.Has<MicrobeSex>())
+        {
+            sex = entity.Get<MicrobeSex>().Sex;
+        }
 
         ref var position = ref entity.Get<WorldPosition>();
 
@@ -229,16 +241,16 @@ public static class CellPropertiesHelpers
 
         // Create one daughter cell.
         var (recorder, weight) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species,
-            spawnPosition, true, (null, 0), out var copyEntity, multicellularSpawnState);
+            spawnPosition, true, (null, 0), sex, out var copyEntity, multicellularSpawnState);
 
         recorder.Add(copyEntity, new CellDivisionCollisionDisabler
         {
             IgnoredCollisionWith = entity,
         });
 
-        // Since the daughter spawns right next to the cell, it should face the same way to avoid colliding
+        // Since the daughter spawns right next to the cell, it should face the same way to avoid colliding.
         // This probably wastes a bit of memory but should be fine to overwrite the WorldPosition component like
-        // this
+        // this.
         recorder.Set(copyEntity, new WorldPosition(spawnPosition, position.Rotation));
 
         // TODO: should this also set an initial look direction that is the same?
@@ -352,7 +364,7 @@ public static class CellPropertiesHelpers
 
         if (cellProperties.CreatedMembrane == null)
         {
-            GD.PrintErr($"{nameof(SpawnEjectedCompound)} called before membrane is created, ignoring eject");
+            GD.Print($"{nameof(SpawnEjectedCompound)} called before membrane is created, ignoring eject");
             return false;
         }
 
@@ -415,7 +427,7 @@ public static class CellPropertiesHelpers
 
         // The membrane radius doesn't take being bacteria into account
         if (cellProperties.IsBacteria)
-            distance *= 0.5f;
+            distance *= Constants.BACTERIA_CELL_SCALE;
 
         distance += displacement;
 
@@ -476,6 +488,9 @@ public static class CellPropertiesHelpers
     ///   (<see cref="newDefinition"/> applies instead). Note if species object instance changes from what it
     ///   was before, the code calling this method must do that adjustment manually.
     /// </param>
+    /// <param name="totalSpecializationBonus">
+    ///   The specialization bonus the cell should use, including any adjacency effects.
+    /// </param>
     /// <param name="worldSimulation">
     ///   Needed when resetting multicellular growth as that needs to delete colony cells
     /// </param>
@@ -483,8 +498,8 @@ public static class CellPropertiesHelpers
     /// <param name="workMemory2">More temporary memory</param>
     public static void ReApplyCellTypeProperties(this ref CellProperties cellProperties,
         ref readonly MicrobeEnvironmentalEffects environmentalEffects, in Entity entity,
-        ICellDefinition newDefinition, Species baseReproductionCostFrom, IWorldSimulation worldSimulation,
-        List<Hex> workMemory1, List<Hex> workMemory2)
+        ICellDefinition newDefinition, Species baseReproductionCostFrom, float totalSpecializationBonus,
+        IWorldSimulation worldSimulation, List<Hex> workMemory1, List<Hex> workMemory2)
     {
         // Copy new cell type properties
         cellProperties.MembraneType = newDefinition.MembraneType;
@@ -504,15 +519,19 @@ public static class CellPropertiesHelpers
 
         ref var spatial = ref entity.Get<SpatialInstance>();
 
-        spatial.VisualScale = cellProperties.IsBacteria ? new Vector3(0.5f, 0.5f, 0.5f) : new Vector3(1, 1, 1);
+        spatial.VisualScale = cellProperties.IsBacteria ? Vector3.One * Constants.BACTERIA_CELL_SCALE : Vector3.One;
 
         ref var organelleContainer = ref entity.Get<OrganelleContainer>();
+
+        // Reset Specialization factor to the one in new species' data
+        ref var specialization = ref entity.Get<SpecializationFactor>();
+        specialization.TotalSpecializationBonus = totalSpecializationBonus;
 
         // Reset all the duplicate organelles / reproduction progress of the entity
         // This also resets multicellular creature's reproduction progress
         organelleContainer.ResetOrganelleLayout(ref entity.Get<CompoundStorage>(), ref entity.Get<BioProcesses>(),
-            in environmentalEffects, entity, newDefinition, baseReproductionCostFrom, worldSimulation, workMemory1,
-            workMemory2);
+            ref specialization, in environmentalEffects, entity, newDefinition, baseReproductionCostFrom,
+            worldSimulation, workMemory1, workMemory2);
 
         // Reset runtime colour
         if (entity.Has<ColourAnimation>())

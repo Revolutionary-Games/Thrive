@@ -61,7 +61,7 @@ public struct CollisionManagement : IArchivableComponent
     public PhysicalWorld.OnCollisionFilterCallback? CollisionFilter;
 
     /// <summary>
-    ///   When set above 0 up to this many collisions are recorded in <see cref="ActiveCollisions"/>
+    ///   When set above 0 up to this number of collisions are recorded in <see cref="ActiveCollisions"/>
     /// </summary>
     /// <remarks>
     ///   <para>

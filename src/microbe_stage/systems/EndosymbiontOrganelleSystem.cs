@@ -15,6 +15,7 @@ using Godot;
 /// </summary>
 [ReadsComponent(typeof(SpeciesMember))]
 [ReadsComponent(typeof(CellProperties))]
+[ReadsComponent(typeof(SpecializationFactor))]
 [RunsBefore(typeof(MicrobeReproductionSystem))]
 [RunsBefore(typeof(MicrobePhysicsCreationAndSizeSystem))]
 [RunsBefore(typeof(MicrobeVisualsSystem))]
@@ -82,7 +83,7 @@ public partial class EndosymbiontOrganelleSystem : BaseSystem<World, float>
                     // times and when not empty, mostly just once
                     organelleContainer.OnOrganellesChanged(ref entity.Get<CompoundStorage>(),
                         ref entity.Get<BioProcesses>(), ref entity.Get<Engulfer>(), ref entity.Get<Engulfable>(),
-                        ref entity.Get<CellProperties>());
+                        ref entity.Get<CellProperties>(), ref entity.Get<SpecializationFactor>());
 
                     endosymbiontInfo.CreatedOrganelleInstancesFor.Add(symbiontSpecies);
                 }

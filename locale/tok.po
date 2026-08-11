@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-27 14:48+0200\n"
+"POT-Creation-Date: 2026-08-11 10:42+0300\n"
 "PO-Revision-Date: 2023-02-06 07:13+0000\n"
 "Last-Translator: jan-sopi <jansopi303@genocide.fun>\n"
 "Language-Team: Toki Pona <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tok/>\n"
@@ -51,6 +51,13 @@ msgstr ""
 
 msgid "ACHIEVEMENTS"
 msgstr ""
+
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr ""
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr ""
@@ -109,13 +116,6 @@ msgstr "ante mute"
 
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "open e lipu pi ante mute"
-
-#, fuzzy
-msgid "AEROBIC_NITROGEN_FIXATION"
-msgstr "pali pi kon ilo kepeken kon ala"
-
-msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "pali pi kon ilo kepeken kon"
 
 #, fuzzy
 msgid "AEROBIC_RESPIRATION"
@@ -182,6 +182,13 @@ msgstr "ni li lon"
 msgid "ALT"
 msgstr "nena Alt"
 
+#, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr "nanpa pi ijo pali:"
+
+msgid "ALTERNATVE_TIMESCALE"
+msgstr ""
+
 msgid "ALWAYS_VISIBLE"
 msgstr ""
 
@@ -204,9 +211,6 @@ msgstr "nanpa ni: sona musi ilo lon ilo nanpa sina:"
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "nanpa ni: sona musi lili lon ilo nanpa sina:"
-
-msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "pali pi kon ilo kepeken kon ala"
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr ""
@@ -598,6 +602,10 @@ msgstr ""
 msgid "BROWSE_WORKSHOP"
 msgstr ""
 
+#, fuzzy
+msgid "BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
+
 msgid "BUILD_CITY"
 msgstr ""
 
@@ -745,6 +753,16 @@ msgstr ""
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr ""
 
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr ""
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
+
 msgid "CHANGE_THE_SYMMETRY"
 msgstr ""
 
@@ -765,6 +783,10 @@ msgstr ""
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
+
+#, fuzzy
+msgid "CHEMICAL_EQUATION_SPEED_EXPLANATION"
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
 
 msgid "CHEMOPLAST"
 msgstr ""
@@ -1661,6 +1683,9 @@ msgstr ""
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr ""
 
+msgid "DIFFICULTY_PRESET_VERY_EASY"
+msgstr ""
+
 msgid "DIGESTION_EFFICIENCY"
 msgstr ""
 
@@ -1740,6 +1765,12 @@ msgstr ""
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
 
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr ""
+
+msgid "DISPLAY_DRIVER_METAL"
+msgstr ""
+
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr ""
 
@@ -1775,10 +1806,6 @@ msgstr ""
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
-
-#, fuzzy
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "kama lon tenpo pi kama sona. open la sina jo e sona mute."
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr ""
@@ -1883,6 +1910,14 @@ msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 msgstr "pali pi kon ilo kepeken kon ala"
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
+msgstr "pali pi kon ilo kepeken kon ala"
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
+msgstr "pali pi kon ilo kepeken kon ala"
+
+#, fuzzy
 msgid "EDIT_MICROBE_FIRST_TIME"
 msgstr "pali pi kon ilo kepeken kon"
 
@@ -1958,6 +1993,14 @@ msgstr ""
 "sike utala ala li wile tawa ala sike ante lon ma weka\n"
 "ona li wile ala kepeken kon utala tawa sike ike"
 
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION_MULTICELLULAR"
+msgstr ""
+"sike utala li wile tawa wawa pi sike moku lon ma weka\n"
+"ona li wile utala e sike ike\n"
+"sike utala ala li wile tawa ala sike ante lon ma weka\n"
+"ona li wile ala kepeken kon utala tawa sike ike"
+
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
 msgstr ""
 
@@ -1984,6 +2027,13 @@ msgstr ""
 
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr ""
+
+msgid "ENERGY_COST_MULTIPLIER"
+msgstr ""
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER_EXPLANATION"
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
 
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
@@ -2058,6 +2108,9 @@ msgstr ""
 msgid "ERROR_LOADING"
 msgstr ""
 
+msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
+
 msgid "ERROR_SAVING"
 msgstr ""
 
@@ -2117,6 +2170,9 @@ msgid "EXACT_VERSION_TOOLTIP"
 msgstr ""
 
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
+msgstr ""
+
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE_JUKEBOX"
 msgstr ""
 
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
@@ -2406,6 +2462,26 @@ msgstr ""
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr ""
 
+msgid "GAMETE_CELL_ENTITY_NAME"
+msgstr ""
+
+msgid "GAMETE_CELL_TYPE"
+msgstr ""
+
+msgid "GAMETE_CELL_TYPE_A"
+msgstr ""
+
+msgid "GAMETE_CELL_TYPE_B"
+msgstr ""
+
+#, fuzzy
+msgid "GAMETE_PRODUCED"
+msgstr "pali pi wawa sike"
+
+#, fuzzy
+msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+msgstr "kama lon tenpo pi kama sona. open la sina jo e sona mute."
+
 msgid "GAME_DESIGN_TEAM"
 msgstr ""
 
@@ -2466,6 +2542,14 @@ msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
 msgstr ""
 "ala li lon la, sike pi tawa mute li wile tawa mute\n"
 "sike pi tawa lili li wile awen. ijo li lon taso la, ona li wile tawa"
+
+#, fuzzy
+msgid "GERMINATE_SPORE"
+msgstr "open e lipu pi ante lili"
+
+#, fuzzy
+msgid "GERMINATE_SPORE_ACTION_TOOLTIP"
+msgstr "open e lipu pi ante lili"
 
 msgid "GITHUB_TOOLTIP"
 msgstr ""
@@ -2682,6 +2766,43 @@ msgstr ""
 msgid "IMAGE_FILE_TYPES"
 msgstr ""
 
+#, fuzzy
+msgid "INCOMPATIBLE_MEMBRANE_LIST"
+msgstr ""
+"[b]tenpo lon:[/b]\n"
+"  {0}\n"
+"[b]kule ale:[/b]\n"
+"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule  {1}; nanpa pi weka lon nanpa {2}\n"
+"[b]kule lon tenpo ni:[/b]\n"
+"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {3}; nanpa pi weka lon nanpa {4}\n"
+"[b]kule lon ma:[/b]\n"
+"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {5}; nanpa pi weka lon nanpa {6}\n"
+"[b]lon ale lon ma:[/b]\n"
+"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {7}; nanpa pi weka lon nanpa {8}\n"
+"[b]suli pi sike ante:[/b]\n"
+"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {9}; nanpa pi weka lon nanpa {10}\n"
+"[b]sona pi tomo lon sike:[/b]"
+
+msgid "INCOMPATIBLE_ORGANELLE_LIST"
+msgstr ""
+
+#, fuzzy
+msgid "INCOMPATIBLE_STAGE_LIST"
+msgstr ""
+"[b]tenpo lon:[/b]\n"
+"  {0}\n"
+"[b]kule ale:[/b]\n"
+"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule  {1}; nanpa pi weka lon nanpa {2}\n"
+"[b]kule lon tenpo ni:[/b]\n"
+"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {3}; nanpa pi weka lon nanpa {4}\n"
+"[b]kule lon ma:[/b]\n"
+"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {5}; nanpa pi weka lon nanpa {6}\n"
+"[b]lon ale lon ma:[/b]\n"
+"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {7}; nanpa pi weka lon nanpa {8}\n"
+"[b]suli pi sike ante:[/b]\n"
+"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {9}; nanpa pi weka lon nanpa {10}\n"
+"[b]sona pi tomo lon sike:[/b]"
+
 msgid "INCREASE_ITEM_SIZE"
 msgstr ""
 
@@ -2734,6 +2855,12 @@ msgid "INFO_BOX_REQUIRES_NUCLEUS"
 msgstr ""
 
 msgid "INFO_BOX_SIZE"
+msgstr ""
+
+msgid "INFO_BOX_SIZE_PLAIN"
+msgstr ""
+
+msgid "INFO_BOX_STAGE"
 msgstr ""
 
 msgid "INFO_BOX_STORAGE"
@@ -3351,6 +3478,18 @@ msgstr ""
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr ""
 
+msgid "LOOK_LEFT"
+msgstr ""
+
+msgid "LOOK_RIGHT"
+msgstr ""
+
+msgid "LOOK_SCREEN_DOWN_OR_3D_TOWARDS_UP"
+msgstr ""
+
+msgid "LOOK_SCREEN_UP_OR_3D_TOWARDS_DOWN"
+msgstr ""
+
 msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
 msgstr ""
 
@@ -3393,6 +3532,10 @@ msgid "MACROSCOPIC"
 msgstr ""
 
 #, fuzzy
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
+
+#, fuzzy
 msgid "MACROSCOPIC_EDITOR"
 msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
 
@@ -3423,6 +3566,13 @@ msgstr ""
 
 msgid "MARINE_SNOW"
 msgstr ""
+
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
 
 msgid "MASTER_VOLUME"
 msgstr ""
@@ -3709,6 +3859,10 @@ msgstr ""
 
 msgid "MICROBE_LOADING_TIP_22"
 msgstr ""
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_23"
+msgstr "pali pi kon ilo kepeken kon"
 
 msgid "MICROBE_LOADING_TIP_3"
 msgstr ""
@@ -4161,7 +4315,35 @@ msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr ""
 
 #, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_2"
+msgstr "pali pi kon ilo kepeken kon"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_3"
+msgstr "pali pi kon ilo kepeken kon"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_4"
+msgstr "pali pi kon ilo kepeken kon"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_5"
+msgstr "pali pi kon ilo kepeken kon"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_6"
+msgstr "pali pi kon ilo kepeken kon"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_7"
+msgstr "pali pi kon ilo kepeken kon"
+
+#, fuzzy
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
+
+#, fuzzy
+msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
 msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
 
 msgid "MULTICELLULAR_STAGE"
@@ -4235,6 +4417,9 @@ msgstr ""
 msgid "NEW"
 msgstr ""
 
+msgid "NEWER"
+msgstr ""
+
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 
@@ -4276,6 +4461,10 @@ msgstr ""
 
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
+
+#, fuzzy
+msgid "NITROGEN_FIXATION"
+msgstr "pali pi kon ilo kepeken kon ala"
 
 msgid "NITROPLAST"
 msgstr ""
@@ -4340,7 +4529,13 @@ msgstr ""
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
+msgid "NOTICE_READY_TO_SHOOT_GAMETE"
+msgstr ""
+
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
+msgstr ""
+
+msgid "NOT_ENOUGH_MUTATION_POINTS"
 msgstr ""
 
 msgid "NOT_STARTED_DOT"
@@ -4429,6 +4624,9 @@ msgstr ""
 msgid "OK"
 msgstr ""
 
+msgid "OLDER"
+msgstr ""
+
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 
@@ -4438,6 +4636,9 @@ msgstr ""
 #, fuzzy
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
+
+msgid "OPEN_EVOLUTIONARY_TREE"
+msgstr ""
 
 msgid "OPEN_FOLDER"
 msgstr ""
@@ -4500,6 +4701,9 @@ msgid "OPTIONS"
 msgstr ""
 
 msgid "OPTIONS_BUTTON_TOOLTIP"
+msgstr ""
+
+msgid "OPTION_USED_FOR_PLAYER"
 msgstr ""
 
 msgid "ORGANELLES"
@@ -4577,12 +4781,6 @@ msgstr ""
 msgid "OSMOREGULATION_COST"
 msgstr ""
 
-msgid "OSMOREGULATION_COST_MULTIPLIER"
-msgstr ""
-
-msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
-msgstr ""
-
 msgid "OTHER_COMPOUNDS"
 msgstr ""
 
@@ -4619,6 +4817,9 @@ msgstr ""
 msgid "OXYGEN_RESISTANCE"
 msgstr ""
 
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
+msgstr ""
+
 #, fuzzy
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr "kama lon tenpo pi kama sona. open la sina jo e sona mute."
@@ -4642,6 +4843,9 @@ msgid "PAGE_BACK"
 msgstr ""
 
 msgid "PAGE_FORWARD"
+msgstr ""
+
+msgid "PAGE_PINNED"
 msgstr ""
 
 msgid "PAGE_TITLE"
@@ -4693,6 +4897,9 @@ msgstr ""
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
+msgid "PATCH_NOTES_RECENT_BOUNDARY"
+msgstr ""
+
 msgid "PATCH_NOTES_TITLE"
 msgstr ""
 
@@ -4736,6 +4943,10 @@ msgstr ""
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
 msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
 
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION_MULTICELLULAR"
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
+
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
 msgstr ""
 
@@ -4774,6 +4985,13 @@ msgid "PHYSICAL_CONDITIONS"
 msgstr ""
 
 msgid "PHYSICAL_RESISTANCE"
+msgstr ""
+
+#, fuzzy
+msgid "PIN_BUTTON_TOOLTIP"
+msgstr "pali e nasin nena sin"
+
+msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
 msgstr ""
 
 msgid "PLACE_ORGANELLE"
@@ -4904,6 +5122,10 @@ msgid "PRESSURE_SHORT"
 msgstr ""
 
 #, fuzzy
+msgid "PRESSURE_TOLERANCE"
+msgstr "kama lon tenpo pi kama sona. open la sina jo e sona mute."
+
+#, fuzzy
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "kama lon tenpo pi kama sona. open la sina jo e sona mute."
 
@@ -4925,6 +5147,9 @@ msgstr ""
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr ""
 
+msgid "PROCESS_INACTIVE"
+msgstr ""
+
 #, fuzzy
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
 msgstr ""
@@ -4942,10 +5167,6 @@ msgstr ""
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr ""
 
-#, fuzzy
-msgid "PROCESS_TOGGLE_TOOLTIP"
-msgstr "kama lon tenpo pi kama sona. open la sina jo e sona mute."
-
 msgid "PROGRAMMING_TEAM"
 msgstr ""
 
@@ -4953,9 +5174,6 @@ msgid "PROJECT_MANAGEMENT_TEAM"
 msgstr ""
 
 msgid "PROTEINS"
-msgstr ""
-
-msgid "PROTOPLASM"
 msgstr ""
 
 msgid "PULL_REQUESTS_PROGRAMMING"
@@ -4987,6 +5205,9 @@ msgid "RADIATION_LEVELS"
 msgstr "weka"
 
 msgid "RADIOACTIVE_CHUNK"
+msgstr ""
+
+msgid "RADIOACTIVE_CHUNK_BANANA"
 msgstr ""
 
 #, fuzzy
@@ -5051,6 +5272,10 @@ msgstr ""
 msgid "REPORT_BUG"
 msgstr ""
 
+#, fuzzy
+msgid "REPRODUCE"
+msgstr "PALI PI WAWA SIKE LI LILI!"
+
 msgid "REPRODUCED"
 msgstr ""
 
@@ -5075,8 +5300,28 @@ msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 msgstr "PALI PI WAWA SIKE LI LILI!"
 
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "PALI PI WAWA SIKE LI LILI!"
+
 msgid "REPRODUCTION_METHOD"
 msgstr ""
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL"
+msgstr "PALI PI WAWA SIKE LI LILI!"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
+msgstr "PALI PI WAWA SIKE LI LILI!"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ISOGAMY"
+msgstr "PALI PI WAWA SIKE LI LILI!"
+
+#, fuzzy
+msgid "REPRODUCTION_SPORE"
+msgstr "PALI PI WAWA SIKE LI LILI!"
 
 msgid "REQUIRES_NUCLEUS"
 msgstr ""
@@ -5207,6 +5452,10 @@ msgstr ""
 
 msgid "ROTATION_COLON"
 msgstr ""
+
+#, fuzzy
+msgid "ROTATION_FORCE"
+msgstr "PALI PI WAWA SIKE LI LILI!"
 
 msgid "RUNOFF_EVENT"
 msgstr ""
@@ -5455,6 +5704,17 @@ msgstr ""
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
+
+msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+msgstr ""
+
 msgid "SFX_VOLUME"
 msgstr ""
 
@@ -5479,6 +5739,13 @@ msgstr ""
 
 msgid "SHOW_MAP"
 msgstr ""
+
+msgid "SHOW_MATE_POSITION"
+msgstr ""
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION_EXPLANATION"
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
 
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr ""
@@ -5524,6 +5791,12 @@ msgstr ""
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr ""
 
+msgid "SIGNAL_COMMAND_CALL_MATE"
+msgstr ""
+
+msgid "SIGNAL_COMMAND_FIRE_GAMETES"
+msgstr ""
+
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr ""
 
@@ -5547,6 +5820,10 @@ msgstr ""
 
 msgid "SIMULATION_CONFIG"
 msgstr ""
+
+#, fuzzy
+msgid "SIMULATION_FACTOR"
+msgstr "kama ante pi sike ante"
 
 msgid "SIXTEEN_TIMES"
 msgstr ""
@@ -5626,6 +5903,13 @@ msgstr ""
 msgid "SPAWN_GLUCOSE"
 msgstr ""
 
+msgid "SPAWN_MATE_ON_CALL"
+msgstr ""
+
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL_EXPLANATION"
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
+
 msgid "SPAWN_PHOSPHATES"
 msgstr ""
 
@@ -5685,11 +5969,19 @@ msgstr ""
 msgid "SPECIES_WITH_POPULATION"
 msgstr ""
 
-msgid "SPEED"
-msgstr ""
-
 msgid "SPEED_COLON"
 msgstr ""
+
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "kama lon tenpo pi kama sona. open la sina jo e sona mute."
+
+msgid "SPORE_CELL_TYPE"
+msgstr ""
+
+#, fuzzy
+msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
 
 msgid "SPREAD_TO_PATCHES"
 msgstr ""
@@ -5980,6 +6272,10 @@ msgid "TEMPERATURE_SHORT"
 msgstr ""
 
 #, fuzzy
+msgid "TEMPERATURE_TOLERANCE_RANGE"
+msgstr "kama lon tenpo pi kama sona. open la sina jo e sona mute."
+
+#, fuzzy
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "kama lon tenpo pi kama sona. open la sina jo e sona mute."
 
@@ -6051,6 +6347,9 @@ msgstr ""
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr ""
 
+msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
+msgstr ""
+
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr ""
 
@@ -6060,16 +6359,66 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVEOPEDIA_MUSEUM_PAGE_SEARCHTAGS"
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
+
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVEOPEDIA_ORGANELLE_SEARCHTAGS"
+msgstr "\"{0}\" - {1}"
+
+msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
+msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_SEARCHTAGS"
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
+
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE"
+msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
+msgstr ""
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
+msgstr ""
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
+msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_SEARCHTAGS"
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_SEARCHTAGS"
+msgstr "\"{0}\" - {1}"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
+msgstr "\"{0}\" - {1}"
 
 msgid "THRIVE_LICENSES"
 msgstr ""
 
 msgid "THRIVIN_ACHIEVEMENT"
+msgstr ""
+
+msgid "THRUST_FORCE"
 msgstr ""
 
 msgid "THYLAKOIDS"
@@ -6225,9 +6574,6 @@ msgid "TOOLS"
 msgstr ""
 
 msgid "TOOL_HAND_AXE"
-msgstr ""
-
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
 msgid "TOTAL_GATHERED_ENERGY_COLON"
@@ -6748,9 +7094,6 @@ msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
 msgid "VIEWER"
-msgstr ""
-
-msgid "VIEW_ALL"
 msgstr ""
 
 msgid "VIEW_CELL_PROCESSES"
@@ -7315,7 +7658,7 @@ msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr ""
 
 #, fuzzy
-msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+msgid "WIKI_GLYCOLYSIS_COMMA_NITROGEN_FIXATION"
 msgstr "pali pi kon ilo kepeken kon ala"
 
 #, fuzzy
@@ -8079,10 +8422,6 @@ msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr "pali pi wawa sike"
 
 #, fuzzy
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "pali pi wawa sike"
-
-#, fuzzy
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "pali pi wawa sike"
 
@@ -8162,33 +8501,6 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "pali pi kon ilo kepeken kon ala"
-
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr ""
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr "PALI PI WAWA SIKE LI LILI!"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr "pali pi kon ilo kepeken kon ala"
-
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
 
 msgid "WIKI_PULLING_CILIA"
 msgstr ""
@@ -8684,6 +8996,40 @@ msgstr ""
 
 msgid "ZOOM_OUT"
 msgstr ""
+
+#, fuzzy
+#~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
+#~ msgstr "kama lon tenpo pi kama sona. open la sina jo e sona mute."
+
+#, fuzzy
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "pali pi wawa sike"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr "PALI PI WAWA SIKE LI LILI!"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_MODIFICATIONS"
+#~ msgstr "pali pi kon ilo kepeken kon ala"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_STRATEGY"
+#~ msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
+
+#, fuzzy
+#~ msgid "AEROBIC_NITROGEN_FIXATION"
+#~ msgstr "pali pi kon ilo kepeken kon ala"
+
+#~ msgid "AEROBIC_NITROGEN_FIXING"
+#~ msgstr "pali pi kon ilo kepeken kon"
+
+#~ msgid "ANAEROBIC_NITROGEN_FIXATION"
+#~ msgstr "pali pi kon ilo kepeken kon ala"
+
+#, fuzzy
+#~ msgid "PROCESS_TOGGLE_TOOLTIP"
+#~ msgstr "kama lon tenpo pi kama sona. open la sina jo e sona mute."
 
 #, fuzzy
 #~ msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"

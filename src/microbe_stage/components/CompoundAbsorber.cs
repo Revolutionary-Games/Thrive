@@ -22,14 +22,14 @@ public struct CompoundAbsorber : IArchivableComponent
     public float AbsorbRadius;
 
     /// <summary>
-    ///   How fast this can absorb things. If 0 then the absorption speed is not limited.
+    ///   How fast this can absorb things. If 0 then the absorption speed is not limited. (this is unimplemented)
     /// </summary>
     public float AbsorbSpeed;
 
     /// <summary>
-    ///   The effectiveness (ratio of gained vs compounds taken from the clouds) of absorption
+    ///   A multiplier on the rate at which this entity can consume clouds and absorb compounds from them
     /// </summary>
-    public float AbsorptionRatio;
+    public float AbsorptionRate;
 
     /// <summary>
     ///   When true, then the <see cref="CompoundBag"/> that we put things in must have useful compounds set and
@@ -53,7 +53,7 @@ public struct CompoundAbsorber : IArchivableComponent
 
         writer.Write(AbsorbRadius);
         writer.Write(AbsorbSpeed);
-        writer.Write(AbsorptionRatio);
+        writer.Write(AbsorptionRate);
         writer.Write(OnlyAbsorbUseful);
     }
 }
@@ -70,7 +70,7 @@ public static class CompoundAbsorberHelpers
             TotalAbsorbedCompounds = reader.ReadObject<Dictionary<Compound, float>>(),
             AbsorbRadius = reader.ReadFloat(),
             AbsorbSpeed = reader.ReadFloat(),
-            AbsorptionRatio = reader.ReadFloat(),
+            AbsorptionRate = reader.ReadFloat(),
             OnlyAbsorbUseful = reader.ReadBool(),
         };
     }

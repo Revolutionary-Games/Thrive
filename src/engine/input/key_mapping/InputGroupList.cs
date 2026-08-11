@@ -37,7 +37,7 @@ public partial class InputGroupList : VBoxContainer
     public PackedScene InputActionItemScene { get; private set; } = null!;
 
     /// <summary>
-    ///   Is any Input currently waiting for input
+    ///   True if any Input currently waiting for input
     /// </summary>
     public bool ListeningForInput => ActiveInputGroupList
         .Any(g => g.Actions
@@ -107,11 +107,11 @@ public partial class InputGroupList : VBoxContainer
         // ReSharper disable InlineOutVariableDeclaration RedundantAssignment
         InputActionItem? inputActionItem = null;
         if (item.AssociatedAction?.TryGetTarget(out inputActionItem) != true || inputActionItem == null)
-            return default;
+            return null;
 
         InputGroupItem? inputGroupItem = null;
         if (inputActionItem.AssociatedGroup?.TryGetTarget(out inputGroupItem) != true || inputGroupItem == null)
-            return default;
+            return null;
 
         // ReSharper restore InlineOutVariableDeclaration RedundantAssignment
 
@@ -122,7 +122,7 @@ public partial class InputGroupList : VBoxContainer
         // Take the ones with any interception of the environments.
         // Take the input actions.
         // Get the first action where the event collides or null if there aren't any.
-        return ActiveInputGroupList.Where(g => g.EnvironmentId.Any(e => environments.Contains(e)))
+        return ActiveInputGroupList.Where(g => g.EnvironmentId.Any(environments.Contains))
             .SelectMany(g => g.Actions)
             .Where(a => !Equals(inputActionItem, a))
             .SelectMany(a => a.Inputs)

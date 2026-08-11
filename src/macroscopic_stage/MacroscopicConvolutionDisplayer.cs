@@ -30,6 +30,11 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
         }
     }
 
+    /// <summary>
+    ///   Note: not supported (doesn't do anything)
+    /// </summary>
+    public bool DisplayHierarchyLines { get; set; }
+
     public override void _Ready()
     {
         base._Ready();

@@ -38,16 +38,20 @@ using World = Arch.Core.World;
 [WritesToComponent(typeof(DamageCooldown))]
 [WritesToComponent(typeof(TimedLife))]
 [WritesToComponent(typeof(StrainAffected))]
+[WritesToComponent(typeof(MulticellularGrowth))]
 [ReadsComponent(typeof(CollisionManagement))]
 [ReadsComponent(typeof(MicrobePhysicsExtraData))]
 [ReadsComponent(typeof(OrganelleContainer))]
 [ReadsComponent(typeof(MicrobeEventCallbacks))]
 [ReadsComponent(typeof(WorldPosition))]
 [ReadsComponent(typeof(EntityRadiusInfo))]
+[ReadsComponent(typeof(SpeciesMember))]
+[ReadsComponent(typeof(EntityMaterial))]
 [RunsAfter(typeof(ColonyCompoundDistributionSystem))]
 [RunsAfter(typeof(PilusDamageSystem))]
 [RunsAfter(typeof(MicrobeVisualsSystem))]
 [RunsBefore(typeof(SpatialAttachSystem))]
+[RunsBefore(typeof(MulticellularGrowthSystem))]
 [RuntimeCost(10)]
 [RunsOnMainThread]
 public partial class EngulfingSystem : BaseSystem<World, float>
@@ -297,7 +301,7 @@ public partial class EngulfingSystem : BaseSystem<World, float>
         float radius = engulferCellProperties.CreatedMembrane.EncompassingCircleRadius;
 
         if (engulferCellProperties.IsBacteria)
-            radius *= 0.5f;
+            radius *= Constants.BACTERIA_CELL_SCALE;
 
         // TODO: check that the positioning and animating make sense here, it should as this is only used for
         // recursively engulfed objects that should already be inside the engulfer, but re-checking this
@@ -377,7 +381,7 @@ public partial class EngulfingSystem : BaseSystem<World, float>
             targetRadius = targetCellProperties.CreatedMembrane.EncompassingCircleRadius;
 
             if (targetCellProperties.IsBacteria)
-                targetRadius *= 0.5f;
+                targetRadius *= Constants.BACTERIA_CELL_SCALE;
         }
         else if (targetEntity.Has<EntityRadiusInfo>())
         {
@@ -427,7 +431,7 @@ public partial class EngulfingSystem : BaseSystem<World, float>
 
         // The point nearest to the membrane calculation doesn't take being bacteria into account
         if (engulferCellProperties.IsBacteria)
-            nearestPointOfMembraneToTarget *= 0.5f;
+            nearestPointOfMembraneToTarget *= Constants.BACTERIA_CELL_SCALE;
 
         // From the calculated nearest point of membrane above we then linearly interpolate it by the engulfed's
         // normalized radius to this cell's center in order to "shrink" the point relative to this cell's origin.
@@ -629,7 +633,7 @@ public partial class EngulfingSystem : BaseSystem<World, float>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update([Data] in float delta, ref Engulfer engulfer, ref Health health, ref MicrobeControl control,
         ref CellProperties cellProperties, ref SoundEffectPlayer soundPlayer,
-        ref CollisionManagement collisionManagement, in Entity entity)
+        ref CollisionManagement collisionManagement, in SpeciesMember speciesMember, Entity entity)
     {
         var actuallyEngulfing = control.State == MicrobeState.Engulf && cellProperties.MembraneType.CanEngulf;
 
@@ -652,7 +656,13 @@ public partial class EngulfingSystem : BaseSystem<World, float>
 
         cellProperties.CreatedMembrane?.HandleEngulfAnimation(actuallyEngulfing, delta);
 
-        bool checkEngulfStartCollisions = HandleEngulfModeStateUpdate(ref control, entity, actuallyEngulfing, delta);
+        // setup energy cost multiplier for binding cost
+        var energyCostMultiplier = 1.0f;
+        if (speciesMember.Species.PlayerSpecies)
+            energyCostMultiplier *= gameWorld!.WorldSettings.EnergyCostMultiplier;
+
+        bool checkEngulfStartCollisions = HandleEngulfModeStateUpdate(ref control, entity, actuallyEngulfing,
+            energyCostMultiplier, delta);
 
         // Play sound
         if (actuallyEngulfing)
@@ -900,14 +910,14 @@ public partial class EngulfingSystem : BaseSystem<World, float>
     ///   Checks if cell can stay in engulf mode and updates states if cannot
     /// </summary>
     private bool HandleEngulfModeStateUpdate(ref MicrobeControl control, in Entity entity, bool actuallyEngulfing,
-        float delta)
+        float energyCostMultiplier, float delta)
     {
         bool checkEngulfStartCollisions = false;
 
         if (actuallyEngulfing)
         {
             // Drain atp
-            var cost = Constants.ENGULFING_ATP_COST_PER_SECOND * delta;
+            var cost = Constants.ENGULFING_ATP_COST_PER_SECOND * energyCostMultiplier * delta;
 
             var compounds = entity.Get<CompoundStorage>().Compounds;
 
@@ -1255,7 +1265,7 @@ public partial class EngulfingSystem : BaseSystem<World, float>
         float radius = engulferCellProperties.CreatedMembrane.EncompassingCircleRadius;
 
         if (engulferCellProperties.IsBacteria)
-            radius *= 0.5f;
+            radius *= Constants.BACTERIA_CELL_SCALE;
 
         CommandBuffer? recorder = null;
 
@@ -1491,7 +1501,7 @@ public partial class EngulfingSystem : BaseSystem<World, float>
 
         // The point nearest to the membrane calculation doesn't take being bacteria into account
         if (engulferCellProperties.IsBacteria)
-            nearestPointOfMembraneToTarget *= 0.5f;
+            nearestPointOfMembraneToTarget *= Constants.BACTERIA_CELL_SCALE;
 
         // If the animation is missing then for simplicity we just eject immediately or if the attached to
         // component is missing even though it should be always there
@@ -1586,6 +1596,12 @@ public partial class EngulfingSystem : BaseSystem<World, float>
         // Mark the object as recently expelled (0 seconds since ejection)
         engulfer.ExpelledObjects[engulfableObject] = 0;
 
+        if (canMoveToHigherLevelEngulfer &&
+            TryMoveEjectedObjectToHigherLevelEngulfer(ref engulfer, entity, ref engulfable, engulfableObject))
+        {
+            return;
+        }
+
         PerformEjectionForceAndAttachedRemove(entity, ref engulfable, engulfableObject);
 
         RemoveEngulfedObject(ref engulfer, engulfableObject, ref engulfable, false);
@@ -1603,40 +1619,53 @@ public partial class EngulfingSystem : BaseSystem<World, float>
         var endosome = GetEndosomeIfExists(entity, engulfableObject);
 
         endosome?.Hide();
+    }
 
-        if (entity.Has<Engulfable>() && canMoveToHigherLevelEngulfer)
+    private bool TryMoveEjectedObjectToHigherLevelEngulfer(ref Engulfer engulfer, Entity entity,
+        ref Engulfable engulfable, in Entity engulfableObject)
+    {
+        if (!entity.Has<Engulfable>())
+            return false;
+
+        ref var engulfersEngulfable = ref entity.Get<Engulfable>();
+
+        if (engulfersEngulfable.PhagocytosisStep == PhagocytosisPhase.None)
+            return false;
+
+        if (!engulfersEngulfable.HostileEngulfer.IsAliveAndHas<Engulfer>())
         {
-            ref var engulfersEngulfable = ref entity.Get<Engulfable>();
-
-            if (engulfersEngulfable.PhagocytosisStep != PhagocytosisPhase.None)
-            {
-                if (!engulfersEngulfable.HostileEngulfer.IsAliveAndHas<Engulfer>())
-                {
-                    GD.PrintErr("Attempt to pass ejected object to our engulfer failed because that " +
-                        "engulfer is not alive");
-                    return;
-                }
-
-                // Skip sending to the hostile engulfer if it is dead
-                if (engulfersEngulfable.HostileEngulfer.Has<Health>() &&
-                    engulfersEngulfable.HostileEngulfer.Get<Health>().Dead)
-                {
-                    GD.Print("Not sending engulfable to our engulfer as that is dead");
-                    return;
-                }
-
-                ref var hostileEngulfer = ref engulfersEngulfable.HostileEngulfer.Get<Engulfer>();
-
-                // We have our own engulfer, and it wants to claim this object we've just expelled
-                if (!IngestEngulfable(ref hostileEngulfer,
-                        ref engulfersEngulfable.HostileEngulfer.Get<CellProperties>(),
-                        engulfersEngulfable.HostileEngulfer, ref engulfable,
-                        engulfableObject))
-                {
-                    GD.PrintErr("Failed to pass ejected object from an engulfed object to its engulfer");
-                }
-            }
+            GD.PrintErr("Attempt to pass ejected object to our engulfer failed because that engulfer is not alive");
+            return false;
         }
+
+        if (engulfersEngulfable.HostileEngulfer.Has<Health>() &&
+            engulfersEngulfable.HostileEngulfer.Get<Health>().Dead)
+        {
+            GD.Print("Not sending engulfable to our engulfer as that is dead");
+            return false;
+        }
+
+        ref var hostileEngulfer = ref engulfersEngulfable.HostileEngulfer.Get<Engulfer>();
+        var oldTransport = engulfable.BulkTransport;
+
+        if (!IngestEngulfableFromOtherEntity(ref hostileEngulfer, engulfersEngulfable.HostileEngulfer,
+                ref engulfable, engulfableObject))
+        {
+            GD.PrintErr("Failed to pass ejected object from an engulfed object to its engulfer");
+            return false;
+        }
+
+        if (!engulfer.EngulfedObjects!.Remove(engulfableObject))
+        {
+            GD.PrintErr("Failed to remove moved engulfed object from engulfer's list of engulfed objects");
+        }
+
+        if (oldTransport != null)
+            ReturnTransportAnimationToCache(oldTransport);
+
+        GetEndosomeIfExists(entity, engulfableObject)?.Hide();
+
+        return true;
     }
 
     private void PerformEjectionForceAndAttachedRemove(in Entity entity, ref Engulfable engulfable,
@@ -1727,15 +1756,7 @@ public partial class EngulfingSystem : BaseSystem<World, float>
         var transport = engulfable.BulkTransport;
         if (transport != null)
         {
-            // Reset state before storing it for future use
-            transport.Interpolate = false;
-            transport.DigestionEjectionStarted = false;
-
-            lock (UnusedTransportAnimations)
-            {
-                UnusedTransportAnimations.Enqueue(transport);
-            }
-
+            ReturnTransportAnimationToCache(transport);
             engulfable.BulkTransport = null;
         }
 
@@ -1769,6 +1790,18 @@ public partial class EngulfingSystem : BaseSystem<World, float>
             }
 
             worldSimulation.DestroyEntity(engulfedEntity);
+        }
+    }
+
+    private void ReturnTransportAnimationToCache(Engulfable.BulkTransportAnimation transport)
+    {
+        // Reset state before storing it for future use
+        transport.Interpolate = false;
+        transport.DigestionEjectionStarted = false;
+
+        lock (UnusedTransportAnimations)
+        {
+            UnusedTransportAnimations.Enqueue(transport);
         }
     }
 
@@ -2002,9 +2035,10 @@ public partial class EngulfingSystem : BaseSystem<World, float>
         {
             // TODO: check if this code is bad now because it is not as easy to access the digestible property of a
             // compound (this doesn't use a local reference to the simulation parameters as that would cause a lambda
-            // capture)
+            // capture).
+            // Oxytoxy is not counted in digestion progress as it is just for dealing damage during the process.
             engulfable.InitialTotalEngulfableCompounds = engulfableEntity.Get<CompoundStorage>().Compounds
-                .Where(c => SimulationParameters.GetCompound(c.Key).Digestible)
+                .Where(c => SimulationParameters.GetCompound(c.Key).Digestible && c.Key != Compound.Oxytoxy)
                 .Sum(c => c.Value);
 
 #if DEBUG

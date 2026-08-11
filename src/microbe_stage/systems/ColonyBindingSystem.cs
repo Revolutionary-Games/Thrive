@@ -1,5 +1,6 @@
 ﻿namespace Systems;
 
+using System;
 using System.Runtime.CompilerServices;
 using Arch.Buffer;
 using Arch.Core;
@@ -23,6 +24,7 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(WorldPosition))]
 [ReadsComponent(typeof(AttachedToEntity))]
 [ReadsComponent(typeof(MicrobeEventCallbacks))]
+[ReadsComponent(typeof(SpeciesMember))]
 [WritesToComponent(typeof(Spawned))]
 [WritesToComponent(typeof(MicrobeColony))]
 [WritesToComponent(typeof(MicrobeColonyMember))]
@@ -34,9 +36,22 @@ public partial class ColonyBindingSystem : BaseSystem<World, float>
 {
     private readonly IWorldSimulation worldSimulation;
 
+    private GameWorld? gameWorld;
+
     public ColonyBindingSystem(IWorldSimulation worldSimulation, World world) : base(world)
     {
         this.worldSimulation = worldSimulation;
+    }
+
+    public void SetWorld(GameWorld world)
+    {
+        gameWorld = world;
+    }
+
+    public override void BeforeUpdate(in float delta)
+    {
+        if (gameWorld == null)
+            throw new InvalidOperationException("GameWorld not set");
     }
 
     [Query]
@@ -44,7 +59,8 @@ public partial class ColonyBindingSystem : BaseSystem<World, float>
         MicrobeSpeciesMember, CollisionManagement, SoundEffectPlayer, CompoundStorage>]
     [None<AttachedToEntity>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update([Data] in float delta, ref MicrobeControl control, ref Health health, in Entity entity)
+    private void Update([Data] in float delta, ref MicrobeControl control, ref Health health,
+        ref SpeciesMember speciesMember, Entity entity)
     {
         // Disallow binding to happen when dead
         if (health.Dead)
@@ -61,11 +77,11 @@ public partial class ColonyBindingSystem : BaseSystem<World, float>
         }
         else if (control.State == MicrobeState.Binding)
         {
-            HandleBindingMode(ref control, entity, delta);
+            HandleBindingMode(ref control, entity, speciesMember.Species.PlayerSpecies, delta);
         }
     }
 
-    private void HandleBindingMode(ref MicrobeControl control, in Entity entity, float delta)
+    private void HandleBindingMode(ref MicrobeControl control, in Entity entity, bool playerSpecies, float delta)
     {
         ref var organelles = ref entity.Get<OrganelleContainer>();
         ref var ourSpecies = ref entity.Get<MicrobeSpeciesMember>();
@@ -79,6 +95,9 @@ public partial class ColonyBindingSystem : BaseSystem<World, float>
 
         // Drain atp
         var cost = Constants.BINDING_ATP_COST_PER_SECOND * delta;
+
+        if (playerSpecies)
+            cost *= gameWorld!.WorldSettings.EnergyCostMultiplier;
 
         var compounds = entity.Get<CompoundStorage>().Compounds;
 

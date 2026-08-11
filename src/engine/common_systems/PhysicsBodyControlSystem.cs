@@ -26,17 +26,41 @@ public partial class PhysicsBodyControlSystem : BaseSystem<World, float>
     private void Update(ref Physics physics, ref ManualPhysicsControl control)
     {
         if (!physics.IsBodyEffectivelyEnabled())
+        {
+            // To make it simple to avoid bodies launching fast after being disabled, we eat up any queued forces here
+            if (!physics.QueuedForceApplied)
+            {
+                physics.QueuedForceApplied = true;
+                physics.QueuedImpulse = Vector3.Zero;
+                physics.QueuedAngularImpulse = Vector3.Zero;
+            }
+
             return;
+        }
 
         var body = physics.Body!;
 
-        if (control.PhysicsApplied && physics.VelocitiesApplied)
+        if (control.PhysicsApplied && physics.VelocitiesApplied && physics.QueuedForceApplied)
             return;
 
         if (!physics.VelocitiesApplied)
         {
             physicalWorld.SetBodyVelocity(body, physics.Velocity, physics.AngularVelocity);
             physics.VelocitiesApplied = true;
+        }
+
+        if (!physics.QueuedForceApplied)
+        {
+            physicalWorld.GiveImpulse(body, physics.QueuedImpulse);
+            physics.QueuedImpulse = Vector3.Zero;
+
+            if (!physics.QueuedAngularImpulse.IsZeroApprox())
+            {
+                physicalWorld.GiveAngularImpulse(body, physics.QueuedAngularImpulse);
+                physics.QueuedAngularImpulse = Vector3.Zero;
+            }
+
+            physics.QueuedForceApplied = false;
         }
 
         if (!control.PhysicsApplied)
@@ -60,15 +84,15 @@ public partial class PhysicsBodyControlSystem : BaseSystem<World, float>
 
             if (control.ImpulseToGive != Vector3.Zero)
             {
-                // To not have objects that sit around until touched and then shoot off at high velocity we
-                // automatically activate bodies that have accumulated enough linear speed
-                physicalWorld.GiveImpulse(body, control.ImpulseToGive, true);
+                // This automatically activates the body to not accumulate a ton of force while stationary
+                // (and sleeping)
+                physicalWorld.GiveImpulse(body, control.ImpulseToGive);
                 control.ImpulseToGive = Vector3.Zero;
             }
 
             if (control.AngularImpulseToGive != Vector3.Zero)
             {
-                physicalWorld.GiveAngularImpulse(body, control.AngularImpulseToGive, true);
+                physicalWorld.GiveAngularImpulse(body, control.AngularImpulseToGive);
                 control.AngularImpulseToGive = Vector3.Zero;
             }
 

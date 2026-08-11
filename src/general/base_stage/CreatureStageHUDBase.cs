@@ -362,6 +362,18 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
         allAgents.Add(Compound.Mucilage);
     }
 
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+        InputManager.RegisterReceiver(this);
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        InputManager.UnregisterReceiver(this);
+    }
+
     public void Init(TStage containedInStage)
     {
         stage = containedInStage;
@@ -397,9 +409,6 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
         UpdateProcessPanel();
 
         UpdateFossilisationButtons();
-
-        // This would be kind of hard to make a non-polling approach for updating the button status
-        UpdateSpeedModeDisplay();
     }
 
     public void SendObjectsToTutorials(TutorialState tutorialState)
@@ -417,7 +426,7 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
     /// <summary>
     ///   Enables the editor button.
     /// </summary>
-    public void ShowReproductionDialog()
+    public virtual void ShowReproductionDialog()
     {
         if (!editorButton.Disabled || stage?.HasPlayer != true)
             return;
@@ -428,6 +437,7 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
         GUICommon.Instance.PlayCustomSound(MicrobePickupOrganelleSound);
 
         editorButton.ShowReproductionDialog();
+        editorButton.SetNormalStyle();
 
         HUDMessages.ShowMessage(Localization.Translate("NOTICE_READY_TO_EDIT"), DisplayDuration.Long);
     }
@@ -462,8 +472,16 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
         stage?.OnSuicide();
     }
 
-    public void EditorButtonPressed()
+    [RunOnKeyDown("g_reproduce")]
+    public virtual void EditorButtonPressed()
     {
+        if (editorButton.Disabled)
+        {
+            // Ignore if button is not ready yet
+            GD.Print("Editor button press triggered, but the button is not ready");
+            return;
+        }
+
         GD.Print("Move to editor pressed");
 
         // TODO: find out when this can happen (this happened when a really laggy save was loaded and the editor button
@@ -474,6 +492,17 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
             return;
         }
 
+        StartMoveToEditor();
+    }
+
+    public bool StartMoveToEditor()
+    {
+        if (stage?.HasPlayer != true)
+        {
+            GD.Print("Cannot move to editor as no player exists");
+            return false;
+        }
+
         // To prevent being clicked twice
         editorButton.Disabled = true;
 
@@ -482,6 +511,7 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.3f, stage.MoveToEditor, false);
 
         stage.MovingToEditor = true;
+        return true;
     }
 
     /// <summary>
@@ -644,9 +674,14 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
             fossilisationDialog.SelectedSpecies = button.AttachedEntity.Get<MicrobeSpeciesMember>().Species;
             fossilisationDialog.PopupCenteredShrink();
         }
+        else if (button.AttachedEntity.Has<MulticellularSpeciesMember>())
+        {
+            fossilisationDialog.SelectedSpecies = button.AttachedEntity.Get<MulticellularSpeciesMember>().Species;
+            fossilisationDialog.PopupCenteredShrink();
+        }
         else
         {
-            throw new NotImplementedException("Saving non-microbe species is not yet implemented");
+            throw new NotImplementedException("Saving species of this type is not yet implemented");
         }
     }
 
@@ -871,8 +906,7 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
     ///   Gets the current amount of strain affecting the player
     /// </summary>
     /// <returns>
-    ///   Null if the player is missing <see cref="StrainAffected"/>,
-    ///   else the player's strain fraction
+    ///   Null if the player is missing <see cref="StrainAffected"/>, else the player's strain fraction
     /// </returns>
     protected virtual float? ReadPlayerStrainFraction()
     {
@@ -894,16 +928,11 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
         var playerSpecies = stage!.GameWorld.PlayerSpecies;
         double population = stage.GameWorld.Map.CurrentPatch!.GetSpeciesGameplayPopulation(playerSpecies);
 
+        // Don't show 0 for population before the player is extinct so that players don't report that as a bug
         if (population <= 0 && stage.HasPlayer)
             population = 1;
 
-        // To not confuse the player that might see a 1 as the population but still seeing plenty of their species
-        // scale up the displayed numbers
-        if (playerSpecies is MicrobeSpecies or MulticellularSpecies)
-        {
-            // Scale is trillions
-            population *= Constants.MICROBE_POPULATION_MULTIPLIER;
-        }
+        population = Species.ScalePopulationByType(playerSpecies, population);
 
         // TODO: skip updating the label if value has not changed to save on memory allocations
         populationLabel.Text = population.FormatNumber();
@@ -1040,8 +1069,10 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
 
         atpBar.MaxValue = maxATP * 10.0f;
 
-        // If the current ATP is close to full, just pretend that it is to keep the bar from flickering
-        if (maxATP - atpAmount < Math.Max(maxATP / 20.0f, 0.1f))
+        // If the current ATP is close to full, just pretend that it is to keep the bar from flickering.
+        var fullMargin = Math.Max(maxATP * (1 - Constants.ATP_BAR_FULL_DISPLAY_FRACTION),
+            Constants.ATP_BAR_FULL_DISPLAY_MINIMUM_MARGIN);
+        if (maxATP - atpAmount <= fullMargin)
         {
             atpAmount = maxATP;
         }

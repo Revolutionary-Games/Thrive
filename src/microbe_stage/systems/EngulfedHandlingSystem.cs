@@ -18,6 +18,7 @@ using World = Arch.Core.World;
 [WritesToComponent(typeof(SpatialInstance))]
 [WritesToComponent(typeof(CompoundStorage))]
 [WritesToComponent(typeof(CellProperties))]
+[WritesToComponent(typeof(MulticellularGrowth))]
 [ReadsComponent(typeof(OrganelleContainer))]
 [ReadsComponent(typeof(WorldPosition))]
 [RunsAfter(typeof(EngulfingSystem))]

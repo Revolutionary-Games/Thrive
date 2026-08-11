@@ -1,4 +1,6 @@
-﻿using Arch.Core;
+﻿using System.Collections.Generic;
+using Arch.Core;
+using Arch.Core.Extensions;
 using Components;
 using Godot;
 using SharedBase.Archive;
@@ -11,7 +13,7 @@ using World = Arch.Core.World;
 /// </summary>
 public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     // Base systems
     private AnimationControlSystem animationControlSystem = null!;
@@ -91,6 +93,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
     private DelayedColonyOperationSystem delayedColonyOperationSystem = null!;
     private MulticellularGrowthSystem multicellularGrowthSystem = null!;
     private IntercellularMatrixSystem intercellularMatrixSystem = null!;
+    private GameteSystem gameteSystem = null!;
 
 #pragma warning disable CA2213
     private Node visualsParent = null!;
@@ -122,6 +125,8 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
     public FluidCurrentsSystem FluidCurrentsSystem { get; private set; } = null!;
 
+    public GameteSystem GameteSystem => gameteSystem;
+
     public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
 
     public override ArchiveObjectType ArchiveObjectType =>
@@ -151,6 +156,28 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         reader.ReadObjectProperties(instance.FluidCurrentsSystem);
 
         instance.DeactivateWorldOnReadContext(reader);
+
+        if (version < 2)
+        {
+            // Add new SpecializationFactor component to all microbes as that is required to support older saves
+
+            var microbes = new List<Entity>();
+            instance.entities.Query(new QueryDescription().WithAll<CellProperties>(), microbes.Add);
+
+            foreach (var microbe in microbes)
+            {
+                if (!microbe.Has<SpecializationFactor>())
+                {
+                    microbe.Add(new SpecializationFactor
+                    {
+                        // We use 1 as a placeholder to not apply any bonuses. Things will get corrected the next time
+                        // the player goes to the editor
+                        TotalSpecializationBonus = 1,
+                    });
+                }
+            }
+        }
+
         return instance;
     }
 
@@ -183,7 +210,11 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         if (GenerateThreadedSystems.UseCheckedComponentAccess)
         {
-            GD.Print("Disallowing threaded execution to allow strict component thread checks to work");
+            GD.Print("Disallowing threaded execution to allow strict component thread checks to work, " +
+                "code must have been edited disabled parallel queries");
+
+            // We can't automatically turn off parallel queries, but we can force them to fail with this; code needs
+            // changes to work
             World.SharedJobScheduler = null;
         }
 
@@ -238,7 +269,8 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         microbeMovementSystem = new MicrobeMovementSystem(this, PhysicalWorld, EntitySystem);
 
         irradiationSystem = new IrradiationSystem(EntitySystem);
-        microbeAI = new MicrobeAISystem(cloudSystem, spawnEnvironment.DaylightInfo, EntitySystem);
+        microbeAI = new MicrobeAISystem(cloudSystem, spawnEnvironment.DaylightInfo, this, spawnEnvironment, SpawnSystem,
+            EntitySystem);
         microbeCollisionSoundSystem = new MicrobeCollisionSoundSystem(EntitySystem);
         microbeEmissionSystem = new MicrobeEmissionSystem(this, cloudSystem, EntitySystem);
 
@@ -257,7 +289,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         radiationDamageSystem = new RadiationDamageSystem(EntitySystem);
         slimeSlowdownSystem = new SlimeSlowdownSystem(cloudSystem, EntitySystem);
         mucocystSystem = new MucocystSystem(EntitySystem);
-        microbeDivisionClippingSystem = new MicrobeDivisionClippingSystem(this, physics, EntitySystem);
+        microbeDivisionClippingSystem = new MicrobeDivisionClippingSystem(this, EntitySystem);
         microbePhysicsCreationAndSizeSystem = new MicrobePhysicsCreationAndSizeSystem(EntitySystem);
         microbeRenderPrioritySystem = new MicrobeRenderPrioritySystem(EntitySystem);
         tintColourApplyingSystem = new TintColourApplyingSystem(EntitySystem);
@@ -284,6 +316,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         multicellularGrowthSystem =
             new MulticellularGrowthSystem(this, spawnEnvironment, SpawnSystem, EntitySystem);
         intercellularMatrixSystem = new IntercellularMatrixSystem(EntitySystem);
+        gameteSystem = new GameteSystem(this, spawnEnvironment, SpawnSystem, EntitySystem);
 
         CloudSystem = cloudSystem;
 
@@ -315,6 +348,10 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         microbeAI.SetWorld(currentGame.GameWorld);
         damageSoundSystem.SetWorld(currentGame.GameWorld);
         FluidCurrentsSystem.SetWorld(currentGame.GameWorld);
+        organelleTickSystem.SetWorld(currentGame.GameWorld);
+        microbeMovementSystem.SetWorld(currentGame.GameWorld);
+        colonyBindingSystem.SetWorld(currentGame.GameWorld);
+        gameteSystem.SetWorld(currentGame.GameWorld);
 
         CloudSystem.Init(FluidCurrentsSystem);
     }
@@ -340,7 +377,15 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
     public override bool HasSystemsWithPendingOperations()
     {
-        return microbeVisualsSystem.HasPendingOperations();
+        // Note any visuals-affecting things added here needs to be added also for MicrobeVisualOnlySimulation
+
+        if (microbeVisualsSystem.HasPendingOperations())
+            return true;
+
+        if (delayedColonyOperationSystem.HasPendingEntities())
+            return true;
+
+        return false;
     }
 
     public override void FreeNodeResources()
@@ -512,6 +557,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
                 delayedColonyOperationSystem.Dispose();
                 multicellularGrowthSystem.Dispose();
                 intercellularMatrixSystem.Dispose();
+                gameteSystem.Dispose();
 
                 CameraFollowSystem.Dispose();
                 ProcessSystem.Dispose();

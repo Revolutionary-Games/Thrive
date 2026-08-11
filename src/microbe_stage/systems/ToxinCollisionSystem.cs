@@ -18,6 +18,7 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(Health))]
 [ReadsComponent(typeof(CellProperties))]
 [ReadsComponent(typeof(MicrobeColony))]
+[ReadsComponent(typeof(MicrobeColonyMember))]
 [ReadsComponent(typeof(MicrobePhysicsExtraData))]
 [ReadsComponent(typeof(OrganelleContainer))]
 [ReadsComponent(typeof(MicrobeEventCallbacks))]
@@ -102,6 +103,7 @@ public partial class ToxinCollisionSystem : BaseSystem<World, float>
         if (!damageTarget.IsAliveAndHas<SpeciesMember>())
             return false;
 
+        var originalTarget = damageTarget;
         ref var speciesComponent = ref damageTarget.Get<SpeciesMember>();
 
         try
@@ -206,15 +208,17 @@ public partial class ToxinCollisionSystem : BaseSystem<World, float>
 
                 if (damageTarget.Has<OrganelleContainer>())
                 {
+                    // Note for distributed damage this doesn't fully make sense as the damage would need to be
+                    // different for different target cells
                     modifier = CalculateToxinOrganelleDamageMultiplier(ref damageTarget.Get<OrganelleContainer>(),
                         damageSource.ToxinProperties);
                 }
 
-                damageSource.ToxinProperties.DealDamage(ref health, ref damageTarget.Get<CellProperties>(),
-                    damageTarget, damageSource.ToxinAmount * modifier);
+                damageSource.ToxinProperties.DealDamage(originalTarget, damageSource.ToxinAmount * modifier);
             }
             else
             {
+                // This is mostly a fallback that shouldn't trigger, so this isn't updated to target the full colony
                 damageSource.ToxinProperties.DealDamage(ref health, damageTarget, damageSource.ToxinAmount);
             }
 
@@ -274,7 +278,7 @@ public partial class ToxinCollisionSystem : BaseSystem<World, float>
         if (oxygenParts == 0)
             return 1;
 
-        // Oxygen targeting toxin has increased damage based on the amount of oxygen using parts
+        // Oxygen-targeting toxin has increased damage based on the number of oxygen-using parts
         if (toxinProperties.ToxinSubType == ToxinType.OxygenMetabolismInhibitor)
         {
             return 1 + Math.Min(oxygenParts * Constants.OXYGEN_INHIBITOR_DAMAGE_BUFF_PER_ORGANELLE,

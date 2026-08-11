@@ -5,8 +5,9 @@
 [ext_resource type="Script" uid="uid://bdcfyeyjw1uaa" path="res://src/gui_common/PatchNotesDisplayer.cs" id="4"]
 [ext_resource type="LabelSettings" uid="uid://bv3bnu0g1wdw3" path="res://src/gui_common/fonts/Title-SemiBold-Big.tres" id="4_o16iy"]
 [ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/fonts/Body-Regular-Smaller.tres" id="5_gf8j8"]
+[ext_resource type="FontVariation" uid="uid://cqork3l186w1c" path="res://assets/fonts/variants/Jura-Bold.tres" id="6_k6hi0"]
 
-[node name="PatchNotesDisplayer" type="VBoxContainer" unique_id=1269164489 node_paths=PackedStringArray("patchNotes", "title", "newVersionsCountLabel", "viewAllButton", "viewAllButtonOutsideScroll")]
+[node name="PatchNotesDisplayer" type="VBoxContainer" unique_id=1269164489 node_paths=PackedStringArray("patchNotes", "title", "newVersionsCountLabel", "recentBoundaryLabel", "scrollContainer", "newerButton", "olderButton")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -17,8 +18,10 @@ script = ExtResource("4")
 patchNotes = NodePath("ScrollContainer/VBoxContainer/PatchNotesList")
 title = NodePath("NotesTitle")
 newVersionsCountLabel = NodePath("ScrollContainer/VBoxContainer/LastPlayedInfo")
-viewAllButton = NodePath("ScrollContainer/VBoxContainer/All")
-viewAllButtonOutsideScroll = NodePath("All")
+recentBoundaryLabel = NodePath("ScrollContainer/VBoxContainer/RecentBoundaryInfo")
+scrollContainer = NodePath("ScrollContainer")
+newerButton = NodePath("ScrollContainer/VBoxContainer/HBoxContainer/Newer")
+olderButton = NodePath("ScrollContainer/VBoxContainer/HBoxContainer/Older")
 
 [node name="NotesTitle" type="Label" parent="." unique_id=1984934454]
 layout_mode = 2
@@ -45,16 +48,34 @@ autowrap_mode = 3
 [node name="PatchNotesList" parent="ScrollContainer/VBoxContainer" unique_id=2053302355 instance=ExtResource("3")]
 layout_mode = 2
 
-[node name="All" type="Button" parent="ScrollContainer/VBoxContainer" unique_id=450859642]
+[node name="Spacer" type="Control" parent="ScrollContainer/VBoxContainer" unique_id=498528484]
+custom_minimum_size = Vector2(0, 3)
 layout_mode = 2
-size_flags_horizontal = 4
-text = "VIEW_ALL"
 
-[node name="All" type="Button" parent="." unique_id=422751875]
+[node name="RecentBoundaryInfo" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=730145883]
 visible = false
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-size_flags_horizontal = 4
-text = "VIEW_ALL"
+text = "PATCH_NOTES_RECENT_BOUNDARY"
+label_settings = ExtResource("5_gf8j8")
+autowrap_mode = 3
 
-[connection signal="pressed" from="ScrollContainer/VBoxContainer/All" to="." method="OnViewAllPressed"]
-[connection signal="pressed" from="All" to="." method="OnViewAllPressed"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer" unique_id=1028967143]
+layout_mode = 2
+
+[node name="Newer" type="Button" parent="ScrollContainer/VBoxContainer/HBoxContainer" unique_id=1255005837]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_fonts/font = ExtResource("6_k6hi0")
+theme_override_font_sizes/font_size = 18
+text = "NEWER"
+
+[node name="Older" type="Button" parent="ScrollContainer/VBoxContainer/HBoxContainer" unique_id=1464417492]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("6_k6hi0")
+theme_override_font_sizes/font_size = 18
+text = "OLDER"
+
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/HBoxContainer/Newer" to="." method="OnNewerButtonPressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/HBoxContainer/Older" to="." method="OnOlderButtonPressed"]

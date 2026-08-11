@@ -17,6 +17,15 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
 
     private readonly CellTypeFacadeHelper cellTypes = new();
 
+    private MulticellularReproductionMethod reproductionMethod;
+    private bool overrideReproductionMethod;
+
+    private IReadOnlyCellTypeDefinition? sporeCellTypeOverride;
+    private IReadOnlyCellTypeDefinition? gameteACellTypeOverride;
+    private IReadOnlyCellTypeDefinition? gameteBCellTypeOverride;
+
+    private int massBuddingCellCountOverride = -1;
+
     public MulticellularEditsFacade(IReadOnlyMulticellularSpecies species) : base(species)
     {
         multicellularSpecies = species;
@@ -31,6 +40,17 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
     public IReadOnlyIndividualLayout<IReadOnlyCellTemplate> EditorCells => this;
 
     public IReadOnlyList<IReadOnlyCellTypeDefinition> CellTypes => this;
+
+    public MulticellularReproductionMethod ReproductionMethod =>
+        overrideReproductionMethod ? reproductionMethod : multicellularSpecies.ReproductionMethod;
+
+    public IReadOnlyCellTypeDefinition? SporeCellType => sporeCellTypeOverride ?? multicellularSpecies.SporeCellType;
+
+    public IReadOnlyCellTypeDefinition? GameteTypeA => gameteACellTypeOverride ?? multicellularSpecies.GameteTypeA;
+    public IReadOnlyCellTypeDefinition? GameteTypeB => gameteBCellTypeOverride ?? multicellularSpecies.GameteTypeB;
+
+    public int MassBuddingCellCount =>
+        massBuddingCellCountOverride == -1 ? multicellularSpecies.MassBuddingCellCount : massBuddingCellCountOverride;
 
     /// <summary>
     ///   For MP calculations it is not required to also get the gameplay layout, so for simplicity this is not
@@ -124,6 +144,14 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
         addedCells.Clear();
 
         cellTypes.ClearUsed();
+
+        overrideReproductionMethod = false;
+
+        sporeCellTypeOverride = null;
+        gameteACellTypeOverride = null;
+        gameteBCellTypeOverride = null;
+
+        massBuddingCellCountOverride = -1;
     }
 
     internal override bool ApplyAction(EditorCombinableActionData actionData)
@@ -247,6 +275,43 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
                 throw new InvalidOperationException("Could not find the cell a remove operation is related to");
 
             // We already removed the original, so there's nothing more to do
+
+            return true;
+        }
+
+        if (actionData is MulticellularReproductionActionData reproductionActionData)
+        {
+            reproductionMethod = reproductionActionData.NewReproductionMethod;
+            overrideReproductionMethod = true;
+
+            return true;
+        }
+
+        if (actionData is SporeCellTypeChangeActionData sporeCellTypeChangeActionData)
+        {
+            sporeCellTypeOverride = cellTypes.ResolveCellDefinition(sporeCellTypeChangeActionData.NewCellType);
+
+            return true;
+        }
+
+        if (actionData is GameteACellTypeChangeActionData gameteACellTypeChangeActionData)
+        {
+            gameteACellTypeOverride = cellTypes.ResolveCellDefinition(gameteACellTypeChangeActionData.NewCellType);
+
+            return true;
+        }
+
+        if (actionData is GameteBCellTypeChangeActionData gameteBCellTypeChangeActionData)
+        {
+            gameteBCellTypeOverride = cellTypes.ResolveCellDefinition(gameteBCellTypeChangeActionData.NewCellType);
+
+            return true;
+        }
+
+        if (actionData is MassBuddingCellCountActionData massBuddingCellCountActionData)
+        {
+            massBuddingCellCountOverride = Math.Min(massBuddingCellCountActionData.NewCellCount,
+                CellBodyPlanInternalCalculations.MaxBudSize(EditorCells.Count));
 
             return true;
         }

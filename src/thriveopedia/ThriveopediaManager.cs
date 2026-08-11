@@ -51,7 +51,7 @@ public class ThriveopediaManager
 
     /// <summary>
     ///   Opens a page in the Thriveopedia via the appropriate menu context. Name must match the PageName property
-    ///   of the desired page.
+    ///   of the desired page. Or the special "species:" syntax
     /// </summary>
     public static void OpenPage(string pageName)
     {

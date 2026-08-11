@@ -14,8 +14,8 @@ public abstract class EmptyOrganelleComponent : IOrganelleComponent
     {
     }
 
-    public void UpdateAsync(ref OrganelleContainer organelleContainer, in Entity microbeEntity,
-        IWorldSimulation worldSimulation, float delta)
+    public void UpdateAsync(ref OrganelleContainer organelleContainer, ref SpecializationFactor specializationFactor,
+        in Entity microbeEntity, IWorldSimulation worldSimulation, float energyCostMultiplier, float delta)
     {
     }
 

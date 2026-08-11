@@ -238,13 +238,23 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
     public EnvironmentalTolerances GetOptimalTolerancesForCurrentPatch()
     {
-        return CurrentPatch.GenerateTolerancesForMicrobe(EditedCellOrganelles);
+        // This is a microbe, so totalSpecializationBonus = cell specialization bonus
+        var totalSpecializationBonus =
+            MicrobeInternalCalculations.CalculateSpecializationBonus(EditedCellOrganelles,
+                tempMemory1);
+
+        return CurrentPatch.GenerateTolerancesForMicrobe(EditedCellOrganelles, totalSpecializationBonus);
     }
 
     public ToleranceResult CalculateCurrentTolerances(EnvironmentalTolerances calculationTolerances)
     {
+        // This is a microbe, so totalSpecializationBonus = cell specialization bonus
+        var totalSpecializationBonus =
+            MicrobeInternalCalculations.CalculateSpecializationBonus(EditedCellOrganelles,
+                tempMemory1);
+
         return MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(calculationTolerances,
-            EditedCellOrganelles, CurrentPatch.Biome);
+            EditedCellOrganelles, totalSpecializationBonus, CurrentPatch.Biome);
     }
 
     public void GetCurrentToleranceSummaryByElement(ToleranceModifier toleranceCategory,
@@ -257,8 +267,13 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
     public void CalculateBodyEffectOnTolerances(
         ref MicrobeEnvironmentalToleranceCalculations.ToleranceValues modifiedTolerances)
     {
+        // This is a microbe, so totalSpecializationBonus = cell specialization bonus
+        var totalSpecializationBonus =
+            MicrobeInternalCalculations.CalculateSpecializationBonus(EditedCellOrganelles,
+                tempMemory1);
+
         MicrobeEnvironmentalToleranceCalculations.ApplyOrganelleEffectsOnTolerances(EditedCellOrganelles,
-            ref modifiedTolerances);
+            totalSpecializationBonus, ref modifiedTolerances);
     }
 
     protected override void ResolveDerivedTypeNodeReferences()
@@ -661,7 +676,8 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
                 return MicrobeInternalCalculations.SpeedToUserReadableNumber(MicrobeInternalCalculations.CalculateSpeed(
                     CellDefinition.ModifiableOrganelles.Organelles, CellDefinition.MembraneType,
-                    CellDefinition.MembraneRigidity, CellDefinition.IsBacteria));
+                    CellDefinition.MembraneRigidity, CellDefinition.IsBacteria,
+                    CellDefinition.CellTypeSpecializationBonus));
             }
         }
     }

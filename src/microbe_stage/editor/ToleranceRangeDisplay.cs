@@ -69,8 +69,8 @@ public partial class ToleranceRangeDisplay : HSlider
         var mainLineStartPos = new Vector2(0, Size.Y * 0.5f);
         var mainLineEndPos = new Vector2(Size.X, Size.Y * 0.5f);
 
-        var lowerBoundCenter = new Vector2(lowerBoundPos + LINE_WIDTH * 0.5f, Size.Y * 0.5f);
-        var upperBoundCenter = new Vector2(upperBoundPos + LINE_WIDTH * 0.5f, Size.Y * 0.5f);
+        var lowerBoundCenter = new Vector2(lowerBoundPos, Size.Y * 0.5f);
+        var upperBoundCenter = new Vector2(upperBoundPos, Size.Y * 0.5f);
         var middleBoundCenter =
             new Vector2((float)(Size.X * (Value - MinValue) / (MaxValue - MinValue)), Size.Y * 0.5f);
 
@@ -189,8 +189,8 @@ public partial class ToleranceRangeDisplay : HSlider
         var upperBoundFraction = Math.Clamp((upperValue - MinValue) / (MaxValue - MinValue), 0, 1);
         var lowerBoundFraction = Math.Clamp((lowerValue - MinValue) / (MaxValue - MinValue), 0, 1);
 
-        lowerBoundPos = Size.X * (float)lowerBoundFraction - 1;
-        upperBoundPos = Size.X * (float)upperBoundFraction - 1;
+        lowerBoundPos = Size.X * (float)lowerBoundFraction;
+        upperBoundPos = Size.X * (float)upperBoundFraction;
 
         QueueRedraw();
     }
@@ -203,10 +203,13 @@ public partial class ToleranceRangeDisplay : HSlider
 
     private void UpdateSliderGrabberXPos()
     {
-        var fraction = (float)((relatedSlider.Value - relatedSlider.MinValue) /
-            (relatedSlider.MaxValue - relatedSlider.MinValue));
-
-        sliderGrabberXPos = relatedSlider.Size.X * fraction;
+        // Calculate grabber position. Use Size instead of relatedSlider.Size because if the related slider has set
+        // width as a percentage of the parent slider, the rounding will cause the grabber to be off by a few pixels
+        var normalizedValue = (relatedSlider.Value - relatedSlider.MinValue) /
+            (relatedSlider.MaxValue - relatedSlider.MinValue);
+        var displayFraction =
+            normalizedValue * (relatedSlider.MaxValue - relatedSlider.MinValue) / (MaxValue - MinValue);
+        sliderGrabberXPos = Size.X * (float)displayFraction;
 
         QueueRedraw();
     }

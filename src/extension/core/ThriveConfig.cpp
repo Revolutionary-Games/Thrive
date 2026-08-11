@@ -17,7 +17,7 @@ ThriveConfig* ThriveConfig::instance = nullptr;
 
 DebugDrawer* activeDrawerInstance = nullptr;
 
-void ForwardLines(const std::vector<std::tuple<JPH::RVec3Arg, JPH::RVec3Arg, JPH::Float4>>& lineBuffer) noexcept
+void ForwardLines(const std::vector<std::tuple<JVec3, JVec3, JColour>>& lineBuffer) noexcept
 {
     if (activeDrawerInstance == nullptr)
         return;
@@ -26,7 +26,7 @@ void ForwardLines(const std::vector<std::tuple<JPH::RVec3Arg, JPH::RVec3Arg, JPH
 }
 
 void ForwardTriangles(
-    const std::vector<std::tuple<JPH::RVec3Arg, JPH::RVec3Arg, JPH::RVec3Arg, JPH::Float4>>& triangleBuffer) noexcept
+    const std::vector<std::tuple<JVec3, JVec3, JVec3, JColour>>& triangleBuffer) noexcept
 {
     if (activeDrawerInstance == nullptr)
         return;

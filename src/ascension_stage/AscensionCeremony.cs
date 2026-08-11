@@ -75,6 +75,9 @@ public partial class AscensionCeremony : Node
 
     public override void _Ready()
     {
+        PauseMenu.Instance.ReportStageTransition();
+        PauseMenu.Instance.Close(false);
+
         foreach (var spawnPointPath in ObserverSpawnPointPaths)
         {
             observerSpawnPoints.Add(GetNode<Node3D>(spawnPointPath));

@@ -24,11 +24,13 @@ region_rect = Rect2(0, 0, 258, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n6u17"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_evsrs"]
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_xmghy"]
+color = Color(0.439216, 0.623529, 0.623529, 1)
+thickness = 5
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jstjb"]
 
-[node name="TolerancesEditorSubComponent" type="VBoxContainer" unique_id=1336617322 node_paths=PackedStringArray("temperatureToolTipContainer", "pressureToolTipContainer", "oxygenResistanceToolTipContainer", "uvResistanceToolTipContainer", "temperatureSlider", "temperatureToleranceRangeSlider", "pressureSlider", "pressureToleranceRangeSlider", "oxygenResistanceSlider", "uvResistanceSlider", "temperatureMinLabel", "temperatureMaxLabel", "temperatureToleranceLabel", "temperatureModifierLabel", "temperatureRangeDisplay", "temperatureLabelContainer", "pressureMinLabel", "pressureMaxLabel", "pressureToleranceLabel", "pressureModifierLabel", "pressureRangeDisplay", "pressureLabelContainer", "oxygenResistanceModifierLabel", "oxygenResistanceTotalLabel", "oxygenResistanceRangeDisplay", "oxygenResistanceLabelContainer", "uvResistanceModifierLabel", "uvResistanceTotalLabel", "uvResistanceRangeDisplay", "uvResistanceLabelContainer")]
+[node name="TolerancesEditorSubComponent" type="VBoxContainer" unique_id=1336617322 node_paths=PackedStringArray("temperatureToolTipContainer", "pressureToolTipContainer", "oxygenResistanceToolTipContainer", "uvResistanceToolTipContainer", "temperatureSlider", "temperatureToleranceRangeSlider", "pressureSlider", "pressureToleranceRangeSlider", "oxygenResistanceSlider", "oxygenResistanceSpacer", "uvResistanceSlider", "temperatureMinLabel", "temperatureMaxLabel", "temperatureToleranceLabel", "temperatureModifierLabel", "temperatureRangeDisplay", "temperatureLabelContainer", "pressureMinLabel", "pressureMaxLabel", "pressureToleranceLabel", "pressureModifierLabel", "pressureRangeDisplay", "pressureLabelContainer", "oxygenResistanceModifierLabel", "oxygenResistanceTotalLabel", "oxygenResistanceRangeDisplay", "oxygenResistanceLabelContainer", "uvResistanceModifierLabel", "uvResistanceTotalLabel", "uvResistanceRangeDisplay", "uvResistanceLabelContainer")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -44,7 +46,8 @@ temperatureSlider = NodePath("Temperature/RangeDisplayContainer/VBoxContainer/Te
 temperatureToleranceRangeSlider = NodePath("Temperature/HBoxContainer3/TemperatureRange")
 pressureSlider = NodePath("Pressure/RangeDisplayContainer/VBoxContainer/PressureSlider")
 pressureToleranceRangeSlider = NodePath("Pressure/HBoxContainer4/PressureRange")
-oxygenResistanceSlider = NodePath("Oxygen/RangeDisplayContainer/VBoxContainer/OxygenResistanceSlider")
+oxygenResistanceSlider = NodePath("Oxygen/RangeDisplayContainer/VBoxContainer/HBoxContainer/OxygenResistanceSlider")
+oxygenResistanceSpacer = NodePath("Oxygen/RangeDisplayContainer/VBoxContainer/HBoxContainer/OxygenResistanceSpacer")
 uvResistanceSlider = NodePath("UV/RangeDisplayContainer/VBoxContainer/UVResistanceSlider")
 temperatureMinLabel = NodePath("Temperature/HBoxContainer2/Total/TemperatureMinimum")
 temperatureMaxLabel = NodePath("Temperature/HBoxContainer2/Total/TemperatureMaximum")
@@ -150,6 +153,7 @@ layout_mode = 2
 [node name="Spacer" type="Control" parent="Temperature/RangeDisplayContainer" unique_id=1733797315]
 custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Temperature/RangeDisplayContainer" unique_id=448157339]
 layout_mode = 2
@@ -177,6 +181,7 @@ value = 50.0
 [node name="Spacer2" type="Control" parent="Temperature/RangeDisplayContainer" unique_id=88187736]
 custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="Temperature" unique_id=121520012]
 layout_mode = 2
@@ -302,6 +307,7 @@ layout_mode = 2
 [node name="Spacer" type="Control" parent="Pressure/RangeDisplayContainer" unique_id=1702930961]
 custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Pressure/RangeDisplayContainer" unique_id=797964187]
 layout_mode = 2
@@ -331,6 +337,7 @@ value = 40000000.0
 [node name="Spacer2" type="Control" parent="Pressure/RangeDisplayContainer" unique_id=1570659681]
 custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="Pressure" unique_id=1472914901]
 layout_mode = 2
@@ -349,8 +356,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 focus_neighbor_top = NodePath("../../RangeDisplayContainer/VBoxContainer/PressureSlider")
-focus_neighbor_bottom = NodePath("../../../Oxygen/RangeDisplayContainer/VBoxContainer/OxygenResistanceSlider")
-focus_next = NodePath("../../../Oxygen/RangeDisplayContainer/VBoxContainer/OxygenResistanceSlider")
+focus_neighbor_bottom = NodePath("../../../Oxygen/RangeDisplayContainer/VBoxContainer/HBoxContainer/OxygenResistanceSlider")
+focus_next = NodePath("../../../Oxygen/RangeDisplayContainer/VBoxContainer/HBoxContainer/OxygenResistanceSlider")
 focus_previous = NodePath("../../RangeDisplayContainer/VBoxContainer/PressureSlider")
 mouse_filter = 1
 min_value = 200000.0
@@ -453,6 +460,7 @@ layout_mode = 2
 [node name="Spacer" type="Control" parent="Oxygen/RangeDisplayContainer" unique_id=131682752]
 custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Oxygen/RangeDisplayContainer" unique_id=242132622]
 layout_mode = 2
@@ -465,23 +473,39 @@ max_value = 1.0
 step = 0.01
 value = 0.0
 beginConnectorFromMarker = 2
-relatedSlider = NodePath("../OxygenResistanceSlider")
+relatedSlider = NodePath("../HBoxContainer/OxygenResistanceSlider")
 
-[node name="OxygenResistanceSlider" type="HSlider" parent="Oxygen/RangeDisplayContainer/VBoxContainer" unique_id=967114038]
+[node name="HBoxContainer" type="HBoxContainer" parent="Oxygen/RangeDisplayContainer/VBoxContainer" unique_id=1215608808]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="OxygenResistanceSlider" type="HSlider" parent="Oxygen/RangeDisplayContainer/VBoxContainer/HBoxContainer" unique_id=967114038]
 layout_mode = 2
 size_flags_horizontal = 3
-focus_neighbor_top = NodePath("../../../../Pressure/HBoxContainer4/PressureRange")
-focus_neighbor_bottom = NodePath("../../../../UV/RangeDisplayContainer/VBoxContainer/UVResistanceSlider")
-focus_next = NodePath("../../../../UV/RangeDisplayContainer/VBoxContainer/UVResistanceSlider")
-focus_previous = NodePath("../../../../Pressure/HBoxContainer4/PressureRange")
+size_flags_vertical = 1
+size_flags_stretch_ratio = 10.0
+focus_neighbor_top = NodePath("../../../../../Pressure/HBoxContainer4/PressureRange")
+focus_neighbor_bottom = NodePath("../../../../../UV/RangeDisplayContainer/VBoxContainer/UVResistanceSlider")
+focus_next = NodePath("../../../../../UV/RangeDisplayContainer/VBoxContainer/UVResistanceSlider")
+focus_previous = NodePath("../../../../../Pressure/HBoxContainer4/PressureRange")
 theme_override_constants/center_grabber = 1
-theme_override_styles/slider = SubResource("StyleBoxEmpty_evsrs")
-max_value = 1.0
-step = 0.05
+theme_override_styles/slider = SubResource("StyleBoxLine_xmghy")
+max_value = 0.1
+step = 0.01
+
+[node name="OxygenResistanceSpacer" type="Control" parent="Oxygen/RangeDisplayContainer/VBoxContainer/HBoxContainer" unique_id=574488409]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 90.0
+focus_neighbor_top = NodePath("../../../../../Pressure/HBoxContainer4/PressureRange")
+focus_neighbor_bottom = NodePath("../../../../../UV/RangeDisplayContainer/VBoxContainer/UVResistanceSlider")
+focus_next = NodePath("../../../../../UV/RangeDisplayContainer/VBoxContainer/UVResistanceSlider")
+focus_previous = NodePath("../../../../../Pressure/HBoxContainer4/PressureRange")
 
 [node name="Spacer2" type="Control" parent="Oxygen/RangeDisplayContainer" unique_id=1372406449]
 custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Spacer" type="Control" parent="Oxygen" unique_id=574127871]
 custom_minimum_size = Vector2(0, 2)
@@ -558,6 +582,7 @@ layout_mode = 2
 [node name="Spacer" type="Control" parent="UV/RangeDisplayContainer" unique_id=1682938016]
 custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UV/RangeDisplayContainer" unique_id=1203124143]
 layout_mode = 2
@@ -575,8 +600,8 @@ relatedSlider = NodePath("../UVResistanceSlider")
 [node name="UVResistanceSlider" type="HSlider" parent="UV/RangeDisplayContainer/VBoxContainer" unique_id=142203687]
 layout_mode = 2
 size_flags_horizontal = 3
-focus_neighbor_top = NodePath("../../../../Oxygen/RangeDisplayContainer/VBoxContainer/OxygenResistanceSlider")
-focus_previous = NodePath("../../../../Oxygen/RangeDisplayContainer/VBoxContainer/OxygenResistanceSlider")
+focus_neighbor_top = NodePath("../../../../Oxygen/RangeDisplayContainer/VBoxContainer/HBoxContainer/OxygenResistanceSlider")
+focus_previous = NodePath("../../../../Oxygen/RangeDisplayContainer/VBoxContainer/HBoxContainer/OxygenResistanceSlider")
 theme_override_constants/center_grabber = 1
 theme_override_styles/slider = SubResource("StyleBoxEmpty_jstjb")
 max_value = 1.0
@@ -585,11 +610,12 @@ step = 0.05
 [node name="Spacer2" type="Control" parent="UV/RangeDisplayContainer" unique_id=1944425756]
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
+mouse_filter = 2
 
 [connection signal="value_changed" from="Temperature/RangeDisplayContainer/VBoxContainer/TemperatureSlider" to="." method="OnTemperatureSliderChanged"]
 [connection signal="value_changed" from="Temperature/HBoxContainer3/TemperatureRange" to="." method="OnTemperatureToleranceRangeSliderChanged"]
 [connection signal="value_changed" from="Pressure/RangeDisplayContainer/VBoxContainer/PressureSlider" to="." method="OnPressureSliderChanged"]
 [connection signal="value_changed" from="Pressure/HBoxContainer4/PressureRange" to="." method="OnPressureToleranceRangeSliderChanged"]
-[connection signal="value_changed" from="Oxygen/RangeDisplayContainer/VBoxContainer/OxygenResistanceSlider" to="." method="OnOxygenResistanceSliderChanged"]
+[connection signal="value_changed" from="Oxygen/RangeDisplayContainer/VBoxContainer/HBoxContainer/OxygenResistanceSlider" to="." method="OnOxygenResistanceSliderChanged"]
 [connection signal="resized" from="UV/RangeDisplayContainer/VBoxContainer/UVResistanceSlider" to="." method="OnResized"]
 [connection signal="value_changed" from="UV/RangeDisplayContainer/VBoxContainer/UVResistanceSlider" to="." method="OnUVResistanceSliderChanged"]

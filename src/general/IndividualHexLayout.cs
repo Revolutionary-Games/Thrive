@@ -74,6 +74,27 @@ public class IndividualHexLayout<TData> : HexLayout<HexWithData<TData>>, IReadOn
         return ((HexLayout<HexWithData<TData>>)this).GetByExactElementRootPosition(location);
     }
 
+    public override bool CanPlace(HexWithData<TData> hex, List<Hex> temporaryStorage, List<Hex> temporaryStorage2)
+    {
+        return CanPlace(hex.Position);
+    }
+
+    public bool CanPlace(Hex position)
+    {
+        for (int i = 0; i < Count; ++i)
+        {
+            if (this[i].Position == position)
+                return false;
+        }
+
+        return true;
+    }
+
+    public override bool CanPlaceAllocating(HexWithData<TData> hex)
+    {
+        return CanPlace(hex.Position);
+    }
+
     protected override void GetHexComponentPositions(HexWithData<TData> hex, List<Hex> result)
     {
         result.Clear();

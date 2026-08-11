@@ -105,7 +105,7 @@ public abstract class Species : ICloneable, IArchivable, IReadOnlySpecies
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     Changing this has no effect as this is set after auto-evo from the per patch populations.
+    ///     Changing this has no effect as this is set after auto-evo from the per-patch populations.
     ///   </para>
     /// </remarks>
     public long Population { get; set; } = 1;
@@ -116,6 +116,11 @@ public abstract class Species : ICloneable, IArchivable, IReadOnlySpecies
     ///   When true, this is the player species
     /// </summary>
     public bool PlayerSpecies { get; private set; }
+
+    /// <summary>
+    ///   This is basically the "sex" of the species when played by the player.
+    /// </summary>
+    public GameteType PlayerGamete { get; set; } = GameteType.All;
 
     public EndosymbiosisData Endosymbiosis { get; private set; } = new();
 
@@ -145,6 +150,12 @@ public abstract class Species : ICloneable, IArchivable, IReadOnlySpecies
 
     public string FormattedIdentifier => FormattedName + $" ({ID:n0})";
 
+    /// <summary>
+    ///   The main stage this species is in, for display purposes. This returns a game state as that is already
+    ///   supported in translations, so we do it like this.
+    /// </summary>
+    public abstract Stage StageForDisplay { get; }
+
     public bool IsExtinct => Population <= 0;
 
     public abstract ushort CurrentArchiveVersion { get; }
@@ -152,6 +163,19 @@ public abstract class Species : ICloneable, IArchivable, IReadOnlySpecies
     public abstract ArchiveObjectType ArchiveObjectType { get; }
 
     public bool CanBeReferencedInArchive => true;
+
+    public static double ScalePopulationByType(Species speciesType, double rawPopulation)
+    {
+        // To not confuse the player that might see a 1 as the population but still seeing plenty of their species,
+        // scale up the displayed numbers.
+        if (speciesType is MicrobeSpecies or MulticellularSpecies)
+        {
+            // Scale is trillions to make it somewhat realistic for the entire oceans of microbes
+            rawPopulation *= Constants.MICROBE_POPULATION_MULTIPLIER;
+        }
+
+        return rawPopulation;
+    }
 
     public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
     {

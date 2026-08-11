@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
 using Godot;
 
 /// <summary>
@@ -26,6 +27,12 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
     ///   Page future for forwards navigation (if the player has already gone backwards).
     /// </summary>
     private readonly Stack<IThriveopediaPage> pageFuture = new();
+
+    /// <summary>
+    ///   A lock to avoid <see cref="DoBackgroundPageSearch(string)"/> and a <see cref="Invoke"/> task from
+    ///   using the arrays at the same time
+    /// </summary>
+    private readonly object backgroundThreadArrayLock = new();
 
 #pragma warning disable CA2213
     [Export]
@@ -59,10 +66,13 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
     private ThriveopediaHomePage homePage = null!;
 
     /// <summary>
-    ///   The stage dropdown is stored here so it can be used as a parent for the stage specific items when they are
+    ///   The stage dropdown is stored here, so it can be used as a parent for the stage-specific items when they are
     ///   added to the page tree.
     /// </summary>
     private TreeItem stageDropdown = null!;
+
+    private PackedScene speciesPageScene = null!;
+    private PackedScene extinctPageScene = null!;
 #pragma warning restore CA2213
 
     private bool treeCollapsed;
@@ -83,14 +93,57 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
     private bool hasGeneratedWiki;
 
     /// <summary>
-    ///   As Thriveopedias are now persistent, we need to know once game property setup is done
+    ///   As Thriveopedias are now persistent, we need to know once the game-properties parent-page is created
     /// </summary>
     private bool currentGamePagesAdded;
+
+    /// <summary>
+    ///   Have all the pages searchable string been cached before a search?
+    /// </summary>
+    private bool presearchCache;
 
     /// <summary>
     ///   The currently selected stage to view
     /// </summary>
     private Stage currentSelectedStage;
+
+    /// <summary>
+    ///   Has the input field changed while it still running a background search?
+    ///   Then after the search is completed a new one whit the <see cref="currentSearchText"/> will start
+    /// </summary>
+    private bool requestingNewSearch;
+
+    /// <summary>
+    ///   Is currently running a background search.
+    /// </summary>
+    private bool runningBackgroundSearch;
+
+    /// <summary>
+    ///   Tracks the amount of time since the last update on the search
+    /// </summary>
+    private double searchTimer;
+
+    /// <summary>
+    ///   The text to search in the next background search.
+    /// </summary>
+    private string currentSearchText = string.Empty;
+
+    /// <summary>
+    ///   Has the Search bar updated after the start of a new Search?
+    /// </summary>
+    private bool isSearchDirty;
+
+    /// <summary>
+    ///   Reusable string distance array for <see cref="DoBackgroundPageSearch(string)"/>.
+    ///   This array will increase when needed
+    /// </summary>
+    private int[] searchDistanceArray = Array.Empty<int>();
+
+    /// <summary>
+    ///   Reusable visibility array for <see cref="DoBackgroundPageSearch(string)"/>.
+    ///   This array will increase when needed
+    /// </summary>
+    private bool[] visibilityArray = Array.Empty<bool>();
 
     [Signal]
     public delegate void OnThriveopediaClosedEventHandler();
@@ -107,7 +160,20 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
         set
         {
             // Hide the last page and show the new page
-            selectedPage?.Hide();
+            if (selectedPage != null)
+            {
+                selectedPage.Hide();
+
+                if (selectedPage is ITransientPage transient && !transient.Pinned)
+                {
+                    // If navigating away from a non-pinned transient page, destroy the page
+                    GD.Print("Removing transient page due to navigation away from it: ", selectedPage.PageName);
+
+                    var pageToDelete = selectedPage;
+                    selectedPage = null;
+                    RemovePage(pageToDelete);
+                }
+            }
 
             selectedPage = value;
             selectedPage.Show();
@@ -131,6 +197,11 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
 
             currentGame = value;
 
+            // When changing the current game, we want to delete pages related to the old world
+            // Need to delete items in right order to delete the children first
+            RemoveTransientPages(true);
+            RemovePageIfExists("WorldSpecies");
+
             // Add all pages associated with a game in progress
             if (currentGame != null)
             {
@@ -142,7 +213,21 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
                     currentGamePagesAdded = true;
                 }
 
-                // Looks like refresh is automatic, so we don't need an else clause here
+                // This is always added to be the last page
+                AddPage("WorldSpecies");
+
+                // Load world-pinned pages
+                foreach (var pinnedPage in currentGame.ThriveopediaData.PinnedPages)
+                {
+                    try
+                    {
+                        GetPage(pinnedPage);
+                    }
+                    catch (Exception e)
+                    {
+                        GD.PrintErr($"Failed to load pinned page: {pinnedPage}, error: {e.Message}");
+                    }
+                }
             }
 
             // Notify all pages of the new game properties
@@ -153,6 +238,9 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
 
     public override void _Ready()
     {
+        speciesPageScene = GD.Load<PackedScene>("res://src/thriveopedia/pages/ThriveopediaSpeciesInfoPage.tscn");
+        extinctPageScene = GD.Load<PackedScene>("res://src/thriveopedia/pages/ThriveopediaExtinctSpeciesPage.tscn");
+
         // Create and hide a blank root to avoid home being used as the root
         pageTree.CreateItem();
         pageTree.HideRoot = true;
@@ -180,6 +268,15 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
 
         ThriveopediaManager.RemoveActiveThriveopedia(this);
         Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
+    }
+
+    public override void _Process(double delta)
+    {
+        searchTimer += delta;
+        if (isSearchDirty && searchTimer > 0.1)
+        {
+            BeginBackgroundSearch();
+        }
     }
 
     public override void _Notification(int what)
@@ -280,6 +377,31 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
                 return page.Key;
         }
 
+        if (name.StartsWith("species:"))
+        {
+            var specialName = name.Split("species:", 2)[1];
+            if (uint.TryParse(specialName, out var speciesId))
+            {
+                var species = GetActiveSpeciesData(speciesId);
+
+                if (species == null)
+                {
+                    GD.Print($"No species data exists for {speciesId} so showing extinct page");
+
+                    var extinctPage = extinctPageScene.Instantiate<ThriveopediaExtinctSpeciesPage>();
+                    extinctPage.SpeciesId = speciesId;
+                    AddPage(extinctPage.PageName, extinctPage);
+                    return extinctPage;
+                }
+
+                var instance = speciesPageScene.Instantiate<ThriveopediaSpeciesInfoPage>();
+                instance.SpeciesToShow = species;
+
+                AddPage(instance.PageName, instance);
+                return instance;
+            }
+        }
+
 #if DEBUG
         GD.PrintErr($"Couldn't find page with name: {name}, existing pages:");
         foreach (var page in allPages)
@@ -314,7 +436,7 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
     /// </summary>
     /// <param name="name">The name of the page</param>
     /// <param name="page">
-    ///   Pre-configured page if scene filename does not match the page name or the page needs extra adjustment
+    ///   Pre-configured page if the scene filename does not match the page name or the page needs extra adjustment
     /// </param>
     private void AddPage(string name, IThriveopediaPage? page = null)
     {
@@ -339,6 +461,9 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
             throw new InvalidOperationException($"Attempted to add page with name {name} before parent was added");
         }
 
+        // If pages are added after the game is set, we want them to also get the info
+        page.CurrentGame = CurrentGame;
+
         page.PageNode.Connect(ThriveopediaPage.SignalName.OnSceneChanged,
             new Callable(this, nameof(HandleSceneChanged)));
         pageContainer.AddChild(page.PageNode);
@@ -353,6 +478,82 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
             treeItem.Visible = false;
 
         page.Hide();
+
+        presearchCache = false;
+    }
+
+    /// <summary>
+    ///   Removes a page that should no longer be shown. Will delete the page node.
+    /// </summary>
+    /// <param name="page">Page to delete</param>
+    private void RemovePage(IThriveopediaPage page)
+    {
+        if (!allPages.Keys.Contains(page))
+            throw new InvalidOperationException("Attempted to delete a non-existent page");
+
+        if (page == SelectedPage)
+        {
+            GD.Print("Deleting selected page, will unselect it");
+            SelectedPage = homePage;
+
+            // A transient page may have been deleted already by unselecting it
+            if (IsTransientPage(page) && !allPages.ContainsKey(page))
+                return;
+        }
+
+        if (!allPages.TryGetValue(page, out var item))
+            throw new InvalidOperationException("Attempted to delete a non-existent page");
+
+        if (!allPages.Remove(page))
+            throw new InvalidOperationException("Attempted to delete a non-existent page");
+
+        // Remove the tree item
+        // Note: this is unsafe if the item has any children! So most nested items need to be removed first.
+#if DEBUG
+        foreach (var treeItem in item.GetChildren())
+        {
+            GD.PrintErr("When removing tree item, found child: ", treeItem.GetText(0));
+        }
+
+#endif
+
+        item.Free();
+
+        // Remove the actual page node
+        pageContainer.RemoveChild(page.PageNode);
+        page.PageNode.QueueFree();
+    }
+
+    private void RemoveTransientPages(bool evenPinned)
+    {
+        var temp = new List<IThriveopediaPage>();
+
+        foreach (var page in allPages.Keys)
+        {
+            if (IsTransientPage(page) && (evenPinned || !((ITransientPage)page).Pinned))
+            {
+                temp.Add(page);
+            }
+        }
+
+        foreach (var page in temp)
+        {
+            RemovePage(page);
+        }
+    }
+
+    private bool RemovePageIfExists(string title)
+    {
+        foreach (var pair in allPages)
+        {
+            if (pair.Key.PageName == title)
+            {
+                RemovePage(pair.Key);
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private void AddStageDropdown()
@@ -580,42 +781,190 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
     private void OnBackPressed()
     {
         pageFuture.Push(pageHistory.Pop());
+
+        var targetPage = pageHistory.Peek();
+
+        if (IsTransientPage(targetPage) && !allPages.ContainsKey(targetPage))
+        {
+            GD.Print("Restoring transient page for navigation");
+
+            // Reload the page and update history reference
+            pageHistory.Pop();
+            pageHistory.Push(GetPage(targetPage.PageName));
+        }
+
         ChangePage(pageHistory.Peek().PageName, false, false);
     }
 
     private void OnForwardPressed()
     {
-        ChangePage(pageFuture.Pop().PageName, true, false);
+        var targetPage = pageFuture.Pop();
+
+        // TODO: handling for removed species page here
+        if (IsTransientPage(targetPage) && !allPages.ContainsKey(targetPage))
+        {
+            GD.Print("Restoring transient page for navigation");
+            targetPage = GetPage(targetPage.PageName);
+        }
+
+        ChangePage(targetPage.PageName, true, false);
+    }
+
+    private bool IsTransientPage(IThriveopediaPage page)
+    {
+        if (page is ITransientPage)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     private void OnSearchUpdated(string newText)
     {
+        isSearchDirty = true;
+        currentSearchText = newText;
+        searchTimer = 0;
+    }
+
+    private void BeginBackgroundSearch()
+    {
+        if (!isSearchDirty)
+            return;
+
+        if (runningBackgroundSearch)
+        {
+            requestingNewSearch = true;
+            return;
+        }
+
+        runningBackgroundSearch = true;
+
+        if (!presearchCache)
+        {
+            // Cache the translated strings from GODOT to C#
+            foreach (var page in allPages)
+            {
+                _ = page.Key.TranslatedAdditionalSearchContent;
+                _ = page.Key.TranslatedPageBody;
+                _ = page.Key.TranslatedPageName;
+            }
+
+            presearchCache = true;
+        }
+
+        isSearchDirty = false;
+        string text = currentSearchText.ToLower(CultureInfo.CurrentCulture);
+
+        TaskExecutor.Instance.AddTask(new Task(() => DoBackgroundPageSearch(text)));
+    }
+
+    private void DoBackgroundPageSearch(string newText)
+    {
+        lock (backgroundThreadArrayLock)
+        {
+            if (allPages.Count > searchDistanceArray.Length)
+            {
+                searchDistanceArray = new int[allPages.Count];
+                visibilityArray = new bool[allPages.Count];
+            }
+
+            int lowestRawError = int.MaxValue;
+
+            int iterator = 0;
+            foreach (var page in allPages)
+            {
+                string pageName = page.Key.TranslatedPageName.ToLower(CultureInfo.CurrentCulture);
+
+                int costbetween = StringUtils.DoStringCostBetween(pageName, newText);
+
+                lowestRawError = Math.Min(lowestRawError, costbetween);
+
+                // removes the error from strings being bigger than the search text
+                searchDistanceArray[iterator] = costbetween - Math.Max(0, pageName.Length - newText.Length);
+                visibilityArray[iterator] = false;
+                ++iterator;
+            }
+
+            // A threshold for similar results
+            var costThreshold = searchDistanceArray.Take(allPages.Count).Min() + 1;
+            bool titleSearchOnly = lowestRawError < 2;
+
+            iterator = 0;
+            foreach (var page in allPages)
+            {
+                // TODO: maybe switch ToLower with something else since it does return "a copy"
+                // when it should just directly edit the string
+
+                bool visible = false;
+
+                string pageName = page.Key.TranslatedPageName.ToLower(CultureInfo.CurrentCulture);
+                if (newText == string.Empty
+                    || searchDistanceArray[iterator] <= costThreshold || pageName.Contains(newText))
+                    visible = true;
+
+                if (!visible && !titleSearchOnly)
+                {
+                    string? pageContent = page.Key.TranslatedPageBody?.ToLower(CultureInfo.CurrentCulture);
+                    string? additionalContent =
+                        page.Key.TranslatedAdditionalSearchContent?.ToLower(CultureInfo.CurrentCulture);
+                    if ((pageContent != null && pageContent.Contains(newText))
+                        || (additionalContent != null && additionalContent.Contains(newText)))
+                        visible = true;
+                }
+
+                visibilityArray[iterator] = visible;
+                ++iterator;
+            }
+        }
+
+        Invoke.Instance.Queue(ApplyVisibilityResults);
+    }
+
+    private void ApplyVisibilityResults()
+    {
         stageDropdown.Visible = false;
 
-        var newTextLowercase = newText.ToLower(CultureInfo.CurrentCulture);
-
-        foreach (var page in allPages)
+        lock (backgroundThreadArrayLock)
         {
-            var visible = page.Key.TranslatedPageName.ToLower(CultureInfo.CurrentCulture)
-                .Contains(newTextLowercase);
-
-            if (visible && page.Key is ThriveopediaStagePage)
+            // a fail check incase a new page was added in between calculating visibility and applying
+            bool countfail = allPages.Count > visibilityArray.Length;
+            int iterator = 0;
+            foreach (var page in allPages)
             {
-                // A stage page was found, so the stage dropdown should be shown (instead of individual pages)
-                visible = false;
+                bool isVisible = countfail ? true : visibilityArray[iterator];
 
-                if (!stageDropdown.Visible)
+                if (isVisible && page.Key is ThriveopediaStagePage)
                 {
-                    stageDropdown.Visible = true;
-                    SetParentPagesVisibility(stageDropdown, true);
-                }
-            }
+                    // A stage page was found, so the stage dropdown should be shown (instead of individual pages)
+                    isVisible = false;
 
-            page.Value.Visible = visible;
-            if (visible)
-            {
-                SetParentPagesVisibility(page.Value, true);
+                    if (!stageDropdown.Visible)
+                    {
+                        stageDropdown.Visible = true;
+                        SetParentPagesVisibility(stageDropdown, true);
+                    }
+                }
+
+                page.Value.Visible = isVisible;
+                if (isVisible)
+                {
+                    SetParentPagesVisibility(page.Value, true);
+                }
+
+                ++iterator;
             }
+        }
+
+        if (requestingNewSearch)
+        {
+            isSearchDirty = false;
+            TaskExecutor.Instance.AddTask(new Task(() => DoBackgroundPageSearch(currentSearchText)));
+            requestingNewSearch = false;
+        }
+        else
+        {
+            runningBackgroundSearch = false;
         }
     }
 
@@ -682,6 +1031,8 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
         {
             UpdatePageInTree(page.Value, page.Key);
         }
+
+        presearchCache = false;
     }
 
     private void PrintErrorAboutCurrentGame()

@@ -164,7 +164,7 @@ public partial class TransitionManager : ControlWithInput
     public void AddSequence(ITransition transition, Action? onFinishedCallback = null, bool skippable = true,
         bool skipPrevious = true)
     {
-        AddSequence(new List<ITransition> { transition }, onFinishedCallback, skippable, skipPrevious);
+        AddSequence([transition], onFinishedCallback, skippable, skipPrevious);
     }
 
     /// <summary>
@@ -263,7 +263,7 @@ public partial class TransitionManager : ControlWithInput
                 var previous = queuedTransitions.Dequeue();
 
                 // Defer call to avoid possible "flickers"
-                Invoke.Instance.Queue(() => previous.Clear());
+                Invoke.Instance.Queue(previous.Clear);
 
                 if (previous is ScreenFade fade)
                     Instance.LastFadedType = fade.CurrentFadeType;

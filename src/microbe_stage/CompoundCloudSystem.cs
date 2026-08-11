@@ -9,7 +9,7 @@ using Systems;
 /// <summary>
 ///   Manages the spawning of and processing compound clouds
 /// </summary>
-[RuntimeCost(35)]
+[RuntimeCost(17.5f)]
 public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveLoadedTracked, IArchiveUpdatable
 {
     public const ushort SERIALIZATION_VERSION = 1;
@@ -486,15 +486,6 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
         foreach (var cloud in clouds)
         {
             cloud.QueueAdvectCloud(delta, tasks);
-        }
-
-        executor.RunTasks(tasks);
-        tasks.Clear();
-
-        // Update the cloud textures in parallel
-        foreach (var cloud in clouds)
-        {
-            cloud.QueueUpdateTextureImage(tasks);
         }
 
         executor.RunTasks(tasks);

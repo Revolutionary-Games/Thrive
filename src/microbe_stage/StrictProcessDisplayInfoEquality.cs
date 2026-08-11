@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 /// <summary>
@@ -45,14 +46,10 @@ public class StrictProcessDisplayInfoEquality : IEquatable<StrictProcessDisplayI
         if (our.Enabled != theirs.Enabled)
             return false;
 
-        if (ReferenceEquals(our.Inputs, null) != ReferenceEquals(theirs.Inputs, null))
-            return false;
-        if (our.Inputs != null && !our.Inputs.DictionaryEquals(theirs.Inputs!))
+        if (!IsSequenceEqual(our.Inputs, theirs.Inputs))
             return false;
 
-        if (ReferenceEquals(our.EnvironmentalInputs, null) != ReferenceEquals(theirs.EnvironmentalInputs, null))
-            return false;
-        if (our.EnvironmentalInputs != null && !our.EnvironmentalInputs.DictionaryEquals(theirs.EnvironmentalInputs!))
+        if (!IsSequenceEqual(our.EnvironmentalInputs, theirs.EnvironmentalInputs))
             return false;
 
         if (ReferenceEquals(our.FullSpeedRequiredEnvironmentalInputs, null) !=
@@ -67,9 +64,7 @@ public class StrictProcessDisplayInfoEquality : IEquatable<StrictProcessDisplayI
             return false;
         }
 
-        if (ReferenceEquals(our.Outputs, null) != ReferenceEquals(theirs.Outputs, null))
-            return false;
-        if (our.Outputs != null && !our.Outputs.DictionaryEquals(theirs.Outputs!))
+        if (!IsSequenceEqual(our.Outputs, theirs.Outputs))
             return false;
 
         if (ReferenceEquals(our.LimitingCompounds, null) != ReferenceEquals(theirs.LimitingCompounds, null))
@@ -95,5 +90,36 @@ public class StrictProcessDisplayInfoEquality : IEquatable<StrictProcessDisplayI
     public override int GetHashCode()
     {
         return DisplayInfo.GetHashCode();
+    }
+
+    private bool IsSequenceEqual(IEnumerable<KeyValuePair<Compound, float>> items1,
+        IEnumerable<KeyValuePair<Compound, float>> items2)
+    {
+        using var enumerator1 = items1.GetEnumerator();
+        using var enumerator2 = items2.GetEnumerator();
+
+        while (enumerator1.MoveNext())
+        {
+            // Fail if different count
+            if (!enumerator2.MoveNext())
+                return false;
+
+            var value1 = enumerator1.Current;
+            var value2 = enumerator2.Current;
+
+            // We want exact float values only
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            if (value1.Value != value2.Value)
+                return false;
+
+            if (value1.Key != value2.Key)
+                return false;
+        }
+
+        // Fail if different number of items
+        if (enumerator2.MoveNext())
+            return false;
+
+        return true;
     }
 }

@@ -90,7 +90,9 @@ public static class CommonMutationFunctions
             MutationLogicFunctions.ColourNewMicrobeSpecies(random, mutated);
         }
 
-        mutated.ModifiableTolerances.CopyFrom(forPatch.GenerateTolerancesForMicrobe(mutated.Organelles));
+        mutated.ModifiableTolerances.CopyFrom(forPatch.GenerateTolerancesForMicrobe(mutated.Organelles,
+            MicrobeInternalCalculations.CalculateSpecializationBonus(mutated.Organelles,
+                new Dictionary<OrganelleDefinition, int>())));
 
         // Override the default species starting name to have more variability in the names
         var nameGenerator = SimulationParameters.Instance.NameGenerator;

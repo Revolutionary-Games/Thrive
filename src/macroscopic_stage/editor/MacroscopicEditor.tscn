@@ -24,8 +24,9 @@ sky_material = SubResource("PanoramaSkyMaterial_hbefc")
 resource_local_to_scene = true
 background_mode = 2
 sky = SubResource("Sky_pvnio")
-ambient_light_source = 1
+ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.04
 
 [node name="MacroscopicEditor" type="Node" unique_id=1720613879 node_paths=PackedStringArray("reportTab", "patchMapTab", "bodyPlanEditorTab", "cellEditorTab", "cellEditorCamera", "cellEditorLight", "body3DEditorCamera", "bodyEditorLight", "worldEnvironmentNode", "noCellTypeSelected", "editorTabSelector", "editorGUIBaseNode")]
 script = ExtResource("5")
@@ -52,7 +53,7 @@ environment = SubResource("Environment_x3jph")
 
 [node name="MicrobeEditorWorld" parent="." unique_id=1734008661 instance=ExtResource("6")]
 
-[node name="PrimaryCamera" parent="MicrobeEditorWorld" index="0"]
+[node name="PrimaryCamera" parent="MicrobeEditorWorld" index="0" unique_id=945110176]
 current = false
 
 [node name="MacroscopicEditorGUI" type="Control" parent="." unique_id=2093958898]

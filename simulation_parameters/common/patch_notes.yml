@@ -1337,3 +1337,126 @@
     - Updated author names in the art gallery
     - Updated System.IO.Hashing from 10.0.3. to 10.0.5
     - Updated translations
+
+1.1.0:
+  IntroductionText: |
+    This release starts to make significant changes to the multicellular stage with a new reproduction mode, rebalanced reproduction speed, and vastly expanded cell specialization system that now also applies bonuses from cell placement. In auto-evo we have again improved the speed and the results. The compound clouds have also received some attention with their performance being doubled. The tolerance system has also received some changes with oxygen slider going only up to 10% and the remaining tolerance only being available through placing certain organelles. Finally, we have dedicated Thriveopedia pages for each species so that clicking on a species no longer just goes to the evolutionary tree. And of course we have a very wide array of smaller fixes and improvements.
+  ReleaseLink: https://github.com/Revolutionary-Games/Thrive/releases/tag/v1.1.0
+  PatchNotes:
+    - In multicellular, cell positions next to cells of the same type now give extra specialization bonus for those cells
+    - Cell adjacency bonuses are shown in the multicellular editor on hovering a cell
+    - Added spore reproduction mode
+    - Overhauled auto-evo structure to make it much faster and to generate better species
+    - Improved the performance of the compound clouds by up to 100%
+    - Expanded cell specialization effects to movement, tolerances, toxins and various other cell functions
+    - Limited max oxygen tolerance on the slider greatly to force higher tolerance values only to be available through adding organelles that grant tolerance bonuses to oxygen
+    - Created pages in the Thriveopedia for each species in the game and made clicking on a species take you to that page
+    - Added a very easy difficulty
+    - Tweaked multicellular reproduction speed
+    - Doubled the engulf size of targets that are attached to something, for example by being in a colony
+    - Changed the osmoregulation difficulty slider to a general energy slider which now affects almost everything handling ATP
+    - Too tall tooltips now slowly scroll up and down to show all of their contents
+    - Updated to Godot 4.6.2
+    - Implemented the option to change compound cloud resolutions to allow the player to pick between quality and faster CPU calculation speed
+    - Fixed balance regression for chloroplasts
+    - Buffed glucose output of the chemoplast to make it a proper upgrade again (some previous game balancing cycle had not adjusted it correctly)
+    - Auto-evo migrations now prefer targeting empty patches and won't be generated for a patch that already had the migrating species in it
+    - Tweaked the visuals of the process panel
+    - Eukaryotic variants of organelles now count towards the same specialization than prokaryotic variants of the same organelle
+    - Overhauled the calculation done for cell specialization. It is now based on Simpson's Diversity Index calculation.
+    - Rebalanced photosynthesis and membrane stats
+    - Toxin damage is now distributed among all colony members to make toxins less effective against big multicellular colonies
+    - Engulfed toxin damage is now a flat damage rather than a percentage of max health
+    - Tweaked toxin balance by reducing damage and generation speed and slightly increased max cooldown between shots
+    - Tweaked the threshold for AI to consider it having enough toxin to shoot
+    - Rebalanced the double membrane type
+    - AI cells can now eject toxic prey when they take damage based on their behaviour values and how much health they have left
+    - Added display of metaball hierarchy as lines to the macroscopic editor
+    - Playing music track state is now saved and loaded from saves. This makes music tracks resume their previously saved position when playing category is next changed after loading a save.
+    - Added a tutorial for the specialization feature both in the microbe and the multicellular stages
+    - Added loading screen tips about specialization
+    - Added multicellular-specific tips to the loading screen
+    - Increased separation force in the cell division animation for large cells so that the animation keeps working later into the game
+    - It's now possible to control the cell rotation with a controller input method or with keyboard keys with custom keybindings. Note that resuming mouse look requires swapping between input methods or reloading a save.
+    - Microbes and cell colonies now use their actual radii to check against terrain collisions when spawning to ensure they don't clip into terrain when picking spawn locations.
+    - The microbe AI now uses closest colony member distance to determine when to turn on engulf mode
+    - Added a feature to make some organelles incompatible with certain membranes. For example, myofibril can't be now used with wall type cells.
+    - Adjusted lighting in the macroscopic editor
+    - Screen filters now affect Godot-inbuilt popups and tooltips
+    - Fixed the ATP bar flickering when near full ATP. It is now back to the pre-ECS behaviour of staying totally full when a cell has sufficient ATP production.
+    - Fixed ATP production bar showing incorrect numbers for compound usage
+    - Fixed freebuild status flag not being remembered everywhere after loading a save which caused excess warnings about achievements no longer being viable
+    - Fixed process panel summing environmental compounds from multiple cells in a colony
+    - Fixed major bug with death being unable to unbind multicellular colonies which could cause old cells that are stuck to the colony
+    - Fixed colony lead cell leaving a colony not disbanding the entire colony. This was the assumption elsewhere in the code so this small bug had quite far-reaching effects all over the game.
+    - Fixed storage filling time warnings appearing for compounds where the availability doesn't change if it is night or not
+    - Fixed microbe colony members not being able to receive radiation from rocks
+    - Fixed tooltips being in the wrong position for one frame when initially becoming visible
+    - Fixed the nitroplast not being scientifically accurate (it no longer uses oxygen)
+    - Fixed a bug in the multicellular editor allowing it to move cells to overlap each other
+    - Fixed context-specific tracks being able to play multiple times in a row when there were non-context specific tracks that could have been played instead
+    - Fixed multicellular growth not resuming correctly if the main cell got engulfed and then ejected
+    - Fixed non-useful compounds being added to tally of colony compounds when distributing them, which could otherwise trigger an infinite compound amount bug
+    - Fixed engulfing animated organelles like cilia causing an error in target endosome size calculation
+    - Fixed flagellum push direction calculation when placed exactly at 0, 0 coordinates
+    - Fixed pilus physical position being offset from the graphical model in some cells (all cells use now more accurate math)
+    - Fixed cell preview graphics not updating when doing or undoing an organelle move action
+    - Fixed signalling agents staying on if they were removed in the editor
+    - Fixed cell colour change animation not resetting to default colour after ending
+    - Fixed the cell colour base change animation being able to be overridden after exiting the editor sometimes leading to an unexpected colour becoming stuck
+    - Fixed compressed environment panel font getting stuck after loading a save
+    - Fixed tolerance slider padding elements being able to eat mouse events, which made using the sliders sometimes more fiddly than necessary
+    - Fixed multicellular species regrowing all cells as duplicates after spawning in
+    - Fixed the extinction screen not using population amount suffixes
+    - Fixed the "devoured" text not always showing when dying to engulfing
+    - Fixed the screen overlay effects not applying to our popup windows or custom tooltips
+    - Fixed the pause menu being able to open during the ascension and credits
+    - Fixed the button requesting screen record permission on Mac being way too wide and causing one part of the editor GUI to become really wide.
+    - Fixed organelle upgrades creating an action when leaving everything at the default values and then confirming
+    - Fixed editor errors caused by organelle suggestion runs if an organelle was moved while one was still in progress
+    - Fixed multicellular slime jets queueing force when not moving and being able to use it all at once
+    - Fixed the options menu applying a lot of duplicate settings updates on opening it, now the bulk settings change doesn't trigger changes
+    - Fixed the confirm button in the editor not reacting to language change
+    - Fixed Thriveopedia pages missing h4 level headings and put in the missing content for all pages
+    - Updated Thriveopedia pages to use Godot 4 bullet point lists rather than our previous manual approach that was hacked together
+    - Made failure to emit compounds due to membrane not being ready yet not an error, and tweaked some code to retry later in that case
+    - Updated banana biome currents and added radioactive chunks
+    - When a text field is focused it now gets text input priority over our gameplay keybindings. This hopefully fixes text input with very uncommon keyboard layouts.
+    - Changed our thread barriers on ARM (Mac) to use a more efficient WFE instruction than just a pure yield
+    - Tab change button prompts are now less visible when at that end of the tab bar
+    - Added exporting auto-evo time and memory metrics from the auto-evo exploring tool
+    - Added exporting of overall world generation time statistics for auto-evo exploring tool
+    - Added more code safety check against invalid state colonies in the movement system
+    - Added more safety code for microbe colony rotation calculation which could in rare cases lead to a game crash before this improvement
+    - Adjusted the code for detecting and using smaller primary icon when a keybinding uses visuals made of two separate icons
+    - Tweaked the cloud benchmark to ramp up the stress after a bit
+    - Implemented a general physics force system and updated the division animation to use it
+    - Added console commands for managing the in-game jukebox
+    - Fixed some output interleaving and scrolling problems in the console
+    - Fixed incorrect native library calls when the return type was a boolean
+    - Refactored the code for the Jukebox to avoid temporary memory allocations
+    - Adjusted some comments related to StrainAffected  component in the code
+    - Improved memory allocations caused by GUI bar updates
+    - Optimized the updating code for the process panel
+    - Improved efficiency of the code distributing compounds between colony members
+    - Slightly updated code for how recursive engulfing ejections are performed which should make those a bit more reliable
+    - Adjusted cloud system assumed runtime cost in the code
+    - Fixed physics debug draw to work also on Windows and Mac and with computers that don't have AVX instructions (previously it only worked on Linux)
+    - Fixed physics debug draw not working in certain later game saves. Note that debug draw is only available in debug versions of the game and not in release versions.
+    - Added an editor config file trying to mark Godot-generated files as generated
+    - Updated our pull request template to emphasise gameplay testing
+    - Updated code analysis packages
+    - Fixed various new code warnings from newer check tools
+    - Cleaned up our codebase by extracting bacteria scale as a constant
+    - Renamed AbsorptionRatio to AbsorptionRate in our code
+    - Updated Arch dependencies
+    - Updated Karambolo.PO to version 1.13.0
+    - Updated YamlDotNet from 16.3.0 to 18.0.0
+    - Updated System.IO.Hashing from 10.0.5 to 10.0.8
+    - Updated other dependency nuget packages
+    - Fixed our automatic checks trying to rebuild on Windows for InspectCode which did not work due to file locking
+    - Updated code checking tools
+    - Improved our CI running pipeline
+    - Updated gdUnit4 version to actually have our CI system be able to run it again
+    - Updated Thriveopedia content
+    - Updated translations

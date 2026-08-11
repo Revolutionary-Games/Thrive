@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-27 14:48+0200\n"
+"POT-Creation-Date: 2026-08-11 10:42+0300\n"
 "PO-Revision-Date: 2026-01-01 23:54+0000\n"
 "Last-Translator: Alihan Yildiz <aywhy@protonmail.ch>\n"
 "Language-Team: Tatar <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tt/>\n"
@@ -51,6 +51,13 @@ msgstr "Kabul itü"
 
 msgid "ACHIEVEMENTS"
 msgstr "Uñışlar"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr "Uñışlar {0} / {1}"
+
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr ""
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr "Uñışlar {0} / {1}"
@@ -105,12 +112,6 @@ msgstr "Киңәytелgән"
 
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Kiңәytелgән köyләү күrenešen ačу"
-
-msgid "AEROBIC_NITROGEN_FIXATION"
-msgstr "Aerob azot bәylәү"
-
-msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "Aerob azot bәylәү"
 
 msgid "AEROBIC_RESPIRATION"
 msgstr ""
@@ -175,6 +176,12 @@ msgstr "Sin inде yöksәldeñ"
 msgid "ALT"
 msgstr "Alt"
 
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr ""
+
+msgid "ALTERNATVE_TIMESCALE"
+msgstr ""
+
 msgid "ALWAYS_VISIBLE"
 msgstr ""
 
@@ -194,9 +201,6 @@ msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr ""
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
-msgstr ""
-
-msgid "ANAEROBIC_NITROGEN_FIXATION"
 msgstr ""
 
 msgid "AND_UNLOCK_CONDITION"
@@ -568,6 +572,10 @@ msgstr ""
 msgid "BROWSE_WORKSHOP"
 msgstr ""
 
+#, fuzzy
+msgid "BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(AI törlәreneñ mutatsiya tizlege)"
+
 msgid "BUILD_CITY"
 msgstr ""
 
@@ -709,6 +717,16 @@ msgstr ""
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr ""
 
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr ""
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr "(AI törlәreneñ mutatsiya tizlege)"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
+
 msgid "CHANGE_THE_SYMMETRY"
 msgstr ""
 
@@ -729,6 +747,10 @@ msgstr ""
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
+
+#, fuzzy
+msgid "CHEMICAL_EQUATION_SPEED_EXPLANATION"
+msgstr "(AI törlәreneñ mutatsiya tizlege)"
 
 msgid "CHEMOPLAST"
 msgstr ""
@@ -1582,6 +1604,9 @@ msgstr ""
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr ""
 
+msgid "DIFFICULTY_PRESET_VERY_EASY"
+msgstr ""
+
 msgid "DIGESTION_EFFICIENCY"
 msgstr ""
 
@@ -1660,6 +1685,12 @@ msgstr ""
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
 
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr ""
+
+msgid "DISPLAY_DRIVER_METAL"
+msgstr ""
+
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr ""
 
@@ -1694,9 +1725,6 @@ msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
 msgstr ""
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
-msgstr ""
-
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
 msgstr ""
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
@@ -1798,6 +1826,12 @@ msgstr ""
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 msgstr ""
 
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
+msgstr ""
+
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
+msgstr ""
+
 msgid "EDIT_MICROBE_FIRST_TIME"
 msgstr ""
 
@@ -1861,6 +1895,9 @@ msgstr ""
 msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
 msgstr ""
 
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION_MULTICELLULAR"
+msgstr ""
+
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
 msgstr ""
 
@@ -1886,6 +1923,12 @@ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr ""
 
 msgid "ENERGY_CONSUMPTION_PRESSURE"
+msgstr ""
+
+msgid "ENERGY_COST_MULTIPLIER"
+msgstr ""
+
+msgid "ENERGY_COST_MULTIPLIER_EXPLANATION"
 msgstr ""
 
 msgid "ENERGY_IN_PATCH_FOR"
@@ -1960,6 +2003,9 @@ msgstr ""
 msgid "ERROR_LOADING"
 msgstr ""
 
+msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
+
 msgid "ERROR_SAVING"
 msgstr ""
 
@@ -2015,6 +2061,9 @@ msgid "EXACT_VERSION_TOOLTIP"
 msgstr ""
 
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
+msgstr ""
+
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE_JUKEBOX"
 msgstr ""
 
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
@@ -2299,6 +2348,24 @@ msgstr ""
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr ""
 
+msgid "GAMETE_CELL_ENTITY_NAME"
+msgstr ""
+
+msgid "GAMETE_CELL_TYPE"
+msgstr ""
+
+msgid "GAMETE_CELL_TYPE_A"
+msgstr ""
+
+msgid "GAMETE_CELL_TYPE_B"
+msgstr ""
+
+msgid "GAMETE_PRODUCED"
+msgstr ""
+
+msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+msgstr ""
+
 msgid "GAME_DESIGN_TEAM"
 msgstr ""
 
@@ -2354,6 +2421,12 @@ msgid "GEOLOGICAL_ACTIVITY_DORMANT"
 msgstr ""
 
 msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+
+msgid "GERMINATE_SPORE"
+msgstr ""
+
+msgid "GERMINATE_SPORE_ACTION_TOOLTIP"
 msgstr ""
 
 msgid "GITHUB_TOOLTIP"
@@ -2563,6 +2636,15 @@ msgstr ""
 msgid "IMAGE_FILE_TYPES"
 msgstr ""
 
+msgid "INCOMPATIBLE_MEMBRANE_LIST"
+msgstr ""
+
+msgid "INCOMPATIBLE_ORGANELLE_LIST"
+msgstr ""
+
+msgid "INCOMPATIBLE_STAGE_LIST"
+msgstr ""
+
 msgid "INCREASE_ITEM_SIZE"
 msgstr ""
 
@@ -2615,6 +2697,12 @@ msgid "INFO_BOX_REQUIRES_NUCLEUS"
 msgstr ""
 
 msgid "INFO_BOX_SIZE"
+msgstr ""
+
+msgid "INFO_BOX_SIZE_PLAIN"
+msgstr ""
+
+msgid "INFO_BOX_STAGE"
 msgstr ""
 
 msgid "INFO_BOX_STORAGE"
@@ -3214,6 +3302,18 @@ msgstr ""
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr ""
 
+msgid "LOOK_LEFT"
+msgstr ""
+
+msgid "LOOK_RIGHT"
+msgstr ""
+
+msgid "LOOK_SCREEN_DOWN_OR_3D_TOWARDS_UP"
+msgstr ""
+
+msgid "LOOK_SCREEN_UP_OR_3D_TOWARDS_DOWN"
+msgstr ""
+
 msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
 msgstr ""
 
@@ -3253,6 +3353,9 @@ msgstr ""
 msgid "MACROSCOPIC"
 msgstr ""
 
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr ""
+
 msgid "MACROSCOPIC_EDITOR"
 msgstr ""
 
@@ -3279,6 +3382,13 @@ msgstr ""
 
 msgid "MARINE_SNOW"
 msgstr ""
+
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(AI törlәreneñ mutatsiya tizlege)"
 
 msgid "MASTER_VOLUME"
 msgstr ""
@@ -3509,6 +3619,9 @@ msgid "MICROBE_LOADING_TIP_21"
 msgstr ""
 
 msgid "MICROBE_LOADING_TIP_22"
+msgstr ""
+
+msgid "MICROBE_LOADING_TIP_23"
 msgstr ""
 
 msgid "MICROBE_LOADING_TIP_3"
@@ -3898,7 +4011,28 @@ msgstr ""
 msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr ""
 
+msgid "MULTICELLULAR_LOADING_TIP_2"
+msgstr ""
+
+msgid "MULTICELLULAR_LOADING_TIP_3"
+msgstr ""
+
+msgid "MULTICELLULAR_LOADING_TIP_4"
+msgstr ""
+
+msgid "MULTICELLULAR_LOADING_TIP_5"
+msgstr ""
+
+msgid "MULTICELLULAR_LOADING_TIP_6"
+msgstr ""
+
+msgid "MULTICELLULAR_LOADING_TIP_7"
+msgstr ""
+
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
+msgstr ""
+
+msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
 msgstr ""
 
 msgid "MULTICELLULAR_STAGE"
@@ -3970,6 +4104,9 @@ msgstr ""
 msgid "NEW"
 msgstr ""
 
+msgid "NEWER"
+msgstr ""
+
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 
@@ -4011,6 +4148,10 @@ msgstr ""
 
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
+
+#, fuzzy
+msgid "NITROGEN_FIXATION"
+msgstr "Aerob azot bәylәү"
 
 msgid "NITROPLAST"
 msgstr ""
@@ -4075,7 +4216,13 @@ msgstr ""
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
+msgid "NOTICE_READY_TO_SHOOT_GAMETE"
+msgstr ""
+
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
+msgstr ""
+
+msgid "NOT_ENOUGH_MUTATION_POINTS"
 msgstr ""
 
 msgid "NOT_STARTED_DOT"
@@ -4162,6 +4309,9 @@ msgstr ""
 msgid "OK"
 msgstr ""
 
+msgid "OLDER"
+msgstr ""
+
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 
@@ -4169,6 +4319,9 @@ msgid "OPENGL_MODE_WARNING"
 msgstr ""
 
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
+msgstr ""
+
+msgid "OPEN_EVOLUTIONARY_TREE"
 msgstr ""
 
 msgid "OPEN_FOLDER"
@@ -4232,6 +4385,9 @@ msgid "OPTIONS"
 msgstr ""
 
 msgid "OPTIONS_BUTTON_TOOLTIP"
+msgstr ""
+
+msgid "OPTION_USED_FOR_PLAYER"
 msgstr ""
 
 msgid "ORGANELLES"
@@ -4306,12 +4462,6 @@ msgstr ""
 msgid "OSMOREGULATION_COST"
 msgstr ""
 
-msgid "OSMOREGULATION_COST_MULTIPLIER"
-msgstr ""
-
-msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
-msgstr ""
-
 msgid "OTHER_COMPOUNDS"
 msgstr ""
 
@@ -4348,6 +4498,9 @@ msgstr ""
 msgid "OXYGEN_RESISTANCE"
 msgstr ""
 
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
+msgstr ""
+
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr ""
 
@@ -4370,6 +4523,9 @@ msgid "PAGE_BACK"
 msgstr ""
 
 msgid "PAGE_FORWARD"
+msgstr ""
+
+msgid "PAGE_PINNED"
 msgstr ""
 
 msgid "PAGE_TITLE"
@@ -4420,6 +4576,9 @@ msgstr ""
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
+msgid "PATCH_NOTES_RECENT_BOUNDARY"
+msgstr ""
+
 msgid "PATCH_NOTES_TITLE"
 msgstr ""
 
@@ -4462,6 +4621,9 @@ msgstr ""
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
 msgstr ""
 
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION_MULTICELLULAR"
+msgstr ""
+
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
 msgstr ""
 
@@ -4499,6 +4661,13 @@ msgid "PHYSICAL_CONDITIONS"
 msgstr ""
 
 msgid "PHYSICAL_RESISTANCE"
+msgstr ""
+
+#, fuzzy
+msgid "PIN_BUTTON_TOOLTIP"
+msgstr "Yaña töymә bәylәүe өstәү"
+
+msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
 msgstr ""
 
 msgid "PLACE_ORGANELLE"
@@ -4612,6 +4781,9 @@ msgstr ""
 msgid "PRESSURE_SHORT"
 msgstr ""
 
+msgid "PRESSURE_TOLERANCE"
+msgstr ""
+
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr ""
 
@@ -4633,6 +4805,9 @@ msgstr ""
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr ""
 
+msgid "PROCESS_INACTIVE"
+msgstr ""
+
 #, fuzzy
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
 msgstr ""
@@ -4650,9 +4825,6 @@ msgstr ""
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr ""
 
-msgid "PROCESS_TOGGLE_TOOLTIP"
-msgstr ""
-
 msgid "PROGRAMMING_TEAM"
 msgstr ""
 
@@ -4660,9 +4832,6 @@ msgid "PROJECT_MANAGEMENT_TEAM"
 msgstr ""
 
 msgid "PROTEINS"
-msgstr ""
-
-msgid "PROTOPLASM"
 msgstr ""
 
 msgid "PULL_REQUESTS_PROGRAMMING"
@@ -4693,6 +4862,9 @@ msgid "RADIATION_LEVELS"
 msgstr ""
 
 msgid "RADIOACTIVE_CHUNK"
+msgstr ""
+
+msgid "RADIOACTIVE_CHUNK_BANANA"
 msgstr ""
 
 msgid "RADIOSYNTHESIS"
@@ -4755,6 +4927,9 @@ msgstr ""
 msgid "REPORT_BUG"
 msgstr ""
 
+msgid "REPRODUCE"
+msgstr ""
+
 msgid "REPRODUCED"
 msgstr ""
 
@@ -4776,7 +4951,23 @@ msgstr ""
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 msgstr ""
 
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr ""
+
 msgid "REPRODUCTION_METHOD"
+msgstr ""
+
+msgid "REPRODUCTION_SEXUAL"
+msgstr ""
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
+msgstr "(AI törlәreneñ mutatsiya tizlege)"
+
+msgid "REPRODUCTION_SEXUAL_ISOGAMY"
+msgstr ""
+
+msgid "REPRODUCTION_SPORE"
 msgstr ""
 
 msgid "REQUIRES_NUCLEUS"
@@ -4905,6 +5096,10 @@ msgstr ""
 
 msgid "ROTATION_COLON"
 msgstr ""
+
+#, fuzzy
+msgid "ROTATION_FORCE"
+msgstr "AI mutatsiya tizlege"
 
 msgid "RUNOFF_EVENT"
 msgstr ""
@@ -5152,6 +5347,17 @@ msgstr ""
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr "(AI törlәreneñ mutatsiya tizlege)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(AI törlәreneñ mutatsiya tizlege)"
+
+msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+msgstr ""
+
 msgid "SFX_VOLUME"
 msgstr ""
 
@@ -5175,6 +5381,17 @@ msgstr ""
 
 msgid "SHOW_MAP"
 msgstr ""
+
+msgid "SHOW_MATE_POSITION"
+msgstr ""
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION_EXPLANATION"
+msgstr ""
+"Агрессив mikroorganizmnar олы arалыklar аša ulov \n"
+"ezәrlәр һәm hөjüm itkәndә jirtкıčlar belән suгаšırga mömkin. \n"
+"Тınıč mikroorganizmnar оlı аrалıklar аša башkaлar \n"
+"belән кереšmиләр һәm jirtкıčlar каršı agулar kuллаnmıйlar."
 
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr ""
@@ -5218,6 +5435,12 @@ msgstr ""
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr ""
 
+msgid "SIGNAL_COMMAND_CALL_MATE"
+msgstr ""
+
+msgid "SIGNAL_COMMAND_FIRE_GAMETES"
+msgstr ""
+
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr ""
 
@@ -5241,6 +5464,10 @@ msgstr ""
 
 msgid "SIMULATION_CONFIG"
 msgstr ""
+
+#, fuzzy
+msgid "SIMULATION_FACTOR"
+msgstr "AI mutatsiya tizlege"
 
 msgid "SIXTEEN_TIMES"
 msgstr ""
@@ -5320,6 +5547,13 @@ msgstr ""
 msgid "SPAWN_GLUCOSE"
 msgstr ""
 
+msgid "SPAWN_MATE_ON_CALL"
+msgstr ""
+
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL_EXPLANATION"
+msgstr "(AI törlәreneñ mutatsiya tizlege)"
+
 msgid "SPAWN_PHOSPHATES"
 msgstr ""
 
@@ -5377,11 +5611,19 @@ msgstr ""
 msgid "SPECIES_WITH_POPULATION"
 msgstr ""
 
-msgid "SPEED"
-msgstr ""
-
 msgid "SPEED_COLON"
 msgstr ""
+
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "Yaña töymә bәylәүe өstәү"
+
+msgid "SPORE_CELL_TYPE"
+msgstr ""
+
+#, fuzzy
+msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(AI törlәreneñ mutatsiya tizlege)"
 
 msgid "SPREAD_TO_PATCHES"
 msgstr ""
@@ -5662,6 +5904,9 @@ msgstr ""
 msgid "TEMPERATURE_SHORT"
 msgstr ""
 
+msgid "TEMPERATURE_TOLERANCE_RANGE"
+msgstr ""
+
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr ""
 
@@ -5732,6 +5977,9 @@ msgstr ""
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr ""
 
+msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
+msgstr ""
+
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr ""
 
@@ -5741,16 +5989,58 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr ""
 
+msgid "THRIVEOPEDIA_MUSEUM_PAGE_SEARCHTAGS"
+msgstr ""
+
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
+msgid "THRIVEOPEDIA_ORGANELLE_SEARCHTAGS"
+msgstr ""
+
+msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
+msgstr ""
+
+msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_SEARCHTAGS"
+msgstr ""
+
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
+msgstr ""
+
+msgid "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
+msgstr ""
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE"
+msgstr ""
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
+msgstr ""
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
+msgstr ""
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
+msgstr ""
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
+msgstr ""
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_SEARCHTAGS"
+msgstr ""
+
+msgid "THRIVEOPEDIA_WORLD_SPECIES_SEARCHTAGS"
+msgstr ""
+
+msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
 msgstr ""
 
 msgid "THRIVE_LICENSES"
 msgstr ""
 
 msgid "THRIVIN_ACHIEVEMENT"
+msgstr ""
+
+msgid "THRUST_FORCE"
 msgstr ""
 
 msgid "THYLAKOIDS"
@@ -5901,9 +6191,6 @@ msgid "TOOLS"
 msgstr ""
 
 msgid "TOOL_HAND_AXE"
-msgstr ""
-
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
 msgid "TOTAL_GATHERED_ENERGY_COLON"
@@ -6401,9 +6688,6 @@ msgstr ""
 msgid "VIEWER"
 msgstr ""
 
-msgid "VIEW_ALL"
-msgstr ""
-
 msgid "VIEW_CELL_PROCESSES"
 msgstr ""
 
@@ -6893,8 +7177,9 @@ msgstr ""
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr ""
 
-msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
-msgstr ""
+#, fuzzy
+msgid "WIKI_GLYCOLYSIS_COMMA_NITROGEN_FIXATION"
+msgstr "Aerob azot bәylәү"
 
 msgid "WIKI_HEADING_APPENDICES"
 msgstr ""
@@ -7508,9 +7793,6 @@ msgstr ""
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr ""
 
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr ""
-
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr ""
 
@@ -7575,30 +7857,6 @@ msgid "WIKI_PERFORATOR_PILUS_UPGRADES"
 msgstr ""
 
 msgid "WIKI_PROTEIN_RESPIRATION"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
 msgstr ""
 
 msgid "WIKI_PULLING_CILIA"
@@ -8023,3 +8281,6 @@ msgstr ""
 
 msgid "ZOOM_OUT"
 msgstr ""
+
+#~ msgid "AEROBIC_NITROGEN_FIXING"
+#~ msgstr "Aerob azot bәylәү"

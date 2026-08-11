@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Arch.Buffer;
 using Arch.Core;
 using Arch.Core.Extensions;
@@ -30,7 +31,7 @@ public struct MicrobeColony : IArchivableComponent
     public Entity Leader;
 
     /// <summary>
-    ///   This maps parent cells to their children in the colony hierarchy. All cells are merged into the leader,
+    ///   This maps child cells to their parents in the colony hierarchy. All cells are merged into the leader,
     ///   but certain operations like removing cells need to not leave gaps in the colony for that this is used to
     ///   detect which cells are also lost if one cell is lost. Key is the dependent cell and the value is its
     ///   parent.
@@ -176,7 +177,7 @@ public static class MicrobeColonyHelpers
     // from the colony class)
     // public static readonly ArrayPool<Entity> MicrobeColonyMemberListPool = ArrayPool<Entity>.Create(100, 50);
 
-    private static readonly List<Entity> DependentMembersToRemove = new();
+    private static readonly List<Entity> DependentMembersToReparent = new();
 
     public static MicrobeColony ReadFromArchive(ISArchiveReader reader, ushort version)
     {
@@ -507,6 +508,17 @@ public static class MicrobeColonyHelpers
         }
 
         newMembers[colony.ColonyMembers.Length] = newMember;
+
+        if (newMembers[0] != colony.Leader)
+        {
+            GD.PrintErr("Logic error in colony member add: leader is not first");
+
+#if DEBUG
+            if (Debugger.IsAttached)
+                Debugger.Break();
+#endif
+        }
+
         colony.ColonyMembers = newMembers;
 
         colony.MarkMembersChanged();
@@ -554,8 +566,8 @@ public static class MicrobeColonyHelpers
         // When converting all uses of the member list need to be checked as this is set in quite many places
         var newMembers = new Entity[colony.ColonyMembers.Length + 1];
 
-        // Specifying an index after all items is the same as specifying last. This makes sure that slightly out
-        // of sync data in delayed apply colony membership doesn't cause issues.
+        // Specifying an index after all items is the same as specifying last. This makes sure that slightly out-of-
+        // sync data in delayed apply colony membership doesn't cause issues.
         if (intendedNewMemberIndex >= newMembers.Length)
             intendedNewMemberIndex = newMembers.Length - 1;
 
@@ -569,8 +581,18 @@ public static class MicrobeColonyHelpers
 
         for (int i = intendedNewMemberIndex + 1; i < newMembers.Length; ++i)
         {
-            // As we inserted one new item, the items don't anymore map 1-to-1 between the arrays
+            // As we inserted one new item, the items don't any more map 1-to-1 between the arrays
             newMembers[i] = colony.ColonyMembers[i - 1];
+        }
+
+        if (newMembers[0] != colony.Leader)
+        {
+            GD.PrintErr("Logic error in colony member add: leader is not first");
+
+#if DEBUG
+            if (Debugger.IsAttached)
+                Debugger.Break();
+#endif
         }
 
         colony.ColonyMembers = newMembers;
@@ -608,7 +630,7 @@ public static class MicrobeColonyHelpers
 
         var parentMicrobe = colony.ColonyMembers[parentIndex];
 
-        // Calculate the attach position
+        // Calculate the attachment position
         // Note that if the multicellular growth is moved away from precomputed locations, this won't likely be
         // usable to calculate the positions instead
         if (!CalculateColonyMemberAttachPosition(colonyEntity, parentMicrobe, newMemberPosition,
@@ -670,7 +692,8 @@ public static class MicrobeColonyHelpers
         ref var cellProperties = ref colonyEntity.Get<CellProperties>();
         cellProperties.ShapeCreated = false;
 
-        if (colony.ColonyMembers.Length <= 2)
+        // Colony will disband if the root cell is removed, otherwise it will be in a terrible state
+        if (colony.ColonyMembers.Length <= 2 || colonyEntity == removedMember)
         {
             // The whole colony is disbanding
             recorder.Remove<MicrobeColony>(colonyEntity);
@@ -702,27 +725,28 @@ public static class MicrobeColonyHelpers
 
         OnColonyMemberRemoved(removedMember, removedMemberIsLeader);
 
-        // Remove colony members that depend on the removed member
+        // Re-parent (when possible) or remove colony members that depend on the removed member
         foreach (var entry in colony.ColonyStructure)
         {
             if (entry.Value == removedMember)
-                DependentMembersToRemove.Add(entry.Key);
+                DependentMembersToReparent.Add(entry.Key);
         }
 
-        while (DependentMembersToRemove.Count > 0)
+        while (DependentMembersToReparent.Count > 0)
         {
-            var next = DependentMembersToRemove[DependentMembersToRemove.Count - 1];
+            var next = DependentMembersToReparent[DependentMembersToReparent.Count - 1];
 
             // This is this way around to support recursive calls also adding things here
-            DependentMembersToRemove.RemoveAt(DependentMembersToRemove.Count - 1);
+            DependentMembersToReparent.RemoveAt(DependentMembersToReparent.Count - 1);
 
             if (!next.IsAliveAndNotNull())
             {
                 // This entity is already dead, this should hopefully never trigger. If this does, then this would
                 // give some more info on a colony despawn crash problem.
-                GD.PrintErr("Dependent colony member to remove is already dead, doing only " +
+                GD.PrintErr("Dependent colony member to re-parent is already dead, doing only " +
                     "light fallback cleanup");
 
+                // It doesn't make sense to re-parent a dead cell
                 colony.ColonyStructure.Remove(next);
 
                 if (colony.ColonyMembers.Contains(next))
@@ -732,13 +756,29 @@ public static class MicrobeColonyHelpers
                 continue;
             }
 
+            var newParent = colony.CalculateSensibleReParentIndex(ref next.Get<AttachedToEntity>(), in next);
+            if (newParent != -1)
+            {
+                colony.ColonyStructure[next] = colony.ColonyMembers[newParent];
+                if (next.Has<IntercellularMatrix>())
+                {
+                    next.Get<IntercellularMatrix>().RemoveConnection();
+                }
+                else
+                {
+                    GD.PrintErr("IntercellularMatrix missing from colony member on disband unexpectedly: ", next);
+                }
+
+                continue;
+            }
+
             // This might stackoverflow if we have absolute, hugely nested cell colonies, but there would probably
             // need to be colonies with thousands of cells, which would already choke the game so that isn't much
             // of a concern
             if (!colony.RemoveFromColonyAndDisbandIfEmpty(colonyEntity, next, recorder))
             {
                 // Colony is entirely disbanded, doesn't make sense to continue removing things
-                DependentMembersToRemove.Clear();
+                DependentMembersToReparent.Clear();
                 return false;
             }
         }
@@ -941,7 +981,7 @@ public static class MicrobeColonyHelpers
     /// </summary>
     /// <returns>How much the added colony members add entity weight</returns>
     public static float SpawnAsFullyGrownMulticellularColony(Entity entity, MulticellularSpecies species,
-        float originalWeight, CommandBuffer commandBuffer)
+        ref MulticellularGrowth multicellularGrowth, float originalWeight, CommandBuffer commandBuffer)
     {
         int members = species.ModifiableGameplayCells.Count - 1;
 
@@ -951,11 +991,15 @@ public static class MicrobeColonyHelpers
 
         SetupColonyWithMembersDelayed(entity, members, commandBuffer);
 
+        // All members are added, so mark as fully grown
+        multicellularGrowth.NextBodyPlanCellToGrowIndex = species.ModifiableGameplayCells.Count;
+        multicellularGrowth.CompoundsNeededForNextCell = null;
+
         return CalculateColonyAdditionalEntityWeight(originalWeight, members);
     }
 
     public static float SpawnAsPartialMulticellularColony(Entity entity, float originalWeight,
-        int membersToAdd, CommandBuffer commandBuffer)
+        int membersToAdd, ref MulticellularGrowth multicellularGrowth, CommandBuffer commandBuffer)
     {
         if (membersToAdd < 1)
         {
@@ -964,6 +1008,10 @@ public static class MicrobeColonyHelpers
         }
 
         SetupColonyWithMembersDelayed(entity, membersToAdd, commandBuffer);
+
+        // Adjust growth state to resume correctly after the added members
+        multicellularGrowth.NextBodyPlanCellToGrowIndex += membersToAdd;
+        multicellularGrowth.CompoundsNeededForNextCell = null;
 
         return CalculateColonyAdditionalEntityWeight(originalWeight, membersToAdd);
     }
@@ -979,7 +1027,8 @@ public static class MicrobeColonyHelpers
 
         // When changing this method's logic also update the corresponding method in CellBodyPlanInternalCalculations
         float colonyRotation = MicrobeInternalCalculations
-            .CalculateRotationSpeed(colony.Leader.Get<OrganelleContainer>().Organelles!.Organelles);
+            .CalculateRotationSpeed(colony.Leader.Get<OrganelleContainer>().Organelles!.Organelles,
+                colony.Leader.Get<SpecializationFactor>().TotalSpecializationBonus);
 
         foreach (var colonyMember in colony.ColonyMembers)
         {
@@ -989,6 +1038,9 @@ public static class MicrobeColonyHelpers
 
             try
             {
+                if (!colonyMember.IsAliveAndHas<AttachedToEntity>())
+                    throw new Exception("Colony member has no AttachedToEntity component");
+
                 ref var memberPosition = ref colonyMember.Get<AttachedToEntity>();
 
                 var distanceSquared = memberPosition.RelativePosition.LengthSquared();
@@ -997,7 +1049,8 @@ public static class MicrobeColonyHelpers
                 // This relies on the bounding of the cell rotation, as a colony can never be faster than the
                 // fastest cell inside it
                 var memberRotation = MicrobeInternalCalculations
-                        .CalculateRotationSpeed(colonyMember.Get<OrganelleContainer>().Organelles!.Organelles)
+                        .CalculateRotationSpeed(colonyMember.Get<OrganelleContainer>().Organelles!.Organelles,
+                            colonyMember.Get<SpecializationFactor>().TotalSpecializationBonus)
                     * (1 + 0.007f * distanceSquared);
 
                 colonyRotation += memberRotation;
@@ -1107,6 +1160,72 @@ public static class MicrobeColonyHelpers
         // ReSharper disable once CompareOfFloatsByEqualityOperator
         if (bestDistance == float.MaxValue)
             GD.PrintErr("Could not find sensible parent index to attach to colony");
+
+        return bestParentIndex;
+    }
+
+    /// <summary>
+    ///   Finds a good cell to reparent <paramref name="forCell"/> to; avoids its descendants.
+    ///   Also avoids cells that are too far.
+    /// </summary>
+    /// <returns>
+    ///   An index if there is a suitable parent, -1 otherwise.
+    /// </returns>
+    public static int CalculateSensibleReParentIndex(this ref MicrobeColony colony,
+        ref AttachedToEntity attachedPosition, in Entity forCell)
+    {
+        float bestDistance = float.MaxValue;
+        int bestParentIndex = -1;
+        Entity bestParentEntity = Entity.Null;
+
+        float radius = forCell.Get<CellProperties>().Radius;
+
+        var members = colony.ColonyMembers;
+
+        for (int i = 0; i < members.Length; ++i)
+        {
+            var cell = members[i];
+
+            if (cell == forCell)
+                continue;
+
+            float distance;
+            if (i == 0)
+            {
+                // Colony leader has no attached to component
+                distance = attachedPosition.RelativePosition.LengthSquared();
+            }
+            else
+            {
+                distance = cell.Get<AttachedToEntity>().RelativePosition
+                    .DistanceSquaredTo(attachedPosition.RelativePosition);
+            }
+
+            if (distance < bestDistance)
+            {
+                // An arbitrary condition, feel free to change
+                float maxDistanceSquared = MathUtils.Square((radius + cell.Get<CellProperties>().Radius) * 3.0f);
+                if (distance > maxDistanceSquared)
+                    continue;
+
+                // Go up the member's parent tree to see if it's a descendant of forCell
+                // If bestParentEntity is reached, then this one is safe too (bestParentEntity was already checked)
+                Entity current = cell;
+                while (current != colony.Leader && current != forCell && current != bestParentEntity)
+                {
+                    current = colony.ColonyStructure[current];
+                }
+
+                if (current == forCell)
+                {
+                    // members[i] is a descendant of forCell and can't be its parent
+                    continue;
+                }
+
+                bestDistance = distance;
+                bestParentIndex = i;
+            }
+        }
 
         return bestParentIndex;
     }
@@ -1440,6 +1559,12 @@ public static class MicrobeColonyHelpers
     /// <exception cref="Exception">If this is called with a member not in the list of members</exception>
     private static void RemoveColonyMemberFromMemberList(ref MicrobeColony colony, in Entity removedMember)
     {
+        if (colony.Leader == removedMember)
+        {
+            throw new InvalidOperationException(
+                "Colony must be disbanded rather than the leader removed like a member");
+        }
+
         // TODO: pooling (see the TODO in the add method)
         // TODO: when recursively removing members somehow make sure that we don't need to keep creating more and
         // more of these lists...
@@ -1462,6 +1587,16 @@ public static class MicrobeColonyHelpers
         {
             throw new Exception("Logic error in new member array copy without member " +
                 "(was it ensured removed member was in the list)");
+        }
+
+        if (newMembers.Length > 0 && newMembers[0] != colony.Leader)
+        {
+            GD.PrintErr("Logic error in colony member remove: leader is not first");
+
+#if DEBUG
+            if (Debugger.IsAttached)
+                Debugger.Break();
+#endif
         }
 
         colony.ColonyMembers = newMembers;

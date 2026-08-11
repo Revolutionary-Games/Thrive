@@ -58,7 +58,7 @@ public partial class CompoundAbsorptionSystem : BaseSystem<World, float>
         }
 
         compoundCloudSystem.AbsorbCompounds(position.Position, absorber.AbsorbRadius, storage.Compounds,
-            absorber.TotalAbsorbedCompounds, delta, absorber.AbsorptionRatio);
+            absorber.TotalAbsorbedCompounds, delta, absorber.AbsorptionRate);
 
         // Player infinite compounds cheat, doesn't *really* belong here, but this is probably the best place to put
         // this instead of creating a dedicated cheat handling system

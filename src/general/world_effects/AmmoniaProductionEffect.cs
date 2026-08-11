@@ -55,7 +55,7 @@ public class AmmoniaProductionEffect : IWorldEffect
             resolvedTolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(
                 MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(microbeSpecies, biome));
 
-            specialization = microbeSpecies.SpecializationBonus;
+            specialization = microbeSpecies.CellTypeSpecializationBonus;
         }
         else if (species is MulticellularSpecies multicellularSpecies)
         {

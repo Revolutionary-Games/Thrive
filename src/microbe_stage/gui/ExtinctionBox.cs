@@ -145,8 +145,7 @@ public partial class ExtinctionBox : CustomWindow
 
             double population = ShowContinueAs.Population;
 
-            if (ShowContinueAs is MicrobeSpecies or MulticellularSpecies)
-                population *= Constants.MICROBE_POPULATION_MULTIPLIER;
+            population = Species.ScalePopulationByType(ShowContinueAs, population);
 
             continueText.ExtendedBbcode = Localization.Translate("CONTINUE_AS_SPECIES")
                 .FormatSafe(ShowContinueAs.FormattedNameBbCode, population.FormatNumber());

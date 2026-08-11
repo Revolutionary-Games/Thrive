@@ -89,6 +89,19 @@ public static class Constants
     public const float PLAYER_SPECIES_SPAWN_MULTIPLIER = 0.5f;
 
     /// <summary>
+    ///   Uniform scale used to render and simulate prokaryotic cells relative to their unscaled true size.
+    ///   Eukaryotes use the true scale for their size. So at present this makes bacteria half the size of eukaryotes.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This is extracted as a constant to not be a magic value all over the code, however, changing this would be
+    ///     a very major thing. So do not touch this! Changing this will break old saves, and some game logic still
+    ///     seems to depend on the hardcoded value, so changing this cannot be done easily.
+    ///   </para>
+    /// </remarks>
+    public const float BACTERIA_CELL_SCALE = 0.5f;
+
+    /// <summary>
     ///   Smaller spawn penalty to make binding agents easier to use with better player species spawn rates.
     /// </summary>
     public const float PLAYER_SPECIES_SPAWN_MULTIPLIER_BINDING_AGENTS = 0.7f;
@@ -236,10 +249,7 @@ public static class Constants
 
     public const float FLAGELLA_BASE_FORCE = 20.0f;
 
-    /// <summary>
-    ///   TODO: this needs to be dynamically calculated: https://github.com/Revolutionary-Games/Thrive/issues/5591
-    /// </summary>
-    public const float FLAGELLA_SPEED_BONUS_DISPLAY = 0.7f;
+    public const int FLAGELLA_FORCE_DISPLAY_DIVISOR = 100;
 
     public const float FLAGELLA_MAX_UPGRADE_LENGHT = 3;
     public const float FLAGELLA_MIN_UPGRADE_LENGHT = -1;
@@ -290,6 +300,8 @@ public static class Constants
     public const float CILIA_ROTATION_FACTOR = 120000000.0f;
     public const float CILIA_RADIUS_FACTOR_MULTIPLIER = 8000000.0f;
     public const float CELL_TURN_INFLECTION_RADIANS = 0.4f;
+
+    public const float CILIA_ROTATION_FORCE_DISPLAY = CILIA_ROTATION_FACTOR / 1000000;
 
     // TODO: remove if these stay unused
     // // These speed values are also reversed like the above
@@ -493,11 +505,11 @@ public static class Constants
     /// </summary>
     public const float AGENT_EMISSION_VELOCITY = 25.0f;
 
-    public const float OXYTOXY_DAMAGE = 25.0f;
+    public const float OXYTOXY_DAMAGE = 20.0f;
 
-    public const float CYTOTOXIN_DAMAGE = 18.0f;
+    public const float CYTOTOXIN_DAMAGE = 14.0f;
 
-    public const float OXYGEN_INHIBITOR_DAMAGE = 23.0f;
+    public const float OXYGEN_INHIBITOR_DAMAGE = 19.0f;
 
     public const float CHANNEL_INHIBITOR_ATP_DEBUFF = 0.5f;
     public const float CHANNEL_INHIBITOR_DEBUFF_DURATION = 15;
@@ -534,7 +546,7 @@ public static class Constants
     /// <summary>
     ///   How much a cell's speed is increased when secreting slime (scaling with secreted compound amount)
     /// </summary>
-    public const float MUCILAGE_JET_FACTOR = 100000.0f;
+    public const float MUCILAGE_JET_FACTOR = 2000.0f;
 
     /// <summary>
     ///   Minimum stored slime needed to start secreting
@@ -634,7 +646,7 @@ public static class Constants
     /// <summary>
     ///   Cooldown between agent emissions, in seconds.
     /// </summary>
-    public const float AGENT_EMISSION_COOLDOWN = 2.0f;
+    public const float AGENT_EMISSION_COOLDOWN = 2.2f;
 
     /// <summary>
     ///   The minimum amount of oxytoxy (or any agent) fired in one shot.
@@ -645,6 +657,11 @@ public static class Constants
     ///   The maximum amount of oxytoxy (or any agent) fired in one shot.
     /// </summary>
     public const float MAXIMUM_AGENT_EMISSION_AMOUNT = 2.0f;
+
+    /// <summary>
+    ///   AI only consider shooting a toxin possible if it has this much toxin stored or more
+    /// </summary>
+    public const float AI_SHOOT_TOXIN_AFTER = 0.15f;
 
     /// <summary>
     ///   The time (in seconds) it takes a cloud being absorbed to halve its compounds.
@@ -668,6 +685,8 @@ public static class Constants
 
     public const float DEFAULT_MICROBE_VENT_THRESHOLD = 2.0f;
 
+    public const float CELL_ADJACENCY_SPECIALIZATION_BONUS = 0.04f;
+
     /// <summary>
     ///   A cell needs to have this many organelles for specialization to apply to it
     /// </summary>
@@ -677,13 +696,18 @@ public static class Constants
     ///   How many organelles a cell needs to have to be considered fully specialized. (i.e. the full specialization
     ///   bonus is granted)
     /// </summary>
-    public const int CELL_SPECIALIZATION_STRENGTH_FULL_AT = 20;
+    public const int CELL_SPECIALIZATION_STRENGTH_FULL_AT = 10;
 
     /// <summary>
     ///   Controls how strong the cell specialization effect is (this is a flat multiplier right now but we could use
     ///   something like a power curve or another function for diminishing returns)
     /// </summary>
-    public const float CELL_SPECIALIZATION_STRENGTH_MULTIPLIER = 0.8f;
+    public const float CELL_SPECIALIZATION_STRENGTH_MULTIPLIER = 0.4f;
+
+    /// <summary>
+    ///   Controls how much having a nucleus boosts the cell specialization effect
+    /// </summary>
+    public const float CELL_SPECIALIZATION_NUCLEUS_MULTIPLIER = 2.0f;
 
     /// <summary>
     ///   If more chunks exist at once than this, then some are forced to despawn immediately. In reality the effective
@@ -743,6 +767,16 @@ public static class Constants
     ///   but while under strain, ATP never reached that low, so an extra margin for ATP damage was added.
     /// </summary>
     public const float ATP_DAMAGE_THRESHOLD = 0.05f;
+
+    /// <summary>
+    ///   ATP storage fraction that is treated as full for HUD display purposes.
+    /// </summary>
+    public const float ATP_BAR_FULL_DISPLAY_FRACTION = 0.9f;
+
+    /// <summary>
+    ///   Minimum ATP margin that is treated as full for HUD display purposes.
+    /// </summary>
+    public const float ATP_BAR_FULL_DISPLAY_MINIMUM_MARGIN = 0.1f;
 
     /// <summary>
     ///   Amount of health per second regenerated
@@ -856,6 +890,8 @@ public static class Constants
     /// </summary>
     public const float MULTICELLULAR_REPRODUCTION_COMPOUND_MULTIPLIER = 2;
 
+    public const float MULTICELLULAR_REPRODUCTION_COMPOUND_FROM_EACH_EXTRA_CELL = 0.9f;
+
     /// <summary>
     ///   A multiplier for <see cref="MICROBE_REPRODUCTION_MAX_COMPOUND_USE"/> for multicellular microbes
     /// </summary>
@@ -868,7 +904,17 @@ public static class Constants
 
     public const float MICROBE_REPRODUCTION_COST_BASE_PHOSPHATES = 16;
 
-    public const float MULTICELLULAR_BASE_REPRODUCTION_COST_MULTIPLIER = 1.3f;
+    /// <summary>
+    ///   This is a base cost taken after the full colony has grown. So this can be increased to lengthen the time the
+    ///   player plays as a full colony.
+    /// </summary>
+    public const float MULTICELLULAR_BASE_REPRODUCTION_COST_MULTIPLIER = 1.6f;
+
+    /// <summary>
+    ///   This modifies <see cref="MULTICELLULAR_BASE_REPRODUCTION_COST_MULTIPLIER"/> per cell. So each cost gets extra
+    ///   multiplier on top <c>(cell count * this value) * cost</c>.
+    /// </summary>
+    public const float MULTICELLULAR_BASE_REPRODUCTION_COST_MULTIPLIER_PER_CELL = 0.08f;
 
     /// <summary>
     ///   Determines how big of a fraction of damage (of total health)
@@ -992,10 +1038,32 @@ public static class Constants
     public const float TOXIN_DIGESTION_DAMAGE_CHECK_INTERVAL = 0.9f;
 
     /// <summary>
-    ///   Determines how big of a fraction of damage (of total health)
-    ///   is dealt to a microbe at a time when it digests a toxic cell.
+    ///   Determines how damage is dealt to a microbe at a time when it digests a toxic cell.
     /// </summary>
-    public const float TOXIN_DIGESTION_DAMAGE_FRACTION = 0.09f;
+    public const float TOXIN_DIGESTION_DAMAGE = 4.0f;
+
+    /// <summary>
+    ///   Lowest remaining health fraction where the most risk-taking AI microbes start considering ejecting a toxic
+    ///   engulfed cell.
+    /// </summary>
+    public const float AI_TOXIC_ENGULFED_EJECT_MIN_HEALTH_FRACTION = 0.25f;
+
+    /// <summary>
+    ///   Highest remaining health fraction where the most cautious AI microbes start considering ejecting a toxic
+    ///   engulfed cell.
+    /// </summary>
+    public const float AI_TOXIC_ENGULFED_EJECT_MAX_HEALTH_FRACTION = 0.75f;
+
+    /// <summary>
+    ///   Lowest chance for risk-taking AI microbes to eject a toxic engulfed cell when past the health threshold.
+    ///   These are calculated per-damage tick which is why these are quite low to not make ejection guaranteed.
+    /// </summary>
+    public const float AI_TOXIC_ENGULFED_EJECT_MIN_CHANCE = 0.05f;
+
+    /// <summary>
+    ///   Highest chance for cautious AI microbes to eject a toxic engulfed cell when past the health threshold.
+    /// </summary>
+    public const float AI_TOXIC_ENGULFED_EJECT_MAX_CHANCE = 0.40f;
 
     /// <summary>
     ///   Each enzyme addition grants a fraction, set by this variable, increase in digestion speed.
@@ -1063,8 +1131,6 @@ public static class Constants
 
     public const float PILUS_PHYSICS_SIZE = 4.6f;
 
-    public const float BACTERIA_PILUS_ATTACH_ADJUSTMENT_MULTIPLIER = 0.575f;
-
     /// <summary>
     ///   Damage a single injectisome stab does
     /// </summary>
@@ -1100,6 +1166,12 @@ public static class Constants
     // Darwinian Evo Values
     public const int CREATURE_DEATH_POPULATION_LOSS = -30;
     public const int CREATURE_REPRODUCE_POPULATION_GAIN = 50;
+    public const int CREATURE_REPRODUCE_SEXUAL_POPULATION_GAIN = CREATURE_REPRODUCE_POPULATION_GAIN * 3;
+
+    /// <summary>
+    ///   Gametes are shot a lot, so their population gain is limited
+    /// </summary>
+    public const int CREATURE_PRODUCE_GAMETE_POPULATION_GAIN = 5;
 
     // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4694
     public const int CREATURE_KILL_POPULATION_GAIN = 50;
@@ -1144,6 +1216,15 @@ public static class Constants
 
     public const int CELL_REMOVE_COST = 5;
 
+    public const int MULTICELLULAR_REPRODUCTION_METHOD_CHANGE_COST = 50;
+
+    public const int SPORE_CELL_TYPE_CHANGE_COST = 10;
+
+    public const int GAMETE_CELL_TYPE_CHANGE_COST = 10;
+    public const int MULTICELLULAR_ANISOGAMY_UPGRADE_COST = 55;
+
+    public const int MASS_BUDDING_CELL_COUNT_CHANGE_COST = 10;
+
     public const string ORGANELLE_UPGRADE_SPECIAL_NONE = "none";
 
     public const int METABALL_ADD_COST = 7;
@@ -1154,6 +1235,19 @@ public static class Constants
     public const float METABALL_MIN_SIZE = 0.4f;
     public const float METABALL_SIZE_STEP = 0.1f;
     public const float METABALL_MAX_SIZE = 5.0f;
+
+    public const float GAMETE_MERGE_DISTANCE_SQUARED = 4 * 4;
+    public const float GAMETE_INITIAL_VELOCITY = 90;
+
+    /// <summary>
+    ///   Automatically stops the player gamete shoot signal after this time
+    /// </summary>
+    public const float SIGNAL_GAMETE_TURN_OFF_AFTER = 20;
+
+    public const float GAMETE_FORCE_SHOOT_INTERVAL = 10;
+    public const float GAMETE_FORCE_SHOOT_DISTANCE_SQUARED = 100 * 100;
+    public const float GAMETE_MATE_CALL_MAX_DISTANCE_SQUARED = 550 * 550;
+    public const float GAMETE_MATE_CALL_TARGET_DISTANCE_SQUARED = 50 * 50;
 
     // Corpse info
     public const float CORPSE_COMPOUND_COMPENSATION = 85.0f;
@@ -1222,7 +1316,7 @@ public static class Constants
 
     // Mutation Variables
     public const int MAX_VARIANTS_PER_MUTATION = 50;
-    public const int MAX_VARIANTS_IN_MUTATIONS = 30;
+    public const int MAX_VARIANTS_IN_MUTATIONS = 25;
     public const float MUTATION_BACTERIA_TO_EUKARYOTE = 0.01f;
     public const float MUTATION_CREATION_RATE = 0.25f;
     public const float MUTATION_NEW_ORGANELLE_CHANCE = 0.25f;
@@ -1317,7 +1411,7 @@ public static class Constants
     public const float AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION = 0.1f;
     public const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.4f;
 
-    public const float AUTO_EVO_ENGULF_PREDATION_SCORE = 100;
+    public const float AUTO_EVO_ENGULF_PREDATION_SCORE = 150;
     public const float AUTO_EVO_PILUS_PREDATION_SCORE = 5000;
     public const float AUTO_EVO_PILUS_DEFENSE_SCORE = 2000;
     public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 90000;
@@ -1342,6 +1436,17 @@ public static class Constants
     public const float AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION = 0.1f;
     public const float AUTO_EVO_REPRODUCTION_COMPOUND_PRODUCTION_SCORE = 3000.0f;
     public const float AUTO_EVO_REPRODUCTION_COMPOUND_COST_WEAKENING_MODIFIER = 0.2f;
+    public const float AUTO_EVO_SPRINTING_CONSUMPTION = 0.1f;
+
+    public const float AUTO_EVO_MAX_AGGRESSION_ENERGY_PENALTY = 0.8f;
+    public const float AUTO_EVO_MAX_AGGRESSION_GATHERING_PENALTY = 0.1f;
+    public const float AUTO_EVO_MAX_FEAR_ENERGY_PENALTY = 0.005f;
+    public const float AUTO_EVO_MAX_FEAR_GATHERING_PENALTY = 0.000f;
+    public const float AUTO_EVO_MAX_OPPORTUNISM_BONUS = 0.4f;
+    public const float AUTO_EVO_MAX_OPPORTUNISM_PENALTY = 0.05f;
+    public const float AUTO_EVO_MAX_FOCUS_CHUNK_BONUS = 0.9f;
+    public const float AUTO_EVO_MAX_FOCUS_CLOUD_BONUS = 0.5f;
+    public const float AUTO_EVO_MAX_FOCUS_PENALTY = 0.1f;
 
     public const float AUTO_EVO_PREDATION_DEFENSE_SCORE_MODIFIER = 0.5f;
 
@@ -1381,7 +1486,7 @@ public static class Constants
     public const int AUTO_EVO_MAX_MUTATION_RECURSIONS = 3;
 
     public const int AUTO_EVO_ORGANELLE_ADD_ATTEMPTS = 15;
-    public const int AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS = 15;
+    public const int AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS = 10;
     public const int AUTO_EVO_ORGANELLE_UPGRADE_ATTEMPTS = 5;
 
     /// <summary>
@@ -1621,7 +1726,7 @@ public static class Constants
 
     public const float MINIMUM_RUNNABLE_PROCESS_FRACTION = 0.00001f;
 
-    public const float DEFAULT_PROCESS_SPINNER_SPEED = 365.0f;
+    public const float DEFAULT_PROCESS_SPINNER_SPEED = MathF.PI * 2.0f;
     public const float DEFAULT_PROCESS_STATISTICS_AVERAGE_INTERVAL = 0.4f;
 
     public const int COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR = 5;
@@ -1689,6 +1794,7 @@ public static class Constants
     public const float PROCEDURAL_CACHE_MEMBRANE_KEEP_TIME = 500;
     public const float PROCEDURAL_CACHE_MICROBE_SHAPE_TIME = 7000;
     public const float PROCEDURAL_CACHE_LOADED_SHAPE_KEEP_TIME = 1000;
+    public const float PROCEDURAL_CACHE_SIMPLE_SHAPE_KEEP_TIME = 1000;
 
     // TODO: convert prototypes over to an ECS system as well
 
@@ -1721,6 +1827,7 @@ public static class Constants
 
     public const string ACHIEVEMENTS_CONFIGURATION = "res://simulation_parameters/common/achievements.json";
     public const string ACHIEVEMENTS_PROGRESS_SAVE = "user://achievements.bin";
+    public const string ACHIEVEMENTS_PROGRESS_SAVE_TEMP = "user://achievements.bin.new";
 
     public const string TUTORIAL_DATA_FILE = "user://tutorials.json.gz";
 
@@ -1748,8 +1855,6 @@ public static class Constants
 
     public const string LAST_PLAYED_VERSION_FILE = "user://last_played_version.txt";
 
-    public const string LICENSE_FILE = "res://LICENSE.txt";
-    public const string STEAM_LICENSE_FILE = "res://doc/steam_license_readme.txt";
     public const string ASSETS_README = "res://assets/README.txt";
     public const string ASSETS_LICENSE_FILE = "res://assets/LICENSE.txt";
     public const string GODOT_LICENSE_FILE = "res://doc/GodotLicense.txt";
@@ -1795,6 +1900,7 @@ public static class Constants
     public const string SAVE_BACKUP_SUFFIX = ".backup" + SAVE_EXTENSION_WITH_DOT;
 
     public const int SAVE_LIST_SCREENSHOT_HEIGHT = 720;
+    public const int SAVE_LIST_LAZY_LOAD_PADDING = 5;
     public const int FOSSILISED_PREVIEW_IMAGE_HEIGHT = 400;
 
     public const string FOSSIL_EXTENSION = "thrivefossil";
@@ -1933,8 +2039,8 @@ public static class Constants
 
     public const float MIN_GLUCOSE_DECAY = 0.3f;
     public const float MAX_GLUCOSE_DECAY = 0.95f;
-    public const float MIN_OSMOREGULATION_MULTIPLIER = 0.2f;
-    public const float MAX_OSMOREGULATION_MULTIPLIER = 2;
+    public const float MIN_ENERGYCOST_MULTIPLIER = 0.2f;
+    public const float MAX_ENERGYCOST_MULTIPLIER = 2;
     public const float MIN_AUTO_EVO_STRENGTH_MULTIPLIER = 0.01f;
     public const float MAX_AUTO_EVO_STRENGTH_MULTIPLIER = 1.0f;
 
@@ -2003,6 +2109,11 @@ public static class Constants
 
     public const float TOLERANCE_INITIAL_PRESSURE_RANGE = 2400000;
     public const float TOLERANCE_PRESSURE_RANGE_MAX = 2000000;
+
+    // These values must be the same as in the editor
+    public const float TOLERANCE_OXYGEN_RANGE_MAX = 0.1f;
+    public const float TOLERANCE_OXYGEN_STEP = 0.01f;
+    public const float TOLERANCE_UV_STEP = 0.05f;
 
     /// <summary>
     ///   UV effects only appear once this amount of UV is in a patch
@@ -2176,8 +2287,6 @@ public static class Constants
     public const int MAX_NEWS_FEED_ITEMS_TO_SHOW = 15;
     public const int MAX_NEWS_FEED_ITEM_LENGTH = 1000;
 
-    public const int MAX_RECENT_VERSIONS_TO_SHOW = 5;
-
     public const string CLICKABLE_TEXT_BBCODE = "[color=#3796e1]";
     public const string CLICKABLE_TEXT_BBCODE_END = "[/color]";
 
@@ -2247,9 +2356,7 @@ public static class Constants
         "toggle_FPS",
     };
 
-    // TODO: switch to https once our runtime supports it: https://github.com/Revolutionary-Games/Thrive/issues/4100
-    // See: https://github.com/Revolutionary-Games/Thrive/pull/4097#issuecomment-1415301373
-    public static readonly Uri MainSiteFeedURL = new("http://thrivefeeds.b-cdn.net/feed.rss");
+    public static readonly Uri MainSiteFeedURL = new("https://thrivefeeds.b-cdn.net/feed.rss");
 
     public static readonly Regex NewsFeedRegexDeleteContent =
         new(@"\s*The\spost\s*.*appeared\sfirst\son.*Revolutionary\sGames\sStudio.*$");

@@ -474,7 +474,7 @@ public partial class MetaballBodyEditorComponent :
         else
         {
             moveOccupancies = GetMultiActionWithOccupancies(positions.Take(1).ToList(),
-                new List<MacroscopicMetaball> { MovingPlacedMetaball }, true);
+                [MovingPlacedMetaball], true);
         }
 
         return Editor.WhatWouldActionsCost(moveOccupancies.Data);
@@ -875,10 +875,8 @@ public partial class MetaballBodyEditorComponent :
             return false;
         }
 
-        var multiAction = GetMultiActionWithOccupancies(
-            new List<(Vector3 Position, MacroscopicMetaball? Parent)> { (newLocation, newParent) },
-            new List<MacroscopicMetaball> { metaball },
-            true);
+        var multiAction = GetMultiActionWithOccupancies([(newLocation, newParent)],
+            [metaball], true);
 
         // Too low mutation points, cancel move
         if (Editor.MutationPoints < Editor.WhatWouldActionsCost(multiAction.Data))

@@ -9,7 +9,7 @@ public static class StrategicCameraHelpers
     ///   Given a world "focus" point, this calculates where the strategic camera should be at
     /// </summary>
     /// <param name="worldPositionToLook">The world point</param>
-    /// <param name="zoomLevel">How close the camera should be, 1 is default zoom level</param>
+    /// <param name="zoomLevel">How close the camera should be, 1 is the default zoom level</param>
     /// <returns>Transform for camera</returns>
     public static Transform3D CalculateCameraPosition(Vector3 worldPositionToLook, float zoomLevel)
     {

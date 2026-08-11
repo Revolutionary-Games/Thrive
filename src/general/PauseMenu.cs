@@ -375,16 +375,18 @@ public partial class PauseMenu : CanvasLayer
 
     public void OpenToSpeciesPage(Species species)
     {
+        OpenToSpeciesPage(species.ID);
+    }
+
+    public void OpenToSpeciesPage(uint speciesId)
+    {
         if (GameLoading)
             return;
 
         Open();
         OpenThriveopediaPressed();
 
-        // TODO: implement species specific pages: https://github.com/Revolutionary-Games/Thrive/issues/4043
-        _ = species;
-        GD.PrintErr("TODO: implement per-species pages in the Thriveopedia");
-        ThriveopediaManager.OpenPage("EvolutionaryTree");
+        ThriveopediaManager.OpenPage($"species:{speciesId}");
     }
 
     public void SetNewSaveName(string name)

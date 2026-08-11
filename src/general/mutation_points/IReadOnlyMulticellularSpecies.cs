@@ -14,4 +14,17 @@ public interface IReadOnlyMulticellularSpecies : IReadOnlySpecies
     public IReadOnlyCellLayout<IReadOnlyCellTemplate> GameplayCells { get; }
 
     public IReadOnlyList<IReadOnlyCellTypeDefinition> CellTypes { get; }
+
+    public MulticellularReproductionMethod ReproductionMethod { get; }
+
+    public IReadOnlyCellTypeDefinition? SporeCellType { get; }
+
+    public IReadOnlyCellTypeDefinition? GameteTypeA { get; }
+    public IReadOnlyCellTypeDefinition? GameteTypeB { get; }
+
+    /// <summary>
+    ///   The number of colony cells (including the lead cell) initially spawned if the species has the
+    ///   <see cref="MulticellularReproductionMethod.MassBudding"/> reproduction method
+    /// </summary>
+    public int MassBuddingCellCount { get; }
 }

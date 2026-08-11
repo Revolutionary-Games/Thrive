@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 
 /// <summary>
 ///   Tweaked colour picker allows for tooltip texts translations and has a customized theming.
@@ -65,6 +66,9 @@ public partial class TweakedColourPicker : ColorPicker
 
         // Disable the RAW option in a dropdown menu
         baseControl.GetChild(2).GetChild<MenuButton>(3).GetPopup().SetItemDisabled(2, true);
+
+        if (!FixScreenRecordingPermissionText(this))
+            GD.PrintErr("Failed to apply Mac-specific screen recording permission label fix");
 
         // Disable value bar scroll with the mouse, as the colour pickers are often in scrollable containers and
         // this would otherwise be problematic. Perhaps in the future we should have this be configurable with an
@@ -159,6 +163,30 @@ public partial class TweakedColourPicker : ColorPicker
         sliderA.Hide();
         labelA.Hide();
         spinBoxA.Hide();
+    }
+
+    private bool FixScreenRecordingPermissionText(Node node)
+    {
+        if (node is LinkButton button && button.Text.Contains("Screen Recording", StringComparison.OrdinalIgnoreCase))
+        {
+            button.TextOverrunBehavior = TextServer.OverrunBehavior.TrimEllipsis;
+            button.SizeFlagsHorizontal = SizeFlags.ExpandFill;
+            button.CustomMinimumSize = new Vector2(50, 0);
+
+            if (button.GetParent() is Control parentControl)
+                parentControl.SizeFlagsHorizontal = SizeFlags.ExpandFill;
+
+            return true;
+        }
+
+        var childCount = node.GetChildCount(true);
+        for (int i = 0; i < childCount; ++i)
+        {
+            if (FixScreenRecordingPermissionText(node.GetChild(i, true)))
+                return true;
+        }
+
+        return false;
     }
 
     private void DummyTranslations()

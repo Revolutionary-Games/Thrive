@@ -28,6 +28,9 @@ public interface ICellDefinition : IReadOnlyCellDefinition, ISimulationPhotograp
 
     public string FormattedName { get; }
 
+    /// <inheritdoc cref="IReadOnlyCellTypeDefinition.CellTypeSpecializationBonus" />
+    public float CellTypeSpecializationBonus { get; set; }
+
     /// <summary>
     ///   Repositions the cell to the origin and recalculates any properties dependent on its position.
     /// </summary>
@@ -49,6 +52,8 @@ public interface IReadOnlyCellDefinition
 public interface ICellTypeDefinition : ICellDefinition, IReadOnlyCellTypeDefinition
 {
     public new int MPCost { get; set; }
+
+    public new float CellTypeSpecializationBonus { get; }
 }
 
 public interface IReadOnlyCellTypeDefinition : IReadOnlyCellDefinition, IPlayerReadableName
@@ -64,9 +69,10 @@ public interface IReadOnlyCellTypeDefinition : IReadOnlyCellDefinition, IPlayerR
 
     /// <summary>
     ///   A multiplier starting from 1 and going up based on how specialized this cell type is. This is eventually
-    ///   applied to <see cref="Components.BioProcesses.OverallSpeedModifier"/>
+    ///   applied to <see cref="Components.BioProcesses.OverallSpeedModifier"/> and many other systems.
+    ///   Does not include any adjacency bonus effects that may be applied later.
     /// </summary>
-    public float SpecializationBonus { get; }
+    public float CellTypeSpecializationBonus { get; }
 }
 
 /// <summary>
@@ -97,23 +103,32 @@ public static class GeneralCellPropertiesHelpers
     {
         var result = new List<(Compound Compound, float Amount)>();
 
+        definition.CalculateTotalCompositionList(result);
+
+        return result;
+    }
+
+    /// <summary>
+    ///   The total compounds in the composition of all organelles
+    /// </summary>
+    public static void CalculateTotalCompositionList(this ICellDefinition definition,
+        List<(Compound Compound, float Amount)> addTo)
+    {
         foreach (var organelle in definition.Organelles)
         {
             foreach (var pair in organelle.Definition.InitialComposition)
             {
-                var index = result.FindIndexByKey(pair.Key);
+                var index = addTo.FindIndexByKey(pair.Key);
                 if (index != -1)
                 {
-                    result[index] = (pair.Key, pair.Value + result[index].Amount);
+                    addTo[index] = (pair.Key, pair.Value + addTo[index].Amount);
                 }
                 else
                 {
-                    result.Add((pair.Key, pair.Value));
+                    addTo.Add((pair.Key, pair.Value));
                 }
             }
         }
-
-        return result;
     }
 
     public static void SetupWorldEntities(this ICellDefinition definition, IWorldSimulation worldSimulation)
@@ -127,7 +142,7 @@ public static class GeneralCellPropertiesHelpers
             workMemory1, workMemory2)
         {
             // For visualization the bonus doesn't matter, but we need to set a valid value
-            SpecializationBonus = 1,
+            CellTypeSpecializationBonus = 1,
         };
 
         species.SetupWorldEntities(worldSimulation);

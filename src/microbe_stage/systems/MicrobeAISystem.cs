@@ -33,6 +33,9 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(Engulfable))]
 [ReadsComponent(typeof(MicrobeColony))]
 [ReadsComponent(typeof(WorldPosition))]
+[ReadsComponent(typeof(TimedLife))]
+[ReadsComponent(typeof(MicrobeSex))]
+[WritesToComponent(typeof(MulticellularGrowth))]
 [RunsAfter(typeof(OrganelleComponentFetchSystem))]
 [RunsBefore(typeof(MicrobeMovementSystem))]
 [RunsBefore(typeof(MicrobeEmissionSystem))]
@@ -44,6 +47,9 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
 {
     private readonly IReadonlyCompoundClouds clouds;
     private readonly IDaylightInfo lightInfo;
+    private readonly IWorldSimulation worldSimulation;
+    private readonly IMicrobeSpawnEnvironment spawnEnvironment;
+    private readonly ISpawnSystem spawnSystem;
 
     // TODO: for actual consistency these should probably be in the MicrobeAI component so that each AI entity
     // consistently uses its own random instance, instead of just a few being used per update for whatever set of
@@ -100,10 +106,15 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
 
     private bool skipAI;
 
-    public MicrobeAISystem(IReadonlyCompoundClouds cloudSystem, IDaylightInfo lightInfo, World world) : base(world)
+    public MicrobeAISystem(IReadonlyCompoundClouds cloudSystem, IDaylightInfo lightInfo,
+        IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment spawnEnvironment, ISpawnSystem spawnSystem,
+        World world) : base(world)
     {
         clouds = cloudSystem;
         this.lightInfo = lightInfo;
+        this.worldSimulation = worldSimulation;
+        this.spawnEnvironment = spawnEnvironment;
+        this.spawnSystem = spawnSystem;
     }
 
     public void OverrideAIRandomSeed(long seed)
@@ -324,7 +335,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             return;
         }
 
-        // If there are no predators stop secreting mucus
+        // If there are no predators, stop secreting mucus
         if (control.State == MicrobeState.MucocystShield)
         {
             control.SetMucocystState(ref organelles, ref compoundStorage, entity, false);
@@ -460,6 +471,156 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
 
                     break;
                 }
+
+                case MicrobeSignalCommand.CallMate:
+                {
+                    if (signaling.ReceivedCommandFromEntity.IsAliveAndHas<WorldPosition>())
+                    {
+                        var signalerPosition = signaling.ReceivedCommandFromEntity.Get<WorldPosition>().Position;
+                        var distanceSquared = position.Position.DistanceSquaredTo(signalerPosition);
+
+                        // This is a really approximate timer
+                        ai.TimeUntilMateCallCheck -= Constants.MICROBE_AI_THINK_INTERVAL;
+
+                        if (distanceSquared <= Constants.GAMETE_MATE_CALL_MAX_DISTANCE_SQUARED &&
+                            ai.TimeUntilMateCallCheck <= 0)
+                        {
+                            ai.TimeUntilMateCallCheck = 10;
+
+                            // Make sure sexes are compatible and we are fully grown before reacting
+                            bool compatible = true;
+
+                            if (!signaling.ReceivedCommandFromEntity.IsAliveAndHas<MicrobeSex>() ||
+                                !entity.Has<MicrobeSex>() || !entity.Has<MulticellularGrowth>())
+                            {
+                                compatible = false;
+                            }
+                            else
+                            {
+                                if (!GameteHelpers.IsCompatible(entity.Get<MicrobeSex>().Sex,
+                                        signaling.ReceivedCommandFromEntity.Get<MicrobeSex>().Sex))
+                                {
+                                    compatible = false;
+                                }
+
+                                if (compatible)
+                                {
+                                    // If not fully grown, don't react
+                                    if (!entity.Get<MulticellularGrowth>().IsFullyGrownMulticellular)
+                                        compatible = false;
+                                }
+
+                                // TODO: should we check that the signal sender is fully grown?
+                            }
+
+                            if (compatible)
+                            {
+                                // React to signal by moving close enough
+                                if (distanceSquared > Constants.GAMETE_MATE_CALL_TARGET_DISTANCE_SQUARED)
+                                {
+                                    ai.MoveToLocation(signalerPosition, ref control, entity);
+                                }
+
+                                return;
+                            }
+                        }
+                    }
+
+                    break;
+                }
+
+                case MicrobeSignalCommand.ShootGamete:
+                {
+                    if (signaling.ReceivedCommandFromEntity.IsAliveAndHas<WorldPosition>())
+                    {
+                        var signalerPosition = signaling.ReceivedCommandFromEntity.Get<WorldPosition>().Position;
+                        var distanceSquared = position.Position.DistanceSquaredTo(signalerPosition);
+
+                        // This is a really approximate timer
+                        ai.TimeSinceGameteShoot += Constants.MICROBE_AI_THINK_INTERVAL;
+
+                        if (distanceSquared <= Constants.GAMETE_FORCE_SHOOT_DISTANCE_SQUARED &&
+                            ai.TimeSinceGameteShoot > Constants.GAMETE_FORCE_SHOOT_INTERVAL &&
+                            entity.Has<MulticellularGrowth>())
+                        {
+                            ref var growth = ref entity.Get<MulticellularGrowth>();
+
+                            // Make sure sexes are compatible and we are fully grown before reacting
+                            bool compatible = true;
+
+                            if (!signaling.ReceivedCommandFromEntity.IsAliveAndHas<MicrobeSex>() ||
+                                !entity.Has<MicrobeSex>())
+                            {
+                                compatible = false;
+                            }
+                            else
+                            {
+                                if (!GameteHelpers.IsCompatible(entity.Get<MicrobeSex>().Sex,
+                                        signaling.ReceivedCommandFromEntity.Get<MicrobeSex>().Sex))
+                                {
+                                    compatible = false;
+                                }
+
+                                if (compatible)
+                                {
+                                    // If not fully grown, don't react
+                                    if (!growth.IsFullyGrownMulticellular)
+                                        compatible = false;
+                                }
+
+                                // TODO: should we check that the signal sender is fully grown?
+                            }
+
+                            if (compatible)
+                            {
+                                // If not at least 2 cells, can't do sexual reproduction anyway.
+                                // And, if not multicellular, also can't do it.
+                                if (!entity.Has<MicrobeColony>())
+                                    return;
+                            }
+
+                            if (compatible)
+                            {
+                                // Look at the target position and shoot a gamete
+                                control.LookAtPoint = signalerPosition;
+
+                                var currentLookDirection = position.Rotation * Vector3.Forward;
+
+                                // Would be pretty weird to fail this check here, but as we need to safely cast anyway,
+                                // it is merged into this if.
+                                if (currentLookDirection.Normalized()
+                                        .AngleTo((control.LookAtPoint - position.Position).Normalized()) < 0.3f &&
+                                    ourSpecies.Species is MulticellularSpecies multicellularSpecies)
+                                {
+                                    // Close enough angle, can shoot gamete
+                                    ai.TimeSinceGameteShoot = 0;
+
+                                    // Only shoot gamete if we are below entity limit, or if the player requested
+                                    // it specifically, for obvious gameplay reasons (not getting stuck out of the
+                                    // editor)
+                                    if (spawnSystem.IsUnderEntityLimitForReproducing() ||
+                                        signaling.ReceivedCommandFromEntity.Has<PlayerMarker>())
+                                    {
+                                        try
+                                        {
+                                            growth.ShootGamete(ref entity.Get<MicrobeColony>(), entity,
+                                                multicellularSpecies, worldSimulation, spawnEnvironment, spawnSystem,
+                                                false);
+                                        }
+                                        catch (Exception e)
+                                        {
+                                            GD.PrintErr("Failed to shoot gamete as an AI: ", e);
+                                        }
+                                    }
+                                }
+
+                                return;
+                            }
+                        }
+                    }
+
+                    break;
+                }
             }
         }
 
@@ -470,8 +631,8 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         {
             if (potentiallyKnownPlayerPosition != null)
             {
-                // Only move if we aren't sessile
-                // The threshold is not too high so that not all cells are forced to move
+                // Only move if we aren't sessile.
+                // The threshold is not too high so that not all cells are forced to move.
                 if (position.Position.DistanceSquaredTo(potentiallyKnownPlayerPosition.Value) >
                     Math.Pow(Constants.SPAWN_SECTOR_SIZE, 2) * Constants.ON_STAGE_THRESHOLD_AROUND_PLAYER &&
                     !isSessile)
@@ -491,6 +652,17 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                 }
 
                 ai.HasBeenNearPlayer = true;
+            }
+        }
+
+        if (entity.Has<MulticellularGrowth>())
+        {
+            var growth = entity.Get<MulticellularGrowth>();
+
+            if (growth.IsASpore)
+            {
+                // TODO: add a smarter condition here for when the AI decides to germinate as a spore
+                control.GerminatingSpore = true;
             }
         }
 
@@ -629,8 +801,9 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                 return false;
             }
 
+            var distanceToPrey = GetClosestColonyMemberDistanceSquared(in entity, position.Position, prey);
             bool engulfPrey = cellProperties.CanEngulfObject(ref ourSpecies, ref engulfer, possiblePrey) ==
-                EngulfCheckResult.Ok && position.Position.DistanceSquaredTo(prey) <
+                EngulfCheckResult.Ok && distanceToPrey <
                 10.0f * engulfer.EngulfingSize;
 
             // If out of ATP and the prey is out of reach to engulf, do nothing
@@ -1353,7 +1526,8 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
     {
         // Turn on engulf mode if close
         // Sometimes "close" is hard to discern since microbes can range from straight lines to circles
-        if ((position.Position - targetPosition).LengthSquared() <= engulfer.EngulfingSize * 2.0f)
+        if (GetClosestColonyMemberDistanceSquared(in entity, position.Position, targetPosition) <=
+            engulfer.EngulfingSize * 2.0f)
         {
             control.SetStateColonyAware(entity, MicrobeState.Engulf);
         }
@@ -1361,6 +1535,30 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         {
             control.SetStateColonyAware(entity, MicrobeState.Normal);
         }
+    }
+
+    private float GetClosestColonyMemberDistanceSquared(in Entity entity, Vector3 fallbackPosition,
+        Vector3 targetPosition)
+    {
+        var closestDistance = fallbackPosition.DistanceSquaredTo(targetPosition);
+
+        if (!entity.Has<MicrobeColony>())
+            return closestDistance;
+
+        ref var colony = ref entity.Get<MicrobeColony>();
+
+        foreach (var colonyMember in colony.ColonyMembers)
+        {
+            if (!colonyMember.IsAliveAndHas<WorldPosition>())
+                continue;
+
+            var memberDistance = colonyMember.Get<WorldPosition>().Position.DistanceSquaredTo(targetPosition);
+
+            if (memberDistance < closestDistance)
+                closestDistance = memberDistance;
+        }
+
+        return closestDistance;
     }
 
     private void LaunchToxin(ref MicrobeControl control, ref OrganelleContainer organelles,
@@ -1414,17 +1612,26 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
 
     private bool CanShootToxin(CompoundBag compounds, float speciesFocus)
     {
+        var storage = compounds.GetCapacityForCompound(Compound.Oxytoxy) * 0.99f;
+
+        // If a cell can't store toxin, cannot shoot it either
+        if (storage <= Constants.AI_SHOOT_TOXIN_AFTER)
+            return false;
+
         // Ensure that zero focus species don't constantly think they can fire toxins
-        return compounds.GetCompoundAmount(Compound.Oxytoxy) >
-            Math.Min(Constants.MAXIMUM_AGENT_EMISSION_AMOUNT * speciesFocus / Constants.MAX_SPECIES_FOCUS,
-                Constants.MINIMUM_AGENT_EMISSION_AMOUNT);
+        // And that otherwise focus nicely scales how many toxins are spewed before max damage
+        var shootThreshold =
+            Math.Clamp(Constants.MAXIMUM_AGENT_EMISSION_AMOUNT * (speciesFocus / Constants.MAX_SPECIES_FOCUS),
+                Constants.AI_SHOOT_TOXIN_AFTER, storage);
+
+        return compounds.GetCompoundAmount(Compound.Oxytoxy) > shootThreshold;
     }
 
     private void CleanMicrobeCache()
     {
-        // Skip when cache hasn't been updated in the meantime, this avoids unnecessarily clearing out a bunch of
+        // Skip when cache hasn't been updated in the meantime; this avoids unnecessarily clearing out a bunch of
         // data from the cache as after we clear the lists, the lists won't be filled again until the cache is
-        // rebuild
+        // rebuilt
         if (!microbeCacheBuilt)
             return;
 

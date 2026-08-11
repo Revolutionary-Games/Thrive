@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-27 14:48+0200\n"
-"PO-Revision-Date: 2025-11-14 11:00+0000\n"
-"Last-Translator: Sur3 <sur3@gmx.de>\n"
+"POT-Creation-Date: 2026-08-11 10:42+0300\n"
+"PO-Revision-Date: 2026-07-22 04:07+0000\n"
+"Last-Translator: 4sokay8 <kwi.tns11@gmail.com>\n"
 "Language-Team: Japanese <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.11.4\n"
+"X-Generator: Weblate 5.16.1\n"
 "Generated-By: Thrive.Scripts 1.2.0.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -51,6 +51,17 @@ msgstr "適用"
 
 msgid "ACHIEVEMENTS"
 msgstr "実績"
+
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr "実績のロードに失敗しました"
+
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr ""
+"実績のデータファイルが破損している可能性があります。\n"
+"データをリセットすることができますが、全ての実績の進捗が削除され失われます:\n"
+"{0}\n"
+"実績なしでプレイを続けますか？\n"
+"キャンセルを押すとゲームを終了します。"
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr "実績 {0} / {1}"
@@ -107,12 +118,6 @@ msgstr "詳細設定"
 
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "詳細設定ビューを開きます"
-
-msgid "AEROBIC_NITROGEN_FIXATION"
-msgstr "好気性窒素固定"
-
-msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "好気性窒素固定"
 
 msgid "AEROBIC_RESPIRATION"
 msgstr "好気呼吸"
@@ -177,6 +182,15 @@ msgstr "すでにアセンド済みです"
 msgid "ALT"
 msgstr "Alt"
 
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr ""
+"このシミュレーションのスピードを変更します。\n"
+"この値に一致するHUDのボタンを押すことで、そのスピードを使用できます。\n"
+"高い値にする場合は、高速なCPUが必要になる可能性があります。"
+
+msgid "ALTERNATVE_TIMESCALE"
+msgstr ""
+
 msgid "ALWAYS_VISIBLE"
 msgstr "常に表示"
 
@@ -197,9 +211,6 @@ msgstr "オートセーブ数:"
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "クイックセーブ数:"
-
-msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "嫌気性窒素固定"
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr "かつ"
@@ -271,9 +282,8 @@ msgstr "完全進化ステージ"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "アセンブリが指定されている場合は、Mod のアセンブリクラスが必要です"
 
-#, fuzzy
 msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
-msgstr "自動 Harmony が有効な場合は、Mod のアセンブリ定義が必要です"
+msgstr "Modのクラスが指定されている場合は、アセンブリが必要です"
 
 msgid "ASSUME_HYPERTHREADING"
 msgstr "CPU にハイパースレッディングが有効であると仮定する"
@@ -428,9 +438,8 @@ msgstr "平均表面その他ガス濃度"
 msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
 msgstr "平均表面酸素濃度"
 
-#, fuzzy
 msgid "AVERAGE_SURFACE_TEMPERATURE"
-msgstr "平均表面その他ガス濃度"
+msgstr "平均表面温度"
 
 msgid "AWAKENING_STAGE"
 msgstr "覚醒ステージ"
@@ -593,6 +602,10 @@ msgstr "閲覧"
 msgid "BROWSE_WORKSHOP"
 msgstr "ワークショップを閲覧"
 
+#, fuzzy
+msgid "BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "（AI生物が突然変異する速度）"
+
 msgid "BUILD_CITY"
 msgstr "都市を建設"
 
@@ -749,6 +762,21 @@ msgstr "細胞タイプ名"
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "変更内容が長すぎます"
 
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr "膜の種類を変更する"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr ""
+"多細胞ステージでも膜の変更は可能ですが、それはかなり難しくなります。\n"
+"巨視ステージでは膜の変更はできなくなります。\n"
+"膜を変更するには、一度に全ての細胞のタイプを新しいタイプに変える必要があります。\n"
+"この変更には全ての変異ポイント[thrive:icon]MP[/thrive:icon]を消費しなければいけません。\n"
+"また、これを行うと、変更を適用するためエディターを終了します。\n"
+"膜を選択したタイプに変更しますか？"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
+
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "対称性を変更する"
 
@@ -769,6 +797,10 @@ msgstr "チートメニュー"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "細胞プロセスを表示／非表示"
+
+#, fuzzy
+msgid "CHEMICAL_EQUATION_SPEED_EXPLANATION"
+msgstr "（AI生物が突然変異する速度）"
 
 msgid "CHEMOPLAST"
 msgstr "ケモプラスト"
@@ -970,7 +1002,7 @@ msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "明度値（色の明るさや強さ）"
 
 msgid "COMMAND_INPUT_LINE_EDIT"
-msgstr ""
+msgstr "コマンドを書き入れる"
 
 msgid "COMMON_ABILITIES"
 msgstr "共通能力"
@@ -1148,16 +1180,16 @@ msgstr ""
 "打ち上げをキャンセルすると、宇宙船ユニットは破壊されます。打ち上げますか？"
 
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "この設定でゲームを始める"
 
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
-msgstr ""
+msgstr "一部の設定が無効なものになっています"
 
 msgid "CONFIRM_RESET_ACHIEVEMENTS"
-msgstr ""
+msgstr "実績のリセットを行いますか？"
 
 msgid "CONFIRM_RESET_ACHIEVEMENTS_DESCRIPTION"
-msgstr ""
+msgstr "本当に全ての実績とそれに関連する統計をリセットしてもよろしいですか？この操作は取り消すことができず、全ての実績と実績への進捗がリセットされた状態で、あなたは最初からやり直すことになります。"
 
 msgid "CONSTRUCTION_UNIT_NAME"
 msgstr ""
@@ -1457,9 +1489,10 @@ msgstr ""
 msgid "CURRENT_DILUTION"
 msgstr "現在の行動をキャンセル"
 
-#, fuzzy
 msgid "CURRENT_DILUTION_TOOLTIP"
-msgstr "現在の行動をキャンセル"
+msgstr ""
+"化合物が希釈されました。\n"
+"以下の成分の濃度が低下します:"
 
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr ""
@@ -1660,6 +1693,9 @@ msgstr ""
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr ""
 
+msgid "DIFFICULTY_PRESET_VERY_EASY"
+msgstr ""
+
 msgid "DIGESTION_EFFICIENCY"
 msgstr ""
 
@@ -1738,6 +1774,12 @@ msgstr ""
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
 
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr ""
+
+msgid "DISPLAY_DRIVER_METAL"
+msgstr ""
+
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr ""
 
@@ -1772,9 +1814,6 @@ msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
 msgstr ""
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
-msgstr ""
-
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
 msgstr ""
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
@@ -1876,6 +1915,12 @@ msgstr ""
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 msgstr ""
 
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
+msgstr ""
+
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
+msgstr ""
+
 msgid "EDIT_MICROBE_FIRST_TIME"
 msgstr ""
 
@@ -1939,6 +1984,9 @@ msgstr ""
 msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
 msgstr ""
 
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION_MULTICELLULAR"
+msgstr ""
+
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
 msgstr ""
 
@@ -1965,6 +2013,14 @@ msgstr ""
 
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr ""
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER"
+msgstr "シミュレーション倍率:"
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER_EXPLANATION"
+msgstr "(自動進化がプレイヤー種に適用する個体数変化の割合)"
 
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
@@ -2038,6 +2094,9 @@ msgstr ""
 msgid "ERROR_LOADING"
 msgstr ""
 
+msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
+
 msgid "ERROR_SAVING"
 msgstr ""
 
@@ -2093,6 +2152,9 @@ msgid "EXACT_VERSION_TOOLTIP"
 msgstr ""
 
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
+msgstr ""
+
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE_JUKEBOX"
 msgstr ""
 
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
@@ -2377,6 +2439,35 @@ msgstr ""
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "GAMETE_CELL_ENTITY_NAME"
+msgstr "細胞タイプ名"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE"
+msgstr "細胞タイプ名"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_A"
+msgstr "細胞タイプ名"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_B"
+msgstr "細胞タイプ名"
+
+#, fuzzy
+msgid "GAMETE_PRODUCED"
+msgstr "ATP 生成量"
+
+#, fuzzy
+msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+msgstr ""
+"このセクションでは、現在の細胞の ATP（エネルギー）収支を表示します.\n"
+"生存するには、収支がプラスである必要があります。 固着性の細胞では、移動による消費を除いた収支がプラスであれば、生存可能とみなされます.\n"
+"下のドロップダウンでは、ATP を生成するための資源が一部欠けていた場合にどうなるかを確認できます.\n"
+"例えば、複数の化合物を同時に使って ATP を生成しないと収支がプラスにならない細胞もあります.\n"
+"こうした細胞は、複数の化合物を常にストレージに保持する必要があるため、プレイが難しくなります."
+
 msgid "GAME_DESIGN_TEAM"
 msgstr ""
 
@@ -2434,6 +2525,18 @@ msgstr ""
 #, fuzzy
 msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
 msgstr "（AI生物が突然変異する速度）"
+
+#, fuzzy
+msgid "GERMINATE_SPORE"
+msgstr ""
+"細胞の回転速度。大きな細胞ほど回転は遅くなりますが、線毛を追加することで補えます。\n"
+"細胞小器官の配置も回転に影響し、中心から遠いほど回転速度は低下します。"
+
+#, fuzzy
+msgid "GERMINATE_SPORE_ACTION_TOOLTIP"
+msgstr ""
+"細胞の回転速度。大きな細胞ほど回転は遅くなりますが、線毛を追加することで補えます。\n"
+"細胞小器官の配置も回転に影響し、中心から遠いほど回転速度は低下します。"
 
 msgid "GITHUB_TOOLTIP"
 msgstr ""
@@ -2647,6 +2750,15 @@ msgstr ""
 msgid "IMAGE_FILE_TYPES"
 msgstr ""
 
+msgid "INCOMPATIBLE_MEMBRANE_LIST"
+msgstr ""
+
+msgid "INCOMPATIBLE_ORGANELLE_LIST"
+msgstr ""
+
+msgid "INCOMPATIBLE_STAGE_LIST"
+msgstr ""
+
 msgid "INCREASE_ITEM_SIZE"
 msgstr ""
 
@@ -2699,6 +2811,12 @@ msgid "INFO_BOX_REQUIRES_NUCLEUS"
 msgstr ""
 
 msgid "INFO_BOX_SIZE"
+msgstr ""
+
+msgid "INFO_BOX_SIZE_PLAIN"
+msgstr ""
+
+msgid "INFO_BOX_STAGE"
 msgstr ""
 
 msgid "INFO_BOX_STORAGE"
@@ -3302,6 +3420,18 @@ msgstr ""
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr ""
 
+msgid "LOOK_LEFT"
+msgstr ""
+
+msgid "LOOK_RIGHT"
+msgstr ""
+
+msgid "LOOK_SCREEN_DOWN_OR_3D_TOWARDS_UP"
+msgstr ""
+
+msgid "LOOK_SCREEN_UP_OR_3D_TOWARDS_DOWN"
+msgstr ""
+
 msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
 msgstr ""
 
@@ -3341,6 +3471,9 @@ msgstr ""
 msgid "MACROSCOPIC"
 msgstr ""
 
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr ""
+
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
 msgstr "微生物エディター"
@@ -3368,6 +3501,13 @@ msgstr "3月"
 
 msgid "MARINE_SNOW"
 msgstr ""
+
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "（AI生物が突然変異する速度）"
 
 msgid "MASTER_VOLUME"
 msgstr ""
@@ -3600,6 +3740,10 @@ msgstr ""
 
 msgid "MICROBE_LOADING_TIP_22"
 msgstr ""
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_23"
+msgstr "多細胞ステージに到達"
 
 msgid "MICROBE_LOADING_TIP_3"
 msgstr ""
@@ -3990,7 +4134,35 @@ msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr ""
 
 #, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_2"
+msgstr "多細胞ステージに到達"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_3"
+msgstr "多細胞ステージに到達"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_4"
+msgstr "多細胞ステージに到達"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_5"
+msgstr "多細胞ステージに到達"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_6"
+msgstr "多細胞ステージに到達"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_7"
+msgstr "多細胞ステージに到達"
+
+#, fuzzy
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
+msgstr "全てのチュートリアルが再び表示されます。このオプションをオフにすると、まだ表示されていないチュートリアルだけが表示されます。初めてのプレイでもオフにして問題ありません。"
+
+#, fuzzy
+msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
 msgstr "全てのチュートリアルが再び表示されます。このオプションをオフにすると、まだ表示されていないチュートリアルだけが表示されます。初めてのプレイでもオフにして問題ありません。"
 
 msgid "MULTICELLULAR_STAGE"
@@ -4062,6 +4234,9 @@ msgstr ""
 msgid "NEW"
 msgstr ""
 
+msgid "NEWER"
+msgstr ""
+
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 
@@ -4103,6 +4278,10 @@ msgstr ""
 
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
+
+#, fuzzy
+msgid "NITROGEN_FIXATION"
+msgstr "好気性窒素固定"
 
 msgid "NITROPLAST"
 msgstr ""
@@ -4168,7 +4347,13 @@ msgstr ""
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
+msgid "NOTICE_READY_TO_SHOOT_GAMETE"
+msgstr ""
+
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
+msgstr ""
+
+msgid "NOT_ENOUGH_MUTATION_POINTS"
 msgstr ""
 
 msgid "NOT_STARTED_DOT"
@@ -4255,6 +4440,9 @@ msgstr ""
 msgid "OK"
 msgstr ""
 
+msgid "OLDER"
+msgstr ""
+
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 
@@ -4263,6 +4451,10 @@ msgstr ""
 
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr ""
+
+#, fuzzy
+msgid "OPEN_EVOLUTIONARY_TREE"
+msgstr "Revolutionary Games Studio 作"
 
 msgid "OPEN_FOLDER"
 msgstr ""
@@ -4325,6 +4517,9 @@ msgid "OPTIONS"
 msgstr ""
 
 msgid "OPTIONS_BUTTON_TOOLTIP"
+msgstr ""
+
+msgid "OPTION_USED_FOR_PLAYER"
 msgstr ""
 
 msgid "ORGANELLES"
@@ -4399,12 +4594,6 @@ msgstr ""
 msgid "OSMOREGULATION_COST"
 msgstr ""
 
-msgid "OSMOREGULATION_COST_MULTIPLIER"
-msgstr ""
-
-msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
-msgstr ""
-
 msgid "OTHER_COMPOUNDS"
 msgstr ""
 
@@ -4441,6 +4630,9 @@ msgstr ""
 msgid "OXYGEN_RESISTANCE"
 msgstr ""
 
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
+msgstr ""
+
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr ""
 
@@ -4463,6 +4655,9 @@ msgid "PAGE_BACK"
 msgstr ""
 
 msgid "PAGE_FORWARD"
+msgstr ""
+
+msgid "PAGE_PINNED"
 msgstr ""
 
 msgid "PAGE_TITLE"
@@ -4513,6 +4708,9 @@ msgstr ""
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
+msgid "PATCH_NOTES_RECENT_BOUNDARY"
+msgstr ""
+
 msgid "PATCH_NOTES_TITLE"
 msgstr ""
 
@@ -4555,6 +4753,9 @@ msgstr ""
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
 msgstr ""
 
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION_MULTICELLULAR"
+msgstr ""
+
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
 msgstr ""
 
@@ -4593,6 +4794,13 @@ msgid "PHYSICAL_CONDITIONS"
 msgstr ""
 
 msgid "PHYSICAL_RESISTANCE"
+msgstr ""
+
+#, fuzzy
+msgid "PIN_BUTTON_TOOLTIP"
+msgstr "キー割り当てを追加"
+
+msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
 msgstr ""
 
 msgid "PLACE_ORGANELLE"
@@ -4709,6 +4917,9 @@ msgstr ""
 msgid "PRESSURE_SHORT"
 msgstr ""
 
+msgid "PRESSURE_TOLERANCE"
+msgstr ""
+
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr ""
 
@@ -4730,6 +4941,9 @@ msgstr ""
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr ""
 
+msgid "PROCESS_INACTIVE"
+msgstr ""
+
 #, fuzzy
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
 msgstr ""
@@ -4747,9 +4961,6 @@ msgstr ""
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr ""
 
-msgid "PROCESS_TOGGLE_TOOLTIP"
-msgstr ""
-
 msgid "PROGRAMMING_TEAM"
 msgstr ""
 
@@ -4757,9 +4968,6 @@ msgid "PROJECT_MANAGEMENT_TEAM"
 msgstr ""
 
 msgid "PROTEINS"
-msgstr ""
-
-msgid "PROTOPLASM"
 msgstr ""
 
 msgid "PULL_REQUESTS_PROGRAMMING"
@@ -4791,6 +4999,10 @@ msgstr ""
 
 #, fuzzy
 msgid "RADIOACTIVE_CHUNK"
+msgstr "放射性の岩の塊"
+
+#, fuzzy
+msgid "RADIOACTIVE_CHUNK_BANANA"
 msgstr "放射性の岩の塊"
 
 msgid "RADIOSYNTHESIS"
@@ -4853,6 +5065,10 @@ msgstr ""
 msgid "REPORT_BUG"
 msgstr ""
 
+#, fuzzy
+msgid "REPRODUCE"
+msgstr "{0} 消費量"
+
 msgid "REPRODUCED"
 msgstr ""
 
@@ -4874,8 +5090,28 @@ msgstr ""
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 msgstr ""
 
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "{0} 消費量"
+
 msgid "REPRODUCTION_METHOD"
 msgstr ""
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL"
+msgstr "{0} 消費量"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
+msgstr "{0} 消費量"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ISOGAMY"
+msgstr "{0} 消費量"
+
+#, fuzzy
+msgid "REPRODUCTION_SPORE"
+msgstr "{0} 消費量"
 
 msgid "REQUIRES_NUCLEUS"
 msgstr ""
@@ -5003,6 +5239,10 @@ msgstr ""
 
 msgid "ROTATION_COLON"
 msgstr ""
+
+#, fuzzy
+msgid "ROTATION_FORCE"
+msgstr "{0} 消費量"
 
 msgid "RUNOFF_EVENT"
 msgstr ""
@@ -5251,6 +5491,17 @@ msgstr ""
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr "現在の微生物がこの環境で生き残るのに適していない場合、前回エディターにいた時点に戻って別のアプローチを試すことができます。"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "現在の微生物がこの環境で生き残るのに適していない場合、前回エディターにいた時点に戻って別のアプローチを試すことができます。"
+
+msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+msgstr ""
+
 msgid "SFX_VOLUME"
 msgstr ""
 
@@ -5274,6 +5525,17 @@ msgstr ""
 
 msgid "SHOW_MAP"
 msgstr ""
+
+msgid "SHOW_MATE_POSITION"
+msgstr ""
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION_EXPLANATION"
+msgstr ""
+"攻撃的な微生物はより遠くまで獲物を追い、\n"
+"捕食者に対して反撃する可能性が高い。\n"
+"平和的な微生物は他の生物を深追いせず、\n"
+"捕食者に対して毒素を使いにくい。"
 
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr ""
@@ -5317,6 +5579,12 @@ msgstr ""
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr ""
 
+msgid "SIGNAL_COMMAND_CALL_MATE"
+msgstr ""
+
+msgid "SIGNAL_COMMAND_FIRE_GAMETES"
+msgstr ""
+
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr ""
 
@@ -5340,6 +5608,10 @@ msgstr ""
 
 msgid "SIMULATION_CONFIG"
 msgstr ""
+
+#, fuzzy
+msgid "SIMULATION_FACTOR"
+msgstr "AI生物の突然変異率"
 
 msgid "SIXTEEN_TIMES"
 msgstr ""
@@ -5421,6 +5693,13 @@ msgstr ""
 msgid "SPAWN_GLUCOSE"
 msgstr "グルコースをスポーン"
 
+msgid "SPAWN_MATE_ON_CALL"
+msgstr ""
+
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL_EXPLANATION"
+msgstr "（AI生物が突然変異する速度）"
+
 msgid "SPAWN_PHOSPHATES"
 msgstr ""
 
@@ -5479,11 +5758,20 @@ msgstr ""
 msgid "SPECIES_WITH_POPULATION"
 msgstr ""
 
-msgid "SPEED"
-msgstr ""
-
 msgid "SPEED_COLON"
 msgstr ""
+
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "キー割り当てを追加"
+
+#, fuzzy
+msgid "SPORE_CELL_TYPE"
+msgstr "細胞タイプ名"
+
+#, fuzzy
+msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "現在の微生物がこの環境で生き残るのに適していない場合、前回エディターにいた時点に戻って別のアプローチを試すことができます。"
 
 msgid "SPREAD_TO_PATCHES"
 msgstr ""
@@ -5764,6 +6052,10 @@ msgstr ""
 msgid "TEMPERATURE_SHORT"
 msgstr ""
 
+#, fuzzy
+msgid "TEMPERATURE_TOLERANCE_RANGE"
+msgstr "温帯"
+
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr ""
 
@@ -5834,6 +6126,9 @@ msgstr ""
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr ""
 
+msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
+msgstr ""
+
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr ""
 
@@ -5843,16 +6138,58 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr ""
 
+msgid "THRIVEOPEDIA_MUSEUM_PAGE_SEARCHTAGS"
+msgstr ""
+
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
+msgid "THRIVEOPEDIA_ORGANELLE_SEARCHTAGS"
+msgstr ""
+
+msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
+msgstr ""
+
+msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_SEARCHTAGS"
+msgstr ""
+
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
+msgstr ""
+
+msgid "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
+msgstr ""
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE"
+msgstr ""
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
+msgstr ""
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
+msgstr ""
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
+msgstr ""
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
+msgstr ""
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_SEARCHTAGS"
+msgstr ""
+
+msgid "THRIVEOPEDIA_WORLD_SPECIES_SEARCHTAGS"
+msgstr ""
+
+msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
 msgstr ""
 
 msgid "THRIVE_LICENSES"
 msgstr ""
 
 msgid "THRIVIN_ACHIEVEMENT"
+msgstr ""
+
+msgid "THRUST_FORCE"
 msgstr ""
 
 msgid "THYLAKOIDS"
@@ -6003,9 +6340,6 @@ msgid "TOOLS"
 msgstr ""
 
 msgid "TOOL_HAND_AXE"
-msgstr ""
-
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
 msgid "TOTAL_GATHERED_ENERGY_COLON"
@@ -6505,9 +6839,6 @@ msgstr ""
 msgid "VIEWER"
 msgstr ""
 
-msgid "VIEW_ALL"
-msgstr ""
-
 msgid "VIEW_CELL_PROCESSES"
 msgstr ""
 
@@ -6997,8 +7328,9 @@ msgstr ""
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr ""
 
-msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
-msgstr ""
+#, fuzzy
+msgid "WIKI_GLYCOLYSIS_COMMA_NITROGEN_FIXATION"
+msgstr "好気性窒素固定"
 
 msgid "WIKI_HEADING_APPENDICES"
 msgstr ""
@@ -7612,9 +7944,6 @@ msgstr ""
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr ""
 
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr ""
-
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr ""
 
@@ -7679,30 +8008,6 @@ msgid "WIKI_PERFORATOR_PILUS_UPGRADES"
 msgstr ""
 
 msgid "WIKI_PROTEIN_RESPIRATION"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
 msgstr ""
 
 msgid "WIKI_PULLING_CILIA"
@@ -8131,3 +8436,9 @@ msgstr "ズームイン"
 
 msgid "ZOOM_OUT"
 msgstr ""
+
+#~ msgid "AEROBIC_NITROGEN_FIXING"
+#~ msgstr "好気性窒素固定"
+
+#~ msgid "ANAEROBIC_NITROGEN_FIXATION"
+#~ msgstr "嫌気性窒素固定"

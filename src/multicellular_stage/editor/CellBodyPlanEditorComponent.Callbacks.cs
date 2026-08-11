@@ -69,6 +69,9 @@ public partial class CellBodyPlanEditorComponent
         OnCellToPlaceSelected(data.CellType.CellTypeName);
 
         Editor.DirtyMutationPointsCache();
+
+        UpdateSporeCellDropdown();
+        UpdateGameteDropdowns();
     }
 
     [ArchiveAllowedMethod]
@@ -80,6 +83,24 @@ public partial class CellBodyPlanEditorComponent
         UpdateCellTypeSelections();
 
         Editor.DirtyMutationPointsCache();
+
+        if (data.CellType == SporeCellType)
+        {
+            SporeCellType = Editor.EditedSpecies.ModifiableCellTypes[0];
+        }
+
+        if (data.CellType == GameteACellType)
+        {
+            GameteACellType = Editor.EditedSpecies.ModifiableCellTypes[0];
+        }
+
+        if (data.CellType == GameteBCellType)
+        {
+            GameteBCellType = Editor.EditedSpecies.ModifiableCellTypes[0];
+        }
+
+        UpdateSporeCellDropdown();
+        UpdateGameteDropdowns();
     }
 
     [ArchiveAllowedMethod]
@@ -95,6 +116,8 @@ public partial class CellBodyPlanEditorComponent
             UpdateAlreadyPlacedVisuals();
 
             // TODO: notify auto-evo prediction once that is done
+
+            UpdateSpecializationDisplay();
         }
         else
         {
@@ -111,5 +134,126 @@ public partial class CellBodyPlanEditorComponent
         data.MovedHex.Data.Position = data.OldLocation;
 
         UpdateAlreadyPlacedVisuals();
+        UpdateSpecializationDisplay();
+    }
+
+    [ArchiveAllowedMethod]
+    private void DoReproductionMethodChangeAction(MulticellularReproductionActionData data)
+    {
+        ReproductionMethod = data.NewReproductionMethod;
+
+        if (ReproductionMethod == MulticellularReproductionMethod.Sporulation)
+            OnReproductionMethodChangedToSpore();
+
+        if (ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy
+            or MulticellularReproductionMethod.SexualAnisogamy)
+        {
+            OnReproductionMethodChangedToSexual();
+        }
+
+        UpdateReproductionMethodChoice();
+        UpdateAnisogamyStateAndCost();
+    }
+
+    [ArchiveAllowedMethod]
+    private void UndoReproductionMethodChangeAction(MulticellularReproductionActionData data)
+    {
+        ReproductionMethod = data.OldReproductionMethod;
+
+        if (ReproductionMethod == MulticellularReproductionMethod.Sporulation)
+            OnReproductionMethodChangedToSpore();
+
+        if (ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy
+            or MulticellularReproductionMethod.SexualAnisogamy)
+        {
+            OnReproductionMethodChangedToSexual();
+        }
+
+        UpdateReproductionMethodChoice();
+        UpdateAnisogamyStateAndCost();
+    }
+
+    [ArchiveAllowedMethod]
+    private void DoSporeCellChangeAction(SporeCellTypeChangeActionData data)
+    {
+        SporeCellType = data.NewCellType;
+
+        UpdateSporeCellDropdown();
+    }
+
+    [ArchiveAllowedMethod]
+    private void UndoSporeCellChangeAction(SporeCellTypeChangeActionData data)
+    {
+        SporeCellType = data.OldCellType;
+
+        UpdateSporeCellDropdown();
+    }
+
+    [ArchiveAllowedMethod]
+    private void DoGameteACellChangeAction(GameteACellTypeChangeActionData data)
+    {
+        GameteACellType = data.NewCellType;
+
+        UpdateGameteDropdowns();
+    }
+
+    [ArchiveAllowedMethod]
+    private void UndoGameteACellChangeAction(GameteACellTypeChangeActionData data)
+    {
+        GameteACellType = data.OldCellType;
+
+        UpdateGameteDropdowns();
+    }
+
+    [ArchiveAllowedMethod]
+    private void DoGameteBCellChangeAction(GameteBCellTypeChangeActionData data)
+    {
+        GameteBCellType = data.NewCellType;
+
+        UpdateGameteDropdowns();
+    }
+
+    [ArchiveAllowedMethod]
+    private void UndoGameteBCellChangeAction(GameteBCellTypeChangeActionData data)
+    {
+        GameteBCellType = data.OldCellType;
+
+        UpdateGameteDropdowns();
+    }
+
+    private void OnReproductionMethodChangedToSpore()
+    {
+        // Set a default spore cell type
+        SporeCellType ??= Editor.EditedSpecies.ModifiableCellTypes[0];
+
+        UpdateSporeCellDropdown();
+    }
+
+    private void OnReproductionMethodChangedToSexual()
+    {
+        // Set default gamete types
+        GameteACellType ??= Editor.EditedSpecies.ModifiableCellTypes[0];
+
+        // Gamete B needs to be set if the reproduction method is anisogamous otherwise the type A is used by all cells
+        if (ReproductionMethod is MulticellularReproductionMethod.SexualAnisogamy)
+            GameteBCellType ??= Editor.EditedSpecies.ModifiableCellTypes[0];
+
+        UpdateGameteDropdowns();
+    }
+
+    [ArchiveAllowedMethod]
+    private void DoMassBuddingCellCountChangeAction(MassBuddingCellCountActionData data)
+    {
+        DesiredMassBuddingCellCount = data.NewCellCount;
+
+        UpdateMassBuddingCellCountSlider();
+    }
+
+    [ArchiveAllowedMethod]
+    private void UndoMassBuddingCellCountChangeAction(MassBuddingCellCountActionData data)
+    {
+        DesiredMassBuddingCellCount = data.OldCellCount;
+
+        UpdateMassBuddingCellCountSlider();
     }
 }

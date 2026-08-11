@@ -54,6 +54,12 @@ public static class ComponentDeserializers
             case ThriveArchiveObjectType.ComponentEngulfer:
                 entity.Add(EngulferHelpers.ReadFromArchive(reader, version));
                 return true;
+            case ThriveArchiveObjectType.ComponentGameteCell:
+                entity.Add(GameteCellHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentMicrobeSex:
+                entity.Add(MicrobeSexHelpers.ReadFromArchive(reader, version));
+                return true;
             case ThriveArchiveObjectType.ComponentMicrobeAI:
                 entity.Add(MicrobeAIHelpers.ReadFromArchive(reader, version));
                 return true;
@@ -285,6 +291,9 @@ public static class ComponentDeserializers
                 return true;
             case ThriveArchiveObjectType.ComponentSpatialAnimation:
                 entity.Add(SpatialAnimationHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentSpecializationFactor:
+                entity.Add(SpecializationFactorHelpers.ReadFromArchive(reader, version));
                 return true;
         }
 

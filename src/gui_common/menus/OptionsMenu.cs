@@ -28,7 +28,7 @@ public partial class OptionsMenu : ControlWithInput
     public float MaxRenderScale = 1.05f;
 
     [Export]
-    public float MinRenderScale = 0.80f;
+    public float MinRenderScale = 0.60f;
 
     [Export]
     public float RenderScaleStep = 0.025f;
@@ -243,6 +243,12 @@ public partial class OptionsMenu : ControlWithInput
 
     [Export]
     private OptionButton cloudResolution = null!;
+
+    [Export]
+    private HSlider alternativeTimescaleSlider = null!;
+
+    [Export]
+    private Label alternativeTimescaleLabel = null!;
 
     [Export]
     private CheckButton runAutoEvoDuringGameplay = null!;
@@ -730,6 +736,7 @@ public partial class OptionsMenu : ControlWithInput
         // Performance
         cloudInterval.Selected = CloudIntervalToIndex(settings.CloudUpdateInterval);
         cloudResolution.Selected = CloudResolutionToIndex(settings.CloudResolution);
+        alternativeTimescaleSlider.Value = settings.AlternativeTimescale;
         runAutoEvoDuringGameplay.ButtonPressed = settings.RunAutoEvoDuringGamePlay;
         runGameSimulationMultithreaded.ButtonPressed = settings.RunGameSimulationMultithreaded;
         assumeHyperthreading.ButtonPressed = settings.AssumeCPUHasHyperthreading;
@@ -747,6 +754,7 @@ public partial class OptionsMenu : ControlWithInput
         maxMemoryItemsSlider.Value = settings.MemoryCacheMaxSize;
         maxMemoryOnlyCacheTimeSlider.Value = settings.MemoryOnlyCacheTime;
 
+        UpdateAlternativeTimescale();
         UpdateDetectedCPUCount();
         UpdateMaxCacheSize();
         UpdateMaxDiskCacheItemTime();
@@ -954,6 +962,12 @@ public partial class OptionsMenu : ControlWithInput
                 break;
             case OS.RenderingDriver.Opengl3:
                 usedRendererName.Text = Localization.Translate("DISPLAY_DRIVER_OPENGL");
+                break;
+            case OS.RenderingDriver.D3D12:
+                usedRendererName.Text = Localization.Translate("DISPLAY_DRIVER_DIRECT3D");
+                break;
+            case OS.RenderingDriver.Metal:
+                usedRendererName.Text = Localization.Translate("DISPLAY_DRIVER_METAL");
                 break;
             default:
                 // An unknown display driver is being used
@@ -2495,6 +2509,23 @@ public partial class OptionsMenu : ControlWithInput
         Settings.Instance.CloudResolution.Value = CloudIndexToResolution(index);
 
         UpdateResetSaveButtonState();
+    }
+
+    private void OnAlternativeTimescaleChanged(float value)
+    {
+        if (isProgrammaticControlUpdateInProgress)
+            return;
+
+        Settings.Instance.AlternativeTimescale.Value = value;
+
+        UpdateResetSaveButtonState();
+        UpdateAlternativeTimescale();
+    }
+
+    private void UpdateAlternativeTimescale()
+    {
+        alternativeTimescaleLabel.Text = Convert.ToString(Settings.Instance.AlternativeTimescale.Value,
+            CultureInfo.InvariantCulture);
     }
 
     private void OnAutoEvoToggled(bool pressed)

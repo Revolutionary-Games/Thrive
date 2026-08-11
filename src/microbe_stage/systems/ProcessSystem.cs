@@ -34,6 +34,7 @@ using World = Arch.Core.World;
 [RunsAfter(typeof(CompoundAbsorptionSystem))]
 [RunsBefore(typeof(OsmoregulationAndHealingSystem))]
 [RunsBefore(typeof(MicrobeMovementSystem))]
+[ReadsComponent(typeof(MicrobeEnvironmentalEffects))]
 [RunsOnMainThread]
 [RuntimeCost(26)]
 public partial class ProcessSystem : BaseSystem<World, float>
@@ -43,11 +44,6 @@ public partial class ProcessSystem : BaseSystem<World, float>
 #endif
 
     private BiomeConditions? biome;
-
-    /// <summary>
-    ///   Used to go from the calculated compound values to per-second values for reporting statistics
-    /// </summary>
-    private float inverseDelta;
 
     public ProcessSystem(World world) : base(world)
     {
@@ -223,7 +219,10 @@ public partial class ProcessSystem : BaseSystem<World, float>
     /// <param name="organelles">The organelles to compute the balance with</param>
     /// <param name="biome">The conditions the organelles are simulated in</param>
     /// <param name="environmentTolerances">Environmental tolerances that affect the processes</param>
-    /// <param name="specializationFactor">Cell type specialization factor (1 is default)</param>
+    /// <param name="totalSpecializationBonus">
+    ///   Cell type specialization factor (1 is default). This should include any adjacency bonuses when relevant.
+    ///   (cells in a multicellular species)
+    /// </param>
     /// <param name="membrane">The membrane type to adjust the energy balance with</param>
     /// <param name="onlyMovementInDirection">
     ///   Only movement organelles that can move in this (cell origin relative) direction are calculated. Other
@@ -243,7 +242,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
     ///   The resulting energy balance.
     /// </param>
     public static void ComputeEnergyBalanceSimple(IReadOnlyList<OrganelleTemplate> organelles,
-        IBiomeConditions biome, in ResolvedMicrobeTolerances environmentTolerances, float specializationFactor,
+        IBiomeConditions biome, in ResolvedMicrobeTolerances environmentTolerances, float totalSpecializationBonus,
         MembraneType membrane, Vector3 onlyMovementInDirection,
         bool includeMovementCost, bool isPlayerSpecies, WorldGenerationSettings worldSettings,
         CompoundAmountType amountType, SimulationCache? cache,
@@ -260,7 +259,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
         }
 #endif
 
-        CalculateSimplePartOfEnergyBalance(organelles, biome, environmentTolerances, specializationFactor, membrane,
+        CalculateSimplePartOfEnergyBalance(organelles, biome, environmentTolerances, totalSpecializationBonus, membrane,
             onlyMovementInDirection, includeMovementCost, isPlayerSpecies, worldSettings, amountType, cache, result);
     }
 
@@ -296,6 +295,10 @@ public partial class ProcessSystem : BaseSystem<World, float>
         CalculateSimplePartOfEnergyBalance(organelles, biome, environmentTolerances, specializationFactor, membrane,
             onlyMovementInDirection, includeMovementCost, isPlayerSpecies, worldSettings, amountType, cache, result);
 
+        var energyCostMultiplier = 1.0f;
+        if (isPlayerSpecies)
+            energyCostMultiplier = worldSettings.EnergyCostMultiplier;
+
         // Once simple balance is calculated we add the extra info on top, this approach loops the organelles twice
         // but reduces code duplication
 
@@ -309,12 +312,12 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
             // Take special cell components that take energy into account
             if (TryGetMovementCostForOrganelle(includeMovementCost, organelle, onlyMovementInDirection, out var cost))
-                result.AddConsumption(organelle.Definition.InternalName, cost);
+                result.AddConsumption(organelle.Definition.InternalName, cost * energyCostMultiplier);
 
             if (includeMovementCost && organelle.Definition.HasCiliaComponent)
             {
                 var amount = Constants.CILIA_ENERGY_COST;
-                result.AddConsumption(organelle.Definition.InternalName, amount);
+                result.AddConsumption(organelle.Definition.InternalName, amount * energyCostMultiplier);
             }
         }
 
@@ -480,7 +483,8 @@ public partial class ProcessSystem : BaseSystem<World, float>
                 var speedAdjusted = CalculateProcessMaximumSpeed(process, speedModifier, biome, amountType, true);
 
                 // If the cell produces more ATP than it needs, its ATP producing processes need to be toned down
-                bool useRatio = speedAdjusted.Outputs.ContainsKey(Compound.ATP) && consumptionProductionRatio < 1.0f;
+                bool useRatio = speedAdjusted.WritableOutputs.ContainsKey(Compound.ATP)
+                    && consumptionProductionRatio < 1.0f;
 
                 foreach (var input in speedAdjusted.Inputs)
                 {
@@ -874,8 +878,6 @@ public partial class ProcessSystem : BaseSystem<World, float>
             GD.PrintErr("ProcessSystem has no biome set");
         }
 
-        inverseDelta = 1.0f / delta;
-
 #if CHECK_USED_STATISTICS
         lock (usedStatistics)
         {
@@ -955,9 +957,16 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
         osmoregulation *= environmentTolerances.OsmoregulationModifier;
 
+        // Apply energy cost multiplier from difficulty setting to player species
         if (isPlayerSpecies)
         {
-            osmoregulation *= worldSettings.OsmoregulationMultiplier;
+            var energyCostMultiplier = worldSettings.EnergyCostMultiplier;
+
+            osmoregulation *= energyCostMultiplier;
+            result.TotalMovement *= energyCostMultiplier;
+            result.BaseMovement *= energyCostMultiplier;
+            result.Flagella *= energyCostMultiplier;
+            result.Cilia *= energyCostMultiplier;
         }
 
         result.Osmoregulation += osmoregulation;
@@ -1164,8 +1173,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
             // Processing runs on the current game time following values
             var ambient = GetAmbient(inputCompound, CompoundAmountType.Current);
 
-            // currentProcessStatistics?.AddInputAmount(entry.Key, entry.Value * inverseDelta);
-            currentProcessStatistics?.AddInputAmount(inputCompound, ambient);
+            currentProcessStatistics?.AddEnvironmentInput(inputCompound, ambient);
 
             // do environmental modifier here, and save it for later
             environmentModifier *= inputCompound == Compound.Temperature ?
@@ -1198,11 +1206,6 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
             var inputRemoved = entry.Value * process.Rate * environmentModifier * process.SpeedMultiplier *
                 overallSpeedModifier;
-
-            // currentProcessStatistics?.AddInputAmount(entry.Key, 0);
-            // We don't multiply by delta here because we report the per-second values anyway. In the actual
-            // process output numbers (computed after testing the speed), we need to multiply by inverse delta
-            currentProcessStatistics?.AddInputAmount(inputCompound, inputRemoved);
 
             inputRemoved = inputRemoved * delta * spaceConstraintModifier;
 
@@ -1246,9 +1249,6 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
             var outputAdded = entry.Value * process.Rate * environmentModifier * process.SpeedMultiplier *
                 overallSpeedModifier;
-
-            // currentProcessStatistics?.AddOutputAmount(entry.Key, 0);
-            currentProcessStatistics?.AddOutputAmount(outputCompound, outputAdded);
 
             outputAdded = outputAdded * delta * spaceConstraintModifier;
 
@@ -1294,7 +1294,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
             return;
         }
 
-        float totalModifier = process.Rate * delta * environmentModifier * spaceConstraintModifier *
+        float totalModifier = process.Rate * environmentModifier * spaceConstraintModifier *
             process.SpeedMultiplier * overallSpeedModifier;
 
         // Apply ATP production speed cap if in effect
@@ -1314,8 +1314,10 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
         // TODO: should the overall speed modifier be included in here? It already has scaled the inputs and
         // outputs
-        currentProcessStatistics?.CurrentSpeed = process.Rate * environmentModifier * spaceConstraintModifier *
-            process.SpeedMultiplier * overallSpeedModifier;
+        currentProcessStatistics?.CurrentSpeed = totalModifier;
+
+        // Only multiplying totalModifier by delta time after recording this process' speed per second
+        totalModifier *= delta;
 
         // Consume inputs
         foreach (var entry in processData.Inputs)
@@ -1326,8 +1328,6 @@ public partial class ProcessSystem : BaseSystem<World, float>
             var inputCompound = entry.Key.ID;
 
             var inputRemoved = entry.Value * totalModifier;
-
-            currentProcessStatistics?.AddInputAmount(inputCompound, inputRemoved * inverseDelta);
 
             // This should always succeed (due to the earlier check), so it is always assumed here that this
             // succeeded. Caveat: see: BioProcesses.ATPProductionSpeedModifier
@@ -1343,8 +1343,6 @@ public partial class ProcessSystem : BaseSystem<World, float>
             var outputCompound = entry.Key.ID;
 
             var outputGenerated = entry.Value * totalModifier;
-
-            currentProcessStatistics?.AddOutputAmount(outputCompound, outputGenerated * inverseDelta);
 
             bag.AddCompound(outputCompound, outputGenerated);
         }

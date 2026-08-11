@@ -292,11 +292,11 @@ public class SpecifiedInputKey : ICloneable
                     MouseFilter = Godot.Control.MouseFilterEnum.Ignore,
                 };
 
-                var (primary, overlay) = KeyPromptHelper.GetPathForMouseButton((MouseButton)Code);
+                var (primary, overlay, smallPrimaryIcon) = KeyPromptHelper.GetPathForMouseButton((MouseButton)Code);
 
                 if (overlay != null)
                 {
-                    overlayPositioner.AddChild(CreateTextureRect(primary, true));
+                    overlayPositioner.AddChild(CreateTextureRect(primary, smallPrimaryIcon));
                     overlayPositioner.AddChild(CreateTextureRect(overlay));
                 }
                 else
@@ -584,7 +584,7 @@ public class SpecifiedInputKey : ICloneable
             Texture = GD.Load<Texture2D>(image),
             ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
             StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
-            CustomMinimumSize = small ? new Vector2(14, 14) : new Vector2(32, 32),
+            CustomMinimumSize = small ? new Vector2(16, 16) : new Vector2(32, 32),
         };
     }
 }

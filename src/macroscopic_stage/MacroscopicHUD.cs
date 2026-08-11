@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Godot;
 using SharedBase.Archive;
 
@@ -178,7 +177,7 @@ public partial class MacroscopicHUD : CreatureStageHUDBase<MacroscopicStage>
 
     protected override IEnumerable<IProcessDisplayInfo>? GetPlayerProcessStatistics()
     {
-        return stage!.Player!.ProcessStatistics?.Processes.Select(a => a.Value.ComputeAverageValues());
+        return stage!.Player!.ProcessStatistics?.Processes.Values;
     }
 
     protected override void UpdateHoverInfo(float delta)

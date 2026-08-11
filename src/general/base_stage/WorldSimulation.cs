@@ -60,7 +60,7 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
 
     public WorldSimulation()
     {
-        entities = World.Create();
+        entities = ThriveWorld.Create();
         entitiesToNotSave = new UnsavedEntities(queuedForDelete);
     }
 
@@ -262,10 +262,14 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
 
         ProcessDestroyQueue();
 
+        bool hadInvokes = false;
+
         lock (queuedInvokes)
         {
             while (queuedInvokes.Count > 0)
             {
+                hadInvokes = true;
+
                 try
                 {
                     queuedInvokes.Dequeue().Invoke();
@@ -278,6 +282,13 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
                         Debugger.Break();
                 }
             }
+        }
+
+        // Run commands again in case invokes did something
+        if (hadInvokes)
+        {
+            ApplyRecordedCommands();
+            ProcessDestroyQueue();
         }
 
         if (useNormalPhysics)
@@ -369,7 +380,7 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
 
             // If destroy all is used a lot, then this temporary memory use (ToList) here should be solved
             var toDestroy = new List<Entity>();
-            entities.Query(new QueryDescription(), entity => toDestroy.Add(entity));
+            entities.Query(new QueryDescription(), toDestroy.Add);
 
             foreach (var entity in toDestroy)
             {

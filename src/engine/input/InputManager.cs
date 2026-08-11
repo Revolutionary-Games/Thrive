@@ -358,6 +358,9 @@ public partial class InputManager : Node
         if (PerformingRebind)
             return;
 
+        if (FocusedTextInputShouldHandle(@event))
+            return;
+
         OnInput(false, @event);
     }
 
@@ -477,6 +480,19 @@ public partial class InputManager : Node
     {
         GD.PrintErr("A method with delayed call from input manager tried to control input consuming: ",
             method.DeclaringType?.Name ?? "global", ".", method.Name);
+    }
+
+    private bool FocusedTextInputShouldHandle(InputEvent @event)
+    {
+        if (@event is not InputEventKey { Pressed: true } keyEvent)
+            return false;
+
+        if (keyEvent.Unicode < ' ')
+            return false;
+
+        // Let focused text fields handle printable keys first, so layout-specific typing is not consumed as a shortcut.
+        // See: https://github.com/Revolutionary-Games/Thrive/issues/3031
+        return GetViewport().GuiGetFocusOwner() is LineEdit or TextEdit;
     }
 
     /// <summary>

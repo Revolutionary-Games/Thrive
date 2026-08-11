@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-27 14:48+0200\n"
+"POT-Creation-Date: 2026-08-11 10:42+0300\n"
 "PO-Revision-Date: 2026-01-08 20:20+0000\n"
 "Last-Translator: khalid <khalid50540@gmail.com>\n"
 "Language-Team: Arabic <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ar/>\n"
@@ -52,6 +52,19 @@ msgstr "موافقة"
 
 msgid "ACHIEVEMENTS"
 msgstr "الإنجازات"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr "الإنجازات {1}/{0}"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr ""
+"ابحث عن قطرات في مقياس ضوء الشمس على لوحة البيئة.\n"
+"\n"
+"يحل الليل عندما تظلم البيئة.\n"
+"التركيب الضوئي غير فعال خلال الليل.\n"
+"لذا تأكد من أنك تملك مدخرات كافية من أجل النجاة في الليل."
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr "الإنجازات {1}/{0}"
@@ -108,12 +121,6 @@ msgstr "مفصل"
 
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "فتح عرض التثبيت المفصل"
-
-msgid "AEROBIC_NITROGEN_FIXATION"
-msgstr "تثبيت النيتروجين الهوائي"
-
-msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "تثبيت النيتروجين الهوائي"
 
 msgid "AEROBIC_RESPIRATION"
 msgstr "التنفس الهوائي"
@@ -177,6 +184,13 @@ msgstr "لقد أتممت الصعود مسبقًا"
 msgid "ALT"
 msgstr "Alt"
 
+#, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
+
+msgid "ALTERNATVE_TIMESCALE"
+msgstr ""
+
 msgid "ALWAYS_VISIBLE"
 msgstr "ظاهر دائمًا"
 
@@ -197,9 +211,6 @@ msgstr "عدد ملفات الحفظ التلقائي المحفوظة:"
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "عدد ملفات الحفظ السريع المحفوظة:"
-
-msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "تثبيت النيتروجين اللاهوائي"
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr "و"
@@ -589,6 +600,10 @@ msgstr "التصفح"
 msgid "BROWSE_WORKSHOP"
 msgstr "تصفح ورشة عمل التعديلات"
 
+#, fuzzy
+msgid "BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(أي سرعة التغير في سلالات الذكاء الإصطناعي)"
+
 msgid "BUILD_CITY"
 msgstr "بناء مدينة"
 
@@ -735,6 +750,16 @@ msgstr ""
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr ""
 
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr ""
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr "(أي سرعة التغير في سلالات الذكاء الإصطناعي)"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
+
 msgid "CHANGE_THE_SYMMETRY"
 msgstr ""
 
@@ -755,6 +780,10 @@ msgstr ""
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
+
+#, fuzzy
+msgid "CHEMICAL_EQUATION_SPEED_EXPLANATION"
+msgstr "(أي سرعة التغير في سلالات الذكاء الإصطناعي)"
 
 msgid "CHEMOPLAST"
 msgstr ""
@@ -1635,6 +1664,10 @@ msgstr "صعب"
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "متوسط"
 
+#, fuzzy
+msgid "DIFFICULTY_PRESET_VERY_EASY"
+msgstr "سهل"
+
 msgid "DIGESTION_EFFICIENCY"
 msgstr "فعالية الهضم"
 
@@ -1717,6 +1750,14 @@ msgstr ""
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
 
+#, fuzzy
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr "محرك فلكن"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_METAL"
+msgstr "محرك فلكن"
+
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr ""
 
@@ -1754,10 +1795,6 @@ msgstr ""
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
-
-#, fuzzy
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr ""
@@ -1861,6 +1898,14 @@ msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 msgstr "بمجرد الانتهاء من الابتلاع ، أي أشياء يتم التقاطها ستبقى داخل الغشاء ليتم هضمها. سيتم دائمًا طرد الأشياء غير القابلة للهضم ، لذا تأكد من أن لديك الطفرات اللازمة التي تمكن من معالجتها أولاً. تساعد الإنزيمات في الهضم ويتم توفيرها بواسطة الليزوزوم ؛ قم بتطوير هذه العضية لجعل عملية الهضم أكثر كفاءة."
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_SPECIALIZATION"
+msgstr "بمجرد الانتهاء من الابتلاع ، أي أشياء يتم التقاطها ستبقى داخل الغشاء ليتم هضمها. سيتم دائمًا طرد الأشياء غير القابلة للهضم ، لذا تأكد من أن لديك الطفرات اللازمة التي تمكن من معالجتها أولاً. تساعد الإنزيمات في الهضم ويتم توفيرها بواسطة الليزوزوم ؛ قم بتطوير هذه العضية لجعل عملية الهضم أكثر كفاءة."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MULTICELLULAR_EDITOR_SPECIALIZATION"
+msgstr "بمجرد الانتهاء من الابتلاع ، أي أشياء يتم التقاطها ستبقى داخل الغشاء ليتم هضمها. سيتم دائمًا طرد الأشياء غير القابلة للهضم ، لذا تأكد من أن لديك الطفرات اللازمة التي تمكن من معالجتها أولاً. تساعد الإنزيمات في الهضم ويتم توفيرها بواسطة الليزوزوم ؛ قم بتطوير هذه العضية لجعل عملية الهضم أكثر كفاءة."
+
+#, fuzzy
 msgid "EDIT_MICROBE_FIRST_TIME"
 msgstr "فترة الميكروبات"
 
@@ -1927,6 +1972,9 @@ msgstr ""
 msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
 msgstr ""
 
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION_MULTICELLULAR"
+msgstr ""
+
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
 msgstr ""
 
@@ -1953,6 +2001,16 @@ msgstr ""
 
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr ""
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER"
+msgstr "قوة التطور الذاتي على اللاعب"
+
+#, fuzzy
+msgid "ENERGY_COST_MULTIPLIER_EXPLANATION"
+msgstr ""
+"الميكروبات النشطة سوف تهييم وتمرح اذا لم يحدث شي مثير للاهتمام.\n"
+"الميكروبات الراكدة ستكون ثابتة في مكانها وتنتظر حدوث تغير في محيطه قبل اتخاذ اي قرار."
 
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
@@ -2026,6 +2084,9 @@ msgstr ""
 msgid "ERROR_LOADING"
 msgstr ""
 
+msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
+
 msgid "ERROR_SAVING"
 msgstr ""
 
@@ -2085,6 +2146,9 @@ msgid "EXACT_VERSION_TOOLTIP"
 msgstr ""
 
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
+msgstr ""
+
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE_JUKEBOX"
 msgstr ""
 
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
@@ -2371,6 +2435,26 @@ msgstr ""
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr ""
 
+msgid "GAMETE_CELL_ENTITY_NAME"
+msgstr ""
+
+msgid "GAMETE_CELL_TYPE"
+msgstr ""
+
+msgid "GAMETE_CELL_TYPE_A"
+msgstr ""
+
+msgid "GAMETE_CELL_TYPE_B"
+msgstr ""
+
+#, fuzzy
+msgid "GAMETE_PRODUCED"
+msgstr "معدل انتاج الطاقة"
+
+#, fuzzy
+msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
+
 msgid "GAME_DESIGN_TEAM"
 msgstr ""
 
@@ -2429,6 +2513,14 @@ msgstr ""
 
 msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
 msgstr ""
+
+#, fuzzy
+msgid "GERMINATE_SPORE"
+msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
+
+#, fuzzy
+msgid "GERMINATE_SPORE_ACTION_TOOLTIP"
+msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
 
 msgid "GITHUB_TOOLTIP"
 msgstr ""
@@ -2650,6 +2742,18 @@ msgstr ""
 msgid "IMAGE_FILE_TYPES"
 msgstr ""
 
+#, fuzzy
+msgid "INCOMPATIBLE_MEMBRANE_LIST"
+msgstr "تستخدم خليتك [thrive:compound type=\"atp\"][/thrive:compound] كمصدر للطاقة ، إذا نفد مصدر للطاقة تموت."
+
+#, fuzzy
+msgid "INCOMPATIBLE_ORGANELLE_LIST"
+msgstr "فتح جميع العضيات الخلوية"
+
+#, fuzzy
+msgid "INCOMPATIBLE_STAGE_LIST"
+msgstr "تستخدم خليتك [thrive:compound type=\"atp\"][/thrive:compound] كمصدر للطاقة ، إذا نفد مصدر للطاقة تموت."
+
 msgid "INCREASE_ITEM_SIZE"
 msgstr ""
 
@@ -2717,6 +2821,14 @@ msgstr ""
 
 msgid "INFO_BOX_SIZE"
 msgstr ""
+
+#, fuzzy
+msgid "INFO_BOX_SIZE_PLAIN"
+msgstr "فترة الميكروبات"
+
+#, fuzzy
+msgid "INFO_BOX_STAGE"
+msgstr "فترة الميكروبات"
 
 msgid "INFO_BOX_STORAGE"
 msgstr ""
@@ -3338,6 +3450,18 @@ msgstr ""
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr ""
 
+msgid "LOOK_LEFT"
+msgstr ""
+
+msgid "LOOK_RIGHT"
+msgstr ""
+
+msgid "LOOK_SCREEN_DOWN_OR_3D_TOWARDS_UP"
+msgstr ""
+
+msgid "LOOK_SCREEN_UP_OR_3D_TOWARDS_DOWN"
+msgstr ""
+
 msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
 msgstr ""
 
@@ -3380,6 +3504,10 @@ msgid "MACROSCOPIC"
 msgstr ""
 
 #, fuzzy
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr "فترة الميكروبات"
+
+#, fuzzy
 msgid "MACROSCOPIC_EDITOR"
 msgstr "فترة الكائنات متعددة الخلايا"
 
@@ -3409,6 +3537,13 @@ msgstr ""
 
 msgid "MARINE_SNOW"
 msgstr ""
+
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(أي سرعة التغير في سلالات الذكاء الإصطناعي)"
 
 msgid "MASTER_VOLUME"
 msgstr ""
@@ -3677,6 +3812,10 @@ msgstr "عدد الميكروبات:"
 
 #, fuzzy
 msgid "MICROBE_LOADING_TIP_22"
+msgstr "عدد الميكروبات:"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_23"
 msgstr "عدد الميكروبات:"
 
 #, fuzzy
@@ -4126,8 +4265,48 @@ msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "فترة الكائنات متعددة الخلايا"
 
 #, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_2"
+msgstr "فترة الكائنات متعددة الخلايا"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_3"
+msgstr "فترة الكائنات متعددة الخلايا"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_4"
+msgstr "فترة الكائنات متعددة الخلايا"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_5"
+msgstr "فترة الكائنات متعددة الخلايا"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_6"
+msgstr "فترة الكائنات متعددة الخلايا"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_7"
+msgstr "فترة الكائنات متعددة الخلايا"
+
+#, fuzzy
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "فترة الكائنات متعددة الخلايا"
+
+#, fuzzy
+msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
+msgstr ""
+"[b]مرحلة[/b]\n"
+" ميكروب \n"
+"[b]نوع الغشاء[/b]\n"
+"  {0}\n"
+"[b]صلابة الغشاء[/b]\n"
+"  {1}\n"
+"[b]السرعة الاساسية[/b]\n"
+"  {2}\n"
+"[b]سرعة الدوران الأساسية[/b]\n"
+"  {3}\n"
+"[b]حجم السداسي الاساسي[/b]\n"
+"  {4}"
 
 msgid "MULTICELLULAR_STAGE"
 msgstr "فترة الكائنات متعددة الخلايا"
@@ -4199,6 +4378,9 @@ msgstr ""
 msgid "NEW"
 msgstr ""
 
+msgid "NEWER"
+msgstr ""
+
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 
@@ -4240,6 +4422,10 @@ msgstr ""
 
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
+
+#, fuzzy
+msgid "NITROGEN_FIXATION"
+msgstr "تثبيت النيتروجين الهوائي"
 
 msgid "NITROPLAST"
 msgstr ""
@@ -4304,7 +4490,13 @@ msgstr ""
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
+msgid "NOTICE_READY_TO_SHOOT_GAMETE"
+msgstr ""
+
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
+msgstr ""
+
+msgid "NOT_ENOUGH_MUTATION_POINTS"
 msgstr ""
 
 msgid "NOT_STARTED_DOT"
@@ -4392,6 +4584,10 @@ msgstr "زيارة موقع ريفولشناري قيمز الرسمي"
 msgid "OK"
 msgstr "تأكيد"
 
+#, fuzzy
+msgid "OLDER"
+msgstr "فتح المجلد"
+
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 
@@ -4400,6 +4596,10 @@ msgstr ""
 
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr ""
+
+#, fuzzy
+msgid "OPEN_EVOLUTIONARY_TREE"
+msgstr "بواسطة استيديو ريفولوشنيري قيمز"
 
 msgid "OPEN_FOLDER"
 msgstr "فتح المجلد"
@@ -4465,6 +4665,10 @@ msgstr "الخيارات"
 
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "تغيير الإعدادات"
+
+#, fuzzy
+msgid "OPTION_USED_FOR_PLAYER"
+msgstr "توقف مؤقت."
 
 msgid "ORGANELLES"
 msgstr "العضيات الخلوية"
@@ -4541,12 +4745,6 @@ msgstr ""
 msgid "OSMOREGULATION_COST"
 msgstr ""
 
-msgid "OSMOREGULATION_COST_MULTIPLIER"
-msgstr ""
-
-msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
-msgstr ""
-
 msgid "OTHER_COMPOUNDS"
 msgstr "غير ذلك"
 
@@ -4584,6 +4782,10 @@ msgid "OXYGEN_RESISTANCE"
 msgstr ""
 
 #, fuzzy
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
+msgstr "لم يكتشف"
+
+#, fuzzy
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
 
@@ -4607,6 +4809,10 @@ msgstr "الى الخلف"
 
 msgid "PAGE_FORWARD"
 msgstr "الى الامام"
+
+#, fuzzy
+msgid "PAGE_PINNED"
+msgstr "عنوان الصفحة"
 
 msgid "PAGE_TITLE"
 msgstr "عنوان الصفحة"
@@ -4659,6 +4865,9 @@ msgstr ""
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
+msgid "PATCH_NOTES_RECENT_BOUNDARY"
+msgstr ""
+
 msgid "PATCH_NOTES_TITLE"
 msgstr ""
 
@@ -4701,6 +4910,9 @@ msgstr ""
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
 msgstr ""
 
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION_MULTICELLULAR"
+msgstr ""
+
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
 msgstr ""
 
@@ -4738,6 +4950,13 @@ msgid "PHYSICAL_CONDITIONS"
 msgstr ""
 
 msgid "PHYSICAL_RESISTANCE"
+msgstr ""
+
+#, fuzzy
+msgid "PIN_BUTTON_TOOLTIP"
+msgstr "تغيير الإعدادات"
+
+msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
 msgstr ""
 
 msgid "PLACE_ORGANELLE"
@@ -4857,6 +5076,10 @@ msgid "PRESSURE_SHORT"
 msgstr ""
 
 #, fuzzy
+msgid "PRESSURE_TOLERANCE"
+msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
+
+#, fuzzy
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
 
@@ -4878,6 +5101,9 @@ msgstr ""
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr ""
 
+msgid "PROCESS_INACTIVE"
+msgstr ""
+
 #, fuzzy
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
 msgstr ""
@@ -4895,10 +5121,6 @@ msgstr ""
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr ""
 
-#, fuzzy
-msgid "PROCESS_TOGGLE_TOOLTIP"
-msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
-
 msgid "PROGRAMMING_TEAM"
 msgstr ""
 
@@ -4906,9 +5128,6 @@ msgid "PROJECT_MANAGEMENT_TEAM"
 msgstr ""
 
 msgid "PROTEINS"
-msgstr ""
-
-msgid "PROTOPLASM"
 msgstr ""
 
 msgid "PULL_REQUESTS_PROGRAMMING"
@@ -4941,6 +5160,10 @@ msgstr "عام"
 
 msgid "RADIOACTIVE_CHUNK"
 msgstr ""
+
+#, fuzzy
+msgid "RADIOACTIVE_CHUNK_BANANA"
+msgstr "كتلة فوسفات كبيرة"
 
 #, fuzzy
 msgid "RADIOSYNTHESIS"
@@ -5005,6 +5228,10 @@ msgstr ""
 msgid "REPORT_BUG"
 msgstr ""
 
+#, fuzzy
+msgid "REPRODUCE"
+msgstr "{0} الاستهلاك"
+
 msgid "REPRODUCED"
 msgstr ""
 
@@ -5028,8 +5255,28 @@ msgstr ""
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 msgstr "فترة الميكروبات"
 
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "فترة الميكروبات"
+
 msgid "REPRODUCTION_METHOD"
 msgstr ""
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL"
+msgstr "{0} الاستهلاك"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
+msgstr "{0} الاستهلاك"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ISOGAMY"
+msgstr "{0} الاستهلاك"
+
+#, fuzzy
+msgid "REPRODUCTION_SPORE"
+msgstr "{0} الاستهلاك"
 
 msgid "REQUIRES_NUCLEUS"
 msgstr ""
@@ -5162,6 +5409,10 @@ msgstr ""
 
 msgid "ROTATION_COLON"
 msgstr ""
+
+#, fuzzy
+msgid "ROTATION_FORCE"
+msgstr "{0} الاستهلاك"
 
 msgid "RUNOFF_EVENT"
 msgstr ""
@@ -5411,6 +5662,21 @@ msgstr ""
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "سوف تتطبق هذه القيمة للتخزينات المستقبلية فقط بعد تعديل هذا الخيار"
 
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr ""
+"الميكروبات النشطة سوف تهييم وتمرح اذا لم يحدث شي مثير للاهتمام.\n"
+"الميكروبات الراكدة ستكون ثابتة في مكانها وتنتظر حدوث تغير في محيطه قبل اتخاذ اي قرار."
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
+msgstr ""
+"الميكروبات النشطة سوف تهييم وتمرح اذا لم يحدث شي مثير للاهتمام.\n"
+"الميكروبات الراكدة ستكون ثابتة في مكانها وتنتظر حدوث تغير في محيطه قبل اتخاذ اي قرار."
+
+msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+msgstr ""
+
 msgid "SFX_VOLUME"
 msgstr "مستوى صوت التأثيرات"
 
@@ -5434,6 +5700,18 @@ msgstr "اظهر الاحداثيات"
 
 msgid "SHOW_MAP"
 msgstr "اظهر الخريطة"
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION"
+msgstr "اظهر الخريطة"
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION_EXPLANATION"
+msgstr ""
+"تطارد الميكروبات العدوانية فرائسها عبر مسافات أبعد،\n"
+"وتميل إلى قتال المفترسين عند تعرضها للهجوم.\n"
+"تتجنب الميكروبات المسالمة الاشتباك عن بعد،\n"
+"ونادرًا ما تستخدم السموم ضد المفترسين."
 
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "اظهر ملاحظات التحديث الجديد تلقائيا"
@@ -5479,6 +5757,12 @@ msgstr ""
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr ""
 
+msgid "SIGNAL_COMMAND_CALL_MATE"
+msgstr ""
+
+msgid "SIGNAL_COMMAND_FIRE_GAMETES"
+msgstr ""
+
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr ""
 
@@ -5502,6 +5786,10 @@ msgstr ""
 
 msgid "SIMULATION_CONFIG"
 msgstr ""
+
+#, fuzzy
+msgid "SIMULATION_FACTOR"
+msgstr "معدل تحور الذكاء الإصطناعي"
 
 msgid "SIXTEEN_TIMES"
 msgstr ""
@@ -5584,6 +5872,13 @@ msgstr ""
 msgid "SPAWN_GLUCOSE"
 msgstr ""
 
+msgid "SPAWN_MATE_ON_CALL"
+msgstr ""
+
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL_EXPLANATION"
+msgstr "(أي سرعة التغير في سلالات الذكاء الإصطناعي)"
+
 msgid "SPAWN_PHOSPHATES"
 msgstr ""
 
@@ -5642,11 +5937,21 @@ msgstr ""
 msgid "SPECIES_WITH_POPULATION"
 msgstr ""
 
-msgid "SPEED"
-msgstr ""
-
 msgid "SPEED_COLON"
 msgstr ""
+
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
+
+msgid "SPORE_CELL_TYPE"
+msgstr ""
+
+#, fuzzy
+msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
+msgstr ""
+"الميكروبات النشطة سوف تهييم وتمرح اذا لم يحدث شي مثير للاهتمام.\n"
+"الميكروبات الراكدة ستكون ثابتة في مكانها وتنتظر حدوث تغير في محيطه قبل اتخاذ اي قرار."
 
 msgid "SPREAD_TO_PATCHES"
 msgstr ""
@@ -5933,6 +6238,10 @@ msgid "TEMPERATURE_SHORT"
 msgstr ""
 
 #, fuzzy
+msgid "TEMPERATURE_TOLERANCE_RANGE"
+msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
+
+#, fuzzy
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
 
@@ -6003,6 +6312,9 @@ msgstr ""
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr ""
 
+msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
+msgstr ""
+
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr ""
 
@@ -6012,16 +6324,152 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVEOPEDIA_MUSEUM_PAGE_SEARCHTAGS"
+msgstr "فترة الميكروبات"
+
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVEOPEDIA_ORGANELLE_SEARCHTAGS"
+msgstr ""
+"[b]مرحلة[/b]\n"
+" ميكروب \n"
+"[b]نوع الغشاء[/b]\n"
+"  {0}\n"
+"[b]صلابة الغشاء[/b]\n"
+"  {1}\n"
+"[b]السرعة الاساسية[/b]\n"
+"  {2}\n"
+"[b]سرعة الدوران الأساسية[/b]\n"
+"  {3}\n"
+"[b]حجم السداسي الاساسي[/b]\n"
+"  {4}"
+
+msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
+msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_SEARCHTAGS"
+msgstr "فترة الميكروبات"
+
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
+msgstr ""
+"[b]مرحلة[/b]\n"
+" ميكروب \n"
+"[b]نوع الغشاء[/b]\n"
+"  {0}\n"
+"[b]صلابة الغشاء[/b]\n"
+"  {1}\n"
+"[b]السرعة الاساسية[/b]\n"
+"  {2}\n"
+"[b]سرعة الدوران الأساسية[/b]\n"
+"  {3}\n"
+"[b]حجم السداسي الاساسي[/b]\n"
+"  {4}"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE"
+msgstr ""
+"[b]مرحلة[/b]\n"
+" ميكروب \n"
+"[b]نوع الغشاء[/b]\n"
+"  {0}\n"
+"[b]صلابة الغشاء[/b]\n"
+"  {1}\n"
+"[b]السرعة الاساسية[/b]\n"
+"  {2}\n"
+"[b]سرعة الدوران الأساسية[/b]\n"
+"  {3}\n"
+"[b]حجم السداسي الاساسي[/b]\n"
+"  {4}"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
+msgstr "فترة الميكروبات"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
+msgstr ""
+"[b]مرحلة[/b]\n"
+" ميكروب \n"
+"[b]نوع الغشاء[/b]\n"
+"  {0}\n"
+"[b]صلابة الغشاء[/b]\n"
+"  {1}\n"
+"[b]السرعة الاساسية[/b]\n"
+"  {2}\n"
+"[b]سرعة الدوران الأساسية[/b]\n"
+"  {3}\n"
+"[b]حجم السداسي الاساسي[/b]\n"
+"  {4}"
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
+msgstr ""
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
+msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_SEARCHTAGS"
+msgstr ""
+"[b]مرحلة[/b]\n"
+" ميكروب \n"
+"[b]نوع الغشاء[/b]\n"
+"  {0}\n"
+"[b]صلابة الغشاء[/b]\n"
+"  {1}\n"
+"[b]السرعة الاساسية[/b]\n"
+"  {2}\n"
+"[b]سرعة الدوران الأساسية[/b]\n"
+"  {3}\n"
+"[b]حجم السداسي الاساسي[/b]\n"
+"  {4}"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_SEARCHTAGS"
+msgstr ""
+"[b]مرحلة[/b]\n"
+" ميكروب \n"
+"[b]نوع الغشاء[/b]\n"
+"  {0}\n"
+"[b]صلابة الغشاء[/b]\n"
+"  {1}\n"
+"[b]السرعة الاساسية[/b]\n"
+"  {2}\n"
+"[b]سرعة الدوران الأساسية[/b]\n"
+"  {3}\n"
+"[b]حجم السداسي الاساسي[/b]\n"
+"  {4}"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
+msgstr ""
+"[b]مرحلة[/b]\n"
+" ميكروب \n"
+"[b]نوع الغشاء[/b]\n"
+"  {0}\n"
+"[b]صلابة الغشاء[/b]\n"
+"  {1}\n"
+"[b]السرعة الاساسية[/b]\n"
+"  {2}\n"
+"[b]سرعة الدوران الأساسية[/b]\n"
+"  {3}\n"
+"[b]حجم السداسي الاساسي[/b]\n"
+"  {4}"
 
 msgid "THRIVE_LICENSES"
 msgstr ""
 
 msgid "THRIVIN_ACHIEVEMENT"
+msgstr ""
+
+msgid "THRUST_FORCE"
 msgstr ""
 
 msgid "THYLAKOIDS"
@@ -6215,9 +6663,6 @@ msgid "TOOLS"
 msgstr ""
 
 msgid "TOOL_HAND_AXE"
-msgstr ""
-
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
 msgid "TOTAL_GATHERED_ENERGY_COLON"
@@ -6743,9 +7188,6 @@ msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
 msgid "VIEWER"
-msgstr ""
-
-msgid "VIEW_ALL"
 msgstr ""
 
 msgid "VIEW_CELL_PROCESSES"
@@ -7345,7 +7787,7 @@ msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr ""
 
 #, fuzzy
-msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+msgid "WIKI_GLYCOLYSIS_COMMA_NITROGEN_FIXATION"
 msgstr "عام"
 
 #, fuzzy
@@ -8201,10 +8643,6 @@ msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr ""
 
 #, fuzzy
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "فترة الميكروبات"
-
-#, fuzzy
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "عام"
 
@@ -8281,37 +8719,6 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "عام"
-
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr ""
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr ""
-"ابحث عن قطرات في مقياس ضوء الشمس على لوحة البيئة.\n"
-"\n"
-"يحل الليل عندما تظلم البيئة.\n"
-"التركيب الضوئي غير فعال خلال الليل.\n"
-"لذا تأكد من أنك تملك مدخرات كافية من أجل النجاة في الليل."
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr "فترة الميكروبات"
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
 
 msgid "WIKI_PULLING_CILIA"
 msgstr ""
@@ -8798,6 +9205,40 @@ msgstr "تقريب الشاشة"
 
 msgid "ZOOM_OUT"
 msgstr "ابعاد الشاشة"
+
+#, fuzzy
+#~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
+#~ msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
+
+#, fuzzy
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "فترة الميكروبات"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr ""
+#~ "ابحث عن قطرات في مقياس ضوء الشمس على لوحة البيئة.\n"
+#~ "\n"
+#~ "يحل الليل عندما تظلم البيئة.\n"
+#~ "التركيب الضوئي غير فعال خلال الليل.\n"
+#~ "لذا تأكد من أنك تملك مدخرات كافية من أجل النجاة في الليل."
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_STRATEGY"
+#~ msgstr "فترة الميكروبات"
+
+#~ msgid "AEROBIC_NITROGEN_FIXATION"
+#~ msgstr "تثبيت النيتروجين الهوائي"
+
+#~ msgid "AEROBIC_NITROGEN_FIXING"
+#~ msgstr "تثبيت النيتروجين الهوائي"
+
+#~ msgid "ANAEROBIC_NITROGEN_FIXATION"
+#~ msgstr "تثبيت النيتروجين اللاهوائي"
+
+#, fuzzy
+#~ msgid "PROCESS_TOGGLE_TOOLTIP"
+#~ msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
 
 #, fuzzy
 #~ msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"

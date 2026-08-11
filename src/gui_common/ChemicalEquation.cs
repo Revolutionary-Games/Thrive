@@ -1,33 +1,48 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
 /// <summary>
 ///   Shows a single chemical equation in a control
 /// </summary>
-public partial class ChemicalEquation : VBoxContainer
+public partial class ChemicalEquation : CheckButton
 {
 #pragma warning disable CA2213
     [Export]
     public LabelSettings DefaultTitleFont = null!;
 
+    private readonly StringName rotationName = new("rotation");
+
     [Export]
     private Label? title;
 
     [Export]
-    private CheckButton? toggleProcess;
+    private TextureRect spinner = null!;
 
     [Export]
-    private TextureRect? spinner;
+    private Control? spinnerController;
 
     [Export]
-    private HBoxContainer firstLineContainer = null!;
+    private Container firstLineContainer = null!;
+
+    [Export]
+    private Container environmentalPartContainer = null!;
 
     [Export]
     private LabelSettings speedLimitedTitleFont = null!;
 
     [Export]
     private Texture2D equationArrowTexture = null!;
+
+    [Export]
+    private Control mainContainer = null!;
+
+    [Export]
+    private ProgressBar processSpeedBar = null!;
+
+    [Export]
+    private Control processInactiveMarker = null!;
 
     // Dynamically generated controls
     private CompoundListBox? leftSide;
@@ -36,11 +51,14 @@ public partial class ChemicalEquation : VBoxContainer
     private Label? perSecondLabel;
     private Label? environmentSeparator;
     private CompoundListBox? environmentSection;
+
+    private ShaderMaterial spinnerMaterial = null!;
 #pragma warning restore CA2213
 
     private IProcessDisplayInfo? equationFromProcess;
     private bool showSpinner;
     private bool showToggle;
+    private bool showSpeedBar;
 
     // TODO: if some people prefer this on, add a GUI option to default this value as on
     private bool showFullSecondText;
@@ -95,6 +113,16 @@ public partial class ChemicalEquation : VBoxContainer
         {
             showToggle = value;
             UpdateHeader();
+        }
+    }
+
+    public bool ShowSpeedBar
+    {
+        get => showSpeedBar;
+        set
+        {
+            showSpeedBar = value;
+            UpdateSpeedBar();
         }
     }
 
@@ -156,7 +184,11 @@ public partial class ChemicalEquation : VBoxContainer
 
     public override void _Ready()
     {
+        spinnerMaterial = (ShaderMaterial)spinner.Material;
+
         UpdateEquation();
+
+        RecalculateMinimumSize();
     }
 
     public override void _EnterTree()
@@ -179,18 +211,37 @@ public partial class ChemicalEquation : VBoxContainer
             // scrolling works)
             if (!PauseManager.Instance.Paused)
             {
-                currentSpinnerRotation += (float)delta * EquationFromProcess.CurrentSpeed * SpinnerBaseSpeed
-                    * ExternalSpeedModifier;
+                double totalSpeed = EquationFromProcess.CurrentSpeed * SpinnerBaseSpeed * ExternalSpeedModifier;
+                float rotationDelta = (float)(delta * totalSpeed);
+                currentSpinnerRotation += rotationDelta;
+                currentSpinnerRotation %= MathF.Tau;
 
-                // TODO: should we at some point subtract like 100000*360 from the spinner rotation to avoid float range
-                // exceeding?
-
-                spinner!.RotationDegrees = (int)currentSpinnerRotation % 360;
+                spinnerMaterial.SetShaderParameter(rotationName, currentSpinnerRotation);
             }
         }
 
         if (AutoRefreshProcess)
             UpdateEquation();
+    }
+
+    public override Vector2 _GetMinimumSize()
+    {
+        return mainContainer.GetMinimumSize();
+    }
+
+    public override void _Pressed()
+    {
+        ProcessEnabled = !ProcessEnabled;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            rotationName.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     private void OnTranslationsChanged()
@@ -218,6 +269,7 @@ public partial class ChemicalEquation : VBoxContainer
         {
             Visible = false;
             firstLineContainer.FreeChildren();
+            environmentalPartContainer.FreeChildren();
             leftSide = null;
             equationArrow = null;
             rightSide = null;
@@ -257,14 +309,24 @@ public partial class ChemicalEquation : VBoxContainer
         // Environment conditions
         UpdateEnvironmentPart(environmentalInputs);
 
+        UpdateSpeedBar();
+
+        processInactiveMarker.Visible = EquationFromProcess.CurrentSpeed <= 0.0f;
+
         ApplyProcessToggleValue();
+
+        RecalculateMinimumSize();
+    }
+
+    private void UpdateSpeedBar()
+    {
+        processSpeedBar.Visible = showSpeedBar;
+        processSpeedBar.Value = EquationFromProcess?.CurrentSpeed ?? 0.0f;
     }
 
     private void UpdateHeader()
     {
-        spinner?.Visible = ShowSpinner;
-
-        toggleProcess?.Visible = ShowToggle;
+        spinnerController?.Visible = ShowSpinner;
 
         if (title == null || EquationFromProcess == null)
             return;
@@ -356,7 +418,7 @@ public partial class ChemicalEquation : VBoxContainer
                     HorizontalAlignment = HorizontalAlignment.Center,
                 };
 
-                firstLineContainer.AddChild(environmentSeparator);
+                environmentalPartContainer.AddChild(environmentSeparator);
             }
 
             environmentSeparator.Visible = true;
@@ -364,7 +426,7 @@ public partial class ChemicalEquation : VBoxContainer
             if (environmentSection == null)
             {
                 environmentSection = new CompoundListBox { PartSeparator = ", ", UsePercentageDisplay = true };
-                firstLineContainer.AddChild(environmentSection);
+                environmentalPartContainer.AddChild(environmentSection);
             }
 
             environmentSection.Visible = true;
@@ -384,13 +446,16 @@ public partial class ChemicalEquation : VBoxContainer
         return Localization.Translate("PROCESS_ENVIRONMENT_SEPARATOR");
     }
 
-    private void ToggleButtonPressed()
-    {
-        ProcessEnabled = !ProcessEnabled;
-    }
-
     private void ApplyProcessToggleValue()
     {
-        toggleProcess?.ButtonPressed = ProcessEnabled;
+        ButtonPressed = ProcessEnabled && showToggle;
+    }
+
+    private void RecalculateMinimumSize()
+    {
+        var newMinSize = _GetMinimumSize();
+
+        if (newMinSize != CustomMinimumSize)
+            CustomMinimumSize = newMinSize;
     }
 }

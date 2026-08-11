@@ -47,10 +47,15 @@ public class MusicCategory : IRegistryType
     public Transition TrackTransition { get; set; } = Transition.Crossfade;
 
     /// <summary>
-    ///   List of track lists. When the mode is concurrent one track from each list is played at once
+    ///   List of track lists. When the mode is concurrent, one track from each list is played at once
     /// </summary>
     /// <value>The track lists.</value>
     public List<TrackList> TrackLists { get; set; } = null!;
+
+    /// <summary>
+    ///   If true, this is a global category that isn't specific to any game and as thus is not saved or loaded
+    /// </summary>
+    public bool IsGlobalMenu { get; set; }
 
     public string InternalName { get; set; } = null!;
 
@@ -112,8 +117,11 @@ public class TrackList
     /// </summary>
     public bool Repeat { get; set; } = true;
 
+    /// <summary>
+    ///   Runtime-only path of the last track played from this list.
+    /// </summary>
     [JsonIgnore]
-    public int LastPlayedIndex { get; set; } = -1;
+    public string? LastPlayedTrackPath { get; set; }
 
     [JsonProperty]
     private List<Track> Tracks { get; set; } = null!;
@@ -129,16 +137,21 @@ public class TrackList
         }
     }
 
-    public IEnumerable<Track> GetTracksForContexts(MusicContext[]? contexts)
+    public void GetTracksForContexts(MusicContext[]? contexts, List<Track> result)
     {
-        return Tracks.Where(t => CheckIfTrackValidInContext(t, contexts));
+        result.Clear();
+        foreach (var track in Tracks)
+        {
+            if (CheckIfTrackValidInContext(track, contexts))
+                result.Add(track);
+        }
     }
 
     /// <summary>
     ///   Accesses all tracks for operations that need to bypass context restrictions
     /// </summary>
     /// <returns>Enumerable for all of the tracks</returns>
-    public IEnumerable<Track> GetAllTracks()
+    public List<Track> GetAllTracks()
     {
         return Tracks;
     }
