@@ -65,9 +65,6 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     private readonly StringName colorTextureName = "color";
     private readonly StringName depthTextureName = "depth";
 
-    [SuppressMessage("Usage", "CA2213:Disposable fields should be disposed",
-        Justification = "Global rendering device is disposed by Godot.")]
-    private RenderingDevice? renderingDevice;
     private Rid depthSampler;
     private Rid noiseSampler;
     private Rid rayMarcherShader;
@@ -76,9 +73,13 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     private Rid upsamplerPipeline;
     private Rid noiseTexture;
 
+#pragma warning disable CA2213
+    private RenderingDevice? renderingDevice;
+
     private RDShaderSpirV rayMarcherSpirv = null!;
     private RDShaderSpirV upsamplerSpirv = null!;
     private ImageTexture3D noiseProfile = null!;
+#pragma warning restore CA2213
 
     private volatile int state;
 
@@ -274,9 +275,9 @@ public partial class VolumetricCloudsEffect : CompositorEffect
             colorTextureName.Dispose();
             depthTextureName.Dispose();
 
-            rayMarcherSpirv.Dispose();
-            upsamplerSpirv.Dispose();
-            noiseProfile.Dispose();
+            rayMarcherSpirv = null!;
+            upsamplerSpirv = null!;
+            noiseProfile = null!;
         }
 
         disposed = true;
