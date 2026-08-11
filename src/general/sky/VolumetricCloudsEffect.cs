@@ -61,6 +61,9 @@ public partial class VolumetricCloudsEffect : CompositorEffect
 
     private static readonly StringName CloudContextName = "volumetric_clouds";
     private static readonly StringName CloudTextureName = "cloud_half";
+    private static readonly StringName RenderBuffersContext = "render_buffers";
+    private static readonly StringName ColorTextureName = "color";
+    private static readonly StringName DepthTextureName = "depth";
 
     [SuppressMessage("Usage", "CA2213:Disposable fields should be disposed",
         Justification = "Global rendering device is disposed by Godot.")]
@@ -79,7 +82,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
 
     private volatile int state;
 
-    private bool disposed = false;
+    private bool disposed;
 
     private Vector2I currentCloudSize = Vector2I.Zero;
     private uint currentCloudViews;
@@ -87,6 +90,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     public VolumetricCloudsEffect()
     {
         EffectCallbackType = EffectCallbackTypeEnum.PostTransparent;
+        AccessResolvedColor = true;
         AccessResolvedDepth = true;
     }
 
@@ -181,8 +185,8 @@ public partial class VolumetricCloudsEffect : CompositorEffect
 
         for (uint view = 0; view < viewCount; ++view)
         {
-            Rid color = sceneBuffers.GetColorLayer(view);
-            Rid depth = sceneBuffers.GetDepthLayer(view);
+            Rid color = sceneBuffers.GetTextureSlice(RenderBuffersContext, ColorTextureName, view, 0, 1, 1);
+            Rid depth = sceneBuffers.GetTextureSlice(RenderBuffersContext, DepthTextureName, view, 0, 1, 1);
             Rid cloudTexture = sceneBuffers.GetTextureSlice(CloudContextName, CloudTextureName, view, 0, 1, 1);
 
             if (!cloudTexture.IsValid)
@@ -266,6 +270,9 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         {
             CloudContextName.Dispose();
             CloudTextureName.Dispose();
+            RenderBuffersContext.Dispose();
+            ColorTextureName.Dispose();
+            DepthTextureName.Dispose();
 
             rayMarcherSpirv.Dispose();
             upsamplerSpirv.Dispose();
