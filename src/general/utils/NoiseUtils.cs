@@ -54,7 +54,7 @@ public static class NoiseUtils
             }
         }
 
-        return 1.0f - Mathf.Clamp(minDist, 0.0f, 1.0f);
+        return 1.0f - Math.Clamp(minDist, 0.0f, 1.0f);
     }
 
     public static Vector3 CellGradient(int x, int y, int z, int period, int seed)
@@ -164,12 +164,12 @@ public static class NoiseUtils
                 for (int x = 0; x < size; ++x)
                 {
                     Vector3 p = new Vector3(x / sizeFloat, y / sizeFloat, z / sizeFloat);
-                    buffer[i++] = (byte)(Mathf.Clamp(PerlinWorley(p, seed), 0, 1) * 255);
-                    buffer[i++] = (byte)(Mathf.Clamp(FractionalBrownianMotionWorley(p, 8, 1, seed + 1000), 0, 1) * 255);
+                    buffer[i++] = (byte)(Math.Clamp(PerlinWorley(p, seed), 0, 1) * 255);
+                    buffer[i++] = (byte)(Math.Clamp(FractionalBrownianMotionWorley(p, 8, 1, seed + 1000), 0, 1) * 255);
                     buffer[i++] = (byte)
-                        (Mathf.Clamp(FractionalBrownianMotionWorley(p, 16, 1, seed + 2000), 0, 1) * 255);
+                        (Math.Clamp(FractionalBrownianMotionWorley(p, 16, 1, seed + 2000), 0, 1) * 255);
                     buffer[i++] = (byte)
-                        (Mathf.Clamp(FractionalBrownianMotionWorley(p, 32, 1, seed + 3000), 0, 1) * 255);
+                        (Math.Clamp(FractionalBrownianMotionWorley(p, 32, 1, seed + 3000), 0, 1) * 255);
                 }
             }
 
