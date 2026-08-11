@@ -180,7 +180,7 @@ public static class MathUtils
 
     public static float FadeQuintic(float t)
     {
-        return t * t * t * (t * (t * 6f - 15f) + 10f);
+        return t * t * t * (t * (t * 6.0f - 15.0f) + 10.0f);
     }
 
     /// <summary>
