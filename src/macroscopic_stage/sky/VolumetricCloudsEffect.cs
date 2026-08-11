@@ -65,6 +65,9 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     private readonly StringName colorTextureName = "color";
     private readonly StringName depthTextureName = "depth";
 
+    private readonly Array<RDUniform> marchUniforms = [];
+    private readonly Array<RDUniform> upsampleUniforms = [];
+
     private Rid depthSampler;
     private Rid noiseSampler;
     private Rid rayMarcherShader;
@@ -182,9 +185,6 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         uint marchGroupsY = ((uint)marchSize.Y + 7) / 8;
         uint fullGroupsX = ((uint)size.X + 7) / 8;
         uint fullGroupsY = ((uint)size.Y + 7) / 8;
-
-        var marchUniforms = new Array<RDUniform>();
-        var upsampleUniforms = new Array<RDUniform>();
 
         for (uint view = 0; view < viewCount; ++view)
         {
