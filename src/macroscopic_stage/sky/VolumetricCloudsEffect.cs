@@ -198,7 +198,8 @@ public partial class VolumetricCloudsEffect : CompositorEffect
             var projection = sceneData.GetViewProjection(view);
             var cameraTransform = sceneData.GetCamTransform();
 
-            byte[] pushConstantBytes = BuildPushConstant(projection.Inverse(), new Projection(cameraTransform));
+            byte[] pushConstantBytes = RenderingUtils.BuildProjectionsPushConstant(projection.Inverse(),
+                new Projection(cameraTransform));
             byte[] paramBytes = BuildParamUniform(size, marchSize, cameraTransform.Origin);
 
             Rid paramUbo = renderingDevice.UniformBufferCreate((uint)paramBytes.Length, paramBytes);
@@ -207,19 +208,19 @@ public partial class VolumetricCloudsEffect : CompositorEffect
 
             // Pass 1: ray marcher.
             marchUniforms.Clear();
-            marchUniforms.Add(MakeImage(0, cloudTexture));
-            marchUniforms.Add(MakeSampled(1, depthSampler, depth));
-            marchUniforms.Add(MakeSampled(2, noiseSampler, noiseTexture));
-            marchUniforms.Add(MakeUniformBuffer(3, paramUbo));
+            marchUniforms.Add(RenderingUtils.MakeImage(0, cloudTexture));
+            marchUniforms.Add(RenderingUtils.MakeSampled(1, depthSampler, depth));
+            marchUniforms.Add(RenderingUtils.MakeSampled(2, noiseSampler, noiseTexture));
+            marchUniforms.Add(RenderingUtils.MakeUniformBuffer(3, paramUbo));
 
             Rid marchSet = renderingDevice.UniformSetCreate(marchUniforms, rayMarcherShader, 0);
 
             // Pass 2: bilateral resolve and composite
             upsampleUniforms.Clear();
-            upsampleUniforms.Add(MakeImage(0, color));
-            upsampleUniforms.Add(MakeSampled(1, depthSampler, depth));
-            upsampleUniforms.Add(MakeSampled(2, depthSampler, cloudTexture));
-            upsampleUniforms.Add(MakeUniformBuffer(3, paramUbo));
+            upsampleUniforms.Add(RenderingUtils.MakeImage(0, color));
+            upsampleUniforms.Add(RenderingUtils.MakeSampled(1, depthSampler, depth));
+            upsampleUniforms.Add(RenderingUtils.MakeSampled(2, depthSampler, cloudTexture));
+            upsampleUniforms.Add(RenderingUtils.MakeUniformBuffer(3, paramUbo));
 
             Rid upsampleSet = renderingDevice.UniformSetCreate(upsampleUniforms, upsamplerShader, 0);
 
@@ -283,75 +284,6 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         disposed = true;
 
         base.Dispose(disposing);
-    }
-
-    private static RDUniform MakeImage(int binding, Rid texture)
-    {
-        var uniform = new RDUniform
-        {
-            UniformType = RenderingDevice.UniformType.Image,
-            Binding = binding,
-        };
-        uniform.AddId(texture);
-        return uniform;
-    }
-
-    private static RDUniform MakeSampled(int binding, Rid sampler, Rid texture)
-    {
-        var uniform = new RDUniform
-        {
-            UniformType = RenderingDevice.UniformType.SamplerWithTexture,
-            Binding = binding,
-        };
-        uniform.AddId(sampler);
-        uniform.AddId(texture);
-        return uniform;
-    }
-
-    private static RDUniform MakeUniformBuffer(int binding, Rid buffer)
-    {
-        var uniform = new RDUniform
-        {
-            UniformType = RenderingDevice.UniformType.UniformBuffer,
-            Binding = binding,
-        };
-        uniform.AddId(buffer);
-        return uniform;
-    }
-
-    private static byte[] BuildPushConstant(Projection invViewProjection, Projection camProjection)
-    {
-        var bytes = new byte[128];
-        int offset = 0;
-
-        // mat4 inv_projection
-        offset = WriteVec4(bytes, offset, invViewProjection.X);
-        offset = WriteVec4(bytes, offset, invViewProjection.Y);
-        offset = WriteVec4(bytes, offset, invViewProjection.Z);
-        offset = WriteVec4(bytes, offset, invViewProjection.W);
-
-        // mat4 cam_transform
-        offset = WriteVec4(bytes, offset, camProjection.X);
-        offset = WriteVec4(bytes, offset, camProjection.Y);
-        offset = WriteVec4(bytes, offset, camProjection.Z);
-        _ = WriteVec4(bytes, offset, camProjection.W);
-
-        return bytes;
-    }
-
-    private static int WriteFloat(byte[] buf, int offset, float value)
-    {
-        BitConverter.GetBytes(value).CopyTo(buf, offset);
-        return offset + 4;
-    }
-
-    private static int WriteVec4(byte[] buf, int offset, Vector4 v)
-    {
-        offset = WriteFloat(buf, offset, v.X);
-        offset = WriteFloat(buf, offset, v.Y);
-        offset = WriteFloat(buf, offset, v.Z);
-        offset = WriteFloat(buf, offset, v.W);
-        return offset;
     }
 
     private static RDShaderSpirV LoadSpirV(string path)
@@ -426,19 +358,23 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     private byte[] BuildParamUniform(Vector2I fullSize, Vector2I marchSize, Vector3 cameraPosition)
     {
         var bytes = new byte[128];
-        int o = 0;
+        int offset = 0;
 
-        o = WriteVec4(bytes, o, new Vector4(PlanetCenter.X, PlanetCenter.Y, PlanetCenter.Z, 0.0f));
-        o = WriteVec4(bytes, o, new Vector4(PlanetRadius + CloudInnerHeight, PlanetRadius + CloudOuterHeight,
-            CloudTileSize, DensityMultiplier));
-        o = WriteVec4(bytes, o, new Vector4(fullSize.X, fullSize.Y, 1.0f / fullSize.X, 1.0f / fullSize.Y));
-        o = WriteVec4(bytes, o, new Vector4(marchSize.X, marchSize.Y, 1.0f / marchSize.X, 1.0f / marchSize.Y));
-        o = WriteVec4(bytes, o, new Vector4(cameraPosition.X, cameraPosition.Y, cameraPosition.Z, 0.0f));
+        offset = RenderingUtils.WriteVec4(bytes, offset, new Vector4(PlanetCenter.X, PlanetCenter.Y, PlanetCenter.Z,
+            0.0f));
+        offset = RenderingUtils.WriteVec4(bytes, offset, new Vector4(PlanetRadius + CloudInnerHeight,
+            PlanetRadius + CloudOuterHeight, CloudTileSize, DensityMultiplier));
+        offset = RenderingUtils.WriteVec4(bytes, offset, new Vector4(fullSize.X, fullSize.Y, 1.0f / fullSize.X,
+            1.0f / fullSize.Y));
+        offset = RenderingUtils.WriteVec4(bytes, offset, new Vector4(marchSize.X, marchSize.Y, 1.0f / marchSize.X,
+            1.0f / marchSize.Y));
+        offset = RenderingUtils.WriteVec4(bytes, offset, new Vector4(cameraPosition.X, cameraPosition.Y,
+            cameraPosition.Z, 0.0f));
 
         var sun = SunDirection.Normalized();
-        o = WriteVec4(bytes, o, new Vector4(sun.X, sun.Y, sun.Z, SunEnergy));
+        offset = RenderingUtils.WriteVec4(bytes, offset, new Vector4(sun.X, sun.Y, sun.Z, SunEnergy));
 
-        _ = WriteVec4(bytes, o, new Vector4(MarchSteps, LightSteps, MaxMarchDistance, Coverage));
+        _ = RenderingUtils.WriteVec4(bytes, offset, new Vector4(MarchSteps, LightSteps, MaxMarchDistance, Coverage));
 
         return bytes;
     }
