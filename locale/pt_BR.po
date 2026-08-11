@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-17 17:36+0100\n"
+"POT-Creation-Date: 2026-08-11 10:42+0300\n"
 "PO-Revision-Date: 2026-05-22 15:37+0000\n"
 "Last-Translator: DiversoCortez <decaiotreis@proton.me>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -51,6 +51,14 @@ msgstr "Aceitar"
 
 msgid "ACHIEVEMENTS"
 msgstr "Conquistas"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr "Conquistas {0} / {1}"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr "A atualização do arquivo salvo falhou devido ao seguinte erro:"
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr "Conquistas {0} / {1}"
@@ -757,6 +765,17 @@ msgstr "Nome do Tipo de Célula"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Notas de mudança são muito longas"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr "Tipos de Membranas"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr "(gera um mapa de regiões ou usa o layout clássico)"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Mudar a simetria"
@@ -2082,6 +2101,10 @@ msgstr "Esta espécie não pode ser transformada em uma organela válida"
 msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
 msgstr "Para avançar um processo de endossimbiose, a espécie alvo deve ser fagocitada para torná-la em uma organela temporária (somente uma pode estar presente de cada vez). O progresso é salvo assim que você entrar no editor com a organela temporária presente."
 
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION_MULTICELLULAR"
+msgstr "Para avançar um processo de endossimbiose, a espécie alvo deve ser fagocitada para torná-la em uma organela temporária (somente uma pode estar presente de cada vez). O progresso é salvo assim que você entrar no editor com a organela temporária presente."
+
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
 msgstr "Procariontes podem ter no máximo um endossimbionte"
 
@@ -2192,6 +2215,9 @@ msgstr "Erro ao Carregar Notícias"
 
 msgid "ERROR_LOADING"
 msgstr "Erro ao carregar"
+
+msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
 
 msgid "ERROR_SAVING"
 msgstr "Erro ao salvar"
@@ -2568,6 +2594,35 @@ msgstr "Visualizador de Galeria"
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr "Conceitos Básicos da Jogabilidade"
 
+#, fuzzy
+msgid "GAMETE_CELL_ENTITY_NAME"
+msgstr "Tronco"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE"
+msgstr "Criar novo tipo de célula"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_A"
+msgstr "Nome do Tipo de Célula"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_B"
+msgstr "Criar novo tipo de célula"
+
+#, fuzzy
+msgid "GAMETE_PRODUCED"
+msgstr "reproduziu"
+
+#, fuzzy
+msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+msgstr ""
+"Esta seção mostra o equilíbrio total de ATP (energia) da célula atual.\n"
+"Para sobreviver o equilíbrio precisa ser positivo. Para células sésseis, é possível considerar o equilíbrio positivo com o movimento excluído.\n"
+"O menu suspenso abaixo pode ser usado para checar o que aconteceria se a célula não tivesse algum recurso necessário para produzir ATP.\n"
+"Por exemplo, algumas células só podem manter um equilíbrio positivo de ATP quando possuem múltiplos tipos de composto dos quais produzir ATP ao mesmo tempo.\n"
+"Esses tipos de célula são mais difíceis de jogar, já que precisam ter múltiplos tipos de composto armazenados ao mesmo tempo para sobreviver."
+
 msgid "GAME_DESIGN_TEAM"
 msgstr "Equipe de Game Design"
 
@@ -2862,6 +2917,10 @@ msgstr "[b]Dados das Membranas:[/b]"
 #, fuzzy
 msgid "INCOMPATIBLE_ORGANELLE_LIST"
 msgstr "Múltiplas Organelas"
+
+#, fuzzy
+msgid "INCOMPATIBLE_STAGE_LIST"
+msgstr "[b]Dados das Membranas:[/b]"
 
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Aumentar tamanho do objeto"
@@ -3594,6 +3653,10 @@ msgstr "Síntese de Macrolídeo"
 
 msgid "MACROSCOPIC"
 msgstr "Macroscópico"
+
+#, fuzzy
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr "Jato de Slime"
 
 msgid "MACROSCOPIC_EDITOR"
 msgstr "Editor Macroscópico"
@@ -4579,8 +4642,16 @@ msgstr "Danificado por excesso de radiação"
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "O editor está pronto para ser utilizado"
 
+#, fuzzy
+msgid "NOTICE_READY_TO_SHOOT_GAMETE"
+msgstr "O editor está pronto para ser utilizado"
+
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "Não está adaptado para as condições da região atual. Mude as condições preferidas ou faixas de tolerância para remover as desvantagens."
+
+#, fuzzy
+msgid "NOT_ENOUGH_MUTATION_POINTS"
+msgstr "Pontos de Mutação"
 
 msgid "NOT_STARTED_DOT"
 msgstr "Não começou."
@@ -4758,6 +4829,10 @@ msgstr "Opções"
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Muda as configurações do jogo"
 
+#, fuzzy
+msgid "OPTION_USED_FOR_PLAYER"
+msgstr "Pausado."
+
 msgid "ORGANELLES"
 msgstr "Organelas"
 
@@ -4871,6 +4946,10 @@ msgid "OXYGEN_INHIBITOR_SYNTHESIS"
 msgstr "Síntese de Inibidor de Oxigênio"
 
 msgid "OXYGEN_RESISTANCE"
+msgstr "Resistência a Oxigênio"
+
+#, fuzzy
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
 msgstr "Resistência a Oxigênio"
 
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
@@ -4995,6 +5074,10 @@ msgid "PEACEFUL"
 msgstr "Pacífico"
 
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Existe um processo completo de endossimbiose que pode ser finalizado posicionando a célula como uma organela. É recomendado fazer isso assim que possível já que não é possível fazer mais progresso na endossimbiose até que isso seja feito. Ver o progresso da endossimbiose agora?"
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION_MULTICELLULAR"
 msgstr "Existe um processo completo de endossimbiose que pode ser finalizado posicionando a célula como uma organela. É recomendado fazer isso assim que possível já que não é possível fazer mais progresso na endossimbiose até que isso seja feito. Ver o progresso da endossimbiose agora?"
 
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
@@ -5325,6 +5408,10 @@ msgstr "Relatório"
 msgid "REPORT_BUG"
 msgstr "Informar um Problema"
 
+#, fuzzy
+msgid "REPRODUCE"
+msgstr "reproduziu"
+
 msgid "REPRODUCED"
 msgstr "reproduziu"
 
@@ -5357,6 +5444,18 @@ msgstr "Gemulação"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reprodução:"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL"
+msgstr "Assexual"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
+msgstr "Assexual"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ISOGAMY"
+msgstr "Assexual"
 
 #, fuzzy
 msgid "REPRODUCTION_SPORE"
@@ -5762,6 +5861,18 @@ msgstr "Séssil"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "Esse valor só é aplicado à novos jogos, criados após alterar esta opção"
 
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr "(ganhar os compostos necessários para a reprodução do ambiente sem ter que fazer nada)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(ganhar os compostos necessários para a reprodução do ambiente sem ter que fazer nada)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+msgstr "Ganhar compostos para a reprodução passivamente"
+
 msgid "SFX_VOLUME"
 msgstr "Volume dos efeitos sonoros"
 
@@ -5788,6 +5899,14 @@ msgstr "Mostrar coordenadas"
 #, fuzzy
 msgid "SHOW_MAP"
 msgstr "Mostrar ajuda"
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION"
+msgstr "Mostrar ajuda"
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION_EXPLANATION"
+msgstr "Diferentes tipos de toxina têm efeitos variados que são mais efetivos contra certos tipos de células. Células que têm muitos tipos diferentes de toxina os disparam em sequência ao invés de todos ao mesmo tempo."
 
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Mostrar novas notas de atualização automaticamente"
@@ -5832,6 +5951,14 @@ msgstr "Segure [thrive:input]g_pack_commands[/thrive:input] para abrir um menu p
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "Tornar-se Agressivo"
 
+#, fuzzy
+msgid "SIGNAL_COMMAND_CALL_MATE"
+msgstr "Venham A Mim"
+
+#, fuzzy
+msgid "SIGNAL_COMMAND_FIRE_GAMETES"
+msgstr "Fujam"
+
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr "Fujam"
 
@@ -5854,6 +5981,10 @@ msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Essa membrana tem uma forte parede feita de sílica. Pode resistir bem a danos no geral e é muito resistente a danos físicos. Também precisa de menos energia para manter sua forma. No entanto, diminui a velocidade da célula drasticamente e ela absorve recursos a um ritmo menor."
 
 msgid "SIMULATION_CONFIG"
+msgstr "Simulação"
+
+#, fuzzy
+msgid "SIMULATION_FACTOR"
 msgstr "Simulação"
 
 msgid "SIXTEEN_TIMES"
@@ -5935,6 +6066,14 @@ msgstr "Impossível usar comando para gerar inimigo pois essa região não cont�
 
 msgid "SPAWN_GLUCOSE"
 msgstr "Gerar glicose"
+
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL"
+msgstr "Gerar amônia"
+
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL_EXPLANATION"
+msgstr "(velocidade de mutação das espécies controladas pela IA)"
 
 msgid "SPAWN_PHOSPHATES"
 msgstr "Gerar fosfato"
@@ -6428,7 +6567,7 @@ msgstr "Página inicial"
 
 #, fuzzy
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_SEARCHTAGS"
-msgstr "Museu"
+msgstr "Mapa de regiões"
 
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr "Mapa de regiões"
@@ -9377,14 +9516,6 @@ msgstr "Aumentar o zoom"
 msgid "ZOOM_OUT"
 msgstr "Diminuir o zoom"
 
-#, fuzzy
-#~ msgid "ACHIEVEMENTS_LOAD_FAILED"
-#~ msgstr "Conquistas {0} / {1}"
-
-#, fuzzy
-#~ msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
-#~ msgstr "A atualização do arquivo salvo falhou devido ao seguinte erro:"
-
 #~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
 #~ msgstr "Mude entre velocidade normal e dupla no jogo"
 
@@ -9538,9 +9669,6 @@ msgstr "Diminuir o zoom"
 
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "Quimiolitoautotrofia Férrica"
-
-#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
-#~ msgstr "Ganhar compostos para a reprodução passivamente"
 
 #~ msgid "MIGRATE"
 #~ msgstr "Migrar"
@@ -9907,9 +10035,6 @@ msgstr "Diminuir o zoom"
 
 #~ msgid "PATCH_MAP_TYPE_CLASSIC"
 #~ msgstr "Clássico"
-
-#~ msgid "PATCH_MAP_TYPE_EXPLANATION"
-#~ msgstr "(gera um mapa de regiões ou usa o layout clássico)"
 
 #~ msgid "PATCH_MAP_TYPE_PROCEDURAL"
 #~ msgstr "Gerado"

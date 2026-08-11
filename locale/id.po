@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-17 17:36+0100\n"
+"POT-Creation-Date: 2026-08-11 10:42+0300\n"
 "PO-Revision-Date: 2026-05-13 03:55+0000\n"
 "Last-Translator: Nozt <alib.athq@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
@@ -52,6 +52,16 @@ msgstr ""
 
 msgid "ACHIEVEMENTS"
 msgstr "Pencapaian"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr "Pencapaian {0} / {1}"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr ""
+"Gagal memperbarui save karena error berikut:\n"
+"{0}"
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr "Pencapaian {0} / {1}"
@@ -779,6 +789,17 @@ msgstr ""
 #, fuzzy
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Deskripsi:"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr "Jenis Membran"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr "{0} populasi berubah {1} karena: {2}"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Ubah simetri"
@@ -2171,6 +2192,10 @@ msgstr "Organel Terputus"
 msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
 msgstr "{0} populasi berubah {1} karena: {2}"
 
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION_MULTICELLULAR"
+msgstr "{0} populasi berubah {1} karena: {2}"
+
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
 msgstr ""
 
@@ -2292,6 +2317,9 @@ msgstr "Error Menyimpan"
 
 msgid "ERROR_LOADING"
 msgstr "Error Memuat"
+
+msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
 
 msgid "ERROR_SAVING"
 msgstr "Error Menyimpan"
@@ -2719,6 +2747,30 @@ msgid "GAMEPLAY_BASICS_TITLE"
 msgstr "Kepala Desainer Game"
 
 #, fuzzy
+msgid "GAMETE_CELL_ENTITY_NAME"
+msgstr "Induk"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE"
+msgstr "Buat Sel Baru"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_A"
+msgstr "Buat Sel Baru"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_B"
+msgstr "Buat Sel Baru"
+
+#, fuzzy
+msgid "GAMETE_PRODUCED"
+msgstr "bereproduksi"
+
+#, fuzzy
+msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+msgstr "Tambah keybind baru"
+
+#, fuzzy
 msgid "GAME_DESIGN_TEAM"
 msgstr "Kepala Desainer Game"
 
@@ -3041,6 +3093,10 @@ msgstr "Statistika Organisme"
 #, fuzzy
 msgid "INCOMPATIBLE_ORGANELLE_LIST"
 msgstr "Letakkan organel"
+
+#, fuzzy
+msgid "INCOMPATIBLE_STAGE_LIST"
+msgstr "Statistika Organisme"
 
 #, fuzzy
 msgid "INCREASE_ITEM_SIZE"
@@ -3841,6 +3897,10 @@ msgstr "Kemosintesis"
 
 msgid "MACROSCOPIC"
 msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr "Nukleus"
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4941,9 +5001,16 @@ msgstr ""
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
+msgid "NOTICE_READY_TO_SHOOT_GAMETE"
+msgstr ""
+
 #, fuzzy
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "Batal tindakan ini"
+
+#, fuzzy
+msgid "NOT_ENOUGH_MUTATION_POINTS"
+msgstr "Poin Mutasi"
 
 msgid "NOT_STARTED_DOT"
 msgstr "Tidak dimulai."
@@ -5136,6 +5203,10 @@ msgstr "Opsi"
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Ubah setelan"
 
+#, fuzzy
+msgid "OPTION_USED_FOR_PLAYER"
+msgstr "Dijeda."
+
 msgid "ORGANELLES"
 msgstr "Organel"
 
@@ -5267,6 +5338,10 @@ msgstr "Sintesis OksiToksi"
 
 #, fuzzy
 msgid "OXYGEN_RESISTANCE"
+msgstr "Kekebalan Racun"
+
+#, fuzzy
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
 msgstr "Kekebalan Racun"
 
 #, fuzzy
@@ -5409,6 +5484,10 @@ msgstr ""
 
 #, fuzzy
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Kamu menjalankan Thrive dengan GLES2. Ini belum teruji secara penuh dan mungkin akan menyebabkan masalah. Coba perbarui driver dan/atau paksa grafik AMD atau Nvidia anda untuk digunakan menjalankan Thrive."
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION_MULTICELLULAR"
 msgstr "Kamu menjalankan Thrive dengan GLES2. Ini belum teruji secara penuh dan mungkin akan menyebabkan masalah. Coba perbarui driver dan/atau paksa grafik AMD atau Nvidia anda untuk digunakan menjalankan Thrive."
 
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
@@ -5757,6 +5836,10 @@ msgstr "Laporan"
 msgid "REPORT_BUG"
 msgstr "Laporan"
 
+#, fuzzy
+msgid "REPRODUCE"
+msgstr "bereproduksi"
+
 msgid "REPRODUCED"
 msgstr "bereproduksi"
 
@@ -5788,6 +5871,18 @@ msgstr "Tunas"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproduksi:"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL"
+msgstr "Produksi ATP"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
+msgstr "Produksi ATP"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ISOGAMY"
+msgstr "Produksi ATP"
 
 #, fuzzy
 msgid "REPRODUCTION_SPORE"
@@ -6232,6 +6327,18 @@ msgstr ""
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "Nilai ini hanya berlaku untuk permainan baru setelah mengubah opsi ini"
 
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr "{0} populasi berubah {1} karena: {2}"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "{0} populasi berubah {1} karena: {2}"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+msgstr "{0} populasi berubah {1} karena: {2}"
+
 msgid "SFX_VOLUME"
 msgstr "Volume SFX"
 
@@ -6260,6 +6367,14 @@ msgstr "Tampilkan tutorial"
 #, fuzzy
 msgid "SHOW_MAP"
 msgstr "Tampilkan bantuan"
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION"
+msgstr "Tampilkan bantuan"
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION_EXPLANATION"
+msgstr "{0} populasi berubah {1} karena: {2}"
 
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
@@ -6319,6 +6434,14 @@ msgstr "Tekan [thrive:input]g_toggle_binding[/thrive:input] untuk menyalakan/mat
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "Agen Pelekat"
 
+#, fuzzy
+msgid "SIGNAL_COMMAND_CALL_MATE"
+msgstr "Agen Pelekat"
+
+#, fuzzy
+msgid "SIGNAL_COMMAND_FIRE_GAMETES"
+msgstr "Agen Pelekat"
+
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr ""
 
@@ -6343,6 +6466,10 @@ msgstr "Membran ini memiliki dinding kuat terbuat dari silika. Dapat menahan ker
 
 #, fuzzy
 msgid "SIMULATION_CONFIG"
+msgstr "Harga Osmoregulasi"
+
+#, fuzzy
+msgid "SIMULATION_FACTOR"
 msgstr "Harga Osmoregulasi"
 
 #, fuzzy
@@ -6434,6 +6561,14 @@ msgstr ""
 
 msgid "SPAWN_GLUCOSE"
 msgstr "Munculkan glukosa"
+
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL"
+msgstr "Munculkan amonia"
+
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL_EXPLANATION"
+msgstr "(kecepatan mutasi spesies AI)"
 
 msgid "SPAWN_PHOSPHATES"
 msgstr "Munculkan fosfat"
@@ -6936,7 +7071,7 @@ msgstr ""
 
 #, fuzzy
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_SEARCHTAGS"
-msgstr "Izinkan spesies untuk tidak bermutasi (jika tidak ada mutasi cocok yang ditemukan)"
+msgstr "Dalaman lengket sebuah sel. Sitoplasma adalah gabungan dasar dari ion, protein dan zat lain terlarut dalam air yang mengisi bagian dalam sel. Salah satu fungsi yang di lakukannya adalah glikolisis, perubahan glukosa menjadi energi ATP. Bagi sel yang kekurangan organel untuk memiliki tingkatan metabolisme yang lebih tinggi, ini yang mereka andalkan untuk energi. Sitoplasma juga digunakan untuk menyimpan molekul di dalam sel dan menumbuhkan ukuran sel."
 
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
@@ -6951,7 +7086,7 @@ msgstr "KEPUNAHAN"
 
 #, fuzzy
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_SEARCHTAGS"
-msgstr "Izinkan spesies untuk tidak bermutasi (jika tidak ada mutasi cocok yang ditemukan)"
+msgstr "Dalaman lengket sebuah sel. Sitoplasma adalah gabungan dasar dari ion, protein dan zat lain terlarut dalam air yang mengisi bagian dalam sel. Salah satu fungsi yang di lakukannya adalah glikolisis, perubahan glukosa menjadi energi ATP. Bagi sel yang kekurangan organel untuk memiliki tingkatan metabolisme yang lebih tinggi, ini yang mereka andalkan untuk energi. Sitoplasma juga digunakan untuk menyimpan molekul di dalam sel dan menumbuhkan ukuran sel."
 
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr ""
@@ -9975,16 +10110,6 @@ msgid "ZOOM_OUT"
 msgstr "Perkecil"
 
 #, fuzzy
-#~ msgid "ACHIEVEMENTS_LOAD_FAILED"
-#~ msgstr "Pencapaian {0} / {1}"
-
-#, fuzzy
-#~ msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
-#~ msgstr ""
-#~ "Gagal memperbarui save karena error berikut:\n"
-#~ "{0}"
-
-#, fuzzy
 #~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
 #~ msgstr "Lanjutkan"
 
@@ -10088,10 +10213,6 @@ msgstr "Perkecil"
 
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "Kemolitoautotrofi Besi"
-
-#, fuzzy
-#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
-#~ msgstr "{0} populasi berubah {1} karena: {2}"
 
 #, fuzzy
 #~ msgid "THANKS_FOR_BUYING_THRIVE"

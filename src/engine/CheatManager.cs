@@ -14,6 +14,7 @@ public static class CheatManager
     private static float speed;
     private static bool infiniteMP;
     private static bool moveToAnyPatch;
+    private static float simulationFactor = 1;
 
     static CheatManager()
     {
@@ -46,6 +47,11 @@ public static class CheatManager
     ///   Fired whenever the player uses the "Unlock All Organelles" cheat
     /// </summary>
     public static event EventHandler<EventArgs>? OnUnlockAllOrganelles;
+
+    /// <summary>
+    ///   Fired whenever the player uses the "Simulation Factor" cheat
+    /// </summary>
+    public static event EventHandler<EventArgs>? OnNotifySimulationFactor;
 
     /// <summary>
     ///   You automatically have 100% of all compounds
@@ -195,6 +201,22 @@ public static class CheatManager
     }
 
     /// <summary>
+    ///   Multiplies the WorldTimescale of the current WorldSimulation by this factor
+    /// </summary>
+    public static float SimulationFactor
+    {
+        get => simulationFactor;
+        set
+        {
+            simulationFactor = value;
+            NotifySimulationFactor();
+
+            if (Math.Abs(value - 1) > 0.01f)
+                AchievementsManager.ReportCheatsUsed();
+        }
+    }
+
+    /// <summary>
     ///   Forces the player microbe to duplicate without going to the editor
     /// </summary>
     public static void PlayerDuplication()
@@ -230,6 +252,11 @@ public static class CheatManager
         AchievementsManager.ReportCheatsUsed();
     }
 
+    public static void NotifySimulationFactor()
+    {
+        OnNotifySimulationFactor?.Invoke(null, EventArgs.Empty);
+    }
+
     public static void DisableAllCheats()
     {
         InfiniteCompounds = false;
@@ -244,6 +271,8 @@ public static class CheatManager
 
         InfiniteMP = false;
         MoveToAnyPatch = false;
+
+        SimulationFactor = 1.0f;
     }
 
     public static void HideCheatMenus()

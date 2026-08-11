@@ -10,4 +10,10 @@ public enum MulticellularReproductionMethod
 
     [Description("REPRODUCTION_MASS_BUDDING")]
     MassBudding,
+
+    [Description("REPRODUCTION_SEXUAL_ISOGAMY")]
+    SexualIsogamy,
+
+    [Description("REPRODUCTION_SEXUAL_ANISOGAMY")]
+    SexualAnisogamy,
 }

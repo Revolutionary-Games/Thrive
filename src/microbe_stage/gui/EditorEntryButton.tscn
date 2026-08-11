@@ -9,8 +9,13 @@
 [ext_resource type="Texture2D" uid="uid://oxxtqpharrog" path="res://assets/textures/gui/bevel/AmmoniaBW.svg" id="6_a6ce0"]
 [ext_resource type="Texture2D" uid="uid://ds0evrot5mcgx" path="res://assets/textures/gui/bevel/PhosphatesBW.svg" id="7_3if3j"]
 [ext_resource type="Texture2D" uid="uid://bb1nyjltxtba" path="res://assets/textures/gui/bevel/PhosphatesInv.svg" id="9_ml22k"]
+[ext_resource type="Texture2D" uid="uid://6g53wxu40ab4" path="res://assets/textures/gui/bevel/IsogamyButtonLargeNormal.svg" id="10_hs2rw"]
 [ext_resource type="Texture2D" uid="uid://wqfj0m222rpr" path="res://assets/textures/gui/bevel/ReproductionBar.svg" id="11_ptk1u"]
+[ext_resource type="Texture2D" uid="uid://fnrglg77sjcl" path="res://assets/textures/gui/bevel/IsogamyButtonLargePressed.svg" id="11_q5ell"]
 [ext_resource type="Texture2D" uid="uid://6dg6duuiuoy7" path="res://assets/textures/gui/bevel/AmmoniaInv.svg" id="12_20jfj"]
+[ext_resource type="Texture2D" uid="uid://bd8cu1kqfl43a" path="res://assets/textures/gui/bevel/IsogamyButtonLargeHover.svg" id="12_hfouv"]
+[ext_resource type="Texture2D" uid="uid://s1ib1tmxv30d" path="res://assets/textures/gui/bevel/IsogamyButtonLargeDisabled.svg" id="13_6l6a4"]
+[ext_resource type="PackedScene" uid="uid://ci8b4cca0q55h" path="res://src/gui_common/KeyPrompt.tscn" id="16_q5ell"]
 
 [sub_resource type="Animation" id="30"]
 length = 5.0
@@ -45,7 +50,7 @@ _data = {
 &"EditorButtonFlash": SubResource("30")
 }
 
-[node name="EditorButton" type="TextureButton" unique_id=1557187670 node_paths=PackedStringArray("highlight", "buttonAnimationPlayer", "ammoniaIcon", "ammoniaReproductionBar", "phosphateIcon", "phosphateReproductionBar", "reproductionBar", "editorButtonFlash")]
+[node name="EditorButton" type="TextureButton" unique_id=1557187670 node_paths=PackedStringArray("readyPrompt", "highlight", "buttonAnimationPlayer", "ammoniaIcon", "ammoniaReproductionBar", "phosphateIcon", "phosphateReproductionBar", "reproductionBar", "editorButtonFlash")]
 custom_minimum_size = Vector2(160, 160)
 anchors_preset = 3
 anchor_left = 1.0
@@ -72,6 +77,11 @@ ammoniaBW = ExtResource("6_a6ce0")
 phosphatesBW = ExtResource("7_3if3j")
 ammoniaInv = ExtResource("12_20jfj")
 phosphatesInv = ExtResource("9_ml22k")
+gameteButtonNormal = ExtResource("10_hs2rw")
+gameteButtonPressed = ExtResource("11_q5ell")
+gameteButtonHover = ExtResource("12_hfouv")
+gameteButtonDisabled = ExtResource("13_6l6a4")
+readyPrompt = NodePath("KeyPrompt")
 highlight = NodePath("Highlight")
 buttonAnimationPlayer = NodePath("AnimationPlayer")
 ammoniaIcon = NodePath("ReproductionBar/AmmoniaIcon")
@@ -206,6 +216,15 @@ stretch_mode = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1056681982]
 libraries/ = SubResource("AnimationLibrary_xveqw")
+
+[node name="KeyPrompt" parent="." unique_id=836459810 instance=ExtResource("16_q5ell")]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 100.0
+offset_right = 100.0
+offset_bottom = 140.0
+mouse_filter = 2
+ActionName = "g_reproduce"
 
 [connection signal="mouse_entered" from="." to="." method="OnEditorButtonMouseEnter"]
 [connection signal="mouse_exited" from="." to="." method="OnEditorButtonMouseExit"]

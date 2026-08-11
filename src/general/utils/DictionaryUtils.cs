@@ -105,7 +105,7 @@ public static class DictionaryUtils
     }
 
     /// <summary>
-    ///   An equals check that works to check if two dictionaries have the same items
+    ///   An equal check that works to check if two dictionaries have the same items
     /// </summary>
     /// <returns>True if equal</returns>
     public static bool DictionaryEquals<TKey, TValue>(this Dictionary<TKey, TValue> dictionary,
@@ -126,6 +126,33 @@ public static class DictionaryUtils
                 return false;
 
             if (!value1.Equals(value2))
+                return false;
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    ///   An equal check that works to check if two dictionaries have the same floats within a tolerance
+    /// </summary>
+    /// <returns>True if equal</returns>
+    public static bool DictionaryEqualsApprox<TKey>(this Dictionary<TKey, float> dictionary,
+        Dictionary<TKey, float> other, float tolerance)
+        where TKey : notnull
+    {
+        if (dictionary.Count != other.Count)
+            return false;
+
+        var keys1 = dictionary.Keys;
+
+        foreach (var key in keys1)
+        {
+            var value1 = dictionary[key];
+
+            if (!other.TryGetValue(key, out var value2))
+                return false;
+
+            if (Math.Abs(value1 - value2) > tolerance)
                 return false;
         }
 

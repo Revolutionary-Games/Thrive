@@ -31,6 +31,7 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(MicrobeEventCallbacks))]
 [ReadsComponent(typeof(MicrobeColony))]
 [ReadsComponent(typeof(SoundEffectPlayer))]
+[ReadsComponent(typeof(MicrobeSex))]
 [WritesToComponent(typeof(Engulfable))]
 [WritesToComponent(typeof(Engulfer))]
 [WritesToComponent(typeof(ReadableName))]
@@ -118,7 +119,7 @@ public partial class MulticellularGrowthSystem : BaseSystem<World, float>
             return;
 
         if (speciesData.Species.ReproductionMethod == MulticellularReproductionMethod.MassBudding
-            && !growth.SpawnedInitialMassBuddingCells)
+            && growth.MassBuddingState == MulticellularMassBuddingState.NotSpawned)
         {
             var recorder = worldSimulation.StartRecordingEntityCommands();
 
@@ -128,6 +129,30 @@ public partial class MulticellularGrowthSystem : BaseSystem<World, float>
             worldSimulation.FinishRecordingEntityCommands(recorder);
 
             return;
+        }
+
+        if (speciesData.Species.ReproductionMethod == MulticellularReproductionMethod.MassBudding
+            && growth.MassBuddingState == MulticellularMassBuddingState.Spawning)
+        {
+            if (entity.TryGet<MicrobeColony>(out var colony)
+                && colony.ColonyMembers.Length == speciesData.Species.MassBuddingCellCount)
+            {
+                growth.MassBuddingState = MulticellularMassBuddingState.Spawned;
+            }
+        }
+
+        if (growth.MassBuddingDelayedCompoundStorage != null && entity.Has<MicrobeColony>()
+            && (growth.MassBuddingState == MulticellularMassBuddingState.Spawned
+                || speciesData.Species.ReproductionMethod != MulticellularReproductionMethod.MassBudding))
+        {
+            var bag = entity.Get<MicrobeColony>().GetCompounds();
+
+            foreach (var compound in growth.MassBuddingDelayedCompoundStorage)
+            {
+                bag.AddCompound(compound.Key, compound.Value);
+            }
+
+            growth.MassBuddingDelayedCompoundStorage.Clear();
         }
 
         HandleMulticellularReproduction(ref growth, ref speciesData, compoundStorage.Compounds, ref organelleContainer,
@@ -326,16 +351,37 @@ public partial class MulticellularGrowthSystem : BaseSystem<World, float>
         }
         else
         {
-            multicellularGrowth.EnoughResourcesForBudding = false;
+            // If the species uses sexual reproduction, this is now ready to shoot a gamete
+            if (species.ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy
+                or MulticellularReproductionMethod.SexualAnisogamy)
+            {
+                // Shoot a gamete cell immediately
+                if (entity.Has<MicrobeColony>())
+                {
+                    SpawnMulticellularGamete(ref multicellularGrowth, ref entity.Get<MicrobeColony>(), in entity,
+                        species);
 
-            // Let's require the base reproduction cost to be fulfilled again as well, to keep down the colony
-            // spam, and for consistency with non-multicellular microbes
-            baseReproduction.SetupRequiredBaseReproductionCompounds(species);
+                    // Shooting a gamete marked the gamete sources as used, which will need to be got again before
+                    // shooting again
+                }
+                else
+                {
+                    GD.PrintErr("Cannot shoot gamete due to missing a microbe colony");
+                }
+            }
+            else
+            {
+                multicellularGrowth.EnoughResourcesForBudding = false;
 
-            // Total cost may have changed, so recalculate that
-            multicellularGrowth.CalculateTotalBodyPlanCompounds(species);
+                // Let's require the base reproduction cost to be fulfilled again as well, to keep down the colony
+                // spam, and for consistency with non-multicellular microbes
+                baseReproduction.SetupRequiredBaseReproductionCompounds(species);
 
-            SpawnMulticellularOffspring(ref organelles, in entity, species);
+                // Total cost may have changed, so recalculate that
+                multicellularGrowth.CalculateTotalBodyPlanCompounds(species);
+
+                SpawnMulticellularOffspring(ref organelles, in entity, species);
+            }
         }
     }
 
@@ -345,7 +391,7 @@ public partial class MulticellularGrowthSystem : BaseSystem<World, float>
         // Skip reproducing if we would go too much over the entity limit
         if (!spawnSystem.IsUnderEntityLimitForReproducing())
         {
-            // For now this just loses the progress resources towards the reproduction and this will be checked
+            // For now this just loses the progress resources towards the reproduction, and this will be checked
             // again when the budding cost is fulfilled again
             return;
         }
@@ -369,6 +415,38 @@ public partial class MulticellularGrowthSystem : BaseSystem<World, float>
             // This catch helps if a colony member somehow got processed for the reproduction system and causes
             // an exception due to not being allowed to divide
             GD.PrintErr("Multicellular cell divide failed: ", e);
+        }
+    }
+
+    private void SpawnMulticellularGamete(ref MulticellularGrowth growth, ref MicrobeColony colony, in Entity entity,
+        MulticellularSpecies species)
+    {
+        // Skip reproducing if we would go too much over the entity limit
+        if (!spawnSystem.IsUnderEntityLimitForReproducing())
+        {
+            // Consume the resources to make sure the limit isn't immediately hit again as all cells will be able to
+            // reproduce instantly if the entity count lowers
+            growth.EnoughResourcesForBudding = false;
+            growth.CompoundsNeededForNextCell = null;
+
+            return;
+        }
+
+        // Note normal population gain is on gamete successful merge
+        if (!species.PlayerSpecies)
+        {
+            // Gametes are much faster to produce than normal reproduction, so the bonus is small
+            gameWorld!.AlterSpeciesPopulationInCurrentPatch(species,
+                Constants.CREATURE_PRODUCE_GAMETE_POPULATION_GAIN, Localization.Translate("GAMETE_PRODUCED"));
+        }
+
+        try
+        {
+            growth.ShootGamete(ref colony, entity, species, worldSimulation, spawnEnvironment, spawnSystem, false);
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr("Multicellular gamete spawn failed: ", e);
         }
     }
 

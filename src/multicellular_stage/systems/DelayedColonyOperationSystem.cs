@@ -78,6 +78,14 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
             AttachedTo = colonyEntity,
         };
 
+        var sex = GameteType.All;
+
+        // Copy sex from the colony entity (if it has one)
+        if (colonyEntity.Has<MicrobeSex>())
+        {
+            sex = colonyEntity.Get<MicrobeSex>().Sex;
+        }
+
         // For now, we rely on absolute positions instead of needing to wait until all relevant membranes are ready
         // and calculate the attachment position like that
         attachPosition.CreateMulticellularAttachPosition(cellTemplate.Position, cellTemplate.Orientation);
@@ -85,7 +93,7 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
         var weight = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species,
             colonyPosition.Position + colonyPosition.Rotation * attachPosition.RelativePosition, true,
             (cellTemplate.ModifiableCellType, bodyPlanIndex), recorder, out var member,
-            MulticellularSpawnState.Offspring, giveStartingCompounds);
+            MulticellularSpawnState.Offspring, sex, giveStartingCompounds);
 
         // Register with the spawn system to allow this entity to despawn if it gets cut off from the colony later
         // or attaching fails

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-17 17:36+0100\n"
+"POT-Creation-Date: 2026-08-11 10:42+0300\n"
 "PO-Revision-Date: 2026-04-22 18:35+0000\n"
 "Last-Translator: \"Georgi Georgiev (RacerBG)\" <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -52,6 +52,14 @@ msgstr "Acceptera"
 #, fuzzy
 msgid "ACHIEVEMENTS"
 msgstr "Grundrörelse"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr "Grundrörelse"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr ""
@@ -777,6 +785,17 @@ msgstr "Celltyp namn"
 #, fuzzy
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "ATP PRODUKTION FÖR LÅG!"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr "Membrantyper"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Ändra symmetrin"
@@ -2210,6 +2229,14 @@ msgstr ""
 "Fredliga mikrober attackerar inte andra över större avstånd\n"
 "och har lägre sannolikhet att använda gifter mot rovdjur."
 
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION_MULTICELLULAR"
+msgstr ""
+"Aggressiva mikrober jagar byte över större avstånd\n"
+"och har större sannolikhet att kämpa emot när rovdjur attackerar.\n"
+"Fredliga mikrober attackerar inte andra över större avstånd\n"
+"och har lägre sannolikhet att använda gifter mot rovdjur."
+
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
 msgstr ""
 
@@ -2335,6 +2362,9 @@ msgstr "Öppna Skärmbildsmapp"
 
 msgid "ERROR_LOADING"
 msgstr "Laddningsfel"
+
+msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
 
 msgid "ERROR_SAVING"
 msgstr "Sparningsfel"
@@ -2745,6 +2775,35 @@ msgstr ""
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr "Spel Design"
 
+#, fuzzy
+msgid "GAMETE_CELL_ENTITY_NAME"
+msgstr "Stam"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE"
+msgstr "Skapa Ny Sparfil"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_A"
+msgstr "Celltyp namn"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_B"
+msgstr "Skapa Ny Sparfil"
+
+#, fuzzy
+msgid "GAMETE_PRODUCED"
+msgstr "Producerar"
+
+#, fuzzy
+msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+msgstr ""
+"Den här sektionen visar ATP-saldot (energi) för den aktuella cellen.\n"
+"För att kunna överleva måste saldot vara positivt. För sessila celler är omtanken kring saldot utom rörelsekostnaden övervägt.\n"
+"Nedrullningsmenyn nedan kan användas för att kontrollera vad som skulle hända om cellen inte hade någon resurs tillgänglig att göra ATP med.\n"
+"Till exempel kan vissa celler bara upprätthålla ett positivt ATP-saldo när de har flera sammansättningar att göra ATP från samtidigt.\n"
+"Dessa typer av celler kan vara svårare att spela som eftersom de kräver att flera sammanställningar lagras samtidigt."
+
 msgid "GAME_DESIGN_TEAM"
 msgstr "Spel Design"
 
@@ -3063,6 +3122,10 @@ msgstr "Organismstatistik"
 #, fuzzy
 msgid "INCOMPATIBLE_ORGANELLE_LIST"
 msgstr "Placera organell"
+
+#, fuzzy
+msgid "INCOMPATIBLE_STAGE_LIST"
+msgstr "Organismstatistik"
 
 #, fuzzy
 msgid "INCREASE_ITEM_SIZE"
@@ -3851,6 +3914,10 @@ msgstr "Mucilagesyntes"
 #, fuzzy
 msgid "MACROSCOPIC"
 msgstr "Bli Makroskopisk ({0}/{1})"
+
+#, fuzzy
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr "Slemmstråle"
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4919,9 +4986,16 @@ msgstr ""
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
+msgid "NOTICE_READY_TO_SHOOT_GAMETE"
+msgstr ""
+
 #, fuzzy
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "Avbryt denna handling"
+
+#, fuzzy
+msgid "NOT_ENOUGH_MUTATION_POINTS"
+msgstr "Mutationspoäng"
 
 #, fuzzy
 msgid "NOT_STARTED_DOT"
@@ -5109,6 +5183,10 @@ msgstr "Inställningar"
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Hjälp"
 
+#, fuzzy
+msgid "OPTION_USED_FOR_PLAYER"
+msgstr "Avbruten."
+
 msgid "ORGANELLES"
 msgstr "Organeller"
 
@@ -5249,6 +5327,10 @@ msgid "OXYGEN_RESISTANCE"
 msgstr ""
 
 #, fuzzy
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
+msgstr "Bortkopplade Organeller"
+
+#, fuzzy
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr "Hjälp"
 
@@ -5387,6 +5469,10 @@ msgstr "Fredlig"
 
 #, fuzzy
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Du kör just nu Thrive med GLES2. Detta är väldigt otestat och kommer troligen att orsaka problem. Försök att updatera dina video drivers och/eller tvinga AMD eller Nvidia grafik för att använda till att köra Thrive."
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION_MULTICELLULAR"
 msgstr "Du kör just nu Thrive med GLES2. Detta är väldigt otestat och kommer troligen att orsaka problem. Försök att updatera dina video drivers och/eller tvinga AMD eller Nvidia grafik för att använda till att köra Thrive."
 
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
@@ -5730,6 +5816,10 @@ msgid "REPORT_BUG"
 msgstr "Rapportera"
 
 #, fuzzy
+msgid "REPRODUCE"
+msgstr "Producerar"
+
+#, fuzzy
 msgid "REPRODUCED"
 msgstr "Producerar"
 
@@ -5762,6 +5852,18 @@ msgstr "Producerar"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproduktion:"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL"
+msgstr "Fortplantning"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
+msgstr "Fortplantning"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ISOGAMY"
+msgstr "Fortplantning"
 
 #, fuzzy
 msgid "REPRODUCTION_SPORE"
@@ -6203,6 +6305,18 @@ msgstr "Stillastående"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
+
 msgid "SFX_VOLUME"
 msgstr "SFX Volym"
 
@@ -6230,6 +6344,18 @@ msgstr "Visa handledningar"
 #, fuzzy
 msgid "SHOW_MAP"
 msgstr "Visa hjälp"
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION"
+msgstr "Visa hjälp"
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION_EXPLANATION"
+msgstr ""
+"Aggressiva mikrober jagar byte över större avstånd\n"
+"och har större sannolikhet att kämpa emot när rovdjur attackerar.\n"
+"Fredliga mikrober attackerar inte andra över större avstånd\n"
+"och har lägre sannolikhet att använda gifter mot rovdjur."
 
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
@@ -6288,6 +6414,14 @@ msgstr ""
 "There is a conflict with {0}.\n"
 "Vill du ta bort inputen från {1}?"
 
+#, fuzzy
+msgid "SIGNAL_COMMAND_CALL_MATE"
+msgstr "Fly"
+
+#, fuzzy
+msgid "SIGNAL_COMMAND_FIRE_GAMETES"
+msgstr "Fly"
+
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr "Fly"
 
@@ -6314,6 +6448,10 @@ msgstr ""
 
 #, fuzzy
 msgid "SIMULATION_CONFIG"
+msgstr "Osmoreguleringskost"
+
+#, fuzzy
+msgid "SIMULATION_FACTOR"
 msgstr "Osmoreguleringskost"
 
 msgid "SIXTEEN_TIMES"
@@ -6402,6 +6540,14 @@ msgstr ""
 
 msgid "SPAWN_GLUCOSE"
 msgstr "Spawna glukos"
+
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL"
+msgstr "Spawna ammoniak"
+
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL_EXPLANATION"
+msgstr "(hur snabbt AI arter muterar)"
 
 msgid "SPAWN_PHOSPHATES"
 msgstr "Spawna fosfat"
@@ -6898,7 +7044,7 @@ msgstr ""
 
 #, fuzzy
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_SEARCHTAGS"
-msgstr "Tillåt att arter inte muteras (om inga bra mutationer hittas)"
+msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
 
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
@@ -6913,7 +7059,7 @@ msgstr "UTROTNING"
 
 #, fuzzy
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_SEARCHTAGS"
-msgstr "Tillåt att arter inte muteras (om inga bra mutationer hittas)"
+msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
 
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr ""
@@ -9867,14 +10013,6 @@ msgid "ZOOM_OUT"
 msgstr "Zooma ut"
 
 #, fuzzy
-#~ msgid "ACHIEVEMENTS_LOAD_FAILED"
-#~ msgstr "Grundrörelse"
-
-#, fuzzy
-#~ msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
-#~ msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
-
-#, fuzzy
 #~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
 #~ msgstr "Fortsätt"
 
@@ -10007,10 +10145,6 @@ msgstr "Zooma ut"
 
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "Järnkemolitoautotrofi"
-
-#, fuzzy
-#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
-#~ msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
 
 #, fuzzy
 #~ msgid "THANKS_FOR_BUYING_THRIVE"

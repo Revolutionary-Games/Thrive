@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-17 17:36+0100\n"
+"POT-Creation-Date: 2026-08-11 10:42+0300\n"
 "PO-Revision-Date: 2026-05-13 03:55+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -51,6 +51,16 @@ msgstr "Elfogad"
 
 msgid "ACHIEVEMENTS"
 msgstr "Teljesítmények"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr "Teljesítmények:{0}/{1}"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr ""
+"Ezen mentés frissítése nem sikerült a következő hiba miatt:\n"
+"{0}"
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr "Teljesítmények:{0}/{1}"
@@ -745,6 +755,17 @@ msgstr "Sejttípus neve"
 #, fuzzy
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "A leírás túl hosszú"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr "Membrán típusok"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr "(procedurális patch térkép generálása, vagy a klasszikus elrendezés használata)"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Szimmetria változtatása"
@@ -2169,6 +2190,12 @@ msgstr ""
 "A fókuszált sejtek nagyobb távolságokat tesznek meg táplálék reményében.\n"
 "A reszponzív sejtek hamar új célpontokat keresnek."
 
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION_MULTICELLULAR"
+msgstr ""
+"A fókuszált sejtek nagyobb távolságokat tesznek meg táplálék reményében.\n"
+"A reszponzív sejtek hamar új célpontokat keresnek."
+
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
 msgstr "Prokariótáknak csak egy endoszimbiótája lehet"
 
@@ -2287,6 +2314,9 @@ msgstr "Hiba a mod fájllá való átalakítása közben"
 
 msgid "ERROR_LOADING"
 msgstr "Betöltési hiba"
+
+msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
 
 msgid "ERROR_SAVING"
 msgstr "Mentési hiba"
@@ -2730,6 +2760,35 @@ msgstr "Galéria nézet"
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr "Játéktervező csapat"
 
+#, fuzzy
+msgid "GAMETE_CELL_ENTITY_NAME"
+msgstr "Tő"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE"
+msgstr "Új sejttípus létrehozása"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_A"
+msgstr "Sejttípus neve"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_B"
+msgstr "Új sejttípus létrehozása"
+
+#, fuzzy
+msgid "GAMETE_PRODUCED"
+msgstr "reprodukálva"
+
+#, fuzzy
+msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+msgstr ""
+"Ez a szakasz megmutatja a jelenlegi sejt összes ATP (energia) egyenlegét.\n"
+"A túléléshez az egyenlegnek pozitívnak kell lennie. A helyhez kötött sejtek esetében az egyenleg mozgás nélkül is pozitívnak tekinthető.\n"
+"Az alábbi legördülő menü segítségével ellenőrizheted, mi történne, ha a sejt nem jutna bizonyos ATP-termeléshez szükséges forráshoz.\n"
+"Például egyes sejtek csak akkor tudják fenntartani a pozitív ATP-egyenleget, ha egyszerre több különböző vegyületből tudnak ATP-t előállítani.\n"
+"Az ilyen sejtek irányítása nehezebb, mivel egyszerre többféle vegyületet kell tárolniuk a túléléshez."
+
 msgid "GAME_DESIGN_TEAM"
 msgstr "Játéktervező csapat"
 
@@ -3051,6 +3110,10 @@ msgstr "{0}: Megtalálható a {1} fajokban, átlagosan {2} darabja"
 #, fuzzy
 msgid "INCOMPATIBLE_ORGANELLE_LIST"
 msgstr "Sejtszervecske elhelyezése"
+
+#, fuzzy
+msgid "INCOMPATIBLE_STAGE_LIST"
+msgstr "{0}: Megtalálható a {1} fajokban, átlagosan {2} darabja"
 
 #, fuzzy
 msgid "INCREASE_ITEM_SIZE"
@@ -3841,6 +3904,10 @@ msgstr "Nyálka szintézis"
 #, fuzzy
 msgid "MACROSCOPIC"
 msgstr "Makroszkopikussá válni ({0}/{1})"
+
+#, fuzzy
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr "Nyálka jet"
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4956,8 +5023,16 @@ msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
 #, fuzzy
+msgid "NOTICE_READY_TO_SHOOT_GAMETE"
+msgstr "Sérülés túlzott sugárzás miatt"
+
+#, fuzzy
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "Jelenlegi patch-re ugrás"
+
+#, fuzzy
+msgid "NOT_ENOUGH_MUTATION_POINTS"
+msgstr "Mutáció pont"
 
 #, fuzzy
 msgid "NOT_STARTED_DOT"
@@ -5152,6 +5227,10 @@ msgstr "Beállítások"
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Változtasd meg beállításaidat"
 
+#, fuzzy
+msgid "OPTION_USED_FOR_PLAYER"
+msgstr "Játék szüneteltetése"
+
 msgid "ORGANELLES"
 msgstr "Sejtszervecskék"
 
@@ -5281,6 +5360,10 @@ msgstr "OxyToxy szintézis"
 
 #, fuzzy
 msgid "OXYGEN_RESISTANCE"
+msgstr "Méreg elleni állóképesség"
+
+#, fuzzy
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
 msgstr "Méreg elleni állóképesség"
 
 #, fuzzy
@@ -5415,6 +5498,10 @@ msgid "PEACEFUL"
 msgstr "Békés"
 
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Befejezett endoszimbiózis folyamat van, amelyet egy organellumként való elhelyezéssel lehet véglegesíteni. Ajánlott ezt a lehető leghamarabb megtenni, mert további endoszimbiózis fejlődés nem lehetséges, amíg ez nem történik meg. Megnézed most az endoszimbiózis állását?"
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION_MULTICELLULAR"
 msgstr "Befejezett endoszimbiózis folyamat van, amelyet egy organellumként való elhelyezéssel lehet véglegesíteni. Ajánlott ezt a lehető leghamarabb megtenni, mert további endoszimbiózis fejlődés nem lehetséges, amíg ez nem történik meg. Megnézed most az endoszimbiózis állását?"
 
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
@@ -5756,6 +5843,10 @@ msgstr "Jelentés"
 msgid "REPORT_BUG"
 msgstr "Jelentés"
 
+#, fuzzy
+msgid "REPRODUCE"
+msgstr "reprodukálva"
+
 msgid "REPRODUCED"
 msgstr "reprodukálva"
 
@@ -5787,6 +5878,18 @@ msgstr "Bimbózás"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reprodukció:"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL"
+msgstr "Reprodukció"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
+msgstr "Reprodukció"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ISOGAMY"
+msgstr "Reprodukció"
 
 #, fuzzy
 msgid "REPRODUCTION_SPORE"
@@ -6220,6 +6323,18 @@ msgstr "Rögzült"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "Ez az opció csak az ezután elkezdett új játékokra vonatkozik"
 
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
+
 msgid "SFX_VOLUME"
 msgstr "SFX hangerő"
 
@@ -6247,6 +6362,18 @@ msgstr "{0} ({1}, {2}) helyen"
 #, fuzzy
 msgid "SHOW_MAP"
 msgstr "Segítség mutatása"
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION"
+msgstr "Segítség mutatása"
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION_EXPLANATION"
+msgstr ""
+"Az agresszív sejtek a prédáikat távolabbról is le fogják vadászni,\n"
+"és nagyobb eséllyel küzdenek más ragadozók ellen, ha megtámadják őket.\n"
+"A békés sejtek nem kergetnek más prédákat,\n"
+"és kevesebb eséllyel használnak mérgeket ragadozók ellen."
 
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
@@ -6297,6 +6424,14 @@ msgstr "[thrive:compound type=\"iron\"][/thrive:compound]-at alakít át [thrive
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr ""
 
+#, fuzzy
+msgid "SIGNAL_COMMAND_CALL_MATE"
+msgstr "Menekülés"
+
+#, fuzzy
+msgid "SIGNAL_COMMAND_FIRE_GAMETES"
+msgstr "Menekülés"
+
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr "Menekülés"
 
@@ -6320,6 +6455,10 @@ msgstr ""
 
 #, fuzzy
 msgid "SIMULATION_CONFIG"
+msgstr "Ozmoreguláció ára"
+
+#, fuzzy
+msgid "SIMULATION_FACTOR"
 msgstr "Ozmoreguláció ára"
 
 msgid "SIXTEEN_TIMES"
@@ -6410,6 +6549,14 @@ msgstr "Ellenség spawnolása"
 
 msgid "SPAWN_GLUCOSE"
 msgstr "Glükóz létrehozása"
+
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL"
+msgstr "Ammónia létrehozása"
+
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL_EXPLANATION"
+msgstr "(a sebesség, mely alatt az AI fajok mutálódnak)"
 
 msgid "SPAWN_PHOSPHATES"
 msgstr "Foszfát létrehozása"
@@ -6918,7 +7065,7 @@ msgstr "Múzeum"
 
 #, fuzzy
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_SEARCHTAGS"
-msgstr "Múzeum"
+msgstr "Patch térkép"
 
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr "Patch térkép"
@@ -9944,16 +10091,6 @@ msgid "ZOOM_OUT"
 msgstr "Távolodás"
 
 #, fuzzy
-#~ msgid "ACHIEVEMENTS_LOAD_FAILED"
-#~ msgstr "Teljesítmények:{0}/{1}"
-
-#, fuzzy
-#~ msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
-#~ msgstr ""
-#~ "Ezen mentés frissítése nem sikerült a következő hiba miatt:\n"
-#~ "{0}"
-
-#, fuzzy
 #~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
 #~ msgstr "Az az érték, ami a világok generálásáért felelős. Ennek az értéknek pozitívnak kell lennie."
 
@@ -10090,10 +10227,6 @@ msgstr "Távolodás"
 
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "Vas oxidálása"
-
-#, fuzzy
-#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
-#~ msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
 
 #~ msgid "MIGRATE"
 #~ msgstr "Vándorlás"
@@ -10401,9 +10534,6 @@ msgstr "Távolodás"
 
 #~ msgid "PATCH_MAP_TYPE_CLASSIC"
 #~ msgstr "Klasszikus"
-
-#~ msgid "PATCH_MAP_TYPE_EXPLANATION"
-#~ msgstr "(procedurális patch térkép generálása, vagy a klasszikus elrendezés használata)"
 
 #~ msgid "PATCH_MAP_TYPE_PROCEDURAL"
 #~ msgstr "Procedurális"

@@ -4,7 +4,7 @@ using SharedBase.Archive;
 using Xoshiro.PRNG64;
 
 /// <summary>
-///   Player configurable options for creating the game world
+///   Player-configurable options for creating the game world
 /// </summary>
 public class WorldGenerationSettings : IArchivable
 {

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-17 17:36+0100\n"
-"PO-Revision-Date: 2026-06-05 01:41+0000\n"
+"POT-Creation-Date: 2026-08-11 10:42+0300\n"
+"PO-Revision-Date: 2026-08-05 11:42+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -51,6 +51,17 @@ msgstr "Kabul et"
 
 msgid "ACHIEVEMENTS"
 msgstr "Başarımlar"
+
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr "Başarımlar Verisini Yükleme İşlemi Başarısız"
+
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr ""
+"Başarımlar veri dosyası bozuk olabilir.\n"
+"Veriler, aşağıdaki dosya silinerek sıfırlanabilir; bu işlem, bütün başarım ilerlemesinin kaybedilmesine neden olacaktır:\n"
+"{0}\n"
+"Başarımlar olmadan oynamaya devam etmek ister misiniz?\n"
+"İptal butonuna basmak sizi oyundan çıkaracaktır."
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr "Başarımlar {0} / {1}"
@@ -749,6 +760,27 @@ msgstr "Hücre Türü İsmi"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Değişiklik notları çok uzun"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr "Hücre Zarı Türünü Değiştir"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr ""
+"Çok Hücreli Evresi'nde hücre zarı türünü değiştirmek hala mümkündür, ancak çok daha zordur.\n"
+"Makroskopik Evresi'nde hücre zarı türünü değiştirmek artık hiçbir şekilde mümkün olmayacaktır.\n"
+"Hücre zarını şimdi değiştirmek, tüm hücre türlerinin aynı anda yeni türe geçmesini gerektirir.\n"
+"Bu işlem, tüm mutasyon puanlarının [thrive:icon]MP[/thrive:icon] bu değişikliğe harcanmasını gerektirir\n"
+"ve değişikliği uygulamak için editörden çıkış yapar.\n"
+"Hücre zarları, seçilen türe değiştirilsin mi?"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
+"Çok Hücreli Evresi'nde hücre zarı türünü değiştirmek hala mümkündür, ancak çok daha zordur.\n"
+"Makroskopik Evresi'nde hücre zarı türünü değiştirmek artık hiçbir şekilde mümkün olmayacaktır.\n"
+"Hücre zarını şimdi değiştirmek, tüm hücre türlerinin aynı anda yeni türe geçmesini gerektirir.\n"
+"Bu işlem, tüm mutasyon puanlarının [thrive:icon]MP[/thrive:icon] bu değişikliğe harcanmasını gerektirir\n"
+"ve değişikliği uygulamak için editörden çıkış yapar.\n"
+"[b]Yeterli MP yok.[/b] Hücre zarını değiştirmeniz gerekirse, tüm değişiklikleri geri alabilirsiniz."
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Simetriyi değiştir"
@@ -2063,6 +2095,9 @@ msgstr "Bu tür, geçerli herhangi bir organele dönüştürülemez"
 msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
 msgstr "Endosimbiyoz işlemini ilerletmek için hedef türün geçici bir organele dönüşmek üzere yutulması gerekir (tek seferde, yalnızca bir tane bulunabilir). Mevcut geçici organel ile editöre ulaştığınızda, ardından ilerlemeniz kaydedilir."
 
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION_MULTICELLULAR"
+msgstr "Endosimbiyoz işlemini ilerletmek için hedef türün geçici bir organele dönüşmek üzere yutulması gerekir (tek seferde, yalnızca bir tane bulunabilir). Mevcut geçici organel ile editöre ulaştığınızda, ardından ilerlemeniz kaydedilir. Tamamlanan endosimbiyontu yerleştirmek yalnızca hücre editörü sekmesinde yapılabilir."
+
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
 msgstr "Prokaryotlar en fazla bir endosimbiyonta sahip olabilir"
 
@@ -2170,6 +2205,9 @@ msgstr "Haberleri Alma Hatası"
 
 msgid "ERROR_LOADING"
 msgstr "Yükleme Hatası"
+
+msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr "Hata: Eşeyli üreme için en az iki hücre gereklidir"
 
 msgid "ERROR_SAVING"
 msgstr "Kaydetme Hatası"
@@ -2545,6 +2583,24 @@ msgstr "Galeri Görüntüleyicisi"
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr "Oynanış Bilgileri"
 
+msgid "GAMETE_CELL_ENTITY_NAME"
+msgstr "{0} hücresinin gameti"
+
+msgid "GAMETE_CELL_TYPE"
+msgstr "Gamet hücre türü"
+
+msgid "GAMETE_CELL_TYPE_A"
+msgstr "Gamet türü A"
+
+msgid "GAMETE_CELL_TYPE_B"
+msgstr "Gamet türü B"
+
+msgid "GAMETE_PRODUCED"
+msgstr "gamet çoğaldı"
+
+msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+msgstr "Oyuncunun hücre kolonisi ile çoğalmak için bu gamet türünü seçin"
+
 msgid "GAME_DESIGN_TEAM"
 msgstr "Oyun Tasarım Ekibi"
 
@@ -2834,6 +2890,9 @@ msgstr "Hücre zarları ile uyumlu değil: {0}"
 msgid "INCOMPATIBLE_ORGANELLE_LIST"
 msgstr "Yerleştirilmiş organeller ile uyumlu değil: {0}"
 
+msgid "INCOMPATIBLE_STAGE_LIST"
+msgstr "Bu evrelerde değiştirilemez: {0}"
+
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Nesne büyüklüğünü arttır"
 
@@ -2901,7 +2960,7 @@ msgid "INFO_BOX_UNIQUE"
 msgstr "Özgün"
 
 msgid "INFO_BOX_UPGRADES"
-msgstr "Geliştirmeler"
+msgstr "Yükseltmeler"
 
 msgid "INGESTED_MATTER"
 msgstr "İçeri Alınmış Madde"
@@ -3560,6 +3619,9 @@ msgstr "Makrolid Sentezi"
 msgid "MACROSCOPIC"
 msgstr "Makroskopik"
 
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr "Hücre zarı, artık Makroskopik Evresi'nde değiştirilemez"
+
 msgid "MACROSCOPIC_EDITOR"
 msgstr "Makroskopik Editörü"
 
@@ -3879,7 +3941,7 @@ msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0}: {1} türde bulundu, her birinde ortalama {2} değerinde"
 
 msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
-msgstr "[b]Organel Geliştirme Verileri:[/b]"
+msgstr "[b]Organel Yükseltme Verileri:[/b]"
 
 msgid "MICROBE_RIPPLE_EFFECT"
 msgstr "Mikrop hareketi dalga etkisi"
@@ -4526,8 +4588,14 @@ msgstr "Aşırı radyasyondan hasar alınıyor"
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "Editör, şimdi girilmek için hazır"
 
+msgid "NOTICE_READY_TO_SHOOT_GAMETE"
+msgstr "Gamet, fırlatılmaya hazır. Editöre girmek için bu gametle uyumlu başka bir gameti vur."
+
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "Bu tür, mevcut çevresel koşullara uyum sağlayamaz. Dezavantajları kaldırmak için tercih edilen koşulları ya da tolerans aralığını değiştirin."
+
+msgid "NOT_ENOUGH_MUTATION_POINTS"
+msgstr "Yeterli Mutasyon Puanı yok"
 
 msgid "NOT_STARTED_DOT"
 msgstr "Başlatılmadı."
@@ -4702,6 +4770,9 @@ msgstr "Ayarlar"
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Ayarlarını değiştir"
 
+msgid "OPTION_USED_FOR_PLAYER"
+msgstr "Oyuncu gamet türü"
+
 msgid "ORGANELLES"
 msgstr "Organeller"
 
@@ -4815,6 +4886,9 @@ msgstr "Oksijen İnhibitörü Sentezi"
 
 msgid "OXYGEN_RESISTANCE"
 msgstr "Oksijen Direnci"
+
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
+msgstr "Tolerans kaydırma butonu, oksijen için sınırlı bir aralığa sahip olduğu için yüksek oksijen direnci, böyle bir direnç sağlayan organeller eklemeyi gerektirir."
 
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr "Zararlı etkilere maruz kalmadan önce türünüzün oksijen kaynaklı hasarı ne kadar azaltabileceğini gösterir. Eğer direncinize kıyasla çok fazla oksijen olan bir arazide bulunuyorsanız, olumsuz etkilerle karşılaşırsınız."
@@ -4937,6 +5011,9 @@ msgstr "Barışçıl"
 
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
 msgstr "Tamamlanmış bir endosimbiyoz işlemi var ve bu işlem, bir organel olarak yerleştirilerek sonlandırılabilir. Endosimbiyoz üzerinde daha fazla ilerleme yapılabilmesi için bunun mümkün olduğunca hızlı yapılması önerilir. Endosimbiyoz ilerlemesini şimdi görüntülemek ister misiniz?"
+
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION_MULTICELLULAR"
+msgstr "Tamamlanmış bir endosimbiyoz işlemi var ve bu işlem, bir organel olarak yerleştirilerek sonlandırılabilir. Endosimbiyoz üzerinde daha fazla ilerleme yapılabilmesi için bunun mümkün olduğunca hızlı yapılması önerilir. Organelin, hücre editöründeki bir hücre türü içine yerleştirilmesi gerekmektedir. Endosimbiyoz ilerlemesini şimdi görüntülemek ister misiniz?"
 
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
 msgstr "Endosimbiyoz İşleminin Tamamlanması Bekleniyor"
@@ -5247,6 +5324,9 @@ msgstr "Rapor"
 msgid "REPORT_BUG"
 msgstr "Bir Hata Bildir"
 
+msgid "REPRODUCE"
+msgstr "Üre"
+
 msgid "REPRODUCED"
 msgstr "çoğaldı"
 
@@ -5278,6 +5358,15 @@ msgstr "Toplu Tomurcuklanma"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Üreme:"
+
+msgid "REPRODUCTION_SEXUAL"
+msgstr "Eşeyli"
+
+msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
+msgstr "Eşeyli Anizogami"
+
+msgid "REPRODUCTION_SEXUAL_ISOGAMY"
+msgstr "Eşeyli İzogami"
 
 msgid "REPRODUCTION_SPORE"
 msgstr "Sporlanma"
@@ -5680,6 +5769,15 @@ msgstr "Durağan"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "Bu ayar değiştirilirse, değişiklik yalnızca yeni başlatılan oyunlara uygulanır"
 
+msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr "Eşeyli anizogami ile, farklı gamet türlerine sahip olmak mümkündür. Örneğin, gerçekten hareketli bir gamet ve bu gametten daha büyük bir gamete sahip olunabilir. Gametler yalnızca kendilerinden farklı bir tür ile birleşebilirler."
+
+msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "Doğrudan yavru yerine, gamet hücreleri üretir. Gametler, bir yavru üretmek için başka bir hücre kolonisinden uyumlu bir gamet ile birleşmelidir. Diğer hücrelere sinyaller göndermek için bir sinyal verici ajan kullanılabilir."
+
+msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+msgstr "Anizogamiye yükselt ({0} MP)"
+
 msgid "SFX_VOLUME"
 msgstr "Ses efektleri"
 
@@ -5703,6 +5801,12 @@ msgstr "Koordinatları göster"
 
 msgid "SHOW_MAP"
 msgstr "Haritayı Göster"
+
+msgid "SHOW_MATE_POSITION"
+msgstr "Eşin konumunu göster"
+
+msgid "SHOW_MATE_POSITION_EXPLANATION"
+msgstr "(çağrıldığında, oyuncu için varolan uyumlu bir eşi görsel olarak göster)"
 
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Yeni yama notlarını otomatik olarak göster"
@@ -5749,6 +5853,12 @@ msgstr "Türünüzün diğer üyelerine komut vermede kullanılan menüyü açma
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "Saldırgan Ol"
 
+msgid "SIGNAL_COMMAND_CALL_MATE"
+msgstr "Eş Çağır"
+
+msgid "SIGNAL_COMMAND_FIRE_GAMETES"
+msgstr "Gamet Fırlatmayı Talep Et"
+
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr "Kaç"
 
@@ -5772,6 +5882,11 @@ msgstr "Bu hücre zarı, silikadan yapılmış güçlü bir duvara sahiptir. Top
 
 msgid "SIMULATION_CONFIG"
 msgstr "Simülasyon"
+
+msgid "SIMULATION_FACTOR"
+msgstr ""
+"Simülasyon\n"
+"Etken"
 
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
@@ -5850,6 +5965,12 @@ msgstr "Düşman oluşturma hilesi kullanılamaz çünkü bu arazi herhangi bir 
 
 msgid "SPAWN_GLUCOSE"
 msgstr "Glukoz oluştur"
+
+msgid "SPAWN_MATE_ON_CALL"
+msgstr "Hiçbir uyumlu eş mevcut değilse, çağrıldığında oluştur"
+
+msgid "SPAWN_MATE_ON_CALL_EXPLANATION"
+msgstr "(eğer bir eş mevcut değilse, çağrıldığında, oyuncu ile uyumlu bir eş oluştur)"
 
 msgid "SPAWN_PHOSPHATES"
 msgstr "Fosfat oluştur"
@@ -6316,7 +6437,7 @@ msgstr "Ana Sayfa"
 
 #, fuzzy
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_SEARCHTAGS"
-msgstr "{0}"
+msgstr "Müze"
 
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Müze"
@@ -6330,7 +6451,7 @@ msgstr "Soyu Tükenen Tür {0}"
 
 #, fuzzy
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_SEARCHTAGS"
-msgstr "{0}"
+msgstr "Arazi Haritası"
 
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr "Arazi Haritası"
@@ -6736,11 +6857,11 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_MODIFY_ORGANELLE"
 msgstr ""
-"Bu organelde [b]değişiklik yapabilirsiniz[/b]. Bunu yapmak, organelde [b]yeni işlevlerin[/b] ya da [b]geliştirmelerin[/b] kilidini açar.\n"
+"Bu organelde [b]değişiklik yapabilirsiniz[/b]. Bunu yapmak, organelde [b]yeni işlevlerin[/b] ya da [b]yükseltmelerin[/b] kilidini açar.\n"
 "\n"
 "Bunu yapmak için, organele sağ tıklayarak [b]organel pencere menüsünü[/b] açın ve \"Değişiklik Yap\" butonuna basın.\n"
 "\n"
-"Geliştirilebilen başka organeller arayarak oyunu oynamak için yeni yollar bulabilirsiniz.\n"
+"Yükseltilebilen başka organeller arayarak oyunu oynamak için yeni yollar bulabilirsiniz.\n"
 "\n"
 "Devam etmek için organelde değişiklik yapın."
 
@@ -7446,7 +7567,7 @@ msgid "WIKI_AXON_STRATEGY"
 msgstr "[b]Aksonları[/b] eklemek sonraki evrelere ulaşmada önemlidir. Çok hücreli organizmanızda, birkaç hücre türüne bir [b]Akson[/b] eklemenizi tavsiye ediyoruz. Ama bir taneden daha fazla eklemek gereksizdir. Şu anda daha fazla [b]Akson[/b] eklemek, ek bir fayda sağlamaz."
 
 msgid "WIKI_AXON_UPGRADES"
-msgstr "Geliştirme yok."
+msgstr "Yükseltme yok."
 
 msgid "WIKI_BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr "Bakteri Kemosentezi, Glikoliz"
@@ -7475,7 +7596,7 @@ msgid "WIKI_BINDING_AGENT_REQUIREMENTS"
 msgstr ""
 "Bir hücre, [b]Bağlayıcı Ajanları[/b] evrimleştirmek için [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdeğe[/url][/color][/b] sahip olmalıdır.\n"
 "\n"
-"Eğer organel geliştirmeleri oyun ayarlarından etkinleştirildiyse, aşağıdaki koşulların [i]her ikisi de[/i] [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
+"Eğer organel yükseltmeleri oyun ayarlarından etkinleştirildiyse, aşağıdaki koşulların [i]her ikisi de[/i] [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
 "\n"
 "[ul]En az [b]5[/b] kuşak boyunca, [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdek[/url][/color][/b] içermek.\n"
 "En az [b]+15[/b] [thrive:compound type=\"atp\"]ATP[/thrive:compound] tutarına sahip olmak.[/ul]"
@@ -7494,7 +7615,7 @@ msgstr ""
 "Bir koloni sonsuza kadar çoğalabilse de, sonraki evreye girmek için yalnızca 5 hücreye ihtiyacınız vardır. Gözünüz, ortam arayüzündeki editör butonunun üstündeki çok hücreli ol butonunun üzerinde olsun."
 
 msgid "WIKI_BINDING_AGENT_UPGRADES"
-msgstr "Geliştirme yok."
+msgstr "Yükseltme yok."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_EFFECTS"
 msgstr "[thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound] [b]Direncini[/b] %15 arttırır."
@@ -7525,7 +7646,7 @@ msgid "WIKI_BIOLUMINESCENT_VACUOLE_STRATEGY"
 msgstr "Sınırlı oyun etkisi olan Biyolüminesan Koful, çoğunlukla sadece güzel görünmek içindir. Bununla birlikte bu organel, direnç kaydırma butonunun sağlayabildiğinden daha fazla oksijen direnci gerektiren durumlarda (örneğin, diğer organellerden dolayı çok fazla olumsuz dirence sahip olunduğunda), fazladan oksijen direnci sağlar."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_UPGRADES"
-msgstr "Geliştirme yok."
+msgstr "Yükseltme yok."
 
 msgid "WIKI_BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
 msgstr "Beden Planı Editörü, Hücre Editörü"
@@ -7558,7 +7679,7 @@ msgstr ""
 "Bir [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdek[/url][/color][/b] evrimleştirdikten sonra, [b][color=#3796e1][url=thriveopedia:chemoSynthesizingProteins]Kemosentez Yapan Proteinleri[/url][/color][/b], [b]Kemoplastlar[/b] ile değiştirmenizi öneriyoruz. Çünkü ikincisi daha etkilidir."
 
 msgid "WIKI_CHEMOPLAST_UPGRADES"
-msgstr "Geliştirme yok."
+msgstr "Yükseltme yok."
 
 msgid "WIKI_CHEMORECEPTOR_EFFECTS"
 msgstr ""
@@ -7593,7 +7714,7 @@ msgstr ""
 "Diğer hücrelerin [b]Kemoreseptörlerinin[/b] farkında olun (hem kendi türünüzün hem de diğer türlerin). [b]Kemoreseptörlere[/b] sahip oyuncu olmayan hücreler, kendi hedef bileşiklerini ararlar. Bu hücrelerin ortamda aşırı fazla olması, o hedef bileşiğin aniden kıtlaşmasına neden olabilir. Eğer kendi türünüz [b]Kemoreseptörler[/b] geliştirir ve popülasyonda patlama yaşarsa, arama kolaylığı ile ortamdaki bir bileşiğin yok olması arasında bir denge sağlamanız gerekebilir."
 
 msgid "WIKI_CHEMORECEPTOR_UPGRADES"
-msgstr "Geliştirme yok."
+msgstr "Yükseltme yok."
 
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_EFFECTS"
 msgstr "Özel etki yok."
@@ -7636,7 +7757,7 @@ msgstr ""
 "Ancak dikkatli olun. Çünkü [thrive:compound type=\"hydrogensulfide\"]hidrojen sülfür[/thrive:compound], yalnızca birkaç biyomda bulunur. Kendinizi bu bileşiği birincil enerji kaynağı olarak kullanmak üzere evrimleştirirseniz, bu sizin başka ortamlara etkili bir şekilde yolculuk yapmanızı engelleyecektir."
 
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_UPGRADES"
-msgstr "Geliştirme yok."
+msgstr "Yükseltme yok."
 
 msgid "WIKI_CHLOROPLAST_EFFECTS"
 msgstr "[thrive:compound type=\"sunlight\"]Güneş Işığı[/thrive:compound] [b]Direncini[/b] %8 arttırır ve [thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound] [b]Direncini[/b] %3.5 arttırır."
@@ -7679,7 +7800,7 @@ msgstr ""
 "Gece gündüz döngüsü etkinleştirildiğinde, gece hayatta kalmak için bir sürü [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] deposu gereklidir. Bu, [b][color=#3796e1][url=thriveopedia:vacuole]Kofullardan[/url][/color][/b] sağlanabilir. Bir fotosentetik organizma olarak hayatta kalmak için daha fazla tavsiye almak isterseniz, [b][color=#3796e1][url=thriveopedia:chromatophore]Tilakoidlerin[/url][/color][/b] strateji bölümünü inceleyin."
 
 msgid "WIKI_CHLOROPLAST_UPGRADES"
-msgstr "Geliştirme yok."
+msgstr "Yükseltme yok."
 
 msgid "WIKI_CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr "Kromatofor Fotosentezi, Glikoliz"
@@ -7688,7 +7809,7 @@ msgid "WIKI_CILIA_EFFECTS"
 msgstr "Her bir altıgenlik [b]Sil[/b], ek hareketlilik için [thrive:compound type=\"atp\"]ATP[/thrive:compound] tüketilmesi karşılığında, bir hücrenin dönme hızını arttırır. Tam gelişim, organelin yerleştirilme şekline bağlıdır. Bir hücrenin merkezinden daha uzağa yerleştirilenler, daha büyük bir eylemsizlik momenti uygular. Dolayısıyla bu, dönme hızında daha büyük bir artış sağlar."
 
 msgid "WIKI_CILIA_INTRO"
-msgstr "Hücrenin dönme hızını arttırmak için [thrive:compound type=\"atp\"]ATP[/thrive:compound] kullanan, hücrenin dışındaki küçük kıllardır. Bu organel, av hücreleri ve diğer nesneleri üzerine çeken akımlar oluşturmak için geliştirilebilir."
+msgstr "Hücrenin dönme hızını arttırmak için [thrive:compound type=\"atp\"]ATP[/thrive:compound] kullanan, hücrenin dışındaki küçük kıllardır. Bu organel, av hücreleri ve diğer nesneleri üzerine çeken akımlar oluşturmak için yükseltilebilir."
 
 msgid "WIKI_CILIA_MODIFICATIONS"
 msgstr "Değişiklikler yok."
@@ -7950,7 +8071,7 @@ msgstr ""
 "Altıgen [b]Sitoplazma[/b] alanlar eklemek, ayrıca, bir hücrenin büyüklüğünü arttırmak için en etkili yollardan biridir. Artan büyüklük, hız ve manevra yeteneğinden ödün vererek, size daha fazla sağlık verir ve daha küçük hücrelerin sizi yutmasını önler."
 
 msgid "WIKI_CYTOPLASM_UPGRADES"
-msgstr "Geliştirme yok."
+msgstr "Yükseltme yok."
 
 msgid "WIKI_DEVELOPMENT"
 msgstr "Geliştirme"
@@ -8022,7 +8143,7 @@ msgid "WIKI_FERROPLAST_REQUIREMENTS"
 msgstr ""
 "Bir hücre, [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdeği[/url][/color][/b] evrimleştirmek için [b]Ferroplastlara[/b] sahip olmalıdır.\n"
 "\n"
-"Eğer organel geliştirmeleri oyun ayarlarından etkinleştirildiyse, aşağıdaki koşul [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
+"Eğer organel yükseltmeleri oyun ayarlarından etkinleştirildiyse, aşağıdaki koşul [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
 "\n"
 "[ul]Üst üste en az [b]6[/b] kuşak boyunca, [b][color=#3796e1][url=thriveopedia:rusticyanin]Rustisiyanin[/url][/color][/b] içermek.[/ul]"
 
@@ -8036,7 +8157,7 @@ msgstr ""
 "Ayrıca, bir [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdek[/url][/color][/b] evrimleştirdikten sonra, herhangi bir [b][color=#3796e1][url=thriveopedia:rusticyanin]Rustisiyanin[/url][/color][/b] ikilisini, [b]Ferroplast[/b] ile değiştirmenizi öneriyoruz. Çünkü ikincisi çok daha fazla verim sağlar."
 
 msgid "WIKI_FERROPLAST_UPGRADES"
-msgstr "Geliştirme yok."
+msgstr "Yükseltme yok."
 
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr "Her [b]Kamçı[/b], bulunduğu yönün tersine doğru yönlü itiş sağlar. Bu organel ayrıca yönün tam tersine yakın doğrultulara doğru kısmi olarak itiş sağlar (daha kesin olmak gerekirse, vektörün tam tersi bileşeni pozitif olan doğrultular). Bir [b]Kamçı[/b] etkin olduğunda, [thrive:compound type=\"atp\"]ATP[/thrive:compound] tüketir."
@@ -8052,7 +8173,7 @@ msgstr "İşlem yok."
 
 msgid "WIKI_FLAGELLUM_REQUIREMENTS"
 msgstr ""
-"Eğer organel geliştirmeleri oyun ayarlarından etkinleştirildiyse, aşağıdaki koşullardan [i]en az biri[/i] [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
+"Eğer organel yükseltmeleri oyun ayarlarından etkinleştirildiyse, aşağıdaki koşullardan [i]en az biri[/i] [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
 "\n"
 "[ul][b]5[/b] değerinin altında hıza sahip olmak.\n"
 "En az [b]+15[/b] [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretmek.[/ul]"
@@ -8072,7 +8193,7 @@ msgstr ""
 "Hücrenizin [thrive:compound type=\"atp\"]ATP[/thrive:compound] tutarına dikkat edin. [b]Kamçı[/b] tarafından başlatılan tüketim yoksayıldığında; eğer kendinizi sürdürmek için yalnızca kısa süreliğine hareket edip dinlenir ve yeterince [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretirseniz, toplamda negatif tutara sahip bir hücrenin hayatta kalması mümkündür."
 
 msgid "WIKI_FLAGELLUM_UPGRADES"
-msgstr "Geliştirme yok."
+msgstr "Yükseltme yok."
 
 msgid "WIKI_GLYCOLYSIS_COMMA_NITROGEN_FIXATION"
 msgstr "Glikoliz, Azot Fiksasyonu"
@@ -8183,7 +8304,7 @@ msgid "WIKI_HEADING_UI"
 msgstr "Kullanıcı Arayüzü"
 
 msgid "WIKI_HEADING_UPGRADES"
-msgstr "Geliştirmeler"
+msgstr "Yükseltmeler"
 
 msgid "WIKI_HELP_AND_TIPS_BASIC_GAME_MECHANICS"
 msgstr ""
@@ -8266,7 +8387,7 @@ msgstr ""
 "\n"
 "[color=#3796e1][url=thriveopedia:slimeJet]Balçık Fışkırtıcılar[/url][/color], tek bir doğrultuda kısa bir hız artışı sağlar.\n"
 "\n"
-"[color=#3796e1][url=thriveopedia:cilia]Siller[/url][/color], hücrelerin dönme hızını arttırır ve öğeleri kendinizi doğru çekmek üzere geliştirilebilir.\n"
+"[color=#3796e1][url=thriveopedia:cilia]Siller[/url][/color], hücrelerin dönme hızını arttırır ve öğeleri kendinizi doğru çekmek üzere yükseltilebilir.\n"
 "\n"
 "[b][u]Zarlı Organeller[/u][/b]\n"
 "\n"
@@ -8394,7 +8515,7 @@ msgstr ""
 "Dünyanız oksijenli hale geldiğinde, hidrojenazları değiştireceğinizi unutmamanız muhtemelen önemli olacaktır. Hidrojenazları fazla kullanmak, dünya oksijenle dolduğu zaman, bu parçaları birkaç kuşak boyunca silip değiştirmek zorunda kalmanıza yol açabilir. Bu nedenle, bazı hidrojenazları başka bir metabolik işlemle, örneğin kemosentez ile, birleştirmek ya da nispeten düşük enerjili bir organizma yapısını korumak faydalı bir strateji olabilir. Dünya daha oksijenli hale geldikçe, hidrojenaz muhtemelen daha derin ve oksijen açısından zengin olmayan arazilerde daha iyi çalışacaktır."
 
 msgid "WIKI_HYDROGENASE_UPGRADES"
-msgstr "Geliştirme yok."
+msgstr "Yükseltme yok."
 
 msgid "WIKI_HYDROGENOSOME_EFFECTS"
 msgstr "[thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound] [b]Direncini[/b] %7 azaltır."
@@ -8430,7 +8551,7 @@ msgstr ""
 "Ayrıca, bir [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdek[/url][/color][/b] evrimleştirdikten sonra, [b][color=#3796e1][url=thriveopedia:hydrogenase]Hidrojenazları[/url][/color][/b], [b]Hidrojenozom[/b] ile değiştirmenizi öneriyoruz. Çünkü ikincisi çok daha fazla verim sağlar."
 
 msgid "WIKI_HYDROGENOSOME_UPGRADES"
-msgstr "Geliştirme yok."
+msgstr "Yükseltme yok."
 
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Bu evrenin geliştirilmesine henüz başlanmadı. Bu evrenin oynanışı ve teori tasarımı, [color=#3796e1][url=thriveopedia:society_stage]Toplum Evresi[/url][/color] üzerinde çalışılmaya başlandığında daha belirgin hale gelecektir."
@@ -8494,7 +8615,7 @@ msgid "WIKI_LYSOSOME_REQUIREMENTS"
 msgstr ""
 "Bir hücre, [b]Lizozomları[/b] evrimleştirmek için [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdeğe[/url][/color][/b] sahip olmalıdır.\n"
 "\n"
-"Eğer organel geliştirmeleri oyun ayarlarından etkinleştirildiyse, aşağıdaki koşullardan [i]en az biri[/i] [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
+"Eğer organel yükseltmeleri oyun ayarlarından etkinleştirildiyse, aşağıdaki koşullardan [i]en az biri[/i] [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
 "\n"
 "[ul]Oyun sırasında, şu ana kadar en az [b]20[/b] hücre yutmuş olmak.\n"
 "Oyun sırasında, şu ana kadar en az [b]10[/b] hücre sindirmiş olmak.[/ul]"
@@ -8509,7 +8630,7 @@ msgstr ""
 "Daha fazla [b]Lizozom[/b] eklemek, enzim seçimini yaymak da iyi bir fikirdir. Artan sindirim hızı, bütün yutulan maddeler için ortaya çıkan yetersiz depolama sorununu önleyebilir ve artan sindirim verimliliği, avcılığı önemli ölçüde daha uygulanabilir bir strateji haline getirir."
 
 msgid "WIKI_LYSOSOME_UPGRADES"
-msgstr "Geliştirme yok."
+msgstr "Yükseltme yok."
 
 msgid "WIKI_MACROSCOPIC_STAGE_CONCEPT_ART"
 msgstr ""
@@ -8582,7 +8703,7 @@ msgid "WIKI_MELANOSOME_STRATEGY"
 msgstr "Radyoaktif taşlar nadirdir, ancak bulunduklarında bol miktarda enerji sağlar. Radyosentez ile önerilen oyun tarzı, bir sonraki radyoaktif taşı ararken yeterli depoya sahip olmak ya da hayatta kalmayı sağlayan diğer yolları bulmaktır. Bir taş bulunduğunda, üreme vb. için geçici olarak bol miktarda enerji sağlanır."
 
 msgid "WIKI_MELANOSOME_UPGRADES"
-msgstr "Geliştirme yok."
+msgstr "Yükseltme yok."
 
 msgid "WIKI_METABOLOSOMES_EFFECTS"
 msgstr "[thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound] [b]Direncini[/b] %3.5 arttırır."
@@ -8619,7 +8740,7 @@ msgstr ""
 "Bir hücre [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdeği[/url][/color][/b] evrimleştirdiğinde, [b]Metabolozomları[/b], ökaryotik karşılığı olan [b][color=#3796e1][url=thriveopedia:mitochondrion]Mitokondriler[/url][/color][/b] ile değiştirmeniz tavsiye edilir. Çünkü, ikincisi daha verimlidir."
 
 msgid "WIKI_METABOLOSOMES_UPGRADES"
-msgstr "Geliştirme yok."
+msgstr "Yükseltme yok."
 
 msgid "WIKI_MICROBE_STAGE_APPENDICES"
 msgstr "Mikrop Evresi'nin Ekler sayfasında, bazı tablolar ve başka şeyler toplanmıştır"
@@ -8775,7 +8896,7 @@ msgid "WIKI_MITOCHONDRION_REQUIREMENTS"
 msgstr ""
 "Bir hücre, [b]Mitokondrileri[/b] evrimleştirmek için [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdeğe[/url][/color][/b] sahip olmalıdır.\n"
 "\n"
-"Eğer organel geliştirmeleri oyun ayarlarından etkinleştirildiyse, aşağıdaki koşulların [i]her ikisi de[/i] [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
+"Eğer organel yükseltmeleri oyun ayarlarından etkinleştirildiyse, aşağıdaki koşulların [i]her ikisi de[/i] [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
 "\n"
 "[ul]Üst üste en az [b]5[/b] kuşak boyunca, en az [b]4[/b] [b][color=#3796e1][url=thriveopedia:metabolosome]Metabolozomlar[/url][/color][/b] içermek.\n"
 "En az [b]+20[/b] [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretmek.[/ul]"
@@ -8797,7 +8918,7 @@ msgstr ""
 "Ayrıca, bir [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdek[/url][/color][/b] evrimleştirdikten sonra, [b][color=#3796e1][url=thriveopedia:metabolosome]Metabolozomları[/url][/color][/b], [b]Mitokondriler[/b] ile değiştirmenizi öneriyoruz. Çünkü ikincisi çok daha fazla verimlidir."
 
 msgid "WIKI_MITOCHONDRION_UPGRADES"
-msgstr "Geliştirme yok."
+msgstr "Yükseltme yok."
 
 msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
 msgstr ""
@@ -8857,7 +8978,7 @@ msgid "WIKI_MYOFIBRIL_STRATEGY"
 msgstr "Çok hücreli organizmanızda, birkaç hücre türüne bir [b]Miyofibril[/b] eklemenizi tavsiye ediyoruz. Ama bir taneden daha fazla eklemek gereksizdir. Şu anda daha fazla [b]Miyofibril[/b] eklemek, ek bir fayda sağlamaz."
 
 msgid "WIKI_MYOFIBRIL_UPGRADES"
-msgstr "Geliştirme yok"
+msgstr "Yükseltme yok"
 
 msgid "WIKI_NATION_EDITOR"
 msgstr "Ulus Editörü"
@@ -8886,7 +9007,7 @@ msgstr ""
 
 msgid "WIKI_NITROGENASE_REQUIREMENTS"
 msgstr ""
-"Eğer organel geliştirmeleri oyun ayarlarından etkinleştirildiyse, aşağıdaki şart [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
+"Eğer organel yükseltmeleri oyun ayarlarından etkinleştirildiyse, aşağıdaki şart [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
 "\n"
 "[ul]En fazla [b]13[/b] değerinde [thrive:compound type=\"ammonia\"]amonyağa[/thrive:compound] sahip bir arazide olmak.[/ul]"
 
@@ -8900,7 +9021,7 @@ msgstr ""
 "[b]Azot Fiksasyonu[/b], [thrive:compound type=\"atp\"]ATP[/thrive:compound] tükettiği için bu organeli hücrenize eklemeden önce fazladan [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] sahip olmanız gerekir. [b]Nitrojenaz[/b] tarafından yapılan küçük miktarda [b]Glikoliz[/b], bu organelin kendi ozmoregülasyon maliyetini dengelemek için yeterli değildir."
 
 msgid "WIKI_NITROGENASE_UPGRADES"
-msgstr "Geliştirme yok."
+msgstr "Yükseltme yok."
 
 msgid "WIKI_NITROPLAST_EFFECTS"
 msgstr "[thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound] [b]Direncini[/b] %2 azaltır."
@@ -8935,7 +9056,7 @@ msgstr ""
 "[b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrojenazda[/url][/color][/b] olduğu gibi, eğer fazladan [thrive:compound type=\"atp\"]ATP'niz[/thrive:compound] varsa, [b]Nitroplastlar[/b] mantıklı bir seçimdir. Kendi üreme kaynaklarınızı oluşturmanız, kuşaklar arasında daha hızlı ilerleme becerinizdeki sınırlayıcı bir etkeni ortadan kaldırır. Ayrıca bu, fazladan [thrive:compound type=\"phosphates\"]fosfat[/thrive:compound] toplamayı da gerektirir; fosfatlar, yüzen kristal parçalar veya mor bulutlardan elde edilebilir."
 
 msgid "WIKI_NITROPLAST_UPGRADES"
-msgstr "Geliştirme yok."
+msgstr "Yükseltme yok."
 
 msgid "WIKI_NO"
 msgstr "Hayır"
@@ -8980,12 +9101,12 @@ msgid "WIKI_NUCLEUS_STRATEGY"
 msgstr ""
 "Hücrenize bir [b]Çekirdek[/b] eklemeden önce çok iyi düşünün. Bu organeli sürdürmek pahalıdır ve bu organel, hücrenizi önemli ölçüde yavaşlatır. Bu yüzden, önemli bir pozitif [thrive:compound type=\"atp\"]ATP[/thrive:compound] tutarına sahip olduğunuzdan ve, bir ya da iki nesil boyunca, daha sakin bir yaşam tarzını sağlayabileceğinizden emin olun. Daha sonraki nesillerde, biraz çeviklik kazanmak için [b][color=#3796e1][url=thriveopedia:cilia]Siller[/url][/color][/b] ve [b][color=#3796e1][url=thriveopedia:flagellum]Kamçıyı[/url][/color][/b] eklemenizi tavsiye ediyoruz.\n"
 "\n"
-"Ama, bu organelin faydaları bellidir. [i]Ökaryotlar[/i] ([b]Çekirdekli[/b] hücreler), prokaryotlara (çekirdeksiz hücreler) göre, ileride daha çok yönlü geliştirmelere erişim kazanır. Özellikle de türünüz daha da özelleşirse, hücre özelleşme etkisinin ikiye katlanması, tüm işlem parçalarını daha etkili yapar.\n"
+"Ama, bu organelin faydaları bellidir. [i]Ökaryotlar[/i] ([b]Çekirdekli[/b] hücreler), prokaryotlara (çekirdeksiz hücreler) göre, ileride daha çok yönlü yükseltmelere erişim kazanır. Özellikle de türünüz daha da özelleşirse, hücre özelleşme etkisinin ikiye katlanması, tüm işlem parçalarını daha etkili yapar.\n"
 "\n"
-"[b]Çekirdek[/b] tarafından kilidi açılan [b]organeller[/b], [b][color=#3796e1][url=thriveopedia:signalingAgent]Sinyal Veren Ajan[/url][/color][/b] ve [b][color=#3796e1][url=thriveopedia:bindingAgent]Bağlayıcı Ajan[/url][/color][/b] gibi kuvvetli yeni beceriler ve [b][color=#3796e1][url=thriveopedia:mitochondrion]Mitokondriler[/url][/color][/b] ve [b][color=#3796e1][url=thriveopedia:thermoplast]Termoplastlar[/url][/color][/b] gibi varolan yeteneklere önemli geliştirmeler sunar. [b]Çekirdeği[/b] ekledikten sonra, [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimini geliştirmek ve hücrenizi daha iyi sürdürmek için, [i]prokaryotik[/i] [b]organelleri[/b] daha verimli olan [i]ökaryotik[/i] karşılıkları ile değiştirmenizi öneriyoruz."
+"[b]Çekirdek[/b] tarafından kilidi açılan [b]organeller[/b], [b][color=#3796e1][url=thriveopedia:signalingAgent]Sinyal Veren Ajan[/url][/color][/b] ve [b][color=#3796e1][url=thriveopedia:bindingAgent]Bağlayıcı Ajan[/url][/color][/b] gibi kuvvetli yeni beceriler ve [b][color=#3796e1][url=thriveopedia:mitochondrion]Mitokondriler[/url][/color][/b] ve [b][color=#3796e1][url=thriveopedia:thermoplast]Termoplastlar[/url][/color][/b] gibi varolan yeteneklere önemli yükseltmeler sunar. [b]Çekirdeği[/b] ekledikten sonra, [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimini geliştirmek ve hücrenizi daha iyi sürdürmek için, [i]prokaryotik[/i] [b]organelleri[/b] daha verimli olan [i]ökaryotik[/i] karşılıkları ile değiştirmenizi öneriyoruz."
 
 msgid "WIKI_NUCLEUS_UPGRADES"
-msgstr "Geliştirme yok."
+msgstr "Yükseltme yok."
 
 msgid "WIKI_ORGANELLES_ROOT_INTRO"
 msgstr ""
@@ -9023,7 +9144,7 @@ msgstr ""
 
 msgid "WIKI_OXYTOXISOME_REQUIREMENTS"
 msgstr ""
-"Eğer organel geliştirmeleri oyun ayarlarından etkinleştirildiyse, aşağıdaki şart [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
+"Eğer organel yükseltmeleri oyun ayarlarından etkinleştirildiyse, aşağıdaki şart [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
 "\n"
 "[ul]Oyun sırasında, şu ana kadar en az [b]5[/b] hücre yutmuş olmak.[/ul]"
 
@@ -9037,7 +9158,7 @@ msgstr ""
 "[b]Toksizom[/b] ve ökaryotik karşılığı olan [b][color=#3796e1][url=thriveopedia:oxytoxy]Toksin Kofulu[/url][/color][/b], savunma amaçları için de kullanışlıdır. Bu organellerden herhangi birine sahip bir hücreyi yutan diğer hücre, avını sindirirken hasar alır. Hücre böylece, büyük yırtıcılara karşı caydırıcı davranabilir."
 
 msgid "WIKI_OXYTOXISOME_UPGRADES"
-msgstr "Geliştirme yok."
+msgstr "Yükseltme yok."
 
 msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr "OksiToksi Sentezi, Glikoliz"
@@ -9215,7 +9336,7 @@ msgstr "İşlem yok."
 
 msgid "WIKI_PERFORATOR_PILUS_REQUIREMENTS"
 msgstr ""
-"Eğer organel geliştirmeleri oyun ayarlarından etkinleştirildiyse, aşağıdaki koşullardan [i]en az biri[/i] [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
+"Eğer organel yükseltmeleri oyun ayarlarından etkinleştirildiyse, aşağıdaki koşullardan [i]en az biri[/i] [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
 "\n"
 "[ul]Bütün kuşaklar boyunca en az [b]5[/b] hücre yutmak.\n"
 "Bütün kuşaklar boyunca en az [b]5[/b] kez ölmek.[/ul]"
@@ -9306,7 +9427,7 @@ msgstr ""
 "[thrive:compound type=\"iron\"]Demir[/thrive:compound], organizmanız daha zahmetli parçalar yerleştirdikçe daha çabuk tükenir. Ayrıca [b]Oksijenin[/b] artışıyla, ortamdan kaybolmaya başlar. Bu nedenle, [thrive:compound type=\"iron\"]demirden[/thrive:compound] faydalanan oyuncular, atmosferlerinde oksijen hakim olmaya başladığında dikkatli olmalı ve yüksek verimli ökaryotlar oluşturmak istiyorlarsa oksijenli solunumu düşünmelidirler."
 
 msgid "WIKI_RUSTICYANIN_UPGRADES"
-msgstr "Geliştirme yok."
+msgstr "Yükseltme yok."
 
 msgid "WIKI_SIGNALING_AGENT_EFFECTS"
 msgstr ""
@@ -9345,7 +9466,7 @@ msgstr ""
 "Ya da 'beni takip et' ve 'saldırgan ol' komutları arasında geçiş yaparak kendinizi yırtıcılara karşı savunmak için özel bir ordu kurabilirsiniz."
 
 msgid "WIKI_SIGNALING_AGENT_UPGRADES"
-msgstr "Geliştirme yok."
+msgstr "Yükseltme yok."
 
 msgid "WIKI_SLIME_JET_EFFECTS"
 msgstr ""
@@ -9383,7 +9504,7 @@ msgstr ""
 "Şunu da belirtmek gerekir ki, bu organel, [thrive:compound type=\"atp\"]ATP[/thrive:compound] yerine [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] kullanır. O yüzden, bu organeli eklerken, hücrenizin bileşik tutarını incelediğinizden emin olun."
 
 msgid "WIKI_SLIME_JET_UPGRADES"
-msgstr "Geliştirme yok."
+msgstr "Yükseltme yok."
 
 msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Bu evrenin geliştirilmesine henüz başlanmadı. Bu evre için son yıllarda teori ve oynanış üzerine pek fazla tartışma yapılmadı. Tartışmaların, resmi geliştirme sürecinde Toplum Evresi'ne ulaştığımızda yeniden başlaması gerekecektir."
@@ -9514,7 +9635,7 @@ msgstr ""
 "Organel kilidini açma etkinken, hücrenizde [b][color=#3796e1][url=thriveopedia:thermosynthase]Termosentaz[/url][/color][/b] ile birkaç kez çoğalmanın gerekli olması, [b]Termoplastları[/b] evrimleştiren bir oyuncunun, [b]Termoplastları[/b] kazandığı zaman, muhtemelen [b]Termosentez[/b] üzerinde ağırlıklı olarak uzmanlaşmış olacağı anlamına gelir."
 
 msgid "WIKI_THERMOPLAST_UPGRADES"
-msgstr "Geliştirme yok."
+msgstr "Yükseltme yok."
 
 msgid "WIKI_THERMOSYNTHASE_EFFECTS"
 msgstr ""
@@ -9564,7 +9685,7 @@ msgstr ""
 "Daha verimli olanı, bir hücre, [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdeği[/url][/color][/b] evrimleştirdiğinde mevcut olan [b][color=#3796e1][url=thriveopedia:thermoplast]Termoplasttır[/url][/color][/b]. Ökaryotik karşılığı olan bütün prokaryotik organeller gibi, [b]Termosentazı[/b] da mümkün olduğunda [b][color=#3796e1][url=thriveopedia:thermoplast]Termoplastlar[/url][/color][/b] ile değiştirmenizi öneriyoruz."
 
 msgid "WIKI_THERMOSYNTHASE_UPGRADES"
-msgstr "Geliştirme yok."
+msgstr "Yükseltme yok."
 
 msgid "WIKI_THE_PATCH_MAP_FOG_OF_WAR"
 msgstr ""
@@ -9610,7 +9731,7 @@ msgstr ""
 
 msgid "WIKI_THYLAKOIDS_REQUIREMENTS"
 msgstr ""
-"Eğer organel geliştirmeleri oyun ayarlarından etkinleştirildiyse, aşağıdaki şart [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
+"Eğer organel yükseltmeleri oyun ayarlarından etkinleştirildiyse, aşağıdaki şart [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
 "\n"
 "[ul]En az [b]%20[/b] [thrive:compound type=\"sunlight\"]Güneş Işığına[/thrive:compound] sahip bir arazide olmak.[/ul]"
 
@@ -9629,7 +9750,7 @@ msgstr ""
 "Eğer gece gündüz döngüsü oyun ayarlarından etkinleştirildiyse, etkili bir fotosentetik hücre oluşturmak zor hale gelebilir. Maksimum [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretimini garantiye almak için karşılayabileceğiniz kadar fotosentez yapan parça ve de uzun gecelerde deponuzu arttırmak için uygun miktarda depo geliştirici parça ([b][color=#3796e1][url=thriveopedia:vacuole]Kofullar[/url][/color][/b] gibi) yerleştirin. Daha az enerji tüketmek için gece boyunca hareketsiz durmanızı ya da tam tersine; eğer karmaşık bir beslenme kurulumunuz varsa, av peşinde koşmanızı tavsiye ederiz. Ayrıca, lüks seviyelerinin yükselmeye başladığı gündüz vaktinde çoğalmanızı şiddetle tavsiye ederiz. Çünkü çoğaldıktan sonra, [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] deponuz yarıya inecektir."
 
 msgid "WIKI_THYLAKOIDS_UPGRADES"
-msgstr "Geliştirme yok."
+msgstr "Yükseltme yok."
 
 msgid "WIKI_TOXIN_VACUOLE_EFFECTS"
 msgstr ""
@@ -9655,7 +9776,7 @@ msgid "WIKI_TOXIN_VACUOLE_REQUIREMENTS"
 msgstr ""
 "Bir hücre, [b]Toksin Kofullarını[/b] evrimleştirmek için [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdeğe[/url][/color][/b] sahip olmalıdır.\n"
 "\n"
-"Eğer organel geliştirmeleri oyun ayarlarından etkinleştirildiyse, aşağıdaki koşulların [i]her ikisi de[/i] [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
+"Eğer organel yükseltmeleri oyun ayarlarından etkinleştirildiyse, aşağıdaki koşulların [i]her ikisi de[/i] [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
 "\n"
 "[ul]Oyun sırasında, şu ana kadar en az [b]10[/b] hücre yutmuş olmak.\n"
 "Üst üste en az [b]5[/b] kuşak boyunca en az [b]1[/b] [b][color=#3796e1][url=thriveopedia:oxytoxyProteins]Oksitoksizom[/url][/color][/b] içermek.[/ul]"
@@ -9667,7 +9788,7 @@ msgid "WIKI_TOXIN_VACUOLE_STRATEGY"
 msgstr "[b][color=#3796e1][url=thriveopedia:oxytoxyProteins]Oksitoksizoma[/url][/color][/b] benzer fakat daha verimli [thrive:compound type=\"oxytoxy\"]OksiToksi NT[/thrive:compound] üretimi yaparak ve [b]Glikoliz[/b] avantajı olmadan, metabolik bileşikler üretir."
 
 msgid "WIKI_TOXIN_VACUOLE_UPGRADES"
-msgstr "Geliştirme yok."
+msgstr "Yükseltme yok."
 
 msgid "WIKI_VACUOLE_EFFECTS"
 msgstr "Maksimum [b]Basınç Direncini[/b] 400 kPa arttırır."
@@ -9694,7 +9815,7 @@ msgid "WIKI_VACUOLE_STRATEGY"
 msgstr "Fazladan depolama her durumda faydalı olsa da, bir[b]Koful[/b] özellikle [b]Fotosentez[/b] kullanan organizmalar ([b][color=#3796e1][url=thriveopedia:chromatophore]Tilakoidli[/url][/color][/b] veya [b][color=#3796e1][url=thriveopedia:chloroplast]Kloroplastlı[/url][/color][/b] hücreler) için daha da yararlıdır. Eğer gece gündüz döngüsü oyun ayarlarından etkinleştirildiyse, fotosentetik hücreler, gece hayatta kalmak için gereken [thrive:compound type=\"glucose\"]glukozu[/thrive:compound] depolamak için yeterli alana sahip olmalıdır."
 
 msgid "WIKI_VACUOLE_UPGRADES"
-msgstr "Geliştirme yok."
+msgstr "Yükseltme yok."
 
 msgid "WIKI_YES"
 msgstr "Evet"
@@ -9855,14 +9976,6 @@ msgstr "Yakınlaştır"
 
 msgid "ZOOM_OUT"
 msgstr "Uzaklaştır"
-
-#, fuzzy
-#~ msgid "ACHIEVEMENTS_LOAD_FAILED"
-#~ msgstr "Başarımlar {0} / {1}"
-
-#, fuzzy
-#~ msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
-#~ msgstr "Belirtilen kayıt aşağıdaki hatadan dolayı yükseltilemedi:"
 
 #~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
 #~ msgstr "Normal oyun hızı ve iki kat oyun hızı arasında geçiş yap"
@@ -10026,9 +10139,6 @@ msgstr "Uzaklaştır"
 
 #~ msgid "SHOW_TUTORIALS"
 #~ msgstr "Rehberi göster"
-
-#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
-#~ msgstr "Üreme işlemini pasif olarak gerçekleştir"
 
 #~ msgid "MIGRATE"
 #~ msgstr "Göç et"
@@ -10388,9 +10498,6 @@ msgstr "Uzaklaştır"
 
 #~ msgid "PATCH_MAP_TYPE_CLASSIC"
 #~ msgstr "Klasik"
-
-#~ msgid "PATCH_MAP_TYPE_EXPLANATION"
-#~ msgstr "(yöntemsel olarak bir arazi haritası oluştur veya klasik düzeni kullan)"
 
 #~ msgid "PATCH_MAP_TYPE_PROCEDURAL"
 #~ msgstr "Yöntemsel"

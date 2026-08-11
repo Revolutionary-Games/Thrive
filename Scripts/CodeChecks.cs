@@ -39,7 +39,7 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
                 new FileChecks(true,
                     new BomChecker(BomChecker.Mode.Required, ".cs", ".json")
                     {
-                        IgnoredFiles = [..FilesNotAllowedToHaveBom],
+                        IgnoredFiles = [.. FilesNotAllowedToHaveBom],
                     },
                     new BomChecker(BomChecker.Mode.Disallowed, FilesNotAllowedToHaveBom),
                     new CfgCheck(thriveVersion),

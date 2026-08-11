@@ -138,6 +138,12 @@ public partial class NewGameSettings : ControlWithInput
     [Export]
     private CheckButton organelleUnlocksEnabled = null!;
 
+    [Export]
+    private CheckButton spawnCompatibleMateOnCall = null!;
+
+    [Export]
+    private CheckButton showMatePosition = null!;
+
     // Planet controls
     [Export]
     private OptionButton lifeOriginButton = null!;
@@ -336,6 +342,8 @@ public partial class NewGameSettings : ControlWithInput
         limitGrowthRateButton.ButtonPressed = difficulty.LimitGrowthRate;
         instantKillProtection.ButtonPressed = difficulty.InstantKillProtection;
         organelleUnlocksEnabled.ButtonPressed = difficulty.OrganelleUnlocksEnabled;
+        spawnCompatibleMateOnCall.ButtonPressed = difficulty.SpawnCompatibleMateOnCall;
+        showMatePosition.ButtonPressed = difficulty.ShowMatePosition;
 
         UpdateFogOfWarModeDescription(difficulty.FogOfWarMode);
         UpdateSelectedDifficultyPresetControl();
@@ -479,6 +487,8 @@ public partial class NewGameSettings : ControlWithInput
                 LimitGrowthRate = limitGrowthRateButton.ButtonPressed,
                 InstantKillProtection = instantKillProtection.ButtonPressed,
                 OrganelleUnlocksEnabled = organelleUnlocksEnabled.ButtonPressed,
+                SpawnCompatibleMateOnCall = spawnCompatibleMateOnCall.ButtonPressed,
+                ShowMatePosition = showMatePosition.ButtonPressed,
             };
 
             settings.Difficulty = customDifficulty;
@@ -647,6 +657,8 @@ public partial class NewGameSettings : ControlWithInput
         limitGrowthRateButton.ButtonPressed = preset.LimitGrowthRate;
         instantKillProtection.ButtonPressed = preset.InstantKillProtection;
         organelleUnlocksEnabled.ButtonPressed = preset.OrganelleUnlocksEnabled;
+        spawnCompatibleMateOnCall.ButtonPressed = preset.SpawnCompatibleMateOnCall;
+        showMatePosition.ButtonPressed = preset.ShowMatePosition;
 
         UpdateFogOfWarModeDescription(preset.FogOfWarMode);
 
@@ -710,6 +722,12 @@ public partial class NewGameSettings : ControlWithInput
                 continue;
 
             if (organelleUnlocksEnabled.ButtonPressed != preset.OrganelleUnlocksEnabled)
+                continue;
+
+            if (spawnCompatibleMateOnCall.ButtonPressed != preset.SpawnCompatibleMateOnCall)
+                continue;
+
+            if (showMatePosition.ButtonPressed != preset.ShowMatePosition)
                 continue;
 
             // If all values are equal to the values for a preset, use that preset
@@ -857,6 +875,18 @@ public partial class NewGameSettings : ControlWithInput
     }
 
     private void OnOrganelleUnlocksToggled(bool pressed)
+    {
+        _ = pressed;
+        UpdateSelectedDifficultyPresetControl();
+    }
+
+    private void OnSpawnCompatibleMateOnCallToggled(bool pressed)
+    {
+        _ = pressed;
+        UpdateSelectedDifficultyPresetControl();
+    }
+
+    private void OnShowMatePositionToggled(bool pressed)
     {
         _ = pressed;
         UpdateSelectedDifficultyPresetControl();

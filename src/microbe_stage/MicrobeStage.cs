@@ -13,9 +13,14 @@ using SharedBase.Archive;
 /// </summary>
 [SceneLoadedClass("res://src/microbe_stage/MicrobeStage.tscn")]
 public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>, IMicrobeSpawnEnvironment,
-    IArchivable
+    IArchivable, IEditorMovableStage
 {
-    public const int SERIALIZATION_VERSION = 1;
+    public const int SERIALIZATION_VERSION = 3;
+
+    /// <summary>
+    ///   Current stage for the move to editor console command
+    /// </summary>
+    public static WeakReference<IEditorMovableStage>? CurrentActiveStage;
 
     private readonly Dictionary<MicrobeSpecies, ResolvedMicrobeTolerances> resolvedTolerancesCache = new();
 
@@ -49,6 +54,9 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
     [Export]
     private GuidanceLine guidanceLine = null!;
+
+    [Export]
+    private GuidanceLine mateGuidanceLine = null!;
 
     [Export]
     private MicrobeWorldEnvironment microbeWorldEnvironment = null!;
@@ -110,6 +118,29 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
     /// </summary>
     private bool switchedPatchInEditorForCompounds;
 
+    // Variables for gamete-based editor entry
+    private bool gametesMerging;
+    private Entity mergingGamete1 = Entity.Null;
+    private Entity mergingGamete2 = Entity.Null;
+    private Vector3 gameteMergeLocation = Vector3.Zero;
+    private float gameteMergingTimer;
+    private float oldCameraZoomBeforeMerge = -1;
+
+    /// <summary>
+    ///   Used to know when the player didn't scientifically split from another cell
+    /// </summary>
+    private bool playerGrewFromGamete;
+
+    private MicrobeSignalCommand playerCurrentSignal = MicrobeSignalCommand.None;
+    private float playerCurrentSignalActiveSeconds;
+
+    // Player sexual reproduction helper code
+    private float compatibleMateSpawnedLast = 1000;
+    private float matePositionLastUpdated = 1000;
+    private float matePositionLineActiveSeconds;
+    private Vector3 matePosition = Vector3.Zero;
+    private bool matePositionFound;
+
     public CompoundCloudSystem Clouds { get; private set; } = null!;
 
     /// <summary>
@@ -151,6 +182,8 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         get => patchManager == null! ? tempPatchManagerBrightness : patchManager.ReadBrightnessForSave();
         set => tempPatchManagerBrightness = value;
     }
+
+    public bool IsDisposed { get; private set; }
 
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.MicrobeStage;
@@ -200,6 +233,31 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         instance.SavedPatchManagerPatch = reader.ReadObjectOrNull<Patch>();
         instance.SavedPatchManagerBrightness = reader.ReadFloat();
 
+        if (version > 1)
+        {
+            instance.gametesMerging = reader.ReadBool();
+
+            // See the write method.
+
+            // instance.mergingGamete1 = reader.ReadObject<Entity>();
+            // instance.mergingGamete2 = reader.ReadObject<Entity>();
+
+            instance.gameteMergeLocation = reader.ReadVector3();
+            instance.gameteMergingTimer = reader.ReadFloat();
+            instance.oldCameraZoomBeforeMerge = reader.ReadFloat();
+            instance.playerGrewFromGamete = reader.ReadBool();
+        }
+
+        if (version > 2)
+        {
+            instance.playerCurrentSignal = (MicrobeSignalCommand)reader.ReadInt32();
+            instance.playerCurrentSignalActiveSeconds = reader.ReadFloat();
+            instance.compatibleMateSpawnedLast = reader.ReadFloat();
+            instance.matePositionLastUpdated = reader.ReadFloat();
+            instance.matePositionLineActiveSeconds = reader.ReadFloat();
+            instance.matePosition = reader.ReadVector3();
+        }
+
         return instance;
     }
 
@@ -221,6 +279,26 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         writer.WriteObjectProperties(HUD);
         writer.WriteObjectOrNull(SavedPatchManagerPatch);
         writer.Write(SavedPatchManagerBrightness);
+        writer.Write(gametesMerging);
+
+        // Gametes cannot be easily saved and loaded in the world (we would need marker components). Instead, they are
+        // marked as not needing saving.
+
+        // writer.WriteAnyRegisteredValueAsObject(mergingGamete1);
+        // writer.WriteAnyRegisteredValueAsObject(mergingGamete2);
+
+        writer.Write(gameteMergeLocation);
+        writer.Write(gameteMergingTimer);
+        writer.Write(oldCameraZoomBeforeMerge);
+        writer.Write(playerGrewFromGamete);
+
+        writer.Write((int)playerCurrentSignal);
+        writer.Write(playerCurrentSignalActiveSeconds);
+
+        writer.Write(compatibleMateSpawnedLast);
+        writer.Write(matePositionLastUpdated);
+        writer.Write(matePositionLineActiveSeconds);
+        writer.Write(matePosition);
     }
 
     /// <summary>
@@ -275,14 +353,17 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         CheatManager.OnSpawnEnemyCheatUsed += OnSpawnEnemyCheatUsed;
         CheatManager.OnPlayerDuplicationCheatUsed += OnDuplicatePlayerCheatUsed;
         CheatManager.OnDespawnAllEntitiesCheatUsed += OnDespawnAllEntitiesCheatUsed;
+        CheatManager.OnNotifySimulationFactor += OnNotifyForceSlowDown;
 
-        // Re-register these callbacks in case it is necessary
-        // The primary registration for this is in OnGameStarted
+        // Re-register these callbacks in case it is necessary.
+        // The primary registration for this is in OnGameStarted.
         if (CurrentGame != null && HUD != null!)
         {
             TutorialState.GlucoseCollecting.OnOpened += SetupPlayerForGlucoseCollecting;
             TutorialState.DayNightTutorial.OnOpened += HUD.CloseProcessPanel;
         }
+
+        CurrentActiveStage = new WeakReference<IEditorMovableStage>(this);
     }
 
     public override void _ExitTree()
@@ -291,6 +372,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         CheatManager.OnSpawnEnemyCheatUsed -= OnSpawnEnemyCheatUsed;
         CheatManager.OnPlayerDuplicationCheatUsed -= OnDuplicatePlayerCheatUsed;
         CheatManager.OnDespawnAllEntitiesCheatUsed -= OnDespawnAllEntitiesCheatUsed;
+        CheatManager.OnNotifySimulationFactor -= OnNotifyForceSlowDown;
 
         DebugOverlays.Instance.OnWorldDisabled(WorldSimulation);
 
@@ -298,6 +380,11 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         {
             TutorialState.GlucoseCollecting.OnOpened -= SetupPlayerForGlucoseCollecting;
             TutorialState.DayNightTutorial.OnOpened -= HUD.CloseProcessPanel;
+        }
+
+        if (CurrentActiveStage != null && CurrentActiveStage.TryGetTarget(out var stage) && stage == this)
+        {
+            CurrentActiveStage = null;
         }
     }
 
@@ -435,7 +522,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
                 start.Y = 0;
 
                 guidanceLine.LineStart = start;
-                guidanceLine.LineEnd = guidancePosition.Value;
+                guidanceLine.SetLineEnd(guidancePosition.Value);
             }
             else
             {
@@ -516,12 +603,20 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             {
                 GD.PrintErr("Player process component is missing speed statistics");
             }
+
+            HandlePlayerSignals((float)delta);
         }
         else
         {
             guidanceLine.Visible = false;
+            mateGuidanceLine.Visible = false;
 
             HUD.UpdateRadiationBar(0, 1, 1);
+        }
+
+        if (gametesMerging)
+        {
+            UpdateGameteMergeAnimation(delta);
         }
 
         UpdateLinePlayerPosition();
@@ -580,6 +675,84 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
     public void ToggleSpeedMode()
     {
         HUD.ApplySpeedMode(!HUD.GetCurrentSpeedMode());
+    }
+
+    public bool PlayerUsesSexualReproduction()
+    {
+        if (HasAlivePlayer)
+        {
+            if (Player.TryGet(out MulticellularSpeciesMember speciesMember))
+            {
+                return speciesMember.Species.ReproductionMethod is MulticellularReproductionMethod.SexualAnisogamy
+                    or MulticellularReproductionMethod.SexualIsogamy;
+            }
+        }
+
+        // Look in the species to find info
+        if (GameWorld.PlayerSpecies is MulticellularSpecies directMulticell)
+        {
+            return directMulticell.ReproductionMethod is MulticellularReproductionMethod.SexualAnisogamy
+                or MulticellularReproductionMethod.SexualIsogamy;
+        }
+
+        // Not multicellular or info not available
+        return false;
+    }
+
+    public void PlayerShootGamete()
+    {
+        if (!HasAlivePlayer || CurrentGame == null)
+            return;
+
+        // If a gamete already hit something, don't allow spamming the button any more
+        if (gametesMerging)
+            return;
+
+        if (!Player.Has<MulticellularGrowth>() || !Player.Has<MulticellularSpeciesMember>())
+            return;
+
+        if (!Player.Has<MicrobeColony>())
+        {
+            ToolTipManager.Instance.ShowPopup(
+                Localization.Translate("ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"), 5);
+            return;
+        }
+
+        ref var growth = ref Player.Get<MulticellularGrowth>();
+        ref var colony = ref Player.Get<MicrobeColony>();
+        ref var species = ref Player.Get<MulticellularSpeciesMember>();
+
+        if (growth.IsASpore)
+            return;
+
+        bool canShootGamete = false;
+
+        if (growth.EnoughResourcesForBudding)
+        {
+            canShootGamete = true;
+        }
+        else if (CurrentGame.FreeBuild)
+        {
+            // Can shoot anyway in freebuild at any time
+            canShootGamete = true;
+        }
+
+        if (!canShootGamete)
+        {
+            // TODO: detect if the editor cheat was used and allow once
+            GD.Print("Not enough resources to fire gamete yet (and not in freebuild)");
+            return;
+        }
+
+        try
+        {
+            growth.ShootGamete(ref colony, Player, species.Species, WorldSimulation, this, WorldSimulation.SpawnSystem,
+                true);
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr("Multicellular gamete spawn failed: ", e);
+        }
     }
 
     public override void SetSpecialViewMode(ViewMode mode)
@@ -683,6 +856,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         if (!HasPlayer || Player.Get<Health>().Dead || PlayerIsEngulfed(Player))
         {
             GD.PrintErr("Player object disappeared, died, or was engulfed while transitioning to the editor");
+            OnStopGameteMerge();
             HUD.OnCancelEditorEntry();
             return;
         }
@@ -704,6 +878,25 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         {
             // Player is a multicellular species, go to multicellular editor
 
+            // Also need to update endosymbiosis info from all colony members
+            if (Player.Has<MicrobeColony>())
+            {
+                ref var colony = ref Player.Get<MicrobeColony>();
+                foreach (var member in colony.ColonyMembers)
+                {
+                    // Skip duplicate counting
+                    if (member == Player)
+                        continue;
+
+                    if (member.Has<TemporaryEndosymbiontInfo>())
+                    {
+                        ref var endosymbiontInfo = ref member.Get<TemporaryEndosymbiontInfo>();
+
+                        endosymbiontInfo.UpdateEndosymbiosisProgress(member.Get<SpeciesMember>().Species);
+                    }
+                }
+            }
+
             var scene = SceneManager.Instance.LoadScene(MainGameState.MulticellularEditor);
 
             sceneInstance = scene.Instantiate();
@@ -716,7 +909,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         }
         else
         {
-            // This might not be required anymore but just for extra safety this is here
+            // This might not be required any more, but just for extra safety this is here
             if (Player.Has<MicrobeColony>())
             {
                 GD.PrintErr("Editor button was enabled and pressed while the player is in a colony");
@@ -737,6 +930,25 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         RecordPlayerReproduction();
 
+        // If doing gamete merge, teleport the player there to prepare the player for the next life
+        if (gametesMerging)
+        {
+            GD.Print("Entering editor after gamete merge, so teleporting the player to the target position");
+            playerGrewFromGamete = true;
+            ref var physics = ref Player.Get<Physics>();
+            ref var position = ref Player.Get<WorldPosition>();
+            physics.TeleportTo(ref position, gameteMergeLocation, WorldSimulation);
+
+            // And despawn the gametes
+            if (mergingGamete1.IsAliveAndNotNull())
+                WorldSimulation.DestroyEntity(mergingGamete1);
+            if (mergingGamete2.IsAliveAndNotNull())
+                WorldSimulation.DestroyEntity(mergingGamete2);
+
+            mergingGamete1 = Entity.Null;
+            mergingGamete2 = Entity.Null;
+        }
+
         PauseMenu.Instance.ReportStageTransition();
 
         // We don't free this here as the editor will return to this scene
@@ -756,6 +968,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         if (!HasPlayer || Player.Get<Health>().Dead || !Player.Has<MicrobeColony>() || PlayerIsEngulfed(Player))
         {
             GD.PrintErr("Player object disappeared or died (or not in a colony) while trying to become multicellular");
+            OnStopGameteMerge();
             HUD.OnCancelEditorEntry();
             return;
         }
@@ -790,9 +1003,9 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         var playerSpeciesMicrobes = GetAllPlayerSpeciesMicrobes();
 
-        // Re-apply species here so that the player cell knows it is multicellular after this
-        // Also apply species here to other members of the player's previous species
-        // This prevents previous members of the player's colony from immediately being hostile
+        // Re-apply species here so that the player cell knows it is multicellular after this.
+        // Also, apply species here to other members of the player's previous species.
+        // This prevents previous members of the player's colony from immediately being hostile.
         bool playerHandled = false;
 
         var multicellularSpecies = GameWorld.ChangeSpeciesToMulticellular(previousSpecies, true);
@@ -833,8 +1046,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             throw new Exception("failed to keep the current scene root");
         }
 
-        // TODO: allow endosymbiosis in multicellular (if we want to)
-        GameWorld.PlayerSpecies.Endosymbiosis.CancelAllEndosymbiosisTargets();
+        // We now allow endosymbiosis in multicellular, so we don't cancel endosymbiosis here
 
         MovingToEditor = false;
     }
@@ -890,6 +1102,12 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         // TODO: Implement unlock statistics for the macroscopic stage before removing this
         GameWorld.UnlockProgress.UnlockAll = true;
 
+        if (GameWorld.PlayerSpecies != modifiedSpecies)
+            GD.PrintErr("Player species did not get updated");
+
+        // Endosymbiosis is no longer possible in macroscopic
+        GameWorld.PlayerSpecies.Endosymbiosis.CancelAllEndosymbiosisTargets();
+
         MovingToEditor = false;
     }
 
@@ -906,6 +1124,31 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         {
             Clouds.AddCloud(Compound.Glucose, 200000.0f,
                 Player.Get<WorldPosition>().Position + new Vector3(0.0f, 0.0f, -25.0f));
+        }
+
+        // Ensure gamete merge status is not ongoing
+        OnStopGameteMerge();
+
+        if (oldCameraZoomBeforeMerge > 0)
+        {
+            GD.Print("Restoring camera height to state before gamete animation: ", oldCameraZoomBeforeMerge);
+            Camera.CameraHeight = oldCameraZoomBeforeMerge;
+            oldCameraZoomBeforeMerge = 0;
+        }
+
+        WorldSimulation.CameraFollowSystem.Disabled = false;
+
+        // When true, another cell is spawned next to the player that, scientifically speaking, the player would have
+        // split from
+        bool spawnAnotherCell = true;
+
+        // If using sexual reproduction, do not spawn another member as we came from a gamete merge
+        if (playerGrewFromGamete)
+        {
+            spawnAnotherCell = false;
+            playerGrewFromGamete = false;
+
+            GD.Print("Player grew from gamete, so not spawning another cell");
         }
 
         // Check win conditions
@@ -948,6 +1191,8 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         // Update the player's cell
         ref var cellProperties = ref Player.Get<CellProperties>();
 
+        ref var compoundStorage = ref Player.Get<CompoundStorage>();
+
         bool playerIsMulticellular = Player.Has<MulticellularSpeciesMember>();
 
         if (playerIsMulticellular)
@@ -975,6 +1220,18 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
                      or MulticellularReproductionMethod.MassBudding)
             {
                 adjacencyBonus = multicellularSpeciesType.Species.GetAdjacencySpecializationBonus(0);
+            }
+
+            // If the player has a colony, all resources need to be transferred to the stem cell to avoid them being
+            // lost after other colony members are deleted
+            if (Player.TryGet<MicrobeColony>(out var colony))
+            {
+                var compounds = compoundStorage.Compounds.Compounds;
+
+                foreach (var compound in colony.GetCompounds().GetCompoundDictionary())
+                {
+                    compounds[compound.Key] = compound.Value;
+                }
             }
 
             var totalSpecializationBonus = multicellularSpeciesType.MulticellularCellType.CellTypeSpecializationBonus *
@@ -1008,6 +1265,25 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
                     break;
                 }
             }
+        }
+
+        // Update player sex if it was changed in the editor
+        var playerSex = GameteType.All;
+
+        // Set the type selected in the editor
+        if (GameWorld.PlayerSpecies is MulticellularSpecies multicellularSpecies)
+        {
+            playerSex = multicellularSpecies.PlayerGamete;
+        }
+
+        if (Player.Has<MicrobeSex>())
+        {
+            ref var sexComponent = ref Player.Get<MicrobeSex>();
+            sexComponent.Sex = playerSex;
+        }
+        else
+        {
+            Player.Add(new MicrobeSex { Sex = playerSex });
         }
 
         UpdateZoomLevels(playerIsMulticellular);
@@ -1048,39 +1324,72 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         switchedPatchInEditorForCompounds = false;
 
-        // Spawn another cell from the player species
-        // This needs to be done after updating the player so that multicellular organisms are accurately separated
-        cellProperties.Divide(ref Player.Get<OrganelleContainer>(), Player, playerSpecies, WorldSimulation,
-            this, WorldSimulation.SpawnSystem, (ref daughter, commandBuffer) =>
-            {
-                // Mark as a player-reproduced entity
-                commandBuffer.Add(daughter, new PlayerOffspring
-                {
-                    OffspringOrderNumber = ++playerOffspringTotalCount,
-                });
-
-                // If multicellular, we want that other cell colony to be fully grown to show budding in action
-            }, MulticellularSpawnState.FullColony);
-
-        // This is queued to run on the world after the next update as that's when the duplicate entity will spawn
-        // The entity is not forced to spawn here immediately to reduce the lag impact that is already caused by
-        // switching from the editor back to the stage scene
-        WorldSimulation.Invoke(() =>
+        // Spawn another cell from the player species.
+        if (spawnAnotherCell)
         {
-            // We need to find the entity reference of the offspring that was spawned last frame
-            var doNotDespawn = PlayerOffspringHelpers.FindLatestSpawnedOffspring(WorldSimulation.EntitySystem);
+            // This needs to be done after updating the player so that multicellular organisms are accurately separated.
+            cellProperties.Divide(ref Player.Get<OrganelleContainer>(), Player, playerSpecies, WorldSimulation,
+                this, WorldSimulation.SpawnSystem, (ref daughter, commandBuffer) =>
+                {
+                    // Mark as a player-reproduced entity
+                    commandBuffer.Add(daughter, new PlayerOffspring
+                    {
+                        OffspringOrderNumber = ++playerOffspringTotalCount,
+                    });
+
+                    // If multicellular, we want that other cell colony to be fully grown to show budding in action
+                }, MulticellularSpawnState.FullColony);
+
+            // This is queued to run on the world after the next update as that's when the duplicate entity will spawn.
+            // The entity is not forced to spawn here immediately to reduce the lag impact that is already caused by
+            // switching from the editor back to the stage scene.
+            WorldSimulation.Invoke(() =>
+            {
+                // We need to find the entity reference of the offspring that was spawned last frame
+                var doNotDespawn = PlayerOffspringHelpers.FindLatestSpawnedOffspring(WorldSimulation.EntitySystem);
 
 #if DEBUG
-            if (doNotDespawn.IsAliveAndNotNull() && !doNotDespawn.Has<Spawned>())
-            {
-                throw new Exception(
-                    "Spawned player offspring has no spawned component, microbe reproduction method is" +
-                    "working incorrectly");
-            }
+                if (doNotDespawn.IsAliveAndNotNull() && !doNotDespawn.Has<Spawned>())
+                {
+                    throw new Exception(
+                        "Spawned player offspring has no spawned component, microbe reproduction method is" +
+                        "working incorrectly");
+                }
 #endif
 
-            WorldSimulation.SpawnSystem.EnsureEntityLimitAfterPlayerReproduction(playerPosition, doNotDespawn);
-        });
+                WorldSimulation.SpawnSystem.EnsureEntityLimitAfterPlayerReproduction(playerPosition, doNotDespawn);
+            });
+        }
+
+        // After compounds are redistributed, send whatever was given to the player to the delayed storage.
+        // If the player's reproduction method isn't mass budding, just ensure that the compounds are under capacity.
+        if (playerIsMulticellular)
+        {
+            ref var multicellularSpeciesType = ref Player.Get<MulticellularSpeciesMember>();
+
+            var compounds = compoundStorage.Compounds.Compounds;
+
+            if (multicellularSpeciesType.Species.ReproductionMethod == MulticellularReproductionMethod.MassBudding)
+            {
+                ref var growth = ref Player.Get<MulticellularGrowth>();
+                growth.MassBuddingDelayedCompoundStorage ??= new Dictionary<Compound, float>();
+
+                foreach (var compound in compounds)
+                {
+                    growth.MassBuddingDelayedCompoundStorage[compound.Key] = compound.Value;
+                }
+
+                compounds.Clear();
+            }
+            else
+            {
+                foreach (var compound in compounds)
+                {
+                    compounds[compound.Key] = MathF.Min(compound.Value,
+                        compoundStorage.Compounds.GetCapacityForCompound(compound.Key, true));
+                }
+            }
+        }
 
         // Handle the compound modes
         if (topUp)
@@ -1135,9 +1444,12 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             environmentPanelAutomaticallyOpened = true;
         }
 
+        // Despawn player gametes to prevent accidentally immediately triggering the editor entry again
+        DespawnPlayerGametes();
+
         if (TutorialState.Enabled && !TutorialState.ProcessPanelTutorial.Complete)
         {
-            // Ensure the player accepts the glucose, this only really happens when going directly from starting in
+            // Ensure the player accepts the glucose; this only really happens when going directly from starting in
             // the editor to the game
             playerCompounds.SetUseful(Compound.Glucose);
 
@@ -1245,6 +1557,10 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         // Hook up the simulation to some of the other systems
         WorldSimulation.CameraFollowSystem.Camera = Camera;
+
+        // Restore disable state if someone saved and loaded during the camera animation of gamete merging
+        WorldSimulation.CameraFollowSystem.Disabled = gametesMerging;
+
         HoverInfo.PhysicalWorld = WorldSimulation.PhysicalWorld;
         WorldSimulation.FluidCurrentsSystem.FluidCurrentDisplay = fluidCurrentDisplay;
 
@@ -1253,6 +1569,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         tutorialGUI.EventReceiver = TutorialState;
         HUD.SendObjectsToTutorials(TutorialState);
+        WorldSimulation.GameteSystem.SetPlayerGameteCallback(OnPlayerGameteMerged);
 
         ProceduralDataCache.Instance.OnEnterState(MainGameState.MicrobeStage);
 
@@ -1281,6 +1598,8 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         // Reset any cheat state if there was some active
         CurrentGame!.GameWorld.WorldSettings.Difficulty.ClearGrowthRateLimitOverride();
+
+        HUD.UpdateSpeedMode();
     }
 
     protected override void OnGameStarted()
@@ -1312,9 +1631,17 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             WorldSimulation.ClearPlayerLocationDependentCaches();
         }
 
+        var playerSex = GameteType.All;
+
+        // Set the type selected in the editor
+        if (GameWorld.PlayerSpecies is MulticellularSpecies multicellularSpecies)
+        {
+            playerSex = multicellularSpecies.PlayerGamete;
+        }
+
         var (recorder, _) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(WorldSimulation, this,
             GameWorld.PlayerSpecies,
-            spawnLocation, false, (null, 0), out var entityRecord);
+            spawnLocation, false, (null, 0), playerSex, out var entityRecord);
 
         recorder.Add(entityRecord, new MicrobeEventCallbacks
         {
@@ -1611,9 +1938,36 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         SaveHelper.Save(name, this);
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        IsDisposed = true;
+        base.Dispose(disposing);
+    }
+
+    [Command("edit", true, "Move immediately to the editor in supported stages")]
+    private static bool MoveStageToEditorCommand(CommandContext context)
+    {
+        var targetWeak = CurrentActiveStage;
+
+        if (targetWeak != null && targetWeak.TryGetTarget(out var stage) && !stage.IsDisposed)
+        {
+            if (stage.MovingToEditor)
+            {
+                context.PrintErr("Already marked as moving to the editor");
+                return false;
+            }
+
+            stage.MoveToEditor();
+            return true;
+        }
+
+        context.PrintErr("No active stage that can move to the editor");
+        return false;
+    }
+
     private static float CalculateMulticellularTerrainCollisionRadius(MulticellularSpecies multicellularSpecies)
     {
-        // Very similar code to the multicellular photo taking code
+        // Very similar code to the multicellular photo-taking code
         var cells = multicellularSpecies.ModifiableGameplayCells;
         var cellCount = cells.Count;
 
@@ -1756,6 +2110,165 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         return result;
     }
 
+    private void HandlePlayerSignals(float delta)
+    {
+        ref var signal = ref Player.Get<CommandSignaler>();
+        compatibleMateSpawnedLast += delta;
+        matePositionLastUpdated += delta;
+
+        if (signal.Command == MicrobeSignalCommand.None)
+        {
+            playerCurrentSignal = MicrobeSignalCommand.None;
+            playerCurrentSignalActiveSeconds = 0;
+            matePositionFound = false;
+            mateGuidanceLine.Visible = false;
+            return;
+        }
+
+        bool changed = playerCurrentSignal != signal.Command;
+        if (changed)
+        {
+            playerCurrentSignal = signal.Command;
+            playerCurrentSignalActiveSeconds = 0;
+
+            if (playerCurrentSignal == MicrobeSignalCommand.CallMate)
+            {
+                matePositionLineActiveSeconds = 0;
+                matePositionLastUpdated = 1000;
+            }
+        }
+        else
+        {
+            playerCurrentSignalActiveSeconds += delta;
+        }
+
+        if (playerCurrentSignal == MicrobeSignalCommand.CallMate)
+        {
+            matePositionLineActiveSeconds += delta;
+
+            // The query is deliberately throttled as it scans the entity world
+            if (matePositionLastUpdated >= 1.0f / 3.0f)
+            {
+                matePositionLastUpdated = 0;
+                matePositionFound = TryFindPlayerCompatibleMate(out matePosition);
+            }
+
+            mateGuidanceLine.Visible = GameWorld.WorldSettings.Difficulty.ShowMatePosition &&
+                matePositionFound && matePositionLineActiveSeconds < 60;
+
+            if (!matePositionFound && GameWorld.WorldSettings.Difficulty.SpawnCompatibleMateOnCall &&
+                compatibleMateSpawnedLast > 90)
+            {
+                GD.Print("Spawning compatible mate for the player as they called for one");
+                compatibleMateSpawnedLast = 0;
+                SpawnCompatibleMate();
+            }
+        }
+        else
+        {
+            mateGuidanceLine.Visible = false;
+
+            if (playerCurrentSignal == MicrobeSignalCommand.ShootGamete &&
+                playerCurrentSignalActiveSeconds >= Constants.SIGNAL_GAMETE_TURN_OFF_AFTER)
+            {
+                // Reset gamete shoot command as it is more of a "one-off" command, so it helps if the player needs to
+                // retrigger it again for playability
+                signal.Command = MicrobeSignalCommand.None;
+                playerCurrentSignal = MicrobeSignalCommand.None;
+            }
+        }
+
+        if (mateGuidanceLine.Visible)
+        {
+            var start = Camera.GlobalPosition;
+            start.Y = 0;
+            mateGuidanceLine.LineStart = start;
+            mateGuidanceLine.SetLineEnd(matePosition);
+        }
+    }
+
+    private bool TryFindPlayerCompatibleMate(out Vector3 position)
+    {
+        position = Vector3.Zero;
+        if (!HasAlivePlayer || !Player.Has<MicrobeSex>())
+            return false;
+
+        var playerSpecies = Player.Get<SpeciesMember>().Species;
+        var playerSex = Player.Get<MicrobeSex>().Sex;
+        var playerPosition = Player.Get<WorldPosition>().Position;
+        var nearestDistanceSquared = Constants.GAMETE_MATE_CALL_MAX_DISTANCE_SQUARED;
+        var foundPosition = Vector3.Zero;
+        var found = false;
+
+        WorldSimulation.EntitySystem.Query(
+            new QueryDescription().WithAll<SpeciesMember, WorldPosition, Health, MicrobeSex, MulticellularGrowth>(),
+            (Entity entity, ref SpeciesMember species, ref WorldPosition candidatePosition, ref Health health,
+                ref MicrobeSex sex, ref MulticellularGrowth growth) =>
+            {
+                if (entity == Player || health.Dead || species.Species != playerSpecies ||
+                    !growth.IsFullyGrownMulticellular || !GameteHelpers.IsCompatible(playerSex, sex.Sex))
+                {
+                    return;
+                }
+
+                var distanceSquared = playerPosition.DistanceSquaredTo(candidatePosition.Position);
+                if (distanceSquared < nearestDistanceSquared)
+                {
+                    nearestDistanceSquared = distanceSquared;
+                    foundPosition = candidatePosition.Position;
+                    found = true;
+                }
+            });
+
+        position = foundPosition;
+        return found;
+    }
+
+    private void SpawnCompatibleMate()
+    {
+        if (GameWorld.PlayerSpecies is not MulticellularSpecies species || !HasAlivePlayer ||
+            !Player.Has<WorldPosition>())
+        {
+            return;
+        }
+
+        var playerPosition = Player.Get<WorldPosition>().Position;
+        var spawnDistance = Constants.MICROBE_SPAWN_RADIUS;
+        Vector3 spawnPosition = default;
+        var radius = GetSpeciesTerrainCollisionRadius(species);
+        bool foundSpawnPosition = false;
+
+        for (int i = 0; i < 50; ++i)
+        {
+            var angle = random.NextFloat() * MathF.Tau;
+            spawnPosition = playerPosition + new Vector3(MathF.Cos(angle), 0, MathF.Sin(angle)) * spawnDistance;
+            if (!WorldSimulation.MicrobeTerrainSystem.IsPositionBlocked(spawnPosition, radius))
+            {
+                foundSpawnPosition = true;
+                break;
+            }
+        }
+
+        if (!foundSpawnPosition)
+        {
+            GD.Print("Couldn't find a suitable position to spawn a compatible mate");
+            return;
+        }
+
+        // Pick compatible sex for the spawned microbe
+        var sex = species.ReproductionMethod == MulticellularReproductionMethod.SexualAnisogamy ?
+            (Player.Get<MicrobeSex>().Sex == GameteType.A ? GameteType.B : GameteType.A) :
+            GameteType.All;
+
+        var (recorder, weight) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(WorldSimulation, this, species,
+            spawnPosition, true, (null, 0), sex, out var entity, MulticellularSpawnState.FullColony);
+
+        // Use a higher despawn radius to prevent the spawned microbe from despawning immediately
+        WorldSimulation.SpawnSystem.NotifyExternalEntitySpawned(entity, recorder,
+            Constants.MICROBE_DESPAWN_RADIUS_SQUARED * 1.25f, weight);
+        SpawnHelpers.FinalizeEntitySpawn(recorder, WorldSimulation);
+    }
+
     private void OnSpawnEnemyCheatUsed(object? sender, EventArgs e)
     {
         if (!HasPlayer)
@@ -1775,8 +2288,15 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         var playerPosition = Player.Get<WorldPosition>().Position;
 
+        var sex = GameteType.All;
+
+        if (randomSpecies is MulticellularSpecies multicellularSpecies)
+        {
+            sex = multicellularSpecies.PickSpawnGameteType(random);
+        }
+
         var (recorder, weight) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(WorldSimulation, this,
-            randomSpecies, playerPosition + Vector3.Forward * 20, true, (null, 0), out var entity);
+            randomSpecies, playerPosition + Vector3.Forward * 20, true, (null, 0), sex, out var entity);
 
         // Make the cell despawn like normal
         WorldSimulation.SpawnSystem.NotifyExternalEntitySpawned(entity, recorder,
@@ -1810,6 +2330,11 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         WorldSimulation.SpawnSystem.DespawnAll();
     }
 
+    private void OnNotifyForceSlowDown(object? sender, EventArgs args)
+    {
+        HUD.UpdateSpeedMode();
+    }
+
     /// <summary>
     ///   This is now handled by this class instead of adding extra functionality to the microbe simulation for only
     ///   thing that is needed for the player.
@@ -1817,6 +2342,12 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
     private void OnPlayerDied(Entity player)
     {
         HandlePlayerDeath();
+
+        if (gametesMerging)
+        {
+            GD.Print("Player died during gamete merging");
+            OnStopGameteMerge();
+        }
 
         bool engulfed = PlayerIsEngulfed(player);
 
@@ -2038,7 +2569,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             // The target needs to be updated for entities with a position.
             if (chemoreception.TargetEntity.IsAliveAndHas<WorldPosition>())
             {
-                chemoreception.Line.LineEnd = chemoreception.TargetEntity.Get<WorldPosition>().Position;
+                chemoreception.Line.SetLineEnd(chemoreception.TargetEntity.Get<WorldPosition>().Position);
             }
         }
     }
@@ -2054,15 +2585,16 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
             AddChild(line);
             chemoreceptionLines.Add((line, potentialTargetEntity));
+            chemoreceptionLines[index].Line.SetLineEnd(lineEnd, false);
         }
         else
         {
             chemoreceptionLines[index] = (chemoreceptionLines[index].Line, potentialTargetEntity);
+            chemoreceptionLines[index].Line.SetLineEnd(lineEnd);
         }
 
         chemoreceptionLines[index].Line.Colour = colour;
         chemoreceptionLines[index].Line.LineStart = lineStart;
-        chemoreceptionLines[index].Line.LineEnd = lineEnd;
         chemoreceptionLines[index].Line.Visible = visible;
     }
 
@@ -2077,6 +2609,100 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             GD.PrintErr("Couldn't read player health: " + e);
             return false;
         }
+    }
+
+    private void OnPlayerGameteMerged(Entity playerGamete, Entity otherGamete, Vector3 location)
+    {
+        if (gametesMerging)
+        {
+            // Player gametes are already being merged
+            GD.Print("Player gametes are already being merged, ignoring a new callback");
+            WorldSimulation.DestroyEntity(playerGamete);
+            WorldSimulation.DestroyEntity(otherGamete);
+            return;
+        }
+
+        if (!playerGamete.Has<GameteCell>() || !otherGamete.Has<GameteCell>())
+        {
+            GD.PrintErr("Gametes merge callback called on things that aren't gametes");
+            return;
+        }
+
+        // Player gamete merged so change camera to be there and then automatically enter the editor
+        gametesMerging = true;
+        gameteMergeLocation = location;
+        mergingGamete1 = playerGamete;
+        mergingGamete2 = otherGamete;
+        gameteMergingTimer = 0;
+        oldCameraZoomBeforeMerge = Camera.CameraHeight;
+
+        // As we can't easily load or save these entities, we will just destroy them on save if someone saves during
+        // this animation.
+        WorldSimulation.ReportEntityDyingSoon(mergingGamete1);
+        WorldSimulation.ReportEntityDyingSoon(mergingGamete2);
+
+        // Take control of the camera until the editor is exited
+        WorldSimulation.CameraFollowSystem.Disabled = true;
+
+        // Stop the movement of the two gamete physics bodies so that they do not move during the merge animation
+        try
+        {
+            ref var playerPhysics = ref playerGamete.Get<Physics>();
+            if (playerPhysics.IsBodyEffectivelyEnabled())
+                WorldSimulation.PhysicalWorld.SetOnlyBodyVelocity(playerPhysics.Body!, Vector3.Zero);
+
+            ref var otherPhysics = ref otherGamete.Get<Physics>();
+            if (otherPhysics.IsBodyEffectivelyEnabled())
+                WorldSimulation.PhysicalWorld.SetOnlyBodyVelocity(otherPhysics.Body!, Vector3.Zero);
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr("Failed to stop gamete movement on animation start to enter the editor: ", e);
+        }
+    }
+
+    private void OnStopGameteMerge()
+    {
+        if (gametesMerging)
+        {
+            gametesMerging = false;
+            WorldSimulation.CameraFollowSystem.Disabled = false;
+        }
+    }
+
+    private void UpdateGameteMergeAnimation(double delta)
+    {
+        gameteMergingTimer += (float)delta;
+        var target = Camera.Position.Slerp(gameteMergeLocation, 0.6f * (float)delta);
+        Camera.UpdateCameraPosition(delta, target);
+
+        // Zoom in the camera during the animation
+        Camera.CameraHeight = Math.Max(Camera.CameraHeight - 14 * (float)delta, Camera.MinCameraHeight + 5);
+
+        if (gameteMergingTimer > 5)
+        {
+            if (!MovingToEditor)
+            {
+                GD.Print("Gamete animation done, starting move to editor");
+                MovingToEditor = true;
+                HUD.EnsureGameIsUnpausedForEditor();
+                TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.3f, MoveToEditor, false);
+            }
+        }
+    }
+
+    private void DespawnPlayerGametes()
+    {
+        OnStopGameteMerge();
+
+        WorldSimulation.EntitySystem.Query<GameteCell>(new QueryDescription().WithAll<GameteCell>(),
+            (entity, ref gamete) =>
+            {
+                if (gamete.IsPlayer)
+                {
+                    WorldSimulation.DestroyEntity(entity);
+                }
+            });
     }
 
     private void ClearResolvedTolerancesCache()
