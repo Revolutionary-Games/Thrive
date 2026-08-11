@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Godot;
+using Godot.Collections;
 
 public static class NoiseUtils
 {
@@ -82,8 +83,7 @@ public static class NoiseUtils
     public static float PerlinTiling(Vector3 p, int period, int seed)
     {
         Vector3 scaled = p * period;
-        Vector3I c0 = new Vector3I(
-            Mathf.FloorToInt(scaled.X),
+        Vector3I c0 = new Vector3I(Mathf.FloorToInt(scaled.X),
             Mathf.FloorToInt(scaled.Y),
             Mathf.FloorToInt(scaled.Z));
 
@@ -176,7 +176,7 @@ public static class NoiseUtils
             buffers[z] = buffer;
         });
 
-        var images = new Godot.Collections.Array<Image>();
+        var images = new Array<Image>();
         for (int z = 0; z < size; ++z)
         {
             images.Add(Image.CreateFromData(size, size, false, Image.Format.Rgba8, buffers[z]));
