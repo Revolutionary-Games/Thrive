@@ -321,19 +321,19 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     private static byte[] BuildPushConstant(Projection invViewProjection, Projection camProjection)
     {
         var bytes = new byte[128];
-        int o = 0;
+        int offset = 0;
 
         // mat4 inv_projection
-        o = WriteVec4(bytes, o, invViewProjection.X);
-        o = WriteVec4(bytes, o, invViewProjection.Y);
-        o = WriteVec4(bytes, o, invViewProjection.Z);
-        o = WriteVec4(bytes, o, invViewProjection.W);
+        offset = WriteVec4(bytes, offset, invViewProjection.X);
+        offset = WriteVec4(bytes, offset, invViewProjection.Y);
+        offset = WriteVec4(bytes, offset, invViewProjection.Z);
+        offset = WriteVec4(bytes, offset, invViewProjection.W);
 
         // mat4 cam_transform
-        o = WriteVec4(bytes, o, camProjection.X);
-        o = WriteVec4(bytes, o, camProjection.Y);
-        o = WriteVec4(bytes, o, camProjection.Z);
-        _ = WriteVec4(bytes, o, camProjection.W);
+        offset = WriteVec4(bytes, offset, camProjection.X);
+        offset = WriteVec4(bytes, offset, camProjection.Y);
+        offset = WriteVec4(bytes, offset, camProjection.Z);
+        _ = WriteVec4(bytes, offset, camProjection.W);
 
         return bytes;
     }
