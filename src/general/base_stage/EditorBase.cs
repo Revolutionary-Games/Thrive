@@ -1092,6 +1092,8 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
             editorComponent.OnFinishEditing();
         }
 
+        OnAppliedEdits();
+
         CurrentGame.GameWorld.UnlockProgress.ClearRecentlyUnlocked();
 
         var stage = ReturnToStage!;
@@ -1102,6 +1104,13 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         SceneManager.Instance.SwitchToScene(stage);
 
         stage.OnReturnFromEditor();
+    }
+
+    /// <summary>
+    ///   Allows doing special actions after edits are applied in this editor
+    /// </summary>
+    protected virtual void OnAppliedEdits()
+    {
     }
 
     protected virtual void OnCheatsUsed()

@@ -24,4 +24,14 @@
     ///   Increase aggression by a lot against every enemy nearby
     /// </summary>
     BecomeAggressive,
+
+    /// <summary>
+    ///   Call a mate to mate with
+    /// </summary>
+    CallMate,
+
+    /// <summary>
+    ///   Request to shoot a gamete
+    /// </summary>
+    ShootGamete,
 }

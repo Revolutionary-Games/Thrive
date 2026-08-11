@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
 using Godot;
 
 /// <summary>
@@ -26,6 +27,12 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
     ///   Page future for forwards navigation (if the player has already gone backwards).
     /// </summary>
     private readonly Stack<IThriveopediaPage> pageFuture = new();
+
+    /// <summary>
+    ///   A lock to avoid <see cref="DoBackgroundPageSearch(string)"/> and a <see cref="Invoke"/> task from
+    ///   using the arrays at the same time
+    /// </summary>
+    private readonly object backgroundThreadArrayLock = new();
 
 #pragma warning disable CA2213
     [Export]
@@ -91,9 +98,52 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
     private bool currentGamePagesAdded;
 
     /// <summary>
+    ///   Have all the pages searchable string been cached before a search?
+    /// </summary>
+    private bool presearchCache;
+
+    /// <summary>
     ///   The currently selected stage to view
     /// </summary>
     private Stage currentSelectedStage;
+
+    /// <summary>
+    ///   Has the input field changed while it still running a background search?
+    ///   Then after the search is completed a new one whit the <see cref="currentSearchText"/> will start
+    /// </summary>
+    private bool requestingNewSearch;
+
+    /// <summary>
+    ///   Is currently running a background search.
+    /// </summary>
+    private bool runningBackgroundSearch;
+
+    /// <summary>
+    ///   Tracks the amount of time since the last update on the search
+    /// </summary>
+    private double searchTimer;
+
+    /// <summary>
+    ///   The text to search in the next background search.
+    /// </summary>
+    private string currentSearchText = string.Empty;
+
+    /// <summary>
+    ///   Has the Search bar updated after the start of a new Search?
+    /// </summary>
+    private bool isSearchDirty;
+
+    /// <summary>
+    ///   Reusable string distance array for <see cref="DoBackgroundPageSearch(string)"/>.
+    ///   This array will increase when needed
+    /// </summary>
+    private int[] searchDistanceArray = Array.Empty<int>();
+
+    /// <summary>
+    ///   Reusable visibility array for <see cref="DoBackgroundPageSearch(string)"/>.
+    ///   This array will increase when needed
+    /// </summary>
+    private bool[] visibilityArray = Array.Empty<bool>();
 
     [Signal]
     public delegate void OnThriveopediaClosedEventHandler();
@@ -218,6 +268,15 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
 
         ThriveopediaManager.RemoveActiveThriveopedia(this);
         Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
+    }
+
+    public override void _Process(double delta)
+    {
+        searchTimer += delta;
+        if (isSearchDirty && searchTimer > 0.1)
+        {
+            BeginBackgroundSearch();
+        }
     }
 
     public override void _Notification(int what)
@@ -419,6 +478,8 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
             treeItem.Visible = false;
 
         page.Hide();
+
+        presearchCache = false;
     }
 
     /// <summary>
@@ -761,32 +822,149 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
 
     private void OnSearchUpdated(string newText)
     {
+        isSearchDirty = true;
+        currentSearchText = newText;
+        searchTimer = 0;
+    }
+
+    private void BeginBackgroundSearch()
+    {
+        if (!isSearchDirty)
+            return;
+
+        if (runningBackgroundSearch)
+        {
+            requestingNewSearch = true;
+            return;
+        }
+
+        runningBackgroundSearch = true;
+
+        if (!presearchCache)
+        {
+            // Cache the translated strings from GODOT to C#
+            foreach (var page in allPages)
+            {
+                _ = page.Key.TranslatedAdditionalSearchContent;
+                _ = page.Key.TranslatedPageBody;
+                _ = page.Key.TranslatedPageName;
+            }
+
+            presearchCache = true;
+        }
+
+        isSearchDirty = false;
+        string text = currentSearchText.ToLower(CultureInfo.CurrentCulture);
+
+        TaskExecutor.Instance.AddTask(new Task(() => DoBackgroundPageSearch(text)));
+    }
+
+    private void DoBackgroundPageSearch(string newText)
+    {
+        lock (backgroundThreadArrayLock)
+        {
+            if (allPages.Count > searchDistanceArray.Length)
+            {
+                searchDistanceArray = new int[allPages.Count];
+                visibilityArray = new bool[allPages.Count];
+            }
+
+            int lowestRawError = int.MaxValue;
+
+            int iterator = 0;
+            foreach (var page in allPages)
+            {
+                string pageName = page.Key.TranslatedPageName.ToLower(CultureInfo.CurrentCulture);
+
+                int costbetween = StringUtils.DoStringCostBetween(pageName, newText);
+
+                lowestRawError = Math.Min(lowestRawError, costbetween);
+
+                // removes the error from strings being bigger than the search text
+                searchDistanceArray[iterator] = costbetween - Math.Max(0, pageName.Length - newText.Length);
+                visibilityArray[iterator] = false;
+                ++iterator;
+            }
+
+            // A threshold for similar results
+            var costThreshold = searchDistanceArray.Take(allPages.Count).Min() + 1;
+            bool titleSearchOnly = lowestRawError < 2;
+
+            iterator = 0;
+            foreach (var page in allPages)
+            {
+                // TODO: maybe switch ToLower with something else since it does return "a copy"
+                // when it should just directly edit the string
+
+                bool visible = false;
+
+                string pageName = page.Key.TranslatedPageName.ToLower(CultureInfo.CurrentCulture);
+                if (newText == string.Empty
+                    || searchDistanceArray[iterator] <= costThreshold || pageName.Contains(newText))
+                    visible = true;
+
+                if (!visible && !titleSearchOnly)
+                {
+                    string? pageContent = page.Key.TranslatedPageBody?.ToLower(CultureInfo.CurrentCulture);
+                    string? additionalContent =
+                        page.Key.TranslatedAdditionalSearchContent?.ToLower(CultureInfo.CurrentCulture);
+                    if ((pageContent != null && pageContent.Contains(newText))
+                        || (additionalContent != null && additionalContent.Contains(newText)))
+                        visible = true;
+                }
+
+                visibilityArray[iterator] = visible;
+                ++iterator;
+            }
+        }
+
+        Invoke.Instance.Queue(ApplyVisibilityResults);
+    }
+
+    private void ApplyVisibilityResults()
+    {
         stageDropdown.Visible = false;
 
-        var newTextLowercase = newText.ToLower(CultureInfo.CurrentCulture);
-
-        foreach (var page in allPages)
+        lock (backgroundThreadArrayLock)
         {
-            var visible = page.Key.TranslatedPageName.ToLower(CultureInfo.CurrentCulture)
-                .Contains(newTextLowercase);
-
-            if (visible && page.Key is ThriveopediaStagePage)
+            // a fail check incase a new page was added in between calculating visibility and applying
+            bool countfail = allPages.Count > visibilityArray.Length;
+            int iterator = 0;
+            foreach (var page in allPages)
             {
-                // A stage page was found, so the stage dropdown should be shown (instead of individual pages)
-                visible = false;
+                bool isVisible = countfail ? true : visibilityArray[iterator];
 
-                if (!stageDropdown.Visible)
+                if (isVisible && page.Key is ThriveopediaStagePage)
                 {
-                    stageDropdown.Visible = true;
-                    SetParentPagesVisibility(stageDropdown, true);
-                }
-            }
+                    // A stage page was found, so the stage dropdown should be shown (instead of individual pages)
+                    isVisible = false;
 
-            page.Value.Visible = visible;
-            if (visible)
-            {
-                SetParentPagesVisibility(page.Value, true);
+                    if (!stageDropdown.Visible)
+                    {
+                        stageDropdown.Visible = true;
+                        SetParentPagesVisibility(stageDropdown, true);
+                    }
+                }
+
+                page.Value.Visible = isVisible;
+                if (isVisible)
+                {
+                    SetParentPagesVisibility(page.Value, true);
+                }
+
+                ++iterator;
             }
+        }
+
+        if (requestingNewSearch)
+        {
+            isSearchDirty = false;
+            TaskExecutor.Instance.AddTask(new Task(() => DoBackgroundPageSearch(currentSearchText)));
+            requestingNewSearch = false;
+        }
+        else
+        {
+            runningBackgroundSearch = false;
         }
     }
 
@@ -853,6 +1031,8 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
         {
             UpdatePageInTree(page.Value, page.Key);
         }
+
+        presearchCache = false;
     }
 
     private void PrintErrorAboutCurrentGame()

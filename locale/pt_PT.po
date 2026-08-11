@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-03 20:10+0100\n"
+"POT-Creation-Date: 2026-08-11 10:42+0300\n"
 "PO-Revision-Date: 2026-05-22 15:37+0000\n"
 "Last-Translator: AegisTTN <gamemastermine042004@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
@@ -53,6 +53,14 @@ msgstr ""
 #, fuzzy
 msgid "ACHIEVEMENTS"
 msgstr "Movimento Base"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr "Movimento Base"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr "Atualizar o jogo guardado selecionado falhou devido ao seguinte erro:"
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr ""
@@ -766,6 +774,19 @@ msgstr "Nome do tipo de célula"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Notas de alteração são demasiado longas"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr "Tipos de Membrana"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr ""
+"Micróbios ativos irão correr e cair quando nada de interessante acontecer.\n"
+"Micróbios sésseis ficarão parados e esperarão que o ambiente mude antes de agir."
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Mudar simetria"
@@ -2133,6 +2154,13 @@ msgstr ""
 "e podem ser mais ambicioso em relação aos pedaços.\n"
 "Micróbios reativos mudarão para novos alvos depois de algum tempo."
 
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION_MULTICELLULAR"
+msgstr ""
+"Os micróbios focados irão procurar por pedaços ou presas em distâncias maiores\n"
+"e podem ser mais ambicioso em relação aos pedaços.\n"
+"Micróbios reativos mudarão para novos alvos depois de algum tempo."
+
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
 msgstr ""
 
@@ -2247,6 +2275,9 @@ msgstr "Erro ao obter noticias"
 
 msgid "ERROR_LOADING"
 msgstr "Erro ao carregar"
+
+msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
 
 msgid "ERROR_SAVING"
 msgstr "Erro ao gravar"
@@ -2620,6 +2651,30 @@ msgstr "Visualizador de galeria"
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr "Equipa de Desenho do Jogo"
 
+#, fuzzy
+msgid "GAMETE_CELL_ENTITY_NAME"
+msgstr "Estaminal"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE"
+msgstr "Criar um novo tipo de célula"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_A"
+msgstr "Nome do tipo de célula"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_B"
+msgstr "Criar um novo tipo de célula"
+
+#, fuzzy
+msgid "GAMETE_PRODUCED"
+msgstr "reproduzido"
+
+#, fuzzy
+msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+msgstr "Mostrar / ocultar compostos"
+
 msgid "GAME_DESIGN_TEAM"
 msgstr "Equipa de Desenho do Jogo"
 
@@ -2934,6 +2989,10 @@ msgstr "  {0}: Encontrado em {1} espécies, com uma média de {2} cada"
 #, fuzzy
 msgid "INCOMPATIBLE_ORGANELLE_LIST"
 msgstr "Múltiplos Organelos"
+
+#, fuzzy
+msgid "INCOMPATIBLE_STAGE_LIST"
+msgstr "  {0}: Encontrado em {1} espécies, com uma média de {2} cada"
 
 #, fuzzy
 msgid "INCREASE_ITEM_SIZE"
@@ -3700,6 +3759,10 @@ msgstr "Quimiossíntese"
 #, fuzzy
 msgid "MACROSCOPIC"
 msgstr "Tornar-se Macroscópico ({0}/{1})"
+
+#, fuzzy
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr "Sem efeitos."
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4777,8 +4840,16 @@ msgid "NOTICE_READY_TO_EDIT"
 msgstr "O editor está pronto para ser utilizado"
 
 #, fuzzy
+msgid "NOTICE_READY_TO_SHOOT_GAMETE"
+msgstr "O editor está pronto para ser utilizado"
+
+#, fuzzy
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "Encontrar Região Atual"
+
+#, fuzzy
+msgid "NOT_ENOUGH_MUTATION_POINTS"
+msgstr "Pontos de Mutação"
 
 msgid "NOT_STARTED_DOT"
 msgstr "Não iniciada."
@@ -4963,6 +5034,10 @@ msgstr "Opções"
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Mudar as definições"
 
+#, fuzzy
+msgid "OPTION_USED_FOR_PLAYER"
+msgstr "Parado."
+
 msgid "ORGANELLES"
 msgstr "Organelos"
 
@@ -5085,6 +5160,10 @@ msgstr "Síntese de OxiToxi"
 
 #, fuzzy
 msgid "OXYGEN_RESISTANCE"
+msgstr "Resistência a Toxinas"
+
+#, fuzzy
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
 msgstr "Resistência a Toxinas"
 
 #, fuzzy
@@ -5219,6 +5298,10 @@ msgstr "Pacífico"
 
 #, fuzzy
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Estás a executar o Thrive com GLES2. Esta versão não foi testada severamente e pode causar problemas. Experimente atualizar os drivers da placa gráfica e/ou forçar a utilização da placa gráfica da AMD ou Nvidia."
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION_MULTICELLULAR"
 msgstr "Estás a executar o Thrive com GLES2. Esta versão não foi testada severamente e pode causar problemas. Experimente atualizar os drivers da placa gráfica e/ou forçar a utilização da placa gráfica da AMD ou Nvidia."
 
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
@@ -5564,6 +5647,10 @@ msgstr "Relatório"
 msgid "REPORT_BUG"
 msgstr "Comunicar um erro"
 
+#, fuzzy
+msgid "REPRODUCE"
+msgstr "reproduzido"
+
 msgid "REPRODUCED"
 msgstr "reproduzido"
 
@@ -5595,6 +5682,18 @@ msgstr "reproduzido"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reprodução:"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL"
+msgstr "Assexuada"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
+msgstr "Assexuada"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ISOGAMY"
+msgstr "Assexuada"
 
 #, fuzzy
 msgid "REPRODUCTION_SPORE"
@@ -6008,6 +6107,18 @@ msgstr "Séssil"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "Este valor só se aplica a novos jogos iniciados após alterar esta opção"
 
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr "(obter passivamente compostos de reprodução do ambiente sem ter de fazer nada)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(obter passivamente compostos de reprodução do ambiente sem ter de fazer nada)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+msgstr "Obter passivamente progresso de reprodução"
+
 msgid "SFX_VOLUME"
 msgstr "Volume de Efeitos"
 
@@ -6036,6 +6147,18 @@ msgstr "Mostrar tutoriais"
 #, fuzzy
 msgid "SHOW_MAP"
 msgstr "Mostrar ajuda"
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION"
+msgstr "Mostrar ajuda"
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION_EXPLANATION"
+msgstr ""
+"Micróbios agressivos perseguirão presas em distâncias maiores\n"
+"e são mais propensos a lutar contra predadores quando atacados.\n"
+"Micróbios pacíficos não se envolvem com os outros em distâncias maiores\n"
+"e são menos propensos a usar toxinas contra predadores."
 
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
@@ -6085,6 +6208,14 @@ msgstr "Pressione [thrive:input]g_pack_commands[/thrive:input] para abrir um men
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "Tornar-se Agressivo"
 
+#, fuzzy
+msgid "SIGNAL_COMMAND_CALL_MATE"
+msgstr "Ter comigo"
+
+#, fuzzy
+msgid "SIGNAL_COMMAND_FIRE_GAMETES"
+msgstr "Fugir"
+
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr "Fugir"
 
@@ -6108,6 +6239,10 @@ msgstr "Esta membrana possui uma forte parede de sílica. Ela pode resistir bem 
 
 #, fuzzy
 msgid "SIMULATION_CONFIG"
+msgstr "Custo de Osmorregulação"
+
+#, fuzzy
+msgid "SIMULATION_FACTOR"
 msgstr "Custo de Osmorregulação"
 
 msgid "SIXTEEN_TIMES"
@@ -6196,6 +6331,14 @@ msgstr "Impossível de usar o cheat de spawn inimigo porque esta região não co
 
 msgid "SPAWN_GLUCOSE"
 msgstr "Gerar glicose"
+
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL"
+msgstr "Gerar amoníaco"
+
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL_EXPLANATION"
+msgstr "(velocidade na qual as espécies de IA sofrem mutação)"
 
 msgid "SPAWN_PHOSPHATES"
 msgstr "Gerar fosfato"
@@ -6691,12 +6834,24 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr "Casa"
 
+#, fuzzy
+msgid "THRIVEOPEDIA_MUSEUM_PAGE_SEARCHTAGS"
+msgstr "Museu"
+
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Museu"
 
 #, fuzzy
+msgid "THRIVEOPEDIA_ORGANELLE_SEARCHTAGS"
+msgstr "Mundo Atual"
+
+#, fuzzy
 msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
 msgstr "Casa"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_SEARCHTAGS"
+msgstr "Mapa de regiões"
 
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr "Mapa de regiões"
@@ -6724,6 +6879,14 @@ msgstr "Museu"
 #, fuzzy
 msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
 msgstr "Museu"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_SEARCHTAGS"
+msgstr "Museu"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_SEARCHTAGS"
+msgstr "Mundo Atual"
 
 #, fuzzy
 msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
@@ -9805,9 +9968,6 @@ msgstr "Reduzir"
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "Quimiolitoautotrofia Férrica"
 
-#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
-#~ msgstr "Obter passivamente progresso de reprodução"
-
 #~ msgid "THANKS_FOR_BUYING_THRIVE"
 #~ msgstr ""
 #~ "Obrigado por apoiares o desenvolvimento do Thrive através da compra desta cópia!\n"
@@ -10128,12 +10288,6 @@ msgstr "Reduzir"
 #, fuzzy
 #~ msgid "PATCH_MAP_TYPE"
 #~ msgstr "Mapa de Regiões"
-
-#, fuzzy
-#~ msgid "PATCH_MAP_TYPE_EXPLANATION"
-#~ msgstr ""
-#~ "Micróbios ativos irão correr e cair quando nada de interessante acontecer.\n"
-#~ "Micróbios sésseis ficarão parados e esperarão que o ambiente mude antes de agir."
 
 #, fuzzy
 #~ msgid "LOOKING_AT"

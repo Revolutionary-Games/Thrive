@@ -210,6 +210,8 @@ public partial class SpawnSystem : BaseSystem<World, float>, ISpawnSystem, IArch
 
             if (worldSimulation.IsEntityInWorld(entity))
             {
+                // TODO: skip despawning things attached to the player?
+
                 despawned += spawned.EntityWeight;
                 worldSimulation.DestroyEntity(entity);
             }

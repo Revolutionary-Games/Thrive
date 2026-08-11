@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-03 20:10+0100\n"
-"PO-Revision-Date: 2026-06-04 08:52+0000\n"
+"POT-Creation-Date: 2026-08-11 10:42+0300\n"
+"PO-Revision-Date: 2026-07-30 04:16+0000\n"
 "Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ka/>\n"
 "Language: ka\n"
@@ -51,6 +51,13 @@ msgstr "თანხმობა"
 
 msgid "ACHIEVEMENTS"
 msgstr "მიღწევები"
+
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr "მიღწევების მონაცემთა ჩატვირთვა ჩავარდა"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr "მითითებულ შენახულზე აწევა ჩავარდა შემდეგი შეცდომით:"
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr "მიღწევები {0} / {1}"
@@ -176,7 +183,7 @@ msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
 msgstr "მცენარეული ლორწოს სეკრეცია, რომელიც თქვენს სიჩქარეს გაზრდის და შეამცირებს სიჩქარეს უჯრედებისას, რომლებიც ლორწოში გაიჭედნენ"
 
 msgid "ALTERNATVE_TIMESCALE"
-msgstr ""
+msgstr "ალტერნატიული დროის გრაფიკი"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "ყოველთვის ხილული"
@@ -552,7 +559,7 @@ msgid "BINDING_AGENT_DESCRIPTION"
 msgstr "საშუალებას გაძლევთ, სხვა უჯრედებს მიემაგროთ. ეს პირველი ნაბიჯია მრავალუჯრედიანობისკენ. როცა თქვენი უჯრედი კოლონიის ნაწილია, უჯრედები ნაერთებს იზიარებენ. თქვენ ვერ შეხვალთ რედაქტორში, როცა კოლონიის ნაწილი ბრძანდებით, ასე რომ, როგოც კი თქვენი უჯრედის გაყოფისთვის საკმარის ნაერთებს დააგროვებთ, სჯობს, მოსცილდეთ კოლონიას."
 
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
-msgstr "დააჭირეთ  [thrive:input]g_toggle_binding[/thrive:input]-ს, რათა ჩართოთ მიბმის რეჟიმი. მიბმის რეჟიმში შეგიძლიათ, თქვენი სახეობის სხვა უჯრედები თქვენს კოლონიას მიამაგროთ მათზე შეხებით. კოლონიის დატოვებისთვის დააჭირეთ [thrive:input]g_unbind_all[/thrive:input]-ს. თქვენ ვერ შეხვალთ რედაქტორში, სანამ სხვა უჯრედებზე ბრძანდებით მიბმული."
+msgstr "დააჭირეთ [thrive:input]g_toggle_binding[/thrive:input]-ს, რათა ჩართოთ მიბმის რეჟიმი. მიბმის რეჟიმში შეგიძლიათ, თქვენი სახეობის სხვა უჯრედები თქვენს კოლონიას მიამაგროთ მათზე შეხებით. კოლონიის დასატოვებლად დააჭირეთ ღილაკს [thrive:input]g_unbind_all[/thrive:input]. თქვენ ვერ შეხვალთ რედაქტორში, სანამ სხვა უჯრედებზე ბრძანდებით მიბმული."
 
 msgid "BIND_AXES_SENSITIVITY"
 msgstr "ღერძების ერთმანეთზე გადაბმა"
@@ -740,15 +747,26 @@ msgstr ""
 
 msgid "CELL_STAT_STORAGE_TOOLTIP"
 msgstr ""
-"უჯრედის შენახვის ტევადობა. უფრო მაღალი ტევადობა საშუალებას იძლევა ერთდროულად მეტი ნაერთის შენახვა.\n"
-"მაღალი ტევადობის მქონე უჯრედებს შეუძლიათ გამოიყენონ სტრატეგია, რომლის მიხედვითაც ისინი უსასრულოდ ვერ მოძრაობენ და საჭიროა გარკვეული დროით ATP-ის მარაგების „დატენვა“, რათა შემდეგ კვლავ შეძლონ მოძრაობა.\n"
-"გაითვალისწინეთ, რომ დაბალი შენახვის მოცულობამ შეიძლება გამოიწვიოს ATP-ის დეფიციტი მაშინაც კი, თუ ATP-ის ბალანსი დადებითია. ეს პრობლემები შეიძლება გაუარესდეს თამაშის ლაგის პიკების ან ზოგადი დაბალი წარმადობის გამო. მეტი შენახვის დამატება ამ პრობლემების მოგვარებაში ეხმარება."
+"უჯრედის შენახვის ტევადობა. უფრო მაღალი ტევადობა, ერთდროულად, მეტი ნაერთის შენახვის საშუალებას იძლევა.\n"
+"მაღალი ტევადობის მქონე უჯრედებს შეუძლიათ, გამოიყენონ სტრატეგია, რომლის მიხედვითაც ისინი უსასრულოდ ვერ მოძრაობენ და საჭიროა გარკვეული დროით ATP-ის მარაგების „დატენვა“, რათა შემდეგ კვლავ შეძლონ მოძრაობა.\n"
+"გაითვალისწინეთ, რომ დაბალი შენახვის მოცულობამ შეიძლება გამოიწვიოს ATP-ის დეფიციტი მაშინაც კი, თუ ATP-ის ბალანსი დადებითია.\n"
+"ეს პრობლემები, შეიძლება, გაუარესდეს თამაშის ლაგის პიკების, ან ზოგადი დაბალი წარმადობის გამო. მეტი შენახვის დამატება ამ პრობლემების მოგვარებაში ეხმარება."
 
 msgid "CELL_TYPE_NAME"
 msgstr "უჯრედის ტიპის სახელი"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "ცვლილების შენიშვნები მეტისმეტად გრძელია"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr "მემბრანის ტიპის შეცვლა"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr "(სიჩქარე, რომლითაც AI-ის სახეობები განიცდიან მუტაციას)"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "სიმეტრიის შეცვლა"
@@ -1094,7 +1112,8 @@ msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
 msgstr ""
 "ეს სექცია აჩვენებს, რამდენ ხანში ხარჯავს უჯრედი თითოეული ტიპის ნაერთს, როდესაც იწყებს სრული შენახვის მარაგიდან.\n"
 "ეს რიცხვები ყოველთვის ითვლება ისე, თითქოს ღამეა და შეიძლება გამოყენებულ იქნას იმის შესამოწმებლად, აქვს თუ არა უჯრედს საკმარისი შენახვის მოცულობა მთელი ღამის გადასატანად.\n"
-"მოძრაობის ხარჯის გამორთვა მონიშვნის ველით იძლევა მინიმალურ მნიშვნელობებს იმისთვის, რომ უჯრედმა შეძლოს ღამის გადატანა უძრავად დგომისას ენერგიის დაზოგვის მიზნით."
+"მოძრაობის ხარჯის გამორთვა მონიშვნის ველით იძლევა მინიმალურ მნიშვნელობებს იმისთვის,\n"
+"რომ უჯრედმა შეძლოს ღამის გადატანა უძრავად დგომისას ენერგიის დაზოგვის მიზნით."
 
 msgid "COMPOUND_TO_FIND"
 msgstr "საპოვნელი ნაერთი:"
@@ -1743,13 +1762,11 @@ msgstr "მიკრობის ფონების დამახინჯ�
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "ფონური ნაწილაკების ჩვენება"
 
-#, fuzzy
 msgid "DISPLAY_DRIVER_DIRECT3D"
-msgstr "OpenGL"
+msgstr "DirectX"
 
-#, fuzzy
 msgid "DISPLAY_DRIVER_METAL"
-msgstr "OpenGL"
+msgstr "Metal"
 
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr "OpenGL"
@@ -1978,6 +1995,10 @@ msgstr "ამ სახეობას ორგანელაში ვერ
 msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
 msgstr ""
 
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION_MULTICELLULAR"
+msgstr "პროკარიოტებს მაქსიმუმ ერთი ენდოსიმბიონტი შეიძლება ჰყავდეს"
+
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
 msgstr "პროკარიოტებს მაქსიმუმ ერთი ენდოსიმბიონტი შეიძლება ჰყავდეს"
 
@@ -2085,6 +2106,9 @@ msgstr "სიახლეების გამოთხოვის შეც�
 
 msgid "ERROR_LOADING"
 msgstr "ჩატვირთვის შეცდომა"
+
+msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
 
 msgid "ERROR_SAVING"
 msgstr "შენახვის შეცდომა"
@@ -2453,6 +2477,35 @@ msgstr "გალერეის დათვალიერება"
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr "თამაშის ძირითადი წესები"
 
+#, fuzzy
+msgid "GAMETE_CELL_ENTITY_NAME"
+msgstr "ღეროვანი"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE"
+msgstr "ახალი ტიპის უჯრედის შექმნა"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_A"
+msgstr "უჯრედის ტიპის სახელი"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_B"
+msgstr "ახალი ტიპის უჯრედის შექმნა"
+
+#, fuzzy
+msgid "GAMETE_PRODUCED"
+msgstr "რეპროდუცირებული"
+
+#, fuzzy
+msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+msgstr ""
+"ეს სექცია ატფ-ის ბალანსს აჩვენებს მიმდინარე უჯრედისთვის.\n"
+"იმისათვის, რომ გადარჩეთ, ბალანსი დადებითი უნდა იყოს. უმოძრაო უჯრედებმა ეს მოძრაობის გარეშე უნდა მოახერხონ.\n"
+"ქვემოთ ჩამოსაშლელი სია შეგიძლიათ, გამოიყენოთ, რომ შეამოწმოთ, რა მოხდება, თუ უჯრედს არ ჰქონდა ზოგიერთი რესურსი, ატფ შეექმნა.\n"
+"მაგალითად, ზოგიერთ უჯრედს, მხოლოდ, მაშინ შეუძლიათ დადებითი ატფ-ის ბალანი ჰქონდეთ, როცა აქვთ ერთზე მეტი ნაერთი, რომ ატფ შექმნან.\n"
+"ამ ტიპის უჯრედებით თამაში უფრო ძნელია, რადგან მათ გადასარჩენად ერთზე მეტი ნაერთი სჭირდებათ."
+
 msgid "GAME_DESIGN_TEAM"
 msgstr "თამაშის დიზაინის გუნდი"
 
@@ -2734,6 +2787,9 @@ msgstr "შეუთავსებელია მემბრანებთ�
 
 msgid "INCOMPATIBLE_ORGANELLE_LIST"
 msgstr "შეუთავსებელია მოთავსებულ ორგანელებთან: {0}"
+
+msgid "INCOMPATIBLE_STAGE_LIST"
+msgstr "ვერ შეიცვლება ფაზებში: {0}"
 
 msgid "INCREASE_ITEM_SIZE"
 msgstr "ობიექტის ზომის გაზრდა"
@@ -3401,10 +3457,10 @@ msgid "LOOK_RIGHT"
 msgstr "მარჯვნივ გახედვა"
 
 msgid "LOOK_SCREEN_DOWN_OR_3D_TOWARDS_UP"
-msgstr ""
+msgstr "ეკრანზე ქვემოდან ყურება, ან 3D-ში მაღლა ახედვა"
 
 msgid "LOOK_SCREEN_UP_OR_3D_TOWARDS_DOWN"
-msgstr ""
+msgstr "ეკრანზე ზემოდან ყურება, ან 3D-ში დაბლა დახედვა"
 
 msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
 msgstr "(დაბალი მნიშვნელობები ზრდის წარმადობას)"
@@ -3445,6 +3501,9 @@ msgstr "მაკროლიდის სინთეზი"
 msgid "MACROSCOPIC"
 msgstr "მაკროსკოპული"
 
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr "მაკროსკოპულ ფაზაში მემბრანას ვეღარ შეცვლით"
+
 msgid "MACROSCOPIC_EDITOR"
 msgstr "მაკროსკოპული რედაქტორი"
 
@@ -3473,11 +3532,10 @@ msgid "MARINE_SNOW"
 msgstr "ზღვის თოვლი"
 
 msgid "MASS_BUDDING_CELL_COUNT"
-msgstr ""
+msgstr "უჯრედების საწყისი რაოდენობა"
 
-#, fuzzy
 msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
-msgstr "აჩენს ერთ ნაშიერს—ახალი კოლონიის საწყის უჯრედს."
+msgstr "აჩენს ერთ ნაშიერს, რომელიც მრავალუჯრედიანია."
 
 msgid "MASTER_VOLUME"
 msgstr "საერთო ხმის დონე"
@@ -4235,9 +4293,8 @@ msgstr ""
 msgid "NEW"
 msgstr "ახალი"
 
-#, fuzzy
 msgid "NEWER"
-msgstr "ნახვა"
+msgstr "უფრო ახალი"
 
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -4349,8 +4406,15 @@ msgstr "დაზიანებულია მეტისმეტი რა�
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "რედაქტორი ახლა ხელმისაწვდომია"
 
+#, fuzzy
+msgid "NOTICE_READY_TO_SHOOT_GAMETE"
+msgstr "რედაქტორი ახლა ხელმისაწვდომია"
+
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "მიმდინარე ბიომის პირობებთან შეგუებული არაა. შეცვალეთ სასურველი პირობები, ან გამძლეობის შუალედები, რომ მოაცილოთ უარყოფითი ეფექტები."
+
+msgid "NOT_ENOUGH_MUTATION_POINTS"
+msgstr "არასაკმარისი მუტაციის ქულები"
 
 msgid "NOT_STARTED_DOT"
 msgstr "არ დაწყებულა."
@@ -4438,9 +4502,8 @@ msgstr "ეწვიეთ Revolutionary Games-ის ოფიციალუ�
 msgid "OK"
 msgstr "დიახ"
 
-#, fuzzy
 msgid "OLDER"
-msgstr "საქაღალდის გახსნა"
+msgstr "უფრო ძველი"
 
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -4518,6 +4581,10 @@ msgstr "მორგება"
 
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "თქვენი პარამეტრების შეცვლა"
+
+#, fuzzy
+msgid "OPTION_USED_FOR_PLAYER"
+msgstr "დაპაუზებული."
 
 msgid "ORGANELLES"
 msgstr "ორგანელები"
@@ -4627,6 +4694,10 @@ msgid "OXYGEN_INHIBITOR_SYNTHESIS"
 msgstr "ჟანგბადის ინჰიბიტორის სინთეზი"
 
 msgid "OXYGEN_RESISTANCE"
+msgstr "ჟანგბადგამძლეობა"
+
+#, fuzzy
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
 msgstr "ჟანგბადგამძლეობა"
 
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
@@ -4751,6 +4822,10 @@ msgstr "მშვიდობიანი"
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
 msgstr ""
 
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION_MULTICELLULAR"
+msgstr "ენდოსიმბიოზის პროცესის დასრულების მოლოდინი"
+
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
 msgstr "ენდოსიმბიოზის პროცესის დასრულების მოლოდინი"
 
@@ -4794,7 +4869,7 @@ msgid "PIN_BUTTON_TOOLTIP"
 msgstr "აამაგრეთ ეს გვერდი, რომ ყოველთვის ხედავდეთ მას იმის მაგიერ, რომ ის წაიშალოს სხვა გვერდზე გადასვლისას"
 
 msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
-msgstr ""
+msgstr "მოთავსება დაიბლოკა, რადგან მიმდინარე მემბრანა ამ ორგანელასთან თავსებადი არაა"
 
 msgid "PLACE_ORGANELLE"
 msgstr "ორგანელას (ან სხვა მოთავსებადი საგნის) მოთავსება"
@@ -4994,9 +5069,8 @@ msgstr "რადიაციის დონე"
 msgid "RADIOACTIVE_CHUNK"
 msgstr "რადიაქტიური ქვის ნატეხი"
 
-#, fuzzy
 msgid "RADIOACTIVE_CHUNK_BANANA"
-msgstr "რადიაქტიური ქვის ნატეხი"
+msgstr "რადიოაქტიური ბანანის ნაგლეჯი"
 
 msgid "RADIOSYNTHESIS"
 msgstr "რადიოსინთეზი"
@@ -5058,6 +5132,10 @@ msgstr "ანგარიში"
 msgid "REPORT_BUG"
 msgstr "შეცდომის ანგარიშის გაგზავნა"
 
+#, fuzzy
+msgid "REPRODUCE"
+msgstr "რეპროდუცირებული"
+
 msgid "REPRODUCED"
 msgstr "რეპროდუცირებული"
 
@@ -5079,12 +5157,23 @@ msgstr "(რა მოხდება, როცა მოთამაშის 
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 msgstr ""
 
-#, fuzzy
 msgid "REPRODUCTION_MASS_BUDDING"
-msgstr "გამრავლება"
+msgstr "მასიური დაკვირტვა"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "რეპროდუქცია:"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL"
+msgstr "ასექსუალური"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
+msgstr "ასექსუალური"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ISOGAMY"
+msgstr "ასექსუალური"
 
 msgid "REPRODUCTION_SPORE"
 msgstr "სპორულაცია"
@@ -5472,6 +5561,18 @@ msgstr "მჯდომარე"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "ეს მნიშვნელობა, მხოლოდ, ახალ თამაშებს შეეხებათ, რომლებსაც ამ პარამეტრის ცვლილების შემდეგ დაიწყებთ"
 
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr "გამოიმუშავებს მრავალ, სურვილის შემთხვევაში სპეციალიზებულ ნაშიერს, რომელსაც შეუძლია, უკეთესი პირობები მოძებნოს, სანამ კოლონიის საწყის უჯრედად გადაიქცევა."
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "გამოიმუშავებს მრავალ, სურვილის შემთხვევაში სპეციალიზებულ ნაშიერს, რომელსაც შეუძლია, უკეთესი პირობები მოძებნოს, სანამ კოლონიის საწყის უჯრედად გადაიქცევა."
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+msgstr "რეპროდუქციის პროგრესის პასიური მიღება"
+
 msgid "SFX_VOLUME"
 msgstr "SFX ხმა"
 
@@ -5495,6 +5596,18 @@ msgstr "კოორდინატების ჩვენება"
 
 msgid "SHOW_MAP"
 msgstr "რუკის ჩვენება"
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION"
+msgstr "რუკის ჩვენება"
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION_EXPLANATION"
+msgstr ""
+"აგრესიულ მიკრობები მსხვერპლს დიდ მანძილზე გამოეკიდებიან\n"
+"და დიდი შანსით პასუხს გასცემენ, როცა ვინმე მათ უტევს.\n"
+"მშვიდობიანი მიკრობები დიდ მანძილზე არ გადაადგილდებიან\n"
+"და მტაცებლების წინააღმდეგ, დიდი შანსით, ტოქსინებს იყენებენ."
 
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "ახალი პაჩის შენიშვნების ავტომატური ჩვენება"
@@ -5538,6 +5651,14 @@ msgstr "გეჭიროთ ღილაკზე [thrive:input]g_pack_command
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "აგრესიულად გახდომა"
 
+#, fuzzy
+msgid "SIGNAL_COMMAND_CALL_MATE"
+msgstr "ჩემსკენ გადაადგილება"
+
+#, fuzzy
+msgid "SIGNAL_COMMAND_FIRE_GAMETES"
+msgstr "გაიქეცი"
+
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr "გაიქეცი"
 
@@ -5561,6 +5682,11 @@ msgstr ""
 
 msgid "SIMULATION_CONFIG"
 msgstr "სიმულაცია"
+
+msgid "SIMULATION_FACTOR"
+msgstr ""
+"სიმულაციის\n"
+"კოეფიციენტი"
 
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
@@ -5640,6 +5766,14 @@ msgstr "მტრის გაჩენის ჩიტის გამოყე
 msgid "SPAWN_GLUCOSE"
 msgstr "გლუკოზის შექმნა"
 
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL"
+msgstr "ამიაკის შექმნა"
+
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL_EXPLANATION"
+msgstr "(სიჩქარე, რომლითაც AI-ის სახეობები განიცდიან მუტაციას)"
+
 msgid "SPAWN_PHOSPHATES"
 msgstr "ფოსფატის შექმნა"
 
@@ -5710,9 +5844,8 @@ msgstr "{0} პოპულაციით: {1}"
 msgid "SPEED_COLON"
 msgstr "სიჩქარე:"
 
-#, fuzzy
 msgid "SPEED_TOGGLE_TOOLTIP"
-msgstr "გადართვა თამაშის ნორმალურ და ორმაგ სიჩქარეს შორის"
+msgstr "გადართვა თამაშის ნორმალურ და ალტერნატიულ სიჩქარეებს შორის"
 
 msgid "SPORE_CELL_TYPE"
 msgstr "სპორის უჯრედის ტიპი"
@@ -6074,9 +6207,8 @@ msgstr "მიმდინარე სამყარო"
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr "ევოლუციის ხე"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
-msgstr "Thriveopedia-ის გახსნა"
+msgstr "ეს სახეობა გადაშენდა და სამყაროს ნაწილი არარაა. ამიტომ მისი დეტალები ცნობილი აღარაა. სახეობას ჰქონდა ID {0}."
 
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr "Thriveopedia-ის გახსნა"
@@ -6087,18 +6219,29 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr "საწყისი"
 
+#, fuzzy
+msgid "THRIVEOPEDIA_MUSEUM_PAGE_SEARCHTAGS"
+msgstr "მუზეუმი"
+
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "მუზეუმი"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_ORGANELLE_SEARCHTAGS"
+msgstr "სახეობები"
 
 msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
 msgstr "გადაშენებული სახეობები {0}"
 
+#, fuzzy
+msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_SEARCHTAGS"
+msgstr "ბიომების რუკა"
+
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr "ბიომების რუკა"
 
-#, fuzzy
 msgid "THRIVEOPEDIA_SPECIES_EVOLUTIONARY_LINK_EXPLANATION"
-msgstr "ევოლუციის ხე"
+msgstr "ამჟამად ზედა ღილაკი უბრალოდ ხსნის ზოგადი ევოლუციის ხეს და არ ახდენს ავტომატურ ფოკუსირებას ამ სპეციფიკურ ჯიშზზე. ეს ფუნქცია, შეიძლება, მომავალში დაემატოს."
 
 msgid "THRIVEOPEDIA_SPECIES_PAGE"
 msgstr "{0}"
@@ -6117,6 +6260,14 @@ msgstr "მუზეუმი"
 msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
 msgstr "ამაგრებული სახეობები"
 
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_SEARCHTAGS"
+msgstr "{0}"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_SEARCHTAGS"
+msgstr "სახეობები"
+
 msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
 msgstr "სახეობები"
 
@@ -6127,7 +6278,7 @@ msgid "THRIVIN_ACHIEVEMENT"
 msgstr "გაიხარე"
 
 msgid "THRUST_FORCE"
-msgstr ""
+msgstr "გაწევა"
 
 msgid "THYLAKOIDS"
 msgstr "თილაკოკოიდები"
@@ -8571,9 +8722,6 @@ msgstr "დაპატარავება"
 
 #~ msgid "SHOW_TUTORIALS"
 #~ msgstr "სახელმძღვანელოების ჩვენება"
-
-#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
-#~ msgstr "რეპროდუქციის პროგრესის პასიური მიღება"
 
 #~ msgid "MIGRATE"
 #~ msgstr "მიგრაცია"

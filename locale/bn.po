@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-03 20:10+0100\n"
+"POT-Creation-Date: 2026-08-11 10:42+0300\n"
 "PO-Revision-Date: 2023-09-10 12:18+0000\n"
 "Last-Translator: Mahbeer Alam Sarker <mahbeeralamsarker@gmail.com>\n"
 "Language-Team: Bengali <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bn/>\n"
@@ -51,6 +51,13 @@ msgstr "গ্রহণ"
 
 msgid "ACHIEVEMENTS"
 msgstr ""
+
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr ""
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr "সবাত নাইট্রোজেন ফিক্সেশন"
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr ""
@@ -713,6 +720,16 @@ msgid "CELL_TYPE_NAME"
 msgstr ""
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
+msgstr ""
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr ""
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr "(এআই প্রজাতির পরিবর্তনের গতি)"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
 msgstr ""
 
 msgid "CHANGE_THE_SYMMETRY"
@@ -1922,6 +1939,14 @@ msgstr ""
 "শান্তিপূর্ণ জীবাণুরা বেশি দূরত্বে অন্যদের নিযুক্ত করবে না\n"
 "এবং শিকারীদের বিরুদ্ধে বিষ ব্যবহার করার সম্ভাবনা কম।"
 
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION_MULTICELLULAR"
+msgstr ""
+"আক্রমণাত্মক জীবাণু বেশি দূরত্বে শিকারকে তাড়া করবে\n"
+"এবং আক্রমনিত হওয়ার পর শিকারীদের সাথে লড়াই করার সম্ভাবনা বেশি।\n"
+"শান্তিপূর্ণ জীবাণুরা বেশি দূরত্বে অন্যদের নিযুক্ত করবে না\n"
+"এবং শিকারীদের বিরুদ্ধে বিষ ব্যবহার করার সম্ভাবনা কম।"
+
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
 msgstr ""
 
@@ -2026,6 +2051,9 @@ msgid "ERROR_FETCHING_NEWS"
 msgstr ""
 
 msgid "ERROR_LOADING"
+msgstr ""
+
+msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
 msgstr ""
 
 msgid "ERROR_SAVING"
@@ -2378,6 +2406,25 @@ msgstr ""
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr ""
 
+msgid "GAMETE_CELL_ENTITY_NAME"
+msgstr ""
+
+msgid "GAMETE_CELL_TYPE"
+msgstr ""
+
+msgid "GAMETE_CELL_TYPE_A"
+msgstr ""
+
+msgid "GAMETE_CELL_TYPE_B"
+msgstr ""
+
+msgid "GAMETE_PRODUCED"
+msgstr ""
+
+#, fuzzy
+msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+msgstr "জাগ্রত পর্যায়ে চলে যাওয়া। আপনার পর্যাপ্ত মস্তিষ্কের শক্তি (অ্যাক্সন সহ টিস্যু টাইপ) থাকলে উপলব্ধ।"
+
 msgid "GAME_DESIGN_TEAM"
 msgstr ""
 
@@ -2665,6 +2712,9 @@ msgid "INCOMPATIBLE_MEMBRANE_LIST"
 msgstr ""
 
 msgid "INCOMPATIBLE_ORGANELLE_LIST"
+msgstr ""
+
+msgid "INCOMPATIBLE_STAGE_LIST"
 msgstr ""
 
 msgid "INCREASE_ITEM_SIZE"
@@ -3384,6 +3434,10 @@ msgstr "সবাত নাইট্রোজেন ফিক্সেশন"
 
 msgid "MACROSCOPIC"
 msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr "সবাত নাইট্রোজেন ফিক্সেশন"
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4277,7 +4331,13 @@ msgstr ""
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
+msgid "NOTICE_READY_TO_SHOOT_GAMETE"
+msgstr ""
+
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
+msgstr ""
+
+msgid "NOT_ENOUGH_MUTATION_POINTS"
 msgstr ""
 
 msgid "NOT_STARTED_DOT"
@@ -4449,6 +4509,9 @@ msgstr ""
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr ""
 
+msgid "OPTION_USED_FOR_PLAYER"
+msgstr ""
+
 msgid "ORGANELLES"
 msgstr ""
 
@@ -4558,6 +4621,9 @@ msgid "OXYGEN_INHIBITOR_SYNTHESIS"
 msgstr ""
 
 msgid "OXYGEN_RESISTANCE"
+msgstr ""
+
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
 msgstr ""
 
 #, fuzzy
@@ -4681,6 +4747,14 @@ msgstr ""
 
 #, fuzzy
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr ""
+"আক্রমণাত্মক জীবাণু বেশি দূরত্বে শিকারকে তাড়া করবে\n"
+"এবং আক্রমনিত হওয়ার পর শিকারীদের সাথে লড়াই করার সম্ভাবনা বেশি।\n"
+"শান্তিপূর্ণ জীবাণুরা বেশি দূরত্বে অন্যদের নিযুক্ত করবে না\n"
+"এবং শিকারীদের বিরুদ্ধে বিষ ব্যবহার করার সম্ভাবনা কম।"
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION_MULTICELLULAR"
 msgstr ""
 "আক্রমণাত্মক জীবাণু বেশি দূরত্বে শিকারকে তাড়া করবে\n"
 "এবং আক্রমনিত হওয়ার পর শিকারীদের সাথে লড়াই করার সম্ভাবনা বেশি।\n"
@@ -4997,6 +5071,10 @@ msgstr ""
 msgid "REPORT_BUG"
 msgstr ""
 
+#, fuzzy
+msgid "REPRODUCE"
+msgstr "সবাত নাইট্রোজেন ফিক্সেশন"
+
 msgid "REPRODUCED"
 msgstr ""
 
@@ -5027,6 +5105,18 @@ msgstr "সবাত নাইট্রোজেন ফিক্সেশন"
 
 msgid "REPRODUCTION_METHOD"
 msgstr ""
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL"
+msgstr "সবাত নাইট্রোজেন ফিক্সেশন"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
+msgstr "সবাত নাইট্রোজেন ফিক্সেশন"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ISOGAMY"
+msgstr "সবাত নাইট্রোজেন ফিক্সেশন"
 
 #, fuzzy
 msgid "REPRODUCTION_SPORE"
@@ -5413,6 +5503,17 @@ msgstr ""
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr "(এআই প্রজাতির পরিবর্তনের গতি)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(এআই প্রজাতির পরিবর্তনের গতি)"
+
+msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+msgstr ""
+
 msgid "SFX_VOLUME"
 msgstr ""
 
@@ -5437,6 +5538,13 @@ msgstr ""
 
 msgid "SHOW_MAP"
 msgstr ""
+
+msgid "SHOW_MATE_POSITION"
+msgstr ""
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION_EXPLANATION"
+msgstr "(এআই প্রজাতির পরিবর্তনের গতি)"
 
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr ""
@@ -5482,6 +5590,12 @@ msgstr ""
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr ""
 
+msgid "SIGNAL_COMMAND_CALL_MATE"
+msgstr ""
+
+msgid "SIGNAL_COMMAND_FIRE_GAMETES"
+msgstr ""
+
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr ""
 
@@ -5505,6 +5619,10 @@ msgstr ""
 
 msgid "SIMULATION_CONFIG"
 msgstr ""
+
+#, fuzzy
+msgid "SIMULATION_FACTOR"
+msgstr "এআই প্রজাতির পরিবর্তন"
 
 msgid "SIXTEEN_TIMES"
 msgstr ""
@@ -5583,6 +5701,13 @@ msgstr ""
 
 msgid "SPAWN_GLUCOSE"
 msgstr ""
+
+msgid "SPAWN_MATE_ON_CALL"
+msgstr ""
+
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL_EXPLANATION"
+msgstr "(এআই প্রজাতির পরিবর্তনের গতি)"
 
 msgid "SPAWN_PHOSPHATES"
 msgstr ""
@@ -6029,11 +6154,23 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVEOPEDIA_MUSEUM_PAGE_SEARCHTAGS"
+msgstr "সবাত নাইট্রোজেন ফিক্সেশন"
+
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVEOPEDIA_ORGANELLE_SEARCHTAGS"
+msgstr "প্রজাতিকে মিউটেশন করা নিষিদ্ধ করুন (যদি কোন ভাল মিউটেশন পাওয়া না যায়)"
+
 msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
 msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_SEARCHTAGS"
+msgstr "সবাত নাইট্রোজেন ফিক্সেশন"
 
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr ""
@@ -6058,6 +6195,14 @@ msgstr ""
 
 msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_SEARCHTAGS"
+msgstr "প্রজাতিকে মিউটেশন করা নিষিদ্ধ করুন (যদি কোন ভাল মিউটেশন পাওয়া না যায়)"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_SEARCHTAGS"
+msgstr "প্রজাতিকে মিউটেশন করা নিষিদ্ধ করুন (যদি কোন ভাল মিউটেশন পাওয়া না যায়)"
 
 #, fuzzy
 msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"

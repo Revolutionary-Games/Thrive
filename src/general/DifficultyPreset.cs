@@ -89,6 +89,12 @@ public class DifficultyPreset : RegistryType, IDifficulty
     [JsonProperty]
     public bool OrganelleUnlocksEnabled { get; private set; }
 
+    [JsonProperty]
+    public bool SpawnCompatibleMateOnCall { get; private set; }
+
+    [JsonProperty]
+    public bool ShowMatePosition { get; private set; }
+
     public override ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.DifficultyPreset;
 
     [JsonIgnore]

@@ -30,7 +30,7 @@ public static class EntityWorldSerializers
 
         // Don't write non-alive entities or entities that no longer want to be saved.
         // Also, we need to explicitly check for 0-initialised entities as they are not valid to check for alive.
-        if (manager.SkipSavingEntity(entity) || entity == Entity.Null || entity.IsAllZero() || !entity.IsAlive())
+        if (entity.IsAllZero() || manager.SkipSavingEntity(entity) || entity == Entity.Null || !entity.IsAlive())
         {
             entity = Entity.Null;
         }
@@ -154,7 +154,7 @@ public static class EntityWorldSerializers
         var manager = (ISaveContext)reader.ReadManager;
 
         // Start the new world
-        var world = World.Create();
+        var world = ThriveWorld.Create();
 
         if (manager.ProcessedEntityWorld != null)
             throw new FormatException("Entity World deserialization is not re-entrant");

@@ -15,7 +15,7 @@ using Systems;
 /// </summary>
 public struct MulticellularGrowth : IArchivableComponent
 {
-    public const ushort SERIALIZATION_VERSION = 3;
+    public const ushort SERIALIZATION_VERSION = 4;
 
     /// <summary>
     ///   List of cells that need to be regrown, after being lost, in
@@ -51,7 +51,12 @@ public struct MulticellularGrowth : IArchivableComponent
 
     public bool IsASpore;
 
-    public bool SpawnedInitialMassBuddingCells;
+    public MulticellularMassBuddingState MassBuddingState = MulticellularMassBuddingState.NotSpawned;
+
+    /// <summary>
+    ///   What compounds need to be added after mass budding is done that otherwise would be over limit
+    /// </summary>
+    public Dictionary<Compound, float>? MassBuddingDelayedCompoundStorage;
 
     public MulticellularGrowth(MulticellularSpecies species)
     {
@@ -66,8 +71,12 @@ public struct MulticellularGrowth : IArchivableComponent
         this.CalculateTotalBodyPlanCompounds(species);
     }
 
+    /// <summary>
+    ///   If the colony is fully grown (and is not a spore as the initial spore may not be the same as the grown
+    ///   colony even if there's just one cell as the spore type can be different)
+    /// </summary>
     public bool IsFullyGrownMulticellular => NextBodyPlanCellToGrowIndex >=
-        (TargetCellLayout?.Count ?? throw new InvalidOperationException("Unknown full layout"));
+        (TargetCellLayout?.Count ?? throw new InvalidOperationException("Unknown full layout")) && !IsASpore;
 
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
     public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentMulticellularGrowth;
@@ -105,7 +114,16 @@ public struct MulticellularGrowth : IArchivableComponent
         writer.Write(EnoughResourcesForBudding);
 
         writer.Write(IsASpore);
-        writer.Write(SpawnedInitialMassBuddingCells);
+        writer.Write((int)MassBuddingState);
+
+        if (MassBuddingDelayedCompoundStorage != null)
+        {
+            writer.WriteObject(MassBuddingDelayedCompoundStorage);
+        }
+        else
+        {
+            writer.WriteNullObject();
+        }
     }
 }
 
@@ -144,7 +162,18 @@ public static class MulticellularGrowthHelpers
 
         if (version >= 3)
         {
-            instance.SpawnedInitialMassBuddingCells = reader.ReadBool();
+            if (version >= 4)
+            {
+                instance.MassBuddingState = (MulticellularMassBuddingState)reader.ReadInt32();
+
+                instance.MassBuddingDelayedCompoundStorage = reader.ReadObjectOrNull<Dictionary<Compound, float>>();
+            }
+            else
+            {
+                instance.MassBuddingState = reader.ReadBool() ?
+                    MulticellularMassBuddingState.Spawned :
+                    MulticellularMassBuddingState.NotSpawned;
+            }
         }
 
         return instance;
@@ -213,7 +242,7 @@ public static class MulticellularGrowthHelpers
         // immediately. Same goes for a few more cells if the species uses the mass budding reproduction method,
         // but that is handled separately by MulticellularGrowthSystem
         multicellularGrowth.NextBodyPlanCellToGrowIndex = 1;
-        multicellularGrowth.SpawnedInitialMassBuddingCells = false;
+        multicellularGrowth.MassBuddingState = MulticellularMassBuddingState.NotSpawned;
         multicellularGrowth.EnoughResourcesForBudding = false;
 
         multicellularGrowth.CompoundsNeededForNextCell = null;
@@ -355,7 +384,34 @@ public static class MulticellularGrowthHelpers
                 return total;
             }
 
-            throw new NotImplementedException($"Reproduction method's reproduction cost calculation is" +
+            if (species.ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy)
+            {
+                return species.ModifiableGameteTypeA?.CalculateTotalCompositionList() ??
+                    throw new Exception("Species using sexual reproduction is missing a gamete type");
+            }
+
+            if (species.ReproductionMethod is MulticellularReproductionMethod.SexualAnisogamy)
+            {
+                // Just need compounds for the gamete cell, however, as we don't track the sex, just take an average
+                var result = species.ModifiableGameteTypeA?.CalculateTotalCompositionList() ??
+                    throw new Exception("Species using sexual reproduction is missing a gamete type");
+
+                if (species.ModifiableGameteTypeB == null)
+                    throw new Exception("Species using sexual reproduction is missing a gamete type");
+
+                species.ModifiableGameteTypeB.CalculateTotalCompositionList(result);
+
+                int count = result.Count;
+                for (int i = 0; i < count; ++i)
+                {
+                    var (type, amount) = result[i];
+                    result[i] = (type, amount * 0.5f);
+                }
+
+                return result;
+            }
+
+            throw new NotImplementedException($"Reproduction method's reproduction cost calculation is " +
                 $"unimplemented: {species.ReproductionMethod}");
         }
 
@@ -364,30 +420,166 @@ public static class MulticellularGrowthHelpers
     }
 
     public static void CalculateTotalBodyPlanCompounds(this ref MulticellularGrowth multicellularGrowth,
-        Species species)
+        MulticellularSpecies species)
     {
         multicellularGrowth.TotalNeededForMulticellularGrowth ??= new Dictionary<Compound, float>();
         multicellularGrowth.TotalNeededForMulticellularGrowth.Clear();
 
-        foreach (var cell in multicellularGrowth.TargetCellLayout ??
-                 throw new InvalidOperationException("Unknown target layout"))
+        var layout = multicellularGrowth.TargetCellLayout ??
+            throw new InvalidOperationException("Unknown target layout");
+
+        int nextCellCostToCalculate = 0;
+
+        // First, calculate reproduction cost based on the type
+        switch (species.ReproductionMethod)
         {
-            multicellularGrowth.TotalNeededForMulticellularGrowth.Merge(cell.ModifiableCellType
+            case MulticellularReproductionMethod.Budding:
+                // Base budding is the simple case that has no adjustments needed
+                break;
+            case MulticellularReproductionMethod.MassBudding:
+                // When growing mass budding technically skips the first cells, but they are taken as an extra cost
+                // at the end, so it should all balance out
+                break;
+
+            case MulticellularReproductionMethod.Sporulation:
+            {
+                if (species.ModifiableSporeCellType == null)
+                    throw new InvalidOperationException("Species has no spore cell type but uses spore reproduction");
+
+                // Sporulation skips the first cell but adds the spore cost
+                multicellularGrowth.TotalNeededForMulticellularGrowth.Merge(species.ModifiableSporeCellType
+                    .CalculateTotalComposition());
+                nextCellCostToCalculate = 1;
+                break;
+            }
+
+            case MulticellularReproductionMethod.SexualIsogamy:
+            {
+                if (species.ModifiableGameteTypeA == null)
+                    throw new InvalidOperationException("Species has no gamete A type but uses sexual reproduction");
+
+                multicellularGrowth.TotalNeededForMulticellularGrowth.Merge(species.ModifiableGameteTypeA
+                    .CalculateTotalComposition());
+                nextCellCostToCalculate = 1;
+                break;
+            }
+
+            case MulticellularReproductionMethod.SexualAnisogamy:
+            {
+                if (species.ModifiableGameteTypeA == null || species.ModifiableGameteTypeB == null)
+                {
+                    throw new InvalidOperationException(
+                        "Species has a missing gamete type type but uses sexual reproduction");
+                }
+
+                // Take an average of the two gametes as we don't represent cell sexes (yet)
+                var localCost = species.ModifiableGameteTypeA.CalculateTotalComposition();
+                localCost.Merge(species.ModifiableGameteTypeB.CalculateTotalComposition());
+
+                foreach (var localCostKey in localCost.Keys)
+                {
+                    localCost[localCostKey] /= 2;
+                }
+
+                multicellularGrowth.TotalNeededForMulticellularGrowth.Merge(localCost);
+                nextCellCostToCalculate = 1;
+                break;
+            }
+
+            default:
+                throw new ArgumentOutOfRangeException(
+                    $"Reproduction method's precalculated cost is unimplemented for: {species.ReproductionMethod}");
+        }
+
+        // Then add the remaining cost from rest of the body that needs to grow
+        int count = layout.Count;
+        for (int i = nextCellCostToCalculate; i < count; ++i)
+        {
+            multicellularGrowth.TotalNeededForMulticellularGrowth.Merge(layout[i].ModifiableCellType
                 .CalculateTotalComposition());
         }
 
+        // And finally, add the base reproduction cost
         multicellularGrowth.TotalNeededForMulticellularGrowth.Merge(species.BaseReproductionCost);
     }
 
-    public static void GerminateSpore(this ref MulticellularGrowth multicellularGrowth,
+    /// <summary>
+    ///   Shoots a gamete cell from the given entity.
+    /// </summary>
+    public static void ShootGamete(this ref MulticellularGrowth multicellularGrowth, ref MicrobeColony colony,
+        in Entity entity, MulticellularSpecies species, IWorldSimulation worldSimulation,
+        IMicrobeSpawnEnvironment spawnEnvironment, ISpawnSystem spawnerToRegisterWith, bool isPlayer)
+    {
+        // Pick the cell's sex to shoot a gamete
+        var targetGamete = entity.Get<MicrobeSex>().Sex;
+
+        if (species.ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy)
+        {
+            // Same gamete type so doesn't matter
+            targetGamete = GameteType.All;
+        }
+
+        // Get the cell type used for the gamete
+        CellType? targetCellType;
+        if (targetGamete == GameteType.B)
+        {
+            targetCellType = species.ModifiableGameteTypeB;
+        }
+        else
+        {
+            targetCellType = species.ModifiableGameteTypeA;
+        }
+
+        if (targetCellType == null)
+        {
+            GD.PrintErr("Species is missing configured gamete type that should have been spawned");
+            return;
+        }
+
+        ref var position = ref entity.Get<WorldPosition>();
+
+        Vector3 initialVelocity = (position.Rotation * Vector3.Forward) * Constants.GAMETE_INITIAL_VELOCITY;
+        Vector3 initialPosition = position.Position;
+
+        // Find the closest cell towards the initial velocity and pick it
+        float distance = float.MaxValue;
+
+        foreach (var colonyMember in colony.ColonyMembers)
+        {
+            try
+            {
+                var memberPosition = colonyMember.Get<WorldPosition>().Position;
+                var newDistance = memberPosition.DistanceSquaredTo(initialVelocity);
+                if (newDistance < distance)
+                {
+                    distance = newDistance;
+                    initialPosition = memberPosition;
+                }
+            }
+            catch (Exception e)
+            {
+                GD.PrintErr("Couldn't check colony member for gamete shooting position: ", e);
+            }
+        }
+
+        SpawnHelpers.SpawnGamete(worldSimulation, spawnEnvironment, spawnerToRegisterWith, species, initialPosition,
+            initialVelocity, targetGamete, targetCellType, !isPlayer, entity);
+
+        // Need to gather resources again.
+        // Gamete consumed the resources.
+        multicellularGrowth.EnoughResourcesForBudding = false;
+        multicellularGrowth.CompoundsNeededForNextCell = null;
+    }
+
+    public static bool GerminateSpore(this ref MulticellularGrowth multicellularGrowth,
         in Entity entity, IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment microbeSpawnEnvironment,
         List<Hex> workMemory1, List<Hex> workMemory2)
     {
         if (!entity.Has<MulticellularSpeciesMember>())
-            return;
+            return false;
 
         if (!multicellularGrowth.IsASpore)
-            return;
+            return false;
 
         ref var control = ref entity.Get<MicrobeControl>();
 
@@ -415,6 +607,8 @@ public static class MulticellularGrowthHelpers
         cellProperties.ReApplyCellTypeProperties(ref environmentalEffects, entity,
             multicellularSpeciesType.MulticellularCellType, multicellularSpeciesType.Species, totalSpecializationBonus,
             worldSimulation, workMemory1, workMemory2);
+
+        return true;
     }
 
     public static void SpawnInitialMassBuddingCells(this ref MulticellularGrowth multicellularGrowth, in Entity entity,
@@ -426,7 +620,7 @@ public static class MulticellularGrowthHelpers
             GD.PrintErr($"Tried to spawn initial mass budding cells ({species.ReadableName}) while some colony"
                 + $" cells were already grown (x{multicellularGrowth.NextBodyPlanCellToGrowIndex})");
 
-            multicellularGrowth.SpawnedInitialMassBuddingCells = true;
+            multicellularGrowth.MassBuddingState = MulticellularMassBuddingState.Spawned;
             return;
         }
 
@@ -436,6 +630,6 @@ public static class MulticellularGrowthHelpers
                 recorder, notifySpawnTo);
         }
 
-        multicellularGrowth.SpawnedInitialMassBuddingCells = true;
+        multicellularGrowth.MassBuddingState = MulticellularMassBuddingState.Spawning;
     }
 }

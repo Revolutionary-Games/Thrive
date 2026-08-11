@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-03 20:10+0100\n"
+"POT-Creation-Date: 2026-08-11 10:42+0300\n"
 "PO-Revision-Date: 2026-05-13 03:55+0000\n"
 "Last-Translator: Deleted User <noreply+56@weblate.org>\n"
 "Language-Team: Serbian (Latin script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Latn/>\n"
@@ -57,6 +57,14 @@ msgstr ""
 #, fuzzy
 msgid "ACHIEVEMENTS"
 msgstr "Pokret"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr "Pokret"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr "Vakuola je unutrašnja membranska organela koja se koristi za skladištenje u ćeliji. Sastoje se od nekoliko vezikula, manjih opnastih struktura koje se široko koriste u ćelijama za skladištenje, a koje su se stopile. Ispunjen je vodom koja se koristi da sadrži molekule, enzime, čvrste materije i druge supstance. Njihov oblik je tečan i može se razlikovati između ćelija."
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr ""
@@ -781,6 +789,17 @@ msgstr ""
 #, fuzzy
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Generacija:"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr "Vrste Membrana"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Promenite simetriju"
@@ -2131,6 +2150,10 @@ msgstr "Isključene Organele"
 msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
 msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
 
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION_MULTICELLULAR"
+msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
+
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
 msgstr ""
 
@@ -2245,6 +2268,9 @@ msgid "ERROR_FETCHING_NEWS"
 msgstr ""
 
 msgid "ERROR_LOADING"
+msgstr ""
+
+msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
 msgstr ""
 
 msgid "ERROR_SAVING"
@@ -2638,6 +2664,30 @@ msgstr ""
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr "Dodajte novo vezivanje tastera"
 
+#, fuzzy
+msgid "GAMETE_CELL_ENTITY_NAME"
+msgstr "Korisničko ime:"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE"
+msgstr "Napravite novi mikrob"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_A"
+msgstr "Napravite novi mikrob"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_B"
+msgstr "Napravite novi mikrob"
+
+#, fuzzy
+msgid "GAMETE_PRODUCED"
+msgstr "Proizvodi"
+
+#, fuzzy
+msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+msgstr "Dodajte novo vezivanje tastera"
+
 msgid "GAME_DESIGN_TEAM"
 msgstr ""
 
@@ -2954,6 +3004,10 @@ msgstr "Statistika Organizma"
 #, fuzzy
 msgid "INCOMPATIBLE_ORGANELLE_LIST"
 msgstr "Postavite organelu"
+
+#, fuzzy
+msgid "INCOMPATIBLE_STAGE_LIST"
+msgstr "Statistika Organizma"
 
 #, fuzzy
 msgid "INCREASE_ITEM_SIZE"
@@ -3741,6 +3795,10 @@ msgstr "Hemosinteza"
 
 msgid "MACROSCOPIC"
 msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr "Ćelijsko Jezgro"
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4734,8 +4792,15 @@ msgstr ""
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
+msgid "NOTICE_READY_TO_SHOOT_GAMETE"
+msgstr ""
+
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr ""
+
+#, fuzzy
+msgid "NOT_ENOUGH_MUTATION_POINTS"
+msgstr "Mutacije Poeni"
 
 #, fuzzy
 msgid "NOT_STARTED_DOT"
@@ -4923,6 +4988,10 @@ msgstr "Opcije"
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
 
+#, fuzzy
+msgid "OPTION_USED_FOR_PLAYER"
+msgstr "Prekinuto."
+
 msgid "ORGANELLES"
 msgstr "Organele"
 
@@ -5051,6 +5120,10 @@ msgstr "Sinteza OksiToksi"
 
 #, fuzzy
 msgid "OXYGEN_RESISTANCE"
+msgstr "Otpornost na toksine"
+
+#, fuzzy
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
 msgstr "Otpornost na toksine"
 
 #, fuzzy
@@ -5188,6 +5261,10 @@ msgstr ""
 
 #, fuzzy
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Koristite Thrive vith GLES2. Ovo je ozbiljno neprovereno i verovatno će izazvati probleme. Pokušajte da ažurirate upravljačke programe za video i / ili prisilite AMD ili Nvidia grafiku da se koristi za pokretanje programa Thrive."
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION_MULTICELLULAR"
 msgstr "Koristite Thrive vith GLES2. Ovo je ozbiljno neprovereno i verovatno će izazvati probleme. Pokušajte da ažurirate upravljačke programe za video i / ili prisilite AMD ili Nvidia grafiku da se koristi za pokretanje programa Thrive."
 
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
@@ -5529,6 +5606,10 @@ msgid "REPORT_BUG"
 msgstr "Izveštaj"
 
 #, fuzzy
+msgid "REPRODUCE"
+msgstr "Proizvodi"
+
+#, fuzzy
 msgid "REPRODUCED"
 msgstr "Proizvodi"
 
@@ -5562,6 +5643,18 @@ msgstr "Proizvodi"
 
 #, fuzzy
 msgid "REPRODUCTION_METHOD"
+msgstr "Proizvodi"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL"
+msgstr "Proizvodi"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
+msgstr "Proizvodi"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ISOGAMY"
 msgstr "Proizvodi"
 
 #, fuzzy
@@ -6005,6 +6098,18 @@ msgstr ""
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
+
 msgid "SFX_VOLUME"
 msgstr "Tom od zvučnih efekata"
 
@@ -6031,6 +6136,14 @@ msgstr ""
 #, fuzzy
 msgid "SHOW_MAP"
 msgstr "Pokažite pomoć"
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION"
+msgstr "Pokažite pomoć"
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION_EXPLANATION"
+msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
 
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
@@ -6095,6 +6208,18 @@ msgstr ""
 "Postoji sukob sa {0}.\n"
 "Da li želite da uklonite unos iz {1}?"
 
+#, fuzzy
+msgid "SIGNAL_COMMAND_CALL_MATE"
+msgstr ""
+"Postoji sukob sa {0}.\n"
+"Da li želite da uklonite unos iz {1}?"
+
+#, fuzzy
+msgid "SIGNAL_COMMAND_FIRE_GAMETES"
+msgstr ""
+"Postoji sukob sa {0}.\n"
+"Da li želite da uklonite unos iz {1}?"
+
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr ""
 
@@ -6121,6 +6246,10 @@ msgstr "Ova membrana ima jak zid od silicijum dioksida. Može se dobro odupreti 
 
 #, fuzzy
 msgid "SIMULATION_CONFIG"
+msgstr "Cena osmoregulacije"
+
+#, fuzzy
+msgid "SIMULATION_FACTOR"
 msgstr "Cena osmoregulacije"
 
 #, fuzzy
@@ -6212,6 +6341,14 @@ msgstr ""
 
 msgid "SPAWN_GLUCOSE"
 msgstr "Postavite glukozu"
+
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL"
+msgstr "Stavite amonijak"
+
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL_EXPLANATION"
+msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
 
 msgid "SPAWN_PHOSPHATES"
 msgstr "Stavite fosfat"
@@ -6691,11 +6828,23 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVEOPEDIA_MUSEUM_PAGE_SEARCHTAGS"
+msgstr "Lepljiva unutrašnjost ćelije. Citoplazma je osnovna smeša jona, proteina i drugih supstanci rastvorenih u vodi koja ispunjava unutrašnjost ćelije. Jedna od funkcija koju obavlja je fermentacija, pretvaranje glukoze u ATP energiju. Da bi ćelije kojima nedostaju organeli imali napredniji metabolizam, na to se oslanjaju u energiji. Takođe se koristi za skladištenje molekula u ćeliji i za povećanje veličine ćelije."
+
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVEOPEDIA_ORGANELLE_SEARCHTAGS"
+msgstr "Dodajte novo vezivanje tastera"
+
 msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
 msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_SEARCHTAGS"
+msgstr "Lepljiva unutrašnjost ćelije. Citoplazma je osnovna smeša jona, proteina i drugih supstanci rastvorenih u vodi koja ispunjava unutrašnjost ćelije. Jedna od funkcija koju obavlja je fermentacija, pretvaranje glukoze u ATP energiju. Da bi ćelije kojima nedostaju organeli imali napredniji metabolizam, na to se oslanjaju u energiji. Takođe se koristi za skladištenje molekula u ćeliji i za povećanje veličine ćelije."
 
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr ""
@@ -6721,6 +6870,14 @@ msgstr ""
 
 msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_SEARCHTAGS"
+msgstr "ima mutaciju"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_SEARCHTAGS"
+msgstr "Dodajte novo vezivanje tastera"
 
 #, fuzzy
 msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
@@ -9598,10 +9755,6 @@ msgstr "Odzumirati"
 
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "Hemolitoautotrofija gvožđa"
-
-#, fuzzy
-#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
-#~ msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
 
 #, fuzzy
 #~ msgid "MIGRATE"

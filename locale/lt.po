@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-03 20:10+0100\n"
+"POT-Creation-Date: 2026-08-11 10:42+0300\n"
 "PO-Revision-Date: 2026-05-11 14:00+0000\n"
 "Last-Translator: Eimantas <mazeika.eimantas@gmail.com>\n"
 "Language-Team: Lithuanian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lt/>\n"
@@ -51,6 +51,14 @@ msgstr "Patvirtinti"
 
 msgid "ACHIEVEMENTS"
 msgstr "Pasiekimai"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr "Pasiekimai {0} / {1}"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr "Elemento aprašymas:"
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr "Pasiekimai {0} / {1}"
@@ -748,6 +756,21 @@ msgstr "Ląstelės Tipo Pavadinimas"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Pakeitimų pastabos yra per ilgos"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr ""
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr ""
+"Dabar galite pereiti į Kosmoso Etapą ir paleisti pirmąjį erdvėlaivį.\n"
+"\n"
+"Kol kas prototipuose negalite grįžti į savo planetą, tačiau planuojama, kad Kosmoso Etape bus galima sklandžiai priartinti ir atitolinti planetas.\n"
+"\n"
+"Atšaukus paleidimą, erdvėlaivio vienetas bus sunaikintas. Paleisti erdvėlaivį?"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Pakeisti simetriją"
@@ -2080,6 +2103,10 @@ msgstr ""
 msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
 msgstr "(pradžios vieta)"
 
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION_MULTICELLULAR"
+msgstr "(pradžios vieta)"
+
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
 msgstr ""
 
@@ -2192,6 +2219,9 @@ msgid "ERROR_FETCHING_NEWS"
 msgstr ""
 
 msgid "ERROR_LOADING"
+msgstr ""
+
+msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
 msgstr ""
 
 msgid "ERROR_SAVING"
@@ -2572,6 +2602,30 @@ msgstr "Galerijos žiūryklė"
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas skaičius"
 
+#, fuzzy
+msgid "GAMETE_CELL_ENTITY_NAME"
+msgstr "Ląstelės Tipo Pavadinimas"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE"
+msgstr "Ląstelės Tipo Pavadinimas"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_A"
+msgstr "Ląstelės Tipo Pavadinimas"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_B"
+msgstr "Ląstelės Tipo Pavadinimas"
+
+#, fuzzy
+msgid "GAMETE_PRODUCED"
+msgstr "ATP Gamyba"
+
+#, fuzzy
+msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+msgstr "Rodyti / slėpti junginius"
+
 msgid "GAME_DESIGN_TEAM"
 msgstr ""
 
@@ -2871,6 +2925,10 @@ msgstr "Tam, kad atrakinti redaktorių ir dauginimąsi tau reikės surinkti [thr
 
 #, fuzzy
 msgid "INCOMPATIBLE_ORGANELLE_LIST"
+msgstr "Tam, kad atrakinti redaktorių ir dauginimąsi tau reikės surinkti [thrive:compound type=\"ammonia\"][/thrive:compound] (Oranžinis Debesis) ir [thrive:compound type=\"phosphates\"][/thrive:compound] (Purpurinis Debesis)."
+
+#, fuzzy
+msgid "INCOMPATIBLE_STAGE_LIST"
 msgstr "Tam, kad atrakinti redaktorių ir dauginimąsi tau reikės surinkti [thrive:compound type=\"ammonia\"][/thrive:compound] (Oranžinis Debesis) ir [thrive:compound type=\"phosphates\"][/thrive:compound] (Purpurinis Debesis)."
 
 #, fuzzy
@@ -3624,6 +3682,10 @@ msgstr "Chemosintezė"
 #, fuzzy
 msgid "MACROSCOPIC"
 msgstr "Tapti Makroskopiniu ({0}/{1})"
+
+#, fuzzy
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr "Mikroorganizmo būsena"
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4586,7 +4648,13 @@ msgstr ""
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
+msgid "NOTICE_READY_TO_SHOOT_GAMETE"
+msgstr ""
+
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
+msgstr ""
+
+msgid "NOT_ENOUGH_MUTATION_POINTS"
 msgstr ""
 
 msgid "NOT_STARTED_DOT"
@@ -4760,6 +4828,9 @@ msgstr "Nustatymai"
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Pakeisti nustatymus"
 
+msgid "OPTION_USED_FOR_PLAYER"
+msgstr ""
+
 msgid "ORGANELLES"
 msgstr ""
 
@@ -4879,6 +4950,9 @@ msgid "OXYGEN_INHIBITOR_SYNTHESIS"
 msgstr "Mikroorganizmo būsena"
 
 msgid "OXYGEN_RESISTANCE"
+msgstr ""
+
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
 msgstr ""
 
 #, fuzzy
@@ -5005,6 +5079,10 @@ msgstr ""
 
 #, fuzzy
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "(pradžios vieta)"
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION_MULTICELLULAR"
 msgstr "(pradžios vieta)"
 
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
@@ -5334,6 +5412,10 @@ msgstr ""
 msgid "REPORT_BUG"
 msgstr ""
 
+#, fuzzy
+msgid "REPRODUCE"
+msgstr "{0} suvartojimas"
+
 msgid "REPRODUCED"
 msgstr ""
 
@@ -5364,6 +5446,18 @@ msgstr "ATP GAMYBA PER MAŽA!"
 
 msgid "REPRODUCTION_METHOD"
 msgstr ""
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL"
+msgstr "{0} suvartojimas"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
+msgstr "{0} suvartojimas"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ISOGAMY"
+msgstr "{0} suvartojimas"
 
 #, fuzzy
 msgid "REPRODUCTION_SPORE"
@@ -5764,6 +5858,18 @@ msgstr ""
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr "(greitis, kuriuo DI rūšys mutuoja)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(greitis, kuriuo DI rūšys mutuoja)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+msgstr "(greitis, kuriuo DI rūšys mutuoja)"
+
 msgid "SFX_VOLUME"
 msgstr ""
 
@@ -5790,6 +5896,19 @@ msgstr "Elemento pavadinimas:"
 
 msgid "SHOW_MAP"
 msgstr ""
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION"
+msgstr "Elemento aprašymas:"
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION_EXPLANATION"
+msgstr ""
+"Nusileidimas panaikins jūsų pakilusio statusą ir grąžins jus į Mikrobų Etapą. Iš ten galėsite vėl pereiti žaidimą, išsaugoję dabartinį išsaugojimą.\n"
+"\n"
+"Už naująjį peržaidimą gausite nusileidimo privilegiją. Būsimoje versijoje galėsite patys pasirinkti šį privalumą, tačiau kol kas jis visada bus 20 % sumažėjęs osmoreguliacijos koeficientas.\n"
+"\n"
+"Kai patvirtinsite nusileidimą, galėsite redaguoti žaidimo nustatymus ir pasirinkti naują pasaulio sėklą, kad galėtumėte žaisti kitame žemėlapyje arba, pavyzdžiui, išjungti LAWK."
 
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr ""
@@ -5836,6 +5955,12 @@ msgstr ""
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr ""
 
+msgid "SIGNAL_COMMAND_CALL_MATE"
+msgstr ""
+
+msgid "SIGNAL_COMMAND_FIRE_GAMETES"
+msgstr ""
+
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr ""
 
@@ -5859,6 +5984,10 @@ msgstr ""
 
 msgid "SIMULATION_CONFIG"
 msgstr ""
+
+#, fuzzy
+msgid "SIMULATION_FACTOR"
+msgstr "DI mutacijos greitis"
 
 msgid "SIXTEEN_TIMES"
 msgstr ""
@@ -5940,6 +6069,13 @@ msgstr ""
 
 msgid "SPAWN_GLUCOSE"
 msgstr ""
+
+msgid "SPAWN_MATE_ON_CALL"
+msgstr ""
+
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL_EXPLANATION"
+msgstr "(greitis, kuriuo DI rūšys mutuoja)"
 
 msgid "SPAWN_PHOSPHATES"
 msgstr ""
@@ -6395,11 +6531,23 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVEOPEDIA_MUSEUM_PAGE_SEARCHTAGS"
+msgstr "Šiame puslapyje pateiktas sąrašas visų rūšių egzistuojančių šiame pasaulyje."
+
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVEOPEDIA_ORGANELLE_SEARCHTAGS"
+msgstr "Rūšis"
+
 msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
 msgstr "Išnykusios Rūšys {0}"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_SEARCHTAGS"
+msgstr "Šiame puslapyje pateiktas sąrašas visų rūšių egzistuojančių šiame pasaulyje."
 
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr ""
@@ -6425,6 +6573,14 @@ msgstr ""
 
 msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
 msgstr "Prisegtos rūšys"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_SEARCHTAGS"
+msgstr "{0}"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_SEARCHTAGS"
+msgstr "Rūšis"
 
 msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
 msgstr "Rūšis"
@@ -9294,10 +9450,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
 #~ msgstr "Sumažinti Perpus Populiaciją"
-
-#, fuzzy
-#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
-#~ msgstr "(greitis, kuriuo DI rūšys mutuoja)"
 
 #, fuzzy
 #~ msgid "WIKI_RADIOSYNTHESIS"

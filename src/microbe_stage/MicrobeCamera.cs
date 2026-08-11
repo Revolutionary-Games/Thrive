@@ -206,7 +206,7 @@ public partial class MicrobeCamera : Camera3D, ISaveLoadedTracked, IGameCamera, 
 
             if (currentFloorPosition.DistanceTo(newFloorPosition) < SnapWithDistanceLessThan)
             {
-                // Don't interpolate floor position, this stops every few seconds slight hitching happening visually
+                // Don't interpolate floor position; this stops every few seconds slight hitching happening visually
                 // with the player movement using the new physics (even when multiplying InterpolateSpeed with delta)
                 target = newFloorPosition +
                     currentCameraHeight.Lerp(newCameraHeight, InterpolateZoomSpeed);

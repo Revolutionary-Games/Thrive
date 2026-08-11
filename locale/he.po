@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-03 20:10+0100\n"
+"POT-Creation-Date: 2026-08-11 10:42+0300\n"
 "PO-Revision-Date: 2026-05-13 03:55+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -53,6 +53,14 @@ msgstr ""
 #, fuzzy
 msgid "ACHIEVEMENTS"
 msgstr "מהירות בסיסית"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr "מהירות בסיסית"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr "שדרוג שמירה שצוינה נכשלה בעקבות השגיאה הבאה:"
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr ""
@@ -761,6 +769,17 @@ msgstr "שם סוג תא"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "הערות שינוי ארוכות מידי"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr "סוגי קרום"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr "(מייצר מפת אזורים פרוצדורלית או השתמש בפריסה הקלאסית)"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "שנה סימטריה"
@@ -2160,6 +2179,13 @@ msgstr ""
 "ולרוב הוא ישאף לגושים.\n"
 "מיקורבים מגיבים ישנו למטרה חדשה באופן כפוף יותר."
 
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION_MULTICELLULAR"
+msgstr ""
+"מיקרובים ממוקדים יחפשו אחר גושים או טרף למרחקים\n"
+"ולרוב הוא ישאף לגושים.\n"
+"מיקורבים מגיבים ישנו למטרה חדשה באופן כפוף יותר."
+
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
 msgstr ""
 
@@ -2277,6 +2303,9 @@ msgstr "תקלה ביצירת מידע על המוד"
 
 msgid "ERROR_LOADING"
 msgstr "טוען שגיאה"
+
+msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
 
 msgid "ERROR_SAVING"
 msgstr "שומר שגיאה"
@@ -2695,6 +2724,30 @@ msgstr "מציג גלריה"
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr "צוות מעצבי משחק"
 
+#, fuzzy
+msgid "GAMETE_CELL_ENTITY_NAME"
+msgstr "גזע"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE"
+msgstr "יצירת סוג תא חדש"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_A"
+msgstr "שם סוג תא"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_B"
+msgstr "יצירת סוג תא חדש"
+
+#, fuzzy
+msgid "GAMETE_PRODUCED"
+msgstr "התרבה"
+
+#, fuzzy
+msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+msgstr "הראה/החבא תרכובות"
+
 msgid "GAME_DESIGN_TEAM"
 msgstr "צוות מעצבי משחק"
 
@@ -3013,6 +3066,10 @@ msgstr "סטטיסטיקת האורגניזם"
 #, fuzzy
 msgid "INCOMPATIBLE_ORGANELLE_LIST"
 msgstr "שכפל אברונים"
+
+#, fuzzy
+msgid "INCOMPATIBLE_STAGE_LIST"
+msgstr "סטטיסטיקת האורגניזם"
 
 #, fuzzy
 msgid "INCREASE_ITEM_SIZE"
@@ -3800,6 +3857,10 @@ msgstr "ייצור ריר"
 #, fuzzy
 msgid "MACROSCOPIC"
 msgstr "להפוך למקרוסקופי ({0}/{1})"
+
+#, fuzzy
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr "סילון ריר"
 
 #, fuzzy
 msgid "MACROSCOPIC_EDITOR"
@@ -4901,9 +4962,16 @@ msgstr ""
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
+msgid "NOTICE_READY_TO_SHOOT_GAMETE"
+msgstr ""
+
 #, fuzzy
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "מצא את האזור הנוכחי"
+
+#, fuzzy
+msgid "NOT_ENOUGH_MUTATION_POINTS"
+msgstr "נקודות מוטציה"
 
 msgid "NOT_STARTED_DOT"
 msgstr "לא התחיל."
@@ -5092,6 +5160,10 @@ msgstr "אפשרויות"
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "שנה את ההגדרות שלך"
 
+#, fuzzy
+msgid "OPTION_USED_FOR_PLAYER"
+msgstr "הושהה."
+
 msgid "ORGANELLES"
 msgstr "אברונים"
 
@@ -5223,6 +5295,10 @@ msgstr "סינתזת \"אוקסיטוקסי\""
 
 #, fuzzy
 msgid "OXYGEN_RESISTANCE"
+msgstr "עמידות לרעלים"
+
+#, fuzzy
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
 msgstr "עמידות לרעלים"
 
 #, fuzzy
@@ -5361,6 +5437,10 @@ msgstr "שלוו"
 
 #, fuzzy
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "אתה מריץ את Thrive על GLES2. אופציה זו עדין לא נבדקה ועלולה לגרום לבעיות. אנא נסה לעדכן את מנהל התקן ו / או להשתמש במקום בכרטיס גרפיקה של AMD או Nvidia על מנת להפעלת את Thrive."
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION_MULTICELLULAR"
 msgstr "אתה מריץ את Thrive על GLES2. אופציה זו עדין לא נבדקה ועלולה לגרום לבעיות. אנא נסה לעדכן את מנהל התקן ו / או להשתמש במקום בכרטיס גרפיקה של AMD או Nvidia על מנת להפעלת את Thrive."
 
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
@@ -5705,6 +5785,10 @@ msgstr "תסקיר"
 msgid "REPORT_BUG"
 msgstr "תסקיר"
 
+#, fuzzy
+msgid "REPRODUCE"
+msgstr "התרבה"
+
 msgid "REPRODUCED"
 msgstr "התרבה"
 
@@ -5735,6 +5819,18 @@ msgstr "הנצה"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "סוגי רבייה:"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL"
+msgstr "א-מינית"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
+msgstr "א-מינית"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ISOGAMY"
+msgstr "א-מינית"
 
 #, fuzzy
 msgid "REPRODUCTION_SPORE"
@@ -6161,6 +6257,18 @@ msgstr "נייח"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "ערך זה חל רק על שמירות חדשות לאחר שינויו"
 
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr "(באופן פסיבי צובר תרכובות מהסביבה לתהליכי רבייה מבלי שצריך לעשות דבר)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(באופן פסיבי צובר תרכובות מהסביבה לתהליכי רבייה מבלי שצריך לעשות דבר)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+msgstr "השג באופן פסיבי התקדמות הרבייה"
+
 msgid "SFX_VOLUME"
 msgstr "עוצמת אפקטים"
 
@@ -6189,6 +6297,18 @@ msgstr "הצג מדריכים"
 #, fuzzy
 msgid "SHOW_MAP"
 msgstr "הצג עזרה"
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION"
+msgstr "הצג עזרה"
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION_EXPLANATION"
+msgstr ""
+"מיקרובים אגרסיבים ירדפו אחרי הטרפם למרחקים\n"
+"והם לרוב נוטים להילחם בטורפים כשהם מותקפים.\n"
+"מיקרובים שלווים לא יתקפו אחרים למרחקים\n"
+"ופחות נוטים להשתמש ברעלנים כנגד טורפים."
 
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
@@ -6237,6 +6357,14 @@ msgstr "החזק [thrive:input]g_pack_commands[/thrive:input] בשביל לפת�
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "להפוך לתוקפני"
 
+#, fuzzy
+msgid "SIGNAL_COMMAND_CALL_MATE"
+msgstr "זוזו אליי"
+
+#, fuzzy
+msgid "SIGNAL_COMMAND_FIRE_GAMETES"
+msgstr "ברחו"
+
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr "ברחו"
 
@@ -6260,6 +6388,10 @@ msgstr "לקרום זה יש קיר חזק העשוי מצורן. מה שמאפ�
 
 #, fuzzy
 msgid "SIMULATION_CONFIG"
+msgstr "עלות אוסמורגולציה"
+
+#, fuzzy
+msgid "SIMULATION_FACTOR"
 msgstr "עלות אוסמורגולציה"
 
 msgid "SIXTEEN_TIMES"
@@ -6347,6 +6479,14 @@ msgstr "אינך יכול לזמן אוייבים צ'יטים בגלל שאזו�
 
 msgid "SPAWN_GLUCOSE"
 msgstr "זמן גלוקוז"
+
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL"
+msgstr "זמן אמוניה"
+
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL_EXPLANATION"
+msgstr "(המהירות המוטציות שנוצרים במיני AI )"
 
 msgid "SPAWN_PHOSPHATES"
 msgstr "זמן פוספט"
@@ -6836,12 +6976,24 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVEOPEDIA_MUSEUM_PAGE_SEARCHTAGS"
+msgstr "הרבה אורגניזמים מפיקים חומרים רב סוכרים דמויי רפש, וריר היא אחד מאותם רב סוכרים אלו. אומנם רבים מהמינים משתמשים ברפש בשביל תנועה, סוגים מסוימים של חיידקים מפרישים חומרים אלו בלחץ גבוהה. אלו סילוני רפש מתנהגים כמו מנועי טילים, דוחפים את התאים קדימה במהירות גבוהה. רפש משומש בנוסף בשביל לעקב טורפים, הנתקעים בתוך החומר שרק מחזיקים בסילונים מסוגלים לנווט בהם."
+
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
 #, fuzzy
+msgid "THRIVEOPEDIA_ORGANELLE_SEARCHTAGS"
+msgstr "מפתחים נוכחים"
+
+#, fuzzy
 msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
 msgstr "מינים נכחדים"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_SEARCHTAGS"
+msgstr "הרבה אורגניזמים מפיקים חומרים רב סוכרים דמויי רפש, וריר היא אחד מאותם רב סוכרים אלו. אומנם רבים מהמינים משתמשים ברפש בשביל תנועה, סוגים מסוימים של חיידקים מפרישים חומרים אלו בלחץ גבוהה. אלו סילוני רפש מתנהגים כמו מנועי טילים, דוחפים את התאים קדימה במהירות גבוהה. רפש משומש בנוסף בשביל לעקב טורפים, הנתקעים בתוך החומר שרק מחזיקים בסילונים מסוגלים לנווט בהם."
 
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr ""
@@ -6891,6 +7043,14 @@ msgstr ""
 
 msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_SEARCHTAGS"
+msgstr "טראיבופדיה"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_SEARCHTAGS"
+msgstr "מפתחים נוכחים"
 
 #, fuzzy
 msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
@@ -10028,9 +10188,6 @@ msgstr "זום החוצה"
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "כימוליתו-אוטוטרופי מברזל"
 
-#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
-#~ msgstr "השג באופן פסיבי התקדמות הרבייה"
-
 #, fuzzy
 #~ msgid "MIGRATE"
 #~ msgstr "קצב"
@@ -10396,9 +10553,6 @@ msgstr "זום החוצה"
 
 #~ msgid "PATCH_MAP_TYPE_CLASSIC"
 #~ msgstr "קלאסי"
-
-#~ msgid "PATCH_MAP_TYPE_EXPLANATION"
-#~ msgstr "(מייצר מפת אזורים פרוצדורלית או השתמש בפריסה הקלאסית)"
 
 #~ msgid "PATCH_MAP_TYPE_PROCEDURAL"
 #~ msgstr "פרוצדורלי"

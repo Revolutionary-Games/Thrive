@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-03 20:10+0100\n"
-"PO-Revision-Date: 2025-11-14 11:00+0000\n"
-"Last-Translator: Sur3 <sur3@gmx.de>\n"
+"POT-Creation-Date: 2026-08-11 10:42+0300\n"
+"PO-Revision-Date: 2026-07-22 04:07+0000\n"
+"Last-Translator: 4sokay8 <kwi.tns11@gmail.com>\n"
 "Language-Team: Japanese <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.11.4\n"
+"X-Generator: Weblate 5.16.1\n"
 "Generated-By: Thrive.Scripts 1.2.0.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -51,6 +51,17 @@ msgstr "適用"
 
 msgid "ACHIEVEMENTS"
 msgstr "実績"
+
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr "実績のロードに失敗しました"
+
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr ""
+"実績のデータファイルが破損している可能性があります。\n"
+"データをリセットすることができますが、全ての実績の進捗が削除され失われます:\n"
+"{0}\n"
+"実績なしでプレイを続けますか？\n"
+"キャンセルを押すとゲームを終了します。"
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr "実績 {0} / {1}"
@@ -173,6 +184,9 @@ msgstr "Alt"
 
 msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
 msgstr ""
+"このシミュレーションのスピードを変更します。\n"
+"この値に一致するHUDのボタンを押すことで、そのスピードを使用できます。\n"
+"高い値にする場合は、高速なCPUが必要になる可能性があります。"
 
 msgid "ALTERNATVE_TIMESCALE"
 msgstr ""
@@ -268,9 +282,8 @@ msgstr "完全進化ステージ"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "アセンブリが指定されている場合は、Mod のアセンブリクラスが必要です"
 
-#, fuzzy
 msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
-msgstr "自動 Harmony が有効な場合は、Mod のアセンブリ定義が必要です"
+msgstr "Modのクラスが指定されている場合は、アセンブリが必要です"
 
 msgid "ASSUME_HYPERTHREADING"
 msgstr "CPU にハイパースレッディングが有効であると仮定する"
@@ -425,9 +438,8 @@ msgstr "平均表面その他ガス濃度"
 msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
 msgstr "平均表面酸素濃度"
 
-#, fuzzy
 msgid "AVERAGE_SURFACE_TEMPERATURE"
-msgstr "平均表面その他ガス濃度"
+msgstr "平均表面温度"
 
 msgid "AWAKENING_STAGE"
 msgstr "覚醒ステージ"
@@ -750,6 +762,21 @@ msgstr "細胞タイプ名"
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "変更内容が長すぎます"
 
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr "膜の種類を変更する"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr ""
+"多細胞ステージでも膜の変更は可能ですが、それはかなり難しくなります。\n"
+"巨視ステージでは膜の変更はできなくなります。\n"
+"膜を変更するには、一度に全ての細胞のタイプを新しいタイプに変える必要があります。\n"
+"この変更には全ての変異ポイント[thrive:icon]MP[/thrive:icon]を消費しなければいけません。\n"
+"また、これを行うと、変更を適用するためエディターを終了します。\n"
+"膜を選択したタイプに変更しますか？"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
+
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "対称性を変更する"
 
@@ -975,7 +1002,7 @@ msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "明度値（色の明るさや強さ）"
 
 msgid "COMMAND_INPUT_LINE_EDIT"
-msgstr ""
+msgstr "コマンドを書き入れる"
 
 msgid "COMMON_ABILITIES"
 msgstr "共通能力"
@@ -1153,16 +1180,16 @@ msgstr ""
 "打ち上げをキャンセルすると、宇宙船ユニットは破壊されます。打ち上げますか？"
 
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "この設定でゲームを始める"
 
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
-msgstr ""
+msgstr "一部の設定が無効なものになっています"
 
 msgid "CONFIRM_RESET_ACHIEVEMENTS"
-msgstr ""
+msgstr "実績のリセットを行いますか？"
 
 msgid "CONFIRM_RESET_ACHIEVEMENTS_DESCRIPTION"
-msgstr ""
+msgstr "本当に全ての実績とそれに関連する統計をリセットしてもよろしいですか？この操作は取り消すことができず、全ての実績と実績への進捗がリセットされた状態で、あなたは最初からやり直すことになります。"
 
 msgid "CONSTRUCTION_UNIT_NAME"
 msgstr ""
@@ -1462,9 +1489,10 @@ msgstr ""
 msgid "CURRENT_DILUTION"
 msgstr "現在の行動をキャンセル"
 
-#, fuzzy
 msgid "CURRENT_DILUTION_TOOLTIP"
-msgstr "現在の行動をキャンセル"
+msgstr ""
+"化合物が希釈されました。\n"
+"以下の成分の濃度が低下します:"
 
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr ""
@@ -1956,6 +1984,9 @@ msgstr ""
 msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
 msgstr ""
 
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION_MULTICELLULAR"
+msgstr ""
+
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
 msgstr ""
 
@@ -2061,6 +2092,9 @@ msgid "ERROR_FETCHING_NEWS"
 msgstr ""
 
 msgid "ERROR_LOADING"
+msgstr ""
+
+msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
 msgstr ""
 
 msgid "ERROR_SAVING"
@@ -2405,6 +2439,35 @@ msgstr ""
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "GAMETE_CELL_ENTITY_NAME"
+msgstr "細胞タイプ名"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE"
+msgstr "細胞タイプ名"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_A"
+msgstr "細胞タイプ名"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_B"
+msgstr "細胞タイプ名"
+
+#, fuzzy
+msgid "GAMETE_PRODUCED"
+msgstr "ATP 生成量"
+
+#, fuzzy
+msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+msgstr ""
+"このセクションでは、現在の細胞の ATP（エネルギー）収支を表示します.\n"
+"生存するには、収支がプラスである必要があります。 固着性の細胞では、移動による消費を除いた収支がプラスであれば、生存可能とみなされます.\n"
+"下のドロップダウンでは、ATP を生成するための資源が一部欠けていた場合にどうなるかを確認できます.\n"
+"例えば、複数の化合物を同時に使って ATP を生成しないと収支がプラスにならない細胞もあります.\n"
+"こうした細胞は、複数の化合物を常にストレージに保持する必要があるため、プレイが難しくなります."
+
 msgid "GAME_DESIGN_TEAM"
 msgstr ""
 
@@ -2691,6 +2754,9 @@ msgid "INCOMPATIBLE_MEMBRANE_LIST"
 msgstr ""
 
 msgid "INCOMPATIBLE_ORGANELLE_LIST"
+msgstr ""
+
+msgid "INCOMPATIBLE_STAGE_LIST"
 msgstr ""
 
 msgid "INCREASE_ITEM_SIZE"
@@ -3403,6 +3469,9 @@ msgid "MACROLIDE_SYNTHESIS"
 msgstr ""
 
 msgid "MACROSCOPIC"
+msgstr ""
+
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr ""
 
 #, fuzzy
@@ -4278,7 +4347,13 @@ msgstr ""
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
+msgid "NOTICE_READY_TO_SHOOT_GAMETE"
+msgstr ""
+
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
+msgstr ""
+
+msgid "NOT_ENOUGH_MUTATION_POINTS"
 msgstr ""
 
 msgid "NOT_STARTED_DOT"
@@ -4444,6 +4519,9 @@ msgstr ""
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr ""
 
+msgid "OPTION_USED_FOR_PLAYER"
+msgstr ""
+
 msgid "ORGANELLES"
 msgstr ""
 
@@ -4550,6 +4628,9 @@ msgid "OXYGEN_INHIBITOR_SYNTHESIS"
 msgstr ""
 
 msgid "OXYGEN_RESISTANCE"
+msgstr ""
+
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
 msgstr ""
 
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
@@ -4670,6 +4751,9 @@ msgid "PEACEFUL"
 msgstr ""
 
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr ""
+
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION_MULTICELLULAR"
 msgstr ""
 
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
@@ -4981,6 +5065,10 @@ msgstr ""
 msgid "REPORT_BUG"
 msgstr ""
 
+#, fuzzy
+msgid "REPRODUCE"
+msgstr "{0} 消費量"
+
 msgid "REPRODUCED"
 msgstr ""
 
@@ -5008,6 +5096,18 @@ msgstr "{0} 消費量"
 
 msgid "REPRODUCTION_METHOD"
 msgstr ""
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL"
+msgstr "{0} 消費量"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
+msgstr "{0} 消費量"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ISOGAMY"
+msgstr "{0} 消費量"
 
 #, fuzzy
 msgid "REPRODUCTION_SPORE"
@@ -5391,6 +5491,17 @@ msgstr ""
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr "現在の微生物がこの環境で生き残るのに適していない場合、前回エディターにいた時点に戻って別のアプローチを試すことができます。"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "現在の微生物がこの環境で生き残るのに適していない場合、前回エディターにいた時点に戻って別のアプローチを試すことができます。"
+
+msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+msgstr ""
+
 msgid "SFX_VOLUME"
 msgstr ""
 
@@ -5414,6 +5525,17 @@ msgstr ""
 
 msgid "SHOW_MAP"
 msgstr ""
+
+msgid "SHOW_MATE_POSITION"
+msgstr ""
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION_EXPLANATION"
+msgstr ""
+"攻撃的な微生物はより遠くまで獲物を追い、\n"
+"捕食者に対して反撃する可能性が高い。\n"
+"平和的な微生物は他の生物を深追いせず、\n"
+"捕食者に対して毒素を使いにくい。"
 
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr ""
@@ -5457,6 +5579,12 @@ msgstr ""
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr ""
 
+msgid "SIGNAL_COMMAND_CALL_MATE"
+msgstr ""
+
+msgid "SIGNAL_COMMAND_FIRE_GAMETES"
+msgstr ""
+
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr ""
 
@@ -5480,6 +5608,10 @@ msgstr ""
 
 msgid "SIMULATION_CONFIG"
 msgstr ""
+
+#, fuzzy
+msgid "SIMULATION_FACTOR"
+msgstr "AI生物の突然変異率"
 
 msgid "SIXTEEN_TIMES"
 msgstr ""
@@ -5560,6 +5692,13 @@ msgstr ""
 
 msgid "SPAWN_GLUCOSE"
 msgstr "グルコースをスポーン"
+
+msgid "SPAWN_MATE_ON_CALL"
+msgstr ""
+
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL_EXPLANATION"
+msgstr "（AI生物が突然変異する速度）"
 
 msgid "SPAWN_PHOSPHATES"
 msgstr ""
@@ -5999,10 +6138,19 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr ""
 
+msgid "THRIVEOPEDIA_MUSEUM_PAGE_SEARCHTAGS"
+msgstr ""
+
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
+msgid "THRIVEOPEDIA_ORGANELLE_SEARCHTAGS"
+msgstr ""
+
 msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
+msgstr ""
+
+msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_SEARCHTAGS"
 msgstr ""
 
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
@@ -6024,6 +6172,12 @@ msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
 msgstr ""
 
 msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
+msgstr ""
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_SEARCHTAGS"
+msgstr ""
+
+msgid "THRIVEOPEDIA_WORLD_SPECIES_SEARCHTAGS"
 msgstr ""
 
 msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"

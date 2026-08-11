@@ -35,13 +35,13 @@ public partial class CustomConfirmationDialog : CustomWindow
 #pragma warning restore CA2213
 
     /// <summary>
-    ///   Emitted when OK button is pressed. For Cancel see <see cref="CustomWindow.Canceled"/>.
+    ///   Emitted when the OK button is pressed. For Cancel see <see cref="CustomWindow.Canceled"/>.
     /// </summary>
     [Signal]
     public delegate void ConfirmedEventHandler();
 
     /// <summary>
-    ///   If true, turns this dialog into its AcceptDialog form (only Ok button visible).
+    ///   If true, turns this dialog into its AcceptDialog form (only OK button visible).
     /// </summary>
     [Export]
     public bool HideCancelButton

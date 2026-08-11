@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-03 20:10+0100\n"
-"PO-Revision-Date: 2026-05-26 09:31+0000\n"
-"Last-Translator: ILIA RIABOV <ilyarya131@gmail.com>\n"
+"POT-Creation-Date: 2026-08-11 10:42+0300\n"
+"PO-Revision-Date: 2026-07-22 19:25+0000\n"
+"Last-Translator: Sentry Primis <sentryprime92@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -51,6 +51,14 @@ msgstr "Принять"
 
 msgid "ACHIEVEMENTS"
 msgstr "Достижения"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr "Достижения {0} / {1}"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr "Обновление указанного сохранения не удалось выполнить из-за следующей ошибки:"
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr "Достижения {0} / {1}"
@@ -171,15 +179,14 @@ msgstr "Вы уже вознеслись"
 msgid "ALT"
 msgstr "Alt"
 
-#, fuzzy
 msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
 msgstr ""
-"Собственные потоки используются для задач, отличных от управляемых потоков.\n"
-"Большее количество потоков на процессорах с большим количеством ядер обычно увеличивает производительность до предела. \n"
-"Слишком большое количество потоков начнет снижать производительность."
+"Изменяет альтернативную скорость симуляции.\n"
+"Эту скорость может быть установлена при нажатии кнопки на HUD, соответствующей данному значению.\n"
+"Высокие значения могут потребовать очень быстрого ЦП для работы."
 
 msgid "ALTERNATVE_TIMESCALE"
-msgstr ""
+msgstr "Альтернативная временная шкала"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Всегда видна"
@@ -751,6 +758,27 @@ msgstr "Название вида клеток"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Примечания к изменениям слишком длинные"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr "Сменить тип Мембраны"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr ""
+"В Многоклеточной стадии смена типа мембран ещё доступна, но гораздо сложнее.\n"
+"В Макроскопической стадии смена типа клеточных мембран будет вовсе невозможна.\n"
+"Смена Мембраны теперь требует одновременной смены типа мембраны во всех клетках.\n"
+"На это затрачиваются все возможные Очки Мутации [thrive:icon]ОМ[/thrive:icon].\n"
+"Так же вы покинете Редактор для внесения изменений.\n"
+"Сменить мембраны на выбранный тип?"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
+"В Многоклеточной стадии смена типа мембран ещё доступна, но гораздо сложнее.\n"
+"В Макроскопической стадии смена типа клеточных мембран будет вовсе невозможна.\n"
+"Смена Мембраны теперь требует одновременной смены типа мембраны во всех клетках.\n"
+"На это затрачиваются все возможные Очки Мутации [thrive:icon]ОМ[/thrive:icon].\n"
+"Так же вы покинете Редактор для внесения изменений.\n"
+"[b]Недостаточно ОМ[/b]. Вы можете отменить все изменения, если хотите сменить Мембрану."
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Изменить симметрию"
@@ -1813,13 +1841,11 @@ msgstr "Применить искажение к задним фонам Мик�
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Отображение фоновых частиц"
 
-#, fuzzy
 msgid "DISPLAY_DRIVER_DIRECT3D"
-msgstr "OpenGL"
+msgstr "DirectX"
 
-#, fuzzy
 msgid "DISPLAY_DRIVER_METAL"
-msgstr "OpenGL"
+msgstr "Metal"
 
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr "OpenGL"
@@ -2067,6 +2093,10 @@ msgstr "Этот вид не может быть ассимилирован в �
 msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
 msgstr "Для увеличения прогресса эндосимбиоза, кандидат должен быть поглощен, чтобы он автоматически (без участия игрока) превратился во временную органеллу (В клетке-хозяине может быть лишь одна временная органелла). Прогресс сохраняется если вы заходите в редактор с временной органеллой."
 
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION_MULTICELLULAR"
+msgstr "Для увеличения прогресса эндосимбиоза, кандидат должен быть поглощен, чтобы он автоматически (без участия игрока) превратился во временную органеллу (В клетке-хозяине может быть лишь одна временная органелла). Прогресс сохраняется если вы заходите в редактор с временной органеллой."
+
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
 msgstr "Прокариоты могут иметь максимум одного эндосимбионта"
 
@@ -2174,6 +2204,9 @@ msgstr "Ошибка в выведении Новостей"
 
 msgid "ERROR_LOADING"
 msgstr "Ошибка Загрузки"
+
+msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
 
 msgid "ERROR_SAVING"
 msgstr "Ошибка Сохранения"
@@ -2549,6 +2582,35 @@ msgstr "Просмотр Галереи"
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr "Основы Игрового Процесса"
 
+#, fuzzy
+msgid "GAMETE_CELL_ENTITY_NAME"
+msgstr "Стволовая клетка"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE"
+msgstr "Создать Новый Тип Клетки"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_A"
+msgstr "Название вида клеток"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_B"
+msgstr "Создать Новый Тип Клетки"
+
+#, fuzzy
+msgid "GAMETE_PRODUCED"
+msgstr "Воспроизведено"
+
+#, fuzzy
+msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+msgstr ""
+"Эта секция показывает весь баланс АТФ (энергии) в клетке.\n"
+"Для того, чтобы выжить, баланс АТФ должен быть положительным. Малоподвижные клетки для сохранения энергии могут полностью исключить передвижение как таковое.\n"
+"Вы можете использовать раскрывающийся список ниже для проверки производства АТФ при отсутствии необходимых соединений.\n"
+"Например, некоторые клетки могут поддерживать положительный баланс АТФ только если у них в наличии есть множество соединений.\n"
+"Играть за этот тип клеток намного сложнее, поскольку для выживания им нужно иметь в хранилище все эти соединения разом."
+
 msgid "GAME_DESIGN_TEAM"
 msgstr "Команда Игрового Дизайна"
 
@@ -2837,6 +2899,9 @@ msgstr "Несовместимо с Мембранами: {0}"
 
 msgid "INCOMPATIBLE_ORGANELLE_LIST"
 msgstr "Несовместимо с Установленными Органеллами: {0}"
+
+msgid "INCOMPATIBLE_STAGE_LIST"
+msgstr "Недоступно в стадиях: {0}"
 
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Увеличить размер объекта"
@@ -3564,6 +3629,9 @@ msgstr "Синтез Макролида"
 msgid "MACROSCOPIC"
 msgstr "Макроскопический"
 
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr "Смена Мембраны более невозможна в Макроскопической Стадии"
+
 msgid "MACROSCOPIC_EDITOR"
 msgstr "Макроскопический Редактор"
 
@@ -3592,11 +3660,10 @@ msgid "MARINE_SNOW"
 msgstr "Морской снег"
 
 msgid "MASS_BUDDING_CELL_COUNT"
-msgstr ""
+msgstr "Начальный подсчет клеток"
 
-#, fuzzy
 msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
-msgstr "Производит единственное потомство—корневую клетку новой колонии."
+msgstr "Производит потомство, которое начинается с множества клеток."
 
 msgid "MASTER_VOLUME"
 msgstr "Общая громкость"
@@ -3942,7 +4009,7 @@ msgstr ""
 
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
-"На далёкой, чужой планете, эоны вулканической  ктивности сотворили нечто прекрасное.\n"
+"На далёкой, чужой планете, эоны вулканической активности сотворили нечто прекрасное.\n"
 "\n"
 "Жизнь.\n"
 "\n"
@@ -4330,21 +4397,16 @@ msgstr "Специализированные клетки в многоклет�
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr "На этой панели показаны совокупные процессы в вашей колонии, суммированные по всем клеткам. Обратите внимание, что, в отличие от других соединений, АТФ не распределяется между клетками."
 
-#, fuzzy
 msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Этап[/b]\n"
-"  Микроб\n"
-"[b]Тип мембраны[/b]\n"
+"  Многоклеточное\n"
+"[b]Число клеток[/b]\n"
 "  {0}\n"
-"[b]Жёсткость Мембраны[/b]\n"
+"[b]Тип клеток[/b]\n"
 "  {1}\n"
-"[b]Базовая скорость[/b]\n"
-"  {2}\n"
-"[b]Базовая скорость поворота[/b]\n"
-"  {3}\n"
-"[b]Базовый размер (в клетках)[/b]\n"
-"  {4}"
+"[b]Тип размножения[/b]\n"
+"  {2}"
 
 msgid "MULTICELLULAR_STAGE"
 msgstr "Многоклеточная стадия"
@@ -4423,9 +4485,8 @@ msgstr ""
 msgid "NEW"
 msgstr "Новый"
 
-#, fuzzy
 msgid "NEWER"
-msgstr "Просмотр"
+msgstr "Новее"
 
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -4537,8 +4598,15 @@ msgstr "Поврежден из-за избытка излучения"
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "Редактор теперь доступен"
 
+#, fuzzy
+msgid "NOTICE_READY_TO_SHOOT_GAMETE"
+msgstr "Редактор теперь доступен"
+
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "Не адаптирован к текущим условиям. Поменяйте предпочитаемые условия или диапазон терпимости, чтобы убрать ослабления."
+
+msgid "NOT_ENOUGH_MUTATION_POINTS"
+msgstr "Недостаточно Очков Мутации"
 
 msgid "NOT_STARTED_DOT"
 msgstr "Не начато."
@@ -4626,9 +4694,8 @@ msgstr "Зайти на официальный сайт Revolutionary Games"
 msgid "OK"
 msgstr "ОК"
 
-#, fuzzy
 msgid "OLDER"
-msgstr "Открыть папку"
+msgstr "Старше"
 
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -4713,6 +4780,10 @@ msgstr "Настройки"
 
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Сменить настройки"
+
+#, fuzzy
+msgid "OPTION_USED_FOR_PLAYER"
+msgstr "На паузе."
 
 msgid "ORGANELLES"
 msgstr "Органеллы"
@@ -4828,6 +4899,9 @@ msgstr "Синтез Ингибитора Кислорода"
 msgid "OXYGEN_RESISTANCE"
 msgstr "Устойчивость к кислороду"
 
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
+msgstr "Высокая сопротивляемость к кислороду требует специальных органелл, поскольку Базовый слайдер имеет ограниченный диапазон."
+
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr "Сколько повреждений, связанных с кислородом, ваша клетка может сократить до возникновения вредных эффектов. Если вы в биоме с кислородом, превышающем ваше сопротивление, вы получите негативные эффекты."
 
@@ -4905,9 +4979,8 @@ msgstr "Последний раз вы играли в Thrive версии {0} ,
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr "Вы играли в Thrive последний раз {0} , с того момента доступно {1} новых обновлений"
 
-#, fuzzy
 msgid "PATCH_NOTES_RECENT_BOUNDARY"
-msgstr "— {0}"
+msgstr "Вы увидели все последние версии."
 
 msgid "PATCH_NOTES_TITLE"
 msgstr "Заметки обновлений"
@@ -4949,6 +5022,10 @@ msgid "PEACEFUL"
 msgstr "Мирный"
 
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Процесс эндосимбиоза может быть завершен коли вы поставите ассимилированного микроба как органеллу. Рекомендуется сделать это как можно раньше, поскольку при преодолении данной точки дальнейший прогресс эндосимбиоза конкретно с этим эндосимбионтом не возможен. Посмотреть прогресс эндосимбиоза?"
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION_MULTICELLULAR"
 msgstr "Процесс эндосимбиоза может быть завершен коли вы поставите ассимилированного микроба как органеллу. Рекомендуется сделать это как можно раньше, поскольку при преодолении данной точки дальнейший прогресс эндосимбиоза конкретно с этим эндосимбионтом не возможен. Посмотреть прогресс эндосимбиоза?"
 
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
@@ -5038,7 +5115,7 @@ msgid "PLAYER_EXTINCT"
 msgstr "Игрок вымер"
 
 msgid "PLAYER_RELATIVE_MOVEMENT"
-msgstr "Родственник игрока"
+msgstr "Относительно игрока"
 
 msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
 msgstr ""
@@ -5117,9 +5194,8 @@ msgstr "Давление"
 msgid "PRESSURE_SHORT"
 msgstr "Давл."
 
-#, fuzzy
 msgid "PRESSURE_TOLERANCE"
-msgstr "Давление, предпочитаемое вашему виду. Устанавливается отдельными ползунками минимального и максимального значения. Когда условиях выходят за пределы диапазона, на вид накладываются негативные эффекты. Поменяйте размер диапазона, сняв переключатель под ползунками."
+msgstr "Терпимость к Давлению"
 
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr "Давление, предпочитаемое вашему виду. Устанавливается отдельными ползунками минимального и максимального значения. Когда условиях выходят за пределы диапазона, на вид накладываются негативные эффекты. Поменяйте размер диапазона, сняв переключатель под ползунками."
@@ -5198,9 +5274,8 @@ msgstr "Уровень Излучения"
 msgid "RADIOACTIVE_CHUNK"
 msgstr "Глыба радиоактивного камня"
 
-#, fuzzy
 msgid "RADIOACTIVE_CHUNK_BANANA"
-msgstr "Глыба радиоактивного камня"
+msgstr "Кусок Радиоактивного Банана"
 
 msgid "RADIOSYNTHESIS"
 msgstr "Радиосинтез"
@@ -5262,6 +5337,10 @@ msgstr "Отчёт"
 msgid "REPORT_BUG"
 msgstr "Сообщить о баге"
 
+#, fuzzy
+msgid "REPRODUCE"
+msgstr "Воспроизведено"
+
 msgid "REPRODUCED"
 msgstr "Воспроизведено"
 
@@ -5288,12 +5367,23 @@ msgstr ""
 "Всегда добивайте до краев все вещества до уровня, с которым появились.\n"
 "Пополнение при смене биома восполняет исходные соединения, но только если биом был изменен."
 
-#, fuzzy
 msgid "REPRODUCTION_MASS_BUDDING"
-msgstr "Размножение"
+msgstr "Массовое почкование"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Воспроизведение:"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL"
+msgstr "Бесполое"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
+msgstr "Бесполое"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ISOGAMY"
+msgstr "Бесполое"
 
 msgid "REPRODUCTION_SPORE"
 msgstr "Споруляция"
@@ -5696,6 +5786,18 @@ msgstr "Оседлый"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "Это значение начнёт работать при старте новой игры"
 
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr "Производит множество специализированных потомков, которые могут искать более благоприятные условия, прежде чем превратиться в корневую клетку колонии."
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "Производит множество специализированных потомков, которые могут искать более благоприятные условия, прежде чем превратиться в корневую клетку колонии."
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+msgstr "Пассивно получать прогресс репродукции"
+
 msgid "SFX_VOLUME"
 msgstr "Громкость звуковых эффектов"
 
@@ -5719,6 +5821,14 @@ msgstr "Показать координаты"
 
 msgid "SHOW_MAP"
 msgstr "Показать Карту"
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION"
+msgstr "Показать Карту"
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION_EXPLANATION"
+msgstr "Разные типы токсинов оказывают различные эффекты, которые более эффективны против определенных типов клеток. Для клеток с несколькими различными типами токсинов они используются последовательно, а не стреляют все сразу."
 
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Показывать новые заметки релизов автоматически"
@@ -5765,6 +5875,14 @@ msgstr "Удерживайте [thrive:input]g_pack_commands[/thrive:input], ч�
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "Стань Агрессивным"
 
+#, fuzzy
+msgid "SIGNAL_COMMAND_CALL_MATE"
+msgstr "Двигайся Ко Мне"
+
+#, fuzzy
+msgid "SIGNAL_COMMAND_FIRE_GAMETES"
+msgstr "Беги"
+
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr "Беги"
 
@@ -5787,6 +5905,10 @@ msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Эта мембрана имеет прочную стенку из кремнезема. Она может хорошо противостоять общим повреждениям и очень устойчива к физическим повреждениям. Она также требует меньше энергии для поддержания своей формы. Но клетка не может быстро поглощать ресурсы и двигается медленнее."
 
 msgid "SIMULATION_CONFIG"
+msgstr "Симуляция"
+
+#, fuzzy
+msgid "SIMULATION_FACTOR"
 msgstr "Симуляция"
 
 msgid "SIXTEEN_TIMES"
@@ -5867,6 +5989,14 @@ msgstr "Невозможно использовать чит Создать Пр
 msgid "SPAWN_GLUCOSE"
 msgstr "Создать глюкозу"
 
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL"
+msgstr "Создать аммиак"
+
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL_EXPLANATION"
+msgstr "(скорость, с которой ИИ будет мутировать)"
+
 msgid "SPAWN_PHOSPHATES"
 msgstr "Создать фосфат"
 
@@ -5937,9 +6067,8 @@ msgstr "{0} с численностью: {1}"
 msgid "SPEED_COLON"
 msgstr "Скорость:"
 
-#, fuzzy
 msgid "SPEED_TOGGLE_TOOLTIP"
-msgstr "Переключайтесь между нормальной и удвоенной скоростями игры"
+msgstr "Переключайтесь между нормальной и альтернативной скоростями игры"
 
 msgid "SPORE_CELL_TYPE"
 msgstr "Тип споровых клеток"
@@ -6230,9 +6359,8 @@ msgstr "Температура"
 msgid "TEMPERATURE_SHORT"
 msgstr "Темп."
 
-#, fuzzy
 msgid "TEMPERATURE_TOLERANCE_RANGE"
-msgstr "Предпочитаемая температура для ваших видов. Когда условия выходят за пределы диапазона гибкости вокруг идеальной температуры, это может принести негативные эффекты, делающие выживание сложнее. Адаптируйтесь при помощи ползунков для изменения плана игры."
+msgstr "Диапазон Допустимых Температур"
 
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr "Предпочитаемая температура для ваших видов. Когда условия выходят за пределы диапазона гибкости вокруг идеальной температуры, это может принести негативные эффекты, делающие выживание сложнее. Адаптируйтесь при помощи ползунков для изменения плана игры."
@@ -6332,11 +6460,23 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr "Центр"
 
+#, fuzzy
+msgid "THRIVEOPEDIA_MUSEUM_PAGE_SEARCHTAGS"
+msgstr "Музей"
+
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Музей"
 
+#, fuzzy
+msgid "THRIVEOPEDIA_ORGANELLE_SEARCHTAGS"
+msgstr "Виды"
+
 msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
 msgstr "Вымершие виды {0}"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_SEARCHTAGS"
+msgstr "Карта биомов"
 
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr "Карта биомов"
@@ -6362,6 +6502,14 @@ msgstr "Ни один вид еще не закреплен, поэтому зд
 msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
 msgstr "Закрепленные Виды"
 
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_SEARCHTAGS"
+msgstr "{0}"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_SEARCHTAGS"
+msgstr "Виды"
+
 msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
 msgstr "Виды"
 
@@ -6372,7 +6520,7 @@ msgid "THRIVIN_ACHIEVEMENT"
 msgstr "Процветающий"
 
 msgid "THRUST_FORCE"
-msgstr ""
+msgstr "Толчок"
 
 msgid "THYLAKOIDS"
 msgstr "Тилакоиды"
@@ -7417,12 +7565,13 @@ msgstr ""
 msgid "WIKI_AWARE_STAGE_UI"
 msgstr "Будет готово в Скором Времени."
 
-#, fuzzy
 msgid "WIKI_AXON_EFFECTS"
 msgstr ""
 "За каждую клетку в многоклеточном организме, что содержит [b]Аксон[/b], сила мозга организма повышается пропорционально объёму этой клетки. Клетки с [b]Аксонами[/b] классифицируются как мышечные клетки мозга.\n"
 "\n"
-"Когда сила мозга достигает как минимум [b]+0.5[/b], игрок входит в Стадию Осознания. Когда сила мозга достигает [b]+5.0[/b], игрок входит в Стадию Пробуждения."
+"Когда сила мозга достигает как минимум [b]+0.5[/b], игрок входит в Стадию Осознания. Когда сила мозга достигает [b]+5.0[/b], игрок входит в Стадию Пробуждения.\n"
+"\n"
+"Уменьшает[thrive:compound type=\"sunlight\"][/thrive:compound] [b]Сопротивление[/b] на 10%."
 
 msgid "WIKI_AXON_INTRO"
 msgstr "Волокна нервов между нейронами, доступные начиная с [color=#3796e1][url=thriveopedia:macroscopic_stage]Макроскопической Стадии[/url][/color]. Требуется для повышения силы мозга организма, что в свою очередь необходима для перехода на следующие стадии."
@@ -7491,13 +7640,11 @@ msgstr ""
 msgid "WIKI_BINDING_AGENT_UPGRADES"
 msgstr "Нет улучшений."
 
-#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_EFFECTS"
-msgstr "Клетки с [b]Биолюменесцентными Вакуолями[/b] повышают их Устойчивость к Кислороду."
+msgstr "Увеличивает[thrive:compound type=\"oxygen\"][/thrive:compound] [b]Сопротивление[/b] на 15%."
 
-#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_INTRO"
-msgstr "Создает[thrive:compound type=\"sunlight\"][/thrive:compound] и увеличивает Устойчивость к Кислороду имеющейся клетки."
+msgstr "Создает[thrive:compound type=\"sunlight\"][/thrive:compound] и увеличивает [thrive:compound type=\"oxygen\"][/thrive:compound] имеющейся клетки."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_MODIFICATIONS"
 msgstr "Нет модификаций."
@@ -7561,7 +7708,7 @@ msgid "WIKI_CHEMORECEPTOR_EFFECTS"
 msgstr ""
 "Для каждого [b]Хеморецептора[/b], прикрепленного к клетке игрока:\n"
 "\n"
-"[ul]—   Если установлено обнаружение определённого соединения, игрок видит визуальный индикатор, указывающий на ближайшее облако этого соединения. Облако должно находиться в радиусе поиска и иметь плотность выше минимальной.\n"
+"[ul]Если установлено обнаружение определённого соединения, игрок видит визуальный индикатор, указывающий на ближайшее облако этого соединения. Облако должно находиться в радиусе поиска и иметь плотность выше минимальной.\n"
 "Если игрок настроен на обнаружение определённого вида, он увидит визуальный индикатор, указывающий на ближайшую клетку с этим видом. Клетка должна находиться в радиусе поиска.[/ul]\n"
 "\n"
 "Клетки, не являющиеся игроками, с большей вероятностью будут перемещаться к соединениям и/или видам, заданным для них [b]Хеморецепторами[/b]."
@@ -7635,9 +7782,8 @@ msgstr ""
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_UPGRADES"
 msgstr "Нет улучшений."
 
-#, fuzzy
 msgid "WIKI_CHLOROPLAST_EFFECTS"
-msgstr "Эффекты отсутствуют."
+msgstr "Увеличивает [thrive:compound type=\"sunlight\"][/thrive:compound] [b]Сопротивление[/b] на 8% и увеличивает [thrive:compound type=\"oxygen\"][/thrive:compound] [b]Сопротивление[/b] на 3.5%."
 
 msgid "WIKI_CHLOROPLAST_INTRO"
 msgstr ""
@@ -7900,7 +8046,7 @@ msgstr ""
 
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
 msgstr ""
-"[ul]—   В Thrive игровые ресурсы представлены Соединениями, из которых можно создавать различные объекты. Они не ограничены научным определением \"Соединения\" как сложного вещества образованного химической связью между двумя или более атомами. Соединения как ресурсы могут представлять элементы (например кислород), соединения в научном понимании (например аммиак), и прочие вещества (химические агенты или токсины).[/ul]\n"
+"[ul]В Thrive игровые ресурсы представлены Соединениями, из которых можно создавать различные объекты. Они не ограничены научным определением \"Соединения\" как сложного вещества образованного химической связью между двумя или более атомами. Соединения как ресурсы могут представлять элементы (например кислород), соединения в научном понимании (например аммиак), и прочие вещества (химические агенты или токсины).[/ul]\n"
 "\n"
 "[ul]Практически все в игре состоит из тех или иных соединений. Система соединений следит за тем из чего состоит организм, чем он питался, что вырастил из этой пищи и какие ее части остались непереваренными. Все в игре является частью среды, и может использоваться разными организмами.[/ul]"
 
@@ -8354,9 +8500,8 @@ msgstr ""
 "\n"
 "Если вы выживете двадцать пять поколений с популяцией 300 и имеете 10 клеток в многоклеточном организме, считается, что вы \"выиграли\" текущую игру. Вы все равно можете продолжить играть, как пожелаете."
 
-#, fuzzy
 msgid "WIKI_HYDROGENASE_EFFECTS"
-msgstr "Нет эффектов."
+msgstr "Уменьшает [thrive:compound type=\"oxygen\"][/thrive:compound] [b] Сопротивление[/b] на 4%."
 
 msgid "WIKI_HYDROGENASE_INTRO"
 msgstr "[b]Гидрогеназа[/b] выполняет [b]Клостридальную Ферментацию[/b], форму [b]Анаэробного Дыхания[/b]. Это переработка [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]. Это первая часть, перерабатывающая глюкозу, которую имеет игрок,выступающая единственной частью, сжигающей глюкозу."
@@ -8394,9 +8539,8 @@ msgstr ""
 msgid "WIKI_HYDROGENASE_UPGRADES"
 msgstr "Нет улучшений."
 
-#, fuzzy
 msgid "WIKI_HYDROGENOSOME_EFFECTS"
-msgstr "Нет эффектов."
+msgstr "Уменьшает [thrive:compound type=\"oxygen\"][/thrive:compound] [b] Сопротивление[/b] на 7%."
 
 msgid "WIKI_HYDROGENOSOME_INTRO"
 msgstr "[i]Рабочая лошадка клетки[/i] встречается у многих видов. [b]Гидрогеносомы[/b] выполняют [b]Клостридальную Ферментацию[/b], форму [b]анаэробного дыхания[/b]. Это переработка [thrive:compound type=\"glucose\"][/thrive:compound] в[thrive:compound type=\"atp\"][/thrive:compound]. Это связанный с мембраной эквивалент [b]Гидрогеназы[/b], и на данный момент единственная [i]эукариотическая[/i] часть анаэробного сжигания глюкозы."
@@ -8554,9 +8698,8 @@ msgstr ""
 "\n"
 "На следующих страницах описаны различные игровые механики. Не стесняйтесь просматривать страницы, чтобы получить советы и помощь в игре."
 
-#, fuzzy
 msgid "WIKI_MELANOSOME_EFFECTS"
-msgstr "Никаких эффектов."
+msgstr "Увеличивает [thrive:compound type=\"sunlight\"][/thrive:compound] [b] Сопротивление[/b] на 2%."
 
 msgid "WIKI_MELANOSOME_INTRO"
 msgstr "[b]Melanosomes[/b] — [color=#3796e1][url=thriveopedia:OrganellesRoot]органеллы[/url][/color], которые выполняют [b]Радиосинтез[/b], который улавливает энергию излучения, поглощая её с помощью меланина."
@@ -8585,9 +8728,8 @@ msgstr "Радиоактивные камни редки, но изобилую�
 msgid "WIKI_MELANOSOME_UPGRADES"
 msgstr "Улучшения отсутствуют."
 
-#, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
-msgstr "Эффекты отсутствуют."
+msgstr "Увеличивает [thrive:compound type=\"oxygen\"][/thrive:compound] [b] Сопротивление[/b] на 3.5%."
 
 msgid "WIKI_METABOLOSOMES_INTRO"
 msgstr "[b]Метаболосомы[/b] участвуют в процессе, именуемым [b]Белковым дыханием[/b], формой [b]Аэробного дыхания[/b], уступающая [b][color=#3796e1][url=thriveopedia:mitochondrion]Митохондрии[/url][/color][/b]. Это является конверсией [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound] с использованием [thrive:compound type=\"oxygen\"][/thrive:compound]."
@@ -8759,9 +8901,8 @@ msgstr ""
 "\n"
 "Стадия «Микроб» — это первая стадия игры. Она начинается с того, что в мире появляется первый вид, возникший из первобытных источников жизни и исследующий богатые питательными веществами Пангонийские жерла. Именно здесь игрок берёт на себя роль крошечного прокариотического сгустка цитоплазмы, одного из немногих представителей своего вида. На этом этапе игрок должен полностью полагаться на поиск незакреплённой [thrive:compound type=\"glucose\"][/thrive:compound], чтобы выжить, им нужно научиться перерабатывать другие питательные вещества и искать [thrive:compound type=\"phosphates\"][/thrive:compound] и[thrive:compound type=\"ammonia\"][/thrive:compound], чтобы вырасти и подготовиться к размножению. Как только игрок достигнет достаточного размера, он сможет размножаться, что приведёт его в редактор микробов, если он решит это сделать. По мере прохождения игры игрок будет постепенно адаптировать свою клетку, чтобы лучше выживать в мире, который с каждым поколением становится всё суровее, и конкурировать с новыми видами, возникшими из его собственного."
 
-#, fuzzy
 msgid "WIKI_MITOCHONDRION_EFFECTS"
-msgstr "Эффекты отсутствуют."
+msgstr "Увеличивает [thrive:compound type=\"oxygen\"][/thrive:compound] [b] Сопротивление[/b] на 8%."
 
 msgid "WIKI_MITOCHONDRION_INTRO"
 msgstr "Энергетический центр клетки. [b]Митохондрия[/b] выполняет [b]Аэробное Дыхание[/b] или преобразует [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound] с помощью [thrive:compound type=\"oxygen\"][/thrive:compound]. [b]Митохондрия[/b] выполняет эту функцию более эффективно, чем другие органеллы, такие как [b][color=#3796e1][url=thriveopedia:metabolosome]Метаболосомы[/url][/color][/b]."
@@ -8813,7 +8954,7 @@ msgstr "Разработка многоклеточной стадии - осн�
 
 msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
 msgstr ""
-"Игровой процесс на многоклеточной стадии  ощущается похожим на Стадию Микроба. Игровой процесс продолжается в 2D-плоскости с другими клетками, но разница в том, что теперь игрок управляет растущей колонией. Отличие от конца стадии микробов заключается в том, что колонию больше нельзя распустить, она действует как единый организм, который постоянно находится в связанном состоянии. Окружение микробов по-прежнему используется, и игрок может взаимодействовать с микробами.\n"
+"Игровой процесс на многоклеточной стадии ощущается похожим на Стадию Микроба. Игровой процесс продолжается в 2D-плоскости с другими клетками, но разница в том, что теперь игрок управляет растущей колонией. Отличие от конца стадии микробов заключается в том, что колонию больше нельзя распустить, она действует как единый организм, который постоянно находится в связанном состоянии. Окружение микробов по-прежнему используется, и игрок может взаимодействовать с микробами.\n"
 "\n"
 "В редакторе игрок теперь может создавать и редактировать типы клеток, а также вносить изменения в их структуру и органеллы. Любое изменение, внесённое в тип клетки, автоматически применяется ко всем клеткам этого типа. Используя разные типы клеток, игрок сможет специализировать клетки своей колонии для выполнения различных функций. Поскольку специализированные клетки получают бонус к эффективности, который дополнительно усиливается за счет соседства клеток одного типа, это дает ему большое преимущество перед одноклеточными организмами.\n"
 "\n"
@@ -8866,9 +9007,8 @@ msgstr "Никаких улучшений"
 msgid "WIKI_NATION_EDITOR"
 msgstr "Редактор Наций"
 
-#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
-msgstr "Нет эффектов."
+msgstr "Уменьшает [thrive:compound type=\"oxygen\"][/thrive:compound] [b] Сопротивление[/b] на 1%."
 
 msgid "WIKI_NITROGENASE_INTRO"
 msgstr ""
@@ -8907,9 +9047,8 @@ msgstr ""
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "Нет улучшений."
 
-#, fuzzy
 msgid "WIKI_NITROPLAST_EFFECTS"
-msgstr "Нет эффектов."
+msgstr "Уменьшает [thrive:compound type=\"oxygen\"][/thrive:compound] [b] Сопротивление[/b] на 2%."
 
 msgid "WIKI_NITROPLAST_INTRO"
 msgstr "Нитропласт — это окружённая мембраной органелла, используемая для производства [thrive:compound type=\"ammonia\"][/thrive:compound], один из компонентов роста, необходимый для клеточного размножения. Выполняет [b]Фиксацию Азота[/b] для преобразования газообразного [thrive:compound type=\"nitrogen\"][/thrive:compound] и [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:compound type=\"ammonia\"][/thrive:compound]. Более эффективен, чем прокариот [b][color=#3796e1][url=thriveopedia:nitrogenase]Нитрогеназа[/url][/color][/b]."
@@ -8985,9 +9124,11 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_NUCLEUS_STRATEGY"
 msgstr ""
-"Хорошо подумайте перед тем, как добавлять [b]Ядро[/b] в свою клетку. Содержание Ядра дорого обходится, и значительно замедляет клетку, поэтому удостоверьтесь, что у вас достаточно запасов [thrive:compound type=\"atp\"][/thrive:compound] и вы можете позволить себе малоподвижное существование первые одно-два поколения. Мы рекомендуем добавлять [b][color=#3796e1][url=thriveopedia:cilia]Реснички[/url][/color][/b] и [b][color=#3796e1][url=thriveopedia:flagellum]Жгутики[/url][/color][/b] в более поздних поколениях для восстановления части ловкости.\n"
+"[/i]Хорошо подумайте перед тем, как добавлять [b]Ядро[/b] в свою клетку. Содержание Ядра дорого обходится, значительно замедляет клетку, поэтому удостоверьтесь, что у вас достаточно запасов [thrive:compound type=\"atp\"][/thrive:compound] и вы можете позволить себе малоподвижное существование первые одно-два поколения. Мы рекомендуем добавлять [b][color=#3796e1][url=thriveopedia:cilia]Реснички[/url][/color][/b] и [b][color=#3796e1][url=thriveopedia:flagellum]Жгутики[/url][/color][/b] в более поздних поколениях для восстановления части подвижности.\n"
 "\n"
-"Однако преимущества очевидны. [i]Эукариоты[/i] (клетки с [b]Ядром[/b]) получают доступ к более гибким и превосходным улучшениям, чем прокариоты (безъядерные клетки). Удвоение эффекта специализации клеток также повышает эффективность всех частей процесса, особенно если ваш вид более специализирован.\n"
+"Однако преимущества очевидны. [i]Эукариоты[/i] (клетки с [b]Ядром[/b]) получают доступ к более гибким и превосходным улучшениям, чем прокариоты (безъядерные клетки).\n"
+"\n"
+"Удвоение эффекта специализации клеток также повышает эффективность всех частей процесса, особенно если ваш вид более специализирован.\n"
 "\n"
 "[b]Органеллы[/b], разблокирующиеся при наличии [b]Ядра[/b], предлагают мощные, новые способности, как, например, [b][color=#3796e1][url=thriveopedia:signalingAgent]Сигнальный Агент[/url][/color][/b] и [b][color=#3796e1][url=thriveopedia:bindingAgent]Связывающий агент[/url][/color][/b], или значительные улучшения существующих функций, например, [b][color=#3796e1][url=thriveopedia:mitochondrion]Митохондрия[/url][/color][/b] и [b][color=#3796e1] с [url=thriveopedia:thermoplast]Термопластами[/url][/color][/b]. Мы рекомендуем заменять [i]прокариотические[/i] [b]органеллы[b] более эффективными [i]эукариотическими[/i] аналогами после получения [b]Ядра[/b], для более эффективного синтеза [thrive:compound type=\"atp\"][/thrive:compound] и улучшения выживаемости вашей клетки."
 
@@ -9004,12 +9145,13 @@ msgstr ""
 "\n"
 "Выберите органеллу из списка ниже, чтобы узнать больше."
 
-#, fuzzy
 msgid "WIKI_OXYTOXISOME_EFFECTS"
 msgstr ""
 "Если в клетке есть хотя бы одна [b]Токсисома[/b] или [b][color=#3796e1][url=thriveopedia:oxytoxy]Токсиновая Вакуоль[/url][/color][/b], он может стрелять токсичными снарядами, истощающими запасы [thrive:compound type=\"oxytoxy\"][/thrive:compound], чтобы сделать это. Эти снаряды повреждают клетки других видов, но не причиняют вреда представителям того вида, который их выпустил.\n"
 "\n"
-"Ущерб зависит от суммы выпущенной [thrive:compound type=\"oxytoxy\"][/thrive:compound]."
+"Ущерб зависит от суммы выпущенной [thrive:compound type=\"oxytoxy\"][/thrive:compound].\n"
+"\n"
+"Увеличивает [thrive:compound type=\"oxygen\"][/thrive:compound] [b] Сопротивление[/b] на 0.5%."
 
 msgid "WIKI_OXYTOXISOME_INTRO"
 msgstr "Модифицированная [b][color=#3796e1][url=thriveopedia:metabolosome]Метаболосома[/url][/color][/b], которая производит [thrive:compound type=\"oxytoxy\"][/thrive:compound], агент, которого можно запустить в качестве токсичного снаряда. Усовершенствованная версия [b][color=#3796e1][url=thriveopedia:oxytoxy]Токсиновой Вакуоли[/url][/color][/b]."
@@ -9353,12 +9495,13 @@ msgstr ""
 msgid "WIKI_SIGNALING_AGENT_UPGRADES"
 msgstr "Нет улучшений."
 
-#, fuzzy
 msgid "WIKI_SLIME_JET_EFFECTS"
 msgstr ""
 "Позволяет клетке избавляться от [thrive:compound type=\"mucilage\"][/thrive:compound] чтобы продвинуться вперёд. Выбрасывание[thrive:compound type=\"mucilage\"][/thrive:compound] обеспечивает высокую скорость на короткое время. Всплеск может длиться дольше в зависимости от количества доступной [thrive:compound type=\"mucilage\"][/thrive:compound].\n"
 "\n"
-"Любая клетка без [b]Струи слизи[/b], который попадает в образовавшуюся область[thrive:compound type=\"mucilage\"][/thrive:compound], будет замедлена."
+"Любая клетка без [b]Струи слизи[/b], который попадает в образовавшуюся область[thrive:compound type=\"mucilage\"][/thrive:compound], будет замедлена.\n"
+"\n"
+"Увеличивает [thrive:compound type=\"sunlight\"][/thrive:compound] [b] Сопротивление[/b] на 1%."
 
 msgid "WIKI_SLIME_JET_INTRO"
 msgstr ""
@@ -9471,9 +9614,11 @@ msgstr "Будет анонсировано"
 msgid "WIKI_TECH_EDITOR_COMMA_NATION_EDITOR_COMMA_SQUAD_EDITOR"
 msgstr "Редактор технологий, Редактор наций, Редактор Отряда"
 
-#, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
-msgstr "Добавляет [i]тепловое зрение[/i], Эту функцию можно включать и выключать. Она выводит на экран относительную температуру воды: более горячие участки отображаются красным цветом."
+msgstr ""
+"Добавляет [i]тепловое зрение[/i], Эту функцию можно включать и выключать. Она выводит на экран относительную температуру воды: более горячие участки отображаются красным цветом.\n"
+"\n"
+"Увеличивает [thrive:compound type=\"temperature\"][/thrive:compound] [b]Допустимый Диапазон[/b] на 5 градусов в обе стороны."
 
 msgid "WIKI_THERMOPLAST_INTRO"
 msgstr ""
@@ -9519,9 +9664,11 @@ msgstr ""
 msgid "WIKI_THERMOPLAST_UPGRADES"
 msgstr "Нет улучшений."
 
-#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_EFFECTS"
-msgstr "Добавляет [i]тепловое зрение[/i], который можно включать и выключать. На экране отображается относительная температура воды, чем горячее участок, тем он краснее."
+msgstr ""
+"Добавляет [i]тепловое зрение[/i], который можно включать и выключать. На экране отображается относительная температура воды, чем горячее участок, тем он краснее.\n"
+"\n"
+"Увеличивает [thrive:compound type=\"temperature\"][/thrive:compound] [b]Допустимый Диапазон[/b] на 2 градуса в обе стороны."
 
 msgid "WIKI_THERMOSYNTHASE_INTRO"
 msgstr ""
@@ -9587,9 +9734,8 @@ msgstr ""
 msgid "WIKI_THE_PATCH_MAP_THE_PATCH_MAP"
 msgstr "[b]Карта Биомов[/b] - представление вашей планеты. Она состоит из [b]Биомов[/b] и [b]Регионов[/b] (Пояснение ниже). Каждый регион содержит несколько связанных (и прилежащих) биомов и соединения с другими регионами."
 
-#, fuzzy
 msgid "WIKI_THYLAKOIDS_EFFECTS"
-msgstr "Нет специальных эхффектов."
+msgstr "Увеличивает [thrive:compound type=\"sunlight\"][/thrive:compound] на 3% и увеличивает [thrive:compound type=\"oxygen\"][/thrive:compound] на 1.5%."
 
 msgid "WIKI_THYLAKOIDS_INTRO"
 msgstr ""
@@ -9633,12 +9779,13 @@ msgstr ""
 msgid "WIKI_THYLAKOIDS_UPGRADES"
 msgstr "Нет улучшений."
 
-#, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_EFFECTS"
 msgstr ""
 "Если клетка имеет хотя бы одну [b][color=#3796e1][url=thriveopedia:oxytoxyProteins]Окситосому[/url][/color][/b] или [b]Токсинную Вакуоль[/b], она может выпускать токсинные заряды, сливая накопленные [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Эти заряды поражают клетки других видов, но не вредят членам своего вида.\n"
 "\n"
-"Урон масштабируется с увеличением выброса [thrive:compound type=\"oxytoxy\"][/thrive:compound]."
+"Урон масштабируется с увеличением выброса [thrive:compound type=\"oxytoxy\"][/thrive:compound].\n"
+"\n"
+"Увеличивает [thrive:compound type=\"oxygen\"][/thrive:compound] [b] Сопротивление[/b] на 2%."
 
 msgid "WIKI_TOXIN_VACUOLE_INTRO"
 msgstr "Модифицированная [b][color=#3796e1][url=thriveopedia:vacuole]Vacuole[/url][/color][/b] , производящая [thrive:compound type=\"oxytoxy\"][/thrive:compound], агент, который можно запустить, как токсичный снаряд. Улучшенная версия [b][color=#3796e1][url=thriveopedia:oxytoxyProteins]Oxytoxisome[/url][/color][/b]."
@@ -9670,9 +9817,8 @@ msgstr "Аналогично тому, что было у [b][color=#3796e1][url
 msgid "WIKI_TOXIN_VACUOLE_UPGRADES"
 msgstr "Нет улучшений."
 
-#, fuzzy
 msgid "WIKI_VACUOLE_EFFECTS"
-msgstr "Без эффектов."
+msgstr "Увеличивает максимум [b]Допустимого Давления[/b] на 400 кПа."
 
 msgid "WIKI_VACUOLE_INTRO"
 msgstr "Эукариотическая органелла, хранящая соединения, гораздо плотнее, чем [b][color=#3796e1][url=thriveopedia:cytoplasm]Цитоплазма[/url][/color][/b]. Можно специализировать для увеличения хранения еще больше."
@@ -10029,9 +10175,6 @@ msgstr "Уменьшить масштаб"
 
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "Железная хемолитоавтотрофия"
-
-#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
-#~ msgstr "Пассивно получать прогресс репродукции"
 
 #~ msgid "MIGRATE"
 #~ msgstr "Мигрировать"
@@ -10397,9 +10540,6 @@ msgstr "Уменьшить масштаб"
 
 #~ msgid "PATCH_MAP_TYPE_CLASSIC"
 #~ msgstr "Классическая"
-
-#~ msgid "PATCH_MAP_TYPE_EXPLANATION"
-#~ msgstr "(генерировать карту биомов процедурно или использовать классическое расположение)"
 
 #~ msgid "PATCH_MAP_TYPE_PROCEDURAL"
 #~ msgstr "Процедурная"

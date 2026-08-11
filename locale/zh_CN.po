@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-03 20:10+0100\n"
-"PO-Revision-Date: 2026-06-05 12:52+0000\n"
-"Last-Translator: 归灵祈昱 <guilingqiyu@gmail.com>\n"
+"POT-Creation-Date: 2026-08-11 10:42+0300\n"
+"PO-Revision-Date: 2026-08-07 07:06+0000\n"
+"Last-Translator: Guno haozheum <15721507614@163.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -52,6 +52,17 @@ msgstr "接受"
 msgid "ACHIEVEMENTS"
 msgstr "成就"
 
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr "成就数据加载失败"
+
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr ""
+"成就的数据文件可能损坏了。\n"
+"数据可以通过删除下列内容来重置，这会丢失所有的成就进度:\n"
+"{0}\n"
+"你想在没有成就的情况下继续游戏吗？\n"
+"按下取消将退出游戏。"
+
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr "成就 {0} / {1}"
 
@@ -65,7 +76,7 @@ msgid "ACTION_AWAKEN"
 msgstr "觉醒 ({0:F1} / {1:F1})"
 
 msgid "ACTION_AWAKEN_TOOLTIP"
-msgstr "进入觉醒阶段。一旦您有足够的脑力（需要带轴突的组织）就可以使用。"
+msgstr "进入觉醒阶段。拥有足够脑力后即可解锁（脑力：带有轴突的组织类型）。"
 
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "当前行动被阻塞，另一个操作正在进行中"
@@ -750,6 +761,27 @@ msgstr "细胞类型名称"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "更改说明太长了"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr "更改细胞膜类型"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr ""
+"在多细胞阶段仍可改变细胞膜类型，但难度会更大。\n"
+"在宏观阶段将完全无法再改变细胞膜类型。\n"
+"现在改变细胞膜需要所有细胞类型一次性全部转变为新类型。\n"
+"这需要消耗所有的突变点数 [thrive:icon]MP[/thrive:icon] 来进行此更改。\n"
+"并且会退出编辑器以应用此更改。\n"
+"要将细胞膜更改为所选类型吗？"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
+"在多细胞阶段仍可改变细胞膜类型，但难度会大得多。 \n"
+"在宏观阶段将完全无法再改变细胞膜类型。 \n"
+"现在改变细胞膜需要所有细胞类型一次性全部转变为新类型。 \n"
+"这需要消耗所有的突变点数 [thrive:icon]MP[/thrive:icon] 来进行此更改。 \n"
+"并且会退出编辑器以应用此更改。 \n"
+"[b]MP不足。[/b]如果您仍需改变细胞膜，您可以撤销此次进化的全部更改。"
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "改变对称"
@@ -1812,11 +1844,9 @@ msgstr "微生物背景扭曲"
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "显示背景粒子"
 
-#, fuzzy
 msgid "DISPLAY_DRIVER_DIRECT3D"
 msgstr "DirectX"
 
-#, fuzzy
 msgid "DISPLAY_DRIVER_METAL"
 msgstr "Metal"
 
@@ -2064,7 +2094,10 @@ msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
 msgstr "该物种不能被转化成任何细胞器"
 
 msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
-msgstr "为了增加内共生进度，目标物种需要被胞吞并转化为一个临时细胞器（同一时间最多只能有一个）。一旦您带着临时细胞器进入编辑器进度就会被保存。"
+msgstr "要推进内共生过程，需要吞噬目标物种，将其转变为临时细胞器（一次只能存在一个）。之后，只要带着临时细胞器进入编辑器，进度就会被保存。"
+
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION_MULTICELLULAR"
+msgstr "要推进内共生过程，需要吞噬目标物种，将其转变为临时细胞器（单个细胞内同时只能存在一个）。之后，只要带着这个临时细胞器进入编辑器，进度就会被保存。放置完成的内共生体只能在细胞编辑器选项卡中进行。"
 
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
 msgstr "原核细胞最多只能有一个内共生体"
@@ -2173,6 +2206,9 @@ msgstr "新闻加载失败"
 
 msgid "ERROR_LOADING"
 msgstr "载入时出错"
+
+msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr "错误：有性繁殖至少需要两个细胞"
 
 msgid "ERROR_SAVING"
 msgstr "存档时出错"
@@ -2548,6 +2584,24 @@ msgstr "图库浏览器"
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr "基本游戏系统"
 
+msgid "GAMETE_CELL_ENTITY_NAME"
+msgstr "{0}的配子"
+
+msgid "GAMETE_CELL_TYPE"
+msgstr "配子细胞类型"
+
+msgid "GAMETE_CELL_TYPE_A"
+msgstr "配子类型A"
+
+msgid "GAMETE_CELL_TYPE_B"
+msgstr "配子类型B"
+
+msgid "GAMETE_PRODUCED"
+msgstr "产生的配子"
+
+msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+msgstr "将玩家细胞群落产生的配子类型选为这种"
+
 msgid "GAME_DESIGN_TEAM"
 msgstr "游戏设计团队"
 
@@ -2836,6 +2890,9 @@ msgstr "与以下细胞膜不兼容：{0}"
 
 msgid "INCOMPATIBLE_ORGANELLE_LIST"
 msgstr "与以下放置的细胞器不兼容：{0}"
+
+msgid "INCOMPATIBLE_STAGE_LIST"
+msgstr "无法在该阶段更改：{0}"
 
 msgid "INCREASE_ITEM_SIZE"
 msgstr "放大物体"
@@ -3562,6 +3619,9 @@ msgstr "大环内酯物合成"
 
 msgid "MACROSCOPIC"
 msgstr "宏观生物"
+
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr "宏观阶段，细胞膜无法再被更改"
 
 msgid "MACROSCOPIC_EDITOR"
 msgstr "宏观生物编辑器"
@@ -4529,8 +4589,14 @@ msgstr "因辐射过量而受损"
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "现在可以进入编辑器"
 
+msgid "NOTICE_READY_TO_SHOOT_GAMETE"
+msgstr "一个配子已经准备好发射了。将它撞向另一个合适的配子以进入细胞编辑器。"
+
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "不适应当前地区状况。请调整偏好条件或适应范围以移除减益效果。"
+
+msgid "NOT_ENOUGH_MUTATION_POINTS"
+msgstr "突变点数不足"
 
 msgid "NOT_STARTED_DOT"
 msgstr "未开始。"
@@ -4705,6 +4771,9 @@ msgstr "选项"
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "改变您的设置"
 
+msgid "OPTION_USED_FOR_PLAYER"
+msgstr "玩家配子类型"
+
 msgid "ORGANELLES"
 msgstr "细胞器"
 
@@ -4819,6 +4888,9 @@ msgstr "氰化物合成"
 msgid "OXYGEN_RESISTANCE"
 msgstr "抗氧化性"
 
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
+msgstr "高氧抗性需要通过添加能够提供这种抗性的细胞器来实现，因为氧气耐受性滑块的可调节范围有限。"
+
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr "您的物种能耐受多少氧化损伤而不受到负面影响。如果所处区域的氧气浓度超过耐受阈值，您将受到负面效果。"
 
@@ -4897,7 +4969,7 @@ msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr "您上次玩Thrive的时间{0},目前已经更新了{1}个版本"
 
 msgid "PATCH_NOTES_RECENT_BOUNDARY"
-msgstr "已浏览全部近期版本"
+msgstr "已浏览全部近期版本。"
 
 msgid "PATCH_NOTES_TITLE"
 msgstr "更新说明"
@@ -4939,7 +5011,10 @@ msgid "PEACEFUL"
 msgstr "和平"
 
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
-msgstr "一个内共生进度已满，您可以把对应物种作为细胞器放置在细胞中来完结它。建议您尽快这样做因为在这之前您不能在内共生方面取得新的进展。您现在要查看内共生进程吗？"
+msgstr "有一个已完成的内共生过程，可以通过将其作为细胞器放置来完成。建议尽快执行此操作，因为在此之前无法在内共生方面取得进一步进展。是否现在查看内共生状态？"
+
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION_MULTICELLULAR"
+msgstr "有一个已完成的内共生过程，可以通过将其作为细胞器放置来完成。建议尽快执行此操作，因为在此之前无法在内共生方面取得进一步进展。该细胞器需要放置到细胞编辑器中的一种细胞类型里。是否现在查看内共生状态？"
 
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
 msgstr "一个内共生进度已满"
@@ -5250,6 +5325,9 @@ msgstr "报告"
 msgid "REPORT_BUG"
 msgstr "报告一个bug"
 
+msgid "REPRODUCE"
+msgstr "繁殖"
+
 msgid "REPRODUCED"
 msgstr "繁殖次数"
 
@@ -5281,6 +5359,15 @@ msgstr "团出芽"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "繁殖："
+
+msgid "REPRODUCTION_SEXUAL"
+msgstr "有性繁殖"
+
+msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
+msgstr "有性异配生殖"
+
+msgid "REPRODUCTION_SEXUAL_ISOGAMY"
+msgstr "有性同配生殖"
 
 msgid "REPRODUCTION_SPORE"
 msgstr "孢子形成"
@@ -5683,6 +5770,15 @@ msgstr "沉着"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "这个数值只对您改变选项后新开的存档有效"
 
+msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr "使用有性异配生殖时，你可以拥有不同的配子类型。比如说，你可以设置一种活动能力很强的配子和另一种体积很大的。其中一种配子只能和另一种结合。"
+
+msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "产生配子而不是直接产生后代。配子必须与另一个来自其他细胞群落的合适配子结合才能产生后代。你可以通过信号素产生器向其他细胞发送信号。"
+
+msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+msgstr "升级为异配生殖 ({0} MP)"
+
 msgid "SFX_VOLUME"
 msgstr "音效音量"
 
@@ -5706,6 +5802,12 @@ msgstr "显示坐标"
 
 msgid "SHOW_MAP"
 msgstr "显示地图"
+
+msgid "SHOW_MATE_POSITION"
+msgstr "显示配偶位置"
+
+msgid "SHOW_MATE_POSITION_EXPLANATION"
+msgstr "(当求偶时，在视觉上展示合适的配偶在哪里)"
 
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "自动显示新的补丁说明"
@@ -5752,6 +5854,12 @@ msgstr "按[thrive:input]g_pack_commands[/thrive:input]来打开一个用于给�
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "变得更有侵略性"
 
+msgid "SIGNAL_COMMAND_CALL_MATE"
+msgstr "求偶"
+
+msgid "SIGNAL_COMMAND_FIRE_GAMETES"
+msgstr "请求释放配子"
+
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr "逃跑"
 
@@ -5775,6 +5883,11 @@ msgstr "这个细胞膜额外配置了一层二氧化硅外壳。各方面都有
 
 msgid "SIMULATION_CONFIG"
 msgstr "模拟"
+
+msgid "SIMULATION_FACTOR"
+msgstr ""
+"模拟\n"
+"因子"
 
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
@@ -5854,6 +5967,12 @@ msgstr "无法使用生成敌人作弊，因为这个地区没有任何敌对物
 msgid "SPAWN_GLUCOSE"
 msgstr "生成葡萄糖"
 
+msgid "SPAWN_MATE_ON_CALL"
+msgstr "若求偶时没有合适配偶则生成一个"
+
+msgid "SPAWN_MATE_ON_CALL_EXPLANATION"
+msgstr "(如果玩家求偶时周围没有合适配偶则生成一个)"
+
 msgid "SPAWN_PHOSPHATES"
 msgstr "生成磷酸盐"
 
@@ -5924,7 +6043,6 @@ msgstr "{0}的种群数量：{1}"
 msgid "SPEED_COLON"
 msgstr "速度："
 
-#, fuzzy
 msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr "在正常与倍速的游戏速度之间切换"
 
@@ -6318,11 +6436,23 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr "主页"
 
+#, fuzzy
+msgid "THRIVEOPEDIA_MUSEUM_PAGE_SEARCHTAGS"
+msgstr "博物馆"
+
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "博物馆"
 
+#, fuzzy
+msgid "THRIVEOPEDIA_ORGANELLE_SEARCHTAGS"
+msgstr "物种"
+
 msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
 msgstr "灭绝物种 {0}"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_SEARCHTAGS"
+msgstr "地区图"
 
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr "地区图"
@@ -6347,6 +6477,14 @@ msgstr "目前尚未固定任何物种，因此这里没有列出任何页面。
 
 msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
 msgstr "固定的物种"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_SEARCHTAGS"
+msgstr "{0}"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_SEARCHTAGS"
+msgstr "物种"
 
 msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
 msgstr "物种"
@@ -7483,9 +7621,8 @@ msgstr "无升级。"
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_EFFECTS"
 msgstr "使[thrive:compound type=\"oxygen\"][/thrive:compound] [b]氧耐受性[/b]提高15%。"
 
-#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_INTRO"
-msgstr "产生 [thrive:compound type=\"sunlight\"][/thrive:compound]，并提高拥有它的细胞的氧耐受性。"
+msgstr "产生 [thrive:compound type=\"sunlight\"][/thrive:compound]，并提高拥有它的细胞的[thrive:compound type=\"oxygen\"][/thrive:compound]。"
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_MODIFICATIONS"
 msgstr "无修改。"
@@ -8570,9 +8707,8 @@ msgstr "放射性岩石虽然十分稀有，但一旦被发现，就能提供丰
 msgid "WIKI_MELANOSOME_UPGRADES"
 msgstr "无升级。"
 
-#, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
-msgstr "无效果。"
+msgstr "提高3.5%[thrive:compound type=\"oxygen\"][/thrive:compound] [b]抗性[/b]。"
 
 msgid "WIKI_METABOLOSOMES_INTRO"
 msgstr "[b]代谢体[/b]进行[b]蛋白质呼吸[/b]，一种劣于[b][color=#3796e1][url=thriveopedia:mitochondrion]线粒体[/url][/color][/b]的[b]有氧呼吸[/b]。它使用[thrive:compound type=\"oxygen\"][/thrive:compound]把[thrive:compound type=\"glucose\"][/thrive:compound]转化为[thrive:compound type=\"atp\"][/thrive:compound]。"
@@ -8743,9 +8879,8 @@ msgstr ""
 "\n"
 "微生物阶段是游戏的第一阶段。该阶段始于世界上第一个存在的物种，刚从生命的原始起源中诞生，正在探索营养丰富的潘戈尼亚热液喷口。在这里，玩家扮演一团微小的原核细胞质，它是该物种中为数不多的个体之一。此时，玩家必须完全依赖寻找游离的 [thrive:compound type=\"glucose\"][/thrive:compound] 来生存，因为他们尚不具备处理其他营养物质的方法；同时必须寻找 [thrive:compound type=\"phosphates\"][/thrive:compound] 和 [thrive:compound type=\"ammonia\"][/thrive:compound] 使得身体长大，为繁殖做准备。一旦玩家达到足够的大小，就将具备繁殖能力；如果玩家选择繁殖，将进入微生物编辑器。随着游戏的继续，玩家将不断改造他们的细胞，以便在每一代都逐渐变得更严酷的世界中更好地生存，并与从玩家自身演化而来的新物种进行竞争。"
 
-#, fuzzy
 msgid "WIKI_MITOCHONDRION_EFFECTS"
-msgstr "无效果。"
+msgstr "提高8%[thrive:compound type=\"oxygen\"][/thrive:compound] [b]抗性[/b]。"
 
 msgid "WIKI_MITOCHONDRION_INTRO"
 msgstr "细胞的发电厂。[b]线粒体[/b]进行[b]有氧呼吸[/b]，或者说用[thrive:compound type=\"oxygen\"][/thrive:compound]把[thrive:compound type=\"glucose\"]转化为[thrive:compound type=\"atp\"][/thrive:compound]。[b]线粒体[/b]执行这项功能的效率高于例如[b][color=#3796e1][url=thriveopedia:metabolosome]代谢体[/url][/color][/b]的其他细胞器。"
@@ -8850,9 +8985,8 @@ msgstr "无升级"
 msgid "WIKI_NATION_EDITOR"
 msgstr "国家编辑器"
 
-#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
-msgstr "无效果。"
+msgstr "降低1%[thrive:compound type=\"oxygen\"][/thrive:compound] [b]抗性[/b]。"
 
 msgid "WIKI_NITROGENASE_INTRO"
 msgstr ""
@@ -9455,9 +9589,11 @@ msgstr "待定"
 msgid "WIKI_TECH_EDITOR_COMMA_NATION_EDITOR_COMMA_SQUAD_EDITOR"
 msgstr "技术编辑器，国家编辑器，队伍编辑器"
 
-#, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
-msgstr "开启[i]热视觉[/i]，可以自由切换开关。该功能会在屏幕上叠加水的相对温度分布，较热的区域显示为更深的红色。"
+msgstr ""
+"启用[i]热视觉[/i]，该功能可随时开启或关闭。这会在屏幕上叠加显示水体的相对温度，温度越高的区域颜色越红。\n"
+"\n"
+"使 [thrive:compound type=\"temperature\"][/thrive:compound] [b]耐受范围[/b]双向各扩大 5 度。"
 
 msgid "WIKI_THERMOPLAST_INTRO"
 msgstr ""
@@ -9503,9 +9639,11 @@ msgstr ""
 msgid "WIKI_THERMOPLAST_UPGRADES"
 msgstr "无升级。"
 
-#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_EFFECTS"
-msgstr "开启[i]热视觉[/i]，可以自由切换开关。该功能会在屏幕上叠加水的相对温度分布，较热的区域显示为更深的红色。"
+msgstr ""
+"启用[i]热视觉[/i]，该功能可随时开启或关闭。这会在屏幕上叠加显示水体的相对温度，温度越高的区域颜色越红。\n"
+"\n"
+"使 [thrive:compound type=\"temperature\"][/thrive:compound] [b]耐受范围[/b]双向各扩大 5 度。"
 
 msgid "WIKI_THERMOSYNTHASE_INTRO"
 msgstr ""
@@ -9571,9 +9709,8 @@ msgstr ""
 msgid "WIKI_THE_PATCH_MAP_THE_PATCH_MAP"
 msgstr "[b]地区图[/b]表示您的星球，由 [b]地区[/b] 和 [b]区域[/b] 组成（如下所述）。每个区域包括多个相连或相邻的地区，并与其他区域相连。"
 
-#, fuzzy
 msgid "WIKI_THYLAKOIDS_EFFECTS"
-msgstr "无特殊效果。"
+msgstr "使 [thrive:compound type=\"sunlight\"][/thrive:compound] 增加 3%，并使 [thrive:compound type=\"oxygen\"][/thrive:compound] 增加 1.5%。"
 
 msgid "WIKI_THYLAKOIDS_INTRO"
 msgstr ""
@@ -9617,12 +9754,13 @@ msgstr ""
 msgid "WIKI_THYLAKOIDS_UPGRADES"
 msgstr "无升级。"
 
-#, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_EFFECTS"
 msgstr ""
-"如果细胞至少有一个[b][color=#3796e1][url=thriveopedia:oxytoxyProteins]氧化毒素酶体[/url][/color][/b]或[b]毒素液泡[/b]，它可以发射毒素弹，通过排出储存的[thrive:compound type=\"oxytoxy\"][/thrive:compound] 来做到。 这些弹体会损害其他物种的细胞，但不会伤害发射者同物种的成员。\n"
+"如果细胞拥有至少一个[b][color=#3796e1][url=thriveopedia:oxytoxyProteins]氧毒素体[/url][/color][/b]或[b]毒素液泡[/b]，就可以发射毒素射弹，并在此过程中消耗储存的 [thrive:compound type=\"oxytoxy\"][/thrive:compound]。这些射弹会对其他物种的细胞造成伤害，但不会伤害同物种的成员。\n"
 "\n"
-"伤害与发射的[thrive:compound type=\"oxytoxy\"][/thrive:compound] 量成正比。"
+"伤害与发射的 [thrive:compound type=\"oxytoxy\"][/thrive:compound] 数量成正比。\n"
+"\n"
+"增加 2% [thrive:compound type=\"oxygen\"][/thrive:compound] [b]抗性[/b]。"
 
 msgid "WIKI_TOXIN_VACUOLE_INTRO"
 msgstr "修改过的[b][color=#3796e1][url=thriveopedia:vacuole]液泡[/url][/color][/b]，生产[thrive:compound type=\"oxytoxy\"][/thrive:compound] ，可以作为发射毒素弹的部件。 [b][color=#3796e1][url=thriveopedia:oxytoxyProteins]氧化毒酶体（毒素体）[/url][/color][/b]的高级版本。"
@@ -10022,9 +10160,6 @@ msgstr "缩小"
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "铁化能无机自养"
 
-#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
-#~ msgstr "被动获得的繁殖进度"
-
 #~ msgid "MIGRATE"
 #~ msgstr "迁移"
 
@@ -10351,9 +10486,6 @@ msgstr "缩小"
 
 #~ msgid "PATCH_MAP_TYPE_CLASSIC"
 #~ msgstr "经典图"
-
-#~ msgid "PATCH_MAP_TYPE_EXPLANATION"
-#~ msgstr "（生成地区图或使用经典地区图）"
 
 #~ msgid "PATCH_MAP_TYPE_PROCEDURAL"
 #~ msgstr "生成图"
