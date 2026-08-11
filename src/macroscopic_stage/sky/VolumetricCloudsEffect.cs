@@ -255,8 +255,8 @@ public partial class VolumetricCloudsEffect : CompositorEffect
                 renderingDevice.FreeRid(marchSet);
             if (upsampleSet.IsValid)
                 renderingDevice.FreeRid(upsampleSet);
-
-            renderingDevice.FreeRid(paramUbo);
+            if (paramUbo.IsValid)
+                renderingDevice.FreeRid(paramUbo);
         }
     }
 
