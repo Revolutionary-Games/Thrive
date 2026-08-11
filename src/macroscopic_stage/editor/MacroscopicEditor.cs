@@ -88,6 +88,8 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
         }
     }
 
+    public float MutationPointCostModifier => 1;
+
     [JsonIgnore]
     public override Species EditedBaseSpecies =>
         editedSpecies ?? throw new InvalidOperationException("species not initialized");
