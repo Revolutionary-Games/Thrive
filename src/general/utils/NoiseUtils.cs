@@ -4,13 +4,13 @@ using Godot;
 
 public static class NoiseUtils
 {
-    public static Vector3 CellPoint(int cx, int cy, int cz, int grid, int seed)
+    public static Vector3 CellPoint(int x, int y, int z, int grid, int seed)
     {
-        cx = (cx % grid + grid) % grid;
-        cy = (cy % grid + grid) % grid;
-        cz = (cz % grid + grid) % grid;
+        x = (x % grid + grid) % grid;
+        y = (y % grid + grid) % grid;
+        z = (z % grid + grid) % grid;
 
-        uint h = (uint)(cx * 73856093 ^ cy * 19349663 ^ cz * 83492791 ^ seed * 2654435761);
+        uint h = (uint)(x * 73856093 ^ y * 19349663 ^ z * 83492791 ^ seed * 2654435761);
 
         h ^= h >> 13;
         h *= 0x5bd1e995u;
@@ -26,9 +26,9 @@ public static class NoiseUtils
         return new Vector3(rx, ry, rz);
     }
 
-    public static float WorleyTiling(Vector3 p, int grid, int seed)
+    public static float WorleyTiling(Vector3 point, int grid, int seed)
     {
-        Vector3 scaled = p * grid;
+        Vector3 scaled = point * grid;
         Vector3I baseCell = new Vector3I(
             Mathf.FloorToInt(scaled.X),
             Mathf.FloorToInt(scaled.Y),
@@ -57,13 +57,13 @@ public static class NoiseUtils
         return 1.0f - Mathf.Clamp(minDist, 0.0f, 1.0f);
     }
 
-    public static Vector3 CellGradient(int cx, int cy, int cz, int period, int seed)
+    public static Vector3 CellGradient(int x, int y, int z, int period, int seed)
     {
-        cx = ((cx % period) + period) % period;
-        cy = ((cy % period) + period) % period;
-        cz = ((cz % period) + period) % period;
+        x = ((x % period) + period) % period;
+        y = ((y % period) + period) % period;
+        z = ((z % period) + period) % period;
 
-        uint h = (uint)(cx * 73856093 ^ cy * 19349663 ^ cz * 83492791 ^ seed * 374761393);
+        uint h = (uint)(x * 73856093 ^ y * 19349663 ^ z * 83492791 ^ seed * 374761393);
         h ^= h >> 13;
         h *= 0x5bd1e995u;
         h ^= h >> 15;

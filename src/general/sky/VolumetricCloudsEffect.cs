@@ -184,6 +184,9 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         uint fullGroupsX = ((uint)size.X + 7) / 8;
         uint fullGroupsY = ((uint)size.Y + 7) / 8;
 
+        var marchUniforms = new Godot.Collections.Array<RDUniform>();
+        var upsampleUniforms = new Godot.Collections.Array<RDUniform>();
+
         for (uint view = 0; view < viewCount; ++view)
         {
             Rid color = sceneBuffers.GetTextureSlice(renderBuffersContext, colorTextureName, view, 0, 1, 1);
@@ -204,24 +207,20 @@ public partial class VolumetricCloudsEffect : CompositorEffect
                 continue;
 
             // Pass 1: ray marcher.
-            var marchUniforms = new Godot.Collections.Array<RDUniform>
-            {
-                MakeImage(0, cloudTexture),
-                MakeSampled(1, depthSampler, depth),
-                MakeSampled(2, noiseSampler, noiseTexture),
-                MakeUniformBuffer(3, paramUbo),
-            };
+            marchUniforms.Clear();
+            marchUniforms.Add(MakeImage(0, cloudTexture));
+            marchUniforms.Add(MakeSampled(1, depthSampler, depth));
+            marchUniforms.Add(MakeSampled(2, noiseSampler, noiseTexture));
+            marchUniforms.Add(MakeUniformBuffer(3, paramUbo));
 
             Rid marchSet = renderingDevice.UniformSetCreate(marchUniforms, rayMarcherShader, 0);
 
             // Pass 2: bilateral resolve and composite
-            var upsampleUniforms = new Godot.Collections.Array<RDUniform>
-            {
-                MakeImage(0, color),
-                MakeSampled(1, depthSampler, depth),
-                MakeSampled(2, depthSampler, cloudTexture),
-                MakeUniformBuffer(3, paramUbo),
-            };
+            upsampleUniforms.Clear();
+            upsampleUniforms.Add(MakeImage(0, color));
+            upsampleUniforms.Add(MakeSampled(1, depthSampler, depth));
+            upsampleUniforms.Add(MakeSampled(2, depthSampler, cloudTexture));
+            upsampleUniforms.Add(MakeUniformBuffer(3, paramUbo));
 
             Rid upsampleSet = renderingDevice.UniformSetCreate(upsampleUniforms, upsamplerShader, 0);
 
@@ -279,6 +278,8 @@ public partial class VolumetricCloudsEffect : CompositorEffect
             upsamplerSpirv = null!;
             noiseProfile = null!;
         }
+
+        FreeResources();
 
         disposed = true;
 
