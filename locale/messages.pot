@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-04 10:45+0300\n"
+"POT-Creation-Date: 2026-08-11 10:42+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2854,8 +2854,8 @@ msgstr ""
 msgid "ERROR_LOADING"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:703
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:754
+#: ../src/microbe_stage/MicrobeStage.cs:717
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:763
 msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
 msgstr ""
 
@@ -2871,7 +2871,7 @@ msgstr ""
 msgid "ESCAPE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:2712
+#: ../src/microbe_stage/MicrobeStage.cs:2820
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -3341,11 +3341,11 @@ msgstr ""
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/Spawners.cs:1140
+#: ../src/microbe_stage/Spawners.cs:1138
 msgid "GAMETE_CELL_ENTITY_NAME"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.GUI.cs:475
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.GUI.cs:476
 #: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:783
 msgid "GAMETE_CELL_TYPE"
 msgstr ""
@@ -3358,7 +3358,7 @@ msgstr ""
 msgid "GAMETE_CELL_TYPE_B"
 msgstr ""
 
-#: ../src/multicellular_stage/systems/MulticellularGrowthSystem.cs:411
+#: ../src/multicellular_stage/systems/MulticellularGrowthSystem.cs:440
 msgid "GAMETE_PRODUCED"
 msgstr ""
 
@@ -4979,7 +4979,7 @@ msgstr ""
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1647
+#: ../src/microbe_stage/MicrobeStage.cs:1708
 msgid "LOADING_MICROBE_STAGE"
 msgstr ""
 
@@ -4987,7 +4987,7 @@ msgstr ""
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1643
+#: ../src/microbe_stage/MicrobeStage.cs:1704
 msgid "LOADING_MULTICELLULAR_STAGE"
 msgstr ""
 
@@ -6009,7 +6009,7 @@ msgstr ""
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr ""
 
-#: ../src/macroscopic_stage/MacroscopicStage.cs:597
+#: ../src/macroscopic_stage/MacroscopicStage.cs:618
 msgid "MOVING_TO_SOCIETY_STAGE"
 msgstr ""
 
@@ -6080,7 +6080,7 @@ msgstr ""
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr ""
 
-#: ../src/multicellular_stage/MulticellularSpecies.cs:754
+#: ../src/multicellular_stage/MulticellularSpecies.cs:760
 msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
 msgstr ""
 
@@ -6364,7 +6364,7 @@ msgstr ""
 msgid "NOTHING_HERE"
 msgstr ""
 
-#: ../src/macroscopic_stage/MacroscopicStage.cs:516
+#: ../src/macroscopic_stage/MacroscopicStage.cs:537
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
@@ -6586,7 +6586,7 @@ msgstr ""
 msgid "OPEN_FOSSIL_FOLDER"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:223
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:225
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 
@@ -6863,7 +6863,7 @@ msgstr ""
 msgid "PAGE_FORWARD"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaSpeciesInfoPage.cs:184
+#: ../src/thriveopedia/pages/ThriveopediaSpeciesInfoPage.cs:188
 msgid "PAGE_PINNED"
 msgstr ""
 
@@ -7033,8 +7033,8 @@ msgstr ""
 #: ../src/microbe_stage/OrganismStatisticsPanel.cs:519
 #: ../src/microbe_stage/OrganismStatisticsPanel.cs:639
 #: ../src/microbe_stage/OrganismStatisticsPanel.cs:643
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:1098
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:1136
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:1107
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:1145
 #: ../src/society_stage/gui/ResearchScreen.cs:34
 msgid "PERCENTAGE_VALUE"
 msgstr ""
@@ -7470,8 +7470,8 @@ msgstr ""
 
 #: ../src/microbe_stage/systems/MicrobeReproductionSystem.cs:587
 #: ../src/microbe_stage/systems/MicrobeReproductionSystem.cs:597
-#: ../src/multicellular_stage/systems/GameteSystem.cs:367
-#: ../src/multicellular_stage/systems/MulticellularGrowthSystem.cs:378
+#: ../src/multicellular_stage/systems/GameteSystem.cs:380
+#: ../src/multicellular_stage/systems/MulticellularGrowthSystem.cs:402
 msgid "REPRODUCED"
 msgstr ""
 
@@ -7963,7 +7963,7 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:139
 #: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:392
-#: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:123
+#: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:125
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:69
 msgid "SEED_LABEL"
 msgstr ""
@@ -8353,7 +8353,7 @@ msgstr ""
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:2194
+#: ../src/microbe_stage/MicrobeStage.cs:2282
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -8697,11 +8697,11 @@ msgstr ""
 msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:2710
+#: ../src/microbe_stage/MicrobeStage.cs:2818
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:2711
+#: ../src/microbe_stage/MicrobeStage.cs:2819
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
@@ -8842,7 +8842,7 @@ msgid "TECHNOLOGY_STEAM_POWER"
 msgstr ""
 
 #: ../src/general/base_stage/StrategyStageBase.cs:195
-#: ../src/macroscopic_stage/MacroscopicStage.cs:894
+#: ../src/macroscopic_stage/MacroscopicStage.cs:917
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
 
@@ -8960,7 +8960,7 @@ msgstr ""
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaExtinctSpeciesPage.cs:39
+#: ../src/thriveopedia/pages/ThriveopediaExtinctSpeciesPage.cs:42
 #: ../src/thriveopedia/pages/ThriveopediaExtinctSpeciesPage.tscn:24
 msgid "THRIVEOPEDIA_EXTINCT_SPECIES_TEXT"
 msgstr ""
@@ -8977,13 +8977,25 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr ""
 
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:53
+msgid "THRIVEOPEDIA_MUSEUM_PAGE_SEARCHTAGS"
+msgstr ""
+
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:51
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
+#: ../src/thriveopedia/pages/wiki/organelles/ThriveopediaOrganellePage.cs:21
+msgid "THRIVEOPEDIA_ORGANELLE_SEARCHTAGS"
+msgstr ""
+
 #: ../src/thriveopedia/pages/ThriveopediaExtinctSpeciesPage.cs:19
-#: ../src/thriveopedia/pages/ThriveopediaWorldSpeciesPage.cs:106
+#: ../src/thriveopedia/pages/ThriveopediaWorldSpeciesPage.cs:108
 msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:30
+msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_SEARCHTAGS"
 msgstr ""
 
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:28
@@ -9002,7 +9014,7 @@ msgstr ""
 msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaSpeciesInfoPage.cs:124
+#: ../src/thriveopedia/pages/ThriveopediaSpeciesInfoPage.cs:128
 #: ../src/thriveopedia/pages/ThriveopediaSpeciesInfoPage.tscn:38
 msgid "THRIVEOPEDIA_SPECIES_PAGE_INTRO_TEXT"
 msgstr ""
@@ -9013,6 +9025,14 @@ msgstr ""
 
 #: ../src/thriveopedia/pages/ThriveopediaWorldSpeciesPage.tscn:29
 msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaSpeciesInfoPage.cs:46
+msgid "THRIVEOPEDIA_SPECIES_PAGE_SEARCHTAGS"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaWorldSpeciesPage.cs:24
+msgid "THRIVEOPEDIA_WORLD_SPECIES_SEARCHTAGS"
 msgstr ""
 
 #: ../src/thriveopedia/pages/ThriveopediaWorldSpeciesPage.cs:22
@@ -9071,8 +9091,8 @@ msgstr ""
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:968
-#: ../src/microbe_stage/MicrobeStage.cs:972
+#: ../src/microbe_stage/MicrobeStage.cs:982
+#: ../src/microbe_stage/MicrobeStage.cs:986
 msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr ""
 
@@ -9215,7 +9235,7 @@ msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeSpecies.cs:464
-#: ../src/multicellular_stage/MulticellularSpecies.cs:757
+#: ../src/multicellular_stage/MulticellularSpecies.cs:763
 msgid "TOLERANCE_DETAIL_TEXT"
 msgstr ""
 
