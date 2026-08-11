@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Godot;
 
 public static class NoiseUtils
@@ -48,7 +49,7 @@ public static class NoiseUtils
                     Vector3 pointPos = new Vector3(neighbor.X, neighbor.Y, neighbor.Z) + pt;
 
                     float d = (scaled - pointPos).Length();
-                    minDist = Mathf.Min(minDist, d);
+                    minDist = MathF.Min(minDist, d);
                 }
             }
         }
@@ -72,10 +73,10 @@ public static class NoiseUtils
 
         float v = (h & 0xFFFF) / 65535.0f;
         float theta = u * 6.2831853f;
-        float phi = Mathf.Acos(2.0f * v - 1.0f);
-        float s = Mathf.Sin(phi);
+        float phi = MathF.Acos(2.0f * v - 1.0f);
+        float s = MathF.Sin(phi);
 
-        return new Vector3(Mathf.Cos(theta) * s, Mathf.Sin(theta) * s, Mathf.Cos(phi));
+        return new Vector3(MathF.Cos(theta) * s, MathF.Sin(theta) * s, MathF.Cos(phi));
     }
 
     public static float PerlinTiling(Vector3 p, int period, int seed)
@@ -112,9 +113,9 @@ public static class NoiseUtils
 
     public static float FractionalBrownianMotionWorley(Vector3 p, int baseGrid, int octaves, int seed)
     {
-        float sum = 0f, amp = 0.5f, norm = 0f;
+        float sum = 0.0f, amp = 0.5f, norm = 0.0f;
         int grid = baseGrid;
-        for (int o = 0; o < octaves; o++)
+        for (int o = 0; o < octaves; ++o)
         {
             sum += amp * WorleyTiling(p, grid, seed + o * 17);
             norm += amp;
@@ -129,7 +130,7 @@ public static class NoiseUtils
     {
         float sum = 0f, amp = 0.5f, norm = 0f;
         int grid = baseGrid;
-        for (int o = 0; o < octaves; o++)
+        for (int o = 0; o < octaves; ++o)
         {
             sum += amp * PerlinTiling(p, grid, seed + o * 17);
             norm += amp;
@@ -158,15 +159,17 @@ public static class NoiseUtils
         {
             var buffer = new byte[size * size * 4];
             int i = 0;
-            for (int y = 0; y < size; y++)
+            for (int y = 0; y < size; ++y)
             {
-                for (int x = 0; x < size; x++)
+                for (int x = 0; x < size; ++x)
                 {
                     Vector3 p = new Vector3(x / sizeFloat, y / sizeFloat, z / sizeFloat);
                     buffer[i++] = (byte)(Mathf.Clamp(PerlinWorley(p, seed), 0, 1) * 255);
                     buffer[i++] = (byte)(Mathf.Clamp(FractionalBrownianMotionWorley(p, 8, 1, seed + 1000), 0, 1) * 255);
-                    buffer[i++] = (byte)(Mathf.Clamp(FractionalBrownianMotionWorley(p, 16, 1, seed + 2000), 0, 1) * 255);
-                    buffer[i++] = (byte)(Mathf.Clamp(FractionalBrownianMotionWorley(p, 32, 1, seed + 3000), 0, 1) * 255);
+                    buffer[i++] = (byte)
+                        (Mathf.Clamp(FractionalBrownianMotionWorley(p, 16, 1, seed + 2000), 0, 1) * 255);
+                    buffer[i++] = (byte)
+                        (Mathf.Clamp(FractionalBrownianMotionWorley(p, 32, 1, seed + 3000), 0, 1) * 255);
                 }
             }
 
@@ -174,7 +177,7 @@ public static class NoiseUtils
         });
 
         var images = new Godot.Collections.Array<Image>();
-        for (int z = 0; z < size; z++)
+        for (int z = 0; z < size; ++z)
         {
             images.Add(Image.CreateFromData(size, size, false, Image.Format.Rgba8, buffers[z]));
         }
