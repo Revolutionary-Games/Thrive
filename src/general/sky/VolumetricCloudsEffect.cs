@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Godot;
 
 /// <summary>
@@ -58,15 +59,11 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     private const string RaymarcherShaderFileName = "res://shaders/sky/clouds_march.glsl";
     private const string UpsamplerShaderFileName = "res://shaders/sky/upsampler.glsl";
 
-    [ExportToolButton("Reload Pipeline")]
-    private Callable ReloadPipelineCallable => new(this, MethodName.Reload);
+    private static readonly StringName CloudContextName = "volumetric_clouds";
+    private static readonly StringName CloudTextureName = "cloud_half";
 
-    [ExportToolButton("Generate Noise Profile")]
-    private Callable GenerateNoiseProfileResourceCallable => new(this, MethodName.GenerateNoiseProfileResource);
-
-    [ExportToolButton("Dump GPU profiler data")]
-    private Callable DumpGpuProfilerData => new(this, MethodName.ReportTimestamps);
-
+    [SuppressMessage("Usage", "CA2213:Disposable fields should be disposed",
+        Justification = "Global rendering device is disposed by Godot.")]
     private RenderingDevice? renderingDevice;
     private Rid depthSampler;
     private Rid noiseSampler;
@@ -80,10 +77,9 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     private RDShaderSpirV upsamplerSpirv = null!;
     private ImageTexture3D noiseProfile = null!;
 
-    private static readonly StringName CloudContext = "volumetric_clouds";
-    private static readonly StringName CloudTextureName = "cloud_half";
-
     private volatile int state;
+
+    private bool disposed = false;
 
     private Vector2I currentCloudSize = Vector2I.Zero;
     private uint currentCloudViews;
@@ -93,6 +89,15 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         EffectCallbackType = EffectCallbackTypeEnum.PostTransparent;
         AccessResolvedDepth = true;
     }
+
+    [ExportToolButton("Reload Pipeline")]
+    private Callable ReloadPipelineCallable => new(this, MethodName.Reload);
+
+    [ExportToolButton("Generate Noise Profile")]
+    private Callable GenerateNoiseProfileResourceCallable => new(this, MethodName.GenerateNoiseProfileResource);
+
+    [ExportToolButton("Dump GPU profiler data")]
+    private Callable DumpGpuProfilerData => new(this, MethodName.ReportTimestamps);
 
     public override void _Notification(int what)
     {
@@ -178,7 +183,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         {
             Rid color = sceneBuffers.GetColorLayer(view);
             Rid depth = sceneBuffers.GetDepthLayer(view);
-            Rid cloudTexture = sceneBuffers.GetTextureSlice(CloudContext, CloudTextureName, view, 0, 1, 1);
+            Rid cloudTexture = sceneBuffers.GetTextureSlice(CloudContextName, CloudTextureName, view, 0, 1, 1);
 
             if (!cloudTexture.IsValid)
                 continue;
@@ -250,6 +255,26 @@ public partial class VolumetricCloudsEffect : CompositorEffect
 
             renderingDevice.FreeRid(paramUbo);
         }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposed)
+            return;
+
+        if (disposing)
+        {
+            CloudContextName.Dispose();
+            CloudTextureName.Dispose();
+
+            rayMarcherSpirv.Dispose();
+            upsamplerSpirv.Dispose();
+            noiseProfile.Dispose();
+        }
+
+        disposed = true;
+
+        base.Dispose(disposing);
     }
 
     private static RDUniform MakeImage(int binding, Rid texture)
@@ -332,18 +357,18 @@ public partial class VolumetricCloudsEffect : CompositorEffect
 
     private void EnsureCloudTexture(RenderSceneBuffersRD sceneBuffers, Vector2I marchSize, uint viewCount)
     {
-        bool exists = sceneBuffers.HasTexture(CloudContext, CloudTextureName);
+        bool exists = sceneBuffers.HasTexture(CloudContextName, CloudTextureName);
 
         if (exists && currentCloudSize == marchSize && currentCloudViews == viewCount)
             return;
 
         if (exists)
-            sceneBuffers.ClearContext(CloudContext);
+            sceneBuffers.ClearContext(CloudContextName);
 
         const uint usage = (uint)(RenderingDevice.TextureUsageBits.StorageBit |
             RenderingDevice.TextureUsageBits.SamplingBit);
 
-        sceneBuffers.CreateTexture(CloudContext, CloudTextureName,
+        sceneBuffers.CreateTexture(CloudContextName, CloudTextureName,
             RenderingDevice.DataFormat.R16G16B16A16Sfloat, usage,
             RenderingDevice.TextureSamples.Samples1, marchSize, viewCount, 1, true, false);
 

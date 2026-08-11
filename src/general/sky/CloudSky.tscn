@@ -17,6 +17,9 @@ script = ExtResource("1_fijo7")
 PlanetRadius = 1000.0
 CloudInnerHeight = 2.0
 CloudOuterHeight = 50.0
+CloudTileSize = 100.0
+DensityMultiplier = 0.75
+Coverage = 0.35
 ProfileGpu = true
 metadata/_custom_type_script = "uid://bpmfib2hf13bd"
 
@@ -24,7 +27,7 @@ metadata/_custom_type_script = "uid://bpmfib2hf13bd"
 compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_vknin")])
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n4y2n"]
-albedo_color = Color(0, 1, 0.043137256, 1)
+albedo_color = Color(0, 0.37254903, 0.043137256, 1)
 metallic = 0.49
 
 [sub_resource type="SphereMesh" id="SphereMesh_m2g58"]
