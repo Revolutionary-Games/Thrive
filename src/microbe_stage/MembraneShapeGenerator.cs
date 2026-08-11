@@ -809,7 +809,7 @@ public class MembraneShapeGenerator
         var cellAverageVertex = cellData.OriginalAverageVertex;
 
         GetCloseNeighbours(neighboursData, cellPosition);
-        RotateAndShiftCloseNeighbours(neighboursData, cellAngle, cellPosition, cellAverageVertex);
+        RotateAndShiftCloseNeighbours(neighboursData, cellAngle, cellPosition);
 
         foreach (var neighbourKey in closeNeighboursKeys)
         {
@@ -887,7 +887,7 @@ public class MembraneShapeGenerator
     ///   cells are processed first.
     /// </summary>
     private void RotateAndShiftCloseNeighbours(ConcurrentDictionary<long, NeighbourData> neighboursData,
-        float thisAngle, Vector2 thisCellPosition, Vector2 thisCellAverageVertex)
+        float thisAngle, Vector2 thisCellPosition)
     {
         neighbourKeyToSlot.Clear();
 
