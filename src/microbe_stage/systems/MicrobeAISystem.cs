@@ -723,7 +723,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         var speciesMembers = GetSpeciesMembers(ourSpecies.Species);
 
         // Has binding agent and ATP is at least half capacity
-        if (organelles.HasBindingAgent && atpLevel >= compounds.GetCapacityForCompound(Compound.ATP) / 2.0f)
+        if (organelles.HasBindingAgent && atpLevel >= compounds.GetCapacityForCompound(Compound.ATP) * 0.5f)
         {
             signaling.QueuedSignalingCommand = MicrobeSignalCommand.MoveToMe;
         }
@@ -746,13 +746,20 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
 
             if (pilusAndToxinCount > 0)
             {
-                foreach (var member in speciesMembers!)
+                if (speciesMembers != null)
                 {
-                    if (position.Position.DistanceSquaredTo(member.Position)
-                        < Constants.AI_BECOME_AGGRESSIVE_DISTANCE_SQUARED)
+                    foreach (var member in speciesMembers)
                     {
-                        ++membersNearEnough;
+                        if (position.Position.DistanceSquaredTo(member.Position)
+                            < Constants.AI_BECOME_AGGRESSIVE_DISTANCE_SQUARED)
+                        {
+                            ++membersNearEnough;
+                        }
                     }
+                }
+                else
+                {
+                    membersNearEnough = 0;
                 }
 
                 if (membersNearEnough >= enoughMembers)
