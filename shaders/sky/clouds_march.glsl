@@ -3,23 +3,23 @@
 
 layout(local_size_x = 8, local_size_y = 8, local_size_z = 1) in;
 
-layout(rgba16f, set = 0, binding = 0) uniform image2D cloud_target;
-layout(set = 0, binding = 1) uniform sampler2D depth_sampler;   // FULL resolution
-layout(set = 0, binding = 2) uniform sampler3D base_noise;
+layout(rgba16f, set = 0, binding = 0) uniform image2D cloudTarget;
+layout(set = 0, binding = 1) uniform sampler2D depthSampler;   // FULL resolution
+layout(set = 0, binding = 2) uniform sampler3D baseNoise;
 
 layout(set = 0, binding = 3, std140) uniform Params {
-    vec4 planet_center;   // .xyz center                          .w unused
-    vec4 shell;           // .x inner R, .y outer R, .z tile size,.w density multiplier
-    vec4 screen_size;     // .xy size,   .zw 1/size
-    vec4 march_size;      // .xy MARCH res, .zw 1/MARCH res
-    vec4 cam_pos;         // .xyz world camera position           .w unused
-    vec4 sun;             // .xyz direction TOWARD sun (unit)     .w sun energy
-    vec4 quality;         // .x base steps, .y light steps, .z max march dist, .w coverage
+    vec4 planetCenter;   // .xyz center                          .w unused
+    vec4 shell;          // .x inner R, .y outer R, .z tile size,.w density multiplier
+    vec4 screenSize;     // .xy size,   .zw 1/size
+    vec4 marchSize;      // .xy MARCH res, .zw 1/MARCH res
+    vec4 cameraPosition; // .xyz world camera position           .w unused
+    vec4 sun;            // .xyz direction TOWARD sun (unit)     .w sun energy
+    vec4 quality;        // .x base steps, .y light steps, .z max march dist, .w coverage
 } p;
 
 layout(push_constant, std430) uniform Matrices {
-    mat4 inv_projection;
-    mat4 cam_transform;
+    mat4 inverseProjection;
+    mat4 cameraTransform;
 } m;
 
 // ---------------------------------------------------------------------------
@@ -45,20 +45,20 @@ const float PI = 3.14159265359;
 
 // Globals
 // Using globals here for the ray marching step to keep the code clean.
-vec3  g_ro;
-vec3  g_rd;
-vec3  g_center;
-vec3  g_sun_dir;
-vec3  g_sun_energy;
-vec3  g_ambient_energy;
-float g_inner;
-float g_outer;
-float g_thickness;
-float g_cos_angle;
-float g_jitter;
+vec3  gRo;
+vec3  gRd;
+vec3  gCenter;
+vec3  gSunDirection;
+vec3  gSunEnergy;
+vec3  gAmbientEnergy;
+float gInner;
+float gOuter;
+float gThickness;
+float gCosAngle;
+float gJitter;
 
-vec3  g_accumulated;
-float g_transmittance;
+vec3  gAccumulated;
+float gTransmittance;
 
 // ---------------------------------------------------------------------------
 // Utility
@@ -66,7 +66,7 @@ float g_transmittance;
 
 // Numerically stable ray/sphere. The (|oc|-r)(|oc|+r) form avoids the catastrophic cancellation of dot(oc,oc) - r*r at
 // planetary radii.
-bool ray_sphere(vec3 ro, vec3 rd, vec3 center, float radius, out float t0, out float t1) {
+bool RaySphere(vec3 ro, vec3 rd, vec3 center, float radius, out float t0, out float t1) {
     vec3 oc = ro - center;
     float l = length(oc);
     float b = dot(oc, rd);
@@ -79,35 +79,35 @@ bool ray_sphere(vec3 ro, vec3 rd, vec3 center, float radius, out float t0, out f
     return true;
 }
 
-float remap(float v, float in_min, float in_max, float out_min, float out_max) {
-    return out_min + (v - in_min) / (in_max - in_min) * (out_max - out_min);
+float Remap(float v, float inMin, float inMax, float outMin, float outMax) {
+    return outMin + (v - inMin) / (inMax - inMin) * (outMax - outMin);
 }
 
 // Interleaved gradient noise
-float ign(vec2 q) {
+float Ign(vec2 q) {
     return fract(52.9829189 * fract(dot(q, vec2(0.06711056, 0.00583715))));
 }
 
-float henyey_greenstein(float cos_angle, float g) {
+float HenyeyGreenstein(float cosAngle, float g) {
     float g2 = g * g;
-    return (1.0 - g2) / (4.0 * PI * pow(max(1.0 + g2 - 2.0 * g * cos_angle, 1e-4), 1.5));
+    return (1.0 - g2) / (4.0 * PI * pow(max(1.0 + g2 - 2.0 * g * cosAngle, 1e-4), 1.5));
 }
 
 // Dual-lobe: forward scatter for silverlining.
-float dual_lobe(float cos_angle, float g) {
-    return mix(henyey_greenstein(cos_angle, g),
-               henyey_greenstein(cos_angle, -g * 0.25),
+float DualLobe(float cosAngle, float g) {
+    return mix(HenyeyGreenstein(cosAngle, g),
+               HenyeyGreenstein(cosAngle, -g * 0.25),
                PHASE_BACK_MIX);
 }
 
 // Wrenninge-Frostbite octave approximation of multiple scattering.
-float multi_scatter(float optical_depth, float cos_angle) {
+float MultiScatter(float opticalDepth, float cosAngle) {
     float a = 1.0;
     float b = 1.0;
     float c = 1.0;
     float lum = 0.0;
     for (int n = 0; n < MS_OCTAVES; n++) {
-        lum += a * exp(-optical_depth * b) * dual_lobe(cos_angle, PHASE_G * c);
+        lum += a * exp(-opticalDepth * b) * DualLobe(cosAngle, PHASE_G * c);
         a *= MS_ATTENUATION;
         b *= 0.5;
         c *= 0.5;
@@ -115,177 +115,177 @@ float multi_scatter(float optical_depth, float cos_angle) {
     return lum;
 }
 
-float height_gradient(float shell_frac) {
-    return smoothstep(0.0, 0.1, shell_frac) * smoothstep(1.0, 0.6, shell_frac);
+float HeightGradient(float shellFrac) {
+    return smoothstep(0.0, 0.1, shellFrac) * smoothstep(1.0, 0.6, shellFrac);
 }
 
 // ---------------------------------------------------------------------------
 // Density field
 // ---------------------------------------------------------------------------
-float sample_density(vec3 rel, float shell_frac, bool cheap) {
+float SampleDensity(vec3 rel, float shellFrac, bool cheap) {
     float tile = p.shell.z;
 
-    float shape = texture(base_noise, rel / tile).r;
+    float shape = texture(baseNoise, rel / tile).r;
 
     float coverage = p.quality.w;
-    float density = clamp(remap(shape, 1.0 - coverage, 1.0, 0.0, 1.0), 0.0, 1.0);
-    density *= height_gradient(shell_frac);
+    float density = clamp(Remap(shape, 1.0 - coverage, 1.0, 0.0, 1.0), 0.0, 1.0);
+    density *= HeightGradient(shellFrac);
 
     if (density <= 0.0)
         return 0.0;
 
     if (!cheap) {
-        vec4 detail = texture(base_noise, rel * (DETAIL_FREQ / tile));
+        vec4 detail = texture(baseNoise, rel * (DETAIL_FREQ / tile));
         float detail_fbm = detail.g * 0.6098 + detail.b * 0.2439 + detail.a * 0.1463;
-        float erosion = detail_fbm * (1.0 - shell_frac);
-        density = clamp(remap(density, erosion * 0.2, 1.0, 0.0, 1.0), 0.0, 1.0);
+        float erosion = detail_fbm * (1.0 - shellFrac);
+        density = clamp(Remap(density, erosion * 0.2, 1.0, 0.0, 1.0), 0.0, 1.0);
     }
 
     return density * p.shell.w;
 }
 
 // Shadow ray toward the sun.
-float light_march(vec3 rel) {
+float LightMarch(vec3 rel) {
     int steps = int(p.quality.y);
-    float step_len = g_thickness * LIGHT_STEP_FRAC;
-    float optical_depth = 0.0;
+    float stepLen = gThickness * LIGHT_STEP_FRAC;
+    float opticalDepth = 0.0;
     vec3 lp = rel;
 
     for (int j = 0; j < steps; j++) {
-        lp += g_sun_dir * step_len;
+        lp += gSunDirection * stepLen;
         float h = length(lp);
-        if (h < g_inner || h > g_outer)
+        if (h < gInner || h > gOuter)
             break;
-        float sf = (h - g_inner) / g_thickness;
-        optical_depth += sample_density(lp, sf, true) * step_len;
-        step_len *= LIGHT_STEP_GROW;
+        float sf = (h - gInner) / gThickness;
+        opticalDepth += SampleDensity(lp, sf, true) * stepLen;
+        stepLen *= LIGHT_STEP_GROW;
     }
 
-    return optical_depth;
+    return opticalDepth;
 }
 
 // Ray march
-void march_segment(float seg_start, float seg_end, float dt_base, int max_iter) {
-    if (seg_end <= seg_start || g_transmittance < 0.01)
+void MarchSegment(float segStart, float segEnd, float dtBase, int maxIter) {
+    if (segEnd <= segStart || gTransmittance < 0.01)
         return;
 
-    float t = seg_start + dt_base * g_jitter;
+    float t = segStart + dtBase * gJitter;
     bool coarse = true;
-    int empty_run = 0;
+    int emptyRun = 0;
 
-    for (int i = 0; i < max_iter; i++) {
-        if (t >= seg_end)
+    for (int i = 0; i < maxIter; i++) {
+        if (t >= segEnd)
             break;
 
-        float dt_fine = dt_base * (1.0 + t * DISTANCE_LOD);
-        float dt_coarse = dt_fine * COARSE_STEP_SCALE;
+        float dtFine = dtBase * (1.0 + t * DISTANCE_LOD);
+        float dtCoarse = dtFine * COARSE_STEP_SCALE;
 
-        vec3 rel = g_ro + g_rd * t - g_center;
+        vec3 rel = gRo + gRd * t - gCenter;
         float h = length(rel);
 
-        if (h < g_inner || h > g_outer) {
-            t += coarse ? dt_coarse : dt_fine;
+        if (h < gInner || h > gOuter) {
+            t += coarse ? dtCoarse : dtFine;
             continue;
         }
 
-        float shell_frac = (h - g_inner) / g_thickness;
+        float shellFrac = (h - gInner) / gThickness;
 
         if (coarse) {
-            if (sample_density(rel, shell_frac, true) > 0.0) {
+            if (SampleDensity(rel, shellFrac, true) > 0.0) {
                 coarse = false;
-                empty_run = 0;
-                t = max(t - dt_coarse, seg_start);
+                emptyRun = 0;
+                t = max(t - dtCoarse, segStart);
                 continue;
             }
-            t += dt_coarse;
+            t += dtCoarse;
             continue;
         }
 
-        float density = sample_density(rel, shell_frac, false);
+        float density = SampleDensity(rel, shellFrac, false);
 
         if (density <= 0.0) {
-            if (++empty_run > EMPTY_RUN_LIMIT) {
+            if (++emptyRun > EMPTY_RUN_LIMIT) {
                 coarse = true;
-                empty_run = 0;
+                emptyRun = 0;
             }
-            t += dt_fine;
+            t += dtFine;
             continue;
         }
-        empty_run = 0;
+        emptyRun = 0;
 
-        float light_optical_depth = light_march(rel);
-        float scatter = multi_scatter(light_optical_depth, g_cos_angle);
+        float lightOpticalDepth = LightMarch(rel);
+        float scatter = MultiScatter(lightOpticalDepth, gCosAngle);
 
         float powder = 1.0 - exp(-density * 2.0);
-        powder = mix(1.0, powder, clamp(-g_cos_angle * 0.5 + 0.5, 0.0, 1.0));
+        powder = mix(1.0, powder, clamp(-gCosAngle * 0.5 + 0.5, 0.0, 1.0));
 
-        vec3 source = g_sun_energy * scatter * powder
-                    + g_ambient_energy * mix(AMBIENT_BASE_MUL, 1.0, shell_frac);
+        vec3 source = gSunEnergy * scatter * powder
+                    + gAmbientEnergy * mix(AMBIENT_BASE_MUL, 1.0, shellFrac);
 
-        float step_transmittance = exp(-density * dt_fine);
-        g_accumulated += g_transmittance * source * (1.0 - step_transmittance);
-        g_transmittance *= step_transmittance;
+        float stepTransmittance = exp(-density * dtFine);
+        gAccumulated += gTransmittance * source * (1.0 - stepTransmittance);
+        gTransmittance *= stepTransmittance;
 
-        if (g_transmittance < 0.01) {
-            g_transmittance = 0.0;
+        if (gTransmittance < 0.01) {
+            gTransmittance = 0.0;
             return;
         }
 
-        t += dt_fine;
+        t += dtFine;
     }
 }
 
 vec4 compute_clouds(ivec2 px) {
     const vec4 NO_CLOUD = vec4(0.0, 0.0, 0.0, 1.0);
 
-    vec2 uv = (vec2(px) + 0.5) * p.march_size.zw;
+    vec2 uv = (vec2(px) + 0.5) * p.marchSize.zw;
     vec2 ndc = uv * 2.0 - 1.0;
 
-    vec4 target = m.inv_projection * vec4(ndc, 1.0, 1.0);
-    vec3 view_rd = normalize(target.xyz / target.w);
+    vec4 target = m.inverseProjection * vec4(ndc, 1.0, 1.0);
+    vec3 viewRd = normalize(target.xyz / target.w);
 
-    g_rd = normalize((m.cam_transform * vec4(view_rd, 0.0)).xyz);
-    g_ro = p.cam_pos.xyz;
-    g_center = p.planet_center.xyz;
-    g_inner = p.shell.x;
-    g_outer = p.shell.y;
-    g_thickness = g_outer - g_inner;
-    g_sun_dir = normalize(p.sun.xyz);
-    g_cos_angle = dot(g_rd, g_sun_dir);
-    g_sun_energy = SUN_TINT * p.sun.w;
-    g_ambient_energy = AMBIENT_TINT * AMBIENT_ENERGY;
-    g_jitter = ign(vec2(px));
-    g_accumulated = vec3(0.0);
-    g_transmittance = 1.0;
+    gRd = normalize((m.cameraTransform * vec4(viewRd, 0.0)).xyz);
+    gRo = p.cameraPosition.xyz;
+    gCenter = p.planetCenter.xyz;
+    gInner = p.shell.x;
+    gOuter = p.shell.y;
+    gThickness = gOuter - gInner;
+    gSunDirection = normalize(p.sun.xyz);
+    gCosAngle = dot(gRd, gSunDirection);
+    gSunEnergy = SUN_TINT * p.sun.w;
+    gAmbientEnergy = AMBIENT_TINT * AMBIENT_ENERGY;
+    gJitter = Ign(vec2(px));
+    gAccumulated = vec3(0.0);
+    gTransmittance = 1.0;
 
     // Opaque
-    ivec2 depth_px = ivec2((vec2(px) + 0.5) * p.march_size.zw * p.screen_size.xy);
-    depth_px = clamp(depth_px, ivec2(0), ivec2(p.screen_size.xy) - 1);
+    ivec2 depthPx = ivec2((vec2(px) + 0.5) * p.marchSize.zw * p.screenSize.xy);
+    depthPx = clamp(depthPx, ivec2(0), ivec2(p.screenSize.xy) - 1);
 
-    float t_max = p.quality.z;
-    float raw_depth = texelFetch(depth_sampler, depth_px, 0).r;
-    if (raw_depth > 0.0) {
-        vec4 view_pos = m.inv_projection * vec4(ndc, raw_depth, 1.0);
-        view_pos.xyz /= view_pos.w;
-        vec3 world_pos = (m.cam_transform * vec4(view_pos.xyz, 1.0)).xyz;
-        t_max = min(t_max, length(world_pos - g_ro));
+    float tMax = p.quality.z;
+    float rawDepth = texelFetch(depthSampler, depthPx, 0).r;
+    if (rawDepth > 0.0) {
+        vec4 viewPos = m.inverseProjection * vec4(ndc, rawDepth, 1.0);
+        viewPos.xyz /= viewPos.w;
+        vec3 worldPos = (m.cameraTransform * vec4(viewPos.xyz, 1.0)).xyz;
+        tMax = min(tMax, length(worldPos - gRo));
     }
 
     // Shell
     float ot0, ot1, it0, it1;
 
-    if (!ray_sphere(g_ro, g_rd, g_center, g_outer, ot0, ot1))
+    if (!RaySphere(gRo, gRd, gCenter, gOuter, ot0, ot1))
         return NO_CLOUD;
 
     float o0 = max(ot0, 0.0);
-    float o1 = min(ot1, t_max);
+    float o1 = min(ot1, tMax);
     if (o1 <= o0)
         return NO_CLOUD;
 
-    bool hit_inner = ray_sphere(g_ro, g_rd, g_center, g_inner, it0, it1);
+    bool hitInner = RaySphere(gRo, gRd, gCenter, gInner, it0, it1);
 
     float a0, a1, b0, b1;
-    if (!hit_inner || it1 <= 0.0) {
+    if (!hitInner || it1 <= 0.0) {
         a0 = o0; a1 = o1;
         b0 = 0.0; b1 = 0.0;
     } else {
@@ -296,32 +296,32 @@ vec4 compute_clouds(ivec2 px) {
     }
 
     // Step calculation
-    int base_steps = int(p.quality.x);
-    int max_iter = base_steps * 3;
+    int baseSteps = int(p.quality.x);
+    int maxIter = baseSteps * 3;
 
-    float len_a = max(a1 - a0, 0.0);
-    float len_b = max(b1 - b0, 0.0);
-    float total_len = len_a + len_b;
+    float lenA = max(a1 - a0, 0.0);
+    float lenB = max(b1 - b0, 0.0);
+    float total_len = lenA + lenB;
     if (total_len <= 0.0)
         return NO_CLOUD;
 
-    float dt_base = max(g_thickness / float(base_steps), total_len / float(max_iter));
+    float dtBase = max(gThickness / float(baseSteps), total_len / float(maxIter));
 
-    int iter_a = max(int(float(max_iter) * (len_a / total_len)), 1);
-    int iter_b = max(max_iter - iter_a, 1);
+    int iterA = max(int(float(maxIter) * (lenA / total_len)), 1);
+    int iterB = max(maxIter - iterA, 1);
 
-    march_segment(a0, a1, dt_base, iter_a);
-    march_segment(b0, b1, dt_base, iter_b);
+    MarchSegment(a0, a1, dtBase, iterA);
+    MarchSegment(b0, b1, dtBase, iterB);
 
-    return vec4(g_accumulated, g_transmittance);
+    return vec4(gAccumulated, gTransmittance);
 }
 
 // ---------------------------------------------------------------------------
 void main() {
     ivec2 px = ivec2(gl_GlobalInvocationID.xy);
-    if (px.x >= int(p.march_size.x) || px.y >= int(p.march_size.y))
+    if (px.x >= int(p.marchSize.x) || px.y >= int(p.marchSize.y))
         return;
 
-    imageStore(cloud_target, px, compute_clouds(px));
+    imageStore(cloudTarget, px, compute_clouds(px));
 }
 
