@@ -36,11 +36,11 @@ public static class NoiseUtils
 
         float minDist = float.MaxValue;
 
-        for (int dz = -1; dz <= 1; dz++)
+        for (int dz = -1; dz <= 1; ++dz)
         {
-            for (int dy = -1; dy <= 1; dy++)
+            for (int dy = -1; dy <= 1; ++dy)
             {
-                for (int dx = -1; dx <= 1; dx++)
+                for (int dx = -1; dx <= 1; ++dx)
                 {
                     Vector3I neighbor = baseCell + new Vector3I(dx, dy, dz);
 
@@ -128,7 +128,7 @@ public static class NoiseUtils
 
     public static float FractionalBrownianMotionPerlin(Vector3 p, int baseGrid, int octaves, int seed)
     {
-        float sum = 0f, amp = 0.5f, norm = 0f;
+        float sum = 0.0f, amp = 0.5f, norm = 0.0f;
         int grid = baseGrid;
         for (int o = 0; o < octaves; ++o)
         {
