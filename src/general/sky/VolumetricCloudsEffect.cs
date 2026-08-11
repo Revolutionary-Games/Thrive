@@ -362,6 +362,44 @@ public partial class VolumetricCloudsEffect : CompositorEffect
             throw new Exception($"Error in shader {path}: {spirv.CompileErrorCompute}") : spirv;
     }
 
+    private void InitializeCompute()
+    {
+        if (rayMarcherSpirv == null! || upsamplerSpirv == null!)
+            throw new Exception("Resources have not been loaded yet.");
+
+        renderingDevice = RenderingServer.GetRenderingDevice();
+        if (renderingDevice is null)
+            return;
+
+        rayMarcherShader = renderingDevice.ShaderCreateFromSpirV(rayMarcherSpirv);
+        rayMarcherPipeline = renderingDevice.ComputePipelineCreate(rayMarcherShader);
+
+        upsamplerShader = renderingDevice.ShaderCreateFromSpirV(upsamplerSpirv);
+        upsamplerPipeline = renderingDevice.ComputePipelineCreate(upsamplerShader);
+
+        depthSampler = renderingDevice.SamplerCreate(new RDSamplerState
+        {
+            MagFilter = RenderingDevice.SamplerFilter.Nearest,
+            MinFilter = RenderingDevice.SamplerFilter.Nearest,
+            RepeatU = RenderingDevice.SamplerRepeatMode.ClampToEdge,
+            RepeatV = RenderingDevice.SamplerRepeatMode.ClampToEdge,
+        });
+
+        noiseSampler = renderingDevice.SamplerCreate(new RDSamplerState
+        {
+            MagFilter = RenderingDevice.SamplerFilter.Linear,
+            MinFilter = RenderingDevice.SamplerFilter.Linear,
+            RepeatU = RenderingDevice.SamplerRepeatMode.Repeat,
+            RepeatV = RenderingDevice.SamplerRepeatMode.Repeat,
+            RepeatW = RenderingDevice.SamplerRepeatMode.Repeat,
+        });
+
+        if (noiseProfile is null)
+            throw new Exception("Invalid noise texture");
+
+        noiseTexture = RenderingServer.TextureGetRdTexture(noiseProfile.GetRid());
+    }
+
     private void EnsureCloudTexture(RenderSceneBuffersRD sceneBuffers, Vector2I marchSize, uint viewCount)
     {
         bool exists = sceneBuffers.HasTexture(CloudContextName, CloudTextureName);
@@ -423,44 +461,6 @@ public partial class VolumetricCloudsEffect : CompositorEffect
 
             noiseProfile = NoiseUtils.BakePerlinWorleyChunkParallel(128, Seed);
         }
-    }
-
-    private void InitializeCompute()
-    {
-        if (rayMarcherSpirv == null! || upsamplerSpirv == null!)
-            throw new Exception("Resources have not been loaded yet.");
-
-        renderingDevice = RenderingServer.GetRenderingDevice();
-        if (renderingDevice is null)
-            return;
-
-        rayMarcherShader = renderingDevice.ShaderCreateFromSpirV(rayMarcherSpirv);
-        rayMarcherPipeline = renderingDevice.ComputePipelineCreate(rayMarcherShader);
-
-        upsamplerShader = renderingDevice.ShaderCreateFromSpirV(upsamplerSpirv);
-        upsamplerPipeline = renderingDevice.ComputePipelineCreate(upsamplerShader);
-
-        depthSampler = renderingDevice.SamplerCreate(new RDSamplerState
-        {
-            MagFilter = RenderingDevice.SamplerFilter.Nearest,
-            MinFilter = RenderingDevice.SamplerFilter.Nearest,
-            RepeatU = RenderingDevice.SamplerRepeatMode.ClampToEdge,
-            RepeatV = RenderingDevice.SamplerRepeatMode.ClampToEdge,
-        });
-
-        noiseSampler = renderingDevice.SamplerCreate(new RDSamplerState
-        {
-            MagFilter = RenderingDevice.SamplerFilter.Linear,
-            MinFilter = RenderingDevice.SamplerFilter.Linear,
-            RepeatU = RenderingDevice.SamplerRepeatMode.Repeat,
-            RepeatV = RenderingDevice.SamplerRepeatMode.Repeat,
-            RepeatW = RenderingDevice.SamplerRepeatMode.Repeat,
-        });
-
-        if (noiseProfile is null)
-            throw new Exception("Invalid noise texture");
-
-        noiseTexture = RenderingServer.TextureGetRdTexture(noiseProfile.GetRid());
     }
 
     private void FreeResources()
