@@ -1,5 +1,6 @@
 ﻿using System;
 using Godot;
+using Godot.Collections;
 
 /// <summary>
 ///   Volumetric Clouds Effect for sky rendering.
@@ -170,8 +171,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
             return;
 
         int divisor = Math.Max(ResolutionDivisor, 1);
-        var marchSize = new Vector2I(
-            Math.Max((size.X + divisor - 1) / divisor, 1),
+        var marchSize = new Vector2I(Math.Max((size.X + divisor - 1) / divisor, 1),
             Math.Max((size.Y + divisor - 1) / divisor, 1));
 
         uint viewCount = sceneBuffers.GetViewCount();
@@ -183,8 +183,8 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         uint fullGroupsX = ((uint)size.X + 7) / 8;
         uint fullGroupsY = ((uint)size.Y + 7) / 8;
 
-        var marchUniforms = new Godot.Collections.Array<RDUniform>();
-        var upsampleUniforms = new Godot.Collections.Array<RDUniform>();
+        var marchUniforms = new Array<RDUniform>();
+        var upsampleUniforms = new Array<RDUniform>();
 
         for (uint view = 0; view < viewCount; ++view)
         {
@@ -360,7 +360,8 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         var spirv = shaderFile.GetSpirV();
 
         return spirv.CompileErrorCompute != string.Empty ?
-            throw new Exception($"Error in shader {path}: {spirv.CompileErrorCompute}") : spirv;
+            throw new Exception($"Error in shader {path}: {spirv.CompileErrorCompute}") :
+            spirv;
     }
 
     private void InitializeCompute()
