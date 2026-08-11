@@ -339,9 +339,9 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         return bytes;
     }
 
-    private static int WriteFloat(byte[] buf, int offset, float v)
+    private static int WriteFloat(byte[] buf, int offset, float value)
     {
-        BitConverter.GetBytes(v).CopyTo(buf, offset);
+        BitConverter.GetBytes(value).CopyTo(buf, offset);
         return offset + 4;
     }
 
