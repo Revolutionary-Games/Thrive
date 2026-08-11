@@ -177,6 +177,12 @@ public partial class CellBodyPlanEditorComponent :
     private Button sexualAnisogamyUpgradeButton = null!;
 
     [Export]
+    private Label sexualBenefitsExplanationLabel = null!;
+
+    [Export]
+    private Label sexualBenefitsActiveLabel = null!;
+
+    [Export]
     private Container anisogamySettingsContainer = null!;
 
     [Export]
@@ -363,6 +369,25 @@ public partial class CellBodyPlanEditorComponent :
             tolerancesEditor.OnEditorSpeciesSetup(Editor.EditedBaseSpecies);
 
             UpdateAnisogamyStateAndCost();
+        }
+
+        float sexualBonus = MathF.Round(100 * (1 - Constants.SEXUAL_REPRODUCTION_MP_COST_FACTOR), 1);
+
+        if (Editor.UsedSexualReproduction)
+        {
+            sexualBenefitsExplanationLabel.Visible = false;
+            sexualBenefitsActiveLabel.Visible = true;
+
+            sexualBenefitsActiveLabel.Text =
+                Localization.Translate("SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION_ACTIVE").FormatSafe(sexualBonus);
+        }
+        else
+        {
+            sexualBenefitsExplanationLabel.Visible = true;
+            sexualBenefitsActiveLabel.Visible = false;
+
+            sexualBenefitsExplanationLabel.Text =
+                Localization.Translate("SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION").FormatSafe(sexualBonus);
         }
 
         organismStatisticsPanel.UpdateLightSelectionPanelVisibility(
