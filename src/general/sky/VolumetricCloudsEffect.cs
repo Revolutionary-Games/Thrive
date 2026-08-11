@@ -179,7 +179,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         uint fullGroupsX = ((uint)size.X + 7) / 8;
         uint fullGroupsY = ((uint)size.Y + 7) / 8;
 
-        for (uint view = 0; view < viewCount; view++)
+        for (uint view = 0; view < viewCount; ++view)
         {
             Rid color = sceneBuffers.GetColorLayer(view);
             Rid depth = sceneBuffers.GetDepthLayer(view);
@@ -514,7 +514,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         ulong previous = 0;
         string previousName = string.Empty;
 
-        for (uint i = 0; i < count; i++)
+        for (uint i = 0; i < count; ++i)
         {
             string name = renderingDevice.GetCapturedTimestampName(i);
             ulong gpuTime = renderingDevice.GetCapturedTimestampGpuTime(i);
