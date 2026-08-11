@@ -59,11 +59,11 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     private const string RaymarcherShaderFileName = "res://shaders/sky/clouds_march.glsl";
     private const string UpsamplerShaderFileName = "res://shaders/sky/upsampler.glsl";
 
-    private static readonly StringName CloudContextName = "volumetric_clouds";
-    private static readonly StringName CloudTextureName = "cloud_half";
-    private static readonly StringName RenderBuffersContext = "render_buffers";
-    private static readonly StringName ColorTextureName = "color";
-    private static readonly StringName DepthTextureName = "depth";
+    private readonly StringName cloudContextName = "volumetric_clouds";
+    private readonly StringName cloudTextureName = "cloud_half";
+    private readonly StringName renderBuffersContext = "render_buffers";
+    private readonly StringName colorTextureName = "color";
+    private readonly StringName depthTextureName = "depth";
 
     [SuppressMessage("Usage", "CA2213:Disposable fields should be disposed",
         Justification = "Global rendering device is disposed by Godot.")]
@@ -185,9 +185,9 @@ public partial class VolumetricCloudsEffect : CompositorEffect
 
         for (uint view = 0; view < viewCount; ++view)
         {
-            Rid color = sceneBuffers.GetTextureSlice(RenderBuffersContext, ColorTextureName, view, 0, 1, 1);
-            Rid depth = sceneBuffers.GetTextureSlice(RenderBuffersContext, DepthTextureName, view, 0, 1, 1);
-            Rid cloudTexture = sceneBuffers.GetTextureSlice(CloudContextName, CloudTextureName, view, 0, 1, 1);
+            Rid color = sceneBuffers.GetTextureSlice(renderBuffersContext, colorTextureName, view, 0, 1, 1);
+            Rid depth = sceneBuffers.GetTextureSlice(renderBuffersContext, depthTextureName, view, 0, 1, 1);
+            Rid cloudTexture = sceneBuffers.GetTextureSlice(cloudContextName, cloudTextureName, view, 0, 1, 1);
 
             if (!cloudTexture.IsValid)
                 continue;
@@ -268,11 +268,11 @@ public partial class VolumetricCloudsEffect : CompositorEffect
 
         if (disposing)
         {
-            CloudContextName.Dispose();
-            CloudTextureName.Dispose();
-            RenderBuffersContext.Dispose();
-            ColorTextureName.Dispose();
-            DepthTextureName.Dispose();
+            cloudContextName.Dispose();
+            cloudTextureName.Dispose();
+            renderBuffersContext.Dispose();
+            colorTextureName.Dispose();
+            depthTextureName.Dispose();
 
             rayMarcherSpirv.Dispose();
             upsamplerSpirv.Dispose();
@@ -402,18 +402,18 @@ public partial class VolumetricCloudsEffect : CompositorEffect
 
     private void EnsureCloudTexture(RenderSceneBuffersRD sceneBuffers, Vector2I marchSize, uint viewCount)
     {
-        bool exists = sceneBuffers.HasTexture(CloudContextName, CloudTextureName);
+        bool exists = sceneBuffers.HasTexture(cloudContextName, cloudTextureName);
 
         if (exists && currentCloudSize == marchSize && currentCloudViews == viewCount)
             return;
 
         if (exists)
-            sceneBuffers.ClearContext(CloudContextName);
+            sceneBuffers.ClearContext(cloudContextName);
 
         const uint usage = (uint)(RenderingDevice.TextureUsageBits.StorageBit |
             RenderingDevice.TextureUsageBits.SamplingBit);
 
-        sceneBuffers.CreateTexture(CloudContextName, CloudTextureName,
+        sceneBuffers.CreateTexture(cloudContextName, cloudTextureName,
             RenderingDevice.DataFormat.R16G16B16A16Sfloat, usage,
             RenderingDevice.TextureSamples.Samples1, marchSize, viewCount, 1, true, false);
 
