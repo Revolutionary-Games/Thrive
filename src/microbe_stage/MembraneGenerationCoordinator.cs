@@ -103,9 +103,8 @@ public static class MembraneGenerationCoordinator
             hash ^= cellsData.Length;
             hash *= prime;
 
-            for (int i = 0; i < cellsData.Length; ++i)
+            foreach (var cell in cellsData)
             {
-                var cell = cellsData[i];
                 hash ^= BitConverter.SingleToInt32Bits(cell.Position.X) * prime;
                 hash *= prime;
                 hash ^= BitConverter.SingleToInt32Bits(cell.Position.Y) * prime;

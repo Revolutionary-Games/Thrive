@@ -174,7 +174,8 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
                     useSingleCellMembraneGeneration = false;
 
                     var speciesMember = entity.Get<MulticellularSpeciesMember>();
-                    var nextBodyPlanCellToGrowIndex = growthOrder.NextBodyPlanCellToGrowIndex;
+                    var nextBodyPlanCellToGrowIndex = growthOrder.ResumeBodyPlanAfterReplacingLost ??
+                        growthOrder.NextBodyPlanCellToGrowIndex;
 
                     lostCells.Clear();
 
@@ -282,7 +283,8 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
 
         if (cachedMembrane != null)
         {
-            // Membrane was ready now
+            // Membrane is ready now. return hexes array to the pool as it won't be used in calculations
+            ArrayPool<Vector2>.Shared.Return(hexes);
             return cachedMembrane;
         }
 
@@ -322,9 +324,6 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         MulticellularMembraneGenerationCellData[] grownCellsData;
         long colonyKey;
 
-        // Reuse cached colony layout data as long as nothing about the colony's composition has changed since it was
-        // computed. This avoids rebuilding these arrays (and the ToArray allocations) every frame for every cell in
-        // the colony — only the cell(s) processed right after a composition change pay this cost.
         if (growthOrder.IsColonyKeyValid && growthOrder.GrownCellsData != null)
         {
             colonyKey = growthOrder.ColonyKey;
@@ -332,8 +331,6 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         }
         else
         {
-            // First pass: count how many cells are actually still present (nextBodyPlanCellToGrowIndex alone isn't
-            // enough since some indices in that range may be in lostCells)
             int cellCount = 0;
             for (int i = 0; i < nextBodyPlanCellToGrowIndex; ++i)
             {
@@ -343,7 +340,6 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
 
             grownCellsData = new MulticellularMembraneGenerationCellData[cellCount];
 
-            // Second pass: write directly into the correctly sized arrays, no intermediate list needed
             int writeIndex = 0;
             for (int i = 0; i < nextBodyPlanCellToGrowIndex; ++i)
             {
@@ -396,7 +392,8 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
 
         if (cachedMembrane != null)
         {
-            // Membrane is ready now
+            // Membrane is ready now. return hexes array to the pool as it won't be used in calculations
+            ArrayPool<Vector2>.Shared.Return(hexes);
             return cachedMembrane;
         }
 

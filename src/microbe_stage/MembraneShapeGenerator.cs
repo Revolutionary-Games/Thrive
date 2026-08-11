@@ -933,7 +933,7 @@ public class MembraneShapeGenerator
             }
 
             neighbourData.LocalAverageVertex =
-                RotatePoint(thisCellAverageVertex, relativeAngle) + localOffset;
+                RotatePoint(neighbourData.OriginalAverageVertex, relativeAngle) + localOffset;
 
             neighbourCell.Shift = localOffset;
             neighbourCell.Rotation = relativeAngle;
