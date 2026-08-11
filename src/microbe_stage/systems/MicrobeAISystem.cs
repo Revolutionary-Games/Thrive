@@ -476,13 +476,10 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                 {
                     if (signaling.ReceivedCommandFromEntity.IsAliveAndHas<WorldPosition>())
                     {
-                        var signalerPosition = signaling.ReceivedCommandFromEntity.Get<WorldPosition>().Position;
-                        var distanceSquared = position.Position.DistanceSquaredTo(signalerPosition);
-
                         // This is a really approximate timer
                         ai.TimeUntilMateCallCheck -= Constants.MICROBE_AI_THINK_INTERVAL;
 
-                        if (distanceSquared <= Constants.GAMETE_MATE_CALL_MAX_DISTANCE_SQUARED &&
+                        if (signalerDistanceSquared <= Constants.GAMETE_MATE_CALL_MAX_DISTANCE_SQUARED &&
                             ai.TimeUntilMateCallCheck <= 0)
                         {
                             ai.TimeUntilMateCallCheck = 10;
@@ -516,7 +513,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                             if (compatible)
                             {
                                 // React to signal by moving close enough
-                                if (distanceSquared > Constants.GAMETE_MATE_CALL_TARGET_DISTANCE_SQUARED)
+                                if (signalerDistanceSquared > Constants.GAMETE_MATE_CALL_TARGET_DISTANCE_SQUARED)
                                 {
                                     ai.MoveToLocation(signalerPosition, ref control, entity);
                                 }
@@ -533,13 +530,10 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                 {
                     if (signaling.ReceivedCommandFromEntity.IsAliveAndHas<WorldPosition>())
                     {
-                        var signalerPosition = signaling.ReceivedCommandFromEntity.Get<WorldPosition>().Position;
-                        var distanceSquared = position.Position.DistanceSquaredTo(signalerPosition);
-
                         // This is a really approximate timer
                         ai.TimeSinceGameteShoot += Constants.MICROBE_AI_THINK_INTERVAL;
 
-                        if (distanceSquared <= Constants.GAMETE_FORCE_SHOOT_DISTANCE_SQUARED &&
+                        if (signalerDistanceSquared <= Constants.GAMETE_FORCE_SHOOT_DISTANCE_SQUARED &&
                             ai.TimeSinceGameteShoot > Constants.GAMETE_FORCE_SHOOT_INTERVAL &&
                             entity.Has<MulticellularGrowth>())
                         {
