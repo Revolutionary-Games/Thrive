@@ -874,6 +874,29 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         Node sceneInstance;
 
+        // If doing gamete merge, teleport the player there to prepare the player for the next life
+        if (gametesMerging)
+        {
+            GD.Print("Entering editor after gamete merge, so teleporting the player to the target position");
+            playerGrewFromGamete = true;
+            ref var physics = ref Player.Get<Physics>();
+            ref var position = ref Player.Get<WorldPosition>();
+            physics.TeleportTo(ref position, gameteMergeLocation, WorldSimulation);
+
+            // And despawn the gametes
+            if (mergingGamete1.IsAliveAndNotNull())
+                WorldSimulation.DestroyEntity(mergingGamete1);
+            if (mergingGamete2.IsAliveAndNotNull())
+                WorldSimulation.DestroyEntity(mergingGamete2);
+
+            mergingGamete1 = Entity.Null;
+            mergingGamete2 = Entity.Null;
+        }
+        else
+        {
+            playerGrewFromGamete = false;
+        }
+
         if (Player.Has<MulticellularSpeciesMember>())
         {
             // Player is a multicellular species, go to multicellular editor
@@ -904,6 +927,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
             editor.CurrentGame = CurrentGame;
             editor.ReturnToStage = this;
+            editor.UsedSexualReproduction = playerGrewFromGamete;
 
             // TODO: severely limit the MP points in awakening stage
         }
@@ -924,30 +948,16 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
             editor.CurrentGame = CurrentGame;
             editor.ReturnToStage = this;
+
+            if (playerGrewFromGamete)
+            {
+                GD.Print("Player grew from gamete, but we are going to the microbe editor!");
+            }
         }
 
         GiveReproductionPopulationBonus();
 
         RecordPlayerReproduction();
-
-        // If doing gamete merge, teleport the player there to prepare the player for the next life
-        if (gametesMerging)
-        {
-            GD.Print("Entering editor after gamete merge, so teleporting the player to the target position");
-            playerGrewFromGamete = true;
-            ref var physics = ref Player.Get<Physics>();
-            ref var position = ref Player.Get<WorldPosition>();
-            physics.TeleportTo(ref position, gameteMergeLocation, WorldSimulation);
-
-            // And despawn the gametes
-            if (mergingGamete1.IsAliveAndNotNull())
-                WorldSimulation.DestroyEntity(mergingGamete1);
-            if (mergingGamete2.IsAliveAndNotNull())
-                WorldSimulation.DestroyEntity(mergingGamete2);
-
-            mergingGamete1 = Entity.Null;
-            mergingGamete2 = Entity.Null;
-        }
 
         PauseMenu.Instance.ReportStageTransition();
 

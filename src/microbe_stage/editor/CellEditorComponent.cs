@@ -499,7 +499,7 @@ public partial class CellEditorComponent :
 
     private float CostMultiplier =>
         (IsMulticellularEditor ? Constants.MULTICELLULAR_EDITOR_COST_FACTOR : 1.0f) *
-        Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier;
+        Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier * Editor.MutationPointCostModifier;
 
     public static void UpdateOrganelleDisplayerTransform(SceneDisplayer organelleModel, OrganelleTemplate organelle)
     {
