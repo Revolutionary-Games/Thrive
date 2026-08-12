@@ -221,7 +221,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
             marchUniforms.Add(RenderingUtils.MakeSampled(2, noiseSampler, noiseTexture));
             marchUniforms.Add(RenderingUtils.MakeUniformBuffer(3, paramUbo));
 
-            Rid marchSet = renderingDevice.UniformSetCreate(marchUniforms, rayMarcherShader, 0);
+            Rid marchSet = UniformSetCacheRD.GetCache(rayMarcherShader, 0, marchUniforms);
 
             // Pass 2: bilateral resolve and composite
             upsampleUniforms.Clear();
@@ -230,7 +230,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
             upsampleUniforms.Add(RenderingUtils.MakeSampled(2, depthSampler, cloudTexture));
             upsampleUniforms.Add(RenderingUtils.MakeUniformBuffer(3, paramUbo));
 
-            Rid upsampleSet = renderingDevice.UniformSetCreate(upsampleUniforms, upsamplerShader, 0);
+            Rid upsampleSet = UniformSetCacheRD.GetCache(upsamplerShader, 0, upsampleUniforms);
 
             if (marchSet.IsValid && upsampleSet.IsValid)
             {
@@ -257,11 +257,6 @@ public partial class VolumetricCloudsEffect : CompositorEffect
                 if (ProfileGpu)
                     renderingDevice.CaptureTimestamp("clouds_end");
             }
-
-            if (marchSet.IsValid)
-                renderingDevice.FreeRid(marchSet);
-            if (upsampleSet.IsValid)
-                renderingDevice.FreeRid(upsampleSet);
         }
     }
 
