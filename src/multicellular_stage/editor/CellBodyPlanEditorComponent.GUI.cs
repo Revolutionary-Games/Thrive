@@ -31,23 +31,6 @@ public partial class CellBodyPlanEditorComponent
         UpdateReproductionMethodChoice();
     }
 
-<<<<<<< HEAD
-=======
-    public void OnSporeCellTypeSelected(int selectedOption)
-    {
-        var cellType = Editor.EditedSpecies.ModifiableCellTypes[selectedOption];
-
-        if (cellType == SporeCellType)
-            return;
-
-        var action = new SingleEditorAction<SporeCellTypeChangeActionData>(DoSporeCellChangeAction,
-            UndoSporeCellChangeAction, new SporeCellTypeChangeActionData(SporeCellType, cellType));
-
-        Editor.EnqueueAction(action);
-
-        UpdateSporeCellDropdown();
-    }
-
     public void OnGameteACellTypeSelected(int selectedOption)
     {
         var cellType = Editor.EditedSpecies.ModifiableCellTypes[selectedOption];
@@ -100,7 +83,6 @@ public partial class CellBodyPlanEditorComponent
         UpdateMassBuddingCellCountSlider();
     }
 
->>>>>>> d8079e37e0aae27488d93d008ae01da8b8c47666
     public void SendObjectsToTutorials(TutorialState tutorial, MulticellularEditorTutorialGUI gui)
     {
         _ = tutorial;
@@ -248,13 +230,10 @@ public partial class CellBodyPlanEditorComponent
         organismStatisticsPanel.ApplyLightLevelSelection();
 
         UpdateReproductionMethodChoice();
-<<<<<<< HEAD
+
         UpdateSpecialCellTypeDisplays();
-=======
-        UpdateSporeCellDropdown();
         UpdateGameteDropdowns();
         UpdateMassBuddingCellCountSlider();
->>>>>>> d8079e37e0aae27488d93d008ae01da8b8c47666
 
         UpdateCancelButtonVisibility();
     }

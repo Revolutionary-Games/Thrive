@@ -49,14 +49,10 @@ public partial class CellBodyPlanEditorComponent
         OnCellTypeAdded(data.CellType);
 
         OnCellToPlaceSelected(data.CellType.CellTypeName);
-<<<<<<< HEAD
-=======
 
         Editor.DirtyMutationPointsCache();
 
-        UpdateSporeCellDropdown();
         UpdateGameteDropdowns();
->>>>>>> d8079e37e0aae27488d93d008ae01da8b8c47666
     }
 
     [ArchiveAllowedMethod]
@@ -73,8 +69,6 @@ public partial class CellBodyPlanEditorComponent
         {
             SporeCellType = Editor.EditedSpecies.ModifiableCellTypes[0];
         }
-<<<<<<< HEAD
-=======
 
         if (data.CellType == GameteACellType)
         {
@@ -86,9 +80,7 @@ public partial class CellBodyPlanEditorComponent
             GameteBCellType = Editor.EditedSpecies.ModifiableCellTypes[0];
         }
 
-        UpdateSporeCellDropdown();
         UpdateGameteDropdowns();
->>>>>>> d8079e37e0aae27488d93d008ae01da8b8c47666
     }
 
     [ArchiveAllowedMethod]
@@ -194,9 +186,6 @@ public partial class CellBodyPlanEditorComponent
         SporeCellType = null;
     }
 
-<<<<<<< HEAD
-    private void OnCellTypeAdded(CellType added)
-=======
     [ArchiveAllowedMethod]
     private void DoGameteACellChangeAction(GameteACellTypeChangeActionData data)
     {
@@ -229,8 +218,7 @@ public partial class CellBodyPlanEditorComponent
         UpdateGameteDropdowns();
     }
 
-    private void OnReproductionMethodChangedToSpore()
->>>>>>> d8079e37e0aae27488d93d008ae01da8b8c47666
+    private void OnCellTypeAdded(CellType added)
     {
         var originalName = added.CellTypeName;
         var count = 1;

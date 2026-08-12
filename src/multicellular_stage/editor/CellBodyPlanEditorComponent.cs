@@ -848,13 +848,10 @@ public partial class CellBodyPlanEditorComponent :
 
         UpdateSpecializationDisplay();
 
-<<<<<<< HEAD
         UpdateSpecialCellTypeDisplays();
-=======
+
         // In case the cell type's name was changed
-        UpdateSporeCellDropdown();
         UpdateGameteDropdowns();
->>>>>>> d8079e37e0aae27488d93d008ae01da8b8c47666
     }
 
     /// <summary>
