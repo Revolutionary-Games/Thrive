@@ -62,9 +62,10 @@ Code style rules
 
 - Some common short names are accepted (and even preferred): i, k, a,
   b used in loops (x, y, z used in loops that deal with coordinates or
-  math), e used in `catch` blocks as the exception name. Other
+  math, and variants like `cx` etc.), e used in `catch` blocks as the exception name. Other
   variables in loops and elsewhere need to be named with actually
-  descriptive variable names.
+  descriptive variable names. Math functions can take common single letter variables that 
+  are totally clear from context like x, y, z, t as parameters.
   
 - Similarly, some very common abbreviations are used in the code,
   and can (and should) thus be used when naming variables. These are
@@ -78,6 +79,9 @@ Code style rules
   - `str`
   - `rect` (when related to class names and variables holding instances of those classes)
   - `tech` (short for technology)
+  - `buf`
+  - `inv` (for inverted)
+  - `cap`
 
 - Variables and functions are camelCase or PascalCase depending on
   their visibility. Classes are PascalCase with leading upper
