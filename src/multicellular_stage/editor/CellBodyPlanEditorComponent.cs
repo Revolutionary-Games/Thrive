@@ -808,7 +808,7 @@ public partial class CellBodyPlanEditorComponent :
 
         // This is checked due to a species data requirement
         if (ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy
-                    or MulticellularReproductionMethod.SexualAnisogamy && editedMicrobeCells.Count < 2)
+            or MulticellularReproductionMethod.SexualAnisogamy && editedMicrobeCells.Count < 2)
         {
             ToolTipManager.Instance.ShowPopup(
                 Localization.Translate("ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"), 5);

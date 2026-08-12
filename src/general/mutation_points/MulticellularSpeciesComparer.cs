@@ -199,12 +199,6 @@ public class MulticellularSpeciesComparer
                 reproductionCost += Constants.MULTICELLULAR_REPRODUCTION_METHOD_CHANGE_COST;
             }
         }
-        else if (speciesA.ReproductionMethod == MulticellularReproductionMethod.Sporulation
-                 && speciesA.SporeCellType!.CellTypeName != speciesB.SporeCellType?.CellTypeName)
-        {
-            // The reproduction method is sporulation (and it wasn't changed), but the spore cell type is different
-            reproductionCost += Constants.SPORE_CELL_TYPE_CHANGE_COST;
-        }
         else if (speciesA.ReproductionMethod == MulticellularReproductionMethod.SexualIsogamy
                  && speciesA.GameteTypeA!.CellTypeName != speciesB.GameteTypeA?.CellTypeName)
         {
