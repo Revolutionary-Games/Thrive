@@ -54,6 +54,9 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     [Export]
     public bool ProfileGpu;
 
+    private const uint PushConstantsBufferSize = 128;
+    private const uint UniformParamsBufferSize = 128;
+
     private const string SkyResourcesDir = "res://assets/textures/sky/";
     private const string NoiseProfileFileName = "cloud_base_128.res";
     private const string RaymarcherShaderFileName = "res://shaders/sky/clouds_march.glsl";
@@ -75,6 +78,10 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     private Rid rayMarcherPipeline;
     private Rid upsamplerPipeline;
     private Rid noiseTexture;
+    private Rid paramUbo;
+
+    private byte[] pushConstantsBuffer = new byte[PushConstantsBufferSize];
+    private byte[] uniformParamsBuffer = new byte[UniformParamsBufferSize];
 
 #pragma warning disable CA2213
     private RenderingDevice? renderingDevice;
@@ -198,13 +205,14 @@ public partial class VolumetricCloudsEffect : CompositorEffect
             var projection = sceneData.GetViewProjection(view);
             var cameraTransform = sceneData.GetCamTransform();
 
-            byte[] pushConstantBytes = RenderingUtils.BuildProjectionsPushConstant(projection.Inverse(),
-                new Projection(cameraTransform));
-            byte[] paramBytes = BuildParamUniform(size, marchSize, cameraTransform.Origin);
+            var paramSpan = uniformParamsBuffer.AsSpan();
 
-            Rid paramUbo = renderingDevice.UniformBufferCreate((uint)paramBytes.Length, paramBytes);
-            if (!paramUbo.IsValid)
-                continue;
+            RenderingUtils.UpdateProjectionsPushConstant(pushConstantsBuffer, projection.Inverse(),
+                new Projection(cameraTransform));
+            UpdateParamUniform(paramSpan, size, marchSize, cameraTransform.Origin);
+
+            renderingDevice.BufferUpdate(paramUbo, 0, UniformParamsBufferSize, paramSpan,
+                RenderingDevice.BarrierMask.Compute);
 
             // Pass 1: ray marcher.
             marchUniforms.Clear();
@@ -232,8 +240,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
                 long list = renderingDevice.ComputeListBegin();
                 renderingDevice.ComputeListBindComputePipeline(list, rayMarcherPipeline);
                 renderingDevice.ComputeListBindUniformSet(list, marchSet, 0);
-                renderingDevice.ComputeListSetPushConstant(list, pushConstantBytes,
-                    (uint)pushConstantBytes.Length);
+                renderingDevice.ComputeListSetPushConstant(list, pushConstantsBuffer, PushConstantsBufferSize);
                 renderingDevice.ComputeListDispatch(list, marchGroupsX, marchGroupsY, 1);
                 renderingDevice.ComputeListEnd();
 
@@ -243,8 +250,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
                 list = renderingDevice.ComputeListBegin();
                 renderingDevice.ComputeListBindComputePipeline(list, upsamplerPipeline);
                 renderingDevice.ComputeListBindUniformSet(list, upsampleSet, 0);
-                renderingDevice.ComputeListSetPushConstant(list, pushConstantBytes,
-                    (uint)pushConstantBytes.Length);
+                renderingDevice.ComputeListSetPushConstant(list, pushConstantsBuffer, PushConstantsBufferSize);
                 renderingDevice.ComputeListDispatch(list, fullGroupsX, fullGroupsY, 1);
                 renderingDevice.ComputeListEnd();
 
@@ -256,8 +262,6 @@ public partial class VolumetricCloudsEffect : CompositorEffect
                 renderingDevice.FreeRid(marchSet);
             if (upsampleSet.IsValid)
                 renderingDevice.FreeRid(upsampleSet);
-            if (paramUbo.IsValid)
-                renderingDevice.FreeRid(paramUbo);
         }
     }
 
@@ -332,6 +336,8 @@ public partial class VolumetricCloudsEffect : CompositorEffect
             throw new Exception("Invalid noise texture");
 
         noiseTexture = RenderingServer.TextureGetRdTexture(noiseProfile.GetRid());
+
+        paramUbo = renderingDevice.UniformBufferCreate(UniformParamsBufferSize, uniformParamsBuffer);
     }
 
     private void EnsureCloudTexture(RenderSceneBuffersRD sceneBuffers, Vector2I marchSize, uint viewCount)
@@ -355,28 +361,26 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         currentCloudViews = viewCount;
     }
 
-    private byte[] BuildParamUniform(Vector2I fullSize, Vector2I marchSize, Vector3 cameraPosition)
+    private void UpdateParamUniform(Span<byte> paramSpan, Vector2I fullSize, Vector2I marchSize, Vector3 cameraPosition)
     {
-        var bytes = new byte[128];
         int offset = 0;
 
-        offset = RenderingUtils.WriteVec4(bytes, offset, new Vector4(PlanetCenter.X, PlanetCenter.Y, PlanetCenter.Z,
+        offset = RenderingUtils.WriteVec4(paramSpan, offset, new Vector4(PlanetCenter.X, PlanetCenter.Y, PlanetCenter.Z,
             0.0f));
-        offset = RenderingUtils.WriteVec4(bytes, offset, new Vector4(PlanetRadius + CloudInnerHeight,
+        offset = RenderingUtils.WriteVec4(paramSpan, offset, new Vector4(PlanetRadius + CloudInnerHeight,
             PlanetRadius + CloudOuterHeight, CloudTileSize, DensityMultiplier));
-        offset = RenderingUtils.WriteVec4(bytes, offset, new Vector4(fullSize.X, fullSize.Y, 1.0f / fullSize.X,
+        offset = RenderingUtils.WriteVec4(paramSpan, offset, new Vector4(fullSize.X, fullSize.Y, 1.0f / fullSize.X,
             1.0f / fullSize.Y));
-        offset = RenderingUtils.WriteVec4(bytes, offset, new Vector4(marchSize.X, marchSize.Y, 1.0f / marchSize.X,
+        offset = RenderingUtils.WriteVec4(paramSpan, offset, new Vector4(marchSize.X, marchSize.Y, 1.0f / marchSize.X,
             1.0f / marchSize.Y));
-        offset = RenderingUtils.WriteVec4(bytes, offset, new Vector4(cameraPosition.X, cameraPosition.Y,
+        offset = RenderingUtils.WriteVec4(paramSpan, offset, new Vector4(cameraPosition.X, cameraPosition.Y,
             cameraPosition.Z, 0.0f));
 
         var sun = SunDirection.Normalized();
-        offset = RenderingUtils.WriteVec4(bytes, offset, new Vector4(sun.X, sun.Y, sun.Z, SunEnergy));
+        offset = RenderingUtils.WriteVec4(paramSpan, offset, new Vector4(sun.X, sun.Y, sun.Z, SunEnergy));
 
-        _ = RenderingUtils.WriteVec4(bytes, offset, new Vector4(MarchSteps, LightSteps, MaxMarchDistance, Coverage));
-
-        return bytes;
+        _ = RenderingUtils.WriteVec4(paramSpan, offset, new Vector4(MarchSteps, LightSteps, MaxMarchDistance,
+            Coverage));
     }
 
     private void LoadResources()
@@ -390,8 +394,9 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         const string noiseProfilePath = SkyResourcesDir + NoiseProfileFileName;
         if (ResourceLoader.Exists(noiseProfilePath))
         {
-            noiseProfile = ResourceLoader.Load<ImageTexture3D>(noiseProfilePath,
-                cacheMode: ResourceLoader.CacheMode.Replace);
+            // ResourceSaver.Save when rebaking the cloud voxels should already invalidate this cache, so the default
+            // cache mode should be working.
+            noiseProfile = ResourceLoader.Load<ImageTexture3D>(noiseProfilePath);
         }
         else
         {
@@ -413,6 +418,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         depthSampler = default;
         noiseSampler = default;
         noiseTexture = default;
+        paramUbo = default;
 
         state = 0;
 
@@ -427,16 +433,14 @@ public partial class VolumetricCloudsEffect : CompositorEffect
 
         if (rayMarcherShader.IsValid)
             renderingDevice.FreeRid(rayMarcherShader);
+        if (upsamplerShader.IsValid)
+            renderingDevice.FreeRid(upsamplerShader);
         if (depthSampler.IsValid)
             renderingDevice.FreeRid(depthSampler);
         if (noiseSampler.IsValid)
             renderingDevice.FreeRid(noiseSampler);
-        if (rayMarcherPipeline.IsValid)
-            renderingDevice.FreeRid(rayMarcherPipeline);
-        if (upsamplerPipeline.IsValid)
-            renderingDevice.FreeRid(upsamplerPipeline);
-        if (upsamplerShader.IsValid)
-            renderingDevice.FreeRid(upsamplerShader);
+        if (paramUbo.IsValid)
+            renderingDevice.FreeRid(paramUbo);
     }
 
     private void Reload()

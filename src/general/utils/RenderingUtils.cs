@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using Godot;
 
 public static class RenderingUtils
@@ -26,18 +28,19 @@ public static class RenderingUtils
         return uniform;
     }
 
-    public static int WriteFloat(byte[] buffer, int offset, float value)
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static int WriteFloat(Span<byte> buffer, int offset, float value)
     {
-        BitConverter.TryWriteBytes(buffer.AsSpan(offset, sizeof(float)), value);
+        MemoryMarshal.Write(buffer[offset..], value);
         return offset + 4;
     }
 
-    public static int WriteVec4(byte[] buf, int offset, Vector4 v)
+    public static int WriteVec4(Span<byte> buffer, int offset, Vector4 v)
     {
-        offset = WriteFloat(buf, offset, v.X);
-        offset = WriteFloat(buf, offset, v.Y);
-        offset = WriteFloat(buf, offset, v.Z);
-        offset = WriteFloat(buf, offset, v.W);
+        offset = WriteFloat(buffer, offset, v.X);
+        offset = WriteFloat(buffer, offset, v.Y);
+        offset = WriteFloat(buffer, offset, v.Z);
+        offset = WriteFloat(buffer, offset, v.W);
         return offset;
     }
 
@@ -55,6 +58,15 @@ public static class RenderingUtils
     public static byte[] BuildProjectionsPushConstant(Projection invViewProjection, Projection camProjection)
     {
         var bytes = new byte[128];
+
+        UpdateProjectionsPushConstant(bytes.AsSpan(), invViewProjection, camProjection);
+
+        return bytes;
+    }
+
+    public static void UpdateProjectionsPushConstant(Span<byte> bytes, Projection invViewProjection,
+        Projection camProjection)
+    {
         int offset = 0;
 
         // mat4 inv_projection
@@ -68,7 +80,5 @@ public static class RenderingUtils
         offset = WriteVec4(bytes, offset, camProjection.Y);
         offset = WriteVec4(bytes, offset, camProjection.Z);
         _ = WriteVec4(bytes, offset, camProjection.W);
-
-        return bytes;
     }
 }
