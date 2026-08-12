@@ -726,6 +726,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         if (organelles.HasBindingAgent && atpLevel >= compounds.GetCapacityForCompound(Compound.ATP) * 0.5f)
         {
             signaling.QueuedSignalingCommand = MicrobeSignalCommand.MoveToMe;
+            return;
         }
 
         if (shouldBeAggressive)
