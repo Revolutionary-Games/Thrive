@@ -20,4 +20,6 @@ public enum OrganelleFeatureTag
     HydrogenSulfideProtection,
 
     HeatCollecting,
+
+    Actomyosin,
 }
