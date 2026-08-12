@@ -30,8 +30,7 @@ public static class NoiseUtils
     public static float WorleyTiling(Vector3 point, int grid, int seed)
     {
         Vector3 scaled = point * grid;
-        Vector3I baseCell = new Vector3I(
-            Mathf.FloorToInt(scaled.X),
+        Vector3I baseCell = new Vector3I(Mathf.FloorToInt(scaled.X),
             Mathf.FloorToInt(scaled.Y),
             Mathf.FloorToInt(scaled.Z));
 
