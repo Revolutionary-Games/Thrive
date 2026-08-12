@@ -34,9 +34,9 @@ public partial class CellTypePickerPopup : CustomWindow
             button.PartName = cellType.CellTypeName;
             button.CellType = cellType;
             button.Name = cellType.CellTypeName;
+            button.ShowInsufficientATPWarning = false;
 
-            button.ShowMPIcon = false;
-            button.MPCost = 0.0;
+            button.MPCost = 0.0f;
 
             button.Connect(CellTypeSelection.SignalName.OnPartSelected,
                 new Callable(this, MethodName.OnCellTypeButtonClicked));
