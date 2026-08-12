@@ -21,6 +21,10 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
     private bool overrideReproductionMethod;
 
     private IReadOnlyCellTypeDefinition? sporeCellTypeOverride;
+    private IReadOnlyCellTypeDefinition? gameteACellTypeOverride;
+    private IReadOnlyCellTypeDefinition? gameteBCellTypeOverride;
+
+    private int massBuddingCellCountOverride = -1;
 
     public MulticellularEditsFacade(IReadOnlyMulticellularSpecies species) : base(species)
     {
@@ -41,6 +45,12 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
         overrideReproductionMethod ? reproductionMethod : multicellularSpecies.ReproductionMethod;
 
     public IReadOnlyCellTypeDefinition? SporeCellType => sporeCellTypeOverride ?? multicellularSpecies.SporeCellType;
+
+    public IReadOnlyCellTypeDefinition? GameteTypeA => gameteACellTypeOverride ?? multicellularSpecies.GameteTypeA;
+    public IReadOnlyCellTypeDefinition? GameteTypeB => gameteBCellTypeOverride ?? multicellularSpecies.GameteTypeB;
+
+    public int MassBuddingCellCount =>
+        massBuddingCellCountOverride == -1 ? multicellularSpecies.MassBuddingCellCount : massBuddingCellCountOverride;
 
     /// <summary>
     ///   For MP calculations it is not required to also get the gameplay layout, so for simplicity this is not
@@ -138,6 +148,10 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
         overrideReproductionMethod = false;
 
         sporeCellTypeOverride = null;
+        gameteACellTypeOverride = null;
+        gameteBCellTypeOverride = null;
+
+        massBuddingCellCountOverride = -1;
     }
 
     internal override bool ApplyAction(EditorCombinableActionData actionData)
@@ -283,6 +297,28 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
             {
                 sporeCellTypeOverride = null;
             }
+
+            return true;
+        }
+
+        if (actionData is GameteACellTypeChangeActionData gameteACellTypeChangeActionData)
+        {
+            gameteACellTypeOverride = cellTypes.ResolveCellDefinition(gameteACellTypeChangeActionData.NewCellType);
+
+            return true;
+        }
+
+        if (actionData is GameteBCellTypeChangeActionData gameteBCellTypeChangeActionData)
+        {
+            gameteBCellTypeOverride = cellTypes.ResolveCellDefinition(gameteBCellTypeChangeActionData.NewCellType);
+
+            return true;
+        }
+
+        if (actionData is MassBuddingCellCountActionData massBuddingCellCountActionData)
+        {
+            massBuddingCellCountOverride = Math.Min(massBuddingCellCountActionData.NewCellCount,
+                CellBodyPlanInternalCalculations.MaxBudSize(EditorCells.Count));
 
             return true;
         }

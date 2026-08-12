@@ -49,6 +49,14 @@ public partial class CellBodyPlanEditorComponent
         OnCellTypeAdded(data.CellType);
 
         OnCellToPlaceSelected(data.CellType.CellTypeName);
+<<<<<<< HEAD
+=======
+
+        Editor.DirtyMutationPointsCache();
+
+        UpdateSporeCellDropdown();
+        UpdateGameteDropdowns();
+>>>>>>> d8079e37e0aae27488d93d008ae01da8b8c47666
     }
 
     [ArchiveAllowedMethod]
@@ -65,6 +73,22 @@ public partial class CellBodyPlanEditorComponent
         {
             SporeCellType = Editor.EditedSpecies.ModifiableCellTypes[0];
         }
+<<<<<<< HEAD
+=======
+
+        if (data.CellType == GameteACellType)
+        {
+            GameteACellType = Editor.EditedSpecies.ModifiableCellTypes[0];
+        }
+
+        if (data.CellType == GameteBCellType)
+        {
+            GameteBCellType = Editor.EditedSpecies.ModifiableCellTypes[0];
+        }
+
+        UpdateSporeCellDropdown();
+        UpdateGameteDropdowns();
+>>>>>>> d8079e37e0aae27488d93d008ae01da8b8c47666
     }
 
     [ArchiveAllowedMethod]
@@ -111,7 +135,14 @@ public partial class CellBodyPlanEditorComponent
             UpdateSpecialCellTypeDisplays();
         }
 
+        if (ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy
+            or MulticellularReproductionMethod.SexualAnisogamy)
+        {
+            OnReproductionMethodChangedToSexual();
+        }
+
         UpdateReproductionMethodChoice();
+        UpdateAnisogamyStateAndCost();
     }
 
     [ArchiveAllowedMethod]
@@ -124,7 +155,14 @@ public partial class CellBodyPlanEditorComponent
             UpdateSpecialCellTypeDisplays();
         }
 
+        if (ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy
+            or MulticellularReproductionMethod.SexualAnisogamy)
+        {
+            OnReproductionMethodChangedToSexual();
+        }
+
         UpdateReproductionMethodChoice();
+        UpdateAnisogamyStateAndCost();
     }
 
     [ArchiveAllowedMethod]
@@ -156,7 +194,43 @@ public partial class CellBodyPlanEditorComponent
         SporeCellType = null;
     }
 
+<<<<<<< HEAD
     private void OnCellTypeAdded(CellType added)
+=======
+    [ArchiveAllowedMethod]
+    private void DoGameteACellChangeAction(GameteACellTypeChangeActionData data)
+    {
+        GameteACellType = data.NewCellType;
+
+        UpdateGameteDropdowns();
+    }
+
+    [ArchiveAllowedMethod]
+    private void UndoGameteACellChangeAction(GameteACellTypeChangeActionData data)
+    {
+        GameteACellType = data.OldCellType;
+
+        UpdateGameteDropdowns();
+    }
+
+    [ArchiveAllowedMethod]
+    private void DoGameteBCellChangeAction(GameteBCellTypeChangeActionData data)
+    {
+        GameteBCellType = data.NewCellType;
+
+        UpdateGameteDropdowns();
+    }
+
+    [ArchiveAllowedMethod]
+    private void UndoGameteBCellChangeAction(GameteBCellTypeChangeActionData data)
+    {
+        GameteBCellType = data.OldCellType;
+
+        UpdateGameteDropdowns();
+    }
+
+    private void OnReproductionMethodChangedToSpore()
+>>>>>>> d8079e37e0aae27488d93d008ae01da8b8c47666
     {
         var originalName = added.CellTypeName;
         var count = 1;
@@ -179,5 +253,33 @@ public partial class CellBodyPlanEditorComponent
         UpdateCellTypesSecondaryInfo();
 
         Editor.DirtyMutationPointsCache();
+    }
+
+    private void OnReproductionMethodChangedToSexual()
+    {
+        // Set default gamete types
+        GameteACellType ??= Editor.EditedSpecies.ModifiableCellTypes[0];
+
+        // Gamete B needs to be set if the reproduction method is anisogamous otherwise the type A is used by all cells
+        if (ReproductionMethod is MulticellularReproductionMethod.SexualAnisogamy)
+            GameteBCellType ??= Editor.EditedSpecies.ModifiableCellTypes[0];
+
+        UpdateGameteDropdowns();
+    }
+
+    [ArchiveAllowedMethod]
+    private void DoMassBuddingCellCountChangeAction(MassBuddingCellCountActionData data)
+    {
+        DesiredMassBuddingCellCount = data.NewCellCount;
+
+        UpdateMassBuddingCellCountSlider();
+    }
+
+    [ArchiveAllowedMethod]
+    private void UndoMassBuddingCellCountChangeAction(MassBuddingCellCountActionData data)
+    {
+        DesiredMassBuddingCellCount = data.OldCellCount;
+
+        UpdateMassBuddingCellCountSlider();
     }
 }

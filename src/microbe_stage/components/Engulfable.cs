@@ -512,7 +512,7 @@ public static class EngulfableHelpers
         if (entity.Has<MulticellularGrowth>())
         {
             ref var growth = ref entity.Get<MulticellularGrowth>();
-            growth.OnLeadCellEjectedFromEngulfment();
+            growth.ResetGrowthProgress();
         }
     }
 

@@ -539,7 +539,17 @@ public partial class CellEditorComponent
         // Set the cost factor for each membrane button
         foreach (var entry in membraneSelectionElements)
         {
-            var cost = (int)Math.Min(entry.Key.EditorCost * CostMultiplier, Constants.MAX_SINGLE_EDIT_MP_COST);
+            // Cost is all in multicellular
+            int cost;
+
+            if (IsMulticellularEditor || IsMacroscopicEditor)
+            {
+                cost = Constants.BASE_MUTATION_POINTS;
+            }
+            else
+            {
+                cost = (int)Math.Min(entry.Key.EditorCost * CostMultiplier, Constants.MAX_SINGLE_EDIT_MP_COST);
+            }
 
             entry.Value.MPCost = cost;
 
@@ -656,8 +666,17 @@ public partial class CellEditorComponent
         foreach (var entry in membraneSelectionElements)
         {
             entry.Value.PartName = entry.Key.Name;
-            entry.Value.MPCost =
-                (int)Math.Min(entry.Key.EditorCost * CostMultiplier, Constants.MAX_SINGLE_EDIT_MP_COST);
+
+            if (IsMulticellularEditor || IsMacroscopicEditor)
+            {
+                entry.Value.MPCost = Constants.BASE_MUTATION_POINTS;
+            }
+            else
+            {
+                entry.Value.MPCost =
+                    (int)Math.Min(entry.Key.EditorCost * CostMultiplier, Constants.MAX_SINGLE_EDIT_MP_COST);
+            }
+
             entry.Value.PartIcon = entry.Key.LoadedIcon;
         }
     }

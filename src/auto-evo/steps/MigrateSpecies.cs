@@ -122,7 +122,10 @@ public class MigrateSpecies : IRunStep
                 continue;
 
             --attemptsLeft;
-            var targetMiche = results.GetMicheForPatch(target);
+
+            // We get a readonly copy of the miche tree to avoid hitting into a problem where a species mutation
+            // generation was just processing the patch and ended up modifying it
+            var targetMiche = results.GetReadOnlyMicheForPatch(target);
 
             // Calculate random amount of population to send
             var moveAmount = (long)random.Next(population * Constants.AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION,

@@ -43,6 +43,11 @@ public partial class EndosymbiosisProgressDisplay : VBoxContainer
         finishButton.Disabled = !isComplete;
     }
 
+    public void HideFinishButton()
+    {
+        finishButton.Visible = false;
+    }
+
     private void OnFinish()
     {
         if (species == null)

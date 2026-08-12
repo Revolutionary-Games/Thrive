@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-06 03:56+0300\n"
+"POT-Creation-Date: 2026-08-12 13:41+0300\n"
 "PO-Revision-Date: 2026-05-13 03:55+0000\n"
 "Last-Translator: Pascal Smit <smitpascal@gmail.com>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
@@ -51,6 +51,14 @@ msgstr "Accepteren"
 
 msgid "ACHIEVEMENTS"
 msgstr "Prestaties"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr "Prestaties {0} / {1}"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr "Het upgraden van de geselecteerde save is gefaald door de volgende error:"
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr "Prestaties {0} / {1}"
@@ -170,6 +178,13 @@ msgstr "Je bent al verheven"
 
 msgid "ALT"
 msgstr "Alt"
+
+#, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr "Huidige threads:"
+
+msgid "ALTERNATVE_TIMESCALE"
+msgstr ""
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Altijd Zichtbaar"
@@ -743,6 +758,17 @@ msgstr "Celtypenaam"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Verandernotities zijn te lang"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr "Membraantypes"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr "(genereer procedureel een gebiedenkaart of gebruik de klassieke indeling)"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Verander symmetrie"
@@ -1832,6 +1858,14 @@ msgstr "Pas vervorming toe op microbe-achtergronden"
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Achtergronddeeltjes weergeven"
 
+#, fuzzy
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr "OpenGL"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_METAL"
+msgstr "OpenGL"
+
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr "OpenGL"
 
@@ -1869,9 +1903,6 @@ msgstr "Dubbelklikken om in volledige schermweergave te zien"
 #, fuzzy
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Een membraan met twee lagen, waardoor het beter beschermd is tegen schade en minder energie kost om zijn vorm te houden. Echter wordt de cel wel langzamer en grondstoffen worden iets minder snel opgenomen."
-
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "Schakel tussen normale en dubbele gameplay-snelheid"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr "Versleep dit om items met de muis te herordenen"
@@ -2090,6 +2121,10 @@ msgstr "Losgekoppelde Organellen"
 msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
 msgstr "Om een endosymbiose-proces voort te zetten, moet de doelsoort worden opgeslokt om deze om te zetten in een tijdelijk organel (er kan slechts één tegelijk aanwezig zijn). Vervolgens wordt de voortgang opgeslagen zodra je de editor bereikt met het tijdelijke organel aanwezig."
 
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION_MULTICELLULAR"
+msgstr "Om een endosymbiose-proces voort te zetten, moet de doelsoort worden opgeslokt om deze om te zetten in een tijdelijk organel (er kan slechts één tegelijk aanwezig zijn). Vervolgens wordt de voortgang opgeslagen zodra je de editor bereikt met het tijdelijke organel aanwezig."
+
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
 msgstr ""
 
@@ -2204,6 +2239,9 @@ msgstr "Fout Met Ophalen Nieuws"
 
 msgid "ERROR_LOADING"
 msgstr "Fout met het Laden"
+
+msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
 
 msgid "ERROR_SAVING"
 msgstr "Fout Opslaan"
@@ -2583,6 +2621,35 @@ msgstr "Gallerij Venster"
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr "Spel Ontwikkel Team"
 
+#, fuzzy
+msgid "GAMETE_CELL_ENTITY_NAME"
+msgstr "Stam"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE"
+msgstr "Maak een nieuw celtype"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_A"
+msgstr "Celtypenaam"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_B"
+msgstr "Maak een nieuw celtype"
+
+#, fuzzy
+msgid "GAMETE_PRODUCED"
+msgstr "gereproduceerd"
+
+#, fuzzy
+msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+msgstr ""
+"Dit deel laat het totaal aantal ATP (energie) zien in de huidige cel.\n"
+"Om te overleven moet deze waarde positief zijn. Sessiele cellen kunnen deze waarde als postief zien .\n"
+"Het menu hieronder kan gebruikt worden om te wat er zou gebeuren als een cel geen stoffen zou hebben om ATP te maken.\n"
+"bijvoorbeeld, sommige cellen kunnen alleen een positief ATP balans houden als ze meerdere stof types hebben om ATP tegelijk van te maken.\n"
+"Die typen cellen zijn moeilijker om te spelen omdat ze meerdere stoffen tegelijk in opslag nodig hebben."
+
 msgid "GAME_DESIGN_TEAM"
 msgstr "Spel Ontwikkel Team"
 
@@ -2896,6 +2963,10 @@ msgstr "[b]Membranendata:[/b]"
 #, fuzzy
 msgid "INCOMPATIBLE_ORGANELLE_LIST"
 msgstr "Meerdere Organellen"
+
+#, fuzzy
+msgid "INCOMPATIBLE_STAGE_LIST"
+msgstr "[b]Membranendata:[/b]"
 
 #, fuzzy
 msgid "INCREASE_ITEM_SIZE"
@@ -3667,6 +3738,10 @@ msgid "MACROSCOPIC"
 msgstr "Wordt Macrosopisch ({0}/{1})"
 
 #, fuzzy
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr "Slijmstraal"
+
+#, fuzzy
 msgid "MACROSCOPIC_EDITOR"
 msgstr "Microbe-editor Laden"
 
@@ -3697,6 +3772,13 @@ msgstr "Maart"
 
 msgid "MARINE_SNOW"
 msgstr "Mariene sneeuw"
+
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(krijg passief reproductieve stoffen van de omgeving zonder iets te hoeven doen)"
 
 msgid "MASTER_VOLUME"
 msgstr "Master Volume"
@@ -4620,6 +4702,10 @@ msgstr ""
 msgid "NEW"
 msgstr "Nieuw"
 
+#, fuzzy
+msgid "NEWER"
+msgstr "Kijker"
+
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "Dit opgeslagen bestand is van een nieuwere versie van Thrive en is waarschijnlijk niet-compatibel.\n"
@@ -4740,8 +4826,16 @@ msgid "NOTICE_READY_TO_EDIT"
 msgstr "Klaar om bewerker te openen"
 
 #, fuzzy
+msgid "NOTICE_READY_TO_SHOOT_GAMETE"
+msgstr "Klaar om bewerker te openen"
+
+#, fuzzy
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "Vind Huidig Gebied"
+
+#, fuzzy
+msgid "NOT_ENOUGH_MUTATION_POINTS"
+msgstr "Mutatiepunten"
 
 msgid "NOT_STARTED_DOT"
 msgstr "Niet begonnen."
@@ -4789,7 +4883,7 @@ msgstr "Maak een nieuw celtype"
 
 #, fuzzy
 msgid "NO_SPORE_CELL_TYPE_SET_TITLE"
-msgstr "Kan Gebruikte Celtype Niet Verwijderen"
+msgstr "Maak een nieuw celtype"
 
 #, fuzzy
 msgid "NO_SUGGESTION"
@@ -4840,6 +4934,10 @@ msgstr "Bezoek de officiële Revolutionary Games website"
 
 msgid "OK"
 msgstr "OK"
+
+#, fuzzy
+msgid "OLDER"
+msgstr "Open Map"
 
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -4927,6 +5025,10 @@ msgstr "Opties"
 
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Pas je instellingen aan"
+
+#, fuzzy
+msgid "OPTION_USED_FOR_PLAYER"
+msgstr "Gepauzeert."
 
 msgid "ORGANELLES"
 msgstr "Organellen"
@@ -5058,6 +5160,10 @@ msgid "OXYGEN_RESISTANCE"
 msgstr "Weerstand tegen Gifstoffen"
 
 #, fuzzy
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
+msgstr "Weerstand tegen Gifstoffen"
+
+#, fuzzy
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr "Toon / verberg stoffen"
 
@@ -5139,6 +5245,10 @@ msgstr "Je hebt op {0} voor het laatst Thrive gespeeld, er is één nieuwe uitga
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr "Je hebt op {0} voor het laatst Thrive gespeeld, er is waren {1} nieuwe uitgaven sinds die tijd"
 
+#, fuzzy
+msgid "PATCH_NOTES_RECENT_BOUNDARY"
+msgstr "— {0}"
+
 msgid "PATCH_NOTES_TITLE"
 msgstr "Patch Notities"
 
@@ -5180,6 +5290,10 @@ msgstr "Vreedzaam"
 
 #, fuzzy
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Je gebruikt Thrive met GLES2. Dit is niet getest en zal hoogstwaarschijnlijk voor problemen veroorzaken. Update je drivers en/of forceer je AMD of Nvidia graphics om Thrive te laten runnen."
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION_MULTICELLULAR"
 msgstr "Je gebruikt Thrive met GLES2. Dit is niet getest en zal hoogstwaarschijnlijk voor problemen veroorzaken. Update je drivers en/of forceer je AMD of Nvidia graphics om Thrive te laten runnen."
 
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
@@ -5420,9 +5534,6 @@ msgstr "Projectbeheerteam"
 msgid "PROTEINS"
 msgstr "Eiwitten"
 
-msgid "PROTOPLASM"
-msgstr "Protoplasma"
-
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Aanvragen / Programmeren"
 
@@ -5456,6 +5567,10 @@ msgstr "Straling"
 
 #, fuzzy
 msgid "RADIOACTIVE_CHUNK"
+msgstr "Groot Brokstuk Fosfaat"
+
+#, fuzzy
+msgid "RADIOACTIVE_CHUNK_BANANA"
 msgstr "Groot Brokstuk Fosfaat"
 
 #, fuzzy
@@ -5523,6 +5638,10 @@ msgstr "Rapport"
 msgid "REPORT_BUG"
 msgstr "Rapporteer een Bug"
 
+#, fuzzy
+msgid "REPRODUCE"
+msgstr "gereproduceerd"
+
 msgid "REPRODUCED"
 msgstr "gereproduceerd"
 
@@ -5547,8 +5666,24 @@ msgstr "(krijg passief reproductieve stoffen van de omgeving zonder iets te hoev
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 msgstr "Reproductiemethode:"
 
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "Ontkiemen"
+
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproductiemethode:"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL"
+msgstr "Aseksueel"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
+msgstr "Aseksueel"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ISOGAMY"
+msgstr "Aseksueel"
 
 #, fuzzy
 msgid "REPRODUCTION_SPORE"
@@ -5962,6 +6097,26 @@ msgstr "Zittend"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "Deze waarde wordt alleen toegepast op nieuwe spellen die gestart worden na het wijzigen van deze optie"
 
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr "(krijg passief reproductieve stoffen van de omgeving zonder iets te hoeven doen)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION"
+msgstr "(krijg passief reproductieve stoffen van de omgeving zonder iets te hoeven doen)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION_ACTIVE"
+msgstr "(krijg passief reproductieve stoffen van de omgeving zonder iets te hoeven doen)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(krijg passief reproductieve stoffen van de omgeving zonder iets te hoeven doen)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+msgstr "Krijg passief reproduktievoortgang"
+
 msgid "SFX_VOLUME"
 msgstr "Volume SFX"
 
@@ -5992,6 +6147,19 @@ msgstr ""
 #, fuzzy
 msgid "SHOW_MAP"
 msgstr "Open hulp"
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION"
+msgstr "Open hulp"
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION_EXPLANATION"
+msgstr ""
+"Neerdalen zal je verheven status verwijderen en je terug naar de Microbenfase brengen. Je kunt dan in je huidige opslagbestand het spel opnieuw spelen.\n"
+"\n"
+"Je zult neerdalingsextraatjes krijgen voor de verdere spelduur. In een toekomstige versie zul je het extraatje zelf kunnen kiezen maar voor nu zul je altijd een 20% verlaging in osmoregulatiekosten krijgen. \n"
+"\n"
+"Zodra je besluit neer te dalen kun je een nieuw wereldkiemgetal kiezen om op een andere kaart te spelen. Ook kun je bijvoorbeeld LZWHK uitzetten."
 
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Toon nieuwe patchnotities automatisch"
@@ -6038,6 +6206,14 @@ msgstr "Houdt [thrive:input]g_pack_commands[/thrive:input] ingedrukt om een menu
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "Wordt Aggressief"
 
+#, fuzzy
+msgid "SIGNAL_COMMAND_CALL_MATE"
+msgstr "Beweeg Naar Mij"
+
+#, fuzzy
+msgid "SIGNAL_COMMAND_FIRE_GAMETES"
+msgstr "Vlucht"
+
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr "Vlucht"
 
@@ -6061,6 +6237,10 @@ msgstr "Dit membraan heeft een sterke celmuur van silica. Het kan zeer goed tege
 
 #, fuzzy
 msgid "SIMULATION_CONFIG"
+msgstr "Osmoregulatiekosten"
+
+#, fuzzy
+msgid "SIMULATION_FACTOR"
 msgstr "Osmoregulatiekosten"
 
 msgid "SIXTEEN_TIMES"
@@ -6145,6 +6325,14 @@ msgstr "Kan de plaats vijand cheat niet gebruiken omdat dit gebied geen vijandig
 msgid "SPAWN_GLUCOSE"
 msgstr "Plaats glucose"
 
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL"
+msgstr "Plaats ammoniak"
+
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL_EXPLANATION"
+msgstr "(snelheid waarmee AI-soorten muteren)"
+
 msgid "SPAWN_PHOSPHATES"
 msgstr "Plaats fosfaat"
 
@@ -6219,6 +6407,10 @@ msgstr "{0} met bevolking: {1}"
 
 msgid "SPEED_COLON"
 msgstr "Snelheid:"
+
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "Schakel tussen normale en dubbele gameplay-snelheid"
 
 #, fuzzy
 msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
@@ -6627,12 +6819,24 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr "Thuis"
 
+#, fuzzy
+msgid "THRIVEOPEDIA_MUSEUM_PAGE_SEARCHTAGS"
+msgstr "Museum"
+
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Museum"
 
 #, fuzzy
+msgid "THRIVEOPEDIA_ORGANELLE_SEARCHTAGS"
+msgstr "Huidige Wereld"
+
+#, fuzzy
 msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
 msgstr "Thuis"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_SEARCHTAGS"
+msgstr "Gebiedenkaart"
 
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr "Gebiedenkaart"
@@ -6660,6 +6864,14 @@ msgstr "Museum"
 #, fuzzy
 msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
 msgstr "Museum"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_SEARCHTAGS"
+msgstr "Museum"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_SEARCHTAGS"
+msgstr "Huidige Wereld"
 
 #, fuzzy
 msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
@@ -6852,9 +7064,6 @@ msgstr "Tools"
 
 msgid "TOOL_HAND_AXE"
 msgstr "Handbijl"
-
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
-msgstr ""
 
 #, fuzzy
 msgid "TOTAL_GATHERED_ENERGY_COLON"
@@ -7622,9 +7831,6 @@ msgstr "{0} MiB"
 
 msgid "VIEWER"
 msgstr "Kijker"
-
-msgid "VIEW_ALL"
-msgstr "Toon alle"
 
 #, fuzzy
 msgid "VIEW_CELL_PROCESSES"
@@ -9038,10 +9244,6 @@ msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr ""
 
 #, fuzzy
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "Protoplasma"
-
-#, fuzzy
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "Protoplasma"
 
@@ -9124,36 +9326,6 @@ msgstr ""
 
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "Eiwitademhaling"
-
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "Geen effecten."
-
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr ""
-"Aanzienlijk verbeterde versie van [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytoplasma[/url][/color][/b], bedoeld om de opslagcapaciteit voor niet-spelerssoorten te verbeteren. Kan niet worden toegevoegd aan spelerscellen, maar kan aanwezig zijn in cellen die de speler uit de omgeving heeft gefossiliseerd.\n"
-"\n"
-"Komt visueel overeen met [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytoplasma[/url][/color][/b] en neemt veel van zijn eigenschappen over."
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr "Geen wijzigingen."
-
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr ""
-"[b]Glycolyse[/b]: [thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"Verbeterde versie van [b]Cytoplasmatische glycolyse[/b] met verschillende input-/outputsnelheden."
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr "De speler kan [b]Protoplasma[/b] niet ontwikkelen. Niet-spelers kunnen dit zonder beperkingen doen."
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr "Geen upgrades."
 
 #, fuzzy
 msgid "WIKI_PULLING_CILIA"
@@ -9690,6 +9862,43 @@ msgstr "Inzoomen"
 msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
 
+#~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
+#~ msgstr "Schakel tussen normale en dubbele gameplay-snelheid"
+
+#~ msgid "PROTOPLASM"
+#~ msgstr "Protoplasma"
+
+#, fuzzy
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "Protoplasma"
+
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "Geen effecten."
+
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr ""
+#~ "Aanzienlijk verbeterde versie van [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytoplasma[/url][/color][/b], bedoeld om de opslagcapaciteit voor niet-spelerssoorten te verbeteren. Kan niet worden toegevoegd aan spelerscellen, maar kan aanwezig zijn in cellen die de speler uit de omgeving heeft gefossiliseerd.\n"
+#~ "\n"
+#~ "Komt visueel overeen met [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytoplasma[/url][/color][/b] en neemt veel van zijn eigenschappen over."
+
+#~ msgid "WIKI_PROTOPLASM_MODIFICATIONS"
+#~ msgstr "Geen wijzigingen."
+
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr ""
+#~ "[b]Glycolyse[/b]: [thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Verbeterde versie van [b]Cytoplasmatische glycolyse[/b] met verschillende input-/outputsnelheden."
+
+#~ msgid "WIKI_PROTOPLASM_REQUIREMENTS"
+#~ msgstr "De speler kan [b]Protoplasma[/b] niet ontwikkelen. Niet-spelers kunnen dit zonder beperkingen doen."
+
+#~ msgid "WIKI_PROTOPLASM_UPGRADES"
+#~ msgstr "Geen upgrades."
+
+#~ msgid "VIEW_ALL"
+#~ msgstr "Toon alle"
+
 #~ msgid "SPEED"
 #~ msgstr "Snelheid"
 
@@ -9801,9 +10010,6 @@ msgstr "Uitzoomen"
 
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "Ijzer-chemolithoautotrofie"
-
-#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
-#~ msgstr "Krijg passief reproduktievoortgang"
 
 #~ msgid "THANKS_FOR_BUYING_THRIVE"
 #~ msgstr ""
@@ -10172,9 +10378,6 @@ msgstr "Uitzoomen"
 
 #~ msgid "PATCH_MAP_TYPE_CLASSIC"
 #~ msgstr "Klassiek"
-
-#~ msgid "PATCH_MAP_TYPE_EXPLANATION"
-#~ msgstr "(genereer procedureel een gebiedenkaart of gebruik de klassieke indeling)"
 
 #~ msgid "PATCH_MAP_TYPE_PROCEDURAL"
 #~ msgstr "Procedureel"

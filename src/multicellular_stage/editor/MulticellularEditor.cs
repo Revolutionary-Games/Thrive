@@ -12,7 +12,7 @@ using UnlockConstraints;
 public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage>, IEditorReportData,
     ICellEditorData
 {
-    public const ushort SERIALIZATION_VERSION = 2;
+    public const ushort SERIALIZATION_VERSION = 3;
 
     private readonly MulticellularSpeciesComparer speciesComparer = new();
 
@@ -47,12 +47,29 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
     /// <summary>
     ///   If not null, this is the cell type that is being edited. Note that this is always a temporary holder from
     ///   <see cref="cellTypeEditsHolder"/>, so it can be modified without affecting the original cell type until
-    ///   editor exit. This complicates things when all users need to know if they want the latest edits or original
-    ///   data when reading this.
+    ///   the editor exits. This complicates things when all users need to know if they want the latest edits or
+    ///   original data when reading this.
     /// </summary>
     private CellType? selectedCellTypeToEdit;
 
+    /// <summary>
+    ///   Handles the membrane changes in multicellular
+    /// </summary>
+    private MembraneType? specialMembraneToSwitchOnExit;
+
     private Dictionary<OrganelleDefinition, int> tempMemory1 = new();
+
+    /// <summary>
+    ///   Set by the stage upon entering using a sexual reproduction method successfully (not when using cheats).
+    ///   Do not change after the editor starts as this affects MP discounts!
+    /// </summary>
+    public bool UsedSexualReproduction { get; set; }
+
+    /// <summary>
+    ///   Effective mutation cost multiplier in this editor. Note this doesn't immediately read the reproduction type
+    ///   as just swapping types would dynamically then change the MP discount during an editor session.
+    /// </summary>
+    public float MutationPointCostModifier => UsedSexualReproduction ? Constants.SEXUAL_REPRODUCTION_MP_COST_FACTOR : 1;
 
     public override bool CanCancelAction
     {
@@ -134,6 +151,11 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
             reader.ReadObjectProperties(instance.cellTypeEditsHolder);
         }
 
+        if (version > 2)
+        {
+            instance.UsedSexualReproduction = reader.ReadBool();
+        }
+
         // Set this first so that this is available immediately
         instance.bodyPlanEditorTab.CellTypeVisualsOverride = instance.cellTypeEditsHolder;
 
@@ -155,6 +177,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         writer.WriteObjectOrNull(selectedCellTypeToEdit);
 
         writer.WriteObjectProperties(cellTypeEditsHolder);
+        writer.Write(UsedSexualReproduction);
 
         writer.WriteObjectProperties(reportTab);
         writer.WriteObjectProperties(patchMapTab);
@@ -200,6 +223,15 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         }
 
         UpdateAutoEvoToReportTab();
+    }
+
+    public override bool EnqueueAction(EditorAction action)
+    {
+        // Doing anything prevents membrane change from happening afterwards, just so there's no way to optimize MP
+        // usage by failing to change and then doing an edit and then succeeding
+        specialMembraneToSwitchOnExit = null;
+
+        return base.EnqueueAction(action);
     }
 
     public override void SetEditorObjectVisibility(bool shown)
@@ -285,6 +317,37 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         SwapEditorTabIfNeeded(history.ActionToUndo());
 
         base.Undo();
+    }
+
+    /// <summary>
+    ///   In multicellular a species must have uniform membranes, so this method is called to trigger a special switch
+    ///   to exit the editor with all membranes set to the same value.
+    /// </summary>
+    /// <param name="newMembraneName">Name of the new membrane type</param>
+    public void OnDoMembraneChange(string newMembraneName)
+    {
+        var membrane = SimulationParameters.Instance.GetMembrane(newMembraneName);
+
+        // Make sure that we still have full mutation points
+        DirtyMutationPointsCache();
+
+        if (MutationPoints < Constants.BASE_MUTATION_POINTS)
+        {
+            GD.Print("Not enough mutation points to change membrane");
+            ToolTipManager.Instance.ShowPopup(Localization.Translate("NOT_ENOUGH_MUTATION_POINTS"), 3);
+            return;
+        }
+
+        specialMembraneToSwitchOnExit = membrane;
+
+        if (!OnFinishEditing(null))
+        {
+            GD.Print("Couldn't exit the editor due to a problem and apply new membrane");
+            specialMembraneToSwitchOnExit = null;
+        }
+
+        // We can't unset the membrane in all cases as there's a timed animation on the exit and only then the callback
+        // needing it will run
     }
 
     public ToleranceResult CalculateRawTolerances(bool excludePositiveBuffs = false)
@@ -454,7 +517,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         editsFacade.SetActiveActions(performedActionData);
 
         return speciesComparer.Compare(editedSpecies!, editsFacade, Constants.MAX_SINGLE_EDIT_MP_COST,
-            CurrentGame.GameWorld.WorldSettings.MPMultiplier);
+            CurrentGame.GameWorld.WorldSettings.MPMultiplier * MutationPointCostModifier);
     }
 
     protected override GameProperties StartNewGameForEditor()
@@ -573,6 +636,23 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         selectedCellTypeToEdit = null;
 
         base.OnEditorExitTransitionFinished();
+    }
+
+    protected override void OnAppliedEdits()
+    {
+        if (specialMembraneToSwitchOnExit == null)
+            return;
+
+        GD.Print("Applying membrane change for multicellular species to: ", specialMembraneToSwitchOnExit.Name);
+
+        // TODO: should this apply to special cell types as well?
+        foreach (var cellType in EditedSpecies.ModifiableCellTypes)
+        {
+            cellType.MembraneType = specialMembraneToSwitchOnExit;
+        }
+
+        // A light refresh of data to not have to do potentially very expensive repositioning algorithm
+        EditedSpecies.NotifyMembraneTypeChanged();
     }
 
     private void OnRevealAllPatchesCheatUsed(object? sender, EventArgs args)

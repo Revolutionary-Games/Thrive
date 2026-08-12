@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-06 03:56+0300\n"
+"POT-Creation-Date: 2026-08-12 13:41+0300\n"
 "PO-Revision-Date: 2026-05-13 03:55+0000\n"
 "Last-Translator: Telegina Alexandra <teleginaaleksandra1@gmail.com>\n"
 "Language-Team: Esperanto <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/eo/>\n"
@@ -60,6 +60,14 @@ msgstr ""
 #, fuzzy
 msgid "ACHIEVEMENTS"
 msgstr "Baza Movado"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr "Baza Movado"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr "La vakuolo estas interna membraneca organeto uzata por stokado en la ĉelo. Ili estas kunmetitaj de pluraj kunfandiĝitaj vezikoj, pli malgrandaj membranaj strukturoj vaste uzataj en ĉeloj por stokado. Ĝi estas plenigita per akvo, kiu kutimas enhavi molekulojn, enzimojn, solidojn kaj aliajn substancojn. Ilia formo estas flua kaj povas varii inter ĉeloj."
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr ""
@@ -178,6 +186,14 @@ msgstr ""
 
 msgid "ALT"
 msgstr "Alt"
+
+#, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr "Nunaj fadenoj:"
+
+#, fuzzy
+msgid "ALTERNATVE_TIMESCALE"
+msgstr ". Takso-skalo"
 
 msgid "ALWAYS_VISIBLE"
 msgstr ""
@@ -787,6 +803,17 @@ msgstr ""
 #, fuzzy
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Priskribo:"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr "Membranaj Tipoj"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Ŝanĝu la simetrion"
@@ -1915,6 +1942,14 @@ msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
 
 #, fuzzy
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr "Kapabloj"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_METAL"
+msgstr "Kapabloj"
+
+#, fuzzy
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr "Kapabloj"
 
@@ -1956,10 +1991,6 @@ msgstr ""
 #, fuzzy
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Membrano kun du tavoloj, ĝi havas pli bonan protekton kontraŭ damaĝo kaj bezonas malpli da energio por ne misformi. Tamen ĝi iom malrapidigas la ĉelon kaj malpliigas la rapidon, per kiu ĝi povas sorbi rimedojn."
-
-#, fuzzy
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "Rekomenci"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr ""
@@ -2206,6 +2237,10 @@ msgstr "Malkonektitaj Organetoj"
 msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
 msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
 
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION_MULTICELLULAR"
+msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
+
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
 msgstr ""
 
@@ -2328,6 +2363,9 @@ msgstr "Eraro de konservado"
 
 msgid "ERROR_LOADING"
 msgstr "Eraro Ŝarĝante"
+
+msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
 
 msgid "ERROR_SAVING"
 msgstr "Eraro de konservado"
@@ -2729,6 +2767,30 @@ msgstr ""
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr "Ĉelaj Procezoj"
 
+#, fuzzy
+msgid "GAMETE_CELL_ENTITY_NAME"
+msgstr "Via Salutnomo:"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE"
+msgstr "Kreu Novan Konservadon"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_A"
+msgstr "Kreu Novan Konservadon"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_B"
+msgstr "Kreu Novan Konservadon"
+
+#, fuzzy
+msgid "GAMETE_PRODUCED"
+msgstr "reproduktis"
+
+#, fuzzy
+msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+msgstr "Aldonunovan funkcion por klavo"
+
 msgid "GAME_DESIGN_TEAM"
 msgstr ""
 
@@ -3047,6 +3109,10 @@ msgstr "Organisma Statistiko"
 #, fuzzy
 msgid "INCOMPATIBLE_ORGANELLE_LIST"
 msgstr "Disloku organeton"
+
+#, fuzzy
+msgid "INCOMPATIBLE_STAGE_LIST"
+msgstr "Organisma Statistiko"
 
 #, fuzzy
 msgid "INCREASE_ITEM_SIZE"
@@ -3866,6 +3932,10 @@ msgid "MACROSCOPIC"
 msgstr ""
 
 #, fuzzy
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr "Kerno/Nukleo"
+
+#, fuzzy
 msgid "MACROSCOPIC_EDITOR"
 msgstr "Ŝarĝante Mikrobredaktilon"
 
@@ -3904,6 +3974,13 @@ msgstr ""
 
 msgid "MARINE_SNOW"
 msgstr "Mara neĝo"
+
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
 
 msgid "MASTER_VOLUME"
 msgstr "Ĉefa laŭ t"
@@ -4837,6 +4914,9 @@ msgstr ""
 msgid "NEW"
 msgstr ""
 
+msgid "NEWER"
+msgstr ""
+
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "Ĉi tiu konservado estas de pli nova versio de Thrive kaj tre probable ne kongruas.\n"
@@ -4960,8 +5040,15 @@ msgstr ""
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
+msgid "NOTICE_READY_TO_SHOOT_GAMETE"
+msgstr ""
+
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr ""
+
+#, fuzzy
+msgid "NOT_ENOUGH_MUTATION_POINTS"
+msgstr "Mutaciaj Poentoj"
 
 #, fuzzy
 msgid "NOT_STARTED_DOT"
@@ -5074,6 +5161,10 @@ msgstr "Aldonunovan funkcion por klavo"
 msgid "OK"
 msgstr "JES"
 
+#, fuzzy
+msgid "OLDER"
+msgstr "Malfermu Dosierujon de Registroj"
+
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 "Ĉi tiu konservado devenas de malnova versio de Thrive kaj eble ne kongruas.\n"
@@ -5165,6 +5256,10 @@ msgstr "Agordoj"
 #, fuzzy
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
+
+#, fuzzy
+msgid "OPTION_USED_FOR_PLAYER"
+msgstr "Nuligita."
 
 msgid "ORGANELLES"
 msgstr "Organetoj"
@@ -5299,6 +5394,10 @@ msgid "OXYGEN_RESISTANCE"
 msgstr "Toksinrezisto"
 
 #, fuzzy
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
+msgstr "Toksinrezisto"
+
+#, fuzzy
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
 
@@ -5388,6 +5487,10 @@ msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
 #, fuzzy
+msgid "PATCH_NOTES_RECENT_BOUNDARY"
+msgstr "Pangonia Estuaro"
+
+#, fuzzy
 msgid "PATCH_NOTES_TITLE"
 msgstr "Ĉelaj Procezoj"
 
@@ -5434,6 +5537,10 @@ msgstr ""
 
 #, fuzzy
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Vi uzas Thrive kun GLES2. Ĉi tio estas tre neprovita kaj probable kaŭzas problemojn. Provu ĝisdatigi viajn video-pelilojn kaj/aŭ devigi uzi AMD aŭ Nvidia-grafikaĵojn por ke Thrive funkciu."
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION_MULTICELLULAR"
 msgstr "Vi uzas Thrive kun GLES2. Ĉi tio estas tre neprovita kaj probable kaŭzas problemojn. Provu ĝisdatigi viajn video-pelilojn kaj/aŭ devigi uzi AMD aŭ Nvidia-grafikaĵojn por ke Thrive funkciu."
 
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
@@ -5675,9 +5782,6 @@ msgstr ""
 msgid "PROTEINS"
 msgstr "Proteinoj"
 
-msgid "PROTOPLASM"
-msgstr "Protoplasmo"
-
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr ""
 
@@ -5712,6 +5816,10 @@ msgstr "Spirado"
 
 #, fuzzy
 msgid "RADIOACTIVE_CHUNK"
+msgstr "Granda Fera Peco"
+
+#, fuzzy
+msgid "RADIOACTIVE_CHUNK_BANANA"
 msgstr "Granda Fera Peco"
 
 #, fuzzy
@@ -5781,6 +5889,10 @@ msgstr "Ra"
 msgid "REPORT_BUG"
 msgstr "Ra"
 
+#, fuzzy
+msgid "REPRODUCE"
+msgstr "reproduktis"
+
 msgid "REPRODUCED"
 msgstr "reproduktis"
 
@@ -5809,8 +5921,24 @@ msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 msgstr "reproduktis"
 
 #, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "reproduktis"
+
+#, fuzzy
 msgid "REPRODUCTION_METHOD"
 msgstr "reproduktis"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL"
+msgstr "ATP-Produktado"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
+msgstr "ATP-Produktado"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ISOGAMY"
+msgstr "ATP-Produktado"
 
 #, fuzzy
 msgid "REPRODUCTION_SPORE"
@@ -6259,6 +6387,26 @@ msgstr ""
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION"
+msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION_ACTIVE"
+msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
+
 msgid "SFX_VOLUME"
 msgstr "Volumo de sonefektoj"
 
@@ -6287,6 +6435,14 @@ msgstr "Montru lernilojn"
 #, fuzzy
 msgid "SHOW_MAP"
 msgstr "Montru helpon"
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION"
+msgstr "Montru helpon"
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION_EXPLANATION"
+msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
 
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
@@ -6349,6 +6505,18 @@ msgstr ""
 "Estas konflikto kun {0}.\n"
 "Ĉu vi volas forigi la enigon de {1}?"
 
+#, fuzzy
+msgid "SIGNAL_COMMAND_CALL_MATE"
+msgstr ""
+"Estas konflikto kun {0}.\n"
+"Ĉu vi volas forigi la enigon de {1}?"
+
+#, fuzzy
+msgid "SIGNAL_COMMAND_FIRE_GAMETES"
+msgstr ""
+"Estas konflikto kun {0}.\n"
+"Ĉu vi volas forigi la enigon de {1}?"
+
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr ""
 
@@ -6375,6 +6543,10 @@ msgstr "Ĉi tiu membrano havas fortan silikan muron. Ĝi povas bone rezisti ĝen
 
 #, fuzzy
 msgid "SIMULATION_CONFIG"
+msgstr "Osmoregada Kosto"
+
+#, fuzzy
+msgid "SIMULATION_FACTOR"
 msgstr "Osmoregada Kosto"
 
 #, fuzzy
@@ -6481,6 +6653,14 @@ msgstr ""
 msgid "SPAWN_GLUCOSE"
 msgstr "Generu glukozon"
 
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL"
+msgstr "Generu amoniakon"
+
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL_EXPLANATION"
+msgstr "(la rapideco de mutacio en AI-specioj)"
+
 msgid "SPAWN_PHOSPHATES"
 msgstr "Generu fosfaton"
 
@@ -6551,6 +6731,10 @@ msgstr "Specio loĝantaro"
 
 msgid "SPEED_COLON"
 msgstr "Rapideco:"
+
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "Rekomenci"
 
 #, fuzzy
 msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
@@ -6964,12 +7148,24 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVEOPEDIA_MUSEUM_PAGE_SEARCHTAGS"
+msgstr "La gluiĝemaj internaĵoj de ĉelo. La citoplasmo estas la baza miksaĵo de jonoj, proteinoj kaj aliaj substancoj solvitaj en akvo, kiu plenigas la internon de la ĉelo. Unu el la funkcioj, kiujn ĝi plenumas, estas Fermentado, la konvertiĝo de glukozo en ATP-energion. Por havi pli progresintajn metabolojn, ĉeloj, al kiuj mankas organetoj, uzas energion de ATP. Ĝi ankaŭ estas uzita por stoki molekulojn en la ĉelo kaj kreskigi la grandecon de la ĉelo."
+
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
 #, fuzzy
+msgid "THRIVEOPEDIA_ORGANELLE_SEARCHTAGS"
+msgstr "\"{0}\" - {1}"
+
+#, fuzzy
 msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
 msgstr "FORMORTADO"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_SEARCHTAGS"
+msgstr "La gluiĝemaj internaĵoj de ĉelo. La citoplasmo estas la baza miksaĵo de jonoj, proteinoj kaj aliaj substancoj solvitaj en akvo, kiu plenigas la internon de la ĉelo. Unu el la funkcioj, kiujn ĝi plenumas, estas Fermentado, la konvertiĝo de glukozo en ATP-energion. Por havi pli progresintajn metabolojn, ĉeloj, al kiuj mankas organetoj, uzas energion de ATP. Ĝi ankaŭ estas uzita por stoki molekulojn en la ĉelo kaj kreskigi la grandecon de la ĉelo."
 
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr ""
@@ -7003,6 +7199,14 @@ msgstr ""
 
 msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_SEARCHTAGS"
+msgstr "Permesu al specioj ne mutacii (se ne bona mutacio trovitas)"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_SEARCHTAGS"
+msgstr "\"{0}\" - {1}"
 
 #, fuzzy
 msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
@@ -7193,9 +7397,6 @@ msgid "TOOLS"
 msgstr "Iloj"
 
 msgid "TOOL_HAND_AXE"
-msgstr ""
-
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
 #, fuzzy
@@ -7963,9 +8164,6 @@ msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
 msgid "VIEWER"
-msgstr ""
-
-msgid "VIEW_ALL"
 msgstr ""
 
 #, fuzzy
@@ -9481,10 +9679,6 @@ msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr ""
 
 #, fuzzy
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "Protoplasmo"
-
-#, fuzzy
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "Protoplasmo"
 
@@ -9577,33 +9771,6 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "Spirado"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "Protoplasmo"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr "Protoplasmo"
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr "Transformas [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]."
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
 
 msgid "WIKI_PULLING_CILIA"
 msgstr ""
@@ -10175,6 +10342,29 @@ msgstr "Zomu"
 msgid "ZOOM_OUT"
 msgstr "Malzomu"
 
+#, fuzzy
+#~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
+#~ msgstr "Rekomenci"
+
+#~ msgid "PROTOPLASM"
+#~ msgstr "Protoplasmo"
+
+#, fuzzy
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "Protoplasmo"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "Protoplasmo"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr "Protoplasmo"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr "Transformas [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]."
+
 #~ msgid "SPEED"
 #~ msgstr "Rapideco"
 
@@ -10257,10 +10447,6 @@ msgstr "Malzomu"
 
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "Fera Kemolitoaŭtotrofio"
-
-#, fuzzy
-#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
-#~ msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
 
 #, fuzzy
 #~ msgid "MIGRATE"
@@ -10642,9 +10828,6 @@ msgstr "Malzomu"
 #~ msgid "PATCH_PANGONIAN_COAST"
 #~ msgstr "Pangonia Marbordo"
 
-#~ msgid "PATCH_PANGONIAN_ESTUARY"
-#~ msgstr "Pangonia Estuaro"
-
 #~ msgid "PATCH_CAVE"
 #~ msgstr "Kaverno"
 
@@ -10753,9 +10936,6 @@ msgstr "Malzomu"
 
 #~ msgid "INTENSITY_OF"
 #~ msgstr "intenseco de"
-
-#~ msgid "DOT_RATE_SCALES"
-#~ msgstr ". Takso-skalo"
 
 #~ msgid "OXYGEN_DOT"
 #~ msgstr "Oksigeno."
@@ -10874,3 +11054,9 @@ msgstr "Malzomu"
 #~ "Vi ankaŭ povas ŝanĝi aliajn ecojn de via specio en la aliaj langetoj de la ĉela redaktilo.\n"
 #~ "\n"
 #~ "Por daŭrigi, elektu organeton el la maldekstra panelo (citoplasmo estas bona elekto). Poste maldekstre alklaku apud la sesangulo montrita meze de la ekrano por aldoni tiun organeton al via specio."
+
+#~ msgid "PATCH_PANGONIAN_ESTUARY"
+#~ msgstr "Pangonia Estuaro"
+
+#~ msgid "DOT_RATE_SCALES"
+#~ msgstr ". Takso-skalo"

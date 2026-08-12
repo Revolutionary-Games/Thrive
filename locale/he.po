@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-06 03:56+0300\n"
+"POT-Creation-Date: 2026-08-12 13:41+0300\n"
 "PO-Revision-Date: 2026-05-13 03:55+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -53,6 +53,14 @@ msgstr ""
 #, fuzzy
 msgid "ACHIEVEMENTS"
 msgstr "מהירות בסיסית"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr "מהירות בסיסית"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr "שדרוג שמירה שצוינה נכשלה בעקבות השגיאה הבאה:"
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr ""
@@ -169,6 +177,14 @@ msgstr ""
 
 msgid "ALT"
 msgstr "Alt"
+
+#, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr "נושאים נוכחים:"
+
+#, fuzzy
+msgid "ALTERNATVE_TIMESCALE"
+msgstr ". עולה בהתאם"
 
 #, fuzzy
 msgid "ALWAYS_VISIBLE"
@@ -753,6 +769,17 @@ msgstr "שם סוג תא"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "הערות שינוי ארוכות מידי"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr "סוגי קרום"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr "(מייצר מפת אזורים פרוצדורלית או השתמש בפריסה הקלאסית)"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "שנה סימטריה"
@@ -1884,6 +1911,14 @@ msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "הצג חלקיקי רקע"
 
 #, fuzzy
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr "הצג שמות כפתורי בחירת חלקים"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_METAL"
+msgstr "הצג שמות כפתורי בחירת חלקים"
+
+#, fuzzy
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr "הצג שמות כפתורי בחירת חלקים"
 
@@ -1923,10 +1958,6 @@ msgstr "לחץ פעמיים בשביל להציג במסך מלא"
 #, fuzzy
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "קרום עם שתי שכבות, יש לו הגנה טובה יותר מפני נזק ולוקח פחות אנרגיה על מנת שלא להתעוות. יחד עם זאת, זה מאט את התא במעט ומוריד את הקצב שבו הוא ספוג משאבים מהסביבה."
-
-#, fuzzy
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "הערך משומש ביצור העולם, ועל כך, שחייב להיות מספר שלם חיובי"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr ""
@@ -2156,6 +2187,13 @@ msgstr ""
 "ולרוב הוא ישאף לגושים.\n"
 "מיקורבים מגיבים ישנו למטרה חדשה באופן כפוף יותר."
 
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION_MULTICELLULAR"
+msgstr ""
+"מיקרובים ממוקדים יחפשו אחר גושים או טרף למרחקים\n"
+"ולרוב הוא ישאף לגושים.\n"
+"מיקורבים מגיבים ישנו למטרה חדשה באופן כפוף יותר."
+
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
 msgstr ""
 
@@ -2273,6 +2311,9 @@ msgstr "תקלה ביצירת מידע על המוד"
 
 msgid "ERROR_LOADING"
 msgstr "טוען שגיאה"
+
+msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
 
 msgid "ERROR_SAVING"
 msgstr "שומר שגיאה"
@@ -2691,6 +2732,30 @@ msgstr "מציג גלריה"
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr "צוות מעצבי משחק"
 
+#, fuzzy
+msgid "GAMETE_CELL_ENTITY_NAME"
+msgstr "גזע"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE"
+msgstr "יצירת סוג תא חדש"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_A"
+msgstr "שם סוג תא"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_B"
+msgstr "יצירת סוג תא חדש"
+
+#, fuzzy
+msgid "GAMETE_PRODUCED"
+msgstr "התרבה"
+
+#, fuzzy
+msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+msgstr "הראה/החבא תרכובות"
+
 msgid "GAME_DESIGN_TEAM"
 msgstr "צוות מעצבי משחק"
 
@@ -3009,6 +3074,10 @@ msgstr "סטטיסטיקת האורגניזם"
 #, fuzzy
 msgid "INCOMPATIBLE_ORGANELLE_LIST"
 msgstr "שכפל אברונים"
+
+#, fuzzy
+msgid "INCOMPATIBLE_STAGE_LIST"
+msgstr "סטטיסטיקת האורגניזם"
 
 #, fuzzy
 msgid "INCREASE_ITEM_SIZE"
@@ -3798,6 +3867,10 @@ msgid "MACROSCOPIC"
 msgstr "להפוך למקרוסקופי ({0}/{1})"
 
 #, fuzzy
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr "סילון ריר"
+
+#, fuzzy
 msgid "MACROSCOPIC_EDITOR"
 msgstr "טוען עורך המיקרובי"
 
@@ -3828,6 +3901,13 @@ msgstr "מרץ"
 
 msgid "MARINE_SNOW"
 msgstr "שלג ימי"
+
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(באופן פסיבי צובר תרכובות מהסביבה לתהליכי רבייה מבלי שצריך לעשות דבר)"
 
 msgid "MASTER_VOLUME"
 msgstr "עוצמה כללית"
@@ -4769,6 +4849,10 @@ msgstr ""
 msgid "NEW"
 msgstr "חדש"
 
+#, fuzzy
+msgid "NEWER"
+msgstr "צופה"
+
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "השמירה זו נוצרה בגרסאות החדשות יותר של Thrive ויכולה שלא תפקד כראוי.\n"
@@ -4886,9 +4970,16 @@ msgstr ""
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
+msgid "NOTICE_READY_TO_SHOOT_GAMETE"
+msgstr ""
+
 #, fuzzy
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "מצא את האזור הנוכחי"
+
+#, fuzzy
+msgid "NOT_ENOUGH_MUTATION_POINTS"
+msgstr "נקודות מוטציה"
 
 msgid "NOT_STARTED_DOT"
 msgstr "לא התחיל."
@@ -4937,7 +5028,7 @@ msgstr "יצירת סוג תא חדש"
 
 #, fuzzy
 msgid "NO_SPORE_CELL_TYPE_SET_TITLE"
-msgstr "לא ניתן למחוק סוג תא זה אשר בשימוש"
+msgstr "יצירת סוג תא חדש"
 
 #, fuzzy
 msgid "NO_SUGGESTION"
@@ -4989,6 +5080,10 @@ msgstr "להיכנס לאתר הרשמי של Revolutionary Games"
 
 msgid "OK"
 msgstr "בסדר"
+
+#, fuzzy
+msgid "OLDER"
+msgstr "פתח תיקייה"
 
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -5080,6 +5175,10 @@ msgstr "אפשרויות"
 
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "שנה את ההגדרות שלך"
+
+#, fuzzy
+msgid "OPTION_USED_FOR_PLAYER"
+msgstr "הושהה."
 
 msgid "ORGANELLES"
 msgstr "אברונים"
@@ -5215,6 +5314,10 @@ msgid "OXYGEN_RESISTANCE"
 msgstr "עמידות לרעלים"
 
 #, fuzzy
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
+msgstr "עמידות לרעלים"
+
+#, fuzzy
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr "הראה/החבא תרכובות"
 
@@ -5302,6 +5405,10 @@ msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
 #, fuzzy
+msgid "PATCH_NOTES_RECENT_BOUNDARY"
+msgstr "אזור שפך הנהר"
+
+#, fuzzy
 msgid "PATCH_NOTES_TITLE"
 msgstr "Thrive הופעל במצב בטוח"
 
@@ -5346,6 +5453,10 @@ msgstr "שלוו"
 
 #, fuzzy
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "אתה מריץ את Thrive על GLES2. אופציה זו עדין לא נבדקה ועלולה לגרום לבעיות. אנא נסה לעדכן את מנהל התקן ו / או להשתמש במקום בכרטיס גרפיקה של AMD או Nvidia על מנת להפעלת את Thrive."
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION_MULTICELLULAR"
 msgstr "אתה מריץ את Thrive על GLES2. אופציה זו עדין לא נבדקה ועלולה לגרום לבעיות. אנא נסה לעדכן את מנהל התקן ו / או להשתמש במקום בכרטיס גרפיקה של AMD או Nvidia על מנת להפעלת את Thrive."
 
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
@@ -5584,9 +5695,6 @@ msgstr "צוות ניהול פרויקט"
 msgid "PROTEINS"
 msgstr "חלבונים"
 
-msgid "PROTOPLASM"
-msgstr "פרוטופלזמה"
-
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "בקשות דרישה / תיכנות"
 
@@ -5621,6 +5729,10 @@ msgstr "נשימה ארובית"
 
 #, fuzzy
 msgid "RADIOACTIVE_CHUNK"
+msgstr "גוש ברזל גדול"
+
+#, fuzzy
+msgid "RADIOACTIVE_CHUNK_BANANA"
 msgstr "גוש ברזל גדול"
 
 #, fuzzy
@@ -5689,6 +5801,10 @@ msgstr "תסקיר"
 msgid "REPORT_BUG"
 msgstr "תסקיר"
 
+#, fuzzy
+msgid "REPRODUCE"
+msgstr "התרבה"
+
 msgid "REPRODUCED"
 msgstr "התרבה"
 
@@ -5713,8 +5829,24 @@ msgstr "(באופן פסיבי צובר תרכובות מהסביבה לתהלי
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 msgstr "סוגי רבייה:"
 
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "הנצה"
+
 msgid "REPRODUCTION_METHOD"
 msgstr "סוגי רבייה:"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL"
+msgstr "א-מינית"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
+msgstr "א-מינית"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ISOGAMY"
+msgstr "א-מינית"
 
 #, fuzzy
 msgid "REPRODUCTION_SPORE"
@@ -6141,6 +6273,26 @@ msgstr "נייח"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "ערך זה חל רק על שמירות חדשות לאחר שינויו"
 
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr "(באופן פסיבי צובר תרכובות מהסביבה לתהליכי רבייה מבלי שצריך לעשות דבר)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION"
+msgstr "(באופן פסיבי צובר תרכובות מהסביבה לתהליכי רבייה מבלי שצריך לעשות דבר)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION_ACTIVE"
+msgstr "(באופן פסיבי צובר תרכובות מהסביבה לתהליכי רבייה מבלי שצריך לעשות דבר)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(באופן פסיבי צובר תרכובות מהסביבה לתהליכי רבייה מבלי שצריך לעשות דבר)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+msgstr "השג באופן פסיבי התקדמות הרבייה"
+
 msgid "SFX_VOLUME"
 msgstr "עוצמת אפקטים"
 
@@ -6169,6 +6321,18 @@ msgstr "הצג מדריכים"
 #, fuzzy
 msgid "SHOW_MAP"
 msgstr "הצג עזרה"
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION"
+msgstr "הצג עזרה"
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION_EXPLANATION"
+msgstr ""
+"מיקרובים אגרסיבים ירדפו אחרי הטרפם למרחקים\n"
+"והם לרוב נוטים להילחם בטורפים כשהם מותקפים.\n"
+"מיקרובים שלווים לא יתקפו אחרים למרחקים\n"
+"ופחות נוטים להשתמש ברעלנים כנגד טורפים."
 
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
@@ -6217,6 +6381,14 @@ msgstr "החזק [thrive:input]g_pack_commands[/thrive:input] בשביל לפת�
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "להפוך לתוקפני"
 
+#, fuzzy
+msgid "SIGNAL_COMMAND_CALL_MATE"
+msgstr "זוזו אליי"
+
+#, fuzzy
+msgid "SIGNAL_COMMAND_FIRE_GAMETES"
+msgstr "ברחו"
+
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr "ברחו"
 
@@ -6240,6 +6412,10 @@ msgstr "לקרום זה יש קיר חזק העשוי מצורן. מה שמאפ�
 
 #, fuzzy
 msgid "SIMULATION_CONFIG"
+msgstr "עלות אוסמורגולציה"
+
+#, fuzzy
+msgid "SIMULATION_FACTOR"
 msgstr "עלות אוסמורגולציה"
 
 msgid "SIXTEEN_TIMES"
@@ -6328,6 +6504,14 @@ msgstr "אינך יכול לזמן אוייבים צ'יטים בגלל שאזו�
 msgid "SPAWN_GLUCOSE"
 msgstr "זמן גלוקוז"
 
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL"
+msgstr "זמן אמוניה"
+
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL_EXPLANATION"
+msgstr "(המהירות המוטציות שנוצרים במיני AI )"
+
 msgid "SPAWN_PHOSPHATES"
 msgstr "זמן פוספט"
 
@@ -6403,6 +6587,10 @@ msgstr "{0} עם אכלוסיה: {1}"
 
 msgid "SPEED_COLON"
 msgstr "מהירות:"
+
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "הערך משומש ביצור העולם, ועל כך, שחייב להיות מספר שלם חיובי"
 
 #, fuzzy
 msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
@@ -6808,12 +6996,24 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVEOPEDIA_MUSEUM_PAGE_SEARCHTAGS"
+msgstr "הרבה אורגניזמים מפיקים חומרים רב סוכרים דמויי רפש, וריר היא אחד מאותם רב סוכרים אלו. אומנם רבים מהמינים משתמשים ברפש בשביל תנועה, סוגים מסוימים של חיידקים מפרישים חומרים אלו בלחץ גבוהה. אלו סילוני רפש מתנהגים כמו מנועי טילים, דוחפים את התאים קדימה במהירות גבוהה. רפש משומש בנוסף בשביל לעקב טורפים, הנתקעים בתוך החומר שרק מחזיקים בסילונים מסוגלים לנווט בהם."
+
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
 #, fuzzy
+msgid "THRIVEOPEDIA_ORGANELLE_SEARCHTAGS"
+msgstr "מפתחים נוכחים"
+
+#, fuzzy
 msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
 msgstr "מינים נכחדים"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_SEARCHTAGS"
+msgstr "הרבה אורגניזמים מפיקים חומרים רב סוכרים דמויי רפש, וריר היא אחד מאותם רב סוכרים אלו. אומנם רבים מהמינים משתמשים ברפש בשביל תנועה, סוגים מסוימים של חיידקים מפרישים חומרים אלו בלחץ גבוהה. אלו סילוני רפש מתנהגים כמו מנועי טילים, דוחפים את התאים קדימה במהירות גבוהה. רפש משומש בנוסף בשביל לעקב טורפים, הנתקעים בתוך החומר שרק מחזיקים בסילונים מסוגלים לנווט בהם."
 
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr ""
@@ -6863,6 +7063,14 @@ msgstr ""
 
 msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_SEARCHTAGS"
+msgstr "טראיבופדיה"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_SEARCHTAGS"
+msgstr "מפתחים נוכחים"
 
 #, fuzzy
 msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
@@ -7056,9 +7264,6 @@ msgid "TOOLS"
 msgstr "כלים"
 
 msgid "TOOL_HAND_AXE"
-msgstr ""
-
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
 #, fuzzy
@@ -7832,10 +8037,6 @@ msgstr "{0} MiB"
 
 msgid "VIEWER"
 msgstr "צופה"
-
-#, fuzzy
-msgid "VIEW_ALL"
-msgstr "השבת הכל"
 
 #, fuzzy
 msgid "VIEW_CELL_PROCESSES"
@@ -9255,10 +9456,6 @@ msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr ""
 
 #, fuzzy
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "פרוטופלזמה"
-
-#, fuzzy
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "פרוטופלזמה"
 
@@ -9341,33 +9538,6 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "נשימה ארובית"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "פרוטופלזמה"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr "פרוטופלזמה"
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr "הופך [thrive:compound type=\"glucose\"][/thrive:compound] ל[thrive:compound type=\"atp\"][/thrive:compound]."
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
 
 msgid "WIKI_PULLING_CILIA"
 msgstr ""
@@ -9899,6 +10069,33 @@ msgstr "להתמקד"
 msgid "ZOOM_OUT"
 msgstr "זום החוצה"
 
+#, fuzzy
+#~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
+#~ msgstr "הערך משומש ביצור העולם, ועל כך, שחייב להיות מספר שלם חיובי"
+
+#~ msgid "PROTOPLASM"
+#~ msgstr "פרוטופלזמה"
+
+#, fuzzy
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "פרוטופלזמה"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "פרוטופלזמה"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr "פרוטופלזמה"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr "הופך [thrive:compound type=\"glucose\"][/thrive:compound] ל[thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+#~ msgid "VIEW_ALL"
+#~ msgstr "השבת הכל"
+
 #~ msgid "SPEED"
 #~ msgstr "מהירות"
 
@@ -10010,9 +10207,6 @@ msgstr "זום החוצה"
 
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "כימוליתו-אוטוטרופי מברזל"
-
-#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
-#~ msgstr "השג באופן פסיבי התקדמות הרבייה"
 
 #, fuzzy
 #~ msgid "MIGRATE"
@@ -10380,9 +10574,6 @@ msgstr "זום החוצה"
 #~ msgid "PATCH_MAP_TYPE_CLASSIC"
 #~ msgstr "קלאסי"
 
-#~ msgid "PATCH_MAP_TYPE_EXPLANATION"
-#~ msgstr "(מייצר מפת אזורים פרוצדורלית או השתמש בפריסה הקלאסית)"
-
 #~ msgid "PATCH_MAP_TYPE_PROCEDURAL"
 #~ msgstr "פרוצדורלי"
 
@@ -10464,9 +10655,6 @@ msgstr "זום החוצה"
 
 #~ msgid "PATCH_PANGONIAN_COAST"
 #~ msgstr "אזור החוף"
-
-#~ msgid "PATCH_PANGONIAN_ESTUARY"
-#~ msgstr "אזור שפך הנהר"
 
 #~ msgid "PATCH_CAVE"
 #~ msgstr "מערה"
@@ -10552,9 +10740,6 @@ msgstr "זום החוצה"
 
 #~ msgid "INTO"
 #~ msgstr "לתוך"
-
-#~ msgid "DOT_RATE_SCALES"
-#~ msgstr ". עולה בהתאם"
 
 #~ msgid "OXYGEN_DOT"
 #~ msgstr "חמצן."
@@ -10719,3 +10904,9 @@ msgstr "זום החוצה"
 #~ "אתה גם יכול לשנות מאפיינים אחרים של המין שלך בלשוניות האחרות של הערוך.\n"
 #~ "\n"
 #~ "בשביל להמשיך, בחר אברון מהחלונית שמשמאל (ציטופלזמה היינו התחלה טובה). ואז לחץ לחיצה שמאלית ליד המשושה שמוצג במרכז במסך בשביל להוסיף את האברון למין שלך."
+
+#~ msgid "PATCH_PANGONIAN_ESTUARY"
+#~ msgstr "אזור שפך הנהר"
+
+#~ msgid "DOT_RATE_SCALES"
+#~ msgstr ". עולה בהתאם"

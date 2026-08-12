@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-06 03:56+0300\n"
+"POT-Creation-Date: 2026-08-12 13:41+0300\n"
 "PO-Revision-Date: 2026-05-11 14:00+0000\n"
 "Last-Translator: Eimantas <mazeika.eimantas@gmail.com>\n"
 "Language-Team: Lithuanian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lt/>\n"
@@ -51,6 +51,14 @@ msgstr "Patvirtinti"
 
 msgid "ACHIEVEMENTS"
 msgstr "Pasiekimai"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr "Pasiekimai {0} / {1}"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr "Elemento aprašymas:"
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr "Pasiekimai {0} / {1}"
@@ -170,6 +178,13 @@ msgstr "Jūs jau esate pakilęs"
 
 msgid "ALT"
 msgstr "Alt"
+
+#, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr "Gijų skaičius:"
+
+msgid "ALTERNATVE_TIMESCALE"
+msgstr ""
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Visada Matomas"
@@ -741,6 +756,21 @@ msgstr "Ląstelės Tipo Pavadinimas"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Pakeitimų pastabos yra per ilgos"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr ""
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr ""
+"Dabar galite pereiti į Kosmoso Etapą ir paleisti pirmąjį erdvėlaivį.\n"
+"\n"
+"Kol kas prototipuose negalite grįžti į savo planetą, tačiau planuojama, kad Kosmoso Etape bus galima sklandžiai priartinti ir atitolinti planetas.\n"
+"\n"
+"Atšaukus paleidimą, erdvėlaivio vienetas bus sunaikintas. Paleisti erdvėlaivį?"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Pakeisti simetriją"
@@ -1852,6 +1882,12 @@ msgstr ""
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
 
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr ""
+
+msgid "DISPLAY_DRIVER_METAL"
+msgstr ""
+
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr ""
 
@@ -1887,10 +1923,6 @@ msgstr "Spustelėkite du kartus peržiūrai pilname ekrane"
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
-
-#, fuzzy
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas skaičius"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr ""
@@ -2079,6 +2111,10 @@ msgstr ""
 msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
 msgstr "(pradžios vieta)"
 
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION_MULTICELLULAR"
+msgstr "(pradžios vieta)"
+
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
 msgstr ""
 
@@ -2191,6 +2227,9 @@ msgid "ERROR_FETCHING_NEWS"
 msgstr ""
 
 msgid "ERROR_LOADING"
+msgstr ""
+
+msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
 msgstr ""
 
 msgid "ERROR_SAVING"
@@ -2571,6 +2610,30 @@ msgstr "Galerijos žiūryklė"
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas skaičius"
 
+#, fuzzy
+msgid "GAMETE_CELL_ENTITY_NAME"
+msgstr "Ląstelės Tipo Pavadinimas"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE"
+msgstr "Ląstelės Tipo Pavadinimas"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_A"
+msgstr "Ląstelės Tipo Pavadinimas"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_B"
+msgstr "Ląstelės Tipo Pavadinimas"
+
+#, fuzzy
+msgid "GAMETE_PRODUCED"
+msgstr "ATP Gamyba"
+
+#, fuzzy
+msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+msgstr "Rodyti / slėpti junginius"
+
 msgid "GAME_DESIGN_TEAM"
 msgstr ""
 
@@ -2870,6 +2933,10 @@ msgstr "Tam, kad atrakinti redaktorių ir dauginimąsi tau reikės surinkti [thr
 
 #, fuzzy
 msgid "INCOMPATIBLE_ORGANELLE_LIST"
+msgstr "Tam, kad atrakinti redaktorių ir dauginimąsi tau reikės surinkti [thrive:compound type=\"ammonia\"][/thrive:compound] (Oranžinis Debesis) ir [thrive:compound type=\"phosphates\"][/thrive:compound] (Purpurinis Debesis)."
+
+#, fuzzy
+msgid "INCOMPATIBLE_STAGE_LIST"
 msgstr "Tam, kad atrakinti redaktorių ir dauginimąsi tau reikės surinkti [thrive:compound type=\"ammonia\"][/thrive:compound] (Oranžinis Debesis) ir [thrive:compound type=\"phosphates\"][/thrive:compound] (Purpurinis Debesis)."
 
 #, fuzzy
@@ -3625,6 +3692,10 @@ msgid "MACROSCOPIC"
 msgstr "Tapti Makroskopiniu ({0}/{1})"
 
 #, fuzzy
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr "Mikroorganizmo būsena"
+
+#, fuzzy
 msgid "MACROSCOPIC_EDITOR"
 msgstr "Tapti Makroskopiniu ({0}/{1})"
 
@@ -3655,6 +3726,13 @@ msgstr ""
 
 msgid "MARINE_SNOW"
 msgstr ""
+
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(greitis, kuriuo DI rūšys mutuoja)"
 
 msgid "MASTER_VOLUME"
 msgstr ""
@@ -4463,6 +4541,10 @@ msgstr ""
 msgid "NEW"
 msgstr ""
 
+#, fuzzy
+msgid "NEWER"
+msgstr "Galerijos žiūryklė"
+
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 
@@ -4574,7 +4656,13 @@ msgstr ""
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
+msgid "NOTICE_READY_TO_SHOOT_GAMETE"
+msgstr ""
+
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
+msgstr ""
+
+msgid "NOT_ENOUGH_MUTATION_POINTS"
 msgstr ""
 
 msgid "NOT_STARTED_DOT"
@@ -4624,7 +4712,7 @@ msgstr "Ląstelės Tipo Pavadinimas"
 
 #, fuzzy
 msgid "NO_SPORE_CELL_TYPE_SET_TITLE"
-msgstr "Negalima Ištrinti Naudojamo Ląstelės Tipo"
+msgstr "Ląstelės Tipo Pavadinimas"
 
 #, fuzzy
 msgid "NO_SUGGESTION"
@@ -4673,6 +4761,9 @@ msgstr "Įkelti anksčiau išsaugotus žaidimus"
 
 msgid "OK"
 msgstr "Gerai"
+
+msgid "OLDER"
+msgstr ""
 
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -4752,6 +4843,9 @@ msgstr "Nustatymai"
 
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Pakeisti nustatymus"
+
+msgid "OPTION_USED_FOR_PLAYER"
+msgstr ""
 
 msgid "ORGANELLES"
 msgstr ""
@@ -4874,6 +4968,9 @@ msgstr "Mikroorganizmo būsena"
 msgid "OXYGEN_RESISTANCE"
 msgstr ""
 
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
+msgstr ""
+
 #, fuzzy
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr "Rodyti / slėpti junginius"
@@ -4953,6 +5050,9 @@ msgstr ""
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
+msgid "PATCH_NOTES_RECENT_BOUNDARY"
+msgstr ""
+
 msgid "PATCH_NOTES_TITLE"
 msgstr ""
 
@@ -4995,6 +5095,10 @@ msgstr ""
 
 #, fuzzy
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "(pradžios vieta)"
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION_MULTICELLULAR"
 msgstr "(pradžios vieta)"
 
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
@@ -5219,9 +5323,6 @@ msgstr ""
 msgid "PROTEINS"
 msgstr ""
 
-msgid "PROTOPLASM"
-msgstr ""
-
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr ""
 
@@ -5254,6 +5355,10 @@ msgstr "Aprašymas:"
 
 #, fuzzy
 msgid "RADIOACTIVE_CHUNK"
+msgstr "Didelis Geležies Gabalas"
+
+#, fuzzy
+msgid "RADIOACTIVE_CHUNK_BANANA"
 msgstr "Didelis Geležies Gabalas"
 
 #, fuzzy
@@ -5323,6 +5428,10 @@ msgstr ""
 msgid "REPORT_BUG"
 msgstr ""
 
+#, fuzzy
+msgid "REPRODUCE"
+msgstr "{0} suvartojimas"
+
 msgid "REPRODUCED"
 msgstr ""
 
@@ -5347,8 +5456,24 @@ msgstr "(greitis, kuriuo DI rūšys mutuoja)"
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 msgstr "ATP GAMYBA PER MAŽA!"
 
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "ATP GAMYBA PER MAŽA!"
+
 msgid "REPRODUCTION_METHOD"
 msgstr ""
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL"
+msgstr "{0} suvartojimas"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
+msgstr "{0} suvartojimas"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ISOGAMY"
+msgstr "{0} suvartojimas"
 
 #, fuzzy
 msgid "REPRODUCTION_SPORE"
@@ -5749,6 +5874,26 @@ msgstr ""
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr "(greitis, kuriuo DI rūšys mutuoja)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION"
+msgstr "(greitis, kuriuo DI rūšys mutuoja)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION_ACTIVE"
+msgstr "(greitis, kuriuo DI rūšys mutuoja)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(greitis, kuriuo DI rūšys mutuoja)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+msgstr "(greitis, kuriuo DI rūšys mutuoja)"
+
 msgid "SFX_VOLUME"
 msgstr ""
 
@@ -5775,6 +5920,19 @@ msgstr "Elemento pavadinimas:"
 
 msgid "SHOW_MAP"
 msgstr ""
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION"
+msgstr "Elemento aprašymas:"
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION_EXPLANATION"
+msgstr ""
+"Nusileidimas panaikins jūsų pakilusio statusą ir grąžins jus į Mikrobų Etapą. Iš ten galėsite vėl pereiti žaidimą, išsaugoję dabartinį išsaugojimą.\n"
+"\n"
+"Už naująjį peržaidimą gausite nusileidimo privilegiją. Būsimoje versijoje galėsite patys pasirinkti šį privalumą, tačiau kol kas jis visada bus 20 % sumažėjęs osmoreguliacijos koeficientas.\n"
+"\n"
+"Kai patvirtinsite nusileidimą, galėsite redaguoti žaidimo nustatymus ir pasirinkti naują pasaulio sėklą, kad galėtumėte žaisti kitame žemėlapyje arba, pavyzdžiui, išjungti LAWK."
 
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr ""
@@ -5821,6 +5979,12 @@ msgstr ""
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr ""
 
+msgid "SIGNAL_COMMAND_CALL_MATE"
+msgstr ""
+
+msgid "SIGNAL_COMMAND_FIRE_GAMETES"
+msgstr ""
+
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr ""
 
@@ -5844,6 +6008,10 @@ msgstr ""
 
 msgid "SIMULATION_CONFIG"
 msgstr ""
+
+#, fuzzy
+msgid "SIMULATION_FACTOR"
+msgstr "DI mutacijos greitis"
 
 msgid "SIXTEEN_TIMES"
 msgstr ""
@@ -5926,6 +6094,13 @@ msgstr ""
 msgid "SPAWN_GLUCOSE"
 msgstr ""
 
+msgid "SPAWN_MATE_ON_CALL"
+msgstr ""
+
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL_EXPLANATION"
+msgstr "(greitis, kuriuo DI rūšys mutuoja)"
+
 msgid "SPAWN_PHOSPHATES"
 msgstr ""
 
@@ -5986,6 +6161,10 @@ msgstr ""
 
 msgid "SPEED_COLON"
 msgstr ""
+
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas skaičius"
 
 #, fuzzy
 msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
@@ -6372,11 +6551,23 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVEOPEDIA_MUSEUM_PAGE_SEARCHTAGS"
+msgstr "Šiame puslapyje pateiktas sąrašas visų rūšių egzistuojančių šiame pasaulyje."
+
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVEOPEDIA_ORGANELLE_SEARCHTAGS"
+msgstr "Rūšis"
+
 msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
 msgstr "Išnykusios Rūšys {0}"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_SEARCHTAGS"
+msgstr "Šiame puslapyje pateiktas sąrašas visų rūšių egzistuojančių šiame pasaulyje."
 
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr ""
@@ -6402,6 +6593,14 @@ msgstr ""
 
 msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
 msgstr "Prisegtos rūšys"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_SEARCHTAGS"
+msgstr "{0}"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_SEARCHTAGS"
+msgstr "Rūšis"
 
 msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
 msgstr "Rūšis"
@@ -6573,9 +6772,6 @@ msgid "TOOLS"
 msgstr "Įrankiai"
 
 msgid "TOOL_HAND_AXE"
-msgstr ""
-
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
 msgid "TOTAL_GATHERED_ENERGY_COLON"
@@ -7126,9 +7322,6 @@ msgstr ""
 #, fuzzy
 msgid "VIEWER"
 msgstr "Galerijos žiūryklė"
-
-msgid "VIEW_ALL"
-msgstr ""
 
 #, fuzzy
 msgid "VIEW_CELL_PROCESSES"
@@ -8566,10 +8759,6 @@ msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr "Chloroplastas"
 
 #, fuzzy
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "Chloroplastas"
-
-#, fuzzy
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "ATP Gamyba"
 
@@ -8656,38 +8845,6 @@ msgstr "Chloroplastas yra dviguba membraninė struktūra, kurioje membraniniuose
 #, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "{0} Mlrd"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "Chloroplastas yra dviguba membraninė struktūra, kurioje membraniniuose maišeliuose yra šviesai jautrių pigmentų. Tai prokariotas, kurį perėmė ir panaudojo eukariotinis šeimininkas. Chloroplaste esantys pigmentai gali naudoti šviesos energiją ir gaminti [thrive:compound type=\"glucose\"][/thrive:compound] ir [thrive:compound type=\"carbondioxide\"][/thrive:compound] iš dujinės [thrive:compound type=\"glucose\"][/thrive:compound] ir vandeninės [thrive:compound type=\"carbondioxide\"][/thrive:compound], vykstant procesui, vadinamam [b]fotosinteze[/b]. Šie pigmentai taip pat suteikia išskirtinę spalvą. Greitis, kuriuo gaminama [thrive:compound type=\"glucose\"][/thrive:compound], priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos ir [thrive:compound type=\"sunlight\"][/thrive:compound] intensyvumo."
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr "Chloroplastas yra dviguba membraninė struktūra, kurioje membraniniuose maišeliuose yra šviesai jautrių pigmentų. Tai prokariotas, kurį perėmė ir panaudojo eukariotinis šeimininkas. Chloroplaste esantys pigmentai gali naudoti šviesos energiją ir gaminti [thrive:compound type=\"glucose\"][/thrive:compound] ir [thrive:compound type=\"carbondioxide\"][/thrive:compound] iš dujinės [thrive:compound type=\"glucose\"][/thrive:compound] ir vandeninės [thrive:compound type=\"carbondioxide\"][/thrive:compound], vykstant procesui, vadinamam [b]fotosinteze[/b]. Šie pigmentai taip pat suteikia išskirtinę spalvą. Greitis, kuriuo gaminama [thrive:compound type=\"glucose\"][/thrive:compound], priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos ir [thrive:compound type=\"sunlight\"][/thrive:compound] intensyvumo."
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr "Chloroplastas yra dviguba membraninė struktūra, kurioje membraniniuose maišeliuose yra šviesai jautrių pigmentų. Tai prokariotas, kurį perėmė ir panaudojo eukariotinis šeimininkas. Chloroplaste esantys pigmentai gali naudoti šviesos energiją ir gaminti [thrive:compound type=\"glucose\"][/thrive:compound] ir [thrive:compound type=\"carbondioxide\"][/thrive:compound] iš dujinės [thrive:compound type=\"glucose\"][/thrive:compound] ir vandeninės [thrive:compound type=\"carbondioxide\"][/thrive:compound], vykstant procesui, vadinamam [b]fotosinteze[/b]. Šie pigmentai taip pat suteikia išskirtinę spalvą. Greitis, kuriuo gaminama [thrive:compound type=\"glucose\"][/thrive:compound], priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos ir [thrive:compound type=\"sunlight\"][/thrive:compound] intensyvumo."
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr "Gamina [thrive:compound type=\"glucose\"][/thrive:compound]. Greitis priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos ir [thrive:compound type=\"sunlight\"][/thrive:compound] intensyvumo."
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr "Visos ląstelės \"mato\" tik per chemorecepciją. Taip ląstelės gauna informaciją apie jas supančią aplinką. Šios organelės pridėjimas reiškia, kad chemorecepcija tobulėja. Kadangi žaidėjui suteikiamas regėjimas net ląstelių etape, tai vaizduojama linija, nukreipta už matomos ekrano srities ribų ir rodanti netoliese esančius junginius, kurių žaidėjas dar nematė."
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr "Chloroplastas yra dviguba membraninė struktūra, kurioje membraniniuose maišeliuose yra šviesai jautrių pigmentų. Tai prokariotas, kurį perėmė ir panaudojo eukariotinis šeimininkas. Chloroplaste esantys pigmentai gali naudoti šviesos energiją ir gaminti [thrive:compound type=\"glucose\"][/thrive:compound] ir [thrive:compound type=\"carbondioxide\"][/thrive:compound] iš dujinės [thrive:compound type=\"glucose\"][/thrive:compound] ir vandeninės [thrive:compound type=\"carbondioxide\"][/thrive:compound], vykstant procesui, vadinamam [b]fotosinteze[/b]. Šie pigmentai taip pat suteikia išskirtinę spalvą. Greitis, kuriuo gaminama [thrive:compound type=\"glucose\"][/thrive:compound], priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos ir [thrive:compound type=\"sunlight\"][/thrive:compound] intensyvumo."
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr "Chloroplastas yra dviguba membraninė struktūra, kurioje membraniniuose maišeliuose yra šviesai jautrių pigmentų. Tai prokariotas, kurį perėmė ir panaudojo eukariotinis šeimininkas. Chloroplaste esantys pigmentai gali naudoti šviesos energiją ir gaminti [thrive:compound type=\"glucose\"][/thrive:compound] ir [thrive:compound type=\"carbondioxide\"][/thrive:compound] iš dujinės [thrive:compound type=\"glucose\"][/thrive:compound] ir vandeninės [thrive:compound type=\"carbondioxide\"][/thrive:compound], vykstant procesui, vadinamam [b]fotosinteze[/b]. Šie pigmentai taip pat suteikia išskirtinę spalvą. Greitis, kuriuo gaminama [thrive:compound type=\"glucose\"][/thrive:compound], priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos ir [thrive:compound type=\"sunlight\"][/thrive:compound] intensyvumo."
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr "Chloroplastas yra dviguba membraninė struktūra, kurioje membraniniuose maišeliuose yra šviesai jautrių pigmentų. Tai prokariotas, kurį perėmė ir panaudojo eukariotinis šeimininkas. Chloroplaste esantys pigmentai gali naudoti šviesos energiją ir gaminti [thrive:compound type=\"glucose\"][/thrive:compound] ir [thrive:compound type=\"carbondioxide\"][/thrive:compound] iš dujinės [thrive:compound type=\"glucose\"][/thrive:compound] ir vandeninės [thrive:compound type=\"carbondioxide\"][/thrive:compound], vykstant procesui, vadinamam [b]fotosinteze[/b]. Šie pigmentai taip pat suteikia išskirtinę spalvą. Greitis, kuriuo gaminama [thrive:compound type=\"glucose\"][/thrive:compound], priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos ir [thrive:compound type=\"sunlight\"][/thrive:compound] intensyvumo."
 
 #, fuzzy
 msgid "WIKI_PULLING_CILIA"
@@ -9218,6 +9375,46 @@ msgstr ""
 msgid "ZOOM_OUT"
 msgstr ""
 
+#, fuzzy
+#~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
+#~ msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas skaičius"
+
+#, fuzzy
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "Chloroplastas"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "Chloroplastas yra dviguba membraninė struktūra, kurioje membraniniuose maišeliuose yra šviesai jautrių pigmentų. Tai prokariotas, kurį perėmė ir panaudojo eukariotinis šeimininkas. Chloroplaste esantys pigmentai gali naudoti šviesos energiją ir gaminti [thrive:compound type=\"glucose\"][/thrive:compound] ir [thrive:compound type=\"carbondioxide\"][/thrive:compound] iš dujinės [thrive:compound type=\"glucose\"][/thrive:compound] ir vandeninės [thrive:compound type=\"carbondioxide\"][/thrive:compound], vykstant procesui, vadinamam [b]fotosinteze[/b]. Šie pigmentai taip pat suteikia išskirtinę spalvą. Greitis, kuriuo gaminama [thrive:compound type=\"glucose\"][/thrive:compound], priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos ir [thrive:compound type=\"sunlight\"][/thrive:compound] intensyvumo."
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr "Chloroplastas yra dviguba membraninė struktūra, kurioje membraniniuose maišeliuose yra šviesai jautrių pigmentų. Tai prokariotas, kurį perėmė ir panaudojo eukariotinis šeimininkas. Chloroplaste esantys pigmentai gali naudoti šviesos energiją ir gaminti [thrive:compound type=\"glucose\"][/thrive:compound] ir [thrive:compound type=\"carbondioxide\"][/thrive:compound] iš dujinės [thrive:compound type=\"glucose\"][/thrive:compound] ir vandeninės [thrive:compound type=\"carbondioxide\"][/thrive:compound], vykstant procesui, vadinamam [b]fotosinteze[/b]. Šie pigmentai taip pat suteikia išskirtinę spalvą. Greitis, kuriuo gaminama [thrive:compound type=\"glucose\"][/thrive:compound], priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos ir [thrive:compound type=\"sunlight\"][/thrive:compound] intensyvumo."
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_MODIFICATIONS"
+#~ msgstr "Chloroplastas yra dviguba membraninė struktūra, kurioje membraniniuose maišeliuose yra šviesai jautrių pigmentų. Tai prokariotas, kurį perėmė ir panaudojo eukariotinis šeimininkas. Chloroplaste esantys pigmentai gali naudoti šviesos energiją ir gaminti [thrive:compound type=\"glucose\"][/thrive:compound] ir [thrive:compound type=\"carbondioxide\"][/thrive:compound] iš dujinės [thrive:compound type=\"glucose\"][/thrive:compound] ir vandeninės [thrive:compound type=\"carbondioxide\"][/thrive:compound], vykstant procesui, vadinamam [b]fotosinteze[/b]. Šie pigmentai taip pat suteikia išskirtinę spalvą. Greitis, kuriuo gaminama [thrive:compound type=\"glucose\"][/thrive:compound], priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos ir [thrive:compound type=\"sunlight\"][/thrive:compound] intensyvumo."
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr "Gamina [thrive:compound type=\"glucose\"][/thrive:compound]. Greitis priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos ir [thrive:compound type=\"sunlight\"][/thrive:compound] intensyvumo."
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_REQUIREMENTS"
+#~ msgstr "Visos ląstelės \"mato\" tik per chemorecepciją. Taip ląstelės gauna informaciją apie jas supančią aplinką. Šios organelės pridėjimas reiškia, kad chemorecepcija tobulėja. Kadangi žaidėjui suteikiamas regėjimas net ląstelių etape, tai vaizduojama linija, nukreipta už matomos ekrano srities ribų ir rodanti netoliese esančius junginius, kurių žaidėjas dar nematė."
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
+#~ msgstr "Chloroplastas yra dviguba membraninė struktūra, kurioje membraniniuose maišeliuose yra šviesai jautrių pigmentų. Tai prokariotas, kurį perėmė ir panaudojo eukariotinis šeimininkas. Chloroplaste esantys pigmentai gali naudoti šviesos energiją ir gaminti [thrive:compound type=\"glucose\"][/thrive:compound] ir [thrive:compound type=\"carbondioxide\"][/thrive:compound] iš dujinės [thrive:compound type=\"glucose\"][/thrive:compound] ir vandeninės [thrive:compound type=\"carbondioxide\"][/thrive:compound], vykstant procesui, vadinamam [b]fotosinteze[/b]. Šie pigmentai taip pat suteikia išskirtinę spalvą. Greitis, kuriuo gaminama [thrive:compound type=\"glucose\"][/thrive:compound], priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos ir [thrive:compound type=\"sunlight\"][/thrive:compound] intensyvumo."
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_STRATEGY"
+#~ msgstr "Chloroplastas yra dviguba membraninė struktūra, kurioje membraniniuose maišeliuose yra šviesai jautrių pigmentų. Tai prokariotas, kurį perėmė ir panaudojo eukariotinis šeimininkas. Chloroplaste esantys pigmentai gali naudoti šviesos energiją ir gaminti [thrive:compound type=\"glucose\"][/thrive:compound] ir [thrive:compound type=\"carbondioxide\"][/thrive:compound] iš dujinės [thrive:compound type=\"glucose\"][/thrive:compound] ir vandeninės [thrive:compound type=\"carbondioxide\"][/thrive:compound], vykstant procesui, vadinamam [b]fotosinteze[/b]. Šie pigmentai taip pat suteikia išskirtinę spalvą. Greitis, kuriuo gaminama [thrive:compound type=\"glucose\"][/thrive:compound], priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos ir [thrive:compound type=\"sunlight\"][/thrive:compound] intensyvumo."
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_UPGRADES"
+#~ msgstr "Chloroplastas yra dviguba membraninė struktūra, kurioje membraniniuose maišeliuose yra šviesai jautrių pigmentų. Tai prokariotas, kurį perėmė ir panaudojo eukariotinis šeimininkas. Chloroplaste esantys pigmentai gali naudoti šviesos energiją ir gaminti [thrive:compound type=\"glucose\"][/thrive:compound] ir [thrive:compound type=\"carbondioxide\"][/thrive:compound] iš dujinės [thrive:compound type=\"glucose\"][/thrive:compound] ir vandeninės [thrive:compound type=\"carbondioxide\"][/thrive:compound], vykstant procesui, vadinamam [b]fotosinteze[/b]. Šie pigmentai taip pat suteikia išskirtinę spalvą. Greitis, kuriuo gaminama [thrive:compound type=\"glucose\"][/thrive:compound], priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos ir [thrive:compound type=\"sunlight\"][/thrive:compound] intensyvumo."
+
 #~ msgid "AEROBIC_NITROGEN_FIXATION"
 #~ msgstr "Aerobinis Azoto Fiksavimas"
 
@@ -9273,10 +9470,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
 #~ msgstr "Sumažinti Perpus Populiaciją"
-
-#, fuzzy
-#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
-#~ msgstr "(greitis, kuriuo DI rūšys mutuoja)"
 
 #, fuzzy
 #~ msgid "WIKI_RADIOSYNTHESIS"

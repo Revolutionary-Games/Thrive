@@ -103,23 +103,32 @@ public static class GeneralCellPropertiesHelpers
     {
         var result = new List<(Compound Compound, float Amount)>();
 
+        definition.CalculateTotalCompositionList(result);
+
+        return result;
+    }
+
+    /// <summary>
+    ///   The total compounds in the composition of all organelles
+    /// </summary>
+    public static void CalculateTotalCompositionList(this ICellDefinition definition,
+        List<(Compound Compound, float Amount)> addTo)
+    {
         foreach (var organelle in definition.Organelles)
         {
             foreach (var pair in organelle.Definition.InitialComposition)
             {
-                var index = result.FindIndexByKey(pair.Key);
+                var index = addTo.FindIndexByKey(pair.Key);
                 if (index != -1)
                 {
-                    result[index] = (pair.Key, pair.Value + result[index].Amount);
+                    addTo[index] = (pair.Key, pair.Value + addTo[index].Amount);
                 }
                 else
                 {
-                    result.Add((pair.Key, pair.Value));
+                    addTo.Add((pair.Key, pair.Value));
                 }
             }
         }
-
-        return result;
     }
 
     public static void SetupWorldEntities(this ICellDefinition definition, IWorldSimulation worldSimulation)

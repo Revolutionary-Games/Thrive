@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-06 03:56+0300\n"
+"POT-Creation-Date: 2026-08-12 13:41+0300\n"
 "PO-Revision-Date: 2023-09-21 09:24+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Belarusian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/be/>\n"
@@ -50,6 +50,12 @@ msgid "ACCEPT"
 msgstr ""
 
 msgid "ACHIEVEMENTS"
+msgstr ""
+
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr ""
+
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
 msgstr ""
 
 msgid "ACHIEVEMENTS_TOTAL"
@@ -151,6 +157,13 @@ msgid "ALREADY_ASCENDED"
 msgstr ""
 
 msgid "ALT"
+msgstr ""
+
+#, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr "Перамясціцца на стадыю Абуджэння. Дасягома толькі калі ў вас ёсць дастатковая колькасць развітасці мозга (Размясціце аксон у які небудзь тып клеткі)."
+
+msgid "ALTERNATVE_TIMESCALE"
 msgstr ""
 
 msgid "ALWAYS_VISIBLE"
@@ -696,6 +709,16 @@ msgid "CELL_TYPE_NAME"
 msgstr ""
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
+msgstr ""
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr ""
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr "3D Рэдактар"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
 msgstr ""
 
 msgid "CHANGE_THE_SYMMETRY"
@@ -1678,6 +1701,12 @@ msgstr ""
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
 
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr ""
+
+msgid "DISPLAY_DRIVER_METAL"
+msgstr ""
+
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr ""
 
@@ -1713,10 +1742,6 @@ msgstr ""
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
-
-#, fuzzy
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "Перамясціцца на стадыю Абуджэння. Дасягома толькі калі ў вас ёсць дастатковая колькасць развітасці мозга (Размясціце аксон у які небудзь тып клеткі)."
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr ""
@@ -1893,6 +1918,9 @@ msgstr ""
 msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
 msgstr ""
 
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION_MULTICELLULAR"
+msgstr ""
+
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
 msgstr ""
 
@@ -1996,6 +2024,9 @@ msgid "ERROR_FETCHING_NEWS"
 msgstr ""
 
 msgid "ERROR_LOADING"
+msgstr ""
+
+msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
 msgstr ""
 
 msgid "ERROR_SAVING"
@@ -2345,6 +2376,25 @@ msgstr ""
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr ""
 
+msgid "GAMETE_CELL_ENTITY_NAME"
+msgstr ""
+
+msgid "GAMETE_CELL_TYPE"
+msgstr ""
+
+msgid "GAMETE_CELL_TYPE_A"
+msgstr ""
+
+msgid "GAMETE_CELL_TYPE_B"
+msgstr ""
+
+msgid "GAMETE_PRODUCED"
+msgstr ""
+
+#, fuzzy
+msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+msgstr "Перамясціцца на стадыю Абуджэння. Дасягома толькі калі ў вас ёсць дастатковая колькасць развітасці мозга (Размясціце аксон у які небудзь тып клеткі)."
+
 msgid "GAME_DESIGN_TEAM"
 msgstr ""
 
@@ -2627,6 +2677,9 @@ msgid "INCOMPATIBLE_MEMBRANE_LIST"
 msgstr ""
 
 msgid "INCOMPATIBLE_ORGANELLE_LIST"
+msgstr ""
+
+msgid "INCOMPATIBLE_STAGE_LIST"
 msgstr ""
 
 msgid "INCREASE_ITEM_SIZE"
@@ -3347,6 +3400,10 @@ msgid "MACROSCOPIC"
 msgstr ""
 
 #, fuzzy
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr "3D Рэдактар"
+
+#, fuzzy
 msgid "MACROSCOPIC_EDITOR"
 msgstr "3D Рэдактар"
 
@@ -3376,6 +3433,13 @@ msgstr ""
 
 msgid "MARINE_SNOW"
 msgstr ""
+
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "3D Рэдактар"
 
 msgid "MASTER_VOLUME"
 msgstr ""
@@ -4108,6 +4172,9 @@ msgstr ""
 msgid "NEW"
 msgstr ""
 
+msgid "NEWER"
+msgstr ""
+
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 
@@ -4217,7 +4284,13 @@ msgstr ""
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
+msgid "NOTICE_READY_TO_SHOOT_GAMETE"
+msgstr ""
+
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
+msgstr ""
+
+msgid "NOT_ENOUGH_MUTATION_POINTS"
 msgstr ""
 
 msgid "NOT_STARTED_DOT"
@@ -4311,6 +4384,9 @@ msgstr ""
 msgid "OK"
 msgstr ""
 
+msgid "OLDER"
+msgstr ""
+
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 
@@ -4384,6 +4460,9 @@ msgid "OPTIONS"
 msgstr ""
 
 msgid "OPTIONS_BUTTON_TOOLTIP"
+msgstr ""
+
+msgid "OPTION_USED_FOR_PLAYER"
 msgstr ""
 
 msgid "ORGANELLES"
@@ -4495,6 +4574,9 @@ msgstr ""
 msgid "OXYGEN_RESISTANCE"
 msgstr ""
 
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
+msgstr ""
+
 #, fuzzy
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr "Перамясціцца на стадыю Абуджэння. Дасягома толькі калі ў вас ёсць дастатковая колькасць развітасці мозга (Размясціце аксон у які небудзь тып клеткі)."
@@ -4571,6 +4653,9 @@ msgstr ""
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
+msgid "PATCH_NOTES_RECENT_BOUNDARY"
+msgstr ""
+
 msgid "PATCH_NOTES_TITLE"
 msgstr ""
 
@@ -4611,6 +4696,9 @@ msgid "PEACEFUL"
 msgstr ""
 
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr ""
+
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION_MULTICELLULAR"
 msgstr ""
 
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
@@ -4822,9 +4910,6 @@ msgstr ""
 msgid "PROTEINS"
 msgstr ""
 
-msgid "PROTOPLASM"
-msgstr ""
-
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr ""
 
@@ -4853,6 +4938,9 @@ msgid "RADIATION_LEVELS"
 msgstr ""
 
 msgid "RADIOACTIVE_CHUNK"
+msgstr ""
+
+msgid "RADIOACTIVE_CHUNK_BANANA"
 msgstr ""
 
 #, fuzzy
@@ -4917,6 +5005,10 @@ msgstr ""
 msgid "REPORT_BUG"
 msgstr ""
 
+#, fuzzy
+msgid "REPRODUCE"
+msgstr "3D Рэдактар"
+
 msgid "REPRODUCED"
 msgstr ""
 
@@ -4940,8 +5032,24 @@ msgstr ""
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 msgstr "3D Рэдактар"
 
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "3D Рэдактар"
+
 msgid "REPRODUCTION_METHOD"
 msgstr ""
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL"
+msgstr "3D Рэдактар"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
+msgstr "3D Рэдактар"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ISOGAMY"
+msgstr "3D Рэдактар"
 
 #, fuzzy
 msgid "REPRODUCTION_SPORE"
@@ -5327,6 +5435,25 @@ msgstr ""
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr "3D Рэдактар"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION"
+msgstr "3D Рэдактар"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION_ACTIVE"
+msgstr "3D Рэдактар"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "3D Рэдактар"
+
+msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+msgstr ""
+
 msgid "SFX_VOLUME"
 msgstr ""
 
@@ -5351,6 +5478,13 @@ msgstr ""
 
 msgid "SHOW_MAP"
 msgstr ""
+
+msgid "SHOW_MATE_POSITION"
+msgstr ""
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION_EXPLANATION"
+msgstr "3D Рэдактар"
 
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr ""
@@ -5396,6 +5530,12 @@ msgstr ""
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr ""
 
+msgid "SIGNAL_COMMAND_CALL_MATE"
+msgstr ""
+
+msgid "SIGNAL_COMMAND_FIRE_GAMETES"
+msgstr ""
+
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr ""
 
@@ -5418,6 +5558,9 @@ msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
 
 msgid "SIMULATION_CONFIG"
+msgstr ""
+
+msgid "SIMULATION_FACTOR"
 msgstr ""
 
 msgid "SIXTEEN_TIMES"
@@ -5498,6 +5641,13 @@ msgstr ""
 msgid "SPAWN_GLUCOSE"
 msgstr ""
 
+msgid "SPAWN_MATE_ON_CALL"
+msgstr ""
+
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL_EXPLANATION"
+msgstr "3D Рэдактар"
+
 msgid "SPAWN_PHOSPHATES"
 msgstr ""
 
@@ -5557,6 +5707,10 @@ msgstr ""
 
 msgid "SPEED_COLON"
 msgstr ""
+
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "Перамясціцца на стадыю Абуджэння. Дасягома толькі калі ў вас ёсць дастатковая колькасць развітасці мозга (Размясціце аксон у які небудзь тып клеткі)."
 
 #, fuzzy
 msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
@@ -5931,10 +6085,19 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr ""
 
+msgid "THRIVEOPEDIA_MUSEUM_PAGE_SEARCHTAGS"
+msgstr ""
+
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
+msgid "THRIVEOPEDIA_ORGANELLE_SEARCHTAGS"
+msgstr ""
+
 msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
+msgstr ""
+
+msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_SEARCHTAGS"
 msgstr ""
 
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
@@ -5956,6 +6119,12 @@ msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
 msgstr ""
 
 msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
+msgstr ""
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_SEARCHTAGS"
+msgstr ""
+
+msgid "THRIVEOPEDIA_WORLD_SPECIES_SEARCHTAGS"
 msgstr ""
 
 msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
@@ -6123,9 +6292,6 @@ msgid "TOOLS"
 msgstr ""
 
 msgid "TOOL_HAND_AXE"
-msgstr ""
-
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
 msgid "TOTAL_GATHERED_ENERGY_COLON"
@@ -6636,9 +6802,6 @@ msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
 msgid "VIEWER"
-msgstr ""
-
-msgid "VIEW_ALL"
 msgstr ""
 
 msgid "VIEW_CELL_PROCESSES"
@@ -7851,9 +8014,6 @@ msgstr ""
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr ""
 
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr ""
-
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr ""
 
@@ -7920,30 +8080,6 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "3D Рэдактар"
-
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
 
 msgid "WIKI_PULLING_CILIA"
 msgstr ""
@@ -8377,6 +8513,10 @@ msgstr ""
 
 msgid "ZOOM_OUT"
 msgstr ""
+
+#, fuzzy
+#~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
+#~ msgstr "Перамясціцца на стадыю Абуджэння. Дасягома толькі калі ў вас ёсць дастатковая колькасць развітасці мозга (Размясціце аксон у які небудзь тып клеткі)."
 
 #, fuzzy
 #~ msgid "PROCESS_TOGGLE_TOOLTIP"

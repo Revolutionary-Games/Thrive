@@ -860,7 +860,11 @@ public static class OrganelleContainerHelpers
 
             // TODO: check that this is set to null in all the right places
             if (growth.TotalNeededForMulticellularGrowth == null)
-                growth.CalculateTotalBodyPlanCompounds(species);
+            {
+                // If this entity has a multicellular growth, it must be a multicellular species.
+                // This already adds base reproduction cost, so we don't add it again in this method.
+                growth.CalculateTotalBodyPlanCompounds((MulticellularSpecies)species);
+            }
 
             result.Clear();
 

@@ -12,7 +12,7 @@ public partial class CellBodyPlanEditorComponent :
     HexEditorComponentBase<MulticellularEditor, CombinedEditorAction, EditorAction, HexWithData<CellTemplate>,
         MulticellularSpecies>, IArchiveUpdatable
 {
-    public const ushort SERIALIZATION_VERSION = 5;
+    public const ushort SERIALIZATION_VERSION = 8;
 
     [Export]
     public int MaxToleranceWarnings = 3;
@@ -103,6 +103,15 @@ public partial class CellBodyPlanEditorComponent :
     private Button duplicateTypeButton = null!;
 
     [Export]
+    private Button endosymbiosisButton = null!;
+
+    [Export]
+    private EndosymbiosisPopup endosymbiosisPopup = null!;
+
+    [Export]
+    private CustomConfirmationDialog pendingEndosymbiosisPopup = null!;
+
+    [Export]
     private CustomWindow cannotDeleteInUseTypeDialog = null!;
 
     [Export]
@@ -150,10 +159,49 @@ public partial class CellBodyPlanEditorComponent :
     private CellTypePickerPopup cellTypePickerPopup = null!;
 
     [Export]
+    private Slider massBuddingCellCountSlider = null!;
+
+    [Export]
+    private Label massBuddingCellCountLabel = null!;
+
+    [Export]
     private Control buddingReproductionSection = null!;
 
     [Export]
     private Control sporeReproductionSection = null!;
+
+    [Export]
+    private Control sexualReproductionSection = null!;
+
+    [Export]
+    private OptionButton gameteACellTypeDropdown = null!;
+
+    [Export]
+    private OptionButton gameteBCellTypeDropdown = null!;
+
+    [Export]
+    private Button sexualAnisogamyUpgradeButton = null!;
+
+    [Export]
+    private Label sexualBenefitsExplanationLabel = null!;
+
+    [Export]
+    private Label sexualBenefitsActiveLabel = null!;
+
+    [Export]
+    private Container anisogamySettingsContainer = null!;
+
+    [Export]
+    private Button playerGameteSelectionA = null!;
+
+    [Export]
+    private Label gameteSelectionALabel = null!;
+
+    [Export]
+    private Button playerGameteSelectionB = null!;
+
+    [Export]
+    private Control massBuddingReproductionSection = null!;
 #pragma warning restore CA2213
 
     private string newName = "unset";
@@ -218,6 +266,9 @@ public partial class CellBodyPlanEditorComponent :
             if (ReproductionMethod == MulticellularReproductionMethod.Sporulation && SporeCellType == null)
                 return true;
 
+            if (HasFinishedPendingEndosymbiosis)
+                return true;
+
             return false;
         }
     }
@@ -227,6 +278,12 @@ public partial class CellBodyPlanEditorComponent :
     ///   outdated data from the species object.
     /// </summary>
     public CellTypeEditsHolder? CellTypeVisualsOverride { get; set; }
+
+    /// <summary>
+    ///   True when there are pending endosymbiosis actions. Only works after the editor is fully initialized.
+    /// </summary>
+    public bool HasFinishedPendingEndosymbiosis =>
+        Editor.EditorReady && Editor.EditedBaseSpecies.Endosymbiosis.HasCompleteEndosymbiosis();
 
     public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
 
@@ -264,6 +321,18 @@ public partial class CellBodyPlanEditorComponent :
             UpdateSpecialCellTypeDisplays();
         }
     }
+
+    public GameteType SelectedGameteTypeForPlayer { get; private set; } = GameteType.A;
+
+    public CellType? GameteACellType { get; private set; }
+
+    public CellType? GameteBCellType { get; private set; }
+
+    /// <summary>
+    ///   This variable should be clamped before use. It's intentional that it can exceed the amount of cells, to make
+    ///   it easier to e.g. undo cell removal action.
+    /// </summary>
+    public int DesiredMassBuddingCellCount { get; private set; } = 1;
 
     protected override bool ShowFloatingLabels => ShowGrowthOrder;
 
@@ -321,6 +390,27 @@ public partial class CellBodyPlanEditorComponent :
             newName = Editor.EditedSpecies.FormattedName;
 
             tolerancesEditor.OnEditorSpeciesSetup(Editor.EditedBaseSpecies);
+
+            UpdateAnisogamyStateAndCost();
+        }
+
+        float sexualBonus = MathF.Round(100 * (1 - Constants.SEXUAL_REPRODUCTION_MP_COST_FACTOR), 1);
+
+        if (Editor.UsedSexualReproduction)
+        {
+            sexualBenefitsExplanationLabel.Visible = false;
+            sexualBenefitsActiveLabel.Visible = true;
+
+            sexualBenefitsActiveLabel.Text =
+                Localization.Translate("SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION_ACTIVE").FormatSafe(sexualBonus);
+        }
+        else
+        {
+            sexualBenefitsExplanationLabel.Visible = true;
+            sexualBenefitsActiveLabel.Visible = false;
+
+            sexualBenefitsExplanationLabel.Text =
+                Localization.Translate("SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION").FormatSafe(sexualBonus);
         }
 
         organismStatisticsPanel.UpdateLightSelectionPanelVisibility(
@@ -464,6 +554,10 @@ public partial class CellBodyPlanEditorComponent :
 
         writer.Write((int)ReproductionMethod);
         writer.WriteObjectOrNull(SporeCellType);
+        writer.Write(DesiredMassBuddingCellCount);
+        writer.WriteObjectOrNull(GameteACellType);
+        writer.WriteObjectOrNull(GameteBCellType);
+        writer.Write((int)SelectedGameteTypeForPlayer);
     }
 
     public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
@@ -519,6 +613,22 @@ public partial class CellBodyPlanEditorComponent :
             ReproductionMethod = (MulticellularReproductionMethod)reader.ReadInt32();
             SporeCellType = reader.ReadObjectOrNull<CellType>();
         }
+
+        if (version >= 6)
+        {
+            DesiredMassBuddingCellCount = reader.ReadInt32();
+        }
+
+        if (version >= 7)
+        {
+            GameteACellType = reader.ReadObjectOrNull<CellType>();
+            GameteBCellType = reader.ReadObjectOrNull<CellType>();
+        }
+
+        if (version >= 8)
+        {
+            SelectedGameteTypeForPlayer = (GameteType)reader.ReadInt32();
+        }
     }
 
     public override void OnEditorSpeciesSetup(Species species)
@@ -537,8 +647,14 @@ public partial class CellBodyPlanEditorComponent :
 
         newName = species.FormattedName;
 
-        ReproductionMethod = ((MulticellularSpecies)species).ReproductionMethod;
-        SporeCellType = ((MulticellularSpecies)species).ModifiableSporeCellType;
+        var multicellularSpecies = (MulticellularSpecies)species;
+
+        ReproductionMethod = multicellularSpecies.ReproductionMethod;
+        SporeCellType = multicellularSpecies.ModifiableSporeCellType;
+        GameteACellType = multicellularSpecies.ModifiableGameteTypeA;
+        GameteBCellType = multicellularSpecies.ModifiableGameteTypeB;
+        DesiredMassBuddingCellCount = multicellularSpecies.MassBuddingCellCount;
+        SelectedGameteTypeForPlayer = species.PlayerGamete;
 
         UpdateGUIAfterLoadingSpecies(species);
 
@@ -546,6 +662,8 @@ public partial class CellBodyPlanEditorComponent :
 
         // Make sure initial tolerance warnings are shown
         OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
+
+        UpdateAnisogamyStateAndCost();
     }
 
     public override void OnFinishEditing()
@@ -619,6 +737,44 @@ public partial class CellBodyPlanEditorComponent :
         editedSpecies.ReproductionMethod = ReproductionMethod;
         editedSpecies.ModifiableSporeCellType = SporeCellType;
 
+        // MassBuddingCellCount changes are free if the resulting reproduction method isn't mass budding, so this check
+        // needs to exist to prevent exploits
+        if (ReproductionMethod == MulticellularReproductionMethod.MassBudding)
+        {
+            editedSpecies.MassBuddingCellCount = Math.Min(DesiredMassBuddingCellCount,
+                CellBodyPlanInternalCalculations.MaxBudSize(editedMicrobeCells.Count));
+        }
+
+        if (ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy
+            or MulticellularReproductionMethod.SexualAnisogamy)
+        {
+            editedSpecies.ModifiableGameteTypeA = GameteACellType;
+
+            if (ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy)
+            {
+                // Isogamy doesn't allow changing this
+                editedSpecies.PlayerGamete = GameteType.A;
+            }
+            else
+            {
+                editedSpecies.PlayerGamete = SelectedGameteTypeForPlayer;
+            }
+        }
+        else
+        {
+            editedSpecies.ModifiableGameteTypeA = null;
+            editedSpecies.PlayerGamete = GameteType.All;
+        }
+
+        if (ReproductionMethod is MulticellularReproductionMethod.SexualAnisogamy)
+        {
+            editedSpecies.ModifiableGameteTypeB = GameteBCellType;
+        }
+        else
+        {
+            editedSpecies.ModifiableGameteTypeB = null;
+        }
+
         tempFreshlyUpdatedCells.Clear();
         editedSpecies.OnEdited();
 
@@ -648,8 +804,21 @@ public partial class CellBodyPlanEditorComponent :
         }
 
         if (ReproductionMethod == MulticellularReproductionMethod.Sporulation && SporeCellType == null)
-        {
             noSporeCellTypeSetPopup.PopupCenteredShrink();
+
+        // This is checked due to a species data requirement
+        if (ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy
+                    or MulticellularReproductionMethod.SexualAnisogamy && editedMicrobeCells.Count < 2)
+        {
+            ToolTipManager.Instance.ShowPopup(
+                Localization.Translate("ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"), 5);
+            return false;
+        }
+
+        // Show a warning if the editor has an endosymbiosis that should be finished
+        if (HasFinishedPendingEndosymbiosis && !editorUserOverrides.Contains(EditorUserOverride.EndosymbiosisPending))
+        {
+            pendingEndosymbiosisPopup.PopupCenteredShrink();
             return false;
         }
 
@@ -679,7 +848,13 @@ public partial class CellBodyPlanEditorComponent :
 
         UpdateSpecializationDisplay();
 
+<<<<<<< HEAD
         UpdateSpecialCellTypeDisplays();
+=======
+        // In case the cell type's name was changed
+        UpdateSporeCellDropdown();
+        UpdateGameteDropdowns();
+>>>>>>> d8079e37e0aae27488d93d008ae01da8b8c47666
     }
 
     /// <summary>
@@ -761,6 +936,8 @@ public partial class CellBodyPlanEditorComponent :
 
         tolerancesEditor.OnDataTolerancesDependOnChanged();
         OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
+
+        UpdateEndosymbiosisSpeciesData();
     }
 
     /// <summary>
@@ -1257,7 +1434,8 @@ public partial class CellBodyPlanEditorComponent :
     /// </summary>
     private void UpdateCellTypeSelections()
     {
-        var costMultiplier = Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier;
+        var costMultiplier = Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier *
+            Editor.MutationPointCostModifier;
 
         // Re-use / create more buttons to hold all the cell types
         foreach (var cellType in Editor.EditedSpecies.ModifiableCellTypes.OrderBy(t => t.CellTypeName,
@@ -1396,8 +1574,8 @@ public partial class CellBodyPlanEditorComponent :
             environmentalTolerances, totalSpecializationBonus);
 
         tooltip.DisplayName = cellType.CellTypeName;
-        tooltip.MutationPointCost = Math.Min(cellType.MPCost * Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier,
-            Constants.MAX_SINGLE_EDIT_MP_COST);
+        tooltip.MutationPointCost = Math.Min(cellType.MPCost * Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier *
+            Editor.MutationPointCostModifier, Constants.MAX_SINGLE_EDIT_MP_COST);
 
         tempCompoundSources.Clear();
         ProcessSystem.CalculateInputCompoundsNeededForOutputs(cellType.ModifiableOrganelles, Editor.CurrentPatch.Biome,
@@ -1521,6 +1699,8 @@ public partial class CellBodyPlanEditorComponent :
         tolerancesEditor.OnDataTolerancesDependOnChanged();
 
         UpdateSpecializationDisplay();
+
+        UpdateMassBuddingCellCountSlider();
     }
 
     private void UpdateStats()
@@ -1960,8 +2140,8 @@ public partial class CellBodyPlanEditorComponent :
                 GD.Print($"First edit of cell type {type.CellTypeName}");
                 var control = entry.Value;
                 control.CellType = newType;
-                control.MPCost = Math.Min(newType.MPCost * Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier,
-                    Constants.MAX_SINGLE_EDIT_MP_COST);
+                control.MPCost = Math.Min(newType.MPCost * Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier *
+                    Editor.MutationPointCostModifier, Constants.MAX_SINGLE_EDIT_MP_COST);
 
                 // Name shouldn't be able to change here
 
@@ -1970,8 +2150,8 @@ public partial class CellBodyPlanEditorComponent :
                     "cellTypes");
 
                 tooltip?.MutationPointCost =
-                    Math.Min(newType.MPCost * Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier,
-                        Constants.MAX_SINGLE_EDIT_MP_COST);
+                    Math.Min(newType.MPCost * Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier *
+                        Editor.MutationPointCostModifier, Constants.MAX_SINGLE_EDIT_MP_COST);
 
                 control.ReportTypeChanged();
             }

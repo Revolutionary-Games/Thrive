@@ -7,6 +7,11 @@ using UnlockConstraints;
 public interface ICellEditorData : IHexEditor, IEditorWithPatches, IEditorWithActions
 {
     /// <summary>
+    ///   Modifier applied to mutation point costs shown and calculated by the editor.
+    /// </summary>
+    public float MutationPointCostModifier { get; }
+
+    /// <summary>
     ///   Properties of the edited cell. Note that organelles aren't updated while an edit is in progress, for that see
     ///   <see cref="EditedCellOrganelles"/>
     /// </summary>

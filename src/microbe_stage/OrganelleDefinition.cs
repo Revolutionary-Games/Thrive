@@ -23,7 +23,7 @@ public class OrganelleDefinition : RegistryType, IPlayerReadableName
 #pragma warning restore CA1001
 {
     /// <summary>
-    ///   User readable name
+    ///   User-readable name
     /// </summary>
     [TranslateFrom(nameof(untranslatedName))]
     public string Name = null!;
@@ -70,7 +70,7 @@ public class OrganelleDefinition : RegistryType, IPlayerReadableName
     public bool AutoEvoCanPlace = true;
 
     /// <summary>
-    ///   If set to true this part is unimplemented and isn't loadable (and not all properties are required)
+    ///   If set to true, this part is unimplemented and isn't loadable (and not all properties are required)
     /// </summary>
     public bool Unimplemented;
 

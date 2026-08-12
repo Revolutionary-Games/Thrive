@@ -73,7 +73,7 @@ public static class SpawnHelpers
         typeof(MicrobeTemporaryEffects), typeof(CollisionManagement), typeof(PhysicsShapeHolder),
         typeof(MicrobeControl), typeof(ManualPhysicsControl), typeof(MicrobeStatus), typeof(Health),
         typeof(MicrobeEnvironmentalEffects), typeof(CommandSignaler), typeof(StrainAffected), typeof(CurrentAffected),
-        typeof(Selectable), typeof(ReadableName), typeof(SpecializationFactor),
+        typeof(Selectable), typeof(ReadableName), typeof(SpecializationFactor), typeof(MicrobeSex),
 
         // Player-specific components
         typeof(PlayerMarker), typeof(SoundListener), typeof(EntityLight),
@@ -92,7 +92,7 @@ public static class SpawnHelpers
         typeof(MicrobeTemporaryEffects), typeof(CollisionManagement), typeof(PhysicsShapeHolder),
         typeof(MicrobeControl), typeof(ManualPhysicsControl), typeof(MicrobeStatus), typeof(Health),
         typeof(MicrobeEnvironmentalEffects), typeof(CommandSignaler), typeof(StrainAffected), typeof(CurrentAffected),
-        typeof(Selectable), typeof(ReadableName), typeof(SpecializationFactor),
+        typeof(Selectable), typeof(ReadableName), typeof(SpecializationFactor), typeof(MicrobeSex),
 
         // AI-specific components
         typeof(MicrobeAI), typeof(SurvivalStatistics),
@@ -111,7 +111,7 @@ public static class SpawnHelpers
         typeof(MicrobeTemporaryEffects), typeof(CollisionManagement), typeof(PhysicsShapeHolder),
         typeof(MicrobeControl), typeof(ManualPhysicsControl), typeof(MicrobeStatus), typeof(Health),
         typeof(MicrobeEnvironmentalEffects), typeof(CommandSignaler), typeof(StrainAffected), typeof(CurrentAffected),
-        typeof(Selectable), typeof(ReadableName), typeof(SpecializationFactor),
+        typeof(Selectable), typeof(ReadableName), typeof(SpecializationFactor), typeof(MicrobeSex),
 
         // Player-specific components
         typeof(PlayerMarker), typeof(SoundListener), typeof(EntityLight),
@@ -130,7 +130,7 @@ public static class SpawnHelpers
         typeof(MicrobeTemporaryEffects), typeof(CollisionManagement), typeof(PhysicsShapeHolder),
         typeof(MicrobeControl), typeof(ManualPhysicsControl), typeof(MicrobeStatus), typeof(Health),
         typeof(MicrobeEnvironmentalEffects), typeof(CommandSignaler), typeof(StrainAffected), typeof(CurrentAffected),
-        typeof(Selectable), typeof(ReadableName), typeof(SpecializationFactor),
+        typeof(Selectable), typeof(ReadableName), typeof(SpecializationFactor), typeof(MicrobeSex),
 
         // AI-specific components
         typeof(MicrobeAI), typeof(SurvivalStatistics),
@@ -589,40 +589,39 @@ public static class SpawnHelpers
     }
 
     public static void SpawnMicrobe(IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment spawnEnvironment,
-        Species species, Vector3 location, bool aiControlled,
-        MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.Bud)
+        Species species, Vector3 location, bool aiControlled, GameteType sex,
+        MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.Offspring)
     {
         SpawnMicrobe(worldSimulation, spawnEnvironment, species, location, aiControlled, (null, 0),
-            multicellularSpawnState);
+            sex, multicellularSpawnState);
     }
 
     public static void SpawnMicrobe(IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment spawnEnvironment,
         Species species, Vector3 location, bool aiControlled,
-        (CellType? MulticellularCellType, int CellBodyPlanIndex) multicellularData,
-        MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.Bud)
+        (CellType? MulticellularCellType, int CellBodyPlanIndex) multicellularData, GameteType sex,
+        MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.Offspring)
     {
         var (recorder, _) = SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species, location,
-            aiControlled, multicellularData, out _, multicellularSpawnState);
+            aiControlled, multicellularData, sex, out _, multicellularSpawnState);
 
         FinalizeEntitySpawn(recorder, worldSimulation);
     }
 
     public static (CommandBuffer Recorder, float Weight) SpawnMicrobeWithoutFinalizing(IWorldSimulation worldSimulation,
-        IMicrobeSpawnEnvironment spawnEnvironment, Species species,
-        Vector3 location, bool aiControlled, (CellType? MulticellularCellType, int CellBodyPlanIndex) multicellularData,
-        out Entity entity, MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.Bud,
-        Random? random = null)
+        IMicrobeSpawnEnvironment spawnEnvironment, Species species, Vector3 location, bool aiControlled,
+        (CellType? MulticellularCellType, int CellBodyPlanIndex) multicellularData,
+        GameteType sex, out Entity entity,
+        MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.Offspring, Random? random = null)
     {
         var recorder = worldSimulation.StartRecordingEntityCommands();
         return (recorder, SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species, location,
-            aiControlled, multicellularData, recorder, out entity, multicellularSpawnState, true, random));
+            aiControlled, multicellularData, recorder, out entity, multicellularSpawnState, sex, true, random));
     }
 
     public static float SpawnMicrobeWithoutFinalizing(IWorldSimulation worldSimulation,
         IMicrobeSpawnEnvironment spawnEnvironment, Species species,
         Vector3 location, bool aiControlled, (CellType? MulticellularCellType, int CellBodyPlanIndex) multicellularData,
-        CommandBuffer recorder, out Entity entity,
-        MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.Bud,
+        CommandBuffer recorder, out Entity entity, MulticellularSpawnState multicellularSpawnState, GameteType sex,
         bool giveInitialCompounds = true, Random? random = null)
     {
         // If this method is modified, it must be ensured that CellPropertiesHelpers.ReApplyCellTypeProperties and
@@ -690,7 +689,7 @@ public static class SpawnHelpers
         ICellDefinition usedCellDefinition;
         MembraneType membraneType;
 
-        MulticellularSpecies? multicellular = null;
+        MulticellularSpecies? multicellularSpecies = species as MulticellularSpecies;
 
         var environmentalEffects = new MicrobeEnvironmentalEffects
         {
@@ -709,11 +708,32 @@ public static class SpawnHelpers
         MulticellularGrowth multicellularGrowth = default;
         bool setMulticellularGrowth = false;
 
-        if (species is MulticellularSpecies multicellularSpecies)
+        int colonyMembersToAdd = 0;
+        int fullColonyMemberCount = -1;
+        bool isGameteSpawn = multicellularData.CellBodyPlanIndex == -1 && aiControlled &&
+            multicellularSpawnState == MulticellularSpawnState.Offspring && multicellularSpecies != null;
+
+        if (multicellularSpecies != null)
         {
+#if DEBUG
+            if (sex == GameteType.All &&
+                multicellularSpecies.ReproductionMethod is MulticellularReproductionMethod.SexualAnisogamy)
+            {
+                GD.PrintErr(
+                    "Multicellular cell spawned that is gamete type all even though the species uses anisogamy. " +
+                    "This can be caused by existing entities growing further cells.");
+            }
+#endif
+
+            recorder.Set(entity, new MicrobeSex
+            {
+                Sex = sex,
+            });
+
+            fullColonyMemberCount = multicellularSpecies.ModifiableGameplayCells.Count - 1;
+
             var multicellularTolerances = spawnEnvironment.GetSpeciesTolerances(multicellularSpecies);
 
-            multicellular = multicellularSpecies;
             CellType resolvedCellType;
 
             if (multicellularData.MulticellularCellType != null)
@@ -732,8 +752,16 @@ public static class SpawnHelpers
                 membraneType = properties.MembraneType;
                 recorder.Set(entity, properties);
 
-                totalSpecializationBonus = resolvedCellType.CellTypeSpecializationBonus *
-                    multicellularSpecies.GetAdjacencySpecializationBonus(multicellularData.CellBodyPlanIndex);
+                if (isGameteSpawn)
+                {
+                    // Special gamete spawn
+                    totalSpecializationBonus = resolvedCellType.CellTypeSpecializationBonus;
+                }
+                else
+                {
+                    totalSpecializationBonus = resolvedCellType.CellTypeSpecializationBonus *
+                        multicellularSpecies.GetAdjacencySpecializationBonus(multicellularData.CellBodyPlanIndex);
+                }
 
                 recorder.Set(entity, new SpecializationFactor
                 {
@@ -746,6 +774,35 @@ public static class SpawnHelpers
             }
             else
             {
+                if (multicellularSpawnState == MulticellularSpawnState.ChanceForFullColony)
+                {
+                    random ??= new XoShiRo256plus();
+
+                    // Mass budding species should start with at least their bud already grown
+                    if (multicellularSpecies.ReproductionMethod == MulticellularReproductionMethod.MassBudding)
+                        colonyMembersToAdd = multicellularSpecies.MassBuddingCellCount - 1;
+
+                    // Chance to spawn fully grown or partially grown
+                    if (random.NextDouble() < Constants.CHANCE_MULTICELLULAR_SPAWNS_GROWN)
+                    {
+                        colonyMembersToAdd = fullColonyMemberCount;
+                    }
+                    else if (random.NextDouble() < Constants.CHANCE_MULTICELLULAR_SPAWNS_PARTLY_GROWN)
+                    {
+                        while (colonyMembersToAdd < fullColonyMemberCount)
+                        {
+                            ++colonyMembersToAdd;
+
+                            if (random.NextDouble() > Constants.CHANCE_MULTICELLULAR_PARTLY_GROWN_CELL_CHANCE)
+                                break;
+                        }
+                    }
+                }
+                else if (multicellularSpawnState == MulticellularSpawnState.FullColony)
+                {
+                    colonyMembersToAdd = fullColonyMemberCount;
+                }
+
                 if (multicellularData.CellBodyPlanIndex != 0)
                 {
                     throw new ArgumentException("First Multicellular cell must have body plan index of 0");
@@ -753,16 +810,26 @@ public static class SpawnHelpers
 
                 multicellularGrowth = new MulticellularGrowth(multicellularSpecies);
 
-                if (multicellularSpawnState == MulticellularSpawnState.Bud)
+                if (multicellularSpawnState == MulticellularSpawnState.Offspring)
                 {
                     resolvedCellType = multicellularSpecies.FirstCellTypeToSpawn();
 
-                    if (multicellularSpecies.ReproductionMethod == MulticellularReproductionMethod.Sporulation)
-                        multicellularGrowth.IsASpore = true;
+                    if (multicellularSpecies.ReproductionMethod != MulticellularReproductionMethod.MassBudding)
+                    {
+                        // Making sure that if the species' reproduction method changes later on, this cell won't
+                        // randomly try growing bud cells
+                        multicellularGrowth.MassBuddingState = MulticellularMassBuddingState.NotSpawned;
+
+                        if (multicellularSpecies.ReproductionMethod == MulticellularReproductionMethod.Sporulation)
+                            multicellularGrowth.IsASpore = true;
+                    }
                 }
                 else
                 {
                     resolvedCellType = multicellularSpecies.ColonyRootCellType();
+
+                    // Partially or fully grown colonies already have their bud grown
+                    multicellularGrowth.MassBuddingState = MulticellularMassBuddingState.Spawned;
                 }
 
                 // If grown as a full colony, or partial colony, we need to record the growth state here to not get
@@ -785,21 +852,30 @@ public static class SpawnHelpers
                 environmentalEffects.ApplyEffects(multicellularTolerances, totalSpecializationBonus, ref bioProcesses);
             }
 
+            if (!isGameteSpawn)
+            {
 #if DEBUG
-            if (multicellularData.CellBodyPlanIndex >= multicellularSpecies.ModifiableGameplayCells.Count)
-                throw new InvalidOperationException("Bad body plan index was generated for a cell");
+                if (multicellularData.CellBodyPlanIndex >= multicellularSpecies.ModifiableGameplayCells.Count)
+                    throw new InvalidOperationException("Bad body plan index was generated for a cell");
 #endif
 
-            recorder.Set(entity, new MulticellularSpeciesMember(multicellularSpecies, resolvedCellType,
-                multicellularData.CellBodyPlanIndex));
+                recorder.Set(entity, new MulticellularSpeciesMember(multicellularSpecies, resolvedCellType,
+                    multicellularData.CellBodyPlanIndex));
 
-            recorder.Set<IntercellularMatrix>(entity);
+                recorder.Set<IntercellularMatrix>(entity);
+            }
         }
         else if (species is MicrobeSpecies microbeSpecies)
         {
             recorder.Set(entity, new MicrobeSpeciesMember
             {
                 Species = microbeSpecies,
+            });
+
+            // Single-cells don't have sex
+            recorder.Set(entity, new MicrobeSex
+            {
+                Sex = GameteType.All,
             });
 
             usedCellDefinition = microbeSpecies;
@@ -976,57 +1052,17 @@ public static class SpawnHelpers
 
         float spawnLimitWeight = OrganelleContainerHelpers.CalculateCellEntityWeight(organelleCount);
 
-        if (multicellularSpawnState != MulticellularSpawnState.Bud && multicellular != null)
+        if (multicellularSpecies != null)
         {
-            if (!setMulticellularGrowth)
-                throw new Exception("Logic error in spawning a multicellular cell, multicellular growth not set");
-
-            switch (multicellularSpawnState)
+            if (colonyMembersToAdd == fullColonyMemberCount)
             {
-                case MulticellularSpawnState.FullColony:
-                    spawnLimitWeight +=
-                        MicrobeColonyHelpers.SpawnAsFullyGrownMulticellularColony(entity, multicellular,
-                            ref multicellularGrowth, spawnLimitWeight, recorder);
-                    break;
-
-                case MulticellularSpawnState.ChanceForFullColony:
-                {
-                    random ??= new XoShiRo256plus();
-
-                    // Chance to spawn fully grown or partially grown
-                    if (random.NextDouble() < Constants.CHANCE_MULTICELLULAR_SPAWNS_GROWN)
-                    {
-                        spawnLimitWeight += MicrobeColonyHelpers.SpawnAsFullyGrownMulticellularColony(entity,
-                            multicellular, ref multicellularGrowth, spawnLimitWeight, recorder);
-                    }
-                    else if (random.NextDouble() < Constants.CHANCE_MULTICELLULAR_SPAWNS_PARTLY_GROWN)
-                    {
-                        // -1 here as the bud is always spawned, so the number of cells to add on top of that is the max
-                        // count
-                        var maxCount = multicellular.ModifiableGameplayCells.Count - 1;
-                        int cellsToAdd = 0;
-
-                        while (cellsToAdd < maxCount)
-                        {
-                            ++cellsToAdd;
-
-                            if (random.NextDouble() > Constants.CHANCE_MULTICELLULAR_PARTLY_GROWN_CELL_CHANCE)
-                                break;
-                        }
-
-                        if (cellsToAdd > 0)
-                        {
-                            spawnLimitWeight += MicrobeColonyHelpers.SpawnAsPartialMulticellularColony(entity,
-                                spawnLimitWeight, cellsToAdd, ref multicellularGrowth, recorder);
-                        }
-                    }
-
-                    break;
-                }
-
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(multicellularSpawnState), multicellularSpawnState,
-                        null);
+                spawnLimitWeight += MicrobeColonyHelpers.SpawnAsFullyGrownMulticellularColony(entity,
+                    multicellularSpecies, ref multicellularGrowth, spawnLimitWeight, recorder);
+            }
+            else if (colonyMembersToAdd > 0)
+            {
+                spawnLimitWeight += MicrobeColonyHelpers.SpawnAsPartialMulticellularColony(entity, spawnLimitWeight,
+                    colonyMembersToAdd, ref multicellularGrowth, recorder);
             }
         }
 
@@ -1039,6 +1075,73 @@ public static class SpawnHelpers
         }
 
         return spawnLimitWeight;
+    }
+
+    public static void SpawnGamete(IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment spawnEnvironment,
+        ISpawnSystem spawnerToRegisterWith, Species species, Vector3 location, Vector3 initialVelocity,
+        GameteType gamete, CellType gameteType, bool aiGamete, Entity shootingEntity)
+    {
+        // We use the gamete type and -1 as the index to spawn this cell in a bit special state
+        var (recorder, weight) = SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species, location,
+            true, (gameteType, -1), gamete, out var entity, MulticellularSpawnState.Offspring);
+
+        // Override some things to make the cell work like a gamete
+
+        recorder.Add(entity, new GameteCell
+        {
+            ForSpecies = species,
+            IsPlayer = !aiGamete,
+            ThisGameteType = gamete,
+            EmittedBy = shootingEntity,
+        });
+
+        recorder.Add(entity, new PhysicsSensor
+        {
+            ActiveArea = null,
+            MaxActiveContacts = 8,
+            DetectSleepingBodies = false,
+        });
+
+        var customizedPhysics = PhysicsHelpers.CreatePhysicsForMicrobe();
+        customizedPhysics.Velocity = initialVelocity;
+
+        recorder.Set(entity, customizedPhysics);
+        recorder.Remove<MicrobeAI>(entity);
+        recorder.Remove<SurvivalStatistics>(entity);
+        recorder.Remove<MulticellularGrowth>(entity);
+        recorder.Remove<MulticellularSpeciesMember>(entity);
+        recorder.Remove<CompoundAbsorber>(entity);
+        recorder.Remove<UnneededCompoundVenter>(entity);
+        recorder.Remove<Engulfer>(entity);
+        recorder.Remove<ReproductionStatus>(entity);
+        recorder.Remove<CommandSignaler>(entity);
+
+        // Keep looking initially in the shoot direction
+        recorder.Set(entity, new MicrobeControl(location)
+        {
+            LookAtPoint = location + initialVelocity * 10,
+            MovementDirection = Vector3.Forward,
+        });
+
+        // And spawn with the rotation already set so the cell doesn't turn on spawning
+        recorder.Set(entity,
+            new WorldPosition(location,
+                Basis.LookingAt(location + initialVelocity * 10, Vector3.Up).GetRotationQuaternion()));
+
+        // Disable collision with the shooting enemy
+        recorder.Set(entity, new CollisionManagement
+        {
+            RecordActiveCollisions = Constants.MAX_SIMULTANEOUS_COLLISIONS_SMALL,
+            IgnoredCollisionsWith = [shootingEntity],
+        });
+
+        recorder.Set(entity, new ReadableName(new LocalizedString("GAMETE_CELL_ENTITY_NAME", species.FormattedName)));
+
+        // Make it despawn like normal
+        spawnerToRegisterWith.NotifyExternalEntitySpawned(entity, recorder,
+            Constants.MICROBE_DESPAWN_RADIUS_SQUARED, weight);
+
+        FinalizeEntitySpawn(recorder, worldSimulation);
     }
 
     /// <summary>
@@ -1081,11 +1184,11 @@ public static class SpawnHelpers
     }
 
     public static (CommandBuffer Recorder, float Weight) SpawnBacteriaSwarmMember(IWorldSimulation worldSimulation,
-        IMicrobeSpawnEnvironment spawnEnvironment, Species species,
+        IMicrobeSpawnEnvironment spawnEnvironment, Species species, GameteType sex,
         Vector3 location, out Entity entity)
     {
-        return SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species, location, true, (null, 0),
-            out entity, MulticellularSpawnState.Bud);
+        return SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species, location, true, (null, 0), sex,
+            out entity, MulticellularSpawnState.Offspring);
     }
 
     public static void SpawnCloud(CompoundCloudSystem clouds, Vector3 location, Compound compound, float amount,
@@ -1121,9 +1224,19 @@ public static class SpawnHelpers
         var entity = worldSimulation.CreateEntityDeferred(entityRecorder, TerrainSignature);
 
         Quaternion rotation;
-        if (chunkConfiguration.RandomizeRotation)
+        if (chunkConfiguration.RandomRotation == TerrainConfiguration.RotationRandomization.Yaw)
         {
             rotation = baseRotation * new Quaternion(Vector3.Up, random.NextSingle() * MathF.Tau);
+        }
+        else if (chunkConfiguration.RandomRotation == TerrainConfiguration.RotationRandomization.Slight)
+        {
+            rotation = baseRotation * new Quaternion(Basis.FromEuler(new Vector3(random.NextSingle() * 0.2f,
+                random.NextSingle() * MathF.Tau, random.NextSingle() * 0.2f)));
+        }
+        else if (chunkConfiguration.RandomRotation == TerrainConfiguration.RotationRandomization.Full)
+        {
+            rotation = baseRotation * new Quaternion(Basis.FromEuler(new Vector3(random.NextSingle() * MathF.Tau,
+                random.NextSingle() * MathF.Tau, random.NextSingle() * MathF.Tau)));
         }
         else
         {
@@ -1518,14 +1631,28 @@ public class MicrobeSpawner(Species species, IMicrobeSpawnEnvironment spawnEnvir
 
         bool bacteria = false;
 
+        GameteType sex;
+
         if (microbeSpecies != null)
+        {
             bacteria = microbeSpecies.IsBacteria;
+            sex = GameteType.All;
+        }
+        else if (Species is MulticellularSpecies multicellularSpecies)
+        {
+            sex = multicellularSpecies.PickSpawnGameteType(random);
+        }
+        else
+        {
+            GD.PrintErr("Unknown species type spawned: ", Species.GetType().FullName);
+            sex = GameteType.All;
+        }
 
         var firstSpawn = new SingleItemSpawnQueue((out entity) =>
         {
             // The true here is that this is AI-controlled
             var (recorder, weight) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironmentSource,
-                Species, location, true, (null, 0), out entity, MulticellularSpawnState.ChanceForFullColony);
+                Species, location, true, (null, 0), sex, out entity, MulticellularSpawnState.ChanceForFullColony);
 
             ModLoader.ModInterface.TriggerOnMicrobeSpawned(entity, recorder);
 
@@ -1541,7 +1668,7 @@ public class MicrobeSpawner(Species species, IMicrobeSpawnEnvironment spawnEnvir
         if (microbeSpecies == null)
             throw new Exception("Logic error in microbe species not being set");
 
-        // More complex, first need to do a normal spawn, and then continue onto bacteria swarm ones so we use a
+        // More complex, first need to do normal spawn and then continue onto bacteria swarm ones, so we use a
         // combined queue specifically written for this use case
 
         var stateData = SpawnHelpers.CalculateBacteriaSwarmPositions(location, microbeSpecies, random);
@@ -1553,7 +1680,7 @@ public class MicrobeSpawner(Species species, IMicrobeSpawnEnvironment spawnEnvir
         var swarmQueue = new CallbackSpawnQueue<List<Vector3>>((positions, out entity) =>
         {
             var (recorder, weight) = SpawnHelpers.SpawnBacteriaSwarmMember(worldSimulation, spawnEnvironmentSource,
-                Species, positions[0], out entity);
+                Species, sex, positions[0], out entity);
 
             positions.RemoveAt(0);
 

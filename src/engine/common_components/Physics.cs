@@ -202,6 +202,17 @@ public static class PhysicsHelpers
         return physics.Body != null && !physics.BodyDisabled && !physics.InternalDisableState;
     }
 
+    public static void TeleportTo(this ref Physics physics, ref WorldPosition position, Vector3 destination,
+        WorldSimulationWithPhysics worldSimulation)
+    {
+        if (physics.IsBodyEffectivelyEnabled())
+        {
+            worldSimulation.PhysicalWorld.SetBodyPosition(physics.Body!, destination);
+        }
+
+        position.Position = destination;
+    }
+
     public static Physics CreatePhysicsForMicrobe(bool disabledInitially = false)
     {
         return new Physics

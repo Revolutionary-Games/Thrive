@@ -5,7 +5,7 @@
 /// </summary>
 public class CustomDifficulty : IDifficulty
 {
-    public const ushort SERIALIZATION_VERSION = 3;
+    public const ushort SERIALIZATION_VERSION = 4;
 
     private bool applyGrowthOverride;
     private bool growthLimitOverride;
@@ -54,6 +54,10 @@ public class CustomDifficulty : IDifficulty
 
     public bool OrganelleUnlocksEnabled { get; set; }
 
+    public bool SpawnCompatibleMateOnCall { get; set; }
+
+    public bool ShowMatePosition { get; set; }
+
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.CustomDifficulty;
     public bool CanBeReferencedInArchive => false;
@@ -94,6 +98,12 @@ public class CustomDifficulty : IDifficulty
             instance.InstantKillProtection = true;
         }
 
+        if (version > 3)
+        {
+            instance.SpawnCompatibleMateOnCall = reader.ReadBool();
+            instance.ShowMatePosition = reader.ReadBool();
+        }
+
         return instance;
     }
 
@@ -118,6 +128,10 @@ public class CustomDifficulty : IDifficulty
 
         // Version 3 fields that were added after
         writer.Write(InstantKillProtection);
+
+        // Version 4 fields that were added after
+        writer.Write(SpawnCompatibleMateOnCall);
+        writer.Write(ShowMatePosition);
     }
 
     public void SetGrowthRateLimitCheatOverride(bool newLimitSetting)

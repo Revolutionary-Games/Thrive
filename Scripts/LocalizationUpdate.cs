@@ -94,6 +94,7 @@ public class LocalizationUpdate : LocalizationUpdateBase<LocalizationOptionsBase
         "ConfirmText",
         "Description",
         "DescriptionForController",
+        "ExtraTextAfterDescription",
         "DialogText",
         "DisplayName",
         "ErrorMessage",

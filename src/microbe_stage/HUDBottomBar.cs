@@ -31,7 +31,7 @@ public partial class HUDBottomBar : HBoxContainer
     private TextureButton heatButton = null!;
 
     [Export]
-    private BaseButton? speedButton;
+    private SpeedButton? speedButton;
 
     [Export]
     private TextureButton? compoundsButton;
@@ -251,6 +251,7 @@ public partial class HUDBottomBar : HBoxContainer
     {
         GUICommon.Instance.PlayButtonPressSound();
         SpeedModePressed = !SpeedModePressed;
+        speedButton?.ApplyState(SpeedModePressed);
         EmitSignal(SignalName.OnSpeedModeToggled, SpeedModePressed);
     }
 
@@ -260,6 +261,7 @@ public partial class HUDBottomBar : HBoxContainer
             return;
 
         speedButton.ButtonPressed = SpeedModePressed;
+        speedButton.ApplyState(SpeedModePressed);
         speedButton.Visible = speedModeAvailable;
     }
 

@@ -31,8 +31,6 @@ public class GeneralAvoidPredationSelectionPressure : SelectionPressure
             true),
         new UpgradeOrganelle(organelle => organelle.HasMovementComponent, new FlagellumUpgrades(0.5f)),
         new UpgradeOrganelle(organelle => organelle.HasMovementComponent, new FlagellumUpgrades(1.0f)),
-        new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Opportunism, -150.0f),
-        new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Fear, 150.0f),
         new ChangeMembraneType("double"),
         new ChangeMembraneType("cellulose"),
         new ChangeMembraneType("chitin"),
@@ -40,6 +38,8 @@ public class GeneralAvoidPredationSelectionPressure : SelectionPressure
         new ChangeMembraneType("silica"),
         new ChangeMembraneRigidity(true),
         new ChangeMembraneRigidity(false),
+        new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Fear, 50.0f),
+        new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Aggression, 50.0f),
     ])
     {
     }

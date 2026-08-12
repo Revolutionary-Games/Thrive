@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-06 03:56+0300\n"
+"POT-Creation-Date: 2026-08-12 13:41+0300\n"
 "PO-Revision-Date: 2025-07-20 19:51+0000\n"
 "Last-Translator: Fredrik Sjøli Trevland <frozenheimdsbusiness@gmail.com>\n"
 "Language-Team: Norwegian Bokmål <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nb_NO/>\n"
@@ -53,6 +53,14 @@ msgstr "Aksepter"
 #, fuzzy
 msgid "ACHIEVEMENTS"
 msgstr "Grunnleggende Bevegelse"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr "Grunnleggende Bevegelse"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr "Mikrobestadiet"
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr ""
@@ -175,6 +183,13 @@ msgstr "Du har allerede steget opp"
 
 msgid "ALT"
 msgstr "Alt"
+
+#, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr "Nåværende tråder:"
+
+msgid "ALTERNATVE_TIMESCALE"
+msgstr ""
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Alltid synlig"
@@ -759,6 +774,16 @@ msgid "CELL_TYPE_NAME"
 msgstr ""
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
+msgstr ""
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr ""
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr "(hastighet som AI muterer med)"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
 msgstr ""
 
 msgid "CHANGE_THE_SYMMETRY"
@@ -1775,6 +1800,12 @@ msgstr ""
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
 
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr ""
+
+msgid "DISPLAY_DRIVER_METAL"
+msgstr ""
+
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr ""
 
@@ -1810,10 +1841,6 @@ msgstr ""
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
-
-#, fuzzy
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "Dra til Oppvåknings Fasen. Tilgjengelig når du har nok hjernekraft (vevstype med aksoner)."
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr ""
@@ -2002,6 +2029,14 @@ msgstr ""
 "Fredelige mikrober vil ikke engasjere andre over større avstander\n"
 "og har mindre sannsynlighet for å bruke giftstoffer mot angripere."
 
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION_MULTICELLULAR"
+msgstr ""
+"Aggressive mikrober vil jage ned bytte over større avstander\n"
+"og er mer sannsynlig å kjempe mot angripere når de blir angrepet.\n"
+"Fredelige mikrober vil ikke engasjere andre over større avstander\n"
+"og har mindre sannsynlighet for å bruke giftstoffer mot angripere."
+
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
 msgstr ""
 
@@ -2108,6 +2143,9 @@ msgid "ERROR_FETCHING_NEWS"
 msgstr ""
 
 msgid "ERROR_LOADING"
+msgstr ""
+
+msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
 msgstr ""
 
 msgid "ERROR_SAVING"
@@ -2465,6 +2503,31 @@ msgstr ""
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr ""
 
+msgid "GAMETE_CELL_ENTITY_NAME"
+msgstr ""
+
+msgid "GAMETE_CELL_TYPE"
+msgstr ""
+
+msgid "GAMETE_CELL_TYPE_A"
+msgstr ""
+
+msgid "GAMETE_CELL_TYPE_B"
+msgstr ""
+
+#, fuzzy
+msgid "GAMETE_PRODUCED"
+msgstr "ATP Produksjon"
+
+#, fuzzy
+msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+msgstr ""
+"Denne seksjonen viser den totale ATP (energi) balansen i den nåværende cellen.\n"
+"For å overleve må balansen være positiv. For sessile celler kan det vurderes om positive balansen med bevegelse ekskludert.\n"
+"Menyen under can bli brukt for å sjekke hva som kan skje om cellen ikke har enkelte ressurser tilgjenglig til å lage ATP fra.\n"
+"For eksempel, noen celler kan bare opprettholde en positiv ATP balanse når de har flere stofftyper til å lage ATP fra på en gang.\n"
+"De cellene er vanskligere å spille som siden de trenger flere stofftyper på lager samtidig for å overleve."
+
 msgid "GAME_DESIGN_TEAM"
 msgstr ""
 
@@ -2756,6 +2819,10 @@ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/t
 
 #, fuzzy
 msgid "INCOMPATIBLE_ORGANELLE_LIST"
+msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] og mus for bevegelse. [thrive:input]g_fire_toxin[/thrive:input] for skyting [thrive:compound type=\"oxytoxy\"][/thrive:compound] hvis du har toxin vacuole. [thrive:input]g_toggle_engulf[/thrive:input] for veksling av oppsluknings modus. Du kan zoome in og ut med mus hjulet."
+
+#, fuzzy
+msgid "INCOMPATIBLE_STAGE_LIST"
 msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] og mus for bevegelse. [thrive:input]g_fire_toxin[/thrive:input] for skyting [thrive:compound type=\"oxytoxy\"][/thrive:compound] hvis du har toxin vacuole. [thrive:input]g_toggle_engulf[/thrive:input] for veksling av oppsluknings modus. Du kan zoome in og ut med mus hjulet."
 
 msgid "INCREASE_ITEM_SIZE"
@@ -3494,6 +3561,10 @@ msgid "MACROSCOPIC"
 msgstr ""
 
 #, fuzzy
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
 msgid "MACROSCOPIC_EDITOR"
 msgstr "Mikrobestadiet"
 
@@ -3524,6 +3595,13 @@ msgstr ""
 
 msgid "MARINE_SNOW"
 msgstr ""
+
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(hastighet som AI muterer med)"
 
 msgid "MASTER_VOLUME"
 msgstr ""
@@ -4317,6 +4395,9 @@ msgstr ""
 msgid "NEW"
 msgstr ""
 
+msgid "NEWER"
+msgstr ""
+
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 
@@ -4430,7 +4511,14 @@ msgstr "Skadet på grunn av for mye radioaktivitet"
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "Det er nå klart for å gå inn i redigeringspanelet"
 
+#, fuzzy
+msgid "NOTICE_READY_TO_SHOOT_GAMETE"
+msgstr "Det er nå klart for å gå inn i redigeringspanelet"
+
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
+msgstr ""
+
+msgid "NOT_ENOUGH_MUTATION_POINTS"
 msgstr ""
 
 msgid "NOT_STARTED_DOT"
@@ -4525,6 +4613,9 @@ msgstr ""
 msgid "OK"
 msgstr ""
 
+msgid "OLDER"
+msgstr ""
+
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 
@@ -4599,6 +4690,9 @@ msgid "OPTIONS"
 msgstr ""
 
 msgid "OPTIONS_BUTTON_TOOLTIP"
+msgstr ""
+
+msgid "OPTION_USED_FOR_PLAYER"
 msgstr ""
 
 msgid "ORGANELLES"
@@ -4716,6 +4810,9 @@ msgstr ""
 msgid "OXYGEN_RESISTANCE"
 msgstr ""
 
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
+msgstr ""
+
 #, fuzzy
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr "Dra til Oppvåknings Fasen. Tilgjengelig når du har nok hjernekraft (vevstype med aksoner)."
@@ -4793,6 +4890,9 @@ msgstr ""
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
+msgid "PATCH_NOTES_RECENT_BOUNDARY"
+msgstr ""
+
 msgid "PATCH_NOTES_TITLE"
 msgstr ""
 
@@ -4834,6 +4934,10 @@ msgstr ""
 
 #, fuzzy
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "(hastighet som AI muterer med)"
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION_MULTICELLULAR"
 msgstr "(hastighet som AI muterer med)"
 
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
@@ -5054,9 +5158,6 @@ msgstr ""
 msgid "PROTEINS"
 msgstr ""
 
-msgid "PROTOPLASM"
-msgstr ""
-
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr ""
 
@@ -5088,6 +5189,10 @@ msgstr "Generelt"
 
 msgid "RADIOACTIVE_CHUNK"
 msgstr ""
+
+#, fuzzy
+msgid "RADIOACTIVE_CHUNK_BANANA"
+msgstr "Stor Fosfatklump"
 
 #, fuzzy
 msgid "RADIOSYNTHESIS"
@@ -5152,6 +5257,10 @@ msgstr ""
 msgid "REPORT_BUG"
 msgstr ""
 
+#, fuzzy
+msgid "REPRODUCE"
+msgstr "ATP PRODUKSJON FOR LAV!"
+
 msgid "REPRODUCED"
 msgstr ""
 
@@ -5176,8 +5285,24 @@ msgstr "(hastighet som AI muterer med)"
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 msgstr "ATP PRODUKSJON FOR LAV!"
 
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "ATP PRODUKSJON FOR LAV!"
+
 msgid "REPRODUCTION_METHOD"
 msgstr ""
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL"
+msgstr "ATP PRODUKSJON FOR LAV!"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
+msgstr "ATP PRODUKSJON FOR LAV!"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ISOGAMY"
+msgstr "ATP PRODUKSJON FOR LAV!"
 
 #, fuzzy
 msgid "REPRODUCTION_SPORE"
@@ -5567,6 +5692,25 @@ msgstr ""
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr "(hastighet som AI muterer med)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION"
+msgstr "(hastighet som AI muterer med)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION_ACTIVE"
+msgstr "(hastighet som AI muterer med)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(hastighet som AI muterer med)"
+
+msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+msgstr ""
+
 msgid "SFX_VOLUME"
 msgstr ""
 
@@ -5593,6 +5737,13 @@ msgstr ""
 
 msgid "SHOW_MAP"
 msgstr ""
+
+msgid "SHOW_MATE_POSITION"
+msgstr ""
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION_EXPLANATION"
+msgstr "(hastighet som AI muterer med)"
 
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr ""
@@ -5640,6 +5791,12 @@ msgstr ""
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr ""
 
+msgid "SIGNAL_COMMAND_CALL_MATE"
+msgstr ""
+
+msgid "SIGNAL_COMMAND_FIRE_GAMETES"
+msgstr ""
+
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr ""
 
@@ -5663,6 +5820,10 @@ msgstr ""
 
 msgid "SIMULATION_CONFIG"
 msgstr ""
+
+#, fuzzy
+msgid "SIMULATION_FACTOR"
+msgstr "AI mutasjonshastighet"
 
 msgid "SIXTEEN_TIMES"
 msgstr ""
@@ -5745,6 +5906,13 @@ msgstr ""
 msgid "SPAWN_GLUCOSE"
 msgstr ""
 
+msgid "SPAWN_MATE_ON_CALL"
+msgstr ""
+
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL_EXPLANATION"
+msgstr "(hastighet som AI muterer med)"
+
 msgid "SPAWN_PHOSPHATES"
 msgstr ""
 
@@ -5806,6 +5974,10 @@ msgstr ""
 
 msgid "SPEED_COLON"
 msgstr ""
+
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "Dra til Oppvåknings Fasen. Tilgjengelig når du har nok hjernekraft (vevstype med aksoner)."
 
 #, fuzzy
 msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
@@ -6187,11 +6359,23 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVEOPEDIA_MUSEUM_PAGE_SEARCHTAGS"
+msgstr "Mikrobestadiet"
+
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVEOPEDIA_ORGANELLE_SEARCHTAGS"
+msgstr "\"{0}\" - {1}"
+
 msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
 msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_SEARCHTAGS"
+msgstr "Mikrobestadiet"
 
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr ""
@@ -6217,6 +6401,14 @@ msgstr ""
 
 msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_SEARCHTAGS"
+msgstr "Tillat arter å ikke mutere (hvis ingen god mutasjon er funnet)"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_SEARCHTAGS"
+msgstr "\"{0}\" - {1}"
 
 #, fuzzy
 msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
@@ -6387,9 +6579,6 @@ msgid "TOOLS"
 msgstr ""
 
 msgid "TOOL_HAND_AXE"
-msgstr ""
-
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
 msgid "TOTAL_GATHERED_ENERGY_COLON"
@@ -6911,9 +7100,6 @@ msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
 msgid "VIEWER"
-msgstr ""
-
-msgid "VIEW_ALL"
 msgstr ""
 
 msgid "VIEW_CELL_PROCESSES"
@@ -8251,10 +8437,6 @@ msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr "ATP Produksjon"
 
 #, fuzzy
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "ATP Produksjon"
-
-#, fuzzy
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "ATP Produksjon"
 
@@ -8334,33 +8516,6 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "Generelt"
-
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr ""
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr "ATP PRODUKSJON FOR LAV!"
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr "Anaerob Nitrogenfiksering"
-
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-#, fuzzy
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr "Mikrobestadiet"
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
 
 msgid "WIKI_PULLING_CILIA"
 msgstr ""
@@ -8862,6 +9017,26 @@ msgstr ""
 
 msgid "ZOOM_OUT"
 msgstr ""
+
+#, fuzzy
+#~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
+#~ msgstr "Dra til Oppvåknings Fasen. Tilgjengelig når du har nok hjernekraft (vevstype med aksoner)."
+
+#, fuzzy
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "ATP Produksjon"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr "ATP PRODUKSJON FOR LAV!"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_MODIFICATIONS"
+#~ msgstr "Anaerob Nitrogenfiksering"
+
+#, fuzzy
+#~ msgid "WIKI_PROTOPLASM_STRATEGY"
+#~ msgstr "Mikrobestadiet"
 
 #, fuzzy
 #~ msgid "AEROBIC_NITROGEN_FIXATION"

@@ -238,7 +238,11 @@ public partial class EngulfedDigestionSystem : BaseSystem<World, float>
                 }
 
                 var totalAvailable = storageAmount + additionalAmount;
-                totalAmountLeft += totalAvailable;
+
+                // Do not count toxin as being left when digesting as it just deals damage and is not interesting that
+                // way. We only want to keep digesting it when there's other stuff to gain.
+                if (compound != Compound.Oxytoxy)
+                    totalAmountLeft += totalAvailable;
 
                 if (totalAvailable <= 0)
                     continue;

@@ -93,6 +93,10 @@ public partial class AchievementsManager : Node
 
     public static bool HasUsedCheats => playerHasCheated;
 
+    public bool IsInvalidData => invalidData;
+
+    public bool IsLoaded => loaded;
+
     public static void ReportNewGameStarted(bool alreadyCheated)
     {
         if (playerInFreebuild)
@@ -709,7 +713,7 @@ public partial class AchievementsManager : Node
         var alreadyUnlockedCallback = (string achievement) =>
             achievementsDiskProgress.UnlockedAchievements.Contains(achievement);
 
-        // Load achievements progress data (only in non-Steam mode)
+        // Load achievement progress data (only in non-Steam mode)
         if (statsStore is AchievementStatStore basicStore)
         {
             AchievementsDiskProgress? newProgress;
@@ -722,10 +726,11 @@ public partial class AchievementsManager : Node
             {
                 GD.PrintErr("Error while loading achievements data: ", e);
 
-                // TODO: if players hit this too often we might just need to have a popup warning about this and
-                // asking if the player would like to reset their achievements data or quit the game
-                GD.PrintErr("QUITTING THE GAME AS ACHIEVEMENT DATA IS NOT GOOD!");
-                Invoke.Instance.Perform(() => SceneManager.Instance.QuitDueToError());
+                // The main menu will show a "confirm to quit" popup, so we don't quit here any more
+                GD.PrintErr("THE GAME AS ACHIEVEMENT DATA IS NOT GOOD!");
+                GD.Print("Achievements data can be reset by deleting: " +
+                    ProjectSettings.GlobalizePath(Constants.ACHIEVEMENTS_PROGRESS_SAVE));
+                invalidData = true;
 
                 // Unblock the main thread if it is waiting for it
                 loaded = true;
@@ -840,7 +845,7 @@ public partial class AchievementsManager : Node
 
     private void PerformDataSave(AchievementStatStore stats)
     {
-        // Copy stats data for writing
+        // Copy stat data for writing
         lock (achievementsDataLock)
         {
             stats.Save(achievementsDiskProgress.IntStats);
@@ -899,9 +904,25 @@ public partial class AchievementsManager : Node
         if (file == null)
         {
             GD.Print("No existing achievements progress data");
+
+            // If we hit a rare case where the new file only exists, but no old one, then we need to load the new one
+            if (FileAccess.FileExists(Constants.ACHIEVEMENTS_PROGRESS_SAVE_TEMP))
+            {
+                GD.PrintErr("No main achievements data exist, loading new save data file instead");
+
+                path = Constants.ACHIEVEMENTS_PROGRESS_SAVE_TEMP;
+                using var backupFile = FileAccess.Open(path, FileAccess.ModeFlags.Read);
+                return LoadAchievementsFileData(backupFile);
+            }
+
             return null;
         }
 
+        return LoadAchievementsFileData(file);
+    }
+
+    private AchievementsDiskProgress LoadAchievementsFileData(FileAccess file)
+    {
         // Verify the magic number
         // Also prevents endianness issues
         if (file.Get32() != GetMagic())
@@ -955,43 +976,58 @@ public partial class AchievementsManager : Node
             return;
         }
 
-        var path = Constants.ACHIEVEMENTS_PROGRESS_SAVE;
-
-        using var file = FileAccess.Open(path, FileAccess.ModeFlags.Write);
-
-        file.Store32(GetMagic());
-
-        // Create a data buffer
-        using var stream = new MemoryStream();
-
-        // In a separate block to make sure everything is flushed
+        // Save to a temp path first to protect against corruption
+        var path = Constants.ACHIEVEMENTS_PROGRESS_SAVE_TEMP;
         {
-            using var textWriter = new StreamWriter(stream, Encoding.UTF8, -1, true);
-            using var writer = new JsonTextWriter(textWriter);
+            using var file = FileAccess.Open(path, FileAccess.ModeFlags.Write);
 
-            var serializer = JsonSerializer.Create();
+            file.Store32(GetMagic());
 
-            // Ensure data is not modified while saving it
-            lock (achievementsDataLock)
+            // Create a data buffer
+            using var stream = new MemoryStream();
+
+            // In a separate block to make sure everything is flushed
             {
-                serializer.Serialize(writer, data);
+                using var textWriter = new StreamWriter(stream, Encoding.UTF8, -1, true);
+                using var writer = new JsonTextWriter(textWriter);
+
+                var serializer = JsonSerializer.Create();
+
+                // Ensure data is not modified while saving it
+                lock (achievementsDataLock)
+                {
+                    serializer.Serialize(writer, data);
+                }
             }
+
+            // Write verification hash
+            var diskBytes = stream.ToArray();
+
+            var hash = HMACSHA1.HashData(HashKeyFull, diskBytes);
+
+            if (hash.Length is < 8 or > ushort.MaxValue)
+                throw new Exception("Failed to calculate hash");
+
+            file.Store16((ushort)hash.Length);
+            file.StoreBuffer(hash);
+
+            // Write the data buffer
+            file.Store32((uint)stream.Length);
+            file.StoreBuffer(diskBytes);
         }
 
-        // Write verification hash
-        var diskBytes = stream.ToArray();
-
-        var hash = HMACSHA1.HashData(HashKeyFull, diskBytes);
-
-        if (hash.Length is < 8 or > ushort.MaxValue)
-            throw new Exception("Failed to calculate hash");
-
-        file.Store16((ushort)hash.Length);
-        file.StoreBuffer(hash);
-
-        // Write the data buffer
-        file.Store32((uint)stream.Length);
-        file.StoreBuffer(diskBytes);
+        // Then swap the file.
+        try
+        {
+            // We use a C# standard method here as Godot doesn't have an atomic move
+            File.Move(ProjectSettings.GlobalizePath(path),
+                ProjectSettings.GlobalizePath(Constants.ACHIEVEMENTS_PROGRESS_SAVE), true);
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr("Failed to move achievements progress file: " + e.Message);
+            GD.PrintErr("Latest achievements data is not preserved");
+        }
     }
 
     private void AnimateEligibilityNotice()

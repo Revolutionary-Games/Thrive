@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-06 03:56+0300\n"
-"PO-Revision-Date: 2026-05-22 15:37+0000\n"
+"POT-Creation-Date: 2026-08-12 13:41+0300\n"
+"PO-Revision-Date: 2026-08-06 15:31+0000\n"
 "Last-Translator: Søren Hansen <pjuske4life@gmail.com>\n"
 "Language-Team: Danish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/da/>\n"
 "Language: da\n"
@@ -51,6 +51,13 @@ msgstr "Accepter"
 
 msgid "ACHIEVEMENTS"
 msgstr "Præstationer"
+
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr "Indlæsning af præstationsdata fejlede"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr "Opgradering af den specificerede lagring fejlede pga. følgende fejl:"
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr "Præstationer {0} / {1}"
@@ -170,6 +177,16 @@ msgstr "Du er allerede opstået"
 
 msgid "ALT"
 msgstr "Alt"
+
+#, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr ""
+"Native tråde bruges til andre opgaver end managed tråde.\n"
+"Flere tråde på CPU’er med mange kerner øger generelt ydeevnen op til et vist punkt.\n"
+"For mange samlede tråde vil begynde at reducere ydeevnen."
+
+msgid "ALTERNATVE_TIMESCALE"
+msgstr "Alternativ tidsskala"
 
 msgid "ALWAYS_VISIBLE"
 msgstr "Altid synlig"
@@ -580,9 +597,8 @@ msgstr "Udforsk"
 msgid "BROWSE_WORKSHOP"
 msgstr "Udforsk Workshop"
 
-#, fuzzy
 msgid "BUDDING_REPRODUCTION_METHOD_EXPLANATION"
-msgstr "(hvad der sker med stofferne som spilleren har lagret når man vender tilbage til stadiet fra editoren)"
+msgstr "Producerer et enkelt afkom—en ny kolonis stamcelle."
 
 msgid "BUILD_CITY"
 msgstr "Byg en by"
@@ -704,22 +720,20 @@ msgstr "Cellulose"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Denne membran har en væg, som resulterer i bedre overordnet beskyttelse imod skade, og særligt imod fysik skade. Det koster også mindre energi at holde sin form, men kan ikke hurtigt absorbere ressourcer, og er langsommere. [b]Cellulase kan fordøje denne væg[/b] hvilket gør den sårbar overfor opslugning af rovdyr."
 
-#, fuzzy
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
 msgstr ""
-"I flercelle viser dette den gennemsnitlige specialiseringsbonus for alle cellerne.\n"
+"I flercelle viser dette den gennemsnitlige specialiseringsbonus for alle cellerne, inklusiv nærhedsbonusser.\n"
 "Den nuværende bonus er {0}% fra {1} celler.\n"
 "Den mest specialiseret type er {3} med en bonus på {2}%.\n"
-"For at øge dette, gør celletyperne mere specialiseret, eller tilføj flere specialiserede celler."
+"For at øge dette, gør celletyperne mere specialiseret, tilføj flere af den mest specialiserede celletype,\n"
+"eller placer celler af samme type ved siden af hinanden."
 
-#, fuzzy
 msgid "CELL_SPECIALIZATION_TOOLTIP"
 msgstr ""
-"Specialisering af en celle til bare en type organel giver en hastighedsbonus til bioprocesser.\n"
-"Den nuværende bonus er {0}% (bonussen dukker først op efter {3} organeller er placeret, og styrken øges op til {4})\n"
-"Den nuværende bonus gives da der er {1} {2} organeller.\n"
-"Bonussen øges som flere organeller er den mest almindelige type placeres.\n"
-"Hvis den er ved fuld størrelsesstyrke skal andre organeller udskiftes med den almindelige type for at øge bonussen."
+"Specialisering af en celle til at bruge færre organeltyper giver en effektivitets bonus til alle organeller i cellen.\n"
+"Den nuværende bonus er {0}% (den maksimale bonus styrke stiger med cellestørrelsen op til {3} hexes)\n"
+"Den nuværende bonus gives da der er {1} {2} hexes.\n"
+"Bonussen øges i takt med at flere organeller er den mest almindelige type placeres, og organeller af andre typer fjernes."
 
 msgid "CELL_STAT_ROTATION_TOOLTIP"
 msgstr ""
@@ -744,6 +758,27 @@ msgstr "Celletype navn"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Ændringsnoter er for lange"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr "Skift membran type"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr ""
+"Du kan nu fortsætte til Rumstadiet ved at opsende din første rumskib.\n"
+"\n"
+"Lige nu kan du ikke i prototypen vende tilbage til din planet, men den fremtidige plan er at man i Rumstadiet kan zoome gnidningsfrit ind og ud af planter.\n"
+"\n"
+"Hvis du annullerer opsendelsen vil det ødelægge rumskibet. Opsend rumskibet?"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
+"Det er stadig muligt at ændre membrantypen i Flercellestadiet, men det er meget sværere.\n"
+"I Makroskopiskstadiet vil det på ingen måde være muligt at ændre membrantypen.\n"
+"At ændre membranen nu vil kræve at alle celletyper ændres til den nye type på en gang.\n"
+"Dette kræver at alle mutationspoint [thrive:icon]MP[/thrive:icon] bruges på denne ændring.\n"
+"Og det vil lukke editoren for at effektuere ændringen.\n"
+"[b]Ikke nok MP.[/b] Du kan fortryde alle ændringer hvis du har brug for at skifte membranen."
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Ændre symmetrien"
@@ -1638,12 +1673,11 @@ msgstr "Nedstig"
 msgid "DESCEND_CONFIRMATION"
 msgstr "Er du sikker på du vil nedstige?"
 
-#, fuzzy
 msgid "DESCEND_CONFIRMATION_EXPLANATION"
 msgstr ""
 "Nedstigning vil fjerne din opsteget status og sende dig tilbage til Mikrobestadiet. Derfra kan du spille igennem spillet igen med den nuværende lagring.\n"
 "\n"
-"Du vil modtage en nedstignings frynsegode i din nye gennemspilning. I fremtidige versioner vil du kunne vælge din frynsegode selv, men for nu vil den altid være en 20% reduktion på osmoreguleringsomkostninger. \n"
+"Du vil modtage en nedstignings frynsegode i din nye gennemspilning. I fremtidige versioner vil du kunne vælge din frynsegode selv, men for nu vil den altid være en 20% reduktion på energiomkostninger. \n"
 "\n"
 "Så snart du bekræfter nedstigningen kan du redigere spilindstillingerne for f.eks. at vælge et nyt verdens seed for at spille på et andet kort, eller slå LSVK fra."
 
@@ -1722,9 +1756,8 @@ msgstr "Svært"
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "Normalt"
 
-#, fuzzy
 msgid "DIFFICULTY_PRESET_VERY_EASY"
-msgstr "Nemt"
+msgstr "Meget nemt"
 
 msgid "DIGESTION_EFFICIENCY"
 msgstr "Fordøjelseseffektivitet"
@@ -1814,6 +1847,12 @@ msgstr "Anvend forvrængning af mickrobe baggrunde"
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Vis baggrundspartikler"
 
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr "DirectX"
+
+msgid "DISPLAY_DRIVER_METAL"
+msgstr "Metal"
+
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr "OpenGL"
 
@@ -1847,12 +1886,8 @@ msgstr "Dobbelt"
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
 msgstr "Dobbeltklik for at se i fuld skærm"
 
-#, fuzzy
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
-msgstr "En membran med to lag, den har bedre beskytelse mod skade og bruger mindre energi på ikke at miste formen. Cellen bevæger sig dog langsommere, og absorberingshastigheden af ressourcer sænkes også."
-
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "Skift mellem normal og dobbelt spilhastighed"
+msgstr "En membran med to lag, den er mere modstandsdygtig over for skade, særligt fra toksiner. Cellen bevæger sig dog langsommere, og absorberingshastigheden af ressourcer sænkes også."
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr "Hiv denne for at ændre rækkefølgen på genstandene med musen"
@@ -2066,6 +2101,10 @@ msgstr "Denne art kan ikke blive lavet om til en gyldig organel"
 msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
 msgstr "For at fortsætte endosymbioseprocesen, så skal den udvalgte art opsluges for at lave den om til en midlertidig organel (kun en kan vær til stede af gangen). Fremskridt er gemt så snart du når til editoren med den midlertidige organel tilstede."
 
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION_MULTICELLULAR"
+msgstr "For at fortsætte endosymbioseprocesen, så skal den udvalgte art opsluges for at lave den om til en midlertidig organel (kun en kan vær til stede af gangen). Fremskridt er gemt så snart du når til editoren med den midlertidige organel tilstede."
+
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
 msgstr "Prokaryoter kan højst have en endosymbiont"
 
@@ -2096,13 +2135,11 @@ msgstr ""
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr "Energiforbrugs pres"
 
-#, fuzzy
 msgid "ENERGY_COST_MULTIPLIER"
-msgstr "Multiplikator for mutationspris"
+msgstr "Multiplikator for energiomkostninger"
 
-#, fuzzy
 msgid "ENERGY_COST_MULTIPLIER_EXPLANATION"
-msgstr "(hvad organeller, membraner og andre genstande koster i editoren)"
+msgstr "(multiplikator på energiomkostninger for spillerens art)"
 
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energi i {0} for {1}"
@@ -2175,6 +2212,9 @@ msgstr "Nyhedshentning fejlede"
 
 msgid "ERROR_LOADING"
 msgstr "Indhenting mislykkedes"
+
+msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr "Fejl: mindst to celler er påkrævet for seksuel reproduktion"
 
 msgid "ERROR_SAVING"
 msgstr "Lagring mislykkedes"
@@ -2258,9 +2298,8 @@ msgstr "Dette er den præcise kode commit som denne version af Thrive er kompile
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr "Der skete en undtagelse mens der forsøgtes at håndtere indhentede objekter"
 
-#, fuzzy
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE_JUKEBOX"
-msgstr "Der skete en undtagelse mens der forsøgtes at håndtere indhentede objekter"
+msgstr "Der skete en undtagelse mens jukeboksens tilstand blev behandlet"
 
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "En undtagelse skete under indhentning af gemt data"
@@ -2551,6 +2590,24 @@ msgstr "Gallerifremviser"
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr "Grundlæggende gameplay"
 
+msgid "GAMETE_CELL_ENTITY_NAME"
+msgstr "Kønscelle af {0}"
+
+msgid "GAMETE_CELL_TYPE"
+msgstr "Kønscelle type"
+
+msgid "GAMETE_CELL_TYPE_A"
+msgstr "Kønscelle type A"
+
+msgid "GAMETE_CELL_TYPE_B"
+msgstr "Kønscelle type B"
+
+msgid "GAMETE_PRODUCED"
+msgstr "kønscelle produceret"
+
+msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+msgstr "Vælg denne kønscelle type til at blive produceret af spillerens cellekoloni"
+
 msgid "GAME_DESIGN_TEAM"
 msgstr "Spildesign team"
 
@@ -2610,13 +2667,11 @@ msgstr "Sovende"
 msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
 msgstr "(påvirker hyppigheden og alvorligheden af begivenheder som meteornedslag og vulkanudbrud)"
 
-#, fuzzy
 msgid "GERMINATE_SPORE"
-msgstr "Affyr siderofor"
+msgstr "Spir en spore"
 
-#, fuzzy
 msgid "GERMINATE_SPORE_ACTION_TOOLTIP"
-msgstr "Affyr siderofor"
+msgstr "Spir en spore ind i koloni"
 
 msgid "GITHUB_TOOLTIP"
 msgstr "Besøg vores GitHub repository"
@@ -2836,13 +2891,14 @@ msgstr "Ignorer yderligere fejl"
 msgid "IMAGE_FILE_TYPES"
 msgstr "Understøttede billedefiler"
 
-#, fuzzy
 msgid "INCOMPATIBLE_MEMBRANE_LIST"
-msgstr "[b]Membraner Data:[/b]"
+msgstr "Inkompatibel med membraner: {0}"
 
-#, fuzzy
 msgid "INCOMPATIBLE_ORGANELLE_LIST"
-msgstr "Adskillelige organeller"
+msgstr "Inkompatibel med placerede organeller: {0}"
+
+msgid "INCOMPATIBLE_STAGE_LIST"
+msgstr "Kan ikke ændres i stadier: {0}"
 
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Forøg objekt størrelse"
@@ -2898,13 +2954,11 @@ msgstr "Kræver cellekerne"
 msgid "INFO_BOX_SIZE"
 msgstr "Størrelse (Hexes)"
 
-#, fuzzy
 msgid "INFO_BOX_SIZE_PLAIN"
-msgstr "Størrelse (Hexes)"
+msgstr "Størrelse"
 
-#, fuzzy
 msgid "INFO_BOX_STAGE"
-msgstr "Lager"
+msgstr "Stadie"
 
 msgid "INFO_BOX_STORAGE"
 msgstr "Lager"
@@ -3518,19 +3572,17 @@ msgstr "L"
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "Lås dag nat cyklus"
 
-#, fuzzy
 msgid "LOOK_LEFT"
-msgstr "Venstre"
+msgstr "Kig til venstre"
 
-#, fuzzy
 msgid "LOOK_RIGHT"
-msgstr "Højre"
+msgstr "Kig til højre"
 
 msgid "LOOK_SCREEN_DOWN_OR_3D_TOWARDS_UP"
-msgstr ""
+msgstr "Kig skærm ned eller i 3D kig op"
 
 msgid "LOOK_SCREEN_UP_OR_3D_TOWARDS_DOWN"
-msgstr ""
+msgstr "Kig skærm op eller i 3D kig ned"
 
 msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
 msgstr "(lavere værdier øger ydeevne)"
@@ -3574,6 +3626,9 @@ msgstr "Makrolidsyntese"
 msgid "MACROSCOPIC"
 msgstr "Makroskopisk"
 
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr "Membranen kan ikke længere ændres i Makroskopiskstadiet"
+
 msgid "MACROSCOPIC_EDITOR"
 msgstr "Makroskopisk editor"
 
@@ -3600,6 +3655,12 @@ msgstr "Marts"
 
 msgid "MARINE_SNOW"
 msgstr "Marine sne"
+
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr "Oprindeligt antal celler"
+
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "Producerer et afkom der starter med adskillelige celler."
 
 msgid "MASTER_VOLUME"
 msgstr "Hoved lydstyrke"
@@ -3853,9 +3914,8 @@ msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] kan laves o
 msgid "MICROBE_LOADING_TIP_22"
 msgstr "Hvert besøg til editoren i Mikrobestadiet repræsenterer [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] milioner af års evolution."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_23"
-msgstr "Jo flere (eller længere) flageller du har, desto hurtigere bevæger du dig - vroom vroom! Det koster dog mere ATP."
+msgstr "Placering af organeller med færre forskellige typer øger din specialiseringsbonus, hvilket gør hver organel i din celle stærkere."
 
 msgid "MICROBE_LOADING_TIP_3"
 msgstr "Du kan opsluge klumper af flydende materiale, uanset om de er dele af døde celler eller mineraler."
@@ -4433,6 +4493,10 @@ msgstr ""
 msgid "NEW"
 msgstr "Ny"
 
+#, fuzzy
+msgid "NEWER"
+msgstr "Viser"
+
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "Denne lagring er fra en nyere version af Thrive, og er højst sandsyneligt inkompatibel.\n"
@@ -4546,8 +4610,16 @@ msgstr "Skadet af for meget stråling"
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "Editoren er nu klar til at tilgås"
 
+#, fuzzy
+msgid "NOTICE_READY_TO_SHOOT_GAMETE"
+msgstr "Editoren er nu klar til at tilgås"
+
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "Ikke tilpasset nuværende områdes forhold. Ændre de foretrukne forhold eller toleranceområde for at fjerne de negative effekter."
+
+#, fuzzy
+msgid "NOT_ENOUGH_MUTATION_POINTS"
+msgstr "Mutationspoint"
 
 msgid "NOT_STARTED_DOT"
 msgstr "Ikke startet."
@@ -4594,7 +4666,7 @@ msgstr "Skab en ny celle type"
 
 #, fuzzy
 msgid "NO_SPORE_CELL_TYPE_SET_TITLE"
-msgstr "Kan ikke slette celle type i brug"
+msgstr "Skab en ny celle type"
 
 msgid "NO_SUGGESTION"
 msgstr "Intet"
@@ -4643,6 +4715,10 @@ msgstr "Besøg Revolutionary Games officielle hjemmeside"
 
 msgid "OK"
 msgstr "OK"
+
+#, fuzzy
+msgid "OLDER"
+msgstr "Åben mappe"
 
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -4728,6 +4804,10 @@ msgstr "Indstillinger"
 
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Skift dine indstillinger"
+
+#, fuzzy
+msgid "OPTION_USED_FOR_PLAYER"
+msgstr "Pauset."
 
 msgid "ORGANELLES"
 msgstr "Organeller"
@@ -4843,6 +4923,10 @@ msgstr "Ilthæmmer-syntese"
 msgid "OXYGEN_RESISTANCE"
 msgstr "Iltresistensen"
 
+#, fuzzy
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
+msgstr "Iltresistensen"
+
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr "Hvor meget ilt-baseret skade din art kan afbøde før effekten bliver skadefuld. Hvis du er i en patch med for meget ilt i forhold til din resistens, vil det have negative konsekvenser."
 
@@ -4921,6 +5005,10 @@ msgstr "Du spillede sidst Thrive {0}, siden da har der været en ny udgivelse"
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr "Du spillede sidst Thrive {0}, siden da har der været {1} nye udgivelser"
 
+#, fuzzy
+msgid "PATCH_NOTES_RECENT_BOUNDARY"
+msgstr "— {0}"
+
 msgid "PATCH_NOTES_TITLE"
 msgstr "Patch notes"
 
@@ -4961,6 +5049,10 @@ msgid "PEACEFUL"
 msgstr "Fredfyldt"
 
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Der er en færdiggjort endosymbioseproces der kan afsluttes ved at placere den som en organel. Det anbefales at gøre det så snart som muligt, da der ikke kan gøres yderligere fremskridt med endosymbiose før det er gjort. Se endosymbiose fremskridtet nu?"
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION_MULTICELLULAR"
 msgstr "Der er en færdiggjort endosymbioseproces der kan afsluttes ved at placere den som en organel. Det anbefales at gøre det så snart som muligt, da der ikke kan gøres yderligere fremskridt med endosymbiose før det er gjort. Se endosymbiose fremskridtet nu?"
 
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
@@ -5007,7 +5099,7 @@ msgid "PIN_BUTTON_TOOLTIP"
 msgstr "Skift dine indstillinger"
 
 msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
-msgstr ""
+msgstr "Placering blokeret fordi den nuværende membran er inkompatibel med denne organel"
 
 msgid "PLACE_ORGANELLE"
 msgstr "Placer organel (eller andre placerbare ting)"
@@ -5181,9 +5273,6 @@ msgstr "Projekt Management Team"
 msgid "PROTEINS"
 msgstr "Proteiner"
 
-msgid "PROTOPLASM"
-msgstr "Protoplasma"
-
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requests / Programmering"
 
@@ -5214,6 +5303,10 @@ msgid "RADIATION_LEVELS"
 msgstr "Strålingsniveau"
 
 msgid "RADIOACTIVE_CHUNK"
+msgstr "Radioaktiv stenklump"
+
+#, fuzzy
+msgid "RADIOACTIVE_CHUNK_BANANA"
 msgstr "Radioaktiv stenklump"
 
 msgid "RADIOSYNTHESIS"
@@ -5276,6 +5369,10 @@ msgstr "Anmeld"
 msgid "REPORT_BUG"
 msgstr "Anmeld en fejl"
 
+#, fuzzy
+msgid "REPRODUCE"
+msgstr "reproduceret"
+
 msgid "REPRODUCED"
 msgstr "reproduceret"
 
@@ -5302,8 +5399,24 @@ msgstr ""
 "Top altid op fylder alle stoffer op til det niveau cellen originalt starter med.\n"
 "Top op ved område skift fylder alle stoffer op til det start niveauet, men kun hvis området skiftes."
 
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "Spirende"
+
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproduktion:"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL"
+msgstr "Aseksuel"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
+msgstr "Aseksuel"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ISOGAMY"
+msgstr "Aseksuel"
 
 #, fuzzy
 msgid "REPRODUCTION_SPORE"
@@ -5437,9 +5550,8 @@ msgstr "Rotér højre"
 msgid "ROTATION_COLON"
 msgstr "Rotation:"
 
-#, fuzzy
 msgid "ROTATION_FORCE"
-msgstr "Rotation:"
+msgstr "Rotationskraft"
 
 msgid "RUNOFF_EVENT"
 msgstr "Afløb begivenhed"
@@ -5708,6 +5820,25 @@ msgstr "Stillestående"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "Denne værdi er kun gældende for nye spil startet efter indstillingen er ændret"
 
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr "(hvad der sker med stofferne som spilleren har lagret når man vender tilbage til stadiet fra editoren)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION"
+msgstr "(hvad der sker med stofferne som spilleren har lagret når man vender tilbage til stadiet fra editoren)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION_ACTIVE"
+msgstr "(hvad der sker med stofferne som spilleren har lagret når man vender tilbage til stadiet fra editoren)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "(hvad der sker med stofferne som spilleren har lagret når man vender tilbage til stadiet fra editoren)"
+
+msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+msgstr "Opgrader til Anisogami ({0} MP)"
+
 msgid "SFX_VOLUME"
 msgstr "SFX lydstyrke"
 
@@ -5731,6 +5862,14 @@ msgstr "Vis koordinator"
 
 msgid "SHOW_MAP"
 msgstr "Vis kort"
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION"
+msgstr "Vis kort"
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION_EXPLANATION"
+msgstr "Forskellige typer toksintyper har diverse effekter der er mere effektive imod bestemte celletyper. Celler der har flere forskellige toksintyper bruger dem i sekvens, fremfor at affyre dem alle på en gang."
 
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Vi nye patchnotes automatisk"
@@ -5777,6 +5916,14 @@ msgstr "Hold [thrive:input]g_pack_commands[/thrive:input] nede for at åbne en m
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "Bliv aggressiv"
 
+#, fuzzy
+msgid "SIGNAL_COMMAND_CALL_MATE"
+msgstr "Bevæg jer til mig"
+
+#, fuzzy
+msgid "SIGNAL_COMMAND_FIRE_GAMETES"
+msgstr "Flygt"
+
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr "Flygt"
 
@@ -5799,6 +5946,10 @@ msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Denne membran har en stærk væg lavet af silica. Den er god til at modstå skade, særligt fysisk skade er den meget resistent overfor. Den kræver også mindre energi for at holde formen. Cellen bliver dog en hel del langsommere, og hastigheden ressourcer absorberes reduceres."
 
 msgid "SIMULATION_CONFIG"
+msgstr "Simulation"
+
+#, fuzzy
+msgid "SIMULATION_FACTOR"
 msgstr "Simulation"
 
 msgid "SIXTEEN_TIMES"
@@ -5879,6 +6030,14 @@ msgstr "Kan ikke bruge spawn fjender snydekode da dette område ikke indeholder 
 msgid "SPAWN_GLUCOSE"
 msgstr "Skab glukose"
 
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL"
+msgstr "Skab ammoniak"
+
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL_EXPLANATION"
+msgstr "(hastighed som AI arter muterer ved)"
+
 msgid "SPAWN_PHOSPHATES"
 msgstr "Skab fosfat"
 
@@ -5948,6 +6107,10 @@ msgstr "{0} med bestand på: {1}"
 
 msgid "SPEED_COLON"
 msgstr "Hastighed:"
+
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "Skift mellem normal og dobbelt spilhastighed"
 
 #, fuzzy
 msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
@@ -6339,12 +6502,24 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr "Hjem"
 
+#, fuzzy
+msgid "THRIVEOPEDIA_MUSEUM_PAGE_SEARCHTAGS"
+msgstr "Museum"
+
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Museum"
 
 #, fuzzy
+msgid "THRIVEOPEDIA_ORGANELLE_SEARCHTAGS"
+msgstr "Nuværende verden"
+
+#, fuzzy
 msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
 msgstr "Hjem"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_SEARCHTAGS"
+msgstr "Områdekort"
 
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr "Områdekort"
@@ -6374,6 +6549,14 @@ msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
 msgstr "Museum"
 
 #, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_SEARCHTAGS"
+msgstr "Museum"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_SEARCHTAGS"
+msgstr "Nuværende verden"
+
+#, fuzzy
 msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
 msgstr "Nuværende verden"
 
@@ -6384,7 +6567,7 @@ msgid "THRIVIN_ACHIEVEMENT"
 msgstr "Stortrives"
 
 msgid "THRUST_FORCE"
-msgstr ""
+msgstr "Fremdrift"
 
 msgid "THYLAKOIDS"
 msgstr "Thylakoider"
@@ -6546,9 +6729,6 @@ msgstr "Værktøj"
 
 msgid "TOOL_HAND_AXE"
 msgstr "Håndøkse"
-
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
-msgstr "Viser ikke alle nylige versioner, da der er for mange"
 
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "Samlet energi:"
@@ -7259,9 +7439,6 @@ msgstr "{0} MiB"
 msgid "VIEWER"
 msgstr "Viser"
 
-msgid "VIEW_ALL"
-msgstr "Vis alle"
-
 msgid "VIEW_CELL_PROCESSES"
 msgstr "Vis organismeprocesser"
 
@@ -7595,14 +7772,13 @@ msgstr "Ingen modifikationer."
 msgid "WIKI_CHLOROPLAST_PROCESSES"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_CHLOROPLAST_REQUIREMENTS"
 msgstr ""
 "En celle skal have en [b][color=#3796e1][url=thriveopedia:nucleus]Cellekerne[/url][/color][/b] for at udvikle [b]Kloroplaster[/b].\n"
 "\n"
 "Hvis organeloplåsninger er aktiveret i spilindstillingerne skal de følgende krav [i]til spillerens celle[/i] være opfyldt:\n"
 "\n"
-"[indent]—   Indeholder mindst[b]5[/b] [b][color=#3796e1][url=thriveopedia:chromatophore]Thylakoider[/url][/color][/b] i minimum [b]7[/b] generationer i træk.[/indent]"
+"[ul]Indeholder mindst[b]5[/b] [b][color=#3796e1][url=thriveopedia:chromatophore]Thylakoider[/url][/color][/b] i minimum [b]7[/b] generationer i træk.[/ul]"
 
 msgid "WIKI_CHLOROPLAST_SCIENTIFIC_BACKGROUND"
 msgstr ""
@@ -7768,13 +7944,12 @@ msgstr "Ingen modifikationer."
 msgid "WIKI_FLAGELLUM_PROCESSES"
 msgstr "Ingen processer."
 
-#, fuzzy
 msgid "WIKI_FLAGELLUM_REQUIREMENTS"
 msgstr ""
 "Hvis organelopgraderinger er aktiveret i spilindstillingerne [i]skal mindst en[/i] af de følgende krav være opfyldt [i]for spillerens celle[/i]:\n"
 "\n"
-"[indent]—   Har en hastighed under [b]15[/b].[/indent]\n"
-"[indent]—   Producerer mindst [b]+15[/b] [thrive:compound type=\"atp\"][/thrive:compound].[/indent]"
+"[ul]Har en hastighed under [b]15[/b].\n"
+"Producerer mindst [b]+15[/b] [thrive:compound type=\"atp\"][/thrive:compound].[/ul]"
 
 msgid "WIKI_FLAGELLUM_SCIENTIFIC_BACKGROUND"
 msgstr ""
@@ -8039,11 +8214,10 @@ msgstr ""
 msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr "Ingen opgraderinger."
 
-#, fuzzy
 msgid "WIKI_MACROSCOPIC_STAGE_CONCEPT_ART"
 msgstr ""
-"[indent]—   [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/images/thumb/9/9f/Multieditorconcept.jpeg/120px-Multieditorconcept.jpeg]Editor koncept[/url][/color] \t\t\t[/indent]\n"
-"[indent]—   [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/images/thumb/9/92/Multicolorconcept.png/120px-Multicolorconcept.png]Terræn farve koncept[/url][/color] \t\t\t[/indent]"
+"[ul]\t\t\t<img alt=\"Editor koncept\" src=\"/images/thumb/9/9f/Multieditorconcept.jpeg/120px-Multieditorconcept.jpeg\" decoding=\"async\" width=\"120\" height=\"108\" class=\"mw-file-element\" srcset=\"/images/thumb/9/9f/Multieditorconcept.jpeg/180px-Multieditorconcept.jpeg 1.5x, /images/thumb/9/9f/Multieditorconcept.jpeg/240px-Multieditorconcept.jpeg 2x\">\t\t\t\t\t\n"
+"\t\t\t<img alt=\"Terræn farve koncept\" src=\"/images/thumb/9/92/Multicolorconcept.png/120px-Multicolorconcept.png\" decoding=\"async\" width=\"120\" height=\"68\" class=\"mw-file-element\" srcset=\"/images/thumb/9/92/Multicolorconcept.png/180px-Multicolorconcept.png 1.5x, /images/thumb/9/92/Multicolorconcept.png/240px-Multicolorconcept.png 2x\">\t\t\t\t\t[/ul]"
 
 msgid "WIKI_MACROSCOPIC_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Udvikling på prototype niveau er begyndt for makroskopiskstadiet."
@@ -8452,9 +8626,6 @@ msgstr ""
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr ""
 
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr ""
-
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr ""
 
@@ -8520,30 +8691,6 @@ msgstr ""
 
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "Proteinrespiration"
-
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "Ingen effekter."
-
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr "Ingen modifikationer."
-
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr "Spilleren kan ikke udvikle [b]protoplasma[/b]. Ikke-spiller arter kan uden restriktioner."
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr "Ingen opgraderinger."
 
 msgid "WIKI_PULLING_CILIA"
 msgstr ""
@@ -8995,6 +9142,30 @@ msgstr "Zoom ind"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom ud"
+
+#~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
+#~ msgstr "Skift mellem normal og dobbelt spilhastighed"
+
+#~ msgid "PROTOPLASM"
+#~ msgstr "Protoplasma"
+
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "Ingen effekter."
+
+#~ msgid "WIKI_PROTOPLASM_MODIFICATIONS"
+#~ msgstr "Ingen modifikationer."
+
+#~ msgid "WIKI_PROTOPLASM_REQUIREMENTS"
+#~ msgstr "Spilleren kan ikke udvikle [b]protoplasma[/b]. Ikke-spiller arter kan uden restriktioner."
+
+#~ msgid "WIKI_PROTOPLASM_UPGRADES"
+#~ msgstr "Ingen opgraderinger."
+
+#~ msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+#~ msgstr "Viser ikke alle nylige versioner, da der er for mange"
+
+#~ msgid "VIEW_ALL"
+#~ msgstr "Vis alle"
 
 #~ msgid "SPEED"
 #~ msgstr "Hastighed"

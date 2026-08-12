@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-06 03:56+0300\n"
-"PO-Revision-Date: 2026-05-22 15:37+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2026-08-12 13:41+0300\n"
+"PO-Revision-Date: 2026-07-08 12:56+0000\n"
+"Last-Translator: xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
@@ -51,6 +51,14 @@ msgstr "接受"
 
 msgid "ACHIEVEMENTS"
 msgstr "成就"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED"
+msgstr "成就 {0} / {1}"
+
+#, fuzzy
+msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
+msgstr "由於以下錯誤，更新此存檔失敗："
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr "成就 {0} / {1}"
@@ -170,6 +178,16 @@ msgstr "您已經飛昇了"
 
 msgid "ALT"
 msgstr "Alt"
+
+#, fuzzy
+msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
+msgstr ""
+"本機執行緒用於與託管執行緒不同的任務。\n"
+"多核心 CPU 上的更多執行緒通常會將效能提高到極限\n"
+"太多的總執行緒數將會降低效能。"
+
+msgid "ALTERNATVE_TIMESCALE"
+msgstr ""
 
 msgid "ALWAYS_VISIBLE"
 msgstr "總是可見"
@@ -743,6 +761,19 @@ msgstr "細胞類型名稱"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "更新註記過長"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
+msgstr "細胞膜類型"
+
+#, fuzzy
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
+msgstr ""
+"活潑型細胞在周圍沒啥事的時候會四處亂跑。\n"
+"沉著型微生物將靜止不動，等待環境變化後才行動。"
+
+msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
+msgstr ""
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "改變對稱"
@@ -1811,6 +1842,12 @@ msgstr "微生物背景扭曲"
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "顯示背景粒子"
 
+msgid "DISPLAY_DRIVER_DIRECT3D"
+msgstr "DirectX"
+
+msgid "DISPLAY_DRIVER_METAL"
+msgstr "Metal"
+
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr "OpenGL"
 
@@ -1846,9 +1883,6 @@ msgstr "雙擊即可全螢幕檢視"
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "有兩層的細胞膜，對傷害有更好的防護能力，尤其是毒素侵害。然而，它會減慢細胞的移動速度並降低其吸收資源的速率。"
-
-msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "在正常與雙倍遊戲速度之間切換"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr "用滑鼠拖曳以重新排序"
@@ -2062,6 +2096,10 @@ msgstr "該物種無法轉化為任何有效的細胞器"
 msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
 msgstr "為了進行內共生過程，目標物種需要被吞噬，將其轉變成一種臨時細胞器（一次只能存在一個）。然後，一旦您將臨時細胞器提交給編輯器，進度就會被儲存。"
 
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION_MULTICELLULAR"
+msgstr "為了進行內共生過程，目標物種需要被吞噬，將其轉變成一種臨時細胞器（一次只能存在一個）。然後，一旦您將臨時細胞器提交給編輯器，進度就會被儲存。"
+
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
 msgstr "原核生物最多可以有一種內共生體"
 
@@ -2169,6 +2207,9 @@ msgstr "載入新聞發生錯誤"
 
 msgid "ERROR_LOADING"
 msgstr "載入時發生錯誤"
+
+msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
 
 msgid "ERROR_SAVING"
 msgstr "存檔時發生錯誤"
@@ -2544,6 +2585,35 @@ msgstr "畫廊檢視器"
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr "基本遊戲系統"
 
+#, fuzzy
+msgid "GAMETE_CELL_ENTITY_NAME"
+msgstr "幹細胞"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE"
+msgstr "創建新細胞類型"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_A"
+msgstr "細胞類型名稱"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_B"
+msgstr "創建新細胞類型"
+
+#, fuzzy
+msgid "GAMETE_PRODUCED"
+msgstr "繁殖"
+
+#, fuzzy
+msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+msgstr ""
+"本節顯示目前細胞的總 ATP（能量）平衡。\n"
+"為了生存，平衡需要為正。對於固著細胞來說，它們可能在排除移動因素的情況下認為平衡為正。\n"
+"下方的下拉選單可用來檢查如果細胞缺乏可用於製造 ATP 的資源時會發生什麼情況。\n"
+"例如，某些細胞只有在同時擁有多種化合物類型來製造 ATP 時，才能維持 ATP 正平衡。\n"
+"這些類型的細胞更難操作，因為它們需要同時儲存多種化合物類型才能生存。"
+
 msgid "GAME_DESIGN_TEAM"
 msgstr "遊戲設計團隊"
 
@@ -2821,7 +2891,7 @@ msgid "ID_NUMBER"
 msgstr "ID 號碼"
 
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
-msgstr "（取決於渲染模式與解析度提升方式，並非所有方法都可用）"
+msgstr "（取決於渲染模式與超分辨率方式，並非所有方法都可用）"
 
 msgid "IGNORE_FURTHER_ERRORS"
 msgstr "忽略其他錯誤"
@@ -2836,6 +2906,10 @@ msgstr "[b]細胞膜資料：[/b]"
 #, fuzzy
 msgid "INCOMPATIBLE_ORGANELLE_LIST"
 msgstr "多個細胞器"
+
+#, fuzzy
+msgid "INCOMPATIBLE_STAGE_LIST"
+msgstr "[b]細胞膜資料：[/b]"
 
 msgid "INCREASE_ITEM_SIZE"
 msgstr "放大物件"
@@ -2891,13 +2965,11 @@ msgstr "需要細胞核"
 msgid "INFO_BOX_SIZE"
 msgstr "大小（六邊形）"
 
-#, fuzzy
 msgid "INFO_BOX_SIZE_PLAIN"
-msgstr "大小（六邊形）"
+msgstr "大小"
 
-#, fuzzy
 msgid "INFO_BOX_STAGE"
-msgstr "儲存空間"
+msgstr "階段"
 
 msgid "INFO_BOX_STORAGE"
 msgstr "儲存空間"
@@ -3511,19 +3583,17 @@ msgstr "L"
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "鎖定晝夜循環"
 
-#, fuzzy
 msgid "LOOK_LEFT"
-msgstr "←"
+msgstr "視角左移"
 
-#, fuzzy
 msgid "LOOK_RIGHT"
-msgstr "→"
+msgstr "視角右移"
 
 msgid "LOOK_SCREEN_DOWN_OR_3D_TOWARDS_UP"
-msgstr ""
+msgstr "視角下移（或在 3D 模式中上移）"
 
 msgid "LOOK_SCREEN_UP_OR_3D_TOWARDS_DOWN"
-msgstr ""
+msgstr "視角上移（或在 3D 模式中下移）"
 
 msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
 msgstr "（較低的值可提高性能）"
@@ -3567,6 +3637,15 @@ msgstr "巨環內酯合成"
 msgid "MACROSCOPIC"
 msgstr "宏觀生物"
 
+#, fuzzy
+msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
+msgstr ""
+"在這個階段，玩家仍然可以編輯細胞類型，但不再將它們放置在細胞的結構圖中，而是將細胞類型作為組織塊，放置在完全三維的宏觀身體結構編輯器中。該編輯器基於放置與編輯表示物種結構的元球。\n"
+"\n"
+"玩家將成為一個宏觀生物。這改變了遊戲的規模，使微生物不再可見，玩家轉而雕塑組織，而不是放置單個細胞。\n"
+"\n"
+"關於宏觀階段的遊戲設計方案有一個單獨的頁面，詳細描述了該階段的機制。"
+
 msgid "MACROSCOPIC_EDITOR"
 msgstr "宏觀生物編輯器"
 
@@ -3593,6 +3672,12 @@ msgstr "三月"
 
 msgid "MARINE_SNOW"
 msgstr "海洋雪"
+
+msgid "MASS_BUDDING_CELL_COUNT"
+msgstr "起始細胞數量"
+
+msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "產生的後代初始即由多個細胞構成。"
 
 msgid "MASTER_VOLUME"
 msgstr "主音量"
@@ -4426,6 +4511,10 @@ msgstr ""
 msgid "NEW"
 msgstr "新增"
 
+#, fuzzy
+msgid "NEWER"
+msgstr "檢視器"
+
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "此存檔來自較新版本的 Thrive 並且很可能不相容。\n"
@@ -4539,8 +4628,16 @@ msgstr "過量輻射損傷"
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "可以進入編輯器了"
 
+#, fuzzy
+msgid "NOTICE_READY_TO_SHOOT_GAMETE"
+msgstr "可以進入編輯器了"
+
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "不適應當前的區域條件。改變偏好條件或適應範圍來消除減益。"
+
+#, fuzzy
+msgid "NOT_ENOUGH_MUTATION_POINTS"
+msgstr "突變點數"
 
 msgid "NOT_STARTED_DOT"
 msgstr "尚未開始。"
@@ -4587,7 +4684,7 @@ msgstr "創建新細胞類型"
 
 #, fuzzy
 msgid "NO_SPORE_CELL_TYPE_SET_TITLE"
-msgstr "無法刪除已使用的細胞類型"
+msgstr "創建新細胞類型"
 
 msgid "NO_SUGGESTION"
 msgstr "無"
@@ -4636,6 +4733,10 @@ msgstr "造訪 Revolutionary Games 官方網站"
 
 msgid "OK"
 msgstr "確認"
+
+#, fuzzy
+msgid "OLDER"
+msgstr "開啟資料夾"
 
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -4721,6 +4822,10 @@ msgstr "選項"
 
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "更改您的設定"
+
+#, fuzzy
+msgid "OPTION_USED_FOR_PLAYER"
+msgstr "暫停中。"
 
 msgid "ORGANELLES"
 msgstr "細胞器"
@@ -4836,6 +4941,10 @@ msgstr "氧抑制劑合成"
 msgid "OXYGEN_RESISTANCE"
 msgstr "氧化抗性"
 
+#, fuzzy
+msgid "OXYGEN_RESISTANCE_NEEDS_ORGANELLES"
+msgstr "氧化抗性"
+
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr "在產生有害影響之前，您的物種可以減輕多少由氧造成的傷害。如果您所處區域的氧含量超過您的抵抗能力，您將會受到負面影響。"
 
@@ -4914,6 +5023,10 @@ msgstr "您上次遊玩 Thrive 的版本是 {0}，在此之後又發布了一個
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr "您上次遊玩 Thrive 的版本是 {0}，在此之後已經發布了 {1} 個新版本"
 
+#, fuzzy
+msgid "PATCH_NOTES_RECENT_BOUNDARY"
+msgstr "—{0}"
+
 msgid "PATCH_NOTES_TITLE"
 msgstr "更新說明"
 
@@ -4954,6 +5067,10 @@ msgid "PEACEFUL"
 msgstr "和平"
 
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "有一個完整的內共生過程，可以透過將其作為細胞器來完成。建議盡快這樣做，在此之前，內共生無法取得進一步的進展。現在查看內共生進度？"
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION_MULTICELLULAR"
 msgstr "有一個完整的內共生過程，可以透過將其作為細胞器來完成。建議盡快這樣做，在此之前，內共生無法取得進一步的進展。現在查看內共生進度？"
 
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
@@ -5174,9 +5291,6 @@ msgstr "專案管理團隊"
 msgid "PROTEINS"
 msgstr "蛋白質"
 
-msgid "PROTOPLASM"
-msgstr "原生質"
-
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "PR／程式設計"
 
@@ -5207,6 +5321,10 @@ msgid "RADIATION_LEVELS"
 msgstr "輻射量"
 
 msgid "RADIOACTIVE_CHUNK"
+msgstr "放射性岩塊"
+
+#, fuzzy
+msgid "RADIOACTIVE_CHUNK_BANANA"
 msgstr "放射性岩塊"
 
 msgid "RADIOSYNTHESIS"
@@ -5269,6 +5387,10 @@ msgstr "報告"
 msgid "REPORT_BUG"
 msgstr "回報錯誤"
 
+#, fuzzy
+msgid "REPRODUCE"
+msgstr "繁殖"
+
 msgid "REPRODUCED"
 msgstr "繁殖"
 
@@ -5295,8 +5417,24 @@ msgstr ""
 "「始終補充至初始值」 會將所有化合物補充到細胞最初生成時的量。\n"
 "「區域更改時補充」 僅在切換區域時將化合物補充到初始值。"
 
+#, fuzzy
+msgid "REPRODUCTION_MASS_BUDDING"
+msgstr "出芽生殖"
+
 msgid "REPRODUCTION_METHOD"
 msgstr "繁殖："
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL"
+msgstr "無性繁殖"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
+msgstr "無性繁殖"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ISOGAMY"
+msgstr "無性繁殖"
 
 #, fuzzy
 msgid "REPRODUCTION_SPORE"
@@ -5701,6 +5839,26 @@ msgstr "沉着"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "該值僅適用於更改此選項後開始的新遊戲"
 
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr "（被動地從環境中獲得繁殖所需的化合物）"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION"
+msgstr "（被動地從環境中獲得繁殖所需的化合物）"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION_ACTIVE"
+msgstr "（被動地從環境中獲得繁殖所需的化合物）"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "（被動地從環境中獲得繁殖所需的化合物）"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+msgstr "被動獲得繁殖進度"
+
 msgid "SFX_VOLUME"
 msgstr "音效音量"
 
@@ -5724,6 +5882,14 @@ msgstr "顯示座標"
 
 msgid "SHOW_MAP"
 msgstr "顯示地圖"
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION"
+msgstr "顯示地圖"
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION_EXPLANATION"
+msgstr "不同類型的毒素具有不同的作用，對某些類型的細胞更有效。對於具有多種不同毒素類型的細胞，它們按順序使用，而不是一次全部發射。"
 
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "自動顯示新更新說明"
@@ -5770,6 +5936,14 @@ msgstr "按住[thrive:input]g_pack_commands[/thrive:input]開啟一個用以向�
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "變得更激進"
 
+#, fuzzy
+msgid "SIGNAL_COMMAND_CALL_MATE"
+msgstr "向我移動"
+
+#, fuzzy
+msgid "SIGNAL_COMMAND_FIRE_GAMETES"
+msgstr "逃跑"
+
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr "逃跑"
 
@@ -5792,6 +5966,10 @@ msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "這種細胞膜具有堅固的二氧化矽壁。它可以很好地抵抗整體傷害，且對物理傷害的抵抗力非常強。並花費較少的能量維持外形。然而，它會大大減慢細胞的速度，細胞吸收資源的速度也會降低。"
 
 msgid "SIMULATION_CONFIG"
+msgstr "模擬"
+
+#, fuzzy
+msgid "SIMULATION_FACTOR"
 msgstr "模擬"
 
 msgid "SIXTEEN_TIMES"
@@ -5872,6 +6050,14 @@ msgstr "無法使用生成敵人作弊，因為這個區域沒有任何敵對物
 msgid "SPAWN_GLUCOSE"
 msgstr "生成葡萄糖"
 
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL"
+msgstr "生成氨"
+
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL_EXPLANATION"
+msgstr "（AI 物種突變的速度）"
+
 msgid "SPAWN_PHOSPHATES"
 msgstr "生成磷酸鹽"
 
@@ -5941,6 +6127,10 @@ msgstr "{0} 的物種量：{1}"
 
 msgid "SPEED_COLON"
 msgstr "速度："
+
+#, fuzzy
+msgid "SPEED_TOGGLE_TOOLTIP"
+msgstr "在正常與雙倍遊戲速度之間切換"
 
 #, fuzzy
 msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
@@ -6332,12 +6522,24 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr "首頁"
 
+#, fuzzy
+msgid "THRIVEOPEDIA_MUSEUM_PAGE_SEARCHTAGS"
+msgstr "博物館"
+
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "博物館"
 
 #, fuzzy
+msgid "THRIVEOPEDIA_ORGANELLE_SEARCHTAGS"
+msgstr "當前世界"
+
+#, fuzzy
 msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
 msgstr "首頁"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_SEARCHTAGS"
+msgstr "區域地圖"
 
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr "區域地圖"
@@ -6365,6 +6567,14 @@ msgstr "博物館"
 #, fuzzy
 msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
 msgstr "博物館"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_SEARCHTAGS"
+msgstr "博物館"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_SEARCHTAGS"
+msgstr "當前世界"
 
 #, fuzzy
 msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
@@ -6539,9 +6749,6 @@ msgstr "工具"
 
 msgid "TOOL_HAND_AXE"
 msgstr "手斧"
-
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
-msgstr "未顯示所有最近版本，因為版本過多"
 
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "已收集能量："
@@ -7148,16 +7355,16 @@ msgid "UPLOAD_SUCCEEDED"
 msgstr "上傳成功"
 
 msgid "UPSCALE_BILINEAR"
-msgstr "雙線性解析度提升"
+msgstr "雙線性超分辨率"
 
 msgid "UPSCALE_FSR_1"
-msgstr "FSR 1 解析度提升"
+msgstr "FSR 1 超分辨率"
 
 msgid "UPSCALE_FSR_22"
-msgstr "FSR 2.2 解析度提升"
+msgstr "FSR 2.2 超分辨率"
 
 msgid "UPSCALE_METHOD"
-msgstr "解析度提升方法："
+msgstr "超分辨率方法："
 
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr "FSR 銳化"
@@ -7251,9 +7458,6 @@ msgstr "{0} MiB"
 
 msgid "VIEWER"
 msgstr "檢視器"
-
-msgid "VIEW_ALL"
-msgstr "查看所有"
 
 msgid "VIEW_CELL_PROCESSES"
 msgstr "查看生物代謝過程"
@@ -9159,9 +9363,6 @@ msgstr "氧化毒酶體"
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr "掠食性菌毛"
 
-msgid "WIKI_PAGE_PROTOPLASM"
-msgstr "原生質"
-
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "繁殖"
 
@@ -9250,42 +9451,6 @@ msgstr ""
 
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "蛋白質呼吸"
-
-msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "無效果。"
-
-msgid "WIKI_PROTOPLASM_INTRO"
-msgstr ""
-"[b][color=#3796e1][url=thriveopedia:cytoplasm]細胞質[/url][/color][/b]的顯著增強版本，旨在增強非玩家物種的儲存能力。無法添加到玩家細胞中，但可能存在於玩家從環境中化石化的細胞中。\n"
-"\n"
-"視覺上匹配[b][color=#3796e1][url=thriveopedia:cytoplasm]細胞質[/url][/color][/b]並繼承了它的許多特徵。"
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr "無修改。"
-
-msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr ""
-"[b]糖解[/b]：[thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"不同輸入／輸出速率的[b]細胞質糖解[/b]的增強版本。"
-
-msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr "玩家無法演化[b]原生質[/b]。非玩家物種則無限制。"
-
-msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
-"在某些地方，[b]原生質[/b]是[b][color=#3796e1][url=thriveopedia:cytoplasm]細胞質[/url][/color][/b]的別名，儘管它也可以指細胞的所有內容物，包括細胞核與周圍結構。\n"
-"\n"
-"閱讀更多關於該細胞器的資訊 [color=#3796e1][url=https://en.wikipedia.org/wiki/Protoplasm]Wikipedia 頁面[/url][/color]。"
-
-msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
-"在常規遊戲中不可能使用[b]原生質[/b]。玩家只有在自由建構模式下開啟在先前的遊戲中化石化的非玩家物種，且該物種恰好演化了這種細胞器時才能使用它。\n"
-"\n"
-"當它確實出現時，[b]原生質[/b]在策略上等同於[b][color=#3796e1][url=thriveopedia:cytoplasm]細胞質[/url][/color][/b]，但顯著增加儲存空間與較慢的[thrive:compound type=\"atp\"][/thrive:compound] 生產。具有[b]原生質[/b]的細胞通常可以存活更長時間，而無需尋找化合物雲或消化獵物。"
-
-msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr "無升級。"
 
 msgid "WIKI_PULLING_CILIA"
 msgstr "捕食纖毛"
@@ -9894,6 +10059,57 @@ msgstr "放大"
 msgid "ZOOM_OUT"
 msgstr "縮小"
 
+#~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
+#~ msgstr "在正常與雙倍遊戲速度之間切換"
+
+#~ msgid "PROTOPLASM"
+#~ msgstr "原生質"
+
+#~ msgid "WIKI_PAGE_PROTOPLASM"
+#~ msgstr "原生質"
+
+#~ msgid "WIKI_PROTOPLASM_EFFECTS"
+#~ msgstr "無效果。"
+
+#~ msgid "WIKI_PROTOPLASM_INTRO"
+#~ msgstr ""
+#~ "[b][color=#3796e1][url=thriveopedia:cytoplasm]細胞質[/url][/color][/b]的顯著增強版本，旨在增強非玩家物種的儲存能力。無法添加到玩家細胞中，但可能存在於玩家從環境中化石化的細胞中。\n"
+#~ "\n"
+#~ "視覺上匹配[b][color=#3796e1][url=thriveopedia:cytoplasm]細胞質[/url][/color][/b]並繼承了它的許多特徵。"
+
+#~ msgid "WIKI_PROTOPLASM_MODIFICATIONS"
+#~ msgstr "無修改。"
+
+#~ msgid "WIKI_PROTOPLASM_PROCESSES"
+#~ msgstr ""
+#~ "[b]糖解[/b]：[thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "不同輸入／輸出速率的[b]細胞質糖解[/b]的增強版本。"
+
+#~ msgid "WIKI_PROTOPLASM_REQUIREMENTS"
+#~ msgstr "玩家無法演化[b]原生質[/b]。非玩家物種則無限制。"
+
+#~ msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
+#~ msgstr ""
+#~ "在某些地方，[b]原生質[/b]是[b][color=#3796e1][url=thriveopedia:cytoplasm]細胞質[/url][/color][/b]的別名，儘管它也可以指細胞的所有內容物，包括細胞核與周圍結構。\n"
+#~ "\n"
+#~ "閱讀更多關於該細胞器的資訊 [color=#3796e1][url=https://en.wikipedia.org/wiki/Protoplasm]Wikipedia 頁面[/url][/color]。"
+
+#~ msgid "WIKI_PROTOPLASM_STRATEGY"
+#~ msgstr ""
+#~ "在常規遊戲中不可能使用[b]原生質[/b]。玩家只有在自由建構模式下開啟在先前的遊戲中化石化的非玩家物種，且該物種恰好演化了這種細胞器時才能使用它。\n"
+#~ "\n"
+#~ "當它確實出現時，[b]原生質[/b]在策略上等同於[b][color=#3796e1][url=thriveopedia:cytoplasm]細胞質[/url][/color][/b]，但顯著增加儲存空間與較慢的[thrive:compound type=\"atp\"][/thrive:compound] 生產。具有[b]原生質[/b]的細胞通常可以存活更長時間，而無需尋找化合物雲或消化獵物。"
+
+#~ msgid "WIKI_PROTOPLASM_UPGRADES"
+#~ msgstr "無升級。"
+
+#~ msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+#~ msgstr "未顯示所有最近版本，因為版本過多"
+
+#~ msgid "VIEW_ALL"
+#~ msgstr "查看所有"
+
 #~ msgid "SPEED"
 #~ msgstr "速度"
 
@@ -9997,9 +10213,6 @@ msgstr "縮小"
 
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "鐵化能自養"
-
-#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
-#~ msgstr "被動獲得繁殖進度"
 
 #~ msgid "MIGRATE"
 #~ msgstr "遷移"
@@ -10354,12 +10567,6 @@ msgstr "縮小"
 #, fuzzy
 #~ msgid "PATCH_MAP_TYPE"
 #~ msgstr "區域地圖"
-
-#, fuzzy
-#~ msgid "PATCH_MAP_TYPE_EXPLANATION"
-#~ msgstr ""
-#~ "活潑型細胞在周圍沒啥事的時候會四處亂跑。\n"
-#~ "沉著型微生物將靜止不動，等待環境變化後才行動。"
 
 #, fuzzy
 #~ msgid "LOOKING_AT"
