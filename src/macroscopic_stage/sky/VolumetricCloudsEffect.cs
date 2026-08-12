@@ -394,9 +394,8 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         const string noiseProfilePath = SkyResourcesDir + NoiseProfileFileName;
         if (ResourceLoader.Exists(noiseProfilePath))
         {
-            // ResourceSaver.Save when rebaking the cloud voxels should already invalidate this cache, so the default
-            // cache mode should be working.
-            noiseProfile = ResourceLoader.Load<ImageTexture3D>(noiseProfilePath);
+            noiseProfile = ResourceLoader.Load<ImageTexture3D>(noiseProfilePath,
+                cacheMode: ResourceLoader.CacheMode.Replace);
         }
         else
         {
