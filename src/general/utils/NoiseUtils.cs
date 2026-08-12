@@ -80,9 +80,9 @@ public static class NoiseUtils
         return new Vector3(MathF.Cos(theta) * s, MathF.Sin(theta) * s, MathF.Cos(phi));
     }
 
-    public static float PerlinTiling(Vector3 p, int period, int seed)
+    public static float PerlinTiling(Vector3 point, int period, int seed)
     {
-        Vector3 scaled = p * period;
+        Vector3 scaled = point * period;
         Vector3I c0 = new Vector3I(Mathf.FloorToInt(scaled.X),
             Mathf.FloorToInt(scaled.Y),
             Mathf.FloorToInt(scaled.Z));
@@ -111,13 +111,13 @@ public static class NoiseUtils
         return val * 0.5f + 0.5f;
     }
 
-    public static float FractionalBrownianMotionWorley(Vector3 p, int baseGrid, int octaves, int seed)
+    public static float FractionalBrownianMotionWorley(Vector3 point, int baseGrid, int octaves, int seed)
     {
         float sum = 0.0f, amp = 0.5f, norm = 0.0f;
         int grid = baseGrid;
         for (int o = 0; o < octaves; ++o)
         {
-            sum += amp * WorleyTiling(p, grid, seed + o * 17);
+            sum += amp * WorleyTiling(point, grid, seed + o * 17);
             norm += amp;
             amp *= 0.5f;
             grid *= 2;
@@ -126,13 +126,13 @@ public static class NoiseUtils
         return sum / norm;
     }
 
-    public static float FractionalBrownianMotionPerlin(Vector3 p, int baseGrid, int octaves, int seed)
+    public static float FractionalBrownianMotionPerlin(Vector3 point, int baseGrid, int octaves, int seed)
     {
         float sum = 0.0f, amp = 0.5f, norm = 0.0f;
         int grid = baseGrid;
         for (int o = 0; o < octaves; ++o)
         {
-            sum += amp * PerlinTiling(p, grid, seed + o * 17);
+            sum += amp * PerlinTiling(point, grid, seed + o * 17);
             norm += amp;
             amp *= 0.5f;
             grid *= 2;
@@ -141,10 +141,10 @@ public static class NoiseUtils
         return sum / norm;
     }
 
-    public static float PerlinWorley(Vector3 p, int seed)
+    public static float PerlinWorley(Vector3 point, int seed)
     {
-        float perlin = FractionalBrownianMotionPerlin(p, 4, 4, seed);
-        float worley = FractionalBrownianMotionWorley(p, 8, 3, seed + 1000);
+        float perlin = FractionalBrownianMotionPerlin(point, 4, 4, seed);
+        float worley = FractionalBrownianMotionWorley(point, 8, 3, seed + 1000);
 
         return Remap(perlin, worley - 1.0f, 1.0f, 0.0f, 1.0f);
     }
@@ -188,8 +188,8 @@ public static class NoiseUtils
         return texture;
     }
 
-    private static float Remap(float v, float inMin, float inMax, float outMin, float outMax)
+    private static float Remap(float value, float inMin, float inMax, float outMin, float outMax)
     {
-        return outMin + (v - inMin) / (inMax - inMin) * (outMax - outMin);
+        return outMin + (value - inMin) / (inMax - inMin) * (outMax - outMin);
     }
 }
