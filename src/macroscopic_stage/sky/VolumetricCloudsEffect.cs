@@ -58,7 +58,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     private const uint UniformParamsBufferSize = 128;
 
     private const string SkyResourcesDir = "res://assets/textures/sky/";
-    private const string NoiseProfileFileName = "cloud_base_128.res";
+    private const string NoiseProfileFileName = "cloud_base_128.tex3d";
     private const string RaymarcherShaderFileName = "res://shaders/sky/clouds_march.glsl";
     private const string UpsamplerShaderFileName = "res://shaders/sky/upsampler.glsl";
 
