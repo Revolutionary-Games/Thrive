@@ -1036,6 +1036,9 @@ public static class MicrobeColonyHelpers
             GD.PrintErr("Cannot get actomyosin count yet for rotation speed");
         }
 
+        // Note if this logic is changed, then the relevant logic needs also updating in
+        // CellBodyPlanInternalCalculations.CalculateRotationSpeed
+
         // Actomyosin acts as the key buff to keep the rotation rate reasonable. This is a float as multiple actomyosin
         // per cell give a small extra bonus
         float actomyosinCount = leaderOrganelles.CalculateEffectiveActomyosinCount();
