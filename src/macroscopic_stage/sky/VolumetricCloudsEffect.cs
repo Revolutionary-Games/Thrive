@@ -5,7 +5,9 @@ using Godot.Collections;
 /// <summary>
 ///   Volumetric Clouds Effect for sky rendering.
 /// </summary>
+#if VOLUMETRIC_CLOUDS_EFFECT_TOOL_ENABLE
 [Tool]
+#endif
 [GlobalClass]
 public partial class VolumetricCloudsEffect : CompositorEffect
 {
@@ -112,6 +114,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
             uniformPool[i] = new RDUniform();
     }
 
+#if VOLUMETRIC_CLOUDS_EFFECT_TOOL_ENABLE
     [ExportToolButton("Reload Pipeline")]
     private Callable ReloadPipelineCallable => new(this, MethodName.Reload);
 
@@ -120,6 +123,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
 
     [ExportToolButton("Dump GPU profiler data")]
     private Callable DumpGpuProfilerData => new(this, MethodName.ReportTimestamps);
+#endif
 
     public override void _Notification(int what)
     {
