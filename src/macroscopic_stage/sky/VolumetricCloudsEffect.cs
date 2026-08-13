@@ -57,8 +57,10 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     private const uint PushConstantsBufferSize = 128;
     private const uint UniformParamsBufferSize = 128;
 
-    private const string SkyResourcesDir = "res://assets/textures/sky/";
+    // Here we are using the .res file extension because Godot doesn't have a specialized file extension for 3D
+    // textures.
     private const string NoiseProfileFileName = "cloud_base_128.res";
+    private const string SkyResourcesDir = "res://assets/textures/sky/";
     private const string RaymarcherShaderFileName = "res://shaders/sky/clouds_march.glsl";
     private const string UpsamplerShaderFileName = "res://shaders/sky/upsampler.glsl";
 
