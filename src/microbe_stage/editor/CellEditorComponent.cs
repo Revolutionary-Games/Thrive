@@ -525,7 +525,7 @@ public partial class CellEditorComponent :
             return;
         }
 
-        // To follow MicrobeRenderPrioritySystem this sets other than the first material to be -1 in priority
+        // To follow MicrobeRenderPrioritySystem, this sets other than the first material to be -1 in priority
         bool first = true;
 
         foreach (var shaderMaterial in temporaryDataHolder)
