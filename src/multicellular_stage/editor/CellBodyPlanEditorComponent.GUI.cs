@@ -384,7 +384,7 @@ public partial class CellBodyPlanEditorComponent
     {
         if (SporeCellType == null)
         {
-            cellTypePickerPopup.UpdateCellTypeList(Editor.EditedSpecies.ModifiableCellTypes,
+            cellTypePickerPopup.UpdateCellTypeList(Editor.EditedSpecies.ModifiableCellTypes, GetEditedCellDataIfEdited,
                 OnBaseCellTypeForSporeSelected);
             cellTypePickerPopup.PopupCenteredShrink();
         }
@@ -398,7 +398,7 @@ public partial class CellBodyPlanEditorComponent
     {
         var splitFrom = Editor.EditedSpecies.ModifiableCellTypes.First(a => a.CellTypeName == baseCellTypeName);
 
-        var cellType = (CellType)splitFrom.Clone();
+        var cellType = (CellType)GetEditedCellDataIfEdited(splitFrom).Clone();
         cellType.CellTypeName = Localization.Translate("DEFAULT_SPORE_CELL_TYPE_NAME");
         cellType.SplitFromTypeName = splitFrom.CellTypeName;
 

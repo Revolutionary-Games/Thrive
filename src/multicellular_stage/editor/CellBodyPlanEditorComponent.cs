@@ -1438,7 +1438,7 @@ public partial class CellBodyPlanEditorComponent :
         foreach (var cellType in Editor.EditedSpecies.ModifiableCellTypes.OrderBy(t => t.CellTypeName,
                      StringComparer.Ordinal))
         {
-            if (!DisplayCellType(cellType))
+            if (!ShouldCellTypeBeDisplayed(cellType))
                 continue;
 
             if (!cellTypeSelectionButtons.TryGetValue(cellType.CellTypeName, out var control))
@@ -1491,7 +1491,7 @@ public partial class CellBodyPlanEditorComponent :
         // Delete no longer necessary buttons
         foreach (var key in cellTypeSelectionButtons.Keys.ToList())
         {
-            if (Editor.EditedSpecies.ModifiableCellTypes.All(t => t.CellTypeName != key || !DisplayCellType(t)))
+            if (Editor.EditedSpecies.ModifiableCellTypes.All(t => t.CellTypeName != key || !ShouldCellTypeBeDisplayed(t)))
             {
                 var control = cellTypeSelectionButtons[key];
                 cellTypeSelectionButtons.Remove(key);
@@ -2228,7 +2228,7 @@ public partial class CellBodyPlanEditorComponent :
         }
     }
 
-    private bool DisplayCellType(CellType cellType)
+    private bool ShouldCellTypeBeDisplayed(CellType cellType)
     {
         // The spore is a specialized cell type
         if (SporeCellType != null && cellType.CellTypeName == SporeCellType.CellTypeName)

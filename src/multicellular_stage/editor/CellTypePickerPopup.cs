@@ -17,7 +17,8 @@ public partial class CellTypePickerPopup : CustomWindow
     private PackedScene cellTypeButton = null!;
 #pragma warning restore CA2213
 
-    public void UpdateCellTypeList(List<CellType> types, Action<string> onChosenCellType)
+    public void UpdateCellTypeList(List<CellType> types, Func<CellType, CellType> getUpdatedCellType,
+        Action<string> onChosenCellType)
     {
         onChosenCellTypeCallback = onChosenCellType;
 
@@ -27,13 +28,15 @@ public partial class CellTypePickerPopup : CustomWindow
 
         foreach (var cellType in types)
         {
+            var updatedCellType = getUpdatedCellType(cellType);
+
             var button = cellTypeButton.Instantiate<CellTypeSelection>();
             cellTypeList.AddChild(button);
 
             button.SelectionGroup = buttonGroup;
-            button.PartName = cellType.CellTypeName;
-            button.CellType = cellType;
-            button.Name = cellType.CellTypeName;
+            button.PartName = updatedCellType.CellTypeName;
+            button.CellType = updatedCellType;
+            button.Name = updatedCellType.CellTypeName;
             button.ShowInsufficientATPWarning = false;
 
             button.MPCost = 0.0f;
