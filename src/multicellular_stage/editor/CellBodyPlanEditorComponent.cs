@@ -808,7 +808,7 @@ public partial class CellBodyPlanEditorComponent :
 
         // This is checked due to a species data requirement
         if (ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy
-            or MulticellularReproductionMethod.SexualAnisogamy && editedMicrobeCells.Count < 2)
+                or MulticellularReproductionMethod.SexualAnisogamy && editedMicrobeCells.Count < 2)
         {
             ToolTipManager.Instance.ShowPopup(
                 Localization.Translate("ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"), 5);
@@ -1491,7 +1491,8 @@ public partial class CellBodyPlanEditorComponent :
         // Delete no longer necessary buttons
         foreach (var key in cellTypeSelectionButtons.Keys.ToList())
         {
-            if (Editor.EditedSpecies.ModifiableCellTypes.All(t => t.CellTypeName != key || !ShouldCellTypeBeDisplayed(t)))
+            if (Editor.EditedSpecies.ModifiableCellTypes
+                .All(t => t.CellTypeName != key || !ShouldCellTypeBeDisplayed(t)))
             {
                 var control = cellTypeSelectionButtons[key];
                 cellTypeSelectionButtons.Remove(key);

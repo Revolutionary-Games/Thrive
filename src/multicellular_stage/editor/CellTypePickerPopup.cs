@@ -41,7 +41,7 @@ public partial class CellTypePickerPopup : CustomWindow
 
             button.MPCost = 0.0f;
 
-            button.Connect(CellTypeSelection.SignalName.OnPartSelected,
+            button.Connect(MicrobePartSelection.SignalName.OnPartSelected,
                 new Callable(this, MethodName.OnCellTypeButtonClicked));
         }
     }
