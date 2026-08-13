@@ -3,8 +3,14 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Godot;
 
+/// <summary>
+///   Utility class to provide Forward+ boilerplate methods.
+/// </summary>
 public static class RenderingUtils
 {
+    /// <summary>
+    ///   Creates an image uniform given its shader binding and a texture RID.
+    /// </summary>
     public static RDUniform MakeImage(int binding, Rid texture)
     {
         var uniform = new RDUniform
@@ -16,6 +22,9 @@ public static class RenderingUtils
         return uniform;
     }
 
+    /// <summary>
+    ///   Creates a sampler uniform given its shader binding, a sampler definition, and a texture RID.
+    /// </summary>
     public static RDUniform MakeSampled(int binding, Rid sampler, Rid texture)
     {
         var uniform = new RDUniform
@@ -25,6 +34,20 @@ public static class RenderingUtils
         };
         uniform.AddId(sampler);
         uniform.AddId(texture);
+        return uniform;
+    }
+
+    /// <summary>
+    ///   Creates a UBO given its shader binding and its buffer RID.
+    /// </summary>
+    public static RDUniform MakeUniformBuffer(int binding, Rid buffer)
+    {
+        var uniform = new RDUniform
+        {
+            UniformType = RenderingDevice.UniformType.UniformBuffer,
+            Binding = binding,
+        };
+        uniform.AddId(buffer);
         return uniform;
     }
 
@@ -44,17 +67,6 @@ public static class RenderingUtils
         return offset;
     }
 
-    public static RDUniform MakeUniformBuffer(int binding, Rid buffer)
-    {
-        var uniform = new RDUniform
-        {
-            UniformType = RenderingDevice.UniformType.UniformBuffer,
-            Binding = binding,
-        };
-        uniform.AddId(buffer);
-        return uniform;
-    }
-
     public static byte[] BuildProjectionsPushConstant(Projection invViewProjection, Projection camProjection)
     {
         var bytes = new byte[128];
@@ -64,6 +76,14 @@ public static class RenderingUtils
         return bytes;
     }
 
+    /// <summary>
+    ///   Updates a byte buffer with the provided inverse view projection and camera projection.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     The resulting buffer is usually used for push constants in compute shaders.
+    ///   </para>
+    /// </remarks>
     public static void UpdateProjectionsPushConstant(Span<byte> bytes, Projection invViewProjection,
         Projection camProjection)
     {

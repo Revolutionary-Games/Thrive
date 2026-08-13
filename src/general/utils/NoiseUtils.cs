@@ -3,6 +3,9 @@ using System.Threading.Tasks;
 using Godot;
 using Godot.Collections;
 
+/// <summary>
+///   Utility class to provide CPU-sided noise generation methods.
+/// </summary>
 public static class NoiseUtils
 {
     public static Vector3 CellPoint(int x, int y, int z, int grid, int seed)
