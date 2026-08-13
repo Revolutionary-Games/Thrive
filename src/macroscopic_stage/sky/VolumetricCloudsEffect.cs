@@ -66,6 +66,8 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     private const string RaymarcherShaderFileName = "res://shaders/sky/clouds_march.glsl";
     private const string UpsamplerShaderFileName = "res://shaders/sky/upsampler.glsl";
 
+    private static VolumetricCloudsEffect? currentInstance;
+
     private readonly StringName cloudContextName = "volumetric_clouds";
     private readonly StringName cloudTextureName = "cloud_half";
     private readonly StringName renderBuffersContext = "render_buffers";
@@ -106,6 +108,11 @@ public partial class VolumetricCloudsEffect : CompositorEffect
 
     public VolumetricCloudsEffect()
     {
+        if (currentInstance is not null)
+            throw new Exception("Tried to create more than one clouds effect to the current context.");
+
+        currentInstance = this;
+
         EffectCallbackType = EffectCallbackTypeEnum.PostTransparent;
         AccessResolvedColor = true;
         AccessResolvedDepth = true;
@@ -124,6 +131,12 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     [ExportToolButton("Dump GPU profiler data")]
     private Callable DumpGpuProfilerData => new(this, MethodName.ReportTimestamps);
 #endif
+
+    private enum CloudCommandParameters
+    {
+        Reload,
+        Profile,
+    }
 
     public override void _Notification(int what)
     {
@@ -150,6 +163,8 @@ public partial class VolumetricCloudsEffect : CompositorEffect
                     rd.FreeRid(rid);
             }
         }));
+
+        currentInstance = null;
     }
 
     public override void _RenderCallback(int effectCallbackType, RenderData renderData)
@@ -308,6 +323,30 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         return spirv.CompileErrorCompute != string.Empty ?
             throw new Exception($"Error in shader {path}: {spirv.CompileErrorCompute}") :
             spirv;
+    }
+
+    [Command("clouds", false, "Utility command for cloud effect debugging.")]
+    private static void CloudsCommand(CommandContext context, CloudCommandParameters parameter1, int parameter2 = 0)
+    {
+        if (currentInstance is null)
+        {
+            context.Print("Current instance is null. Clouds aren't currently being rendered.");
+
+            return;
+        }
+
+        switch (parameter1)
+        {
+            case CloudCommandParameters.Reload:
+                currentInstance.Reload();
+                return;
+            case CloudCommandParameters.Profile:
+                currentInstance.ProfileGpu = parameter2 >= 0;
+                currentInstance.ReportTimestamps();
+                return;
+            default:
+                return;
+        }
     }
 
     private void InitializeCompute()
