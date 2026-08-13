@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="2_504j3"]
 [ext_resource type="Texture2D" uid="uid://cyvkcpdtij2q" path="res://assets/textures/Myofibril.png" id="3_teu6q"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gdun7"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_teu6q"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1_acnqn")
@@ -31,4 +31,4 @@ bones/15/position = Vector3(-0.7858211, 0.36857343, 0.30022633)
 
 [node name="Actomyosin" parent="Armature/Skeleton3D" index="0" unique_id=930539216]
 transform = Transform3D(0.9501568, 0, -0.3117724, 0, 1, 0, 0.3117724, 0, 0.9501568, 0, 0, 0)
-surface_material_override/0 = SubResource("ShaderMaterial_gdun7")
+material_override = SubResource("ShaderMaterial_teu6q")
