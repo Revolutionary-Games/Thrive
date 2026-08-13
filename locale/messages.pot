@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-11 16:28+0300\n"
+"POT-Creation-Date: 2026-08-13 15:42+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -129,6 +129,18 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:211
 msgid "ACTIVITY_EXPLANATION"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/organelles.json:1496
+msgid "ACTOMYOSIN"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/organelles.json:1497
+msgid "ACTOMYOSIN_DESCRIPTION"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/organelles.json:1498
+msgid "ACTOMYOSIN_PROCESSES_DESCRIPTION"
 msgstr ""
 
 #: ../src/modding/NewModGUI.cs:245
@@ -2307,7 +2319,7 @@ msgstr ""
 msgid "DIFFICULTY_PRESET_VERY_EASY"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.cs:847
+#: ../src/gui_common/tooltip/ToolTipManager.cs:872
 msgid "DIGESTION_EFFICIENCY"
 msgstr ""
 
@@ -2315,7 +2327,7 @@ msgstr ""
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.cs:846
+#: ../src/gui_common/tooltip/ToolTipManager.cs:871
 msgid "DIGESTION_SPEED"
 msgstr ""
 
@@ -2755,19 +2767,19 @@ msgstr ""
 msgid "ENERGY_COST_MULTIPLIER_EXPLANATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3429
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3426
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3264
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3261
 msgid "ENERGY_IN_PATCH_SHORT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3440
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3437
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3433
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3430
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
@@ -3227,7 +3239,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3446
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3443
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -3375,7 +3387,7 @@ msgstr ""
 msgid "GAME_SYSTEMS_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3364
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3361
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1081
 msgid "GATHERED_ENERGY_TOOLTIP"
 msgstr ""
@@ -6446,7 +6458,7 @@ msgid "NO_AI"
 msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:665
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3461
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3458
 msgid "NO_DATA_TO_SHOW"
 msgstr ""
 
@@ -6518,8 +6530,8 @@ msgstr ""
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:25
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:35
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:45
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3275
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3287
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3272
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3284
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:154
 #: ../src/microbe_stage/MicrobeHUD.cs:879
 msgid "N_A"
@@ -6681,11 +6693,11 @@ msgstr ""
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1487
+#: ../simulation_parameters/microbe_stage/organelles.json:1544
 msgid "ORGANELLE_AXON"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1488
+#: ../simulation_parameters/microbe_stage/organelles.json:1545
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr ""
 
@@ -6701,11 +6713,11 @@ msgstr ""
 msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1530
+#: ../simulation_parameters/microbe_stage/organelles.json:1587
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1531
+#: ../simulation_parameters/microbe_stage/organelles.json:1588
 msgid "ORGANELLE_MYOFIBRIL_DESCRIPTION"
 msgstr ""
 
@@ -6757,7 +6769,7 @@ msgstr ""
 msgid "ORGANISM_STATISTICS_MICROBE"
 msgstr ""
 
-#: ../src/microbe_stage/OrganelleDefinition.cs:851
+#: ../src/microbe_stage/OrganelleDefinition.cs:854
 msgid "OR_UNLOCK_CONDITION"
 msgstr ""
 
@@ -7012,8 +7024,8 @@ msgstr ""
 #: ../src/gui_common/menus/OptionsMenu.cs:990
 #: ../src/gui_common/menus/OptionsMenu.cs:2074
 #: ../src/gui_common/menus/PlanetStatistics.cs:113
-#: ../src/gui_common/tooltip/ToolTipManager.cs:804
-#: ../src/gui_common/tooltip/ToolTipManager.cs:818
+#: ../src/gui_common/tooltip/ToolTipManager.cs:829
+#: ../src/gui_common/tooltip/ToolTipManager.cs:843
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:565
 #: ../src/microbe_stage/editor/MutationPointsBar.cs:101
 #: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:776
@@ -7211,7 +7223,7 @@ msgstr ""
 msgid "POPULATION_IN_PATCHES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3294
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3291
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr ""
 
@@ -7262,7 +7274,7 @@ msgstr ""
 msgid "PRESSURE_SHORT"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.cs:850
+#: ../src/gui_common/tooltip/ToolTipManager.cs:875
 msgid "PRESSURE_TOLERANCE"
 msgstr ""
 
@@ -7712,8 +7724,12 @@ msgstr ""
 msgid "ROTATION_COLON"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.cs:849
+#: ../src/gui_common/tooltip/ToolTipManager.cs:874
 msgid "ROTATION_FORCE"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.cs:878
+msgid "ROTATION_INCREASE"
 msgstr ""
 
 #: ../src/general/world_effects/patch_events/RunoffEvent.cs:216
@@ -8463,6 +8479,10 @@ msgstr ""
 msgid "SPEED_COLON"
 msgstr ""
 
+#: ../src/gui_common/tooltip/ToolTipManager.cs:877
+msgid "SPEED_INCREASE"
+msgstr ""
+
 #: ../src/microbe_stage/HUDBottomBar.tscn:132
 msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr ""
@@ -8615,7 +8635,7 @@ msgstr ""
 msgid "STOP"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.cs:845
+#: ../src/gui_common/tooltip/ToolTipManager.cs:870
 msgid "STORAGE"
 msgstr ""
 
@@ -8871,7 +8891,7 @@ msgstr ""
 msgid "TEMPERATURE_SHORT"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.cs:851
+#: ../src/gui_common/tooltip/ToolTipManager.cs:876
 msgid "TEMPERATURE_TOLERANCE_RANGE"
 msgstr ""
 
@@ -9057,7 +9077,7 @@ msgstr ""
 msgid "THRIVIN_ACHIEVEMENT"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.cs:848
+#: ../src/gui_common/tooltip/ToolTipManager.cs:873
 msgid "THRUST_FORCE"
 msgstr ""
 
@@ -9938,8 +9958,8 @@ msgstr ""
 
 #: ../src/gui_common/CompoundAmount.cs:311
 #: ../src/gui_common/menus/PlanetStatistics.cs:114
-#: ../src/gui_common/tooltip/ToolTipManager.cs:775
-#: ../src/gui_common/tooltip/ToolTipManager.cs:790
+#: ../src/gui_common/tooltip/ToolTipManager.cs:800
+#: ../src/gui_common/tooltip/ToolTipManager.cs:815
 #: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:773
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:513
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:589

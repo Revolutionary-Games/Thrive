@@ -655,6 +655,15 @@ public partial class ToolTipManager : CanvasLayer
                 "res://assets/textures/gui/bevel/RotationIcon.png", "rotationForce");
         }
 
+        if (organelle.Components.Actomyosin != null)
+        {
+            tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
+                "res://assets/textures/gui/bevel/SpeedIcon.png", "speed");
+
+            tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
+                "res://assets/textures/gui/bevel/RotationIcon.png", "rotation");
+        }
+
         if (organelle.Components.Lysosome != null)
         {
             tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
@@ -762,6 +771,24 @@ public partial class ToolTipManager : CanvasLayer
             modifierInfo.ModifierValue = "+" + Constants.CILIA_ROTATION_FORCE_DISPLAY;
         }
 
+        modifierInfo = selectionMenuTooltip.GetModifierInfo("speed");
+
+        if (modifierInfo != null)
+        {
+            modifierInfo.DisplayName = "SPEED_INCREASE";
+            modifierInfo.ModifierValue = "+" + Localization.Translate("PERCENTAGE_VALUE")
+                .FormatSafe(Math.Round(Constants.ACTOMYOSIN_MOVEMENT_BUFF_PER * 100, 1));
+        }
+
+        modifierInfo = selectionMenuTooltip.GetModifierInfo("rotation");
+
+        if (modifierInfo != null)
+        {
+            modifierInfo.DisplayName = "ROTATION_INCREASE";
+            modifierInfo.ModifierValue = "+" + Localization.Translate("PERCENTAGE_VALUE")
+                .FormatSafe(Math.Round(Constants.ACTOMYOSIN_ROTATION_BUFF_PER * 100, 1));
+        }
+
         modifierInfo = selectionMenuTooltip.GetModifierInfo("temperatureTolerance");
 
         if (modifierInfo != null)
@@ -849,6 +876,8 @@ public partial class ToolTipManager : CanvasLayer
         Localization.Translate("ROTATION_FORCE");
         Localization.Translate("PRESSURE_TOLERANCE");
         Localization.Translate("TEMPERATURE_TOLERANCE_RANGE");
+        Localization.Translate("SPEED_INCREASE");
+        Localization.Translate("ROTATION_INCREASE");
     }
 
     private void UpdateAutoScrollingOffset(double delta)
