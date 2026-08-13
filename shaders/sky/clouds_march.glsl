@@ -301,13 +301,13 @@ vec4 ComputeClouds(ivec2 px) {
 
     float lenA = max(a1 - a0, 0.0);
     float lenB = max(b1 - b0, 0.0);
-    float total_len = lenA + lenB;
-    if (total_len <= 0.0)
+    float totalLength = lenA + lenB;
+    if (totalLength <= 0.0)
         return NO_CLOUD;
 
-    float dtBase = max(gThickness / float(baseSteps), total_len / float(maxIter));
+    float dtBase = max(gThickness / float(baseSteps), totalLength / float(maxIter));
 
-    int iterA = max(int(float(maxIter) * (lenA / total_len)), 1);
+    int iterA = max(int(float(maxIter) * (lenA / totalLength)), 1);
     int iterB = max(maxIter - iterA, 1);
 
     MarchSegment(a0, a1, dtBase, iterA);
