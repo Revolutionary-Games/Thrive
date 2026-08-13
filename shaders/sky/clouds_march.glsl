@@ -96,7 +96,7 @@ float HenyeyGreenstein(float cosAngle, float g) {
 // Dual-lobe: forward scatter for silverlining.
 float DualLobe(float cosAngle, float g) {
     return mix(HenyeyGreenstein(cosAngle, g),
-               HenyeyGreenstein(cosAngle, -g * 0.25),
+               HenyeyGreenstein(cosAngle, -g * PHASE_BACK_G),
                PHASE_BACK_MIX);
 }
 
@@ -136,8 +136,8 @@ float SampleDensity(vec3 rel, float shellFrac, bool cheap) {
 
     if (!cheap) {
         vec4 detail = texture(baseNoise, rel * (DETAIL_FREQ / tile));
-        float detail_fbm = detail.g * 0.6098 + detail.b * 0.2439 + detail.a * 0.1463;
-        float erosion = detail_fbm * (1.0 - shellFrac);
+        float detailFbm = detail.g * 0.6098 + detail.b * 0.2439 + detail.a * 0.1463;
+        float erosion = detailFbm * (1.0 - shellFrac);
         density = clamp(Remap(density, erosion * 0.2, 1.0, 0.0, 1.0), 0.0, 1.0);
     }
 
@@ -235,7 +235,7 @@ void MarchSegment(float segStart, float segEnd, float dtBase, int maxIter) {
     }
 }
 
-vec4 compute_clouds(ivec2 px) {
+vec4 ComputeClouds(ivec2 px) {
     const vec4 NO_CLOUD = vec4(0.0, 0.0, 0.0, 1.0);
 
     vec2 uv = (vec2(px) + 0.5) * p.marchSize.zw;
@@ -322,6 +322,6 @@ void main() {
     if (px.x >= int(p.marchSize.x) || px.y >= int(p.marchSize.y))
         return;
 
-    imageStore(cloudTarget, px, compute_clouds(px));
+    imageStore(cloudTarget, px, ComputeClouds(px));
 }
 

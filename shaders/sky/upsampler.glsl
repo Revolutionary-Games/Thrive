@@ -55,8 +55,8 @@ void main() {
 
     vec4 sum = vec4(0.0);
     float weightSum = 0.0;
-    float best_weight = -1.0;
-    vec4 best_sample = vec4(0.0, 0.0, 0.0, 1.0);
+    float bestWeight = -1.0;
+    vec4 bestSample = vec4(0.0, 0.0, 0.0, 1.0);
 
     for (int i = 0; i < 4; i++) {
         ivec2 hp = clamp(h0 + offsets[i], ivec2(0), marchMax);
@@ -65,8 +65,8 @@ void main() {
         ivec2 src = ivec2((vec2(hp) + 0.5) * p.marchSize.zw * p.screenSize.xy);
         src = clamp(src, ivec2(0), fullMax);
 
-        float sample_key = DepthKey(texelFetch(depthSampler, src, 0).r);
-        float dz = abs(sample_key - key) / max(key, 1e-4);
+        float sampleKey = DepthKey(texelFetch(depthSampler, src, 0).r);
+        float dz = abs(sampleKey - key) / max(key, 1e-4);
         float w = bilinear[i] / (1e-3 + dz * dz * DEPTH_REJECT);
 
         vec4 c = texelFetch(cloudHalf, hp, 0);
@@ -74,14 +74,14 @@ void main() {
         sum += c * w;
         weightSum += w;
 
-        if (w > best_weight) {
-            best_weight = w;
-            best_sample = c;
+        if (w > bestWeight) {
+            bestWeight = w;
+            bestSample = c;
         }
     }
 
     // If every neighbour was rejected, fall back to the single closest match rather than producing a hole.
-    vec4 cloud = (weightSum > 1e-5) ? (sum / weightSum) : best_sample;
+    vec4 cloud = (weightSum > 1e-5) ? (sum / weightSum) : bestSample;
 
     vec3 scene = imageLoad(colorImage, px).rgb;
 
