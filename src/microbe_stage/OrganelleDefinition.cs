@@ -476,6 +476,7 @@ public class OrganelleDefinition : RegistryType, IPlayerReadableName
     ///   Returns true when this has the specified component factory.
     ///   For example <see cref="MovementComponentFactory"/>.
     /// </summary>
+    /// <typeparam name="T">The component factory type.</typeparam>
     /// <remarks>
     ///   <para>
     ///     This checks for the *factory* class. For performance reasons a few components are available as direct
