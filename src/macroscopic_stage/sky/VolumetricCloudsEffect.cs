@@ -80,6 +80,8 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     private Rid noiseTexture;
     private Rid paramUbo;
 
+    private RDUniform[] uniformPool = new RDUniform[8];
+
     private byte[] pushConstantsBuffer = new byte[PushConstantsBufferSize];
     private byte[] uniformParamsBuffer = new byte[UniformParamsBufferSize];
 
@@ -103,6 +105,9 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         EffectCallbackType = EffectCallbackTypeEnum.PostTransparent;
         AccessResolvedColor = true;
         AccessResolvedDepth = true;
+
+        for (int i = 0; i < uniformPool.Length; ++i)
+            uniformPool[i] = new RDUniform();
     }
 
     [ExportToolButton("Reload Pipeline")]
@@ -215,20 +220,24 @@ public partial class VolumetricCloudsEffect : CompositorEffect
                 RenderingDevice.BarrierMask.Compute);
 
             // Pass 1: ray marcher.
+            // Uniforms 0-3 bindings 0-3
             marchUniforms.Clear();
-            marchUniforms.Add(RenderingUtils.MakeImage(0, cloudTexture));
-            marchUniforms.Add(RenderingUtils.MakeSampled(1, depthSampler, depth));
-            marchUniforms.Add(RenderingUtils.MakeSampled(2, noiseSampler, noiseTexture));
-            marchUniforms.Add(RenderingUtils.MakeUniformBuffer(3, paramUbo));
+            RenderingUtils.UpdateImage(uniformPool[0], 0, cloudTexture);
+            RenderingUtils.UpdateSampled(uniformPool[1], 1, depthSampler, depth);
+            RenderingUtils.UpdateSampled(uniformPool[2], 2, noiseSampler, noiseTexture);
+            RenderingUtils.UpdateUniformBuffer(uniformPool[3], 3, paramUbo);
+            marchUniforms.AddRange(uniformPool.AsSpan(0, 4));
 
             Rid marchSet = UniformSetCacheRD.GetCache(rayMarcherShader, 0, marchUniforms);
 
-            // Pass 2: bilateral resolve and composite
+            // Pass 2: bilateral resolve and composite. Upsample pass.
+            // Uniforms 4-7 bindings 0-3
             upsampleUniforms.Clear();
-            upsampleUniforms.Add(RenderingUtils.MakeImage(0, color));
-            upsampleUniforms.Add(RenderingUtils.MakeSampled(1, depthSampler, depth));
-            upsampleUniforms.Add(RenderingUtils.MakeSampled(2, depthSampler, cloudTexture));
-            upsampleUniforms.Add(RenderingUtils.MakeUniformBuffer(3, paramUbo));
+            RenderingUtils.UpdateImage(uniformPool[4], 0, color);
+            RenderingUtils.UpdateSampled(uniformPool[5], 1, depthSampler, depth);
+            RenderingUtils.UpdateSampled(uniformPool[6], 2, depthSampler, cloudTexture);
+            RenderingUtils.UpdateUniformBuffer(uniformPool[7], 3, paramUbo);
+            upsampleUniforms.AddRange(uniformPool.AsSpan(4, 4));
 
             Rid upsampleSet = UniformSetCacheRD.GetCache(upsamplerShader, 0, upsampleUniforms);
 

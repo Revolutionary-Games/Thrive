@@ -9,46 +9,37 @@ using Godot;
 public static class RenderingUtils
 {
     /// <summary>
-    ///   Creates an image uniform given its shader binding and a texture RID.
+    ///   Updates an image uniform given its shader binding and a texture RID.
     /// </summary>
-    public static RDUniform MakeImage(int binding, Rid texture)
+    public static void UpdateImage(RDUniform uniform, int binding, Rid texture)
     {
-        var uniform = new RDUniform
-        {
-            UniformType = RenderingDevice.UniformType.Image,
-            Binding = binding,
-        };
+        uniform.ClearIds();
+        uniform.UniformType = RenderingDevice.UniformType.Image;
+        uniform.Binding = binding;
         uniform.AddId(texture);
-        return uniform;
     }
 
     /// <summary>
-    ///   Creates a sampler uniform given its shader binding, a sampler definition, and a texture RID.
+    ///   Updates a sampler uniform given its shader binding, a sampler definition, and a texture RID.
     /// </summary>
-    public static RDUniform MakeSampled(int binding, Rid sampler, Rid texture)
+    public static void UpdateSampled(RDUniform uniform, int binding, Rid sampler, Rid texture)
     {
-        var uniform = new RDUniform
-        {
-            UniformType = RenderingDevice.UniformType.SamplerWithTexture,
-            Binding = binding,
-        };
+        uniform.ClearIds();
+        uniform.UniformType = RenderingDevice.UniformType.SamplerWithTexture;
+        uniform.Binding = binding;
         uniform.AddId(sampler);
         uniform.AddId(texture);
-        return uniform;
     }
 
     /// <summary>
-    ///   Creates a UBO given its shader binding and its buffer RID.
+    ///   Updates a UBO given its shader binding and its buffer RID.
     /// </summary>
-    public static RDUniform MakeUniformBuffer(int binding, Rid buffer)
+    public static void UpdateUniformBuffer(RDUniform uniform, int binding, Rid buffer)
     {
-        var uniform = new RDUniform
-        {
-            UniformType = RenderingDevice.UniformType.UniformBuffer,
-            Binding = binding,
-        };
+        uniform.ClearIds();
+        uniform.UniformType = RenderingDevice.UniformType.UniformBuffer;
+        uniform.Binding = binding;
         uniform.AddId(buffer);
-        return uniform;
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
