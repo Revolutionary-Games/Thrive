@@ -1063,7 +1063,7 @@ public static class MicrobeColonyHelpers
                 var memberRotation = MicrobeInternalCalculations
                         .CalculateRotationSpeed(memberOrganelleContainer.Organelles!.Organelles,
                             colonyMember.Get<SpecializationFactor>().TotalSpecializationBonus)
-                    * (1 + 0.007f * distanceSquared);
+                    * (1 + 0.005f * distanceSquared);
 
                 colonyRotation += memberRotation;
                 actomyosinCount += memberOrganelleContainer.CalculateEffectiveActomyosinCount();
