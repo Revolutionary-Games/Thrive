@@ -116,7 +116,7 @@ float MultiScatter(float opticalDepth, float cosAngle) {
 }
 
 float HeightGradient(float shellFrac) {
-    return smoothstep(0.0, 0.1, shellFrac) * smoothstep(1.0, 0.6, shellFrac);
+    return smoothstep(0.0, 0.1, shellFrac) * (1.0 - smoothstep(0.6, 1.0, shellFrac));
 }
 
 // ---------------------------------------------------------------------------
