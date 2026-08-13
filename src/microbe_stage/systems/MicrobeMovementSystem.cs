@@ -437,6 +437,8 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
 
         CellBodyPlanInternalCalculations.ModifyCellSpeedWithColony(ref force, microbeColony.ColonyMembers.Length);
 
+        float actomyosinCount = 0;
+
         // Colony members have their movement update before organelle update, so that the movement organelles
         // see the direction.
         // The colony master should be already updated as the movement direction is either set by the
@@ -469,6 +471,13 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
                         delta) * Constants.CELL_COLONY_MOVEMENT_FORCE_MULTIPLIER;
                 }
             }
+
+            actomyosinCount += organelles.CalculateEffectiveActomyosinCount();
+        }
+
+        if (actomyosinCount > 0)
+        {
+            force *= 1 + Constants.ACTOMYOSIN_MOVEMENT_BUFF_PER * actomyosinCount;
         }
     }
 }
