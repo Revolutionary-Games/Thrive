@@ -61,8 +61,17 @@ public class ActomyosinComponent : IOrganelleComponent
         ref var control = ref microbeEntity.Get<MicrobeControl>();
 
         // Add together movement and rotation as actomyosin helps with both for the animation speed
-        targetSpeed = Math.Clamp(rotationSpeed + control.MovementDirection.Length(),
-            Constants.ACTOMYOSIN_MIN_ANIMATION_SPEED, Constants.ACTOMYOSIN_MAX_ANIMATION_SPEED);
+        var rawValue = rotationSpeed + control.MovementDirection.Length() * 2;
+
+        if (rawValue > MathUtils.EPSILON)
+        {
+            targetSpeed = Math.Clamp(rawValue,
+                Constants.ACTOMYOSIN_MIN_ANIMATION_SPEED, Constants.ACTOMYOSIN_MAX_ANIMATION_SPEED);
+        }
+        else
+        {
+            targetSpeed = Constants.ACTOMYOSIN_DEFAULT_ANIMATION_SPEED;
+        }
 
         SetSpeedFactor(targetSpeed);
 
