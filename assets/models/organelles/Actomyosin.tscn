@@ -20,7 +20,7 @@ shader_parameter/jiggleAmount = 0.0005
 
 [node name="Actomyosin2" unique_id=780267512 instance=ExtResource("1_xaqi1")]
 
-[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(365788895) index="0" unique_id=152652196]
+[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(1676176426) index="0" unique_id=598594214]
 bones/5/position = Vector3(1.202675, 0.36857343, -0.6087159)
 bones/10/position = Vector3(-0.03846008, 0.368123, -0.52707416)
 bones/11/position = Vector3(0.17313097, 0.37140617, -0.8143542)
@@ -29,6 +29,9 @@ bones/13/position = Vector3(-0.4323306, 0.36857343, 0.36147907)
 bones/14/position = Vector3(0.61090446, 0.36857343, 0.4895776)
 bones/15/position = Vector3(-0.7858211, 0.36857343, 0.30022633)
 
-[node name="Actomyosin" parent="Armature/Skeleton3D" index="0" unique_id=930539216]
+[node name="Actomyosin" parent="Armature/Skeleton3D" index="0" unique_id=192001737]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.39853227, 0, 0.68647254)
 material_override = SubResource("ShaderMaterial_teu6q")
+
+[node name="AnimationPlayer" parent="." index="1" unique_id=1815631966]
+autoplay = &"Contract"

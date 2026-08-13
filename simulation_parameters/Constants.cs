@@ -343,6 +343,15 @@ public static class Constants
     public const float CILIA_PULLING_FORCE_FALLOFF_FACTOR = 0.05f;
     public const float CILIA_CURRENT_GENERATION_ANIMATION_SPEED = 5.0f;
 
+    public const float ACTOMYOSIN_DEFAULT_ANIMATION_SPEED = 0.01f;
+    public const float ACTOMYOSIN_SPEED_SAMPLE_INTERVAL = 0.05f;
+    public const float ACTOMYOSIN_ROTATION_ANIMATION_SPEED_MULTIPLIER = 7.0f;
+    public const float ACTOMYOSIN_MIN_ANIMATION_SPEED = ACTOMYOSIN_DEFAULT_ANIMATION_SPEED;
+    public const float ACTOMYOSIN_MAX_ANIMATION_SPEED = 3;
+    public const float EFFECTIVE_ACTOMYOSIN_MULTIPLIER = 0.05f;
+    public const float ACTOMYOSIN_ROTATION_BUFF_PER = 0.15f;
+    public const float ACTOMYOSIN_MOVEMENT_BUFF_PER = 0.25f;
+
     public const int MICROBE_SPAWN_RADIUS = 350;
 
     public const int MICROBE_DESPAWN_RADIUS_SQUARED = (MICROBE_SPAWN_RADIUS + DESPAWN_RADIUS_OFFSET) *

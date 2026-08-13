@@ -317,6 +317,8 @@ public class OrganelleDefinition : RegistryType, IPlayerReadableName
 
     public bool HasChemoreceptorComponent { get; private set; }
 
+    public bool HasActomyosinComponent { get; private set; }
+
     public bool HasNucleusFeature { get; private set; }
 
     /// <summary>
@@ -892,6 +894,7 @@ public class OrganelleDefinition : RegistryType, IPlayerReadableName
         HasSlimeJetComponent = HasComponentFactory<SlimeJetComponentFactory>();
         HasChemoreceptorComponent = HasComponentFactory<ChemoreceptorComponentFactory>();
         HasLysosomeComponent = HasComponentFactory<LysosomeComponentFactory>();
+        HasActomyosinComponent = HasComponentFactory<ActomyosinComponentFactory>();
 
         HasBindingFeature = HasFeatureTag(OrganelleFeatureTag.BindingAgent);
         HasSignalingFeature = HasFeatureTag(OrganelleFeatureTag.SignalingAgent);
@@ -1001,6 +1004,7 @@ public class OrganelleDefinition : RegistryType, IPlayerReadableName
         public CiliaComponentFactory? Cilia;
         public LysosomeComponentFactory? Lysosome;
         public BioluminescenceComponentFactory? Bioluminescence;
+        public ActomyosinComponentFactory? Actomyosin;
 
         private readonly List<IOrganelleComponentFactory> allFactories = new();
 
@@ -1074,6 +1078,13 @@ public class OrganelleDefinition : RegistryType, IPlayerReadableName
             {
                 Bioluminescence.Check(name);
                 allFactories.Add(Bioluminescence);
+                ++count;
+            }
+
+            if (Actomyosin != null)
+            {
+                Actomyosin.Check(name);
+                allFactories.Add(Actomyosin);
                 ++count;
             }
         }
