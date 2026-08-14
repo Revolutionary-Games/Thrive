@@ -307,8 +307,8 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
         {
             try
             {
-                CalculateColonyImpactOnMovementForce(ref entity.Get<MicrobeColony>(), control.MovementDirection,
-                    cellProperties.IsBacteria, energyCostMultiplier, delta, ref force);
+                CalculateColonyImpactOnMovementForce(ref entity.Get<MicrobeColony>(), ref organelles,
+                    control.MovementDirection, cellProperties.IsBacteria, energyCostMultiplier, delta, ref force);
             }
             catch (Exception e)
             {
@@ -429,7 +429,8 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
         return movementVector;
     }
 
-    private void CalculateColonyImpactOnMovementForce(ref MicrobeColony microbeColony, Vector3 movementDirection,
+    private void CalculateColonyImpactOnMovementForce(ref MicrobeColony microbeColony,
+        ref OrganelleContainer leaderOrganelles, Vector3 movementDirection,
         bool isBacteria, float energyCostMultiplier, float delta, ref float force)
     {
         // If this method is updated, the CalculateSpeed() method in CellBodyPlanInternalCalculations.cs
@@ -437,7 +438,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
 
         CellBodyPlanInternalCalculations.ModifyCellSpeedWithColony(ref force, microbeColony.ColonyMembers.Length);
 
-        float actomyosinCount = 0;
+        float actomyosinCount = leaderOrganelles.CalculateEffectiveActomyosinCount();
 
         // Colony members have their movement update before organelle update, so that the movement organelles
         // see the direction.
