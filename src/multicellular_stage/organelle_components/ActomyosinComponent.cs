@@ -73,6 +73,12 @@ public class ActomyosinComponent : IOrganelleComponent
             targetSpeed = Constants.ACTOMYOSIN_DEFAULT_ANIMATION_SPEED;
         }
 
+        // If not in a colony / colony leader, the actomyosin does nothing
+        if (!microbeEntity.Has<MicrobeColony>() && !microbeEntity.Has<MicrobeColonyMember>())
+        {
+            targetSpeed = Constants.ACTOMYOSIN_DEFAULT_ANIMATION_SPEED;
+        }
+
         SetSpeedFactor(targetSpeed);
 
         previousCellRotation = currentCellRotation;
