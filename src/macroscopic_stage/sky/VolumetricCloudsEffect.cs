@@ -344,6 +344,29 @@ public partial class VolumetricCloudsEffect : CompositorEffect
             spirv;
     }
 
+    /// <summary>
+    ///   This is used by the editor tool and the cloud command to generate and save a new noise profile resource.
+    /// </summary>
+    private static bool GenerateNoiseProfileResource(int seed)
+    {
+        GD.Print("Baking a new Noise Profile Resource. This may take a few seconds...");
+
+        var texture = NoiseUtils.BakePerlinWorleyChunkParallel(128, seed);
+
+        const string dir = SkyResourcesDir;
+        if (!DirAccess.DirExistsAbsolute(ProjectSettings.GlobalizePath(dir)))
+            DirAccess.MakeDirRecursiveAbsolute(ProjectSettings.GlobalizePath(dir));
+
+        var error = ResourceSaver.Save(texture, dir + NoiseProfileFileName);
+
+        if (error == Error.Ok)
+            return true;
+
+        GD.PrintErr(error);
+
+        return false;
+    }
+
     [Command("clouds", false, "Utility command for cloud effect debugging.")]
     private static bool CloudsCommand(CommandContext context, CloudCommandParameters parameter1)
     {
@@ -385,7 +408,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
                     return false;
                 }
 
-                activeInstance.GenerateNoiseProfileResource();
+                activeInstance.GenerateNoiseProfileAndReload();
                 return true;
             default:
                 return false;
@@ -491,10 +514,8 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         }
         else
         {
-            GD.PrintErr("No noise profile resource has been found. The resource will be baked now on runtime," +
-                "and it may take several seconds. This error must be corrected.");
-
-            noiseProfile = NoiseUtils.BakePerlinWorleyChunkParallel(128, Seed);
+            throw new Exception("No noise profile resource asset has been found. Please generate it with the command" +
+                " 'cloud GenerateNoiseProfile' and reload the current scene.");
         }
     }
 
@@ -568,31 +589,9 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         }
     }
 
-    /// <summary>
-    ///   This is used by the editor tool to generate a new noise profile resource.
-    /// </summary>
-    private void GenerateNoiseProfileResource()
+    private void GenerateNoiseProfileAndReload()
     {
-        GD.Print("Baking a new Noise Profile Resource. This may take a few seconds...");
-
-        var texture = NoiseUtils.BakePerlinWorleyChunkParallel(128, Seed);
-
-        const string dir = SkyResourcesDir;
-        if (!DirAccess.DirExistsAbsolute(ProjectSettings.GlobalizePath(dir)))
-            DirAccess.MakeDirRecursiveAbsolute(ProjectSettings.GlobalizePath(dir));
-
-        var error = ResourceSaver.Save(texture, dir + NoiseProfileFileName);
-
-        if (error != Error.Ok)
-        {
-            GD.PrintErr(error);
-        }
-        else
-        {
-            // Here we rebuild the pipeline to make sure everything runs on the render thread.
+        if (GenerateNoiseProfileResource(Seed))
             Reload();
-
-            GD.Print("Noise Profile Resource baking done.");
-        }
     }
 }
