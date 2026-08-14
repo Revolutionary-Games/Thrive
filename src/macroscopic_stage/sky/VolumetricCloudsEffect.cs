@@ -1,4 +1,4 @@
-﻿// #define VOLUMETRIC_CLOUDS_EFFECT_TOOL_ENABLE
+﻿// #define TOOLS_ENABLED
 
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using Godot.Collections;
 /// <summary>
 ///   Volumetric Clouds Effect for sky rendering.
 /// </summary>
-#if VOLUMETRIC_CLOUDS_EFFECT_TOOL_ENABLE
+#if TOOLS_ENABLED
 [Tool]
 #endif
 [GlobalClass]
@@ -131,7 +131,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
             uniformPool[i] = new RDUniform();
     }
 
-#if VOLUMETRIC_CLOUDS_EFFECT_TOOL_ENABLE
+#if TOOLS_ENABLED
     [ExportToolButton("Reload Pipeline")]
     private Callable ReloadPipelineCallable => new(this, MethodName.Reload);
 
