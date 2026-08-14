@@ -145,7 +145,10 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     private enum CloudCommandParameters
     {
         Reload,
-        Profile,
+        ProfileEnable,
+        ProfileDisable,
+        ProfilePrint,
+        GenerateNoiseProfile,
     }
 
     public override void _Notification(int what)
@@ -341,26 +344,50 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     }
 
     [Command("clouds", false, "Utility command for cloud effect debugging.")]
-    private static void CloudsCommand(CommandContext context, CloudCommandParameters parameter1, int parameter2 = 0)
+    private static bool CloudsCommand(CommandContext context, CloudCommandParameters parameter1)
     {
         if (activeInstance is null)
         {
             context.Print("Current instance is null. Clouds aren't currently being rendered.");
 
-            return;
+            return false;
         }
 
         switch (parameter1)
         {
             case CloudCommandParameters.Reload:
                 activeInstance.Reload();
-                return;
-            case CloudCommandParameters.Profile:
-                activeInstance.ProfileGpu = parameter2 >= 0;
+                return true;
+            case CloudCommandParameters.ProfileEnable:
+                activeInstance.ProfileGpu = true;
+                return true;
+            case CloudCommandParameters.ProfileDisable:
+                activeInstance.ProfileGpu = false;
+                return true;
+            case CloudCommandParameters.ProfilePrint:
+                if (!activeInstance.ProfileGpu)
+                {
+                    context.PrintErr("Not currently profiling. Please execute 'clouds ProfileEnable' first.");
+
+                    return false;
+                }
+
                 activeInstance.ReportTimestamps();
-                return;
+                return true;
+            case CloudCommandParameters.GenerateNoiseProfile:
+                // It's pointless to enable this in release mode, as the asset should be already baked then and the
+                // res:// folder is readonly anyway.
+                if (OS.HasFeature("release"))
+                {
+                    context.PrintErr("This command is disabled in release mode.");
+
+                    return false;
+                }
+
+                activeInstance.GenerateNoiseProfileResource();
+                return true;
             default:
-                return;
+                return false;
         }
     }
 
@@ -545,7 +572,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     /// </summary>
     private void GenerateNoiseProfileResource()
     {
-        GD.Print("Baking a new Noise Profile Resource...");
+        GD.Print("Baking a new Noise Profile Resource. This may take a few seconds...");
 
         var texture = NoiseUtils.BakePerlinWorleyChunkParallel(128, Seed);
 
