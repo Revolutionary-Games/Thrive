@@ -262,6 +262,11 @@ public static class Constants
     public const float FLAGELLA_MIN_UPGRADE_VISUAL_LENGTH = 0.80f;
 
     /// <summary>
+    ///   ATP cost per actomyosin organelle while a colony is moving.
+    /// </summary>
+    public const float ACTOMYOSIN_ENERGY_COST = 12.0f;
+
+    /// <summary>
     ///   As eukaryotes are immediately 50% larger, they get a movement force increase to offset that
     /// </summary>
     public const float EUKARYOTIC_MOVEMENT_FORCE_MULTIPLIER = 2.5f;

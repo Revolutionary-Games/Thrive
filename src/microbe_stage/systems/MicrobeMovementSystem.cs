@@ -458,10 +458,10 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
 
             // Flagella in colony members
             ref var organelles = ref colonyMember.Get<OrganelleContainer>();
+            var compounds = colonyMember.Get<CompoundStorage>().Compounds;
 
             if (organelles.ThrustComponents != null)
             {
-                var compounds = colonyMember.Get<CompoundStorage>().Compounds;
                 var relativeRotation = colonyMember.Get<AttachedToEntity>().RelativeRotation;
 
                 foreach (var flagellum in organelles.ThrustComponents)
@@ -472,7 +472,16 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
                 }
             }
 
-            actomyosinCount += organelles.CalculateEffectiveActomyosinCount();
+            if (organelles.ActomyosinComponents is { Count: > 0 })
+            {
+                var actomyosinCost = Constants.ACTOMYOSIN_ENERGY_COST * organelles.ActomyosinComponents.Count *
+                    delta * energyCostMultiplier;
+                if (compounds.TakeCompound(Compound.ATP, actomyosinCost) >= 0.8f * actomyosinCost)
+                {
+                    // Only "activate" actomyosin if there was ATP
+                    actomyosinCount += organelles.CalculateEffectiveActomyosinCount();
+                }
+            }
         }
 
         if (actomyosinCount > 0)
