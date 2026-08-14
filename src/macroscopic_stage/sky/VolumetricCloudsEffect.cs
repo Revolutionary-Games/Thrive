@@ -41,13 +41,13 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     [Export]
     public float DensityMultiplier = 1.0f;
 
-    [Export]
+    [Export(PropertyHint.Range, "0.1,1.0")]
     public float Coverage = 0.3f;
 
-    [Export]
+    [Export(PropertyHint.Range, "1,256")]
     public int MarchSteps = 64;
 
-    [Export]
+    [Export(PropertyHint.Range, "1,10")]
     public int LightSteps = 6;
 
     [Export]
