@@ -166,6 +166,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         var rids = new[]
         {
             rayMarcherPipeline, rayMarcherShader, upsamplerPipeline, upsamplerShader, depthSampler, noiseSampler,
+            paramUbo,
         };
 
         RenderingServer.CallOnRenderThread(Callable.From(() =>
