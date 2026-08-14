@@ -69,7 +69,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     private const string RaymarcherShaderFileName = "res://shaders/sky/clouds_march.glsl";
     private const string UpsamplerShaderFileName = "res://shaders/sky/upsampler.glsl";
 
-    private static VolumetricCloudsEffect? activeInstance = null;
+    private static VolumetricCloudsEffect? activeInstance;
     private static Queue<VolumetricCloudsEffect> enqueuedInstances = [];
 
     private readonly StringName cloudContextName = "volumetric_clouds";
@@ -581,7 +581,8 @@ public partial class VolumetricCloudsEffect : CompositorEffect
             string name = renderingDevice.GetCapturedTimestampName(i);
             ulong gpuTime = renderingDevice.GetCapturedTimestampGpuTime(i);
 
-            if (previousName.StartsWith("clouds_"))
+            // Print only clouds timestamps and prevent printing clouds_end to clouds_march_begin in multi-view cases.
+            if (previousName.StartsWith("clouds_") && !name.StartsWith("clouds_march_begin"))
                 GD.Print($"{previousName} -> {name}: {gpuTime - previous}");
 
             previous = gpuTime;
