@@ -1720,9 +1720,14 @@ public static class Constants
     public const float MAX_SPECIES_NAME_LENGTH_PIXELS = 230.0f;
 
     /// <summary>
-    ///   Multiplier for cell editor actions in multicellular editor
+    ///   Multiplier for cell editor actions in the multicellular editor
     /// </summary>
     public const float MULTICELLULAR_EDITOR_COST_FACTOR = 0.5f;
+
+    /// <summary>
+    ///   Multiplier for mutation point costs after entering the multicellular editor through sexual reproduction
+    /// </summary>
+    public const float SEXUAL_REPRODUCTION_MP_COST_FACTOR = 0.8f;
 
     public const float MINIMUM_RUNNABLE_PROCESS_FRACTION = 0.00001f;
 
