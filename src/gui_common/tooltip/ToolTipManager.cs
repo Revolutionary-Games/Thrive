@@ -367,6 +367,7 @@ public partial class ToolTipManager : CanvasLayer
     /// <summary>
     ///   Generic version of <see cref="GetToolTip"/> method.
     /// </summary>
+    /// <typeparam name="T">Type of tooltip to retrieve</typeparam>
     public T? GetToolTip<T>(string name, string group = DEFAULT_GROUP_NAME)
         where T : ICustomToolTip
     {
@@ -376,6 +377,7 @@ public partial class ToolTipManager : CanvasLayer
     /// <summary>
     ///   Generic version of <see cref="GetToolTipIfExists"/> method.
     /// </summary>
+    /// <typeparam name="T">Type of tooltip to retrieve</typeparam>
     public T? GetToolTipIfExists<T>(string name, string group = DEFAULT_GROUP_NAME)
         where T : ICustomToolTip
     {
