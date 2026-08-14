@@ -1,4 +1,7 @@
-﻿using System;
+﻿// #define VOLUMETRIC_CLOUDS_EFFECT_TOOL_ENABLE
+
+using System;
+using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
 
@@ -66,7 +69,8 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     private const string RaymarcherShaderFileName = "res://shaders/sky/clouds_march.glsl";
     private const string UpsamplerShaderFileName = "res://shaders/sky/upsampler.glsl";
 
-    private static VolumetricCloudsEffect? currentInstance;
+    private static VolumetricCloudsEffect? activeInstance = null;
+    private static Queue<VolumetricCloudsEffect> enqueuedInstances = [];
 
     private readonly StringName cloudContextName = "volumetric_clouds";
     private readonly StringName cloudTextureName = "cloud_half";
@@ -102,16 +106,22 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     private volatile int state;
 
     private bool disposed;
+    private bool active;
 
     private Vector2I currentCloudSize = Vector2I.Zero;
     private uint currentCloudViews;
 
     public VolumetricCloudsEffect()
     {
-        if (currentInstance is not null)
-            throw new Exception("Tried to create more than one clouds effect to the current context.");
-
-        currentInstance = this;
+        if (activeInstance is not null)
+        {
+            enqueuedInstances.Enqueue(this);
+        }
+        else
+        {
+            activeInstance = this;
+            active = true;
+        }
 
         EffectCallbackType = EffectCallbackTypeEnum.PostTransparent;
         AccessResolvedColor = true;
@@ -142,6 +152,10 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     {
         if (what != NotificationPredelete)
             return;
+
+        activeInstance = enqueuedInstances.TryDequeue(out var instance) ? instance : null;
+        activeInstance?.active = true;
+
         if (renderingDevice is null)
             return;
 
@@ -163,8 +177,6 @@ public partial class VolumetricCloudsEffect : CompositorEffect
                     rd.FreeRid(rid);
             }
         }));
-
-        currentInstance = null;
     }
 
     public override void _RenderCallback(int effectCallbackType, RenderData renderData)
@@ -190,6 +202,9 @@ public partial class VolumetricCloudsEffect : CompositorEffect
             case 3:
                 break;
         }
+
+        if (!active)
+            return;
 
         if (renderingDevice is null || !rayMarcherPipeline.IsValid || !upsamplerPipeline.IsValid)
             return;
@@ -328,7 +343,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     [Command("clouds", false, "Utility command for cloud effect debugging.")]
     private static void CloudsCommand(CommandContext context, CloudCommandParameters parameter1, int parameter2 = 0)
     {
-        if (currentInstance is null)
+        if (activeInstance is null)
         {
             context.Print("Current instance is null. Clouds aren't currently being rendered.");
 
@@ -338,11 +353,11 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         switch (parameter1)
         {
             case CloudCommandParameters.Reload:
-                currentInstance.Reload();
+                activeInstance.Reload();
                 return;
             case CloudCommandParameters.Profile:
-                currentInstance.ProfileGpu = parameter2 >= 0;
-                currentInstance.ReportTimestamps();
+                activeInstance.ProfileGpu = parameter2 >= 0;
+                activeInstance.ReportTimestamps();
                 return;
             default:
                 return;
