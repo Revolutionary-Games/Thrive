@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-13 15:42+0300\n"
+"POT-Creation-Date: 2026-08-14 09:18+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1304,6 +1304,14 @@ msgstr ""
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr ""
 
+#: ../src/gui_common/tooltip/ToolTipManager.cs:880
+msgid "COLONY_ROTATION_INCREASE"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.cs:879
+msgid "COLONY_SPEED_INCREASE"
+msgstr ""
+
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:901
 msgid "COLOUR"
 msgstr ""
@@ -2319,7 +2327,7 @@ msgstr ""
 msgid "DIFFICULTY_PRESET_VERY_EASY"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.cs:872
+#: ../src/gui_common/tooltip/ToolTipManager.cs:874
 msgid "DIGESTION_EFFICIENCY"
 msgstr ""
 
@@ -2327,7 +2335,7 @@ msgstr ""
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.cs:871
+#: ../src/gui_common/tooltip/ToolTipManager.cs:873
 msgid "DIGESTION_SPEED"
 msgstr ""
 
@@ -6693,11 +6701,11 @@ msgstr ""
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1544
+#: ../simulation_parameters/microbe_stage/organelles.json:1545
 msgid "ORGANELLE_AXON"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1545
+#: ../simulation_parameters/microbe_stage/organelles.json:1546
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr ""
 
@@ -6713,11 +6721,11 @@ msgstr ""
 msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1587
+#: ../simulation_parameters/microbe_stage/organelles.json:1588
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1588
+#: ../simulation_parameters/microbe_stage/organelles.json:1589
 msgid "ORGANELLE_MYOFIBRIL_DESCRIPTION"
 msgstr ""
 
@@ -7024,8 +7032,10 @@ msgstr ""
 #: ../src/gui_common/menus/OptionsMenu.cs:990
 #: ../src/gui_common/menus/OptionsMenu.cs:2074
 #: ../src/gui_common/menus/PlanetStatistics.cs:113
-#: ../src/gui_common/tooltip/ToolTipManager.cs:829
-#: ../src/gui_common/tooltip/ToolTipManager.cs:843
+#: ../src/gui_common/tooltip/ToolTipManager.cs:779
+#: ../src/gui_common/tooltip/ToolTipManager.cs:788
+#: ../src/gui_common/tooltip/ToolTipManager.cs:831
+#: ../src/gui_common/tooltip/ToolTipManager.cs:845
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:565
 #: ../src/microbe_stage/editor/MutationPointsBar.cs:101
 #: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:776
@@ -7274,7 +7284,7 @@ msgstr ""
 msgid "PRESSURE_SHORT"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.cs:875
+#: ../src/gui_common/tooltip/ToolTipManager.cs:877
 msgid "PRESSURE_TOLERANCE"
 msgstr ""
 
@@ -7724,12 +7734,8 @@ msgstr ""
 msgid "ROTATION_COLON"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.cs:874
+#: ../src/gui_common/tooltip/ToolTipManager.cs:876
 msgid "ROTATION_FORCE"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.cs:878
-msgid "ROTATION_INCREASE"
 msgstr ""
 
 #: ../src/general/world_effects/patch_events/RunoffEvent.cs:216
@@ -8479,10 +8485,6 @@ msgstr ""
 msgid "SPEED_COLON"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.cs:877
-msgid "SPEED_INCREASE"
-msgstr ""
-
 #: ../src/microbe_stage/HUDBottomBar.tscn:132
 msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr ""
@@ -8635,7 +8637,7 @@ msgstr ""
 msgid "STOP"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.cs:870
+#: ../src/gui_common/tooltip/ToolTipManager.cs:872
 msgid "STORAGE"
 msgstr ""
 
@@ -8891,7 +8893,7 @@ msgstr ""
 msgid "TEMPERATURE_SHORT"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.cs:876
+#: ../src/gui_common/tooltip/ToolTipManager.cs:878
 msgid "TEMPERATURE_TOLERANCE_RANGE"
 msgstr ""
 
@@ -9077,7 +9079,7 @@ msgstr ""
 msgid "THRIVIN_ACHIEVEMENT"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.cs:873
+#: ../src/gui_common/tooltip/ToolTipManager.cs:875
 msgid "THRUST_FORCE"
 msgstr ""
 
@@ -9958,8 +9960,8 @@ msgstr ""
 
 #: ../src/gui_common/CompoundAmount.cs:311
 #: ../src/gui_common/menus/PlanetStatistics.cs:114
-#: ../src/gui_common/tooltip/ToolTipManager.cs:800
-#: ../src/gui_common/tooltip/ToolTipManager.cs:815
+#: ../src/gui_common/tooltip/ToolTipManager.cs:802
+#: ../src/gui_common/tooltip/ToolTipManager.cs:817
 #: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:773
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:513
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:589

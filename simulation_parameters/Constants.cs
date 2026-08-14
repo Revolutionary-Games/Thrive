@@ -352,6 +352,8 @@ public static class Constants
     public const float ACTOMYOSIN_ROTATION_BUFF_PER = 0.15f;
     public const float ACTOMYOSIN_MOVEMENT_BUFF_PER = 0.25f;
 
+    // TODO: harsher wording in the tooltip
+
     public const int MICROBE_SPAWN_RADIUS = 350;
 
     public const int MICROBE_DESPAWN_RADIUS_SQUARED = (MICROBE_SPAWN_RADIUS + DESPAWN_RADIUS_OFFSET) *
