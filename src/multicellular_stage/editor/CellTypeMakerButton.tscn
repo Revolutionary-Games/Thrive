@@ -15,10 +15,10 @@ offset_bottom = 70.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
 script = ExtResource("1_ojw5t")
-sporeNameLabel = NodePath("MarginContainer/HBoxContainer/Label")
+sporeNameLabel = NodePath("MarginContainer/HBoxContainer/VBoxContainer/Label")
 addCellTypeIcon = NodePath("MarginContainer/HBoxContainer/Button/TextureRect")
 cellTypePreview = NodePath("MarginContainer/HBoxContainer/Button/SpeciesPreview")
-resetButton = NodePath("MarginContainer/Control/MarginContainer/Button2")
+resetButton = NodePath("MarginContainer/HBoxContainer/VBoxContainer/Button2")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1871489063]
 layout_mode = 2
@@ -61,7 +61,10 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("3_1a2ow")
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer" unique_id=1973824256]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=719145419]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1973824256]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 size_flags_horizontal = 3
@@ -69,29 +72,16 @@ size_flags_vertical = 1
 text = "Spore cell type name or a prompt to add a new type"
 label_settings = ExtResource("5_iwjum")
 
-[node name="Control" type="Control" parent="MarginContainer" unique_id=1854531774]
+[node name="Button2" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=361671360]
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
-mouse_filter = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Control" unique_id=2125738771]
-clip_contents = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 66
-theme_override_constants/margin_top = 32
-theme_override_constants/margin_bottom = 0
-
-[node name="Button2" type="TextureButton" parent="MarginContainer/Control/MarginContainer" unique_id=361671360]
-layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 10
 texture_normal = ExtResource("6_cpi50")
 texture_pressed = ExtResource("7_lrhwq")
 texture_hover = ExtResource("8_1p2q0")
 ignore_texture_size = true
-stretch_mode = 4
+stretch_mode = 0
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Button" to="." method="OnMainButtonClicked"]
-[connection signal="pressed" from="MarginContainer/Control/MarginContainer/Button2" to="." method="OnResetButtonClicked"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Button2" to="." method="OnResetButtonClicked"]
