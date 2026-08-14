@@ -805,7 +805,10 @@ public partial class CellBodyPlanEditorComponent :
         }
 
         if (ReproductionMethod == MulticellularReproductionMethod.Sporulation && SporeCellType == null)
+        {
             noSporeCellTypeSetPopup.PopupCenteredShrink();
+            return false;
+        }
 
         // This is checked due to a species data requirement
         if (ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy
