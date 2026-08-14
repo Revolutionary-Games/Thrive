@@ -71,8 +71,8 @@ public class MicrobeReproductionSystemTests
             Colour = new Color(1, 1, 1),
         };
 
-        bacterialSpecies.Organelles.Add(new OrganelleTemplate(
-            simulationParameters.GetOrganelleType("cytoplasm"), new Hex(0, 0), 0));
+        bacterialSpecies.Organelles.Add(new OrganelleTemplate(simulationParameters.GetOrganelleType("cytoplasm"),
+            new Hex(0, 0), 0));
         bacterialSpecies.OnEdited();
 
         return bacterialSpecies;
@@ -167,6 +167,7 @@ public class MicrobeReproductionSystemTests
 
     private static bool HasOrganelle(Entity microbe, string internalName)
     {
-        return microbe.Get<OrganelleContainer>().Organelles!.Any(organelle => organelle.Definition.InternalName == internalName);
+        return microbe.Get<OrganelleContainer>().Organelles!.Any(organelle =>
+            organelle.Definition.InternalName == internalName);
     }
 }
