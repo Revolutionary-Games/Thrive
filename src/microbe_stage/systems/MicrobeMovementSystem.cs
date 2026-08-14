@@ -494,7 +494,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
 
             if (organelles.ActomyosinComponents is { Count: > 0 })
             {
-                actomyosinCount = TryActivateActomyosin(ref organelles, memberCompounds, energyCostMultiplier, delta);
+                actomyosinCount += TryActivateActomyosin(ref organelles, memberCompounds, energyCostMultiplier, delta);
             }
         }
 
