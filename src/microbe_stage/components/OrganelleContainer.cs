@@ -978,6 +978,6 @@ public static class OrganelleContainerHelpers
             return 0;
 
         // First actomyosin counts fully, and the other ones are then just a little effective
-        return 1 + (actomyosin.Count - 1) * Constants.EFFECTIVE_ACTOMYOSIN_MULTIPLIER;
+        return CellBodyPlanInternalCalculations.CalculateEffectiveActomyosinCount(actomyosin.Count);
     }
 }

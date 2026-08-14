@@ -98,8 +98,7 @@ public static class CellBodyPlanInternalCalculations
             if (cellActomyosinCount > 0)
             {
                 // The first actomyosin in a cell counts fully, while additional ones have diminishing returns.
-                actomyosinCount += 1 +
-                    (cellActomyosinCount - 1) * Constants.EFFECTIVE_ACTOMYOSIN_MULTIPLIER;
+                actomyosinCount += CalculateEffectiveActomyosinCount(cellActomyosinCount);
             }
         }
 
@@ -254,9 +253,17 @@ public static class CellBodyPlanInternalCalculations
                 ++actomyosinCount;
         }
 
-        if (actomyosinCount < 1)
+        return CalculateEffectiveActomyosinCount(actomyosinCount);
+    }
+
+    public static float CalculateEffectiveActomyosinCount(int rawCountInCellType)
+    {
+        if (rawCountInCellType < 1)
             return 0;
 
-        return 1 + (actomyosinCount - 1) * Constants.EFFECTIVE_ACTOMYOSIN_MULTIPLIER;
+        // The first actomyosin counts fully, and the other ones are then just a little effective.
+        // NOTE: at the time of writing actomyosin is marked as a unique organelle so this formula doesn't really
+        // affect anything.
+        return 1 + (rawCountInCellType - 1) * Constants.EFFECTIVE_ACTOMYOSIN_MULTIPLIER;
     }
 }
