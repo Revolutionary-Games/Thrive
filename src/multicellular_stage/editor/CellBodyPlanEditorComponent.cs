@@ -319,6 +319,7 @@ public partial class CellBodyPlanEditorComponent :
             sporeCellType = value;
 
             UpdateSpecialCellTypeDisplays();
+            UpdateCellTypeSelections();
         }
     }
 
