@@ -1,18 +1,17 @@
 ﻿using System;
 using SharedBase.Archive;
 
-public class SporeCellTypeAddActionData : EditorCombinableActionData<MulticellularSpecies>
+public class SporeCellTypeChangeActionData : EditorCombinableActionData<MulticellularSpecies>
 {
-    public const ushort SERIALIZATION_VERSION = 2;
+    public const ushort SERIALIZATION_VERSION = 1;
 
-    public readonly CellType SporeCell;
+    public readonly CellType? OldCellType;
+    public readonly CellType? NewCellType;
 
-    public bool Delete;
-
-    public SporeCellTypeAddActionData(CellType sporeCell, bool delete)
+    public SporeCellTypeChangeActionData(CellType? oldCellType, CellType? newCellType)
     {
-        SporeCell = sporeCell;
-        Delete = delete;
+        OldCellType = oldCellType;
+        NewCellType = newCellType;
     }
 
     public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
@@ -25,26 +24,16 @@ public class SporeCellTypeAddActionData : EditorCombinableActionData<Multicellul
         if (type != (ArchiveObjectType)ThriveArchiveObjectType.SporeCellTypeChangeActionData)
             throw new NotSupportedException();
 
-        writer.WriteObject((SporeCellTypeAddActionData)obj);
+        writer.WriteObject((SporeCellTypeChangeActionData)obj);
     }
 
-    public static SporeCellTypeAddActionData ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    public static SporeCellTypeChangeActionData ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        if (version == 1)
-        {
-            _ = reader.ReadObject<CellType>();
-
-            var instanceOld = new SporeCellTypeAddActionData(reader.ReadObject<CellType>(), false);
-
-            instanceOld.ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
-
-            return instanceOld;
-        }
-
-        var instance = new SporeCellTypeAddActionData(reader.ReadObject<CellType>(), reader.ReadBool());
+        var instance =
+            new SporeCellTypeChangeActionData(reader.ReadObjectOrNull<CellType>(), reader.ReadObjectOrNull<CellType>());
 
         instance.ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
 
@@ -53,8 +42,8 @@ public class SporeCellTypeAddActionData : EditorCombinableActionData<Multicellul
 
     public override void WriteToArchive(ISArchiveWriter writer)
     {
-        writer.WriteObject(SporeCell);
-        writer.Write(Delete);
+        writer.WriteObjectOrNull(OldCellType);
+        writer.WriteObjectOrNull(NewCellType);
 
         writer.Write(SERIALIZATION_VERSION_CONTEXT);
         base.WriteToArchive(writer);

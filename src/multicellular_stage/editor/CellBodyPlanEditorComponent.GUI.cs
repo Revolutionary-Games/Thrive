@@ -402,8 +402,8 @@ public partial class CellBodyPlanEditorComponent
         cellType.CellTypeName = Localization.Translate("DEFAULT_SPORE_CELL_TYPE_NAME");
         cellType.SplitFromTypeName = splitFrom.CellTypeName;
 
-        var action = new SingleEditorAction<SporeCellTypeAddActionData>(DoSporeCellAddAction,
-            UndoSporeCellAddAction, new SporeCellTypeAddActionData(cellType, false));
+        var action = new SingleEditorAction<SporeCellTypeChangeActionData>(DoSporeCellChangeAction,
+            UndoSporeCellChangeAction, new SporeCellTypeChangeActionData(SporeCellType, cellType));
 
         Editor.EnqueueAction(action);
 
@@ -418,8 +418,8 @@ public partial class CellBodyPlanEditorComponent
         if (SporeCellType == null)
             return;
 
-        var action = new SingleEditorAction<SporeCellTypeAddActionData>(UndoSporeCellAddAction,
-            DoSporeCellAddAction, new SporeCellTypeAddActionData(SporeCellType, true));
+        var action = new SingleEditorAction<SporeCellTypeChangeActionData>(DoSporeCellChangeAction,
+            UndoSporeCellChangeAction, new SporeCellTypeChangeActionData(SporeCellType, null));
 
         Editor.EnqueueAction(action);
     }
