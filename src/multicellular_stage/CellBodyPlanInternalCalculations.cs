@@ -158,7 +158,11 @@ public static class CellBodyPlanInternalCalculations
             GetAdjacencySpecializationBonusFromBodyPlan(leader.Data, cells);
         var colonyRotation = MicrobeInternalCalculations.CalculateRotationSpeed(leader.ModifiableOrganelles,
             leaderTotalSpecializationBonus);
-        var actomyosinCount = CalculateEffectiveActomyosinCount(leader);
+
+        // NOTE: this is commented out as we don't skip the leader in the below loop due to algorithm problems
+        // (this method needs a rewrite).
+        // var actomyosinCount = CalculateEffectiveActomyosinCount(leader);
+        float actomyosinCount = 0;
 
         Vector3 leaderPosition = Hex.AxialToCartesian(leader.Position);
 
