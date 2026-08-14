@@ -719,6 +719,10 @@ Other files
   reduce the amount of changes PRs contain, but also means that the
   reference line numbers are sometimes slightly out of date.
 
+- The `.res` file extension to save game resources should be avoided
+  whenever possible. Godot has several recognized specialized extensions
+  for most resource types, which should be preferred.
+
 Gameplay changes
 ----------------
 
