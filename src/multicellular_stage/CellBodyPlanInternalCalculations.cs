@@ -105,7 +105,7 @@ public static class CellBodyPlanInternalCalculations
         speed = speed / cells.Count + addedSpeed / (massEstimate * 1.4f);
 
         // This matches the bonus applied to colony members in MicrobeMovementSystem.
-        return speed * (1 + Constants.ACTOMYOSIN_MOVEMENT_BUFF_PER * actomyosinCount);
+        return speed * CalculateActomyosinMovementMultiplier(actomyosinCount);
     }
 
     /// <summary>
@@ -184,7 +184,14 @@ public static class CellBodyPlanInternalCalculations
             actomyosinCount += CalculateEffectiveActomyosinCount(colonyMemberData);
         }
 
-        return (colonyRotation * (1 + Constants.ACTOMYOSIN_ROTATION_BUFF_PER * actomyosinCount)) / cells.Count;
+        return CalculateFinalColonyRotation(colonyRotation, actomyosinCount, cells.Count);
+    }
+
+    public static float CalculateFinalColonyRotation(float colonyRotation, float effectiveActomyosinCount,
+        int totalCellCount)
+    {
+        return colonyRotation * (1 + Constants.ACTOMYOSIN_ROTATION_BUFF_PER * effectiveActomyosinCount) /
+            totalCellCount;
     }
 
     public static float GetAdjacencySpecializationBonusFromBodyPlan(IReadOnlyCellTemplate? cellInBodyPlan,
@@ -265,5 +272,10 @@ public static class CellBodyPlanInternalCalculations
         // NOTE: at the time of writing actomyosin is marked as a unique organelle so this formula doesn't really
         // affect anything.
         return 1 + (rawCountInCellType - 1) * Constants.EFFECTIVE_ACTOMYOSIN_MULTIPLIER;
+    }
+
+    public static float CalculateActomyosinMovementMultiplier(float effectiveActomyosinCount)
+    {
+        return 1 + Constants.ACTOMYOSIN_MOVEMENT_BUFF_PER * effectiveActomyosinCount;
     }
 }

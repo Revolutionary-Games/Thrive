@@ -486,7 +486,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
 
         if (actomyosinCount > 0)
         {
-            force *= 1 + Constants.ACTOMYOSIN_MOVEMENT_BUFF_PER * actomyosinCount;
+            force *= CellBodyPlanInternalCalculations.CalculateActomyosinMovementMultiplier(actomyosinCount);
         }
     }
 }
