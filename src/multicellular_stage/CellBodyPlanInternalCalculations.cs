@@ -52,7 +52,7 @@ public static class CellBodyPlanInternalCalculations
         var massEstimate = 0.0f;
 
         var addedSpeed = 0.0f;
-        var actomyosinCount = 0.0f;
+        var actomyosinCount = CalculateEffectiveActomyosinCount(leader);
 
         foreach (var hex in cells)
         {

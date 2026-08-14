@@ -77,6 +77,20 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
         return rotationSpeed;
     }
 
+    private static float TryActivateActomyosin(ref OrganelleContainer organelles, CompoundBag compounds,
+        float energyCostMultiplier, float delta)
+    {
+        var actomyosinCost = Constants.ACTOMYOSIN_ENERGY_COST * organelles.ActomyosinComponents!.Count *
+            delta * energyCostMultiplier;
+        if (compounds.TakeCompound(Compound.ATP, actomyosinCost) >= 0.8f * actomyosinCost)
+        {
+            // Only "activate" actomyosin if there was ATP
+            return organelles.CalculateEffectiveActomyosinCount();
+        }
+
+        return 0;
+    }
+
     [Query(Parallel = true)]
     [None<MicrobeColonyMember>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -308,7 +322,8 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
             try
             {
                 CalculateColonyImpactOnMovementForce(ref entity.Get<MicrobeColony>(), ref organelles,
-                    control.MovementDirection, cellProperties.IsBacteria, energyCostMultiplier, delta, ref force);
+                    compounds, control.MovementDirection, cellProperties.IsBacteria, energyCostMultiplier, delta,
+                    ref force);
             }
             catch (Exception e)
             {
@@ -430,7 +445,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
     }
 
     private void CalculateColonyImpactOnMovementForce(ref MicrobeColony microbeColony,
-        ref OrganelleContainer leaderOrganelles, Vector3 movementDirection,
+        ref OrganelleContainer leaderOrganelles, CompoundBag leaderCompounds, Vector3 movementDirection,
         bool isBacteria, float energyCostMultiplier, float delta, ref float force)
     {
         // If this method is updated, the CalculateSpeed() method in CellBodyPlanInternalCalculations.cs
@@ -438,7 +453,11 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
 
         CellBodyPlanInternalCalculations.ModifyCellSpeedWithColony(ref force, microbeColony.ColonyMembers.Length);
 
-        float actomyosinCount = leaderOrganelles.CalculateEffectiveActomyosinCount();
+        float actomyosinCount = 0;
+        if (leaderOrganelles.ActomyosinComponents is { Count: > 0 })
+        {
+            actomyosinCount = TryActivateActomyosin(ref leaderOrganelles, leaderCompounds, energyCostMultiplier, delta);
+        }
 
         // Colony members have their movement update before organelle update, so that the movement organelles
         // see the direction.
@@ -459,7 +478,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
 
             // Flagella in colony members
             ref var organelles = ref colonyMember.Get<OrganelleContainer>();
-            var compounds = colonyMember.Get<CompoundStorage>().Compounds;
+            var memberCompounds = colonyMember.Get<CompoundStorage>().Compounds;
 
             if (organelles.ThrustComponents != null)
             {
@@ -467,7 +486,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
 
                 foreach (var flagellum in organelles.ThrustComponents)
                 {
-                    force += flagellum.UseForMovement(movementDirection, compounds,
+                    force += flagellum.UseForMovement(movementDirection, memberCompounds,
                         relativeRotation, isBacteria, energyCostMultiplier,
                         delta) * Constants.CELL_COLONY_MOVEMENT_FORCE_MULTIPLIER;
                 }
@@ -475,13 +494,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
 
             if (organelles.ActomyosinComponents is { Count: > 0 })
             {
-                var actomyosinCost = Constants.ACTOMYOSIN_ENERGY_COST * organelles.ActomyosinComponents.Count *
-                    delta * energyCostMultiplier;
-                if (compounds.TakeCompound(Compound.ATP, actomyosinCost) >= 0.8f * actomyosinCost)
-                {
-                    // Only "activate" actomyosin if there was ATP
-                    actomyosinCount += organelles.CalculateEffectiveActomyosinCount();
-                }
+                actomyosinCount = TryActivateActomyosin(ref organelles, memberCompounds, energyCostMultiplier, delta);
             }
         }
 
