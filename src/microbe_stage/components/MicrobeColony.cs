@@ -1026,9 +1026,22 @@ public static class MicrobeColonyHelpers
         // be more physically accurate
 
         // When changing this method's logic also update the corresponding method in CellBodyPlanInternalCalculations
-        float colonyRotation = MicrobeInternalCalculations
-            .CalculateRotationSpeed(colony.Leader.Get<OrganelleContainer>().Organelles!.Organelles,
-                colony.Leader.Get<SpecializationFactor>().TotalSpecializationBonus);
+        ref var leaderOrganelles = ref colony.Leader.Get<OrganelleContainer>();
+        float colonyRotation = MicrobeInternalCalculations.CalculateRotationSpeed(
+            leaderOrganelles.Organelles!.Organelles,
+            colony.Leader.Get<SpecializationFactor>().TotalSpecializationBonus);
+
+        if (!leaderOrganelles.OrganelleComponentsCached)
+        {
+            GD.PrintErr("Cannot get actomyosin count yet for rotation speed");
+        }
+
+        // Note if this logic is changed, then the relevant logic needs also updating in
+        // CellBodyPlanInternalCalculations.CalculateRotationSpeed
+
+        // Actomyosin acts as the key buff to keep the rotation rate reasonable. This is a float as multiple actomyosin
+        // per cell give a small extra bonus
+        float actomyosinCount = leaderOrganelles.CalculateEffectiveActomyosinCount();
 
         foreach (var colonyMember in colony.ColonyMembers)
         {
@@ -1045,15 +1058,18 @@ public static class MicrobeColonyHelpers
 
                 var distanceSquared = memberPosition.RelativePosition.LengthSquared();
 
-                // Multiply both the propulsion and mass by the distance from center to simulate leverage
+                ref var memberOrganelleContainer = ref colonyMember.Get<OrganelleContainer>();
+
+                // Multiply both the propulsion and mass by the distance from center to simulate leverage.
                 // This relies on the bounding of the cell rotation, as a colony can never be faster than the
-                // fastest cell inside it
+                // fastest cell inside it.
                 var memberRotation = MicrobeInternalCalculations
-                        .CalculateRotationSpeed(colonyMember.Get<OrganelleContainer>().Organelles!.Organelles,
+                        .CalculateRotationSpeed(memberOrganelleContainer.Organelles!.Organelles,
                             colonyMember.Get<SpecializationFactor>().TotalSpecializationBonus)
-                    * (1 + 0.007f * distanceSquared);
+                    * (1 + 0.005f * distanceSquared);
 
                 colonyRotation += memberRotation;
+                actomyosinCount += memberOrganelleContainer.CalculateEffectiveActomyosinCount();
             }
             catch (Exception e)
             {
@@ -1062,7 +1078,9 @@ public static class MicrobeColonyHelpers
             }
         }
 
-        colony.ColonyRotationSpeed = colonyRotation / colony.ColonyMembers.Length;
+        colony.ColonyRotationSpeed =
+            CellBodyPlanInternalCalculations.CalculateFinalColonyRotation(colonyRotation, actomyosinCount,
+                colony.ColonyMembers.Length);
     }
 
     /// <summary>

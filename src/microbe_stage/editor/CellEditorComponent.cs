@@ -525,7 +525,7 @@ public partial class CellEditorComponent :
             return;
         }
 
-        // To follow MicrobeRenderPrioritySystem this sets other than the first material to be -1 in priority
+        // To follow MicrobeRenderPrioritySystem, this sets other than the first material to be -1 in priority
         bool first = true;
 
         foreach (var shaderMaterial in temporaryDataHolder)
@@ -2996,10 +2996,7 @@ public partial class CellEditorComponent :
         // Multicellular parts only available (visible) in multicellular.
         // For now, there aren't any multicellular specific organelles so the section is hidden.
         partsSelectionContainer.GetNode<CollapsibleList>(nameof(OrganelleDefinition.OrganelleGroup.Multicellular))
-            .Visible = false;
-
-        // TODO: put this code back in if we get multicellular specific organelles
-        // .Visible = IsMulticellularEditor;
+            .Visible = IsMulticellularEditor;
 
         partsSelectionContainer.GetNode<CollapsibleList>(nameof(OrganelleDefinition.OrganelleGroup.Macroscopic))
             .Visible = IsMacroscopicEditor;

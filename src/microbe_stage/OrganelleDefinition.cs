@@ -317,6 +317,8 @@ public class OrganelleDefinition : RegistryType, IPlayerReadableName
 
     public bool HasChemoreceptorComponent { get; private set; }
 
+    public bool HasActomyosinComponent { get; private set; }
+
     public bool HasNucleusFeature { get; private set; }
 
     /// <summary>
@@ -474,6 +476,7 @@ public class OrganelleDefinition : RegistryType, IPlayerReadableName
     ///   Returns true when this has the specified component factory.
     ///   For example <see cref="MovementComponentFactory"/>.
     /// </summary>
+    /// <typeparam name="T">The component factory type.</typeparam>
     /// <remarks>
     ///   <para>
     ///     This checks for the *factory* class. For performance reasons a few components are available as direct
@@ -892,6 +895,7 @@ public class OrganelleDefinition : RegistryType, IPlayerReadableName
         HasSlimeJetComponent = HasComponentFactory<SlimeJetComponentFactory>();
         HasChemoreceptorComponent = HasComponentFactory<ChemoreceptorComponentFactory>();
         HasLysosomeComponent = HasComponentFactory<LysosomeComponentFactory>();
+        HasActomyosinComponent = HasComponentFactory<ActomyosinComponentFactory>();
 
         HasBindingFeature = HasFeatureTag(OrganelleFeatureTag.BindingAgent);
         HasSignalingFeature = HasFeatureTag(OrganelleFeatureTag.SignalingAgent);
@@ -1001,6 +1005,7 @@ public class OrganelleDefinition : RegistryType, IPlayerReadableName
         public CiliaComponentFactory? Cilia;
         public LysosomeComponentFactory? Lysosome;
         public BioluminescenceComponentFactory? Bioluminescence;
+        public ActomyosinComponentFactory? Actomyosin;
 
         private readonly List<IOrganelleComponentFactory> allFactories = new();
 
@@ -1074,6 +1079,13 @@ public class OrganelleDefinition : RegistryType, IPlayerReadableName
             {
                 Bioluminescence.Check(name);
                 allFactories.Add(Bioluminescence);
+                ++count;
+            }
+
+            if (Actomyosin != null)
+            {
+                Actomyosin.Check(name);
+                allFactories.Add(Actomyosin);
                 ++count;
             }
         }

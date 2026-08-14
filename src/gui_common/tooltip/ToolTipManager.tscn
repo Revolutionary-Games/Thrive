@@ -736,6 +736,12 @@ layout_mode = 0
 DisplayDelay = 0.0
 Positioning = 1
 
+[node name="actomyosin" parent="GroupHolder/processesConsumption" unique_id=1793702908 instance=ExtResource("1")]
+visible = false
+layout_mode = 0
+DisplayDelay = 0.0
+Positioning = 1
+
 [node name="cilia" parent="GroupHolder/processesConsumption" unique_id=822969243 node_paths=PackedStringArray("descriptionLabel") instance=ExtResource("1")]
 visible = false
 layout_mode = 0
