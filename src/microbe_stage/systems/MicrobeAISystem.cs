@@ -719,15 +719,16 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         float atpLevel, CompoundBag compounds, float speciesAggression, ref CommandSignaler signaling, Random random,
         ref SpeciesMember ourSpecies)
     {
+        // Has binding agent and ATP is at least half capacity
+        // TODO: comment out once AI can use the binding agent
+        // if (organelles.HasBindingAgent && atpLevel >= compounds.GetCapacityForCompound(Compound.ATP) * 0.5f)
+        // {
+        //     signaling.QueuedSignalingCommand = MicrobeSignalCommand.MoveToMe;
+        //     return;
+        // }
+
         var shouldBeAggressive = RollCheck(speciesAggression, Constants.MAX_SPECIES_AGGRESSION, random);
         var speciesMembers = GetSpeciesMembers(ourSpecies.Species);
-
-        // Has binding agent and ATP is at least half capacity
-        if (organelles.HasBindingAgent && atpLevel >= compounds.GetCapacityForCompound(Compound.ATP) * 0.5f)
-        {
-            signaling.QueuedSignalingCommand = MicrobeSignalCommand.MoveToMe;
-            return;
-        }
 
         if (shouldBeAggressive)
         {
@@ -763,7 +764,8 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                     membersNearEnough = 0;
                 }
 
-                if (membersNearEnough >= enoughMembers)
+                // -1 to exclude self
+                if (membersNearEnough - 1 >= enoughMembers)
                 {
                     signaling.QueuedSignalingCommand = MicrobeSignalCommand.BecomeAggressive;
                     return;
@@ -1249,7 +1251,8 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             LaunchToxin(ref control, ref organelles, ref position, predatorLocation, ourCompounds, speciesFocus,
                 speciesActivity);
 
-            if (organelles.HasSignalingAgent && random.NextSingle() < Constants.AI_SIGNALING_CHANCE)
+            if (organelles.HasSignalingAgent && random.NextSingle() < Constants.AI_SIGNALING_CHANCE
+                && organelles.AgentVacuoleCount > 0)
             {
                 signaling.QueuedSignalingCommand = MicrobeSignalCommand.FollowMe;
             }
