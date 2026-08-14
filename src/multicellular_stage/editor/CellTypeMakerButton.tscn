@@ -18,7 +18,7 @@ script = ExtResource("1_ojw5t")
 sporeNameLabel = NodePath("MarginContainer/HBoxContainer/Label")
 addCellTypeIcon = NodePath("MarginContainer/HBoxContainer/Button/TextureRect")
 cellTypePreview = NodePath("MarginContainer/HBoxContainer/Button/SpeciesPreview")
-resetButton = NodePath("MarginContainer/Control/Button2")
+resetButton = NodePath("MarginContainer/Control/MarginContainer/Button2")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1871489063]
 layout_mode = 2
@@ -73,17 +73,25 @@ label_settings = ExtResource("5_iwjum")
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Button2" type="TextureButton" parent="MarginContainer/Control" unique_id=361671360]
-layout_mode = 0
-offset_left = 65.0
-offset_top = 35.0
-offset_right = 90.0
-offset_bottom = 60.0
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Control" unique_id=2125738771]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 66
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_bottom = 0
+
+[node name="Button2" type="TextureButton" parent="MarginContainer/Control/MarginContainer" unique_id=361671360]
+layout_mode = 2
 texture_normal = ExtResource("6_cpi50")
 texture_pressed = ExtResource("7_lrhwq")
 texture_hover = ExtResource("8_1p2q0")
 ignore_texture_size = true
-stretch_mode = 0
+stretch_mode = 4
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Button" to="." method="OnMainButtonClicked"]
-[connection signal="pressed" from="MarginContainer/Control/Button2" to="." method="OnResetButtonClicked"]
+[connection signal="pressed" from="MarginContainer/Control/MarginContainer/Button2" to="." method="OnResetButtonClicked"]
