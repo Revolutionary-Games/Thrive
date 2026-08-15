@@ -3,6 +3,7 @@
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_jktbi"]
 [ext_resource type="Script" uid="uid://or813gvjyrwf" path="res://src/multicellular_stage/editor/CellTypePickerPopup.cs" id="1_mmoc3"]
 [ext_resource type="PackedScene" uid="uid://cn0sqyg1htg45" path="res://src/multicellular_stage/editor/CellTypeSelection.tscn" id="3_jktbi"]
+[ext_resource type="PackedScene" uid="uid://bgeijgq7runaw" path="res://src/gui_common/FocusGrabber.tscn" id="4_bkuex"]
 
 [node name="CellTypePickerPopup" type="Control" unique_id=471568737 node_paths=PackedStringArray("cellTypeList")]
 visible = false
@@ -12,6 +13,10 @@ theme = ExtResource("1_jktbi")
 script = ExtResource("1_mmoc3")
 cellTypeList = NodePath("VBoxContainer/HFlowContainer")
 cellTypeButton = ExtResource("3_jktbi")
+
+[node name="FocusGrabber" parent="." unique_id=125641974 instance=ExtResource("4_bkuex")]
+layout_mode = 0
+NodeToGiveFocusTo = NodePath("../VBoxContainer/Button2")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1677620313]
 custom_minimum_size = Vector2(460, 400)
