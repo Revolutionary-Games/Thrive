@@ -16,8 +16,6 @@ public partial class CellTypeSelection : MicrobePartSelection
     private CellTypePreview cellTypePreview = null!;
 #pragma warning restore CA2213
 
-    private IImageTask? imageTask;
-
     private bool showInsufficientATPWarning;
 
     public bool ShowInsufficientATPWarning
@@ -43,23 +41,13 @@ public partial class CellTypeSelection : MicrobePartSelection
         }
     }
 
-    public override void _Ready()
+    public void ReportTypeChanged()
     {
-        base._Ready();
-    }
-
-    public override void _Process(double delta)
-    {
-        base._Process(delta);
+        cellTypePreview.PreviewCellType = cellType;
     }
 
     private void UpdateWarningBadge()
     {
         atpBalanceWarningBadge.Visible = showInsufficientATPWarning;
-    }
-
-    public void ReportTypeChanged()
-    {
-        cellTypePreview.PreviewCellType = cellType;
     }
 }

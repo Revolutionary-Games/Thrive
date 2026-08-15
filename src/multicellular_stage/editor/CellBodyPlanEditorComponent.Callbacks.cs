@@ -181,6 +181,7 @@ public partial class CellBodyPlanEditorComponent
         {
             OnCellTypeAdded(newCellType);
         }
+
         SporeCellType = newCellType;
     }
 
