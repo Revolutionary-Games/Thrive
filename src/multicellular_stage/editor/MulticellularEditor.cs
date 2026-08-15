@@ -682,7 +682,8 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     private void OnStartEditingCellType(string? name, bool switchTab)
     {
-        OpenEditorForCellType(string.IsNullOrEmpty(name) ? null :
+        OpenEditorForCellType(string.IsNullOrEmpty(name) ?
+            null :
             EditedSpecies.ModifiableCellTypes.First(c => c.CellTypeName == name), switchTab);
     }
 

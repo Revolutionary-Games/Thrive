@@ -426,7 +426,8 @@ public partial class CellBodyPlanEditorComponent
 
     private void UpdateSpecialCellTypeDisplays()
     {
-        sporeCellTypeMakerButton.UpdateDisplayedCellType(SporeCellType == null ? null :
+        sporeCellTypeMakerButton.UpdateDisplayedCellType(SporeCellType == null ?
+            null :
             GetEditedCellDataIfEdited(SporeCellType));
     }
 
