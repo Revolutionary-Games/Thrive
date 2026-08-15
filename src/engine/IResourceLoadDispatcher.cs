@@ -4,6 +4,8 @@ internal interface IResourceLoadDispatcher
 {
     void ExecuteFullLoad(IResource resource);
 
+    void ExecuteMainThreadPostProcessing(IResource resource);
+
     void InvokeCompletionCallback(IResource resource);
 }
 

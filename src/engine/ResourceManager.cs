@@ -104,14 +104,22 @@ public partial class ResourceManager : Node
         ObservePreparingBackgroundTask();
         ObserveProcessingBackgroundTask(ref frameBudget, ref dispatcher, ref frameTimeSource);
 
-        HandleLoadQueue(ref frameBudget, ref dispatcher, ref frameTimeSource);
+        // The processing task doubles as the single PendingMain slot. It must be released before another load starts.
+        if (processingBackgroundTask == null)
+            HandleLoadQueue(ref frameBudget, ref dispatcher, ref frameTimeSource);
 
         savedForLaterProcessingTime = frameBudget.CalculateSecondsToCarry(ref frameTimeSource);
     }
 
     public void QueueLoad(IResource resource)
     {
-        if (shuttingDown || !loadLifecycle.TryQueue(resource))
+        if (shuttingDown)
+            return;
+
+        // Reject contradictory phases before the lifecycle takes ownership and could otherwise become stuck.
+        ResourceLoadCoordinator.ValidateResourceConfiguration(resource);
+
+        if (!loadLifecycle.TryQueue(resource))
             return;
 
         queuedResources.Add(resource);
@@ -278,6 +286,29 @@ public partial class ResourceManager : Node
 #pragma warning restore CS0162
     }
 
+    private static void PerformBackgroundLoad(IResource resource)
+    {
+        if (!resource.RequiresSyncPostProcess)
+        {
+            PerformFullLoad(resource);
+            return;
+        }
+
+        if (!resource.LoadingPrepared)
+            throw new InvalidOperationException("Resource is not prepared for load yet");
+
+        // Completion and loaded-state validation are deferred to the indivisible main-thread post-processing unit.
+        resource.Load();
+    }
+
+    private static void PerformMainThreadPostProcessing(IResource resource)
+    {
+        resource.PerformPostProcessing();
+
+        if (!resource.Loaded)
+            throw new InvalidOperationException("Loading a resource didn't end up setting loaded flag");
+    }
+
     private static void ReportResourceOperationFailure(IResource resource, ResourceBackgroundPhase phase,
         Exception exception)
     {
@@ -355,7 +386,10 @@ public partial class ResourceManager : Node
             return;
         }
 
-        if (backgroundTask.Resource.OnComplete == null)
+        bool requiresMainThreadPostProcessing = backgroundTask.Resource.UsesPostProcessing &&
+            backgroundTask.Resource.RequiresSyncPostProcess;
+
+        if (!requiresMainThreadPostProcessing && backgroundTask.Resource.OnComplete == null)
         {
             processingBackgroundTask = null;
             CompleteResource(backgroundTask.Resource);
@@ -364,7 +398,7 @@ public partial class ResourceManager : Node
 
         try
         {
-            if (ResourceLoadCoordinator.TryRunBackgroundCallback(backgroundTask.Resource, ref frameBudget,
+            if (ResourceLoadCoordinator.TryRunPendingMainThreadPhases(backgroundTask.Resource, ref frameBudget,
                     ref dispatcher, ref frameTimeSource))
             {
                 processingBackgroundTask = null;
@@ -376,7 +410,8 @@ public partial class ResourceManager : Node
             // The callback was admitted and started, so it must not be repeated on the next frame.
             processingBackgroundTask = null;
             CompleteResource(backgroundTask.Resource);
-            ReportResourceOperationFailure(backgroundTask.Resource, "completion callback", e);
+            ReportResourceOperationFailure(backgroundTask.Resource,
+                "main-thread post-processing or completion callback", e);
         }
     }
 
@@ -502,21 +537,15 @@ public partial class ResourceManager : Node
 
                         if (processingBackgroundTask == null)
                         {
-                            if (resource.UsesPostProcessing && resource.RequiresSyncPostProcess)
-                            {
-                                throw new NotImplementedException(
-                                    "Missing handling for requiring sync post process but supporting async load");
-                            }
-
                             loadLifecycle.BeginLoading(resource);
-                            var task = new Task(() => { PerformFullLoad(resource); });
+                            var task = new Task(() => { PerformBackgroundLoad(resource); });
                             processingBackgroundTask = new ResourceBackgroundTask(resource, task,
                                 ResourceBackgroundPhase.Load);
                             TaskExecutor.Instance.AddTask(task, false);
                             processingResources.RemoveAt(i);
-                            --count;
-                            didSomething = true;
-                            --i;
+
+                            // Do not start another load until this task and its PendingMain phase release the slot.
+                            return;
                         }
 
                         continue;
@@ -696,6 +725,11 @@ public partial class ResourceManager : Node
         public void ExecuteFullLoad(IResource resource)
         {
             ResourceManager.PerformFullLoad(resource);
+        }
+
+        public void ExecuteMainThreadPostProcessing(IResource resource)
+        {
+            ResourceManager.PerformMainThreadPostProcessing(resource);
         }
 
         public void InvokeCompletionCallback(IResource resource)

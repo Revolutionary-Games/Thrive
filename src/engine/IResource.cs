@@ -27,6 +27,17 @@ public interface IResource
     public float EstimatedTimeRequired { get; }
 
     /// <summary>
+    ///   Estimates the indivisible part of this resource's load that must run on the main thread, in seconds.
+    /// </summary>
+    /// <remarks>
+    ///   The compatible default conservatively uses the total estimate when either the full load or post-processing
+    ///   requires the main thread. As a default interface member, this does not add a JSON-visible property to
+    ///   concrete registry resource types.
+    /// </remarks>
+    public float EstimatedMainThreadTimeRequired =>
+        RequiresSyncLoad || (UsesPostProcessing && RequiresSyncPostProcess) ? EstimatedTimeRequired : 0;
+
+    /// <summary>
     ///   Set to true once <see cref="PrepareLoading"/> is called. Set by <see cref="ResourceManager"/>
     /// </summary>
     public bool LoadingPrepared { get; set; }

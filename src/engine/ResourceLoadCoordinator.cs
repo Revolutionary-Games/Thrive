@@ -1,17 +1,36 @@
+using System;
+
 /// <summary>
 ///   Connects resource-loading phases to frame-budget admission without allocating on the normal execution path.
 /// </summary>
 internal static class ResourceLoadCoordinator
 {
     /// <summary>
-    ///   Tries to invoke the main-thread callback for a resource whose background load has completed.
+    ///   Rejects phase declarations that cannot describe a coherent resource load.
     /// </summary>
-    public static bool TryRunBackgroundCallback<TDispatcher, TTimeSource>(IResource resource,
+    public static void ValidateResourceConfiguration(IResource resource)
+    {
+        ArgumentNullException.ThrowIfNull(resource);
+
+        if (!resource.RequiresSyncLoad && !resource.UsesPostProcessing && resource.RequiresSyncPostProcess)
+        {
+            throw new InvalidOperationException(
+                $"Async resource {resource.Identifier} requires synchronous post-processing but has no " +
+                "post-processing phase");
+        }
+    }
+
+    /// <summary>
+    ///   Tries to run the indivisible main-thread phases for a resource whose background load has completed.
+    /// </summary>
+    public static bool TryRunPendingMainThreadPhases<TDispatcher, TTimeSource>(IResource resource,
         ref ResourceLoadFrameBudget frameBudget, ref TDispatcher dispatcher, ref TTimeSource timeSource)
         where TDispatcher : struct, IResourceLoadDispatcher
         where TTimeSource : struct, IResourceLoadFrameTimeSource
     {
-        var completionUnit = new BackgroundResourceCallbackCompletionUnit<TDispatcher>(resource, dispatcher);
+        ValidateResourceConfiguration(resource);
+
+        var completionUnit = new PendingMainThreadCompletionUnit<TDispatcher>(resource, dispatcher);
         return frameBudget.TryRunCompletionUnit(ref completionUnit, ref timeSource);
     }
 
@@ -23,26 +42,31 @@ internal static class ResourceLoadCoordinator
         where TDispatcher : struct, IResourceLoadDispatcher
         where TTimeSource : struct, IResourceLoadFrameTimeSource
     {
+        ValidateResourceConfiguration(resource);
+
         var completionUnit = new SynchronousResourceLoadCompletionUnit<TDispatcher>(resource, dispatcher);
         return frameBudget.TryRunCompletionUnit(ref completionUnit, ref timeSource);
     }
 
-    private readonly struct BackgroundResourceCallbackCompletionUnit<TDispatcher> : IResourceLoadCompletionUnit
+    private readonly struct PendingMainThreadCompletionUnit<TDispatcher> : IResourceLoadCompletionUnit
         where TDispatcher : struct, IResourceLoadDispatcher
     {
         private readonly IResource resource;
         private readonly TDispatcher dispatcher;
 
-        public BackgroundResourceCallbackCompletionUnit(IResource resource, TDispatcher dispatcher)
+        public PendingMainThreadCompletionUnit(IResource resource, TDispatcher dispatcher)
         {
             this.resource = resource;
             this.dispatcher = dispatcher;
         }
 
-        public double EstimatedDurationSeconds => 0;
+        public double EstimatedDurationSeconds => resource.EstimatedMainThreadTimeRequired;
 
         public void Execute()
         {
+            if (resource.UsesPostProcessing && resource.RequiresSyncPostProcess)
+                dispatcher.ExecuteMainThreadPostProcessing(resource);
+
             dispatcher.InvokeCompletionCallback(resource);
         }
     }
@@ -59,7 +83,7 @@ internal static class ResourceLoadCoordinator
             this.dispatcher = dispatcher;
         }
 
-        public double EstimatedDurationSeconds => resource.EstimatedTimeRequired;
+        public double EstimatedDurationSeconds => resource.EstimatedMainThreadTimeRequired;
 
         public void Execute()
         {
