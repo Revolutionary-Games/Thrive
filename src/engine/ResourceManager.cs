@@ -82,30 +82,34 @@ public partial class ResourceManager : Node
     {
         base._Process(delta);
 
-        // TODO: should this instead use a budget approach based exclusively on delta (and multiply it by
-        // some fraction)?
-        // TODO: maybe also considering a "deficit" from previous frame would be good for very long load tasks?
-        var originalBudget =
-            TimeSpan.FromSeconds(Math.Max(Constants.RESOURCE_TIME_BUDGET_PER_FRAME - delta,
-                    Constants.RESOURCE_TIME_BUDGET_PER_FRAME * 0.05f) +
-                savedForLaterProcessingTime);
+        // Carry unused processing time, or a bounded deficit, between frames to spread resource loading work.
+        var frameBudget = new ResourceLoadFrameBudget(delta, savedForLaterProcessingTime,
+            Constants.RESOURCE_TIME_BUDGET_PER_FRAME);
 
         timeTracker.Restart();
+        var frameTimeSource = new StopwatchResourceLoadFrameTimeSource(timeTracker);
+        var dispatcher = default(ResourceManagerLoadDispatcher);
 
         if (processingBackgroundResource?.Loaded == true)
         {
-            processingBackgroundResource.OnComplete?.Invoke(processingBackgroundResource);
-            processingBackgroundResource = null;
+            if (processingBackgroundResource.OnComplete == null)
+            {
+                processingBackgroundResource = null;
+            }
+            else
+            {
+                if (ResourceLoadCoordinator.TryRunBackgroundCallback(processingBackgroundResource, ref frameBudget,
+                        ref dispatcher, ref frameTimeSource))
+                    processingBackgroundResource = null;
+            }
         }
 
         if (preparingBackgroundResource?.LoadingPrepared == true)
             preparingBackgroundResource = null;
 
-        HandleLoadQueue(originalBudget);
+        HandleLoadQueue(ref frameBudget, ref dispatcher, ref frameTimeSource);
 
-        savedForLaterProcessingTime = Math.Clamp((float)(originalBudget - timeTracker.Elapsed).TotalSeconds,
-            -Constants.RESOURCE_TIME_BUDGET_PER_FRAME * 2,
-            Constants.RESOURCE_TIME_BUDGET_PER_FRAME * 0.5f);
+        savedForLaterProcessingTime = frameBudget.CalculateSecondsToCarry(ref frameTimeSource);
     }
 
     public void QueueLoad(IResource resource)
@@ -263,16 +267,14 @@ public partial class ResourceManager : Node
 #pragma warning restore CS0162
     }
 
-    private void HandleLoadQueue(TimeSpan originalBudget)
+    private void HandleLoadQueue(ref ResourceLoadFrameBudget frameBudget, ref ResourceManagerLoadDispatcher dispatcher,
+        ref StopwatchResourceLoadFrameTimeSource frameTimeSource)
     {
         bool hasThingsInQueue = processingResources.Count > 0;
 
-        // Ensures at least something gets loaded
-        bool progressedLoading = false;
-
         while (true)
         {
-            float timeRemaining = (float)(originalBudget - timeTracker.Elapsed).TotalSeconds;
+            double timeRemaining = frameBudget.GetRemainingSeconds(ref frameTimeSource);
 
             if (timeRemaining <= 0)
                 break;
@@ -304,7 +306,6 @@ public partial class ResourceManager : Node
                             TaskExecutor.Instance.AddTask(new Task(() => { PrepareLoad(resource); }), false);
 
                             preparingBackgroundResource = resource;
-                            progressedLoading = true;
                         }
 
                         continue;
@@ -329,22 +330,18 @@ public partial class ResourceManager : Node
                             processingResources.RemoveAt(i);
                             --count;
                             didSomething = true;
-                            progressedLoading = true;
                             --i;
                         }
 
                         continue;
                     }
 
-                    // Run the first load that we can probably finish this process cycle
-                    if (!progressedLoading || timeRemaining - resource.EstimatedTimeRequired > 0)
+                    // A unit that fits may run normally. The frame's first completion unit may exceed the remaining
+                    // positive budget to guarantee progress, but later units must fit.
+                    if (ResourceLoadCoordinator.TryRunSynchronousLoad(resource, ref frameBudget, ref dispatcher,
+                            ref frameTimeSource))
                     {
-                        // TODO: allow splitting the post processing to the next frame
-                        PerformFullLoad(resource);
-                        resource.OnComplete?.Invoke(resource);
-
                         didSomething = true;
-                        progressedLoading = true;
                         processingResources.RemoveAt(i);
 
                         // We break here to recompute the time remaining
@@ -366,7 +363,6 @@ public partial class ResourceManager : Node
 
                 processingResources.AddToBack(queueResource);
                 hasThingsInQueue = true;
-                progressedLoading = true;
             }
             else
             {
@@ -480,5 +476,18 @@ public partial class ResourceManager : Node
         }
 
         return false;
+    }
+
+    internal readonly struct ResourceManagerLoadDispatcher : IResourceLoadDispatcher
+    {
+        public void ExecuteFullLoad(IResource resource)
+        {
+            ResourceManager.PerformFullLoad(resource);
+        }
+
+        public void InvokeCompletionCallback(IResource resource)
+        {
+            resource.OnComplete?.Invoke(resource);
+        }
     }
 }
