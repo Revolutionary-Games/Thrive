@@ -291,6 +291,8 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
         {
             sporeCellTypeOverride = cellTypes.ResolveCellDefinition(sporeCellTypeChangeActionData.NewCellType);
 
+            cellTypes.HandleAction(actionData);
+
             return true;
         }
 

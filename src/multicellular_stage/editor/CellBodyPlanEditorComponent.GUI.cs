@@ -396,7 +396,7 @@ public partial class CellBodyPlanEditorComponent
 
     private void OnBaseCellTypeForSporeSelected(string baseCellTypeName)
     {
-        var splitFrom = Editor.EditedSpecies.ModifiableCellTypes.First(a => a.CellTypeName == baseCellTypeName);
+        var splitFrom = CellTypeFromName(baseCellTypeName);
 
         var cellType = (CellType)GetEditedCellDataIfEdited(splitFrom).Clone();
         cellType.CellTypeName = Localization.Translate("DEFAULT_SPORE_CELL_TYPE_NAME");

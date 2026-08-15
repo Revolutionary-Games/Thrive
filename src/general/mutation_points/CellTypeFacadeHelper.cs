@@ -59,6 +59,24 @@ public class CellTypeFacadeHelper
             return true;
         }
 
+        if (actionData is SporeCellTypeChangeActionData sporeCellTypeChangeActionData)
+        {
+            if (sporeCellTypeChangeActionData.OldCellType != null
+                && sporeCellTypeChangeActionData.OldCellType != sporeCellTypeChangeActionData.NewCellType
+                && activeCellTypes.ContainsKey(sporeCellTypeChangeActionData.OldCellType))
+            {
+                if (!addedCellTypes.Remove(GetOrCreateCellType(sporeCellTypeChangeActionData.OldCellType)))
+                    throw new InvalidOperationException("Cell type not found for delete");
+            }
+
+            if (sporeCellTypeChangeActionData.NewCellType != null)
+            {
+                addedCellTypes.Add(GetOrCreateCellType(sporeCellTypeChangeActionData.NewCellType));
+            }
+
+            return true;
+        }
+
         return false;
     }
 
