@@ -349,6 +349,7 @@ public partial class ResourceManager : Node
         if (backgroundTask.Resource.CancelRequested)
         {
             processingBackgroundTask = null;
+            RemoveStageResource(backgroundTask.Resource);
             BestEffortUnload(backgroundTask.Resource);
             CompleteResource(backgroundTask.Resource);
             return;
@@ -414,6 +415,18 @@ public partial class ResourceManager : Node
                 continue;
 
             processingResources.RemoveAt(i);
+            return;
+        }
+    }
+
+    private void RemoveStageResource(IResource resource)
+    {
+        for (int i = 0; i < stageResources.Count; ++i)
+        {
+            if (!ReferenceEquals(stageResources[i], resource))
+                continue;
+
+            stageResources.RemoveAt(i);
             return;
         }
     }
