@@ -22,12 +22,17 @@ public class EnergyBalanceInfoSimple
     public float Flagella { get; set; }
 
     /// <summary>
+    ///   The cost of all actomyosin working at the same time (only when a colony is moving)
+    /// </summary>
+    public float Actomyosin { get; set; }
+
+    /// <summary>
     ///   The cost of having all cilia working at the same time at max rotation (only when rotating)
     /// </summary>
     public float Cilia { get; set; }
 
     /// <summary>
-    ///   Sum of <see cref="BaseMovement"/>, <see cref="Flagella"/>, and <see cref="Cilia"/>
+    ///   Sum of <see cref="BaseMovement"/>, <see cref="Flagella"/>, <see cref="Actomyosin"/>, and <see cref="Cilia"/>
     /// </summary>
     public float TotalMovement { get; set; }
 

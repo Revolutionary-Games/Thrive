@@ -245,8 +245,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
         IBiomeConditions biome, in ResolvedMicrobeTolerances environmentTolerances, float totalSpecializationBonus,
         MembraneType membrane, Vector3 onlyMovementInDirection,
         bool includeMovementCost, bool isPlayerSpecies, WorldGenerationSettings worldSettings,
-        CompoundAmountType amountType, SimulationCache? cache,
-        EnergyBalanceInfoSimple result)
+        CompoundAmountType amountType, SimulationCache? cache, EnergyBalanceInfoSimple result)
     {
 #if DEBUG
         if (result is EnergyBalanceInfoFull)
@@ -349,7 +348,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
         if (isPlayerSpecies)
             energyCostMultiplier = worldSettings.EnergyCostMultiplier;
 
-        // Once simple balance is calculated we add the extra info on top, this approach loops the organelles twice
+        // Once simple balance is calculated, we add the extra info on top, this approach loops the organelles twice
         // but reduces code duplication
 
         int organelleCount = organelles.Count;
@@ -361,8 +360,11 @@ public partial class ProcessSystem : BaseSystem<World, float>
                 result);
 
             // Take special cell components that take energy into account
-            if (TryGetMovementCostForOrganelle(includeMovementCost, organelle, onlyMovementInDirection, out var cost))
-                result.AddConsumption(organelle.Definition.InternalName, cost * energyCostMultiplier);
+            if (TryGetMovementCostForOrganelle(includeMovementCost, organelle, onlyMovementInDirection,
+                    out var cost1, out var cost2))
+            {
+                result.AddConsumption(organelle.Definition.InternalName, (cost1 + cost2) * energyCostMultiplier);
+            }
 
             if (includeMovementCost && organelle.Definition.HasCiliaComponent)
             {
@@ -996,10 +998,12 @@ public partial class ProcessSystem : BaseSystem<World, float>
             processATPConsumption += consumption;
 
             // Take special cell components that take energy into account
-            if (TryGetMovementCostForOrganelle(includeMovementCost, organelle, onlyMovementInDirection, out var cost))
+            if (TryGetMovementCostForOrganelle(includeMovementCost, organelle, onlyMovementInDirection,
+                    out var flagellumCost, out var actomyosinCost))
             {
-                movementATPConsumption += cost;
-                result.Flagella += cost;
+                movementATPConsumption += flagellumCost + actomyosinCost;
+                result.Actomyosin += actomyosinCost;
+                result.Flagella += flagellumCost;
             }
 
             if (includeMovementCost && organelle.Definition.HasCiliaComponent)
@@ -1047,6 +1051,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
             result.TotalMovement *= energyCostMultiplier;
             result.BaseMovement *= energyCostMultiplier;
             result.Flagella *= energyCostMultiplier;
+            result.Actomyosin *= energyCostMultiplier;
             result.Cilia *= energyCostMultiplier;
         }
 
@@ -1168,28 +1173,43 @@ public partial class ProcessSystem : BaseSystem<World, float>
         result.FinalBalanceStationary = result.TotalProduction - result.TotalConsumptionStationary;
     }
 
+    /// <summary>
+    ///   Gets the movement cost of an organelle. Note that for actomyosin this assumes the cell is in a colony,
+    ///   otherwise the actomyosin cost is zero.
+    /// </summary>
+    /// <returns>True if there's a movement cost</returns>
     private static bool TryGetMovementCostForOrganelle(bool includeMovementCost, OrganelleTemplate organelle,
-        Vector3 onlyMovementInDirection, out float movementCost)
+        Vector3 onlyMovementInDirection, out float flagellumCost, out float actomyosinCost)
     {
-        if (!includeMovementCost || !organelle.Definition.HasMovementComponent)
+        if (!includeMovementCost ||
+            (!organelle.Definition.HasMovementComponent && !organelle.Definition.HasActomyosinComponent))
         {
-            movementCost = 0;
+            flagellumCost = 0;
+            actomyosinCost = 0;
             return false;
         }
 
-        float amount;
-
-        if (organelle.Upgrades?.CustomUpgradeData is FlagellumUpgrades flagellumUpgrades)
+        if (organelle.Definition.HasActomyosinComponent)
         {
-            amount = Constants.FLAGELLA_ENERGY_COST + flagellumUpgrades.LengthFraction
+            actomyosinCost = Constants.ACTOMYOSIN_ENERGY_COST;
+            flagellumCost = 0;
+        }
+        else if (organelle.Upgrades?.CustomUpgradeData is FlagellumUpgrades flagellumUpgrades)
+        {
+            flagellumCost = Constants.FLAGELLA_ENERGY_COST + flagellumUpgrades.LengthFraction
                 * Constants.FLAGELLA_MAX_UPGRADE_ATP_USAGE;
+            actomyosinCost = 0;
         }
         else
         {
-            amount = Constants.FLAGELLA_ENERGY_COST;
+            flagellumCost = Constants.FLAGELLA_ENERGY_COST;
+            actomyosinCost = 0;
         }
 
-        movementCost = amount;
+        // Actomyosin improves movement in all directions, unlike flagella which only work when aimed at the
+        // requested movement direction.
+        if (!organelle.Definition.HasMovementComponent)
+            return true;
 
         var organelleDirection = MicrobeInternalCalculations.GetOrganelleDirection(organelle);
         if (organelleDirection.Dot(onlyMovementInDirection) > 0)

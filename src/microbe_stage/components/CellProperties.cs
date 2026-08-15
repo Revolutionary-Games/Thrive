@@ -201,7 +201,7 @@ public static class CellPropertiesHelpers
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     Now with multicellular colonies are also allowed to divide so there's no longer a check against that
+    ///     Now with multicellular colonies are also allowed to divide, so there's no longer a check against that
     ///   </para>
     /// </remarks>
     public static void Divide(this ref CellProperties cellProperties, ref OrganelleContainer organelles,
@@ -214,6 +214,13 @@ public static class CellPropertiesHelpers
 
         if (entity.Has<MicrobeColonyMember>())
             throw new ArgumentException("Cell that is a colony member (non-leader) can't divide");
+
+        // This is asexual reproduction, so pick the same sex as the parent entity
+        GameteType sex = GameteType.All;
+        if (entity.Has<MicrobeSex>())
+        {
+            sex = entity.Get<MicrobeSex>().Sex;
+        }
 
         ref var position = ref entity.Get<WorldPosition>();
 
@@ -234,7 +241,7 @@ public static class CellPropertiesHelpers
 
         // Create one daughter cell.
         var (recorder, weight) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species,
-            spawnPosition, true, (null, 0), out var copyEntity, multicellularSpawnState);
+            spawnPosition, true, (null, 0), sex, out var copyEntity, multicellularSpawnState);
 
         recorder.Add(copyEntity, new CellDivisionCollisionDisabler
         {

@@ -8,7 +8,8 @@ using SharedBase.Archive;
 ///   Main class for managing the macroscopic stage
 /// </summary>
 [SceneLoadedClass("res://src/macroscopic_stage/MacroscopicStage.tscn")]
-public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, DummyWorldSimulation>, IArchivable
+public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, DummyWorldSimulation>, IArchivable,
+    IEditorMovableStage
 {
     public const ushort SERIALIZATION_VERSION = 1;
 
@@ -84,6 +85,8 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
     [JsonIgnore]
     public override bool HasAlivePlayer => HasPlayer;
 
+    public bool IsDisposed { get; set; }
+
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
     public ArchiveObjectType ArchiveObjectType => throw new NotSupportedException("unimplemented");
 
@@ -132,6 +135,24 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
         // We don't actually spawn anything currently, and anyway will want a different spawn system for late
         // multicellular
         dummySpawner = new DummySpawnSystem();
+    }
+
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+
+        MicrobeStage.CurrentActiveStage = new WeakReference<IEditorMovableStage>(this);
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        if (MicrobeStage.CurrentActiveStage != null &&
+            MicrobeStage.CurrentActiveStage.TryGetTarget(out var activeStage) && activeStage == this)
+        {
+            MicrobeStage.CurrentActiveStage = null;
+        }
     }
 
     public override void _Process(double delta)
@@ -847,6 +868,8 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
         }
 
         base.Dispose(disposing);
+
+        IsDisposed = true;
     }
 
     private void OnFinishLoading()

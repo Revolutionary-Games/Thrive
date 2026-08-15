@@ -6,6 +6,8 @@ public partial class ThriveopediaWikiRootPage : ThriveopediaPage, IThriveopediaP
     public string PageName => "WikiRoot";
 
     public string TranslatedPageName => Localization.Translate("WIKI");
+    public string? TranslatedPageBody => null;
+    public string? TranslatedAdditionalSearchContent => null;
 
     public string? ParentPageName => null;
 

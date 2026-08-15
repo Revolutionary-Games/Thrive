@@ -105,7 +105,7 @@ public abstract class Species : ICloneable, IArchivable, IReadOnlySpecies
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     Changing this has no effect as this is set after auto-evo from the per patch populations.
+    ///     Changing this has no effect as this is set after auto-evo from the per-patch populations.
     ///   </para>
     /// </remarks>
     public long Population { get; set; } = 1;
@@ -116,6 +116,11 @@ public abstract class Species : ICloneable, IArchivable, IReadOnlySpecies
     ///   When true, this is the player species
     /// </summary>
     public bool PlayerSpecies { get; private set; }
+
+    /// <summary>
+    ///   This is basically the "sex" of the species when played by the player.
+    /// </summary>
+    public GameteType PlayerGamete { get; set; } = GameteType.All;
 
     public EndosymbiosisData Endosymbiosis { get; private set; } = new();
 

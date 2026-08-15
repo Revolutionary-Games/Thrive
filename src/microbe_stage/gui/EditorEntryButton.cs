@@ -19,6 +19,21 @@ public partial class EditorEntryButton : TextureButton
     private Texture2D phosphatesInv = null!;
 
     [Export]
+    private Texture2D gameteButtonNormal = null!;
+
+    [Export]
+    private Texture2D gameteButtonPressed = null!;
+
+    [Export]
+    private Texture2D gameteButtonHover = null!;
+
+    [Export]
+    private Texture2D gameteButtonDisabled = null!;
+
+    [Export]
+    private Control readyPrompt = null!;
+
+    [Export]
     private TextureRect highlight = null!;
 
     [Export]
@@ -41,6 +56,11 @@ public partial class EditorEntryButton : TextureButton
 
     [Export]
     private PointLight2D editorButtonFlash = null!;
+
+    private Texture2D? originalButtonNormal;
+    private Texture2D? originalButtonPressed;
+    private Texture2D? originalButtonHover;
+    private Texture2D? originalButtonDisabled;
 #pragma warning restore CA2213
 
     public void SetEditorButtonFlashEffect(bool enabled)
@@ -75,6 +95,8 @@ public partial class EditorEntryButton : TextureButton
         phosphateIcon.Texture = phosphatesBW;
         ammoniaIcon.Texture = ammoniaBW;
         buttonAnimationPlayer.Play("EditorButtonFlash");
+
+        readyPrompt.Visible = true;
     }
 
     public void HideReproductionDialog()
@@ -89,6 +111,30 @@ public partial class EditorEntryButton : TextureButton
         phosphateIcon.Texture = phosphatesInv;
         ammoniaIcon.Texture = ammoniaInv;
         buttonAnimationPlayer.Stop();
+
+        readyPrompt.Visible = false;
+    }
+
+    public void SetNormalStyle()
+    {
+        // If not changed away from a special style, do nothing
+        if (originalButtonNormal == null)
+            return;
+
+        TextureNormal = originalButtonNormal;
+        TexturePressed = originalButtonPressed;
+        TextureHover = originalButtonHover;
+        TextureDisabled = originalButtonDisabled;
+    }
+
+    public void SetGameteStyle()
+    {
+        RememberNormalStyle();
+
+        TextureNormal = gameteButtonNormal;
+        TexturePressed = gameteButtonPressed;
+        TextureHover = gameteButtonHover;
+        TextureDisabled = gameteButtonDisabled;
     }
 
     private void UpdateReproductionProgress(float newAmmoniaValue, float newPhosphateValue)
@@ -113,5 +159,16 @@ public partial class EditorEntryButton : TextureButton
 
         highlight.Show();
         buttonAnimationPlayer.Play();
+    }
+
+    private void RememberNormalStyle()
+    {
+        if (originalButtonNormal != null)
+            return;
+
+        originalButtonNormal = TextureNormal;
+        originalButtonPressed = TexturePressed;
+        originalButtonHover = TextureHover;
+        originalButtonDisabled = TextureDisabled;
     }
 }

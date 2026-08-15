@@ -17,6 +17,10 @@ public partial class ThriveopediaOrganellePage : ThriveopediaWikiPage
     /// </summary>
     public OrganelleDefinition Organelle { get; set; } = null!;
 
+    public override string TranslatedAdditionalSearchContent =>
+        Localization.Translate("THRIVEOPEDIA_ORGANELLE_SEARCHTAGS")
+        + "\n" + base.TranslatedAdditionalSearchContent;
+
     public override void _Ready()
     {
         base._Ready();

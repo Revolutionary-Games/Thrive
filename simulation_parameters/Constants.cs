@@ -262,6 +262,11 @@ public static class Constants
     public const float FLAGELLA_MIN_UPGRADE_VISUAL_LENGTH = 0.80f;
 
     /// <summary>
+    ///   ATP cost per actomyosin organelle while a colony is moving.
+    /// </summary>
+    public const float ACTOMYOSIN_ENERGY_COST = 12.0f;
+
+    /// <summary>
     ///   As eukaryotes are immediately 50% larger, they get a movement force increase to offset that
     /// </summary>
     public const float EUKARYOTIC_MOVEMENT_FORCE_MULTIPLIER = 2.5f;
@@ -342,6 +347,17 @@ public static class Constants
 
     public const float CILIA_PULLING_FORCE_FALLOFF_FACTOR = 0.05f;
     public const float CILIA_CURRENT_GENERATION_ANIMATION_SPEED = 5.0f;
+
+    public const float ACTOMYOSIN_DEFAULT_ANIMATION_SPEED = 0.1f;
+    public const float ACTOMYOSIN_SPEED_SAMPLE_INTERVAL = 0.1f;
+    public const float ACTOMYOSIN_ROTATION_ANIMATION_SPEED_MULTIPLIER = 10.0f;
+    public const float ACTOMYOSIN_MIN_ANIMATION_SPEED = 0.5f;
+    public const float ACTOMYOSIN_MAX_ANIMATION_SPEED = 5;
+    public const float EFFECTIVE_ACTOMYOSIN_MULTIPLIER = 0.05f;
+    public const float ACTOMYOSIN_ROTATION_BUFF_PER = 0.15f;
+    public const float ACTOMYOSIN_MOVEMENT_BUFF_PER = 0.25f;
+
+    // TODO: harsher wording in the tooltip
 
     public const int MICROBE_SPAWN_RADIUS = 350;
 
@@ -546,7 +562,7 @@ public static class Constants
     /// <summary>
     ///   How much a cell's speed is increased when secreting slime (scaling with secreted compound amount)
     /// </summary>
-    public const float MUCILAGE_JET_FACTOR = 100000.0f;
+    public const float MUCILAGE_JET_FACTOR = 2000.0f;
 
     /// <summary>
     ///   Minimum stored slime needed to start secreting
@@ -1166,6 +1182,12 @@ public static class Constants
     // Darwinian Evo Values
     public const int CREATURE_DEATH_POPULATION_LOSS = -30;
     public const int CREATURE_REPRODUCE_POPULATION_GAIN = 50;
+    public const int CREATURE_REPRODUCE_SEXUAL_POPULATION_GAIN = CREATURE_REPRODUCE_POPULATION_GAIN * 3;
+
+    /// <summary>
+    ///   Gametes are shot a lot, so their population gain is limited
+    /// </summary>
+    public const int CREATURE_PRODUCE_GAMETE_POPULATION_GAIN = 5;
 
     // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4694
     public const int CREATURE_KILL_POPULATION_GAIN = 50;
@@ -1217,6 +1239,9 @@ public static class Constants
 
     public const int SPORE_CELL_TYPE_CHANGE_COST = 10;
 
+    public const int GAMETE_CELL_TYPE_CHANGE_COST = 10;
+    public const int MULTICELLULAR_ANISOGAMY_UPGRADE_COST = 55;
+
     public const int MASS_BUDDING_CELL_COUNT_CHANGE_COST = 10;
 
     public const string ORGANELLE_UPGRADE_SPECIAL_NONE = "none";
@@ -1229,6 +1254,19 @@ public static class Constants
     public const float METABALL_MIN_SIZE = 0.4f;
     public const float METABALL_SIZE_STEP = 0.1f;
     public const float METABALL_MAX_SIZE = 5.0f;
+
+    public const float GAMETE_MERGE_DISTANCE_SQUARED = 4 * 4;
+    public const float GAMETE_INITIAL_VELOCITY = 90;
+
+    /// <summary>
+    ///   Automatically stops the player gamete shoot signal after this time
+    /// </summary>
+    public const float SIGNAL_GAMETE_TURN_OFF_AFTER = 20;
+
+    public const float GAMETE_FORCE_SHOOT_INTERVAL = 10;
+    public const float GAMETE_FORCE_SHOOT_DISTANCE_SQUARED = 100 * 100;
+    public const float GAMETE_MATE_CALL_MAX_DISTANCE_SQUARED = 550 * 550;
+    public const float GAMETE_MATE_CALL_TARGET_DISTANCE_SQUARED = 50 * 50;
 
     // Corpse info
     public const float CORPSE_COMPOUND_COMPENSATION = 85.0f;
@@ -1699,9 +1737,14 @@ public static class Constants
     public const float MAX_SPECIES_NAME_LENGTH_PIXELS = 230.0f;
 
     /// <summary>
-    ///   Multiplier for cell editor actions in multicellular editor
+    ///   Multiplier for cell editor actions in the multicellular editor
     /// </summary>
     public const float MULTICELLULAR_EDITOR_COST_FACTOR = 0.5f;
+
+    /// <summary>
+    ///   Multiplier for mutation point costs after entering the multicellular editor through sexual reproduction
+    /// </summary>
+    public const float SEXUAL_REPRODUCTION_MP_COST_FACTOR = 0.8f;
 
     public const float MINIMUM_RUNNABLE_PROCESS_FRACTION = 0.00001f;
 

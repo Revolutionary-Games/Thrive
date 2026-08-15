@@ -58,6 +58,11 @@ public struct OrganelleContainer : IArchivableComponent
     public List<CiliaComponent>? RotationComponents;
 
     /// <summary>
+    ///   Actomyosin components that need to be animated when the cell *colony* is moving
+    /// </summary>
+    public List<ActomyosinComponent>? ActomyosinComponents;
+
+    /// <summary>
     ///   Compound detections set by chemoreceptor organelles.
     /// </summary>
     public HashSet<(Compound Compound, float Range, float MinAmount, Color Colour)>? ActiveCompoundDetections;
@@ -665,6 +670,11 @@ public static class OrganelleContainerHelpers
                     container.RotationComponents ??= new List<CiliaComponent>();
                     container.RotationComponents.Add(rotationComponent);
                 }
+                else if (organelleComponent is ActomyosinComponent actomyosinComponent)
+                {
+                    container.ActomyosinComponents ??= new List<ActomyosinComponent>();
+                    container.ActomyosinComponents.Add(actomyosinComponent);
+                }
             }
 
             if (organelleDefinition.HasSignalingFeature)
@@ -761,6 +771,7 @@ public static class OrganelleContainerHelpers
         container.SlimeJets?.Clear();
         container.ThrustComponents?.Clear();
         container.RotationComponents?.Clear();
+        container.ActomyosinComponents?.Clear();
 
         // This method can be safely called again if this happened to run too early
         if (container.Organelles == null)
@@ -787,6 +798,11 @@ public static class OrganelleContainerHelpers
                 {
                     container.RotationComponents ??= new List<CiliaComponent>();
                     container.RotationComponents.Add(rotationComponent);
+                }
+                else if (organelleComponent is ActomyosinComponent actomyosinComponent)
+                {
+                    container.ActomyosinComponents ??= new List<ActomyosinComponent>();
+                    container.ActomyosinComponents.Add(actomyosinComponent);
                 }
             }
         }
@@ -946,5 +962,22 @@ public static class OrganelleContainerHelpers
     public static float CalculateCellEntityWeight(int organelleCount)
     {
         return Constants.MICROBE_BASE_ENTITY_WEIGHT + organelleCount * Constants.ORGANELLE_ENTITY_WEIGHT;
+    }
+
+    public static float CalculateEffectiveActomyosinCount(this ref OrganelleContainer organelleContainer)
+    {
+#if DEBUG
+        if (!organelleContainer.OrganelleComponentsCached)
+        {
+            GD.PrintErr("Cannot get actomyosin count for container without components cached yet");
+        }
+#endif
+
+        var actomyosin = organelleContainer.ActomyosinComponents;
+        if (actomyosin == null || actomyosin.Count < 1)
+            return 0;
+
+        // First actomyosin counts fully, and the other ones are then just a little effective
+        return CellBodyPlanInternalCalculations.CalculateEffectiveActomyosinCount(actomyosin.Count);
     }
 }

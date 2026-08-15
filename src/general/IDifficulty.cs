@@ -82,6 +82,16 @@ public interface IDifficulty : IRegistryAssignable, IArchivable
     public bool OrganelleUnlocksEnabled { get; }
 
     /// <summary>
+    ///   When true, a compatible mate will spawn when the player calls for one if one doesn't exist
+    /// </summary>
+    public bool SpawnCompatibleMateOnCall { get; }
+
+    /// <summary>
+    ///   Shows to the player the mate's position
+    /// </summary>
+    public bool ShowMatePosition { get; }
+
+    /// <summary>
     ///   Sets a temporary value that overrides the normal growth rate
     /// </summary>
     public void SetGrowthRateLimitCheatOverride(bool limitGrowthRate);
@@ -108,6 +118,8 @@ public static class DifficultyHelpers
             FogOfWarMode = difficulty.FogOfWarMode,
             InstantKillProtection = difficulty.InstantKillProtection,
             OrganelleUnlocksEnabled = difficulty.OrganelleUnlocksEnabled,
+            SpawnCompatibleMateOnCall = difficulty.SpawnCompatibleMateOnCall,
+            ShowMatePosition = difficulty.ShowMatePosition,
         };
     }
 
@@ -129,6 +141,8 @@ public static class DifficultyHelpers
             $", Limit Growth Rate: {difficulty.LimitGrowthRate}" +
             $", Fog Of War Mode: {difficulty.FogOfWarMode}" +
             $", Instant Kill Protection: {difficulty.InstantKillProtection}" +
-            $", Organelle Unlocks Enabled: {difficulty.OrganelleUnlocksEnabled}";
+            $", Organelle Unlocks Enabled: {difficulty.OrganelleUnlocksEnabled}" +
+            $", Spawn Compatible Mate On Call: {difficulty.SpawnCompatibleMateOnCall}" +
+            $", Show Mate Position: {difficulty.ShowMatePosition}";
     }
 }

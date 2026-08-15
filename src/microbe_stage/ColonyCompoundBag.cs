@@ -164,6 +164,17 @@ public class ColonyCompoundBag : ICompoundStorage
             bag.ClearCompounds();
     }
 
+    /// <summary>
+    ///   Returns a dictionary that contains the combined compounds of the entire colony. The returned dictionary
+    ///   shouldn't be stored or modified.
+    /// </summary>
+    public Dictionary<Compound, float> GetCompoundDictionary()
+    {
+        FillSummedCompoundsBuffer(GetCompoundBags());
+
+        return summedCompoundsBuffer;
+    }
+
     private static bool IsUsefulInAnyCompoundBag(CompoundDefinition compound, List<CompoundBag> compoundBags)
     {
         foreach (var compoundBag in compoundBags)
