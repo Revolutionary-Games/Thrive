@@ -177,17 +177,6 @@ public class ModifyExistingSpecies : IRunStep
 
                 foreach (var mutation in mutationsToTry)
                 {
-                    // For Multicellular species, we need to calculate the gameplay shape here
-                    if (mutation.MutatedSpecies is MulticellularSpecies multicellularMutant)
-                    {
-                        multicellularMutant.RepositionCellTypesToOrigin();
-                        MulticellularLayoutHelpers.UpdateGameplayLayoutForAutoEvo(
-                            multicellularMutant.ModifiableGameplayCells, multicellularMutant.ModifiableEditorCells,
-                            new List<Hex>(), new List<Hex>());
-                    }
-
-                    mutation.MutatedSpecies.OnEdited();
-
 #if DEBUG
                     if (mutation.MutatedSpecies.AutoEvoAttemptCache == 0)
                         throw new Exception("Mutation has no cache number, so missing a call to OnAttemptedInAutoEvo");
@@ -236,6 +225,18 @@ public class ModifyExistingSpecies : IRunStep
 
                     if (newPopulation > Constants.AUTO_EVO_MINIMUM_VIABLE_POPULATION)
                     {
+                        // For Multicellular species, we need to calculate the gameplay shape here before OnEdited
+                        if (mutation.MutatedSpecies is MulticellularSpecies multicellularMutant)
+                        {
+                            multicellularMutant.RepositionCellTypesToOrigin();
+                            MulticellularLayoutHelpers.UpdateGameplayLayoutForAutoEvo(
+                                multicellularMutant.ModifiableGameplayCells, multicellularMutant.ModifiableEditorCells,
+                                new List<Hex>(), new List<Hex>());
+                        }
+
+                        // OnEdited is expensive, so we only run it here on species that exit auto-evo
+                        mutation.MutatedSpecies.OnEdited();
+
                         // Only apply a new name and colour to results that are actually kept
                         if (mutation.MutatedSpecies is MicrobeSpecies microbeSpecies &&
                             mutation.ParentSpecies is MicrobeSpecies parentMicrobeSpecies)
