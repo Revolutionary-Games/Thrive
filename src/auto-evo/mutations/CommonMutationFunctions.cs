@@ -594,7 +594,7 @@ public static class CommonMutationFunctions
     private static HexWithData<CellTemplate>? GetCenterlineRearPosition(CellType newCellType,
         IndividualHexLayout<CellTemplate> existingCells)
     {
-        // Assume can't be placed at 0,0 so start at -1
+        // Assume can't be placed at 0,0 so start at 1
         for (int r = 1; r < Constants.DIRECTION_ORGANELLE_CHECK_MAX_DISTANCE; ++r)
         {
             var newHexPosition = new Hex(0, r);
