@@ -643,6 +643,24 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         OnFinishLoading();
     }
 
+    internal static void ConvertMicrobeToMulticellular(Entity microbe, MulticellularSpecies multicellularSpecies,
+        CellType rootCellType, ResolvedMicrobeTolerances resolvedTolerances, float totalSpecializationBonus,
+        IWorldSimulation worldSimulation, List<Hex> workData1, List<Hex> workData2)
+    {
+        // Direct component setting is safe as the caller only invokes this outside a simulation update
+        microbe.Remove<MicrobeSpeciesMember>();
+        microbe.Set(new SpeciesMember(multicellularSpecies));
+        microbe.Add(new MulticellularSpeciesMember(multicellularSpecies, rootCellType, 0));
+        microbe.Add(new MulticellularGrowth(multicellularSpecies));
+
+        ref var environmentalEffects = ref microbe.Get<MicrobeEnvironmentalEffects>();
+        environmentalEffects.ApplyEffects(resolvedTolerances, totalSpecializationBonus, ref microbe.Get<BioProcesses>());
+
+        ref var cellProperties = ref microbe.Get<CellProperties>();
+        cellProperties.ReApplyCellTypeProperties(ref environmentalEffects, microbe, rootCellType,
+            multicellularSpecies, totalSpecializationBonus, worldSimulation, workData1, workData2);
+    }
+
     public override void StartNewGame()
     {
         CurrentGame = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings());
@@ -1019,15 +1037,18 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         bool playerHandled = false;
 
         var multicellularSpecies = GameWorld.ChangeSpeciesToMulticellular(previousSpecies, true);
+        var rootCellType = multicellularSpecies.ColonyRootCellType();
+        var resolvedTolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(
+            MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(multicellularSpecies, CurrentBiome));
+        var totalSpecializationBonus = rootCellType.CellTypeSpecializationBonus *
+            multicellularSpecies.GetAdjacencySpecializationBonus(0);
+        var workData1 = new List<Hex>();
+        var workData2 = new List<Hex>();
+
         foreach (var microbe in playerSpeciesMicrobes)
         {
-            // Direct component setting is safe as we verified above we aren't running during a simulation update
-            microbe.Remove<MicrobeSpeciesMember>();
-            microbe.Set(new SpeciesMember(multicellularSpecies));
-            microbe.Add(new MulticellularSpeciesMember(multicellularSpecies,
-                multicellularSpecies.ModifiableCellTypes[0], 0));
-
-            microbe.Add(new MulticellularGrowth(multicellularSpecies));
+            ConvertMicrobeToMulticellular(microbe, multicellularSpecies, rootCellType, resolvedTolerances,
+                totalSpecializationBonus, WorldSimulation, workData1, workData2);
 
             if (microbe.Has<PlayerMarker>())
                 playerHandled = true;
