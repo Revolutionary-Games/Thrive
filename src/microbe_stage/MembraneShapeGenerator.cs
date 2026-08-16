@@ -1006,8 +1006,8 @@ public class MembraneShapeGenerator
     }
 
     /// <summary>
-    ///   Casts the vertices between the tangent points onto the lines defined by each tangent point and the middle point,
-    ///   in the direction from the average vertex to the middle point.
+    ///   Casts the vertices between the tangent points onto the lines defined by each tangent point
+    ///   and the middle point, in the direction from the average vertex to the middle point.
     /// </summary>
     private bool CastVerticesOntoTheTangentLines(List<Vector2> neighbourCellVertices, Vector2 middlePoint,
         Vector2 averageVertex, Vector2 neighbourAverageVertex, int closestVertexIndex, int neighbourClosestVertexIndex)
