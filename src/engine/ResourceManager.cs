@@ -177,14 +177,12 @@ public partial class ResourceManager : Node
 
         if (totalStageResourcesToLoad == -1)
         {
-            if (StartStageResourceLoad())
-            {
-                // This returns only true on error
-                gameStateLoaded = true;
-                return true;
-            }
+            if (!StartStageResourceLoad())
+                return false;
 
-            return false;
+            // This returns only true on error
+            gameStateLoaded = true;
+            return true;
         }
 
         // Do not inspect state written by a background operation before its Task completion has been observed.
@@ -451,10 +449,7 @@ public partial class ResourceManager : Node
 
     private void ObserveTaskFailureAfterExit(ResourceBackgroundTask? backgroundTask)
     {
-        if (backgroundTask == null)
-            return;
-
-        backgroundTask.ObserveFailureOnCompletion(e =>
+        backgroundTask?.ObserveFailureOnCompletion(e =>
             ReportResourceOperationFailure(backgroundTask.Resource, $"background {backgroundTask.Phase} on exit", e));
     }
 
