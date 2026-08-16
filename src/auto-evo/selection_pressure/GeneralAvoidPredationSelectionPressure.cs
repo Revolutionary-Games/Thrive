@@ -45,6 +45,7 @@ public class GeneralAvoidPredationSelectionPressure : SelectionPressure
             CommonMutationFunctions.Direction.Rear),
         new AddCellWithOrganelle(organelle => organelle.HasSlimeJetComponent,
             CommonMutationFunctions.Direction.Rear),
+        new AddCellWithOrganelle(organelle => organelle.HasActomyosinComponent),
         new AddCellWithOrganelle(organelle => organelle.HasMovementComponent,
             CommonMutationFunctions.Direction.Rear),
     ])

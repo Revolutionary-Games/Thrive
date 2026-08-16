@@ -67,6 +67,7 @@ public class PredationEffectivenessPressure : SelectionPressure
                 CommonMutationFunctions.Direction.Front),
             new AddCellWithOrganelle(organelle => organelle.HasPilusComponent,
                 CommonMutationFunctions.Direction.Front),
+            new AddCellWithOrganelle(organelle => organelle.HasActomyosinComponent),
             new AddCellWithOrganelle(organelle => organelle.HasMovementComponent,
                 CommonMutationFunctions.Direction.Rear),
             new AddCellWithOrganelle(organelle => organelle.HasCiliaComponent,
