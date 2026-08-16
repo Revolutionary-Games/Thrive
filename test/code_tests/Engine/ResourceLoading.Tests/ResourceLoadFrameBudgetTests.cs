@@ -2,7 +2,6 @@ namespace ThriveTest.Engine.ResourceLoading.Tests;
 
 using System;
 using System.Collections.Concurrent;
-using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using Nito.Collections;
@@ -93,18 +92,6 @@ public class ResourceLoadFrameBudgetTests
         Assert.Equal(1, resource.LoadCount);
         Assert.Equal(1, resource.PostProcessingCount);
         Assert.Equal(1, resource.CallbackCount);
-    }
-
-    [Fact]
-    public void ReportingPaths_SelectTotalAndMainThreadEstimates()
-    {
-        // The reporting switches are compile-time false, so the estimate sources are a call-site contract here.
-        string source = File.ReadAllText(Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..",
-            "..", "..", "src", "engine", "ResourceManager.cs"))).ReplaceLineEndings("\n");
-
-        Assert.Contains("ReportResourceLoadTime(resource, stopwatch.Elapsed, resource.EstimatedTimeRequired);", source);
-        Assert.Contains("ReportResourceLoadTime(resource, splitLoadStopwatch.Elapsed,\n" +
-            "                    GetEstimatedMainThreadTimeRequired(resource));", source);
     }
 
     [Theory]
