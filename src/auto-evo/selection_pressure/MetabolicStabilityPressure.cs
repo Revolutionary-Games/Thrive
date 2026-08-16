@@ -71,7 +71,7 @@ public class MetabolicStabilityPressure : SelectionPressure
             // for metabolic stability in Multicellular species, we care for individual cells instead of the whole
             // species, because ATP is per-cell.
             // We take cell types instead of individual cells because it's faster, matches what the player gets warnings
-            // for, and makes it easier to place new cells in hexes where they might have less adjacency.
+            // For, and makes it easier to place new cells in hexes where they might have less adjacency.
             var cellTypes = multicellularSpecies.CellTypes;
             for (var i = 0; i < cellTypes.Count; ++i)
             {
@@ -93,7 +93,6 @@ public class MetabolicStabilityPressure : SelectionPressure
             return 1.0f;
         }
 
-        GD.Print(species.ReadableName);
         throw new ArgumentException("Wrong type of Species passed to Microbe/Multicellular Species miche tree");
     }
 
