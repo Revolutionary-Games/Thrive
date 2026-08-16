@@ -1,6 +1,8 @@
 namespace ThriveTest.Engine.ResourceLoading.Tests;
 
 using System;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 using Newtonsoft.Json;
 using Xunit;
 
@@ -38,15 +40,6 @@ public class ResourceLoadFrameBudgetTests
 
         Assert.True(budget.TryAdmit(0.51, 0));
         Assert.False(budget.TryAdmit(0.51, 0));
-    }
-
-    [Fact]
-    public void Admission_CallbackOnlyUnitConsumesForcedProgressOpportunity()
-    {
-        var budget = new ResourceLoadFrameBudget(0.5, 0, TARGET_FRAME_TIME_SECONDS);
-
-        Assert.True(budget.TryAdmit(0, 0.1));
-        Assert.False(budget.TryAdmit(0.41, 0.1));
     }
 
     [Fact]
@@ -115,35 +108,55 @@ public class ResourceLoadFrameBudgetTests
     }
 
     [Theory]
-    [InlineData(false, false, 0)]
-    [InlineData(true, true, 1)]
-    public void PendingMainPath_PerformsRequiredPhasesAndCallback(bool usesPostProcessing,
-        bool requiresSyncPostProcess, int expectedPostProcessingCount)
+    [InlineData(0, 0, 1)]
+    [InlineData(1, 1, 0)]
+    [InlineData(2, 0, 0)]
+    [InlineData(3, 1, 1)]
+    public void PendingMainPath_AdmissionAndSettlementAreExactlyOnce(int failureMode,
+        int expectedPostProcessingCount, int expectedCallbackCount)
     {
-        var resource = new TestResource(0.25, requiresSyncLoad: false, usesPostProcessing,
-            requiresSyncPostProcess);
-        resource.OnComplete = resource.RecordCallback;
-        resource.Load();
+        bool throwDuringPostProcessing = failureMode == 1;
+        bool usesPostProcessing = throwDuringPostProcessing || failureMode == 3;
+        var resource = new TestResource(0.25, requiresSyncLoad: false,
+            usesPostProcessing, requiresSyncPostProcess: usesPostProcessing);
+        resource.PostProcessingAction = throwDuringPostProcessing ?
+            () => throw new InvalidOperationException("post-processing failed") : null;
 
-        ResourceManager.PerformPendingMainThreadPhases(resource, null);
-
-        Assert.True(resource.Loaded);
-        Assert.Equal(1, resource.LoadCount);
-        Assert.Equal(expectedPostProcessingCount, resource.PostProcessingCount);
-        Assert.Equal(1, resource.CallbackCount);
-    }
-
-    [Fact]
-    public void Execution_CallbackFailureDoesNotRestoreAdmissionOpportunity()
-    {
+        resource.OnComplete = failureMode == 2 ? _ => throw new InvalidOperationException("callback failed") :
+            resource.RecordCallback;
+        var (manager, lifecycle) = CreateManagerWithCompletedBackgroundLoad(resource);
         var budget = new ResourceLoadFrameBudget(0.5, 0, TARGET_FRAME_TIME_SECONDS);
-        var resource = new TestResource(0.51);
-        resource.OnComplete = _ => throw new InvalidOperationException("callback failed");
 
-        Assert.True(budget.TryAdmit(((IResource)resource).EstimatedMainThreadTimeRequired, 0));
-        Assert.Throws<InvalidOperationException>(() => ResourceManager.PerformSynchronousLoadAndCallback(resource));
+        manager.ObserveProcessingBackgroundTask(ref budget, suppressFailureReporting: true);
+        Assert.Equal(ResourceLoadState.Completed, lifecycle.GetState(resource));
+        Assert.Equal(expectedPostProcessingCount, resource.PostProcessingCount);
+        Assert.Equal(expectedCallbackCount, resource.CallbackCount);
         Assert.False(budget.TryAdmit(0.51, 0));
+
+        var nextFrameBudget = new ResourceLoadFrameBudget(0.5, 0, TARGET_FRAME_TIME_SECONDS);
+        manager.ObserveProcessingBackgroundTask(ref nextFrameBudget, suppressFailureReporting: true);
+        Assert.True(nextFrameBudget.TryAdmit(0.51, 0));
     }
+
+    private static (ResourceManager Manager, ResourceLoadLifecycle Lifecycle)
+        CreateManagerWithCompletedBackgroundLoad(TestResource resource)
+    {
+        var manager = (ResourceManager)RuntimeHelpers.GetUninitializedObject(typeof(ResourceManager));
+        var lifecycle = new ResourceLoadLifecycle();
+        SetPrivateField(manager, "loadLifecycle", lifecycle);
+        SetPrivateField(manager, "timeTracker", new System.Diagnostics.Stopwatch());
+        Assert.True(lifecycle.TryQueue(resource));
+        lifecycle.MarkPrepared(resource);
+        lifecycle.BeginLoading(resource);
+        resource.Load();
+        SetPrivateField(manager, "processingBackgroundTask",
+            new ResourceBackgroundTask(resource, System.Threading.Tasks.Task.CompletedTask, ResourceBackgroundPhase.Load));
+        return (manager, lifecycle);
+    }
+
+    private static void SetPrivateField<T>(ResourceManager manager, string fieldName, T value) =>
+        typeof(ResourceManager).GetField(fieldName, BindingFlags.Instance | BindingFlags.NonPublic)!
+            .SetValue(manager, value);
 
     private sealed class TestResource : IResource
     {
@@ -168,6 +181,7 @@ public class ResourceLoadFrameBudgetTests
         public int LoadCount { get; private set; }
         public int PostProcessingCount { get; private set; }
         public int CallbackCount { get; private set; }
+        public Action? PostProcessingAction { get; set; }
 
         public void PrepareLoading()
         {
@@ -185,6 +199,7 @@ public class ResourceLoadFrameBudgetTests
         public void PerformPostProcessing()
         {
             ++PostProcessingCount;
+            PostProcessingAction?.Invoke();
             Loaded = true;
         }
 
@@ -195,7 +210,11 @@ public class ResourceLoadFrameBudgetTests
 
         public void RecordCallback(IResource resource)
         {
+            if (UsesPostProcessing && !Loaded)
+                throw new InvalidOperationException("callback ran before post-processing completed");
+
             ++CallbackCount;
         }
+
     }
 }

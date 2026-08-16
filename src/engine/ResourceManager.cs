@@ -387,7 +387,9 @@ public partial class ResourceManager : Node
         }
     }
 
-    private void ObserveProcessingBackgroundTask(ref ResourceLoadFrameBudget frameBudget)
+#pragma warning disable SA1202 // Kept beside the private background-task observer that immediately precedes it.
+    internal void ObserveProcessingBackgroundTask(ref ResourceLoadFrameBudget frameBudget,
+        bool suppressFailureReporting = false)
     {
         var backgroundTask = processingBackgroundTask;
 
@@ -448,10 +450,14 @@ public partial class ResourceManager : Node
             // The callback was admitted and started, so it must not be repeated on the next frame.
             processingBackgroundTask = null;
             CompleteResource(backgroundTask.Resource);
-            ReportResourceOperationFailure(backgroundTask.Resource,
-                "main-thread post-processing or completion callback", e);
+            if (!suppressFailureReporting)
+            {
+                ReportResourceOperationFailure(backgroundTask.Resource,
+                    "main-thread post-processing or completion callback", e);
+            }
         }
     }
+#pragma warning restore SA1202
 
     private void CompleteResource(IResource resource)
     {
