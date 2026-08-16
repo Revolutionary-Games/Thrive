@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Buffers;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading;
@@ -37,6 +38,9 @@ public static class MembraneGenerationCoordinator
         var existing = ProceduralDataCache.Instance.ReadMembraneData(registeredHash);
         if (existing != null)
         {
+            // Cache hit — hexes are no longer needed, return to pool
+            ArrayPool<Vector2>.Shared.Return(generationParameters.HexPositions);
+
             hashedMembranes.Add(registeredHash);
             return hashedMembranes;
         }
@@ -49,6 +53,11 @@ public static class MembraneGenerationCoordinator
         {
             singleCellMembranePointData = generator.GenerateMicrobeShape(ref generationParameters, true);
             ProceduralDataCache.Instance.WriteMembraneData(ref singleCellMembranePointData);
+        }
+        else
+        {
+            // Cache hit — hexes are no longer needed, return to pool
+            ArrayPool<Vector2>.Shared.Return(generationParameters.HexPositions);
         }
 
         var grownCellsData = generationParameters.GrownCellsData;
