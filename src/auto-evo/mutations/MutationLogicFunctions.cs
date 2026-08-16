@@ -7,35 +7,25 @@ using Godot;
 
 public class MutationLogicFunctions
 {
-    public static void NameNewMicrobeSpecies(MicrobeSpecies newSpecies, MicrobeSpecies parentSpecies)
+    public static void NameNewSpecies(Species newSpecies, Species parentSpecies)
     {
-        // If for some silly reason the species are the same don't rename
-        if (newSpecies == parentSpecies)
+        // Keep the same genus name if the species are similar enough
+        var generateGenus = false;
+        if (newSpecies is MicrobeSpecies microbeSpecies && parentSpecies is MicrobeSpecies parentMicrobeSpecies)
         {
-            return;
+            if (!MicrobeSpeciesIsNewGenus(microbeSpecies, parentMicrobeSpecies))
+            {
+                generateGenus = false;
+            }
+        }
+        else if (newSpecies is MulticellularSpecies multicellularSpecies && parentSpecies is
+                     MulticellularSpecies parentMulticellularSpecies)
+        {
+            if (!MulticellularSpeciesIsNewGenus(multicellularSpecies, parentMulticellularSpecies))
+                generateGenus = false;
         }
 
-        if (MicrobeSpeciesIsNewGenus(newSpecies, parentSpecies))
-        {
-            newSpecies.Genus = SimulationParameters.Instance.NameGenerator.GenerateNameSection();
-        }
-        else
-        {
-            newSpecies.Genus = parentSpecies.Genus;
-        }
-
-        newSpecies.Epithet = SimulationParameters.Instance.NameGenerator.GenerateNameSection(null, true);
-    }
-
-    public static void NameNewMulticellularSpecies(MulticellularSpecies newSpecies, MulticellularSpecies parentSpecies)
-    {
-        // If for some silly reason the species are the same don't rename
-        if (newSpecies == parentSpecies)
-        {
-            return;
-        }
-
-        if (MulticellularSpeciesIsNewGenus(newSpecies, parentSpecies))
+        if (generateGenus)
         {
             newSpecies.Genus = SimulationParameters.Instance.NameGenerator.GenerateNameSection();
         }
@@ -50,12 +40,6 @@ public class MutationLogicFunctions
     public static void ColourNewMicrobeSpecies(Random random, MicrobeSpecies newSpecies,
         MicrobeSpecies? parentSpecies = null)
     {
-        // If for some silly reason the species are the same don't recolor
-        if (parentSpecies != null && newSpecies == parentSpecies)
-        {
-            return;
-        }
-
         var oldColour = newSpecies.SpeciesColour;
 
         float redShift;
@@ -90,12 +74,6 @@ public class MutationLogicFunctions
     public static void ColourNewMulticellularSpecies(Random random, MulticellularSpecies newSpecies,
         MulticellularSpecies? parentSpecies = null)
     {
-        // If for some silly reason the species are the same don't recolor
-        if (parentSpecies != null && newSpecies == parentSpecies)
-        {
-            return;
-        }
-
         var oldColour = newSpecies.SpeciesColour;
 
         float redShift;
