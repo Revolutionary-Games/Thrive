@@ -88,6 +88,7 @@ public class AddCellWithOrganelle : IMutationStrategy<Species>
         var organelles = allOrganelles.OrderBy(_ => random.Next())
             .Take(Constants.AUTO_EVO_ORGANELLE_ADD_ATTEMPTS);
 
+        // TODO: reuse this memory somehow
         var mutated = new List<Mutant>();
 
         var workMemory1 = new List<Hex>();
