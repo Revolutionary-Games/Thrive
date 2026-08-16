@@ -99,7 +99,7 @@ public partial class ResourceManager : Node
 
         timeTracker.Restart();
         var frameTimeSource = new StopwatchResourceLoadFrameTimeSource(timeTracker);
-        var dispatcher = default(ResourceManagerLoadDispatcher);
+        var dispatcher = new ResourceManagerLoadDispatcher(processingBackgroundTask?.Task.AsyncState as Stopwatch);
 
         ObservePreparingBackgroundTask();
         ObserveProcessingBackgroundTask(ref frameBudget, ref dispatcher, ref frameTimeSource);
@@ -264,25 +264,31 @@ public partial class ResourceManager : Node
             throw new InvalidOperationException("Loading a resource didn't end up setting loaded flag");
 
         if (Constants.TRACK_ACTUAL_RESOURCE_LOAD_TIMES || Constants.REPORT_ALL_LOAD_TIMES)
-        {
-            var elapsed = stopwatch.Elapsed;
-
-            var difference = elapsed.TotalSeconds - resource.EstimatedTimeRequired;
-
-            if (Math.Abs(difference) > Constants.REPORT_LOAD_TIMES_OF_BY)
-            {
-                GD.Print($"Load time estimate off by {difference}s for {resource.Identifier}");
-            }
-
-            if (Constants.REPORT_ALL_LOAD_TIMES)
-            {
-                GD.Print($"Load time: {elapsed.TotalSeconds}s for {resource.Identifier}");
-            }
-        }
-
-        // ReSharper enable HeuristicUnreachableCode
-#pragma warning restore CS0162
+            ReportResourceLoadTime(resource, stopwatch.Elapsed);
     }
+
+    private static void ReportResourceLoadTime(IResource resource, TimeSpan elapsed)
+    {
+        var difference = elapsed.TotalSeconds - resource.EstimatedTimeRequired;
+
+        if (Math.Abs(difference) > Constants.REPORT_LOAD_TIMES_OF_BY)
+            GD.Print($"Load time estimate off by {difference}s for {resource.Identifier}");
+
+        if (Constants.REPORT_ALL_LOAD_TIMES)
+            GD.Print($"Load time: {elapsed.TotalSeconds}s for {resource.Identifier}");
+    }
+
+    private static Stopwatch? CreateSplitLoadStopwatch(IResource resource)
+    {
+        if (resource.RequiresSyncPostProcess &&
+            (Constants.TRACK_ACTUAL_RESOURCE_LOAD_TIMES || Constants.REPORT_ALL_LOAD_TIMES))
+            return new Stopwatch();
+
+        return null;
+    }
+
+    // ReSharper enable HeuristicUnreachableCode
+#pragma warning restore CS0162
 
     private static void PerformBackgroundLoad(IResource resource)
     {
@@ -533,7 +539,16 @@ public partial class ResourceManager : Node
                         if (processingBackgroundTask == null)
                         {
                             loadLifecycle.BeginLoading(resource);
-                            var task = new Task(() => { PerformBackgroundLoad(resource); });
+
+                            // Keep the timer with the task so deferred main-thread post-processing can resume it.
+                            var loadStopwatch = CreateSplitLoadStopwatch(resource);
+                            var task = new Task(state =>
+                            {
+                                var stopwatch = state as Stopwatch;
+                                stopwatch?.Start();
+                                PerformBackgroundLoad(resource);
+                                stopwatch?.Stop();
+                            }, loadStopwatch);
                             processingBackgroundTask = new ResourceBackgroundTask(resource, task,
                                 ResourceBackgroundPhase.Load);
                             TaskExecutor.Instance.AddTask(task, false);
@@ -717,6 +732,13 @@ public partial class ResourceManager : Node
 
     internal readonly struct ResourceManagerLoadDispatcher : IResourceLoadDispatcher
     {
+        private readonly Stopwatch? splitLoadStopwatch;
+
+        public ResourceManagerLoadDispatcher(Stopwatch? splitLoadStopwatch)
+        {
+            this.splitLoadStopwatch = splitLoadStopwatch;
+        }
+
         public void ExecuteFullLoad(IResource resource)
         {
             ResourceManager.PerformFullLoad(resource);
@@ -724,7 +746,14 @@ public partial class ResourceManager : Node
 
         public void ExecuteMainThreadPostProcessing(IResource resource)
         {
+            splitLoadStopwatch?.Start();
             ResourceManager.PerformMainThreadPostProcessing(resource);
+
+            if (splitLoadStopwatch == null)
+                return;
+
+            splitLoadStopwatch.Stop();
+            ResourceManager.ReportResourceLoadTime(resource, splitLoadStopwatch.Elapsed);
         }
 
         public void InvokeCompletionCallback(IResource resource)
