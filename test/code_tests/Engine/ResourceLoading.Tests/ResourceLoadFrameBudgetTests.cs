@@ -122,8 +122,12 @@ public class ResourceLoadFrameBudgetTests
         resource.PostProcessingAction = throwDuringPostProcessing ?
             () => throw new InvalidOperationException("post-processing failed") : null;
 
-        resource.OnComplete = failureMode == 2 ? _ => throw new InvalidOperationException("callback failed") :
-            resource.RecordCallback;
+        int callbackAttemptCount = 0;
+        resource.OnComplete = failureMode == 2 ? _ =>
+        {
+            ++callbackAttemptCount;
+            throw new InvalidOperationException("callback failed");
+        } : resource.RecordCallback;
         var (manager, lifecycle) = CreateManagerWithCompletedBackgroundLoad(resource);
         var budget = new ResourceLoadFrameBudget(0.5, 0, TARGET_FRAME_TIME_SECONDS);
 
@@ -136,6 +140,9 @@ public class ResourceLoadFrameBudgetTests
         var nextFrameBudget = new ResourceLoadFrameBudget(0.5, 0, TARGET_FRAME_TIME_SECONDS);
         manager.ObserveProcessingBackgroundTask(ref nextFrameBudget, suppressFailureReporting: true);
         Assert.True(nextFrameBudget.TryAdmit(0.51, 0));
+
+        if (failureMode == 2)
+            Assert.Equal(1, callbackAttemptCount);
     }
 
     private static (ResourceManager Manager, ResourceLoadLifecycle Lifecycle)
