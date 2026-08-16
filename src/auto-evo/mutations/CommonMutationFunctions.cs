@@ -378,12 +378,12 @@ public static class CommonMutationFunctions
         List<Hex> workMemory2, CellTemplate baseCell, Hex.HexSide hexSide, IReadOnlyHexWithData<CellTemplate> baseHex,
         IndividualHexLayout<CellTemplate> newCells)
     {
-        var newCellFront = GetAdjacentPosition(baseCell, hexSide,
-            baseHex.Position, newCellType, newCells);
+        var newCell = GetAdjacentPosition(baseCell, hexSide, baseHex.Position,
+            newCellType, newCells);
 
         // We only consider the mutation attempt failed if there is space for a cell, but we do not have the mp to place
         // a cell in that place
-        if (newCellFront == null)
+        if (newCell == null)
             return true;
 
         if (mpCost > mp)
@@ -391,7 +391,7 @@ public static class CommonMutationFunctions
 
         mp -= mpCost;
 
-        newCells.AddFast(newCellFront, workMemory1, workMemory2);
+        newCells.AddFast(newCell, workMemory1, workMemory2);
         return true;
     }
 
