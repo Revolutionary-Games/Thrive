@@ -319,7 +319,6 @@ public partial class CellBodyPlanEditorComponent :
             sporeCellType = value;
 
             UpdateSpecialCellTypeDisplays();
-            UpdateCellTypeSelections();
         }
     }
 
@@ -634,8 +633,6 @@ public partial class CellBodyPlanEditorComponent :
 
     public override void OnEditorSpeciesSetup(Species species)
     {
-        UpdateCellTypeSelections();
-
         behaviourEditor.OnEditorSpeciesSetup(species);
         tolerancesEditor.OnEditorSpeciesSetup(species);
 
@@ -656,6 +653,8 @@ public partial class CellBodyPlanEditorComponent :
         GameteBCellType = multicellularSpecies.ModifiableGameteTypeB;
         DesiredMassBuddingCellCount = multicellularSpecies.MassBuddingCellCount;
         SelectedGameteTypeForPlayer = species.PlayerGamete;
+
+        UpdateCellTypeSelections();
 
         UpdateGUIAfterLoadingSpecies(species);
 
