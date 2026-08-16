@@ -1,8 +1,7 @@
 using System;
-using System.Diagnostics;
 
 /// <summary>
-///   Admits and executes main-thread resource loading completion units within a single frame.
+///   Admits main-thread resource loading work within a single frame.
 /// </summary>
 internal struct ResourceLoadFrameBudget
 {
@@ -39,14 +38,13 @@ internal struct ResourceLoadFrameBudget
     /// <summary>
     ///   Gets the number of seconds in the frame budget that have not yet elapsed.
     /// </summary>
-    public double GetRemainingSeconds<TTimeSource>(ref TTimeSource timeSource)
-        where TTimeSource : struct, IResourceLoadFrameTimeSource
+    public double GetRemainingSeconds(double elapsedSeconds)
     {
-        return originalBudgetSeconds - timeSource.Elapsed.TotalSeconds;
+        return originalBudgetSeconds - elapsedSeconds;
     }
 
     /// <summary>
-    ///   Attempts to admit and execute one indivisible main-thread completion unit.
+    ///   Attempts to admit one indivisible main-thread completion unit.
     /// </summary>
     /// <remarks>
     ///   Work that fits in the remaining budget is admitted normally. To ensure progress, the first main-thread
@@ -54,19 +52,14 @@ internal struct ResourceLoadFrameBudget
     ///   call does not consume that forced-admission opportunity, though its elapsed time still reduces the remaining
     ///   budget.
     /// </remarks>
-    public bool TryRunCompletionUnit<TCompletionUnit, TTimeSource>(ref TCompletionUnit completionUnit,
-        ref TTimeSource timeSource)
-        where TCompletionUnit : struct, IResourceLoadCompletionUnit
-        where TTimeSource : struct, IResourceLoadFrameTimeSource
+    public bool TryAdmit(double estimatedDurationSeconds, double elapsedSeconds)
     {
-        double estimatedDurationSeconds = completionUnit.EstimatedDurationSeconds;
-
         ArgumentOutOfRangeException.ThrowIfNegative(estimatedDurationSeconds);
 
         if (!double.IsFinite(estimatedDurationSeconds))
-            throw new ArgumentOutOfRangeException(nameof(completionUnit));
+            throw new ArgumentOutOfRangeException(nameof(estimatedDurationSeconds));
 
-        double remainingSeconds = GetRemainingSeconds(ref timeSource);
+        double remainingSeconds = GetRemainingSeconds(elapsedSeconds);
 
         if (remainingSeconds <= 0)
             return false;
@@ -75,29 +68,15 @@ internal struct ResourceLoadFrameBudget
             return false;
 
         hasExecutedCompletionUnit = true;
-        completionUnit.Execute();
         return true;
     }
 
     /// <summary>
     ///   Calculates the number of processing seconds carried into the next frame from the actual elapsed time.
     /// </summary>
-    public float CalculateSecondsToCarry<TTimeSource>(ref TTimeSource timeSource)
-        where TTimeSource : struct, IResourceLoadFrameTimeSource
+    public float CalculateSecondsToCarry(double elapsedSeconds)
     {
-        return (float)Math.Clamp(GetRemainingSeconds(ref timeSource), targetFrameTimeSeconds * MINIMUM_CARRY_FRAMES,
+        return (float)Math.Clamp(GetRemainingSeconds(elapsedSeconds), targetFrameTimeSeconds * MINIMUM_CARRY_FRAMES,
             targetFrameTimeSeconds * MAXIMUM_CARRY_FRAMES);
     }
-}
-
-internal readonly struct StopwatchResourceLoadFrameTimeSource : IResourceLoadFrameTimeSource
-{
-    private readonly Stopwatch stopwatch;
-
-    public StopwatchResourceLoadFrameTimeSource(Stopwatch stopwatch)
-    {
-        this.stopwatch = stopwatch;
-    }
-
-    public TimeSpan Elapsed => stopwatch.Elapsed;
 }

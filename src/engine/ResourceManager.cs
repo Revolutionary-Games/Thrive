@@ -98,17 +98,15 @@ public partial class ResourceManager : Node
             Constants.RESOURCE_TIME_BUDGET_PER_FRAME);
 
         timeTracker.Restart();
-        var frameTimeSource = new StopwatchResourceLoadFrameTimeSource(timeTracker);
-        var dispatcher = new ResourceManagerLoadDispatcher(processingBackgroundTask?.Task.AsyncState as Stopwatch);
 
         ObservePreparingBackgroundTask();
-        ObserveProcessingBackgroundTask(ref frameBudget, ref dispatcher, ref frameTimeSource);
+        ObserveProcessingBackgroundTask(ref frameBudget);
 
         // The processing task doubles as the single PendingMain slot. It must be released before another load starts.
         if (processingBackgroundTask == null)
-            HandleLoadQueue(ref frameBudget, ref dispatcher, ref frameTimeSource);
+            HandleLoadQueue(ref frameBudget);
 
-        savedForLaterProcessingTime = frameBudget.CalculateSecondsToCarry(ref frameTimeSource);
+        savedForLaterProcessingTime = frameBudget.CalculateSecondsToCarry(timeTracker.Elapsed.TotalSeconds);
     }
 
     public void QueueLoad(IResource resource)
@@ -117,7 +115,7 @@ public partial class ResourceManager : Node
             return;
 
         // Reject contradictory phases before the lifecycle takes ownership and could otherwise become stuck.
-        ResourceLoadCoordinator.ValidateResourceConfiguration(resource);
+        ValidateResourceConfiguration(resource);
 
         if (!loadLifecycle.TryQueue(resource))
             return;
@@ -221,6 +219,41 @@ public partial class ResourceManager : Node
 #endif
 
         return true;
+    }
+
+    internal static void PerformSynchronousLoadAndCallback(IResource resource)
+    {
+        PerformFullLoad(resource);
+        resource.OnComplete?.Invoke(resource);
+    }
+
+    internal static void PerformPendingMainThreadPhases(IResource resource, Stopwatch? splitLoadStopwatch)
+    {
+        if (resource.UsesPostProcessing && resource.RequiresSyncPostProcess)
+        {
+            splitLoadStopwatch?.Start();
+            PerformMainThreadPostProcessing(resource);
+
+            if (splitLoadStopwatch != null)
+            {
+                splitLoadStopwatch.Stop();
+                ReportResourceLoadTime(resource, splitLoadStopwatch.Elapsed);
+            }
+        }
+
+        resource.OnComplete?.Invoke(resource);
+    }
+
+    internal static void ValidateResourceConfiguration(IResource resource)
+    {
+        ArgumentNullException.ThrowIfNull(resource);
+
+        if (!resource.RequiresSyncLoad && !resource.UsesPostProcessing && resource.RequiresSyncPostProcess)
+        {
+            throw new InvalidOperationException(
+                $"Async resource {resource.Identifier} requires synchronous post-processing but has no " +
+                "post-processing phase");
+        }
     }
 
     protected override void Dispose(bool disposing)
@@ -354,8 +387,7 @@ public partial class ResourceManager : Node
         }
     }
 
-    private void ObserveProcessingBackgroundTask(ref ResourceLoadFrameBudget frameBudget,
-        ref ResourceManagerLoadDispatcher dispatcher, ref StopwatchResourceLoadFrameTimeSource frameTimeSource)
+    private void ObserveProcessingBackgroundTask(ref ResourceLoadFrameBudget frameBudget)
     {
         var backgroundTask = processingBackgroundTask;
 
@@ -402,12 +434,14 @@ public partial class ResourceManager : Node
 
         try
         {
-            if (ResourceLoadCoordinator.TryRunPendingMainThreadPhases(backgroundTask.Resource, ref frameBudget,
-                    ref dispatcher, ref frameTimeSource))
-            {
-                processingBackgroundTask = null;
-                CompleteResource(backgroundTask.Resource);
-            }
+            if (!frameBudget.TryAdmit(backgroundTask.Resource.EstimatedMainThreadTimeRequired,
+                    timeTracker.Elapsed.TotalSeconds))
+                return;
+
+            PerformPendingMainThreadPhases(backgroundTask.Resource,
+                backgroundTask.Task.AsyncState as Stopwatch);
+            processingBackgroundTask = null;
+            CompleteResource(backgroundTask.Resource);
         }
         catch (Exception e)
         {
@@ -467,14 +501,13 @@ public partial class ResourceManager : Node
         }
     }
 
-    private void HandleLoadQueue(ref ResourceLoadFrameBudget frameBudget, ref ResourceManagerLoadDispatcher dispatcher,
-        ref StopwatchResourceLoadFrameTimeSource frameTimeSource)
+    private void HandleLoadQueue(ref ResourceLoadFrameBudget frameBudget)
     {
         bool hasThingsInQueue = processingResources.Count > 0;
 
         while (true)
         {
-            double timeRemaining = frameBudget.GetRemainingSeconds(ref frameTimeSource);
+            double timeRemaining = frameBudget.GetRemainingSeconds(timeTracker.Elapsed.TotalSeconds);
 
             if (timeRemaining <= 0)
                 break;
@@ -565,10 +598,11 @@ public partial class ResourceManager : Node
                     // positive budget to guarantee progress, but later units must fit.
                     try
                     {
-                        if (!ResourceLoadCoordinator.TryRunSynchronousLoad(resource, ref frameBudget, ref dispatcher,
-                                ref frameTimeSource))
+                        if (!frameBudget.TryAdmit(resource.EstimatedMainThreadTimeRequired,
+                                timeTracker.Elapsed.TotalSeconds))
                             continue;
 
+                        PerformSynchronousLoadAndCallback(resource);
                         didSomething = true;
                         processingResources.RemoveAt(i);
                         CompleteResource(resource);
@@ -728,37 +762,5 @@ public partial class ResourceManager : Node
         }
 
         return false;
-    }
-
-    internal readonly struct ResourceManagerLoadDispatcher : IResourceLoadDispatcher
-    {
-        private readonly Stopwatch? splitLoadStopwatch;
-
-        public ResourceManagerLoadDispatcher(Stopwatch? splitLoadStopwatch)
-        {
-            this.splitLoadStopwatch = splitLoadStopwatch;
-        }
-
-        public void ExecuteFullLoad(IResource resource)
-        {
-            ResourceManager.PerformFullLoad(resource);
-        }
-
-        public void ExecuteMainThreadPostProcessing(IResource resource)
-        {
-            splitLoadStopwatch?.Start();
-            ResourceManager.PerformMainThreadPostProcessing(resource);
-
-            if (splitLoadStopwatch == null)
-                return;
-
-            splitLoadStopwatch.Stop();
-            ResourceManager.ReportResourceLoadTime(resource, splitLoadStopwatch.Elapsed);
-        }
-
-        public void InvokeCompletionCallback(IResource resource)
-        {
-            resource.OnComplete?.Invoke(resource);
-        }
     }
 }

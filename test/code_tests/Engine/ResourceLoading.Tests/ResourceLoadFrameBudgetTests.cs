@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 using Xunit;
 
 /// <summary>
-///   Tests deterministic admission and execution of resource loading completion units within a frame.
+///   Tests scalar frame-budget admission and the two resource-loading execution paths.
 /// </summary>
 public class ResourceLoadFrameBudgetTests
 {
@@ -14,91 +14,47 @@ public class ResourceLoadFrameBudgetTests
     [Theory]
     [InlineData(-0.05)]
     [InlineData(-0.06)]
-    public void Execution_NonPositiveBudgetDoesNotRunAnyCompletionPhase(double savedProcessingTimeSeconds)
+    public void Admission_NonPositiveBudgetRejectsWork(double savedProcessingTimeSeconds)
     {
-        var state = new TestFrameState();
-        var timeSource = new TestFrameTimeSource(state);
-        var dispatcher = new TestResourceLoadDispatcher(state);
-        var resource = new TestResource(0);
         var budget = new ResourceLoadFrameBudget(1.0, savedProcessingTimeSeconds, TARGET_FRAME_TIME_SECONDS);
 
-        Assert.False(ResourceLoadCoordinator.TryRunSynchronousLoad(resource, ref budget, ref dispatcher,
-            ref timeSource));
-        Assert.Equal(0, state.FullLoadDispatchCount);
-        Assert.Equal(0, state.CallbackDispatchCount);
+        Assert.False(budget.TryAdmit(0, 0));
     }
 
     [Theory]
     [InlineData(0.49)]
     [InlineData(0.5)]
-    public void Execution_EstimateThatFitsRemainingBudgetRuns(double estimatedDurationSeconds)
+    public void Admission_EstimateThatFitsRemainingBudgetIsAccepted(double estimatedDurationSeconds)
     {
-        var state = new TestFrameState();
-        var timeSource = new TestFrameTimeSource(state);
-        var dispatcher = new TestResourceLoadDispatcher(state);
-        var resource = new TestResource(estimatedDurationSeconds);
         var budget = new ResourceLoadFrameBudget(0.5, 0, TARGET_FRAME_TIME_SECONDS);
 
-        Assert.True(ResourceLoadCoordinator.TryRunSynchronousLoad(resource, ref budget, ref dispatcher,
-            ref timeSource));
-        Assert.Equal(1, state.FullLoadDispatchCount);
-        Assert.Equal(1, state.CallbackDispatchCount);
+        Assert.True(budget.TryAdmit(estimatedDurationSeconds, 0));
     }
 
     [Fact]
-    public void Execution_FirstCompletionUnitMayExceedRemainingBudget()
+    public void Admission_FirstOversizedUnitIsAcceptedButFollowingOneIsRejected()
     {
-        var state = new TestFrameState();
-        var timeSource = new TestFrameTimeSource(state);
-        var dispatcher = new TestResourceLoadDispatcher(state);
         var budget = new ResourceLoadFrameBudget(0.5, 0, TARGET_FRAME_TIME_SECONDS);
-        var resource = new TestResource(0.51);
 
-        Assert.True(ResourceLoadCoordinator.TryRunSynchronousLoad(resource, ref budget, ref dispatcher,
-            ref timeSource));
-
-        var followingResource = new TestResource(0.51);
-        Assert.False(ResourceLoadCoordinator.TryRunSynchronousLoad(followingResource, ref budget, ref dispatcher,
-            ref timeSource));
-        Assert.Equal(1, state.FullLoadDispatchCount);
-        Assert.Equal(1, state.CallbackDispatchCount);
+        Assert.True(budget.TryAdmit(0.51, 0));
+        Assert.False(budget.TryAdmit(0.51, 0));
     }
 
     [Fact]
-    public void Execution_CallbackAndSynchronousUnitCannotBothUseForcedProgress()
+    public void Admission_CallbackOnlyUnitConsumesForcedProgressOpportunity()
     {
-        var state = new TestFrameState();
-        var timeSource = new TestFrameTimeSource(state);
-        var dispatcher = new TestResourceLoadDispatcher(state, callbackDurationSeconds: 0.1);
         var budget = new ResourceLoadFrameBudget(0.5, 0, TARGET_FRAME_TIME_SECONDS);
-        var backgroundResource = new TestResource(0, requiresSyncLoad: false);
 
-        Assert.True(ResourceLoadCoordinator.TryRunPendingMainThreadPhases(backgroundResource, ref budget, ref dispatcher,
-            ref timeSource));
-
-        var synchronousResource = new TestResource(0.41);
-        Assert.False(ResourceLoadCoordinator.TryRunSynchronousLoad(synchronousResource, ref budget, ref dispatcher,
-            ref timeSource));
-        Assert.Equal(0, state.FullLoadDispatchCount);
-        Assert.Equal(1, state.CallbackDispatchCount);
+        Assert.True(budget.TryAdmit(0, 0.1));
+        Assert.False(budget.TryAdmit(0.41, 0.1));
     }
 
     [Fact]
-    public void Execution_ElapsedSchedulingWorkDoesNotConsumeForcedProgress()
+    public void Admission_ElapsedSchedulingTimeDoesNotConsumeForcedProgressOpportunity()
     {
-        var state = new TestFrameState
-        {
-            Elapsed = TimeSpan.FromSeconds(0.1),
-        };
-
-        var timeSource = new TestFrameTimeSource(state);
-        var dispatcher = new TestResourceLoadDispatcher(state);
         var budget = new ResourceLoadFrameBudget(0.5, 0, TARGET_FRAME_TIME_SECONDS);
-        var resource = new TestResource(0.5);
 
-        Assert.True(ResourceLoadCoordinator.TryRunSynchronousLoad(resource, ref budget, ref dispatcher,
-            ref timeSource));
-        Assert.Equal(1, state.FullLoadDispatchCount);
+        Assert.True(budget.TryAdmit(0.5, 0.1));
     }
 
     [Theory]
@@ -107,68 +63,9 @@ public class ResourceLoadFrameBudgetTests
     [InlineData(4.0, -2.0)]
     public void Carry_UsesActualElapsedTimeAndClampsToLimits(double elapsedSeconds, double expectedCarrySeconds)
     {
-        var state = new TestFrameState
-        {
-            Elapsed = TimeSpan.FromSeconds(elapsedSeconds),
-        };
-
-        var timeSource = new TestFrameTimeSource(state);
         var budget = new ResourceLoadFrameBudget(0, 0, TARGET_FRAME_TIME_SECONDS);
 
-        Assert.Equal(expectedCarrySeconds, budget.CalculateSecondsToCarry(ref timeSource), 6);
-    }
-
-    [Fact]
-    public void Carry_UsesDurationMeasuredThroughProductionCoordinator()
-    {
-        var state = new TestFrameState();
-        var timeSource = new TestFrameTimeSource(state);
-        var dispatcher = new TestResourceLoadDispatcher(state, fullLoadDurationSeconds: 0.8);
-        var budget = new ResourceLoadFrameBudget(0.5, 0, TARGET_FRAME_TIME_SECONDS);
-        var resource = new TestResource(0.75);
-
-        Assert.True(ResourceLoadCoordinator.TryRunSynchronousLoad(resource, ref budget, ref dispatcher,
-            ref timeSource));
-        Assert.Equal(-0.3, budget.CalculateSecondsToCarry(ref timeSource), 6);
-    }
-
-    [Fact]
-    public void PendingPostProcessing_PostAndCallbackActualTimeAffectFrameCarry()
-    {
-        var state = new TestFrameState();
-        var timeSource = new TestFrameTimeSource(state);
-        var dispatcher = new TestResourceLoadDispatcher(state, postProcessingDurationSeconds: 0.5,
-            callbackDurationSeconds: 0.3);
-        var budget = new ResourceLoadFrameBudget(0.5, 0, TARGET_FRAME_TIME_SECONDS);
-        var resource = new TestResource(0.75, requiresSyncLoad: false, usesPostProcessing: true,
-            requiresSyncPostProcess: true);
-
-        Assert.True(ResourceLoadCoordinator.TryRunPendingMainThreadPhases(resource, ref budget, ref dispatcher,
-            ref timeSource));
-        Assert.Equal(1, state.PostProcessingDispatchCount);
-        Assert.Equal(1, state.CallbackDispatchCount);
-        Assert.Equal(-0.3, budget.CalculateSecondsToCarry(ref timeSource), 6);
-    }
-
-    [Fact]
-    public void PendingPostProcessing_UsesCompletionOpportunityBeforeSynchronousLoad()
-    {
-        var state = new TestFrameState();
-        var timeSource = new TestFrameTimeSource(state);
-        var dispatcher = new TestResourceLoadDispatcher(state, postProcessingDurationSeconds: 0.1);
-        var budget = new ResourceLoadFrameBudget(0.5, 0, TARGET_FRAME_TIME_SECONDS);
-        var pendingResource = new TestResource(0.4, requiresSyncLoad: false, usesPostProcessing: true,
-            requiresSyncPostProcess: true);
-
-        Assert.True(ResourceLoadCoordinator.TryRunPendingMainThreadPhases(pendingResource, ref budget,
-            ref dispatcher, ref timeSource));
-
-        var synchronousResource = new TestResource(0.41);
-        Assert.False(ResourceLoadCoordinator.TryRunSynchronousLoad(synchronousResource, ref budget, ref dispatcher,
-            ref timeSource));
-        Assert.Equal(0, state.FullLoadDispatchCount);
-        Assert.Equal(1, state.PostProcessingDispatchCount);
-        Assert.Equal(1, state.CallbackDispatchCount);
+        Assert.Equal(expectedCarrySeconds, budget.CalculateSecondsToCarry(elapsedSeconds), 6);
     }
 
     [Theory]
@@ -197,132 +94,55 @@ public class ResourceLoadFrameBudgetTests
     [Fact]
     public void Contract_AsyncLoadCannotRequireMissingPostProcessingPhase()
     {
-        var state = new TestFrameState();
-        var timeSource = new TestFrameTimeSource(state);
-        var dispatcher = new TestResourceLoadDispatcher(state);
-        var budget = new ResourceLoadFrameBudget(0.5, 0, TARGET_FRAME_TIME_SECONDS);
         var resource = new TestResource(0, requiresSyncLoad: false, usesPostProcessing: false,
             requiresSyncPostProcess: true);
 
-        Assert.Throws<InvalidOperationException>(() =>
-            ResourceLoadCoordinator.TryRunPendingMainThreadPhases(resource, ref budget, ref dispatcher,
-                ref timeSource));
-        Assert.Equal(0, state.FullLoadDispatchCount);
-        Assert.Equal(0, state.PostProcessingDispatchCount);
-        Assert.Equal(0, state.CallbackDispatchCount);
+        Assert.Throws<InvalidOperationException>(() => ResourceManager.ValidateResourceConfiguration(resource));
     }
 
     [Fact]
-    public void ProductionDispatcher_SynchronousPathPerformsFullLoadAndCallback()
+    public void SynchronousPath_PerformsFullLoadAndCallback()
     {
-        var state = new TestFrameState();
-        var timeSource = new TestFrameTimeSource(state);
-        var dispatcher = default(ResourceManager.ResourceManagerLoadDispatcher);
-        var budget = new ResourceLoadFrameBudget(0.5, 0, TARGET_FRAME_TIME_SECONDS);
         var resource = new TestResource(0.25, usesPostProcessing: true);
         resource.OnComplete = resource.RecordCallback;
 
-        Assert.True(ResourceLoadCoordinator.TryRunSynchronousLoad(resource, ref budget, ref dispatcher,
-            ref timeSource));
+        ResourceManager.PerformSynchronousLoadAndCallback(resource);
+
         Assert.True(resource.Loaded);
         Assert.Equal(1, resource.LoadCount);
         Assert.Equal(1, resource.PostProcessingCount);
         Assert.Equal(1, resource.CallbackCount);
     }
 
-    [Fact]
-    public void ProductionDispatcher_AsyncLoadWithoutPostProcessing_CompletesThroughPendingMain()
+    [Theory]
+    [InlineData(false, false, 0)]
+    [InlineData(true, true, 1)]
+    public void PendingMainPath_PerformsRequiredPhasesAndCallback(bool usesPostProcessing,
+        bool requiresSyncPostProcess, int expectedPostProcessingCount)
     {
-        var state = new TestFrameState();
-        var timeSource = new TestFrameTimeSource(state);
-        var dispatcher = default(ResourceManager.ResourceManagerLoadDispatcher);
-        var budget = new ResourceLoadFrameBudget(0.5, 0, TARGET_FRAME_TIME_SECONDS);
-        var resource = new TestResource(0, requiresSyncLoad: false);
+        var resource = new TestResource(0.25, requiresSyncLoad: false, usesPostProcessing,
+            requiresSyncPostProcess);
         resource.OnComplete = resource.RecordCallback;
         resource.Load();
 
-        Assert.True(ResourceLoadCoordinator.TryRunPendingMainThreadPhases(resource, ref budget, ref dispatcher,
-            ref timeSource));
+        ResourceManager.PerformPendingMainThreadPhases(resource, null);
+
         Assert.True(resource.Loaded);
         Assert.Equal(1, resource.LoadCount);
-        Assert.Equal(0, resource.PostProcessingCount);
+        Assert.Equal(expectedPostProcessingCount, resource.PostProcessingCount);
         Assert.Equal(1, resource.CallbackCount);
     }
 
     [Fact]
-    public void ProductionDispatcher_AsyncLoadWithSynchronousPostProcessing_CompletesThroughPendingMain()
+    public void Execution_CallbackFailureDoesNotRestoreAdmissionOpportunity()
     {
-        var state = new TestFrameState();
-        var timeSource = new TestFrameTimeSource(state);
-        var dispatcher = default(ResourceManager.ResourceManagerLoadDispatcher);
         var budget = new ResourceLoadFrameBudget(0.5, 0, TARGET_FRAME_TIME_SECONDS);
-        var resource = new TestResource(0.25, requiresSyncLoad: false, usesPostProcessing: true,
-            requiresSyncPostProcess: true);
-        resource.OnComplete = resource.RecordCallback;
-        resource.Load();
+        var resource = new TestResource(0.51);
+        resource.OnComplete = _ => throw new InvalidOperationException("callback failed");
 
-        Assert.False(resource.Loaded);
-        Assert.True(ResourceLoadCoordinator.TryRunPendingMainThreadPhases(resource, ref budget, ref dispatcher,
-            ref timeSource));
-        Assert.True(resource.Loaded);
-        Assert.Equal(1, resource.LoadCount);
-        Assert.Equal(1, resource.PostProcessingCount);
-        Assert.Equal(1, resource.CallbackCount);
-    }
-
-    private sealed class TestFrameState
-    {
-        public TimeSpan Elapsed { get; set; }
-        public int FullLoadDispatchCount { get; set; }
-        public int PostProcessingDispatchCount { get; set; }
-        public int CallbackDispatchCount { get; set; }
-    }
-
-    private readonly struct TestFrameTimeSource : IResourceLoadFrameTimeSource
-    {
-        private readonly TestFrameState state;
-
-        public TestFrameTimeSource(TestFrameState state)
-        {
-            this.state = state;
-        }
-
-        public TimeSpan Elapsed => state.Elapsed;
-    }
-
-    private readonly struct TestResourceLoadDispatcher : IResourceLoadDispatcher
-    {
-        private readonly TestFrameState state;
-        private readonly double fullLoadDurationSeconds;
-        private readonly double postProcessingDurationSeconds;
-        private readonly double callbackDurationSeconds;
-
-        public TestResourceLoadDispatcher(TestFrameState state, double fullLoadDurationSeconds = 0,
-            double postProcessingDurationSeconds = 0, double callbackDurationSeconds = 0)
-        {
-            this.state = state;
-            this.fullLoadDurationSeconds = fullLoadDurationSeconds;
-            this.postProcessingDurationSeconds = postProcessingDurationSeconds;
-            this.callbackDurationSeconds = callbackDurationSeconds;
-        }
-
-        public void ExecuteFullLoad(IResource resource)
-        {
-            ++state.FullLoadDispatchCount;
-            state.Elapsed += TimeSpan.FromSeconds(fullLoadDurationSeconds);
-        }
-
-        public void ExecuteMainThreadPostProcessing(IResource resource)
-        {
-            ++state.PostProcessingDispatchCount;
-            state.Elapsed += TimeSpan.FromSeconds(postProcessingDurationSeconds);
-        }
-
-        public void InvokeCompletionCallback(IResource resource)
-        {
-            ++state.CallbackDispatchCount;
-            state.Elapsed += TimeSpan.FromSeconds(callbackDurationSeconds);
-        }
+        Assert.True(budget.TryAdmit(((IResource)resource).EstimatedMainThreadTimeRequired, 0));
+        Assert.Throws<InvalidOperationException>(() => ResourceManager.PerformSynchronousLoadAndCallback(resource));
+        Assert.False(budget.TryAdmit(0.51, 0));
     }
 
     private sealed class TestResource : IResource
