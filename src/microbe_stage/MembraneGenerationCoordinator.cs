@@ -7,7 +7,7 @@ using Godot;
 /// <summary>
 ///   Coordinator that implements two-pass membrane generation.
 ///   - First pass: generate base membranes per cell
-///   - Second pass: generate stetched multicellular membranes if needed.
+///   - Second pass: generate stretched multicellular membranes if needed.
 /// </summary>
 public static class MembraneGenerationCoordinator
 {
