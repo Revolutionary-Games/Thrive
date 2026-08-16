@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Godot;
 
 /// <summary>
 ///   Helps to manage the used cell types for more advanced species that have multiple cell types
@@ -62,11 +63,16 @@ public class CellTypeFacadeHelper
         if (actionData is SporeCellTypeChangeActionData sporeCellTypeChangeActionData)
         {
             if (sporeCellTypeChangeActionData.OldCellType != null
-                && sporeCellTypeChangeActionData.OldCellType != sporeCellTypeChangeActionData.NewCellType
-                && activeCellTypes.ContainsKey(sporeCellTypeChangeActionData.OldCellType))
+                && sporeCellTypeChangeActionData.OldCellType != sporeCellTypeChangeActionData.NewCellType)
             {
-                if (!addedCellTypes.Remove(GetOrCreateCellType(sporeCellTypeChangeActionData.OldCellType)))
-                    throw new InvalidOperationException("Cell type not found for delete");
+                if (!removedCellTypes.Contains(sporeCellTypeChangeActionData.OldCellType))
+                    removedCellTypes.Add(sporeCellTypeChangeActionData.OldCellType);
+
+                if (activeCellTypes.ContainsKey(sporeCellTypeChangeActionData.OldCellType))
+                {
+                    if (!addedCellTypes.Remove(GetOrCreateCellType(sporeCellTypeChangeActionData.OldCellType)))
+                        GD.PrintErr("Spore cell type not found for delete");
+                }
             }
 
             if (sporeCellTypeChangeActionData.NewCellType != null)
