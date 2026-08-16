@@ -3,7 +3,6 @@ namespace ThriveTest.Engine.ResourceLoading.Tests;
 using System;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using Newtonsoft.Json;
 using Xunit;
 
 /// <summary>
@@ -61,29 +60,6 @@ public class ResourceLoadFrameBudgetTests
         Assert.Equal(expectedCarrySeconds, budget.CalculateSecondsToCarry(elapsedSeconds), 6);
     }
 
-    [Theory]
-    [InlineData(false, false, false, 0)]
-    [InlineData(false, true, true, 0.25)]
-    [InlineData(true, false, true, 0.25)]
-    public void Contract_DefaultMainThreadEstimateIsDerivedFromPhaseFlags(bool requiresSyncLoad,
-        bool usesPostProcessing, bool requiresSyncPostProcess, double expectedMainThreadEstimate)
-    {
-        IResource resource = new TestResource(0.25, requiresSyncLoad, usesPostProcessing,
-            requiresSyncPostProcess);
-
-        Assert.Equal(0.25f, resource.EstimatedTimeRequired);
-        Assert.Equal((float)expectedMainThreadEstimate, resource.EstimatedMainThreadTimeRequired);
-    }
-
-    [Fact]
-    public void Contract_DerivedMainThreadEstimateIsNotPartOfRegistryJson()
-    {
-        string propertyName = nameof(IResource.EstimatedMainThreadTimeRequired);
-
-        Assert.DoesNotContain(propertyName, JsonConvert.SerializeObject(new SceneResource("res://test.tscn")));
-        Assert.DoesNotContain(propertyName, JsonConvert.SerializeObject(new VisualResourceData()));
-    }
-
     [Fact]
     public void Contract_AsyncLoadCannotRequireMissingPostProcessingPhase()
     {
@@ -112,12 +88,13 @@ public class ResourceLoadFrameBudgetTests
     [InlineData(1, 1, 0)]
     [InlineData(2, 0, 0)]
     [InlineData(3, 1, 1)]
+    [InlineData(4, 0, 0)]
     public void PendingMainPath_AdmissionAndSettlementAreExactlyOnce(int failureMode,
         int expectedPostProcessingCount, int expectedCallbackCount)
     {
         bool throwDuringPostProcessing = failureMode == 1;
-        bool usesPostProcessing = throwDuringPostProcessing || failureMode == 3;
-        var resource = new TestResource(0.25, requiresSyncLoad: false,
+        bool usesPostProcessing = throwDuringPostProcessing || failureMode is 3 or 4;
+        var resource = new TestResource(0.75, requiresSyncLoad: false,
             usesPostProcessing, requiresSyncPostProcess: usesPostProcessing);
         resource.PostProcessingAction = throwDuringPostProcessing ?
             () => throw new InvalidOperationException("post-processing failed") : null;
@@ -131,15 +108,19 @@ public class ResourceLoadFrameBudgetTests
         var (manager, lifecycle) = CreateManagerWithCompletedBackgroundLoad(resource);
         var budget = new ResourceLoadFrameBudget(0.5, 0, TARGET_FRAME_TIME_SECONDS);
 
+        if (failureMode is 0 or 4)
+            Assert.True(budget.TryAdmit(0, 0));
+
         manager.ObserveProcessingBackgroundTask(ref budget, suppressFailureReporting: true);
-        Assert.Equal(ResourceLoadState.Completed, lifecycle.GetState(resource));
+        Assert.Equal(failureMode == 4 ? ResourceLoadState.PendingMain : ResourceLoadState.Completed,
+            lifecycle.GetState(resource));
         Assert.Equal(expectedPostProcessingCount, resource.PostProcessingCount);
         Assert.Equal(expectedCallbackCount, resource.CallbackCount);
         Assert.False(budget.TryAdmit(0.51, 0));
 
         var nextFrameBudget = new ResourceLoadFrameBudget(0.5, 0, TARGET_FRAME_TIME_SECONDS);
         manager.ObserveProcessingBackgroundTask(ref nextFrameBudget, suppressFailureReporting: true);
-        Assert.True(nextFrameBudget.TryAdmit(0.51, 0));
+        Assert.Equal(failureMode != 4, nextFrameBudget.TryAdmit(0.51, 0));
 
         if (failureMode == 2)
             Assert.Equal(1, callbackAttemptCount);

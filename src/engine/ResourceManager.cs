@@ -237,7 +237,8 @@ public partial class ResourceManager : Node
             if (splitLoadStopwatch != null)
             {
                 splitLoadStopwatch.Stop();
-                ReportResourceLoadTime(resource, splitLoadStopwatch.Elapsed);
+                ReportResourceLoadTime(resource, splitLoadStopwatch.Elapsed,
+                    GetEstimatedMainThreadTimeRequired(resource));
             }
         }
 
@@ -297,12 +298,12 @@ public partial class ResourceManager : Node
             throw new InvalidOperationException("Loading a resource didn't end up setting loaded flag");
 
         if (Constants.TRACK_ACTUAL_RESOURCE_LOAD_TIMES || Constants.REPORT_ALL_LOAD_TIMES)
-            ReportResourceLoadTime(resource, stopwatch.Elapsed);
+            ReportResourceLoadTime(resource, stopwatch.Elapsed, resource.EstimatedTimeRequired);
     }
 
-    private static void ReportResourceLoadTime(IResource resource, TimeSpan elapsed)
+    private static void ReportResourceLoadTime(IResource resource, TimeSpan elapsed, double estimatedTimeRequired)
     {
-        var difference = elapsed.TotalSeconds - resource.EstimatedTimeRequired;
+        var difference = elapsed.TotalSeconds - estimatedTimeRequired;
 
         if (Math.Abs(difference) > Constants.REPORT_LOAD_TIMES_OF_BY)
             GD.Print($"Load time estimate off by {difference}s for {resource.Identifier}");
@@ -322,6 +323,10 @@ public partial class ResourceManager : Node
 
     // ReSharper enable HeuristicUnreachableCode
 #pragma warning restore CS0162
+
+    private static float GetEstimatedMainThreadTimeRequired(IResource resource) =>
+        resource.RequiresSyncLoad || (resource.UsesPostProcessing && resource.RequiresSyncPostProcess) ?
+            resource.EstimatedTimeRequired : 0;
 
     private static void PerformBackgroundLoad(IResource resource)
     {
@@ -436,7 +441,7 @@ public partial class ResourceManager : Node
 
         try
         {
-            if (!frameBudget.TryAdmit(backgroundTask.Resource.EstimatedMainThreadTimeRequired,
+            if (!frameBudget.TryAdmit(GetEstimatedMainThreadTimeRequired(backgroundTask.Resource),
                     timeTracker.Elapsed.TotalSeconds))
                 return;
 
@@ -604,7 +609,7 @@ public partial class ResourceManager : Node
                     // positive budget to guarantee progress, but later units must fit.
                     try
                     {
-                        if (!frameBudget.TryAdmit(resource.EstimatedMainThreadTimeRequired,
+                        if (!frameBudget.TryAdmit(GetEstimatedMainThreadTimeRequired(resource),
                                 timeTracker.Elapsed.TotalSeconds))
                             continue;
 
