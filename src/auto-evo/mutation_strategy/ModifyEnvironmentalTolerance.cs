@@ -27,7 +27,7 @@ public class ModifyEnvironmentalTolerance : IMutationStrategy<Species>
         var originalMp = mp;
 #endif
 
-        var score = default(ToleranceResult);
+        ToleranceResult score = default;
         if (baseSpecies is MicrobeSpecies baseMicrobeSpecies)
         {
             score = MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(baseMicrobeSpecies,
