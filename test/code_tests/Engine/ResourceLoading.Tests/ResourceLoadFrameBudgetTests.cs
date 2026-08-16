@@ -1,8 +1,11 @@
 namespace ThriveTest.Engine.ResourceLoading.Tests;
 
 using System;
+using System.Collections.Concurrent;
+using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using Nito.Collections;
 using Xunit;
 
 /// <summary>
@@ -70,17 +73,38 @@ public class ResourceLoadFrameBudgetTests
     }
 
     [Fact]
-    public void SynchronousPath_PerformsFullLoadAndCallback()
+    public void SynchronousPath_AdmissionUsesTotalEstimate()
     {
-        var resource = new TestResource(0.25, usesPostProcessing: true);
+        var precedingResource = new TestResource(0);
+        var resource = new TestResource(0.75, usesPostProcessing: true);
         resource.OnComplete = resource.RecordCallback;
+        var (manager, lifecycle) = CreateManager();
+        manager.QueueLoad(precedingResource);
+        manager.QueueLoad(resource);
 
-        ResourceManager.PerformSynchronousLoadAndCallback(resource);
+        manager._Process(0);
 
-        Assert.True(resource.Loaded);
+        Assert.True(precedingResource.Loaded);
+        Assert.Equal(ResourceLoadState.Prepared, lifecycle.GetState(resource));
+        Assert.Equal(0, resource.LoadCount);
+
+        manager._Process(0);
+
         Assert.Equal(1, resource.LoadCount);
         Assert.Equal(1, resource.PostProcessingCount);
         Assert.Equal(1, resource.CallbackCount);
+    }
+
+    [Fact]
+    public void ReportingPaths_SelectTotalAndMainThreadEstimates()
+    {
+        // The reporting switches are compile-time false, so the estimate sources are a call-site contract here.
+        string source = File.ReadAllText(Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..",
+            "..", "..", "src", "engine", "ResourceManager.cs"))).ReplaceLineEndings("\n");
+
+        Assert.Contains("ReportResourceLoadTime(resource, stopwatch.Elapsed, resource.EstimatedTimeRequired);", source);
+        Assert.Contains("ReportResourceLoadTime(resource, splitLoadStopwatch.Elapsed,\n" +
+            "                    GetEstimatedMainThreadTimeRequired(resource));", source);
     }
 
     [Theory]
@@ -129,16 +153,24 @@ public class ResourceLoadFrameBudgetTests
     private static (ResourceManager Manager, ResourceLoadLifecycle Lifecycle)
         CreateManagerWithCompletedBackgroundLoad(TestResource resource)
     {
-        var manager = (ResourceManager)RuntimeHelpers.GetUninitializedObject(typeof(ResourceManager));
-        var lifecycle = new ResourceLoadLifecycle();
-        SetPrivateField(manager, "loadLifecycle", lifecycle);
-        SetPrivateField(manager, "timeTracker", new System.Diagnostics.Stopwatch());
+        var (manager, lifecycle) = CreateManager();
         Assert.True(lifecycle.TryQueue(resource));
         lifecycle.MarkPrepared(resource);
         lifecycle.BeginLoading(resource);
         resource.Load();
         SetPrivateField(manager, "processingBackgroundTask",
             new ResourceBackgroundTask(resource, System.Threading.Tasks.Task.CompletedTask, ResourceBackgroundPhase.Load));
+        return (manager, lifecycle);
+    }
+
+    private static (ResourceManager Manager, ResourceLoadLifecycle Lifecycle) CreateManager()
+    {
+        var manager = (ResourceManager)RuntimeHelpers.GetUninitializedObject(typeof(ResourceManager));
+        var lifecycle = new ResourceLoadLifecycle();
+        SetPrivateField(manager, "queuedResources", new BlockingCollection<IResource>());
+        SetPrivateField(manager, "processingResources", new Deque<IResource>());
+        SetPrivateField(manager, "loadLifecycle", lifecycle);
+        SetPrivateField(manager, "timeTracker", new System.Diagnostics.Stopwatch());
         return (manager, lifecycle);
     }
 
