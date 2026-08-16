@@ -93,8 +93,6 @@ public partial class ResourceManager : Node
         if (shuttingDown)
             return;
 
-        ResourceLoadDiagnostics.OnFrameStarted(delta);
-
         // Carry unused processing time, or a bounded deficit, between frames to spread resource loading work.
         var frameBudget = new ResourceLoadFrameBudget(delta, savedForLaterProcessingTime,
             Constants.RESOURCE_TIME_BUDGET_PER_FRAME);
@@ -111,9 +109,6 @@ public partial class ResourceManager : Node
             HandleLoadQueue(ref frameBudget, ref dispatcher, ref frameTimeSource);
 
         savedForLaterProcessingTime = frameBudget.CalculateSecondsToCarry(ref frameTimeSource);
-
-        ResourceLoadDiagnostics.OnFrameFinished(queuedResources.Count > 0 || processingResources.Count > 0 ||
-            preparingBackgroundTask != null || processingBackgroundTask != null);
     }
 
     public void QueueLoad(IResource resource)
@@ -128,7 +123,6 @@ public partial class ResourceManager : Node
             return;
 
         queuedResources.Add(resource);
-        ResourceLoadDiagnostics.OnResourceQueued(resource);
     }
 
     public void CancelLoad(IResource resource)
@@ -245,46 +239,56 @@ public partial class ResourceManager : Node
         resource.LoadingPrepared = true;
     }
 
-    private static void PerformFullLoad(IResource resource, bool mainThread)
+    private static void PerformFullLoad(IResource resource)
     {
         if (!resource.LoadingPrepared)
             throw new InvalidOperationException("Resource is not prepared for load yet");
 
-        long operationStarted = ResourceLoadDiagnostics.BeginOperation();
+        Stopwatch? stopwatch;
 
-        try
+        // Controlled by a constant variable that we want to toggle
+        // ReSharper disable HeuristicUnreachableCode
+#pragma warning disable CS0162
+        if (Constants.TRACK_ACTUAL_RESOURCE_LOAD_TIMES || Constants.REPORT_ALL_LOAD_TIMES)
+            stopwatch = Stopwatch.StartNew();
+
+        resource.Load();
+
+        if (resource.CancelRequested)
+            return;
+
+        if (resource.UsesPostProcessing)
+            resource.PerformPostProcessing();
+
+        if (!resource.Loaded)
+            throw new InvalidOperationException("Loading a resource didn't end up setting loaded flag");
+
+        if (Constants.TRACK_ACTUAL_RESOURCE_LOAD_TIMES || Constants.REPORT_ALL_LOAD_TIMES)
         {
-            resource.Load();
+            var elapsed = stopwatch.Elapsed;
 
-            if (resource.CancelRequested)
-                return;
+            var difference = elapsed.TotalSeconds - resource.EstimatedTimeRequired;
 
-            if (resource.UsesPostProcessing)
-                resource.PerformPostProcessing();
-
-            if (!resource.Loaded)
-                throw new InvalidOperationException("Loading a resource didn't end up setting loaded flag");
-        }
-        finally
-        {
-            if (mainThread)
+            if (Math.Abs(difference) > Constants.REPORT_LOAD_TIMES_OF_BY)
             {
-                ResourceLoadDiagnostics.RecordMainThreadLoadOrPostProcess(resource, operationStarted,
-                    resource.EstimatedTimeRequired);
+                GD.Print($"Load time estimate off by {difference}s for {resource.Identifier}");
             }
-            else
+
+            if (Constants.REPORT_ALL_LOAD_TIMES)
             {
-                ResourceLoadDiagnostics.RecordBackgroundLoad(resource, operationStarted,
-                    resource.EstimatedTimeRequired);
+                GD.Print($"Load time: {elapsed.TotalSeconds}s for {resource.Identifier}");
             }
         }
+
+        // ReSharper enable HeuristicUnreachableCode
+#pragma warning restore CS0162
     }
 
     private static void PerformBackgroundLoad(IResource resource)
     {
         if (!resource.RequiresSyncPostProcess)
         {
-            PerformFullLoad(resource, false);
+            PerformFullLoad(resource);
             return;
         }
 
@@ -292,35 +296,15 @@ public partial class ResourceManager : Node
             throw new InvalidOperationException("Resource is not prepared for load yet");
 
         // Completion and loaded-state validation are deferred to the indivisible main-thread post-processing unit.
-        long operationStarted = ResourceLoadDiagnostics.BeginOperation();
-
-        try
-        {
-            resource.Load();
-        }
-        finally
-        {
-            // The total resource estimate also covers pending main-thread work, so it is not a phase estimate here.
-            ResourceLoadDiagnostics.RecordBackgroundLoad(resource, operationStarted);
-        }
+        resource.Load();
     }
 
     private static void PerformMainThreadPostProcessing(IResource resource)
     {
-        long operationStarted = ResourceLoadDiagnostics.BeginOperation();
+        resource.PerformPostProcessing();
 
-        try
-        {
-            resource.PerformPostProcessing();
-
-            if (!resource.Loaded)
-                throw new InvalidOperationException("Loading a resource didn't end up setting loaded flag");
-        }
-        finally
-        {
-            ResourceLoadDiagnostics.RecordMainThreadLoadOrPostProcess(resource, operationStarted,
-                resource.EstimatedMainThreadTimeRequired);
-        }
+        if (!resource.Loaded)
+            throw new InvalidOperationException("Loading a resource didn't end up setting loaded flag");
     }
 
     private static void ReportResourceOperationFailure(IResource resource, ResourceBackgroundPhase phase,
@@ -735,7 +719,7 @@ public partial class ResourceManager : Node
     {
         public void ExecuteFullLoad(IResource resource)
         {
-            ResourceManager.PerformFullLoad(resource, true);
+            ResourceManager.PerformFullLoad(resource);
         }
 
         public void ExecuteMainThreadPostProcessing(IResource resource)
@@ -745,21 +729,7 @@ public partial class ResourceManager : Node
 
         public void InvokeCompletionCallback(IResource resource)
         {
-            var callback = resource.OnComplete;
-
-            if (callback == null)
-                return;
-
-            long operationStarted = ResourceLoadDiagnostics.BeginOperation();
-
-            try
-            {
-                callback.Invoke(resource);
-            }
-            finally
-            {
-                ResourceLoadDiagnostics.RecordCallback(resource, operationStarted);
-            }
+            resource.OnComplete?.Invoke(resource);
         }
     }
 }
