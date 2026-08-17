@@ -32,13 +32,13 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     [Export]
     public Vector3 SunDirection = new Vector3(0.4f, 0.8f, 0.3f).Normalized();
 
-    [Export]
+    [Export(PropertyHint.Range, "0,100")]
     public float SunEnergy = 25.0f;
 
-    [Export]
+    [Export(PropertyHint.Range, "1,1000,1,or_greater")]
     public float CloudTileSize = 200.0f;
 
-    [Export]
+    [Export(PropertyHint.Range, "0.0,1.0")]
     public float DensityMultiplier = 1.0f;
 
     [Export(PropertyHint.Range, "0.1,1.0")]
@@ -50,7 +50,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     [Export(PropertyHint.Range, "1,10")]
     public int LightSteps = 6;
 
-    [Export]
+    [Export(PropertyHint.Range, "0,10000,1,or_greater")]
     public float MaxMarchDistance = 8000.0f;
 
     [Export(PropertyHint.Range, "1,4,1")]
