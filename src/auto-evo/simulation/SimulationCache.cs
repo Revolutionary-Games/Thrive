@@ -666,13 +666,16 @@ public class SimulationCache
                 totalToxinResistance += cellCount * cellType.MembraneType.ToxinResistance;
                 totalPhysicalResistance += cellCount * cellType.MembraneType.PhysicalResistance;
 
+                var cellTypeOxygenUsingOrganellesCount = 0;
                 foreach (var organelle in cellType.Organelles)
                 {
                     if (organelle.Definition.HasSignalingFeature)
                         preyHasSignallingAgent = true;
                     if (organelle.Definition.IsOxygenMetabolism)
-                        ++preyOxygenUsingOrganellesCount;
+                        ++cellTypeOxygenUsingOrganellesCount;
                 }
+
+                preyOxygenUsingOrganellesCount += cellTypeOxygenUsingOrganellesCount * cellCount;
             }
 
             preyToxinResistance = totalToxinResistance / totalCellCount;
@@ -768,6 +771,7 @@ public class SimulationCache
                 totalToxinResistance += cellCount * cellType.MembraneType.ToxinResistance;
                 totalPhysicalResistance += cellCount * cellType.MembraneType.PhysicalResistance;
 
+                var cellTypeOxygenUsingOrganellesCount = 0;
                 foreach (var organelle in cellType.Organelles)
                 {
                     if (organelle.Definition.HasChemoreceptorComponent &&
@@ -776,8 +780,10 @@ public class SimulationCache
                     if (organelle.Definition.HasSignalingFeature)
                         hasSignallingAgent = true;
                     if (organelle.Definition.IsOxygenMetabolism)
-                        ++predatorOxygenUsingOrganellesCount;
+                        ++cellTypeOxygenUsingOrganellesCount;
                 }
+
+                predatorOxygenUsingOrganellesCount += cellTypeOxygenUsingOrganellesCount * cellCount;
             }
 
             predatorToxinResistance = totalToxinResistance / totalCellCount;
