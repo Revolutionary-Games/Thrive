@@ -1021,6 +1021,14 @@ public static class MicrobeColonyHelpers
     /// </summary>
     public static void CalculateRotationSpeed(this ref MicrobeColony colony)
     {
+        // A colony is never valid with less than 2 members, but anyway we check here against invalid data
+        if (colony.ColonyMembers.Length == 0)
+        {
+            GD.PrintErr("Colony has 0 members when rotation speed is being calculated");
+            colony.ColonyRotationSpeed = 1;
+            return;
+        }
+
         // TODO: see the comment in MicrobeInternalCalculations.CalculateRotationSpeed about:
         // shape.TestYRotationInertiaFactor() how to make this take the colony shape into account in rotation to
         // be more physically accurate

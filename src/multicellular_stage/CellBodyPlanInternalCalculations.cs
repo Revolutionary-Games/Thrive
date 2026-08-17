@@ -175,7 +175,9 @@ public static class CellBodyPlanInternalCalculations
         var rotationSpeedWithCellCountPenalty =
             averageCellRotationSpeed * CellCountRotationPenalty(totalCellCount);
 
-        // Actomyosin is a bonus, so it needs to lower the divisor rather than increase it.
+        // Rotation values as calculated by this function mean that the higher the value, the slower the rotation is.
+        // So as actomyosin bonus goes higher, it needs to lower this value. Which is why we are dividing by the bonus
+        // to lower the "speed" value and thus make rotation faster.
         return rotationSpeedWithCellCountPenalty /
             (1 + Constants.ACTOMYOSIN_ROTATION_BUFF_PER * effectiveActomyosinCount);
     }
