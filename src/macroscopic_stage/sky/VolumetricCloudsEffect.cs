@@ -1,4 +1,4 @@
-﻿#define TOOLS_ENABLED
+﻿// #define TOOLS_ENABLED
 
 using System;
 using Godot;
