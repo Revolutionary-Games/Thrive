@@ -1070,10 +1070,12 @@ public partial class ProcessSystem : BaseSystem<World, float>
             processATPConsumption += consumption;
 
             // Take special cell components that take energy into account
-            if (TryGetMovementCostForOrganelle(includeMovementCost, organelle, onlyMovementInDirection, out var cost))
+            if (TryGetMovementCostForOrganelle(includeMovementCost, organelle, onlyMovementInDirection,
+                    out var flagellumCost, out var actomyosinCost))
             {
-                movementATPConsumption += cost;
-                result.Flagella += cost;
+                movementATPConsumption += flagellumCost + actomyosinCost;
+                result.Actomyosin += actomyosinCost;
+                result.Flagella += flagellumCost;
             }
 
             if (includeMovementCost && organelle.Definition.HasCiliaComponent)
@@ -1121,6 +1123,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
             result.TotalMovement *= energyCostMultiplier;
             result.BaseMovement *= energyCostMultiplier;
             result.Flagella *= energyCostMultiplier;
+            result.Actomyosin *= energyCostMultiplier;
             result.Cilia *= energyCostMultiplier;
         }
 
@@ -1148,7 +1151,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
     ///   otherwise the actomyosin cost is zero.
     /// </summary>
     /// <returns>True if there's a movement cost</returns>
-    private static bool TryGetMovementCostForOrganelle(bool includeMovementCost, OrganelleTemplate organelle,
+    private static bool TryGetMovementCostForOrganelle(bool includeMovementCost, IReadOnlyOrganelleTemplate organelle,
         Vector3 onlyMovementInDirection, out float flagellumCost, out float actomyosinCost)
     {
         if (!includeMovementCost ||
@@ -1180,38 +1183,6 @@ public partial class ProcessSystem : BaseSystem<World, float>
         // requested movement direction.
         if (!organelle.Definition.HasMovementComponent)
             return true;
-
-        var organelleDirection = MicrobeInternalCalculations.GetOrganelleDirection(organelle);
-        if (organelleDirection.Dot(onlyMovementInDirection) > 0)
-        {
-            return true;
-        }
-
-        return false;
-    }
-
-    private static bool TryGetMovementCostForOrganelle(bool includeMovementCost, IReadOnlyOrganelleTemplate organelle,
-        Vector3 onlyMovementInDirection, out float movementCost)
-    {
-        if (!includeMovementCost || !organelle.Definition.HasMovementComponent)
-        {
-            movementCost = 0;
-            return false;
-        }
-
-        float amount;
-
-        if (organelle.Upgrades?.CustomUpgradeData is FlagellumUpgrades flagellumUpgrades)
-        {
-            amount = Constants.FLAGELLA_ENERGY_COST + flagellumUpgrades.LengthFraction
-                * Constants.FLAGELLA_MAX_UPGRADE_ATP_USAGE;
-        }
-        else
-        {
-            amount = Constants.FLAGELLA_ENERGY_COST;
-        }
-
-        movementCost = amount;
 
         var organelleDirection = MicrobeInternalCalculations.GetOrganelleDirection(organelle);
         if (organelleDirection.Dot(onlyMovementInDirection) > 0)
