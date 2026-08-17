@@ -86,7 +86,7 @@ public class OrganelleTemplate : IReadOnlyOrganelleTemplate, IPositionedOrganell
 
     public bool MatchesDefinition(IActionHex other)
     {
-        return Definition == ((OrganelleTemplate)other).Definition;
+        return ReferenceEquals(Definition, ((OrganelleTemplate)other).Definition);
     }
 
     /// <summary>

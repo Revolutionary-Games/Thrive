@@ -1154,8 +1154,8 @@ public partial class CellBodyPlanEditorComponent :
                     continue;
 
                 // For now cell adjacency only looks at the type, so we can easily re-calculate that here
-                if (GetEditedCellDataIfEdited(cellAtPosition.Data!.ModifiableCellType) !=
-                    GetEditedCellDataIfEdited(cellToCheckAgainst))
+                if (!ReferenceEquals(GetEditedCellDataIfEdited(cellAtPosition.Data!.ModifiableCellType),
+                        GetEditedCellDataIfEdited(cellToCheckAgainst)))
                 {
                     continue;
                 }
@@ -2068,7 +2068,7 @@ public partial class CellBodyPlanEditorComponent :
         var type = CellTypeFromName(activeActionName!);
 
         // Disallow deleting a type in use currently
-        if (editedMicrobeCells.AsModifiable().Any(c => c.Data!.ModifiableCellType == type))
+        if (editedMicrobeCells.AsModifiable().Any(c => ReferenceEquals(c.Data!.ModifiableCellType, type)))
         {
             GD.Print("Can't delete in use cell type");
             cannotDeleteInUseTypeDialog.PopupCenteredShrink();
