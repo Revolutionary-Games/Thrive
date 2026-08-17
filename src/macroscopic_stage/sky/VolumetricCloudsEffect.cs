@@ -70,6 +70,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     private const string UpsamplerShaderFileName = "res://shaders/sky/upsampler.glsl";
 
     private static readonly Deque<VolumetricCloudsEffect> EnqueuedInstances = [];
+    private static readonly object InstanceLock = new();
 
     private static VolumetricCloudsEffect? activeInstance;
 
@@ -114,14 +115,17 @@ public partial class VolumetricCloudsEffect : CompositorEffect
 
     public VolumetricCloudsEffect()
     {
-        if (activeInstance is not null)
+        lock (InstanceLock)
         {
-            EnqueuedInstances.AddToBack(this);
-        }
-        else
-        {
-            activeInstance = this;
-            active = true;
+            if (activeInstance is not null)
+            {
+                EnqueuedInstances.AddToBack(this);
+            }
+            else
+            {
+                activeInstance = this;
+                active = true;
+            }
         }
 
         EffectCallbackType = EffectCallbackTypeEnum.PostTransparent;
@@ -157,16 +161,19 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         if (what != NotificationPredelete)
             return;
 
-        if (active)
+        lock (InstanceLock)
         {
-            active = false;
-            activeInstance = EnqueuedInstances.Count > 0 ? EnqueuedInstances.RemoveFromFront() : null;
-            activeInstance?.active = true;
-        }
-        else
-        {
-            if (!EnqueuedInstances.Remove(this))
-                GD.PrintErr("Inactive VolumetricCloudsEffect is being deleted but it wasn't in the queue.");
+            if (active)
+            {
+                active = false;
+                activeInstance = EnqueuedInstances.Count > 0 ? EnqueuedInstances.RemoveFromFront() : null;
+                activeInstance?.active = true;
+            }
+            else
+            {
+                if (!EnqueuedInstances.Remove(this))
+                    GD.PrintErr("Inactive VolumetricCloudsEffect is being deleted but it wasn't in the queue.");
+            }
         }
 
         if (renderingDevice is null)
@@ -382,7 +389,14 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     [Command("clouds", false, "Utility command for cloud effect debugging.")]
     private static bool CloudsCommand(CommandContext context, CloudCommandParameters parameter1)
     {
-        if (activeInstance is null)
+        VolumetricCloudsEffect? targetInstance;
+
+        lock (InstanceLock)
+        {
+            targetInstance = activeInstance;
+        }
+
+        if (targetInstance is null)
         {
             context.Print("Current instance is null. Clouds aren't currently being rendered.");
 
@@ -392,23 +406,23 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         switch (parameter1)
         {
             case CloudCommandParameters.Reload:
-                activeInstance.Reload();
+                targetInstance.Reload();
                 return true;
             case CloudCommandParameters.ProfileEnable:
-                activeInstance.ProfileGpu = true;
+                targetInstance.ProfileGpu = true;
                 return true;
             case CloudCommandParameters.ProfileDisable:
-                activeInstance.ProfileGpu = false;
+                targetInstance.ProfileGpu = false;
                 return true;
             case CloudCommandParameters.ProfilePrint:
-                if (!activeInstance.ProfileGpu)
+                if (!targetInstance.ProfileGpu)
                 {
                     context.PrintErr("Not currently profiling. Please execute 'clouds ProfileEnable' first.");
 
                     return false;
                 }
 
-                activeInstance.ReportTimestamps();
+                targetInstance.ReportTimestamps();
                 return true;
             case CloudCommandParameters.GenerateNoiseProfile:
                 // It's pointless to enable this in release mode, as the asset should be already baked then and the
@@ -420,7 +434,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
                     return false;
                 }
 
-                activeInstance.GenerateNoiseProfileAndReload();
+                targetInstance.GenerateNoiseProfileAndReload();
                 return true;
             default:
                 return false;
