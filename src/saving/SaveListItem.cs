@@ -267,11 +267,8 @@ public partial class SaveListItem : PanelContainer
 
     private void OnSaveInfoLoaded(IResource resource)
     {
-        if (resource is not SaveInfoAndScreenshot loadedResource ||
-            !ReferenceEquals(saveInfoLoadTask, loadedResource))
-        {
+        if (resource is not SaveInfoAndScreenshot loadedResource || !ReferenceEquals(saveInfoLoadTask, loadedResource))
             return;
-        }
 
         // Release item ownership before touching the UI so a callback failure cannot leave this item stuck or replay.
         loadedResource.OnComplete = null;
@@ -289,19 +286,11 @@ public partial class SaveListItem : PanelContainer
         // General info
 
         // If save is valid, compare version numbers
-        if (!isBroken)
-        {
-            versionDifference = VersionUtils.Compare(save.Info.ThriveVersion, Constants.Version);
-        }
-        else
-        {
-            versionDifference = 0;
-        }
+        versionDifference = isBroken ? 0 : VersionUtils.Compare(save.Info.ThriveVersion, Constants.Version);
 
-        if (versionDifference != 0)
+        versionWarning.Visible = versionDifference != 0;
+        if (versionWarning.Visible)
         {
-            versionWarning.Visible = true;
-
             // Check if the version is known compatible
             if (CompatibleSaveVersions.IsMarkedCompatible(save.Info.ThriveVersion, save.Info.IsPrototype))
             {
@@ -330,10 +319,7 @@ public partial class SaveListItem : PanelContainer
                 isKnownCompatible = false;
             }
         }
-        else
-        {
-            versionWarning.Visible = false;
-        }
+
 
         version.Text = save.Info.ThriveVersion;
 
