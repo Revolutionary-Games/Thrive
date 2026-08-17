@@ -24,7 +24,7 @@ public static class MicrobeInternalCalculations
         }
 
         // After calculating the sum of all organelle directions we subtract the movement components which
-        // are symmetric, and we choose the one who would benefit the max-speed the most.
+        // are symmetric, and we choose the one that would benefit the max-speed the most.
         for (int i = 0; i < organelleCount; ++i)
         {
             var organelle = organelles[i];
@@ -55,7 +55,7 @@ public static class MicrobeInternalCalculations
         }
 
         // After calculating the sum of all organelle directions we subtract the movement components which
-        // are symmetric, and we choose the one who would benefit the max-speed the most.
+        // are symmetric, and we choose the one that would benefit the max-speed the most.
         foreach (var organelle in organelles)
         {
             if (!organelle.Definition.HasMovementComponent)
