@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Components;
-using Godot;
 
 public static class CellBodyPlanInternalCalculations
 {
@@ -152,50 +151,69 @@ public static class CellBodyPlanInternalCalculations
     /// </summary>
     public static float CalculateRotationSpeed(IReadOnlyList<HexWithData<CellTemplate>> cells)
     {
-        var leader = cells[0].Data!;
-
-        var leaderTotalSpecializationBonus = leader.CellTypeSpecializationBonus *
-            GetAdjacencySpecializationBonusFromBodyPlan(leader.Data, cells);
-        var colonyRotation = MicrobeInternalCalculations.CalculateRotationSpeed(leader.ModifiableOrganelles,
-            leaderTotalSpecializationBonus);
-
-        // NOTE: this is commented out as we don't skip the leader in the below loop due to algorithm problems
-        // (this method needs a rewrite).
-        // var actomyosinCount = CalculateEffectiveActomyosinCount(leader);
+        float totalRotationSpeed = 0;
         float actomyosinCount = 0;
-
-        Vector3 leaderPosition = Hex.AxialToCartesian(leader.Position);
 
         foreach (var colonyMember in cells)
         {
-            // NOTE: the numbers are quite low if we don't count the leader in the editor, so that's why we don't
-            // check this.
-            /*if (colonyMember.Data == leader)
-                continue;*/
+            var colonyMemberData = colonyMember.Data!;
 
-            var distanceSquared = leaderPosition.DistanceSquaredTo(Hex.AxialToCartesian(colonyMember.Position));
-
-            var colonyMemberData = colonyMember.Data;
-
-            var memberTotalSpecializationBonus = colonyMemberData!.CellTypeSpecializationBonus *
+            var memberTotalSpecializationBonus = colonyMemberData.CellTypeSpecializationBonus *
                 GetAdjacencySpecializationBonusFromBodyPlan(colonyMemberData.Data, cells);
 
-            var memberRotation = MicrobeInternalCalculations
-                    .CalculateRotationSpeed(colonyMemberData.ModifiableOrganelles, memberTotalSpecializationBonus) *
-                (1 + 0.05f * distanceSquared);
-
-            colonyRotation += memberRotation;
+            totalRotationSpeed += MicrobeInternalCalculations.CalculateRotationSpeed(
+                colonyMemberData.ModifiableOrganelles, memberTotalSpecializationBonus);
             actomyosinCount += CalculateEffectiveActomyosinCount(colonyMemberData);
         }
 
-        return CalculateFinalColonyRotation(colonyRotation, actomyosinCount, cells.Count);
+        return CalculateFinalColonyRotation(totalRotationSpeed / cells.Count, actomyosinCount, cells.Count);
     }
 
-    public static float CalculateFinalColonyRotation(float colonyRotation, float effectiveActomyosinCount,
+    public static float CalculateFinalColonyRotation(float averageCellRotationSpeed, float effectiveActomyosinCount,
         int totalCellCount)
     {
-        return colonyRotation * (1 + Constants.ACTOMYOSIN_ROTATION_BUFF_PER * effectiveActomyosinCount) /
-            totalCellCount;
+        var rotationSpeedWithCellCountPenalty =
+            averageCellRotationSpeed * CellCountRotationPenalty(totalCellCount);
+
+        // Actomyosin is a bonus, so it needs to lower the divisor rather than increase it.
+        return rotationSpeedWithCellCountPenalty /
+            (1 + Constants.ACTOMYOSIN_ROTATION_BUFF_PER * effectiveActomyosinCount);
+    }
+
+    /// <summary>
+    ///   This calculates a penalty to the rotation speed based on the number of cells in the colony. It starts off
+    ///   very small to make small colonies turn faster, but then goes to full penalty once the "expected" max cell
+    ///   count is reached.
+    /// </summary>
+    /// <param name="totalCellCount">Total cells</param>
+    /// <returns>Rotation penalty multiplier (note: higher value means slower rotation)</returns>
+    public static float CellCountRotationPenalty(int totalCellCount)
+    {
+        // This ensures that if someone makes ridiculously large colony, they don't get hit with not being able to turn
+        var count = Math.Clamp(totalCellCount, 1, 30);
+
+        // This is implement as a piece-wise step function for maximum manual tweaking
+
+        if (count <= 3)
+        {
+            // 1 cell = 1.0x, 3 cells = 1.3x
+            return MathUtils.InterpolateSmoothStep(1.0f, 1.3f, (count - 1.0f) / 2.0f);
+        }
+
+        if (count <= 5)
+        {
+            // 3 cells = 1.3x, 5 cells = 1.5x
+            return MathUtils.InterpolateSmoothStep(1.3f, 1.5f, (count - 3.0f) / 2.0f);
+        }
+
+        if (count <= 20)
+        {
+            // 5 cells = 1.5x, 20 cells = 10.0x
+            return MathUtils.InterpolateSmoothStep(1.5f, 10.0f, (count - 5.0f) / 15.0f);
+        }
+
+        // 20 cells = 10.0x, 30 cells = 20.0x, capped after that
+        return MathUtils.InterpolateSmoothStep(10.0f, 20.0f, (count - 20.0f) / 10.0f);
     }
 
     public static float GetAdjacencySpecializationBonusFromBodyPlan(IReadOnlyCellTemplate? cellInBodyPlan,

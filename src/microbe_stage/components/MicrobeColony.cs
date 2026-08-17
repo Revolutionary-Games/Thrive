@@ -1025,62 +1025,32 @@ public static class MicrobeColonyHelpers
         // shape.TestYRotationInertiaFactor() how to make this take the colony shape into account in rotation to
         // be more physically accurate
 
-        // When changing this method's logic also update the corresponding method in CellBodyPlanInternalCalculations
-        ref var leaderOrganelles = ref colony.Leader.Get<OrganelleContainer>();
-        float colonyRotation = MicrobeInternalCalculations.CalculateRotationSpeed(
-            leaderOrganelles.Organelles!.Organelles,
-            colony.Leader.Get<SpecializationFactor>().TotalSpecializationBonus);
-
-        if (!leaderOrganelles.OrganelleComponentsCached)
-        {
-            GD.PrintErr("Cannot get actomyosin count yet for rotation speed");
-        }
-
-        // Note if this logic is changed, then the relevant logic needs also updating in
-        // CellBodyPlanInternalCalculations.CalculateRotationSpeed
-
         // Actomyosin acts as the key buff to keep the rotation rate reasonable. This is a float as multiple actomyosin
         // per cell give a small extra bonus
-        float actomyosinCount = leaderOrganelles.CalculateEffectiveActomyosinCount();
+        float actomyosinCount = 0;
+        float totalRotationSpeed = 0;
 
         foreach (var colonyMember in colony.ColonyMembers)
         {
-            // Colony leader is set before the loop
-            if (colonyMember == colony.Leader)
-                continue;
-
             try
             {
-                if (!colonyMember.IsAliveAndHas<AttachedToEntity>())
-                    throw new Exception("Colony member has no AttachedToEntity component");
-
-                ref var memberPosition = ref colonyMember.Get<AttachedToEntity>();
-
-                var distanceSquared = memberPosition.RelativePosition.LengthSquared();
-
                 ref var memberOrganelleContainer = ref colonyMember.Get<OrganelleContainer>();
 
-                // Multiply both the propulsion and mass by the distance from center to simulate leverage.
-                // This relies on the bounding of the cell rotation, as a colony can never be faster than the
-                // fastest cell inside it.
-                var memberRotation = MicrobeInternalCalculations
-                        .CalculateRotationSpeed(memberOrganelleContainer.Organelles!.Organelles,
-                            colonyMember.Get<SpecializationFactor>().TotalSpecializationBonus)
-                    * (1 + 0.005f * distanceSquared);
-
-                colonyRotation += memberRotation;
+                totalRotationSpeed += MicrobeInternalCalculations.CalculateRotationSpeed(
+                    memberOrganelleContainer.Organelles!.Organelles,
+                    colonyMember.Get<SpecializationFactor>().TotalSpecializationBonus);
                 actomyosinCount += memberOrganelleContainer.CalculateEffectiveActomyosinCount();
             }
             catch (Exception e)
             {
                 GD.PrintErr("Failed to calculate rotation speed for microbe colony, " +
-                    "member likely missing attached component: ", e);
+                    "member likely missing a required component: ", e);
             }
         }
 
         colony.ColonyRotationSpeed =
-            CellBodyPlanInternalCalculations.CalculateFinalColonyRotation(colonyRotation, actomyosinCount,
-                colony.ColonyMembers.Length);
+            CellBodyPlanInternalCalculations.CalculateFinalColonyRotation(
+                totalRotationSpeed / colony.ColonyMembers.Length, actomyosinCount, colony.ColonyMembers.Length);
     }
 
     /// <summary>
