@@ -1,9 +1,9 @@
 ﻿// #define TOOLS_ENABLED
 
 using System;
-using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
+using Nito.Collections;
 
 /// <summary>
 ///   Volumetric Clouds Effect for sky rendering.
@@ -70,7 +70,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     private const string UpsamplerShaderFileName = "res://shaders/sky/upsampler.glsl";
 
     private static VolumetricCloudsEffect? activeInstance;
-    private static Queue<VolumetricCloudsEffect> enqueuedInstances = [];
+    private static Deque<VolumetricCloudsEffect> enqueuedInstances = [];
 
     private readonly StringName cloudContextName = "volumetric_clouds";
     private readonly StringName cloudTextureName = "cloud_half";
@@ -115,7 +115,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     {
         if (activeInstance is not null)
         {
-            enqueuedInstances.Enqueue(this);
+            enqueuedInstances.AddToBack(this);
         }
         else
         {
@@ -136,7 +136,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     private Callable ReloadPipelineCallable => new(this, MethodName.Reload);
 
     [ExportToolButton("Generate Noise Profile")]
-    private Callable GenerateNoiseProfileResourceCallable => new(this, MethodName.GenerateNoiseProfileResource);
+    private Callable GenerateNoiseProfileResourceCallable => new(this, MethodName.GenerateNoiseProfileAndReload);
 
     [ExportToolButton("Dump GPU profiler data")]
     private Callable DumpGpuProfilerData => new(this, MethodName.ReportTimestamps);
@@ -156,8 +156,17 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         if (what != NotificationPredelete)
             return;
 
-        activeInstance = enqueuedInstances.TryDequeue(out var instance) ? instance : null;
-        activeInstance?.active = true;
+        if (active)
+        {
+            active = false;
+            activeInstance = enqueuedInstances.Count > 0 ? enqueuedInstances.RemoveFromFront() : null;
+            activeInstance?.active = true;
+        }
+        else
+        {
+            if (!enqueuedInstances.Remove(this))
+                GD.PrintErr("Inactive VolumetricCloudsEffect is being deleted but it wasn't in the queue.");
+        }
 
         if (renderingDevice is null)
             return;
