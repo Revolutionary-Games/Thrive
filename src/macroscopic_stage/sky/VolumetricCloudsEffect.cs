@@ -1,4 +1,4 @@
-﻿// #define TOOLS_ENABLED
+﻿#define TOOLS_ENABLED
 
 using System;
 using Godot;
@@ -258,12 +258,14 @@ public partial class VolumetricCloudsEffect : CompositorEffect
                 continue;
 
             var projection = sceneData.GetViewProjection(view);
+            var eyeOffset = sceneData.GetViewEyeOffset(view);
             var cameraTransform = sceneData.GetCamTransform();
+            var viewTransform = cameraTransform.TranslatedLocal(eyeOffset);
 
             var paramSpan = uniformParamsBuffer.AsSpan();
 
             RenderingUtils.UpdateProjectionsPushConstant(pushConstantsBuffer, projection.Inverse(),
-                new Projection(cameraTransform));
+                new Projection(viewTransform));
             UpdateParamUniform(paramSpan, size, marchSize, cameraTransform.Origin);
 
             renderingDevice.BufferUpdate(paramUbo, 0, UniformParamsBufferSize, paramSpan,
