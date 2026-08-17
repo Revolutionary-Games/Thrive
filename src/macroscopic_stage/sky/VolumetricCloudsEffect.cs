@@ -69,8 +69,9 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     private const string RaymarcherShaderFileName = "res://shaders/sky/clouds_march.glsl";
     private const string UpsamplerShaderFileName = "res://shaders/sky/upsampler.glsl";
 
+    private static readonly Deque<VolumetricCloudsEffect> EnqueuedInstances = [];
+
     private static VolumetricCloudsEffect? activeInstance;
-    private static Deque<VolumetricCloudsEffect> enqueuedInstances = [];
 
     private readonly StringName cloudContextName = "volumetric_clouds";
     private readonly StringName cloudTextureName = "cloud_half";
@@ -115,7 +116,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     {
         if (activeInstance is not null)
         {
-            enqueuedInstances.AddToBack(this);
+            EnqueuedInstances.AddToBack(this);
         }
         else
         {
@@ -159,12 +160,12 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         if (active)
         {
             active = false;
-            activeInstance = enqueuedInstances.Count > 0 ? enqueuedInstances.RemoveFromFront() : null;
+            activeInstance = EnqueuedInstances.Count > 0 ? EnqueuedInstances.RemoveFromFront() : null;
             activeInstance?.active = true;
         }
         else
         {
-            if (!enqueuedInstances.Remove(this))
+            if (!EnqueuedInstances.Remove(this))
                 GD.PrintErr("Inactive VolumetricCloudsEffect is being deleted but it wasn't in the queue.");
         }
 
