@@ -368,6 +368,10 @@ public static class CommonMutationFunctions
                     default:
                         throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
                 }
+
+                // If we end up exceeding the cell cap, abort the procedure as a failure
+                if (newSpecies.EditorCells.Count < Constants.AUTO_EVO_MAX_CELL_COUNT)
+                    return false;
             }
         }
 
