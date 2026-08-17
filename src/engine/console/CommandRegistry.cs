@@ -80,7 +80,7 @@ public class CommandRegistry : IDisposable
         var span = cmd.AsSpan();
         var tokenizer = new SpanTokenizer(span);
 
-        // Empty command. No tokens so process.
+        // Empty command. No tokens to process.
         if (!tokenizer.MoveNext(out var cmdNameSpan, out _))
             return false;
 
@@ -95,9 +95,10 @@ public class CommandRegistry : IDisposable
                 return false;
             }
 
-            if (multicastCandidates.Disabled)
+            if (multicastCandidates.Overloads.Any(overload => overload.MulticastParameters!.Disabled))
             {
-                context.PrintErr($"Cannot execute command {commandName} because there are too many instances.");
+                context.PrintErr($"Cannot execute command {commandName} because there are too many registered" +
+                    $" instances.");
                 return false;
             }
 
@@ -160,15 +161,11 @@ public class CommandRegistry : IDisposable
         if (!multicastCommands.TryGetValue(commandName, out var multicastCommandRegistry))
         {
             var type = owner.GetType();
-            var allowedInstancesAttributeNullable = Attribute.GetCustomAttribute(type,
-                typeof(MulticastAllowedInstancesAttribute));
-            var allowedInstancesAttribute = (MulticastAllowedInstancesAttribute)(allowedInstancesAttributeNullable ??
-                MulticastAllowedInstancesAttribute.Default);
 
             // The command hasn't been registered yet, and we do so during runtime.
             // Unlike static commands, multicast commands are instance members, so we only have class-specific
             // overloads. Therefore, we only need to scan the methods in T.
-            multicastCommandRegistry = new MulticastCommandRegistry([], [], allowedInstancesAttribute);
+            multicastCommandRegistry = new MulticastCommandRegistry([], []);
             multicastCommands.Add(commandName, multicastCommandRegistry);
 
             const BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
@@ -186,7 +183,9 @@ public class CommandRegistry : IDisposable
                         continue;
 
                     var isCheat = attribute.IsCheat;
-                    var command = new Command(method, name, isCheat, attribute.HelpText, true);
+                    var command = new Command(method, name, isCheat, attribute.HelpText,
+                        new MulticastCommandParameters(attribute.MaxAllowedRegisteredInstances,
+                            attribute.FailOnTooManyInstances));
 
                     multicastCommandRegistry.Overloads.Add(command);
                 }
@@ -200,13 +199,21 @@ public class CommandRegistry : IDisposable
             }
         }
 
-        var multicastAllowedInstances = multicastCommandRegistry.MulticastAllowedInstancesAttributeCached;
-
-        if (multicastCommandRegistry.Owners.Count >= multicastAllowedInstances.MaxAllowedRegisteredInstances)
+        foreach (var command in multicastCommandRegistry.Overloads)
         {
-            multicastCommandRegistry.Disabled = multicastAllowedInstances.FailOnTooManyInstances;
+            var multicastParameters = command.MulticastParameters!;
+            var multicastAllowedInstances = multicastParameters.MaxAllowedRegisteredInstances;
 
-            return false;
+            if (multicastCommandRegistry.Owners.Count >= multicastAllowedInstances)
+            {
+                multicastParameters.Disabled = multicastParameters.FailOnTooManyInstances;
+
+                // This ignores command owner registration for *any* overload. This prevents having an owner list for
+                // each overload, which is much harder to maintain.
+                // If two overloads *must* have a different owner count, it is recommended to use a different command
+                // name instead.
+                return false;
+            }
         }
 
         multicastCommandRegistry.Owners.Add(owner);
@@ -222,10 +229,6 @@ public class CommandRegistry : IDisposable
 
         if (!multicastCommandRegistry.Owners.Remove(owner))
             return false;
-
-        // At this point the unregistration has succeeded, so we are below the limit in any case. We enable the command
-        // again regardless.
-        multicastCommandRegistry.Disabled = false;
 
         return true;
     }
@@ -666,8 +669,10 @@ public class CommandRegistry : IDisposable
     }
 
     public record struct Command(MethodInfo MethodInfo, string CommandName, bool IsCheat, string HelpText,
-        bool IsMulticast = false)
+        MulticastCommandParameters? MulticastParameters = null)
     {
+        public bool IsMulticast => MulticastParameters is not null;
+
         [MulticastCommand("commands", false, "Less verbose version of 'help' to list all" +
             " static commands.")]
         private void CommandInfo(CommandContext context)
@@ -675,6 +680,8 @@ public class CommandRegistry : IDisposable
             context.Print(CommandName + " " + HelpText + " " + IsCheat);
         }
     }
+
+    private record struct MulticastCommandRegistry(List<Command> Overloads, HashSet<object> Owners);
 
     /// <summary>
     ///   A custom command parser.
@@ -736,13 +743,10 @@ public class CommandRegistry : IDisposable
         }
     }
 
-    private sealed class MulticastCommandRegistry(List<Command> overloads, HashSet<object> owners,
-        MulticastAllowedInstancesAttribute multicastAllowedInstancesAttributeCached)
+    public sealed class MulticastCommandParameters(int maxAllowedRegisteredInstances, bool failOnTooManyInstances)
     {
-        internal readonly List<Command> Overloads = overloads;
-        internal readonly HashSet<object> Owners = owners;
-        internal readonly MulticastAllowedInstancesAttribute MulticastAllowedInstancesAttributeCached =
-            multicastAllowedInstancesAttributeCached;
+        public readonly int MaxAllowedRegisteredInstances = maxAllowedRegisteredInstances;
+        public readonly bool FailOnTooManyInstances = failOnTooManyInstances;
 
         internal bool Disabled;
     }

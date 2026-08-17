@@ -181,3 +181,8 @@ instances for the execution of this command. It is recommended this is kept as l
 possible to prevent too many invocations.
 - `failOnTooManyInstances`, a `bool` that determines whether the command execution should
 fail for **all** instances if the instance cap is reached. This is `true` by default.
+
+Note that `maxAllowedRegisteredInstances` should be the same for all overloads. If you
+need two overloads to have a different instance number cap, please change the name of one.
+If you choose different numbers for this parameter, then the lowest
+`maxAllowedRegisteredInstances` will be used.
