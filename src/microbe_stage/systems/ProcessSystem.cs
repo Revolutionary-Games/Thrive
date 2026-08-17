@@ -605,36 +605,6 @@ public partial class ProcessSystem : BaseSystem<World, float>
     ///   Calculates ATP balance with the given organelle in the given <see cref="biome"/> (so only processes with
     ///   input compounds present in the biome can run)
     /// </summary>
-    public static (float Production, float Consumption) CalculateOrganelleATPBalance(OrganelleTemplate organelle,
-        IBiomeConditions biome, CompoundAmountType amountType, float speedModifier, SimulationCache? cache)
-    {
-        float processATPProduction = 0.0f;
-        float processATPConsumption = 0.0f;
-
-        foreach (var process in organelle.Definition.RunnableProcesses)
-        {
-            ProcessSpeedInformation processData;
-            if (cache != null && amountType == CompoundAmountType.Average)
-            {
-                processData = cache.GetProcessMaximumSpeed(process, speedModifier, biome);
-            }
-            else
-            {
-                processData = CalculateProcessMaximumSpeed(process, speedModifier, biome, amountType, true);
-            }
-
-            var amount = processData.ATPConsumption;
-            if (amount > 0)
-                processATPConsumption += amount;
-
-            amount = processData.ATPProduction;
-            if (amount > 0)
-                processATPProduction += amount;
-        }
-
-        return (processATPProduction, processATPConsumption);
-    }
-
     public static (float Production, float Consumption) CalculateOrganelleATPBalance(
         IReadOnlyOrganelleTemplate organelle, IBiomeConditions biome, CompoundAmountType amountType,
         float speedModifier, SimulationCache? cache)
