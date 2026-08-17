@@ -605,7 +605,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
     ///   Calculates ATP balance with the given organelle in the given <see cref="biome"/> (so only processes with
     ///   input compounds present in the biome can run)
     /// </summary>
-    public static (float Production, float Consumption) CalculateOrganelleATPBalance(
+    public static (float Production, float Consumption) CalculateOrganelleProcessATPBalance(
         IReadOnlyOrganelleTemplate organelle, IBiomeConditions biome, CompoundAmountType amountType,
         float speedModifier, SimulationCache? cache)
     {
@@ -961,87 +961,13 @@ public partial class ProcessSystem : BaseSystem<World, float>
         {
             var organelle = organelles[i];
 
-            var (production, consumption) = CalculateOrganelleATPBalance(organelle, biome, amountType,
-                speedModifier, cache);
-
-            processATPProduction += production;
-            processATPConsumption += consumption;
-
-            // Take special cell components that take energy into account
-            if (TryGetMovementCostForOrganelle(includeMovementCost, organelle, onlyMovementInDirection,
-                    out var flagellumCost, out var actomyosinCost))
-            {
-                movementATPConsumption += flagellumCost + actomyosinCost;
-                result.Actomyosin += actomyosinCost;
-                result.Flagella += flagellumCost;
-            }
-
-            if (includeMovementCost && organelle.Definition.HasCiliaComponent)
-            {
-                var amount = Constants.CILIA_ENERGY_COST;
-
-                movementATPConsumption += amount;
-                result.Cilia += amount;
-            }
-
-            // Store hex count
-            hexCount += organelle.Definition.HexCount;
+            AddOrganelleATPBalance(biome, onlyMovementInDirection, includeMovementCost, amountType, cache, result,
+                organelle, speedModifier, ref processATPProduction, ref processATPConsumption,
+                ref movementATPConsumption, ref hexCount);
         }
 
-        var baseMovement = Constants.BASE_MOVEMENT_ATP_COST * hexCount;
-        result.BaseMovement += baseMovement;
-
-        if (includeMovementCost)
-        {
-            // Add movement consumption together
-            result.TotalMovement += movementATPConsumption + baseMovement;
-        }
-        else
-        {
-            result.TotalMovement = -1;
-        }
-
-        // Calculate the osmoregulation
-        var osmoregulation = Constants.ATP_COST_FOR_OSMOREGULATION * hexCount *
-            membrane.OsmoregulationFactor;
-
-#if DEBUG
-        if (environmentTolerances.OsmoregulationModifier <= 0)
-            throw new ArgumentException("Uninitialized environmental tolerances");
-#endif
-
-        osmoregulation *= environmentTolerances.OsmoregulationModifier;
-
-        // Apply energy cost multiplier from difficulty setting to player species
-        if (isPlayerSpecies)
-        {
-            var energyCostMultiplier = worldSettings.EnergyCostMultiplier;
-
-            osmoregulation *= energyCostMultiplier;
-            result.TotalMovement *= energyCostMultiplier;
-            result.BaseMovement *= energyCostMultiplier;
-            result.Flagella *= energyCostMultiplier;
-            result.Actomyosin *= energyCostMultiplier;
-            result.Cilia *= energyCostMultiplier;
-        }
-
-        result.Osmoregulation += osmoregulation;
-
-        // Compute totals
-        result.TotalProduction += processATPProduction;
-        result.TotalConsumptionStationary += processATPConsumption + osmoregulation;
-
-        if (includeMovementCost)
-        {
-            result.TotalConsumption = result.TotalConsumptionStationary + result.TotalMovement;
-        }
-        else
-        {
-            result.TotalConsumption = result.TotalConsumptionStationary;
-        }
-
-        result.FinalBalance = result.TotalProduction - result.TotalConsumption;
-        result.FinalBalanceStationary = result.TotalProduction - result.TotalConsumptionStationary;
+        FinalizeSimplePartOfEnergyBalance(environmentTolerances, membrane, includeMovementCost, isPlayerSpecies,
+            worldSettings, result, hexCount, movementATPConsumption, processATPProduction, processATPConsumption);
     }
 
     private static void CalculateSimplePartOfEnergyBalance(IReadOnlyCollection<IReadOnlyOrganelleTemplate> organelles,
@@ -1063,33 +989,52 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
         foreach (var organelle in organelles)
         {
-            var (production, consumption) = CalculateOrganelleATPBalance(organelle, biome, amountType,
-                speedModifier, cache);
-
-            processATPProduction += production;
-            processATPConsumption += consumption;
-
-            // Take special cell components that take energy into account
-            if (TryGetMovementCostForOrganelle(includeMovementCost, organelle, onlyMovementInDirection,
-                    out var flagellumCost, out var actomyosinCost))
-            {
-                movementATPConsumption += flagellumCost + actomyosinCost;
-                result.Actomyosin += actomyosinCost;
-                result.Flagella += flagellumCost;
-            }
-
-            if (includeMovementCost && organelle.Definition.HasCiliaComponent)
-            {
-                var amount = Constants.CILIA_ENERGY_COST;
-
-                movementATPConsumption += amount;
-                result.Cilia += amount;
-            }
-
-            // Store hex count
-            hexCount += organelle.Definition.HexCount;
+            AddOrganelleATPBalance(biome, onlyMovementInDirection, includeMovementCost, amountType, cache, result,
+                organelle, speedModifier, ref processATPProduction, ref processATPConsumption,
+                ref movementATPConsumption, ref hexCount);
         }
 
+        FinalizeSimplePartOfEnergyBalance(environmentTolerances, membrane, includeMovementCost, isPlayerSpecies,
+            worldSettings, result, hexCount, movementATPConsumption, processATPProduction, processATPConsumption);
+    }
+
+    private static void AddOrganelleATPBalance(IBiomeConditions biome, Vector3 onlyMovementInDirection,
+        bool includeMovementCost, CompoundAmountType amountType, SimulationCache? cache, EnergyBalanceInfoSimple result,
+        IReadOnlyOrganelleTemplate organelle, float speedModifier, ref float processATPProduction,
+        ref float processATPConsumption, ref float movementATPConsumption, ref int hexCount)
+    {
+        var (production, consumption) = CalculateOrganelleProcessATPBalance(organelle, biome, amountType,
+            speedModifier, cache);
+
+        processATPProduction += production;
+        processATPConsumption += consumption;
+
+        // Take special cell components that take energy into account
+        if (TryGetMovementCostForOrganelle(includeMovementCost, organelle, onlyMovementInDirection,
+                out var flagellumCost, out var actomyosinCost))
+        {
+            movementATPConsumption += flagellumCost + actomyosinCost;
+            result.Actomyosin += actomyosinCost;
+            result.Flagella += flagellumCost;
+        }
+
+        if (includeMovementCost && organelle.Definition.HasCiliaComponent)
+        {
+            var amount = Constants.CILIA_ENERGY_COST;
+
+            movementATPConsumption += amount;
+            result.Cilia += amount;
+        }
+
+        // Store hex count
+        hexCount += organelle.Definition.HexCount;
+    }
+
+    private static void FinalizeSimplePartOfEnergyBalance(ResolvedMicrobeTolerances environmentTolerances,
+        MembraneType membrane, bool includeMovementCost, bool isPlayerSpecies, WorldGenerationSettings worldSettings,
+        EnergyBalanceInfoSimple result, int hexCount, float movementATPConsumption, float processATPProduction,
+        float processATPConsumption)
+    {
         var baseMovement = Constants.BASE_MOVEMENT_ATP_COST * hexCount;
         result.BaseMovement += baseMovement;
 
