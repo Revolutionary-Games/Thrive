@@ -389,10 +389,10 @@ public class Program
         ColourConsole.WriteInfoLine("Attempting to import assets to Godot to make test detection work");
         ColourConsole.WriteInfoLine("This quite often fails, so this will try to run for 7 minutes before cancelling");
 
-        var timeout = new CancellationTokenSource(TimeSpan.FromMinutes(7));
+        using var timeout = new CancellationTokenSource(TimeSpan.FromMinutes(7));
         var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
 
-        var combined = CancellationTokenSource.CreateLinkedTokenSource(tokenSource.Token, timeout.Token);
+        using var combined = CancellationTokenSource.CreateLinkedTokenSource(tokenSource.Token, timeout.Token);
 
         var startInfo = new ProcessStartInfo("godot");
         startInfo.ArgumentList.Add(PackageTool.GODOT_HEADLESS_FLAG);
@@ -405,7 +405,7 @@ public class Program
         {
             var processTask = ProcessRunHelpers.RunProcessAsync(startInfo, combined.Token, false, 1, false);
 
-            var waitTimeout = new CancellationTokenSource(TimeSpan.FromMinutes(8));
+            using var waitTimeout = new CancellationTokenSource(TimeSpan.FromMinutes(8));
 
             processTask.Wait(waitTimeout.Token);
             var result = processTask.Result;
