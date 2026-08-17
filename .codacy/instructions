@@ -33,12 +33,6 @@
 - Use `ref` for ECS components and `this ref` extension helpers. Update the relevant dirty flags through established helpers.
 - For Godot, use containers rather than Control offsets; use `Connect`/`nameof` for signals; never dispose Nodes or `GD.Load` resources.
 
-## Review Focus
-
-When reviewing code of a PR pay most attention to the following: logic flow of the code to check for logical errors, typos in code identifiers or comments, and code efficiency (Thrive is a game so avoiding temporary memory allocations as much as possible is important; persistent, reused data containers should be preferred).
-
-Automated CI checks ensure code compiles and is formatted correctly (except for shader files, for those check they match the style of existing shader files in the shaders folder). Translation files in the locale folder don't need to be checked, other than `en.po` to see if the English text is grammatically fine and has no typos, as they also have automated checks to ensure no missing text. So don't bother reading other `.po` files than the `en.po` as they are not required to be reviewed.
-
 ## PR rules
 
 - PRs should be focused on one issue/change; do not mix unrelated refactors or formatting. Issue branches use `<issue>_<short_lowercase_name>`.
