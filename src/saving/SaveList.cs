@@ -68,7 +68,9 @@ public partial class SaveList : ScrollContainer
     private bool refreshing;
     private bool refreshedAtLeastOnce;
 
+#pragma warning disable CA2213 // Task is disposed after its result is consumed
     private Task<List<string>>? readSavesList;
+#pragma warning restore CA2213
 
     private string? saveToBeDeleted;
     private string? saveToBeLoaded;

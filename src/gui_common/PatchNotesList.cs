@@ -18,7 +18,9 @@ public partial class PatchNotesList : VBoxContainer
 
     private bool dirty = true;
 
+#pragma warning disable CA2213 // Tasks are disposed after their results are consumed
     private Task<List<(string Version, VersionPatchNotes Notes)>>? thingsToShowComputeResults;
+#pragma warning restore CA2213
 
     private StyleBoxFlat? itemBackground;
 

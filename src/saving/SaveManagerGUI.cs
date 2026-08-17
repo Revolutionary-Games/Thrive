@@ -56,10 +56,13 @@ public partial class SaveManagerGUI : Control
     private int currentQuickSaveCount;
     private int currentBackupCount;
 
+    // NOTE: we could probably cancel tasks on _ExitTree / Godot-Dispose, but it is probably unnecessary?
+#pragma warning disable CA2213 // Tasks are disposed after their results are consumed
     private Task<(int Count, ulong DiskSpace)>? getTotalSaveCountTask;
     private Task<(int Count, ulong DiskSpace)>? getAutoSaveCountTask;
     private Task<(int Count, ulong DiskSpace)>? getQuickSaveCountTask;
     private Task<(int Count, ulong DiskSpace)>? getBackupCountTask;
+#pragma warning restore CA2213
 
     [Signal]
     public delegate void OnBackPressedEventHandler();
