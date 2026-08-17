@@ -10,28 +10,28 @@ public class MutationLogicFunctions
     public static void NameNewSpecies(Species newSpecies, Species parentSpecies)
     {
         // Keep the same genus name if the species are similar enough
-        var generateGenus = false;
+        var keepGenus = false;
         if (newSpecies is MicrobeSpecies microbeSpecies && parentSpecies is MicrobeSpecies parentMicrobeSpecies)
         {
             if (!MicrobeSpeciesIsNewGenus(microbeSpecies, parentMicrobeSpecies))
             {
-                generateGenus = false;
+                keepGenus = true;
             }
         }
         else if (newSpecies is MulticellularSpecies multicellularSpecies && parentSpecies is
                      MulticellularSpecies parentMulticellularSpecies)
         {
             if (!MulticellularSpeciesIsNewGenus(multicellularSpecies, parentMulticellularSpecies))
-                generateGenus = false;
+                keepGenus = true;
         }
 
-        if (generateGenus)
+        if (keepGenus)
         {
-            newSpecies.Genus = SimulationParameters.Instance.NameGenerator.GenerateNameSection();
+            newSpecies.Genus = parentSpecies.Genus;
         }
         else
         {
-            newSpecies.Genus = parentSpecies.Genus;
+            newSpecies.Genus = SimulationParameters.Instance.NameGenerator.GenerateNameSection();
         }
 
         newSpecies.Epithet = SimulationParameters.Instance.NameGenerator.GenerateNameSection(null, true);
