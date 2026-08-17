@@ -527,7 +527,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         else
         {
             throw new Exception("No noise profile resource asset has been found. Please generate it with the command" +
-                " 'cloud GenerateNoiseProfile' and reload the current scene.");
+                " 'clouds GenerateNoiseProfile' and reload the current scene.");
         }
     }
 
