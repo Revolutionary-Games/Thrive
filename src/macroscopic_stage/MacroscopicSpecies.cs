@@ -127,12 +127,12 @@ public class MacroscopicSpecies : Species, IReadOnlyMacroscopicSpecies
         var chemo = simulation.GetOrganelleType("chemoplast");
         var chemoProtein = simulation.GetOrganelleType("chemoSynthesizingProteins");
 
-        if (Organelles.Any(o => o.Definition == rusticyanin))
+        if (Organelles.Any(o => ReferenceEquals(o.Definition, rusticyanin)))
         {
             SetInitialCompoundsForIron();
         }
-        else if (Organelles.Any(o => o.Definition == chemo ||
-                     o.Definition == chemoProtein))
+        else if (Organelles.Any(o => ReferenceEquals(o.Definition, chemo) ||
+                     ReferenceEquals(o.Definition, chemoProtein)))
         {
             SetInitialCompoundsForChemo();
         }

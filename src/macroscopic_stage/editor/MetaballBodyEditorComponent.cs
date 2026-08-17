@@ -1147,7 +1147,7 @@ public partial class MetaballBodyEditorComponent :
         var placementType = GetEditedCellDataIfEdited(type);
 
         // Disallow deleting a type that is in use currently
-        if (editedMetaballs.Any(c => c.ModifiableCellType == placementType))
+        if (editedMetaballs.Any(c => ReferenceEquals(c.ModifiableCellType, placementType)))
         {
             GD.Print("Can't delete in use cell type");
             cannotDeleteInUseTypeDialog.PopupCenteredShrink();
@@ -1178,12 +1178,13 @@ public partial class MetaballBodyEditorComponent :
 
         foreach (var entry in cellTypeSelectionButtons)
         {
-            if (entry.Value.CellType == newType || (entry.Value.CellType == type && newType == type))
+            if (ReferenceEquals(entry.Value.CellType, newType) ||
+                (ReferenceEquals(entry.Value.CellType, type) && ReferenceEquals(newType, type)))
             {
                 // Updating existing
                 entry.Value.ReportTypeChanged();
             }
-            else if (entry.Value.CellType == type)
+            else if (ReferenceEquals(entry.Value.CellType, type))
             {
                 // Button is seeing its first edit (and needs to transform to be for the edit type)
                 GD.Print($"First edit of cell type {type.CellTypeName}");

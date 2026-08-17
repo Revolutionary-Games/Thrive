@@ -42,7 +42,7 @@ public partial class MicheDetailsPanel : MarginContainer
 
     public void SetPreview(Miche miche, Patch patch)
     {
-        if (previewMiche == miche)
+        if (ReferenceEquals(previewMiche, miche))
             return;
 
         previewMiche = miche;

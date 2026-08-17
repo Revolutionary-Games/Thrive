@@ -144,7 +144,7 @@ public static class CommonMutationFunctions
         newSpecies.Organelles.AddFast(position, workMemory1, workMemory2);
 
         // If the new species is eukaryotic, mark this as such.
-        if (organelle == Nucleus)
+        if (ReferenceEquals(organelle, Nucleus))
         {
             newSpecies.IsBacteria = false;
         }

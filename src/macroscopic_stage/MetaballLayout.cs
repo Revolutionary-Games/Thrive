@@ -10,6 +10,7 @@ using SharedBase.Archive;
 /// <summary>
 ///   A species shape specified by metaballs
 /// </summary>
+/// <typeparam name="T">Metaball type</typeparam>
 public class MetaballLayout<T> : ICollection<T>, IReadOnlyMetaballLayout<T>, IArchivable
     where T : Metaball
 {
@@ -65,7 +66,7 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyMetaballLayout<T>, IAr
 
     public bool CanAdd(T metaball)
     {
-        if (metaball.ModifiableParent == metaball)
+        if (ReferenceEquals(metaball.ModifiableParent, metaball))
             throw new ArgumentException("Metaball can't be its own parent");
 
         // First metaball (or adding the root back) can be placed anywhere
@@ -80,7 +81,7 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyMetaballLayout<T>, IAr
         bool found = true;
         foreach (var existing in metaballs)
         {
-            if (existing == parent)
+            if (ReferenceEquals(existing, parent))
             {
                 found = true;
                 break;
@@ -182,7 +183,7 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyMetaballLayout<T>, IAr
     {
         foreach (var layoutMetaball in this)
         {
-            if (layoutMetaball.ModifiableParent == metaball)
+            if (ReferenceEquals(layoutMetaball.ModifiableParent, metaball))
                 yield return layoutMetaball;
         }
     }
@@ -205,7 +206,7 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyMetaballLayout<T>, IAr
         if (descendant.ModifiableParent == null)
             return false;
 
-        if (descendant.ModifiableParent == parent)
+        if (ReferenceEquals(descendant.ModifiableParent, parent))
             return true;
 
         return IsDescendantsOf(descendant.ModifiableParent, parent);

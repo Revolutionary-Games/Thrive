@@ -94,7 +94,7 @@ public abstract class Metaball : IReadOnlyMetaball, IArchivable
         if (ModifiableParent == null)
             return false;
 
-        if (ModifiableParent == potentialAncestor)
+        if (ReferenceEquals(ModifiableParent, potentialAncestor))
             return true;
 
         return ModifiableParent.HasAncestor(potentialAncestor);
