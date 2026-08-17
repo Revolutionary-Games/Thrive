@@ -35,8 +35,11 @@ executed in the console by writing the command name, which in this case would be
 `test` with output `Hello, Console!`. The command name is case insensitive.
 
 Please note that the method **must** be static, or it will be ignored during the
-registration. The visibility modifier is ignored, but it's recommended to keep
-the method private, as it would be good practice to not invoke the command
+registration. See **Multicast Commands** below to learn how to use commands on
+instance methods.
+
+During the registration, the visibility modifier is ignored, but it's recommended
+to keep the method private, as it would be good practice to not invoke the command
 method from a place different from the console. The method name also doesn't
 matter, but I recommend using the `NameCommand()` style.
 
@@ -139,3 +142,42 @@ in the console.
 Other return values are silently unsupported, so different return values will
 not influence the execution of the command. Therefore, if the command doesn't
 have to return a success feedback we just recommend to use void.
+
+## Multicast commands
+
+**Multicast commands** are a special kind of commands that can be registered on top of
+non-static methods in order to multicast the method invocation in all *the registered*
+instances.
+
+To register a command as multicast you have to use the `MulticastCommand` attribute,
+which takes the same parameters as the `Command` attribute. These methods aren't
+registered automatically for every instance of the class in which they are declared,
+but you have to *register* the current instance with
+`CommandRegistry.Instance.TryRegisterMulticastCommandListener`. This adds the object
+instance to the registry, so that every time the multicast command is executed in the
+console it can call the instance method. Likewise, instances can be *unregistered* with
+`CommandRegistry.Instance.TryUnregisterMulticastCommandListener`.
+
+### Safety measures
+
+Multicast commands are inherently more dangerous than regular commands, as they
+dispatch invocations to every registered object. If one were to register an undefined
+big number of instances, on the command execution Thrive could hang or crash. To solve
+this problem there are two major solutions:
+
+- An **enforced instance number cap**, which is used by the Command Registry to
+*automatically disable* or limit the number of invocations when the multicast command
+is executed;
+- Define a singleton object that tracks the instances and defers the invocations not
+to run on the main thread, if possible. In this case, a regular static command can be
+used instead.
+
+The instance number cap specified above has a default limit of 32, but it can be
+modified to be lower or higher by defining a `MulticastAllowedInstancesAttribute` on
+top of the class containing the multicast commands. This attribute takes two arguments:
+
+- `maxAllowedRegisteredInstances`, which is the maximum number of allowed registered
+instances for the execution of this command. It is recommended this is kept as low as
+possible to prevent too many invocations.
+- `failOnTooManyInstances`, a `bool` that determines whether the command execution should
+fail for **all** instances if the instance cap is reached. This is `true` by default.

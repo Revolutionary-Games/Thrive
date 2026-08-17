@@ -3,6 +3,7 @@ using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Godot;
 
@@ -14,6 +15,11 @@ public class CommandRegistry : IDisposable
     private static CommandRegistry? instance;
 
     private FrozenDictionary<string, Command[]>? commands;
+
+    // Due to the dynamic nature of multicast commands, they are registered during runtime. Having a normal dictionary
+    // that is updated only when required instead of during startup prevents scanning non-static fields, which
+    // constitutes a large overhead.
+    private Dictionary<string, MulticastCommandRegistry> multicastCommands = new();
 
     private Task? registerCommandsTask;
 
@@ -74,15 +80,32 @@ public class CommandRegistry : IDisposable
         var span = cmd.AsSpan();
         var tokenizer = new SpanTokenizer(span);
 
+        // Empty command. No tokens so process.
         if (!tokenizer.MoveNext(out var cmdNameSpan, out _))
             return false;
 
         var commandName = cmdNameSpan.ToString().ToLowerInvariant();
 
-        if (!commands!.TryGetValue(commandName, out var candidates))
+        IEnumerable<Command> candidates;
+        if (!commands!.TryGetValue(commandName, out var staticCandidates))
         {
-            context.PrintErr($"Unknown command: {commandName}");
-            return false;
+            if (!multicastCommands.TryGetValue(commandName, out var multicastCandidates))
+            {
+                context.PrintErr($"Unknown command: {commandName}");
+                return false;
+            }
+
+            if (multicastCandidates.Disabled)
+            {
+                context.PrintErr($"Cannot execute command {commandName} because there are too many instances.");
+                return false;
+            }
+
+            candidates = multicastCandidates.Overloads;
+        }
+        else
+        {
+            candidates = staticCandidates;
         }
 
         var rawArgs = new List<(string Value, bool IsQuoted)>();
@@ -112,8 +135,99 @@ public class CommandRegistry : IDisposable
         }
 
         context.PrintErr(
-            $"Command '{commandName}': No overload matched arguments. Found {candidates.Length} candidates.");
+            $"Command '{commandName}': No overload matched arguments. Found {candidates.Count()} candidates.");
         return false;
+    }
+
+    public bool TryRegisterMulticastCommandListener<T>(T owner, string commandName)
+        where T : notnull
+    {
+        if (commands is null)
+        {
+            GD.PrintErr("Cannot register multicast commands before the command registry is initialised.");
+
+            return false;
+        }
+
+        if (commands!.ContainsKey(commandName))
+        {
+            GD.PrintErr("Cannot register multicast command that overloads (has the same name of) a static" +
+                $"command. Please rename your multicast command. Current name: {commandName}");
+
+            return false;
+        }
+
+        if (!multicastCommands.TryGetValue(commandName, out var multicastCommandRegistry))
+        {
+            var type = owner.GetType();
+            var allowedInstancesAttributeNullable = Attribute.GetCustomAttribute(type,
+                typeof(MulticastAllowedInstancesAttribute));
+            var allowedInstancesAttribute = (MulticastAllowedInstancesAttribute)(allowedInstancesAttributeNullable ??
+                MulticastAllowedInstancesAttribute.Default);
+
+            // The command hasn't been registered yet, and we do so during runtime.
+            // Unlike static commands, multicast commands are instance members, so we only have class-specific
+            // overloads. Therefore, we only need to scan the methods in T.
+            multicastCommandRegistry = new MulticastCommandRegistry([], [], allowedInstancesAttribute);
+            multicastCommands.Add(commandName, multicastCommandRegistry);
+
+            const BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
+
+            foreach (var method in type.GetMethods(flags))
+            {
+                if (!method.IsDefined(typeof(MulticastCommandAttribute), true))
+                    continue;
+
+                foreach (var attribute in method.GetCustomAttributes<MulticastCommandAttribute>(true))
+                {
+                    var name = attribute.CommandName.ToLowerInvariant();
+
+                    if (name != commandName)
+                        continue;
+
+                    var isCheat = attribute.IsCheat;
+                    var command = new Command(method, name, isCheat, attribute.HelpText, true);
+
+                    multicastCommandRegistry.Overloads.Add(command);
+                }
+            }
+
+            if (multicastCommandRegistry.Overloads.Count == 0)
+            {
+                GD.PrintErr($"No command called {commandName} has been found for registration.");
+
+                return false;
+            }
+        }
+
+        var multicastAllowedInstances = multicastCommandRegistry.MulticastAllowedInstancesAttributeCached;
+
+        if (multicastCommandRegistry.Owners.Count >= multicastAllowedInstances.MaxAllowedRegisteredInstances)
+        {
+            multicastCommandRegistry.Disabled = multicastAllowedInstances.FailOnTooManyInstances;
+
+            return false;
+        }
+
+        multicastCommandRegistry.Owners.Add(owner);
+
+        return true;
+    }
+
+    public bool TryUnregisterMulticastCommandListener<T>(T owner, string commandName)
+        where T : notnull
+    {
+        if (!multicastCommands.TryGetValue(commandName, out var multicastCommandRegistry))
+            return false;
+
+        if (!multicastCommandRegistry.Owners.Remove(owner))
+            return false;
+
+        // At this point the unregistration has succeeded, so we are below the limit in any case. We enable the command
+        // again regardless.
+        multicastCommandRegistry.Disabled = false;
+
+        return true;
     }
 
     public void Dispose()
@@ -285,19 +399,54 @@ public class CommandRegistry : IDisposable
     private static void CommandHelp(CommandContext context)
     {
         var commands = Instance.commands!;
-        int count = commands.Values.Sum(v => v.Length);
+        var multicastCommands = Instance.multicastCommands;
+        int multicastCount = multicastCommands.Values.Sum(registry => registry.Overloads.Count);
+        int count = commands.Values.Sum(v => v.Length) + multicastCount;
 
         context.Print($"Total registered Commands: {count}");
+        context.Print($"                 of which: {multicastCount} multicast.\n");
 
         foreach (var group in commands)
         {
-            foreach (var command in group.Value)
-            {
-                var paramsInfo = string.Join(", ", command.MethodInfo
-                    .GetParameters()
-                    .Select(p => p.ParameterType.Name));
-                context.Print($"{command.CommandName}({paramsInfo}): {command.HelpText}");
-            }
+            CommandHelpPrintOverloads(context, group.Value);
+        }
+
+        if (multicastCommands.Count == 0)
+            return;
+
+        context.Print("\nMulticast commands:\n");
+
+        foreach (var group in multicastCommands)
+        {
+            CommandHelpPrintOverloads(context, group.Value.Overloads);
+        }
+    }
+
+    private static void CommandHelpPrintOverloads(CommandContext context, IEnumerable<Command> overloads)
+    {
+        foreach (var command in overloads)
+        {
+            var paramsInfo = string.Join(", ", command.MethodInfo
+                .GetParameters()
+                .Select(p => p.ParameterType.Name));
+            context.Print($" - {command.CommandName}({paramsInfo}): {command.HelpText}");
+        }
+    }
+
+    [Command("help", false, "Shows all the multicast commands and how many owners they" +
+        "have.")]
+    private static void CommandMulticast(CommandContext context)
+    {
+        var multicastCommands = Instance.multicastCommands;
+        int multicastCount = multicastCommands.Values.Sum(registry => registry.Overloads.Count);
+
+        context.Print($"Total multicast commands count: {multicastCount}\n");
+
+        foreach (var group in multicastCommands)
+        {
+            var commandName = group.Key;
+
+            context.Print($" - {commandName}: {group.Value.Owners.Count}");
         }
     }
 
@@ -379,17 +528,24 @@ public class CommandRegistry : IDisposable
 
         try
         {
-            var result = method.Invoke(null, invokeArgs);
-
-            if (result is bool success)
+            if (command.IsMulticast)
             {
-                if (success)
+                ExecuteMulticast(command, context, invokeArgs);
+            }
+            else
+            {
+                var result = method.Invoke(null, invokeArgs);
+
+                if (result is bool success)
                 {
-                    context.Print("Success", Colors.Green);
-                }
-                else
-                {
-                    context.Print("Failure", Colors.Red);
+                    if (success)
+                    {
+                        context.Print("Success", Colors.Green);
+                    }
+                    else
+                    {
+                        context.Print("Failure", Colors.Red);
+                    }
                 }
             }
         }
@@ -405,6 +561,33 @@ public class CommandRegistry : IDisposable
         failed = false;
 
         return true;
+    }
+
+    private void ExecuteMulticast(Command command, CommandContext context, object?[] invokeArgs)
+    {
+        var registry = CollectionsMarshal.GetValueRefOrNullRef(multicastCommands, command.CommandName);
+
+        int successes = 0;
+        bool @void = false;
+
+        foreach (var owner in registry.Owners)
+        {
+            var result = command.MethodInfo.Invoke(owner, invokeArgs);
+
+            if (result is bool success)
+            {
+                if (success)
+                    ++successes;
+            }
+            else
+            {
+                @void = true;
+            }
+        }
+
+        context.Print(@void ?
+            $"Executed {registry.Owners.Count} multicast calls." :
+            $"Executed successfully {successes}/{registry.Owners.Count} multicast calls.");
     }
 
     /// <summary>
@@ -473,10 +656,25 @@ public class CommandRegistry : IDisposable
         commands = tempDict.ToFrozenDictionary(k => k.Key,
             v => v.Value.ToArray());
 
+        foreach (var commandsArray in commands.Values)
+        {
+            foreach (var command in commandsArray)
+                TryRegisterMulticastCommandListener(command, "info");
+        }
+
         GD.Print($"CommandRegistry: Loaded. Command groups: {commands.Count}.");
     }
 
-    public record struct Command(MethodInfo MethodInfo, string CommandName, bool IsCheat, string HelpText);
+    public record struct Command(MethodInfo MethodInfo, string CommandName, bool IsCheat, string HelpText,
+        bool IsMulticast = false)
+    {
+        [MulticastCommand("commands", false, "Less verbose version of 'help' to list all" +
+            " static commands.")]
+        private void CommandInfo(CommandContext context)
+        {
+            context.Print(CommandName + " " + HelpText + " " + IsCheat);
+        }
+    }
 
     /// <summary>
     ///   A custom command parser.
@@ -536,5 +734,16 @@ public class CommandRegistry : IDisposable
 
             return true;
         }
+    }
+
+    private sealed class MulticastCommandRegistry(List<Command> overloads, HashSet<object> owners,
+        MulticastAllowedInstancesAttribute multicastAllowedInstancesAttributeCached)
+    {
+        internal readonly List<Command> Overloads = overloads;
+        internal readonly HashSet<object> Owners = owners;
+        internal readonly MulticastAllowedInstancesAttribute MulticastAllowedInstancesAttributeCached =
+            multicastAllowedInstancesAttributeCached;
+
+        internal bool Disabled;
     }
 }
