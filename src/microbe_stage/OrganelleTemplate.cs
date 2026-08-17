@@ -165,6 +165,16 @@ public class OrganelleTemplate : IReadOnlyOrganelleTemplate, IPositionedOrganell
         return Compound.Invalid;
     }
 
+    public override bool Equals(object? obj)
+    {
+        if (obj is not OrganelleTemplate other)
+            return false;
+
+        return Position == other.Position && Orientation == other.Orientation &&
+            Definition.InternalName == other.Definition.InternalName &&
+            Equals(Upgrades, other.Upgrades);
+    }
+
     public OrganelleTemplate Clone()
     {
         return Clone(true);

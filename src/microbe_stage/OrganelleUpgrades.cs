@@ -65,6 +65,11 @@ public class OrganelleUpgrades : IEquatable<OrganelleUpgrades>, IArchivable, IRe
         return CustomUpgradeData.Equals(other.CustomUpgradeData);
     }
 
+    public override bool Equals(object? obj)
+    {
+        return Equals(obj as OrganelleUpgrades);
+    }
+
     public OrganelleUpgrades Clone()
     {
         return new OrganelleUpgrades

@@ -69,6 +69,11 @@ public class ToxinUpgrades : IComponentSpecificUpgrades
         return false;
     }
 
+    public override bool Equals(object? obj)
+    {
+        return obj is ToxinUpgrades other && Equals(other);
+    }
+
     public object Clone()
     {
         return new ToxinUpgrades(BaseType, Toxicity);

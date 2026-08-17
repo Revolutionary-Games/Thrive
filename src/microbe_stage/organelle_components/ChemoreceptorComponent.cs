@@ -153,6 +153,11 @@ public class ChemoreceptorUpgrades : IComponentSpecificUpgrades
             && LineColour == otherChemoreceptor.LineColour;
     }
 
+    public override bool Equals(object? obj)
+    {
+        return obj is ChemoreceptorUpgrades other && Equals(other);
+    }
+
     public object Clone()
     {
         return new ChemoreceptorUpgrades(TargetCompound, TargetSpecies, SearchRange, SearchAmount, LineColour);

@@ -129,6 +129,15 @@ public abstract class Metaball : IReadOnlyMetaball, IArchivable
         return ModifiableParent.Position + offset;
     }
 
+    public override bool Equals(object? obj)
+    {
+        if (obj is not Metaball other || GetType() != other.GetType())
+            return false;
+
+        return Position == other.Position && Size == other.Size && ReferenceEquals(ModifiableParent,
+            other.ModifiableParent);
+    }
+
     public override int GetHashCode()
     {
         return Position.GetHashCode() ^ Size.GetHashCode() * 19 ^
