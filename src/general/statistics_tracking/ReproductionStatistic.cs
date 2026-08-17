@@ -40,7 +40,7 @@ public class ReproductionStatistic : IStatistic, IArchiveUpdatable
 
         if (ReproducedInBiomes.TryGetValue(biome, out var value))
         {
-            ReproducedInBiomes[biome] = ++value;
+            ReproducedInBiomes[biome] = value + 1;
         }
         else
         {
