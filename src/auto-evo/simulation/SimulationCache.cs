@@ -1427,7 +1427,7 @@ public class SimulationCache
     public List<TweakedProcess> GetActiveProcessList(Species species)
     {
 #if CHECK_HASH_CODE_REUSED_INSTANCES
-        CheckSpecies(microbeSpecies);
+        CheckSpecies(species);
 #endif
 
         var key = GetSpeciesCacheKey(species);
