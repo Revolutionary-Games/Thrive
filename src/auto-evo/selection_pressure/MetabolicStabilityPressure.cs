@@ -67,7 +67,7 @@ public class MetabolicStabilityPressure : SelectionPressure
 
         if (species is MulticellularSpecies multicellularSpecies)
         {
-            // for metabolic stability in Multicellular species, we care for individual cells instead of the whole
+            // For metabolic stability in Multicellular species, we care for individual cells instead of the whole
             // species, because ATP is per-cell.
             // We take cell types instead of individual cells because it's faster, matches what the player gets warnings
             // For, and makes it easier to place new cells in hexes where they might have less adjacency.
