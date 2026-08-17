@@ -1,7 +1,6 @@
 ﻿namespace AutoEvo;
 
 using System;
-using Godot;
 using SharedBase.Archive;
 
 public class MetabolicStabilityPressure : SelectionPressure
