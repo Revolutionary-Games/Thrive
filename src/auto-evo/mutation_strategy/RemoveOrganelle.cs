@@ -7,7 +7,7 @@ using static CommonMutationFunctions;
 
 public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
 {
-    public static OrganelleDefinition Nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
+    public static readonly OrganelleDefinition Nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
     public Func<OrganelleDefinition, bool> Criteria;
 
     public RemoveOrganelle(Func<OrganelleDefinition, bool> criteria)

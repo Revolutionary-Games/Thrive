@@ -6,7 +6,7 @@ using AutoEvo;
 
 public static class CommonMutationFunctions
 {
-    public static OrganelleDefinition Nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
+    public static readonly OrganelleDefinition Nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
 
     // These must be defined this way to avoid allocations
     private static readonly Hex.HexSide[] TraversalOrder1 = [Hex.HexSide.Top];
