@@ -71,17 +71,6 @@ public static class MicrobeInternalCalculations
         return maximumMovementDirection;
     }
 
-    public static Vector3 GetOrganelleDirection(OrganelleTemplate organelle)
-    {
-        Vector3 middle = Hex.AxialToCartesian(new Hex(0, 0));
-        var delta = middle - Hex.AxialToCartesian(organelle.Position);
-
-        if (delta == Vector3.Zero)
-            delta = CellPropertiesHelpers.DefaultVisualPos;
-
-        return delta.Normalized();
-    }
-
     public static Vector3 GetOrganelleDirection(IReadOnlyOrganelleTemplate organelle)
     {
         Vector3 middle = Hex.AxialToCartesian(new Hex(0, 0));
