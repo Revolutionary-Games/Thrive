@@ -144,22 +144,13 @@ public partial class ResourceManager : Node
         totalStageResourcesToLoad = -1;
 
         // Some stages are equivalent in terms of required resources
-        switch (gameState)
+        gameStateThatIsLoading = gameState switch
         {
-            case MainGameState.MicrobeEditor:
-            case MainGameState.MulticellularEditor:
-                gameStateThatIsLoading = MainGameState.MicrobeStage;
-                break;
-            case MainGameState.MacroscopicEditor:
-                gameStateThatIsLoading = MainGameState.MacroscopicStage;
-                break;
-            case MainGameState.AscensionCeremony:
-                gameStateThatIsLoading = MainGameState.SpaceStage;
-                break;
-            default:
-                gameStateThatIsLoading = gameState;
-                break;
-        }
+            MainGameState.MicrobeEditor or MainGameState.MulticellularEditor => MainGameState.MicrobeStage,
+            MainGameState.MacroscopicEditor => MainGameState.MacroscopicStage,
+            MainGameState.AscensionCeremony => MainGameState.SpaceStage,
+            _ => gameState,
+        };
     }
 
     public bool ProgressStageLoad()
@@ -221,13 +212,35 @@ public partial class ResourceManager : Node
         return true;
     }
 
-    internal static void PerformSynchronousLoadAndCallback(IResource resource)
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            queuedResources.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
+
+    internal static void ValidateResourceConfiguration(IResource resource)
+    {
+        ArgumentNullException.ThrowIfNull(resource);
+
+        if (!resource.RequiresSyncLoad && !resource.UsesPostProcessing && resource.RequiresSyncPostProcess)
+        {
+            throw new InvalidOperationException(
+                $"Async resource {resource.Identifier} requires synchronous post-processing but has no " +
+                "post-processing phase");
+        }
+    }
+
+    private static void PerformSynchronousLoadAndCallback(IResource resource)
     {
         PerformFullLoad(resource);
         resource.OnComplete?.Invoke(resource);
     }
 
-    internal static void PerformPendingMainThreadPhases(IResource resource, Stopwatch? splitLoadStopwatch)
+    private static void PerformPendingMainThreadPhases(IResource resource, Stopwatch? splitLoadStopwatch)
     {
         if (resource.UsesPostProcessing && resource.RequiresSyncPostProcess)
         {
@@ -243,28 +256,6 @@ public partial class ResourceManager : Node
         }
 
         resource.OnComplete?.Invoke(resource);
-    }
-
-    internal static void ValidateResourceConfiguration(IResource resource)
-    {
-        ArgumentNullException.ThrowIfNull(resource);
-
-        if (!resource.RequiresSyncLoad && !resource.UsesPostProcessing && resource.RequiresSyncPostProcess)
-        {
-            throw new InvalidOperationException(
-                $"Async resource {resource.Identifier} requires synchronous post-processing but has no " +
-                "post-processing phase");
-        }
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            queuedResources.Dispose();
-        }
-
-        base.Dispose(disposing);
     }
 
     private static void PrepareLoad(IResource resource)
@@ -429,7 +420,7 @@ public partial class ResourceManager : Node
             return;
         }
 
-        bool requiresMainThreadPostProcessing = backgroundTask.Resource.UsesPostProcessing &&
+        var requiresMainThreadPostProcessing = backgroundTask.Resource.UsesPostProcessing &&
             backgroundTask.Resource.RequiresSyncPostProcess;
 
         if (!requiresMainThreadPostProcessing && backgroundTask.Resource.OnComplete == null)
