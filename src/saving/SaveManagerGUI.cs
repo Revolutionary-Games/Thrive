@@ -97,31 +97,40 @@ public partial class SaveManagerGUI : Control
         if (!refreshing)
             return;
 
-        if (!getTotalSaveCountTask!.IsCompleted)
+        if (getTotalSaveCountTask?.IsCompleted != true ||
+            getAutoSaveCountTask?.IsCompleted != true ||
+            getQuickSaveCountTask?.IsCompleted != true ||
+            getBackupCountTask?.IsCompleted != true)
+        {
             return;
+        }
 
-        var info = getTotalSaveCountTask.Result;
-        currentAutoSaveCount = getAutoSaveCountTask!.Result.Count;
-        currentQuickSaveCount = getQuickSaveCountTask!.Result.Count;
-        currentBackupCount = getBackupCountTask!.Result.Count;
+        try
+        {
+            var info = getTotalSaveCountTask.Result;
+            currentAutoSaveCount = getAutoSaveCountTask.Result.Count;
+            currentQuickSaveCount = getQuickSaveCountTask.Result.Count;
+            currentBackupCount = getBackupCountTask.Result.Count;
 
-        getTotalSaveCountTask.Dispose();
-        getAutoSaveCountTask.Dispose();
-        getQuickSaveCountTask.Dispose();
-        getBackupCountTask.Dispose();
-        getTotalSaveCountTask = null;
-        getAutoSaveCountTask = null;
-        getQuickSaveCountTask = null;
-        getBackupCountTask = null;
+            totalSaveCount.Text = info.Count.ToString(CultureInfo.CurrentCulture);
+            totalSaveSize.Text = Localization.Translate("MIB_VALUE")
+                .FormatSafe(Math.Round((float)info.DiskSpace / Constants.MEBIBYTE, 2));
 
-        totalSaveCount.Text = info.Count.ToString(CultureInfo.CurrentCulture);
-        totalSaveSize.Text = Localization.Translate("MIB_VALUE")
-            .FormatSafe(Math.Round((float)info.DiskSpace / Constants.MEBIBYTE, 2));
-
-        UpdateSelectedCount();
-        UpdateButtonsStatus();
-
-        refreshing = false;
+            UpdateSelectedCount();
+            UpdateButtonsStatus();
+        }
+        finally
+        {
+            getTotalSaveCountTask.Dispose();
+            getAutoSaveCountTask.Dispose();
+            getQuickSaveCountTask.Dispose();
+            getBackupCountTask.Dispose();
+            getTotalSaveCountTask = null;
+            getAutoSaveCountTask = null;
+            getQuickSaveCountTask = null;
+            getBackupCountTask = null;
+            refreshing = false;
+        }
     }
 
     private void OnSelectedChanged()
