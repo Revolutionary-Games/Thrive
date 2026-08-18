@@ -664,6 +664,13 @@ public class CommandRegistry : IDisposable
                     {
                         var name = attribute.CommandName.ToLowerInvariant();
 
+                        if (attribute is MulticastCommandAttribute)
+                        {
+                            GD.PrintErr($"CommandRegistry: Ignored '{name}'." +
+                                $"MulticastCommandAttribute can't be used on static methods.");
+                            continue;
+                        }
+
                         if (!method.IsStatic)
                         {
                             GD.PrintErr($"CommandRegistry: Ignored '{name}'. Method must be static.");
