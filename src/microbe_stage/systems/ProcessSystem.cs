@@ -215,6 +215,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
     /// <summary>
     ///   Computes the simple energy balance for the given organelles in biome
+    ///   This version is currently used for Microbe Species
     /// </summary>
     /// <param name="organelles">The organelles to compute the balance with</param>
     /// <param name="biome">The conditions the organelles are simulated in</param>
@@ -264,6 +265,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
     /// <summary>
     ///   Computes the simple energy balance for the given organelles in biome
+    ///   This version is currently used for cell types in a multicellular species
     /// </summary>
     /// <param name="organelles">The organelles to compute the balance with</param>
     /// <param name="biome">The conditions the organelles are simulated in</param>
@@ -602,8 +604,8 @@ public partial class ProcessSystem : BaseSystem<World, float>
     }
 
     /// <summary>
-    ///   Calculates ATP balance with the given organelle in the given <see cref="biome"/> (so only processes with
-    ///   input compounds present in the biome can run)
+    ///   Calculates ATP balance from processes with the given organelle in the given <see cref="biome"/> (so only
+    ///   processes with input compounds present in the biome can run)
     /// </summary>
     public static (float Production, float Consumption) CalculateOrganelleProcessATPBalance(
         IReadOnlyOrganelleTemplate organelle, IBiomeConditions biome, CompoundAmountType amountType,
