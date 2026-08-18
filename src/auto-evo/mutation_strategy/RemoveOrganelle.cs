@@ -7,17 +7,17 @@ using static CommonMutationFunctions;
 
 public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
 {
-    public static OrganelleDefinition Nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
-    public Func<OrganelleDefinition, bool> Criteria;
+    private static readonly OrganelleDefinition Nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
+    private readonly Func<OrganelleDefinition, bool> criteria;
 
     public RemoveOrganelle(Func<OrganelleDefinition, bool> criteria)
     {
-        Criteria = criteria;
+        this.criteria = criteria;
     }
 
     public bool Repeatable => true;
 
-    // Formatter and inspect code disagree here
+    // Formatter and inspect code disagree here.
     // ReSharper disable InvokeAsExtensionMethod
     public static RemoveOrganelle ThatUseCompound(CompoundDefinition compound)
     {
@@ -56,7 +56,7 @@ public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
         if (baseSpecies.Organelles.Count <= 1)
             return null;
 
-        var organelles = baseSpecies.Organelles.Where(x => Criteria(x.Definition))
+        var organelles = baseSpecies.Organelles.Where(x => criteria(x.Definition))
             .OrderBy(_ => random.Next()).Take(Constants.AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS);
 
         List<Mutant>? mutated = null;
@@ -66,7 +66,7 @@ public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
         foreach (var organelle in organelles)
         {
             // The player cannot remove the nucleus, so Auto-Evo should not be able to either
-            if (organelle.Definition == Nucleus)
+            if (ReferenceEquals(organelle.Definition, Nucleus))
                 continue;
 
             // Don't clone organelles as we want to do those ourselves
@@ -84,7 +84,7 @@ public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
             {
                 var parentOrganelle = baseOrganelles[i];
 
-                if (parentOrganelle == organelle)
+                if (ReferenceEquals(parentOrganelle, organelle))
                     continue;
 
                 // Copy the organelle

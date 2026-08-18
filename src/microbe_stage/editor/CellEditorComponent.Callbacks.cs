@@ -413,7 +413,7 @@ public partial class CellEditorComponent
                 foreach (var editedMicrobeOrganelle in editedMicrobeOrganelles)
                 {
                     if (editedMicrobeOrganelle.Position == data.PlacedOrganelle.Position &&
-                        editedMicrobeOrganelle.Definition == data.PlacedOrganelle.Definition)
+                        ReferenceEquals(editedMicrobeOrganelle.Definition, data.PlacedOrganelle.Definition))
                     {
                         found = true;
                         if (!editedMicrobeOrganelles.Remove(editedMicrobeOrganelle))

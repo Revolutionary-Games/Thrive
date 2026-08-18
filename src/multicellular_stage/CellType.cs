@@ -246,6 +246,25 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
         CellTypeSpecializationBonus = otherType.CellTypeSpecializationBonus;
     }
 
+    public override bool Equals(object? obj)
+    {
+        if (obj is not CellType other || CellTypeName != other.CellTypeName ||
+            MembraneType.InternalName != other.MembraneType.InternalName ||
+            MembraneRigidity != other.MembraneRigidity || IsBacteria != other.IsBacteria ||
+            Organelles.Count != other.Organelles.Count)
+        {
+            return false;
+        }
+
+        for (int i = 0; i < Organelles.Count; ++i)
+        {
+            if (!ModifiableOrganelles.Organelles[i].Equals(other.ModifiableOrganelles.Organelles[i]))
+                return false;
+        }
+
+        return true;
+    }
+
     public object Clone()
     {
         var result = new CellType(MembraneType)

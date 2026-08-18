@@ -17,11 +17,6 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 {
     public const int SERIALIZATION_VERSION = 3;
 
-    /// <summary>
-    ///   Current stage for the move to editor console command
-    /// </summary>
-    public static WeakReference<IEditorMovableStage>? CurrentActiveStage;
-
     private readonly Dictionary<MicrobeSpecies, ResolvedMicrobeTolerances> resolvedTolerancesCache = new();
 
     private readonly Dictionary<MulticellularSpecies, ResolvedMicrobeTolerances>
@@ -363,7 +358,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             TutorialState.DayNightTutorial.OnOpened += HUD.CloseProcessPanel;
         }
 
-        CurrentActiveStage = new WeakReference<IEditorMovableStage>(this);
+        currentActiveStageForEditor = new WeakReference<IEditorMovableStage>(this);
     }
 
     public override void _ExitTree()
@@ -382,9 +377,10 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             TutorialState.DayNightTutorial.OnOpened -= HUD.CloseProcessPanel;
         }
 
-        if (CurrentActiveStage != null && CurrentActiveStage.TryGetTarget(out var stage) && stage == this)
+        if (currentActiveStageForEditor != null && currentActiveStageForEditor.TryGetTarget(out var stage) &&
+            stage == this)
         {
-            CurrentActiveStage = null;
+            currentActiveStageForEditor = null;
         }
     }
 
@@ -1957,7 +1953,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
     [Command("edit", true, "Move immediately to the editor in supported stages")]
     private static bool MoveStageToEditorCommand(CommandContext context)
     {
-        var targetWeak = CurrentActiveStage;
+        var targetWeak = currentActiveStageForEditor;
 
         if (targetWeak != null && targetWeak.TryGetTarget(out var stage) && !stage.IsDisposed)
         {

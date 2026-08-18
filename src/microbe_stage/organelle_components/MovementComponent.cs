@@ -231,6 +231,11 @@ public class FlagellumUpgrades : IComponentSpecificUpgrades
         return otherFlagellum.LengthFraction == LengthFraction;
     }
 
+    public override bool Equals(object? obj)
+    {
+        return obj is FlagellumUpgrades other && Equals(other);
+    }
+
     public object Clone()
     {
         return new FlagellumUpgrades(LengthFraction);

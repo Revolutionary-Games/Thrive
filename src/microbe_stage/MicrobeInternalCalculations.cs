@@ -746,7 +746,7 @@ public static class MicrobeInternalCalculations
 
             foreach (var handledTuple in result)
             {
-                if (handledTuple.Organelle == resultType)
+                if (ReferenceEquals(handledTuple.Organelle, resultType))
                 {
                     alreadyHandled = true;
                     break;
@@ -761,7 +761,7 @@ public static class MicrobeInternalCalculations
             // Count all other instances giving the same thing to calculate the cost
             for (int j = i + 1; j < organelleCount; ++j)
             {
-                if (organelles[j].Definition.EndosymbiosisUnlocks == resultType)
+                if (ReferenceEquals(organelles[j].Definition.EndosymbiosisUnlocks, resultType))
                     ++count;
             }
 
@@ -893,7 +893,7 @@ public static class MicrobeInternalCalculations
 
             foreach (var entry2 in tempWorkMemory)
             {
-                if (entry2.Key == mergeInto)
+                if (ReferenceEquals(entry2.Key, mergeInto))
                 {
                     tempWorkMemory[entry2.Key] += entry.Value;
                     tempWorkMemory[entry.Key] = 0;
@@ -908,7 +908,7 @@ public static class MicrobeInternalCalculations
     }
 
     /// <summary>
-    ///   Calculates a specialization bonus for a cell type based on its organelles. In case of a multicellular
+    ///   Calculates a specialization bonus for a cell type based on its organelles. In the case of a multicellular
     ///   organism, this will need to be multiplied by the adjacency bonus for most purposes.
     /// </summary>
     /// <returns>A multiplier starting from 1 and going up as specialization improves</returns>
@@ -925,7 +925,7 @@ public static class MicrobeInternalCalculations
 
         // The following calculation of concentration is an implementation of the Simpson Diversity Index,
         // an existing algorithm used for evaluating ecological diversity, among other things
-        // maximum possible diversity at a given size gives 0, while complete uniformity gives 1
+        // maximum possible diversity at a given size gives 0, while complete uniformity gives 1.
         // Additional explanation can be found at: https://en.wikipedia.org/wiki/Diversity_index#Simpson_index
         foreach (var entry in tempWorkMemory)
         {
@@ -985,7 +985,7 @@ public static class MicrobeInternalCalculations
             if (!organelle.Definition.HasMovementComponent)
                 continue;
 
-            if (organelle != testedOrganelle &&
+            if (!ReferenceEquals(organelle, testedOrganelle) &&
                 organelle.Position + testedOrganelle.Position == new Hex(0, 0))
             {
                 var organelleLength = (maximumMovementDirection - GetOrganelleDirection(organelle)).Length();

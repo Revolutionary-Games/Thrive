@@ -211,7 +211,7 @@ public static class CellBodyPlanInternalCalculations
             if (cellInBodyPlan == cell)
                 continue;
 
-            if (cellInBodyPlan!.CellType == cell.Data!.CellType
+            if (ReferenceEquals(cellInBodyPlan!.CellType, cell.Data!.CellType)
                 && cell.Position.DistanceTo(cellInBodyPlan.Position) <= 1)
             {
                 bonus += Constants.CELL_ADJACENCY_SPECIALIZATION_BONUS;
@@ -236,7 +236,7 @@ public static class CellBodyPlanInternalCalculations
             if (cellInBodyPlan == cell.Data)
                 continue;
 
-            if (cellInBodyPlan!.CellType == cell.Data!.CellType
+            if (ReferenceEquals(cellInBodyPlan!.CellType, cell.Data!.CellType)
                 && cell.Position.DistanceTo(cellInBodyPlan.Position) <= 1)
             {
                 bonus += Constants.CELL_ADJACENCY_SPECIALIZATION_BONUS;
