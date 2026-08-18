@@ -683,6 +683,14 @@ public class CommandRegistry : IDisposable
 
     private record struct MulticastCommandRegistry(List<Command> Overloads, HashSet<object> Owners);
 
+    public sealed class MulticastCommandParameters(int maxAllowedRegisteredInstances, bool failOnTooManyInstances)
+    {
+        public readonly int MaxAllowedRegisteredInstances = maxAllowedRegisteredInstances;
+        public readonly bool FailOnTooManyInstances = failOnTooManyInstances;
+
+        internal bool Disabled;
+    }
+
     /// <summary>
     ///   A custom command parser.
     /// </summary>
@@ -741,13 +749,5 @@ public class CommandRegistry : IDisposable
 
             return true;
         }
-    }
-
-    public sealed class MulticastCommandParameters(int maxAllowedRegisteredInstances, bool failOnTooManyInstances)
-    {
-        public readonly int MaxAllowedRegisteredInstances = maxAllowedRegisteredInstances;
-        public readonly bool FailOnTooManyInstances = failOnTooManyInstances;
-
-        internal bool Disabled;
     }
 }
