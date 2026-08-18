@@ -172,7 +172,7 @@ public class OrganelleTemplate : IReadOnlyOrganelleTemplate, IPositionedOrganell
 
         return Position == other.Position && Orientation == other.Orientation &&
             Definition.InternalName == other.Definition.InternalName &&
-            Equals(Upgrades, other.Upgrades);
+            Equals(Upgrades, other.Upgrades) && IsEndosymbiont == other.IsEndosymbiont;
     }
 
     public OrganelleTemplate Clone()
@@ -192,7 +192,7 @@ public class OrganelleTemplate : IReadOnlyOrganelleTemplate, IPositionedOrganell
     public override int GetHashCode()
     {
         return Position.GetHashCode() * 131 ^ Orientation * 2909 ^ Definition.GetHashCode() * 947 ^
-            (Upgrades != null ? Upgrades.GetHashCode() : 1) * 1063;
+            (Upgrades != null ? Upgrades.GetHashCode() : 1) * 1063 ^ (IsEndosymbiont ? 1 : 0) * 1723;
     }
 
     public ulong GetVisualHashCode()
