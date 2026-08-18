@@ -227,13 +227,13 @@ public class ModifyEnvironmentalTolerance : IMutationStrategy<Species>
         newSpecies.ModifiableTolerances.SanityCheck();
 
         var newScore = default(ToleranceResult);
-        if (baseSpecies is MicrobeSpecies newMicrobeSpecies)
+        if (newSpecies is MicrobeSpecies newMicrobeSpecies)
         {
             newScore = MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(newMicrobeSpecies,
                 biomeToConsider);
         }
 
-        if (baseSpecies is MulticellularSpecies newMulticellularSpecies)
+        if (newSpecies is MulticellularSpecies newMulticellularSpecies)
         {
             newScore = MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(newMulticellularSpecies,
                 biomeToConsider);
