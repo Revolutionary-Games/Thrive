@@ -122,7 +122,7 @@ public class AddCellWithOrganelle : IMutationStrategy<Species>
             else
             {
                 if (mp < organelle.MPCost * Constants.MULTICELLULAR_EDITOR_COST_FACTOR + Constants.CELL_ADD_COST)
-                    return null;
+                    continue;
 
                 // We take the smallest exising cell type as a template to add the new organelle to
                 var smallestCellSize = baseMulticellularSpecies.CellTypes[0].BaseHexSize;
