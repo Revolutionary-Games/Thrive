@@ -69,13 +69,16 @@ public class CellTypeFacadeHelper
             if (sporeCellTypeChangeActionData.OldCellType != null
                 && sporeCellTypeChangeActionData.OldCellType != sporeCellTypeChangeActionData.NewCellType)
             {
-                if (!removedCellTypes.Contains(sporeCellTypeChangeActionData.OldCellType))
+                if (!removedCellTypes.Any(type => ReferenceEquals(type, sporeCellTypeChangeActionData.OldCellType)))
                     removedCellTypes.Add(sporeCellTypeChangeActionData.OldCellType);
 
                 if (activeCellTypes.ContainsKey(sporeCellTypeChangeActionData.OldCellType))
                 {
-                    if (!addedCellTypes.Remove(GetOrCreateCellType(sporeCellTypeChangeActionData.OldCellType)))
+                    if (addedCellTypes.RemoveAll(
+                        type => ReferenceEquals(type, sporeCellTypeChangeActionData.OldCellType)) != 1)
+                    {
                         GD.PrintErr("Spore cell type not found for delete");
+                    }
                 }
             }
 
