@@ -1861,6 +1861,10 @@ public class SimulationCache
                 }
             }
 
+            // There are likely more accurate ways to approximate the real gameplay effects in the future, but this
+            // will do for now
+            totalToxinTypesCount += cellTypeToxinTypesCount;
+
             var cells = multicellularSpecies.EditorCells;
 
             foreach (var hex in cells)
@@ -1869,7 +1873,6 @@ public class SimulationCache
                 if (cell != null && cell.CellType == cellType)
                 {
                     totalToxinOrganellesCount += cellTypeToxinOrganellesCount;
-                    totalToxinTypesCount += cellTypeToxinTypesCount;
                     totalToxicity += cellTypeToxicity;
                     pilusCount += cellTypePilusCount;
                     injectisomeCount += cellTypeInjectisomeCount;
