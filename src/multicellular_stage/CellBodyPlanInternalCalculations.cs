@@ -210,9 +210,9 @@ public static class CellBodyPlanInternalCalculations
     public static float CellCountRotationPenalty(int totalCellCount)
     {
         // This ensures that if someone makes ridiculously large colony, they don't get hit with not being able to turn
-        var count = Math.Clamp(totalCellCount, 1, 30);
+        var count = Math.Clamp(totalCellCount, 1, 40);
 
-        // This is implement as a piece-wise step function for maximum manual tweaking
+        // This is implemented as a piece-wise step function for maximum manual tweaking
 
         if (count <= 3)
         {
@@ -228,12 +228,18 @@ public static class CellBodyPlanInternalCalculations
 
         if (count <= 20)
         {
-            // 5 cells = 1.5x, 20 cells = 10.0x
-            return MathUtils.InterpolateSmoothStep(1.5f, 10.0f, (count - 5.0f) / 15.0f);
+            // 5 cells = 1.5x, 20 cells = 5.0x
+            return MathUtils.InterpolateSmoothStep(1.5f, 5.0f, (count - 5.0f) / 15.0f);
         }
 
-        // 20 cells = 10.0x, 30 cells = 20.0x, capped after that
-        return MathUtils.InterpolateSmoothStep(10.0f, 20.0f, (count - 20.0f) / 10.0f);
+        if (count <= 30)
+        {
+            // 20 cells = 5.0x, 30 cells = 10.0x
+            return MathUtils.InterpolateSmoothStep(5.0f, 10.0f, (count - 20.0f) / 10.0f);
+        }
+
+        // 30 cells = 10.0x, 40 cells = 20.0x, capped after that
+        return MathUtils.InterpolateSmoothStep(10.0f, 20.0f, (count - 30.0f) / 10.0f);
     }
 
     public static float GetAdjacencySpecializationBonusFromBodyPlan(IReadOnlyCellTemplate? cellInBodyPlan,

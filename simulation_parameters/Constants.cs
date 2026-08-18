@@ -289,7 +289,7 @@ public static class Constants
     ///   The higher this value is, the more the colony rotation will be *buffed* by distance on cells. So farther
     ///   away cells are simulated to have leverage in turning
     /// </summary>
-    public const float COLONY_ROTATION_CELL_LEVERAGE_FROM_DISTANCE = 0.003f;
+    public const float COLONY_ROTATION_CELL_LEVERAGE_FROM_DISTANCE = 0.005f;
 
     /// <summary>
     ///   How much the default <see cref="BASE_CELL_DENSITY"/> has volume in a cell. This determines how much
@@ -360,7 +360,7 @@ public static class Constants
     public const float ACTOMYOSIN_MIN_ANIMATION_SPEED = 0.5f;
     public const float ACTOMYOSIN_MAX_ANIMATION_SPEED = 5;
     public const float EFFECTIVE_ACTOMYOSIN_MULTIPLIER = 0.05f;
-    public const float ACTOMYOSIN_ROTATION_BUFF_PER = 0.15f;
+    public const float ACTOMYOSIN_ROTATION_BUFF_PER = 0.25f;
     public const float ACTOMYOSIN_MOVEMENT_BUFF_PER = 0.25f;
 
     // TODO: harsher wording in the tooltip
