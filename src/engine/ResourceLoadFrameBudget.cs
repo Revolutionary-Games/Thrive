@@ -20,14 +20,9 @@ internal struct ResourceLoadFrameBudget
         ArgumentOutOfRangeException.ThrowIfNegative(elapsedFrameTimeSeconds);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(targetFrameTimeSeconds, 0);
 
-        if (!double.IsFinite(elapsedFrameTimeSeconds))
-            throw new ArgumentOutOfRangeException(nameof(elapsedFrameTimeSeconds));
-
-        if (!double.IsFinite(savedProcessingTimeSeconds))
-            throw new ArgumentOutOfRangeException(nameof(savedProcessingTimeSeconds));
-
-        if (!double.IsFinite(targetFrameTimeSeconds))
-            throw new ArgumentOutOfRangeException(nameof(targetFrameTimeSeconds));
+        DoubleFiniteCheck(elapsedFrameTimeSeconds);
+        DoubleFiniteCheck(savedProcessingTimeSeconds);
+        DoubleFiniteCheck(targetFrameTimeSeconds);
 
         originalBudgetSeconds = Math.Max(targetFrameTimeSeconds - elapsedFrameTimeSeconds,
             targetFrameTimeSeconds * MINIMUM_AVAILABLE_TIME_FRACTION) + savedProcessingTimeSeconds;
@@ -56,8 +51,7 @@ internal struct ResourceLoadFrameBudget
     {
         ArgumentOutOfRangeException.ThrowIfNegative(estimatedDurationSeconds);
 
-        if (!double.IsFinite(estimatedDurationSeconds))
-            throw new ArgumentOutOfRangeException(nameof(estimatedDurationSeconds));
+        DoubleFiniteCheck(estimatedDurationSeconds);
 
         double remainingSeconds = GetRemainingSeconds(elapsedSeconds);
 
@@ -74,9 +68,15 @@ internal struct ResourceLoadFrameBudget
     /// <summary>
     ///   Calculates the number of processing seconds carried into the next frame from the actual elapsed time.
     /// </summary>
-    public float CalculateSecondsToCarry(double elapsedSeconds)
+    public double CalculateSecondsToCarry(double elapsedSeconds)
     {
-        return (float)Math.Clamp(GetRemainingSeconds(elapsedSeconds), targetFrameTimeSeconds * MINIMUM_CARRY_FRAMES,
+        return Math.Clamp(GetRemainingSeconds(elapsedSeconds), targetFrameTimeSeconds * MINIMUM_CARRY_FRAMES,
             targetFrameTimeSeconds * MAXIMUM_CARRY_FRAMES);
+    }
+
+    private static void DoubleFiniteCheck(double value)
+    {
+        if (!double.IsFinite(value))
+            throw new ArgumentOutOfRangeException(nameof(value));
     }
 }

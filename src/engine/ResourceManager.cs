@@ -50,7 +50,7 @@ public partial class ResourceManager : Node
 
     // TODO: implement relative performance detection
 
-    private float savedForLaterProcessingTime;
+    private double savedForLaterProcessingTime;
 
     private ResourceManager()
     {
@@ -315,9 +315,12 @@ public partial class ResourceManager : Node
     // ReSharper enable HeuristicUnreachableCode
 #pragma warning restore CS0162
 
-    private static float GetEstimatedMainThreadTimeRequired(IResource resource) =>
-        resource.RequiresSyncLoad || (resource.UsesPostProcessing && resource.RequiresSyncPostProcess) ?
-            resource.EstimatedTimeRequired : 0;
+    private static float GetEstimatedMainThreadTimeRequired(IResource resource)
+    {
+        return resource.RequiresSyncLoad || (resource.UsesPostProcessing && resource.RequiresSyncPostProcess) ?
+            resource.EstimatedTimeRequired :
+            0;
+    }
 
     private static void PerformBackgroundLoad(IResource resource)
     {
