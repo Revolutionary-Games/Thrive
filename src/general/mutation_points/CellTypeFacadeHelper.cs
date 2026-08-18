@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using Godot;
 using System.Linq;
+using Godot;
 
 /// <summary>
 ///   Helps to manage the used cell types for more advanced species that have multiple cell types
@@ -67,7 +67,8 @@ public class CellTypeFacadeHelper
         if (actionData is SporeCellTypeChangeActionData sporeCellTypeChangeActionData)
         {
             if (sporeCellTypeChangeActionData.OldCellType != null
-                && sporeCellTypeChangeActionData.OldCellType != sporeCellTypeChangeActionData.NewCellType)
+                && ReferenceEquals(sporeCellTypeChangeActionData.OldCellType,
+                    sporeCellTypeChangeActionData.NewCellType))
             {
                 if (!removedCellTypes.Any(type => ReferenceEquals(type, sporeCellTypeChangeActionData.OldCellType)))
                     removedCellTypes.Add(sporeCellTypeChangeActionData.OldCellType);

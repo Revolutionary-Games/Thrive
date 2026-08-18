@@ -313,7 +313,7 @@ public partial class CellBodyPlanEditorComponent :
         get => sporeCellType;
         set
         {
-            if (sporeCellType == value)
+            if (ReferenceEquals(sporeCellType, value))
                 return;
 
             sporeCellType = value;
