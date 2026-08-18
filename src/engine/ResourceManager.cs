@@ -439,8 +439,7 @@ public partial class ResourceManager : Node
                     timeTracker.Elapsed.TotalSeconds))
                 return;
 
-            PerformPendingMainThreadPhases(backgroundTask.Resource,
-                backgroundTask.Task.AsyncState as Stopwatch);
+            PerformPendingMainThreadPhases(backgroundTask.Resource, backgroundTask.Task.AsyncState as Stopwatch);
             processingBackgroundTask = null;
             CompleteResource(backgroundTask.Resource);
         }

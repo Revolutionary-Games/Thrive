@@ -22,20 +22,13 @@ internal enum ResourceLoadState
 /// <summary>
 ///   Binds one resource phase to its background task and observes its result at most once.
 /// </summary>
-internal sealed class ResourceBackgroundTask
+internal sealed class ResourceBackgroundTask(IResource resource, Task task, ResourceBackgroundPhase phase)
 {
     private int completionObserved;
 
-    public ResourceBackgroundTask(IResource resource, Task task, ResourceBackgroundPhase phase)
-    {
-        Resource = resource ?? throw new ArgumentNullException(nameof(resource));
-        Task = task ?? throw new ArgumentNullException(nameof(task));
-        Phase = phase;
-    }
-
-    public IResource Resource { get; }
-    public Task Task { get; }
-    public ResourceBackgroundPhase Phase { get; }
+    public IResource Resource { get; } = resource ?? throw new ArgumentNullException(nameof(resource));
+    public Task Task { get; } = task ?? throw new ArgumentNullException(nameof(task));
+    public ResourceBackgroundPhase Phase { get; } = phase;
     public bool IsCompleted => Task.IsCompleted;
     public bool CompletionObserved => Volatile.Read(ref completionObserved) != 0;
 
@@ -83,10 +76,15 @@ internal sealed class ResourceLoadLifecycle
         new(ReferenceEqualityComparer.Instance);
     private readonly HashSet<IResource> deferredReloads = new(ReferenceEqualityComparer.Instance);
 
-    public ResourceLoadState GetState(IResource resource) =>
-        activeResources.TryGetValue(resource, out var state) ? state : ResourceLoadState.Completed;
+    public ResourceLoadState GetState(IResource resource)
+    {
+        return activeResources.GetValueOrDefault(resource, ResourceLoadState.Completed);
+    }
 
-    public bool IsActive(IResource resource) => activeResources.ContainsKey(resource);
+    public bool IsActive(IResource resource)
+    {
+        return activeResources.ContainsKey(resource);
+    }
 
     public bool TryQueue(IResource resource)
     {
@@ -112,25 +110,41 @@ internal sealed class ResourceLoadLifecycle
         return true;
     }
 
-    public void BeginPreparing(IResource resource) =>
+    public void BeginPreparing(IResource resource)
+    {
         Transition(resource, ResourceLoadState.Queued, ResourceLoadState.Preparing);
+    }
 
-    public void FinishPreparing(IResource resource) =>
+    public void FinishPreparing(IResource resource)
+    {
         Transition(resource, ResourceLoadState.Preparing, ResourceLoadState.Prepared);
+    }
 
-    public void MarkPrepared(IResource resource) =>
+    public void MarkPrepared(IResource resource)
+    {
         Transition(resource, ResourceLoadState.Queued, ResourceLoadState.Prepared);
+    }
 
-    public void BeginLoading(IResource resource) =>
+    public void BeginLoading(IResource resource)
+    {
         Transition(resource, ResourceLoadState.Prepared, ResourceLoadState.Loading);
+    }
 
-    public void FinishBackgroundLoad(IResource resource) =>
+    public void FinishBackgroundLoad(IResource resource)
+    {
         Transition(resource, ResourceLoadState.Loading, ResourceLoadState.PendingMain);
+    }
 
-    public bool CancellationCanSettle(IResource resource) =>
-        GetState(resource) is ResourceLoadState.Queued or ResourceLoadState.Prepared or ResourceLoadState.PendingMain;
+    public bool CancellationCanSettle(IResource resource)
+    {
+        return GetState(resource) is ResourceLoadState.Queued or ResourceLoadState.Prepared
+            or ResourceLoadState.PendingMain;
+    }
 
-    public bool CancellationNeedsUnload(IResource resource) => GetState(resource) == ResourceLoadState.PendingMain;
+    public bool CancellationNeedsUnload(IResource resource)
+    {
+        return GetState(resource) == ResourceLoadState.PendingMain;
+    }
 
     /// <summary>
     ///   Releases the current owner and queues a requested reload only after that owner has settled.

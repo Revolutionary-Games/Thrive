@@ -161,26 +161,21 @@ public class ResourceLoadFrameBudgetTests
         return (manager, lifecycle);
     }
 
-    private static void SetPrivateField<T>(ResourceManager manager, string fieldName, T value) =>
+    private static void SetPrivateField<T>(ResourceManager manager, string fieldName, T value)
+    {
         typeof(ResourceManager).GetField(fieldName, BindingFlags.Instance | BindingFlags.NonPublic)!
             .SetValue(manager, value);
+    }
 
-    private sealed class TestResource : IResource
+    private sealed class TestResource(double estimatedTimeRequired, bool requiresSyncLoad = true,
+        bool usesPostProcessing = false, bool requiresSyncPostProcess = false)
+        : IResource
     {
-        public TestResource(double estimatedTimeRequired, bool requiresSyncLoad = true,
-            bool usesPostProcessing = false, bool requiresSyncPostProcess = false)
-        {
-            EstimatedTimeRequired = (float)estimatedTimeRequired;
-            RequiresSyncLoad = requiresSyncLoad;
-            UsesPostProcessing = usesPostProcessing;
-            RequiresSyncPostProcess = requiresSyncPostProcess;
-        }
-
-        public bool RequiresSyncLoad { get; }
-        public bool UsesPostProcessing { get; }
-        public bool RequiresSyncPostProcess { get; }
+        public bool RequiresSyncLoad { get; } = requiresSyncLoad;
+        public bool UsesPostProcessing { get; } = usesPostProcessing;
+        public bool RequiresSyncPostProcess { get; } = requiresSyncPostProcess;
         public bool CancelRequested { get; set; }
-        public float EstimatedTimeRequired { get; }
+        public float EstimatedTimeRequired { get; } = (float)estimatedTimeRequired;
         public bool LoadingPrepared { get; set; } = true;
         public bool Loaded { get; private set; }
         public string Identifier => nameof(TestResource);

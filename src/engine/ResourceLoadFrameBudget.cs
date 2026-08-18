@@ -53,7 +53,7 @@ internal struct ResourceLoadFrameBudget
 
         DoubleFiniteCheck(estimatedDurationSeconds);
 
-        double remainingSeconds = GetRemainingSeconds(elapsedSeconds);
+        var remainingSeconds = GetRemainingSeconds(elapsedSeconds);
 
         if (remainingSeconds <= 0)
             return false;

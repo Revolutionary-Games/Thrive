@@ -313,14 +313,11 @@ public partial class GalleryViewer : CustomWindow
     private void OnThumbnailLoaded(IResource resource)
     {
         var thumbnailResource = (TextureThumbnailResource)resource;
-        bool wasOutstanding = outstandingThumbnailLoads.Remove(thumbnailResource, out var item);
+        var wasOutstanding = outstandingThumbnailLoads.Remove(thumbnailResource, out var item);
         thumbnailResource.OnComplete = null;
 
-        if (!wasOutstanding || !GodotObject.IsInstanceValid(item) || item.IsQueuedForDeletion() ||
-            !item.IsInsideTree())
-        {
+        if (!wasOutstanding || !IsInstanceValid(item) || item.IsQueuedForDeletion() || !item.IsInsideTree())
             return;
-        }
 
         item.Thumbnail = thumbnailResource.LoadedTexture;
     }
@@ -330,13 +327,12 @@ public partial class GalleryViewer : CustomWindow
         if (outstandingThumbnailLoads.Count < 1)
             return;
 
-        foreach (var resource in outstandingThumbnailLoads.Keys)
-            resource.OnComplete = null;
-
         var resourceManager = ResourceManager.Instance;
-
         foreach (var resource in outstandingThumbnailLoads.Keys)
+        {
+            resource.OnComplete = null;
             resourceManager.CancelLoad(resource);
+        }
 
         outstandingThumbnailLoads.Clear();
     }
