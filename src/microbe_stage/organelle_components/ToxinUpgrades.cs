@@ -1,5 +1,4 @@
-﻿using System;
-using SharedBase.Archive;
+﻿using SharedBase.Archive;
 
 /// <summary>
 ///   Upgrades for toxin firing organelles
@@ -63,7 +62,7 @@ public class ToxinUpgrades : IComponentSpecificUpgrades
         if (other is ToxinUpgrades toxinUpgrades)
         {
             return toxinUpgrades.BaseType == BaseType &&
-                Math.Abs(Toxicity - toxinUpgrades.Toxicity) < MathUtils.EPSILON;
+                Toxicity == toxinUpgrades.Toxicity;
         }
 
         return false;
