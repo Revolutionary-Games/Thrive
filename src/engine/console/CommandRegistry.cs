@@ -682,7 +682,7 @@ public class CommandRegistry : IDisposable
         foreach (var commandsArray in commands.Values)
         {
             foreach (var command in commandsArray)
-                TryRegisterMulticastCommandListener(command, "info");
+                TryRegisterMulticastCommandListener(command, "commands");
         }
 
         GD.Print($"CommandRegistry: Loaded. Command groups: {commands.Count}.");
