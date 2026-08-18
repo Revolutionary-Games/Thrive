@@ -587,8 +587,8 @@ public class SimulationCache
         var hasChemoreceptor = false;
         var hasSignallingAgent = false;
         var preyHasSignallingAgent = false;
-        var predatorOxygenUsingOrganellesCount = 0;
-        var preyOxygenUsingOrganellesCount = 0;
+        var predatorOxygenUsingOrganellesCount = 0.0f;
+        var preyOxygenUsingOrganellesCount = 0.0f;
 
         var preyHexSize = GetBaseHexSizeForSpecies(preySpecies);
         if (preySpecies is MicrobeSpecies microbePrey)
