@@ -1162,7 +1162,7 @@ public class SimulationCache
             // Prey are less likely to use toxin against larger predators, unless they are opportunistic
             if (predatorHexSize > preyHexSize)
             {
-                damagingToxinScore *= predatorSpecies.Behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
+                preyDamagingToxinScore *= preyOpportunismScore;
             }
 
             // If you can store enough to kill the predator, producing more isn't as important
