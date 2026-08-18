@@ -83,7 +83,7 @@ public class OrganelleUpgrades : IEquatable<OrganelleUpgrades>, IArchivable, IRe
     {
         var unlockedFeaturesHash = 17;
         foreach (var feature in UnlockedFeatures)
-            unlockedFeaturesHash = unlockedFeaturesHash * 31 + (feature?.GetHashCode() ?? 0);
+            unlockedFeaturesHash = unlockedFeaturesHash * 31 + feature.GetHashCode();
 
         return unlockedFeaturesHash * 3 ^
             (CustomUpgradeData != null ? CustomUpgradeData.GetHashCode() : 1) * 1151;
