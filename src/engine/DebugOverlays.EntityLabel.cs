@@ -10,6 +10,8 @@ using Godot;
 /// </summary>
 public partial class DebugOverlays
 {
+    private const float TextUpdateInterval = 0.2f;
+
     private readonly Dictionary<Entity, Label> entityLabels = new();
 
     private readonly HashSet<Entity> seenEntities = new();
@@ -39,6 +41,8 @@ public partial class DebugOverlays
     private IWorldSimulation? labelsActiveForSimulation;
 
     private bool showEntityLabels;
+
+    private double textUpdateTimer;
 
     private bool ShowEntityLabels
     {
@@ -190,13 +194,16 @@ public partial class DebugOverlays
         return true;
     }
 
-    private void UpdateEntityLabels()
+    private void UpdateEntityLabels(double delta)
     {
         if (!IsInstanceValid(activeCamera) || activeCamera is not { Current: true })
             activeCamera = GetViewport().GetCamera3D();
 
         if (activeCamera == null)
             return;
+
+        textUpdateTimer -= delta;
+        var updateText = textUpdateTimer <= 0;
 
         foreach (var pair in entityLabels)
         {
@@ -219,11 +226,17 @@ public partial class DebugOverlays
 
             label.Position = activeCamera.UnprojectPosition(position.Position);
 
-            var text = FormatEntityDebugLabel(entity);
+            if (updateText)
+            {
+                var newText = FormatEntityDebugLabel(entity);
 
-            if (label.Text != text)
-                label.Text = text;
+                if (label.Text != newText)
+                    label.Text = newText;
+            }
         }
+
+        if (updateText)
+            textUpdateTimer = TextUpdateInterval;
     }
 
     private void OnEntityAdded(Entity entity)
@@ -231,6 +244,7 @@ public partial class DebugOverlays
         var label = new Label();
         labelsLayer.AddChild(label);
         entityLabels.Add(entity, label);
+        label.Text = FormatEntityDebugLabel(entity);
 
         // This used to check for floating chunk, but now this just has to do with by checking a couple of components
         // that all chunks have at least one of. Projectile is still easy to check with the toxin damage source.
