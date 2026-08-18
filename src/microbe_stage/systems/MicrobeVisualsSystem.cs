@@ -377,24 +377,31 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
 
         var hash = membraneGenerationParameters.ComputeMembraneDataHash();
 
-        var cachedMembrane = ProceduralDataCache.Instance.ReadMembraneData(hash);
+        MembranePointData? finishedMembrane = null;
 
-        if (cachedMembrane != null)
+        if (MembraneGenerationCoordinator.TryTakeFinishedMulticellularMembrane(hash, out var takenMembrane))
         {
-            // TODO: hopefully this can't get into a permanent loop where 2 conflicting membranes want to
-            // re-generate on each game update cycle
-            if (!cachedMembrane.MembraneDataFieldsEqual(membraneGenerationParameters))
+            if (takenMembrane != null)
             {
-                CacheableDataExtensions.OnCacheHashCollision<MembranePointData>(hash);
-                cachedMembrane = null;
+                if (!takenMembrane.MembraneDataFieldsEqual(membraneGenerationParameters))
+                {
+                    CacheableDataExtensions.OnCacheHashCollision<MembranePointData>(hash);
+
+                    // This entry is no longer referenced by anything else, so it must be disposed here.
+                    takenMembrane.Dispose();
+                }
+                else
+                {
+                    finishedMembrane = takenMembrane;
+                }
             }
         }
 
-        if (cachedMembrane != null)
+        if (finishedMembrane != null)
         {
             // Membrane is ready now. return hexes array to the pool as it won't be used in calculations
             ArrayPool<Vector2>.Shared.Return(hexes);
-            return cachedMembrane;
+            return finishedMembrane;
         }
 
         // Need to generate a new membrane
@@ -627,5 +634,7 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         }
 
         activeGenerationTasks.Clear();
+
+        MembraneGenerationCoordinator.ClearCoordinator();
     }
 }

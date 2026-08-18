@@ -8,18 +8,25 @@ using Godot;
 /// <summary>
 ///   Coordinator that implements two-pass membrane generation.
 ///   - First pass: generate base membranes per cell
-///   - Second pass: generate stretched multicellular membranes if needed.
+///   - Second pass: generate stretched multicellular membranes if needed. They are not persistently cached. Instead,
+///   a finished stretched result is handed off exactly once to the main-thread request that is waiting for it
 /// </summary>
 public static class MembraneGenerationCoordinator
 {
-    private static readonly ConcurrentDictionary<long, ColonyTracker> Trackers = new();
+    private static readonly ConcurrentDictionary<long, ColonyTracker> ColonyTrackers = new();
+
+    /// <summary>
+    ///   Stores finished stretched multicellular membranes. Unlike a cache, an entry here is
+    ///   removed the moment it is consumed.
+    /// </summary>
+    private static readonly ConcurrentDictionary<long, MembranePointData> FinishedMulticellularMembranes = new();
 
     /// <summary>
     ///   Handles membrane generation requests. For single-cell requests the list contains one hash.
     /// </summary>
     public static List<long> HandleGenerationRequest(ref MembraneGenerationParameters generationParameters)
     {
-        var hashedMembranes = new List<long>();
+        var generatedMembranes = new List<long>();
         var generator = MembraneShapeGenerator.GetThreadSpecificGenerator();
         var isSingleCell = generationParameters.GrownCellsData.Length == 0 ||
             !generationParameters.IsMulticellularMembraneDataValid;
@@ -28,22 +35,11 @@ public static class MembraneGenerationCoordinator
         {
             var membranePointData = generator.GenerateMicrobeShape(ref generationParameters);
             var hash = ProceduralDataCache.Instance.WriteMembraneData(ref membranePointData);
-            hashedMembranes.Add(hash);
-            return hashedMembranes;
+            generatedMembranes.Add(hash);
+            return generatedMembranes;
         }
 
         var registeredHash = generationParameters.ComputeMembraneDataHash();
-
-        // If the final multicellular membrane is already cached, just return it
-        var existing = ProceduralDataCache.Instance.ReadMembraneData(registeredHash);
-        if (existing != null)
-        {
-            // Cache hit — hexes are no longer needed, return to pool
-            ArrayPool<Vector2>.Shared.Return(generationParameters.HexPositions);
-
-            hashedMembranes.Add(registeredHash);
-            return hashedMembranes;
-        }
 
         generationParameters.IsPreMulticellularStretch = true;
 
@@ -66,7 +62,7 @@ public static class MembraneGenerationCoordinator
 
         var colonyTrackerKey = GetColonyTrackerKey(generationParameters, grownCellsData);
 
-        var tracker = Trackers.GetOrAdd(colonyTrackerKey,
+        var tracker = ColonyTrackers.GetOrAdd(colonyTrackerKey,
             _ => new ColonyTracker { ExpectedCount = grownCellsData.Length });
 
         var multicellularMembraneData = new MulticellularMembraneGenerationCellData(cellPosition, cellOrientation);
@@ -80,11 +76,11 @@ public static class MembraneGenerationCoordinator
 
         // Colony not yet complete — return empty
         if (tracker.NeighboursData.Count < tracker.ExpectedCount)
-            return hashedMembranes;
+            return generatedMembranes;
 
         // Pass 2: all base membranes are ready. Use a flag to ensure exactly one thread executes the second pass.
         if (!tracker.TryBeginSecondPass())
-            return hashedMembranes;
+            return generatedMembranes;
 
         // Return ALL resolved hashes so every cell's pending entry gets cleared
         foreach (var (key, data) in tracker.NeighboursData)
@@ -92,13 +88,48 @@ public static class MembraneGenerationCoordinator
             var multicellularMembrane =
                 generator.GenerateMulticellularMembrane(key, tracker.NeighboursData, grownCellsData);
 
-            ProceduralDataCache.Instance.WriteMembraneData(ref multicellularMembrane);
-            hashedMembranes.Add(data.SingleCellHash);
+            AddMulticellularMembrane(data.SingleCellHash, multicellularMembrane);
+            generatedMembranes.Add(data.SingleCellHash);
         }
 
-        Trackers.TryRemove(colonyTrackerKey, out _);
+        ColonyTrackers.TryRemove(colonyTrackerKey, out _);
 
-        return hashedMembranes;
+        return generatedMembranes;
+    }
+
+    /// <summary>
+    ///   Attempts to retrieve and remove a finished stretched multicellular membrane.
+    /// </summary>
+    public static bool TryTakeFinishedMulticellularMembrane(long hash, out MembranePointData? data)
+    {
+        return FinishedMulticellularMembranes.TryRemove(hash, out data);
+    }
+
+    /// <summary>
+    ///   Disposes and removes any finished multicellular membranes that were computed but never collected,
+    ///   and clears all colony trackers.
+    /// </summary>
+    public static void ClearCoordinator()
+    {
+#if DEBUG
+        if (!FinishedMulticellularMembranes.IsEmpty)
+        {
+            GD.PrintErr("FinishedMulticellularMembranes is not empty");
+        }
+
+        if (!ColonyTrackers.IsEmpty)
+        {
+            GD.PrintErr("ColonyTrackers is not empty");
+        }
+#endif
+
+        foreach (var key in FinishedMulticellularMembranes.Keys)
+        {
+            if (FinishedMulticellularMembranes.TryRemove(key, out var orphaned))
+                orphaned.Dispose();
+        }
+
+        ColonyTrackers.Clear();
     }
 
     public static long ComputeColonyKey(MulticellularMembraneGenerationCellData[] cellsData)
@@ -124,6 +155,17 @@ public static class MembraneGenerationCoordinator
 
             return hash;
         }
+    }
+
+    private static void AddMulticellularMembrane(long hash, MembranePointData data)
+    {
+        if (FinishedMulticellularMembranes.TryRemove(hash, out var previous))
+        {
+            GD.PrintErr("FinishedMulticellularMembranes was overwritten");
+            previous.Dispose();
+        }
+
+        FinishedMulticellularMembranes[hash] = data;
     }
 
     private static long GetColonyTrackerKey(MembraneGenerationParameters generationParameters,
