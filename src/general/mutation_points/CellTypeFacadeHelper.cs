@@ -74,8 +74,8 @@ public class CellTypeFacadeHelper
 
                 if (activeCellTypes.ContainsKey(sporeCellTypeChangeActionData.OldCellType))
                 {
-                    if (addedCellTypes.RemoveAll(
-                        type => ReferenceEquals(type, sporeCellTypeChangeActionData.OldCellType)) != 1)
+                    var cellTypeToRemove = GetOrCreateCellType(sporeCellTypeChangeActionData.OldCellType);
+                    if (addedCellTypes.RemoveAll(type => ReferenceEquals(type, cellTypeToRemove)) != 1)
                     {
                         GD.PrintErr("Spore cell type not found for delete");
                     }
