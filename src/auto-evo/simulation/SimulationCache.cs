@@ -1743,6 +1743,8 @@ public class SimulationCache
         var mucocystsCount = 0;
         var pullingCiliasCount = 0.0f;
         var slimeJetsMultiplier = 1.0f;
+        var slimeJetsMultiplierSum = 0.0f;
+        var slimeJetsMultiplierCount = 0;
 
         var hasOxytoxy = false;
         var hasCytotoxin = false;
@@ -1879,7 +1881,8 @@ public class SimulationCache
                     defensivePilusCount += cellTypeDefensivePilusCount;
                     defensiveInjectisomeCount += cellTypeDefensiveInjectisomeCount;
                     mucocystsCount += cellTypeMucocystsCount;
-                    slimeJetsMultiplier *= cellTypeSlimeJetsMultiplier;
+                    slimeJetsMultiplierSum += cellTypeSlimeJetsMultiplier;
+                    ++slimeJetsMultiplierCount;
 
                     // application of specializationBonus to appropriate scores
                     var specializationBonus = cellType.CellTypeSpecializationBonus *
@@ -1958,6 +1961,8 @@ public class SimulationCache
             defensiveInjectisomeScore *= defensiveInjectisomeCount;
         }
 
+        if (slimeJetsMultiplierCount > 0)
+            slimeJetsMultiplier = slimeJetsMultiplierSum / slimeJetsMultiplierCount;
         slimeJetScore *= slimeJetsCount;
         slimeJetScore *= slimeJetsMultiplier;
 
