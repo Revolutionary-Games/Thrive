@@ -188,8 +188,8 @@ public static class MembraneGenerationCoordinator
 
         unchecked
         {
-            // Use species ID in case there is another multicellular spiecies with the same cell positions and rotations
-            colonyKey ^= generationParameters.SpeciesId * prime;
+            // Use leader cell Id in case colonies with the same number of cells spawn in the world
+            colonyKey ^= generationParameters.LeaderCellId * prime;
             colonyKey *= prime;
         }
 

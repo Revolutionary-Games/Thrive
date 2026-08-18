@@ -173,7 +173,7 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
                 {
                     useSingleCellMembraneGeneration = false;
 
-                    var speciesMember = entity.Get<MulticellularSpeciesMember>();
+                    ref var speciesMember = ref entity.Get<MulticellularSpeciesMember>();
                     var nextBodyPlanCellToGrowIndex = growthOrder.ResumeBodyPlanAfterReplacingLost ??
                         growthOrder.NextBodyPlanCellToGrowIndex;
 
@@ -191,7 +191,7 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
                     var cellIndex = speciesMember.MulticellularBodyPlanPartIndex;
                     var cell = speciesMember.Species.ModifiableGameplayCells[cellIndex];
                     data = GetMulticellularMembraneDataIfReadyOrStartGenerating(cell, cell.ModifiableOrganelles,
-                        ref speciesMember, ref growthOrder, cellIndex, nextBodyPlanCellToGrowIndex);
+                        colonyLeader.Id, ref speciesMember, ref growthOrder, cellIndex, nextBodyPlanCellToGrowIndex);
                 }
             }
         }
@@ -313,8 +313,9 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
     }
 
     private MembranePointData? GetMulticellularMembraneDataIfReadyOrStartGenerating(CellTemplate cellProperties,
-        OrganelleLayout<OrganelleTemplate> organelleContainer, ref MulticellularSpeciesMember multicellular,
-        ref MulticellularGrowth growthOrder, int currentCellIndex, int nextBodyPlanCellToGrowIndex)
+        OrganelleLayout<OrganelleTemplate> organelleContainer, int leaderCellId,
+        ref MulticellularSpeciesMember multicellular, ref MulticellularGrowth growthOrder, int currentCellIndex,
+        int nextBodyPlanCellToGrowIndex)
     {
         // TODO: should we consider the situation where a membrane was requested on the previous update but is not
         // ready yet? This causes extra memory usage here in those cases.
@@ -373,7 +374,7 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
 
         var membraneGenerationParameters = new MembraneGenerationParameters(hexes, hexCount,
             cellProperties.MembraneType, multicellularMembraneData, grownCellsData, colonyKey,
-            multicellular.Species.ID);
+            leaderCellId);
 
         var hash = membraneGenerationParameters.ComputeMembraneDataHash();
 
@@ -423,7 +424,7 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
             multicellular.Species.ModifiableGameplayCells[currentCellIndex].Orientation);
 
         membranesToGenerate.Enqueue(new MembraneGenerationParameters(hexes, hexCount, cellProperties.MembraneType,
-            cellData, grownCellsData, colonyKey, multicellular.Species.ID));
+            cellData, grownCellsData, colonyKey, leaderCellId));
 
         // Immediately start some jobs to give background threads something to do while the main thread is busy
         // potentially setting up other visuals

@@ -833,7 +833,7 @@ public class MembraneShapeGenerator
 
             if (vertices2D[closestCellVertexIndex]
                     .DistanceSquaredTo(editableNeighbourVertices[closestNeighbourVertexIndex]) >
-                Constants.MEMBRANE_NEIGHBOUR_MAX_DISTANCE_BETWEEN_VERTICES)
+                Constants.MEMBRANE_NEIGHBOUR_MAX_SQUARED_DISTANCE_BETWEEN_VERTICES)
             {
                 continue;
             }
@@ -998,7 +998,7 @@ public class MembraneShapeGenerator
 
             if (neighbourKey != currentCellKey &&
                 otherCellPosition.DistanceSquaredTo(thisCellPosition) <=
-                Constants.MEMBRANE_NEIGHBOUR_MAX_DISTANCE_BETWEEN_CENTERS)
+                Constants.MEMBRANE_NEIGHBOUR_MAX_SQUARED_DISTANCE_BETWEEN_CENTERS)
             {
                 closeNeighboursKeys.Add(neighbourKey);
             }
