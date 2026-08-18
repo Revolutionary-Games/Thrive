@@ -710,7 +710,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
         // Only reinitialize the editor when required
         if (selectedCellTypeToEdit == null ||
-            cellTypeEditsHolder.GetOriginalType(selectedCellTypeToEdit) != cellType)
+            !ReferenceEquals(cellTypeEditsHolder.GetOriginalType(selectedCellTypeToEdit), cellType))
         {
             selectedCellTypeToEdit = cellTypeEditsHolder.BeginOrContinueEdit(cellType);
 
@@ -797,7 +797,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
         // Revert to the old name if the name is a duplicate
         if (EditedSpecies.ModifiableCellTypes.Any(c =>
-                c != selectedCellTypeToEdit && c.CellTypeName == selectedCellTypeToEdit.CellTypeName))
+                !ReferenceEquals(c, selectedCellTypeToEdit) && c.CellTypeName == selectedCellTypeToEdit.CellTypeName))
         {
             if (oldName != selectedCellTypeToEdit.CellTypeName)
             {
@@ -822,7 +822,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     private void SwapEditingCellIfNeeded(CellType? newCell)
     {
-        if (selectedCellTypeToEdit == newCell || newCell == null)
+        if (ReferenceEquals(selectedCellTypeToEdit, newCell) || newCell == null)
             return;
 
         // If we're switching to a new cell type, apply any changes made to the old one
@@ -913,6 +913,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
     {
         energyBalance.BaseMovement = MathF.Max(energyBalance.BaseMovement, toAdd.BaseMovement);
         energyBalance.Flagella = MathF.Max(energyBalance.Flagella, toAdd.Flagella);
+        energyBalance.Actomyosin = MathF.Max(energyBalance.Actomyosin, toAdd.Actomyosin);
         energyBalance.Cilia = MathF.Max(energyBalance.Cilia, toAdd.Cilia);
         energyBalance.TotalMovement = MathF.Max(energyBalance.TotalMovement, toAdd.TotalMovement);
 

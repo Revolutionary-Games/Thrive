@@ -818,7 +818,7 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         {
             if (micheData.Occupant == null)
             {
-                // No species selected so reset the display panel to not make the GUI as confusing
+                // No species selected, so reset the display panel to not make the GUI as confusing
                 micheSpeciesDetailsPanel.Visible = false;
                 micheDetailsPanel.Visible = false;
                 return;
@@ -1194,8 +1194,9 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
             foreach (var organelle in SimulationParameters.Instance.GetAllOrganelles())
             {
                 MicrobeSpeciesOrganelleStatistics[organelle] = (
-                    microbeSpecies.Average(s => s.Organelles.Any(o => o.Definition == organelle) ? 1 : 0),
-                    microbeSpecies.Average(s => s.Organelles.Count(o => o.Definition == organelle)));
+                    microbeSpecies.Average(s =>
+                        s.Organelles.Any(o => ReferenceEquals(o.Definition, organelle)) ? 1 : 0),
+                    microbeSpecies.Average(s => s.Organelles.Count(o => ReferenceEquals(o.Definition, organelle))));
             }
 
             foreach (var upgradeName in MicrobeSpeciesUpgradesStatistics.Keys)

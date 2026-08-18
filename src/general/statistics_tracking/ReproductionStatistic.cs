@@ -40,7 +40,7 @@ public class ReproductionStatistic : IStatistic, IArchiveUpdatable
 
         if (ReproducedInBiomes.TryGetValue(biome, out var value))
         {
-            ReproducedInBiomes[biome] = ++value;
+            ReproducedInBiomes[biome] = value + 1;
         }
         else
         {
@@ -108,7 +108,7 @@ public class ReproductionStatistic : IStatistic, IArchiveUpdatable
             if (organelle.IsDuplicate)
                 continue;
 
-            if (organelle.Definition == definition)
+            if (ReferenceEquals(organelle.Definition, definition))
                 ++count;
         }
 
@@ -120,7 +120,7 @@ public class ReproductionStatistic : IStatistic, IArchiveUpdatable
             {
                 foreach (var organelle in members[i].Get<OrganelleContainer>().Organelles!.Organelles)
                 {
-                    if (organelle.Definition == definition)
+                    if (ReferenceEquals(organelle.Definition, definition))
                     {
                         ++count;
                     }

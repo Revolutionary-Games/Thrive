@@ -553,10 +553,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                                 // And, if not multicellular, also can't do it.
                                 if (!entity.Has<MicrobeColony>())
                                     return;
-                            }
 
-                            if (compatible)
-                            {
                                 // Look at the target position and shoot a gamete
                                 control.LookAtPoint = signalerPosition;
 

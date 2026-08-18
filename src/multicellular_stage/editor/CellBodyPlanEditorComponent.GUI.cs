@@ -35,7 +35,7 @@ public partial class CellBodyPlanEditorComponent
     {
         var cellType = Editor.EditedSpecies.ModifiableCellTypes[selectedOption];
 
-        if (cellType == GameteACellType)
+        if (ReferenceEquals(cellType, GameteACellType))
             return;
 
         var action = new SingleEditorAction<GameteACellTypeChangeActionData>(DoGameteACellChangeAction,
@@ -50,7 +50,7 @@ public partial class CellBodyPlanEditorComponent
     {
         var cellType = Editor.EditedSpecies.ModifiableCellTypes[selectedOption];
 
-        if (cellType == GameteBCellType)
+        if (ReferenceEquals(cellType, GameteBCellType))
             return;
 
         var action = new SingleEditorAction<GameteBCellTypeChangeActionData>(DoGameteBCellChangeAction,

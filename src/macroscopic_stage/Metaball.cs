@@ -94,7 +94,7 @@ public abstract class Metaball : IReadOnlyMetaball, IArchivable
         if (ModifiableParent == null)
             return false;
 
-        if (ModifiableParent == potentialAncestor)
+        if (ReferenceEquals(ModifiableParent, potentialAncestor))
             return true;
 
         return ModifiableParent.HasAncestor(potentialAncestor);
@@ -127,6 +127,15 @@ public abstract class Metaball : IReadOnlyMetaball, IArchivable
         var offset = precomputedDirection.Value * wantedDistance;
 
         return ModifiableParent.Position + offset;
+    }
+
+    public override bool Equals(object? obj)
+    {
+        if (obj is not Metaball other || GetType() != other.GetType())
+            return false;
+
+        return Position == other.Position && Size == other.Size && ReferenceEquals(ModifiableParent,
+            other.ModifiableParent);
     }
 
     public override int GetHashCode()

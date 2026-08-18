@@ -1459,6 +1459,64 @@
     "EditorButtonGroup": "Organelle",
     "EditorButtonOrder": 14
   },
+  "actomyosin": {
+    "MPCost": 80,
+    "InitialComposition": {
+      "ammonia": 1,
+      "phosphates": 1
+    },
+    "Hexes": [
+      {
+        "q": 0,
+        "r": 0
+      },
+      {
+        "q": 0,
+        "r": 1
+      },
+      {
+        "q": 1,
+        "r": 0
+      }
+    ],
+    "Processes": {},
+    "Components": {
+      "Actomyosin": {}
+    },
+    "ToleranceEffects": {
+      "PressureTolerance": 1000
+    },
+    "Density": 1200,
+    "Graphics": {
+      "ScenePath": "res://assets/models/organelles/Actomyosin.tscn",
+      "ModelPath": "Armature/Skeleton3D/Actomyosin",
+      "AnimationPlayerPath": "AnimationPlayer"
+    },
+    "PositionedExternally": true,
+    "Name": "ACTOMYOSIN",
+    "Description": "ACTOMYOSIN_DESCRIPTION",
+    "ProcessesDescription": "ACTOMYOSIN_PROCESSES_DESCRIPTION",
+    "ProductionColour": "#ff9721",
+    "ConsumptionColour": "#ff9721",
+    "IconPath": "res://assets/textures/gui/bevel/parts/ActomyosinIcon.svg",
+    "UnlockConditions": [
+      {
+        "SpeedBelow": {
+          "Threshold": 16
+        }
+      }
+    ],
+    "RequiresNucleus": true,
+    "Unique": true,
+    "EditorButtonGroup": "Multicellular",
+    "EditorButtonOrder": 1,
+    "IncompatibleMembraneNames": [
+      "cellulose",
+      "chitin",
+      "calciumCarbonate",
+      "silica"
+    ]
+  },
   "axon": {
     "MPCost": 100,
     "InitialComposition": {

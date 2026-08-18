@@ -32,7 +32,7 @@ public static class CellBodyPlanInternalCalculations
     }
 
     /// <summary>
-    ///   Calculates a colony's speed. The algorithm is an approximation, but should be based on the one in
+    ///   Calculates a colony's speed. The algorithm is an approximation but should be based on the one in
     ///   MicrobeMovementSystem.cs
     /// </summary>
     public static float CalculateSpeed(IReadOnlyList<HexWithData<CellTemplate>> cells)
@@ -52,6 +52,7 @@ public static class CellBodyPlanInternalCalculations
         var massEstimate = 0.0f;
 
         var addedSpeed = 0.0f;
+        var actomyosinCount = CalculateEffectiveActomyosinCount(leader);
 
         foreach (var hex in cells)
         {
@@ -60,9 +61,14 @@ public static class CellBodyPlanInternalCalculations
             if (cell == leader)
                 continue;
 
+            var cellActomyosinCount = 0;
+
             foreach (var organelle in cell.Organelles)
             {
                 massEstimate += organelle.Definition.Density * organelle.Definition.HexCount;
+
+                if (organelle.Definition.HasActomyosinComponent)
+                    ++cellActomyosinCount;
 
                 if (!organelle.Definition.HasMovementComponent)
                     continue;
@@ -88,9 +94,18 @@ public static class CellBodyPlanInternalCalculations
 
                 addedSpeed += flagellumForce;
             }
+
+            if (cellActomyosinCount > 0)
+            {
+                // The first actomyosin in a cell counts fully, while additional ones have diminishing returns.
+                actomyosinCount += CalculateEffectiveActomyosinCount(cellActomyosinCount);
+            }
         }
 
-        return speed / cells.Count + addedSpeed / (massEstimate * 1.4f);
+        speed = speed / cells.Count + addedSpeed / (massEstimate * 1.4f);
+
+        // This matches the bonus applied to colony members in MicrobeMovementSystem.
+        return speed * CalculateActomyosinMovementMultiplier(actomyosinCount);
     }
 
     /// <summary>
@@ -144,10 +159,20 @@ public static class CellBodyPlanInternalCalculations
         var colonyRotation = MicrobeInternalCalculations.CalculateRotationSpeed(leader.ModifiableOrganelles,
             leaderTotalSpecializationBonus);
 
+        // NOTE: this is commented out as we don't skip the leader in the below loop due to algorithm problems
+        // (this method needs a rewrite).
+        // var actomyosinCount = CalculateEffectiveActomyosinCount(leader);
+        float actomyosinCount = 0;
+
         Vector3 leaderPosition = Hex.AxialToCartesian(leader.Position);
 
         foreach (var colonyMember in cells)
         {
+            // NOTE: the numbers are quite low if we don't count the leader in the editor, so that's why we don't
+            // check this.
+            /*if (colonyMember.Data == leader)
+                continue;*/
+
             var distanceSquared = leaderPosition.DistanceSquaredTo(Hex.AxialToCartesian(colonyMember.Position));
 
             var colonyMemberData = colonyMember.Data;
@@ -157,12 +182,20 @@ public static class CellBodyPlanInternalCalculations
 
             var memberRotation = MicrobeInternalCalculations
                     .CalculateRotationSpeed(colonyMemberData.ModifiableOrganelles, memberTotalSpecializationBonus) *
-                (1 + 0.03f * distanceSquared);
+                (1 + 0.05f * distanceSquared);
 
             colonyRotation += memberRotation;
+            actomyosinCount += CalculateEffectiveActomyosinCount(colonyMemberData);
         }
 
-        return colonyRotation / cells.Count;
+        return CalculateFinalColonyRotation(colonyRotation, actomyosinCount, cells.Count);
+    }
+
+    public static float CalculateFinalColonyRotation(float colonyRotation, float effectiveActomyosinCount,
+        int totalCellCount)
+    {
+        return colonyRotation * (1 + Constants.ACTOMYOSIN_ROTATION_BUFF_PER * effectiveActomyosinCount) /
+            totalCellCount;
     }
 
     public static float GetAdjacencySpecializationBonusFromBodyPlan(IReadOnlyCellTemplate? cellInBodyPlan,
@@ -178,7 +211,7 @@ public static class CellBodyPlanInternalCalculations
             if (cellInBodyPlan == cell)
                 continue;
 
-            if (cellInBodyPlan!.CellType == cell.Data!.CellType
+            if (ReferenceEquals(cellInBodyPlan!.CellType, cell.Data!.CellType)
                 && cell.Position.DistanceTo(cellInBodyPlan.Position) <= 1)
             {
                 bonus += Constants.CELL_ADJACENCY_SPECIALIZATION_BONUS;
@@ -203,7 +236,7 @@ public static class CellBodyPlanInternalCalculations
             if (cellInBodyPlan == cell.Data)
                 continue;
 
-            if (cellInBodyPlan!.CellType == cell.Data!.CellType
+            if (ReferenceEquals(cellInBodyPlan!.CellType, cell.Data!.CellType)
                 && cell.Position.DistanceTo(cellInBodyPlan.Position) <= 1)
             {
                 bonus += Constants.CELL_ADJACENCY_SPECIALIZATION_BONUS;
@@ -219,5 +252,34 @@ public static class CellBodyPlanInternalCalculations
     public static int MaxBudSize(int cellCount)
     {
         return cellCount / 2 + 1;
+    }
+
+    public static float CalculateEffectiveActomyosinCount(CellTemplate cell)
+    {
+        var actomyosinCount = 0;
+
+        foreach (var organelle in cell.Organelles)
+        {
+            if (organelle.Definition.HasActomyosinComponent)
+                ++actomyosinCount;
+        }
+
+        return CalculateEffectiveActomyosinCount(actomyosinCount);
+    }
+
+    public static float CalculateEffectiveActomyosinCount(int rawCountInCellType)
+    {
+        if (rawCountInCellType < 1)
+            return 0;
+
+        // The first actomyosin counts fully, and the other ones are then just a little effective.
+        // NOTE: at the time of writing actomyosin is marked as a unique organelle so this formula doesn't really
+        // affect anything.
+        return 1 + (rawCountInCellType - 1) * Constants.EFFECTIVE_ACTOMYOSIN_MULTIPLIER;
+    }
+
+    public static float CalculateActomyosinMovementMultiplier(float effectiveActomyosinCount)
+    {
+        return 1 + Constants.ACTOMYOSIN_MOVEMENT_BUFF_PER * effectiveActomyosinCount;
     }
 }

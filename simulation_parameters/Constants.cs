@@ -262,6 +262,11 @@ public static class Constants
     public const float FLAGELLA_MIN_UPGRADE_VISUAL_LENGTH = 0.80f;
 
     /// <summary>
+    ///   ATP cost per actomyosin organelle while a colony is moving.
+    /// </summary>
+    public const float ACTOMYOSIN_ENERGY_COST = 12.0f;
+
+    /// <summary>
     ///   As eukaryotes are immediately 50% larger, they get a movement force increase to offset that
     /// </summary>
     public const float EUKARYOTIC_MOVEMENT_FORCE_MULTIPLIER = 2.5f;
@@ -342,6 +347,17 @@ public static class Constants
 
     public const float CILIA_PULLING_FORCE_FALLOFF_FACTOR = 0.05f;
     public const float CILIA_CURRENT_GENERATION_ANIMATION_SPEED = 5.0f;
+
+    public const float ACTOMYOSIN_DEFAULT_ANIMATION_SPEED = 0.1f;
+    public const float ACTOMYOSIN_SPEED_SAMPLE_INTERVAL = 0.1f;
+    public const float ACTOMYOSIN_ROTATION_ANIMATION_SPEED_MULTIPLIER = 10.0f;
+    public const float ACTOMYOSIN_MIN_ANIMATION_SPEED = 0.5f;
+    public const float ACTOMYOSIN_MAX_ANIMATION_SPEED = 5;
+    public const float EFFECTIVE_ACTOMYOSIN_MULTIPLIER = 0.05f;
+    public const float ACTOMYOSIN_ROTATION_BUFF_PER = 0.15f;
+    public const float ACTOMYOSIN_MOVEMENT_BUFF_PER = 0.25f;
+
+    // TODO: harsher wording in the tooltip
 
     public const int MICROBE_SPAWN_RADIUS = 350;
 
