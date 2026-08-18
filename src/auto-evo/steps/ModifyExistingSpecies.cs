@@ -152,9 +152,9 @@ public class ModifyExistingSpecies : IRunStep
                         GD.PrintErr("Miche tree has a species not in the patch populations, still calculating " +
                             "mutations for it");
 
-                        if (species is MicrobeSpecies microbeSpecies)
+                        if (species is MicrobeSpecies or MulticellularSpecies)
                         {
-                            GetMutationsForSpecies(microbeSpecies, patch.SpeciesInPatch.Count);
+                            GetMutationsForSpecies(species, patch.SpeciesInPatch.Count);
                         }
                     }
                 }
