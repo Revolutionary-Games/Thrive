@@ -13,6 +13,7 @@ public class CellTypeFacadeHelper
 
     private readonly Dictionary<IReadOnlyCellTypeDefinition, CellTypeEditsFacade> activeCellTypes =
         new(ReferenceEqualityComparer.Instance);
+
     private readonly Stack<CellTypeEditsFacade> unusedCellTypes = new();
 
     public int ApproximateCount => addedCellTypes.Count - removedCellTypes.Count;
