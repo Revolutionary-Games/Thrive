@@ -209,6 +209,10 @@ public static class MulticellularLayoutHelpers
                         cell.Position, cell.Orientation), cell.Position, cell.Orientation), hexTemporaryMemory,
                     hexTemporaryMemory2);
             }
+            else
+            {
+                GD.PrintErr("Editor cell has no data, dropping it from the auto-evo gameplay layout");
+            }
         }
 
         UpdateGameplayLayout(targetGameplayLayout, targetEditorLayout, source, AlgorithmQuality.Low, hexTemporaryMemory,
