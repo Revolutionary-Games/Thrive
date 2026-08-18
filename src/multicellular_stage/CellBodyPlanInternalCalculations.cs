@@ -162,7 +162,7 @@ public static class CellBodyPlanInternalCalculations
             var memberTotalSpecializationBonus = colonyMemberData.CellTypeSpecializationBonus *
                 GetAdjacencySpecializationBonusFromBodyPlan(colonyMemberData.Data, cells);
 
-            // NOTE: to get this more in line with the gameplay, side we just multiply the positions by 10 as an
+            // NOTE: to get this more in line with the gameplay side we just multiply the positions by 10 as an
             // average cell size. This should make the display roughly correlate with the gameplay, though the exact
             // rotations should be a bit different, but the overall trend should follow the same direction.
             totalRotationSpeed += AdjustedColonyMemberRotationFromPosition(
