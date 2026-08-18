@@ -554,22 +554,35 @@ public class MembraneShapeGenerator
 
     private static bool IsInsideConvexPolygon(List<Vector2> vertices, Vector2 point)
     {
-        int verticesCount = vertices.Count;
-        if (verticesCount < 3)
+        int count = vertices.Count;
+        if (count < 3)
             return false;
 
-        // Determine winding from the first edge so we know which sign = "inside"
-        float firstCross = Cross(vertices[0], vertices[1], point);
+        // Determine winding from the first non-degenerate edge so we know which sign = "inside"
+        float referenceCross = 0f;
 
-        for (int i = 1; i < verticesCount; ++i)
+        for (int i = 0; i < count; i++)
         {
             var a = vertices[i];
-            var b = vertices[(i + 1) % verticesCount];
-            float cross = Cross(a, b, point);
+            var b = vertices[(i + 1) % count];
 
-            // If the sign flips, the point is outside (or on) this edge
-            if (firstCross * cross < 0)
+            float cross = (b.X - a.X) * (point.Y - a.Y)
+                - (b.Y - a.Y) * (point.X - a.X);
+
+            if (cross == 0f)
+                continue;
+
+            if (referenceCross == 0f)
+            {
+                referenceCross = cross;
+                continue;
+            }
+
+            // If the signs are different, the point is outside the edge
+            if (referenceCross > 0f != cross > 0f)
+            {
                 return false;
+            }
         }
 
         return true;
