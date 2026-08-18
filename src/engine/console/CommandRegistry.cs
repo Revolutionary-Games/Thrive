@@ -713,7 +713,7 @@ public class CommandRegistry : IDisposable
             " static commands.")]
         private void CommandInfo(CommandContext context)
         {
-            context.Print(CommandName + " " + HelpText + " " + IsCheat);
+            context.Print(CommandName + " " + HelpText + " IsCheat: " + IsCheat);
         }
     }
 
