@@ -278,7 +278,7 @@ public static class MichePopulation
 
                     var occupantScore = 0.0f;
 
-                    if (occupantSpecies != null)
+                    if (occupantSpecies is MicrobeSpecies or MulticellularSpecies)
                     {
                         occupantScore =
                             cache.GetPressureScore(currentMiche.Pressure, patch, occupantSpecies);
