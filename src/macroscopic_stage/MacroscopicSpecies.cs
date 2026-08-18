@@ -91,7 +91,7 @@ public class MacroscopicSpecies : Species, IReadOnlyMacroscopicSpecies
 #if DEBUG
         foreach (var metaball in ModifiableBodyLayout.AsModifiable())
         {
-            if (!ModifiableCellTypes.Contains(metaball.ModifiableCellType))
+            if (!ModifiableCellTypes.Any(cellType => ReferenceEquals(cellType, metaball.ModifiableCellType)))
             {
                 GD.PrintErr("Metaball has a cell type that doesn't exist");
                 Debugger.Break();

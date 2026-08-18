@@ -459,7 +459,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         var workMemory2 = new List<Hex>();
 
         // We need to ensure each cell type is cloned just once so that references work
-        var typeMapping = new Dictionary<CellType, CellType>();
+        var typeMapping = new Dictionary<CellType, CellType>(ReferenceEqualityComparer.Instance);
 
         ModifiableCellTypes.Clear();
 
@@ -653,7 +653,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         var workMemory2 = new List<Hex>();
 
         // We need to ensure each cell type is cloned just once so that references work
-        var typeMapping = new Dictionary<CellType, CellType>();
+        var typeMapping = new Dictionary<CellType, CellType>(ReferenceEqualityComparer.Instance);
 
         foreach (var cellType in ModifiableCellTypes)
         {
