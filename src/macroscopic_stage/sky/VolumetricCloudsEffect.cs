@@ -174,8 +174,11 @@ public partial class VolumetricCloudsEffect : CompositorEffect
             if (Volatile.Read(ref active))
             {
                 Volatile.Write(ref active, false);
+
                 activeInstance = EnqueuedInstances.Count > 0 ? EnqueuedInstances.RemoveFromFront() : null;
-                activeInstance?.active = true;
+
+                if (activeInstance is not null)
+                    Volatile.Write(ref activeInstance.active, true);
             }
             else
             {
@@ -352,9 +355,9 @@ public partial class VolumetricCloudsEffect : CompositorEffect
             rayMarcherSpirv = null!;
             upsamplerSpirv = null!;
             noiseProfile = null!;
-        }
 
-        RenderingServer.CallOnRenderThread(Callable.From(FreeResources));
+            RenderingServer.CallOnRenderThread(Callable.From(FreeResources));
+        }
 
         disposed = true;
 
@@ -364,11 +367,16 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     private static RDShaderSpirV LoadSpirV(string path)
     {
         var shaderFile = ResourceLoader.Load<RDShaderFile>(path, cacheMode: ResourceLoader.CacheMode.Ignore);
+
+        if (shaderFile is null)
+            throw new Exception($"Failed to load shader file: {path}");
+
         var spirv = shaderFile.GetSpirV();
 
-        return spirv.CompileErrorCompute != string.Empty ?
-            throw new Exception($"Error in shader {path}: {spirv.CompileErrorCompute}") :
-            spirv;
+        if (spirv.CompileErrorCompute != string.Empty)
+            throw new Exception($"Error in shader {path}: {spirv.CompileErrorCompute}");
+
+        return spirv;
     }
 
     /// <summary>
