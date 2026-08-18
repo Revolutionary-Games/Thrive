@@ -370,7 +370,7 @@ public static class CommonMutationFunctions
                 }
 
                 // If we end up exceeding the cell cap, abort the procedure as a failure
-                if (newSpecies.EditorCells.Count < Constants.AUTO_EVO_MAX_CELL_COUNT)
+                if (newSpecies.EditorCells.Count > Constants.AUTO_EVO_MAX_CELL_COUNT)
                     return false;
             }
         }

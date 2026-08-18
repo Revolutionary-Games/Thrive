@@ -245,8 +245,8 @@ public class AddCellWithOrganelle : IMutationStrategy<Species>
             if (AddCellsAdjacent(newSpecies, ref newMp, baseCells, baseCellsCount, baseCellType, newCellType,
                     newCellType.MPCost, adjacencyDirection, workMemory1, workMemory2))
             {
-                if (newSpecies.EditorCells.Count >= Constants.AUTO_EVO_MAX_CELL_COUNT)
-                    return;
+                if (newSpecies.EditorCells.Count > Constants.AUTO_EVO_MAX_CELL_COUNT)
+                    continue;
 
                 mutated.Add(new Mutant(newSpecies, newMp));
             }
