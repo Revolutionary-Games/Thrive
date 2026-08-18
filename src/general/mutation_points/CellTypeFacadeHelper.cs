@@ -160,7 +160,7 @@ public class CellTypeFacadeHelper
                         current = originalReader.Current;
 
                         // Need to read the next item if we are ignoring this item
-                        if (dataSource.removedCellTypes.Contains(current))
+                        if (dataSource.removedCellTypes.Any(type => ReferenceEquals(type, current)))
                             continue;
 
                         return true;
