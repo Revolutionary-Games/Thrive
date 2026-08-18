@@ -121,9 +121,9 @@ public class MutationLogicFunctions
             greenShift = random.Next(0.25f, 0.75f) * Constants.AUTO_EVO_COLOR_CHANGE_MAX_STEP;
             blueShift = random.Next(0.25f, 0.75f) * Constants.AUTO_EVO_COLOR_CHANGE_MAX_STEP;
 
-            var red = (oldColour.R + redShift) % 1.0f;
-            var green = (oldColour.G + greenShift) % 1.0f;
-            var blue = (oldColour.B + blueShift) % 1.0f;
+            var red = (newColour.R + redShift) % 1.0f;
+            var green = (newColour.G + greenShift) % 1.0f;
+            var blue = (newColour.B + blueShift) % 1.0f;
 
             cellType.Colour = new Color(red, green, blue);
         }
