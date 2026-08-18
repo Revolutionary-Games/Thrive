@@ -209,6 +209,8 @@ public class CommandRegistry : IDisposable
             {
                 GD.PrintErr($"No command called {commandName} has been found for registration.");
 
+                multicastCommands.Remove(commandName);
+
                 return false;
             }
         }
