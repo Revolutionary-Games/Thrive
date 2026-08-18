@@ -1037,6 +1037,7 @@ public static class MicrobeColonyHelpers
         // per cell give a small extra bonus
         float actomyosinCount = 0;
         float totalRotationSpeed = 0;
+        bool leader = true;
 
         foreach (var colonyMember in colony.ColonyMembers)
         {
@@ -1044,9 +1045,22 @@ public static class MicrobeColonyHelpers
             {
                 ref var memberOrganelleContainer = ref colonyMember.Get<OrganelleContainer>();
 
-                totalRotationSpeed += MicrobeInternalCalculations.CalculateRotationSpeed(
+                var rawRotation = MicrobeInternalCalculations.CalculateRotationSpeed(
                     memberOrganelleContainer.Organelles!.Organelles,
                     colonyMember.Get<SpecializationFactor>().TotalSpecializationBonus);
+
+                // Bonus from position
+                if (!leader)
+                {
+                    // This is the gameplay, full layout position, which means that this is likely more with big cells
+                    // than the CellBodyPlanInternalCalculations's version.
+                    var position = colonyMember.Get<AttachedToEntity>().RelativePosition;
+                    rawRotation =
+                        CellBodyPlanInternalCalculations
+                            .AdjustedColonyMemberRotationFromPosition(position, rawRotation);
+                }
+
+                totalRotationSpeed += rawRotation;
                 actomyosinCount += memberOrganelleContainer.CalculateEffectiveActomyosinCount();
             }
             catch (Exception e)
@@ -1054,6 +1068,9 @@ public static class MicrobeColonyHelpers
                 GD.PrintErr("Failed to calculate rotation speed for microbe colony, " +
                     "member likely missing a required component: ", e);
             }
+
+            // First cell is the leader
+            leader = false;
         }
 
         colony.ColonyRotationSpeed =

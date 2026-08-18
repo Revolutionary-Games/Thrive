@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Components;
+using Godot;
 
 public static class CellBodyPlanInternalCalculations
 {
@@ -161,12 +162,29 @@ public static class CellBodyPlanInternalCalculations
             var memberTotalSpecializationBonus = colonyMemberData.CellTypeSpecializationBonus *
                 GetAdjacencySpecializationBonusFromBodyPlan(colonyMemberData.Data, cells);
 
-            totalRotationSpeed += MicrobeInternalCalculations.CalculateRotationSpeed(
-                colonyMemberData.ModifiableOrganelles, memberTotalSpecializationBonus);
+            // NOTE: to get this more in line with the gameplay, side we just multiply the positions by 10 as an
+            // average cell size. This should make the display roughly correlate with the gameplay, though the exact
+            // rotations should be a bit different, but the overall trend should follow the same direction.
+            totalRotationSpeed += AdjustedColonyMemberRotationFromPosition(
+                Hex.AxialToCartesian(colonyMember.Position) * 10,
+                MicrobeInternalCalculations.CalculateRotationSpeed(colonyMemberData.ModifiableOrganelles,
+                    memberTotalSpecializationBonus));
             actomyosinCount += CalculateEffectiveActomyosinCount(colonyMemberData);
         }
 
         return CalculateFinalColonyRotation(totalRotationSpeed / cells.Count, actomyosinCount, cells.Count);
+    }
+
+    public static float AdjustedColonyMemberRotationFromPosition(Vector3 relativePosition, float rawRotation)
+    {
+        var distance = relativePosition.Length();
+
+        // Colony leader check if it is passed through this method
+        if (distance <= 1)
+            return rawRotation;
+
+        // Again, lower rotation value is faster, so we want the value to go down the farther the distance is.
+        return rawRotation / (1 + Constants.COLONY_ROTATION_CELL_LEVERAGE_FROM_DISTANCE * distance);
     }
 
     public static float CalculateFinalColonyRotation(float averageCellRotationSpeed, float effectiveActomyosinCount,

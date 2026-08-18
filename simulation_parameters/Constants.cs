@@ -286,8 +286,14 @@ public static class Constants
     public const float CELL_COLONY_MOVEMENT_FORCE_MULTIPLIER = 0.98f;
 
     /// <summary>
+    ///   The higher this value is, the more the colony rotation will be *buffed* by distance on cells. So farther
+    ///   away cells are simulated to have leverage in turning
+    /// </summary>
+    public const float COLONY_ROTATION_CELL_LEVERAGE_FROM_DISTANCE = 0.003f;
+
+    /// <summary>
     ///   How much the default <see cref="BASE_CELL_DENSITY"/> has volume in a cell. This determines how much
-    ///   additional organelles impact the cell. A normal organelle has a weight of 1 so if this value is 4 then the
+    ///   additional organelles impact the cell. A normal organelle has a weight of 1, so if this value is 4, then the
     ///   base density has as much impact on the average density as 4 organelles.
     /// </summary>
     public const float BASE_CELL_DENSITY_VOLUME = 4;
