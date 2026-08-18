@@ -140,6 +140,20 @@ public class CommandRegistry : IDisposable
         return false;
     }
 
+    /// <summary>
+    ///   Assigns the owner parameter instance to the specified command.
+    ///   If the specified has not been registered before, this method registers it.
+    /// </summary>
+    /// <param name="owner">The instance to be assigned.</param>
+    /// <param name="commandName">
+    ///   The command name as specified in the multicast command attribute of the target method.
+    /// </param>
+    /// <typeparam name="T">The type of the owner.</typeparam>
+    /// <returns>
+    ///   true iff the registration has been successful. This process fails if this method will be called
+    ///   before the registry is fully initialised, if the command has been already registered as static command, or
+    ///   if the number of registered instances quota is reached.
+    /// </returns>
     public bool TryRegisterMulticastCommandListener<T>(T owner, string commandName)
         where T : notnull
     {
@@ -221,6 +235,10 @@ public class CommandRegistry : IDisposable
         return true;
     }
 
+    /// <summary>
+    ///   Unregisters the specified owner for the specified command.
+    /// </summary>
+    /// <typeparam name="T">The owner type.</typeparam>
     public bool TryUnregisterMulticastCommandListener<T>(T owner, string commandName)
         where T : notnull
     {
