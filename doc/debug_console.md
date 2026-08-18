@@ -178,12 +178,12 @@ to run on the main thread, if possible. In this case, a regular static command c
 used instead.
 
 The instance number cap specified above has a default limit of 32, but it can be
-modified to be lower or higher by defining a `MulticastAllowedInstancesAttribute` on
-top of the class containing the multicast commands. This attribute takes two arguments:
+modified to be lower or higher by defining these parameters in the
+`MulticastCommandAttribute`:
 
 - `maxAllowedRegisteredInstances`, which is the maximum number of allowed registered
 instances for the execution of this command. It is recommended this is kept as low as
-possible to prevent too many invocations.
+possible to prevent too many invocations. Default is 32.
 - `failOnTooManyInstances`, a `bool` that determines whether the command execution should
 fail for **all** instances if the instance cap is reached. This is `true` by default.
 
