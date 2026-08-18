@@ -81,7 +81,11 @@ public class OrganelleUpgrades : IEquatable<OrganelleUpgrades>, IArchivable, IRe
 
     public override int GetHashCode()
     {
-        return UnlockedFeatures.GetHashCode() * 3 ^
+        var unlockedFeaturesHash = 17;
+        foreach (var feature in UnlockedFeatures)
+            unlockedFeaturesHash = unlockedFeaturesHash * 31 + (feature?.GetHashCode() ?? 0);
+
+        return unlockedFeaturesHash * 3 ^
             (CustomUpgradeData != null ? CustomUpgradeData.GetHashCode() : 1) * 1151;
     }
 
