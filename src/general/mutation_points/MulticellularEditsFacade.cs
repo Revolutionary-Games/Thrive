@@ -86,17 +86,6 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
         return new CellEnumerator(this);
     }
 
-    IEnumerator<IReadOnlyCellTypeDefinition> IEnumerable<IReadOnlyCellTypeDefinition>.GetEnumerator()
-    {
-        ResolveDataIfDirty();
-        return new CellTypeFacadeHelper.CellTypeEnumerator(cellTypes, multicellularSpecies.CellTypes.GetEnumerator());
-    }
-
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return ((IEnumerable<IReadOnlyCellDefinition>)this).GetEnumerator();
-    }
-
     public IReadOnlyHexWithData<IReadOnlyCellTemplate>? GetElementAt(Hex location, List<Hex> temporaryHexesStorage)
     {
         ResolveDataIfDirty();
@@ -131,6 +120,17 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
         }
 
         return null;
+    }
+
+    IEnumerator<IReadOnlyCellTypeDefinition> IEnumerable<IReadOnlyCellTypeDefinition>.GetEnumerator()
+    {
+        ResolveDataIfDirty();
+        return new CellTypeFacadeHelper.CellTypeEnumerator(cellTypes, multicellularSpecies.CellTypes.GetEnumerator());
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return ((IEnumerable<IReadOnlyCellDefinition>)this).GetEnumerator();
     }
 
     internal override void OnStartApplyChanges()
