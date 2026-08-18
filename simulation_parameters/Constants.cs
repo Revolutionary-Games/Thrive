@@ -701,7 +701,7 @@ public static class Constants
 
     public const float DEFAULT_MICROBE_VENT_THRESHOLD = 2.0f;
 
-    public const float CELL_ADJACENCY_SPECIALIZATION_BONUS = 0.04f;
+    public const float CELL_ADJACENCY_SPECIALIZATION_BONUS = 0.05f;
 
     /// <summary>
     ///   A cell needs to have this many organelles for specialization to apply to it
