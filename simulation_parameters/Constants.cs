@@ -704,11 +704,6 @@ public static class Constants
     public const float CELL_ADJACENCY_SPECIALIZATION_BONUS = 0.05f;
 
     /// <summary>
-    ///   A cell needs to have this many organelles for specialization to apply to it
-    /// </summary>
-    public const int CELL_SPECIALIZATION_APPLIES_AFTER_SIZE = 6;
-
-    /// <summary>
     ///   How many organelles a cell needs to have to be considered fully specialized. (i.e. the full specialization
     ///   bonus is granted)
     /// </summary>
