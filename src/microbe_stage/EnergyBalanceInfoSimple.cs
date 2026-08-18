@@ -74,6 +74,7 @@ public class EnergyBalanceInfoSimple
     {
         BaseMovement += energyBalanceInfoSimple.BaseMovement;
         Flagella += energyBalanceInfoSimple.Flagella;
+        Actomyosin += energyBalanceInfoSimple.Actomyosin;
         Cilia += energyBalanceInfoSimple.Cilia;
         TotalMovement += energyBalanceInfoSimple.TotalMovement;
         Osmoregulation += energyBalanceInfoSimple.Osmoregulation;
@@ -88,6 +89,7 @@ public class EnergyBalanceInfoSimple
     {
         BaseMovement = 0;
         Flagella = 0;
+        Actomyosin = 0;
         Cilia = 0;
         TotalMovement = 0;
         Osmoregulation = 0;
