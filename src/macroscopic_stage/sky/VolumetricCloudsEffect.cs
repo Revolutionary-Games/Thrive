@@ -1,4 +1,11 @@
-﻿// #define TOOLS_ENABLED
+﻿// Instead of using the TOOLS_ENABLED macro, you can use the 'clouds' command in the game console:
+// -- clouds reload - Reloads the pipeline
+// -- clouds profileenable - Enables profiling
+// -- clouds profiledisable - Disables profiling
+// -- clouds profileprint - Prints last frame's profiling data
+// -- clouds generatenoiseprofile - Generates the noise profile in the game files. Only available outside of release.
+//
+// #define TOOLS_ENABLED
 
 using System;
 using System.Threading;
