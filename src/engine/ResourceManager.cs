@@ -130,22 +130,13 @@ public partial class ResourceManager : Node
         totalStageResourcesToLoad = -1;
 
         // Some stages are equivalent in terms of required resources
-        switch (gameState)
+        gameStateThatIsLoading = gameState switch
         {
-            case MainGameState.MicrobeEditor:
-            case MainGameState.MulticellularEditor:
-                gameStateThatIsLoading = MainGameState.MicrobeStage;
-                break;
-            case MainGameState.MacroscopicEditor:
-                gameStateThatIsLoading = MainGameState.MacroscopicStage;
-                break;
-            case MainGameState.AscensionCeremony:
-                gameStateThatIsLoading = MainGameState.SpaceStage;
-                break;
-            default:
-                gameStateThatIsLoading = gameState;
-                break;
-        }
+            MainGameState.MicrobeEditor or MainGameState.MulticellularEditor => MainGameState.MicrobeStage,
+            MainGameState.MacroscopicEditor => MainGameState.MacroscopicStage,
+            MainGameState.AscensionCeremony => MainGameState.SpaceStage,
+            _ => gameState,
+        };
     }
 
     public bool ProgressStageLoad()
@@ -155,14 +146,12 @@ public partial class ResourceManager : Node
 
         if (totalStageResourcesToLoad == -1)
         {
-            if (StartStageResourceLoad())
-            {
-                // This returns only true on error
-                gameStateLoaded = true;
-                return true;
-            }
+            if (!StartStageResourceLoad())
+                return false;
 
-            return false;
+            // This returns only true on error
+            gameStateLoaded = true;
+            return true;
         }
 
         // Wait until the pending loads are empty
