@@ -163,6 +163,10 @@ that scanning all the non-static assemblies takes some time.
 Note that for this reason you can't register multicast commands that overload static
 commands due to the different nature of the registration process.
 
+It is also forbidden to register overloads from different classes, meaning you may not
+register a multicast command with the same name from both class A and class B for
+reflection safety reasons.
+
 ### Safety measures
 
 Multicast commands are inherently more dangerous than regular commands, as they

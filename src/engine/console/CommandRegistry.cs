@@ -215,6 +215,13 @@ public class CommandRegistry : IDisposable
             }
         }
 
+        if (multicastCommandRegistry.Overloads[0].MethodInfo.DeclaringType != owner.GetType())
+        {
+            GD.PrintErr("Attempted to register an overload outside the already registered class.");
+
+            return false;
+        }
+
         foreach (var command in multicastCommandRegistry.Overloads)
         {
             var multicastParameters = command.MulticastParameters!;
