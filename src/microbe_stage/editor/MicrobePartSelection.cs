@@ -237,8 +237,7 @@ public partial class MicrobePartSelection : MarginContainer
         if (Locked)
             iconRect.Modulate = Colors.Gray;
 
-        if (PartIcon != null)
-            iconRect.Texture = PartIcon;
+        iconRect.Texture = PartIcon;
     }
 
     private void UpdateCostIcon()

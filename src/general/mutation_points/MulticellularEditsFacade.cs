@@ -20,7 +20,9 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
     private MulticellularReproductionMethod reproductionMethod;
     private bool overrideReproductionMethod;
 
-    private IReadOnlyCellTypeDefinition? sporeCellTypeOverride;
+    private IReadOnlyCellTypeDefinition? sporeCellType;
+    private bool overrideSporeCellType;
+
     private IReadOnlyCellTypeDefinition? gameteACellTypeOverride;
     private IReadOnlyCellTypeDefinition? gameteBCellTypeOverride;
 
@@ -44,7 +46,8 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
     public MulticellularReproductionMethod ReproductionMethod =>
         overrideReproductionMethod ? reproductionMethod : multicellularSpecies.ReproductionMethod;
 
-    public IReadOnlyCellTypeDefinition? SporeCellType => sporeCellTypeOverride ?? multicellularSpecies.SporeCellType;
+    public IReadOnlyCellTypeDefinition? SporeCellType =>
+        overrideSporeCellType ? sporeCellType : multicellularSpecies.SporeCellType;
 
     public IReadOnlyCellTypeDefinition? GameteTypeA => gameteACellTypeOverride ?? multicellularSpecies.GameteTypeA;
     public IReadOnlyCellTypeDefinition? GameteTypeB => gameteBCellTypeOverride ?? multicellularSpecies.GameteTypeB;
@@ -147,7 +150,9 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
 
         overrideReproductionMethod = false;
 
-        sporeCellTypeOverride = null;
+        sporeCellType = null;
+        overrideSporeCellType = false;
+
         gameteACellTypeOverride = null;
         gameteBCellTypeOverride = null;
 
@@ -291,7 +296,8 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
         {
             cellTypes.HandleAction(actionData);
 
-            sporeCellTypeOverride = cellTypes.ResolveCellDefinition(sporeCellTypeChangeActionData.NewCellType);
+            overrideSporeCellType = true;
+            sporeCellType = cellTypes.ResolveCellDefinition(sporeCellTypeChangeActionData.NewCellType);
 
             return true;
         }
