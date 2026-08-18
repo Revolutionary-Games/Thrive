@@ -158,6 +158,11 @@ instance to the registry, so that every time the multicast command is executed i
 console it can call the instance method. Likewise, instances can be *unregistered* with
 `CommandRegistry.Instance.TryUnregisterMulticastCommandListener`.
 
+The reason behind multicast commands being registered on-demand and not on startup is
+that scanning all the non-static assemblies takes some time.
+Note that for this reason you can't register multicast commands that overload static
+commands due to the different nature of the registration process.
+
 ### Safety measures
 
 Multicast commands are inherently more dangerous than regular commands, as they
