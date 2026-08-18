@@ -745,6 +745,7 @@ void PhysicsTrace(const char* fmt, ...)
 
     char buffer[bufferSize];
 
+    static_assert(prefix.size() < bufferSize);
     std::memcpy(buffer, prefix.data(), prefix.size());
 
     va_list list;
