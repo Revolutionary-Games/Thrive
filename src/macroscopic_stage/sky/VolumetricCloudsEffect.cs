@@ -274,7 +274,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
 
             RenderingUtils.UpdateProjectionsPushConstant(pushConstantsBuffer, projection.Inverse(),
                 new Projection(viewTransform));
-            UpdateParamUniform(paramSpan, size, marchSize, cameraTransform.Origin);
+            UpdateParamUniform(paramSpan, size, marchSize, viewTransform.Origin);
 
             renderingDevice.BufferUpdate(paramUbo, 0, UniformParamsBufferSize, paramSpan,
                 RenderingDevice.BarrierMask.Compute);
