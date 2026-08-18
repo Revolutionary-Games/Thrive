@@ -105,6 +105,9 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     private byte[] pushConstantsBuffer = new byte[PushConstantsBufferSize];
     private byte[] uniformParamsBuffer = new byte[UniformParamsBufferSize];
 
+    private float lastAttemptedInner = -1.0f;
+    private float lastAttemptedOuter = -1.0f;
+
 #pragma warning disable CA2213
     private RenderingDevice? renderingDevice;
 
@@ -521,6 +524,35 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     private void UpdateParamUniform(Span<byte> paramSpan, Vector2I fullSize, Vector2I marchSize, Vector3 cameraPosition)
     {
         int offset = 0;
+
+        float safeInner = CloudInnerHeight;
+        float safeOuter = CloudOuterHeight;
+        bool isValid = true;
+
+        if (safeInner < 0.0f)
+        {
+            safeInner = 0.0f;
+            isValid = false;
+        }
+
+        if (safeOuter <= safeInner)
+        {
+            safeOuter = safeInner + 1.0f;
+            isValid = false;
+        }
+
+        if (!isValid)
+        {
+            if (!Mathf.IsEqualApprox(CloudInnerHeight, lastAttemptedInner) || 
+                !Mathf.IsEqualApprox(CloudOuterHeight, lastAttemptedOuter))
+            {
+                GD.PushError($"VolumetricCloudsEffect: Invalid cloud heights. Outer ({CloudOuterHeight})" +
+                    $"must be > Inner ({CloudInnerHeight}) >= 0. Clamping to {safeOuter} and {safeInner}.");
+            }
+        }
+
+        lastAttemptedInner = CloudInnerHeight;
+        lastAttemptedOuter = CloudOuterHeight;
 
         float cloudInner = CloudInnerHeight >= 0.0f ? CloudInnerHeight : 0.0f;
         float cloudOuter = CloudOuterHeight > CloudInnerHeight + 1.0f ? CloudOuterHeight : CloudInnerHeight + 1.0f;
