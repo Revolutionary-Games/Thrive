@@ -230,6 +230,8 @@ public class CommandRegistry : IDisposable
                 // name instead.
                 return false;
             }
+
+            multicastParameters.Disabled = false;
         }
 
         multicastCommandRegistry.Owners.Add(owner);
