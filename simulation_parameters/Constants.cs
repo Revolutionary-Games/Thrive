@@ -713,7 +713,7 @@ public static class Constants
     ///   Controls how strong the cell specialization effect is (this is a flat multiplier right now but we could use
     ///   something like a power curve or another function for diminishing returns)
     /// </summary>
-    public const float CELL_SPECIALIZATION_STRENGTH_MULTIPLIER = 0.4f;
+    public const float CELL_SPECIALIZATION_STRENGTH_MULTIPLIER = 0.5f;
 
     /// <summary>
     ///   Controls how much having a nucleus boosts the cell specialization effect
