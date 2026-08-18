@@ -103,7 +103,7 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyMetaballLayout<T>, IAr
 
     public bool Contains(T metaball)
     {
-        return metaballs.Contains(metaball);
+        return metaballs.Any(existing => ReferenceEquals(existing, metaball));
     }
 
     public void CopyTo(T[] array, int arrayIndex)
@@ -116,10 +116,15 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyMetaballLayout<T>, IAr
 
     public bool Remove(T metaball)
     {
-        if (metaballs.Remove(metaball))
+        for (int i = 0; i < metaballs.Count; ++i)
         {
-            onRemoved?.Invoke(metaball);
-            return true;
+            if (ReferenceEquals(metaballs[i], metaball))
+            {
+                var removedMetaball = metaballs[i];
+                metaballs.RemoveAt(i);
+                onRemoved?.Invoke(removedMetaball);
+                return true;
+            }
         }
 
         return false;
