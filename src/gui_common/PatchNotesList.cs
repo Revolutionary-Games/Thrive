@@ -190,7 +190,9 @@ public partial class PatchNotesList : VBoxContainer
         {
             itemBackground?.Dispose();
 
-            thingsToShowComputeResults?.Dispose();
+            // Only dispose if the task is completed, otherwise it will throw an exception in the task runner
+            if (thingsToShowComputeResults?.IsCompleted == true)
+                thingsToShowComputeResults.Dispose();
         }
 
         base.Dispose(disposing);
