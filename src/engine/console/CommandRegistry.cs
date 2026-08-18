@@ -456,8 +456,8 @@ public class CommandRegistry : IDisposable
         }
     }
 
-    [Command("help", false, "Shows all the multicast commands and how many owners they" +
-        "have.")]
+    [Command("multicast", false,
+        "Shows all the multicast commands and how many owners they have.")]
     private static void CommandMulticast(CommandContext context)
     {
         var multicastCommands = Instance.multicastCommands;
