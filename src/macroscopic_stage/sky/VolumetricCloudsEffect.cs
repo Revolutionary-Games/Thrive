@@ -1,6 +1,7 @@
 ﻿// #define TOOLS_ENABLED
 
 using System;
+using System.Threading;
 using Godot;
 using Godot.Collections;
 using Nito.Collections;
@@ -70,7 +71,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     private const string UpsamplerShaderFileName = "res://shaders/sky/upsampler.glsl";
 
     private static readonly Deque<VolumetricCloudsEffect> EnqueuedInstances = [];
-    private static readonly object InstanceLock = new();
+    private static readonly Lock InstanceLock = new();
 
     private static VolumetricCloudsEffect? activeInstance;
 
@@ -124,7 +125,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
             else
             {
                 activeInstance = this;
-                active = true;
+                Volatile.Write(ref active, true);
             }
         }
 
@@ -163,9 +164,9 @@ public partial class VolumetricCloudsEffect : CompositorEffect
 
         lock (InstanceLock)
         {
-            if (active)
+            if (Volatile.Read(ref active))
             {
-                active = false;
+                Volatile.Write(ref active, false);
                 activeInstance = EnqueuedInstances.Count > 0 ? EnqueuedInstances.RemoveFromFront() : null;
                 activeInstance?.active = true;
             }
@@ -224,7 +225,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
                 break;
         }
 
-        if (!active)
+        if (!Volatile.Read(ref active))
             return;
 
         if (renderingDevice is null || !rayMarcherPipeline.IsValid || !upsamplerPipeline.IsValid)
@@ -346,7 +347,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
             noiseProfile = null!;
         }
 
-        FreeResources();
+        RenderingServer.CallOnRenderThread(Callable.From(FreeResources));
 
         disposed = true;
 
