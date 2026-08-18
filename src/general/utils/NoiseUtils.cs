@@ -91,7 +91,9 @@ public static class NoiseUtils
 
         Vector3 f = scaled - new Vector3(c0.X, c0.Y, c0.Z);
 
-        float ux = MathUtils.FadeQuintic(f.X), uy = MathUtils.FadeQuintic(f.Y), uz = MathUtils.FadeQuintic(f.Z);
+        float ux = MathUtils.FadeQuintic(f.X);
+        float uy = MathUtils.FadeQuintic(f.Y);
+        float uz = MathUtils.FadeQuintic(f.Z);
 
         float Corner(int dx, int dy, int dz)
         {
@@ -115,13 +117,15 @@ public static class NoiseUtils
 
     public static float FractionalBrownianMotionWorley(Vector3 point, int baseGrid, int octaves, int seed)
     {
-        float sum = 0.0f, amp = 0.5f, norm = 0.0f;
+        float sum = 0.0f;
+        float amplitude = 0.5f;
+        float norm = 0.0f;
         int grid = baseGrid;
         for (int o = 0; o < octaves; ++o)
         {
-            sum += amp * WorleyTiling(point, grid, seed + o * 17);
-            norm += amp;
-            amp *= 0.5f;
+            sum += amplitude * WorleyTiling(point, grid, seed + o * 17);
+            norm += amplitude;
+            amplitude *= 0.5f;
             grid *= 2;
         }
 
@@ -130,13 +134,15 @@ public static class NoiseUtils
 
     public static float FractionalBrownianMotionPerlin(Vector3 point, int baseGrid, int octaves, int seed)
     {
-        float sum = 0.0f, amp = 0.5f, norm = 0.0f;
+        float sum = 0.0f;
+        float amplitude = 0.5f;
+        float norm = 0.0f;
         int grid = baseGrid;
         for (int o = 0; o < octaves; ++o)
         {
-            sum += amp * PerlinTiling(point, grid, seed + o * 17);
-            norm += amp;
-            amp *= 0.5f;
+            sum += amplitude * PerlinTiling(point, grid, seed + o * 17);
+            norm += amplitude;
+            amplitude *= 0.5f;
             grid *= 2;
         }
 
