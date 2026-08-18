@@ -50,6 +50,50 @@ public partial class DebugOverlays
         }
     }
 
+    public static string FormatEntityDebugLabel(Entity entity)
+    {
+        if (!entity.IsAliveAndNotNull())
+            return $"[{entity.Id}-{entity.Version}]";
+
+        // TODO: chunks used to have their label be $"[{entity}:{chunk.ChunkName}]".
+        // Chunk configuration is not currently saved so the chunk name is not really available.
+        string text;
+
+        if (entity.Has<SpeciesMember>())
+        {
+            var species = entity.Get<SpeciesMember>().Species;
+
+            text = $"[{entity.Id}-{entity.Version}:{species.Genus.Left(1)}.{species.Epithet.Left(4)}]";
+        }
+        else if (entity.Has<ReadableName>())
+        {
+            // TODO: localization support? Should all labels be re-initialized on language change?
+
+            // TODO: some entities would probably be fine with not displaying the entity reference before the
+            // readable name
+            text = $"[{entity.Id}-{entity.Version}:{entity.Get<ReadableName>().Name}]";
+        }
+        else
+        {
+            // Fallback to just showing the raw entity reference, nothing else can be shown
+            text = $"[{entity.Id}-{entity.Version}]";
+        }
+
+        // Showing signalling agent state for debugging AI
+        if (entity.Has<CommandSignaler>())
+        {
+            ref var signaler = ref entity.Get<CommandSignaler>();
+
+            if (signaler.Command != MicrobeSignalCommand.None)
+            {
+                // This is on a new line as otherwise things would be a bit long
+                text += $"\n{signaler.Command}";
+            }
+        }
+
+        return text;
+    }
+
     public void UpdateActiveEntities(IWorldSimulation worldSimulation)
     {
         if (!ShowEntityLabels)
@@ -175,33 +219,10 @@ public partial class DebugOverlays
 
             label.Position = activeCamera.UnprojectPosition(position.Position);
 
-            if (label.Text.Length > 0)
-                continue;
+            var text = FormatEntityDebugLabel(entity);
 
-            // Update names
-
-            // TODO: chunks used to have their label be $"[{entity}:{chunk.ChunkName}]"
-            // Chunk configuration is not currently saved so the chunk name is not really
-            if (entity.Has<SpeciesMember>())
-            {
-                var species = entity.Get<SpeciesMember>().Species;
-
-                label.Text = $"[{entity.Id}-{entity.Version}:{species.Genus.Left(1)}.{species.Epithet.Left(4)}]";
-                continue;
-            }
-
-            if (entity.Has<ReadableName>())
-            {
-                // TODO: localization support? Should all labels be re-initialized on language change?
-
-                // TODO: some entities would probably be fine with not displaying the entity reference before the
-                // readable name
-                label.Text = $"[{entity.Id}-{entity.Version}:{entity.Get<ReadableName>().Name}]";
-                continue;
-            }
-
-            // Fallback to just showing the raw entity reference, nothing else can be shown
-            label.Text = $"[{entity.Id}-{entity.Version}]";
+            if (label.Text != text)
+                label.Text = text;
         }
     }
 
