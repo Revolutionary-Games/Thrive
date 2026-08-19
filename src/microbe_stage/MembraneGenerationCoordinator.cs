@@ -19,7 +19,7 @@ public static class MembraneGenerationCoordinator
     ///   Stores finished stretched multicellular membranes. Unlike a cache, an entry here is
     ///   removed the moment it is consumed.
     /// </summary>
-    private static readonly ConcurrentDictionary<long, MembranePointData> FinishedMulticellularMembranes = new();
+    private static readonly ConcurrentDictionary<int, MembranePointData> FinishedMulticellularMembranes = new();
 
     /// <summary>
     ///   Handles membrane generation requests. For single-cell requests the list contains one hash.
@@ -38,8 +38,6 @@ public static class MembraneGenerationCoordinator
             generatedMembranes.Add(hash);
             return generatedMembranes;
         }
-
-        var registeredHash = generationParameters.ComputeMembraneDataHash();
 
         generationParameters.IsPreMulticellularStretch = true;
 
@@ -60,19 +58,20 @@ public static class MembraneGenerationCoordinator
         var cellPosition = generationParameters.CurrentCellMulticellularMembraneGenerationCellData.Position;
         var cellOrientation = generationParameters.CurrentCellMulticellularMembraneGenerationCellData.Orientation;
 
-        var colonyTrackerKey = GetColonyTrackerKey(generationParameters, grownCellsData);
-
-        var tracker = ColonyTrackers.GetOrAdd(colonyTrackerKey,
+        var tracker = ColonyTrackers.GetOrAdd(generationParameters.LeaderCellId,
             _ => new ColonyTracker { ExpectedCount = grownCellsData.Length });
 
         var multicellularMembraneData = new MulticellularMembraneGenerationCellData(cellPosition, cellOrientation);
 
-        var singleCellData = new NeighbourData(registeredHash, multicellularMembraneData, singleCellMembranePointData);
+        var singleCellData = new NeighbourData(generationParameters.CellId, multicellularMembraneData,
+            singleCellMembranePointData);
 
         tracker.NeighboursData[CellKey(cellPosition)] = singleCellData;
 
         // TODO: Maybe implement a system that clears trackers every now and then that are inactive
         // for too long to avoid potential memory leaks
+
+        GD.Print($"{generationParameters.LeaderCellId}: {tracker.NeighboursData.Count}/{tracker.ExpectedCount}");
 
         // Colony not yet complete — return empty
         if (tracker.NeighboursData.Count < tracker.ExpectedCount)
@@ -86,13 +85,14 @@ public static class MembraneGenerationCoordinator
         foreach (var (key, data) in tracker.NeighboursData)
         {
             var multicellularMembrane =
-                generator.GenerateMulticellularMembrane(key, tracker.NeighboursData, grownCellsData);
+                generator.GenerateMulticellularMembrane(key, tracker.NeighboursData,
+                    generationParameters.LeaderCellId, generationParameters.CellId);
 
-            AddMulticellularMembrane(data.SingleCellHash, multicellularMembrane);
-            generatedMembranes.Add(data.SingleCellHash);
+            AddMulticellularMembrane(data.CellId, multicellularMembrane);
+            generatedMembranes.Add(data.CellId);
         }
 
-        ColonyTrackers.TryRemove(colonyTrackerKey, out _);
+        ColonyTrackers.TryRemove(generationParameters.LeaderCellId, out _);
 
         return generatedMembranes;
     }
@@ -100,7 +100,7 @@ public static class MembraneGenerationCoordinator
     /// <summary>
     ///   Attempts to retrieve and remove a finished stretched multicellular membrane.
     /// </summary>
-    public static bool TryTakeFinishedMulticellularMembrane(long hash, out MembranePointData? data)
+    public static bool TryTakeFinishedMulticellularMembrane(int hash, out MembranePointData? data)
     {
         return FinishedMulticellularMembranes.TryRemove(hash, out data);
     }
@@ -132,68 +132,15 @@ public static class MembraneGenerationCoordinator
         ColonyTrackers.Clear();
     }
 
-    public static long ComputeColonyKey(MulticellularMembraneGenerationCellData[] cellsData)
+    private static void AddMulticellularMembrane(int cellId, MembranePointData data)
     {
-        unchecked
-        {
-            const long offset = -3750763034362895579L;
-            const long prime = 1099511628211L;
-
-            long hash = offset;
-            hash ^= cellsData.Length;
-            hash *= prime;
-
-            foreach (var cell in cellsData)
-            {
-                hash ^= BitConverter.SingleToInt32Bits(cell.Position.X) * prime;
-                hash *= prime;
-                hash ^= BitConverter.SingleToInt32Bits(cell.Position.Y) * prime;
-                hash *= prime;
-                hash ^= cell.Orientation * prime;
-                hash *= prime;
-            }
-
-            return hash;
-        }
-    }
-
-    private static void AddMulticellularMembrane(long hash, MembranePointData data)
-    {
-        if (FinishedMulticellularMembranes.TryRemove(hash, out var previous))
+        if (FinishedMulticellularMembranes.TryRemove(cellId, out var previous))
         {
             GD.PrintErr("FinishedMulticellularMembranes was overwritten");
             previous.Dispose();
         }
 
-        FinishedMulticellularMembranes[hash] = data;
-    }
-
-    private static long GetColonyTrackerKey(MembraneGenerationParameters generationParameters,
-        MulticellularMembraneGenerationCellData[] grownCellsData)
-    {
-        const long prime = 1099511628211L;
-        long colonyKey;
-
-        // Prefer the ColonyKey provided in generationParameters if available. Otherwise compute or fetch a cached
-        // colony key for this colony. generationParameters may not carry a reference to the species, so fall back
-        // to computing directly if necessary.
-        if (generationParameters.IsColonyKeyValid)
-        {
-            colonyKey = generationParameters.ColonyKey;
-        }
-        else
-        {
-            colonyKey = ComputeColonyKey(grownCellsData);
-        }
-
-        unchecked
-        {
-            // Use leader cell Id in case colonies with the same number of cells spawn in the world
-            colonyKey ^= generationParameters.LeaderCellId * prime;
-            colonyKey *= prime;
-        }
-
-        return colonyKey;
+        FinishedMulticellularMembranes[cellId] = data;
     }
 
     private static long CellKey(Vector2 position)

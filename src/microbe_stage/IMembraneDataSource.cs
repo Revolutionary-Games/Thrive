@@ -11,11 +11,12 @@ public interface IMembraneDataSource
     public Vector2[] HexPositions { get; }
     public int HexPositionCount { get; }
     public MulticellularMembraneGenerationCellData CurrentCellMulticellularMembraneGenerationCellData { get; }
-    public long ColonyKey { get; }
     public MembraneType Type { get; }
+    public int LeaderCellId { get; }
+    public int CellId { get; }
     public bool IsPreMulticellularStretch { get; }
     public bool IsMulticellularMembraneDataValid { get; }
-    public bool IsColonyKeyValid { get; }
+    public bool IsMulticellular { get; }
 }
 
 public struct MulticellularMembraneGenerationCellData
@@ -37,17 +38,17 @@ public struct MembraneGenerationParameters : IMembraneDataSource
 {
     public MembraneGenerationParameters(Vector2[] hexPositions, int hexPositionCount, MembraneType type,
         MulticellularMembraneGenerationCellData currentCellMulticellularMembraneGenerationCellData,
-        MulticellularMembraneGenerationCellData[] grownCellsData,
-        long colonyKey, int leaderCellId, bool isPreMulticellularStretch = false)
+        MulticellularMembraneGenerationCellData[] grownCellsData, int leaderCellId, int cellId,
+        bool isPreMulticellularStretch = false)
         : this(hexPositions, hexPositionCount, type)
     {
         CurrentCellMulticellularMembraneGenerationCellData = currentCellMulticellularMembraneGenerationCellData;
         GrownCellsData = grownCellsData;
-        ColonyKey = colonyKey;
         LeaderCellId = leaderCellId;
+        CellId = cellId;
         IsPreMulticellularStretch = isPreMulticellularStretch;
         IsMulticellularMembraneDataValid = true;
-        IsColonyKeyValid = true;
+        IsMulticellular = true;
     }
 
     public MembraneGenerationParameters(Vector2[] hexPositions, int hexPositionCount, MembraneType type)
@@ -65,15 +66,14 @@ public struct MembraneGenerationParameters : IMembraneDataSource
 
     public MembraneType Type { get; }
 
-    public long ColonyKey { get; }
-
     public int HexPositionCount { get; }
 
+    public int CellId { get; }
     public int LeaderCellId { get; }
 
     public bool IsPreMulticellularStretch { get; set; }
     public bool IsMulticellularMembraneDataValid { get; }
-    public bool IsColonyKeyValid { get; }
+    public bool IsMulticellular { get; }
 }
 
 /// <summary>
@@ -191,11 +191,6 @@ public static class MembraneComputationHelpers
                 hash = (hash * prime1) ^ dataSource.CurrentCellMulticellularMembraneGenerationCellData.Orientation;
             }
 
-            if (dataSource.IsColonyKeyValid)
-            {
-                hash = (hash * prime1) ^ dataSource.ColonyKey;
-            }
-
             if (dataSource.IsPreMulticellularStretch)
             {
                 hash = (hash * prime1) ^ 1;
@@ -208,15 +203,16 @@ public static class MembraneComputationHelpers
     public static bool MembraneDataFieldsEqual(this IMembraneDataSource dataSource, IMembraneDataSource other)
     {
         return dataSource.MembraneDataFieldsEqual(other.HexPositions, other.HexPositionCount, other.Type,
-            other.CurrentCellMulticellularMembraneGenerationCellData, other.ColonyKey,
+            other.CurrentCellMulticellularMembraneGenerationCellData, other.LeaderCellId, other.CellId,
             other.IsMulticellularMembraneDataValid,
-            other.IsColonyKeyValid);
+            other.IsMulticellular);
     }
 
     public static bool MembraneDataFieldsEqual(this IMembraneDataSource dataSource, Vector2[] otherPoints,
         int otherPointCount, MembraneType otherType,
         MulticellularMembraneGenerationCellData otherMulticellularMembraneGenerationCellData,
-        long otherColonyKey, bool isOtherMulticellularMembraneDataValid, bool isOtherColonyKeyValid)
+        int otherLeaderCellId, long otherColonyCellHash, bool isOtherMulticellularMembraneDataValid,
+        bool isOtherColonyKeyValid)
     {
         if (!dataSource.Type.Equals(otherType))
         {
@@ -267,19 +263,25 @@ public static class MembraneComputationHelpers
             }
         }
 
-        if (dataSource.IsColonyKeyValid || isOtherColonyKeyValid)
+        if (dataSource.IsMulticellular || isOtherColonyKeyValid)
         {
-            if (!dataSource.IsColonyKeyValid || !isOtherColonyKeyValid)
+            if (!dataSource.IsMulticellular || !isOtherColonyKeyValid)
             {
                 GD.PrintErr("Membrane cache IsColonyKeyValid mismatch: " +
-                    $"source={dataSource.IsColonyKeyValid} " +
+                    $"source={dataSource.IsMulticellular} " +
                     $"other={isOtherColonyKeyValid}");
                 return false;
             }
 
-            if (dataSource.ColonyKey != otherColonyKey)
+            if (dataSource.LeaderCellId != otherLeaderCellId)
             {
-                GD.PrintErr($"Membrane cache ColonyKey mismatch: {dataSource.ColonyKey} != {otherColonyKey}");
+                GD.PrintErr($"Membrane cache LeaderCellId mismatch: {dataSource.LeaderCellId} != {otherLeaderCellId}");
+                return false;
+            }
+
+            if (dataSource.CellId != otherColonyCellHash)
+            {
+                GD.PrintErr($"Membrane cache ColonyCellHash mismatch: {dataSource.CellId} != {otherColonyCellHash}");
                 return false;
             }
         }

@@ -25,13 +25,14 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
     public MembranePointData(Vector2[] hexPositions, int hexPositionCount, MembraneType type,
         IReadOnlyList<Vector2> verticesToCopy,
         MulticellularMembraneGenerationCellData currentCellMulticellularMembraneGenerationCellData,
-        long colonyKey, bool isPreMulticellularStretch = false) : this(hexPositions,
+        int leaderCellId, int cellId, bool isPreMulticellularStretch = false) : this(hexPositions,
         hexPositionCount, type, verticesToCopy, isPreMulticellularStretch)
     {
         CurrentCellMulticellularMembraneGenerationCellData = currentCellMulticellularMembraneGenerationCellData;
-        ColonyKey = colonyKey;
         IsMulticellularMembraneDataValid = true;
-        IsColonyKeyValid = true;
+        IsMulticellular = true;
+        LeaderCellId = leaderCellId;
+        CellId = cellId;
     }
 
     public MembranePointData(Vector2[] hexPositions, int hexPositionCount, MembraneType type,
@@ -83,17 +84,14 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
 
     public MulticellularMembraneGenerationCellData CurrentCellMulticellularMembraneGenerationCellData { get; }
 
-    /// <summary>
-    ///   Precomputed colony key that encodes neighbour positions and rotations for caching/equality.
-    /// </summary>
-    public long ColonyKey { get; }
-
     public MembraneType Type { get; }
 
     // TODO: check all uses when switching this
     public Vector2[] Vertices2D { get; }
 
     public int VertexCount { get; }
+    public int LeaderCellId { get; }
+    public int CellId { get; }
 
     public ArrayMesh GeneratedMesh => finalMesh.Value.Mesh;
     public int SurfaceIndex => finalMesh.Value.SurfaceIndex;
@@ -135,7 +133,7 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
 
     public bool IsMulticellularMembraneDataValid { get; }
 
-    public bool IsColonyKeyValid { get; }
+    public bool IsMulticellular { get; }
 
     public bool MatchesCacheParameters(ICacheableData cacheData)
     {
@@ -202,7 +200,7 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
 
 public sealed class NeighbourData
 {
-    public long SingleCellHash;
+    public int CellId;
     public Vector2 OriginalAverageVertex;
     public Vector2 LocalAverageVertex;
     public MembranePointData OriginalPointData;
@@ -221,11 +219,11 @@ public sealed class NeighbourData
     /// </summary>
     public HashSet<long> ProcessedNeighbours = new();
 
-    public NeighbourData(long singleCellHash,
+    public NeighbourData(int cellId,
         MulticellularMembraneGenerationCellData multicellularMembraneGenerationCellData,
         MembranePointData originalPointData)
     {
-        SingleCellHash = singleCellHash;
+        CellId = cellId;
         OriginalPointData = originalPointData;
         MulticellularMembraneGenerationCellData = multicellularMembraneGenerationCellData;
         OriginalAverageVertex = GetAverageVertex();

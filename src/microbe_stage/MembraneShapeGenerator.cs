@@ -166,8 +166,7 @@ public class MembraneShapeGenerator
     ///   waviness as it is normally done in single cellular membrane
     /// </summary>
     public MembranePointData GenerateMulticellularMembrane(long thisCellKey,
-        ConcurrentDictionary<long, NeighbourData> neighboursData,
-        MulticellularMembraneGenerationCellData[] cellsData)
+        ConcurrentDictionary<long, NeighbourData> neighboursData, int leaderCellId, int cellId)
     {
         currentCellKey = thisCellKey;
         var currentCellData = neighboursData[currentCellKey];
@@ -189,14 +188,11 @@ public class MembraneShapeGenerator
         var hexCopy = ArrayPool<Vector2>.Shared.Rent(hexCount);
         originalPointData.HexPositions.AsSpan(0, hexCount).CopyTo(hexCopy);
 
-        var colonyKey =
-            MembraneGenerationCoordinator.ComputeColonyKey(cellsData);
-
         var multicellularMembraneData =
             new MulticellularMembraneGenerationCellData(thisCellPosition, thisCellOrientation);
 
         return new MembranePointData(hexCopy, hexCount, originalPointData.Type, vertices2D, multicellularMembraneData,
-            colonyKey, false);
+            leaderCellId, cellId);
     }
 
     /// <summary>
@@ -559,9 +555,9 @@ public class MembraneShapeGenerator
             return false;
 
         // Determine winding from the first non-degenerate edge so we know which sign = "inside"
-        float referenceCross = 0f;
+        float referenceCross = 0.0f;
 
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < count; ++i)
         {
             var a = vertices[i];
             var b = vertices[(i + 1) % count];
@@ -569,17 +565,17 @@ public class MembraneShapeGenerator
             float cross = (b.X - a.X) * (point.Y - a.Y)
                 - (b.Y - a.Y) * (point.X - a.X);
 
-            if (cross == 0f)
+            if (cross == 0.0f)
                 continue;
 
-            if (referenceCross == 0f)
+            if (referenceCross == 0.0f)
             {
                 referenceCross = cross;
                 continue;
             }
 
             // If the signs are different, the point is outside the edge
-            if (referenceCross > 0f != cross > 0f)
+            if (referenceCross > 0.0f != cross > 0.0f)
             {
                 return false;
             }

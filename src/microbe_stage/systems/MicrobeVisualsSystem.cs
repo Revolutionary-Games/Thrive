@@ -191,7 +191,8 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
                     var cellIndex = speciesMember.MulticellularBodyPlanPartIndex;
                     var cell = speciesMember.Species.ModifiableGameplayCells[cellIndex];
                     data = GetMulticellularMembraneDataIfReadyOrStartGenerating(cell, cell.ModifiableOrganelles,
-                        colonyLeader.Id, ref speciesMember, ref growthOrder, cellIndex, nextBodyPlanCellToGrowIndex);
+                        colonyLeader.Id, entity.Id, ref speciesMember, ref growthOrder, cellIndex,
+                        nextBodyPlanCellToGrowIndex);
                 }
             }
         }
@@ -313,7 +314,7 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
     }
 
     private MembranePointData? GetMulticellularMembraneDataIfReadyOrStartGenerating(CellTemplate cellProperties,
-        OrganelleLayout<OrganelleTemplate> organelleContainer, int leaderCellId,
+        OrganelleLayout<OrganelleTemplate> organelleContainer, int leaderCellId, int cellId,
         ref MulticellularSpeciesMember multicellular, ref MulticellularGrowth growthOrder, int currentCellIndex,
         int nextBodyPlanCellToGrowIndex)
     {
@@ -323,11 +324,9 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
             out var hexCount);
 
         MulticellularMembraneGenerationCellData[] grownCellsData;
-        long colonyKey;
 
-        if (growthOrder.IsColonyKeyValid && growthOrder.GrownCellsData != null)
+        if (growthOrder.GrownCellsData != null)
         {
-            colonyKey = growthOrder.ColonyKey;
             grownCellsData = growthOrder.GrownCellsData;
         }
         else
@@ -357,10 +356,6 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
                 ++writeIndex;
             }
 
-            colonyKey = MembraneGenerationCoordinator.ComputeColonyKey(grownCellsData);
-
-            growthOrder.ColonyKey = colonyKey;
-            growthOrder.IsColonyKeyValid = true;
             growthOrder.GrownCellsData = grownCellsData;
         }
 
@@ -369,34 +364,7 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         var cellPositionInMulticellular = new Vector2(cellPosition.X, cellPosition.Z) *
             Constants.MULTICELLULAR_CELL_DISTANCE_MULTIPLIER;
 
-        var multicellularMembraneData =
-            new MulticellularMembraneGenerationCellData(cellPositionInMulticellular, currentCell.Orientation);
-
-        var membraneGenerationParameters = new MembraneGenerationParameters(hexes, hexCount,
-            cellProperties.MembraneType, multicellularMembraneData, grownCellsData, colonyKey,
-            leaderCellId);
-
-        var hash = membraneGenerationParameters.ComputeMembraneDataHash();
-
-        MembranePointData? finishedMembrane = null;
-
-        if (MembraneGenerationCoordinator.TryTakeFinishedMulticellularMembrane(hash, out var takenMembrane))
-        {
-            if (takenMembrane != null)
-            {
-                if (!takenMembrane.MembraneDataFieldsEqual(membraneGenerationParameters))
-                {
-                    CacheableDataExtensions.OnCacheHashCollision<MembranePointData>(hash);
-
-                    // This entry is no longer referenced by anything else, so it must be disposed here.
-                    takenMembrane.Dispose();
-                }
-                else
-                {
-                    finishedMembrane = takenMembrane;
-                }
-            }
-        }
+        MembraneGenerationCoordinator.TryTakeFinishedMulticellularMembrane(cellId, out var finishedMembrane);
 
         if (finishedMembrane != null)
         {
@@ -409,7 +377,7 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
 
         lock (pendingGenerationsOfMembraneHashes)
         {
-            if (!pendingGenerationsOfMembraneHashes.Add(hash))
+            if (!pendingGenerationsOfMembraneHashes.Add(cellId))
             {
                 // Already queued, don't need to queue again
 
@@ -424,7 +392,7 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
             multicellular.Species.ModifiableGameplayCells[currentCellIndex].Orientation);
 
         membranesToGenerate.Enqueue(new MembraneGenerationParameters(hexes, hexCount, cellProperties.MembraneType,
-            cellData, grownCellsData, colonyKey, leaderCellId));
+            cellData, grownCellsData, leaderCellId, cellId));
 
         // Immediately start some jobs to give background threads something to do while the main thread is busy
         // potentially setting up other visuals

@@ -47,14 +47,10 @@ public struct MulticellularGrowth : IArchivableComponent
     /// </summary>
     public int? ResumeBodyPlanAfterReplacingLost;
 
-    public long ColonyKey;
-
     // TODO: MulticellularBodyPlanPartIndex used to be here, now it is in MulticellularSpeciesMember
     // which means that a new system is needed to create MulticellularGrowth components on ejected cells that
     // should be allowed to resume growing
     public int NextBodyPlanCellToGrowIndex;
-
-    public bool IsColonyKeyValid;
 
     public bool EnoughResourcesForBudding;
 
@@ -73,7 +69,6 @@ public struct MulticellularGrowth : IArchivableComponent
 
         // This is updated by ReApplyCellTypeProperties when needed
         this.CalculateTotalBodyPlanCompounds(species);
-        IsColonyKeyValid = false;
         GrownCellsData = null;
     }
 
@@ -190,7 +185,6 @@ public static class MulticellularGrowthHelpers
         ++multicellularGrowth.NextBodyPlanCellToGrowIndex;
         multicellularGrowth.CompoundsNeededForNextCell = null;
 
-        multicellularGrowth.IsColonyKeyValid = false;
         multicellularGrowth.GrownCellsData = null;
     }
 
@@ -238,7 +232,6 @@ public static class MulticellularGrowthHelpers
         multicellularGrowth.CompoundsUsedForMulticellularGrowth = null;
 
         multicellularGrowth.TotalNeededForMulticellularGrowth = null;
-        multicellularGrowth.IsColonyKeyValid = false;
         multicellularGrowth.GrownCellsData = null;
     }
 
@@ -274,7 +267,6 @@ public static class MulticellularGrowthHelpers
             return;
 
         multicellularGrowth.LostPartsOfBodyPlan.Add(lostPartIndex);
-        multicellularGrowth.IsColonyKeyValid = false;
         multicellularGrowth.GrownCellsData = null;
         organelleContainer.AllOrganellesDivided = false;
 
