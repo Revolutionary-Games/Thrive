@@ -33,7 +33,8 @@ internal sealed class ResourceBackgroundTask(IResource resource, Task task, Reso
     public bool CompletionObserved => Volatile.Read(ref completionObserved) != 0;
 
     /// <summary>
-    ///   Observes a completed task's result, propagating faults and cancellation to the caller.
+    ///   Observes a completed task at most once, propagating faults and cancellation to the caller. Does nothing if the
+    ///   task is still running or its completion was already observed.
     /// </summary>
     public void ObserveCompletion()
     {
