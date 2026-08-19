@@ -37,7 +37,6 @@ public struct MulticellularGrowth : IArchivableComponent
 
     /// <summary>
     ///   Cached positions and rotation of all cells in the colony (used for membrane generation).
-    ///   Valid only together with <see cref="ColonyKey"/> — invalidated at the same sites.
     /// </summary>
     public MulticellularMembraneGenerationCellData[]? GrownCellsData;
 
