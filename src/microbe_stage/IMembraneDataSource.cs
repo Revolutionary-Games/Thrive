@@ -10,10 +10,8 @@ public interface IMembraneDataSource
 {
     public Vector2[] HexPositions { get; }
     public int HexPositionCount { get; }
-    public MulticellularMembraneGenerationCellData CurrentCellMulticellularMembraneGenerationCellData { get; }
     public MembraneType Type { get; }
     public bool IsPreMulticellularStretch { get; }
-    public bool IsMulticellularMembraneDataValid { get; }
 }
 
 public struct MulticellularMembraneGenerationCellData
@@ -172,20 +170,6 @@ public static class MembraneComputationHelpers
                 var position = dataSource.HexPositions[i];
                 hash = (hash * prime1) ^ BitConverter.SingleToInt32Bits(position.X);
                 hash = (hash * prime1) ^ BitConverter.SingleToInt32Bits(position.Y);
-            }
-
-            // NOTE: ColonyKey alone is the same for every cell in a colony, so it cannot be the only thing
-            // distinguishing membrane data between cells that share a hex layout. The per-cell position/orientation
-            // must also be part of the hash.
-            if (dataSource.IsMulticellularMembraneDataValid)
-            {
-                hash = (hash * prime1) ^
-                    BitConverter.SingleToInt32Bits(dataSource.CurrentCellMulticellularMembraneGenerationCellData
-                        .Position.X);
-                hash = (hash * prime1) ^
-                    BitConverter.SingleToInt32Bits(dataSource.CurrentCellMulticellularMembraneGenerationCellData
-                        .Position.Y);
-                hash = (hash * prime1) ^ dataSource.CurrentCellMulticellularMembraneGenerationCellData.Orientation;
             }
 
             if (dataSource.IsPreMulticellularStretch)

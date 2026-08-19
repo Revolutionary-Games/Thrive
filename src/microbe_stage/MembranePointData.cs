@@ -23,18 +23,6 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
     private bool disposed;
 
     public MembranePointData(Vector2[] hexPositions, int hexPositionCount, MembraneType type,
-        IReadOnlyList<Vector2> verticesToCopy,
-        MulticellularMembraneGenerationCellData currentCellMulticellularMembraneGenerationCellData,
-        int leaderCellId, int cellId, bool isPreMulticellularStretch = false) : this(hexPositions,
-        hexPositionCount, type, verticesToCopy, isPreMulticellularStretch)
-    {
-        CurrentCellMulticellularMembraneGenerationCellData = currentCellMulticellularMembraneGenerationCellData;
-        IsMulticellularMembraneDataValid = true;
-        LeaderCellId = leaderCellId;
-        CellId = cellId;
-    }
-
-    public MembranePointData(Vector2[] hexPositions, int hexPositionCount, MembraneType type,
         IReadOnlyList<Vector2> verticesToCopy, bool isPreMulticellularStretch = false)
     {
         HexPositions = hexPositions;
@@ -81,18 +69,12 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
 
     public int HexPositionCount { get; }
 
-    public MulticellularMembraneGenerationCellData CurrentCellMulticellularMembraneGenerationCellData { get; }
-
     public MembraneType Type { get; }
 
     // TODO: check all uses when switching this
     public Vector2[] Vertices2D { get; }
 
     public int VertexCount { get; }
-
-    public int LeaderCellId { get; }
-
-    public int CellId { get; }
 
     public ArrayMesh GeneratedMesh => finalMesh.Value.Mesh;
     public int SurfaceIndex => finalMesh.Value.SurfaceIndex;
@@ -131,8 +113,6 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
     ///   Flag used for differentiation in caching when retrieving single cell membrane before and after stretching
     /// </summary>
     public bool IsPreMulticellularStretch { get; }
-
-    public bool IsMulticellularMembraneDataValid { get; }
 
     public bool MatchesCacheParameters(ICacheableData cacheData)
     {

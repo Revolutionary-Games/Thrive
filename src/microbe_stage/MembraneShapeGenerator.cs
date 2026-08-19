@@ -166,13 +166,11 @@ public class MembraneShapeGenerator
     ///   waviness as it is normally done in single cellular membrane
     /// </summary>
     public MembranePointData GenerateMulticellularMembrane(int thisCellKey,
-        ConcurrentDictionary<int, NeighbourData> neighboursData, int leaderCellId, int cellId)
+        ConcurrentDictionary<int, NeighbourData> neighboursData, int leaderCellId)
     {
         currentColonyCellId = thisCellKey;
         var currentCellData = neighboursData[currentColonyCellId];
         var originalPointData = currentCellData.OriginalPointData;
-        var thisCellPosition = currentCellData.MulticellularMembraneGenerationCellData.Position;
-        var thisCellOrientation = currentCellData.MulticellularMembraneGenerationCellData.Orientation;
 
         SetCellVertices(currentCellData);
         GenerateMulticellularMembrane(currentCellData, neighboursData);
@@ -188,11 +186,7 @@ public class MembraneShapeGenerator
         var hexCopy = ArrayPool<Vector2>.Shared.Rent(hexCount);
         originalPointData.HexPositions.AsSpan(0, hexCount).CopyTo(hexCopy);
 
-        var multicellularMembraneData =
-            new MulticellularMembraneGenerationCellData(thisCellPosition, thisCellOrientation);
-
-        return new MembranePointData(hexCopy, hexCount, originalPointData.Type, vertices2D, multicellularMembraneData,
-            leaderCellId, cellId);
+        return new MembranePointData(hexCopy, hexCount, originalPointData.Type, vertices2D);
     }
 
     /// <summary>
