@@ -513,11 +513,8 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             {
                 guidanceLine.Visible = true;
 
-                // To avoid line jitter, always make the line start from the camera's position
-                var start = Camera.GlobalPosition;
-                start.Y = 0;
-
-                guidanceLine.LineStart = start;
+                // This needs to be re-read here to avoid line jitter
+                guidanceLine.LineStart = Player.Get<WorldPosition>().Position;
                 guidanceLine.SetLineEnd(guidancePosition.Value);
             }
             else
@@ -2188,6 +2185,12 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         {
             var start = Camera.GlobalPosition;
             start.Y = 0;
+
+            if (HasAlivePlayer)
+            {
+                start = Player.Get<WorldPosition>().Position;
+            }
+
             mateGuidanceLine.LineStart = start;
             mateGuidanceLine.SetLineEnd(matePosition);
         }
