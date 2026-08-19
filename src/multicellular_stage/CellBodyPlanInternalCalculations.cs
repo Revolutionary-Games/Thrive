@@ -169,7 +169,7 @@ public static class CellBodyPlanInternalCalculations
                 Hex.AxialToCartesian(colonyMember.Position) * 10,
                 MicrobeInternalCalculations.CalculateRotationSpeed(colonyMemberData.ModifiableOrganelles,
                     memberTotalSpecializationBonus));
-            actomyosinCount += CalculateEffectiveActomyosinCount(colonyMemberData);
+            actomyosinCount += CalculateEffectiveActomyosinCount(colonyMemberData) * memberTotalSpecializationBonus;
         }
 
         return CalculateFinalColonyRotation(totalRotationSpeed / cells.Count, actomyosinCount, cells.Count);

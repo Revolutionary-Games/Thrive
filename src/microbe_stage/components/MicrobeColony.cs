@@ -1044,10 +1044,11 @@ public static class MicrobeColonyHelpers
             try
             {
                 ref var memberOrganelleContainer = ref colonyMember.Get<OrganelleContainer>();
+                var memberTotalSpecializationBonus =
+                    colonyMember.Get<SpecializationFactor>().TotalSpecializationBonus;
 
                 var rawRotation = MicrobeInternalCalculations.CalculateRotationSpeed(
-                    memberOrganelleContainer.Organelles!.Organelles,
-                    colonyMember.Get<SpecializationFactor>().TotalSpecializationBonus);
+                    memberOrganelleContainer.Organelles!.Organelles, memberTotalSpecializationBonus);
 
                 // Bonus from position
                 if (!leader)
@@ -1061,7 +1062,8 @@ public static class MicrobeColonyHelpers
                 }
 
                 totalRotationSpeed += rawRotation;
-                actomyosinCount += memberOrganelleContainer.CalculateEffectiveActomyosinCount();
+                actomyosinCount += memberOrganelleContainer.CalculateEffectiveActomyosinCount() *
+                    memberTotalSpecializationBonus;
             }
             catch (Exception e)
             {
