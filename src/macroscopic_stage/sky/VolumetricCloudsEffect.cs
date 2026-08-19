@@ -441,7 +441,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
                     return false;
                 }
 
-                targetInstance.ReportTimestamps();
+                RenderingServer.CallOnRenderThread(Callable.From(() => targetInstance.ReportTimestamps()));
                 return true;
             case CloudCommandParameters.GenerateNoiseProfile:
                 // It's pointless to enable this in release mode, as the asset should be already baked then and the
@@ -543,7 +543,8 @@ public partial class VolumetricCloudsEffect : CompositorEffect
 
         if (!isValid)
         {
-            if (CloudInnerHeight - lastAttemptedInner <= 0.001f || CloudOuterHeight - lastAttemptedOuter <= 0.001f)
+            if (Math.Abs(CloudInnerHeight - lastAttemptedInner) > 0.001f ||
+                Math.Abs(CloudOuterHeight - lastAttemptedOuter) > 0.001f)
             {
                 GD.PushError($"VolumetricCloudsEffect: Invalid cloud heights. Outer ({CloudOuterHeight})" +
                     $"must be > Inner ({CloudInnerHeight}) >= 0. Clamping to {safeOuter} and {safeInner}.");
