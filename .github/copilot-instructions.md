@@ -31,6 +31,7 @@
 - C# uses PascalCase types/files, British English (except `meter`), 120-column lines, `//`/XML documentation, and normally no namespaces.
 - Avoid `async`; use `TaskExecutor`. Avoid unnecessary LINQ, interfaces in hot loops, and per-frame allocations; reuse containers.
 - Use `ref` for ECS components and `this ref` extension helpers. Update the relevant dirty flags through established helpers.
+- NOTE: The C# compiler is smart enough to optimize single field accesses, so those don't need `ref`. Example allowed usage: `var singleThing = entity.Get<Component>().AField;`
 - For Godot, use containers rather than Control offsets; use `Connect`/`nameof` for signals; never dispose Nodes or `GD.Load` resources.
 
 ## Review Focus
