@@ -45,8 +45,7 @@ Automated CI checks ensure code compiles and is formatted correctly (except for 
 - PRs should be focused on one issue/change; do not mix unrelated refactors or formatting. Issue branches use `<issue>_<short_lowercase_name>`.
 - Changed code must preserve and update nearby documentation/comments.
 - Save-format changes must retain compatibility or include an upgrader and required version/subversion change.
-- New C# files must include the Godot-generated matching `.cs.uid` file.
-- Do not include locale `.po` changes that only update source-reference line numbers.
+- Do not include locale `.po` changes that only update source-reference line numbers. So only add if required due to new translation keys or text.
 
 ## Flag common pitfalls
 
