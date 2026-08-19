@@ -1027,9 +1027,9 @@ public static class MicrobeColonyHelpers
 
         // When changing this method's logic also update the corresponding method in CellBodyPlanInternalCalculations
         ref var leaderOrganelles = ref colony.Leader.Get<OrganelleContainer>();
+        var leaderTotalSpecializationBonus = colony.Leader.Get<SpecializationFactor>().TotalSpecializationBonus;
         float colonyRotation = MicrobeInternalCalculations.CalculateRotationSpeed(
-            leaderOrganelles.Organelles!.Organelles,
-            colony.Leader.Get<SpecializationFactor>().TotalSpecializationBonus);
+            leaderOrganelles.Organelles!.Organelles, leaderTotalSpecializationBonus);
 
         if (!leaderOrganelles.OrganelleComponentsCached)
         {
@@ -1041,7 +1041,7 @@ public static class MicrobeColonyHelpers
 
         // Actomyosin acts as the key buff to keep the rotation rate reasonable. This is a float as multiple actomyosin
         // per cell give a small extra bonus
-        float actomyosinCount = leaderOrganelles.CalculateEffectiveActomyosinCount();
+        float actomyosinCount = leaderOrganelles.CalculateEffectiveActomyosinCount() * leaderTotalSpecializationBonus;
 
         foreach (var colonyMember in colony.ColonyMembers)
         {
@@ -1059,17 +1059,20 @@ public static class MicrobeColonyHelpers
                 var distanceSquared = memberPosition.RelativePosition.LengthSquared();
 
                 ref var memberOrganelleContainer = ref colonyMember.Get<OrganelleContainer>();
+                var memberTotalSpecializationBonus =
+                    colonyMember.Get<SpecializationFactor>().TotalSpecializationBonus;
 
                 // Multiply both the propulsion and mass by the distance from center to simulate leverage.
                 // This relies on the bounding of the cell rotation, as a colony can never be faster than the
                 // fastest cell inside it.
                 var memberRotation = MicrobeInternalCalculations
                         .CalculateRotationSpeed(memberOrganelleContainer.Organelles!.Organelles,
-                            colonyMember.Get<SpecializationFactor>().TotalSpecializationBonus)
+                            memberTotalSpecializationBonus)
                     * (1 + 0.005f * distanceSquared);
 
                 colonyRotation += memberRotation;
-                actomyosinCount += memberOrganelleContainer.CalculateEffectiveActomyosinCount();
+                actomyosinCount += memberOrganelleContainer.CalculateEffectiveActomyosinCount() *
+                    memberTotalSpecializationBonus;
             }
             catch (Exception e)
             {
