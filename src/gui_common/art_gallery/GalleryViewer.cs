@@ -104,9 +104,9 @@ public partial class GalleryViewer : CustomWindow
 
     public override void _ExitTree()
     {
-        CancelOutstandingThumbnailLoads();
-
         base._ExitTree();
+
+        CancelOutstandingThumbnailLoads();
 
         Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
 
