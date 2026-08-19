@@ -66,26 +66,28 @@ public class CellTypeFacadeHelper
 
         if (actionData is SporeCellTypeChangeActionData sporeCellTypeChangeActionData)
         {
-            if (sporeCellTypeChangeActionData.OldCellType != null
-                && ReferenceEquals(sporeCellTypeChangeActionData.OldCellType,
+            if (!ReferenceEquals(sporeCellTypeChangeActionData.OldCellType,
                     sporeCellTypeChangeActionData.NewCellType))
             {
-                if (!removedCellTypes.Any(type => ReferenceEquals(type, sporeCellTypeChangeActionData.OldCellType)))
-                    removedCellTypes.Add(sporeCellTypeChangeActionData.OldCellType);
-
-                if (activeCellTypes.ContainsKey(sporeCellTypeChangeActionData.OldCellType))
+                if (sporeCellTypeChangeActionData.OldCellType != null)
                 {
-                    var cellTypeToRemove = GetOrCreateCellType(sporeCellTypeChangeActionData.OldCellType);
-                    if (addedCellTypes.RemoveAll(type => ReferenceEquals(type, cellTypeToRemove)) != 1)
+                    if (!removedCellTypes.Any(type => ReferenceEquals(type, sporeCellTypeChangeActionData.OldCellType)))
+                        removedCellTypes.Add(sporeCellTypeChangeActionData.OldCellType);
+
+                    if (activeCellTypes.ContainsKey(sporeCellTypeChangeActionData.OldCellType))
                     {
-                        GD.PrintErr("Spore cell type not found for delete");
+                        var cellTypeToRemove = GetOrCreateCellType(sporeCellTypeChangeActionData.OldCellType);
+                        if (addedCellTypes.RemoveAll(type => ReferenceEquals(type, cellTypeToRemove)) != 1)
+                        {
+                            GD.PrintErr("Spore cell type not found for delete");
+                        }
                     }
                 }
-            }
 
-            if (sporeCellTypeChangeActionData.NewCellType != null)
-            {
-                addedCellTypes.Add(GetOrCreateCellType(sporeCellTypeChangeActionData.NewCellType));
+                if (sporeCellTypeChangeActionData.NewCellType != null)
+                {
+                    addedCellTypes.Add(GetOrCreateCellType(sporeCellTypeChangeActionData.NewCellType));
+                }
             }
 
             return true;
