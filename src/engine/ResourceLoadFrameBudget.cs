@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 /// <summary>
 ///   Admits main-thread resource loading work within a single frame.
@@ -42,10 +42,12 @@ internal struct ResourceLoadFrameBudget
     ///   Attempts to admit one indivisible main-thread completion unit.
     /// </summary>
     /// <remarks>
-    ///   Work that fits in the remaining budget is admitted normally. To ensure progress, the first main-thread
-    ///   completion unit in a frame may exceed the remaining positive budget. Scheduling work performed before this
-    ///   call does not consume that forced-admission opportunity, though its elapsed time still reduces the remaining
-    ///   budget.
+    ///   <para>
+    ///     Work that fits in the remaining budget is admitted normally. To ensure progress, the first main-thread
+    ///     completion unit in a frame may exceed the remaining positive budget. Scheduling work performed before this
+    ///     call does not consume that forced-admission opportunity, though its elapsed time still reduces the remaining
+    ///     budget.
+    ///   </para>
     /// </remarks>
     public bool TryAdmit(double estimatedDurationSeconds, double elapsedSeconds)
     {

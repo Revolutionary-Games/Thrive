@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -72,8 +72,7 @@ internal sealed class ResourceBackgroundTask(IResource resource, Task task, Reso
 /// </summary>
 internal sealed class ResourceLoadLifecycle
 {
-    private readonly Dictionary<IResource, ResourceLoadState> activeResources =
-        new(ReferenceEqualityComparer.Instance);
+    private readonly Dictionary<IResource, ResourceLoadState> activeResources = new(ReferenceEqualityComparer.Instance);
     private readonly HashSet<IResource> deferredReloads = new(ReferenceEqualityComparer.Instance);
 
     public ResourceLoadState GetState(IResource resource)
