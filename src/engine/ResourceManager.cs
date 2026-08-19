@@ -356,6 +356,24 @@ public partial class ResourceManager : Node
         GD.PrintErr($"Resource {operation} failed for {resource.Identifier}: ", exception);
     }
 
+    private static void BestEffortUnload(IResource resource)
+    {
+        try
+        {
+            resource.UnLoad();
+        }
+        catch (Exception e)
+        {
+            ReportResourceOperationFailure(resource, "unload after cancellation", e);
+        }
+    }
+
+    private static void ObserveTaskFailureAfterExit(ResourceBackgroundTask? backgroundTask)
+    {
+        backgroundTask?.ObserveFailureOnCompletion(e =>
+            ReportResourceOperationFailure(backgroundTask.Resource, $"background {backgroundTask.Phase} on exit", e));
+    }
+
     private void ObservePreparingBackgroundTask()
     {
         var backgroundTask = preparingBackgroundTask;
@@ -459,24 +477,6 @@ public partial class ResourceManager : Node
     {
         if (loadLifecycle.Complete(resource) && !shuttingDown)
             queuedResources.Add(resource);
-    }
-
-    private void BestEffortUnload(IResource resource)
-    {
-        try
-        {
-            resource.UnLoad();
-        }
-        catch (Exception e)
-        {
-            ReportResourceOperationFailure(resource, "unload after cancellation", e);
-        }
-    }
-
-    private void ObserveTaskFailureAfterExit(ResourceBackgroundTask? backgroundTask)
-    {
-        backgroundTask?.ObserveFailureOnCompletion(e =>
-            ReportResourceOperationFailure(backgroundTask.Resource, $"background {backgroundTask.Phase} on exit", e));
     }
 
     private void RemoveProcessingResource(IResource resource)
