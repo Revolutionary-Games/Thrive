@@ -35,14 +35,12 @@ internal sealed class ResourceBackgroundTask(IResource resource, Task task, Reso
     /// <summary>
     ///   Observes a completed task's result, propagating faults and cancellation to the caller.
     /// </summary>
-    /// <returns><c>true</c> only for the first observation of a completed task.</returns>
-    public bool TryObserveCompletion()
+    public void ObserveCompletion()
     {
         if (!Task.IsCompleted || Interlocked.Exchange(ref completionObserved, 1) != 0)
-            return false;
+            return;
 
         Task.GetAwaiter().GetResult();
-        return true;
     }
 
     /// <summary>

@@ -383,7 +383,7 @@ public partial class ResourceManager : Node
 
         try
         {
-            backgroundTask.TryObserveCompletion();
+            backgroundTask.ObserveCompletion();
             loadLifecycle.FinishPreparing(backgroundTask.Resource);
 
             if (backgroundTask.Resource.CancelRequested)
@@ -404,8 +404,7 @@ public partial class ResourceManager : Node
         }
     }
 
-    private void ObserveProcessingBackgroundTask(ref ResourceLoadFrameBudget frameBudget,
-        bool suppressFailureReporting = false)
+    private void ObserveProcessingBackgroundTask(ref ResourceLoadFrameBudget frameBudget)
     {
         var backgroundTask = processingBackgroundTask;
 
@@ -419,7 +418,7 @@ public partial class ResourceManager : Node
 
             try
             {
-                backgroundTask.TryObserveCompletion();
+                backgroundTask.ObserveCompletion();
                 loadLifecycle.FinishBackgroundLoad(backgroundTask.Resource);
             }
             catch (Exception e)
@@ -465,11 +464,8 @@ public partial class ResourceManager : Node
             // The callback was admitted and started, so it must not be repeated on the next frame.
             processingBackgroundTask = null;
             CompleteResource(backgroundTask.Resource);
-            if (!suppressFailureReporting)
-            {
-                ReportResourceOperationFailure(backgroundTask.Resource,
-                    "main-thread post-processing or completion callback", e);
-            }
+            ReportResourceOperationFailure(backgroundTask.Resource,
+                "main-thread post-processing or completion callback", e);
         }
     }
 
