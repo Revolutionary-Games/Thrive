@@ -222,7 +222,7 @@ public partial class ResourceManager : Node
         base.Dispose(disposing);
     }
 
-    internal static void ValidateResourceConfiguration(IResource resource)
+    private static void ValidateResourceConfiguration(IResource resource)
     {
         ArgumentNullException.ThrowIfNull(resource);
 
@@ -386,8 +386,7 @@ public partial class ResourceManager : Node
         }
     }
 
-#pragma warning disable SA1202 // Kept beside the private background-task observer that immediately precedes it.
-    internal void ObserveProcessingBackgroundTask(ref ResourceLoadFrameBudget frameBudget,
+    private void ObserveProcessingBackgroundTask(ref ResourceLoadFrameBudget frameBudget,
         bool suppressFailureReporting = false)
     {
         var backgroundTask = processingBackgroundTask;
@@ -455,7 +454,6 @@ public partial class ResourceManager : Node
             }
         }
     }
-#pragma warning restore SA1202
 
     private void CompleteResource(IResource resource)
     {

@@ -320,7 +320,6 @@ public partial class SaveListItem : PanelContainer
             }
         }
 
-
         version.Text = save.Info.ThriveVersion;
 
         type.Text = save.Info.TranslatedSaveTypeString;

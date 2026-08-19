@@ -109,9 +109,6 @@
     <ProjectReference Include="third_party\ThirdParty.csproj" />
     <ProjectReference Include="ThriveScriptsShared\ThriveScriptsShared.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <InternalsVisibleTo Include="ThriveTest" />
-  </ItemGroup>
   <!-- StyleCop Analyzers configuration -->
   <PropertyGroup>
     <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)RevolutionaryGamesCommon/StyleCop.ruleset</CodeAnalysisRuleSet>
