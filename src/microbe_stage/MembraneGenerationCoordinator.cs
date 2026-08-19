@@ -1,5 +1,4 @@
-﻿using System;
-using System.Buffers;
+﻿using System.Buffers;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading;
@@ -66,12 +65,10 @@ public static class MembraneGenerationCoordinator
         var singleCellData = new NeighbourData(generationParameters.CellId, multicellularMembraneData,
             singleCellMembranePointData);
 
-        tracker.NeighboursData[CellKey(cellPosition)] = singleCellData;
+        tracker.NeighboursData[generationParameters.CellId] = singleCellData;
 
         // TODO: Maybe implement a system that clears trackers every now and then that are inactive
         // for too long to avoid potential memory leaks
-
-        GD.Print($"{generationParameters.LeaderCellId}: {tracker.NeighboursData.Count}/{tracker.ExpectedCount}");
 
         // Colony not yet complete — return empty
         if (tracker.NeighboursData.Count < tracker.ExpectedCount)
@@ -100,9 +97,10 @@ public static class MembraneGenerationCoordinator
     /// <summary>
     ///   Attempts to retrieve and remove a finished stretched multicellular membrane.
     /// </summary>
-    public static bool TryTakeFinishedMulticellularMembrane(int hash, out MembranePointData? data)
+    public static MembranePointData? TryTakeFinishedMulticellularMembrane(int hash)
     {
-        return FinishedMulticellularMembranes.TryRemove(hash, out data);
+        FinishedMulticellularMembranes.TryRemove(hash, out var data);
+        return data;
     }
 
     /// <summary>
@@ -143,23 +141,10 @@ public static class MembraneGenerationCoordinator
         FinishedMulticellularMembranes[cellId] = data;
     }
 
-    private static long CellKey(Vector2 position)
-    {
-        const long prime = 1099511628211L;
-
-        long hash = prime;
-        hash ^= BitConverter.SingleToInt32Bits(position.X);
-        hash *= prime;
-        hash ^= BitConverter.SingleToInt32Bits(position.Y);
-        hash *= prime;
-
-        return hash;
-    }
-
     private class ColonyTracker
     {
         public int ExpectedCount;
-        public ConcurrentDictionary<long, NeighbourData> NeighboursData = new();
+        public ConcurrentDictionary<int, NeighbourData> NeighboursData = new();
         private int secondPassStarted;
 
         /// <summary>

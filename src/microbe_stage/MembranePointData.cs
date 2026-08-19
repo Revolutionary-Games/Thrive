@@ -30,7 +30,6 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
     {
         CurrentCellMulticellularMembraneGenerationCellData = currentCellMulticellularMembraneGenerationCellData;
         IsMulticellularMembraneDataValid = true;
-        IsMulticellular = true;
         LeaderCellId = leaderCellId;
         CellId = cellId;
     }
@@ -90,7 +89,9 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
     public Vector2[] Vertices2D { get; }
 
     public int VertexCount { get; }
+
     public int LeaderCellId { get; }
+
     public int CellId { get; }
 
     public ArrayMesh GeneratedMesh => finalMesh.Value.Mesh;
@@ -132,8 +133,6 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
     public bool IsPreMulticellularStretch { get; }
 
     public bool IsMulticellularMembraneDataValid { get; }
-
-    public bool IsMulticellular { get; }
 
     public bool MatchesCacheParameters(ICacheableData cacheData)
     {

@@ -12,11 +12,8 @@ public interface IMembraneDataSource
     public int HexPositionCount { get; }
     public MulticellularMembraneGenerationCellData CurrentCellMulticellularMembraneGenerationCellData { get; }
     public MembraneType Type { get; }
-    public int LeaderCellId { get; }
-    public int CellId { get; }
     public bool IsPreMulticellularStretch { get; }
     public bool IsMulticellularMembraneDataValid { get; }
-    public bool IsMulticellular { get; }
 }
 
 public struct MulticellularMembraneGenerationCellData
@@ -48,7 +45,6 @@ public struct MembraneGenerationParameters : IMembraneDataSource
         CellId = cellId;
         IsPreMulticellularStretch = isPreMulticellularStretch;
         IsMulticellularMembraneDataValid = true;
-        IsMulticellular = true;
     }
 
     public MembraneGenerationParameters(Vector2[] hexPositions, int hexPositionCount, MembraneType type)
@@ -69,11 +65,12 @@ public struct MembraneGenerationParameters : IMembraneDataSource
     public int HexPositionCount { get; }
 
     public int CellId { get; }
+
     public int LeaderCellId { get; }
 
     public bool IsPreMulticellularStretch { get; set; }
+
     public bool IsMulticellularMembraneDataValid { get; }
-    public bool IsMulticellular { get; }
 }
 
 /// <summary>
@@ -202,17 +199,11 @@ public static class MembraneComputationHelpers
 
     public static bool MembraneDataFieldsEqual(this IMembraneDataSource dataSource, IMembraneDataSource other)
     {
-        return dataSource.MembraneDataFieldsEqual(other.HexPositions, other.HexPositionCount, other.Type,
-            other.CurrentCellMulticellularMembraneGenerationCellData, other.LeaderCellId, other.CellId,
-            other.IsMulticellularMembraneDataValid,
-            other.IsMulticellular);
+        return dataSource.MembraneDataFieldsEqual(other.HexPositions, other.HexPositionCount, other.Type);
     }
 
     public static bool MembraneDataFieldsEqual(this IMembraneDataSource dataSource, Vector2[] otherPoints,
-        int otherPointCount, MembraneType otherType,
-        MulticellularMembraneGenerationCellData otherMulticellularMembraneGenerationCellData,
-        int otherLeaderCellId, long otherColonyCellHash, bool isOtherMulticellularMembraneDataValid,
-        bool isOtherColonyKeyValid)
+        int otherPointCount, MembraneType otherType)
     {
         if (!dataSource.Type.Equals(otherType))
         {
@@ -230,63 +221,6 @@ public static class MembraneComputationHelpers
         var count = dataSource.HexPositionCount;
 
         var sourcePoints = dataSource.HexPositions;
-
-#if DEBUG
-
-        if (dataSource.IsMulticellularMembraneDataValid || isOtherMulticellularMembraneDataValid)
-        {
-            if (!dataSource.IsMulticellularMembraneDataValid || !isOtherMulticellularMembraneDataValid)
-            {
-                GD.PrintErr("Membrane cache IsMulticellularMembraneDataValid mismatch: " +
-                    $"source={dataSource.IsMulticellularMembraneDataValid} " +
-                    $"other={isOtherMulticellularMembraneDataValid}");
-                return false;
-            }
-
-            if (!dataSource.CurrentCellMulticellularMembraneGenerationCellData.Position.Equals(
-                    otherMulticellularMembraneGenerationCellData
-                        .Position))
-            {
-                GD.PrintErr("Membrane cache CellPositionInMulticellular mismatch: " +
-                    $"{dataSource.CurrentCellMulticellularMembraneGenerationCellData.Position} " +
-                    $"!= {otherMulticellularMembraneGenerationCellData.Position}");
-                return false;
-            }
-
-            if (dataSource.CurrentCellMulticellularMembraneGenerationCellData.Orientation !=
-                otherMulticellularMembraneGenerationCellData.Orientation)
-            {
-                GD.PrintErr("Membrane cache CellOrientation mismatch: " +
-                    $"{dataSource.CurrentCellMulticellularMembraneGenerationCellData.Orientation} " +
-                    $"!= {otherMulticellularMembraneGenerationCellData.Orientation}");
-                return false;
-            }
-        }
-
-        if (dataSource.IsMulticellular || isOtherColonyKeyValid)
-        {
-            if (!dataSource.IsMulticellular || !isOtherColonyKeyValid)
-            {
-                GD.PrintErr("Membrane cache IsColonyKeyValid mismatch: " +
-                    $"source={dataSource.IsMulticellular} " +
-                    $"other={isOtherColonyKeyValid}");
-                return false;
-            }
-
-            if (dataSource.LeaderCellId != otherLeaderCellId)
-            {
-                GD.PrintErr($"Membrane cache LeaderCellId mismatch: {dataSource.LeaderCellId} != {otherLeaderCellId}");
-                return false;
-            }
-
-            if (dataSource.CellId != otherColonyCellHash)
-            {
-                GD.PrintErr($"Membrane cache ColonyCellHash mismatch: {dataSource.CellId} != {otherColonyCellHash}");
-                return false;
-            }
-        }
-
-#endif
 
         for (int i = 0; i < count; ++i)
         {

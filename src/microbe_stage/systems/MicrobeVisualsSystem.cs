@@ -364,7 +364,7 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         var cellPositionInMulticellular = new Vector2(cellPosition.X, cellPosition.Z) *
             Constants.MULTICELLULAR_CELL_DISTANCE_MULTIPLIER;
 
-        MembraneGenerationCoordinator.TryTakeFinishedMulticellularMembrane(cellId, out var finishedMembrane);
+        var finishedMembrane = MembraneGenerationCoordinator.TryTakeFinishedMulticellularMembrane(cellId);
 
         if (finishedMembrane != null)
         {

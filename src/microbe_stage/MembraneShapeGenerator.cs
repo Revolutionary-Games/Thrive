@@ -42,12 +42,12 @@ public class MembraneShapeGenerator
     /// <summary>
     ///   Maps a neighbour's key -> its slot index in <see cref="neighbourWorkingDataPool"/> for the current call only.
     /// </summary>
-    private readonly Dictionary<long, int> neighbourKeyToSlot = new();
+    private readonly Dictionary<int, int> neighbourKeyToSlot = new();
 
     /// <summary>
     ///   Stores key of the neighbours that are in the vicinity of the current cell
     /// </summary>
-    private readonly List<long> closeNeighboursKeys = new();
+    private readonly List<int> closeNeighboursKeys = new();
 
     /// <summary>
     ///   Stores positions of current cells vertices that have been cast onto the tangent lines during
@@ -69,14 +69,14 @@ public class MembraneShapeGenerator
     private readonly List<Vector2> startingBuffer = new();
 
     /// <summary>
-    ///   Key of the current cell that is being processed during multicellular membrane stretching
+    ///   Id of the current cell that is being processed during multicellular membrane stretching
     /// </summary>
-    private long currentCellKey;
+    private int currentColonyCellId;
 
     /// <summary>
-    ///   Key of the neighbour cell that is being processed during multicellular membrane stretching
+    ///   Id of the neighbour cell that is being processed during multicellular membrane stretching
     /// </summary>
-    private long neighbourCellKey;
+    private long neighbourColonyCellId;
 
     /// <summary>
     ///   Gets a generator for the current thread. This is required to be used as the generators are not thread safe.
@@ -165,11 +165,11 @@ public class MembraneShapeGenerator
     ///   Modifies already generated membrane to make it stretch towards other cells. Also applies membrane
     ///   waviness as it is normally done in single cellular membrane
     /// </summary>
-    public MembranePointData GenerateMulticellularMembrane(long thisCellKey,
-        ConcurrentDictionary<long, NeighbourData> neighboursData, int leaderCellId, int cellId)
+    public MembranePointData GenerateMulticellularMembrane(int thisCellKey,
+        ConcurrentDictionary<int, NeighbourData> neighboursData, int leaderCellId, int cellId)
     {
-        currentCellKey = thisCellKey;
-        var currentCellData = neighboursData[currentCellKey];
+        currentColonyCellId = thisCellKey;
+        var currentCellData = neighboursData[currentColonyCellId];
         var originalPointData = currentCellData.OriginalPointData;
         var thisCellPosition = currentCellData.MulticellularMembraneGenerationCellData.Position;
         var thisCellOrientation = currentCellData.MulticellularMembraneGenerationCellData.Orientation;
@@ -810,7 +810,7 @@ public class MembraneShapeGenerator
     ///   onto them and afterwards smoothed out. If there are any overlaps with neighbours, the operation is canceled.
     /// </summary>
     private void GenerateMulticellularMembrane(NeighbourData cellData,
-        ConcurrentDictionary<long, NeighbourData> neighboursData)
+        ConcurrentDictionary<int, NeighbourData> neighboursData)
     {
         var cellPosition = cellData.MulticellularMembraneGenerationCellData.Position;
         var cellOrientation = cellData.MulticellularMembraneGenerationCellData.Orientation;
@@ -829,8 +829,8 @@ public class MembraneShapeGenerator
                 continue;
             }
 
-            neighbourData.ProcessedNeighbours.Add(currentCellKey);
-            neighbourCellKey = neighbourKey;
+            neighbourData.ProcessedNeighbours.Add(currentColonyCellId);
+            neighbourColonyCellId = neighbourKey;
 
             var neighbourCell = neighbourWorkingDataPool[neighbourKeyToSlot[neighbourKey]];
             var editableNeighbourVertices = neighbourCell.ShiftedVertices;
@@ -895,7 +895,7 @@ public class MembraneShapeGenerator
     ///   per-iteration allocations. Membrane generation can give different result depending on which
     ///   cells are processed first.
     /// </summary>
-    private void RotateAndShiftCloseNeighbours(ConcurrentDictionary<long, NeighbourData> neighboursData,
+    private void RotateAndShiftCloseNeighbours(ConcurrentDictionary<int, NeighbourData> neighboursData,
         float thisAngle, Vector2 thisCellPosition)
     {
         neighbourKeyToSlot.Clear();
@@ -996,7 +996,7 @@ public class MembraneShapeGenerator
         return middlePoint;
     }
 
-    private void GetCloseNeighbours(ConcurrentDictionary<long, NeighbourData> neighboursData,
+    private void GetCloseNeighbours(ConcurrentDictionary<int, NeighbourData> neighboursData,
         Vector2 thisCellPosition)
     {
         closeNeighboursKeys.Clear();
@@ -1005,7 +1005,7 @@ public class MembraneShapeGenerator
         {
             var otherCellPosition = neighbourData.MulticellularMembraneGenerationCellData.Position;
 
-            if (neighbourKey != currentCellKey &&
+            if (neighbourKey != currentColonyCellId &&
                 otherCellPosition.DistanceSquaredTo(thisCellPosition) <=
                 Constants.MEMBRANE_NEIGHBOUR_MAX_SQUARED_DISTANCE_BETWEEN_CENTERS)
             {
@@ -1113,7 +1113,7 @@ public class MembraneShapeGenerator
             // Check that the new position does not lie inside any other neighbour's (preprocessed) polygon.
             foreach (var otherNeighbourKey in closeNeighboursKeys)
             {
-                if (otherNeighbourKey == neighbourCellKey || otherNeighbourKey == currentCellKey)
+                if (otherNeighbourKey == neighbourColonyCellId || otherNeighbourKey == currentColonyCellId)
                     continue;
 
                 var otherNeighbourCell = neighbourWorkingDataPool[neighbourKeyToSlot[otherNeighbourKey]];
