@@ -185,7 +185,7 @@ public static class CellBodyPlanInternalCalculations
                 (1 + 0.05f * distanceSquared);
 
             colonyRotation += memberRotation;
-            actomyosinCount += CalculateEffectiveActomyosinCount(colonyMemberData);
+            actomyosinCount += CalculateEffectiveActomyosinCount(colonyMemberData) * memberTotalSpecializationBonus;
         }
 
         return CalculateFinalColonyRotation(colonyRotation, actomyosinCount, cells.Count);
