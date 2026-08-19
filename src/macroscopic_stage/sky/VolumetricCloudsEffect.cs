@@ -543,7 +543,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
 
         if (!isValid)
         {
-            if (!Mathf.IsEqualApprox(CloudInnerHeight, lastAttemptedInner) || 
+            if (!Mathf.IsEqualApprox(CloudInnerHeight, lastAttemptedInner) ||
                 !Mathf.IsEqualApprox(CloudOuterHeight, lastAttemptedOuter))
             {
                 GD.PushError($"VolumetricCloudsEffect: Invalid cloud heights. Outer ({CloudOuterHeight})" +
