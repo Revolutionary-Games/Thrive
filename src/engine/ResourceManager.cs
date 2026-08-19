@@ -568,9 +568,6 @@ public partial class ResourceManager : Node
 
                     if (!resource.RequiresSyncLoad)
                     {
-                        // TODO: implement proper background loading. As all resources currently are sync loaded
-                        // no effort is put into the background load yet
-
                         if (processingBackgroundTask == null)
                         {
                             loadLifecycle.BeginLoading(resource);
