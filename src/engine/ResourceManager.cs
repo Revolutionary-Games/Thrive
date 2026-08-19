@@ -647,8 +647,11 @@ public partial class ResourceManager : Node
 
     private bool StartStageResourceLoad()
     {
-        if (stageResources.Any(loadLifecycle.IsActive))
-            return false;
+        foreach (var resource in stageResources)
+        {
+            if (loadLifecycle.IsActive(resource))
+                return false;
+        }
 
         StageResourcesList resources;
         try
