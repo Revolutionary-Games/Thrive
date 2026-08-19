@@ -554,8 +554,8 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         lastAttemptedInner = CloudInnerHeight;
         lastAttemptedOuter = CloudOuterHeight;
 
-        float cloudInner = CloudInnerHeight >= 0.0f ? CloudInnerHeight : 0.0f;
-        float cloudOuter = CloudOuterHeight > CloudInnerHeight + 1.0f ? CloudOuterHeight : CloudInnerHeight + 1.0f;
+        float cloudInner = safeInner;
+        float cloudOuter = Math.Max(safeOuter, safeInner + 1.0f);
 
         offset = RenderingUtils.WriteVec4(paramSpan, offset, new Vector4(PlanetCenter.X, PlanetCenter.Y, PlanetCenter.Z,
             0.0f));
