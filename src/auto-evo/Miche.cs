@@ -340,6 +340,15 @@ public class Miche : IArchivable
         }
     }
 
+    public override bool Equals(object? obj)
+    {
+        if (obj is not Miche other)
+            return false;
+
+        return Equals(Pressure, other.Pressure) && ReferenceEquals(Parent, other.Parent) &&
+            Equals(Occupant, other.Occupant);
+    }
+
     public override int GetHashCode()
     {
         var parentHash = Parent != null ? Parent.GetHashCode() : 53;

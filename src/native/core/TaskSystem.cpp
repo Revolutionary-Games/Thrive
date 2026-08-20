@@ -164,12 +164,12 @@ TaskSystem::QueuedTask::QueuedTask(Job* callable) : Type(TaskType::JoltJob)
     Jolt = callable;
 }
 
-TaskSystem::QueuedTask::QueuedTask(QuitSentinel quit) : Type(TaskType::Quit)
+TaskSystem::QueuedTask::QueuedTask(QuitSentinel quit) : Jolt(nullptr), Type(TaskType::Quit)
 {
     UNUSED(quit);
 }
 
-TaskSystem::QueuedTask::QueuedTask(QueuedTask&& other) noexcept : Type(other.Type)
+TaskSystem::QueuedTask::QueuedTask(QueuedTask&& other) noexcept : Jolt(nullptr), Type(other.Type)
 {
     MoveDataFromOther(std::move(other));
 }

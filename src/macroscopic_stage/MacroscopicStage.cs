@@ -141,17 +141,17 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
     {
         base._EnterTree();
 
-        MicrobeStage.CurrentActiveStage = new WeakReference<IEditorMovableStage>(this);
+        currentActiveStageForEditor = new WeakReference<IEditorMovableStage>(this);
     }
 
     public override void _ExitTree()
     {
         base._ExitTree();
 
-        if (MicrobeStage.CurrentActiveStage != null &&
-            MicrobeStage.CurrentActiveStage.TryGetTarget(out var activeStage) && activeStage == this)
+        if (currentActiveStageForEditor != null &&
+            currentActiveStageForEditor.TryGetTarget(out var activeStage) && activeStage == this)
         {
-            MicrobeStage.CurrentActiveStage = null;
+            currentActiveStageForEditor = null;
         }
     }
 

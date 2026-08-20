@@ -77,6 +77,11 @@ public class StorageComponentUpgrades : IComponentSpecificUpgrades
         return SpecializedFor == otherVacuole.SpecializedFor;
     }
 
+    public override bool Equals(object? obj)
+    {
+        return obj is StorageComponentUpgrades other && Equals(other);
+    }
+
     public object Clone()
     {
         return new StorageComponentUpgrades(SpecializedFor);

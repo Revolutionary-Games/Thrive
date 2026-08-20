@@ -55,7 +55,7 @@ public class MacroscopicMetaball : Metaball, IReadonlyMacroscopicMetaball, IArch
     {
         if (other is MacroscopicMetaball asMulticellular)
         {
-            return ModifiableCellType == asMulticellular.ModifiableCellType;
+            return ReferenceEquals(ModifiableCellType, asMulticellular.ModifiableCellType);
         }
 
         return false;

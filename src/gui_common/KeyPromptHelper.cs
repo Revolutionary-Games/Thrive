@@ -198,18 +198,20 @@ public static class KeyPromptHelper
     /// </summary>
     public static string? GetPathForKeyboardKey(string name)
     {
+        var keyName = name;
+
         // Map some key names to match the icon set used key names
-        switch (name)
+        switch (keyName)
         {
             case "Escape":
-                name = "Esc";
+                keyName = "Esc";
                 break;
         }
 
-        if (!AvailableKeys.Contains(name))
+        if (!AvailableKeys.Contains(keyName))
             return null;
 
-        return $"res://assets/textures/gui/xelu_prompts/Keyboard_Mouse/{Theme}/{name}_Key_{Theme}.png";
+        return $"res://assets/textures/gui/xelu_prompts/Keyboard_Mouse/{Theme}/{keyName}_Key_{Theme}.png";
     }
 
     /// <summary>

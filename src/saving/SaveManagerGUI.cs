@@ -56,10 +56,13 @@ public partial class SaveManagerGUI : Control
     private int currentQuickSaveCount;
     private int currentBackupCount;
 
+    // NOTE: we could probably cancel tasks on _ExitTree / Godot-Dispose, but it is probably unnecessary?
+#pragma warning disable CA2213 // Tasks are disposed after their results are consumed
     private Task<(int Count, ulong DiskSpace)>? getTotalSaveCountTask;
     private Task<(int Count, ulong DiskSpace)>? getAutoSaveCountTask;
     private Task<(int Count, ulong DiskSpace)>? getQuickSaveCountTask;
     private Task<(int Count, ulong DiskSpace)>? getBackupCountTask;
+#pragma warning restore CA2213
 
     [Signal]
     public delegate void OnBackPressedEventHandler();
@@ -94,31 +97,40 @@ public partial class SaveManagerGUI : Control
         if (!refreshing)
             return;
 
-        if (!getTotalSaveCountTask!.IsCompleted)
+        if (getTotalSaveCountTask?.IsCompleted != true ||
+            getAutoSaveCountTask?.IsCompleted != true ||
+            getQuickSaveCountTask?.IsCompleted != true ||
+            getBackupCountTask?.IsCompleted != true)
+        {
             return;
+        }
 
-        var info = getTotalSaveCountTask.Result;
-        currentAutoSaveCount = getAutoSaveCountTask!.Result.Count;
-        currentQuickSaveCount = getQuickSaveCountTask!.Result.Count;
-        currentBackupCount = getBackupCountTask!.Result.Count;
+        try
+        {
+            var info = getTotalSaveCountTask.Result;
+            currentAutoSaveCount = getAutoSaveCountTask.Result.Count;
+            currentQuickSaveCount = getQuickSaveCountTask.Result.Count;
+            currentBackupCount = getBackupCountTask.Result.Count;
 
-        getTotalSaveCountTask.Dispose();
-        getAutoSaveCountTask.Dispose();
-        getQuickSaveCountTask.Dispose();
-        getBackupCountTask.Dispose();
-        getTotalSaveCountTask = null;
-        getAutoSaveCountTask = null;
-        getQuickSaveCountTask = null;
-        getBackupCountTask = null;
+            totalSaveCount.Text = info.Count.ToString(CultureInfo.CurrentCulture);
+            totalSaveSize.Text = Localization.Translate("MIB_VALUE")
+                .FormatSafe(Math.Round((float)info.DiskSpace / Constants.MEBIBYTE, 2));
 
-        totalSaveCount.Text = info.Count.ToString(CultureInfo.CurrentCulture);
-        totalSaveSize.Text = Localization.Translate("MIB_VALUE")
-            .FormatSafe(Math.Round((float)info.DiskSpace / Constants.MEBIBYTE, 2));
-
-        UpdateSelectedCount();
-        UpdateButtonsStatus();
-
-        refreshing = false;
+            UpdateSelectedCount();
+            UpdateButtonsStatus();
+        }
+        finally
+        {
+            getTotalSaveCountTask.Dispose();
+            getAutoSaveCountTask.Dispose();
+            getQuickSaveCountTask.Dispose();
+            getBackupCountTask.Dispose();
+            getTotalSaveCountTask = null;
+            getAutoSaveCountTask = null;
+            getQuickSaveCountTask = null;
+            getBackupCountTask = null;
+            refreshing = false;
+        }
     }
 
     private void OnSelectedChanged()
