@@ -81,10 +81,10 @@ public class MovementComponent : IOrganelleComponent
     }
 
     public float UseForMovement(Vector3 wantedMovementDirection, CompoundBag compounds, Quaternion extraColonyRotation,
-        bool isBacteria, float energyCostMultiplier, float delta)
+        bool isBacteria, float totalSpecializationBonus, float energyCostMultiplier, float delta)
     {
         return CalculateMovementForce(compounds, wantedMovementDirection, extraColonyRotation, isBacteria,
-            energyCostMultiplier, delta);
+            totalSpecializationBonus, energyCostMultiplier, delta);
     }
 
     /// <summary>
@@ -123,7 +123,8 @@ public class MovementComponent : IOrganelleComponent
     ///   </para>
     /// </remarks>
     private float CalculateMovementForce(CompoundBag compounds, Vector3 wantedMovementDirection,
-        Quaternion extraColonyRotation, bool isBacteria, float energyCostMultiplier, float elapsed)
+        Quaternion extraColonyRotation, bool isBacteria, float totalSpecializationBonus, float energyCostMultiplier,
+        float elapsed)
     {
         // Real force the flagella applied to the colony (considering rotation)
         var realForce = extraColonyRotation * force;
