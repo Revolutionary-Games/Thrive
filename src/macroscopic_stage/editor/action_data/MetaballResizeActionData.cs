@@ -44,7 +44,7 @@ public class MetaballResizeActionData<TMetaball> : EditorCombinableActionData, I
     {
         if (other is MetaballResizeActionData<TMetaball> resizeActionData)
         {
-            if (resizeActionData.ResizedMetaball == ResizedMetaball)
+            if (ReferenceEquals(resizeActionData.ResizedMetaball, ResizedMetaball))
                 return true;
         }
 

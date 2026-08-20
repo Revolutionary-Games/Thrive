@@ -65,6 +65,11 @@ public class OrganelleUpgrades : IEquatable<OrganelleUpgrades>, IArchivable, IRe
         return CustomUpgradeData.Equals(other.CustomUpgradeData);
     }
 
+    public override bool Equals(object? obj)
+    {
+        return Equals(obj as OrganelleUpgrades);
+    }
+
     public OrganelleUpgrades Clone()
     {
         return new OrganelleUpgrades
@@ -76,7 +81,11 @@ public class OrganelleUpgrades : IEquatable<OrganelleUpgrades>, IArchivable, IRe
 
     public override int GetHashCode()
     {
-        return UnlockedFeatures.GetHashCode() * 3 ^
+        var unlockedFeaturesHash = 17;
+        foreach (var feature in UnlockedFeatures)
+            unlockedFeaturesHash = unlockedFeaturesHash * 31 + feature.GetHashCode();
+
+        return unlockedFeaturesHash * 3 ^
             (CustomUpgradeData != null ? CustomUpgradeData.GetHashCode() : 1) * 1151;
     }
 

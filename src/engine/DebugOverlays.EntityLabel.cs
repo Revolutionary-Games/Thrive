@@ -10,6 +10,8 @@ using Godot;
 /// </summary>
 public partial class DebugOverlays
 {
+    private const float TextUpdateInterval = 0.2f;
+
     private readonly Dictionary<Entity, Label> entityLabels = new();
 
     private readonly HashSet<Entity> seenEntities = new();
@@ -40,6 +42,8 @@ public partial class DebugOverlays
 
     private bool showEntityLabels;
 
+    private double textUpdateTimer;
+
     private bool ShowEntityLabels
     {
         get => showEntityLabels;
@@ -48,6 +52,50 @@ public partial class DebugOverlays
             showEntityLabels = value;
             labelsLayer.Visible = value;
         }
+    }
+
+    public static string FormatEntityDebugLabel(Entity entity)
+    {
+        if (!entity.IsAliveAndNotNull())
+            return $"[{entity.Id}-{entity.Version}]";
+
+        // TODO: chunks used to have their label be $"[{entity}:{chunk.ChunkName}]".
+        // Chunk configuration is not currently saved so the chunk name is not really available.
+        string text;
+
+        if (entity.Has<SpeciesMember>())
+        {
+            var species = entity.Get<SpeciesMember>().Species;
+
+            text = $"[{entity.Id}-{entity.Version}:{species.Genus.Left(1)}.{species.Epithet.Left(4)}]";
+        }
+        else if (entity.Has<ReadableName>())
+        {
+            // TODO: localization support? Should all labels be re-initialized on language change?
+
+            // TODO: some entities would probably be fine with not displaying the entity reference before the
+            // readable name
+            text = $"[{entity.Id}-{entity.Version}:{entity.Get<ReadableName>().Name}]";
+        }
+        else
+        {
+            // Fallback to just showing the raw entity reference, nothing else can be shown
+            text = $"[{entity.Id}-{entity.Version}]";
+        }
+
+        // Showing signalling agent state for debugging AI
+        if (entity.Has<CommandSignaler>())
+        {
+            ref var signaler = ref entity.Get<CommandSignaler>();
+
+            if (signaler.Command != MicrobeSignalCommand.None)
+            {
+                // This is on a new line as otherwise things would be a bit long
+                text += $"\n{signaler.Command}";
+            }
+        }
+
+        return text;
     }
 
     public void UpdateActiveEntities(IWorldSimulation worldSimulation)
@@ -146,13 +194,16 @@ public partial class DebugOverlays
         return true;
     }
 
-    private void UpdateEntityLabels()
+    private void UpdateEntityLabels(double delta)
     {
         if (!IsInstanceValid(activeCamera) || activeCamera is not { Current: true })
             activeCamera = GetViewport().GetCamera3D();
 
         if (activeCamera == null)
             return;
+
+        textUpdateTimer -= delta;
+        var updateText = textUpdateTimer <= 0;
 
         foreach (var pair in entityLabels)
         {
@@ -175,34 +226,17 @@ public partial class DebugOverlays
 
             label.Position = activeCamera.UnprojectPosition(position.Position);
 
-            if (label.Text.Length > 0)
-                continue;
-
-            // Update names
-
-            // TODO: chunks used to have their label be $"[{entity}:{chunk.ChunkName}]"
-            // Chunk configuration is not currently saved so the chunk name is not really
-            if (entity.Has<SpeciesMember>())
+            if (updateText)
             {
-                var species = entity.Get<SpeciesMember>().Species;
+                var newText = FormatEntityDebugLabel(entity);
 
-                label.Text = $"[{entity.Id}-{entity.Version}:{species.Genus.Left(1)}.{species.Epithet.Left(4)}]";
-                continue;
+                if (label.Text != newText)
+                    label.Text = newText;
             }
-
-            if (entity.Has<ReadableName>())
-            {
-                // TODO: localization support? Should all labels be re-initialized on language change?
-
-                // TODO: some entities would probably be fine with not displaying the entity reference before the
-                // readable name
-                label.Text = $"[{entity.Id}-{entity.Version}:{entity.Get<ReadableName>().Name}]";
-                continue;
-            }
-
-            // Fallback to just showing the raw entity reference, nothing else can be shown
-            label.Text = $"[{entity.Id}-{entity.Version}]";
         }
+
+        if (updateText)
+            textUpdateTimer = TextUpdateInterval;
     }
 
     private void OnEntityAdded(Entity entity)
@@ -210,6 +244,7 @@ public partial class DebugOverlays
         var label = new Label();
         labelsLayer.AddChild(label);
         entityLabels.Add(entity, label);
+        label.Text = FormatEntityDebugLabel(entity);
 
         // This used to check for floating chunk, but now this just has to do with by checking a couple of components
         // that all chunks have at least one of. Projectile is still easy to check with the toxin damage source.

@@ -6,7 +6,7 @@ using AutoEvo;
 
 public static class CommonMutationFunctions
 {
-    public static OrganelleDefinition Nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
+    public static readonly OrganelleDefinition Nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
 
     // These must be defined this way to avoid allocations
     private static readonly Hex.HexSide[] TraversalOrder1 = [Hex.HexSide.Top];
@@ -144,7 +144,7 @@ public static class CommonMutationFunctions
         newSpecies.Organelles.AddFast(position, workMemory1, workMemory2);
 
         // If the new species is eukaryotic, mark this as such.
-        if (organelle == Nucleus)
+        if (ReferenceEquals(organelle, Nucleus))
         {
             newSpecies.IsBacteria = false;
         }

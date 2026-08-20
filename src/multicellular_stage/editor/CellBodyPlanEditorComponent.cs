@@ -1154,8 +1154,8 @@ public partial class CellBodyPlanEditorComponent :
                     continue;
 
                 // For now cell adjacency only looks at the type, so we can easily re-calculate that here
-                if (GetEditedCellDataIfEdited(cellAtPosition.Data!.ModifiableCellType) !=
-                    GetEditedCellDataIfEdited(cellToCheckAgainst))
+                if (!ReferenceEquals(GetEditedCellDataIfEdited(cellAtPosition.Data!.ModifiableCellType),
+                        GetEditedCellDataIfEdited(cellToCheckAgainst)))
                 {
                     continue;
                 }
@@ -2068,7 +2068,7 @@ public partial class CellBodyPlanEditorComponent :
         var type = CellTypeFromName(activeActionName!);
 
         // Disallow deleting a type in use currently
-        if (editedMicrobeCells.AsModifiable().Any(c => c.Data!.ModifiableCellType == type))
+        if (editedMicrobeCells.AsModifiable().Any(c => ReferenceEquals(c.Data!.ModifiableCellType, type)))
         {
             GD.Print("Can't delete in use cell type");
             cannotDeleteInUseTypeDialog.PopupCenteredShrink();
@@ -2096,12 +2096,13 @@ public partial class CellBodyPlanEditorComponent :
 
         foreach (var entry in cellTypeSelectionButtons)
         {
-            if (entry.Value.CellType == newType || (entry.Value.CellType == type && newType == type))
+            if (ReferenceEquals(entry.Value.CellType, newType) ||
+                (ReferenceEquals(entry.Value.CellType, type) && ReferenceEquals(newType, type)))
             {
                 // Updating existing
                 entry.Value.ReportTypeChanged();
             }
-            else if (entry.Value.CellType == type)
+            else if (ReferenceEquals(entry.Value.CellType, type))
             {
                 // Button is seeing its first edit (and needs to transform to be for the edit type)
                 GD.Print($"First edit of cell type {type.CellTypeName}");

@@ -36,7 +36,7 @@ public partial class CellTypeSelection : MicrobePartSelection
         get => cellType ?? throw new InvalidOperationException("No cell type set");
         set
         {
-            if (cellType == value)
+            if (ReferenceEquals(cellType, value))
                 return;
 
             ReportTypeChanged();

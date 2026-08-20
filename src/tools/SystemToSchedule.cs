@@ -7,9 +7,15 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using Arch.Core;
 using Arch.System;
+using Godot;
 
 public class SystemToSchedule
 {
+    /// <summary>
+    ///   Helper for seeing system dependencies
+    /// </summary>
+    public static readonly bool PrintDependencies = false;
+
     public static readonly Type CompilerGeneratedAttribute = typeof(CompilerGeneratedAttribute);
 
     public readonly Type Type;
@@ -281,9 +287,13 @@ public class SystemToSchedule
         // Add recursive dependencies
         foreach (var system in systems)
         {
+            if (PrintDependencies)
+                GD.Print($"Start dependencies of system: {system.FieldName}");
             foreach (var runsAfter in system.RunsAfter.ToList())
             {
-                CollectRunsAfter(runsAfter, system.RunsAfter);
+                if (PrintDependencies)
+                    GD.Print($">- {runsAfter.FieldName}");
+                CollectRunsAfter(runsAfter, system.RunsAfter, 1);
             }
 
             if (system.RunsAfter.Contains(system))
@@ -294,7 +304,9 @@ public class SystemToSchedule
 
             foreach (var runsBefore in system.RunsBefore.ToList())
             {
-                CollectRunsBefore(runsBefore, system.RunsBefore);
+                if (PrintDependencies)
+                    GD.Print($">- {runsBefore.FieldName}");
+                CollectRunsBefore(runsBefore, system.RunsBefore, 1);
             }
 
             if (system.RunsBefore.Contains(system))
@@ -302,6 +314,9 @@ public class SystemToSchedule
                 throw new Exception("BUG IS LIKELY IN INCORRECT AND CONFLICTING SYSTEM ATTRIBUTES! " +
                     "System ended up running before itself after recursive resolve");
             }
+
+            if (PrintDependencies)
+                GD.Print($"end of dependencies for: {system.FieldName}");
         }
     }
 
@@ -512,21 +527,37 @@ public class SystemToSchedule
         }
     }
 
-    private static void CollectRunsAfter(SystemToSchedule systemToStart, HashSet<SystemToSchedule> result)
+    private static void CollectRunsAfter(SystemToSchedule systemToStart, HashSet<SystemToSchedule> result,
+        int indentation = 0)
     {
         foreach (var runsAfter in systemToStart.RunsAfter)
         {
+            if (PrintDependencies)
+            {
+                GD.Print($"{new string(' ', indentation * 2)}>- {runsAfter.FieldName}");
+            }
+
             if (result.Add(runsAfter))
-                CollectRunsAfter(runsAfter, result);
+            {
+                CollectRunsAfter(runsAfter, result, indentation + 1);
+            }
         }
     }
 
-    private static void CollectRunsBefore(SystemToSchedule systemToStart, HashSet<SystemToSchedule> result)
+    private static void CollectRunsBefore(SystemToSchedule systemToStart, HashSet<SystemToSchedule> result,
+        int indentation = 0)
     {
         foreach (var runsBefore in systemToStart.RunsBefore)
         {
+            if (PrintDependencies)
+            {
+                GD.Print($"{new string(' ', indentation * 2)}<- {runsBefore.FieldName}");
+            }
+
             if (result.Add(runsBefore))
-                CollectRunsBefore(runsBefore, result);
+            {
+                CollectRunsBefore(runsBefore, result, indentation + 1);
+            }
         }
     }
 

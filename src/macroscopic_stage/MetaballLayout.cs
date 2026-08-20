@@ -10,6 +10,7 @@ using SharedBase.Archive;
 /// <summary>
 ///   A species shape specified by metaballs
 /// </summary>
+/// <typeparam name="T">Metaball type</typeparam>
 public class MetaballLayout<T> : ICollection<T>, IReadOnlyMetaballLayout<T>, IArchivable
     where T : Metaball
 {
@@ -65,7 +66,7 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyMetaballLayout<T>, IAr
 
     public bool CanAdd(T metaball)
     {
-        if (metaball.ModifiableParent == metaball)
+        if (ReferenceEquals(metaball.ModifiableParent, metaball))
             throw new ArgumentException("Metaball can't be its own parent");
 
         // First metaball (or adding the root back) can be placed anywhere
@@ -80,7 +81,7 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyMetaballLayout<T>, IAr
         bool found = true;
         foreach (var existing in metaballs)
         {
-            if (existing == parent)
+            if (ReferenceEquals(existing, parent))
             {
                 found = true;
                 break;
@@ -102,7 +103,7 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyMetaballLayout<T>, IAr
 
     public bool Contains(T metaball)
     {
-        return metaballs.Contains(metaball);
+        return metaballs.Any(existing => ReferenceEquals(existing, metaball));
     }
 
     public void CopyTo(T[] array, int arrayIndex)
@@ -115,10 +116,15 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyMetaballLayout<T>, IAr
 
     public bool Remove(T metaball)
     {
-        if (metaballs.Remove(metaball))
+        for (int i = 0; i < metaballs.Count; ++i)
         {
-            onRemoved?.Invoke(metaball);
-            return true;
+            if (ReferenceEquals(metaballs[i], metaball))
+            {
+                var removedMetaball = metaballs[i];
+                metaballs.RemoveAt(i);
+                onRemoved?.Invoke(removedMetaball);
+                return true;
+            }
         }
 
         return false;
@@ -182,7 +188,7 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyMetaballLayout<T>, IAr
     {
         foreach (var layoutMetaball in this)
         {
-            if (layoutMetaball.ModifiableParent == metaball)
+            if (ReferenceEquals(layoutMetaball.ModifiableParent, metaball))
                 yield return layoutMetaball;
         }
     }
@@ -205,7 +211,7 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyMetaballLayout<T>, IAr
         if (descendant.ModifiableParent == null)
             return false;
 
-        if (descendant.ModifiableParent == parent)
+        if (ReferenceEquals(descendant.ModifiableParent, parent))
             return true;
 
         return IsDescendantsOf(descendant.ModifiableParent, parent);

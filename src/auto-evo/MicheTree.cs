@@ -132,7 +132,7 @@ public partial class MicheTree : Control
 
     public void SetMiche(Miche miche)
     {
-        if (rootMiche == miche)
+        if (ReferenceEquals(rootMiche, miche))
             return;
 
         Clear();

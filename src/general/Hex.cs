@@ -124,6 +124,26 @@ public struct Hex : IEquatable<Hex>, IComparable<Hex>
         return !(left == right);
     }
 
+    public static bool operator <(Hex left, Hex right)
+    {
+        return left.CompareTo(right) < 0;
+    }
+
+    public static bool operator <=(Hex left, Hex right)
+    {
+        return left.CompareTo(right) <= 0;
+    }
+
+    public static bool operator >(Hex left, Hex right)
+    {
+        return left.CompareTo(right) > 0;
+    }
+
+    public static bool operator >=(Hex left, Hex right)
+    {
+        return left.CompareTo(right) >= 0;
+    }
+
     /// <summary>
     ///   Converts axial hex coordinates to cartesian coordinates.
     /// </summary>

@@ -125,9 +125,9 @@ Code style rules
   make sure there are no issues in your code. This script can be
   enabled to run automatically with pre-commit.
 
-- All classes and their public members should be documented by XML
-  comments. If the function's purpose is clear from the name, then its
-  documentation can be omitted. Documenting protected and private
+- All classes should have at least a summary documentation and their most important public 
+  members should be documented by XML comments. If the function's purpose is clear from  
+  the name, then its documentation can be omitted. Documenting protected and private
   members is more optional but if their purpose or usage by derived
   classes isn't immediately obvious, they should be documented. If
   there is a comment on a single construct (class, method etc.) it
@@ -718,6 +718,10 @@ Other files
   are only changes to the reference line numbers. This is done to
   reduce the amount of changes PRs contain, but also means that the
   reference line numbers are sometimes slightly out of date.
+
+- The `.res` file extension to save game resources should be avoided
+  whenever possible. Godot has several recognized specialized extensions
+  for most resource types, which should be preferred.
 
 Gameplay changes
 ----------------
