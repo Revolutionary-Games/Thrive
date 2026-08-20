@@ -167,8 +167,8 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
             addedCells.Add(newCell);
 
 #if DEBUG
-            if (cellTypes.ResolveCellDefinition(newCell.Data.CellType) !=
-                cellTypes.ResolveCellDefinition(cellPlacementActionData.PlacedHex.Data?.CellType))
+            if (!ReferenceEquals(cellTypes.ResolveCellDefinition(newCell.Data.CellType),
+                    cellTypes.ResolveCellDefinition(cellPlacementActionData.PlacedHex.Data?.CellType)))
             {
                 throw new Exception("Failed to setup cell type correctly");
             }
@@ -188,8 +188,8 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
                 {
                     original = addedCell;
 
-                    if (cellTypes.ResolveCellDefinition(original.Data!.CellType) !=
-                        cellTypes.ResolveCellDefinition(cellMoveActionData.MovedHex.Data?.CellType))
+                    if (!ReferenceEquals(cellTypes.ResolveCellDefinition(original.Data!.CellType),
+                            cellTypes.ResolveCellDefinition(cellMoveActionData.MovedHex.Data?.CellType)))
                     {
                         throw new InvalidOperationException("Found an unrelated cell at move old location");
                     }
@@ -207,8 +207,8 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
 
                 if (original != null)
                 {
-                    if (cellTypes.ResolveCellDefinition(original.Data!.CellType) !=
-                        cellTypes.ResolveCellDefinition(cellMoveActionData.MovedHex.Data?.CellType))
+                    if (!ReferenceEquals(cellTypes.ResolveCellDefinition(original.Data!.CellType),
+                            cellTypes.ResolveCellDefinition(cellMoveActionData.MovedHex.Data?.CellType)))
                     {
                         GD.PrintErr("Found unrelated cell at exact position of moved cell");
                     }
@@ -241,8 +241,8 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
                 {
                     original = addedCell;
 
-                    if (cellTypes.ResolveCellDefinition(original.Data!.CellType) !=
-                        cellTypes.ResolveCellDefinition(cellRemoveActionData.RemovedHex.Data?.CellType))
+                    if (!ReferenceEquals(cellTypes.ResolveCellDefinition(original.Data!.CellType),
+                            cellTypes.ResolveCellDefinition(cellRemoveActionData.RemovedHex.Data?.CellType)))
                     {
                         throw new InvalidOperationException("Found an unrelated cell at delete location");
                     }
@@ -260,8 +260,8 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
 
                 if (original != null)
                 {
-                    if (cellTypes.ResolveCellDefinition(original.Data!.CellType) !=
-                        cellTypes.ResolveCellDefinition(cellRemoveActionData.RemovedHex.Data?.CellType))
+                    if (!ReferenceEquals(cellTypes.ResolveCellDefinition(original.Data!.CellType),
+                            cellTypes.ResolveCellDefinition(cellRemoveActionData.RemovedHex.Data?.CellType)))
                     {
                         GD.PrintErr("Found unrelated cell at exact position of removed cell");
                     }
@@ -399,7 +399,8 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
 
         public bool MatchesDefinition(IActionHex other)
         {
-            return OriginalFrom.Data?.CellType == ((IReadOnlyHexWithData<IReadOnlyCellTemplate>)other).Data?.CellType;
+            return ReferenceEquals(OriginalFrom.Data?.CellType,
+                ((IReadOnlyHexWithData<IReadOnlyCellTemplate>)other).Data?.CellType);
         }
 
         internal void ReuseFor(IReadOnlyHexWithData<IReadOnlyCellTemplate> original, CellTypeEditsFacade typeWrapper)

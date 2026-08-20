@@ -20,7 +20,11 @@ using World = Arch.Core.World;
 /// <remarks>
 ///   <para>
 ///     This doesn't run on attached entities to avoid creating physics bodies for engulfed cells or ones in a
-///     colony (only colony leader has a physics shape)
+///     colony (only colony leader has a physics shape).
+///   </para>
+///   <para>
+///     This needs to run after the organelle fetch system has set actomyosin count, so this may need to wait in some
+///     cases.
 ///   </para>
 /// </remarks>
 [WritesToComponent(typeof(MicrobeColony))]
@@ -105,6 +109,12 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
         if (!cellProperties.IsMembraneReady())
             return;
 
+        // And also now need to wait until organelle components have been fetched.
+        ref var organelles = ref entity.Get<OrganelleContainer>();
+
+        if (!organelles.OrganelleComponentsCached)
+            return;
+
         // This uses this fetch approach as it is very rare that microbes need shapes created
         ref var extraData = ref entity.Get<MicrobePhysicsExtraData>();
 
@@ -124,8 +134,6 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
             }
 
             UpdateNonPhysicsSizeData(entity, membrane.EncompassingCircleRadius, ref cellProperties);
-
-            ref var organelles = ref entity.Get<OrganelleContainer>();
 
             if (organelles.Organelles == null)
             {

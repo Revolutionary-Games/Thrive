@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-04 10:45+0300\n"
+"POT-Creation-Date: 2026-08-19 11:37+0300\n"
 "PO-Revision-Date: 2026-05-13 03:55+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -105,6 +105,17 @@ msgid "ACTIVITY_EXPLANATION"
 msgstr ""
 "מיקרבים פעילים יתרוצצו כששום דבר מעניין קורה.\n"
 "מיקרובים נייחים יחכו לסביבה להשתנות לפני שהם יפעלו."
+
+msgid "ACTOMYOSIN"
+msgstr ""
+
+#, fuzzy
+msgid "ACTOMYOSIN_DESCRIPTION"
+msgstr "חסר תיאור"
+
+#, fuzzy
+msgid "ACTOMYOSIN_PROCESSES_DESCRIPTION"
+msgstr "הופך [thrive:compound type=\"glucose\"][/thrive:compound] ל[thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "דרכי אימות נוספים זיהו בעיה: {0}"
@@ -959,6 +970,14 @@ msgstr "זמן ישויות עם צורות התנגשות"
 #, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "(כאשר מופעל מגביל מהירות הצמיחה, ואם מושבת רק תרכובות הזמינות משפיעות על מהירות הצמיחה)"
+
+#, fuzzy
+msgid "COLONY_ROTATION_INCREASE"
+msgstr "רוטציה:"
+
+#, fuzzy
+msgid "COLONY_SPEED_INCREASE"
+msgstr "רוטציה:"
 
 msgid "COLOUR"
 msgstr "צבע"
@@ -6082,6 +6101,9 @@ msgstr "לשמירה סצנת משחק לא תקפה"
 msgid "SAVE_INVALID"
 msgstr "לא תקף"
 
+msgid "SAVE_IS_CORRUPT_WHILE_LOADING"
+msgstr ""
+
 msgid "SAVE_IS_INVALID"
 msgstr "השמירה אינו תקפה"
 
@@ -6259,6 +6281,14 @@ msgstr "ערך זה חל רק על שמירות חדשות לאחר שינויו
 
 #, fuzzy
 msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr "(באופן פסיבי צובר תרכובות מהסביבה לתהליכי רבייה מבלי שצריך לעשות דבר)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION"
+msgstr "(באופן פסיבי צובר תרכובות מהסביבה לתהליכי רבייה מבלי שצריך לעשות דבר)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION_ACTIVE"
 msgstr "(באופן פסיבי צובר תרכובות מהסביבה לתהליכי רבייה מבלי שצריך לעשות דבר)"
 
 #, fuzzy
@@ -6976,12 +7006,24 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVEOPEDIA_MUSEUM_PAGE_SEARCHTAGS"
+msgstr "הרבה אורגניזמים מפיקים חומרים רב סוכרים דמויי רפש, וריר היא אחד מאותם רב סוכרים אלו. אומנם רבים מהמינים משתמשים ברפש בשביל תנועה, סוגים מסוימים של חיידקים מפרישים חומרים אלו בלחץ גבוהה. אלו סילוני רפש מתנהגים כמו מנועי טילים, דוחפים את התאים קדימה במהירות גבוהה. רפש משומש בנוסף בשביל לעקב טורפים, הנתקעים בתוך החומר שרק מחזיקים בסילונים מסוגלים לנווט בהם."
+
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
 #, fuzzy
+msgid "THRIVEOPEDIA_ORGANELLE_SEARCHTAGS"
+msgstr "מפתחים נוכחים"
+
+#, fuzzy
 msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
 msgstr "מינים נכחדים"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_SEARCHTAGS"
+msgstr "הרבה אורגניזמים מפיקים חומרים רב סוכרים דמויי רפש, וריר היא אחד מאותם רב סוכרים אלו. אומנם רבים מהמינים משתמשים ברפש בשביל תנועה, סוגים מסוימים של חיידקים מפרישים חומרים אלו בלחץ גבוהה. אלו סילוני רפש מתנהגים כמו מנועי טילים, דוחפים את התאים קדימה במהירות גבוהה. רפש משומש בנוסף בשביל לעקב טורפים, הנתקעים בתוך החומר שרק מחזיקים בסילונים מסוגלים לנווט בהם."
 
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr ""
@@ -7031,6 +7073,14 @@ msgstr ""
 
 msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_SEARCHTAGS"
+msgstr "טראיבופדיה"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_SEARCHTAGS"
+msgstr "מפתחים נוכחים"
 
 #, fuzzy
 msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"

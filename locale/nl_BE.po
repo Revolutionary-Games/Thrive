@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-04 10:45+0300\n"
+"POT-Creation-Date: 2026-08-19 11:37+0300\n"
 "PO-Revision-Date: 2026-05-22 15:37+0000\n"
 "Last-Translator: William <William.berger@outlook.be>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -103,6 +103,17 @@ msgid "ACTIVITY_EXPLANATION"
 msgstr ""
 "Actieve microben rennen en tuimelen als er niets interessants gebeurt.\n"
 "Sessiele microben zullen stationair zijn en wachten tot de omgeving verandert voordat ze handelen."
+
+msgid "ACTOMYOSIN"
+msgstr ""
+
+#, fuzzy
+msgid "ACTOMYOSIN_DESCRIPTION"
+msgstr "Omschrijving ontbreekt"
+
+#, fuzzy
+msgid "ACTOMYOSIN_PROCESSES_DESCRIPTION"
+msgstr "Verandert [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Bijkomende controles detecteerden een probleem: {0}"
@@ -967,6 +978,14 @@ msgstr ""
 #, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "{0} bevolking veranderd met {1} door: {2}"
+
+#, fuzzy
+msgid "COLONY_ROTATION_INCREASE"
+msgstr "Totale populatie:"
+
+#, fuzzy
+msgid "COLONY_SPEED_INCREASE"
+msgstr "Totale populatie:"
 
 msgid "COLOUR"
 msgstr "Kleur"
@@ -6102,6 +6121,9 @@ msgstr "Opgeslagen bestand heeft ongeldige \"game state scene\""
 msgid "SAVE_INVALID"
 msgstr "Ongeldig"
 
+msgid "SAVE_IS_CORRUPT_WHILE_LOADING"
+msgstr ""
+
 msgid "SAVE_IS_INVALID"
 msgstr "Opgeslagen bestand is ongeldig"
 
@@ -6291,6 +6313,14 @@ msgstr "Deze waarde is alleen van toepassing op nieuwe games die zijn gestart na
 
 #, fuzzy
 msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr "{0} bevolking veranderd met {1} door: {2}"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION"
+msgstr "{0} bevolking veranderd met {1} door: {2}"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION_ACTIVE"
 msgstr "{0} bevolking veranderd met {1} door: {2}"
 
 #, fuzzy
@@ -7015,12 +7045,24 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVEOPEDIA_MUSEUM_PAGE_SEARCHTAGS"
+msgstr "Het kleverige binnenste van een cel. Het cytoplasma is het basismengsel van ionen, proteïnen en andere in water opgeloste stoffen die de binnenkant van de cel vullen. Een van de functies die het vervult is glycolyse, de omzetting van glucose in ATP-energie. Voor cellen zonder organellen die zorgen voor een geavanceerder metabolisme, is dit waar ze op vertrouwen voor energie. Het wordt ook gebruikt om moleculen in de cel op te slaan en om de cel te vergroten."
+
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
 #, fuzzy
+msgid "THRIVEOPEDIA_ORGANELLE_SEARCHTAGS"
+msgstr "Wereld"
+
+#, fuzzy
 msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
 msgstr "UITSTERVEN"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_SEARCHTAGS"
+msgstr "Het kleverige binnenste van een cel. Het cytoplasma is het basismengsel van ionen, proteïnen en andere in water opgeloste stoffen die de binnenkant van de cel vullen. Een van de functies die het vervult is glycolyse, de omzetting van glucose in ATP-energie. Voor cellen zonder organellen die zorgen voor een geavanceerder metabolisme, is dit waar ze op vertrouwen voor energie. Het wordt ook gebruikt om moleculen in de cel op te slaan en om de cel te vergroten."
 
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr ""
@@ -7054,6 +7096,14 @@ msgstr ""
 
 msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_SEARCHTAGS"
+msgstr "Sta soorten toe niet te muteren (als geen goede mutatie gevonden wordt)"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_SEARCHTAGS"
+msgstr "Wereld"
 
 #, fuzzy
 msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"

@@ -399,19 +399,22 @@ public partial class CustomRichTextLabel : RichTextLabel
             int width, int height, ImageVerticalAlignment verticalAlignment = ImageVerticalAlignment.Center,
             ImageAlignmentReferencePoint textAnchorPoint = ImageAlignmentReferencePoint.Center)
         {
+            var imageWidth = width;
+            var imageHeight = height;
+
             if (pairs.TryGetValue("size", out string? sizeInput))
             {
                 var separator = sizeInput.Find("x");
 
                 if (separator == -1)
                 {
-                    width = sizeInput.ToInt();
+                    imageWidth = sizeInput.ToInt();
                 }
                 else
                 {
                     var split = sizeInput.Split("x", 2);
-                    width = split[0].ToInt();
-                    height = split[1].ToInt();
+                    imageWidth = split[0].ToInt();
+                    imageHeight = split[1].ToInt();
                 }
             }
 
@@ -437,7 +440,7 @@ public partial class CustomRichTextLabel : RichTextLabel
             // Automatic reference if the same point is used
             if ((int)textAnchorPoint == (int)verticalAlignment)
             {
-                return $"[img {vertical} width={width} height={height}]{imagePath}[/img]";
+                return $"[img {vertical} width={imageWidth} height={imageHeight}]{imagePath}[/img]";
             }
 
             string reference;
@@ -460,7 +463,7 @@ public partial class CustomRichTextLabel : RichTextLabel
                     throw new ArgumentOutOfRangeException(nameof(textAnchorPoint), textAnchorPoint, null);
             }
 
-            return $"[img {vertical},{reference} width={width} height={height}]{imagePath}[/img]";
+            return $"[img {vertical},{reference} width={imageWidth} height={imageHeight}]{imagePath}[/img]";
         }
 
         switch (bbcode)

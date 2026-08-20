@@ -91,7 +91,7 @@ public class MacroscopicSpecies : Species, IReadOnlyMacroscopicSpecies
 #if DEBUG
         foreach (var metaball in ModifiableBodyLayout.AsModifiable())
         {
-            if (!ModifiableCellTypes.Contains(metaball.ModifiableCellType))
+            if (!ModifiableCellTypes.Any(cellType => ReferenceEquals(cellType, metaball.ModifiableCellType)))
             {
                 GD.PrintErr("Metaball has a cell type that doesn't exist");
                 Debugger.Break();
@@ -127,12 +127,12 @@ public class MacroscopicSpecies : Species, IReadOnlyMacroscopicSpecies
         var chemo = simulation.GetOrganelleType("chemoplast");
         var chemoProtein = simulation.GetOrganelleType("chemoSynthesizingProteins");
 
-        if (Organelles.Any(o => o.Definition == rusticyanin))
+        if (Organelles.Any(o => ReferenceEquals(o.Definition, rusticyanin)))
         {
             SetInitialCompoundsForIron();
         }
-        else if (Organelles.Any(o => o.Definition == chemo ||
-                     o.Definition == chemoProtein))
+        else if (Organelles.Any(o => ReferenceEquals(o.Definition, chemo) ||
+                     ReferenceEquals(o.Definition, chemoProtein)))
         {
             SetInitialCompoundsForChemo();
         }

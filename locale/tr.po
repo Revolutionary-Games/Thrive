@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-04 10:45+0300\n"
-"PO-Revision-Date: 2026-08-05 11:42+0000\n"
+"POT-Creation-Date: 2026-08-19 11:37+0300\n"
+"PO-Revision-Date: 2026-08-14 22:50+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -106,6 +106,15 @@ msgid "ACTIVITY_EXPLANATION"
 msgstr ""
 "Hareketli mikroplar, ilginç bir şey olmadığında ilerler ve yuvarlanırlar.\n"
 "Durağan mikroplar, hareketsizdirler ve hareket etmeden önce ortamın değişmesini beklerler."
+
+msgid "ACTOMYOSIN"
+msgstr "Aktomiyozin"
+
+msgid "ACTOMYOSIN_DESCRIPTION"
+msgstr "Aktomiyozinler, hücre kolonilerinin kendilerini bir yöne çekmek ya da döndürmek için kullanabileceği basit kas yapılarıdır. Bu yapılar koloninin esnekliğine dayandığından, duvar tipi hücre zarları için mevcut değildir. Bunun da bir sonucu olarak, her hücrede yalnızca bir tane bulunması ama kolonideki birçok hücrenin bu organeli taşıması durumunda, bu yapılar en etkili haldedir."
+
+msgid "ACTOMYOSIN_PROCESSES_DESCRIPTION"
+msgstr "Bir hücre kolonisinin hareket ve dönme hızını arttırır."
 
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Ek doğrulamalar bir sorun tespit etti: {0}"
@@ -955,6 +964,12 @@ msgstr "Fizik hata ayıklama şekillerini göster"
 
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "Bu sekme, hücre kolonilerinin büyüme sırasının ayarlanmasını sağlar. Bu sıradaki ilk hücre, kök (veya tomurcuk) hücresidir. Bu sekmeyi, daha kritik hücrelerin büyümesine öncelik tanımak ya da koloninin üretim ve tüketiminin uygun bir şekilde dengelenmesini sağlamak için kullanabilirsin."
+
+msgid "COLONY_ROTATION_INCREASE"
+msgstr "Koloni Dönme Hızı"
+
+msgid "COLONY_SPEED_INCREASE"
+msgstr "Koloni Hızı"
 
 msgid "COLOUR"
 msgstr "Renk"
@@ -5603,6 +5618,9 @@ msgstr "Kayıt geçersiz bir oyun manzarasına sahip"
 msgid "SAVE_INVALID"
 msgstr "Geçersiz"
 
+msgid "SAVE_IS_CORRUPT_WHILE_LOADING"
+msgstr ""
+
 msgid "SAVE_IS_INVALID"
 msgstr "Kayıt geçersiz"
 
@@ -5771,6 +5789,12 @@ msgstr "Bu ayar değiştirilirse, değişiklik yalnızca yeni başlatılan oyunl
 
 msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
 msgstr "Eşeyli anizogami ile, farklı gamet türlerine sahip olmak mümkündür. Örneğin, gerçekten hareketli bir gamet ve bu gametten daha büyük bir gamete sahip olunabilir. Gametler yalnızca kendilerinden farklı bir tür ile birleşebilirler."
+
+msgid "SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION"
+msgstr "Eşeyli üremeyi kullanmak, tüm MP kullanımında %{0} indirim verir. Bu bonus, bir sonraki kuşaktan itibaren uygulanır."
+
+msgid "SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION_ACTIVE"
+msgstr "Eşeyli üreme kullanmaktan dolayı, tüm MP kullanımı %{0} indirime girer."
 
 msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "Doğrudan yavru yerine, gamet hücreleri üretir. Gametler, bir yavru üretmek için başka bir hücre kolonisinden uyumlu bir gamet ile birleşmelidir. Diğer hücrelere sinyaller göndermek için bir sinyal verici ajan kullanılabilir."
@@ -6435,11 +6459,23 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr "Ana Sayfa"
 
+msgid "THRIVEOPEDIA_MUSEUM_PAGE_SEARCHTAGS"
+msgstr "fosilleşmiş"
+
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Müze"
 
+msgid "THRIVEOPEDIA_ORGANELLE_SEARCHTAGS"
+msgstr ""
+"parça\n"
+"organel\n"
+"bileşen"
+
 msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
 msgstr "Soyu Tükenen Tür {0}"
+
+msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_SEARCHTAGS"
+msgstr "dünya"
 
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr "Arazi Haritası"
@@ -6464,6 +6500,16 @@ msgstr "Henüz hiçbir tür sabitlenmedi. O yüzden, burada hiçbir sayfa listel
 
 msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
 msgstr "Sabitlenen Türler"
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_SEARCHTAGS"
+msgstr ""
+"canlı\n"
+"hayvan"
+
+msgid "THRIVEOPEDIA_WORLD_SPECIES_SEARCHTAGS"
+msgstr ""
+"canlı\n"
+"hayvan"
 
 msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
 msgstr "Tür"

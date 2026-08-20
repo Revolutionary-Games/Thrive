@@ -12,7 +12,7 @@ using UnlockConstraints;
 public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage>, IEditorReportData,
     ICellEditorData
 {
-    public const ushort SERIALIZATION_VERSION = 2;
+    public const ushort SERIALIZATION_VERSION = 3;
 
     private readonly MulticellularSpeciesComparer speciesComparer = new();
 
@@ -47,8 +47,8 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
     /// <summary>
     ///   If not null, this is the cell type that is being edited. Note that this is always a temporary holder from
     ///   <see cref="cellTypeEditsHolder"/>, so it can be modified without affecting the original cell type until
-    ///   editor exit. This complicates things when all users need to know if they want the latest edits or original
-    ///   data when reading this.
+    ///   the editor exits. This complicates things when all users need to know if they want the latest edits or
+    ///   original data when reading this.
     /// </summary>
     private CellType? selectedCellTypeToEdit;
 
@@ -58,6 +58,18 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
     private MembraneType? specialMembraneToSwitchOnExit;
 
     private Dictionary<OrganelleDefinition, int> tempMemory1 = new();
+
+    /// <summary>
+    ///   Set by the stage upon entering using a sexual reproduction method successfully (not when using cheats).
+    ///   Do not change after the editor starts as this affects MP discounts!
+    /// </summary>
+    public bool UsedSexualReproduction { get; set; }
+
+    /// <summary>
+    ///   Effective mutation cost multiplier in this editor. Note this doesn't immediately read the reproduction type
+    ///   as just swapping types would dynamically then change the MP discount during an editor session.
+    /// </summary>
+    public float MutationPointCostModifier => UsedSexualReproduction ? Constants.SEXUAL_REPRODUCTION_MP_COST_FACTOR : 1;
 
     public override bool CanCancelAction
     {
@@ -139,6 +151,11 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
             reader.ReadObjectProperties(instance.cellTypeEditsHolder);
         }
 
+        if (version > 2)
+        {
+            instance.UsedSexualReproduction = reader.ReadBool();
+        }
+
         // Set this first so that this is available immediately
         instance.bodyPlanEditorTab.CellTypeVisualsOverride = instance.cellTypeEditsHolder;
 
@@ -160,6 +177,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         writer.WriteObjectOrNull(selectedCellTypeToEdit);
 
         writer.WriteObjectProperties(cellTypeEditsHolder);
+        writer.Write(UsedSexualReproduction);
 
         writer.WriteObjectProperties(reportTab);
         writer.WriteObjectProperties(patchMapTab);
@@ -499,7 +517,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         editsFacade.SetActiveActions(performedActionData);
 
         return speciesComparer.Compare(editedSpecies!, editsFacade, Constants.MAX_SINGLE_EDIT_MP_COST,
-            CurrentGame.GameWorld.WorldSettings.MPMultiplier);
+            CurrentGame.GameWorld.WorldSettings.MPMultiplier * MutationPointCostModifier);
     }
 
     protected override GameProperties StartNewGameForEditor()
@@ -684,7 +702,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
         // Only reinitialize the editor when required
         if (selectedCellTypeToEdit == null ||
-            cellTypeEditsHolder.GetOriginalType(selectedCellTypeToEdit) != newTypeToEdit)
+            !ReferenceEquals(cellTypeEditsHolder.GetOriginalType(selectedCellTypeToEdit), newTypeToEdit))
         {
             selectedCellTypeToEdit = cellTypeEditsHolder.BeginOrContinueEdit(newTypeToEdit);
 
@@ -771,7 +789,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
         // Revert to the old name if the name is a duplicate
         if (EditedSpecies.ModifiableCellTypes.Any(c =>
-                c != selectedCellTypeToEdit && c.CellTypeName == selectedCellTypeToEdit.CellTypeName))
+                !ReferenceEquals(c, selectedCellTypeToEdit) && c.CellTypeName == selectedCellTypeToEdit.CellTypeName))
         {
             if (oldName != selectedCellTypeToEdit.CellTypeName)
             {
@@ -796,7 +814,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     private void SwapEditingCellIfNeeded(CellType? newCell)
     {
-        if (selectedCellTypeToEdit == newCell || newCell == null)
+        if (ReferenceEquals(selectedCellTypeToEdit, newCell) || newCell == null)
             return;
 
         // If we're switching to a new cell type, apply any changes made to the old one
@@ -887,6 +905,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
     {
         energyBalance.BaseMovement = MathF.Max(energyBalance.BaseMovement, toAdd.BaseMovement);
         energyBalance.Flagella = MathF.Max(energyBalance.Flagella, toAdd.Flagella);
+        energyBalance.Actomyosin = MathF.Max(energyBalance.Actomyosin, toAdd.Actomyosin);
         energyBalance.Cilia = MathF.Max(energyBalance.Cilia, toAdd.Cilia);
         energyBalance.TotalMovement = MathF.Max(energyBalance.TotalMovement, toAdd.TotalMovement);
 

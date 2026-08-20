@@ -408,7 +408,7 @@ public partial class CellEditorComponent :
         }
     }
 
-    public bool HasNucleus => PlacedUniqueOrganelles.Any(d => d == nucleus);
+    public bool HasNucleus => PlacedUniqueOrganelles.Any(d => ReferenceEquals(d, nucleus));
 
     public override bool HasIslands =>
         editedMicrobeOrganelles.GetIslandHexes(islandResults, islandsWorkMemory1, islandsWorkMemory2,
@@ -499,7 +499,7 @@ public partial class CellEditorComponent :
 
     private float CostMultiplier =>
         (IsMulticellularEditor ? Constants.MULTICELLULAR_EDITOR_COST_FACTOR : 1.0f) *
-        Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier;
+        Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier * Editor.MutationPointCostModifier;
 
     public static void UpdateOrganelleDisplayerTransform(SceneDisplayer organelleModel, OrganelleTemplate organelle)
     {
@@ -525,7 +525,7 @@ public partial class CellEditorComponent :
             return;
         }
 
-        // To follow MicrobeRenderPrioritySystem this sets other than the first material to be -1 in priority
+        // To follow MicrobeRenderPrioritySystem, this sets other than the first material to be -1 in priority
         bool first = true;
 
         foreach (var shaderMaterial in temporaryDataHolder)
@@ -1810,11 +1810,11 @@ public partial class CellEditorComponent :
             return null;
 
         // Don't allow deletion of nucleus or the last organelle
-        if (organelleHere.Definition == nucleus || MicrobeSize - alreadyDeleted < 2)
+        if (ReferenceEquals(organelleHere.Definition, nucleus) || MicrobeSize - alreadyDeleted < 2)
             return null;
 
         // In multicellular binding agents can't be removed
-        if (IsMulticellularEditor && organelleHere.Definition == bindingAgent)
+        if (IsMulticellularEditor && ReferenceEquals(organelleHere.Definition, bindingAgent))
             return null;
 
         ++alreadyDeleted;
@@ -1990,7 +1990,7 @@ public partial class CellEditorComponent :
 
     private bool HasOrganelle(OrganelleDefinition organelleDefinition)
     {
-        return editedMicrobeOrganelles.Organelles.Any(o => o.Definition == organelleDefinition);
+        return editedMicrobeOrganelles.Organelles.Any(o => ReferenceEquals(o.Definition, organelleDefinition));
     }
 
     private void UpdateRigiditySlider(int value)
@@ -2009,7 +2009,7 @@ public partial class CellEditorComponent :
         var count = organelles.Count;
 
         // Disable delete for nucleus or the last organelle.
-        bool attemptingNucleusDelete = organelles.Any(o => o.Definition == nucleus);
+        bool attemptingNucleusDelete = organelles.Any(o => ReferenceEquals(o.Definition, nucleus));
         if (MicrobeSize <= count || attemptingNucleusDelete)
         {
             organelleMenu.EnableDeleteOption = false;
@@ -2021,7 +2021,7 @@ public partial class CellEditorComponent :
         else
         {
             // Additionally in multicellular binding agents can't be removed
-            if (IsMulticellularEditor && organelles.Any(o => o.Definition == bindingAgent))
+            if (IsMulticellularEditor && organelles.Any(o => ReferenceEquals(o.Definition, bindingAgent)))
             {
                 organelleMenu.EnableDeleteOption = false;
             }
@@ -2996,10 +2996,7 @@ public partial class CellEditorComponent :
         // Multicellular parts only available (visible) in multicellular.
         // For now, there aren't any multicellular specific organelles so the section is hidden.
         partsSelectionContainer.GetNode<CollapsibleList>(nameof(OrganelleDefinition.OrganelleGroup.Multicellular))
-            .Visible = false;
-
-        // TODO: put this code back in if we get multicellular specific organelles
-        // .Visible = IsMulticellularEditor;
+            .Visible = IsMulticellularEditor;
 
         partsSelectionContainer.GetNode<CollapsibleList>(nameof(OrganelleDefinition.OrganelleGroup.Macroscopic))
             .Visible = IsMacroscopicEditor;
@@ -3110,7 +3107,7 @@ public partial class CellEditorComponent :
         // in, but that will require more locking
         foreach (var entry in editedMicrobeOrganelles.Organelles)
         {
-            if (entry.Definition == nucleus)
+            if (ReferenceEquals(entry.Definition, nucleus))
                 target.IsBacteria = false;
 
             // We have to clone here, as we might have a suggestion run ongoing when we modify the edited organelles
@@ -3506,7 +3503,7 @@ public partial class CellEditorComponent :
         foreach (var organelleTemplate in editedMicrobeOrganelles)
         {
             // Ignore one cytoplasm
-            if (organelleTemplate.Definition == cytoplasm && !ignoredCytoplasm)
+            if (ReferenceEquals(organelleTemplate.Definition, cytoplasm) && !ignoredCytoplasm)
             {
                 ignoredCytoplasm = true;
                 continue;
@@ -3523,7 +3520,7 @@ public partial class CellEditorComponent :
                 if (productionProcess && !chemosynthesisProcess)
                 {
                     // Ignore glucolysis in chemo-synthesising proteins
-                    if (organelleTemplate.Definition == chemoSynthesizingProteins)
+                    if (ReferenceEquals(organelleTemplate.Definition, chemoSynthesizingProteins))
                     {
                         continue;
                     }
@@ -3548,9 +3545,9 @@ public partial class CellEditorComponent :
 
     private class PendingAutoEvoPrediction
     {
-        public AutoEvoRun AutoEvoRun;
-        public Species PlayerSpeciesOriginal;
-        public Species PlayerSpeciesNew;
+        public readonly AutoEvoRun AutoEvoRun;
+        public readonly Species PlayerSpeciesOriginal;
+        public readonly Species PlayerSpeciesNew;
 
         public PendingAutoEvoPrediction(AutoEvoRun autoEvoRun, Species playerSpeciesOriginal, Species playerSpeciesNew)
         {

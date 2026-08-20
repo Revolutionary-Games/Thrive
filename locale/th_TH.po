@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-04 10:45+0300\n"
-"PO-Revision-Date: 2026-04-22 18:35+0000\n"
-"Last-Translator: \"Georgi Georgiev (RacerBG)\" <g.georgiev.shumen@gmail.com>\n"
+"POT-Creation-Date: 2026-08-19 11:37+0300\n"
+"PO-Revision-Date: 2026-08-20 09:30+0000\n"
+"Last-Translator: monkey <monkeygorun@gmail.com>\n"
 "Language-Team: Thai <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/th/>\n"
 "Language: th_TH\n"
 "MIME-Version: 1.0\n"
@@ -20,205 +20,215 @@ msgstr ""
 "Generated-By: Babel 2.9.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "รูปแบบการเคลื่อนที่แบบ 2D:"
 
-#, fuzzy
 msgid "3D_EDITOR"
-msgstr "แก้ไข"
+msgstr "เครื่องมือแก้ไข 3 มิติ"
 
-#, fuzzy
 msgid "3D_MOVEMENT"
-msgstr "การเคลื่อนไหว"
+msgstr "การเคลื่อนไหวแบบ 3 มิติ"
 
 msgid "3D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "รูปแบบการเคลื่อนไหวแบบ 3 มิติ:"
 
 msgid "ABILITIES"
 msgstr "ความสามารถ"
 
-#, fuzzy
 msgid "ABORT"
 msgstr "ยกเลิก"
 
-#, fuzzy
 msgid "ABORTED_DOT"
-msgstr "ยกเลิก"
+msgstr "ยกเลิกการทำงานแล้ว"
 
-#, fuzzy
 msgid "ABSORBERS_COUNT"
-msgstr "W, A, S, D และเมาส์เพื่อย้าย กด E เพื่อยิง OxyToxy NT หากคุณมีสารพิษแวคิวโอล กด G เพื่อสลับโหมดเขมือบ"
+msgstr "อุปกรณ์ดูดซับแรงกระแทก:"
 
 msgid "ABYSSOPELAGIC"
 msgstr "เขตเหวนรก"
 
 msgid "ACCEPT"
-msgstr ""
+msgstr "ตกลง"
 
-#, fuzzy
 msgid "ACHIEVEMENTS"
-msgstr "การเคลื่อนไหว"
+msgstr "ความสำเร็จ"
 
-#, fuzzy
 msgid "ACHIEVEMENTS_LOAD_FAILED"
-msgstr "การเคลื่อนไหว"
+msgstr "การโหลดข้อมูลความสำเร็จล้มเหลว"
 
-#, fuzzy
 msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
-msgstr "แวคิวโอลเป็นออร์แกเนลล์เยื่อภายในที่ใช้สำหรับเก็บในเซลล์ ประกอบด้วยถุงหลายอันโครงสร้างของเยื่อขนาดเล็กที่ใช้กันอย่างแพร่หลายในเซลล์เพื่อการจัดเก็บที่หลอมรวมเข้าด้วยกัน เต็มไปด้วยน้ำซึ่งใช้บรรจุโมเลกุลเอนไซม์ของแข็งและสารอื่น ๆ รูปร่างของพวกมันเป็นของเหลวและอาจแตกต่างกันไประหว่างเซลล์"
+msgstr ""
+"ไฟล์ข้อมูลความสำเร็จอาจเสียหาย\n"
+"คุณสามารถรีเซ็ตข้อมูลดังกล่าวได้ (ซึ่งจะทำให้สูญเสียความคืบหน้าของความสำเร็จทั้งหมด) โดยการลบไฟล์:\n"
+"{0}\n"
+"คุณต้องการเล่นต่อโดยไม่ใช้ระบบความสำเร็จหรือไม่?\n"
+"หากกด \"ยกเลิก\" เกมจะปิดตัวลง"
 
 msgid "ACHIEVEMENTS_TOTAL"
-msgstr ""
+msgstr "ความสำเร็จ {0} / {1}"
 
 msgid "ACHIEVEMENT_ACHIEVED"
-msgstr ""
+msgstr "สมบูรณ์"
 
 msgid "ACHIEVEMENT_LOCKED"
-msgstr ""
+msgstr "ล็อกแล้ว"
 
 msgid "ACTION_AWAKEN"
-msgstr ""
+msgstr "ตื่นรู้ ({0:F1} / {1:F1})"
 
-#, fuzzy
 msgid "ACTION_AWAKEN_TOOLTIP"
-msgstr "ดำเนินการต่อ"
+msgstr "เข้าสู่ขั้นตื่นรู้ (Awakening Stage) สามารถทำได้เมื่อมีพลังสมองเพียงพอ (เนื้อเยื่อประเภทที่มีแอกซอน)"
 
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
-msgstr ""
+msgstr "การดำเนินการถูกระงับเนื่องจากมีอีกการดำเนินการหนึ่งกำลังดำเนินอยู่"
 
-#, fuzzy
 msgid "ACTION_DELETE"
-msgstr "ปกติ"
+msgstr "ลบ"
 
-#, fuzzy
 msgid "ACTION_DOUBLE_POPULATION"
-msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+msgstr "ประชากรเพิ่มขึ้นเป็นสองเท่า"
 
-#, fuzzy
 msgid "ACTION_DUPLICATE_UNITS"
-msgstr "ปกติ"
+msgstr "หน่วยที่ซ้ำกัน"
 
-#, fuzzy
 msgid "ACTION_HALF_POPULATION"
-msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+msgstr "ลดจำนวนประชากรลงครึ่งหนึ่ง"
 
-#, fuzzy
 msgid "ACTION_TELEPORT"
-msgstr "ปกติ"
+msgstr "เทเลพอร์ต"
 
 msgid "ACTIVE"
-msgstr ""
+msgstr "กระตือรือร้น"
 
-#, fuzzy
 msgid "ACTIVE_THREAD_COUNT"
-msgstr "บันทึกและดำเนินการต่อ"
+msgstr "กระทู้ปัจจุบัน:"
 
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
+"จุลินทรีย์ที่เคลื่อนไหวจะวิ่งและหมุนตัวไปมาเมื่อไม่มีอะไรน่าสนใจเกิดขึ้น\n"
+"จุลินทรีย์ที่เกาะติดอยู่กับที่ จะอยู่นิ่งและรอให้สภาพแวดล้อมเปลี่ยนแปลงก่อนจึงจะลงมือทำอะไร"
+
+msgid "ACTOMYOSIN"
+msgstr "แอคโตไมโอซิน"
+
+msgid "ACTOMYOSIN_DESCRIPTION"
+msgstr "แอคโตไมโอซิน (Actomyosin) เป็นโครงสร้างกล้ามเนื้อแบบเรียบง่ายที่กลุ่มเซลล์สามารถใช้เพื่อดึงตัวเองไปในทิศทางที่ต้องการหรือหมุนตัวได้อย่างมีประสิทธิภาพยิ่งขึ้น โครงสร้างนี้ไม่สามารถใช้ได้กับเยื่อหุ้มเซลล์ที่มีลักษณะเป็นผนังแข็ง เนื่องจากกลไกการทำงานของมันอาศัยการยืดหยุ่นหรือการโค้งงอของกลุ่มเซลล์ ด้วยเหตุนี้ มันจึงทำงานได้มีประสิทธิภาพสูงสุดเมื่อมีโครงสร้างนี้เพียงชุดเดียวต่อหนึ่งเซลล์ แต่มีเซลล์จำนวนมากในกลุ่มเซลล์นั้นที่มีองค์ประกอบดังกล่าวอยู่"
+
+msgid "ACTOMYOSIN_PROCESSES_DESCRIPTION"
+msgstr "เพิ่มความเร็วในการเคลื่อนที่และอัตราการหมุนของกลุ่มเซลล์"
 
 msgid "ADDITIONAL_VALIDATION_FAILED"
-msgstr ""
+msgstr "การตรวจสอบเพิ่มเติมพบปัญหา: {0}"
 
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "เพิ่มการกำหนดปุ่มใหม่"
 
 msgid "ADVANCED_VIEW"
-msgstr ""
+msgstr "ขั้นสูง"
 
-#, fuzzy
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
-msgstr "ดำเนินการต่อ"
+msgstr "เปิดมุมมองการตั้งค่าขั้นสูง"
 
-#, fuzzy
 msgid "AEROBIC_RESPIRATION"
-msgstr "ระบบหายใจแบบแอโรบิค"
+msgstr "การหายใจแบบใช้ออกซิเจน"
 
 msgid "AGENTS"
-msgstr ""
+msgstr "ตัวแทน"
 
-#, fuzzy
 msgid "AGENTS_COLON"
-msgstr "ก่อนหน้า:"
+msgstr "ตัวแทน:"
 
-#, fuzzy
 msgid "AGENT_NAME"
-msgstr "เกมส์ใหม่"
+msgstr "ตัวแทน {0}"
 
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
+"จุลชีพที่มีนิสัยดุร้ายจะไล่ล่าเหยื่อในระยะทางที่ไกลกว่า\n"
+"และมีแนวโน้มที่จะต่อสู้กับผู้ล่าเมื่อถูกโจมตี\n"
+"ส่วนจุลชีพที่มีนิสัยสงบจะไม่เข้าหาตัวอื่นในระยะทางไกล\n"
+"และมีแนวโน้มที่จะใช้สารพิษจัดการกับผู้ล่าน้อยกว่า"
 
 msgid "AGGRESSIVE"
-msgstr ""
+msgstr "ก้าวร้าว"
 
 msgid "AI_MUTATION_RATE"
-msgstr ""
+msgstr "อัตราการกลายพันธุ์ของ AI"
 
-#, fuzzy
 msgid "AI_MUTATION_RATE_EXPLANATION"
-msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+msgstr "(อัตราความเร็วที่สายพันธุ์ AI กลายพันธุ์)"
 
-#, fuzzy
 msgid "ALL"
-msgstr "Alt"
+msgstr "ทั้งหมด"
 
-#, fuzzy
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION"
-msgstr "มีการกลายพันธุ์"
+msgstr "อนุญาตให้เปลี่ยนไปเป็นสายพันธุ์ที่เกี่ยวข้องเมื่อเกิดการสูญพันธุ์"
 
-#, fuzzy
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION_EXPLANATION"
-msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+msgstr "(ช่วยให้สามารถเล่นเกมต่อด้วยสายพันธุ์อื่นที่กำลังจะสูญพันธุ์ได้ แทนที่จะจบเกม)"
 
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
-msgstr ""
+msgstr "สถิติทั่วไปของทุกโลก"
 
-#, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
-msgstr "สถิติ"
+msgstr ""
+"[b]รุ่น (Generations):[/b]\n"
+"  {0}\n"
+"[b]จำนวนสปีชีส์ทั้งหมด:[/b]\n"
+"  ค่าเฉลี่ย {1}; ส่วนเบี่ยงเบนมาตรฐาน {2}\n"
+"[b]สปีชีส์ที่ยังคงอยู่รอด:[/b]\n"
+"  ค่าเฉลี่ย {3}; ส่วนเบี่ยงเบนมาตรฐาน {4}\n"
+"[b]จำนวนสปีชีส์ต่อพื้นที่ (Patch):[/b]\n"
+"  ค่าเฉลี่ย {5}; ส่วนเบี่ยงเบนมาตรฐาน {6}\n"
+"[b]ประชากรทั้งหมดต่อพื้นที่ (Patch):[/b]\n"
+"  ค่าเฉลี่ย {7}; ส่วนเบี่ยงเบนมาตรฐาน {8}\n"
+"[b]ขนาดช่องหกเหลี่ยม (Hex) เฉลี่ยของสปีชีส์จุลชีพ:[/b]\n"
+"  ค่าเฉลี่ย {9}; ส่วนเบี่ยงเบนมาตรฐาน {10}\n"
+"\n"
+"[b]ข้อมูลทั่วไปของออร์แกเนลล์:[/b]"
 
 msgid "ALREADY_ASCENDED"
-msgstr ""
+msgstr "คุณได้เลื่อนขั้นสู่ระดับสูงสุดแล้ว"
 
 msgid "ALT"
 msgstr "Alt"
 
-#, fuzzy
 msgid "ALTERNATIVE_TIMESCALE_TOOLTIP"
-msgstr "บันทึกและดำเนินการต่อ"
+msgstr ""
+"เปลี่ยนความเร็วสำรองของการจำลอง\n"
+"สามารถใช้ความเร็วนี้ได้โดยการกดปุ่มบน HUD ที่ตรงกับค่านี้\n"
+"ค่าที่สูงขึ้นอาจต้องการ CPU ที่เร็วมากในการทำงาน"
 
 msgid "ALTERNATVE_TIMESCALE"
-msgstr ""
+msgstr "ช่วงเวลาทางเลือก"
 
 msgid "ALWAYS_VISIBLE"
-msgstr ""
+msgstr "มองเห็นได้ตลอดเวลา"
 
 msgid "AMBIANCE_VOLUME"
-msgstr "ปริมาณบรรยากาศ"
+msgstr "ระดับเสียงบรรยากาศ"
 
 msgid "AMMONIA"
 msgstr "แอมโมเนีย"
 
-#, fuzzy
 msgid "AMMONIA_COST"
-msgstr "แอมโมเนีย"
+msgstr "ต้นทุนแอมโมเนีย:"
 
-#, fuzzy
 msgid "AMMONIA_LEVELS"
-msgstr "แอมโมเนีย"
+msgstr "ระดับแอมโมเนีย"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
-msgstr "จำนวนการบันทึกอัตโนมัติที่จะเก็บไว้:"
+msgstr "จำนวนไฟล์บันทึกอัตโนมัติที่จะเก็บไว้:"
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "จำนวนการบันทึกด่วนที่จะเก็บไว้:"
 
 msgid "AND_UNLOCK_CONDITION"
-msgstr ""
+msgstr "และ"
 
 msgid "ANISOTROPIC_FILTERING"
-msgstr ""
+msgstr "การกรองแบบแอนไอโซทรอปิก:"
 
 msgid "ANTIALIASING_MSAA_TAA"
-msgstr ""
+msgstr "MSAA + TAA"
 
 #, fuzzy
 msgid "ANTI_ALIASING_FXAA"
@@ -236,225 +246,225 @@ msgstr "การลบรอยหยักหลายตัวอย่าง
 msgid "ANTI_ALIASING_TAA"
 msgstr "การลบรอยหยักหลายตัวอย่าง:"
 
-#, fuzzy
 msgid "APPEARANCE"
-msgstr "ประสิทธิภาพ"
+msgstr "รูปร่าง"
 
 msgid "APPLY"
-msgstr ""
+msgstr "นำไปใช้"
 
 msgid "APPLY_CHANGES"
-msgstr ""
+msgstr "ใช้การเปลี่ยนแปลง"
 
 msgid "APRIL"
-msgstr ""
+msgstr "เมษายน"
 
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
-msgstr "แน่ใจไหมว่าต้องการรีเซ็ตการตั้งค่าทั้งหมดเป็นค่าเริ่มต้น"
+msgstr "คุณแน่ใจหรือไม่ว่าต้องการรีเซ็ตการตั้งค่าทั้งหมดกลับเป็นค่าเริ่มต้น?"
 
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
-msgstr "แน่ใจไหมว่าต้องการรีเซ็ตการตั้งค่าการป้อนข้อมูลเป็นค่าเริ่มต้น"
+msgstr "คุณแน่ใจหรือไม่ว่าต้องการรีเซ็ตการตั้งค่าอินพุตกลับเป็นค่าเริ่มต้น?"
 
-#, fuzzy
 msgid "ARTIST_COLON"
-msgstr "ก่อนหน้า:"
+msgstr "นักวาด:"
 
 msgid "ARTWORK_TITLE"
 msgstr "\"{0}\" - {1}"
 
 msgid "ART_BY"
-msgstr "ศิลปะโดย {0}"
+msgstr "ผลงานศิลปะโดย {0}"
 
 msgid "ART_GALLERY"
-msgstr ""
+msgstr "อาร์ตแกลอรี่"
 
 msgid "ASCENSION_CONGRATULATIONS"
-msgstr ""
+msgstr "ขอแสดงความยินดี"
 
 msgid "ASCENSION_CONGRATULATIONS_CONTENT"
 msgstr ""
+"คุณได้เลื่อนระดับและเล่นเกมจนจบแล้ว ขอแสดงความยินดีด้วย!\n"
+"\n"
+"คุณสามารถเล่นต่อใน Space Stage โดยใช้ God Tools ที่ปลดล็อกไว้เพื่อสนุกกับโหมด Sandbox ได้\n"
+"\n"
+"นอกจากนี้ คุณยังสามารถย้อนกลับไปเริ่มเล่นใหม่ตั้งแต่ Microbe Stage ในไฟล์เซฟนี้ พร้อมรับสิทธิพิเศษเพิ่มเติมได้อีกด้วย\n"
+"\n"
+"จำนวนครั้งที่เลื่อนระดับในไฟล์เซฟนี้: {0}"
 
-#, fuzzy
 msgid "ASCENSION_STAGE"
-msgstr "Rusticyanin เป็นโปรตีนที่สามารถใช้ก๊าซคาร์บอนไดออกไซด์และออกซิเจนในการออกซิไดซ์เหล็กจากสถานะทางเคมีหนึ่งไปยังอีกสถานะหนึ่ง กระบวนการนี้เรียกว่า Iron Respiration ปล่อยพลังงานออกมาซึ่งเซลล์สามารถเก็บเกี่ยวได้"
+msgstr "ขั้นแห่งการเลื่อนระดับ"
 
 msgid "ASSEMBLY_CLASS_REQUIRED"
-msgstr ""
+msgstr "จำเป็นต้องมีคลาส Mod assembly เมื่อมีการระบุ assembly ไว้"
 
 msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
-msgstr ""
+msgstr "จำเป็นต้องระบุ Assembly เมื่อมีการระบุคลาสของม็อด (mod class)"
 
 msgid "ASSUME_HYPERTHREADING"
-msgstr ""
+msgstr "สมมติว่า CPU เปิดใช้งาน Hyper-Threading"
 
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
+"ระบบไม่สามารถตรวจจับได้โดยอัตโนมัติว่ามีการเปิดใช้งาน Hyper-threading หรือไม่\n"
+"สิ่งนี้ส่งผลต่อจำนวนเธรดเริ่มต้น เนื่องจากเธรดที่เกิดจาก Hyper-threading นั้นทำงานได้ไม่เร็วเท่ากับคอร์ CPU จริง"
 
 msgid "ATMOSPHERIC_GASSES"
-msgstr ""
+msgstr "ก๊าซในชั้นบรรยากาศ"
 
 msgid "ATP"
 msgstr "ATP"
 
 msgid "ATP_BALANCE"
-msgstr ""
+msgstr "สมดุล ATP"
 
-#, fuzzy
 msgid "ATP_BALANCE_TOOLTIP"
-msgstr "ดำเนินการต่อ"
+msgstr ""
+"ส่วนนี้แสดงยอดรวมของสมดุล ATP (พลังงาน) ของเซลล์ในขณะนั้น\n"
+"เพื่อให้เซลล์อยู่รอดได้ ค่าสมดุลนี้จะต้องเป็นบวก สำหรับเซลล์ที่อยู่กับที่ (sessile cells) อาจถือว่าสมดุลเป็นบวกได้โดยไม่ต้องนำพลังงานที่ใช้ในการเคลื่อนที่มาคำนวณรวมด้วย\n"
+"คุณสามารถใช้เมนูแบบดึงลง (dropdown) ด้านล่างเพื่อตรวจสอบสถานการณ์สมมติว่าจะเป็นอย่างไรหากเซลล์ขาดทรัพยากรบางอย่างที่จำเป็นสำหรับการสร้าง ATP\n"
+"ยกตัวอย่างเช่น เซลล์บางชนิดจะสามารถรักษาสมดุล ATP ให้เป็นบวกได้ก็ต่อเมื่อมีสารประกอบหลายชนิดพร้อมให้ใช้สร้าง ATP ได้ในเวลาเดียวกัน\n"
+"เซลล์ประเภทดังกล่าวจะเล่นได้ยากกว่า เนื่องจากจำเป็นต้องมีการสะสมสารประกอบหลายชนิดไว้พร้อมกันเพื่อให้สามารถอยู่รอดได้"
 
-#, fuzzy
 msgid "ATP_BALANCE_TOOLTIP_MULTICELLULAR"
-msgstr "ดำเนินการต่อ"
+msgstr ""
+"ส่วนนี้แสดงตัวเลือกสำหรับการคำนวณสมดุล ATP (พลังงาน) ของเซลล์\n"
+"ผลลัพธ์การคำนวณสมดุลจะปรากฏอยู่ในเมนูสำหรับเลือกประเภทของเซลล์\n"
+"คุณสามารถใช้เมนูแบบดึงลงด้านล่างนี้เพื่อตรวจสอบผลลัพธ์ที่จะเกิดขึ้น หากเซลล์ขาดทรัพยากรบางอย่างที่จำเป็นสำหรับการสร้าง ATP"
 
 msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
-msgstr ""
+msgstr "โดยปราศจากทรัพยากรภายนอก"
 
 msgid "ATP_BALANCE_WITHOUT_GLUCOSE"
-msgstr ""
+msgstr "ปราศจากกลูโคส"
 
-#, fuzzy
 msgid "ATP_BALANCE_WITHOUT_HYDROGEN_SULFIDE"
-msgstr "ไฮโดรเจนซัลไฟด์"
+msgstr "ปราศจากไฮโดรเจนซัลไฟด์"
 
 msgid "ATP_BALANCE_WITHOUT_IRON"
-msgstr ""
+msgstr "ปราศจากธาตุเหล็ก"
 
 msgid "ATP_BALANCE_WITH_ALL_COMPOUNDS"
-msgstr ""
+msgstr "พร้อมด้วยสารประกอบที่จำเป็นทั้งหมด"
 
 msgid "ATP_PRODUCTION"
-msgstr ""
+msgstr "การผลิต ATP"
 
 msgid "ATP_PRODUCTION_TOO_LOW"
-msgstr ""
+msgstr "การผลิต ATP ต่ำเกินไป!"
 
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
-msgstr ""
+msgstr "ความพยายามในการบันทึกไฟล์นี้ล้มเหลว ชื่อไฟล์ที่บันทึกอาจยาวเกินไป หรือคุณอาจไม่มีสิทธิ์เขียนข้อมูลลงในโฟลเดอร์สำหรับบันทึกไฟล์"
 
 msgid "AT_CURSOR"
-msgstr ""
+msgstr "ที่เคอร์เซอร์:"
 
 msgid "AUDIO_OUTPUT_DEVICE"
-msgstr ""
+msgstr "อุปกรณ์ส่งสัญญาณเสียง:"
 
 msgid "AUGUST"
-msgstr ""
+msgstr "สิงหาคม"
 
 msgid "AUTO"
 msgstr "อัตโนมัต"
 
-#, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
-msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+msgstr "แผงข้อมูลนี้แสดงตัวเลขที่ระบบ Auto-evo ใช้ในการคาดการณ์ โดยขนาดประชากรสุดท้ายจะถูกกำหนดจากปริมาณพลังงานรวมที่สายพันธุ์สามารถหามาได้และต้นทุนต่อหนึ่งหน่วยประชากรของสายพันธุ์นั้น ระบบ Auto-evo ใช้แบบจำลองสถานการณ์จริงแบบลดทอนรายละเอียดเพื่อคำนวณประสิทธิภาพของสายพันธุ์โดยอิงจากพลังงานที่รวบรวมได้ สำหรับแหล่งอาหารแต่ละแห่ง ระบบจะแสดงปริมาณพลังงานที่สายพันธุ์ได้รับ รวมถึงปริมาณพลังงานทั้งหมดที่มีอยู่ในแหล่งอาหารนั้น ทั้งนี้ สัดส่วนพลังงานที่สายพันธุ์ได้รับเมื่อเทียบกับพลังงานทั้งหมดจะขึ้นอยู่กับค่าความเหมาะสม (fitness) ของสายพันธุ์นั้นเมื่อเทียบกับค่าความเหมาะสมรวม โดยค่าความเหมาะสมถือเป็นตัวชี้วัดว่าสายพันธุ์ดังกล่าวสามารถใช้ประโยชน์จากแหล่งอาหารนั้นได้ดีเพียงใด"
 
-#, fuzzy
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
-msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+msgstr "{0} ประชากรเปลี่ยนแปลงไป {1} ในปี {2} เนื่องจาก: {3}"
 
-#, fuzzy
 msgid "AUTO-EVO_PREDICTION"
-msgstr "{0: F1}% เสร็จสิ้น {1: n0} / {2: n0} ขั้นตอน"
+msgstr "การคาดการณ์แบบ Auto-Evo"
 
-#, fuzzy
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
-msgstr "โรงไฟฟ้าของเซลล์ mitochondrion (พหูพจน์: mitochondria) เป็นโครงสร้างเมมเบรนสองชั้นที่เต็มไปด้วยโปรตีนและเอนไซม์ เป็นโปรคาริโอตที่ถูกดูดซึมเพื่อใช้โดยโฮสต์ยูคาริโอต สามารถเปลี่ยนกลูโคสเป็น ATP ได้อย่างมีประสิทธิภาพสูงกว่าที่ทำได้ในไซโตพลาสซึมในกระบวนการที่เรียกว่า Aerobic Respiration อย่างไรก็ตามมันต้องการออกซิเจนในการทำงานและระดับออกซิเจนในสิ่งแวดล้อมที่ต่ำลงจะทำให้อัตราการผลิต ATP ช้าลง"
+msgstr ""
+"แผงข้อมูลนี้แสดงค่าพลังงานรวมที่คาดว่าจะได้รับและจำนวนประชากร (ในวงเล็บ) จากระบบ Auto-evo สำหรับสายพันธุ์ที่ได้รับการปรับแต่ง\n"
+"Auto-evo จะดำเนินการจำลองประชากร ซึ่งเป็นอีกปัจจัยหนึ่ง (นอกเหนือจากผลงานของคุณเอง) ที่ส่งผลต่อจำนวนประชากรของคุณ"
 
-#, fuzzy
 msgid "AUTO-EVO_RESULTS_TITLE"
-msgstr "{0: F1}% เสร็จสิ้น {1: n0} / {2: n0} ขั้นตอน"
+msgstr "ผลลัพธ์ Auto-Evo"
 
 msgid "AUTO-EVO_STEPS_DONE"
-msgstr "{0: F1}% เสร็จสิ้น {1: n0} / {2: n0} ขั้นตอน"
+msgstr "เสร็จสิ้น {0:F1}% ({1:n0}/{2:n0} ขั้นตอน)"
 
 msgid "AUTO-EVO_STRENGHT_MULTIPLIER"
-msgstr ""
+msgstr "ความแรงของระบบ Auto-evo สำหรับผู้เล่น"
 
-#, fuzzy
 msgid "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
-msgstr "ต้นทุน ออสโมซิส"
+msgstr "(เปอร์เซ็นต์การเปลี่ยนแปลงของประชากรที่ระบบวิวัฒนาการอัตโนมัติมีผลต่อเผ่าพันธุ์ของผู้เล่น)"
 
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "บันทึกอัตโนมัติระหว่างเกม"
 
 msgid "AUTO_EVO"
-msgstr ""
+msgstr "Auto-Evo(วิวัฒนาการอัตโนมัติ)"
 
-#, fuzzy
 msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
-msgstr "{0: F1}% เสร็จสิ้น {1: n0} / {2: n0} ขั้นตอน"
+msgstr "ใช้ใน Auto-Evo Explorer"
 
-#, fuzzy
 msgid "AUTO_EVO_EXPLORING_TOOL"
-msgstr "{0: F1}% เสร็จสิ้น {1: n0} / {2: n0} ขั้นตอน"
+msgstr "เครื่องมือสำรวจ Auto-Evo"
 
 msgid "AUTO_EVO_FAILED"
-msgstr ""
+msgstr "Auto-evo ไม่สามารถทำงานได้"
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
-msgstr ""
+msgstr "ข้อมูลผลลัพธ์ Auto-evo สูญหายไป หากคุณโหลดไฟล์เซฟเก่า ข้อมูลส่วนนี้อาจหายไปได้ซึ่งถือเป็นเรื่องปกติ แต่หากคุณไม่ได้โหลดไฟล์เซฟเก่า โปรดแจ้งปัญหาดังกล่าวให้เราทราบและส่งไฟล์บันทึกข้อมูลเกม (game log file) มาให้เรา"
 
 msgid "AUTO_EVO_RESULTS"
-msgstr ""
+msgstr "ผลลัพธ์ Auto-evo:"
 
-#, fuzzy
 msgid "AUTO_EVO_RESULTS_GLOBAL_TITLE"
-msgstr "ก่อนหน้า:"
+msgstr "ผลลัพธ์โดยรวม"
 
-#, fuzzy
 msgid "AUTO_EVO_RESULTS_PATCH_TITLE"
-msgstr "ก่อนหน้า:"
+msgstr "ผลลัพธ์ของแพตช์ที่เลือก"
 
 msgid "AUTO_EVO_RUN_STATUS"
-msgstr ""
+msgstr "สถานะการทำงาน:"
 
-#, fuzzy
 msgid "AUTO_EVO_STATUS_COLON"
-msgstr "ก่อนหน้า:"
+msgstr "สถานะ Auto-evo:"
 
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "เคลื่อนที่ไปข้างหน้าอัตโนมัติ"
 
-#, fuzzy
 msgid "AUTO_RESOLUTION"
-msgstr "ความละเอียด:"
+msgstr "อัตโนมัติ ({0}x{1})"
 
 msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
-msgstr ""
+msgstr "โครงการก่อสร้างที่มีอยู่"
 
 msgid "AVAILABLE_MODS"
-msgstr ""
+msgstr "ม็อดที่มีให้เลือก"
 
 msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
-msgstr ""
+msgstr "ระดับเฉลี่ยของ CO2 ที่ผิวหน้า"
 
 msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
-msgstr ""
+msgstr "ระดับความสว่างเฉลี่ยที่พื้นผิว"
 
 msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
-msgstr ""
+msgstr "ระดับไนโตรเจนเฉลี่ย"
 
 msgid "AVERAGE_SURFACE_OTHER_LEVEL"
-msgstr ""
+msgstr "ระดับพื้นผิวเฉลี่ยของก๊าซอื่นๆ"
 
 msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
-msgstr ""
+msgstr "ระดับออกซิเจนเฉลี่ยที่ผิวน้ำ"
 
 msgid "AVERAGE_SURFACE_TEMPERATURE"
-msgstr ""
+msgstr "อุณหภูมิพื้นผิวเฉลี่ย"
 
 msgid "AWAKENING_STAGE"
-msgstr ""
+msgstr "ขั้นตื่นรู้"
 
-#, fuzzy
 msgid "AWARE_STAGE"
-msgstr "W, A, S, D และเมาส์เพื่อย้าย กด E เพื่อยิง OxyToxy NT หากคุณมีสารพิษแวคิวโอล กด G เพื่อสลับโหมดเขมือบ"
+msgstr "ขั้นตื่นรู้"
 
 msgid "BACK"
 msgstr "กลับ"
 
 msgid "BACKGROUND_BLUR"
-msgstr ""
+msgstr "การเบลอพื้นหลัง:"
 
 msgid "BACKSLASH"
 msgstr "แบ็กสแลช"
@@ -463,198 +473,178 @@ msgid "BACKSPACE"
 msgstr "พื้นที่ด้านหลัง"
 
 msgid "BACK_TO_SETTINGS"
-msgstr ""
+msgstr "กลับไปที่การตั้งค่า"
 
-#, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
-msgstr "การสังเคราะห์ด้วยเคมี"
+msgstr "การสังเคราะห์ด้วยความร้อนโดยแบคทีเรีย"
 
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
-msgstr ""
+msgstr "คำนวณเสมือนว่าเป็นเวลากลางวัน"
 
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
-msgstr ""
+msgstr "เมื่อทำเครื่องหมายเลือก ตัวเลขในส่วนนี้จะถูกคำนวณโดยสมมติว่าเป็นเวลากลางวันเสมอ"
 
 msgid "BALANCE_DISPLAY_WHILE_MOVING"
-msgstr ""
+msgstr "รวมต้นทุนการเคลื่อนที่"
 
-#, fuzzy
 msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
-msgstr "ดำเนินการต่อ"
+msgstr "เมื่อเลือกตัวเลือกนี้ ระบบจะคำนวณยอดคงเหลือและตัวเลขอื่นๆ ในแผงนี้โดยสมมติว่าเซลล์มีการเคลื่อนที่อยู่ตลอดเวลา"
 
-#, fuzzy
 msgid "BASE_MOBILITY"
-msgstr "ความคล่องตัว"
+msgstr "ความคล่องตัวพื้นฐาน"
 
 msgid "BASE_MOVEMENT"
-msgstr ""
+msgstr "การเคลื่อนไหวพื้นฐาน"
 
 msgid "BASIC_VIEW"
-msgstr ""
+msgstr "พื้นฐาน"
 
-#, fuzzy
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
-msgstr "ดำเนินการต่อ"
+msgstr "กลับไปที่มุมมองการตั้งค่าพื้นฐาน"
 
 msgid "BATHYPELAGIC"
-msgstr "โซนมืด"
+msgstr "เขตน้ำลึกปานกลาง (Bathypelagic zone)"
 
 msgid "BECOME_MACROSCOPIC"
-msgstr ""
+msgstr "ขยายร่างเป็นขนาดใหญ่ ({0}/{1})"
 
 msgid "BECOME_MULTICELLULAR"
-msgstr ""
+msgstr "วิวัฒนาการเป็นสิ่งมีชีวิตหลายเซลล์ ({0}/{1})"
 
 msgid "BEGIN_THRIVING"
-msgstr ""
+msgstr "เริ่มต้นก้าวสู่ความรุ่งเรือง"
 
 msgid "BEHAVIOUR"
-msgstr ""
+msgstr "พฤติกรรม"
 
 msgid "BEHAVIOUR_ACTIVITY"
-msgstr ""
+msgstr "กิจกรรม"
 
 msgid "BEHAVIOUR_AGGRESSION"
-msgstr ""
+msgstr "ความก้าวร้าว"
 
 msgid "BEHAVIOUR_FEAR"
-msgstr ""
+msgstr "กลัว"
 
 msgid "BEHAVIOUR_FOCUS"
-msgstr ""
+msgstr "จุดสนใจ"
 
 msgid "BEHAVIOUR_OPPORTUNISM"
-msgstr ""
+msgstr "การฉวยโอกาส"
 
 msgid "BELOW_SEA_LEVEL"
-msgstr ""
+msgstr "{0}-{1} เมตรต่ำกว่าระดับน้ำทะเล"
 
 msgid "BENCHMARKS"
-msgstr ""
+msgstr "เกณฑ์มาตรฐาน"
 
 msgid "BENCHMARK_FINISHED"
-msgstr ""
+msgstr "การทดสอบประสิทธิภาพเสร็จสิ้นแล้ว"
 
 msgid "BENCHMARK_PHASE"
-msgstr ""
+msgstr "ระยะการเปรียบเทียบมาตรฐาน:"
 
 msgid "BENCHMARK_RESULTS_COLON"
-msgstr ""
+msgstr "ผลลัพธ์:"
 
 msgid "BEST_PATCH_COLON"
-msgstr ""
+msgstr "แพตช์ที่ดีที่สุด:"
 
 msgid "BETTER_TOGETHER"
-msgstr ""
+msgstr "ไปด้วยกันดีกว่า"
 
 msgid "BEYOND_THE_CELL"
-msgstr ""
+msgstr "เหนือกว่าระดับเซลล์"
 
 msgid "BIG_IRON_CHUNK"
 msgstr "ก้อนเหล็กขนาดใหญ่"
 
-#, fuzzy
 msgid "BIG_IRON_CHUNK_BANANA"
-msgstr "ก้อนเหล็กขนาดใหญ่"
+msgstr "ก้อนเหล็กรูปกล้วยขนาดใหญ่"
 
-#, fuzzy
 msgid "BIG_PHOSPHATE_CHUNK"
-msgstr "ก้อนเหล็กขนาดใหญ่"
+msgstr "ก้อนฟอสเฟตขนาดใหญ่"
 
-#, fuzzy
 msgid "BIG_PHOSPHATE_CHUNK_BANANA"
-msgstr "ก้อนเหล็กขนาดใหญ่"
+msgstr "ก้อนฟอสเฟตรูปกล้วยขนาดใหญ่"
 
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} B"
 
-#, fuzzy
 msgid "BINDING_AGENT"
-msgstr ""
-"มีข้อขัดแย้งกับ {0}\n"
-"คุณต้องการลบข้อมูลที่ป้อนออกจาก {1} หรือไม่?"
+msgstr "สารยึดเกาะ"
 
-#, fuzzy
 msgid "BINDING_AGENT_DESCRIPTION"
-msgstr "Nitrogenase เป็นโปรตีนที่สามารถใช้ก๊าซไนโตรเจนและพลังงานของเซลล์ในรูปแบบของ ATP เพื่อผลิตแอมโมเนียซึ่งเป็นสารอาหารที่สำคัญในการเจริญเติบโตของเซลล์ นี่คือกระบวนการที่เรียกว่าการตรึงไนโตรเจนแบบไม่ใช้ออกซิเจน เนื่องจากไนโตรเจนเนสถูกแขวนอยู่ในไซโทพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
+msgstr "ช่วยให้สามารถยึดเกาะกับเซลล์อื่นได้ ซึ่งถือเป็นก้าวแรกสู่การเป็นสิ่งมีชีวิตหลายเซลล์ เมื่อเซลล์ของคุณเป็นส่วนหนึ่งของกลุ่มเซลล์ (colony) สารประกอบต่างๆ จะถูกแบ่งปันกันระหว่างเซลล์ คุณจะไม่สามารถเข้าสู่โหมดแก้ไขได้ในขณะที่เป็นส่วนหนึ่งของกลุ่มเซลล์ ดังนั้นคุณจึงจำเป็นต้องแยกตัวออกมาเมื่อรวบรวมสารประกอบได้มากพอที่จะแบ่งเซลล์"
 
-#, fuzzy
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
-msgstr "Nitrogenase เป็นโปรตีนที่สามารถใช้ก๊าซไนโตรเจนและพลังงานของเซลล์ในรูปแบบของ ATP เพื่อผลิตแอมโมเนียซึ่งเป็นสารอาหารที่สำคัญในการเจริญเติบโตของเซลล์ นี่คือกระบวนการที่เรียกว่าการตรึงไนโตรเจนแบบไม่ใช้ออกซิเจน เนื่องจากไนโตรเจนเนสถูกแขวนอยู่ในไซโทพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
+msgstr "กด [thrive:input]g_toggle_binding[/thrive:input] เพื่อสลับโหมดการเชื่อมต่อ เมื่ออยู่ในโหมดนี้ คุณสามารถเชื่อมต่อเซลล์อื่นในสปีชีส์เดียวกันเข้ากับกลุ่มของคุณได้โดยการสัมผัสเซลล์เหล่านั้น หากต้องการแยกตัวออกจากกลุ่ม ให้กด [thrive:input]g_unbind_all[/thrive:input] คุณจะไม่สามารถเข้าสู่โหมดแก้ไขได้ตราบใดที่ยังเชื่อมต่ออยู่กับเซลล์อื่น"
 
 msgid "BIND_AXES_SENSITIVITY"
-msgstr ""
+msgstr "ผูกแกนเข้าด้วยกัน"
 
 msgid "BIOLUMINESCENT_VACUOLE"
-msgstr ""
+msgstr "แวคิวโอลเรืองแสงทางชีวภาพ"
 
-#, fuzzy
 msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
-msgstr "ท็อกซินแวคิวโอลเป็นแวคิวโอลที่ได้รับการดัดแปลงเพื่อการผลิตการจัดเก็บและการหลั่งสารพิษออกซีโทซีโดยเฉพาะ แวคิวโอลที่เป็นพิษมากขึ้นจะทำให้สารพิษถูกปล่อยออกมามากขึ้น"
+msgstr "แวคิวโอลที่มีตำแหน่งเกิดปฏิกิริยาซึ่งมีการใช้เอนไซม์ลูซิเฟอเรส (luciferase) เพื่อปลดปล่อยแสงที่มองเห็นได้ มีสมมติฐานว่าการเรืองแสงทางชีวภาพ (bioluminescence) นั้นวิวัฒนาการขึ้นมาเพื่อเป็นกลไกป้องกันตัวจากออกซิเจน เมื่อเกิดเหตุการณ์ Great Oxygenation Event (เหตุการณ์ที่ระดับออกซิเจนในชั้นบรรยากาศเพิ่มสูงขึ้นอย่างมาก) จุลินทรีย์ที่คุ้นเคยกับสภาวะไร้ออกซิเจนต้องเผชิญกับปัญหาใหม่มากมาย เนื่องจากออกซิเจนมีปฏิกิริยาเคมีรุนแรงและก่อให้เกิดความเสียหายอย่างมาก แวคิวโอลเหล่านี้สามารถนำมาติดตั้งเพื่อเพิ่มความทนทานต่อออกซิเจนและทำให้เกิดแสงที่สวยงามได้ และในอนาคต การเรืองแสงทางชีวภาพอาจกลายเป็นวิธีการสื่อสารรูปแบบหนึ่ง"
 
-#, fuzzy
 msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
-msgstr "ท็อกซินแวคิวโอลเป็นแวคิวโอลที่ได้รับการดัดแปลงเพื่อการผลิตการจัดเก็บและการหลั่งสารพิษออกซีโทซีโดยเฉพาะ แวคิวโอลที่เป็นพิษมากขึ้นจะทำให้สารพิษถูกปล่อยออกมามากขึ้น"
+msgstr "ใช้ [thrive:compound type=\"atp\"][/thrive:compound] เพื่อเปลี่ยน [thrive:compound type=\"oxygen\"][/thrive:compound] ให้เป็นแสงสว่าง ในขณะนี้ยังไม่มีผลต่อระบบการเล่นอื่นใดนอกจากช่วยเพิ่มความต้านทานต่อออกซิเจน"
 
 msgid "BIOME_LABEL"
-msgstr ""
+msgstr "ชีวนิเวศ: {0}"
 
 msgid "BLOOM_RENDER_EFFECT"
-msgstr ""
+msgstr "ผลบลูม:"
 
-#, fuzzy
 msgid "BLUESKY_TOOLTIP"
-msgstr "ดำเนินการต่อ"
+msgstr "เยี่ยมชมโปรไฟล์ Bluesky ของเรา"
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
-msgstr ""
+msgstr "เซลล์ประสาท"
 
 msgid "BRAVE"
-msgstr ""
+msgstr "กล้าหาญ"
 
 msgid "BROWSE"
-msgstr ""
+msgstr "เลือกดู"
 
 msgid "BROWSE_WORKSHOP"
-msgstr ""
+msgstr "เลือกดูเวิร์กช็อป"
 
-#, fuzzy
 msgid "BUDDING_REPRODUCTION_METHOD_EXPLANATION"
-msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+msgstr "ผลิตลูกหลานเพียงหนึ่งหน่วย ซึ่งเป็นเซลล์รากฐานของอาณานิคมใหม่"
 
-#, fuzzy
 msgid "BUILD_CITY"
-msgstr "ด้วยความเข้มข้นของ"
+msgstr "สร้างเมือง"
 
-#, fuzzy
 msgid "BUILD_QUEUE"
-msgstr "ด้วยความเข้มข้นของ"
+msgstr "คิวการสร้าง"
 
-#, fuzzy
 msgid "BUILD_STRUCTURE"
-msgstr "ด้วยความเข้มข้นของ"
+msgstr "สร้างโครงสร้าง"
 
 msgid "BY"
-msgstr ""
+msgstr "โดย:"
 
 msgid "BY_REVOLUTIONARY_GAMES"
-msgstr ""
+msgstr "โดย Revolutionary Games Studio"
 
 msgid "CACHE_DISK_MAX_TIME"
-msgstr ""
+msgstr "ระยะเวลาสูงสุดในการเก็บข้อมูลไว้บนดิสก์ก่อนที่จะลบออก"
 
 msgid "CACHE_MEMORY_MAX_ITEMS"
-msgstr ""
+msgstr "จำนวนรายการแคชสูงสุดที่จะเก็บไว้ในหน่วยความจำ"
 
 msgid "CACHE_TIME_MEMORY"
-msgstr ""
+msgstr "ระยะเวลาในการเก็บข้อมูลแคชไว้ในหน่วยความจำ"
 
 msgid "CACHE_TIME_MEMORY_ONLY"
-msgstr ""
+msgstr "ระยะเวลาแคชเมื่อใช้การแคชในหน่วยความจำเพียงอย่างเดียว"
 
-#, fuzzy
 msgid "CACHING_TITLE"
-msgstr "\"{0}\" - {1}"
+msgstr "การแคช"
 
 msgid "CALCIUM_CARBONATE"
 msgstr "แคลเซียมคาร์บอเนต"
@@ -978,6 +968,14 @@ msgstr ""
 
 #, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+
+#, fuzzy
+msgid "COLONY_ROTATION_INCREASE"
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+
+#, fuzzy
+msgid "COLONY_SPEED_INCREASE"
 msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
 
 msgid "COLOUR"
@@ -5961,6 +5959,9 @@ msgstr ""
 msgid "SAVE_INVALID"
 msgstr ""
 
+msgid "SAVE_IS_CORRUPT_WHILE_LOADING"
+msgstr ""
+
 msgid "SAVE_IS_INVALID"
 msgstr ""
 
@@ -6147,6 +6148,14 @@ msgstr "ค่านี้ใช้กับเกมใหม่ที่เร
 
 #, fuzzy
 msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION"
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION_ACTIVE"
 msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
 
 #, fuzzy
@@ -6873,12 +6882,24 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVEOPEDIA_MUSEUM_PAGE_SEARCHTAGS"
+msgstr "ภายในที่เหนอะหนะของเซลล์ ไซโทพลาสซึมเป็นส่วนผสมพื้นฐานของไอออนโปรตีนและสารอื่น ๆ ที่ละลายในน้ำที่เติมภายในเซลล์ หนึ่งในฟังก์ชั่นที่ทำคือไกลโคไลซิสการเปลี่ยนกลูโคสเป็นพลังงาน ATP สำหรับเซลล์ที่ขาดออร์แกเนลล์เพื่อให้มีการเผาผลาญขั้นสูงมากขึ้นนี่คือสิ่งที่พวกเขาต้องพึ่งพาเพื่อเป็นพลังงาน นอกจากนี้ยังใช้เพื่อเก็บโมเลกุลในเซลล์และเพื่อขยายขนาดของเซลล์"
+
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
 #, fuzzy
+msgid "THRIVEOPEDIA_ORGANELLE_SEARCHTAGS"
+msgstr "\"{0}\" - {1}"
+
+#, fuzzy
 msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
 msgstr "สูญพันธุ์ไปแล้วใน {0}"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_SEARCHTAGS"
+msgstr "ภายในที่เหนอะหนะของเซลล์ ไซโทพลาสซึมเป็นส่วนผสมพื้นฐานของไอออนโปรตีนและสารอื่น ๆ ที่ละลายในน้ำที่เติมภายในเซลล์ หนึ่งในฟังก์ชั่นที่ทำคือไกลโคไลซิสการเปลี่ยนกลูโคสเป็นพลังงาน ATP สำหรับเซลล์ที่ขาดออร์แกเนลล์เพื่อให้มีการเผาผลาญขั้นสูงมากขึ้นนี่คือสิ่งที่พวกเขาต้องพึ่งพาเพื่อเป็นพลังงาน นอกจากนี้ยังใช้เพื่อเก็บโมเลกุลในเซลล์และเพื่อขยายขนาดของเซลล์"
 
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr ""
@@ -6930,6 +6951,14 @@ msgstr ""
 
 msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_SEARCHTAGS"
+msgstr "มีการกลายพันธุ์"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_SEARCHTAGS"
+msgstr "\"{0}\" - {1}"
 
 #, fuzzy
 msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"

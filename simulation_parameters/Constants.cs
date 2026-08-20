@@ -266,6 +266,11 @@ public static class Constants
     public const float FLAGELLA_MIN_UPGRADE_VISUAL_LENGTH = 0.80f;
 
     /// <summary>
+    ///   ATP cost per actomyosin organelle while a colony is moving.
+    /// </summary>
+    public const float ACTOMYOSIN_ENERGY_COST = 12.0f;
+
+    /// <summary>
     ///   As eukaryotes are immediately 50% larger, they get a movement force increase to offset that
     /// </summary>
     public const float EUKARYOTIC_MOVEMENT_FORCE_MULTIPLIER = 2.5f;
@@ -285,8 +290,14 @@ public static class Constants
     public const float CELL_COLONY_MOVEMENT_FORCE_MULTIPLIER = 0.98f;
 
     /// <summary>
+    ///   The higher this value is, the more the colony rotation will be *buffed* by distance on cells. So farther
+    ///   away cells are simulated to have leverage in turning
+    /// </summary>
+    public const float COLONY_ROTATION_CELL_LEVERAGE_FROM_DISTANCE = 0.005f;
+
+    /// <summary>
     ///   How much the default <see cref="BASE_CELL_DENSITY"/> has volume in a cell. This determines how much
-    ///   additional organelles impact the cell. A normal organelle has a weight of 1 so if this value is 4 then the
+    ///   additional organelles impact the cell. A normal organelle has a weight of 1, so if this value is 4, then the
     ///   base density has as much impact on the average density as 4 organelles.
     /// </summary>
     public const float BASE_CELL_DENSITY_VOLUME = 4;
@@ -346,6 +357,17 @@ public static class Constants
 
     public const float CILIA_PULLING_FORCE_FALLOFF_FACTOR = 0.05f;
     public const float CILIA_CURRENT_GENERATION_ANIMATION_SPEED = 5.0f;
+
+    public const float ACTOMYOSIN_DEFAULT_ANIMATION_SPEED = 0.1f;
+    public const float ACTOMYOSIN_SPEED_SAMPLE_INTERVAL = 0.1f;
+    public const float ACTOMYOSIN_ROTATION_ANIMATION_SPEED_MULTIPLIER = 10.0f;
+    public const float ACTOMYOSIN_MIN_ANIMATION_SPEED = 0.5f;
+    public const float ACTOMYOSIN_MAX_ANIMATION_SPEED = 5;
+    public const float EFFECTIVE_ACTOMYOSIN_MULTIPLIER = 0.05f;
+    public const float ACTOMYOSIN_ROTATION_BUFF_PER = 0.25f;
+    public const float ACTOMYOSIN_MOVEMENT_BUFF_PER = 0.25f;
+
+    // TODO: harsher wording in the tooltip
 
     public const int MICROBE_SPAWN_RADIUS = 350;
 
@@ -689,12 +711,7 @@ public static class Constants
 
     public const float DEFAULT_MICROBE_VENT_THRESHOLD = 2.0f;
 
-    public const float CELL_ADJACENCY_SPECIALIZATION_BONUS = 0.04f;
-
-    /// <summary>
-    ///   A cell needs to have this many organelles for specialization to apply to it
-    /// </summary>
-    public const int CELL_SPECIALIZATION_APPLIES_AFTER_SIZE = 6;
+    public const float CELL_ADJACENCY_SPECIALIZATION_BONUS = 0.05f;
 
     /// <summary>
     ///   How many organelles a cell needs to have to be considered fully specialized. (i.e. the full specialization
@@ -706,7 +723,7 @@ public static class Constants
     ///   Controls how strong the cell specialization effect is (this is a flat multiplier right now but we could use
     ///   something like a power curve or another function for diminishing returns)
     /// </summary>
-    public const float CELL_SPECIALIZATION_STRENGTH_MULTIPLIER = 0.4f;
+    public const float CELL_SPECIALIZATION_STRENGTH_MULTIPLIER = 0.5f;
 
     /// <summary>
     ///   Controls how much having a nucleus boosts the cell specialization effect
@@ -1225,7 +1242,7 @@ public static class Constants
     public const int SPORE_CELL_TYPE_CHANGE_COST = 10;
 
     public const int GAMETE_CELL_TYPE_CHANGE_COST = 10;
-    public const int MULTICELLULAR_ANISOGAMY_UPGRADE_COST = 50;
+    public const int MULTICELLULAR_ANISOGAMY_UPGRADE_COST = 55;
 
     public const int MASS_BUDDING_CELL_COUNT_CHANGE_COST = 10;
 
@@ -1720,9 +1737,14 @@ public static class Constants
     public const float MAX_SPECIES_NAME_LENGTH_PIXELS = 230.0f;
 
     /// <summary>
-    ///   Multiplier for cell editor actions in multicellular editor
+    ///   Multiplier for cell editor actions in the multicellular editor
     /// </summary>
     public const float MULTICELLULAR_EDITOR_COST_FACTOR = 0.5f;
+
+    /// <summary>
+    ///   Multiplier for mutation point costs after entering the multicellular editor through sexual reproduction
+    /// </summary>
+    public const float SEXUAL_REPRODUCTION_MP_COST_FACTOR = 0.8f;
 
     public const float MINIMUM_RUNNABLE_PROCESS_FRACTION = 0.00001f;
 
