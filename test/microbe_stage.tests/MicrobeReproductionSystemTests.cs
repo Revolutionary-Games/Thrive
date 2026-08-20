@@ -41,7 +41,7 @@ public class MicrobeReproductionSystemTests
 
         var simulationParameters = SimulationParameters.Instance;
         var bacterialSpecies = CreateBacterialSpecies(simulationParameters);
-        var parentMicrobe = SpawnAiMicrobe(worldSimulation, spawnEnvironment, bacterialSpecies);
+        var parentMicrobe = SpawnAIMicrobe(worldSimulation, spawnEnvironment, bacterialSpecies);
 
         AssertInitialBacterialRuntimeState(parentMicrobe);
 
@@ -101,7 +101,7 @@ public class MicrobeReproductionSystemTests
         return eukaryoticMutation;
     }
 
-    private static Entity SpawnAiMicrobe(TestWorldSimulation worldSimulation,
+    private static Entity SpawnAIMicrobe(TestWorldSimulation worldSimulation,
         DummyMicrobeSpawnEnvironment spawnEnvironment, MicrobeSpecies species)
     {
         SpawnHelpers.SpawnMicrobe(worldSimulation, spawnEnvironment, species, Vector3.Zero, true, GameteType.All);
