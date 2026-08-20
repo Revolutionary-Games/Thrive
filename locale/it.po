@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-11 16:28+0300\n"
+"POT-Creation-Date: 2026-08-19 11:37+0300\n"
 "PO-Revision-Date: 2026-07-29 00:10+0000\n"
 "Last-Translator: Giacomo La Serra <laserragiacomo1@gmail.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -107,6 +107,17 @@ msgid "ACTIVITY_EXPLANATION"
 msgstr ""
 "I microbi attivi corrono e saltano anche quando non accade nulla di interessante.\n"
 "I microbi sessili sono stazionari e aspettano cambiamenti nell'ambiente prima di agire."
+
+msgid "ACTOMYOSIN"
+msgstr ""
+
+#, fuzzy
+msgid "ACTOMYOSIN_DESCRIPTION"
+msgstr "La descrizione è mancante"
+
+#, fuzzy
+msgid "ACTOMYOSIN_PROCESSES_DESCRIPTION"
+msgstr "Trasforma il [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Ulteriori controlli hanno rilevato un problema: {0}"
@@ -967,6 +978,14 @@ msgstr "Genera entità con forme di collisione"
 #, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "Questo pannello consente di impostare l'ordine di crescita delle cellule della colonia. La prima cellula dell'ordine sarà la cellula radice (o gemma). Puoi usare questa funzione per dare priorità alla crescita delle cellule più importanti oppure per garantire un corretto equilibrio tra la produzione e il consumo della colonia."
+
+#, fuzzy
+msgid "COLONY_ROTATION_INCREASE"
+msgstr "Rotazione:"
+
+#, fuzzy
+msgid "COLONY_SPEED_INCREASE"
+msgstr "Rotazione:"
 
 msgid "COLOUR"
 msgstr "Colore"
@@ -6096,6 +6115,9 @@ msgstr "Il salvataggio contiene uno stato di gioco non valido"
 
 msgid "SAVE_INVALID"
 msgstr "Non valido"
+
+msgid "SAVE_IS_CORRUPT_WHILE_LOADING"
+msgstr ""
 
 msgid "SAVE_IS_INVALID"
 msgstr "Il salvataggio non è valido"

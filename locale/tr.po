@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-11 16:28+0300\n"
-"PO-Revision-Date: 2026-08-12 18:05+0000\n"
+"POT-Creation-Date: 2026-08-19 11:37+0300\n"
+"PO-Revision-Date: 2026-08-14 22:50+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -106,6 +106,15 @@ msgid "ACTIVITY_EXPLANATION"
 msgstr ""
 "Hareketli mikroplar, ilginç bir şey olmadığında ilerler ve yuvarlanırlar.\n"
 "Durağan mikroplar, hareketsizdirler ve hareket etmeden önce ortamın değişmesini beklerler."
+
+msgid "ACTOMYOSIN"
+msgstr "Aktomiyozin"
+
+msgid "ACTOMYOSIN_DESCRIPTION"
+msgstr "Aktomiyozinler, hücre kolonilerinin kendilerini bir yöne çekmek ya da döndürmek için kullanabileceği basit kas yapılarıdır. Bu yapılar koloninin esnekliğine dayandığından, duvar tipi hücre zarları için mevcut değildir. Bunun da bir sonucu olarak, her hücrede yalnızca bir tane bulunması ama kolonideki birçok hücrenin bu organeli taşıması durumunda, bu yapılar en etkili haldedir."
+
+msgid "ACTOMYOSIN_PROCESSES_DESCRIPTION"
+msgstr "Bir hücre kolonisinin hareket ve dönme hızını arttırır."
 
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Ek doğrulamalar bir sorun tespit etti: {0}"
@@ -955,6 +964,12 @@ msgstr "Fizik hata ayıklama şekillerini göster"
 
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "Bu sekme, hücre kolonilerinin büyüme sırasının ayarlanmasını sağlar. Bu sıradaki ilk hücre, kök (veya tomurcuk) hücresidir. Bu sekmeyi, daha kritik hücrelerin büyümesine öncelik tanımak ya da koloninin üretim ve tüketiminin uygun bir şekilde dengelenmesini sağlamak için kullanabilirsin."
+
+msgid "COLONY_ROTATION_INCREASE"
+msgstr "Koloni Dönme Hızı"
+
+msgid "COLONY_SPEED_INCREASE"
+msgstr "Koloni Hızı"
 
 msgid "COLOUR"
 msgstr "Renk"
@@ -5602,6 +5617,9 @@ msgstr "Kayıt geçersiz bir oyun manzarasına sahip"
 
 msgid "SAVE_INVALID"
 msgstr "Geçersiz"
+
+msgid "SAVE_IS_CORRUPT_WHILE_LOADING"
+msgstr ""
 
 msgid "SAVE_IS_INVALID"
 msgstr "Kayıt geçersiz"

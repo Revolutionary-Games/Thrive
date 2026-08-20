@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-11 16:28+0300\n"
+"POT-Creation-Date: 2026-08-19 11:37+0300\n"
 "PO-Revision-Date: 2026-05-13 03:55+0000\n"
 "Last-Translator: Argakyan <andrinmueller@hotmail.ch>\n"
 "Language-Team: Alemannic <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/gsw/>\n"
@@ -103,6 +103,17 @@ msgid "ACTIVITY_EXPLANATION"
 msgstr ""
 "Aktivi Mikrobe tummlet umme, wenn nüüt interessantes passiert.\n"
 "Sessili Mikrobe sind stationär und wartet druff, dass sich ihri Umgebig änderet, bevor sie handlet."
+
+msgid "ACTOMYOSIN"
+msgstr ""
+
+#, fuzzy
+msgid "ACTOMYOSIN_DESCRIPTION"
+msgstr "Chitinase ermöglicht's de Zelle Chitin Membrane z'verdaue. Das erhöht d'Effektivität vom Prozess."
+
+#, fuzzy
+msgid "ACTOMYOSIN_PROCESSES_DESCRIPTION"
+msgstr "Wandlet [thrive:compound type=\"glucose\"][/thrive:compound] i [thrive:compound type=\"atp\"][/thrive:compound] um."
 
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Zuesätzlichi Überprüefige hend en Fehler gfunde: {0}"
@@ -948,6 +959,14 @@ msgstr "Erzüügti Entitäte mit Kollisionskonture"
 #, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "(Aktivierig beschränkt d'Wachstumsrate; Deaktivierig laht numme d'verfüegbare Stoffe s'Wachstum beiiflusse)"
+
+#, fuzzy
+msgid "COLONY_ROTATION_INCREASE"
+msgstr "{0}-Verbruuch"
+
+#, fuzzy
+msgid "COLONY_SPEED_INCREASE"
+msgstr "{0}-Verbruuch"
 
 msgid "COLOUR"
 msgstr "Farb"
@@ -5506,6 +5525,9 @@ msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr ""
 
 msgid "SAVE_INVALID"
+msgstr ""
+
+msgid "SAVE_IS_CORRUPT_WHILE_LOADING"
 msgstr ""
 
 msgid "SAVE_IS_INVALID"
