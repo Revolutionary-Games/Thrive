@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-18 08:40+0300\n"
+"POT-Creation-Date: 2026-08-19 11:37+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2019,7 +2019,7 @@ msgstr ""
 msgid "CREATING_DOT_DOT_DOT"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:107
+#: ../src/saving/InProgressLoad.cs:110
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr ""
 
@@ -2879,12 +2879,12 @@ msgstr ""
 msgid "ERROR_FETCHING_NEWS"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:238
+#: ../src/saving/InProgressLoad.cs:263
 msgid "ERROR_LOADING"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:713
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:817
+#: ../src/microbe_stage/MicrobeStage.cs:710
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:788
 msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
 msgstr ""
 
@@ -2900,7 +2900,7 @@ msgstr ""
 msgid "ESCAPE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:2826
+#: ../src/microbe_stage/MicrobeStage.cs:2829
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -2961,15 +2961,15 @@ msgstr ""
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:208
+#: ../src/saving/InProgressLoad.cs:233
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:179
+#: ../src/saving/InProgressLoad.cs:204
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE_JUKEBOX"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:121
+#: ../src/saving/InProgressLoad.cs:135 ../src/saving/InProgressLoad.cs:144
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr ""
 
@@ -4991,8 +4991,8 @@ msgstr ""
 msgid "LOADING_DOT_DOT_DOT"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:85 ../src/saving/InProgressLoad.cs:105
-#: ../src/saving/InProgressLoad.cs:163
+#: ../src/saving/InProgressLoad.cs:86 ../src/saving/InProgressLoad.cs:108
+#: ../src/saving/InProgressLoad.cs:188
 msgid "LOADING_GAME"
 msgstr ""
 
@@ -5008,7 +5008,7 @@ msgstr ""
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1714
+#: ../src/microbe_stage/MicrobeStage.cs:1711
 msgid "LOADING_MICROBE_STAGE"
 msgstr ""
 
@@ -5016,7 +5016,7 @@ msgstr ""
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1710
+#: ../src/microbe_stage/MicrobeStage.cs:1707
 msgid "LOADING_MULTICELLULAR_STAGE"
 msgstr ""
 
@@ -5029,7 +5029,7 @@ msgstr ""
 msgid "LOADING_STAGE_ASSETS"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:214
+#: ../src/saving/InProgressLoad.cs:239
 msgid "LOAD_FINISHED"
 msgstr ""
 
@@ -6109,7 +6109,7 @@ msgstr ""
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr ""
 
-#: ../src/multicellular_stage/MulticellularSpecies.cs:760
+#: ../src/multicellular_stage/MulticellularSpecies.cs:761
 msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
 msgstr ""
 
@@ -7325,7 +7325,7 @@ msgstr ""
 msgid "PREVIOUS_COLON"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:165
+#: ../src/saving/InProgressLoad.cs:190
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr ""
 
@@ -7453,7 +7453,7 @@ msgstr ""
 msgid "REACH_MULTICELLULAR_STAGE"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:87
+#: ../src/saving/InProgressLoad.cs:88
 msgid "READING_SAVE_DATA"
 msgstr ""
 
@@ -7869,7 +7869,7 @@ msgstr ""
 msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:148
+#: ../src/saving/InProgressLoad.cs:173
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr ""
 
@@ -7877,7 +7877,11 @@ msgstr ""
 msgid "SAVE_INVALID"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:147
+#: ../src/saving/InProgressLoad.cs:129
+msgid "SAVE_IS_CORRUPT_WHILE_LOADING"
+msgstr ""
+
+#: ../src/saving/InProgressLoad.cs:172
 msgid "SAVE_IS_INVALID"
 msgstr ""
 
@@ -7885,7 +7889,7 @@ msgstr ""
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:276
+#: ../src/saving/InProgressLoad.cs:301
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ""
 
@@ -8402,7 +8406,7 @@ msgstr ""
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:2288
+#: ../src/microbe_stage/MicrobeStage.cs:2291
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -8746,11 +8750,11 @@ msgstr ""
 msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:2824
+#: ../src/microbe_stage/MicrobeStage.cs:2827
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:2825
+#: ../src/microbe_stage/MicrobeStage.cs:2828
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
@@ -9140,8 +9144,8 @@ msgstr ""
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:988
-#: ../src/microbe_stage/MicrobeStage.cs:992
+#: ../src/microbe_stage/MicrobeStage.cs:985
+#: ../src/microbe_stage/MicrobeStage.cs:989
 msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr ""
 
@@ -9284,7 +9288,7 @@ msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeSpecies.cs:464
-#: ../src/multicellular_stage/MulticellularSpecies.cs:763
+#: ../src/multicellular_stage/MulticellularSpecies.cs:764
 msgid "TOLERANCE_DETAIL_TEXT"
 msgstr ""
 

@@ -31,6 +31,7 @@
 - C# uses PascalCase types/files, British English (except `meter`), 120-column lines, `//`/XML documentation, and normally no namespaces.
 - Avoid `async`; use `TaskExecutor`. Avoid unnecessary LINQ, interfaces in hot loops, and per-frame allocations; reuse containers.
 - Use `ref` for ECS components and `this ref` extension helpers. Update the relevant dirty flags through established helpers.
+- NOTE: The C# compiler is smart enough to optimize single field accesses, so those don't need `ref`. Example allowed usage: `var singleThing = entity.Get<Component>().AField;`
 - For Godot, use containers rather than Control offsets; use `Connect`/`nameof` for signals; never dispose Nodes or `GD.Load` resources.
 
 ## Review Focus
@@ -44,8 +45,7 @@ Automated CI checks ensure code compiles and is formatted correctly (except for 
 - PRs should be focused on one issue/change; do not mix unrelated refactors or formatting. Issue branches use `<issue>_<short_lowercase_name>`.
 - Changed code must preserve and update nearby documentation/comments.
 - Save-format changes must retain compatibility or include an upgrader and required version/subversion change.
-- New C# files must include the Godot-generated matching `.cs.uid` file.
-- Do not include locale `.po` changes that only update source-reference line numbers.
+- Do not include locale `.po` changes that only update source-reference line numbers. So only add if required due to new translation keys or text.
 
 ## Flag common pitfalls
 
