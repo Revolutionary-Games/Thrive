@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://cm8mm35po3jy"]
+
+[ext_resource type="Shader" uid="uid://caplkvkclneuh" path="res://shaders/OrganelleOpaque.gdshader" id="1_acnqn"]
+[ext_resource type="PackedScene" uid="uid://csagewtn5de4a" path="res://assets/models/organelles/Actomyosin.glb" id="1_xaqi1"]
+[ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="2_504j3"]
+[ext_resource type="Texture2D" uid="uid://cyvkcpdtij2q" path="res://assets/textures/Myofibril.png" id="3_teu6q"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_teu6q"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_acnqn")
+shader_parameter/texture = ExtResource("3_teu6q")
+shader_parameter/dissolveTexture = ExtResource("2_504j3")
+shader_parameter/dissolveValue = 0.0
+shader_parameter/dissolveScale = 1.4000000134110802
+shader_parameter/outlineWidth = 0.0
+shader_parameter/growColor = Color(0.7294118, 0.23781179, 0.21603784, 1)
+shader_parameter/tint = Color(1, 1, 1, 1)
+shader_parameter/jiggleAmount = 0.0005
+
+[node name="Actomyosin2" unique_id=780267512 instance=ExtResource("1_xaqi1")]
+
+[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(1676176426) index="0" unique_id=598594214]
+bones/5/position = Vector3(1.202675, 0.36857343, -0.6087159)
+bones/10/position = Vector3(-0.03846008, 0.368123, -0.52707416)
+bones/11/position = Vector3(0.17313097, 0.37140617, -0.8143542)
+bones/12/position = Vector3(0.47430107, 0.36857343, 0.19089708)
+bones/13/position = Vector3(-0.4323306, 0.36857343, 0.36147907)
+bones/14/position = Vector3(0.61090446, 0.36857343, 0.4895776)
+bones/15/position = Vector3(-0.7858211, 0.36857343, 0.30022633)
+
+[node name="Actomyosin" parent="Armature/Skeleton3D" index="0" unique_id=192001737]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.39853227, 0, 0.68647254)
+material_override = SubResource("ShaderMaterial_teu6q")
+
+[node name="AnimationPlayer" parent="." index="1" unique_id=1815631966]
+autoplay = &"Contract"

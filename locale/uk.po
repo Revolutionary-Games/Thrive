@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-04 10:45+0300\n"
+"POT-Creation-Date: 2026-08-14 09:18+0300\n"
 "PO-Revision-Date: 2026-08-06 01:06+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -103,6 +103,17 @@ msgid "ACTIVITY_EXPLANATION"
 msgstr ""
 "Рухливі мікроби будуть більше плавати та безладно тинятися.\n"
 "Пасивні будуть залишатися нерухомими до змін в оточені, й лиш тоді діють."
+
+msgid "ACTOMYOSIN"
+msgstr ""
+
+#, fuzzy
+msgid "ACTOMYOSIN_DESCRIPTION"
+msgstr "Опис відсутній"
+
+#, fuzzy
+msgid "ACTOMYOSIN_PROCESSES_DESCRIPTION"
+msgstr "Перетворює [thrive:compound type=\"glucose\"][/thrive:compound] на [thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Додаткові перевірки виявили проблему: {0}"
@@ -942,6 +953,14 @@ msgstr "Cпавнити сутності з формами зіткнення"
 #, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "Ця вкладка дозволяє встановити порядок, у якому зростатимуть органели. Це може бути важливим для клітин із нестабільним продукуванням АТФ під час росту. Порядок органел також значно впливає на порядок пробігу біопроцесів. Бажано редагувати це тільки після редагування структури, бо інакше зміни можуть бути скасовані."
+
+#, fuzzy
+msgid "COLONY_ROTATION_INCREASE"
+msgstr "Обертання:"
+
+#, fuzzy
+msgid "COLONY_SPEED_INCREASE"
+msgstr "Обертання:"
 
 msgid "COLOUR"
 msgstr "Колір"
@@ -5978,6 +5997,14 @@ msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
 msgstr "(пасивно збільшувати сполуки для розмноження з середовища без дій )"
 
 #, fuzzy
+msgid "SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION"
+msgstr "(пасивно збільшувати сполуки для розмноження з середовища без дій )"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION_ACTIVE"
+msgstr "(пасивно збільшувати сполуки для розмноження з середовища без дій )"
+
+#, fuzzy
 msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "(пасивно збільшувати сполуки для розмноження з середовища без дій )"
 
@@ -6679,12 +6706,24 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr "Дім"
 
+#, fuzzy
+msgid "THRIVEOPEDIA_MUSEUM_PAGE_SEARCHTAGS"
+msgstr "Музей"
+
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Музей"
 
 #, fuzzy
+msgid "THRIVEOPEDIA_ORGANELLE_SEARCHTAGS"
+msgstr "Поточний світ"
+
+#, fuzzy
 msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
 msgstr "Дім"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_SEARCHTAGS"
+msgstr "Мапа ділянок"
 
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr "Мапа ділянок"
@@ -6712,6 +6751,14 @@ msgstr "Музей"
 #, fuzzy
 msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
 msgstr "Музей"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_SEARCHTAGS"
+msgstr "Музей"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_SEARCHTAGS"
+msgstr "Поточний світ"
 
 #, fuzzy
 msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"

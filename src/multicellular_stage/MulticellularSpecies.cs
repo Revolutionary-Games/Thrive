@@ -221,13 +221,13 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
                 cellType.ModifiableOrganelles.Organelles[i].IsEndosymbiont = false;
             }
 
-            if (!sporeCellTypeInList && cellType == ModifiableSporeCellType)
+            if (!sporeCellTypeInList && ReferenceEquals(cellType, ModifiableSporeCellType))
                 sporeCellTypeInList = true;
 
-            if (!gameteTypeAInList && cellType == ModifiableGameteTypeA)
+            if (!gameteTypeAInList && ReferenceEquals(cellType, ModifiableGameteTypeA))
                 gameteTypeAInList = true;
 
-            if (!gameteTypeBInList && cellType == ModifiableGameteTypeB)
+            if (!gameteTypeBInList && ReferenceEquals(cellType, ModifiableGameteTypeB))
                 gameteTypeBInList = true;
         }
 
@@ -295,7 +295,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 
             foreach (var typeDefinition in ModifiableCellTypes)
             {
-                if (typeDefinition == modifiableGameplayCell.ModifiableCellType)
+                if (ReferenceEquals(typeDefinition, modifiableGameplayCell.ModifiableCellType))
                 {
                     typeExists = true;
                     break;
@@ -459,7 +459,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         var workMemory2 = new List<Hex>();
 
         // We need to ensure each cell type is cloned just once so that references work
-        var typeMapping = new Dictionary<CellType, CellType>();
+        var typeMapping = new Dictionary<CellType, CellType>(ReferenceEqualityComparer.Instance);
 
         ModifiableCellTypes.Clear();
 
@@ -469,13 +469,13 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
             ModifiableCellTypes.Add(clonedType);
             typeMapping[cellType] = clonedType;
 
-            if (cellType == casted.ModifiableSporeCellType)
+            if (ReferenceEquals(cellType, casted.ModifiableSporeCellType))
                 ModifiableSporeCellType = clonedType;
 
-            if (cellType == casted.ModifiableGameteTypeA)
+            if (ReferenceEquals(cellType, casted.ModifiableGameteTypeA))
                 ModifiableGameteTypeA = clonedType;
 
-            if (cellType == casted.ModifiableGameteTypeB)
+            if (ReferenceEquals(cellType, casted.ModifiableGameteTypeB))
                 ModifiableGameteTypeB = clonedType;
         }
 
@@ -653,7 +653,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         var workMemory2 = new List<Hex>();
 
         // We need to ensure each cell type is cloned just once so that references work
-        var typeMapping = new Dictionary<CellType, CellType>();
+        var typeMapping = new Dictionary<CellType, CellType>(ReferenceEqualityComparer.Instance);
 
         foreach (var cellType in ModifiableCellTypes)
         {
@@ -661,13 +661,13 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
             result.ModifiableCellTypes.Add(clonedType);
             typeMapping[cellType] = clonedType;
 
-            if (cellType == ModifiableSporeCellType)
+            if (ReferenceEquals(cellType, ModifiableSporeCellType))
                 result.ModifiableSporeCellType = clonedType;
 
-            if (cellType == ModifiableGameteTypeA)
+            if (ReferenceEquals(cellType, ModifiableGameteTypeA))
                 result.ModifiableGameteTypeA = clonedType;
 
-            if (cellType == ModifiableGameteTypeB)
+            if (ReferenceEquals(cellType, ModifiableGameteTypeB))
                 result.ModifiableGameteTypeB = clonedType;
         }
 

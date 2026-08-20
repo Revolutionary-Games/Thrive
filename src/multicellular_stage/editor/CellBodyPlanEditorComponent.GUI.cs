@@ -35,7 +35,7 @@ public partial class CellBodyPlanEditorComponent
     {
         var cellType = Editor.EditedSpecies.ModifiableCellTypes[selectedOption];
 
-        if (cellType == SporeCellType)
+        if (ReferenceEquals(cellType, SporeCellType))
             return;
 
         var action = new SingleEditorAction<SporeCellTypeChangeActionData>(DoSporeCellChangeAction,
@@ -50,7 +50,7 @@ public partial class CellBodyPlanEditorComponent
     {
         var cellType = Editor.EditedSpecies.ModifiableCellTypes[selectedOption];
 
-        if (cellType == GameteACellType)
+        if (ReferenceEquals(cellType, GameteACellType))
             return;
 
         var action = new SingleEditorAction<GameteACellTypeChangeActionData>(DoGameteACellChangeAction,
@@ -65,7 +65,7 @@ public partial class CellBodyPlanEditorComponent
     {
         var cellType = Editor.EditedSpecies.ModifiableCellTypes[selectedOption];
 
-        if (cellType == GameteBCellType)
+        if (ReferenceEquals(cellType, GameteBCellType))
             return;
 
         var action = new SingleEditorAction<GameteBCellTypeChangeActionData>(DoGameteBCellChangeAction,
@@ -468,8 +468,10 @@ public partial class CellBodyPlanEditorComponent
             sexualAnisogamyUpgradeButton.Visible = true;
             sexualAnisogamyUpgradeButton.Text =
                 Localization.Translate("SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY")
-                    .FormatSafe(Math.Round(Constants.MULTICELLULAR_ANISOGAMY_UPGRADE_COST *
-                        Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier));
+                    .FormatSafe(Math.Min(Constants.MAX_SINGLE_EDIT_MP_COST, Math.Round(
+                        Constants.MULTICELLULAR_ANISOGAMY_UPGRADE_COST *
+                        Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier * Editor.MutationPointCostModifier,
+                        1)));
 
             anisogamySettingsContainer.Visible = false;
             gameteSelectionALabel.Text = Localization.Translate("GAMETE_CELL_TYPE");

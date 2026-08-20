@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-04 10:45+0300\n"
+"POT-Creation-Date: 2026-08-14 09:18+0300\n"
 "PO-Revision-Date: 2026-08-06 15:31+0000\n"
 "Last-Translator: Søren Hansen <pjuske4life@gmail.com>\n"
 "Language-Team: Danish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/da/>\n"
@@ -102,6 +102,17 @@ msgid "ACTIVITY_EXPLANATION"
 msgstr ""
 "Aktive mikrober vil bevæge sig rundt og ændre retning, når der ikke sker noget interessant.\n"
 "Fastsiddende mikrober vil være stillestående og vente på at miljøet ændrer sig, før de handler."
+
+msgid "ACTOMYOSIN"
+msgstr ""
+
+#, fuzzy
+msgid "ACTOMYOSIN_DESCRIPTION"
+msgstr "Beskrivelsen mangler"
+
+#, fuzzy
+msgid "ACTOMYOSIN_PROCESSES_DESCRIPTION"
+msgstr "Omdanner [thrive:compound type=\"glucose\"][/thrive:compound] til [thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Yderligere validering opdagede et problem: {0}­"
@@ -951,6 +962,14 @@ msgstr "Vis physics debug former"
 
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "Denne fane tillader indstilling af rækkefølgen koloniens celler gror i, hvor den første celle i rækken er rod cellen. Du kan bruge det til at prioritere væksten af vigtige celler, eller sørge for at koloniens produktion og forbrug er balanceret."
+
+#, fuzzy
+msgid "COLONY_ROTATION_INCREASE"
+msgstr "Rotationskraft"
+
+#, fuzzy
+msgid "COLONY_SPEED_INCREASE"
+msgstr "Rotationskraft"
 
 msgid "COLOUR"
 msgstr "Farve"
@@ -5809,6 +5828,14 @@ msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
 msgstr "(hvad der sker med stofferne som spilleren har lagret når man vender tilbage til stadiet fra editoren)"
 
 #, fuzzy
+msgid "SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION"
+msgstr "(hvad der sker med stofferne som spilleren har lagret når man vender tilbage til stadiet fra editoren)"
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION_ACTIVE"
+msgstr "(hvad der sker med stofferne som spilleren har lagret når man vender tilbage til stadiet fra editoren)"
+
+#, fuzzy
 msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "(hvad der sker med stofferne som spilleren har lagret når man vender tilbage til stadiet fra editoren)"
 
@@ -6482,12 +6509,24 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr "Hjem"
 
+#, fuzzy
+msgid "THRIVEOPEDIA_MUSEUM_PAGE_SEARCHTAGS"
+msgstr "Museum"
+
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Museum"
 
 #, fuzzy
+msgid "THRIVEOPEDIA_ORGANELLE_SEARCHTAGS"
+msgstr "Nuværende verden"
+
+#, fuzzy
 msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
 msgstr "Hjem"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_SEARCHTAGS"
+msgstr "Områdekort"
 
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr "Områdekort"
@@ -6515,6 +6554,14 @@ msgstr "Museum"
 #, fuzzy
 msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
 msgstr "Museum"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_SEARCHTAGS"
+msgstr "Museum"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_SEARCHTAGS"
+msgstr "Nuværende verden"
 
 #, fuzzy
 msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"

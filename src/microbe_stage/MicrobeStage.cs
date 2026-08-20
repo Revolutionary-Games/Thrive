@@ -17,11 +17,6 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 {
     public const int SERIALIZATION_VERSION = 3;
 
-    /// <summary>
-    ///   Current stage for the move to editor console command
-    /// </summary>
-    public static WeakReference<IEditorMovableStage>? CurrentActiveStage;
-
     private readonly Dictionary<MicrobeSpecies, ResolvedMicrobeTolerances> resolvedTolerancesCache = new();
 
     private readonly Dictionary<MulticellularSpecies, ResolvedMicrobeTolerances>
@@ -363,7 +358,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             TutorialState.DayNightTutorial.OnOpened += HUD.CloseProcessPanel;
         }
 
-        CurrentActiveStage = new WeakReference<IEditorMovableStage>(this);
+        currentActiveStageForEditor = new WeakReference<IEditorMovableStage>(this);
     }
 
     public override void _ExitTree()
@@ -382,9 +377,10 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             TutorialState.DayNightTutorial.OnOpened -= HUD.CloseProcessPanel;
         }
 
-        if (CurrentActiveStage != null && CurrentActiveStage.TryGetTarget(out var stage) && stage == this)
+        if (currentActiveStageForEditor != null && currentActiveStageForEditor.TryGetTarget(out var stage) &&
+            stage == this)
         {
-            CurrentActiveStage = null;
+            currentActiveStageForEditor = null;
         }
     }
 
@@ -517,11 +513,8 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             {
                 guidanceLine.Visible = true;
 
-                // To avoid line jitter, always make the line start from the camera's position
-                var start = Camera.GlobalPosition;
-                start.Y = 0;
-
-                guidanceLine.LineStart = start;
+                // This needs to be re-read here to avoid line jitter
+                guidanceLine.LineStart = Player.Get<WorldPosition>().Position;
                 guidanceLine.SetLineEnd(guidancePosition.Value);
             }
             else
@@ -874,6 +867,29 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         Node sceneInstance;
 
+        // If doing gamete merge, teleport the player there to prepare the player for the next life
+        if (gametesMerging)
+        {
+            GD.Print("Entering editor after gamete merge, so teleporting the player to the target position");
+            playerGrewFromGamete = true;
+            ref var physics = ref Player.Get<Physics>();
+            ref var position = ref Player.Get<WorldPosition>();
+            physics.TeleportTo(ref position, gameteMergeLocation, WorldSimulation);
+
+            // And despawn the gametes
+            if (mergingGamete1.IsAliveAndNotNull())
+                WorldSimulation.DestroyEntity(mergingGamete1);
+            if (mergingGamete2.IsAliveAndNotNull())
+                WorldSimulation.DestroyEntity(mergingGamete2);
+
+            mergingGamete1 = Entity.Null;
+            mergingGamete2 = Entity.Null;
+        }
+        else
+        {
+            playerGrewFromGamete = false;
+        }
+
         if (Player.Has<MulticellularSpeciesMember>())
         {
             // Player is a multicellular species, go to multicellular editor
@@ -904,6 +920,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
             editor.CurrentGame = CurrentGame;
             editor.ReturnToStage = this;
+            editor.UsedSexualReproduction = playerGrewFromGamete;
 
             // TODO: severely limit the MP points in awakening stage
         }
@@ -924,30 +941,16 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
             editor.CurrentGame = CurrentGame;
             editor.ReturnToStage = this;
+
+            if (playerGrewFromGamete)
+            {
+                GD.Print("Player grew from gamete, but we are going to the microbe editor!");
+            }
         }
 
         GiveReproductionPopulationBonus();
 
         RecordPlayerReproduction();
-
-        // If doing gamete merge, teleport the player there to prepare the player for the next life
-        if (gametesMerging)
-        {
-            GD.Print("Entering editor after gamete merge, so teleporting the player to the target position");
-            playerGrewFromGamete = true;
-            ref var physics = ref Player.Get<Physics>();
-            ref var position = ref Player.Get<WorldPosition>();
-            physics.TeleportTo(ref position, gameteMergeLocation, WorldSimulation);
-
-            // And despawn the gametes
-            if (mergingGamete1.IsAliveAndNotNull())
-                WorldSimulation.DestroyEntity(mergingGamete1);
-            if (mergingGamete2.IsAliveAndNotNull())
-                WorldSimulation.DestroyEntity(mergingGamete2);
-
-            mergingGamete1 = Entity.Null;
-            mergingGamete2 = Entity.Null;
-        }
 
         PauseMenu.Instance.ReportStageTransition();
 
@@ -1191,6 +1194,8 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         // Update the player's cell
         ref var cellProperties = ref Player.Get<CellProperties>();
 
+        ref var compoundStorage = ref Player.Get<CompoundStorage>();
+
         bool playerIsMulticellular = Player.Has<MulticellularSpeciesMember>();
 
         if (playerIsMulticellular)
@@ -1218,6 +1223,18 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
                      or MulticellularReproductionMethod.MassBudding)
             {
                 adjacencyBonus = multicellularSpeciesType.Species.GetAdjacencySpecializationBonus(0);
+            }
+
+            // If the player has a colony, all resources need to be transferred to the stem cell to avoid them being
+            // lost after other colony members are deleted
+            if (Player.TryGet<MicrobeColony>(out var colony))
+            {
+                var compounds = compoundStorage.Compounds.Compounds;
+
+                foreach (var compound in colony.GetCompounds().GetCompoundDictionary())
+                {
+                    compounds[compound.Key] = compound.Value;
+                }
             }
 
             var totalSpecializationBonus = multicellularSpeciesType.MulticellularCellType.CellTypeSpecializationBonus *
@@ -1345,6 +1362,36 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
                 WorldSimulation.SpawnSystem.EnsureEntityLimitAfterPlayerReproduction(playerPosition, doNotDespawn);
             });
+        }
+
+        // After compounds are redistributed, send whatever was given to the player to the delayed storage.
+        // If the player's reproduction method isn't mass budding, just ensure that the compounds are under capacity.
+        if (playerIsMulticellular)
+        {
+            ref var multicellularSpeciesType = ref Player.Get<MulticellularSpeciesMember>();
+
+            var compounds = compoundStorage.Compounds.Compounds;
+
+            if (multicellularSpeciesType.Species.ReproductionMethod == MulticellularReproductionMethod.MassBudding)
+            {
+                ref var growth = ref Player.Get<MulticellularGrowth>();
+                growth.MassBuddingDelayedCompoundStorage ??= new Dictionary<Compound, float>();
+
+                foreach (var compound in compounds)
+                {
+                    growth.MassBuddingDelayedCompoundStorage[compound.Key] = compound.Value;
+                }
+
+                compounds.Clear();
+            }
+            else
+            {
+                foreach (var compound in compounds)
+                {
+                    compounds[compound.Key] = MathF.Min(compound.Value,
+                        compoundStorage.Compounds.GetCapacityForCompound(compound.Key, true));
+                }
+            }
         }
 
         // Handle the compound modes
@@ -1903,7 +1950,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
     [Command("edit", true, "Move immediately to the editor in supported stages")]
     private static bool MoveStageToEditorCommand(CommandContext context)
     {
-        var targetWeak = CurrentActiveStage;
+        var targetWeak = currentActiveStageForEditor;
 
         if (targetWeak != null && targetWeak.TryGetTarget(out var stage) && !stage.IsDisposed)
         {
@@ -2138,6 +2185,12 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         {
             var start = Camera.GlobalPosition;
             start.Y = 0;
+
+            if (HasAlivePlayer)
+            {
+                start = Player.Get<WorldPosition>().Position;
+            }
+
             mateGuidanceLine.LineStart = start;
             mateGuidanceLine.SetLineEnd(matePosition);
         }

@@ -32,7 +32,7 @@ public static class CellBodyPlanInternalCalculations
     }
 
     /// <summary>
-    ///   Calculates a colony's speed. The algorithm is an approximation, but should be based on the one in
+    ///   Calculates a colony's speed. The algorithm is an approximation but should be based on the one in
     ///   MicrobeMovementSystem.cs
     /// </summary>
     public static float CalculateSpeed(IReadOnlyList<HexWithData<CellTemplate>> cells)
@@ -52,6 +52,7 @@ public static class CellBodyPlanInternalCalculations
         var massEstimate = 0.0f;
 
         var addedSpeed = 0.0f;
+        var actomyosinCount = CalculateEffectiveActomyosinCount(leader);
 
         foreach (var hex in cells)
         {
@@ -60,9 +61,14 @@ public static class CellBodyPlanInternalCalculations
             if (cell == leader)
                 continue;
 
+            var cellActomyosinCount = 0;
+
             foreach (var organelle in cell.Organelles)
             {
                 massEstimate += organelle.Definition.Density * organelle.Definition.HexCount;
+
+                if (organelle.Definition.HasActomyosinComponent)
+                    ++cellActomyosinCount;
 
                 if (!organelle.Definition.HasMovementComponent)
                     continue;
@@ -88,9 +94,18 @@ public static class CellBodyPlanInternalCalculations
 
                 addedSpeed += flagellumForce;
             }
+
+            if (cellActomyosinCount > 0)
+            {
+                // The first actomyosin in a cell counts fully, while additional ones have diminishing returns.
+                actomyosinCount += CalculateEffectiveActomyosinCount(cellActomyosinCount);
+            }
         }
 
-        return speed / cells.Count + addedSpeed / (massEstimate * 1.4f);
+        speed = speed / cells.Count + addedSpeed / (massEstimate * 1.4f);
+
+        // This matches the bonus applied to colony members in MicrobeMovementSystem.
+        return speed * CalculateActomyosinMovementMultiplier(actomyosinCount);
     }
 
     /// <summary>
@@ -137,32 +152,94 @@ public static class CellBodyPlanInternalCalculations
     /// </summary>
     public static float CalculateRotationSpeed(IReadOnlyList<HexWithData<CellTemplate>> cells)
     {
-        var leader = cells[0].Data!;
-
-        var leaderTotalSpecializationBonus = leader.CellTypeSpecializationBonus *
-            GetAdjacencySpecializationBonusFromBodyPlan(leader.Data, cells);
-        var colonyRotation = MicrobeInternalCalculations.CalculateRotationSpeed(leader.ModifiableOrganelles,
-            leaderTotalSpecializationBonus);
-
-        Vector3 leaderPosition = Hex.AxialToCartesian(leader.Position);
+        float totalRotationSpeed = 0;
+        float actomyosinCount = 0;
 
         foreach (var colonyMember in cells)
         {
-            var distanceSquared = leaderPosition.DistanceSquaredTo(Hex.AxialToCartesian(colonyMember.Position));
+            var colonyMemberData = colonyMember.Data!;
 
-            var colonyMemberData = colonyMember.Data;
-
-            var memberTotalSpecializationBonus = colonyMemberData!.CellTypeSpecializationBonus *
+            var memberTotalSpecializationBonus = colonyMemberData.CellTypeSpecializationBonus *
                 GetAdjacencySpecializationBonusFromBodyPlan(colonyMemberData.Data, cells);
 
-            var memberRotation = MicrobeInternalCalculations
-                    .CalculateRotationSpeed(colonyMemberData.ModifiableOrganelles, memberTotalSpecializationBonus) *
-                (1 + 0.03f * distanceSquared);
-
-            colonyRotation += memberRotation;
+            // NOTE: to get this more in line with the gameplay side we just multiply the positions by 10 as an
+            // average cell size. This should make the display roughly correlate with the gameplay, though the exact
+            // rotations should be a bit different, but the overall trend should follow the same direction.
+            totalRotationSpeed += AdjustedColonyMemberRotationFromPosition(
+                Hex.AxialToCartesian(colonyMember.Position) * 10,
+                MicrobeInternalCalculations.CalculateRotationSpeed(colonyMemberData.ModifiableOrganelles,
+                    memberTotalSpecializationBonus));
+            actomyosinCount += CalculateEffectiveActomyosinCount(colonyMemberData);
         }
 
-        return colonyRotation / cells.Count;
+        return CalculateFinalColonyRotation(totalRotationSpeed / cells.Count, actomyosinCount, cells.Count);
+    }
+
+    public static float AdjustedColonyMemberRotationFromPosition(Vector3 relativePosition, float rawRotation)
+    {
+        var distance = relativePosition.Length();
+
+        // Colony leader check if it is passed through this method
+        if (distance <= 1)
+            return rawRotation;
+
+        // Again, lower rotation value is faster, so we want the value to go down the farther the distance is.
+        return rawRotation / (1 + Constants.COLONY_ROTATION_CELL_LEVERAGE_FROM_DISTANCE * distance);
+    }
+
+    public static float CalculateFinalColonyRotation(float averageCellRotationSpeed, float effectiveActomyosinCount,
+        int totalCellCount)
+    {
+        var rotationSpeedWithCellCountPenalty =
+            averageCellRotationSpeed * CellCountRotationPenalty(totalCellCount);
+
+        // Rotation values as calculated by this function mean that the higher the value, the slower the rotation is.
+        // So as actomyosin bonus goes higher, it needs to lower this value. Which is why we are dividing by the bonus
+        // to lower the "speed" value and thus make rotation faster.
+        return rotationSpeedWithCellCountPenalty /
+            (1 + Constants.ACTOMYOSIN_ROTATION_BUFF_PER * effectiveActomyosinCount);
+    }
+
+    /// <summary>
+    ///   This calculates a penalty to the rotation speed based on the number of cells in the colony. It starts off
+    ///   very small to make small colonies turn faster, but then goes to full penalty once the "expected" max cell
+    ///   count is reached.
+    /// </summary>
+    /// <param name="totalCellCount">Total cells</param>
+    /// <returns>Rotation penalty multiplier (note: higher value means slower rotation)</returns>
+    public static float CellCountRotationPenalty(int totalCellCount)
+    {
+        // This ensures that if someone makes ridiculously large colony, they don't get hit with not being able to turn
+        var count = Math.Clamp(totalCellCount, 1, 40);
+
+        // This is implemented as a piece-wise step function for maximum manual tweaking
+
+        if (count <= 3)
+        {
+            // 1 cell = 1.0x, 3 cells = 1.3x
+            return MathUtils.InterpolateSmoothStep(1.0f, 1.3f, (count - 1.0f) / 2.0f);
+        }
+
+        if (count <= 5)
+        {
+            // 3 cells = 1.3x, 5 cells = 1.5x
+            return MathUtils.InterpolateSmoothStep(1.3f, 1.5f, (count - 3.0f) / 2.0f);
+        }
+
+        if (count <= 20)
+        {
+            // 5 cells = 1.5x, 20 cells = 5.0x
+            return MathUtils.InterpolateSmoothStep(1.5f, 5.0f, (count - 5.0f) / 15.0f);
+        }
+
+        if (count <= 30)
+        {
+            // 20 cells = 5.0x, 30 cells = 10.0x
+            return MathUtils.InterpolateSmoothStep(5.0f, 10.0f, (count - 20.0f) / 10.0f);
+        }
+
+        // 30 cells = 10.0x, 40 cells = 20.0x, capped after that
+        return MathUtils.InterpolateSmoothStep(10.0f, 20.0f, (count - 30.0f) / 10.0f);
     }
 
     public static float GetAdjacencySpecializationBonusFromBodyPlan(IReadOnlyCellTemplate? cellInBodyPlan,
@@ -178,7 +255,7 @@ public static class CellBodyPlanInternalCalculations
             if (cellInBodyPlan == cell)
                 continue;
 
-            if (cellInBodyPlan!.CellType == cell.Data!.CellType
+            if (ReferenceEquals(cellInBodyPlan!.CellType, cell.Data!.CellType)
                 && cell.Position.DistanceTo(cellInBodyPlan.Position) <= 1)
             {
                 bonus += Constants.CELL_ADJACENCY_SPECIALIZATION_BONUS;
@@ -203,7 +280,7 @@ public static class CellBodyPlanInternalCalculations
             if (cellInBodyPlan == cell.Data)
                 continue;
 
-            if (cellInBodyPlan!.CellType == cell.Data!.CellType
+            if (ReferenceEquals(cellInBodyPlan!.CellType, cell.Data!.CellType)
                 && cell.Position.DistanceTo(cellInBodyPlan.Position) <= 1)
             {
                 bonus += Constants.CELL_ADJACENCY_SPECIALIZATION_BONUS;
@@ -219,5 +296,34 @@ public static class CellBodyPlanInternalCalculations
     public static int MaxBudSize(int cellCount)
     {
         return cellCount / 2 + 1;
+    }
+
+    public static float CalculateEffectiveActomyosinCount(CellTemplate cell)
+    {
+        var actomyosinCount = 0;
+
+        foreach (var organelle in cell.Organelles)
+        {
+            if (organelle.Definition.HasActomyosinComponent)
+                ++actomyosinCount;
+        }
+
+        return CalculateEffectiveActomyosinCount(actomyosinCount);
+    }
+
+    public static float CalculateEffectiveActomyosinCount(int rawCountInCellType)
+    {
+        if (rawCountInCellType < 1)
+            return 0;
+
+        // The first actomyosin counts fully, and the other ones are then just a little effective.
+        // NOTE: at the time of writing actomyosin is marked as a unique organelle so this formula doesn't really
+        // affect anything.
+        return 1 + (rawCountInCellType - 1) * Constants.EFFECTIVE_ACTOMYOSIN_MULTIPLIER;
+    }
+
+    public static float CalculateActomyosinMovementMultiplier(float effectiveActomyosinCount)
+    {
+        return 1 + Constants.ACTOMYOSIN_MOVEMENT_BUFF_PER * effectiveActomyosinCount;
     }
 }

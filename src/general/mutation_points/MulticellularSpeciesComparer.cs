@@ -24,8 +24,8 @@ public class MulticellularSpeciesComparer
             IReadOnlyCellDefinition? original = null;
 
             // Match based on name to the old types. This should be fine if a player recreates a type with a new name
-            // that could be a bit problematic, but the only way around that would be to check each type against each
-            // other type and find the minimal cost, which could require a ton of operations.
+            // that could be a bit problematic. However, the only way around that would be to check each type against
+            // each other type and find the minimal cost, which could require a ton of operations.
             foreach (var originalType in originalCellTypes)
             {
                 if (originalType.CellTypeName == newCellType.CellTypeName)
@@ -70,7 +70,9 @@ public class MulticellularSpeciesComparer
                 {
                     foreach (var newType in newCellTypes)
                     {
-                        if (newType.CellTypeName == newCellType.SplitFromTypeName && newType != newCellType)
+                        // TODO: should this actually use Equals call rather than reference?
+                        if (newType.CellTypeName == newCellType.SplitFromTypeName &&
+                            !ReferenceEquals(newType, newCellType))
                         {
                             original = newType;
                             break;
@@ -87,7 +89,7 @@ public class MulticellularSpeciesComparer
             {
                 GD.PrintErr("Using safety fallback for matching cell type change count");
                 var temp = newCellType;
-                original = newCellTypes.FirstOrDefault(c => c != temp) ?? newCellType;
+                original = newCellTypes.FirstOrDefault(c => !ReferenceEquals(c, temp)) ?? newCellType;
             }
 
             cost += typeComparer.CompareCellType(original, newCellType, true, maxSingleActionCost, costMultiplier);
@@ -175,6 +177,8 @@ public class MulticellularSpeciesComparer
 
         cost += oldCells.Count * Math.Min(Constants.CELL_REMOVE_COST * costMultiplier, maxSingleActionCost);
 
+        double reproductionCost = 0;
+
         if (speciesA.ReproductionMethod != speciesB.ReproductionMethod)
         {
             // Anisogamy "upgrade" cost if switching to that
@@ -182,45 +186,48 @@ public class MulticellularSpeciesComparer
             {
                 // If not switching from the base sexual reproduction, then the cost is even higher
                 if (speciesA.ReproductionMethod != MulticellularReproductionMethod.SexualIsogamy)
-                    cost += Constants.MULTICELLULAR_REPRODUCTION_METHOD_CHANGE_COST;
+                    reproductionCost += Constants.MULTICELLULAR_REPRODUCTION_METHOD_CHANGE_COST;
 
-                cost += Constants.MULTICELLULAR_ANISOGAMY_UPGRADE_COST;
+                // Note anisogamy upgrade cost is *not* capped to the single action cost!
+                cost += Math.Min(Constants.MULTICELLULAR_ANISOGAMY_UPGRADE_COST * costMultiplier, maxSingleActionCost);
 
                 // Upgrading doesn't let changing the original gamete cell for free.
                 // If upgrading from random mode, then the gamete A might be missing.
                 if (speciesA.GameteTypeA?.CellTypeName != speciesB.GameteTypeA?.CellTypeName)
-                    cost += Constants.GAMETE_CELL_TYPE_CHANGE_COST;
+                    reproductionCost += Constants.GAMETE_CELL_TYPE_CHANGE_COST;
             }
             else
             {
-                cost += Constants.MULTICELLULAR_REPRODUCTION_METHOD_CHANGE_COST;
+                reproductionCost += Constants.MULTICELLULAR_REPRODUCTION_METHOD_CHANGE_COST;
             }
         }
         else if (speciesA.ReproductionMethod == MulticellularReproductionMethod.Sporulation
                  && speciesA.SporeCellType!.CellTypeName != speciesB.SporeCellType?.CellTypeName)
         {
             // The reproduction method is sporulation (and it wasn't changed), but the spore cell type is different
-            cost += Constants.SPORE_CELL_TYPE_CHANGE_COST;
+            reproductionCost += Constants.SPORE_CELL_TYPE_CHANGE_COST;
         }
         else if (speciesA.ReproductionMethod == MulticellularReproductionMethod.SexualIsogamy
                  && speciesA.GameteTypeA!.CellTypeName != speciesB.GameteTypeA?.CellTypeName)
         {
-            cost += Constants.SPORE_CELL_TYPE_CHANGE_COST;
+            reproductionCost += Constants.SPORE_CELL_TYPE_CHANGE_COST;
         }
         else if (speciesA.ReproductionMethod == MulticellularReproductionMethod.SexualAnisogamy)
         {
             if (speciesA.GameteTypeA!.CellTypeName != speciesB.GameteTypeA?.CellTypeName)
-                cost += Constants.GAMETE_CELL_TYPE_CHANGE_COST;
+                reproductionCost += Constants.GAMETE_CELL_TYPE_CHANGE_COST;
 
             if (speciesA.GameteTypeB!.CellTypeName != speciesB.GameteTypeB?.CellTypeName)
-                cost += Constants.GAMETE_CELL_TYPE_CHANGE_COST;
+                reproductionCost += Constants.GAMETE_CELL_TYPE_CHANGE_COST;
         }
 
         if (speciesB.ReproductionMethod == MulticellularReproductionMethod.MassBudding)
         {
-            cost += MathF.Abs(speciesA.MassBuddingCellCount - speciesB.MassBuddingCellCount)
+            reproductionCost += MathF.Abs(speciesA.MassBuddingCellCount - speciesB.MassBuddingCellCount)
                 * Constants.MASS_BUDDING_CELL_COUNT_CHANGE_COST;
         }
+
+        cost += Math.Min(reproductionCost * costMultiplier, maxSingleActionCost);
 
         oldCells.Clear();
         newCells.Clear();

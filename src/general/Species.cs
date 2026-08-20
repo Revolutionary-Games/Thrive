@@ -365,7 +365,7 @@ public abstract class Species : ICloneable, IArchivable, IReadOnlySpecies
     /// <param name="newName">The new name to try to switch to</param>
     public void UpdateNameIfValid(string newName)
     {
-        var match = Regex.Match(newName, Constants.SPECIES_NAME_REGEX);
+        var match = Regex.Match(newName, Constants.SPECIES_NAME_REGEX, RegexOptions.None, TimeSpan.FromSeconds(1));
         if (match.Success)
         {
             Genus = match.Groups["genus"].Value;
