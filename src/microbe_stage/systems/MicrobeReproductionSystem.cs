@@ -29,15 +29,18 @@ using World = Arch.Core.World;
 [WritesToComponent(typeof(Engulfable))]
 [WritesToComponent(typeof(Engulfer))]
 [WritesToComponent(typeof(TemporaryEndosymbiontInfo))]
+[WritesToComponent(typeof(CellProperties))]
+[WritesToComponent(typeof(SpecializationFactor))]
+[WritesToComponent(typeof(ReadableName))]
+[WritesToComponent(typeof(SpatialInstance))]
+[WritesToComponent(typeof(ColourAnimation))]
 [ReadsComponent(typeof(MicrobeStatus))]
-[ReadsComponent(typeof(CellProperties))]
 [ReadsComponent(typeof(MicrobeEventCallbacks))]
 [ReadsComponent(typeof(MicrobeColony))]
 [ReadsComponent(typeof(WorldPosition))]
 [ReadsComponent(typeof(SoundEffectPlayer))]
 [ReadsComponent(typeof(MicrobeControl))]
 [ReadsComponent(typeof(MicrobeEnvironmentalEffects))]
-[ReadsComponent(typeof(SpecializationFactor))]
 [ReadsComponent(typeof(MicrobeSex))]
 [RunsAfter(typeof(OsmoregulationAndHealingSystem))]
 [RunsAfter(typeof(ProcessSystem))]
@@ -605,10 +608,10 @@ public partial class MicrobeReproductionSystem : BaseSystem<World, float>
 
             MicrobeEnvironmentalEffects environmentalEffects = entity.Get<MicrobeEnvironmentalEffects>();
 
-            // Return the first cell to its normal, non-duplicated cell arrangement and spawn a daughter cell
-            organelles.ResetOrganelleLayout(ref entity.Get<CompoundStorage>(),
-                ref entity.Get<BioProcesses>(), ref entity.Get<SpecializationFactor>(),
-                in environmentalEffects, entity, species, species, worldSimulation, workData1, workData2);
+            // Auto-evo mutates species objects in place, so existing entities may still have cached properties from
+            // the old definition. Reapply the full definition before spawning the daughter cell.
+            cellProperties.ReApplyCellTypeProperties(ref environmentalEffects, entity, species, species,
+                species.CellTypeSpecializationBonus, worldSimulation, workData1, workData2);
 
             // This is purely inside this lock to suppress a warning on worldSimulation
             cellProperties.Divide(ref organelles, entity, species, worldSimulation, spawnEnvironment,
