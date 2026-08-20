@@ -37,6 +37,15 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     [Export]
     public int Seed = 1234;
 
+    /// <summary>
+    ///   The sun direction.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Please note that this cannot be a zero vector. This gets normalised before being passed to the shader, so
+    ///     setting a zero-vector should be considered UB and an arbitrary unit-length vector will be used instead.
+    ///   </para>
+    /// </remarks>
     [Export]
     public Vector3 SunDirection = new Vector3(0.4f, 0.8f, 0.3f).Normalized();
 
@@ -568,7 +577,9 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         offset = RenderingUtils.WriteVec4(paramSpan, offset, new Vector4(cameraPosition.X, cameraPosition.Y,
             cameraPosition.Z, 0.0f));
 
-        var sun = SunDirection.Normalized();
+        // Prevent singularities and erratic behaviour in the shader by passing a non-zero vector.
+        // Vector3.One.Normalized() is purely arbitrary (as we can choose any unit-length vector).
+        var sun = SunDirection.IsZeroApprox() ? Vector3.One.Normalized() : SunDirection.Normalized();
         offset = RenderingUtils.WriteVec4(paramSpan, offset, new Vector4(sun.X, sun.Y, sun.Z, SunEnergy));
 
         _ = RenderingUtils.WriteVec4(paramSpan, offset, new Vector4(MarchSteps, LightSteps, MaxMarchDistance,
