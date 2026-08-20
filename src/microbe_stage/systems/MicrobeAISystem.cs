@@ -738,7 +738,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                 case > 0.0f and <= Constants.MAX_SPECIES_AGGRESSION * 0.25f:
                     enoughMembers = (int)(speciesAggression / 100 * 0.25f);
                     break;
-                case > Constants.MAX_SPECIES_AGGRESSION * 0.25f and Constants.MAX_SPECIES_AGGRESSION * 0.5f:
+                case > Constants.MAX_SPECIES_AGGRESSION * 0.25f and <= Constants.MAX_SPECIES_AGGRESSION * 0.5f:
                     enoughMembers = (int)(speciesAggression / 100 * 0.5f);
                     break;
                 case > Constants.MAX_SPECIES_AGGRESSION * 0.5f and <= Constants.MAX_SPECIES_AGGRESSION * 0.75f:
