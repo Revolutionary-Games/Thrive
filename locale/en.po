@@ -5621,9 +5621,9 @@ msgstr "Invalid"
 
 msgid "SAVE_IS_CORRUPT_WHILE_LOADING"
 msgstr ""
-"Save load failed because the file is corrupted.\n"
-"The hash should be: {0}\n"
-"But it was recalculated as: {1}"
+"Loading the save failed because the file is corrupted.\n"
+"Expected hash: {0}\n"
+"Calculated hash: {1}"
 
 msgid "SAVE_IS_INVALID"
 msgstr "Save is invalid"
