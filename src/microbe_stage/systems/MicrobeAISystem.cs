@@ -412,8 +412,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         // Use signaling agent if I have any and am not receiving a command, with a small chance per think method call
         if (organelles.HasSignalingAgent && random.NextSingle() < Constants.AI_SIGNALING_CHANCE && !signalExists)
         {
-            UseSignalingAgent(ref position, ref organelles, atpLevel, compounds, speciesAggression,
-                ref signaling, random, ref ourSpecies);
+            UseSignalingAgent(ref position, ref organelles, speciesAggression, ref signaling, random, ref ourSpecies);
         }
 
         // Follow received commands if we have them
@@ -716,11 +715,11 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
     }
 
     private void UseSignalingAgent(ref WorldPosition position, ref OrganelleContainer organelles,
-        float atpLevel, CompoundBag compounds, float speciesAggression, ref CommandSignaler signaling, Random random,
-        ref SpeciesMember ourSpecies)
+        float speciesAggression, ref CommandSignaler signaling, Random random, ref SpeciesMember ourSpecies)
     {
-        // Has binding agent and ATP is at least half capacity
+        //// Has binding agent and ATP is at least half capacity
         // TODO: comment out once AI can use the binding agent
+        // Parameters to add: (float atpLevel, CompoundBag compounds)
         // if (organelles.HasBindingAgent && atpLevel >= compounds.GetCapacityForCompound(Compound.ATP) * 0.5f)
         // {
         //     signaling.QueuedSignalingCommand = MicrobeSignalCommand.MoveToMe;
