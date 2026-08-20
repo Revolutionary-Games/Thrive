@@ -36,6 +36,7 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(TimedLife))]
 [ReadsComponent(typeof(MicrobeSex))]
 [WritesToComponent(typeof(MulticellularGrowth))]
+[WritesToComponent(typeof(CommandSignaler))]
 [RunsAfter(typeof(OrganelleComponentFetchSystem))]
 [RunsBefore(typeof(MicrobeMovementSystem))]
 [RunsBefore(typeof(MicrobeEmissionSystem))]
@@ -717,7 +718,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
     private void UseSignalingAgent(ref WorldPosition position, ref OrganelleContainer organelles,
         float speciesAggression, ref CommandSignaler signaling, Random random, ref SpeciesMember ourSpecies)
     {
-        //// Has binding agent and ATP is at least half capacity
+        // Has binding agent and ATP is at least half capacity
         // TODO: comment out once AI can use the binding agent
         // Parameters to add: (float atpLevel, CompoundBag compounds)
         // if (organelles.HasBindingAgent && atpLevel >= compounds.GetCapacityForCompound(Compound.ATP) * 0.5f)
