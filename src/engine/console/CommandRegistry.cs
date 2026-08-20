@@ -3,6 +3,7 @@ using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Godot;
@@ -14,12 +15,19 @@ public class CommandRegistry : IDisposable
 {
     private static CommandRegistry? instance;
 
-    private FrozenDictionary<string, Command[]>? commands;
+    /// <summary>
+    ///   Registry of multicast commands
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Due to the dynamic nature of multicast commands, they are registered during runtime. Having a normal
+    ///     dictionary updated only when required instead of during startup prevents scanning non-static
+    ///     fields, which constitutes a large overhead.
+    ///   </para>
+    /// </remarks>
+    private readonly Dictionary<string, MulticastCommandRegistry> multicastCommands = new();
 
-    // Due to the dynamic nature of multicast commands, they are registered during runtime. Having a normal dictionary
-    // that is updated only when required instead of during startup prevents scanning non-static fields, which
-    // constitutes a large overhead.
-    private Dictionary<string, MulticastCommandRegistry> multicastCommands = new();
+    private FrozenDictionary<string, Command[]>? commands;
 
     private Task? registerCommandsTask;
 
@@ -150,8 +158,8 @@ public class CommandRegistry : IDisposable
     /// </param>
     /// <typeparam name="T">The type of the owner.</typeparam>
     /// <returns>
-    ///   true iff the registration has been successful. This process fails if this method will be called
-    ///   before the registry is fully initialised, if the command has been already registered as static command, or
+    ///   True iff the registration has been successful. This process fails if this method is called
+    ///   before the registry is fully initialised, if the command has been already registered as a static command, or
     ///   if the number of registered instances quota is reached.
     /// </returns>
     public bool TryRegisterMulticastCommandListener<T>(T owner, string commandName)
@@ -164,7 +172,7 @@ public class CommandRegistry : IDisposable
             return false;
         }
 
-        if (commands!.ContainsKey(commandName))
+        if (commands.ContainsKey(commandName))
         {
             GD.PrintErr("Cannot register multicast command that overloads (has the same name of) a static" +
                 $"command. Please rename your multicast command. Current name: {commandName}");
@@ -597,7 +605,13 @@ public class CommandRegistry : IDisposable
 
     private void ExecuteMulticast(Command command, CommandContext context, object?[] invokeArgs)
     {
-        var registry = CollectionsMarshal.GetValueRefOrNullRef(multicastCommands, command.CommandName);
+        ref var registry = ref CollectionsMarshal.GetValueRefOrNullRef(multicastCommands, command.CommandName);
+
+        if (Unsafe.IsNullRef(ref registry))
+        {
+            GD.PrintErr("Multicast command registry is missing a command it should have: ", command.CommandName);
+            return;
+        }
 
         int successes = 0;
         bool @void = false;
@@ -710,7 +724,7 @@ public class CommandRegistry : IDisposable
         public bool IsMulticast => MulticastParameters is not null;
 
         [MulticastCommand("commands", false, "Less verbose version of 'help' to list all" +
-            " static commands.")]
+            " static commands.", int.MaxValue)]
         private void CommandInfo(CommandContext context)
         {
             context.Print(CommandName + " " + HelpText + " IsCheat: " + IsCheat);
