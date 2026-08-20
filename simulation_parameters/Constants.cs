@@ -707,12 +707,7 @@ public static class Constants
 
     public const float DEFAULT_MICROBE_VENT_THRESHOLD = 2.0f;
 
-    public const float CELL_ADJACENCY_SPECIALIZATION_BONUS = 0.04f;
-
-    /// <summary>
-    ///   A cell needs to have this many organelles for specialization to apply to it
-    /// </summary>
-    public const int CELL_SPECIALIZATION_APPLIES_AFTER_SIZE = 6;
+    public const float CELL_ADJACENCY_SPECIALIZATION_BONUS = 0.05f;
 
     /// <summary>
     ///   How many organelles a cell needs to have to be considered fully specialized. (i.e. the full specialization
@@ -724,7 +719,7 @@ public static class Constants
     ///   Controls how strong the cell specialization effect is (this is a flat multiplier right now but we could use
     ///   something like a power curve or another function for diminishing returns)
     /// </summary>
-    public const float CELL_SPECIALIZATION_STRENGTH_MULTIPLIER = 0.4f;
+    public const float CELL_SPECIALIZATION_STRENGTH_MULTIPLIER = 0.5f;
 
     /// <summary>
     ///   Controls how much having a nucleus boosts the cell specialization effect
