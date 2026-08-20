@@ -28,7 +28,7 @@ public struct JVec3
 [StructLayout(LayoutKind.Sequential)]
 public struct JQuat
 {
-    public static JQuat Identity = new() { X = 0, Y = 0, Z = 0, W = 1 };
+    public static readonly JQuat Identity = new() { X = 0, Y = 0, Z = 0, W = 1 };
 
     public float X;
     public float Y;

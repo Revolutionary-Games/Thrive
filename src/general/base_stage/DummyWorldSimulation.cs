@@ -8,7 +8,7 @@ using SharedBase.Archive;
 /// </summary>
 public class DummyWorldSimulation : IWorldSimulation
 {
-    public World EntitySystem { get; } = World.Create();
+    public World EntitySystem { get; } = ThriveWorld.Create();
     public bool Processing { get; set; }
     public float WorldTimeScale { get; set; } = 1;
 

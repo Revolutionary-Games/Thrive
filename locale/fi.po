@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-22 10:29+0300\n"
+"POT-Creation-Date: 2026-08-19 11:37+0300\n"
 "PO-Revision-Date: 2026-05-01 09:17+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -112,6 +112,17 @@ msgid "ACTIVITY_EXPLANATION"
 msgstr ""
 "Aktiiviset mikrobit vilistävät ja mukeltavat, kun mitään mielenkiintoista ei tapahdu.\n"
 "Lakoniset mikrobit pysyttelevät mieluummin paikoillaan odottaen ympäristön muutoksia reagoidakseen niihin."
+
+msgid "ACTOMYOSIN"
+msgstr ""
+
+#, fuzzy
+msgid "ACTOMYOSIN_DESCRIPTION"
+msgstr "Kuvaus puuttuu"
+
+#, fuzzy
+msgid "ACTOMYOSIN_PROCESSES_DESCRIPTION"
+msgstr "Muuntaa [thrive:compound type=\"glucose\"]a [/thrive:compound] [thrive:compound type=\"atp\"][/thrive:compound]:ksi."
 
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Lisätarkistukset havaitsivat ongelman: {0}"
@@ -978,6 +989,14 @@ msgstr "Näytä fysiikan törmäysmuodot"
 #, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
+
+#, fuzzy
+msgid "COLONY_ROTATION_INCREASE"
+msgstr "Pyöriminen:"
+
+#, fuzzy
+msgid "COLONY_SPEED_INCREASE"
+msgstr "Pyöriminen:"
 
 msgid "COLOUR"
 msgstr "Väri"
@@ -2390,6 +2409,9 @@ msgstr "Virhe tallennettaessa"
 msgid "ERROR_LOADING"
 msgstr "Virhe ladattaessa"
 
+msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
+
 msgid "ERROR_SAVING"
 msgstr "Virhe tallennettaessa"
 
@@ -2805,6 +2827,30 @@ msgstr ""
 #, fuzzy
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr "Pelisuunnittelutiimi"
+
+#, fuzzy
+msgid "GAMETE_CELL_ENTITY_NAME"
+msgstr "Kantasolu"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE"
+msgstr "Luo uusi soluelin"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_A"
+msgstr "Solutyypin Nimi"
+
+#, fuzzy
+msgid "GAMETE_CELL_TYPE_B"
+msgstr "Luo uusi soluelin"
+
+#, fuzzy
+msgid "GAMETE_PRODUCED"
+msgstr "jatkoi sukuaan"
+
+#, fuzzy
+msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+msgstr "Näytä / piilota ympäristö ja yhdisteet"
 
 msgid "GAME_DESIGN_TEAM"
 msgstr "Pelisuunnittelutiimi"
@@ -5054,6 +5100,9 @@ msgstr ""
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
+msgid "NOTICE_READY_TO_SHOOT_GAMETE"
+msgstr ""
+
 #, fuzzy
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr "Peruuta nykyinen toimenpide"
@@ -5254,6 +5303,10 @@ msgstr "Asetukset"
 #, fuzzy
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Help"
+
+#, fuzzy
+msgid "OPTION_USED_FOR_PLAYER"
+msgstr "Laita peli tauolle"
 
 msgid "ORGANELLES"
 msgstr "Soluelin"
@@ -5892,6 +5945,10 @@ msgstr "Raportti"
 msgid "REPORT_BUG"
 msgstr "Raportti"
 
+#, fuzzy
+msgid "REPRODUCE"
+msgstr "jatkoi sukuaan"
+
 msgid "REPRODUCED"
 msgstr "jatkoi sukuaan"
 
@@ -5923,6 +5980,18 @@ msgstr "Orastuminen"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Lisääntyminen:"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL"
+msgstr "Lisääntyminen"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
+msgstr "Lisääntyminen"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ISOGAMY"
+msgstr "Lisääntyminen"
 
 #, fuzzy
 msgid "REPRODUCTION_SPORE"
@@ -6182,6 +6251,9 @@ msgstr "Tallennuksessa on virheellinen pelin tilan skene"
 msgid "SAVE_INVALID"
 msgstr "Virheellinen"
 
+msgid "SAVE_IS_CORRUPT_WHILE_LOADING"
+msgstr ""
+
 msgid "SAVE_IS_INVALID"
 msgstr "Tallennus on virheellinen"
 
@@ -6366,6 +6438,26 @@ msgstr "Sessiili"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "Tämä arvo vaikuttaa vain uusiin peleihin, jotka on aloitettu tämän muuttamisen jälkeen"
 
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION"
+msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION_ACTIVE"
+msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
+msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
+
 msgid "SFX_VOLUME"
 msgstr "Efektien voimakkuus"
 
@@ -6393,6 +6485,18 @@ msgstr "Näytä tutoriaalit"
 #, fuzzy
 msgid "SHOW_MAP"
 msgstr "Näytä apu"
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION"
+msgstr "Näytä apu"
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION_EXPLANATION"
+msgstr ""
+"Aggressiiviset mikrobit kulkevat pidempiä etäisyyksiä jahdatessaan muita\n"
+"ja taistelevat todennäköisemmin takaisin hyökkääjiäänsä vastaan.\n"
+"Passiiviset mikrobit pysyttelevät enemmän paikallaan ja eivät yleensä\n"
+"käytä esimerkiksi myrkkyjä toisia mikrobeja vastaan."
 
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
@@ -6447,6 +6551,14 @@ msgstr "Pidä [thrive:input]g_pack_commands[/thrive:input] pohjassa avataksesi v
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "Muutu Agressiiviseksi"
 
+#, fuzzy
+msgid "SIGNAL_COMMAND_CALL_MATE"
+msgstr "Liiku Luokseni"
+
+#, fuzzy
+msgid "SIGNAL_COMMAND_FIRE_GAMETES"
+msgstr "Liiku Luokseni"
+
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr ""
 
@@ -6470,6 +6582,10 @@ msgstr ""
 
 #, fuzzy
 msgid "SIMULATION_CONFIG"
+msgstr "Osmoregulaation energiantarve"
+
+#, fuzzy
+msgid "SIMULATION_FACTOR"
 msgstr "Osmoregulaation energiantarve"
 
 msgid "SIXTEEN_TIMES"
@@ -6574,6 +6690,14 @@ msgstr "Luo vihollinen"
 
 msgid "SPAWN_GLUCOSE"
 msgstr "Luo glukoosia"
+
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL"
+msgstr "Luo ammoniakkia"
+
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL_EXPLANATION"
+msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
 
 msgid "SPAWN_PHOSPHATES"
 msgstr "Luo fosfaattia"
@@ -7072,11 +7196,23 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr "Etusivu"
 
+#, fuzzy
+msgid "THRIVEOPEDIA_MUSEUM_PAGE_SEARCHTAGS"
+msgstr "Museo"
+
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Museo"
 
 #, fuzzy
+msgid "THRIVEOPEDIA_ORGANELLE_SEARCHTAGS"
+msgstr "Nykyinen maailma"
+
+#, fuzzy
 msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
+msgstr "Etusivu"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_SEARCHTAGS"
 msgstr "Etusivu"
 
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
@@ -7105,6 +7241,14 @@ msgstr "Museo"
 #, fuzzy
 msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
 msgstr "Museo"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_SPECIES_PAGE_SEARCHTAGS"
+msgstr "Museo"
+
+#, fuzzy
+msgid "THRIVEOPEDIA_WORLD_SPECIES_SEARCHTAGS"
+msgstr "Nykyinen maailma"
 
 #, fuzzy
 msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"
@@ -10341,10 +10485,6 @@ msgstr "Zoomaa ulospäin"
 
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "Rautakemolitoautotrofia"
-
-#, fuzzy
-#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
-#~ msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
 
 #, fuzzy
 #~ msgid "MIGRATE"

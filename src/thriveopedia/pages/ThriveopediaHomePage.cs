@@ -7,4 +7,6 @@ public partial class ThriveopediaHomePage : ThriveopediaPage, IThriveopediaPage
     public string TranslatedPageName => Localization.Translate("THRIVEOPEDIA_HOME_PAGE_TITLE");
 
     public string? ParentPageName => null;
+    public string? TranslatedPageBody => null;
+    public string? TranslatedAdditionalSearchContent => null;
 }

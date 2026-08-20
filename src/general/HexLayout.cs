@@ -15,7 +15,7 @@ using JetBrains.Annotations;
 ///   </para>
 /// </remarks>
 /// <typeparam name="T">The concrete type of the hex to hold</typeparam>
-public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnlyHexLayout<T>
+public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnlyHexLayout<T>, IArchiveLayoutInitializer
     where T : class, IPositionedHex
 {
     protected readonly List<T> existingHexes = new();
@@ -309,6 +309,26 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
         {
             Remove(existingHexes[existingHexes.Count - 1]);
         }
+    }
+
+    /// <summary>
+    ///   Initializes a layout while reading an archive. This is separated from the normal constructor, so the empty
+    ///   layout can be registered before reading its items, which may contain references back to the layout.
+    ///   Only call when deserializing!
+    /// </summary>
+    void IArchiveLayoutInitializer.InitializeFromArchive(IList data, Delegate? added, Delegate? removed)
+    {
+        // This should never have data, but just to be safe, clear it
+        existingHexes.Clear();
+
+        // This allocates an enumerator, but that should be okay on save load
+        foreach (var item in data)
+        {
+            existingHexes.Add((T)item!);
+        }
+
+        onAdded = (Action<T>?)added;
+        onRemoved = (Action<T>?)removed;
     }
 
     public bool Contains(T item)

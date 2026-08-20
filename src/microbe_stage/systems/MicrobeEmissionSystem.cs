@@ -349,7 +349,7 @@ public partial class MicrobeEmissionSystem : BaseSystem<World, float>
                 jet.Active = true;
 
                 // Queue movement force to be used by the movement system based on the amount of slime ejected
-                jet.AddQueuedForce(entity, slimeToSecrete);
+                jet.AddQueuedForce(entity, slimeToSecrete, delta);
             }
         }
         else

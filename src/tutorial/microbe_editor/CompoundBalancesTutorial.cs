@@ -54,8 +54,8 @@ public class CompoundBalancesTutorial : CellEditorEntryCountingTutorial
                     break;
 
                 // Trigger when placing an organelle that warrants explaining this early
-                if (organellePlacedEventArgs.Definition == thylakoid ||
-                    organellePlacedEventArgs.Definition == chemoProteins)
+                if (ReferenceEquals(organellePlacedEventArgs.Definition, thylakoid) ||
+                    ReferenceEquals(organellePlacedEventArgs.Definition, chemoProteins))
                 {
                     if (!HasBeenShown && CanTrigger && !overallState.TutorialActive())
                         Show();

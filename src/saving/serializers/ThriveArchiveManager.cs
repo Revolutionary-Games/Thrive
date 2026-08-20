@@ -697,6 +697,16 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
             typeof(MassBuddingCellCountActionData), MassBuddingCellCountActionData.WriteToArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MassBuddingCellCountActionData,
             typeof(MassBuddingCellCountActionData), MassBuddingCellCountActionData.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.GameteACellTypeChangeActionData,
+            typeof(GameteACellTypeChangeActionData), GameteACellTypeChangeActionData.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.GameteACellTypeChangeActionData,
+            typeof(GameteACellTypeChangeActionData), GameteACellTypeChangeActionData.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.GameteBCellTypeChangeActionData,
+            typeof(GameteBCellTypeChangeActionData), GameteBCellTypeChangeActionData.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.GameteBCellTypeChangeActionData,
+            typeof(GameteBCellTypeChangeActionData), GameteBCellTypeChangeActionData.ReadFromArchive);
     }
 
     private void RegisterFossils()

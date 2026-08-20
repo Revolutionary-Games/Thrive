@@ -17,7 +17,9 @@
     "LimitGrowthRate": false,
     "FogOfWarMode": "Regular",
     "InstantKillProtection": true,
-    "OrganelleUnlocksEnabled": true
+    "OrganelleUnlocksEnabled": true,
+    "SpawnCompatibleMateOnCall": true,
+    "ShowMatePosition": true
   },
   "easy": {
     "Name": "DIFFICULTY_PRESET_EASY",
@@ -37,7 +39,9 @@
     "LimitGrowthRate": true,
     "FogOfWarMode": "Regular",
     "InstantKillProtection": true,
-    "OrganelleUnlocksEnabled": true
+    "OrganelleUnlocksEnabled": true,
+    "SpawnCompatibleMateOnCall": true,
+    "ShowMatePosition": true
   },
   "normal": {
     "Name": "DIFFICULTY_PRESET_NORMAL",
@@ -57,7 +61,9 @@
     "LimitGrowthRate": true,
     "FogOfWarMode": "Regular",
     "InstantKillProtection": true,
-    "OrganelleUnlocksEnabled": true
+    "OrganelleUnlocksEnabled": true,
+    "SpawnCompatibleMateOnCall": true,
+    "ShowMatePosition": true
   },
   "hard": {
     "Name": "DIFFICULTY_PRESET_HARD",
@@ -77,7 +83,9 @@
     "LimitGrowthRate": true,
     "FogOfWarMode": "Regular",
     "InstantKillProtection": true,
-    "OrganelleUnlocksEnabled": true
+    "OrganelleUnlocksEnabled": true,
+    "SpawnCompatibleMateOnCall": false,
+    "ShowMatePosition": false
   },
   "custom": {
     "Name": "DIFFICULTY_PRESET_CUSTOM",

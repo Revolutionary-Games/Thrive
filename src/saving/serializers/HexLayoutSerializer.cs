@@ -14,8 +14,6 @@ public static class HexLayoutSerializer
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        var data = reader.ReadObject<IList>();
-
         var genericTypeArguments = typeFromArchive.GetGenericArguments();
 
         // We need to support various layout types, and the default type resolving seems good enough right now
@@ -25,17 +23,21 @@ public static class HexLayoutSerializer
 
         var delegateType = typeof(Action<>).MakeGenericType(genericTypeArguments);
 
+        var instance = Activator.CreateInstance(typeFromArchive)
+            ?? throw new InvalidOperationException($"No parameterless constructor found for {layoutClass.Name}");
+
+        // We need to report the constructor done before we read the data, because the data might contain references
+        // to the object
+        reader.ReportObjectConstructorDone(instance, referenceId);
+
+        // Now we can read the data
+        var data = reader.ReadObject<IList>();
         var addedDelegate = reader.ReadDelegate(delegateType);
         var deletedDelegate = reader.ReadDelegate(delegateType);
 
-        var constructor = typeFromArchive.GetConstructor(
-            BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public,
-            [data.GetType(), delegateType, delegateType]);
+        // And override the list contents with the actual data
+        ((IArchiveLayoutInitializer)instance).InitializeFromArchive(data, addedDelegate, deletedDelegate);
 
-        if (constructor == null)
-            throw new InvalidOperationException($"No constructor found for {layoutClass.Name}");
-
-        var instance = constructor.Invoke([data, addedDelegate, deletedDelegate]);
         return instance;
     }
 
@@ -45,25 +47,22 @@ public static class HexLayoutSerializer
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        var data = reader.ReadObject<IList>();
-
         var genericTypeArguments = typeFromArchive.GetGenericArguments();
         var layoutClass = typeof(IndividualHexLayout<>).MakeGenericType(genericTypeArguments);
 
         var wrapper = typeof(HexWithData<>).MakeGenericType(genericTypeArguments);
         var delegateType = typeof(Action<>).MakeGenericType(wrapper);
 
+        var instance = Activator.CreateInstance(typeFromArchive)
+            ?? throw new InvalidOperationException($"No parameterless constructor found for {layoutClass.Name}");
+
+        reader.ReportObjectConstructorDone(instance, referenceId);
+
+        var data = reader.ReadObject<IList>();
         var addedDelegate = reader.ReadDelegate(delegateType);
         var deletedDelegate = reader.ReadDelegate(delegateType);
+        ((IArchiveLayoutInitializer)instance).InitializeFromArchive(data, addedDelegate, deletedDelegate);
 
-        var constructor = typeFromArchive.GetConstructor(
-            BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public,
-            [data.GetType(), delegateType, delegateType]);
-
-        if (constructor == null)
-            throw new InvalidOperationException($"No constructor found for {layoutClass.Name}");
-
-        var instance = constructor.Invoke([data, addedDelegate, deletedDelegate]);
         return instance;
     }
 

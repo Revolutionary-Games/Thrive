@@ -168,6 +168,7 @@ public static class PhysicsHelpers
             physics.LinearDamping = null;
         }
 
+        // This is a state-changing method, so checking the same value is important.
         if (reader.ReadBool())
         {
             physics.AngularDamping = reader.ReadFloat();
@@ -200,6 +201,17 @@ public static class PhysicsHelpers
     public static bool IsBodyEffectivelyEnabled(this ref Physics physics)
     {
         return physics.Body != null && !physics.BodyDisabled && !physics.InternalDisableState;
+    }
+
+    public static void TeleportTo(this ref Physics physics, ref WorldPosition position, Vector3 destination,
+        WorldSimulationWithPhysics worldSimulation)
+    {
+        if (physics.IsBodyEffectivelyEnabled())
+        {
+            worldSimulation.PhysicalWorld.SetBodyPosition(physics.Body!, destination);
+        }
+
+        position.Position = destination;
     }
 
     public static Physics CreatePhysicsForMicrobe(bool disabledInitially = false)

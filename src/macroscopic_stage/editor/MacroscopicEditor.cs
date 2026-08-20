@@ -88,6 +88,8 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
         }
     }
 
+    public float MutationPointCostModifier => 1;
+
     [JsonIgnore]
     public override Species EditedBaseSpecies =>
         editedSpecies ?? throw new InvalidOperationException("species not initialized");
@@ -581,7 +583,7 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
 
         // Only reinitialize the editor when required
         if (selectedCellTypeToEdit == null ||
-            cellTypeEditsHolder.GetOriginalType(selectedCellTypeToEdit) != newTypeToEdit)
+            !ReferenceEquals(cellTypeEditsHolder.GetOriginalType(selectedCellTypeToEdit), newTypeToEdit))
         {
             selectedCellTypeToEdit = cellTypeEditsHolder.BeginOrContinueEdit(newTypeToEdit);
 
@@ -668,7 +670,7 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
 
         // Revert to the old name if the name is a duplicate
         if (EditedSpecies.ModifiableCellTypes.Any(c =>
-                c != selectedCellTypeToEdit && c.CellTypeName == selectedCellTypeToEdit.CellTypeName))
+                !ReferenceEquals(c, selectedCellTypeToEdit) && c.CellTypeName == selectedCellTypeToEdit.CellTypeName))
         {
             if (oldName != selectedCellTypeToEdit.CellTypeName)
             {
@@ -693,7 +695,7 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
 
     private void SwapEditingCellIfNeeded(CellType? newCell)
     {
-        if (selectedCellTypeToEdit == newCell || newCell == null)
+        if (ReferenceEquals(selectedCellTypeToEdit, newCell) || newCell == null)
             return;
 
         // If we're switching to a new cell type, apply any changes made to the old one

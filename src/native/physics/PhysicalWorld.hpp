@@ -26,9 +26,6 @@ constexpr EAllowedDOFs AllRotationAllowed = EAllowedDOFs::RotationX | EAllowedDO
 namespace Thrive::Physics
 {
 
-/// \brief How much movement a body needs to have before auto activation parameter applies and activates the body
-constexpr float BodyActivationMovementThreshold = 0.01f;
-
 class PhysicsBody;
 class StepListener;
 
@@ -97,16 +94,15 @@ public:
     void ReadBodyTransform(JPH::BodyID bodyId, JPH::RVec3& positionReceiver, JPH::Quat& rotationReceiver) const;
     void ReadBodyVelocity(JPH::BodyID bodyId, JPH::Vec3& velocityReceiver, JPH::Vec3& angularVelocityReceiver) const;
 
-    // The activate parameters make the methods activate the body automatically if it has a bit of velocity on it
+    // Note: there used to be activation parameters for bodies on impulse and velocity set, however activation is now
+    // mandatory in Jolt, so the parameter is now always true and thus removed from the API
+    void GiveImpulse(JPH::BodyID bodyId, JPH::Vec3Arg impulse);
+    void SetVelocity(JPH::BodyID bodyId, JPH::Vec3Arg velocity);
 
-    void GiveImpulse(JPH::BodyID bodyId, JPH::Vec3Arg impulse, bool activate);
-    void SetVelocity(JPH::BodyID bodyId, JPH::Vec3Arg velocity, bool activate);
+    void SetAngularVelocity(JPH::BodyID bodyId, JPH::Vec3Arg velocity);
+    void GiveAngularImpulse(JPH::BodyID bodyId, JPH::Vec3Arg impulse);
 
-    void SetAngularVelocity(JPH::BodyID bodyId, JPH::Vec3Arg velocity, bool activate);
-    void GiveAngularImpulse(JPH::BodyID bodyId, JPH::Vec3Arg impulse, bool activate);
-
-    void SetVelocityAndAngularVelocity(
-        JPH::BodyID bodyId, JPH::Vec3Arg velocity, JPH::Vec3Arg angularVelocity, bool activate);
+    void SetVelocityAndAngularVelocity(JPH::BodyID bodyId, JPH::Vec3Arg velocity, JPH::Vec3Arg angularVelocity);
 
     /// \brief Enables (or updates settings) for a body to have per step movement control
     ///
@@ -153,7 +149,7 @@ public:
     /// \param ignoredBodies list of bodies to ignore (should be a pointer to array of references)
     /// \param ignoreCount specifies the length of the ignoredBodies array, note that instead of passing an array of
     /// length 0 calling ClearCollisionIgnores is preferred
-    void SetCollisionIgnores(PhysicsBody& body, PhysicsBody* const& ignoredBodies, int ignoreCount);
+    void SetCollisionIgnores(PhysicsBody& body, PhysicsBody* const* ignoredBodies, int ignoreCount);
 
     /// \brief More efficient variant of clearing all ignores and setting just one
     void SetSingleCollisionIgnore(PhysicsBody& body, const PhysicsBody& onlyIgnoredBody);

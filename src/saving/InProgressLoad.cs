@@ -78,6 +78,7 @@ public class InProgressLoad
         switch (state)
         {
             case State.Initial:
+            {
                 state = State.ReadingData;
 
                 // Invalid is given as the target state here, because it's unknown yet.
@@ -90,6 +91,8 @@ public class InProgressLoad
 
                 // Continue after transition finishes
                 return;
+            }
+
             case State.ReadingData:
             {
                 // Make sure the mouse is not being captured if anything left the capture on
@@ -117,9 +120,31 @@ public class InProgressLoad
 
                     var extraProblem = TryFreeAlreadyLoadedData();
 
-                    ReportStatus(false,
-                        Localization.Translate("EXCEPTION_HAPPENED_WHILE_LOADING"),
-                        e + extraProblem);
+                    try
+                    {
+                        // Check if save file is corrupted to give a better error message
+                        if (!Save.CheckSaveHash(saveName, out var expected, out var actual))
+                        {
+                            ReportStatus(false,
+                                Localization.Translate("SAVE_IS_CORRUPT_WHILE_LOADING").FormatSafe(actual, expected),
+                                e + extraProblem);
+                        }
+                        else
+                        {
+                            ReportStatus(false,
+                                Localization.Translate("EXCEPTION_HAPPENED_WHILE_LOADING"),
+                                e + extraProblem);
+                        }
+                    }
+                    catch (Exception e2)
+                    {
+                        extraProblem += "\n" + e2;
+
+                        ReportStatus(false,
+                            Localization.Translate("EXCEPTION_HAPPENED_WHILE_LOADING"),
+                            e + extraProblem);
+                    }
+
                     state = State.Finished;
 
                     // ReSharper disable HeuristicUnreachableCode ConditionIsAlwaysTrueOrFalse

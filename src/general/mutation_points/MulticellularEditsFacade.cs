@@ -21,6 +21,8 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
     private bool overrideReproductionMethod;
 
     private IReadOnlyCellTypeDefinition? sporeCellTypeOverride;
+    private IReadOnlyCellTypeDefinition? gameteACellTypeOverride;
+    private IReadOnlyCellTypeDefinition? gameteBCellTypeOverride;
 
     private int massBuddingCellCountOverride = -1;
 
@@ -43,6 +45,9 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
         overrideReproductionMethod ? reproductionMethod : multicellularSpecies.ReproductionMethod;
 
     public IReadOnlyCellTypeDefinition? SporeCellType => sporeCellTypeOverride ?? multicellularSpecies.SporeCellType;
+
+    public IReadOnlyCellTypeDefinition? GameteTypeA => gameteACellTypeOverride ?? multicellularSpecies.GameteTypeA;
+    public IReadOnlyCellTypeDefinition? GameteTypeB => gameteBCellTypeOverride ?? multicellularSpecies.GameteTypeB;
 
     public int MassBuddingCellCount =>
         massBuddingCellCountOverride == -1 ? multicellularSpecies.MassBuddingCellCount : massBuddingCellCountOverride;
@@ -143,6 +148,8 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
         overrideReproductionMethod = false;
 
         sporeCellTypeOverride = null;
+        gameteACellTypeOverride = null;
+        gameteBCellTypeOverride = null;
 
         massBuddingCellCountOverride = -1;
     }
@@ -160,8 +167,8 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
             addedCells.Add(newCell);
 
 #if DEBUG
-            if (cellTypes.ResolveCellDefinition(newCell.Data.CellType) !=
-                cellTypes.ResolveCellDefinition(cellPlacementActionData.PlacedHex.Data?.CellType))
+            if (!ReferenceEquals(cellTypes.ResolveCellDefinition(newCell.Data.CellType),
+                    cellTypes.ResolveCellDefinition(cellPlacementActionData.PlacedHex.Data?.CellType)))
             {
                 throw new Exception("Failed to setup cell type correctly");
             }
@@ -181,8 +188,8 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
                 {
                     original = addedCell;
 
-                    if (cellTypes.ResolveCellDefinition(original.Data!.CellType) !=
-                        cellTypes.ResolveCellDefinition(cellMoveActionData.MovedHex.Data?.CellType))
+                    if (!ReferenceEquals(cellTypes.ResolveCellDefinition(original.Data!.CellType),
+                            cellTypes.ResolveCellDefinition(cellMoveActionData.MovedHex.Data?.CellType)))
                     {
                         throw new InvalidOperationException("Found an unrelated cell at move old location");
                     }
@@ -200,8 +207,8 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
 
                 if (original != null)
                 {
-                    if (cellTypes.ResolveCellDefinition(original.Data!.CellType) !=
-                        cellTypes.ResolveCellDefinition(cellMoveActionData.MovedHex.Data?.CellType))
+                    if (!ReferenceEquals(cellTypes.ResolveCellDefinition(original.Data!.CellType),
+                            cellTypes.ResolveCellDefinition(cellMoveActionData.MovedHex.Data?.CellType)))
                     {
                         GD.PrintErr("Found unrelated cell at exact position of moved cell");
                     }
@@ -234,8 +241,8 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
                 {
                     original = addedCell;
 
-                    if (cellTypes.ResolveCellDefinition(original.Data!.CellType) !=
-                        cellTypes.ResolveCellDefinition(cellRemoveActionData.RemovedHex.Data?.CellType))
+                    if (!ReferenceEquals(cellTypes.ResolveCellDefinition(original.Data!.CellType),
+                            cellTypes.ResolveCellDefinition(cellRemoveActionData.RemovedHex.Data?.CellType)))
                     {
                         throw new InvalidOperationException("Found an unrelated cell at delete location");
                     }
@@ -253,8 +260,8 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
 
                 if (original != null)
                 {
-                    if (cellTypes.ResolveCellDefinition(original.Data!.CellType) !=
-                        cellTypes.ResolveCellDefinition(cellRemoveActionData.RemovedHex.Data?.CellType))
+                    if (!ReferenceEquals(cellTypes.ResolveCellDefinition(original.Data!.CellType),
+                            cellTypes.ResolveCellDefinition(cellRemoveActionData.RemovedHex.Data?.CellType)))
                     {
                         GD.PrintErr("Found unrelated cell at exact position of removed cell");
                     }
@@ -283,6 +290,20 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
         if (actionData is SporeCellTypeChangeActionData sporeCellTypeChangeActionData)
         {
             sporeCellTypeOverride = cellTypes.ResolveCellDefinition(sporeCellTypeChangeActionData.NewCellType);
+
+            return true;
+        }
+
+        if (actionData is GameteACellTypeChangeActionData gameteACellTypeChangeActionData)
+        {
+            gameteACellTypeOverride = cellTypes.ResolveCellDefinition(gameteACellTypeChangeActionData.NewCellType);
+
+            return true;
+        }
+
+        if (actionData is GameteBCellTypeChangeActionData gameteBCellTypeChangeActionData)
+        {
+            gameteBCellTypeOverride = cellTypes.ResolveCellDefinition(gameteBCellTypeChangeActionData.NewCellType);
 
             return true;
         }
@@ -378,7 +399,8 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
 
         public bool MatchesDefinition(IActionHex other)
         {
-            return OriginalFrom.Data?.CellType == ((IReadOnlyHexWithData<IReadOnlyCellTemplate>)other).Data?.CellType;
+            return ReferenceEquals(OriginalFrom.Data?.CellType,
+                ((IReadOnlyHexWithData<IReadOnlyCellTemplate>)other).Data?.CellType);
         }
 
         internal void ReuseFor(IReadOnlyHexWithData<IReadOnlyCellTemplate> original, CellTypeEditsFacade typeWrapper)

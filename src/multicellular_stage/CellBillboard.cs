@@ -42,7 +42,7 @@ public partial class CellBillboard : Node3D
         get => displayedCell;
         set
         {
-            if (displayedCell == value)
+            if (ReferenceEquals(displayedCell, value))
                 return;
 
             // Skip if visual hash stayed the same

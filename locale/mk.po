@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-22 10:29+0300\n"
+"POT-Creation-Date: 2026-08-19 11:37+0300\n"
 "PO-Revision-Date: 2025-11-24 19:45+0000\n"
 "Last-Translator: Kristijan Miracevski <mircevskihristijan30@gmail.com>\n"
 "Language-Team: Macedonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/mk/>\n"
@@ -103,6 +103,17 @@ msgid "ACTIVITY_EXPLANATION"
 msgstr ""
 "Активните микроби ќе трчаат и ќе паднат кога ништо интересно не се случи.\n"
 "Микробите кои седат ќе бидат неподвижни и ќе чекаат да се промени околината пред да дејствуваат."
+
+msgid "ACTOMYOSIN"
+msgstr ""
+
+#, fuzzy
+msgid "ACTOMYOSIN_DESCRIPTION"
+msgstr "Аеробна фиксација на азот"
+
+#, fuzzy
+msgid "ACTOMYOSIN_PROCESSES_DESCRIPTION"
+msgstr "3Д Едитор"
 
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Дополнителните валидации открија проблем: {0}"
@@ -942,6 +953,14 @@ msgstr ""
 "и имаат поголема веројатност да се борат со предатори кога ќе бидат нападнати.\n"
 "Мирните микроби нема да ги ангажираат другите на поголеми растојанија\n"
 "и имаат помала веројатност да користат токсини против предатори."
+
+#, fuzzy
+msgid "COLONY_ROTATION_INCREASE"
+msgstr "3Д Едитор"
+
+#, fuzzy
+msgid "COLONY_SPEED_INCREASE"
+msgstr "3Д Едитор"
 
 msgid "COLOUR"
 msgstr ""
@@ -2077,6 +2096,9 @@ msgstr ""
 msgid "ERROR_LOADING"
 msgstr ""
 
+msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
+
 msgid "ERROR_SAVING"
 msgstr ""
 
@@ -2425,6 +2447,31 @@ msgstr ""
 
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr ""
+
+msgid "GAMETE_CELL_ENTITY_NAME"
+msgstr ""
+
+msgid "GAMETE_CELL_TYPE"
+msgstr ""
+
+msgid "GAMETE_CELL_TYPE_A"
+msgstr ""
+
+msgid "GAMETE_CELL_TYPE_B"
+msgstr ""
+
+#, fuzzy
+msgid "GAMETE_PRODUCED"
+msgstr "ATP продукција"
+
+#, fuzzy
+msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
+msgstr ""
+"Овој дел го прикажува вкупниот биланс на ATP (енергија) на моменталната клетка.\n"
+"За да преживее, билансот треба да биде позитивен. За сесилните клетки, тие може да го сметаат балансот за позитивен без движење.\n"
+"Паѓачкото мени подолу може да се користи за да се провери што би се случило ако клетката немала достапни ресурси за производство на ATP.\n"
+"На пример, некои клетки можат да одржат позитивен баланс на ATP само кога имаат повеќе типови соединенија за производство на ATP одеднаш.\n"
+"Овие типови клетки се потешки за користење бидејќи бараат складирање на повеќе типови соединенија одеднаш за да преживеат."
 
 msgid "GAME_DESIGN_TEAM"
 msgstr ""
@@ -4456,6 +4503,9 @@ msgstr ""
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
+msgid "NOTICE_READY_TO_SHOOT_GAMETE"
+msgstr ""
+
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr ""
 
@@ -4625,6 +4675,9 @@ msgid "OPTIONS"
 msgstr ""
 
 msgid "OPTIONS_BUTTON_TOOLTIP"
+msgstr ""
+
+msgid "OPTION_USED_FOR_PLAYER"
 msgstr ""
 
 msgid "ORGANELLES"
@@ -5189,6 +5242,10 @@ msgstr ""
 msgid "REPORT_BUG"
 msgstr ""
 
+#, fuzzy
+msgid "REPRODUCE"
+msgstr "3Д Едитор"
+
 msgid "REPRODUCED"
 msgstr ""
 
@@ -5218,6 +5275,18 @@ msgstr "3Д Едитор"
 
 msgid "REPRODUCTION_METHOD"
 msgstr ""
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL"
+msgstr "3Д Едитор"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ANISOGAMY"
+msgstr "3Д Едитор"
+
+#, fuzzy
+msgid "REPRODUCTION_SEXUAL_ISOGAMY"
+msgstr "3Д Едитор"
 
 #, fuzzy
 msgid "REPRODUCTION_SPORE"
@@ -5448,6 +5517,9 @@ msgstr ""
 msgid "SAVE_INVALID"
 msgstr ""
 
+msgid "SAVE_IS_CORRUPT_WHILE_LOADING"
+msgstr ""
+
 msgid "SAVE_IS_INVALID"
 msgstr ""
 
@@ -5608,6 +5680,41 @@ msgstr ""
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
+msgstr ""
+"Агресивните микроби ќе го бркаат пленот на поголеми растојанија\n"
+"и имаат поголема веројатност да се борат со предатори кога ќе бидат нападнати.\n"
+"Мирните микроби нема да ги ангажираат другите на поголеми растојанија\n"
+"и имаат помала веројатност да користат токсини против предатори."
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION"
+msgstr ""
+"Агресивните микроби ќе го бркаат пленот на поголеми растојанија\n"
+"и имаат поголема веројатност да се борат со предатори кога ќе бидат нападнати.\n"
+"Мирните микроби нема да ги ангажираат другите на поголеми растојанија\n"
+"и имаат помала веројатност да користат токсини против предатори."
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION_ACTIVE"
+msgstr ""
+"Агресивните микроби ќе го бркаат пленот на поголеми растојанија\n"
+"и имаат поголема веројатност да се борат со предатори кога ќе бидат нападнати.\n"
+"Мирните микроби нема да ги ангажираат другите на поголеми растојанија\n"
+"и имаат помала веројатност да користат токсини против предатори."
+
+#, fuzzy
+msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
+msgstr ""
+"Агресивните микроби ќе го бркаат пленот на поголеми растојанија\n"
+"и имаат поголема веројатност да се борат со предатори кога ќе бидат нападнати.\n"
+"Мирните микроби нема да ги ангажираат другите на поголеми растојанија\n"
+"и имаат помала веројатност да користат токсини против предатори."
+
+msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
+msgstr ""
+
 msgid "SFX_VOLUME"
 msgstr ""
 
@@ -5632,6 +5739,17 @@ msgstr ""
 
 msgid "SHOW_MAP"
 msgstr ""
+
+msgid "SHOW_MATE_POSITION"
+msgstr ""
+
+#, fuzzy
+msgid "SHOW_MATE_POSITION_EXPLANATION"
+msgstr ""
+"Агресивните микроби ќе го бркаат пленот на поголеми растојанија\n"
+"и имаат поголема веројатност да се борат со предатори кога ќе бидат нападнати.\n"
+"Мирните микроби нема да ги ангажираат другите на поголеми растојанија\n"
+"и имаат помала веројатност да користат токсини против предатори."
 
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr ""
@@ -5677,6 +5795,12 @@ msgstr ""
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr ""
 
+msgid "SIGNAL_COMMAND_CALL_MATE"
+msgstr ""
+
+msgid "SIGNAL_COMMAND_FIRE_GAMETES"
+msgstr ""
+
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr ""
 
@@ -5700,6 +5824,10 @@ msgstr ""
 
 msgid "SIMULATION_CONFIG"
 msgstr ""
+
+#, fuzzy
+msgid "SIMULATION_FACTOR"
+msgstr "Стапка на мутација на вештачка интелигенција"
 
 msgid "SIXTEEN_TIMES"
 msgstr ""
@@ -5779,6 +5907,13 @@ msgstr ""
 
 msgid "SPAWN_GLUCOSE"
 msgstr ""
+
+msgid "SPAWN_MATE_ON_CALL"
+msgstr ""
+
+#, fuzzy
+msgid "SPAWN_MATE_ON_CALL_EXPLANATION"
+msgstr "(брзина со која мутираат видовите на вештачка интелигенција)"
 
 msgid "SPAWN_PHOSPHATES"
 msgstr ""
@@ -6227,10 +6362,19 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr ""
 
+msgid "THRIVEOPEDIA_MUSEUM_PAGE_SEARCHTAGS"
+msgstr ""
+
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
+msgid "THRIVEOPEDIA_ORGANELLE_SEARCHTAGS"
+msgstr ""
+
 msgid "THRIVEOPEDIA_PAGE_EXTINCT_SPECIES"
+msgstr ""
+
+msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_SEARCHTAGS"
 msgstr ""
 
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
@@ -6252,6 +6396,12 @@ msgid "THRIVEOPEDIA_SPECIES_PAGE_NO_PINNED_SPECIES"
 msgstr ""
 
 msgid "THRIVEOPEDIA_SPECIES_PAGE_PINNED_SECTION_TITLE"
+msgstr ""
+
+msgid "THRIVEOPEDIA_SPECIES_PAGE_SEARCHTAGS"
+msgstr ""
+
+msgid "THRIVEOPEDIA_WORLD_SPECIES_SEARCHTAGS"
 msgstr ""
 
 msgid "THRIVEOPEDIA_WORLD_SPECIES_TITLE"

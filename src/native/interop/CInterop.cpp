@@ -300,18 +300,17 @@ void ReadPhysicsBodyVelocity(
 
 #pragma clang diagnostic pop
 
-void GiveImpulse(PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 impulse, bool autoActivate)
+void GiveImpulse(PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 impulse)
 {
     reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
-        ->GiveImpulse(reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId(), Thrive::Vec3FromCAPI(impulse),
-            autoActivate);
+        ->GiveImpulse(reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId(), Thrive::Vec3FromCAPI(impulse));
 }
 
-void GiveAngularImpulse(PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 angularImpulse, bool autoActivate)
+void GiveAngularImpulse(PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 angularImpulse)
 {
     reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
-        ->GiveAngularImpulse(reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId(),
-            Thrive::Vec3FromCAPI(angularImpulse), autoActivate);
+        ->GiveAngularImpulse(
+            reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId(), Thrive::Vec3FromCAPI(angularImpulse));
 }
 
 void SetBodyControl(
@@ -354,26 +353,25 @@ void SetBodyPositionAndRotation(
             Thrive::DVec3FromCAPI(position), Thrive::QuatFromCAPI(rotation), activate);
 }
 
-void SetBodyVelocity(PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 velocity, bool autoActivate)
+void SetBodyVelocity(PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 velocity)
 {
     reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
-        ->SetVelocity(reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId(), Thrive::Vec3FromCAPI(velocity),
-            autoActivate);
+        ->SetVelocity(reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId(), Thrive::Vec3FromCAPI(velocity));
 }
 
-void SetBodyAngularVelocity(PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 angularVelocity, bool autoActivate)
+void SetBodyAngularVelocity(PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 angularVelocity)
 {
     reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
-        ->SetAngularVelocity(reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId(),
-            Thrive::Vec3FromCAPI(angularVelocity), autoActivate);
+        ->SetAngularVelocity(
+            reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId(), Thrive::Vec3FromCAPI(angularVelocity));
 }
 
 void SetBodyVelocityAndAngularVelocity(
-    PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 velocity, JVecF3 angularVelocity, bool autoActivate)
+    PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 velocity, JVecF3 angularVelocity)
 {
     reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
         ->SetVelocityAndAngularVelocity(reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId(),
-            Thrive::Vec3FromCAPI(velocity), Thrive::Vec3FromCAPI(angularVelocity), autoActivate);
+            Thrive::Vec3FromCAPI(velocity), Thrive::Vec3FromCAPI(angularVelocity));
 }
 
 void SetBodyAllowSleep(PhysicalWorld* physicalWorld, PhysicsBody* body, bool allowSleep)
@@ -437,7 +435,7 @@ void PhysicsBodySetCollisionIgnores(
 {
     reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
         ->SetCollisionIgnores(*reinterpret_cast<Thrive::Physics::PhysicsBody*>(body),
-            reinterpret_cast<Thrive::Physics::PhysicsBody*&>(ignoredBodies), count);
+            reinterpret_cast<Thrive::Physics::PhysicsBody* const*>(ignoredBodies), count);
 }
 
 void PhysicsBodyClearAndSetSingleIgnore(PhysicalWorld* physicalWorld, PhysicsBody* body, PhysicsBody* onlyIgnoredBody)
@@ -727,9 +725,9 @@ bool ArmDataMemoryBarrierAndSendEvent()
 #elif defined(__aarch64__) || defined(__arm64__)
     __asm__ __volatile__("dmb ish\n\t"
                          "sev"
-                         :
-                         :
-                         : "memory");
+        :
+        :
+        : "memory");
     return true;
 #else
     return false;
@@ -742,18 +740,20 @@ bool ArmDataMemoryBarrierAndSendEvent()
 
 void PhysicsTrace(const char* fmt, ...)
 {
-    const char prefix[] = "[Jolt:Trace] ";
-    constexpr size_t prefixLength = sizeof(prefix);
+    constexpr std::string_view prefix = "[Jolt:Trace] ";
+    constexpr size_t bufferSize = 1024;
 
-    // Format the message
+    char buffer[bufferSize];
+
+    static_assert(prefix.size() < bufferSize);
+    std::memcpy(buffer, prefix.data(), prefix.size());
+
     va_list list;
     va_start(list, fmt);
-    char buffer[1024];
-    vsnprintf(buffer + prefixLength, sizeof(buffer) - prefixLength, fmt, list);
+    vsnprintf(buffer + prefix.size(), bufferSize - prefix.size(), fmt, list);
     va_end(list);
 
-    std::memcpy(buffer, prefix, prefixLength);
-    buffer[1023] = 0;
+    buffer[bufferSize - 1] = '\0';
 
     LOG_INFO(std::string_view(buffer, std::strlen(buffer)));
 }

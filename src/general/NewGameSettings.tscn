@@ -20,7 +20,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="6"]
 
-[node name="NewGameSettings" type="Control" unique_id=693469591 node_paths=PackedStringArray("basicOptions", "advancedOptionsContainer", "tabButtons", "difficultyTab", "planetTab", "miscTab", "difficultyTabButton", "planetTabButton", "miscTabButton", "basicButton", "advancedButton", "backButton", "startButton", "difficultyPresetButton", "difficultyPresetAdvancedButton", "mpMultiplier", "mpMultiplierReadout", "aiMutationRate", "aiMutationRateReadout", "compoundDensity", "compoundDensityReadout", "playerDeathPopulationPenalty", "playerDeathPopulationPenaltyReadout", "playerSpeciesAIPopulationStrength", "playerSpeciesAIPopulationStrengthReadout", "glucoseDecayRate", "glucoseDecayRateReadout", "energyCostMultiplier", "energyCostMultiplierReadout", "autoEvoStrengthMultiplier", "autoEvoStrengthReadout", "fogOfWarModeDropdown", "fogOfWarModeDescription", "reproductionCompoundsDropdown", "freeGlucoseCloudButton", "switchSpeciesOnExtinctionButton", "limitGrowthRateButton", "instantKillProtection", "organelleUnlocksEnabled", "lifeOriginButton", "lawkButton", "gameSeed", "planetSettings", "planetStatisticsSpacer", "planetStatisticsContainer", "planetStatistics", "easterEggsButton", "checkOptionsMenuAdviceContainer", "experimentalFeatures", "experimentalExplanation", "experimentalWarning")]
+[node name="NewGameSettings" type="Control" unique_id=693469591 node_paths=PackedStringArray("basicOptions", "advancedOptionsContainer", "tabButtons", "difficultyTab", "planetTab", "miscTab", "difficultyTabButton", "planetTabButton", "miscTabButton", "basicButton", "advancedButton", "backButton", "startButton", "difficultyPresetButton", "difficultyPresetAdvancedButton", "mpMultiplier", "mpMultiplierReadout", "aiMutationRate", "aiMutationRateReadout", "compoundDensity", "compoundDensityReadout", "playerDeathPopulationPenalty", "playerDeathPopulationPenaltyReadout", "playerSpeciesAIPopulationStrength", "playerSpeciesAIPopulationStrengthReadout", "glucoseDecayRate", "glucoseDecayRateReadout", "energyCostMultiplier", "energyCostMultiplierReadout", "autoEvoStrengthMultiplier", "autoEvoStrengthReadout", "fogOfWarModeDropdown", "fogOfWarModeDescription", "reproductionCompoundsDropdown", "freeGlucoseCloudButton", "switchSpeciesOnExtinctionButton", "limitGrowthRateButton", "instantKillProtection", "organelleUnlocksEnabled", "spawnCompatibleMateOnCall", "showMatePosition", "lifeOriginButton", "lawkButton", "gameSeed", "planetSettings", "planetStatisticsSpacer", "planetStatisticsContainer", "planetStatistics", "easterEggsButton", "checkOptionsMenuAdviceContainer", "experimentalFeatures", "experimentalExplanation", "experimentalWarning")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -68,6 +68,8 @@ switchSpeciesOnExtinctionButton = NodePath("CenterContainer/VBoxContainer/Advanc
 limitGrowthRateButton = NodePath("CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer19/HBoxContainer/LimitGrowth")
 instantKillProtection = NodePath("CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer20/HBoxContainer/InstantKillProtection")
 organelleUnlocksEnabled = NodePath("CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer21/HBoxContainer/OrganellesUnlocks")
+spawnCompatibleMateOnCall = NodePath("CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer23/HBoxContainer/SpawnMate")
+showMatePosition = NodePath("CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer22/HBoxContainer/ShowMate")
 lifeOriginButton = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer5/HBoxContainer/LifeOrigin")
 lawkButton = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer4/HBoxContainer/LAWKButton")
 gameSeed = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3/HBoxContainer/GameSeed")
@@ -853,6 +855,56 @@ text = "FREE_GLUCOSE_CLOUD_EXPLANATION"
 label_settings = ExtResource("5_rnvau")
 autowrap_mode = 3
 
+[node name="VBoxContainer22" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer" unique_id=103928417]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer22" unique_id=832308977]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer22/HBoxContainer" unique_id=1575924357]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 0
+text = "SHOW_MATE_POSITION"
+
+[node name="ShowMate" type="CheckButton" parent="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer22/HBoxContainer" unique_id=184219904]
+layout_mode = 2
+button_pressed = true
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer22" unique_id=1913204531]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "SHOW_MATE_POSITION_EXPLANATION"
+label_settings = ExtResource("5_rnvau")
+autowrap_mode = 3
+
+[node name="VBoxContainer23" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer" unique_id=1966036554]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer23" unique_id=1665950658]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer23/HBoxContainer" unique_id=765549873]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 0
+text = "SPAWN_MATE_ON_CALL"
+
+[node name="SpawnMate" type="CheckButton" parent="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer23/HBoxContainer" unique_id=310595432]
+layout_mode = 2
+button_pressed = true
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer23" unique_id=1814522576]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "SPAWN_MATE_ON_CALL_EXPLANATION"
+label_settings = ExtResource("5_rnvau")
+autowrap_mode = 3
+
 [node name="VBoxContainer18" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer" unique_id=915450951]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -1133,6 +1185,8 @@ text = "START_GAME"
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer14/HBoxContainer/HBoxContainer/ReproductionCompounds" to="." method="OnReproductionCompoundModeChanged"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer11/HBoxContainer/HBoxContainer/FogOfWarMode" to="." method="OnFogOfWarModeChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer17/HBoxContainer/FreeGlucoseCloud" to="." method="OnFreeGlucoseCloudToggled"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer22/HBoxContainer/ShowMate" to="." method="OnShowMatePositionToggled"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer23/HBoxContainer/SpawnMate" to="." method="OnSpawnCompatibleMateOnCallToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer18/HBoxContainer/AllowSpeciesSwitch" to="." method="OnSwapOnExtinctionToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer19/HBoxContainer/LimitGrowth" to="." method="OnGrowthRateToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer20/HBoxContainer/InstantKillProtection" to="." method="OnInstantKillProtectionToggled"]

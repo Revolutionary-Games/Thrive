@@ -39,7 +39,7 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
                 new FileChecks(true,
                     new BomChecker(BomChecker.Mode.Required, ".cs", ".json")
                     {
-                        IgnoredFiles = [..FilesNotAllowedToHaveBom],
+                        IgnoredFiles = [.. FilesNotAllowedToHaveBom],
                     },
                     new BomChecker(BomChecker.Mode.Disallowed, FilesNotAllowedToHaveBom),
                     new CfgCheck(thriveVersion),
@@ -51,7 +51,8 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
                             { ".gltf", "glTF files should be compressed into .glb files to save space" },
                         },
                     },
-                    new CaseInsensitiveFileCheck())
+                    new CaseInsensitiveFileCheck(),
+                    new CsUIDCheck())
             },
             { "compile", new CompileCheck(!opts.NoExtraRebuild) },
             { "inspectcode", inspectCode },

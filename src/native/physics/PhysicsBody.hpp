@@ -136,7 +136,7 @@ public:
     bool AddCollisionIgnore(const PhysicsBody& ignoredBody, bool skipDuplicates) noexcept;
     bool RemoveCollisionIgnore(const PhysicsBody& noLongerIgnored) noexcept;
 
-    void SetCollisionIgnores(PhysicsBody* const& ignoredBodies, int ignoreCount) noexcept;
+    void SetCollisionIgnores(PhysicsBody* const* ignoredBodies, int ignoreCount) noexcept;
     void SetSingleCollisionIgnore(const PhysicsBody& ignoredBody) noexcept;
 
     void ClearCollisionIgnores() noexcept;
