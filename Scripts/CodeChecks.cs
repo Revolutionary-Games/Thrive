@@ -51,7 +51,8 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
                             { ".gltf", "glTF files should be compressed into .glb files to save space" },
                         },
                     },
-                    new CaseInsensitiveFileCheck())
+                    new CaseInsensitiveFileCheck(),
+                    new CsUIDCheck())
             },
             { "compile", new CompileCheck(!opts.NoExtraRebuild) },
             { "inspectcode", inspectCode },

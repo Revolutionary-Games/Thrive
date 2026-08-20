@@ -125,7 +125,7 @@ public class CellTemplate : IPositionedCell, ICloneable, IReadOnlyHexWithData<IR
 
     public bool MatchesDefinition(IActionHex other)
     {
-        return ModifiableCellType == ((CellTemplate)other).ModifiableCellType;
+        return ReferenceEquals(ModifiableCellType, ((CellTemplate)other).ModifiableCellType);
     }
 
     public void SetupWorldEntities(IWorldSimulation worldSimulation)

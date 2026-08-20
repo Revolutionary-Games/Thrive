@@ -77,7 +77,7 @@ public class CellTypeEditsFacade : EditsFacadeBase, IReadOnlyCellTypeDefinition,
         {
             foreach (var organelle in Organelles)
             {
-                if (organelle.Definition == nucleus)
+                if (ReferenceEquals(organelle.Definition, nucleus))
                     return false;
             }
 
@@ -228,7 +228,7 @@ public class CellTypeEditsFacade : EditsFacadeBase, IReadOnlyCellTypeDefinition,
                 {
                     original = addedOrganelle;
 
-                    if (original.Definition != organelleMoveActionData.MovedHex.Definition)
+                    if (!ReferenceEquals(original.Definition, organelleMoveActionData.MovedHex.Definition))
                         throw new InvalidOperationException("Found an unrelated organelle at move old location");
 
                     addedOrganelles.Remove(addedOrganelle);
@@ -243,7 +243,7 @@ public class CellTypeEditsFacade : EditsFacadeBase, IReadOnlyCellTypeDefinition,
 
                 if (original != null)
                 {
-                    if (original.Definition != organelleMoveActionData.MovedHex.Definition)
+                    if (!ReferenceEquals(original.Definition, organelleMoveActionData.MovedHex.Definition))
                         GD.PrintErr("Found unrelated organelle at exact position of moved organelle");
 
                     // Don't want the old instance to show up any more
@@ -275,7 +275,7 @@ public class CellTypeEditsFacade : EditsFacadeBase, IReadOnlyCellTypeDefinition,
                 {
                     original = addedOrganelle;
 
-                    if (original.Definition != organelleRemoveActionData.RemovedHex.Definition)
+                    if (!ReferenceEquals(original.Definition, organelleRemoveActionData.RemovedHex.Definition))
                         throw new InvalidOperationException("Found an unrelated organelle at delete location");
 
                     addedOrganelles.Remove(addedOrganelle);
@@ -290,7 +290,7 @@ public class CellTypeEditsFacade : EditsFacadeBase, IReadOnlyCellTypeDefinition,
 
                 if (original != null)
                 {
-                    if (original.Definition != organelleRemoveActionData.RemovedHex.Definition)
+                    if (!ReferenceEquals(original.Definition, organelleRemoveActionData.RemovedHex.Definition))
                         GD.PrintErr("Found unrelated organelle at exact position of removed organelle");
 
                     // Don't want the old instance to show up any more
@@ -314,7 +314,7 @@ public class CellTypeEditsFacade : EditsFacadeBase, IReadOnlyCellTypeDefinition,
             foreach (var addedOrganelle in addedOrganelles)
             {
                 // Match based on what the organelle was before the upgrade, not the upgraded organelle itself
-                if (addedOrganelle.OriginalFrom == organelleUpgradeActionData.UpgradedOrganelle)
+                if (ReferenceEquals(addedOrganelle.OriginalFrom, organelleUpgradeActionData.UpgradedOrganelle))
                 {
                     original = addedOrganelle;
 
@@ -329,8 +329,8 @@ public class CellTypeEditsFacade : EditsFacadeBase, IReadOnlyCellTypeDefinition,
                 {
                     // Make sure organelles where the original instance is different (due to the base species and
                     // upgrade action data not matching due to editor using temporary organelles) can still match
-                    if (addedOrganelle.OriginalFrom.Definition ==
-                        organelleUpgradeActionData.UpgradedOrganelle.Definition &&
+                    if (ReferenceEquals(addedOrganelle.OriginalFrom.Definition,
+                            organelleUpgradeActionData.UpgradedOrganelle.Definition) &&
                         addedOrganelle.Position == organelleUpgradeActionData.Position)
                     {
                         original = addedOrganelle;
@@ -353,7 +353,7 @@ public class CellTypeEditsFacade : EditsFacadeBase, IReadOnlyCellTypeDefinition,
                 if (original != null)
                 {
                     // Don't want the old instance to show up any more
-                    if (original.Definition != organelleUpgradeActionData.UpgradedOrganelle.Definition)
+                    if (!ReferenceEquals(original.Definition, organelleUpgradeActionData.UpgradedOrganelle.Definition))
                         GD.PrintErr("Found unrelated organelle at old position of upgraded organelle");
 
                     // The reference doesn't really match here, but as we checked the new organelle list before,

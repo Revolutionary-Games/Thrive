@@ -11,6 +11,11 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
 {
     public const ushort SERIALIZATION_VERSION_STAGE_BASE = 1;
 
+    /// <summary>
+    ///   Current stage for the move to editor console command
+    /// </summary>
+    protected static WeakReference<IEditorMovableStage>? currentActiveStageForEditor;
+
 #pragma warning disable CA2213
     protected Node world = null!;
     protected Node rootOfDynamicallySpawned = null!;

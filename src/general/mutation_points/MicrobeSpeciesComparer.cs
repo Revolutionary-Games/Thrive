@@ -141,7 +141,7 @@ public class MicrobeSpeciesComparer
             // First match existing organelles that are still there
             var newOrganelle = cellTypeB.Organelles.GetByExactElementRootPosition(originalOrganelle.Position);
 
-            if (newOrganelle != null && originalOrganelle.Definition == newOrganelle.Definition &&
+            if (newOrganelle != null && ReferenceEquals(originalOrganelle.Definition, newOrganelle.Definition) &&
                 originalOrganelle.Orientation == newOrganelle.Orientation)
             {
                 // Found a match. This organelle is still here in the exact same position.
@@ -158,7 +158,7 @@ public class MicrobeSpeciesComparer
             // Check for in-place rotations to resolve the difference
             newOrganelle = cellTypeB.Organelles.GetElementAt(originalOrganelle.Position, workMemory);
 
-            if (newOrganelle != null && originalOrganelle.Definition == newOrganelle.Definition)
+            if (newOrganelle != null && ReferenceEquals(originalOrganelle.Definition, newOrganelle.Definition))
             {
                 // There is a potential candidate at this position, but check that the exact hexes after applying
                 // the rotations match
@@ -193,7 +193,7 @@ public class MicrobeSpeciesComparer
             {
                 var newOrganelle = unusedOldOrganelles[j];
 
-                if (originalOrganelle.Definition == newOrganelle.Definition)
+                if (ReferenceEquals(originalOrganelle.Definition, newOrganelle.Definition))
                 {
                     var upgradePrice = AddUpgradeCost(originalOrganelle, newOrganelle, maxSingleActionCost,
                         costMultiplier);
@@ -230,7 +230,7 @@ public class MicrobeSpeciesComparer
             // Couldn't make it into a move after all, so add the remove cost
 
             // Except it is free to replace a cytoplasm by placing something on top, so those need to be resolved later
-            if (originalOrganelle.Definition != cytoplasm)
+            if (!ReferenceEquals(originalOrganelle.Definition, cytoplasm))
             {
                 // Endosymbionts are free to remove
                 if (!originalOrganelle.IsEndosymbiont)
@@ -259,7 +259,7 @@ public class MicrobeSpeciesComparer
                 newOrganelle.Upgrades?.UnlockedFeatures ?? emptyList,
                 emptyList, maxSingleActionCost, costMultiplier);
 
-            if (newOrganelle.Definition != cytoplasm && unresolvedMoves.Count > 0)
+            if (!ReferenceEquals(newOrganelle.Definition, cytoplasm) && unresolvedMoves.Count > 0)
             {
                 // Remove freely removed cytoplasm to not count their costs in the later loop
                 var hexes = newOrganelle.Definition.GetRotatedHexes(newOrganelle.Orientation);
@@ -285,7 +285,7 @@ public class MicrobeSpeciesComparer
         // Add purely removed cytoplasm cost
         foreach (var originalOrganelle in unresolvedMoves)
         {
-            if (originalOrganelle.Definition == cytoplasm)
+            if (ReferenceEquals(originalOrganelle.Definition, cytoplasm))
             {
                 cost += Math.Min(Constants.ORGANELLE_REMOVE_COST * costMultiplier, maxSingleActionCost);
             }

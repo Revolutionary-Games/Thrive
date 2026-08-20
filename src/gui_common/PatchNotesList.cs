@@ -18,7 +18,9 @@ public partial class PatchNotesList : VBoxContainer
 
     private bool dirty = true;
 
+#pragma warning disable CA2213 // Tasks are disposed after their results are consumed
     private Task<List<(string Version, VersionPatchNotes Notes)>>? thingsToShowComputeResults;
+#pragma warning restore CA2213
 
     private StyleBoxFlat? itemBackground;
 
@@ -188,7 +190,9 @@ public partial class PatchNotesList : VBoxContainer
         {
             itemBackground?.Dispose();
 
-            thingsToShowComputeResults?.Dispose();
+            // Only dispose if the task is completed, otherwise it will throw an exception in the task runner
+            if (thingsToShowComputeResults?.IsCompleted == true)
+                thingsToShowComputeResults.Dispose();
         }
 
         base.Dispose(disposing);

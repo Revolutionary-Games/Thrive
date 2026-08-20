@@ -702,7 +702,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
         // Only reinitialize the editor when required
         if (selectedCellTypeToEdit == null ||
-            cellTypeEditsHolder.GetOriginalType(selectedCellTypeToEdit) != newTypeToEdit)
+            !ReferenceEquals(cellTypeEditsHolder.GetOriginalType(selectedCellTypeToEdit), newTypeToEdit))
         {
             selectedCellTypeToEdit = cellTypeEditsHolder.BeginOrContinueEdit(newTypeToEdit);
 
@@ -789,7 +789,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
         // Revert to the old name if the name is a duplicate
         if (EditedSpecies.ModifiableCellTypes.Any(c =>
-                c != selectedCellTypeToEdit && c.CellTypeName == selectedCellTypeToEdit.CellTypeName))
+                !ReferenceEquals(c, selectedCellTypeToEdit) && c.CellTypeName == selectedCellTypeToEdit.CellTypeName))
         {
             if (oldName != selectedCellTypeToEdit.CellTypeName)
             {
@@ -814,7 +814,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     private void SwapEditingCellIfNeeded(CellType? newCell)
     {
-        if (selectedCellTypeToEdit == newCell || newCell == null)
+        if (ReferenceEquals(selectedCellTypeToEdit, newCell) || newCell == null)
             return;
 
         // If we're switching to a new cell type, apply any changes made to the old one

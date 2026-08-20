@@ -740,18 +740,20 @@ bool ArmDataMemoryBarrierAndSendEvent()
 
 void PhysicsTrace(const char* fmt, ...)
 {
-    const char prefix[] = "[Jolt:Trace] ";
-    constexpr size_t prefixLength = sizeof(prefix);
+    constexpr std::string_view prefix = "[Jolt:Trace] ";
+    constexpr size_t bufferSize = 1024;
 
-    // Format the message
+    char buffer[bufferSize];
+
+    static_assert(prefix.size() < bufferSize);
+    std::memcpy(buffer, prefix.data(), prefix.size());
+
     va_list list;
     va_start(list, fmt);
-    char buffer[1024];
-    vsnprintf(buffer + prefixLength, sizeof(buffer) - prefixLength, fmt, list);
+    vsnprintf(buffer + prefix.size(), bufferSize - prefix.size(), fmt, list);
     va_end(list);
 
-    std::memcpy(buffer, prefix, prefixLength);
-    buffer[1023] = 0;
+    buffer[bufferSize - 1] = '\0';
 
     LOG_INFO(std::string_view(buffer, std::strlen(buffer)));
 }
