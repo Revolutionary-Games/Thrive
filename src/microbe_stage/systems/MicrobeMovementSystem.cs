@@ -490,7 +490,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
                 {
                     force += flagellum.UseForMovement(movementDirection, memberCompounds,
                         relativeRotation, isBacteria, energyCostMultiplier,
-                        delta) * memberTotalSpecializationBonus * Constants.CELL_COLONY_MOVEMENT_FORCE_MULTIPLIER;
+                        delta) * Constants.CELL_COLONY_MOVEMENT_FORCE_MULTIPLIER;
                 }
             }
 
