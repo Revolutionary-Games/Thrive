@@ -116,6 +116,36 @@ public sealed class Save : IArchivable, IDisposable
         return save;
     }
 
+    /// <summary>
+    ///   Checks if the save file has the expected hash or if the file has been corrupted.
+    /// </summary>
+    /// <param name="saveName">Save name to check</param>
+    /// <param name="expectedHash">Returns the expected hash as read from the file</param>
+    /// <param name="actualCalculatedHash">The recalculated hash for the data</param>
+    /// <returns>True when the hash is good</returns>
+    /// <exception cref="JsonException">Thrown when the save file could not be loaded at all</exception>
+    public static bool CheckSaveHash(string saveName, out string expectedHash, out string actualCalculatedHash)
+    {
+        var (infoStr, data, _) = LoadDataFromFile(SaveFileInfo.SaveNameToPath(saveName), true, true, false);
+
+        if (string.IsNullOrEmpty(infoStr) || data == null)
+        {
+            expectedHash = "Data load failed";
+            actualCalculatedHash = string.Empty;
+            return false;
+        }
+
+        var infoResult = ThriveJsonConverter.Instance.DeserializeObject<SaveInformation>(infoStr) ??
+            throw new JsonException("SaveInformation object was deserialized as null");
+
+        expectedHash = infoResult.HashOfArchiveContents;
+
+        var result = SHA1.HashData(data);
+        actualCalculatedHash = Convert.ToHexStringLower(result);
+
+        return expectedHash == actualCalculatedHash;
+    }
+
     public static SaveInformation LoadJustInfoFromSave(string saveName)
     {
         var target = SaveFileInfo.SaveNameToPath(saveName);
