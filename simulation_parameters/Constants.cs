@@ -1531,7 +1531,7 @@ public static class Constants
 
     public const float AUTO_EVO_SINGLE_STEP_WARNING_TIME = 0.4f;
 
-    public const int EDITOR_TIME_JUMP_MILLION_YEARS = 100;
+    public const int EDITOR_TIME_JUMP_MILLION_YEARS = 50;
     public const float GLUCOSE_MIN = 0.0f;
 
     // Tweak variable for how fast compounds diffuse between patches
