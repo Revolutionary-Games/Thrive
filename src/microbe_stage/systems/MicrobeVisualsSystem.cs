@@ -347,10 +347,10 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
                     continue;
 
                 var cell = multicellular.Species.ModifiableGameplayCells[i];
-                var cellPosistion = Hex.AxialToCartesian(cell.Position);
+                var cellPosition = Hex.AxialToCartesian(cell.Position);
 
                 grownCellsData[writeIndex] = new MulticellularMembraneGenerationCellData(
-                    new Vector2(cellPosistion.X, cellPosistion.Z) * Constants.MULTICELLULAR_CELL_DISTANCE_MULTIPLIER,
+                    new Vector2(cellPosition.X, cellPosition.Z) * Constants.MULTICELLULAR_CELL_DISTANCE_MULTIPLIER,
                     cell.Orientation);
 
                 ++writeIndex;
@@ -360,8 +360,8 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         }
 
         var currentCell = multicellular.Species.ModifiableGameplayCells[currentCellIndex];
-        var cellPosition = Hex.AxialToCartesian(currentCell.Position);
-        var cellPositionInMulticellular = new Vector2(cellPosition.X, cellPosition.Z) *
+        var currentCellPosition = Hex.AxialToCartesian(currentCell.Position);
+        var cellPositionInMulticellular = new Vector2(currentCellPosition.X, currentCellPosition.Z) *
             Constants.MULTICELLULAR_CELL_DISTANCE_MULTIPLIER;
 
         var finishedMembrane = MembraneGenerationCoordinator.TryTakeFinishedMulticellularMembrane(cellId);
