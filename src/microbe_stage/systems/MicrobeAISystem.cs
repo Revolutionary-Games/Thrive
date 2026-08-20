@@ -288,7 +288,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
 
         // Adjusted behaviour values (calculated here as these are needed by various methods)
         var speciesBehaviour = ourSpecies.Species.Behaviour;
-        var adjustBehaviourValues = signalExists &&
+        var adjustBehaviourValues = signalExists && organelles.HasSignalingAgent &&
             signaling.ReceivedCommand == MicrobeSignalCommand.BecomeAggressive &&
             signalerDistanceSquared < Constants.AI_BECOME_AGGRESSIVE_DISTANCE_SQUARED;
 
@@ -445,8 +445,6 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                         {
                             ai.MoveToLocation(signalerPosition, ref control, entity);
                         }
-
-                        return;
                     }
 
                     break;
@@ -733,7 +731,25 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         if (shouldBeAggressive)
         {
             var membersNearEnough = 0;
-            var enoughMembers = (int)speciesAggression / 100;
+            int enoughMembers;
+
+            switch (speciesAggression)
+            {
+                case > 0.0f and <= Constants.MAX_SPECIES_AGGRESSION * 0.25f:
+                    enoughMembers = (int)(speciesAggression / 100 * 0.25f);
+                    break;
+                case > Constants.MAX_SPECIES_AGGRESSION * 0.25f and Constants.MAX_SPECIES_AGGRESSION * 0.5f:
+                    enoughMembers = (int)(speciesAggression / 100 * 0.5f);
+                    break;
+                case > Constants.MAX_SPECIES_AGGRESSION * 0.5f and <= Constants.MAX_SPECIES_AGGRESSION * 0.75f:
+                    enoughMembers = (int)(speciesAggression / 100 * 0.75f);
+                    break;
+                case > Constants.MAX_SPECIES_AGGRESSION * 0.75f and <= Constants.MAX_SPECIES_AGGRESSION:
+                    enoughMembers = (int)(speciesAggression / 100);
+                    break;
+                default:
+                    throw new Exception($"Aggression negative or above maximum ({Constants.MAX_SPECIES_AGGRESSION})");
+            }
 
             var pilusAndToxinCount = 0;
 
