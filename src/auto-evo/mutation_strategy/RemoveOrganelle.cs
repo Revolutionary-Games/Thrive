@@ -128,7 +128,7 @@ public class RemoveOrganelle : IMutationStrategy<Species>
             if (baseCellType.Organelles.Count <= 1)
                 continue;
 
-            var organelles = baseCellType.Organelles.Where(x => Criteria(x.Definition))
+            var organelles = baseCellType.Organelles.Where(x => criteria(x.Definition))
                 .OrderBy(_ => random.Next()).Take(Constants.AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS);
 
             MutationWorkMemory? workMemory = null;
