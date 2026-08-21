@@ -1,5 +1,6 @@
 ﻿namespace AutoEvo;
 
+using System;
 using SharedBase.Archive;
 
 /// <summary>
@@ -39,13 +40,21 @@ public class EnvironmentalTolerancePressure : SelectionPressure
 
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {
-        // TODO: multicellular tolerance (only needed once multicellular works in general in auto-evo)
-        if (species is not MicrobeSpecies microbeSpecies)
-            return 0;
-
         // Use scores to encourage species to be adapted to their environment
-        return (float)MicrobeEnvironmentalToleranceCalculations.CalculateTotalToleranceScore(microbeSpecies,
-            patch.Biome);
+        if (species is MicrobeSpecies microbeSpecies)
+        {
+            return (float)MicrobeEnvironmentalToleranceCalculations.CalculateTotalToleranceScore(microbeSpecies,
+                patch.Biome);
+        }
+
+        if (species is MulticellularSpecies multicellularSpecies)
+        {
+            return (float)MicrobeEnvironmentalToleranceCalculations.CalculateTotalToleranceScore(multicellularSpecies,
+                patch.Biome);
+        }
+
+        // throw an exception if given species type is unhandled.
+        throw new ArgumentException("Wrong type of Species passed to Microbe/Multicellular Species miche tree");
     }
 
     public override float GetEnergy(Patch patch)

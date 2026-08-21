@@ -1,5 +1,6 @@
 ﻿namespace AutoEvo;
 
+using System;
 using SharedBase.Archive;
 
 /// <summary>
@@ -47,8 +48,8 @@ public class TemperatureSessilityPressure : SelectionPressure
     /// </summary>
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {
-        if (species is not MicrobeSpecies microbeSpecies)
-            return 0;
+        if (species is not MicrobeSpecies and not MulticellularSpecies)
+            throw new ArgumentException("Wrong type of Species passed to Microbe/Multicellular Species miche tree");
 
         // Get temperature from the patch
         if (!patch.Biome.TryGetCompound(Compound.Temperature, CompoundAmountType.Biome, out var temperatureAmount))
@@ -62,7 +63,7 @@ public class TemperatureSessilityPressure : SelectionPressure
 
         // Calculate score based on activity (higher activity = higher score for mobile behavior)
         // The more active the species, the higher the score
-        float activityScore = microbeSpecies.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
+        float activityScore = species.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
         return activityScore;
     }
 

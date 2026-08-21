@@ -1,26 +1,37 @@
 ﻿namespace AutoEvo;
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
 public class MutationLogicFunctions
 {
-    public static void NameNewMicrobeSpecies(MicrobeSpecies newSpecies, MicrobeSpecies parentSpecies)
+    public static void NameNewSpecies(Species newSpecies, Species parentSpecies)
     {
-        // If for some silly reason the species are the same don't rename
-        if (newSpecies == parentSpecies)
+        // Keep the same genus name if the species are similar enough
+        var keepGenus = false;
+        if (newSpecies is MicrobeSpecies microbeSpecies && parentSpecies is MicrobeSpecies parentMicrobeSpecies)
         {
-            return;
+            if (!MicrobeSpeciesIsNewGenus(microbeSpecies, parentMicrobeSpecies))
+            {
+                keepGenus = true;
+            }
+        }
+        else if (newSpecies is MulticellularSpecies multicellularSpecies && parentSpecies is
+                     MulticellularSpecies parentMulticellularSpecies)
+        {
+            if (!MulticellularSpeciesIsNewGenus(multicellularSpecies, parentMulticellularSpecies))
+                keepGenus = true;
         }
 
-        if (MicrobeSpeciesIsNewGenus(newSpecies, parentSpecies))
+        if (keepGenus)
         {
-            newSpecies.Genus = SimulationParameters.Instance.NameGenerator.GenerateNameSection();
+            newSpecies.Genus = parentSpecies.Genus;
         }
         else
         {
-            newSpecies.Genus = parentSpecies.Genus;
+            newSpecies.Genus = SimulationParameters.Instance.NameGenerator.GenerateNameSection();
         }
 
         newSpecies.Epithet = SimulationParameters.Instance.NameGenerator.GenerateNameSection(null, true);
@@ -29,12 +40,6 @@ public class MutationLogicFunctions
     public static void ColourNewMicrobeSpecies(Random random, MicrobeSpecies newSpecies,
         MicrobeSpecies? parentSpecies = null)
     {
-        // If for some silly reason the species are the same don't recolor
-        if (parentSpecies != null && newSpecies == parentSpecies)
-        {
-            return;
-        }
-
         var oldColour = newSpecies.SpeciesColour;
 
         float redShift;
@@ -66,6 +71,64 @@ public class MutationLogicFunctions
         }
     }
 
+    public static void ColourNewMulticellularSpecies(Random random, MulticellularSpecies newSpecies,
+        MulticellularSpecies? parentSpecies = null)
+    {
+        var oldColour = newSpecies.SpeciesColour;
+
+        float redShift;
+        float greenShift;
+        float blueShift;
+
+        // make sure that species mutated from player have visibly different color
+        if (parentSpecies?.PlayerSpecies == true)
+        {
+            redShift = random.Next(0.25f, 0.75f);
+            greenShift = random.Next(0.25f, 0.75f);
+            blueShift = random.Next(0.25f, 0.75f);
+
+            var red = (oldColour.R + redShift) % 1.0f;
+            var green = (oldColour.G + greenShift) % 1.0f;
+            var blue = (oldColour.B + blueShift) % 1.0f;
+
+            newSpecies.SpeciesColour = new Color(red, green, blue);
+        }
+        else
+        {
+            redShift = (float)(random.NextDouble() - 0.5f) * Constants.AUTO_EVO_COLOR_CHANGE_MAX_STEP;
+            greenShift = (float)(random.NextDouble() - 0.5f) * Constants.AUTO_EVO_COLOR_CHANGE_MAX_STEP;
+            blueShift = (float)(random.NextDouble() - 0.5f) * Constants.AUTO_EVO_COLOR_CHANGE_MAX_STEP;
+
+            newSpecies.SpeciesColour = new Color(Math.Clamp(oldColour.R + redShift, 0, 1),
+                Math.Clamp(oldColour.G + greenShift, 0, 1),
+                Math.Clamp(oldColour.B + blueShift, 0, 1));
+        }
+
+        var newColour = newSpecies.SpeciesColour;
+
+        for (int i = 0; i < newSpecies.CellTypes.Count; ++i)
+        {
+            // Have the first cellType match the species color
+            var cellType = newSpecies.ModifiableCellTypes[i];
+            if (i == 0)
+            {
+                cellType.Colour = newColour;
+                continue;
+            }
+
+            // Remaining celltypes get at least some color variation from the baseline
+            redShift = random.Next(0.25f, 0.75f) * Constants.AUTO_EVO_COLOR_CHANGE_MAX_STEP;
+            greenShift = random.Next(0.25f, 0.75f) * Constants.AUTO_EVO_COLOR_CHANGE_MAX_STEP;
+            blueShift = random.Next(0.25f, 0.75f) * Constants.AUTO_EVO_COLOR_CHANGE_MAX_STEP;
+
+            var red = (newColour.R + redShift) % 1.0f;
+            var green = (newColour.G + greenShift) % 1.0f;
+            var blue = (newColour.B + blueShift) % 1.0f;
+
+            cellType.Colour = new Color(red, green, blue);
+        }
+    }
+
     private static bool MicrobeSpeciesIsNewGenus(MicrobeSpecies species1, MicrobeSpecies species2)
     {
         var species1UniqueOrganelles = species1.Organelles.Select(o => o.Definition).ToHashSet();
@@ -74,5 +137,54 @@ public class MutationLogicFunctions
         return species1UniqueOrganelles.Union(species2UniqueOrganelles).Count()
             - species1UniqueOrganelles.Intersect(species2UniqueOrganelles).Count()
             >= Constants.DIFFERENCES_FOR_GENUS_SPLIT;
+    }
+
+    private static bool MulticellularSpeciesIsNewGenus(MulticellularSpecies species1, MulticellularSpecies species2)
+    {
+        var species1UniqueOrganelles = new HashSet<OrganelleDefinition>();
+
+        foreach (var cellType in species1.ModifiableCellTypes)
+        {
+            foreach (var organelle in cellType.ModifiableOrganelles)
+            {
+                species1UniqueOrganelles.Add(organelle.Definition);
+            }
+        }
+
+        var species2UniqueOrganelles = new HashSet<OrganelleDefinition>();
+
+        foreach (var cellType in species2.CellTypes)
+        {
+            foreach (var organelle in cellType.Organelles)
+            {
+                species2UniqueOrganelles.Add(organelle.Definition);
+            }
+        }
+
+        var differences = 0;
+
+        foreach (var organelle in species1UniqueOrganelles)
+        {
+            if (!species2UniqueOrganelles.Contains(organelle))
+            {
+                ++differences;
+
+                if (differences >= Constants.DIFFERENCES_FOR_GENUS_SPLIT)
+                    return true;
+            }
+        }
+
+        foreach (var organelle in species2UniqueOrganelles)
+        {
+            if (!species1UniqueOrganelles.Contains(organelle))
+            {
+                ++differences;
+
+                if (differences >= Constants.DIFFERENCES_FOR_GENUS_SPLIT)
+                    return true;
+            }
+        }
+
+        return false;
     }
 }

@@ -3683,7 +3683,7 @@ public partial class CellEditorComponent :
                     simulationCache.Clear();
 
                     var individualCost =
-                        MichePopulation.CalculateMicrobeIndividualCost(calculationSpecies, biome, simulationCache);
+                        MichePopulation.CalculateIndividualCost(calculationSpecies, biome, simulationCache);
 
                     score = currentRun.Results.GetGlobalPopulation(calculationSpecies) * individualCost;
                 }
