@@ -295,7 +295,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
             foreach (var flagellum in organelles.ThrustComponents)
             {
                 thrustForce += flagellum.UseForMovement(control.MovementDirection, compounds, Quaternion.Identity,
-                    cellProperties.IsBacteria, energyCostMultiplier, delta);
+                    cellProperties.IsBacteria, totalSpecializationBonus, energyCostMultiplier, delta);
             }
         }
 
@@ -489,8 +489,8 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
                 foreach (var flagellum in organelles.ThrustComponents)
                 {
                     force += flagellum.UseForMovement(movementDirection, memberCompounds,
-                        relativeRotation, isBacteria, energyCostMultiplier,
-                        delta) * Constants.CELL_COLONY_MOVEMENT_FORCE_MULTIPLIER;
+                        relativeRotation, isBacteria, memberTotalSpecializationBonus,
+                        energyCostMultiplier, delta) * Constants.CELL_COLONY_MOVEMENT_FORCE_MULTIPLIER;
                 }
             }
 
