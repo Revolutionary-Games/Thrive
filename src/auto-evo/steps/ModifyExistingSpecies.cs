@@ -228,9 +228,12 @@ public class ModifyExistingSpecies : IRunStep
                     if (newPopulation > Constants.AUTO_EVO_MINIMUM_VIABLE_POPULATION)
                     {
                         // Only apply a new name and colour to results that are actually kept
-                        MutationLogicFunctions.NameNewMicrobeSpecies(mutation.MutatedSpecies, mutation.ParentSpecies);
+                        // Since the new name generator, colouring must come before naming as the epithet could be
+                        // influenced by the new colour of the species.
                         MutationLogicFunctions.ColourNewMicrobeSpecies(random, mutation.MutatedSpecies,
                             mutation.ParentSpecies);
+                        MutationLogicFunctions.NameNewMicrobeSpecies(mutation.MutatedSpecies, mutation.ParentSpecies,
+                            patch);
 
                         results.AddPossibleMutation(mutation.MutatedSpecies,
                             new KeyValuePair<Patch, long>(patch, newPopulation), mutation.AddType,

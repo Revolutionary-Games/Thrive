@@ -64,9 +64,18 @@ public static class ListUtils
     /// <summary>
     ///   <inheritdoc cref="ShuffleBag{T}.Shuffle"/>
     /// </summary>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void Shuffle<T>(this IList<T> list, Random random)
     {
-        int length = list.Count;
+        list.Shuffle(random, list.Count);
+    }
+
+    /// <summary>
+    ///   <inheritdoc cref="ShuffleBag{T}.Shuffle"/>
+    /// </summary>
+    public static void Shuffle<T>(this IList<T> list, Random random, int size)
+    {
+        int length = size;
         for (int i = 0; i < length - 1; ++i)
         {
             int j = random.Next(i, length);

@@ -103,7 +103,10 @@ public struct BiomeCompoundProperties : IEquatable<BiomeCompoundProperties>, IAr
 
     public bool Equals(BiomeCompoundProperties other)
     {
+        // ReSharper disable CompareOfFloatsByEqualityOperator
         return Amount == other.Amount && Density == other.Density && Ambient == other.Ambient;
+
+        // ReSharper enable CompareOfFloatsByEqualityOperator
     }
 
     public override string ToString()
