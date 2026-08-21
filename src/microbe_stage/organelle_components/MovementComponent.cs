@@ -162,10 +162,10 @@ public class MovementComponent : IOrganelleComponent
 
         if (isBacteria)
         {
-            return baseForce * forceMagnitude;
+            return baseForce * forceMagnitude * totalSpecializationBonus;
         }
 
-        return baseForce * Constants.EUKARYOTIC_MOVEMENT_FORCE_MULTIPLIER * forceMagnitude;
+        return baseForce * Constants.EUKARYOTIC_MOVEMENT_FORCE_MULTIPLIER * forceMagnitude * totalSpecializationBonus;
     }
 }
 
