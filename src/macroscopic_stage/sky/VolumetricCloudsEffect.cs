@@ -1,4 +1,4 @@
-﻿// Instead of using the TOOLS_ENABLED macro, you can use the 'clouds' command in the game console:
+﻿﻿// Instead of using the TOOLS_ENABLED macro, you can use the 'clouds' command in the game console:
 // -- clouds reload - Reloads the pipeline
 // -- clouds profileenable - Enables profiling
 // -- clouds profiledisable - Disables profiling
@@ -11,7 +11,6 @@ using System;
 using System.Threading;
 using Godot;
 using Godot.Collections;
-using Nito.Collections;
 
 /// <summary>
 ///   Volumetric Clouds Effect for sky rendering.
@@ -23,58 +22,7 @@ using Nito.Collections;
 public partial class VolumetricCloudsEffect : CompositorEffect
 {
     [Export]
-    public Vector3 PlanetCenter = Vector3.Zero;
-
-    [Export]
-    public float PlanetRadius = 2000.0f;
-
-    [Export]
-    public float CloudInnerHeight = 100.0f;
-
-    [Export]
-    public float CloudOuterHeight = 200.0f;
-
-    [Export]
-    public int Seed = 1234;
-
-    /// <summary>
-    ///   The sun direction.
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     Please note that this cannot be a zero vector. This gets normalised before being passed to the shader, so
-    ///     setting a zero-vector should be considered UB and an arbitrary unit-length vector will be used instead.
-    ///   </para>
-    /// </remarks>
-    [Export]
-    public Vector3 SunDirection = new Vector3(0.4f, 0.8f, 0.3f).Normalized();
-
-    [Export(PropertyHint.Range, "0,100")]
-    public float SunEnergy = 25.0f;
-
-    [Export(PropertyHint.Range, "1,1000,1,or_greater")]
-    public float CloudTileSize = 200.0f;
-
-    [Export(PropertyHint.Range, "0.0,1.0")]
-    public float DensityMultiplier = 1.0f;
-
-    [Export(PropertyHint.Range, "0.1,1.0")]
-    public float Coverage = 0.3f;
-
-    [Export(PropertyHint.Range, "1,256")]
-    public int MarchSteps = 64;
-
-    [Export(PropertyHint.Range, "1,10")]
-    public int LightSteps = 6;
-
-    [Export(PropertyHint.Range, "0,10000,1,or_greater")]
-    public float MaxMarchDistance = 8000.0f;
-
-    [Export(PropertyHint.Range, "1,4,1")]
-    public int ResolutionDivisor = 2;
-
-    [Export]
-    public bool ProfileGpu;
+    public CloudsConfig CloudsConfig = new();
 
     private const uint PushConstantsBufferSize = 128;
     private const uint UniformParamsBufferSize = 128;
@@ -86,7 +34,6 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     private const string RaymarcherShaderFileName = "res://shaders/sky/clouds_march.glsl";
     private const string UpsamplerShaderFileName = "res://shaders/sky/upsampler.glsl";
 
-    private static readonly Deque<VolumetricCloudsEffect> EnqueuedInstances = [];
     private static readonly Lock InstanceLock = new();
 
     private static VolumetricCloudsEffect? activeInstance;
@@ -135,19 +82,9 @@ public partial class VolumetricCloudsEffect : CompositorEffect
 
     public VolumetricCloudsEffect()
     {
-        lock (InstanceLock)
-        {
-            if (activeInstance is not null)
-            {
-                EnqueuedInstances.AddToBack(this);
-            }
-            else
-            {
-                activeInstance = this;
-                Volatile.Write(ref active, true);
-            }
-        }
-
+        // Note that the singleton slot is deliberately not claimed here. Godot constructs effects speculatively
+        // (scene deserialization, and the inspector default value probe in editor builds), so a constructor claim
+        // is taken by an instance that never ends up rendering anything, starving the real one.
         EffectCallbackType = EffectCallbackTypeEnum.PostTransparent;
         AccessResolvedColor = true;
         AccessResolvedDepth = true;
@@ -176,28 +113,18 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         GenerateNoiseProfile,
     }
 
+    /// <summary>
+    ///   Sun parameters the clouds are lit with. This is owned and set by <see cref="SkyEquippedEnvironment"/> so
+    ///   that the clouds and the sky agree on where the sun is. A default is kept here for standalone use.
+    /// </summary>
+    public SunConfig SunConfig { get; set; } = new();
+
     public override void _Notification(int what)
     {
         if (what != NotificationPredelete)
             return;
 
-        lock (InstanceLock)
-        {
-            if (Volatile.Read(ref active))
-            {
-                Volatile.Write(ref active, false);
-
-                activeInstance = EnqueuedInstances.Count > 0 ? EnqueuedInstances.RemoveFromFront() : null;
-
-                if (activeInstance is not null)
-                    Volatile.Write(ref activeInstance.active, true);
-            }
-            else
-            {
-                if (!EnqueuedInstances.Remove(this))
-                    GD.PrintErr("Inactive VolumetricCloudsEffect is being deleted but it wasn't in the queue.");
-            }
-        }
+        ReleaseActive();
 
         if (renderingDevice is null)
             return;
@@ -225,6 +152,11 @@ public partial class VolumetricCloudsEffect : CompositorEffect
 
     public override void _RenderCallback(int effectCallbackType, RenderData renderData)
     {
+        // This has to come before the loading below, otherwise an instance that never renders still loads the
+        // shaders and builds the compute pipelines before bailing out
+        if (!TryBecomeActive())
+            return;
+
         switch (state)
         {
             case 0: // kick off async load once
@@ -247,9 +179,6 @@ public partial class VolumetricCloudsEffect : CompositorEffect
                 break;
         }
 
-        if (!Volatile.Read(ref active))
-            return;
-
         if (renderingDevice is null || !rayMarcherPipeline.IsValid || !upsamplerPipeline.IsValid)
             return;
 
@@ -265,7 +194,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         if (size.X == 0 || size.Y == 0)
             return;
 
-        int divisor = Math.Max(ResolutionDivisor, 1);
+        int divisor = Math.Max(CloudsConfig.ResolutionDivisor, 1);
         var marchSize = new Vector2I(Math.Max((size.X + divisor - 1) / divisor, 1),
             Math.Max((size.Y + divisor - 1) / divisor, 1));
 
@@ -323,9 +252,11 @@ public partial class VolumetricCloudsEffect : CompositorEffect
 
             Rid upsampleSet = UniformSetCacheRD.GetCache(upsamplerShader, 0, upsampleUniforms);
 
+            bool profileGpu = CloudsConfig.ProfileGpu;
+
             if (marchSet.IsValid && upsampleSet.IsValid)
             {
-                if (ProfileGpu)
+                if (profileGpu)
                     renderingDevice.CaptureTimestamp("clouds_march_begin");
 
                 long list = renderingDevice.ComputeListBegin();
@@ -335,7 +266,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
                 renderingDevice.ComputeListDispatch(list, marchGroupsX, marchGroupsY, 1);
                 renderingDevice.ComputeListEnd();
 
-                if (ProfileGpu)
+                if (profileGpu)
                     renderingDevice.CaptureTimestamp("clouds_upsample_begin");
 
                 list = renderingDevice.ComputeListBegin();
@@ -345,7 +276,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
                 renderingDevice.ComputeListDispatch(list, fullGroupsX, fullGroupsY, 1);
                 renderingDevice.ComputeListEnd();
 
-                if (ProfileGpu)
+                if (profileGpu)
                     renderingDevice.CaptureTimestamp("clouds_end");
             }
         }
@@ -356,6 +287,8 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         if (disposed)
             return;
 
+        ReleaseActive();
+
         if (disposing)
         {
             cloudContextName.Dispose();
@@ -363,6 +296,8 @@ public partial class VolumetricCloudsEffect : CompositorEffect
             renderBuffersContext.Dispose();
             colorTextureName.Dispose();
             depthTextureName.Dispose();
+
+            CloudsConfig.Dispose();
 
             rayMarcherSpirv = null!;
             upsamplerSpirv = null!;
@@ -437,13 +372,13 @@ public partial class VolumetricCloudsEffect : CompositorEffect
                 targetInstance.Reload();
                 return true;
             case CloudCommandParameters.ProfileEnable:
-                targetInstance.ProfileGpu = true;
+                targetInstance.CloudsConfig.ProfileGpu = true;
                 return true;
             case CloudCommandParameters.ProfileDisable:
-                targetInstance.ProfileGpu = false;
+                targetInstance.CloudsConfig.ProfileGpu = false;
                 return true;
             case CloudCommandParameters.ProfilePrint:
-                if (!targetInstance.ProfileGpu)
+                if (!targetInstance.CloudsConfig.ProfileGpu)
                 {
                     context.PrintErr("Not currently profiling. Please execute 'clouds ProfileEnable' first.");
 
@@ -466,6 +401,48 @@ public partial class VolumetricCloudsEffect : CompositorEffect
                 return true;
             default:
                 return false;
+        }
+    }
+
+    /// <summary>
+    ///   Claims the single slot that is allowed to render the clouds, if it is free. Only the instance that is
+    ///   actually being rendered ever asks, which is what keeps the slot away from the throwaway instances Godot
+    ///   builds while loading a scene.
+    /// </summary>
+    /// <returns>True if this instance holds the slot and should do the cloud rendering work.</returns>
+    private bool TryBecomeActive()
+    {
+        // Fast path for the common case of already holding the slot
+        if (Volatile.Read(ref active))
+            return true;
+
+        if (disposed)
+            return false;
+
+        lock (InstanceLock)
+        {
+            if (activeInstance is not null)
+                return false;
+
+            activeInstance = this;
+            Volatile.Write(ref active, true);
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    ///   Gives up the rendering slot if this instance holds it. Whichever instance renders next takes it over.
+    /// </summary>
+    private void ReleaseActive()
+    {
+        lock (InstanceLock)
+        {
+            if (!ReferenceEquals(activeInstance, this))
+                return;
+
+            activeInstance = null;
+            Volatile.Write(ref active, false);
         }
     }
 
@@ -534,8 +511,16 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     {
         int offset = 0;
 
-        float safeInner = CloudInnerHeight;
-        float safeOuter = CloudOuterHeight;
+        float cloudInnerHeight = CloudsConfig.CloudInnerHeight;
+        float cloudOuterHeight = CloudsConfig.CloudOuterHeight;
+        float planetRadius = CloudsConfig.PlanetRadius;
+        float cloudTileSize = CloudsConfig.CloudTileSize;
+        float densityMultiplier = CloudsConfig.DensityMultiplier;
+
+        Vector3 planetCenter = CloudsConfig.PlanetCenter;
+
+        float safeInner = cloudInnerHeight;
+        float safeOuter = cloudOuterHeight;
         bool isValid = true;
 
         if (safeInner < 0.0f)
@@ -552,24 +537,24 @@ public partial class VolumetricCloudsEffect : CompositorEffect
 
         if (!isValid)
         {
-            if (Math.Abs(CloudInnerHeight - lastAttemptedInner) > 0.001f ||
-                Math.Abs(CloudOuterHeight - lastAttemptedOuter) > 0.001f)
+            if (Math.Abs(cloudInnerHeight - lastAttemptedInner) > 0.001f ||
+                Math.Abs(cloudOuterHeight - lastAttemptedOuter) > 0.001f)
             {
-                GD.PushError($"VolumetricCloudsEffect: Invalid cloud heights. Outer ({CloudOuterHeight})" +
-                    $"must be > Inner ({CloudInnerHeight}) >= 0. Clamping to {safeOuter} and {safeInner}.");
+                GD.PushError($"VolumetricCloudsEffect: Invalid cloud heights. Outer ({cloudOuterHeight})" +
+                    $"must be > Inner ({cloudInnerHeight}) >= 0. Clamping to {safeOuter} and {safeInner}.");
             }
         }
 
-        lastAttemptedInner = CloudInnerHeight;
-        lastAttemptedOuter = CloudOuterHeight;
+        lastAttemptedInner = cloudInnerHeight;
+        lastAttemptedOuter = cloudOuterHeight;
 
         float cloudInner = safeInner;
         float cloudOuter = Math.Max(safeOuter, safeInner + 1.0f);
 
-        offset = RenderingUtils.WriteVec4(paramSpan, offset, new Vector4(PlanetCenter.X, PlanetCenter.Y, PlanetCenter.Z,
+        offset = RenderingUtils.WriteVec4(paramSpan, offset, new Vector4(planetCenter.X, planetCenter.Y, planetCenter.Z,
             0.0f));
-        offset = RenderingUtils.WriteVec4(paramSpan, offset, new Vector4(PlanetRadius + cloudInner,
-            PlanetRadius + cloudOuter, CloudTileSize, DensityMultiplier));
+        offset = RenderingUtils.WriteVec4(paramSpan, offset, new Vector4(planetRadius + cloudInner,
+            planetRadius + cloudOuter, cloudTileSize, densityMultiplier));
         offset = RenderingUtils.WriteVec4(paramSpan, offset, new Vector4(fullSize.X, fullSize.Y, 1.0f / fullSize.X,
             1.0f / fullSize.Y));
         offset = RenderingUtils.WriteVec4(paramSpan, offset, new Vector4(marchSize.X, marchSize.Y, 1.0f / marchSize.X,
@@ -577,13 +562,12 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         offset = RenderingUtils.WriteVec4(paramSpan, offset, new Vector4(cameraPosition.X, cameraPosition.Y,
             cameraPosition.Z, 0.0f));
 
-        // Prevent singularities and erratic behaviour in the shader by passing a non-zero vector.
-        // Vector3.One.Normalized() is purely arbitrary (as we can choose any unit-length vector).
-        var sun = SunDirection.IsZeroApprox() ? Vector3.One.Normalized() : SunDirection.Normalized();
-        offset = RenderingUtils.WriteVec4(paramSpan, offset, new Vector4(sun.X, sun.Y, sun.Z, SunEnergy));
+        var sun = SunConfig.GetNormalizedDirection();
+        offset = RenderingUtils.WriteVec4(paramSpan, offset, new Vector4(sun.X, sun.Y, sun.Z,
+            SunConfig.SunEnergy));
 
-        _ = RenderingUtils.WriteVec4(paramSpan, offset, new Vector4(MarchSteps, LightSteps, MaxMarchDistance,
-            Coverage));
+        _ = RenderingUtils.WriteVec4(paramSpan, offset, new Vector4(CloudsConfig.MarchSteps, CloudsConfig.LightSteps,
+            CloudsConfig.MaxMarchDistance, CloudsConfig.Coverage));
     }
 
     private void LoadResources()
@@ -680,7 +664,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
 
     private void GenerateNoiseProfileAndReload()
     {
-        if (GenerateNoiseProfileResource(Seed))
+        if (GenerateNoiseProfileResource(CloudsConfig.Seed))
             Reload();
     }
 }
