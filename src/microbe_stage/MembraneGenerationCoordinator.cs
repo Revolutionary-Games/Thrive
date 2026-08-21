@@ -82,7 +82,8 @@ public static class MembraneGenerationCoordinator
         foreach (var (key, data) in tracker.NeighboursData)
         {
             var multicellularMembrane =
-                generator.GenerateMulticellularMembrane(key, tracker.NeighboursData, generationParameters.LeaderCellKey);
+                generator.GenerateMulticellularMembrane(key, tracker.NeighboursData,
+                    generationParameters.LeaderCellKey);
 
             AddMulticellularMembrane(data.CellKey, multicellularMembrane);
             generatedMembranes.Add(data.CellKey);
