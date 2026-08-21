@@ -94,7 +94,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 
     public IReadOnlyCellTypeDefinition? GameteTypeB => ModifiableGameteTypeB;
 
-    public int MassBuddingCellCount { get; set; } = 1;
+    public int MassBuddingCellCount { get; set; } = 2;
 
     public ISimulationPhotographable.SimulationType SimulationToPhotograph =>
         ISimulationPhotographable.SimulationType.MicrobeGraphics;
@@ -256,6 +256,9 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
             if (ModifiableGameplayCells.Count < 2)
                 throw new Exception("Sexual reproduction method requires at least two gameplay cells");
         }
+
+        if (ReproductionMethod == MulticellularReproductionMethod.MassBudding && MassBuddingCellCount < 2)
+            throw new Exception("Mass budding reproduction requires an initial bud size of at least two cells");
 
         if (MassBuddingCellCount < 1 || MassBuddingCellCount > ModifiableGameplayCells.Count)
         {

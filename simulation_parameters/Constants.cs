@@ -1241,6 +1241,7 @@ public static class Constants
     public const int MULTICELLULAR_ANISOGAMY_UPGRADE_COST = 55;
 
     public const int MASS_BUDDING_CELL_COUNT_CHANGE_COST = 10;
+    public const int MASS_BUDDING_MINIMUM_BUD_SIZE = 2;
 
     public const string ORGANELLE_UPGRADE_SPECIAL_NONE = "none";
 

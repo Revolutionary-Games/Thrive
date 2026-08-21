@@ -159,6 +159,9 @@ public partial class CellBodyPlanEditorComponent :
     private Label massBuddingCellCountLabel = null!;
 
     [Export]
+    private Label massBuddingMinSizeLabel = null!;
+
+    [Export]
     private Control buddingReproductionSection = null!;
 
     [Export]
@@ -306,10 +309,10 @@ public partial class CellBodyPlanEditorComponent :
     public CellType? GameteBCellType { get; private set; }
 
     /// <summary>
-    ///   This variable should be clamped before use. It's intentional that it can exceed the amount of cells, to make
+    ///   This variable should be clamped before use. It's intentional that it can exceed the number of cells, to make
     ///   it easier to e.g. undo cell removal action.
     /// </summary>
-    public int DesiredMassBuddingCellCount { get; private set; } = 1;
+    public int DesiredMassBuddingCellCount { get; private set; } = 2;
 
     protected override bool ShowFloatingLabels => ShowGrowthOrder;
 
@@ -392,6 +395,10 @@ public partial class CellBodyPlanEditorComponent :
 
         organismStatisticsPanel.UpdateLightSelectionPanelVisibility(
             Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled && Editor.CurrentPatch.HasDayAndNight);
+
+        var buddingBalanceInfoText = Localization.Translate("MASS_BUDDING_MINIMUM_SIZE_EXPLANATION")
+            .FormatSafe(Constants.MASS_BUDDING_MINIMUM_BUD_SIZE);
+        massBuddingMinSizeLabel.Text = buddingBalanceInfoText;
 
         UpdateCancelButtonVisibility();
     }
@@ -786,6 +793,15 @@ public partial class CellBodyPlanEditorComponent :
         {
             ToolTipManager.Instance.ShowPopup(
                 Localization.Translate("ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"), 5);
+            return false;
+        }
+
+        if (ReproductionMethod == MulticellularReproductionMethod.MassBudding &&
+            (DesiredMassBuddingCellCount < Constants.MASS_BUDDING_MINIMUM_BUD_SIZE ||
+                editedMicrobeCells.Count < Constants.MASS_BUDDING_MINIMUM_BUD_SIZE))
+        {
+            ToolTipManager.Instance.ShowPopup(Localization.Translate("ERROR_REQUIRED_AT_LEAST_X_CELLS_FOR_MASS_BUDDING")
+                .FormatSafe(Constants.MASS_BUDDING_MINIMUM_BUD_SIZE), 5);
             return false;
         }
 
