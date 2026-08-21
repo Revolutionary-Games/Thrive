@@ -15,7 +15,9 @@ using Godot.Collections;
 ///   </para>
 /// </remarks>
 [GlobalClass]
+#if TOOLS_ENABLED
 [Tool]
+#endif
 public partial class SkyEquippedEnvironment : WorldEnvironment
 {
 #pragma warning disable CA2213
