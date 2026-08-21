@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 using SharedBase.Archive;
 
 /// <summary>
@@ -149,6 +150,14 @@ public partial class CellBodyPlanEditorComponent
             or MulticellularReproductionMethod.SexualAnisogamy)
         {
             OnReproductionMethodChangedToSexual();
+        }
+
+        if (ReproductionMethod == MulticellularReproductionMethod.MassBudding)
+        {
+            // Make sure mass budding is selecting at least the minimum count
+            DesiredMassBuddingCellCount =
+                Math.Max(DesiredMassBuddingCellCount, Constants.MASS_BUDDING_MINIMUM_BUD_SIZE);
+            UpdateMassBuddingCellCountSlider();
         }
 
         UpdateReproductionMethodChoice();

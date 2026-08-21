@@ -94,7 +94,11 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 
     public IReadOnlyCellTypeDefinition? GameteTypeB => ModifiableGameteTypeB;
 
-    public int MassBuddingCellCount { get; set; } = Constants.MASS_BUDDING_MINIMUM_BUD_SIZE;
+    /// <summary>
+    ///   Note: this needs to be increased to at least <see cref="Constants.MASS_BUDDING_MINIMUM_BUD_SIZE"/> when
+    ///   changing to that reproduction method.
+    /// </summary>
+    public int MassBuddingCellCount { get; set; } = 1;
 
     public ISimulationPhotographable.SimulationType SimulationToPhotograph =>
         ISimulationPhotographable.SimulationType.MicrobeGraphics;
