@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-08-21 10:40+0300\n"
-"PO-Revision-Date: 2026-08-20 09:30+0000\n"
+"PO-Revision-Date: 2026-08-21 10:00+0000\n"
 "Last-Translator: monkey <monkeygorun@gmail.com>\n"
 "Language-Team: Thai <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/th/>\n"
 "Language: th_TH\n"
@@ -650,7 +650,7 @@ msgid "CALCIUM_CARBONATE"
 msgstr "แคลเซียมคาร์บอเนต"
 
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
-msgstr ""
+msgstr "เยื่อหุ้มนี้มีเปลือกที่แข็งแรงซึ่งประกอบด้วยแคลเซียมคาร์บอเนต ทำให้ทนทานต่อความเสียหายได้ดีและไม่ต้องใช้พลังงานมากในการคงรูปทรงไว้ อย่างไรก็ตาม ข้อเสียของการมีเปลือกที่หนักเช่นนี้คือทำให้เซลล์เคลื่อนที่ได้ช้าลงมากและต้องใช้เวลาในการดูดซึมทรัพยากร"
 
 msgid "CAMERA"
 msgstr "กล้อง"
@@ -659,38 +659,37 @@ msgid "CANCEL"
 msgstr "ยกเลิก"
 
 msgid "CANCEL_ACTION_CAPITAL"
-msgstr ""
+msgstr "ยกเลิกการดำเนินการ"
 
 msgid "CANCEL_CURRENT_ACTION"
 msgstr "ยกเลิกการกระทำปัจจุบัน"
 
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
-msgstr ""
+msgstr "ประเภทเซลล์ที่กำลังถูกใช้งานอยู่ในโครงสร้างร่างกายของคุณไม่สามารถถูกลบได้"
 
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
-msgstr ""
+msgstr "ไม่สามารถลบประเภทเซลล์ที่มีการใช้งานอยู่ได้"
 
 msgid "CANNOT_ENGULF"
-msgstr ""
+msgstr "ไม่สามารถกลืนกินได้"
 
 msgid "CANNOT_IMPROVE_PERFECTION"
-msgstr ""
+msgstr "ไม่สามารถทำให้สิ่งที่สมบูรณ์แบบอยู่แล้วดียิ่งขึ้นไปอีกได้"
 
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
-msgstr ""
+msgstr "ไม่สามารถย้าย metaball เข้าไปในลำดับชั้นลูกหลานของตัวมันเองได้"
 
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE"
-msgstr ""
+msgstr "ขณะนี้ระดับพลังสมองต่ำเกินกว่าจะอยู่ในด่านปัจจุบันได้ และยังไม่สามารถย้อนกลับไปยังด่านก่อนหน้าได้ในขณะนี้ โปรดเพิ่มพลังสมองเพื่อดำเนินการต่อ"
 
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE_TITLE"
-msgstr ""
+msgstr "ไม่สามารถลดระดับพลังสมองเพื่อย้อนกลับไปยังขั้นตอนก่อนหน้าได้"
 
-#, fuzzy
 msgid "CANNOT_WRITE_SAVE"
-msgstr ". อัตราเครื่องชั่ง"
+msgstr "ไม่สามารถเขียนหรือบันทึกข้อมูลได้"
 
 msgid "CANT_LOAD_MOD_INFO"
-msgstr ""
+msgstr "ไม่สามารถโหลดข้อมูลม็อดสำหรับ {0} ได้"
 
 msgid "CAPSLOCK"
 msgstr "ล็อคมุมมอง"
@@ -699,245 +698,251 @@ msgid "CARBON_DIOXIDE"
 msgstr "คาร์บอนไดออกไซด์"
 
 msgid "CATEGORY_AN_ABUNDANCE"
-msgstr ""
+msgstr "ความอุดมสมบูรณ์"
 
 msgid "CATEGORY_A_FAIR_AMOUNT"
-msgstr ""
+msgstr "พอสมควร"
 
 msgid "CATEGORY_LITTLE"
-msgstr ""
+msgstr "เล็กน้อย"
 
 msgid "CATEGORY_QUITE_A_BIT"
-msgstr ""
+msgstr "ค่อนข้างมากทีเดียว"
 
 msgid "CATEGORY_SOME"
-msgstr ""
+msgstr "บ้าง"
 
 msgid "CATEGORY_VERY_LITTLE"
-msgstr ""
+msgstr "น้อยมาก"
 
 msgid "CAUTIOUS"
-msgstr ""
+msgstr "ระมัดระวัง"
 
-#, fuzzy
 msgid "CELL"
-msgstr "เซลลูโลส"
+msgstr "เซลล์"
 
-#, fuzzy
 msgid "CELLS"
-msgstr "เซลลูโลส"
+msgstr "เซลล์"
 
-#, fuzzy
 msgid "CELLULASE"
-msgstr "เซลลูโลส"
+msgstr "เซลลูเลส"
 
-#, fuzzy
 msgid "CELLULASE_DESCRIPTION"
-msgstr "แวคิวโอลเป็นออร์แกเนลล์เยื่อภายในที่ใช้สำหรับเก็บในเซลล์ ประกอบด้วยถุงหลายอันโครงสร้างของเยื่อขนาดเล็กที่ใช้กันอย่างแพร่หลายในเซลล์เพื่อการจัดเก็บที่หลอมรวมเข้าด้วยกัน เต็มไปด้วยน้ำซึ่งใช้บรรจุโมเลกุลเอนไซม์ของแข็งและสารอื่น ๆ รูปร่างของพวกมันเป็นของเหลวและอาจแตกต่างกันไประหว่างเซลล์"
+msgstr "เอนไซม์เซลลูเลสช่วยให้เซลล์ย่อยสลายเยื่อหุ้มเซลลูโลสได้ การเติมเอนไซม์แต่ละครั้งจะเพิ่มประสิทธิภาพขึ้น"
 
 msgid "CELLULOSE"
 msgstr "เซลลูโลส"
 
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
-msgstr ""
+msgstr "เยื่อหุ้มนี้มีผนัง ทำให้ป้องกันความเสียหายโดยรวมได้ดีขึ้น โดยเฉพาะอย่างยิ่งความเสียหายทางกายภาพ นอกจากนี้ยังใช้พลังงานน้อยลงในการรักษารูปทรง แต่ไม่สามารถดูดซับทรัพยากรได้อย่างรวดเร็วและเคลื่อนไหวช้ากว่า [b]เอนไซม์เซลลูเลสสามารถย่อยสลายผนังนี้ได้[/b] ทำให้มันอ่อนแอต่อการถูกผู้ล่ากลืนกิน"
 
-#, fuzzy
 msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
-msgstr "ดำเนินการต่อ"
+msgstr ""
+"ในโครงสร้างหลายเซลล์นี้ แสดงค่าโบนัสความเชี่ยวชาญเฉลี่ยของเซลล์ทั้งหมด รวมถึงโบนัสจากเซลล์ที่อยู่ติดกันด้วย\n"
+"โบนัสปัจจุบันคือ {0}% จากเซลล์ {1} เซลล์\n"
+"เซลล์ที่มีความเชี่ยวชาญมากที่สุดคือ {3} โดยมีโบนัส {2}%\n"
+"หากต้องการเพิ่มโบนัสนี้ ให้ทำให้เซลล์แต่ละประเภทมีความเชี่ยวชาญมากขึ้น เพิ่มจำนวนเซลล์ประเภทที่มีความเชี่ยวชาญมากที่สุด\n"
+"หรือวางเซลล์ประเภทเดียวกันไว้ติดกัน"
 
-#, fuzzy
 msgid "CELL_SPECIALIZATION_TOOLTIP"
-msgstr "ดำเนินการต่อ"
+msgstr ""
+"การทำให้เซลล์ใช้ออร์แกเนลล์ประเภทน้อยลง จะเพิ่มประสิทธิภาพของออร์แกเนลล์ทั้งหมดในเซลล์นั้น\n"
+"โบนัสปัจจุบันคือ {0}% (ความแรงของโบนัสสูงสุดจะเพิ่มขึ้นตามขนาดของเซลล์จนถึง {3} ช่อง)\n"
+"โบนัสปัจจุบันได้รับเนื่องจากมี {1} {2} ช่อง\n"
+"โบนัสจะเพิ่มขึ้นเมื่อมีการวางออร์แกเนลล์ประเภทที่พบมากที่สุดมากขึ้น และนำออร์แกเนลล์ประเภทอื่นออก"
 
-#, fuzzy
 msgid "CELL_STAT_ROTATION_TOOLTIP"
-msgstr "ดำเนินการต่อ"
+msgstr ""
+"อัตราการหมุนของเซลล์ เซลล์ขนาดใหญ่จะหมุนช้าลง แต่สามารถเพิ่มซีเลียเพื่อชดเชยได้\n"
+"ตำแหน่งของออร์แกเนลล์ส่งผลต่อการหมุน โดยออร์แกเนลล์ที่อยู่ห่างจากศูนย์กลางมากขึ้นจะทำให้การหมุนลดลงมากขึ้น"
 
-#, fuzzy
 msgid "CELL_STAT_SPEED_TOOLTIP"
-msgstr "ดำเนินการต่อ"
+msgstr ""
+"ความเร็วของเซลล์ โปรดทราบว่าเนื่องจากข้อจำกัดของอัลกอริธึมที่ใช้คำนวณ ค่าที่ได้จึงเป็นค่าประมาณ\n"
+"และตัวอย่างเช่น เมื่อปรับเปลี่ยนความยาวของแฟลเจลลัม ค่าความเร็วที่ได้จะไม่สมเหตุสมผลและไม่ตรงกับสิ่งที่เกิดขึ้นในขั้นตอนการพัฒนา\n"
+"นี่เป็นปัญหาที่ทราบกันดีอยู่แล้ว แต่ยังไม่ได้รับการแก้ไขเนื่องจากมีความสำคัญน้อยกว่าปัญหาอื่นๆ และฟีเจอร์ใหม่ๆ อีกมากมาย"
 
-#, fuzzy
 msgid "CELL_STAT_STORAGE_TOOLTIP"
-msgstr "ดำเนินการต่อ"
+msgstr ""
+"ความจุในการจัดเก็บของเซลล์ ความจุที่สูงขึ้นช่วยให้สามารถจัดเก็บสารประกอบได้มากขึ้นในคราวเดียว\n"
+"เซลล์ที่มีความจุสูงสามารถใช้กลยุทธ์ที่ไม่สามารถเคลื่อนที่ได้ตลอดไป แต่จำเป็นต้องชาร์จพลังงาน ATP สักครู่ก่อนที่จะเคลื่อนที่ได้\n"
+"โปรดทราบว่าความจุในการจัดเก็บที่ต่ำอาจทำให้เกิดปัญหาการขาดแคลน ATP แม้ว่าสมดุล ATP จะเป็นบวกก็ตาม ปัญหาเหล่านี้อาจแย่ลงเนื่องจากอาการกระตุก\n"
+"หรือประสิทธิภาพโดยรวมของเกมต่ำ การเพิ่มความจุจะช่วยแก้ไขปัญหาเหล่านี้ได้"
 
 msgid "CELL_TYPE_NAME"
-msgstr ""
+msgstr "ชื่อประเภทเซลล์"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
-msgstr ""
+msgstr "หมายเหตุการเปลี่ยนแปลงยาวเกินไป"
 
 msgid "CHANGE_ORGANISM_MEMBRANE_TYPE"
-msgstr ""
+msgstr "เปลี่ยนชนิดของเยื่อหุ้มเซลล์"
 
-#, fuzzy
 msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
-msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+msgstr ""
+"การเปลี่ยนชนิดของเยื่อหุ้มเซลล์ยังคงเป็นไปได้ในระยะหลายเซลล์ แต่ยากขึ้นมาก\n"
+"ในระยะมหภาคจะไม่สามารถเปลี่ยนชนิดของเยื่อหุ้มเซลล์ได้อีกต่อไป\n"
+"การเปลี่ยนเยื่อหุ้มเซลล์ในตอนนี้จำเป็นต้องเปลี่ยนชนิดของเซลล์ทั้งหมดไปเป็นชนิดใหม่พร้อมกัน\n"
+"ซึ่งต้องใช้คะแนนการกลายพันธุ์ทั้งหมด [thrive:icon]MP[/thrive:icon] ในการเปลี่ยนแปลงนี้\n"
+"และการทำเช่นนี้จะออกจากโปรแกรมแก้ไขเพื่อใช้การเปลี่ยนแปลง\n"
+"เปลี่ยนเยื่อหุ้มเซลล์เป็นชนิดที่เลือก?"
 
 msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
 msgstr ""
+"การเปลี่ยนชนิดของเยื่อหุ้มเซลล์ยังคงเป็นไปได้ในระยะหลายเซลล์ แต่ยากขึ้นมาก\n"
+"ในระยะมหภาคจะไม่สามารถเปลี่ยนชนิดของเยื่อหุ้มเซลล์ได้อีกต่อไป\n"
+"การเปลี่ยนเยื่อหุ้มเซลล์ในตอนนี้จำเป็นต้องเปลี่ยนชนิดของเซลล์ทั้งหมดไปเป็นชนิดใหม่พร้อมกัน\n"
+"ซึ่งต้องใช้คะแนนการกลายพันธุ์ทั้งหมด [thrive:icon]MP[/thrive:icon] ในการเปลี่ยนแปลงนี้\n"
+"และการทำเช่นนี้จะออกจากโปรแกรมแก้ไขเพื่อใช้การเปลี่ยนแปลง\n"
+"[b]คะแนนการกลายพันธุ์ไม่เพียงพอ[/b] คุณสามารถยกเลิกการเปลี่ยนแปลงทั้งหมดได้หากต้องการเปลี่ยนเยื่อหุ้มเซลล์"
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "เปลี่ยนสมมาตร"
 
-#, fuzzy
 msgid "CHANNEL_INHIBITOR_TOXIN_SYNTHESIS"
-msgstr "ท็อกซินแวคิวโอลเป็นแวคิวโอลที่ได้รับการดัดแปลงเพื่อการผลิตการจัดเก็บและการหลั่งสารพิษออกซีโทซีโดยเฉพาะ แวคิวโอลที่เป็นพิษมากขึ้นจะทำให้สารพิษถูกปล่อยออกมามากขึ้น"
+msgstr "การสังเคราะห์สารยับยั้งช่องสัญญาณ"
 
 msgid "CHEATS"
 msgstr "โหมดโกง"
 
-#, fuzzy
 msgid "CHEATS_USED_NOTICE"
-msgstr "ยกเลิก"
+msgstr "มีการใช้สูตรโกงในการเล่นครั้งนี้"
 
 msgid "CHEAT_KEYS_ENABLED"
-msgstr "เปิดใช้งานโกงคีย์"
+msgstr "เปิดใช้งานปุ่มโกง"
 
 msgid "CHEAT_MENU"
 msgstr "เมนูของโหมดโกง"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
-msgstr ""
+msgstr "แสดง/ซ่อนกระบวนการของเซลล์"
 
-#, fuzzy
 msgid "CHEMICAL_EQUATION_SPEED_EXPLANATION"
-msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+msgstr ""
+"แถบนี้แสดงตัวคูณความเร็วของกระบวนการ\n"
+"ซึ่งขึ้นอยู่กับปริมาณของออร์แกเนลล์ที่ทำงานในกระบวนการนี้ และในบางกระบวนการก็ขึ้นอยู่กับสภาพแวดล้อมด้วย\n"
+"ตัวคูณความเร็วอาจถูกจำกัดในกระบวนการผลิต ATP หากกระบวนการอื่นๆ ผลิต ATP ได้เพียงพอแล้ว"
 
 msgid "CHEMOPLAST"
 msgstr "เคโมพลาสต์"
 
-#, fuzzy
 msgid "CHEMOPLAST_DESCRIPTION"
-msgstr "chemoplast เป็นโครงสร้างเมมเบรนสองชั้นที่มีโปรตีนที่สามารถเปลี่ยนไฮโดรเจนซัลไฟด์น้ำและก๊าซคาร์บอนไดออกไซด์เป็นน้ำตาลกลูโคสในกระบวนการที่เรียกว่า Hydrogen Sulfide Chemosynthesis อัตราการผลิตน้ำตาลกลูโคสที่มีความเข้มข้นของคาร์บอนไดออกไซด์"
+msgstr "คีโมพลาสต์ (chemoplast) เป็นโครงสร้างเยื่อหุ้มสองชั้นที่บรรจุโปรตีนซึ่งสามารถเปลี่ยน [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], [thrive:compound type=\"carbondioxide\"][/thrive:compound] ในรูปแก๊ส และน้ำ ให้กลายเป็น [thrive:compound type=\"glucose\"][/thrive:compound] ในกระบวนการที่เรียกว่า [b]การสังเคราะห์ทางเคมีด้วยไฮโดรเจนซัลไฟด์[/b] (hydrogen sulfide chemosynthesis) อัตราการผลิต [thrive:compound type=\"glucose\"][/thrive:compound] จะแปรผันตามความเข้มข้นของ [thrive:compound type=\"carbondioxide\"][/thrive:compound]"
 
-#, fuzzy
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
-msgstr "chemoplast เป็นโครงสร้างเมมเบรนสองชั้นที่มีโปรตีนที่สามารถเปลี่ยนไฮโดรเจนซัลไฟด์น้ำและก๊าซคาร์บอนไดออกไซด์เป็นน้ำตาลกลูโคสในกระบวนการที่เรียกว่า Hydrogen Sulfide Chemosynthesis อัตราการผลิตน้ำตาลกลูโคสที่มีความเข้มข้นของคาร์บอนไดออกไซด์"
+msgstr "เปลี่ยน [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] ให้เป็น [thrive:compound type=\"glucose\"][/thrive:compound] อัตราการเกิดปฏิกิริยาแปรผันตามความเข้มข้นของ [thrive:compound type=\"carbondioxide\"][/thrive:compound]"
 
-#, fuzzy
 msgid "CHEMORECEPTOR"
-msgstr "เคโมพลาสต์"
+msgstr "ตัวรับสารเคมี"
 
-#, fuzzy
 msgid "CHEMORECEPTOR_DESCRIPTION"
-msgstr "chemoplast เป็นโครงสร้างเมมเบรนสองชั้นที่มีโปรตีนที่สามารถเปลี่ยนไฮโดรเจนซัลไฟด์น้ำและก๊าซคาร์บอนไดออกไซด์เป็นน้ำตาลกลูโคสในกระบวนการที่เรียกว่า Hydrogen Sulfide Chemosynthesis อัตราการผลิตน้ำตาลกลูโคสที่มีความเข้มข้นของคาร์บอนไดออกไซด์"
+msgstr "เซลล์ \"มองเห็น\" ผ่านการรับรู้สารเคมี นั่นคือวิธีที่เซลล์ได้รับข้อมูลเกี่ยวกับสภาพแวดล้อม การเพิ่มออร์แกเนลล์นี้แสดงถึงวิวัฒนาการของการรับรู้สารเคมีที่ละเอียดอ่อนยิ่งขึ้น เนื่องจากผู้เล่นได้รับความสามารถในการมองเห็นแม้ในระยะเซลล์ สิ่งนี้จึงแสดงด้วยเส้นที่ชี้ออกไปนอกพื้นที่หน้าจอที่มองเห็นได้ ซึ่งแสดงถึงสารประกอบหรือสิ่งมีชีวิตที่อยู่ใกล้เคียงที่ผู้เล่นยังมองไม่เห็น"
 
-#, fuzzy
 msgid "CHEMORECEPTOR_MINIMUM_AMOUNT_TOOLTIP"
-msgstr "เคโมพลาสต์"
+msgstr ""
+"ตั้งค่าเกณฑ์การตรวจจับสารประกอบ ค่าต่ำอาจบ่งชี้ถึงร่องรอยของสารประกอบที่จางมาก ซึ่งอาจไม่มีปริมาณสารประกอบที่เป็นประโยชน์เลย\n"
+"ตัวอย่างกลยุทธ์หนึ่งคือการเพิ่มรัศมีการค้นหาและปริมาณขั้นต่ำ เพื่อตรวจจับกลุ่มสารประกอบที่มีความหนาแน่นใกล้เคียงที่สุด\n"
+"ตัวรับสารเคมีจะดมกลิ่นจุดแต่ละจุดใน \"กลุ่ม\" สารประกอบ ไม่ใช่ปริมาณรวมในกลุ่มสารประกอบเดียว"
 
-#, fuzzy
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
-msgstr "chemoplast เป็นโครงสร้างเมมเบรนสองชั้นที่มีโปรตีนที่สามารถเปลี่ยนไฮโดรเจนซัลไฟด์น้ำและก๊าซคาร์บอนไดออกไซด์เป็นน้ำตาลกลูโคสในกระบวนการที่เรียกว่า Hydrogen Sulfide Chemosynthesis อัตราการผลิตน้ำตาลกลูโคสที่มีความเข้มข้นของคาร์บอนไดออกไซด์"
+msgstr "ตัวรับสารเคมีช่วยให้สามารถตรวจจับสารประกอบและเซลล์จำเพาะได้จากระยะไกล เมื่อติดตั้งแล้ว สามารถปรับแต่งเพื่อเลือกประเภทหรือชนิดของสารประกอบ และสีของเส้นนำทางได้"
 
-#, fuzzy
 msgid "CHEMORECEPTOR_SEARCH_RADIUS_TOOLTIP"
-msgstr "chemoplast เป็นโครงสร้างเมมเบรนสองชั้นที่มีโปรตีนที่สามารถเปลี่ยนไฮโดรเจนซัลไฟด์น้ำและก๊าซคาร์บอนไดออกไซด์เป็นน้ำตาลกลูโคสในกระบวนการที่เรียกว่า Hydrogen Sulfide Chemosynthesis อัตราการผลิตน้ำตาลกลูโคสที่มีความเข้มข้นของคาร์บอนไดออกไซด์"
+msgstr ""
+"กำหนดระยะทางสูงสุดที่ตัวรับสารเคมีนี้จะมองหาสิ่งที่จะชี้ไป\n"
+"ตัวอย่างเช่น สามารถใช้เพื่อป้องกันไม่ให้เซลล์ที่เคลื่อนที่ช้าชี้ไปยังทรัพยากรที่อาจหมดไปแล้วเมื่อเซลล์ไปถึง โดยการลดระยะทางลง\n"
+"หรืออีกทางหนึ่ง การเพิ่มระยะทางสามารถชี้ไปยังสิ่งที่อยู่ไกลออกไปได้มาก แต่การเข้าถึงอาจทำได้ยากก่อนที่สิ่งเหล่านั้นจะหมดไป"
 
-#, fuzzy
 msgid "CHEMOSYNTHESIS"
-msgstr "การสังเคราะห์ด้วยเคมี"
+msgstr "การสังเคราะห์ทางเคมี"
 
 msgid "CHEMOSYNTHESIZING_PROTEINS"
-msgstr "คีโมสังเคราะห์โปรตีน"
+msgstr "โปรตีนที่สังเคราะห์ทางเคมี"
 
-#, fuzzy
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
-msgstr "โปรตีนสังเคราะห์ Chemosynthesizing เป็นกลุ่มโปรตีนขนาดเล็กในไซโทพลาซึมที่สามารถเปลี่ยนไฮโดรเจนซัลไฟด์น้ำและก๊าซคาร์บอนไดออกไซด์เป็นน้ำตาลกลูโคสในกระบวนการที่เรียกว่า Hydrogen Sulfide Chemosynthesis อัตราการผลิตน้ำตาลกลูโคสที่มีความเข้มข้นของคาร์บอนไดออกไซด์ เนื่องจากโปรตีนสังเคราะห์ทางเคมีจะแขวนลอยอยู่ในไซโตพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
+msgstr "โปรตีนสังเคราะห์ทางเคมี (chemosynthesizing proteins) เป็นกลุ่มโปรตีนขนาดเล็กในไซโทพลาซึมที่สามารถเปลี่ยน [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], [thrive:compound type=\"carbondioxide\"][/thrive:compound] ในรูปแก๊ส และน้ำ ให้กลายเป็น [thrive:compound type=\"glucose\"][/thrive:compound] ในกระบวนการที่เรียกว่า [b]การสังเคราะห์ทางเคมีด้วยไฮโดรเจนซัลไฟด์[/b] (hydrogen sulfide chemosynthesis) อัตราการผลิต [thrive:compound type=\"glucose\"][/thrive:compound] จะแปรผันตามความเข้มข้นของ [thrive:compound type=\"carbondioxide\"][/thrive:compound] เนื่องจากโปรตีนสังเคราะห์ทางเคมีแขวนลอยอยู่ในไซโทพลาซึมโดยตรง ของเหลวที่อยู่รอบๆ จึงทำหน้าที่ [b]ไกลโคไลซิส[/b] (glycolysis) ได้บางส่วน"
 
-#, fuzzy
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
-msgstr "โปรตีนสังเคราะห์ Chemosynthesizing เป็นกลุ่มโปรตีนขนาดเล็กในไซโทพลาซึมที่สามารถเปลี่ยนไฮโดรเจนซัลไฟด์น้ำและก๊าซคาร์บอนไดออกไซด์เป็นน้ำตาลกลูโคสในกระบวนการที่เรียกว่า Hydrogen Sulfide Chemosynthesis อัตราการผลิตน้ำตาลกลูโคสที่มีความเข้มข้นของคาร์บอนไดออกไซด์ เนื่องจากโปรตีนสังเคราะห์ทางเคมีจะแขวนลอยอยู่ในไซโตพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
+msgstr "เปลี่ยน [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] ให้เป็น [thrive:compound type=\"glucose\"][/thrive:compound] อัตราการเกิดปฏิกิริยาจะแปรผันตามความเข้มข้นของ [thrive:compound type=\"carbondioxide\"][/thrive:compound] นอกจากนี้ยังเปลี่ยน [thrive:compound type=\"glucose\"][/thrive:compound] ให้เป็น [thrive:compound type=\"atp\"][/thrive:compound] ด้วย"
 
 msgid "CHEMO_SYNTHESIS"
-msgstr "การสังเคราะห์ด้วยเคมี"
+msgstr "การสังเคราะห์ทางเคมี"
 
 msgid "CHITIN"
 msgstr "ไคติน"
 
-#, fuzzy
 msgid "CHITINASE"
-msgstr "ไคติน"
+msgstr "ไคติเนส"
 
-#, fuzzy
 msgid "CHITINASE_DESCRIPTION"
-msgstr "ภายในที่เหนอะหนะของเซลล์ ไซโทพลาสซึมเป็นส่วนผสมพื้นฐานของไอออนโปรตีนและสารอื่น ๆ ที่ละลายในน้ำที่เติมภายในเซลล์ หนึ่งในฟังก์ชั่นที่ทำคือไกลโคไลซิสการเปลี่ยนกลูโคสเป็นพลังงาน ATP สำหรับเซลล์ที่ขาดออร์แกเนลล์เพื่อให้มีการเผาผลาญขั้นสูงมากขึ้นนี่คือสิ่งที่พวกเขาต้องพึ่งพาเพื่อเป็นพลังงาน นอกจากนี้ยังใช้เพื่อเก็บโมเลกุลในเซลล์และเพื่อขยายขนาดของเซลล์"
+msgstr "ไคติเนสช่วยให้เซลล์ย่อยสลายเยื่อไคตินได้ การเพิ่มปริมาณแต่ละครั้งจะเพิ่มประสิทธิภาพขึ้น"
 
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
-msgstr ""
+msgstr "เยื่อหุ้มนี้มีผนัง ซึ่งหมายความว่ามันมีการป้องกันที่ดีกว่าต่อความเสียหายโดยรวม และโดยเฉพาะอย่างยิ่งต่อความเสียหายจากสารพิษ นอกจากนี้ยังใช้พลังงานน้อยกว่าในการรักษารูปทรง แต่ก็ช้ากว่าและไม่สามารถดูดซับทรัพยากรได้อย่างรวดเร็ว [b]ไคติเนสสามารถย่อยสลายผนังนี้ได้[/b] ทำให้มันอ่อนแอต่อการถูกผู้ล่ากลืนกิน"
 
 msgid "CHLOROPLAST"
 msgstr "คลอโรพลาสต์"
 
-#, fuzzy
 msgid "CHLOROPLAST_DESCRIPTION"
-msgstr "คลอโรพลาสต์เป็นโครงสร้างเมมเบรนสองชั้นที่มีรงควัตถุไวแสงซ้อนกันในถุงเยื่อ เป็นโปรคาริโอตที่ถูกดูดซึมเพื่อใช้โดยโฮสต์ยูคาริโอต เม็ดสีในคลอโรพลาสต์สามารถใช้พลังงานของแสงเพื่อผลิตน้ำตาลกลูโคสจากน้ำและก๊าซคาร์บอนไดออกไซด์ในกระบวนการที่เรียกว่าการสังเคราะห์ด้วยแสง เม็ดสีเหล่านี้เป็นสิ่งที่ให้สีที่โดดเด่น อัตราการผลิตน้ำตาลกลูโคสที่มีความเข้มข้นของคาร์บอนไดออกไซด์และความเข้มของแสง"
+msgstr "คลอโรพลาสต์ (chloroplast) เป็นโครงสร้างเยื่อหุ้มสองชั้นที่บรรจุรงควัตถุไวแสงซึ่งเรียงซ้อนกันอยู่ในถุงเยื่อหุ้ม มันเป็นโพรแคริโอตที่ถูกกลืนเข้ามาเพื่อให้เซลล์เจ้าบ้านแบบยูแคริโอตนำไปใช้งาน รงควัตถุในคลอโรพลาสต์สามารถใช้พลังงานจากแสงเพื่อผลิต [thrive:compound type=\"glucose\"][/thrive:compound] จาก [thrive:compound type=\"carbondioxide\"][/thrive:compound] ในรูปแก๊สและน้ำ ในกระบวนการที่เรียกว่า [b]การสังเคราะห์ด้วยแสง[/b] (photosynthesis) รงควัตถุเหล่านี้ยังเป็นสิ่งที่ทำให้มันมีสีสันอันเป็นเอกลักษณ์อีกด้วย อัตราการผลิต [thrive:compound type=\"glucose\"][/thrive:compound] จะแปรผันตามความเข้มข้นของ [thrive:compound type=\"carbondioxide\"][/thrive:compound] และความเข้มของ [thrive:compound type=\"sunlight\"][/thrive:compound]"
 
-#, fuzzy
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
-msgstr "คลอโรพลาสต์เป็นโครงสร้างเมมเบรนสองชั้นที่มีรงควัตถุไวแสงซ้อนกันในถุงเยื่อ เป็นโปรคาริโอตที่ถูกดูดซึมเพื่อใช้โดยโฮสต์ยูคาริโอต เม็ดสีในคลอโรพลาสต์สามารถใช้พลังงานของแสงเพื่อผลิตน้ำตาลกลูโคสจากน้ำและก๊าซคาร์บอนไดออกไซด์ในกระบวนการที่เรียกว่าการสังเคราะห์ด้วยแสง เม็ดสีเหล่านี้เป็นสิ่งที่ให้สีที่โดดเด่น อัตราการผลิตน้ำตาลกลูโคสที่มีความเข้มข้นของคาร์บอนไดออกไซด์และความเข้มของแสง"
+msgstr "ผลิต [thrive:compound type=\"glucose\"][/thrive:compound] อัตราการผลิตจะแปรผันตามความเข้มข้นของ [thrive:compound type=\"carbondioxide\"][/thrive:compound] และความเข้มของ [thrive:compound type=\"sunlight\"][/thrive:compound]"
 
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
-msgstr ""
+msgstr "ชื่อไฟล์ที่เลือก ({0}) มีอยู่แล้ว ต้องการเขียนทับหรือไม่?"
 
 msgid "CHROMATIC_ABERRATION"
 msgstr "ความผิดปกติของสี:"
 
-#, fuzzy
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
-msgstr "ผลิต [เจริญเติบโต:สารประกอบ]กลูโคส[/เจริญเติบโต:สารประกอบ] อัตรามาตราส่วนด้วยความเข้มข้นของ [การเจริญเติบโต:สารประกอบ]คาร์บอนไดออกไซด์[/การเจริญเติบโต:สารประกอบ] และความเข้มของ [การเจริญเติบโต:สารประกอบ]แสงแดด[/การเจริญเติบโต:สารประกอบ]"
+msgstr "ผลิต [thrive:compound type=\"glucose\"][/thrive:compound] อัตราการผลิตจะแปรผันตามความเข้มข้นของ [thrive:compound type=\"carbondioxide\"][/thrive:compound] และความเข้มของ [thrive:compound type=\"sunlight\"][/thrive:compound]"
 
 msgid "CHUNK_CELL_CORPSE_PART"
-msgstr ""
+msgstr "ชิ้นส่วนศพเซลล์"
 
-#, fuzzy
 msgid "CHUNK_FOOD_SOURCE"
-msgstr "สารประกอบของเมฆ"
+msgstr "การบริโภค {0}"
 
 msgid "CILIA"
 msgstr "ซิเลีย"
 
-#, fuzzy
 msgid "CILIA_DESCRIPTION"
-msgstr "ภายในที่เหนอะหนะของเซลล์ ไซโทพลาสซึมเป็นส่วนผสมพื้นฐานของไอออนโปรตีนและสารอื่น ๆ ที่ละลายในน้ำที่เติมภายในเซลล์ หนึ่งในฟังก์ชั่นที่ทำคือไกลโคไลซิสการเปลี่ยนกลูโคสเป็นพลังงาน ATP สำหรับเซลล์ที่ขาดออร์แกเนลล์เพื่อให้มีการเผาผลาญขั้นสูงมากขึ้นนี่คือสิ่งที่พวกเขาต้องพึ่งพาเพื่อเป็นพลังงาน นอกจากนี้ยังใช้เพื่อเก็บโมเลกุลในเซลล์และเพื่อขยายขนาดของเซลล์"
+msgstr "ขนซิเลียมีลักษณะคล้ายกับแฟลเจลลา แต่แทนที่จะให้แรงผลักในทิศทางใดทิศทางหนึ่ง พวกมันกลับให้แรงหมุนเพื่อช่วยให้เซลล์หมุนได้"
 
-#, fuzzy
 msgid "CILIA_PROCESSES_DESCRIPTION"
-msgstr "เปลี่ยน [thrive:compound]glucose[/thrive:compound] เป็น [thrive:compound]atp[/thrive:compound]"
+msgstr "เพิ่มความเร็วในการหมุนของเซลล์ขนาดใหญ่"
 
-#, fuzzy
 msgid "CITY_SHORT_STATISTICS"
-msgstr "สถิติ"
+msgstr "ประชากร: {0} อาหาร: {1} วิทยาศาสตร์: {2}"
 
 msgid "CLEAN_UP_OLD_SAVES"
-msgstr ""
+msgstr "ล้างข้อมูลการบันทึกเก่า"
 
 msgid "CLEAR_CACHE"
-msgstr ""
+msgstr "ล้างแคช"
 
 msgid "CLICK_TO_SELECT"
-msgstr ""
+msgstr "เลือก"
 
 #, fuzzy
 msgid "CLICK_TO_SET_CELL_TYPE"
 msgstr "สร้างจุลินทรีย์ใหม่"
 
 msgid "CLIMATE_INSTABILITY"
-msgstr ""
+msgstr "ความไม่เสถียรของสภาพภูมิอากาศ"
 
-#, fuzzy
 msgid "CLIMATE_INSTABILITY_EXPLANATION"
-msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+msgstr "(มีอิทธิพลต่อความถี่และความรุนแรงของเหตุการณ์เฉพาะพื้นที่ เช่น การเกิดธารน้ำแข็งทั่วโลก)"
 
 msgid "CLIMATE_STABILITY_AVERAGE"
-msgstr ""
+msgstr "เฉลี่ย"
 
 msgid "CLIMATE_STABILITY_STABLE"
-msgstr ""
+msgstr "เสถียร"
 
 msgid "CLIMATE_STABILITY_UNSTABLE"
-msgstr ""
+msgstr "ไม่เสถียร"
 
 msgid "CLOSE"
 msgstr "ปิด"
@@ -946,372 +951,361 @@ msgid "CLOSE_OPTIONS"
 msgstr "ปิดตัวเลือกไหม"
 
 msgid "CLOSTRIDIAL_FERMENTATION"
-msgstr ""
+msgstr "การหมักคลอสทริเดียม"
 
-#, fuzzy
 msgid "CLOUD_BENCHMARK"
-msgstr "สร้างจุลินทรีย์ฟรี"
+msgstr "เกณฑ์มาตรฐานคลาวด์"
 
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "ตัวหารความละเอียดของคลาวด์:"
 
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
-msgstr ""
-"การจำลองคลาวด์ขั้นต่ำ\n"
-"ช่วงเวลา:"
+msgstr "ช่วงเวลาขั้นต่ำสำหรับการจำลองระบบคลาวด์:"
 
-#, fuzzy
 msgid "CLOUD_SIMULATION_MULTIPLIER"
-msgstr "ต้นทุน ออสโมซิส"
+msgstr "ตัวคูณซิม:"
 
 msgid "COASTAL"
 msgstr "ชายฝั่ง"
 
 msgid "COLLISION_SHAPE"
-msgstr ""
+msgstr "แสดงรูปทรงการดีบักทางฟิสิกส์"
 
-#, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
-msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+msgstr "แท็บนี้อนุญาตให้ตั้งค่าลำดับการเจริญเติบโตของเซลล์ในกลุ่ม โดยเซลล์แรกในลำดับจะเป็นเซลล์ราก (หรือเซลล์หน่อ) คุณสามารถใช้การตั้งค่านี้เพื่อจัดลำดับความสำคัญของการเจริญเติบโตของเซลล์ที่สำคัญกว่า หรือเพื่อให้แน่ใจว่าการผลิตและการบริโภคของกลุ่มมีความสมดุลอย่างเหมาะสม"
 
-#, fuzzy
 msgid "COLONY_ROTATION_INCREASE"
-msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+msgstr "การหมุนเวียนอาณานิคม"
 
-#, fuzzy
 msgid "COLONY_SPEED_INCREASE"
-msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+msgstr "ความเร็วของอาณานิคม"
 
 msgid "COLOUR"
-msgstr ""
+msgstr "สี"
 
 msgid "COLOURBLIND_CORRECTION"
-msgstr "การแก้ไขคนตาบอดสี:"
+msgstr "การแก้ไขสำหรับผู้ที่มีภาวะตาบอดสี:"
 
 msgid "COLOUR_PICKER_ADD_PRESET"
-msgstr ""
+msgstr "เพิ่มสีปัจจุบันเป็นค่าที่ตั้งไว้ล่วงหน้า"
 
 msgid "COLOUR_PICKER_A_TOOLTIP"
-msgstr ""
+msgstr "ค่าช่องอัลฟาของสี"
 
 msgid "COLOUR_PICKER_B_TOOLTIP"
-msgstr ""
+msgstr "ค่าช่องสีน้ำเงินของสี"
 
 msgid "COLOUR_PICKER_G_TOOLTIP"
-msgstr ""
+msgstr "ค่าช่องสีเขียวของสี"
 
 msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
 msgstr ""
+"สลับโหมด HSV (Hue, Saturation, Value) เปิดหรือปิด\n"
+"ไม่สามารถเปิดใช้งานได้เมื่ออยู่ในโหมด RAW"
 
 msgid "COLOUR_PICKER_H_TOOLTIP"
-msgstr ""
+msgstr "ค่าสี สัดส่วนของสี"
 
 msgid "COLOUR_PICKER_PICK_COLOUR"
-msgstr ""
+msgstr "เลือกสีจากหน้าต่างเกม"
 
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
 msgstr ""
+"สี: {0}\n"
+"เมาส์ซ้าย: ใช้ค่าที่ตั้งไว้ล่วงหน้านี้\n"
+"เมาส์ขวา: ลบค่าที่ตั้งไว้ล่วงหน้านี้"
 
 msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
 msgstr ""
+"เปิดหรือปิดโหมด Raw\n"
+"ในโหมด Raw คุณสามารถตั้งค่าสี R, G, B\n"
+"ให้เกิน 1.0 ได้\n"
+"ไม่สามารถเปิดใช้งานในโหมด HSV ได้"
 
 msgid "COLOUR_PICKER_R_TOOLTIP"
-msgstr ""
+msgstr "ค่าช่องสีแดงของสี"
 
 msgid "COLOUR_PICKER_S_TOOLTIP"
-msgstr ""
+msgstr "ค่าความอิ่มตัว คือปริมาณสีเทาในสีนั้นๆ"
 
 msgid "COLOUR_PICKER_V_TOOLTIP"
-msgstr ""
+msgstr "ค่าความสว่าง (Value) ค่าความสว่างหรือความเข้มของสี"
 
 msgid "COMMAND_INPUT_LINE_EDIT"
-msgstr ""
+msgstr "แทรกคำสั่ง"
 
-#, fuzzy
 msgid "COMMON_ABILITIES"
-msgstr "ความสามารถ"
+msgstr "ความสามารถทั่วไป"
 
 msgid "COMMON_EDITING_AND_STRATEGY"
-msgstr ""
+msgstr "ขั้นตอนการแก้ไขและวางกลยุทธ์ทั่วไป"
 
 msgid "COMMUNITY_FORUM"
-msgstr ""
+msgstr "ฟอรัมชุมชน"
 
-#, fuzzy
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
-msgstr "ดำเนินการต่อ"
+msgstr "เข้าร่วมชุมชน Thrive ได้ที่ฟอรัมชุมชนของเรา"
 
 msgid "COMMUNITY_WIKI"
-msgstr ""
+msgstr "วิกิชุมชน"
 
-#, fuzzy
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
-msgstr "ดำเนินการต่อ"
+msgstr "เยี่ยมชมวิกิชุมชนของเรา"
 
-#, fuzzy
 msgid "COMPILED_AT_COLON"
-msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+msgstr "สร้างที่:"
 
-#, fuzzy
 msgid "COMPLETE_ACTION"
-msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+msgstr "เสร็จ"
 
 msgid "COMPOUNDS"
-msgstr ""
+msgstr "สารประกอบ"
 
-#, fuzzy
 msgid "COMPOUNDS_AT_EQUILIBRIUM"
-msgstr "สารประกอบของเมฆ"
+msgstr "สมดุลที่จุดสมดุล"
 
-#, fuzzy
 msgid "COMPOUNDS_AT_MAX_SPEED"
-msgstr "สารประกอบของเมฆ"
+msgstr "การทรงตัวที่ความเร็วสูงสุด"
 
-#, fuzzy
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
-msgstr "ดำเนินการต่อ"
+msgstr "แสดง/ซ่อนสารประกอบ"
 
 msgid "COMPOUNDS_COLON"
-msgstr ""
+msgstr "สารประกอบ:"
 
 msgid "COMPOUND_BALANCE_FILL_TIME"
-msgstr ""
+msgstr "(เติมพื้นที่จัดเก็บใน {0} วินาที)"
 
 msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
-msgstr ""
+msgstr "(เติมพื้นที่จัดเก็บใน {0} วินาที ซึ่งนานกว่าเวลากลางวันที่ใช้งานได้ {1} วินาที)"
 
-#, fuzzy
 msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
-msgstr "ดำเนินการต่อ"
+msgstr ""
+"โหมดในการคำนวณสมดุลของสารประกอบ เช่น ความเร็วสูงสุดจะคำนวณโดยสมมติว่ากระบวนการทั้งหมดทำงานด้วยความเร็วสูงสุด\n"
+"ในขณะที่สมดุลจะคำนวณโดยที่กระบวนการทำงานด้วยความเร็วที่เหมาะสมเพื่อให้สมดุลของ ATP ไม่ติดลบ"
 
 msgid "COMPOUND_BALANCE_TITLE"
-msgstr ""
+msgstr "เครื่องชั่งแบบผสม"
 
-#, fuzzy
 msgid "COMPOUND_BALANCE_TOOLTIP"
-msgstr "ดำเนินการต่อ"
+msgstr ""
+"ส่วนนี้แสดงสมดุลโดยรวม (การผลิต - การบริโภค) ของสารประกอบแต่ละชนิด\n"
+"ตัวอย่างเช่น ในการสร้างเซลล์พืช สมดุลของกลูโคสจะต้องเป็นบวกค่อนข้างมาก"
 
 msgid "COMPOUND_CLOUDS"
-msgstr "สารประกอบของเมฆ"
+msgstr "เมฆผสม"
 
-#, fuzzy
 msgid "COMPOUND_CLOUD_BENCHMARK"
-msgstr "สารประกอบของเมฆ"
+msgstr "เกณฑ์มาตรฐานเมฆแบบผสม"
 
-#, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY"
-msgstr "สารประกอบของเมฆ"
+msgstr "ความหนาแน่นของเมฆผสม"
 
-#, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
-msgstr "สารประกอบของเมฆ"
+msgstr "(ความหนาแน่นของเมฆผสมในสิ่งแวดล้อม)"
 
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
-msgstr ""
+msgstr "ความเข้มข้น {0} ลดลงโดย {1}"
 
-#, fuzzy
 msgid "COMPOUND_FOOD_SOURCE"
-msgstr "สารประกอบของเมฆ"
+msgstr "การบริโภค {0}"
 
-#, fuzzy
 msgid "COMPOUND_HANDLE_KEEP"
-msgstr "ดำเนินการต่อ"
+msgstr "เก็บทั้งหมด"
 
-#, fuzzy
 msgid "COMPOUND_HANDLE_SPLIT_SISTER"
-msgstr "ดำเนินการต่อ"
+msgstr "แยกตัวออกจากเซลล์น้องสาว"
 
-#, fuzzy
 msgid "COMPOUND_HANDLE_TOP_UP"
-msgstr "ดำเนินการต่อ"
+msgstr "เติมทรัพยากรให้ครบจำนวนเริ่มต้นเสมอ"
 
-#, fuzzy
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
-msgstr "สารประกอบของเมฆ"
+msgstr "เติมทรัพยากรใหม่เมื่ออัปเดตแพตช์"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_AVERAGE"
-msgstr "ดำเนินการต่อ"
+msgstr "เฉลี่ย"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_HIGH"
-msgstr "สารประกอบของเมฆ"
+msgstr "สูง"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_LOW"
-msgstr "สารประกอบของเมฆ"
+msgstr "ต่ำ"
 
 msgid "COMPOUND_LEVEL_VERY_HIGH"
-msgstr ""
+msgstr "สูงมาก"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_VERY_LOW"
-msgstr "ดำเนินการต่อ"
+msgstr "ต่ำมาก"
 
-#, fuzzy
 msgid "COMPOUND_REPRODUCTION_SOURCE"
-msgstr "สารประกอบของเมฆ"
+msgstr "การบริโภค {0}"
 
-#, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
-msgstr "สารประกอบของเมฆ"
+msgstr "(ไม่เพียงพอสำหรับตลอดทั้งคืนซึ่งยาว {0} วินาที)"
 
 msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
-msgstr ""
+msgstr "สามารถสร้าง {1} [thrive:compound type=\"{0}\"][/thrive:compound] ได้เฉพาะในเวลากลางวันเท่านั้น แต่เพื่อความอยู่รอดในเวลากลางคืน จำเป็นต้องมี {2}"
 
-#, fuzzy
 msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
-msgstr "สารประกอบของเมฆ"
+msgstr "พื้นที่จัดเก็บไม่เพียงพอสำหรับ [thrive:compound type=\"{0}\"][/thrive:compound] เนื่องจากกลางคืนมีระยะเวลา {2} วินาที แต่พื้นที่จัดเก็บสามารถรองรับสารประกอบได้เพียง {1} หน่วยเท่านั้น"
 
 msgid "COMPOUND_STORAGE_STATS_TITLE"
-msgstr ""
+msgstr "ความจุในการจัดเก็บ"
 
-#, fuzzy
 msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
-msgstr "ดำเนินการต่อ"
+msgstr ""
+"ส่วนนี้แสดงระยะเวลาที่เซลล์ใช้สารประกอบแต่ละประเภทจนหมดเมื่อเริ่มต้นจากพื้นที่จัดเก็บเต็ม\n"
+"ตัวเลขเหล่านี้คำนวณเสมือนเป็นเวลากลางคืนเสมอ และสามารถใช้ตรวจสอบว่าเซลล์มีพื้นที่จัดเก็บเพียงพอหรือไม่\n"
+"เพื่อให้อยู่รอดได้ตลอดทั้งคืน การปิดค่าใช้จ่ายในการเคลื่อนที่ด้วยช่องทำเครื่องหมายจะแสดงตัวเลขขั้นต่ำที่ต้องใช้ในการอยู่รอด\n"
+"เมื่ออยู่นิ่งตลอดทั้งคืนเพื่อประหยัดพลังงาน"
 
-#, fuzzy
 msgid "COMPOUND_TO_FIND"
-msgstr "สารประกอบของเมฆ"
+msgstr "สารประกอบที่ต้องค้นหา:"
 
 msgid "CONCEPT_ART"
-msgstr ""
+msgstr "ภาพร่างแนวคิด"
 
 msgid "CONFIG"
-msgstr ""
+msgstr "การกำหนดค่า"
 
 msgid "CONFIRM_CAPITAL"
-msgstr ""
+msgstr "ยืนยัน"
 
-#, fuzzy
 msgid "CONFIRM_DELETE"
-msgstr "ปกติ"
+msgstr "ยืนยันการลบ"
 
 msgid "CONFIRM_EXIT"
-msgstr ""
+msgstr "ยืนยันการออก"
 
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
-msgstr ""
+msgstr "ยืนยันการเขียนทับ"
 
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE"
-msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+msgstr "เลื่อนไปสู่ขั้นการยกระดับ?"
 
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE_EXPLANATION"
-msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+msgstr ""
+"ตอนนี้คุณสามารถเลื่อนระดับและไปถึงด่านการเลื่อนระดับได้แล้วโดยการเปิดใช้งานประตูการเลื่อนระดับ\n"
+"\n"
+"การทำเช่นนี้จะปลดล็อกพลังไร้ขีดจำกัดในรูปแบบของเครื่องมือเทพใหม่ๆ ที่คุณสามารถใช้ในเซฟนี้ได้\n"
+"\n"
+"การเลื่อนระดับยังหมายความว่าคุณเล่นเกมจบแล้ว แต่คุณจะยังสามารถเล่นต่อได้ เลื่อนระดับไหม?"
 
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE"
-msgstr ""
+msgstr "ย้ายไปที่เวทีอุตสาหกรรม?"
 
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE_EXPLANATION"
-msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+msgstr "เมื่อคุณสร้างโรงงาน คุณจะก้าวไปสู่ขั้นอุตสาหกรรม ต้องการดำเนินการต่อในขั้นตอนถัดไปหรือไม่?"
 
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE"
-msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+msgstr "ย้ายไปเวทีอวกาศ?"
 
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
-msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+msgstr ""
+"ตอนนี้คุณสามารถก้าวไปสู่ขั้นอวกาศได้แล้วโดยการปล่อยยานอวกาศลำแรกของคุณ\n"
+"\n"
+"ในเวอร์ชันต้นแบบตอนนี้ คุณยังไม่สามารถกลับไปยังดาวเคราะห์ของคุณได้ แต่แผนในอนาคตคือการอนุญาตให้ซูมเข้าและออกจากดาวเคราะห์ได้อย่างราบรื่นในขั้นอวกาศ\n"
+"\n"
+"การยกเลิกการปล่อยยานจะทำลายยานอวกาศ คุณต้องการปล่อยยานอวกาศหรือไม่?"
 
-#, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
-msgstr "ดำเนินการต่อ"
+msgstr "เข้าเกมด้วยการตั้งค่าเหล่านี้"
 
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
-msgstr ""
+msgstr "การตั้งค่าบางอย่างไม่ถูกต้อง"
 
-#, fuzzy
 msgid "CONFIRM_RESET_ACHIEVEMENTS"
-msgstr "ปกติ"
+msgstr "ยืนยันการรีเซ็ตความสำเร็จหรือไม่?"
 
-#, fuzzy
 msgid "CONFIRM_RESET_ACHIEVEMENTS_DESCRIPTION"
-msgstr "Nitrogenase เป็นโปรตีนที่สามารถใช้ก๊าซไนโตรเจนและพลังงานของเซลล์ในรูปแบบของ ATP เพื่อผลิตแอมโมเนียซึ่งเป็นสารอาหารที่สำคัญในการเจริญเติบโตของเซลล์ นี่คือกระบวนการที่เรียกว่าการตรึงไนโตรเจนแบบไม่ใช้ออกซิเจน เนื่องจากไนโตรเจนเนสถูกแขวนอยู่ในไซโทพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
+msgstr "คุณแน่ใจแล้วหรือว่าต้องการรีเซ็ตความสำเร็จและสถิติที่เกี่ยวข้องทั้งหมด? การดำเนินการนี้ไม่สามารถย้อนกลับได้ และคุณจะต้องเริ่มต้นใหม่เพื่อรับความสำเร็จทั้งหมด โดยความคืบหน้าปัจจุบันทั้งหมดจะถูกรีเซ็ต"
 
 msgid "CONSTRUCTION_UNIT_NAME"
-msgstr ""
+msgstr "หน่วย: {0}"
 
 msgid "CONTENT_UPLOADED_FROM"
-msgstr ""
+msgstr "เนื้อหาการอบรมเชิงปฏิบัติการจะถูกอัปโหลดจากโฟลเดอร์: {0}"
 
-#, fuzzy
 msgid "CONTINUE"
-msgstr "บันทึกและดำเนินการต่อ"
+msgstr "ดำเนินการต่อ"
 
-#, fuzzy
 msgid "CONTINUE_AS_SPECIES"
-msgstr "สูญพันธุ์ไปแล้วใน {0}"
+msgstr "[center]แต่เกมยังไม่จบ คุณสามารถ [b]เล่นต่อ[/b] โดยเปลี่ยนไปเล่นเป็นเผ่าพันธุ์ {0} ที่มีประชากร {1} ได้[/center]"
 
 msgid "CONTINUE_THRIVING"
-msgstr ""
+msgstr "Thrivingต่อไป"
 
 msgid "CONTINUE_TO_PROTOTYPES"
 msgstr ""
+"[b]คุณมาถึงส่วน \"สมบูรณ์\" ของเกม Thrive แล้ว[/b]\n"
+"\n"
+"หากคุณต้องการ คุณสามารถเล่นต่อใน [b]ต้นแบบในขั้นต่อๆ ไป[/b] ที่รวมอยู่ในเกมได้\n"
+"\n"
+"ต้นแบบเหล่านี้อาจยังไม่สมบูรณ์ ใช้กราฟิกแบบชั่วคราว และโดยทั่วไปแล้วยังไม่เรียบร้อยนัก ต้นแบบเหล่านี้รวมอยู่ด้วยเพื่อแสดงทิศทางในอนาคตของเกมและวิสัยทัศน์โดยรวมของเราเกี่ยวกับวิธีการเชื่อมต่อแต่ละด่าน\n"
+"\n"
+"หากคุณเล่นต่อ ในต้นแบบส่วนใหญ่ [b]คุณจะไม่สามารถบันทึก[/b] หรือย้อนกลับไปยังด่านก่อนหน้าได้ หากคุณต้องการกลับไปยัง [i]ด่านนี้[/i] โปรด [b]บันทึกตอนนี้[/b] ก่อนดำเนินการต่อ\n"
+"\n"
+"การรองรับคอนโทรลเลอร์ก็ยังไม่สมบูรณ์ในต้นแบบเช่นกัน หากคุณเลือกที่จะเล่นต่อ โปรดเข้าใจว่าด่านต่อๆ ไปเป็นเพียงต้นแบบ และโปรดอย่าบ่นเกี่ยวกับความไม่สมบูรณ์ของมัน"
 
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
-msgstr ""
+msgstr "ดำเนินการสร้างต้นแบบต่อไปหรือไม่?"
 
 msgid "CONTROLLER_ANY_DEVICE"
-msgstr ""
+msgstr "อุปกรณ์ใดๆ"
 
 msgid "CONTROLLER_AXIS_L2"
 msgstr ""
 
 msgid "CONTROLLER_AXIS_LEFT_TRIGGER"
-msgstr ""
+msgstr "ซ้าย Trigger"
 
 msgid "CONTROLLER_AXIS_LEFT_X"
-msgstr ""
+msgstr "จอยสติ๊กซ้ายแนวนอน"
 
 msgid "CONTROLLER_AXIS_LEFT_Y"
-msgstr ""
+msgstr "จอยสติ๊กซ้ายแนวตั้ง"
 
-#, fuzzy
 msgid "CONTROLLER_AXIS_NEGATIVE_DIRECTION"
-msgstr "Nitrogen Fixing Plastid เป็นโปรตีนที่สามารถใช้ก๊าซไนโตรเจนและออกซิเจนและพลังงานของเซลล์ในรูปแบบของ ATP เพื่อผลิตแอมโมเนียซึ่งเป็นสารอาหารที่สำคัญในการเจริญเติบโตของเซลล์ นี่คือกระบวนการที่เรียกว่าการตรึงไนโตรเจนแบบแอโรบิค"
+msgstr "ทิศทางฝั่งลบ"
 
-#, fuzzy
 msgid "CONTROLLER_AXIS_POSITIVE_DIRECTION"
-msgstr "Nitrogen Fixing Plastid เป็นโปรตีนที่สามารถใช้ก๊าซไนโตรเจนและออกซิเจนและพลังงานของเซลล์ในรูปแบบของ ATP เพื่อผลิตแอมโมเนียซึ่งเป็นสารอาหารที่สำคัญในการเจริญเติบโตของเซลล์ นี่คือกระบวนการที่เรียกว่าการตรึงไนโตรเจนแบบแอโรบิค"
+msgstr "ทิศทางฝั่งบวก"
 
 msgid "CONTROLLER_AXIS_R2"
 msgstr ""
 
 msgid "CONTROLLER_AXIS_RIGHT_TRIGGER"
-msgstr ""
+msgstr "ขวา Trigger"
 
 msgid "CONTROLLER_AXIS_RIGHT_X"
-msgstr ""
+msgstr "จอยสติ๊กขวาแนวนอน"
 
 msgid "CONTROLLER_AXIS_RIGHT_Y"
-msgstr ""
+msgstr "จอยสติ๊กขวาแนวตั้ง"
 
 msgid "CONTROLLER_AXIS_VISUALIZERS"
-msgstr ""
+msgstr "เครื่องมือแสดงภาพแกนควบคุม:"
 
 msgid "CONTROLLER_BUTTON_DPAD_DOWN"
-msgstr ""
+msgstr "ปุ่มทิศทางลง"
 
 msgid "CONTROLLER_BUTTON_DPAD_LEFT"
-msgstr ""
+msgstr "ปุ่มควบคุมทิศทางซ้าย"
 
 msgid "CONTROLLER_BUTTON_DPAD_RIGHT"
-msgstr ""
+msgstr "ปุ่มควบคุมทิศทางด้านขวา"
 
 msgid "CONTROLLER_BUTTON_DPAD_UP"
-msgstr ""
+msgstr "ปุ่มทิศทางขึ้น"
 
 msgid "CONTROLLER_BUTTON_LEFT_SHOULDER"
-msgstr ""
+msgstr "ไหล่ซ้าย"
 
 msgid "CONTROLLER_BUTTON_LEFT_STICK"
-msgstr ""
+msgstr "คลิกที่จอยสติ๊กซ้าย"
 
 msgid "CONTROLLER_BUTTON_MISC1"
-msgstr ""
+msgstr "ปุ่มอื่นๆ บนตัวควบคุม"
 
 msgid "CONTROLLER_BUTTON_PADDLE1"
 msgstr ""
@@ -1326,16 +1320,16 @@ msgid "CONTROLLER_BUTTON_PADDLE4"
 msgstr ""
 
 msgid "CONTROLLER_BUTTON_PS3_SELECT"
-msgstr ""
+msgstr "เลือก"
 
 msgid "CONTROLLER_BUTTON_PS3_START"
-msgstr ""
+msgstr "เริ่ม"
 
 msgid "CONTROLLER_BUTTON_PS_CIRCLE"
-msgstr ""
+msgstr "วงกลม"
 
 msgid "CONTROLLER_BUTTON_PS_CROSS"
-msgstr ""
+msgstr "ข้าม"
 
 msgid "CONTROLLER_BUTTON_PS_L1"
 msgstr ""
@@ -1344,7 +1338,7 @@ msgid "CONTROLLER_BUTTON_PS_L3"
 msgstr ""
 
 msgid "CONTROLLER_BUTTON_PS_OPTIONS"
-msgstr ""
+msgstr "ตัวเลือก"
 
 msgid "CONTROLLER_BUTTON_PS_R1"
 msgstr ""
@@ -1353,28 +1347,28 @@ msgid "CONTROLLER_BUTTON_PS_R3"
 msgstr ""
 
 msgid "CONTROLLER_BUTTON_PS_SHARE"
-msgstr ""
+msgstr "แบ่งปัน"
 
 msgid "CONTROLLER_BUTTON_PS_SONY_BUTTON"
-msgstr ""
+msgstr "ปุ่มโลโก้"
 
 msgid "CONTROLLER_BUTTON_PS_SQUARE"
-msgstr ""
+msgstr "สี่เหลี่ยม"
 
 msgid "CONTROLLER_BUTTON_PS_TRIANGLE"
-msgstr ""
+msgstr "สามเหลี่ยม"
 
 msgid "CONTROLLER_BUTTON_RIGHT_SHOULDER"
-msgstr ""
+msgstr "ไหล่ขวา"
 
 msgid "CONTROLLER_BUTTON_RIGHT_STICK"
-msgstr ""
+msgstr "คลิกปุ่มขวา"
 
 msgid "CONTROLLER_BUTTON_TOUCH_PAD"
-msgstr ""
+msgstr "ทัชแพด"
 
 msgid "CONTROLLER_BUTTON_UNKNOWN"
-msgstr ""
+msgstr "ปุ่มที่ไม่รู้จัก"
 
 msgid "CONTROLLER_BUTTON_XBOX_A"
 msgstr ""
@@ -1383,13 +1377,13 @@ msgid "CONTROLLER_BUTTON_XBOX_B"
 msgstr ""
 
 msgid "CONTROLLER_BUTTON_XBOX_BACK"
-msgstr ""
+msgstr "กลับ"
 
 msgid "CONTROLLER_BUTTON_XBOX_GUIDE"
-msgstr ""
+msgstr "แนะนำ"
 
 msgid "CONTROLLER_BUTTON_XBOX_START"
-msgstr ""
+msgstr "เริ่ม"
 
 msgid "CONTROLLER_BUTTON_XBOX_X"
 msgstr ""
@@ -1398,11 +1392,12 @@ msgid "CONTROLLER_BUTTON_XBOX_Y"
 msgstr ""
 
 msgid "CONTROLLER_DEADZONES"
-msgstr ""
+msgstr "Deadzone ของคอนโทรลเลอร์"
 
-#, fuzzy
 msgid "CONTROLLER_DEADZONE_CALIBRATION_EXPLANATION"
-msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+msgstr ""
+"เครื่องมือนี้ช่วยให้สามารถกำหนดค่า Deadzone ของแกนควบคุมได้ ขนาดของ Deadzone จะควบคุมว่าต้องขยับก้านควบคุม (หรือปุ่มอนาล็อก) มากแค่ไหนก่อนที่การเคลื่อนไหวนั้นจะถูกตรวจจับว่าเป็นอินพุต\n"
+"ก่อนเริ่มการปรับเทียบ โปรดขยับก้านควบคุมทั้งหมดไปมาและปล่อย และกดและปล่อยปุ่มอนาล็อกใดๆ (เช่น ปุ่มทริกเกอร์) บนตัวควบคุมของคุณด้วย"
 
 msgid "CONTROLLER_DEADZONE_COLON"
 msgstr ""
