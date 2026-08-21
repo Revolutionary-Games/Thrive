@@ -14,13 +14,13 @@ public sealed partial class AtmosphereConfig : Resource
     ///   Radius of the planet's surface. Rays pointing below the resulting horizon hit the ground.
     /// </summary>
     [Export]
-    public float GroundRadius = 2000.0f;
+    public float GroundRadius = 995.0f;
 
     /// <summary>
     ///   Radius at which the atmosphere ends. This must be greater than <see cref="GroundRadius"/>.
     /// </summary>
     [Export]
-    public float TopRadius = 2100.0f;
+    public float TopRadius = 1050.0f;
 
     /// <summary>
     ///   Altitude in world units over which the air thins out by a factor of e. The atmosphere wants to be several
