@@ -34,6 +34,9 @@ tonemap_agx_white = 6.0
 
 [sub_resource type="Resource" id="Resource_4ceks"]
 script = ExtResource("2_s4i58")
+PlanetRadius = 1000.0
+CloudInnerHeight = 10.0
+CloudOuterHeight = 50.0
 
 [sub_resource type="CompositorEffect" id="CompositorEffect_kf5fw"]
 resource_local_to_scene = false

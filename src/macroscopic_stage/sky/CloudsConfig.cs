@@ -11,13 +11,13 @@ public sealed partial class CloudsConfig : Resource
     public Vector3 PlanetCenter = Vector3.Zero;
 
     [Export]
-    public float PlanetRadius = 2000.0f;
+    public float PlanetRadius = 1000.0f;
 
     [Export]
-    public float CloudInnerHeight = 100.0f;
+    public float CloudInnerHeight = 10.0f;
 
     [Export]
-    public float CloudOuterHeight = 200.0f;
+    public float CloudOuterHeight = 50.0f;
 
     [Export]
     public int Seed = 1234;
