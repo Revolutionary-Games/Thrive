@@ -166,6 +166,126 @@
         "Name": "MICROBE_STAGE",
         "Assets": [
           {
+            "ResourcePath": "res://assets/models/microbe_terrain/BariteTerrainChunk1.tscn",
+            "MeshNodePath": "barite1",
+            "Type": "ModelScene"
+          },
+          {
+            "ResourcePath": "res://assets/models/microbe_terrain/BariteTerrainChunk2.tscn",
+            "MeshNodePath": "barite2",
+            "Type": "ModelScene"
+          },
+          {
+            "ResourcePath": "res://assets/models/microbe_terrain/BasaltTerrainChunk1.tscn",
+            "MeshNodePath": "basalt1",
+            "Type": "ModelScene"
+          },
+          {
+            "ResourcePath": "res://assets/models/microbe_terrain/BasaltTerrainChunk2.tscn",
+            "MeshNodePath": "basalt2",
+            "Type": "ModelScene"
+          },
+          {
+            "ResourcePath": "res://assets/models/microbe_terrain/CalciteTerrainChunk1.tscn",
+            "MeshNodePath": "calcite1",
+            "Type": "ModelScene"
+          },
+          {
+            "ResourcePath": "res://assets/models/microbe_terrain/CalciteTerrainChunk2.tscn",
+            "MeshNodePath": "calcite2",
+            "Type": "ModelScene"
+          },
+          {
+            "ResourcePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.tscn",
+            "MeshNodePath": "chalcopyrite1",
+            "Type": "ModelScene"
+          },
+          {
+            "ResourcePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk2.tscn",
+            "MeshNodePath": "chalcopyrite2",
+            "Type": "ModelScene"
+          },
+          {
+            "ResourcePath": "res://assets/models/microbe_terrain/ClayTerrainChunk1.tscn",
+            "MeshNodePath": "clay1",
+            "Type": "ModelScene"
+          },
+          {
+            "ResourcePath": "res://assets/models/microbe_terrain/ClayTerrainChunk2.tscn",
+            "MeshNodePath": "clay2",
+            "Type": "ModelScene"
+          },
+          {
+            "ResourcePath": "res://assets/models/microbe_terrain/GabbroTerrainChunk1.tscn",
+            "MeshNodePath": "gabbro1",
+            "Type": "ModelScene"
+          },
+          {
+            "ResourcePath": "res://assets/models/microbe_terrain/GabbroTerrainChunk2.tscn",
+            "MeshNodePath": "gabbro2",
+            "Type": "ModelScene"
+          },
+          {
+            "ResourcePath": "res://assets/models/microbe_terrain/PolyMetallicNoduleTerrainChunk1.tscn",
+            "MeshNodePath": "polymetallicnodule1",
+            "Type": "ModelScene"
+          },
+          {
+            "ResourcePath": "res://assets/models/microbe_terrain/PolyMetallicNoduleTerrainChunk2.tscn",
+            "MeshNodePath": "polymetallicnodule2",
+            "Type": "ModelScene"
+          },
+          {
+            "ResourcePath": "res://assets/models/microbe_terrain/PolyMetallicNoduleTerrainChunk3.tscn",
+            "MeshNodePath": "polymetallicnodule3",
+            "Type": "ModelScene"
+          },
+          {
+            "ResourcePath": "res://assets/models/microbe_terrain/PyriteTerrainChunk1.tscn",
+            "MeshNodePath": "pyrite1",
+            "Type": "ModelScene"
+          },
+          {
+            "ResourcePath": "res://assets/models/microbe_terrain/PyriteTerrainChunk2.tscn",
+            "MeshNodePath": "pyrite2",
+            "Type": "ModelScene"
+          },
+          {
+            "ResourcePath": "res://assets/models/microbe_terrain/QuartzTerrainChunk1.tscn",
+            "MeshNodePath": "quartz1",
+            "Type": "ModelScene"
+          },
+          {
+            "ResourcePath": "res://assets/models/microbe_terrain/QuartzTerrainChunk2.tscn",
+            "MeshNodePath": "quartz2",
+            "Type": "ModelScene"
+          },
+          {
+            "ResourcePath": "res://assets/models/microbe_terrain/QuartzTerrainChunk3.tscn",
+            "MeshNodePath": "quartz3",
+            "Type": "ModelScene"
+          },
+          {
+            "ResourcePath": "res://assets/models/microbe_terrain/SerpentiniteTerrainChunk1.tscn",
+            "MeshNodePath": "serpentinite1",
+            "Type": "ModelScene"
+          },
+          {
+            "ResourcePath": "res://assets/models/microbe_terrain/SerpentiniteTerrainChunk2.tscn",
+            "MeshNodePath": "serpentinite2",
+            "Type": "ModelScene"
+          },
+          {
+            "ResourcePath": "res://assets/models/microbe_terrain/ZincOxideTerrainChunk1.tscn",
+            "MeshNodePath": "zincoxide1",
+            "Type": "ModelScene"
+          },
+          {
+            "ResourcePath": "res://assets/models/microbe_terrain/ZincOxideTerrainChunk2.tscn",
+            "MeshNodePath": "zincoxide2",
+            "Type": "ModelScene"
+          },
+          {
             "ResourcePath": "res://assets/models/Iceshard1.tscn",
             "Type": "ModelScene"
           },
@@ -390,6 +510,11 @@
       "MacroscopicStage": {
         "Name": "MACROSCOPIC_STAGE",
         "Assets": [
+          {
+            "ResourcePath": "res://assets/models/microbe_terrain/HydrothermalVent1.tscn",
+            "MeshNodePath": "UnderwaterChimney/BigChimney",
+            "Type": "ModelScene"
+          },
           {
             "ResourcePath": "res://assets/models/organelles/Myofibril.tscn",
             "Type": "ModelScene"
