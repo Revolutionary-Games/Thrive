@@ -156,8 +156,8 @@ public class SimulationCache
         }
         else if (species is MulticellularSpecies multicellularSpecies)
         {
-            // Currently ComputeEnergyBalanceSimple is not setup to safely add onto existing energy balances, so we need
-            // to add up from a temporary balance per cell.
+            // Currently, ComputeEnergyBalanceSimple is not set up to safely add onto existing energy balances,
+            // so we need to add up from a temporary balance per cell.
             var cellBalance = new EnergyBalanceInfoSimple();
 
             var cellTypes = multicellularSpecies.CellTypes;
@@ -177,7 +177,7 @@ public class SimulationCache
 
                     var cell = hex.Data;
 
-                    if (cell.CellType != cellType)
+                    if (!ReferenceEquals(cell.CellType, cellType))
                         continue;
 
                     cellBalance.Clear();
@@ -508,7 +508,7 @@ public class SimulationCache
                     foreach (var hex in multicellularSpecies.EditorCells)
                     {
                         var cell = hex.Data;
-                        if (cell != null && cell.CellType == cellType)
+                        if (cell != null && ReferenceEquals(cell.CellType, cellType))
                         {
                             canEngulf = true;
                             break;
@@ -639,7 +639,7 @@ public class SimulationCache
                 foreach (var hex in multicellularPrey.EditorCells)
                 {
                     var cell = hex.Data;
-                    if (cell != null && cell.CellType == cellType)
+                    if (cell != null && ReferenceEquals(cell.CellType, cellType))
                     {
                         ++cellCount;
                     }
@@ -745,7 +745,7 @@ public class SimulationCache
                 foreach (var hex in cells)
                 {
                     var cell = hex.Data;
-                    if (cell != null && cell.CellType == cellType)
+                    if (cell != null && ReferenceEquals(cell.CellType, cellType))
                     {
                         ++cellCount;
                         if (cellType.MembraneType.CanEngulf &&
@@ -1872,7 +1872,7 @@ public class SimulationCache
             foreach (var hex in cells)
             {
                 var cell = hex.Data;
-                if (cell != null && cell.CellType == cellType)
+                if (cell != null && ReferenceEquals(cell.CellType, cellType))
                 {
                     totalToxinOrganellesCount += cellTypeToxinOrganellesCount;
                     totalToxicity += cellTypeToxicity;
@@ -2091,7 +2091,7 @@ public class SimulationCache
             foreach (var hex in cells)
             {
                 var cell = hex.Data;
-                if (cell != null && cell.CellType == cellType)
+                if (cell != null && ReferenceEquals(cell.CellType, cellType))
                 {
                     var cellEnzymesScore = GetEnzymesScore(cellType, dissolverEnzyme,
                         cellTypeSpecializationbonus * CellBodyPlanInternalCalculations

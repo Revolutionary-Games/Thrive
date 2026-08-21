@@ -1071,7 +1071,7 @@ public static class MicrobeInternalCalculations
             if (!organelle.Definition.HasMovementComponent)
                 continue;
 
-            if (organelle != testedOrganelle &&
+            if (!ReferenceEquals(organelle, testedOrganelle) &&
                 organelle.Position + testedOrganelle.Position == new Hex(0, 0))
             {
                 var organelleLength = (maximumMovementDirection - GetOrganelleDirection(organelle)).Length();

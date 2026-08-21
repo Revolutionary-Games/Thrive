@@ -23,7 +23,7 @@ public class AddOrganelleAnywhere : IMutationStrategy<Species>
 
     public bool Repeatable => true;
 
-    // Formatter and inspect code disagree here
+    // Formatter and inspect code disagree here.
     // ReSharper disable InvokeAsExtensionMethod
     public static AddOrganelleAnywhere ThatUseCompound(CompoundDefinition compound,
         Direction direction = Direction.Neutral)

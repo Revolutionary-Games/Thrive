@@ -156,7 +156,7 @@ public class ReproductionCompoundPressure : SelectionPressure
                             foreach (var hex in multicellularSpecies.EditorCells)
                             {
                                 var cell = hex.Data;
-                                if (cell != null && cell.CellType == cellType)
+                                if (cell != null && ReferenceEquals(cell.CellType, cellType))
                                 {
                                     canEngulfChunk = true;
                                     break;

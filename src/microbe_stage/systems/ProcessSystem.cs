@@ -214,8 +214,8 @@ public partial class ProcessSystem : BaseSystem<World, float>
     }
 
     /// <summary>
-    ///   Computes the simple energy balance for the given organelles in biome
-    ///   This version is currently used for Microbe Species
+    ///   Computes the simple energy balance for the given organelles in biome.
+    ///   This version is currently used for Microbe Species.
     /// </summary>
     /// <param name="organelles">The organelles to compute the balance with</param>
     /// <param name="biome">The conditions the organelles are simulated in</param>
@@ -264,8 +264,8 @@ public partial class ProcessSystem : BaseSystem<World, float>
     }
 
     /// <summary>
-    ///   Computes the simple energy balance for the given organelles in biome
-    ///   This version is currently used for cell types in a multicellular species
+    ///   Computes the simple energy balance for the given organelles in biome.
+    ///   This version is currently used for cell types in a multicellular species.
     /// </summary>
     /// <param name="organelles">The organelles to compute the balance with</param>
     /// <param name="biome">The conditions the organelles are simulated in</param>

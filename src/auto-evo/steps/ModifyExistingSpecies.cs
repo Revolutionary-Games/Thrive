@@ -39,6 +39,9 @@ public class ModifyExistingSpecies : IRunStep
     private readonly List<Mutant> temporaryMutations1 = new();
     private readonly List<Mutant> temporaryMutations2 = new();
 
+    private readonly List<Hex> hexTemporaryMemory1 = new();
+    private readonly List<Hex> hexTemporaryMemory2 = new();
+
     private readonly List<Species> lastGeneratedMutations = new();
 
     private readonly Stack<SelectionPressure> pressureStack = new();
@@ -231,7 +234,7 @@ public class ModifyExistingSpecies : IRunStep
                             multicellularMutant.RepositionCellTypesToOrigin();
                             MulticellularLayoutHelpers.UpdateGameplayLayoutForAutoEvo(
                                 multicellularMutant.ModifiableGameplayCells, multicellularMutant.ModifiableEditorCells,
-                                new List<Hex>(), new List<Hex>());
+                                hexTemporaryMemory1, hexTemporaryMemory2);
                         }
 
                         // OnEdited is expensive, so we only run it here on species that exit auto-evo
@@ -548,8 +551,7 @@ public class ModifyExistingSpecies : IRunStep
         }
     }
 
-    private record struct Mutation(Species ParentSpecies, Species MutatedSpecies,
-        RunResults.NewSpeciesType AddType);
+    private record struct Mutation(Species ParentSpecies, Species MutatedSpecies, RunResults.NewSpeciesType AddType);
 
     /// <summary>
     ///   Working memory used to reduce memory allocations in <see cref="GenerateMutations"/>.

@@ -125,7 +125,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
                 foreach (var hex in EditorCells)
                 {
                     var cell = hex.Data;
-                    if (cell != null && cell.CellType == cellType)
+                    if (cell != null && ReferenceEquals(cell.CellType, cellType))
                         ++cellCount;
                 }
 

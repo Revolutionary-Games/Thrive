@@ -172,6 +172,7 @@ public class AddCellWithOrganelle : IMutationStrategy<Species>
                             random, newMp, mutated);
                         break;
                     case Direction.Neutral:
+                    {
                         // For neutral positioning organelles, we create a mutant for adding the new celltype both to
                         // the front and the rear
                         var newSpeciesFront = (MulticellularSpecies)newSpecies.Clone();
@@ -182,6 +183,8 @@ public class AddCellWithOrganelle : IMutationStrategy<Species>
                         TryAddCenterlineCellMutant(Direction.Rear, newCellType, newSpecies, workMemory1, workMemory2,
                             random, newMp, mutated);
                         break;
+                    }
+
                     default:
                         throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
                 }
@@ -208,7 +211,7 @@ public class AddCellWithOrganelle : IMutationStrategy<Species>
 
             foreach (var placedOrganelle in baseCellType.Organelles)
             {
-                if (placedOrganelle.Definition == organelle)
+                if (ReferenceEquals(placedOrganelle.Definition, organelle))
                     ++targetOrganelleCount;
             }
 
@@ -254,7 +257,7 @@ public class AddCellWithOrganelle : IMutationStrategy<Species>
     }
 
     /// <summary>
-    ///   Macroscopic, and non-placeable organelles are invalid and so won't be considered.
+    ///   Macroscopic and non-placeable organelles are invalid and so won't be considered.
     /// </summary>
     private static bool IsOrganelleValid(OrganelleDefinition organelle)
     {
@@ -263,7 +266,7 @@ public class AddCellWithOrganelle : IMutationStrategy<Species>
     }
 
     /// <summary>
-    ///   Try to add a new mutant with a new celltype placed on its centerline (front or rear)
+    ///   Try to add a new mutant with a new cell type placed on its centerline (front or rear)
     /// </summary>
     private static void TryAddCenterlineCellMutant(Direction direction, CellType newCellType,
         MulticellularSpecies newSpecies, List<Hex> workMemory1, List<Hex> workMemory2, Random random, double mp,

@@ -142,21 +142,49 @@ public class MutationLogicFunctions
     private static bool MulticellularSpeciesIsNewGenus(MulticellularSpecies species1, MulticellularSpecies species2)
     {
         var species1UniqueOrganelles = new HashSet<OrganelleDefinition>();
-        foreach (var cellType in species1.CellTypes)
+
+        foreach (var cellType in species1.ModifiableCellTypes)
         {
-            var uniqueOrganelles = cellType.Organelles.Select(o => o.Definition).ToHashSet();
-            species1UniqueOrganelles.UnionWith(uniqueOrganelles);
+            foreach (var organelle in cellType.ModifiableOrganelles)
+            {
+                species1UniqueOrganelles.Add(organelle.Definition);
+            }
         }
 
         var species2UniqueOrganelles = new HashSet<OrganelleDefinition>();
+
         foreach (var cellType in species2.CellTypes)
         {
-            var uniqueOrganelles = cellType.Organelles.Select(o => o.Definition).ToHashSet();
-            species2UniqueOrganelles.UnionWith(uniqueOrganelles);
+            foreach (var organelle in cellType.Organelles)
+            {
+                species2UniqueOrganelles.Add(organelle.Definition);
+            }
         }
 
-        return species1UniqueOrganelles.Union(species2UniqueOrganelles).Count()
-            - species1UniqueOrganelles.Intersect(species2UniqueOrganelles).Count()
-            >= Constants.DIFFERENCES_FOR_GENUS_SPLIT;
+        var differences = 0;
+
+        foreach (var organelle in species1UniqueOrganelles)
+        {
+            if (!species2UniqueOrganelles.Contains(organelle))
+            {
+                ++differences;
+
+                if (differences >= Constants.DIFFERENCES_FOR_GENUS_SPLIT)
+                    return true;
+            }
+        }
+
+        foreach (var organelle in species2UniqueOrganelles)
+        {
+            if (!species1UniqueOrganelles.Contains(organelle))
+            {
+                ++differences;
+
+                if (differences >= Constants.DIFFERENCES_FOR_GENUS_SPLIT)
+                    return true;
+            }
+        }
+
+        return false;
     }
 }

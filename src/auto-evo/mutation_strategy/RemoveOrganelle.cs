@@ -136,7 +136,7 @@ public class RemoveOrganelle : IMutationStrategy<Species>
             foreach (var organelle in organelles)
             {
                 // The player cannot remove the nucleus, so Auto-Evo should not be able to either
-                if (organelle.Definition == Nucleus)
+                if (ReferenceEquals(organelle.Definition, Nucleus))
                     continue;
 
                 // The Binding Agent cannot be removed in the Multicellular Stage
@@ -155,7 +155,7 @@ public class RemoveOrganelle : IMutationStrategy<Species>
                 {
                     var clonedCellType = newSpecies.ModifiableCellTypes[j];
 
-                    if (clonedCellType == newCellType)
+                    if (ReferenceEquals(clonedCellType, newCellType))
                         continue;
 
                     var parentCellTypeOrganelles =
@@ -166,7 +166,7 @@ public class RemoveOrganelle : IMutationStrategy<Species>
                     {
                         var parentOrganelle = parentCellTypeOrganelles[k];
 
-                        if (parentOrganelle == organelle)
+                        if (ReferenceEquals(parentOrganelle, organelle))
                             continue;
 
                         // Copy the organelle
@@ -185,7 +185,7 @@ public class RemoveOrganelle : IMutationStrategy<Species>
                 {
                     var parentOrganelle = baseOrganelles[j];
 
-                    if (parentOrganelle == organelle)
+                    if (ReferenceEquals(parentOrganelle, organelle))
                         continue;
 
                     // Copy the organelle

@@ -202,7 +202,7 @@ public static class CommonMutationFunctions
         cellType.ModifiableOrganelles.AddFast(position, workMemory1, workMemory2);
 
         // This should not be possible in the current state, but I am leaving it for now just in case
-        if (organelle == Nucleus)
+        if (ReferenceEquals(organelle, Nucleus))
         {
             cellType.IsBacteria = false;
         }
@@ -329,23 +329,30 @@ public static class CommonMutationFunctions
             var baseHex = baseSpeciesCells[j];
 
             var baseCell = baseHex.Data;
-            if (baseCell != null && baseCell.CellType == baseCellType)
+            if (baseCell != null && ReferenceEquals(baseCell.CellType, baseCellType))
             {
                 switch (direction)
                 {
                     case AdjacencyDirection.Front:
+                    {
                         if (!TryAddNewCell(ref mp, newCellType, mpCost, workMemory1, workMemory2, baseCell,
                                 Hex.HexSide.Top, baseHex, newCells))
                             return false;
 
                         break;
+                    }
+
                     case AdjacencyDirection.Rear:
+                    {
                         if (!TryAddNewCell(ref mp, newCellType, mpCost, workMemory1, workMemory2, baseCell,
                                 Hex.HexSide.Bottom, baseHex, newCells))
                             return false;
 
                         break;
+                    }
+
                     case AdjacencyDirection.SideFront:
+                    {
                         if (!TryAddNewCell(ref mp, newCellType, mpCost, workMemory1, workMemory2, baseCell,
                                 Hex.HexSide.TopLeft, baseHex, newCells))
                             return false;
@@ -355,7 +362,10 @@ public static class CommonMutationFunctions
                             return false;
 
                         break;
+                    }
+
                     case AdjacencyDirection.SideRear:
+                    {
                         if (!TryAddNewCell(ref mp, newCellType, mpCost, workMemory1, workMemory2, baseCell,
                                 Hex.HexSide.BottomLeft, baseHex, newCells))
                             return false;
@@ -365,8 +375,12 @@ public static class CommonMutationFunctions
                             return false;
 
                         break;
+                    }
+
                     default:
+                    {
                         throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
+                    }
                 }
 
                 // If we end up exceeding the cell cap, abort the procedure as a failure
