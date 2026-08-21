@@ -94,6 +94,10 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 
     public IReadOnlyCellTypeDefinition? GameteTypeB => ModifiableGameteTypeB;
 
+    /// <summary>
+    ///   Note: this needs to be increased to at least <see cref="Constants.MASS_BUDDING_MINIMUM_BUD_SIZE"/> when
+    ///   changing to that reproduction method.
+    /// </summary>
     public int MassBuddingCellCount { get; set; } = 1;
 
     public ISimulationPhotographable.SimulationType SimulationToPhotograph =>
@@ -255,6 +259,12 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
             // This check is because the growth system is not set up to handle less than two cells on shooting a gamete
             if (ModifiableGameplayCells.Count < 2)
                 throw new Exception("Sexual reproduction method requires at least two gameplay cells");
+        }
+
+        if (ReproductionMethod == MulticellularReproductionMethod.MassBudding &&
+            MassBuddingCellCount < Constants.MASS_BUDDING_MINIMUM_BUD_SIZE)
+        {
+            throw new Exception("Mass budding reproduction requires an initial bud size of at least two cells");
         }
 
         if (MassBuddingCellCount < 1 || MassBuddingCellCount > ModifiableGameplayCells.Count)
