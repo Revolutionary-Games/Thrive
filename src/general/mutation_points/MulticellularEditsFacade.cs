@@ -63,7 +63,9 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
     public IReadOnlyCellLayout<IReadOnlyCellTemplate> GameplayCells =>
         throw new NotSupportedException("Facade doesn't support getting the gameplay cells");
 
-    // Approximate counts
+    // Approximate counts. Note: this can go even negative when using spore special cell types in certain ways. As this
+    // count is not relied on currently, it is not required to be accurate. But in the future if that is the case,
+    // then this will need a rework to be actually accurate.
     public int Count => multicellularSpecies.EditorCells.Count + addedCells.Count - removedCells.Count;
 
     int IReadOnlyCollection<IReadOnlyCellTypeDefinition>.Count =>
