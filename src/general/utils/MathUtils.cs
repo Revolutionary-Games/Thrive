@@ -196,6 +196,11 @@ public static class MathUtils
         return distance <= Math.PI ? distance : (float)(2 * Math.PI) - distance;
     }
 
+    public static float FadeQuintic(float t)
+    {
+        return t * t * t * (t * (t * 6.0f - 15.0f) + 10.0f);
+    }
+
     /// <summary>
     ///   Squares a number, faster alterative to <c>Math.Pow(x, 2)</c>
     /// </summary>
