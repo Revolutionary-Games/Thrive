@@ -208,6 +208,10 @@ public static class Constants
     public const float MEMBRANE_WAVE_HEIGHT_MULTIPLIER_CELL_WALL = 0.015f;
     public const float MEMBRANE_ENGULF_ANIMATION_DISTANCE = 1.25f;
 
+    public const float MEMBRANE_MIDDLE_POINT_OVERREACH = 0.5f;
+    public const float MEMBRANE_NEIGHBOUR_MAX_SQUARED_DISTANCE_BETWEEN_CENTERS = 750.0f;
+    public const float MEMBRANE_NEIGHBOUR_MAX_SQUARED_DISTANCE_BETWEEN_VERTICES = 150.0f;
+
     /// <summary>
     ///   BASE MOVEMENT ATP cost. Cancels out a little bit more then one cytoplasm's glycolysis
     /// </summary>
@@ -286,8 +290,14 @@ public static class Constants
     public const float CELL_COLONY_MOVEMENT_FORCE_MULTIPLIER = 0.98f;
 
     /// <summary>
+    ///   The higher this value is, the more the colony rotation will be *buffed* by distance on cells. So farther
+    ///   away cells are simulated to have leverage in turning
+    /// </summary>
+    public const float COLONY_ROTATION_CELL_LEVERAGE_FROM_DISTANCE = 0.005f;
+
+    /// <summary>
     ///   How much the default <see cref="BASE_CELL_DENSITY"/> has volume in a cell. This determines how much
-    ///   additional organelles impact the cell. A normal organelle has a weight of 1 so if this value is 4 then the
+    ///   additional organelles impact the cell. A normal organelle has a weight of 1, so if this value is 4, then the
     ///   base density has as much impact on the average density as 4 organelles.
     /// </summary>
     public const float BASE_CELL_DENSITY_VOLUME = 4;
@@ -354,7 +364,7 @@ public static class Constants
     public const float ACTOMYOSIN_MIN_ANIMATION_SPEED = 0.5f;
     public const float ACTOMYOSIN_MAX_ANIMATION_SPEED = 5;
     public const float EFFECTIVE_ACTOMYOSIN_MULTIPLIER = 0.05f;
-    public const float ACTOMYOSIN_ROTATION_BUFF_PER = 0.15f;
+    public const float ACTOMYOSIN_ROTATION_BUFF_PER = 0.25f;
     public const float ACTOMYOSIN_MOVEMENT_BUFF_PER = 0.25f;
 
     // TODO: harsher wording in the tooltip
@@ -701,12 +711,7 @@ public static class Constants
 
     public const float DEFAULT_MICROBE_VENT_THRESHOLD = 2.0f;
 
-    public const float CELL_ADJACENCY_SPECIALIZATION_BONUS = 0.04f;
-
-    /// <summary>
-    ///   A cell needs to have this many organelles for specialization to apply to it
-    /// </summary>
-    public const int CELL_SPECIALIZATION_APPLIES_AFTER_SIZE = 6;
+    public const float CELL_ADJACENCY_SPECIALIZATION_BONUS = 0.05f;
 
     /// <summary>
     ///   How many organelles a cell needs to have to be considered fully specialized. (i.e. the full specialization
@@ -718,7 +723,7 @@ public static class Constants
     ///   Controls how strong the cell specialization effect is (this is a flat multiplier right now but we could use
     ///   something like a power curve or another function for diminishing returns)
     /// </summary>
-    public const float CELL_SPECIALIZATION_STRENGTH_MULTIPLIER = 0.4f;
+    public const float CELL_SPECIALIZATION_STRENGTH_MULTIPLIER = 0.5f;
 
     /// <summary>
     ///   Controls how much having a nucleus boosts the cell specialization effect
@@ -1243,6 +1248,7 @@ public static class Constants
     public const int MULTICELLULAR_ANISOGAMY_UPGRADE_COST = 55;
 
     public const int MASS_BUDDING_CELL_COUNT_CHANGE_COST = 10;
+    public const int MASS_BUDDING_MINIMUM_BUD_SIZE = 2;
 
     public const string ORGANELLE_UPGRADE_SPECIAL_NONE = "none";
 
@@ -1392,8 +1398,12 @@ public static class Constants
     public const float AI_BASE_MOVEMENT = 1.0f;
     public const float AI_ENGULF_STOP_DISTANCE = 0.8f;
 
+    public const float AI_BECOME_AGGRESSIVE_DISTANCE_SQUARED = 120 * 120;
     public const float AI_FOLLOW_DISTANCE_SQUARED = 60 * 60;
     public const float AI_FLEE_DISTANCE_SQUARED = 85 * 85;
+    public const float AI_MOVE_DISTANCE_SQUARED = 240 * 240;
+
+    public const float AI_SIGNALING_CHANCE = 0.05f;
 
     public const float AI_BASE_TOXIN_SHOOT_ANGLE_PRECISION = 5;
 
@@ -1531,7 +1541,7 @@ public static class Constants
 
     public const float AUTO_EVO_SINGLE_STEP_WARNING_TIME = 0.4f;
 
-    public const int EDITOR_TIME_JUMP_MILLION_YEARS = 100;
+    public const int EDITOR_TIME_JUMP_MILLION_YEARS = 50;
     public const float GLUCOSE_MIN = 0.0f;
 
     // Tweak variable for how fast compounds diffuse between patches

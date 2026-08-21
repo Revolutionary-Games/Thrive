@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-14 09:18+0300\n"
+"POT-Creation-Date: 2026-08-21 10:40+0300\n"
 "PO-Revision-Date: 2026-05-13 03:55+0000\n"
 "Last-Translator: Telegina Alexandra <teleginaaleksandra1@gmail.com>\n"
 "Language-Team: Esperanto <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/eo/>\n"
@@ -973,6 +973,10 @@ msgstr ""
 msgid "CLICK_TO_SELECT"
 msgstr "Forigi Elektita(j)n"
 
+#, fuzzy
+msgid "CLICK_TO_SET_CELL_TYPE"
+msgstr "Forigi Elektita(j)n"
+
 msgid "CLIMATE_INSTABILITY"
 msgstr ""
 
@@ -1732,6 +1736,10 @@ msgstr "Kreu Novan Konservadon"
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
+#, fuzzy
+msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
+msgstr "Kreu Novan Konservadon"
+
 msgid "DELETE"
 msgstr "Elimini"
 
@@ -2376,6 +2384,9 @@ msgid "ERROR_LOADING"
 msgstr "Eraro Ŝarĝante"
 
 msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
+
+msgid "ERROR_REQUIRED_AT_LEAST_X_CELLS_FOR_MASS_BUDDING"
 msgstr ""
 
 msgid "ERROR_SAVING"
@@ -3990,6 +4001,10 @@ msgid "MASS_BUDDING_CELL_COUNT"
 msgstr ""
 
 #, fuzzy
+msgid "MASS_BUDDING_MINIMUM_SIZE_EXPLANATION"
+msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
+
+#, fuzzy
 msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
 
@@ -5110,6 +5125,14 @@ msgid "NO_SELECTED_MOD"
 msgstr "Elektita(j):"
 
 #, fuzzy
+msgid "NO_SPORE_CELL_TYPE_SET"
+msgstr "Kreu Novan Konservadon"
+
+#, fuzzy
+msgid "NO_SPORE_CELL_TYPE_SET_TITLE"
+msgstr "Kreu Novan Konservadon"
+
+#, fuzzy
 msgid "NO_SUGGESTION"
 msgstr "Distingivo:"
 
@@ -6201,6 +6224,9 @@ msgstr "Konservado havas malvalidan ludstatan scenon"
 msgid "SAVE_INVALID"
 msgstr "Nevalide"
 
+msgid "SAVE_IS_CORRUPT_WHILE_LOADING"
+msgstr ""
+
 msgid "SAVE_IS_INVALID"
 msgstr "Konservado ne validas"
 
@@ -6740,7 +6766,7 @@ msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr "Rekomenci"
 
 #, fuzzy
-msgid "SPORE_CELL_TYPE"
+msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
 msgstr "Kreu Novan Konservadon"
 
 #, fuzzy
@@ -10348,6 +10374,10 @@ msgstr "Zomu"
 
 msgid "ZOOM_OUT"
 msgstr "Malzomu"
+
+#, fuzzy
+#~ msgid "SPORE_CELL_TYPE"
+#~ msgstr "Kreu Novan Konservadon"
 
 #, fuzzy
 #~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"

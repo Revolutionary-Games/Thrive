@@ -45,11 +45,19 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
         CellTypeName = Localization.Translate("STEM_CELL_NAME");
     }
 
+    private CellType()
+    {
+        // Archive construction fills these fields after the instance has been registered to allow ancestor
+        // references to work.
+        MembraneType = null!;
+        ModifiableOrganelles = null!;
+    }
+
     // TODO: avoid this adapter object allocation
     public IReadOnlyOrganelleLayout<IReadOnlyOrganelleTemplate> Organelles => field ??=
         new ReadonlyOrganelleLayoutAdapter<IReadOnlyOrganelleTemplate, OrganelleTemplate>(ModifiableOrganelles);
 
-    public OrganelleLayout<OrganelleTemplate> ModifiableOrganelles { get; }
+    public OrganelleLayout<OrganelleTemplate> ModifiableOrganelles { get; private set; }
 
     public string CellTypeName { get; set; } = "error";
     public int MPCost { get; set; } = Constants.CELL_ADD_COST;
@@ -66,7 +74,7 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
     public Color Colour { get; set; }
     public bool IsBacteria { get; set; }
     public float BaseRotationSpeed { get; set; }
-    public bool CanEngulf { get; }
+    public bool CanEngulf { get; private set; }
 
     public string FormattedName => CellTypeName;
     public string ReadableName => FormattedName;
@@ -91,16 +99,19 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        var result = new CellType(reader.ReadObject<OrganelleLayout<OrganelleTemplate>>(),
-            reader.ReadObject<MembraneType>())
-        {
-            CellTypeName = reader.ReadString() ?? throw new NullArchiveObjectException(),
-            MPCost = reader.ReadInt32(),
-            MembraneRigidity = reader.ReadFloat(),
-            Colour = reader.ReadColor(),
-            IsBacteria = reader.ReadBool(),
-            BaseRotationSpeed = reader.ReadFloat(),
-        };
+        var result = new CellType();
+        reader.ReportObjectConstructorDone(result, referenceId);
+
+        result.ModifiableOrganelles = reader.ReadObject<OrganelleLayout<OrganelleTemplate>>();
+        result.MembraneType = reader.ReadObject<MembraneType>();
+        result.CanEngulf = result.MembraneType.CanEngulf;
+
+        result.CellTypeName = reader.ReadString() ?? throw new NullArchiveObjectException();
+        result.MPCost = reader.ReadInt32();
+        result.MembraneRigidity = reader.ReadFloat();
+        result.Colour = reader.ReadColor();
+        result.IsBacteria = reader.ReadBool();
+        result.BaseRotationSpeed = reader.ReadFloat();
 
         if (version > 1)
             result.SplitFromTypeName = reader.ReadString();
@@ -244,6 +255,25 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
         MembraneRigidity = otherType.MembraneRigidity;
 
         CellTypeSpecializationBonus = otherType.CellTypeSpecializationBonus;
+    }
+
+    public override bool Equals(object? obj)
+    {
+        if (obj is not CellType other || CellTypeName != other.CellTypeName ||
+            MembraneType.InternalName != other.MembraneType.InternalName ||
+            MembraneRigidity != other.MembraneRigidity || IsBacteria != other.IsBacteria ||
+            Organelles.Count != other.Organelles.Count)
+        {
+            return false;
+        }
+
+        for (int i = 0; i < Organelles.Count; ++i)
+        {
+            if (!ModifiableOrganelles.Organelles[i].Equals(other.ModifiableOrganelles.Organelles[i]))
+                return false;
+        }
+
+        return true;
     }
 
     public object Clone()

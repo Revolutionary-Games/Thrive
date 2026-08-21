@@ -682,6 +682,18 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     private void OnStartEditingCellType(string? name, bool switchTab)
     {
+        OpenEditorForCellType(string.IsNullOrEmpty(name) ?
+            null :
+            EditedSpecies.ModifiableCellTypes.First(c => c.CellTypeName == name), switchTab);
+    }
+
+    private void OnStartEditingSporeCellType()
+    {
+        OpenEditorForCellType(bodyPlanEditorTab.SporeCellType, true);
+    }
+
+    private void OpenEditorForCellType(CellType? cellType, bool switchTab)
+    {
         if (CanCancelAction)
         {
             ToolTipManager.Instance.ShowPopup(Localization.Translate("ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"),
@@ -689,22 +701,18 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
             return;
         }
 
-        // If there is a null name, that means there is no selected cell,
-        // so clear the selectedCellTypeToEdit and return early
-        if (string.IsNullOrEmpty(name))
+        if (cellType == null)
         {
             selectedCellTypeToEdit = null;
             GD.Print("Cleared editing cell type");
             return;
         }
 
-        var newTypeToEdit = EditedSpecies.ModifiableCellTypes.First(c => c.CellTypeName == name);
-
         // Only reinitialize the editor when required
         if (selectedCellTypeToEdit == null ||
-            cellTypeEditsHolder.GetOriginalType(selectedCellTypeToEdit) != newTypeToEdit)
+            !ReferenceEquals(cellTypeEditsHolder.GetOriginalType(selectedCellTypeToEdit), cellType))
         {
-            selectedCellTypeToEdit = cellTypeEditsHolder.BeginOrContinueEdit(newTypeToEdit);
+            selectedCellTypeToEdit = cellTypeEditsHolder.BeginOrContinueEdit(cellType);
 
             GD.Print("Start editing cell type: ", selectedCellTypeToEdit.CellTypeName);
 
@@ -789,7 +797,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
         // Revert to the old name if the name is a duplicate
         if (EditedSpecies.ModifiableCellTypes.Any(c =>
-                c != selectedCellTypeToEdit && c.CellTypeName == selectedCellTypeToEdit.CellTypeName))
+                !ReferenceEquals(c, selectedCellTypeToEdit) && c.CellTypeName == selectedCellTypeToEdit.CellTypeName))
         {
             if (oldName != selectedCellTypeToEdit.CellTypeName)
             {
@@ -814,7 +822,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     private void SwapEditingCellIfNeeded(CellType? newCell)
     {
-        if (selectedCellTypeToEdit == newCell || newCell == null)
+        if (ReferenceEquals(selectedCellTypeToEdit, newCell) || newCell == null)
             return;
 
         // If we're switching to a new cell type, apply any changes made to the old one

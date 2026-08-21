@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-14 09:18+0300\n"
+"POT-Creation-Date: 2026-08-21 10:40+0300\n"
 "PO-Revision-Date: 2026-05-22 15:37+0000\n"
 "Last-Translator: Jeremias <lejereagui@hotmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
@@ -918,6 +918,10 @@ msgstr "Limpiar Caché"
 msgid "CLICK_TO_SELECT"
 msgstr "Seleccionar"
 
+#, fuzzy
+msgid "CLICK_TO_SET_CELL_TYPE"
+msgstr "Seleccionar"
+
 msgid "CLIMATE_INSTABILITY"
 msgstr "Inestabilidad climática"
 
@@ -1658,6 +1662,10 @@ msgstr "Reducir el tamaño del objeto"
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Dispositivo de salida predeterminado"
 
+#, fuzzy
+msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
+msgstr "Crea un nuevo tipo de célula"
+
 msgid "DELETE"
 msgstr "Eliminar"
 
@@ -2247,6 +2255,9 @@ msgid "ERROR_LOADING"
 msgstr "Error al cargar"
 
 msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
+
+msgid "ERROR_REQUIRED_AT_LEAST_X_CELLS_FOR_MASS_BUDDING"
 msgstr ""
 
 msgid "ERROR_SAVING"
@@ -3754,6 +3765,10 @@ msgid "MASS_BUDDING_CELL_COUNT"
 msgstr ""
 
 #, fuzzy
+msgid "MASS_BUDDING_MINIMUM_SIZE_EXPLANATION"
+msgstr "(recibe compuestos del ambiente de forma pasiva sin tener que realizar acciones)"
+
+#, fuzzy
 msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "(recibe compuestos del ambiente de forma pasiva sin tener que realizar acciones)"
 
@@ -4863,6 +4878,14 @@ msgid "NO_SELECTED_MOD"
 msgstr "Ningún Mod Seleccionado"
 
 #, fuzzy
+msgid "NO_SPORE_CELL_TYPE_SET"
+msgstr "Crea un nuevo tipo de célula"
+
+#, fuzzy
+msgid "NO_SPORE_CELL_TYPE_SET_TITLE"
+msgstr "Crea un nuevo tipo de célula"
+
+#, fuzzy
 msgid "NO_SUGGESTION"
 msgstr "Resolución:"
 
@@ -5946,6 +5969,9 @@ msgstr "La partida tiene un estado del juego inválido"
 msgid "SAVE_INVALID"
 msgstr "Inválido"
 
+msgid "SAVE_IS_CORRUPT_WHILE_LOADING"
+msgstr ""
+
 msgid "SAVE_IS_INVALID"
 msgstr "La partida guardada es inválida"
 
@@ -6442,7 +6468,7 @@ msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr "Alternar gameplay entre velocidad normal y 2x de velocidad"
 
 #, fuzzy
-msgid "SPORE_CELL_TYPE"
+msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
 msgstr "Crea un nuevo tipo de célula"
 
 #, fuzzy
@@ -10025,6 +10051,10 @@ msgstr "Hacer zoom"
 
 msgid "ZOOM_OUT"
 msgstr "Alejar el zoom"
+
+#, fuzzy
+#~ msgid "SPORE_CELL_TYPE"
+#~ msgstr "Crea un nuevo tipo de célula"
 
 #~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
 #~ msgstr "Alternar gameplay entre velocidad normal y 2x de velocidad"

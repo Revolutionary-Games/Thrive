@@ -71,6 +71,24 @@ public static class MathUtils
         return a == b || Math.Abs(a - b) < tolerance;
     }
 
+    public static float SmoothStep(float t)
+    {
+        t = Math.Clamp(t, 0.0f, 1.0f);
+        return t * t * (3.0f - 2.0f * t);
+    }
+
+    /// <summary>
+    ///   Does a smoothstep interpolation between two values
+    /// </summary>
+    /// <param name="from">Start value</param>
+    /// <param name="to">End value</param>
+    /// <param name="t">Fraction of "from" to "to", valid range [0, 1]</param>
+    /// <returns>Smoothed value</returns>
+    public static float InterpolateSmoothStep(float from, float to, float t)
+    {
+        return from + (to - from) * SmoothStep(t);
+    }
+
     /// <summary>
     ///   Standard modulo for negative values in C# produces negative results.
     ///   This function returns modulo values between 0 and mod-1.
@@ -176,6 +194,11 @@ public static class MathUtils
     {
         float distance = Math.Abs(p1 - p2);
         return distance <= Math.PI ? distance : (float)(2 * Math.PI) - distance;
+    }
+
+    public static float FadeQuintic(float t)
+    {
+        return t * t * t * (t * (t * 6.0f - 15.0f) + 10.0f);
     }
 
     /// <summary>

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-14 09:18+0300\n"
+"POT-Creation-Date: 2026-08-21 10:40+0300\n"
 "PO-Revision-Date: 2026-07-22 04:07+0000\n"
 "Last-Translator: 4sokay8 <kwi.tns11@gmail.com>\n"
 "Language-Team: Japanese <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ja/>\n"
@@ -915,6 +915,10 @@ msgstr "キャッシュをクリア"
 msgid "CLICK_TO_SELECT"
 msgstr "選択"
 
+#, fuzzy
+msgid "CLICK_TO_SET_CELL_TYPE"
+msgstr "選択"
+
 msgid "CLIMATE_INSTABILITY"
 msgstr "気候の不安定性"
 
@@ -1610,6 +1614,10 @@ msgstr ""
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
+#, fuzzy
+msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
+msgstr "細胞タイプ名"
+
 msgid "DELETE"
 msgstr ""
 
@@ -2114,6 +2122,9 @@ msgid "ERROR_LOADING"
 msgstr ""
 
 msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
+
+msgid "ERROR_REQUIRED_AT_LEAST_X_CELLS_FOR_MASS_BUDDING"
 msgstr ""
 
 msgid "ERROR_SAVING"
@@ -3525,6 +3536,10 @@ msgid "MASS_BUDDING_CELL_COUNT"
 msgstr ""
 
 #, fuzzy
+msgid "MASS_BUDDING_MINIMUM_SIZE_EXPLANATION"
+msgstr "（AI生物が突然変異する速度）"
+
+#, fuzzy
 msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "（AI生物が突然変異する速度）"
 
@@ -4413,6 +4428,14 @@ msgstr ""
 
 msgid "NO_SELECTED_MOD"
 msgstr ""
+
+#, fuzzy
+msgid "NO_SPORE_CELL_TYPE_SET"
+msgstr "細胞タイプ名"
+
+#, fuzzy
+msgid "NO_SPORE_CELL_TYPE_SET_TITLE"
+msgstr "細胞タイプ名"
 
 msgid "NO_SUGGESTION"
 msgstr ""
@@ -5351,6 +5374,9 @@ msgstr ""
 msgid "SAVE_INVALID"
 msgstr ""
 
+msgid "SAVE_IS_CORRUPT_WHILE_LOADING"
+msgstr ""
+
 msgid "SAVE_IS_INVALID"
 msgstr ""
 
@@ -5793,7 +5819,7 @@ msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr "キー割り当てを追加"
 
 #, fuzzy
-msgid "SPORE_CELL_TYPE"
+msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
 msgstr "細胞タイプ名"
 
 #, fuzzy
@@ -8463,6 +8489,10 @@ msgstr "ズームイン"
 
 msgid "ZOOM_OUT"
 msgstr ""
+
+#, fuzzy
+#~ msgid "SPORE_CELL_TYPE"
+#~ msgstr "細胞タイプ名"
 
 #~ msgid "AEROBIC_NITROGEN_FIXING"
 #~ msgstr "好気性窒素固定"

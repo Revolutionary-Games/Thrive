@@ -22,7 +22,7 @@ public partial class GenerateThreadedSystems : Node
     ///   How many threads to use when generating threaded system run. Needs to be at least 2. Too high a number of
     ///   split tasks just lowers performance (when task switching happens too much)
     /// </summary>
-    public static int TargetThreadCount = 2;
+    public static readonly int TargetThreadCount = 2;
 
     /// <summary>
     ///   When true inserts calls to mark which components systems are allowed to access. With help from
@@ -30,42 +30,42 @@ public partial class GenerateThreadedSystems : Node
     ///   correct on systems. Disables multithreading when enabled so that the checks can pass as this mode is not made
     ///   to run in multithreaded mode as this would be very challenging to make work with multithreading.
     /// </summary>
-    public static bool UseCheckedComponentAccess = false;
+    public static readonly bool UseCheckedComponentAccess = false;
 
     /// <summary>
     ///   When true, inserts timing code around barriers to measure how long the wait times are
     /// </summary>
-    public static bool MeasureThreadWaits = false;
+    public static readonly bool MeasureThreadWaits = false;
 
     /// <summary>
     ///   When true and <see cref="MeasureThreadWaits"/> prints the measured wait times while running
     /// </summary>
-    public static bool PrintThreadWaits = true;
+    public static readonly bool PrintThreadWaits = true;
 
     /// <summary>
     ///   When true, adds try-catch statements around system executions to ensure no exceptions are leaked to a higher
     ///   level
     /// </summary>
-    public static bool AddSimulationExceptionCatches = true;
+    public static readonly bool AddSimulationExceptionCatches = true;
 
     /// <summary>
     ///   When true, inserts a lot of debug code to check that no conflicting systems are executed in the same timeslot
     ///   during runtime. Used to verify that this tool works correctly.
     /// </summary>
-    public static bool DebugGuardComponentWrites = false;
+    public static readonly bool DebugGuardComponentWrites = false;
 
     /// <summary>
     ///   When true forces use of system barrier class (currently this seems to prevent some thread deadlocking)
     /// </summary>
-    public static bool ForceUseSystemBarrier = false;
+    public static readonly bool ForceUseSystemBarrier = false;
 
-    public static bool UseMultithreadingToDoMoreSimulations = true;
+    public static readonly bool UseMultithreadingToDoMoreSimulations = true;
 
-    public static int MaxThreadToUse = 8;
+    public static readonly int MaxThreadToUse = 8;
 
-    public static int RandomStartSeed = 234546523;
+    public static readonly int RandomStartSeed = 234546523;
 
-    public static bool UseExtraInterceptor = false;
+    public static readonly bool UseExtraInterceptor = false;
 
     private const string ThreadComponentCheckCode = @"
         lock (debugWriteLock)

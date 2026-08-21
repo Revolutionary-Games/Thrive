@@ -270,7 +270,7 @@ public class GrowthCompoundsMatchCalculation
             new List<Hex>(), new List<Hex>());
 
         species.ReproductionMethod = MulticellularReproductionMethod.MassBudding;
-        species.MassBuddingCellCount = 2;
+        species.MassBuddingCellCount = Constants.MASS_BUDDING_MINIMUM_BUD_SIZE;
         species.OnEdited();
 
         // Spawn a cell of the type for the "player"

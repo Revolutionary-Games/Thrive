@@ -1902,6 +1902,7 @@ public partial class OptionsMenu : ControlWithInput
     {
         var wanted = CalculateGraphicsPreset(Settings.Instance);
 
+        // This is a Godot property, which is why we check before applying.
         if (graphicsPreset.Selected != wanted)
         {
             graphicsPreset.Selected = wanted;

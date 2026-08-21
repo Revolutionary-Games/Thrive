@@ -123,6 +123,11 @@ public class LysosomeUpgrades : IComponentSpecificUpgrades
         return Enzyme.InternalName.Equals(otherLysosome.Enzyme.InternalName);
     }
 
+    public override bool Equals(object? obj)
+    {
+        return obj is LysosomeUpgrades other && Equals(other);
+    }
+
     public object Clone()
     {
         return new LysosomeUpgrades(Enzyme);
