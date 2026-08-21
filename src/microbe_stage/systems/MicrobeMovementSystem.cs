@@ -295,7 +295,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
             foreach (var flagellum in organelles.ThrustComponents)
             {
                 thrustForce += flagellum.UseForMovement(control.MovementDirection, compounds, Quaternion.Identity,
-                    cellProperties.IsBacteria, energyCostMultiplier, delta);
+                    cellProperties.IsBacteria, totalSpecializationBonus, energyCostMultiplier, delta);
             }
         }
 
@@ -322,8 +322,8 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
             try
             {
                 CalculateColonyImpactOnMovementForce(ref entity.Get<MicrobeColony>(), ref organelles,
-                    compounds, control.MovementDirection, cellProperties.IsBacteria, energyCostMultiplier, delta,
-                    ref force);
+                    compounds, control.MovementDirection, cellProperties.IsBacteria, totalSpecializationBonus,
+                    energyCostMultiplier, delta, ref force);
             }
             catch (Exception e)
             {
@@ -446,7 +446,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
 
     private void CalculateColonyImpactOnMovementForce(ref MicrobeColony microbeColony,
         ref OrganelleContainer leaderOrganelles, CompoundBag leaderCompounds, Vector3 movementDirection,
-        bool isBacteria, float energyCostMultiplier, float delta, ref float force)
+        bool isBacteria, float leaderTotalSpecializationBonus, float energyCostMultiplier, float delta, ref float force)
     {
         // If this method is updated, the CalculateSpeed() method in CellBodyPlanInternalCalculations.cs
         // also has to be changed
@@ -456,7 +456,8 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
         float actomyosinCount = 0;
         if (leaderOrganelles.ActomyosinComponents is { Count: > 0 })
         {
-            actomyosinCount = TryActivateActomyosin(ref leaderOrganelles, leaderCompounds, energyCostMultiplier, delta);
+            actomyosinCount = TryActivateActomyosin(ref leaderOrganelles, leaderCompounds, energyCostMultiplier, delta)
+                * leaderTotalSpecializationBonus;
         }
 
         // Colony members have their movement update before organelle update, so that the movement organelles
@@ -479,6 +480,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
             // Flagella in colony members
             ref var organelles = ref colonyMember.Get<OrganelleContainer>();
             var memberCompounds = colonyMember.Get<CompoundStorage>().Compounds;
+            var memberTotalSpecializationBonus = colonyMember.Get<SpecializationFactor>().TotalSpecializationBonus;
 
             if (organelles.ThrustComponents != null)
             {
@@ -487,14 +489,15 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
                 foreach (var flagellum in organelles.ThrustComponents)
                 {
                     force += flagellum.UseForMovement(movementDirection, memberCompounds,
-                        relativeRotation, isBacteria, energyCostMultiplier,
-                        delta) * Constants.CELL_COLONY_MOVEMENT_FORCE_MULTIPLIER;
+                        relativeRotation, isBacteria, memberTotalSpecializationBonus,
+                        energyCostMultiplier, delta) * Constants.CELL_COLONY_MOVEMENT_FORCE_MULTIPLIER;
                 }
             }
 
             if (organelles.ActomyosinComponents is { Count: > 0 })
             {
-                actomyosinCount += TryActivateActomyosin(ref organelles, memberCompounds, energyCostMultiplier, delta);
+                actomyosinCount += TryActivateActomyosin(ref organelles, memberCompounds, energyCostMultiplier, delta)
+                    * memberTotalSpecializationBonus;
             }
         }
 

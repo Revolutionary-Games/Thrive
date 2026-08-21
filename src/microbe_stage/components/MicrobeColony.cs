@@ -1044,10 +1044,11 @@ public static class MicrobeColonyHelpers
             try
             {
                 ref var memberOrganelleContainer = ref colonyMember.Get<OrganelleContainer>();
+                var memberTotalSpecializationBonus =
+                    colonyMember.Get<SpecializationFactor>().TotalSpecializationBonus;
 
                 var rawRotation = MicrobeInternalCalculations.CalculateRotationSpeed(
-                    memberOrganelleContainer.Organelles!.Organelles,
-                    colonyMember.Get<SpecializationFactor>().TotalSpecializationBonus);
+                    memberOrganelleContainer.Organelles!.Organelles, memberTotalSpecializationBonus);
 
                 // Bonus from position
                 if (!leader)
@@ -1061,7 +1062,8 @@ public static class MicrobeColonyHelpers
                 }
 
                 totalRotationSpeed += rawRotation;
-                actomyosinCount += memberOrganelleContainer.CalculateEffectiveActomyosinCount();
+                actomyosinCount += memberOrganelleContainer.CalculateEffectiveActomyosinCount() *
+                    memberTotalSpecializationBonus;
             }
             catch (Exception e)
             {
@@ -1623,6 +1625,16 @@ public static class MicrobeColonyHelpers
 
         // TODO: maybe in some situations creating the compound bag could be entirely safely skipped here
         colony.GetCompounds().UpdateColonyMembers(colony.ColonyMembers);
+
+        // Reset membrane visuals for all colony members so they recalculate with the new colony structure
+        foreach (var member in colony.ColonyMembers)
+        {
+            if (member.IsAlive() && member.Has<OrganelleContainer>())
+            {
+                ref var organelleContainer = ref member.Get<OrganelleContainer>();
+                organelleContainer.OrganelleVisualsCreated = false;
+            }
+        }
     }
 
     /// <summary>

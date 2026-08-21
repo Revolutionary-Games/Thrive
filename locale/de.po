@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-14 09:18+0300\n"
+"POT-Creation-Date: 2026-08-21 10:40+0300\n"
 "PO-Revision-Date: 2026-07-29 18:01+0000\n"
 "Last-Translator: Crispy-Mate <kristijan.richter@googlemail.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -928,6 +928,10 @@ msgstr "Cache leeren"
 msgid "CLICK_TO_SELECT"
 msgstr "Auswählen"
 
+#, fuzzy
+msgid "CLICK_TO_SET_CELL_TYPE"
+msgstr "Auswählen"
+
 msgid "CLIMATE_INSTABILITY"
 msgstr "Klimawandel"
 
@@ -1660,6 +1664,10 @@ msgstr "Objektgröße verringern"
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Standardausgabegerät"
 
+#, fuzzy
+msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
+msgstr "Neuen Zellentyp erstellen"
+
 msgid "DELETE"
 msgstr "Löschen"
 
@@ -2250,6 +2258,9 @@ msgid "ERROR_LOADING"
 msgstr "Fehler beim Laden"
 
 msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
+
+msgid "ERROR_REQUIRED_AT_LEAST_X_CELLS_FOR_MASS_BUDDING"
 msgstr ""
 
 msgid "ERROR_SAVING"
@@ -3732,6 +3743,10 @@ msgid "MASS_BUDDING_CELL_COUNT"
 msgstr "Anfängliche Zellenmenge"
 
 #, fuzzy
+msgid "MASS_BUDDING_MINIMUM_SIZE_EXPLANATION"
+msgstr "(Erhalte passiv Reproduktionsfortschritt, auch wenn Du keine Ressourcen aktiv einsammelst)"
+
+#, fuzzy
 msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "(Erhalte passiv Reproduktionsfortschritt, auch wenn Du keine Ressourcen aktiv einsammelst)"
 
@@ -4749,6 +4764,14 @@ msgstr "Kein Bildschirmfotoverzeichnis gefunden"
 
 msgid "NO_SELECTED_MOD"
 msgstr "Kein Mod ausgewählt"
+
+#, fuzzy
+msgid "NO_SPORE_CELL_TYPE_SET"
+msgstr "Neuen Zellentyp erstellen"
+
+#, fuzzy
+msgid "NO_SPORE_CELL_TYPE_SET_TITLE"
+msgstr "Neuen Zellentyp erstellen"
 
 msgid "NO_SUGGESTION"
 msgstr "Nichts"
@@ -5781,6 +5804,9 @@ msgstr "Speicherstand hat eine ungültige Spielstatus-Szene"
 msgid "SAVE_INVALID"
 msgstr "Ungülig"
 
+msgid "SAVE_IS_CORRUPT_WHILE_LOADING"
+msgstr ""
+
 msgid "SAVE_IS_INVALID"
 msgstr "Speicherstand ist ungültig"
 
@@ -6260,7 +6286,7 @@ msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr "ABC"
 
 #, fuzzy
-msgid "SPORE_CELL_TYPE"
+msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
 msgstr "Neuen Zellentyp erstellen"
 
 #, fuzzy
@@ -9836,6 +9862,10 @@ msgstr "Hereinzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Herauszoomen"
+
+#, fuzzy
+#~ msgid "SPORE_CELL_TYPE"
+#~ msgstr "Neuen Zellentyp erstellen"
 
 #~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
 #~ msgstr "ABC"

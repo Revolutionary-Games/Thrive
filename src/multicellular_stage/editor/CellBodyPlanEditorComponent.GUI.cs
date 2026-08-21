@@ -31,21 +31,6 @@ public partial class CellBodyPlanEditorComponent
         UpdateReproductionMethodChoice();
     }
 
-    public void OnSporeCellTypeSelected(int selectedOption)
-    {
-        var cellType = Editor.EditedSpecies.ModifiableCellTypes[selectedOption];
-
-        if (ReferenceEquals(cellType, SporeCellType))
-            return;
-
-        var action = new SingleEditorAction<SporeCellTypeChangeActionData>(DoSporeCellChangeAction,
-            UndoSporeCellChangeAction, new SporeCellTypeChangeActionData(SporeCellType, cellType));
-
-        Editor.EnqueueAction(action);
-
-        UpdateSporeCellDropdown();
-    }
-
     public void OnGameteACellTypeSelected(int selectedOption)
     {
         var cellType = Editor.EditedSpecies.ModifiableCellTypes[selectedOption];
@@ -245,7 +230,8 @@ public partial class CellBodyPlanEditorComponent
         organismStatisticsPanel.ApplyLightLevelSelection();
 
         UpdateReproductionMethodChoice();
-        UpdateSporeCellDropdown();
+
+        UpdateSpecialCellTypeDisplays();
         UpdateGameteDropdowns();
         UpdateMassBuddingCellCountSlider();
 
@@ -394,24 +380,55 @@ public partial class CellBodyPlanEditorComponent
         }
     }
 
-    private void UpdateSporeCellDropdown()
+    private void OnSporeEditClicked()
     {
-        if (!sporeCellTypeDropdown.Visible)
-            return;
-
-        sporeCellTypeDropdown.Clear();
-        foreach (var cellType in Editor.EditedSpecies.ModifiableCellTypes)
-        {
-            sporeCellTypeDropdown.AddItem(cellType.FormattedName);
-        }
-
         if (SporeCellType == null)
         {
-            sporeCellTypeDropdown.Select(-1);
-            return;
+            cellTypePickerPopup.UpdateCellTypeList(Editor.EditedSpecies.ModifiableCellTypes, GetEditedCellDataIfEdited,
+                OnBaseCellTypeForSporeSelected);
+            cellTypePickerPopup.PopupCenteredShrink();
         }
+        else
+        {
+            EmitSignal(SignalName.OnCellTypeToEditSelected, SporeCellType.CellTypeName, true);
+        }
+    }
 
-        sporeCellTypeDropdown.Select(Editor.EditedSpecies.ModifiableCellTypes.IndexOf(SporeCellType));
+    private void OnBaseCellTypeForSporeSelected(string baseCellTypeName)
+    {
+        var splitFrom = CellTypeFromName(baseCellTypeName);
+
+        var cellType = (CellType)GetEditedCellDataIfEdited(splitFrom).Clone();
+        cellType.CellTypeName = Localization.Translate("DEFAULT_SPORE_CELL_TYPE_NAME");
+        cellType.SplitFromTypeName = splitFrom.CellTypeName;
+
+        var action = new SingleEditorAction<SporeCellTypeChangeActionData>(DoSporeCellChangeAction,
+            UndoSporeCellChangeAction, new SporeCellTypeChangeActionData(SporeCellType, cellType));
+
+        Editor.EnqueueAction(action);
+
+        if (SporeCellType != null)
+        {
+            EmitSignal(SignalName.OnCellTypeToEditSelected, SporeCellType.CellTypeName, true);
+        }
+    }
+
+    private void OnSporeResetClicked()
+    {
+        if (SporeCellType == null)
+            return;
+
+        var action = new SingleEditorAction<SporeCellTypeChangeActionData>(DoSporeCellChangeAction,
+            UndoSporeCellChangeAction, new SporeCellTypeChangeActionData(SporeCellType, null));
+
+        Editor.EnqueueAction(action);
+    }
+
+    private void UpdateSpecialCellTypeDisplays()
+    {
+        sporeCellTypeMakerButton.UpdateDisplayedCellType(SporeCellType == null ?
+            null :
+            GetEditedCellDataIfEdited(SporeCellType));
     }
 
     private void UpdateGameteDropdowns()
@@ -561,9 +578,11 @@ public partial class CellBodyPlanEditorComponent
     private void UpdateMassBuddingCellCountSlider()
     {
         var maxBudSize = CellBodyPlanInternalCalculations.MaxBudSize(editedMicrobeCells.Count);
+        var minBudSize = Math.Min(Constants.MASS_BUDDING_MINIMUM_BUD_SIZE, maxBudSize);
 
-        var clampedBudSize = Math.Min(DesiredMassBuddingCellCount, maxBudSize);
+        var clampedBudSize = Math.Max(minBudSize, Math.Min(DesiredMassBuddingCellCount, maxBudSize));
 
+        massBuddingCellCountSlider.MinValue = minBudSize;
         massBuddingCellCountSlider.MaxValue = maxBudSize;
         massBuddingCellCountSlider.SetValueNoSignal(clampedBudSize);
 

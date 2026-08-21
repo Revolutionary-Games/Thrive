@@ -11,6 +11,19 @@ public interface IMembraneDataSource
     public Vector2[] HexPositions { get; }
     public int HexPositionCount { get; }
     public MembraneType Type { get; }
+    public bool IsPreMulticellularStretch { get; }
+}
+
+public struct MulticellularMembraneGenerationCellData
+{
+    public MulticellularMembraneGenerationCellData(Vector2 position, int orientation)
+    {
+        Position = position;
+        Orientation = orientation;
+    }
+
+    public Vector2 Position { get; }
+    public int Orientation { get; }
 }
 
 /// <summary>
@@ -18,6 +31,20 @@ public interface IMembraneDataSource
 /// </summary>
 public struct MembraneGenerationParameters : IMembraneDataSource
 {
+    public MembraneGenerationParameters(Vector2[] hexPositions, int hexPositionCount, MembraneType type,
+        MulticellularMembraneGenerationCellData currentCellMulticellularMembraneGenerationCellData,
+        MulticellularMembraneGenerationCellData[] grownCellsData, long leaderCellKey, long cellKey,
+        bool isPreMulticellularStretch = false)
+        : this(hexPositions, hexPositionCount, type)
+    {
+        CurrentCellMulticellularMembraneGenerationCellData = currentCellMulticellularMembraneGenerationCellData;
+        GrownCellsData = grownCellsData;
+        LeaderCellKey = leaderCellKey;
+        CellKey = cellKey;
+        IsPreMulticellularStretch = isPreMulticellularStretch;
+        IsMulticellularMembraneDataValid = true;
+    }
+
     public MembraneGenerationParameters(Vector2[] hexPositions, int hexPositionCount, MembraneType type)
     {
         HexPositions = hexPositions;
@@ -26,9 +53,22 @@ public struct MembraneGenerationParameters : IMembraneDataSource
     }
 
     public Vector2[] HexPositions { get; }
-    public int HexPositionCount { get; }
+
+    public MulticellularMembraneGenerationCellData CurrentCellMulticellularMembraneGenerationCellData { get; }
+
+    public MulticellularMembraneGenerationCellData[] GrownCellsData { get; } = [];
 
     public MembraneType Type { get; }
+
+    public long CellKey { get; }
+
+    public long LeaderCellKey { get; }
+
+    public int HexPositionCount { get; }
+
+    public bool IsPreMulticellularStretch { get; set; }
+
+    public bool IsMulticellularMembraneDataValid { get; }
 }
 
 /// <summary>
@@ -89,7 +129,7 @@ public static class MembraneComputationHelpers
 
         var cache = ProceduralDataCache.Instance;
 
-        var hash = ComputeMembraneDataHash(hexes, length, membraneType);
+        var hash = new MembraneGenerationParameters(hexes, length, membraneType).ComputeMembraneDataHash();
 
         var result = cache.ReadMembraneData(hash);
 
@@ -105,39 +145,40 @@ public static class MembraneComputationHelpers
         // Need to compute the data now, it doesn't exist in the cache
         var generator = MembraneShapeGenerator.GetThreadSpecificGenerator();
 
-        result = generator.GenerateShape(hexes, length, membraneType);
+        result = generator.GenerateMicrobeShape(hexes, length, membraneType);
 
         cache.WriteMembraneData(ref result);
         return result;
     }
 
-    public static long ComputeMembraneDataHash(Vector2[] positions, int count, MembraneType type)
+    public static long ComputeMembraneDataHash(this IMembraneDataSource dataSource)
     {
-        var nameHash = type.InternalName.GetHashCode();
+        const long prime1 = 1099511628211L;
+        const long prime2 = 1409;
+        const long prime3 = 7793;
+
+        var nameHash = dataSource.Type.InternalName.GetHashCode();
 
         unchecked
         {
-            long hash = 1409 + nameHash + ((long)nameHash << 28);
+            long hash = prime2 + nameHash + ((long)nameHash << 28);
 
-            hash ^= (count + 1) * 7793;
-            int hashMultiply = 1;
+            hash ^= (dataSource.HexPositionCount + 1) * prime3;
 
-            for (int i = 0; i < count; ++i)
+            for (int i = 0; i < dataSource.HexPositionCount; ++i)
             {
-                var posHash = positions[i].GetHashCode();
+                var position = dataSource.HexPositions[i];
+                hash = (hash * prime1) ^ BitConverter.SingleToInt32Bits(position.X);
+                hash = (hash * prime1) ^ BitConverter.SingleToInt32Bits(position.Y);
+            }
 
-                // TODO: switch to using rotate left here once we can (after Godot 4)
-                hash ^= (hashMultiply * posHash) ^ ((5081L * hashMultiply * hashMultiply + posHash) << 32);
-                ++hashMultiply;
+            if (dataSource.IsPreMulticellularStretch)
+            {
+                hash = (hash * prime1) ^ 1;
             }
 
             return hash;
         }
-    }
-
-    public static long ComputeMembraneDataHash(this IMembraneDataSource dataSource)
-    {
-        return ComputeMembraneDataHash(dataSource.HexPositions, dataSource.HexPositionCount, dataSource.Type);
     }
 
     public static bool MembraneDataFieldsEqual(this IMembraneDataSource dataSource, IMembraneDataSource other)
@@ -149,10 +190,17 @@ public static class MembraneComputationHelpers
         int otherPointCount, MembraneType otherType)
     {
         if (!dataSource.Type.Equals(otherType))
+        {
+            GD.PrintErr($"Membrane cache Type mismatch: {dataSource.Type} != {otherType}");
             return false;
+        }
 
         if (dataSource.HexPositionCount != otherPointCount)
+        {
+            GD.PrintErr("Membrane cache HexPositionCount mismatch: " +
+                $"{dataSource.HexPositionCount} != {otherPointCount}");
             return false;
+        }
 
         var count = dataSource.HexPositionCount;
 
@@ -161,7 +209,11 @@ public static class MembraneComputationHelpers
         for (int i = 0; i < count; ++i)
         {
             if (sourcePoints[i] != otherPoints[i])
+            {
+                GD.PrintErr($"Membrane cache HexPositions[{i}] mismatch: " +
+                    $"{sourcePoints[i]} != {otherPoints[i]}");
                 return false;
+            }
         }
 
         return true;

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Godot;
 
 /// <summary>
 ///   Helps to manage the used cell types for more advanced species that have multiple cell types
@@ -58,6 +59,35 @@ public class CellTypeFacadeHelper
             else
             {
                 addedCellTypes.Add(GetOrCreateCellType(cellTypeActionData.CellType));
+            }
+
+            return true;
+        }
+
+        if (actionData is SporeCellTypeChangeActionData sporeCellTypeChangeActionData)
+        {
+            if (!ReferenceEquals(sporeCellTypeChangeActionData.OldCellType,
+                    sporeCellTypeChangeActionData.NewCellType))
+            {
+                if (sporeCellTypeChangeActionData.OldCellType != null)
+                {
+                    if (!removedCellTypes.Any(type => ReferenceEquals(type, sporeCellTypeChangeActionData.OldCellType)))
+                        removedCellTypes.Add(sporeCellTypeChangeActionData.OldCellType);
+
+                    if (activeCellTypes.ContainsKey(sporeCellTypeChangeActionData.OldCellType))
+                    {
+                        var cellTypeToRemove = GetOrCreateCellType(sporeCellTypeChangeActionData.OldCellType);
+                        if (addedCellTypes.RemoveAll(type => ReferenceEquals(type, cellTypeToRemove)) != 1)
+                        {
+                            GD.PrintErr("Spore cell type not found for delete");
+                        }
+                    }
+                }
+
+                if (sporeCellTypeChangeActionData.NewCellType != null)
+                {
+                    addedCellTypes.Add(GetOrCreateCellType(sporeCellTypeChangeActionData.NewCellType));
+                }
             }
 
             return true;

@@ -52,7 +52,7 @@ public static class CellBodyPlanInternalCalculations
         var massEstimate = 0.0f;
 
         var addedSpeed = 0.0f;
-        var actomyosinCount = CalculateEffectiveActomyosinCount(leader);
+        var actomyosinCount = CalculateEffectiveActomyosinCount(leader) * leaderTotalSpecializationBonus;
 
         foreach (var hex in cells)
         {
@@ -62,6 +62,10 @@ public static class CellBodyPlanInternalCalculations
                 continue;
 
             var cellActomyosinCount = 0;
+
+            // Calculate cell specialization bonus
+            var totalSpecializationBonus = cell.CellTypeSpecializationBonus *
+                GetAdjacencySpecializationBonusFromBodyPlan(cell, cells);
 
             foreach (var organelle in cell.Organelles)
             {
@@ -86,10 +90,6 @@ public static class CellBodyPlanInternalCalculations
                 if (!cell.IsBacteria)
                     flagellumForce *= Constants.EUKARYOTIC_MOVEMENT_FORCE_MULTIPLIER;
 
-                // Apply cell specialization bonus
-                var totalSpecializationBonus = cell.CellTypeSpecializationBonus *
-                    GetAdjacencySpecializationBonusFromBodyPlan(cell, cells);
-
                 flagellumForce *= totalSpecializationBonus;
 
                 addedSpeed += flagellumForce;
@@ -98,7 +98,7 @@ public static class CellBodyPlanInternalCalculations
             if (cellActomyosinCount > 0)
             {
                 // The first actomyosin in a cell counts fully, while additional ones have diminishing returns.
-                actomyosinCount += CalculateEffectiveActomyosinCount(cellActomyosinCount);
+                actomyosinCount += CalculateEffectiveActomyosinCount(cellActomyosinCount) * totalSpecializationBonus;
             }
         }
 
@@ -169,7 +169,7 @@ public static class CellBodyPlanInternalCalculations
                 Hex.AxialToCartesian(colonyMember.Position) * 10,
                 MicrobeInternalCalculations.CalculateRotationSpeed(colonyMemberData.ModifiableOrganelles,
                     memberTotalSpecializationBonus));
-            actomyosinCount += CalculateEffectiveActomyosinCount(colonyMemberData);
+            actomyosinCount += CalculateEffectiveActomyosinCount(colonyMemberData) * memberTotalSpecializationBonus;
         }
 
         return CalculateFinalColonyRotation(totalRotationSpeed / cells.Count, actomyosinCount, cells.Count);

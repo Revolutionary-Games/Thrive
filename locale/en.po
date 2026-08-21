@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-14 09:18+0300\n"
-"PO-Revision-Date: 2026-08-14 09:21+0300\n"
+"POT-Creation-Date: 2026-08-21 10:40+0300\n"
+"PO-Revision-Date: 2026-08-21 10:18+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -921,6 +921,9 @@ msgstr "Clear Cache"
 msgid "CLICK_TO_SELECT"
 msgstr "Select"
 
+msgid "CLICK_TO_SET_CELL_TYPE"
+msgstr "Click to set a cell type"
+
 msgid "CLIMATE_INSTABILITY"
 msgstr "Climate instability"
 
@@ -1645,6 +1648,9 @@ msgstr "Decrease object size"
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Default output device"
 
+msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
+msgstr "Spore"
+
 msgid "DELETE"
 msgstr "Delete"
 
@@ -2224,6 +2230,9 @@ msgstr "Error Loading"
 
 msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
 msgstr "Error: at least two cells are needed for sexual reproduction"
+
+msgid "ERROR_REQUIRED_AT_LEAST_X_CELLS_FOR_MASS_BUDDING"
+msgstr "Error: mass budding requires an initial bud size of at least {0} cells"
 
 msgid "ERROR_SAVING"
 msgstr "Error Saving"
@@ -3668,6 +3677,9 @@ msgstr "Marine snow"
 msgid "MASS_BUDDING_CELL_COUNT"
 msgstr "Initial cell count"
 
+msgid "MASS_BUDDING_MINIMUM_SIZE_EXPLANATION"
+msgstr "Bud size must be at least {0} cells to use this option. You may need to add more cells to your body plan to be able to select a large enough bud size."
+
 msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "Produces an offspring that starts with multiple cells."
 
@@ -4652,6 +4664,12 @@ msgstr "No screenshot directory found"
 msgid "NO_SELECTED_MOD"
 msgstr "No Selected Mod"
 
+msgid "NO_SPORE_CELL_TYPE_SET"
+msgstr "An organism that uses sporulation as its reproduction method must have a spore cell type set."
+
+msgid "NO_SPORE_CELL_TYPE_SET_TITLE"
+msgstr "Spore cell type is unset"
+
 msgid "NO_SUGGESTION"
 msgstr "None"
 
@@ -5619,6 +5637,12 @@ msgstr "Save has invalid game state scene"
 msgid "SAVE_INVALID"
 msgstr "Invalid"
 
+msgid "SAVE_IS_CORRUPT_WHILE_LOADING"
+msgstr ""
+"Loading the save failed because the file is corrupted.\n"
+"Expected hash: {0}\n"
+"Calculated hash: {1}"
+
 msgid "SAVE_IS_INVALID"
 msgstr "Save is invalid"
 
@@ -6067,8 +6091,8 @@ msgstr "Speed:"
 msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr "Toggle between normal speed and alternative speed gameplay"
 
-msgid "SPORE_CELL_TYPE"
-msgstr "Spore cell type"
+msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
+msgstr "Select a cell type to duplicate from"
 
 msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "Produces multiple optionally specialized offspring that can look for better conditions before turning into a colony root cell."
@@ -10003,6 +10027,9 @@ msgstr "Zoom in"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom out"
+
+#~ msgid "SPORE_CELL_TYPE"
+#~ msgstr "Spore cell type"
 
 #~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
 #~ msgstr "Toggle between normal speed and double speed gameplay"

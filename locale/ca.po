@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-14 09:18+0300\n"
+"POT-Creation-Date: 2026-08-21 10:40+0300\n"
 "PO-Revision-Date: 2026-05-13 03:55+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -933,6 +933,10 @@ msgstr ""
 msgid "CLICK_TO_SELECT"
 msgstr "Eliminar tot el que ha estat seleccionat"
 
+#, fuzzy
+msgid "CLICK_TO_SET_CELL_TYPE"
+msgstr "Eliminar tot el que ha estat seleccionat"
+
 msgid "CLIMATE_INSTABILITY"
 msgstr ""
 
@@ -1687,6 +1691,10 @@ msgstr "Secretar mucílag"
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Aparell d'output per defecte"
 
+#, fuzzy
+msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
+msgstr "Crear un nou Tipus de Cèl·lula"
+
 msgid "DELETE"
 msgstr "Eliminar"
 
@@ -2310,6 +2318,9 @@ msgid "ERROR_LOADING"
 msgstr "Error durant la càrrega"
 
 msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
+
+msgid "ERROR_REQUIRED_AT_LEAST_X_CELLS_FOR_MASS_BUDDING"
 msgstr ""
 
 msgid "ERROR_SAVING"
@@ -3914,6 +3925,10 @@ msgid "MASS_BUDDING_CELL_COUNT"
 msgstr ""
 
 #, fuzzy
+msgid "MASS_BUDDING_MINIMUM_SIZE_EXPLANATION"
+msgstr "(velocitat a la qual les espècies de la IA muten)"
+
+#, fuzzy
 msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "(velocitat a la qual les espècies de la IA muten)"
 
@@ -5062,6 +5077,14 @@ msgid "NO_SELECTED_MOD"
 msgstr "Cap Mod Seleccionat"
 
 #, fuzzy
+msgid "NO_SPORE_CELL_TYPE_SET"
+msgstr "Crear un nou Tipus de Cèl·lula"
+
+#, fuzzy
+msgid "NO_SPORE_CELL_TYPE_SET_TITLE"
+msgstr "Crear un nou Tipus de Cèl·lula"
+
+#, fuzzy
 msgid "NO_SUGGESTION"
 msgstr "Resolució:"
 
@@ -6136,6 +6159,9 @@ msgstr "L'arxiu guardat té una escena d'estat del joc no vàlida"
 msgid "SAVE_INVALID"
 msgstr "No vàlid"
 
+msgid "SAVE_IS_CORRUPT_WHILE_LOADING"
+msgstr ""
+
 msgid "SAVE_IS_INVALID"
 msgstr "El fitxer guardat no és vàlid"
 
@@ -6639,7 +6665,7 @@ msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr "El valor utilitzat per generar el món, que ha de ser un nombre enter positiu"
 
 #, fuzzy
-msgid "SPORE_CELL_TYPE"
+msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
 msgstr "Crear un nou Tipus de Cèl·lula"
 
 #, fuzzy
@@ -10115,6 +10141,10 @@ msgstr "Enfocar la visió de la càmera"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom enfora"
+
+#, fuzzy
+#~ msgid "SPORE_CELL_TYPE"
+#~ msgstr "Crear un nou Tipus de Cèl·lula"
 
 #, fuzzy
 #~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"

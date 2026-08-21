@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-14 09:18+0300\n"
+"POT-Creation-Date: 2026-08-21 10:40+0300\n"
 "PO-Revision-Date: 2026-05-22 15:37+0000\n"
 "Last-Translator: AegisTTN <gamemastermine042004@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
@@ -926,6 +926,10 @@ msgstr ""
 msgid "CLICK_TO_SELECT"
 msgstr "Apagar Selecionado"
 
+#, fuzzy
+msgid "CLICK_TO_SET_CELL_TYPE"
+msgstr "Apagar Selecionado"
+
 msgid "CLIMATE_INSTABILITY"
 msgstr ""
 
@@ -1686,6 +1690,10 @@ msgstr "Secretar Mucilagem"
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Dispositivo de saída padrão"
 
+#, fuzzy
+msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
+msgstr "Criar um novo tipo de célula"
+
 msgid "DELETE"
 msgstr "Apagar"
 
@@ -2296,6 +2304,9 @@ msgid "ERROR_LOADING"
 msgstr "Erro ao carregar"
 
 msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
+
+msgid "ERROR_REQUIRED_AT_LEAST_X_CELLS_FOR_MASS_BUDDING"
 msgstr ""
 
 msgid "ERROR_SAVING"
@@ -3819,6 +3830,10 @@ msgid "MASS_BUDDING_CELL_COUNT"
 msgstr ""
 
 #, fuzzy
+msgid "MASS_BUDDING_MINIMUM_SIZE_EXPLANATION"
+msgstr "(obter passivamente compostos de reprodução do ambiente sem ter de fazer nada)"
+
+#, fuzzy
 msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "(obter passivamente compostos de reprodução do ambiente sem ter de fazer nada)"
 
@@ -4912,6 +4927,14 @@ msgid "NO_SELECTED_MOD"
 msgstr "Nenhum mod selecionado"
 
 #, fuzzy
+msgid "NO_SPORE_CELL_TYPE_SET"
+msgstr "Criar um novo tipo de célula"
+
+#, fuzzy
+msgid "NO_SPORE_CELL_TYPE_SET_TITLE"
+msgstr "Criar um novo tipo de célula"
+
+#, fuzzy
 msgid "NO_SUGGESTION"
 msgstr "Resolução:"
 
@@ -5957,6 +5980,9 @@ msgstr "O jogo guardado tem um estado de jogo inválido"
 msgid "SAVE_INVALID"
 msgstr "Inválido"
 
+msgid "SAVE_IS_CORRUPT_WHILE_LOADING"
+msgstr ""
+
 msgid "SAVE_IS_INVALID"
 msgstr "O jogo guardado é inválido"
 
@@ -6447,7 +6473,7 @@ msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr "Valor utilizado para gerar o mundo, tem de ser um número inteiro positivo"
 
 #, fuzzy
-msgid "SPORE_CELL_TYPE"
+msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
 msgstr "Criar um novo tipo de célula"
 
 #, fuzzy
@@ -9851,6 +9877,10 @@ msgstr "Ampliar"
 
 msgid "ZOOM_OUT"
 msgstr "Reduzir"
+
+#, fuzzy
+#~ msgid "SPORE_CELL_TYPE"
+#~ msgstr "Criar um novo tipo de célula"
 
 #, fuzzy
 #~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"

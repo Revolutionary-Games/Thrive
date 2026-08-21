@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-14 09:18+0300\n"
+"POT-Creation-Date: 2026-08-21 10:40+0300\n"
 "PO-Revision-Date: 2026-07-23 05:41+0000\n"
 "Last-Translator: Yuchan An <chanyz1402@gmail.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -973,6 +973,10 @@ msgstr "캐시 초기화하기"
 msgid "CLICK_TO_SELECT"
 msgstr "선택된 파일 삭제"
 
+#, fuzzy
+msgid "CLICK_TO_SET_CELL_TYPE"
+msgstr "선택된 파일 삭제"
+
 msgid "CLIMATE_INSTABILITY"
 msgstr ""
 
@@ -1742,6 +1746,10 @@ msgstr "점액 분비"
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "기본 출력 기기"
 
+#, fuzzy
+msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
+msgstr "새 저장 생성"
+
 msgid "DELETE"
 msgstr "삭제하기"
 
@@ -2375,6 +2383,9 @@ msgid "ERROR_LOADING"
 msgstr "불러오기 오류"
 
 msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
+
+msgid "ERROR_REQUIRED_AT_LEAST_X_CELLS_FOR_MASS_BUDDING"
 msgstr ""
 
 msgid "ERROR_SAVING"
@@ -3968,6 +3979,10 @@ msgid "MASS_BUDDING_CELL_COUNT"
 msgstr ""
 
 #, fuzzy
+msgid "MASS_BUDDING_MINIMUM_SIZE_EXPLANATION"
+msgstr "(번식에 필요한 화합물을 아무 것도 하지 않아도 환경에서 자동으로 수집)"
+
+#, fuzzy
 msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "(번식에 필요한 화합물을 아무 것도 하지 않아도 환경에서 자동으로 수집)"
 
@@ -5068,6 +5083,14 @@ msgid "NO_SELECTED_MOD"
 msgstr "선택됨:"
 
 #, fuzzy
+msgid "NO_SPORE_CELL_TYPE_SET"
+msgstr "새 저장 생성"
+
+#, fuzzy
+msgid "NO_SPORE_CELL_TYPE_SET_TITLE"
+msgstr "새 저장 생성"
+
+#, fuzzy
 msgid "NO_SUGGESTION"
 msgstr "해상도:"
 
@@ -6157,6 +6180,9 @@ msgstr "저장된 게임 상태가 올바르지 않습니다"
 msgid "SAVE_INVALID"
 msgstr "부정"
 
+msgid "SAVE_IS_CORRUPT_WHILE_LOADING"
+msgstr ""
+
 msgid "SAVE_IS_INVALID"
 msgstr "올바르지 않은 저장 입니다"
 
@@ -6679,7 +6705,7 @@ msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr "재개"
 
 #, fuzzy
-msgid "SPORE_CELL_TYPE"
+msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
 msgstr "새 저장 생성"
 
 #, fuzzy
@@ -10123,6 +10149,10 @@ msgstr "확대"
 
 msgid "ZOOM_OUT"
 msgstr "축소"
+
+#, fuzzy
+#~ msgid "SPORE_CELL_TYPE"
+#~ msgstr "새 저장 생성"
 
 #, fuzzy
 #~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"

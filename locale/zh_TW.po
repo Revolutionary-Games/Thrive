@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-14 09:18+0300\n"
+"POT-Creation-Date: 2026-08-21 10:40+0300\n"
 "PO-Revision-Date: 2026-07-08 12:56+0000\n"
 "Last-Translator: xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -913,6 +913,10 @@ msgstr "清除快取"
 msgid "CLICK_TO_SELECT"
 msgstr "選取"
 
+#, fuzzy
+msgid "CLICK_TO_SET_CELL_TYPE"
+msgstr "選取"
+
 msgid "CLIMATE_INSTABILITY"
 msgstr "氣候不穩定性"
 
@@ -1639,6 +1643,10 @@ msgstr "縮小物件"
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "預設輸出設備"
 
+#, fuzzy
+msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
+msgstr "創建新細胞類型"
+
 msgid "DELETE"
 msgstr "刪除"
 
@@ -2220,6 +2228,9 @@ msgid "ERROR_LOADING"
 msgstr "載入時發生錯誤"
 
 msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
+
+msgid "ERROR_REQUIRED_AT_LEAST_X_CELLS_FOR_MASS_BUDDING"
 msgstr ""
 
 msgid "ERROR_SAVING"
@@ -3687,6 +3698,10 @@ msgstr "海洋雪"
 msgid "MASS_BUDDING_CELL_COUNT"
 msgstr "起始細胞數量"
 
+#, fuzzy
+msgid "MASS_BUDDING_MINIMUM_SIZE_EXPLANATION"
+msgstr "產生的後代初始即由多個細胞構成。"
+
 msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "產生的後代初始即由多個細胞構成。"
 
@@ -4689,6 +4704,14 @@ msgstr "找不到截圖目錄"
 msgid "NO_SELECTED_MOD"
 msgstr "無選取模組"
 
+#, fuzzy
+msgid "NO_SPORE_CELL_TYPE_SET"
+msgstr "創建新細胞類型"
+
+#, fuzzy
+msgid "NO_SPORE_CELL_TYPE_SET_TITLE"
+msgstr "創建新細胞類型"
+
 msgid "NO_SUGGESTION"
 msgstr "無"
 
@@ -5676,6 +5699,9 @@ msgstr "存檔具有無效的遊戲狀態場景"
 msgid "SAVE_INVALID"
 msgstr "無效"
 
+msgid "SAVE_IS_CORRUPT_WHILE_LOADING"
+msgstr ""
+
 msgid "SAVE_IS_INVALID"
 msgstr "存檔無效"
 
@@ -6136,7 +6162,7 @@ msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr "在正常與雙倍遊戲速度之間切換"
 
 #, fuzzy
-msgid "SPORE_CELL_TYPE"
+msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
 msgstr "創建新細胞類型"
 
 #, fuzzy
@@ -10065,6 +10091,10 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "縮小"
+
+#, fuzzy
+#~ msgid "SPORE_CELL_TYPE"
+#~ msgstr "創建新細胞類型"
 
 #~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
 #~ msgstr "在正常與雙倍遊戲速度之間切換"
