@@ -1,4 +1,4 @@
-﻿﻿// Instead of using the TOOLS_ENABLED macro, you can use the 'clouds' command in the game console:
+﻿// Instead of using the TOOLS_ENABLED macro, you can use the 'clouds' command in the game console:
 // -- clouds reload - Reloads the pipeline
 // -- clouds profileenable - Enables profiling
 // -- clouds profiledisable - Disables profiling

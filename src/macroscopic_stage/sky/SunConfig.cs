@@ -1,4 +1,4 @@
-﻿﻿using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   Configuration container for the sun lighting a sky.
