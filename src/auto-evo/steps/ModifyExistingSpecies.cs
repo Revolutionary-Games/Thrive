@@ -229,7 +229,9 @@ public class ModifyExistingSpecies : IRunStep
                     if (newPopulation > Constants.AUTO_EVO_MINIMUM_VIABLE_POPULATION)
                     {
                         // For Multicellular species, we need to calculate the gameplay shape here before OnEdited
-                        if (mutation.MutatedSpecies is MulticellularSpecies multicellularMutant)
+                        // as otherwise it fails
+                        var multicellularMutant = mutation.MutatedSpecies as MulticellularSpecies;
+                        if (multicellularMutant != null)
                         {
                             multicellularMutant.RepositionCellTypesToOrigin();
                             MulticellularLayoutHelpers.UpdateGameplayLayoutForAutoEvo(
@@ -239,6 +241,16 @@ public class ModifyExistingSpecies : IRunStep
 
                         // OnEdited is expensive, so we only run it here on species that exit auto-evo
                         mutation.MutatedSpecies.OnEdited();
+
+                        // OnEdited can reposition cell-type organelles. Rebuild the gameplay layout after OnEdited so
+                        // the editor layout and the cell shapes are validated using the same final cell types.
+                        // This duplicates the work, but for now is required to have auto-evo working.
+                        if (multicellularMutant != null)
+                        {
+                            MulticellularLayoutHelpers.UpdateGameplayLayoutForAutoEvo(
+                                multicellularMutant.ModifiableGameplayCells, multicellularMutant.ModifiableEditorCells,
+                                hexTemporaryMemory1, hexTemporaryMemory2);
+                        }
 
                         // Only apply a new name and colour to results that are actually kept
                         MutationLogicFunctions.NameNewSpecies(mutation.MutatedSpecies, mutation.ParentSpecies);
