@@ -312,7 +312,7 @@ public partial class CellBodyPlanEditorComponent :
     ///   This variable should be clamped before use. It's intentional that it can exceed the number of cells, to make
     ///   it easier to e.g. undo cell removal action.
     /// </summary>
-    public int DesiredMassBuddingCellCount { get; private set; } = 2;
+    public int DesiredMassBuddingCellCount { get; private set; } = Constants.MASS_BUDDING_MINIMUM_BUD_SIZE;
 
     protected override bool ShowFloatingLabels => ShowGrowthOrder;
 
