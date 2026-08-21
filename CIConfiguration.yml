@@ -1,17 +1,18 @@
+---
 version: 1
 
 jobs:
   build:
-    image: thrive/godot-ci:v36
+    image: thrive/godot-ci:v37
     cache:
       loadFrom:
-        - v19-{Branch}-build
-        - v19-master-build
-      writeTo: v19-{Branch}-build
+        - v20-{Branch}-build
+        - v20-master-build
+      writeTo: v20-{Branch}-build
       shared:
         .git/lfs: v9-lfs
-        .import: v18-import
-        builds: v9-builds
+        .import: v19-import
+        builds: v10-builds
         native_libs: v3-native
       system:
         /root/.nuget: v9-nuget
@@ -21,7 +22,7 @@ jobs:
       #     name: Make project valid for compile
       #     command: dotnet run --project Scripts -- make-project-valid
       - run:
-           command: dotnet restore Thrive.sln
+          command: dotnet restore Thrive.sln
       - run:
           name: Build with warnings
           command: dotnet run --project Scripts -- check compile
@@ -30,18 +31,18 @@ jobs:
           # This doesn't fetch or install debug variants as they aren't strictly necessary for packaging
           command: dotnet run --project Scripts -- native Fetch Install --debug false
       - run:
-         name: Create builds (Linux, Windows)
-         command: dotnet run --project Scripts -- package --dehydrated Linux Windows
+          name: Create builds (Linux, Windows)
+          command: dotnet run --project Scripts -- package --dehydrated Linux Windows
       - run:
-         name: Upload devbuilds
-         command: dotnet run --project Scripts -- upload
+          name: Upload devbuilds
+          command: dotnet run --project Scripts -- upload
   jetbrains:
-    image: thrive/godot-ci:v36
+    image: thrive/godot-ci:v37
     cache:
       loadFrom:
-        - v13-{Branch}-jetbrains
-        - v13-master-jetbrains
-      writeTo: v13-{Branch}-jetbrains
+        - v14-{Branch}-jetbrains
+        - v14-master-jetbrains
+      writeTo: v14-{Branch}-jetbrains
       shared:
         .git/lfs: v9-jet-lfs
       system:
@@ -64,7 +65,7 @@ jobs:
           name: Make sure Thrive is compiled
           command: dotnet build Thrive.sln
       - run:
-           command: dotnet tool restore
+          command: dotnet tool restore
       # Makes sure that there aren't any changes at this point to not make the CI trip up on them
       - run:
           name: Make sure no changes to git tracked files at this point
@@ -94,12 +95,12 @@ jobs:
                 rm -f cleanup_diff.patch
             fi
   format_test:
-    image: thrive/godot-ci:v36
+    image: thrive/godot-ci:v37
     cache:
       loadFrom:
-        - v15-{Branch}-format
-        - v15-master-format
-      writeTo: v15-{Branch}-format
+        - v16-{Branch}-format
+        - v16-master-format
+      writeTo: v16-{Branch}-format
       shared:
         .git/lfs: v9-lfs
         native_libs: v3-native
@@ -146,4 +147,3 @@ jobs:
       - run:
           name: "Unit tests (Godot)"
           command: dotnet run --project Scripts -- test --godot true
-
