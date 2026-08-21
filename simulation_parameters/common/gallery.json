@@ -249,10 +249,6 @@
             "Type": "ModelScene"
           },
           {
-            "ResourcePath": "res://assets/models/organelles/Axon.tscn",
-            "Type": "ModelScene"
-          },
-          {
             "ResourcePath": "res://assets/models/organelles/BindingAgent.tscn",
             "Type": "ModelScene"
           },
@@ -304,10 +300,6 @@
           },
           {
             "ResourcePath": "res://assets/models/organelles/Hydrogenase.tscn",
-            "Type": "ModelScene"
-          },
-          {
-            "ResourcePath": "res://assets/models/organelles/Myofibril.tscn",
             "Type": "ModelScene"
           },
           {
@@ -365,6 +357,29 @@
           },
           {
             "ResourcePath": "res://assets/models/organelles/Vacuole.tscn",
+            "Type": "ModelScene"
+          }
+        ]
+      },
+      "MulticellularStage": {
+        "Name": "MULTICELLULAR_STAGE",
+        "Assets": [
+          {
+            "ResourcePath": "res://assets/models/organelles/Actomyosin.tscn",
+            "Type": "ModelScene",
+            "MeshNodePath": "Armature/Skeleton3D/Actomyosin"
+          },
+          {
+            "ResourcePath": "res://assets/models/organelles/Axon.tscn",
+            "Type": "ModelScene"
+          }
+        ]
+      },
+      "MacroscopicStage": {
+        "Name": "MACROSCOPIC_STAGE",
+        "Assets": [
+          {
+            "ResourcePath": "res://assets/models/organelles/Myofibril.tscn",
             "Type": "ModelScene"
           }
         ]
