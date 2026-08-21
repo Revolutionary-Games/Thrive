@@ -1,25 +1,21 @@
 [gd_scene format=3 uid="uid://drtupj52wg8wn"]
 
 [ext_resource type="Script" uid="uid://bpmfib2hf13bd" path="res://src/macroscopic_stage/sky/VolumetricCloudsEffect.cs" id="1_6n6mp"]
-[ext_resource type="Shader" uid="uid://dav0pvvxjpkph" path="res://shaders/sky/atmosphere_sky.gdshader" id="2_quqb5"]
-[ext_resource type="Script" uid="uid://cnaob33leecss" path="res://src/macroscopic_stage/sky/CloudsConfig.cs" id="2_s4i58"]
-[ext_resource type="Script" uid="uid://c1nckmveht4b8" path="res://src/general/FreeViewCamera.cs" id="3_5jfpd"]
-[ext_resource type="Script" uid="uid://da571d2glyldi" path="res://src/macroscopic_stage/sky/SkyEquippedEnvironment.cs" id="4_q3oiy"]
-[ext_resource type="Script" uid="uid://deowf10xvynur" path="res://src/macroscopic_stage/sky/AtmosphereConfig.cs" id="5_ouehk"]
-[ext_resource type="Script" uid="uid://cyyuivllf7ids" path="res://src/macroscopic_stage/sky/AtmosphereCompositionConfig.cs" id="6_pcmsh"]
-[ext_resource type="Script" uid="uid://b2ejpavhf6smw" path="res://src/macroscopic_stage/sky/TraceGasConfig.cs" id="7_xoc3c"]
-[ext_resource type="Script" uid="uid://b3ivqhu5nb7nb" path="res://src/macroscopic_stage/sky/SunConfig.cs" id="8_pbkyb"]
+[ext_resource type="Shader" uid="uid://cc5wdyblp30nl" path="res://shaders/sky/atmosphere_sky.gdshader" id="2_quqb5"]
+[ext_resource type="Script" uid="uid://dn4h615seam1c" path="res://src/macroscopic_stage/sky/CloudsConfig.cs" id="2_s4i58"]
+[ext_resource type="Script" uid="uid://6v0qwlkyp02o" path="res://src/general/FreeViewCamera.cs" id="3_5jfpd"]
+[ext_resource type="Script" uid="uid://rxgsfix0v2hi" path="res://src/macroscopic_stage/sky/SkyEquippedEnvironment.cs" id="4_q3oiy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n4y2n"]
 shader = ExtResource("2_quqb5")
 shader_parameter/planet_center = Vector3(0, 0, 0)
 shader_parameter/sun_direction = Vector3(0.42399916, 0.8479983, 0.3179994)
-shader_parameter/ground_radius = 995.0
-shader_parameter/top_radius = 1100.0
-shader_parameter/sun_illuminance = 25.0
+shader_parameter/ground_radius = 2000.0
+shader_parameter/top_radius = 2100.0
+shader_parameter/sun_illuminance = 47.5
 shader_parameter/sun_angular_radius = 0.00465
 shader_parameter/sun_limb_darkening = 0.6
-shader_parameter/rayleigh_scattering = Vector3(0.0021507123, 0.0050253607, 0.0122689465)
+shader_parameter/rayleigh_scattering = Vector3(0.19345056, 0.4520171, 1.1035573)
 shader_parameter/rayleigh_scale_height = 20.0
 shader_parameter/ozone_absorption = Vector3(0.000286, 0.00082764, 3.74e-05)
 shader_parameter/ozone_layer_center = 57.0
@@ -27,23 +23,19 @@ shader_parameter/ozone_layer_width = 68.0
 shader_parameter/view_ray_steps = 32
 shader_parameter/light_ray_steps = 8
 
-[sub_resource type="Sky" id="Sky_s4i58"]
+[sub_resource type="Sky" id="Sky_okj7x"]
 sky_material = SubResource("ShaderMaterial_n4y2n")
 
-[sub_resource type="Environment" id="Environment_q3oiy"]
+[sub_resource type="Environment" id="Environment_rxwfd"]
 background_mode = 2
-sky = SubResource("Sky_s4i58")
+sky = SubResource("Sky_okj7x")
 tonemap_mode = 4
 tonemap_agx_white = 6.0
 
-[sub_resource type="Resource" id="Resource_ouehk"]
+[sub_resource type="Resource" id="Resource_4ceks"]
 script = ExtResource("2_s4i58")
-PlanetRadius = 1000.0
-CloudInnerHeight = 10.0
-CloudOuterHeight = 50.0
-ResolutionDivisor = 1
 
-[sub_resource type="CompositorEffect" id="CompositorEffect_pcmsh"]
+[sub_resource type="CompositorEffect" id="CompositorEffect_kf5fw"]
 resource_local_to_scene = false
 resource_name = ""
 enabled = true
@@ -51,24 +43,10 @@ effect_callback_type = 4
 needs_motion_vectors = false
 needs_normal_roughness = false
 script = ExtResource("1_6n6mp")
-CloudsConfig = SubResource("Resource_ouehk")
+CloudsConfig = SubResource("Resource_4ceks")
 
-[sub_resource type="Compositor" id="Compositor_xoc3c"]
-compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_pcmsh")])
-
-[sub_resource type="Resource" id="Resource_j52ij"]
-script = ExtResource("5_ouehk")
-GroundRadius = 995.0
-TopRadius = 1100.0
-
-[sub_resource type="Resource" id="Resource_cquya"]
-script = ExtResource("6_pcmsh")
-
-[sub_resource type="Resource" id="Resource_bk2wq"]
-script = ExtResource("7_xoc3c")
-
-[sub_resource type="Resource" id="Resource_ajlaa"]
-script = ExtResource("8_pbkyb")
+[sub_resource type="Compositor" id="Compositor_s4i58"]
+compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_kf5fw")])
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n4y2n"]
 albedo_color = Color(0, 0.37254903, 0.043137256, 1)
@@ -82,15 +60,9 @@ height = 2000.0
 [node name="CloudSky" type="Node" unique_id=103953243]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1161880078]
-environment = SubResource("Environment_q3oiy")
-compositor = SubResource("Compositor_xoc3c")
+environment = SubResource("Environment_rxwfd")
+compositor = SubResource("Compositor_s4i58")
 script = ExtResource("4_q3oiy")
-SkyMaterial = SubResource("ShaderMaterial_n4y2n")
-AtmosphereConfig = SubResource("Resource_j52ij")
-Composition = SubResource("Resource_cquya")
-TraceGases = SubResource("Resource_bk2wq")
-SunConfig = SubResource("Resource_ajlaa")
-CloudsEffect = SubResource("CompositorEffect_pcmsh")
 
 [node name="DummyPlanet" type="MeshInstance3D" parent="." unique_id=1259534746]
 mesh = SubResource("SphereMesh_m2g58")
@@ -99,4 +71,3 @@ mesh = SubResource("SphereMesh_m2g58")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1100, 0)
 current = true
 script = ExtResource("3_5jfpd")
-metadata/_custom_type_script = "uid://c1nckmveht4b8"

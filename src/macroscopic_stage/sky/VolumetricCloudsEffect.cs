@@ -152,6 +152,10 @@ public partial class VolumetricCloudsEffect : CompositorEffect
 
     public override void _RenderCallback(int effectCallbackType, RenderData renderData)
     {
+        // Temporarily disable cloud rendering in editor
+        if (Engine.IsEditorHint())
+            return;
+
         // This has to come before the loading below, otherwise an instance that never renders still loads the
         // shaders and builds the compute pipelines before bailing out
         if (!TryBecomeActive())
