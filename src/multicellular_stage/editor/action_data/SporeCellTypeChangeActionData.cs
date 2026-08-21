@@ -6,9 +6,9 @@ public class SporeCellTypeChangeActionData : EditorCombinableActionData<Multicel
     public const ushort SERIALIZATION_VERSION = 1;
 
     public readonly CellType? OldCellType;
-    public readonly CellType NewCellType;
+    public readonly CellType? NewCellType;
 
-    public SporeCellTypeChangeActionData(CellType? oldCellType, CellType newCellType)
+    public SporeCellTypeChangeActionData(CellType? oldCellType, CellType? newCellType)
     {
         OldCellType = oldCellType;
         NewCellType = newCellType;
@@ -33,7 +33,7 @@ public class SporeCellTypeChangeActionData : EditorCombinableActionData<Multicel
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
         var instance =
-            new SporeCellTypeChangeActionData(reader.ReadObjectOrNull<CellType>(), reader.ReadObject<CellType>());
+            new SporeCellTypeChangeActionData(reader.ReadObjectOrNull<CellType>(), reader.ReadObjectOrNull<CellType>());
 
         instance.ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
 
@@ -43,7 +43,7 @@ public class SporeCellTypeChangeActionData : EditorCombinableActionData<Multicel
     public override void WriteToArchive(ISArchiveWriter writer)
     {
         writer.WriteObjectOrNull(OldCellType);
-        writer.WriteObject(NewCellType);
+        writer.WriteObjectOrNull(NewCellType);
 
         writer.Write(SERIALIZATION_VERSION_CONTEXT);
         base.WriteToArchive(writer);

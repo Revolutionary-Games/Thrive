@@ -144,13 +144,19 @@ public partial class CellBodyPlanEditorComponent :
     private CustomConfirmationDialog wrongGrowthOrderPopup = null!;
 
     [Export]
+    private CustomConfirmationDialog noSporeCellTypeSetPopup = null!;
+
+    [Export]
     private LabelSettings toleranceWarningsFont = null!;
 
     [Export]
     private OptionButton reproductionMethodDropdown = null!;
 
     [Export]
-    private OptionButton sporeCellTypeDropdown = null!;
+    private CellTypeMakerButton sporeCellTypeMakerButton = null!;
+
+    [Export]
+    private CellTypePickerPopup cellTypePickerPopup = null!;
 
     [Export]
     private Slider massBuddingCellCountSlider = null!;
@@ -221,6 +227,8 @@ public partial class CellBodyPlanEditorComponent :
 
     private bool showGrowthOrderNumbers;
 
+    private CellType? sporeCellType;
+
     private EnergyBalanceInfoFull? energyBalanceInfo;
 
     [Signal]
@@ -253,6 +261,9 @@ public partial class CellBodyPlanEditorComponent :
                 return true;
 
             if (wrongGrowthOrderCells.Count > 0)
+                return true;
+
+            if (ReproductionMethod == MulticellularReproductionMethod.Sporulation && SporeCellType == null)
                 return true;
 
             if (HasFinishedPendingEndosymbiosis)
@@ -297,9 +308,21 @@ public partial class CellBodyPlanEditorComponent :
 
     public MulticellularReproductionMethod ReproductionMethod { get; private set; }
 
-    public GameteType SelectedGameteTypeForPlayer { get; private set; } = GameteType.A;
+    public CellType? SporeCellType
+    {
+        get => sporeCellType;
+        set
+        {
+            if (ReferenceEquals(sporeCellType, value))
+                return;
 
-    public CellType? SporeCellType { get; private set; }
+            sporeCellType = value;
+
+            UpdateSpecialCellTypeDisplays();
+        }
+    }
+
+    public GameteType SelectedGameteTypeForPlayer { get; private set; } = GameteType.A;
 
     public CellType? GameteACellType { get; private set; }
 
@@ -610,8 +633,6 @@ public partial class CellBodyPlanEditorComponent :
 
     public override void OnEditorSpeciesSetup(Species species)
     {
-        UpdateCellTypeSelections();
-
         behaviourEditor.OnEditorSpeciesSetup(species);
         tolerancesEditor.OnEditorSpeciesSetup(species);
 
@@ -632,6 +653,8 @@ public partial class CellBodyPlanEditorComponent :
         GameteBCellType = multicellularSpecies.ModifiableGameteTypeB;
         DesiredMassBuddingCellCount = multicellularSpecies.MassBuddingCellCount;
         SelectedGameteTypeForPlayer = species.PlayerGamete;
+
+        UpdateCellTypeSelections();
 
         UpdateGUIAfterLoadingSpecies(species);
 
@@ -780,6 +803,12 @@ public partial class CellBodyPlanEditorComponent :
             return false;
         }
 
+        if (ReproductionMethod == MulticellularReproductionMethod.Sporulation && SporeCellType == null)
+        {
+            noSporeCellTypeSetPopup.PopupCenteredShrink();
+            return false;
+        }
+
         // This is checked due to a species data requirement
         if (ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy
                 or MulticellularReproductionMethod.SexualAnisogamy && editedMicrobeCells.Count < 2)
@@ -822,8 +851,9 @@ public partial class CellBodyPlanEditorComponent :
 
         UpdateSpecializationDisplay();
 
+        UpdateSpecialCellTypeDisplays();
+
         // In case the cell type's name was changed
-        UpdateSporeCellDropdown();
         UpdateGameteDropdowns();
     }
 
@@ -1411,6 +1441,9 @@ public partial class CellBodyPlanEditorComponent :
         foreach (var cellType in Editor.EditedSpecies.ModifiableCellTypes.OrderBy(t => t.CellTypeName,
                      StringComparer.Ordinal))
         {
+            if (!ShouldCellTypeBeDisplayed(cellType))
+                continue;
+
             if (!cellTypeSelectionButtons.TryGetValue(cellType.CellTypeName, out var control))
             {
                 // Need a new button
@@ -1461,7 +1494,8 @@ public partial class CellBodyPlanEditorComponent :
         // Delete no longer necessary buttons
         foreach (var key in cellTypeSelectionButtons.Keys.ToList())
         {
-            if (Editor.EditedSpecies.ModifiableCellTypes.All(t => t.CellTypeName != key))
+            if (Editor.EditedSpecies.ModifiableCellTypes
+                .All(t => t.CellTypeName != key || !ShouldCellTypeBeDisplayed(t)))
             {
                 var control = cellTypeSelectionButtons[key];
                 cellTypeSelectionButtons.Remove(key);
@@ -2197,5 +2231,14 @@ public partial class CellBodyPlanEditorComponent :
             default:
                 throw new Exception("Invalid selection menu tab");
         }
+    }
+
+    private bool ShouldCellTypeBeDisplayed(CellType cellType)
+    {
+        // The spore is a specialized cell type
+        if (SporeCellType != null && cellType.CellTypeName == SporeCellType.CellTypeName)
+            return false;
+
+        return true;
     }
 }
