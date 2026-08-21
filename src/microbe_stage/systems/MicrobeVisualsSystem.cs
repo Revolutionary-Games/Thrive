@@ -187,8 +187,8 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
                         }
                     }
 
-                    var colonyLeaderKey = GetEntityKey(colonyLeader);
-                    var memberCellKey = GetEntityKey(entity);
+                    long colonyLeaderKey = (long)colonyLeader.Id << 32 | (uint)colonyLeader.Version;
+                    long memberCellKey = (long)entity.Id << 32 | (uint)entity.Version;
 
                     // Only get the membrane for THIS entity's cell (not all cells in the colony)
                     var cellIndex = speciesMember.MulticellularBodyPlanPartIndex;
@@ -586,24 +586,6 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         }
 
         Interlocked.Decrement(ref runningMembraneTaskCount);
-    }
-
-    private long GetEntityKey(Entity entity)
-    {
-        unchecked
-        {
-            const long offset = -3750763034362895579;
-            const long prime = 1099511628211;
-
-            long hash = offset;
-
-            hash ^= entity.Id;
-            hash *= prime;
-            hash ^= entity.Version;
-            hash *= prime;
-
-            return hash;
-        }
     }
 
     private void Dispose(bool disposing)
