@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-08-19 11:37+0300\n"
-"PO-Revision-Date: 2026-08-15 11:37+0000\n"
+"PO-Revision-Date: 2026-08-21 08:25+0000\n"
 "Last-Translator: Guno haozheum <15721507614@163.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -921,9 +921,8 @@ msgstr "清除缓存"
 msgid "CLICK_TO_SELECT"
 msgstr "选择"
 
-#, fuzzy
 msgid "CLICK_TO_SET_CELL_TYPE"
-msgstr "选择"
+msgstr "点击设置一种细胞类型"
 
 msgid "CLIMATE_INSTABILITY"
 msgstr "气候不稳定性"
@@ -1649,9 +1648,8 @@ msgstr "减小物体"
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "默认输出设备"
 
-#, fuzzy
 msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
-msgstr "孢子细胞类型"
+msgstr "孢子"
 
 msgid "DELETE"
 msgstr "删除"
@@ -4660,13 +4658,11 @@ msgstr "找不到截图目录"
 msgid "NO_SELECTED_MOD"
 msgstr "未选择Mod"
 
-#, fuzzy
 msgid "NO_SPORE_CELL_TYPE_SET"
-msgstr "孢子细胞类型"
+msgstr "使用孢子繁殖的生物必须有一种被设置为孢子的细胞。"
 
-#, fuzzy
 msgid "NO_SPORE_CELL_TYPE_SET_TITLE"
-msgstr "孢子细胞类型"
+msgstr "未设置孢子细胞类型"
 
 msgid "NO_SUGGESTION"
 msgstr "分辨率："
@@ -5637,6 +5633,9 @@ msgstr "存档无效"
 
 msgid "SAVE_IS_CORRUPT_WHILE_LOADING"
 msgstr ""
+"加载存档失败，因为文件已损坏。\n"
+"预期哈希：{0}\n"
+"计算哈希：{1}"
 
 msgid "SAVE_IS_INVALID"
 msgstr "存档无效"
@@ -6086,9 +6085,8 @@ msgstr "速度："
 msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr "在正常与倍速的游戏速度之间切换"
 
-#, fuzzy
 msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
-msgstr "孢子细胞类型"
+msgstr "选择从何种细胞开始繁殖周期"
 
 msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "产生多个可选特化的后代，它们在转化为群落根细胞之前，能够寻找更好的环境。"
