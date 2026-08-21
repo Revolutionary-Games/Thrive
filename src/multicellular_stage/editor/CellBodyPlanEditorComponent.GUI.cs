@@ -578,9 +578,11 @@ public partial class CellBodyPlanEditorComponent
     private void UpdateMassBuddingCellCountSlider()
     {
         var maxBudSize = CellBodyPlanInternalCalculations.MaxBudSize(editedMicrobeCells.Count);
+        var minBudSize = Math.Min(Constants.MASS_BUDDING_MINIMUM_BUD_SIZE, maxBudSize);
 
-        var clampedBudSize = Math.Min(DesiredMassBuddingCellCount, maxBudSize);
+        var clampedBudSize = Math.Max(minBudSize, Math.Min(DesiredMassBuddingCellCount, maxBudSize));
 
+        massBuddingCellCountSlider.MinValue = minBudSize;
         massBuddingCellCountSlider.MaxValue = maxBudSize;
         massBuddingCellCountSlider.SetValueNoSignal(clampedBudSize);
 
