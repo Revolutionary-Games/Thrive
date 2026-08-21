@@ -187,11 +187,14 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
                         }
                     }
 
+                    var colonyLeaderKey = GetEntityKey(colonyLeader);
+                    var memberCellKey = GetEntityKey(entity);
+
                     // Only get the membrane for THIS entity's cell (not all cells in the colony)
                     var cellIndex = speciesMember.MulticellularBodyPlanPartIndex;
                     var cell = speciesMember.Species.ModifiableGameplayCells[cellIndex];
                     data = GetMulticellularMembraneDataIfReadyOrStartGenerating(cell, cell.ModifiableOrganelles,
-                        colonyLeader.Id, entity.Id, ref speciesMember, ref growthOrder, cellIndex,
+                        colonyLeaderKey, memberCellKey, ref speciesMember, ref growthOrder, cellIndex,
                         nextBodyPlanCellToGrowIndex);
                 }
             }
@@ -314,7 +317,7 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
     }
 
     private MembranePointData? GetMulticellularMembraneDataIfReadyOrStartGenerating(CellTemplate cellProperties,
-        OrganelleLayout<OrganelleTemplate> organelleContainer, int leaderCellId, int cellId,
+        OrganelleLayout<OrganelleTemplate> organelleContainer, long leaderCellId, long cellId,
         ref MulticellularSpeciesMember multicellular, ref MulticellularGrowth growthOrder, int currentCellIndex,
         int nextBodyPlanCellToGrowIndex)
     {
@@ -583,6 +586,24 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         }
 
         Interlocked.Decrement(ref runningMembraneTaskCount);
+    }
+
+    private long GetEntityKey(Entity entity)
+    {
+        unchecked
+        {
+            const long offset = -3750763034362895579;
+            const long prime = 1099511628211;
+
+            long hash = offset;
+
+            hash ^= entity.Id;
+            hash *= prime;
+            hash ^= entity.Version;
+            hash *= prime;
+
+            return hash;
+        }
     }
 
     private void Dispose(bool disposing)

@@ -179,7 +179,7 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
 
 public sealed class NeighbourData
 {
-    public int CellId;
+    public long CellKey;
     public Vector2 OriginalAverageVertex;
     public Vector2 LocalAverageVertex;
     public MembranePointData OriginalPointData;
@@ -198,11 +198,11 @@ public sealed class NeighbourData
     /// </summary>
     public HashSet<long> ProcessedNeighbours = new();
 
-    public NeighbourData(int cellId,
+    public NeighbourData(long cellKey,
         MulticellularMembraneGenerationCellData multicellularMembraneGenerationCellData,
         MembranePointData originalPointData)
     {
-        CellId = cellId;
+        CellKey = cellKey;
         OriginalPointData = originalPointData;
         MulticellularMembraneGenerationCellData = multicellularMembraneGenerationCellData;
         OriginalAverageVertex = GetAverageVertex();

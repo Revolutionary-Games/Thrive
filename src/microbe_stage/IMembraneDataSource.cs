@@ -33,14 +33,14 @@ public struct MembraneGenerationParameters : IMembraneDataSource
 {
     public MembraneGenerationParameters(Vector2[] hexPositions, int hexPositionCount, MembraneType type,
         MulticellularMembraneGenerationCellData currentCellMulticellularMembraneGenerationCellData,
-        MulticellularMembraneGenerationCellData[] grownCellsData, int leaderCellId, int cellId,
+        MulticellularMembraneGenerationCellData[] grownCellsData, long leaderCellKey, long cellKey,
         bool isPreMulticellularStretch = false)
         : this(hexPositions, hexPositionCount, type)
     {
         CurrentCellMulticellularMembraneGenerationCellData = currentCellMulticellularMembraneGenerationCellData;
         GrownCellsData = grownCellsData;
-        LeaderCellId = leaderCellId;
-        CellId = cellId;
+        LeaderCellKey = leaderCellKey;
+        CellKey = cellKey;
         IsPreMulticellularStretch = isPreMulticellularStretch;
         IsMulticellularMembraneDataValid = true;
     }
@@ -60,11 +60,11 @@ public struct MembraneGenerationParameters : IMembraneDataSource
 
     public MembraneType Type { get; }
 
+    public long CellKey { get; }
+
+    public long LeaderCellKey { get; }
+
     public int HexPositionCount { get; }
-
-    public int CellId { get; }
-
-    public int LeaderCellId { get; }
 
     public bool IsPreMulticellularStretch { get; set; }
 

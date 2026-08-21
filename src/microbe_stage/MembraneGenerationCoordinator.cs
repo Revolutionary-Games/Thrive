@@ -18,7 +18,7 @@ public static class MembraneGenerationCoordinator
     ///   Stores finished stretched multicellular membranes. Unlike a cache, an entry here is
     ///   removed the moment it is consumed.
     /// </summary>
-    private static readonly ConcurrentDictionary<int, MembranePointData> FinishedMulticellularMembranes = new();
+    private static readonly ConcurrentDictionary<long, MembranePointData> FinishedMulticellularMembranes = new();
 
     /// <summary>
     ///   Handles membrane generation requests. For single-cell requests the list contains one hash.
@@ -57,15 +57,15 @@ public static class MembraneGenerationCoordinator
         var cellPosition = generationParameters.CurrentCellMulticellularMembraneGenerationCellData.Position;
         var cellOrientation = generationParameters.CurrentCellMulticellularMembraneGenerationCellData.Orientation;
 
-        var tracker = ColonyTrackers.GetOrAdd(generationParameters.LeaderCellId,
+        var tracker = ColonyTrackers.GetOrAdd(generationParameters.LeaderCellKey,
             _ => new ColonyTracker { ExpectedCount = grownCellsData.Length });
 
         var multicellularMembraneData = new MulticellularMembraneGenerationCellData(cellPosition, cellOrientation);
 
-        var singleCellData = new NeighbourData(generationParameters.CellId, multicellularMembraneData,
+        var singleCellData = new NeighbourData(generationParameters.CellKey, multicellularMembraneData,
             singleCellMembranePointData);
 
-        tracker.NeighboursData[generationParameters.CellId] = singleCellData;
+        tracker.NeighboursData[generationParameters.CellKey] = singleCellData;
 
         // TODO: Maybe implement a system that clears trackers every now and then that are inactive
         // for too long to avoid potential memory leaks
@@ -82,13 +82,13 @@ public static class MembraneGenerationCoordinator
         foreach (var (key, data) in tracker.NeighboursData)
         {
             var multicellularMembrane =
-                generator.GenerateMulticellularMembrane(key, tracker.NeighboursData, generationParameters.LeaderCellId);
+                generator.GenerateMulticellularMembrane(key, tracker.NeighboursData, generationParameters.LeaderCellKey);
 
-            AddMulticellularMembrane(data.CellId, multicellularMembrane);
-            generatedMembranes.Add(data.CellId);
+            AddMulticellularMembrane(data.CellKey, multicellularMembrane);
+            generatedMembranes.Add(data.CellKey);
         }
 
-        ColonyTrackers.TryRemove(generationParameters.LeaderCellId, out _);
+        ColonyTrackers.TryRemove(generationParameters.LeaderCellKey, out _);
 
         return generatedMembranes;
     }
@@ -96,9 +96,9 @@ public static class MembraneGenerationCoordinator
     /// <summary>
     ///   Attempts to retrieve and remove a finished stretched multicellular membrane.
     /// </summary>
-    public static MembranePointData? TryTakeFinishedMulticellularMembrane(int hash)
+    public static MembranePointData? TryTakeFinishedMulticellularMembrane(long key)
     {
-        FinishedMulticellularMembranes.TryRemove(hash, out var data);
+        FinishedMulticellularMembranes.TryRemove(key, out var data);
         return data;
     }
 
@@ -129,21 +129,21 @@ public static class MembraneGenerationCoordinator
         ColonyTrackers.Clear();
     }
 
-    private static void AddMulticellularMembrane(int cellId, MembranePointData data)
+    private static void AddMulticellularMembrane(long cellKey, MembranePointData data)
     {
-        if (FinishedMulticellularMembranes.TryRemove(cellId, out var previous))
+        if (FinishedMulticellularMembranes.TryRemove(cellKey, out var previous))
         {
             GD.PrintErr("FinishedMulticellularMembranes was overwritten");
             previous.Dispose();
         }
 
-        FinishedMulticellularMembranes[cellId] = data;
+        FinishedMulticellularMembranes[cellKey] = data;
     }
 
     private class ColonyTracker
     {
         public int ExpectedCount;
-        public ConcurrentDictionary<int, NeighbourData> NeighboursData = new();
+        public ConcurrentDictionary<long, NeighbourData> NeighboursData = new();
         private int secondPassStarted;
 
         /// <summary>
