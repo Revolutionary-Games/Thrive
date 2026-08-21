@@ -269,6 +269,13 @@ public partial class CellBodyPlanEditorComponent :
             if (ReproductionMethod == MulticellularReproductionMethod.Sporulation && SporeCellType == null)
                 return true;
 
+            if (ReproductionMethod == MulticellularReproductionMethod.MassBudding &&
+                (DesiredMassBuddingCellCount < Constants.MASS_BUDDING_MINIMUM_BUD_SIZE ||
+                    editedMicrobeCells.Count < Constants.MASS_BUDDING_MINIMUM_BUD_SIZE))
+            {
+                return true;
+            }
+
             if (HasFinishedPendingEndosymbiosis)
                 return true;
 
