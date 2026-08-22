@@ -64,7 +64,7 @@ public partial class FreeViewCamera : Camera3D
 
     public override void _Notification(int what)
     {
-        if (what == NotificationApplicationFocusOut)
+        if (what == NotificationApplicationFocusOut || what == NotificationWMWindowFocusOut)
             StopLooking();
     }
 
