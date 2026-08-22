@@ -24,6 +24,9 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     [Export]
     public CloudsConfig CloudsConfig = new();
 
+    [Export]
+    public bool ProfileGpu;
+
     private const uint PushConstantsBufferSize = 128;
     private const uint UniformParamsBufferSize = 128;
 
@@ -256,7 +259,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
 
             Rid upsampleSet = UniformSetCacheRD.GetCache(upsamplerShader, 0, upsampleUniforms);
 
-            bool profileGpu = CloudsConfig.ProfileGpu;
+            bool profileGpu = ProfileGpu;
 
             if (marchSet.IsValid && upsampleSet.IsValid)
             {
@@ -376,13 +379,13 @@ public partial class VolumetricCloudsEffect : CompositorEffect
                 targetInstance.Reload();
                 return true;
             case CloudCommandParameters.ProfileEnable:
-                targetInstance.CloudsConfig.ProfileGpu = true;
+                targetInstance.ProfileGpu = true;
                 return true;
             case CloudCommandParameters.ProfileDisable:
-                targetInstance.CloudsConfig.ProfileGpu = false;
+                targetInstance.ProfileGpu = false;
                 return true;
             case CloudCommandParameters.ProfilePrint:
-                if (!targetInstance.CloudsConfig.ProfileGpu)
+                if (!targetInstance.ProfileGpu)
                 {
                     context.PrintErr("Not currently profiling. Please execute 'clouds ProfileEnable' first.");
 
