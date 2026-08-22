@@ -24,9 +24,6 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     [Export]
     public CloudsConfig CloudsConfig = new();
 
-    [Export]
-    public bool ProfileGpu;
-
     private const uint PushConstantsBufferSize = 128;
     private const uint UniformParamsBufferSize = 128;
 
@@ -80,6 +77,8 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     private bool disposed;
     private bool active;
 
+    private bool profileGpu;
+
     private Vector2I currentCloudSize = Vector2I.Zero;
     private uint currentCloudViews;
 
@@ -102,6 +101,9 @@ public partial class VolumetricCloudsEffect : CompositorEffect
 
     [ExportToolButton("Generate Noise Profile")]
     private Callable GenerateNoiseProfileResourceCallable => new(this, MethodName.GenerateNoiseProfileAndReload);
+
+    [ExportToolButton("Profile GPU")]
+    private Callable ProfileGpuCallable => new(this, MethodName.ToggleProfileGPU);
 
     [ExportToolButton("Dump GPU profiler data")]
     private Callable DumpGpuProfilerData => new(this, MethodName.ReportTimestamps);
@@ -259,8 +261,6 @@ public partial class VolumetricCloudsEffect : CompositorEffect
 
             Rid upsampleSet = UniformSetCacheRD.GetCache(upsamplerShader, 0, upsampleUniforms);
 
-            bool profileGpu = ProfileGpu;
-
             if (marchSet.IsValid && upsampleSet.IsValid)
             {
                 if (profileGpu)
@@ -379,13 +379,13 @@ public partial class VolumetricCloudsEffect : CompositorEffect
                 targetInstance.Reload();
                 return true;
             case CloudCommandParameters.ProfileEnable:
-                targetInstance.ProfileGpu = true;
+                targetInstance.profileGpu = true;
                 return true;
             case CloudCommandParameters.ProfileDisable:
-                targetInstance.ProfileGpu = false;
+                targetInstance.profileGpu = false;
                 return true;
             case CloudCommandParameters.ProfilePrint:
-                if (!targetInstance.ProfileGpu)
+                if (!targetInstance.profileGpu)
                 {
                     context.PrintErr("Not currently profiling. Please execute 'clouds ProfileEnable' first.");
 
@@ -673,5 +673,10 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     {
         if (GenerateNoiseProfileResource(CloudsConfig.Seed))
             Reload();
+    }
+
+    private void ToggleProfileGpu()
+    {
+        profileGpu = !profileGpu;
     }
 }
