@@ -1469,7 +1469,6 @@ public class SimulationCache
         var preyHexSize = preyData.HexSize;
         var preyHP = preyData.Hitpoints;
         var preyToxinResistance = preyData.ToxinResistance;
-        var preyPhysicalResistance = preyData.PhysicalResistance;
         var preyStorageNominal = preyData.StorageNominal;
         var preyHasSignallingAgent = preyData.HasSignallingAgent;
         var preyOxygenUsingOrganellesCount = preyData.OxygenUsingOrganellesCount;
@@ -1477,7 +1476,6 @@ public class SimulationCache
         var predatorHexSize = predatorData.HexSize;
         var predatorHP = predatorData.Hitpoints;
         var predatorToxinResistance = predatorData.ToxinResistance;
-        var predatorPhysicalResistance = predatorData.PhysicalResistance;
         var predatorStorageNominal = predatorData.StorageNominal;
         var hasChemoreceptor = predatorData.HasChemoreceptor;
         var hasSignallingAgent = predatorData.HasSignallingAgent;
@@ -1511,21 +1509,14 @@ public class SimulationCache
         var toxicity = predatorToolScores.AverageToxicity;
         var macrolideScore = predatorToolScores.MacrolideScore;
         var predatorSlimeJetScore = predatorToolScores.SlimeJetScore;
-        var pullingCiliaModifier = predatorToolScores.PullingCiliaModifier;
-        var strongPullingCiliaModifier = pullingCiliaModifier * pullingCiliaModifier;
 
         var preySlimeJetScore = preyToolScores.SlimeJetScore;
         var preyMucocystsScore = preyToolScores.MucocystsScore;
-        var preyPilusScore = preyToolScores.PilusScore;
-        var preyInjectisomeScore = preyToolScores.InjectisomeScore;
         var preyToxicity = preyToolScores.AverageToxicity;
         var preyOxytoxyScore = preyToolScores.OxytoxyScore;
         var preyCytotoxinScore = preyToolScores.CytotoxinScore;
-        var preyMacrolideScore = preyToolScores.MacrolideScore;
         var preyChannelInhibitorScore = preyToolScores.ChannelInhibitorScore;
         var preyOxygenMetabolismInhibitorScore = preyToolScores.OxygenMetabolismInhibitorScore;
-        var defensivePilusScore = preyToolScores.DefensivePilusScore;
-        var defensiveInjectisomeScore = preyToolScores.DefensiveInjectisomeScore;
 
         // Not an ideal solution, but accounts for the fact that the oxytoxy and cyanide processes require oxygen to run
         biomeConditions.Compounds.TryGetValue(Compound.Oxygen, out BiomeCompoundProperties oxygen);
@@ -1612,160 +1603,16 @@ public class SimulationCache
                 macrolideScore * hitProportion);
         }
 
-        // Catch scores grossly accounts for how many preys you catch in melee in a run;
-        var catchScore = 0.0f;
-        var accidentalCatchScore = 0.0f;
+        var catchScore = CalculateCatchScores(canDigestPrey, in predatorToolScores, predatorSpeed, preySpeed,
+            slowedProportion, slowedPreySpeed, predatorSprintSpeed, predatorSprintTime, preySprintSpeed,
+            preySprintTime, predatorSlimeSpeed, preySlimeSpeed, predatorRotationModifier, hasChemoreceptor,
+            preyIndividualCost, activityScore, focusScore, preyRotationModifier, preyOpportunismScore, preyFocusScore,
+            out var accidentalCatchScore);
 
-        // Only calculate catch score if one can actually engulf (and digest) or use pili
-        var engulfmentScore = 0.0f;
-        if (canDigestPrey || pilusScore > 0.0f || injectisomeScore > 0.0f)
-        {
-            // First, you may hunt individual preys, but only if you are fast enough...
-            if (predatorSpeed > preySpeed)
-            {
-                // You catch more preys if you are fast, and if they are slow.
-                // This incentivizes engulfment strategies in these cases.
-                // Sigmoidal calculation to avoid divisions by zero
-                catchScore += (predatorSpeed + 0.001f) / (preySpeed + 0.0001f) * (1 - slowedProportion);
-            }
-
-            // If you can slow the target, some proportion of prey are easier to catch
-            if (predatorSpeed > slowedPreySpeed)
-            {
-                catchScore += (predatorSpeed + 0.001f) / (slowedPreySpeed + 0.0001f) * slowedProportion;
-            }
-
-            // Sprinting can help catch prey.
-            if (predatorSprintSpeed > preySpeed)
-            {
-                catchScore += (predatorSprintSpeed + 0.001f) / (preySpeed + 0.0001f) * (1 - slowedProportion) *
-                    predatorSprintTime;
-            }
-
-            if (predatorSprintSpeed > slowedPreySpeed)
-            {
-                catchScore += (predatorSprintSpeed + 0.001f) / (slowedPreySpeed + 0.0001f) * slowedProportion *
-                    predatorSprintTime;
-            }
-
-            // Sprinting can also help prey escape.
-            if (preySprintSpeed > predatorSpeed)
-            {
-                catchScore -= (preySprintSpeed + 0.001f) / (predatorSpeed + 0.0001f) * preySprintTime;
-            }
-
-            // If you have Slime Jets, this can help you catch targets.
-            if (predatorSlimeSpeed > preySpeed)
-            {
-                catchScore += (predatorSlimeSpeed + 0.001f) / (preySpeed + 0.0001f) * (1 - slowedProportion);
-            }
-
-            if (predatorSlimeSpeed > slowedPreySpeed)
-            {
-                catchScore += (predatorSlimeSpeed + 0.001f) / (slowedPreySpeed + 0.0001f) * slowedProportion;
-            }
-
-            // Having Slime Jets can also help prey escape.
-            if (preySlimeSpeed > predatorSpeed)
-            {
-                catchScore += (preySlimeSpeed + 0.001f) / (predatorSpeed + 0.0001f);
-            }
-
-            // prevent potential negative catchScore.
-            catchScore = MathF.Max(catchScore, 0);
-
-            // But prey may escape if they move away before you can turn to chase them
-            catchScore *= predatorRotationModifier;
-
-            // Pulling Cilia help with catching
-            catchScore *= pullingCiliaModifier;
-
-            // If you have a chemoreceptor, active hunting types are more effective
-            if (hasChemoreceptor)
-            {
-                catchScore *= Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER;
-
-                // Uses crude estimate of population density assuming same energy capture
-                catchScore *= 1 + Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_VARIABLE_MODIFIER
-                    * float.Sqrt(preyIndividualCost);
-            }
-
-            // Active hunting is more effective for active species
-            catchScore *= activityScore;
-            catchScore *= 1 + focusScore;
-
-            // ... but you may also catch them by luck (e.g. when they run into you),
-            // Prey that can't turn away fast enough are more likely to get caught.
-            accidentalCatchScore = Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY *
-                strongPullingCiliaModifier * preyRotationModifier;
-
-            // Less cautious and more focused prey are slightly more likely to get into a dangerous situation
-            var opportunismPenalty = MathF.Pow(preyOpportunismScore, 1.5f)
-                * Constants.AUTO_EVO_MAX_OPPORTUNISM_PENALTY;
-            var focusPenalty = MathF.Pow(preyFocusScore, 1.5f)
-                * Constants.AUTO_EVO_MAX_FOCUS_PENALTY;
-            catchScore *= 1 + opportunismPenalty * (1 + focusPenalty);
-            accidentalCatchScore *= 1 + opportunismPenalty * (1 + focusPenalty);
-        }
-
-        // targets that resist physical damage are of course less vulnerable to it
-        pilusScore /= preyHP * preyPhysicalResistance;
-        preyPilusScore /= predatorHP * predatorPhysicalResistance;
-        defensivePilusScore /= predatorHP * predatorPhysicalResistance;
-
-        // But targets that resist toxin damage are less vulnerable to the injectisome
-        injectisomeScore /= preyHP * preyToxinResistance;
-        preyInjectisomeScore /= predatorHP * predatorToxinResistance;
-        defensiveInjectisomeScore /= predatorHP * predatorToxinResistance;
-
-        // Combine pili for further calculations
-        pilusScore += injectisomeScore;
-        preyPilusScore += preyInjectisomeScore;
-        defensivePilusScore += defensiveInjectisomeScore;
-
-        // defensive pili need to be turned directly away from the predator to work
-        defensivePilusScore *= preyRotationModifier * preyFearScore * (1 - preyAggressionScore);
-
-        // Calling for allies helps with combat.
-        if (hasSignallingAgent)
-            pilusScore *= signallingBonus;
-        if (preyHasSignallingAgent)
-            preyPilusScore *= signallingBonus;
-
-        // Use catch score for Pili
-        pilusScore /= Math.Max(1, defensivePilusScore);
-        pilusScore *= catchScore + accidentalCatchScore;
-
-        // Prey can use offensive pili for defense in these encounters, but only if they have the right behavior
-        preyPilusScore *= (catchScore + accidentalCatchScore) * preyRotationModifier * defenseScoreModifier *
-            preyAggressionScore * (1 - preyFearScore);
-
-        if (canDigestPrey)
-        {
-            // total prey toxin amount for anti-engulfment purposes
-            // Toxin content is higher if the toxin are not being shot for offense
-            var totalPreyToxinContent = preyOxytoxyScore + preyCytotoxinScore + preyMacrolideScore +
-                preyChannelInhibitorScore + preyOxygenMetabolismInhibitorScore;
-            totalPreyToxinContent *= (1 - preyAggressionScore) + preyAggressionScore;
-            if (predatorHexSize > preyHexSize)
-            {
-                totalPreyToxinContent *= 1 - preyOpportunismScore * preyAggressionScore * (1 - preyFearScore);
-            }
-            else
-            {
-                totalPreyToxinContent *= 1 - preyAggressionScore * (1 - preyFearScore);
-            }
-
-            totalPreyToxinContent *= Constants.AUTO_EVO_TOXIN_ENGULFMENT_DEFENSE_MODIFIER;
-            totalPreyToxinContent /= predatorHP * predatorToxinResistance;
-
-            // Final engulfment score calculation
-            // Engulfing prey by luck is especially easy if you are huge.
-            // This is also used to incentivize size in microbe species.
-            engulfmentScore = (catchScore + accidentalCatchScore * predatorHexSize) *
-                (Constants.AUTO_EVO_ENGULF_PREDATION_SCORE / Math.Max(1, defensivePilusScore + totalPreyToxinContent));
-            engulfmentScore *= enzymesScore;
-        }
+        pilusScore = CalculatePhysicalPredationScores(in predatorData, in preyData, in predatorToolScores,
+            preyOxytoxyScore, preyOxygenMetabolismInhibitorScore, preyRotationModifier, preyFearScore,
+            preyAggressionScore, preyOpportunismScore, catchScore, accidentalCatchScore, defenseScoreModifier,
+            signallingBonus, canDigestPrey, out var preyPilusScore, out var engulfmentScore);
 
         // Damaging toxin section
 
@@ -1888,6 +1735,212 @@ public class SimulationCache
             cached = 0;
 
         return cached;
+    }
+
+    private float CalculatePhysicalPredationScores(in PredatorPredationData predatorData,
+        in PreyPredationData preyData, in PredationToolsRawScores predatorToolScores, float preyOxytoxyScore,
+        float preyOxygenMetabolismInhibitorScore, float preyRotationModifier, float preyFearScore,
+        float preyAggressionScore, float preyOpportunismScore, float catchScore, float accidentalCatchScore,
+        float defenseScoreModifier, float signallingBonus, bool canDigestPrey, out float preyPilusScore,
+        out float engulfmentScore)
+    {
+        var preyToolScores = preyData.ToolScores;
+
+        var pilusScore = predatorToolScores.PilusScore;
+        var injectisomeScore = predatorToolScores.InjectisomeScore;
+        preyPilusScore = preyToolScores.PilusScore;
+        var preyInjectisomeScore = preyToolScores.InjectisomeScore;
+        var defensivePilusScore = preyToolScores.DefensivePilusScore;
+        var defensiveInjectisomeScore = preyToolScores.DefensiveInjectisomeScore;
+
+        var preyHP = preyData.Hitpoints;
+        var preyToxinResistance = preyData.ToxinResistance;
+        var preyPhysicalResistance = preyData.PhysicalResistance;
+        var preyCytotoxinScore = preyToolScores.CytotoxinScore;
+        var preyMacrolideScore = preyToolScores.MacrolideScore;
+        var preyChannelInhibitorScore = preyToolScores.ChannelInhibitorScore;
+        var preyHasSignallingAgent = preyData.HasSignallingAgent;
+        var preyHexSize = preyData.HexSize;
+
+        var predatorHP = predatorData.Hitpoints;
+        var predatorToxinResistance = predatorData.ToxinResistance;
+        var predatorPhysicalResistance = predatorData.PhysicalResistance;
+        var predatorHexSize = predatorData.HexSize;
+        var hasSignallingAgent = predatorData.HasSignallingAgent;
+        var enzymesScore = predatorData.EnzymesScore;
+
+        engulfmentScore = 0.0f;
+
+        // targets that resist physical damage are of course less vulnerable to it
+        pilusScore /= preyHP * preyPhysicalResistance;
+        preyPilusScore /= predatorHP * predatorPhysicalResistance;
+        defensivePilusScore /= predatorHP * predatorPhysicalResistance;
+
+        // But targets that resist toxin damage are less vulnerable to the injectisome
+        injectisomeScore /= preyHP * preyToxinResistance;
+        preyInjectisomeScore /= predatorHP * predatorToxinResistance;
+        defensiveInjectisomeScore /= predatorHP * predatorToxinResistance;
+
+        // Combine pili for further calculations
+        pilusScore += injectisomeScore;
+        preyPilusScore += preyInjectisomeScore;
+        defensivePilusScore += defensiveInjectisomeScore;
+
+        // defensive pili need to be turned directly away from the predator to work
+        defensivePilusScore *= preyRotationModifier * preyFearScore * (1 - preyAggressionScore);
+
+        // Calling for allies helps with combat.
+        if (hasSignallingAgent)
+            pilusScore *= signallingBonus;
+        if (preyHasSignallingAgent)
+            preyPilusScore *= signallingBonus;
+
+        // Use catch score for Pili
+        pilusScore /= Math.Max(1, defensivePilusScore);
+        pilusScore *= catchScore + accidentalCatchScore;
+
+        // Prey can use offensive pili for defense in these encounters, but only if they have the right behavior
+        preyPilusScore *= (catchScore + accidentalCatchScore) * preyRotationModifier * defenseScoreModifier *
+            preyAggressionScore * (1 - preyFearScore);
+
+        if (canDigestPrey)
+        {
+            // total prey toxin amount for anti-engulfment purposes
+            // Toxin content is higher if the toxin are not being shot for offense
+            var totalPreyToxinContent = preyOxytoxyScore + preyCytotoxinScore + preyMacrolideScore +
+                preyChannelInhibitorScore + preyOxygenMetabolismInhibitorScore;
+            totalPreyToxinContent *= (1 - preyAggressionScore) + preyAggressionScore;
+            if (predatorHexSize > preyHexSize)
+            {
+                totalPreyToxinContent *= 1 - preyOpportunismScore * preyAggressionScore * (1 - preyFearScore);
+            }
+            else
+            {
+                totalPreyToxinContent *= 1 - preyAggressionScore * (1 - preyFearScore);
+            }
+
+            totalPreyToxinContent *= Constants.AUTO_EVO_TOXIN_ENGULFMENT_DEFENSE_MODIFIER;
+            totalPreyToxinContent /= predatorHP * predatorToxinResistance;
+
+            // Final engulfment score calculation
+            // Engulfing prey by luck is especially easy if you are huge.
+            // This is also used to incentivize size in microbe species.
+            engulfmentScore = (catchScore + accidentalCatchScore * predatorHexSize) *
+                (Constants.AUTO_EVO_ENGULF_PREDATION_SCORE / Math.Max(1, defensivePilusScore + totalPreyToxinContent));
+            engulfmentScore *= enzymesScore;
+        }
+
+        return pilusScore;
+    }
+
+    private float CalculateCatchScores(bool canDigestPrey, in PredationToolsRawScores predatorToolScores,
+        float predatorSpeed, float preySpeed, float slowedProportion, float slowedPreySpeed, float predatorSprintSpeed,
+        float predatorSprintTime, float preySprintSpeed, float preySprintTime, float predatorSlimeSpeed,
+        float preySlimeSpeed, float predatorRotationModifier, bool hasChemoreceptor, float preyIndividualCost,
+        float activityScore, float focusScore, float preyRotationModifier, float preyOpportunismScore,
+        float preyFocusScore, out float accidentalCatchScore)
+    {
+        var pilusScore = predatorToolScores.PilusScore;
+        var injectisomeScore = predatorToolScores.InjectisomeScore;
+        var pullingCiliaModifier = predatorToolScores.PullingCiliaModifier;
+        var strongPullingCiliaModifier = pullingCiliaModifier * pullingCiliaModifier;
+
+        // Catch scores grossly accounts for how many preys you catch in melee in a run;
+        var catchScore = 0.0f;
+        accidentalCatchScore = 0.0f;
+
+        // Only calculate catch score if one can actually engulf (and digest) or use pili
+        if (canDigestPrey || pilusScore > 0.0f || injectisomeScore > 0.0f)
+        {
+            // First, you may hunt individual preys, but only if you are fast enough...
+            if (predatorSpeed > preySpeed)
+            {
+                // You catch more preys if you are fast, and if they are slow.
+                // This incentivizes engulfment strategies in these cases.
+                // Sigmoidal calculation to avoid divisions by zero
+                catchScore += (predatorSpeed + 0.001f) / (preySpeed + 0.0001f) * (1 - slowedProportion);
+            }
+
+            // If you can slow the target, some proportion of prey are easier to catch
+            if (predatorSpeed > slowedPreySpeed)
+            {
+                catchScore += (predatorSpeed + 0.001f) / (slowedPreySpeed + 0.0001f) * slowedProportion;
+            }
+
+            // Sprinting can help catch prey.
+            if (predatorSprintSpeed > preySpeed)
+            {
+                catchScore += (predatorSprintSpeed + 0.001f) / (preySpeed + 0.0001f) * (1 - slowedProportion) *
+                    predatorSprintTime;
+            }
+
+            if (predatorSprintSpeed > slowedPreySpeed)
+            {
+                catchScore += (predatorSprintSpeed + 0.001f) / (slowedPreySpeed + 0.0001f) * slowedProportion *
+                    predatorSprintTime;
+            }
+
+            // Sprinting can also help prey escape.
+            if (preySprintSpeed > predatorSpeed)
+            {
+                catchScore -= (preySprintSpeed + 0.001f) / (predatorSpeed + 0.0001f) * preySprintTime;
+            }
+
+            // If you have Slime Jets, this can help you catch targets.
+            if (predatorSlimeSpeed > preySpeed)
+            {
+                catchScore += (predatorSlimeSpeed + 0.001f) / (preySpeed + 0.0001f) * (1 - slowedProportion);
+            }
+
+            if (predatorSlimeSpeed > slowedPreySpeed)
+            {
+                catchScore += (predatorSlimeSpeed + 0.001f) / (slowedPreySpeed + 0.0001f) * slowedProportion;
+            }
+
+            // Having Slime Jets can also help prey escape.
+            if (preySlimeSpeed > predatorSpeed)
+            {
+                catchScore += (preySlimeSpeed + 0.001f) / (predatorSpeed + 0.0001f);
+            }
+
+            // prevent potential negative catchScore.
+            catchScore = MathF.Max(catchScore, 0);
+
+            // But prey may escape if they move away before you can turn to chase them
+            catchScore *= predatorRotationModifier;
+
+            // Pulling Cilia help with catching
+            catchScore *= pullingCiliaModifier;
+
+            // If you have a chemoreceptor, active hunting types are more effective
+            if (hasChemoreceptor)
+            {
+                catchScore *= Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER;
+
+                // Uses crude estimate of population density assuming same energy capture
+                catchScore *= 1 + Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_VARIABLE_MODIFIER
+                    * float.Sqrt(preyIndividualCost);
+            }
+
+            // Active hunting is more effective for active species
+            catchScore *= activityScore;
+            catchScore *= 1 + focusScore;
+
+            // ... but you may also catch them by luck (e.g. when they run into you),
+            // Prey that can't turn away fast enough are more likely to get caught.
+            accidentalCatchScore = Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY *
+                strongPullingCiliaModifier * preyRotationModifier;
+
+            // Less cautious and more focused prey are slightly more likely to get into a dangerous situation
+            var opportunismPenalty = MathF.Pow(preyOpportunismScore, 1.5f)
+                * Constants.AUTO_EVO_MAX_OPPORTUNISM_PENALTY;
+            var focusPenalty = MathF.Pow(preyFocusScore, 1.5f)
+                * Constants.AUTO_EVO_MAX_FOCUS_PENALTY;
+            catchScore *= 1 + opportunismPenalty * (1 + focusPenalty);
+            accidentalCatchScore *= 1 + opportunismPenalty * (1 + focusPenalty);
+        }
+
+        return catchScore;
     }
 
     private PredatorCapabilities? GetPredatorCapabilities(Species predatorSpecies)
