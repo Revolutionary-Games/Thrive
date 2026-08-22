@@ -11,6 +11,8 @@ public class ImageTask : IImageTask
     private ImageTexture? finalImage;
     private Image? plainImage;
 
+    private int? desiredResolution = Constants.PHOTO_STUDIO_DEFAULT_RESOLUTION;
+
     public ImageTask(IScenePhotographable photographable, int priority = 1)
     {
         Priority = priority;
@@ -38,6 +40,12 @@ public class ImageTask : IImageTask
     }
 
     public string? CachePath { get; set; }
+
+    public int? DesiredResolution
+    {
+        get => desiredResolution;
+        set => desiredResolution = value;
+    }
 
     internal IScenePhotographable? ScenePhotographable { get; }
     internal ISimulationPhotographable? SimulationPhotographable { get; }
@@ -119,6 +127,8 @@ public class CacheLoadedImage : IImageTask, ILoadableCacheItem
         get => loadPath;
         set => throw new NotSupportedException("Loadable cache image must have final path set initially");
     }
+
+    public int? DesiredResolution { get; }
 
     public ulong CalculateCacheHash()
     {

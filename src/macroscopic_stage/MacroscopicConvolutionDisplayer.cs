@@ -170,7 +170,8 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
 
     private void ApplyTextures(MacroscopicSpecies species)
     {
-        texturizationTask = PhotoStudio.Instance.GenerateImage(new CreatureTexturePhotographable(Mesh, species));
+        texturizationTask = PhotoStudio.Instance.GenerateImage(new CreatureTexturePhotographable(Mesh, species), 1,
+            2048);
     }
 
     private (float LeftX, float RightX) CalculateXBoundsForTriangle(Vector2 a, Vector2 b, Vector2 c, float y)
