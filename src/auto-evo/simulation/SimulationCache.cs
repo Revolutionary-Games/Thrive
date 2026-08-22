@@ -452,12 +452,8 @@ public class SimulationCache
 
     public float GetPredationScore(Species predatorSpecies, Species preySpecies, BiomeConditions biomeConditions)
     {
-        if (predatorSpecies is not MicrobeSpecies and not MulticellularSpecies)
-        {
-            throw new ArgumentException("Wrong type of Species passed to Microbe/Multicellular Species miche tree");
-        }
-
-        if (preySpecies is not MicrobeSpecies and not MulticellularSpecies)
+        if (predatorSpecies is not MicrobeSpecies and not MulticellularSpecies ||
+            preySpecies is not MicrobeSpecies and not MulticellularSpecies)
         {
             throw new ArgumentException("Wrong type of Species passed to Microbe/Multicellular Species miche tree");
         }
@@ -1115,16 +1111,10 @@ public class SimulationCache
             }
 
             // If you can store enough to kill the prey, producing more isn't as important
-            var storageToKillRatio = predatorStorageNominal * oxytoxyDamage /
-                (preyHP * preyToxinResistance);
-            if (storageToKillRatio > 1)
-            {
-                damagingToxinScore = MathF.Pow(damagingToxinScore, 0.8f);
-            }
-            else
-            {
-                damagingToxinScore = MathF.Pow(damagingToxinScore, storageToKillRatio * 0.8f);
-            }
+            var storageToKillRatio = predatorStorageNominal * oxytoxyDamage / (preyHP * preyToxinResistance);
+            storageToKillRatio = Math.Min(storageToKillRatio, 1);
+
+            damagingToxinScore = MathF.Pow(damagingToxinScore, storageToKillRatio * 0.8f);
 
             // Targets that resist toxin are of course less vulnerable to being damaged with it
             damagingToxinScore /= preyHP * preyToxinResistance;
@@ -1166,16 +1156,10 @@ public class SimulationCache
             }
 
             // If you can store enough to kill the predator, producing more isn't as important
-            var preyStorageToKillRatio = preyStorageNominal * oxytoxyDamage /
-                (predatorHP * predatorToxinResistance);
-            if (preyStorageToKillRatio > 1)
-            {
-                preyDamagingToxinScore = MathF.Pow(preyDamagingToxinScore, 0.8f);
-            }
-            else
-            {
-                preyDamagingToxinScore = MathF.Pow(preyDamagingToxinScore, preyStorageToKillRatio * 0.8f);
-            }
+            var preyStorageToKillRatio = preyStorageNominal * oxytoxyDamage / (predatorHP * predatorToxinResistance);
+            preyStorageToKillRatio = Math.Min(preyStorageToKillRatio, 1);
+
+            preyDamagingToxinScore = MathF.Pow(preyDamagingToxinScore, preyStorageToKillRatio * 0.8f);
 
             // Targets that resist toxin are of course less vulnerable to being damaged with it
             preyDamagingToxinScore /= predatorHP * predatorToxinResistance;
