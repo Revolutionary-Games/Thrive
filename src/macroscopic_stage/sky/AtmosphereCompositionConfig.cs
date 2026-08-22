@@ -59,7 +59,7 @@ public sealed partial class AtmosphereCompositionConfig : Resource
     /// <summary>
     ///   Wavelengths in nanometres that the red, green and blue channels are taken to represent.
     /// </summary>
-    [Export]
+    [Export(PropertyHint.Range, "100.0,2000.0,0.1,or_greater")]
     public Vector3 Wavelengths = new(680.0f, 550.0f, 440.0f);
 
     /// <summary>
