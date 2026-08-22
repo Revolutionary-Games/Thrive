@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-08-21 19:31+0300\n"
-"PO-Revision-Date: 2026-08-21 08:25+0000\n"
+"PO-Revision-Date: 2026-08-22 04:42+0000\n"
 "Last-Translator: Guno haozheum <15721507614@163.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -2231,9 +2231,8 @@ msgstr "载入时出错"
 msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
 msgstr "错误：有性繁殖至少需要两个细胞"
 
-#, fuzzy
 msgid "ERROR_REQUIRED_AT_LEAST_X_CELLS_FOR_MASS_BUDDING"
-msgstr "错误：有性繁殖至少需要两个细胞"
+msgstr "错误：团出芽需要初始芽体至少有{0}个细胞"
 
 msgid "ERROR_SAVING"
 msgstr "存档时出错"
@@ -3678,9 +3677,8 @@ msgstr "海洋雪"
 msgid "MASS_BUDDING_CELL_COUNT"
 msgstr "起始细胞数量"
 
-#, fuzzy
 msgid "MASS_BUDDING_MINIMUM_SIZE_EXPLANATION"
-msgstr "产生的后代开始时即由多个细胞构成。"
+msgstr "芽体至少要有{0}个细胞才能使用这个选项。你可能需要在你的生物体设计中加入更多细胞才能选择一个体积足够大的芽体。"
 
 msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "产生的后代开始时即由多个细胞构成。"
@@ -7520,26 +7518,20 @@ msgstr "3D,策略，空间"
 msgid "WIKI_8_BRACKET_16"
 msgstr "8（16）"
 
-#, fuzzy
 msgid "WIKI_ACTOMYOSIN_EFFECTS"
 msgstr ""
-"对于包含[b]轴突[/b]的多细胞生物中的每个细胞，该生物体的脑力与该细胞的体积成比例地增加。 具有[b]轴突[/b]的细胞将被分类为具有脑组织的类型。\n"
+"每一个拥有[b]肌动球蛋白[/b]的细胞都能使细胞群落的速度和转向速度各增加25％。在移动时，每个肌动球蛋白都会消耗[thrive:compound type=\"atp\"][/thrive:compound]。\n"
 "\n"
-"当脑力达到 [b]+0.5[/b] 时，玩家进入感知阶段。 当脑力达到 [b]+5.0[/b] 时，玩家进入觉醒阶段。\n"
-"\n"
-"使[thrive:compound type=\"sunlight\"][/thrive:compound] [b]紫外线耐受性[/b]降低10%。"
+"使压强耐受上界增加1 kPa。"
 
-#, fuzzy
 msgid "WIKI_ACTOMYOSIN_INTRO"
-msgstr "简而言之：这就是终局。您将化身为超自然的存在，在星系间遨游，随心所欲地塑造与观察万物。漫漫长路终抵于此，这是您应得的。"
+msgstr "[b]肌动球蛋白[/b]是肌动蛋白与肌球蛋白组成的蛋白质复合体，通过使用[thrive:compound type=\"atp\"][/thrive:compound]来大大增加移动与旋转速度。一个细胞里只能放置一个。"
 
-#, fuzzy
 msgid "WIKI_ACTOMYOSIN_MODIFICATIONS"
 msgstr "无修改"
 
-#, fuzzy
 msgid "WIKI_ACTOMYOSIN_PROCESSES"
-msgstr "无代谢过程"
+msgstr "无代谢过程。"
 
 #, fuzzy
 msgid "WIKI_ACTOMYOSIN_REQUIREMENTS"
@@ -7553,9 +7545,8 @@ msgstr "轴突是“神经元细胞”延伸出的细长突起，可连接至另
 msgid "WIKI_ACTOMYOSIN_STRATEGY"
 msgstr "添加[b]轴突[/b]对于进入之后的阶段至关重要。 我们建议在多细胞生物的多种细胞类型中添加一个[b]轴突[/b]，但添加多个是多余的。 目前，更多的[b]轴突[/b]并不会提供额外的好处。"
 
-#, fuzzy
 msgid "WIKI_ACTOMYOSIN_UPGRADES"
-msgstr "无升级"
+msgstr "无升级。"
 
 msgid "WIKI_ASCENSION"
 msgstr "飞升"
@@ -8255,7 +8246,10 @@ msgid "WIKI_FLAGELLUM_INTRO"
 msgstr "[b]鞭毛[/b]是位于细胞外部的毛状细丝，通过消耗 [thrive:compound type=\"atp\"][/thrive:compound] 来提高细胞在一个方向上的移动速度。推力的方向与鞭毛的方向相反。"
 
 msgid "WIKI_FLAGELLUM_MODIFICATIONS"
-msgstr "无修改"
+msgstr ""
+"[b]鞭毛长度[/b]\n"
+"\n"
+"增加鞭毛长度可以增大其推力，但同时也会增大移动时的ATP消耗量。"
 
 msgid "WIKI_FLAGELLUM_PROCESSES"
 msgstr "无代谢过程"
@@ -8540,7 +8534,7 @@ msgstr ""
 "\n"
 "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] 可以通过化能质体和化能合成蛋白转化为 [thrive:compound type=\"glucose\"][/thrive:compound]。[thrive:compound type=\"iron\"][/thrive:compound] 可以通过铁硫菌蓝蛋白或铁化能质体转化为 [thrive:compound type=\"atp\"][/thrive:compound]。\n"
 "\n"
-"在微生物阶段，每次进入编辑器代表了 1 亿年的进化。\n"
+"在微生物阶段，每次进入编辑器代表了五千万年的进化。\n"
 "\n"
 "您可以吞噬漂浮物质的碎块，无论它们是死细胞的残骸还是矿物质。\n"
 "\n"
@@ -9010,9 +9004,8 @@ msgstr ""
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "无升级。"
 
-#, fuzzy
 msgid "WIKI_MUCOCYST"
-msgstr "游戏机制"
+msgstr "黏液囊"
 
 msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
 msgstr ""
@@ -9223,6 +9216,7 @@ msgstr ""
 msgid "WIKI_OXYTOXISOME_INTRO"
 msgstr "修改 [b][color=#3796e1][url=thriveopedia:metabolosome]代谢体[/url][/color][/b]来产生[thrive:compound type=\"oxytoxy\"][/thrive:compound]，一种可以被作为有毒抛射体发射的化合物。[b][color=#3796e1][url=thriveopedia:oxytoxy]毒素液泡[/url][/color][/b]的下位版本。"
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_MODIFICATIONS"
 msgstr "无修改。"
 
@@ -9257,9 +9251,8 @@ msgstr "无升级。"
 msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr "氧化毒素合成，糖酵解"
 
-#, fuzzy
 msgid "WIKI_PAGE_ACTOMYOSIN"
-msgstr "飞升"
+msgstr "肌动球蛋白"
 
 msgid "WIKI_PAGE_ASCENSION"
 msgstr "飞升"
@@ -9601,6 +9594,7 @@ msgstr ""
 "\n"
 "同样重要的是要注意，此细胞器使用[thrive:compound type=\"glucose\"][/thrive:compound] 而非[thrive:compound type=\"atp\"][/thrive:compound]，所以添加此细胞器时一定要检查细胞的化合物平衡。"
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr "无升级"
 
@@ -9861,6 +9855,7 @@ msgstr ""
 msgid "WIKI_TOXIN_VACUOLE_INTRO"
 msgstr "修改过的[b][color=#3796e1][url=thriveopedia:vacuole]液泡[/url][/color][/b]，生产[thrive:compound type=\"oxytoxy\"][/thrive:compound] ，可以作为发射毒素弹的部件。 [b][color=#3796e1][url=thriveopedia:oxytoxyProteins]氧化毒酶体（毒素体）[/url][/color][/b]的高级版本。"
 
+#, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_MODIFICATIONS"
 msgstr "无修改。"
 
