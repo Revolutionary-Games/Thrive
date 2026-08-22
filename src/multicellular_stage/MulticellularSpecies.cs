@@ -259,125 +259,39 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         // TODO: do we need to reposition for auto-evo?
         RepositionToOrigin();
 
-        bool sporeCellTypeInList = false;
-        bool gameteTypeAInList = false;
-        bool gameteTypeBInList = false;
+        CheckCellTypesAndReproductionMethods();
 
-        // Make certain these are all up to date
-        foreach (var cellType in ModifiableCellTypes)
-        {
-            // See the comment in CellBodyPlanEditorComponent.OnFinishEditing
-            if (cellType.RepositionToOrigin())
-            {
-                GD.Print("Repositioned a multicellular species' cell type. This might break / crash the " +
-                    "body plan layout.");
-            }
-
-            // Reset endosymbiont status so that they aren't free to move / delete in the next editor cycle
-            var count = cellType.ModifiableOrganelles.Count;
-            for (var i = 0; i < count; ++i)
-            {
-                cellType.ModifiableOrganelles.Organelles[i].IsEndosymbiont = false;
-            }
-
-            if (!sporeCellTypeInList && ReferenceEquals(cellType, ModifiableSporeCellType))
-                sporeCellTypeInList = true;
-
-            if (!gameteTypeAInList && ReferenceEquals(cellType, ModifiableGameteTypeA))
-                gameteTypeAInList = true;
-
-            if (!gameteTypeBInList && ReferenceEquals(cellType, ModifiableGameteTypeB))
-                gameteTypeBInList = true;
-        }
-
-        if (!sporeCellTypeInList && ModifiableSporeCellType != null)
-            throw new Exception($"Spore cell type isn't present in the cell type list: {ModifiableSporeCellType}");
-
-        if (!gameteTypeAInList && ModifiableGameteTypeA != null)
-            throw new Exception($"Gamete type A isn't present in the cell type list: {ModifiableGameteTypeA}");
-
-        if (!gameteTypeBInList && ModifiableGameteTypeB != null)
-            throw new Exception($"Gamete type B isn't present in the cell type list: {ModifiableGameteTypeB}");
-
-        if (ReproductionMethod == MulticellularReproductionMethod.Sporulation && ModifiableSporeCellType == null)
-            throw new Exception("Sporulation reproduction method requires a spore cell type to be set");
-
-        if (ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy
-            or MulticellularReproductionMethod.SexualAnisogamy)
-        {
-            if (ModifiableGameteTypeA == null)
-                throw new Exception("Sexual reproduction method requires a gamete type A to be set");
-
-            if (ReproductionMethod == MulticellularReproductionMethod.SexualAnisogamy && ModifiableGameteTypeB == null)
-                throw new Exception("Sexual reproduction method requires a gamete type A and B to be set");
-
-            // This check is because the growth system is not set up to handle less than two cells on shooting a gamete
-            if (ModifiableGameplayCells.Count < 2)
-                throw new Exception("Sexual reproduction method requires at least two gameplay cells");
-        }
-
-        if (ReproductionMethod == MulticellularReproductionMethod.MassBudding &&
-            MassBuddingCellCount < Constants.MASS_BUDDING_MINIMUM_BUD_SIZE)
-        {
-            throw new Exception("Mass budding reproduction requires an initial bud size of at least two cells");
-        }
-
-        if (MassBuddingCellCount < 1 || MassBuddingCellCount > ModifiableGameplayCells.Count)
-        {
-            throw new Exception("Mass budding bud size can't be less than one or more than the total amount of cells in"
-                + " the colony");
-        }
-
-        if (modifiableEditorCells != null)
-        {
-            // TODO: should this just automatically remove it?
-            if (modifiableEditorCells.Count != ModifiableGameplayCells.Count)
-                throw new Exception("Editor cells have not been updated after species edit");
-
-#if DEBUG
-            foreach (var hexWithData in modifiableEditorCells.AsModifiable())
-            {
-                if (hexWithData.Data == null)
-                    throw new Exception("Editor cells have no data");
-
-                if (hexWithData.Data.Position != hexWithData.Position ||
-                    hexWithData.Data.Orientation != hexWithData.Orientation)
-                {
-                    throw new Exception(
-                        "Editor cells have not been updated after species edit to match their position");
-                }
-            }
-#endif
-        }
+        CheckEditorCells();
 
 #if DEBUG
         ModifiableGameplayCells.ThrowIfCellsOverlap();
 #endif
 
-        foreach (var modifiableGameplayCell in ModifiableGameplayCells)
-        {
-            bool typeExists = false;
+        CheckGameplayCells();
+    }
 
-            foreach (var typeDefinition in ModifiableCellTypes)
-            {
-                if (ReferenceEquals(typeDefinition, modifiableGameplayCell.ModifiableCellType))
-                {
-                    typeExists = true;
-                    break;
-                }
-            }
+    public void OnExitingAutoEvo(List<Hex> hexTemporaryMemory1, List<Hex> hexTemporaryMemory2)
+    {
+        RepositionCellTypesToOrigin();
 
-            if (!typeExists)
-            {
+        CheckCellTypesAndReproductionMethods();
+
+        MulticellularLayoutHelpers.UpdateGameplayLayoutForAutoEvo(
+            ModifiableGameplayCells, ModifiableEditorCells,
+            hexTemporaryMemory1, hexTemporaryMemory2);
+
+        CheckEditorCells();
+
+        base.OnEdited();
+
+        // TODO: do we need to reposition for auto-evo?
+        RepositionToOrigin();
+
 #if DEBUG
-                throw new Exception($"Gameplay cell type {modifiableGameplayCell.ModifiableCellType} does not exist " +
-                    $"in species {FormattedIdentifier}");
-#else
-                GD.PrintErr($"Gameplay cell type {modifiableGameplayCell.ModifiableCellType} does not exist " +
-                    $"in species {FormattedIdentifier}");
+        ModifiableGameplayCells.ThrowIfCellsOverlap();
 #endif
-            }
-        }
+
+        CheckGameplayCells();
     }
 
     public override void OnAttemptedInAutoEvo(bool refreshCache)
@@ -941,6 +855,127 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         }
 
         return result;
+    }
+
+    private void CheckCellTypesAndReproductionMethods()
+    {
+        bool sporeCellTypeInList = false;
+        bool gameteTypeAInList = false;
+        bool gameteTypeBInList = false;
+
+        // Make certain these are all up to date
+        foreach (var cellType in ModifiableCellTypes)
+        {
+            // See the comment in CellBodyPlanEditorComponent.OnFinishEditing
+            if (cellType.RepositionToOrigin())
+            {
+                GD.Print("Repositioned a multicellular species' cell type. This might break / crash the " +
+                    "body plan layout.");
+            }
+
+            // Reset endosymbiont status so that they aren't free to move / delete in the next editor cycle
+            var count = cellType.ModifiableOrganelles.Count;
+            for (var i = 0; i < count; ++i)
+            {
+                cellType.ModifiableOrganelles.Organelles[i].IsEndosymbiont = false;
+            }
+
+            if (!sporeCellTypeInList && ReferenceEquals(cellType, ModifiableSporeCellType))
+                sporeCellTypeInList = true;
+
+            if (!gameteTypeAInList && ReferenceEquals(cellType, ModifiableGameteTypeA))
+                gameteTypeAInList = true;
+
+            if (!gameteTypeBInList && ReferenceEquals(cellType, ModifiableGameteTypeB))
+                gameteTypeBInList = true;
+        }
+
+        if (!sporeCellTypeInList && ModifiableSporeCellType != null)
+            throw new Exception($"Spore cell type isn't present in the cell type list: {ModifiableSporeCellType}");
+
+        if (!gameteTypeAInList && ModifiableGameteTypeA != null)
+            throw new Exception($"Gamete type A isn't present in the cell type list: {ModifiableGameteTypeA}");
+
+        if (!gameteTypeBInList && ModifiableGameteTypeB != null)
+            throw new Exception($"Gamete type B isn't present in the cell type list: {ModifiableGameteTypeB}");
+
+        if (ReproductionMethod == MulticellularReproductionMethod.Sporulation && ModifiableSporeCellType == null)
+            throw new Exception("Sporulation reproduction method requires a spore cell type to be set");
+
+        if (ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy
+            or MulticellularReproductionMethod.SexualAnisogamy)
+        {
+            if (ModifiableGameteTypeA == null)
+                throw new Exception("Sexual reproduction method requires a gamete type A to be set");
+
+            if (ReproductionMethod == MulticellularReproductionMethod.SexualAnisogamy && ModifiableGameteTypeB == null)
+                throw new Exception("Sexual reproduction method requires a gamete type A and B to be set");
+
+            // This check is because the growth system is not set up to handle less than two cells on shooting a gamete
+            if (ModifiableGameplayCells.Count < 2)
+                throw new Exception("Sexual reproduction method requires at least two gameplay cells");
+        }
+
+        if (ReproductionMethod == MulticellularReproductionMethod.MassBudding &&
+            MassBuddingCellCount < Constants.MASS_BUDDING_MINIMUM_BUD_SIZE)
+        {
+            throw new Exception("Mass budding reproduction requires an initial bud size of at least two cells");
+        }
+
+        if (MassBuddingCellCount < 1 || MassBuddingCellCount > ModifiableGameplayCells.Count)
+        {
+            throw new Exception("Mass budding bud size can't be less than one or more than the total amount of cells in"
+                + " the colony");
+        }
+    }
+
+    private void CheckEditorCells()
+    {
+        if (modifiableEditorCells != null)
+        {
+#if DEBUG
+            foreach (var hexWithData in modifiableEditorCells.AsModifiable())
+            {
+                if (hexWithData.Data == null)
+                    throw new Exception("Editor cells have no data");
+
+                if (hexWithData.Data.Position != hexWithData.Position ||
+                    hexWithData.Data.Orientation != hexWithData.Orientation)
+                {
+                    throw new Exception(
+                        "Editor cells have not been updated after species edit to match their position");
+                }
+            }
+#endif
+        }
+    }
+
+    private void CheckGameplayCells()
+    {
+        foreach (var modifiableGameplayCell in ModifiableGameplayCells)
+        {
+            bool typeExists = false;
+
+            foreach (var typeDefinition in ModifiableCellTypes)
+            {
+                if (ReferenceEquals(typeDefinition, modifiableGameplayCell.ModifiableCellType))
+                {
+                    typeExists = true;
+                    break;
+                }
+            }
+
+            if (!typeExists)
+            {
+#if DEBUG
+                throw new Exception($"Gameplay cell type {modifiableGameplayCell.ModifiableCellType} does not exist " +
+                    $"in species {FormattedIdentifier}");
+#else
+                GD.PrintErr($"Gameplay cell type {modifiableGameplayCell.ModifiableCellType} does not exist " +
+                    $"in species {FormattedIdentifier}");
+#endif
+            }
+        }
     }
 
     private bool RepositionGameplayCells()
