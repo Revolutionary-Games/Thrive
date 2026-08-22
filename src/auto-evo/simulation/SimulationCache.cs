@@ -478,726 +478,9 @@ public class SimulationCache
             return score;
         }
 
-        var cached = 0.0f;
-
-        // First values necessary to check whether predation is possible at all
-        PredationToolsRawScores predatorToolScores;
-        var canEngulf = false;
-
-        if (predatorSpecies is MicrobeSpecies microbeSpecies)
-        {
-            predatorToolScores = GetPredationToolsRawScores(microbeSpecies);
-            canEngulf = microbeSpecies.CanEngulf;
-        }
-        else if (predatorSpecies is MulticellularSpecies multicellularSpecies)
-        {
-            predatorToolScores = GetPredationToolsRawScores(multicellularSpecies);
-            var cellTypes = multicellularSpecies.CellTypes;
-            for (var i = 0; i < cellTypes.Count; ++i)
-            {
-                var cellType = cellTypes[i];
-                if (canEngulf)
-                    break;
-
-                if (cellType.MembraneType.CanEngulf)
-                {
-                    foreach (var hex in multicellularSpecies.EditorCells)
-                    {
-                        var cell = hex.Data;
-                        if (cell != null && ReferenceEquals(cell.CellType, cellType))
-                        {
-                            canEngulf = true;
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-        else
-        {
-            return 0;
-        }
-
-        var pilusScore = predatorToolScores.PilusScore;
-        var injectisomeScore = predatorToolScores.InjectisomeScore;
-        var oxytoxyScore = predatorToolScores.OxytoxyScore;
-        var cytotoxinScore = predatorToolScores.CytotoxinScore;
-        var oxygenMetabolismInhibitorScore = predatorToolScores.OxygenMetabolismInhibitorScore;
-        var channelInhibitorScore = predatorToolScores.ChannelInhibitorScore;
-
-        // Don't bother with the rest if the predator cannot predate
-        var engulfOnly = false;
-
-        if (pilusScore == 0 &&
-            injectisomeScore == 0 &&
-            oxytoxyScore == 0 &&
-            cytotoxinScore == 0 &&
-            oxygenMetabolismInhibitorScore == 0 &&
-            channelInhibitorScore == 0)
-        {
-            if (canEngulf)
-            {
-                engulfOnly = true;
-            }
-            else
-            {
-                predationScores.Add(key, cached);
-                return cached;
-            }
-        }
-
-        // Constants
-        var sprintMultiplier = Constants.SPRINTING_FORCE_MULTIPLIER;
-        var sprintingStrain = Constants.SPRINTING_STRAIN_INCREASE_PER_SECOND / 5;
-        var strainPerHex = Constants.SPRINTING_STRAIN_INCREASE_PER_HEX / 5;
-
-        var membraneRigidityHitpointsModifier = Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
-
-        var sizeAffectedProjectileMissFactor = Constants.AUTO_EVO_SIZE_AFFECTED_PROJECTILE_MISS_FACTOR;
-        var toxicityHitModifier = Constants.AUTO_EVO_TOXICITY_HIT_MODIFIER;
-        var oxytoxyDebuffPerOrganelle = Constants.OXYTOXY_DAMAGE_DEBUFF_PER_ORGANELLE;
-        var oxytoxyDebuffMax = Constants.OXYTOXY_DAMAGE_DEBUFF_MAX;
-        var oxygenInhibitorBuffPerOrganelle = Constants.OXYGEN_INHIBITOR_DAMAGE_BUFF_PER_ORGANELLE;
-        var oxygenInhibitorBuffMax = Constants.OXYGEN_INHIBITOR_DAMAGE_BUFF_MAX;
-        var oxytoxyDamage = Constants.OXYTOXY_DAMAGE;
-        var channelInhibitorATPDebuff = Constants.CHANNEL_INHIBITOR_ATP_DEBUFF;
-
-        var signallingBonus = Constants.AUTO_EVO_SIGNALLING_BONUS;
-
-        // full calculation of values for PredationScore follows
-        float smallestPreyHexSize;
-        var dissolverEnzyme = Constants.LIPASE_ENZYME;
-        var enzymesScore = 0.0f;
-
-        var preyHP = 1.0f;
-        float preyToxinResistance;
-        float preyPhysicalResistance;
-        float preyStorageNominal;
-
-        PredationToolsRawScores preyToolScores;
-        var predatorHP = 1.0f;
-        float predatorToxinResistance;
-        float predatorPhysicalResistance;
-        float predatorStorageNominal;
-
-        var hasChemoreceptor = false;
-        var hasSignallingAgent = false;
-        var preyHasSignallingAgent = false;
-        var predatorOxygenUsingOrganellesCount = 0.0f;
-        var preyOxygenUsingOrganellesCount = 0.0f;
-
-        var preyHexSize = GetBaseHexSizeForSpecies(preySpecies);
-        if (preySpecies is MicrobeSpecies microbePrey)
-        {
-            preyToolScores = GetPredationToolsRawScores(microbePrey);
-            smallestPreyHexSize = preyHexSize;
-            dissolverEnzyme = microbePrey.MembraneType.DissolverEnzyme;
-            preyStorageNominal = microbePrey.StorageCapacities.Nominal;
-
-            // uses an HP estimate without taking into account environmental tolerance effect
-            preyHP = microbePrey.MembraneType.Hitpoints + microbePrey.MembraneRigidity *
-                membraneRigidityHitpointsModifier;
-
-            // Give damage resistance if you have a nucleus (50 % general damage resistance)
-            if (!microbePrey.IsBacteria)
-                preyHP *= 2;
-            preyToxinResistance = microbePrey.MembraneType.ToxinResistance;
-            preyPhysicalResistance = microbePrey.MembraneType.PhysicalResistance;
-
-            var preyOrganelles = microbePrey.Organelles.Organelles;
-            int preyOrganellesCount = preyOrganelles.Count;
-            for (int i = 0; i < preyOrganellesCount; ++i)
-            {
-                var organelle = preyOrganelles[i];
-                if (organelle.Definition.HasSignalingFeature)
-                    preyHasSignallingAgent = true;
-                if (preyOrganelles[i].Definition.IsOxygenMetabolism)
-                    ++preyOxygenUsingOrganellesCount;
-            }
-        }
-        else if (preySpecies is MulticellularSpecies multicellularPrey)
-        {
-            preyToolScores = GetPredationToolsRawScores(multicellularPrey);
-            smallestPreyHexSize = preyHexSize;
-            preyStorageNominal = multicellularPrey.StorageCapacities.Nominal;
-
-            var totalToxinResistance = 0.0f;
-            var totalPhysicalResistance = 0.0f;
-            var cells = multicellularPrey.EditorCells;
-            var totalCellCount = cells.Count;
-
-            var cellTypes = multicellularPrey.CellTypes;
-            for (var i = 0; i < cellTypes.Count; ++i)
-            {
-                var cellType = cellTypes[i];
-
-                var cellCount = 0;
-                foreach (var hex in multicellularPrey.EditorCells)
-                {
-                    var cell = hex.Data;
-                    if (cell != null && ReferenceEquals(cell.CellType, cellType))
-                    {
-                        ++cellCount;
-                    }
-                }
-
-                if (cellCount == 0)
-                    continue;
-
-                var cellTypeHP = cellType.MembraneType.Hitpoints + cellType.MembraneRigidity *
-                    membraneRigidityHitpointsModifier;
-                if (!cellType.IsBacteria)
-                    cellTypeHP *= 2;
-
-                preyHP += cellCount * cellTypeHP;
-
-                // for simplicity's sake we are for now taking the smallest size cell in the body
-                var cellTypeSize = GetBaseHexSizeForCellType(cellType);
-                if (cellTypeSize < smallestPreyHexSize)
-                {
-                    smallestPreyHexSize = cellTypeSize;
-                    dissolverEnzyme = cellType.MembraneType.DissolverEnzyme;
-                }
-
-                totalToxinResistance += cellCount * cellType.MembraneType.ToxinResistance;
-                totalPhysicalResistance += cellCount * cellType.MembraneType.PhysicalResistance;
-
-                var cellTypeOxygenUsingOrganellesCount = 0;
-                foreach (var organelle in cellType.Organelles)
-                {
-                    if (organelle.Definition.HasSignalingFeature)
-                        preyHasSignallingAgent = true;
-                    if (organelle.Definition.IsOxygenMetabolism)
-                        ++cellTypeOxygenUsingOrganellesCount;
-                }
-
-                preyOxygenUsingOrganellesCount += cellTypeOxygenUsingOrganellesCount * cellCount;
-            }
-
-            preyToxinResistance = totalToxinResistance / totalCellCount;
-            preyPhysicalResistance = totalPhysicalResistance / totalCellCount;
-
-            preyOxygenUsingOrganellesCount /= totalCellCount;
-        }
-        else
-        {
-            return 0;
-        }
-
-        var predatorHexSize = GetBaseHexSizeForSpecies(predatorSpecies);
-        if (predatorSpecies is MicrobeSpecies microbePredator)
-        {
-            // TODO: If these two methods were combined it might result in better performance with needing just
-            // one dictionary lookup
-            predatorHP = microbePredator.MembraneType.Hitpoints + microbePredator.MembraneRigidity *
-                membraneRigidityHitpointsModifier;
-
-            // Give damage resistance if you have a nucleus (50 % general damage resistance)
-            if (!microbePredator.IsBacteria)
-                predatorHP *= 2;
-            predatorToxinResistance = microbePredator.MembraneType.ToxinResistance;
-            predatorPhysicalResistance = microbePredator.MembraneType.PhysicalResistance;
-
-            predatorStorageNominal = microbePredator.StorageCapacities.Nominal;
-
-            var organelles = microbePredator.Organelles.Organelles;
-            int count = organelles.Count;
-            for (int i = 0; i < count; ++i)
-            {
-                var organelle = organelles[i];
-                if (organelle.Definition.HasChemoreceptorComponent && organelle.GetActiveTargetSpecies() == preySpecies)
-                    hasChemoreceptor = true;
-                if (organelle.Definition.HasSignalingFeature)
-                    hasSignallingAgent = true;
-                if (organelles[i].Definition.IsOxygenMetabolism)
-                    ++predatorOxygenUsingOrganellesCount;
-            }
-
-            if (canEngulf && predatorHexSize / smallestPreyHexSize > Constants.ENGULF_SIZE_RATIO_REQ)
-            {
-                enzymesScore = GetEnzymesScore(microbePredator, dissolverEnzyme,
-                    microbePredator.CellTypeSpecializationBonus);
-            }
-        }
-        else if (predatorSpecies is MulticellularSpecies multicellularPredator)
-        {
-            predatorStorageNominal = multicellularPredator.StorageCapacities.Nominal;
-
-            var totalToxinResistance = 0.0f;
-            var totalPhysicalResistance = 0.0f;
-            var cells = multicellularPredator.EditorCells;
-            var totalCellCount = cells.Count;
-
-            var cellTypes = multicellularPredator.CellTypes;
-            for (var i = 0; i < cellTypes.Count; ++i)
-            {
-                var cellType = cellTypes[i];
-
-                var cellCount = 0;
-                var cellTypeHexSize = GetBaseHexSizeForCellType(cellType);
-
-                var cellTypeSpecializationBonus = cellType.CellTypeSpecializationBonus;
-
-                foreach (var hex in cells)
-                {
-                    var cell = hex.Data;
-                    if (cell != null && ReferenceEquals(cell.CellType, cellType))
-                    {
-                        ++cellCount;
-                        if (cellType.MembraneType.CanEngulf &&
-                            cellTypeHexSize / smallestPreyHexSize >= Constants.ENGULF_SIZE_RATIO_REQ)
-                        {
-                            var cellEnzymesScore = GetEnzymesScore(cellType, dissolverEnzyme,
-                                cellTypeSpecializationBonus * CellBodyPlanInternalCalculations
-                                    .GetAdjacencySpecializationBonusFromBodyPlan(cell, cells));
-                            enzymesScore = Math.Max(cellEnzymesScore, enzymesScore);
-                        }
-                    }
-                }
-
-                if (cellCount == 0)
-                    continue;
-
-                var cellTypeHP = cellType.MembraneType.Hitpoints + cellType.MembraneRigidity *
-                    membraneRigidityHitpointsModifier;
-                if (!cellType.IsBacteria)
-                    cellTypeHP *= 2;
-
-                predatorHP += cellCount * cellTypeHP;
-                totalToxinResistance += cellCount * cellType.MembraneType.ToxinResistance;
-                totalPhysicalResistance += cellCount * cellType.MembraneType.PhysicalResistance;
-
-                var cellTypeOxygenUsingOrganellesCount = 0;
-                foreach (var organelle in cellType.Organelles)
-                {
-                    if (organelle.Definition.HasChemoreceptorComponent &&
-                        organelle.GetActiveTargetSpecies() == preySpecies)
-                        hasChemoreceptor = true;
-                    if (organelle.Definition.HasSignalingFeature)
-                        hasSignallingAgent = true;
-                    if (organelle.Definition.IsOxygenMetabolism)
-                        ++cellTypeOxygenUsingOrganellesCount;
-                }
-
-                predatorOxygenUsingOrganellesCount += cellTypeOxygenUsingOrganellesCount * cellCount;
-            }
-
-            predatorToxinResistance = totalToxinResistance / totalCellCount;
-            predatorPhysicalResistance = totalPhysicalResistance / totalCellCount;
-
-            predatorOxygenUsingOrganellesCount /= totalCellCount;
-        }
-        else
-        {
-            return 0;
-        }
-
-        var canDigestPrey = enzymesScore > 0.0f;
-
-        if (engulfOnly && !canDigestPrey)
-        {
-            cached = 0;
-            predationScores.Add(key, cached);
-            return cached;
-        }
-
-        // We want prey defensive measures to only reduce predation score, not eliminate it.
-        // (Predation Score is reduced to 0 anyway if the "prey" has a higher predation score to the predator)
-        var defenseScoreModifier = Constants.AUTO_EVO_PREDATION_DEFENSE_SCORE_MODIFIER;
-
-        var predatorSpeed = GetSpeedForSpecies(predatorSpecies);
-        var predatorRotationSpeed = GetRotationSpeedForSpecies(predatorSpecies);
-        var predatorEnergyBalance = GetEnergyBalanceForSpecies(predatorSpecies, biomeConditions);
-        var predatorOsmoregulationCost = predatorEnergyBalance.Osmoregulation;
-
-        var preySpeed = GetSpeedForSpecies(preySpecies);
-        var preyRotationSpeed = GetRotationSpeedForSpecies(preySpecies);
-        var slowedPreySpeed = preySpeed;
-        var preyEnergyBalance = GetEnergyBalanceForSpecies(preySpecies, biomeConditions);
-        var preyOsmoregulationCost = preyEnergyBalance.Osmoregulation;
-        var preyIndividualCost = MichePopulation.CalculateIndividualCost(preySpecies, biomeConditions, this);
-
-        var toxicity = predatorToolScores.AverageToxicity;
-        var macrolideScore = predatorToolScores.MacrolideScore;
-        var predatorSlimeJetScore = predatorToolScores.SlimeJetScore;
-        var pullingCiliaModifier = predatorToolScores.PullingCiliaModifier;
-        var strongPullingCiliaModifier = pullingCiliaModifier * pullingCiliaModifier;
-
-        var preySlimeJetScore = preyToolScores.SlimeJetScore;
-        var preyMucocystsScore = preyToolScores.MucocystsScore;
-        var preyPilusScore = preyToolScores.PilusScore;
-        var preyInjectisomeScore = preyToolScores.InjectisomeScore;
-        var preyToxicity = preyToolScores.AverageToxicity;
-        var preyOxytoxyScore = preyToolScores.OxytoxyScore;
-        var preyCytotoxinScore = preyToolScores.CytotoxinScore;
-        var preyMacrolideScore = preyToolScores.MacrolideScore;
-        var preyChannelInhibitorScore = preyToolScores.ChannelInhibitorScore;
-        var preyOxygenMetabolismInhibitorScore = preyToolScores.OxygenMetabolismInhibitorScore;
-        var defensivePilusScore = preyToolScores.DefensivePilusScore;
-        var defensiveInjectisomeScore = preyToolScores.DefensiveInjectisomeScore;
-
-        // Not an ideal solution, but accounts for the fact that the oxytoxy and cyanide processes require oxygen to run
-        biomeConditions.Compounds.TryGetValue(Compound.Oxygen, out BiomeCompoundProperties oxygen);
-        if (oxygen.Ambient == 0)
-        {
-            oxytoxyScore = 0;
-            preyOxytoxyScore = 0;
-            oxygenMetabolismInhibitorScore = 0;
-            preyOxygenMetabolismInhibitorScore = 0;
-        }
-
-        var aggressionScore = predatorSpecies.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
-        var activityScore = MathF.Pow(predatorSpecies.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY, 0.5f);
-        var opportunismScore = predatorSpecies.Behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
-        var focusScore = predatorSpecies.Behaviour.Focus / Constants.MAX_SPECIES_FOCUS;
-
-        var preyFearScore = preySpecies.Behaviour.Fear / Constants.MAX_SPECIES_FEAR;
-        var preyAggressionScore = preySpecies.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
-        var preyOpportunismScore = preySpecies.Behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
-        var preyFocusScore = preySpecies.Behaviour.Focus / Constants.MAX_SPECIES_FOCUS;
-
-        // prey's effectiveness at running away depends on how quickly they choose to run away
-        preySpeed *= preyFearScore * (1 - preyAggressionScore);
-
-        // Sprinting calculations
-        var predatorSprintSpeed = predatorSpeed * sprintMultiplier;
-        var predatorSprintConsumption = sprintingStrain + predatorHexSize * strainPerHex;
-        var predatorSprintTime = MathF.Max(predatorEnergyBalance.FinalBalance / predatorSprintConsumption, 0.0f);
-
-        var preySprintSpeed = preySpeed * sprintMultiplier;
-        var preySprintConsumption = sprintingStrain + preyHexSize * strainPerHex;
-        var preySprintTime = MathF.Max(preyEnergyBalance.FinalBalance / preySprintConsumption, 0.0f);
-
-        // This makes rotation "speed" not matter until the editor shows ~300,
-        // which is where it also becomes noticeable in-game.
-        // The mechanical microbe rotation speed value is reverse to intuitive: higher value means slower turning.
-        // (The editor reverses this to make it intuitive to the player)
-        var predatorRotationModifier = float.Min(1.0f, 1.5f - predatorRotationSpeed * 1.45f);
-        var preyRotationModifier = float.Min(1.0f, 1.5f - preyRotationSpeed * 1.45f);
-
-        // Simple estimation of slime jet propulsion.
-        var predatorSlimeSpeed = predatorSpeed + predatorSlimeJetScore / (predatorHexSize * 11);
-        var preySlimeSpeed = preySpeed + preySlimeJetScore / (preyHexSize * 11);
-
-        // Calculating "hit chance" modifier from prey size and predator toxicity
-        var sizeHitFactor = sizeAffectedProjectileMissFactor / float.Sqrt(preyHexSize);
-        var toxicityHitFactor = toxicity / toxicityHitModifier;
-        var hitProportion = 1 - sizeHitFactor - toxicityHitFactor;
-
-        // Calculating prey energy production altered by channel inhbitor
-        var preyInhibitedPreyEnergyProduction = preyEnergyBalance.TotalProduction;
-        if (channelInhibitorScore > 0)
-        {
-            preyInhibitedPreyEnergyProduction *= 1 - channelInhibitorATPDebuff *
-                MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(toxicity, ToxinType.ChannelInhibitor);
-
-            // If inhibited energy production affects movement,
-            // add (part of) the inhibitor score to macrolide score
-            if (preyInhibitedPreyEnergyProduction < preyEnergyBalance.TotalConsumption)
-            {
-                var channelInhibitorSlowFactor = Math.Min(
-                    Math.Max(preyInhibitedPreyEnergyProduction - preyOsmoregulationCost, 0) /
-                    preyEnergyBalance.TotalMovement, 1);
-                macrolideScore += channelInhibitorScore * channelInhibitorSlowFactor;
-                slowedPreySpeed *= 1 - channelInhibitorSlowFactor;
-            }
-        }
-
-        // Calculating predator energy production altered by channel inhbitor
-        var predatorInhibitedPreyEnergyProduction = predatorEnergyBalance.TotalProduction;
-        if (preyChannelInhibitorScore > 0)
-        {
-            predatorInhibitedPreyEnergyProduction *= 1 - channelInhibitorATPDebuff *
-                MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(preyToxicity, ToxinType.ChannelInhibitor);
-        }
-
-        // Calculating how much prey is slowed down by macrolide, and how frequently they are succesfully slowed down
-        var slowedProportion = 0.0f;
-        if (macrolideScore > 0)
-        {
-            slowedPreySpeed *= 1 - Constants.MACROLIDE_BASE_MOVEMENT_DEBUFF *
-                MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(toxicity, ToxinType.Macrolide);
-            slowedProportion = 1.0f - MathF.Exp(-Constants.AUTO_EVO_TOXIN_AFFECTED_PROPORTION_SCALING *
-                macrolideScore * hitProportion);
-        }
-
-        // Catch scores grossly accounts for how many preys you catch in melee in a run;
-        var catchScore = 0.0f;
-        var accidentalCatchScore = 0.0f;
-
-        // Only calculate catch score if one can actually engulf (and digest) or use pili
-        var engulfmentScore = 0.0f;
-        if (canDigestPrey || pilusScore > 0.0f || injectisomeScore > 0.0f)
-        {
-            // First, you may hunt individual preys, but only if you are fast enough...
-            if (predatorSpeed > preySpeed)
-            {
-                // You catch more preys if you are fast, and if they are slow.
-                // This incentivizes engulfment strategies in these cases.
-                // Sigmoidal calculation to avoid divisions by zero
-                catchScore += (predatorSpeed + 0.001f) / (preySpeed + 0.0001f) * (1 - slowedProportion);
-            }
-
-            // If you can slow the target, some proportion of prey are easier to catch
-            if (predatorSpeed > slowedPreySpeed)
-            {
-                catchScore += (predatorSpeed + 0.001f) / (slowedPreySpeed + 0.0001f) * slowedProportion;
-            }
-
-            // Sprinting can help catch prey.
-            if (predatorSprintSpeed > preySpeed)
-            {
-                catchScore += (predatorSprintSpeed + 0.001f) / (preySpeed + 0.0001f) * (1 - slowedProportion) *
-                    predatorSprintTime;
-            }
-
-            if (predatorSprintSpeed > slowedPreySpeed)
-            {
-                catchScore += (predatorSprintSpeed + 0.001f) / (slowedPreySpeed + 0.0001f) * slowedProportion *
-                    predatorSprintTime;
-            }
-
-            // Sprinting can also help prey escape.
-            if (preySprintSpeed > predatorSpeed)
-            {
-                catchScore -= (preySprintSpeed + 0.001f) / (predatorSpeed + 0.0001f) * preySprintTime;
-            }
-
-            // If you have Slime Jets, this can help you catch targets.
-            if (predatorSlimeSpeed > preySpeed)
-            {
-                catchScore += (predatorSlimeSpeed + 0.001f) / (preySpeed + 0.0001f) * (1 - slowedProportion);
-            }
-
-            if (predatorSlimeSpeed > slowedPreySpeed)
-            {
-                catchScore += (predatorSlimeSpeed + 0.001f) / (slowedPreySpeed + 0.0001f) * slowedProportion;
-            }
-
-            // Having Slime Jets can also help prey escape.
-            if (preySlimeSpeed > predatorSpeed)
-            {
-                catchScore += (preySlimeSpeed + 0.001f) / (predatorSpeed + 0.0001f);
-            }
-
-            // prevent potential negative catchScore.
-            catchScore = MathF.Max(catchScore, 0);
-
-            // But prey may escape if they move away before you can turn to chase them
-            catchScore *= predatorRotationModifier;
-
-            // Pulling Cilia help with catching
-            catchScore *= pullingCiliaModifier;
-
-            // If you have a chemoreceptor, active hunting types are more effective
-            if (hasChemoreceptor)
-            {
-                catchScore *= Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER;
-
-                // Uses crude estimate of population density assuming same energy capture
-                catchScore *= 1 + Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_VARIABLE_MODIFIER
-                    * float.Sqrt(preyIndividualCost);
-            }
-
-            // Active hunting is more effective for active species
-            catchScore *= activityScore;
-            catchScore *= 1 + focusScore;
-
-            // ... but you may also catch them by luck (e.g. when they run into you),
-            // Prey that can't turn away fast enough are more likely to get caught.
-            accidentalCatchScore = Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY *
-                strongPullingCiliaModifier * preyRotationModifier;
-
-            // Less cautious and more focused prey are slightly more likely to get into a dangerous situation
-            var opportunismPenalty = MathF.Pow(preyOpportunismScore, 1.5f)
-                * Constants.AUTO_EVO_MAX_OPPORTUNISM_PENALTY;
-            var focusPenalty = MathF.Pow(preyFocusScore, 1.5f)
-                * Constants.AUTO_EVO_MAX_FOCUS_PENALTY;
-            catchScore *= 1 + opportunismPenalty * (1 + focusPenalty);
-            accidentalCatchScore *= 1 + opportunismPenalty * (1 + focusPenalty);
-        }
-
-        // targets that resist physical damage are of course less vulnerable to it
-        pilusScore /= preyHP * preyPhysicalResistance;
-        preyPilusScore /= predatorHP * predatorPhysicalResistance;
-        defensivePilusScore /= predatorHP * predatorPhysicalResistance;
-
-        // But targets that resist toxin damage are less vulnerable to the injectisome
-        injectisomeScore /= preyHP * preyToxinResistance;
-        preyInjectisomeScore /= predatorHP * predatorToxinResistance;
-        defensiveInjectisomeScore /= predatorHP * predatorToxinResistance;
-
-        // Combine pili for further calculations
-        pilusScore += injectisomeScore;
-        preyPilusScore += preyInjectisomeScore;
-        defensivePilusScore += defensiveInjectisomeScore;
-
-        // defensive pili need to be turned directly away from the predator to work
-        defensivePilusScore *= preyRotationModifier * preyFearScore * (1 - preyAggressionScore);
-
-        // Calling for allies helps with combat.
-        if (hasSignallingAgent)
-            pilusScore *= signallingBonus;
-        if (preyHasSignallingAgent)
-            preyPilusScore *= signallingBonus;
-
-        // Use catch score for Pili
-        pilusScore /= Math.Max(1, defensivePilusScore);
-        pilusScore *= catchScore + accidentalCatchScore;
-
-        // Prey can use offensive pili for defense in these encounters, but only if they have the right behavior
-        preyPilusScore *= (catchScore + accidentalCatchScore) * preyRotationModifier * defenseScoreModifier *
-            preyAggressionScore * (1 - preyFearScore);
-
-        if (canDigestPrey)
-        {
-            // total prey toxin amount for anti-engulfment purposes
-            // Toxin content is higher if the toxin are not being shot for offense
-            var totalPreyToxinContent = preyOxytoxyScore + preyCytotoxinScore + preyMacrolideScore +
-                preyChannelInhibitorScore + preyOxygenMetabolismInhibitorScore;
-            totalPreyToxinContent *= (1 - preyAggressionScore) + preyAggressionScore;
-            if (predatorHexSize > preyHexSize)
-            {
-                totalPreyToxinContent *= 1 - preyOpportunismScore * preyAggressionScore * (1 - preyFearScore);
-            }
-            else
-            {
-                totalPreyToxinContent *= 1 - preyAggressionScore * (1 - preyFearScore);
-            }
-
-            totalPreyToxinContent *= Constants.AUTO_EVO_TOXIN_ENGULFMENT_DEFENSE_MODIFIER;
-            totalPreyToxinContent /= predatorHP * predatorToxinResistance;
-
-            // Final engulfment score calculation
-            // Engulfing prey by luck is especially easy if you are huge.
-            // This is also used to incentivize size in microbe species.
-            engulfmentScore = (catchScore + accidentalCatchScore * predatorHexSize) *
-                (Constants.AUTO_EVO_ENGULF_PREDATION_SCORE / Math.Max(1, defensivePilusScore + totalPreyToxinContent));
-            engulfmentScore *= enzymesScore;
-        }
-
-        // Damaging toxin section
-
-        oxytoxyScore *= 1 - Math.Min(preyOxygenUsingOrganellesCount * oxytoxyDebuffPerOrganelle, oxytoxyDebuffMax);
-        oxygenMetabolismInhibitorScore *= 1 + Math.Min(preyOxygenUsingOrganellesCount * oxygenInhibitorBuffPerOrganelle,
-            oxygenInhibitorBuffMax);
-        var damagingToxinScore = oxytoxyScore + cytotoxinScore + oxygenMetabolismInhibitorScore;
-
-        preyOxytoxyScore *= 1 - Math.Min(predatorOxygenUsingOrganellesCount * oxytoxyDebuffPerOrganelle,
-            oxytoxyDebuffMax);
-        preyOxygenMetabolismInhibitorScore *= 1 + Math.Min(
-            predatorOxygenUsingOrganellesCount * oxygenInhibitorBuffPerOrganelle, oxygenInhibitorBuffMax);
-        var preyDamagingToxinScore = preyOxytoxyScore + preyCytotoxinScore + preyOxygenMetabolismInhibitorScore;
-
-        // If toxin-inhibited energy production is lower than osmoregulation cost, channel inhibitor is a damaging toxin
-        if (preyInhibitedPreyEnergyProduction < preyOsmoregulationCost)
-            damagingToxinScore += channelInhibitorScore;
-        if (predatorInhibitedPreyEnergyProduction < predatorOsmoregulationCost)
-            damagingToxinScore += channelInhibitorScore;
-
-        // MicrobeAISystem makes prey not fire toxins against predators under this condition
-        if (preyFearScore >= preyAggressionScore)
-            preyDamagingToxinScore = 0;
-
-        if (damagingToxinScore > 0)
-        {
-            // Applying projectile hit chance to damaging toxins
-            damagingToxinScore *= hitProportion;
-
-            // Predators are less likely to use toxin against larger prey, unless they are opportunistic
-            if (preyHexSize > predatorHexSize)
-            {
-                damagingToxinScore *= predatorSpecies.Behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
-            }
-
-            // If you can store enough to kill the prey, producing more isn't as important
-            var storageToKillRatio = predatorStorageNominal * oxytoxyDamage / (preyHP * preyToxinResistance);
-            storageToKillRatio = Math.Min(storageToKillRatio, 1);
-
-            damagingToxinScore = MathF.Pow(damagingToxinScore, storageToKillRatio * 0.8f);
-
-            // Targets that resist toxin are of course less vulnerable to being damaged with it
-            damagingToxinScore /= preyHP * preyToxinResistance;
-
-            // Toxins also require facing and tracking the target
-            damagingToxinScore *= predatorRotationModifier;
-
-            // Calling for allies helps with combat.
-            if (hasSignallingAgent)
-                damagingToxinScore *= signallingBonus;
-
-            // If you have a chemoreceptor, active hunting types are more effective
-            if (hasChemoreceptor)
-            {
-                damagingToxinScore *= Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER;
-                damagingToxinScore *= 1 + Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_VARIABLE_MODIFIER
-                    * float.Sqrt(preyIndividualCost);
-            }
-
-            // Active hunting is more effective for active species
-            damagingToxinScore *= activityScore;
-            damagingToxinScore *= 1 + focusScore;
-        }
-
-        if (preyDamagingToxinScore > 0)
-        {
-            // Calculating "hit chance" modifier from predator size and prey toxicity
-            var predatorSizeHitFactor = sizeAffectedProjectileMissFactor / float.Sqrt(predatorHexSize);
-            var preyToxicityHitFactor = preyToxicity / toxicityHitModifier;
-            var preyHitProportion = 1 - predatorSizeHitFactor - preyToxicityHitFactor;
-
-            // Applying projectile hit chance to damaging toxins
-            preyDamagingToxinScore *= preyHitProportion;
-
-            // Prey are less likely to use toxin against larger predators, unless they are opportunistic
-            if (predatorHexSize > preyHexSize)
-            {
-                preyDamagingToxinScore *= preyOpportunismScore;
-            }
-
-            // If you can store enough to kill the predator, producing more isn't as important
-            var preyStorageToKillRatio = preyStorageNominal * oxytoxyDamage / (predatorHP * predatorToxinResistance);
-            preyStorageToKillRatio = Math.Min(preyStorageToKillRatio, 1);
-
-            preyDamagingToxinScore = MathF.Pow(preyDamagingToxinScore, preyStorageToKillRatio * 0.8f);
-
-            // Targets that resist toxin are of course less vulnerable to being damaged with it
-            preyDamagingToxinScore /= predatorHP * predatorToxinResistance;
-
-            // Toxins also require facing and tracking the target
-            preyDamagingToxinScore *= preyRotationModifier;
-
-            // Calling for allies helps with combat.
-            if (preyHasSignallingAgent)
-                preyDamagingToxinScore *= signallingBonus;
-
-            // Prey can use toxins for defense, but only if they have the right behaviour
-            preyDamagingToxinScore *= preyRotationModifier * defenseScoreModifier *
-                preyAggressionScore * (1 - preyFearScore);
-        }
-
-        var scoreMultiplier = 1.0f;
-
-        if (!canEngulf)
-        {
-            // If you can't engulf, you just get energy from the chunks leaking.
-            scoreMultiplier *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;
-        }
-
-        // predators that have slime jets themselves ignore the immobilising effect of prey slimejets
-        preySlimeJetScore = MathF.Sqrt(preySlimeJetScore);
-        if (predatorSlimeJetScore > 0)
-            preySlimeJetScore = 0;
-
-        cached = scoreMultiplier * MathF.Pow(aggressionScore, 0.5f) *
-            (1 + MathF.Pow(opportunismScore, 0.5f * Constants.AUTO_EVO_MAX_OPPORTUNISM_BONUS)) *
-            ((pilusScore + engulfmentScore + damagingToxinScore) /
-                Math.Max(1, preySlimeJetScore + preyMucocystsScore + preyPilusScore + preyDamagingToxinScore));
-        if (cached < 0)
-            cached = 0;
-
-        predationScores.Add(key, cached);
-        return cached;
+        var calculatedScore = CalculatePredationScore(predatorSpecies, preySpecies, biomeConditions);
+        predationScores.Add(key, calculatedScore);
+        return calculatedScore;
     }
 
     public bool GetUsesVaryingCompoundsForSpecies(Species species, BiomeConditions biomeConditions)
@@ -2114,6 +1397,728 @@ public class SimulationCache
         }
 
         throw new ArgumentException("Incompatible species type given");
+    }
+
+    private float CalculatePredationScore(Species predatorSpecies, Species preySpecies,
+        BiomeConditions biomeConditions)
+    {
+        var cached = 0.0f;
+
+        // First values necessary to check whether predation is possible at all
+        PredationToolsRawScores predatorToolScores;
+        var canEngulf = false;
+
+        if (predatorSpecies is MicrobeSpecies microbeSpecies)
+        {
+            predatorToolScores = GetPredationToolsRawScores(microbeSpecies);
+            canEngulf = microbeSpecies.CanEngulf;
+        }
+        else if (predatorSpecies is MulticellularSpecies multicellularSpecies)
+        {
+            predatorToolScores = GetPredationToolsRawScores(multicellularSpecies);
+            var cellTypes = multicellularSpecies.CellTypes;
+            for (var i = 0; i < cellTypes.Count; ++i)
+            {
+                var cellType = cellTypes[i];
+                if (canEngulf)
+                    break;
+
+                if (cellType.MembraneType.CanEngulf)
+                {
+                    foreach (var hex in multicellularSpecies.EditorCells)
+                    {
+                        var cell = hex.Data;
+                        if (cell != null && ReferenceEquals(cell.CellType, cellType))
+                        {
+                            canEngulf = true;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            return 0;
+        }
+
+        var pilusScore = predatorToolScores.PilusScore;
+        var injectisomeScore = predatorToolScores.InjectisomeScore;
+        var oxytoxyScore = predatorToolScores.OxytoxyScore;
+        var cytotoxinScore = predatorToolScores.CytotoxinScore;
+        var oxygenMetabolismInhibitorScore = predatorToolScores.OxygenMetabolismInhibitorScore;
+        var channelInhibitorScore = predatorToolScores.ChannelInhibitorScore;
+
+        // Don't bother with the rest if the predator cannot predate
+        var engulfOnly = false;
+
+        if (pilusScore == 0 &&
+            injectisomeScore == 0 &&
+            oxytoxyScore == 0 &&
+            cytotoxinScore == 0 &&
+            oxygenMetabolismInhibitorScore == 0 &&
+            channelInhibitorScore == 0)
+        {
+            if (canEngulf)
+            {
+                engulfOnly = true;
+            }
+            else
+            {
+                return cached;
+            }
+        }
+
+        // Constants
+        var sprintMultiplier = Constants.SPRINTING_FORCE_MULTIPLIER;
+        var sprintingStrain = Constants.SPRINTING_STRAIN_INCREASE_PER_SECOND / 5;
+        var strainPerHex = Constants.SPRINTING_STRAIN_INCREASE_PER_HEX / 5;
+
+        var membraneRigidityHitpointsModifier = Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
+
+        var sizeAffectedProjectileMissFactor = Constants.AUTO_EVO_SIZE_AFFECTED_PROJECTILE_MISS_FACTOR;
+        var toxicityHitModifier = Constants.AUTO_EVO_TOXICITY_HIT_MODIFIER;
+        var oxytoxyDebuffPerOrganelle = Constants.OXYTOXY_DAMAGE_DEBUFF_PER_ORGANELLE;
+        var oxytoxyDebuffMax = Constants.OXYTOXY_DAMAGE_DEBUFF_MAX;
+        var oxygenInhibitorBuffPerOrganelle = Constants.OXYGEN_INHIBITOR_DAMAGE_BUFF_PER_ORGANELLE;
+        var oxygenInhibitorBuffMax = Constants.OXYGEN_INHIBITOR_DAMAGE_BUFF_MAX;
+        var oxytoxyDamage = Constants.OXYTOXY_DAMAGE;
+        var channelInhibitorATPDebuff = Constants.CHANNEL_INHIBITOR_ATP_DEBUFF;
+
+        var signallingBonus = Constants.AUTO_EVO_SIGNALLING_BONUS;
+
+        // full calculation of values for PredationScore follows
+        float smallestPreyHexSize;
+        var dissolverEnzyme = Constants.LIPASE_ENZYME;
+        var enzymesScore = 0.0f;
+
+        var preyHP = 1.0f;
+        float preyToxinResistance;
+        float preyPhysicalResistance;
+        float preyStorageNominal;
+
+        PredationToolsRawScores preyToolScores;
+        var predatorHP = 1.0f;
+        float predatorToxinResistance;
+        float predatorPhysicalResistance;
+        float predatorStorageNominal;
+
+        var hasChemoreceptor = false;
+        var hasSignallingAgent = false;
+        var preyHasSignallingAgent = false;
+        var predatorOxygenUsingOrganellesCount = 0.0f;
+        var preyOxygenUsingOrganellesCount = 0.0f;
+
+        var preyHexSize = GetBaseHexSizeForSpecies(preySpecies);
+        if (preySpecies is MicrobeSpecies microbePrey)
+        {
+            preyToolScores = GetPredationToolsRawScores(microbePrey);
+            smallestPreyHexSize = preyHexSize;
+            dissolverEnzyme = microbePrey.MembraneType.DissolverEnzyme;
+            preyStorageNominal = microbePrey.StorageCapacities.Nominal;
+
+            // uses an HP estimate without taking into account environmental tolerance effect
+            preyHP = microbePrey.MembraneType.Hitpoints + microbePrey.MembraneRigidity *
+                membraneRigidityHitpointsModifier;
+
+            // Give damage resistance if you have a nucleus (50 % general damage resistance)
+            if (!microbePrey.IsBacteria)
+                preyHP *= 2;
+            preyToxinResistance = microbePrey.MembraneType.ToxinResistance;
+            preyPhysicalResistance = microbePrey.MembraneType.PhysicalResistance;
+
+            var preyOrganelles = microbePrey.Organelles.Organelles;
+            int preyOrganellesCount = preyOrganelles.Count;
+            for (int i = 0; i < preyOrganellesCount; ++i)
+            {
+                var organelle = preyOrganelles[i];
+                if (organelle.Definition.HasSignalingFeature)
+                    preyHasSignallingAgent = true;
+                if (preyOrganelles[i].Definition.IsOxygenMetabolism)
+                    ++preyOxygenUsingOrganellesCount;
+            }
+        }
+        else if (preySpecies is MulticellularSpecies multicellularPrey)
+        {
+            preyToolScores = GetPredationToolsRawScores(multicellularPrey);
+            smallestPreyHexSize = preyHexSize;
+            preyStorageNominal = multicellularPrey.StorageCapacities.Nominal;
+
+            var totalToxinResistance = 0.0f;
+            var totalPhysicalResistance = 0.0f;
+            var cells = multicellularPrey.EditorCells;
+            var totalCellCount = cells.Count;
+
+            var cellTypes = multicellularPrey.CellTypes;
+            for (var i = 0; i < cellTypes.Count; ++i)
+            {
+                var cellType = cellTypes[i];
+
+                var cellCount = 0;
+                foreach (var hex in multicellularPrey.EditorCells)
+                {
+                    var cell = hex.Data;
+                    if (cell != null && ReferenceEquals(cell.CellType, cellType))
+                    {
+                        ++cellCount;
+                    }
+                }
+
+                if (cellCount == 0)
+                    continue;
+
+                var cellTypeHP = cellType.MembraneType.Hitpoints + cellType.MembraneRigidity *
+                    membraneRigidityHitpointsModifier;
+                if (!cellType.IsBacteria)
+                    cellTypeHP *= 2;
+
+                preyHP += cellCount * cellTypeHP;
+
+                // for simplicity's sake we are for now taking the smallest size cell in the body
+                var cellTypeSize = GetBaseHexSizeForCellType(cellType);
+                if (cellTypeSize < smallestPreyHexSize)
+                {
+                    smallestPreyHexSize = cellTypeSize;
+                    dissolverEnzyme = cellType.MembraneType.DissolverEnzyme;
+                }
+
+                totalToxinResistance += cellCount * cellType.MembraneType.ToxinResistance;
+                totalPhysicalResistance += cellCount * cellType.MembraneType.PhysicalResistance;
+
+                var cellTypeOxygenUsingOrganellesCount = 0;
+                foreach (var organelle in cellType.Organelles)
+                {
+                    if (organelle.Definition.HasSignalingFeature)
+                        preyHasSignallingAgent = true;
+                    if (organelle.Definition.IsOxygenMetabolism)
+                        ++cellTypeOxygenUsingOrganellesCount;
+                }
+
+                preyOxygenUsingOrganellesCount += cellTypeOxygenUsingOrganellesCount * cellCount;
+            }
+
+            preyToxinResistance = totalToxinResistance / totalCellCount;
+            preyPhysicalResistance = totalPhysicalResistance / totalCellCount;
+
+            preyOxygenUsingOrganellesCount /= totalCellCount;
+        }
+        else
+        {
+            return 0;
+        }
+
+        var predatorHexSize = GetBaseHexSizeForSpecies(predatorSpecies);
+        if (predatorSpecies is MicrobeSpecies microbePredator)
+        {
+            // TODO: If these two methods were combined it might result in better performance with needing just
+            // one dictionary lookup
+            predatorHP = microbePredator.MembraneType.Hitpoints + microbePredator.MembraneRigidity *
+                membraneRigidityHitpointsModifier;
+
+            // Give damage resistance if you have a nucleus (50 % general damage resistance)
+            if (!microbePredator.IsBacteria)
+                predatorHP *= 2;
+            predatorToxinResistance = microbePredator.MembraneType.ToxinResistance;
+            predatorPhysicalResistance = microbePredator.MembraneType.PhysicalResistance;
+
+            predatorStorageNominal = microbePredator.StorageCapacities.Nominal;
+
+            var organelles = microbePredator.Organelles.Organelles;
+            int count = organelles.Count;
+            for (int i = 0; i < count; ++i)
+            {
+                var organelle = organelles[i];
+                if (organelle.Definition.HasChemoreceptorComponent && organelle.GetActiveTargetSpecies() == preySpecies)
+                    hasChemoreceptor = true;
+                if (organelle.Definition.HasSignalingFeature)
+                    hasSignallingAgent = true;
+                if (organelles[i].Definition.IsOxygenMetabolism)
+                    ++predatorOxygenUsingOrganellesCount;
+            }
+
+            if (canEngulf && predatorHexSize / smallestPreyHexSize > Constants.ENGULF_SIZE_RATIO_REQ)
+            {
+                enzymesScore = GetEnzymesScore(microbePredator, dissolverEnzyme,
+                    microbePredator.CellTypeSpecializationBonus);
+            }
+        }
+        else if (predatorSpecies is MulticellularSpecies multicellularPredator)
+        {
+            predatorStorageNominal = multicellularPredator.StorageCapacities.Nominal;
+
+            var totalToxinResistance = 0.0f;
+            var totalPhysicalResistance = 0.0f;
+            var cells = multicellularPredator.EditorCells;
+            var totalCellCount = cells.Count;
+
+            var cellTypes = multicellularPredator.CellTypes;
+            for (var i = 0; i < cellTypes.Count; ++i)
+            {
+                var cellType = cellTypes[i];
+
+                var cellCount = 0;
+                var cellTypeHexSize = GetBaseHexSizeForCellType(cellType);
+
+                var cellTypeSpecializationBonus = cellType.CellTypeSpecializationBonus;
+
+                foreach (var hex in cells)
+                {
+                    var cell = hex.Data;
+                    if (cell != null && ReferenceEquals(cell.CellType, cellType))
+                    {
+                        ++cellCount;
+                        if (cellType.MembraneType.CanEngulf &&
+                            cellTypeHexSize / smallestPreyHexSize >= Constants.ENGULF_SIZE_RATIO_REQ)
+                        {
+                            var cellEnzymesScore = GetEnzymesScore(cellType, dissolverEnzyme,
+                                cellTypeSpecializationBonus * CellBodyPlanInternalCalculations
+                                    .GetAdjacencySpecializationBonusFromBodyPlan(cell, cells));
+                            enzymesScore = Math.Max(cellEnzymesScore, enzymesScore);
+                        }
+                    }
+                }
+
+                if (cellCount == 0)
+                    continue;
+
+                var cellTypeHP = cellType.MembraneType.Hitpoints + cellType.MembraneRigidity *
+                    membraneRigidityHitpointsModifier;
+                if (!cellType.IsBacteria)
+                    cellTypeHP *= 2;
+
+                predatorHP += cellCount * cellTypeHP;
+                totalToxinResistance += cellCount * cellType.MembraneType.ToxinResistance;
+                totalPhysicalResistance += cellCount * cellType.MembraneType.PhysicalResistance;
+
+                var cellTypeOxygenUsingOrganellesCount = 0;
+                foreach (var organelle in cellType.Organelles)
+                {
+                    if (organelle.Definition.HasChemoreceptorComponent &&
+                        organelle.GetActiveTargetSpecies() == preySpecies)
+                        hasChemoreceptor = true;
+                    if (organelle.Definition.HasSignalingFeature)
+                        hasSignallingAgent = true;
+                    if (organelle.Definition.IsOxygenMetabolism)
+                        ++cellTypeOxygenUsingOrganellesCount;
+                }
+
+                predatorOxygenUsingOrganellesCount += cellTypeOxygenUsingOrganellesCount * cellCount;
+            }
+
+            predatorToxinResistance = totalToxinResistance / totalCellCount;
+            predatorPhysicalResistance = totalPhysicalResistance / totalCellCount;
+
+            predatorOxygenUsingOrganellesCount /= totalCellCount;
+        }
+        else
+        {
+            return 0;
+        }
+
+        var canDigestPrey = enzymesScore > 0.0f;
+
+        if (engulfOnly && !canDigestPrey)
+        {
+            cached = 0;
+            return cached;
+        }
+
+        // We want prey defensive measures to only reduce predation score, not eliminate it.
+        // (Predation Score is reduced to 0 anyway if the "prey" has a higher predation score to the predator)
+        var defenseScoreModifier = Constants.AUTO_EVO_PREDATION_DEFENSE_SCORE_MODIFIER;
+
+        var predatorSpeed = GetSpeedForSpecies(predatorSpecies);
+        var predatorRotationSpeed = GetRotationSpeedForSpecies(predatorSpecies);
+        var predatorEnergyBalance = GetEnergyBalanceForSpecies(predatorSpecies, biomeConditions);
+        var predatorOsmoregulationCost = predatorEnergyBalance.Osmoregulation;
+
+        var preySpeed = GetSpeedForSpecies(preySpecies);
+        var preyRotationSpeed = GetRotationSpeedForSpecies(preySpecies);
+        var slowedPreySpeed = preySpeed;
+        var preyEnergyBalance = GetEnergyBalanceForSpecies(preySpecies, biomeConditions);
+        var preyOsmoregulationCost = preyEnergyBalance.Osmoregulation;
+        var preyIndividualCost = MichePopulation.CalculateIndividualCost(preySpecies, biomeConditions, this);
+
+        var toxicity = predatorToolScores.AverageToxicity;
+        var macrolideScore = predatorToolScores.MacrolideScore;
+        var predatorSlimeJetScore = predatorToolScores.SlimeJetScore;
+        var pullingCiliaModifier = predatorToolScores.PullingCiliaModifier;
+        var strongPullingCiliaModifier = pullingCiliaModifier * pullingCiliaModifier;
+
+        var preySlimeJetScore = preyToolScores.SlimeJetScore;
+        var preyMucocystsScore = preyToolScores.MucocystsScore;
+        var preyPilusScore = preyToolScores.PilusScore;
+        var preyInjectisomeScore = preyToolScores.InjectisomeScore;
+        var preyToxicity = preyToolScores.AverageToxicity;
+        var preyOxytoxyScore = preyToolScores.OxytoxyScore;
+        var preyCytotoxinScore = preyToolScores.CytotoxinScore;
+        var preyMacrolideScore = preyToolScores.MacrolideScore;
+        var preyChannelInhibitorScore = preyToolScores.ChannelInhibitorScore;
+        var preyOxygenMetabolismInhibitorScore = preyToolScores.OxygenMetabolismInhibitorScore;
+        var defensivePilusScore = preyToolScores.DefensivePilusScore;
+        var defensiveInjectisomeScore = preyToolScores.DefensiveInjectisomeScore;
+
+        // Not an ideal solution, but accounts for the fact that the oxytoxy and cyanide processes require oxygen to run
+        biomeConditions.Compounds.TryGetValue(Compound.Oxygen, out BiomeCompoundProperties oxygen);
+        if (oxygen.Ambient == 0)
+        {
+            oxytoxyScore = 0;
+            preyOxytoxyScore = 0;
+            oxygenMetabolismInhibitorScore = 0;
+            preyOxygenMetabolismInhibitorScore = 0;
+        }
+
+        var aggressionScore = predatorSpecies.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
+        var activityScore = MathF.Pow(predatorSpecies.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY, 0.5f);
+        var opportunismScore = predatorSpecies.Behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
+        var focusScore = predatorSpecies.Behaviour.Focus / Constants.MAX_SPECIES_FOCUS;
+
+        var preyFearScore = preySpecies.Behaviour.Fear / Constants.MAX_SPECIES_FEAR;
+        var preyAggressionScore = preySpecies.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
+        var preyOpportunismScore = preySpecies.Behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
+        var preyFocusScore = preySpecies.Behaviour.Focus / Constants.MAX_SPECIES_FOCUS;
+
+        // prey's effectiveness at running away depends on how quickly they choose to run away
+        preySpeed *= preyFearScore * (1 - preyAggressionScore);
+
+        // Sprinting calculations
+        var predatorSprintSpeed = predatorSpeed * sprintMultiplier;
+        var predatorSprintConsumption = sprintingStrain + predatorHexSize * strainPerHex;
+        var predatorSprintTime = MathF.Max(predatorEnergyBalance.FinalBalance / predatorSprintConsumption, 0.0f);
+
+        var preySprintSpeed = preySpeed * sprintMultiplier;
+        var preySprintConsumption = sprintingStrain + preyHexSize * strainPerHex;
+        var preySprintTime = MathF.Max(preyEnergyBalance.FinalBalance / preySprintConsumption, 0.0f);
+
+        // This makes rotation "speed" not matter until the editor shows ~300,
+        // which is where it also becomes noticeable in-game.
+        // The mechanical microbe rotation speed value is reverse to intuitive: higher value means slower turning.
+        // (The editor reverses this to make it intuitive to the player)
+        var predatorRotationModifier = float.Min(1.0f, 1.5f - predatorRotationSpeed * 1.45f);
+        var preyRotationModifier = float.Min(1.0f, 1.5f - preyRotationSpeed * 1.45f);
+
+        // Simple estimation of slime jet propulsion.
+        var predatorSlimeSpeed = predatorSpeed + predatorSlimeJetScore / (predatorHexSize * 11);
+        var preySlimeSpeed = preySpeed + preySlimeJetScore / (preyHexSize * 11);
+
+        // Calculating "hit chance" modifier from prey size and predator toxicity
+        var sizeHitFactor = sizeAffectedProjectileMissFactor / float.Sqrt(preyHexSize);
+        var toxicityHitFactor = toxicity / toxicityHitModifier;
+        var hitProportion = 1 - sizeHitFactor - toxicityHitFactor;
+
+        // Calculating prey energy production altered by channel inhbitor
+        var preyInhibitedPreyEnergyProduction = preyEnergyBalance.TotalProduction;
+        if (channelInhibitorScore > 0)
+        {
+            preyInhibitedPreyEnergyProduction *= 1 - channelInhibitorATPDebuff *
+                MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(toxicity, ToxinType.ChannelInhibitor);
+
+            // If inhibited energy production affects movement,
+            // add (part of) the inhibitor score to macrolide score
+            if (preyInhibitedPreyEnergyProduction < preyEnergyBalance.TotalConsumption)
+            {
+                var channelInhibitorSlowFactor = Math.Min(
+                    Math.Max(preyInhibitedPreyEnergyProduction - preyOsmoregulationCost, 0) /
+                    preyEnergyBalance.TotalMovement, 1);
+                macrolideScore += channelInhibitorScore * channelInhibitorSlowFactor;
+                slowedPreySpeed *= 1 - channelInhibitorSlowFactor;
+            }
+        }
+
+        // Calculating predator energy production altered by channel inhbitor
+        var predatorInhibitedPreyEnergyProduction = predatorEnergyBalance.TotalProduction;
+        if (preyChannelInhibitorScore > 0)
+        {
+            predatorInhibitedPreyEnergyProduction *= 1 - channelInhibitorATPDebuff *
+                MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(preyToxicity, ToxinType.ChannelInhibitor);
+        }
+
+        // Calculating how much prey is slowed down by macrolide, and how frequently they are succesfully slowed down
+        var slowedProportion = 0.0f;
+        if (macrolideScore > 0)
+        {
+            slowedPreySpeed *= 1 - Constants.MACROLIDE_BASE_MOVEMENT_DEBUFF *
+                MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(toxicity, ToxinType.Macrolide);
+            slowedProportion = 1.0f - MathF.Exp(-Constants.AUTO_EVO_TOXIN_AFFECTED_PROPORTION_SCALING *
+                macrolideScore * hitProportion);
+        }
+
+        // Catch scores grossly accounts for how many preys you catch in melee in a run;
+        var catchScore = 0.0f;
+        var accidentalCatchScore = 0.0f;
+
+        // Only calculate catch score if one can actually engulf (and digest) or use pili
+        var engulfmentScore = 0.0f;
+        if (canDigestPrey || pilusScore > 0.0f || injectisomeScore > 0.0f)
+        {
+            // First, you may hunt individual preys, but only if you are fast enough...
+            if (predatorSpeed > preySpeed)
+            {
+                // You catch more preys if you are fast, and if they are slow.
+                // This incentivizes engulfment strategies in these cases.
+                // Sigmoidal calculation to avoid divisions by zero
+                catchScore += (predatorSpeed + 0.001f) / (preySpeed + 0.0001f) * (1 - slowedProportion);
+            }
+
+            // If you can slow the target, some proportion of prey are easier to catch
+            if (predatorSpeed > slowedPreySpeed)
+            {
+                catchScore += (predatorSpeed + 0.001f) / (slowedPreySpeed + 0.0001f) * slowedProportion;
+            }
+
+            // Sprinting can help catch prey.
+            if (predatorSprintSpeed > preySpeed)
+            {
+                catchScore += (predatorSprintSpeed + 0.001f) / (preySpeed + 0.0001f) * (1 - slowedProportion) *
+                    predatorSprintTime;
+            }
+
+            if (predatorSprintSpeed > slowedPreySpeed)
+            {
+                catchScore += (predatorSprintSpeed + 0.001f) / (slowedPreySpeed + 0.0001f) * slowedProportion *
+                    predatorSprintTime;
+            }
+
+            // Sprinting can also help prey escape.
+            if (preySprintSpeed > predatorSpeed)
+            {
+                catchScore -= (preySprintSpeed + 0.001f) / (predatorSpeed + 0.0001f) * preySprintTime;
+            }
+
+            // If you have Slime Jets, this can help you catch targets.
+            if (predatorSlimeSpeed > preySpeed)
+            {
+                catchScore += (predatorSlimeSpeed + 0.001f) / (preySpeed + 0.0001f) * (1 - slowedProportion);
+            }
+
+            if (predatorSlimeSpeed > slowedPreySpeed)
+            {
+                catchScore += (predatorSlimeSpeed + 0.001f) / (slowedPreySpeed + 0.0001f) * slowedProportion;
+            }
+
+            // Having Slime Jets can also help prey escape.
+            if (preySlimeSpeed > predatorSpeed)
+            {
+                catchScore += (preySlimeSpeed + 0.001f) / (predatorSpeed + 0.0001f);
+            }
+
+            // prevent potential negative catchScore.
+            catchScore = MathF.Max(catchScore, 0);
+
+            // But prey may escape if they move away before you can turn to chase them
+            catchScore *= predatorRotationModifier;
+
+            // Pulling Cilia help with catching
+            catchScore *= pullingCiliaModifier;
+
+            // If you have a chemoreceptor, active hunting types are more effective
+            if (hasChemoreceptor)
+            {
+                catchScore *= Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER;
+
+                // Uses crude estimate of population density assuming same energy capture
+                catchScore *= 1 + Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_VARIABLE_MODIFIER
+                    * float.Sqrt(preyIndividualCost);
+            }
+
+            // Active hunting is more effective for active species
+            catchScore *= activityScore;
+            catchScore *= 1 + focusScore;
+
+            // ... but you may also catch them by luck (e.g. when they run into you),
+            // Prey that can't turn away fast enough are more likely to get caught.
+            accidentalCatchScore = Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY *
+                strongPullingCiliaModifier * preyRotationModifier;
+
+            // Less cautious and more focused prey are slightly more likely to get into a dangerous situation
+            var opportunismPenalty = MathF.Pow(preyOpportunismScore, 1.5f)
+                * Constants.AUTO_EVO_MAX_OPPORTUNISM_PENALTY;
+            var focusPenalty = MathF.Pow(preyFocusScore, 1.5f)
+                * Constants.AUTO_EVO_MAX_FOCUS_PENALTY;
+            catchScore *= 1 + opportunismPenalty * (1 + focusPenalty);
+            accidentalCatchScore *= 1 + opportunismPenalty * (1 + focusPenalty);
+        }
+
+        // targets that resist physical damage are of course less vulnerable to it
+        pilusScore /= preyHP * preyPhysicalResistance;
+        preyPilusScore /= predatorHP * predatorPhysicalResistance;
+        defensivePilusScore /= predatorHP * predatorPhysicalResistance;
+
+        // But targets that resist toxin damage are less vulnerable to the injectisome
+        injectisomeScore /= preyHP * preyToxinResistance;
+        preyInjectisomeScore /= predatorHP * predatorToxinResistance;
+        defensiveInjectisomeScore /= predatorHP * predatorToxinResistance;
+
+        // Combine pili for further calculations
+        pilusScore += injectisomeScore;
+        preyPilusScore += preyInjectisomeScore;
+        defensivePilusScore += defensiveInjectisomeScore;
+
+        // defensive pili need to be turned directly away from the predator to work
+        defensivePilusScore *= preyRotationModifier * preyFearScore * (1 - preyAggressionScore);
+
+        // Calling for allies helps with combat.
+        if (hasSignallingAgent)
+            pilusScore *= signallingBonus;
+        if (preyHasSignallingAgent)
+            preyPilusScore *= signallingBonus;
+
+        // Use catch score for Pili
+        pilusScore /= Math.Max(1, defensivePilusScore);
+        pilusScore *= catchScore + accidentalCatchScore;
+
+        // Prey can use offensive pili for defense in these encounters, but only if they have the right behavior
+        preyPilusScore *= (catchScore + accidentalCatchScore) * preyRotationModifier * defenseScoreModifier *
+            preyAggressionScore * (1 - preyFearScore);
+
+        if (canDigestPrey)
+        {
+            // total prey toxin amount for anti-engulfment purposes
+            // Toxin content is higher if the toxin are not being shot for offense
+            var totalPreyToxinContent = preyOxytoxyScore + preyCytotoxinScore + preyMacrolideScore +
+                preyChannelInhibitorScore + preyOxygenMetabolismInhibitorScore;
+            totalPreyToxinContent *= (1 - preyAggressionScore) + preyAggressionScore;
+            if (predatorHexSize > preyHexSize)
+            {
+                totalPreyToxinContent *= 1 - preyOpportunismScore * preyAggressionScore * (1 - preyFearScore);
+            }
+            else
+            {
+                totalPreyToxinContent *= 1 - preyAggressionScore * (1 - preyFearScore);
+            }
+
+            totalPreyToxinContent *= Constants.AUTO_EVO_TOXIN_ENGULFMENT_DEFENSE_MODIFIER;
+            totalPreyToxinContent /= predatorHP * predatorToxinResistance;
+
+            // Final engulfment score calculation
+            // Engulfing prey by luck is especially easy if you are huge.
+            // This is also used to incentivize size in microbe species.
+            engulfmentScore = (catchScore + accidentalCatchScore * predatorHexSize) *
+                (Constants.AUTO_EVO_ENGULF_PREDATION_SCORE / Math.Max(1, defensivePilusScore + totalPreyToxinContent));
+            engulfmentScore *= enzymesScore;
+        }
+
+        // Damaging toxin section
+
+        oxytoxyScore *= 1 - Math.Min(preyOxygenUsingOrganellesCount * oxytoxyDebuffPerOrganelle, oxytoxyDebuffMax);
+        oxygenMetabolismInhibitorScore *= 1 + Math.Min(preyOxygenUsingOrganellesCount * oxygenInhibitorBuffPerOrganelle,
+            oxygenInhibitorBuffMax);
+        var damagingToxinScore = oxytoxyScore + cytotoxinScore + oxygenMetabolismInhibitorScore;
+
+        preyOxytoxyScore *= 1 - Math.Min(predatorOxygenUsingOrganellesCount * oxytoxyDebuffPerOrganelle,
+            oxytoxyDebuffMax);
+        preyOxygenMetabolismInhibitorScore *= 1 + Math.Min(
+            predatorOxygenUsingOrganellesCount * oxygenInhibitorBuffPerOrganelle, oxygenInhibitorBuffMax);
+        var preyDamagingToxinScore = preyOxytoxyScore + preyCytotoxinScore + preyOxygenMetabolismInhibitorScore;
+
+        // If toxin-inhibited energy production is lower than osmoregulation cost, channel inhibitor is a damaging toxin
+        if (preyInhibitedPreyEnergyProduction < preyOsmoregulationCost)
+            damagingToxinScore += channelInhibitorScore;
+        if (predatorInhibitedPreyEnergyProduction < predatorOsmoregulationCost)
+            damagingToxinScore += channelInhibitorScore;
+
+        // MicrobeAISystem makes prey not fire toxins against predators under this condition
+        if (preyFearScore >= preyAggressionScore)
+            preyDamagingToxinScore = 0;
+
+        if (damagingToxinScore > 0)
+        {
+            // Applying projectile hit chance to damaging toxins
+            damagingToxinScore *= hitProportion;
+
+            // Predators are less likely to use toxin against larger prey, unless they are opportunistic
+            if (preyHexSize > predatorHexSize)
+            {
+                damagingToxinScore *= predatorSpecies.Behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
+            }
+
+            // If you can store enough to kill the prey, producing more isn't as important
+            var storageToKillRatio = predatorStorageNominal * oxytoxyDamage / (preyHP * preyToxinResistance);
+            storageToKillRatio = Math.Min(storageToKillRatio, 1);
+
+            damagingToxinScore = MathF.Pow(damagingToxinScore, storageToKillRatio * 0.8f);
+
+            // Targets that resist toxin are of course less vulnerable to being damaged with it
+            damagingToxinScore /= preyHP * preyToxinResistance;
+
+            // Toxins also require facing and tracking the target
+            damagingToxinScore *= predatorRotationModifier;
+
+            // Calling for allies helps with combat.
+            if (hasSignallingAgent)
+                damagingToxinScore *= signallingBonus;
+
+            // If you have a chemoreceptor, active hunting types are more effective
+            if (hasChemoreceptor)
+            {
+                damagingToxinScore *= Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER;
+                damagingToxinScore *= 1 + Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_VARIABLE_MODIFIER
+                    * float.Sqrt(preyIndividualCost);
+            }
+
+            // Active hunting is more effective for active species
+            damagingToxinScore *= activityScore;
+            damagingToxinScore *= 1 + focusScore;
+        }
+
+        if (preyDamagingToxinScore > 0)
+        {
+            // Calculating "hit chance" modifier from predator size and prey toxicity
+            var predatorSizeHitFactor = sizeAffectedProjectileMissFactor / float.Sqrt(predatorHexSize);
+            var preyToxicityHitFactor = preyToxicity / toxicityHitModifier;
+            var preyHitProportion = 1 - predatorSizeHitFactor - preyToxicityHitFactor;
+
+            // Applying projectile hit chance to damaging toxins
+            preyDamagingToxinScore *= preyHitProportion;
+
+            // Prey are less likely to use toxin against larger predators, unless they are opportunistic
+            if (predatorHexSize > preyHexSize)
+            {
+                preyDamagingToxinScore *= preyOpportunismScore;
+            }
+
+            // If you can store enough to kill the predator, producing more isn't as important
+            var preyStorageToKillRatio = preyStorageNominal * oxytoxyDamage / (predatorHP * predatorToxinResistance);
+            preyStorageToKillRatio = Math.Min(preyStorageToKillRatio, 1);
+
+            preyDamagingToxinScore = MathF.Pow(preyDamagingToxinScore, preyStorageToKillRatio * 0.8f);
+
+            // Targets that resist toxin are of course less vulnerable to being damaged with it
+            preyDamagingToxinScore /= predatorHP * predatorToxinResistance;
+
+            // Toxins also require facing and tracking the target
+            preyDamagingToxinScore *= preyRotationModifier;
+
+            // Calling for allies helps with combat.
+            if (preyHasSignallingAgent)
+                preyDamagingToxinScore *= signallingBonus;
+
+            // Prey can use toxins for defense, but only if they have the right behaviour
+            preyDamagingToxinScore *= preyRotationModifier * defenseScoreModifier *
+                preyAggressionScore * (1 - preyFearScore);
+        }
+
+        var scoreMultiplier = 1.0f;
+
+        if (!canEngulf)
+        {
+            // If you can't engulf, you just get energy from the chunks leaking.
+            scoreMultiplier *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;
+        }
+
+        // predators that have slime jets themselves ignore the immobilising effect of prey slimejets
+        preySlimeJetScore = MathF.Sqrt(preySlimeJetScore);
+        if (predatorSlimeJetScore > 0)
+            preySlimeJetScore = 0;
+
+        cached = scoreMultiplier * MathF.Pow(aggressionScore, 0.5f) *
+            (1 + MathF.Pow(opportunismScore, 0.5f * Constants.AUTO_EVO_MAX_OPPORTUNISM_BONUS)) *
+            ((pilusScore + engulfmentScore + damagingToxinScore) /
+                Math.Max(1, preySlimeJetScore + preyMucocystsScore + preyPilusScore + preyDamagingToxinScore));
+        if (cached < 0)
+            cached = 0;
+
+        return cached;
     }
 
     /// <summary>
