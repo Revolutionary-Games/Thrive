@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Godot;
@@ -14,6 +15,8 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
     private StandardMaterial3D? material;
 
     private float? overrideColourAlpha;
+
+    private IImageTask? texturizationTask;
 
     public float? OverrideColourAlpha
     {
@@ -54,6 +57,35 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
         ExtraCullMargin = AABBMargin;
     }
 
+    public override void _Process(double delta)
+    {
+        if (texturizationTask?.Finished == true)
+        {
+            if (material != null)
+            {
+                material.AlbedoTexture = texturizationTask.FinalImage;
+            }
+
+            texturizationTask.PlainImage.SavePng($"G:/Downloads/SMTH.png");
+
+            var gltfDocumentLoad = new GltfDocument();
+            var gltfStateLoad = new GltfState();
+            var error = gltfDocumentLoad.AppendFromScene(this, gltfStateLoad);
+
+            if (error is Error.Ok)
+            {
+                // The file extension in the output `path` (`.gltf` or `.glb`) determines
+                // whether the output uses text or binary format.
+                // `GltfDocument.GenerateBuffer()` is also available for saving to memory.
+                gltfDocumentLoad.WriteToFilesystem(gltfStateLoad, "G:/Downloads/A.gltf");
+            }
+
+            Mesh.SurfaceSetMaterial(0, material);
+
+            texturizationTask = null;
+        }
+    }
+
     public void DisplayFromLayout(IReadOnlyCollection<MacroscopicMetaball> layout)
     {
         Vector3 minExtends = Vector3.Zero;
@@ -87,9 +119,8 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
 
         Mesh.SurfaceSetMaterial(0, material);
 
-        // UV generation disabled until proper textures can be made for it
-        // var uvUnwrap = new Task(() => UVUnwrapAndTexture((ArrayMesh)Mesh));
-        // TaskExecutor.Instance.AddTask(uvUnwrap);
+        var uvUnwrap = new Task(() => UVUnwrapAndTexture((ArrayMesh)Mesh));
+        TaskExecutor.Instance.AddTask(uvUnwrap);
 
         CustomAabb = new Aabb(minExtends, maxExtends);
     }
@@ -136,98 +167,7 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
 
     private void ApplyTextures()
     {
-        if (material != null)
-        {
-            Stopwatch sw = new();
-            sw.Start();
-
-            material.AlbedoTexture = ImageTexture.CreateFromImage(GenerateTexture((ArrayMesh)Mesh));
-
-            sw.Stop();
-            GD.Print("Drew a texture in " + sw.Elapsed);
-        }
-
-        Mesh.SurfaceSetMaterial(0, material);
-    }
-
-    private Image GenerateTexture(ArrayMesh mesh)
-    {
-        int dimension = 2048;
-
-        var image = Image.CreateEmpty(dimension, dimension, false, Image.Format.Rgba8);
-
-        var arrays = mesh.SurfaceGetArrays(0);
-
-        // TODO: reading the full arrays back into Godot types is pretty ineffective so "finished" version of this
-        // feature shouldn't do the same thing as here
-        // var vertices = arrays[(int)Mesh.ArrayType.Vertex].AsVector3Array();
-        var indices = arrays[(int)Mesh.ArrayType.Index].AsInt32Array();
-
-        // TODO: there's a bug where this is sometimes empty
-        var uvs = arrays[(int)Mesh.ArrayType.TexUV].AsVector2Array();
-
-        float pixelWidth = 1.0f / dimension;
-
-        // Draw image based on triangles
-        for (int i = 0; i < indices.Length; i += 3)
-        {
-            var aUV = uvs[indices[i]];
-            var bUV = uvs[indices[i + 1]];
-            var cUV = uvs[indices[i + 2]];
-
-            // Vertex data
-            // var a = vertices[indices[i]];
-            // var b = vertices[indices[i + 1]];
-            // var c = vertices[indices[i + 2]];
-
-            var random = new XoShiRo128plus();
-
-            var color = new Color(random.NextFloat(), random.NextFloat(), random.NextFloat());
-
-            float minY = MathF.Min(aUV.Y, MathF.Min(bUV.Y, cUV.Y));
-            float maxY = MathF.Max(aUV.Y, MathF.Max(bUV.Y, cUV.Y));
-
-            float middleY = aUV.Y + bUV.Y + cUV.Y - minY - maxY;
-
-            float prevLeftX = 0;
-            float prevRightX = 0;
-
-            for (float y = MathF.Round(minY * 2048.0f) / 2048.0f; y <= middleY; y += pixelWidth)
-            {
-                (float leftX, float rightX) = CalculateXBoundsForTriangle(aUV, bUV, cUV, y);
-
-                for (float x = leftX - pixelWidth; x <= rightX + pixelWidth; x += pixelWidth)
-                {
-                    image.SetPixel((int)(x * dimension), (int)(y * dimension), color);
-
-                    // Margin pixel, so that there is no spaces between drawn triangles
-                    if (x < prevLeftX || x > prevRightX)
-                        image.SetPixel((int)(x * dimension), (int)((y - pixelWidth) * dimension), color);
-                }
-
-                prevLeftX = leftX;
-                prevRightX = rightX;
-            }
-
-            for (float y = MathF.Round(maxY * 2048.0f) / 2048.0f; y >= middleY; y -= pixelWidth)
-            {
-                (float leftX, float rightX) = CalculateXBoundsForTriangle(aUV, bUV, cUV, y);
-
-                for (float x = leftX - pixelWidth; x <= rightX + pixelWidth; x += pixelWidth)
-                {
-                    image.SetPixel((int)(x * dimension), (int)(y * dimension), color);
-
-                    // Margin pixel
-                    if (x < prevLeftX || x > prevRightX)
-                        image.SetPixel((int)(x * dimension), (int)((y + pixelWidth) * dimension), color);
-                }
-
-                prevLeftX = leftX;
-                prevRightX = rightX;
-            }
-        }
-
-        return image;
+        texturizationTask = PhotoStudio.Instance.GenerateImage(new CreatureTexturePhotographable(Mesh));
     }
 
     private (float LeftX, float RightX) CalculateXBoundsForTriangle(Vector2 a, Vector2 b, Vector2 c, float y)
