@@ -1404,43 +1404,11 @@ public class SimulationCache
     {
         var cached = 0.0f;
 
-        // First values necessary to check whether predation is possible at all
-        PredationToolsRawScores predatorToolScores;
-        var canEngulf = false;
-
-        if (predatorSpecies is MicrobeSpecies microbeSpecies)
-        {
-            predatorToolScores = GetPredationToolsRawScores(microbeSpecies);
-            canEngulf = microbeSpecies.CanEngulf;
-        }
-        else if (predatorSpecies is MulticellularSpecies multicellularSpecies)
-        {
-            predatorToolScores = GetPredationToolsRawScores(multicellularSpecies);
-            var cellTypes = multicellularSpecies.CellTypes;
-            for (var i = 0; i < cellTypes.Count; ++i)
-            {
-                var cellType = cellTypes[i];
-                if (canEngulf)
-                    break;
-
-                if (cellType.MembraneType.CanEngulf)
-                {
-                    foreach (var hex in multicellularSpecies.EditorCells)
-                    {
-                        var cell = hex.Data;
-                        if (cell != null && ReferenceEquals(cell.CellType, cellType))
-                        {
-                            canEngulf = true;
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-        else
-        {
+        if (GetPredatorCapabilities(predatorSpecies) is not { } predatorCapabilities)
             return 0;
-        }
+
+        var predatorToolScores = predatorCapabilities.ToolScores;
+        var canEngulf = predatorCapabilities.CanEngulf;
 
         var pilusScore = predatorToolScores.PilusScore;
         var injectisomeScore = predatorToolScores.InjectisomeScore;
@@ -1488,232 +1456,33 @@ public class SimulationCache
         var signallingBonus = Constants.AUTO_EVO_SIGNALLING_BONUS;
 
         // full calculation of values for PredationScore follows
-        float smallestPreyHexSize;
-        var dissolverEnzyme = Constants.LIPASE_ENZYME;
-        var enzymesScore = 0.0f;
+        if (CollectPreyPredationData(preySpecies, membraneRigidityHitpointsModifier) is not { } preyData)
+            return 0;
 
-        var preyHP = 1.0f;
-        float preyToxinResistance;
-        float preyPhysicalResistance;
-        float preyStorageNominal;
-
-        PredationToolsRawScores preyToolScores;
-        var predatorHP = 1.0f;
-        float predatorToxinResistance;
-        float predatorPhysicalResistance;
-        float predatorStorageNominal;
-
-        var hasChemoreceptor = false;
-        var hasSignallingAgent = false;
-        var preyHasSignallingAgent = false;
-        var predatorOxygenUsingOrganellesCount = 0.0f;
-        var preyOxygenUsingOrganellesCount = 0.0f;
-
-        var preyHexSize = GetBaseHexSizeForSpecies(preySpecies);
-        if (preySpecies is MicrobeSpecies microbePrey)
-        {
-            preyToolScores = GetPredationToolsRawScores(microbePrey);
-            smallestPreyHexSize = preyHexSize;
-            dissolverEnzyme = microbePrey.MembraneType.DissolverEnzyme;
-            preyStorageNominal = microbePrey.StorageCapacities.Nominal;
-
-            // uses an HP estimate without taking into account environmental tolerance effect
-            preyHP = microbePrey.MembraneType.Hitpoints + microbePrey.MembraneRigidity *
-                membraneRigidityHitpointsModifier;
-
-            // Give damage resistance if you have a nucleus (50 % general damage resistance)
-            if (!microbePrey.IsBacteria)
-                preyHP *= 2;
-            preyToxinResistance = microbePrey.MembraneType.ToxinResistance;
-            preyPhysicalResistance = microbePrey.MembraneType.PhysicalResistance;
-
-            var preyOrganelles = microbePrey.Organelles.Organelles;
-            int preyOrganellesCount = preyOrganelles.Count;
-            for (int i = 0; i < preyOrganellesCount; ++i)
-            {
-                var organelle = preyOrganelles[i];
-                if (organelle.Definition.HasSignalingFeature)
-                    preyHasSignallingAgent = true;
-                if (preyOrganelles[i].Definition.IsOxygenMetabolism)
-                    ++preyOxygenUsingOrganellesCount;
-            }
-        }
-        else if (preySpecies is MulticellularSpecies multicellularPrey)
-        {
-            preyToolScores = GetPredationToolsRawScores(multicellularPrey);
-            smallestPreyHexSize = preyHexSize;
-            preyStorageNominal = multicellularPrey.StorageCapacities.Nominal;
-
-            var totalToxinResistance = 0.0f;
-            var totalPhysicalResistance = 0.0f;
-            var cells = multicellularPrey.EditorCells;
-            var totalCellCount = cells.Count;
-
-            var cellTypes = multicellularPrey.CellTypes;
-            for (var i = 0; i < cellTypes.Count; ++i)
-            {
-                var cellType = cellTypes[i];
-
-                var cellCount = 0;
-                foreach (var hex in multicellularPrey.EditorCells)
-                {
-                    var cell = hex.Data;
-                    if (cell != null && ReferenceEquals(cell.CellType, cellType))
-                    {
-                        ++cellCount;
-                    }
-                }
-
-                if (cellCount == 0)
-                    continue;
-
-                var cellTypeHP = cellType.MembraneType.Hitpoints + cellType.MembraneRigidity *
-                    membraneRigidityHitpointsModifier;
-                if (!cellType.IsBacteria)
-                    cellTypeHP *= 2;
-
-                preyHP += cellCount * cellTypeHP;
-
-                // for simplicity's sake we are for now taking the smallest size cell in the body
-                var cellTypeSize = GetBaseHexSizeForCellType(cellType);
-                if (cellTypeSize < smallestPreyHexSize)
-                {
-                    smallestPreyHexSize = cellTypeSize;
-                    dissolverEnzyme = cellType.MembraneType.DissolverEnzyme;
-                }
-
-                totalToxinResistance += cellCount * cellType.MembraneType.ToxinResistance;
-                totalPhysicalResistance += cellCount * cellType.MembraneType.PhysicalResistance;
-
-                var cellTypeOxygenUsingOrganellesCount = 0;
-                foreach (var organelle in cellType.Organelles)
-                {
-                    if (organelle.Definition.HasSignalingFeature)
-                        preyHasSignallingAgent = true;
-                    if (organelle.Definition.IsOxygenMetabolism)
-                        ++cellTypeOxygenUsingOrganellesCount;
-                }
-
-                preyOxygenUsingOrganellesCount += cellTypeOxygenUsingOrganellesCount * cellCount;
-            }
-
-            preyToxinResistance = totalToxinResistance / totalCellCount;
-            preyPhysicalResistance = totalPhysicalResistance / totalCellCount;
-
-            preyOxygenUsingOrganellesCount /= totalCellCount;
-        }
-        else
+        if (CollectPredatorPredationData(predatorSpecies, preySpecies, membraneRigidityHitpointsModifier, canEngulf,
+                in preyData) is not { } predatorData)
         {
             return 0;
         }
 
-        var predatorHexSize = GetBaseHexSizeForSpecies(predatorSpecies);
-        if (predatorSpecies is MicrobeSpecies microbePredator)
-        {
-            // TODO: If these two methods were combined it might result in better performance with needing just
-            // one dictionary lookup
-            predatorHP = microbePredator.MembraneType.Hitpoints + microbePredator.MembraneRigidity *
-                membraneRigidityHitpointsModifier;
+        var preyToolScores = preyData.ToolScores;
+        var preyHexSize = preyData.HexSize;
+        var preyHP = preyData.Hitpoints;
+        var preyToxinResistance = preyData.ToxinResistance;
+        var preyPhysicalResistance = preyData.PhysicalResistance;
+        var preyStorageNominal = preyData.StorageNominal;
+        var preyHasSignallingAgent = preyData.HasSignallingAgent;
+        var preyOxygenUsingOrganellesCount = preyData.OxygenUsingOrganellesCount;
 
-            // Give damage resistance if you have a nucleus (50 % general damage resistance)
-            if (!microbePredator.IsBacteria)
-                predatorHP *= 2;
-            predatorToxinResistance = microbePredator.MembraneType.ToxinResistance;
-            predatorPhysicalResistance = microbePredator.MembraneType.PhysicalResistance;
-
-            predatorStorageNominal = microbePredator.StorageCapacities.Nominal;
-
-            var organelles = microbePredator.Organelles.Organelles;
-            int count = organelles.Count;
-            for (int i = 0; i < count; ++i)
-            {
-                var organelle = organelles[i];
-                if (organelle.Definition.HasChemoreceptorComponent && organelle.GetActiveTargetSpecies() == preySpecies)
-                    hasChemoreceptor = true;
-                if (organelle.Definition.HasSignalingFeature)
-                    hasSignallingAgent = true;
-                if (organelles[i].Definition.IsOxygenMetabolism)
-                    ++predatorOxygenUsingOrganellesCount;
-            }
-
-            if (canEngulf && predatorHexSize / smallestPreyHexSize > Constants.ENGULF_SIZE_RATIO_REQ)
-            {
-                enzymesScore = GetEnzymesScore(microbePredator, dissolverEnzyme,
-                    microbePredator.CellTypeSpecializationBonus);
-            }
-        }
-        else if (predatorSpecies is MulticellularSpecies multicellularPredator)
-        {
-            predatorStorageNominal = multicellularPredator.StorageCapacities.Nominal;
-
-            var totalToxinResistance = 0.0f;
-            var totalPhysicalResistance = 0.0f;
-            var cells = multicellularPredator.EditorCells;
-            var totalCellCount = cells.Count;
-
-            var cellTypes = multicellularPredator.CellTypes;
-            for (var i = 0; i < cellTypes.Count; ++i)
-            {
-                var cellType = cellTypes[i];
-
-                var cellCount = 0;
-                var cellTypeHexSize = GetBaseHexSizeForCellType(cellType);
-
-                var cellTypeSpecializationBonus = cellType.CellTypeSpecializationBonus;
-
-                foreach (var hex in cells)
-                {
-                    var cell = hex.Data;
-                    if (cell != null && ReferenceEquals(cell.CellType, cellType))
-                    {
-                        ++cellCount;
-                        if (cellType.MembraneType.CanEngulf &&
-                            cellTypeHexSize / smallestPreyHexSize >= Constants.ENGULF_SIZE_RATIO_REQ)
-                        {
-                            var cellEnzymesScore = GetEnzymesScore(cellType, dissolverEnzyme,
-                                cellTypeSpecializationBonus * CellBodyPlanInternalCalculations
-                                    .GetAdjacencySpecializationBonusFromBodyPlan(cell, cells));
-                            enzymesScore = Math.Max(cellEnzymesScore, enzymesScore);
-                        }
-                    }
-                }
-
-                if (cellCount == 0)
-                    continue;
-
-                var cellTypeHP = cellType.MembraneType.Hitpoints + cellType.MembraneRigidity *
-                    membraneRigidityHitpointsModifier;
-                if (!cellType.IsBacteria)
-                    cellTypeHP *= 2;
-
-                predatorHP += cellCount * cellTypeHP;
-                totalToxinResistance += cellCount * cellType.MembraneType.ToxinResistance;
-                totalPhysicalResistance += cellCount * cellType.MembraneType.PhysicalResistance;
-
-                var cellTypeOxygenUsingOrganellesCount = 0;
-                foreach (var organelle in cellType.Organelles)
-                {
-                    if (organelle.Definition.HasChemoreceptorComponent &&
-                        organelle.GetActiveTargetSpecies() == preySpecies)
-                        hasChemoreceptor = true;
-                    if (organelle.Definition.HasSignalingFeature)
-                        hasSignallingAgent = true;
-                    if (organelle.Definition.IsOxygenMetabolism)
-                        ++cellTypeOxygenUsingOrganellesCount;
-                }
-
-                predatorOxygenUsingOrganellesCount += cellTypeOxygenUsingOrganellesCount * cellCount;
-            }
-
-            predatorToxinResistance = totalToxinResistance / totalCellCount;
-            predatorPhysicalResistance = totalPhysicalResistance / totalCellCount;
-
-            predatorOxygenUsingOrganellesCount /= totalCellCount;
-        }
-        else
-        {
-            return 0;
-        }
+        var predatorHexSize = predatorData.HexSize;
+        var predatorHP = predatorData.Hitpoints;
+        var predatorToxinResistance = predatorData.ToxinResistance;
+        var predatorPhysicalResistance = predatorData.PhysicalResistance;
+        var predatorStorageNominal = predatorData.StorageNominal;
+        var hasChemoreceptor = predatorData.HasChemoreceptor;
+        var hasSignallingAgent = predatorData.HasSignallingAgent;
+        var predatorOxygenUsingOrganellesCount = predatorData.OxygenUsingOrganellesCount;
+        var enzymesScore = predatorData.EnzymesScore;
 
         var canDigestPrey = enzymesScore > 0.0f;
 
@@ -2121,6 +1890,293 @@ public class SimulationCache
         return cached;
     }
 
+    private PredatorCapabilities? GetPredatorCapabilities(Species predatorSpecies)
+    {
+        // First values necessary to check whether predation is possible at all
+        PredationToolsRawScores predatorToolScores;
+        var canEngulf = false;
+
+        if (predatorSpecies is MicrobeSpecies microbeSpecies)
+        {
+            predatorToolScores = GetPredationToolsRawScores(microbeSpecies);
+            canEngulf = microbeSpecies.CanEngulf;
+        }
+        else if (predatorSpecies is MulticellularSpecies multicellularSpecies)
+        {
+            predatorToolScores = GetPredationToolsRawScores(multicellularSpecies);
+            var cellTypes = multicellularSpecies.CellTypes;
+            for (var i = 0; i < cellTypes.Count; ++i)
+            {
+                var cellType = cellTypes[i];
+                if (canEngulf)
+                    break;
+
+                if (cellType.MembraneType.CanEngulf)
+                {
+                    foreach (var hex in multicellularSpecies.EditorCells)
+                    {
+                        var cell = hex.Data;
+                        if (cell != null && ReferenceEquals(cell.CellType, cellType))
+                        {
+                            canEngulf = true;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            return null;
+        }
+
+        return new PredatorCapabilities(predatorToolScores, canEngulf);
+    }
+
+    private PreyPredationData? CollectPreyPredationData(Species preySpecies,
+        float membraneRigidityHitpointsModifier)
+    {
+        float smallestPreyHexSize;
+        var dissolverEnzyme = Constants.LIPASE_ENZYME;
+
+        var preyHP = 1.0f;
+        float preyToxinResistance;
+        float preyPhysicalResistance;
+        float preyStorageNominal;
+
+        PredationToolsRawScores preyToolScores;
+        var preyHasSignallingAgent = false;
+        var preyOxygenUsingOrganellesCount = 0.0f;
+
+        var preyHexSize = GetBaseHexSizeForSpecies(preySpecies);
+        if (preySpecies is MicrobeSpecies microbePrey)
+        {
+            preyToolScores = GetPredationToolsRawScores(microbePrey);
+            smallestPreyHexSize = preyHexSize;
+            dissolverEnzyme = microbePrey.MembraneType.DissolverEnzyme;
+            preyStorageNominal = microbePrey.StorageCapacities.Nominal;
+
+            // uses an HP estimate without taking into account environmental tolerance effect
+            preyHP = microbePrey.MembraneType.Hitpoints + microbePrey.MembraneRigidity *
+                membraneRigidityHitpointsModifier;
+
+            // Give damage resistance if you have a nucleus (50 % general damage resistance)
+            if (!microbePrey.IsBacteria)
+                preyHP *= 2;
+            preyToxinResistance = microbePrey.MembraneType.ToxinResistance;
+            preyPhysicalResistance = microbePrey.MembraneType.PhysicalResistance;
+
+            var preyOrganelles = microbePrey.Organelles.Organelles;
+            int preyOrganellesCount = preyOrganelles.Count;
+            for (int i = 0; i < preyOrganellesCount; ++i)
+            {
+                var organelle = preyOrganelles[i];
+                if (organelle.Definition.HasSignalingFeature)
+                    preyHasSignallingAgent = true;
+                if (preyOrganelles[i].Definition.IsOxygenMetabolism)
+                    ++preyOxygenUsingOrganellesCount;
+            }
+        }
+        else if (preySpecies is MulticellularSpecies multicellularPrey)
+        {
+            preyToolScores = GetPredationToolsRawScores(multicellularPrey);
+            smallestPreyHexSize = preyHexSize;
+            preyStorageNominal = multicellularPrey.StorageCapacities.Nominal;
+
+            var totalToxinResistance = 0.0f;
+            var totalPhysicalResistance = 0.0f;
+            var cells = multicellularPrey.EditorCells;
+            var totalCellCount = cells.Count;
+
+            var cellTypes = multicellularPrey.CellTypes;
+            for (var i = 0; i < cellTypes.Count; ++i)
+            {
+                var cellType = cellTypes[i];
+
+                var cellCount = 0;
+                foreach (var hex in multicellularPrey.EditorCells)
+                {
+                    var cell = hex.Data;
+                    if (cell != null && ReferenceEquals(cell.CellType, cellType))
+                    {
+                        ++cellCount;
+                    }
+                }
+
+                if (cellCount == 0)
+                    continue;
+
+                var cellTypeHP = cellType.MembraneType.Hitpoints + cellType.MembraneRigidity *
+                    membraneRigidityHitpointsModifier;
+                if (!cellType.IsBacteria)
+                    cellTypeHP *= 2;
+
+                preyHP += cellCount * cellTypeHP;
+
+                // for simplicity's sake we are for now taking the smallest size cell in the body
+                var cellTypeSize = GetBaseHexSizeForCellType(cellType);
+                if (cellTypeSize < smallestPreyHexSize)
+                {
+                    smallestPreyHexSize = cellTypeSize;
+                    dissolverEnzyme = cellType.MembraneType.DissolverEnzyme;
+                }
+
+                totalToxinResistance += cellCount * cellType.MembraneType.ToxinResistance;
+                totalPhysicalResistance += cellCount * cellType.MembraneType.PhysicalResistance;
+
+                var cellTypeOxygenUsingOrganellesCount = 0;
+                foreach (var organelle in cellType.Organelles)
+                {
+                    if (organelle.Definition.HasSignalingFeature)
+                        preyHasSignallingAgent = true;
+                    if (organelle.Definition.IsOxygenMetabolism)
+                        ++cellTypeOxygenUsingOrganellesCount;
+                }
+
+                preyOxygenUsingOrganellesCount += cellTypeOxygenUsingOrganellesCount * cellCount;
+            }
+
+            preyToxinResistance = totalToxinResistance / totalCellCount;
+            preyPhysicalResistance = totalPhysicalResistance / totalCellCount;
+
+            preyOxygenUsingOrganellesCount /= totalCellCount;
+        }
+        else
+        {
+            return null;
+        }
+
+        return new PreyPredationData(preyToolScores, preyHexSize, smallestPreyHexSize, dissolverEnzyme, preyHP,
+            preyToxinResistance, preyPhysicalResistance, preyStorageNominal, preyHasSignallingAgent,
+            preyOxygenUsingOrganellesCount);
+    }
+
+    private PredatorPredationData? CollectPredatorPredationData(Species predatorSpecies, Species preySpecies,
+        float membraneRigidityHitpointsModifier, bool canEngulf, in PreyPredationData preyData)
+    {
+        var predatorHP = 1.0f;
+        float predatorToxinResistance;
+        float predatorPhysicalResistance;
+        float predatorStorageNominal;
+
+        var hasChemoreceptor = false;
+        var hasSignallingAgent = false;
+        var predatorOxygenUsingOrganellesCount = 0.0f;
+        var enzymesScore = 0.0f;
+
+        var predatorHexSize = GetBaseHexSizeForSpecies(predatorSpecies);
+        if (predatorSpecies is MicrobeSpecies microbePredator)
+        {
+            // TODO: If these two methods were combined it might result in better performance with needing just
+            // one dictionary lookup
+            predatorHP = microbePredator.MembraneType.Hitpoints + microbePredator.MembraneRigidity *
+                membraneRigidityHitpointsModifier;
+
+            // Give damage resistance if you have a nucleus (50 % general damage resistance)
+            if (!microbePredator.IsBacteria)
+                predatorHP *= 2;
+            predatorToxinResistance = microbePredator.MembraneType.ToxinResistance;
+            predatorPhysicalResistance = microbePredator.MembraneType.PhysicalResistance;
+
+            predatorStorageNominal = microbePredator.StorageCapacities.Nominal;
+
+            var organelles = microbePredator.Organelles.Organelles;
+            int count = organelles.Count;
+            for (int i = 0; i < count; ++i)
+            {
+                var organelle = organelles[i];
+                if (organelle.Definition.HasChemoreceptorComponent && organelle.GetActiveTargetSpecies() == preySpecies)
+                    hasChemoreceptor = true;
+                if (organelle.Definition.HasSignalingFeature)
+                    hasSignallingAgent = true;
+                if (organelles[i].Definition.IsOxygenMetabolism)
+                    ++predatorOxygenUsingOrganellesCount;
+            }
+
+            if (canEngulf && predatorHexSize / preyData.SmallestHexSize > Constants.ENGULF_SIZE_RATIO_REQ)
+            {
+                enzymesScore = GetEnzymesScore(microbePredator, preyData.DissolverEnzyme,
+                    microbePredator.CellTypeSpecializationBonus);
+            }
+        }
+        else if (predatorSpecies is MulticellularSpecies multicellularPredator)
+        {
+            predatorStorageNominal = multicellularPredator.StorageCapacities.Nominal;
+
+            var totalToxinResistance = 0.0f;
+            var totalPhysicalResistance = 0.0f;
+            var cells = multicellularPredator.EditorCells;
+            var totalCellCount = cells.Count;
+
+            var cellTypes = multicellularPredator.CellTypes;
+            for (var i = 0; i < cellTypes.Count; ++i)
+            {
+                var cellType = cellTypes[i];
+
+                var cellCount = 0;
+                var cellTypeHexSize = GetBaseHexSizeForCellType(cellType);
+
+                var cellTypeSpecializationBonus = cellType.CellTypeSpecializationBonus;
+
+                foreach (var hex in cells)
+                {
+                    var cell = hex.Data;
+                    if (cell != null && ReferenceEquals(cell.CellType, cellType))
+                    {
+                        ++cellCount;
+                        if (cellType.MembraneType.CanEngulf &&
+                            cellTypeHexSize / preyData.SmallestHexSize >= Constants.ENGULF_SIZE_RATIO_REQ)
+                        {
+                            var cellEnzymesScore = GetEnzymesScore(cellType, preyData.DissolverEnzyme,
+                                cellTypeSpecializationBonus * CellBodyPlanInternalCalculations
+                                    .GetAdjacencySpecializationBonusFromBodyPlan(cell, cells));
+                            enzymesScore = Math.Max(cellEnzymesScore, enzymesScore);
+                        }
+                    }
+                }
+
+                if (cellCount == 0)
+                    continue;
+
+                var cellTypeHP = cellType.MembraneType.Hitpoints + cellType.MembraneRigidity *
+                    membraneRigidityHitpointsModifier;
+                if (!cellType.IsBacteria)
+                    cellTypeHP *= 2;
+
+                predatorHP += cellCount * cellTypeHP;
+                totalToxinResistance += cellCount * cellType.MembraneType.ToxinResistance;
+                totalPhysicalResistance += cellCount * cellType.MembraneType.PhysicalResistance;
+
+                var cellTypeOxygenUsingOrganellesCount = 0;
+                foreach (var organelle in cellType.Organelles)
+                {
+                    if (organelle.Definition.HasChemoreceptorComponent &&
+                        organelle.GetActiveTargetSpecies() == preySpecies)
+                        hasChemoreceptor = true;
+                    if (organelle.Definition.HasSignalingFeature)
+                        hasSignallingAgent = true;
+                    if (organelle.Definition.IsOxygenMetabolism)
+                        ++cellTypeOxygenUsingOrganellesCount;
+                }
+
+                predatorOxygenUsingOrganellesCount += cellTypeOxygenUsingOrganellesCount * cellCount;
+            }
+
+            predatorToxinResistance = totalToxinResistance / totalCellCount;
+            predatorPhysicalResistance = totalPhysicalResistance / totalCellCount;
+
+            predatorOxygenUsingOrganellesCount /= totalCellCount;
+        }
+        else
+        {
+            return null;
+        }
+
+        return new PredatorPredationData(predatorHexSize, predatorHP, predatorToxinResistance,
+            predatorPhysicalResistance, predatorStorageNominal, hasChemoreceptor, hasSignallingAgent,
+            predatorOxygenUsingOrganellesCount, enzymesScore);
+    }
+
     /// <summary>
     ///   Calculates cos of the angle between the organelle and vertical axis
     /// </summary>
@@ -2241,4 +2297,27 @@ public class SimulationCache
         float SlimeJetScore,
         float MucocystsScore,
         float PullingCiliaModifier);
+
+    private readonly record struct PredatorCapabilities(PredationToolsRawScores ToolScores, bool CanEngulf);
+
+    private readonly record struct PreyPredationData(PredationToolsRawScores ToolScores,
+        float HexSize,
+        float SmallestHexSize,
+        string DissolverEnzyme,
+        float Hitpoints,
+        float ToxinResistance,
+        float PhysicalResistance,
+        float StorageNominal,
+        bool HasSignallingAgent,
+        float OxygenUsingOrganellesCount);
+
+    private readonly record struct PredatorPredationData(float HexSize,
+        float Hitpoints,
+        float ToxinResistance,
+        float PhysicalResistance,
+        float StorageNominal,
+        bool HasChemoreceptor,
+        bool HasSignallingAgent,
+        float OxygenUsingOrganellesCount,
+        float EnzymesScore);
 }
