@@ -74,7 +74,7 @@ void fragment() {
 		// seam = texture(seamTexture, vec2(pos.z * (-abs(pos.x) + 0.2f), height));
 	}
 		
-	ALBEDO = mix(finalMix.rgb, seam.rgb, seam.a) * dirtMix.rgb;
+	ALBEDO = mix(finalMix.rgb, seam.rgb, seam.a) * dirtMix.rgb * COLOR.rgb;
 	
 	for (int i = 0; i < matrices.length(); i++)
 	{
@@ -95,6 +95,6 @@ void fragment() {
 		
 		vec4 color = texture(projected2, pos1.xy);
 		
-		ALBEDO = mix(ALBEDO, color.rgb * dirtMix.rgb, color.a);
+		ALBEDO = mix(ALBEDO, color.rgb * dirtMix.rgb, color.a) * COLOR.rgb;
 	}
 }

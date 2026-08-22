@@ -194,6 +194,19 @@ public class MacroscopicSpecies : Species, IReadOnlyMacroscopicSpecies
             MacroscopicType = MacroscopicSpeciesType.Aware;
     }
 
+    public override ulong GetVisualHashCode()
+    {
+        ulong value = 1UL;
+
+        foreach (var metaball in ModifiableBodyLayout)
+        {
+            value ^= (ulong)((metaball.Position.X.GetHashCode() + metaball.Position.Y.GetHashCode()
+                + metaball.Position.Z.GetHashCode()) ^ metaball.Size.GetHashCode() ^ metaball.Colour.GetHashCode());
+        }
+
+        return value;
+    }
+
     public override object Clone()
     {
         var result = new MacroscopicSpecies(ID, Genus, Epithet);

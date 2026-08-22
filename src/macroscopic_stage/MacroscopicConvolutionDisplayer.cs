@@ -119,9 +119,6 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
 
         Mesh.SurfaceSetMaterial(0, material);
 
-        var uvUnwrap = new Task(() => UVUnwrapAndTexture((ArrayMesh)Mesh));
-        TaskExecutor.Instance.AddTask(uvUnwrap);
-
         CustomAabb = new Aabb(minExtends, maxExtends);
     }
 
@@ -135,7 +132,13 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
         base.Dispose(disposing);
     }
 
-    private void UVUnwrapAndTexture(ArrayMesh mesh)
+    public void Texturize(MacroscopicSpecies species)
+    {
+        var uvUnwrap = new Task(() => UVUnwrapAndTexture((ArrayMesh)Mesh, species));
+        TaskExecutor.Instance.AddTask(uvUnwrap);
+    }
+
+    private void UVUnwrapAndTexture(ArrayMesh mesh, MacroscopicSpecies species)
     {
         // TODO: investigate if it is somehow possible to avoid this data copy here (and another probably caused in
         // the native interop call ArrayMeshUnwrap)
@@ -151,7 +154,7 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
             // has to be deferred too.
             if (NativeMethods.ArrayMeshUnwrap(nativeVariant, 1.0f))
             {
-                Invoke.Instance.QueueForObject(ApplyTextures, this);
+                Invoke.Instance.QueueForObject(() => ApplyTextures(species), this);
             }
             else
             {
@@ -165,9 +168,9 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
         }
     }
 
-    private void ApplyTextures()
+    private void ApplyTextures(MacroscopicSpecies species)
     {
-        texturizationTask = PhotoStudio.Instance.GenerateImage(new CreatureTexturePhotographable(Mesh));
+        texturizationTask = PhotoStudio.Instance.GenerateImage(new CreatureTexturePhotographable(Mesh, species));
     }
 
     private (float LeftX, float RightX) CalculateXBoundsForTriangle(Vector2 a, Vector2 b, Vector2 c, float y)

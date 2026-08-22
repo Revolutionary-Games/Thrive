@@ -3,11 +3,14 @@ using System;
 
 public class CreatureTexturePhotographable : IScenePhotographable
 {
+    public MacroscopicSpecies Species = null!;
+
     public Mesh CreatureMesh = null!;
 
-    public CreatureTexturePhotographable(Mesh mesh)
+    public CreatureTexturePhotographable(Mesh mesh, MacroscopicSpecies species)
     {
         CreatureMesh = mesh;
+        Species = species;
     }
 
     public string SceneToPhotographPath => "res://src/macroscopic_stage/CreatureTexturePhotoBuilder.tscn";
@@ -22,8 +25,7 @@ public class CreatureTexturePhotographable : IScenePhotographable
 
     public ulong GetVisualHashCode()
     {
-        // TBD
-        return 0;
+        return Species.GetVisualHashCode();
     }
 
     public Vector3 CalculatePhotographDistance(Node3D instancedScene)
