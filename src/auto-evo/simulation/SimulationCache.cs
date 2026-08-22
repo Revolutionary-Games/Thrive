@@ -1467,19 +1467,9 @@ public class SimulationCache
 
         var preyToolScores = preyData.ToolScores;
         var preyHexSize = preyData.HexSize;
-        var preyHP = preyData.Hitpoints;
-        var preyToxinResistance = preyData.ToxinResistance;
-        var preyStorageNominal = preyData.StorageNominal;
-        var preyHasSignallingAgent = preyData.HasSignallingAgent;
-        var preyOxygenUsingOrganellesCount = preyData.OxygenUsingOrganellesCount;
 
         var predatorHexSize = predatorData.HexSize;
-        var predatorHP = predatorData.Hitpoints;
-        var predatorToxinResistance = predatorData.ToxinResistance;
-        var predatorStorageNominal = predatorData.StorageNominal;
         var hasChemoreceptor = predatorData.HasChemoreceptor;
-        var hasSignallingAgent = predatorData.HasSignallingAgent;
-        var predatorOxygenUsingOrganellesCount = predatorData.OxygenUsingOrganellesCount;
         var enzymesScore = predatorData.EnzymesScore;
 
         var canDigestPrey = enzymesScore > 0.0f;
@@ -1616,104 +1606,45 @@ public class SimulationCache
 
         // Damaging toxin section
 
-        oxytoxyScore *= 1 - Math.Min(preyOxygenUsingOrganellesCount * oxytoxyDebuffPerOrganelle, oxytoxyDebuffMax);
-        oxygenMetabolismInhibitorScore *= 1 + Math.Min(preyOxygenUsingOrganellesCount * oxygenInhibitorBuffPerOrganelle,
-            oxygenInhibitorBuffMax);
-        var damagingToxinScore = oxytoxyScore + cytotoxinScore + oxygenMetabolismInhibitorScore;
+        var predatorToxins = (Oxytoxy: oxytoxyScore, Cytotoxin: cytotoxinScore,
+            OxygenMetabolismInhibitor: oxygenMetabolismInhibitorScore, ChannelInhibitor: channelInhibitorScore);
+        var preyToxins = (Oxytoxy: preyOxytoxyScore, Cytotoxin: preyCytotoxinScore,
+            OxygenMetabolismInhibitor: preyOxygenMetabolismInhibitorScore, Toxicity: preyToxicity);
+        var inhibitedEnergy = (PreyProduction: preyInhibitedPreyEnergyProduction,
+            PreyOsmoregulationCost: preyOsmoregulationCost,
+            PredatorProduction: predatorInhibitedPreyEnergyProduction,
+            PredatorOsmoregulationCost: predatorOsmoregulationCost);
+        var preyToxinBehaviour = (Fear: preyFearScore, Aggression: preyAggressionScore,
+            Opportunism: preyOpportunismScore);
+        var predatorToxinBehaviour = (Activity: activityScore, Focus: focusScore);
+        var toxinEncounter = (HitProportion: hitProportion, PredatorRotationModifier: predatorRotationModifier,
+            PreyRotationModifier: preyRotationModifier, PreyIndividualCost: preyIndividualCost);
+        var toxinConstants = (OxytoxyDebuffPerOrganelle: oxytoxyDebuffPerOrganelle,
+            OxytoxyDebuffMax: oxytoxyDebuffMax,
+            OxygenInhibitorBuffPerOrganelle: oxygenInhibitorBuffPerOrganelle,
+            OxygenInhibitorBuffMax: oxygenInhibitorBuffMax, OxytoxyDamage: oxytoxyDamage,
+            SizeAffectedProjectileMissFactor: sizeAffectedProjectileMissFactor,
+            ToxicityHitModifier: toxicityHitModifier);
+        var toxinModifiers = (SignallingBonus: signallingBonus, DefenseScoreModifier: defenseScoreModifier);
 
-        preyOxytoxyScore *= 1 - Math.Min(predatorOxygenUsingOrganellesCount * oxytoxyDebuffPerOrganelle,
-            oxytoxyDebuffMax);
-        preyOxygenMetabolismInhibitorScore *= 1 + Math.Min(
-            predatorOxygenUsingOrganellesCount * oxygenInhibitorBuffPerOrganelle, oxygenInhibitorBuffMax);
-        var preyDamagingToxinScore = preyOxytoxyScore + preyCytotoxinScore + preyOxygenMetabolismInhibitorScore;
+        var (damagingToxinScore, preyDamagingToxinScore) = CalculateToxinScores(predatorSpecies,
+            in predatorData, in preyData, in predatorToxins, in preyToxins, in inhibitedEnergy,
+            in preyToxinBehaviour, in predatorToxinBehaviour, in toxinEncounter, in toxinConstants,
+            in toxinModifiers);
 
-        // If toxin-inhibited energy production is lower than osmoregulation cost, channel inhibitor is a damaging toxin
-        if (preyInhibitedPreyEnergyProduction < preyOsmoregulationCost)
-            damagingToxinScore += channelInhibitorScore;
-        if (predatorInhibitedPreyEnergyProduction < predatorOsmoregulationCost)
-            damagingToxinScore += channelInhibitorScore;
+        var predatorScores = (Pilus: pilusScore, Engulfment: engulfmentScore,
+            DamagingToxin: damagingToxinScore);
+        var preyDefenseScores = (SlimeJet: preySlimeJetScore, Mucocysts: preyMucocystsScore,
+            Pilus: preyPilusScore, DamagingToxin: preyDamagingToxinScore);
 
-        // MicrobeAISystem makes prey not fire toxins against predators under this condition
-        if (preyFearScore >= preyAggressionScore)
-            preyDamagingToxinScore = 0;
+        return CombinePredationScores(canEngulf, predatorSlimeJetScore, aggressionScore, opportunismScore,
+            in predatorScores, in preyDefenseScores);
+    }
 
-        if (damagingToxinScore > 0)
-        {
-            // Applying projectile hit chance to damaging toxins
-            damagingToxinScore *= hitProportion;
-
-            // Predators are less likely to use toxin against larger prey, unless they are opportunistic
-            if (preyHexSize > predatorHexSize)
-            {
-                damagingToxinScore *= predatorSpecies.Behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
-            }
-
-            // If you can store enough to kill the prey, producing more isn't as important
-            var storageToKillRatio = predatorStorageNominal * oxytoxyDamage / (preyHP * preyToxinResistance);
-            storageToKillRatio = Math.Min(storageToKillRatio, 1);
-
-            damagingToxinScore = MathF.Pow(damagingToxinScore, storageToKillRatio * 0.8f);
-
-            // Targets that resist toxin are of course less vulnerable to being damaged with it
-            damagingToxinScore /= preyHP * preyToxinResistance;
-
-            // Toxins also require facing and tracking the target
-            damagingToxinScore *= predatorRotationModifier;
-
-            // Calling for allies helps with combat.
-            if (hasSignallingAgent)
-                damagingToxinScore *= signallingBonus;
-
-            // If you have a chemoreceptor, active hunting types are more effective
-            if (hasChemoreceptor)
-            {
-                damagingToxinScore *= Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER;
-                damagingToxinScore *= 1 + Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_VARIABLE_MODIFIER
-                    * float.Sqrt(preyIndividualCost);
-            }
-
-            // Active hunting is more effective for active species
-            damagingToxinScore *= activityScore;
-            damagingToxinScore *= 1 + focusScore;
-        }
-
-        if (preyDamagingToxinScore > 0)
-        {
-            // Calculating "hit chance" modifier from predator size and prey toxicity
-            var predatorSizeHitFactor = sizeAffectedProjectileMissFactor / float.Sqrt(predatorHexSize);
-            var preyToxicityHitFactor = preyToxicity / toxicityHitModifier;
-            var preyHitProportion = 1 - predatorSizeHitFactor - preyToxicityHitFactor;
-
-            // Applying projectile hit chance to damaging toxins
-            preyDamagingToxinScore *= preyHitProportion;
-
-            // Prey are less likely to use toxin against larger predators, unless they are opportunistic
-            if (predatorHexSize > preyHexSize)
-            {
-                preyDamagingToxinScore *= preyOpportunismScore;
-            }
-
-            // If you can store enough to kill the predator, producing more isn't as important
-            var preyStorageToKillRatio = preyStorageNominal * oxytoxyDamage / (predatorHP * predatorToxinResistance);
-            preyStorageToKillRatio = Math.Min(preyStorageToKillRatio, 1);
-
-            preyDamagingToxinScore = MathF.Pow(preyDamagingToxinScore, preyStorageToKillRatio * 0.8f);
-
-            // Targets that resist toxin are of course less vulnerable to being damaged with it
-            preyDamagingToxinScore /= predatorHP * predatorToxinResistance;
-
-            // Toxins also require facing and tracking the target
-            preyDamagingToxinScore *= preyRotationModifier;
-
-            // Calling for allies helps with combat.
-            if (preyHasSignallingAgent)
-                preyDamagingToxinScore *= signallingBonus;
-
-            // Prey can use toxins for defense, but only if they have the right behaviour
-            preyDamagingToxinScore *= preyRotationModifier * defenseScoreModifier *
-                preyAggressionScore * (1 - preyFearScore);
-        }
-
+    private float CombinePredationScores(bool canEngulf, float predatorSlimeJetScore, float aggressionScore,
+        float opportunismScore, in (float Pilus, float Engulfment, float DamagingToxin) predatorScores,
+        in (float SlimeJet, float Mucocysts, float Pilus, float DamagingToxin) preyDefenseScores)
+    {
         var scoreMultiplier = 1.0f;
 
         if (!canEngulf)
@@ -1723,18 +1654,145 @@ public class SimulationCache
         }
 
         // predators that have slime jets themselves ignore the immobilising effect of prey slimejets
-        preySlimeJetScore = MathF.Sqrt(preySlimeJetScore);
+        var preySlimeJetScore = MathF.Sqrt(preyDefenseScores.SlimeJet);
         if (predatorSlimeJetScore > 0)
             preySlimeJetScore = 0;
 
-        cached = scoreMultiplier * MathF.Pow(aggressionScore, 0.5f) *
+        var cached = scoreMultiplier * MathF.Pow(aggressionScore, 0.5f) *
             (1 + MathF.Pow(opportunismScore, 0.5f * Constants.AUTO_EVO_MAX_OPPORTUNISM_BONUS)) *
-            ((pilusScore + engulfmentScore + damagingToxinScore) /
-                Math.Max(1, preySlimeJetScore + preyMucocystsScore + preyPilusScore + preyDamagingToxinScore));
+            ((predatorScores.Pilus + predatorScores.Engulfment + predatorScores.DamagingToxin) /
+                Math.Max(1, preySlimeJetScore + preyDefenseScores.Mucocysts + preyDefenseScores.Pilus +
+                    preyDefenseScores.DamagingToxin));
         if (cached < 0)
             cached = 0;
 
         return cached;
+    }
+
+    private (float Predator, float Prey) CalculateToxinScores(Species predatorSpecies,
+        in PredatorPredationData predatorData, in PreyPredationData preyData,
+        in (float Oxytoxy, float Cytotoxin, float OxygenMetabolismInhibitor, float ChannelInhibitor) predatorToxins,
+        in (float Oxytoxy, float Cytotoxin, float OxygenMetabolismInhibitor, float Toxicity) preyToxins,
+        in (float PreyProduction, float PreyOsmoregulationCost, float PredatorProduction,
+            float PredatorOsmoregulationCost) inhibitedEnergy,
+        in (float Fear, float Aggression, float Opportunism) preyBehaviour,
+        in (float Activity, float Focus) predatorBehaviour,
+        in (float HitProportion, float PredatorRotationModifier, float PreyRotationModifier,
+            float PreyIndividualCost) encounter,
+        in (float OxytoxyDebuffPerOrganelle, float OxytoxyDebuffMax, float OxygenInhibitorBuffPerOrganelle,
+            float OxygenInhibitorBuffMax, float OxytoxyDamage, float SizeAffectedProjectileMissFactor,
+            float ToxicityHitModifier) toxinConstants,
+        in (float SignallingBonus, float DefenseScoreModifier) modifiers)
+    {
+        var oxytoxyScore = predatorToxins.Oxytoxy;
+        oxytoxyScore *= 1 - Math.Min(preyData.OxygenUsingOrganellesCount *
+            toxinConstants.OxytoxyDebuffPerOrganelle, toxinConstants.OxytoxyDebuffMax);
+        var oxygenMetabolismInhibitorScore = predatorToxins.OxygenMetabolismInhibitor;
+        oxygenMetabolismInhibitorScore *= 1 + Math.Min(preyData.OxygenUsingOrganellesCount *
+            toxinConstants.OxygenInhibitorBuffPerOrganelle, toxinConstants.OxygenInhibitorBuffMax);
+        var damagingToxinScore = oxytoxyScore + predatorToxins.Cytotoxin + oxygenMetabolismInhibitorScore;
+
+        var preyOxytoxyScore = preyToxins.Oxytoxy;
+        preyOxytoxyScore *= 1 - Math.Min(predatorData.OxygenUsingOrganellesCount *
+            toxinConstants.OxytoxyDebuffPerOrganelle, toxinConstants.OxytoxyDebuffMax);
+        var preyOxygenMetabolismInhibitorScore = preyToxins.OxygenMetabolismInhibitor;
+        preyOxygenMetabolismInhibitorScore *= 1 + Math.Min(
+            predatorData.OxygenUsingOrganellesCount * toxinConstants.OxygenInhibitorBuffPerOrganelle,
+            toxinConstants.OxygenInhibitorBuffMax);
+        var preyDamagingToxinScore = preyOxytoxyScore + preyToxins.Cytotoxin +
+            preyOxygenMetabolismInhibitorScore;
+
+        // If toxin-inhibited energy production is lower than osmoregulation cost, channel inhibitor is a damaging toxin
+        if (inhibitedEnergy.PreyProduction < inhibitedEnergy.PreyOsmoregulationCost)
+            damagingToxinScore += predatorToxins.ChannelInhibitor;
+        if (inhibitedEnergy.PredatorProduction < inhibitedEnergy.PredatorOsmoregulationCost)
+            damagingToxinScore += predatorToxins.ChannelInhibitor;
+
+        // MicrobeAISystem makes prey not fire toxins against predators under this condition
+        if (preyBehaviour.Fear >= preyBehaviour.Aggression)
+            preyDamagingToxinScore = 0;
+
+        if (damagingToxinScore > 0)
+        {
+            // Applying projectile hit chance to damaging toxins
+            damagingToxinScore *= encounter.HitProportion;
+
+            // Predators are less likely to use toxin against larger prey, unless they are opportunistic
+            if (preyData.HexSize > predatorData.HexSize)
+            {
+                damagingToxinScore *= predatorSpecies.Behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
+            }
+
+            // If you can store enough to kill the prey, producing more isn't as important
+            var storageToKillRatio = predatorData.StorageNominal * toxinConstants.OxytoxyDamage /
+                (preyData.Hitpoints * preyData.ToxinResistance);
+            storageToKillRatio = Math.Min(storageToKillRatio, 1);
+
+            damagingToxinScore = MathF.Pow(damagingToxinScore, storageToKillRatio * 0.8f);
+
+            // Targets that resist toxin are of course less vulnerable to being damaged with it
+            damagingToxinScore /= preyData.Hitpoints * preyData.ToxinResistance;
+
+            // Toxins also require facing and tracking the target
+            damagingToxinScore *= encounter.PredatorRotationModifier;
+
+            // Calling for allies helps with combat.
+            if (predatorData.HasSignallingAgent)
+                damagingToxinScore *= modifiers.SignallingBonus;
+
+            // If you have a chemoreceptor, active hunting types are more effective
+            if (predatorData.HasChemoreceptor)
+            {
+                damagingToxinScore *= Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER;
+                damagingToxinScore *= 1 + Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_VARIABLE_MODIFIER
+                    * float.Sqrt(encounter.PreyIndividualCost);
+            }
+
+            // Active hunting is more effective for active species
+            damagingToxinScore *= predatorBehaviour.Activity;
+            damagingToxinScore *= 1 + predatorBehaviour.Focus;
+        }
+
+        if (preyDamagingToxinScore > 0)
+        {
+            // Calculating "hit chance" modifier from predator size and prey toxicity
+            var predatorSizeHitFactor = toxinConstants.SizeAffectedProjectileMissFactor /
+                float.Sqrt(predatorData.HexSize);
+            var preyToxicityHitFactor = preyToxins.Toxicity / toxinConstants.ToxicityHitModifier;
+            var preyHitProportion = 1 - predatorSizeHitFactor - preyToxicityHitFactor;
+
+            // Applying projectile hit chance to damaging toxins
+            preyDamagingToxinScore *= preyHitProportion;
+
+            // Prey are less likely to use toxin against larger predators, unless they are opportunistic
+            if (predatorData.HexSize > preyData.HexSize)
+            {
+                preyDamagingToxinScore *= preyBehaviour.Opportunism;
+            }
+
+            // If you can store enough to kill the predator, producing more isn't as important
+            var preyStorageToKillRatio = preyData.StorageNominal * toxinConstants.OxytoxyDamage /
+                (predatorData.Hitpoints * predatorData.ToxinResistance);
+            preyStorageToKillRatio = Math.Min(preyStorageToKillRatio, 1);
+
+            preyDamagingToxinScore = MathF.Pow(preyDamagingToxinScore, preyStorageToKillRatio * 0.8f);
+
+            // Targets that resist toxin are of course less vulnerable to being damaged with it
+            preyDamagingToxinScore /= predatorData.Hitpoints * predatorData.ToxinResistance;
+
+            // Toxins also require facing and tracking the target
+            preyDamagingToxinScore *= encounter.PreyRotationModifier;
+
+            // Calling for allies helps with combat.
+            if (preyData.HasSignallingAgent)
+                preyDamagingToxinScore *= modifiers.SignallingBonus;
+
+            // Prey can use toxins for defense, but only if they have the right behaviour
+            preyDamagingToxinScore *= encounter.PreyRotationModifier * modifiers.DefenseScoreModifier *
+                preyBehaviour.Aggression * (1 - preyBehaviour.Fear);
+        }
+
+        return (damagingToxinScore, preyDamagingToxinScore);
     }
 
     private float CalculatePhysicalPredationScores(in PredatorPredationData predatorData,
