@@ -1,11 +1,12 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System;
+using System.Runtime.CompilerServices;
 using Godot;
 
 /// <summary>
 ///   Trace gases that absorb light rather than scattering a meaningful amount of it.
 /// </summary>
 [GlobalClass]
-public sealed partial class TraceGasConfig : Resource
+public sealed partial class TraceGasConfig : ValidatedConfig
 {
     /// <summary>
     ///   How much ozone there is compared to Earth. Zero removes the layer entirely.
@@ -32,6 +33,28 @@ public sealed partial class TraceGasConfig : Resource
     [Export(PropertyHint.Range, "0.1,1000.0,0.1,or_greater")]
     public float OzoneLayerWidth = 68.0f;
 
+    protected override int ValueCount => 6;
+
+    public override bool Validate()
+    {
+        bool valid = true;
+
+        valid &= Check(OzoneConcentration >= 0.0f,
+            $"OzoneConcentration cannot be negative, but is {OzoneConcentration}");
+
+        valid &= Check(OzoneAbsorption.X >= 0.0f && OzoneAbsorption.Y >= 0.0f && OzoneAbsorption.Z >= 0.0f,
+            $"OzoneAbsorption cannot have negative channels, as that would create light rather than absorb it, " +
+            $"but is {OzoneAbsorption}");
+
+        valid &= Check(OzoneLayerCenter >= 0.0f, $"OzoneLayerCenter is an altitude above the ground so it cannot " +
+            $"be negative, but is {OzoneLayerCenter}");
+
+        // The shader halves this to get the tent falloff, so a zero width would collapse the layer
+        valid &= Check(OzoneLayerWidth > 0.0f, $"OzoneLayerWidth must be positive, but is {OzoneLayerWidth}");
+
+        return valid;
+    }
+
     /// <summary>
     ///   Calculates the peak ozone extinction per world unit, for each colour channel.
     /// </summary>
@@ -42,5 +65,15 @@ public sealed partial class TraceGasConfig : Resource
     public Vector3 CalculateOzoneAbsorption(float metresPerUnit)
     {
         return OzoneAbsorption * (OzoneConcentration * metresPerUnit);
+    }
+
+    protected override void CaptureValues(Span<float> destination)
+    {
+        destination[0] = OzoneConcentration;
+        destination[1] = OzoneAbsorption.X;
+        destination[2] = OzoneAbsorption.Y;
+        destination[3] = OzoneAbsorption.Z;
+        destination[4] = OzoneLayerCenter;
+        destination[5] = OzoneLayerWidth;
     }
 }

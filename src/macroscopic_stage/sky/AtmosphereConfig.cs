@@ -1,11 +1,12 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 
 /// <summary>
 ///   Configuration container for the atmosphere of a sky. These are the parameters of the atmosphere sky shader that
 ///   aren't sun related, as those live in <see cref="SunConfig"/> instead.
 /// </summary>
 [GlobalClass]
-public sealed partial class AtmosphereConfig : Resource
+public sealed partial class AtmosphereConfig : ValidatedConfig
 {
     [Export]
     public Vector3 PlanetCenter = Vector3.Zero;
@@ -41,4 +42,44 @@ public sealed partial class AtmosphereConfig : Resource
     /// </summary>
     [Export(PropertyHint.Range, "2,32,1")]
     public int LightRaySteps = 8;
+
+    protected override int ValueCount => 5;
+
+    public override bool Validate()
+    {
+        bool valid = true;
+
+        valid &= Check(GroundRadius > 0.0f, $"GroundRadius must be positive, but is {GroundRadius}");
+
+        valid &= Check(TopRadius > GroundRadius, $"TopRadius ({TopRadius}) must be greater than GroundRadius " +
+            $"({GroundRadius}), otherwise the atmosphere has no thickness to scatter in");
+
+        valid &= Check(RayleighScaleHeight > 0.0f,
+            $"RayleighScaleHeight must be positive, but is {RayleighScaleHeight}");
+
+        valid &= Check(ViewRaySteps is >= 4 and <= 128, $"ViewRaySteps must be between 4 and 128, but is " +
+            $"{ViewRaySteps}");
+
+        valid &= Check(LightRaySteps is >= 2 and <= 32, $"LightRaySteps must be between 2 and 32, but is " +
+            $"{LightRaySteps}");
+
+        if (!(TopRadius > GroundRadius) || !(RayleighScaleHeight > 0.0f))
+            return valid;
+
+        float thickness = TopRadius - GroundRadius;
+
+        valid &= Check(thickness >= RayleighScaleHeight, $"The atmosphere is only {thickness} thick while " +
+            $"RayleighScaleHeight is {RayleighScaleHeight}, so the air is still dense where it ends");
+
+        return valid;
+    }
+
+    protected override void CaptureValues(Span<float> destination)
+    {
+        destination[0] = GroundRadius;
+        destination[1] = TopRadius;
+        destination[2] = RayleighScaleHeight;
+        destination[3] = ViewRaySteps;
+        destination[4] = LightRaySteps;
+    }
 }

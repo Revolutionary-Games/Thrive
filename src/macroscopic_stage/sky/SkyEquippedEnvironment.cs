@@ -110,6 +110,11 @@ public partial class SkyEquippedEnvironment : WorldEnvironment
             return;
         }
 
+        AtmosphereConfig.ValidateOnce();
+        Composition.ValidateOnce();
+        TraceGases.ValidateOnce();
+        SunConfig.ValidateOnce();
+
         SkyMaterial.SetShaderParameter(planetCenterParameter, AtmosphereConfig.PlanetCenter);
         SkyMaterial.SetShaderParameter(groundRadiusParameter, AtmosphereConfig.GroundRadius);
         SkyMaterial.SetShaderParameter(topRadiusParameter, AtmosphereConfig.TopRadius);

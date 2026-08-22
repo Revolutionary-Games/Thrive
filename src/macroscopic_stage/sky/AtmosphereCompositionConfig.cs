@@ -12,7 +12,7 @@ using Godot;
 ///   </para>
 /// </remarks>
 [GlobalClass]
-public sealed partial class AtmosphereCompositionConfig : Resource
+public sealed partial class AtmosphereCompositionConfig : ValidatedConfig
 {
     [Export(PropertyHint.Range, "0.0,1.0")]
     public float Nitrogen = 0.7808f;
@@ -94,6 +94,42 @@ public sealed partial class AtmosphereCompositionConfig : Resource
     private const double SulfurDioxideRefractivity = 6.8600e-4;
     private const double SulfurDioxideKingFactor = 1.0;
 
+    protected override int ValueCount => 16;
+
+    public override bool Validate()
+    {
+        bool valid = true;
+
+        valid &= CheckFraction(Nitrogen, "Nitrogen");
+        valid &= CheckFraction(Oxygen, "Oxygen");
+        valid &= CheckFraction(Argon, "Argon");
+        valid &= CheckFraction(CarbonDioxide, "CarbonDioxide");
+        valid &= CheckFraction(Methane, "Methane");
+        valid &= CheckFraction(Hydrogen, "Hydrogen");
+        valid &= CheckFraction(Helium, "Helium");
+        valid &= CheckFraction(WaterVapour, "WaterVapour");
+        valid &= CheckFraction(Ammonia, "Ammonia");
+        valid &= CheckFraction(SulfurDioxide, "SulfurDioxide");
+
+        float totalFraction = Nitrogen + Oxygen + Argon + CarbonDioxide + Methane + Hydrogen + Helium + WaterVapour +
+            Ammonia + SulfurDioxide;
+
+        valid &= Check(totalFraction > 0.0f,
+            "The gas fractions add up to zero, leaving nothing for the sky to scatter off of");
+
+        valid &= Check(SurfacePressure >= 0.0f, $"SurfacePressure cannot be negative, but is {SurfacePressure}");
+
+        valid &= Check(SurfaceTemperature > 0.0f,
+            $"SurfaceTemperature must be above absolute zero, but is {SurfaceTemperature}");
+
+        valid &= Check(Wavelengths is { X: > 0.0f, Y: > 0.0f, Z: > 0.0f },
+            $"Wavelengths must all be positive, but are {Wavelengths}");
+
+        valid &= Check(MetresPerUnit > 0.0f, $"MetresPerUnit must be positive, but is {MetresPerUnit}");
+
+        return valid;
+    }
+
     /// <summary>
     ///   Calculates the Rayleigh scattering coefficient at the ground for each colour channel, per world unit.
     /// </summary>
@@ -122,6 +158,26 @@ public sealed partial class AtmosphereCompositionConfig : Resource
             (float)(MixtureCrossSection(Wavelengths.Z) * scale));
     }
 
+    protected override void CaptureValues(Span<float> destination)
+    {
+        destination[0] = Nitrogen;
+        destination[1] = Oxygen;
+        destination[2] = Argon;
+        destination[3] = CarbonDioxide;
+        destination[4] = Methane;
+        destination[5] = Hydrogen;
+        destination[6] = Helium;
+        destination[7] = WaterVapour;
+        destination[8] = Ammonia;
+        destination[9] = SulfurDioxide;
+        destination[10] = SurfacePressure;
+        destination[11] = SurfaceTemperature;
+        destination[12] = Wavelengths.X;
+        destination[13] = Wavelengths.Y;
+        destination[14] = Wavelengths.Z;
+        destination[15] = MetresPerUnit;
+    }
+
     /// <summary>
     ///   Rayleigh scattering cross-section of a single gas at a given wavelength.
     /// </summary>
@@ -137,6 +193,12 @@ public sealed partial class AtmosphereCompositionConfig : Resource
 
         return 24.0 * Math.PI * Math.PI * Math.PI * term * term * kingFactor /
             (wavelengthFourth * LoschmidtConstant * LoschmidtConstant);
+    }
+
+    private bool CheckFraction(float fraction, string name)
+    {
+        return Check(fraction is >= 0.0f and <= 1.0f,
+            $"{name} is a fraction of the whole atmosphere so it must be between 0 and 1, but is {fraction}");
     }
 
     private double MixtureCrossSection(float wavelengthNanometres)
