@@ -356,6 +356,10 @@ public class ModifyExistingSpecies : IRunStep
 
     private void GetMutationsForSpecies(Species species, int speciesInPatch)
     {
+        // We avoid auto-evo taking forever by skipping any (probably player) species that has far too many cells
+        if (species is MulticellularSpecies { EditorCells.Count: > Constants.AUTO_EVO_CUTOFF_CELL_COUNT })
+            return;
+
         double totalMP = Constants.BASE_MUTATION_POINTS * worldSettings.AIMutationMultiplier;
 
         generateMutationsWorkingMemory.Clear();
