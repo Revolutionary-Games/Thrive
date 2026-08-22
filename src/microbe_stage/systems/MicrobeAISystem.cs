@@ -413,7 +413,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         // Use signaling agent if I have any and am not receiving a command, with a small chance per think method call
         if (organelles.HasSignalingAgent && random.NextSingle() < Constants.AI_SIGNALING_CHANCE && !signalExists)
         {
-            UseSignalingAgent(ref position, ref organelles, atpLevel, compounds, speciesAggression,
+            UseSignalingAgent(in entity, ref position, ref organelles, atpLevel, compounds, speciesAggression,
                 ref signaling, random, ref ourSpecies);
         }
 
@@ -733,15 +733,27 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         }
     }
 
-    private void UseSignalingAgent(ref WorldPosition position, ref OrganelleContainer organelles, float atpLevel,
-        CompoundBag compounds, float speciesAggression, ref CommandSignaler signaling, Random random,
+    private void UseSignalingAgent(in Entity entity, ref WorldPosition position, ref OrganelleContainer organelles,
+        float atpLevel, CompoundBag compounds, float speciesAggression, ref CommandSignaler signaling, Random random,
         ref SpeciesMember ourSpecies)
     {
         // Has binding agent and ATP is at least half capacity
         if (organelles.HasBindingAgent && atpLevel >= compounds.GetCapacityForCompound(Compound.ATP) * 0.5f)
         {
-            signaling.QueuedSignalingCommand = MicrobeSignalCommand.MoveToMe;
-            return;
+            if (entity.Has<MicrobeColony>())
+            {
+                if (entity.Get<MicrobeColony>().ColonyMembers.Length <=
+                    Constants.COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR)
+                {
+                    signaling.QueuedSignalingCommand = MicrobeSignalCommand.MoveToMe;
+                    return;
+                }
+            }
+            else
+            {
+                signaling.QueuedSignalingCommand = MicrobeSignalCommand.MoveToMe;
+                return;
+            }
         }
 
         var shouldBeAggressive = RollCheck(speciesAggression, Constants.MAX_SPECIES_AGGRESSION, random);
