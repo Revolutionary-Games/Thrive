@@ -24,6 +24,7 @@ public partial class GalleryViewer : CustomWindow
     public PackedScene GalleryDetailsToolTipScene = null!;
 
     private readonly List<(Control Control, ICustomToolTip ToolTip)> registeredToolTips = new();
+    private readonly Dictionary<TextureThumbnailResource, GalleryCard> outstandingThumbnailLoads = new();
 
     // TODO: Replace GridContainer with FlowContainer https://github.com/godotengine/godot/pull/57960
     [Export]
@@ -105,6 +106,8 @@ public partial class GalleryViewer : CustomWindow
     {
         base._ExitTree();
 
+        CancelOutstandingThumbnailLoads();
+
         Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
 
         if (registeredToolTips.Count > 0)
@@ -153,6 +156,8 @@ public partial class GalleryViewer : CustomWindow
 
     private void InitializeGallery()
     {
+        CancelOutstandingThumbnailLoads();
+
         GD.Print("Initializing gallery viewer");
 
         tabButtons.ClearTabButtons();
@@ -255,7 +260,8 @@ public partial class GalleryViewer : CustomWindow
                 var loadingResource =
                     new TextureThumbnailResource(asset.ResourcePath, Constants.GALLERY_THUMBNAIL_MAX_WIDTH);
 
-                loadingResource.OnComplete = _ => { item.Thumbnail = loadingResource.LoadedTexture; };
+                outstandingThumbnailLoads.Add(loadingResource, item);
+                loadingResource.OnComplete = OnThumbnailLoaded;
 
                 resourceManager.QueueLoad(loadingResource);
                 break;
@@ -302,6 +308,33 @@ public partial class GalleryViewer : CustomWindow
         registeredToolTips.Add((item, tooltip));
 
         return item;
+    }
+
+    private void OnThumbnailLoaded(IResource resource)
+    {
+        var thumbnailResource = (TextureThumbnailResource)resource;
+        var wasOutstanding = outstandingThumbnailLoads.Remove(thumbnailResource, out var item);
+        thumbnailResource.OnComplete = null;
+
+        if (!wasOutstanding || !IsInstanceValid(item) || item.IsQueuedForDeletion() || !item.IsInsideTree())
+            return;
+
+        item.Thumbnail = thumbnailResource.LoadedTexture;
+    }
+
+    private void CancelOutstandingThumbnailLoads()
+    {
+        if (outstandingThumbnailLoads.Count < 1)
+            return;
+
+        var resourceManager = ResourceManager.Instance;
+        foreach (var resource in outstandingThumbnailLoads.Keys)
+        {
+            resource.OnComplete = null;
+            resourceManager.CancelLoad(resource);
+        }
+
+        outstandingThumbnailLoads.Clear();
     }
 
     private void StopAllPlayback(IGalleryCardPlayback? exception = null)
