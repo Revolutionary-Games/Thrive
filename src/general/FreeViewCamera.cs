@@ -155,7 +155,10 @@ public partial class FreeViewCamera : Camera3D
 
     private void AdjustMoveSpeed(float factor)
     {
-        MoveSpeed = Math.Clamp(MoveSpeed * factor, MinMoveSpeed, MaxMoveSpeed);
+        float minimum = MathF.Min(MinMoveSpeed, MaxMoveSpeed);
+        float maximum = MathF.Max(MinMoveSpeed, MaxMoveSpeed);
+
+        MoveSpeed = Math.Clamp(MoveSpeed * factor, minimum, maximum);
     }
 
     private void StopLooking()
