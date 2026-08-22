@@ -1402,7 +1402,7 @@ public class SimulationCache
     private float CalculatePredationScore(Species predatorSpecies, Species preySpecies,
         BiomeConditions biomeConditions)
     {
-        var cached = 0.0f;
+        var noPredationScore = 0.0f;
 
         if (!TryGetPredatorCapabilities(predatorSpecies, out var predatorCapabilities))
             return 0;
@@ -1433,7 +1433,7 @@ public class SimulationCache
             }
             else
             {
-                return cached;
+                return noPredationScore;
             }
         }
 
@@ -1476,8 +1476,8 @@ public class SimulationCache
 
         if (engulfOnly && !canDigestPrey)
         {
-            cached = 0;
-            return cached;
+            noPredationScore = 0;
+            return noPredationScore;
         }
 
         // We want prey defensive measures to only reduce predation score, not eliminate it.
