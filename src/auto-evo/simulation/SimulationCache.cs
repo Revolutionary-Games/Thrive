@@ -1404,7 +1404,7 @@ public class SimulationCache
     {
         var cached = 0.0f;
 
-        if (GetPredatorCapabilities(predatorSpecies) is not { } predatorCapabilities)
+        if (!TryGetPredatorCapabilities(predatorSpecies, out var predatorCapabilities))
             return 0;
 
         var predatorToolScores = predatorCapabilities.ToolScores;
@@ -1456,11 +1456,11 @@ public class SimulationCache
         var signallingBonus = Constants.AUTO_EVO_SIGNALLING_BONUS;
 
         // full calculation of values for PredationScore follows
-        if (CollectPreyPredationData(preySpecies, membraneRigidityHitpointsModifier) is not { } preyData)
+        if (!TryCollectPreyPredationData(preySpecies, membraneRigidityHitpointsModifier, out var preyData))
             return 0;
 
-        if (CollectPredatorPredationData(predatorSpecies, preySpecies, membraneRigidityHitpointsModifier, canEngulf,
-                in preyData) is not { } predatorData)
+        if (!TryCollectPredatorPredationData(predatorSpecies, preySpecies, membraneRigidityHitpointsModifier,
+                canEngulf, in preyData, out var predatorData))
         {
             return 0;
         }
@@ -1658,15 +1658,15 @@ public class SimulationCache
         if (predatorSlimeJetScore > 0)
             preySlimeJetScore = 0;
 
-        var cached = scoreMultiplier * MathF.Pow(aggressionScore, 0.5f) *
+        var combinedScore = scoreMultiplier * MathF.Pow(aggressionScore, 0.5f) *
             (1 + MathF.Pow(opportunismScore, 0.5f * Constants.AUTO_EVO_MAX_OPPORTUNISM_BONUS)) *
             ((predatorScores.Pilus + predatorScores.Engulfment + predatorScores.DamagingToxin) /
                 Math.Max(1, preySlimeJetScore + preyDefenseScores.Mucocysts + preyDefenseScores.Pilus +
                     preyDefenseScores.DamagingToxin));
-        if (cached < 0)
-            cached = 0;
+        if (combinedScore < 0)
+            combinedScore = 0;
 
-        return cached;
+        return combinedScore;
     }
 
     private (float Predator, float Prey) CalculateToxinScores(Species predatorSpecies,
@@ -2001,7 +2001,7 @@ public class SimulationCache
         return catchScore;
     }
 
-    private PredatorCapabilities? GetPredatorCapabilities(Species predatorSpecies)
+    private bool TryGetPredatorCapabilities(Species predatorSpecies, out PredatorCapabilities capabilities)
     {
         // First values necessary to check whether predation is possible at all
         PredationToolsRawScores predatorToolScores;
@@ -2038,14 +2038,16 @@ public class SimulationCache
         }
         else
         {
-            return null;
+            capabilities = default;
+            return false;
         }
 
-        return new PredatorCapabilities(predatorToolScores, canEngulf);
+        capabilities = new PredatorCapabilities(predatorToolScores, canEngulf);
+        return true;
     }
 
-    private PreyPredationData? CollectPreyPredationData(Species preySpecies,
-        float membraneRigidityHitpointsModifier)
+    private bool TryCollectPreyPredationData(Species preySpecies, float membraneRigidityHitpointsModifier,
+        out PreyPredationData data)
     {
         float smallestPreyHexSize;
         var dissolverEnzyme = Constants.LIPASE_ENZYME;
@@ -2154,16 +2156,19 @@ public class SimulationCache
         }
         else
         {
-            return null;
+            data = default;
+            return false;
         }
 
-        return new PreyPredationData(preyToolScores, preyHexSize, smallestPreyHexSize, dissolverEnzyme, preyHP,
+        data = new PreyPredationData(preyToolScores, preyHexSize, smallestPreyHexSize, dissolverEnzyme, preyHP,
             preyToxinResistance, preyPhysicalResistance, preyStorageNominal, preyHasSignallingAgent,
             preyOxygenUsingOrganellesCount);
+        return true;
     }
 
-    private PredatorPredationData? CollectPredatorPredationData(Species predatorSpecies, Species preySpecies,
-        float membraneRigidityHitpointsModifier, bool canEngulf, in PreyPredationData preyData)
+    private bool TryCollectPredatorPredationData(Species predatorSpecies, Species preySpecies,
+        float membraneRigidityHitpointsModifier, bool canEngulf, in PreyPredationData preyData,
+        out PredatorPredationData data)
     {
         var predatorHP = 1.0f;
         float predatorToxinResistance;
@@ -2280,12 +2285,14 @@ public class SimulationCache
         }
         else
         {
-            return null;
+            data = default;
+            return false;
         }
 
-        return new PredatorPredationData(predatorHexSize, predatorHP, predatorToxinResistance,
+        data = new PredatorPredationData(predatorHexSize, predatorHP, predatorToxinResistance,
             predatorPhysicalResistance, predatorStorageNominal, hasChemoreceptor, hasSignallingAgent,
             predatorOxygenUsingOrganellesCount, enzymesScore);
+        return true;
     }
 
     /// <summary>
