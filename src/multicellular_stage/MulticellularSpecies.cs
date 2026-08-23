@@ -276,8 +276,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 
         CheckCellTypesAndReproductionMethods();
 
-        MulticellularLayoutHelpers.UpdateGameplayLayoutForAutoEvo(
-            ModifiableGameplayCells, ModifiableEditorCells,
+        MulticellularLayoutHelpers.UpdateGameplayLayoutForAutoEvo(ModifiableGameplayCells, ModifiableEditorCells,
             hexTemporaryMemory1, hexTemporaryMemory2);
 
         CheckEditorCells();
