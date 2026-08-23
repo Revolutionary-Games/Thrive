@@ -261,6 +261,12 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 
         CheckCellTypesAndReproductionMethods();
 
+        if (MassBuddingCellCount < 1 || MassBuddingCellCount > ModifiableGameplayCells.Count)
+        {
+            throw new Exception("Mass budding bud size can't be less than one or more than the total amount of cells in"
+                + " the colony");
+        }
+
         CheckEditorCells();
 
 #if DEBUG
@@ -275,6 +281,12 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         RepositionCellTypesToOrigin();
 
         CheckCellTypesAndReproductionMethods();
+
+        if (MassBuddingCellCount < 1 || MassBuddingCellCount > ModifiableEditorCells.Count)
+        {
+            throw new Exception("Mass budding bud size can't be less than one or more than the total amount of cells in"
+                + " the colony");
+        }
 
         MulticellularLayoutHelpers.UpdateGameplayLayoutForAutoEvo(ModifiableGameplayCells, ModifiableEditorCells,
             hexTemporaryMemory1, hexTemporaryMemory2);
@@ -919,12 +931,6 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
             MassBuddingCellCount < Constants.MASS_BUDDING_MINIMUM_BUD_SIZE)
         {
             throw new Exception("Mass budding reproduction requires an initial bud size of at least two cells");
-        }
-
-        if (MassBuddingCellCount < 1 || MassBuddingCellCount > ModifiableGameplayCells.Count)
-        {
-            throw new Exception("Mass budding bud size can't be less than one or more than the total amount of cells in"
-                + " the colony");
         }
     }
 
