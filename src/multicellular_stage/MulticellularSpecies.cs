@@ -259,7 +259,13 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         // TODO: do we need to reposition for auto-evo?
         RepositionToOrigin();
 
-        CheckCellTypesAndReproductionMethods();
+        bool sporeCellTypeInList = false;
+        bool gameteTypeAInList = false;
+        bool gameteTypeBInList = false;
+
+        CheckCellTypes(ref sporeCellTypeInList, ref gameteTypeAInList, ref gameteTypeBInList);
+
+        CheckReproductionMethods(sporeCellTypeInList, gameteTypeAInList, gameteTypeBInList);
 
         CheckEditorCells();
 
@@ -274,10 +280,16 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
     {
         RepositionCellTypesToOrigin();
 
-        CheckCellTypesAndReproductionMethods();
+        bool sporeCellTypeInList = false;
+        bool gameteTypeAInList = false;
+        bool gameteTypeBInList = false;
+
+        CheckCellTypes(ref sporeCellTypeInList, ref gameteTypeAInList, ref gameteTypeBInList);
 
         MulticellularLayoutHelpers.UpdateGameplayLayoutForAutoEvo(ModifiableGameplayCells, ModifiableEditorCells,
             hexTemporaryMemory1, hexTemporaryMemory2);
+
+        CheckReproductionMethods(sporeCellTypeInList, gameteTypeAInList, gameteTypeBInList);
 
         CheckEditorCells();
 
@@ -856,12 +868,8 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         return result;
     }
 
-    private void CheckCellTypesAndReproductionMethods()
+    private bool CheckCellTypes(ref bool sporeCellTypeInList, ref bool gameteTypeAInList, ref bool gameteTypeBInList)
     {
-        bool sporeCellTypeInList = false;
-        bool gameteTypeAInList = false;
-        bool gameteTypeBInList = false;
-
         // Make certain these are all up to date
         foreach (var cellType in ModifiableCellTypes)
         {
@@ -889,6 +897,11 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
                 gameteTypeBInList = true;
         }
 
+        return sporeCellTypeInList;
+    }
+
+        private void CheckReproductionMethods(bool sporeCellTypeInList, bool gameteTypeAInList, bool gameteTypeBInList)
+    {
         if (!sporeCellTypeInList && ModifiableSporeCellType != null)
             throw new Exception($"Spore cell type isn't present in the cell type list: {ModifiableSporeCellType}");
 
