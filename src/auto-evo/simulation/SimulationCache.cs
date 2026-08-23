@@ -805,6 +805,32 @@ public class SimulationCache
             return score;
         }
 
+        var predationToolsRawScores = CalculateMicrobePredationToolsRawScores(microbeSpecies);
+
+        cachedPredationToolsRawScores.Add(key, predationToolsRawScores);
+        return predationToolsRawScores;
+    }
+
+    public PredationToolsRawScores GetPredationToolsRawScores(MulticellularSpecies multicellularSpecies)
+    {
+        // Seems like this takes twice the amount of time from the predation score calculation if this is not cached,
+        // so this should definitely use caching.
+        var key = GetSpeciesCacheKey(multicellularSpecies);
+        ref var score = ref CollectionsMarshal.GetValueRefOrNullRef(cachedPredationToolsRawScores, key);
+        if (!Unsafe.IsNullRef(ref score))
+        {
+            return score;
+        }
+
+        var predationToolsRawScores =
+            CalculateMulticellularPredationToolsRawScores(multicellularSpecies);
+
+        cachedPredationToolsRawScores.Add(key, predationToolsRawScores);
+        return predationToolsRawScores;
+    }
+
+    private PredationToolsRawScores CalculateMicrobePredationToolsRawScores(MicrobeSpecies species)
+    {
         var averageToxicity = 0.0f;
         var totalToxicity = 0.0f;
         var totalToxinScore = 0.0f;
@@ -822,7 +848,7 @@ public class SimulationCache
         var mucocystsScore = Constants.AUTO_EVO_MUCOCYST_SCORE;
         var pullingCiliaModifier = 1.0f;
 
-        var organelles = microbeSpecies.Organelles.Organelles;
+        var organelles = species.Organelles.Organelles;
         var organelleCount = organelles.Count;
         var totalToxinOrganellesCount = 0;
         var totalToxinTypesCount = 0;
@@ -1005,7 +1031,7 @@ public class SimulationCache
         slimeJetScore *= slimeJetsMultiplier;
 
         // application of specializationBonus to appropriate scores (microbe, so only CellTypeSpecializationBonus)
-        var specializationBonus = microbeSpecies.CellTypeSpecializationBonus;
+        var specializationBonus = species.CellTypeSpecializationBonus;
 
         oxytoxyScore *= specializationBonus;
         cytotoxinScore *= specializationBonus;
@@ -1024,22 +1050,11 @@ public class SimulationCache
         var predationToolsRawScores = new PredationToolsRawScores(pilusScore, injectisomeScore, defensivePilusScore,
             defensiveInjectisomeScore, averageToxicity, oxytoxyScore, cytotoxinScore, macrolideScore,
             channelInhibitorScore, oxygenMetabolismInhibitorScore, slimeJetScore, mucocystsScore, pullingCiliaModifier);
-
-        cachedPredationToolsRawScores.Add(key, predationToolsRawScores);
         return predationToolsRawScores;
     }
 
-    public PredationToolsRawScores GetPredationToolsRawScores(MulticellularSpecies multicellularSpecies)
+    private PredationToolsRawScores CalculateMulticellularPredationToolsRawScores(MulticellularSpecies species)
     {
-        // Seems like this takes twice the amount of time from the predation score calculation if this is not cached,
-        // so this should definitely use caching.
-        var key = GetSpeciesCacheKey(multicellularSpecies);
-        ref var score = ref CollectionsMarshal.GetValueRefOrNullRef(cachedPredationToolsRawScores, key);
-        if (!Unsafe.IsNullRef(ref score))
-        {
-            return score;
-        }
-
         var averageToxicity = 0.0f;
         var totalToxicity = 0.0f;
         var totalToxinAmount = 0.0f;
@@ -1076,7 +1091,7 @@ public class SimulationCache
         var hasChannelInhibitor = false;
         var hasOxygenMetabolismInhibitor = false;
 
-        var cellTypes = multicellularSpecies.CellTypes;
+        var cellTypes = species.CellTypes;
         for (var i = 0; i < cellTypes.Count; ++i)
         {
             var cellType = cellTypes[i];
@@ -1191,7 +1206,7 @@ public class SimulationCache
             // will do for now
             totalToxinTypesCount += cellTypeToxinTypesCount;
 
-            var cells = multicellularSpecies.EditorCells;
+            var cells = species.EditorCells;
 
             foreach (var hex in cells)
             {
@@ -1300,8 +1315,6 @@ public class SimulationCache
         var predationToolsRawScores = new PredationToolsRawScores(pilusScore, injectisomeScore, defensivePilusScore,
             defensiveInjectisomeScore, averageToxicity, oxytoxyScore, cytotoxinScore, macrolideScore,
             channelInhibitorScore, oxygenMetabolismInhibitorScore, slimeJetScore, mucocystsScore, pullingCiliaModifier);
-
-        cachedPredationToolsRawScores.Add(key, predationToolsRawScores);
         return predationToolsRawScores;
     }
 
