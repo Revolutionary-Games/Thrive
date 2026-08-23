@@ -866,16 +866,47 @@ public class SimulationCache
             oxygenMetabolismInhibitorScore);
     }
 
+    private static PilusToolScores CalculatePilusToolScores(in PilusToolCounts counts)
+    {
+        var pilusScore = Constants.AUTO_EVO_PILUS_PREDATION_SCORE;
+        var injectisomeScore = Constants.AUTO_EVO_PILUS_PREDATION_SCORE;
+        var defensivePilusScore = Constants.AUTO_EVO_PILUS_DEFENSE_SCORE;
+        var defensiveInjectisomeScore = Constants.AUTO_EVO_PILUS_DEFENSE_SCORE;
+
+        if (counts.Pilus != 0 || counts.Injectisome != 0)
+        {
+            var pilusScale = MathF.Sqrt(counts.Pilus + counts.Injectisome) / (counts.Pilus + counts.Injectisome);
+            pilusScore *= counts.Pilus * pilusScale;
+            injectisomeScore *= counts.Injectisome * pilusScale;
+        }
+        else
+        {
+            pilusScore *= counts.Pilus;
+            injectisomeScore *= counts.Injectisome;
+        }
+
+        if (counts.DefensivePilus != 0 || counts.DefensiveInjectisome != 0)
+        {
+            var pilusScale = MathF.Sqrt(counts.DefensivePilus + counts.DefensiveInjectisome) /
+                (counts.DefensivePilus + counts.DefensiveInjectisome);
+            defensivePilusScore *= counts.DefensivePilus * pilusScale;
+            defensiveInjectisomeScore *= counts.DefensiveInjectisome * pilusScale;
+        }
+        else
+        {
+            defensivePilusScore *= counts.DefensivePilus;
+            defensiveInjectisomeScore *= counts.DefensiveInjectisome;
+        }
+
+        return new PilusToolScores(pilusScore, injectisomeScore, defensivePilusScore, defensiveInjectisomeScore);
+    }
+
     private PredationToolsRawScores CalculateMicrobePredationToolsRawScores(MicrobeSpecies species)
     {
         var averageToxicity = 0.0f;
         var totalToxicity = 0.0f;
         var totalToxinScore = 0.0f;
         var everyToxinScore = 0.0f;
-        var pilusScore = Constants.AUTO_EVO_PILUS_PREDATION_SCORE;
-        var injectisomeScore = Constants.AUTO_EVO_PILUS_PREDATION_SCORE;
-        var defensivePilusScore = Constants.AUTO_EVO_PILUS_DEFENSE_SCORE;
-        var defensiveInjectisomeScore = Constants.AUTO_EVO_PILUS_DEFENSE_SCORE;
         var slimeJetScore = Constants.AUTO_EVO_SLIME_JET_SCORE;
         var mucocystsScore = Constants.AUTO_EVO_MUCOCYST_SCORE;
         var pullingCiliaModifier = 1.0f;
@@ -1019,30 +1050,13 @@ public class SimulationCache
         pullingCiliaModifier *= 1 + MathF.Sqrt(pullingCiliasCount) * Constants.AUTO_EVO_PULL_CILIA_MODIFIER;
 
         // Having lots of extra pili also does not help, even if they are two different types
-        if (pilusCount != 0 || injectisomeCount != 0)
-        {
-            var pilusScale = MathF.Sqrt(pilusCount + injectisomeCount) / (pilusCount + injectisomeCount);
-            pilusScore *= pilusCount * pilusScale;
-            injectisomeScore *= injectisomeCount * pilusScale;
-        }
-        else
-        {
-            pilusScore *= pilusCount;
-            injectisomeScore *= injectisomeCount;
-        }
-
-        if (defensivePilusCount != 0 || defensiveInjectisomeCount != 0)
-        {
-            var pilusScale = MathF.Sqrt(defensivePilusCount + defensiveInjectisomeCount) /
-                (defensivePilusCount + defensiveInjectisomeCount);
-            defensivePilusScore *= defensivePilusCount * pilusScale;
-            defensiveInjectisomeScore *= defensiveInjectisomeCount * pilusScale;
-        }
-        else
-        {
-            defensivePilusScore *= defensivePilusCount;
-            defensiveInjectisomeScore *= defensiveInjectisomeCount;
-        }
+        var pilusCounts = new PilusToolCounts(pilusCount, injectisomeCount, defensivePilusCount,
+            defensiveInjectisomeCount);
+        var pilusScores = CalculatePilusToolScores(in pilusCounts);
+        var pilusScore = pilusScores.Pilus;
+        var injectisomeScore = pilusScores.Injectisome;
+        var defensivePilusScore = pilusScores.DefensivePilus;
+        var defensiveInjectisomeScore = pilusScores.DefensiveInjectisome;
 
         slimeJetScore *= slimeJetsCount;
         slimeJetScore *= slimeJetsMultiplier;
@@ -1076,10 +1090,6 @@ public class SimulationCache
         var totalToxicity = 0.0f;
         var totalToxinAmount = 0.0f;
         var everyToxinScore = 0.0f;
-        var pilusScore = Constants.AUTO_EVO_PILUS_PREDATION_SCORE;
-        var injectisomeScore = Constants.AUTO_EVO_PILUS_PREDATION_SCORE;
-        var defensivePilusScore = Constants.AUTO_EVO_PILUS_DEFENSE_SCORE;
-        var defensiveInjectisomeScore = Constants.AUTO_EVO_PILUS_DEFENSE_SCORE;
         var slimeJetScore = Constants.AUTO_EVO_SLIME_JET_SCORE;
         var mucocystsScore = Constants.AUTO_EVO_MUCOCYST_SCORE;
         var pullingCiliaModifier = 1.0f;
@@ -1272,30 +1282,13 @@ public class SimulationCache
         pullingCiliaModifier *= 1 + MathF.Sqrt(pullingCiliasCount) * Constants.AUTO_EVO_PULL_CILIA_MODIFIER;
 
         // Having lots of extra pili also does not help, even if they are two different types
-        if (pilusCount != 0 || injectisomeCount != 0)
-        {
-            var pilusScale = MathF.Sqrt(pilusCount + injectisomeCount) / (pilusCount + injectisomeCount);
-            pilusScore *= pilusCount * pilusScale;
-            injectisomeScore *= injectisomeCount * pilusScale;
-        }
-        else
-        {
-            pilusScore *= pilusCount;
-            injectisomeScore *= injectisomeCount;
-        }
-
-        if (defensivePilusCount != 0 || defensiveInjectisomeCount != 0)
-        {
-            var pilusScale = MathF.Sqrt(defensivePilusCount + defensiveInjectisomeCount) /
-                (defensivePilusCount + defensiveInjectisomeCount);
-            defensivePilusScore *= defensivePilusCount * pilusScale;
-            defensiveInjectisomeScore *= defensiveInjectisomeCount * pilusScale;
-        }
-        else
-        {
-            defensivePilusScore *= defensivePilusCount;
-            defensiveInjectisomeScore *= defensiveInjectisomeCount;
-        }
+        var pilusCounts = new PilusToolCounts(pilusCount, injectisomeCount, defensivePilusCount,
+            defensiveInjectisomeCount);
+        var pilusScores = CalculatePilusToolScores(in pilusCounts);
+        var pilusScore = pilusScores.Pilus;
+        var injectisomeScore = pilusScores.Injectisome;
+        var defensivePilusScore = pilusScores.DefensivePilus;
+        var defensiveInjectisomeScore = pilusScores.DefensiveInjectisome;
 
         if (slimeJetsMultiplierCount > 0)
             slimeJetsMultiplier = slimeJetsMultiplierSum / slimeJetsMultiplierCount;
@@ -2430,6 +2423,16 @@ public class SimulationCache
         float Macrolide,
         float ChannelInhibitor,
         float OxygenMetabolismInhibitor);
+
+    private readonly record struct PilusToolCounts(float Pilus,
+        float Injectisome,
+        float DefensivePilus,
+        float DefensiveInjectisome);
+
+    private readonly record struct PilusToolScores(float Pilus,
+        float Injectisome,
+        float DefensivePilus,
+        float DefensiveInjectisome);
 
     private readonly record struct PredatorCapabilities(PredationToolsRawScores ToolScores, bool CanEngulf);
 
