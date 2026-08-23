@@ -794,7 +794,7 @@ public class SimulationCache
         throw new ArgumentException("Incompatible species type given");
     }
 
-    private PredationToolsRawScores GetPredationToolsRawScores(MicrobeSpecies microbeSpecies)
+    public PredationToolsRawScores GetPredationToolsRawScores(MicrobeSpecies microbeSpecies)
     {
         // Seems like this takes twice the amount of time from the predation score calculation if this is not cached,
         // so this should definitely use caching.
@@ -1029,7 +1029,7 @@ public class SimulationCache
         return predationToolsRawScores;
     }
 
-    private PredationToolsRawScores GetPredationToolsRawScores(MulticellularSpecies multicellularSpecies)
+    public PredationToolsRawScores GetPredationToolsRawScores(MulticellularSpecies multicellularSpecies)
     {
         // Seems like this takes twice the amount of time from the predation score calculation if this is not cached,
         // so this should definitely use caching.
@@ -2395,7 +2395,7 @@ public class SimulationCache
 #endif
 
     // helper for GetPredationToolsRawScores
-    private readonly record struct PredationToolsRawScores(float PilusScore,
+    public readonly record struct PredationToolsRawScores(float PilusScore,
         float InjectisomeScore,
         float DefensivePilusScore,
         float DefensiveInjectisomeScore,
