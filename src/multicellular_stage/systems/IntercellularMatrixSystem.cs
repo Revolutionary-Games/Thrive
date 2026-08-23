@@ -56,7 +56,7 @@ public partial class IntercellularMatrixSystem : BaseSystem<World, float>
 
         var ourMembrane = cellProperties.CreatedMembrane;
         var targetMembrane = parentEntity.Get<CellProperties>().CreatedMembrane;
-        if (ourMembrane == null || targetMembrane == null)
+        if (ourMembrane?.IsMulticellular != true || targetMembrane?.IsMulticellular != true)
             return;
 
         Vector3 targetRelativePos;
@@ -97,8 +97,7 @@ public partial class IntercellularMatrixSystem : BaseSystem<World, float>
             }
         }
 
-        Vector3 pointA, pointB;
-        (pointA, pointB) = FindGoodConnectionPoints(ourMembrane.MembraneData,
+        var (pointA, pointB) = FindGoodConnectionPoints(ourMembrane.MembraneData,
             targetMembrane.MembraneData, targetRelativePos, ourRotation, targetRotation);
 
         var relativePosition = pointB - pointA;
@@ -106,7 +105,8 @@ public partial class IntercellularMatrixSystem : BaseSystem<World, float>
 
         if (relativePosLength < 0.5f)
         {
-            intercellularMatrix.IsConnectionRedundant = true;
+            intercellularMatrix.RemoveConnection();
+            intercellularMatrix.ShouldRegenerateConnection = false;
             return;
         }
 
@@ -121,6 +121,8 @@ public partial class IntercellularMatrixSystem : BaseSystem<World, float>
         connection.Quaternion = Quaternion.FromEuler(new Vector3(0.0f, angle, 0.0f));
         connection.Position += (pointA + pointB) * 0.5f;
 
+        intercellularMatrix.RemoveConnection();
+        intercellularMatrix.ShouldRegenerateConnection = false;
         intercellularMatrix.GeneratedConnection = connection;
 
         ApplyConnectionMaterialParameters(entity, ref intercellularMatrix);
@@ -129,31 +131,117 @@ public partial class IntercellularMatrixSystem : BaseSystem<World, float>
     private static (Vector3 PointA, Vector3 PointB) FindGoodConnectionPoints(MembranePointData membraneA,
         MembranePointData membraneB, Vector3 membraneBOffset, Quaternion rotationA, Quaternion rotationB)
     {
-        float min = float.MaxValue;
-        Vector3 pointA = Vector3.Zero;
-        Vector3 pointB = membraneBOffset;
-        foreach (var a in membraneA.Vertices2D)
+        // Centroids of both membranes, expressed in membrane A's local coordinate frame.
+        var centroidA = new Vector3(membraneA.AverageVertex.X, 0.0f, membraneA.AverageVertex.Y);
+        var centroidB = (rotationB * new Vector3(membraneB.AverageVertex.X, 0.0f, membraneB.AverageVertex.Y)
+            + membraneBOffset) * rotationA;
+
+        var segmentStart = new Vector2(centroidA.X, centroidA.Z);
+        var segmentEnd = new Vector2(centroidB.X, centroidB.Z);
+
+        // Both membranes are convex, so the line between their centroids is guaranteed
+        // to cross each membrane's boundary exactly once.
+        Vector3 pointA, pointB;
+        if (FindBoundaryCrossingA(segmentStart, segmentEnd, membraneA, out var crossingA))
         {
-            var convertedA = new Vector3(a.X, 0.0f, a.Y);
+            pointA = new Vector3(crossingA.X, 0.0f, crossingA.Y);
+        }
+        else
+        {
+            GD.PrintErr("Failed to find boundary crossing for membrane A, using centroid instead");
+            pointA = centroidA;
+        }
 
-            foreach (var b in membraneB.Vertices2D)
-            {
-                // First rotate the vertex by membrane B rotation
-                // Then inversely rotate it by A's rotation to get the true relative coordinates
-                var rotatedB = (rotationB * new Vector3(b.X, 0.0f, b.Y) + membraneBOffset) * rotationA;
-
-                float distance = convertedA.DistanceSquaredTo(rotatedB);
-
-                if (distance < min)
-                {
-                    min = distance;
-                    pointA = convertedA;
-                    pointB = rotatedB;
-                }
-            }
+        if (FindBoundaryCrossingB(segmentStart, segmentEnd, membraneB, membraneBOffset, rotationB,
+                rotationA, out var crossingB))
+        {
+            pointB = new Vector3(crossingB.X, 0.0f, crossingB.Y);
+        }
+        else
+        {
+            GD.PrintErr("Failed to find boundary crossing for membrane B, using centroid instead");
+            pointB = centroidB;
         }
 
         return (pointA, pointB);
+    }
+
+    private static bool FindBoundaryCrossingA(Vector2 segmentStart, Vector2 segmentEnd,
+        MembranePointData membrane, out Vector2 crossing)
+    {
+        crossing = default;
+        int count = membrane.VertexCount;
+        var previous = membrane.Vertices2D[count - 1];
+
+        for (int i = 0; i < count; ++i)
+        {
+            var current = membrane.Vertices2D[i];
+
+            if (TryGetSegmentIntersection(segmentStart, segmentEnd, previous, current, out crossing))
+                return true;
+
+            previous = current;
+        }
+
+        return false;
+    }
+
+    private static bool FindBoundaryCrossingB(Vector2 segmentStart, Vector2 segmentEnd,
+        MembranePointData membrane, Vector3 offset, Quaternion rotation, Quaternion rotationA, out Vector2 crossing)
+    {
+        crossing = default;
+        int count = membrane.VertexCount;
+        var previous = ToMembraneAFrame(membrane.Vertices2D[count - 1], offset, rotation, rotationA);
+
+        for (int i = 0; i < count; ++i)
+        {
+            var current = ToMembraneAFrame(membrane.Vertices2D[i], offset, rotation, rotationA);
+
+            if (TryGetSegmentIntersection(segmentStart, segmentEnd, previous, current, out crossing))
+                return true;
+
+            previous = current;
+        }
+
+        return false;
+    }
+
+    private static Vector2 ToMembraneAFrame(Vector2 point, Vector3 offset, Quaternion rotation,
+        Quaternion rotationA)
+    {
+        var transformed = (rotation * new Vector3(point.X, 0.0f, point.Y) + offset) * rotationA;
+        return new Vector2(transformed.X, transformed.Z);
+    }
+
+    /// <summary>
+    ///   Tests for 2 segments intersection. Returns the intersection point.
+    /// </summary>
+    private static bool TryGetSegmentIntersection(Vector2 a, Vector2 b, Vector2 c, Vector2 d, out Vector2 intersection)
+    {
+        intersection = default;
+        var segmentA = b - a;
+        var segmentB = d - c;
+
+        float denominator = segmentA.Cross(segmentB);
+
+        // Skip parallel (or almost) edges
+        if (Math.Abs(denominator) < MathUtils.EPSILON)
+        {
+            return false;
+        }
+
+        var diff = c - a;
+
+        float pointAlongAb = diff.Cross(segmentB) / denominator;
+        float pointAlongCd = diff.Cross(segmentA) / denominator;
+
+        if (pointAlongAb is >= 0.0f and <= 1.0f && pointAlongCd is >= 0.0f and <= 1.0f)
+        {
+            intersection = a + segmentA * pointAlongAb;
+            return true;
+        }
+
+        return false;
     }
 
     private static void ApplyConnectionMaterialParameters(in Entity entity,
@@ -177,7 +265,7 @@ public partial class IntercellularMatrixSystem : BaseSystem<World, float>
     {
         if (entity.Has<MicrobeColonyMember>())
         {
-            if (!matrix.IsConnectionRedundant && matrix.GeneratedConnection == null)
+            if (matrix.ShouldRegenerateConnection)
             {
                 var leader = entity.Get<MicrobeColonyMember>().ColonyLeader;
 

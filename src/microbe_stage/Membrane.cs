@@ -82,6 +82,8 @@ public partial class Membrane : MeshInstance3D
     /// </remarks>
     public bool IsChangingShape { get; set; }
 
+    public bool IsMulticellular { get; set; }
+
     /// <summary>
     ///   Generated membrane point data. Must be set when instances of this class is created before anything is allowed
     ///   to be done with this.

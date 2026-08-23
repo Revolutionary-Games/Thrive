@@ -196,6 +196,11 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
                     data = GetMulticellularMembraneDataIfReadyOrStartGenerating(cell, cell.ModifiableOrganelles,
                         colonyLeaderKey, memberCellKey, ref speciesMember, ref growthOrder, cellIndex,
                         nextBodyPlanCellToGrowIndex);
+
+                    if (data != null && entity.Has<IntercellularMatrix>())
+                    {
+                        entity.Get<IntercellularMatrix>().ShouldRegenerateConnection = true;
+                    }
                 }
             }
         }
@@ -224,6 +229,11 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
             var membrane = membraneScene.Value.Instantiate<Membrane>() ??
                 throw new Exception("Invalid membrane scene");
 
+            if (!useSingleCellMembraneGeneration && entity.Has<IntercellularMatrix>())
+            {
+                entity.Get<IntercellularMatrix>().ShouldRegenerateConnection = true;
+            }
+
             SetMembraneDisplayData(membrane, data, ref cellProperties);
 
             spatialInstance.GraphicalInstance.AddChild(membrane);
@@ -237,6 +247,8 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
             // For example, an engulfed cell has its membrane wigglyness removed
             SetMembraneDisplayData(cellProperties.CreatedMembrane, data, ref cellProperties);
         }
+
+        cellProperties.CreatedMembrane!.IsMulticellular = !useSingleCellMembraneGeneration;
 
         // Material is initialized in _Ready, so this is after AddChild of membrane
         tempMaterialsList.Add(cellProperties.CreatedMembrane!.MembraneShaderMaterial ??

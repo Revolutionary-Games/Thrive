@@ -49,6 +49,11 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
 
         Vertices2D = copyTarget;
         VertexCount = count;
+
+        if (IsPreMulticellularStretch)
+        {
+            AverageVertex = GetAverageVertex(Vertices2D, VertexCount);
+        }
     }
 
     ~MembranePointData()
@@ -73,6 +78,8 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
 
     // TODO: check all uses when switching this
     public Vector2[] Vertices2D { get; }
+
+    public Vector2 AverageVertex { get; } = default(Vector2);
 
     public int VertexCount { get; }
 
@@ -113,6 +120,22 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
     ///   Flag used for differentiation in caching when retrieving single cell membrane before and after stretching
     /// </summary>
     public bool IsPreMulticellularStretch { get; }
+
+    public static Vector2 GetAverageVertex(Vector2[] vertices2D, int vertexCount)
+    {
+        if (vertexCount == 0)
+            throw new InvalidOperationException("Cannot calculate average vertex with zero vertices");
+
+        var averageVertex = Vector2.Zero;
+        for (int i = 0; i < vertexCount; ++i)
+        {
+            averageVertex += vertices2D[i];
+        }
+
+        averageVertex /= vertexCount;
+
+        return averageVertex;
+    }
 
     public bool MatchesCacheParameters(ICacheableData cacheData)
     {
@@ -205,25 +228,8 @@ public sealed class NeighbourData
         CellKey = cellKey;
         OriginalPointData = originalPointData;
         MulticellularMembraneGenerationCellData = multicellularMembraneGenerationCellData;
-        OriginalAverageVertex = GetAverageVertex();
-    }
-
-    private Vector2 GetAverageVertex()
-    {
-        var vertexCount = OriginalPointData.VertexCount;
-
-        if (vertexCount == 0)
-            throw new InvalidOperationException("Cannot calculate average vertex with zero vertices");
-
-        var averageVertex = Vector2.Zero;
-        for (int i = 0; i < vertexCount; ++i)
-        {
-            averageVertex += OriginalPointData.Vertices2D[i];
-        }
-
-        averageVertex /= vertexCount;
-
-        return averageVertex;
+        OriginalAverageVertex =
+            MembranePointData.GetAverageVertex(OriginalPointData.Vertices2D, OriginalPointData.VertexCount);
     }
 }
 
