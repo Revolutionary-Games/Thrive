@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using Xoshiro.PRNG32;
 
 public class CreatureTexturePhotographable : IScenePhotographable
 {
@@ -36,6 +37,28 @@ public class CreatureTexturePhotographable : IScenePhotographable
 
     public void ApplySceneParameters(Node3D instancedScene)
     {
-        ((CreatureTexturePhotoBuilder)instancedScene).SetMesh(CreatureMesh);
+        var photobuilder = (CreatureTexturePhotoBuilder)instancedScene;
+        photobuilder.SetMesh(CreatureMesh);
+
+        var arrays = CreatureMesh.SurfaceGetArrays(0);
+
+        var vertices = arrays[(int)ArrayMesh.ArrayType.Vertex].AsVector3Array();
+        var normals = arrays[(int)ArrayMesh.ArrayType.Normal].AsVector3Array();
+
+        var matrices = new Godot.Collections.Array();
+
+        var random = new XoShiRo128starstar();
+
+        for (int i = 0; i < 500; ++i)
+        {
+            int index = random.Next() % vertices.Length;
+
+            // TODO: better calculations of the up vector
+            var basis = Basis.LookingAt(-normals[index], Vector3.Right);
+
+            matrices.Add(new Transform3D(basis, vertices[index]).Inverse());
+        }
+
+        photobuilder.SetProjectionMatrices(matrices);
     }
 }

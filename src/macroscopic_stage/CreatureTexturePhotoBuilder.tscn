@@ -46,7 +46,7 @@ shader_parameter/patternCurveB = SubResource("CurveTexture_785uv")
 shader_parameter/noiseScaleTop = Vector2(0.2, 0.2)
 shader_parameter/noiseScaleSide = Vector2(0.2, 0.2)
 shader_parameter/noiseScaleFront = Vector2(0.2, 0.2)
-shader_parameter/projected2Scale = Vector3(1, 1, 1)
+shader_parameter/projected2Scale = Vector3(1.5, 1.5, 1)
 
 [node name="CreatureTexturePhotoBuilder" type="Node3D" unique_id=50714754 node_paths=PackedStringArray("meshInstance3D")]
 script = ExtResource("1_22vpy")

@@ -11,8 +11,23 @@ public partial class CreatureTexturePhotoBuilder : Node3D
     private MeshInstance3D meshInstance3D = null!;
 #pragma warning restore CA2213
 
+    private StringName projectionMatrices = new("matrices");
+
     public void SetMesh(Mesh mesh)
     {
         meshInstance3D.Mesh = mesh;
+    }
+
+    public void SetProjectionMatrices(Godot.Collections.Array matrices)
+    {
+        ((ShaderMaterial)meshInstance3D.MaterialOverride).SetShaderParameter(projectionMatrices, matrices);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            projectionMatrices.Dispose();
+        }
     }
 }

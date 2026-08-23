@@ -82,7 +82,7 @@ void fragment() {
 		
 		vec3 pos1 = (matrix * vec4(pos, 1.0f)).xyz * projected2Scale;
 		
-		matrix[3] = vec4(0.0f);
+		matrix[3] = vec4(0.0f, 0.0f, 0.0f, 1.0f);
 		
 		vec3 normal1 = (matrix * vec4(normal, 1.0f)).xyz;
 		
