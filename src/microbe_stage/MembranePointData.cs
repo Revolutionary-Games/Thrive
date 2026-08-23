@@ -79,7 +79,7 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
     // TODO: check all uses when switching this
     public Vector2[] Vertices2D { get; }
 
-    public Vector2 AverageVertex { get; } = default(Vector2);
+    public Vector2 AverageVertex { get; }
 
     public int VertexCount { get; }
 
