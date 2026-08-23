@@ -829,17 +829,49 @@ public class SimulationCache
         return predationToolsRawScores;
     }
 
+    private static ToxinToolScores CalculateToxinToolScores(float averageToxicity, float everyToxinScore,
+        in ToxinPresence presence)
+    {
+        var oxytoxyScore = 0.0f;
+        var cytotoxinScore = 0.0f;
+        var macrolideScore = 0.0f;
+        var channelInhibitorScore = 0.0f;
+        var oxygenMetabolismInhibitorScore = 0.0f;
+
+        if (presence.HasOxytoxy)
+        {
+            oxytoxyScore = everyToxinScore * (Constants.OXYTOXY_DAMAGE / Constants.CYTOTOXIN_DAMAGE) *
+                MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(averageToxicity, ToxinType.Oxytoxy);
+        }
+
+        if (presence.HasCytotoxin)
+        {
+            cytotoxinScore = everyToxinScore *
+                MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(averageToxicity, ToxinType.Cytotoxin);
+        }
+
+        if (presence.HasMacrolide)
+            macrolideScore = everyToxinScore;
+        if (presence.HasChannelInhibitor)
+            channelInhibitorScore = everyToxinScore;
+        if (presence.HasOxygenMetabolismInhibitor)
+        {
+            oxygenMetabolismInhibitorScore = everyToxinScore *
+                (Constants.OXYGEN_INHIBITOR_DAMAGE / Constants.CYTOTOXIN_DAMAGE) *
+                MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(averageToxicity,
+                    ToxinType.OxygenMetabolismInhibitor);
+        }
+
+        return new ToxinToolScores(oxytoxyScore, cytotoxinScore, macrolideScore, channelInhibitorScore,
+            oxygenMetabolismInhibitorScore);
+    }
+
     private PredationToolsRawScores CalculateMicrobePredationToolsRawScores(MicrobeSpecies species)
     {
         var averageToxicity = 0.0f;
         var totalToxicity = 0.0f;
         var totalToxinScore = 0.0f;
         var everyToxinScore = 0.0f;
-        var oxytoxyScore = 0.0f;
-        var cytotoxinScore = 0.0f;
-        var macrolideScore = 0.0f;
-        var channelInhibitorScore = 0.0f;
-        var oxygenMetabolismInhibitorScore = 0.0f;
         var pilusScore = Constants.AUTO_EVO_PILUS_PREDATION_SCORE;
         var injectisomeScore = Constants.AUTO_EVO_PILUS_PREDATION_SCORE;
         var defensivePilusScore = Constants.AUTO_EVO_PILUS_DEFENSE_SCORE;
@@ -973,29 +1005,14 @@ public class SimulationCache
             everyToxinScore = totalToxinScore / totalToxinTypesCount;
         }
 
-        if (hasOxytoxy)
-        {
-            oxytoxyScore = everyToxinScore * (Constants.OXYTOXY_DAMAGE / Constants.CYTOTOXIN_DAMAGE) *
-                MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(averageToxicity, ToxinType.Oxytoxy);
-        }
-
-        if (hasCytotoxin)
-        {
-            cytotoxinScore = everyToxinScore *
-                MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(averageToxicity, ToxinType.Cytotoxin);
-        }
-
-        if (hasMacrolide)
-            macrolideScore = everyToxinScore;
-        if (hasChannelInhibitor)
-            channelInhibitorScore = everyToxinScore;
-        if (hasOxygenMetabolismInhibitor)
-        {
-            oxygenMetabolismInhibitorScore = everyToxinScore *
-                (Constants.OXYGEN_INHIBITOR_DAMAGE / Constants.CYTOTOXIN_DAMAGE) *
-                MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(averageToxicity,
-                    ToxinType.OxygenMetabolismInhibitor);
-        }
+        var toxinPresence = new ToxinPresence(hasOxytoxy, hasCytotoxin, hasMacrolide, hasChannelInhibitor,
+            hasOxygenMetabolismInhibitor);
+        var toxinScores = CalculateToxinToolScores(averageToxicity, everyToxinScore, in toxinPresence);
+        var oxytoxyScore = toxinScores.Oxytoxy;
+        var cytotoxinScore = toxinScores.Cytotoxin;
+        var macrolideScore = toxinScores.Macrolide;
+        var channelInhibitorScore = toxinScores.ChannelInhibitor;
+        var oxygenMetabolismInhibitorScore = toxinScores.OxygenMetabolismInhibitor;
 
         // Having lots of mucocysts and pulling cilias doesn't really help much
         mucocystsScore *= MathF.Sqrt(mucocystsCount);
@@ -1059,11 +1076,6 @@ public class SimulationCache
         var totalToxicity = 0.0f;
         var totalToxinAmount = 0.0f;
         var everyToxinScore = 0.0f;
-        var oxytoxyScore = 0.0f;
-        var cytotoxinScore = 0.0f;
-        var macrolideScore = 0.0f;
-        var channelInhibitorScore = 0.0f;
-        var oxygenMetabolismInhibitorScore = 0.0f;
         var pilusScore = Constants.AUTO_EVO_PILUS_PREDATION_SCORE;
         var injectisomeScore = Constants.AUTO_EVO_PILUS_PREDATION_SCORE;
         var defensivePilusScore = Constants.AUTO_EVO_PILUS_DEFENSE_SCORE;
@@ -1246,29 +1258,14 @@ public class SimulationCache
             everyToxinScore = totalToxinAmount * Constants.AUTO_EVO_TOXIN_PREDATION_SCORE / totalToxinTypesCount;
         }
 
-        if (hasOxytoxy)
-        {
-            oxytoxyScore = everyToxinScore * (Constants.OXYTOXY_DAMAGE / Constants.CYTOTOXIN_DAMAGE) *
-                MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(averageToxicity, ToxinType.Oxytoxy);
-        }
-
-        if (hasCytotoxin)
-        {
-            cytotoxinScore = everyToxinScore *
-                MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(averageToxicity, ToxinType.Cytotoxin);
-        }
-
-        if (hasMacrolide)
-            macrolideScore = everyToxinScore;
-        if (hasChannelInhibitor)
-            channelInhibitorScore = everyToxinScore;
-        if (hasOxygenMetabolismInhibitor)
-        {
-            oxygenMetabolismInhibitorScore = everyToxinScore *
-                (Constants.OXYGEN_INHIBITOR_DAMAGE / Constants.CYTOTOXIN_DAMAGE) *
-                MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(averageToxicity,
-                    ToxinType.OxygenMetabolismInhibitor);
-        }
+        var toxinPresence = new ToxinPresence(hasOxytoxy, hasCytotoxin, hasMacrolide, hasChannelInhibitor,
+            hasOxygenMetabolismInhibitor);
+        var toxinScores = CalculateToxinToolScores(averageToxicity, everyToxinScore, in toxinPresence);
+        var oxytoxyScore = toxinScores.Oxytoxy;
+        var cytotoxinScore = toxinScores.Cytotoxin;
+        var macrolideScore = toxinScores.Macrolide;
+        var channelInhibitorScore = toxinScores.ChannelInhibitor;
+        var oxygenMetabolismInhibitorScore = toxinScores.OxygenMetabolismInhibitor;
 
         // Having lots of mucocysts and pulling cilias doesn't really help much
         mucocystsScore *= MathF.Sqrt(mucocystsCount);
@@ -2421,6 +2418,18 @@ public class SimulationCache
         float SlimeJetScore,
         float MucocystsScore,
         float PullingCiliaModifier);
+
+    private readonly record struct ToxinPresence(bool HasOxytoxy,
+        bool HasCytotoxin,
+        bool HasMacrolide,
+        bool HasChannelInhibitor,
+        bool HasOxygenMetabolismInhibitor);
+
+    private readonly record struct ToxinToolScores(float Oxytoxy,
+        float Cytotoxin,
+        float Macrolide,
+        float ChannelInhibitor,
+        float OxygenMetabolismInhibitor);
 
     private readonly record struct PredatorCapabilities(PredationToolsRawScores ToolScores, bool CanEngulf);
 
