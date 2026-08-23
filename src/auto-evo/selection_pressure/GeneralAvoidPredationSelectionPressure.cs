@@ -83,6 +83,9 @@ public class GeneralAvoidPredationSelectionPressure : SelectionPressure
                 continue;
             }
 
+            if (!Miche.IsSpeciesSupported(predator.Key))
+                continue;
+
             var predationScore = cache.GetPredationScore(predator.Key, species, patch.Biome);
 
             if (predationScore <= 1)

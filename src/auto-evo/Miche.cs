@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Godot;
@@ -209,6 +210,9 @@ public class Miche : IArchivable
         if (Readonly && !dry)
             throw new InvalidOperationException("This miche tree is readonly and cannot be modified");
 
+        if (depth == 0 && !IsSpeciesSupported(species))
+            return false;
+
         var myScore = Pressure.Score(species, patch, cache);
 
         // Prune branch if species fails any pressures
@@ -356,6 +360,11 @@ public class Miche : IArchivable
         // TODO: as Occupant can change it should not be used as part of the hash code
         return Pressure.GetHashCode() * 131 ^ parentHash * 587 ^
             (Occupant == null ? 17 : Occupant.GetHashCode()) * 5171;
+    }
+
+    internal static bool IsSpeciesSupported([NotNullWhen(true)] Species? species)
+    {
+        return species is MicrobeSpecies or MulticellularSpecies;
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

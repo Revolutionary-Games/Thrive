@@ -259,7 +259,7 @@ public static class MichePopulation
             node.BackTraversal(currentBackTraversal);
             foreach (var currentSpecies in species)
             {
-                if (currentSpecies is not MicrobeSpecies and not MulticellularSpecies)
+                if (!Miche.IsSpeciesSupported(currentSpecies))
                     continue;
 
                 var occupantSpecies = node.Occupant;
@@ -278,7 +278,7 @@ public static class MichePopulation
 
                     var occupantScore = 0.0f;
 
-                    if (occupantSpecies is MicrobeSpecies or MulticellularSpecies)
+                    if (Miche.IsSpeciesSupported(occupantSpecies))
                     {
                         occupantScore =
                             cache.GetPressureScore(currentMiche.Pressure, patch, occupantSpecies);
@@ -326,7 +326,7 @@ public static class MichePopulation
 
         foreach (var currentSpecies in species)
         {
-            if (currentSpecies is not MicrobeSpecies and not MulticellularSpecies)
+            if (!Miche.IsSpeciesSupported(currentSpecies))
             {
                 var population = simulationConfiguration.Results.GetPopulationInPatch(currentSpecies, patch);
                 populations.AddPopulationResultForSpecies(currentSpecies, patch, population);
