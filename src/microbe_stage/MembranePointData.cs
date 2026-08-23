@@ -50,7 +50,7 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
         Vertices2D = copyTarget;
         VertexCount = count;
 
-        if (IsPreMulticellularStretch)
+        if (!IsPreMulticellularStretch)
         {
             AverageVertex = GetAverageVertex(Vertices2D, VertexCount);
         }

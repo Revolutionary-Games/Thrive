@@ -762,7 +762,8 @@ public static class MicrobeColonyHelpers
                 colony.ColonyStructure[next] = colony.ColonyMembers[newParent];
                 if (next.Has<IntercellularMatrix>())
                 {
-                    next.Get<IntercellularMatrix>().ShouldRegenerateConnection = true;
+                    ref var matrix = ref next.Get<IntercellularMatrix>();
+                    matrix.ShouldRegenerateConnection = true;
                 }
                 else
                 {
