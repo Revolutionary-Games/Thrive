@@ -18,6 +18,11 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
 
     private IImageTask? texturizationTask;
 
+#pragma warning disable CA2213
+    [Export]
+    private Material blitMaterial = null!;
+#pragma warning restore CA2213
+
     public float? OverrideColourAlpha
     {
         get => overrideColourAlpha;
@@ -78,6 +83,22 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
                 // whether the output uses text or binary format.
                 // `GltfDocument.GenerateBuffer()` is also available for saving to memory.
                 gltfDocumentLoad.WriteToFilesystem(gltfStateLoad, "G:/Downloads/A.gltf");
+            }
+
+            var texture = new DrawableTexture2D();
+            texture.Setup(texturizationTask.FinalImage.GetWidth(), texturizationTask.FinalImage.GetHeight(),
+                DrawableTexture2D.DrawableFormat.Rgba8);
+
+            ((ShaderMaterial)blitMaterial).SetShaderParameter("jumpSize",
+                1.0f / texturizationTask.FinalImage.GetWidth());
+
+            texture.BlitRect(new Rect2I(Vector2I.Zero,
+                    new Vector2I(texturizationTask.FinalImage.GetWidth(), texturizationTask.FinalImage.GetHeight())),
+                texturizationTask.FinalImage, material: blitMaterial);
+
+            if (material != null)
+            {
+                material.AlbedoTexture = texture;
             }
 
             Mesh.SurfaceSetMaterial(0, material);

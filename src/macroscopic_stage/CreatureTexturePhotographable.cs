@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 using System;
 using Xoshiro.PRNG32;
 
