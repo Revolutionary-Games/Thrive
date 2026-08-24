@@ -236,6 +236,45 @@ public class ColonyCompoundBagTests
         AssertThat(thirdBag.GetCompoundAmount(Compound.Oxytoxy)).IsEqual(8);
     }
 
+    [TestCase]
+    public void DistributeCompoundsKeepsNonUsefulOnesWithoutAReceiver()
+    {
+        using var world = ThriveWorld.Create();
+        var firstBag = CreateBag(10, Compound.Ammonia);
+        var secondBag = CreateBag(10, Compound.Ammonia);
+        var thirdBag = CreateBag(10, Compound.Ammonia, Compound.Oxytoxy);
+        var colonyBag = CreateColonyBag(world, firstBag, secondBag, thirdBag);
+
+        SetAmount(firstBag, Compound.Oxytoxy, 7);
+        SetAmount(secondBag, Compound.Oxytoxy, 3);
+        SetAmount(thirdBag, Compound.Oxytoxy, 10);
+
+        colonyBag.DistributeCompoundSurplus();
+
+        AssertThat(firstBag.GetCompoundAmount(Compound.Oxytoxy)).IsEqual(7);
+        AssertThat(secondBag.GetCompoundAmount(Compound.Oxytoxy)).IsEqual(3);
+        AssertThat(thirdBag.GetCompoundAmount(Compound.Oxytoxy)).IsEqual(10);
+    }
+
+    [TestCase]
+    public void DistributeCompoundsKeepsNonUsefulOnesWithoutCapacity()
+    {
+        using var world = ThriveWorld.Create();
+        var firstBag = CreateBag(10, Compound.Ammonia);
+        var secondBag = CreateBag(10, Compound.Ammonia);
+        var thirdBag = CreateBag(0, Compound.Ammonia, Compound.Oxytoxy);
+        var colonyBag = CreateColonyBag(world, firstBag, secondBag, thirdBag);
+
+        SetAmount(firstBag, Compound.Oxytoxy, 1);
+        SetAmount(secondBag, Compound.Oxytoxy, 2);
+
+        colonyBag.DistributeCompoundSurplus();
+
+        AssertThat(firstBag.GetCompoundAmount(Compound.Oxytoxy)).IsEqual(1);
+        AssertThat(secondBag.GetCompoundAmount(Compound.Oxytoxy)).IsEqual(2);
+        AssertThat(thirdBag.GetCompoundAmount(Compound.Oxytoxy)).IsEqual(0);
+    }
+
     private static CompoundBag CreateBag(float nominalCapacity, params Compound[] usefulCompounds)
     {
         var bag = new CompoundBag(nominalCapacity);
