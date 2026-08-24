@@ -231,8 +231,6 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
     {
         base.OnEdited();
 
-        UpdateInitialCompounds();
-
         // TODO: do we need to reposition for auto-evo?
         RepositionToOrigin();
 
@@ -250,6 +248,7 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
 
         CellTypeSpecializationBonus = MicrobeInternalCalculations.CalculateSpecializationBonus(Organelles,
             new Dictionary<OrganelleDefinition, int>());
+        UpdateInitialCompounds();
         UpdateIsBacteria();
 
         cachedFillTimes.Clear();
