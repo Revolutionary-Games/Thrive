@@ -800,10 +800,10 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 
     public override object Clone()
     {
-        return Clone(true);
+        return Clone(true, true);
     }
 
-    public MulticellularSpecies Clone(bool cloneOrganelles)
+    public MulticellularSpecies Clone(bool cloneOrganelles, bool cloneGameplayLayout)
     {
         var result = new MulticellularSpecies(ID, Genus, Epithet);
 
@@ -831,15 +831,24 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
                 result.ModifiableGameteTypeB = clonedType;
         }
 
-        foreach (var cellTemplate in ModifiableGameplayCells)
+        if (cloneGameplayLayout)
         {
-            var oldType = cellTemplate.ModifiableCellType;
+            foreach (var cellTemplate in ModifiableGameplayCells)
+            {
+                var oldType = cellTemplate.ModifiableCellType;
 
-            if (!typeMapping.TryGetValue(oldType, out var newType))
-                throw new Exception("Cell type not found in species");
+                if (!typeMapping.TryGetValue(oldType, out var newType))
+                    throw new Exception("Cell type not found in species");
 
-            result.ModifiableGameplayCells.AddFast(
-                new CellTemplate(newType, cellTemplate.Position, cellTemplate.Orientation),
+                result.ModifiableGameplayCells.AddFast(
+                    new CellTemplate(newType, cellTemplate.Position, cellTemplate.Orientation),
+                    workMemory1, workMemory2);
+            }
+        }
+        else
+        {
+            ModifiableGameplayCells.Clear();
+            ModifiableGameplayCells.AddFast(new CellTemplate(ModifiableCellTypes[0], new Hex(0, 0), 0),
                 workMemory1, workMemory2);
         }
 

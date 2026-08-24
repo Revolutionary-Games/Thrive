@@ -127,7 +127,7 @@ public class AddCellWithOrganelle : IMutationStrategy<Species>
                 // We take the smallest exising cell type as a template to add the new organelle to
                 var smallestCellSize = baseMulticellularSpecies.CellTypes[0].BaseHexSize;
                 var smallestCellIndex = 0;
-                var newSpecies = (MulticellularSpecies)baseMulticellularSpecies.Clone();
+                var newSpecies = (MulticellularSpecies)baseMulticellularSpecies.Clone(true, false);
 
                 for (int i = 0; i < baseCellTypesCount; ++i)
                 {
@@ -175,7 +175,7 @@ public class AddCellWithOrganelle : IMutationStrategy<Species>
                     {
                         // For neutral positioning organelles, we create a mutant for adding the new celltype both to
                         // the front and the rear
-                        var newSpeciesFront = (MulticellularSpecies)newSpecies.Clone();
+                        var newSpeciesFront = newSpecies.Clone(true, false);
                         var newCellTypeFront = (CellType)newCellType.Clone();
                         TryAddCenterlineCellMutant(Direction.Front, newCellTypeFront, newSpeciesFront, workMemory1,
                             workMemory2, random, newMp, mutated);
@@ -241,7 +241,7 @@ public class AddCellWithOrganelle : IMutationStrategy<Species>
 
         foreach (var adjacencyDirection in Enum.GetValues<AdjacencyDirection>())
         {
-            var newSpecies = (MulticellularSpecies)baseMulticellularSpecies.Clone();
+            var newSpecies = baseMulticellularSpecies.Clone(true, false);
             var newMp = mp;
             var newCellType = newSpecies.ModifiableCellTypes[mostSuitableIndex];
 
