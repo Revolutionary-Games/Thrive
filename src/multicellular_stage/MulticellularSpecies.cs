@@ -256,6 +256,8 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
     {
         base.OnEdited();
 
+        UpdateInitialCompounds();
+
         // TODO: do we need to reposition for auto-evo?
         RepositionToOrigin();
 
@@ -390,8 +392,6 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
             var cellType = ModifiableCellTypes[i];
             cellType.CalculateSpecialization();
         }
-
-        UpdateInitialCompounds();
 
         cachedFillTimes.Clear();
     }

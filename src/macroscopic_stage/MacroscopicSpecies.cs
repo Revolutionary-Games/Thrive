@@ -82,6 +82,8 @@ public class MacroscopicSpecies : Species, IReadOnlyMacroscopicSpecies
     {
         base.OnEdited();
 
+        UpdateInitialCompounds();
+
         // TODO: do we need to reposition for auto-evo?
         RepositionToOrigin();
 
@@ -104,7 +106,6 @@ public class MacroscopicSpecies : Species, IReadOnlyMacroscopicSpecies
     {
         base.OnAttemptedInAutoEvo(refreshCache);
 
-        UpdateInitialCompounds();
         CalculateBrainPower();
         CalculateMuscularPower();
 
