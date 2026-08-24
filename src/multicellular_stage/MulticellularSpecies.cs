@@ -499,8 +499,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
                 ProcessSystem.ComputeCompoundBalance(cellTemplate.ModifiableOrganelles,
                     biomeConditions, environmentalTolerances, 1, CompoundAmountType.Biome, false, compoundBalances);
 
-                storageCapacity +=
-                    MicrobeInternalCalculations.CalculateCapacity(ModifiableGameplayCells[i].ModifiableOrganelles);
+                storageCapacity += MicrobeInternalCalculations.CalculateCapacity(cellTemplate.ModifiableOrganelles);
             }
         }
         else

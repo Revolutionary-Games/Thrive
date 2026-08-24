@@ -80,7 +80,7 @@ public class CellLayout<T> : HexLayout<T>, IReadOnlyCellLayout<T>, IArchivable
     ///   A somewhat inefficient sanity check that this is a valid layout with no overlaps
     /// </summary>
     /// <exception cref="InvalidOperationException">Thrown if cells overlap</exception>
-    public void ThrowIfCellsOverlap(Species? species = null)
+    public void ThrowIfCellsOverlap()
     {
         var seen = new HashSet<Hex>();
 
@@ -102,11 +102,6 @@ public class CellLayout<T> : HexLayout<T>, IReadOnlyCellLayout<T>, IArchivable
                         Hex.RotateAxialNTimes(organelle.Position, positionedCell.Orientation) + positionedCell.Position;
                     if (!seen.Add(position))
                     {
-                        if (species != null)
-                        {
-                            GD.Print(species.ReadableName, " ", species.ID);
-                        }
-
                         throw new InvalidOperationException($"Cell {positionedCell} overlaps with another cell");
                     }
                 }
