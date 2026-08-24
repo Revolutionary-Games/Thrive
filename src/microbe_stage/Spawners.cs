@@ -433,6 +433,12 @@ public static class SpawnHelpers
 
             foreach (var entry in chunkType.Compounds!)
             {
+                if (float.IsNaN(entry.Value.Amount))
+                {
+                    GD.PrintErr($"Skipping adding NaN amount compound to chunk spawn! {entry.Key} is NaN");
+                    continue;
+                }
+
                 // Directly write compounds to avoid the capacity limit
                 compounds.Compounds.Add(entry.Key, entry.Value.Amount);
 
@@ -447,7 +453,10 @@ public static class SpawnHelpers
 
             // ReSharper disable once CompareOfFloatsByEqualityOperator
             if (compounds.GetCompoundAmount(toCheck.Key) != toCheck.Value.Amount)
-                throw new Exception("Chunk compound adding failed");
+            {
+                throw new Exception($"Chunk compound adding failed ({compounds.GetCompoundAmount(toCheck.Key)} != " +
+                    $"{toCheck.Value.Amount})");
+            }
 #endif
 
             commandRecorder.Set(entity, new CompoundStorage
