@@ -249,10 +249,6 @@ public class ModifyExistingSpecies : IRunStep
                         if (multicellularMutant != null)
                         {
                             multicellularMutant.ModifiableGameplayCells.ThrowIfCellsOverlap(multicellularMutant);
-                            MulticellularLayoutHelpers.UpdateGameplayLayoutForAutoEvo(
-                                multicellularMutant.ModifiableGameplayCells, multicellularMutant.ModifiableEditorCells,
-                                hexTemporaryMemory1, hexTemporaryMemory2);
-                            multicellularMutant.ModifiableGameplayCells.ThrowIfCellsOverlap(multicellularMutant);
                         }
 
                         // Only apply a new name and colour to results that are actually kept
@@ -449,6 +445,11 @@ public class ModifyExistingSpecies : IRunStep
                 {
                     // TODO: this seems like the longest part, so splitting this into multiple steps (maybe bundling
                     // up mutation strategies) would be good to have the auto-evo steps flow more smoothly
+                    if (speciesTuple.Species is MulticellularSpecies multicellularSpecies)
+                    {
+                        multicellularSpecies.ModifiableGameplayCells.ThrowIfCellsOverlap(multicellularSpecies);
+                    }
+
                     var mutated = mutationStrategy.MutationsOf(speciesTuple.Species, speciesTuple.MP, lawk, random,
                         patch.Biome);
 
