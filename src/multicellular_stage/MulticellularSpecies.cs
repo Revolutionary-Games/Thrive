@@ -486,14 +486,33 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 
         float storageCapacity = 0.0f;
 
-        // We don't take specialization into account here, so we overestimate how much stuff is needed
-        for (int i = 0; i < initialCellCount; ++i)
+        // We don't take specialization into account here, so we overestimate how much stuff is needed.
+        // Use Editor Cells if possible, for auto-evo purposes
+        if (modifiableEditorCells != null)
         {
-            ProcessSystem.ComputeCompoundBalance(ModifiableGameplayCells[i].ModifiableOrganelles,
-                biomeConditions, environmentalTolerances, 1, CompoundAmountType.Biome, false, compoundBalances);
+            for (int i = 0; i < initialCellCount; ++i)
+            {
+                var cellTemplate = ModifiableEditorCells[i].Data;
+                if (cellTemplate == null)
+                    continue;
 
-            storageCapacity +=
-                MicrobeInternalCalculations.CalculateCapacity(ModifiableGameplayCells[i].ModifiableOrganelles);
+                ProcessSystem.ComputeCompoundBalance(cellTemplate.ModifiableOrganelles,
+                    biomeConditions, environmentalTolerances, 1, CompoundAmountType.Biome, false, compoundBalances);
+
+                storageCapacity +=
+                    MicrobeInternalCalculations.CalculateCapacity(ModifiableGameplayCells[i].ModifiableOrganelles);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < initialCellCount; ++i)
+            {
+                ProcessSystem.ComputeCompoundBalance(ModifiableGameplayCells[i].ModifiableOrganelles,
+                    biomeConditions, environmentalTolerances, 1, CompoundAmountType.Biome, false, compoundBalances);
+
+                storageCapacity +=
+                    MicrobeInternalCalculations.CalculateCapacity(ModifiableGameplayCells[i].ModifiableOrganelles);
+            }
         }
 
         InitialCompounds.Clear();
