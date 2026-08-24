@@ -84,8 +84,6 @@ public class ColonyCompoundBag : ICompoundStorage
     {
         var bags = GetCompoundBags();
 
-        GD.Print("Compound bag count: " + bags.Count);
-
         usefulCompoundsBuffer.Clear();
         availableCompounds.Clear();
         compoundCapacities.Clear();
@@ -101,12 +99,6 @@ public class ColonyCompoundBag : ICompoundStorage
         // Don't share ATP
         usefulCompoundsBuffer.Remove(Compound.ATP);
 
-        GD.Print("Useful compounds:");
-        foreach (var compound in usefulCompoundsBuffer)
-        {
-            GD.Print($" {compound}");
-        }
-
         bool needsNonUsefulAdjustments = false;
 
         // This is used as a sum of non-useful compounds
@@ -115,8 +107,6 @@ public class ColonyCompoundBag : ICompoundStorage
         // Then offer up the compounds
         foreach (var bag in bags)
         {
-            GD.Print("Next bag");
-
             foreach (var bagCompound in bag.Compounds)
             {
                 // Don't offer compounds to move that nobody finds useful in this colony
@@ -125,8 +115,6 @@ public class ColonyCompoundBag : ICompoundStorage
 
                 if (bagCompound.Value <= 0)
                     continue;
-
-                GD.Print($" Amount({bagCompound.Key}): {bagCompound.Value}");
 
                 // Has available compound, try to share with other bags
                 if (availableCompounds.TryGetValue(bagCompound.Key, out var availableAmount))
@@ -165,8 +153,6 @@ public class ColonyCompoundBag : ICompoundStorage
                 if (bagCapacity <= 0)
                     continue;
 
-                GD.Print($" Capacity({compound}): {bagCapacity}");
-
                 // Report the capacity so that correct fraction of compound is received
                 if (compoundCapacities.TryGetValue(compound, out var capacity))
                 {
@@ -198,8 +184,6 @@ public class ColonyCompoundBag : ICompoundStorage
                 // Share the outgoing capacity across cells if there isn't enough space
                 var sendFactor = Math.Min(1, receiverCapacity / entry.Value);
 
-                GD.Print($"Not useful: {entry.Key}, available space: {receiverCapacity}");
-
                 // Then take as much from the sender bags as the receivers can take
                 foreach (var bag in bags)
                 {
@@ -212,20 +196,11 @@ public class ColonyCompoundBag : ICompoundStorage
 
                     // Take as much from the bag as can fit in receivers
                     var toTake = Math.Min(receiverCapacity, amount * sendFactor);
-                    GD.Print($"Moving this amount of not useful out: {toTake}");
-
-                    // Share the outgoing capacity across cells if there isn't enough space
-                    /*if (receiverCapacity < entry.Value)
-                    {
-                        toTake *= amount / entry.Value;
-                        GD.Print($"To take adjustment to: {toTake}");
-                    }*/
 
                     // If ran out of space, don't take anything.
                     if (toTake > 0)
                     {
                         bag.TakeCompound(entry.Key, toTake);
-                        GD.Print($"Amount left in sender bag: {bag.GetCompoundAmount(entry.Key)}");
                         receiverCapacity -= toTake;
                     }
 
@@ -234,26 +209,11 @@ public class ColonyCompoundBag : ICompoundStorage
                     if (couldNotShare > 0)
                     {
                         availableCompounds[entry.Key] -= couldNotShare;
-                        GD.Print($"Adjusted available compound down to: {availableCompounds[entry.Key]}");
                     }
-
-                    GD.Print($"Finished one bag, capacity left: {receiverCapacity}");
                 }
             }
 
             summedCompoundsBuffer.Clear();
-        }
-
-        GD.Print("Compound capacities:");
-        foreach (var entry in compoundCapacities)
-        {
-            GD.Print($" {entry.Key}: {entry.Value}");
-        }
-
-        GD.Print("Compounds to share:");
-        foreach (var entry in availableCompounds)
-        {
-            GD.Print($" {entry.Key}: {entry.Value}");
         }
 
 #if DEBUG
@@ -272,7 +232,6 @@ public class ColonyCompoundBag : ICompoundStorage
 
         foreach (var entry in availableCompounds)
         {
-            GD.Print($"Amount of {entry.Key} to share: {entry.Value}");
             foreach (var bag in bags)
             {
                 var capacity = bag.GetCapacityForCompound(entry.Key);
@@ -286,8 +245,6 @@ public class ColonyCompoundBag : ICompoundStorage
 
                 var difference = targetLevel - bag.GetCompoundAmount(entry.Key);
 
-                GD.Print($"Bag gets ({entry.Key}) {targetLevel} out of {entry.Value}. Adjustment: {difference}");
-
                 if (difference > 0)
                 {
                     bag.AddCompound(entry.Key, difference);
@@ -298,8 +255,6 @@ public class ColonyCompoundBag : ICompoundStorage
                     // We need to negate the value to get it to be positive for taking away compounds
                     bag.TakeCompound(entry.Key, -difference);
                 }
-
-                GD.Print($" Resulting amount of {entry.Key}: {bag.GetCompoundAmount(entry.Key)}");
             }
         }
     }
