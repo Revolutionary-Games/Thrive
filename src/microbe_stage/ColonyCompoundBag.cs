@@ -170,7 +170,13 @@ public class ColonyCompoundBag : ICompoundStorage
             // We want to remove these amounts to not cause infinite compounds to accumulate
             foreach (var entry in summedCompoundsBuffer)
             {
-                var receiverCapacity = compoundCapacities[entry.Key];
+                // Just in case bad data goes in the dictionary somehow (avoid division by zero a few lines below)
+                if (entry.Value <= 0)
+                    continue;
+
+                // It should be impossible for no capacity to exist for a useful compound, but just in case we use 0
+                // as a fallback
+                var receiverCapacity = compoundCapacities.GetValueOrDefault(entry.Key, 0);
 
                 // Exclude already used space
                 foreach (var bag in bags)
@@ -180,6 +186,9 @@ public class ColonyCompoundBag : ICompoundStorage
                         receiverCapacity -= bag.GetCompoundAmount(entry.Key);
                     }
                 }
+
+                // If there is no space left, ensure things don't go negative
+                receiverCapacity = Math.Max(receiverCapacity, 0);
 
                 // Share the outgoing capacity across cells if there isn't enough space
                 var sendFactor = Math.Min(1, receiverCapacity / entry.Value);
@@ -232,6 +241,10 @@ public class ColonyCompoundBag : ICompoundStorage
 
         foreach (var entry in availableCompounds)
         {
+            // The above loop reports these errors but avoid causing problems when applying them then anyway.
+            if (!compoundCapacities.TryGetValue(entry.Key, out var totalCapacity) || totalCapacity <= 0)
+                continue;
+
             foreach (var bag in bags)
             {
                 var capacity = bag.GetCapacityForCompound(entry.Key);
@@ -241,7 +254,7 @@ public class ColonyCompoundBag : ICompoundStorage
                     continue;
 
                 // Other bags will grab a share according to their capacity
-                var targetLevel = availableCompounds[entry.Key] * (capacity / compoundCapacities[entry.Key]);
+                var targetLevel = entry.Value * (capacity / totalCapacity);
 
                 var difference = targetLevel - bag.GetCompoundAmount(entry.Key);
 
@@ -251,9 +264,16 @@ public class ColonyCompoundBag : ICompoundStorage
                 }
                 else
                 {
-                    // TODO: should we check the return value here to ensure enough was taken?
                     // We need to negate the value to get it to be positive for taking away compounds
-                    bag.TakeCompound(entry.Key, -difference);
+                    var taken = bag.TakeCompound(entry.Key, -difference);
+
+#if DEBUG
+                    var couldNotTake = -difference - taken;
+                    if (couldNotTake > MathUtils.EPSILON)
+                        GD.PrintErr($"Could not take expected compound amount while distributing {entry.Key}");
+#else
+                    _ = taken;
+#endif
                 }
             }
         }
