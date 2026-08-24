@@ -51,8 +51,6 @@ public partial class CellBodyPlanEditorComponent
 
         OnCellToPlaceSelected(data.CellType.CellTypeName);
 
-        Editor.DirtyMutationPointsCache();
-
         UpdateGameteDropdowns();
     }
 
@@ -62,14 +60,11 @@ public partial class CellBodyPlanEditorComponent
         if (!Editor.EditedSpecies.ModifiableCellTypes.Remove(data.CellType))
             GD.PrintErr("Failed to delete cell type from species");
 
+        CellTypeVisualsOverride?.ForgetChanges(data.CellType);
+
         UpdateCellTypeSelections();
 
         Editor.DirtyMutationPointsCache();
-
-        if (ReferenceEquals(data.CellType, SporeCellType))
-        {
-            SporeCellType = Editor.EditedSpecies.ModifiableCellTypes[0];
-        }
 
         if (ReferenceEquals(data.CellType, GameteACellType))
         {
@@ -184,14 +179,19 @@ public partial class CellBodyPlanEditorComponent
         {
             if (!Editor.EditedSpecies.ModifiableCellTypes.Remove(oldCellType))
                 GD.PrintErr("Failed to delete the spore cell type from species");
+
+            CellTypeVisualsOverride?.ForgetChanges(oldCellType);
         }
+
+        SporeCellType = newCellType;
 
         if (newCellType != null)
         {
             OnCellTypeAdded(newCellType);
-        }
 
-        SporeCellType = newCellType;
+            // In case spore cell type's name gets changed
+            UpdateSpecialCellTypeDisplays();
+        }
     }
 
     [ArchiveAllowedMethod]
@@ -244,11 +244,11 @@ public partial class CellBodyPlanEditorComponent
 
         EmitSignal(SignalName.OnCellTypeToEditSelected, added.CellTypeName, false);
 
+        Editor.DirtyMutationPointsCache();
+
         UpdateCellTypeSelections();
 
         UpdateCellTypesSecondaryInfo();
-
-        Editor.DirtyMutationPointsCache();
     }
 
     private void OnReproductionMethodChangedToSexual()
