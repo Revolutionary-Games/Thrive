@@ -60,7 +60,10 @@ public partial class CellBodyPlanEditorComponent
         if (!Editor.EditedSpecies.ModifiableCellTypes.Remove(data.CellType))
             GD.PrintErr("Failed to delete cell type from species");
 
-        CellTypeVisualsOverride?.ForgetChanges(data.CellType);
+        if (!data.Delete)
+        {
+            CellTypeVisualsOverride?.ForgetChanges(data.CellType);
+        }
 
         UpdateCellTypeSelections();
 
@@ -170,6 +173,11 @@ public partial class CellBodyPlanEditorComponent
     [ArchiveAllowedMethod]
     private void UndoSporeCellChangeAction(SporeCellTypeChangeActionData data)
     {
+        if (data.NewCellType != null)
+        {
+            CellTypeVisualsOverride?.ForgetChanges(data.NewCellType);
+        }
+
         ChangeSporeCellType(data.NewCellType, data.OldCellType);
     }
 
@@ -179,8 +187,6 @@ public partial class CellBodyPlanEditorComponent
         {
             if (!Editor.EditedSpecies.ModifiableCellTypes.Remove(oldCellType))
                 GD.PrintErr("Failed to delete the spore cell type from species");
-
-            CellTypeVisualsOverride?.ForgetChanges(oldCellType);
         }
 
         SporeCellType = newCellType;
