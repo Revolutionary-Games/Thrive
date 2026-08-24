@@ -104,10 +104,13 @@ public class CellLayout<T> : HexLayout<T>, IReadOnlyCellLayout<T>, IArchivable
                     {
                         if (species != null)
                         {
-                            GD.Print(species.ReadableName, " ", species.ID);
+                            throw new InvalidOperationException($"Cell {positionedCell} in {species.ReadableName}" +
+                                $"{species.ID} overlaps with another cell");
                         }
-
-                        throw new InvalidOperationException($"Cell {positionedCell} overlaps with another cell");
+                        else
+                        {
+                            throw new InvalidOperationException($"Cell {positionedCell} overlaps with another cell");
+                        }
                     }
                 }
             }
