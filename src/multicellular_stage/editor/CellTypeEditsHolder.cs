@@ -98,7 +98,7 @@ public class CellTypeEditsHolder : IArchiveUpdatable
 
     public void ForgetChanges(CellType cellType)
     {
-        for (int i = 0; i < cellTypeMapping.Count; i++)
+        for (int i = 0; i < cellTypeMapping.Count; ++i)
         {
             if (ReferenceEquals(cellTypeMapping[i].Original, cellType))
             {

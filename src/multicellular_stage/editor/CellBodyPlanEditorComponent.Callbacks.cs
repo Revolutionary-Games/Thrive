@@ -244,11 +244,11 @@ public partial class CellBodyPlanEditorComponent
 
         EmitSignal(SignalName.OnCellTypeToEditSelected, added.CellTypeName, false);
 
-        Editor.DirtyMutationPointsCache();
-
         UpdateCellTypeSelections();
 
         UpdateCellTypesSecondaryInfo();
+
+        Editor.DirtyMutationPointsCache();
     }
 
     private void OnReproductionMethodChangedToSexual()
