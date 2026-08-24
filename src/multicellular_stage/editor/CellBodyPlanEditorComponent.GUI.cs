@@ -15,6 +15,11 @@ public partial class CellBodyPlanEditorComponent
 
     private bool changingPlayerGameteTypeAutomatically;
 
+    /// <summary>
+    ///   When true, mass budding is automatically changing and no change actions are triggered.
+    /// </summary>
+    private bool loadingMassBuddingState;
+
     public void OnReproductionMethodSelected(int selectedOption)
     {
         var selectedMethod = ReproductionMethodIndexToValue(selectedOption);
@@ -73,6 +78,14 @@ public partial class CellBodyPlanEditorComponent
         // Allow the desired value to be higher than max (to handle the case of cell removal)
         if (newCellCount == maxValue && DesiredMassBuddingCellCount > maxValue)
             return;
+
+        if (loadingMassBuddingState)
+        {
+            var targetCount = (int)count;
+            GD.Print("Mass budding count changing during loading to: " + targetCount);
+            DesiredMassBuddingCellCount = Math.Min(targetCount, editedMicrobeCells.Count);
+            return;
+        }
 
         var action = new SingleEditorAction<MassBuddingCellCountActionData>(DoMassBuddingCellCountChangeAction,
             UndoMassBuddingCellCountChangeAction,
@@ -233,7 +246,10 @@ public partial class CellBodyPlanEditorComponent
 
         UpdateSpecialCellTypeDisplays();
         UpdateGameteDropdowns();
+
+        loadingMassBuddingState = true;
         UpdateMassBuddingCellCountSlider();
+        loadingMassBuddingState = false;
 
         UpdateCancelButtonVisibility();
     }

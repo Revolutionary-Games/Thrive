@@ -11,7 +11,7 @@ using Systems;
 /// </summary>
 public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISimulationPhotographable
 {
-    public const ushort SERIALIZATION_VERSION = 6;
+    public const ushort SERIALIZATION_VERSION = 7;
 
     private readonly Dictionary<BiomeConditions, Dictionary<Compound, (float TimeToFill, float Storage)>>
         cachedFillTimes = new();
@@ -222,6 +222,15 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         if (version >= 6)
         {
             instance.PlayerGamete = (GameteType)reader.ReadInt32();
+        }
+
+        if (version < 7)
+        {
+            // Fix old mass budding count to know about minimum size being 2
+            if (instance.MassBuddingCellCount < 2 && instance.ModifiableGameplayCells.Count > 1)
+            {
+                instance.MassBuddingCellCount = 2;
+            }
         }
 
         return instance;
