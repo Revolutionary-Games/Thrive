@@ -69,6 +69,11 @@ public partial class CellBodyPlanEditorComponent
 
         Editor.DirtyMutationPointsCache();
 
+        if (ReferenceEquals(data.CellType, SporeCellType))
+        {
+            SporeCellType = null;
+        }
+
         if (ReferenceEquals(data.CellType, GameteACellType))
         {
             GameteACellType = Editor.EditedSpecies.ModifiableCellTypes[0];
