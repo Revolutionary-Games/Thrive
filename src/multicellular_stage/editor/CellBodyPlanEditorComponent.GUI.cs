@@ -81,9 +81,10 @@ public partial class CellBodyPlanEditorComponent
 
         if (loadingMassBuddingState)
         {
-            var targetCount = (int)count;
+            var targetCount = Math.Clamp((int)count, Constants.MASS_BUDDING_MINIMUM_BUD_SIZE,
+                editedMicrobeCells.Count);
             GD.Print("Mass budding count changing during loading to: " + targetCount);
-            DesiredMassBuddingCellCount = Math.Min(targetCount, editedMicrobeCells.Count);
+            DesiredMassBuddingCellCount = targetCount;
             return;
         }
 
@@ -248,8 +249,14 @@ public partial class CellBodyPlanEditorComponent
         UpdateGameteDropdowns();
 
         loadingMassBuddingState = true;
-        UpdateMassBuddingCellCountSlider();
-        loadingMassBuddingState = false;
+        try
+        {
+            UpdateMassBuddingCellCountSlider();
+        }
+        finally
+        {
+            loadingMassBuddingState = false;
+        }
 
         UpdateCancelButtonVisibility();
     }
