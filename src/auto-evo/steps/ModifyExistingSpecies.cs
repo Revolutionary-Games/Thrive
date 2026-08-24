@@ -237,7 +237,6 @@ public class ModifyExistingSpecies : IRunStep
                             MulticellularLayoutHelpers.UpdateGameplayLayoutForAutoEvo(
                                 multicellularMutant.ModifiableGameplayCells, multicellularMutant.ModifiableEditorCells,
                                 hexTemporaryMemory1, hexTemporaryMemory2);
-                            multicellularMutant.ModifiableGameplayCells.ThrowIfCellsOverlap(multicellularMutant);
                         }
 
                         // OnEdited is expensive, so we only run it here on species that exit auto-evo
@@ -248,11 +247,9 @@ public class ModifyExistingSpecies : IRunStep
                         // This duplicates the work, but for now is required to have auto-evo working.
                         if (multicellularMutant != null)
                         {
-                            multicellularMutant.ModifiableGameplayCells.ThrowIfCellsOverlap(multicellularMutant);
                             MulticellularLayoutHelpers.UpdateGameplayLayoutForAutoEvo(
                                 multicellularMutant.ModifiableGameplayCells, multicellularMutant.ModifiableEditorCells,
                                 hexTemporaryMemory1, hexTemporaryMemory2);
-                            multicellularMutant.ModifiableGameplayCells.ThrowIfCellsOverlap(multicellularMutant);
                         }
 
                         // Only apply a new name and colour to results that are actually kept
@@ -359,9 +356,6 @@ public class ModifyExistingSpecies : IRunStep
 
     private void GetMutationsForSpecies(Species species, int speciesInPatch)
     {
-        if (species is MulticellularSpecies multicellularSpecies)
-            multicellularSpecies.ModifiableGameplayCells.ThrowIfCellsOverlap(multicellularSpecies);
-
         double totalMP = Constants.BASE_MUTATION_POINTS * worldSettings.AIMutationMultiplier;
 
         generateMutationsWorkingMemory.Clear();
