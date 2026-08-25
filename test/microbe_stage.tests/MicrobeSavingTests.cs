@@ -48,14 +48,14 @@ public class MicrobeSavingTests
         gameWorld.GenerationHistory.Add(0, new GenerationRecord(0, records));
 
         var manager = new ThriveArchiveManager();
-        var data = new MemoryStream();
-        var writer = new SArchiveMemoryWriter(data, manager, false);
+        using var data = new MemoryStream();
+        using var writer = new SArchiveMemoryWriter(data, manager, false);
 
         manager.OnStartNewWrite(writer);
         writer.WriteObject(gameWorld);
         manager.OnFinishWrite(writer);
 
-        var reader = new SArchiveMemoryReader(data, manager);
+        using var reader = new SArchiveMemoryReader(data, manager);
         data.Position = 0;
 
         manager.OnStartNewRead(reader);
@@ -69,6 +69,8 @@ public class MicrobeSavingTests
         var loadedB = (MicrobeSpecies)loadedWorld.Species[speciesB.ID];
         var loadedC = (MicrobeSpecies)loadedWorld.Species[speciesC.ID];
         AssertThat(loadedA.Organelles.Count).IsEqual(2);
+        AssertThat(loadedB.Organelles.Count).IsEqual(2);
+        AssertThat(loadedC.Organelles.Count).IsEqual(2);
         AssertThat(((ChemoreceptorUpgrades)loadedA.Organelles.Organelles[1].ModifiableUpgrades!.CustomUpgradeData!)
             .TargetSpecies).IsSame(loadedB);
         AssertThat(((ChemoreceptorUpgrades)loadedB.Organelles.Organelles[1].ModifiableUpgrades!.CustomUpgradeData!)
