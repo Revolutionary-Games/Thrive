@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-25 10:37+0300\n"
+"POT-Creation-Date: 2026-08-25 17:16+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -92,10 +92,10 @@ msgstr ""
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr ""
 
-#: ../src/general/base_stage/EditorBase.cs:953
+#: ../src/general/base_stage/EditorBase.cs:965
 #: ../src/macroscopic_stage/editor/MacroscopicEditor.cs:568
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:59
-#: ../src/multicellular_stage/editor/MulticellularEditor.cs:699
+#: ../src/multicellular_stage/editor/MulticellularEditor.cs:704
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr ""
 
@@ -362,7 +362,7 @@ msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 
 #: ../src/gui_common/menus/PlanetStatistics.tscn:145
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:605
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:616
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:478
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:482
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:255
@@ -488,9 +488,14 @@ msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:306
-msgid "AUTO_EVO_FAILED"
+msgid "AUTO_EVO_FAILED_CHECK_LOGS"
 msgstr ""
 
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:328
+msgid "AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:318
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:264
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr ""
@@ -1411,7 +1416,7 @@ msgid "COMPLETE_ACTION"
 msgstr ""
 
 #: ../src/gui_common/menus/PlanetStatistics.tscn:228
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:609
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:620
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:487
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:491
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:33
@@ -3048,13 +3053,13 @@ msgstr ""
 msgid "EXTINCTION_CAPITAL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:618
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:629
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:640
 msgid "EXTINCT_FROM_PATCH"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:617
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:630
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:628
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:641
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr ""
 
@@ -7084,7 +7089,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.cs:790
 #: ../src/gui_common/tooltip/ToolTipManager.cs:833
 #: ../src/gui_common/tooltip/ToolTipManager.cs:847
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:565
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:576
 #: ../src/microbe_stage/editor/MutationPointsBar.cs:101
 #: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:776
 #: ../src/microbe_stage/editor/tooltips/EnvironmentalToleranceToolTip.cs:110
@@ -8494,7 +8499,7 @@ msgstr ""
 msgid "SPECIES_IN_OTHER_PATCHES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:607
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:618
 msgid "SPECIES_LIST"
 msgstr ""
 
@@ -8934,7 +8939,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:817
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:846
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:854
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:448
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:459
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:532
 #: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:97
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:170
@@ -12533,11 +12538,11 @@ msgstr ""
 msgid "X_TWITTER_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:602
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:603
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:604
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:606
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:609
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:613
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:614
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:615
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:617
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:620
 msgid "YEARS"
 msgstr ""
 

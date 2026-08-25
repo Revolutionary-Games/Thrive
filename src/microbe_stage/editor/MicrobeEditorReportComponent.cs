@@ -66,7 +66,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
     private CollapsibleList compoundsChartContainer = null!;
 
     [Export]
-    private Control noAutoEvoResultData = null!;
+    private Label noAutoEvoResultData = null!;
 
     [Export]
     private Container graphicalResultsContainer = null!;
@@ -303,7 +303,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
         graphicalResultsContainer.QueueFreeChildren();
         graphicalResultsContainer.AddChild(new Label
         {
-            Text = Localization.Translate("AUTO_EVO_FAILED"),
+            Text = Localization.Translate("AUTO_EVO_FAILED_CHECK_LOGS"),
             SizeFlagsHorizontal = SizeFlags.ExpandFill,
             CustomMinimumSize = new Vector2(200, 15),
             AutowrapMode = TextServer.AutowrapMode.WordSmart,
@@ -315,6 +315,17 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
     public void ShowErrorAboutOldSave()
     {
         GD.PrintErr("There is no existing full auto-evo results data to show new auto-evo report with");
+        noAutoEvoResultData.Text = Localization.Translate("AUTO_EVO_MISSING_RESULT_DATA_OBJECT");
+        noAutoEvoResultData.Visible = true;
+        graphicalResultsContainer.Visible = false;
+
+        externalEffectsLabel.Visible = false;
+    }
+
+    public void ShowErrorAboutIncompleteSave()
+    {
+        GD.PrintErr("There is no auto-evo data in a save, even though there should be");
+        noAutoEvoResultData.Text = Localization.Translate("AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL");
         noAutoEvoResultData.Visible = true;
         graphicalResultsContainer.Visible = false;
 
