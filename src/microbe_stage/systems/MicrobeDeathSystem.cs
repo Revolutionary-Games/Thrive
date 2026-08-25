@@ -18,7 +18,7 @@ using World = Arch.Core.World;
 /// </summary>
 /// <remarks>
 ///   <para>
-///     Currently the use of <see cref="ManualPhysicsControl"/> to stop movement when dying is commented out. If
+///     Currently, the use of <see cref="ManualPhysicsControl"/> to stop movement when dying is commented out. If
 ///     eventually that is removed, that component should also be removed from the With attribute list below.
 ///   </para>
 ///   <para>
@@ -107,6 +107,12 @@ public partial class MicrobeDeathSystem : BaseSystem<World, float>
 
         EngulfableHelpers.CalculateBonusDigestibleGlucose(compoundsToRelease, compounds);
 
+        if (!compoundsToRelease.Any(entry => entry.Value > 0 && !float.IsNaN(entry.Value)))
+        {
+            GD.Print("No compounds found to release on microbe death, skipping chunks");
+            return;
+        }
+
         // An enumerator to step through all available organelles in a random order when making chunks
         // TODO: fix the closure allocation here
         using var organellesAvailableEnumerator =
@@ -142,20 +148,6 @@ public partial class MicrobeDeathSystem : BaseSystem<World, float>
         // cells that die
         if (chunksToSpawn > Constants.CORPSE_CHUNK_AMOUNT_CAP)
             chunksToSpawn = Constants.CORPSE_CHUNK_AMOUNT_CAP;
-
-        float baseAmount = organelleContainer.HexCount * Constants.CORPSE_CHUNK_AMOUNT_MULTIPLIER;
-        if (baseAmount <= 0)
-        {
-            // Would cause a division by zero
-            GD.PrintErr("Microbe has no hex count set on death, won't spawn corpse chunks");
-            return;
-        }
-
-        if (compoundsToRelease.Count < 1)
-        {
-            GD.Print("No compounds found to release on microbe death, skipping chunks");
-            return;
-        }
 
         for (int i = 0; i < chunksToSpawn; ++i)
         {
