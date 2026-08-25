@@ -702,13 +702,6 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         throw new GodotAbstractMethodNotOverriddenException();
     }
 
-    /// <summary>
-    ///   Called after the editor GUI has been initialized when a loaded save has no auto-evo results to display.
-    /// </summary>
-    protected virtual void ShowNoAutoEvoResultsAfterLoad()
-    {
-    }
-
     protected virtual void InitEditor(bool fresh)
     {
         if (fresh)
@@ -788,6 +781,13 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         PauseMenu.Instance.SetNewSaveNameFromSpeciesName();
 
         ApplyComponentLightLevels();
+    }
+
+    /// <summary>
+    ///   Called after the editor GUI has been initialized when a loaded save has no auto-evo results to display.
+    /// </summary>
+    protected virtual void ShowNoAutoEvoResultsAfterLoad()
+    {
     }
 
     protected virtual void WriteBasePropertiesToArchive(ISArchiveWriter writer)
