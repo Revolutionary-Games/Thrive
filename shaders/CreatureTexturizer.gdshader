@@ -2,7 +2,7 @@ shader_type spatial;
 render_mode unshaded, cull_disabled;
 
 uniform sampler2D mainTexture;
-uniform sampler2D projected;
+uniform sampler2D projected : repeat_disable;
 uniform sampler2D dirt;
 
 uniform mat4[500] projectionMatrices;
@@ -74,11 +74,13 @@ void fragment() {
 		if (normalProjected.z < 0.2f)
 			continue;
 			
-		if (posProjected.z > 1.0f || posProjected.z < -0.8f)
+		if (posProjected.z > 1.0f || posProjected.z < -0.8f
+			|| abs(posProjected.x - 0.5f) > 0.5f
+			|| abs(posProjected.y - 0.5f) > 0.5f)
 			continue;
 		
 		vec4 color = texture(projected, posProjected.xy);
 		
-		ALBEDO = mix(ALBEDO, color.rgb * dirtMix.rgb, color.a) * COLOR.rgb;
+		ALBEDO = mix(ALBEDO, color.rgb * dirtMix.rgb * COLOR.rgb, color.a);
 	}
 }

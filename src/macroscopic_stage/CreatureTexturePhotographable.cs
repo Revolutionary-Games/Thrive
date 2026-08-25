@@ -60,5 +60,6 @@ public class CreatureTexturePhotographable : IScenePhotographable
         }
 
         photobuilder.SetProjectionMatrices(matrices);
+        photobuilder.SetTextures(Species.GetMainTexture(), Species.GetProjectedTexture());
     }
 }

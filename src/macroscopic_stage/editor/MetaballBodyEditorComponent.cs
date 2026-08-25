@@ -90,6 +90,9 @@ public partial class MetaballBodyEditorComponent :
     [Export]
     private LabelSettings toleranceWarningsFont = null!;
 
+    [Export]
+    private OptionButton creatureSkinTypeChoiceButton = null!;
+
     private PackedScene visualMetaballDisplayerScene = null!;
 
     private PackedScene structuralMetaballDisplayerScene = null!;
@@ -106,6 +109,8 @@ public partial class MetaballBodyEditorComponent :
 
     private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
 
+    public CreatureSkinType skinType;
+
     [Signal]
     public delegate void OnCellTypeToEditSelectedEventHandler(string name, bool switchTab);
 
@@ -116,6 +121,19 @@ public partial class MetaballBodyEditorComponent :
         Behaviour,
         Appearance,
         Tolerance,
+    }
+
+    public CreatureSkinType SkinType
+    {
+        get => skinType;
+        set
+        {
+            skinType = value;
+
+            UpdateSkinType();
+
+            UpdateAlreadyPlacedVisuals();
+        }
     }
 
     public override bool HasIslands => editedMetaballs.GetMetaballsNotTouchingParents().Any();
@@ -306,6 +324,8 @@ public partial class MetaballBodyEditorComponent :
             GD.Print("Applying tissue type edits to real cell data");
             CellTypeVisualsOverride.ApplyChanges();
         }
+
+        Editor.EditedSpecies.SkinType = SkinType;
 
         var previousStage = editedSpecies.MacroscopicType;
 
@@ -596,6 +616,8 @@ public partial class MetaballBodyEditorComponent :
 
         SetSpeciesInfo(newName,
             behaviourEditor.Behaviour ?? throw new Exception("Editor doesn't have Behaviour setup"));
+
+        SkinType = Editor.EditedSpecies.SkinType;
     }
 
     private void SetSpeciesInfo(string name, BehaviourDictionary behaviour)

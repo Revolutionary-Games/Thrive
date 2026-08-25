@@ -11,7 +11,9 @@ public partial class CreatureTexturePhotoBuilder : Node3D
     private MeshInstance3D meshInstance3D = null!;
 #pragma warning restore CA2213
 
-    private StringName projectionMatrices = new("matrices");
+    private StringName projectionMatricesName = new("projectionMatrices");
+    private StringName mainTextureName = new("mainTexture");
+    private StringName projectedTextureName = new("projected");
 
     public void SetMesh(Mesh mesh)
     {
@@ -20,14 +22,25 @@ public partial class CreatureTexturePhotoBuilder : Node3D
 
     public void SetProjectionMatrices(Godot.Collections.Array matrices)
     {
-        ((ShaderMaterial)meshInstance3D.MaterialOverride).SetShaderParameter(projectionMatrices, matrices);
+        ((ShaderMaterial)meshInstance3D.MaterialOverride).SetShaderParameter(projectionMatricesName, matrices);
+    }
+
+    public void SetTextures(Texture2D? mainTexture, Texture2D? projectedTexture)
+    {
+        ((ShaderMaterial)meshInstance3D.MaterialOverride).SetShaderParameter(mainTextureName,
+            Variant.From(mainTexture));
+
+        ((ShaderMaterial)meshInstance3D.MaterialOverride).SetShaderParameter(projectedTextureName,
+            Variant.From(projectedTexture));
     }
 
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            projectionMatrices.Dispose();
+            projectionMatricesName.Dispose();
+            mainTextureName.Dispose();
+            projectedTextureName.Dispose();
         }
     }
 }

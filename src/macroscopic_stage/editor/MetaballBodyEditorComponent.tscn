@@ -330,7 +330,7 @@ _data = {
 &"show": SubResource("19")
 }
 
-[node name="MetaballBodyEditorComponent" type="Control" unique_id=1870871702 node_paths=PackedStringArray("structureTabButton", "reproductionTabButton", "behaviourTabButton", "appearanceTabButton", "tolerancesTabButton", "structureTab", "reproductionTab", "appearanceTab", "behaviourEditor", "tolerancesEditor", "toleranceTab", "toleranceWarningContainer", "cellTypeSelectionList", "modifyTypeButton", "deleteTypeButton", "duplicateTypeButton", "cannotDeleteInUseTypeDialog", "duplicateCellTypeDialog", "duplicateCellTypeName", "metaballPopupMenu", "cannotReduceBrainPowerPopup", "metaballResizeScroll", "islandPopup", "componentBottomLeftButtons", "mutationPointsBar", "cancelButton", "finishButtonWarningBadge", "finishOrNextButton")]
+[node name="MetaballBodyEditorComponent" type="Control" unique_id=1870871702 node_paths=PackedStringArray("structureTabButton", "reproductionTabButton", "behaviourTabButton", "appearanceTabButton", "tolerancesTabButton", "structureTab", "reproductionTab", "appearanceTab", "behaviourEditor", "tolerancesEditor", "toleranceTab", "toleranceWarningContainer", "cellTypeSelectionList", "modifyTypeButton", "deleteTypeButton", "duplicateTypeButton", "cannotDeleteInUseTypeDialog", "duplicateCellTypeDialog", "duplicateCellTypeName", "metaballPopupMenu", "cannotReduceBrainPowerPopup", "creatureSkinTypeChoiceButton", "metaballResizeScroll", "islandPopup", "componentBottomLeftButtons", "mutationPointsBar", "cancelButton", "finishButtonWarningBadge", "finishOrNextButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -361,6 +361,7 @@ duplicateCellTypeName = NodePath("NewTissueTypeSetup/VBoxContainer2/NewName")
 metaballPopupMenu = NodePath("MetaballPopupMenu")
 cannotReduceBrainPowerPopup = NodePath("CannotReduceBrainPowerStage")
 toleranceWarningsFont = ExtResource("7_ck2k0")
+creatureSkinTypeChoiceButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Appearance/ScrollContainer/MarginContainer/VBoxContainer/OptionButton")
 metaballResizeScroll = NodePath("MetaballSizeControls/MetaballSize")
 islandPopup = NodePath("IslandError")
 componentBottomLeftButtons = NodePath("EditorComponentBottomLeftButtons")
@@ -657,16 +658,22 @@ theme_override_constants/margin_right = 10
 layout_mode = 2
 theme_override_constants/separation = 15
 
-[node name="HBoxContainer" type="HBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Appearance/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1076223211]
+[node name="OptionButton" type="OptionButton" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Appearance/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1875961787]
 layout_mode = 2
-
-[node name="MetaballsOnlyLabel" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Appearance/ScrollContainer/MarginContainer/VBoxContainer" unique_id=381952038]
-editor_description = "PLACEHOLDER"
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-text = "Appearance customization has not been implemented yet, but the creature is shown with a basic convolution surface wrapped around the metaballs."
-label_settings = ExtResource("7_ck2k0")
-autowrap_mode = 3
+selected = 0
+item_count = 6
+popup/item_0/text = "PLAIN_CREATURE_TEXTURE"
+popup/item_0/id = 0
+popup/item_1/text = "FUR_CREATURE_TEXTURE"
+popup/item_1/id = 1
+popup/item_2/text = "SKIN_CREATURE_TEXTURE"
+popup/item_2/id = 2
+popup/item_3/text = "SCALES_CREATURE_TEXTURE"
+popup/item_3/id = 3
+popup/item_4/text = "FEATHERS_CREATURE_TEXTURE"
+popup/item_4/id = 4
+popup/item_5/text = "PEPPER_CREATURE_TEXTURE"
+popup/item_5/id = 5
 
 [node name="Tolerance" type="PanelContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" unique_id=1531646376]
 visible = false
@@ -867,6 +874,7 @@ layout_mode = 0
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Modify" to="." method="OnModifyCurrentCellTypePressed"]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Delete" to="." method="OnDeleteCellTypePressed"]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/Duplicate" to="." method="OnTypeDuplicateStartPressed"]
+[connection signal="item_selected" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Appearance/ScrollContainer/MarginContainer/VBoxContainer/OptionButton" to="." method="OnSkinTypeChanged"]
 [connection signal="OnTolerancesChanged" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance/ScrollContainer/MarginContainer/TolerancesEditor" to="." method="OnTolerancesEditorChangedData"]
 [connection signal="OnNameSet" from="EditorComponentBottomLeftButtons" to="." method="OnSpeciesNameChanged"]
 [connection signal="OnRedo" from="EditorComponentBottomLeftButtons" to="." method="Redo"]

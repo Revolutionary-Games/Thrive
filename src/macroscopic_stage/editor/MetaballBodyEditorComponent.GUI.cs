@@ -31,4 +31,14 @@ public partial class MetaballBodyEditorComponent
     {
         OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
     }
+
+    public void OnSkinTypeChanged(int newValue)
+    {
+        SkinType = (CreatureSkinType)newValue;
+    }
+
+    public void UpdateSkinType()
+    {
+        creatureSkinTypeChoiceButton.Selected = (int)SkinType;
+    }
 }

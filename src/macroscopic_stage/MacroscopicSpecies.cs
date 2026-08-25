@@ -41,6 +41,8 @@ public class MacroscopicSpecies : Species, IReadOnlyMacroscopicSpecies
 
     public MacroscopicSpeciesType MacroscopicType { get; private set; }
 
+    public CreatureSkinType SkinType { get; set; }
+
     /// <summary>
     ///   All organelles in all the species' placed metaballs (there can be a lot of duplicates in this list)
     /// </summary>
@@ -192,6 +194,60 @@ public class MacroscopicSpecies : Species, IReadOnlyMacroscopicSpecies
     {
         if (MacroscopicType == MacroscopicSpeciesType.Awakened)
             MacroscopicType = MacroscopicSpeciesType.Aware;
+    }
+
+    public Texture2D? GetMainTexture()
+    {
+        string? path = null;
+
+        switch (SkinType)
+        {
+            case CreatureSkinType.Fur:
+                path = "res://assets/textures/creature_textures/Fur.png";
+                break;
+            case CreatureSkinType.Skin:
+                //TBD
+                path = "res://assets/textures/creature_textures/Scales.png";
+                break;
+            case CreatureSkinType.Scales:
+                path = "res://assets/textures/creature_textures/Scales2.png";
+                break;
+            case CreatureSkinType.Feather:
+                //TBD
+                path = "res://assets/textures/creature_textures/Scales.png";
+                break;
+        }
+
+        if (path == null)
+            return null;
+
+        return GD.Load<Texture2D>(path);
+    }
+
+    public Texture2D? GetProjectedTexture()
+    {
+        string? path = null;
+
+        switch (SkinType)
+        {
+            case CreatureSkinType.Scales:
+                path = "res://assets/textures/creature_textures/Scales.png";
+                break;
+            case CreatureSkinType.Feather:
+                //TBD
+                path = "res://assets/textures/creature_textures/Scales.png";
+                break;
+            case CreatureSkinType.Pepper:
+                path = "res://assets/textures/creature_textures/Pepper.png";
+                break;
+        }
+
+        GD.Print(path);
+
+        if (path == null)
+            return null;
+
+        return GD.Load<Texture2D>(path);
     }
 
     public override ulong GetVisualHashCode()

@@ -73,21 +73,9 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
 
             texturizationTask.PlainImage.SavePng($"G:/Downloads/SMTH.png");
 
-            var gltfDocumentLoad = new GltfDocument();
-            var gltfStateLoad = new GltfState();
-            var error = gltfDocumentLoad.AppendFromScene(this, gltfStateLoad);
-
-            if (error is Error.Ok)
-            {
-                // The file extension in the output `path` (`.gltf` or `.glb`) determines
-                // whether the output uses text or binary format.
-                // `GltfDocument.GenerateBuffer()` is also available for saving to memory.
-                gltfDocumentLoad.WriteToFilesystem(gltfStateLoad, "G:/Downloads/A.gltf");
-            }
-
             var texture = new DrawableTexture2D();
             texture.Setup(texturizationTask.FinalImage.GetWidth(), texturizationTask.FinalImage.GetHeight(),
-                DrawableTexture2D.DrawableFormat.Rgba8);
+                DrawableTexture2D.DrawableFormat.Rgba8, color: new Color(0.0f, 0.0f, 0.0f, 0.0f));
 
             ((ShaderMaterial)blitMaterial).SetShaderParameter("jumpSize",
                 1.0f / texturizationTask.FinalImage.GetWidth());
@@ -96,10 +84,16 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
                     new Vector2I(texturizationTask.FinalImage.GetWidth(), texturizationTask.FinalImage.GetHeight())),
                 texturizationTask.FinalImage, material: blitMaterial);
 
+            texture.BlitRect(new Rect2I(Vector2I.Zero,
+                    new Vector2I(texturizationTask.FinalImage.GetWidth(), texturizationTask.FinalImage.GetHeight())),
+                ImageTexture.CreateFromImage(texture.GetImage()), material: blitMaterial);
+
             if (material != null)
             {
                 material.AlbedoTexture = texture;
             }
+
+            texture.GetImage().SavePng($"G:/Downloads/SMTH2.png");
 
             Mesh.SurfaceSetMaterial(0, material);
 
