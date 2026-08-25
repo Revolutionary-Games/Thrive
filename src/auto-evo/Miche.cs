@@ -2,7 +2,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Godot;
@@ -192,6 +191,12 @@ public class Miche : IArchivable
     /// <summary>
     ///   Inserts a species into any spots on the tree where the species is a better fit than any current occupants
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Top-level calls currently accept only <see cref="MicrobeSpecies"/> and
+    ///     <see cref="MulticellularSpecies"/>. Recursive calls reuse the species validated by the top-level call.
+    ///   </para>
+    /// </remarks>
     /// <param name="species">Species to try to insert</param>
     /// <param name="patch">Patch this miche is in for calculating scores</param>
     /// <param name="scoresSoFar">
@@ -204,14 +209,19 @@ public class Miche : IArchivable
     /// <returns>
     ///   Returns a bool based on if the species was inserted into a leaf node
     /// </returns>
+    /// <exception cref="ArgumentException">Thrown when a top-level call receives a non-cellular species</exception>
     public bool InsertSpecies(Species species, Patch patch, Dictionary<Species, float>? scoresSoFar,
         SimulationCache cache, bool dry, InsertWorkingMemory workingMemory, int depth = 0)
     {
         if (Readonly && !dry)
             throw new InvalidOperationException("This miche tree is readonly and cannot be modified");
 
-        if (depth == 0 && !IsSpeciesSupported(species))
-            return false;
+        if (depth == 0 && species is not MicrobeSpecies and not MulticellularSpecies)
+        {
+            throw new ArgumentException(
+                $"Species type {species.GetType().Name} is incompatible with cellular miche insertion",
+                nameof(species));
+        }
 
         var myScore = Pressure.Score(species, patch, cache);
 
@@ -360,11 +370,6 @@ public class Miche : IArchivable
         // TODO: as Occupant can change it should not be used as part of the hash code
         return Pressure.GetHashCode() * 131 ^ parentHash * 587 ^
             (Occupant == null ? 17 : Occupant.GetHashCode()) * 5171;
-    }
-
-    internal static bool IsSpeciesSupported([NotNullWhen(true)] Species? species)
-    {
-        return species is MicrobeSpecies or MulticellularSpecies;
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

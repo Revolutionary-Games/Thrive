@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using AutoEvo;
 using GdUnit4;
 using SharedBase.Archive;
@@ -13,7 +14,7 @@ public class MacroscopicSpeciesCompatibilityTests
     private const long TestPopulation = 100;
 
     [TestCase]
-    public void MicheInsert_MacroscopicSpeciesReturnsFalseBeforeScoring()
+    public void MicheInsert_MacroscopicSpeciesThrowsBeforeScoring()
     {
         var fixture = CreateSpeciesFixture();
         var cache = new SimulationCache(fixture.WorldSettings);
@@ -24,15 +25,39 @@ public class MacroscopicSpeciesCompatibilityTests
             Occupant = originalOccupant,
         };
 
-        var inserted = miche.InsertSpecies(fixture.Macroscopic, fixture.Patch, null, cache, false,
-            new Miche.InsertWorkingMemory());
+        AssertThrown(() => miche.InsertSpecies(fixture.Macroscopic, fixture.Patch, null, cache, false,
+                new Miche.InsertWorkingMemory()))
+            .IsInstanceOf<ArgumentException>()
+            .HasPropertyValue(nameof(ArgumentException.ParamName), "species")
+            .StartsWithMessage("Species type MacroscopicSpecies");
 
         AssertThat(pressure.ScoreCalls).IsEqual(0);
-        AssertThat(inserted).IsFalse();
         AssertThat(miche.Occupant).IsSame(originalOccupant);
 
         AssertSupportedSpeciesReachesScoring(fixture.Microbe, fixture.Patch, cache);
         AssertSupportedSpeciesReachesScoring(fixture.Multicellular, fixture.Patch, cache);
+    }
+
+    [TestCase]
+    public void AutoEvoRun_GatherInfoSchedulesOnlyCellularMigrations()
+    {
+        var fixture = CreateSpeciesFixture();
+        fixture.Patch.SpeciesInPatch.Clear();
+        fixture.Patch.AddSpecies(fixture.Microbe, TestPopulation);
+        fixture.Patch.AddSpecies(fixture.Multicellular, TestPopulation);
+        fixture.Patch.AddSpecies(fixture.Macroscopic, TestPopulation);
+
+        var run = new GatherInfoAutoEvoRun(fixture.World);
+        var steps = run.GatherSteps();
+        var migrationStepCount = 0;
+
+        foreach (var step in steps)
+        {
+            if (step is MigrateSpecies)
+                ++migrationStepCount;
+        }
+
+        AssertThat(migrationStepCount).IsEqual(2);
     }
 
     [TestCase]
@@ -59,9 +84,15 @@ public class MacroscopicSpeciesCompatibilityTests
         fixture.Patch.SpeciesInPatch.Clear();
         fixture.Patch.AddSpecies(fixture.Microbe, TestPopulation);
         fixture.Patch.AddSpecies(fixture.Multicellular, TestPopulation);
-        fixture.Patch.AddSpecies(fixture.Macroscopic, TestPopulation);
 
         var cache = new SimulationCache(fixture.WorldSettings);
+        var generalAvoidPressure = fixture.World.AutoEvoGlobalCache.GeneralAvoidPredationSelectionPressure;
+        var microbeScoreWithoutMacroscopicPredator = generalAvoidPressure.Score(fixture.Microbe, fixture.Patch, cache);
+        var multicellularScoreWithoutMacroscopicPredator =
+            generalAvoidPressure.Score(fixture.Multicellular, fixture.Patch, cache);
+
+        fixture.Patch.AddSpecies(fixture.Macroscopic, TestPopulation);
+
         var generateMiche = new GenerateMiche(fixture.Patch, cache, fixture.World.AutoEvoGlobalCache);
         var generatedMiche = generateMiche.GenerateMicheTree(fixture.World.AutoEvoGlobalCache);
         var predationPressures = new List<PredationEffectivenessPressure>();
@@ -83,9 +114,23 @@ public class MacroscopicSpeciesCompatibilityTests
         AssertThat(populatedMiche).IsSame(generatedMiche);
         AssertThat(occupants.Contains(fixture.Macroscopic)).IsFalse();
 
-        var generalAvoidPressure = fixture.World.AutoEvoGlobalCache.GeneralAvoidPredationSelectionPressure;
-        AssertThat(generalAvoidPressure.Score(fixture.Microbe, fixture.Patch, cache) > 0).IsTrue();
-        AssertThat(generalAvoidPressure.Score(fixture.Multicellular, fixture.Patch, cache) > 0).IsTrue();
+        AssertThat(generalAvoidPressure.Score(fixture.Microbe, fixture.Patch, cache))
+            .IsEqual(microbeScoreWithoutMacroscopicPredator);
+        AssertThat(generalAvoidPressure.Score(fixture.Multicellular, fixture.Patch, cache))
+            .IsEqual(multicellularScoreWithoutMacroscopicPredator);
+    }
+
+    [TestCase]
+    public void GeneralAvoidPredation_MacroscopicScoredSpeciesThrows()
+    {
+        var fixture = CreateSpeciesFixture();
+        var cache = new SimulationCache(fixture.WorldSettings);
+        var pressure = fixture.World.AutoEvoGlobalCache.GeneralAvoidPredationSelectionPressure;
+
+        AssertThrown(() => pressure.Score(fixture.Macroscopic, fixture.Patch, cache))
+            .IsInstanceOf<ArgumentException>()
+            .HasPropertyValue(nameof(ArgumentException.ParamName), "species")
+            .StartsWithMessage("Species type MacroscopicSpecies");
     }
 
     [TestCase]
@@ -133,6 +178,35 @@ public class MacroscopicSpeciesCompatibilityTests
         var microbeEnergyResults = results.GetPatchEnergyResults(fixture.Microbe);
         AssertThat(microbeEnergyResults.ContainsKey(fixture.Patch)).IsTrue();
         AssertThat(microbeEnergyResults[fixture.Patch].IndividualCost > 0).IsTrue();
+    }
+
+    [TestCase]
+    public void MichePopulation_InvalidOccupantThrows()
+    {
+        var fixture = CreateSpeciesFixture();
+        fixture.Patch.SpeciesInPatch.Clear();
+        fixture.Patch.AddSpecies(fixture.Microbe, TestPopulation);
+
+        var cache = new SimulationCache(fixture.WorldSettings);
+        var results = new RunResults();
+        var miche = new Miche(new RecordingSelectionPressure())
+        {
+            Occupant = fixture.Macroscopic,
+        };
+
+        results.AddNewMicheForPatch(fixture.Patch, miche);
+
+        var simulationConfiguration = new SimulationConfiguration(fixture.WorldSettings.AutoEvoConfiguration,
+            fixture.World.Map, fixture.WorldSettings)
+        {
+            Results = results,
+            PatchesToRun = new HashSet<Patch> { fixture.Patch },
+        };
+
+        AssertThrown(() => MichePopulation.Simulate(simulationConfiguration, cache,
+                new XoShiRo256starstar(WorldSeed)))
+            .IsInstanceOf<InvalidOperationException>()
+            .StartsWithMessage("Miche occupant type MacroscopicSpecies");
     }
 
     [TestCase]
@@ -250,6 +324,20 @@ public class MacroscopicSpeciesCompatibilityTests
 
     private sealed record SpeciesFixture(WorldGenerationSettings WorldSettings, GameWorld World, Patch Patch,
         MicrobeSpecies Microbe, MulticellularSpecies Multicellular, MacroscopicSpecies Macroscopic);
+
+    private sealed class GatherInfoAutoEvoRun : AutoEvoRun
+    {
+        public GatherInfoAutoEvoRun(GameWorld world) : base(world, world.AutoEvoGlobalCache)
+        {
+        }
+
+        public Queue<IRunStep> GatherSteps()
+        {
+            var steps = new Queue<IRunStep>();
+            GatherInfo(steps);
+            return steps;
+        }
+    }
 
     private sealed class RecordingSelectionPressure : SelectionPressure
     {

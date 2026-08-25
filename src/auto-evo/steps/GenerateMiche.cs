@@ -174,7 +174,7 @@ public class GenerateMiche : IRunStep
         // Per Target-Species Miches
         foreach (var targetSpecies in patch.SpeciesInPatch)
         {
-            if (!Miche.IsSpeciesSupported(targetSpecies.Key))
+            if (targetSpecies.Key is not MicrobeSpecies and not MulticellularSpecies)
                 continue;
 
             ++supportedSpeciesCount;
@@ -209,6 +209,9 @@ public class GenerateMiche : IRunStep
 
         foreach (var species in patch.SpeciesInPatch.Keys)
         {
+            if (species is not MicrobeSpecies and not MulticellularSpecies)
+                continue;
+
             miche.InsertSpecies(species, patch, null, cache, false, insertWorkMemory);
         }
 
