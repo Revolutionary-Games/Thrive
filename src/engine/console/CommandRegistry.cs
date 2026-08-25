@@ -171,7 +171,6 @@ public class CommandRegistry : IDisposable
         GD.PrintErr("Cannot register multicast commands before the command registry is initialised.");
 
         return false;
-
     }
 
     /// <summary>
