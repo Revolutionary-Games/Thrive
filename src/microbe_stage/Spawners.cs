@@ -449,13 +449,17 @@ public static class SpawnHelpers
             }
 
 #if DEBUG
-            var toCheck = compounds.Compounds.First();
-
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            if (compounds.GetCompoundAmount(toCheck.Key) != toCheck.Value)
+            if (compounds.Compounds.Count > 0)
             {
-                throw new Exception($"Chunk compound adding failed ({compounds.GetCompoundAmount(toCheck.Key)} != " +
-                    $"{toCheck.Value})");
+                var toCheck = compounds.Compounds.First();
+
+                // ReSharper disable once CompareOfFloatsByEqualityOperator
+                if (compounds.GetCompoundAmount(toCheck.Key) != toCheck.Value)
+                {
+                    throw new Exception(
+                        $"Chunk compound adding failed ({compounds.GetCompoundAmount(toCheck.Key)} != " +
+                        $"{toCheck.Value})");
+                }
             }
 #endif
 
