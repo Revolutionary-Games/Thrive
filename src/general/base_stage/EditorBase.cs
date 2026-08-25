@@ -803,8 +803,8 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
 
         CurrentGame = reader.ReadObject<GameProperties>();
         history = reader.ReadObject<EditorActionHistory<TAction>>();
-        autoEvoResults = reader.ReadObject<RunResults>();
-        autoEvoExternal = reader.ReadObject<LocalizedStringBuilder>();
+        autoEvoResults = reader.ReadObjectOrNull<RunResults>();
+        autoEvoExternal = reader.ReadObjectOrNull<LocalizedStringBuilder>();
         selectedEditorTab = (EditorTab)reader.ReadInt32();
         dayLightFraction = reader.ReadFloat();
         FreeBuilding = reader.ReadBool();
