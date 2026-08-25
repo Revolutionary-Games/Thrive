@@ -127,7 +127,7 @@ public class AddCellWithOrganelle : IMutationStrategy<Species>
                 // We take the smallest exising cell type as a template to add the new organelle to
                 var smallestCellSize = baseMulticellularSpecies.CellTypes[0].BaseHexSize;
                 var smallestCellIndex = 0;
-                var newSpecies = (MulticellularSpecies)baseMulticellularSpecies.Clone(true, false);
+                var newSpecies = baseMulticellularSpecies.Clone(true, false);
 
                 for (int i = 0; i < baseCellTypesCount; ++i)
                 {

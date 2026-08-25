@@ -39,7 +39,19 @@ public class ChangeBehaviorScore : IMutationStrategy<Species>
         if (Math.Abs(change) < 1)
             return null;
 
-        var newSpecies = (Species)baseSpecies.Clone();
+        Species newSpecies;
+        if (baseSpecies is MicrobeSpecies microbeSpecies)
+        {
+            newSpecies = (Species)microbeSpecies.Clone();
+        }
+        else if (baseSpecies is MulticellularSpecies multicellularSpecies)
+        {
+            newSpecies = multicellularSpecies.Clone(true, false);
+        }
+        else
+        {
+            return null;
+        }
 
         switch (attribute)
         {
