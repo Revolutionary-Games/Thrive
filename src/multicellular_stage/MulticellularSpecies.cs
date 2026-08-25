@@ -846,8 +846,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         }
         else
         {
-            ModifiableGameplayCells.Clear();
-            ModifiableGameplayCells.AddFast(new CellTemplate(ModifiableCellTypes[0], new Hex(0, 0), 0),
+            result.ModifiableGameplayCells.AddFast(new CellTemplate(ModifiableCellTypes[0], new Hex(0, 0), 0),
                 workMemory1, workMemory2);
         }
 
