@@ -69,6 +69,15 @@ public partial class MicrobeDeathSystem : BaseSystem<World, float>
         if (organelleContainer.Organelles == null)
             throw new InvalidOperationException("Organelles can't be null when determining chunks to drop");
 
+        float baseAmount = organelleContainer.HexCount * Constants.CORPSE_CHUNK_AMOUNT_MULTIPLIER;
+        if (baseAmount <= 0)
+        {
+            // Would cause a division by zero. Or if negative, negative compound amounts, which would be even more
+            // bizarre.
+            GD.PrintErr("Microbe has no hex count set on death, won't spawn corpse chunks");
+            return;
+        }
+
         // Eject the compounds that were in the microbe
         var compoundsToRelease = new Dictionary<Compound, float>();
 
