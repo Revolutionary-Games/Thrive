@@ -847,7 +847,8 @@ public partial class CellBodyPlanEditorComponent :
 
             foreach (var cellType in Editor.EditedSpecies.ModifiableCellTypes)
             {
-                if (cellType.CellTypeName == editedMicrobeCell.Data?.CellType.CellTypeName)
+                if (ReferenceEquals(GetEditedCellDataIfEdited(cellType),
+                        GetEditedCellDataIfEdited(editedMicrobeCell.Data!.ModifiableCellType)))
                 {
                     found = true;
                     break;
