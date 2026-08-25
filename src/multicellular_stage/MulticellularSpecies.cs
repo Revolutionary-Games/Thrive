@@ -386,6 +386,18 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
                     $"in species {FormattedIdentifier}");
 #endif
             }
+
+            if (ReferenceEquals(modifiableGameplayCell.ModifiableCellType, SporeCellType))
+            {
+#if DEBUG
+                throw new Exception(
+                    $"Body plan cell type {modifiableGameplayCell.ModifiableCellType} is the same as the spore cell " +
+                    $"type in species {FormattedIdentifier}");
+#else
+                GD.PrintErr($"Body plan cell type {modifiableGameplayCell.ModifiableCellType} is the same as the "+
+                    $"spore cell type in species {FormattedIdentifier}");
+#endif
+            }
         }
     }
 
