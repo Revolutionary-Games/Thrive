@@ -357,6 +357,11 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
             TutorialState.SendEvent(TutorialEventType.EnteredMicrobeEditor, EventArgs.Empty, this);
     }
 
+    protected override void ShowNoAutoEvoResultsAfterLoad()
+    {
+        reportTab.ShowErrorAboutIncompleteSave();
+    }
+
     protected override void UpdateHistoryCallbackTargets(ActionHistory<EditorAction> actionHistory)
     {
         // TODO: figure out why the callbacks are correctly pointing to the cell editor instance even without this
