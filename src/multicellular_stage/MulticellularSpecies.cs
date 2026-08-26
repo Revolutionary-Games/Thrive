@@ -954,10 +954,16 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         var result = new Dictionary<Compound, float>();
 
         // For auto-evo purposes, check if Editor cells can be used.
-        float cellCount;
+        var cellCount = 0;
         if (modifiableEditorCells != null)
         {
-            cellCount = EditorCells.Count;
+            int count = ModifiableEditorCells.Count;
+            for (int i = 0; i < count; ++i)
+            {
+                var cellTemplate = ModifiableEditorCells[i].Data;
+                if (cellTemplate != null)
+                    ++cellCount;
+            }
         }
         else
         {
