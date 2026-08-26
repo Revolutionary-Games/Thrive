@@ -159,6 +159,7 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
 
         MembranePointData? data = null;
         bool useSingleCellMembraneGeneration = true;
+        bool isSpeciesMulticellular = false;
 
         if (entity.Has<MulticellularSpeciesMember>())
         {
@@ -172,31 +173,41 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
 
                 if (!growthOrder.IsASpore)
                 {
-                    useSingleCellMembraneGeneration = false;
-
                     ref var speciesMember = ref entity.Get<MulticellularSpeciesMember>();
                     var nextBodyPlanCellToGrowIndex = growthOrder.ResumeBodyPlanAfterReplacingLost ??
                         growthOrder.NextBodyPlanCellToGrowIndex;
 
-                    lostCells.Clear();
+                    // It's set here, so that the outdated species get their intercellular matrix
+                    isSpeciesMulticellular = true;
 
-                    if (growthOrder.LostPartsOfBodyPlan != null)
+                    if (nextBodyPlanCellToGrowIndex <= speciesMember.Species.ModifiableGameplayCells.Count)
                     {
-                        foreach (var lostPart in growthOrder.LostPartsOfBodyPlan)
+                        useSingleCellMembraneGeneration = false;
+
+                        lostCells.Clear();
+
+                        if (growthOrder.LostPartsOfBodyPlan != null)
                         {
-                            lostCells.Add(lostPart);
+                            foreach (var lostPart in growthOrder.LostPartsOfBodyPlan)
+                            {
+                                lostCells.Add(lostPart);
+                            }
                         }
+
+                        long colonyLeaderKey = (long)colonyLeader.Id << 32 | (uint)colonyLeader.Version;
+                        long memberCellKey = (long)entity.Id << 32 | (uint)entity.Version;
+
+                        // Only get the membrane for THIS entity's cell (not all cells in the colony)
+                        var cellIndex = speciesMember.MulticellularBodyPlanPartIndex;
+                        var cell = speciesMember.Species.ModifiableGameplayCells[cellIndex];
+                        data = GetMulticellularMembraneDataIfReadyOrStartGenerating(cell, cell.ModifiableOrganelles,
+                            colonyLeaderKey, memberCellKey, ref speciesMember, ref growthOrder, cellIndex,
+                            nextBodyPlanCellToGrowIndex);
                     }
 
-                    long colonyLeaderKey = (long)colonyLeader.Id << 32 | (uint)colonyLeader.Version;
-                    long memberCellKey = (long)entity.Id << 32 | (uint)entity.Version;
-
-                    // Only get the membrane for THIS entity's cell (not all cells in the colony)
-                    var cellIndex = speciesMember.MulticellularBodyPlanPartIndex;
-                    var cell = speciesMember.Species.ModifiableGameplayCells[cellIndex];
-                    data = GetMulticellularMembraneDataIfReadyOrStartGenerating(cell, cell.ModifiableOrganelles,
-                        colonyLeaderKey, memberCellKey, ref speciesMember, ref growthOrder, cellIndex,
-                        nextBodyPlanCellToGrowIndex);
+                    {
+                        GD.PrintErr("Next body plan cell to grow index is out of bounds for species.");
+                    }
                 }
             }
         }
@@ -239,9 +250,9 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
             SetMembraneDisplayData(cellProperties.CreatedMembrane, data, ref cellProperties);
         }
 
-        cellProperties.CreatedMembrane!.IsMulticellular = !useSingleCellMembraneGeneration;
+        cellProperties.CreatedMembrane!.IsMulticellular = isSpeciesMulticellular;
 
-        if (!useSingleCellMembraneGeneration && entity.Has<IntercellularMatrix>())
+        if (isSpeciesMulticellular && entity.Has<IntercellularMatrix>())
         {
             ref var matrix = ref entity.Get<IntercellularMatrix>();
             matrix.ShouldRegenerateConnection = true;
