@@ -26,13 +26,15 @@ void vertex() {
 vec4 triplanarProjection(vec3 projNormal, vec3 projPos, sampler2D topTexture,
 	sampler2D sideTexture, sampler2D frontTexture)
 {
-	vec4 top = texture(mainTexture, vec2(projPos.x, projPos.z));
-	vec4 side = texture(mainTexture, vec2(projPos.z, projPos.y));
-	vec4 front = texture(mainTexture, vec2(projPos.x, projPos.y));
+	vec4 top = texture(topTexture, vec2(projPos.x, projPos.z));
+	vec4 side = texture(sideTexture, vec2(projPos.z, projPos.y));
+	vec4 front = texture(frontTexture, vec2(projPos.x, projPos.y));
 	
-	vec4 result = top * projNormal.y * projNormal.y
-		+ side * projNormal.x * projNormal.x
-		+ front * projNormal.z * projNormal.z;
+	projNormal *= projNormal;
+	projNormal /= projNormal.x + projNormal.y + projNormal.z;
+	
+	vec4 result = top * projNormal.y + side * projNormal.x
+		+ front * projNormal.z;
 	
 	return result;
 }
