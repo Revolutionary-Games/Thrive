@@ -56,7 +56,8 @@ public partial class IntercellularMatrixSystem : BaseSystem<World, float>
 
         var ourMembrane = cellProperties.CreatedMembrane;
         var targetMembrane = parentEntity.Get<CellProperties>().CreatedMembrane;
-        if (ourMembrane?.IsMulticellular != true || targetMembrane?.IsMulticellular != true)
+        if (ourMembrane?.IsMulticellular != true || targetMembrane?.IsMulticellular != true ||
+            ourMembrane?.IsChangingShape == true || targetMembrane?.IsChangingShape == true)
             return;
 
         Vector3 targetRelativePos;

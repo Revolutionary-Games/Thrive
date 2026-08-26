@@ -50,6 +50,8 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
         Vertices2D = copyTarget;
         VertexCount = count;
 
+        // Final average point that is used in intercellular matrix generation should be calculated
+        // after the membrane is stretched
         if (!IsPreMulticellularStretch)
         {
             AverageVertex = GetAverageVertex(Vertices2D, VertexCount);
@@ -79,6 +81,10 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
     // TODO: check all uses when switching this
     public Vector2[] Vertices2D { get; }
 
+    /// <summary>
+    ///   Average vertex calculated by summing up all membrane points and dividing by their number.
+    ///   Serves as the "center" of the membrane.
+    /// </summary>
     public Vector2 AverageVertex { get; }
 
     public int VertexCount { get; }
