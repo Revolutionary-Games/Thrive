@@ -51,8 +51,6 @@ public partial class CellBodyPlanEditorComponent
 
         OnCellToPlaceSelected(data.CellType.CellTypeName);
 
-        Editor.DirtyMutationPointsCache();
-
         UpdateGameteDropdowns();
     }
 
@@ -62,13 +60,18 @@ public partial class CellBodyPlanEditorComponent
         if (!Editor.EditedSpecies.ModifiableCellTypes.Remove(data.CellType))
             GD.PrintErr("Failed to delete cell type from species");
 
+        if (!data.Delete)
+        {
+            CellTypeVisualsOverride?.ForgetChanges(data.CellType);
+        }
+
         UpdateCellTypeSelections();
 
         Editor.DirtyMutationPointsCache();
 
         if (ReferenceEquals(data.CellType, SporeCellType))
         {
-            SporeCellType = Editor.EditedSpecies.ModifiableCellTypes[0];
+            SporeCellType = null;
         }
 
         if (ReferenceEquals(data.CellType, GameteACellType))
@@ -175,6 +178,11 @@ public partial class CellBodyPlanEditorComponent
     [ArchiveAllowedMethod]
     private void UndoSporeCellChangeAction(SporeCellTypeChangeActionData data)
     {
+        if (data.NewCellType != null)
+        {
+            CellTypeVisualsOverride?.ForgetChanges(data.NewCellType);
+        }
+
         ChangeSporeCellType(data.NewCellType, data.OldCellType);
     }
 
@@ -186,12 +194,15 @@ public partial class CellBodyPlanEditorComponent
                 GD.PrintErr("Failed to delete the spore cell type from species");
         }
 
+        SporeCellType = newCellType;
+
         if (newCellType != null)
         {
             OnCellTypeAdded(newCellType);
-        }
 
-        SporeCellType = newCellType;
+            // In case spore cell type's name gets changed
+            UpdateSpecialCellTypeDisplays();
+        }
     }
 
     [ArchiveAllowedMethod]

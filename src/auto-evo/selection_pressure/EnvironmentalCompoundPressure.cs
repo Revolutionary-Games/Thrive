@@ -35,6 +35,7 @@ public class EnvironmentalCompoundPressure : SelectionPressure
             new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Focus, -150.0f),
             new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Opportunism, 50.0f),
             new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Opportunism, -150.0f),
+            AddCellWithOrganelle.ThatUseCompound(compound),
         ])
     {
         this.compound = SimulationParameters.GetCompound(compound);
@@ -81,20 +82,18 @@ public class EnvironmentalCompoundPressure : SelectionPressure
 
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {
-        if (species is not MicrobeSpecies microbeSpecies)
-            return 0;
+        if (species is not MicrobeSpecies and not MulticellularSpecies)
+            throw new ArgumentException("Wrong type of Species passed to Microbe/Multicellular Species miche tree");
 
-        var amountCreated = cache.GetCompoundGeneratedFrom(compound, createdCompound, microbeSpecies, patch.Biome);
-
+        var amountCreated = cache.GetCompoundGeneratedFrom(compound, createdCompound, species, patch.Biome);
         if (createdCompound.ID == Compound.Glucose)
         {
             amountCreated *=
-                cache.GetCompoundConversionScoreForSpecies(createdCompound, atp, microbeSpecies);
+                cache.GetCompoundConversionScoreForSpecies(createdCompound, atp, species);
         }
 
-        var energyBalance = cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome);
-
         // Penalize Species that cannot rely exclusively on this compound
+        var energyBalance = cache.GetEnergyBalanceForSpecies(species, patch.Biome);
         return MathF.Min(amountCreated / energyBalance.TotalConsumption, 1);
     }
 

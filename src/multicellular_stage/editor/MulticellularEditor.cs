@@ -448,6 +448,11 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
             TutorialState.SendEvent(TutorialEventType.EnteredMulticellularEditor, EventArgs.Empty, this);
     }
 
+    protected override void ShowNoAutoEvoResultsAfterLoad()
+    {
+        reportTab.ShowErrorAboutIncompleteSave();
+    }
+
     protected override void UpdateHistoryCallbackTargets(ActionHistory<EditorAction> actionHistory)
     {
         // See TODO comment in MicrobeEditor.UpdateHistoryCallbackTargets

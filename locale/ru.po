@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-21 10:40+0300\n"
-"PO-Revision-Date: 2026-07-22 19:25+0000\n"
-"Last-Translator: Sentry Primis <sentryprime92@gmail.com>\n"
+"POT-Creation-Date: 2026-08-25 17:16+0300\n"
+"PO-Revision-Date: 2026-08-22 04:42+0000\n"
+"Last-Translator: Исаия Брайнин <fadingsoul90@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -398,8 +398,13 @@ msgstr "Используйте Исследователь Авто-Эво"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Инструмент изучения Авто-Эво"
 
-msgid "AUTO_EVO_FAILED"
+#, fuzzy
+msgid "AUTO_EVO_FAILED_CHECK_LOGS"
 msgstr "Не удалось запустить Авто-Эво"
+
+#, fuzzy
+msgid "AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL"
+msgstr "Отсутствуют результаты Авто-Эво. Это нормально, если вы, например, загрузили старое сохранение. Но если это произошло на новом сохранении, то, пожалуйста, сообщите об ошибке, прикрепив файл с журналом действий (Log file)."
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr "Отсутствуют результаты Авто-Эво. Это нормально, если вы, например, загрузили старое сохранение. Но если это произошло на новом сохранении, то, пожалуйста, сообщите об ошибке, прикрепив файл с журналом действий (Log file)."
@@ -1996,6 +2001,14 @@ msgstr "Редакторы и Мутации"
 
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Войдите в редактор для модификации видов"
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR"
+msgstr "Показывает, что данный вид мутировал во время этого цикла Авто-Эво"
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR_EXPLANATION"
+msgstr "Если ваш текущий микроб не приспособлен к выживанию в этой среде, вы можете вернуться к предыдущему состоянию в редакторе и попробовать что-то другое."
 
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
@@ -7547,6 +7560,43 @@ msgstr "3D, Стратегия, Космос"
 msgid "WIKI_8_BRACKET_16"
 msgstr "8 (16)"
 
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_EFFECTS"
+msgstr ""
+"За каждую клетку в многоклеточном организме, что содержит [b]Аксон[/b], сила мозга организма повышается пропорционально объёму этой клетки. Клетки с [b]Аксонами[/b] классифицируются как мышечные клетки мозга.\n"
+"\n"
+"Когда сила мозга достигает как минимум [b]+0.5[/b], игрок входит в Стадию Осознания. Когда сила мозга достигает [b]+5.0[/b], игрок входит в Стадию Пробуждения.\n"
+"\n"
+"Уменьшает[thrive:compound type=\"sunlight\"][/thrive:compound] [b]Сопротивление[/b] на 10%."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_INTRO"
+msgstr "Кратко говоря: Финальная стадия, где ты можешь стать метафизической сущностью, меняя вселенную по своему велению. Это было долгим приключением, и ты это заслужил."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_MODIFICATIONS"
+msgstr "Модификации отсутствуют."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_PROCESSES"
+msgstr "Процессы отсутствуют."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_REQUIREMENTS"
+msgstr "Доступно лишь после [color=#3796e1][url=thriveopedia:macroscopic_stage]Макроскопической Стадии[/url][/color]."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_SCIENTIFIC_BACKGROUND"
+msgstr "Аксон — это длинный тонкий отросток, соединяющий «нейронную клетку» с другой клеткой, будь то другой «нейрон» или «мышечная» клетка, а также со многими другими типами клеток. Аксон обеспечивает передачу информации в виде электрических сигналов между двумя или более клетками. Это, в свою очередь, позволяет организму реагировать на внешние раздражители, такие как резкое повышение температуры, царапина или даже запах, воздействующий на сенсорные клетки."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_STRATEGY"
+msgstr "Добавление [b]Аксонов[/b] необходимо для перехода на следующие стадии. Мы рекомендуем добавить один [b]Аксон[/b] различным типам клеток в вашем многоклеточным организмам, поскольку добавлять более одного аксона — бессмысленно. В данный момент, дальнейшее добавление [b]Аксонов[/b] не даёт какого-либо дополнительного преимущества."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_UPGRADES"
+msgstr "Улучшения отсутствуют."
+
 msgid "WIKI_ASCENSION"
 msgstr "Возвышение"
 
@@ -8239,6 +8289,7 @@ msgstr "Каждый [b]Жгутик[/b] обеспечивает направл
 msgid "WIKI_FLAGELLUM_INTRO"
 msgstr "[b]Жгутики[/b] — это похожие на волоски нити на внешней поверхности клетки, которые используют [thrive:compound type=\"atp\"][/thrive:compound] для увеличения скорости движения клетки в одном направлении. Сила тяги направлена в сторону, противоположную направлению вращения жгутика."
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_MODIFICATIONS"
 msgstr "Никаких изменений."
 
@@ -8493,6 +8544,7 @@ msgstr ""
 "\n"
 "[color=#3796e1][url=thriveopedia:thermosynthase]Thermosynthase[/url][/color] и[color=#3796e1][url=thriveopedia:thermoplast]Thermoplasts[/url][/color] производят [thrive:compound type=\"atp\"][/thrive:compound] бесплатно, пока окружающая среда достатчно горячая."
 
+#, fuzzy
 msgid "WIKI_HELP_AND_TIPS_MICROBE_STAGE_TIPS"
 msgstr ""
 "В этом разделе собраны все советы для этапа «Микробы», которые отображаются на экранах загрузки.\n"
@@ -8979,6 +9031,7 @@ msgstr ""
 "[ul]Содержит по меньшей мере [b]4[/b]  [b][color=#3796e1][url=thriveopedia:metabolosome]Метаболосомы[/url][/color][/b] по крайней мере, в течение [b]5[/b] поколений подряд.\n"
 "Производит по крайней мере [b]+20[/b] [thrive:compound type=\"atp\"][/thrive:compound].[/ul]"
 
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_SCIENTIFIC_BACKGROUND"
 msgstr ""
 "Митохондрия — это двухслойная (имеет внутреннюю и внешнюю мембраны) органелла, генерирующая АТФ путем Окислительного Фосфорилирования. В этом процессе, энергия генерируется от распада питательных веществ (например глюкоза или жиры), используя протонный градиент через внутреннюю мембрану, а затем использовать для превращения АДФ в АТФ.\n"
@@ -8997,6 +9050,10 @@ msgstr ""
 
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "Улучшения отсутствуют."
+
+#, fuzzy
+msgid "WIKI_MUCOCYST"
+msgstr "Механики"
 
 msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
 msgstr ""
@@ -9210,6 +9267,7 @@ msgstr ""
 msgid "WIKI_OXYTOXISOME_INTRO"
 msgstr "Модифицированная [b][color=#3796e1][url=thriveopedia:metabolosome]Метаболосома[/url][/color][/b], которая производит [thrive:compound type=\"oxytoxy\"][/thrive:compound], агент, которого можно запустить в качестве токсичного снаряда. Усовершенствованная версия [b][color=#3796e1][url=thriveopedia:oxytoxy]Токсиновой Вакуоли[/url][/color][/b]."
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_MODIFICATIONS"
 msgstr "Нет модификаций."
 
@@ -9243,6 +9301,10 @@ msgstr "Нет улучшений."
 
 msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr "Синтез Окситоксина, Гликолиз"
+
+#, fuzzy
+msgid "WIKI_PAGE_ACTOMYOSIN"
+msgstr "Восхождение"
 
 msgid "WIKI_PAGE_ASCENSION"
 msgstr "Восхождение"
@@ -9584,6 +9646,7 @@ msgstr ""
 "\n"
 "Также важно отметить, что Органелла использует [thrive:compound type=\"glucose\"][/thrive:compound], а не [thrive:compound type=\"atp\"][/thrive:compound], так что проверяйте баланс веществ в клетке, когда добавляете органеллу."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr "Улучшения отсутствуют."
 
@@ -9844,6 +9907,7 @@ msgstr ""
 msgid "WIKI_TOXIN_VACUOLE_INTRO"
 msgstr "Модифицированная [b][color=#3796e1][url=thriveopedia:vacuole]Vacuole[/url][/color][/b] , производящая [thrive:compound type=\"oxytoxy\"][/thrive:compound], агент, который можно запустить, как токсичный снаряд. Улучшенная версия [b][color=#3796e1][url=thriveopedia:oxytoxyProteins]Oxytoxisome[/url][/color][/b]."
 
+#, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_MODIFICATIONS"
 msgstr "Нет модификаций."
 

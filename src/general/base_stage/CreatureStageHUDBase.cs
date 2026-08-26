@@ -1012,7 +1012,7 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
         foreach (var (compound, bar) in compoundBars)
         {
             // Probably can save on performance here by not updating hidden bars and hoping that when bars become
-            // visible they will be updated immediately for the player to not notice
+            // visible, they will be updated immediately for the player to not notice
             if (!bar.Visible)
                 continue;
 

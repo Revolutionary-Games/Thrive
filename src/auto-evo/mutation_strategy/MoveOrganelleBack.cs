@@ -5,7 +5,7 @@ using System.Linq;
 using AutoEvo;
 using static CommonMutationFunctions;
 
-internal class MoveOrganelleBack : IMutationStrategy<MicrobeSpecies>
+internal class MoveOrganelleBack : IMutationStrategy<Species>
 {
     private readonly FrozenSet<OrganelleDefinition> allOrganelles;
 
@@ -16,9 +16,12 @@ internal class MoveOrganelleBack : IMutationStrategy<MicrobeSpecies>
 
     public bool Repeatable => true;
 
-    public List<Mutant>? MutationsOf(MicrobeSpecies baseSpecies, double mp, bool lawk,
+    public List<Mutant>? MutationsOf(Species baseSpecies, double mp, bool lawk,
         Random random, BiomeConditions biomeToConsider)
     {
+        if (baseSpecies is not MicrobeSpecies baseMicrobeSpecies)
+            return null;
+
         if (mp < Constants.ORGANELLE_MOVE_COST)
             return null;
 
@@ -29,7 +32,8 @@ internal class MoveOrganelleBack : IMutationStrategy<MicrobeSpecies>
         var workMemory2 = new List<Hex>();
         var workMemory3 = new HashSet<Hex>();
 
-        foreach (OrganelleTemplate organelle in baseSpecies.Organelles.Where(x => allOrganelles.Contains(x.Definition)))
+        foreach (OrganelleTemplate organelle in baseMicrobeSpecies.Organelles.Where(x =>
+                     allOrganelles.Contains(x.Definition)))
         {
             MicrobeSpecies newSpecies = (MicrobeSpecies)baseSpecies.Clone();
 
