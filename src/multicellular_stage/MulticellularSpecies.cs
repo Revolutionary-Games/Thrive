@@ -942,8 +942,18 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         // Apply the multiplier to the costs for being multicellular
         var result = new Dictionary<Compound, float>();
 
-        var fromCellsMultiplier = ModifiableGameplayCells.Count *
-            Constants.MULTICELLULAR_BASE_REPRODUCTION_COST_MULTIPLIER_PER_CELL;
+        // For auto-evo purposes, check if Editor cells can be used.
+        float cellCount;
+        if (modifiableEditorCells != null)
+        {
+            cellCount = EditorCells.Count;
+        }
+        else
+        {
+            cellCount = GameplayCells.Count;
+        }
+
+        var fromCellsMultiplier = cellCount * Constants.MULTICELLULAR_BASE_REPRODUCTION_COST_MULTIPLIER_PER_CELL;
 
         foreach (var entry in baseReproductionCost)
         {
