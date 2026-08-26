@@ -1399,6 +1399,7 @@ public static class Constants
     public const float AI_ENGULF_STOP_DISTANCE = 0.8f;
 
     public const float AI_BECOME_AGGRESSIVE_DISTANCE_SQUARED = 120 * 120;
+    public const float AI_ENTER_BINDING_MODE_DISTANCE_SQUARED = 20 * 20;
     public const float AI_FOLLOW_DISTANCE_SQUARED = 60 * 60;
     public const float AI_FLEE_DISTANCE_SQUARED = 85 * 85;
     public const float AI_MOVE_DISTANCE_SQUARED = 240 * 240;

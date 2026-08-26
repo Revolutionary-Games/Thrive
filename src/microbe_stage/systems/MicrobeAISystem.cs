@@ -436,7 +436,8 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
 
                         if (organelles.HasBindingAgent &&
                             rcfe.Get<OrganelleContainer>().HasBindingAgent &&
-                            atpLevel >= compounds.GetCapacityForCompound(Compound.ATP) * 0.5f)
+                            atpLevel >= compounds.GetCapacityForCompound(Compound.ATP) * 0.5f &&
+                            signalerDistanceSquared < Constants.AI_ENTER_BINDING_MODE_DISTANCE_SQUARED)
                         {
                             if (rcfe.Has<MicrobeColony>())
                             {
