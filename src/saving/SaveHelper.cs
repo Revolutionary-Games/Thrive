@@ -34,6 +34,20 @@ public static class SaveHelper
         "0.9.0.0",
     ];
 
+    /// <summary>
+    ///   Makes specific versions incompatible with the current version.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     1.6.0.0 is here because it had old actomyosin size, so allowing loading it will cause many problems,
+    ///     so we disallow this specific version.
+    ///   </para>
+    /// </remarks>
+    private static readonly List<string> SpecificIncompatibleVersions =
+    [
+        "1.6.0.0-rc1",
+    ];
+
     private static readonly IReadOnlyList<MainGameState> StagesAllowingPrototypeSaving =
     [
         MainGameState.MicrobeStage,
@@ -519,6 +533,14 @@ public static class SaveHelper
     /// <returns>True if certainly incompatible</returns>
     public static bool IsKnownIncompatible(string saveVersion)
     {
+        foreach (var specificIncompatibleVersion in SpecificIncompatibleVersions)
+        {
+            if (saveVersion == specificIncompatibleVersion)
+            {
+                return true;
+            }
+        }
+
         int currentVersionPlaceInList = -1;
         int savePlaceInList = -1;
 
@@ -551,7 +573,7 @@ public static class SaveHelper
 
         // If the current version and the save version don't fit in the same place in the save breakage points list
         // the save is either older or newer than the closes save breakage point to the current version.
-        // Basically if numbers don't match, we know that the save is incompatible.
+        // Basically, if numbers don't match, we know that the save is incompatible.
         return currentVersionPlaceInList != savePlaceInList;
     }
 
