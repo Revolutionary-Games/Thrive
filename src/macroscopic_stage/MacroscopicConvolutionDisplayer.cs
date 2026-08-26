@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using Godot;
 using Xoshiro.PRNG32;
 
@@ -66,12 +66,13 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
     {
         if (texturizationTask?.Finished == true)
         {
-            if (material != null)
+            if (material == null)
             {
-                material.AlbedoTexture = texturizationTask.FinalImage;
+                GD.PrintErr("Creature texturization requested, but no material is present");
+                return;
             }
 
-            texturizationTask.PlainImage.SavePng($"G:/Downloads/SMTH.png");
+            material.AlbedoTexture = texturizationTask.FinalImage;
 
             var texture = new DrawableTexture2D();
             texture.Setup(texturizationTask.FinalImage.GetWidth(), texturizationTask.FinalImage.GetHeight(),
@@ -88,12 +89,7 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
                     new Vector2I(texturizationTask.FinalImage.GetWidth(), texturizationTask.FinalImage.GetHeight())),
                 ImageTexture.CreateFromImage(texture.GetImage()), material: blitMaterial);
 
-            if (material != null)
-            {
-                material.AlbedoTexture = texture;
-            }
-
-            texture.GetImage().SavePng($"G:/Downloads/SMTH2.png");
+            material.AlbedoTexture = texture;
 
             Mesh.SurfaceSetMaterial(0, material);
 
@@ -137,6 +133,12 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
         CustomAabb = new Aabb(minExtends, maxExtends);
     }
 
+    public void Texturize(MacroscopicSpecies species)
+    {
+        var uvUnwrap = new Task(() => UVUnwrapAndTexture((ArrayMesh)Mesh, species));
+        TaskExecutor.Instance.AddTask(uvUnwrap);
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -145,12 +147,6 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
         }
 
         base.Dispose(disposing);
-    }
-
-    public void Texturize(MacroscopicSpecies species)
-    {
-        var uvUnwrap = new Task(() => UVUnwrapAndTexture((ArrayMesh)Mesh, species));
-        TaskExecutor.Instance.AddTask(uvUnwrap);
     }
 
     private void UVUnwrapAndTexture(ArrayMesh mesh, MacroscopicSpecies species)

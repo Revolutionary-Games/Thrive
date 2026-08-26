@@ -24,5 +24,13 @@ public interface IImageTask : ISavableCacheItem
     /// </summary>
     public string? CachePath { get; set; }
 
+    /// <summary>
+    ///   The resolution to generate an image in. Doesn't do anything for cached images.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Null means default resolution.
+    ///   </para>
+    /// </remarks>
     public int? DesiredResolution { get; }
 }

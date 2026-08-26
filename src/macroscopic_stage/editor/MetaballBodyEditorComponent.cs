@@ -109,7 +109,7 @@ public partial class MetaballBodyEditorComponent :
 
     private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
 
-    public CreatureSkinType skinType;
+    private CreatureSkinType skinType;
 
     [Signal]
     public delegate void OnCellTypeToEditSelectedEventHandler(string name, bool switchTab);

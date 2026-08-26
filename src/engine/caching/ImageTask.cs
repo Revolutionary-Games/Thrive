@@ -128,7 +128,7 @@ public class CacheLoadedImage : IImageTask, ILoadableCacheItem
         set => throw new NotSupportedException("Loadable cache image must have final path set initially");
     }
 
-    public int? DesiredResolution { get; }
+    public int? DesiredResolution => null;
 
     public ulong CalculateCacheHash()
     {

@@ -1,12 +1,12 @@
-﻿using Godot;
-using System;
+﻿using System;
+using Godot;
 using Xoshiro.PRNG32;
 
 public class CreatureTexturePhotographable : IScenePhotographable
 {
-    public MacroscopicSpecies Species = null!;
+    public MacroscopicSpecies Species;
 
-    public Mesh CreatureMesh = null!;
+    public Mesh CreatureMesh;
 
     public CreatureTexturePhotographable(Mesh mesh, MacroscopicSpecies species)
     {

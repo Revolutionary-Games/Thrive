@@ -206,15 +206,13 @@ public class MacroscopicSpecies : Species, IReadOnlyMacroscopicSpecies
                 path = "res://assets/textures/creature_textures/Fur.png";
                 break;
             case CreatureSkinType.Skin:
-                //TBD
-                path = "res://assets/textures/creature_textures/Scales.png";
+                path = "res://assets/textures/creature_textures/Skin.png";
                 break;
             case CreatureSkinType.Scales:
                 path = "res://assets/textures/creature_textures/Scales2.png";
                 break;
             case CreatureSkinType.Feather:
-                //TBD
-                path = "res://assets/textures/creature_textures/Scales.png";
+                path = "res://assets/textures/creature_textures/Feathers.png";
                 break;
         }
 
@@ -234,8 +232,7 @@ public class MacroscopicSpecies : Species, IReadOnlyMacroscopicSpecies
                 path = "res://assets/textures/creature_textures/Scales.png";
                 break;
             case CreatureSkinType.Feather:
-                //TBD
-                path = "res://assets/textures/creature_textures/Scales.png";
+                path = "res://assets/textures/creature_textures/Feathers2.png";
                 break;
             case CreatureSkinType.Pepper:
                 path = "res://assets/textures/creature_textures/Pepper.png";
