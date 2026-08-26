@@ -960,10 +960,24 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
     {
         var result = base.CalculateTotalReproductionCost();
 
-        int count = ModifiableGameplayCells.Count;
-        for (int i = 0; i < count; ++i)
+        // For auto-evo purposes, check if Editor cells can be used.
+        if (modifiableEditorCells != null)
         {
-            result.Merge(ModifiableGameplayCells[i].CalculateTotalComposition());
+            int count = ModifiableEditorCells.Count;
+            for (int i = 0; i < count; ++i)
+            {
+                var cellTemplate = ModifiableEditorCells[i].Data;
+                if (cellTemplate != null)
+                    result.Merge(cellTemplate.CalculateTotalComposition());
+            }
+        }
+        else
+        {
+            int count = ModifiableGameplayCells.Count;
+            for (int i = 0; i < count; ++i)
+            {
+                result.Merge(ModifiableGameplayCells[i].CalculateTotalComposition());
+            }
         }
 
         return result;
