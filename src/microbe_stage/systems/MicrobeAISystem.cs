@@ -743,7 +743,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         {
             if (entity.Has<MicrobeColony>())
             {
-                if (entity.Get<MicrobeColony>().ColonyMembers.Length <=
+                if (entity.Get<MicrobeColony>().ColonyMembers.Length <
                     Constants.COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR)
                 {
                     signaling.QueuedSignalingCommand = MicrobeSignalCommand.MoveToMe;
