@@ -20,6 +20,7 @@ using World = Arch.Core.World;
 ///   Godot scene tree is handled by <see cref="SpatialAttachSystem"/>
 /// </summary>
 [WritesToComponent(typeof(MulticellularGrowth))]
+[WritesToComponent(typeof(IntercellularMatrix))]
 [RunsBefore(typeof(SpatialAttachSystem))]
 [RunsBefore(typeof(EntityMaterialFetchSystem))]
 [RunsBefore(typeof(SpatialPositionSystem))]
