@@ -18,9 +18,7 @@ varying vec3 normal;
 
 void vertex() {
 	// Called for every vertex the material is visible on.
-	mat4 staticViewInverse = INV_VIEW_MATRIX;
-	staticViewInverse[3] = vec4(0.0f);
-	normal = (NORMAL).xyz;
+	normal = NORMAL;
 	pos = VERTEX;
 	VERTEX = vec3(vec2(UV.x, UV.y) - 0.5f, 0.0f);
 }
@@ -28,12 +26,12 @@ void vertex() {
 vec4 triplanarProjection(vec3 projNormal, vec3 projPos, sampler2D topTexture,
 	sampler2D sideTexture, sampler2D frontTexture)
 {
-	vec4 top = texture(mainTexture, vec2(pos.x, pos.z));
-	vec4 side = texture(mainTexture, vec2(pos.z, pos.y));
-	vec4 front = texture(mainTexture, vec2(pos.x, pos.y));
+	vec4 top = texture(mainTexture, vec2(projPos.x, projPos.z));
+	vec4 side = texture(mainTexture, vec2(projPos.z, projPos.y));
+	vec4 front = texture(mainTexture, vec2(projPos.x, projPos.y));
 	
-	vec4 result = top * projNormal.y * projNormal.y;
-		+ side * projNormal.x * projNormal.x;
+	vec4 result = top * projNormal.y * projNormal.y
+		+ side * projNormal.x * projNormal.x
 		+ front * projNormal.z * projNormal.z;
 	
 	return result;
