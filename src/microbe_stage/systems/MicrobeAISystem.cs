@@ -448,7 +448,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                                     control.SetStateColonyAware(entity, MicrobeState.Binding);
                                 }
                             }
-                            else
+                            else if (!entity.Has<MicrobeColonyMember>())
                             {
                                 control.SetStateColonyAware(entity, MicrobeState.Binding);
                             }
