@@ -805,11 +805,14 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
     /// <summary>
     ///   Returns an exact clone of this MulticellularSpecies, with parameters for producing partial clones.
     /// </summary>
-    /// /// <param name="cloneOrganelles">If false, does not clone the organelles inside cell types. These then need to
-    /// be cloned separately. </param>
-    /// /// <param name="cloneGameplayLayout">If false, only a "dummy" ModifiableGameplayCells is added, containing
-    /// a single cell of the first CellType. UpdateGameplayLayoutForAutoEvo must be run on this species before any
-    /// handling outside of auto-evo. </param>
+    /// <param name="cloneOrganelles">
+    ///   If false, does not clone the organelles inside cell types. These then need to be cloned separately.
+    /// </param>
+    /// <param name="cloneGameplayLayout">
+    ///   If false, only a "dummy" ModifiableGameplayCells is added, containing a single cell of the first CellType.
+    ///   <see cref="MulticellularLayoutHelpers.UpdateGameplayLayoutForAutoEvo"/> must be run on this species or any
+    ///   further clones made from it before any handling outside auto-evo.
+    /// </param>
     public MulticellularSpecies Clone(bool cloneOrganelles, bool cloneGameplayLayout)
     {
         var result = new MulticellularSpecies(ID, Genus, Epithet);
