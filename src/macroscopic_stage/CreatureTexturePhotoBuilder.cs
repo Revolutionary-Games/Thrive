@@ -1,5 +1,4 @@
 ﻿using Godot;
-using System;
 
 /// <summary>
 ///   Photographs an unwrapped creature model to create a texture for it.

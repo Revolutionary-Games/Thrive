@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using Godot;
-using Xoshiro.PRNG32;
 
 /// <summary>
 ///   Displays a creature using convolution surfaces based on a metaball layout

@@ -247,19 +247,6 @@ public class MacroscopicSpecies : Species, IReadOnlyMacroscopicSpecies
         return GD.Load<Texture2D>(path);
     }
 
-    public override ulong GetVisualHashCode()
-    {
-        ulong value = 1UL;
-
-        foreach (var metaball in ModifiableBodyLayout)
-        {
-            value ^= (ulong)((metaball.Position.X.GetHashCode() + metaball.Position.Y.GetHashCode()
-                + metaball.Position.Z.GetHashCode()) ^ metaball.Size.GetHashCode() ^ metaball.Colour.GetHashCode());
-        }
-
-        return value;
-    }
-
     public override object Clone()
     {
         var result = new MacroscopicSpecies(ID, Genus, Epithet);
@@ -279,6 +266,19 @@ public class MacroscopicSpecies : Species, IReadOnlyMacroscopicSpecies
         }
 
         return result;
+    }
+
+    public override ulong GetVisualHashCode()
+    {
+        ulong value = 1UL;
+
+        foreach (var metaball in ModifiableBodyLayout)
+        {
+            value ^= (ulong)((metaball.Position.X.GetHashCode() + metaball.Position.Y.GetHashCode()
+                + metaball.Position.Z.GetHashCode()) ^ metaball.Size.GetHashCode() ^ metaball.Colour.GetHashCode());
+        }
+
+        return value;
     }
 
     private static float CalculateBrainPowerFromLayout(MetaballLayout<MacroscopicMetaball> layout, float scale)

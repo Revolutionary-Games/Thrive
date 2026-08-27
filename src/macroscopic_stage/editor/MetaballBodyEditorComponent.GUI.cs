@@ -10,6 +10,16 @@ public partial class MetaballBodyEditorComponent
 
     private int usedToleranceWarnings;
 
+    public void OnSkinTypeChanged(int newValue)
+    {
+        SkinType = (CreatureSkinType)newValue;
+    }
+
+    public void UpdateSkinType()
+    {
+        creatureSkinTypeChoiceButton.Selected = (int)SkinType;
+    }
+
     private void CalculateAndDisplayToleranceWarnings()
     {
         // We exclude bonuses here so that the warnings display doesn't have a partial line about a debuff and then
@@ -30,15 +40,5 @@ public partial class MetaballBodyEditorComponent
     private void OnTolerancesEditorChangedData()
     {
         OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
-    }
-
-    public void OnSkinTypeChanged(int newValue)
-    {
-        SkinType = (CreatureSkinType)newValue;
-    }
-
-    public void UpdateSkinType()
-    {
-        creatureSkinTypeChoiceButton.Selected = (int)SkinType;
     }
 }

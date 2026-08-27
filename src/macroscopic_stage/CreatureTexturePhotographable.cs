@@ -1,5 +1,4 @@
-﻿using System;
-using Godot;
+﻿using Godot;
 using Xoshiro.PRNG32;
 
 public class CreatureTexturePhotographable : IScenePhotographable
@@ -24,11 +23,6 @@ public class CreatureTexturePhotographable : IScenePhotographable
         }
     }
 
-    public ulong GetVisualHashCode()
-    {
-        return Species.GetVisualHashCode();
-    }
-
     public Vector3 CalculatePhotographDistance(Node3D instancedScene)
     {
         return new Vector3(0.0f, MathUtils.CameraDistanceFromRadiusOfObject(Radius, Constants.PHOTO_STUDIO_CAMERA_FOV),
@@ -42,8 +36,8 @@ public class CreatureTexturePhotographable : IScenePhotographable
 
         var arrays = CreatureMesh.SurfaceGetArrays(0);
 
-        var vertices = arrays[(int)ArrayMesh.ArrayType.Vertex].AsVector3Array();
-        var normals = arrays[(int)ArrayMesh.ArrayType.Normal].AsVector3Array();
+        var vertices = arrays[(int)Mesh.ArrayType.Vertex].AsVector3Array();
+        var normals = arrays[(int)Mesh.ArrayType.Normal].AsVector3Array();
 
         var matrices = new Godot.Collections.Array();
 
@@ -61,5 +55,10 @@ public class CreatureTexturePhotographable : IScenePhotographable
 
         photobuilder.SetProjectionMatrices(matrices);
         photobuilder.SetTextures(Species.GetMainTexture(), Species.GetProjectedTexture());
+    }
+
+    public ulong GetVisualHashCode()
+    {
+        return Species.GetVisualHashCode();
     }
 }
