@@ -39,7 +39,7 @@ public static class SaveHelper
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     1.6.0.0 is here because it had old actomyosin size, so allowing loading it will cause many problems,
+    ///     1.6.0.0-rc1 is here because it had old actomyosin size, so allowing loading it will cause many problems,
     ///     so we disallow this specific version.
     ///   </para>
     /// </remarks>
