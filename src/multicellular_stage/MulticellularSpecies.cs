@@ -797,6 +797,14 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         return ModifiableGameplayCells[0].ModifiableCellType;
     }
 
+    /// <summary>
+    ///   Reverse the hack of cloning for auto-evo forcing gameplay cells to null
+    /// </summary>
+    public void RestoreGameplayCellsForAutoEvo()
+    {
+        ModifiableGameplayCells = new CellLayout<CellTemplate>();
+    }
+
     public override object Clone()
     {
         return Clone(true, true);
@@ -914,14 +922,6 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         result.MassBuddingCellCount = MassBuddingCellCount;
 
         return result;
-    }
-
-    /// <summary>
-    ///   Reverse the hack of cloning for auto-evo forcing gameplay cells to null
-    /// </summary>
-    public void RestoreGameplayCellsForAutoEvo()
-    {
-        ModifiableGameplayCells = new CellLayout<CellTemplate>();
     }
 
     public override ulong GetVisualHashCode()
