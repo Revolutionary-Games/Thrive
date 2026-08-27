@@ -13,7 +13,10 @@ using Newtonsoft.Json.Serialization;
 public class ReferenceResolver : IReferenceResolver
 {
     private readonly Dictionary<string, object> referenceToObject = new();
-    private readonly Dictionary<object, string> objectToReference = new();
+
+    // JSON references represent object identity, not value equality. In particular, mutable editor clones can be equal
+    // to their source objects while still needing independent references.
+    private readonly Dictionary<object, string> objectToReference = new(ReferenceEqualityComparer.Instance);
 
     private long referenceCounter;
 
