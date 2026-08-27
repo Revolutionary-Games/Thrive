@@ -227,13 +227,9 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     public override bool EnqueueAction(EditorAction action)
     {
-        if (specialMembraneToSwitchOnExit != null)
-        {
-            // Doing anything prevents membrane change from happening afterwards, just so there's no way to optimize MP
-            // usage by failing to change and then doing an edit and then succeeding
-            specialMembraneToSwitchOnExit = null;
-            GD.Print("Clearing pending membrane change as the player performed an action");
-        }
+        // Doing anything prevents membrane change from happening afterwards, just so there's no way to optimize MP
+        // usage by failing to change and then doing an edit and then succeeding
+        StopMembraneSwitchIfQueued();
 
         return base.EnqueueAction(action);
     }
@@ -288,6 +284,9 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     public override void Redo()
     {
+        // Redo could be used to trigger a membrane switch in an unintended way, so we always clear it here
+        StopMembraneSwitchIfQueued();
+
         var cellType = history.GetRedoContext<CellType>();
 
         // If the action we're redoing should be done on another cell type,
@@ -664,6 +663,15 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
         // A light refresh of data to not have to do potentially very expensive repositioning algorithm
         EditedSpecies.NotifyMembraneTypeChanged();
+    }
+
+    private void StopMembraneSwitchIfQueued()
+    {
+        if (specialMembraneToSwitchOnExit != null)
+        {
+            specialMembraneToSwitchOnExit = null;
+            GD.Print("Clearing pending membrane change as the player performed an action");
+        }
     }
 
     private void OnRevealAllPatchesCheatUsed(object? sender, EventArgs args)
