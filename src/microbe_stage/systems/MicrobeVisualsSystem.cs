@@ -204,7 +204,7 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
                             colonyLeaderKey, memberCellKey, ref speciesMember, ref growthOrder, cellIndex,
                             nextBodyPlanCellToGrowIndex);
                     }
-
+                    else
                     {
                         GD.PrintErr("Next body plan cell to grow index is out of bounds for species.");
                     }
