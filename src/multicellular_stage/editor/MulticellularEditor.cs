@@ -227,9 +227,13 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     public override bool EnqueueAction(EditorAction action)
     {
-        // Doing anything prevents membrane change from happening afterwards, just so there's no way to optimize MP
-        // usage by failing to change and then doing an edit and then succeeding
-        specialMembraneToSwitchOnExit = null;
+        if (specialMembraneToSwitchOnExit != null)
+        {
+            // Doing anything prevents membrane change from happening afterwards, just so there's no way to optimize MP
+            // usage by failing to change and then doing an edit and then succeeding
+            specialMembraneToSwitchOnExit = null;
+            GD.Print("Clearing pending membrane change as the player performed an action");
+        }
 
         return base.EnqueueAction(action);
     }
@@ -342,11 +346,13 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
         if (!OnFinishEditing(null))
         {
-            GD.Print("Couldn't exit the editor due to a problem and apply new membrane");
-            specialMembraneToSwitchOnExit = null;
+            // A failed finish attempt can be caused by a warning popup. Keep the membrane change pending so that
+            // confirming the warning can retry the exit and apply it. EnqueueAction clears this if the player
+            // performs an editor action before trying to exit again.
+            GD.Print("Couldn't exit the editor yet due to a problem; membrane change remains pending");
         }
 
-        // We can't unset the membrane in all cases as there's a timed animation on the exit and only then the callback
+        // We can't unset the membrane as there's a timed animation on the exit, and only then the callback
         // needing it will run
     }
 
