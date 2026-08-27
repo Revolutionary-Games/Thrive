@@ -841,6 +841,8 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
                 result.ModifiableGameteTypeB = clonedType;
         }
 
+        // This implementation for avoiding cloning gameplay cells for auto-evo is very much a hackish way of doing
+        // things that should be replaced soon.
         if (cloneGameplayLayout)
         {
             foreach (var cellTemplate in ModifiableGameplayCells)
@@ -854,6 +856,10 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
                     new CellTemplate(newType, cellTemplate.Position, cellTemplate.Orientation),
                     workMemory1, workMemory2);
             }
+        }
+        else
+        {
+            result.ModifiableGameplayCells = null!;
         }
 
         if (result.modifiableEditorCells == null)
@@ -908,6 +914,14 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         result.MassBuddingCellCount = MassBuddingCellCount;
 
         return result;
+    }
+
+    /// <summary>
+    ///   Reverse the hack of cloning for auto-evo forcing gameplay cells to null
+    /// </summary>
+    public void RestoreGameplayCellsForAutoEvo()
+    {
+        ModifiableGameplayCells = new CellLayout<CellTemplate>();
     }
 
     public override ulong GetVisualHashCode()

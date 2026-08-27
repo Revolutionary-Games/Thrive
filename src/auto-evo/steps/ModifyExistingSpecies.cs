@@ -233,6 +233,8 @@ public class ModifyExistingSpecies : IRunStep
                         var multicellularMutant = mutation.MutatedSpecies as MulticellularSpecies;
                         if (multicellularMutant != null)
                         {
+                            // TODO This method of nulling and later restoring gameplay cells should be a temporary hack
+                            multicellularMutant.RestoreGameplayCellsForAutoEvo();
                             multicellularMutant.RepositionCellTypesToOrigin();
                             MulticellularLayoutHelpers.UpdateGameplayLayoutForAutoEvo(
                                 multicellularMutant.ModifiableGameplayCells, multicellularMutant.ModifiableEditorCells,
