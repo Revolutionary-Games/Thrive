@@ -494,7 +494,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
             {
                 var cellTemplate = ModifiableEditorCells[i].Data;
                 if (cellTemplate == null)
-                    continue;
+                    throw new ArgumentException("editor layout hex does not contain cell template");
 
                 ProcessSystem.ComputeCompoundBalance(cellTemplate.ModifiableOrganelles,
                     biomeConditions, environmentalTolerances, 1, CompoundAmountType.Biome, false, compoundBalances);
@@ -994,8 +994,10 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
             for (int i = 0; i < count; ++i)
             {
                 var cellTemplate = ModifiableEditorCells[i].Data;
-                if (cellTemplate != null)
-                    result.Merge(cellTemplate.CalculateTotalComposition());
+                if (cellTemplate == null)
+                    throw new ArgumentException("editor layout hex does not contain cell template");
+
+                result.Merge(cellTemplate.CalculateTotalComposition());
             }
         }
         else
