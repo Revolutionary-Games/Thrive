@@ -809,7 +809,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
     ///   If false, does not clone the organelles inside cell types. These then need to be cloned separately.
     /// </param>
     /// <param name="cloneGameplayLayout">
-    ///   If false, only a "dummy" ModifiableGameplayCells is added, containing a single cell of the first CellType.
+    ///   If false, ModifiableGameplayCells is left empty.
     ///   <see cref="MulticellularLayoutHelpers.UpdateGameplayLayoutForAutoEvo"/> must be run on this species or any
     ///   further clones made from it before any handling outside auto-evo.
     /// </param>
@@ -854,11 +854,6 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
                     new CellTemplate(newType, cellTemplate.Position, cellTemplate.Orientation),
                     workMemory1, workMemory2);
             }
-        }
-        else
-        {
-            result.ModifiableGameplayCells.AddFast(new CellTemplate(result.ModifiableCellTypes[0],
-                new Hex(0, 0), 0), workMemory1, workMemory2);
         }
 
         if (result.modifiableEditorCells == null)
