@@ -411,6 +411,9 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
             }
         }
 
+        // This throwing should be fixed now with the latest intercellular matrix system changes. The cause was that
+        // if the player removed cells then later body plan indexes would no longer point to any cell for existing
+        // entities.
         var cellData = new MulticellularMembraneGenerationCellData(cellPositionInMulticellular,
             multicellular.Species.ModifiableGameplayCells[currentCellIndex].Orientation);
 
