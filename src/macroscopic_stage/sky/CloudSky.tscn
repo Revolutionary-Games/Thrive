@@ -34,6 +34,7 @@ height = 2000.0
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1161880078]
 compositor = SubResource("Compositor_s4i58")
 script = ExtResource("4_q3oiy")
+CloudsEffect = SubResource("CompositorEffect_kf5fw")
 
 [node name="DummyPlanet" type="MeshInstance3D" parent="." unique_id=1259534746]
 mesh = SubResource("SphereMesh_m2g58")
