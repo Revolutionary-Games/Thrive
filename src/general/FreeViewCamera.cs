@@ -62,31 +62,6 @@ public partial class FreeViewCamera : Camera3D
         StopLooking();
     }
 
-    public override void _Notification(int what)
-    {
-        if (what == NotificationApplicationFocusOut || what == NotificationWMWindowFocusOut)
-            StopLooking();
-    }
-
-    public override void _Input(InputEvent @event)
-    {
-        if (@event is InputEventMouseButton button)
-        {
-            HandleMouseButton(button);
-            return;
-        }
-
-        if (@event is InputEventMouseMotion motion && looking)
-        {
-            yaw -= motion.Relative.X * MouseSensitivity;
-            pitch -= motion.Relative.Y * MouseSensitivity * (InvertY ? -1.0f : 1.0f);
-            pitch = Math.Clamp(pitch, -MaxPitch, MaxPitch);
-
-            ApplyRotation();
-            GetViewport().SetInputAsHandled();
-        }
-    }
-
     public override void _Process(double delta)
     {
         if (!looking)
@@ -122,6 +97,31 @@ public partial class FreeViewCamera : Camera3D
             speed *= SprintMultiplier;
 
         GlobalPosition += direction.Normalized() * (speed * (float)delta);
+    }
+
+    public override void _Notification(int what)
+    {
+        if (what == NotificationApplicationFocusOut || what == NotificationWMWindowFocusOut)
+            StopLooking();
+    }
+
+    public override void _Input(InputEvent @event)
+    {
+        if (@event is InputEventMouseButton button)
+        {
+            HandleMouseButton(button);
+            return;
+        }
+
+        if (@event is InputEventMouseMotion motion && looking)
+        {
+            yaw -= motion.Relative.X * MouseSensitivity;
+            pitch -= motion.Relative.Y * MouseSensitivity * (InvertY ? -1.0f : 1.0f);
+            pitch = Math.Clamp(pitch, -MaxPitch, MaxPitch);
+
+            ApplyRotation();
+            GetViewport().SetInputAsHandled();
+        }
     }
 
     private void HandleMouseButton(InputEventMouseButton button)

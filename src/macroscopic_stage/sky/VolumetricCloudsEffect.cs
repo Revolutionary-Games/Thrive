@@ -21,8 +21,10 @@ using Godot.Collections;
 [GlobalClass]
 public partial class VolumetricCloudsEffect : CompositorEffect
 {
+#pragma warning disable CA2213
     [Export]
     public CloudsConfig CloudsConfig = new();
+#pragma warning restore CA2213
 
     private const uint PushConstantsBufferSize = 128;
     private const uint UniformParamsBufferSize = 128;
@@ -291,10 +293,15 @@ public partial class VolumetricCloudsEffect : CompositorEffect
 
     protected override void Dispose(bool disposing)
     {
-        if (disposed)
-            return;
+        lock (InstanceLock)
+        {
+            if (disposed)
+                return;
 
-        ReleaseActive();
+            disposed = true;
+
+            ReleaseActive();
+        }
 
         if (disposing)
         {
@@ -310,8 +317,6 @@ public partial class VolumetricCloudsEffect : CompositorEffect
 
             RenderingServer.CallOnRenderThread(Callable.From(FreeResources));
         }
-
-        disposed = true;
 
         base.Dispose(disposing);
     }
@@ -417,15 +422,14 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     /// <returns>True if this instance holds the slot and should do the cloud rendering work.</returns>
     private bool TryBecomeActive()
     {
-        // Fast path for the common case of already holding the slot
         if (Volatile.Read(ref active))
             return true;
 
-        if (disposed)
-            return false;
-
         lock (InstanceLock)
         {
+            if (disposed)
+                return false;
+
             if (activeInstance is not null)
                 return false;
 
