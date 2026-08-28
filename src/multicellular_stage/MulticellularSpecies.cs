@@ -11,7 +11,7 @@ using Systems;
 /// </summary>
 public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISimulationPhotographable
 {
-    public const ushort SERIALIZATION_VERSION = 7;
+    public const ushort SERIALIZATION_VERSION = 8;
 
     private readonly Dictionary<BiomeConditions, Dictionary<Compound, (float TimeToFill, float Storage)>>
         cachedFillTimes = new();
@@ -231,6 +231,14 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
             {
                 instance.MassBuddingCellCount = 2;
             }
+        }
+
+        if (version < 8)
+        {
+            // Old sporulation data can reference a cell type that is taken up by the body plan
+            instance.ModifiableSporeCellType = null;
+            if (instance.ReproductionMethod == MulticellularReproductionMethod.Sporulation)
+                instance.ReproductionMethod = MulticellularReproductionMethod.Budding;
         }
 
         return instance;
