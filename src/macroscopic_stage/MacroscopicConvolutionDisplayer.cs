@@ -131,9 +131,9 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
         CustomAabb = new Aabb(minExtends, maxExtends);
     }
 
-    public void Texturize(MacroscopicSpecies species)
+    public void Texturize(MetaballLayout<MacroscopicMetaball> layout, CreatureSkinType skinType)
     {
-        var uvUnwrap = new Task(() => UVUnwrapAndTexture((ArrayMesh)Mesh, species));
+        var uvUnwrap = new Task(() => UVUnwrapAndTexture((ArrayMesh)Mesh, layout, skinType));
         TaskExecutor.Instance.AddTask(uvUnwrap);
     }
 
@@ -147,7 +147,8 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
         base.Dispose(disposing);
     }
 
-    private void UVUnwrapAndTexture(ArrayMesh mesh, MacroscopicSpecies species)
+    private void UVUnwrapAndTexture(ArrayMesh mesh, MetaballLayout<MacroscopicMetaball> layout,
+        CreatureSkinType skinType)
     {
         // TODO: investigate if it is somehow possible to avoid this data copy here (and another probably caused in
         // the native interop call ArrayMeshUnwrap)
@@ -163,7 +164,7 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
             // has to be deferred too.
             if (NativeMethods.ArrayMeshUnwrap(nativeVariant, 1.0f))
             {
-                Invoke.Instance.QueueForObject(() => ApplyTextures(species), this);
+                Invoke.Instance.QueueForObject(() => ApplyTextures(layout, skinType), this);
             }
             else
             {
@@ -177,10 +178,11 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
         }
     }
 
-    private void ApplyTextures(MacroscopicSpecies species)
+    private void ApplyTextures(MetaballLayout<MacroscopicMetaball> layout, CreatureSkinType skinType)
     {
-        texturizationTask = PhotoStudio.Instance.GenerateImage(new CreatureTexturePhotographable(Mesh, species), 1,
-            2048);
+        var photographable = new CreatureTexturePhotographable(Mesh, layout, skinType);
+
+        texturizationTask = PhotoStudio.Instance.GenerateImage(photographable, 1, 2048);
     }
 
     private (float LeftX, float RightX) CalculateXBoundsForTriangle(Vector2 a, Vector2 b, Vector2 c, float y)

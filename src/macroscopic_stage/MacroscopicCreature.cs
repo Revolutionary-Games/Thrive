@@ -269,7 +269,7 @@ public partial class MacroscopicCreature : RigidBody3D, ICharacterInventory, IEn
         // TODO: handle macroscopicSpecies.Scale
         metaballDisplayer.DisplayFromLayout(macroscopicSpecies.ModifiableBodyLayout);
 
-        metaballDisplayer.Texturize(macroscopicSpecies);
+        metaballDisplayer.Texturize(macroscopicSpecies.ModifiableBodyLayout, macroscopicSpecies.SkinType);
     }
 
     /// <summary>

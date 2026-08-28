@@ -836,6 +836,16 @@ public partial class MetaballBodyEditorComponent :
         return cellPositions;
     }
 
+    protected override void UpdateVisualMetaballDisplay()
+    {
+        visualMetaballDisplayer!.DisplayFromLayout(editedMetaballs);
+
+        if (visualMetaballDisplayer is MacroscopicConvolutionDisplayer displayer)
+        {
+            displayer.Texturize(editedMetaballs, skinType);
+        }
+    }
+
     private CombinedEditorAction GetMultiActionWithOccupancies(
         List<(Vector3 Position, MacroscopicMetaball? Parent)> metaballPositions,
         List<MacroscopicMetaball> metaballs, bool moving)

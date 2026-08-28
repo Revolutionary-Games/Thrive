@@ -196,11 +196,11 @@ public class MacroscopicSpecies : Species, IReadOnlyMacroscopicSpecies
             MacroscopicType = MacroscopicSpeciesType.Aware;
     }
 
-    public Texture2D? GetMainTexture()
+    public static Texture2D? GetMainTexture(CreatureSkinType skinType)
     {
         string? path = null;
 
-        switch (SkinType)
+        switch (skinType)
         {
             case CreatureSkinType.Fur:
                 path = "res://assets/textures/creature_textures/Fur.png";
@@ -222,11 +222,11 @@ public class MacroscopicSpecies : Species, IReadOnlyMacroscopicSpecies
         return GD.Load<Texture2D>(path);
     }
 
-    public Texture2D? GetProjectedTexture()
+    public static Texture2D? GetProjectedTexture(CreatureSkinType skinType)
     {
         string? path = null;
 
-        switch (SkinType)
+        switch (skinType)
         {
             case CreatureSkinType.Scales:
                 path = "res://assets/textures/creature_textures/Scales.png";
@@ -266,19 +266,6 @@ public class MacroscopicSpecies : Species, IReadOnlyMacroscopicSpecies
         }
 
         return result;
-    }
-
-    public override ulong GetVisualHashCode()
-    {
-        ulong value = 1UL;
-
-        foreach (var metaball in ModifiableBodyLayout)
-        {
-            value ^= (ulong)((metaball.Position.X.GetHashCode() + metaball.Position.Y.GetHashCode()
-                + metaball.Position.Z.GetHashCode()) ^ metaball.Size.GetHashCode() ^ metaball.Colour.GetHashCode());
-        }
-
-        return value;
     }
 
     private static float CalculateBrainPowerFromLayout(MetaballLayout<MacroscopicMetaball> layout, float scale)

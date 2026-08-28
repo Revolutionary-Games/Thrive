@@ -3,14 +3,18 @@ using Xoshiro.PRNG32;
 
 public class CreatureTexturePhotographable : IScenePhotographable
 {
-    public MacroscopicSpecies Species;
+    public MetaballLayout<MacroscopicMetaball> Layout;
+
+    public CreatureSkinType SkinType;
 
     public Mesh CreatureMesh;
 
-    public CreatureTexturePhotographable(Mesh mesh, MacroscopicSpecies species)
+    public CreatureTexturePhotographable(Mesh mesh, MetaballLayout<MacroscopicMetaball> layout,
+        CreatureSkinType skinType)
     {
         CreatureMesh = mesh;
-        Species = species;
+        Layout = layout;
+        SkinType = skinType;
     }
 
     public string SceneToPhotographPath => "res://src/macroscopic_stage/CreatureTexturePhotoBuilder.tscn";
@@ -54,11 +58,22 @@ public class CreatureTexturePhotographable : IScenePhotographable
         }
 
         photobuilder.SetProjectionMatrices(matrices);
-        photobuilder.SetTextures(Species.GetMainTexture(), Species.GetProjectedTexture());
+        photobuilder.SetTextures(MacroscopicSpecies.GetMainTexture(SkinType),
+            MacroscopicSpecies.GetProjectedTexture(SkinType));
     }
 
     public ulong GetVisualHashCode()
     {
-        return Species.GetVisualHashCode();
+        ulong value = 21067UL;
+
+        foreach (var metaball in Layout)
+        {
+            value ^= (ulong)((metaball.Position.X.GetHashCode() + metaball.Position.Y.GetHashCode()
+                + metaball.Position.Z.GetHashCode()) ^ metaball.Size.GetHashCode() ^ metaball.Colour.GetHashCode());
+        }
+
+        value += (ulong)SkinType;
+
+        return value;
     }
 }
