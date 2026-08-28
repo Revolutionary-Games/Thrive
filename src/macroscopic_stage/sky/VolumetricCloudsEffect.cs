@@ -304,8 +304,6 @@ public partial class VolumetricCloudsEffect : CompositorEffect
             colorTextureName.Dispose();
             depthTextureName.Dispose();
 
-            CloudsConfig.Dispose();
-
             rayMarcherSpirv = null!;
             upsamplerSpirv = null!;
             noiseProfile = null!;
