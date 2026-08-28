@@ -12,7 +12,7 @@ public partial class CellBodyPlanEditorComponent :
     HexEditorComponentBase<MulticellularEditor, CombinedEditorAction, EditorAction, HexWithData<CellTemplate>,
         MulticellularSpecies>, IArchiveUpdatable
 {
-    public const ushort SERIALIZATION_VERSION = 8;
+    public const ushort SERIALIZATION_VERSION = 9;
 
     [Export]
     public int MaxToleranceWarnings = 3;
@@ -645,6 +645,16 @@ public partial class CellBodyPlanEditorComponent :
         if (version >= 8)
         {
             SelectedGameteTypeForPlayer = (GameteType)reader.ReadInt32();
+        }
+
+        if (version < 9)
+        {
+            // Unset sporulation as it can be problematic
+            sporeCellType = null;
+            if (ReproductionMethod == MulticellularReproductionMethod.Sporulation)
+            {
+                ReproductionMethod = MulticellularReproductionMethod.Budding;
+            }
         }
     }
 
