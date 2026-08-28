@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-21 10:40+0300\n"
-"PO-Revision-Date: 2026-05-13 03:55+0000\n"
-"Last-Translator: Undibundi <andras9334@citromail.hu>\n"
+"POT-Creation-Date: 2026-08-25 17:16+0300\n"
+"PO-Revision-Date: 2026-08-22 04:42+0000\n"
+"Last-Translator: zynskeywolf <istvanszabo314@protonmail.com>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
@@ -403,8 +403,13 @@ msgstr "Auto-Evo felfedező eszköz"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Auto-Evo felfedező eszköz"
 
-msgid "AUTO_EVO_FAILED"
+#, fuzzy
+msgid "AUTO_EVO_FAILED_CHECK_LOGS"
 msgstr "Auto-evo futtatása sikertelen"
+
+#, fuzzy
+msgid "AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL"
+msgstr "Auto-evo eredmények hiányoznak. Ha régebbi mentést töltöttél be, akkor ez normális. Ha viszont nem régebbi mentést töltöttél be, akkor kérlek jelentsd ezt a hibát nekünk és küldd el a játéknaplótfájlt."
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr "Auto-evo eredmények hiányoznak. Ha régebbi mentést töltöttél be, akkor ez normális. Ha viszont nem régebbi mentést töltöttél be, akkor kérlek jelentsd ezt a hibát nekünk és küldd el a játéknaplótfájlt."
@@ -2078,6 +2083,14 @@ msgstr "faj mutálódott"
 #, fuzzy
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Segítség"
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR"
+msgstr "Fajok mutációkihagyásának engedélyezése (ha a rendszer nem talált megfelelő mutációt)"
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR_EXPLANATION"
+msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
 
 #, fuzzy
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
@@ -8199,6 +8212,38 @@ msgid "WIKI_8_BRACKET_16"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_ACTOMYOSIN_EFFECTS"
+msgstr "Külső effektek:"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_INTRO"
+msgstr "A rusticyanin egy fehérje, ami szén-dioxid, és oxigén segítségével képes oxidálni a vasat egyik kémiai állapotból a másikba. Ez a folyamat (amit vas-légzésnek hívnak) energiát termel, amit a sejt később fel tud használni."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_MODIFICATIONS"
+msgstr "Nincs módosítás."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_PROCESSES"
+msgstr "Nincs folyamat."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_REQUIREMENTS"
+msgstr "Csak a Többsejtű szakasztól kezdve elérhető."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_SCIENTIFIC_BACKGROUND"
+msgstr "Tudományos háttér"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_STRATEGY"
+msgstr "Felkelési fázis"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_UPGRADES"
+msgstr "A thilakoidok fehérjék és fényérzékeny pigmentek csoportosulásai. Ezek a pigmentek képesek a fény energiáját felhasználni glükóz előállítására vízből, és szén-dioxid gázból. Ezt a folyamatot hívjuk fotoszintézisnek. E pigmentek adják ráadásul saját maguk jellegzetes színét. A glükóz előállításának intenzitása a fény intenzitásától, és a szén-dioxid koncentrációjától függ. Mivel a thilakoidok a citoplazmában helyezkednek el, ezért a körülötte elhelyezkedő folyadék végez némi glikolízist."
+
+#, fuzzy
 msgid "WIKI_ASCENSION"
 msgstr "A rusticyanin egy fehérje, ami szén-dioxid, és oxigén segítségével képes oxidálni a vasat egyik kémiai állapotból a másikba. Ez a folyamat (amit vas-légzésnek hívnak) energiát termel, amit a sejt később fel tud használni."
 
@@ -8653,6 +8698,7 @@ msgstr ""
 msgid "WIKI_FLAGELLUM_INTRO"
 msgstr "Ostor"
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_MODIFICATIONS"
 msgstr "Nincs módosítás."
 
@@ -9198,6 +9244,10 @@ msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "Mitokondrium"
 
 #, fuzzy
+msgid "WIKI_MUCOCYST"
+msgstr "Sejtszervecske elhelyezése"
+
+#, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
 msgstr "Többsejtes fázis"
 
@@ -9385,6 +9435,10 @@ msgstr "Oxytoxyszóma"
 #, fuzzy
 msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr "OxyToxy szintézis"
+
+#, fuzzy
+msgid "WIKI_PAGE_ACTOMYOSIN"
+msgstr "Rusticyanin"
 
 #, fuzzy
 msgid "WIKI_PAGE_ASCENSION"

@@ -112,6 +112,9 @@ public partial class CellBodyPlanEditorComponent :
     private CustomConfirmationDialog pendingEndosymbiosisPopup = null!;
 
     [Export]
+    private CustomConfirmationDialog generalDataErrorPopup = null!;
+
+    [Export]
     private CustomWindow cannotDeleteInUseTypeDialog = null!;
 
     [Export]
@@ -696,44 +699,10 @@ public partial class CellBodyPlanEditorComponent :
             CellTypeVisualsOverride.ApplyChanges();
         }
 
-        bool neededTwoShifts = false;
-
         // Note that for the below calculations to work, all cell types need to be positioned correctly. So we need
         // to force that to happen here first. This also ensures that the skipped positioning to the origin of the cell
         // editor component (that is used as a special mode in multicellular) is performed.
-        foreach (var cellType in editedSpecies.ModifiableCellTypes)
-        {
-            if (cellType.RepositionToOrigin())
-            {
-                // It seems like in very rare cases a cell type requires two shifts of the layout to fix it, and then
-                // it stops shifting. So we take the slight performance hit here and try to shift everything twice
-                // in case some type needs it.
-                if (cellType.RepositionToOrigin())
-                {
-                    GD.Print($"Did a second shift for cell type: {cellType.CellTypeName}");
-                    neededTwoShifts = true;
-                }
-            }
-        }
-
-        // Safety check against cell layouts that forever want to shift (this causes layout overlap errors)
-        foreach (var cellType in editedSpecies.ModifiableCellTypes)
-        {
-            if (cellType.RepositionToOrigin())
-            {
-                GD.PrintErr("Cell type shouldn't get a second move to origin");
-                LogInterceptor.ForwardCaughtError(new Exception(
-                        "Detected a cell layout that infinitely shifts around the origin, this will break " +
-                        "multicellular cell positioning!"),
-                    "Please include a save or screenshot of your species' cell types with the report");
-                break;
-            }
-        }
-
-        if (neededTwoShifts)
-        {
-            GD.Print("Some cell types required two shifts to get organelles centered around the origin");
-        }
+        editedSpecies.RepositionCellTypesToOrigin();
 
         ApplyGrowthOrderToCells();
 
@@ -845,6 +814,79 @@ public partial class CellBodyPlanEditorComponent :
         if (HasFinishedPendingEndosymbiosis && !editorUserOverrides.Contains(EditorUserOverride.EndosymbiosisPending))
         {
             pendingEndosymbiosisPopup.PopupCenteredShrink();
+            return false;
+        }
+
+        // General data error
+        bool badData = false;
+
+        // Using a cell type that doesn't exist in the body plan
+        foreach (var editedMicrobeCell in editedMicrobeCells)
+        {
+            bool found = false;
+            bool foundInDataList = false;
+
+            if (editedMicrobeCell.Data?.CellType == null || editedMicrobeCell.Data?.ModifiableCellType == null)
+            {
+                badData = true;
+                GD.PrintErr("Edited cells has a null type");
+                break;
+            }
+
+            // Using the same type as the spore leads to various errors, so don't allow
+            if (sporeCellType != null && (ReferenceEquals(sporeCellType, editedMicrobeCell.Data?.CellType) ||
+                    ReferenceEquals(GetEditedCellDataIfEdited(sporeCellType),
+                        GetEditedCellDataIfEdited(editedMicrobeCell.Data!.ModifiableCellType)) ||
+                    ReferenceEquals(sporeCellType,
+                        GetEditedCellDataIfEdited(editedMicrobeCell.Data!.ModifiableCellType))))
+            {
+                badData = true;
+                GD.PrintErr($"Edited cell has the same type as the spore: {editedMicrobeCell}");
+                break;
+            }
+
+            foreach (var cellType in Editor.EditedSpecies.ModifiableCellTypes)
+            {
+                if (ReferenceEquals(GetEditedCellDataIfEdited(cellType),
+                        GetEditedCellDataIfEdited(editedMicrobeCell.Data!.ModifiableCellType)))
+                {
+                    found = true;
+                    break;
+                }
+            }
+
+            if (found)
+            {
+                // Check the cell type actually exists as selectable option
+                foreach (var entry in cellTypeSelectionButtons)
+                {
+                    if (entry.Key == editedMicrobeCell.Data?.CellType.CellTypeName && IsInstanceValid(entry.Value))
+                    {
+                        foundInDataList = true;
+                    }
+                }
+            }
+
+            if (!found)
+            {
+                GD.PrintErr(
+                    $"Cell type with name '{editedMicrobeCell.Data?.CellType.CellTypeName}' does not exist in " +
+                    $"the species list of cell types");
+                badData = true;
+                continue;
+            }
+
+            if (!foundInDataList)
+            {
+                GD.PrintErr($"Cell type with name '{editedMicrobeCell.Data?.CellType.CellTypeName}' is not in " +
+                    $"selectable cell types list");
+                badData = true;
+            }
+        }
+
+        if (badData)
+        {
+            generalDataErrorPopup.PopupCenteredShrink();
             return false;
         }
 

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-21 10:40+0300\n"
-"PO-Revision-Date: 2026-05-22 15:37+0000\n"
+"POT-Creation-Date: 2026-08-25 17:16+0300\n"
+"PO-Revision-Date: 2026-08-22 04:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
 "Language: bg\n"
@@ -403,8 +403,13 @@ msgstr "Еволюционен редактор"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Еволюционен редактор"
 
-msgid "AUTO_EVO_FAILED"
+#, fuzzy
+msgid "AUTO_EVO_FAILED_CHECK_LOGS"
 msgstr "Автоматичната еволюция не успя да стартира"
+
+#, fuzzy
+msgid "AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL"
+msgstr "Резултати от автоматичната еволюция:"
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr ""
@@ -2101,6 +2106,14 @@ msgstr "претърпяха мутация"
 
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Отваряне на редактора"
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR"
+msgstr "Без мутации на създанията (ако няма подходяща мутация)"
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR_EXPLANATION"
+msgstr "(ограничава скоростта на растеж на създанията)"
 
 #, fuzzy
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
@@ -8101,6 +8114,38 @@ msgid "WIKI_8_BRACKET_16"
 msgstr "["
 
 #, fuzzy
+msgid "WIKI_ACTOMYOSIN_EFFECTS"
+msgstr "Подлежи на уточняване"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_INTRO"
+msgstr "Подлежи на уточняване"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_MODIFICATIONS"
+msgstr "Подлежи на уточняване"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_PROCESSES"
+msgstr "Подлежи на уточняване"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_REQUIREMENTS"
+msgstr "Подлежи на уточняване"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_SCIENTIFIC_BACKGROUND"
+msgstr "Подлежи на уточняване"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_STRATEGY"
+msgstr "Подлежи на уточняване"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_UPGRADES"
+msgstr "Подлежи на уточняване"
+
+#, fuzzy
 msgid "WIKI_ASCENSION"
 msgstr "Подлежи на уточняване"
 
@@ -9068,6 +9113,7 @@ msgstr "Превръща [thrive:compound type=\"glucose\"]глюкозата[/t
 msgid "WIKI_MITOCHONDRION_REQUIREMENTS"
 msgstr "Това е основният източник на енергия на клетката. Митохондрията е структура с двойна мембрана, изпълнена с протеини и ензими. Тя е прокариот, който е бил асимилиран от еукариотния си приемник. Митохондрията превръща по много ефективен начин [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в процес, който се нарича [b]аеробно дишане[/b]. За да функционира се нуждае от [thrive:compound type=\"oxygen\"]кислород[/thrive:compound], когато той не е достатъчен произвеждането на [thrive:compound type=\"atp\"]АТФ[/thrive:compound] се забавя."
 
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_SCIENTIFIC_BACKGROUND"
 msgstr "Подлежи на уточняване"
 
@@ -9078,6 +9124,10 @@ msgstr "Подлежи на уточняване"
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "Това е основният източник на енергия на клетката. Митохондрията е структура с двойна мембрана, изпълнена с протеини и ензими. Тя е прокариот, който е бил асимилиран от еукариотния си приемник. Митохондрията превръща по много ефективен начин [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в процес, който се нарича [b]аеробно дишане[/b]. За да функционира се нуждае от [thrive:compound type=\"oxygen\"]кислород[/thrive:compound], когато той не е достатъчен произвеждането на [thrive:compound type=\"atp\"]АТФ[/thrive:compound] се забавя."
+
+#, fuzzy
+msgid "WIKI_MUCOCYST"
+msgstr "Добавяне на органел или друг обект"
 
 #, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
@@ -9266,6 +9316,7 @@ msgstr "Подлежи на уточняване"
 msgid "WIKI_OXYTOXISOME_INTRO"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_MODIFICATIONS"
 msgstr "Подлежи на уточняване"
 
@@ -9290,6 +9341,10 @@ msgstr "Подлежи на уточняване"
 #, fuzzy
 msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr "Окситоксиносинтеза"
+
+#, fuzzy
+msgid "WIKI_PAGE_ACTOMYOSIN"
+msgstr "Рустицианин"
 
 #, fuzzy
 msgid "WIKI_PAGE_ASCENSION"

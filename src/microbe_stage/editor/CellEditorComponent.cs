@@ -649,6 +649,8 @@ public partial class CellEditorComponent :
             {
                 tolerancesEditor.OnEditorSpeciesSetup(Editor.EditedBaseSpecies);
             }
+
+            VerifyEditedOrganellesDoNotReferToOriginalData();
         }
 
         if (IsMulticellularEditor)
@@ -3543,6 +3545,28 @@ public partial class CellEditorComponent :
         }
     }
 
+    private void VerifyEditedOrganellesDoNotReferToOriginalData()
+    {
+        if (IsMacroscopicEditor || IsMulticellularEditor)
+        {
+            var cellProperties = Editor.EditedCellProperties;
+            if (cellProperties == null)
+                return;
+
+            foreach (var editedMicrobeOrganelle in editedMicrobeOrganelles)
+            {
+                foreach (var originalOrganelle in cellProperties.ModifiableOrganelles)
+                {
+                    if (ReferenceEquals(editedMicrobeOrganelle, originalOrganelle))
+                    {
+                        throw new InvalidOperationException(
+                            "Organelle is not from edited, about to modify original data!");
+                    }
+                }
+            }
+        }
+    }
+
     private class PendingAutoEvoPrediction
     {
         public readonly AutoEvoRun AutoEvoRun;
@@ -3683,7 +3707,7 @@ public partial class CellEditorComponent :
                     simulationCache.Clear();
 
                     var individualCost =
-                        MichePopulation.CalculateMicrobeIndividualCost(calculationSpecies, biome, simulationCache);
+                        MichePopulation.CalculateIndividualCost(calculationSpecies, biome, simulationCache);
 
                     score = currentRun.Results.GetGlobalPopulation(calculationSpecies) * individualCost;
                 }

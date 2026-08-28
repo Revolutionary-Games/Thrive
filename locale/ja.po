@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-21 10:40+0300\n"
+"POT-Creation-Date: 2026-08-25 17:16+0300\n"
 "PO-Revision-Date: 2026-07-22 04:07+0000\n"
 "Last-Translator: 4sokay8 <kwi.tns11@gmail.com>\n"
 "Language-Team: Japanese <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ja/>\n"
@@ -401,8 +401,13 @@ msgstr "自動進化解析ツールで使用"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "自動進化解析ツール"
 
-msgid "AUTO_EVO_FAILED"
+#, fuzzy
+msgid "AUTO_EVO_FAILED_CHECK_LOGS"
 msgstr "自動進化の実行に失敗しました"
+
+#, fuzzy
+msgid "AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL"
+msgstr "自動進化の結果が見つかりません。古いセーブデータを読み込んだ場合は、結果が表示されないことがあります。古いセーブを読み込んでいない場合は、バグとして報告し、ゲームのログファイルをお送りください."
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr "自動進化の結果が見つかりません。古いセーブデータを読み込んだ場合は、結果が表示されないことがあります。古いセーブを読み込んでいない場合は、バグとして報告し、ゲームのログファイルをお送りください."
@@ -1929,6 +1934,13 @@ msgstr ""
 
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr ""
+
+msgid "EDITOR_SPECIES_DATA_ERROR"
+msgstr ""
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR_EXPLANATION"
+msgstr "現在の微生物がこの環境で生き残るのに適していない場合、前回エディターにいた時点に戻って別のアプローチを試すことができます。"
 
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
@@ -6994,6 +7006,37 @@ msgstr ""
 msgid "WIKI_8_BRACKET_16"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_EFFECTS"
+msgstr "キチナーゼは、細胞がキチン膜を分解できるようにします。追加するごとに効果が高まります。"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_INTRO"
+msgstr "キチナーゼは、細胞がキチン膜を分解できるようにします。追加するごとに効果が高まります。"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_MODIFICATIONS"
+msgstr "キチナーゼは、細胞がキチン膜を分解できるようにします。追加するごとに効果が高まります。"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_PROCESSES"
+msgstr "大型の細胞の旋回速度を上げます。"
+
+msgid "WIKI_ACTOMYOSIN_REQUIREMENTS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_SCIENTIFIC_BACKGROUND"
+msgstr "キチナーゼは、細胞がキチン膜を分解できるようにします。追加するごとに効果が高まります。"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_STRATEGY"
+msgstr "キチナーゼは、細胞がキチン膜を分解できるようにします。追加するごとに効果が高まります。"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_UPGRADES"
+msgstr "キチナーゼは、細胞がキチン膜を分解できるようにします。追加するごとに効果が高まります。"
+
 msgid "WIKI_ASCENSION"
 msgstr ""
 
@@ -7727,6 +7770,9 @@ msgstr ""
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr ""
 
+msgid "WIKI_MUCOCYST"
+msgstr ""
+
 msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
 msgstr ""
 
@@ -7881,6 +7927,9 @@ msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr ""
 
 msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
+
+msgid "WIKI_PAGE_ACTOMYOSIN"
 msgstr ""
 
 msgid "WIKI_PAGE_ASCENSION"
