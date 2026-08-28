@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-21 10:40+0300\n"
-"PO-Revision-Date: 2026-08-06 15:31+0000\n"
+"POT-Creation-Date: 2026-08-25 17:16+0300\n"
+"PO-Revision-Date: 2026-08-22 04:42+0000\n"
 "Last-Translator: Søren Hansen <pjuske4life@gmail.com>\n"
 "Language-Team: Danish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/da/>\n"
 "Language: da\n"
@@ -398,8 +398,13 @@ msgstr "Brug i Auto-Evo udforskningsværktøj"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Auto-Evo udforskningsværktøj"
 
-msgid "AUTO_EVO_FAILED"
+#, fuzzy
+msgid "AUTO_EVO_FAILED_CHECK_LOGS"
 msgstr "Auto-Evo mislykkedes"
+
+#, fuzzy
+msgid "AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL"
+msgstr "Auto-evo resultater mangler. Det er forventet at den mangler hvis du har hentet en gammel lagring. Hvis du ikke har hentet en gammel lagring, rapporter det venligst til os som en fejl, og send os dit spils log fil."
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr "Auto-evo resultater mangler. Det er forventet at den mangler hvis du har hentet en gammel lagring. Hvis du ikke har hentet en gammel lagring, rapporter det venligst til os som en fejl, og send os dit spils log fil."
@@ -1994,6 +1999,14 @@ msgstr "Editor og mutationer"
 
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Gå til editoren for at modificere din art"
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR"
+msgstr "Indikerer at denne art er muteret under denne auto-evo cyklus"
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR_EXPLANATION"
+msgstr "Hvis din nuværende mikrobe ikke er egnet til at overleve i dette miljø, så kan vende tilbage til den forrige gang du var i editoren og prøve noget anderledes."
 
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
@@ -7575,6 +7588,38 @@ msgstr "3D, Strategi, Rummet"
 msgid "WIKI_8_BRACKET_16"
 msgstr "8 (16)"
 
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_EFFECTS"
+msgstr "Effekter"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_INTRO"
+msgstr "I en nødeskal: Dette er slutspillet, hvor du kan fare galaksen rundt som en metafysisk skabning, der former og observerer som du ønsker det. Det har været en lang rejse, og du fortjener det."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_MODIFICATIONS"
+msgstr "Ingen modifikationer."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_PROCESSES"
+msgstr "Ingen processer."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_REQUIREMENTS"
+msgstr "Kun tilgængeligt fra Flercellestadiet og fremefter."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_SCIENTIFIC_BACKGROUND"
+msgstr "Mangler at blive tilføjet"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_STRATEGY"
+msgstr "Strategi"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_UPGRADES"
+msgstr "Ingen opgraderinger."
+
 msgid "WIKI_ASCENSION"
 msgstr "Opstigning"
 
@@ -7972,6 +8017,7 @@ msgstr ""
 msgid "WIKI_FLAGELLUM_INTRO"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_MODIFICATIONS"
 msgstr "Ingen modifikationer."
 
@@ -8386,6 +8432,10 @@ msgstr ""
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "Ingen opgraderinger."
 
+#, fuzzy
+msgid "WIKI_MUCOCYST"
+msgstr "Mekanikker"
+
 msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
 msgstr ""
 
@@ -8525,6 +8575,7 @@ msgstr ""
 msgid "WIKI_OXYTOXISOME_INTRO"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_MODIFICATIONS"
 msgstr "Ingen modifikationer."
 
@@ -8545,6 +8596,10 @@ msgstr "Ingen opgraderinger."
 
 msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_PAGE_ACTOMYOSIN"
+msgstr "Melanosome"
 
 msgid "WIKI_PAGE_ASCENSION"
 msgstr ""
@@ -8813,6 +8868,7 @@ msgstr ""
 msgid "WIKI_SLIME_JET_STRATEGY"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr "Ingen opgraderinger."
 
@@ -8973,6 +9029,7 @@ msgstr ""
 msgid "WIKI_TOXIN_VACUOLE_INTRO"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_MODIFICATIONS"
 msgstr "Ingen modifikationer."
 

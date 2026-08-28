@@ -165,12 +165,14 @@ theme_override_constants/separation = 10
 
 [node name="PatchSelector" type="OptionButton" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer" unique_id=2073022133]
 custom_minimum_size = Vector2(0, 32)
+custom_maximum_size = Vector2(35, -1)
 layout_mode = 2
 size_flags_vertical = 4
 focus_neighbor_right = NodePath("../../../../../../../../NextTabButton/NextTabButton")
 focus_neighbor_bottom = NodePath("../../../../../../../../NextTabButton/NextTabButton")
 focus_next = NodePath("../../../../../../../../NextTabButton/NextTabButton")
 theme_override_constants/h_separation = 0
+text_overrun_behavior = 1
 clip_text = true
 
 [node name="PatchName" type="Label" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer" unique_id=466145763]
@@ -179,6 +181,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "PATCH_NAME"
 label_settings = ExtResource("3_ocn33")
+horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 

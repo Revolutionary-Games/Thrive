@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-21 10:40+0300\n"
+"POT-Creation-Date: 2026-08-25 17:16+0300\n"
 "PO-Revision-Date: 2026-05-13 03:55+0000\n"
 "Last-Translator: Argakyan <andrinmueller@hotmail.ch>\n"
 "Language-Team: Alemannic <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/gsw/>\n"
@@ -400,8 +400,13 @@ msgstr "Zur Verwendig im Auto-Evo Explorer"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Auto-Evo Erforschig"
 
-msgid "AUTO_EVO_FAILED"
+#, fuzzy
+msgid "AUTO_EVO_FAILED_CHECK_LOGS"
 msgstr "Auto-Evo fehlgschlagge"
+
+#, fuzzy
+msgid "AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL"
+msgstr "Auto-Evo-Ergebnis fehled. Wenn du en ältere Spiicherstand gladde hesch, isch das nöd ungwöhnlich - wenn es sich nöd um en ältere Spiicherstand handlet, benachrichtige ois bitte und schick ois dini Protokolldate (Spiele-Log-File)."
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr "Auto-Evo-Ergebnis fehled. Wenn du en ältere Spiicherstand gladde hesch, isch das nöd ungwöhnlich - wenn es sich nöd um en ältere Spiicherstand handlet, benachrichtige ois bitte und schick ois dini Protokolldate (Spiele-Log-File)."
@@ -2002,6 +2007,14 @@ msgstr "Editore und Mutatione"
 
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Gahne in Editor und bearbeite dini Spezies"
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR"
+msgstr "Zeigt, dass die Spezies idem auto-evo Zyklus mutiert isch"
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR_EXPLANATION"
+msgstr "Wenn dini jetzigi Mikrobe nöd a d'Umwelt aapasst isch, denn chasch zum Editor zrugg und öppis anderes probiere."
 
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
@@ -7185,6 +7198,37 @@ msgstr ""
 msgid "WIKI_8_BRACKET_16"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_EFFECTS"
+msgstr "Chitinase ermöglicht's de Zelle Chitin Membrane z'verdaue. Das erhöht d'Effektivität vom Prozess."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_INTRO"
+msgstr "Chitinase ermöglicht's de Zelle Chitin Membrane z'verdaue. Das erhöht d'Effektivität vom Prozess."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_MODIFICATIONS"
+msgstr "Kei Änderige."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_PROCESSES"
+msgstr "Wandlet [thrive:compound type=\"glucose\"][/thrive:compound] i [thrive:compound type=\"atp\"][/thrive:compound] um."
+
+msgid "WIKI_ACTOMYOSIN_REQUIREMENTS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_SCIENTIFIC_BACKGROUND"
+msgstr "Chitinase ermöglicht's de Zelle Chitin Membrane z'verdaue. Das erhöht d'Effektivität vom Prozess."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_STRATEGY"
+msgstr "Chitinase ermöglicht's de Zelle Chitin Membrane z'verdaue. Das erhöht d'Effektivität vom Prozess."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_UPGRADES"
+msgstr "Chitinase ermöglicht's de Zelle Chitin Membrane z'verdaue. Das erhöht d'Effektivität vom Prozess."
+
 msgid "WIKI_ASCENSION"
 msgstr ""
 
@@ -7921,6 +7965,9 @@ msgstr ""
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr ""
 
+msgid "WIKI_MUCOCYST"
+msgstr ""
+
 msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
 msgstr ""
 
@@ -8075,6 +8122,9 @@ msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr ""
 
 msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
+
+msgid "WIKI_PAGE_ACTOMYOSIN"
 msgstr ""
 
 msgid "WIKI_PAGE_ASCENSION"

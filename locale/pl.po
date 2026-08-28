@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-21 10:40+0300\n"
-"PO-Revision-Date: 2026-07-22 04:07+0000\n"
-"Last-Translator: DrAlienizer <dr4gonizer@proton.me>\n"
+"POT-Creation-Date: 2026-08-25 17:16+0300\n"
+"PO-Revision-Date: 2026-08-22 04:42+0000\n"
+"Last-Translator: JareelSkaj <jareelskaj@marcinwolny.net>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -402,8 +402,13 @@ msgstr "Użyj w eksploratorze autoewolucji"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Narzędzie Eksploracji Auto-Ewo"
 
-msgid "AUTO_EVO_FAILED"
+#, fuzzy
+msgid "AUTO_EVO_FAILED_CHECK_LOGS"
 msgstr "Auto-ewolucja nie może się uruchomić"
+
+#, fuzzy
+msgid "AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL"
+msgstr "Rezultaty automatycznej ewolucji nieznalezione. Jeśli załadowałeś starszy zapis to jest spodziewane, że one nie będą obecne. Jeśli nie załadowałeś starszego zapisu, promisy raportować to jako błąd i wysłać nam twoje pliki log."
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr "Rezultaty automatycznej ewolucji nieznalezione. Jeśli załadowałeś starszy zapis to jest spodziewane, że one nie będą obecne. Jeśli nie załadowałeś starszego zapisu, promisy raportować to jako błąd i wysłać nam twoje pliki log."
@@ -2008,6 +2013,14 @@ msgstr "Edytor i Mutacje"
 
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Wejdź do edytora i modyfikuj swój gatunek"
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR"
+msgstr "Pozwól gatunkowi nie mutować (jeśli nie została znaleziona dobra mutacja)"
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR_EXPLANATION"
+msgstr "Jeśli twój mikrob nie potrafi przetrwać w tym środowisku, możesz wrócić do swojej ostatnie edycji w edytorze, i spróbować czegoś innego."
 
 #, fuzzy
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
@@ -7851,6 +7864,43 @@ msgstr "3D, Strategia, Kosmos"
 msgid "WIKI_8_BRACKET_16"
 msgstr "8 (16)"
 
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_EFFECTS"
+msgstr ""
+"Dla każdej komórki organizmu wielokomórkowego zawierającej [b]akson[/b] moc mózgu tego organizmu wzrasta proporcjonalnie do objętości tej komórki. Komórki z [b]aksonami[/b] są klasyfikowane jako komórki z tkanką nerwową.\n"
+"\n"
+"Gdy moc mózgu przekroczy [b]+0.5[/b], gracz przechodzi do Etapu Świadomości. Gdy moc mózgu przekroczy [b]+5.0[/b], gracz przechodzi do Etapu Przebudzenia.\n"
+"\n"
+"Zmniejsza [b]odporność[/b] na [thrive:compound type=\"sunlight\"][/thrive:compound] o 10%."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_INTRO"
+msgstr "W skrócie: Jest to końcowa faza rozgrywki, gdzie możesz do woli przemieszczać się po galaktyce jako metafizyczny byt, obserwując i przekształcając co zechcesz. To była długa podróż, więc na to zasługujesz."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_MODIFICATIONS"
+msgstr "Brak modyfikacji."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_PROCESSES"
+msgstr "Brak procesów."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_REQUIREMENTS"
+msgstr "Dostępne wyłącznie od fazy wielokomórkowej."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_SCIENTIFIC_BACKGROUND"
+msgstr "Wkrótce"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_STRATEGY"
+msgstr "Dodawanie [b]aksonów[/b] jest niezbędne do osiągnięcia przyszłych etapów. Zalecamy dodanie jednego [b]aksonu[/b] do kilku typów komórek w organizmie wielokomórkowym, ale dodawanie więcej niż jednego jest zbędne. Obecnie kolejne [b]aksony[/b] nie dają żadnej dodatkowej korzyści."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_UPGRADES"
+msgstr "Brak ulepszeń."
+
 msgid "WIKI_ASCENSION"
 msgstr "Ascendencja"
 
@@ -8552,6 +8602,7 @@ msgstr "Wić to biczo-podobny zbiór białek wysunięty z błony komórkowej, kt
 msgid "WIKI_FLAGELLUM_INTRO"
 msgstr "[b]Wić[/b] to biczo-podobny zbiór białek wysunięty z błony komórkowej, który zużywa [thrive:compound type=\"atp\"][/thrive:compoundATP] do obracania się i poruszania komórki w danym kierunku. Pozycja wici determinuje kierunek w którym napędza komórkę. Kierunek siły napędowej jest przeciwny do strony po której [b]Wić[/b] jest umiejscowiona, na przykład [b]Wić[/b] umieszczona po lewej napędza komórkę w prawo."
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_MODIFICATIONS"
 msgstr "Brak modyfikacji."
 
@@ -9133,6 +9184,10 @@ msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "Brak ulepszeń."
 
 #, fuzzy
+msgid "WIKI_MUCOCYST"
+msgstr "Mechaniki"
+
+#, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
 msgstr "Etap Wielokomórkowca"
 
@@ -9293,6 +9348,7 @@ msgstr ""
 msgid "WIKI_OXYTOXISOME_INTRO"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_MODIFICATIONS"
 msgstr "Brak modyfikacji."
 
@@ -9318,6 +9374,10 @@ msgstr "Brak ulepszeń."
 #, fuzzy
 msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr "Synteza OxyToxy"
+
+#, fuzzy
+msgid "WIKI_PAGE_ACTOMYOSIN"
+msgstr "Ascendencja"
 
 msgid "WIKI_PAGE_ASCENSION"
 msgstr "Ascendencja"
@@ -9633,6 +9693,7 @@ msgstr "Bakterie oraz inne mikroby mogą produkować strumienie polisacharydoweg
 msgid "WIKI_SLIME_JET_STRATEGY"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr "Brak ulepszeń."
 
@@ -9802,6 +9863,7 @@ msgstr "Toksyczna wakuola to wakuola zmodyfikowana do specyficznej produkcji, ma
 msgid "WIKI_TOXIN_VACUOLE_INTRO"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_MODIFICATIONS"
 msgstr "Brak modyfikacji."
 

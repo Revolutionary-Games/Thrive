@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-21 10:40+0300\n"
-"PO-Revision-Date: 2026-05-22 15:37+0000\n"
-"Last-Translator: Jeremias <lejereagui@hotmail.com>\n"
+"POT-Creation-Date: 2026-08-25 17:16+0300\n"
+"PO-Revision-Date: 2026-08-25 05:41+0000\n"
+"Last-Translator: diamondking987 <diamondking22223@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -52,13 +52,16 @@ msgstr "Aceptar"
 msgid "ACHIEVEMENTS"
 msgstr "Logros"
 
-#, fuzzy
 msgid "ACHIEVEMENTS_LOAD_FAILED"
-msgstr "Logros {0}/{1}"
+msgstr "Error al cargar datos de logros"
 
-#, fuzzy
 msgid "ACHIEVEMENTS_LOAD_FAILED_DESCRIPTION"
-msgstr "Actualizando el archivo de guardado especificado debido al siguiente error:"
+msgstr ""
+"El archivo de datos de logros podría estar dañado.\n"
+"Los datos pueden ser reiniciados, lo que eliminará todo el progreso de logros, borrando:\n"
+"{0}\n"
+"¿Quieres continuar jugando sin logros?\n"
+"Presionar cancelar cerrará el juego."
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr "Logros {0}/{1}"
@@ -73,7 +76,7 @@ msgid "ACTION_AWAKEN"
 msgstr "Despertar ({0:F1} / {1:F1})"
 
 msgid "ACTION_AWAKEN_TOOLTIP"
-msgstr "Avanzar al Estadio del Despertar. Solo disponible una vez tengas suficiente poder cerebral (tejido con axones)"
+msgstr "Avanzar al Estadio del Despertar. Solo disponible una vez tengas suficiente poder cerebral (tejido con axones)."
 
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Acción bloqueada mientras otra está en progreso"
@@ -107,13 +110,11 @@ msgstr ""
 msgid "ACTOMYOSIN"
 msgstr ""
 
-#, fuzzy
 msgid "ACTOMYOSIN_DESCRIPTION"
-msgstr "Falta descripción"
+msgstr "La actomyosinas son estructuras musculares simples que las colonias celulares pueden usar para arrastrarse o girar con mayor eficacia. No están disponibles para membranas de tipo pared, ya que dependen de la flexión de la colonia para funcionar. Como resultado, son más efectivas cuando hay solo una por célula, pero muchas células de la colonia tienen este orgánulo."
 
-#, fuzzy
 msgid "ACTOMYOSIN_PROCESSES_DESCRIPTION"
-msgstr "Convierte [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]."
+msgstr "Aumenta la velocidad de movimiento y la tasa de rotación de una colonia celular."
 
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Se ha detectado un problema en las validaciones adicionales: {0}"
@@ -400,8 +401,13 @@ msgstr "Herramienta de Exploración Auto-Evo"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Herramienta de Exploración Auto-Evo"
 
-msgid "AUTO_EVO_FAILED"
+#, fuzzy
+msgid "AUTO_EVO_FAILED_CHECK_LOGS"
 msgstr "Auto-evo ha fallado"
+
+#, fuzzy
+msgid "AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL"
+msgstr "Los resultados de Auto-evo faltan. Si has cargado un archivo antiguo, se espera que falten. Si no has cargado un archivo antiguo por favor reporta esto como un error y compártenos tu archivo de registro."
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr "Los resultados de Auto-evo faltan. Si has cargado un archivo antiguo, se espera que falten. Si no has cargado un archivo antiguo por favor reporta esto como un error y compártenos tu archivo de registro."
@@ -2017,6 +2023,14 @@ msgstr "Editores y Mutaciones"
 
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Entra al editor y modifica tu especie"
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR"
+msgstr "Indica que esta especie ha mutado durante el ciclo de Auto-Evolución"
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR_EXPLANATION"
+msgstr "(Si es habilitado, limita la cantidad necesaria de compuestos; si no, solo los compuestos disponibles limitan la velocidad de crecimiento)"
 
 #, fuzzy
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
@@ -8047,6 +8061,38 @@ msgid "WIKI_8_BRACKET_16"
 msgstr "Girar a la izquierda"
 
 #, fuzzy
+msgid "WIKI_ACTOMYOSIN_EFFECTS"
+msgstr "Efectos externos:"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_INTRO"
+msgstr "La Rusticianina es una proteína capaz de usar dióxido de carbono gaseoso y oxigeno para oxidar el hierro de un estado químico a otro. Este proceso, llamado Respiración Férrica, libera energía para la célula."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_MODIFICATIONS"
+msgstr "No hay modificaciones."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_PROCESSES"
+msgstr "Colocar orgánulos"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_REQUIREMENTS"
+msgstr "Solo disponible desde la Fase Multicelular en adelante."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_SCIENTIFIC_BACKGROUND"
+msgstr "Todavía por ser anunciado"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_STRATEGY"
+msgstr "Añadir [b]Axones[/b] es esencial para alcanzar fases futuras. Recomendamos añadir por lo menos un [b]Axón[/b] a varios tipos de células en tu organismo multicelular, pero añadir mas de una es redundante. Por el momento, mas[b]Axones[/b] no proveen ventaja extra."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_UPGRADES"
+msgstr "No hay mejoras."
+
+#, fuzzy
 msgid "WIKI_ASCENSION"
 msgstr "La Rusticianina es una proteína capaz de usar dióxido de carbono gaseoso y oxigeno para oxidar el hierro de un estado químico a otro. Este proceso, llamado Respiración Férrica, libera energía para la célula."
 
@@ -9058,6 +9104,10 @@ msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "La \"central energética\" de la célula. La mitocondria es una estructura de doble membrana llena de proteínas y enzimas. Es una célula procariota que ha sido asimilada por su anfitriona eucariota para su uso personal. Es capaz de convertir [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound] con una eficiencia mucho mayor que la alcanzada en el citoplasma en un proceso llamado [b]respiración aeróbica[/b]. Sin embargo, requiere [thrive:compound type=\"oxygen\"][/thrive:compound] para funcionar, y niveles bajos de [thrive:compound type=\"oxygen\"][/thrive:compound] en el ambiente ralentizarán su producción de [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #, fuzzy
+msgid "WIKI_MUCOCYST"
+msgstr "Colocar orgánulos"
+
+#, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
 msgstr "Etapa multicelular"
 
@@ -9266,6 +9316,10 @@ msgstr "Un metabolosoma modificado para la producción de OxiToxi NT, una forma 
 #, fuzzy
 msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr "Síntesis de OxiToxi"
+
+#, fuzzy
+msgid "WIKI_PAGE_ACTOMYOSIN"
+msgstr "Rusticianina"
 
 #, fuzzy
 msgid "WIKI_PAGE_ASCENSION"
@@ -9617,6 +9671,7 @@ msgstr "Bacterias y otros microbios pueden producir jets de \"mucosa\" polisacá
 msgid "WIKI_SLIME_JET_STRATEGY"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr "Sin mejoras."
 
@@ -9825,13 +9880,11 @@ msgstr "La vacuola de toxinas es una vacuola modificada específicamente para la
 msgid "WIKI_TOXIN_VACUOLE_UPGRADES"
 msgstr "La vacuola de toxinas es una vacuola modificada específicamente para la producción, secreción y almacenamiento de toxinas. Más vacuolas de toxinas incrementan la velocidad a la que se pueden disparar las toxinas."
 
-#, fuzzy
 msgid "WIKI_VACUOLE_EFFECTS"
-msgstr "Sin efectos."
+msgstr "Aumenta la [b]tolerancia a la presión[/b] máxima en 400 kPa."
 
-#, fuzzy
 msgid "WIKI_VACUOLE_INTRO"
-msgstr "La vacuola de toxinas es una vacuola modificada específicamente para la producción, secreción y almacenamiento de toxinas. Más vacuolas de toxinas incrementan la velocidad a la que se pueden disparar las toxinas."
+msgstr "Orgánulo eucariota que almacena compuestos de forma mucho más densa que el [b][color=#3796e1][url=thriveopedia:cytoplasm]citoplasma[/url][/color][/b]. Se puede especializar para aumentar el almacenamiento aún más."
 
 #, fuzzy
 msgid "WIKI_VACUOLE_MODIFICATIONS"
@@ -9867,9 +9920,8 @@ msgstr "Modo ventana"
 msgid "WIN_BOX_TITLE"
 msgstr "¡HAS PROSPERADO!"
 
-#, fuzzy
 msgid "WIN_TEXT_2"
-msgstr "¡Felicitaciones! ¡Has ganado ésta versión de Thrive! Puedes seguir jugando libremente luego de esta notificación, o puedes empezar una nueva partida."
+msgstr "¡Felicitaciones! ¡Has ganado esta versión de Thrive! Puedes seguir jugando después de que este mensaje desaparezca si lo deseas, o empezar una nueva partida en un mundo nuevo. También puedes mejorar el plano corporal de tu célula y luego probar los prototipos de las siguientes etapas del juego."
 
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
 msgstr "Notas de cambios del elemento"
@@ -9906,35 +9958,26 @@ msgstr "Una vez este elemento sea publicado, será visible para todos"
 msgid "WORLD"
 msgstr "Mundo"
 
-#, fuzzy
 msgid "WORLD_EXPORT_SUCCESS_MESSAGE"
-msgstr "Error: {0}"
+msgstr "Los datos de los mundos se han exportado correctamente a {0}"
 
-#, fuzzy
 msgid "WORLD_GENERAL_STATISTICS"
-msgstr "Estadísticas del Organismo"
+msgstr "Estadísticas del mundo actual"
 
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
 "Incluir prototipos de etapas posteriores: {0}\n"
 "Incluir \"huevos de pascua\": {1}"
 
-#, fuzzy
 msgid "WORLD_MISC_DETAILS_STRING_2"
-msgstr ""
-"Incluir prototipos de etapas posteriores: {0}\n"
-"Incluir \"huevos de pascua\": {1}"
+msgstr "Incluir \"huevos de pascua\": {0}"
 
 #, fuzzy
 msgid "WORLD_OCEANIC_COVERAGE"
 msgstr "para incrementar la velocidad de movimiento"
 
-#, fuzzy
 msgid "WORLD_OCEANIC_COVERAGE_EXPLANATION"
-msgstr ""
-"Los microbios centrados buscarán recursos o presas más lejanas\n"
-"y es posible codicien más los fragmentos de recursos.\n"
-"Los microbios reactivos cambiarán de objetivo después de un tiempo."
+msgstr "(afecta a cuántas regiones continentales y oceánicas son creadas)"
 
 msgid "WORLD_OCEANIC_COVERAGE_LARGE"
 msgstr "Extensa"
@@ -9971,9 +10014,8 @@ msgstr "para incrementar la velocidad de movimiento"
 msgid "WORLD_SIZE_SMALL"
 msgstr "Pequeño"
 
-#, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
-msgstr "Únete a nuestro servidor de Discord"
+msgstr "Tener un mundo grande puede ralentizar la simulación y no se recomienda para ordenadores más lentos."
 
 #, fuzzy
 msgid "WORLD_TEMPERATURE"
@@ -9983,23 +10025,17 @@ msgstr "Temperatura"
 msgid "WORLD_TEMPERATURE_COLD"
 msgstr "Temp."
 
-#, fuzzy
 msgid "WORLD_TEMPERATURE_EXPLANATION"
-msgstr ""
-"Los microbios centrados buscarán recursos o presas más lejanas\n"
-"y es posible codicien más los fragmentos de recursos.\n"
-"Los microbios reactivos cambiarán de objetivo después de un tiempo."
+msgstr "(afecta a cuántas áreas de mar congelado se crean)"
 
-#, fuzzy
 msgid "WORLD_TEMPERATURE_TEMPERATE"
-msgstr "Temp."
+msgstr "Templado"
 
-#, fuzzy
 msgid "WORLD_TEMPERATURE_WARM"
-msgstr "Temp."
+msgstr "Cálido"
 
 msgid "WORST_PATCH_COLON"
-msgstr "Peor bioma:"
+msgstr "Peor área:"
 
 #, fuzzy
 msgid "WRONG_GROWTH_ORDER"
@@ -10013,17 +10049,14 @@ msgstr "(Si es habilitado, limita la cantidad necesaria de compuestos; si no, so
 msgid "XBOX360"
 msgstr "Xbox 360"
 
-#, fuzzy
 msgid "XBOX_ONE"
 msgstr "Xbox One"
 
-#, fuzzy
 msgid "XBOX_SERIES"
 msgstr "Xbox Series X"
 
-#, fuzzy
 msgid "X_TWITTER_TOOLTIP"
-msgstr "Visita nuestra página de Twitter"
+msgstr "Visita nuestro perfil de X (anteriormente Twitter)"
 
 msgid "YEARS"
 msgstr "años"

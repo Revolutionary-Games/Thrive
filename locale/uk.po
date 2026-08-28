@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-21 10:40+0300\n"
-"PO-Revision-Date: 2026-08-06 01:06+0000\n"
-"Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
+"POT-Creation-Date: 2026-08-25 17:16+0300\n"
+"PO-Revision-Date: 2026-08-22 04:42+0000\n"
+"Last-Translator: Юфименко Микола <yufimenkokolja2012@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -399,8 +399,13 @@ msgstr "Використати в Досліднику Авто-ево"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Інструменти дослідження Авто-ево"
 
-msgid "AUTO_EVO_FAILED"
+#, fuzzy
+msgid "AUTO_EVO_FAILED_CHECK_LOGS"
 msgstr "Авто-ево не почалась"
+
+#, fuzzy
+msgid "AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL"
+msgstr "Авто-ево результат відсутній. Це трапилось в результаті завантаження старого збереження. Якщо ж ви не завантажували старе збереження, будь ласка, повідомте нас про помилку і відправте нам лог-файли своєї гри."
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr "Авто-ево результат відсутній. Це трапилось в результаті завантаження старого збереження. Якщо ж ви не завантажували старе збереження, будь ласка, повідомте нас про помилку і відправте нам лог-файли своєї гри."
@@ -2007,6 +2012,14 @@ msgstr "мутував"
 
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Увійдіть до редактора та модифікуйте свій вид"
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR"
+msgstr "Дозволити виду не мутувати"
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR_EXPLANATION"
+msgstr "Ця вкладка дозволяє встановити порядок, у якому зростатимуть органели. Це може бути важливим для клітин із нестабільним продукуванням АТФ під час росту. Порядок органел також значно впливає на порядок пробігу біопроцесів. Бажано редагувати це тільки після редагування структури, бо інакше зміни можуть бути скасовані."
 
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
@@ -7803,6 +7816,42 @@ msgid "WIKI_8_BRACKET_16"
 msgstr "8 (16)"
 
 #, fuzzy
+msgid "WIKI_ACTOMYOSIN_EFFECTS"
+msgstr ""
+"Для кожної клітини багатоклітинного організму, що містить [b]Аксони[/b], сила мозку цього організму підвищується пропорційно значенню цієї клітини.\n"
+"Клітини з [b]Аксонами[/b] класифікуються як ті, що містять тип мозкової тканини.\n"
+"\n"
+"Коли сила мозку перевищує [b]+0.5[/b], гравець переходить до Стадії Свідомості. Коли сила мозку перевищує [b]+5.0[/b], гравець переходить до Стадії Пробудження."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_INTRO"
+msgstr "Нервові тканини між нейронами, що доступні зі Стадії Багатоклітинності. Потрібні для підвищення сили мозку організму і прогресування до майбутніх стадій."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_MODIFICATIONS"
+msgstr "Немає модифікацій."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_PROCESSES"
+msgstr "Процесів немає."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_REQUIREMENTS"
+msgstr "Доступне лише починаючи з Багатоклітинної Стадії й далі."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_SCIENTIFIC_BACKGROUND"
+msgstr "Буде анонсовано"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_STRATEGY"
+msgstr "Додавання [b]Аксонів[/b] є критичним для досягнення майбутніх стадій. Ми рекомендуємо додати по одному [b]Аксону[/b] декільком типам клітин у вашому багатоклітинному організмі, але додавання більш ніж одного є надлишковим. На поточний момент, додавання подальших [b]Аксонів[/b] не має додаткових переваг."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_UPGRADES"
+msgstr "Покращень немає."
+
+#, fuzzy
 msgid "WIKI_ASCENSION"
 msgstr "Нервові тканини між нейронами, що доступні зі Стадії Багатоклітинності. Потрібні для підвищення сили мозку організму і прогресування до майбутніх стадій."
 
@@ -8863,6 +8912,10 @@ msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "Енергостанція клітини. Мітохондрія є двомембранною структурою, заповненою білками та ферментами. Це прокаріот, поглинутий для використання еукаріотичним господарем. Вона здатна перетворювати [thrive:compound type=\"glucose\"][/thrive:compound] на [thrive:compound type=\"atp\"][/thrive:compound] з сильно вищою ефективністю, аніж це робить цитоплазма, в процесі названому [b]анаеробним диханням[/b]. Однак для функціонування мітохондрії потрібен [thrive:compound type=\"oxygen\"][/thrive:compound], а нижчий рівень [thrive:compound type=\"oxygen\"][/thrive:compound] сповільнить продукування [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #, fuzzy
+msgid "WIKI_MUCOCYST"
+msgstr "Місце для органели"
+
+#, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
 msgstr "Багатоклітинна стадія"
 
@@ -9061,6 +9114,10 @@ msgstr "Модифікована метаболосома відповідає �
 
 msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr "Синтез окситоксину, Гліколіз"
+
+#, fuzzy
+msgid "WIKI_PAGE_ACTOMYOSIN"
+msgstr "Рустіціанін"
 
 #, fuzzy
 msgid "WIKI_PAGE_ASCENSION"
@@ -9400,6 +9457,7 @@ msgstr ""
 msgid "WIKI_SLIME_JET_STRATEGY"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr "Немає покращень."
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-21 10:40+0300\n"
+"POT-Creation-Date: 2026-08-25 17:16+0300\n"
 "PO-Revision-Date: 2026-05-22 15:37+0000\n"
 "Last-Translator: William <William.berger@outlook.be>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -410,8 +410,13 @@ msgstr "Auto-Evo Verkenningshulpmiddel"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Auto-Evo Verkenningshulpmiddel"
 
-msgid "AUTO_EVO_FAILED"
+#, fuzzy
+msgid "AUTO_EVO_FAILED_CHECK_LOGS"
 msgstr "Auto-evo mislukt"
+
+#, fuzzy
+msgid "AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL"
+msgstr "Auto-evo resultaten zijn verloren. Als je een oud opgeslagen bestand hebt geladen is dit te verwachten. Als je niet een ouder opgeslagen bestand hebt geladen, rapporteer dit alstublieft als een bug en stuur ons het logbestand van het spel."
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr "Auto-evo resultaten zijn verloren. Als je een oud opgeslagen bestand hebt geladen is dit te verwachten. Als je niet een ouder opgeslagen bestand hebt geladen, rapporteer dit alstublieft als een bug en stuur ons het logbestand van het spel."
@@ -2082,6 +2087,14 @@ msgstr "heeft een mutatie"
 #, fuzzy
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Voeg een nieuwe sneltoets toe"
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR"
+msgstr "Sta soorten toe niet te muteren (als geen goede mutatie gevonden wordt)"
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR_EXPLANATION"
+msgstr "{0} bevolking veranderd met {1} door: {2}"
 
 #, fuzzy
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
@@ -8186,6 +8199,38 @@ msgid "WIKI_8_BRACKET_16"
 msgstr "Draaien naar links"
 
 #, fuzzy
+msgid "WIKI_ACTOMYOSIN_EFFECTS"
+msgstr "Externe effecten:"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_INTRO"
+msgstr "Rusticyanine is een proteïne dat koolstofdioxide en zuurstof kan gebruiken om ijzer te oxideren van een chemische staat naar een andere. Dit proces, dat men ijzer respiratie noemt, geeft energie vrij dat de cel dan kan opnemen."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_MODIFICATIONS"
+msgstr "Het kleverige binnenste van een cel. Het cytoplasma is het basismengsel van ionen, proteïnen en andere in water opgeloste stoffen die de binnenkant van de cel vullen. Een van de functies die het vervult is glycolyse, de omzetting van glucose in ATP-energie. Voor cellen zonder organellen die zorgen voor een geavanceerder metabolisme, is dit waar ze op vertrouwen voor energie. Het wordt ook gebruikt om moleculen in de cel op te slaan en om de cel te vergroten."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_PROCESSES"
+msgstr "Geen processen"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_REQUIREMENTS"
+msgstr "Voorwaarden"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_SCIENTIFIC_BACKGROUND"
+msgstr "Wetenschappelijk Achtergrond"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_STRATEGY"
+msgstr "Strategie"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_UPGRADES"
+msgstr "Geen upgrades."
+
+#, fuzzy
 msgid "WIKI_ASCENSION"
 msgstr "Rusticyanine is een proteïne dat koolstofdioxide en zuurstof kan gebruiken om ijzer te oxideren van een chemische staat naar een andere. Dit proces, dat men ijzer respiratie noemt, geeft energie vrij dat de cel dan kan opnemen."
 
@@ -9171,6 +9216,10 @@ msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "Geen upgrades."
 
 #, fuzzy
+msgid "WIKI_MUCOCYST"
+msgstr "Organellen"
+
+#, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
 msgstr "Meercellige Fase"
 
@@ -9367,6 +9416,10 @@ msgstr "Een gemodificeerd metabolosoom dat verantwoordelijk is voor de productie
 #, fuzzy
 msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr "OxyToxy Synthese"
+
+#, fuzzy
+msgid "WIKI_PAGE_ACTOMYOSIN"
+msgstr "Axon"
 
 #, fuzzy
 msgid "WIKI_PAGE_ASCENSION"
