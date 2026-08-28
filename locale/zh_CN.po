@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-08-25 17:16+0300\n"
-"PO-Revision-Date: 2026-08-26 03:42+0000\n"
+"PO-Revision-Date: 2026-08-26 14:43+0000\n"
 "Last-Translator: 归灵祈昱 <guilingqiyu@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -399,13 +399,11 @@ msgstr "在自动演化探索工具中使用"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "自动演化探索工具"
 
-#, fuzzy
 msgid "AUTO_EVO_FAILED_CHECK_LOGS"
-msgstr "自动演化未能正常运行"
+msgstr "自动演化未能正常运行（更多信息见游戏日志）"
 
-#, fuzzy
 msgid "AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL"
-msgstr "自动演化结果缺失。当您载入了较旧的存档时，该情况可能发生。如果您并未载入一个较久的存档，请将其作为错误报告给我们，并附上游戏日志。"
+msgstr "此存档中缺少自动演化结果。这很可能表明在创建此存档之前，自动演化未能成功运行。请就自动演化失败创建一个错误报告。作为报告的一部分，请提供之前的游戏日志或错误发生前的存档（只要该错误从较早的存档开始能够以一定的一致性再次触发）。遗憾的是，提供这个已经损坏的存档文件对于错误报告来说没有用处。"
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr "自动演化结果缺失。当您载入了较旧的存档时，该情况可能发生。如果您并未载入一个较久的存档，请将其作为错误报告给我们，并附上游戏日志。"
