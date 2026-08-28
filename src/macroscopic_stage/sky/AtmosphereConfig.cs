@@ -63,7 +63,7 @@ public sealed partial class AtmosphereConfig : ValidatedConfig
         valid &= Check(LightRaySteps is >= 2 and <= 32, $"LightRaySteps must be between 2 and 32, but is " +
             $"{LightRaySteps}");
 
-        if (!(TopRadius > GroundRadius) || !(RayleighScaleHeight > 0.0f))
+        if (TopRadius <= GroundRadius || RayleighScaleHeight <= 0.0f)
             return valid;
 
         float thickness = TopRadius - GroundRadius;
