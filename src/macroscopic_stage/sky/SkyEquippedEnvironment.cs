@@ -73,12 +73,14 @@ public partial class SkyEquippedEnvironment : WorldEnvironment
 #pragma warning disable CA2213
     private readonly Sky sky = new();
 
-    private Compositor skyCompositor = new();
-    private Environment skyEnvironment = new();
+    private Compositor skyCompositor = null!;
+    private Environment skyEnvironment = null!;
 #pragma warning restore CA2213
 
     public override void _Ready()
     {
+        skyEnvironment = Environment ?? new Environment();
+
         skyEnvironment.TonemapMode = Environment.ToneMapper.Agx;
         skyEnvironment.TonemapAgxWhite = TonemapAgxWhite;
 
@@ -183,6 +185,8 @@ public partial class SkyEquippedEnvironment : WorldEnvironment
     /// </summary>
     private void SetupCompositorEffects()
     {
+        skyCompositor = Compositor ?? new Compositor();
+
         CloudsEffect ??= new VolumetricCloudsEffect();
 
         CloudsEffect.SunConfig = SunConfig;
