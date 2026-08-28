@@ -226,15 +226,17 @@ public class ModifyExistingSpecies : IRunStep
                         MichePopulation.CalculatePopulationInPatch(mutation.MutatedSpecies, miche!, patch,
                             cache);
 
+                    var multicellularMutant = mutation.MutatedSpecies as MulticellularSpecies;
+
+                    // TODO This method of nulling and later restoring gameplay cells should be a temporary hack
+                    multicellularMutant?.RestoreGameplayCellsForAutoEvo();
+
                     if (newPopulation > Constants.AUTO_EVO_MINIMUM_VIABLE_POPULATION)
                     {
                         // For Multicellular species, we need to calculate the gameplay shape here before OnEdited
                         // as otherwise it fails
-                        var multicellularMutant = mutation.MutatedSpecies as MulticellularSpecies;
                         if (multicellularMutant != null)
                         {
-                            // TODO This method of nulling and later restoring gameplay cells should be a temporary hack
-                            multicellularMutant.RestoreGameplayCellsForAutoEvo();
                             multicellularMutant.RepositionCellTypesToOrigin();
                             MulticellularLayoutHelpers.UpdateGameplayLayoutForAutoEvo(
                                 multicellularMutant.ModifiableGameplayCells, multicellularMutant.ModifiableEditorCells,
