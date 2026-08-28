@@ -105,7 +105,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     private Callable GenerateNoiseProfileResourceCallable => new(this, MethodName.GenerateNoiseProfileAndReload);
 
     [ExportToolButton("Profile GPU")]
-    private Callable ProfileGpuCallable => new(this, MethodName.ToggleProfileGPU);
+    private Callable ProfileGpuCallable => new(this, MethodName.ToggleProfileGpu);
 
     [ExportToolButton("Dump GPU profiler data")]
     private Callable DumpGpuProfilerData => new(this, MethodName.ReportTimestamps);
