@@ -239,8 +239,6 @@ public class MacroscopicSpecies : Species, IReadOnlyMacroscopicSpecies
                 break;
         }
 
-        GD.Print(path);
-
         if (path == null)
             return null;
 

@@ -47,7 +47,15 @@ public class CreatureTexturePhotographable : IScenePhotographable
 
         var random = new XoShiRo128starstar();
 
-        for (int i = 0; i < 500; ++i)
+        // This amount shouldn't exceed the array size of projectionMatrices in CreatureTexturizer.gdshader
+        int projectionMatrixCount = 500;
+
+        if (SkinType is CreatureSkinType.Plain or CreatureSkinType.Fur or CreatureSkinType.Skin)
+        {
+            projectionMatrixCount = 0;
+        }
+
+        for (int i = 0; i < projectionMatrixCount; ++i)
         {
             int index = random.Next() % vertices.Length;
 

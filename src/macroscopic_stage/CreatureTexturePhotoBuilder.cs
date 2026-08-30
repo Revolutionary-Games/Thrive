@@ -11,6 +11,7 @@ public partial class CreatureTexturePhotoBuilder : Node3D
 #pragma warning restore CA2213
 
     private StringName projectionMatricesName = new("projectionMatrices");
+    private StringName projectionMatrixSizeName = new("projectionMatrixCount");
     private StringName mainTextureName = new("mainTexture");
     private StringName projectedTextureName = new("projected");
 
@@ -22,6 +23,7 @@ public partial class CreatureTexturePhotoBuilder : Node3D
     public void SetProjectionMatrices(Godot.Collections.Array matrices)
     {
         ((ShaderMaterial)meshInstance3D.MaterialOverride).SetShaderParameter(projectionMatricesName, matrices);
+        ((ShaderMaterial)meshInstance3D.MaterialOverride).SetShaderParameter(projectionMatrixSizeName, matrices.Count);
     }
 
     public void SetTextures(Texture2D? mainTexture, Texture2D? projectedTexture)
@@ -38,6 +40,7 @@ public partial class CreatureTexturePhotoBuilder : Node3D
         if (disposing)
         {
             projectionMatricesName.Dispose();
+            projectionMatrixSizeName.Dispose();
             mainTextureName.Dispose();
             projectedTextureName.Dispose();
         }

@@ -6,6 +6,7 @@ uniform sampler2D projected : repeat_disable;
 uniform sampler2D dirt;
 
 uniform mat4[500] projectionMatrices;
+uniform int projectionMatrixCount;
 
 uniform sampler2D blendCurve;
 
@@ -51,7 +52,7 @@ void fragment() {
 	
 	ALBEDO = finalMix.rgb * dirtMix.rgb * COLOR.rgb;
 	
-	for (int i = 0; i < projectionMatrices.length(); i++)
+	for (int i = 0; i < projectionMatrixCount; i++)
 	{
 		mat4 matrix = projectionMatrices[i];
 		

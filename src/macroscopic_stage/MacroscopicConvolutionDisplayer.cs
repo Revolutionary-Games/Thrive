@@ -16,6 +16,8 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
 
     private IImageTask? texturizationTask;
 
+    private bool generatedUvData;
+
 #pragma warning disable CA2213
     [Export]
     private Material blitMaterial = null!;
@@ -126,6 +128,7 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
 
         Mesh = meshGen.DualContour();
 
+        generatedUvData = false;
         Mesh.SurfaceSetMaterial(0, material);
 
         CustomAabb = new Aabb(minExtends, maxExtends);
@@ -133,8 +136,15 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
 
     public void Texturize(MetaballLayout<MacroscopicMetaball> layout, CreatureSkinType skinType)
     {
-        var uvUnwrap = new Task(() => UVUnwrapAndTexture((ArrayMesh)Mesh, layout, skinType));
-        TaskExecutor.Instance.AddTask(uvUnwrap);
+        if (!generatedUvData)
+        {
+            var uvUnwrap = new Task(() => UVUnwrapAndTexture((ArrayMesh)Mesh, layout, skinType));
+            TaskExecutor.Instance.AddTask(uvUnwrap);
+        }
+        else
+        {
+            ApplyTextures(layout, skinType);
+        }
     }
 
     protected override void Dispose(bool disposing)
@@ -164,6 +174,8 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
             // has to be deferred too.
             if (NativeMethods.ArrayMeshUnwrap(nativeVariant, 1.0f))
             {
+                generatedUvData = true;
+
                 Invoke.Instance.QueueForObject(() => ApplyTextures(layout, skinType), this);
             }
             else
@@ -183,35 +195,6 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
         var photographable = new CreatureTexturePhotographable(Mesh, layout, skinType);
 
         texturizationTask = PhotoStudio.Instance.GenerateImage(photographable, 1, 2048);
-    }
-
-    private (float LeftX, float RightX) CalculateXBoundsForTriangle(Vector2 a, Vector2 b, Vector2 c, float y)
-    {
-        float leftX = 10.0f;
-        float rightX = -10.0f;
-
-        if (MathF.Max(a.Y, b.Y) >= y && MathF.Min(a.Y, b.Y) <= y)
-        {
-            float lineX = a.X + (b.X - a.X) * (y - a.Y) / (b.Y - a.Y);
-            leftX = MathF.Min(leftX, lineX);
-            rightX = MathF.Max(rightX, lineX);
-        }
-
-        if (MathF.Max(b.Y, c.Y) >= y && MathF.Min(b.Y, c.Y) <= y)
-        {
-            float lineX = b.X + (c.X - b.X) * (y - b.Y) / (c.Y - b.Y);
-            leftX = MathF.Min(leftX, lineX);
-            rightX = MathF.Max(rightX, lineX);
-        }
-
-        if (MathF.Max(a.Y, c.Y) >= y && MathF.Min(a.Y, c.Y) <= y)
-        {
-            float lineX = a.X + (c.X - a.X) * (y - a.Y) / (c.Y - a.Y);
-            leftX = MathF.Min(leftX, lineX);
-            rightX = MathF.Max(rightX, lineX);
-        }
-
-        return (leftX, rightX);
     }
 
     private void ApplyAlpha()
