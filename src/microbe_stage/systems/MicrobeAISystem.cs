@@ -444,10 +444,11 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                             atpLevel >= compounds.GetCapacityForCompound(Compound.ATP) * 0.5f &&
                             signalerDistanceSquared < Constants.AI_ENTER_BINDING_MODE_DISTANCE_SQUARED)
                         {
-                            if (rcfe.Has<MicrobeColony>() && !entity.Has<MicrobeColony>())
+                            if (rcfe.Has<MicrobeColony>())
                             {
-                                // Don't bind if colony is already at size needed for multicellular
-                                if (rcfe.Get<MicrobeColony>().ColonyMembers.Length
+                                // Don't bind if it would lead to two colonies merging and/or
+                                // colony is already at size needed for multicellular
+                                if (!entity.Has<MicrobeColony>() && rcfe.Get<MicrobeColony>().ColonyMembers.Length
                                     < Constants.COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR)
                                 {
                                     control.SetStateColonyAware(entity, MicrobeState.Binding);
