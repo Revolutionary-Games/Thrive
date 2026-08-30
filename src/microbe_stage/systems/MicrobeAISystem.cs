@@ -314,6 +314,11 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
 
         control.Sprinting = false;
 
+        if (entity.Has<MicrobeColony>() && control.State == MicrobeState.Binding)
+        {
+            control.SetStateColonyAware(entity, MicrobeState.Normal);
+        }
+
         // If nothing is engulfing me right now, see if there's something that might want to hunt me
         (Entity Entity, Vector3 Position, float EngulfSize)? predator =
             GetNearestPredatorItem(ref health, ref ourSpecies, ref engulfer, ref position, speciesFear);
@@ -439,7 +444,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                             atpLevel >= compounds.GetCapacityForCompound(Compound.ATP) * 0.5f &&
                             signalerDistanceSquared < Constants.AI_ENTER_BINDING_MODE_DISTANCE_SQUARED)
                         {
-                            if (rcfe.Has<MicrobeColony>())
+                            if (rcfe.Has<MicrobeColony>() && !entity.Has<MicrobeColony>())
                             {
                                 // Don't bind if colony is already at size needed for multicellular
                                 if (rcfe.Get<MicrobeColony>().ColonyMembers.Length
@@ -738,8 +743,10 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         float atpLevel, CompoundBag compounds, float speciesAggression, ref CommandSignaler signaling, Random random,
         ref SpeciesMember ourSpecies)
     {
-        // Has binding agent and ATP is at least half capacity
-        if (organelles.HasBindingAgent && atpLevel >= compounds.GetCapacityForCompound(Compound.ATP) * 0.5f)
+        // Has binding agent, ATP is at least half capacity, and isn't receiving move to me command
+        if (organelles.HasBindingAgent &&
+            atpLevel >= compounds.GetCapacityForCompound(Compound.ATP) * 0.5f &&
+            signaling.ReceivedCommand != MicrobeSignalCommand.MoveToMe)
         {
             if (entity.Has<MicrobeColony>())
             {
