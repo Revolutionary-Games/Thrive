@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Buffers;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Components;
@@ -59,8 +60,7 @@ public class EngulfingColonyTests
             MembraneType = membraneType,
         };
 
-        var engulfer = world.EntitySystem.Create(
-            new CellProperties
+        var engulfer = world.EntitySystem.Create(new CellProperties
             {
                 MembraneType = membraneType,
                 CreatedMembrane = CreateDummyMembrane(membraneType),
@@ -77,15 +77,13 @@ public class EngulfingColonyTests
             default(RenderPriorityOverride),
             default(MicrobeEventCallbacks));
 
-        var colonyLeader = world.EntitySystem.Create(
-            default(CellProperties),
+        var colonyLeader = world.EntitySystem.Create(default(CellProperties),
             new CompoundStorage { Compounds = new CompoundBag(10) },
             default(MicrobeControl),
             default(Physics),
             new WorldPosition(Vector3.Zero));
 
-        var target = world.EntitySystem.Create(
-            new EntityRadiusInfo(0.5f),
+        var target = world.EntitySystem.Create(new EntityRadiusInfo(0.5f),
             default(SpatialInstance),
             new WorldPosition(Vector3.Zero),
             default(Physics),
@@ -117,8 +115,11 @@ public class EngulfingColonyTests
             new Vector2(1, -1),
         };
 
+        var hexPositions = ArrayPool<Vector2>.Shared.Rent(1);
+        hexPositions[0] = Vector2.Zero;
+
         var membrane = new Membrane();
-        membrane.MembraneData = new MembranePointData([Vector2.Zero], 1, membraneType, points);
+        membrane.MembraneData = new MembranePointData(hexPositions, 1, membraneType, points);
         return membrane;
     }
 
@@ -128,6 +129,7 @@ public class EngulfingColonyTests
         public void Dispose()
         {
             World.Dispose();
+            Membrane.MembraneData.Dispose();
             Membrane.Free();
         }
     }
