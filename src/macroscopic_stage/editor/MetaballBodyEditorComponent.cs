@@ -10,7 +10,7 @@ using SharedBase.Archive;
 public partial class MetaballBodyEditorComponent :
     MetaballEditorComponentBase<MacroscopicEditor, CombinedEditorAction, EditorAction, MacroscopicMetaball>
 {
-    public const ushort SERIALIZATION_VERSION = 2;
+    public const ushort SERIALIZATION_VERSION = 3;
 
     [Export]
     public int MaxToleranceWarnings = 3;
@@ -245,6 +245,8 @@ public partial class MetaballBodyEditorComponent :
         writer.Write((int)selectedSelectionMenuTab);
 
         writer.WriteObjectProperties(tolerancesEditor);
+
+        writer.Write((int)skinType);
     }
 
     public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
@@ -261,6 +263,11 @@ public partial class MetaballBodyEditorComponent :
         if (version >= 2)
         {
             reader.ReadObjectProperties(tolerancesEditor);
+        }
+
+        if (version >= 3)
+        {
+            skinType = (CreatureSkinType)reader.ReadInt32();
         }
     }
 

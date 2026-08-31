@@ -263,6 +263,8 @@ public class MacroscopicSpecies : Species, IReadOnlyMacroscopicSpecies
             result.ModifiableBodyLayout.Add(metaball.Clone(metaballMapping));
         }
 
+        result.SkinType = SkinType;
+
         return result;
     }
 

@@ -18,6 +18,8 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
 
     private bool generatedUvData;
 
+    private ulong lastDisplayedLayoutHash;
+
 #pragma warning disable CA2213
     [Export]
     private Material blitMaterial = null!;
@@ -99,6 +101,15 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
 
     public void DisplayFromLayout(IReadOnlyCollection<MacroscopicMetaball> layout)
     {
+        var newHash = MetaballLayoutHelpers.CalculateLayoutHash(layout);
+
+        if (newHash == lastDisplayedLayoutHash)
+        {
+            return;
+        }
+
+        lastDisplayedLayoutHash = newHash;
+
         Vector3 minExtends = Vector3.Zero;
         Vector3 maxExtends = Vector3.Zero;
 
