@@ -314,11 +314,6 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
 
         control.Sprinting = false;
 
-        if (entity.Has<MicrobeColony>() && control.State == MicrobeState.Binding)
-        {
-            control.SetStateColonyAware(entity, MicrobeState.Normal);
-        }
-
         // If nothing is engulfing me right now, see if there's something that might want to hunt me
         (Entity Entity, Vector3 Position, float EngulfSize)? predator =
             GetNearestPredatorItem(ref health, ref ourSpecies, ref engulfer, ref position, speciesFear);
@@ -431,24 +426,24 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             {
                 case MicrobeSignalCommand.MoveToMe:
                 {
-                    var rcfe = signaling.ReceivedCommandFromEntity;
+                    var signaler = signaling.ReceivedCommandFromEntity;
 
                     // TODO: should these use signaling.ReceivedCommandSource ? As that's where the chemical signal
                     // was smelled from
-                    if (rcfe.IsAliveAndHas<WorldPosition>())
+                    if (signaler.IsAliveAndHas<WorldPosition>())
                     {
                         ai.MoveToLocation(signalerPosition, ref control, entity);
 
                         if (organelles.HasBindingAgent &&
-                            rcfe.Get<OrganelleContainer>().HasBindingAgent &&
+                            signaler.Get<OrganelleContainer>().HasBindingAgent &&
                             atpLevel >= compounds.GetCapacityForCompound(Compound.ATP) * 0.5f &&
                             signalerDistanceSquared < Constants.AI_ENTER_BINDING_MODE_DISTANCE_SQUARED)
                         {
-                            if (rcfe.Has<MicrobeColony>())
+                            if (signaler.Has<MicrobeColony>())
                             {
                                 // Don't bind if it would lead to two colonies merging and/or
                                 // colony is already at size needed for multicellular
-                                if (!entity.Has<MicrobeColony>() && rcfe.Get<MicrobeColony>().ColonyMembers.Length
+                                if (!entity.Has<MicrobeColony>() && signaler.Get<MicrobeColony>().ColonyMembers.Length
                                     < Constants.COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR)
                                 {
                                     control.SetStateColonyAware(entity, MicrobeState.Binding);
