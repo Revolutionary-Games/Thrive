@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-25 17:16+0300\n"
+"POT-Creation-Date: 2026-08-28 15:07+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -95,7 +95,7 @@ msgstr ""
 #: ../src/general/base_stage/EditorBase.cs:965
 #: ../src/macroscopic_stage/editor/MacroscopicEditor.cs:568
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:59
-#: ../src/multicellular_stage/editor/MulticellularEditor.cs:704
+#: ../src/multicellular_stage/editor/MulticellularEditor.cs:718
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr ""
 
@@ -131,15 +131,15 @@ msgstr ""
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1495
+#: ../simulation_parameters/microbe_stage/organelles.json:1511
 msgid "ACTOMYOSIN"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1496
+#: ../simulation_parameters/microbe_stage/organelles.json:1512
 msgid "ACTOMYOSIN_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1497
+#: ../simulation_parameters/microbe_stage/organelles.json:1513
 msgid "ACTOMYOSIN_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -1038,7 +1038,7 @@ msgstr ""
 msgid "CELL_STAT_STORAGE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:662
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:664
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
@@ -1054,7 +1054,7 @@ msgstr ""
 msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1442
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1444
 msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
 msgstr ""
 
@@ -1189,7 +1189,7 @@ msgstr ""
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:114
+#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:129
 msgid "CHUNK_CELL_CORPSE_PART"
 msgstr ""
 
@@ -2153,8 +2153,8 @@ msgstr ""
 msgid "DEADZONE_CONFIGURATION"
 msgstr ""
 
-#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:384
-#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:393
+#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:400
+#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:409
 msgid "DEATH"
 msgstr ""
 
@@ -2797,19 +2797,19 @@ msgstr ""
 msgid "ENERGY_COST_MULTIPLIER_EXPLANATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3426
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3428
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3261
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3263
 msgid "ENERGY_IN_PATCH_SHORT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3437
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3439
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3430
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3432
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
@@ -2897,11 +2897,11 @@ msgid "ERROR_LOADING"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.cs:710
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:800
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:810
 msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:808
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:818
 msgid "ERROR_REQUIRED_AT_LEAST_X_CELLS_FOR_MASS_BUDDING"
 msgstr ""
 
@@ -3273,7 +3273,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3443
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3445
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -3387,7 +3387,7 @@ msgstr ""
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/Spawners.cs:1138
+#: ../src/microbe_stage/Spawners.cs:1151
 msgid "GAMETE_CELL_ENTITY_NAME"
 msgstr ""
 
@@ -3421,7 +3421,7 @@ msgstr ""
 msgid "GAME_SYSTEMS_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3361
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3363
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1081
 msgid "GATHERED_ENERGY_TOOLTIP"
 msgstr ""
@@ -4445,7 +4445,7 @@ msgstr ""
 msgid "INVERTED"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:667
+#: ../src/saving/SaveHelper.cs:689
 msgid "IN_PROTOTYPE"
 msgstr ""
 
@@ -4724,7 +4724,7 @@ msgstr ""
 msgid "LARGE_SULFUR_CHUNK"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2019
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2021
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -5167,7 +5167,7 @@ msgstr ""
 msgid "MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1424
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1426
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr ""
 
@@ -5394,7 +5394,7 @@ msgid "MICHES_FOR_PATCH"
 msgstr ""
 
 #: ../src/auto-evo/selection_pressure/AvoidPredationSelectionPressure.cs:14
-#: ../src/auto-evo/selection_pressure/GeneralAvoidPredationSelectionPressure.cs:12
+#: ../src/auto-evo/selection_pressure/GeneralAvoidPredationSelectionPressure.cs:13
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
 msgstr ""
 
@@ -6142,7 +6142,7 @@ msgstr ""
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr ""
 
-#: ../src/multicellular_stage/MulticellularSpecies.cs:922
+#: ../src/multicellular_stage/MulticellularSpecies.cs:976
 msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
 msgstr ""
 
@@ -6494,7 +6494,7 @@ msgstr ""
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/MulticellularEditor.cs:337
+#: ../src/multicellular_stage/editor/MulticellularEditor.cs:340
 msgid "NOT_ENOUGH_MUTATION_POINTS"
 msgstr ""
 
@@ -6511,7 +6511,7 @@ msgid "NO_AI"
 msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:665
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3458
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3460
 msgid "NO_DATA_TO_SHOW"
 msgstr ""
 
@@ -6567,7 +6567,7 @@ msgstr ""
 msgid "NUCLEUS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2018
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2020
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -6591,8 +6591,8 @@ msgstr ""
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:25
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:35
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:45
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3272
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3284
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3274
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3286
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:154
 #: ../src/microbe_stage/MicrobeHUD.cs:879
 msgid "N_A"
@@ -6754,11 +6754,11 @@ msgstr ""
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1544
+#: ../simulation_parameters/microbe_stage/organelles.json:1560
 msgid "ORGANELLE_AXON"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1545
+#: ../simulation_parameters/microbe_stage/organelles.json:1561
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr ""
 
@@ -6774,11 +6774,11 @@ msgstr ""
 msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1587
+#: ../simulation_parameters/microbe_stage/organelles.json:1603
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1588
+#: ../simulation_parameters/microbe_stage/organelles.json:1604
 msgid "ORGANELLE_MYOFIBRIL_DESCRIPTION"
 msgstr ""
 
@@ -7108,8 +7108,8 @@ msgstr ""
 #: ../src/microbe_stage/OrganismStatisticsPanel.cs:519
 #: ../src/microbe_stage/OrganismStatisticsPanel.cs:639
 #: ../src/microbe_stage/OrganismStatisticsPanel.cs:643
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:1227
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:1265
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:1237
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:1275
 #: ../src/society_stage/gui/ResearchScreen.cs:34
 msgid "PERCENTAGE_VALUE"
 msgstr ""
@@ -7175,7 +7175,7 @@ msgstr ""
 msgid "PIN_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2514
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2516
 msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
 msgstr ""
 
@@ -7226,7 +7226,7 @@ msgstr ""
 msgid "PLAYER_DUPLICATE"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:648
+#: ../src/saving/SaveHelper.cs:670
 msgid "PLAYER_EXTINCT"
 msgstr ""
 
@@ -7286,7 +7286,7 @@ msgstr ""
 msgid "POPULATION_IN_PATCHES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3291
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3293
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr ""
 
@@ -7957,15 +7957,15 @@ msgstr ""
 msgid "SAVING_DOT_DOT_DOT"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:638 ../src/saving/SaveHelper.cs:721
+#: ../src/saving/SaveHelper.cs:660 ../src/saving/SaveHelper.cs:743
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:647 ../src/saving/SaveHelper.cs:666
+#: ../src/saving/SaveHelper.cs:669 ../src/saving/SaveHelper.cs:688
 msgid "SAVING_NOT_POSSIBLE"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:700
+#: ../src/saving/SaveHelper.cs:722
 msgid "SAVING_SUCCEEDED"
 msgstr ""
 
@@ -9324,7 +9324,7 @@ msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeSpecies.cs:464
-#: ../src/multicellular_stage/MulticellularSpecies.cs:925
+#: ../src/multicellular_stage/MulticellularSpecies.cs:979
 msgid "TOLERANCE_DETAIL_TEXT"
 msgstr ""
 

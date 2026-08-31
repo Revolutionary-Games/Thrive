@@ -11,7 +11,7 @@ using Systems;
 /// </summary>
 public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISimulationPhotographable
 {
-    public const ushort SERIALIZATION_VERSION = 7;
+    public const ushort SERIALIZATION_VERSION = 8;
 
     private readonly Dictionary<BiomeConditions, Dictionary<Compound, (float TimeToFill, float Storage)>>
         cachedFillTimes = new();
@@ -231,6 +231,14 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
             {
                 instance.MassBuddingCellCount = 2;
             }
+        }
+
+        if (version < 8)
+        {
+            // Old sporulation data can reference a cell type that is taken up by the body plan
+            instance.ModifiableSporeCellType = null;
+            if (instance.ReproductionMethod == MulticellularReproductionMethod.Sporulation)
+                instance.ReproductionMethod = MulticellularReproductionMethod.Budding;
         }
 
         return instance;
@@ -507,14 +515,32 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 
         float storageCapacity = 0.0f;
 
-        // We don't take specialization into account here, so we overestimate how much stuff is needed
-        for (int i = 0; i < initialCellCount; ++i)
+        // We don't take specialization into account here, so we overestimate how much stuff is needed.
+        // Use Editor Cells if possible, for auto-evo purposes
+        if (modifiableEditorCells != null)
         {
-            ProcessSystem.ComputeCompoundBalance(ModifiableGameplayCells[i].ModifiableOrganelles,
-                biomeConditions, environmentalTolerances, 1, CompoundAmountType.Biome, false, compoundBalances);
+            for (int i = 0; i < initialCellCount; ++i)
+            {
+                var cellTemplate = ModifiableEditorCells[i].Data;
+                if (cellTemplate == null)
+                    throw new ArgumentException("editor layout hex does not contain cell template");
 
-            storageCapacity +=
-                MicrobeInternalCalculations.CalculateCapacity(ModifiableGameplayCells[i].ModifiableOrganelles);
+                ProcessSystem.ComputeCompoundBalance(cellTemplate.ModifiableOrganelles,
+                    biomeConditions, environmentalTolerances, 1, CompoundAmountType.Biome, false, compoundBalances);
+
+                storageCapacity += MicrobeInternalCalculations.CalculateCapacity(cellTemplate.ModifiableOrganelles);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < initialCellCount; ++i)
+            {
+                ProcessSystem.ComputeCompoundBalance(ModifiableGameplayCells[i].ModifiableOrganelles,
+                    biomeConditions, environmentalTolerances, 1, CompoundAmountType.Biome, false, compoundBalances);
+
+                storageCapacity +=
+                    MicrobeInternalCalculations.CalculateCapacity(ModifiableGameplayCells[i].ModifiableOrganelles);
+            }
         }
 
         InitialCompounds.Clear();
@@ -800,12 +826,31 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         return ModifiableGameplayCells[0].ModifiableCellType;
     }
 
-    public override object Clone()
+    /// <summary>
+    ///   Reverse the hack of cloning for auto-evo forcing gameplay cells to null
+    /// </summary>
+    public void RestoreGameplayCellsForAutoEvo()
     {
-        return Clone(true);
+        ModifiableGameplayCells = new CellLayout<CellTemplate>();
     }
 
-    public MulticellularSpecies Clone(bool cloneOrganelles)
+    public override object Clone()
+    {
+        return Clone(true, true);
+    }
+
+    /// <summary>
+    ///   Returns an exact clone of this MulticellularSpecies, with parameters for producing partial clones.
+    /// </summary>
+    /// <param name="cloneOrganelles">
+    ///   If false, does not clone the organelles inside cell types. These then need to be cloned separately.
+    /// </param>
+    /// <param name="cloneGameplayLayout">
+    ///   If false, ModifiableGameplayCells is left empty.
+    ///   <see cref="MulticellularLayoutHelpers.UpdateGameplayLayoutForAutoEvo"/> must be run on this species or any
+    ///   further clones made from it before any handling outside auto-evo.
+    /// </param>
+    public MulticellularSpecies Clone(bool cloneOrganelles, bool cloneGameplayLayout)
     {
         var result = new MulticellularSpecies(ID, Genus, Epithet);
 
@@ -833,16 +878,25 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
                 result.ModifiableGameteTypeB = clonedType;
         }
 
-        foreach (var cellTemplate in ModifiableGameplayCells)
+        // This implementation for avoiding cloning gameplay cells for auto-evo is very much a hackish way of doing
+        // things that should be replaced soon.
+        if (cloneGameplayLayout)
         {
-            var oldType = cellTemplate.ModifiableCellType;
+            foreach (var cellTemplate in ModifiableGameplayCells)
+            {
+                var oldType = cellTemplate.ModifiableCellType;
 
-            if (!typeMapping.TryGetValue(oldType, out var newType))
-                throw new Exception("Cell type not found in species");
+                if (!typeMapping.TryGetValue(oldType, out var newType))
+                    throw new Exception("Cell type not found in species");
 
-            result.ModifiableGameplayCells.AddFast(
-                new CellTemplate(newType, cellTemplate.Position, cellTemplate.Orientation),
-                workMemory1, workMemory2);
+                result.ModifiableGameplayCells.AddFast(
+                    new CellTemplate(newType, cellTemplate.Position, cellTemplate.Orientation),
+                    workMemory1, workMemory2);
+            }
+        }
+        else
+        {
+            result.ModifiableGameplayCells = null!;
         }
 
         if (result.modifiableEditorCells == null)
@@ -937,8 +991,18 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         // Apply the multiplier to the costs for being multicellular
         var result = new Dictionary<Compound, float>();
 
-        var fromCellsMultiplier = ModifiableGameplayCells.Count *
-            Constants.MULTICELLULAR_BASE_REPRODUCTION_COST_MULTIPLIER_PER_CELL;
+        // For auto-evo purposes, check if Editor cells can be used.
+        int cellCount;
+        if (modifiableEditorCells != null)
+        {
+            cellCount = EditorCells.Count;
+        }
+        else
+        {
+            cellCount = GameplayCells.Count;
+        }
+
+        var fromCellsMultiplier = cellCount * Constants.MULTICELLULAR_BASE_REPRODUCTION_COST_MULTIPLIER_PER_CELL;
 
         foreach (var entry in baseReproductionCost)
         {
@@ -955,10 +1019,26 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
     {
         var result = base.CalculateTotalReproductionCost();
 
-        int count = ModifiableGameplayCells.Count;
-        for (int i = 0; i < count; ++i)
+        // For auto-evo purposes, check if Editor cells can be used.
+        if (modifiableEditorCells != null)
         {
-            result.Merge(ModifiableGameplayCells[i].CalculateTotalComposition());
+            int count = ModifiableEditorCells.Count;
+            for (int i = 0; i < count; ++i)
+            {
+                var cellTemplate = ModifiableEditorCells[i].Data;
+                if (cellTemplate == null)
+                    throw new ArgumentException("editor layout hex does not contain cell template");
+
+                result.Merge(cellTemplate.CalculateTotalComposition());
+            }
+        }
+        else
+        {
+            int count = ModifiableGameplayCells.Count;
+            for (int i = 0; i < count; ++i)
+            {
+                result.Merge(ModifiableGameplayCells[i].CalculateTotalComposition());
+            }
         }
 
         return result;

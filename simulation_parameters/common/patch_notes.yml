@@ -1460,3 +1460,107 @@
     - Updated gdUnit4 version to actually have our CI system be able to run it again
     - Updated Thriveopedia content
     - Updated translations
+
+1.6.0:
+  IntroductionText: |
+    This release was supposed to be called 1.2 or 1.3, but we absolutely demolished multiple roadmap goals and thus ended up with this version being named 1.6.0 thanks to all the new features. There's multiple new reproduction modes in multicellular, the beginning of multicellular auto-evo, a new multicellular-specific organelle, microbe AI improvements, and various other smaller improvements and quite many bug fixes that make the multicellular stage gameplay a lot more fleshed out.
+  ReleaseLink: https://github.com/Revolutionary-Games/Thrive/releases/tag/v1.6.0
+  PatchNotes:
+    - Added sexual reproduction option for multicellular microbes
+    - Using sexual reproduction gives a 20% MP discount when it is used to enter the editor
+    - Added mass budding reproduction mode for the multicellular stage
+    - "Added auto-evo for multicellular species: they can mutate and split. They don't appear naturally yet so they can only split from the player."
+    - Implemented membranes stretching towards other colony members to make gaps between colony cells smaller
+    - Fixed colony rotation math giving a buff from colony member count
+    - Added actomyosin organelle as a key buff to multicellular movement and rotation speed
+    - Updated to Godot 4.7.2 (this causes issues with Vulkan on some computers)
+    - Changing membrane in multicellular now costs 100 MP and makes all cell types switch to the new membrane type at once
+    - Changing membrane types is now prevented in macroscopic
+    - The microbe AI now uses signalling agents to send commands in certain situations
+    - Buffed specialization and adjacency bonuses
+    - Time per generation is now 50 myr instead of 100. Only the display changed, game speed is the same as before.
+    - Added stored compound conservation when using mass budding to make it more viable to spawn with big colonies
+    - Reworked the GUI for spore cell type picking and customizing
+    - Enabled endosymbiosis for multicellular
+    - Added a hotkey for the editor button and a button prompt that appears the first time the button becomes available
+    - Reworked the microbe colony compound sharing logic to fix one more corner case
+    - Added an option to change the alternative speed mode in the game to go up to 5x speed if the CPU is fast enough
+    - Updated membranes with new textures and shader changes
+    - Added tolerance and a few other stats to the organelle tooltips
+    - Added an extra explanation in the oxygen tolerance slider tooltip that organelles are needed to get higher level of adaptation
+    - Changed tolerance warning text to give the minimum needed change to become tolerant rather than the change the preferred value would need
+    - Made digestion finish immediately if there is only toxin left to digest which is not useful as it only causes damage
+    - Detached colony members now try to re-parent to a nearby still existing member rather than always totally exiting the colony when their connecting cell was removed
+    - Updated germination action icon
+    - Doubled lifetime of radioactive chunks
+    - Implemented fossilisation for multicellular species
+    - Tweaked predator and behaviour handling in auto-evo
+    - Added more random rotation to terrain chunks and tweaked their spawning
+    - Added a new chunk model to the banana biome and a new terrain shape
+    - Reduced minimum selectable GUI scale to 60%
+    - Made the MP bar show one more decimal to avoid confusing rounding scenarios
+    - Made save list items only load their data when about to become visible rather than all loading immediately
+    - Fixed slime jet movement speed being framerate dependent. And slightly altered the intended thrust amount.
+    - Fixed specialization not applying to gameplay flagella
+    - Fixed MP multiplier from difficulty not applying to reproduction modes
+    - Fixed major problem with migrations using the same miche tree as mutation generation concurrently which likely was able to cause random errors and slight weirdness in auto-evo
+    - Fixed external organelle positions not updating to match their physical positions when a cell grew
+    - Fixed physics collision ignoring stopping working if an entity tried to ignore multiple other objects
+    - Fixed cell layout reset not reapplying all species properties on divide. This should fix AI cells with a nucleus but small scale.
+    - Fixed the reproduction options not fully restoring after loading a save
+    - Fixed a bug with loading a multicellular stage save where a  chemoreceptor was pointing to its own species and was part of a world history record with changes
+    - Fixed loading saves where microbe chemoreceptor references form a cycle between species
+    - Fixed loading saves where auto-evo had failed and it now shows a special error message
+    - Fixed stage-based guidance lines not coming from the player cell
+    - Fixed NaN compound chunks spawning on invalid species member dying
+    - Fixed moving a cell in multicellular not updating the specialization display
+    - Fixed growth progress not being correctly displayed when using sporulation
+    - Fixed scroll bar backgrounds not being rounded
+    - Remade myofibril texture
+    - Implemented a cheat to slow or speed up time
+    - Adjusted intercellular matrix generation
+    - Added a bunch of missing models to the art gallery
+    - Added the winning artwork from the first art contest as a loading screen
+    - If loading a save fails the integrity of the save file is checked and if it is detected as corrupted, then a special message is shown
+    - Made the search bar in the Thriveopedia also search page content and tags
+    - Added multicellular body plan corruption checks on exiting the editor
+    - Added pagination to patch notes views
+    - Added actual used renderer detection and showing new possible values
+    - Made guidance lines (tutorial, chemoreceptor) smoothly update their target positions
+    - Added a hotkey for fast-forwarding the credits
+    - Removed Windows-style new lines from our error dialog to avoid double line changes from appearing
+    - Implemented a new console command "edit" to go directly to the editor at any time
+    - Replaced the previous graph processing library with onet hat still implements the Sugiyama algorithm but is licensed in a better way
+    - Added a safety check against invalid data in colonies when building intercellular matrix graphics
+    - Entity debug labels now display active signalling command
+    - Added support for multicast debug console commands
+    - Added a prototype sky renderer into the game files
+    - Added preregistration of all of our ECS components to make entity creation thread-safe
+    - Added extra physics data safeguards in our code
+    - Improved auto-evo general failure message in the editor by pointing out the game logs
+    - The game news feed now uses HTTPS to load more securely
+    - Reimplemented our 2D spinners as shaders rather than rotating nodes as those were hard to make in Godot 4
+    - Added a popup warning window when achievements couldn't be loaded
+    - Made achievements writing use a temporary file to make data corruption less likely
+    - Added a code safety check before resetting intercellular matrix data on colony disband
+    - Removed protoplasm definition and Thriveopedia page
+    - Updated some code to use a new collection initializer syntax
+    - Fixed the slightly confusing way the fossilisation dialog was internally constructed
+    - Slightly tweaked when world queued actions are triggered for future safety
+    - Added code tests for all reproduction types to verify progress calculation is correct with them
+    - Added caching for simple collision shapes
+    - Fixed a unit test that was intermittently failing in CI
+    - Updated our code style instructions
+    - Fixed our component access safety checking mode and fixed some missing access markings in game systems
+    - Fixed a bunch of code warnings found by new static analysis tools
+    - Configured some new code check warnings and fixed some older code for them
+    - Added a code comment explaining ModifiableEditorCells
+    - 'Added a CI check to ensure no missing ".cs.uid" files'
+    - Improved generation of the license text and unified between the game and our helper scripts
+    - "Steam: added a top level license file on export"
+    - Switched to a custom-patched physics engine version that fixes an entity disappearing bug as a temporary measure
+    - Updated System.IO.Hashing 10.0.8 to 10.0.11
+    - Updated AngleSharp from 1.5.2 to 1.7.2
+    - Updated code checking tools
+    - Updated test SDK
+    - Updated translations
