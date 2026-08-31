@@ -87,7 +87,7 @@ public class PhysicalWorld : IDisposable
     ///   continuing using the world.
     /// </summary>
     /// <param name="delta">
-    ///   Amount of time elapsed since the last call, used to simulate right amount of passed time
+    ///   Amount of time elapsed since the last call, used to simulate the right amount of passed time
     /// </param>
     public void ProcessPhysicsOnBackgroundThread(float delta)
     {

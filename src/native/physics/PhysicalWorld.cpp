@@ -290,6 +290,10 @@ bool PhysicalWorld::Process(float delta)
     bool simulatedPhysics = false;
     float simulatedTime = 0;
 
+    // TODO: physics processing time tracking with a high resolution timer (should get the average time over the last
+    // second)
+    const auto start = TimingClock::now();
+
     // TODO: limit max steps per frame to avoid massive potential for lag spikes
     // TODO: alternatively to this it is possible to use a bigger timestep at once but then collision steps and
     // integration steps should be incremented
@@ -303,6 +307,11 @@ bool PhysicalWorld::Process(float delta)
 
     if (!simulatedPhysics)
         return false;
+
+    const auto elapsed = std::chrono::duration_cast<SecondDuration>(TimingClock::now() - start).count();
+    latestPhysicsTime = elapsed;
+
+    averagePhysicsTime = pimpl->AddAndCalculateAverageTime(elapsed);
 
     DrawPhysics(simulatedTime);
 
@@ -1206,11 +1215,25 @@ void PhysicalWorld::StepAllPhysicsStepsInBackground()
 {
     const auto singlePhysicsFrame = 1 / physicsFrameRate;
 
+    // TODO: physics processing time tracking with a high resolution timer (should get the average time over the last
+    // second)
+    const auto start = TimingClock::now();
+    bool ran = false;
+
     while (elapsedSinceUpdate > singlePhysicsFrame)
     {
         elapsedSinceUpdate -= singlePhysicsFrame;
         backgroundSimulatedTime += singlePhysicsFrame;
         StepPhysics(singlePhysicsFrame);
+        ran = true;
+    }
+
+    if (ran)
+    {
+        const auto elapsed = std::chrono::duration_cast<SecondDuration>(TimingClock::now() - start).count();
+        latestPhysicsTime = elapsed;
+
+        averagePhysicsTime = pimpl->AddAndCalculateAverageTime(elapsed);
     }
 
     runningBackgroundSimulation = false;
@@ -1242,10 +1265,6 @@ void PhysicalWorld::StepPhysics(float time)
         }
     }
 
-    // TODO: physics processing time tracking with a high resolution timer (should get the average time over the last
-    // second)
-    const auto start = TimingClock::now();
-
     // Per physics step forces are applied in PerformPhysicsStepOperations triggered by the step listener
 
     // TODO: ensure that our custom task system is not (much) slower than the Jolt inbuilt one
@@ -1254,8 +1273,6 @@ void PhysicalWorld::StepPhysics(float time)
     const auto result = physicsSystem->Update(time, collisionStepsPerUpdate, tempAllocator.get(), &jobExecutor);
 
     nextStepIsFresh = false;
-
-    const auto elapsed = std::chrono::duration_cast<SecondDuration>(TimingClock::now() - start).count();
 
     switch (result)
     {
@@ -1273,10 +1290,6 @@ void PhysicalWorld::StepPhysics(float time)
         default:
             LOG_ERROR("Physics update error: unknown");
     }
-
-    latestPhysicsTime = elapsed;
-
-    averagePhysicsTime = pimpl->AddAndCalculateAverageTime(elapsed);
 }
 
 void PhysicalWorld::ReportBodyWithActiveCollisions(PhysicsBody& body)
