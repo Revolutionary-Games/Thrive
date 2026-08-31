@@ -21,6 +21,23 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
     /// </summary>
     protected bool usePhysicsOnMainThread;
 
+    /// <summary>
+    ///   To avoid jitter of constantly changing physics steps, we evaluate performance over some time period.
+    /// </summary>
+    private const float PhysicsEvaluationPeriod = 1;
+
+    /// <summary>
+    ///   In case the performance gets better, we can increase physics fidelity again.
+    /// </summary>
+    private const float PhysicsRecoveryInterval = 150;
+
+    // Physics performance adjusting variables
+    private PhysicsSteppingState physicsSteppingState;
+    private float physicsTimeSinceLastRun;
+    private float physicsEvaluationTime;
+    private float physicsEvaluationDuration;
+    private float physicsTimeSinceStateChange;
+
     public WorldSimulationWithPhysics()
     {
     }
@@ -34,7 +51,17 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
         Dispose(false);
     }
 
+    public enum PhysicsSteppingState
+    {
+        FullSpeed,
+        ThirtyUpdatesPerSecond,
+        TenUpdatesPerSecond,
+        HalfSimulationTime,
+    }
+
     public PhysicalWorld PhysicalWorld => physics;
+
+    public PhysicsSteppingState CurrentPhysicsSteppingState => physicsSteppingState;
 
     public NativePhysicsBody CreateMovingBody(PhysicsShape shape, Vector3 position, Quaternion rotation)
     {
@@ -89,18 +116,24 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
 
     protected override void WaitForStartedPhysicsRun()
     {
-        physics.WaitUntilPhysicsRunEnds();
+        if (physics.WaitUntilPhysicsRunEnds())
+            RecordPhysicsPerformance();
     }
 
     protected override void OnStartPhysicsRunIfTime(float delta)
     {
+        physicsTimeSinceLastRun += delta;
+
+        var physicsDelta = physicsSteppingState == PhysicsSteppingState.HalfSimulationTime ? delta * 0.5f : delta;
+
         if (usePhysicsOnMainThread)
         {
-            physics.ProcessPhysics(delta);
+            if (physics.ProcessPhysics(physicsDelta))
+                RecordPhysicsPerformance();
         }
         else
         {
-            physics.ProcessPhysicsOnBackgroundThread(delta);
+            physics.ProcessPhysicsOnBackgroundThread(physicsDelta);
         }
     }
 
@@ -134,5 +167,66 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
         }
 
         physics.Dispose();
+    }
+
+    private void RecordPhysicsPerformance()
+    {
+        physicsEvaluationTime += physicsTimeSinceLastRun;
+        physicsEvaluationDuration += physics.LatestPhysicsDuration;
+        physicsTimeSinceLastRun = 0;
+
+        if (physicsEvaluationTime < PhysicsEvaluationPeriod)
+            return;
+
+        var physicsIsTooSlow = physicsEvaluationDuration > physicsEvaluationTime;
+        physicsEvaluationTime = 0;
+        physicsEvaluationDuration = 0;
+
+        if (physicsIsTooSlow)
+        {
+            physicsTimeSinceStateChange = 0;
+
+            if (physicsSteppingState != PhysicsSteppingState.HalfSimulationTime)
+            {
+                // Slow down if we are too slow
+                physicsSteppingState = (PhysicsSteppingState)((int)physicsSteppingState + 1);
+                GD.Print("Physical world is detecting low performance, slowing down to: ", physicsSteppingState);
+
+                if (physicsSteppingState >= PhysicsSteppingState.TenUpdatesPerSecond)
+                {
+                    // TODO: send GUI notice to the player
+                }
+
+                ApplyPhysicsSteppingState();
+            }
+
+            return;
+        }
+
+        physicsTimeSinceStateChange += PhysicsEvaluationPeriod;
+
+        if (physicsSteppingState != PhysicsSteppingState.FullSpeed &&
+            physicsTimeSinceStateChange >= PhysicsRecoveryInterval)
+        {
+            // Try to speed up to see if we have potentially recovered from slowness
+            physicsTimeSinceStateChange = 0;
+            physicsSteppingState = (PhysicsSteppingState)((int)physicsSteppingState - 1);
+            GD.Print("Checking physical world physics performance recovery");
+            ApplyPhysicsSteppingState();
+        }
+    }
+
+    private void ApplyPhysicsSteppingState()
+    {
+        var timestep = physicsSteppingState switch
+        {
+            PhysicsSteppingState.FullSpeed => 1.0f / 60,
+            PhysicsSteppingState.ThirtyUpdatesPerSecond => 1.0f / 30,
+            PhysicsSteppingState.TenUpdatesPerSecond => 1.0f / 10,
+            PhysicsSteppingState.HalfSimulationTime => 1.0f / 10,
+            _ => throw new ArgumentOutOfRangeException(),
+        };
+
+        physics.SetPhysicsTimestep(timestep);
     }
 }
