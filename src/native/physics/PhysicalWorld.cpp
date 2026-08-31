@@ -1,6 +1,7 @@
 // ------------------------------------ //
 #include "PhysicalWorld.hpp"
 
+#include <cmath>
 #include <cstring>
 #include <fstream>
 
@@ -272,6 +273,17 @@ void PhysicalWorld::InitPhysicsWorld()
     physicsSystem->AddStepListener(stepListener.get());
 }
 
+void PhysicalWorld::SetPhysicsTimestep(float timestep)
+{
+    if (!std::isfinite(timestep) || timestep <= 0)
+    {
+        LOG_ERROR("Physics timestep must be finite and greater than zero");
+        return;
+    }
+
+    physicsTimestep = timestep;
+}
+
 // ------------------------------------ //
 bool PhysicalWorld::Process(float delta)
 {
@@ -282,10 +294,9 @@ bool PhysicalWorld::Process(float delta)
     }
 
     nextStepIsFresh = true;
-
     elapsedSinceUpdate += delta;
 
-    const auto singlePhysicsFrame = 1 / physicsFrameRate;
+    const auto singlePhysicsFrame = physicsTimestep;
 
     bool simulatedPhysics = false;
     float simulatedTime = 0;
@@ -294,10 +305,7 @@ bool PhysicalWorld::Process(float delta)
     // second)
     const auto start = TimingClock::now();
 
-    // TODO: limit max steps per frame to avoid massive potential for lag spikes
-    // TODO: alternatively to this it is possible to use a bigger timestep at once but then collision steps and
-    // integration steps should be incremented
-    while (elapsedSinceUpdate > singlePhysicsFrame)
+    while (elapsedSinceUpdate >= singlePhysicsFrame)
     {
         elapsedSinceUpdate -= singlePhysicsFrame;
         simulatedTime += singlePhysicsFrame;
@@ -332,7 +340,7 @@ void PhysicalWorld::ProcessInBackground(float delta)
 
     elapsedSinceUpdate += delta;
 
-    const auto singlePhysicsFrame = 1 / physicsFrameRate;
+    const auto singlePhysicsFrame = physicsTimestep;
 
     if (elapsedSinceUpdate < singlePhysicsFrame)
     {
@@ -1213,14 +1221,14 @@ bool PhysicalWorld::DumpSystemState(std::string_view path)
 // ------------------------------------ //
 void PhysicalWorld::StepAllPhysicsStepsInBackground()
 {
-    const auto singlePhysicsFrame = 1 / physicsFrameRate;
+    const auto singlePhysicsFrame = physicsTimestep;
 
     // TODO: physics processing time tracking with a high resolution timer (should get the average time over the last
     // second)
     const auto start = TimingClock::now();
     bool ran = false;
 
-    while (elapsedSinceUpdate > singlePhysicsFrame)
+    while (elapsedSinceUpdate >= singlePhysicsFrame)
     {
         elapsedSinceUpdate -= singlePhysicsFrame;
         backgroundSimulatedTime += singlePhysicsFrame;

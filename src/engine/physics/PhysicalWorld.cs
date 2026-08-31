@@ -64,6 +64,11 @@ public class PhysicalWorld : IDisposable
         return new PhysicalWorld(NativeMethods.CreatePhysicalWorld());
     }
 
+    public void SetPhysicsTimestep(float timestep)
+    {
+        NativeMethods.PhysicalWorldSetPhysicsTimestep(AccessWorldInternal(), timestep);
+    }
+
     /// <summary>
     ///   Steps the physics simulation forward if enough time has passed
     /// </summary>
@@ -815,6 +820,9 @@ internal static partial class NativeMethods
 
     [DllImport("thrive_native")]
     internal static extern float PhysicalWorldGetPhysicsAverageTime(IntPtr physicalWorld);
+
+    [DllImport("thrive_native")]
+    internal static extern void PhysicalWorldSetPhysicsTimestep(IntPtr physicalWorld, float timestep);
 
     [DllImport("thrive_native", CharSet = CharSet.Ansi, BestFitMapping = false)]
     [return: MarshalAs(UnmanagedType.U1)]
