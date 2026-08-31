@@ -1277,7 +1277,8 @@ public partial class EngulfingSystem : BaseSystem<World, float>
             // started but that may have been caused by my testing method of overriding the required size ratio (
             // in just one place so maybe some other later check then immediately canceled the engulf)
             // - hhyyrylainen
-            if (!MicrobeColonyHelpers.RemoveFromColony(targetEntity, recorder, true))
+            // We don't remove the attached component because we can retarget it to ourself
+            if (!MicrobeColonyHelpers.RemoveFromColony(targetEntity, recorder, true, false))
             {
                 GD.PrintErr("Failed to engulf a member of a cell colony (can't remove it)");
                 return false;
