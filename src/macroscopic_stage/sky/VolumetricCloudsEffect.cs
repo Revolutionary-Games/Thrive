@@ -414,6 +414,46 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         }
     }
 
+    private void InitializeCompute()
+    {
+        if (rayMarcherSpirv == null! || upsamplerSpirv == null!)
+            throw new Exception("Resources have not been loaded yet.");
+
+        renderingDevice = RenderingServer.GetRenderingDevice();
+        if (renderingDevice is null)
+            return;
+
+        rayMarcherShader = renderingDevice.ShaderCreateFromSpirV(rayMarcherSpirv);
+        rayMarcherPipeline = renderingDevice.ComputePipelineCreate(rayMarcherShader);
+
+        upsamplerShader = renderingDevice.ShaderCreateFromSpirV(upsamplerSpirv);
+        upsamplerPipeline = renderingDevice.ComputePipelineCreate(upsamplerShader);
+
+        depthSampler = renderingDevice.SamplerCreate(new RDSamplerState
+        {
+            MagFilter = RenderingDevice.SamplerFilter.Nearest,
+            MinFilter = RenderingDevice.SamplerFilter.Nearest,
+            RepeatU = RenderingDevice.SamplerRepeatMode.ClampToEdge,
+            RepeatV = RenderingDevice.SamplerRepeatMode.ClampToEdge,
+        });
+
+        noiseSampler = renderingDevice.SamplerCreate(new RDSamplerState
+        {
+            MagFilter = RenderingDevice.SamplerFilter.Linear,
+            MinFilter = RenderingDevice.SamplerFilter.Linear,
+            RepeatU = RenderingDevice.SamplerRepeatMode.Repeat,
+            RepeatV = RenderingDevice.SamplerRepeatMode.Repeat,
+            RepeatW = RenderingDevice.SamplerRepeatMode.Repeat,
+        });
+
+        if (noiseProfile is null)
+            throw new Exception("Invalid noise texture");
+
+        noiseTexture = RenderingServer.TextureGetRdTexture(noiseProfile.GetRid());
+
+        paramUbo = renderingDevice.UniformBufferCreate(UniformParamsBufferSize, uniformParamsBuffer);
+    }
+
     /// <summary>
     ///   Claims the single slot that is allowed to render the clouds, if it is free. Only the instance that is
     ///   actually being rendered ever asks, which is what keeps the slot away from the throwaway instances Godot
@@ -453,46 +493,6 @@ public partial class VolumetricCloudsEffect : CompositorEffect
             activeInstance = null;
             Volatile.Write(ref active, false);
         }
-    }
-
-    private void InitializeCompute()
-    {
-        if (rayMarcherSpirv == null! || upsamplerSpirv == null!)
-            throw new Exception("Resources have not been loaded yet.");
-
-        renderingDevice = RenderingServer.GetRenderingDevice();
-        if (renderingDevice is null)
-            return;
-
-        rayMarcherShader = renderingDevice.ShaderCreateFromSpirV(rayMarcherSpirv);
-        rayMarcherPipeline = renderingDevice.ComputePipelineCreate(rayMarcherShader);
-
-        upsamplerShader = renderingDevice.ShaderCreateFromSpirV(upsamplerSpirv);
-        upsamplerPipeline = renderingDevice.ComputePipelineCreate(upsamplerShader);
-
-        depthSampler = renderingDevice.SamplerCreate(new RDSamplerState
-        {
-            MagFilter = RenderingDevice.SamplerFilter.Nearest,
-            MinFilter = RenderingDevice.SamplerFilter.Nearest,
-            RepeatU = RenderingDevice.SamplerRepeatMode.ClampToEdge,
-            RepeatV = RenderingDevice.SamplerRepeatMode.ClampToEdge,
-        });
-
-        noiseSampler = renderingDevice.SamplerCreate(new RDSamplerState
-        {
-            MagFilter = RenderingDevice.SamplerFilter.Linear,
-            MinFilter = RenderingDevice.SamplerFilter.Linear,
-            RepeatU = RenderingDevice.SamplerRepeatMode.Repeat,
-            RepeatV = RenderingDevice.SamplerRepeatMode.Repeat,
-            RepeatW = RenderingDevice.SamplerRepeatMode.Repeat,
-        });
-
-        if (noiseProfile is null)
-            throw new Exception("Invalid noise texture");
-
-        noiseTexture = RenderingServer.TextureGetRdTexture(noiseProfile.GetRid());
-
-        paramUbo = renderingDevice.UniformBufferCreate(UniformParamsBufferSize, uniformParamsBuffer);
     }
 
     private void EnsureCloudTexture(RenderSceneBuffersRD sceneBuffers, Vector2I marchSize, uint viewCount)
