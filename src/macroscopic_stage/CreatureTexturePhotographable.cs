@@ -72,16 +72,6 @@ public class CreatureTexturePhotographable : IScenePhotographable
 
     public ulong GetVisualHashCode()
     {
-        ulong value = 21067UL;
-
-        foreach (var metaball in Layout)
-        {
-            value ^= (ulong)((metaball.Position.X.GetHashCode() + metaball.Position.Y.GetHashCode()
-                + metaball.Position.Z.GetHashCode()) ^ metaball.Size.GetHashCode() ^ metaball.Colour.GetHashCode());
-        }
-
-        value += (ulong)SkinType;
-
-        return value;
+        return MetaballLayoutHelpers.CalculateLayoutHash(Layout) + (ulong)SkinType;
     }
 }
