@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using AutoEvo;
 using GdUnit4;
 using static GdUnit4.Assertions;
@@ -168,69 +169,74 @@ public class SimulationCachePredationToolsRawScoresTests
 
     private static void AssertMicrobeInitialScores(SimulationCache.PredationToolsRawScores scores)
     {
-        AssertThat(scores.PilusScore).IsEqual(5000.0f);
-        AssertThat(scores.InjectisomeScore).IsEqual(0.0f);
-        AssertThat(scores.DefensivePilusScore).IsEqual(0.0f);
-        AssertThat(scores.DefensiveInjectisomeScore).IsEqual(0.0f);
-        AssertThat(scores.AverageToxicity).IsEqual(0.25f);
-        AssertThat(scores.OxytoxyScore).IsEqual(4334465.0f);
-        AssertThat(scores.CytotoxinScore).IsEqual(0.0f);
-        AssertThat(scores.MacrolideScore).IsEqual(0.0f);
-        AssertThat(scores.ChannelInhibitorScore).IsEqual(0.0f);
-        AssertThat(scores.OxygenMetabolismInhibitorScore).IsEqual(0.0f);
-        AssertThat(scores.SlimeJetScore).IsEqual(37.5f);
-        AssertThat(scores.MucocystsScore).IsEqual(0.0f);
-        AssertThat(scores.PullingCiliaModifier).IsEqual(2.25f);
+        AssertFloatBits(scores.PilusScore, 0x459C4000);
+        AssertFloatBits(scores.InjectisomeScore, 0x00000000);
+        AssertFloatBits(scores.DefensivePilusScore, 0x00000000);
+        AssertFloatBits(scores.DefensiveInjectisomeScore, 0x00000000);
+        AssertFloatBits(scores.AverageToxicity, 0x3E800000);
+        AssertFloatBits(scores.OxytoxyScore, 0x4A844702);
+        AssertFloatBits(scores.CytotoxinScore, 0x00000000);
+        AssertFloatBits(scores.MacrolideScore, 0x00000000);
+        AssertFloatBits(scores.ChannelInhibitorScore, 0x00000000);
+        AssertFloatBits(scores.OxygenMetabolismInhibitorScore, 0x00000000);
+        AssertFloatBits(scores.SlimeJetScore, 0x42160000);
+        AssertFloatBits(scores.MucocystsScore, 0x00000000);
+        AssertFloatBits(scores.PullingCiliaModifier, 0x40100000);
     }
 
     private static void AssertMicrobeRecomputedScores(SimulationCache.PredationToolsRawScores scores)
     {
-        AssertThat(scores.PilusScore).IsEqual(5000.0f);
-        AssertThat(scores.InjectisomeScore).IsEqual(0.0f);
-        AssertThat(scores.DefensivePilusScore).IsEqual(0.0f);
-        AssertThat(scores.DefensiveInjectisomeScore).IsEqual(0.0f);
-        AssertThat(scores.AverageToxicity).IsEqual(0.25f);
-        AssertThat(scores.OxytoxyScore).IsEqual(6935144.0f);
-        AssertThat(scores.CytotoxinScore).IsEqual(0.0f);
-        AssertThat(scores.MacrolideScore).IsEqual(0.0f);
-        AssertThat(scores.ChannelInhibitorScore).IsEqual(0.0f);
-        AssertThat(scores.OxygenMetabolismInhibitorScore).IsEqual(0.0f);
-        AssertThat(scores.SlimeJetScore).IsEqual(60.0f);
-        AssertThat(scores.MucocystsScore).IsEqual(0.0f);
-        AssertThat(scores.PullingCiliaModifier).IsEqual(3.6f);
+        AssertFloatBits(scores.PilusScore, 0x459C4000);
+        AssertFloatBits(scores.InjectisomeScore, 0x00000000);
+        AssertFloatBits(scores.DefensivePilusScore, 0x00000000);
+        AssertFloatBits(scores.DefensiveInjectisomeScore, 0x00000000);
+        AssertFloatBits(scores.AverageToxicity, 0x3E800000);
+        AssertFloatBits(scores.OxytoxyScore, 0x4AD3A4D0);
+        AssertFloatBits(scores.CytotoxinScore, 0x00000000);
+        AssertFloatBits(scores.MacrolideScore, 0x00000000);
+        AssertFloatBits(scores.ChannelInhibitorScore, 0x00000000);
+        AssertFloatBits(scores.OxygenMetabolismInhibitorScore, 0x00000000);
+        AssertFloatBits(scores.SlimeJetScore, 0x42700000);
+        AssertFloatBits(scores.MucocystsScore, 0x00000000);
+        AssertFloatBits(scores.PullingCiliaModifier, 0x40666666);
     }
 
     private static void AssertMulticellularInitialScores(SimulationCache.PredationToolsRawScores scores)
     {
-        AssertThat(scores.PilusScore).IsEqual(7071.068f);
-        AssertThat(scores.InjectisomeScore).IsEqual(0.0f);
-        AssertThat(scores.DefensivePilusScore).IsEqual(0.0f);
-        AssertThat(scores.DefensiveInjectisomeScore).IsEqual(0.0f);
-        AssertThat(scores.AverageToxicity).IsEqual(0.25f);
-        AssertThat(scores.OxytoxyScore).IsEqual(10922850.0f);
-        AssertThat(scores.CytotoxinScore).IsEqual(0.0f);
-        AssertThat(scores.MacrolideScore).IsEqual(0.0f);
-        AssertThat(scores.ChannelInhibitorScore).IsEqual(0.0f);
-        AssertThat(scores.OxygenMetabolismInhibitorScore).IsEqual(0.0f);
-        AssertThat(scores.SlimeJetScore).IsEqual(94.49999f);
-        AssertThat(scores.MucocystsScore).IsEqual(0.0f);
-        AssertThat(scores.PullingCiliaModifier).IsEqual(2.4198592f);
+        AssertFloatBits(scores.PilusScore, 0x45DCF88B);
+        AssertFloatBits(scores.InjectisomeScore, 0x00000000);
+        AssertFloatBits(scores.DefensivePilusScore, 0x00000000);
+        AssertFloatBits(scores.DefensiveInjectisomeScore, 0x00000000);
+        AssertFloatBits(scores.AverageToxicity, 0x3E800000);
+        AssertFloatBits(scores.OxytoxyScore, 0x4B26AB62);
+        AssertFloatBits(scores.CytotoxinScore, 0x00000000);
+        AssertFloatBits(scores.MacrolideScore, 0x00000000);
+        AssertFloatBits(scores.ChannelInhibitorScore, 0x00000000);
+        AssertFloatBits(scores.OxygenMetabolismInhibitorScore, 0x00000000);
+        AssertFloatBits(scores.SlimeJetScore, 0x42BCFFFF);
+        AssertFloatBits(scores.MucocystsScore, 0x00000000);
+        AssertFloatBits(scores.PullingCiliaModifier, 0x401ADEF9);
     }
 
     private static void AssertMulticellularRecomputedScores(SimulationCache.PredationToolsRawScores scores)
     {
-        AssertThat(scores.PilusScore).IsEqual(7071.068f);
-        AssertThat(scores.InjectisomeScore).IsEqual(0.0f);
-        AssertThat(scores.DefensivePilusScore).IsEqual(0.0f);
-        AssertThat(scores.DefensiveInjectisomeScore).IsEqual(0.0f);
-        AssertThat(scores.AverageToxicity).IsEqual(0.25f);
-        AssertThat(scores.OxytoxyScore).IsEqual(16384275.0f);
-        AssertThat(scores.CytotoxinScore).IsEqual(0.0f);
-        AssertThat(scores.MacrolideScore).IsEqual(0.0f);
-        AssertThat(scores.ChannelInhibitorScore).IsEqual(0.0f);
-        AssertThat(scores.OxygenMetabolismInhibitorScore).IsEqual(0.0f);
-        AssertThat(scores.SlimeJetScore).IsEqual(141.75f);
-        AssertThat(scores.MucocystsScore).IsEqual(0.0f);
-        AssertThat(scores.PullingCiliaModifier).IsEqual(2.7389653f);
+        AssertFloatBits(scores.PilusScore, 0x45DCF88B);
+        AssertFloatBits(scores.InjectisomeScore, 0x00000000);
+        AssertFloatBits(scores.DefensivePilusScore, 0x00000000);
+        AssertFloatBits(scores.DefensiveInjectisomeScore, 0x00000000);
+        AssertFloatBits(scores.AverageToxicity, 0x3E800000);
+        AssertFloatBits(scores.OxytoxyScore, 0x4B7A0113);
+        AssertFloatBits(scores.CytotoxinScore, 0x00000000);
+        AssertFloatBits(scores.MacrolideScore, 0x00000000);
+        AssertFloatBits(scores.ChannelInhibitorScore, 0x00000000);
+        AssertFloatBits(scores.OxygenMetabolismInhibitorScore, 0x00000000);
+        AssertFloatBits(scores.SlimeJetScore, 0x430DC000);
+        AssertFloatBits(scores.MucocystsScore, 0x00000000);
+        AssertFloatBits(scores.PullingCiliaModifier, 0x402F4B35);
+    }
+
+    private static void AssertFloatBits(float actual, int expectedBits)
+    {
+        AssertThat(BitConverter.SingleToInt32Bits(actual)).IsEqual(expectedBits);
     }
 }
