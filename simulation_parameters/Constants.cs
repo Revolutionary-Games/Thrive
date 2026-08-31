@@ -1489,6 +1489,7 @@ public static class Constants
     public const float AUTO_EVO_SIGNALLING_BONUS = 1.4f;
 
     public const int AUTO_EVO_MAX_CELL_COUNT = 20;
+    public const int AUTO_EVO_CUTOFF_CELL_COUNT = 25;
 
     public const int AI_FOLLOW_PLAYER_MIGRATION_TO_EMPTY_PATCH_THRESHOLD = 2;
 

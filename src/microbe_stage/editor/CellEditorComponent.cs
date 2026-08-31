@@ -649,6 +649,8 @@ public partial class CellEditorComponent :
             {
                 tolerancesEditor.OnEditorSpeciesSetup(Editor.EditedBaseSpecies);
             }
+
+            VerifyEditedOrganellesDoNotReferToOriginalData();
         }
 
         if (IsMulticellularEditor)
@@ -3540,6 +3542,28 @@ public partial class CellEditorComponent :
         if (chemosynthesis > 0.03)
         {
             AchievementEvents.ReportPlayerUsesChemosynthesis();
+        }
+    }
+
+    private void VerifyEditedOrganellesDoNotReferToOriginalData()
+    {
+        if (IsMacroscopicEditor || IsMulticellularEditor)
+        {
+            var cellProperties = Editor.EditedCellProperties;
+            if (cellProperties == null)
+                return;
+
+            foreach (var editedMicrobeOrganelle in editedMicrobeOrganelles)
+            {
+                foreach (var originalOrganelle in cellProperties.ModifiableOrganelles)
+                {
+                    if (ReferenceEquals(editedMicrobeOrganelle, originalOrganelle))
+                    {
+                        throw new InvalidOperationException(
+                            "Organelle is not from edited, about to modify original data!");
+                    }
+                }
+            }
         }
     }
 

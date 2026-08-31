@@ -20,6 +20,7 @@ using World = Arch.Core.World;
 ///   Godot scene tree is handled by <see cref="SpatialAttachSystem"/>
 /// </summary>
 [WritesToComponent(typeof(MulticellularGrowth))]
+[WritesToComponent(typeof(IntercellularMatrix))]
 [RunsBefore(typeof(SpatialAttachSystem))]
 [RunsBefore(typeof(EntityMaterialFetchSystem))]
 [RunsBefore(typeof(SpatialPositionSystem))]
@@ -158,6 +159,7 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
 
         MembranePointData? data = null;
         bool useSingleCellMembraneGeneration = true;
+        bool isSpeciesMulticellular = false;
 
         if (entity.Has<MulticellularSpeciesMember>())
         {
@@ -171,31 +173,41 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
 
                 if (!growthOrder.IsASpore)
                 {
-                    useSingleCellMembraneGeneration = false;
-
                     ref var speciesMember = ref entity.Get<MulticellularSpeciesMember>();
                     var nextBodyPlanCellToGrowIndex = growthOrder.ResumeBodyPlanAfterReplacingLost ??
                         growthOrder.NextBodyPlanCellToGrowIndex;
 
-                    lostCells.Clear();
+                    // It's set here, so that the outdated species get their intercellular matrix
+                    isSpeciesMulticellular = true;
 
-                    if (growthOrder.LostPartsOfBodyPlan != null)
+                    if (nextBodyPlanCellToGrowIndex <= speciesMember.Species.ModifiableGameplayCells.Count)
                     {
-                        foreach (var lostPart in growthOrder.LostPartsOfBodyPlan)
+                        useSingleCellMembraneGeneration = false;
+
+                        lostCells.Clear();
+
+                        if (growthOrder.LostPartsOfBodyPlan != null)
                         {
-                            lostCells.Add(lostPart);
+                            foreach (var lostPart in growthOrder.LostPartsOfBodyPlan)
+                            {
+                                lostCells.Add(lostPart);
+                            }
                         }
+
+                        long colonyLeaderKey = (long)colonyLeader.Id << 32 | (uint)colonyLeader.Version;
+                        long memberCellKey = (long)entity.Id << 32 | (uint)entity.Version;
+
+                        // Only get the membrane for THIS entity's cell (not all cells in the colony)
+                        var cellIndex = speciesMember.MulticellularBodyPlanPartIndex;
+                        var cell = speciesMember.Species.ModifiableGameplayCells[cellIndex];
+                        data = GetMulticellularMembraneDataIfReadyOrStartGenerating(cell, cell.ModifiableOrganelles,
+                            colonyLeaderKey, memberCellKey, ref speciesMember, ref growthOrder, cellIndex,
+                            nextBodyPlanCellToGrowIndex);
                     }
-
-                    long colonyLeaderKey = (long)colonyLeader.Id << 32 | (uint)colonyLeader.Version;
-                    long memberCellKey = (long)entity.Id << 32 | (uint)entity.Version;
-
-                    // Only get the membrane for THIS entity's cell (not all cells in the colony)
-                    var cellIndex = speciesMember.MulticellularBodyPlanPartIndex;
-                    var cell = speciesMember.Species.ModifiableGameplayCells[cellIndex];
-                    data = GetMulticellularMembraneDataIfReadyOrStartGenerating(cell, cell.ModifiableOrganelles,
-                        colonyLeaderKey, memberCellKey, ref speciesMember, ref growthOrder, cellIndex,
-                        nextBodyPlanCellToGrowIndex);
+                    else
+                    {
+                        GD.PrintErr("Next body plan cell to grow index is out of bounds for species.");
+                    }
                 }
             }
         }
@@ -236,6 +248,14 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
             // Existing membrane should have its properties updated to make sure they are up to date.
             // For example, an engulfed cell has its membrane wigglyness removed
             SetMembraneDisplayData(cellProperties.CreatedMembrane, data, ref cellProperties);
+        }
+
+        cellProperties.CreatedMembrane!.IsMulticellular = isSpeciesMulticellular;
+
+        if (isSpeciesMulticellular && entity.Has<IntercellularMatrix>())
+        {
+            ref var matrix = ref entity.Get<IntercellularMatrix>();
+            matrix.ShouldRegenerateConnection = true;
         }
 
         // Material is initialized in _Ready, so this is after AddChild of membrane
@@ -391,6 +411,9 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
             }
         }
 
+        // This throwing should be fixed now with the latest intercellular matrix system changes. The cause was that
+        // if the player removed cells then later body plan indexes would no longer point to any cell for existing
+        // entities.
         var cellData = new MulticellularMembraneGenerationCellData(cellPositionInMulticellular,
             multicellular.Species.ModifiableGameplayCells[currentCellIndex].Orientation);
 
