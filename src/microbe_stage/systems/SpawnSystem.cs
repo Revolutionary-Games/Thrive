@@ -659,11 +659,11 @@ public partial class SpawnSystem : BaseSystem<World, float>, ISpawnSystem, IArch
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void DespawnEntities(ref Spawned spawned, ref WorldPosition position, Entity entity)
     {
-        if (spawned.DisallowDespawning)
-            return;
-
         var entityWeight = spawned.EntityWeight;
         spawnedEntityWeight += entityWeight;
+
+        if (spawned.DisallowDespawning)
+            return;
 
         // Keep counting all entities to have an accurate count at the end of this loop, even if we are no
         // longer allowed to despawn things
