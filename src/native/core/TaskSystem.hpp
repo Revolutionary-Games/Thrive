@@ -1,13 +1,13 @@
 #pragma once
 
 #include <atomic>
-#include <condition_variable>
 #include <functional>
 #include <queue>
 #include <thread>
 #include <vector>
 
 #include "boost/pool/object_pool.hpp"
+#include "Jolt/Core/Semaphore.h"
 #include "Jolt/Core/JobSystemWithBarrier.h"
 
 #include "Include.h"
@@ -151,7 +151,8 @@ public:
     /// TODO: determine if it would be good to limit the max physics threads (maybe 16?)
     [[nodiscard]] virtual int GetMaxConcurrency() const override
     {
-        return GetThreads();
+        // Jolt counts the thread waiting on a barrier as an additional worker.
+        return GetThreads() + 1;
     }
 
     /// \brief Shuts down all threads and doesn't allow starting more
@@ -198,7 +199,8 @@ private:
     /// When USE_LOCK_FREE_QUEUE is defined this should not be locked to write to the queue
     std::mutex queueMutex;
 
-    std::condition_variable queueNotify;
+    /// This now uses a Jolt semaphore to ensure as many threads are woken up as required
+    JPH::Semaphore queueNotify;
 
     /// Lock used on the main thread to enqueue tasks
     std::unique_lock<std::mutex> queueLock;

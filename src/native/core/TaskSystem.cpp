@@ -291,10 +291,6 @@ void TaskSystem::Shutdown()
         EndTaskThread();
     }
 
-    // A duplicate notify compared to the EndTaskThread method but this feels better to ensure all threads are woken
-    // up if they were waiting immediately on shutdown
-    queueNotify.notify_all();
-
     try
     {
         for (auto& thread : taskThreads)
@@ -395,7 +391,7 @@ void TaskSystem::QueueTask(QueuedTask&& task)
     queueLock.unlock();
 #endif
 
-    queueNotify.notify_one();
+    queueNotify.Release();
 }
 
 void TaskSystem::QueueTaskFromBackgroundThread(QueuedTask&& task)
@@ -408,7 +404,7 @@ void TaskSystem::QueueTaskFromBackgroundThread(QueuedTask&& task)
     taskQueue.emplace(std::move(task));
 #endif
 
-    queueNotify.notify_one();
+    queueNotify.Release();
 }
 
 // ------------------------------------ //
@@ -457,7 +453,7 @@ void TaskSystem::QueueJob(Job* inJob)
     taskQueue.emplace(inJob);
 #endif
 
-    queueNotify.notify_one();
+    queueNotify.Release();
 }
 
 void TaskSystem::QueueJobs(Job** inJobs, uint32_t inNumJobs)
@@ -477,19 +473,7 @@ void TaskSystem::QueueJobs(Job** inJobs, uint32_t inNumJobs)
     }
 #endif
 
-    if (inNumJobs > 4)
-    {
-        queueNotify.notify_all();
-    }
-    else if (inNumJobs > 3)
-    {
-        queueNotify.notify_one();
-        queueNotify.notify_one();
-    }
-    else
-    {
-        queueNotify.notify_one();
-    }
+    queueNotify.Release(std::min(inNumJobs, static_cast<uint32_t>(targetThreadCount)));
 }
 
 // ------------------------------------ //
@@ -509,28 +493,30 @@ void TaskSystem::SetThreads(int count) noexcept
         return;
     }
 
-    queueLock.lock();
-
     targetThreadCount = count;
 
-    // Start new threads
+    // Quit sentinels are consumed by whichever worker reaches them first, so
+    // they cannot be used to stop a particular subset of taskThreads. If the
+    // pool is shrinking, stop and join every worker before starting the new
+    // pool. This guarantees that every std::thread object being removed has
+    // actually exited.
+    if (targetThreadCount < threadCount)
+    {
+        while (threadCount > 0)
+            EndTaskThread();
+
+        for (auto& thread : taskThreads)
+            thread.join();
+
+        taskThreads.clear();
+    }
+
+    // Start new threads, either adding the requested workers or rebuilding the
+    // pool after a reduction.
     while (targetThreadCount > threadCount)
     {
         StartTaskThread();
     }
-
-    // Or stop threads when there are too many
-    while (targetThreadCount < threadCount)
-    {
-        EndTaskThread();
-    }
-
-    queueLock.unlock();
-
-    // TODO: where should this thread cleaning exist? (here it is not possible to know really which threads have exited)
-    /*for (auto iter = taskThreads.begin(); iter != taskThreads.end(); )
-    {
-    }*/
 }
 
 // ------------------------------------ //
@@ -552,14 +538,11 @@ void TaskSystem::EndTaskThread()
 #ifdef USE_LOCK_FREE_QUEUE
     TryEnqueueTask(QueuedTask(QuitSentinel()));
 #else
-    queueLock.lock();
-
+    std::lock_guard<std::mutex> lock(queueMutex);
     taskQueue.emplace(QuitSentinel());
-
-    queueLock.unlock();
 #endif
 
-    queueNotify.notify_one();
+    queueNotify.Release();
 
     --threadCount;
 }
@@ -567,89 +550,53 @@ void TaskSystem::EndTaskThread()
 // ------------------------------------ //
 void TaskSystem::RunTaskThread(int id)
 {
-    const auto threadWait = MillisecondDuration(8);
-
-    std::unique_lock<std::mutex> lock{queueMutex};
-
     SetThreadNameCurrent(id);
-
-#ifdef USE_LOCK_FREE_QUEUE
-    lock.unlock();
-#endif
 
     while (runThreads)
     {
-        bool processed = false;
+        queueNotify.Acquire();
 
+        // Process all currently available tasks. The semaphore ensures that a
+        // notification cannot be lost while using the lock-free queue.
 #ifdef USE_LOCK_FREE_QUEUE
-        lock.lock();
+        QueuedTask task;
+        while (taskQueue.try_dequeue(task))
+#else
+        std::unique_lock<std::mutex> lock(queueMutex);
+        while (!taskQueue.empty())
 #endif
+        {
+            {
+#ifndef USE_LOCK_FREE_QUEUE
+                const auto task = std::move(taskQueue.front());
+                taskQueue.pop();
 
-        queueNotify.wait_for(lock, threadWait);
+                // Unlock while running the task.
+                lock.unlock();
+#endif
+                if (task.Type == TaskType::Quit)
+                    return;
 
-#ifdef USE_LOCK_FREE_QUEUE
+                try
+                {
+                    task.Invoke();
+                }
+                catch (const std::exception& e)
+                {
+                    LOG_ERROR(std::string("Background task exception: ") + e.what());
+                    throw;
+                }
+            }
+
+#ifndef USE_LOCK_FREE_QUEUE
+            // The task must be destroyed before reacquiring the queue lock.
+            lock.lock();
+#endif
+        }
+
+#ifndef USE_LOCK_FREE_QUEUE
         lock.unlock();
 #endif
-
-        for (int i = 0; i < TASK_WAIT_LOOP_COUNT; ++i)
-        {
-            // Process tasks until empty before waiting again
-#ifdef USE_LOCK_FREE_QUEUE
-            // TODO: should this variable be in the outer scope?
-            QueuedTask task;
-            while (taskQueue.try_dequeue(task))
-#else
-            while (!taskQueue.empty())
-#endif
-            {
-                {
-#ifndef USE_LOCK_FREE_QUEUE
-                    const auto task = std::move(taskQueue.front());
-
-                    taskQueue.pop();
-
-                    // Unlock while running the task
-                    lock.unlock();
-#endif
-
-                    if (task.Type == TaskType::Quit)
-                    {
-                        return;
-                    }
-
-                    processed = true;
-
-                    try
-                    {
-                        task.Invoke();
-                    }
-                    catch (const std::exception& e)
-                    {
-                        LOG_ERROR(std::string("Background task exception: ") + e.what());
-                        throw;
-                    }
-                }
-
-#ifndef USE_LOCK_FREE_QUEUE
-                // Extra scope used above to not lock this again until needed (task is destructed)
-                lock.lock();
-#endif
-            }
-
-#ifdef USE_LOCK_FREE_QUEUE
-            /*if (!processed)
-            {
-                // Reduce looping speed while the queue is empty
-                HYPER_THREAD_YIELD;
-            }*/
-#endif
-
-            // If we woke up but didn't find any work, go back to sleep
-            if (!processed)
-            {
-                break;
-            }
-        }
     }
 }
 
