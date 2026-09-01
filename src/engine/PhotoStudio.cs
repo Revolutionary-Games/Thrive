@@ -247,8 +247,7 @@ public partial class PhotoStudio : SubViewport
                     }
                 }
 
-                if (currentTask!.DesiredResolution != null)
-                    Size = new Vector2I(currentTask!.DesiredResolution.Value, currentTask!.DesiredResolution.Value);
+                Size = new Vector2I(currentTask!.DesiredResolution, currentTask.DesiredResolution);
 
                 currentTaskStep = Step.WaitSceneStabilize;
                 break;
