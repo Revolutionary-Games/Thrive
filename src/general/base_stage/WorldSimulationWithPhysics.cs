@@ -29,7 +29,7 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
     /// <summary>
     ///   In case the performance gets better, we can increase physics fidelity again.
     /// </summary>
-    private const float PhysicsRecoveryInterval = 150;
+    private const float PhysicsRecoveryInterval = 90;
 
     // Physics performance adjusting variables
     private PhysicsSteppingState physicsSteppingState;
