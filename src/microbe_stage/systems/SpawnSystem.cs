@@ -253,7 +253,7 @@ public partial class SpawnSystem : BaseSystem<World, float>, ISpawnSystem, IArch
     }
 
     public void NotifyExternalEntitySpawned(in Entity entity, CommandBuffer commandBuffer, float despawnRadiusSquared,
-        float entityWeight)
+        float entityWeight, bool disallowDespawning = false)
     {
         if (entityWeight <= 0)
             throw new ArgumentException("weight needs to be positive", nameof(entityWeight));
@@ -262,6 +262,7 @@ public partial class SpawnSystem : BaseSystem<World, float>, ISpawnSystem, IArch
         {
             DespawnRadiusSquared = despawnRadiusSquared,
             EntityWeight = entityWeight,
+            DisallowDespawning = disallowDespawning,
         });
 
         // Update entity count estimate to keep this about up to date, this will be corrected within a few seconds

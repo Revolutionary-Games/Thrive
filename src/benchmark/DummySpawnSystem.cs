@@ -39,7 +39,7 @@ public class DummySpawnSystem : ISpawnSystem
     }
 
     public void NotifyExternalEntitySpawned(in Entity entity, CommandBuffer commandBuffer, float despawnRadiusSquared,
-        float entityWeight)
+        float entityWeight, bool disallowDespawning = false)
     {
         addTrackedCallback?.Invoke(entity);
     }

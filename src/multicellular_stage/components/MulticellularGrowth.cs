@@ -189,7 +189,8 @@ public static class MulticellularGrowthHelpers
     /// </summary>
     public static void AddMulticellularGrowthCell(this ref MulticellularGrowth multicellularGrowth,
         in Entity entity, MulticellularSpecies species, IWorldSimulation worldSimulation,
-        IMicrobeSpawnEnvironment spawnEnvironment, CommandBuffer recorder, ISpawnSystem notifySpawnTo)
+        IMicrobeSpawnEnvironment spawnEnvironment, CommandBuffer recorder, ISpawnSystem notifySpawnTo,
+        bool disallowDespawning = false)
     {
         if (!entity.Has<MicrobeColony>())
         {
@@ -204,7 +205,7 @@ public static class MulticellularGrowthHelpers
         // colony it joins
         DelayedColonyOperationSystem.CreateDelayAttachedMicrobe(ref colonyPosition, entity,
             multicellularGrowth.NextBodyPlanCellToGrowIndex, cellTemplate, species, worldSimulation, spawnEnvironment,
-            recorder, notifySpawnTo, false);
+            recorder, notifySpawnTo, false, true, disallowDespawning);
 
         ++multicellularGrowth.NextBodyPlanCellToGrowIndex;
         multicellularGrowth.CompoundsNeededForNextCell = null;
@@ -636,7 +637,7 @@ public static class MulticellularGrowthHelpers
         for (int i = 0; i < species.MassBuddingCellCount - 1; ++i)
         {
             multicellularGrowth.AddMulticellularGrowthCell(entity, species, worldSimulation, spawnEnvironment,
-                recorder, notifySpawnTo);
+                recorder, notifySpawnTo, true);
         }
 
         multicellularGrowth.MassBuddingState = MulticellularMassBuddingState.Spawning;

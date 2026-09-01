@@ -21,6 +21,7 @@ using Godot;
 [WritesToComponent(typeof(Physics))]
 [WritesToComponent(typeof(OrganelleContainer))]
 [WritesToComponent(typeof(BioProcesses))]
+[WritesToComponent(typeof(Spawned))]
 [ReadsComponent(typeof(MulticellularSpeciesMember))]
 [ReadsComponent(typeof(WorldPosition))]
 [ReadsComponent(typeof(CompoundStorage))]
@@ -59,7 +60,8 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
     public static void CreateDelayAttachedMicrobe(ref WorldPosition colonyPosition, in Entity colonyEntity,
         int colonyTargetIndex, CellTemplate cellTemplate, MulticellularSpecies species,
         IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment spawnEnvironment,
-        CommandBuffer recorder, ISpawnSystem notifySpawnTo, bool giveStartingCompounds, bool playAnimation = true)
+        CommandBuffer recorder, ISpawnSystem notifySpawnTo, bool giveStartingCompounds, bool playAnimation = true,
+        bool disallowDespawning = false)
     {
         if (colonyTargetIndex == 0)
             throw new ArgumentException("Cannot delay add the root colony cell");
@@ -97,7 +99,8 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
 
         // Register with the spawn system to allow this entity to despawn if it gets cut off from the colony later
         // or attaching fails
-        notifySpawnTo.NotifyExternalEntitySpawned(member, recorder, Constants.MICROBE_DESPAWN_RADIUS_SQUARED, weight);
+        notifySpawnTo.NotifyExternalEntitySpawned(member, recorder, Constants.MICROBE_DESPAWN_RADIUS_SQUARED, weight,
+            disallowDespawning);
 
         recorder.Add(member, attachPosition);
 
@@ -271,6 +274,14 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
     {
         var parentIndex = colony.CalculateSensibleParentIndexForMulticellular(ref entity.Get<AttachedToEntity>());
         colony.FinishQueuedMemberAdd(colonyEntity, parentIndex, entity, targetMemberIndex, recorder);
+
+        // Mass-budding cells (and other delay-spawned colony members) are protected from spawn cleanup only until
+        // they are safely part of the colony.
+        if (entity.Has<Spawned>())
+        {
+            ref var spawned = ref entity.Get<Spawned>();
+            spawned.DisallowDespawning = false;
+        }
     }
 
     private void OnHasEntity(Entity entity)
