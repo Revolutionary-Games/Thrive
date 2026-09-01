@@ -158,18 +158,12 @@ TaskSystem::QueuedTask::QueuedTask(std::function<void()> callable) : Type(TaskTy
     new (&Function) std::function<void()>(std::move(callable));
 }*/
 
-TaskSystem::QueuedTask::QueuedTask(Job* callable) : Type(TaskType::JoltJob)
-{
-    callable->AddRef();
-    Jolt = callable;
-}
-
-TaskSystem::QueuedTask::QueuedTask(QuitSentinel quit) : Jolt(nullptr), Type(TaskType::Quit)
+TaskSystem::QueuedTask::QueuedTask(QuitSentinel quit) : Type(TaskType::Quit)
 {
     UNUSED(quit);
 }
 
-TaskSystem::QueuedTask::QueuedTask(QueuedTask&& other) noexcept : Jolt(nullptr), Type(other.Type)
+TaskSystem::QueuedTask::QueuedTask(QueuedTask&& other) noexcept : Type(other.Type)
 {
     MoveDataFromOther(std::move(other));
 }
@@ -190,10 +184,6 @@ void TaskSystem::QueuedTask::Invoke() const
             break;
         case TaskType::StdFunction:
             Function();
-            break;
-        case TaskType::JoltJob:
-            // TODO: handle the return value?
-            Jolt->Execute();
             break;
     }
 }
@@ -217,10 +207,6 @@ void TaskSystem::QueuedTask::ReleaseCurrentData()
     {
         case TaskType::StdFunction:
             Function.~function<void()>();
-            break;
-        case TaskType::JoltJob:
-            Jolt->Release();
-            Jolt = nullptr;
             break;
         default:
             break;
@@ -248,11 +234,6 @@ void TaskSystem::QueuedTask::MoveDataFromOther(QueuedTask&& other)
         case TaskType::StdFunction:
             new (&Function) std::function<void()>(std::move(other.Function));
             break;
-        case TaskType::JoltJob:
-            // Steal the job from the other one
-            other.Type = TaskType::Cleared;
-            Jolt = other.Jolt;
-            break;
     }
 }
 
@@ -266,6 +247,10 @@ TaskSystem::TaskSystem() :
 {
     // Mark main thread
     MainThreadIdentifier = MAIN_THREAD;
+
+#ifdef USE_OBJECT_POOLS
+    jobPool.Init(JPH::cMaxPhysicsJobs, JPH::cMaxPhysicsJobs);
+#endif
 
     Init(JPH::cMaxPhysicsBarriers);
 
@@ -313,6 +298,10 @@ void TaskSystem::Shutdown()
         while (taskQueue.try_dequeue(task))
         {
         }
+
+        Job* job;
+        while (jobQueue.try_dequeue(job))
+            job->Release();
     }
 #endif
 }
@@ -414,12 +403,15 @@ TaskSystem::JobHandle TaskSystem::CreateJob(
     Job* job;
 
 #ifdef USE_OBJECT_POOLS
+    uint32_t index;
+    do
     {
-        std::lock_guard<std::mutex> lock(jobPoolMutex);
-        job = jobPool.malloc();
-    }
+        index = jobPool.ConstructObject(inName, inColor, this, inJobFunction, inNumDependencies);
+        if (index == JPH::FixedSizeFreeList<Job>::cInvalidObjectIndex)
+            std::this_thread::yield();
+    } while (index == JPH::FixedSizeFreeList<Job>::cInvalidObjectIndex);
 
-    ::new (job) Job(inName, inColor, this, inJobFunction, inNumDependencies);
+    job = &jobPool.Get(index);
 
 #else
     job = new Job(inName, inColor, this, inJobFunction, inNumDependencies);
@@ -436,9 +428,7 @@ TaskSystem::JobHandle TaskSystem::CreateJob(
 void TaskSystem::FreeJob(Job* inJob)
 {
 #ifdef USE_OBJECT_POOLS
-    std::lock_guard<std::mutex> lock(jobPoolMutex);
-
-    jobPool.destroy(inJob);
+    jobPool.DestructObject(inJob);
 #else
     delete inJob;
 #endif
@@ -446,11 +436,13 @@ void TaskSystem::FreeJob(Job* inJob)
 
 void TaskSystem::QueueJob(Job* inJob)
 {
+    inJob->AddRef();
+
 #ifdef USE_LOCK_FREE_QUEUE
-    TryEnqueueTask(QueuedTask(inJob));
+    jobQueue.enqueue(inJob);
 #else
     std::lock_guard<std::mutex> lock(queueMutex);
-    taskQueue.emplace(inJob);
+    jobQueue.emplace(inJob);
 #endif
 
     queueNotify.Release();
@@ -459,17 +451,17 @@ void TaskSystem::QueueJob(Job* inJob)
 void TaskSystem::QueueJobs(Job** inJobs, uint32_t inNumJobs)
 {
 #ifdef USE_LOCK_FREE_QUEUE
-    // TODO: should try_enqueue_bulk be used instead (at least when num jobs is over 2)?
     for (size_t i = 0; i < inNumJobs; ++i)
-    {
-        TryEnqueueTask(QueuedTask(inJobs[i]));
-    }
+        inJobs[i]->AddRef();
+
+    jobQueue.enqueue_bulk(inJobs, inNumJobs);
 #else
     std::lock_guard<std::mutex> lock(queueMutex);
 
     for (size_t i = 0; i < inNumJobs; ++i)
     {
-        taskQueue.emplace(inJobs[i]);
+        inJobs[i]->AddRef();
+        jobQueue.emplace(inJobs[i]);
     }
 #endif
 
@@ -559,13 +551,32 @@ void TaskSystem::RunTaskThread(int id)
         // Process all currently available tasks. The semaphore ensures that a
         // notification cannot be lost while using the lock-free queue.
 #ifdef USE_LOCK_FREE_QUEUE
+        Job* job;
+        while (jobQueue.try_dequeue(job))
+        {
+            job->Execute();
+            job->Release();
+        }
+
         QueuedTask task;
         while (taskQueue.try_dequeue(task))
 #else
         std::unique_lock<std::mutex> lock(queueMutex);
-        while (!taskQueue.empty())
+        while (!jobQueue.empty() || !taskQueue.empty())
 #endif
         {
+#ifndef USE_LOCK_FREE_QUEUE
+            if (!jobQueue.empty())
+            {
+                Job* job = jobQueue.front();
+                jobQueue.pop();
+                lock.unlock();
+                job->Execute();
+                job->Release();
+                lock.lock();
+                continue;
+            }
+#endif
             {
 #ifndef USE_LOCK_FREE_QUEUE
                 const auto task = std::move(taskQueue.front());
