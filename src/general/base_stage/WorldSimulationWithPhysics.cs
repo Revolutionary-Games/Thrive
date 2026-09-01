@@ -57,11 +57,17 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
         ThirtyUpdatesPerSecond,
         TenUpdatesPerSecond,
         HalfSimulationTime,
+        QuarterSimulationTime,
     }
 
     public PhysicalWorld PhysicalWorld => physics;
 
     public PhysicsSteppingState CurrentPhysicsSteppingState => physicsSteppingState;
+
+    /// <summary>
+    ///   Set to allow the world to send some status messages
+    /// </summary>
+    public IHUDMessageReceiver? MessageReceiver { get; set; }
 
     public NativePhysicsBody CreateMovingBody(PhysicsShape shape, Vector3 position, Quaternion rotation)
     {
@@ -124,7 +130,12 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
     {
         physicsTimeSinceLastRun += delta;
 
-        var physicsDelta = physicsSteppingState == PhysicsSteppingState.HalfSimulationTime ? delta * 0.5f : delta;
+        var physicsDelta = physicsSteppingState switch
+        {
+            PhysicsSteppingState.HalfSimulationTime => delta * 0.5f,
+            PhysicsSteppingState.QuarterSimulationTime => delta * 0.25f,
+            _ => delta,
+        };
 
         if (usePhysicsOnMainThread)
         {
@@ -135,6 +146,11 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
         {
             physics.ProcessPhysicsOnBackgroundThread(physicsDelta);
         }
+    }
+
+    protected virtual float GetGameFPS()
+    {
+        return (float)Engine.GetFramesPerSecond();
     }
 
     protected override void Dispose(bool disposing)
@@ -186,7 +202,7 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
         {
             physicsTimeSinceStateChange = 0;
 
-            if (physicsSteppingState != PhysicsSteppingState.HalfSimulationTime)
+            if (physicsSteppingState != PhysicsSteppingState.QuarterSimulationTime)
             {
                 // Slow down if we are too slow
                 physicsSteppingState = (PhysicsSteppingState)((int)physicsSteppingState + 1);
@@ -194,7 +210,7 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
 
                 if (physicsSteppingState >= PhysicsSteppingState.TenUpdatesPerSecond)
                 {
-                    // TODO: send GUI notice to the player
+                    MessageReceiver?.ShowMessage(Localization.Translate("GAME_PHYSICS_PERFORMANCE_LOW_WARNING"));
                 }
 
                 ApplyPhysicsSteppingState();
@@ -204,6 +220,17 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
         }
 
         physicsTimeSinceStateChange += PhysicsEvaluationPeriod;
+
+        // If we suffered temporary very low FPS but have now recovered, recover the simulation speed fast
+        if (physicsSteppingState > PhysicsSteppingState.ThirtyUpdatesPerSecond && physicsTimeSinceStateChange > 0.2f
+            && GetGameFPS() >= 60)
+        {
+            physicsTimeSinceStateChange = 0;
+            physicsSteppingState = (PhysicsSteppingState)((int)physicsSteppingState - 1);
+            GD.Print("FPS has recovered a lot, speeding up world simulation");
+            ApplyPhysicsSteppingState();
+            return;
+        }
 
         if (physicsSteppingState != PhysicsSteppingState.FullSpeed &&
             physicsTimeSinceStateChange >= PhysicsRecoveryInterval)
@@ -222,8 +249,11 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
         {
             PhysicsSteppingState.FullSpeed => 1.0f / 60,
             PhysicsSteppingState.ThirtyUpdatesPerSecond => 1.0f / 30,
+
+            // These don't lower the timestep as it would make physics way less accurate
             PhysicsSteppingState.TenUpdatesPerSecond => 1.0f / 10,
             PhysicsSteppingState.HalfSimulationTime => 1.0f / 10,
+            PhysicsSteppingState.QuarterSimulationTime => 1.0f / 10,
             _ => throw new ArgumentOutOfRangeException(),
         };
 
