@@ -22,7 +22,7 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
 
 #pragma warning disable CA2213
     [Export]
-    private Material blitMaterial = null!;
+    private Material texturePaddingBlitMaterial = null!;
 #pragma warning restore CA2213
 
     public float? OverrideColourAlpha
@@ -74,22 +74,20 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
                 return;
             }
 
-            material.AlbedoTexture = texturizationTask.FinalImage;
-
             var texture = new DrawableTexture2D();
             texture.Setup(texturizationTask.FinalImage.GetWidth(), texturizationTask.FinalImage.GetHeight(),
                 DrawableTexture2D.DrawableFormat.Rgba8, color: new Color(0.0f, 0.0f, 0.0f, 0.0f));
 
-            ((ShaderMaterial)blitMaterial).SetShaderParameter("jumpSize",
+            ((ShaderMaterial)texturePaddingBlitMaterial).SetShaderParameter("jumpSize",
                 1.0f / texturizationTask.FinalImage.GetWidth());
 
             texture.BlitRect(new Rect2I(Vector2I.Zero,
                     new Vector2I(texturizationTask.FinalImage.GetWidth(), texturizationTask.FinalImage.GetHeight())),
-                texturizationTask.FinalImage, material: blitMaterial);
+                texturizationTask.FinalImage, material: texturePaddingBlitMaterial);
 
             texture.BlitRect(new Rect2I(Vector2I.Zero,
                     new Vector2I(texturizationTask.FinalImage.GetWidth(), texturizationTask.FinalImage.GetHeight())),
-                ImageTexture.CreateFromImage(texture.GetImage()), material: blitMaterial);
+                ImageTexture.CreateFromImage(texture.GetImage()), material: texturePaddingBlitMaterial);
 
             material.AlbedoTexture = texture;
 

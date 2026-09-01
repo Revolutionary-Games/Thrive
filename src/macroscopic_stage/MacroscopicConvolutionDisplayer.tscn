@@ -9,4 +9,4 @@ shader_parameter/jumpSize = 0.0
 
 [node name="MacroscopicConvolutionDisplayer" type="MeshInstance3D" unique_id=1969202289]
 script = ExtResource("1_11vo3")
-blitMaterial = SubResource("ShaderMaterial_vu4kk")
+texturePaddingBlitMaterial = SubResource("ShaderMaterial_vu4kk")
