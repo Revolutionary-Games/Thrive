@@ -316,7 +316,7 @@ void TaskSystem::Shutdown()
     }
 
 #ifdef USE_LOCK_FREE_QUEUE
-    // Empty out the queue
+    // Empty out the queue. Note exactly sure if this is needed for sure.
     for (int i = 0; i < 5; ++i)
     {
         QueuedTask task;
@@ -326,7 +326,10 @@ void TaskSystem::Shutdown()
 
         Job* job;
         while (jobQueue.try_dequeue(job))
+        {
+            job->Execute();
             job->Release();
+        }
     }
 #endif
 }
