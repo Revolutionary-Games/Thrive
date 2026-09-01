@@ -1117,6 +1117,21 @@ public class SimulationCache
         for (var i = 0; i < cellTypes.Count; ++i)
         {
             var cellType = cellTypes[i];
+            var cells = species.ModifiableEditorCells;
+            var cellTypeUsed = false;
+
+            for (var j = 0; j < cells.Count; ++j)
+            {
+                var cell = cells[j].Data;
+                if (cell != null && ReferenceEquals(cell.CellType, cellType))
+                {
+                    cellTypeUsed = true;
+                    break;
+                }
+            }
+
+            if (!cellTypeUsed)
+                continue;
 
             var cellTypeToxinAmount = 0.0f;
             var cellTypeToxinOrganellesCount = 0;
@@ -1227,8 +1242,6 @@ public class SimulationCache
             // There are likely more accurate ways to approximate the real gameplay effects in the future, but this
             // will do for now
             totalToxinTypesCount += cellTypeToxinTypesCount;
-
-            var cells = species.EditorCells;
 
             foreach (var hex in cells)
             {
