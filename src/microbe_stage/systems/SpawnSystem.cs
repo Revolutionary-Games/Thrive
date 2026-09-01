@@ -350,6 +350,9 @@ public partial class SpawnSystem : BaseSystem<World, float>, ISpawnSystem, IArch
             if (worldSimulation.IsQueuedForDeletion(entity))
                 return;
 
+            if (spawned.DisallowDespawning)
+                return;
+
             candidateDespawns.Add((entity, spawned.EntityWeight, position.Position));
         });
 
