@@ -1266,8 +1266,7 @@ public partial class EngulfingSystem : BaseSystem<World, float>
         CommandBuffer? recorder = null;
 
         // Steal this cell from a colony if it is in a colony currently
-        // Right now this causes extra operations for deleting the attached component but avoiding that would
-        // complicate the code a lot here
+        // Preserve the attached component so it can be retargeted below.
         if (targetEntity.Has<MicrobeColonyMember>() || targetEntity.Has<MicrobeColony>())
         {
             recorder ??= worldSimulation.StartRecordingEntityCommands();
