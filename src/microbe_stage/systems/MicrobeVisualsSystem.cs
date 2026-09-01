@@ -107,7 +107,11 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update(ref OrganelleContainer organelleContainer, in Entity entity)
     {
-        if (organelleContainer.OrganelleVisualsCreated)
+        ref var cellProperties = ref entity.Get<CellProperties>();
+
+        // A membrane can become invalid after the organelle visuals have been created, for example, when a colony
+        // changes shape. In that case the visuals need to be processed again instead of being skipped here.
+        if (organelleContainer.OrganelleVisualsCreated && cellProperties.IsMembraneReady())
             return;
 
         // Skip if no organelle data
@@ -116,8 +120,6 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
             GD.PrintErr("Missing organelles list for MicrobeVisualsSystem");
             return;
         }
-
-        ref var cellProperties = ref entity.Get<CellProperties>();
 
         ref var spatialInstance = ref entity.Get<SpatialInstance>();
 
