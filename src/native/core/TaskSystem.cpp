@@ -493,7 +493,7 @@ void TaskSystem::QueueJobs(Job** inJobs, uint32_t inNumJobs)
     }
 #endif
 
-    queueNotify.Release(std::min(inNumJobs, static_cast<uint32_t>(targetThreadCount)));
+    queueNotify.Release(std::min(inNumJobs, static_cast<uint32_t>(targetThreadCount.load(std::memory_order_relaxed))));
 }
 
 // ------------------------------------ //
@@ -513,14 +513,14 @@ void TaskSystem::SetThreads(int count) noexcept
         return;
     }
 
-    targetThreadCount = count;
+    targetThreadCount.store(count, std::memory_order_relaxed);
 
     // Quit sentinels are consumed by whichever worker reaches them first, so
     // they cannot be used to stop a particular subset of taskThreads. If the
     // pool is shrinking, stop and join every worker before starting the new
     // pool. This guarantees that every std::thread object being removed has
     // actually exited.
-    if (targetThreadCount < threadCount)
+    if (count < threadCount)
     {
         while (threadCount > 0)
             EndTaskThread();
@@ -533,7 +533,7 @@ void TaskSystem::SetThreads(int count) noexcept
 
     // Start new threads, either adding the requested workers or rebuilding the
     // pool after a reduction.
-    while (targetThreadCount > threadCount)
+    while (count > threadCount)
     {
         StartTaskThread();
     }

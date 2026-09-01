@@ -138,7 +138,7 @@ public:
 
     [[nodiscard]] int GetThreads() const noexcept
     {
-        return targetThreadCount;
+        return targetThreadCount.load(std::memory_order_relaxed);
     }
 
     /// \brief The number of physics tasks done in parallel
@@ -147,7 +147,7 @@ public:
     [[nodiscard]] virtual int GetMaxConcurrency() const override
     {
         // Jolt counts the thread waiting on a barrier as an additional worker.
-        return GetThreads() + 1;
+        return targetThreadCount.load(std::memory_order_relaxed) + 1;
     }
 
     /// \brief Shuts down all threads and doesn't allow starting more
@@ -198,7 +198,7 @@ private:
     /// Lock used on the main thread to enqueue tasks
     std::unique_lock<std::mutex> queueLock;
 
-    int targetThreadCount = 0;
+    std::atomic<int> targetThreadCount{0};
 
     int threadCount = 0;
 
