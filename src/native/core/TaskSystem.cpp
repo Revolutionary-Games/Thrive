@@ -290,6 +290,31 @@ void TaskSystem::Shutdown()
         LOG_ERROR(std::string("Failed to join a task thread: ") + e.what());
     }
 
+    // Jolt's default thread pool executes jobs that are still queued after all
+    // workers have stopped. Do this only for final shutdown; during a resize,
+    // queued jobs must remain available to the newly started workers.
+    {
+#ifdef USE_LOCK_FREE_QUEUE
+        Job* job;
+        while (jobQueue.try_dequeue(job))
+        {
+            job->Execute();
+            job->Release();
+        }
+#else
+        std::unique_lock<std::mutex> lock(queueMutex);
+        while (!jobQueue.empty())
+        {
+            Job* job = jobQueue.front();
+            jobQueue.pop();
+            lock.unlock();
+            job->Execute();
+            job->Release();
+            lock.lock();
+        }
+#endif
+    }
+
 #ifdef USE_LOCK_FREE_QUEUE
     // Empty out the queue
     for (int i = 0; i < 5; ++i)
