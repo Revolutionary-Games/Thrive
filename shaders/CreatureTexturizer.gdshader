@@ -21,6 +21,10 @@ void vertex() {
     // Called for every vertex the material is visible on.
     normal = NORMAL;
     pos = VERTEX;
+    
+    // This turns the model into a flat 2D representation of itself.
+    // One that coincides with the UV mapping, so that the shader can become a
+    // texture when photographed
     VERTEX = vec3(vec2(UV.x, UV.y) - 0.5f, 0.0f);
 }
 
