@@ -52,6 +52,30 @@ public class SimulationCachePredationScoreTests
         AssertThat(score).IsEqual(258.4216f);
     }
 
+    [TestCase]
+    public void SingleCellMulticellularPreyVulnerabilityIsCharacterized()
+    {
+        var predator = CreateMicrobe(9, "ArmedAttacker", "cellulose", "cytoplasm", "pilus", "oxytoxy");
+        var prey = CreateSingleCellMulticellular(10, "SingleCellPrey", "single", "cytoplasm");
+
+        var score = CalculatePredationScore(predator, prey);
+
+        AssertThat(score).IsEqual(1.602617f);
+    }
+
+    [TestCase]
+    public void SingleCellMulticellularPredatorDurabilityIsCharacterized()
+    {
+        var predator = CreateMulticellularPredator(11);
+        var prey = CreateMicrobe(12, "ToxicDefender", "single", "cytoplasm", "oxytoxy");
+        prey.ModifiableBehaviour.Aggression = Constants.MAX_SPECIES_AGGRESSION;
+        prey.ModifiableBehaviour.Fear = 0;
+
+        var score = CalculatePredationScore(predator, prey);
+
+        AssertThat(score).IsEqual(10499.378f);
+    }
+
     private static float CalculatePredationScore(Species predator, Species prey)
     {
         var worldSettings = new WorldGenerationSettings
@@ -99,6 +123,32 @@ public class SimulationCachePredationScoreTests
         }
 
         var species = new MulticellularSpecies(id, "Characterization", "MulticellularPredator");
+        species.ModifiableCellTypes.Add(cellType);
+        species.ModifiableGameplayCells.AddFast(new CellTemplate(cellType, new Hex(0, 0), 0),
+            new List<Hex>(), new List<Hex>());
+        species.OnEdited();
+
+        return species;
+    }
+
+    private static MulticellularSpecies CreateSingleCellMulticellular(uint id, string epithet, string membrane,
+        params string[] organelles)
+    {
+        var simulationParameters = SimulationParameters.Instance;
+        var cellType = new CellType(simulationParameters.GetMembrane(membrane))
+        {
+            CellTypeName = epithet,
+            IsBacteria = true,
+            MembraneRigidity = 0,
+        };
+
+        for (var i = 0; i < organelles.Length; ++i)
+        {
+            cellType.ModifiableOrganelles.Add(new OrganelleTemplate(
+                simulationParameters.GetOrganelleType(organelles[i]), new Hex(i * 4, 0), 0));
+        }
+
+        var species = new MulticellularSpecies(id, "Characterization", epithet);
         species.ModifiableCellTypes.Add(cellType);
         species.ModifiableGameplayCells.AddFast(new CellTemplate(cellType, new Hex(0, 0), 0),
             new List<Hex>(), new List<Hex>());
