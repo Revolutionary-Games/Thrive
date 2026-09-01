@@ -71,11 +71,10 @@ void fragment() {
             continue;
         
         if (posProjected.z > 1.0f || posProjected.z < -0.8f
-            || abs(posProjected.x - 0.5f) > 0.5f
-            || abs(posProjected.y - 0.5f) > 0.5f)
+            || max(abs(posProjected.x), abs(posProjected.y)) > 0.5f)
             continue;
         
-        vec4 color = texture(projected, posProjected.xy);
+        vec4 color = texture(projected, posProjected.xy + 0.5f);
         
         ALBEDO = mix(ALBEDO, color.rgb * dirtMix.rgb * COLOR.rgb, color.a);
     }

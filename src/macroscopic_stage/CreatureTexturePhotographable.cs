@@ -59,8 +59,7 @@ public class CreatureTexturePhotographable : IScenePhotographable
         {
             int index = random.Next() % vertices.Length;
 
-            // TODO: better calculations of the up vector
-            var basis = Basis.LookingAt(-normals[index], Vector3.Right);
+            var basis = Basis.LookingAt(-normals[index]);
 
             matrices.Add(new Transform3D(basis, vertices[index]).Inverse());
         }
