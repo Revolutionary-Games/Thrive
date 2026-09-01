@@ -29,10 +29,10 @@ public partial class CreatureTexturePhotoBuilder : Node3D
     public void SetTextures(Texture2D? mainTexture, Texture2D? projectedTexture)
     {
         ((ShaderMaterial)meshInstance3D.MaterialOverride).SetShaderParameter(mainTextureName,
-            Variant.From(mainTexture));
+            mainTexture ?? default(Variant));
 
         ((ShaderMaterial)meshInstance3D.MaterialOverride).SetShaderParameter(projectedTextureName,
-            Variant.From(projectedTexture));
+            projectedTexture ?? default(Variant));
     }
 
     protected override void Dispose(bool disposing)
