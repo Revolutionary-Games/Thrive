@@ -157,12 +157,14 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
                 if (!pair.Delayed.FinishAttachingToColony.IsAlive())
                 {
                     GD.PrintErr("Delayed attach target entity is dead, ignoring attach request");
+                    AllowDelayedEntityDespawning(pair.Cell);
                     continue;
                 }
 
                 if (!pair.Delayed.FinishAttachingToColony.Has<MicrobeColony>())
                 {
                     GD.PrintErr("Delayed attach target entity is missing colony, ignoring attach request");
+                    AllowDelayedEntityDespawning(pair.Cell);
                     continue;
                 }
 
@@ -173,6 +175,15 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
             attachmentOrder.Clear();
 
             worldSimulation.FinishRecordingEntityCommands(recorder);
+        }
+    }
+
+    private void AllowDelayedEntityDespawning(in Entity entity)
+    {
+        if (entity.IsAliveAndHas<Spawned>())
+        {
+            ref var spawned = ref entity.Get<Spawned>();
+            spawned.DisallowDespawning = false;
         }
     }
 
@@ -277,11 +288,7 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
 
         // Mass-budding cells (and other delay-spawned colony members) are protected from spawn cleanup only until
         // they are safely part of the colony.
-        if (entity.Has<Spawned>())
-        {
-            ref var spawned = ref entity.Get<Spawned>();
-            spawned.DisallowDespawning = false;
-        }
+        AllowDelayedEntityDespawning(entity);
     }
 
     private void OnHasEntity(Entity entity)
