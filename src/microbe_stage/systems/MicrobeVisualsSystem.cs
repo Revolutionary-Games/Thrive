@@ -169,7 +169,7 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
                 entity.Get<MicrobeColonyMember>().ColonyLeader :
                 entity;
 
-            if (colonyLeader.Has<MulticellularGrowth>())
+            if (colonyLeader.IsAliveAndHas<MulticellularGrowth>())
             {
                 ref var growthOrder = ref colonyLeader.Get<MulticellularGrowth>();
 
