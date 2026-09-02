@@ -75,6 +75,55 @@ public class MacroscopicSpecies : Species, IReadOnlyMacroscopicSpecies
         return MacroscopicSpeciesType.Macroscopic;
     }
 
+    public static Texture2D? GetMainTexture(CreatureSkinType skinType)
+    {
+        string? path = null;
+
+        switch (skinType)
+        {
+            case CreatureSkinType.Fur:
+                path = "res://assets/textures/creature_textures/Fur.png";
+                break;
+            case CreatureSkinType.Skin:
+                path = "res://assets/textures/creature_textures/Skin.png";
+                break;
+            case CreatureSkinType.Scales:
+                path = "res://assets/textures/creature_textures/Scales2.png";
+                break;
+            case CreatureSkinType.Feather:
+                path = "res://assets/textures/creature_textures/Feathers.png";
+                break;
+        }
+
+        if (path == null)
+            return null;
+
+        return GD.Load<Texture2D>(path);
+    }
+
+    public static Texture2D? GetProjectedTexture(CreatureSkinType skinType)
+    {
+        string? path = null;
+
+        switch (skinType)
+        {
+            case CreatureSkinType.Scales:
+                path = "res://assets/textures/creature_textures/Scales.png";
+                break;
+            case CreatureSkinType.Feather:
+                path = "res://assets/textures/creature_textures/Feathers2.png";
+                break;
+            case CreatureSkinType.Pepper:
+                path = "res://assets/textures/creature_textures/Pepper.png";
+                break;
+        }
+
+        if (path == null)
+            return null;
+
+        return GD.Load<Texture2D>(path);
+    }
+
     public override void WriteToArchive(ISArchiveWriter writer)
     {
         throw new NotImplementedException();
@@ -194,55 +243,6 @@ public class MacroscopicSpecies : Species, IReadOnlyMacroscopicSpecies
     {
         if (MacroscopicType == MacroscopicSpeciesType.Awakened)
             MacroscopicType = MacroscopicSpeciesType.Aware;
-    }
-
-    public static Texture2D? GetMainTexture(CreatureSkinType skinType)
-    {
-        string? path = null;
-
-        switch (skinType)
-        {
-            case CreatureSkinType.Fur:
-                path = "res://assets/textures/creature_textures/Fur.png";
-                break;
-            case CreatureSkinType.Skin:
-                path = "res://assets/textures/creature_textures/Skin.png";
-                break;
-            case CreatureSkinType.Scales:
-                path = "res://assets/textures/creature_textures/Scales2.png";
-                break;
-            case CreatureSkinType.Feather:
-                path = "res://assets/textures/creature_textures/Feathers.png";
-                break;
-        }
-
-        if (path == null)
-            return null;
-
-        return GD.Load<Texture2D>(path);
-    }
-
-    public static Texture2D? GetProjectedTexture(CreatureSkinType skinType)
-    {
-        string? path = null;
-
-        switch (skinType)
-        {
-            case CreatureSkinType.Scales:
-                path = "res://assets/textures/creature_textures/Scales.png";
-                break;
-            case CreatureSkinType.Feather:
-                path = "res://assets/textures/creature_textures/Feathers2.png";
-                break;
-            case CreatureSkinType.Pepper:
-                path = "res://assets/textures/creature_textures/Pepper.png";
-                break;
-        }
-
-        if (path == null)
-            return null;
-
-        return GD.Load<Texture2D>(path);
     }
 
     public override object Clone()

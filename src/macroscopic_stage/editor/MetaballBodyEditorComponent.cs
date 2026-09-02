@@ -630,6 +630,16 @@ public partial class MetaballBodyEditorComponent :
         return highestPointInMiddleRows;
     }
 
+    protected override void UpdateVisualMetaballDisplay()
+    {
+        visualMetaballDisplayer!.DisplayFromLayout(editedMetaballs);
+
+        if (visualMetaballDisplayer is MacroscopicConvolutionDisplayer displayer)
+        {
+            displayer.Texturize(editedMetaballs, skinType);
+        }
+    }
+
     private void UpdateGUIAfterLoadingSpecies()
     {
         GD.Print("Starting macroscopic editor with: ", editedMetaballs.Count, " metaballs in the species");
@@ -854,16 +864,6 @@ public partial class MetaballBodyEditorComponent :
         }
 
         return cellPositions;
-    }
-
-    protected override void UpdateVisualMetaballDisplay()
-    {
-        visualMetaballDisplayer!.DisplayFromLayout(editedMetaballs);
-
-        if (visualMetaballDisplayer is MacroscopicConvolutionDisplayer displayer)
-        {
-            displayer.Texturize(editedMetaballs, skinType);
-        }
     }
 
     private CombinedEditorAction GetMultiActionWithOccupancies(

@@ -11,8 +11,6 @@ public class ImageTask : IImageTask
     private ImageTexture? finalImage;
     private Image? plainImage;
 
-    private int desiredResolution = Constants.PHOTO_STUDIO_DEFAULT_RESOLUTION;
-
     public ImageTask(IScenePhotographable photographable, int priority = 1)
     {
         Priority = priority;
@@ -41,11 +39,7 @@ public class ImageTask : IImageTask
 
     public string? CachePath { get; set; }
 
-    public int DesiredResolution
-    {
-        get => desiredResolution;
-        set => desiredResolution = value;
-    }
+    public int DesiredResolution { get; set; } = Constants.PHOTO_STUDIO_DEFAULT_RESOLUTION;
 
     internal IScenePhotographable? ScenePhotographable { get; }
     internal ISimulationPhotographable? SimulationPhotographable { get; }
