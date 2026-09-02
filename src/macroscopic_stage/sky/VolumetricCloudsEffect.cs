@@ -520,6 +520,10 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     {
         int offset = 0;
 
+        // We avoid rejecting rendering completely here, as the shader may still work properly even with some invalid
+        // parameters. The results of this validation are logged to the console by ValidateOnce.
+        CloudsConfig.ValidateOnce();
+
         float cloudInnerHeight = CloudsConfig.CloudInnerHeight;
         float cloudOuterHeight = CloudsConfig.CloudOuterHeight;
         float planetRadius = CloudsConfig.PlanetRadius;
