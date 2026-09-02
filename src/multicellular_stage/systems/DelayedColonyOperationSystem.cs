@@ -268,7 +268,7 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
              ++i)
         {
             CreateDelayAttachedMicrobe(ref parentPosition, entity, i, species.Species.ModifiableGameplayCells[i],
-                species.Species, worldSimulation, spawnEnvironment, recorder, spawnSystem, true, playAnimation);
+                species.Species, worldSimulation, spawnEnvironment, recorder, spawnSystem, true, playAnimation, true);
 
             added = true;
         }
