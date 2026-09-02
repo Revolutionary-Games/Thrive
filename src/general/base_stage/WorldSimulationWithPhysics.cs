@@ -37,6 +37,7 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
     private float physicsEvaluationTime;
     private float physicsEvaluationDuration;
     private float physicsTimeSinceStateChange;
+    private bool physicsPerformanceForCurrentRunConsumed;
 
     public WorldSimulationWithPhysics()
     {
@@ -122,13 +123,18 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
 
     protected override void WaitForStartedPhysicsRun()
     {
-        if (physics.WaitUntilPhysicsRunEnds())
+        if (physics.WaitUntilPhysicsRunEnds() && !physicsPerformanceForCurrentRunConsumed)
+        {
             RecordPhysicsPerformance();
+            physicsPerformanceForCurrentRunConsumed = true;
+        }
     }
 
     protected override void OnStartPhysicsRunIfTime(float delta)
     {
-        physicsTimeSinceLastRun += delta;
+        // Delta is in simulation time, while the physics duration is measured using wall-clock time. Convert it back
+        // to real time for the performance comparison. The scaled delta is still used for stepping physics below.
+        physicsTimeSinceLastRun += delta / WorldTimeScale;
 
         var physicsDelta = physicsSteppingState switch
         {
@@ -140,10 +146,17 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
         if (usePhysicsOnMainThread)
         {
             if (physics.ProcessPhysics(physicsDelta))
+            {
+                physicsPerformanceForCurrentRunConsumed = false;
                 RecordPhysicsPerformance();
+                physicsPerformanceForCurrentRunConsumed = true;
+            }
         }
         else
         {
+            // A background call is a new run from the point of view of the completion result. It may not actually
+            // step physics yet, in which case the following wait returns false and no measurement is recorded.
+            physicsPerformanceForCurrentRunConsumed = false;
             physics.ProcessPhysicsOnBackgroundThread(physicsDelta);
         }
     }
@@ -195,6 +208,7 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
             return;
 
         var physicsIsTooSlow = physicsEvaluationDuration > physicsEvaluationTime;
+        var completedEvaluationTime = physicsEvaluationTime;
         physicsEvaluationTime = 0;
         physicsEvaluationDuration = 0;
 
@@ -219,7 +233,7 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
             return;
         }
 
-        physicsTimeSinceStateChange += PhysicsEvaluationPeriod;
+        physicsTimeSinceStateChange += completedEvaluationTime;
 
         // If we suffered temporary very low FPS but have now recovered, recover the simulation speed fast
         if (physicsSteppingState > PhysicsSteppingState.ThirtyUpdatesPerSecond && physicsTimeSinceStateChange > 0.2f
