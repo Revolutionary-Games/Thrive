@@ -901,6 +901,15 @@ public class SimulationCache
         return new PilusToolScores(pilusScore, injectisomeScore, defensivePilusScore, defensiveInjectisomeScore);
     }
 
+    private static float CalculateChannelInhibitorMovementFactor(float inhibitedEnergyProduction,
+        float stationaryEnergyCost, float movementEnergyCost)
+    {
+        if (movementEnergyCost <= 0)
+            return 1;
+
+        return Math.Clamp((inhibitedEnergyProduction - stationaryEnergyCost) / movementEnergyCost, 0, 1);
+    }
+
     private PredationToolsRawScores CalculateMicrobePredationToolsRawScores(MicrobeSpecies species)
     {
         var averageToxicity = 0.0f;
@@ -1554,11 +1563,11 @@ public class SimulationCache
             // add (part of) the inhibitor score to macrolide score
             if (preyInhibitedPreyEnergyProduction < preyEnergyBalance.TotalConsumption)
             {
-                var channelInhibitorSlowFactor = Math.Min(
-                    Math.Max(preyInhibitedPreyEnergyProduction - preyOsmoregulationCost, 0) /
-                    preyEnergyBalance.TotalMovement, 1);
-                macrolideScore += channelInhibitorScore * channelInhibitorSlowFactor;
-                slowedPreySpeed *= 1 - channelInhibitorSlowFactor;
+                var channelInhibitorMovementFactor = CalculateChannelInhibitorMovementFactor(
+                    preyInhibitedPreyEnergyProduction, preyEnergyBalance.TotalConsumptionStationary,
+                    preyEnergyBalance.TotalMovement);
+                macrolideScore += channelInhibitorScore * (1 - channelInhibitorMovementFactor);
+                slowedPreySpeed *= channelInhibitorMovementFactor;
             }
         }
 
