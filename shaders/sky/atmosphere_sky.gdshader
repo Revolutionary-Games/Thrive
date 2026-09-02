@@ -88,13 +88,16 @@ void sky() {
     float offset_length = length(offset);
     vec3 up = offset_length > 1e-6 ? offset / offset_length : vec3(0.0, 1.0, 0.0);
 
-    vec3 position = up * clamp(offset_length, ground_radius + 1e-3, top_radius - 1e-3);
+    vec3 position = up * max(offset_length, ground_radius + 1e-3);
 
     vec2 ground_hit = ray_sphere(position, dir, ground_radius);
     vec2 top_hit = ray_sphere(position, dir, top_radius);
 
     bool intersects_ground = hits_planet(ground_hit);
-    float march_distance = intersects_ground ? ground_hit.x : max(top_hit.y, 0.0);
+
+    float march_start = max(top_hit.x, 0.0);
+    float march_end = intersects_ground ? ground_hit.x : top_hit.y;
+    float march_distance = max(march_end - march_start, 0.0);
 
     float step_size = march_distance / float(view_ray_steps);
 
@@ -104,21 +107,23 @@ void sky() {
     vec3 luminance = vec3(0.0);
     vec3 transmittance = vec3(1.0);
 
-    for (int i = 0; i < view_ray_steps; ++i) {
-        vec3 sample_position = position + dir * (step_size * (float(i) + 0.5));
-        float altitude = length(sample_position) - ground_radius;
+    if (march_distance > 0.0) {
+        for (int i = 0; i < view_ray_steps; ++i) {
+            vec3 sample_position = position + dir * (march_start + step_size * (float(i) + 0.5));
+            float altitude = length(sample_position) - ground_radius;
 
-        vec2 density = atmosphere_density(altitude);
-        vec3 extinction = atmosphere_extinction(density);
-        vec3 step_transmittance = exp(-extinction * step_size);
+            vec2 density = atmosphere_density(altitude);
+            vec3 extinction = atmosphere_extinction(density);
+            vec3 step_transmittance = exp(-extinction * step_size);
 
-        vec3 in_scatter = rayleigh_scattering * density.x * rayleigh_phase
-                * sun_transmittance(sample_position, sun_dir);
+            vec3 in_scatter = rayleigh_scattering * density.x * rayleigh_phase
+                    * sun_transmittance(sample_position, sun_dir);
 
-        vec3 scattered = (in_scatter - in_scatter * step_transmittance) / max(extinction, vec3(1e-9));
+            vec3 scattered = (in_scatter - in_scatter * step_transmittance) / max(extinction, vec3(1e-9));
 
-        luminance += transmittance * scattered;
-        transmittance *= step_transmittance;
+            luminance += transmittance * scattered;
+            transmittance *= step_transmittance;
+        }
     }
 
     luminance *= sun_illuminance;
