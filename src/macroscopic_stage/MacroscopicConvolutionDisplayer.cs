@@ -16,7 +16,7 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
 
     private IImageTask? texturizationTask;
 
-    private bool generatedUvData;
+    private UvGenerationStatus uvGenerationStatus;
 
     private ulong lastDisplayedLayoutHash;
 
@@ -24,6 +24,13 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
     [Export]
     private Material texturePaddingBlitMaterial = null!;
 #pragma warning restore CA2213
+
+    public enum UvGenerationStatus
+    {
+        NotStarted,
+        Generating,
+        Finished,
+    }
 
     public float? OverrideColourAlpha
     {
@@ -44,6 +51,8 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
     ///   Note: not supported (doesn't do anything)
     /// </summary>
     public bool DisplayHierarchyLines { get; set; }
+
+    public bool Generating => uvGenerationStatus == UvGenerationStatus.Generating || texturizationTask != null;
 
     public override void _Ready()
     {
@@ -137,7 +146,7 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
 
         Mesh = meshGen.DualContour();
 
-        generatedUvData = false;
+        uvGenerationStatus = UvGenerationStatus.NotStarted;
         Mesh.SurfaceSetMaterial(0, material);
 
         CustomAabb = new Aabb(minExtends, maxExtends);
@@ -145,8 +154,12 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
 
     public void Texturize(MetaballLayout<MacroscopicMetaball> layout, CreatureSkinType skinType)
     {
-        if (!generatedUvData)
+        if (uvGenerationStatus == UvGenerationStatus.Generating)
+            return;
+
+        if (uvGenerationStatus == UvGenerationStatus.NotStarted)
         {
+            uvGenerationStatus = UvGenerationStatus.Generating;
             var uvUnwrap = new Task(() => UVUnwrapAndTexture((ArrayMesh)Mesh, layout, skinType));
             TaskExecutor.Instance.AddTask(uvUnwrap);
         }
@@ -183,7 +196,7 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
             // has to be deferred too.
             if (NativeMethods.ArrayMeshUnwrap(nativeVariant, 1.0f))
             {
-                generatedUvData = true;
+                uvGenerationStatus = UvGenerationStatus.Finished;
 
                 Invoke.Instance.QueueForObject(() => ApplyTextures(layout, skinType), this);
             }

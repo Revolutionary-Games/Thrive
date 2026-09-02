@@ -147,6 +147,19 @@ public partial class MetaballBodyEditorComponent :
 
     protected override bool ForceHideHover => false;
 
+    protected override bool VisualMetaballsLoading
+    {
+        get
+        {
+            if (visualMetaballDisplayer is MacroscopicConvolutionDisplayer macroscopicConvolutionDisplayer)
+            {
+                return macroscopicConvolutionDisplayer.Generating;
+            }
+
+            return false;
+        }
+    }
+
     public override void _Ready()
     {
         base._Ready();
