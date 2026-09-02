@@ -600,6 +600,11 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
 
     public void HidePatchExtinctionBox()
     {
+        // The patch extinction box remains interactive while the game is paused. If the player paused using the HUD
+        // while making their choice, make sure that lock doesn't survive closing the box and leave the new patch
+        // permanently paused.
+        EnsureGameIsUnpausedForEditor();
+
         winExtinctBoxHolder.Hide();
         patchExtinctionBox?.Hide();
 
