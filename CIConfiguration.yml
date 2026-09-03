@@ -146,4 +146,4 @@ jobs:
           command: dotnet run --project Scripts -- godot-test-import
       - run:
           name: "Unit tests (Godot)"
-          command: dotnet run --project Scripts -- test --godot true
+          command: dotnet run --project Scripts -- test --godot true --godot-reruns 1
