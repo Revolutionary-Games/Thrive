@@ -2048,7 +2048,7 @@ public class SimulationCache
         float smallestPreyHexSize;
         var dissolverEnzyme = Constants.LIPASE_ENZYME;
 
-        var preyHP = 1.0f;
+        var preyHP = 0.0f;
         float preyToxinResistance;
         float preyPhysicalResistance;
         float preyStorageNominal;
@@ -2166,7 +2166,7 @@ public class SimulationCache
         float membraneRigidityHitpointsModifier, bool canEngulf, in PreyPredationData preyData,
         out PredatorPredationData data)
     {
-        var predatorHP = 1.0f;
+        var predatorHP = 0.0f;
         float predatorToxinResistance;
         float predatorPhysicalResistance;
         float predatorStorageNominal;
