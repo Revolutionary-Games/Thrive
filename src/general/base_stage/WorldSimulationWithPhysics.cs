@@ -123,11 +123,7 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
 
     protected override void WaitForStartedPhysicsRun()
     {
-        if (physics.WaitUntilPhysicsRunEnds() && !physicsPerformanceForCurrentRunConsumed)
-        {
-            RecordPhysicsPerformance();
-            physicsPerformanceForCurrentRunConsumed = true;
-        }
+        WaitForStartedPhysicsRun(true);
     }
 
     protected override void OnStartPhysicsRunIfTime(float delta)
@@ -170,7 +166,7 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
     {
         // Derived classes should also wait for this before destroying things (and set metrics reporting off)
         physics.DisablePhysicsTimeRecording = true;
-        WaitForStartedPhysicsRun();
+        WaitForStartedPhysicsRun(disposing);
 
         ReleaseUnmanagedResources();
 
@@ -180,6 +176,15 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
         // }
 
         base.Dispose(disposing);
+    }
+
+    private void WaitForStartedPhysicsRun(bool recordPerformance)
+    {
+        if (physics.WaitUntilPhysicsRunEnds() && recordPerformance && !physicsPerformanceForCurrentRunConsumed)
+        {
+            RecordPhysicsPerformance();
+            physicsPerformanceForCurrentRunConsumed = true;
+        }
     }
 
     private void ReleaseUnmanagedResources()
