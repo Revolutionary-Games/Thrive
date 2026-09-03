@@ -55,20 +55,20 @@ public partial class SkyEquippedEnvironment : WorldEnvironment
 
     private const float TonemapAgxWhite = 6.0f;
 
-    private readonly StringName planetCenterParameter = new("planet_center");
-    private readonly StringName sunDirectionParameter = new("sun_direction");
-    private readonly StringName groundRadiusParameter = new("ground_radius");
-    private readonly StringName topRadiusParameter = new("top_radius");
-    private readonly StringName sunIlluminanceParameter = new("sun_illuminance");
-    private readonly StringName sunAngularRadiusParameter = new("sun_angular_radius");
-    private readonly StringName sunLimbDarkeningParameter = new("sun_limb_darkening");
-    private readonly StringName rayleighScatteringParameter = new("rayleigh_scattering");
-    private readonly StringName rayleighScaleHeightParameter = new("rayleigh_scale_height");
-    private readonly StringName ozoneAbsorptionParameter = new("ozone_absorption");
-    private readonly StringName ozoneLayerCenterParameter = new("ozone_layer_center");
-    private readonly StringName ozoneLayerWidthParameter = new("ozone_layer_width");
-    private readonly StringName viewRayStepsParameter = new("view_ray_steps");
-    private readonly StringName lightRayStepsParameter = new("light_ray_steps");
+    private readonly StringName planetCenterParameter = new("planetCenter");
+    private readonly StringName sunDirectionParameter = new("sunDirection");
+    private readonly StringName groundRadiusParameter = new("groundRadius");
+    private readonly StringName topRadiusParameter = new("topRadius");
+    private readonly StringName sunIlluminanceParameter = new("sunIlluminance");
+    private readonly StringName sunAngularRadiusParameter = new("sunAngularRadius");
+    private readonly StringName sunLimbDarkeningParameter = new("sunLimbDarkening");
+    private readonly StringName rayleighScatteringParameter = new("rayleighScattering");
+    private readonly StringName rayleighScaleHeightParameter = new("rayleighScaleHeight");
+    private readonly StringName ozoneAbsorptionParameter = new("ozoneAbsorption");
+    private readonly StringName ozoneLayerCenterParameter = new("ozoneLayerCenter");
+    private readonly StringName ozoneLayerWidthParameter = new("ozoneLayerWidth");
+    private readonly StringName viewRayStepsParameter = new("viewRaySteps");
+    private readonly StringName lightRayStepsParameter = new("lightRaySteps");
 
 #pragma warning disable CA2213
     private readonly Sky sky = new();
