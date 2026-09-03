@@ -5,7 +5,7 @@ uniform sampler2D mainTexture : source_color;
 uniform sampler2D projected : source_color, repeat_disable;
 uniform sampler2D dirt : source_color;
 
-uniform mat4[500] projectionMatrices;
+uniform mat4 projectionMatrices[500];
 uniform int projectionMatrixCount;
 
 uniform sampler2D blendCurve;
