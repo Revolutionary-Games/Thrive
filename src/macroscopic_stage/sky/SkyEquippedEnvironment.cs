@@ -71,8 +71,7 @@ public partial class SkyEquippedEnvironment : WorldEnvironment
     private readonly StringName lightRayStepsParameter = new("lightRaySteps");
 
 #pragma warning disable CA2213
-    private readonly Sky sky = new();
-
+    private Sky sky = null!;
     private Compositor skyCompositor = null!;
     private Environment skyEnvironment = null!;
 #pragma warning restore CA2213
@@ -83,6 +82,8 @@ public partial class SkyEquippedEnvironment : WorldEnvironment
 
         skyEnvironment.TonemapMode = Environment.ToneMapper.Agx;
         skyEnvironment.TonemapAgxWhite = TonemapAgxWhite;
+
+        sky = new Sky();
 
         SetupSky();
 
