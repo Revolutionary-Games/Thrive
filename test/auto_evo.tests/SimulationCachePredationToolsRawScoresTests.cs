@@ -61,6 +61,42 @@ public class SimulationCachePredationToolsRawScoresTests
         AssertMulticellularRecomputedScores(recomputed);
     }
 
+    [TestCase]
+    public void MulticellularRawScoresIgnoreUnusedCellTypes()
+    {
+        var cache = CreateCache();
+        var (species, _) = CreateMulticellularSpecies(103);
+
+        // Normalize the manually assigned characterization bonuses before comparing mutation results.
+        species.OnEdited();
+        var baseline = cache.GetPredationToolsRawScores(species);
+
+        var simulationParameters = SimulationParameters.Instance;
+        var unusedCellType = CreateCytotoxinCellType(simulationParameters);
+        species.ModifiableCellTypes.Add(unusedCellType);
+        species.OnEdited();
+        cache.Clear();
+
+        var withUnusedCellType = cache.GetPredationToolsRawScores(species);
+        AssertThat(withUnusedCellType.CytotoxinScore).IsEqual(0.0f);
+        AssertThat(withUnusedCellType.OxytoxyScore).IsEqual(baseline.OxytoxyScore);
+        AssertRawScoresAreEqual(withUnusedCellType, baseline);
+
+        species.ModifiableGameplayCells.AddFast(new CellTemplate(unusedCellType, new Hex(1, 1), 0),
+            new List<Hex>(), new List<Hex>());
+
+        var editorCells = species.ModifiableEditorCells;
+        editorCells.Clear();
+        MulticellularLayoutHelpers.GenerateEditorLayoutFromGameplayLayout(editorCells, species.ModifiableGameplayCells,
+            new List<Hex>(), new List<Hex>());
+        species.OnEdited();
+        cache.Clear();
+
+        var withPlacedCellType = cache.GetPredationToolsRawScores(species);
+        AssertThat(withPlacedCellType.CytotoxinScore > 0.0f).IsTrue();
+        AssertThat(withPlacedCellType.OxytoxyScore).IsNotEqual(withUnusedCellType.OxytoxyScore);
+    }
+
     private static SimulationCache CreateCache()
     {
         return new SimulationCache(new WorldGenerationSettings
@@ -109,12 +145,30 @@ public class SimulationCachePredationToolsRawScoresTests
             new List<Hex>(), new List<Hex>());
         species.ModifiableGameplayCells.AddFast(new CellTemplate(supportingCellType, new Hex(0, 1), 0),
             new List<Hex>(), new List<Hex>());
+
         species.OnEdited();
 
         contributingCellType.CellTypeSpecializationBonus = 1.5f;
         supportingCellType.CellTypeSpecializationBonus = 0.75f;
 
         return (species, contributingCellType);
+    }
+
+    private static CellType CreateCytotoxinCellType(SimulationParameters simulationParameters)
+    {
+        var cellType = new CellType(simulationParameters.GetMembrane("single"))
+        {
+            CellTypeName = "Cytotoxin",
+        };
+        cellType.ModifiableOrganelles.Add(CreateOrganelle(simulationParameters, "cytoplasm", new Hex(0, 0)));
+
+        var cytotoxin = CreateToxinOrganelle(simulationParameters, new Hex(-4, 0));
+        var cytotoxinUpgrades = cytotoxin.ModifiableUpgrades!;
+        cytotoxinUpgrades.ModifiableUnlockedFeatures.Clear();
+        cytotoxinUpgrades.CustomUpgradeData = new ToxinUpgrades(ToxinType.Cytotoxin, 0.25f);
+        cellType.ModifiableOrganelles.Add(cytotoxin);
+
+        return cellType;
     }
 
     private static void AddPredationToolOrganelles(OrganelleLayout<OrganelleTemplate> organelles,
@@ -156,6 +210,24 @@ public class SimulationCachePredationToolsRawScoresTests
                 CustomUpgradeData = new ToxinUpgrades(ToxinType.Oxytoxy, 0.25f),
             },
         };
+    }
+
+    private static void AssertRawScoresAreEqual(SimulationCache.PredationToolsRawScores actual,
+        SimulationCache.PredationToolsRawScores expected)
+    {
+        AssertThat(actual.PilusScore).IsEqual(expected.PilusScore);
+        AssertThat(actual.InjectisomeScore).IsEqual(expected.InjectisomeScore);
+        AssertThat(actual.DefensivePilusScore).IsEqual(expected.DefensivePilusScore);
+        AssertThat(actual.DefensiveInjectisomeScore).IsEqual(expected.DefensiveInjectisomeScore);
+        AssertThat(actual.AverageToxicity).IsEqual(expected.AverageToxicity);
+        AssertThat(actual.OxytoxyScore).IsEqual(expected.OxytoxyScore);
+        AssertThat(actual.CytotoxinScore).IsEqual(expected.CytotoxinScore);
+        AssertThat(actual.MacrolideScore).IsEqual(expected.MacrolideScore);
+        AssertThat(actual.ChannelInhibitorScore).IsEqual(expected.ChannelInhibitorScore);
+        AssertThat(actual.OxygenMetabolismInhibitorScore).IsEqual(expected.OxygenMetabolismInhibitorScore);
+        AssertThat(actual.SlimeJetScore).IsEqual(expected.SlimeJetScore);
+        AssertThat(actual.MucocystsScore).IsEqual(expected.MucocystsScore);
+        AssertThat(actual.PullingCiliaModifier).IsEqual(expected.PullingCiliaModifier);
     }
 
     private static void AssertSpeciesCacheIdentityIsStable(Species species, uint expectedId, string expectedEpithet,
