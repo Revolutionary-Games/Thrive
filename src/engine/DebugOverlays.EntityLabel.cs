@@ -153,8 +153,13 @@ public partial class DebugOverlays
 
     private static bool IsEntityAliveAndHasWorldPosition(Entity entity)
     {
-        if (entity == Entity.Null || entity.IsAllZero() || entity.WorldId < 0 || entity.WorldId >= World.Worlds.Length)
+        // The world null check here is against a disposed world that still has a valid index.
+        if (entity == Entity.Null || entity.IsAllZero() || entity.WorldId < 0 ||
+            entity.WorldId >= World.Worlds.Length ||
+            World.Worlds[entity.WorldId] == null!)
+        {
             return false;
+        }
 
         return entity.IsAliveAndHas<WorldPosition>();
     }
@@ -206,7 +211,7 @@ public partial class DebugOverlays
 
     private void UpdateEntityLabels(double delta)
     {
-        if (!IsInstanceValid(activeCamera) || activeCamera is not { Current: true })
+        if (!IsInstanceValid(activeCamera) || activeCamera is not { Current: true } || !activeCamera.IsInsideTree())
             activeCamera = GetViewport().GetCamera3D();
 
         if (activeCamera == null || !activeCamera.IsInsideTree())
