@@ -100,9 +100,25 @@ public partial class SkyEquippedEnvironment : WorldEnvironment
     }
 
     /// <summary>
-    ///   Applies all of the configured parameters to the sky shader. Needs to be called again after changing
-    ///   <see cref="AtmosphereConfig"/>, <see cref="Composition"/>, <see cref="TraceGases"/> or
-    ///   <see cref="SunConfig"/> for the change to become visible.
+    ///   Applies all the configured parameters to the sky shader and updates the VolumetricCloudsEffect dependencies.
+    ///   Needs to be called again after changing <see cref="AtmosphereConfig"/> or when replacing
+    ///   <see cref="SunConfig"/> with another instance for the change to have effect on the clouds.
+    /// </summary>
+    public void ApplyParameters()
+    {
+        ApplyShaderParameters();
+
+        if (CloudsEffect is null)
+            return;
+
+        CloudsEffect.CloudsConfig.PlanetCenter = AtmosphereConfig.PlanetCenter;
+        CloudsEffect.SunConfig = SunConfig;
+    }
+
+    /// <summary>
+    ///   Applies all the configured parameters to the sky shader. Needs to be called again after changing
+    ///   <see cref="Composition"/> or <see cref="TraceGases"/> for the change to become visible.
+    ///   For the other configuration changes, please call <see cref="ApplyParameters"/>
     /// </summary>
     public void ApplyShaderParameters()
     {
@@ -177,7 +193,7 @@ public partial class SkyEquippedEnvironment : WorldEnvironment
         skyEnvironment.BackgroundMode = Environment.BGMode.Sky;
         skyEnvironment.Sky = sky;
 
-        ApplyShaderParameters();
+        ApplyParameters();
     }
 
     /// <summary>
