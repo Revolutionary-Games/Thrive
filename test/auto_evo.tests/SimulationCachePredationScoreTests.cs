@@ -79,7 +79,7 @@ public class SimulationCachePredationScoreTests
     }
 
     [TestCase]
-    public void ChannelInhibitorSlowFactorDecreasesAsMovementInhibitionIncreases()
+    public void ChannelInhibitorPredationScoreIncreasesAsMovementFundingDecreases()
     {
         var fullyFundedMovementScore = CalculateChannelInhibitorPredationScore(24.0f);
         var halfFundedMovementScore = CalculateChannelInhibitorPredationScore(14.0f);
@@ -119,6 +119,20 @@ public class SimulationCachePredationScoreTests
             .IsEqual(productionAboveStationaryConsumption);
     }
 
+    [TestCase]
+    public void ChannelInhibitorSlowsSprintEscapeSpeed()
+    {
+        var fullyFundedMovementWithoutSprint = CalculateChannelInhibitorPredationScore(24.0f);
+        var unfundedMovementWithoutSprint = CalculateChannelInhibitorPredationScore(4.0f);
+        var fullyFundedMovementWithSprint = CalculateChannelInhibitorPredationScore(24.0f, finalBalance: 1.0f);
+        var unfundedMovementWithSprint = CalculateChannelInhibitorPredationScore(4.0f, finalBalance: 1.0f);
+
+        var inhibitionBenefitWithoutSprint = unfundedMovementWithoutSprint - fullyFundedMovementWithoutSprint;
+        var inhibitionBenefitWithSprint = unfundedMovementWithSprint - fullyFundedMovementWithSprint;
+
+        AssertThat(inhibitionBenefitWithSprint > inhibitionBenefitWithoutSprint).IsTrue();
+    }
+
     private static float CalculatePredationScore(Species predator, Species prey)
     {
         var cache = CreateCache();
@@ -128,7 +142,7 @@ public class SimulationCachePredationScoreTests
     }
 
     private static float CalculateChannelInhibitorPredationScore(float totalProduction, float osmoregulation = 2.0f,
-        float stationaryConsumption = 2.0f, float movementConsumption = 10.0f)
+        float stationaryConsumption = 2.0f, float movementConsumption = 10.0f, float finalBalance = 0.0f)
     {
         var cache = CreateCache();
         var predator = CreateChannelInhibitorPredator(9);
@@ -147,7 +161,7 @@ public class SimulationCachePredationScoreTests
         preyEnergyBalance.TotalConsumptionStationary = stationaryConsumption;
         preyEnergyBalance.TotalMovement = movementConsumption;
         preyEnergyBalance.TotalConsumption = stationaryConsumption + movementConsumption;
-        preyEnergyBalance.FinalBalance = 0.0f;
+        preyEnergyBalance.FinalBalance = finalBalance;
         preyEnergyBalance.FinalBalanceStationary = 0.0f;
 
         return cache.GetPredationScore(predator, prey, biome);
