@@ -1945,7 +1945,7 @@ public class SimulationCache
             // Having Slime Jets can also help prey escape.
             if (preySlimeSpeed > predatorSpeed)
             {
-                catchScore += (preySlimeSpeed + 0.001f) / (predatorSpeed + 0.0001f);
+                catchScore -= (preySlimeSpeed + 0.001f) / (predatorSpeed + 0.0001f);
             }
 
             // prevent potential negative catchScore.
