@@ -165,7 +165,7 @@ public class GrowthCompoundsMatchCalculation
         // Final colony size 2
         species.ModifiableGameplayCells.AddFast(new CellTemplate(mainType, new Hex(0, 0), 0),
             new List<Hex>(), new List<Hex>());
-        species.ModifiableGameplayCells.AddFast(new CellTemplate(mainType, new Hex(10, 0), 0),
+        species.ModifiableGameplayCells.AddFast(new CellTemplate(mainType, new Hex(7, 0), 0),
             new List<Hex>(), new List<Hex>());
 
         species.ReproductionMethod = MulticellularReproductionMethod.Budding;
@@ -264,9 +264,11 @@ public class GrowthCompoundsMatchCalculation
         // Final colony size 3, initial bud 2
         species.ModifiableGameplayCells.AddFast(new CellTemplate(mainType, new Hex(0, 0), 0),
             new List<Hex>(), new List<Hex>());
-        species.ModifiableGameplayCells.AddFast(new CellTemplate(mainType, new Hex(10, 0), 0),
+        species.ModifiableGameplayCells.AddFast(new CellTemplate(mainType, new Hex(7, 0), 0),
             new List<Hex>(), new List<Hex>());
-        species.ModifiableGameplayCells.AddFast(new CellTemplate(mainType, new Hex(0, 10), 0),
+
+        // The layout shifts a lot, so this is pretty close to the left side
+        species.ModifiableGameplayCells.AddFast(new CellTemplate(mainType, new Hex(0, 4), 0),
             new List<Hex>(), new List<Hex>());
 
         species.ReproductionMethod = MulticellularReproductionMethod.MassBudding;
