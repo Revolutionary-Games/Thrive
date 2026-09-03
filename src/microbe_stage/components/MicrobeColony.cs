@@ -648,9 +648,15 @@ public static class MicrobeColonyHelpers
     ///   Removes a member from this colony. If this is called directly check the usage of
     ///   <see cref="AttachedToEntityHelpers.EntityAttachRelationshipModifyLock"/>
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This can optionally not remove the attached component if it is still needed. For example, when things are
+    ///     engulfed out of a colony.
+    ///   </para>
+    /// </remarks>
     /// <returns>True when the colony still exists. False if the entire colony was disbanded</returns>
     public static bool RemoveFromColonyAndDisbandIfEmpty(this ref MicrobeColony colony, in Entity colonyEntity,
-        Entity removedMember, CommandBuffer recorder)
+        Entity removedMember, CommandBuffer recorder, bool removeAttachedComponent = true)
     {
         if (colonyEntity.Has<MulticellularGrowth>())
         {
@@ -708,7 +714,8 @@ public static class MicrobeColonyHelpers
                 {
                     // Handle the normal cleanup here for the non-leader cells (we already queued delete of the
                     // entire colony component above)
-                    QueueRemoveFormerColonyMemberComponents(currentMember, recorder);
+                    QueueRemoveFormerColonyMemberComponents(currentMember, recorder,
+                        currentMember != removedMember || removeAttachedComponent);
                     leader = false;
                 }
 
@@ -721,7 +728,7 @@ public static class MicrobeColonyHelpers
         RemoveColonyMemberFromMemberList(ref colony, removedMember);
 
         if (!removedMemberIsLeader)
-            QueueRemoveFormerColonyMemberComponents(removedMember, recorder);
+            QueueRemoveFormerColonyMemberComponents(removedMember, recorder, removeAttachedComponent);
 
         OnColonyMemberRemoved(removedMember, removedMemberIsLeader);
 
@@ -838,7 +845,8 @@ public static class MicrobeColonyHelpers
     ///   Removes the given entity from the microbe colony it is in (if any)
     /// </summary>
     /// <returns>True on success</returns>
-    public static bool RemoveFromColony(in Entity entity, CommandBuffer entityCommandRecorder, bool verboseErrors)
+    public static bool RemoveFromColony(in Entity entity, CommandBuffer entityCommandRecorder, bool verboseErrors,
+        bool removeAttachedComponent = true)
     {
         lock (AttachedToEntityHelpers.EntityAttachRelationshipModifyLock)
         {
@@ -848,7 +856,8 @@ public static class MicrobeColonyHelpers
 
                 try
                 {
-                    colony.RemoveFromColonyAndDisbandIfEmpty(entity, entity, entityCommandRecorder);
+                    colony.RemoveFromColonyAndDisbandIfEmpty(entity, entity, entityCommandRecorder,
+                        removeAttachedComponent);
                 }
                 catch (Exception e)
                 {
@@ -870,7 +879,8 @@ public static class MicrobeColonyHelpers
 
                 try
                 {
-                    colony.RemoveFromColonyAndDisbandIfEmpty(member.ColonyLeader, entity, entityCommandRecorder);
+                    colony.RemoveFromColonyAndDisbandIfEmpty(member.ColonyLeader, entity, entityCommandRecorder,
+                        removeAttachedComponent);
                 }
                 catch (Exception e)
                 {
@@ -1642,10 +1652,12 @@ public static class MicrobeColonyHelpers
     ///   Removes the components from the detached entity that no longer should be on it
     /// </summary>
     private static void QueueRemoveFormerColonyMemberComponents(in Entity removedMember,
-        CommandBuffer recorder)
+        CommandBuffer recorder, bool removeAttachedComponent = true)
     {
         recorder.Remove<MicrobeColonyMember>(removedMember);
-        recorder.Remove<AttachedToEntity>(removedMember);
+
+        if (removeAttachedComponent)
+            recorder.Remove<AttachedToEntity>(removedMember);
 
         // Destroy temporary event callbacks if they exist
         if (removedMember.Has<MicrobeEventCallbacks>())
