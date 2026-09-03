@@ -8,9 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-01 10:25+0300\n"
-"PO-Revision-Date: "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE
-"\n"
+"POT-Creation-Date: 2026-09-03 09:32+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -931,7 +930,7 @@ msgstr ""
 msgid "CANNOT_IMPROVE_PERFECTION"
 msgstr ""
 
-#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.cs:912
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.cs:925
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr ""
 
@@ -960,27 +959,27 @@ msgstr ""
 msgid "CARBON_DIOXIDE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:990
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:995
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:994
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:999
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:998
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:1003
 msgid "CATEGORY_LITTLE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:992
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:997
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:996
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:1001
 msgid "CATEGORY_SOME"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:1000
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:1005
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
@@ -1266,8 +1265,8 @@ msgstr ""
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1382
 #: ../src/microbe_stage/editor/EndosymbiosisPopup.tscn:123
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:609
-#: ../src/microbe_stage/ProcessPanel.tscn:122
-#: ../src/modding/ModManager.tscn:698 ../src/thriveopedia/Thriveopedia.tscn:322
+#: ../src/microbe_stage/ProcessPanel.tscn:122 ../src/modding/ModManager.tscn:698
+#: ../src/thriveopedia/Thriveopedia.tscn:322
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:224
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:320
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:437
@@ -2302,8 +2301,7 @@ msgstr ""
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:565
-#: ../src/microbe_stage/MicrobeHUD.cs:570
+#: ../src/microbe_stage/MicrobeHUD.cs:565 ../src/microbe_stage/MicrobeHUD.cs:570
 msgid "DEVOURED"
 msgstr ""
 
@@ -2710,15 +2708,15 @@ msgstr ""
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:1424
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:1420
 msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:1430
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:1426
 msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:1401
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:1397
 msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
 msgstr ""
 
@@ -2923,7 +2921,7 @@ msgstr ""
 msgid "ESCAPE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:2829
+#: ../src/microbe_stage/MicrobeStage.cs:2830
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -3429,6 +3427,10 @@ msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:542
 msgid "GAME_DESIGN_TEAM"
+msgstr ""
+
+#: ../src/general/base_stage/WorldSimulationWithPhysics.cs:232
+msgid "GAME_PHYSICS_PERFORMANCE_LOW_WARNING"
 msgstr ""
 
 #: ../src/thriveopedia/pages/wiki/mechanics/ThriveopediaMechanicsRootPage.tscn:66
@@ -5048,7 +5050,7 @@ msgstr ""
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1711
+#: ../src/microbe_stage/MicrobeStage.cs:1712
 msgid "LOADING_MICROBE_STAGE"
 msgstr ""
 
@@ -5056,7 +5058,7 @@ msgstr ""
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1707
+#: ../src/microbe_stage/MicrobeStage.cs:1708
 msgid "LOADING_MULTICELLULAR_STAGE"
 msgstr ""
 
@@ -6455,7 +6457,7 @@ msgstr ""
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:958
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:1013
 msgid "NOTICE_ENGULFING_OUT_OF_ATP"
 msgstr ""
 
@@ -6467,12 +6469,12 @@ msgstr ""
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:1216
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:306
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr ""
 
 #: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:138
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:1208
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:298
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
@@ -7755,8 +7757,7 @@ msgstr ""
 msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:694
-#: ../src/general/PauseMenu.cs:481
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:694 ../src/general/PauseMenu.cs:481
 #: ../src/gui_common/menus/PlanetCustomizerTool.tscn:194
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
@@ -8145,7 +8146,7 @@ msgstr ""
 msgid "SELECT_STRUCTURE_POPUP_TITLE"
 msgstr ""
 
-#: ../src/macroscopic_stage/editor/MacroscopicEditor.tscn:114
+#: ../src/macroscopic_stage/editor/MacroscopicEditor.tscn:129
 msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
 msgstr ""
 
@@ -8473,7 +8474,7 @@ msgstr ""
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:2291
+#: ../src/microbe_stage/MicrobeStage.cs:2292
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -8817,11 +8818,11 @@ msgstr ""
 msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:2827
+#: ../src/microbe_stage/MicrobeStage.cs:2828
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:2828
+#: ../src/microbe_stage/MicrobeStage.cs:2829
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
@@ -12605,6 +12606,3 @@ msgstr ""
 msgid "ZOOM_OUT"
 msgstr ""
 
-#: ../src/general/base_stage/WorldSimulationWithPhysics.cs:213
-msgid "GAME_PHYSICS_PERFORMANCE_LOW_WARNING"
-msgstr ""
