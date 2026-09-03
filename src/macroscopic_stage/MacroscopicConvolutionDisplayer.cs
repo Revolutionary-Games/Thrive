@@ -202,6 +202,8 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
             }
             else
             {
+                uvGenerationStatus = UvGenerationStatus.NotStarted;
+
                 GD.PrintErr("Native ArrayMesh unwrap failed");
             }
         }
