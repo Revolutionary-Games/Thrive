@@ -8,12 +8,22 @@ using Godot;
 [GlobalClass]
 public sealed partial class AtmosphereConfig : ValidatedConfig
 {
+    /// <summary>
+    ///   The planet center. This is automatically propagated to <see cref="CloudsConfig.PlanetCenter"/> by the
+    ///   <see cref="SkyEquippedEnvironment"/> during setup.
+    /// </summary>
     [Export]
     public Vector3 PlanetCenter = Vector3.Zero;
 
     /// <summary>
     ///   Radius of the planet's surface. Rays pointing below the resulting horizon hit the ground.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Keeping this slightly below the actual planet radius prevents artifacts on the horizon from mesh
+    ///     inaccuracies.
+    ///   </para>
+    /// </remarks>
     [Export]
     public float GroundRadius = 995.0f;
 

@@ -190,6 +190,7 @@ public partial class SkyEquippedEnvironment : WorldEnvironment
         CloudsEffect ??= new VolumetricCloudsEffect();
 
         CloudsEffect.SunConfig = SunConfig;
+        CloudsEffect.CloudsConfig.PlanetCenter = AtmosphereConfig.PlanetCenter;
 
         var effects = new Array<CompositorEffect>([CloudsEffect]);
 

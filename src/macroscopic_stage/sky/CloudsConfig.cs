@@ -8,7 +8,9 @@ using Godot;
 [GlobalClass]
 public sealed partial class CloudsConfig : ValidatedConfig
 {
-    [Export]
+    /// <summary>
+    ///   The planet center. This is set in AtmosphereConfig.
+    /// </summary>
     public Vector3 PlanetCenter = Vector3.Zero;
 
     [Export]
