@@ -60,7 +60,7 @@ public class SimulationCache
 
     private readonly Dictionary<(int, int, IBiomeConditions), float> predationScores = new();
 
-    private readonly Dictionary<ulong, ProcessSpeedInformation> cachedProcessSpeeds = new();
+    private readonly Dictionary<ProcessSpeedCacheKey, ProcessSpeedInformation> cachedProcessSpeeds = new();
 
     private readonly Dictionary<int, PredationToolsRawScores>
         cachedPredationToolsRawScores = new();
@@ -415,21 +415,7 @@ public class SimulationCache
     public ProcessSpeedInformation GetProcessMaximumSpeed(TweakedProcess process, float speedModifier,
         IBiomeConditions biomeConditions)
     {
-        // For caching resolve some data already to have better cache hits
-        var effectiveMultiplier = process.Rate * speedModifier;
-
-        // 16 low bits of the key (as process amounts are limited, we save bits on them)
-        ulong key = process.Process.ProcessId;
-
-        // These slightly overlap, but hopefully this doesn't lead to collisions (the most significant effect would be
-        // just a process or two running at the wrong speed)
-        // The overlap is 16 bits of the upper end of the float
-        key |= (ulong)(uint)BitConverter.SingleToInt32Bits(effectiveMultiplier) << 16;
-        key ^= (ulong)(uint)biomeConditions.GetHashCode() << 32;
-
-        // Shuffle key bits with a prime number (we could do a double shuffle above, but processes are needed so much
-        // that we do not want the extra work)
-        key *= 9853659385249210933;
+        var key = new ProcessSpeedCacheKey(process.Process, process.Rate, speedModifier, biomeConditions);
 
         ref var speed = ref CollectionsMarshal.GetValueRefOrNullRef(cachedProcessSpeeds, key);
         if (!Unsafe.IsNullRef(ref speed))
@@ -2340,54 +2326,6 @@ public class SimulationCache
         }*/
     }
 
-#if CHECK_HASH_CODE_REUSED_INSTANCES
-    private void CheckSpecies(MicrobeSpecies species)
-    {
-        var visual = species.GetVisualHashCode();
-
-        var key = GetSpeciesCacheKey(species);
-
-        if (!microbeHashCheckValues.TryGetValue(key, out var existing))
-        {
-#if CHECK_CACHE_STORE_INSTANCES
-            microbeHashCheckValues[key] = species;
-#else
-            microbeHashCheckValues[key] = visual;
-#endif
-            return;
-        }
-
-        // Species has been modified, which is not optimal but technically not a fault of the cache
-#if CHECK_CACHE_STORE_INSTANCES
-        if (species == existing)
-            return;
-#endif
-
-#if CHECK_CACHE_STORE_INSTANCES
-        var visualHash = existing.GetVisualHashCode();
-        var oldKey = GetSpeciesCacheKey(existing);
-
-        if (visualHash != visual)
-#else
-        if (existing != visual)
-#endif
-        {
-            GD.PrintErr($"Hash code reused for different species. Key: {key}, Visual: {visual}, Existing: {existing}");
-        }
-
-#if CHECK_CACHE_STORE_INSTANCES
-        if (oldKey == key)
-        {
-            GD.PrintErr($"Hash code reused for different species. Key: {key}, Existing: {existing}");
-        }
-
-        microbeHashCheckValues[key] = species;
-#else
-        microbeHashCheckValues[key] = visual;
-#endif
-    }
-#endif
-
     // helper for GetPredationToolsRawScores
     public readonly record struct PredationToolsRawScores(float PilusScore,
         float InjectisomeScore,
@@ -2447,4 +2385,87 @@ public class SimulationCache
         bool HasSignallingAgent,
         float OxygenUsingOrganellesCount,
         float EnzymesScore);
+
+#if CHECK_HASH_CODE_REUSED_INSTANCES
+    private void CheckSpecies(MicrobeSpecies species)
+    {
+        var visual = species.GetVisualHashCode();
+
+        var key = GetSpeciesCacheKey(species);
+
+        if (!microbeHashCheckValues.TryGetValue(key, out var existing))
+        {
+#if CHECK_CACHE_STORE_INSTANCES
+            microbeHashCheckValues[key] = species;
+#else
+            microbeHashCheckValues[key] = visual;
+#endif
+            return;
+        }
+
+        // Species has been modified, which is not optimal but technically not a fault of the cache
+#if CHECK_CACHE_STORE_INSTANCES
+        if (species == existing)
+            return;
+#endif
+
+#if CHECK_CACHE_STORE_INSTANCES
+        var visualHash = existing.GetVisualHashCode();
+        var oldKey = GetSpeciesCacheKey(existing);
+
+        if (visualHash != visual)
+#else
+        if (existing != visual)
+#endif
+        {
+            GD.PrintErr($"Hash code reused for different species. Key: {key}, Visual: {visual}, Existing: {existing}");
+        }
+
+#if CHECK_CACHE_STORE_INSTANCES
+        if (oldKey == key)
+        {
+            GD.PrintErr($"Hash code reused for different species. Key: {key}, Existing: {existing}");
+        }
+
+        microbeHashCheckValues[key] = species;
+#else
+        microbeHashCheckValues[key] = visual;
+#endif
+    }
+#endif
+
+    private readonly struct ProcessSpeedCacheKey(BioProcess process, float rate, float speedModifier,
+        IBiomeConditions biomeConditions)
+        : IEquatable<ProcessSpeedCacheKey>
+    {
+        private readonly BioProcess process = process;
+        private readonly IBiomeConditions biomeConditions = biomeConditions;
+        private readonly int rateBits = BitConverter.SingleToInt32Bits(rate);
+        private readonly int speedModifierBits = BitConverter.SingleToInt32Bits(speedModifier);
+
+        public bool Equals(ProcessSpeedCacheKey other)
+        {
+            return ReferenceEquals(process, other.process) &&
+                ReferenceEquals(biomeConditions, other.biomeConditions) &&
+                rateBits == other.rateBits &&
+                speedModifierBits == other.speedModifierBits;
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is ProcessSpeedCacheKey other && Equals(other);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hash = (int)process.ProcessId;
+                hash = (hash * 397) ^ rateBits;
+                hash = (hash * 397) ^ speedModifierBits;
+                hash = (hash * 397) ^ biomeConditions.GetHashCode();
+                return hash;
+            }
+        }
+    }
 }
