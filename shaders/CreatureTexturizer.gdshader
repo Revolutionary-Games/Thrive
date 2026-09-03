@@ -1,9 +1,9 @@
 shader_type spatial;
 render_mode unshaded, cull_disabled;
 
-uniform sampler2D mainTexture;
-uniform sampler2D projected : repeat_disable;
-uniform sampler2D dirt;
+uniform sampler2D mainTexture : source_color;
+uniform sampler2D projected : source_color, repeat_disable;
+uniform sampler2D dirt : source_color;
 
 uniform mat4[500] projectionMatrices;
 uniform int projectionMatrixCount;

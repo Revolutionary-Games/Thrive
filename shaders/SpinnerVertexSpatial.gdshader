@@ -1,7 +1,7 @@
 shader_type spatial;
 render_mode unshaded;
 
-uniform sampler2D mainTexture : repeat_disable;
+uniform sampler2D mainTexture : source_color, repeat_disable;
 
 void vertex() {
     float angle = -TIME * 2.0f;
