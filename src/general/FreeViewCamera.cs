@@ -99,12 +99,6 @@ public partial class FreeViewCamera : Camera3D
         GlobalPosition += direction.Normalized() * (speed * (float)delta);
     }
 
-    public override void _Notification(int what)
-    {
-        if (what == NotificationApplicationFocusOut || what == NotificationWMWindowFocusOut)
-            StopLooking();
-    }
-
     public override void _Input(InputEvent @event)
     {
         if (@event is InputEventMouseButton button)
@@ -122,6 +116,12 @@ public partial class FreeViewCamera : Camera3D
             ApplyRotation();
             GetViewport().SetInputAsHandled();
         }
+    }
+
+    public override void _Notification(int what)
+    {
+        if (what == NotificationApplicationFocusOut || what == NotificationWMWindowFocusOut)
+            StopLooking();
     }
 
     private void HandleMouseButton(InputEventMouseButton button)
