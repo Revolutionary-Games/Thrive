@@ -149,7 +149,7 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
         uvGenerationStatus = UvGenerationStatus.NotStarted;
         Mesh.SurfaceSetMaterial(0, material);
 
-        CustomAabb = new Aabb(minExtends, maxExtends);
+        CustomAabb = new Aabb(minExtends, maxExtends - minExtends);
     }
 
     public void Texturize(MetaballLayout<MacroscopicMetaball> layout, CreatureSkinType skinType)
