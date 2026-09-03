@@ -1546,6 +1546,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         // Initialise the simulation on a basic level first to ensure the base stage setup has all the objects it needs
         WorldSimulation.Init(rootOfDynamicallySpawned, Clouds, this);
+        WorldSimulation.MessageReceiver = HUD.HUDMessages;
 
         patchManager = new PatchManager(WorldSimulation.SpawnSystem, WorldSimulation.MicrobeTerrainSystem,
             WorldSimulation.ProcessSystem, Clouds, WorldSimulation.TimedLifeSystem, worldLight);
