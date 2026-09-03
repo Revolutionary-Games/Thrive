@@ -108,14 +108,13 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     As physics step size is not currently adjusted, values below 1 can make the game feel a bit jittery, so for
-    ///     now values in the range 1-3 are the best working (though the upper range depends on performance).
+    ///     Values below 1 can make the game feel a bit jittery, while the upper range depends on performance.
     ///   </para>
     /// </remarks>
     public float WorldTimeScale { get; set; } = 1;
 
     /// <summary>
-    ///   Set to true on Dispose, after which this may not be used anymore
+    ///   Set to true on Dispose, after which this may not be used any more
     /// </summary>
     public bool Disposed { get; private set; }
 
