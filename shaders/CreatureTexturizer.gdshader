@@ -18,7 +18,6 @@ varying vec3 pos;
 varying vec3 normal;
 
 void vertex() {
-    // Called for every vertex the material is visible on.
     normal = NORMAL;
     pos = VERTEX;
     
@@ -45,9 +44,6 @@ vec4 triplanarProjection(vec3 projNormal, vec3 projPos, sampler2D topTexture,
 }
 
 void fragment() {
-    // Called for every pixel the material is visible on.
-    ALBEDO = vec3(0.0f);
-    
     vec4 skinMix = triplanarProjection(normal, pos * mainTextureScale,
         mainTexture, mainTexture, mainTexture);
     

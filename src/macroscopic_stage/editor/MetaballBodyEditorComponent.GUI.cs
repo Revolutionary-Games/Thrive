@@ -10,12 +10,12 @@ public partial class MetaballBodyEditorComponent
 
     private int usedToleranceWarnings;
 
-    public void OnSkinTypeChanged(int newValue)
+    public void OnSkinTypeReselected(int newValue)
     {
         SkinType = (CreatureSkinType)newValue;
     }
 
-    public void UpdateSkinType()
+    public void UpdateSkinTypeButton()
     {
         creatureSkinTypeChoiceButton.Selected = (int)SkinType;
     }
