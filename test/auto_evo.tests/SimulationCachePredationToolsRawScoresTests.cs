@@ -61,6 +61,47 @@ public class SimulationCachePredationToolsRawScoresTests
         AssertMulticellularRecomputedScores(recomputed);
     }
 
+    [TestCase]
+    public void MulticellularSlimeJetScoreIgnoresCellsWithoutSlimeJets()
+    {
+        var cache = CreateCache();
+        var simulationParameters = SimulationParameters.Instance;
+        var speciesWithoutSupport = CreateSlimeJetSpecies(103,
+            (CreateSlimeJetCellType(simulationParameters, "Misaligned", new Hex(4, 0)), new Hex(0, 0)));
+        var speciesWithSupport = CreateSlimeJetSpecies(104,
+            (CreateSlimeJetCellType(simulationParameters, "Misaligned", new Hex(4, 0)), new Hex(0, 0)),
+            (CreateSupportCellType(simulationParameters), new Hex(0, 1)));
+
+        var scoreWithoutSupport = cache.GetPredationToolsRawScores(speciesWithoutSupport);
+        var scoreWithSupport = cache.GetPredationToolsRawScores(speciesWithSupport);
+
+        AssertThat(scoreWithoutSupport.SlimeJetScore).IsEqual(0.0f);
+        AssertThat(scoreWithSupport.SlimeJetScore).IsEqual(scoreWithoutSupport.SlimeJetScore);
+
+        cache.Clear();
+
+        var recomputed = cache.GetPredationToolsRawScores(speciesWithSupport);
+        AssertThat(recomputed.SlimeJetScore).IsEqual(scoreWithSupport.SlimeJetScore);
+    }
+
+    [TestCase]
+    public void MulticellularSlimeJetScoreIsWeightedByJetContribution()
+    {
+        var cache = CreateCache();
+        var simulationParameters = SimulationParameters.Instance;
+        var alignedCellType = CreateSlimeJetCellType(simulationParameters, "Aligned", new Hex(0, 4), new Hex(0, 3));
+        var misalignedCellType = CreateSlimeJetCellType(simulationParameters, "Misaligned", new Hex(4, 0));
+        var species = CreateSlimeJetSpecies(105,
+            (alignedCellType, new Hex(0, 0)),
+            (misalignedCellType, new Hex(0, 1)));
+        alignedCellType.CellTypeSpecializationBonus = 2.0f;
+        misalignedCellType.CellTypeSpecializationBonus = 3.0f;
+
+        var scores = cache.GetPredationToolsRawScores(species);
+
+        AssertThat(scores.SlimeJetScore).IsEqual(Constants.AUTO_EVO_SLIME_JET_SCORE * 4.0f);
+    }
+
     private static SimulationCache CreateCache()
     {
         return new SimulationCache(new WorldGenerationSettings
@@ -115,6 +156,47 @@ public class SimulationCachePredationToolsRawScoresTests
         supportingCellType.CellTypeSpecializationBonus = 0.75f;
 
         return (species, contributingCellType);
+    }
+
+    private static MulticellularSpecies CreateSlimeJetSpecies(uint id,
+        params (CellType CellType, Hex Position)[] cells)
+    {
+        var species = new MulticellularSpecies(id, "Regression", $"SlimeJet{id}");
+
+        foreach (var (cellType, position) in cells)
+        {
+            species.ModifiableCellTypes.Add(cellType);
+            species.ModifiableGameplayCells.AddFast(new CellTemplate(cellType, position, 0),
+                new List<Hex>(), new List<Hex>());
+        }
+
+        species.OnEdited();
+        return species;
+    }
+
+    private static CellType CreateSlimeJetCellType(SimulationParameters simulationParameters, string name,
+        params Hex[] slimeJetPositions)
+    {
+        var cellType = new CellType(simulationParameters.GetMembrane("single"))
+        {
+            CellTypeName = name,
+        };
+        cellType.ModifiableOrganelles.Add(CreateOrganelle(simulationParameters, "cytoplasm", new Hex(0, 0)));
+
+        foreach (var slimeJetPosition in slimeJetPositions)
+            cellType.ModifiableOrganelles.Add(CreateOrganelle(simulationParameters, "slimeJet", slimeJetPosition));
+
+        return cellType;
+    }
+
+    private static CellType CreateSupportCellType(SimulationParameters simulationParameters)
+    {
+        var cellType = new CellType(simulationParameters.GetMembrane("single"))
+        {
+            CellTypeName = "Support",
+        };
+        cellType.ModifiableOrganelles.Add(CreateOrganelle(simulationParameters, "cytoplasm", new Hex(0, 0)));
+        return cellType;
     }
 
     private static void AddPredationToolOrganelles(OrganelleLayout<OrganelleTemplate> organelles,

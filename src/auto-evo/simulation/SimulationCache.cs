@@ -1103,10 +1103,6 @@ public class SimulationCache
         var slimeJetsCount = 0.0f;
         var mucocystsCount = 0;
         var pullingCiliasCount = 0.0f;
-        var slimeJetsMultiplier = 1.0f;
-        var slimeJetsMultiplierSum = 0.0f;
-        var slimeJetsMultiplierCount = 0;
-
         var hasOxytoxy = false;
         var hasCytotoxin = false;
         var hasMacrolide = false;
@@ -1242,15 +1238,13 @@ public class SimulationCache
                     defensivePilusCount += cellTypeDefensivePilusCount;
                     defensiveInjectisomeCount += cellTypeDefensiveInjectisomeCount;
                     mucocystsCount += cellTypeMucocystsCount;
-                    slimeJetsMultiplierSum += cellTypeSlimeJetsMultiplier;
-                    ++slimeJetsMultiplierCount;
 
                     // application of specializationBonus to appropriate scores
                     var specializationBonus = cellType.CellTypeSpecializationBonus *
                         CellBodyPlanInternalCalculations.GetAdjacencySpecializationBonusFromBodyPlan(cell, cells);
 
                     totalToxinAmount += cellTypeToxinAmount * specializationBonus;
-                    slimeJetsCount += cellTypeSlimeJetsCount * specializationBonus;
+                    slimeJetsCount += cellTypeSlimeJetsCount * specializationBonus * cellTypeSlimeJetsMultiplier;
                     pullingCiliasCount += cellTypePullingCiliasCount * specializationBonus;
                 }
             }
@@ -1290,10 +1284,7 @@ public class SimulationCache
         var defensivePilusScore = pilusScores.DefensivePilus;
         var defensiveInjectisomeScore = pilusScores.DefensiveInjectisome;
 
-        if (slimeJetsMultiplierCount > 0)
-            slimeJetsMultiplier = slimeJetsMultiplierSum / slimeJetsMultiplierCount;
         slimeJetScore *= slimeJetsCount;
-        slimeJetScore *= slimeJetsMultiplier;
 
         // bonus score for upgrades because auto-evo does not like adding them much
         injectisomeScore *= Constants.AUTO_EVO_ARTIFICIAL_UPGRADE_BONUS_SMALL;
