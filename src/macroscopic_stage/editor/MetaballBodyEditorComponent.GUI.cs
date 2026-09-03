@@ -10,7 +10,7 @@ public partial class MetaballBodyEditorComponent
 
     private int usedToleranceWarnings;
 
-    public void OnSkinTypeReselected(int newValue)
+    public void OnSkinTypeSelected(int newValue)
     {
         SkinType = (CreatureSkinType)newValue;
     }

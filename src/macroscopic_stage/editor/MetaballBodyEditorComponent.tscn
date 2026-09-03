@@ -886,7 +886,7 @@ layout_mode = 0
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Modify" to="." method="OnModifyCurrentCellTypePressed"]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Delete" to="." method="OnDeleteCellTypePressed"]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/Duplicate" to="." method="OnTypeDuplicateStartPressed"]
-[connection signal="item_selected" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Appearance/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/OptionButton" to="." method="OnSkinTypeChanged"]
+[connection signal="item_selected" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Appearance/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/OptionButton" to="." method="OnSkinTypeSelected"]
 [connection signal="OnTolerancesChanged" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance/ScrollContainer/MarginContainer/TolerancesEditor" to="." method="OnTolerancesEditorChangedData"]
 [connection signal="OnNameSet" from="EditorComponentBottomLeftButtons" to="." method="OnSpeciesNameChanged"]
 [connection signal="OnRedo" from="EditorComponentBottomLeftButtons" to="." method="Redo"]

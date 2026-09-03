@@ -130,7 +130,7 @@ public partial class MetaballBodyEditorComponent :
         {
             skinType = value;
 
-            UpdateSkinType();
+            UpdateSkinTypeButton();
 
             UpdateAlreadyPlacedVisuals();
         }
