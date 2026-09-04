@@ -8,8 +8,8 @@ public static class MetaballLayoutHelpers
 
         foreach (var metaball in layout)
         {
-            value ^= (ulong)((metaball.Position.X.GetHashCode() + metaball.Position.Y.GetHashCode()
-                + metaball.Position.Z.GetHashCode()) ^ metaball.Size.GetHashCode() ^ metaball.Colour.GetHashCode());
+            value += (ulong)(metaball.Position.X.GetHashCode() ^ metaball.Position.Y.GetHashCode()
+                ^ metaball.Position.Z.GetHashCode() ^ metaball.Size.GetHashCode() ^ metaball.Colour.GetHashCode());
         }
 
         return value;
