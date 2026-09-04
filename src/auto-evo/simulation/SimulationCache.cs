@@ -1068,6 +1068,7 @@ public class SimulationCache
         cytotoxinScore *= specializationBonus;
         channelInhibitorScore *= specializationBonus;
         macrolideScore *= specializationBonus;
+        oxygenMetabolismInhibitorScore *= specializationBonus;
         slimeJetScore *= specializationBonus;
         pullingCiliaModifier *= specializationBonus;
 
