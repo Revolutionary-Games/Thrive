@@ -122,10 +122,14 @@ public class SimulationCachePredationScoreTests
     [TestCase]
     public void ChannelInhibitorSlowsSprintEscapeSpeed()
     {
-        var fullyFundedMovementWithoutSprint = CalculateChannelInhibitorPredationScore(24.0f);
-        var unfundedMovementWithoutSprint = CalculateChannelInhibitorPredationScore(4.0f);
-        var fullyFundedMovementWithSprint = CalculateChannelInhibitorPredationScore(24.0f, finalBalance: 1.0f);
-        var unfundedMovementWithSprint = CalculateChannelInhibitorPredationScore(4.0f, finalBalance: 1.0f);
+        // Normal movement stays catchable, while sprinting lets the prey escape.
+        const float preyFear = Constants.MAX_SPECIES_FEAR * 0.25f;
+        var fullyFundedMovementWithoutSprint = CalculateChannelInhibitorPredationScore(24.0f, preyFear: preyFear);
+        var unfundedMovementWithoutSprint = CalculateChannelInhibitorPredationScore(4.0f, preyFear: preyFear);
+        var fullyFundedMovementWithSprint =
+            CalculateChannelInhibitorPredationScore(24.0f, finalBalance: 1.0f, preyFear: preyFear);
+        var unfundedMovementWithSprint =
+            CalculateChannelInhibitorPredationScore(4.0f, finalBalance: 1.0f, preyFear: preyFear);
 
         var inhibitionBenefitWithoutSprint = unfundedMovementWithoutSprint - fullyFundedMovementWithoutSprint;
         var inhibitionBenefitWithSprint = unfundedMovementWithSprint - fullyFundedMovementWithSprint;
@@ -142,12 +146,13 @@ public class SimulationCachePredationScoreTests
     }
 
     private static float CalculateChannelInhibitorPredationScore(float totalProduction, float osmoregulation = 2.0f,
-        float stationaryConsumption = 2.0f, float movementConsumption = 10.0f, float finalBalance = 0.0f)
+        float stationaryConsumption = 2.0f, float movementConsumption = 10.0f, float finalBalance = 0.0f,
+        float preyFear = Constants.MAX_SPECIES_FEAR)
     {
         var cache = CreateCache();
         var predator = CreateChannelInhibitorPredator(9);
         var prey = CreateMicrobe(10, "ChannelInhibitorPrey", "single", "cytoplasm");
-        prey.ModifiableBehaviour.Fear = Constants.MAX_SPECIES_FEAR;
+        prey.ModifiableBehaviour.Fear = preyFear;
         prey.ModifiableBehaviour.Aggression = 0;
 
         var rawScores = cache.GetPredationToolsRawScores(predator);
