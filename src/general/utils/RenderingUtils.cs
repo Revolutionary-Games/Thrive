@@ -9,6 +9,15 @@ using Godot;
 public static class RenderingUtils
 {
     /// <summary>
+    ///   Checks whether the current renderer provides a RenderingDevice, which is required for compute shaders and
+    ///   compositor effects. This is not the case on the Compatibility (OpenGL) renderer.
+    /// </summary>
+    public static bool IsRenderingDeviceAvailable()
+    {
+        return RenderingServer.GetRenderingDevice() is not null;
+    }
+
+    /// <summary>
     ///   Updates an image uniform given its shader binding and a texture RID.
     /// </summary>
     public static void UpdateImage(RDUniform uniform, int binding, Rid texture)
