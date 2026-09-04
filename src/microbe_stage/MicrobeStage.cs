@@ -1213,16 +1213,23 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
             ref var growth = ref Player.Get<MulticellularGrowth>();
 
-            growth.IsASpore = false;
-
             if (multicellularSpeciesType.Species.ReproductionMethod == MulticellularReproductionMethod.Sporulation)
             {
+                // Returning from the editor turns the player into a new spore. Do not carry over the growth state
+                // from the colony that entered the editor, otherwise germination can treat the spore as a fully grown
+                // colony.
+                growth.ResetGrowthProgress();
                 growth.IsASpore = true;
             }
-            else if (multicellularSpeciesType.Species.ReproductionMethod is MulticellularReproductionMethod.Budding
-                     or MulticellularReproductionMethod.MassBudding)
+            else
             {
-                adjacencyBonus = multicellularSpeciesType.Species.GetAdjacencySpecializationBonus(0);
+                growth.IsASpore = false;
+
+                if (multicellularSpeciesType.Species.ReproductionMethod is MulticellularReproductionMethod.Budding
+                    or MulticellularReproductionMethod.MassBudding)
+                {
+                    adjacencyBonus = multicellularSpeciesType.Species.GetAdjacencySpecializationBonus(0);
+                }
             }
 
             // If the player has a colony, all resources need to be transferred to the stem cell to avoid them being
