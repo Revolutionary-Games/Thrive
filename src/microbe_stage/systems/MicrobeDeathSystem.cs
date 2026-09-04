@@ -62,6 +62,31 @@ public partial class MicrobeDeathSystem : BaseSystem<World, float>
     /// </summary>
     public delegate Vector3 CustomizeSpawnedChunk(ref Vector3 position);
 
+    /// <summary>
+    ///   Calculates how many corpse chunks a cell with the specified number of hexes drops.
+    /// </summary>
+    public static int CalculateCorpseChunkCount(int hexCount)
+    {
+        int chunksToSpawn = Math.Max(1, hexCount / Constants.CORPSE_CHUNK_DIVISOR);
+
+        // Apply a soft cap to the number of chunks
+        if (chunksToSpawn > Constants.CORPSE_CHUNK_AMOUNT_DIMINISH_AFTER)
+        {
+            chunksToSpawn = Constants.CORPSE_CHUNK_AMOUNT_DIMINISH_AFTER +
+                (chunksToSpawn - Constants.CORPSE_CHUNK_AMOUNT_DIMINISH_AFTER) / 2;
+        }
+
+        if (chunksToSpawn > Constants.CORPSE_CHUNK_AMOUNT_DIMINISH_MORE_AFTER)
+        {
+            chunksToSpawn = Constants.CORPSE_CHUNK_AMOUNT_DIMINISH_MORE_AFTER +
+                (chunksToSpawn - Constants.CORPSE_CHUNK_AMOUNT_DIMINISH_MORE_AFTER) / 3;
+        }
+
+        // And then a hard maximum limit to not cause massive performance problems if there are for some reason huge
+        // cells that die
+        return Math.Min(chunksToSpawn, Constants.CORPSE_CHUNK_AMOUNT_CAP);
+    }
+
     public static void SpawnCorpseChunks(ref OrganelleContainer organelleContainer, CompoundBag compounds,
         ISpawnSystem spawnSystem, IWorldSimulation worldSimulation, CommandBuffer recorder,
         Vector3 basePosition, Random random, CustomizeSpawnedChunk? customizeCallback, bool isBacteria)
@@ -129,31 +154,10 @@ public partial class MicrobeDeathSystem : BaseSystem<World, float>
         var chunkName = Localization.Translate("CHUNK_CELL_CORPSE_PART");
 
         // Queues either 1 corpse chunk or a factor of the hexes
-        int chunksToSpawn = Math.Max(1, organelleContainer.HexCount / Constants.CORPSE_CHUNK_DIVISOR);
-
-        // Apply a soft cap to the number of chunks
-        if (chunksToSpawn > Constants.CORPSE_CHUNK_AMOUNT_DIMINISH_AFTER)
-        {
-            chunksToSpawn = Constants.CORPSE_CHUNK_AMOUNT_DIMINISH_AFTER +
-                (chunksToSpawn - Constants.CORPSE_CHUNK_AMOUNT_DIMINISH_AFTER) / 2;
-        }
-
-        if (chunksToSpawn > Constants.CORPSE_CHUNK_AMOUNT_DIMINISH_MORE_AFTER)
-        {
-            chunksToSpawn = Constants.CORPSE_CHUNK_AMOUNT_DIMINISH_MORE_AFTER +
-                (chunksToSpawn - Constants.CORPSE_CHUNK_AMOUNT_DIMINISH_MORE_AFTER) / 3;
-        }
-
-        // And then a hard maximum limit to not cause massive performance problems if there are for some reason huge
-        // cells that die
-        if (chunksToSpawn > Constants.CORPSE_CHUNK_AMOUNT_CAP)
-            chunksToSpawn = Constants.CORPSE_CHUNK_AMOUNT_CAP;
+        int chunksToSpawn = CalculateCorpseChunkCount(organelleContainer.HexCount);
 
         for (int i = 0; i < chunksToSpawn; ++i)
         {
-            // Amount of compound in one chunk
-            float amount = baseAmount;
-
             var positionAdded = new Vector3(random.Next(-2.0f, 2.0f), 0,
                 random.Next(-2.0f, 2.0f));
 
@@ -182,10 +186,7 @@ public partial class MicrobeDeathSystem : BaseSystem<World, float>
             {
                 var compoundValue = new ChunkConfiguration.ChunkCompound
                 {
-                    // Randomize the compound amount a bit so things "rot away"
-                    // TODO: make this proportional to chunk count to make performance-balancing chunks easier
-                    Amount = (entry.Value / (random.Next(amount / 3.0f, amount) *
-                        Constants.CHUNK_ENGULF_COMPOUND_DIVISOR)) * Constants.CORPSE_COMPOUND_COMPENSATION,
+                    Amount = entry.Value / chunksToSpawn,
                 };
 
                 chunkType.Compounds[entry.Key] = compoundValue;
