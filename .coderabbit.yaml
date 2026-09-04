@@ -1,6 +1,7 @@
 language: "en-US"
 reviews:
   path_filters:
+    - "**/*"
     - "!**/*.pot"
     - "!**/*.po"
     - "**/en.po"
