@@ -20,6 +20,10 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
 
     private ulong lastDisplayedLayoutHash;
 
+    private uint currentUvGenerationId;
+
+    private CreatureSkinType desiredSkinType;
+
 #pragma warning disable CA2213
     [Export]
     private Material texturePaddingBlitMaterial = null!;
@@ -147,6 +151,10 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
         Mesh = meshGen.DualContour();
 
         uvGenerationStatus = UvGenerationStatus.NotStarted;
+
+        // Make any running UV generation tasks obsolete
+        ++currentUvGenerationId;
+
         Mesh.SurfaceSetMaterial(0, material);
 
         CustomAabb = new Aabb(minExtends, maxExtends - minExtends);
@@ -154,18 +162,20 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
 
     public void Texturize(MetaballLayout<MacroscopicMetaball> layout, CreatureSkinType skinType)
     {
+        desiredSkinType = skinType;
+
         if (uvGenerationStatus == UvGenerationStatus.Generating)
             return;
 
         if (uvGenerationStatus == UvGenerationStatus.NotStarted)
         {
             uvGenerationStatus = UvGenerationStatus.Generating;
-            var uvUnwrap = new Task(() => UVUnwrapAndTexture((ArrayMesh)Mesh, layout, skinType));
+            var uvUnwrap = new Task(() => UVUnwrapAndTexture((ArrayMesh)Mesh, layout));
             TaskExecutor.Instance.AddTask(uvUnwrap);
         }
         else
         {
-            ApplyTextures(layout, skinType);
+            ApplyTextures(layout);
         }
     }
 
@@ -179,14 +189,15 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
         base.Dispose(disposing);
     }
 
-    private void UVUnwrapAndTexture(ArrayMesh mesh, MetaballLayout<MacroscopicMetaball> layout,
-        CreatureSkinType skinType)
+    private void UVUnwrapAndTexture(ArrayMesh mesh, MetaballLayout<MacroscopicMetaball> layout)
     {
         // TODO: investigate if it is somehow possible to avoid this data copy here (and another probably caused in
         // the native interop call ArrayMeshUnwrap)
         // Godot does the following in a unsafe block:
         // `godot_variant arg3_in = (godot_variant)arg3.NativeVar;` and uses `&arg3_in` to get a pointer to it.
         var nativeVariant = Variant.From(mesh).CopyNativeVariant();
+
+        uint generationId = ++currentUvGenerationId;
 
         try
         {
@@ -196,9 +207,12 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
             // has to be deferred too.
             if (NativeMethods.ArrayMeshUnwrap(nativeVariant, 1.0f))
             {
+                if (generationId != currentUvGenerationId)
+                    return;
+
                 uvGenerationStatus = UvGenerationStatus.Finished;
 
-                Invoke.Instance.QueueForObject(() => ApplyTextures(layout, skinType), this);
+                Invoke.Instance.QueueForObject(() => ApplyTextures(layout), this);
             }
             else
             {
@@ -214,9 +228,9 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
         }
     }
 
-    private void ApplyTextures(MetaballLayout<MacroscopicMetaball> layout, CreatureSkinType skinType)
+    private void ApplyTextures(MetaballLayout<MacroscopicMetaball> layout)
     {
-        var photographable = new CreatureTexturePhotographable(Mesh, layout, skinType);
+        var photographable = new CreatureTexturePhotographable(Mesh, layout, desiredSkinType);
 
         texturizationTask = PhotoStudio.Instance.GenerateImage(photographable, 1, 2048);
     }
