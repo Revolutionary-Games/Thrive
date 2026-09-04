@@ -901,6 +901,17 @@ public class SimulationCache
         return new PilusToolScores(pilusScore, injectisomeScore, defensivePilusScore, defensiveInjectisomeScore);
     }
 
+    private static float CalculateSpeedAdvantage(float fasterSpeed, float slowerSpeed)
+    {
+        if (fasterSpeed > slowerSpeed)
+        {
+            // Sigmoidal calculation to avoid divisions by zero
+            return (fasterSpeed + 0.001f) / (slowerSpeed + 0.0001f);
+        }
+
+        return 0.0f;
+    }
+
     private PredationToolsRawScores CalculateMicrobePredationToolsRawScores(MicrobeSpecies species)
     {
         var averageToxicity = 0.0f;
@@ -1898,55 +1909,28 @@ public class SimulationCache
         if (canDigestPrey || pilusScore > 0.0f || injectisomeScore > 0.0f)
         {
             // First, you may hunt individual preys, but only if you are fast enough...
-            if (predatorSpeed > preySpeed)
-            {
-                // You catch more preys if you are fast, and if they are slow.
-                // This incentivizes engulfment strategies in these cases.
-                // Sigmoidal calculation to avoid divisions by zero
-                catchScore += (predatorSpeed + 0.001f) / (preySpeed + 0.0001f) * (1 - slowedProportion);
-            }
+            // You catch more preys if you are fast, and if they are slow.
+            // This incentivizes engulfment strategies in these cases.
+            catchScore += CalculateSpeedAdvantage(predatorSpeed, preySpeed) * (1 - slowedProportion);
 
             // If you can slow the target, some proportion of prey are easier to catch
-            if (predatorSpeed > slowedPreySpeed)
-            {
-                catchScore += (predatorSpeed + 0.001f) / (slowedPreySpeed + 0.0001f) * slowedProportion;
-            }
+            catchScore += CalculateSpeedAdvantage(predatorSpeed, slowedPreySpeed) * slowedProportion;
 
             // Sprinting can help catch prey.
-            if (predatorSprintSpeed > preySpeed)
-            {
-                catchScore += (predatorSprintSpeed + 0.001f) / (preySpeed + 0.0001f) * (1 - slowedProportion) *
-                    predatorSprintTime;
-            }
-
-            if (predatorSprintSpeed > slowedPreySpeed)
-            {
-                catchScore += (predatorSprintSpeed + 0.001f) / (slowedPreySpeed + 0.0001f) * slowedProportion *
-                    predatorSprintTime;
-            }
+            catchScore += CalculateSpeedAdvantage(predatorSprintSpeed, preySpeed) * (1 - slowedProportion) *
+                predatorSprintTime;
+            catchScore += CalculateSpeedAdvantage(predatorSprintSpeed, slowedPreySpeed) * slowedProportion *
+                predatorSprintTime;
 
             // Sprinting can also help prey escape.
-            if (preySprintSpeed > predatorSpeed)
-            {
-                catchScore -= (preySprintSpeed + 0.001f) / (predatorSpeed + 0.0001f) * preySprintTime;
-            }
+            catchScore -= CalculateSpeedAdvantage(preySprintSpeed, predatorSpeed) * preySprintTime;
 
             // If you have Slime Jets, this can help you catch targets.
-            if (predatorSlimeSpeed > preySpeed)
-            {
-                catchScore += (predatorSlimeSpeed + 0.001f) / (preySpeed + 0.0001f) * (1 - slowedProportion);
-            }
-
-            if (predatorSlimeSpeed > slowedPreySpeed)
-            {
-                catchScore += (predatorSlimeSpeed + 0.001f) / (slowedPreySpeed + 0.0001f) * slowedProportion;
-            }
+            catchScore += CalculateSpeedAdvantage(predatorSlimeSpeed, preySpeed) * (1 - slowedProportion);
+            catchScore += CalculateSpeedAdvantage(predatorSlimeSpeed, slowedPreySpeed) * slowedProportion;
 
             // Having Slime Jets can also help prey escape.
-            if (preySlimeSpeed > predatorSpeed)
-            {
-                catchScore -= (preySlimeSpeed + 0.001f) / (predatorSpeed + 0.0001f);
-            }
+            catchScore -= CalculateSpeedAdvantage(preySlimeSpeed, predatorSpeed);
 
             // prevent potential negative catchScore.
             catchScore = MathF.Max(catchScore, 0);

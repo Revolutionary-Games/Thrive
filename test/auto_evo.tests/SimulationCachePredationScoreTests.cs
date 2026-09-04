@@ -75,6 +75,8 @@ public class SimulationCachePredationScoreTests
         AssertThat(float.IsFinite(scoreAgainstPreyWithSlimeJet)).IsTrue();
         AssertThat(scoreAgainstPreyWithoutSlimeJet > 0.0f).IsTrue();
         AssertThat(scoreAgainstPreyWithSlimeJet > 0.0f).IsTrue();
+        AssertThat(scoreAgainstPreyWithoutSlimeJet).IsEqual(80417.01f);
+        AssertThat(scoreAgainstPreyWithSlimeJet).IsEqual(80317.52f);
         AssertThat(scoreAgainstPreyWithSlimeJet < scoreAgainstPreyWithoutSlimeJet).IsTrue();
     }
 
