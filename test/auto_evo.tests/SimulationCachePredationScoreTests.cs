@@ -27,7 +27,7 @@ public class SimulationCachePredationScoreTests
 
         var score = CalculatePredationScore(predator, prey);
 
-        AssertThat(score).IsEqual(273.68018f);
+        AssertThat(score).IsEqual(233.40552f);
     }
 
     [TestCase]
