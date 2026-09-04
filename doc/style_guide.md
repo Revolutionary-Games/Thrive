@@ -489,8 +489,9 @@ Godot usage
   instead to detach them from parents automatically.
 
 - The order of Godot overridden methods in a class should be in the
-  following order: (class constructor), `_Ready`, `_ExitTree`, `_Process`,
-  `_Input`, `_UnhandledInput`, (other callbacks)
+  following order: (class constructor), `_Ready`, `_EnterTree`, 
+  `_ExitTree`, `_Process`, `_Notification`, `_Input`, `_UnhandledInput`, 
+  (other callbacks)
 
 - If you need to access parent objects, don't make a static public
   instance variables, instead pass callbacks etc. around to allow the
