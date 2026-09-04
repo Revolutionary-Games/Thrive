@@ -70,7 +70,7 @@ public class SimulationCachePredationToolsRawScoresTests
             (CreateSlimeJetCellType(simulationParameters, "Misaligned", new Hex(4, 0)), new Hex(0, 0)));
         var speciesWithSupport = CreateSlimeJetSpecies(104,
             (CreateSlimeJetCellType(simulationParameters, "Misaligned", new Hex(4, 0)), new Hex(0, 0)),
-            (CreateSupportCellType(simulationParameters), new Hex(0, 1)));
+            (CreateSupportCellType(simulationParameters), new Hex(3, 0)));
 
         var scoreWithoutSupport = cache.GetPredationToolsRawScores(speciesWithoutSupport);
         var scoreWithSupport = cache.GetPredationToolsRawScores(speciesWithSupport);
@@ -93,7 +93,7 @@ public class SimulationCachePredationToolsRawScoresTests
         var misalignedCellType = CreateSlimeJetCellType(simulationParameters, "Misaligned", new Hex(4, 0));
         var species = CreateSlimeJetSpecies(105,
             (alignedCellType, new Hex(0, 0)),
-            (misalignedCellType, new Hex(0, 1)));
+            (misalignedCellType, new Hex(3, 0)));
         alignedCellType.CellTypeSpecializationBonus = 2.0f;
         misalignedCellType.CellTypeSpecializationBonus = 3.0f;
 

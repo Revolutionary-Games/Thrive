@@ -153,7 +153,13 @@ public class Program
         {
             ColourConsole.WriteInfoLine("Running tests with gdUnit");
 
-            const int maxTries = 2;
+            if (options.GodotReruns < 0)
+            {
+                ColourConsole.WriteErrorLine("Godot test reruns needs to be a non-negative number");
+                return 2;
+            }
+
+            var maxTries = options.GodotReruns + 1;
 
             // Then gdUnit tests
             ColourConsole.WriteNormalLine($"Generating {TestRunningHelpers.RUN_SETTINGS_FILE}");
@@ -543,6 +549,10 @@ public class Program
         [Option("godot", Required = false,
             HelpText = "If specified can only run Godot tests or non-Godot tests. Default is to run all.")]
         public bool? Godot { get; set; }
+
+        [Option("godot-reruns", Required = false, Default = 0, MetaValue = "COUNT",
+            HelpText = "How many times to rerun failed Godot tests")]
+        public int GodotReruns { get; set; }
     }
 
     public class ChangesOptions : ChangesOptionsBase

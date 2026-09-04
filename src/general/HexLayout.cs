@@ -428,6 +428,28 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
         }
     }
 
+    /// <summary>
+    ///   Computes all the hex positions and maps them to the elements that occupy them.
+    /// </summary>
+    /// <param name="receiver">Results are placed here, and the dictionary is cleared before use.</param>
+    /// <param name="temporaryStorage">Temporary storage that is cleared and reused while calculating positions.</param>
+    /// <exception cref="ArgumentException">Thrown if multiple elements occupy the same position.</exception>
+    public void CalculateAllElementPositions(Dictionary<Hex, T> receiver, List<Hex> temporaryStorage)
+    {
+        receiver.Clear();
+
+        foreach (var hex in existingHexes)
+        {
+            GetHexComponentPositions(hex, temporaryStorage);
+            int count = temporaryStorage.Count;
+
+            for (int i = 0; i < count; ++i)
+            {
+                receiver.Add(hex.Position + temporaryStorage[i], hex);
+            }
+        }
+    }
+
     protected abstract void GetHexComponentPositions(T hex, List<Hex> result);
 
     /// <summary>
