@@ -95,9 +95,9 @@ public class SimulationCachePredationScoreTests
     public void ChannelInhibitorMovementFundingUsesFullStationaryConsumption()
     {
         var allStationaryConsumptionIsOsmoregulation =
-            CalculateChannelInhibitorPredationScore(20.0f, 5.0f, 5.0f);
+            CalculateChannelInhibitorPredationScore(14.0f, 5.0f, 5.0f);
         var stationaryConsumptionIncludesOtherProcesses =
-            CalculateChannelInhibitorPredationScore(20.0f, 0.0f, 5.0f);
+            CalculateChannelInhibitorPredationScore(14.0f, 0.0f, 5.0f);
 
         AssertThat(float.IsFinite(allStationaryConsumptionIsOsmoregulation) &&
             float.IsFinite(stationaryConsumptionIncludesOtherProcesses)).IsTrue();
