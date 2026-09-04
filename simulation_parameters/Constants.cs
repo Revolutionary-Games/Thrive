@@ -1275,11 +1275,10 @@ public static class Constants
     public const float GAMETE_MATE_CALL_TARGET_DISTANCE_SQUARED = 50 * 50;
 
     // Corpse info
-    public const int CORPSE_CHUNK_DIVISOR = 3;
+    public const int CORPSE_CHUNK_MINIMUM = 1;
+    public const int CORPSE_CHUNK_DIVISOR = 4;
     public const float CORPSE_CHUNK_AMOUNT_MULTIPLIER = 1.0f;
-    public const int CORPSE_CHUNK_AMOUNT_CAP = 20;
-    public const int CORPSE_CHUNK_AMOUNT_DIMINISH_AFTER = 8;
-    public const int CORPSE_CHUNK_AMOUNT_DIMINISH_MORE_AFTER = 16;
+    public const int CORPSE_CHUNK_AMOUNT_CAP = 6;
     public const string DEFAULT_CHUNK_MODEL_NAME = "cytoplasm";
 
     // TODO: remove the drag variables if https://github.com/Revolutionary-Games/Thrive/issues/4719 is not decided to

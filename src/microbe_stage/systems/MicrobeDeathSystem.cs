@@ -67,23 +67,13 @@ public partial class MicrobeDeathSystem : BaseSystem<World, float>
     /// </summary>
     public static int CalculateCorpseChunkCount(int hexCount)
     {
-        int chunksToSpawn = Math.Max(1, hexCount / Constants.CORPSE_CHUNK_DIVISOR);
+        var chunksToSpawn = Math.Max(Constants.CORPSE_CHUNK_MINIMUM,
+            hexCount / Constants.CORPSE_CHUNK_DIVISOR);
 
-        // Apply a soft cap to the number of chunks
-        if (chunksToSpawn > Constants.CORPSE_CHUNK_AMOUNT_DIMINISH_AFTER)
-        {
-            chunksToSpawn = Constants.CORPSE_CHUNK_AMOUNT_DIMINISH_AFTER +
-                (chunksToSpawn - Constants.CORPSE_CHUNK_AMOUNT_DIMINISH_AFTER) / 2;
-        }
+        // Make the second chunk spawn early to show that deaths result in multiple chunks
+        if (hexCount >= 5 && chunksToSpawn < 2)
+            chunksToSpawn = 2;
 
-        if (chunksToSpawn > Constants.CORPSE_CHUNK_AMOUNT_DIMINISH_MORE_AFTER)
-        {
-            chunksToSpawn = Constants.CORPSE_CHUNK_AMOUNT_DIMINISH_MORE_AFTER +
-                (chunksToSpawn - Constants.CORPSE_CHUNK_AMOUNT_DIMINISH_MORE_AFTER) / 3;
-        }
-
-        // And then a hard maximum limit to not cause massive performance problems if there are for some reason huge
-        // cells that die
         return Math.Min(chunksToSpawn, Constants.CORPSE_CHUNK_AMOUNT_CAP);
     }
 

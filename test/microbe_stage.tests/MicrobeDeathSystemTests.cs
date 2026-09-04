@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Arch.Core;
 using Arch.Core.Extensions;
@@ -13,6 +13,19 @@ using static GdUnit4.Assertions;
 [RequireGodotRuntime]
 public class MicrobeDeathSystemTests
 {
+    [TestCase]
+    public void CorpseChunkCountScalesWithCellSize()
+    {
+        AssertThat(MicrobeDeathSystem.CalculateCorpseChunkCount(1))
+            .IsEqual(Constants.CORPSE_CHUNK_MINIMUM);
+        AssertThat(MicrobeDeathSystem.CalculateCorpseChunkCount(10)).IsEqual(2);
+        AssertThat(MicrobeDeathSystem.CalculateCorpseChunkCount(15)).IsEqual(3);
+        AssertThat(MicrobeDeathSystem.CalculateCorpseChunkCount(25))
+            .IsEqual(Constants.CORPSE_CHUNK_AMOUNT_CAP);
+        AssertThat(MicrobeDeathSystem.CalculateCorpseChunkCount(100))
+            .IsEqual(Constants.CORPSE_CHUNK_AMOUNT_CAP);
+    }
+
     [TestCase]
     public void CorpseChunksContainExpectedAmountOfCompounds()
     {
