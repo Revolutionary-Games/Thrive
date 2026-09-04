@@ -78,16 +78,124 @@ public class SimulationCachePredationScoreTests
         AssertThat(scoreAgainstPreyWithSlimeJet < scoreAgainstPreyWithoutSlimeJet).IsTrue();
     }
 
+    [TestCase]
+    public void ChannelInhibitorPredationScoreIncreasesAsMovementFundingDecreases()
+    {
+        var fullyFundedMovementScore = CalculateChannelInhibitorPredationScore(24.0f);
+        var halfFundedMovementScore = CalculateChannelInhibitorPredationScore(14.0f);
+        var unfundedMovementScore = CalculateChannelInhibitorPredationScore(4.0f);
+
+        AssertThat(float.IsFinite(fullyFundedMovementScore) && float.IsFinite(halfFundedMovementScore) &&
+            float.IsFinite(unfundedMovementScore)).IsTrue();
+        AssertThat(fullyFundedMovementScore < halfFundedMovementScore &&
+            halfFundedMovementScore < unfundedMovementScore).IsTrue();
+    }
+
+    [TestCase]
+    public void ChannelInhibitorMovementFundingUsesFullStationaryConsumption()
+    {
+        var allStationaryConsumptionIsOsmoregulation =
+            CalculateChannelInhibitorPredationScore(14.0f, 5.0f, 5.0f);
+        var stationaryConsumptionIncludesOtherProcesses =
+            CalculateChannelInhibitorPredationScore(14.0f, 0.0f, 5.0f);
+
+        AssertThat(float.IsFinite(allStationaryConsumptionIsOsmoregulation) &&
+            float.IsFinite(stationaryConsumptionIncludesOtherProcesses)).IsTrue();
+        AssertThat(stationaryConsumptionIncludesOtherProcesses)
+            .IsEqual(allStationaryConsumptionIsOsmoregulation);
+    }
+
+    [TestCase]
+    public void ChannelInhibitorDoesNotSlowSpeciesWithoutMovementCost()
+    {
+        var inhibitedBelowStationaryConsumption =
+            CalculateChannelInhibitorPredationScore(4.0f, 0.0f, 5.0f, 0.0f);
+        var productionAboveStationaryConsumption =
+            CalculateChannelInhibitorPredationScore(12.0f, 0.0f, 5.0f, 0.0f);
+
+        AssertThat(float.IsFinite(inhibitedBelowStationaryConsumption) &&
+            float.IsFinite(productionAboveStationaryConsumption)).IsTrue();
+        AssertThat(inhibitedBelowStationaryConsumption)
+            .IsEqual(productionAboveStationaryConsumption);
+    }
+
+    [TestCase]
+    public void ChannelInhibitorSlowsSprintEscapeSpeed()
+    {
+        // Normal movement stays catchable, while sprinting lets the prey escape.
+        const float preyFear = Constants.MAX_SPECIES_FEAR * 0.25f;
+        var fullyFundedMovementWithoutSprint = CalculateChannelInhibitorPredationScore(24.0f, preyFear: preyFear);
+        var unfundedMovementWithoutSprint = CalculateChannelInhibitorPredationScore(4.0f, preyFear: preyFear);
+        var fullyFundedMovementWithSprint =
+            CalculateChannelInhibitorPredationScore(24.0f, finalBalance: 1.0f, preyFear: preyFear);
+        var unfundedMovementWithSprint =
+            CalculateChannelInhibitorPredationScore(4.0f, finalBalance: 1.0f, preyFear: preyFear);
+
+        var inhibitionBenefitWithoutSprint = unfundedMovementWithoutSprint - fullyFundedMovementWithoutSprint;
+        var inhibitionBenefitWithSprint = unfundedMovementWithSprint - fullyFundedMovementWithSprint;
+
+        AssertThat(inhibitionBenefitWithSprint > inhibitionBenefitWithoutSprint).IsTrue();
+    }
+
     private static float CalculatePredationScore(Species predator, Species prey)
     {
-        var worldSettings = new WorldGenerationSettings
-        {
-            Seed = 1,
-        };
-        var cache = new SimulationCache(worldSettings);
+        var cache = CreateCache();
         var biome = SimulationParameters.Instance.GetBiome("aavolcanic_vent").Conditions;
 
         return cache.GetPredationScore(predator, prey, biome);
+    }
+
+    private static float CalculateChannelInhibitorPredationScore(float totalProduction, float osmoregulation = 2.0f,
+        float stationaryConsumption = 2.0f, float movementConsumption = 10.0f, float finalBalance = 0.0f,
+        float preyFear = Constants.MAX_SPECIES_FEAR)
+    {
+        var cache = CreateCache();
+        var predator = CreateChannelInhibitorPredator(9);
+        var prey = CreateMicrobe(10, "ChannelInhibitorPrey", "single", "cytoplasm");
+        prey.ModifiableBehaviour.Fear = preyFear;
+        prey.ModifiableBehaviour.Aggression = 0;
+
+        var rawScores = cache.GetPredationToolsRawScores(predator);
+        AssertThat(rawScores.ChannelInhibitorScore > 0.0f).IsTrue();
+        AssertThat(rawScores.MacrolideScore).IsEqual(0.0f);
+
+        var biome = SimulationParameters.Instance.GetBiome("aavolcanic_vent").Conditions;
+        var preyEnergyBalance = cache.GetEnergyBalanceForSpecies(prey, biome);
+        preyEnergyBalance.TotalProduction = totalProduction;
+        preyEnergyBalance.Osmoregulation = osmoregulation;
+        preyEnergyBalance.TotalConsumptionStationary = stationaryConsumption;
+        preyEnergyBalance.TotalMovement = movementConsumption;
+        preyEnergyBalance.TotalConsumption = stationaryConsumption + movementConsumption;
+        preyEnergyBalance.FinalBalance = finalBalance;
+        preyEnergyBalance.FinalBalanceStationary = 0.0f;
+
+        return cache.GetPredationScore(predator, prey, biome);
+    }
+
+    private static SimulationCache CreateCache()
+    {
+        return new SimulationCache(new WorldGenerationSettings
+        {
+            Seed = 1,
+        });
+    }
+
+    private static MicrobeSpecies CreateChannelInhibitorPredator(uint id)
+    {
+        var simulationParameters = SimulationParameters.Instance;
+        var species = CreateMicrobe(id, "ChannelInhibitorPredator", "single", "cytoplasm", "pilus");
+        species.Organelles.Add(new OrganelleTemplate(simulationParameters.GetOrganelleType("oxytoxy"),
+            new Hex(8, 0), 0)
+        {
+            ModifiableUpgrades = new OrganelleUpgrades
+            {
+                ModifiableUnlockedFeatures = [ToxinUpgradeNames.CHANNEL_INHIBITOR_UPGRADE_NAME],
+                CustomUpgradeData = new ToxinUpgrades(ToxinType.ChannelInhibitor, 0.0f),
+            },
+        });
+        species.OnEdited();
+
+        return species;
     }
 
     private static MicrobeSpecies CreateMicrobe(uint id, string epithet, string membrane,
