@@ -735,7 +735,7 @@ public static class Constants
     ///   value is higher as spawned and microbe corpse chunks have now their individual limits (so the real limit is
     ///   double this)
     /// </summary>
-    public const int FLOATING_CHUNK_MAX_COUNT = 50;
+    public const int FLOATING_CHUNK_MAX_COUNT = 45;
 
     public const float CHUNK_VENT_COMPOUND_MULTIPLIER = 5000.0f;
 
