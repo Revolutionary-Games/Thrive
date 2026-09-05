@@ -225,6 +225,39 @@ public partial class CellBodyPlanEditorComponent
         Editor.DirtyMutationPointsCache();
     }
 
+    // These next 4 functions are only here for save compatibility and are otherwise unused
+    [ArchiveAllowedMethod]
+    private void DoGameteACellChangeAction(GameteACellTypeChangeActionData data)
+    {
+        GameteACellType = data.NewCellType;
+
+        UpdateSpecialCellTypeDisplays();
+    }
+
+    [ArchiveAllowedMethod]
+    private void UndoGameteACellChangeAction(GameteACellTypeChangeActionData data)
+    {
+        GameteACellType = data.OldCellType;
+
+        UpdateSpecialCellTypeDisplays();
+    }
+
+    [ArchiveAllowedMethod]
+    private void DoGameteBCellChangeAction(GameteBCellTypeChangeActionData data)
+    {
+        GameteBCellType = data.NewCellType;
+
+        UpdateSpecialCellTypeDisplays();
+    }
+
+    [ArchiveAllowedMethod]
+    private void UndoGameteBCellChangeAction(GameteBCellTypeChangeActionData data)
+    {
+        GameteBCellType = data.OldCellType;
+
+        UpdateSpecialCellTypeDisplays();
+    }
+
     [ArchiveAllowedMethod]
     private void DoMassBuddingCellCountChangeAction(MassBuddingCellCountActionData data)
     {
