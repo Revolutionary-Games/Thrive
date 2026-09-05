@@ -414,7 +414,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         if (organelles.HasSignalingAgent && random.NextSingle() < Constants.AI_SIGNALING_CHANCE && !signalExists)
         {
             UseSignalingAgent(in entity, ref position, ref organelles, atpLevel, compounds, speciesAggression,
-                ref signaling, random, ref ourSpecies);
+                ref signaling, random, ref control, ref ourSpecies);
         }
 
         // Follow received commands if we have them
@@ -432,12 +432,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                     // was smelled from
                     if (signaler.IsAliveAndHas<WorldPosition>())
                     {
-                        ai.MoveToLocation(signalerPosition, ref control, entity);
-
-                        if (organelles.HasBindingAgent &&
-                            signaler.Get<OrganelleContainer>().HasBindingAgent &&
-                            atpLevel >= compounds.GetCapacityForCompound(Compound.ATP) * 0.5f &&
-                            signalerDistanceSquared < Constants.AI_ENTER_BINDING_MODE_DISTANCE_SQUARED)
+                        if (organelles.HasBindingAgent && signaler.Get<OrganelleContainer>().HasBindingAgent)
                         {
                             if (signaler.Has<MicrobeColony>())
                             {
@@ -446,13 +441,17 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                                 if (!entity.Has<MicrobeColony>() && signaler.Get<MicrobeColony>().ColonyMembers.Length
                                     < Constants.COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR)
                                 {
-                                    control.SetStateColonyAware(entity, MicrobeState.Binding);
+                                    ai.MoveToLocation(signalerPosition, ref control, entity);
                                 }
                             }
                             else
                             {
-                                control.SetStateColonyAware(entity, MicrobeState.Binding);
+                                ai.MoveToLocation(signalerPosition, ref control, entity);
                             }
+                        }
+                        else
+                        {
+                            ai.MoveToLocation(signalerPosition, ref control, entity);
                         }
 
                         return;
@@ -710,7 +709,10 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         }
 
         // There is no reason to be engulfing at this stage
-        control.SetStateColonyAware(entity, MicrobeState.Normal);
+        if (control.State != MicrobeState.Binding)
+        {
+            control.SetStateColonyAware(entity, MicrobeState.Normal);
+        }
 
         // If the microbe has radiation protection it means it has melanosomes and can stay near the radioactive chunks
         // to produce ATP
@@ -737,7 +739,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
 
     private void UseSignalingAgent(in Entity entity, ref WorldPosition position, ref OrganelleContainer organelles,
         float atpLevel, CompoundBag compounds, float speciesAggression, ref CommandSignaler signaling, Random random,
-        ref SpeciesMember ourSpecies)
+        ref MicrobeControl control, ref SpeciesMember ourSpecies)
     {
         // Has binding agent, ATP is at least half capacity, and isn't receiving move to me command
         if (organelles.HasBindingAgent &&
@@ -750,12 +752,14 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                     Constants.COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR)
                 {
                     signaling.QueuedSignalingCommand = MicrobeSignalCommand.MoveToMe;
+                    control.SetStateColonyAware(entity, MicrobeState.Binding);
                     return;
                 }
             }
             else
             {
                 signaling.QueuedSignalingCommand = MicrobeSignalCommand.MoveToMe;
+                control.SetStateColonyAware(entity, MicrobeState.Binding);
                 return;
             }
         }
