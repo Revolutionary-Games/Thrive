@@ -444,7 +444,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                                     ai.MoveToLocation(signalerPosition, ref control, entity);
                                 }
                             }
-                            else
+                            else if (!entity.Has<MicrobeColony>())
                             {
                                 ai.MoveToLocation(signalerPosition, ref control, entity);
                             }
