@@ -147,7 +147,7 @@ public partial class CellBodyPlanEditorComponent :
     private CustomConfirmationDialog wrongGrowthOrderPopup = null!;
 
     [Export]
-    private CustomConfirmationDialog noSporeCellTypeSetPopup = null!;
+    private SpecialCellTypeUnsetPopup specialCellTypeUnsetPopup = null!;
 
     [Export]
     private LabelSettings toleranceWarningsFont = null!;
@@ -270,6 +270,13 @@ public partial class CellBodyPlanEditorComponent :
 
             if (ReproductionMethod == MulticellularReproductionMethod.Sporulation && SporeCellType == null)
                 return true;
+
+            if ((ReproductionMethod == MulticellularReproductionMethod.SexualAnisogamy
+                    || ReproductionMethod == MulticellularReproductionMethod.SexualIsogamy)
+                && (GameteACellType == null || GameteBCellType == null))
+            {
+                return true;
+            }
 
             if (ReproductionMethod == MulticellularReproductionMethod.MassBudding &&
                 (DesiredMassBuddingCellCount < Constants.MASS_BUDDING_MINIMUM_BUD_SIZE ||
@@ -821,17 +828,32 @@ public partial class CellBodyPlanEditorComponent :
 
         if (ReproductionMethod == MulticellularReproductionMethod.Sporulation && SporeCellType == null)
         {
-            noSporeCellTypeSetPopup.PopupCenteredShrink();
+            specialCellTypeUnsetPopup.DisplayForCellType(SpecialCellArchetype.Spore);
             return false;
         }
 
         // This is checked due to a species data requirement
         if (ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy
-                or MulticellularReproductionMethod.SexualAnisogamy && editedMicrobeCells.Count < 2)
+                or MulticellularReproductionMethod.SexualAnisogamy)
         {
-            ToolTipManager.Instance.ShowPopup(
-                Localization.Translate("ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"), 5);
-            return false;
+            if (editedMicrobeCells.Count < 2)
+            {
+                ToolTipManager.Instance.ShowPopup(
+                    Localization.Translate("ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"), 5);
+                return false;
+            }
+
+            if (GameteACellType == null)
+            {
+                specialCellTypeUnsetPopup.DisplayForCellType(SpecialCellArchetype.GameteA);
+                return false;
+            }
+
+            if (GameteBCellType == null && ReproductionMethod == MulticellularReproductionMethod.SexualAnisogamy)
+            {
+                specialCellTypeUnsetPopup.DisplayForCellType(SpecialCellArchetype.GameteB);
+                return false;
+            }
         }
 
         if (ReproductionMethod == MulticellularReproductionMethod.MassBudding &&
