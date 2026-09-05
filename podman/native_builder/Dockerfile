@@ -168,9 +168,12 @@ RUN echo "/usr/lib64/x86_64-unknown-linux-gnu/" > /etc/ld.so.conf.d/clang.conf
 RUN ldconfig
 
 # When copied properly this exists thanks to the copy from the builder image
-RUN [ -f /usr/bin/ld.lld ] && \
-    echo "ld.lld created properly" || (echo "ld.lld was not installed"; exit 1)
+RUN if [ -f /usr/bin/ld.lld ]; then \
+        echo "ld.lld created properly"; \
+    else \
+        echo "ld.lld was not installed"; \
+        exit 1; \
+    fi
 
 RUN ln -s /usr/bin/ld.lld /usr/bin/ld
-
 

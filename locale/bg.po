@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-14 09:18+0300\n"
-"PO-Revision-Date: 2026-05-22 15:37+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2026-09-01 10:25+0300\n"
+"PO-Revision-Date: 2026-09-01 14:53+0000\n"
+"Last-Translator: Kelvin2500 <georgkostov6@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
@@ -68,7 +68,7 @@ msgid "ACHIEVEMENT_ACHIEVED"
 msgstr "Завършени"
 
 msgid "ACHIEVEMENT_LOCKED"
-msgstr ""
+msgstr "Заключени"
 
 msgid "ACTION_AWAKEN"
 msgstr "Пробуждане ({0:F1} / {1:F1})"
@@ -403,8 +403,13 @@ msgstr "Еволюционен редактор"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Еволюционен редактор"
 
-msgid "AUTO_EVO_FAILED"
+#, fuzzy
+msgid "AUTO_EVO_FAILED_CHECK_LOGS"
 msgstr "Автоматичната еволюция не успя да стартира"
+
+#, fuzzy
+msgid "AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL"
+msgstr "Резултати от автоматичната еволюция:"
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr ""
@@ -934,6 +939,10 @@ msgid "CLEAR_CACHE"
 msgstr ""
 
 msgid "CLICK_TO_SELECT"
+msgstr "Избиране"
+
+#, fuzzy
+msgid "CLICK_TO_SET_CELL_TYPE"
 msgstr "Избиране"
 
 msgid "CLIMATE_INSTABILITY"
@@ -1738,6 +1747,10 @@ msgstr "Освобождаване на слуз"
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "По подразбиране"
 
+#, fuzzy
+msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
+msgstr "Създаване на нова клетка"
+
 msgid "DELETE"
 msgstr "Премахване"
 
@@ -2095,6 +2108,14 @@ msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Отваряне на редактора"
 
 #, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR"
+msgstr "Без мутации на създанията (ако няма подходяща мутация)"
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR_EXPLANATION"
+msgstr "(ограничава скоростта на растеж на създанията)"
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
 "Това е микробният редактор, тук може да добавяте или премахвате органели от Вашите създания, чрез наличните мутационни точки (МТ).\n"
@@ -2352,6 +2373,9 @@ msgid "ERROR_LOADING"
 msgstr "Грешка по време на зареждането"
 
 msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
+
+msgid "ERROR_REQUIRED_AT_LEAST_X_CELLS_FOR_MASS_BUDDING"
 msgstr ""
 
 msgid "ERROR_SAVING"
@@ -2764,6 +2788,10 @@ msgstr "Превключване на химичните съединения"
 
 msgid "GAME_DESIGN_TEAM"
 msgstr "Дизайнери"
+
+#, fuzzy
+msgid "GAME_PHYSICS_PERFORMANCE_LOW_WARNING"
+msgstr "Важно: Ако имате проблеми с производителността на играта, натиснете [color=#3796e1][url=thrive://GUI/OptionsMenu/Performance]тук[/url][/color]"
 
 #, fuzzy
 msgid "GAME_SYSTEMS_TITLE"
@@ -3902,6 +3930,10 @@ msgid "MASS_BUDDING_CELL_COUNT"
 msgstr ""
 
 #, fuzzy
+msgid "MASS_BUDDING_MINIMUM_SIZE_EXPLANATION"
+msgstr "(създанията усвояват хранителните вещества от околната среда)"
+
+#, fuzzy
 msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "(създанията усвояват хранителните вещества от околната среда)"
 
@@ -5010,6 +5042,14 @@ msgid "NO_SELECTED_MOD"
 msgstr "Няма"
 
 #, fuzzy
+msgid "NO_SPORE_CELL_TYPE_SET"
+msgstr "Създаване на нова клетка"
+
+#, fuzzy
+msgid "NO_SPORE_CELL_TYPE_SET_TITLE"
+msgstr "Създаване на нова клетка"
+
+#, fuzzy
 msgid "NO_SUGGESTION"
 msgstr "?"
 
@@ -6053,6 +6093,9 @@ msgstr "Записът съдържа невалидно състояние на
 msgid "SAVE_INVALID"
 msgstr "Невалиден запис"
 
+msgid "SAVE_IS_CORRUPT_WHILE_LOADING"
+msgstr ""
+
 msgid "SAVE_IS_INVALID"
 msgstr "Записът е невалиден"
 
@@ -6537,7 +6580,7 @@ msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr "Идентификаторът трябва да е положително цяло число"
 
 #, fuzzy
-msgid "SPORE_CELL_TYPE"
+msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
 msgstr "Създаване на нова клетка"
 
 #, fuzzy
@@ -8075,6 +8118,38 @@ msgid "WIKI_8_BRACKET_16"
 msgstr "["
 
 #, fuzzy
+msgid "WIKI_ACTOMYOSIN_EFFECTS"
+msgstr "Подлежи на уточняване"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_INTRO"
+msgstr "Подлежи на уточняване"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_MODIFICATIONS"
+msgstr "Подлежи на уточняване"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_PROCESSES"
+msgstr "Подлежи на уточняване"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_REQUIREMENTS"
+msgstr "Подлежи на уточняване"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_SCIENTIFIC_BACKGROUND"
+msgstr "Подлежи на уточняване"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_STRATEGY"
+msgstr "Подлежи на уточняване"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_UPGRADES"
+msgstr "Подлежи на уточняване"
+
+#, fuzzy
 msgid "WIKI_ASCENSION"
 msgstr "Подлежи на уточняване"
 
@@ -9042,6 +9117,7 @@ msgstr "Превръща [thrive:compound type=\"glucose\"]глюкозата[/t
 msgid "WIKI_MITOCHONDRION_REQUIREMENTS"
 msgstr "Това е основният източник на енергия на клетката. Митохондрията е структура с двойна мембрана, изпълнена с протеини и ензими. Тя е прокариот, който е бил асимилиран от еукариотния си приемник. Митохондрията превръща по много ефективен начин [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в процес, който се нарича [b]аеробно дишане[/b]. За да функционира се нуждае от [thrive:compound type=\"oxygen\"]кислород[/thrive:compound], когато той не е достатъчен произвеждането на [thrive:compound type=\"atp\"]АТФ[/thrive:compound] се забавя."
 
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_SCIENTIFIC_BACKGROUND"
 msgstr "Подлежи на уточняване"
 
@@ -9052,6 +9128,10 @@ msgstr "Подлежи на уточняване"
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "Това е основният източник на енергия на клетката. Митохондрията е структура с двойна мембрана, изпълнена с протеини и ензими. Тя е прокариот, който е бил асимилиран от еукариотния си приемник. Митохондрията превръща по много ефективен начин [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в процес, който се нарича [b]аеробно дишане[/b]. За да функционира се нуждае от [thrive:compound type=\"oxygen\"]кислород[/thrive:compound], когато той не е достатъчен произвеждането на [thrive:compound type=\"atp\"]АТФ[/thrive:compound] се забавя."
+
+#, fuzzy
+msgid "WIKI_MUCOCYST"
+msgstr "Добавяне на органел или друг обект"
 
 #, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
@@ -9240,6 +9320,7 @@ msgstr "Подлежи на уточняване"
 msgid "WIKI_OXYTOXISOME_INTRO"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_MODIFICATIONS"
 msgstr "Подлежи на уточняване"
 
@@ -9264,6 +9345,10 @@ msgstr "Подлежи на уточняване"
 #, fuzzy
 msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr "Окситоксиносинтеза"
+
+#, fuzzy
+msgid "WIKI_PAGE_ACTOMYOSIN"
+msgstr "Рустицианин"
 
 #, fuzzy
 msgid "WIKI_PAGE_ASCENSION"
@@ -10039,6 +10124,10 @@ msgstr "Приближаване"
 
 msgid "ZOOM_OUT"
 msgstr "Отдалечаване"
+
+#, fuzzy
+#~ msgid "SPORE_CELL_TYPE"
+#~ msgstr "Създаване на нова клетка"
 
 #, fuzzy
 #~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"

@@ -648,9 +648,15 @@ public static class MicrobeColonyHelpers
     ///   Removes a member from this colony. If this is called directly check the usage of
     ///   <see cref="AttachedToEntityHelpers.EntityAttachRelationshipModifyLock"/>
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This can optionally not remove the attached component if it is still needed. For example, when things are
+    ///     engulfed out of a colony.
+    ///   </para>
+    /// </remarks>
     /// <returns>True when the colony still exists. False if the entire colony was disbanded</returns>
     public static bool RemoveFromColonyAndDisbandIfEmpty(this ref MicrobeColony colony, in Entity colonyEntity,
-        Entity removedMember, CommandBuffer recorder)
+        Entity removedMember, CommandBuffer recorder, bool removeAttachedComponent = true)
     {
         if (colonyEntity.Has<MulticellularGrowth>())
         {
@@ -708,7 +714,8 @@ public static class MicrobeColonyHelpers
                 {
                     // Handle the normal cleanup here for the non-leader cells (we already queued delete of the
                     // entire colony component above)
-                    QueueRemoveFormerColonyMemberComponents(currentMember, recorder);
+                    QueueRemoveFormerColonyMemberComponents(currentMember, recorder,
+                        currentMember != removedMember || removeAttachedComponent);
                     leader = false;
                 }
 
@@ -721,7 +728,7 @@ public static class MicrobeColonyHelpers
         RemoveColonyMemberFromMemberList(ref colony, removedMember);
 
         if (!removedMemberIsLeader)
-            QueueRemoveFormerColonyMemberComponents(removedMember, recorder);
+            QueueRemoveFormerColonyMemberComponents(removedMember, recorder, removeAttachedComponent);
 
         OnColonyMemberRemoved(removedMember, removedMemberIsLeader);
 
@@ -762,7 +769,8 @@ public static class MicrobeColonyHelpers
                 colony.ColonyStructure[next] = colony.ColonyMembers[newParent];
                 if (next.Has<IntercellularMatrix>())
                 {
-                    next.Get<IntercellularMatrix>().RemoveConnection();
+                    ref var matrix = ref next.Get<IntercellularMatrix>();
+                    matrix.ShouldRegenerateConnection = true;
                 }
                 else
                 {
@@ -837,7 +845,8 @@ public static class MicrobeColonyHelpers
     ///   Removes the given entity from the microbe colony it is in (if any)
     /// </summary>
     /// <returns>True on success</returns>
-    public static bool RemoveFromColony(in Entity entity, CommandBuffer entityCommandRecorder, bool verboseErrors)
+    public static bool RemoveFromColony(in Entity entity, CommandBuffer entityCommandRecorder, bool verboseErrors,
+        bool removeAttachedComponent = true)
     {
         lock (AttachedToEntityHelpers.EntityAttachRelationshipModifyLock)
         {
@@ -847,7 +856,8 @@ public static class MicrobeColonyHelpers
 
                 try
                 {
-                    colony.RemoveFromColonyAndDisbandIfEmpty(entity, entity, entityCommandRecorder);
+                    colony.RemoveFromColonyAndDisbandIfEmpty(entity, entity, entityCommandRecorder,
+                        removeAttachedComponent);
                 }
                 catch (Exception e)
                 {
@@ -869,7 +879,8 @@ public static class MicrobeColonyHelpers
 
                 try
                 {
-                    colony.RemoveFromColonyAndDisbandIfEmpty(member.ColonyLeader, entity, entityCommandRecorder);
+                    colony.RemoveFromColonyAndDisbandIfEmpty(member.ColonyLeader, entity, entityCommandRecorder,
+                        removeAttachedComponent);
                 }
                 catch (Exception e)
                 {
@@ -1021,66 +1032,63 @@ public static class MicrobeColonyHelpers
     /// </summary>
     public static void CalculateRotationSpeed(this ref MicrobeColony colony)
     {
+        // A colony is never valid with less than 2 members, but anyway we check here against invalid data
+        if (colony.ColonyMembers.Length == 0)
+        {
+            GD.PrintErr("Colony has 0 members when rotation speed is being calculated");
+            colony.ColonyRotationSpeed = 1;
+            return;
+        }
+
         // TODO: see the comment in MicrobeInternalCalculations.CalculateRotationSpeed about:
         // shape.TestYRotationInertiaFactor() how to make this take the colony shape into account in rotation to
         // be more physically accurate
 
-        // When changing this method's logic also update the corresponding method in CellBodyPlanInternalCalculations
-        ref var leaderOrganelles = ref colony.Leader.Get<OrganelleContainer>();
-        float colonyRotation = MicrobeInternalCalculations.CalculateRotationSpeed(
-            leaderOrganelles.Organelles!.Organelles,
-            colony.Leader.Get<SpecializationFactor>().TotalSpecializationBonus);
-
-        if (!leaderOrganelles.OrganelleComponentsCached)
-        {
-            GD.PrintErr("Cannot get actomyosin count yet for rotation speed");
-        }
-
-        // Note if this logic is changed, then the relevant logic needs also updating in
-        // CellBodyPlanInternalCalculations.CalculateRotationSpeed
-
         // Actomyosin acts as the key buff to keep the rotation rate reasonable. This is a float as multiple actomyosin
         // per cell give a small extra bonus
-        float actomyosinCount = leaderOrganelles.CalculateEffectiveActomyosinCount();
+        float actomyosinCount = 0;
+        float totalRotationSpeed = 0;
+        bool leader = true;
 
         foreach (var colonyMember in colony.ColonyMembers)
         {
-            // Colony leader is set before the loop
-            if (colonyMember == colony.Leader)
-                continue;
-
             try
             {
-                if (!colonyMember.IsAliveAndHas<AttachedToEntity>())
-                    throw new Exception("Colony member has no AttachedToEntity component");
-
-                ref var memberPosition = ref colonyMember.Get<AttachedToEntity>();
-
-                var distanceSquared = memberPosition.RelativePosition.LengthSquared();
-
                 ref var memberOrganelleContainer = ref colonyMember.Get<OrganelleContainer>();
+                var memberTotalSpecializationBonus =
+                    colonyMember.Get<SpecializationFactor>().TotalSpecializationBonus;
 
-                // Multiply both the propulsion and mass by the distance from center to simulate leverage.
-                // This relies on the bounding of the cell rotation, as a colony can never be faster than the
-                // fastest cell inside it.
-                var memberRotation = MicrobeInternalCalculations
-                        .CalculateRotationSpeed(memberOrganelleContainer.Organelles!.Organelles,
-                            colonyMember.Get<SpecializationFactor>().TotalSpecializationBonus)
-                    * (1 + 0.005f * distanceSquared);
+                var rawRotation = MicrobeInternalCalculations.CalculateRotationSpeed(
+                    memberOrganelleContainer.Organelles!.Organelles, memberTotalSpecializationBonus);
 
-                colonyRotation += memberRotation;
-                actomyosinCount += memberOrganelleContainer.CalculateEffectiveActomyosinCount();
+                // Bonus from position
+                if (!leader)
+                {
+                    // This is the gameplay, full layout position, which means that this is likely more with big cells
+                    // than the CellBodyPlanInternalCalculations's version.
+                    var position = colonyMember.Get<AttachedToEntity>().RelativePosition;
+                    rawRotation =
+                        CellBodyPlanInternalCalculations
+                            .AdjustedColonyMemberRotationFromPosition(position, rawRotation);
+                }
+
+                totalRotationSpeed += rawRotation;
+                actomyosinCount += memberOrganelleContainer.CalculateEffectiveActomyosinCount() *
+                    memberTotalSpecializationBonus;
             }
             catch (Exception e)
             {
                 GD.PrintErr("Failed to calculate rotation speed for microbe colony, " +
-                    "member likely missing attached component: ", e);
+                    "member likely missing a required component: ", e);
             }
+
+            // First cell is the leader
+            leader = false;
         }
 
         colony.ColonyRotationSpeed =
-            CellBodyPlanInternalCalculations.CalculateFinalColonyRotation(colonyRotation, actomyosinCount,
-                colony.ColonyMembers.Length);
+            CellBodyPlanInternalCalculations.CalculateFinalColonyRotation(
+                totalRotationSpeed / colony.ColonyMembers.Length, actomyosinCount, colony.ColonyMembers.Length);
     }
 
     /// <summary>
@@ -1628,16 +1636,28 @@ public static class MicrobeColonyHelpers
 
         // TODO: maybe in some situations creating the compound bag could be entirely safely skipped here
         colony.GetCompounds().UpdateColonyMembers(colony.ColonyMembers);
+
+        // Reset membrane visuals for all colony members so they recalculate with the new colony structure
+        foreach (var member in colony.ColonyMembers)
+        {
+            if (member.IsAlive() && member.Has<OrganelleContainer>())
+            {
+                ref var organelleContainer = ref member.Get<OrganelleContainer>();
+                organelleContainer.OrganelleVisualsCreated = false;
+            }
+        }
     }
 
     /// <summary>
     ///   Removes the components from the detached entity that no longer should be on it
     /// </summary>
     private static void QueueRemoveFormerColonyMemberComponents(in Entity removedMember,
-        CommandBuffer recorder)
+        CommandBuffer recorder, bool removeAttachedComponent = true)
     {
         recorder.Remove<MicrobeColonyMember>(removedMember);
-        recorder.Remove<AttachedToEntity>(removedMember);
+
+        if (removeAttachedComponent)
+            recorder.Remove<AttachedToEntity>(removedMember);
 
         // Destroy temporary event callbacks if they exist
         if (removedMember.Has<MicrobeEventCallbacks>())

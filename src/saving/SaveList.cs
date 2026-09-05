@@ -68,7 +68,9 @@ public partial class SaveList : ScrollContainer
     private bool refreshing;
     private bool refreshedAtLeastOnce;
 
+#pragma warning disable CA2213 // Task is disposed after its result is consumed
     private Task<List<string>>? readSavesList;
+#pragma warning restore CA2213
 
     private string? saveToBeDeleted;
     private string? saveToBeLoaded;
@@ -129,57 +131,65 @@ public partial class SaveList : ScrollContainer
         if (!readSavesList!.IsCompleted)
             return;
 
-        var saves = readSavesList.Result;
-        readSavesList.Dispose();
-        readSavesList = null;
-
-        if (saves.Count > 0)
+        try
         {
-            noSavesItem.Visible = false;
+            var saves = readSavesList.Result;
 
-            foreach (var save in saves)
+            if (saves.Count > 0)
             {
-                var item = listItemScene.Instantiate<SaveListItem>();
-                item.Selectable = SelectableItems;
-                item.Loadable = LoadableItems;
+                noSavesItem.Visible = false;
 
-                if (SelectableItems)
+                foreach (var save in saves)
                 {
-                    item.Connect(SaveListItem.SignalName.OnSelectedChanged,
-                        new Callable(this, nameof(OnSubItemSelectedChanged)));
+                    var item = listItemScene.Instantiate<SaveListItem>();
+                    item.Selectable = SelectableItems;
+                    item.Loadable = LoadableItems;
+
+                    if (SelectableItems)
+                    {
+                        item.Connect(SaveListItem.SignalName.OnSelectedChanged,
+                            new Callable(this, nameof(OnSubItemSelectedChanged)));
+                    }
+
+                    item.Connect(SaveListItem.SignalName.OnDoubleClicked,
+                        Callable.From(() => OnItemDoubleClicked(item)));
+
+                    item.Connect(SaveListItem.SignalName.OnDeleted, Callable.From(() => OnDeletePressed(save)));
+
+                    item.Connect(SaveListItem.SignalName.OnOldSaveLoaded, Callable.From(() => OnOldSaveLoaded(save)));
+
+                    // This can't use binds because we need an additional Dynamic parameter from the list item here
+                    item.Connect(SaveListItem.SignalName.OnUpgradeableSaveLoaded,
+                        new Callable(this, nameof(OnUpgradeableSaveLoaded)));
+                    item.Connect(SaveListItem.SignalName.OnNewSaveLoaded, Callable.From(() => OnNewSaveLoaded(save)));
+                    item.Connect(SaveListItem.SignalName.OnBrokenSaveLoaded,
+                        Callable.From(() => OnInvalidLoaded(save)));
+                    item.Connect(SaveListItem.SignalName.OnKnownIncompatibleLoaded,
+                        new Callable(this, nameof(OnKnownIncompatibleLoaded)));
+                    item.Connect(SaveListItem.SignalName.OnDifferentVersionPrototypeLoaded,
+                        new Callable(this, nameof(OnDifferentVersionPrototypeLoaded)));
+                    item.Connect(SaveListItem.SignalName.OnProblemFreeSaveLoaded,
+                        Callable.From(() => OnProblemFreeLoaded(save)));
+
+                    item.SaveName = save;
+                    savesList.AddChild(item);
+                    saveItemChildren.Add(item);
                 }
-
-                item.Connect(SaveListItem.SignalName.OnDoubleClicked, Callable.From(() => OnItemDoubleClicked(item)));
-
-                item.Connect(SaveListItem.SignalName.OnDeleted, Callable.From(() => OnDeletePressed(save)));
-
-                item.Connect(SaveListItem.SignalName.OnOldSaveLoaded, Callable.From(() => OnOldSaveLoaded(save)));
-
-                // This can't use binds because we need an additional Dynamic parameter from the list item here
-                item.Connect(SaveListItem.SignalName.OnUpgradeableSaveLoaded,
-                    new Callable(this, nameof(OnUpgradeableSaveLoaded)));
-                item.Connect(SaveListItem.SignalName.OnNewSaveLoaded, Callable.From(() => OnNewSaveLoaded(save)));
-                item.Connect(SaveListItem.SignalName.OnBrokenSaveLoaded, Callable.From(() => OnInvalidLoaded(save)));
-                item.Connect(SaveListItem.SignalName.OnKnownIncompatibleLoaded,
-                    new Callable(this, nameof(OnKnownIncompatibleLoaded)));
-                item.Connect(SaveListItem.SignalName.OnDifferentVersionPrototypeLoaded,
-                    new Callable(this, nameof(OnDifferentVersionPrototypeLoaded)));
-                item.Connect(SaveListItem.SignalName.OnProblemFreeSaveLoaded,
-                    Callable.From(() => OnProblemFreeLoaded(save)));
-
-                item.SaveName = save;
-                savesList.AddChild(item);
-                saveItemChildren.Add(item);
             }
-        }
-        else
-        {
-            noSavesItem.Visible = true;
-        }
+            else
+            {
+                noSavesItem.Visible = true;
+            }
 
-        loadingItem.Visible = false;
-        refreshing = false;
-        needsInitialVisibilityCheck = true;
+            needsInitialVisibilityCheck = true;
+        }
+        finally
+        {
+            readSavesList.Dispose();
+            readSavesList = null;
+            loadingItem.Visible = false;
+            refreshing = false;
+        }
     }
 
     public IEnumerable<SaveListItem> GetSelectedItems()

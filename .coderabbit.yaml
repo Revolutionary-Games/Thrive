@@ -1,0 +1,10 @@
+language: "en-US"
+reviews:
+  path_filters:
+    - "**/*"
+    - "!**/*.pot"
+    - "!**/*.po"
+    - "**/en.po"
+  auto_review:
+    ignore_usernames:
+      - "revolutionary-translation-bot"

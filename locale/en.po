@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-14 09:18+0300\n"
-"PO-Revision-Date: 2026-08-14 09:21+0300\n"
+"POT-Creation-Date: 2026-09-01 10:25+0300\n"
+"PO-Revision-Date: 2026-09-01 10:27+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -399,8 +399,11 @@ msgstr "Use in Auto-Evo Explorer"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Auto-Evo Exploring Tool"
 
-msgid "AUTO_EVO_FAILED"
-msgstr "Auto-evo failed to run"
+msgid "AUTO_EVO_FAILED_CHECK_LOGS"
+msgstr "Auto-evo failed to run (game log file will have more info)"
+
+msgid "AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL"
+msgstr "Auto-evo results are missing from this save. This most likely indicates that auto-evo failed to run before this save was made. Please create a bug report about the auto-evo failure. Please provide previous game logs or a save from before the error happens (as long as the error triggers again with some consistency from an earlier save) as part of the report. Providing this save file that is already broken is not useful as a bug report, unfortunately."
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr "Auto-evo results are missing. If you loaded an older save this is expected to be missing. If you did not load an older save please report this as a bug to us and send us your game log file."
@@ -920,6 +923,9 @@ msgstr "Clear Cache"
 
 msgid "CLICK_TO_SELECT"
 msgstr "Select"
+
+msgid "CLICK_TO_SET_CELL_TYPE"
+msgstr "Click to set a cell type"
 
 msgid "CLIMATE_INSTABILITY"
 msgstr "Climate instability"
@@ -1645,6 +1651,9 @@ msgstr "Decrease object size"
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Default output device"
 
+msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
+msgstr "Spore"
+
 msgid "DELETE"
 msgstr "Delete"
 
@@ -1988,6 +1997,16 @@ msgstr "Editors And Mutations"
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Enter the editor and modify your species"
 
+msgid "EDITOR_SPECIES_DATA_ERROR"
+msgstr "Editor Species Data Error"
+
+msgid "EDITOR_SPECIES_DATA_ERROR_EXPLANATION"
+msgstr ""
+"The species data in the editor is corrupt. A data inconsistency has been detected.\n"
+"Continuing with this species has been prevented in order to stop further game errors due to the invalid data.\n"
+"Please undo any changes you have made or otherwise try to fix your species state.\n"
+"You may need to load an earlier save from before the corruption. Or, if you share your save with the Thrive developers, the data might be fixable."
+
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
 "Your microbe has successfully reproduced again taking another step towards being a more advanced life-form.\n"
@@ -2224,6 +2243,9 @@ msgstr "Error Loading"
 
 msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
 msgstr "Error: at least two cells are needed for sexual reproduction"
+
+msgid "ERROR_REQUIRED_AT_LEAST_X_CELLS_FOR_MASS_BUDDING"
+msgstr "Error: mass budding requires an initial bud size of at least {0} cells"
 
 msgid "ERROR_SAVING"
 msgstr "Error Saving"
@@ -2619,6 +2641,9 @@ msgstr "Select this gamete type to be produced by the player's cell colony"
 
 msgid "GAME_DESIGN_TEAM"
 msgstr "Game Design Team"
+
+msgid "GAME_PHYSICS_PERFORMANCE_LOW_WARNING"
+msgstr "Warning: reducing physics simulation accuracy or speed due to low performance"
 
 msgid "GAME_SYSTEMS_TITLE"
 msgstr "Game Systems"
@@ -3668,6 +3693,9 @@ msgstr "Marine snow"
 msgid "MASS_BUDDING_CELL_COUNT"
 msgstr "Initial cell count"
 
+msgid "MASS_BUDDING_MINIMUM_SIZE_EXPLANATION"
+msgstr "Bud size must be at least {0} cells to use this option. You may need to add more cells to your body plan to be able to select a large enough bud size."
+
 msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "Produces an offspring that starts with multiple cells."
 
@@ -4652,6 +4680,12 @@ msgstr "No screenshot directory found"
 msgid "NO_SELECTED_MOD"
 msgstr "No Selected Mod"
 
+msgid "NO_SPORE_CELL_TYPE_SET"
+msgstr "An organism that uses sporulation as its reproduction method must have a spore cell type set."
+
+msgid "NO_SPORE_CELL_TYPE_SET_TITLE"
+msgstr "Spore cell type is unset"
+
 msgid "NO_SUGGESTION"
 msgstr "None"
 
@@ -5619,6 +5653,12 @@ msgstr "Save has invalid game state scene"
 msgid "SAVE_INVALID"
 msgstr "Invalid"
 
+msgid "SAVE_IS_CORRUPT_WHILE_LOADING"
+msgstr ""
+"Loading the save failed because the file is corrupted.\n"
+"Expected hash: {0}\n"
+"Calculated hash: {1}"
+
 msgid "SAVE_IS_INVALID"
 msgstr "Save is invalid"
 
@@ -6067,8 +6107,8 @@ msgstr "Speed:"
 msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr "Toggle between normal speed and alternative speed gameplay"
 
-msgid "SPORE_CELL_TYPE"
-msgstr "Spore cell type"
+msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
+msgstr "Select a cell type to duplicate from"
 
 msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "Produces multiple optionally specialized offspring that can look for better conditions before turning into a colony root cell."
@@ -7494,6 +7534,39 @@ msgstr "3D, Strategy, Space"
 msgid "WIKI_8_BRACKET_16"
 msgstr "8 (16)"
 
+msgid "WIKI_ACTOMYOSIN_EFFECTS"
+msgstr ""
+"Each cell with [b]Actomyosin[/b] increases the speed of the colony by 25%, as well as improving turning speed by 25%. While moving, each actomyosin consumes [thrive:compound type=\"atp\"][/thrive:compound].\n"
+"\n"
+"Increases maximum Pressure Tolerance by 1 kPa."
+
+msgid "WIKI_ACTOMYOSIN_INTRO"
+msgstr "[b]Actomyosin[/b] is a complex of Actin and Myosin proteins that uses [thrive:compound type=\"atp\"][/thrive:compound] for a strong increase in movement and turning speed. Only one can be placed in each cell."
+
+msgid "WIKI_ACTOMYOSIN_MODIFICATIONS"
+msgstr "No modifications."
+
+msgid "WIKI_ACTOMYOSIN_PROCESSES"
+msgstr "No processes."
+
+msgid "WIKI_ACTOMYOSIN_REQUIREMENTS"
+msgstr ""
+"If organelle unlocks are enabled in game settings, [i]at least one[/i] of the following condition must be true [i]for the player cell[/i]:\n"
+"\n"
+"[ul]Has speed below [b]15[/b].[/ul]"
+
+msgid "WIKI_ACTOMYOSIN_SCIENTIFIC_BACKGROUND"
+msgstr ""
+"[color=#3796e1][url=https://en.wikipedia.org/wiki/Actin]Actin[/url][/color] and [color=#3796e1][url=https://en.wikipedia.org/wiki/Myosin]Myosin[/url][/color] are proteins found in eukaryotic cells, where they contract to produce force. This happens by actin molecules \"walking along\" the myosin molecules, consuming energy in the form of ATP to do so. This principle is what powers all muscles.\n"
+"\n"
+"The particular arrangement of actin and myosin proteins represented by the [b]Actomyosin[/b] cell part is found in simple muscle cells, such as [color=#3796e1][url=https://en.wikipedia.org/wiki/Smooth_muscle]smooth muscle[/url][/color]. The bundles of actin and myosin proteins criss-cross the cell, tied together by so-called dense bodies. As the network is attached to the cell membrane, its contraction results in the contraction of the whole cell, pulling also on the structures outside the cell."
+
+msgid "WIKI_ACTOMYOSIN_STRATEGY"
+msgstr "Actomyosin has the potential to greatly improve the mobility of larger Multicellular Species. Since only one can be placed per cell, increasing cell specialization and adjacency bonuses is the only way to improve the speed you get per cell."
+
+msgid "WIKI_ACTOMYOSIN_UPGRADES"
+msgstr "No upgrades."
+
 msgid "WIKI_ASCENSION"
 msgstr "Ascension"
 
@@ -8192,7 +8265,10 @@ msgid "WIKI_FLAGELLUM_INTRO"
 msgstr "[b]Flagella[/b] are hair-like filaments on the outside of a cell which use [thrive:compound type=\"atp\"][/thrive:compound] to increase cell movement speed in one direction. Thrust is applied in the opposite direction to the outward-facing direction of the flagellum."
 
 msgid "WIKI_FLAGELLUM_MODIFICATIONS"
-msgstr "No modifications."
+msgstr ""
+"[b]Flagellum Length[/b]\n"
+"\n"
+"Increase the length of the flagellum to generate more thrust but also consume more ATP while moving."
 
 msgid "WIKI_FLAGELLUM_PROCESSES"
 msgstr "No processes."
@@ -8477,7 +8553,7 @@ msgstr ""
 "\n"
 "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] can be converted into [thrive:compound type=\"glucose\"][/thrive:compound] via chemoplasts and chemosynthesizing proteins. [thrive:compound type=\"iron\"][/thrive:compound] can be converted into [thrive:compound type=\"atp\"][/thrive:compound] via rusticyanin or ferroplasts.\n"
 "\n"
-"Each visit to the editor in the Microbe Stage represents 100 million years of evolution.\n"
+"Each visit to the editor in the Microbe Stage represents 50 million years of evolution.\n"
 "\n"
 "You can engulf chunks of floating matter, whether they are parts of dead cells or minerals.\n"
 "\n"
@@ -8936,7 +9012,7 @@ msgstr ""
 "\n"
 "One notable aspect of the mitochondrion that separates it from most organelles is that it contains its own DNA. Because the mitochondrion was originally an independent organism that was acquired by a host cell, it contains DNA plasmids within its matrix (inside the inner membrane). Over time, the mitochondrion became more and more dependent on the host cell and lost its ability to live independently.\n"
 "\n"
-"While the mitochondrion is best known for being the powerhouse of the cell, it actually does so much more than provide energy. It is an integral part of programmed cell death, cell signalling, and the synthesis of various molecules such as phospholipids. Currently, there is research trying to understand these processes, as well as trying to uncover new roles that the mitochondrion plays."
+"While the mitochondrion is best known for being the powerhouse of the cell, it actually does so much more than provide energy. It is an integral part of programmed cell death, cell signaling, and the synthesis of various molecules such as phospholipids. Currently, there is research trying to understand these processes, as well as trying to uncover new roles that the mitochondrion plays."
 
 msgid "WIKI_MITOCHONDRION_STRATEGY"
 msgstr ""
@@ -8946,6 +9022,9 @@ msgstr ""
 
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "No upgrades."
+
+msgid "WIKI_MUCOCYST"
+msgstr "Mucocyst"
 
 msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
 msgstr ""
@@ -9157,7 +9236,20 @@ msgid "WIKI_OXYTOXISOME_INTRO"
 msgstr "Modified [b][color=#3796e1][url=thriveopedia:metabolosome]Metabolosome[/url][/color][/b] which produces [thrive:compound type=\"oxytoxy\"][/thrive:compound], an agent that can be fired as a toxic projectile. Inferior version of the [b][color=#3796e1][url=thriveopedia:oxytoxy]Toxin Vacuole[/url][/color][/b]."
 
 msgid "WIKI_OXYTOXISOME_MODIFICATIONS"
-msgstr "No modifications."
+msgstr ""
+"[b]Toxin Type[/b]\n"
+"\n"
+"Select which type of toxin this [b]Oxytoxisome[/b] fires. Cells that can fire multiple toxin types will alternate between them for each shot.\n"
+"\n"
+"[ul][b]OxyToxyNT:[/b] A strongly damaging toxin based on oxygen causing cellular damage. Less effective against species the more oxygen-using parts they have.\n"
+"[b]Cytotoxin:[/b] (default) A simple damaging toxin that deals a consistent amount of damage.\n"
+"[b]Macrolide:[/b] A toxin that slows down affected targets.\n"
+"[b]Channel Inhibitor:[/b] A toxin that inhibits the ATP production of affected cells, potentially slowing them down or even damaging them.\n"
+"[b]Cyanide:[/b] A strongly damaging toxin targeting oxygen metabolism. More effective against species the more oxygen-using parts they have.[/ul]\n"
+"\n"
+"[b]Fire Rate and Toxicity[/b]\n"
+"\n"
+"Decide the balance between fire rate and how effective each shot is."
 
 msgid "WIKI_OXYTOXISOME_PROCESSES"
 msgstr ""
@@ -9189,6 +9281,9 @@ msgstr "No upgrades."
 
 msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr "OxyToxy Synthesis, Glycolysis"
+
+msgid "WIKI_PAGE_ACTOMYOSIN"
+msgstr "Actomyosin"
 
 msgid "WIKI_PAGE_ASCENSION"
 msgstr "Ascension"
@@ -9531,7 +9626,10 @@ msgstr ""
 "It is also important to note that the organelle uses [thrive:compound type=\"glucose\"][/thrive:compound] and not [thrive:compound type=\"atp\"][/thrive:compound], so be sure to check your cell's compound balance when adding this organelle."
 
 msgid "WIKI_SLIME_JET_UPGRADES"
-msgstr "No upgrades."
+msgstr ""
+"[b]Mucocyst[/b]\n"
+"\n"
+"For [b]40[/b] mutation points, modify [b]Slime Jets[/b] once placed to transform them into [b]Mucocysts[/b]. When activated, they create a protective sheath of slime around the cell, which gives temporary immunity to all damage sources."
 
 msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Development has not started on this stage. Theory and gameplay discussions haven't happened much in recent years for this stage. Discussions will need to resume once we have actually reached the Society Stage in official development."
@@ -9791,7 +9889,20 @@ msgid "WIKI_TOXIN_VACUOLE_INTRO"
 msgstr "Modified [b][color=#3796e1][url=thriveopedia:vacuole]Vacuole[/url][/color][/b] which produces [thrive:compound type=\"oxytoxy\"][/thrive:compound], an agent that can be fired as a toxic projectile. Superior version of the [b][color=#3796e1][url=thriveopedia:oxytoxyProteins]Oxytoxisome[/url][/color][/b]."
 
 msgid "WIKI_TOXIN_VACUOLE_MODIFICATIONS"
-msgstr "No modifications."
+msgstr ""
+"[b]Toxin Type[/b]\n"
+"\n"
+"Select which type of toxin this [b]Toxin Vacuole[/b] fires. Cells that can fire multiple toxin types will alternate between them for each shot.\n"
+"\n"
+"[ul][b]OxyToxyNT:[/b] A strongly damaging toxin based on oxygen causing cellular damage. Less effective against species the more oxygen-using parts they have.\n"
+"[b]Cytotoxin:[/b] (default) A simple damaging toxin that deals a consistent amount of damage.\n"
+"[b]Macrolide:[/b] A toxin that slows down affected targets.\n"
+"[b]Channel Inhibitor:[/b] A toxin that inhibits the ATP production of affected cells, potentially slowing them down or even damaging them.\n"
+"[b]Cyanide:[/b] A strongly damaging toxin targeting oxygen metabolism. More effective against species the more oxygen-using parts they have.[/ul]\n"
+"\n"
+"[b]Fire Rate and Toxicity[/b]\n"
+"\n"
+"Decide the balance between fire rate and how effective each shot is."
 
 msgid "WIKI_TOXIN_VACUOLE_PROCESSES"
 msgstr ""
@@ -10003,6 +10114,9 @@ msgstr "Zoom in"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom out"
+
+#~ msgid "SPORE_CELL_TYPE"
+#~ msgstr "Spore cell type"
 
 #~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
 #~ msgstr "Toggle between normal speed and double speed gameplay"

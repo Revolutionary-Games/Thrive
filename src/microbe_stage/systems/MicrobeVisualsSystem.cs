@@ -19,6 +19,8 @@ using World = Arch.Core.World;
 ///   Generates the visuals needed for microbes. Handles the membrane and organelle graphics. Attaching to the
 ///   Godot scene tree is handled by <see cref="SpatialAttachSystem"/>
 /// </summary>
+[WritesToComponent(typeof(MulticellularGrowth))]
+[WritesToComponent(typeof(IntercellularMatrix))]
 [RunsBefore(typeof(SpatialAttachSystem))]
 [RunsBefore(typeof(EntityMaterialFetchSystem))]
 [RunsBefore(typeof(SpatialPositionSystem))]
@@ -35,6 +37,7 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
 
     private readonly List<ShaderMaterial> tempMaterialsList = new();
     private readonly List<PlacedOrganelle> tempVisualsToDelete = new();
+    private readonly HashSet<int> lostCells = new();
 
     /// <summary>
     ///   Used to detect which organelle graphics are no longer used and should be deleted
@@ -104,7 +107,11 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update(ref OrganelleContainer organelleContainer, in Entity entity)
     {
-        if (organelleContainer.OrganelleVisualsCreated)
+        ref var cellProperties = ref entity.Get<CellProperties>();
+
+        // A membrane can become invalid after the organelle visuals have been created, for example, when a colony
+        // changes shape. In that case the visuals need to be processed again instead of being skipped here.
+        if (organelleContainer.OrganelleVisualsCreated && cellProperties.IsMembraneReady())
             return;
 
         // Skip if no organelle data
@@ -113,8 +120,6 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
             GD.PrintErr("Missing organelles list for MicrobeVisualsSystem");
             return;
         }
-
-        ref var cellProperties = ref entity.Get<CellProperties>();
 
         ref var spatialInstance = ref entity.Get<SpatialInstance>();
 
@@ -154,8 +159,66 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
 
         ref var materialStorage = ref entity.Get<EntityMaterial>();
 
-        // Background thread membrane generation
-        var data = GetMembraneDataIfReadyOrStartGenerating(ref cellProperties, ref organelleContainer);
+        MembranePointData? data = null;
+        bool useSingleCellMembraneGeneration = true;
+        bool isSpeciesMulticellular = false;
+
+        if (entity.Has<MulticellularSpeciesMember>())
+        {
+            var colonyLeader = entity.Has<MicrobeColonyMember>() ?
+                entity.Get<MicrobeColonyMember>().ColonyLeader :
+                entity;
+
+            if (colonyLeader.IsAliveAndHas<MulticellularGrowth>())
+            {
+                ref var growthOrder = ref colonyLeader.Get<MulticellularGrowth>();
+
+                if (!growthOrder.IsASpore)
+                {
+                    ref var speciesMember = ref entity.Get<MulticellularSpeciesMember>();
+                    var nextBodyPlanCellToGrowIndex = growthOrder.ResumeBodyPlanAfterReplacingLost ??
+                        growthOrder.NextBodyPlanCellToGrowIndex;
+
+                    // It's set here, so that the outdated species get their intercellular matrix
+                    isSpeciesMulticellular = true;
+
+                    if (nextBodyPlanCellToGrowIndex <= speciesMember.Species.ModifiableGameplayCells.Count)
+                    {
+                        useSingleCellMembraneGeneration = false;
+
+                        lostCells.Clear();
+
+                        if (growthOrder.LostPartsOfBodyPlan != null)
+                        {
+                            foreach (var lostPart in growthOrder.LostPartsOfBodyPlan)
+                            {
+                                lostCells.Add(lostPart);
+                            }
+                        }
+
+                        long colonyLeaderKey = (long)colonyLeader.Id << 32 | (uint)colonyLeader.Version;
+                        long memberCellKey = (long)entity.Id << 32 | (uint)entity.Version;
+
+                        // Only get the membrane for THIS entity's cell (not all cells in the colony)
+                        var cellIndex = speciesMember.MulticellularBodyPlanPartIndex;
+                        var cell = speciesMember.Species.ModifiableGameplayCells[cellIndex];
+                        data = GetMulticellularMembraneDataIfReadyOrStartGenerating(cell, cell.ModifiableOrganelles,
+                            colonyLeaderKey, memberCellKey, ref speciesMember, ref growthOrder, cellIndex,
+                            nextBodyPlanCellToGrowIndex);
+                    }
+                    else
+                    {
+                        GD.PrintErr("Next body plan cell to grow index is out of bounds for species.");
+                    }
+                }
+            }
+        }
+
+        // This case covers non-multicellular cells, spores, and single-cell multicellular organisms without a colony
+        if (useSingleCellMembraneGeneration)
+        {
+            data = GetSingleCellMembraneDataIfReadyOrStartGenerating(ref cellProperties, ref organelleContainer);
+        }
 
         if (data == null)
         {
@@ -189,6 +252,14 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
             SetMembraneDisplayData(cellProperties.CreatedMembrane, data, ref cellProperties);
         }
 
+        cellProperties.CreatedMembrane!.IsMulticellular = isSpeciesMulticellular;
+
+        if (isSpeciesMulticellular && entity.Has<IntercellularMatrix>())
+        {
+            ref var matrix = ref entity.Get<IntercellularMatrix>();
+            matrix.ShouldRegenerateConnection = true;
+        }
+
         // Material is initialized in _Ready, so this is after AddChild of membrane
         tempMaterialsList.Add(cellProperties.CreatedMembrane!.MembraneShaderMaterial ??
             throw new Exception("Membrane didn't set material to edit"));
@@ -210,7 +281,7 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         cellProperties.ShapeCreated = false;
     }
 
-    private MembranePointData? GetMembraneDataIfReadyOrStartGenerating(ref CellProperties cellProperties,
+    private MembranePointData? GetSingleCellMembraneDataIfReadyOrStartGenerating(ref CellProperties cellProperties,
         ref OrganelleContainer organelleContainer)
     {
         // TODO: should we consider the situation where a membrane was requested on the previous update but is not
@@ -218,7 +289,10 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         var hexes = MembraneComputationHelpers.PrepareHexPositionsForMembraneCalculations(
             organelleContainer.Organelles!.Organelles, out var hexCount);
 
-        var hash = MembraneComputationHelpers.ComputeMembraneDataHash(hexes, hexCount, cellProperties.MembraneType);
+        var membraneGenereationParameters =
+            new MembraneGenerationParameters(hexes, hexCount, cellProperties.MembraneType);
+
+        var hash = membraneGenereationParameters.ComputeMembraneDataHash();
 
         var cachedMembrane = ProceduralDataCache.Instance.ReadMembraneData(hash);
 
@@ -226,7 +300,7 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         {
             // TODO: hopefully this can't get into a permanent loop where 2 conflicting membranes want to
             // re-generate on each game update cycle
-            if (!cachedMembrane.MembraneDataFieldsEqual(hexes, hexCount, cellProperties.MembraneType))
+            if (!cachedMembrane.MembraneDataFieldsEqual(membraneGenereationParameters))
             {
                 CacheableDataExtensions.OnCacheHashCollision<MembranePointData>(hash);
                 cachedMembrane = null;
@@ -235,7 +309,8 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
 
         if (cachedMembrane != null)
         {
-            // Membrane was ready now
+            // Membrane is ready now. return hexes array to the pool as it won't be used in calculations
+            ArrayPool<Vector2>.Shared.Return(hexes);
             return cachedMembrane;
         }
 
@@ -255,6 +330,97 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         }
 
         membranesToGenerate.Enqueue(new MembraneGenerationParameters(hexes, hexCount, cellProperties.MembraneType));
+
+        // Immediately start some jobs to give background threads something to do while the main thread is busy
+        // potentially setting up other visuals
+        StartMembraneGenerationJobs();
+
+        return null;
+    }
+
+    private MembranePointData? GetMulticellularMembraneDataIfReadyOrStartGenerating(CellTemplate cellProperties,
+        OrganelleLayout<OrganelleTemplate> organelleContainer, long leaderCellId, long cellId,
+        ref MulticellularSpeciesMember multicellular, ref MulticellularGrowth growthOrder, int currentCellIndex,
+        int nextBodyPlanCellToGrowIndex)
+    {
+        // TODO: should we consider the situation where a membrane was requested on the previous update but is not
+        // ready yet? This causes extra memory usage here in those cases.
+        var hexes = MembraneComputationHelpers.PrepareHexPositionsForMembraneCalculations(organelleContainer.Organelles,
+            out var hexCount);
+
+        MulticellularMembraneGenerationCellData[] grownCellsData;
+
+        if (growthOrder.GrownCellsData != null)
+        {
+            grownCellsData = growthOrder.GrownCellsData;
+        }
+        else
+        {
+            int cellCount = 0;
+            for (int i = 0; i < nextBodyPlanCellToGrowIndex; ++i)
+            {
+                if (!lostCells.Contains(i))
+                    ++cellCount;
+            }
+
+            grownCellsData = new MulticellularMembraneGenerationCellData[cellCount];
+
+            int writeIndex = 0;
+            for (int i = 0; i < nextBodyPlanCellToGrowIndex; ++i)
+            {
+                if (lostCells.Contains(i))
+                    continue;
+
+                var cell = multicellular.Species.ModifiableGameplayCells[i];
+                var cellPosition = Hex.AxialToCartesian(cell.Position);
+
+                grownCellsData[writeIndex] = new MulticellularMembraneGenerationCellData(
+                    new Vector2(cellPosition.X, cellPosition.Z) * Constants.MULTICELLULAR_CELL_DISTANCE_MULTIPLIER,
+                    cell.Orientation);
+
+                ++writeIndex;
+            }
+
+            growthOrder.GrownCellsData = grownCellsData;
+        }
+
+        var currentCell = multicellular.Species.ModifiableGameplayCells[currentCellIndex];
+        var currentCellPosition = Hex.AxialToCartesian(currentCell.Position);
+        var cellPositionInMulticellular = new Vector2(currentCellPosition.X, currentCellPosition.Z) *
+            Constants.MULTICELLULAR_CELL_DISTANCE_MULTIPLIER;
+
+        var finishedMembrane = MembraneGenerationCoordinator.TryTakeFinishedMulticellularMembrane(cellId);
+
+        if (finishedMembrane != null)
+        {
+            // Membrane is ready now. return hexes array to the pool as it won't be used in calculations
+            ArrayPool<Vector2>.Shared.Return(hexes);
+            return finishedMembrane;
+        }
+
+        // Need to generate a new membrane
+
+        lock (pendingGenerationsOfMembraneHashes)
+        {
+            if (!pendingGenerationsOfMembraneHashes.Add(cellId))
+            {
+                // Already queued, don't need to queue again
+
+                // Return the unnecessary array that there won't be a cache entry to hold to the pool
+                ArrayPool<Vector2>.Shared.Return(hexes);
+
+                return null;
+            }
+        }
+
+        // This throwing should be fixed now with the latest intercellular matrix system changes. The cause was that
+        // if the player removed cells then later body plan indexes would no longer point to any cell for existing
+        // entities.
+        var cellData = new MulticellularMembraneGenerationCellData(cellPositionInMulticellular,
+            multicellular.Species.ModifiableGameplayCells[currentCellIndex].Orientation);
+
+        membranesToGenerate.Enqueue(new MembraneGenerationParameters(hexes, hexCount, cellProperties.MembraneType,
+            cellData, grownCellsData, leaderCellId, cellId));
 
         // Immediately start some jobs to give background threads something to do while the main thread is busy
         // potentially setting up other visuals
@@ -424,20 +590,19 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         // Process membrane generation requests until empty
         while (membranesToGenerate.TryDequeue(out var generationParameters))
         {
-            var generator = MembraneShapeGenerator.GetThreadSpecificGenerator();
+            // Use coordinator to handle both single-cell and multicellular two-pass generation.
+            var hashedMembranes = MembraneGenerationCoordinator.HandleGenerationRequest(ref generationParameters);
 
-            var cacheEntry = generator.GenerateShape(ref generationParameters);
-
-            // Cache entry now owns the array data that was in the generationParameters and will return it to the
-            // pool when the cache disposes it
-            var hash = ProceduralDataCache.Instance.WriteMembraneData(ref cacheEntry);
-
-            // TODO: already generate the 3D points here for use on the main thread for faster membrane creation?
-
+            // writtenHashes contains the cache hashes that correspond to the final results that should be removed
+            // from the pending set. For single-cell requests this is the single written hash. For multicellular
+            // requests this will contain the multicellular hash for this cell when available.
             lock (pendingGenerationsOfMembraneHashes)
             {
-                if (!pendingGenerationsOfMembraneHashes.Remove(hash))
-                    GD.PrintErr("Membrane generation result is a hash that wasn't in the pending hashes");
+                foreach (var hash in hashedMembranes)
+                {
+                    if (!pendingGenerationsOfMembraneHashes.Remove(hash))
+                        GD.PrintErr("Membrane generation result is a hash that wasn't in the pending hashes");
+                }
             }
 
             // TODO: can we always rely on the dynamic data cache or should we have an explicit method for
@@ -466,5 +631,7 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         }
 
         activeGenerationTasks.Clear();
+
+        MembraneGenerationCoordinator.ClearCoordinator();
     }
 }

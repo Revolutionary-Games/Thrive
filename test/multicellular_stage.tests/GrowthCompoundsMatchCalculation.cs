@@ -81,6 +81,13 @@ public class GrowthCompoundsMatchCalculation
 
         Assertions.AssertThat(microbe.Get<MulticellularGrowth>().IsFullyGrownMulticellular).IsFalse();
 
+        // Simulate a spore retaining the growth state of the colony it came from.
+        ref var staleGrowth = ref microbe.Get<MulticellularGrowth>();
+        staleGrowth.NextBodyPlanCellToGrowIndex = 15;
+        staleGrowth.EnoughResourcesForBudding = true;
+        staleGrowth.LostPartsOfBodyPlan = [2];
+        staleGrowth.ResumeBodyPlanAfterReplacingLost = 3;
+
         var calculatedGrowthNeeds = new Dictionary<Compound, float>();
         microbe.Get<OrganelleContainer>().CalculateTotalReproductionCompounds(microbe, species, calculatedGrowthNeeds);
 
@@ -92,6 +99,9 @@ public class GrowthCompoundsMatchCalculation
         // As the species has just one cell, it is fully grown
         // Assertions.AssertThat(microbe.Get<MulticellularGrowth>().IsFullyGrownMulticellular).IsFalse();
         Assertions.AssertThat(microbe.Get<MulticellularGrowth>().EnoughResourcesForBudding).IsFalse();
+        Assertions.AssertThat(microbe.Get<MulticellularGrowth>().NextBodyPlanCellToGrowIndex).IsEqual(1);
+        Assertions.AssertThat(microbe.Get<MulticellularGrowth>().LostPartsOfBodyPlan).IsNull();
+        Assertions.AssertThat(microbe.Get<MulticellularGrowth>().ResumeBodyPlanAfterReplacingLost).IsNull();
 
         // Make sure this didn't change in between
         var calculatedGrowthNeeds2 = new Dictionary<Compound, float>();
@@ -165,7 +175,7 @@ public class GrowthCompoundsMatchCalculation
         // Final colony size 2
         species.ModifiableGameplayCells.AddFast(new CellTemplate(mainType, new Hex(0, 0), 0),
             new List<Hex>(), new List<Hex>());
-        species.ModifiableGameplayCells.AddFast(new CellTemplate(mainType, new Hex(10, 0), 0),
+        species.ModifiableGameplayCells.AddFast(new CellTemplate(mainType, new Hex(7, 0), 0),
             new List<Hex>(), new List<Hex>());
 
         species.ReproductionMethod = MulticellularReproductionMethod.Budding;
@@ -264,13 +274,15 @@ public class GrowthCompoundsMatchCalculation
         // Final colony size 3, initial bud 2
         species.ModifiableGameplayCells.AddFast(new CellTemplate(mainType, new Hex(0, 0), 0),
             new List<Hex>(), new List<Hex>());
-        species.ModifiableGameplayCells.AddFast(new CellTemplate(mainType, new Hex(10, 0), 0),
+        species.ModifiableGameplayCells.AddFast(new CellTemplate(mainType, new Hex(7, 0), 0),
             new List<Hex>(), new List<Hex>());
-        species.ModifiableGameplayCells.AddFast(new CellTemplate(mainType, new Hex(0, 10), 0),
+
+        // The layout shifts a lot, so this is pretty close to the left side
+        species.ModifiableGameplayCells.AddFast(new CellTemplate(mainType, new Hex(0, 4), 0),
             new List<Hex>(), new List<Hex>());
 
         species.ReproductionMethod = MulticellularReproductionMethod.MassBudding;
-        species.MassBuddingCellCount = 2;
+        species.MassBuddingCellCount = Constants.MASS_BUDDING_MINIMUM_BUD_SIZE;
         species.OnEdited();
 
         // Spawn a cell of the type for the "player"

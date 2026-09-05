@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-14 09:18+0300\n"
-"PO-Revision-Date: 2026-07-30 04:16+0000\n"
+"POT-Creation-Date: 2026-09-01 10:25+0300\n"
+"PO-Revision-Date: 2026-08-22 04:42+0000\n"
 "Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ka/>\n"
 "Language: ka\n"
@@ -395,8 +395,13 @@ msgstr "გამოყენება ავტოევოს დამთვ�
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "ავტოევოს შესწავლის ხელსაწყო"
 
-msgid "AUTO_EVO_FAILED"
+#, fuzzy
+msgid "AUTO_EVO_FAILED_CHECK_LOGS"
 msgstr "ავტოევოს გაშვება ჩავარდა"
+
+#, fuzzy
+msgid "AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL"
+msgstr "ავტომატური ევოლუციის შედეგები არ არის ხელმისაწვდომი. თუ თქვენ ჩატვირთეთ ძველი შენახვა, ეს მოსალოდნელია. თუ თქვენ არ ჩატვირთეთ ძველი შენახვა, გთხოვთ, შეგვატყობინოთ ეს როგორც შეცდომა და გამოგვიგზავნოთ თქვენი თამაშის ლოგ ფაილი."
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr "ავტომატური ევოლუციის შედეგები არ არის ხელმისაწვდომი. თუ თქვენ ჩატვირთეთ ძველი შენახვა, ეს მოსალოდნელია. თუ თქვენ არ ჩატვირთეთ ძველი შენახვა, გთხოვთ, შეგვატყობინოთ ეს როგორც შეცდომა და გამოგვიგზავნოთ თქვენი თამაშის ლოგ ფაილი."
@@ -904,6 +909,10 @@ msgid "CLEAR_CACHE"
 msgstr "კეშის გასუფთავება"
 
 msgid "CLICK_TO_SELECT"
+msgstr "აირჩიეთ"
+
+#, fuzzy
+msgid "CLICK_TO_SET_CELL_TYPE"
 msgstr "აირჩიეთ"
 
 msgid "CLIMATE_INSTABILITY"
@@ -1587,6 +1596,10 @@ msgstr "ობიექტის ზომის შემცირება"
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "ნაგულისხმევი გამოტანის მოწყობილობა"
 
+#, fuzzy
+msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
+msgstr "სპორის უჯრედის ტიპი"
+
 msgid "DELETE"
 msgstr "წაშლა"
 
@@ -1910,6 +1923,14 @@ msgstr "მუტაციები და რედაქტორები"
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "შედით რედაქტორში და შეცვალეთ თქვენი სახეობები"
 
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR"
+msgstr "მიუთითებს, რომ ამ სახეობებმა განიცადეს მუტაცია ამ ავტოევის ციკლის დროს"
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR_EXPLANATION"
+msgstr "თუ თქვენი ამჟამინდელი მიკრობი ვერ გაძლებს ამ გარემოში, შეგიძლიათ, დაბრუნდეთ წინა დროში, რომელშიც რედაქტორში ბრძანდებოდით და რამე სხვა სცადოთ."
+
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
 
@@ -2127,6 +2148,9 @@ msgid "ERROR_LOADING"
 msgstr "ჩატვირთვის შეცდომა"
 
 msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
+
+msgid "ERROR_REQUIRED_AT_LEAST_X_CELLS_FOR_MASS_BUDDING"
 msgstr ""
 
 msgid "ERROR_SAVING"
@@ -2527,6 +2551,10 @@ msgstr ""
 
 msgid "GAME_DESIGN_TEAM"
 msgstr "თამაშის დიზაინის გუნდი"
+
+#, fuzzy
+msgid "GAME_PHYSICS_PERFORMANCE_LOW_WARNING"
+msgstr "შენიშვნა: წარმადობის პარამეტრების შეცვლა ყოველთვის შეგიძლიათ [color=#3796e1][url=thrive://GUI/OptionsMenu/Performance]მორგების მენიუდან[/url][/color], რომ გააუმჯობესოთ თამაშის წარმადობა"
 
 msgid "GAME_SYSTEMS_TITLE"
 msgstr "თამაშის სისტემები"
@@ -3553,6 +3581,10 @@ msgstr "ზღვის თოვლი"
 msgid "MASS_BUDDING_CELL_COUNT"
 msgstr "უჯრედების საწყისი რაოდენობა"
 
+#, fuzzy
+msgid "MASS_BUDDING_MINIMUM_SIZE_EXPLANATION"
+msgstr "აჩენს ერთ ნაშიერს, რომელიც მრავალუჯრედიანია."
+
 msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "აჩენს ერთ ნაშიერს, რომელიც მრავალუჯრედიანია."
 
@@ -4473,6 +4505,14 @@ msgstr "ეკრანის ანაბეჭდების საქაღ�
 
 msgid "NO_SELECTED_MOD"
 msgstr "მოდი არჩეული არაა"
+
+#, fuzzy
+msgid "NO_SPORE_CELL_TYPE_SET"
+msgstr "სპორის უჯრედის ტიპი"
+
+#, fuzzy
+msgid "NO_SPORE_CELL_TYPE_SET_TITLE"
+msgstr "სპორის უჯრედის ტიპი"
 
 msgid "NO_SUGGESTION"
 msgstr "არცერთი"
@@ -5421,6 +5461,9 @@ msgstr "შენახვის ფაილი არასწორ თამ
 msgid "SAVE_INVALID"
 msgstr "არასწორი"
 
+msgid "SAVE_IS_CORRUPT_WHILE_LOADING"
+msgstr ""
+
 msgid "SAVE_IS_INVALID"
 msgstr "შენახული გაფუჭებულია"
 
@@ -5874,7 +5917,8 @@ msgstr "სიჩქარე:"
 msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr "გადართვა თამაშის ნორმალურ და ალტერნატიულ სიჩქარეებს შორის"
 
-msgid "SPORE_CELL_TYPE"
+#, fuzzy
+msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
 msgstr "სპორის უჯრედის ტიპი"
 
 msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
@@ -7101,6 +7145,38 @@ msgstr "3D, სტრატეგია, კოსმოსი"
 msgid "WIKI_8_BRACKET_16"
 msgstr "8 (16)"
 
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_EFFECTS"
+msgstr "[b]ციტოპლაზმის[/b] შეცვლა ნებისმიერი სხვა ორგანელას შეუძლია დამატებითი მუტაციის ქულების გამოყენების გარეშე (თუ ორგანელის ფასი უფრო დიდი არაა)."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_INTRO"
+msgstr "უფრო ზუსტად: ეს ენდგეიმია, სადაც შეგიძლიათ, გალაქტიკა მეტაფიზიკური სხეულივით გაადიდოთ და ის ფორმა მისცეთ, რომელიც გსურთ. ეს გრძელი გზა იყო და თქვენ მას იმსახურებთ."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_MODIFICATIONS"
+msgstr "ცვლილებების გარეშე."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_PROCESSES"
+msgstr "პროცესების გარეშე."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_REQUIREMENTS"
+msgstr "მხოლოდ, ხელმისაწვდომია [color=#3796e1][url=thriveopedia:macroscopic_stage]მაკროსკოპული ფაზის[/url][/color] შემდეგ."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_SCIENTIFIC_BACKGROUND"
+msgstr "სამეცნიერო ფონი"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_STRATEGY"
+msgstr "სტრატეგია"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_UPGRADES"
+msgstr "გაუმჯობესებების გარეშე."
+
 msgid "WIKI_ASCENSION"
 msgstr "აღმავალი"
 
@@ -7474,6 +7550,7 @@ msgstr ""
 msgid "WIKI_FLAGELLUM_INTRO"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_MODIFICATIONS"
 msgstr "ცვლილებების გარეშე."
 
@@ -7842,6 +7919,10 @@ msgstr ""
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "გაუმჯობესებების გარეშე."
 
+#, fuzzy
+msgid "WIKI_MUCOCYST"
+msgstr "მექანიკა"
+
 msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
 msgstr ""
 "[ul]\t\t\t<img alt=\"Perception concept\" src=\"/images/thumb/7/75/Multiperceptionconcept.jpg/120px-Multiperceptionconcept.jpg\" decoding=\"async\" width=\"120\" height=\"90\" class=\"mw-file-element\" srcset=\"/images/thumb/7/75/Multiperceptionconcept.jpg/180px-Multiperceptionconcept.jpg 1.5x, /images/thumb/7/75/Multiperceptionconcept.jpg/240px-Multiperceptionconcept.jpg 2x\">\t\t\t\t\t\n"
@@ -7984,6 +8065,7 @@ msgstr ""
 msgid "WIKI_OXYTOXISOME_INTRO"
 msgstr "შეცვლილი [b][color=#3796e1][url=thriveopedia:metabolosome]მეტაბოლოსომა[/url][/color][/b], რომელიც გამოიმუშავებს [thrive:compound type=\"oxytoxy\"][/thrive:compound], აგენტს, რომელიც ტოქსიკური ჭურვივით შეგიძლიათ, გატყორცნოთ.. უფრო სუსტი, ვიდრე [b][color=#3796e1][url=thriveopedia:oxytoxy]ტოქსინის ვაკუოლა[/url][/color][/b]."
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_MODIFICATIONS"
 msgstr "ცვლილებების გარეშე."
 
@@ -8004,6 +8086,10 @@ msgstr "გაუმჯობესებების გარეშე."
 
 msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr "ოქსიტოქსინის სინთეზი, გლიკოლიზი"
+
+#, fuzzy
+msgid "WIKI_PAGE_ACTOMYOSIN"
+msgstr "აღმავალი"
 
 msgid "WIKI_PAGE_ASCENSION"
 msgstr "აღმავალი"
@@ -8281,6 +8367,7 @@ msgstr ""
 msgid "WIKI_SLIME_JET_STRATEGY"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr "გაუმჯობესებების გარეშე."
 
@@ -8421,6 +8508,7 @@ msgstr ""
 msgid "WIKI_TOXIN_VACUOLE_INTRO"
 msgstr "შეცვლილი [b][color=#3796e1][url=thriveopedia:vacuole]Vacuole[/url][/color][/b] რომელიც გამოიმუშავებს [thrive:compound type=\"oxytoxy\"][/thrive:compound]-ს, აგენტს, რომელიც შეგიძლიათ, ტოქსიკური ჭურვივით ისროლოთ. [b][color=#3796e1][url=thriveopedia:oxytoxyProteins]Oxytoxisome[/url][/color][/b]-ის გაუმჯობესებული ვარიანტი."
 
+#, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_MODIFICATIONS"
 msgstr "ცვლილებების გარეშე."
 
@@ -8622,6 +8710,9 @@ msgstr "გადიდება"
 
 msgid "ZOOM_OUT"
 msgstr "დაპატარავება"
+
+#~ msgid "SPORE_CELL_TYPE"
+#~ msgstr "სპორის უჯრედის ტიპი"
 
 #~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
 #~ msgstr "გადართვა თამაშის ნორმალურ და ორმაგ სიჩქარეს შორის"

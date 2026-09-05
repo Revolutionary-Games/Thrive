@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-14 09:18+0300\n"
-"PO-Revision-Date: 2026-07-08 12:56+0000\n"
+"POT-Creation-Date: 2026-09-01 10:25+0300\n"
+"PO-Revision-Date: 2026-08-22 04:42+0000\n"
 "Last-Translator: xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -399,8 +399,13 @@ msgstr "在 Auto-Evo 探索工具中使用"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Auto-Evo 探索工具"
 
-msgid "AUTO_EVO_FAILED"
+#, fuzzy
+msgid "AUTO_EVO_FAILED_CHECK_LOGS"
 msgstr "Auto-Evo 運行失敗"
+
+#, fuzzy
+msgid "AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL"
+msgstr "Auto-Evo 結果缺失。如果您載入了較舊的存檔，則可能會缺失。如果您並非載入較舊的存檔，請將此作為錯誤回報給我們，並將您的遊戲記錄檔發送給我們。"
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr "Auto-Evo 結果缺失。如果您載入了較舊的存檔，則可能會缺失。如果您並非載入較舊的存檔，請將此作為錯誤回報給我們，並將您的遊戲記錄檔發送給我們。"
@@ -911,6 +916,10 @@ msgid "CLEAR_CACHE"
 msgstr "清除快取"
 
 msgid "CLICK_TO_SELECT"
+msgstr "選取"
+
+#, fuzzy
+msgid "CLICK_TO_SET_CELL_TYPE"
 msgstr "選取"
 
 msgid "CLIMATE_INSTABILITY"
@@ -1639,6 +1648,10 @@ msgstr "縮小物件"
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "預設輸出設備"
 
+#, fuzzy
+msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
+msgstr "創建新細胞類型"
+
 msgid "DELETE"
 msgstr "刪除"
 
@@ -1982,6 +1995,14 @@ msgstr "編輯器與突變"
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "進入編輯器並修改您的物種"
 
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR"
+msgstr "表示此物種在本次 Auto-Evo 週期中發生了突變"
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR_EXPLANATION"
+msgstr "如果當前微生物無法適應此環境，您可以恢復到先前在編輯器中的狀態，嘗試其他方法。"
+
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
 "您的微生物已再次成功繁殖，朝著更高級的生命形式邁進了一步。\n"
@@ -2220,6 +2241,9 @@ msgid "ERROR_LOADING"
 msgstr "載入時發生錯誤"
 
 msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
+
+msgid "ERROR_REQUIRED_AT_LEAST_X_CELLS_FOR_MASS_BUDDING"
 msgstr ""
 
 msgid "ERROR_SAVING"
@@ -2627,6 +2651,10 @@ msgstr ""
 
 msgid "GAME_DESIGN_TEAM"
 msgstr "遊戲設計團隊"
+
+#, fuzzy
+msgid "GAME_PHYSICS_PERFORMANCE_LOW_WARNING"
+msgstr "注意：您可以隨時在[color=#3796e1][url=thrive://GUI/OptionsMenu/Performance]選項選單[/url][/color]中更改與效能相關的選項以提高遊戲性能"
 
 msgid "GAME_SYSTEMS_TITLE"
 msgstr "遊戲系統"
@@ -3687,6 +3715,10 @@ msgstr "海洋雪"
 msgid "MASS_BUDDING_CELL_COUNT"
 msgstr "起始細胞數量"
 
+#, fuzzy
+msgid "MASS_BUDDING_MINIMUM_SIZE_EXPLANATION"
+msgstr "產生的後代初始即由多個細胞構成。"
+
 msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "產生的後代初始即由多個細胞構成。"
 
@@ -4689,6 +4721,14 @@ msgstr "找不到截圖目錄"
 msgid "NO_SELECTED_MOD"
 msgstr "無選取模組"
 
+#, fuzzy
+msgid "NO_SPORE_CELL_TYPE_SET"
+msgstr "創建新細胞類型"
+
+#, fuzzy
+msgid "NO_SPORE_CELL_TYPE_SET_TITLE"
+msgstr "創建新細胞類型"
+
 msgid "NO_SUGGESTION"
 msgstr "無"
 
@@ -5676,6 +5716,9 @@ msgstr "存檔具有無效的遊戲狀態場景"
 msgid "SAVE_INVALID"
 msgstr "無效"
 
+msgid "SAVE_IS_CORRUPT_WHILE_LOADING"
+msgstr ""
+
 msgid "SAVE_IS_INVALID"
 msgstr "存檔無效"
 
@@ -6136,7 +6179,7 @@ msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr "在正常與雙倍遊戲速度之間切換"
 
 #, fuzzy
-msgid "SPORE_CELL_TYPE"
+msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
 msgstr "創建新細胞類型"
 
 #, fuzzy
@@ -7568,6 +7611,41 @@ msgstr "3D、策略、太空"
 msgid "WIKI_8_BRACKET_16"
 msgstr "8 (16)"
 
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_EFFECTS"
+msgstr ""
+"對於包含[b]軸突[/b]的多細胞生物中的每個細胞，該生物體的腦力與該細胞的體積成比例地增加。具有[b]軸突[/b]的細胞將被分類為腦組織類型。\n"
+"\n"
+"當腦力達到 [b]+0.5[/b] 時，玩家進入意識階段。當腦力達到 [b]+5.0[/b] 時，玩家進入覺醒階段。"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_INTRO"
+msgstr "簡介：這是遊戲末期，您可以作為一個觀察者縮放星系，塑造與觀察您想要的東西。這是一段漫長的旅程，而您值得。"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_MODIFICATIONS"
+msgstr "無修改。"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_PROCESSES"
+msgstr "無代謝過程。"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_REQUIREMENTS"
+msgstr "僅從[color=#3796e1][url=thriveopedia:macroscopic_stage]宏觀階段[/url][/color]開始可用。"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_SCIENTIFIC_BACKGROUND"
+msgstr "軸突是「神經元細胞」延伸出的細長突起，可連接至另一個細胞（例如另一個「神經元」細胞、「肌肉」細胞等眾多細胞類型），允許訊息以電訊號的形式在兩個或多個細胞之間傳遞。這使得生物體能夠對外部刺激做出反應，例如溫度驟升、受到抓撓，甚至是一些感覺細胞察覺到的難聞氣味。"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_STRATEGY"
+msgstr "添加[b]軸突[/b]對於進入之後的階段至關重要。我們建議在多細胞生物的多種細胞類型中添加一個[b]軸突[/b]，但添加多個是多餘的。目前，更多的[b]軸突[/b]並不會提供額外的好處。"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_UPGRADES"
+msgstr "無升級。"
+
 msgid "WIKI_ASCENSION"
 msgstr "飛昇"
 
@@ -8261,6 +8339,7 @@ msgstr "每個[b]鞭毛[/b]提供與其方向相反的方向的定向推力。�
 msgid "WIKI_FLAGELLUM_INTRO"
 msgstr "[b]鞭毛[/b]是細胞外部的毛髮狀細絲，使用[thrive:compound type=\"atp\"][/thrive:compound] 來增加細胞在單一方向上的移動速度。推力的施加方向與鞭毛的方向相反。"
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_MODIFICATIONS"
 msgstr "無修改。"
 
@@ -8515,6 +8594,7 @@ msgstr ""
 "\n"
 "只要環境夠熱，[color=#3796e1][url=thriveopedia:thermosynthase]熱合成酶[/url][/color]與[color=#3796e1][url=thriveopedia:thermoplast]熱能體[/url][/color]就能免費生產[thrive:compound type=\"atp\"][/thrive:compound]。"
 
+#, fuzzy
 msgid "WIKI_HELP_AND_TIPS_MICROBE_STAGE_TIPS"
 msgstr ""
 "本章節包含載入畫面中顯示的所有微生物階段的提示。\n"
@@ -8988,6 +9068,7 @@ msgstr ""
 "[ul]至少連續 [b]5[/b] 代中包含 [b]4[/b] 個[b][color=#3796e1][url=thriveopedia:metabolosome]代謝體[/url][/color][/b]。\n"
 "生產至少 [b]+20[/b] [thrive:compound type=\"atp\"][/thrive:compound]。[/ul]"
 
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_SCIENTIFIC_BACKGROUND"
 msgstr ""
 "粒線體是雙層（具有內膜與外膜）細胞器，通過稱為氧化磷酸化的過程生產 ATP。在此過程中，營養物質（如葡萄糖與脂類）分解產生的能量用於在內膜上形成質子濃度梯度，然後將 ADP 轉化為 ATP。\n"
@@ -9006,6 +9087,10 @@ msgstr ""
 
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "無升級。"
+
+#, fuzzy
+msgid "WIKI_MUCOCYST"
+msgstr "遊戲機制"
 
 msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
 msgstr ""
@@ -9222,6 +9307,7 @@ msgstr ""
 msgid "WIKI_OXYTOXISOME_INTRO"
 msgstr "修改過的[b][color=#3796e1][url=thriveopedia:metabolosome]代謝體[/url][/color][/b]，生產[thrive:compound type=\"oxytoxy\"][/thrive:compound]，可以作為發射毒素彈的部件。[b][color=#3796e1][url=thriveopedia:oxytoxy]毒素液泡[/url][/color][/b]的次級版本。"
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_MODIFICATIONS"
 msgstr "無修改。"
 
@@ -9255,6 +9341,10 @@ msgstr "無升級。"
 
 msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr "氧化毒素合成、糖解"
+
+#, fuzzy
+msgid "WIKI_PAGE_ACTOMYOSIN"
+msgstr "飛昇"
 
 msgid "WIKI_PAGE_ASCENSION"
 msgstr "飛昇"
@@ -9595,6 +9685,7 @@ msgstr ""
 "\n"
 "同樣重要的是要注意，此細胞器使用[thrive:compound type=\"glucose\"][/thrive:compound] 而非[thrive:compound type=\"atp\"][/thrive:compound]，所以添加此細胞器時一定要檢查細胞的化合物平衡。"
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr "無升級。"
 
@@ -9851,6 +9942,7 @@ msgstr ""
 msgid "WIKI_TOXIN_VACUOLE_INTRO"
 msgstr "修改過的[b][color=#3796e1][url=thriveopedia:vacuole]液泡[/url][/color][/b]，生產[thrive:compound type=\"oxytoxy\"][/thrive:compound]，可以作為發射毒素彈的部件。[b][color=#3796e1][url=thriveopedia:oxytoxyProteins]氧化毒酶體[/url][/color][/b]的高級版本。"
 
+#, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_MODIFICATIONS"
 msgstr "無修改。"
 
@@ -10065,6 +10157,10 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "縮小"
+
+#, fuzzy
+#~ msgid "SPORE_CELL_TYPE"
+#~ msgstr "創建新細胞類型"
 
 #~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
 #~ msgstr "在正常與雙倍遊戲速度之間切換"

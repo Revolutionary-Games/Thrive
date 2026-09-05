@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-14 09:18+0300\n"
+"POT-Creation-Date: 2026-09-01 10:25+0300\n"
 "PO-Revision-Date: 2026-05-13 03:55+0000\n"
 "Last-Translator: Telegina Alexandra <teleginaaleksandra1@gmail.com>\n"
 "Language-Team: Esperanto <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/eo/>\n"
@@ -409,8 +409,13 @@ msgstr "Lanĉa stato:"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Lanĉa stato:"
 
-msgid "AUTO_EVO_FAILED"
+#, fuzzy
+msgid "AUTO_EVO_FAILED_CHECK_LOGS"
 msgstr "Aŭtomata evolucio malsukcesis"
+
+#, fuzzy
+msgid "AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL"
+msgstr "Resultoj de aŭtomata evoluo:"
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr ""
@@ -971,6 +976,10 @@ msgstr ""
 
 #, fuzzy
 msgid "CLICK_TO_SELECT"
+msgstr "Forigi Elektita(j)n"
+
+#, fuzzy
+msgid "CLICK_TO_SET_CELL_TYPE"
 msgstr "Forigi Elektita(j)n"
 
 msgid "CLIMATE_INSTABILITY"
@@ -1732,6 +1741,10 @@ msgstr "Kreu Novan Konservadon"
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
+#, fuzzy
+msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
+msgstr "Kreu Novan Konservadon"
+
 msgid "DELETE"
 msgstr "Elimini"
 
@@ -2099,6 +2112,14 @@ msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
 
 #, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR"
+msgstr "Permesu al specioj ne mutacii (se ne bona mutacio trovitas)"
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR_EXPLANATION"
+msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
 "Jen la ĉela redaktilo, kie vi povas aldoni aŭ forigi organetojn de via specio elspezante mutaciajn punktojn (MP).\n"
@@ -2376,6 +2397,9 @@ msgid "ERROR_LOADING"
 msgstr "Eraro Ŝarĝante"
 
 msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
+
+msgid "ERROR_REQUIRED_AT_LEAST_X_CELLS_FOR_MASS_BUDDING"
 msgstr ""
 
 msgid "ERROR_SAVING"
@@ -2803,6 +2827,9 @@ msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
 
 msgid "GAME_DESIGN_TEAM"
+msgstr ""
+
+msgid "GAME_PHYSICS_PERFORMANCE_LOW_WARNING"
 msgstr ""
 
 #, fuzzy
@@ -3990,6 +4017,10 @@ msgid "MASS_BUDDING_CELL_COUNT"
 msgstr ""
 
 #, fuzzy
+msgid "MASS_BUDDING_MINIMUM_SIZE_EXPLANATION"
+msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
+
+#, fuzzy
 msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
 
@@ -5110,6 +5141,14 @@ msgid "NO_SELECTED_MOD"
 msgstr "Elektita(j):"
 
 #, fuzzy
+msgid "NO_SPORE_CELL_TYPE_SET"
+msgstr "Kreu Novan Konservadon"
+
+#, fuzzy
+msgid "NO_SPORE_CELL_TYPE_SET_TITLE"
+msgstr "Kreu Novan Konservadon"
+
+#, fuzzy
 msgid "NO_SUGGESTION"
 msgstr "Distingivo:"
 
@@ -6201,6 +6240,9 @@ msgstr "Konservado havas malvalidan ludstatan scenon"
 msgid "SAVE_INVALID"
 msgstr "Nevalide"
 
+msgid "SAVE_IS_CORRUPT_WHILE_LOADING"
+msgstr ""
+
 msgid "SAVE_IS_INVALID"
 msgstr "Konservado ne validas"
 
@@ -6740,7 +6782,7 @@ msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr "Rekomenci"
 
 #, fuzzy
-msgid "SPORE_CELL_TYPE"
+msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
 msgstr "Kreu Novan Konservadon"
 
 #, fuzzy
@@ -8286,6 +8328,38 @@ msgid "WIKI_8_BRACKET_16"
 msgstr "Rotaciu maldekstren"
 
 #, fuzzy
+msgid "WIKI_ACTOMYOSIN_EFFECTS"
+msgstr "Eksteraj efikoj:"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_INTRO"
+msgstr "Rusticianino estas proteino kapabla uzi gasan karbonan dioksidon kaj oksigenon por oksigeni feron de unu kemia stato al alia. Ĉi tiu procezo, nomata Fera Respirado, liberigas energion, kiun la ĉelo tiam povas rikolti."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_MODIFICATIONS"
+msgstr "La gluiĝemaj internaĵoj de ĉelo. La citoplasmo estas la baza miksaĵo de jonoj, proteinoj kaj aliaj substancoj solvitaj en akvo, kiu plenigas la internon de la ĉelo. Unu el la funkcioj, kiujn ĝi plenumas, estas Fermentado, la konvertiĝo de glukozo en ATP-energion. Por havi pli progresintajn metabolojn, ĉeloj, al kiuj mankas organetoj, uzas energion de ATP. Ĝi ankaŭ estas uzita por stoki molekulojn en la ĉelo kaj kreskigi la grandecon de la ĉelo."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_PROCESSES"
+msgstr "Disloku organeton"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_REQUIREMENTS"
+msgstr "La potencocentro de la ĉelo. La mitokondrio (pluralo: mitokondrioj) estas duobla membrana strukturo plenigita de proteinoj kaj enzimoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. Ĝi povas konverti glukozon en ATP-on kun multe pli alta efikeco ol oni povas fari ĝin en la citoplasmo en proceso nomata Aeroba Respirado. Tamen ĝi postulas oksigenon por funkcii, kaj pli malaltaj niveloj de oksigeno en la medio malrapidigos la rapidon de ĝia produktado de ATP."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_SCIENTIFIC_BACKGROUND"
+msgstr "La chememioplasto estas duoblomembrana strukturo, kiu havas proteinojn kapablajn transformi hidrogenan sulfidon, akvon kaj gasan karbondioksidon en glukozon dum proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de ĝia glukoza produktado pliigas kun la koncentriĝo de karbona dioksido."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_STRATEGY"
+msgstr "La chememioplasto estas duoblomembrana strukturo, kiu havas proteinojn kapablajn transformi hidrogenan sulfidon, akvon kaj gasan karbondioksidon en glukozon dum proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de ĝia glukoza produktado pliigas kun la koncentriĝo de karbona dioksido."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_UPGRADES"
+msgstr "La chememioplasto estas duoblomembrana strukturo, kiu havas proteinojn kapablajn transformi hidrogenan sulfidon, akvon kaj gasan karbondioksidon en glukozon dum proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de ĝia glukoza produktado pliigas kun la koncentriĝo de karbona dioksido."
+
+#, fuzzy
 msgid "WIKI_ASCENSION"
 msgstr "Rusticianino estas proteino kapabla uzi gasan karbonan dioksidon kaj oksigenon por oksigeni feron de unu kemia stato al alia. Ĉi tiu procezo, nomata Fera Respirado, liberigas energion, kiun la ĉelo tiam povas rikolti."
 
@@ -9334,6 +9408,10 @@ msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "La potencocentro de la ĉelo. La mitokondrio (pluralo: mitokondrioj) estas duobla membrana strukturo plenigita de proteinoj kaj enzimoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. Ĝi povas konverti glukozon en ATP-on kun multe pli alta efikeco ol oni povas fari ĝin en la citoplasmo en proceso nomata Aeroba Respirado. Tamen ĝi postulas oksigenon por funkcii, kaj pli malaltaj niveloj de oksigeno en la medio malrapidigos la rapidon de ĝia produktado de ATP."
 
 #, fuzzy
+msgid "WIKI_MUCOCYST"
+msgstr "Disloku organeton"
+
+#, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
 msgstr "Disloku organeton"
 
@@ -9523,6 +9601,10 @@ msgstr "Modifita metabolosomo, responsanta pri la produktado de primitiva formo 
 #, fuzzy
 msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr "OxyToxy Sintezo"
+
+#, fuzzy
+msgid "WIKI_PAGE_ACTOMYOSIN"
+msgstr "Rusticianino"
 
 #, fuzzy
 msgid "WIKI_PAGE_ASCENSION"
@@ -10348,6 +10430,10 @@ msgstr "Zomu"
 
 msgid "ZOOM_OUT"
 msgstr "Malzomu"
+
+#, fuzzy
+#~ msgid "SPORE_CELL_TYPE"
+#~ msgstr "Kreu Novan Konservadon"
 
 #, fuzzy
 #~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"

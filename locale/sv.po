@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-14 09:18+0300\n"
+"POT-Creation-Date: 2026-09-01 10:25+0300\n"
 "PO-Revision-Date: 2026-04-22 18:35+0000\n"
 "Last-Translator: \"Georgi Georgiev (RacerBG)\" <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -411,8 +411,13 @@ msgstr "Auto-evo utforskningsverktyg"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Auto-evo utforskningsverktyg"
 
-msgid "AUTO_EVO_FAILED"
+#, fuzzy
+msgid "AUTO_EVO_FAILED_CHECK_LOGS"
 msgstr "Auto-evo kunde inte köras"
+
+#, fuzzy
+msgid "AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL"
+msgstr "Auto-evo resultat hittades inte. Om du laddade en äldre sparning är det förväntat att vara borta. Om du inte laddade en äldre sparning kan du rapportera det här som en bug till oss och skicka din spels loggfiler."
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr "Auto-evo resultat hittades inte. Om du laddade en äldre sparning är det förväntat att vara borta. Om du inte laddade en äldre sparning kan du rapportera det här som en bug till oss och skicka din spels loggfiler."
@@ -945,6 +950,10 @@ msgstr ""
 
 #, fuzzy
 msgid "CLICK_TO_SELECT"
+msgstr "Radera Valda"
+
+#, fuzzy
+msgid "CLICK_TO_SET_CELL_TYPE"
 msgstr "Radera Valda"
 
 msgid "CLIMATE_INSTABILITY"
@@ -1712,6 +1721,10 @@ msgstr "Slem sekretion"
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Standard utgångsenhet"
 
+#, fuzzy
+msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
+msgstr "Skapa Ny Sparfil"
+
 msgid "DELETE"
 msgstr "Radera"
 
@@ -2092,6 +2105,14 @@ msgstr "har muterat"
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Hjälp"
 
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR"
+msgstr "Tillåt att arter inte muteras (om inga bra mutationer hittas)"
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR_EXPLANATION"
+msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
+
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
 
@@ -2383,6 +2404,9 @@ msgid "ERROR_LOADING"
 msgstr "Laddningsfel"
 
 msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
+
+msgid "ERROR_REQUIRED_AT_LEAST_X_CELLS_FOR_MASS_BUDDING"
 msgstr ""
 
 msgid "ERROR_SAVING"
@@ -2825,6 +2849,10 @@ msgstr ""
 
 msgid "GAME_DESIGN_TEAM"
 msgstr "Spel Design"
+
+#, fuzzy
+msgid "GAME_PHYSICS_PERFORMANCE_LOW_WARNING"
+msgstr "Observera: Du kan när som helst justera prestandainställningarna i [color=#3796e1][url=thrive://GUI/OptionsMenu/Performance]options menu[/url][/color] för att förbättra spelets prestanda"
 
 #, fuzzy
 msgid "GAME_SYSTEMS_TITLE"
@@ -3974,6 +4002,10 @@ msgid "MASS_BUDDING_CELL_COUNT"
 msgstr ""
 
 #, fuzzy
+msgid "MASS_BUDDING_MINIMUM_SIZE_EXPLANATION"
+msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
+
+#, fuzzy
 msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
 
@@ -5061,6 +5093,14 @@ msgid "NO_SELECTED_MOD"
 msgstr ""
 
 #, fuzzy
+msgid "NO_SPORE_CELL_TYPE_SET"
+msgstr "Skapa Ny Sparfil"
+
+#, fuzzy
+msgid "NO_SPORE_CELL_TYPE_SET_TITLE"
+msgstr "Skapa Ny Sparfil"
+
+#, fuzzy
 msgid "NO_SUGGESTION"
 msgstr "Upplösning:"
 
@@ -6141,6 +6181,9 @@ msgstr ""
 msgid "SAVE_INVALID"
 msgstr "Ogiltig"
 
+msgid "SAVE_IS_CORRUPT_WHILE_LOADING"
+msgstr ""
+
 msgid "SAVE_IS_INVALID"
 msgstr "Sparfil är ogiltig"
 
@@ -6660,7 +6703,7 @@ msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr "Fortsätt"
 
 #, fuzzy
-msgid "SPORE_CELL_TYPE"
+msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
 msgstr "Skapa Ny Sparfil"
 
 #, fuzzy
@@ -8166,6 +8209,38 @@ msgid "WIKI_8_BRACKET_16"
 msgstr "Snurra vänster"
 
 #, fuzzy
+msgid "WIKI_ACTOMYOSIN_EFFECTS"
+msgstr "Externa effekter:"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_INTRO"
+msgstr "Rusticyanin är ett protein som kan använda gasformig koldioxid och syre för att oxidera järn från ett kemiskt tillstånd till ett annat. Denna process, kallad Iron Respiration, frigör energi som cellen sedan kan skörda."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_MODIFICATIONS"
+msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_PROCESSES"
+msgstr "Placera organell"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_REQUIREMENTS"
+msgstr "En modifieerad metabolosom ansvarig för produktionen of en primitiv form av den giftiga agenten OxyToxy NT."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_SCIENTIFIC_BACKGROUND"
+msgstr "Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av vatten och koldioxid."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_STRATEGY"
+msgstr "Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av vatten och koldioxid."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_UPGRADES"
+msgstr "Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av vatten och koldioxid."
+
+#, fuzzy
 msgid "WIKI_ASCENSION"
 msgstr "Rusticyanin är ett protein som kan använda gasformig koldioxid och syre för att oxidera järn från ett kemiskt tillstånd till ett annat. Denna process, kallad Iron Respiration, frigör energi som cellen sedan kan skörda."
 
@@ -9090,6 +9165,10 @@ msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "Mitochondria"
 
 #, fuzzy
+msgid "WIKI_MUCOCYST"
+msgstr "Placera organell"
+
+#, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
 msgstr "Flercelligt Stadie"
 
@@ -9278,6 +9357,10 @@ msgstr "En modifieerad metabolosom ansvarig för produktionen of en primitiv for
 #, fuzzy
 msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr "OxyToxySyntes"
+
+#, fuzzy
+msgid "WIKI_PAGE_ACTOMYOSIN"
+msgstr "Rosticyanin"
 
 #, fuzzy
 msgid "WIKI_PAGE_ASCENSION"
@@ -10038,6 +10121,10 @@ msgstr "Zooma in"
 
 msgid "ZOOM_OUT"
 msgstr "Zooma ut"
+
+#, fuzzy
+#~ msgid "SPORE_CELL_TYPE"
+#~ msgstr "Skapa Ny Sparfil"
 
 #, fuzzy
 #~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"

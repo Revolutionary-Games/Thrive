@@ -408,7 +408,7 @@ public partial class CellEditorComponent :
         }
     }
 
-    public bool HasNucleus => PlacedUniqueOrganelles.Any(d => d == nucleus);
+    public bool HasNucleus => PlacedUniqueOrganelles.Any(d => ReferenceEquals(d, nucleus));
 
     public override bool HasIslands =>
         editedMicrobeOrganelles.GetIslandHexes(islandResults, islandsWorkMemory1, islandsWorkMemory2,
@@ -649,6 +649,8 @@ public partial class CellEditorComponent :
             {
                 tolerancesEditor.OnEditorSpeciesSetup(Editor.EditedBaseSpecies);
             }
+
+            VerifyEditedOrganellesDoNotReferToOriginalData();
         }
 
         if (IsMulticellularEditor)
@@ -1810,11 +1812,11 @@ public partial class CellEditorComponent :
             return null;
 
         // Don't allow deletion of nucleus or the last organelle
-        if (organelleHere.Definition == nucleus || MicrobeSize - alreadyDeleted < 2)
+        if (ReferenceEquals(organelleHere.Definition, nucleus) || MicrobeSize - alreadyDeleted < 2)
             return null;
 
         // In multicellular binding agents can't be removed
-        if (IsMulticellularEditor && organelleHere.Definition == bindingAgent)
+        if (IsMulticellularEditor && ReferenceEquals(organelleHere.Definition, bindingAgent))
             return null;
 
         ++alreadyDeleted;
@@ -1990,7 +1992,7 @@ public partial class CellEditorComponent :
 
     private bool HasOrganelle(OrganelleDefinition organelleDefinition)
     {
-        return editedMicrobeOrganelles.Organelles.Any(o => o.Definition == organelleDefinition);
+        return editedMicrobeOrganelles.Organelles.Any(o => ReferenceEquals(o.Definition, organelleDefinition));
     }
 
     private void UpdateRigiditySlider(int value)
@@ -2009,7 +2011,7 @@ public partial class CellEditorComponent :
         var count = organelles.Count;
 
         // Disable delete for nucleus or the last organelle.
-        bool attemptingNucleusDelete = organelles.Any(o => o.Definition == nucleus);
+        bool attemptingNucleusDelete = organelles.Any(o => ReferenceEquals(o.Definition, nucleus));
         if (MicrobeSize <= count || attemptingNucleusDelete)
         {
             organelleMenu.EnableDeleteOption = false;
@@ -2021,7 +2023,7 @@ public partial class CellEditorComponent :
         else
         {
             // Additionally in multicellular binding agents can't be removed
-            if (IsMulticellularEditor && organelles.Any(o => o.Definition == bindingAgent))
+            if (IsMulticellularEditor && organelles.Any(o => ReferenceEquals(o.Definition, bindingAgent)))
             {
                 organelleMenu.EnableDeleteOption = false;
             }
@@ -3107,7 +3109,7 @@ public partial class CellEditorComponent :
         // in, but that will require more locking
         foreach (var entry in editedMicrobeOrganelles.Organelles)
         {
-            if (entry.Definition == nucleus)
+            if (ReferenceEquals(entry.Definition, nucleus))
                 target.IsBacteria = false;
 
             // We have to clone here, as we might have a suggestion run ongoing when we modify the edited organelles
@@ -3503,7 +3505,7 @@ public partial class CellEditorComponent :
         foreach (var organelleTemplate in editedMicrobeOrganelles)
         {
             // Ignore one cytoplasm
-            if (organelleTemplate.Definition == cytoplasm && !ignoredCytoplasm)
+            if (ReferenceEquals(organelleTemplate.Definition, cytoplasm) && !ignoredCytoplasm)
             {
                 ignoredCytoplasm = true;
                 continue;
@@ -3520,7 +3522,7 @@ public partial class CellEditorComponent :
                 if (productionProcess && !chemosynthesisProcess)
                 {
                     // Ignore glucolysis in chemo-synthesising proteins
-                    if (organelleTemplate.Definition == chemoSynthesizingProteins)
+                    if (ReferenceEquals(organelleTemplate.Definition, chemoSynthesizingProteins))
                     {
                         continue;
                     }
@@ -3543,11 +3545,33 @@ public partial class CellEditorComponent :
         }
     }
 
+    private void VerifyEditedOrganellesDoNotReferToOriginalData()
+    {
+        if (IsMacroscopicEditor || IsMulticellularEditor)
+        {
+            var cellProperties = Editor.EditedCellProperties;
+            if (cellProperties == null)
+                return;
+
+            foreach (var editedMicrobeOrganelle in editedMicrobeOrganelles)
+            {
+                foreach (var originalOrganelle in cellProperties.ModifiableOrganelles)
+                {
+                    if (ReferenceEquals(editedMicrobeOrganelle, originalOrganelle))
+                    {
+                        throw new InvalidOperationException(
+                            "Organelle is not from edited, about to modify original data!");
+                    }
+                }
+            }
+        }
+    }
+
     private class PendingAutoEvoPrediction
     {
-        public AutoEvoRun AutoEvoRun;
-        public Species PlayerSpeciesOriginal;
-        public Species PlayerSpeciesNew;
+        public readonly AutoEvoRun AutoEvoRun;
+        public readonly Species PlayerSpeciesOriginal;
+        public readonly Species PlayerSpeciesNew;
 
         public PendingAutoEvoPrediction(AutoEvoRun autoEvoRun, Species playerSpeciesOriginal, Species playerSpeciesNew)
         {
@@ -3683,7 +3707,7 @@ public partial class CellEditorComponent :
                     simulationCache.Clear();
 
                     var individualCost =
-                        MichePopulation.CalculateMicrobeIndividualCost(calculationSpecies, biome, simulationCache);
+                        MichePopulation.CalculateIndividualCost(calculationSpecies, biome, simulationCache);
 
                     score = currentRun.Results.GetGlobalPopulation(calculationSpecies) * individualCost;
                 }

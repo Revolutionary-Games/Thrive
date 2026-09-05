@@ -34,7 +34,7 @@ public class CellTypeEditsHolder : IArchiveUpdatable
     {
         foreach (var tuple in cellTypeMapping)
         {
-            if (tuple.Original == cellType)
+            if (ReferenceEquals(tuple.Original, cellType))
                 return tuple.NewType;
         }
 
@@ -49,7 +49,7 @@ public class CellTypeEditsHolder : IArchiveUpdatable
     {
         foreach (var tuple in cellTypeMapping)
         {
-            if (tuple.Original == cellType)
+            if (ReferenceEquals(tuple.Original, cellType))
                 return tuple.NewType;
         }
 
@@ -60,7 +60,7 @@ public class CellTypeEditsHolder : IArchiveUpdatable
     {
         foreach (var tuple in cellTypeMapping)
         {
-            if (tuple.Original == cellType)
+            if (ReferenceEquals(tuple.Original, cellType))
                 return tuple.NewType;
         }
 
@@ -76,7 +76,7 @@ public class CellTypeEditsHolder : IArchiveUpdatable
     {
         foreach (var pair in cellTypeMapping)
         {
-            if (pair.NewType == cellType)
+            if (ReferenceEquals(pair.NewType, cellType))
                 return pair.Original;
         }
 
@@ -94,6 +94,18 @@ public class CellTypeEditsHolder : IArchiveUpdatable
         }
 
         Reset();
+    }
+
+    public void ForgetChanges(CellType cellType)
+    {
+        for (int i = 0; i < cellTypeMapping.Count; ++i)
+        {
+            if (ReferenceEquals(cellTypeMapping[i].Original, cellType))
+            {
+                cellTypeMapping.RemoveAt(i);
+                return;
+            }
+        }
     }
 
     public void WritePropertiesToArchive(ISArchiveWriter writer)

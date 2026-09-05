@@ -1471,11 +1471,27 @@
         "r": 0
       },
       {
+        "q": 1,
+        "r": 0
+      },
+      {
         "q": 0,
         "r": 1
       },
       {
+        "q": 0,
+        "r": -1
+      },
+      {
         "q": 1,
+        "r": -1
+      },
+      {
+        "q": -1,
+        "r": 1
+      },
+      {
+        "q": -1,
         "r": 0
       }
     ],
@@ -1492,7 +1508,6 @@
       "ModelPath": "Armature/Skeleton3D/Actomyosin",
       "AnimationPlayerPath": "AnimationPlayer"
     },
-    "PositionedExternally": true,
     "Name": "ACTOMYOSIN",
     "Description": "ACTOMYOSIN_DESCRIPTION",
     "ProcessesDescription": "ACTOMYOSIN_PROCESSES_DESCRIPTION",

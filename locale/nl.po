@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-14 09:18+0300\n"
+"POT-Creation-Date: 2026-09-01 10:25+0300\n"
 "PO-Revision-Date: 2026-05-13 03:55+0000\n"
 "Last-Translator: Pascal Smit <smitpascal@gmail.com>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
@@ -397,8 +397,13 @@ msgstr "Gebruik in Auto-Evo Explorer"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Auto-Evo Onderzoeksgereedschap"
 
-msgid "AUTO_EVO_FAILED"
+#, fuzzy
+msgid "AUTO_EVO_FAILED_CHECK_LOGS"
 msgstr "Auto-evo mislukt"
+
+#, fuzzy
+msgid "AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL"
+msgstr "Er zijn geen auto-evo resultaten. Als je een ouder opslagbestand hebt geladen is dit te verwachten. Als je niet een ouder opslagbestand hebt geladen, gelieve dit als bug te rapporteren en het logbestand van het spel te sturen."
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr "Er zijn geen auto-evo resultaten. Als je een ouder opslagbestand hebt geladen is dit te verwachten. Als je niet een ouder opslagbestand hebt geladen, gelieve dit als bug te rapporteren en het logbestand van het spel te sturen."
@@ -907,6 +912,10 @@ msgid "CLEAR_CACHE"
 msgstr "Cache Legen"
 
 msgid "CLICK_TO_SELECT"
+msgstr "Selecteer"
+
+#, fuzzy
+msgid "CLICK_TO_SET_CELL_TYPE"
 msgstr "Selecteer"
 
 msgid "CLIMATE_INSTABILITY"
@@ -1653,6 +1662,10 @@ msgstr "Verminder Objectgrootte"
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Standaard uitvoer apparaat"
 
+#, fuzzy
+msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
+msgstr "Maak een nieuw celtype"
+
 msgid "DELETE"
 msgstr "Verwijder"
 
@@ -2002,6 +2015,14 @@ msgstr "Editors en Mutaties"
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Open bewerker en bewerk je soort"
 
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR"
+msgstr "Sta soorten toe niet te muteren (als geen goede mutatie kon worden gevonden)"
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR_EXPLANATION"
+msgstr "(wanneer aangezet wordt de groeisnelheid gelimiteerd, anders heeft alleen de beschikbaarheid van stoffen effect op groeisnelheid)"
+
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
 "Je microbe heeft zich opnieuw succesvol voortgeplant en is daarmee weer een stap dichter bij een meer geavanceerde levensvorm gekomen.\n"
@@ -2252,6 +2273,9 @@ msgid "ERROR_LOADING"
 msgstr "Fout met het Laden"
 
 msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
+
+msgid "ERROR_REQUIRED_AT_LEAST_X_CELLS_FOR_MASS_BUDDING"
 msgstr ""
 
 msgid "ERROR_SAVING"
@@ -2663,6 +2687,10 @@ msgstr ""
 
 msgid "GAME_DESIGN_TEAM"
 msgstr "Spel Ontwikkel Team"
+
+#, fuzzy
+msgid "GAME_PHYSICS_PERFORMANCE_LOW_WARNING"
+msgstr "Notitie: je kunt prestatiegerelateerde opties op elk moment in het [color=#3796e1][url=thrive://GUI/OptionsMenu/Performance]optiemenu[/url][/color] aanpassen om de prestatie van het spel te verbeteren"
 
 #, fuzzy
 msgid "GAME_SYSTEMS_TITLE"
@@ -3788,6 +3816,10 @@ msgid "MASS_BUDDING_CELL_COUNT"
 msgstr ""
 
 #, fuzzy
+msgid "MASS_BUDDING_MINIMUM_SIZE_EXPLANATION"
+msgstr "(krijg passief reproductieve stoffen van de omgeving zonder iets te hoeven doen)"
+
+#, fuzzy
 msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "(krijg passief reproductieve stoffen van de omgeving zonder iets te hoeven doen)"
 
@@ -4889,6 +4921,14 @@ msgid "NO_SELECTED_MOD"
 msgstr "Geen Mod Geselecteerd"
 
 #, fuzzy
+msgid "NO_SPORE_CELL_TYPE_SET"
+msgstr "Maak een nieuw celtype"
+
+#, fuzzy
+msgid "NO_SPORE_CELL_TYPE_SET_TITLE"
+msgstr "Maak een nieuw celtype"
+
+#, fuzzy
 msgid "NO_SUGGESTION"
 msgstr "Resolutie:"
 
@@ -5933,6 +5973,9 @@ msgstr "Opslagbestand heeft foutieve spelstaatscene"
 msgid "SAVE_INVALID"
 msgstr "Ongeldig"
 
+msgid "SAVE_IS_CORRUPT_WHILE_LOADING"
+msgstr ""
+
 msgid "SAVE_IS_INVALID"
 msgstr "Opslagbestand is incorrect"
 
@@ -6416,7 +6459,7 @@ msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr "Schakel tussen normale en dubbele gameplay-snelheid"
 
 #, fuzzy
-msgid "SPORE_CELL_TYPE"
+msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
 msgstr "Maak een nieuw celtype"
 
 #, fuzzy
@@ -7950,6 +7993,38 @@ msgid "WIKI_8_BRACKET_16"
 msgstr "Draai naar links"
 
 #, fuzzy
+msgid "WIKI_ACTOMYOSIN_EFFECTS"
+msgstr "Effecten van Buiten:"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_INTRO"
+msgstr "Rusticyanine is een eiwat dat [thrive:compound type=\"carbondioxide\"][/thrive:compound] en [thrive:compound type=\"oxygen\"][/thrive:compound] gebruikt om [thrive:compound type=\"iron\"][/thrive:compound] van een staat naar een andere to oxideren. Dit proces heeft [b]ijzerademhaling[/b] en maakt energie vrij die de cel kan gebruiken."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_MODIFICATIONS"
+msgstr "Geen aanpassingen."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_PROCESSES"
+msgstr "Geen processen."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_REQUIREMENTS"
+msgstr "De krachtbron van de cel. Het mitochondrion (meervoud: mitochondria) is een structuur met dubbele membraan gevuld met eiwitten en enzymen. Het is een prokaryoot wat door een eukaryotische moedercel is geassimileerd voor diens gebruik. Het heeft de mogelijkheid om [thrive:compound type=\"glucose\"][/thrive:compound] om te zetten in [thrive:compound type=\"atp\"][/thrive:compound]. Het doet dit met een veel grotere efficiëntie dan cytoplasma in een proces genaamd [b]aerobe dissimilatie[/b]. Het heeft echter ook [thrive:compound type=\"oxygen\"][/thrive:compound] nodig om zijn werk te doen. Lagere hoeveelheiden [thrive:compound type=\"oxygen\"][/thrive:compound] in de omgeving vertragen de productie van [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_SCIENTIFIC_BACKGROUND"
+msgstr "Het chemoplast is een structuur met dubbele membraan waar eiwitten in zitten die [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], gasvormig [thrive:compound type=\"carbondioxide\"][/thrive:compound], en water om kunnen zetten in [thrive:compound type=\"glucose\"][/thrive:compound]. Dit proces heet [b]waterstofsulfide chemosynthese[/b]. De snelheid van de [thrive:compound type=\"glucose\"][/thrive:compound] schaalt met de contentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_STRATEGY"
+msgstr "Gedeelde Bewerken en Strategiefasen"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_UPGRADES"
+msgstr "Het chemoplast is een structuur met dubbele membraan waar eiwitten in zitten die [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], gasvormig [thrive:compound type=\"carbondioxide\"][/thrive:compound], en water om kunnen zetten in [thrive:compound type=\"glucose\"][/thrive:compound]. Dit proces heet [b]waterstofsulfide chemosynthese[/b]. De snelheid van de [thrive:compound type=\"glucose\"][/thrive:compound] schaalt met de contentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
+
+#, fuzzy
 msgid "WIKI_ASCENSION"
 msgstr "Rusticyanine is een eiwat dat [thrive:compound type=\"carbondioxide\"][/thrive:compound] en [thrive:compound type=\"oxygen\"][/thrive:compound] gebruikt om [thrive:compound type=\"iron\"][/thrive:compound] van een staat naar een andere to oxideren. Dit proces heeft [b]ijzerademhaling[/b] en maakt energie vrij die de cel kan gebruiken."
 
@@ -8909,6 +8984,10 @@ msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "De krachtbron van de cel. Het mitochondrion (meervoud: mitochondria) is een structuur met dubbele membraan gevuld met eiwitten en enzymen. Het is een prokaryoot wat door een eukaryotische moedercel is geassimileerd voor diens gebruik. Het heeft de mogelijkheid om [thrive:compound type=\"glucose\"][/thrive:compound] om te zetten in [thrive:compound type=\"atp\"][/thrive:compound]. Het doet dit met een veel grotere efficiëntie dan cytoplasma in een proces genaamd [b]aerobe dissimilatie[/b]. Het heeft echter ook [thrive:compound type=\"oxygen\"][/thrive:compound] nodig om zijn werk te doen. Lagere hoeveelheiden [thrive:compound type=\"oxygen\"][/thrive:compound] in de omgeving vertragen de productie van [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #, fuzzy
+msgid "WIKI_MUCOCYST"
+msgstr "Plaats organellen"
+
+#, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
 msgstr "Meercellige Stage"
 
@@ -9108,6 +9187,10 @@ msgstr "Een aangepast matobolosoom dat verantwoordelijk is voor de productie van
 #, fuzzy
 msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr "OxyToxy-synthse"
+
+#, fuzzy
+msgid "WIKI_PAGE_ACTOMYOSIN"
+msgstr "Rusticyanine"
 
 #, fuzzy
 msgid "WIKI_PAGE_ASCENSION"
@@ -9868,6 +9951,10 @@ msgstr "Inzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
+
+#, fuzzy
+#~ msgid "SPORE_CELL_TYPE"
+#~ msgstr "Maak een nieuw celtype"
 
 #~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
 #~ msgstr "Schakel tussen normale en dubbele gameplay-snelheid"

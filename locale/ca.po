@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-14 09:18+0300\n"
+"POT-Creation-Date: 2026-09-01 10:25+0300\n"
 "PO-Revision-Date: 2026-05-13 03:55+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -409,8 +409,13 @@ msgstr "estat d'execució:"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "estat d'execució:"
 
-msgid "AUTO_EVO_FAILED"
+#, fuzzy
+msgid "AUTO_EVO_FAILED_CHECK_LOGS"
 msgstr "L'algorisme auto-evo ha tingut un error"
+
+#, fuzzy
+msgid "AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL"
+msgstr "Resultats de l'algorisme Auto-Evo:"
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr ""
@@ -931,6 +936,10 @@ msgstr ""
 
 #, fuzzy
 msgid "CLICK_TO_SELECT"
+msgstr "Eliminar tot el que ha estat seleccionat"
+
+#, fuzzy
+msgid "CLICK_TO_SET_CELL_TYPE"
 msgstr "Eliminar tot el que ha estat seleccionat"
 
 msgid "CLIMATE_INSTABILITY"
@@ -1687,6 +1696,10 @@ msgstr "Secretar mucílag"
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Aparell d'output per defecte"
 
+#, fuzzy
+msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
+msgstr "Crear un nou Tipus de Cèl·lula"
+
 msgid "DELETE"
 msgstr "Eliminar"
 
@@ -2047,6 +2060,14 @@ msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Entrar a l'editor i modificar la teva espècie"
 
 #, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR"
+msgstr "ha mutat"
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR_EXPLANATION"
+msgstr "(velocitat a la qual les espècies de la IA muten)"
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
 "Aquest és l'Editor de Microbi, on pots afegir, treure o modificar diferents orgànuls, tot invertint-hi una quantitat corresponent de Punts de Mutació.\n"
@@ -2310,6 +2331,9 @@ msgid "ERROR_LOADING"
 msgstr "Error durant la càrrega"
 
 msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
+
+msgid "ERROR_REQUIRED_AT_LEAST_X_CELLS_FOR_MASS_BUDDING"
 msgstr ""
 
 msgid "ERROR_SAVING"
@@ -2759,6 +2783,9 @@ msgstr "Mostrar / amagar l'entorn i els compostos"
 
 msgid "GAME_DESIGN_TEAM"
 msgstr "Equip de disseny del joc"
+
+msgid "GAME_PHYSICS_PERFORMANCE_LOW_WARNING"
+msgstr ""
 
 #, fuzzy
 msgid "GAME_SYSTEMS_TITLE"
@@ -3914,6 +3941,10 @@ msgid "MASS_BUDDING_CELL_COUNT"
 msgstr ""
 
 #, fuzzy
+msgid "MASS_BUDDING_MINIMUM_SIZE_EXPLANATION"
+msgstr "(velocitat a la qual les espècies de la IA muten)"
+
+#, fuzzy
 msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "(velocitat a la qual les espècies de la IA muten)"
 
@@ -5062,6 +5093,14 @@ msgid "NO_SELECTED_MOD"
 msgstr "Cap Mod Seleccionat"
 
 #, fuzzy
+msgid "NO_SPORE_CELL_TYPE_SET"
+msgstr "Crear un nou Tipus de Cèl·lula"
+
+#, fuzzy
+msgid "NO_SPORE_CELL_TYPE_SET_TITLE"
+msgstr "Crear un nou Tipus de Cèl·lula"
+
+#, fuzzy
 msgid "NO_SUGGESTION"
 msgstr "Resolució:"
 
@@ -6136,6 +6175,9 @@ msgstr "L'arxiu guardat té una escena d'estat del joc no vàlida"
 msgid "SAVE_INVALID"
 msgstr "No vàlid"
 
+msgid "SAVE_IS_CORRUPT_WHILE_LOADING"
+msgstr ""
+
 msgid "SAVE_IS_INVALID"
 msgstr "El fitxer guardat no és vàlid"
 
@@ -6639,7 +6681,7 @@ msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr "El valor utilitzat per generar el món, que ha de ser un nombre enter positiu"
 
 #, fuzzy
-msgid "SPORE_CELL_TYPE"
+msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
 msgstr "Crear un nou Tipus de Cèl·lula"
 
 #, fuzzy
@@ -8199,6 +8241,38 @@ msgid "WIKI_8_BRACKET_16"
 msgstr "Rotar cap a l'esquerra"
 
 #, fuzzy
+msgid "WIKI_ACTOMYOSIN_EFFECTS"
+msgstr "Efectes externs:"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_INTRO"
+msgstr "La Rusticianina és una proteïna capaç d'oxidar blocs de Ferro i, per tant, canviar-ne l'estat químic, mitjançant Diòxid de Carboni i Oxigen. Aquest procés s'anomena Respiració de Ferro, i allibera una certa quantitat d'energia que la cèl·lula pot fer servir."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_MODIFICATIONS"
+msgstr "És la substància que forma l'interior de la cèl·lula. El Citoplasma és una barreja d'ions, proteïnes i altres substàncies dissoltes a l'aigua. Una de les seves funcions principals és dur a terme el procés de Fermentació, en el qual la Glucosa és transformada en ATP. Moltes cèl·lules simples, que no tenen orgànuls especialitzats, depenen totalment del seu citoplasma per tal de viure - és a dir, per tal de nutrir-se, relacionar-se i reproduïr-se."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_PROCESSES"
+msgstr "Cap procés"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_REQUIREMENTS"
+msgstr "És el pal de paller de la generació d'energia per la cèl·lula. Els Mitocondris són una estructura de membrana doble curulla de proteïnes i enzims. En realitat, és un petit organisme procariota que ha estat engolit i assimilat per la cèl·lula eucariota, que actua com un hoste. Produeix grans quantitats d'ATP, a partir de Glucosa i Oxigen, amb una gran eficiència, per mitjà d'un procés anomenat Respiració Aeròbica."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_SCIENTIFIC_BACKGROUND"
+msgstr "El Quimioplast és una estructura de doble membrana que conté proteïnes que transformen Àcid Sulfhídric, Aigua i Diòxid de Carboni en Glucosa, mitjançant un procés anomenat Quimiosíntesi de l'Àcid Sulfhídric. La velocitat de producció de Glucosa augmenta proporcionalment a la concentració de Diòxid de Carboni."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_STRATEGY"
+msgstr "El Quimioplast és una estructura de doble membrana que conté proteïnes que transformen Àcid Sulfhídric, Aigua i Diòxid de Carboni en Glucosa, mitjançant un procés anomenat Quimiosíntesi de l'Àcid Sulfhídric. La velocitat de producció de Glucosa augmenta proporcionalment a la concentració de Diòxid de Carboni."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_UPGRADES"
+msgstr "El Quimioplast és una estructura de doble membrana que conté proteïnes que transformen Àcid Sulfhídric, Aigua i Diòxid de Carboni en Glucosa, mitjançant un procés anomenat Quimiosíntesi de l'Àcid Sulfhídric. La velocitat de producció de Glucosa augmenta proporcionalment a la concentració de Diòxid de Carboni."
+
+#, fuzzy
 msgid "WIKI_ASCENSION"
 msgstr "La Rusticianina és una proteïna capaç d'oxidar blocs de Ferro i, per tant, canviar-ne l'estat químic, mitjançant Diòxid de Carboni i Oxigen. Aquest procés s'anomena Respiració de Ferro, i allibera una certa quantitat d'energia que la cèl·lula pot fer servir."
 
@@ -9163,6 +9237,10 @@ msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "És el pal de paller de la generació d'energia per la cèl·lula. Els Mitocondris són una estructura de membrana doble curulla de proteïnes i enzims. En realitat, és un petit organisme procariota que ha estat engolit i assimilat per la cèl·lula eucariota, que actua com un hoste. Produeix grans quantitats d'ATP, a partir de Glucosa i Oxigen, amb una gran eficiència, per mitjà d'un procés anomenat Respiració Aeròbica."
 
 #, fuzzy
+msgid "WIKI_MUCOCYST"
+msgstr "Col·locar orgànul"
+
+#, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
 msgstr "Estadi Multicel·lular"
 
@@ -9353,6 +9431,10 @@ msgstr "Un Metabolosoma modificat que és responsable de la producció d'una for
 #, fuzzy
 msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr "Síntesi de les toxines OxyToxy"
+
+#, fuzzy
+msgid "WIKI_PAGE_ACTOMYOSIN"
+msgstr "Rusticianina"
 
 #, fuzzy
 msgid "WIKI_PAGE_ASCENSION"
@@ -10115,6 +10197,10 @@ msgstr "Enfocar la visió de la càmera"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom enfora"
+
+#, fuzzy
+#~ msgid "SPORE_CELL_TYPE"
+#~ msgstr "Crear un nou Tipus de Cèl·lula"
 
 #, fuzzy
 #~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-14 09:18+0300\n"
+"POT-Creation-Date: 2026-09-01 10:25+0300\n"
 "PO-Revision-Date: 2026-05-17 08:05+0000\n"
 "Last-Translator: Tibor Šťastný <tiborstgame2@seznam.cz>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -394,8 +394,13 @@ msgstr "Nástroj Průzkumu Auto-Evo"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Nástroj Průzkumu Auto-Evo"
 
-msgid "AUTO_EVO_FAILED"
+#, fuzzy
+msgid "AUTO_EVO_FAILED_CHECK_LOGS"
 msgstr "Nezdařilo se spustit Auto-evo"
+
+#, fuzzy
+msgid "AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL"
+msgstr "Chybí výsledky Auto-evo. Pokud jste načetli starší uloženou hru (save), očekává se, že bude chybět. Pokud jste nenačetli starší uloženou hru (save), nahlaste nám to jako chybu a pošlete nám svůj soubor protokolu hry."
 
 #, fuzzy
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
@@ -903,6 +908,10 @@ msgid "CLEAR_CACHE"
 msgstr "vymazat cache"
 
 msgid "CLICK_TO_SELECT"
+msgstr "Vybrat"
+
+#, fuzzy
+msgid "CLICK_TO_SET_CELL_TYPE"
 msgstr "Vybrat"
 
 msgid "CLIMATE_INSTABILITY"
@@ -1649,6 +1658,10 @@ msgstr "Zmenšit velikost objektu"
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Výchozí výstupní zařízení"
 
+#, fuzzy
+msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
+msgstr "Vytvořit nový typ buňky"
+
 msgid "DELETE"
 msgstr "Smazat"
 
@@ -1999,6 +2012,14 @@ msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Vstupte do editoru a upravte svůj druh"
 
 #, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR"
+msgstr "Dovolit druhu aby neprocházel mutací (pokud není nalezena žádná dobrá mutace)"
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR_EXPLANATION"
+msgstr "(zapnutí limituje rychlost růstu, při vypnutí na rychlost růstu mají efekt pouze dostupné sloučeniny)"
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
 "Toto je editor buněk, kde můžeš přidávat nebo odebírat organely z tvého druhu utracením bodů mutace (MP).\n"
@@ -2254,6 +2275,9 @@ msgid "ERROR_LOADING"
 msgstr "Chyba v načítání"
 
 msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
+
+msgid "ERROR_REQUIRED_AT_LEAST_X_CELLS_FOR_MASS_BUDDING"
 msgstr ""
 
 msgid "ERROR_SAVING"
@@ -2683,6 +2707,9 @@ msgstr "Zobrazit / skrýt sloučeniny"
 
 msgid "GAME_DESIGN_TEAM"
 msgstr "Herní design"
+
+msgid "GAME_PHYSICS_PERFORMANCE_LOW_WARNING"
+msgstr ""
 
 #, fuzzy
 msgid "GAME_SYSTEMS_TITLE"
@@ -3777,6 +3804,10 @@ msgstr "Mořský sníh"
 
 msgid "MASS_BUDDING_CELL_COUNT"
 msgstr ""
+
+#, fuzzy
+msgid "MASS_BUDDING_MINIMUM_SIZE_EXPLANATION"
+msgstr "(pasivní příjem reprodukčních sloučenin z prostředí bez toho aniž byste něco museli dělat)"
 
 #, fuzzy
 msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
@@ -4882,6 +4913,14 @@ msgstr "Složka se snímky obrazovky nebyla nalezena"
 msgid "NO_SELECTED_MOD"
 msgstr "Žádný vybraný mod"
 
+#, fuzzy
+msgid "NO_SPORE_CELL_TYPE_SET"
+msgstr "Vytvořit nový typ buňky"
+
+#, fuzzy
+msgid "NO_SPORE_CELL_TYPE_SET_TITLE"
+msgstr "Vytvořit nový typ buňky"
+
 msgid "NO_SUGGESTION"
 msgstr "Žádné"
 
@@ -5923,6 +5962,9 @@ msgstr "Uložená hra má neplatný stav herní scény"
 msgid "SAVE_INVALID"
 msgstr "Uložená pozice je neplatná"
 
+msgid "SAVE_IS_CORRUPT_WHILE_LOADING"
+msgstr ""
+
 msgid "SAVE_IS_INVALID"
 msgstr "Uložená pozice je neplatná"
 
@@ -6416,7 +6458,7 @@ msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr "Přepnout mezi běžnou herní rychlostí a dvojnásoubnou rychlostí"
 
 #, fuzzy
-msgid "SPORE_CELL_TYPE"
+msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
 msgstr "Vytvořit nový typ buňky"
 
 #, fuzzy
@@ -7889,6 +7931,38 @@ msgstr "3D, Strategie, Vesmír"
 msgid "WIKI_8_BRACKET_16"
 msgstr "8 (16)"
 
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_EFFECTS"
+msgstr "Vedlejší účinky:"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_INTRO"
+msgstr "Rusticyanin je protein schopný využít plynný [thrive:compound type=\"carbondioxide\"][/thrive:compound] a [thrive:compound type=\"oxygen\"][/thrive:compound] k oxidaci železa z jednoho chemického stavu na jiný. Tento proces, nazývaný [b]respirace železa[/b], uvolňuje energii, kterou je pak buňka schopna sklidit."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_MODIFICATIONS"
+msgstr "Mazlavé vnitřnosti buňky. Cytoplasma je základní směsice ionů, proteinů, a jiných látek rozpuštěných ve vodě, které vyplňují vnitřek buňky. Jedna z funkcí kterou provádí je [b]glykolýza[/b], konverze [thrive:compound type=\"glucose\"][/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound]. Spoléhají se na ni buňky, kterým chybí organely pro více pokročilý metabolismus, jako příjem energie. Je také používána pro růst velikosti a uschovávání molekul v buňce."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_PROCESSES"
+msgstr "Neprobíhají žádné procesy."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_REQUIREMENTS"
+msgstr "Elektrárna buňky. Mitochondie je struktura dvou membrán vyplněná proteiny a enzymy. Jedná se o prokaryotu, která byla asimilována pro využití svým eukaryotickým hostitelem. Je schopná konvertovat [thrive:compound type=\"glucose\"][/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound] s daleko vyšší účinností než je možno v cytoplazmě, v procesu známém jako [b]buněčné dýchání[/b]. Potřebuje k tomu ale [thrive:compound type=\"oxygen\"][/thrive:compound], a nizké množství [thrive:compound type=\"oxygen\"][/thrive:compound] v prostředí zpomaluje její schopnost produkovat [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_SCIENTIFIC_BACKGROUND"
+msgstr "Chemoplast je struktura dvou membrán obsahující proteiny, které jsou schopné konvertovat [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], plynný [thrive:compound type=\"carbondioxide\"][/thrive:compound] a vodu na [thrive:compound type=\"glucose\"][/thrive:compound], v procesu známém jako [b]chemosyntéza sirovodíku[/b]. Rychlost produkce [thrive:compound type=\"glucose\"][/thrive:compound] je úměrná koncentrace [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_STRATEGY"
+msgstr "Společné fáze editoru a strategie"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_UPGRADES"
+msgstr "Chemoplast je struktura dvou membrán obsahující proteiny, které jsou schopné konvertovat [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], plynný [thrive:compound type=\"carbondioxide\"][/thrive:compound] a vodu na [thrive:compound type=\"glucose\"][/thrive:compound], v procesu známém jako [b]chemosyntéza sirovodíku[/b]. Rychlost produkce [thrive:compound type=\"glucose\"][/thrive:compound] je úměrná koncentrace [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
+
 msgid "WIKI_ASCENSION"
 msgstr "Povznesení"
 
@@ -8828,6 +8902,10 @@ msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "Elektrárna buňky. Mitochondie je struktura dvou membrán vyplněná proteiny a enzymy. Jedná se o prokaryotu, která byla asimilována pro využití svým eukaryotickým hostitelem. Je schopná konvertovat [thrive:compound type=\"glucose\"][/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound] s daleko vyšší účinností než je možno v cytoplazmě, v procesu známém jako [b]buněčné dýchání[/b]. Potřebuje k tomu ale [thrive:compound type=\"oxygen\"][/thrive:compound], a nizké množství [thrive:compound type=\"oxygen\"][/thrive:compound] v prostředí zpomaluje její schopnost produkovat [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #, fuzzy
+msgid "WIKI_MUCOCYST"
+msgstr "Umístit organelu"
+
+#, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
 msgstr "Mnohobuněčné Období"
 
@@ -9014,6 +9092,10 @@ msgstr "Modifikovaný metabolozom je zodpovědný za produkci primitivní formy 
 #, fuzzy
 msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr "Syntéza OxyToxynů"
+
+#, fuzzy
+msgid "WIKI_PAGE_ACTOMYOSIN"
+msgstr "Rusticyanin (protein mědi)"
 
 #, fuzzy
 msgid "WIKI_PAGE_ASCENSION"
@@ -9759,6 +9841,10 @@ msgstr "Přiblížit"
 
 msgid "ZOOM_OUT"
 msgstr "Oddálit"
+
+#, fuzzy
+#~ msgid "SPORE_CELL_TYPE"
+#~ msgstr "Vytvořit nový typ buňky"
 
 #~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
 #~ msgstr "Přepnout mezi běžnou herní rychlostí a dvojnásoubnou rychlostí"

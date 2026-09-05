@@ -229,7 +229,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
     {
         // Doing anything prevents membrane change from happening afterwards, just so there's no way to optimize MP
         // usage by failing to change and then doing an edit and then succeeding
-        specialMembraneToSwitchOnExit = null;
+        StopMembraneSwitchIfQueued();
 
         return base.EnqueueAction(action);
     }
@@ -284,6 +284,9 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     public override void Redo()
     {
+        // Redo could be used to trigger a membrane switch in an unintended way, so we always clear it here
+        StopMembraneSwitchIfQueued();
+
         var cellType = history.GetRedoContext<CellType>();
 
         // If the action we're redoing should be done on another cell type,
@@ -342,11 +345,13 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
         if (!OnFinishEditing(null))
         {
-            GD.Print("Couldn't exit the editor due to a problem and apply new membrane");
-            specialMembraneToSwitchOnExit = null;
+            // A failed finish attempt can be caused by a warning popup. Keep the membrane change pending so that
+            // confirming the warning can retry the exit and apply it. EnqueueAction clears this if the player
+            // performs an editor action before trying to exit again.
+            GD.Print("Couldn't exit the editor yet due to a problem; membrane change remains pending");
         }
 
-        // We can't unset the membrane in all cases as there's a timed animation on the exit and only then the callback
+        // We can't unset the membrane as there's a timed animation on the exit, and only then the callback
         // needing it will run
     }
 
@@ -446,6 +451,11 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
         if (!IsLoadedFromSave)
             TutorialState.SendEvent(TutorialEventType.EnteredMulticellularEditor, EventArgs.Empty, this);
+    }
+
+    protected override void ShowNoAutoEvoResultsAfterLoad()
+    {
+        reportTab.ShowErrorAboutIncompleteSave();
     }
 
     protected override void UpdateHistoryCallbackTargets(ActionHistory<EditorAction> actionHistory)
@@ -655,6 +665,15 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         EditedSpecies.NotifyMembraneTypeChanged();
     }
 
+    private void StopMembraneSwitchIfQueued()
+    {
+        if (specialMembraneToSwitchOnExit != null)
+        {
+            specialMembraneToSwitchOnExit = null;
+            GD.Print("Clearing pending membrane change as the player performed an action");
+        }
+    }
+
     private void OnRevealAllPatchesCheatUsed(object? sender, EventArgs args)
     {
         CurrentGame.GameWorld.Map.RevealAllPatches();
@@ -682,6 +701,18 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     private void OnStartEditingCellType(string? name, bool switchTab)
     {
+        OpenEditorForCellType(string.IsNullOrEmpty(name) ?
+            null :
+            EditedSpecies.ModifiableCellTypes.First(c => c.CellTypeName == name), switchTab);
+    }
+
+    private void OnStartEditingSporeCellType()
+    {
+        OpenEditorForCellType(bodyPlanEditorTab.SporeCellType, true);
+    }
+
+    private void OpenEditorForCellType(CellType? cellType, bool switchTab)
+    {
         if (CanCancelAction)
         {
             ToolTipManager.Instance.ShowPopup(Localization.Translate("ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"),
@@ -689,22 +720,18 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
             return;
         }
 
-        // If there is a null name, that means there is no selected cell,
-        // so clear the selectedCellTypeToEdit and return early
-        if (string.IsNullOrEmpty(name))
+        if (cellType == null)
         {
             selectedCellTypeToEdit = null;
             GD.Print("Cleared editing cell type");
             return;
         }
 
-        var newTypeToEdit = EditedSpecies.ModifiableCellTypes.First(c => c.CellTypeName == name);
-
         // Only reinitialize the editor when required
         if (selectedCellTypeToEdit == null ||
-            cellTypeEditsHolder.GetOriginalType(selectedCellTypeToEdit) != newTypeToEdit)
+            !ReferenceEquals(cellTypeEditsHolder.GetOriginalType(selectedCellTypeToEdit), cellType))
         {
-            selectedCellTypeToEdit = cellTypeEditsHolder.BeginOrContinueEdit(newTypeToEdit);
+            selectedCellTypeToEdit = cellTypeEditsHolder.BeginOrContinueEdit(cellType);
 
             GD.Print("Start editing cell type: ", selectedCellTypeToEdit.CellTypeName);
 
@@ -789,7 +816,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
         // Revert to the old name if the name is a duplicate
         if (EditedSpecies.ModifiableCellTypes.Any(c =>
-                c != selectedCellTypeToEdit && c.CellTypeName == selectedCellTypeToEdit.CellTypeName))
+                !ReferenceEquals(c, selectedCellTypeToEdit) && c.CellTypeName == selectedCellTypeToEdit.CellTypeName))
         {
             if (oldName != selectedCellTypeToEdit.CellTypeName)
             {
@@ -814,7 +841,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     private void SwapEditingCellIfNeeded(CellType? newCell)
     {
-        if (selectedCellTypeToEdit == newCell || newCell == null)
+        if (ReferenceEquals(selectedCellTypeToEdit, newCell) || newCell == null)
             return;
 
         // If we're switching to a new cell type, apply any changes made to the old one

@@ -871,6 +871,11 @@ public class OrganelleDefinition : RegistryType, IPlayerReadableName
         }
     }
 
+    public override bool Equals(object? obj)
+    {
+        return obj is OrganelleDefinition other && InternalName == other.InternalName;
+    }
+
     public override int GetHashCode()
     {
         return unchecked((int)PersistentStringHash.GetHash(InternalName));

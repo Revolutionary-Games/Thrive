@@ -73,6 +73,25 @@ public interface IReadOnlyCellTypeDefinition : IReadOnlyCellDefinition, IPlayerR
     ///   Does not include any adjacency bonus effects that may be applied later.
     /// </summary>
     public float CellTypeSpecializationBonus { get; }
+
+    public float BaseHexSize
+    {
+        get
+        {
+            var size = 0.0f;
+
+            foreach (var organelle in Organelles)
+            {
+                size += organelle.Definition.HexCount;
+            }
+
+            // Multicellular species should not be bacteria in the current design, but just in case:
+            if (IsBacteria)
+                return size * Constants.BACTERIA_CELL_SCALE;
+
+            return size;
+        }
+    }
 }
 
 /// <summary>

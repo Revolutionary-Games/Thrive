@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-14 09:18+0300\n"
+"POT-Creation-Date: 2026-09-01 10:25+0300\n"
 "PO-Revision-Date: 2026-07-23 05:41+0000\n"
 "Last-Translator: Yuchan An <chanyz1402@gmail.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -420,8 +420,13 @@ msgstr "실행 상태:"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "실행 상태:"
 
-msgid "AUTO_EVO_FAILED"
+#, fuzzy
+msgid "AUTO_EVO_FAILED_CHECK_LOGS"
 msgstr "Auto-evo 실행 실패"
+
+#, fuzzy
+msgid "AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL"
+msgstr "Auto-evo 결과 중 빠진 것들이 있습니다. 만일 오래된 저장된 게임을 불러온 것 이라면 결과 중 몇 개가 빠진 것 입니다. 만일 아니라면 버그를 신고해주시고, 게임 로그 파일을 저희에게 보내주십시오."
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr "Auto-evo 결과 중 빠진 것들이 있습니다. 만일 오래된 저장된 게임을 불러온 것 이라면 결과 중 몇 개가 빠진 것 입니다. 만일 아니라면 버그를 신고해주시고, 게임 로그 파일을 저희에게 보내주십시오."
@@ -971,6 +976,10 @@ msgstr "캐시 초기화하기"
 
 #, fuzzy
 msgid "CLICK_TO_SELECT"
+msgstr "선택된 파일 삭제"
+
+#, fuzzy
+msgid "CLICK_TO_SET_CELL_TYPE"
 msgstr "선택된 파일 삭제"
 
 msgid "CLIMATE_INSTABILITY"
@@ -1742,6 +1751,10 @@ msgstr "점액 분비"
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "기본 출력 기기"
 
+#, fuzzy
+msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
+msgstr "새 저장 생성"
+
 msgid "DELETE"
 msgstr "삭제하기"
 
@@ -2108,6 +2121,14 @@ msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
 #, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR"
+msgstr "종이 변이하지 않을 수 있도록 허용 (좋은 변이가 발견되지 않는 경우)"
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR_EXPLANATION"
+msgstr "(활성화하면 성장 속도를 제한하며, 비활성화하면 성장 속도가 오직 사용할 수 있는 화합물의 양에 영향을 받음)"
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
 "이 세포 편집기에서 변이 점수(MP)를 소모하여 당신의 종에 세포 기관을 추가하거나 제거할 수 있습니다.\n"
@@ -2375,6 +2396,9 @@ msgid "ERROR_LOADING"
 msgstr "불러오기 오류"
 
 msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
+
+msgid "ERROR_REQUIRED_AT_LEAST_X_CELLS_FOR_MASS_BUDDING"
 msgstr ""
 
 msgid "ERROR_SAVING"
@@ -2797,6 +2821,9 @@ msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
 msgid "GAME_DESIGN_TEAM"
+msgstr ""
+
+msgid "GAME_PHYSICS_PERFORMANCE_LOW_WARNING"
 msgstr ""
 
 #, fuzzy
@@ -3968,6 +3995,10 @@ msgid "MASS_BUDDING_CELL_COUNT"
 msgstr ""
 
 #, fuzzy
+msgid "MASS_BUDDING_MINIMUM_SIZE_EXPLANATION"
+msgstr "(번식에 필요한 화합물을 아무 것도 하지 않아도 환경에서 자동으로 수집)"
+
+#, fuzzy
 msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "(번식에 필요한 화합물을 아무 것도 하지 않아도 환경에서 자동으로 수집)"
 
@@ -5068,6 +5099,14 @@ msgid "NO_SELECTED_MOD"
 msgstr "선택됨:"
 
 #, fuzzy
+msgid "NO_SPORE_CELL_TYPE_SET"
+msgstr "새 저장 생성"
+
+#, fuzzy
+msgid "NO_SPORE_CELL_TYPE_SET_TITLE"
+msgstr "새 저장 생성"
+
+#, fuzzy
 msgid "NO_SUGGESTION"
 msgstr "해상도:"
 
@@ -6157,6 +6196,9 @@ msgstr "저장된 게임 상태가 올바르지 않습니다"
 msgid "SAVE_INVALID"
 msgstr "부정"
 
+msgid "SAVE_IS_CORRUPT_WHILE_LOADING"
+msgstr ""
+
 msgid "SAVE_IS_INVALID"
 msgstr "올바르지 않은 저장 입니다"
 
@@ -6679,7 +6721,7 @@ msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr "재개"
 
 #, fuzzy
-msgid "SPORE_CELL_TYPE"
+msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
 msgstr "새 저장 생성"
 
 #, fuzzy
@@ -8208,6 +8250,38 @@ msgid "WIKI_8_BRACKET_16"
 msgstr "왼쪽으로 회전"
 
 #, fuzzy
+msgid "WIKI_ACTOMYOSIN_EFFECTS"
+msgstr "외부 효과:"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_INTRO"
+msgstr "루스티시아닌은 가스 상태의 이산화탄소와 산소를 사용하여 산화철을 화학적 상태에서 다른 화학적 상태로 산화시킬 수 있는 단백질입니다. 철 호흡이라고하는 이 과정은 세포가 수확 할 수 있는 에너지를 방출합니다."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_MODIFICATIONS"
+msgstr "끈적끈적한 세포 내부. 세포질은 이온, 단백질 및 세포 내부를 채우는 물에 용해된 기타 물질의 기본 혼합물입니다. 이것의 기능 중 하나는 발효를 통해 포도당을 ATP 에너지로 전환시키는 것 입니다. 세포 소 기관이 부족하고 세포가 더 발전된 신진 대사를 하는 경우, 에너지에 더욱 의존하게 됩니다. 또한 분자를 세포에 저장하고 세포의 크기를 성장시키는 데 사용됩니다."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_PROCESSES"
+msgstr "세포 기관 배치"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_REQUIREMENTS"
+msgstr "세포의 핵심. 미토콘드리온(복수형: 미토콘드리아)는 단백질과 효소로 이루어진 이중막 구조입니다. 진핵 숙주가 사용하기 위해 동화된 원핵 생물입니다. 호기성 호흡을 통해 세포질에서 할 수 있는 것보다 훨씬 더 높은 효율로 포도당을 ATP로 전환 할 수 있습니다. 그러나 산소를 필요로 하며 환경의 산소 수준이 낮으면 ATP 생산 속도가 느려집니다."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_SCIENTIFIC_BACKGROUND"
+msgstr "화학 세포는 황화수소 화학 합성 이라는 과정을 통해 황화수소, 물 및 기체 이산화탄소를 포도당으로 전환 할 수 있는 단백질을 포함하는 이중 막 구조입니다. 포도당 생산 속도는 이산화탄소의 농도에 따라 달라집니다."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_STRATEGY"
+msgstr "화학 세포는 황화수소 화학 합성 이라는 과정을 통해 황화수소, 물 및 기체 이산화탄소를 포도당으로 전환 할 수 있는 단백질을 포함하는 이중 막 구조입니다. 포도당 생산 속도는 이산화탄소의 농도에 따라 달라집니다."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_UPGRADES"
+msgstr "화학 세포는 황화수소 화학 합성 이라는 과정을 통해 황화수소, 물 및 기체 이산화탄소를 포도당으로 전환 할 수 있는 단백질을 포함하는 이중 막 구조입니다. 포도당 생산 속도는 이산화탄소의 농도에 따라 달라집니다."
+
+#, fuzzy
 msgid "WIKI_ASCENSION"
 msgstr "루스티시아닌은 가스 상태의 이산화탄소와 산소를 사용하여 산화철을 화학적 상태에서 다른 화학적 상태로 산화시킬 수 있는 단백질입니다. 철 호흡이라고하는 이 과정은 세포가 수확 할 수 있는 에너지를 방출합니다."
 
@@ -9158,6 +9232,10 @@ msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "세포의 핵심. 미토콘드리온(복수형: 미토콘드리아)는 단백질과 효소로 이루어진 이중막 구조입니다. 진핵 숙주가 사용하기 위해 동화된 원핵 생물입니다. 호기성 호흡을 통해 세포질에서 할 수 있는 것보다 훨씬 더 높은 효율로 포도당을 ATP로 전환 할 수 있습니다. 그러나 산소를 필요로 하며 환경의 산소 수준이 낮으면 ATP 생산 속도가 느려집니다."
 
 #, fuzzy
+msgid "WIKI_MUCOCYST"
+msgstr "세포 기관 배치"
+
+#, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
 msgstr "다세포 단계"
 
@@ -9347,6 +9425,10 @@ msgstr "원시적인 독소 [thrive:compound type=\"oxytoxy\"][/thrive:compound]
 #, fuzzy
 msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr "산소 합성"
+
+#, fuzzy
+msgid "WIKI_PAGE_ACTOMYOSIN"
+msgstr "루스티시아닌"
 
 #, fuzzy
 msgid "WIKI_PAGE_ASCENSION"
@@ -10123,6 +10205,10 @@ msgstr "확대"
 
 msgid "ZOOM_OUT"
 msgstr "축소"
+
+#, fuzzy
+#~ msgid "SPORE_CELL_TYPE"
+#~ msgstr "새 저장 생성"
 
 #, fuzzy
 #~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"

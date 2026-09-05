@@ -168,6 +168,7 @@ public static class PhysicsHelpers
             physics.LinearDamping = null;
         }
 
+        // This is a state-changing method, so checking the same value is important.
         if (reader.ReadBool())
         {
             physics.AngularDamping = reader.ReadFloat();

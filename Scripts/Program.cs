@@ -85,7 +85,7 @@ public class Program
 
         ColourConsole.WriteDebugLine("Running native library handling tool");
 
-        var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
+        using var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
 
         var tool = new NativeLibs(options);
 
@@ -122,7 +122,7 @@ public class Program
 
         CodeChecks.IgnoreGdUnitReportsFolder();
 
-        var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
+        using var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
 
         int result = -1;
 
@@ -153,7 +153,13 @@ public class Program
         {
             ColourConsole.WriteInfoLine("Running tests with gdUnit");
 
-            const int maxTries = 2;
+            if (options.GodotReruns < 0)
+            {
+                ColourConsole.WriteErrorLine("Godot test reruns needs to be a non-negative number");
+                return 2;
+            }
+
+            var maxTries = options.GodotReruns + 1;
 
             // Then gdUnit tests
             ColourConsole.WriteNormalLine($"Generating {TestRunningHelpers.RUN_SETTINGS_FILE}");
@@ -212,7 +218,7 @@ public class Program
 
         CodeChecks.IgnoreGdUnitReportsFolder();
 
-        var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
+        using var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
 
         var packager = new PackageTool(options);
 
@@ -225,7 +231,7 @@ public class Program
 
         ColourConsole.WriteDebugLine("Running localization update tool");
 
-        var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
+        using var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
 
         var updater = new LocalizationUpdate(options);
 
@@ -238,7 +244,7 @@ public class Program
 
         ColourConsole.WriteDebugLine("Running cleanup tool");
 
-        var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
+        using var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
 
         return Cleanup.Run(options, tokenSource.Token).Result ? 0 : 1;
     }
@@ -249,7 +255,7 @@ public class Program
 
         ColourConsole.WriteDebugLine("Running upload tool");
 
-        var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
+        using var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
 
         var uploader = new Uploader(options);
 
@@ -262,7 +268,7 @@ public class Program
 
         ColourConsole.WriteDebugLine("Running container tool");
 
-        var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
+        using var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
 
         var tool = new ContainerTool(options);
 
@@ -275,7 +281,7 @@ public class Program
 
         ColourConsole.WriteDebugLine("Running container tool");
 
-        var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
+        using var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
 
         bool wantedMode;
 
@@ -316,7 +322,7 @@ public class Program
 
         ColourConsole.WriteDebugLine("Running Godot templates tool");
 
-        var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
+        using var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
 
         return GodotTemplateInstaller.Run(tokenSource.Token).Result ? 0 : 1;
     }
@@ -327,7 +333,7 @@ public class Program
 
         ColourConsole.WriteDebugLine("Running translation progress update tool");
 
-        var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
+        using var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
 
         return TranslationProgressTool.Run(tokenSource.Token).Result ? 0 : 1;
     }
@@ -338,7 +344,7 @@ public class Program
 
         ColourConsole.WriteDebugLine("Running credit updating tool");
 
-        var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
+        using var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
 
         return CreditsUpdater.Run(tokenSource.Token).Result ? 0 : 1;
     }
@@ -349,7 +355,7 @@ public class Program
 
         ColourConsole.WriteDebugLine("Running wiki updating tool");
 
-        var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
+        using var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
 
         var tool = new WikiUpdater();
 
@@ -362,7 +368,7 @@ public class Program
 
         ColourConsole.WriteDebugLine("Running file generating tool");
 
-        var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
+        using var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
 
         var tool = new FileGenerator(options);
 
@@ -375,7 +381,7 @@ public class Program
 
         ColourConsole.WriteInfoLine("Attempting to compile C# Thrive code with Godot");
 
-        var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
+        using var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
 
         var tool = new GodotProjectCompiler(options);
 
@@ -389,10 +395,10 @@ public class Program
         ColourConsole.WriteInfoLine("Attempting to import assets to Godot to make test detection work");
         ColourConsole.WriteInfoLine("This quite often fails, so this will try to run for 7 minutes before cancelling");
 
-        var timeout = new CancellationTokenSource(TimeSpan.FromMinutes(7));
-        var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
+        using var timeout = new CancellationTokenSource(TimeSpan.FromMinutes(7));
+        using var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
 
-        var combined = CancellationTokenSource.CreateLinkedTokenSource(tokenSource.Token, timeout.Token);
+        using var combined = CancellationTokenSource.CreateLinkedTokenSource(tokenSource.Token, timeout.Token);
 
         var startInfo = new ProcessStartInfo("godot");
         startInfo.ArgumentList.Add(PackageTool.GODOT_HEADLESS_FLAG);
@@ -405,7 +411,7 @@ public class Program
         {
             var processTask = ProcessRunHelpers.RunProcessAsync(startInfo, combined.Token, false, 1, false);
 
-            var waitTimeout = new CancellationTokenSource(TimeSpan.FromMinutes(8));
+            using var waitTimeout = new CancellationTokenSource(TimeSpan.FromMinutes(8));
 
             processTask.Wait(waitTimeout.Token);
             var result = processTask.Result;
@@ -543,6 +549,10 @@ public class Program
         [Option("godot", Required = false,
             HelpText = "If specified can only run Godot tests or non-Godot tests. Default is to run all.")]
         public bool? Godot { get; set; }
+
+        [Option("godot-reruns", Required = false, Default = 0, MetaValue = "COUNT",
+            HelpText = "How many times to rerun failed Godot tests")]
+        public int GodotReruns { get; set; }
     }
 
     public class ChangesOptions : ChangesOptionsBase

@@ -77,7 +77,7 @@ public partial class DebugOverlays : Control
 
         // Entity label
         if (showEntityLabels)
-            UpdateEntityLabels();
+            UpdateEntityLabels(delta);
 
         // Performance metrics
         if (performanceMetrics.Visible)

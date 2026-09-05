@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-14 09:18+0300\n"
+"POT-Creation-Date: 2026-09-01 10:25+0300\n"
 "PO-Revision-Date: 2026-05-01 09:17+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -396,8 +396,13 @@ msgstr "Käytä auto-evon tutkijassa"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Auto-evon tutkija -työkalu"
 
-msgid "AUTO_EVO_FAILED"
+#, fuzzy
+msgid "AUTO_EVO_FAILED_CHECK_LOGS"
 msgstr "Auto-evon suorittaminen epäonnistui"
+
+#, fuzzy
+msgid "AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL"
+msgstr "Maailmanlaajuiset tulokset"
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr ""
@@ -937,6 +942,10 @@ msgstr ""
 
 #, fuzzy
 msgid "CLICK_TO_SELECT"
+msgstr "Poista valitut"
+
+#, fuzzy
+msgid "CLICK_TO_SET_CELL_TYPE"
 msgstr "Poista valitut"
 
 msgid "CLIMATE_INSTABILITY"
@@ -1732,6 +1741,10 @@ msgstr "Luo uusi tallennus"
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Oletus ulostulolaite"
 
+#, fuzzy
+msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
+msgstr "Luo uusi soluelin"
+
 msgid "DELETE"
 msgstr "Poista"
 
@@ -2119,6 +2132,14 @@ msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Lisää uusi syöte"
 
 #, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR"
+msgstr "on saanut mutaation"
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR_EXPLANATION"
+msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
 "Tervetuloa mikrobieditoriin.\n"
@@ -2410,6 +2431,9 @@ msgid "ERROR_LOADING"
 msgstr "Virhe ladattaessa"
 
 msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
+
+msgid "ERROR_REQUIRED_AT_LEAST_X_CELLS_FOR_MASS_BUDDING"
 msgstr ""
 
 msgid "ERROR_SAVING"
@@ -2854,6 +2878,9 @@ msgstr "Näytä / piilota ympäristö ja yhdisteet"
 
 msgid "GAME_DESIGN_TEAM"
 msgstr "Pelisuunnittelutiimi"
+
+msgid "GAME_PHYSICS_PERFORMANCE_LOW_WARNING"
+msgstr ""
 
 #, fuzzy
 msgid "GAME_SYSTEMS_TITLE"
@@ -4029,6 +4056,10 @@ msgid "MASS_BUDDING_CELL_COUNT"
 msgstr ""
 
 #, fuzzy
+msgid "MASS_BUDDING_MINIMUM_SIZE_EXPLANATION"
+msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
+
+#, fuzzy
 msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
 
@@ -5157,6 +5188,14 @@ msgid "NO_SELECTED_MOD"
 msgstr "Ei valittua Modia"
 
 #, fuzzy
+msgid "NO_SPORE_CELL_TYPE_SET"
+msgstr "Luo uusi soluelin"
+
+#, fuzzy
+msgid "NO_SPORE_CELL_TYPE_SET_TITLE"
+msgstr "Luo uusi soluelin"
+
+#, fuzzy
 msgid "NO_SUGGESTION"
 msgstr "?"
 
@@ -6251,6 +6290,9 @@ msgstr "Tallennuksessa on virheellinen pelin tilan skene"
 msgid "SAVE_INVALID"
 msgstr "Virheellinen"
 
+msgid "SAVE_IS_CORRUPT_WHILE_LOADING"
+msgstr ""
+
 msgid "SAVE_IS_INVALID"
 msgstr "Tallennus on virheellinen"
 
@@ -6772,7 +6814,7 @@ msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr "Laita peli tauolle"
 
 #, fuzzy
-msgid "SPORE_CELL_TYPE"
+msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
 msgstr "Luo uusi soluelin"
 
 #, fuzzy
@@ -8323,6 +8365,38 @@ msgstr "Yleinen editori ja strategia-vaiheet"
 msgid "WIKI_8_BRACKET_16"
 msgstr "["
 
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_EFFECTS"
+msgstr "Ulkoiset vaikutukset:"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_INTRO"
+msgstr "Rustisyaniini on proteiini, joka käyttää hiilidioksiidia ja happea muuntaakseen raudan toiseksi aineeksi. Tätä kutsutaan hapettumiseksi ja se vapauttaa energiaa, jonka solu voi hyödyntää."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_MODIFICATIONS"
+msgstr "Solun täyttävä limainen aines. Solulima on sekoite ioneita, proteiineja ja muita ainesosia veteen liuotettuna ja täyttää solun sisäpuolen. Yksi sen tarkoituksista on suorittaa glykolyysi, eli glukoosin muuntaminen ATP-energianlähteeksi. Alkeelliset soluilla, joilla ei ole kehittyneempiä aineenvaihduntaan keskittyneitä soluelimiä, solulima on keskeinen energian tuotannon lähde. Solulima myös varastoi molekyylejä, eli esimerkiksi kerättäviä yhdisteitä ja kasvattaa solun kokoa."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_PROCESSES"
+msgstr "Ei toimintoja"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_REQUIREMENTS"
+msgstr "Nitrogenaasi on entsyymikompleksi, joka katalysoi typpimolekyylien pelkistymistä ammoniakiksi käyttäen ATP:tä. Ammoniakki on tärkeä aine solun kasvulle. Tätä prosessia kutsutaan anaerobiseksi typpifiksaatioksi. Nitrogenaasi sijaitsee soluliman ympäröimänä, joka puolestaan toteuttaa osaltaan glykolyysia."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_SCIENTIFIC_BACKGROUND"
+msgstr "Yhteyttämiskalvostot eli tylakoidit ovat solukalvolla sijaitsevia, valosta energiaa kerääviä elimiä. Nämä kalvostot pystyvät hyödyntämään valon energian valmistaakseen glukoosia käyttäen vettä ja hiilidioksidia prosessissa nimeltä fotosynteesi. Tylakoidien pigmentit antavat viherhiukkasille niiden tunnusomaisen värinsä. Glukoosin muunnosnopeus riippuu ympäristön hiilidioksidipitoisuudesta ja saatavilla olevasta valosta. Tylakoidit sijaitsevat soluliman ympäröimänä, joka puolestaan toteuttaa glykolyysia."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_STRATEGY"
+msgstr "Yhteyttämiskalvostot eli tylakoidit ovat solukalvolla sijaitsevia, valosta energiaa kerääviä elimiä. Nämä kalvostot pystyvät hyödyntämään valon energian valmistaakseen glukoosia käyttäen vettä ja hiilidioksidia prosessissa nimeltä fotosynteesi. Tylakoidien pigmentit antavat viherhiukkasille niiden tunnusomaisen värinsä. Glukoosin muunnosnopeus riippuu ympäristön hiilidioksidipitoisuudesta ja saatavilla olevasta valosta. Tylakoidit sijaitsevat soluliman ympäröimänä, joka puolestaan toteuttaa glykolyysia."
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_UPGRADES"
+msgstr "Yhteyttämiskalvostot eli tylakoidit ovat solukalvolla sijaitsevia, valosta energiaa kerääviä elimiä. Nämä kalvostot pystyvät hyödyntämään valon energian valmistaakseen glukoosia käyttäen vettä ja hiilidioksidia prosessissa nimeltä fotosynteesi. Tylakoidien pigmentit antavat viherhiukkasille niiden tunnusomaisen värinsä. Glukoosin muunnosnopeus riippuu ympäristön hiilidioksidipitoisuudesta ja saatavilla olevasta valosta. Tylakoidit sijaitsevat soluliman ympäröimänä, joka puolestaan toteuttaa glykolyysia."
+
 msgid "WIKI_ASCENSION"
 msgstr "Nousemus"
 
@@ -9343,6 +9417,10 @@ msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "Mitokondrio"
 
 #, fuzzy
+msgid "WIKI_MUCOCYST"
+msgstr "Lisää soluelin"
+
+#, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
 msgstr "Monisoluinen vaihe"
 
@@ -9531,6 +9609,10 @@ msgstr "Happimyrkkysomi"
 #, fuzzy
 msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr "Happimyrkkysynteesi"
+
+#, fuzzy
+msgid "WIKI_PAGE_ACTOMYOSIN"
+msgstr "Nousemus"
 
 msgid "WIKI_PAGE_ASCENSION"
 msgstr "Nousemus"
@@ -10352,6 +10434,10 @@ msgstr "Zoomaa sisään"
 
 msgid "ZOOM_OUT"
 msgstr "Zoomaa ulospäin"
+
+#, fuzzy
+#~ msgid "SPORE_CELL_TYPE"
+#~ msgstr "Luo uusi soluelin"
 
 #, fuzzy
 #~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"

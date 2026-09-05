@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Godot;
 
 /// <summary>
 ///   Helps to manage the used cell types for more advanced species that have multiple cell types
@@ -10,7 +12,9 @@ public class CellTypeFacadeHelper
     private readonly List<IReadOnlyCellTypeDefinition> removedCellTypes = new();
     private readonly List<CellTypeEditsFacade> addedCellTypes = new();
 
-    private readonly Dictionary<IReadOnlyCellTypeDefinition, CellTypeEditsFacade> activeCellTypes = new();
+    private readonly Dictionary<IReadOnlyCellTypeDefinition, CellTypeEditsFacade> activeCellTypes =
+        new(ReferenceEqualityComparer.Instance);
+
     private readonly Stack<CellTypeEditsFacade> unusedCellTypes = new();
 
     public int ApproximateCount => addedCellTypes.Count - removedCellTypes.Count;
@@ -38,7 +42,7 @@ public class CellTypeFacadeHelper
         if (actionData is DuplicateDeleteCellTypeData cellTypeActionData)
         {
             // Make sure the original is suppressed
-            if (!removedCellTypes.Contains(cellTypeActionData.CellType))
+            if (!removedCellTypes.Any(type => ReferenceEquals(type, cellTypeActionData.CellType)))
                 removedCellTypes.Add(cellTypeActionData.CellType);
 
             if (cellTypeActionData.Delete)
@@ -47,7 +51,8 @@ public class CellTypeFacadeHelper
                 // this is purely a deletion of an original type
                 if (activeCellTypes.ContainsKey(cellTypeActionData.CellType))
                 {
-                    if (!addedCellTypes.Remove(GetOrCreateCellType(cellTypeActionData.CellType)))
+                    var cellTypeToRemove = GetOrCreateCellType(cellTypeActionData.CellType);
+                    if (addedCellTypes.RemoveAll(type => ReferenceEquals(type, cellTypeToRemove)) != 1)
                         throw new InvalidOperationException("Cell type not found for delete");
                 }
             }
@@ -59,17 +64,46 @@ public class CellTypeFacadeHelper
             return true;
         }
 
+        if (actionData is SporeCellTypeChangeActionData sporeCellTypeChangeActionData)
+        {
+            if (!ReferenceEquals(sporeCellTypeChangeActionData.OldCellType,
+                    sporeCellTypeChangeActionData.NewCellType))
+            {
+                if (sporeCellTypeChangeActionData.OldCellType != null)
+                {
+                    if (!removedCellTypes.Any(type => ReferenceEquals(type, sporeCellTypeChangeActionData.OldCellType)))
+                        removedCellTypes.Add(sporeCellTypeChangeActionData.OldCellType);
+
+                    if (activeCellTypes.ContainsKey(sporeCellTypeChangeActionData.OldCellType))
+                    {
+                        var cellTypeToRemove = GetOrCreateCellType(sporeCellTypeChangeActionData.OldCellType);
+                        if (addedCellTypes.RemoveAll(type => ReferenceEquals(type, cellTypeToRemove)) != 1)
+                        {
+                            GD.PrintErr("Spore cell type not found for delete");
+                        }
+                    }
+                }
+
+                if (sporeCellTypeChangeActionData.NewCellType != null)
+                {
+                    addedCellTypes.Add(GetOrCreateCellType(sporeCellTypeChangeActionData.NewCellType));
+                }
+            }
+
+            return true;
+        }
+
         return false;
     }
 
     public void OnEditOnType(CellTypeEditsFacade targetType, CellType context)
     {
         // Make sure the original is suppressed
-        if (!removedCellTypes.Contains(context))
+        if (!removedCellTypes.Any(type => ReferenceEquals(type, context)))
             removedCellTypes.Add(context);
 
         // And that the new one is added
-        if (!addedCellTypes.Contains(targetType))
+        if (!addedCellTypes.Any(type => ReferenceEquals(type, targetType)))
             addedCellTypes.Add(targetType);
     }
 
@@ -156,7 +190,7 @@ public class CellTypeFacadeHelper
                         current = originalReader.Current;
 
                         // Need to read the next item if we are ignoring this item
-                        if (dataSource.removedCellTypes.Contains(current))
+                        if (dataSource.removedCellTypes.Any(type => ReferenceEquals(type, current)))
                             continue;
 
                         return true;

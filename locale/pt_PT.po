@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-14 09:18+0300\n"
-"PO-Revision-Date: 2026-05-22 15:37+0000\n"
+"POT-Creation-Date: 2026-09-01 10:25+0300\n"
+"PO-Revision-Date: 2026-08-22 04:42+0000\n"
 "Last-Translator: AegisTTN <gamemastermine042004@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
 "Language: pt_PT\n"
@@ -413,8 +413,13 @@ msgstr "Ferramenta de exploração da Auto-Evo"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Ferramenta de exploração da Auto-Evo"
 
-msgid "AUTO_EVO_FAILED"
+#, fuzzy
+msgid "AUTO_EVO_FAILED_CHECK_LOGS"
 msgstr "A auto-evo falhou"
+
+#, fuzzy
+msgid "AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL"
+msgstr "Resultados da auto-evo:"
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr ""
@@ -924,6 +929,10 @@ msgstr ""
 
 #, fuzzy
 msgid "CLICK_TO_SELECT"
+msgstr "Apagar Selecionado"
+
+#, fuzzy
+msgid "CLICK_TO_SET_CELL_TYPE"
 msgstr "Apagar Selecionado"
 
 msgid "CLIMATE_INSTABILITY"
@@ -1686,6 +1695,10 @@ msgstr "Secretar Mucilagem"
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Dispositivo de saída padrão"
 
+#, fuzzy
+msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
+msgstr "Criar um novo tipo de célula"
+
 msgid "DELETE"
 msgstr "Apagar"
 
@@ -2039,6 +2052,14 @@ msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Entrar no editor e modificar a tua espécie"
 
 #, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR"
+msgstr "Permite que espécies não sofram mutações (caso nenhuma mutação vantajosa seja encontrada)"
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR_EXPLANATION"
+msgstr "Este painel mostra os números a partir dos quais a previsão de auto-evo funciona. A energia total que uma espécie é capaz de capturar e o custo por indivíduo da espécie determinam a população final. O Auto-evo usa um modelo simplificado da realidade para calcular o desempenho das espécies com base na energia que conseguem obter. Para cada fonte de alimento, mostra quanta energia é que a espécie ganha com isso. Além disso, aparece o total de energia disponível na fonte. A fração que a espécie ganha da energia total é baseada em quão grande a aptidão é comparada com a aptidão total. A aptidão é uma métrica de quão bem a espécie pode utilizar essa fonte de alimento."
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
 "Este é o editor de células onde podes adicionar ou remover organelos da espécie gastando pontos de mutação (PM).\n"
@@ -2296,6 +2317,9 @@ msgid "ERROR_LOADING"
 msgstr "Erro ao carregar"
 
 msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
+msgstr ""
+
+msgid "ERROR_REQUIRED_AT_LEAST_X_CELLS_FOR_MASS_BUDDING"
 msgstr ""
 
 msgid "ERROR_SAVING"
@@ -2696,6 +2720,9 @@ msgstr "Mostrar / ocultar compostos"
 
 msgid "GAME_DESIGN_TEAM"
 msgstr "Equipa de Desenho do Jogo"
+
+msgid "GAME_PHYSICS_PERFORMANCE_LOW_WARNING"
+msgstr ""
 
 #, fuzzy
 msgid "GAME_SYSTEMS_TITLE"
@@ -3819,6 +3846,10 @@ msgid "MASS_BUDDING_CELL_COUNT"
 msgstr ""
 
 #, fuzzy
+msgid "MASS_BUDDING_MINIMUM_SIZE_EXPLANATION"
+msgstr "(obter passivamente compostos de reprodução do ambiente sem ter de fazer nada)"
+
+#, fuzzy
 msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "(obter passivamente compostos de reprodução do ambiente sem ter de fazer nada)"
 
@@ -4912,6 +4943,14 @@ msgid "NO_SELECTED_MOD"
 msgstr "Nenhum mod selecionado"
 
 #, fuzzy
+msgid "NO_SPORE_CELL_TYPE_SET"
+msgstr "Criar um novo tipo de célula"
+
+#, fuzzy
+msgid "NO_SPORE_CELL_TYPE_SET_TITLE"
+msgstr "Criar um novo tipo de célula"
+
+#, fuzzy
 msgid "NO_SUGGESTION"
 msgstr "Resolução:"
 
@@ -5957,6 +5996,9 @@ msgstr "O jogo guardado tem um estado de jogo inválido"
 msgid "SAVE_INVALID"
 msgstr "Inválido"
 
+msgid "SAVE_IS_CORRUPT_WHILE_LOADING"
+msgstr ""
+
 msgid "SAVE_IS_INVALID"
 msgstr "O jogo guardado é inválido"
 
@@ -6447,7 +6489,7 @@ msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr "Valor utilizado para gerar o mundo, tem de ser um número inteiro positivo"
 
 #, fuzzy
-msgid "SPORE_CELL_TYPE"
+msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
 msgstr "Criar um novo tipo de célula"
 
 #, fuzzy
@@ -7955,6 +7997,38 @@ msgid "WIKI_8_BRACKET_16"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_ACTOMYOSIN_EFFECTS"
+msgstr "A ser anunciado"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_INTRO"
+msgstr "A ser anunciado"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_MODIFICATIONS"
+msgstr "A ser anunciado"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_PROCESSES"
+msgstr "A ser anunciado"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_REQUIREMENTS"
+msgstr "A ser anunciado"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_SCIENTIFIC_BACKGROUND"
+msgstr "A ser anunciado"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_STRATEGY"
+msgstr "A ser anunciado"
+
+#, fuzzy
+msgid "WIKI_ACTOMYOSIN_UPGRADES"
+msgstr "A ser anunciado"
+
+#, fuzzy
 msgid "WIKI_ASCENSION"
 msgstr "A ser anunciado"
 
@@ -8903,6 +8977,10 @@ msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "Sem melhorias."
 
 #, fuzzy
+msgid "WIKI_MUCOCYST"
+msgstr "Colocar organelo"
+
+#, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
 msgstr "Fase multicelular"
 
@@ -9067,6 +9145,7 @@ msgstr "Um metabolossoma modificado responsável pela produção da forma primit
 msgid "WIKI_OXYTOXISOME_INTRO"
 msgstr "Oxitoxissoma"
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_MODIFICATIONS"
 msgstr "Sem modificações."
 
@@ -9091,6 +9170,10 @@ msgstr "Sem melhorias."
 #, fuzzy
 msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr "Síntese de OxiToxi"
+
+#, fuzzy
+msgid "WIKI_PAGE_ACTOMYOSIN"
+msgstr "Rusticianina"
 
 #, fuzzy
 msgid "WIKI_PAGE_ASCENSION"
@@ -9851,6 +9934,10 @@ msgstr "Ampliar"
 
 msgid "ZOOM_OUT"
 msgstr "Reduzir"
+
+#, fuzzy
+#~ msgid "SPORE_CELL_TYPE"
+#~ msgstr "Criar um novo tipo de célula"
 
 #, fuzzy
 #~ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"

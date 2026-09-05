@@ -68,11 +68,16 @@ public class OrganelleTemplate : IReadOnlyOrganelleTemplate, IPositionedOrganell
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        return new OrganelleTemplate(reader.ReadObject<OrganelleDefinition>(), reader.ReadHex(), reader.ReadInt32())
-        {
-            ModifiableUpgrades = reader.ReadObjectOrNull<OrganelleUpgrades>(),
-            IsEndosymbiont = version > 1 && reader.ReadBool(),
-        };
+        // Read the fields needed to construct the template first. The remaining fields can contain references back
+        // to the template's containing layout/species, so the template must be registered before reading them.
+        var instance = new OrganelleTemplate(reader.ReadObject<OrganelleDefinition>(), reader.ReadHex(),
+            reader.ReadInt32());
+        reader.ReportObjectConstructorDone(instance, referenceId);
+
+        // Especially the chemoreceptor upgrades can be troublesome!
+        instance.ModifiableUpgrades = reader.ReadObjectOrNull<OrganelleUpgrades>();
+        instance.IsEndosymbiont = version > 1 && reader.ReadBool();
+        return instance;
     }
 
     public void WriteToArchive(ISArchiveWriter writer)
@@ -86,7 +91,7 @@ public class OrganelleTemplate : IReadOnlyOrganelleTemplate, IPositionedOrganell
 
     public bool MatchesDefinition(IActionHex other)
     {
-        return Definition == ((OrganelleTemplate)other).Definition;
+        return ReferenceEquals(Definition, ((OrganelleTemplate)other).Definition);
     }
 
     /// <summary>
@@ -165,6 +170,16 @@ public class OrganelleTemplate : IReadOnlyOrganelleTemplate, IPositionedOrganell
         return Compound.Invalid;
     }
 
+    public override bool Equals(object? obj)
+    {
+        if (obj is not OrganelleTemplate other)
+            return false;
+
+        return Position == other.Position && Orientation == other.Orientation &&
+            Definition.InternalName == other.Definition.InternalName &&
+            Equals(Upgrades, other.Upgrades) && IsEndosymbiont == other.IsEndosymbiont;
+    }
+
     public OrganelleTemplate Clone()
     {
         return Clone(true);
@@ -182,7 +197,7 @@ public class OrganelleTemplate : IReadOnlyOrganelleTemplate, IPositionedOrganell
     public override int GetHashCode()
     {
         return Position.GetHashCode() * 131 ^ Orientation * 2909 ^ Definition.GetHashCode() * 947 ^
-            (Upgrades != null ? Upgrades.GetHashCode() : 1) * 1063;
+            (Upgrades != null ? Upgrades.GetHashCode() : 1) * 1063 ^ (IsEndosymbiont ? 1 : 0) * 1723;
     }
 
     public ulong GetVisualHashCode()

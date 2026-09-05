@@ -12,7 +12,7 @@ public partial class CellBodyPlanEditorComponent :
     HexEditorComponentBase<MulticellularEditor, CombinedEditorAction, EditorAction, HexWithData<CellTemplate>,
         MulticellularSpecies>, IArchiveUpdatable
 {
-    public const ushort SERIALIZATION_VERSION = 8;
+    public const ushort SERIALIZATION_VERSION = 9;
 
     [Export]
     public int MaxToleranceWarnings = 3;
@@ -112,6 +112,9 @@ public partial class CellBodyPlanEditorComponent :
     private CustomConfirmationDialog pendingEndosymbiosisPopup = null!;
 
     [Export]
+    private CustomConfirmationDialog generalDataErrorPopup = null!;
+
+    [Export]
     private CustomWindow cannotDeleteInUseTypeDialog = null!;
 
     [Export]
@@ -144,19 +147,28 @@ public partial class CellBodyPlanEditorComponent :
     private CustomConfirmationDialog wrongGrowthOrderPopup = null!;
 
     [Export]
+    private CustomConfirmationDialog noSporeCellTypeSetPopup = null!;
+
+    [Export]
     private LabelSettings toleranceWarningsFont = null!;
 
     [Export]
     private OptionButton reproductionMethodDropdown = null!;
 
     [Export]
-    private OptionButton sporeCellTypeDropdown = null!;
+    private CellTypeMakerButton sporeCellTypeMakerButton = null!;
+
+    [Export]
+    private CellTypePickerPopup cellTypePickerPopup = null!;
 
     [Export]
     private Slider massBuddingCellCountSlider = null!;
 
     [Export]
     private Label massBuddingCellCountLabel = null!;
+
+    [Export]
+    private Label massBuddingMinSizeLabel = null!;
 
     [Export]
     private Control buddingReproductionSection = null!;
@@ -221,6 +233,8 @@ public partial class CellBodyPlanEditorComponent :
 
     private bool showGrowthOrderNumbers;
 
+    private CellType? sporeCellType;
+
     private EnergyBalanceInfoFull? energyBalanceInfo;
 
     [Signal]
@@ -254,6 +268,16 @@ public partial class CellBodyPlanEditorComponent :
 
             if (wrongGrowthOrderCells.Count > 0)
                 return true;
+
+            if (ReproductionMethod == MulticellularReproductionMethod.Sporulation && SporeCellType == null)
+                return true;
+
+            if (ReproductionMethod == MulticellularReproductionMethod.MassBudding &&
+                (DesiredMassBuddingCellCount < Constants.MASS_BUDDING_MINIMUM_BUD_SIZE ||
+                    editedMicrobeCells.Count < Constants.MASS_BUDDING_MINIMUM_BUD_SIZE))
+            {
+                return true;
+            }
 
             if (HasFinishedPendingEndosymbiosis)
                 return true;
@@ -297,19 +321,31 @@ public partial class CellBodyPlanEditorComponent :
 
     public MulticellularReproductionMethod ReproductionMethod { get; private set; }
 
-    public GameteType SelectedGameteTypeForPlayer { get; private set; } = GameteType.A;
+    public CellType? SporeCellType
+    {
+        get => sporeCellType;
+        set
+        {
+            if (ReferenceEquals(sporeCellType, value))
+                return;
 
-    public CellType? SporeCellType { get; private set; }
+            sporeCellType = value;
+
+            UpdateSpecialCellTypeDisplays();
+        }
+    }
+
+    public GameteType SelectedGameteTypeForPlayer { get; private set; } = GameteType.A;
 
     public CellType? GameteACellType { get; private set; }
 
     public CellType? GameteBCellType { get; private set; }
 
     /// <summary>
-    ///   This variable should be clamped before use. It's intentional that it can exceed the amount of cells, to make
+    ///   This variable should be clamped before use. It's intentional that it can exceed the number of cells, to make
     ///   it easier to e.g. undo cell removal action.
     /// </summary>
-    public int DesiredMassBuddingCellCount { get; private set; } = 1;
+    public int DesiredMassBuddingCellCount { get; private set; } = Constants.MASS_BUDDING_MINIMUM_BUD_SIZE;
 
     protected override bool ShowFloatingLabels => ShowGrowthOrder;
 
@@ -392,6 +428,10 @@ public partial class CellBodyPlanEditorComponent :
 
         organismStatisticsPanel.UpdateLightSelectionPanelVisibility(
             Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled && Editor.CurrentPatch.HasDayAndNight);
+
+        var buddingBalanceInfoText = Localization.Translate("MASS_BUDDING_MINIMUM_SIZE_EXPLANATION")
+            .FormatSafe(Constants.MASS_BUDDING_MINIMUM_BUD_SIZE);
+        massBuddingMinSizeLabel.Text = buddingBalanceInfoText;
 
         UpdateCancelButtonVisibility();
     }
@@ -606,12 +646,20 @@ public partial class CellBodyPlanEditorComponent :
         {
             SelectedGameteTypeForPlayer = (GameteType)reader.ReadInt32();
         }
+
+        if (version < 9)
+        {
+            // Unset sporulation as it can be problematic
+            sporeCellType = null;
+            if (ReproductionMethod == MulticellularReproductionMethod.Sporulation)
+            {
+                ReproductionMethod = MulticellularReproductionMethod.Budding;
+            }
+        }
     }
 
     public override void OnEditorSpeciesSetup(Species species)
     {
-        UpdateCellTypeSelections();
-
         behaviourEditor.OnEditorSpeciesSetup(species);
         tolerancesEditor.OnEditorSpeciesSetup(species);
 
@@ -632,6 +680,8 @@ public partial class CellBodyPlanEditorComponent :
         GameteBCellType = multicellularSpecies.ModifiableGameteTypeB;
         DesiredMassBuddingCellCount = multicellularSpecies.MassBuddingCellCount;
         SelectedGameteTypeForPlayer = species.PlayerGamete;
+
+        UpdateCellTypeSelections();
 
         UpdateGUIAfterLoadingSpecies(species);
 
@@ -659,44 +709,10 @@ public partial class CellBodyPlanEditorComponent :
             CellTypeVisualsOverride.ApplyChanges();
         }
 
-        bool neededTwoShifts = false;
-
         // Note that for the below calculations to work, all cell types need to be positioned correctly. So we need
         // to force that to happen here first. This also ensures that the skipped positioning to the origin of the cell
         // editor component (that is used as a special mode in multicellular) is performed.
-        foreach (var cellType in editedSpecies.ModifiableCellTypes)
-        {
-            if (cellType.RepositionToOrigin())
-            {
-                // It seems like in very rare cases a cell type requires two shifts of the layout to fix it, and then
-                // it stops shifting. So we take the slight performance hit here and try to shift everything twice
-                // in case some type needs it.
-                if (cellType.RepositionToOrigin())
-                {
-                    GD.Print($"Did a second shift for cell type: {cellType.CellTypeName}");
-                    neededTwoShifts = true;
-                }
-            }
-        }
-
-        // Safety check against cell layouts that forever want to shift (this causes layout overlap errors)
-        foreach (var cellType in editedSpecies.ModifiableCellTypes)
-        {
-            if (cellType.RepositionToOrigin())
-            {
-                GD.PrintErr("Cell type shouldn't get a second move to origin");
-                LogInterceptor.ForwardCaughtError(new Exception(
-                        "Detected a cell layout that infinitely shifts around the origin, this will break " +
-                        "multicellular cell positioning!"),
-                    "Please include a save or screenshot of your species' cell types with the report");
-                break;
-            }
-        }
-
-        if (neededTwoShifts)
-        {
-            GD.Print("Some cell types required two shifts to get organelles centered around the origin");
-        }
+        editedSpecies.RepositionCellTypesToOrigin();
 
         ApplyGrowthOrderToCells();
 
@@ -780,6 +796,12 @@ public partial class CellBodyPlanEditorComponent :
             return false;
         }
 
+        if (ReproductionMethod == MulticellularReproductionMethod.Sporulation && SporeCellType == null)
+        {
+            noSporeCellTypeSetPopup.PopupCenteredShrink();
+            return false;
+        }
+
         // This is checked due to a species data requirement
         if (ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy
                 or MulticellularReproductionMethod.SexualAnisogamy && editedMicrobeCells.Count < 2)
@@ -789,10 +811,92 @@ public partial class CellBodyPlanEditorComponent :
             return false;
         }
 
+        if (ReproductionMethod == MulticellularReproductionMethod.MassBudding &&
+            (DesiredMassBuddingCellCount < Constants.MASS_BUDDING_MINIMUM_BUD_SIZE ||
+                editedMicrobeCells.Count < Constants.MASS_BUDDING_MINIMUM_BUD_SIZE))
+        {
+            ToolTipManager.Instance.ShowPopup(Localization.Translate("ERROR_REQUIRED_AT_LEAST_X_CELLS_FOR_MASS_BUDDING")
+                .FormatSafe(Constants.MASS_BUDDING_MINIMUM_BUD_SIZE), 5);
+            return false;
+        }
+
         // Show a warning if the editor has an endosymbiosis that should be finished
         if (HasFinishedPendingEndosymbiosis && !editorUserOverrides.Contains(EditorUserOverride.EndosymbiosisPending))
         {
             pendingEndosymbiosisPopup.PopupCenteredShrink();
+            return false;
+        }
+
+        // General data error
+        bool badData = false;
+
+        // Using a cell type that doesn't exist in the body plan
+        foreach (var editedMicrobeCell in editedMicrobeCells)
+        {
+            bool found = false;
+            bool foundInDataList = false;
+
+            if (editedMicrobeCell.Data?.CellType == null || editedMicrobeCell.Data?.ModifiableCellType == null)
+            {
+                badData = true;
+                GD.PrintErr("Edited cells has a null type");
+                break;
+            }
+
+            // Using the same type as the spore leads to various errors, so don't allow
+            if (sporeCellType != null && (ReferenceEquals(sporeCellType, editedMicrobeCell.Data?.CellType) ||
+                    ReferenceEquals(GetEditedCellDataIfEdited(sporeCellType),
+                        GetEditedCellDataIfEdited(editedMicrobeCell.Data!.ModifiableCellType)) ||
+                    ReferenceEquals(sporeCellType,
+                        GetEditedCellDataIfEdited(editedMicrobeCell.Data!.ModifiableCellType))))
+            {
+                badData = true;
+                GD.PrintErr($"Edited cell has the same type as the spore: {editedMicrobeCell}");
+                break;
+            }
+
+            foreach (var cellType in Editor.EditedSpecies.ModifiableCellTypes)
+            {
+                if (ReferenceEquals(GetEditedCellDataIfEdited(cellType),
+                        GetEditedCellDataIfEdited(editedMicrobeCell.Data!.ModifiableCellType)))
+                {
+                    found = true;
+                    break;
+                }
+            }
+
+            if (found)
+            {
+                // Check the cell type actually exists as selectable option
+                foreach (var entry in cellTypeSelectionButtons)
+                {
+                    if (entry.Key == editedMicrobeCell.Data?.CellType.CellTypeName && IsInstanceValid(entry.Value))
+                    {
+                        foundInDataList = true;
+                    }
+                }
+            }
+
+            if (!found)
+            {
+                GD.PrintErr(
+                    $"Cell type with name '{editedMicrobeCell.Data?.CellType.CellTypeName}' does not exist in " +
+                    $"the species list of cell types");
+                badData = true;
+                continue;
+            }
+
+            if (!foundInDataList)
+            {
+                GD.PrintErr($"Cell type with name '{editedMicrobeCell.Data?.CellType.CellTypeName}' is not in " +
+                    $"selectable cell types list");
+                badData = true;
+            }
+        }
+
+        if (badData)
+        {
+            generalDataErrorPopup.PopupCenteredShrink();
             return false;
         }
 
@@ -822,8 +926,9 @@ public partial class CellBodyPlanEditorComponent :
 
         UpdateSpecializationDisplay();
 
+        UpdateSpecialCellTypeDisplays();
+
         // In case the cell type's name was changed
-        UpdateSporeCellDropdown();
         UpdateGameteDropdowns();
     }
 
@@ -1154,8 +1259,8 @@ public partial class CellBodyPlanEditorComponent :
                     continue;
 
                 // For now cell adjacency only looks at the type, so we can easily re-calculate that here
-                if (GetEditedCellDataIfEdited(cellAtPosition.Data!.ModifiableCellType) !=
-                    GetEditedCellDataIfEdited(cellToCheckAgainst))
+                if (!ReferenceEquals(GetEditedCellDataIfEdited(cellAtPosition.Data!.ModifiableCellType),
+                        GetEditedCellDataIfEdited(cellToCheckAgainst)))
                 {
                     continue;
                 }
@@ -1411,6 +1516,9 @@ public partial class CellBodyPlanEditorComponent :
         foreach (var cellType in Editor.EditedSpecies.ModifiableCellTypes.OrderBy(t => t.CellTypeName,
                      StringComparer.Ordinal))
         {
+            if (!ShouldCellTypeBeDisplayed(cellType))
+                continue;
+
             if (!cellTypeSelectionButtons.TryGetValue(cellType.CellTypeName, out var control))
             {
                 // Need a new button
@@ -1461,7 +1569,8 @@ public partial class CellBodyPlanEditorComponent :
         // Delete no longer necessary buttons
         foreach (var key in cellTypeSelectionButtons.Keys.ToList())
         {
-            if (Editor.EditedSpecies.ModifiableCellTypes.All(t => t.CellTypeName != key))
+            if (Editor.EditedSpecies.ModifiableCellTypes
+                .All(t => t.CellTypeName != key || !ShouldCellTypeBeDisplayed(t)))
             {
                 var control = cellTypeSelectionButtons[key];
                 cellTypeSelectionButtons.Remove(key);
@@ -2068,7 +2177,7 @@ public partial class CellBodyPlanEditorComponent :
         var type = CellTypeFromName(activeActionName!);
 
         // Disallow deleting a type in use currently
-        if (editedMicrobeCells.AsModifiable().Any(c => c.Data!.ModifiableCellType == type))
+        if (editedMicrobeCells.AsModifiable().Any(c => ReferenceEquals(c.Data!.ModifiableCellType, type)))
         {
             GD.Print("Can't delete in use cell type");
             cannotDeleteInUseTypeDialog.PopupCenteredShrink();
@@ -2096,12 +2205,13 @@ public partial class CellBodyPlanEditorComponent :
 
         foreach (var entry in cellTypeSelectionButtons)
         {
-            if (entry.Value.CellType == newType || (entry.Value.CellType == type && newType == type))
+            if (ReferenceEquals(entry.Value.CellType, newType) ||
+                (ReferenceEquals(entry.Value.CellType, type) && ReferenceEquals(newType, type)))
             {
                 // Updating existing
                 entry.Value.ReportTypeChanged();
             }
-            else if (entry.Value.CellType == type)
+            else if (ReferenceEquals(entry.Value.CellType, type))
             {
                 // Button is seeing its first edit (and needs to transform to be for the edit type)
                 GD.Print($"First edit of cell type {type.CellTypeName}");
@@ -2196,5 +2306,14 @@ public partial class CellBodyPlanEditorComponent :
             default:
                 throw new Exception("Invalid selection menu tab");
         }
+    }
+
+    private bool ShouldCellTypeBeDisplayed(CellType cellType)
+    {
+        // The spore is a specialized cell type
+        if (SporeCellType != null && cellType.CellTypeName == SporeCellType.CellTypeName)
+            return false;
+
+        return true;
     }
 }
