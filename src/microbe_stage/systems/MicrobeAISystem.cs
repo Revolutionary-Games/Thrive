@@ -413,7 +413,8 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         // Use signaling agent if I have any and am not receiving a command, with a small chance per think method call
         if (organelles.HasSignalingAgent && random.NextSingle() < Constants.AI_SIGNALING_CHANCE && !signalExists)
         {
-            UseSignalingAgent(ref position, ref organelles, speciesAggression, ref signaling, random, ref ourSpecies);
+            UseSignalingAgent(in entity, ref position, ref organelles, atpLevel, compounds, speciesAggression,
+                ref signaling, random, ref control, ref ourSpecies);
         }
 
         // Follow received commands if we have them
@@ -425,11 +426,34 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             {
                 case MicrobeSignalCommand.MoveToMe:
                 {
+                    var signaler = signaling.ReceivedCommandFromEntity;
+
                     // TODO: should these use signaling.ReceivedCommandSource ? As that's where the chemical signal
                     // was smelled from
-                    if (signaling.ReceivedCommandFromEntity.IsAliveAndHas<WorldPosition>())
+                    if (signaler.IsAliveAndHas<WorldPosition>())
                     {
-                        ai.MoveToLocation(signalerPosition, ref control, entity);
+                        if (organelles.HasBindingAgent && signaler.Get<OrganelleContainer>().HasBindingAgent)
+                        {
+                            if (signaler.Has<MicrobeColony>())
+                            {
+                                // Don't bind if it would lead to two colonies merging and/or
+                                // colony is already at size needed for multicellular
+                                if (!entity.Has<MicrobeColony>() && signaler.Get<MicrobeColony>().ColonyMembers.Length
+                                    < Constants.COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR)
+                                {
+                                    ai.MoveToLocation(signalerPosition, ref control, entity);
+                                }
+                            }
+                            else if (!entity.Has<MicrobeColony>())
+                            {
+                                ai.MoveToLocation(signalerPosition, ref control, entity);
+                            }
+                        }
+                        else
+                        {
+                            ai.MoveToLocation(signalerPosition, ref control, entity);
+                        }
+
                         return;
                     }
 
@@ -685,7 +709,10 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         }
 
         // There is no reason to be engulfing at this stage
-        control.SetStateColonyAware(entity, MicrobeState.Normal);
+        if (control.State != MicrobeState.Binding)
+        {
+            control.SetStateColonyAware(entity, MicrobeState.Normal);
+        }
 
         // If the microbe has radiation protection it means it has melanosomes and can stay near the radioactive chunks
         // to produce ATP
@@ -710,17 +737,32 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         }
     }
 
-    private void UseSignalingAgent(ref WorldPosition position, ref OrganelleContainer organelles,
-        float speciesAggression, ref CommandSignaler signaling, Random random, ref SpeciesMember ourSpecies)
+    private void UseSignalingAgent(in Entity entity, ref WorldPosition position, ref OrganelleContainer organelles,
+        float atpLevel, CompoundBag compounds, float speciesAggression, ref CommandSignaler signaling, Random random,
+        ref MicrobeControl control, ref SpeciesMember ourSpecies)
     {
-        // Has binding agent and ATP is at least half capacity
-        // TODO: comment out once AI can use the binding agent
-        // Parameters to add: (float atpLevel, CompoundBag compounds)
-        // if (organelles.HasBindingAgent && atpLevel >= compounds.GetCapacityForCompound(Compound.ATP) * 0.5f)
-        // {
-        //     signaling.QueuedSignalingCommand = MicrobeSignalCommand.MoveToMe;
-        //     return;
-        // }
+        // Has binding agent, ATP is at least half capacity, and isn't receiving move to me command
+        if (organelles.HasBindingAgent &&
+            atpLevel >= compounds.GetCapacityForCompound(Compound.ATP) * 0.5f &&
+            signaling.ReceivedCommand != MicrobeSignalCommand.MoveToMe)
+        {
+            if (entity.Has<MicrobeColony>())
+            {
+                if (entity.Get<MicrobeColony>().ColonyMembers.Length <
+                    Constants.COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR)
+                {
+                    signaling.QueuedSignalingCommand = MicrobeSignalCommand.MoveToMe;
+                    control.SetStateColonyAware(entity, MicrobeState.Binding);
+                    return;
+                }
+            }
+            else
+            {
+                signaling.QueuedSignalingCommand = MicrobeSignalCommand.MoveToMe;
+                control.SetStateColonyAware(entity, MicrobeState.Binding);
+                return;
+            }
+        }
 
         var shouldBeAggressive = RollCheck(speciesAggression, Constants.MAX_SPECIES_AGGRESSION, random);
         var speciesMembers = GetSpeciesMembers(ourSpecies.Species);
