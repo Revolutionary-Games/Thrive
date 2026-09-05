@@ -398,7 +398,7 @@ sexualBenefitsExplanationLabel = NodePath("LeftPanel/MainPanel/VBoxContainer/Mar
 sexualBenefitsActiveLabel = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SexualOptions/SexualBonusActive")
 anisogamySettingsContainer = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SexualOptions/SecondGameteSelection")
 playerGameteSelectionA = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SexualOptions/VBoxContainer/PlayerGameteA")
-gameteSelectionALabel = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SexualOptions/Label3")
+gameteSelectionALabel = NodePath("")
 playerGameteSelectionB = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SexualOptions/SecondGameteSelection/PlayerGameteB")
 massBuddingReproductionSection = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/MassBuddingOptions")
 hexPositionEffectsContainer = NodePath("AdjacencyFactorsContainer")
@@ -829,9 +829,6 @@ layout_mode = 2
 text = "SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION_ACTIVE"
 label_settings = ExtResource("9_hioid")
 autowrap_mode = 3
-
-[node name="Label3" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/SexualOptions" unique_id=498678747]
-layout_mode = 2
 
 [node name="Behaviour" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" unique_id=766902860 instance=ExtResource("9")]
 visible = false
