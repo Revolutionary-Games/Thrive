@@ -247,6 +247,8 @@ public partial class PhotoStudio : SubViewport
                     }
                 }
 
+                Size = new Vector2I(currentTask!.DesiredResolution, currentTask.DesiredResolution);
+
                 currentTaskStep = Step.WaitSceneStabilize;
                 break;
             }
@@ -346,7 +348,8 @@ public partial class PhotoStudio : SubViewport
         base._Process(delta);
     }
 
-    public IImageTask GenerateImage(IScenePhotographable photographable, int priority = 1)
+    public IImageTask GenerateImage(IScenePhotographable photographable, int priority = 1,
+        int resolution = Constants.PHOTO_STUDIO_DEFAULT_RESOLUTION)
     {
         var cacheKey = photographable.GetVisualHashCode();
 
@@ -355,10 +358,14 @@ public partial class PhotoStudio : SubViewport
         if (image != null)
             return image;
 
-        return HandleTaskSubmit(cacheKey, new ImageTask(photographable, priority));
+        var task = new ImageTask(photographable, priority);
+        task.DesiredResolution = resolution;
+
+        return HandleTaskSubmit(cacheKey, task);
     }
 
-    public IImageTask GenerateImage(ISimulationPhotographable photographable, int priority = 1)
+    public IImageTask GenerateImage(ISimulationPhotographable photographable, int priority = 1,
+        int resolution = Constants.PHOTO_STUDIO_DEFAULT_RESOLUTION)
     {
         var cacheKey = photographable.GetVisualHashCode();
 
@@ -367,7 +374,10 @@ public partial class PhotoStudio : SubViewport
         if (image != null)
             return image;
 
-        return HandleTaskSubmit(cacheKey, new ImageTask(photographable, priority));
+        var task = new ImageTask(photographable, priority);
+        task.DesiredResolution = resolution;
+
+        return HandleTaskSubmit(cacheKey, task);
     }
 
     public IImageTask? TryGetFromCache(ulong hashCode)

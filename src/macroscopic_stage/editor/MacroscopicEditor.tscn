@@ -5,28 +5,35 @@
 [ext_resource type="Texture2D" uid="uid://dqiv4qrlqv425" path="res://assets/textures/background/panoramas/HydrothermalVents.png" id="3_hbefc"]
 [ext_resource type="PackedScene" uid="uid://de2sohb3fjvc1" path="res://src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn" id="4"]
 [ext_resource type="Script" uid="uid://cg0bgc4s8b2y4" path="res://src/macroscopic_stage/editor/MacroscopicEditor.cs" id="5"]
+[ext_resource type="Shader" uid="uid://bbnsn8qe78jhn" path="res://shaders/SpinnerVertexSpatial.gdshader" id="5_x3jph"]
 [ext_resource type="PackedScene" uid="uid://hxrn73ihp8r4" path="res://src/microbe_stage/editor/MicrobeEditorWorld.tscn" id="6"]
+[ext_resource type="Texture2D" uid="uid://bfe1xay5gxrf6" path="res://assets/textures/CreatureGenerationSpinner.png" id="6_x3jph"]
 [ext_resource type="PackedScene" uid="uid://c1yurukm6a0vq" path="res://src/macroscopic_stage/editor/3DEditorWorld.tscn" id="7"]
 [ext_resource type="PackedScene" uid="uid://r0oqu6luui0h" path="res://src/microbe_stage/editor/MicrobeEditorPatchMap.tscn" id="8"]
 [ext_resource type="PackedScene" uid="uid://cwot2e52r7lx0" path="res://src/microbe_stage/editor/CellEditorComponent.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://qdqcbnri7vsw" path="res://src/microbe_stage/editor/MicrobeEditorReportComponent.tscn" id="10"]
 [ext_resource type="PackedScene" uid="uid://b6at78uxbps1" path="res://src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn" id="11"]
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_hbefc"]
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_x3jph"]
 resource_local_to_scene = true
 panorama = ExtResource("3_hbefc")
 
-[sub_resource type="Sky" id="Sky_pvnio"]
+[sub_resource type="Sky" id="Sky_kud1a"]
 resource_local_to_scene = true
-sky_material = SubResource("PanoramaSkyMaterial_hbefc")
+sky_material = SubResource("PanoramaSkyMaterial_x3jph")
 
-[sub_resource type="Environment" id="Environment_x3jph"]
+[sub_resource type="Environment" id="Environment_3codd"]
 resource_local_to_scene = true
 background_mode = 2
-sky = SubResource("Sky_pvnio")
+sky = SubResource("Sky_kud1a")
 ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 0.04
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pvnio"]
+render_priority = 0
+shader = ExtResource("5_x3jph")
+shader_parameter/mainTexture = ExtResource("6_x3jph")
 
 [node name="MacroscopicEditor" type="Node" unique_id=1720613879 node_paths=PackedStringArray("reportTab", "patchMapTab", "bodyPlanEditorTab", "cellEditorTab", "cellEditorCamera", "cellEditorLight", "body3DEditorCamera", "bodyEditorLight", "worldEnvironmentNode", "noCellTypeSelected", "editorTabSelector", "editorGUIBaseNode")]
 script = ExtResource("5")
@@ -49,12 +56,19 @@ editorGUIBaseNode = NodePath("MacroscopicEditorGUI")
 current = true
 
 [node name="WorldEnvironment" parent="EditorWorld" index="6" unique_id=232823169]
-environment = SubResource("Environment_x3jph")
+environment = SubResource("Environment_3codd")
 
 [node name="MicrobeEditorWorld" parent="." unique_id=1734008661 instance=ExtResource("6")]
 
 [node name="PrimaryCamera" parent="MicrobeEditorWorld" index="0" unique_id=945110176]
 current = false
+
+[node name="LoadingSpinner" type="Sprite3D" parent="MicrobeEditorWorld" unique_id=502879152]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1, 0)
+visible = false
+material_override = SubResource("ShaderMaterial_pvnio")
+fixed_size = true
+texture = ExtResource("6_x3jph")
 
 [node name="MacroscopicEditorGUI" type="Control" parent="." unique_id=2093958898]
 layout_mode = 3
@@ -65,12 +79,13 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1")
 
-[node name="MetaballBodyEditorComponent" parent="MacroscopicEditorGUI" unique_id=268894686 node_paths=PackedStringArray("camera", "editorArrow", "editorGround") instance=ExtResource("11")]
+[node name="MetaballBodyEditorComponent" parent="MacroscopicEditorGUI" unique_id=268894686 node_paths=PackedStringArray("camera", "editorArrow", "editorGround", "creatureLoadingSpinner") instance=ExtResource("11")]
 visible = false
 layout_mode = 1
 camera = NodePath("../../EditorWorld/PrimaryCamera")
 editorArrow = NodePath("../../EditorWorld/EditorArrow")
 editorGround = NodePath("../../EditorWorld/Ground")
+creatureLoadingSpinner = NodePath("../../MicrobeEditorWorld/LoadingSpinner")
 
 [node name="CellEditor" parent="MacroscopicEditorGUI" unique_id=1874028380 node_paths=PackedStringArray("cameraFollow", "camera", "editorArrow", "editorGrid") instance=ExtResource("9")]
 visible = false

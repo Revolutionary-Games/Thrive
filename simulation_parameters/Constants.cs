@@ -2007,6 +2007,8 @@ public static class Constants
     public const float PHOTO_STUDIO_CAMERA_HALF_ANGLE = PHOTO_STUDIO_CAMERA_FOV / 2.0f;
     public const float PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER = 1.1f;
 
+    public const int PHOTO_STUDIO_DEFAULT_RESOLUTION = 600;
+
     public const int RESOURCE_LOAD_TARGET_MIN_FPS = 60;
     public const float RESOURCE_TIME_BUDGET_PER_FRAME = 1.0f / RESOURCE_LOAD_TARGET_MIN_FPS;
     public const bool TRACK_ACTUAL_RESOURCE_LOAD_TIMES = false;
