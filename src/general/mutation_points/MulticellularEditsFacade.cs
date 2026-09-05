@@ -23,8 +23,11 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
     private IReadOnlyCellTypeDefinition? sporeCellType;
     private bool overrideSporeCellType;
 
-    private IReadOnlyCellTypeDefinition? gameteACellTypeOverride;
-    private IReadOnlyCellTypeDefinition? gameteBCellTypeOverride;
+    private IReadOnlyCellTypeDefinition? gameteACellType;
+    private bool overrideGameteACellType;
+
+    private IReadOnlyCellTypeDefinition? gameteBCellType;
+    private bool overrideGameteBCellType;
 
     private int massBuddingCellCountOverride = -1;
 
@@ -49,8 +52,10 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
     public IReadOnlyCellTypeDefinition? SporeCellType =>
         overrideSporeCellType ? sporeCellType : multicellularSpecies.SporeCellType;
 
-    public IReadOnlyCellTypeDefinition? GameteTypeA => gameteACellTypeOverride ?? multicellularSpecies.GameteTypeA;
-    public IReadOnlyCellTypeDefinition? GameteTypeB => gameteBCellTypeOverride ?? multicellularSpecies.GameteTypeB;
+    public IReadOnlyCellTypeDefinition? GameteTypeA =>
+        overrideGameteACellType ? gameteACellType : multicellularSpecies.GameteTypeA;
+    public IReadOnlyCellTypeDefinition? GameteTypeB =>
+        overrideGameteBCellType ? gameteBCellType : multicellularSpecies.GameteTypeB;
 
     public int MassBuddingCellCount =>
         massBuddingCellCountOverride == -1 ? multicellularSpecies.MassBuddingCellCount : massBuddingCellCountOverride;
@@ -155,8 +160,11 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
         sporeCellType = null;
         overrideSporeCellType = false;
 
-        gameteACellTypeOverride = null;
-        gameteBCellTypeOverride = null;
+        gameteACellType = null;
+        overrideGameteACellType = false;
+
+        gameteBCellType = null;
+        overrideGameteBCellType = false;
 
         massBuddingCellCountOverride = -1;
     }
@@ -294,26 +302,46 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
             return true;
         }
 
-        if (actionData is SpecialCellTypeChangeActionData sporeCellTypeChangeActionData)
+        if (actionData is SpecialCellTypeChangeActionData specialCellTypeChangeActionData)
         {
             cellTypes.HandleAction(actionData);
 
-            overrideSporeCellType = true;
-            sporeCellType = cellTypes.ResolveCellDefinition(sporeCellTypeChangeActionData.NewCellType);
+            var resolvedCellType = cellTypes.ResolveCellDefinition(specialCellTypeChangeActionData.NewCellType);
+
+            switch (specialCellTypeChangeActionData.CellArchetype)
+            {
+                case SpecialCellArchetype.Spore:
+                    overrideSporeCellType = true;
+                    sporeCellType = resolvedCellType;
+                    break;
+                case SpecialCellArchetype.GameteA:
+                    overrideGameteACellType = true;
+                    gameteACellType = resolvedCellType;
+                    break;
+                case SpecialCellArchetype.GameteB:
+                    overrideGameteBCellType = true;
+                    gameteBCellType = resolvedCellType;
+                    break;
+                default:
+                    throw new NotImplementedException(
+                        $"Unimplemented special cell type: {specialCellTypeChangeActionData.CellArchetype}");
+            }
 
             return true;
         }
 
         if (actionData is GameteACellTypeChangeActionData gameteACellTypeChangeActionData)
         {
-            gameteACellTypeOverride = cellTypes.ResolveCellDefinition(gameteACellTypeChangeActionData.NewCellType);
+            overrideGameteACellType = true;
+            gameteACellType = cellTypes.ResolveCellDefinition(gameteACellTypeChangeActionData.NewCellType);
 
             return true;
         }
 
         if (actionData is GameteBCellTypeChangeActionData gameteBCellTypeChangeActionData)
         {
-            gameteBCellTypeOverride = cellTypes.ResolveCellDefinition(gameteBCellTypeChangeActionData.NewCellType);
+            overrideGameteBCellType = true;
+            gameteBCellType = cellTypes.ResolveCellDefinition(gameteBCellTypeChangeActionData.NewCellType);
 
             return true;
         }
