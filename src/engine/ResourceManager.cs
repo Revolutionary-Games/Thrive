@@ -2,7 +2,6 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 using Godot;
 using Nito.Collections;
@@ -102,13 +101,15 @@ public partial class ResourceManager : Node
         ObservePreparingBackgroundTask();
         ObserveProcessingBackgroundTask(ref frameBudget);
 
-        // The processing task doubles as the single PendingMain slot. It must be released before another load starts.
-        if (processingBackgroundTask == null)
-            HandleLoadQueue(ref frameBudget);
+        HandleLoadQueue(ref frameBudget);
 
         savedForLaterProcessingTime = frameBudget.CalculateSecondsToCarry(timeTracker.Elapsed.TotalSeconds);
     }
 
+    /// <summary>
+    ///   Queues a resource unless the same instance already has an active request. Duplicate requests do not clear
+    ///   cancellation or schedule another load; submit again after the previous request has completed to retry.
+    /// </summary>
     public void QueueLoad(IResource resource)
     {
         if (shuttingDown)
@@ -168,20 +169,24 @@ public partial class ResourceManager : Node
             return true;
         }
 
-        // Do not inspect state written by a background operation before its Task completion has been observed.
+        // Only inspect Loaded after this request has settled on the main thread, including observation of any task.
+        totalStageResourcesLoaded = 0;
+        foreach (var resource in stageResources)
+        {
+            if (!loadLifecycle.IsActive(resource) && resource.Loaded)
+                ++totalStageResourcesLoaded;
+        }
+
         if (preparingBackgroundTask != null || processingBackgroundTask != null)
             return false;
 
         // Wait until the pending loads are empty
         if (queuedResources.Count > 0)
-        {
-            totalStageResourcesLoaded = stageResources.Count(r => r.Loaded);
             return false;
-        }
 
         // Make sure all resources are loaded
         // As some can still be processing by this point
-        if (stageResources.Any(r => !r.Loaded))
+        if (totalStageResourcesLoaded < stageResources.Count)
         {
             // TODO: does this need unstuck logic if some resource is not getting loaded?
             // For example, due to something unloading a resource after we loaded it and it is no longer in the load
@@ -234,18 +239,22 @@ public partial class ResourceManager : Node
         }
     }
 
-    private static void PerformSynchronousLoadAndCallback(IResource resource)
+    private static bool PerformSynchronousLoadAndCallback(IResource resource)
     {
-        PerformFullLoad(resource);
+        if (!PerformFullLoad(resource))
+            return false;
+
         resource.OnComplete?.Invoke(resource);
+        return true;
     }
 
-    private static void PerformPendingMainThreadPhases(IResource resource, Stopwatch? splitLoadStopwatch)
+    private static bool PerformPendingMainThreadPhases(IResource resource, Stopwatch? splitLoadStopwatch)
     {
         if (resource.UsesPostProcessing && resource.RequiresSyncPostProcess)
         {
             splitLoadStopwatch?.Start();
-            PerformMainThreadPostProcessing(resource);
+            if (!PerformMainThreadPostProcessing(resource))
+                return false;
 
             if (splitLoadStopwatch != null)
             {
@@ -256,6 +265,7 @@ public partial class ResourceManager : Node
         }
 
         resource.OnComplete?.Invoke(resource);
+        return true;
     }
 
     private static void PrepareLoad(IResource resource)
@@ -264,7 +274,7 @@ public partial class ResourceManager : Node
         resource.LoadingPrepared = true;
     }
 
-    private static void PerformFullLoad(IResource resource)
+    private static bool PerformFullLoad(IResource resource)
     {
         if (!resource.LoadingPrepared)
             throw new InvalidOperationException("Resource is not prepared for load yet");
@@ -280,16 +290,21 @@ public partial class ResourceManager : Node
         resource.Load();
 
         if (resource.CancelRequested)
-            return;
+            return false;
 
         if (resource.UsesPostProcessing)
             resource.PerformPostProcessing();
+
+        if (resource.CancelRequested)
+            return false;
 
         if (!resource.Loaded)
             throw new InvalidOperationException("Loading a resource didn't end up setting loaded flag");
 
         if (Constants.TRACK_ACTUAL_RESOURCE_LOAD_TIMES || Constants.REPORT_ALL_LOAD_TIMES)
             ReportResourceLoadTime(resource, stopwatch.Elapsed, resource.EstimatedTimeRequired);
+
+        return true;
     }
 
     private static void ReportResourceLoadTime(IResource resource, TimeSpan elapsed, double estimatedTimeRequired)
@@ -337,12 +352,17 @@ public partial class ResourceManager : Node
         resource.Load();
     }
 
-    private static void PerformMainThreadPostProcessing(IResource resource)
+    private static bool PerformMainThreadPostProcessing(IResource resource)
     {
         resource.PerformPostProcessing();
 
+        if (resource.CancelRequested)
+            return false;
+
         if (!resource.Loaded)
             throw new InvalidOperationException("Loading a resource didn't end up setting loaded flag");
+
+        return true;
     }
 
     private static void ReportResourceOperationFailure(IResource resource, ResourceBackgroundPhase phase,
@@ -389,13 +409,13 @@ public partial class ResourceManager : Node
             if (backgroundTask.Resource.CancelRequested)
             {
                 RemoveProcessingResource(backgroundTask.Resource);
-                CompleteResource(backgroundTask.Resource);
+                loadLifecycle.Complete(backgroundTask.Resource);
             }
         }
         catch (Exception e)
         {
             RemoveProcessingResource(backgroundTask.Resource);
-            CompleteResource(backgroundTask.Resource);
+            loadLifecycle.Complete(backgroundTask.Resource);
             ReportResourceOperationFailure(backgroundTask.Resource, backgroundTask.Phase, e);
         }
         finally
@@ -424,7 +444,7 @@ public partial class ResourceManager : Node
             catch (Exception e)
             {
                 processingBackgroundTask = null;
-                CompleteResource(backgroundTask.Resource);
+                loadLifecycle.Complete(backgroundTask.Resource);
                 ReportResourceOperationFailure(backgroundTask.Resource, backgroundTask.Phase, e);
                 return;
             }
@@ -435,7 +455,7 @@ public partial class ResourceManager : Node
             processingBackgroundTask = null;
             RemoveStageResource(backgroundTask.Resource);
             BestEffortUnload(backgroundTask.Resource);
-            CompleteResource(backgroundTask.Resource);
+            loadLifecycle.Complete(backgroundTask.Resource);
             return;
         }
 
@@ -445,7 +465,7 @@ public partial class ResourceManager : Node
         if (!requiresMainThreadPostProcessing && backgroundTask.Resource.OnComplete == null)
         {
             processingBackgroundTask = null;
-            CompleteResource(backgroundTask.Resource);
+            loadLifecycle.Complete(backgroundTask.Resource);
             return;
         }
 
@@ -455,24 +475,23 @@ public partial class ResourceManager : Node
                     timeTracker.Elapsed.TotalSeconds))
                 return;
 
-            PerformPendingMainThreadPhases(backgroundTask.Resource, backgroundTask.Task.AsyncState as Stopwatch);
+            if (!PerformPendingMainThreadPhases(backgroundTask.Resource, backgroundTask.Task.AsyncState as Stopwatch))
+            {
+                RemoveStageResource(backgroundTask.Resource);
+                BestEffortUnload(backgroundTask.Resource);
+            }
+
             processingBackgroundTask = null;
-            CompleteResource(backgroundTask.Resource);
+            loadLifecycle.Complete(backgroundTask.Resource);
         }
         catch (Exception e)
         {
             // The callback was admitted and started, so it must not be repeated on the next frame.
             processingBackgroundTask = null;
-            CompleteResource(backgroundTask.Resource);
+            loadLifecycle.Complete(backgroundTask.Resource);
             ReportResourceOperationFailure(backgroundTask.Resource,
                 "main-thread post-processing or completion callback", e);
         }
-    }
-
-    private void CompleteResource(IResource resource)
-    {
-        if (loadLifecycle.Complete(resource) && !shuttingDown)
-            queuedResources.Add(resource);
     }
 
     private void RemoveProcessingResource(IResource resource)
@@ -523,22 +542,10 @@ public partial class ResourceManager : Node
                     if (ReferenceEquals(preparingBackgroundTask?.Resource, resource))
                         continue;
 
-                    if (resource.Loaded)
+                    if (resource.Loaded || resource.CancelRequested)
                     {
                         processingResources.RemoveAt(i);
-                        CompleteResource(resource);
-                        --count;
-                        --i;
-                        continue;
-                    }
-
-                    if (resource.CancelRequested && loadLifecycle.CancellationCanSettle(resource))
-                    {
-                        if (loadLifecycle.CancellationNeedsUnload(resource))
-                            BestEffortUnload(resource);
-
-                        processingResources.RemoveAt(i);
-                        CompleteResource(resource);
+                        loadLifecycle.Complete(resource);
                         --count;
                         --i;
                         continue;
@@ -562,29 +569,31 @@ public partial class ResourceManager : Node
                     if (loadLifecycle.GetState(resource) == ResourceLoadState.Queued)
                         loadLifecycle.MarkPrepared(resource);
 
+                    // Preparing can overlap loading, but the Load/PendingMain slot must be released before any
+                    // other resource starts a synchronous or background load.
+                    if (processingBackgroundTask != null)
+                        continue;
+
                     if (!resource.RequiresSyncLoad)
                     {
-                        if (processingBackgroundTask == null)
+                        loadLifecycle.BeginLoading(resource);
+
+                        // Keep the timer with the task so deferred main-thread post-processing can resume it.
+                        var loadStopwatch = CreateSplitLoadStopwatch(resource);
+                        var task = new Task(state =>
                         {
-                            loadLifecycle.BeginLoading(resource);
-
-                            // Keep the timer with the task so deferred main-thread post-processing can resume it.
-                            var loadStopwatch = CreateSplitLoadStopwatch(resource);
-                            var task = new Task(state =>
-                            {
-                                var stopwatch = state as Stopwatch;
-                                stopwatch?.Start();
-                                PerformBackgroundLoad(resource);
-                                stopwatch?.Stop();
-                            }, loadStopwatch);
-                            processingBackgroundTask = new ResourceBackgroundTask(resource, task,
-                                ResourceBackgroundPhase.Load);
-                            TaskExecutor.Instance.AddTask(task, false);
-                            processingResources.RemoveAt(i);
-
-                            // Do not start another load until this task and its PendingMain phase release the slot.
-                            return;
-                        }
+                            var stopwatch = state as Stopwatch;
+                            stopwatch?.Start();
+                            PerformBackgroundLoad(resource);
+                            stopwatch?.Stop();
+                        }, loadStopwatch);
+                        processingBackgroundTask = new ResourceBackgroundTask(resource, task,
+                            ResourceBackgroundPhase.Load);
+                        TaskExecutor.Instance.AddTask(task, false);
+                        processingResources.RemoveAt(i);
+                        --count;
+                        --i;
+                        didSomething = true;
 
                         continue;
                     }
@@ -597,17 +606,22 @@ public partial class ResourceManager : Node
                                 timeTracker.Elapsed.TotalSeconds))
                             continue;
 
-                        PerformSynchronousLoadAndCallback(resource);
+                        if (!PerformSynchronousLoadAndCallback(resource))
+                        {
+                            RemoveStageResource(resource);
+                            BestEffortUnload(resource);
+                        }
+
                         didSomething = true;
                         processingResources.RemoveAt(i);
-                        CompleteResource(resource);
+                        loadLifecycle.Complete(resource);
                     }
                     catch (Exception e)
                     {
                         // A load or callback that started must be settled exactly once, even when it throws.
                         didSomething = true;
                         processingResources.RemoveAt(i);
-                        CompleteResource(resource);
+                        loadLifecycle.Complete(resource);
                         ReportResourceOperationFailure(resource, "synchronous load or completion callback", e);
                     }
 
@@ -626,7 +640,7 @@ public partial class ResourceManager : Node
                 // Early skip cancelled items
                 if (queueResource.CancelRequested)
                 {
-                    CompleteResource(queueResource);
+                    loadLifecycle.Complete(queueResource);
                     continue;
                 }
 

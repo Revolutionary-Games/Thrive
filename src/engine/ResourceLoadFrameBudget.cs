@@ -14,15 +14,15 @@ internal struct ResourceLoadFrameBudget
 
     private bool hasExecutedCompletionUnit;
 
-    public ResourceLoadFrameBudget(double elapsedFrameTimeSeconds, double savedProcessingTimeSeconds,
+    internal ResourceLoadFrameBudget(double elapsedFrameTimeSeconds, double savedProcessingTimeSeconds,
         double targetFrameTimeSeconds)
     {
         ArgumentOutOfRangeException.ThrowIfNegative(elapsedFrameTimeSeconds);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(targetFrameTimeSeconds, 0);
 
-        DoubleFiniteCheck(elapsedFrameTimeSeconds);
-        DoubleFiniteCheck(savedProcessingTimeSeconds);
-        DoubleFiniteCheck(targetFrameTimeSeconds);
+        DoubleFiniteCheck(elapsedFrameTimeSeconds, nameof(elapsedFrameTimeSeconds));
+        DoubleFiniteCheck(savedProcessingTimeSeconds, nameof(savedProcessingTimeSeconds));
+        DoubleFiniteCheck(targetFrameTimeSeconds, nameof(targetFrameTimeSeconds));
 
         originalBudgetSeconds = Math.Max(targetFrameTimeSeconds - elapsedFrameTimeSeconds,
             targetFrameTimeSeconds * MINIMUM_AVAILABLE_TIME_FRACTION) + savedProcessingTimeSeconds;
@@ -33,7 +33,7 @@ internal struct ResourceLoadFrameBudget
     /// <summary>
     ///   Gets the number of seconds in the frame budget that have not yet elapsed.
     /// </summary>
-    public double GetRemainingSeconds(double elapsedSeconds)
+    internal double GetRemainingSeconds(double elapsedSeconds)
     {
         return originalBudgetSeconds - elapsedSeconds;
     }
@@ -49,11 +49,11 @@ internal struct ResourceLoadFrameBudget
     ///     budget.
     ///   </para>
     /// </remarks>
-    public bool TryAdmit(double estimatedDurationSeconds, double elapsedSeconds)
+    internal bool TryAdmit(double estimatedDurationSeconds, double elapsedSeconds)
     {
         ArgumentOutOfRangeException.ThrowIfNegative(estimatedDurationSeconds);
 
-        DoubleFiniteCheck(estimatedDurationSeconds);
+        DoubleFiniteCheck(estimatedDurationSeconds, nameof(estimatedDurationSeconds));
 
         var remainingSeconds = GetRemainingSeconds(elapsedSeconds);
 
@@ -70,15 +70,15 @@ internal struct ResourceLoadFrameBudget
     /// <summary>
     ///   Calculates the number of processing seconds carried into the next frame from the actual elapsed time.
     /// </summary>
-    public double CalculateSecondsToCarry(double elapsedSeconds)
+    internal double CalculateSecondsToCarry(double elapsedSeconds)
     {
         return Math.Clamp(GetRemainingSeconds(elapsedSeconds), targetFrameTimeSeconds * MINIMUM_CARRY_FRAMES,
             targetFrameTimeSeconds * MAXIMUM_CARRY_FRAMES);
     }
 
-    private static void DoubleFiniteCheck(double value)
+    private static void DoubleFiniteCheck(double value, string parameterName)
     {
         if (!double.IsFinite(value))
-            throw new ArgumentOutOfRangeException(nameof(value));
+            throw new ArgumentOutOfRangeException(parameterName);
     }
 }
