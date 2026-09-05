@@ -161,108 +161,7 @@ public partial class SaveListItem : PanelContainer
     {
         base._ExitTree();
 
-        if (loadingData || (saveInfoLoadTask != null && !saveInfoLoadTask.Loaded))
-        {
-            if (saveInfoLoadTask != null)
-            {
-                // On slower computers the save list loads can clog up the load
-                ResourceManager.Instance.CancelLoad(saveInfoLoadTask);
-            }
-        }
-    }
-
-    public override void _Process(double delta)
-    {
-        if (!loadingData)
-            return;
-
-        if (!saveInfoLoadTask!.Loaded)
-            return;
-
-        var save = saveInfoLoadTask.Save ?? throw new Exception("Save info resource didn't load a save instance");
-        var screenshotImage = saveInfoLoadTask.Screenshot;
-        saveInfoLoadTask = null;
-
-        isBroken = save.Info.Type == SaveInformation.SaveType.Invalid;
-
-        // Screenshot (if present, saves can have a missing screenshot)
-        if (screenshotImage != null)
-        {
-            screenshot.Texture = screenshotImage;
-        }
-
-        // General info
-
-        // If save is valid, compare version numbers
-        if (!isBroken)
-        {
-            versionDifference = VersionUtils.Compare(save.Info.ThriveVersion, Constants.Version);
-        }
-        else
-        {
-            versionDifference = 0;
-        }
-
-        if (versionDifference != 0)
-        {
-            versionWarning.Visible = true;
-
-            // Check if the version is known compatible
-            if (CompatibleSaveVersions.IsMarkedCompatible(save.Info.ThriveVersion, save.Info.IsPrototype))
-            {
-                versionWarning.Visible = false;
-                isKnownCompatible = true;
-            }
-            else
-            {
-                // Not explicitly marked compatible, but might be loadable
-
-                if (save.Info.IsPrototype)
-                {
-                    // Disallowed save to try to load from a different version due to being a prototype
-                    isIncompatiblePrototype = true;
-                }
-                else
-                {
-                    if (versionDifference < 0 && SaveUpgrader.CanUpgradeSaveToVersion(save.Info))
-                    {
-                        isUpgradeable = true;
-                    }
-                }
-            }
-
-            if (SaveHelper.IsKnownIncompatible(save.Info.ThriveVersion))
-            {
-                isKnownIncompatible = true;
-                versionWarning.Visible = true;
-                isKnownCompatible = false;
-            }
-        }
-        else
-        {
-            versionWarning.Visible = false;
-        }
-
-        version.Text = save.Info.ThriveVersion;
-
-        type.Text = save.Info.TranslatedSaveTypeString;
-        createdAt.Text = save.Info.CreatedAt.ToString("G", CultureInfo.CurrentCulture);
-        createdBy.Text = save.Info.Creator;
-        createdOnPlatform.Text = save.Info.Platform;
-        description.Text = save.Info.Description;
-
-        if (save.Info.CheatsUsed)
-        {
-            tags.Visible = true;
-            tags.Text = Localization.Translate("SAVE_CHEATS_USED");
-        }
-        else
-        {
-            tags.Visible = false;
-        }
-
-        loadingData = false;
-        dataLoaded = true;
+        CancelLoad();
     }
 
     public override void _GuiInput(InputEvent @event)
@@ -295,8 +194,11 @@ public partial class SaveListItem : PanelContainer
         if (dataLoaded || saveInfoLoadTask == null)
             return;
 
-        if (!saveInfoLoadTask.Loaded)
-            ResourceManager.Instance.CancelLoad(saveInfoLoadTask);
+        var loadTask = saveInfoLoadTask;
+        loadTask.OnComplete = null;
+
+        if (!loadTask.Loaded)
+            ResourceManager.Instance.CancelLoad(loadTask);
 
         saveInfoLoadTask = null;
         loadingData = false;
@@ -355,10 +257,88 @@ public partial class SaveListItem : PanelContainer
     {
         loadingData = true;
 
-        saveInfoLoadTask = new SaveInfoAndScreenshot(saveName);
+        var loadTask = new SaveInfoAndScreenshot(saveName);
+        loadTask.OnComplete = OnSaveInfoLoaded;
+        saveInfoLoadTask = loadTask;
 
         // Resource manager is now used to limit how big of a lag spike opening the pause menu causes
-        ResourceManager.Instance.QueueLoad(saveInfoLoadTask);
+        ResourceManager.Instance.QueueLoad(loadTask);
+    }
+
+    private void OnSaveInfoLoaded(IResource resource)
+    {
+        if (resource is not SaveInfoAndScreenshot loadedResource || !ReferenceEquals(saveInfoLoadTask, loadedResource))
+            return;
+
+        // Release item ownership before touching the UI so a callback failure cannot leave this item stuck or replay.
+        loadedResource.OnComplete = null;
+        saveInfoLoadTask = null;
+        loadingData = false;
+
+        var save = loadedResource.Save ?? throw new Exception("Save info resource didn't load a save instance");
+
+        isBroken = save.Info.Type == SaveInformation.SaveType.Invalid;
+
+        // Screenshot (if present, saves can have a missing screenshot)
+        if (loadedResource.Screenshot != null)
+            screenshot.Texture = loadedResource.Screenshot;
+
+        // General info
+
+        // If save is valid, compare version numbers
+        versionDifference = isBroken ? 0 : VersionUtils.Compare(save.Info.ThriveVersion, Constants.Version);
+
+        versionWarning.Visible = versionDifference != 0;
+        if (versionWarning.Visible)
+        {
+            // Check if the version is known compatible
+            if (CompatibleSaveVersions.IsMarkedCompatible(save.Info.ThriveVersion, save.Info.IsPrototype))
+            {
+                versionWarning.Visible = false;
+                isKnownCompatible = true;
+            }
+            else
+            {
+                // Not explicitly marked compatible, but might be loadable
+
+                if (save.Info.IsPrototype)
+                {
+                    // Disallowed save to try to load from a different version due to being a prototype
+                    isIncompatiblePrototype = true;
+                }
+                else if (versionDifference < 0 && SaveUpgrader.CanUpgradeSaveToVersion(save.Info))
+                {
+                    isUpgradeable = true;
+                }
+            }
+
+            if (SaveHelper.IsKnownIncompatible(save.Info.ThriveVersion))
+            {
+                isKnownIncompatible = true;
+                versionWarning.Visible = true;
+                isKnownCompatible = false;
+            }
+        }
+
+        version.Text = save.Info.ThriveVersion;
+
+        type.Text = save.Info.TranslatedSaveTypeString;
+        createdAt.Text = save.Info.CreatedAt.ToString("G", CultureInfo.CurrentCulture);
+        createdBy.Text = save.Info.Creator;
+        createdOnPlatform.Text = save.Info.Platform;
+        description.Text = save.Info.Description;
+
+        if (save.Info.CheatsUsed)
+        {
+            tags.Visible = true;
+            tags.Text = Localization.Translate("SAVE_CHEATS_USED");
+        }
+        else
+        {
+            tags.Visible = false;
+        }
+
+        dataLoaded = true;
     }
 
     private void UpdateName()
@@ -415,11 +395,9 @@ public partial class SaveListItem : PanelContainer
             this.saveName = saveName;
         }
 
-        // See the TODO comment in PerformPostProcessing
-        public bool RequiresSyncLoad => true;
+        public bool RequiresSyncLoad => false;
         public bool UsesPostProcessing => true;
 
-        // See the TODO comment in PerformPostProcessing
         public bool RequiresSyncPostProcess => true;
 
         public bool CancelRequested { get; set; }
@@ -429,7 +407,6 @@ public partial class SaveListItem : PanelContainer
         public bool Loaded { get; private set; }
         public string Identifier => $"{nameof(SaveInfoAndScreenshot)}/{saveName}";
 
-        // TODO: maybe this should switch to using the callback to update the state rather than _Process?
         public Action<IResource>? OnComplete { get; set; }
 
         public Save? Save { get; private set; }
@@ -442,44 +419,70 @@ public partial class SaveListItem : PanelContainer
 
         public void Load()
         {
-            Save = Save.ConstructSaveFromInfoAndScreenshotBuffer(saveName, data!.Value.Info, data.Value.ScreenshotData);
+            var loadData = data!.Value;
 
-            // Let go of the data
-            data = null;
+            try
+            {
+                Save = Save.ConstructSaveFromInfoAndScreenshotBuffer(saveName, loadData.Info,
+                    loadData.ScreenshotData);
+            }
+            catch (Exception e)
+            {
+                // A broken thumbnail should not prevent the save's metadata or later saves from loading.
+                GD.PrintErr($"Failed to decode screenshot for save {saveName}: ", e);
+                Save = Save.ConstructSaveFromInfoAndScreenshotBuffer(saveName, loadData.Info, null);
+            }
+            finally
+            {
+                // Let go of the raw archive data before waiting for the main-thread phase.
+                data = null;
+            }
         }
 
         public void PerformPostProcessing()
         {
-            if (Save!.Screenshot != null)
+            try
             {
-                // Rescale the screenshot to save memory etc.
-                float aspectRatio = Save.Screenshot.GetWidth() / (float)Save.Screenshot.GetHeight();
-
-                if (Save.Screenshot.GetHeight() > Constants.SAVE_LIST_SCREENSHOT_HEIGHT)
+                if (Save!.Screenshot != null)
                 {
-                    // TODO: this seems like a Godot bug, the game crashes often when loading the saves list without
-                    // this lock. See: https://github.com/godotengine/godot/issues/55528
-                    // Partly resolves: https://github.com/Revolutionary-Games/Thrive/issues/2078
-                    // but not for all people and save amounts
-                    // Note that now as an additional workaround this uses the resource manager with sync loading
-                    lock (ResizeLock)
+                    // Rescale the screenshot to save memory etc.
+                    float aspectRatio = Save.Screenshot.GetWidth() / (float)Save.Screenshot.GetHeight();
+
+                    if (Save.Screenshot.GetHeight() > Constants.SAVE_LIST_SCREENSHOT_HEIGHT)
                     {
-                        Save.Screenshot.Resize((int)(Constants.SAVE_LIST_SCREENSHOT_HEIGHT * aspectRatio),
-                            Constants.SAVE_LIST_SCREENSHOT_HEIGHT);
+                        // TODO: this seems like a Godot bug, the game crashes often when loading the saves list without
+                        // this lock. See: https://github.com/godotengine/godot/issues/55528
+                        // Partly resolves: https://github.com/Revolutionary-Games/Thrive/issues/2078
+                        // but not for all people and save amounts
+                        lock (ResizeLock)
+                        {
+                            Save.Screenshot.Resize((int)(Constants.SAVE_LIST_SCREENSHOT_HEIGHT * aspectRatio),
+                                Constants.SAVE_LIST_SCREENSHOT_HEIGHT);
+                        }
                     }
+
+                    Screenshot = ImageTexture.CreateFromImage(Save.Screenshot);
                 }
-
-                Screenshot = ImageTexture.CreateFromImage(Save.Screenshot);
             }
-
-            Loaded = true;
+            catch (Exception e)
+            {
+                // Preserve save metadata when resize or texture creation fails; the list can show no thumbnail.
+                Screenshot = null;
+                GD.PrintErr($"Failed to prepare screenshot for save {saveName}: ", e);
+            }
+            finally
+            {
+                Loaded = true;
+            }
         }
 
         public void UnLoad()
         {
+            data = null;
             Loaded = false;
             Save = null;
             Screenshot = null;
+            OnComplete = null;
         }
     }
 }
