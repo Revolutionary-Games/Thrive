@@ -159,6 +159,11 @@ public partial class CellBodyPlanEditorComponent :
     private CellTypeMakerButton sporeCellTypeMakerButton = null!;
 
     [Export]
+    private CellTypeMakerButton gameteACellTypeMakerButton = null!;
+    [Export]
+    private CellTypeMakerButton gameteBCellTypeMakerButton = null!;
+
+    [Export]
     private CellTypePickerPopup cellTypePickerPopup = null!;
 
     [Export]
@@ -178,12 +183,6 @@ public partial class CellBodyPlanEditorComponent :
 
     [Export]
     private Control sexualReproductionSection = null!;
-
-    [Export]
-    private OptionButton gameteACellTypeDropdown = null!;
-
-    [Export]
-    private OptionButton gameteBCellTypeDropdown = null!;
 
     [Export]
     private Button sexualAnisogamyUpgradeButton = null!;
@@ -234,6 +233,9 @@ public partial class CellBodyPlanEditorComponent :
     private bool showGrowthOrderNumbers;
 
     private CellType? sporeCellType;
+
+    private CellType? gameteACellType;
+    private CellType? gameteBCellType;
 
     private EnergyBalanceInfoFull? energyBalanceInfo;
 
@@ -337,9 +339,33 @@ public partial class CellBodyPlanEditorComponent :
 
     public GameteType SelectedGameteTypeForPlayer { get; private set; } = GameteType.A;
 
-    public CellType? GameteACellType { get; private set; }
+    public CellType? GameteACellType
+    {
+        get => gameteACellType;
+        set
+        {
+            if (ReferenceEquals(gameteACellType, value))
+                return;
 
-    public CellType? GameteBCellType { get; private set; }
+            gameteACellType = value;
+
+            UpdateSpecialCellTypeDisplays();
+        }
+    }
+
+    public CellType? GameteBCellType
+    {
+        get => gameteBCellType;
+        set
+        {
+            if (ReferenceEquals(gameteBCellType, value))
+                return;
+
+            gameteBCellType = value;
+
+            UpdateSpecialCellTypeDisplays();
+        }
+    }
 
     /// <summary>
     ///   This variable should be clamped before use. It's intentional that it can exceed the number of cells, to make
@@ -927,9 +953,6 @@ public partial class CellBodyPlanEditorComponent :
         UpdateSpecializationDisplay();
 
         UpdateSpecialCellTypeDisplays();
-
-        // In case the cell type's name was changed
-        UpdateGameteDropdowns();
     }
 
     /// <summary>
@@ -1309,6 +1332,14 @@ public partial class CellBodyPlanEditorComponent :
         }
 
         return CellTypeVisualsOverride.GetCellType(cellType);
+    }
+
+    private CellType? GetEditedCellDataIfEditedAndNotNull(CellType? cellType)
+    {
+        if (cellType == null)
+            return null;
+
+        return GetEditedCellDataIfEdited(cellType);
     }
 
     /// <summary>
@@ -2310,10 +2341,49 @@ public partial class CellBodyPlanEditorComponent :
 
     private bool ShouldCellTypeBeDisplayed(CellType cellType)
     {
-        // The spore is a specialized cell type
-        if (SporeCellType != null && cellType.CellTypeName == SporeCellType.CellTypeName)
+        // Specialized cell types shouldn't be displayed outside the cell type pickers
+        if (cellType.CellTypeName == SporeCellType?.CellTypeName)
+            return false;
+
+        if (cellType.CellTypeName == GameteACellType?.CellTypeName)
+            return false;
+
+        if (cellType.CellTypeName == GameteBCellType?.CellTypeName)
             return false;
 
         return true;
+    }
+
+    private CellType? GetSpecialCellType(SpecialCellArchetype archetype)
+    {
+        switch (archetype)
+        {
+            case SpecialCellArchetype.Spore:
+                return SporeCellType;
+            case SpecialCellArchetype.GameteA:
+                return GameteACellType;
+            case SpecialCellArchetype.GameteB:
+                return GameteBCellType;
+            default:
+                throw new NotImplementedException($"Unimplemented special cell type: {archetype}");
+        }
+    }
+
+    private void SetSpecialCellType(SpecialCellArchetype archetype, CellType? cellType)
+    {
+        switch (archetype)
+        {
+            case SpecialCellArchetype.Spore:
+                SporeCellType = cellType;
+                break;
+            case SpecialCellArchetype.GameteA:
+                GameteACellType = cellType;
+                break;
+            case SpecialCellArchetype.GameteB:
+                GameteBCellType = cellType;
+                break;
+            default:
+                throw new NotImplementedException($"Unimplemented special cell type: {archetype}");
+        }
     }
 }

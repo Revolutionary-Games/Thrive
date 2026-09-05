@@ -17,6 +17,9 @@ public partial class CellTypeMakerButton : Control
 
     [Export]
     private Control resetButton = null!;
+
+    [Export]
+    private SpecialCellArchetype specialCellType;
 #pragma warning restore CA2213
 
     [Signal]

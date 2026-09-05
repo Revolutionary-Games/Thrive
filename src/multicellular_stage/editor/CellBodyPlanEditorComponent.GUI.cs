@@ -36,36 +36,6 @@ public partial class CellBodyPlanEditorComponent
         UpdateReproductionMethodChoice();
     }
 
-    public void OnGameteACellTypeSelected(int selectedOption)
-    {
-        var cellType = Editor.EditedSpecies.ModifiableCellTypes[selectedOption];
-
-        if (ReferenceEquals(cellType, GameteACellType))
-            return;
-
-        var action = new SingleEditorAction<GameteACellTypeChangeActionData>(DoGameteACellChangeAction,
-            UndoGameteACellChangeAction, new GameteACellTypeChangeActionData(GameteACellType, cellType));
-
-        Editor.EnqueueAction(action);
-
-        UpdateGameteDropdowns();
-    }
-
-    public void OnGameteBCellTypeSelected(int selectedOption)
-    {
-        var cellType = Editor.EditedSpecies.ModifiableCellTypes[selectedOption];
-
-        if (ReferenceEquals(cellType, GameteBCellType))
-            return;
-
-        var action = new SingleEditorAction<GameteBCellTypeChangeActionData>(DoGameteBCellChangeAction,
-            UndoGameteBCellChangeAction, new GameteBCellTypeChangeActionData(GameteBCellType, cellType));
-
-        Editor.EnqueueAction(action);
-
-        UpdateGameteDropdowns();
-    }
-
     public void OnMassBuddingCellCountChanged(float count)
     {
         var newCellCount = (int)count;
@@ -246,7 +216,6 @@ public partial class CellBodyPlanEditorComponent
         UpdateReproductionMethodChoice();
 
         UpdateSpecialCellTypeDisplays();
-        UpdateGameteDropdowns();
 
         loadingMassBuddingState = true;
         try
@@ -403,96 +372,70 @@ public partial class CellBodyPlanEditorComponent
         }
     }
 
-    private void OnSporeEditClicked()
+    private void OnSpecialCellTypeEditClicked(int specialCellArchetype)
     {
-        if (SporeCellType == null)
+        var cellArchetype = (SpecialCellArchetype)specialCellArchetype;
+
+        var specialCell = GetSpecialCellType(cellArchetype);
+
+        if (specialCell == null)
         {
             cellTypePickerPopup.UpdateCellTypeList(Editor.EditedSpecies.ModifiableCellTypes, GetEditedCellDataIfEdited,
-                OnBaseCellTypeForSporeSelected);
+                OnBaseCellTypeForSpecialCellTypeSelected, cellArchetype);
             cellTypePickerPopup.PopupCenteredShrink();
         }
         else
         {
-            EmitSignal(SignalName.OnCellTypeToEditSelected, SporeCellType.CellTypeName, true);
+            EmitSignal(SignalName.OnCellTypeToEditSelected, specialCell.CellTypeName, true);
         }
     }
 
-    private void OnBaseCellTypeForSporeSelected(string baseCellTypeName)
+    private void OnBaseCellTypeForSpecialCellTypeSelected(string baseCellTypeName, int specialCellArchetype)
     {
+        var cellArchetype = (SpecialCellArchetype)specialCellArchetype;
+
         var splitFrom = CellTypeFromName(baseCellTypeName);
 
         var cellType = (CellType)GetEditedCellDataIfEdited(splitFrom).Clone();
         cellType.CellTypeName = Localization.Translate("DEFAULT_SPORE_CELL_TYPE_NAME");
         cellType.SplitFromTypeName = splitFrom.CellTypeName;
 
-        var action = new SingleEditorAction<SporeCellTypeChangeActionData>(DoSporeCellChangeAction,
-            UndoSporeCellChangeAction, new SporeCellTypeChangeActionData(SporeCellType, cellType));
+        var specialCell = GetSpecialCellType(cellArchetype);
+
+        var action = new SingleEditorAction<SpecialCellTypeChangeActionData>(DoSpecialCellChangeAction,
+            UndoSpecialCellChangeAction, new SpecialCellTypeChangeActionData(specialCell, cellType, cellArchetype));
 
         Editor.EnqueueAction(action);
 
-        if (SporeCellType != null)
+        specialCell = GetSpecialCellType(cellArchetype);
+
+        if (specialCell != null)
         {
-            EmitSignal(SignalName.OnCellTypeToEditSelected, SporeCellType.CellTypeName, true);
+            EmitSignal(SignalName.OnCellTypeToEditSelected, specialCell.CellTypeName, true);
         }
     }
 
-    private void OnSporeResetClicked()
+    private void OnSpecialCellTypeResetClicked(int specialCellArchetype)
     {
-        if (SporeCellType == null)
+        var cellArchetype = (SpecialCellArchetype)specialCellArchetype;
+
+        var specialCell = GetSpecialCellType(cellArchetype);
+
+        if (specialCell == null)
             return;
 
-        var action = new SingleEditorAction<SporeCellTypeChangeActionData>(DoSporeCellChangeAction,
-            UndoSporeCellChangeAction, new SporeCellTypeChangeActionData(SporeCellType, null));
+        var action = new SingleEditorAction<SpecialCellTypeChangeActionData>(DoSpecialCellChangeAction,
+            UndoSpecialCellChangeAction, new SpecialCellTypeChangeActionData(specialCell, null, cellArchetype));
 
         Editor.EnqueueAction(action);
     }
 
     private void UpdateSpecialCellTypeDisplays()
     {
-        sporeCellTypeMakerButton.UpdateDisplayedCellType(SporeCellType == null ?
-            null :
-            GetEditedCellDataIfEdited(SporeCellType));
-    }
+        sporeCellTypeMakerButton.UpdateDisplayedCellType(GetEditedCellDataIfEditedAndNotNull(SporeCellType));
 
-    private void UpdateGameteDropdowns()
-    {
-        if (gameteACellTypeDropdown.Visible)
-        {
-            gameteACellTypeDropdown.Clear();
-
-            foreach (var cellType in Editor.EditedSpecies.ModifiableCellTypes)
-            {
-                gameteACellTypeDropdown.AddItem(cellType.FormattedName);
-            }
-
-            if (GameteACellType == null)
-            {
-                gameteACellTypeDropdown.Select(-1);
-            }
-            else
-            {
-                gameteACellTypeDropdown.Select(Editor.EditedSpecies.ModifiableCellTypes.IndexOf(GameteACellType));
-            }
-        }
-
-        if (!gameteBCellTypeDropdown.Visible)
-            return;
-
-        gameteBCellTypeDropdown.Clear();
-
-        foreach (var cellType in Editor.EditedSpecies.ModifiableCellTypes)
-        {
-            gameteBCellTypeDropdown.AddItem(cellType.FormattedName);
-        }
-
-        if (GameteBCellType == null)
-        {
-            gameteBCellTypeDropdown.Select(-1);
-        }
-        else
-        {
-            gameteBCellTypeDropdown.Select(Editor.EditedSpecies.ModifiableCellTypes.IndexOf(GameteBCellType));
-        }
+        gameteACellTypeMakerButton.UpdateDisplayedCellType(GetEditedCellDataIfEditedAndNotNull(GameteACellType));
+        gameteBCellTypeMakerButton.UpdateDisplayedCellType(GetEditedCellDataIfEditedAndNotNull(GameteBCellType));
     }
 
     private void UpdateAnisogamyStateAndCost()

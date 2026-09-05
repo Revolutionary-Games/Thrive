@@ -7,7 +7,9 @@ using Godot;
 /// </summary>
 public partial class CellTypePickerPopup : CustomWindow
 {
-    private Action<string>? onChosenCellTypeCallback;
+    private Action<string, int>? onChosenCellTypeCallback;
+
+    private SpecialCellArchetype cellArchetype;
 
 #pragma warning disable CA2213
     [Export]
@@ -18,9 +20,10 @@ public partial class CellTypePickerPopup : CustomWindow
 #pragma warning restore CA2213
 
     public void UpdateCellTypeList(List<CellType> types, Func<CellType, CellType> getUpdatedCellType,
-        Action<string> onChosenCellType)
+        Action<string, int> onChosenCellType, SpecialCellArchetype specialCellArchetype)
     {
         onChosenCellTypeCallback = onChosenCellType;
+        cellArchetype = specialCellArchetype;
 
         cellTypeList.QueueFreeChildren();
 
@@ -48,7 +51,7 @@ public partial class CellTypePickerPopup : CustomWindow
 
     private void OnCellTypeButtonClicked(string name)
     {
-        onChosenCellTypeCallback?.Invoke(name);
+        onChosenCellTypeCallback?.Invoke(name, (int)cellArchetype);
         Close();
     }
 }

@@ -64,7 +64,7 @@ public class CellTypeFacadeHelper
             return true;
         }
 
-        if (actionData is SporeCellTypeChangeActionData sporeCellTypeChangeActionData)
+        if (actionData is SpecialCellTypeChangeActionData sporeCellTypeChangeActionData)
         {
             if (!ReferenceEquals(sporeCellTypeChangeActionData.OldCellType,
                     sporeCellTypeChangeActionData.NewCellType))
