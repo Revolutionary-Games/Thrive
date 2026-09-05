@@ -416,18 +416,6 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             UseSignalingAgent(ref position, ref organelles, speciesAggression, ref signaling, random, ref ourSpecies);
         }
 
-        // Avoid terrain
-        BuildChunksCache();
-
-        foreach (var terrainChunk in terrainChunkDataCache)
-        {
-            if (position.Position.DistanceSquaredTo(terrainChunk.Position)
-                < Constants.AI_AVOID_TERRAIN_DISTANCE_SQUARED)
-            {
-                ai.MoveWithRandomTurn(1.0f, 1.0f, position.Position, ref control, speciesActivity, random);
-            }
-        }
-
         // Follow received commands if we have them
         if (organelles.HasSignalingAgent && signalExists)
         {
@@ -719,6 +707,18 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         {
             // This organism is sessile, and will not act until the environment changes
             control.SetMoveSpeed(0.0f);
+        }
+
+        // Avoid terrain
+        BuildChunksCache();
+
+        foreach (var terrainChunk in terrainChunkDataCache)
+        {
+            if (position.Position.DistanceSquaredTo(terrainChunk.Position)
+                < Constants.AI_AVOID_TERRAIN_DISTANCE_SQUARED)
+            {
+                ai.MoveWithRandomTurn(1.0f, 1.0f, position.Position, ref control, speciesActivity, random);
+            }
         }
     }
 
