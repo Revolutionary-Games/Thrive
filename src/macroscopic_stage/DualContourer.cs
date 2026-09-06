@@ -51,8 +51,8 @@ public class DualContourer
             (int)(UnitsTo.Z * PointsPerUnit));
 
         // Safety checks not to blow up PCs
-        gridFrom.Clamp(new Vector3I(-100, -100, -100), new Vector3I(100, 100, 100));
-        gridTo.Clamp(new Vector3I(-100, -100, -100), new Vector3I(100, 100, 100));
+        gridFrom = gridFrom.Clamp(new Vector3I(-100, -100, -100), new Vector3I(100, 100, 100));
+        gridTo = gridTo.Clamp(new Vector3I(-100, -100, -100), new Vector3I(100, 100, 100));
 
         var capacity = PointsPerUnit * (gridTo.X - gridFrom.X) * (gridTo.Y - gridFrom.Y) *
             (gridTo.Z - gridFrom.Z) / 10;
@@ -605,16 +605,22 @@ public class DualContourer
     private void SubdivideEdge(int startID, int endID, int face1ID, int face2ID, List<Vector3> newPoints,
         List<int> newTriIndices, (float, Vector3)[] originalPointsAdjacencies)
     {
+        int newPointID = newPoints.Count;
+        Vector3 edgeCenter;
+
         if (face1ID == -1 || face2ID == -1)
         {
-            GD.PrintErr("Error when subdividing: a face has wrong id");
-            return;
+            // This edge only has one adjacent face
+            var validFace = Math.Max(face1ID, face2ID);
+            edgeCenter = (newPoints[startID] + newPoints[endID] + newPoints[validFace]) / 3.0f;
         }
+        else
+        {
+            Vector3 firstFaceCenter = newPoints[face1ID];
+            Vector3 secondFaceCenter = newPoints[face2ID];
 
-        Vector3 firstFaceCenter = newPoints[face1ID];
-        Vector3 secondFaceCenter = newPoints[face2ID];
-
-        Vector3 edgeCenter = (newPoints[startID] + newPoints[endID] + firstFaceCenter + secondFaceCenter) / 4.0f;
+            edgeCenter = (newPoints[startID] + newPoints[endID] + firstFaceCenter + secondFaceCenter) / 4.0f;
+        }
 
         originalPointsAdjacencies[startID].Item1 += 1.0f;
         originalPointsAdjacencies[startID].Item2 += edgeCenter;
@@ -622,26 +628,31 @@ public class DualContourer
         originalPointsAdjacencies[endID].Item1 += 1.0f;
         originalPointsAdjacencies[endID].Item2 += edgeCenter;
 
-        int newPointID = newPoints.Count;
         newPoints.Add(edgeCenter);
 
-        // Left-handed triangles
-        newTriIndices.Add(newPointID);
-        newTriIndices.Add(face1ID);
-        newTriIndices.Add(endID);
+        if (face1ID != -1)
+        {
+            // Left-handed triangles
+            newTriIndices.Add(newPointID);
+            newTriIndices.Add(face1ID);
+            newTriIndices.Add(endID);
 
-        newTriIndices.Add(newPointID);
-        newTriIndices.Add(startID);
-        newTriIndices.Add(face1ID);
+            newTriIndices.Add(newPointID);
+            newTriIndices.Add(startID);
+            newTriIndices.Add(face1ID);
+        }
 
-        // Right-handed triangles
-        newTriIndices.Add(newPointID);
-        newTriIndices.Add(face2ID);
-        newTriIndices.Add(startID);
+        if (face2ID != -1)
+        {
+            // Right-handed triangles
+            newTriIndices.Add(newPointID);
+            newTriIndices.Add(face2ID);
+            newTriIndices.Add(startID);
 
-        newTriIndices.Add(newPointID);
-        newTriIndices.Add(endID);
-        newTriIndices.Add(face2ID);
+            newTriIndices.Add(newPointID);
+            newTriIndices.Add(endID);
+            newTriIndices.Add(face2ID);
+        }
     }
 
     private struct EdgeData
