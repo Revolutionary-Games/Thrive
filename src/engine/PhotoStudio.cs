@@ -351,7 +351,7 @@ public partial class PhotoStudio : SubViewport
     public IImageTask GenerateImage(IScenePhotographable photographable, int priority = 1,
         int resolution = Constants.PHOTO_STUDIO_DEFAULT_RESOLUTION)
     {
-        var cacheKey = photographable.GetVisualHashCode();
+        var cacheKey = GetResolutionAwareHash(photographable.GetVisualHashCode(), resolution);
 
         var image = TryGetFromCache(cacheKey);
 
@@ -367,7 +367,7 @@ public partial class PhotoStudio : SubViewport
     public IImageTask GenerateImage(ISimulationPhotographable photographable, int priority = 1,
         int resolution = Constants.PHOTO_STUDIO_DEFAULT_RESOLUTION)
     {
-        var cacheKey = photographable.GetVisualHashCode();
+        var cacheKey = GetResolutionAwareHash(photographable.GetVisualHashCode(), resolution);
 
         var image = TryGetFromCache(cacheKey);
 
@@ -528,6 +528,14 @@ public partial class PhotoStudio : SubViewport
             GD.Print("Disk caching disabled");
             diskCache = null;
         }
+    }
+
+    private ulong GetResolutionAwareHash(ulong hash, int resolution)
+    {
+        const int oldDefaultResoltion = 600;
+
+        // XORing the given resolution with the old default one to make sure that older hashes remain the same
+        return hash ^ (ulong)(resolution.GetHashCode() ^ oldDefaultResoltion.GetHashCode());
     }
 
     private class TaskComparer : IComparer<(int, int)>
