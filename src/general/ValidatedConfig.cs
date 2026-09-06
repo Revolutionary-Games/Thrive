@@ -18,6 +18,17 @@ using Godot;
 /// </remarks>
 public abstract partial class ValidatedConfig : Resource
 {
+    /// <summary>
+    ///   Specifies if NaN values can be accepted in this config.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Default is false, which means if you don't explicitly set this to true, NaN values will be rejected by
+    ///     default as invalid numbers.
+    ///   </para>
+    /// </remarks>
+    public bool AllowNaN;
+
     private float[]? previousValues;
     private bool previousResult = true;
 
@@ -28,9 +39,16 @@ public abstract partial class ValidatedConfig : Resource
 
     /// <summary>
     ///   Checks that every value is in range and consistent with the others, reporting all problems found.
+    ///   Like <see cref="DoChecks"/>, but it also checks for NaN values if <see cref="AllowNaN"/> is enabled.
     /// </summary>
     /// <returns>True when everything is valid.</returns>
-    public abstract bool Validate();
+    public bool Validate()
+    {
+        Span<float> current = stackalloc float[ValueCount];
+        CaptureValues(current);
+
+        return Validate(current);
+    }
 
     /// <summary>
     ///   Like <see cref="Validate"/>, but only rechecks when a value has changed since the last call. In between, the
@@ -57,7 +75,7 @@ public abstract partial class ValidatedConfig : Resource
 
         current.CopyTo(previousValues);
 
-        previousResult = Validate();
+        previousResult = Validate(current);
         return previousResult;
     }
 
@@ -66,6 +84,13 @@ public abstract partial class ValidatedConfig : Resource
     ///   detected.
     /// </summary>
     protected abstract void CaptureValues(Span<float> destination);
+
+    /// <summary>
+    ///   Checks that every value is in range and consistent with the others, reporting all problems found.
+    ///   The checks don't include NaN checking.
+    /// </summary>
+    /// <returns>True when everything is valid.</returns>
+    protected abstract bool DoChecks();
 
     /// <summary>
     ///   Reports a problem when the condition doesn't hold.
@@ -78,5 +103,13 @@ public abstract partial class ValidatedConfig : Resource
 
         GD.PrintErr(GetType().Name, ": ", message);
         return false;
+    }
+
+    private bool Validate(Span<float> currentValues)
+    {
+        if (!AllowNaN && currentValues.Contains(float.NaN))
+            return false;
+
+        return DoChecks();
     }
 }

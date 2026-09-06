@@ -52,7 +52,17 @@ public sealed partial class SunConfig : ValidatedConfig
 
     protected override int ValueCount => 7;
 
-    public override bool Validate()
+    /// <summary>
+    ///   Gets <see cref="SunDirection"/> as a unit-length vector that is always safe to hand to a shader.
+    /// </summary>
+    public Vector3 GetNormalizedDirection()
+    {
+        // Prevent singularities and erratic behaviour in the shaders by returning a non-zero vector.
+        // Vector3.One.Normalized() is purely arbitrary (as we can choose any unit-length vector).
+        return SunDirection.IsZeroApprox() ? Vector3.One.Normalized() : SunDirection.Normalized();
+    }
+
+    protected override bool DoChecks()
     {
         bool valid = true;
 
@@ -75,16 +85,6 @@ public sealed partial class SunConfig : ValidatedConfig
             $"is {SunLimbDarkening}");
 
         return valid;
-    }
-
-    /// <summary>
-    ///   Gets <see cref="SunDirection"/> as a unit-length vector that is always safe to hand to a shader.
-    /// </summary>
-    public Vector3 GetNormalizedDirection()
-    {
-        // Prevent singularities and erratic behaviour in the shaders by returning a non-zero vector.
-        // Vector3.One.Normalized() is purely arbitrary (as we can choose any unit-length vector).
-        return SunDirection.IsZeroApprox() ? Vector3.One.Normalized() : SunDirection.Normalized();
     }
 
     protected override void CaptureValues(Span<float> destination)

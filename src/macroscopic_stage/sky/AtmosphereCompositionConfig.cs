@@ -96,7 +96,35 @@ public sealed partial class AtmosphereCompositionConfig : ValidatedConfig
 
     protected override int ValueCount => 16;
 
-    public override bool Validate()
+    /// <summary>
+    ///   Calculates the Rayleigh scattering coefficient at the ground for each colour channel, per world unit.
+    /// </summary>
+    /// <returns>
+    ///   Per-channel scattering coefficients, or a zero vector if the composition is empty.
+    /// </returns>
+    public Vector3 CalculateRayleighScattering()
+    {
+        float totalFraction = Nitrogen + Oxygen + Argon + CarbonDioxide + Methane + Hydrogen + Helium + WaterVapour +
+            Ammonia + SulfurDioxide;
+
+        if (totalFraction <= 0.0f)
+        {
+            GD.PrintErr("Atmosphere composition is empty, there is nothing for the sky to scatter off of");
+            return Vector3.Zero;
+        }
+
+        // Ideal gas law, giving how many molecules per cubic metre there are at the ground
+        double numberDensity = SurfacePressure * 1000.0 / (BoltzmannConstant * SurfaceTemperature);
+
+        // Normalising by the total fraction is folded in here to keep it out of the per-gas sum
+        double scale = numberDensity * MetresPerUnit / totalFraction;
+
+        return new Vector3((float)(MixtureCrossSection(Wavelengths.X) * scale),
+            (float)(MixtureCrossSection(Wavelengths.Y) * scale),
+            (float)(MixtureCrossSection(Wavelengths.Z) * scale));
+    }
+
+    protected override bool DoChecks()
     {
         bool valid = true;
 
@@ -128,34 +156,6 @@ public sealed partial class AtmosphereCompositionConfig : ValidatedConfig
         valid &= Check(MetresPerUnit > 0.0f, $"MetresPerUnit must be positive, but is {MetresPerUnit}");
 
         return valid;
-    }
-
-    /// <summary>
-    ///   Calculates the Rayleigh scattering coefficient at the ground for each colour channel, per world unit.
-    /// </summary>
-    /// <returns>
-    ///   Per-channel scattering coefficients, or a zero vector if the composition is empty.
-    /// </returns>
-    public Vector3 CalculateRayleighScattering()
-    {
-        float totalFraction = Nitrogen + Oxygen + Argon + CarbonDioxide + Methane + Hydrogen + Helium + WaterVapour +
-            Ammonia + SulfurDioxide;
-
-        if (totalFraction <= 0.0f)
-        {
-            GD.PrintErr("Atmosphere composition is empty, there is nothing for the sky to scatter off of");
-            return Vector3.Zero;
-        }
-
-        // Ideal gas law, giving how many molecules per cubic metre there are at the ground
-        double numberDensity = SurfacePressure * 1000.0 / (BoltzmannConstant * SurfaceTemperature);
-
-        // Normalising by the total fraction is folded in here to keep it out of the per-gas sum
-        double scale = numberDensity * MetresPerUnit / totalFraction;
-
-        return new Vector3((float)(MixtureCrossSection(Wavelengths.X) * scale),
-            (float)(MixtureCrossSection(Wavelengths.Y) * scale),
-            (float)(MixtureCrossSection(Wavelengths.Z) * scale));
     }
 
     protected override void CaptureValues(Span<float> destination)

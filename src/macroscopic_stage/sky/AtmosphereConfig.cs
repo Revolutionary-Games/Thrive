@@ -55,7 +55,7 @@ public sealed partial class AtmosphereConfig : ValidatedConfig
 
     protected override int ValueCount => 5;
 
-    public override bool Validate()
+    protected override bool DoChecks()
     {
         bool valid = true;
 

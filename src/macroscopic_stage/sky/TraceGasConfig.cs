@@ -35,7 +35,19 @@ public sealed partial class TraceGasConfig : ValidatedConfig
 
     protected override int ValueCount => 6;
 
-    public override bool Validate()
+    /// <summary>
+    ///   Calculates the peak ozone extinction per world unit, for each colour channel.
+    /// </summary>
+    /// <param name="metresPerUnit">
+    ///   How many metres one world unit stands for, from <see cref="AtmosphereCompositionConfig.MetresPerUnit"/>.
+    /// </param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public Vector3 CalculateOzoneAbsorption(float metresPerUnit)
+    {
+        return OzoneAbsorption * (OzoneConcentration * metresPerUnit);
+    }
+
+    protected override bool DoChecks()
     {
         bool valid = true;
 
@@ -53,18 +65,6 @@ public sealed partial class TraceGasConfig : ValidatedConfig
         valid &= Check(OzoneLayerWidth > 0.0f, $"OzoneLayerWidth must be positive, but is {OzoneLayerWidth}");
 
         return valid;
-    }
-
-    /// <summary>
-    ///   Calculates the peak ozone extinction per world unit, for each colour channel.
-    /// </summary>
-    /// <param name="metresPerUnit">
-    ///   How many metres one world unit stands for, from <see cref="AtmosphereCompositionConfig.MetresPerUnit"/>.
-    /// </param>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public Vector3 CalculateOzoneAbsorption(float metresPerUnit)
-    {
-        return OzoneAbsorption * (OzoneConcentration * metresPerUnit);
     }
 
     protected override void CaptureValues(Span<float> destination)

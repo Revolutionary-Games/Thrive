@@ -48,7 +48,7 @@ public sealed partial class CloudsConfig : ValidatedConfig
 
     protected override int ValueCount => 10;
 
-    public override bool Validate()
+    protected override bool DoChecks()
     {
         bool valid = true;
 
