@@ -59,27 +59,33 @@ public sealed partial class AtmosphereConfig : ValidatedConfig
     {
         bool valid = true;
 
-        valid &= Check(GroundRadius > 0.0f, $"GroundRadius must be positive, but is {GroundRadius}");
+        if (!Check(GroundRadius > 0.0f, $"GroundRadius must be positive, but is {GroundRadius}"))
+            valid = false;
 
-        valid &= Check(TopRadius > GroundRadius, $"TopRadius ({TopRadius}) must be greater than GroundRadius " +
-            $"({GroundRadius}), otherwise the atmosphere has no thickness to scatter in");
+        if (!Check(TopRadius > GroundRadius, $"TopRadius ({TopRadius}) must be greater than GroundRadius " +
+                $"({GroundRadius}), otherwise the atmosphere has no thickness to scatter in"))
+            valid = false;
 
-        valid &= Check(RayleighScaleHeight > 0.0f,
-            $"RayleighScaleHeight must be positive, but is {RayleighScaleHeight}");
+        if (!Check(RayleighScaleHeight > 0.0f,
+                $"RayleighScaleHeight must be positive, but is {RayleighScaleHeight}"))
+            valid = false;
 
-        valid &= Check(ViewRaySteps is >= 4 and <= 128, $"ViewRaySteps must be between 4 and 128, but is " +
-            $"{ViewRaySteps}");
+        if (!Check(ViewRaySteps is >= 4 and <= 128, $"ViewRaySteps must be between 4 and 128, but is " +
+                $"{ViewRaySteps}"))
+            valid = false;
 
-        valid &= Check(LightRaySteps is >= 2 and <= 32, $"LightRaySteps must be between 2 and 32, but is " +
-            $"{LightRaySteps}");
+        if (!Check(LightRaySteps is >= 2 and <= 32, $"LightRaySteps must be between 2 and 32, but is " +
+                $"{LightRaySteps}"))
+            valid = false;
 
         if (TopRadius <= GroundRadius || RayleighScaleHeight <= 0.0f)
             return valid;
 
         float thickness = TopRadius - GroundRadius;
 
-        valid &= Check(thickness >= RayleighScaleHeight, $"The atmosphere is only {thickness} thick while " +
-            $"RayleighScaleHeight is {RayleighScaleHeight}, so the air is still dense where it ends");
+        if (!Check(thickness >= RayleighScaleHeight, $"The atmosphere is only {thickness} thick while " +
+                $"RayleighScaleHeight is {RayleighScaleHeight}, so the air is still dense where it ends"))
+            valid = false;
 
         return valid;
     }

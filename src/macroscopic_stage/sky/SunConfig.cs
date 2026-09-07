@@ -68,21 +68,26 @@ public sealed partial class SunConfig : ValidatedConfig
 
         // A zero direction leaves the sun position undefined, and the shaders would silently fall back to an
         // arbitrary one
-        valid &= Check(!SunDirection.IsZeroApprox(),
-            "SunDirection must not be a zero vector, as that leaves the sun with no direction to shine from");
+        if (!Check(!SunDirection.IsZeroApprox(),
+                "SunDirection must not be a zero vector, as that leaves the sun with no direction to shine from"))
+            valid = false;
 
-        valid &= Check(SunEnergy is >= 0.0f and <= 100.0f, $"SunEnergy must be between 0 and 100, but is " +
-            $"{SunEnergy}");
+        if (!Check(SunEnergy is >= 0.0f and <= 100.0f, $"SunEnergy must be between 0 and 100, but is " +
+                $"{SunEnergy}"))
+            valid = false;
 
-        valid &= Check(SunIlluminance is >= 0.0f and <= 100.0f, $"SunIlluminance must be between 0 and 100, but " +
-            $"is {SunIlluminance}");
+        if (!Check(SunIlluminance is >= 0.0f and <= 100.0f, $"SunIlluminance must be between 0 and 100, but " +
+                $"is {SunIlluminance}"))
+            valid = false;
 
         // The shader divides by the disc solid angle, which collapses as the radius reaches zero
-        valid &= Check(SunAngularRadius is > 0.0f and <= 0.1f, $"SunAngularRadius must be greater than 0 and at " +
-            $"most 0.1 radians, but is {SunAngularRadius}");
+        if (!Check(SunAngularRadius is > 0.0f and <= 0.1f, $"SunAngularRadius must be greater than 0 and at " +
+                $"most 0.1 radians, but is {SunAngularRadius}"))
+            valid = false;
 
-        valid &= Check(SunLimbDarkening is >= 0.0f and <= 1.0f, $"SunLimbDarkening must be between 0 and 1, but " +
-            $"is {SunLimbDarkening}");
+        if (!Check(SunLimbDarkening is >= 0.0f and <= 1.0f, $"SunLimbDarkening must be between 0 and 1, but " +
+                $"is {SunLimbDarkening}"))
+            valid = false;
 
         return valid;
     }

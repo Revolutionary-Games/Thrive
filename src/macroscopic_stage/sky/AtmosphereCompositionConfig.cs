@@ -128,32 +128,47 @@ public sealed partial class AtmosphereCompositionConfig : ValidatedConfig
     {
         bool valid = true;
 
-        valid &= CheckFraction(Nitrogen, "Nitrogen");
-        valid &= CheckFraction(Oxygen, "Oxygen");
-        valid &= CheckFraction(Argon, "Argon");
-        valid &= CheckFraction(CarbonDioxide, "CarbonDioxide");
-        valid &= CheckFraction(Methane, "Methane");
-        valid &= CheckFraction(Hydrogen, "Hydrogen");
-        valid &= CheckFraction(Helium, "Helium");
-        valid &= CheckFraction(WaterVapour, "WaterVapour");
-        valid &= CheckFraction(Ammonia, "Ammonia");
-        valid &= CheckFraction(SulfurDioxide, "SulfurDioxide");
+        if (!CheckFraction(Nitrogen, "Nitrogen"))
+            valid = false;
+        if (!CheckFraction(Oxygen, "Oxygen"))
+            valid = false;
+        if (!CheckFraction(Argon, "Argon"))
+            valid = false;
+        if (!CheckFraction(CarbonDioxide, "CarbonDioxide"))
+            valid = false;
+        if (!CheckFraction(Methane, "Methane"))
+            valid = false;
+        if (!CheckFraction(Hydrogen, "Hydrogen"))
+            valid = false;
+        if (!CheckFraction(Helium, "Helium"))
+            valid = false;
+        if (!CheckFraction(WaterVapour, "WaterVapour"))
+            valid = false;
+        if (!CheckFraction(Ammonia, "Ammonia"))
+            valid = false;
+        if (!CheckFraction(SulfurDioxide, "SulfurDioxide"))
+            valid = false;
 
         float totalFraction = Nitrogen + Oxygen + Argon + CarbonDioxide + Methane + Hydrogen + Helium + WaterVapour +
             Ammonia + SulfurDioxide;
 
-        valid &= Check(totalFraction > 0.0f,
-            "The gas fractions add up to zero, leaving nothing for the sky to scatter off of");
+        if (!Check(totalFraction > 0.0f,
+                "The gas fractions add up to zero, leaving nothing for the sky to scatter off of"))
+            valid = false;
 
-        valid &= Check(SurfacePressure >= 0.0f, $"SurfacePressure cannot be negative, but is {SurfacePressure}");
+        if (!Check(SurfacePressure >= 0.0f, $"SurfacePressure cannot be negative, but is {SurfacePressure}"))
+            valid = false;
 
-        valid &= Check(SurfaceTemperature > 0.0f,
-            $"SurfaceTemperature must be above absolute zero, but is {SurfaceTemperature}");
+        if (!Check(SurfaceTemperature > 0.0f,
+                $"SurfaceTemperature must be above absolute zero, but is {SurfaceTemperature}"))
+            valid = false;
 
-        valid &= Check(Wavelengths is { X: > 0.0f, Y: > 0.0f, Z: > 0.0f },
-            $"Wavelengths must all be positive, but are {Wavelengths}");
+        if (!Check(Wavelengths is { X: > 0.0f, Y: > 0.0f, Z: > 0.0f },
+                $"Wavelengths must all be positive, but are {Wavelengths}"))
+            valid = false;
 
-        valid &= Check(MetresPerUnit > 0.0f, $"MetresPerUnit must be positive, but is {MetresPerUnit}");
+        if (!Check(MetresPerUnit > 0.0f, $"MetresPerUnit must be positive, but is {MetresPerUnit}"))
+            valid = false;
 
         return valid;
     }

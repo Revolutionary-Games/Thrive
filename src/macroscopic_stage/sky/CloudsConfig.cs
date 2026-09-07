@@ -52,31 +52,41 @@ public sealed partial class CloudsConfig : ValidatedConfig
     {
         bool valid = true;
 
-        valid &= Check(PlanetRadius > 0.0f, $"PlanetRadius must be positive, but is {PlanetRadius}");
+        if (!Check(PlanetRadius > 0.0f, $"PlanetRadius must be positive, but is {PlanetRadius}"))
+            valid = false;
 
-        valid &= Check(CloudInnerHeight >= 0.0f, $"CloudInnerHeight is an altitude above the ground so it cannot " +
-            $"be negative, but is {CloudInnerHeight}");
+        if (!Check(CloudInnerHeight >= 0.0f, $"CloudInnerHeight is an altitude above the ground so it cannot " +
+                $"be negative, but is {CloudInnerHeight}"))
+            valid = false;
 
         // The ray marcher derives its shell from these two, and an inverted or empty shell leaves it nothing to
         // march through
-        valid &= Check(CloudOuterHeight > CloudInnerHeight, $"CloudOuterHeight ({CloudOuterHeight}) must be " +
-            $"greater than CloudInnerHeight ({CloudInnerHeight}), otherwise the cloud layer has no thickness");
+        if (!Check(CloudOuterHeight > CloudInnerHeight, $"CloudOuterHeight ({CloudOuterHeight}) must be " +
+                $"greater than CloudInnerHeight ({CloudInnerHeight}), otherwise the cloud layer has no thickness"))
+            valid = false;
 
-        valid &= Check(CloudTileSize > 0.0f, $"CloudTileSize must be positive, but is {CloudTileSize}");
+        if (!Check(CloudTileSize > 0.0f, $"CloudTileSize must be positive, but is {CloudTileSize}"))
+            valid = false;
 
-        valid &= Check(DensityMultiplier is >= 0.0f and <= 1.0f, $"DensityMultiplier must be between 0 and 1, but " +
-            $"is {DensityMultiplier}");
+        if (!Check(DensityMultiplier is >= 0.0f and <= 1.0f, $"DensityMultiplier must be between 0 and 1, but " +
+                $"is {DensityMultiplier}"))
+            valid = false;
 
-        valid &= Check(Coverage is >= 0.1f and <= 1.0f, $"Coverage must be between 0.1 and 1, but is {Coverage}");
+        if (!Check(Coverage is >= 0.1f and <= 1.0f, $"Coverage must be between 0.1 and 1, but is {Coverage}"))
+            valid = false;
 
-        valid &= Check(MarchSteps is >= 1 and <= 256, $"MarchSteps must be between 1 and 256, but is {MarchSteps}");
+        if (!Check(MarchSteps is >= 1 and <= 256, $"MarchSteps must be between 1 and 256, but is {MarchSteps}"))
+            valid = false;
 
-        valid &= Check(LightSteps is >= 1 and <= 10, $"LightSteps must be between 1 and 10, but is {LightSteps}");
+        if (!Check(LightSteps is >= 1 and <= 10, $"LightSteps must be between 1 and 10, but is {LightSteps}"))
+            valid = false;
 
-        valid &= Check(MaxMarchDistance > 0.0f, $"MaxMarchDistance must be positive, but is {MaxMarchDistance}");
+        if (!Check(MaxMarchDistance > 0.0f, $"MaxMarchDistance must be positive, but is {MaxMarchDistance}"))
+            valid = false;
 
-        valid &= Check(ResolutionDivisor is >= 1 and <= 4, $"ResolutionDivisor must be between 1 and 4, but is " +
-            $"{ResolutionDivisor}");
+        if (!Check(ResolutionDivisor is >= 1 and <= 4, $"ResolutionDivisor must be between 1 and 4, but is " +
+                $"{ResolutionDivisor}"))
+            valid = false;
 
         return valid;
     }
