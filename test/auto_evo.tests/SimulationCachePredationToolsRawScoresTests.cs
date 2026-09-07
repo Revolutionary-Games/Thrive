@@ -35,6 +35,21 @@ public class SimulationCachePredationToolsRawScoresTests
     }
 
     [TestCase]
+    public void MicrobeWithoutPullingCiliaDoesNotGainModifierFromSpecialization()
+    {
+        var cache = CreateCache();
+        var species = CreateMicrobe(103);
+        species.Organelles.Clear();
+        species.Organelles.Add(CreateOrganelle(SimulationParameters.Instance, "cytoplasm", new Hex(0, 0)));
+        species.OnEdited();
+        species.CellTypeSpecializationBonus = 2.0f;
+
+        var scores = cache.GetPredationToolsRawScores(species);
+
+        AssertThat(scores.PullingCiliaModifier).IsEqual(1.0f);
+    }
+
+    [TestCase]
     public void MicrobeOxygenMetabolismInhibitorScoreUsesSpecializationAndCache()
     {
         const float noSpecializationBonus = 1.0f;
