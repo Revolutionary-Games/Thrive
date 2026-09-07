@@ -225,7 +225,7 @@ public partial class CellBodyPlanEditorComponent
         Editor.DirtyMutationPointsCache();
     }
 
-    // These next 4 functions are only here for save compatibility and are otherwise unused
+    // These next 6 functions are only here for save compatibility and are otherwise unused
     [ArchiveAllowedMethod]
     private void DoGameteACellChangeAction(GameteACellTypeChangeActionData data)
     {
@@ -256,6 +256,23 @@ public partial class CellBodyPlanEditorComponent
         GameteBCellType = data.OldCellType;
 
         UpdateSpecialCellTypeDisplays();
+    }
+
+    [ArchiveAllowedMethod]
+    private void DoSporeCellChangeAction(SpecialCellTypeChangeActionData data)
+    {
+        ChangeCellType(data.OldCellType, data.NewCellType, data.CellArchetype);
+    }
+
+    [ArchiveAllowedMethod]
+    private void UndoSporeCellChangeAction(SpecialCellTypeChangeActionData data)
+    {
+        if (data.NewCellType != null)
+        {
+            CellTypeVisualsOverride?.ForgetChanges(data.NewCellType);
+        }
+
+        ChangeCellType(data.NewCellType, data.OldCellType, data.CellArchetype);
     }
 
     [ArchiveAllowedMethod]
