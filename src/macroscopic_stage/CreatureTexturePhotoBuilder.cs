@@ -1,4 +1,5 @@
 ﻿using Godot;
+using Godot.Collections;
 
 /// <summary>
 ///   Photographs an unwrapped creature model to create a texture for it.
@@ -20,7 +21,7 @@ public partial class CreatureTexturePhotoBuilder : Node3D
         meshInstance3D.Mesh = mesh;
     }
 
-    public void SetProjectionMatrices(Godot.Collections.Array matrices)
+    public void SetProjectionMatrices(Array matrices)
     {
         ((ShaderMaterial)meshInstance3D.MaterialOverride).SetShaderParameter(projectionMatricesName, matrices);
         ((ShaderMaterial)meshInstance3D.MaterialOverride).SetShaderParameter(projectionMatrixSizeName, matrices.Count);

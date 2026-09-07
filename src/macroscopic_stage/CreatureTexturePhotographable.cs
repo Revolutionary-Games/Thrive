@@ -1,4 +1,5 @@
 ﻿using Godot;
+using Godot.Collections;
 using Xoshiro.PRNG32;
 
 public class CreatureTexturePhotographable : IScenePhotographable
@@ -19,13 +20,7 @@ public class CreatureTexturePhotographable : IScenePhotographable
 
     public string SceneToPhotographPath => "res://src/macroscopic_stage/CreatureTexturePhotoBuilder.tscn";
 
-    public float Radius
-    {
-        get
-        {
-            return 0.5f;
-        }
-    }
+    public float Radius => 0.5f;
 
     public Vector3 CalculatePhotographDistance(Node3D instancedScene)
     {
@@ -43,7 +38,7 @@ public class CreatureTexturePhotographable : IScenePhotographable
         var vertices = arrays[(int)Mesh.ArrayType.Vertex].AsVector3Array();
         var normals = arrays[(int)Mesh.ArrayType.Normal].AsVector3Array();
 
-        var matrices = new Godot.Collections.Array();
+        var matrices = new Array();
 
         var random = new XoShiRo128starstar();
 

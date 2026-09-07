@@ -89,7 +89,7 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
 
             var texture = new DrawableTexture2D();
             texture.Setup(texturizationTask.FinalImage.GetWidth(), texturizationTask.FinalImage.GetHeight(),
-                DrawableTexture2D.DrawableFormat.Rgba8, color: new Color(0.0f, 0.0f, 0.0f, 0.0f));
+                DrawableTexture2D.DrawableFormat.Rgba8, new Color(0.0f, 0.0f, 0.0f, 0.0f));
 
             ((ShaderMaterial)texturePaddingBlitMaterial).SetShaderParameter("jumpSize",
                 1.0f / texturizationTask.FinalImage.GetWidth());
