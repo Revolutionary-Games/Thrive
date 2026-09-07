@@ -9,6 +9,13 @@ public class DummySpawnSystem : ISpawnSystem
 {
     private readonly OnEntityAddedCallback? addTrackedCallback;
 
+    /// <summary>
+    ///   Create a new dummy spawner with a callback. Note: the callback triggers on spawn before the entity is added
+    ///   to the world, so its ID is not stable yet and cannot be stored.
+    /// </summary>
+    /// <param name="addTrackedCallback">
+    ///   Callback to run to allow customized actions on entity creation (called before it is finalized)
+    /// </param>
     public DummySpawnSystem(OnEntityAddedCallback? addTrackedCallback = null)
     {
         this.addTrackedCallback = addTrackedCallback;
