@@ -109,7 +109,7 @@ public abstract partial class ValidatedConfig : Resource
     private bool Validate(Span<float> currentValues)
     {
         if (!AllowNaN && currentValues.Contains(float.NaN))
-            return false;
+            throw new Exception("Invalid NaN value detected.");
 
         return DoChecks();
     }
