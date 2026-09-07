@@ -712,15 +712,18 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             control.SetMoveSpeed(0.0f);
         }
 
-        // Avoid terrain
-        BuildChunksCache();
-
-        foreach (var terrainChunk in terrainChunkDataCache)
+        // Avoid terrain (limiting how often it runs for performance reasons)
+        if (random.Next(0, 10) == 0)
         {
-            if (position.Position.DistanceSquaredTo(terrainChunk.Position)
-                < Constants.AI_AVOID_TERRAIN_DISTANCE_SQUARED)
+            BuildChunksCache();
+
+            foreach (var terrainChunk in terrainChunkDataCache)
             {
-                ai.MoveWithRandomTurn(1.0f, 1.0f, position.Position, ref control, speciesActivity, random);
+                if (position.Position.DistanceSquaredTo(terrainChunk.Position)
+                    < Constants.AI_AVOID_TERRAIN_DISTANCE_SQUARED)
+                {
+                    ai.MoveWithRandomTurn(1.0f, 1.0f, position.Position, ref control, speciesActivity, random);
+                }
             }
         }
     }
