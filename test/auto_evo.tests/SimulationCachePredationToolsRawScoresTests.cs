@@ -50,6 +50,34 @@ public class SimulationCachePredationToolsRawScoresTests
     }
 
     [TestCase]
+    public void MicrobeOxygenMetabolismInhibitorScoreUsesSpecializationAndCache()
+    {
+        const float noSpecializationBonus = 1.0f;
+        const float specializedBonus = 2.0f;
+
+        var cache = CreateCache();
+        var species = CreateMicrobeWithOxygenMetabolismInhibitor(103, noSpecializationBonus);
+
+        var initial = cache.GetPredationToolsRawScores(species);
+        AssertMicrobeOxygenInhibitorToxinScores(initial, 3467572.0f, 3294193.0f);
+
+        species.CellTypeSpecializationBonus = specializedBonus;
+
+        var cached = cache.GetPredationToolsRawScores(species);
+        AssertThat(cached.OxygenMetabolismInhibitorScore)
+            .IsEqual(initial.OxygenMetabolismInhibitorScore);
+        AssertMicrobeOxygenInhibitorToxinScores(cached, 3467572.0f, 3294193.0f);
+
+        cache.Clear();
+
+        var recomputed = cache.GetPredationToolsRawScores(species);
+        AssertThat(recomputed.OxygenMetabolismInhibitorScore).IsEqualApprox(
+            initial.OxygenMetabolismInhibitorScore * specializedBonus / noSpecializationBonus,
+            1.0f);
+        AssertMicrobeOxygenInhibitorToxinScores(recomputed, 6935144.0f, 6588386.0f);
+    }
+
+    [TestCase]
     public void MulticellularRawScoresAndCacheBehaviorAreCharacterized()
     {
         var cache = CreateCache();
@@ -141,6 +169,26 @@ public class SimulationCachePredationToolsRawScoresTests
         return species;
     }
 
+    private static MicrobeSpecies CreateMicrobeWithOxygenMetabolismInhibitor(uint id,
+        float specializationBonus)
+    {
+        var simulationParameters = SimulationParameters.Instance;
+        var species = new MicrobeSpecies(id, "Regression", "OxygenInhibitor")
+        {
+            IsBacteria = true,
+            MembraneType = simulationParameters.GetMembrane("single"),
+        };
+
+        species.Organelles.Add(CreateOrganelle(simulationParameters, "cytoplasm", new Hex(0, 0)));
+        species.Organelles.Add(CreateToxinOrganelle(simulationParameters, new Hex(-4, 0), ToxinType.Oxytoxy));
+        species.Organelles.Add(CreateToxinOrganelle(simulationParameters, new Hex(4, 0),
+            ToxinType.OxygenMetabolismInhibitor));
+        species.OnEdited();
+        species.CellTypeSpecializationBonus = specializationBonus;
+
+        return species;
+    }
+
     private static (MulticellularSpecies Species, CellType ContributingCellType) CreateMulticellularSpecies(uint id)
     {
         var simulationParameters = SimulationParameters.Instance;
@@ -222,7 +270,7 @@ public class SimulationCachePredationToolsRawScoresTests
         organelles.Add(CreateOrganelle(simulationParameters, "slimeJet", new Hex(0, 4)));
         organelles.Add(CreateUpgradedOrganelle(simulationParameters, "cilia", new Hex(4, 0),
             CiliaComponent.CILIA_PULL_UPGRADE_NAME));
-        organelles.Add(CreateToxinOrganelle(simulationParameters, new Hex(-4, 0)));
+        organelles.Add(CreateToxinOrganelle(simulationParameters, new Hex(-4, 0), ToxinType.Oxytoxy));
     }
 
     private static OrganelleTemplate CreateOrganelle(SimulationParameters simulationParameters, string internalName,
@@ -243,16 +291,29 @@ public class SimulationCachePredationToolsRawScoresTests
         };
     }
 
-    private static OrganelleTemplate CreateToxinOrganelle(SimulationParameters simulationParameters, Hex position)
+    private static OrganelleTemplate CreateToxinOrganelle(SimulationParameters simulationParameters, Hex position,
+        ToxinType toxinType)
     {
         return new OrganelleTemplate(simulationParameters.GetOrganelleType("oxytoxy"), position, 0)
         {
             ModifiableUpgrades = new OrganelleUpgrades
             {
-                ModifiableUnlockedFeatures = [ToxinUpgradeNames.OXYTOXY_UPGRADE_NAME],
-                CustomUpgradeData = new ToxinUpgrades(ToxinType.Oxytoxy, 0.25f),
+                ModifiableUnlockedFeatures = [ToxinUpgradeNames.ToxinNameFromType(toxinType)],
+                CustomUpgradeData = new ToxinUpgrades(toxinType, 0.25f),
             },
         };
+    }
+
+    private static void AssertMicrobeOxygenInhibitorToxinScores(SimulationCache.PredationToolsRawScores scores,
+        float expectedOxytoxyScore,
+        float expectedOxygenMetabolismInhibitorScore)
+    {
+        AssertThat(scores.AverageToxicity).IsEqual(0.25f);
+        AssertThat(scores.OxytoxyScore).IsEqual(expectedOxytoxyScore);
+        AssertThat(scores.CytotoxinScore).IsEqual(0.0f);
+        AssertThat(scores.MacrolideScore).IsEqual(0.0f);
+        AssertThat(scores.ChannelInhibitorScore).IsEqual(0.0f);
+        AssertThat(scores.OxygenMetabolismInhibitorScore).IsEqual(expectedOxygenMetabolismInhibitorScore);
     }
 
     private static void AssertSpeciesCacheIdentityIsStable(Species species, uint expectedId, string expectedEpithet,
