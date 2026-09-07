@@ -54,6 +54,7 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
 
     public IReadOnlyCellTypeDefinition? GameteTypeA =>
         overrideGameteACellType ? gameteACellType : multicellularSpecies.GameteTypeA;
+
     public IReadOnlyCellTypeDefinition? GameteTypeB =>
         overrideGameteBCellType ? gameteBCellType : multicellularSpecies.GameteTypeB;
 

@@ -160,6 +160,7 @@ public partial class CellBodyPlanEditorComponent :
 
     [Export]
     private CellTypeMakerButton gameteACellTypeMakerButton = null!;
+
     [Export]
     private CellTypeMakerButton gameteBCellTypeMakerButton = null!;
 
