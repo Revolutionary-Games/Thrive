@@ -16,8 +16,6 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
 {
     protected const ushort SERIALIZATION_VERSION_CREATURE = 1;
 
-    private const string EDITOR_PAUSE_NAME = "Editor";
-
 #pragma warning disable CA2213
     protected DirectionalLight3D worldLight = null!;
 #pragma warning restore CA2213
@@ -35,6 +33,8 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
     ///   True when the player is extinct in the current patch. The player can still move to another patch.
     /// </summary>
     protected bool playerExtinctInCurrentPatch;
+
+    private const string EDITOR_PAUSE_NAME = "Editor";
 
     private double timeSinceSimulationPerformanceCheck;
 
