@@ -74,6 +74,11 @@ public partial class HUDWithPausing : HUDBase
             return;
 
         PauseButtonPressed(!Paused);
+
+        if (PauseManager.Instance.Paused)
+        {
+            GD.PrintErr("Unpausing the game after editor button (or other required unpaused state) press didn't work");
+        }
     }
 
     private void UpdatePausePrompt()

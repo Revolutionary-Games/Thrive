@@ -525,9 +525,6 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
         // Prevent being stuck in a state where editor can no longer be entered
         // https://github.com/Revolutionary-Games/Thrive/issues/4204
         stage!.MovingToEditor = false;
-
-        // TODO: should the editor button be always unlocked like this
-        editorButton.Disabled = false;
     }
 
     public void ShowPatchName(string localizedPatchName)
