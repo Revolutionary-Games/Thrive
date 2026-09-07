@@ -1721,6 +1721,8 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
     private void CleanChunkCache()
     {
         chunkDataCache.Clear();
+        radioactiveChunkDataCache.Clear();
+        terrainChunkDataCache.Clear();
         chunkCacheBuilt = false;
     }
 
@@ -1787,7 +1789,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             if (chunkCacheBuilt)
                 return;
 
-            var query = new ChunkCollectingQuery(chunkDataCache, terrainChunkDataCache, radioactiveChunkDataCache);
+            var query = new ChunkCollectingQuery(chunkDataCache, radioactiveChunkDataCache, terrainChunkDataCache);
             World.InlineEntityQuery<ChunkCollectingQuery, CompoundStorage, WorldPosition>(chunksQuery, ref query);
 
             chunkCacheBuilt = true;
@@ -1857,11 +1859,13 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                 chunkTarget.Add((entity, position.Position, engulfable.AdjustedEngulfSize,
                     compounds.Compounds));
             }
-            else if (entity.Has<RadiationSource>())
+
+            if (entity.Has<RadiationSource>())
             {
                 radioactiveTarget.Add((entity, position.Position, compounds.Compounds));
             }
-            else if (entity.Has<MicrobeTerrainChunk>())
+
+            if (entity.Has<MicrobeTerrainChunk>())
             {
                 terrainTarget.Add((entity, position.Position, compounds.Compounds));
             }
