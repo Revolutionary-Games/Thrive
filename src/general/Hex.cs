@@ -151,7 +151,7 @@ public struct Hex : IEquatable<Hex>, IComparable<Hex>
     public static Vector3 AxialToCartesian(Hex hex)
     {
         float x = hex.Q * Constants.DEFAULT_HEX_SIZE * 3.0f / 2.0f;
-        float z = Constants.DEFAULT_HEX_SIZE * MathF.Sqrt(3) * (hex.R + hex.Q / 2.0f);
+        float z = Constants.DEFAULT_HEX_SIZE * MathUtils.SQRT_3 * (hex.R + hex.Q / 2.0f);
         return new Vector3(x, 0, z);
     }
 
@@ -163,7 +163,7 @@ public struct Hex : IEquatable<Hex>, IComparable<Hex>
     {
         // Getting the cube coordinates.
         float cx = pos.X * (2.0f / 3.0f) / Constants.DEFAULT_HEX_SIZE;
-        float cy = pos.Z / (Constants.DEFAULT_HEX_SIZE * MathF.Sqrt(3)) - cx / 2.0f;
+        float cy = pos.Z / (Constants.DEFAULT_HEX_SIZE * MathUtils.SQRT_3) - cx / 2.0f;
         float cz = -(cx + cy);
 
         // Rounding the result.
