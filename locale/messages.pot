@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-05 12:48+0300\n"
+"POT-Creation-Date: 2026-09-07 06:55+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -892,7 +892,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/EndosymbiosisProgressDisplay.tscn:71
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:636
 #: ../src/modding/NewModGUI.tscn:323
-#: ../src/multicellular_stage/editor/CellTypePickerPopup.tscn:34
+#: ../src/multicellular_stage/editor/CellTypePickerPopup.tscn:35
 #: ../src/space_stage/gui/SpaceConstructionPopup.tscn:49
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:134
 msgid "CANCEL"
@@ -2901,11 +2901,11 @@ msgid "ERROR_LOADING"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.cs:710
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:842
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:843
 msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:863
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:864
 msgid "ERROR_REQUIRED_AT_LEAST_X_CELLS_FOR_MASS_BUDDING"
 msgstr ""
 
@@ -3008,7 +3008,7 @@ msgid "EXIT"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1270
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1141
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1140
 msgid "EXIT_EDITOR"
 msgstr ""
 
@@ -5215,7 +5215,7 @@ msgstr ""
 msgid "MASS_BUDDING_CELL_COUNT"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:462
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:463
 #: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:761
 msgid "MASS_BUDDING_MINIMUM_SIZE_EXPLANATION"
 msgstr ""
@@ -6518,11 +6518,11 @@ msgstr ""
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/SpecialCellTypeUnsetPopup.cs:20
+#: ../src/multicellular_stage/editor/SpecialCellTypeUnsetPopup.cs:19
 msgid "NO_GAMETE_CELL_TYPE_SET"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/SpecialCellTypeUnsetPopup.cs:19
+#: ../src/multicellular_stage/editor/SpecialCellTypeUnsetPopup.cs:18
 msgid "NO_GAMETE_CELL_TYPE_SET_TITLE"
 msgstr ""
 
@@ -6555,12 +6555,12 @@ msgid "NO_SELECTED_MOD"
 msgstr ""
 
 #: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1057
-#: ../src/multicellular_stage/editor/SpecialCellTypeUnsetPopup.cs:15
+#: ../src/multicellular_stage/editor/SpecialCellTypeUnsetPopup.cs:14
 msgid "NO_SPORE_CELL_TYPE_SET"
 msgstr ""
 
 #: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1058
-#: ../src/multicellular_stage/editor/SpecialCellTypeUnsetPopup.cs:14
+#: ../src/multicellular_stage/editor/SpecialCellTypeUnsetPopup.cs:13
 msgid "NO_SPORE_CELL_TYPE_SET_TITLE"
 msgstr ""
 
@@ -7072,12 +7072,12 @@ msgstr ""
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1139
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1138
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION_MULTICELLULAR"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1271
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1142
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1141
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
 msgstr ""
 
@@ -7113,8 +7113,8 @@ msgstr ""
 #: ../src/microbe_stage/OrganismStatisticsPanel.cs:519
 #: ../src/microbe_stage/OrganismStatisticsPanel.cs:639
 #: ../src/microbe_stage/OrganismStatisticsPanel.cs:643
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:1279
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:1317
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:1280
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:1318
 #: ../src/society_stage/gui/ResearchScreen.cs:34
 msgid "PERCENTAGE_VALUE"
 msgstr ""
@@ -7384,7 +7384,7 @@ msgstr ""
 
 #: ../src/microbe_stage/ProcessPanel.cs:89
 #: ../src/microbe_stage/ProcessPanel.tscn:34
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1118
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1117
 msgid "PROCESS_PANEL_TITLE"
 msgstr ""
 
@@ -8149,12 +8149,12 @@ msgstr ""
 msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:456
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:457
 #: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:822
 msgid "SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:448
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:449
 #: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:829
 msgid "SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION_ACTIVE"
 msgstr ""
@@ -8471,6 +8471,10 @@ msgstr ""
 msgid "SPECIALIZATION_COLON"
 msgstr ""
 
+#: ../src/multicellular_stage/editor/CellTypePickerPopup.tscn:16
+msgid "SPECIAL_CELL_TYPE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
+msgstr ""
+
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:442
 msgid "SPECIAL_MOUSE_1"
 msgstr ""
@@ -8549,10 +8553,6 @@ msgstr ""
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:132
 msgid "SPEED_TOGGLE_TOOLTIP"
-msgstr ""
-
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1113
-msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
 msgstr ""
 
 #: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:713
@@ -10101,7 +10101,7 @@ msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1269
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1140
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1139
 msgid "VIEW_PENDING_ACTIONS"
 msgstr ""
 
