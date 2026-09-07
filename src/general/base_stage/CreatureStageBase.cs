@@ -16,6 +16,8 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
 {
     protected const ushort SERIALIZATION_VERSION_CREATURE = 1;
 
+    private const string EDITOR_PAUSE_NAME = "Editor";
+
 #pragma warning disable CA2213
     protected DirectionalLight3D worldLight = null!;
 #pragma warning restore CA2213
@@ -35,6 +37,8 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
     protected bool playerExtinctInCurrentPatch;
 
     private double timeSinceSimulationPerformanceCheck;
+
+    private bool movingToEditor;
 
     /// <summary>
     ///   Used to trigger actions when the player goes from being alive to being not there (i.e. having died)
@@ -74,7 +78,30 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
     ///   Note this should only be unset *after* switching scenes to the editor because otherwise some tree exit
     ///   operations won't run correctly.
     /// </summary>
-    public bool MovingToEditor { get; set; }
+    public bool MovingToEditor
+    {
+        get => movingToEditor;
+        set
+        {
+            if (value == movingToEditor)
+            {
+                return;
+            }
+
+            movingToEditor = value;
+
+            switch (value)
+            {
+                // When entering the editor, pause the game so the player doesn't die while transitioning scenes
+                case true when !PauseManager.Instance.HasLock(EDITOR_PAUSE_NAME):
+                    PauseManager.Instance.AddPause(EDITOR_PAUSE_NAME);
+                    break;
+                case false when PauseManager.Instance.HasLock(EDITOR_PAUSE_NAME):
+                    PauseManager.Instance.Resume(EDITOR_PAUSE_NAME);
+                    break;
+            }
+        }
+    }
 
     protected virtual ICreatureStageHUD BaseHUD => throw new GodotAbstractPropertyNotOverriddenException();
 
