@@ -406,6 +406,12 @@ Code style rules
   the explicit compare is required). So write code like this: `if
   (thing)` and not: `if (thing == true)`.
 
+- For constant-evaluated functions, prefer using precomputed values
+  instead of calling the relative math function. For example, instead
+  of using `Sqrt(2)`, use `1.41421356237` instead. If the constant is
+  used in multiple places, declare a `const` and use it in place of the
+  call sites.
+
 - Finally you should attempt to reach the abstract goal of clean
   code. Here are some concepts that are indicative of good code (and
   breaking these can be bad code): Liskov substitution principle,
