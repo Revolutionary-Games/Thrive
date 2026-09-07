@@ -272,11 +272,18 @@ public partial class CellBodyPlanEditorComponent :
             if (ReproductionMethod == MulticellularReproductionMethod.Sporulation && SporeCellType == null)
                 return true;
 
-            if ((ReproductionMethod is MulticellularReproductionMethod.SexualAnisogamy
+            if (ReproductionMethod is MulticellularReproductionMethod.SexualAnisogamy
                     or MulticellularReproductionMethod.SexualIsogamy)
-                && (GameteACellType == null || GameteBCellType == null))
             {
-                return true;
+                if (GameteACellType == null)
+                {
+                    return true;
+                }
+
+                if (GameteBCellType == null && ReproductionMethod == MulticellularReproductionMethod.SexualAnisogamy)
+                {
+                    return true;
+                }
             }
 
             if (ReproductionMethod == MulticellularReproductionMethod.MassBudding &&
@@ -833,10 +840,10 @@ public partial class CellBodyPlanEditorComponent :
             return false;
         }
 
-        // This is checked due to a species data requirement
         if (ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy
             or MulticellularReproductionMethod.SexualAnisogamy)
         {
+            // This is checked due to a species data requirement
             if (editedMicrobeCells.Count < 2)
             {
                 ToolTipManager.Instance.ShowPopup(
