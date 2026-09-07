@@ -992,6 +992,14 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         if (WorldSimulation.Processing)
             throw new Exception("This shouldn't be ran while world is in the middle of a simulation");
 
+        // The player species changes type below, so any existing run has stale species data. This also needs to
+        // happen before the conversion because an in-progress run must not inspect the species while it is being
+        // changed.
+        if (GameWorld.ResetAutoEvoRun())
+        {
+            GD.Print("Aborted the existing auto-evo run before moving the player to the multicellular stage");
+        }
+
         GD.Print("Disbanding colony and becoming multicellular");
 
         // Move to multicellular always happens when the player is in a colony, so we force-disband that here before
@@ -1076,6 +1084,12 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         GiveReproductionPopulationBonus();
 
         CurrentGame!.EnterPrototypes();
+
+        // See the comment in MicrobeStage.MoveToMacroscopic
+        if (GameWorld.ResetAutoEvoRun())
+        {
+            GD.Print("Aborted the existing auto-evo run before moving the player to the macroscopic stage");
+        }
 
         var modifiedSpecies = GameWorld.ChangeSpeciesToMacroscopic(Player.Get<SpeciesMember>().Species);
 
