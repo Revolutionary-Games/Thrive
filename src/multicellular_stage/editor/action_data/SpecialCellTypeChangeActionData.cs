@@ -31,7 +31,8 @@ public class SpecialCellTypeChangeActionData : EditorCombinableActionData<Multic
         writer.WriteObject((SpecialCellTypeChangeActionData)obj);
     }
 
-    public static SpecialCellTypeChangeActionData ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    public static SpecialCellTypeChangeActionData ReadFromArchive(ISArchiveReader reader, ushort version,
+        int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
@@ -40,8 +41,7 @@ public class SpecialCellTypeChangeActionData : EditorCombinableActionData<Multic
         var newCellType = reader.ReadObjectOrNull<CellType>();
 
         // This was previously a class specifically for changing spore cell type
-        var cellArchetype = SERIALIZATION_VERSION > 1 ? (SpecialCellArchetype)reader.ReadInt32()
-            : SpecialCellArchetype.Spore;
+        var cellArchetype = version > 1 ? (SpecialCellArchetype)reader.ReadInt32() : SpecialCellArchetype.Spore;
 
         var instance = new SpecialCellTypeChangeActionData(oldCellType, newCellType, cellArchetype);
 

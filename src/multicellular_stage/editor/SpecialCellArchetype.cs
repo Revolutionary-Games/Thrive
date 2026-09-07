@@ -1,4 +1,4 @@
-public enum SpecialCellArchetype
+﻿public enum SpecialCellArchetype
 {
     Spore,
     GameteA,

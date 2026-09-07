@@ -271,8 +271,8 @@ public partial class CellBodyPlanEditorComponent :
             if (ReproductionMethod == MulticellularReproductionMethod.Sporulation && SporeCellType == null)
                 return true;
 
-            if ((ReproductionMethod == MulticellularReproductionMethod.SexualAnisogamy
-                    || ReproductionMethod == MulticellularReproductionMethod.SexualIsogamy)
+            if ((ReproductionMethod is MulticellularReproductionMethod.SexualAnisogamy
+                    or MulticellularReproductionMethod.SexualIsogamy)
                 && (GameteACellType == null || GameteBCellType == null))
             {
                 return true;
@@ -834,7 +834,7 @@ public partial class CellBodyPlanEditorComponent :
 
         // This is checked due to a species data requirement
         if (ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy
-                or MulticellularReproductionMethod.SexualAnisogamy)
+            or MulticellularReproductionMethod.SexualAnisogamy)
         {
             if (editedMicrobeCells.Count < 2)
             {

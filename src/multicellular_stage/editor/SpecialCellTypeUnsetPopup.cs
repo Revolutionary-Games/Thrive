@@ -1,5 +1,4 @@
-﻿using Godot;
-using System;
+﻿using System;
 
 /// <summary>
 ///   Displays a popup that tells the player that a special cell type is unset
