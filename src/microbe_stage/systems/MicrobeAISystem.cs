@@ -86,6 +86,9 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         chunkDataCache = new();
 
     private readonly List<(Entity Entity, Vector3 Position, CompoundBag Compounds)>
+        radioactiveChunkDataCache = new();
+
+    private readonly List<(Entity Entity, Vector3 Position, CompoundBag Compounds)>
         terrainChunkDataCache = new();
 
     private readonly Dictionary<Species, bool> speciesUsingVaryingCompounds = new();
@@ -857,7 +860,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
 
         BuildChunksCache();
 
-        foreach (var chunk in terrainChunkDataCache)
+        foreach (var chunk in radioactiveChunkDataCache)
         {
             if (!chunk.Compounds.Compounds.Keys.Contains(Compound.Radiation))
             {
@@ -1781,7 +1784,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             if (chunkCacheBuilt)
                 return;
 
-            var query = new ChunkCollectingQuery(chunkDataCache, terrainChunkDataCache);
+            var query = new ChunkCollectingQuery(chunkDataCache, terrainChunkDataCache, radioactiveChunkDataCache);
             World.InlineEntityQuery<ChunkCollectingQuery, CompoundStorage, WorldPosition>(chunksQuery, ref query);
 
             chunkCacheBuilt = true;
@@ -1829,6 +1832,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
 
     private readonly struct ChunkCollectingQuery(
         List<(Entity Entity, Vector3 Position, float EngulfSize, CompoundBag Compounds)> chunkTarget,
+        List<(Entity Entity, Vector3 Position, CompoundBag Compounds)> radioactiveTarget,
         List<(Entity Entity, Vector3 Position, CompoundBag Compounds)> terrainTarget)
         : IForEachWithEntity<CompoundStorage, WorldPosition>
     {
@@ -1854,7 +1858,11 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                 chunkTarget.Add((entity, position.Position, engulfable.AdjustedEngulfSize,
                     compounds.Compounds));
             }
-            else
+            else if (entity.Has<RadiationSource>())
+            {
+                radioactiveTarget.Add((entity, position.Position, compounds.Compounds));
+            }
+            else if (entity.Has<MicrobeTerrainChunk>())
             {
                 terrainTarget.Add((entity, position.Position, compounds.Compounds));
             }
