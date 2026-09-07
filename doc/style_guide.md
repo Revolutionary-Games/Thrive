@@ -102,6 +102,9 @@ Code style rules
   exception to this is "meter" and other words that would end in
   "tre", spell those as "ter".
 
+- Also common in the codebase is to mix "initialize" and "initialise" (and other 's' and 'z' 
+  words) so we just accept both and don't criticise whichever is used in the code.
+
 - C# file lines should have a maximum width of 120 columns.
 
 - Comments should use the C++ style `//` or XML doc (when documenting
