@@ -1478,7 +1478,6 @@ public class SimulationCache
 
         var preySpeed = GetSpeedForSpecies(preySpecies);
         var preyRotationSpeed = GetRotationSpeedForSpecies(preySpecies);
-        var slowedPreySpeed = preySpeed;
         var preyEnergyBalance = GetEnergyBalanceForSpecies(preySpecies, biomeConditions);
         var preyOsmoregulationCost = preyEnergyBalance.Osmoregulation;
         var preyIndividualCost = MichePopulation.CalculateIndividualCost(preySpecies, biomeConditions, this);
@@ -1517,6 +1516,7 @@ public class SimulationCache
 
         // prey's effectiveness at running away depends on how quickly they choose to run away
         preySpeed *= preyFearScore * (1 - preyAggressionScore);
+        var slowedPreySpeed = preySpeed;
 
         // Sprinting calculations
         var predatorSprintSpeed = predatorSpeed * sprintMultiplier;
@@ -1945,7 +1945,7 @@ public class SimulationCache
             // Having Slime Jets can also help prey escape.
             if (preySlimeSpeed > predatorSpeed)
             {
-                catchScore += (preySlimeSpeed + 0.001f) / (predatorSpeed + 0.0001f);
+                catchScore -= (preySlimeSpeed + 0.001f) / (predatorSpeed + 0.0001f);
             }
 
             // prevent potential negative catchScore.

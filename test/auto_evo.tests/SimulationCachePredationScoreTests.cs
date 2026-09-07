@@ -49,7 +49,33 @@ public class SimulationCachePredationScoreTests
 
         var score = CalculatePredationScore(predator, prey);
 
-        AssertThat(score).IsEqual(258.4216f);
+        AssertThat(score).IsEqual(61.029884f);
+    }
+
+    [TestCase]
+    public void PreySlimeJetPropulsionReducesCatchability()
+    {
+        var predator = CreateSlimeJetPredator(9);
+        var preyWithoutSlimeJet = CreatePrey(10, false);
+        var preyWithSlimeJet = CreatePrey(11, true);
+        var cache = new SimulationCache(new WorldGenerationSettings
+        {
+            Seed = 1,
+        });
+        var biome = SimulationParameters.Instance.GetBiome("aavolcanic_vent").Conditions;
+
+        var preyWithoutSlimeJetRawScores = cache.GetPredationToolsRawScores(preyWithoutSlimeJet);
+        var preyWithSlimeJetRawScores = cache.GetPredationToolsRawScores(preyWithSlimeJet);
+        var scoreAgainstPreyWithoutSlimeJet = cache.GetPredationScore(predator, preyWithoutSlimeJet, biome);
+        var scoreAgainstPreyWithSlimeJet = cache.GetPredationScore(predator, preyWithSlimeJet, biome);
+
+        AssertThat(preyWithoutSlimeJetRawScores.SlimeJetScore).IsEqual(0.0f);
+        AssertThat(preyWithSlimeJetRawScores.SlimeJetScore > 0.0f).IsTrue();
+        AssertThat(float.IsFinite(scoreAgainstPreyWithoutSlimeJet)).IsTrue();
+        AssertThat(float.IsFinite(scoreAgainstPreyWithSlimeJet)).IsTrue();
+        AssertThat(scoreAgainstPreyWithoutSlimeJet > 0.0f).IsTrue();
+        AssertThat(scoreAgainstPreyWithSlimeJet > 0.0f).IsTrue();
+        AssertThat(scoreAgainstPreyWithSlimeJet < scoreAgainstPreyWithoutSlimeJet).IsTrue();
     }
 
     private static float CalculatePredationScore(Species predator, Species prey)
@@ -81,6 +107,32 @@ public class SimulationCachePredationScoreTests
         }
 
         species.OnEdited();
+        return species;
+    }
+
+    private static MicrobeSpecies CreateSlimeJetPredator(uint id)
+    {
+        var simulationParameters = SimulationParameters.Instance;
+        var species = CreateMicrobe(id, "SlimeJetPredator", "cellulose", "cytoplasm");
+        species.Organelles.Add(new OrganelleTemplate(simulationParameters.GetOrganelleType("pilus"),
+            new Hex(0, -4), 0));
+        species.Organelles.Add(new OrganelleTemplate(simulationParameters.GetOrganelleType("slimeJet"),
+            new Hex(0, 4), 0));
+        species.OnEdited();
+
+        return species;
+    }
+
+    private static MicrobeSpecies CreatePrey(uint id, bool hasSlimeJet)
+    {
+        var simulationParameters = SimulationParameters.Instance;
+        var species = CreateMicrobe(id, hasSlimeJet ? "SlimeJetPrey" : "NoSlimeJetPrey", "cellulose",
+            "cytoplasm");
+        species.Organelles.Add(new OrganelleTemplate(
+            simulationParameters.GetOrganelleType(hasSlimeJet ? "slimeJet" : "chemoreceptor"), new Hex(0, 4), 0));
+        species.ModifiableBehaviour.Fear = 0;
+        species.OnEdited();
+
         return species;
     }
 
