@@ -64,6 +64,7 @@ public abstract partial class ValidatedConfig : Resource
 
         var currentBits = MemoryMarshal.Cast<float, int>(current);
 
+        // Casting here to raw bits is kept in case AllowNaN is true.
         if (previousValues is not null && previousValues.Length == count &&
             currentBits.SequenceEqual(MemoryMarshal.Cast<float, int>(previousValues.AsSpan())))
         {
