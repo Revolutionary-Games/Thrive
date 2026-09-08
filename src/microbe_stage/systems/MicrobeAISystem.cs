@@ -536,8 +536,6 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                             ai.TimeSinceGameteShoot > Constants.GAMETE_FORCE_SHOOT_INTERVAL &&
                             entity.Has<MulticellularGrowth>())
                         {
-                            ai.GameteShootAttemptTimer += Constants.MICROBE_AI_THINK_INTERVAL;
-
                             ref var growth = ref entity.Get<MulticellularGrowth>();
 
                             // Make sure sexes are compatible and we are fully grown before reacting
@@ -572,6 +570,8 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                                 // And, if not multicellular, also can't do it.
                                 if (!entity.Has<MicrobeColony>())
                                     return;
+
+                                ai.GameteShootAttemptTimer += Constants.MICROBE_AI_THINK_INTERVAL;
 
                                 // Look at the target position and shoot a gamete
                                 control.LookAtPoint = signalerPosition;
