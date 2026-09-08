@@ -24,6 +24,11 @@ public abstract class SelectionPressure : IArchivable
     public abstract ushort CurrentArchiveVersion { get; }
     public abstract ArchiveObjectType ArchiveObjectType { get; }
     public bool CanBeReferencedInArchive => true;
+    /// <summary>
+    ///   Does this SelectionPressure have a maximum score where it is pointless to attempt more mutations?
+    ///   If true, the maximum score should be set to <see cref="Constants.AUTO_EVO_THRESHOLD_MICHE_MAX_SCORE"/>.
+    /// </summary>
+    public virtual bool IsThresholdPressure => false;
 
     public abstract LocalizedString Name { get; }
 
