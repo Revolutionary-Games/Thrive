@@ -146,11 +146,13 @@ public class GenerateMiche : IRunStep
             var sunlightMiche = new Miche(globalCache.SunlightConversionEfficiencyPressure);
             var generateATP = new Miche(globalCache.MinorGlucoseConversionEfficiencyPressure);
             var maintainGlucose = new Miche(globalCache.MaintainGlucose);
-            var avoidPredationMiche = new Miche(globalCache.GeneralAvoidPredationSelectionPressure);
             var envPressure = new Miche(globalCache.SunlightCompoundPressure);
+            var avoidPredationMiche = new Miche(globalCache.GeneralAvoidPredationSelectionPressure);
+            var envEnergy = new Miche(globalCache.SunlightCompoundEnergy);
 
-            avoidPredationMiche.AddChild(envPressure);
-            maintainGlucose.AddChild(avoidPredationMiche);
+            avoidPredationMiche.AddChild(envEnergy);
+            envPressure.AddChild(avoidPredationMiche);
+            maintainGlucose.AddChild(envPressure);
             generateATP.AddChild(maintainGlucose);
             sunlightMiche.AddChild(generateATP);
             lastGeneralMiche.AddChild(sunlightMiche);
@@ -167,11 +169,13 @@ public class GenerateMiche : IRunStep
             var tempSessilityMiche = new Miche(globalCache.TemperatureSessilityPressure);
             var generateATP = new Miche(globalCache.MinorGlucoseConversionEfficiencyPressure);
             var maintainGlucose = new Miche(globalCache.MaintainGlucose);
-            var avoidPredationMiche = new Miche(globalCache.GeneralAvoidPredationSelectionPressure);
             var tempCompPressure = new Miche(globalCache.TemperatureCompoundPressure);
+            var avoidPredationMiche = new Miche(globalCache.GeneralAvoidPredationSelectionPressure);
+            var tempCompEnergy = new Miche(globalCache.TemperatureCompoundEnergy);
 
-            avoidPredationMiche.AddChild(tempCompPressure);
-            tempSessilityMiche.AddChild(avoidPredationMiche);
+            avoidPredationMiche.AddChild(tempCompEnergy);
+            tempCompPressure.AddChild(avoidPredationMiche);
+            tempSessilityMiche.AddChild(tempCompPressure);
             maintainGlucose.AddChild(tempSessilityMiche);
             generateATP.AddChild(maintainGlucose);
             tempMiche.AddChild(generateATP);

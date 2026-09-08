@@ -32,9 +32,11 @@ public class AutoEvoGlobalCache
 
     public readonly CompoundConversionEfficiencyPressure SunlightConversionEfficiencyPressure;
     public readonly EnvironmentalCompoundPressure SunlightCompoundPressure;
+    public readonly EnvironmentalCompoundEnergy SunlightCompoundEnergy;
 
     public readonly CompoundConversionEfficiencyPressure TemperatureConversionEfficiencyPressure;
     public readonly EnvironmentalCompoundPressure TemperatureCompoundPressure;
+    public readonly EnvironmentalCompoundEnergy TemperatureCompoundEnergy;
 
     public readonly CompoundConversionEfficiencyPressure RadiationConversionEfficiencyPressure;
     public readonly ChunkCompoundPressure RadioactiveChunkPressure;
@@ -90,6 +92,7 @@ public class AutoEvoGlobalCache
         SunlightConversionEfficiencyPressure =
             new CompoundConversionEfficiencyPressure(Compound.Sunlight, Compound.Glucose, true, 1.5f);
         SunlightCompoundPressure = new EnvironmentalCompoundPressure(Compound.Sunlight, Compound.Glucose, 20000, 2.0f);
+        SunlightCompoundEnergy = new EnvironmentalCompoundEnergy(Compound.Sunlight, 20000, 2.0f);
 
         RadiationConversionEfficiencyPressure =
             new CompoundConversionEfficiencyPressure(Compound.Radiation, Compound.ATP, true, 1.0f);
@@ -101,6 +104,7 @@ public class AutoEvoGlobalCache
             new CompoundConversionEfficiencyPressure(Compound.Temperature, Compound.Glucose, true, 1.5f);
         TemperatureCompoundPressure = new EnvironmentalCompoundPressure(Compound.Temperature, Compound.Glucose,
             100, 2.0f);
+        TemperatureCompoundEnergy = new EnvironmentalCompoundEnergy(Compound.Temperature, 20000, 2.0f);
         HasTemperature = !worldSettings.LAWK;
 
         PredatorRoot = new PredatorRoot(2.0f);
