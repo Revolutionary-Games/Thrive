@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using Arch.Core;
 using AutoEvo;
+using Components;
 using GdUnit4;
 using static GdUnit4.Assertions;
 
 /// <summary>
-///   Tests that auto-evo engulf checks consistently include the exact size threshold.
+///   Tests that auto-evo engulf checks agree with gameplay at the exact size threshold.
 /// </summary>
 [TestSuite]
 [RequireGodotRuntime]
@@ -29,6 +31,30 @@ public class EngulfThresholdConsistencyTests
         var preySize = cache.GetBaseHexSizeForSpecies(prey);
 
         AssertThat(predatorSize).IsEqual(preySize * Constants.ENGULF_SIZE_RATIO_REQ);
+        AssertThat(CheckGameplayEngulf(predator, predatorSize, preySize)).IsEqual(EngulfCheckResult.Ok);
+
+        var coldScore = cache.GetPredationScore(predator, prey, biome);
+        AssertThat(coldScore).IsGreater(0.0f);
+
+        var warmScore = cache.GetPredationScore(predator, prey, biome);
+        AssertThat(warmScore).IsEqual(coldScore);
+    }
+
+    [TestCase]
+    public void GetPredationScore_MulticellularAtExactThresholdCanPredate()
+    {
+        var predator = CreateMulticellular(4, "ThresholdMulticellularPredator", 3);
+        var prey = CreateMicrobe(5, "ThresholdPrey", 4);
+        var cache = CreateCache();
+        var biome = SimulationParameters.Instance.GetBiome("aavolcanic_vent").Conditions;
+
+        var predatorCellSize = cache.GetBaseHexSizeForCellType(predator.CellTypes[0]);
+        var preySize = cache.GetBaseHexSizeForSpecies(prey);
+
+        AssertThat(predatorCellSize).IsEqual(3.0f);
+        AssertThat(preySize).IsEqual(2.0f);
+        AssertThat(predatorCellSize).IsEqual(preySize * Constants.ENGULF_SIZE_RATIO_REQ);
+        AssertThat(CheckGameplayEngulf(predator, predatorCellSize, preySize)).IsEqual(EngulfCheckResult.Ok);
 
         var coldScore = cache.GetPredationScore(predator, prey, biome);
         AssertThat(coldScore).IsGreater(0.0f);
@@ -46,6 +72,11 @@ public class EngulfThresholdConsistencyTests
 
         var predatorCellSize = cache.GetBaseHexSizeForCellType(predator.CellTypes[0]);
         AssertThat(predatorCellSize).IsEqual(preySize * Constants.ENGULF_SIZE_RATIO_REQ);
+        AssertThat(CheckGameplayEngulf(predator, predatorCellSize, float.BitIncrement(preySize)))
+            .IsEqual(EngulfCheckResult.TargetTooBig);
+        AssertThat(CheckGameplayEngulf(predator, predatorCellSize, preySize)).IsEqual(EngulfCheckResult.Ok);
+        AssertThat(CheckGameplayEngulf(predator, predatorCellSize, float.BitDecrement(preySize)))
+            .IsEqual(EngulfCheckResult.Ok);
 
         var belowThreshold = cache.GetEnzymesScore(predator, Constants.LIPASE_ENZYME,
             float.BitIncrement(preySize), 0.0f);
@@ -80,6 +111,35 @@ public class EngulfThresholdConsistencyTests
     public void ReproductionCompoundPressure_MulticellularThresholdMatrixIsInclusive()
     {
         AssertReproductionCompoundPressureThresholdMatrix(ThresholdSpeciesKind.Multicellular);
+    }
+
+    /// <summary>
+    ///   Calls the gameplay check with unused engulfing capacity and an unattached, undigested target.
+    /// </summary>
+    private static EngulfCheckResult CheckGameplayEngulf(Species species, float engulferSize, float targetSize)
+    {
+        using var world = ThriveWorld.Create();
+        var target = world.Create(new Engulfable(PhagocytosisPhase.None, Entity.Null)
+        {
+            BaseEngulfSize = targetSize,
+        });
+        var cellProperties = new CellProperties
+        {
+            MembraneType = species switch
+            {
+                MicrobeSpecies microbe => microbe.MembraneType,
+                MulticellularSpecies multicellular => multicellular.CellTypes[0].MembraneType,
+                _ => throw new ArgumentException("Unsupported test species", nameof(species)),
+            },
+        };
+        var speciesMember = new SpeciesMember(species);
+        var engulfer = new Engulfer
+        {
+            EngulfingSize = engulferSize,
+            EngulfStorageSize = 100.0f,
+        };
+
+        return cellProperties.CanEngulfObject(ref speciesMember, ref engulfer, target);
     }
 
     private static SimulationCache CreateCache()
@@ -167,6 +227,8 @@ public class EngulfThresholdConsistencyTests
 
         AssertThat(engulferSize).IsEqual(3.0f);
         AssertThat(chunk.Size).IsEqual(chunkSize);
+        AssertThat(CheckGameplayEngulf(species, engulferSize, chunkSize))
+            .IsEqual(chunkSize > 2.0f ? EngulfCheckResult.TargetTooBig : EngulfCheckResult.Ok);
 
         if (chunkSize > 2.0f)
             AssertThat(chunk.Size * Constants.ENGULF_SIZE_RATIO_REQ).IsGreater(engulferSize);
