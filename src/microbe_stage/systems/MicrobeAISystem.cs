@@ -77,6 +77,12 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
     private readonly QueryDescription chunksQuery = new QueryDescription().WithAll<WorldPosition, CompoundStorage>()
         .WithNone<SpeciesMember, AttachedToEntity>();
 
+    /// <summary>
+    ///   Query for terrain chunks
+    /// </summary>
+    private readonly QueryDescription terrainChunksQuery = new QueryDescription()
+        .WithAll<WorldPosition, MicrobeTerrainChunk>();
+
     private readonly List<uint> speciesCachesToDrop = new();
 
     private readonly Dictionary<uint, List<(Entity Entity, Vector3 Position, float EngulfSize)>> microbesBySpecies =
@@ -88,7 +94,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
     private readonly List<(Entity Entity, Vector3 Position, CompoundBag Compounds)>
         radioactiveChunkDataCache = new();
 
-    private readonly List<(Entity Entity, Vector3 Position, CompoundBag Compounds)>
+    private readonly List<(Entity Entity, Vector3 Position)>
         terrainChunkDataCache = new();
 
     private readonly Dictionary<Species, bool> speciesUsingVaryingCompounds = new();
@@ -1789,8 +1795,10 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             if (chunkCacheBuilt)
                 return;
 
-            var query = new ChunkCollectingQuery(chunkDataCache, radioactiveChunkDataCache, terrainChunkDataCache);
-            World.InlineEntityQuery<ChunkCollectingQuery, CompoundStorage, WorldPosition>(chunksQuery, ref query);
+            var chunkQuery = new ChunkCollectingQuery(chunkDataCache, radioactiveChunkDataCache);
+            var terrainQuery = new TerrainCollectingQuery(terrainChunkDataCache);
+            World.InlineEntityQuery<ChunkCollectingQuery, CompoundStorage, WorldPosition>(chunksQuery, ref chunkQuery);
+            World.InlineEntityQuery<TerrainCollectingQuery, WorldPosition>(terrainChunksQuery, ref terrainQuery);
 
             chunkCacheBuilt = true;
         }
@@ -1837,8 +1845,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
 
     private readonly struct ChunkCollectingQuery(
         List<(Entity Entity, Vector3 Position, float EngulfSize, CompoundBag Compounds)> chunkTarget,
-        List<(Entity Entity, Vector3 Position, CompoundBag Compounds)> radioactiveTarget,
-        List<(Entity Entity, Vector3 Position, CompoundBag Compounds)> terrainTarget)
+        List<(Entity Entity, Vector3 Position, CompoundBag Compounds)> radioactiveTarget)
         : IForEachWithEntity<CompoundStorage, WorldPosition>
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1868,10 +1875,18 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             {
                 radioactiveTarget.Add((entity, position.Position, compounds.Compounds));
             }
+        }
+    }
 
+    private readonly struct TerrainCollectingQuery(List<(Entity Entity, Vector3 Position)> terrainTarget)
+        : IForEachWithEntity<WorldPosition>
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void Update(Entity entity, ref WorldPosition position)
+        {
             if (entity.Has<MicrobeTerrainChunk>())
             {
-                terrainTarget.Add((entity, position.Position, compounds.Compounds));
+                terrainTarget.Add((entity, position.Position));
             }
         }
     }
