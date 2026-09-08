@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-21 19:31+0300\n"
+"POT-Creation-Date: 2026-09-01 10:25+0300\n"
 "PO-Revision-Date: 2026-05-22 15:37+0000\n"
 "Last-Translator: William <William.berger@outlook.be>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -410,8 +410,13 @@ msgstr "Auto-Evo Verkenningshulpmiddel"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Auto-Evo Verkenningshulpmiddel"
 
-msgid "AUTO_EVO_FAILED"
+#, fuzzy
+msgid "AUTO_EVO_FAILED_CHECK_LOGS"
 msgstr "Auto-evo mislukt"
+
+#, fuzzy
+msgid "AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL"
+msgstr "Auto-evo resultaten zijn verloren. Als je een oud opgeslagen bestand hebt geladen is dit te verwachten. Als je niet een ouder opgeslagen bestand hebt geladen, rapporteer dit alstublieft als een bug en stuur ons het logbestand van het spel."
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr "Auto-evo resultaten zijn verloren. Als je een oud opgeslagen bestand hebt geladen is dit te verwachten. Als je niet een ouder opgeslagen bestand hebt geladen, rapporteer dit alstublieft als een bug en stuur ons het logbestand van het spel."
@@ -2084,6 +2089,14 @@ msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Voeg een nieuwe sneltoets toe"
 
 #, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR"
+msgstr "Sta soorten toe niet te muteren (als geen goede mutatie gevonden wordt)"
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR_EXPLANATION"
+msgstr "{0} bevolking veranderd met {1} door: {2}"
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
 "Dit is de cel editor waar je organellen kan toevoegen aan of verwijderen van je soort door mutatiepunten (MP) te besteden.\n"
@@ -2807,6 +2820,10 @@ msgstr ""
 
 msgid "GAME_DESIGN_TEAM"
 msgstr "Game-ontwerpteam"
+
+#, fuzzy
+msgid "GAME_PHYSICS_PERFORMANCE_LOW_WARNING"
+msgstr "Opmerking: U kunt de prestatieverwante opties veranderen te allen tijde in het [color=#3796e1][url=thrive://GUI/OptionsMenu/Performance]options menu[/url][/color] om spelprestatie te verbeteren"
 
 #, fuzzy
 msgid "GAME_SYSTEMS_TITLE"

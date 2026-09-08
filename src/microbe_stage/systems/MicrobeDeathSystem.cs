@@ -18,7 +18,7 @@ using World = Arch.Core.World;
 /// </summary>
 /// <remarks>
 ///   <para>
-///     Currently the use of <see cref="ManualPhysicsControl"/> to stop movement when dying is commented out. If
+///     Currently, the use of <see cref="ManualPhysicsControl"/> to stop movement when dying is commented out. If
 ///     eventually that is removed, that component should also be removed from the With attribute list below.
 ///   </para>
 ///   <para>
@@ -62,12 +62,36 @@ public partial class MicrobeDeathSystem : BaseSystem<World, float>
     /// </summary>
     public delegate Vector3 CustomizeSpawnedChunk(ref Vector3 position);
 
+    /// <summary>
+    ///   Calculates how many corpse chunks a cell with the specified number of hexes drops.
+    /// </summary>
+    public static int CalculateCorpseChunkCount(int hexCount)
+    {
+        var chunksToSpawn = Math.Max(Constants.CORPSE_CHUNK_MINIMUM,
+            hexCount / Constants.CORPSE_CHUNK_DIVISOR);
+
+        // Make the second chunk spawn early to show that deaths result in multiple chunks
+        if (hexCount >= 5 && chunksToSpawn < 2)
+            chunksToSpawn = 2;
+
+        return Math.Min(chunksToSpawn, Constants.CORPSE_CHUNK_AMOUNT_CAP);
+    }
+
     public static void SpawnCorpseChunks(ref OrganelleContainer organelleContainer, CompoundBag compounds,
         ISpawnSystem spawnSystem, IWorldSimulation worldSimulation, CommandBuffer recorder,
         Vector3 basePosition, Random random, CustomizeSpawnedChunk? customizeCallback, bool isBacteria)
     {
         if (organelleContainer.Organelles == null)
             throw new InvalidOperationException("Organelles can't be null when determining chunks to drop");
+
+        float baseAmount = organelleContainer.HexCount * Constants.CORPSE_CHUNK_AMOUNT_MULTIPLIER;
+        if (baseAmount <= 0)
+        {
+            // Would cause a division by zero. Or if negative, negative compound amounts, which would be even more
+            // bizarre.
+            GD.PrintErr("Microbe has no hex count set on death, won't spawn corpse chunks");
+            return;
+        }
 
         // Eject the compounds that were in the microbe
         var compoundsToRelease = new Dictionary<Compound, float>();
@@ -98,6 +122,12 @@ public partial class MicrobeDeathSystem : BaseSystem<World, float>
 
         EngulfableHelpers.CalculateBonusDigestibleGlucose(compoundsToRelease, compounds);
 
+        if (!compoundsToRelease.Any(entry => entry.Value > 0 && !float.IsNaN(entry.Value)))
+        {
+            GD.Print("No compounds found to release on microbe death, skipping chunks");
+            return;
+        }
+
         // An enumerator to step through all available organelles in a random order when making chunks
         // TODO: fix the closure allocation here
         using var organellesAvailableEnumerator =
@@ -114,31 +144,10 @@ public partial class MicrobeDeathSystem : BaseSystem<World, float>
         var chunkName = Localization.Translate("CHUNK_CELL_CORPSE_PART");
 
         // Queues either 1 corpse chunk or a factor of the hexes
-        int chunksToSpawn = Math.Max(1, organelleContainer.HexCount / Constants.CORPSE_CHUNK_DIVISOR);
-
-        // Apply a soft cap to the number of chunks
-        if (chunksToSpawn > Constants.CORPSE_CHUNK_AMOUNT_DIMINISH_AFTER)
-        {
-            chunksToSpawn = Constants.CORPSE_CHUNK_AMOUNT_DIMINISH_AFTER +
-                (chunksToSpawn - Constants.CORPSE_CHUNK_AMOUNT_DIMINISH_AFTER) / 2;
-        }
-
-        if (chunksToSpawn > Constants.CORPSE_CHUNK_AMOUNT_DIMINISH_MORE_AFTER)
-        {
-            chunksToSpawn = Constants.CORPSE_CHUNK_AMOUNT_DIMINISH_MORE_AFTER +
-                (chunksToSpawn - Constants.CORPSE_CHUNK_AMOUNT_DIMINISH_MORE_AFTER) / 3;
-        }
-
-        // And then a hard maximum limit to not cause massive performance problems if there are for some reason huge
-        // cells that die
-        if (chunksToSpawn > Constants.CORPSE_CHUNK_AMOUNT_CAP)
-            chunksToSpawn = Constants.CORPSE_CHUNK_AMOUNT_CAP;
+        int chunksToSpawn = CalculateCorpseChunkCount(organelleContainer.HexCount);
 
         for (int i = 0; i < chunksToSpawn; ++i)
         {
-            // Amount of compound in one chunk
-            float amount = organelleContainer.HexCount * Constants.CORPSE_CHUNK_AMOUNT_MULTIPLIER;
-
             var positionAdded = new Vector3(random.Next(-2.0f, 2.0f), 0,
                 random.Next(-2.0f, 2.0f));
 
@@ -167,9 +176,7 @@ public partial class MicrobeDeathSystem : BaseSystem<World, float>
             {
                 var compoundValue = new ChunkConfiguration.ChunkCompound
                 {
-                    // Randomize the compound amount a bit so things "rot away"
-                    Amount = (entry.Value / (random.Next(amount / 3.0f, amount) *
-                        Constants.CHUNK_ENGULF_COMPOUND_DIVISOR)) * Constants.CORPSE_COMPOUND_COMPENSATION,
+                    Amount = entry.Value / chunksToSpawn,
                 };
 
                 chunkType.Compounds[entry.Key] = compoundValue;

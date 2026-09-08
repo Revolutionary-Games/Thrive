@@ -600,6 +600,11 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
 
     public void HidePatchExtinctionBox()
     {
+        // The patch extinction box remains interactive while the game is paused. If the player paused using the HUD
+        // while making their choice, make sure that lock doesn't survive closing the box and leave the new patch
+        // permanently paused.
+        EnsureGameIsUnpausedForEditor();
+
         winExtinctBoxHolder.Hide();
         patchExtinctionBox?.Hide();
 
@@ -1012,7 +1017,7 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
         foreach (var (compound, bar) in compoundBars)
         {
             // Probably can save on performance here by not updating hidden bars and hoping that when bars become
-            // visible they will be updated immediately for the player to not notice
+            // visible, they will be updated immediately for the player to not notice
             if (!bar.Visible)
                 continue;
 

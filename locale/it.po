@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-21 19:31+0300\n"
+"POT-Creation-Date: 2026-09-01 10:25+0300\n"
 "PO-Revision-Date: 2026-07-29 00:10+0000\n"
 "Last-Translator: Giacomo La Serra <laserragiacomo1@gmail.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -404,8 +404,13 @@ msgstr "Strumento di esplorazione Auto-Evo"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Strumento di esplorazione Auto-Evo"
 
-msgid "AUTO_EVO_FAILED"
+#, fuzzy
+msgid "AUTO_EVO_FAILED_CHECK_LOGS"
 msgstr "Esecuzione dell'Auto-Evo non riuscita"
+
+#, fuzzy
+msgid "AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL"
+msgstr "Mancano i risultati della Auto-evo, se hai caricato un salvataggio vecchio è normale che manchino i risultati. Nel caso non avessi caricato un vecchio salvataggio, per favore segnala questo bug e inviaci il tuo game log file."
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr "Mancano i risultati della Auto-evo, se hai caricato un salvataggio vecchio è normale che manchino i risultati. Nel caso non avessi caricato un vecchio salvataggio, per favore segnala questo bug e inviaci il tuo game log file."
@@ -2037,6 +2042,14 @@ msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Apri l'editor e modifica la tua specie"
 
 #, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR"
+msgstr "Indica che questa specie ha subito una mutazione durante questo ciclo di Auto-Evo"
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR_EXPLANATION"
+msgstr "(velocità di mutazione delle specie controllate dall'intelligenza artificiale)"
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
 "Il tuo microbo si è riprodotto con successo ancora una volta, compiendo un ulteriore passo verso una forma di vita più evoluta.\n"
@@ -2755,6 +2768,10 @@ msgstr ""
 
 msgid "GAME_DESIGN_TEAM"
 msgstr "Squadra Progettisti di Gioco"
+
+#, fuzzy
+msgid "GAME_PHYSICS_PERFORMANCE_LOW_WARNING"
+msgstr "Una nota: puoi modificare le impostazioni legate alle prestazioni in qualsiasi momento nel [color=#3796e1][url=thrive://GUI/OptionsMenu/Performance]menù delle opzioni[/url][/color]"
 
 #, fuzzy
 msgid "GAME_SYSTEMS_TITLE"

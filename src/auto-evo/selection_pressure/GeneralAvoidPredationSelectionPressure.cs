@@ -1,5 +1,6 @@
 ﻿namespace AutoEvo;
 
+using System;
 using SharedBase.Archive;
 
 public class GeneralAvoidPredationSelectionPressure : SelectionPressure
@@ -73,6 +74,13 @@ public class GeneralAvoidPredationSelectionPressure : SelectionPressure
 
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {
+        if (species is not MicrobeSpecies and not MulticellularSpecies)
+        {
+            throw new ArgumentException(
+                $"Species type {species.GetType().Name} is incompatible with cellular predation scoring",
+                nameof(species));
+        }
+
         var score = 1.0f;
         foreach (var predator in patch.SpeciesInPatch)
         {
@@ -82,6 +90,10 @@ public class GeneralAvoidPredationSelectionPressure : SelectionPressure
             {
                 continue;
             }
+
+            // Predators come from the complete patch species collection, not filtered Miche occupants.
+            if (predator.Key is not MicrobeSpecies and not MulticellularSpecies)
+                continue;
 
             var predationScore = cache.GetPredationScore(predator.Key, species, patch.Biome);
 

@@ -144,7 +144,7 @@ public class RemoveOrganelle : IMutationStrategy<Species>
                     continue;
 
                 // Don't clone organelles as we want to do those ourselves
-                var newSpecies = baseSpecies.Clone(false);
+                var newSpecies = baseSpecies.Clone(false, false);
                 var newCellType = newSpecies.ModifiableCellTypes[i];
                 var newCellTypeOrganelles = newCellType.ModifiableOrganelles;
 

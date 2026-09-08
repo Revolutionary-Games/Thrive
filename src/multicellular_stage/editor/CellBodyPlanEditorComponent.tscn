@@ -341,7 +341,7 @@ _data = {
 &"show": SubResource("44")
 }
 
-[node name="CellBodyPlanEditorComponent" type="Control" unique_id=2093309640 node_paths=PackedStringArray("structureTabButton", "reproductionTabButton", "behaviourTabButton", "growthOrderTabButton", "tolerancesTabButton", "structureTab", "reproductionTab", "behaviourEditor", "growthOrderTab", "growthOrderGUI", "showGrowthOrderCoordinates", "tolerancesEditor", "toleranceTab", "toleranceWarningContainer", "cellTypeSelectionList", "modifyTypeButton", "deleteTypeButton", "duplicateTypeButton", "endosymbiosisButton", "endosymbiosisPopup", "pendingEndosymbiosisPopup", "cannotDeleteInUseTypeDialog", "duplicateCellTypeDialog", "duplicateCellTypeName", "cellPopupMenu", "organismStatisticsPanel", "rightPanelScrollContainer", "negativeAtpPopup", "wrongGrowthOrderPopup", "noSporeCellTypeSetPopup", "reproductionMethodDropdown", "sporeCellTypeMakerButton", "cellTypePickerPopup", "massBuddingCellCountSlider", "massBuddingCellCountLabel", "massBuddingMinSizeLabel", "buddingReproductionSection", "sporeReproductionSection", "sexualReproductionSection", "gameteACellTypeDropdown", "gameteBCellTypeDropdown", "sexualAnisogamyUpgradeButton", "sexualBenefitsExplanationLabel", "sexualBenefitsActiveLabel", "anisogamySettingsContainer", "playerGameteSelectionA", "gameteSelectionALabel", "playerGameteSelectionB", "massBuddingReproductionSection", "hexPositionEffectsContainer", "floatingLabelContainer", "islandPopup", "componentBottomLeftButtons", "mutationPointsBar", "cancelButton", "finishButtonWarningBadge", "finishOrNextButton")]
+[node name="CellBodyPlanEditorComponent" type="Control" unique_id=2093309640 node_paths=PackedStringArray("structureTabButton", "reproductionTabButton", "behaviourTabButton", "growthOrderTabButton", "tolerancesTabButton", "structureTab", "reproductionTab", "behaviourEditor", "growthOrderTab", "growthOrderGUI", "showGrowthOrderCoordinates", "tolerancesEditor", "toleranceTab", "toleranceWarningContainer", "cellTypeSelectionList", "modifyTypeButton", "deleteTypeButton", "duplicateTypeButton", "endosymbiosisButton", "endosymbiosisPopup", "pendingEndosymbiosisPopup", "generalDataErrorPopup", "cannotDeleteInUseTypeDialog", "duplicateCellTypeDialog", "duplicateCellTypeName", "cellPopupMenu", "organismStatisticsPanel", "rightPanelScrollContainer", "negativeAtpPopup", "wrongGrowthOrderPopup", "noSporeCellTypeSetPopup", "reproductionMethodDropdown", "sporeCellTypeMakerButton", "cellTypePickerPopup", "massBuddingCellCountSlider", "massBuddingCellCountLabel", "massBuddingMinSizeLabel", "buddingReproductionSection", "sporeReproductionSection", "sexualReproductionSection", "gameteACellTypeDropdown", "gameteBCellTypeDropdown", "sexualAnisogamyUpgradeButton", "sexualBenefitsExplanationLabel", "sexualBenefitsActiveLabel", "anisogamySettingsContainer", "playerGameteSelectionA", "gameteSelectionALabel", "playerGameteSelectionB", "massBuddingReproductionSection", "hexPositionEffectsContainer", "floatingLabelContainer", "islandPopup", "componentBottomLeftButtons", "mutationPointsBar", "cancelButton", "finishButtonWarningBadge", "finishOrNextButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -371,6 +371,7 @@ duplicateTypeButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContaine
 endosymbiosisButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Endosymbiosis")
 endosymbiosisPopup = NodePath("EndosymbiosisPopup")
 pendingEndosymbiosisPopup = NodePath("CompleteEndosymbiosisWarning")
+generalDataErrorPopup = NodePath("GeneralDataErrorPopup")
 cannotDeleteInUseTypeDialog = NodePath("CannotDeleteInUseType")
 duplicateCellTypeDialog = NodePath("NewCellTypeSetup")
 duplicateCellTypeName = NodePath("NewCellTypeSetup/VBoxContainer2/NewName")
@@ -1076,6 +1077,15 @@ offset_bottom = 0.0
 HideCancelButton = true
 DialogText = "NO_SPORE_CELL_TYPE_SET"
 WindowTitle = "NO_SPORE_CELL_TYPE_SET_TITLE"
+
+[node name="GeneralDataErrorPopup" parent="." unique_id=2069579738 instance=ExtResource("7")]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 0
+offset_right = 500.0
+offset_bottom = 0.0
+HideCancelButton = true
+DialogText = "EDITOR_SPECIES_DATA_ERROR_EXPLANATION"
+WindowTitle = "EDITOR_SPECIES_DATA_ERROR"
 
 [node name="NewCellTypeSetup" parent="." unique_id=1287647733 instance=ExtResource("7")]
 custom_minimum_size = Vector2(550, 90)

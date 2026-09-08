@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-21 19:31+0300\n"
-"PO-Revision-Date: 2026-05-13 03:55+0000\n"
-"Last-Translator: Undibundi <andras9334@citromail.hu>\n"
+"POT-Creation-Date: 2026-09-01 10:25+0300\n"
+"PO-Revision-Date: 2026-08-22 04:42+0000\n"
+"Last-Translator: zynskeywolf <istvanszabo314@protonmail.com>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
@@ -403,8 +403,13 @@ msgstr "Auto-Evo felfedező eszköz"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Auto-Evo felfedező eszköz"
 
-msgid "AUTO_EVO_FAILED"
+#, fuzzy
+msgid "AUTO_EVO_FAILED_CHECK_LOGS"
 msgstr "Auto-evo futtatása sikertelen"
+
+#, fuzzy
+msgid "AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL"
+msgstr "Auto-evo eredmények hiányoznak. Ha régebbi mentést töltöttél be, akkor ez normális. Ha viszont nem régebbi mentést töltöttél be, akkor kérlek jelentsd ezt a hibát nekünk és küldd el a játéknaplótfájlt."
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr "Auto-evo eredmények hiányoznak. Ha régebbi mentést töltöttél be, akkor ez normális. Ha viszont nem régebbi mentést töltöttél be, akkor kérlek jelentsd ezt a hibát nekünk és küldd el a játéknaplótfájlt."
@@ -2080,6 +2085,14 @@ msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Segítség"
 
 #, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR"
+msgstr "Fajok mutációkihagyásának engedélyezése (ha a rendszer nem talált megfelelő mutációt)"
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR_EXPLANATION"
+msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
 "Ez itt a sejtszerkesztő, ahol különböző sejtszervecskéket adhatsz hozzá, vagy távolíthatsz el a sejtedről, amik mutáció pontokba (MP) kerülnek.\n"
@@ -2821,6 +2834,10 @@ msgstr ""
 
 msgid "GAME_DESIGN_TEAM"
 msgstr "Játéktervező csapat"
+
+#, fuzzy
+msgid "GAME_PHYSICS_PERFORMANCE_LOW_WARNING"
+msgstr "Megjegyzés: A teljesítménnyel kapcsolatos opciókat bármikor megváltoztathatod a [color=#3796e1][url=thrive://GUI/OptionsMenu/Performance]beállítások menüben[/url][/color]"
 
 #, fuzzy
 msgid "GAME_SYSTEMS_TITLE"
@@ -8685,6 +8702,7 @@ msgstr ""
 msgid "WIKI_FLAGELLUM_INTRO"
 msgstr "Ostor"
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_MODIFICATIONS"
 msgstr "Nincs módosítás."
 

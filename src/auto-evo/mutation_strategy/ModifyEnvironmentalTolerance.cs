@@ -220,7 +220,16 @@ public class ModifyEnvironmentalTolerance : IMutationStrategy<Species>
 
         // TODO: could do a shallower clone here as organelles won't be modified, so this doesn't need to clone
         // anything except the tolerances
-        var newSpecies = (Species)baseSpecies.Clone();
+        Species newSpecies;
+        if (baseSpecies is MulticellularSpecies multicellularSpecies)
+        {
+            newSpecies = multicellularSpecies.Clone(true, false);
+        }
+        else
+        {
+            newSpecies = (Species)baseSpecies.Clone();
+        }
+
         newSpecies.ModifiableTolerances.CopyFrom(newTolerances);
 
 #if DEBUG

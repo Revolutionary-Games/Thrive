@@ -189,7 +189,8 @@ public static class MulticellularGrowthHelpers
     /// </summary>
     public static void AddMulticellularGrowthCell(this ref MulticellularGrowth multicellularGrowth,
         in Entity entity, MulticellularSpecies species, IWorldSimulation worldSimulation,
-        IMicrobeSpawnEnvironment spawnEnvironment, CommandBuffer recorder, ISpawnSystem notifySpawnTo)
+        IMicrobeSpawnEnvironment spawnEnvironment, CommandBuffer recorder, ISpawnSystem notifySpawnTo,
+        bool disallowDespawning = false)
     {
         if (!entity.Has<MicrobeColony>())
         {
@@ -204,7 +205,7 @@ public static class MulticellularGrowthHelpers
         // colony it joins
         DelayedColonyOperationSystem.CreateDelayAttachedMicrobe(ref colonyPosition, entity,
             multicellularGrowth.NextBodyPlanCellToGrowIndex, cellTemplate, species, worldSimulation, spawnEnvironment,
-            recorder, notifySpawnTo, false);
+            recorder, notifySpawnTo, false, true, disallowDespawning);
 
         ++multicellularGrowth.NextBodyPlanCellToGrowIndex;
         multicellularGrowth.CompoundsNeededForNextCell = null;
@@ -241,14 +242,16 @@ public static class MulticellularGrowthHelpers
 
     /// <summary>
     ///   Resets all growth progress to grow the normal body plan. Used after exiting engulfment (which disbands the
-    ///   colony), as well as after returning from the edtior
+    ///   colony), as well as after returning from the editor
     /// </summary>
     public static void ResetGrowthProgress(this ref MulticellularGrowth multicellularGrowth)
     {
         // Start growing cells starting with the second one. The first one is the lead cell and gets spawned
-        // immediately. Same goes for a few more cells if the species uses the mass budding reproduction method,
+        // immediately. The same goes for a few more cells if the species uses the mass budding reproduction method,
         // but that is handled separately by MulticellularGrowthSystem
         multicellularGrowth.NextBodyPlanCellToGrowIndex = 1;
+        multicellularGrowth.LostPartsOfBodyPlan = null;
+        multicellularGrowth.ResumeBodyPlanAfterReplacingLost = null;
         multicellularGrowth.MassBuddingState = MulticellularMassBuddingState.NotSpawned;
         multicellularGrowth.EnoughResourcesForBudding = false;
 
@@ -594,6 +597,12 @@ public static class MulticellularGrowthHelpers
 
         control.GerminatingSpore = false;
 
+        // A spore can retain the growth state of the colony it was produced from. This is especially likely after
+        // returning from the editor, where the player is changed back into a spore, but the old colony still had its
+        // growth index. Germination always starts a new colony with only its initial cell grown.
+        // So to be sure that there can't be a bug with that, reset the growth progress here explicitly.
+        multicellularGrowth.ResetGrowthProgress();
+
         ref var cellProperties = ref entity.Get<CellProperties>();
 
         ref var multicellularSpeciesType = ref entity.Get<MulticellularSpeciesMember>();
@@ -636,7 +645,7 @@ public static class MulticellularGrowthHelpers
         for (int i = 0; i < species.MassBuddingCellCount - 1; ++i)
         {
             multicellularGrowth.AddMulticellularGrowthCell(entity, species, worldSimulation, spawnEnvironment,
-                recorder, notifySpawnTo);
+                recorder, notifySpawnTo, true);
         }
 
         multicellularGrowth.MassBuddingState = MulticellularMassBuddingState.Spawning;

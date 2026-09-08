@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-21 19:31+0300\n"
-"PO-Revision-Date: 2026-05-22 15:37+0000\n"
-"Last-Translator: Ptit Serpent <snake76930@gmail.com>\n"
+"POT-Creation-Date: 2026-09-01 10:25+0300\n"
+"PO-Revision-Date: 2026-08-22 04:42+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -402,8 +402,13 @@ msgstr "Explorer l'Auto-Évo"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Outil d'exploration Auto-Évo"
 
-msgid "AUTO_EVO_FAILED"
+#, fuzzy
+msgid "AUTO_EVO_FAILED_CHECK_LOGS"
 msgstr "L'Auto-Évo n'a pas pu se lancer"
+
+#, fuzzy
+msgid "AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL"
+msgstr "Les résultats Auto-evo sont manquants. Si vous avez chargé une sauvegarde plus ancienne, il est normal qu'ils soient manquants. Si vous n’avez pas chargé une sauvegarde plus ancienne, veuillez nous le signaler comme un bug et envoyez-nous votre log de jeu."
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr "Les résultats Auto-evo sont manquants. Si vous avez chargé une sauvegarde plus ancienne, il est normal qu'ils soient manquants. Si vous n’avez pas chargé une sauvegarde plus ancienne, veuillez nous le signaler comme un bug et envoyez-nous votre log de jeu."
@@ -2007,6 +2012,14 @@ msgstr "Éditeur et mutations"
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Entrer dans l'éditeur et modifier votre espèce"
 
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR"
+msgstr "Indique que cette espèce a muté pendant son cycle d'Auto-Évo"
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR_EXPLANATION"
+msgstr "(si elle est activée, la vitesse de croissance est plafonnée, si elle est désactivée, seuls les composés disponibles affectent la vitesse de croissance)"
+
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
 "Votre microbe a réussi a se reproduire a nouveau, faisant ainsi un pas de plus vers une forme de vie complexe.\n"
@@ -2679,6 +2692,10 @@ msgstr ""
 
 msgid "GAME_DESIGN_TEAM"
 msgstr "Équipe conception du jeu"
+
+#, fuzzy
+msgid "GAME_PHYSICS_PERFORMANCE_LOW_WARNING"
+msgstr "Remarque : vous pouvez modifier les options liées aux performances à tout moment dans le [color=#3796e1][url=thrive://GUI/OptionsMenu/Performance]menu options[/url][/color] pour améliorer les performances du jeu"
 
 #, fuzzy
 msgid "GAME_SYSTEMS_TITLE"
@@ -8623,6 +8640,7 @@ msgstr "Chaque [b]flagelle[/b] exerce une poussée en sens inverse de son orient
 msgid "WIKI_FLAGELLUM_INTRO"
 msgstr "Les [b]flagelles[/b] sont des filaments à l'éxterieur d'une cellule qui utilisent de l'[thrive:compound type=\"atp\"][/thrive:compound] pour aumenter la vitesse de déplacement d'une cellule dans une direction. La poussée est appliquée dans la direction opposée à la flagelle."
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_MODIFICATIONS"
 msgstr "Pas de modifications."
 
@@ -8896,6 +8914,7 @@ msgstr ""
 "\n"
 "La [color=#3796e1][url=thriveopedia:thermosynthase]thermosynthase[/url][/color] et les [color=#3796e1][url=thriveopedia:thermoplast]thermoplastes[/url][/color] produisent de l'[thrive:compound type=\"atp\"][/thrive:compound] gratuitement tant que l'environnement est assez chaud."
 
+#, fuzzy
 msgid "WIKI_HELP_AND_TIPS_MICROBE_STAGE_TIPS"
 msgstr ""
 "Cette section contient tous les conseils pour le stade microbien qui s'affichent sur les écrans de chargement.\n"
@@ -9324,6 +9343,7 @@ msgstr ""
 "[indent]—   Posséder des [b][color=#3796e1][url=thriveopedia:metabolosome]Métabolosomes[/url][/color][/b] depuis au moins [b]7[/b] générations consécutives.[/indent]\n"
 "[indent]—   Produire au moins [b]+20[/b] [thrive:compound type=\"atp\"][/thrive:compound].[/indent]"
 
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_SCIENTIFIC_BACKGROUND"
 msgstr "À venir"
 
@@ -9551,6 +9571,7 @@ msgstr ""
 msgid "WIKI_OXYTOXISOME_INTRO"
 msgstr "[b][color=#3796e1][url=thriveopedia:metabolosome]Métabolosome[/url][/color][/b] modifié qui produit de l'[thrive:compound type=\"oxytoxy\"][/thrive:compound],un agent toxique pouvant être projeté. Version inférieure de la [b][color=#3796e1][url=thriveopedia:oxytoxy]Vacuole à toxines[/url][/color][/b]."
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_MODIFICATIONS"
 msgstr "Pas de modifications."
 
@@ -9945,6 +9966,7 @@ msgstr ""
 "\n"
 "Il est également important de noter que l'organelle utilise du [thrive:compound type=\"glucose\"][/thrive:compound] et non du [thrive:compound type=\"atp\"][/thrive:compound], alors assurez-vous de vérifier l'équilibre des composés de votre cellule lorsque vous ajoutez cette organelle."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr "Pas d'améliorations."
 
@@ -10143,6 +10165,7 @@ msgstr ""
 msgid "WIKI_TOXIN_VACUOLE_INTRO"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_MODIFICATIONS"
 msgstr "Pas de modifications."
 

@@ -257,12 +257,20 @@ public static class MichePopulation
 
             currentBackTraversal.Clear();
             node.BackTraversal(currentBackTraversal);
+
+            var occupantSpecies = node.Occupant;
+
+            if (occupantSpecies is not null and not MicrobeSpecies and not MulticellularSpecies)
+            {
+                throw new InvalidOperationException(
+                    $"Miche occupant type {occupantSpecies.GetType().Name} is incompatible with cellular population " +
+                    "scoring");
+            }
+
             foreach (var currentSpecies in species)
             {
                 if (currentSpecies is not MicrobeSpecies and not MulticellularSpecies)
                     continue;
-
-                var occupantSpecies = node.Occupant;
 
                 var traversalScore = 0.0f;
 
@@ -278,7 +286,7 @@ public static class MichePopulation
 
                     var occupantScore = 0.0f;
 
-                    if (occupantSpecies is MicrobeSpecies or MulticellularSpecies)
+                    if (occupantSpecies != null)
                     {
                         occupantScore =
                             cache.GetPressureScore(currentMiche.Pressure, patch, occupantSpecies);

@@ -9,14 +9,15 @@ public struct IntercellularMatrix : IArchivableComponent
     public const ushort SERIALIZATION_VERSION = 1;
 
     /// <summary>
-    ///   True when the cell doesn't need a connection because it's already close enough, false otherwise.
+    ///   True when membrane shape changes or cell has just spawned.
+    ///   False when the cell already has a connection or doesn't need a connection because it's already close enough.
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     Should be reset to false when the cell gets disconnected.
+    ///     Should be reset to true when the cell gets disconnected.
     ///   </para>
     /// </remarks>
-    public bool IsConnectionRedundant;
+    public bool ShouldRegenerateConnection;
 
     public Node3D? GeneratedConnection;
 
@@ -36,7 +37,6 @@ public struct IntercellularMatrix : IArchivableComponent
     {
         GeneratedConnection?.QueueFree();
         GeneratedConnection = null;
-        IsConnectionRedundant = false;
     }
 }
 

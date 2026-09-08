@@ -9,6 +9,13 @@ public class DummySpawnSystem : ISpawnSystem
 {
     private readonly OnEntityAddedCallback? addTrackedCallback;
 
+    /// <summary>
+    ///   Create a new dummy spawner with a callback. Note: the callback triggers on spawn before the entity is added
+    ///   to the world, so its ID is not stable yet and cannot be stored.
+    /// </summary>
+    /// <param name="addTrackedCallback">
+    ///   Callback to run to allow customized actions on entity creation (called before it is finalized)
+    /// </param>
     public DummySpawnSystem(OnEntityAddedCallback? addTrackedCallback = null)
     {
         this.addTrackedCallback = addTrackedCallback;
@@ -39,7 +46,7 @@ public class DummySpawnSystem : ISpawnSystem
     }
 
     public void NotifyExternalEntitySpawned(in Entity entity, CommandBuffer commandBuffer, float despawnRadiusSquared,
-        float entityWeight)
+        float entityWeight, bool disallowDespawning = false)
     {
         addTrackedCallback?.Invoke(entity);
     }

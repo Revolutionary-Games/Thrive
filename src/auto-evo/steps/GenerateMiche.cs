@@ -169,10 +169,16 @@ public class GenerateMiche : IRunStep
 
         var predationRoot = new Miche(globalCache.PredatorRoot);
         var predationGlucose = new Miche(globalCache.MinorGlucoseConversionEfficiencyPressure);
+        var supportedSpeciesCount = 0;
 
         // Per Target-Species Miches
         foreach (var targetSpecies in patch.SpeciesInPatch)
         {
+            if (targetSpecies.Key is not MicrobeSpecies and not MulticellularSpecies)
+                continue;
+
+            ++supportedSpeciesCount;
+
             // Predation Miches
             predationGlucose.AddChild(new Miche(new PredationEffectivenessPressure(targetSpecies.Key, 8.0f)));
 
@@ -185,7 +191,7 @@ public class GenerateMiche : IRunStep
             }
         }
 
-        if (patch.SpeciesInPatch.Count > 1)
+        if (supportedSpeciesCount > 1)
             predationRoot.AddChild(predationGlucose);
 
         generatedMiche.AddChild(predationRoot);
@@ -203,6 +209,9 @@ public class GenerateMiche : IRunStep
 
         foreach (var species in patch.SpeciesInPatch.Keys)
         {
+            if (species is not MicrobeSpecies and not MulticellularSpecies)
+                continue;
+
             miche.InsertSpecies(species, patch, null, cache, false, insertWorkMemory);
         }
 

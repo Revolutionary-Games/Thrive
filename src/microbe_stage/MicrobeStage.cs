@@ -992,6 +992,14 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         if (WorldSimulation.Processing)
             throw new Exception("This shouldn't be ran while world is in the middle of a simulation");
 
+        // The player species changes type below, so any existing run has stale species data. This also needs to
+        // happen before the conversion because an in-progress run must not inspect the species while it is being
+        // changed.
+        if (GameWorld.ResetAutoEvoRun())
+        {
+            GD.Print("Aborted the existing auto-evo run before moving the player to the multicellular stage");
+        }
+
         GD.Print("Disbanding colony and becoming multicellular");
 
         // Move to multicellular always happens when the player is in a colony, so we force-disband that here before
@@ -1076,6 +1084,12 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         GiveReproductionPopulationBonus();
 
         CurrentGame!.EnterPrototypes();
+
+        // See the comment in MicrobeStage.MoveToMacroscopic
+        if (GameWorld.ResetAutoEvoRun())
+        {
+            GD.Print("Aborted the existing auto-evo run before moving the player to the macroscopic stage");
+        }
 
         var modifiedSpecies = GameWorld.ChangeSpeciesToMacroscopic(Player.Get<SpeciesMember>().Species);
 
@@ -1213,16 +1227,23 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
             ref var growth = ref Player.Get<MulticellularGrowth>();
 
-            growth.IsASpore = false;
-
             if (multicellularSpeciesType.Species.ReproductionMethod == MulticellularReproductionMethod.Sporulation)
             {
+                // Returning from the editor turns the player into a new spore. Do not carry over the growth state
+                // from the colony that entered the editor, otherwise germination can treat the spore as a fully grown
+                // colony.
+                growth.ResetGrowthProgress();
                 growth.IsASpore = true;
             }
-            else if (multicellularSpeciesType.Species.ReproductionMethod is MulticellularReproductionMethod.Budding
-                     or MulticellularReproductionMethod.MassBudding)
+            else
             {
-                adjacencyBonus = multicellularSpeciesType.Species.GetAdjacencySpecializationBonus(0);
+                growth.IsASpore = false;
+
+                if (multicellularSpeciesType.Species.ReproductionMethod is MulticellularReproductionMethod.Budding
+                    or MulticellularReproductionMethod.MassBudding)
+                {
+                    adjacencyBonus = multicellularSpeciesType.Species.GetAdjacencySpecializationBonus(0);
+                }
             }
 
             // If the player has a colony, all resources need to be transferred to the stem cell to avoid them being
@@ -1546,6 +1567,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         // Initialise the simulation on a basic level first to ensure the base stage setup has all the objects it needs
         WorldSimulation.Init(rootOfDynamicallySpawned, Clouds, this);
+        WorldSimulation.MessageReceiver = HUD.HUDMessages;
 
         patchManager = new PatchManager(WorldSimulation.SpawnSystem, WorldSimulation.MicrobeTerrainSystem,
             WorldSimulation.ProcessSystem, Clouds, WorldSimulation.TimedLifeSystem, worldLight);

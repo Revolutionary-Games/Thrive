@@ -90,6 +90,10 @@ search_in_file_extensions=PackedStringArray("gd", "shader", "cs")
 
 enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg")
 
+[gdunit4]
+
+ui/toolbar/run_overall=true
+
 [global]
 
 hardened=false

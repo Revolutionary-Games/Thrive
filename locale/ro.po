@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-21 19:31+0300\n"
+"POT-Creation-Date: 2026-09-01 10:25+0300\n"
 "PO-Revision-Date: 2025-01-21 12:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Romanian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ro/>\n"
@@ -409,8 +409,13 @@ msgstr "Instrument de explorare Auto-Evo"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Instrument de explorare Auto-Evo"
 
-msgid "AUTO_EVO_FAILED"
+#, fuzzy
+msgid "AUTO_EVO_FAILED_CHECK_LOGS"
 msgstr "Auto-evo nu a reușit să ruleze"
+
+#, fuzzy
+msgid "AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL"
+msgstr "Rezultate Auto-evo:"
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr ""
@@ -1927,6 +1932,14 @@ msgstr ""
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr ""
 
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR"
+msgstr "Permiteți speciilor să nu sufere mutații (dacă nu se găsește nicio mutație bună)"
+
+#, fuzzy
+msgid "EDITOR_SPECIES_DATA_ERROR_EXPLANATION"
+msgstr "(viteza cu care speciile IA suferă mutații)"
+
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
 
@@ -2590,6 +2603,9 @@ msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
 msgstr "Treceți la etapa de trezire. Disponibil odată ce aveți creierul suficient de dezvoltat (tip de țesut cu axoni)."
 
 msgid "GAME_DESIGN_TEAM"
+msgstr ""
+
+msgid "GAME_PHYSICS_PERFORMANCE_LOW_WARNING"
 msgstr ""
 
 msgid "GAME_SYSTEMS_TITLE"

@@ -151,9 +151,24 @@ public partial class DebugOverlays
             ClearEntityLabels();
     }
 
+    private static bool IsEntityAliveAndHasWorldPosition(Entity entity)
+    {
+        // The world null check here is against a disposed world that still has a valid index.
+        if (entity == Entity.Null || entity.IsAllZero() || entity.WorldId < 0 ||
+            entity.WorldId >= World.Worlds.Length ||
+            World.Worlds[entity.WorldId] == null!)
+        {
+            return false;
+        }
+
+        return entity.IsAliveAndHas<WorldPosition>();
+    }
+
     private bool UpdateLabelColour(Entity entity, Label label)
     {
-        if (!entity.IsAliveAndNotNull())
+        // Do not use EntityExtensions.IsAlive here. Labels can outlive the world they were created from, in which case
+        // Arch's global world lookup returns null and IsAlive throws instead of returning false.
+        if (!IsEntityAliveAndHasWorldPosition(entity))
         {
             label.LabelSettings = entityDeadFont;
             return false;
@@ -196,10 +211,10 @@ public partial class DebugOverlays
 
     private void UpdateEntityLabels(double delta)
     {
-        if (!IsInstanceValid(activeCamera) || activeCamera is not { Current: true })
+        if (!IsInstanceValid(activeCamera) || activeCamera is not { Current: true } || !activeCamera.IsInsideTree())
             activeCamera = GetViewport().GetCamera3D();
 
-        if (activeCamera == null)
+        if (activeCamera == null || !activeCamera.IsInsideTree())
             return;
 
         textUpdateTimer -= delta;

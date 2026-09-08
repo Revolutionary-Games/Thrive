@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-21 19:31+0300\n"
+"POT-Creation-Date: 2026-09-01 10:25+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -92,10 +92,10 @@ msgstr ""
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr ""
 
-#: ../src/general/base_stage/EditorBase.cs:953
+#: ../src/general/base_stage/EditorBase.cs:965
 #: ../src/macroscopic_stage/editor/MacroscopicEditor.cs:568
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:59
-#: ../src/multicellular_stage/editor/MulticellularEditor.cs:699
+#: ../src/multicellular_stage/editor/MulticellularEditor.cs:718
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr ""
 
@@ -131,15 +131,15 @@ msgstr ""
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1495
+#: ../simulation_parameters/microbe_stage/organelles.json:1511
 msgid "ACTOMYOSIN"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1496
+#: ../simulation_parameters/microbe_stage/organelles.json:1512
 msgid "ACTOMYOSIN_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1497
+#: ../simulation_parameters/microbe_stage/organelles.json:1513
 msgid "ACTOMYOSIN_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -362,7 +362,7 @@ msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 
 #: ../src/gui_common/menus/PlanetStatistics.tscn:145
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:605
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:616
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:478
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:482
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:255
@@ -488,9 +488,14 @@ msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:306
-msgid "AUTO_EVO_FAILED"
+msgid "AUTO_EVO_FAILED_CHECK_LOGS"
 msgstr ""
 
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:328
+msgid "AUTO_EVO_MISSING_RESULTS_IN_SAVE_LIKELY_FAIL"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:318
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:264
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr ""
@@ -663,7 +668,7 @@ msgstr ""
 
 #: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:474
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:707
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:549
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:550
 msgid "BEHAVIOUR"
 msgstr ""
 
@@ -820,7 +825,7 @@ msgstr ""
 msgid "BROWSE_WORKSHOP"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:699
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:700
 msgid "BUDDING_REPRODUCTION_METHOD_EXPLANATION"
 msgstr ""
 
@@ -895,7 +900,7 @@ msgstr ""
 
 #: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:724
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1216
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:987
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:988
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr ""
 
@@ -905,12 +910,12 @@ msgid "CANCEL_CURRENT_ACTION"
 msgstr ""
 
 #: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:807
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1068
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1069
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr ""
 
 #: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:808
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1069
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1070
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr ""
 
@@ -987,7 +992,7 @@ msgid "CELL"
 msgstr ""
 
 #: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:568
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:608
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:609
 msgid "CELLS"
 msgstr ""
 
@@ -1033,7 +1038,7 @@ msgstr ""
 msgid "CELL_STAT_STORAGE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:662
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:664
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
@@ -1049,7 +1054,7 @@ msgstr ""
 msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1442
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1444
 msgid "CHANGE_ORGANISM_MEMBRANE_TYPE_EXPLANATION_NOT_ENOUGH_MP"
 msgstr ""
 
@@ -1184,7 +1189,7 @@ msgstr ""
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:114
+#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:129
 msgid "CHUNK_CELL_CORPSE_PART"
 msgstr ""
 
@@ -1305,7 +1310,7 @@ msgstr ""
 msgid "COLLISION_SHAPE"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:894
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:895
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
 msgstr ""
 
@@ -1411,7 +1416,7 @@ msgid "COMPLETE_ACTION"
 msgstr ""
 
 #: ../src/gui_common/menus/PlanetStatistics.tscn:228
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:609
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:620
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:487
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:491
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:33
@@ -1991,11 +1996,11 @@ msgstr ""
 msgid "CREATE_NEW"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1085
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1095
 msgid "CREATE_NEW_CELL_TYPE"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1096
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1106
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr ""
 
@@ -2148,8 +2153,8 @@ msgstr ""
 msgid "DEADZONE_CONFIGURATION"
 msgstr ""
 
-#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:384
-#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:393
+#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:400
+#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:409
 msgid "DEATH"
 msgstr ""
 
@@ -2186,13 +2191,13 @@ msgstr ""
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.GUI.cs:402
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.GUI.cs:425
 msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
 msgstr ""
 
 #: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:591
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:174
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:631
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:632
 msgid "DELETE"
 msgstr ""
 
@@ -2380,11 +2385,11 @@ msgstr ""
 msgid "DISCARD_MIGRATION"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1043
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1044
 msgid "DISCONNECTED_CELLS"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1042
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1043
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
 
@@ -2516,7 +2521,7 @@ msgid "DUMP_SCENE_TREE"
 msgstr ""
 
 #: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:597
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:637
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:638
 msgid "DUPLICATE_TYPE"
 msgstr ""
 
@@ -2625,6 +2630,14 @@ msgstr ""
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr ""
 
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1088
+msgid "EDITOR_SPECIES_DATA_ERROR"
+msgstr ""
+
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1087
+msgid "EDITOR_SPECIES_DATA_ERROR_EXPLANATION"
+msgstr ""
+
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:589
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
@@ -2708,7 +2721,7 @@ msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:815
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:645
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:646
 msgid "ENDOSYMBIOSIS_BUTTON"
 msgstr ""
 
@@ -2784,19 +2797,19 @@ msgstr ""
 msgid "ENERGY_COST_MULTIPLIER_EXPLANATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3426
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3428
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3261
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3263
 msgid "ENERGY_IN_PATCH_SHORT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3437
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3439
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3430
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3432
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
@@ -2842,7 +2855,7 @@ msgstr ""
 
 #: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:543
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:745
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:583
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:584
 msgid "ENVIRONMENT_TOLERANCE"
 msgstr ""
 
@@ -2884,11 +2897,11 @@ msgid "ERROR_LOADING"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.cs:710
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:797
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:810
 msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:805
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:818
 msgid "ERROR_REQUIRED_AT_LEAST_X_CELLS_FOR_MASS_BUDDING"
 msgstr ""
 
@@ -2904,7 +2917,7 @@ msgstr ""
 msgid "ESCAPE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:2829
+#: ../src/microbe_stage/MicrobeStage.cs:2830
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -2991,7 +3004,7 @@ msgid "EXIT"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1270
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1152
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1162
 msgid "EXIT_EDITOR"
 msgstr ""
 
@@ -3040,13 +3053,13 @@ msgstr ""
 msgid "EXTINCTION_CAPITAL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:618
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:629
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:640
 msgid "EXTINCT_FROM_PATCH"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:617
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:630
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:628
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:641
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr ""
 
@@ -3260,7 +3273,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3443
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3445
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -3374,20 +3387,20 @@ msgstr ""
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/Spawners.cs:1138
+#: ../src/microbe_stage/Spawners.cs:1151
 msgid "GAMETE_CELL_ENTITY_NAME"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.GUI.cs:494
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:787
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.GUI.cs:517
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:788
 msgid "GAMETE_CELL_TYPE"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.GUI.cs:481
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.GUI.cs:504
 msgid "GAMETE_CELL_TYPE_A"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:824
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:825
 msgid "GAMETE_CELL_TYPE_B"
 msgstr ""
 
@@ -3395,8 +3408,8 @@ msgstr ""
 msgid "GAMETE_PRODUCED"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:796
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:833
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:797
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:834
 msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
 msgstr ""
 
@@ -3404,11 +3417,15 @@ msgstr ""
 msgid "GAME_DESIGN_TEAM"
 msgstr ""
 
+#: ../src/general/base_stage/WorldSimulationWithPhysics.cs:213
+msgid "GAME_PHYSICS_PERFORMANCE_LOW_WARNING"
+msgstr ""
+
 #: ../src/thriveopedia/pages/wiki/mechanics/ThriveopediaMechanicsRootPage.tscn:66
 msgid "GAME_SYSTEMS_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3361
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3363
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1081
 msgid "GATHERED_ENERGY_TOOLTIP"
 msgstr ""
@@ -3639,7 +3656,7 @@ msgid "GRAPHICS_TEAM"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:726
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:566
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:567
 msgid "GROWTH_ORDER"
 msgstr ""
 
@@ -4432,7 +4449,7 @@ msgstr ""
 msgid "INVERTED"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:667
+#: ../src/saving/SaveHelper.cs:689
 msgid "IN_PROTOTYPE"
 msgstr ""
 
@@ -4711,7 +4728,7 @@ msgstr ""
 msgid "LARGE_SULFUR_CHUNK"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2019
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2021
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -5021,7 +5038,7 @@ msgstr ""
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1711
+#: ../src/microbe_stage/MicrobeStage.cs:1712
 msgid "LOADING_MICROBE_STAGE"
 msgstr ""
 
@@ -5029,7 +5046,7 @@ msgstr ""
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1707
+#: ../src/microbe_stage/MicrobeStage.cs:1708
 msgid "LOADING_MULTICELLULAR_STAGE"
 msgstr ""
 
@@ -5154,7 +5171,7 @@ msgstr ""
 msgid "MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1424
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1426
 msgid "MACROSCOPIC_CANNOT_CHANGE_MEMBRANE_TYPE"
 msgstr ""
 
@@ -5203,16 +5220,16 @@ msgstr ""
 msgid "MARINE_SNOW"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:739
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:740
 msgid "MASS_BUDDING_CELL_COUNT"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:429
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:760
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:432
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:761
 msgid "MASS_BUDDING_MINIMUM_SIZE_EXPLANATION"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:728
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:729
 msgid "MASS_BUDDING_REPRODUCTION_METHOD_EXPLANATION"
 msgstr ""
 
@@ -5381,7 +5398,7 @@ msgid "MICHES_FOR_PATCH"
 msgstr ""
 
 #: ../src/auto-evo/selection_pressure/AvoidPredationSelectionPressure.cs:14
-#: ../src/auto-evo/selection_pressure/GeneralAvoidPredationSelectionPressure.cs:12
+#: ../src/auto-evo/selection_pressure/GeneralAvoidPredationSelectionPressure.cs:13
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
 msgstr ""
 
@@ -5793,7 +5810,7 @@ msgid "MODIFY_ORGANELLE"
 msgstr ""
 
 #: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:581
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:621
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:622
 msgid "MODIFY_TYPE"
 msgstr ""
 
@@ -6129,7 +6146,7 @@ msgstr ""
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr ""
 
-#: ../src/multicellular_stage/MulticellularSpecies.cs:901
+#: ../src/multicellular_stage/MulticellularSpecies.cs:976
 msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
 msgstr ""
 
@@ -6225,12 +6242,12 @@ msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1260
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1051
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1052
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1259
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1050
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1051
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 
@@ -6267,12 +6284,12 @@ msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr ""
 
 #: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:847
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1111
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1121
 msgid "NEW_NAME"
 msgstr ""
 
 #: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:842
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1106
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1116
 msgid "NEW_NAME_COLON"
 msgstr ""
 
@@ -6280,7 +6297,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1226
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:177
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:570
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:997
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:998
 msgid "NEXT_CAPITAL"
 msgstr ""
 
@@ -6396,7 +6413,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2600
 #: ../src/gui_common/menus/OptionsMenu.tscn:746
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:503
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.GUI.cs:328
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.GUI.cs:351
 #: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.cs:145
 #: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.cs:154
 #: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.cs:163
@@ -6481,7 +6498,7 @@ msgstr ""
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/MulticellularEditor.cs:337
+#: ../src/multicellular_stage/editor/MulticellularEditor.cs:340
 msgid "NOT_ENOUGH_MUTATION_POINTS"
 msgstr ""
 
@@ -6498,7 +6515,7 @@ msgid "NO_AI"
 msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:665
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3458
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3460
 msgid "NO_DATA_TO_SHOW"
 msgstr ""
 
@@ -6538,11 +6555,11 @@ msgstr ""
 msgid "NO_SELECTED_MOD"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1077
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1078
 msgid "NO_SPORE_CELL_TYPE_SET"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1078
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1079
 msgid "NO_SPORE_CELL_TYPE_SET_TITLE"
 msgstr ""
 
@@ -6554,7 +6571,7 @@ msgstr ""
 msgid "NUCLEUS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2018
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2020
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -6578,8 +6595,8 @@ msgstr ""
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:25
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:35
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:45
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3272
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3284
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3274
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3286
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:154
 #: ../src/microbe_stage/MicrobeHUD.cs:879
 msgid "N_A"
@@ -6723,8 +6740,8 @@ msgstr ""
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:799
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:835
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:800
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:836
 msgid "OPTION_USED_FOR_PLAYER"
 msgstr ""
 
@@ -6741,11 +6758,11 @@ msgstr ""
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1544
+#: ../simulation_parameters/microbe_stage/organelles.json:1560
 msgid "ORGANELLE_AXON"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1545
+#: ../simulation_parameters/microbe_stage/organelles.json:1561
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr ""
 
@@ -6761,11 +6778,11 @@ msgstr ""
 msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1587
+#: ../simulation_parameters/microbe_stage/organelles.json:1603
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1588
+#: ../simulation_parameters/microbe_stage/organelles.json:1604
 msgid "ORGANELLE_MYOFIBRIL_DESCRIPTION"
 msgstr ""
 
@@ -7054,12 +7071,12 @@ msgstr ""
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1150
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1160
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION_MULTICELLULAR"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1271
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1153
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1163
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
 msgstr ""
 
@@ -7076,7 +7093,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.cs:790
 #: ../src/gui_common/tooltip/ToolTipManager.cs:833
 #: ../src/gui_common/tooltip/ToolTipManager.cs:847
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:565
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:576
 #: ../src/microbe_stage/editor/MutationPointsBar.cs:101
 #: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:776
 #: ../src/microbe_stage/editor/tooltips/EnvironmentalToleranceToolTip.cs:110
@@ -7095,8 +7112,8 @@ msgstr ""
 #: ../src/microbe_stage/OrganismStatisticsPanel.cs:519
 #: ../src/microbe_stage/OrganismStatisticsPanel.cs:639
 #: ../src/microbe_stage/OrganismStatisticsPanel.cs:643
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:1151
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:1189
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:1237
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:1275
 #: ../src/society_stage/gui/ResearchScreen.cs:34
 msgid "PERCENTAGE_VALUE"
 msgstr ""
@@ -7162,7 +7179,7 @@ msgstr ""
 msgid "PIN_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2514
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2516
 msgid "PLACEMENT_BLOCKED_BECAUSE_INCOMPATIBLE_MEMBRANE"
 msgstr ""
 
@@ -7213,7 +7230,7 @@ msgstr ""
 msgid "PLAYER_DUPLICATE"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:648
+#: ../src/saving/SaveHelper.cs:670
 msgid "PLAYER_EXTINCT"
 msgstr ""
 
@@ -7273,7 +7290,7 @@ msgstr ""
 msgid "POPULATION_IN_PATCHES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3291
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3293
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr ""
 
@@ -7366,7 +7383,7 @@ msgstr ""
 
 #: ../src/microbe_stage/ProcessPanel.cs:89
 #: ../src/microbe_stage/ProcessPanel.tscn:34
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1129
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1139
 msgid "PROCESS_PANEL_TITLE"
 msgstr ""
 
@@ -7538,7 +7555,7 @@ msgid "REPRODUCED"
 msgstr ""
 
 #: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:526
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:533
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:534
 msgid "REPRODUCTION"
 msgstr ""
 
@@ -7546,7 +7563,7 @@ msgstr ""
 msgid "REPRODUCTION_ASEXUAL"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:681
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:682
 #: ../src/multicellular_stage/MulticellularReproductionMethod.cs:5
 msgid "REPRODUCTION_BUDDING"
 msgstr ""
@@ -7566,17 +7583,17 @@ msgstr ""
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:683
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:684
 #: ../src/multicellular_stage/MulticellularReproductionMethod.cs:11
 msgid "REPRODUCTION_MASS_BUDDING"
 msgstr ""
 
 #: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:625
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:673
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:674
 msgid "REPRODUCTION_METHOD"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:687
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:688
 msgid "REPRODUCTION_SEXUAL"
 msgstr ""
 
@@ -7588,7 +7605,7 @@ msgstr ""
 msgid "REPRODUCTION_SEXUAL_ISOGAMY"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:685
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:686
 #: ../src/multicellular_stage/MulticellularReproductionMethod.cs:8
 msgid "REPRODUCTION_SPORE"
 msgstr ""
@@ -7944,15 +7961,15 @@ msgstr ""
 msgid "SAVING_DOT_DOT_DOT"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:638 ../src/saving/SaveHelper.cs:721
+#: ../src/saving/SaveHelper.cs:660 ../src/saving/SaveHelper.cs:743
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:647 ../src/saving/SaveHelper.cs:666
+#: ../src/saving/SaveHelper.cs:669 ../src/saving/SaveHelper.cs:688
 msgid "SAVING_NOT_POSSIBLE"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:700
+#: ../src/saving/SaveHelper.cs:722
 msgid "SAVING_SUCCEEDED"
 msgstr ""
 
@@ -8127,26 +8144,26 @@ msgstr ""
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:810
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:811
 msgid "SEXUAL_REPRODUCTION_ANISOGAMY_METHOD_EXPLANATION"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:423
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:843
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:426
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:844
 msgid "SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:415
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:850
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:418
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:851
 msgid "SEXUAL_REPRODUCTION_BENEFITS_EXPLANATION_ACTIVE"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:773
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:774
 msgid "SEXUAL_REPRODUCTION_METHOD_EXPLANATION"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.GUI.cs:487
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:803
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.GUI.cs:510
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:804
 msgid "SEXUAL_REPRODUCTION_UPGRADE_ANISOGAMY"
 msgstr ""
 
@@ -8176,7 +8193,7 @@ msgid "SHOW_HELP"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:944
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:885
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:886
 msgid "SHOW_ITEM_COORDINATES"
 msgstr ""
 
@@ -8429,7 +8446,7 @@ msgstr ""
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:2291
+#: ../src/microbe_stage/MicrobeStage.cs:2292
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -8486,7 +8503,7 @@ msgstr ""
 msgid "SPECIES_IN_OTHER_PATCHES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:607
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:618
 msgid "SPECIES_LIST"
 msgstr ""
 
@@ -8533,11 +8550,11 @@ msgstr ""
 msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1124
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1134
 msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:712
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:713
 msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
 msgstr ""
 
@@ -8722,7 +8739,7 @@ msgstr ""
 
 #: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:441
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:671
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:517
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:518
 msgid "STRUCTURE"
 msgstr ""
 
@@ -8773,11 +8790,11 @@ msgstr ""
 msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:2827
+#: ../src/microbe_stage/MicrobeStage.cs:2828
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:2828
+#: ../src/microbe_stage/MicrobeStage.cs:2829
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
@@ -8926,7 +8943,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:817
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:846
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:854
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:448
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:459
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:532
 #: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:97
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:170
@@ -9311,7 +9328,7 @@ msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeSpecies.cs:464
-#: ../src/multicellular_stage/MulticellularSpecies.cs:904
+#: ../src/multicellular_stage/MulticellularSpecies.cs:979
 msgid "TOLERANCE_DETAIL_TEXT"
 msgstr ""
 
@@ -10083,7 +10100,7 @@ msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1269
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1151
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1161
 msgid "VIEW_PENDING_ACTIONS"
 msgstr ""
 
@@ -12501,11 +12518,11 @@ msgstr ""
 msgid "WORST_PATCH_COLON"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1060
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1061
 msgid "WRONG_GROWTH_ORDER"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1059
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:1060
 msgid "WRONG_GROWTH_ORDER_TEXT"
 msgstr ""
 
@@ -12525,11 +12542,11 @@ msgstr ""
 msgid "X_TWITTER_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:602
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:603
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:604
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:606
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:609
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:613
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:614
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:615
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:617
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:620
 msgid "YEARS"
 msgstr ""
 

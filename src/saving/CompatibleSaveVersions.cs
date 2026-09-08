@@ -14,7 +14,7 @@ public static class CompatibleSaveVersions
         KnownVersionCompatibilityMapping = new()
         {
             {
-                "1.6.0.0-rc1", [
+                "1.6.0.0", [
                     ("0.9.0.0", false), ("0.9.0.1", false),
                     ("0.9.1.0", true), ("0.9.1.1", true),
                     ("0.9.2.0", true), ("1.0.0.0", true),
@@ -22,6 +22,8 @@ public static class CompatibleSaveVersions
                     ("1.0.1.0", true), ("1.0.1.1", true),
                     ("1.1.0.0-rc1", true), ("1.1.0.0", true),
                     ("1.2.0.0-alpha", true), ("1.6.0.0-alpha", true),
+
+                    // NOTE: 1.6 is explicitly not compatible with the 1.6.0.0-rc1 as that changes organelle size
                 ]
             },
         };

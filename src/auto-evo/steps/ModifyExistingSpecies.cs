@@ -226,10 +226,15 @@ public class ModifyExistingSpecies : IRunStep
                         MichePopulation.CalculatePopulationInPatch(mutation.MutatedSpecies, miche!, patch,
                             cache);
 
+                    var multicellularMutant = mutation.MutatedSpecies as MulticellularSpecies;
+
+                    // TODO This method of nulling and later restoring gameplay cells should be a temporary hack
+                    multicellularMutant?.RestoreGameplayCellsForAutoEvo();
+
                     if (newPopulation > Constants.AUTO_EVO_MINIMUM_VIABLE_POPULATION)
                     {
                         // OnEdited is expensive, so we only run it here on species that exit auto-evo
-                        if (mutation.MutatedSpecies is MulticellularSpecies multicellularMutant)
+                        if (multicellularMutant != null)
                         {
                             // For Multicellular species, we need to run a custom version to run things in the right
                             // order without breaking things
@@ -344,6 +349,10 @@ public class ModifyExistingSpecies : IRunStep
 
     private void GetMutationsForSpecies(Species species, int speciesInPatch)
     {
+        // We avoid auto-evo taking forever by skipping any (probably player) species that has far too many cells
+        if (species is MulticellularSpecies { GameplayCells.Count: > Constants.AUTO_EVO_CUTOFF_CELL_COUNT })
+            return;
+
         double totalMP = Constants.BASE_MUTATION_POINTS * worldSettings.AIMutationMultiplier;
 
         generateMutationsWorkingMemory.Clear();

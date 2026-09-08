@@ -428,6 +428,9 @@ public class AutoEvoRun
 
         foreach (var species in allSpecies)
         {
+            if (species is not MicrobeSpecies and not MulticellularSpecies)
+                continue;
+
             steps.Enqueue(new MigrateSpecies(species, map, worldSettings, new SimulationCache(worldSettings), random));
         }
 
