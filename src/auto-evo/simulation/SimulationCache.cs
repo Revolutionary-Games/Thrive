@@ -2216,7 +2216,7 @@ public class SimulationCache
                     {
                         ++cellCount;
                         if (cellType.MembraneType.CanEngulf &&
-                            cellTypeHexSize / preyData.SmallestHexSize >= Constants.ENGULF_SIZE_RATIO_REQ)
+                            cellTypeHexSize >= preyData.SmallestHexSize * Constants.ENGULF_SIZE_RATIO_REQ)
                         {
                             var cellEnzymesScore = GetEnzymesScore(cellType, preyData.DissolverEnzyme,
                                 cellTypeSpecializationBonus * CellBodyPlanInternalCalculations
