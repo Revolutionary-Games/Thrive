@@ -153,7 +153,7 @@ public class ChunkCompoundPressure : SelectionPressure
             throw new ArgumentException("Wrong type of Species passed to Microbe/Multicellular Species miche tree");
         }
 
-        var energyBalance = cache.GetEnergyBalanceForSpecies(species, patch.Biome);
+        var energyBalance = cache.GetEnergyBalanceForSpeciesView(species, patch.Biome);
 
         var score = 1.0f;
 

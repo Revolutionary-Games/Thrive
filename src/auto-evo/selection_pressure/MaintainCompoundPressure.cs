@@ -51,7 +51,7 @@ public class MaintainCompoundPressure : SelectionPressure
 
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {
-        var activeProcessList = cache.GetActiveProcessList(species);
+        var activeProcessList = cache.GetActiveProcessListView(species);
         var biomeConditions = patch.Biome;
         var resolvedTolerances = cache.GetEnvironmentalTolerances(species, biomeConditions);
 
@@ -63,7 +63,7 @@ public class MaintainCompoundPressure : SelectionPressure
             if (process.Process.Inputs.TryGetValue(compound, out var inputAmount))
             {
                 var processSpeed = cache
-                    .GetProcessMaximumSpeed(process, resolvedTolerances.ProcessSpeedModifier, biomeConditions)
+                    .GetProcessMaximumSpeedView(process, resolvedTolerances.ProcessSpeedModifier, biomeConditions)
                     .CurrentSpeed;
 
                 compoundUsed += inputAmount * processSpeed;
@@ -72,7 +72,7 @@ public class MaintainCompoundPressure : SelectionPressure
             if (process.Process.Outputs.TryGetValue(compound, out var outputAmount))
             {
                 var processSpeed = cache
-                    .GetProcessMaximumSpeed(process, resolvedTolerances.ProcessSpeedModifier, biomeConditions)
+                    .GetProcessMaximumSpeedView(process, resolvedTolerances.ProcessSpeedModifier, biomeConditions)
                     .CurrentSpeed;
 
                 compoundCreated += outputAmount * processSpeed;

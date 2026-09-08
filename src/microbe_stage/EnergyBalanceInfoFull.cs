@@ -39,6 +39,25 @@ public class EnergyBalanceInfoFull : EnergyBalanceInfoSimple
 
     public void AddProduction(string groupName, float amount, Dictionary<Compound, float> requiredInputCompounds)
     {
+        AddProduction(groupName, amount, new ProcessSpeedView.InputAmounts(requiredInputCompounds));
+    }
+
+    public void SetupTrackingForRequiredCompounds()
+    {
+        if (ProductionRequiresCompounds == null)
+        {
+            ProductionRequiresCompounds = new Dictionary<string, Dictionary<Compound, float>>();
+        }
+        else
+        {
+            // TODO: should this just clear the second level dictionaries for more object reuse?
+            ProductionRequiresCompounds.Clear();
+        }
+    }
+
+    internal void AddProduction(string groupName, float amount,
+        ProcessSpeedView.InputAmounts requiredInputCompounds)
+    {
         Production.TryGetValue(groupName, out var existing);
 
         Production[groupName] = existing + amount;
@@ -56,19 +75,6 @@ public class EnergyBalanceInfoFull : EnergyBalanceInfoSimple
                 compoundData.TryGetValue(inputCompound.Key, out var existingAmount);
                 compoundData[inputCompound.Key] = existingAmount + inputCompound.Value;
             }
-        }
-    }
-
-    public void SetupTrackingForRequiredCompounds()
-    {
-        if (ProductionRequiresCompounds == null)
-        {
-            ProductionRequiresCompounds = new Dictionary<string, Dictionary<Compound, float>>();
-        }
-        else
-        {
-            // TODO: should this just clear the second level dictionaries for more object reuse?
-            ProductionRequiresCompounds.Clear();
         }
     }
 }

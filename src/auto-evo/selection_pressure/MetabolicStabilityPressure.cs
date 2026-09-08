@@ -49,7 +49,7 @@ public class MetabolicStabilityPressure : SelectionPressure
 
         if (species is MicrobeSpecies)
         {
-            var energyBalance = cache.GetEnergyBalanceForSpecies(species, patch.Biome);
+            var energyBalance = cache.GetEnergyBalanceForSpeciesView(species, patch.Biome);
 
             if (energyBalance.FinalBalance > 0)
             {

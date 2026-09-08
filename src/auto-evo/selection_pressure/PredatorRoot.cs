@@ -58,7 +58,7 @@ public class PredatorRoot : SelectionPressure
 
         // Ensure that a predator can actually survive off of only glucose
         var atpFromGlucose = cache.GetCompoundGeneratedFrom(glucose, atp, species, patch.Biome);
-        var energyBalance = cache.GetEnergyBalanceForSpecies(species, patch.Biome);
+        var energyBalance = cache.GetEnergyBalanceForSpeciesView(species, patch.Biome);
 
         if (atpFromGlucose >= energyBalance.TotalConsumption)
         {

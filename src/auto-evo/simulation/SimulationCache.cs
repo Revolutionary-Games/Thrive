@@ -120,89 +120,12 @@ public class SimulationCache
 
     /// <summary>
     ///   Calculates the full energy balance for the given species in the given biome conditions.
-    ///   Only accepts Microbe and Multicellular Species
+    ///   Only accepts Microbe and Multicellular Species. Returns a detached, caller-owned copy.
     /// </summary>
     public EnergyBalanceInfoSimple GetEnergyBalanceForSpecies(Species species,
         BiomeConditions biomeConditions)
     {
-        // TODO: this gets called an absolute ton with the new auto-evo so a more efficient caching method (to allow
-        // different species but with same organelles to be able to use the same cache value) would be nice here
-
-#if USE_HASHED_SCORE_KEYS
-        var key = (ulong)(uint)biomeConditions.GetHashCode() << 32 | (uint)GetSpeciesCacheKey(species);
-#else
-        var key = (GetSpeciesCacheKey(species), biomeConditions);
-#endif
-        ref var balance = ref CollectionsMarshal.GetValueRefOrNullRef(cachedSimpleEnergyBalances, key);
-        if (!Unsafe.IsNullRef(ref balance))
-        {
-            return balance;
-        }
-
-        var cached = new EnergyBalanceInfoSimple();
-
-        var environmentalTolerances = GetEnvironmentalTolerances(species, biomeConditions);
-        if (species is MicrobeSpecies microbeSpecies)
-        {
-            var maximumMovementDirection =
-                MicrobeInternalCalculations.MaximumSpeedDirection(microbeSpecies.Organelles);
-            var totalSpecializationBonus = microbeSpecies.CellTypeSpecializationBonus;
-
-            // Auto-evo uses the average values of compound during the course of a simulated day
-            ProcessSystem.ComputeEnergyBalanceSimple(microbeSpecies.Organelles, biomeConditions,
-                environmentalTolerances, totalSpecializationBonus, microbeSpecies.MembraneType,
-                maximumMovementDirection, true, species.PlayerSpecies, worldSettings,
-                CompoundAmountType.Average, this, cached);
-        }
-        else if (species is MulticellularSpecies multicellularSpecies)
-        {
-            // Currently, ComputeEnergyBalanceSimple is not set up to safely add onto existing energy balances,
-            // so we need to add up from a temporary balance per cell.
-            var cellBalance = new EnergyBalanceInfoSimple();
-
-            var cellTypes = multicellularSpecies.CellTypes;
-            for (var i = 0; i < cellTypes.Count; ++i)
-            {
-                var cellType = cellTypes[i];
-
-                // Perhaps this should instead take a MaximumSpeedDirection of the organism as a whole?
-                var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(cellType.Organelles);
-
-                var cellTypeSpecializationBonus = cellType.CellTypeSpecializationBonus;
-
-                foreach (var hex in multicellularSpecies.EditorCells)
-                {
-                    if (hex.Data == null)
-                        throw new ArgumentException("editor cell does not have celltemplate set");
-
-                    var cell = hex.Data;
-
-                    if (!ReferenceEquals(cell.CellType, cellType))
-                        continue;
-
-                    cellBalance.Clear();
-
-                    var totalSpecializationBonus = cellTypeSpecializationBonus *
-                        CellBodyPlanInternalCalculations.GetAdjacencySpecializationBonusFromBodyPlan(cell,
-                            multicellularSpecies.EditorCells);
-
-                    // Auto-evo uses the average values of compound during the course of a simulated day
-                    ProcessSystem.ComputeEnergyBalanceSimple(cellType.Organelles, biomeConditions,
-                        environmentalTolerances, totalSpecializationBonus, cellType.MembraneType,
-                        maximumMovementDirection, true, species.PlayerSpecies, worldSettings,
-                        CompoundAmountType.Average, this, cellBalance);
-
-                    cached.Add(cellBalance);
-                }
-            }
-        }
-        else
-        {
-            throw new ArgumentException("Incompatible species type given");
-        }
-
-        cachedSimpleEnergyBalances.Add(key, cached);
-        return cached;
+        return GetEnergyBalanceForSpeciesView(species, biomeConditions).ToMutableCopy();
     }
 
     public EnergyBalanceInfoSimple GetEnergyBalanceForCellType(IReadOnlyCellTypeDefinition celltype,
@@ -336,7 +259,7 @@ public class SimulationCache
 
         var compoundIn = 0.0f;
         var compoundOut = 0.0f;
-        var activeProcessList = GetActiveProcessList(species);
+        var activeProcessList = GetActiveProcessListView(species);
 
         // For maximum efficiency, as this is called an absolute ton, the following approach is used
         foreach (var process in activeProcessList)
@@ -374,7 +297,7 @@ public class SimulationCache
 
         var cached = 0.0f;
 
-        var activeProcessList = GetActiveProcessList(species);
+        var activeProcessList = GetActiveProcessListView(species);
 
         var tolerances = GetEnvironmentalTolerances(species, biomeConditions);
 
@@ -385,7 +308,7 @@ public class SimulationCache
                 if (process.Process.Outputs.TryGetValue(toCompound, out var outputAmount))
                 {
                     var processSpeed =
-                        GetProcessMaximumSpeed(process, tolerances.ProcessSpeedModifier, biomeConditions)
+                        GetProcessMaximumSpeedView(process, tolerances.ProcessSpeedModifier, biomeConditions)
                             .CurrentSpeed;
 
                     cached += outputAmount * processSpeed;
@@ -405,7 +328,7 @@ public class SimulationCache
     ///   Process speed modifier from <see cref="ResolvedMicrobeTolerances.ProcessSpeedModifier"/>
     /// </param>
     /// <param name="biomeConditions">The biome conditions to use</param>
-    /// <returns>The speed information for the process</returns>
+    /// <returns>A detached, caller-owned copy of the speed information for the process</returns>
     /// <remarks>
     ///   <para>
     ///     This is important to cache as it is called very many times, but the speed modifier slightly reduces
@@ -415,39 +338,7 @@ public class SimulationCache
     public ProcessSpeedInformation GetProcessMaximumSpeed(TweakedProcess process, float speedModifier,
         IBiomeConditions biomeConditions)
     {
-        // For caching resolve some data already to have better cache hits
-        var effectiveMultiplier = process.Rate * speedModifier;
-
-        // 16 low bits of the key (as process amounts are limited, we save bits on them)
-        ulong key = process.Process.ProcessId;
-
-        // These slightly overlap, but hopefully this doesn't lead to collisions (the most significant effect would be
-        // just a process or two running at the wrong speed)
-        // The overlap is 16 bits of the upper end of the float
-        key |= (ulong)(uint)BitConverter.SingleToInt32Bits(effectiveMultiplier) << 16;
-        key ^= (ulong)(uint)biomeConditions.GetHashCode() << 32;
-
-        // Shuffle key bits with a prime number (we could do a double shuffle above, but processes are needed so much
-        // that we do not want the extra work)
-        key *= 9853659385249210933;
-
-        ref var speed = ref CollectionsMarshal.GetValueRefOrNullRef(cachedProcessSpeeds, key);
-        if (!Unsafe.IsNullRef(ref speed))
-        {
-#if VERIFY_PROCESS_SPEED_CACHE_RETURNS
-            if (speed.Process != process.Process)
-                throw new Exception("Cached process speed does not match requested process");
-#endif
-
-            return speed;
-        }
-
-        // TODO: cache process speed information objects?
-        var cached = ProcessSystem.CalculateProcessMaximumSpeed(process, speedModifier, biomeConditions,
-            CompoundAmountType.Average, true);
-
-        cachedProcessSpeeds.Add(key, cached);
-        return cached;
+        return GetProcessMaximumSpeedView(process, speedModifier, biomeConditions).ToMutableCopy();
     }
 
     public float GetPredationScore(Species predatorSpecies, Species preySpecies, BiomeConditions biomeConditions)
@@ -693,44 +584,12 @@ public class SimulationCache
         cachedProcessLists.Clear();
     }
 
+    /// <summary>
+    ///   Returns a detached process list. Mutating the list or its value-type elements does not affect this cache.
+    /// </summary>
     public List<TweakedProcess> GetActiveProcessList(Species species)
     {
-#if CHECK_HASH_CODE_REUSED_INSTANCES
-        CheckSpecies(species);
-#endif
-
-        var key = GetSpeciesCacheKey(species);
-        if (cachedProcessLists.TryGetValue(key, out var cached))
-        {
-            return cached;
-        }
-
-        // TODO: a buffer of process lists (to make small list allocations rarer) (as cached is null here if not found)
-        if (species is MicrobeSpecies microbeSpecies)
-        {
-            ProcessSystem.ComputeActiveProcessList(microbeSpecies.Organelles, ref cached);
-        }
-        else if (species is MulticellularSpecies multicellularSpecies)
-        {
-            List<IReadOnlyOrganelleTemplate> allOrganelles = [];
-
-            foreach (var cell in multicellularSpecies.EditorCells)
-            {
-                foreach (var organelle in cell.Data!.CellType.Organelles)
-                {
-                    allOrganelles.Add(organelle);
-                }
-            }
-
-            ProcessSystem.ComputeActiveProcessList(allOrganelles, ref cached);
-        }
-        else
-        {
-            throw new ArgumentException("Incompatible species type given");
-        }
-
-        cachedProcessLists.Add(key, cached);
-        return cached;
+        return GetActiveProcessListView(species).ToMutableCopy();
     }
 
     public float GetEnzymesScore(MulticellularSpecies multicellularSpecies, string dissolverEnzyme, float preyHexSize,
@@ -827,6 +686,168 @@ public class SimulationCache
 
         cachedPredationToolsRawScores.Add(key, predationToolsRawScores);
         return predationToolsRawScores;
+    }
+
+    // All result access goes through these creation paths. Cache entries are never modified after insertion.
+    // Clear only releases entries; existing views retain their backing objects, which must not be pooled or reused.
+    internal EnergyBalanceView GetEnergyBalanceForSpeciesView(Species species,
+        BiomeConditions biomeConditions)
+    {
+        // TODO: this gets called an absolute ton with the new auto-evo so a more efficient caching method (to allow
+        // different species but with same organelles to be able to use the same cache value) would be nice here
+
+#if USE_HASHED_SCORE_KEYS
+        var key = (ulong)(uint)biomeConditions.GetHashCode() << 32 | (uint)GetSpeciesCacheKey(species);
+#else
+        var key = (GetSpeciesCacheKey(species), biomeConditions);
+#endif
+        ref var balance = ref CollectionsMarshal.GetValueRefOrNullRef(cachedSimpleEnergyBalances, key);
+        if (!Unsafe.IsNullRef(ref balance))
+        {
+            return new EnergyBalanceView(balance);
+        }
+
+        var cached = new EnergyBalanceInfoSimple();
+
+        var environmentalTolerances = GetEnvironmentalTolerances(species, biomeConditions);
+        if (species is MicrobeSpecies microbeSpecies)
+        {
+            var maximumMovementDirection =
+                MicrobeInternalCalculations.MaximumSpeedDirection(microbeSpecies.Organelles);
+            var totalSpecializationBonus = microbeSpecies.CellTypeSpecializationBonus;
+
+            // Auto-evo uses the average values of compound during the course of a simulated day
+            ProcessSystem.ComputeEnergyBalanceSimple(microbeSpecies.Organelles, biomeConditions,
+                environmentalTolerances, totalSpecializationBonus, microbeSpecies.MembraneType,
+                maximumMovementDirection, true, species.PlayerSpecies, worldSettings,
+                CompoundAmountType.Average, this, cached);
+        }
+        else if (species is MulticellularSpecies multicellularSpecies)
+        {
+            // Currently, ComputeEnergyBalanceSimple is not set up to safely add onto existing energy balances,
+            // so we need to add up from a temporary balance per cell.
+            var cellBalance = new EnergyBalanceInfoSimple();
+
+            var cellTypes = multicellularSpecies.CellTypes;
+            for (var i = 0; i < cellTypes.Count; ++i)
+            {
+                var cellType = cellTypes[i];
+
+                // Perhaps this should instead take a MaximumSpeedDirection of the organism as a whole?
+                var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(cellType.Organelles);
+
+                var cellTypeSpecializationBonus = cellType.CellTypeSpecializationBonus;
+
+                foreach (var hex in multicellularSpecies.EditorCells)
+                {
+                    if (hex.Data == null)
+                        throw new ArgumentException("editor cell does not have celltemplate set");
+
+                    var cell = hex.Data;
+
+                    if (!ReferenceEquals(cell.CellType, cellType))
+                        continue;
+
+                    cellBalance.Clear();
+
+                    var totalSpecializationBonus = cellTypeSpecializationBonus *
+                        CellBodyPlanInternalCalculations.GetAdjacencySpecializationBonusFromBodyPlan(cell,
+                            multicellularSpecies.EditorCells);
+
+                    // Auto-evo uses the average values of compound during the course of a simulated day
+                    ProcessSystem.ComputeEnergyBalanceSimple(cellType.Organelles, biomeConditions,
+                        environmentalTolerances, totalSpecializationBonus, cellType.MembraneType,
+                        maximumMovementDirection, true, species.PlayerSpecies, worldSettings,
+                        CompoundAmountType.Average, this, cellBalance);
+
+                    cached.Add(cellBalance);
+                }
+            }
+        }
+        else
+        {
+            throw new ArgumentException("Incompatible species type given");
+        }
+
+        cachedSimpleEnergyBalances.Add(key, cached);
+        return new EnergyBalanceView(cached);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    internal ProcessSpeedView GetProcessMaximumSpeedView(TweakedProcess process, float speedModifier,
+        IBiomeConditions biomeConditions)
+    {
+        // For caching resolve some data already to have better cache hits
+        var effectiveMultiplier = process.Rate * speedModifier;
+
+        // 16 low bits of the key (as process amounts are limited, we save bits on them)
+        ulong key = process.Process.ProcessId;
+
+        // These slightly overlap, but hopefully this doesn't lead to collisions (the most significant effect would be
+        // just a process or two running at the wrong speed)
+        // The overlap is 16 bits of the upper end of the float
+        key |= (ulong)(uint)BitConverter.SingleToInt32Bits(effectiveMultiplier) << 16;
+        key ^= (ulong)(uint)biomeConditions.GetHashCode() << 32;
+
+        // Shuffle key bits with a prime number (we could do a double shuffle above, but processes are needed so much
+        // that we do not want the extra work)
+        key *= 9853659385249210933;
+
+        ref var speed = ref CollectionsMarshal.GetValueRefOrNullRef(cachedProcessSpeeds, key);
+        if (!Unsafe.IsNullRef(ref speed))
+        {
+#if VERIFY_PROCESS_SPEED_CACHE_RETURNS
+            if (speed.Process != process.Process)
+                throw new Exception("Cached process speed does not match requested process");
+#endif
+
+            return new ProcessSpeedView(speed);
+        }
+
+        var cached = ProcessSystem.CalculateProcessMaximumSpeed(process, speedModifier, biomeConditions,
+            CompoundAmountType.Average, true);
+
+        cachedProcessSpeeds.Add(key, cached);
+        return new ProcessSpeedView(cached);
+    }
+
+    internal ActiveProcessView GetActiveProcessListView(Species species)
+    {
+#if CHECK_HASH_CODE_REUSED_INSTANCES
+        CheckSpecies(species);
+#endif
+
+        var key = GetSpeciesCacheKey(species);
+        if (cachedProcessLists.TryGetValue(key, out var cached))
+        {
+            return new ActiveProcessView(cached);
+        }
+
+        if (species is MicrobeSpecies microbeSpecies)
+        {
+            ProcessSystem.ComputeActiveProcessList(microbeSpecies.Organelles, ref cached);
+        }
+        else if (species is MulticellularSpecies multicellularSpecies)
+        {
+            List<IReadOnlyOrganelleTemplate> allOrganelles = [];
+
+            foreach (var cell in multicellularSpecies.EditorCells)
+            {
+                foreach (var organelle in cell.Data!.CellType.Organelles)
+                {
+                    allOrganelles.Add(organelle);
+                }
+            }
+
+            ProcessSystem.ComputeActiveProcessList(allOrganelles, ref cached);
+        }
+        else
+        {
+            throw new ArgumentException("Incompatible species type given");
+        }
+
+        cachedProcessLists.Add(key, cached);
+        return new ActiveProcessView(cached);
     }
 
     private static ToxinToolScores CalculateToxinToolScores(float averageToxicity, float everyToxinScore,
@@ -1488,12 +1509,12 @@ public class SimulationCache
 
         var predatorSpeed = GetSpeedForSpecies(predatorSpecies);
         var predatorRotationSpeed = GetRotationSpeedForSpecies(predatorSpecies);
-        var predatorEnergyBalance = GetEnergyBalanceForSpecies(predatorSpecies, biomeConditions);
+        var predatorEnergyBalance = GetEnergyBalanceForSpeciesView(predatorSpecies, biomeConditions);
         var predatorOsmoregulationCost = predatorEnergyBalance.Osmoregulation;
 
         var preySpeed = GetSpeedForSpecies(preySpecies);
         var preyRotationSpeed = GetRotationSpeedForSpecies(preySpecies);
-        var preyEnergyBalance = GetEnergyBalanceForSpecies(preySpecies, biomeConditions);
+        var preyEnergyBalance = GetEnergyBalanceForSpeciesView(preySpecies, biomeConditions);
         var preyOsmoregulationCost = preyEnergyBalance.Osmoregulation;
         var preyIndividualCost = MichePopulation.CalculateIndividualCost(preySpecies, biomeConditions, this);
 

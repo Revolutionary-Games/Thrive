@@ -120,7 +120,7 @@ public class CompoundCloudPressure : SelectionPressure
             throw new ArgumentException("Wrong type of Species passed to Microbe/Multicellular Species miche tree");
         }
 
-        var energyBalance = cache.GetEnergyBalanceForSpecies(species, patch.Biome);
+        var energyBalance = cache.GetEnergyBalanceForSpeciesView(species, patch.Biome);
 
         var speed = cache.GetSpeedForSpecies(species);
         var score = MathF.Pow(speed, 0.6f);

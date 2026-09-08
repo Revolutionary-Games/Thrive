@@ -229,7 +229,7 @@ public class ReproductionCompoundPressure : SelectionPressure
             Constants.AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION;
 
         // Score from organelles that produce this compound
-        foreach (var process in cache.GetActiveProcessList(species))
+        foreach (var process in cache.GetActiveProcessListView(species))
         {
             if (process.Process.Outputs.TryGetValue(compoundDefinition, out var producedCompoundAmount))
             {

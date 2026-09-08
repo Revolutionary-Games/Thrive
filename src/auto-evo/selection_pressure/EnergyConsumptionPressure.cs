@@ -70,7 +70,7 @@ public class EnergyConsumptionPressure : SelectionPressure
             throw new ArgumentException("Wrong type of Species passed to Microbe/Multicellular Species miche tree");
         }
 
-        var energyBalance = cache.GetEnergyBalanceForSpecies(species, patch.Biome);
+        var energyBalance = cache.GetEnergyBalanceForSpeciesView(species, patch.Biome);
         var inactivityScore = 1 - MathF.Pow(species.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY, 1.2f);
         var focusScore = MathF.Pow(species.Behaviour.Focus / Constants.MAX_SPECIES_FOCUS, 1.2f);
         var fearScore = MathF.Pow(species.Behaviour.Fear / Constants.MAX_SPECIES_FEAR, 1.5f);
