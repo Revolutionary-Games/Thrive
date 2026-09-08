@@ -744,7 +744,7 @@ public class SimulationCache
                 continue;
 
             var cellTypeHexSize = GetBaseHexSizeForCellType(cellType);
-            if (cellTypeHexSize / preyHexSize <= Constants.ENGULF_SIZE_RATIO_REQ)
+            if (cellTypeHexSize < preyHexSize * Constants.ENGULF_SIZE_RATIO_REQ)
                 continue;
 
             var cellTypeSpecializationBonus = cellType.CellTypeSpecializationBonus;
@@ -2184,7 +2184,7 @@ public class SimulationCache
                     ++predatorOxygenUsingOrganellesCount;
             }
 
-            if (canEngulf && predatorHexSize / preyData.SmallestHexSize > Constants.ENGULF_SIZE_RATIO_REQ)
+            if (canEngulf && predatorHexSize >= preyData.SmallestHexSize * Constants.ENGULF_SIZE_RATIO_REQ)
             {
                 enzymesScore = GetEnzymesScore(microbePredator, preyData.DissolverEnzyme,
                     microbePredator.CellTypeSpecializationBonus);
