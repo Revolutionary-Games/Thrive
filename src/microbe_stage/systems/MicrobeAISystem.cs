@@ -1853,6 +1853,10 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                     return;
             }
 
+            // Ignore chunks that wouldn't yield any useful compounds when absorbing
+            if (!compounds.Compounds.HasAnyCompounds())
+                return;
+
             if (entity.Has<Engulfable>())
             {
                 ref var engulfable = ref entity.Get<Engulfable>();
