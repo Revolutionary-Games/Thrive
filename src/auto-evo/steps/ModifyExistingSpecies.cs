@@ -459,7 +459,7 @@ public class ModifyExistingSpecies : IRunStep
                             produceMutations = false;
                     }
 
-                    var mutated = new List<Mutant>();
+                    List<Mutant>? mutated = null;
                     if (produceMutations)
                     {
                         // TODO: this seems like the longest part, so splitting this into multiple steps (maybe bundling
