@@ -342,6 +342,10 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             control.SetMucocystState(ref organelles, ref compoundStorage, entity, false);
         }
 
+        // This timer is now always here to ensure that gamete shooting is not prevented too often. This is a somewhat
+        // approximate timer, but it being here at the top level makes sure it ticks always.
+        ai.TimeSinceGameteShoot += Constants.MICROBE_AI_THINK_INTERVAL;
+
         var radiationAmount = compounds.GetCompoundAmount(Compound.Radiation);
         var radiationFraction = radiationAmount / compounds.GetCapacityForCompound(Compound.Radiation);
 
@@ -528,13 +532,12 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                 {
                     if (signaling.ReceivedCommandFromEntity.IsAliveAndHas<WorldPosition>())
                     {
-                        // This is a really approximate timer
-                        ai.TimeSinceGameteShoot += Constants.MICROBE_AI_THINK_INTERVAL;
-
                         if (signalerDistanceSquared <= Constants.GAMETE_FORCE_SHOOT_DISTANCE_SQUARED &&
                             ai.TimeSinceGameteShoot > Constants.GAMETE_FORCE_SHOOT_INTERVAL &&
                             entity.Has<MulticellularGrowth>())
                         {
+                            ai.GameteShootAttemptTimer += Constants.MICROBE_AI_THINK_INTERVAL;
+
                             ref var growth = ref entity.Get<MulticellularGrowth>();
 
                             // Make sure sexes are compatible and we are fully grown before reacting
@@ -563,7 +566,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                                 // TODO: should we check that the signal sender is fully grown?
                             }
 
-                            if (compatible)
+                            if (compatible && ourSpecies.Species is MulticellularSpecies multicellularSpecies)
                             {
                                 // If not at least 2 cells, can't do sexual reproduction anyway.
                                 // And, if not multicellular, also can't do it.
@@ -577,23 +580,45 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
 
                                 // Would be pretty weird to fail this check here, but as we need to safely cast anyway,
                                 // it is merged into this if.
+                                bool shootGamete = false;
+
                                 if (currentLookDirection.Normalized()
-                                        .AngleTo((control.LookAtPoint - position.Position).Normalized()) < 0.3f &&
-                                    ourSpecies.Species is MulticellularSpecies multicellularSpecies)
+                                        .AngleTo((control.LookAtPoint - position.Position).Normalized()) < 0.3f)
                                 {
                                     // Close enough angle, can shoot gamete
                                     ai.TimeSinceGameteShoot = 0;
 
+                                    shootGamete = true;
+                                }
+                                else if (ai.GameteShootAttemptTimer > Constants.GAMETE_SHOOT_AFTER_ANGLE_FAILS_FOR)
+                                {
+                                    // We didn't get the angle right, but shoot anyway
+                                    if (signaling.ReceivedCommandFromEntity.Has<PlayerMarker>())
+                                    {
+                                        shootGamete = true;
+                                    }
+                                    else
+                                    {
+                                        ai.GameteShootAttemptTimer = 0;
+                                    }
+                                }
+
+                                if (shootGamete)
+                                {
                                     // Only shoot gamete if we are below entity limit, or if the player requested
                                     // it specifically, for obvious gameplay reasons (not getting stuck out of the
                                     // editor)
                                     if (spawnSystem.IsUnderEntityLimitForReproducing() ||
                                         signaling.ReceivedCommandFromEntity.Has<PlayerMarker>())
                                     {
+                                        ai.TimeSinceGameteShoot = 0;
+                                        ai.GameteShootAttemptTimer = 0;
+
                                         try
                                         {
                                             growth.ShootGamete(ref entity.Get<MicrobeColony>(), entity,
-                                                multicellularSpecies, worldSimulation, spawnEnvironment, spawnSystem,
+                                                multicellularSpecies, worldSimulation, spawnEnvironment,
+                                                spawnSystem,
                                                 false);
                                         }
                                         catch (Exception e)
@@ -605,6 +630,10 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
 
                                 return;
                             }
+                        }
+                        else
+                        {
+                            ai.GameteShootAttemptTimer = 0;
                         }
                     }
 
