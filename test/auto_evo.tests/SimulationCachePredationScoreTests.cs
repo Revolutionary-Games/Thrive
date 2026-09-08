@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using AutoEvo;
+﻿using AutoEvo;
 using GdUnit4;
 using static GdUnit4.Assertions;
+using static SimulationCacheTestFixtures;
 
 [TestSuite]
 [RequireGodotRuntime]
@@ -13,9 +13,7 @@ public class SimulationCachePredationScoreTests
         var predator = CreateMicrobe(1, "NoTools", "cellulose", "cytoplasm");
         var prey = CreateMicrobe(2, "NoToolsPrey", "single", "cytoplasm");
 
-        var score = CalculatePredationScore(predator, prey);
-
-        AssertThat(score).IsEqual(0.0f);
+        AssertPredationLifecycle(predator, prey, 0.0f);
     }
 
     [TestCase]
@@ -25,9 +23,7 @@ public class SimulationCachePredationScoreTests
             "cytoplasm", "cytoplasm", "cytoplasm", "cytoplasm");
         var prey = CreateMicrobe(4, "Engulfed", "single", "cytoplasm");
 
-        var score = CalculatePredationScore(predator, prey);
-
-        AssertThat(score).IsEqual(233.40552f);
+        AssertPredationLifecycle(predator, prey, 233.40552f);
     }
 
     [TestCase]
@@ -36,9 +32,7 @@ public class SimulationCachePredationScoreTests
         var predator = CreateMicrobe(5, "Armed", "cellulose", "cytoplasm", "pilus", "oxytoxy");
         var prey = CreateMicrobe(6, "ArmouredPrey", "cellulose", "cytoplasm");
 
-        var score = CalculatePredationScore(predator, prey);
-
-        AssertThat(score).IsEqual(0.17211556f);
+        AssertPredationLifecycle(predator, prey, 0.17211556f);
     }
 
     [TestCase]
@@ -47,9 +41,7 @@ public class SimulationCachePredationScoreTests
         var predator = CreateMulticellularPredator(7);
         var prey = CreateMicrobe(8, "MulticellularPrey", "single", "cytoplasm");
 
-        var score = CalculatePredationScore(predator, prey);
-
-        AssertThat(score).IsEqual(61.029884f);
+        AssertPredationLifecycle(predator, prey, 61.029884f);
     }
 
     [TestCase]
@@ -80,38 +72,6 @@ public class SimulationCachePredationScoreTests
         AssertThat(scoreAgainstPreyWithSlimeJet < scoreAgainstPreyWithoutSlimeJet).IsTrue();
     }
 
-    private static float CalculatePredationScore(Species predator, Species prey)
-    {
-        var worldSettings = new WorldGenerationSettings
-        {
-            Seed = 1,
-        };
-        var cache = new SimulationCache(worldSettings);
-        var biome = SimulationParameters.Instance.GetBiome("aavolcanic_vent").Conditions;
-
-        return cache.GetPredationScore(predator, prey, biome);
-    }
-
-    private static MicrobeSpecies CreateMicrobe(uint id, string epithet, string membrane,
-        params string[] organelles)
-    {
-        var simulationParameters = SimulationParameters.Instance;
-        var species = new MicrobeSpecies(id, "Characterization", epithet)
-        {
-            IsBacteria = true,
-            MembraneType = simulationParameters.GetMembrane(membrane),
-        };
-
-        for (var i = 0; i < organelles.Length; ++i)
-        {
-            species.Organelles.Add(new OrganelleTemplate(simulationParameters.GetOrganelleType(organelles[i]),
-                new Hex(i * 4, 0), 0));
-        }
-
-        species.OnEdited();
-        return species;
-    }
-
     private static MicrobeSpecies CreateSlimeJetPredator(uint id)
     {
         var simulationParameters = SimulationParameters.Instance;
@@ -140,24 +100,12 @@ public class SimulationCachePredationScoreTests
 
     private static MulticellularSpecies CreateMulticellularPredator(uint id)
     {
-        var simulationParameters = SimulationParameters.Instance;
-        var cellType = new CellType(simulationParameters.GetMembrane("single"))
-        {
-            CellTypeName = "Predator",
-        };
+        var cellType = CreateCellType("Predator", "single",
+            CreateOrganelle("cytoplasm", new Hex(0, 0)),
+            CreateOrganelle("cytoplasm", new Hex(4, 0)),
+            CreateOrganelle("cytoplasm", new Hex(8, 0)),
+            CreateOrganelle("cytoplasm", new Hex(12, 0)));
 
-        for (var i = 0; i < 4; ++i)
-        {
-            cellType.ModifiableOrganelles.Add(new OrganelleTemplate(simulationParameters.GetOrganelleType("cytoplasm"),
-                new Hex(i * 4, 0), 0));
-        }
-
-        var species = new MulticellularSpecies(id, "Characterization", "MulticellularPredator");
-        species.ModifiableCellTypes.Add(cellType);
-        species.ModifiableGameplayCells.AddFast(new CellTemplate(cellType, new Hex(0, 0), 0),
-            new List<Hex>(), new List<Hex>());
-        species.OnEdited();
-
-        return species;
+        return CreateMulticellular(id, "MulticellularPredator", (cellType, new Hex(0, 0)));
     }
 }
