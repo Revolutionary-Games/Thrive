@@ -15,29 +15,23 @@ public class SimulationCacheResultIsolationTests
 {
     [TestCase(false)]
     [TestCase(true)]
-    public void EnergyBalanceMutationDoesNotPoisonCache(bool multicellular)
+    public void EnergyBalanceReadsReuseCachedResult(bool multicellular)
     {
         var species = CreateSpecies(multicellular);
         var biome = CreatePatch().Biome;
         var cache = CreateCache();
         var expected = EnergyValues(CreateCache().GetEnergyBalanceForSpecies(species, biome));
         var first = cache.GetEnergyBalanceForSpecies(species, biome);
-        first.Clear();
-        first.BaseMovement = float.NaN;
-        first.Flagella = float.NaN;
-        first.Actomyosin = float.NaN;
-        first.Cilia = float.NaN;
-        first.TotalMovement = float.NaN;
-        first.Osmoregulation = float.NaN;
-        first.TotalProduction = float.NaN;
-        first.TotalConsumption = float.NaN;
-        first.TotalConsumptionStationary = float.NaN;
-        first.FinalBalance = float.NaN;
-        first.FinalBalanceStationary = float.NaN;
-
         var second = cache.GetEnergyBalanceForSpecies(species, biome);
+
         AssertThat(EnergyValues(second).SequenceEqual(expected)).IsTrue();
-        AssertThat(ReferenceEquals(first, second)).IsFalse();
+        AssertThat(ReferenceEquals(first, second)).IsTrue();
+
+        cache.Clear();
+        var afterClear = cache.GetEnergyBalanceForSpecies(species, biome);
+        AssertThat(ReferenceEquals(first, afterClear)).IsFalse();
+        AssertThat(EnergyValues(first).SequenceEqual(expected)).IsTrue();
+        AssertThat(EnergyValues(afterClear).SequenceEqual(expected)).IsTrue();
     }
 
     [TestCase]
@@ -139,19 +133,18 @@ public class SimulationCacheResultIsolationTests
 
     [TestCase(false)]
     [TestCase(true)]
-    public void SafeViewsDoNotExposeBackingAndSurviveClear(bool multicellular)
+    public void CachedResultsRemainValidAfterClear(bool multicellular)
     {
         var species = CreateSpecies(multicellular);
         var cache = CreateCache();
         var biome = CreatePatch().Biome;
-        var energy = cache.GetEnergyBalanceForSpeciesView(species, biome);
+        var energy = cache.GetEnergyBalanceForSpecies(species, biome);
         var active = cache.GetActiveProcessListView(species);
         var speed = cache.GetProcessMaximumSpeedView(active[0], 1, biome);
-        var expectedEnergy = EnergyValues(energy.ToMutableCopy());
+        var expectedEnergy = EnergyValues(energy);
         var expectedSpeed = speed.ToMutableCopy();
         var expectedProcesses = active.ToMutableCopy();
 
-        AssertThat((object)energy is EnergyBalanceInfoSimple).IsFalse();
         AssertThat((object)speed is ProcessSpeedInformation).IsFalse();
         AssertThat((object)speed is IProcessDisplayInfo).IsFalse();
         AssertThat((object)active is List<TweakedProcess>).IsFalse();
@@ -168,16 +161,15 @@ public class SimulationCacheResultIsolationTests
         AssertThat(active[0].Rate).IsEqual(expectedProcesses[0].Rate);
         AssertThat(active[0].SpeedMultiplier).IsEqual(expectedProcesses[0].SpeedMultiplier);
 
-        energy.ToMutableCopy().Clear();
         speed.ToMutableCopy().WritableInputs.Clear();
         active.ToMutableCopy().Clear();
         cache.Clear();
 
         // Recreate the entries as well: a retained view must not refer to reused scratch storage.
-        cache.GetEnergyBalanceForSpecies(species, biome).Clear();
+        cache.GetEnergyBalanceForSpecies(species, biome);
         cache.GetProcessMaximumSpeed(expectedProcesses[0], 1, biome).WritableInputs.Clear();
         cache.GetActiveProcessList(species).Clear();
-        AssertThat(EnergyValues(energy.ToMutableCopy()).SequenceEqual(expectedEnergy)).IsTrue();
+        AssertThat(EnergyValues(energy).SequenceEqual(expectedEnergy)).IsTrue();
         AssertProcessEqual(expectedSpeed, speed.ToMutableCopy());
         AssertThat(active.Count).IsEqual(expectedProcesses.Count);
         for (var i = 0; i < active.Count; ++i)
@@ -205,7 +197,7 @@ public class SimulationCacheResultIsolationTests
         var process = cache.GetActiveProcessListView(species)[0];
         Measure("ViewsAndEnumeration", multicellular, () =>
         {
-            var total = cache.GetEnergyBalanceForSpeciesView(species, biome).TotalProduction;
+            var total = cache.GetEnergyBalanceForSpecies(species, biome).TotalProduction;
             var speed = cache.GetProcessMaximumSpeedView(process, 1, biome);
             total += speed.CurrentSpeed + speed.ATPConsumption + speed.ATPProduction;
             foreach (var input in speed.Inputs)
@@ -216,30 +208,6 @@ public class SimulationCacheResultIsolationTests
 
             return total;
         });
-    }
-
-    [TestCase]
-    public void EnergyCompatibilityCopyIncludesAllFields()
-    {
-        var builder = new EnergyBalanceInfoSimple
-        {
-            BaseMovement = 1,
-            Flagella = 2,
-            Actomyosin = 3,
-            Cilia = 4,
-            TotalMovement = 5,
-            Osmoregulation = 6,
-            TotalProduction = 7,
-            TotalConsumption = 8,
-            TotalConsumptionStationary = 9,
-            FinalBalance = 10,
-            FinalBalanceStationary = 11,
-        };
-        var view = new EnergyBalanceView(builder);
-        var copy = view.ToMutableCopy();
-        AssertThat(EnergyValues(copy).SequenceEqual(EnergyValues(builder))).IsTrue();
-        copy.Clear();
-        AssertThat(EnergyValues(view.ToMutableCopy()).SequenceEqual(EnergyValues(builder))).IsTrue();
     }
 
     [TestCase]
@@ -307,7 +275,7 @@ public class SimulationCacheResultIsolationTests
     }
 
     [TestCase]
-    public void PublicCompatibilityAllocationIsSeparateFromWarmViews()
+    public void PublicEnergyReadsDoNotAllocateWhileMutableCopiesDo()
     {
         var species = CreateSpecies(false);
         var cache = CreateCache();
@@ -316,9 +284,9 @@ public class SimulationCacheResultIsolationTests
         var energyBytes = MeasureAllocations(() => cache.GetEnergyBalanceForSpecies(species, biome).TotalProduction);
         var speedBytes = MeasureAllocations(() => cache.GetProcessMaximumSpeed(process, 1, biome).CurrentSpeed);
         var activeBytes = MeasureAllocations(() => cache.GetActiveProcessList(species).Count);
-        GD.Print($"CACHE_COPY iterations=100000 energyBytes={energyBytes} speedBytes={speedBytes} " +
+        GD.Print($"CACHE_PUBLIC_READ iterations=100000 energyBytes={energyBytes} speedBytes={speedBytes} " +
             $"activeBytes={activeBytes}");
-        AssertThat(energyBytes > 0).IsTrue();
+        AssertThat(energyBytes).IsEqual(0L);
         AssertThat(speedBytes > 0).IsTrue();
         AssertThat(activeBytes > 0).IsTrue();
     }
@@ -389,7 +357,7 @@ public class SimulationCacheResultIsolationTests
         ];
     }
 
-    private static float[] EnergyValues(EnergyBalanceInfoSimple value)
+    private static float[] EnergyValues(IReadOnlyEnergyBalanceInfo value)
     {
         return
         [

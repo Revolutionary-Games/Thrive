@@ -74,7 +74,7 @@ public static class MichePopulation
             throw new ArgumentException("Unhandled species type passed");
         }
 
-        var energyBalanceInfo = cache.GetEnergyBalanceForSpeciesView(species, biomeConditions);
+        var energyBalanceInfo = cache.GetEnergyBalanceForSpecies(species, biomeConditions);
 
         return energyBalanceInfo.TotalConsumptionStationary + energyBalanceInfo.TotalMovement
             * species.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;

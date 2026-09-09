@@ -120,15 +120,92 @@ public class SimulationCache
 
     /// <summary>
     ///   Calculates the full energy balance for the given species in the given biome conditions.
-    ///   Only accepts Microbe and Multicellular Species. Returns a detached, caller-owned copy.
+    ///   Only accepts Microbe and Multicellular Species. Returns a cache-owned result through a read-only interface.
     /// </summary>
-    public EnergyBalanceInfoSimple GetEnergyBalanceForSpecies(Species species,
+    public IReadOnlyEnergyBalanceInfo GetEnergyBalanceForSpecies(Species species,
         BiomeConditions biomeConditions)
     {
-        return GetEnergyBalanceForSpeciesView(species, biomeConditions).ToMutableCopy();
+        // TODO: this gets called an absolute ton with the new auto-evo so a more efficient caching method (to allow
+        // different species but with same organelles to be able to use the same cache value) would be nice here
+
+#if USE_HASHED_SCORE_KEYS
+        var key = (ulong)(uint)biomeConditions.GetHashCode() << 32 | (uint)GetSpeciesCacheKey(species);
+#else
+        var key = (GetSpeciesCacheKey(species), biomeConditions);
+#endif
+        ref var balance = ref CollectionsMarshal.GetValueRefOrNullRef(cachedSimpleEnergyBalances, key);
+        if (!Unsafe.IsNullRef(ref balance))
+        {
+            return balance;
+        }
+
+        var cached = new EnergyBalanceInfoSimple();
+
+        var environmentalTolerances = GetEnvironmentalTolerances(species, biomeConditions);
+        if (species is MicrobeSpecies microbeSpecies)
+        {
+            var maximumMovementDirection =
+                MicrobeInternalCalculations.MaximumSpeedDirection(microbeSpecies.Organelles);
+            var totalSpecializationBonus = microbeSpecies.CellTypeSpecializationBonus;
+
+            // Auto-evo uses the average values of compound during the course of a simulated day
+            ProcessSystem.ComputeEnergyBalanceSimple(microbeSpecies.Organelles, biomeConditions,
+                environmentalTolerances, totalSpecializationBonus, microbeSpecies.MembraneType,
+                maximumMovementDirection, true, species.PlayerSpecies, worldSettings,
+                CompoundAmountType.Average, this, cached);
+        }
+        else if (species is MulticellularSpecies multicellularSpecies)
+        {
+            // Currently, ComputeEnergyBalanceSimple is not set up to safely add onto existing energy balances,
+            // so we need to add up from a temporary balance per cell.
+            var cellBalance = new EnergyBalanceInfoSimple();
+
+            var cellTypes = multicellularSpecies.CellTypes;
+            for (var i = 0; i < cellTypes.Count; ++i)
+            {
+                var cellType = cellTypes[i];
+
+                // Perhaps this should instead take a MaximumSpeedDirection of the organism as a whole?
+                var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(cellType.Organelles);
+
+                var cellTypeSpecializationBonus = cellType.CellTypeSpecializationBonus;
+
+                foreach (var hex in multicellularSpecies.EditorCells)
+                {
+                    if (hex.Data == null)
+                        throw new ArgumentException("editor cell does not have celltemplate set");
+
+                    var cell = hex.Data;
+
+                    if (!ReferenceEquals(cell.CellType, cellType))
+                        continue;
+
+                    cellBalance.Clear();
+
+                    var totalSpecializationBonus = cellTypeSpecializationBonus *
+                        CellBodyPlanInternalCalculations.GetAdjacencySpecializationBonusFromBodyPlan(cell,
+                            multicellularSpecies.EditorCells);
+
+                    // Auto-evo uses the average values of compound during the course of a simulated day
+                    ProcessSystem.ComputeEnergyBalanceSimple(cellType.Organelles, biomeConditions,
+                        environmentalTolerances, totalSpecializationBonus, cellType.MembraneType,
+                        maximumMovementDirection, true, species.PlayerSpecies, worldSettings,
+                        CompoundAmountType.Average, this, cellBalance);
+
+                    cached.Add(cellBalance);
+                }
+            }
+        }
+        else
+        {
+            throw new ArgumentException("Incompatible species type given");
+        }
+
+        cachedSimpleEnergyBalances.Add(key, cached);
+        return cached;
     }
 
-    public EnergyBalanceInfoSimple GetEnergyBalanceForCellType(IReadOnlyCellTypeDefinition celltype,
+    public IReadOnlyEnergyBalanceInfo GetEnergyBalanceForCellType(IReadOnlyCellTypeDefinition celltype,
         MulticellularSpecies species, BiomeConditions biomeConditions)
     {
         var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(celltype.Organelles);
@@ -688,91 +765,8 @@ public class SimulationCache
         return predationToolsRawScores;
     }
 
-    // All result access goes through these creation paths. Cache entries are never modified after insertion.
+    // Cache entries must not be modified after insertion.
     // Clear only releases entries; existing views retain their backing objects, which must not be pooled or reused.
-    internal EnergyBalanceView GetEnergyBalanceForSpeciesView(Species species,
-        BiomeConditions biomeConditions)
-    {
-        // TODO: this gets called an absolute ton with the new auto-evo so a more efficient caching method (to allow
-        // different species but with same organelles to be able to use the same cache value) would be nice here
-
-#if USE_HASHED_SCORE_KEYS
-        var key = (ulong)(uint)biomeConditions.GetHashCode() << 32 | (uint)GetSpeciesCacheKey(species);
-#else
-        var key = (GetSpeciesCacheKey(species), biomeConditions);
-#endif
-        ref var balance = ref CollectionsMarshal.GetValueRefOrNullRef(cachedSimpleEnergyBalances, key);
-        if (!Unsafe.IsNullRef(ref balance))
-        {
-            return new EnergyBalanceView(balance);
-        }
-
-        var cached = new EnergyBalanceInfoSimple();
-
-        var environmentalTolerances = GetEnvironmentalTolerances(species, biomeConditions);
-        if (species is MicrobeSpecies microbeSpecies)
-        {
-            var maximumMovementDirection =
-                MicrobeInternalCalculations.MaximumSpeedDirection(microbeSpecies.Organelles);
-            var totalSpecializationBonus = microbeSpecies.CellTypeSpecializationBonus;
-
-            // Auto-evo uses the average values of compound during the course of a simulated day
-            ProcessSystem.ComputeEnergyBalanceSimple(microbeSpecies.Organelles, biomeConditions,
-                environmentalTolerances, totalSpecializationBonus, microbeSpecies.MembraneType,
-                maximumMovementDirection, true, species.PlayerSpecies, worldSettings,
-                CompoundAmountType.Average, this, cached);
-        }
-        else if (species is MulticellularSpecies multicellularSpecies)
-        {
-            // Currently, ComputeEnergyBalanceSimple is not set up to safely add onto existing energy balances,
-            // so we need to add up from a temporary balance per cell.
-            var cellBalance = new EnergyBalanceInfoSimple();
-
-            var cellTypes = multicellularSpecies.CellTypes;
-            for (var i = 0; i < cellTypes.Count; ++i)
-            {
-                var cellType = cellTypes[i];
-
-                // Perhaps this should instead take a MaximumSpeedDirection of the organism as a whole?
-                var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(cellType.Organelles);
-
-                var cellTypeSpecializationBonus = cellType.CellTypeSpecializationBonus;
-
-                foreach (var hex in multicellularSpecies.EditorCells)
-                {
-                    if (hex.Data == null)
-                        throw new ArgumentException("editor cell does not have celltemplate set");
-
-                    var cell = hex.Data;
-
-                    if (!ReferenceEquals(cell.CellType, cellType))
-                        continue;
-
-                    cellBalance.Clear();
-
-                    var totalSpecializationBonus = cellTypeSpecializationBonus *
-                        CellBodyPlanInternalCalculations.GetAdjacencySpecializationBonusFromBodyPlan(cell,
-                            multicellularSpecies.EditorCells);
-
-                    // Auto-evo uses the average values of compound during the course of a simulated day
-                    ProcessSystem.ComputeEnergyBalanceSimple(cellType.Organelles, biomeConditions,
-                        environmentalTolerances, totalSpecializationBonus, cellType.MembraneType,
-                        maximumMovementDirection, true, species.PlayerSpecies, worldSettings,
-                        CompoundAmountType.Average, this, cellBalance);
-
-                    cached.Add(cellBalance);
-                }
-            }
-        }
-        else
-        {
-            throw new ArgumentException("Incompatible species type given");
-        }
-
-        cachedSimpleEnergyBalances.Add(key, cached);
-        return new EnergyBalanceView(cached);
-    }
-
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal ProcessSpeedView GetProcessMaximumSpeedView(TweakedProcess process, float speedModifier,
         IBiomeConditions biomeConditions)
@@ -1509,12 +1503,12 @@ public class SimulationCache
 
         var predatorSpeed = GetSpeedForSpecies(predatorSpecies);
         var predatorRotationSpeed = GetRotationSpeedForSpecies(predatorSpecies);
-        var predatorEnergyBalance = GetEnergyBalanceForSpeciesView(predatorSpecies, biomeConditions);
+        var predatorEnergyBalance = GetEnergyBalanceForSpecies(predatorSpecies, biomeConditions);
         var predatorOsmoregulationCost = predatorEnergyBalance.Osmoregulation;
 
         var preySpeed = GetSpeedForSpecies(preySpecies);
         var preyRotationSpeed = GetRotationSpeedForSpecies(preySpecies);
-        var preyEnergyBalance = GetEnergyBalanceForSpeciesView(preySpecies, biomeConditions);
+        var preyEnergyBalance = GetEnergyBalanceForSpecies(preySpecies, biomeConditions);
         var preyOsmoregulationCost = preyEnergyBalance.Osmoregulation;
         var preyIndividualCost = MichePopulation.CalculateIndividualCost(preySpecies, biomeConditions, this);
 
