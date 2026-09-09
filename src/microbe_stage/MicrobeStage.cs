@@ -2283,6 +2283,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         if (GameWorld.PlayerSpecies is not MulticellularSpecies species || !HasAlivePlayer ||
             !Player.Has<WorldPosition>())
         {
+            GD.PrintErr("Can't spawn mate for player as either no player or player is not multicellular");
             return;
         }
 
@@ -2372,7 +2373,10 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         // Use a higher despawn radius to prevent the spawned microbe from despawning immediately
         WorldSimulation.SpawnSystem.NotifyExternalEntitySpawned(entity, recorder,
             Constants.MICROBE_DESPAWN_RADIUS_SQUARED * 1.25f, weight);
+
         SpawnHelpers.FinalizeEntitySpawn(recorder, WorldSimulation);
+        HUD.HUDMessages.ShowMessage(Localization.Translate("MATE_SPAWNED_DUE_TO_CALLING_FOR_ONE"),
+            DisplayDuration.Long);
     }
 
     private void OnSpawnEnemyCheatUsed(object? sender, EventArgs e)
