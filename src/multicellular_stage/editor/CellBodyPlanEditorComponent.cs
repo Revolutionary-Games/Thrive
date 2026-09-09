@@ -273,7 +273,7 @@ public partial class CellBodyPlanEditorComponent :
                 return true;
 
             if (ReproductionMethod is MulticellularReproductionMethod.SexualAnisogamy
-                    or MulticellularReproductionMethod.SexualIsogamy)
+                or MulticellularReproductionMethod.SexualIsogamy)
             {
                 if (GameteACellType == null)
                 {
