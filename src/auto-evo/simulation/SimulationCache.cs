@@ -1938,7 +1938,10 @@ public class SimulationCache
                 predatorSprintTime;
 
             // Sprinting can also help prey escape.
-            catchScore -= CalculateSpeedAdvantage(preySprintSpeed, predatorSpeed) * preySprintTime;
+            catchScore -= CalculateSpeedAdvantage(preySprintSpeed, predatorSpeed) * preySprintTime *
+                (1 - slowedProportion);
+            catchScore -= CalculateSpeedAdvantage(slowedPreySprintSpeed, predatorSpeed) * preySprintTime *
+                slowedProportion;
 
             // If you have Slime Jets, this can help you catch targets.
             catchScore += CalculateSpeedAdvantage(predatorSlimeSpeed, preySpeed) * (1 - slowedProportion);
