@@ -1465,7 +1465,9 @@ public class SimulationCache
 
         if (!TryCollectPredatorPredationData(predatorSpecies, preySpecies, membraneRigidityHitpointsModifier,
                 canEngulf, in preyData, out var predatorData))
+        {
             return 0;
+        }
 
         var preyToolScores = preyData.ToolScores;
         var preyHexSize = preyData.HexSize;
@@ -2243,7 +2245,10 @@ public class SimulationCache
                 {
                     if (organelle.Definition.HasChemoreceptorComponent &&
                         organelle.GetActiveTargetSpecies() == preySpecies)
+                    {
                         hasChemoreceptor = true;
+                    }
+
                     if (organelle.Definition.HasSignalingFeature)
                         hasSignallingAgent = true;
                     if (organelle.Definition.IsOxygenMetabolism)

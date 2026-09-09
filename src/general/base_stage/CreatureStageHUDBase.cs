@@ -880,6 +880,7 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
                 strainBar.Hide();
                 break;
             case Settings.StrainBarVisibility.VisibleWhenCloseToFull:
+            {
                 if (strainFraction >= 0.8f)
                 {
                     strainBar.Show();
@@ -890,7 +891,10 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
                 }
 
                 break;
+            }
+
             case Settings.StrainBarVisibility.VisibleWhenOverZero:
+            {
                 if (strainFraction > 0.0f)
                 {
                     strainBar.Show();
@@ -901,6 +905,8 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
                 }
 
                 break;
+            }
+
             case Settings.StrainBarVisibility.AlwaysVisible:
                 strainBar.Show();
                 break;
