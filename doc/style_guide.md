@@ -102,6 +102,9 @@ Code style rules
   exception to this is "meter" and other words that would end in
   "tre", spell those as "ter".
 
+- Also common in the codebase is to mix "initialize" and "initialise" (and other 's' and 'z' 
+  words) so we just accept both and don't criticise whichever is used in the code.
+
 - C# file lines should have a maximum width of 120 columns.
 
 - Comments should use the C++ style `//` or XML doc (when documenting
@@ -405,6 +408,14 @@ Code style rules
   out `true` or `false` (unless the variable is nullable in which case
   the explicit compare is required). So write code like this: `if
   (thing)` and not: `if (thing == true)`.
+
+- For constant-evaluated functions, prefer using precomputed values
+  instead of calling the corresponding math function. For example, instead
+  of using `Sqrt(2)`, use `SQRT_2` instead, where `SQRT_2` is a `const`
+  defined somewhere with the precomputed value.
+  The precomputed value must preserve the target type and required precision,
+  so if the original function returned `double`, the used `const` must also
+  be a `double` and have the same 64-bits float precision.
 
 - Finally you should attempt to reach the abstract goal of clean
   code. Here are some concepts that are indicative of good code (and
