@@ -579,13 +579,17 @@ public class GameWorld : IArchivable
     /// <summary>
     ///   Stops and removes any auto-evo runs for this world
     /// </summary>
-    public void ResetAutoEvoRun()
+    /// <returns>True, when an auto-evo run was stopped and removed</returns>
+    public bool ResetAutoEvoRun()
     {
         if (autoEvo != null)
         {
             autoEvo.Abort();
             autoEvo = null;
+            return true;
         }
+
+        return false;
     }
 
     /// <summary>

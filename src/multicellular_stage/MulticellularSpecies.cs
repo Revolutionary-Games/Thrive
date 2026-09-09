@@ -369,6 +369,27 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 
 #if DEBUG
         ModifiableGameplayCells.ThrowIfCellsOverlap();
+        var allCellPositions = new Dictionary<Hex, CellTemplate>();
+        var cellPositionTemporaryStorage = new List<Hex>();
+        ModifiableGameplayCells.CalculateAllElementPositions(allCellPositions, cellPositionTemporaryStorage);
+
+        var touchingCells = new HashSet<CellTemplate>(ReferenceEqualityComparer.Instance);
+        foreach (var positionAndCell in allCellPositions)
+        {
+            // Skip already resolved
+            if (touchingCells.Contains(positionAndCell.Value))
+                continue;
+
+            foreach (var offset in Hex.HexNeighbourOffset.Values)
+            {
+                if (allCellPositions.TryGetValue(positionAndCell.Key + offset, out var adjacentCell) &&
+                    !ReferenceEquals(adjacentCell, positionAndCell.Value))
+                {
+                    touchingCells.Add(positionAndCell.Value);
+                    break;
+                }
+            }
+        }
 #endif
 
         foreach (var modifiableGameplayCell in ModifiableGameplayCells)
@@ -406,6 +427,24 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
                     $"spore cell type in species {FormattedIdentifier}");
 #endif
             }
+
+#if DEBUG
+
+            // Verify it is touching something else
+            bool touchingSomethingElse = touchingCells.Contains(modifiableGameplayCell);
+
+            // Root cell is always considered as touching something else
+            if (!touchingSomethingElse && ReferenceEquals(ModifiableGameplayCells[0], modifiableGameplayCell))
+            {
+                continue;
+            }
+
+            if (!touchingSomethingElse)
+            {
+                GD.PrintErr("Gameplay layout has a cell that doesn't touch anything else");
+                throw new Exception("Gameplay layout has a cell that doesn't touch anything else");
+            }
+#endif
         }
     }
 
