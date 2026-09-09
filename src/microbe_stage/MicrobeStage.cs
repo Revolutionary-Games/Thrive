@@ -2336,9 +2336,15 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         // Pick compatible sex for the spawned microbe
         var playerSex = Player.Get<MicrobeSex>().Sex;
 
-        var sex = species.ReproductionMethod == MulticellularReproductionMethod.SexualAnisogamy ?
-            (playerSex == GameteType.A ? GameteType.B : GameteType.A) :
-            GameteType.All;
+        GameteType sex;
+        if (species.ReproductionMethod == MulticellularReproductionMethod.SexualAnisogamy)
+        {
+            sex = playerSex == GameteType.A ? GameteType.B : GameteType.A;
+        }
+        else
+        {
+            sex = GameteType.All;
+        }
 
         if (!GameteHelpers.IsCompatibleAfterSpeciesUpdate(sex, playerSex, species))
         {
