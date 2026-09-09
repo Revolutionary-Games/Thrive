@@ -967,7 +967,7 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         var (microbeSpeciesHexSizeAverage, microbeSpeciesHexSizeStandardDeviation) =
             worldsList.Select(w => w.MicrobeSpeciesAverageHexSize).CalculateAverageAndStandardDeviation();
 
-        var (totalSeconds, totalSecondsStandardDeviation) = worldsList.Select(w => w.TotalTimeUsed.Seconds)
+        var (totalSeconds, totalSecondsStandardDeviation) = worldsList.Select(w => w.TotalTimeUsed.TotalSeconds)
             .CalculateAverageAndStandardDeviation();
 
         var stringBuilder = new StringBuilder(1000);
