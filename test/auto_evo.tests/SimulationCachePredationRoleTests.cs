@@ -194,9 +194,13 @@ public class SimulationCachePredationRoleTests
         if (specialization)
         {
             if (predator is MicrobeSpecies microbe)
+            {
                 microbe.CellTypeSpecializationBonus = 2.0f;
+            }
             else
+            {
                 ((MulticellularSpecies)predator).ModifiableCellTypes[0].CellTypeSpecializationBonus = 2.0f;
+            }
         }
         else
         {
