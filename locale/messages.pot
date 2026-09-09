@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-09 11:39+0300\n"
+"POT-Creation-Date: 2026-09-09 14:59+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1893,7 +1893,7 @@ msgstr ""
 msgid "CONTROLLER_UNKNOWN_AXIS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:2203
+#: ../src/microbe_stage/MicrobeStage.cs:2202
 msgid "COOLDOWN_NOT_ELAPSED_FOR_MATE_SPAWN"
 msgstr ""
 
@@ -2900,12 +2900,12 @@ msgstr ""
 msgid "ERROR_LOADING"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:712
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:810
+#: ../src/microbe_stage/MicrobeStage.cs:711
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:828
 msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:818
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:836
 msgid "ERROR_REQUIRED_AT_LEAST_X_CELLS_FOR_MASS_BUDDING"
 msgstr ""
 
@@ -2921,7 +2921,7 @@ msgstr ""
 msgid "ESCAPE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:2923
+#: ../src/microbe_stage/MicrobeStage.cs:2926
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -3391,7 +3391,7 @@ msgstr ""
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/Spawners.cs:1151
+#: ../src/microbe_stage/Spawners.cs:1152
 msgid "GAMETE_CELL_ENTITY_NAME"
 msgstr ""
 
@@ -3410,6 +3410,18 @@ msgstr ""
 
 #: ../src/multicellular_stage/systems/MulticellularGrowthSystem.cs:440
 msgid "GAMETE_PRODUCED"
+msgstr ""
+
+#: ../src/multicellular_stage/GameteType.cs:14
+msgid "GAMETE_TYPE_A"
+msgstr ""
+
+#: ../src/multicellular_stage/GameteType.cs:11
+msgid "GAMETE_TYPE_ALL"
+msgstr ""
+
+#: ../src/multicellular_stage/GameteType.cs:17
+msgid "GAMETE_TYPE_B"
 msgstr ""
 
 #: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:797
@@ -5042,7 +5054,7 @@ msgstr ""
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1735
+#: ../src/microbe_stage/MicrobeStage.cs:1734
 msgid "LOADING_MICROBE_STAGE"
 msgstr ""
 
@@ -5050,7 +5062,7 @@ msgstr ""
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1731
+#: ../src/microbe_stage/MicrobeStage.cs:1730
 msgid "LOADING_MULTICELLULAR_STAGE"
 msgstr ""
 
@@ -6150,7 +6162,7 @@ msgstr ""
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr ""
 
-#: ../src/multicellular_stage/MulticellularSpecies.cs:1021
+#: ../src/multicellular_stage/MulticellularSpecies.cs:1026
 msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
 msgstr ""
 
@@ -6571,7 +6583,7 @@ msgstr ""
 msgid "NO_SUGGESTION"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:2334
+#: ../src/microbe_stage/MicrobeStage.cs:2332
 msgid "NO_UNBLOCKED_POSITION_FOUND_FOR_MATE_SPAWNED_ANYWAY"
 msgstr ""
 
@@ -7120,8 +7132,8 @@ msgstr ""
 #: ../src/microbe_stage/OrganismStatisticsPanel.cs:519
 #: ../src/microbe_stage/OrganismStatisticsPanel.cs:639
 #: ../src/microbe_stage/OrganismStatisticsPanel.cs:643
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:1238
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:1276
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:1256
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:1294
 #: ../src/society_stage/gui/ResearchScreen.cs:34
 msgid "PERCENTAGE_VALUE"
 msgstr ""
@@ -8454,7 +8466,7 @@ msgstr ""
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:2385
+#: ../src/microbe_stage/MicrobeStage.cs:2388
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -8798,11 +8810,11 @@ msgstr ""
 msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:2921
+#: ../src/microbe_stage/MicrobeStage.cs:2924
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:2922
+#: ../src/microbe_stage/MicrobeStage.cs:2925
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
@@ -9192,8 +9204,8 @@ msgstr ""
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:987
-#: ../src/microbe_stage/MicrobeStage.cs:991
+#: ../src/microbe_stage/MicrobeStage.cs:986
+#: ../src/microbe_stage/MicrobeStage.cs:990
 msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr ""
 
@@ -9336,7 +9348,7 @@ msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeSpecies.cs:464
-#: ../src/multicellular_stage/MulticellularSpecies.cs:1024
+#: ../src/multicellular_stage/MulticellularSpecies.cs:1029
 msgid "TOLERANCE_DETAIL_TEXT"
 msgstr ""
 
