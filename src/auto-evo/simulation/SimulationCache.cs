@@ -336,11 +336,12 @@ public class SimulationCache
 
         var compoundIn = 0.0f;
         var compoundOut = 0.0f;
-        var activeProcessList = GetActiveProcessListView(species);
+        var activeProcessList = GetActiveProcessList(species);
 
         // For maximum efficiency, as this is called an absolute ton, the following approach is used
-        foreach (var process in activeProcessList)
+        for (var i = 0; i < activeProcessList.Count; ++i)
         {
+            var process = activeProcessList[i];
             if (process.Process.Inputs.TryGetValue(fromCompound, out var inputAmount))
             {
                 if (process.Process.Outputs.TryGetValue(toCompound, out var outputAmount))
@@ -374,18 +375,19 @@ public class SimulationCache
 
         var cached = 0.0f;
 
-        var activeProcessList = GetActiveProcessListView(species);
+        var activeProcessList = GetActiveProcessList(species);
 
         var tolerances = GetEnvironmentalTolerances(species, biomeConditions);
 
-        foreach (var process in activeProcessList)
+        for (var i = 0; i < activeProcessList.Count; ++i)
         {
+            var process = activeProcessList[i];
             if (process.Process.Inputs.ContainsKey(fromCompound))
             {
                 if (process.Process.Outputs.TryGetValue(toCompound, out var outputAmount))
                 {
                     var processSpeed =
-                        GetProcessMaximumSpeedView(process, tolerances.ProcessSpeedModifier, biomeConditions)
+                        GetProcessMaximumSpeed(process, tolerances.ProcessSpeedModifier, biomeConditions)
                             .CurrentSpeed;
 
                     cached += outputAmount * processSpeed;
@@ -405,17 +407,49 @@ public class SimulationCache
     ///   Process speed modifier from <see cref="ResolvedMicrobeTolerances.ProcessSpeedModifier"/>
     /// </param>
     /// <param name="biomeConditions">The biome conditions to use</param>
-    /// <returns>A detached, caller-owned copy of the speed information for the process</returns>
+    /// <returns>Cache-owned speed information exposed through a read-only interface</returns>
     /// <remarks>
     ///   <para>
     ///     This is important to cache as it is called very many times, but the speed modifier slightly reduces
     ///     the cache usefulness.
     ///   </para>
     /// </remarks>
-    public ProcessSpeedInformation GetProcessMaximumSpeed(TweakedProcess process, float speedModifier,
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public IReadOnlyProcessSpeedInfo GetProcessMaximumSpeed(TweakedProcess process, float speedModifier,
         IBiomeConditions biomeConditions)
     {
-        return GetProcessMaximumSpeedView(process, speedModifier, biomeConditions).ToMutableCopy();
+        // For caching resolve some data already to have better cache hits
+        var effectiveMultiplier = process.Rate * speedModifier;
+
+        // 16 low bits of the key (as process amounts are limited, we save bits on them)
+        ulong key = process.Process.ProcessId;
+
+        // These slightly overlap, but hopefully this doesn't lead to collisions (the most significant effect would be
+        // just a process or two running at the wrong speed)
+        // The overlap is 16 bits of the upper end of the float
+        key |= (ulong)(uint)BitConverter.SingleToInt32Bits(effectiveMultiplier) << 16;
+        key ^= (ulong)(uint)biomeConditions.GetHashCode() << 32;
+
+        // Shuffle key bits with a prime number (we could do a double shuffle above, but processes are needed so much
+        // that we do not want the extra work)
+        key *= 9853659385249210933;
+
+        ref var speed = ref CollectionsMarshal.GetValueRefOrNullRef(cachedProcessSpeeds, key);
+        if (!Unsafe.IsNullRef(ref speed))
+        {
+#if VERIFY_PROCESS_SPEED_CACHE_RETURNS
+            if (speed.Process != process.Process)
+                throw new Exception("Cached process speed does not match requested process");
+#endif
+
+            return speed;
+        }
+
+        var cached = ProcessSystem.CalculateProcessMaximumSpeed(process, speedModifier, biomeConditions,
+            CompoundAmountType.Average, true);
+
+        cachedProcessSpeeds.Add(key, cached);
+        return cached;
     }
 
     public float GetPredationScore(Species predatorSpecies, Species preySpecies, BiomeConditions biomeConditions)
@@ -650,6 +684,7 @@ public class SimulationCache
     /// </summary>
     public void Clear()
     {
+        // Only release entries; previously returned results must not be modified, pooled, or reused.
         cachedPressureScores.Clear();
         cachedSimpleEnergyBalances.Clear();
         cachedBaseSpeeds.Clear();
@@ -662,11 +697,45 @@ public class SimulationCache
     }
 
     /// <summary>
-    ///   Returns a detached process list. Mutating the list or its value-type elements does not affect this cache.
+    ///   Returns the cache-owned process list through a read-only interface. Use indexed loops to avoid allocations.
     /// </summary>
-    public List<TweakedProcess> GetActiveProcessList(Species species)
+    public IReadOnlyList<TweakedProcess> GetActiveProcessList(Species species)
     {
-        return GetActiveProcessListView(species).ToMutableCopy();
+#if CHECK_HASH_CODE_REUSED_INSTANCES
+        CheckSpecies(species);
+#endif
+
+        var key = GetSpeciesCacheKey(species);
+        if (cachedProcessLists.TryGetValue(key, out var cached))
+        {
+            return cached;
+        }
+
+        if (species is MicrobeSpecies microbeSpecies)
+        {
+            ProcessSystem.ComputeActiveProcessList(microbeSpecies.Organelles, ref cached);
+        }
+        else if (species is MulticellularSpecies multicellularSpecies)
+        {
+            List<IReadOnlyOrganelleTemplate> allOrganelles = [];
+
+            foreach (var cell in multicellularSpecies.EditorCells)
+            {
+                foreach (var organelle in cell.Data!.CellType.Organelles)
+                {
+                    allOrganelles.Add(organelle);
+                }
+            }
+
+            ProcessSystem.ComputeActiveProcessList(allOrganelles, ref cached);
+        }
+        else
+        {
+            throw new ArgumentException("Incompatible species type given");
+        }
+
+        cachedProcessLists.Add(key, cached);
+        return cached;
     }
 
     public float GetEnzymesScore(MulticellularSpecies multicellularSpecies, string dissolverEnzyme, float preyHexSize,
@@ -763,85 +832,6 @@ public class SimulationCache
 
         cachedPredationToolsRawScores.Add(key, predationToolsRawScores);
         return predationToolsRawScores;
-    }
-
-    // Cache entries must not be modified after insertion.
-    // Clear only releases entries; existing views retain their backing objects, which must not be pooled or reused.
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    internal ProcessSpeedView GetProcessMaximumSpeedView(TweakedProcess process, float speedModifier,
-        IBiomeConditions biomeConditions)
-    {
-        // For caching resolve some data already to have better cache hits
-        var effectiveMultiplier = process.Rate * speedModifier;
-
-        // 16 low bits of the key (as process amounts are limited, we save bits on them)
-        ulong key = process.Process.ProcessId;
-
-        // These slightly overlap, but hopefully this doesn't lead to collisions (the most significant effect would be
-        // just a process or two running at the wrong speed)
-        // The overlap is 16 bits of the upper end of the float
-        key |= (ulong)(uint)BitConverter.SingleToInt32Bits(effectiveMultiplier) << 16;
-        key ^= (ulong)(uint)biomeConditions.GetHashCode() << 32;
-
-        // Shuffle key bits with a prime number (we could do a double shuffle above, but processes are needed so much
-        // that we do not want the extra work)
-        key *= 9853659385249210933;
-
-        ref var speed = ref CollectionsMarshal.GetValueRefOrNullRef(cachedProcessSpeeds, key);
-        if (!Unsafe.IsNullRef(ref speed))
-        {
-#if VERIFY_PROCESS_SPEED_CACHE_RETURNS
-            if (speed.Process != process.Process)
-                throw new Exception("Cached process speed does not match requested process");
-#endif
-
-            return new ProcessSpeedView(speed);
-        }
-
-        var cached = ProcessSystem.CalculateProcessMaximumSpeed(process, speedModifier, biomeConditions,
-            CompoundAmountType.Average, true);
-
-        cachedProcessSpeeds.Add(key, cached);
-        return new ProcessSpeedView(cached);
-    }
-
-    internal ActiveProcessView GetActiveProcessListView(Species species)
-    {
-#if CHECK_HASH_CODE_REUSED_INSTANCES
-        CheckSpecies(species);
-#endif
-
-        var key = GetSpeciesCacheKey(species);
-        if (cachedProcessLists.TryGetValue(key, out var cached))
-        {
-            return new ActiveProcessView(cached);
-        }
-
-        if (species is MicrobeSpecies microbeSpecies)
-        {
-            ProcessSystem.ComputeActiveProcessList(microbeSpecies.Organelles, ref cached);
-        }
-        else if (species is MulticellularSpecies multicellularSpecies)
-        {
-            List<IReadOnlyOrganelleTemplate> allOrganelles = [];
-
-            foreach (var cell in multicellularSpecies.EditorCells)
-            {
-                foreach (var organelle in cell.Data!.CellType.Organelles)
-                {
-                    allOrganelles.Add(organelle);
-                }
-            }
-
-            ProcessSystem.ComputeActiveProcessList(allOrganelles, ref cached);
-        }
-        else
-        {
-            throw new ArgumentException("Incompatible species type given");
-        }
-
-        cachedProcessLists.Add(key, cached);
-        return new ActiveProcessView(cached);
     }
 
     private static ToxinToolScores CalculateToxinToolScores(float averageToxicity, float everyToxinScore,

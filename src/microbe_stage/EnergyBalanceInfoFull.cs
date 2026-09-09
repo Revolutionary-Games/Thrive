@@ -39,7 +39,7 @@ public class EnergyBalanceInfoFull : EnergyBalanceInfoSimple
 
     public void AddProduction(string groupName, float amount, Dictionary<Compound, float> requiredInputCompounds)
     {
-        AddProduction(groupName, amount, new ProcessSpeedView.InputAmounts(requiredInputCompounds));
+        AddProduction(groupName, amount, new ProcessInputAmounts(requiredInputCompounds));
     }
 
     public void SetupTrackingForRequiredCompounds()
@@ -55,8 +55,7 @@ public class EnergyBalanceInfoFull : EnergyBalanceInfoSimple
         }
     }
 
-    internal void AddProduction(string groupName, float amount,
-        ProcessSpeedView.InputAmounts requiredInputCompounds)
+    internal void AddProduction(string groupName, float amount, ProcessInputAmounts requiredInputCompounds)
     {
         Production.TryGetValue(groupName, out var existing);
 

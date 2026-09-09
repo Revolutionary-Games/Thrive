@@ -616,15 +616,14 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
         foreach (var process in organelle.Definition.RunnableProcesses)
         {
-            ProcessSpeedView processData;
+            IReadOnlyProcessSpeedInfo processData;
             if (cache != null && amountType == CompoundAmountType.Average)
             {
-                processData = cache.GetProcessMaximumSpeedView(process, speedModifier, biome);
+                processData = cache.GetProcessMaximumSpeed(process, speedModifier, biome);
             }
             else
             {
-                processData = new ProcessSpeedView(
-                    CalculateProcessMaximumSpeed(process, speedModifier, biome, amountType, true));
+                processData = CalculateProcessMaximumSpeed(process, speedModifier, biome, amountType, true);
             }
 
             var amount = processData.ATPConsumption;
@@ -654,15 +653,14 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
         foreach (var process in organelle.Definition.RunnableProcesses)
         {
-            ProcessSpeedView processData;
+            IReadOnlyProcessSpeedInfo processData;
             if (cache != null && amountType == CompoundAmountType.Average)
             {
-                processData = cache.GetProcessMaximumSpeedView(process, speedModifier, biome);
+                processData = cache.GetProcessMaximumSpeed(process, speedModifier, biome);
             }
             else
             {
-                processData = new ProcessSpeedView(
-                    CalculateProcessMaximumSpeed(process, speedModifier, biome, amountType, true));
+                processData = CalculateProcessMaximumSpeed(process, speedModifier, biome, amountType, true);
             }
 
             var amount = processData.ATPConsumption;
@@ -672,7 +670,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
             amount = processData.ATPProduction;
             if (amount > 0)
-                result.AddProduction(organelle.Definition.InternalName, amount, processData.Inputs);
+                result.AddProduction(organelle.Definition.InternalName, amount, processData.AllInputs);
         }
     }
 

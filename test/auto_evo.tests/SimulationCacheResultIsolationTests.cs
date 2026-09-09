@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -34,70 +33,44 @@ public class SimulationCacheResultIsolationTests
         AssertThat(EnergyValues(afterClear).SequenceEqual(expected)).IsTrue();
     }
 
-    [TestCase]
-    public void ProcessSpeedMutationDoesNotPoisonCache()
+    [TestCase(false)]
+    [TestCase(true)]
+    public void ProcessSpeedReadsReuseCachedResult(bool multicellular)
     {
-        var species = CreateSpecies(false);
+        var species = CreateSpecies(multicellular);
         var biome = CreatePatch().Biome;
         var cache = CreateCache();
         var processes = cache.GetActiveProcessList(species);
         AssertThat(processes.Count > 0).IsTrue();
 
-        foreach (var process in processes)
+        for (var i = 0; i < processes.Count; ++i)
         {
-            var expected = CreateCache().GetProcessMaximumSpeed(process, 1, biome);
+            var process = processes[i];
+            var expected = ProcessSystem.CalculateProcessMaximumSpeed(process, 1, biome,
+                CompoundAmountType.Average, true);
             var first = cache.GetProcessMaximumSpeed(process, 1, biome);
-            first.ScaleSpeed(0, null);
-            first.CurrentSpeed = float.NaN;
-            first.Efficiency = float.NaN;
-            first.ATPProduction = float.NaN;
-            first.ATPConsumption = float.NaN;
-            foreach (var dictionary in ProcessDictionaries(first))
-            {
-                dictionary.Clear();
-                dictionary[Compound.ATP] = float.NaN;
-            }
-
-            first.WritableLimitingCompounds.Clear();
-            first.WritableLimitingCompounds.Add(Compound.ATP);
-
             var second = cache.GetProcessMaximumSpeed(process, 1, biome);
             AssertProcessEqual(expected, second);
-            AssertThat(ReferenceEquals(first, second)).IsFalse();
-            var firstDictionaries = ProcessDictionaries(first);
-            var secondDictionaries = ProcessDictionaries(second);
-            for (var i = 0; i < firstDictionaries.Length; ++i)
-                AssertThat(ReferenceEquals(firstDictionaries[i], secondDictionaries[i])).IsFalse();
-
-            AssertThat(ReferenceEquals(first.WritableLimitingCompounds, second.WritableLimitingCompounds)).IsFalse();
+            AssertThat(ReferenceEquals(first, second)).IsTrue();
         }
     }
 
-    [TestCase(false, false)]
-    [TestCase(false, true)]
-    [TestCase(true, false)]
-    [TestCase(true, true)]
-    public void ActiveProcessMutationDoesNotPoisonCache(bool multicellular, bool clear)
+    [TestCase(false)]
+    [TestCase(true)]
+    public void ActiveProcessReadsReuseCachedListAndReturnElementsByValue(bool multicellular)
     {
         var species = CreateSpecies(multicellular);
         var cache = CreateCache();
         var first = cache.GetActiveProcessList(species);
         var expected = first.ToArray();
         AssertThat(expected.Length > 0).IsTrue();
-        if (clear)
-        {
-            first.Clear();
-        }
-        else
-        {
-            var changed = first[0];
-            changed.Rate = float.NaN;
-            changed.SpeedMultiplier = float.NaN;
-            first[0] = changed;
-        }
+
+        var element = first[0];
+        element.Rate = float.NaN;
+        element.SpeedMultiplier = float.NaN;
 
         var second = cache.GetActiveProcessList(species);
-        AssertThat(ReferenceEquals(first, second)).IsFalse();
+        AssertThat(ReferenceEquals(first, second)).IsTrue();
         AssertThat(second.Count).IsEqual(expected.Length);
         for (var i = 0; i < expected.Length; ++i)
         {
@@ -139,105 +112,87 @@ public class SimulationCacheResultIsolationTests
         var cache = CreateCache();
         var biome = CreatePatch().Biome;
         var energy = cache.GetEnergyBalanceForSpecies(species, biome);
-        var active = cache.GetActiveProcessListView(species);
-        var speed = cache.GetProcessMaximumSpeedView(active[0], 1, biome);
+        var active = cache.GetActiveProcessList(species);
+        var speed = cache.GetProcessMaximumSpeed(active[0], 1, biome);
         var expectedEnergy = EnergyValues(energy);
-        var expectedSpeed = speed.ToMutableCopy();
-        var expectedProcesses = active.ToMutableCopy();
+        var expectedSpeed = ProcessSystem.CalculateProcessMaximumSpeed(active[0], 1, biome,
+            CompoundAmountType.Average, true);
+        var expectedProcesses = active.ToArray();
 
-        AssertThat((object)speed is ProcessSpeedInformation).IsFalse();
-        AssertThat((object)speed is IProcessDisplayInfo).IsFalse();
-        AssertThat((object)active is List<TweakedProcess>).IsFalse();
-        AssertThat((object)active is ICollection<TweakedProcess>).IsFalse();
-        AssertThat((object)active is IList).IsFalse();
-        AssertThat((object)speed.Inputs is Dictionary<Compound, float>).IsFalse();
-        AssertThat((object)speed.Inputs is IDictionary<Compound, float>).IsFalse();
-        AssertThat((object)speed.Inputs is ICollection<KeyValuePair<Compound, float>>).IsFalse();
-        AssertThat((object)speed.Inputs is IDictionary).IsFalse();
-
-        var element = active[0];
-        element.Rate = float.NaN;
-        element.SpeedMultiplier = float.NaN;
-        AssertThat(active[0].Rate).IsEqual(expectedProcesses[0].Rate);
-        AssertThat(active[0].SpeedMultiplier).IsEqual(expectedProcesses[0].SpeedMultiplier);
-
-        speed.ToMutableCopy().WritableInputs.Clear();
-        active.ToMutableCopy().Clear();
         cache.Clear();
 
-        // Recreate the entries as well: a retained view must not refer to reused scratch storage.
-        cache.GetEnergyBalanceForSpecies(species, biome);
-        cache.GetProcessMaximumSpeed(expectedProcesses[0], 1, biome).WritableInputs.Clear();
-        cache.GetActiveProcessList(species).Clear();
+        // Recreate the entries as well: retained results must not refer to reused scratch storage.
+        var newEnergy = cache.GetEnergyBalanceForSpecies(species, biome);
+        var newSpeed = cache.GetProcessMaximumSpeed(expectedProcesses[0], 1, biome);
+        var newActive = cache.GetActiveProcessList(species);
+        AssertThat(ReferenceEquals(energy, newEnergy)).IsFalse();
+        AssertThat(ReferenceEquals(speed, newSpeed)).IsFalse();
+        AssertThat(ReferenceEquals(active, newActive)).IsFalse();
         AssertThat(EnergyValues(energy).SequenceEqual(expectedEnergy)).IsTrue();
-        AssertProcessEqual(expectedSpeed, speed.ToMutableCopy());
-        AssertThat(active.Count).IsEqual(expectedProcesses.Count);
+        AssertProcessEqual(expectedSpeed, speed);
+        AssertProcessEqual(expectedSpeed, newSpeed);
+        AssertThat(active.Count).IsEqual(expectedProcesses.Length);
+        AssertThat(newActive.Count).IsEqual(expectedProcesses.Length);
         for (var i = 0; i < active.Count; ++i)
         {
             AssertThat(ReferenceEquals(active[i].Process, expectedProcesses[i].Process)).IsTrue();
             AssertThat(active[i].Rate).IsEqual(expectedProcesses[i].Rate);
             AssertThat(active[i].SpeedMultiplier).IsEqual(expectedProcesses[i].SpeedMultiplier);
+            AssertThat(ReferenceEquals(newActive[i].Process, expectedProcesses[i].Process)).IsTrue();
+            AssertThat(newActive[i].Rate).IsEqual(expectedProcesses[i].Rate);
+            AssertThat(newActive[i].SpeedMultiplier).IsEqual(expectedProcesses[i].SpeedMultiplier);
         }
-
-        AssertThat(speed.Inputs.GetEnumerator().GetType().IsValueType).IsTrue();
-        var inputs = new List<KeyValuePair<Compound, float>>();
-        foreach (var input in speed.Inputs)
-            inputs.Add(input);
-
-        AssertThat(inputs.SequenceEqual(expectedSpeed.WritableInputs)).IsTrue();
     }
 
     [TestCase(false)]
     [TestCase(true)]
-    public void WarmViewsAndEnumerationAllocateNothing(bool multicellular)
+    public void WarmReadOnlyResultsAndEnumerationAllocateNothing(bool multicellular)
     {
         var species = CreateSpecies(multicellular);
         var cache = CreateCache();
         var biome = CreatePatch().Biome;
-        var process = cache.GetActiveProcessListView(species)[0];
-        Measure("ViewsAndEnumeration", multicellular, () =>
+        var process = cache.GetActiveProcessList(species)[0];
+        Measure("ReadOnlyResultsAndEnumeration", multicellular, () =>
         {
             var total = cache.GetEnergyBalanceForSpecies(species, biome).TotalProduction;
-            var speed = cache.GetProcessMaximumSpeedView(process, 1, biome);
+            var speed = cache.GetProcessMaximumSpeed(process, 1, biome);
             total += speed.CurrentSpeed + speed.ATPConsumption + speed.ATPProduction;
-            foreach (var input in speed.Inputs)
+            foreach (var input in speed.AllInputs)
                 total += input.Value;
 
-            foreach (var active in cache.GetActiveProcessListView(species))
-                total += active.Rate + active.SpeedMultiplier;
+            var active = cache.GetActiveProcessList(species);
+            for (var i = 0; i < active.Count; ++i)
+                total += active[i].Rate + active[i].SpeedMultiplier;
 
             return total;
         });
     }
 
     [TestCase]
-    public void ProcessCompatibilityCopyIncludesAllState()
+    public void ReadOnlyProcessInputsIncludeEnvironmentalCompounds()
     {
-        var process = CreateCache().GetActiveProcessListView(CreateSpecies(false))[0].Process;
-        var builder = new ProcessSpeedInformation(process)
+        var species = CreateSpecies(false);
+        var cache = CreateCache();
+        var biome = CreatePatch().Biome;
+        var processes = cache.GetActiveProcessList(species);
+        var foundEnvironmentalInput = false;
+
+        for (var i = 0; i < processes.Count; ++i)
         {
-            CurrentSpeed = 2.5f,
-            Efficiency = 3.5f,
-            ATPProduction = 4.5f,
-            ATPConsumption = 5.5f,
-        };
-        var dictionaries = ProcessDictionaries(builder);
-        for (var i = 0; i < dictionaries.Length; ++i)
-        {
-            dictionaries[i].Add(Compound.Glucose, i + 0.5f);
-            dictionaries[i].Add(Compound.ATP, i + 1.5f);
+            var process = processes[i];
+            var expected = ProcessSystem.CalculateProcessMaximumSpeed(process, 1, biome,
+                CompoundAmountType.Average, true);
+            var actual = cache.GetProcessMaximumSpeed(process, 1, biome);
+            AssertProcessEqual(expected, actual);
+
+            foreach (var input in actual.AllInputs)
+            {
+                if (SimulationParameters.GetCompound(input.Key).IsEnvironmental)
+                    foundEnvironmentalInput = true;
+            }
         }
 
-        builder.WritableLimitingCompounds.AddRange([Compound.Glucose, Compound.ATP]);
-        var view = new ProcessSpeedView(builder);
-        var copy = view.ToMutableCopy();
-        AssertProcessEqual(builder, copy);
-        copy.ScaleSpeed(0, null);
-        foreach (var dictionary in ProcessDictionaries(copy))
-            dictionary.Clear();
-
-        copy.WritableLimitingCompounds.Clear();
-        AssertProcessEqual(builder, view.ToMutableCopy());
+        AssertThat(foundEnvironmentalInput).IsTrue();
     }
 
     [TestCase]
@@ -274,21 +229,22 @@ public class SimulationCacheResultIsolationTests
             AssertThat(actual.ProductionRequiresCompounds[group.Key].SequenceEqual(group.Value)).IsTrue();
     }
 
-    [TestCase]
-    public void PublicEnergyReadsDoNotAllocateWhileMutableCopiesDo()
+    [TestCase(false)]
+    [TestCase(true)]
+    public void PublicReadOnlyResultsDoNotAllocate(bool multicellular)
     {
-        var species = CreateSpecies(false);
+        var species = CreateSpecies(multicellular);
         var cache = CreateCache();
         var biome = CreatePatch().Biome;
-        var process = cache.GetActiveProcessListView(species)[0];
+        var process = cache.GetActiveProcessList(species)[0];
         var energyBytes = MeasureAllocations(() => cache.GetEnergyBalanceForSpecies(species, biome).TotalProduction);
         var speedBytes = MeasureAllocations(() => cache.GetProcessMaximumSpeed(process, 1, biome).CurrentSpeed);
         var activeBytes = MeasureAllocations(() => cache.GetActiveProcessList(species).Count);
-        GD.Print($"CACHE_PUBLIC_READ iterations=100000 energyBytes={energyBytes} speedBytes={speedBytes} " +
-            $"activeBytes={activeBytes}");
+        GD.Print($"CACHE_PUBLIC_READ multicellular={multicellular} iterations=100000 " +
+            $"energyBytes={energyBytes} speedBytes={speedBytes} activeBytes={activeBytes}");
         AssertThat(energyBytes).IsEqual(0L);
-        AssertThat(speedBytes > 0).IsTrue();
-        AssertThat(activeBytes > 0).IsTrue();
+        AssertThat(speedBytes).IsEqual(0L);
+        AssertThat(activeBytes).IsEqual(0L);
     }
 
     private static long MeasureAllocations(Func<float> operation)
@@ -333,28 +289,16 @@ public class SimulationCacheResultIsolationTests
         AssertThat(minimumAllocation - baselineAllocation).IsEqual(0L);
     }
 
-    private static void AssertProcessEqual(ProcessSpeedInformation expected, ProcessSpeedInformation actual)
+    private static void AssertProcessEqual(ProcessSpeedInformation expected, IReadOnlyProcessSpeedInfo actual)
     {
-        AssertThat(ReferenceEquals(expected.Process, actual.Process)).IsTrue();
         AssertThat(actual.CurrentSpeed).IsEqual(expected.CurrentSpeed);
-        AssertThat(actual.Efficiency).IsEqual(expected.Efficiency);
         AssertThat(actual.ATPProduction).IsEqual(expected.ATPProduction);
         AssertThat(actual.ATPConsumption).IsEqual(expected.ATPConsumption);
-        var expectedDictionaries = ProcessDictionaries(expected);
-        var actualDictionaries = ProcessDictionaries(actual);
-        for (var i = 0; i < expectedDictionaries.Length; ++i)
-            AssertThat(actualDictionaries[i].SequenceEqual(expectedDictionaries[i])).IsTrue();
+        var actualInputs = new List<KeyValuePair<Compound, float>>();
+        foreach (var input in actual.AllInputs)
+            actualInputs.Add(input);
 
-        AssertThat(actual.WritableLimitingCompounds.SequenceEqual(expected.WritableLimitingCompounds)).IsTrue();
-    }
-
-    private static Dictionary<Compound, float>[] ProcessDictionaries(ProcessSpeedInformation value)
-    {
-        return
-        [
-            value.WritableInputs, value.WritableOutputs, value.WritableFullSpeedRequiredEnvironmentalInputs,
-            value.AvailableAmounts, value.AvailableRates,
-        ];
+        AssertThat(actualInputs.SequenceEqual(expected.WritableInputs)).IsTrue();
     }
 
     private static float[] EnergyValues(IReadOnlyEnergyBalanceInfo value)
