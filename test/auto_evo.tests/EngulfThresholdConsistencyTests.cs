@@ -22,6 +22,7 @@ public class EngulfThresholdConsistencyTests
     [TestCase]
     public void GetPredationScore_MicrobeAtExactThresholdCanPredate()
     {
+        using var world = ThriveWorld.Create();
         var predator = CreateMicrobe(1, "ThresholdPredator", 3);
         var prey = CreateMicrobe(2, "ThresholdPrey", 2);
         var cache = CreateCache();
@@ -31,7 +32,7 @@ public class EngulfThresholdConsistencyTests
         var preySize = cache.GetBaseHexSizeForSpecies(prey);
 
         AssertThat(predatorSize).IsEqual(preySize * Constants.ENGULF_SIZE_RATIO_REQ);
-        AssertThat(CheckGameplayEngulf(predator, predatorSize, preySize)).IsEqual(EngulfCheckResult.Ok);
+        AssertThat(CheckGameplayEngulf(world, predator, predatorSize, preySize)).IsEqual(EngulfCheckResult.Ok);
 
         var coldScore = cache.GetPredationScore(predator, prey, biome);
         AssertThat(coldScore).IsGreater(0.0f);
@@ -43,6 +44,7 @@ public class EngulfThresholdConsistencyTests
     [TestCase]
     public void GetPredationScore_MulticellularAtExactThresholdCanPredate()
     {
+        using var world = ThriveWorld.Create();
         var predator = CreateMulticellular(4, "ThresholdMulticellularPredator", 3);
         var prey = CreateMicrobe(5, "ThresholdPrey", 4);
         var cache = CreateCache();
@@ -54,7 +56,7 @@ public class EngulfThresholdConsistencyTests
         AssertThat(predatorCellSize).IsEqual(3.0f);
         AssertThat(preySize).IsEqual(2.0f);
         AssertThat(predatorCellSize).IsEqual(preySize * Constants.ENGULF_SIZE_RATIO_REQ);
-        AssertThat(CheckGameplayEngulf(predator, predatorCellSize, preySize)).IsEqual(EngulfCheckResult.Ok);
+        AssertThat(CheckGameplayEngulf(world, predator, predatorCellSize, preySize)).IsEqual(EngulfCheckResult.Ok);
 
         var coldScore = cache.GetPredationScore(predator, prey, biome);
         AssertThat(coldScore).IsGreater(0.0f);
@@ -67,15 +69,16 @@ public class EngulfThresholdConsistencyTests
     public void GetEnzymesScore_MulticellularThresholdMatrixIsInclusive()
     {
         const float preySize = 2.0f;
+        using var world = ThriveWorld.Create();
         var predator = CreateMulticellular(3, "ThresholdMulticellularPredator", 3);
         var cache = CreateCache();
 
         var predatorCellSize = cache.GetBaseHexSizeForCellType(predator.CellTypes[0]);
         AssertThat(predatorCellSize).IsEqual(preySize * Constants.ENGULF_SIZE_RATIO_REQ);
-        AssertThat(CheckGameplayEngulf(predator, predatorCellSize, float.BitIncrement(preySize)))
+        AssertThat(CheckGameplayEngulf(world, predator, predatorCellSize, float.BitIncrement(preySize)))
             .IsEqual(EngulfCheckResult.TargetTooBig);
-        AssertThat(CheckGameplayEngulf(predator, predatorCellSize, preySize)).IsEqual(EngulfCheckResult.Ok);
-        AssertThat(CheckGameplayEngulf(predator, predatorCellSize, float.BitDecrement(preySize)))
+        AssertThat(CheckGameplayEngulf(world, predator, predatorCellSize, preySize)).IsEqual(EngulfCheckResult.Ok);
+        AssertThat(CheckGameplayEngulf(world, predator, predatorCellSize, float.BitDecrement(preySize)))
             .IsEqual(EngulfCheckResult.Ok);
 
         var belowThreshold = cache.GetEnzymesScore(predator, Constants.LIPASE_ENZYME,
@@ -116,9 +119,9 @@ public class EngulfThresholdConsistencyTests
     /// <summary>
     ///   Calls the gameplay check with unused engulfing capacity and an unattached, undigested target.
     /// </summary>
-    private static EngulfCheckResult CheckGameplayEngulf(Species species, float engulferSize, float targetSize)
+    private static EngulfCheckResult CheckGameplayEngulf(World world, Species species, float engulferSize,
+        float targetSize)
     {
-        using var world = ThriveWorld.Create();
         var target = world.Create(new Engulfable(PhagocytosisPhase.None, Entity.Null)
         {
             BaseEngulfSize = targetSize,
@@ -153,18 +156,20 @@ public class EngulfThresholdConsistencyTests
     private static void AssertChunkCompoundPressureThresholdMatrix(ThresholdSpeciesKind speciesKind)
     {
         const float chunkSize = 2.0f;
+        using var world = ThriveWorld.Create();
 
-        var belowThreshold = CalculateChunkCompoundPressureScore(speciesKind, float.BitIncrement(chunkSize));
-        var atThreshold = CalculateChunkCompoundPressureScore(speciesKind, chunkSize);
-        var aboveThreshold = CalculateChunkCompoundPressureScore(speciesKind, float.BitDecrement(chunkSize));
+        var belowThreshold = CalculateChunkCompoundPressureScore(world, speciesKind, float.BitIncrement(chunkSize));
+        var atThreshold = CalculateChunkCompoundPressureScore(world, speciesKind, chunkSize);
+        var aboveThreshold = CalculateChunkCompoundPressureScore(world, speciesKind, float.BitDecrement(chunkSize));
 
         AssertThat(atThreshold).IsEqual(aboveThreshold);
         AssertThat(atThreshold).IsGreater(belowThreshold);
     }
 
-    private static float CalculateChunkCompoundPressureScore(ThresholdSpeciesKind speciesKind, float chunkSize)
+    private static float CalculateChunkCompoundPressureScore(World world, ThresholdSpeciesKind speciesKind,
+        float chunkSize)
     {
-        var (species, patch, cache) = CreatePressureFixture(speciesKind, chunkSize);
+        var (species, patch, cache) = CreatePressureFixture(world, speciesKind, chunkSize);
         var pressure = new ChunkCompoundPressure("marineSnow", new LocalizedString("MARINE_SNOW"),
             Compound.Glucose, Compound.ATP, false, 1.0f);
 
@@ -174,24 +179,28 @@ public class EngulfThresholdConsistencyTests
     private static void AssertReproductionCompoundPressureThresholdMatrix(ThresholdSpeciesKind speciesKind)
     {
         const float chunkSize = 2.0f;
+        using var world = ThriveWorld.Create();
 
-        var belowThreshold = CalculateReproductionCompoundPressureScore(speciesKind, float.BitIncrement(chunkSize));
-        var atThreshold = CalculateReproductionCompoundPressureScore(speciesKind, chunkSize);
-        var aboveThreshold = CalculateReproductionCompoundPressureScore(speciesKind, float.BitDecrement(chunkSize));
+        var belowThreshold = CalculateReproductionCompoundPressureScore(world, speciesKind,
+            float.BitIncrement(chunkSize));
+        var atThreshold = CalculateReproductionCompoundPressureScore(world, speciesKind, chunkSize);
+        var aboveThreshold = CalculateReproductionCompoundPressureScore(world, speciesKind,
+            float.BitDecrement(chunkSize));
 
         AssertThat(atThreshold).IsEqual(aboveThreshold);
         AssertThat(atThreshold).IsGreater(belowThreshold);
     }
 
-    private static float CalculateReproductionCompoundPressureScore(ThresholdSpeciesKind speciesKind, float chunkSize)
+    private static float CalculateReproductionCompoundPressureScore(World world, ThresholdSpeciesKind speciesKind,
+        float chunkSize)
     {
-        var (species, patch, cache) = CreatePressureFixture(speciesKind, chunkSize);
+        var (species, patch, cache) = CreatePressureFixture(world, speciesKind, chunkSize);
         var pressure = new ReproductionCompoundPressure(Compound.Ammonia, false, 1.0f);
 
         return pressure.Score(species, patch, cache);
     }
 
-    private static (Species Species, Patch Patch, SimulationCache Cache) CreatePressureFixture(
+    private static (Species Species, Patch Patch, SimulationCache Cache) CreatePressureFixture(World entityWorld,
         ThresholdSpeciesKind speciesKind, float chunkSize)
     {
         var worldSettings = new WorldGenerationSettings
@@ -227,7 +236,7 @@ public class EngulfThresholdConsistencyTests
 
         AssertThat(engulferSize).IsEqual(3.0f);
         AssertThat(chunk.Size).IsEqual(chunkSize);
-        AssertThat(CheckGameplayEngulf(species, engulferSize, chunkSize))
+        AssertThat(CheckGameplayEngulf(entityWorld, species, engulferSize, chunkSize))
             .IsEqual(chunkSize > 2.0f ? EngulfCheckResult.TargetTooBig : EngulfCheckResult.Ok);
 
         if (chunkSize > 2.0f)
