@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using Arch.Buffer;
 using Arch.Core;
@@ -1148,7 +1149,8 @@ public static class SpawnHelpers
             IgnoredCollisionsWith = [shootingEntity],
         });
 
-        recorder.Set(entity, new ReadableName(new LocalizedString("GAMETE_CELL_ENTITY_NAME", species.FormattedName)));
+        recorder.Set(entity, new ReadableName(new LocalizedString("GAMETE_CELL_ENTITY_NAME", species.FormattedName,
+            new LocalizedString(gamete.GetAttribute<DescriptionAttribute>().Description))));
 
         // Make it despawn like normal
         spawnerToRegisterWith.NotifyExternalEntitySpawned(entity, recorder,
