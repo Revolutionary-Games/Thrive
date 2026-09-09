@@ -1274,6 +1274,9 @@ public static class Constants
     public const float GAMETE_MATE_CALL_MAX_DISTANCE_SQUARED = 550 * 550;
     public const float GAMETE_MATE_CALL_TARGET_DISTANCE_SQUARED = 50 * 50;
 
+    public const float MICROBE_MATE_FORCE_SPAWN_INTERVAL = 90;
+    public const float MATE_FORCE_SPAWN_ERROR_REPORT_INTERVAL = 15;
+
     // Corpse info
     public const int CORPSE_CHUNK_MINIMUM = 1;
     public const int CORPSE_CHUNK_DIVISOR = 4;
