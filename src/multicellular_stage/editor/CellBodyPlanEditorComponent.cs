@@ -767,6 +767,8 @@ public partial class CellBodyPlanEditorComponent :
 
         editedSpecies.ReproductionMethod = ReproductionMethod;
         editedSpecies.ModifiableSporeCellType = SporeCellType;
+        editedSpecies.ModifiableGameteTypeA = GameteACellType;
+        editedSpecies.ModifiableGameteTypeB = GameteBCellType;
 
         // MassBuddingCellCount changes are free if the resulting reproduction method isn't mass budding, so this check
         // needs to exist to prevent exploits
@@ -779,8 +781,6 @@ public partial class CellBodyPlanEditorComponent :
         if (ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy
             or MulticellularReproductionMethod.SexualAnisogamy)
         {
-            editedSpecies.ModifiableGameteTypeA = GameteACellType;
-
             if (ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy)
             {
                 // Isogamy doesn't allow changing this
@@ -793,17 +793,7 @@ public partial class CellBodyPlanEditorComponent :
         }
         else
         {
-            editedSpecies.ModifiableGameteTypeA = null;
             editedSpecies.PlayerGamete = GameteType.All;
-        }
-
-        if (ReproductionMethod is MulticellularReproductionMethod.SexualAnisogamy)
-        {
-            editedSpecies.ModifiableGameteTypeB = GameteBCellType;
-        }
-        else
-        {
-            editedSpecies.ModifiableGameteTypeB = null;
         }
 
         tempFreshlyUpdatedCells.Clear();
