@@ -550,10 +550,13 @@ public static class MulticellularGrowthHelpers
 
         ref var position = ref entity.Get<WorldPosition>();
 
-        Vector3 initialVelocity = (position.Rotation * Vector3.Forward) * Constants.GAMETE_INITIAL_VELOCITY;
+        var shootDirection = position.Rotation * Vector3.Forward;
+        Vector3 initialVelocity = shootDirection * Constants.GAMETE_INITIAL_VELOCITY;
         Vector3 initialPosition = position.Position;
 
-        // Find the closest cell towards the initial velocity and pick it
+        // Find the closest cell towards the target position and pick it. Note this needs to be careful to not mix
+        // world positions with direction or local coordinates.
+        var shootPosition = position.Position + (shootDirection * 1000);
         float distance = float.MaxValue;
 
         foreach (var colonyMember in colony.ColonyMembers)
@@ -561,7 +564,7 @@ public static class MulticellularGrowthHelpers
             try
             {
                 var memberPosition = colonyMember.Get<WorldPosition>().Position;
-                var newDistance = memberPosition.DistanceSquaredTo(initialVelocity);
+                var newDistance = memberPosition.DistanceSquaredTo(shootPosition);
                 if (newDistance < distance)
                 {
                     distance = newDistance;

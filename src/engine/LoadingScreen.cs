@@ -154,7 +154,10 @@ public partial class LoadingScreen : Control
             case MainGameState.SocietyStage:
             case MainGameState.IndustrialStage:
             case MainGameState.SpaceStage:
+            {
                 break;
+            }
+
             default:
                 throw new ArgumentOutOfRangeException(nameof(target), target, null);
         }

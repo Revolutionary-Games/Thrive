@@ -679,7 +679,19 @@ public partial class CellBodyPlanEditorComponent :
         GameteACellType = multicellularSpecies.ModifiableGameteTypeA;
         GameteBCellType = multicellularSpecies.ModifiableGameteTypeB;
         DesiredMassBuddingCellCount = multicellularSpecies.MassBuddingCellCount;
-        SelectedGameteTypeForPlayer = species.PlayerGamete;
+
+        // Ignore invalid species data
+        if (species.PlayerGamete != GameteType.All || (multicellularSpecies.ReproductionMethod !=
+                MulticellularReproductionMethod.SexualAnisogamy && multicellularSpecies.ReproductionMethod !=
+                MulticellularReproductionMethod.SexualIsogamy))
+        {
+            SelectedGameteTypeForPlayer = species.PlayerGamete;
+        }
+        else
+        {
+            GD.Print("Player gamete type might be bad when entering the editor, setting it to A");
+            SelectedGameteTypeForPlayer = GameteType.A;
+        }
 
         UpdateCellTypeSelections();
 
@@ -743,6 +755,9 @@ public partial class CellBodyPlanEditorComponent :
         {
             editedSpecies.ModifiableGameteTypeA = GameteACellType;
 
+            if (SelectedGameteTypeForPlayer == GameteType.All)
+                throw new InvalidOperationException("Player gamete type cannot be set to All for sexual reproduction");
+
             if (ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy)
             {
                 // Isogamy doesn't allow changing this
@@ -757,6 +772,9 @@ public partial class CellBodyPlanEditorComponent :
         {
             editedSpecies.ModifiableGameteTypeA = null;
             editedSpecies.PlayerGamete = GameteType.All;
+
+            if (editedSpecies.ReproductionMethod == MulticellularReproductionMethod.SexualAnisogamy)
+                throw new Exception("Logic error in player gamete type setting");
         }
 
         if (ReproductionMethod is MulticellularReproductionMethod.SexualAnisogamy)
