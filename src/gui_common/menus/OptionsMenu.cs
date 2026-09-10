@@ -1049,6 +1049,7 @@ public partial class OptionsMenu : ControlWithInput
                 performanceButton.ButtonPressed = true;
                 break;
             case OptionsTab.Inputs:
+            {
                 inputsTab.Show();
                 inputsButton.ButtonPressed = true;
 
@@ -1058,6 +1059,8 @@ public partial class OptionsMenu : ControlWithInput
                 backButton.FocusPrevious = neighbourPath;
 
                 break;
+            }
+
             case OptionsTab.Miscellaneous:
                 miscTab.Show();
                 miscButton.ButtonPressed = true;
@@ -1203,12 +1206,14 @@ public partial class OptionsMenu : ControlWithInput
             case Constants.EXTREME_MAX_SPAWNED_ENTITIES:
                 return 7;
             default:
+            {
                 GD.PrintErr("invalid max entities count value (using closest value)");
                 return MaxEntitiesValueToIndex(ListUtils.FindClosestValue(value, Constants.TINY_MAX_SPAWNED_ENTITIES,
                     Constants.VERY_SMALL_MAX_SPAWNED_ENTITIES, Constants.SMALL_MAX_SPAWNED_ENTITIES,
                     Constants.NORMAL_MAX_SPAWNED_ENTITIES, Constants.LARGE_MAX_SPAWNED_ENTITIES,
                     Constants.VERY_LARGE_MAX_SPAWNED_ENTITIES, Constants.HUGE_MAX_SPAWNED_ENTITIES,
                     Constants.EXTREME_MAX_SPAWNED_ENTITIES));
+            }
         }
     }
 
@@ -2215,7 +2220,10 @@ public partial class OptionsMenu : ControlWithInput
             case ControllerType.PlayStation3:
             case ControllerType.PlayStation4:
             case ControllerType.PlayStation5:
+            {
                 return (int)controllerType;
+            }
+
             default:
                 GD.PrintErr("Invalid controller type value");
                 return 0;

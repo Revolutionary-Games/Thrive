@@ -171,12 +171,14 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         switch (state)
         {
             case 0: // kick off async load once
+            {
                 state = 1;
 
                 // TODO: defer this and then render to avoid I/O on the render thread.
                 LoadResources();
                 state = 2;
                 return;
+            }
 
             case 1: // still loading
                 return;
@@ -388,6 +390,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
                 targetInstance.profileGpu = false;
                 return true;
             case CloudCommandParameters.ProfilePrint:
+            {
                 if (!targetInstance.profileGpu)
                 {
                     context.PrintErr("Not currently profiling. Please execute 'clouds ProfileEnable' first.");
@@ -397,9 +400,12 @@ public partial class VolumetricCloudsEffect : CompositorEffect
 
                 RenderingServer.CallOnRenderThread(Callable.From(() => targetInstance.ReportTimestamps()));
                 return true;
+            }
+
             case CloudCommandParameters.GenerateNoiseProfile:
                 // It's pointless to enable this in release mode, as the asset should be already baked then and the
                 // res:// folder is readonly anyway.
+            {
                 if (OS.HasFeature("release"))
                 {
                     context.PrintErr("This command is disabled in release mode.");
@@ -409,6 +415,8 @@ public partial class VolumetricCloudsEffect : CompositorEffect
 
                 targetInstance.GenerateNoiseProfileAndReload();
                 return true;
+            }
+
             default:
                 return false;
         }

@@ -336,6 +336,7 @@ internal static class KeyNames
             // Triggers have different names for different controller types so these don't set the axis string like
             // normal as triggers should only be able to go one direction on their axis.
             case JoyAxis.TriggerLeft:
+            {
                 switch (activeControllerType)
                 {
                     case ControllerType.PlayStation3:
@@ -348,8 +349,10 @@ internal static class KeyNames
                     default:
                         return Localization.Translate("CONTROLLER_AXIS_LEFT_TRIGGER");
                 }
+            }
 
             case JoyAxis.TriggerRight:
+            {
                 switch (activeControllerType)
                 {
                     case ControllerType.PlayStation3:
@@ -362,6 +365,7 @@ internal static class KeyNames
                     default:
                         return Localization.Translate("CONTROLLER_AXIS_RIGHT_TRIGGER");
                 }
+            }
 
             case JoyAxis.Invalid:
             case JoyAxis.SdlMax:
@@ -426,6 +430,7 @@ internal static class KeyNames
 
             case ControllerType.PlayStation4:
             case ControllerType.PlayStation5:
+            {
                 switch (button)
                 {
                     case JoyButton.A:
@@ -453,11 +458,13 @@ internal static class KeyNames
                     default:
                         return Localization.Translate("CONTROLLER_BUTTON_UNKNOWN");
                 }
+            }
 
             case ControllerType.Xbox360:
             case ControllerType.XboxOne:
             case ControllerType.XboxSeriesX:
             default:
+            {
                 switch (button)
                 {
                     case JoyButton.A:
@@ -485,6 +492,7 @@ internal static class KeyNames
                     default:
                         return Localization.Translate("CONTROLLER_BUTTON_UNKNOWN");
                 }
+            }
         }
     }
 }

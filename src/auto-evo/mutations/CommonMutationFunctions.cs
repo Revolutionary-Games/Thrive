@@ -337,7 +337,9 @@ public static class CommonMutationFunctions
                     {
                         if (!TryAddNewCell(ref mp, newCellType, mpCost, workMemory1, workMemory2, baseCell,
                                 Hex.HexSide.Top, baseHex, newCells))
+                        {
                             return false;
+                        }
 
                         break;
                     }
@@ -346,7 +348,9 @@ public static class CommonMutationFunctions
                     {
                         if (!TryAddNewCell(ref mp, newCellType, mpCost, workMemory1, workMemory2, baseCell,
                                 Hex.HexSide.Bottom, baseHex, newCells))
+                        {
                             return false;
+                        }
 
                         break;
                     }
@@ -355,11 +359,15 @@ public static class CommonMutationFunctions
                     {
                         if (!TryAddNewCell(ref mp, newCellType, mpCost, workMemory1, workMemory2, baseCell,
                                 Hex.HexSide.TopLeft, baseHex, newCells))
+                        {
                             return false;
+                        }
 
                         if (!TryAddNewCell(ref mp, newCellType, mpCost, workMemory1, workMemory2, baseCell,
                                 Hex.HexSide.TopRight, baseHex, newCells))
+                        {
                             return false;
+                        }
 
                         break;
                     }
@@ -368,11 +376,15 @@ public static class CommonMutationFunctions
                     {
                         if (!TryAddNewCell(ref mp, newCellType, mpCost, workMemory1, workMemory2, baseCell,
                                 Hex.HexSide.BottomLeft, baseHex, newCells))
+                        {
                             return false;
+                        }
 
                         if (!TryAddNewCell(ref mp, newCellType, mpCost, workMemory1, workMemory2, baseCell,
                                 Hex.HexSide.BottomRight, baseHex, newCells))
+                        {
                             return false;
+                        }
 
                         break;
                     }

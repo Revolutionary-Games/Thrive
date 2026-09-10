@@ -70,24 +70,34 @@ public sealed partial class SunConfig : ValidatedConfig
         // arbitrary one
         if (!Check(!SunDirection.IsZeroApprox(),
                 "SunDirection must not be a zero vector, as that leaves the sun with no direction to shine from"))
+        {
             valid = false;
+        }
 
         if (!Check(SunEnergy is >= 0.0f and <= 100.0f, $"SunEnergy must be between 0 and 100, but is " +
                 $"{SunEnergy}"))
+        {
             valid = false;
+        }
 
         if (!Check(SunIlluminance is >= 0.0f and <= 100.0f, $"SunIlluminance must be between 0 and 100, but " +
                 $"is {SunIlluminance}"))
+        {
             valid = false;
+        }
 
         // The shader divides by the disc solid angle, which collapses as the radius reaches zero
         if (!Check(SunAngularRadius is > 0.0f and <= 0.1f, $"SunAngularRadius must be greater than 0 and at " +
                 $"most 0.1 radians, but is {SunAngularRadius}"))
+        {
             valid = false;
+        }
 
         if (!Check(SunLimbDarkening is >= 0.0f and <= 1.0f, $"SunLimbDarkening must be between 0 and 1, but " +
                 $"is {SunLimbDarkening}"))
+        {
             valid = false;
+        }
 
         return valid;
     }
