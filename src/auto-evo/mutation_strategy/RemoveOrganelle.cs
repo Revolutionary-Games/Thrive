@@ -66,15 +66,18 @@ public class RemoveOrganelle : IMutationStrategy<Species>
         if (baseSpecies.Organelles.Count <= 1)
             return null;
 
-        var organelles = baseSpecies.Organelles.Where(x => criteria(x.Definition))
-            .OrderBy(_ => random.Next()).Take(Constants.AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS);
+        var baseOrganelles = baseSpecies.Organelles.Organelles;
+        Span<int> candidateIndices = stackalloc int[Constants.AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS];
+        int candidateCount = SelectOrganelleIndices(baseOrganelles, candidateIndices, random);
 
         List<Mutant>? mutated = null;
 
         MutationWorkMemory? workMemory = null;
 
-        foreach (var organelle in organelles)
+        foreach (int candidateIndex in candidateIndices[..candidateCount])
         {
+            var organelle = baseOrganelles[candidateIndex];
+
             // The player cannot remove the nucleus, so Auto-Evo should not be able to either
             if (ReferenceEquals(organelle.Definition, Nucleus))
                 continue;
@@ -87,7 +90,6 @@ public class RemoveOrganelle : IMutationStrategy<Species>
             // Is this the best way to do this? Probably not, but this is how mutations.cs does is
             // and the other way outright did not work
             // This is now slightly improved - hhyyrylainen
-            var baseOrganelles = baseSpecies.Organelles.Organelles;
             var count = baseSpecies.Organelles.Count;
 
             for (var i = 0; i < count; ++i)
@@ -121,6 +123,7 @@ public class RemoveOrganelle : IMutationStrategy<Species>
         List<Mutant>? mutated = null;
 
         var cellTypeCount = baseSpecies.CellTypes.Count;
+        Span<int> candidateIndices = stackalloc int[Constants.AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS];
 
         for (var i = 0; i < cellTypeCount; ++i)
         {
@@ -128,13 +131,15 @@ public class RemoveOrganelle : IMutationStrategy<Species>
             if (baseCellType.Organelles.Count <= 1)
                 continue;
 
-            var organelles = baseCellType.Organelles.Where(x => criteria(x.Definition))
-                .OrderBy(_ => random.Next()).Take(Constants.AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS);
+            var baseOrganelles = baseCellType.ModifiableOrganelles.Organelles;
+            int candidateCount = SelectOrganelleIndices(baseOrganelles, candidateIndices, random);
 
             MutationWorkMemory? workMemory = null;
 
-            foreach (var organelle in organelles)
+            foreach (int candidateIndex in candidateIndices[..candidateCount])
             {
+                var organelle = baseOrganelles[candidateIndex];
+
                 // The player cannot remove the nucleus, so Auto-Evo should not be able to either
                 if (ReferenceEquals(organelle.Definition, Nucleus))
                     continue;
@@ -178,7 +183,6 @@ public class RemoveOrganelle : IMutationStrategy<Species>
 
                 // Clone the organelles for the targeted cell type, excluding the targeted organelle
                 // Is this the best way to do this?
-                var baseOrganelles = baseCellType.ModifiableOrganelles;
                 var organelleCount = baseCellType.Organelles.Count;
 
                 for (var j = 0; j < organelleCount; ++j)
@@ -202,5 +206,42 @@ public class RemoveOrganelle : IMutationStrategy<Species>
         }
 
         return mutated;
+    }
+
+    /// <summary>
+    ///   Samples matching organelles in one scan, then randomizes their attempt order. Only the returned number of
+    ///   entries in candidates is initialized.
+    /// </summary>
+    private int SelectOrganelleIndices(IReadOnlyList<OrganelleTemplate> organelles, Span<int> candidates, Random random)
+    {
+        int matchingCount = 0;
+        int selectedCount = 0;
+        int organelleCount = organelles.Count;
+        for (int i = 0; i < organelleCount; ++i)
+        {
+            if (!criteria(organelles[i].Definition))
+                continue;
+
+            ++matchingCount;
+            if (selectedCount < candidates.Length)
+            {
+                candidates[selectedCount++] = i;
+                continue;
+            }
+
+            // Each matching organelle has the same chance of belonging to the bounded sample.
+            int replacement = random.Next(matchingCount);
+            if (replacement < candidates.Length)
+                candidates[replacement] = i;
+        }
+
+        // Reservoir sampling chooses a subset; shuffle it to also randomize the attempt order.
+        for (int i = 0; i < selectedCount - 1; ++i)
+        {
+            int swapIndex = i + random.Next(selectedCount - i);
+            (candidates[i], candidates[swapIndex]) = (candidates[swapIndex], candidates[i]);
+        }
+
+        return selectedCount;
     }
 }
