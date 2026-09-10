@@ -53,16 +53,22 @@ public sealed partial class TraceGasConfig : ValidatedConfig
 
         if (!Check(OzoneConcentration >= 0.0f,
                 $"OzoneConcentration cannot be negative, but is {OzoneConcentration}"))
+        {
             valid = false;
+        }
 
         if (!Check(OzoneAbsorption.X >= 0.0f && OzoneAbsorption.Y >= 0.0f && OzoneAbsorption.Z >= 0.0f,
                 $"OzoneAbsorption cannot have negative channels, as that would create light rather than absorb it, " +
                 $"but is {OzoneAbsorption}"))
+        {
             valid = false;
+        }
 
         if (!Check(OzoneLayerCenter >= 0.0f, $"OzoneLayerCenter is an altitude above the ground so it cannot " +
                 $"be negative, but is {OzoneLayerCenter}"))
+        {
             valid = false;
+        }
 
         // The shader halves this to get the tent falloff, so a zero width would collapse the layer
         if (!Check(OzoneLayerWidth > 0.0f, $"OzoneLayerWidth must be positive, but is {OzoneLayerWidth}"))
