@@ -154,6 +154,7 @@ public static class MulticellularLayoutHelpers
                             if (!targetGameplayLayout.CanPlace(hexWithData.Data, hexTemporaryMemory,
                                     hexTemporaryMemory2))
                             {
+                                ++distance;
                                 continue;
                             }
 
@@ -180,6 +181,10 @@ public static class MulticellularLayoutHelpers
                         // Succeeded in adding this cell so break the positioning loop
                         break;
                     }
+
+                    // Failed, increment distance before trying again so that we aren't stuck just retrying the
+                    // same positions
+                    ++distance;
                 }
             }
         }
