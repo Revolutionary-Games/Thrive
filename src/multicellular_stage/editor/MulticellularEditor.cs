@@ -787,8 +787,10 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
                 case NewMicrobeActionData:
                 case ColourActionData:
                 case OrganelleUpgradeActionData:
+                {
                     affectedACell = true;
                     break;
+                }
             }
 
             if (affectedACell)
