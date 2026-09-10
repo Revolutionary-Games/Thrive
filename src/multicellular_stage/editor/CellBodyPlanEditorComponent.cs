@@ -921,6 +921,7 @@ public partial class CellBodyPlanEditorComponent :
 
         UpdateStats();
         tolerancesEditor.OnDataTolerancesDependOnChanged();
+        refreshTolerancesWarnings = true;
 
         UpdateFinishButtonWarningVisibility();
 

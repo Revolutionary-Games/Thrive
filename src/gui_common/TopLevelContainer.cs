@@ -132,11 +132,13 @@ public partial class TopLevelContainer : Control
             }
 
             case NotificationReady:
+            {
                 readyCalled = true;
                 Hide();
 
                 ApplyRectSettings();
                 break;
+            }
         }
 
         // Workaround Godot 4 bug: https://github.com/godotengine/godot/issues/73908
