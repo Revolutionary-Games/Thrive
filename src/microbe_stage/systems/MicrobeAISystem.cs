@@ -548,6 +548,8 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                             }
                             else
                             {
+                                // TODO: this could use IsCompatibleAfterSpeciesUpdate for more accuracy, but it is
+                                // probably not fully necessary, and doesn't lead to that bab bugs.
                                 if (!GameteHelpers.IsCompatible(entity.Get<MicrobeSex>().Sex,
                                         signaling.ReceivedCommandFromEntity.Get<MicrobeSex>().Sex))
                                 {
