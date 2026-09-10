@@ -30,6 +30,11 @@ public class EnergyBalanceInfoFull : EnergyBalanceInfoSimple
     /// </summary>
     public Dictionary<string, Dictionary<Compound, float>>? ProductionRequiresCompounds { get; private set; }
 
+    /// <summary>
+    ///     The amount values are being multiplied by due to specialization.
+    /// </summary>
+    public float SpecializationFactor;
+
     public void AddConsumption(string groupName, float amount)
     {
         Consumption.TryGetValue(groupName, out var existing);
