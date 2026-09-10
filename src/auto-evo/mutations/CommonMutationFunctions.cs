@@ -396,6 +396,13 @@ public static class CommonMutationFunctions
     ///   Draws a random sample without replacement using only the small, bounded set of selected indices.
     ///   The output length must not exceed the candidate count and must be small enough for stack allocation.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This algorithm takes O(k^2) time and uses O(k) additional stack space, where k is
+    ///     <paramref name="candidates"/>.Length. It avoids heap allocations and is intended for small samples.
+    ///     Consider using other algorithms when k is big.
+    ///   </para>
+    /// </remarks>
     internal static void SelectCandidateIndices(int candidateCount, Span<int> candidates, Random random)
     {
         Span<int> selected = stackalloc int[candidates.Length];

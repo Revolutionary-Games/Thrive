@@ -214,9 +214,9 @@ public class RemoveOrganelle : IMutationStrategy<Species>
     /// </summary>
     private int SelectOrganelleIndices(IReadOnlyList<OrganelleTemplate> organelles, Span<int> candidates, Random random)
     {
-        int matchingCount = 0;
-        int selectedCount = 0;
-        int organelleCount = organelles.Count;
+        var matchingCount = 0;
+        var selectedCount = 0;
+        var organelleCount = organelles.Count;
         for (int i = 0; i < organelleCount; ++i)
         {
             if (!criteria(organelles[i].Definition))
@@ -230,15 +230,17 @@ public class RemoveOrganelle : IMutationStrategy<Species>
             }
 
             // Each matching organelle has the same chance of belonging to the bounded sample.
-            int replacement = random.Next(matchingCount);
+            var replacement = random.Next(matchingCount);
             if (replacement < candidates.Length)
+            {
                 candidates[replacement] = i;
+            }
         }
 
         // Reservoir sampling chooses a subset; shuffle it to also randomize the attempt order.
         for (int i = 0; i < selectedCount - 1; ++i)
         {
-            int swapIndex = i + random.Next(selectedCount - i);
+            var swapIndex = i + random.Next(selectedCount - i);
             (candidates[i], candidates[swapIndex]) = (candidates[swapIndex], candidates[i]);
         }
 
