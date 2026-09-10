@@ -447,11 +447,14 @@ public partial class NewGameSettings : ControlWithInput
                 difficultyTabButton.ButtonPressed = true;
                 break;
             case SelectedOptionsTab.Planet:
+            {
                 planetTab.Show();
                 planetTabButton.ButtonPressed = true;
                 planetStatisticsSpacer.Show();
                 planetStatisticsContainer.Show();
                 break;
+            }
+
             case SelectedOptionsTab.Miscellaneous:
                 miscTab.Show();
                 miscTabButton.ButtonPressed = true;

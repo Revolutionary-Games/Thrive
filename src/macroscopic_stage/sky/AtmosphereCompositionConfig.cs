@@ -154,18 +154,24 @@ public sealed partial class AtmosphereCompositionConfig : ValidatedConfig
 
         if (!Check(totalFraction > 0.0f,
                 "The gas fractions add up to zero, leaving nothing for the sky to scatter off of"))
+        {
             valid = false;
+        }
 
         if (!Check(SurfacePressure >= 0.0f, $"SurfacePressure cannot be negative, but is {SurfacePressure}"))
             valid = false;
 
         if (!Check(SurfaceTemperature > 0.0f,
                 $"SurfaceTemperature must be above absolute zero, but is {SurfaceTemperature}"))
+        {
             valid = false;
+        }
 
         if (!Check(Wavelengths is { X: > 0.0f, Y: > 0.0f, Z: > 0.0f },
                 $"Wavelengths must all be positive, but are {Wavelengths}"))
+        {
             valid = false;
+        }
 
         if (!Check(MetresPerUnit > 0.0f, $"MetresPerUnit must be positive, but is {MetresPerUnit}"))
             valid = false;

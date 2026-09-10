@@ -570,11 +570,14 @@ public class WikiUpdater
                     text = ConvertListToBbcode(child) + "\n\n";
                     break;
                 case "H3" or "H4":
+                {
                     var headline = child.Children
                         .First(c => c.ClassList.Contains("mw-headline"));
 
                     text = $"[b][u]{headline.TextContent}[/u][/b]\n\n";
                     break;
+                }
+
                 default:
                     // Ignore all other tag types
                     continue;
@@ -644,6 +647,7 @@ public class WikiUpdater
             {
                 // Handle wrapped items
                 case IHtmlDivElement or IHtmlSpanElement or IHtmlParagraphElement:
+                {
                     foreach (var recursiveChild in child.ChildNodes)
                     {
                         // Ignore recursive children with just whitespace to avoid a ton of undesired whitespace
@@ -658,6 +662,8 @@ public class WikiUpdater
                     }
 
                     break;
+                }
+
                 case IHtmlAnchorElement link:
                     result.Append(ConvertLinkToBbcode(link));
                     break;
@@ -665,11 +671,14 @@ public class WikiUpdater
                     result.Append(ConvertImageToBbcode(image, result));
                     break;
                 case IElement { TagName: "B", Children.Length: > 0 } element:
+                {
                     // Deal with items inside bold tags, e.g. links
                     result.Append("[b]");
                     result.Append(ConvertParagraphToBbcode(element));
                     result.Append("[/b]");
                     continue;
+                }
+
                 case IElement element:
                     result.Append(ConvertTextToBbcode(element.OuterHtml));
                     break;

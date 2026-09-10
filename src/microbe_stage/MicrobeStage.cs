@@ -1334,12 +1334,15 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
                 topUp = true;
                 break;
             case ReproductionCompoundHandling.TopUpOnPatchChange:
+            {
                 if (switchedPatchInEditorForCompounds)
                 {
                     topUp = true;
                 }
 
                 break;
+            }
+
             default:
                 GD.PrintErr("Unknown handling of reproduction compounds mode: " +
                     $"{GameWorld.WorldSettings.Difficulty.ReproductionCompounds}");

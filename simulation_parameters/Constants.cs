@@ -1263,6 +1263,7 @@ public static class Constants
 
     public const float GAMETE_MERGE_DISTANCE_SQUARED = 4 * 4;
     public const float GAMETE_INITIAL_VELOCITY = 90;
+    public const float GAMETE_SENSOR_RADIUS_BEYOND_MEMBRANE = 15;
 
     /// <summary>
     ///   Automatically stops the player gamete shoot signal after this time
@@ -1273,6 +1274,11 @@ public static class Constants
     public const float GAMETE_FORCE_SHOOT_DISTANCE_SQUARED = 100 * 100;
     public const float GAMETE_MATE_CALL_MAX_DISTANCE_SQUARED = 550 * 550;
     public const float GAMETE_MATE_CALL_TARGET_DISTANCE_SQUARED = 50 * 50;
+
+    /// <summary>
+    ///   This timer makes a colony fire a gamete even if it cannot turn to face the player within this many seconds
+    /// </summary>
+    public const float GAMETE_SHOOT_AFTER_ANGLE_FAILS_FOR = 12;
 
     // Corpse info
     public const int CORPSE_CHUNK_MINIMUM = 1;
@@ -1507,6 +1513,8 @@ public static class Constants
 
     public const float AUTO_EVO_MUTATION_RIGIDITY_STEP = 0.35f;
     public const float AUTO_EVO_MUTATION_TOXICITY_STEP = 0.2f;
+
+    public const int AUTO_EVO_THRESHOLD_MICHE_MAX_SCORE = 1;
 
     public const int AUTO_EVO_MAX_MUTATION_RECURSIONS = 3;
 
