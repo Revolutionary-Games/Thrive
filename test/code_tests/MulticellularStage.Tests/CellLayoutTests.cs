@@ -124,6 +124,80 @@ public class CellLayoutTests
         layout.ThrowIfCellsOverlap();
     }
 
+    [Fact]
+    public void MulticellularLayoutHelpers_LowQualityLayoutKeepsCellsTouching()
+    {
+        var workMemory1 = new List<Hex>();
+        var workMemory2 = new List<Hex>();
+        var workMemory3 = new HashSet<Hex>();
+
+        // This is real data, made by auto-evo, which triggers a bug
+        var stemCellType = CreateCellType("Stem", [
+            ([
+                new Hex(0, 0), new Hex(1, 0), new Hex(0, 1), new Hex(0, -1), new Hex(1, -1),
+                new Hex(-1, 1), new Hex(-1, 0), new Hex(1, 1), new Hex(0, 2), new Hex(-1, 2)
+            ], new Hex(0, -3)),
+            ([new Hex(0, 0)], new Hex(0, 2)),
+            ([new Hex(0, 0), new Hex(0, -1)], new Hex(-1, 2)),
+            ([new Hex(0, 0), new Hex(0, -1)], new Hex(1, 1)),
+            ([new Hex(0, 0), new Hex(0, -1)], new Hex(0, 1)),
+        ], workMemory1, workMemory2);
+
+        var chemoreceptorCellType = CreateCellType("Chemoreceptor", [
+            ([
+                new Hex(0, 0), new Hex(1, 0), new Hex(0, 1), new Hex(0, -1), new Hex(1, -1),
+                new Hex(-1, 1), new Hex(-1, 0), new Hex(1, 1), new Hex(0, 2), new Hex(-1, 2)
+            ], new Hex(0, -4)),
+            ([new Hex(0, 0)], new Hex(0, 1)),
+            ([new Hex(0, 0), new Hex(0, -1)], new Hex(-1, 1)),
+            ([new Hex(0, 0), new Hex(0, -1)], new Hex(1, 0)),
+            ([new Hex(0, 0), new Hex(0, -1)], new Hex(0, 0)),
+            ([new Hex(0, 0)], new Hex(0, 2)),
+        ], workMemory1, workMemory2);
+
+        var source = new IndividualHexLayout<CellTemplate>();
+        AddCell(source, stemCellType, new Hex(0, 0), workMemory1, workMemory2);
+        AddCell(source, stemCellType, new Hex(-3, 3), workMemory1, workMemory2);
+        AddCell(source, stemCellType, new Hex(3, 0), workMemory1, workMemory2);
+        AddCell(source, chemoreceptorCellType, new Hex(0, 8), workMemory1, workMemory2);
+        AddCell(source, chemoreceptorCellType, new Hex(6, 6), workMemory1, workMemory2);
+        AddCell(source, chemoreceptorCellType, new Hex(-5, 11), workMemory1, workMemory2);
+
+        var gameplayLayout = new CellLayout<CellTemplate>();
+        var editorLayout = new IndividualHexLayout<CellTemplate>();
+
+        MulticellularLayoutHelpers.UpdateGameplayLayout(gameplayLayout, editorLayout, source, AlgorithmQuality.Low,
+            workMemory1, workMemory2, workMemory3);
+
+        gameplayLayout.ThrowIfCellsAreNotTouching();
+    }
+
+    private static CellType CreateCellType(string name,
+        IEnumerable<(List<Hex> Hexes, Hex Position)> organelles, List<Hex> workMemory1, List<Hex> workMemory2)
+    {
+        var layout = new OrganelleLayout<OrganelleTemplate>();
+        var index = 0;
+
+        foreach (var (hexes, position) in organelles)
+        {
+            var definition = new OrganelleDefinition
+            {
+                Name = $"TestOrganelle{index++}",
+                Hexes = hexes,
+            };
+            layout.AddFast(new OrganelleTemplate(definition, position, 0), workMemory1, workMemory2);
+        }
+
+        return new CellType(layout, new MembraneType { Name = "TestMembrane" }) { CellTypeName = name };
+    }
+
+    private static void AddCell(IndividualHexLayout<CellTemplate> layout, CellType cellType, Hex position,
+        List<Hex> workMemory1, List<Hex> workMemory2)
+    {
+        layout.AddFast(new HexWithData<CellTemplate>(new CellTemplate(cellType, position, 0), position, 0),
+            workMemory1, workMemory2);
+    }
+
     private void TestThatHexCacheMatches(CellLayout<CellTemplate> layout)
     {
         var cache = layout.ComputeHexCache();

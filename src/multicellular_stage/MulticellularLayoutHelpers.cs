@@ -14,13 +14,17 @@ public static class MulticellularLayoutHelpers
     public static void UpdateGameplayLayout(CellLayout<CellTemplate> targetGameplayLayout,
         IndividualHexLayout<CellTemplate> targetEditorLayout, IndividualHexLayout<CellTemplate> source,
         AlgorithmQuality algorithmQuality,
-        List<Hex> hexTemporaryMemory, List<Hex> hexTemporaryMemory2)
+        List<Hex> hexTemporaryMemory, List<Hex> hexTemporaryMemory2, HashSet<Hex> hexTemporaryMemory3)
     {
         targetEditorLayout.Clear();
         targetGameplayLayout.Clear();
 
         if (algorithmQuality is AlgorithmQuality.Low or AlgorithmQuality.Normal)
         {
+            hexTemporaryMemory3.Clear();
+            var placedHexes = hexTemporaryMemory3;
+            bool addedFirst = false;
+
             foreach (var hexWithData in source.AsModifiable())
             {
                 // Add the hex to the remembered editor layout before changing anything
@@ -47,13 +51,132 @@ public static class MulticellularLayoutHelpers
                     hexWithData.Data!.Position = checkPosition;
                     hexWithData.Position = checkPosition;
 
-                    if (targetGameplayLayout.CanPlace(hexWithData.Data, hexTemporaryMemory, hexTemporaryMemory2))
+                    if (!targetGameplayLayout.CanPlace(hexWithData.Data, hexTemporaryMemory, hexTemporaryMemory2))
                     {
-                        targetGameplayLayout.AddFast(hexWithData.Data, hexTemporaryMemory, hexTemporaryMemory2);
-                        break;
+                        ++distance;
+                        continue;
                     }
 
-                    ++distance;
+                    // We can place here but make sure that it touches something.
+                    bool nextToSomething = false;
+                    int attempts = 0;
+
+                    // First cell is always touching
+                    if (!addedFirst)
+                    {
+                        nextToSomething = true;
+                    }
+
+                    bool shifted = false;
+
+                    while (!nextToSomething)
+                    {
+                        // Don't endlessly chase things if it looks like this is not going to work
+                        if (++attempts > 30)
+                        {
+                            break;
+                        }
+
+                        // First, get the positions.
+                        targetGameplayLayout.GetHexComponentPositions(hexWithData.Data, hexTemporaryMemory);
+
+                        // Then check they are next to something
+                        foreach (var hex in hexTemporaryMemory)
+                        {
+                            var hexPosition = hex + hexWithData.Position;
+
+                            foreach (var offset in Hex.HexNeighbourOffset.Values)
+                            {
+                                var finalPosition = hexPosition + offset;
+
+                                // If the position is already committed, this worked
+                                if (placedHexes.Contains(finalPosition))
+                                {
+                                    nextToSomething = true;
+                                    break;
+                                }
+                            }
+
+                            if (nextToSomething)
+                                break;
+                        }
+
+                        if (!nextToSomething)
+                        {
+                            // Move by one position closer to a nearby cell
+                            var moveTarget = targetGameplayLayout.GetClosestElementRootPositionTo(checkPosition) ??
+                                throw new InvalidOperationException("Finding cell to move towards should never fail");
+
+                            var moveTargetPosition = moveTarget.Position;
+
+                            if (moveTargetPosition.Q == 0 && moveTargetPosition.R == 0)
+                            {
+                                GD.PrintErr("Got a zero move vector for cell touch fix");
+                                moveTargetPosition.Q = 1;
+                            }
+
+                            if (moveTargetPosition == checkPosition)
+                            {
+                                GD.PrintErr("Got a zero move vector for cell touch fix");
+                                moveTargetPosition.Q += 1;
+                            }
+
+                            // Get a shift by one position at whichever direction is the closer one
+                            var vector = (Hex.AxialToCartesian(moveTargetPosition) -
+                                Hex.AxialToCartesian(checkPosition)).Normalized();
+
+                            var finalMove = new Hex(0, 0);
+                            float distanceShift = 0.6f;
+
+                            while (finalMove.Q == 0 && finalMove.R == 0)
+                            {
+                                finalMove = Hex.CartesianToAxial(vector * distanceShift);
+                                distanceShift += 0.6f;
+                            }
+
+                            // Now we finally have a shift
+                            checkPosition += finalMove;
+                            hexWithData.Data!.Position = checkPosition;
+                            hexWithData.Position = checkPosition;
+                            shifted = true;
+                        }
+                    }
+
+                    if (nextToSomething)
+                    {
+                        // If shifted, need to check that the new position is clear, if not, we need to go into the
+                        // above loop again
+                        if (shifted)
+                        {
+                            if (!targetGameplayLayout.CanPlace(hexWithData.Data, hexTemporaryMemory,
+                                    hexTemporaryMemory2))
+                            {
+                                continue;
+                            }
+
+                            // We wasted the temporary memory, so need to get it again
+                            targetGameplayLayout.GetHexComponentPositions(hexWithData.Data, hexTemporaryMemory);
+                        }
+
+                        // Hexes will be committed now
+                        if (hexTemporaryMemory.Count < 1)
+                            throw new InvalidOperationException("Expected to have cached hexes already");
+
+                        foreach (var hex in hexTemporaryMemory)
+                        {
+                            var hexPosition = hex + hexWithData.Position;
+                            if (!placedHexes.Add(hexPosition))
+                            {
+                                GD.PrintErr("We will be placing a hex that is already placed, should throw next...");
+                            }
+                        }
+
+                        targetGameplayLayout.AddFast(hexWithData.Data, hexTemporaryMemory, hexTemporaryMemory2);
+                        addedFirst = true;
+
+                        // Succeeded in adding this cell so break the positioning loop
+                        break;
+                    }
                 }
             }
         }
@@ -193,7 +316,7 @@ public static class MulticellularLayoutHelpers
     /// </summary>
     public static void UpdateGameplayLayoutForAutoEvo(CellLayout<CellTemplate> targetGameplayLayout,
         IndividualHexLayout<CellTemplate> targetEditorLayout, List<Hex> hexTemporaryMemory,
-        List<Hex> hexTemporaryMemory2)
+        List<Hex> hexTemporaryMemory2, HashSet<Hex> hexTemporaryMemory3)
     {
         var source = new IndividualHexLayout<CellTemplate>();
 
@@ -216,7 +339,7 @@ public static class MulticellularLayoutHelpers
         }
 
         UpdateGameplayLayout(targetGameplayLayout, targetEditorLayout, source, AlgorithmQuality.Low, hexTemporaryMemory,
-            hexTemporaryMemory2);
+            hexTemporaryMemory2, hexTemporaryMemory3);
     }
 
     /// <summary>
