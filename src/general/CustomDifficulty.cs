@@ -143,6 +143,9 @@ public class CustomDifficulty : IDifficulty
         // Version 4 fields that were added after
         writer.Write(SpawnCompatibleMateOnCall);
         writer.Write(ShowMatePosition);
+
+        // Version 5 field that was added after
+        writer.Write(AlwaysResetEnvironment);
     }
 
     public void SetGrowthRateLimitCheatOverride(bool newLimitSetting)
