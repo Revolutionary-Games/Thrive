@@ -135,7 +135,7 @@ public class CellLayoutTests
         var stemCellType = CreateCellType("Stem", [
             ([
                 new Hex(0, 0), new Hex(1, 0), new Hex(0, 1), new Hex(0, -1), new Hex(1, -1),
-                new Hex(-1, 1), new Hex(-1, 0), new Hex(1, 1), new Hex(0, 2), new Hex(-1, 2)
+                new Hex(-1, 1), new Hex(-1, 0), new Hex(1, 1), new Hex(0, 2), new Hex(-1, 2),
             ], new Hex(0, -3)),
             ([new Hex(0, 0)], new Hex(0, 2)),
             ([new Hex(0, 0), new Hex(0, -1)], new Hex(-1, 2)),
@@ -146,7 +146,7 @@ public class CellLayoutTests
         var chemoreceptorCellType = CreateCellType("Chemoreceptor", [
             ([
                 new Hex(0, 0), new Hex(1, 0), new Hex(0, 1), new Hex(0, -1), new Hex(1, -1),
-                new Hex(-1, 1), new Hex(-1, 0), new Hex(1, 1), new Hex(0, 2), new Hex(-1, 2)
+                new Hex(-1, 1), new Hex(-1, 0), new Hex(1, 1), new Hex(0, 2), new Hex(-1, 2),
             ], new Hex(0, -4)),
             ([new Hex(0, 0)], new Hex(0, 1)),
             ([new Hex(0, 0), new Hex(0, -1)], new Hex(-1, 1)),
