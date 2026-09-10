@@ -1,6 +1,12 @@
 [gd_scene format=3 uid="uid://doe55k2jyc4xn"]
 
 [ext_resource type="Script" uid="uid://dh8yuuagbflvb" path="res://src/macroscopic_stage/MacroscopicConvolutionDisplayer.cs" id="1_11vo3"]
+[ext_resource type="Shader" uid="uid://bl3sh4eprp8ys" path="res://shaders/TexturePaddingJumpFill.gdshader" id="2_8nkgx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vu4kk"]
+shader = ExtResource("2_8nkgx")
+shader_parameter/jumpSize = 0.0
 
 [node name="MacroscopicConvolutionDisplayer" type="MeshInstance3D" unique_id=1969202289]
 script = ExtResource("1_11vo3")
+texturePaddingBlitMaterial = SubResource("ShaderMaterial_vu4kk")

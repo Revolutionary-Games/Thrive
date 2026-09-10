@@ -247,6 +247,8 @@ public partial class PhotoStudio : SubViewport
                     }
                 }
 
+                Size = new Vector2I(currentTask!.DesiredResolution, currentTask.DesiredResolution);
+
                 currentTaskStep = Step.WaitSceneStabilize;
                 break;
             }
@@ -346,28 +348,36 @@ public partial class PhotoStudio : SubViewport
         base._Process(delta);
     }
 
-    public IImageTask GenerateImage(IScenePhotographable photographable, int priority = 1)
+    public IImageTask GenerateImage(IScenePhotographable photographable, int priority = 1,
+        int resolution = Constants.PHOTO_STUDIO_DEFAULT_RESOLUTION)
     {
-        var cacheKey = photographable.GetVisualHashCode();
+        var cacheKey = GetResolutionAwareHash(photographable.GetVisualHashCode(), resolution);
 
         var image = TryGetFromCache(cacheKey);
 
         if (image != null)
             return image;
 
-        return HandleTaskSubmit(cacheKey, new ImageTask(photographable, priority));
+        var task = new ImageTask(photographable, priority);
+        task.DesiredResolution = resolution;
+
+        return HandleTaskSubmit(cacheKey, task);
     }
 
-    public IImageTask GenerateImage(ISimulationPhotographable photographable, int priority = 1)
+    public IImageTask GenerateImage(ISimulationPhotographable photographable, int priority = 1,
+        int resolution = Constants.PHOTO_STUDIO_DEFAULT_RESOLUTION)
     {
-        var cacheKey = photographable.GetVisualHashCode();
+        var cacheKey = GetResolutionAwareHash(photographable.GetVisualHashCode(), resolution);
 
         var image = TryGetFromCache(cacheKey);
 
         if (image != null)
             return image;
 
-        return HandleTaskSubmit(cacheKey, new ImageTask(photographable, priority));
+        var task = new ImageTask(photographable, priority);
+        task.DesiredResolution = resolution;
+
+        return HandleTaskSubmit(cacheKey, task);
     }
 
     public IImageTask? TryGetFromCache(ulong hashCode)
@@ -518,6 +528,14 @@ public partial class PhotoStudio : SubViewport
             GD.Print("Disk caching disabled");
             diskCache = null;
         }
+    }
+
+    private ulong GetResolutionAwareHash(ulong hash, int resolution)
+    {
+        const int oldDefaultResoltion = 600;
+
+        // XORing the given resolution with the old default one to make sure that older hashes remain the same
+        return hash ^ (ulong)(resolution.GetHashCode() ^ oldDefaultResoltion.GetHashCode());
     }
 
     private class TaskComparer : IComparer<(int, int)>
