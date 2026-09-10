@@ -36,12 +36,14 @@ public class SpecifiedInputKey : ICloneable
                 ConstructFrom(inputMouse);
                 return;
             case InputEventJoypadButton inputControllerButton:
+            {
                 if (inputControllerButton.ButtonIndex < 0)
                     throw new ArgumentException("Controller button index is invalid");
 
                 Type = InputType.ControllerButton;
                 Code = PackCodeWithDevice((int)inputControllerButton.ButtonIndex, inputControllerButton.Device);
                 break;
+            }
 
             case InputEventJoypadMotion inputControllerAxis:
                 Type = InputType.ControllerAxis;
@@ -309,12 +311,14 @@ public class SpecifiedInputKey : ICloneable
             }
 
             default:
+            {
                 container.AddChild(new Label
                 {
                     Text = ToString(),
                     MouseFilter = Godot.Control.MouseFilterEnum.Ignore,
                 });
                 break;
+            }
         }
 
         return container;

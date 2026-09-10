@@ -78,7 +78,9 @@ public static class PatchEventUtils
 
             if (random.NextFloat() >
                 GetChanceOfAffectAnotherCompound(chanceOfAffectingCompound, selectedCompounds.Count))
+            {
                 break;
+            }
         }
 
         return selectedCompounds;
