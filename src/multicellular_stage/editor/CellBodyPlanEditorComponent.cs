@@ -25,6 +25,7 @@ public partial class CellBodyPlanEditorComponent :
 
     private readonly List<Hex> hexTemporaryMemory = [];
     private readonly List<Hex> hexTemporaryMemory2 = [];
+    private readonly HashSet<Hex> hexTemporaryMemory3 = [];
     private readonly List<Hex> islandResults = [];
     private readonly HashSet<Hex> islandsWorkMemory1 = [];
     private readonly List<Hex> islandsWorkMemory2 = [];
@@ -737,7 +738,7 @@ public partial class CellBodyPlanEditorComponent :
         // TODO: as this is a long operation, it would be very nice to be able to run this in a background thread
         MulticellularLayoutHelpers.UpdateGameplayLayout(editedSpecies.ModifiableGameplayCells,
             editedSpecies.ModifiableEditorCells, editedMicrobeCells, AlgorithmQuality.High, hexTemporaryMemory,
-            hexTemporaryMemory2);
+            hexTemporaryMemory2, hexTemporaryMemory3);
 
         editedSpecies.ReproductionMethod = ReproductionMethod;
         editedSpecies.ModifiableSporeCellType = SporeCellType;
