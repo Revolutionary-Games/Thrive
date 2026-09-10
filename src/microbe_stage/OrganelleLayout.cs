@@ -245,6 +245,19 @@ public class OrganelleLayout<T> : HexLayout<T>, IArchivable, IReadOnlyOrganelleL
         return true;
     }
 
+    public override void GetHexComponentPositions(T hex, List<Hex> result)
+    {
+        result.Clear();
+
+        var rotated = hex.Definition.GetRotatedHexes(hex.Orientation);
+        var count = rotated.Count;
+
+        for (int i = 0; i < count; ++i)
+        {
+            result.Add(rotated[i]);
+        }
+    }
+
     /// <summary>
     ///   Deep clones this organelle layout as a new layout in a more efficient way than copying organelles from here
     ///   to a new instance
@@ -260,19 +273,6 @@ public class OrganelleLayout<T> : HexLayout<T>, IArchivable, IReadOnlyOrganelleL
         }
 
         return result;
-    }
-
-    public override void GetHexComponentPositions(T hex, List<Hex> result)
-    {
-        result.Clear();
-
-        var rotated = hex.Definition.GetRotatedHexes(hex.Orientation);
-        var count = rotated.Count;
-
-        for (int i = 0; i < count; ++i)
-        {
-            result.Add(rotated[i]);
-        }
     }
 
     /// <summary>
