@@ -85,8 +85,9 @@ public class AddCellWithOrganelle : IMutationStrategy<Species>
             mp < Constants.CELL_ADD_COST)
             return null;
 
-        var organelles = allOrganelles.OrderBy(_ => random.Next())
-            .Take(Constants.AUTO_EVO_ORGANELLE_ADD_ATTEMPTS);
+        var candidateCount = Math.Min(allOrganelles.Length, Constants.AUTO_EVO_ORGANELLE_ADD_ATTEMPTS);
+        Span<int> candidateIndices = stackalloc int[candidateCount];
+        SelectCandidateIndices(allOrganelles.Length, candidateIndices, random);
 
         // TODO: reuse this memory somehow
         var mutated = new List<Mutant>();
@@ -95,8 +96,10 @@ public class AddCellWithOrganelle : IMutationStrategy<Species>
         var workMemory2 = new List<Hex>();
         var workMemory3 = new HashSet<Hex>();
 
-        foreach (var organelle in organelles)
+        foreach (var i in candidateIndices)
         {
+            var organelle = allOrganelles[i];
+
             // Important to not accidentally add non-LAWK organelles in a LAWK game
             if (!organelle.LAWK && lawk)
                 continue;
@@ -129,13 +132,13 @@ public class AddCellWithOrganelle : IMutationStrategy<Species>
                 var smallestCellIndex = 0;
                 var newSpecies = baseMulticellularSpecies.Clone(true, false);
 
-                for (int i = 0; i < baseCellTypesCount; ++i)
+                for (int j = 0; j < baseCellTypesCount; ++j)
                 {
-                    if (baseCellTypes[i].BaseHexSize >= smallestCellSize)
+                    if (baseCellTypes[j].BaseHexSize >= smallestCellSize)
                         continue;
 
-                    smallestCellIndex = i;
-                    smallestCellSize = baseCellTypes[i].BaseHexSize;
+                    smallestCellIndex = j;
+                    smallestCellSize = baseCellTypes[j].BaseHexSize;
                 }
 
                 var templateCellType = baseMulticellularSpecies.ModifiableCellTypes[smallestCellIndex];

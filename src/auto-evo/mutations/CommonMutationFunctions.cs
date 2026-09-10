@@ -392,6 +392,39 @@ public static class CommonMutationFunctions
         return true;
     }
 
+    /// <summary>
+    ///   Draws a random sample without replacement using only the small, bounded set of selected indices.
+    ///   The output length must not exceed the candidate count and must be small enough for stack allocation.
+    /// </summary>
+    internal static void SelectCandidateIndices(int candidateCount, Span<int> candidates, Random random)
+    {
+        Span<int> selected = stackalloc int[candidates.Length];
+        for (int i = 0; i < candidates.Length; ++i)
+        {
+            var remaining = candidateCount - i;
+            var index = remaining == 1 ? 0 : random.Next(remaining);
+            var insertion = 0;
+
+            // Convert a rank among the remaining candidates to an index in the original array.
+            while (insertion < i && selected[insertion] <= index)
+            {
+                ++index;
+                ++insertion;
+            }
+
+            candidates[i] = index;
+            if (i + 1 == candidates.Length)
+                break;
+
+            for (int j = i; j > insertion; --j)
+            {
+                selected[j] = selected[j - 1];
+            }
+
+            selected[insertion] = index;
+        }
+    }
+
     private static bool TryAddNewCell(ref double mp, CellType newCellType, int mpCost, List<Hex> workMemory1,
         List<Hex> workMemory2, CellTemplate baseCell, Hex.HexSide hexSide, IReadOnlyHexWithData<CellTemplate> baseHex,
         IndividualHexLayout<CellTemplate> newCells)
