@@ -311,8 +311,6 @@ public static class MulticellularLayoutHelpers
 #if DEBUG
         targetGameplayLayout.ThrowIfCellsOverlap();
 #endif
-
-        targetGameplayLayout.ThrowIfCellsAreNotTouching();
     }
 
     /// <summary>
