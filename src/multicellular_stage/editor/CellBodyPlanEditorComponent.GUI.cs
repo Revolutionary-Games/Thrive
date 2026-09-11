@@ -404,8 +404,10 @@ public partial class CellBodyPlanEditorComponent
                 cellType.CellTypeName = Localization.Translate("DEFAULT_SPORE_CELL_TYPE_NAME");
                 break;
             case SpecialCellArchetype.GameteA:
-            case SpecialCellArchetype.GameteB:
                 cellType.CellTypeName = Localization.Translate("DEFAULT_GAMETE_CELL_TYPE_NAME");
+                break;
+            case SpecialCellArchetype.GameteB:
+                cellType.CellTypeName = Localization.Translate("DEFAULT_GAMETE_B_CELL_TYPE_NAME");
                 break;
             default:
                 throw new NotImplementedException($"Unimplemented special cell type: {cellArchetype}");
@@ -457,6 +459,7 @@ public partial class CellBodyPlanEditorComponent
         {
             sexualAnisogamyUpgradeButton.Visible = false;
             anisogamySettingsContainer.Visible = true;
+            gameteSelectionALabel.Text = Localization.Translate("GAMETE_CELL_TYPE_A");
         }
         else
         {
@@ -469,6 +472,7 @@ public partial class CellBodyPlanEditorComponent
                         1)));
 
             anisogamySettingsContainer.Visible = false;
+            gameteSelectionALabel.Text = Localization.Translate("GAMETE_CELL_TYPE");
         }
 
         // Update also the selected gamete type for the player

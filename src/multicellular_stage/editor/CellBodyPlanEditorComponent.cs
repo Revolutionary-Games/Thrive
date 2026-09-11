@@ -201,6 +201,9 @@ public partial class CellBodyPlanEditorComponent :
     private Button playerGameteSelectionA = null!;
 
     [Export]
+    private Label gameteSelectionALabel = null!;
+
+    [Export]
     private Button playerGameteSelectionB = null!;
 
     [Export]
