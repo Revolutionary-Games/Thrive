@@ -382,6 +382,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         var cellPositionTemporaryStorage = new List<Hex>();
         ModifiableGameplayCells.CalculateAllElementPositions(allCellPositions, cellPositionTemporaryStorage);
 
+        // This is kind of a similar implementation as CellLayout's ThrowIfCellsAreNotTouching
         var touchingCells = new HashSet<CellTemplate>(ReferenceEqualityComparer.Instance);
         foreach (var positionAndCell in allCellPositions)
         {
