@@ -14,7 +14,7 @@ using Systems;
 /// </summary>
 public struct MicrobeAI : IArchivableComponent
 {
-    public const ushort SERIALIZATION_VERSION = 2;
+    public const ushort SERIALIZATION_VERSION = 3;
 
     public float TimeUntilNextThink;
 
@@ -35,6 +35,7 @@ public struct MicrobeAI : IArchivableComponent
     public float ATPThreshold;
 
     public float TimeSinceGameteShoot;
+    public float GameteShootAttemptTimer;
     public float TimeUntilMateCallCheck;
 
     /// <summary>
@@ -82,6 +83,7 @@ public struct MicrobeAI : IArchivableComponent
 
         writer.Write(TimeSinceGameteShoot);
         writer.Write(TimeUntilMateCallCheck);
+        writer.Write(GameteShootAttemptTimer);
     }
 }
 
@@ -118,6 +120,11 @@ public static class MicrobeAIHelpers
         {
             instance.TimeSinceGameteShoot = reader.ReadFloat();
             instance.TimeUntilMateCallCheck = reader.ReadFloat();
+        }
+
+        if (version > 2)
+        {
+            instance.GameteShootAttemptTimer = reader.ReadFloat();
         }
 
         return instance;
