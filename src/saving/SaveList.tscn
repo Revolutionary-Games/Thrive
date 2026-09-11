@@ -48,8 +48,8 @@ text = "NO_SAVEGAMES_FOUND"
 horizontal_alignment = 1
 
 [node name="LoadingLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1435315181]
-visible = false
 layout_mode = 2
+theme_override_constants/outline_size = 4
 text = "LOADING_DOT_DOT_DOT"
 horizontal_alignment = 1
 
@@ -97,6 +97,7 @@ WindowTitle = "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
 [node name="SaveUpgradeFailedDialog" parent="MarginContainer/VBoxContainer" unique_id=403267737 instance=ExtResource("4")]
 layout_mode = 2
 ErrorMessage = "SAVE_UPGRADE_FAILED_DESCRIPTION"
+ExceptionInfo = ""
 WindowTitle = "SAVE_UPGRADE_FAILED"
 
 [node name="LoadIncompatiblePrototypeDialog" parent="MarginContainer/VBoxContainer" unique_id=1541299007 instance=ExtResource("3")]

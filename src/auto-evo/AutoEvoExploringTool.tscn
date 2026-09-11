@@ -20,10 +20,11 @@
 [ext_resource type="Texture2D" uid="uid://bwcvbcn15kctq" path="res://assets/textures/gui/bevel/plusButtonHover.png" id="19"]
 [ext_resource type="PackedScene" uid="uid://bgeijgq7runaw" path="res://src/gui_common/FocusGrabber.tscn" id="20"]
 [ext_resource type="PackedScene" uid="uid://dw3ubsraoopin" path="res://src/gui_common/TabButtons.tscn" id="21"]
+[ext_resource type="PackedScene" uid="uid://ddi31qylscfyh" path="res://src/saving/SaveList.tscn" id="22_kfqi3"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_cxjso"]
 
-[node name="AutoEvoExploringTool" type="Node" unique_id=130431707 node_paths=PackedStringArray("worldTab", "configTab", "historyReportSplit", "speciesSelectPanel", "mapTab", "reportTab", "viewerTab", "micheTab", "allWorldsStatisticsLabel", "worldsListMenu", "newWorldButton", "currentWorldStatisticsLabel", "worldExportButton", "moveAttemptsPerSpeciesSpinBox", "mutationsPerSpeciesSpinBox", "strictNicheCompetitionCheckBox", "runStatusLabel", "finishXGenerationsSpinBox", "finishXGenerationsButton", "runXWorldsSpinBox", "runXWorldsButton", "finishOneGenerationButton", "runOneStepButton", "abortButton", "playWithCurrentSettingButton", "autoEvoResultsLabel", "historyListMenu", "patchMapDrawer", "patchDetailsPanel", "speciesListMenu", "evolutionaryTree", "speciesDetailsPanelWithFossilisation", "patchListMenu", "micheTree", "micheDetailsPanel", "micheSpeciesDetailsPanel", "exitConfirmationDialog", "exportSuccessNotificationDialog")]
+[node name="AutoEvoExploringTool" type="Node" unique_id=130431707 node_paths=PackedStringArray("worldTab", "configTab", "historyReportSplit", "speciesSelectPanel", "mapTab", "reportTab", "viewerTab", "micheTab", "allWorldsStatisticsLabel", "worldsListMenu", "newWorldButton", "currentWorldStatisticsLabel", "worldExportButton", "moveAttemptsPerSpeciesSpinBox", "mutationsPerSpeciesSpinBox", "strictNicheCompetitionCheckBox", "runStatusLabel", "finishXGenerationsSpinBox", "finishXGenerationsButton", "runXWorldsSpinBox", "runXWorldsButton", "finishOneGenerationButton", "runOneStepButton", "abortButton", "playWithCurrentSettingButton", "autoEvoResultsLabel", "historyListMenu", "patchMapDrawer", "patchDetailsPanel", "speciesListMenu", "evolutionaryTree", "speciesDetailsPanelWithFossilisation", "patchListMenu", "micheTree", "micheDetailsPanel", "micheSpeciesDetailsPanel", "exitConfirmationDialog", "exportSuccessNotificationDialog", "mainGui", "loadMenu")]
 script = ExtResource("1")
 worldTab = NodePath("GUI/VBoxContainer/WorldEditor")
 configTab = NodePath("GUI/VBoxContainer/ConfigEditor")
@@ -63,6 +64,8 @@ micheDetailsPanel = NodePath("GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxCon
 micheSpeciesDetailsPanel = NodePath("GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/SpeciesDetailsPanel")
 exitConfirmationDialog = NodePath("ExitConfirmationDialog")
 exportSuccessNotificationDialog = NodePath("ExportSuccessNotificationDialog")
+mainGui = NodePath("GUI")
+loadMenu = NodePath("LoadMenu")
 
 [node name="BackGround" type="TextureRect" parent="." unique_id=740226033]
 anchors_preset = 15
@@ -689,6 +692,12 @@ text = "BACK"
 layout_mode = 2
 NodeToGiveFocusTo = NodePath("../BackButton")
 
+[node name="LoadSaveButton" type="Button" parent="GUI/VBoxContainer/HBoxContainer" unique_id=2115612670]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_cxjso")
+text = "LOAD_SAVE"
+
 [node name="ExitConfirmationDialog" parent="." unique_id=445474972 instance=ExtResource("11")]
 custom_minimum_size = Vector2(400, 0)
 DialogText = "RETURN_TO_MENU_WARNING"
@@ -699,6 +708,41 @@ custom_minimum_size = Vector2(400, 0)
 HideCancelButton = true
 WindowTitle = "EXPORT_SUCCESS"
 Movable = false
+
+[node name="LoadMenu" type="VBoxContainer" parent="." unique_id=1796884552]
+visible = false
+custom_minimum_size = Vector2(1000, 600)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -300.0
+offset_right = 500.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SaveList" parent="LoadMenu" unique_id=1422659042 instance=ExtResource("22_kfqi3")]
+layout_mode = 2
+size_flags_vertical = 3
+AutoRefreshOnFirstVisible = false
+isOpenedInAutoEvoTool = true
+
+[node name="Back" type="Button" parent="LoadMenu" unique_id=1144944873]
+custom_minimum_size = Vector2(100, 37)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2")
+text = "BACK"
+
+[node name="FocusGrabber" parent="LoadMenu" unique_id=125641974 instance=ExtResource("20")]
+layout_mode = 2
+Priority = 2
+NodeToGiveFocusTo = NodePath("../Back")
+AlwaysOverrideFocus = true
+SkipOverridingFocusForElements = [NodePath("..")]
 
 [connection signal="pressed" from="GUI/VBoxContainer/TabButtons/WorldButton" to="." method="ChangeTab" binds= ["World"]]
 [connection signal="pressed" from="GUI/VBoxContainer/TabButtons/ConfigButton" to="." method="ChangeTab" binds= ["Config"]]
@@ -712,8 +756,8 @@ Movable = false
 [connection signal="value_changed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/FinishXGenerationsSpin" to="." method="OnFinishXGenerationsSpinBoxValueChanged"]
 [connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/FinishXGenerations" to="." method="OnFinishXGenerationsButtonPressed"]
 [connection signal="value_changed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/RunXWorldsSpin" to="." method="OnRunXWorldsSpinBoxValueChanged"]
-[connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/RunXWorlds" to="." method="OnRunXWorldsButtonPressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/RunXWorlds" to="." method="OnFinishXGenerationsButtonPressed"]
+[connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/RunXWorlds" to="." method="OnRunXWorldsButtonPressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Abort" to="." method="OnAbortButtonPressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PlayWithThis" to="." method="PlayWithCurrentSettingPressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/WorldExportButton" to="." method="ExportWorlds"]
@@ -721,4 +765,7 @@ Movable = false
 [connection signal="SpeciesSelected" from="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/EvolutionaryTree" to="." method="EvolutionaryTreeNodeSelected"]
 [connection signal="MicheSelected" from="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MicheTree" to="." method="MicheTreeNodeSelected"]
 [connection signal="pressed" from="GUI/VBoxContainer/HBoxContainer/BackButton" to="." method="OnBackButtonPressed"]
+[connection signal="pressed" from="GUI/VBoxContainer/HBoxContainer/LoadSaveButton" to="." method="OnLoadSaveButtonPressed"]
 [connection signal="Confirmed" from="ExitConfirmationDialog" to="." method="ConfirmExit"]
+[connection signal="OnSaveLoaded" from="LoadMenu/SaveList" to="." method="OnSaveLoaded"]
+[connection signal="pressed" from="LoadMenu/Back" to="." method="OnLoadSaveButtonPressed"]

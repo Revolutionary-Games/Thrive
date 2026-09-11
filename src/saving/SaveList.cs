@@ -62,6 +62,9 @@ public partial class SaveList : ScrollContainer
     [Export]
     private CustomConfirmationDialog errorSaveDeletionFailed = null!;
 
+    [Export]
+    private bool isOpenedInAutoEvoTool;
+
     private PackedScene listItemScene = null!;
 #pragma warning restore CA2213
 
@@ -294,6 +297,13 @@ public partial class SaveList : ScrollContainer
     private void OnProblemFreeLoaded(string saveName)
     {
         saveToBeLoaded = saveName;
+
+        if (isOpenedInAutoEvoTool)
+        {
+            EmitSignal(SignalName.OnSaveLoaded, saveToBeLoaded);
+            return;
+        }
+
         StartLoadTransition();
     }
 
@@ -409,7 +419,20 @@ public partial class SaveList : ScrollContainer
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        StartLoadTransition();
+        if (isOpenedInAutoEvoTool)
+        {
+            if (saveToBeLoaded == null)
+            {
+                GD.PrintErr("Save to load is null");
+                return;
+            }
+
+            EmitSignal(SignalName.OnSaveLoaded, saveToBeLoaded);
+        }
+        else
+        {
+            StartLoadTransition();
+        }
     }
 
     private void StartLoadTransition()
