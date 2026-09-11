@@ -632,27 +632,7 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
             // TODO: remove (this is just temporary prototype code)
             // Spawn a chunk to give the player some navigation reference
 
-            var rigidBody = new RigidBody3D
-            {
-                AxisLockLinearY = true,
-            };
-
-            var owner = rigidBody.CreateShapeOwner(rigidBody);
-            rigidBody.ShapeOwnerAddShape(owner, new SphereShape3D
-            {
-                Radius = 10,
-            });
-
-            rigidBody.Mass = 100;
-
-            var visualsParent = new Node3D();
-            rigidBody.AddChild(visualsParent);
-
-            visualsParent.AddChild(GD.Load<PackedScene>("res://assets/models/Iron5.tscn").Instantiate<Node3D>());
-
-            rigidBody.Position = new Vector3(3, 0, -15);
-
-            rootOfDynamicallySpawned.AddChild(rigidBody);
+            SpawnWaterPlaceholderObjects();
         }
 
         // patchManager.CurrentGame = CurrentGame;
@@ -702,6 +682,7 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
 
         // }
 
+        // Placeholder implementation of "always reset after editor" setting since real spawn system does not exist yet.
         if (GameWorld.WorldSettings.Difficulty.AlwaysResetEnvironment)
         {
             if (Player == null)
@@ -710,15 +691,19 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
                 return;
             }
 
+            foreach (Node child in rootOfDynamicallySpawned.GetChildren())
+            {
+                if (child != Player)
+                    child.QueueFree();
+            }
+
             if (Player.Species.ReproductionLocation == ReproductionLocation.Land)
             {
-                foreach (Node child in rootOfDynamicallySpawned.GetChildren())
-                {
-                    if (child != Player)
-                        child.QueueFree();
-                }
-
                 SpawnLandPlaceholderObjects();
+            }
+            else
+            {
+                SpawnWaterPlaceholderObjects();
             }
         }
 
@@ -803,6 +788,31 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
         base.Dispose(disposing);
 
         IsDisposed = true;
+    }
+
+    private void SpawnWaterPlaceholderObjects()
+    {
+        var rigidBody = new RigidBody3D
+        {
+            AxisLockLinearY = true,
+        };
+
+        var owner = rigidBody.CreateShapeOwner(rigidBody);
+        rigidBody.ShapeOwnerAddShape(owner, new SphereShape3D
+        {
+            Radius = 10,
+        });
+
+        rigidBody.Mass = 100;
+
+        var visualsParent = new Node3D();
+        rigidBody.AddChild(visualsParent);
+
+        visualsParent.AddChild(GD.Load<PackedScene>("res://assets/models/Iron5.tscn").Instantiate<Node3D>());
+
+        rigidBody.Position = new Vector3(3, 0, -15);
+
+        rootOfDynamicallySpawned.AddChild(rigidBody);
     }
 
     private void SpawnLandPlaceholderObjects()
