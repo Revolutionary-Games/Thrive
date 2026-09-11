@@ -64,19 +64,19 @@ public class CellTypeFacadeHelper
             return true;
         }
 
-        if (actionData is SpecialCellTypeChangeActionData sporeCellTypeChangeActionData)
+        if (actionData is SpecialCellTypeChangeActionData specialCellTypeChangeActionData)
         {
-            if (!ReferenceEquals(sporeCellTypeChangeActionData.OldCellType,
-                    sporeCellTypeChangeActionData.NewCellType))
+            if (!ReferenceEquals(specialCellTypeChangeActionData.OldCellType,
+                    specialCellTypeChangeActionData.NewCellType))
             {
-                if (sporeCellTypeChangeActionData.OldCellType != null)
+                if (specialCellTypeChangeActionData.OldCellType != null)
                 {
-                    if (!removedCellTypes.Any(type => ReferenceEquals(type, sporeCellTypeChangeActionData.OldCellType)))
-                        removedCellTypes.Add(sporeCellTypeChangeActionData.OldCellType);
+                    if (!removedCellTypes.Any(type => ReferenceEquals(type, specialCellTypeChangeActionData.OldCellType)))
+                        removedCellTypes.Add(specialCellTypeChangeActionData.OldCellType);
 
-                    if (activeCellTypes.ContainsKey(sporeCellTypeChangeActionData.OldCellType))
+                    if (activeCellTypes.ContainsKey(specialCellTypeChangeActionData.OldCellType))
                     {
-                        var cellTypeToRemove = GetOrCreateCellType(sporeCellTypeChangeActionData.OldCellType);
+                        var cellTypeToRemove = GetOrCreateCellType(specialCellTypeChangeActionData.OldCellType);
                         if (addedCellTypes.RemoveAll(type => ReferenceEquals(type, cellTypeToRemove)) != 1)
                         {
                             GD.PrintErr("Spore cell type not found for delete");
@@ -84,9 +84,9 @@ public class CellTypeFacadeHelper
                     }
                 }
 
-                if (sporeCellTypeChangeActionData.NewCellType != null)
+                if (specialCellTypeChangeActionData.NewCellType != null)
                 {
-                    addedCellTypes.Add(GetOrCreateCellType(sporeCellTypeChangeActionData.NewCellType));
+                    addedCellTypes.Add(GetOrCreateCellType(specialCellTypeChangeActionData.NewCellType));
                 }
             }
 
