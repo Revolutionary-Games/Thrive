@@ -1,5 +1,6 @@
 ﻿using AutoEvo;
 using GdUnit4;
+using Systems;
 using static GdUnit4.Assertions;
 using static SimulationCacheTestFixtures;
 
@@ -73,6 +74,56 @@ public class SimulationCachePredationScoreTests
     }
 
     [TestCase]
+    public void PreyChannelInhibitorDefendsAgainstEnergyLimitedPredator()
+    {
+        var predator = CreateEnergyLimitedMicrobe(20);
+        var channelPrey = CreateInhibitorMicrobe(21, ToxinType.ChannelInhibitor);
+        var controlPrey = CreateInhibitorMicrobe(22, ToxinType.OxygenMetabolismInhibitor);
+        AssertChannelInhibitorScenario(predator, channelPrey, controlPrey);
+
+        var controlScore = CalculatePredationScore(predator, controlPrey);
+        var defendedScore = CalculatePredationScore(predator, channelPrey);
+
+        AssertThat(float.IsFinite(controlScore) && float.IsFinite(defendedScore)).IsTrue();
+        AssertThat(controlScore).IsGreater(0.0f);
+        AssertThat(defendedScore).IsGreater(0.0f).IsLess(controlScore);
+    }
+
+    [TestCase]
+    public void PredatorChannelInhibitorRemainsOffensiveAgainstEnergyLimitedPrey()
+    {
+        var prey = CreateEnergyLimitedMicrobe(23);
+        var channelPredator = CreateInhibitorMicrobe(24, ToxinType.ChannelInhibitor);
+        var controlPredator = CreateInhibitorMicrobe(25, ToxinType.OxygenMetabolismInhibitor);
+        AssertChannelInhibitorScenario(prey, channelPredator, controlPredator);
+
+        var controlScore = CalculatePredationScore(controlPredator, prey);
+        var offensiveScore = CalculatePredationScore(channelPredator, prey);
+
+        AssertThat(float.IsFinite(controlScore) && float.IsFinite(offensiveScore)).IsTrue();
+        AssertThat(controlScore).IsGreater(0.0f);
+        AssertThat(offensiveScore).IsGreater(controlScore);
+    }
+
+    [TestCase]
+    public void PreyChannelInhibitorRequiresToxinDefenceBehaviour()
+    {
+        var predator = CreateEnergyLimitedMicrobe(26);
+        var channelPrey = CreateInhibitorMicrobe(27, ToxinType.ChannelInhibitor);
+        var controlPrey = CreateInhibitorMicrobe(28, ToxinType.OxygenMetabolismInhibitor);
+        AssertChannelInhibitorScenario(predator, channelPrey, controlPrey);
+        channelPrey.ModifiableBehaviour.Fear = Constants.MAX_SPECIES_FEAR;
+        controlPrey.ModifiableBehaviour.Fear = Constants.MAX_SPECIES_FEAR;
+
+        var controlScore = CalculatePredationScore(predator, controlPrey);
+        var channelScore = CalculatePredationScore(predator, channelPrey);
+
+        AssertThat(float.IsFinite(controlScore)).IsTrue();
+        AssertThat(controlScore).IsGreater(0.0f);
+        AssertThat(channelScore).IsEqual(controlScore);
+    }
+
+    [TestCase]
     public void ChannelInhibitorPredationScoreIncreasesAsMovementFundingDecreases()
     {
         var fullyFundedMovementScore = CalculateChannelInhibitorPredationScore(24.0f);
@@ -129,6 +180,13 @@ public class SimulationCachePredationScoreTests
         var inhibitionBenefitWithSprint = unfundedMovementWithSprint - fullyFundedMovementWithSprint;
 
         AssertThat(inhibitionBenefitWithSprint > inhibitionBenefitWithoutSprint).IsTrue();
+    }
+
+    private static float CalculatePredationScore(Species predator, Species prey)
+    {
+        var cache = CreateCache();
+        var biome = CreateBiome();
+        return cache.GetPredationScore(predator, prey, biome);
     }
 
     private static float CalculateChannelInhibitorPredationScore(float totalProduction, float osmoregulation = 2.0f,
@@ -200,6 +258,86 @@ public class SimulationCachePredationScoreTests
         species.OnEdited();
 
         return species;
+    }
+
+    private static MicrobeSpecies CreateEnergyLimitedMicrobe(uint id)
+    {
+        // Non-producing organelles make inhibition cross the osmoregulation threshold.
+        var species = CreateMicrobe(id, "EnergyLimited", "cellulose", "cytoplasm",
+            "chemoreceptor", "chemoreceptor", "chemoreceptor", "chemoreceptor");
+        species.Organelles.Add(new OrganelleTemplate(SimulationParameters.Instance.GetOrganelleType("pilus"),
+            new Hex(0, -4), 0));
+        species.ModifiableBehaviour.Fear = 0;
+        species.ModifiableBehaviour.Aggression = Constants.MAX_SPECIES_AGGRESSION;
+        species.ModifiableBehaviour.Activity = Constants.MAX_SPECIES_ACTIVITY;
+        species.ModifiableBehaviour.Opportunism = Constants.MAX_SPECIES_OPPORTUNISM;
+
+        // Keep the connected layout compact enough for both species to turn towards their target.
+        foreach (var organelle in species.Organelles)
+            organelle.Position = new Hex(organelle.Position.Q / 4, organelle.Position.R / 4);
+
+        species.OnEdited();
+        return species;
+    }
+
+    private static MicrobeSpecies CreateInhibitorMicrobe(uint id, ToxinType toxinType)
+    {
+        // Both variants have identical geometry, production and behaviour; only toxin type differs.
+        var species = CreateMicrobe(id, "Inhibitor", "cellulose",
+            "cytoplasm", "cytoplasm", "cytoplasm", "cytoplasm");
+        species.Organelles.Add(new OrganelleTemplate(SimulationParameters.Instance.GetOrganelleType("pilus"),
+            new Hex(0, -4), 0));
+        species.Organelles.Add(new OrganelleTemplate(SimulationParameters.Instance.GetOrganelleType("oxytoxy"),
+            new Hex(0, 4), 0)
+        {
+            ModifiableUpgrades = new OrganelleUpgrades
+            {
+                ModifiableUnlockedFeatures = [ToxinUpgradeNames.ToxinNameFromType(toxinType)],
+                CustomUpgradeData = new ToxinUpgrades(toxinType, 1.0f),
+            },
+        });
+        species.ModifiableBehaviour.Fear = 0;
+        species.ModifiableBehaviour.Aggression = Constants.MAX_SPECIES_AGGRESSION;
+        species.ModifiableBehaviour.Activity = Constants.MAX_SPECIES_ACTIVITY;
+        species.ModifiableBehaviour.Opportunism = Constants.MAX_SPECIES_OPPORTUNISM;
+
+        // Keep the connected layout compact enough for both species to turn towards their target.
+        foreach (var organelle in species.Organelles)
+            organelle.Position = new Hex(organelle.Position.Q / 4, organelle.Position.R / 4);
+
+        species.OnEdited();
+        return species;
+    }
+
+    private static void AssertChannelInhibitorScenario(MicrobeSpecies target, MicrobeSpecies channelSpecies,
+        MicrobeSpecies controlSpecies)
+    {
+        var cache = new SimulationCache(new WorldGenerationSettings { Seed = 1 });
+        var biome = SimulationParameters.Instance.GetBiome("aavolcanic_vent").Conditions;
+        biome.Compounds.TryGetValue(Compound.Oxygen, out var oxygen);
+
+        // Zero oxygen disables the control toxin; cell walls exclude anti-engulfment toxin defence.
+        AssertThat(oxygen.Ambient).IsEqual(0.0f);
+        AssertThat(target.MembraneType.CanEngulf || channelSpecies.MembraneType.CanEngulf ||
+            controlSpecies.MembraneType.CanEngulf).IsFalse();
+        AssertThat(cache.GetPredationToolsRawScores(target).ChannelInhibitorScore).IsEqual(0.0f);
+        var channelScores = cache.GetPredationToolsRawScores(channelSpecies);
+        var controlScores = cache.GetPredationToolsRawScores(controlSpecies);
+        AssertThat(channelScores.ChannelInhibitorScore).IsGreater(0.0f);
+        AssertThat(channelScores.OxygenMetabolismInhibitorScore).IsEqual(0.0f);
+        AssertThat(controlScores.ChannelInhibitorScore).IsEqual(0.0f);
+        AssertThat(controlScores.OxygenMetabolismInhibitorScore).IsGreater(0.0f);
+        AssertThat(channelScores.AverageToxicity).IsEqual(controlScores.AverageToxicity);
+
+        var balance = cache.GetEnergyBalanceForSpecies(target, biome);
+        var inhibitedProduction = balance.TotalProduction * (1 - Constants.CHANNEL_INHIBITOR_ATP_DEBUFF *
+            MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(channelScores.AverageToxicity,
+                ToxinType.ChannelInhibitor));
+        AssertThat(inhibitedProduction).IsLess(balance.Osmoregulation);
+
+        // The toxin carrier must not gain another offensive contribution from its own energy deficit.
+        var channelBalance = cache.GetEnergyBalanceForSpecies(channelSpecies, biome);
+        AssertThat(channelBalance.TotalProduction).IsGreaterEqual(channelBalance.Osmoregulation);
     }
 
     private static MulticellularSpecies CreateMulticellularPredator(uint id)
