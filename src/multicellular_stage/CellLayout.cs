@@ -109,7 +109,63 @@ public class CellLayout<T> : HexLayout<T>, IReadOnlyCellLayout<T>, IArchivable
         }
     }
 
-    protected override void GetHexComponentPositions(T hex, List<Hex> result)
+    public void ThrowIfCellsAreNotTouching()
+    {
+        // If there's just one cell, it doesn't need to touch anything
+        if (existingHexes.Count < 2)
+            return;
+
+        var allCellPositions = new Dictionary<Hex, T>();
+        var cellPositionTemporaryStorage = new List<Hex>();
+        CalculateAllElementPositions(allCellPositions, cellPositionTemporaryStorage);
+
+        foreach (var positionedCell in existingHexes)
+        {
+            var organellesInternal = positionedCell.ModifiableOrganelles.Organelles;
+            int organelleCount = organellesInternal.Count;
+
+            bool wasTouching = false;
+
+            for (int i = 0; i < organelleCount; ++i)
+            {
+                var organelle = organellesInternal[i];
+
+                var organelleHexes = organelle.Definition.GetRotatedHexes(organelle.Orientation);
+                int hexCount = organelleHexes.Count;
+
+                for (int j = 0; j < hexCount; ++j)
+                {
+                    var position = Hex.RotateAxialNTimes(organelleHexes[j], positionedCell.Orientation) +
+                        Hex.RotateAxialNTimes(organelle.Position, positionedCell.Orientation) + positionedCell.Position;
+
+                    foreach (var offset in Hex.HexNeighbourOffset.Values)
+                    {
+                        var finalPosition = position + offset;
+
+                        if (allCellPositions.TryGetValue(finalPosition, out var adjacentCell) &&
+                            !ReferenceEquals(adjacentCell, positionedCell))
+                        {
+                            wasTouching = true;
+                            break;
+                        }
+                    }
+
+                    if (wasTouching)
+                        break;
+                }
+
+                if (wasTouching)
+                    break;
+            }
+
+            if (!wasTouching)
+            {
+                throw new InvalidOperationException($"Cell {positionedCell} is not touching any other cell");
+            }
+        }
+    }
+
+    public override void GetHexComponentPositions(T hex, List<Hex> result)
     {
         result.Clear();
 

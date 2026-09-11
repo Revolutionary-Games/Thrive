@@ -168,26 +168,34 @@ public partial class InputEventItem : MarginContainer
         switch (keyToBind)
         {
             case ModifierKeyMode.ShiftPressed:
+            {
                 newInput = new InputEventKey
                 {
                     Keycode = Key.Shift,
                     Pressed = true,
                 };
                 break;
+            }
+
             case ModifierKeyMode.AltPressed:
+            {
                 newInput = new InputEventKey
                 {
                     Keycode = Key.Alt,
                     Pressed = true,
                 };
                 break;
+            }
+
             case ModifierKeyMode.CtrlPressed:
+            {
                 newInput = new InputEventKey
                 {
                     Keycode = Key.Ctrl,
                     Pressed = true,
                 };
                 break;
+            }
 
             default:
                 GD.PrintErr("Unknown modifier key state");

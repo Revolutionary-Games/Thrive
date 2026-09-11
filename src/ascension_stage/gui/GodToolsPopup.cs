@@ -158,12 +158,15 @@ public partial class GodToolsPopup : CustomWindow
         switch (target)
         {
             case SpaceFleet fleet:
+            {
                 foreach (var unit in fleet.Ships.ToList())
                 {
                     fleet.AddShip(unit);
                 }
 
                 break;
+            }
+
             default:
                 GD.PrintErr("Unknown entity to handle to duplicate units");
                 break;
@@ -201,6 +204,7 @@ public partial class GodToolsPopup : CustomWindow
         switch (target)
         {
             case PlacedPlanet planet:
+            {
                 planet.Population /= 2;
 
                 // Make sure there's at least someone there so that the planet can still grow
@@ -208,6 +212,8 @@ public partial class GodToolsPopup : CustomWindow
                     planet.Population = 1;
 
                 break;
+            }
+
             default:
                 GD.PrintErr("Unknown entity to handle to half population");
                 break;

@@ -82,6 +82,7 @@ public class NativeConstants
         switch (library)
         {
             case Library.ThriveNative:
+            {
                 switch (platform)
                 {
                     case PackagePlatform.Linux:
@@ -104,8 +105,10 @@ public class NativeConstants
                     default:
                         throw new ArgumentOutOfRangeException(nameof(platform), platform, null);
                 }
+            }
 
             case Library.EarlyCheck:
+            {
                 switch (platform)
                 {
                     // TODO: if this is started to be used again, this probably needs AVX handling as well (and should
@@ -121,8 +124,10 @@ public class NativeConstants
                     default:
                         throw new ArgumentOutOfRangeException(nameof(platform), platform, null);
                 }
+            }
 
             case Library.ThriveExtension:
+            {
                 switch (platform)
                 {
                     case PackagePlatform.Linux:
@@ -145,6 +150,7 @@ public class NativeConstants
                     default:
                         throw new ArgumentOutOfRangeException(nameof(platform), platform, null);
                 }
+            }
 
             default:
                 throw new ArgumentOutOfRangeException(nameof(library), library, null);

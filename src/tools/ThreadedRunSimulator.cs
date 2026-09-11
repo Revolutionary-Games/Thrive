@@ -93,7 +93,7 @@ public class ThreadedRunSimulator
             lastNewBestFound = DateTime.UtcNow;
         }
 
-        // Wait for tasks to end, this is not time-critical threading here so this thread can be used to run
+        // Wait for tasks to end, this is not time-critical threading here, so this thread can be used to run
         // a bunch more tasks
         TaskExecutor.Instance.RunTasks(tasks, true);
 

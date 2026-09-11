@@ -245,6 +245,7 @@ public partial class GalleryViewer : CustomWindow
         switch (asset.Type)
         {
             case AssetType.Texture2D:
+            {
                 item = GalleryCardScene.Instantiate<GalleryCard>();
 
                 // To avoid massive lag spikes, only set a placeholder loading icon here and queue a load for the icon
@@ -259,6 +260,8 @@ public partial class GalleryViewer : CustomWindow
 
                 resourceManager.QueueLoad(loadingResource);
                 break;
+            }
+
             case AssetType.ModelScene:
                 item = GalleryCardModelScene.Instantiate<GalleryCardModel>();
                 break;

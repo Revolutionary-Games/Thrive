@@ -9,7 +9,8 @@ msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-09-11 15:20+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE
+"\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1266,8 +1267,8 @@ msgstr ""
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1382
 #: ../src/microbe_stage/editor/EndosymbiosisPopup.tscn:123
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:609
-#: ../src/microbe_stage/ProcessPanel.tscn:122 ../src/modding/ModManager.tscn:698
-#: ../src/thriveopedia/Thriveopedia.tscn:322
+#: ../src/microbe_stage/ProcessPanel.tscn:122
+#: ../src/modding/ModManager.tscn:698 ../src/thriveopedia/Thriveopedia.tscn:322
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:224
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:320
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:437
@@ -2298,7 +2299,8 @@ msgstr ""
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:565 ../src/microbe_stage/MicrobeHUD.cs:570
+#: ../src/microbe_stage/MicrobeHUD.cs:565
+#: ../src/microbe_stage/MicrobeHUD.cs:570
 msgid "DEVOURED"
 msgstr ""
 
@@ -7742,7 +7744,8 @@ msgstr ""
 msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:703 ../src/general/PauseMenu.cs:481
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:703
+#: ../src/general/PauseMenu.cs:481
 #: ../src/gui_common/menus/PlanetCustomizerTool.tscn:194
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
@@ -12583,3 +12586,26 @@ msgstr ""
 msgid "ZOOM_OUT"
 msgstr ""
 
+#: ../src/microbe_stage/MicrobeStage.cs:2202
+msgid "COOLDOWN_NOT_ELAPSED_FOR_MATE_SPAWN"
+msgstr ""
+
+#: ../src/multicellular_stage/GameteType.cs:14
+msgid "GAMETE_TYPE_A"
+msgstr ""
+
+#: ../src/multicellular_stage/GameteType.cs:11
+msgid "GAMETE_TYPE_ALL"
+msgstr ""
+
+#: ../src/multicellular_stage/GameteType.cs:17
+msgid "GAMETE_TYPE_B"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.cs:2378
+msgid "MATE_SPAWNED_DUE_TO_CALLING_FOR_ONE"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.cs:2333
+msgid "NO_UNBLOCKED_POSITION_FOUND_FOR_MATE_SPAWNED_ANYWAY"
+msgstr ""
