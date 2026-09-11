@@ -45,7 +45,8 @@ public class PatchManager
     /// </summary>
     /// <param name="currentPatch">The patch to apply settings from</param>
     /// <param name="spawnEnvironment">Spawn environment to give to setup cell spawners</param>
-    /// /// <param name="alwaysResetPatch">Reset the patch even if the player did not move to a new patch</param>
+    /// <param name="alwaysResetPatch">Reset the patch even if the player did not move to a new patch</param>
+    /// <param name="returningFromEditor">Was this called specifically because the player is leaving the editor</param>
     /// <returns>
     ///   True if the patch environment is reset. False if the patch is not reset.
     /// </returns>
@@ -54,7 +55,7 @@ public class PatchManager
     {
         var patchIsReset = false;
 
-        if (alwaysResetPatch && returningFromEditor || previousPatch != currentPatch)
+        if ((alwaysResetPatch && returningFromEditor) || previousPatch != currentPatch)
         {
             if (previousPatch != null)
             {
