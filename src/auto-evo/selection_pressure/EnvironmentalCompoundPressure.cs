@@ -23,7 +23,6 @@ public class EnvironmentalCompoundPressure : SelectionPressure
     public EnvironmentalCompoundPressure(Compound compound, Compound createdCompound, float energyMultiplier,
         float weight) :
         base(weight, [
-            new RemoveOrganelle(_ => true),
             AddOrganelleAnywhere.ThatUseCompound(compound),
             new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Activity, 50.0f),
             new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Activity, -150.0f),
@@ -99,18 +98,13 @@ public class EnvironmentalCompoundPressure : SelectionPressure
 
     public override float GetEnergy(Patch patch)
     {
-        return patch.Biome.AverageCompounds[compound.ID].Ambient * energyMultiplier;
+        return 0;
     }
 
     public override LocalizedString GetDescription()
     {
         return new LocalizedString("DISSOLVED_COMPOUND_FOOD_SOURCE",
             new LocalizedString(compound.GetUntranslatedName()));
-    }
-
-    public Compound GetUsedCompoundType()
-    {
-        return compound.ID;
     }
 
     public override string ToString()
