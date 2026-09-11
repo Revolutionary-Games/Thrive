@@ -599,9 +599,13 @@ public static class MulticellularLayoutHelpers
 
                     if (moveOnlyOneStepAtATime)
                     {
-                        // Increase step size until it results in a difference
-                        while (true)
+                        // The direction can be zero when the item is already at its target. In that case rounding
+                        // the position never produces a different hex, so keep this bounded and let the fallback
+                        // below restore the item and try again on the next layout pass.
+                        const int maxMovementAttempts = 100;
+                        for (int movementAttempt = 0; movementAttempt < maxMovementAttempts; ++movementAttempt)
                         {
+                            // Increase step size until it results in a difference.
                             var newPositionRaw = itemPos + shift * effectiveMoveDistance;
                             var newPosition = new Hex((int)Math.Round(newPositionRaw.X),
                                 (int)Math.Round(newPositionRaw.Y));
