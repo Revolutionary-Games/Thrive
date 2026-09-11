@@ -90,6 +90,9 @@ public class RemoveOrganelle : IMutationStrategy<Species>
             var baseOrganelles = baseSpecies.Organelles.Organelles;
             var count = baseSpecies.Organelles.Count;
 
+            var occupied = workMemory.WorkingMemory3;
+            occupied.Clear();
+
             for (var i = 0; i < count; ++i)
             {
                 var parentOrganelle = baseOrganelles[i];
@@ -97,10 +100,23 @@ public class RemoveOrganelle : IMutationStrategy<Species>
                 if (ReferenceEquals(parentOrganelle, organelle))
                     continue;
 
-                // Copy the organelle
-                var newOrganelle = parentOrganelle.Clone();
-                newSpecies.Organelles.AddIfPossible(newOrganelle, workMemory.WorkingMemory1,
-                    workMemory.WorkingMemory2);
+                var definition = parentOrganelle.Definition;
+                var position = parentOrganelle.Position;
+                var orientation = parentOrganelle.Orientation;
+
+                // Same decision as CanPlace: skipped only if it overlaps an organelle copied earlier, which means the
+                // parent layout was already invalid
+                if (!newSpecies.Organelles.IsOrganellePositionFree(definition, position.Q, position.R, orientation,
+                        occupied, out _))
+                {
+                    continue;
+                }
+
+                var rotated = definition.GetRotatedHexes(orientation);
+                for (var j = 0; j < rotated.Count; ++j)
+                    occupied.Add(rotated[j] + position);
+
+                newSpecies.Organelles.AddAutoEvoAttemptOrganelle(parentOrganelle.Clone());
             }
 
             AttachIslandHexes(newSpecies.Organelles, workMemory);
