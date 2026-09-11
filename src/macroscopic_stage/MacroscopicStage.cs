@@ -305,7 +305,7 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
 
     public override void OnReturnFromEditor()
     {
-        UpdatePatchSettings();
+        UpdatePatchSettings(true, true);
 
         base.OnReturnFromEditor();
 
@@ -672,7 +672,7 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
         return result;
     }
 
-    protected override void UpdatePatchSettings(bool promptPatchNameChange = true)
+    protected override void UpdatePatchSettings(bool promptPatchNameChange = true, bool returningFromEditor = false)
     {
         // TODO: would be nice to skip this if we are loading a save made in the editor as this gets called twice when
         // going back to the stage
@@ -684,7 +684,7 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
         // }
 
         // Placeholder implementation of "always reset after editor" setting since real spawn system does not exist yet.
-        if (GameWorld.WorldSettings.Difficulty.AlwaysResetEnvironment)
+        if (GameWorld.WorldSettings.Difficulty.AlwaysResetEnvironment && returningFromEditor)
         {
             if (Player == null)
             {

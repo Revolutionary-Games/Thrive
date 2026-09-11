@@ -1131,7 +1131,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
     public override void OnReturnFromEditor()
     {
-        UpdatePatchSettings();
+        UpdatePatchSettings(true, true);
 
         base.OnReturnFromEditor();
 
@@ -1876,7 +1876,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         SaveHelper.QuickSave(this);
     }
 
-    protected override void UpdatePatchSettings(bool promptPatchNameChange = true)
+    protected override void UpdatePatchSettings(bool promptPatchNameChange = true, bool returningFromEditor = false)
     {
         ClearResolvedTolerancesCache();
 
@@ -1885,7 +1885,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         // TODO: would be nice to skip this if we are loading a save made in the editor as this gets called twice when
         // going back to the stage
         if (patchManager.ResetPatchIfNeeded(currentPatch, this,
-                GameWorld.WorldSettings.Difficulty.AlwaysResetEnvironment))
+                GameWorld.WorldSettings.Difficulty.AlwaysResetEnvironment, returningFromEditor))
         {
             if (promptPatchNameChange)
                 HUD.ShowPatchName(CurrentPatchName.ToString());

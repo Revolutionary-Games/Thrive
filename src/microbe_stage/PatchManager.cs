@@ -50,11 +50,11 @@ public class PatchManager
     ///   True if the patch environment is reset. False if the patch is not reset.
     /// </returns>
     public bool ResetPatchIfNeeded(Patch currentPatch, IMicrobeSpawnEnvironment spawnEnvironment,
-        bool alwaysResetPatch)
+        bool alwaysResetPatch, bool returningFromEditor)
     {
         var patchIsReset = false;
 
-        if (alwaysResetPatch || previousPatch != currentPatch)
+        if (alwaysResetPatch && returningFromEditor || previousPatch != currentPatch)
         {
             if (previousPatch != null)
             {
