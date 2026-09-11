@@ -25,6 +25,12 @@ public class TerrainConfiguration : RegistryType
         Full,
     }
 
+    public enum TerrainSpawnStrategy
+    {
+        Manual,
+        Vent,
+    }
+
     [JsonIgnore]
     public override ArchiveObjectType ArchiveObjectType =>
         (ArchiveObjectType)ThriveArchiveObjectType.TerrainConfiguration;
@@ -186,6 +192,12 @@ public class TerrainConfiguration : RegistryType
         [JsonProperty]
         public readonly RotationRandomization RandomRotation;
 
+        [JsonProperty]
+        public readonly TerrainSpawnStrategy SpawnStrategy = TerrainSpawnStrategy.Manual;
+
+        [JsonProperty]
+        public readonly DynamicTerrainSpawnParameters DynamicParameters = new();
+
         /// <summary>
         ///   When true, the terrain will slide around other terrain to fit and spawn.
         ///   If false, only exact positions are tested, and even if it doesn't fit, no adjustment will be done.
@@ -204,7 +216,9 @@ public class TerrainConfiguration : RegistryType
             }
 
             if (RelativeChance < 1)
+            {
                 throw new InvalidRegistryDataException(name, GetType().Name, "RelativeChance must be above 0");
+            }
 
             OverallRadius = 0;
             OverallOverlapRadius = 0;
@@ -223,6 +237,38 @@ public class TerrainConfiguration : RegistryType
                 if (overlapRadius > OverallOverlapRadius)
                     OverallOverlapRadius = overlapRadius;
             }
+
+            if (SpawnStrategy == TerrainSpawnStrategy.Vent)
+            {
+                if (DynamicParameters.MaxSegments < DynamicParameters.MinSegments)
+                {
+                    throw new InvalidRegistryDataException(name, GetType().Name,
+                        "MaxSegments must be greater than or equal to MinSegments");
+                }
+
+                if (DynamicParameters.MaxSegments <= 0 || DynamicParameters.MinSegments <= 0)
+                {
+                    throw new InvalidRegistryDataException(name, GetType().Name,
+                        "MaxSegments and MinSegments must be greater than 0");
+                }
+
+                if (DynamicParameters.SegmentSize <= 0)
+                {
+                    throw new InvalidRegistryDataException(name, GetType().Name, "SegmentSize must be greater than 0");
+                }
+            }
+        }
+
+        public class DynamicTerrainSpawnParameters
+        {
+            [JsonProperty]
+            public readonly int MinSegments;
+
+            [JsonProperty]
+            public readonly int MaxSegments;
+
+            [JsonProperty]
+            public readonly float SegmentSize;
         }
     }
 }
