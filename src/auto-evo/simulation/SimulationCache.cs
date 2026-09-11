@@ -1624,7 +1624,8 @@ public class SimulationCache
         var predatorToxins = (Oxytoxy: oxytoxyScore, Cytotoxin: cytotoxinScore,
             OxygenMetabolismInhibitor: oxygenMetabolismInhibitorScore, ChannelInhibitor: channelInhibitorScore);
         var preyToxins = (Oxytoxy: preyOxytoxyScore, Cytotoxin: preyCytotoxinScore,
-            OxygenMetabolismInhibitor: preyOxygenMetabolismInhibitorScore, Toxicity: preyToxicity);
+            OxygenMetabolismInhibitor: preyOxygenMetabolismInhibitorScore,
+            ChannelInhibitor: preyChannelInhibitorScore, Toxicity: preyToxicity);
         var inhibitedEnergy = (PreyProduction: preyInhibitedPreyEnergyProduction,
             PreyOsmoregulationCost: preyOsmoregulationCost,
             PredatorProduction: predatorInhibitedPreyEnergyProduction,
@@ -1687,7 +1688,8 @@ public class SimulationCache
     private (float Predator, float Prey) CalculateToxinScores(Species predatorSpecies,
         in PredatorPredationData predatorData, in PreyPredationData preyData,
         in (float Oxytoxy, float Cytotoxin, float OxygenMetabolismInhibitor, float ChannelInhibitor) predatorToxins,
-        in (float Oxytoxy, float Cytotoxin, float OxygenMetabolismInhibitor, float Toxicity) preyToxins,
+        in (float Oxytoxy, float Cytotoxin, float OxygenMetabolismInhibitor, float ChannelInhibitor,
+            float Toxicity) preyToxins,
         in (float PreyProduction, float PreyOsmoregulationCost, float PredatorProduction,
             float PredatorOsmoregulationCost) inhibitedEnergy,
         in (float Fear, float Aggression, float Opportunism) preyBehaviour,
@@ -1721,7 +1723,7 @@ public class SimulationCache
         if (inhibitedEnergy.PreyProduction < inhibitedEnergy.PreyOsmoregulationCost)
             damagingToxinScore += predatorToxins.ChannelInhibitor;
         if (inhibitedEnergy.PredatorProduction < inhibitedEnergy.PredatorOsmoregulationCost)
-            damagingToxinScore += predatorToxins.ChannelInhibitor;
+            preyDamagingToxinScore += preyToxins.ChannelInhibitor;
 
         // MicrobeAISystem makes prey not fire toxins against predators under this condition
         if (preyBehaviour.Fear >= preyBehaviour.Aggression)

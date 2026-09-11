@@ -1280,6 +1280,9 @@ public static class Constants
     /// </summary>
     public const float GAMETE_SHOOT_AFTER_ANGLE_FAILS_FOR = 12;
 
+    public const float MICROBE_MATE_FORCE_SPAWN_INTERVAL = 90;
+    public const float MATE_FORCE_SPAWN_ERROR_REPORT_INTERVAL = 15;
+
     // Corpse info
     public const int CORPSE_CHUNK_MINIMUM = 1;
     public const int CORPSE_CHUNK_DIVISOR = 4;
