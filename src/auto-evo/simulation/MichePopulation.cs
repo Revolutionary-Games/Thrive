@@ -244,6 +244,7 @@ public static class MichePopulation
 
         var currentBackTraversal = new List<Miche>();
         var scoresDictionary = new Dictionary<Species, float>();
+        var occupantScores = new List<float>();
 
         foreach (var node in leafNodes)
         {
@@ -258,6 +259,7 @@ public static class MichePopulation
             currentBackTraversal.Clear();
             node.BackTraversal(currentBackTraversal);
 
+            occupantScores.Clear();
             var occupantSpecies = node.Occupant;
 
             if (occupantSpecies is not null and not MicrobeSpecies and not MulticellularSpecies)
@@ -274,8 +276,9 @@ public static class MichePopulation
 
                 var traversalScore = 0.0f;
 
-                foreach (var currentMiche in currentBackTraversal)
+                for (int i = 0; i < currentBackTraversal.Count; ++i)
                 {
+                    var currentMiche = currentBackTraversal[i];
                     var rawScore = cache.GetPressureScore(currentMiche.Pressure, patch, currentSpecies);
 
                     if (rawScore <= 0)
@@ -288,8 +291,14 @@ public static class MichePopulation
 
                     if (occupantSpecies != null)
                     {
-                        occupantScore =
-                            cache.GetPressureScore(currentMiche.Pressure, patch, occupantSpecies);
+                        // Only read resident scores when a species reaches this part of the path.
+                        // Reached entries form a prefix, even when earlier species stop at a zero raw score.
+                        if (i == occupantScores.Count)
+                        {
+                            occupantScores.Add(cache.GetPressureScore(currentMiche.Pressure, patch, occupantSpecies));
+                        }
+
+                        occupantScore = occupantScores[i];
                     }
 
                     // If the occupant is somehow terrible, avoid division by zero
@@ -318,14 +327,16 @@ public static class MichePopulation
             if (totalScore <= 0)
                 continue;
 
+            var availableEnergy = node.Pressure.GetEnergy(patch);
+
             foreach (var currentSpecies in species)
             {
-                var micheEnergy = node.Pressure.GetEnergy(patch) * (scoresDictionary[currentSpecies] / totalScore);
+                var micheEnergy = availableEnergy * (scoresDictionary[currentSpecies] / totalScore);
 
                 if (trackEnergy && micheEnergy > 0)
                 {
                     populations.AddTrackedEnergyForSpecies(currentSpecies, patch, node.Pressure,
-                        scoresDictionary[currentSpecies], totalScore, micheEnergy);
+                        scoresDictionary[currentSpecies], totalScore, micheEnergy, availableEnergy);
                 }
 
                 energyDictionary[currentSpecies] += micheEnergy;
