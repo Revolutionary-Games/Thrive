@@ -335,12 +335,22 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
 
         if (loadedSave.SavedProperties == null)
         {
+            loadedSaveName = null;
             GD.PrintErr("Save has no GameProperties");
             return;
         }
 
         var newWorld = new AutoEvoExploringToolWorld(loadedSave.SavedProperties);
         SetWorldsList(newWorld);
+        generationDisplayed = world.CurrentGeneration;
+        historyListMenu.Text = generationDisplayed.ToString(CultureInfo.CurrentCulture);
+    }
+
+    private void InitAutoEvoConfigControls()
+    {
+        moveAttemptsPerSpeciesSpinBox.Value = world.AutoEvoConfiguration.MoveAttemptsPerSpecies;
+        mutationsPerSpeciesSpinBox.Value = world.AutoEvoConfiguration.MutationsPerSpecies;
+        strictNicheCompetitionCheckBox.ButtonPressed = world.AutoEvoConfiguration.StrictNicheCompetition;
     }
 
     private void SetWorldsList(AutoEvoExploringToolWorld newWorld)
@@ -353,13 +363,6 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         worldsListMenu.CreateElements();
 
         UpdateAllWorldsStatistics();
-    }
-
-    private void InitAutoEvoConfigControls()
-    {
-        moveAttemptsPerSpeciesSpinBox.Value = world.AutoEvoConfiguration.MoveAttemptsPerSpecies;
-        mutationsPerSpeciesSpinBox.Value = world.AutoEvoConfiguration.MutationsPerSpecies;
-        strictNicheCompetitionCheckBox.ButtonPressed = world.AutoEvoConfiguration.StrictNicheCompetition;
     }
 
     private void SetControlButtonsState(RunControlState runControlState)
@@ -1233,13 +1236,25 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
                     }
                 }
 
-                for (int i = 0; i <= gameWorld.GenerationHistory.Keys.Max(); ++i)
+                var maxGeneration = gameWorld.GenerationHistory.Keys.Max();
+
+                for (int i = 0; i <= maxGeneration; ++i)
                 {
+                    var generationsBack = maxGeneration - i;
+
                     PatchHistoryList.Add(gameWorld.Map.Patches.ToDictionary(s => s.Key,
-                        s => i < s.Value.History.Count ?
-                            (PatchSnapshot)s.Value.History[i].Clone() :
-                            new PatchSnapshot((BiomeConditions)s.Value.BiomeTemplate.Conditions.Clone(),
-                                s.Value.BiomeTemplate.Background)));
+                        s =>
+                        {
+                            if (generationsBack == 0)
+                                return (PatchSnapshot)s.Value.CurrentSnapshot.Clone();
+
+                            var historyIndex = generationsBack - 1;
+
+                            return historyIndex < s.Value.History.Count ?
+                                (PatchSnapshot)s.Value.History[historyIndex].Clone() :
+                                new PatchSnapshot((BiomeConditions)s.Value.BiomeTemplate.Conditions.Clone(),
+                                    s.Value.BiomeTemplate.Background);
+                        }));
                 }
 
                 for (int i = 0; i <= gameWorld.GenerationHistory.Keys.Max(); ++i)
@@ -1277,7 +1292,7 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
 
         public int CurrentSpeciesCount { get; private set; }
 
-        public int PatchesCount { get; set; }
+        public int PatchesCount { get; }
 
         public double PatchSpeciesCountAverage { get; private set; }
 
@@ -1295,8 +1310,8 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
                 .Select(p => p.SpeciesInPatch.Count).CalculateAverageAndStandardDeviation();
             TotalPopulation = SpeciesHistoryList.Last().Values.Sum(s => s.Population);
 
-            var microbeSpecies = SpeciesHistoryList.Last().Values.Where(s => s is MicrobeSpecies)
-                .Select(s => s as MicrobeSpecies).WhereNotNull().ToList();
+            var microbeSpecies = SpeciesHistoryList.Last().Values.Select(s => s as MicrobeSpecies).WhereNotNull()
+                .ToList();
 
             if (microbeSpecies.Count == 0)
             {
