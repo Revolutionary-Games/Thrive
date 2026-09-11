@@ -1236,7 +1236,10 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
                 for (int i = 0; i <= gameWorld.GenerationHistory.Keys.Max(); ++i)
                 {
                     PatchHistoryList.Add(gameWorld.Map.Patches.ToDictionary(s => s.Key,
-                        s => (PatchSnapshot)s.Value.CurrentSnapshot.Clone()));
+                        s => i < s.Value.History.Count ?
+                            (PatchSnapshot)s.Value.History[i].Clone() :
+                            new PatchSnapshot((BiomeConditions)s.Value.BiomeTemplate.Conditions.Clone(),
+                                s.Value.BiomeTemplate.Background)));
                 }
 
                 for (int i = 0; i <= gameWorld.GenerationHistory.Keys.Max(); ++i)
@@ -1256,6 +1259,10 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
                 {
                     speciesDictionary.Add(speciesId, (Species)species.Clone());
                 }
+
+                PatchHistoryList.Add(gameWorld.Map.Patches.ToDictionary(p => p.Key,
+                    p => (PatchSnapshot)p.Value.CurrentSnapshot.Clone()));
+                MicheHistoryList.Add(new Dictionary<Patch, Miche>());
 
                 CurrentGeneration = 0;
             }
@@ -1290,6 +1297,11 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
 
             var microbeSpecies = SpeciesHistoryList.Last().Values.Where(s => s is MicrobeSpecies)
                 .Select(s => s as MicrobeSpecies).WhereNotNull().ToList();
+
+            if (microbeSpecies.Count == 0)
+            {
+                return;
+            }
 
             MicrobeSpeciesAverageHexSize = microbeSpecies.Average(s => s.BaseHexSize);
 
