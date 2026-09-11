@@ -144,6 +144,9 @@ public partial class NewGameSettings : ControlWithInput
     [Export]
     private CheckButton showMatePosition = null!;
 
+    [Export]
+    private CheckButton alwaysResetEnvironment = null!;
+
     // Planet controls
     [Export]
     private OptionButton lifeOriginButton = null!;
@@ -344,6 +347,7 @@ public partial class NewGameSettings : ControlWithInput
         organelleUnlocksEnabled.ButtonPressed = difficulty.OrganelleUnlocksEnabled;
         spawnCompatibleMateOnCall.ButtonPressed = difficulty.SpawnCompatibleMateOnCall;
         showMatePosition.ButtonPressed = difficulty.ShowMatePosition;
+        alwaysResetEnvironment.ButtonPressed = difficulty.AlwaysResetEnvironment;
 
         UpdateFogOfWarModeDescription(difficulty.FogOfWarMode);
         UpdateSelectedDifficultyPresetControl();
@@ -492,6 +496,7 @@ public partial class NewGameSettings : ControlWithInput
                 OrganelleUnlocksEnabled = organelleUnlocksEnabled.ButtonPressed,
                 SpawnCompatibleMateOnCall = spawnCompatibleMateOnCall.ButtonPressed,
                 ShowMatePosition = showMatePosition.ButtonPressed,
+                AlwaysResetEnvironment = alwaysResetEnvironment.ButtonPressed,
             };
 
             settings.Difficulty = customDifficulty;
@@ -662,6 +667,7 @@ public partial class NewGameSettings : ControlWithInput
         organelleUnlocksEnabled.ButtonPressed = preset.OrganelleUnlocksEnabled;
         spawnCompatibleMateOnCall.ButtonPressed = preset.SpawnCompatibleMateOnCall;
         showMatePosition.ButtonPressed = preset.ShowMatePosition;
+        alwaysResetEnvironment.ButtonPressed = preset.AlwaysResetEnvironment;
 
         UpdateFogOfWarModeDescription(preset.FogOfWarMode);
 
@@ -731,6 +737,9 @@ public partial class NewGameSettings : ControlWithInput
                 continue;
 
             if (showMatePosition.ButtonPressed != preset.ShowMatePosition)
+                continue;
+
+            if (alwaysResetEnvironment.ButtonPressed != preset.AlwaysResetEnvironment)
                 continue;
 
             // If all values are equal to the values for a preset, use that preset
@@ -890,6 +899,12 @@ public partial class NewGameSettings : ControlWithInput
     }
 
     private void OnShowMatePositionToggled(bool pressed)
+    {
+        _ = pressed;
+        UpdateSelectedDifficultyPresetControl();
+    }
+
+    private void OnAlwaysResetEnvironmentToggled(bool pressed)
     {
         _ = pressed;
         UpdateSelectedDifficultyPresetControl();

@@ -5,7 +5,7 @@
 /// </summary>
 public class CustomDifficulty : IDifficulty
 {
-    public const ushort SERIALIZATION_VERSION = 4;
+    public const ushort SERIALIZATION_VERSION = 5;
 
     private bool applyGrowthOverride;
     private bool growthLimitOverride;
@@ -33,6 +33,8 @@ public class CustomDifficulty : IDifficulty
 
     public ReproductionCompoundHandling ReproductionCompounds { get; set; } =
         ReproductionCompoundHandling.TopUpOnPatchChange;
+
+    public bool AlwaysResetEnvironment { get; set; }
 
     public bool SwitchSpeciesOnExtinction { get; set; }
 
@@ -104,6 +106,15 @@ public class CustomDifficulty : IDifficulty
             instance.ShowMatePosition = reader.ReadBool();
         }
 
+        if (version > 4)
+        {
+            instance.AlwaysResetEnvironment = reader.ReadBool();
+        }
+        else
+        {
+            instance.AlwaysResetEnvironment = false;
+        }
+
         return instance;
     }
 
@@ -132,6 +143,9 @@ public class CustomDifficulty : IDifficulty
         // Version 4 fields that were added after
         writer.Write(SpawnCompatibleMateOnCall);
         writer.Write(ShowMatePosition);
+
+        // Version 5 field that was added after
+        writer.Write(AlwaysResetEnvironment);
     }
 
     public void SetGrowthRateLimitCheatOverride(bool newLimitSetting)

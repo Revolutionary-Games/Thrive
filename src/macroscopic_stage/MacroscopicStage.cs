@@ -305,7 +305,7 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
 
     public override void OnReturnFromEditor()
     {
-        UpdatePatchSettings();
+        UpdatePatchSettings(true, true);
 
         base.OnReturnFromEditor();
 
@@ -385,94 +385,7 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
         // TODO: above water panorama backgrounds
         worldEnvironmentNode.Environment = null;
 
-        // Ground plane
-        var ground = new StaticBody3D
-        {
-            PhysicsMaterialOverride = new PhysicsMaterial
-            {
-                Friction = 1,
-                Bounce = 0.1f,
-                Absorbent = true,
-                Rough = true,
-            },
-        };
-
-        ground.AddChild(new CollisionShape3D
-        {
-            Shape = new WorldBoundaryShape3D
-            {
-                Plane = new Plane(new Vector3(0, 1, 0), 0),
-            },
-        });
-
-        ground.AddChild(new MeshInstance3D
-        {
-            Mesh = new PlaneMesh
-            {
-                Size = new Vector2(400, 400),
-                Material = new StandardMaterial3D
-                {
-                    AlbedoTexture = GD.Load<Texture2D>("res://assets/textures/environment/Terrain_01_Albedo.png"),
-                    NormalEnabled = true,
-                    NormalTexture = GD.Load<Texture2D>("res://assets/textures/environment/Terrain_01_Normals.png"),
-                    Uv1Scale = new Vector3(42, 42, 42),
-                },
-            },
-        });
-
-        rootOfDynamicallySpawned.AddChild(ground);
-
-        // A not super familiar (different than underwater) rock strewn around for reference
-        var rockResource = SimulationParameters.Instance.GetWorldResource("rock");
-        var resourceScene = SpawnHelpers.LoadResourceEntityScene();
-
-        foreach (var position in new[]
-                 {
-                     new Vector3(10, 0, 5),
-                     new Vector3(15, 0, 5),
-                     new Vector3(10, 0, 8),
-                     new Vector3(-3, 0, 5),
-                     new Vector3(-8, 0, 6),
-                     new Vector3(18, 0, 11),
-                     new Vector3(38, 0, 11),
-                     new Vector3(-15, 0, 10),
-                     new Vector3(-15, 0, -15),
-                     new Vector3(-25, 0, -15),
-                     new Vector3(-35, 0, -15),
-                     new Vector3(25, 0, -5),
-                     new Vector3(29, 0, -5),
-                     new Vector3(32, 0, -5),
-                     new Vector3(35, 0, 5),
-                 })
-        {
-            // But create it as a resource entity so that it can be interacted with
-            SpawnHelpers.SpawnResourceEntity(rockResource, new Transform3D(Basis.Identity, position),
-                rootOfDynamicallySpawned, resourceScene, true);
-        }
-
-        // Placeholder trees
-        var treeScene = GD.Load<PackedScene>("res://assets/models/Tree01.tscn");
-
-        foreach (var position in new[]
-                 {
-                     new Vector3(15, 0, 9),
-                     new Vector3(25, 0, 35),
-                     new Vector3(50, 0, 10),
-                     new Vector3(-30, 0, 5),
-                     new Vector3(18, 0, -20),
-                     new Vector3(-48, 0, 27),
-                 })
-        {
-            // TODO: proper interactable plants, this is a temporary manually created placeholder tree
-            var tree = treeScene.Instantiate<PlaceholderTree>();
-
-            rootOfDynamicallySpawned.AddChild(tree);
-            tree.GlobalTransform =
-                new Transform3D(new Basis(new Quaternion(new Vector3(0, 1, 0), MathF.PI * random.NextSingle())),
-                    position);
-
-            tree.AddToGroup(Constants.INTERACTABLE_GROUP);
-        }
+        SpawnLandPlaceholderObjects();
 
         // Modify player state for being on land
         Player.MovementMode = MovementMode.Walking;
@@ -720,27 +633,7 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
             // TODO: remove (this is just temporary prototype code)
             // Spawn a chunk to give the player some navigation reference
 
-            var rigidBody = new RigidBody3D
-            {
-                AxisLockLinearY = true,
-            };
-
-            var owner = rigidBody.CreateShapeOwner(rigidBody);
-            rigidBody.ShapeOwnerAddShape(owner, new SphereShape3D
-            {
-                Radius = 10,
-            });
-
-            rigidBody.Mass = 100;
-
-            var visualsParent = new Node3D();
-            rigidBody.AddChild(visualsParent);
-
-            visualsParent.AddChild(GD.Load<PackedScene>("res://assets/models/Iron5.tscn").Instantiate<Node3D>());
-
-            rigidBody.Position = new Vector3(3, 0, -15);
-
-            rootOfDynamicallySpawned.AddChild(rigidBody);
+            SpawnWaterPlaceholderObjects();
         }
 
         // patchManager.CurrentGame = CurrentGame;
@@ -779,7 +672,7 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
         return result;
     }
 
-    protected override void UpdatePatchSettings(bool promptPatchNameChange = true)
+    protected override void UpdatePatchSettings(bool promptPatchNameChange = true, bool returningFromEditor = false)
     {
         // TODO: would be nice to skip this if we are loading a save made in the editor as this gets called twice when
         // going back to the stage
@@ -789,6 +682,31 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
             HUD.ShowPatchName(CurrentPatchName.ToString());
 
         // }
+
+        // Placeholder implementation of "always reset after editor" setting since real spawn system does not exist yet.
+        if (GameWorld.WorldSettings.Difficulty.AlwaysResetEnvironment && returningFromEditor)
+        {
+            if (Player == null)
+            {
+                GD.PrintErr("Player has disappeared");
+                return;
+            }
+
+            foreach (Node child in rootOfDynamicallySpawned.GetChildren())
+            {
+                if (child != Player)
+                    child.QueueFree();
+            }
+
+            if (Player.Species.ReproductionLocation == ReproductionLocation.Land)
+            {
+                SpawnLandPlaceholderObjects();
+            }
+            else
+            {
+                SpawnWaterPlaceholderObjects();
+            }
+        }
 
         HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch!.Biome);
 
@@ -871,6 +789,123 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
         base.Dispose(disposing);
 
         IsDisposed = true;
+    }
+
+    private void SpawnWaterPlaceholderObjects()
+    {
+        var rigidBody = new RigidBody3D
+        {
+            AxisLockLinearY = true,
+        };
+
+        var owner = rigidBody.CreateShapeOwner(rigidBody);
+        rigidBody.ShapeOwnerAddShape(owner, new SphereShape3D
+        {
+            Radius = 10,
+        });
+
+        rigidBody.Mass = 100;
+
+        var visualsParent = new Node3D();
+        rigidBody.AddChild(visualsParent);
+
+        visualsParent.AddChild(GD.Load<PackedScene>("res://assets/models/Iron5.tscn").Instantiate<Node3D>());
+
+        rigidBody.Position = new Vector3(3, 0, -15);
+
+        rootOfDynamicallySpawned.AddChild(rigidBody);
+    }
+
+    private void SpawnLandPlaceholderObjects()
+    {
+        // Ground plane
+        var ground = new StaticBody3D
+        {
+            PhysicsMaterialOverride = new PhysicsMaterial
+            {
+                Friction = 1,
+                Bounce = 0.1f,
+                Absorbent = true,
+                Rough = true,
+            },
+        };
+
+        ground.AddChild(new CollisionShape3D
+        {
+            Shape = new WorldBoundaryShape3D
+            {
+                Plane = new Plane(new Vector3(0, 1, 0), 0),
+            },
+        });
+
+        ground.AddChild(new MeshInstance3D
+        {
+            Mesh = new PlaneMesh
+            {
+                Size = new Vector2(400, 400),
+                Material = new StandardMaterial3D
+                {
+                    AlbedoTexture = GD.Load<Texture2D>("res://assets/textures/environment/Terrain_01_Albedo.png"),
+                    NormalEnabled = true,
+                    NormalTexture = GD.Load<Texture2D>("res://assets/textures/environment/Terrain_01_Normals.png"),
+                    Uv1Scale = new Vector3(42, 42, 42),
+                },
+            },
+        });
+
+        rootOfDynamicallySpawned.AddChild(ground);
+
+        // A not super familiar (different than underwater) rock strewn around for reference
+        var rockResource = SimulationParameters.Instance.GetWorldResource("rock");
+        var resourceScene = SpawnHelpers.LoadResourceEntityScene();
+
+        foreach (var position in new[]
+                 {
+                     new Vector3(10, 0, 5),
+                     new Vector3(15, 0, 5),
+                     new Vector3(10, 0, 8),
+                     new Vector3(-3, 0, 5),
+                     new Vector3(-8, 0, 6),
+                     new Vector3(18, 0, 11),
+                     new Vector3(38, 0, 11),
+                     new Vector3(-15, 0, 10),
+                     new Vector3(-15, 0, -15),
+                     new Vector3(-25, 0, -15),
+                     new Vector3(-35, 0, -15),
+                     new Vector3(25, 0, -5),
+                     new Vector3(29, 0, -5),
+                     new Vector3(32, 0, -5),
+                     new Vector3(35, 0, 5),
+                 })
+        {
+            // But create it as a resource entity so that it can be interacted with
+            SpawnHelpers.SpawnResourceEntity(rockResource, new Transform3D(Basis.Identity, position),
+                rootOfDynamicallySpawned, resourceScene, true);
+        }
+
+        // Placeholder trees
+        var treeScene = GD.Load<PackedScene>("res://assets/models/Tree01.tscn");
+
+        foreach (var position in new[]
+                 {
+                     new Vector3(15, 0, 9),
+                     new Vector3(25, 0, 35),
+                     new Vector3(50, 0, 10),
+                     new Vector3(-30, 0, 5),
+                     new Vector3(18, 0, -20),
+                     new Vector3(-48, 0, 27),
+                 })
+        {
+            // TODO: proper interactable plants, this is a temporary manually created placeholder tree
+            var tree = treeScene.Instantiate<PlaceholderTree>();
+
+            rootOfDynamicallySpawned.AddChild(tree);
+            tree.GlobalTransform =
+                new Transform3D(new Basis(new Quaternion(new Vector3(0, 1, 0), MathF.PI * random.NextSingle())),
+                    position);
+
+            tree.AddToGroup(Constants.INTERACTABLE_GROUP);
+        }
     }
 
     private void OnFinishLoading()
