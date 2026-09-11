@@ -173,7 +173,8 @@ public class RandomOrganelleRemovalTests
     private static OrganelleDefinition[] GetCandidates()
     {
         return SimulationParameters.Instance.GetAllOrganelles()
-            .Where(o => o.AutoEvoCanPlace && o.Hexes.Count == 1 && o != Cytoplasm && !o.HasBindingFeature)
+            .Where(o => o.AutoEvoCanPlace && o.Hexes.Count == 1 && !ReferenceEquals(o, Cytoplasm) &&
+                !o.HasBindingFeature)
             .Take(12).ToArray();
     }
 

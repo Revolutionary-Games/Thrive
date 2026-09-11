@@ -90,7 +90,8 @@ public class RandomOrganelleSelectionTests
                     new SelectionRandom([first, second]), Biome);
                 AssertThat(mutants).IsNotNull();
                 AssertThat(mutants!.Count).IsEqual(3);
-                var names = mutants.Select(m => ((MicrobeSpecies)m.Species).Organelles[1].Definition.InternalName);
+                var names = mutants.Select(m => ((MicrobeSpecies)m.Species).Organelles[1].Definition.InternalName)
+                    .ToArray();
                 AssertThat(names.Distinct().Count()).IsEqual(3);
                 AssertThat(orders.Add(string.Join(",", names))).IsTrue();
             }
@@ -136,7 +137,7 @@ public class RandomOrganelleSelectionTests
         // Use a separate dense list to describe an order selecting every expensive candidate, but not cytoplasm.
         var remaining = SimulationParameters.Instance.GetAllOrganelles().Where(candidates.Contains).ToList();
         var ranks = new List<int>();
-        foreach (var candidate in remaining.Where(o => o != Cytoplasm).ToArray())
+        foreach (var candidate in remaining.Where(o => !ReferenceEquals(o, Cytoplasm)).ToArray())
         {
             int index = remaining.IndexOf(candidate);
             ranks.Add(index);
@@ -168,7 +169,7 @@ public class RandomOrganelleSelectionTests
                 AssertThat(mutants).IsNotNull();
                 AssertThat(mutants!.Count).IsEqual(3);
                 var names = mutants.Select(m => ((MulticellularSpecies)m.Species)
-                    .CellTypes[1].Organelles.Last().Definition.InternalName);
+                    .CellTypes[1].Organelles.Last().Definition.InternalName).ToArray();
                 AssertThat(names.Distinct().Count()).IsEqual(3);
                 AssertThat(orders.Add(string.Join(",", names))).IsTrue();
             }
@@ -181,7 +182,7 @@ public class RandomOrganelleSelectionTests
     public void AddCellCandidatesRespectAttemptLimitWithoutDuplicates()
     {
         // Each candidate creates one new cell type, making selected candidates observable in the variants.
-        var definitions = GetAddableDefinitions().Where(o => o != Cytoplasm).ToArray();
+        var definitions = GetAddableDefinitions().Where(o => !ReferenceEquals(o, Cytoplasm)).ToArray();
         foreach (int count in new[] { 0, 1, 2, 14, 15, 16, definitions.Length })
         {
             var candidates = definitions.Take(count).ToHashSet();
