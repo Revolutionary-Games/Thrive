@@ -120,9 +120,9 @@ public class SimulationCache
 
     /// <summary>
     ///   Calculates the full energy balance for the given species in the given biome conditions.
-    ///   Only accepts Microbe and Multicellular Species
+    ///   Only accepts Microbe and Multicellular Species. Returns a cache-owned result through a read-only interface.
     /// </summary>
-    public EnergyBalanceInfoSimple GetEnergyBalanceForSpecies(Species species,
+    public IReadOnlyEnergyBalanceInfo GetEnergyBalanceForSpecies(Species species,
         BiomeConditions biomeConditions)
     {
         // TODO: this gets called an absolute ton with the new auto-evo so a more efficient caching method (to allow
@@ -205,7 +205,7 @@ public class SimulationCache
         return cached;
     }
 
-    public EnergyBalanceInfoSimple GetEnergyBalanceForCellType(IReadOnlyCellTypeDefinition celltype,
+    public IReadOnlyEnergyBalanceInfo GetEnergyBalanceForCellType(IReadOnlyCellTypeDefinition celltype,
         MulticellularSpecies species, BiomeConditions biomeConditions)
     {
         var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(celltype.Organelles);
@@ -339,8 +339,9 @@ public class SimulationCache
         var activeProcessList = GetActiveProcessList(species);
 
         // For maximum efficiency, as this is called an absolute ton, the following approach is used
-        foreach (var process in activeProcessList)
+        for (var i = 0; i < activeProcessList.Count; ++i)
         {
+            var process = activeProcessList[i];
             if (process.Process.Inputs.TryGetValue(fromCompound, out var inputAmount))
             {
                 if (process.Process.Outputs.TryGetValue(toCompound, out var outputAmount))
@@ -378,8 +379,9 @@ public class SimulationCache
 
         var tolerances = GetEnvironmentalTolerances(species, biomeConditions);
 
-        foreach (var process in activeProcessList)
+        for (var i = 0; i < activeProcessList.Count; ++i)
         {
+            var process = activeProcessList[i];
             if (process.Process.Inputs.ContainsKey(fromCompound))
             {
                 if (process.Process.Outputs.TryGetValue(toCompound, out var outputAmount))
@@ -405,14 +407,15 @@ public class SimulationCache
     ///   Process speed modifier from <see cref="ResolvedMicrobeTolerances.ProcessSpeedModifier"/>
     /// </param>
     /// <param name="biomeConditions">The biome conditions to use</param>
-    /// <returns>The speed information for the process</returns>
+    /// <returns>Cache-owned speed information exposed through a read-only interface</returns>
     /// <remarks>
     ///   <para>
     ///     This is important to cache as it is called very many times, but the speed modifier slightly reduces
     ///     the cache usefulness.
     ///   </para>
     /// </remarks>
-    public ProcessSpeedInformation GetProcessMaximumSpeed(TweakedProcess process, float speedModifier,
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public IReadOnlyProcessSpeedInfo GetProcessMaximumSpeed(TweakedProcess process, float speedModifier,
         IBiomeConditions biomeConditions)
     {
         // For caching resolve some data already to have better cache hits
@@ -442,7 +445,6 @@ public class SimulationCache
             return speed;
         }
 
-        // TODO: cache process speed information objects?
         var cached = ProcessSystem.CalculateProcessMaximumSpeed(process, speedModifier, biomeConditions,
             CompoundAmountType.Average, true);
 
@@ -682,6 +684,7 @@ public class SimulationCache
     /// </summary>
     public void Clear()
     {
+        // Only release entries; previously returned results must not be modified, pooled, or reused.
         cachedPressureScores.Clear();
         cachedSimpleEnergyBalances.Clear();
         cachedBaseSpeeds.Clear();
@@ -693,7 +696,10 @@ public class SimulationCache
         cachedProcessLists.Clear();
     }
 
-    public List<TweakedProcess> GetActiveProcessList(Species species)
+    /// <summary>
+    ///   Returns the cache-owned process list through a read-only interface. Use indexed loops to avoid allocations.
+    /// </summary>
+    public IReadOnlyList<TweakedProcess> GetActiveProcessList(Species species)
     {
 #if CHECK_HASH_CODE_REUSED_INSTANCES
         CheckSpecies(species);
@@ -705,7 +711,6 @@ public class SimulationCache
             return cached;
         }
 
-        // TODO: a buffer of process lists (to make small list allocations rarer) (as cached is null here if not found)
         if (species is MicrobeSpecies microbeSpecies)
         {
             ProcessSystem.ComputeActiveProcessList(microbeSpecies.Organelles, ref cached);

@@ -9,7 +9,7 @@
 ///     The consumption and production is not tracked, use <see cref="EnergyBalanceInfoFull"/> to store it
 ///   </para>
 /// </remarks>
-public class EnergyBalanceInfoSimple
+public class EnergyBalanceInfoSimple : IReadOnlyEnergyBalanceInfo
 {
     /// <summary>
     ///   The cost of base movement (only when moving)
