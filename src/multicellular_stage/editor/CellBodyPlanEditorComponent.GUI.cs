@@ -381,7 +381,7 @@ public partial class CellBodyPlanEditorComponent
         if (specialCell == null)
         {
             cellTypePickerPopup.UpdateCellTypeList(Editor.EditedSpecies.ModifiableCellTypes, GetEditedCellDataIfEdited,
-                OnBaseCellTypeForSpecialCellTypeSelected, cellArchetype);
+                ShouldCellTypeBeDisplayed, OnBaseCellTypeForSpecialCellTypeSelected, cellArchetype);
             cellTypePickerPopup.PopupCenteredShrink();
         }
         else

@@ -20,7 +20,8 @@ public partial class CellTypePickerPopup : CustomWindow
 #pragma warning restore CA2213
 
     public void UpdateCellTypeList(List<CellType> types, Func<CellType, CellType> getUpdatedCellType,
-        Action<string, int> onChosenCellType, SpecialCellArchetype specialCellArchetype)
+        Func<CellType, bool> shouldBeDisplayed, Action<string, int> onChosenCellType,
+        SpecialCellArchetype specialCellArchetype)
     {
         onChosenCellTypeCallback = onChosenCellType;
         cellArchetype = specialCellArchetype;
@@ -31,6 +32,9 @@ public partial class CellTypePickerPopup : CustomWindow
 
         foreach (var cellType in types)
         {
+            if (!shouldBeDisplayed(cellType))
+                continue;
+
             var updatedCellType = getUpdatedCellType(cellType);
 
             var button = cellTypeButton.Instantiate<CellTypeSelection>();
