@@ -288,18 +288,32 @@ public class CellTypeEditsFacade : EditsFacadeBase, IReadOnlyCellTypeDefinition,
                 // Then match to the original microbe organelles
                 original = originalCell.Organelles.GetByExactElementRootPosition(organelleRemoveActionData.Location);
 
+                if (original != null &&
+                    (!ReferenceEquals(original.Definition, organelleRemoveActionData.RemovedHex.Definition) ||
+                        removedOrganelles.Contains(original)))
+                {
+                    // This is either an organelle of a different type at the same position or an organelle that was
+                    // already removed by a history-resetting new-cell action. Neither can be the target of this
+                    // remove action.
+                    original = null;
+                }
+
                 if (original != null)
                 {
-                    if (!ReferenceEquals(original.Definition, organelleRemoveActionData.RemovedHex.Definition))
-                        GD.PrintErr("Found unrelated organelle at exact position of removed organelle");
-
                     // Don't want the old instance to show up any more
                     removedOrganelles.Add(original);
                 }
             }
 
             if (original == null)
+            {
+                // Removing cytoplasm before placing an organelle is only used to describe a replacement for
+                // mutation-point calculations. A reset can already have removed that cytoplasm from the facade.
+                if (organelleRemoveActionData.GotReplaced)
+                    return true;
+
                 throw new InvalidOperationException("Could not find the organelle a remove operation is related to");
+            }
 
             // We already removed the original, so there's nothing more to do
 
