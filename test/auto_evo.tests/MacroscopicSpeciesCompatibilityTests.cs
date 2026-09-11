@@ -306,7 +306,7 @@ public class MacroscopicSpeciesCompatibilityTests
         microbe.Organelles.Add(new OrganelleTemplate(simulationParameters.GetOrganelleType("nucleus"),
             new Hex(0, 0), 0));
         microbe.Organelles.Add(new OrganelleTemplate(simulationParameters.GetOrganelleType("cytoplasm"),
-            new Hex(3, 0), 0));
+            new Hex(2, 0), 0));
         microbe.OnEdited();
     }
 
