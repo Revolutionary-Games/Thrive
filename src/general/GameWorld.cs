@@ -844,6 +844,7 @@ public class GameWorld : IArchivable
 
         var workMemory1 = new List<Hex>();
         var workMemory2 = new List<Hex>();
+        var workMemory3 = new HashSet<Hex>();
 
         var stemCellType = new CellType(microbeSpecies, workMemory1, workMemory2);
         multicellularVersion.ModifiableCellTypes.Add(stemCellType);
@@ -866,7 +867,7 @@ public class GameWorld : IArchivable
 
             MulticellularLayoutHelpers.UpdateGameplayLayout(multicellularVersion.ModifiableGameplayCells,
                 multicellularVersion.ModifiableEditorCells, simpleLayout, AlgorithmQuality.High, workMemory1,
-                workMemory2);
+                workMemory2, workMemory3);
         }
         else
         {

@@ -163,8 +163,8 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
     }
 
     /// <summary>
-    ///   Returns true if CanPlace would return true and an existing
-    ///   hex touches one of the new hexes, or is the last hex and can be replaced.
+    ///   Returns true if CanPlace returns true and an existing
+    ///   hex touches one of the new hexes or is the last hex and can be replaced.
     /// </summary>
     public virtual bool CanPlaceAndIsTouching(T hex, List<Hex> temporaryStorage, List<Hex> temporaryStorage2)
     {
@@ -312,6 +312,35 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
     }
 
     /// <summary>
+    ///   Finds the closest root position to the given hex (note root position means just the original point of each
+    ///   hex and not its full representation if it is bigger than a single hex). That caveat exists to make this
+    ///   method faster.
+    /// </summary>
+    /// <param name="checkPosition">Position to measure to</param>
+    /// <returns>Closest position or null if there are no hexes</returns>
+    public T? GetClosestElementRootPositionTo(Hex checkPosition)
+    {
+        if (existingHexes.Count < 1)
+            return null;
+
+        var smallestDistance = float.MaxValue;
+        T? result = null;
+
+        foreach (var existingHex in existingHexes)
+        {
+            var distance = existingHex.Position.DistanceTo(checkPosition);
+
+            if (distance < smallestDistance)
+            {
+                smallestDistance = distance;
+                result = existingHex;
+            }
+        }
+
+        return result;
+    }
+
+    /// <summary>
     ///   Initializes a layout while reading an archive. This is separated from the normal constructor, so the empty
     ///   layout can be registered before reading its items, which may contain references back to the layout.
     ///   Only call when deserializing!
@@ -450,7 +479,14 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
         }
     }
 
-    protected abstract void GetHexComponentPositions(T hex, List<Hex> result);
+    /// <summary>
+    ///   Gets expanded positions that the hex occupies. Note the hex doesn't need to already be in the layout.
+    ///   And this only returns the positions in *local coordinates* so doesn't add hex's position to them
+    ///   automatically (but applies rotation). They can be shifted to global coordinates by adding the hex's position.
+    /// </summary>
+    /// <param name="hex">The hex to expand</param>
+    /// <param name="result">Where to put all finished positions</param>
+    public abstract void GetHexComponentPositions(T hex, List<Hex> result);
 
     /// <summary>
     ///   Adds the neighbors of the element in checked to checked, as well as their neighbors, and so on

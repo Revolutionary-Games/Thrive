@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-01 10:25+0300\n"
+"POT-Creation-Date: 2026-09-09 16:05+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -959,27 +959,27 @@ msgstr ""
 msgid "CARBON_DIOXIDE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:990
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:995
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:994
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:999
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:998
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:1003
 msgid "CATEGORY_LITTLE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:992
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:997
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:996
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:1001
 msgid "CATEGORY_SOME"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:1000
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:1005
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
@@ -1189,7 +1189,7 @@ msgstr ""
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:129
+#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:144
 msgid "CHUNK_CELL_CORPSE_PART"
 msgstr ""
 
@@ -1893,6 +1893,10 @@ msgstr ""
 msgid "CONTROLLER_UNKNOWN_AXIS"
 msgstr ""
 
+#: ../src/microbe_stage/MicrobeStage.cs:2202
+msgid "COOLDOWN_NOT_ELAPSED_FOR_MATE_SPAWN"
+msgstr ""
+
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:84
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr ""
@@ -2153,8 +2157,8 @@ msgstr ""
 msgid "DEADZONE_CONFIGURATION"
 msgstr ""
 
+#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:391
 #: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:400
-#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:409
 msgid "DEATH"
 msgstr ""
 
@@ -2704,15 +2708,15 @@ msgstr ""
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:1424
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:1420
 msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:1430
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:1426
 msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:1401
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:1397
 msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
 msgstr ""
 
@@ -2896,12 +2900,12 @@ msgstr ""
 msgid "ERROR_LOADING"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:710
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:810
+#: ../src/microbe_stage/MicrobeStage.cs:711
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:828
 msgid "ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:818
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:836
 msgid "ERROR_REQUIRED_AT_LEAST_X_CELLS_FOR_MASS_BUDDING"
 msgstr ""
 
@@ -2917,7 +2921,7 @@ msgstr ""
 msgid "ESCAPE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:2830
+#: ../src/microbe_stage/MicrobeStage.cs:2930
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -3387,7 +3391,7 @@ msgstr ""
 msgid "GAMEPLAY_BASICS_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/Spawners.cs:1151
+#: ../src/microbe_stage/Spawners.cs:1152
 msgid "GAMETE_CELL_ENTITY_NAME"
 msgstr ""
 
@@ -3408,6 +3412,18 @@ msgstr ""
 msgid "GAMETE_PRODUCED"
 msgstr ""
 
+#: ../src/multicellular_stage/GameteType.cs:14
+msgid "GAMETE_TYPE_A"
+msgstr ""
+
+#: ../src/multicellular_stage/GameteType.cs:11
+msgid "GAMETE_TYPE_ALL"
+msgstr ""
+
+#: ../src/multicellular_stage/GameteType.cs:17
+msgid "GAMETE_TYPE_B"
+msgstr ""
+
 #: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:797
 #: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:834
 msgid "GAMETE_TYPE_USED_BY_PLAYER_TOOLTIP"
@@ -3417,7 +3433,7 @@ msgstr ""
 msgid "GAME_DESIGN_TEAM"
 msgstr ""
 
-#: ../src/general/base_stage/WorldSimulationWithPhysics.cs:213
+#: ../src/general/base_stage/WorldSimulationWithPhysics.cs:232
 msgid "GAME_PHYSICS_PERFORMANCE_LOW_WARNING"
 msgstr ""
 
@@ -5038,7 +5054,7 @@ msgstr ""
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1712
+#: ../src/microbe_stage/MicrobeStage.cs:1734
 msgid "LOADING_MICROBE_STAGE"
 msgstr ""
 
@@ -5046,7 +5062,7 @@ msgstr ""
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1708
+#: ../src/microbe_stage/MicrobeStage.cs:1730
 msgid "LOADING_MULTICELLULAR_STAGE"
 msgstr ""
 
@@ -5239,6 +5255,10 @@ msgstr ""
 
 #: ../src/general/MainMenu.tscn:816
 msgid "MASTODON_TOOLTIP"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.cs:2378
+msgid "MATE_SPAWNED_DUE_TO_CALLING_FOR_ONE"
 msgstr ""
 
 #: ../src/gui_common/menus/OptionsMenu.tscn:2129
@@ -6146,7 +6166,7 @@ msgstr ""
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr ""
 
-#: ../src/multicellular_stage/MulticellularSpecies.cs:976
+#: ../src/multicellular_stage/MulticellularSpecies.cs:1026
 msgid "MULTICELLULAR_SPECIES_DETAIL_TEXT"
 msgstr ""
 
@@ -6445,7 +6465,7 @@ msgstr ""
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:958
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:1013
 msgid "NOTICE_ENGULFING_OUT_OF_ATP"
 msgstr ""
 
@@ -6457,12 +6477,12 @@ msgstr ""
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:1216
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:306
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr ""
 
 #: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:138
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:1208
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:298
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
@@ -6565,6 +6585,10 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:164
 msgid "NO_SUGGESTION"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.cs:2333
+msgid "NO_UNBLOCKED_POSITION_FOUND_FOR_MATE_SPAWNED_ANYWAY"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:1042
@@ -7112,8 +7136,8 @@ msgstr ""
 #: ../src/microbe_stage/OrganismStatisticsPanel.cs:519
 #: ../src/microbe_stage/OrganismStatisticsPanel.cs:639
 #: ../src/microbe_stage/OrganismStatisticsPanel.cs:643
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:1237
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:1275
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:1256
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:1294
 #: ../src/society_stage/gui/ResearchScreen.cs:34
 msgid "PERCENTAGE_VALUE"
 msgstr ""
@@ -8446,7 +8470,7 @@ msgstr ""
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:2292
+#: ../src/microbe_stage/MicrobeStage.cs:2392
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -8790,11 +8814,11 @@ msgstr ""
 msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:2828
+#: ../src/microbe_stage/MicrobeStage.cs:2928
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:2829
+#: ../src/microbe_stage/MicrobeStage.cs:2929
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
@@ -9049,7 +9073,7 @@ msgstr ""
 msgid "THRIVEOPEDIA_CURRENT_WORLD_PAGE_TITLE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:32
+#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:36
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr ""
 
@@ -9184,8 +9208,8 @@ msgstr ""
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:985
-#: ../src/microbe_stage/MicrobeStage.cs:989
+#: ../src/microbe_stage/MicrobeStage.cs:986
+#: ../src/microbe_stage/MicrobeStage.cs:990
 msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr ""
 
@@ -9328,7 +9352,7 @@ msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeSpecies.cs:464
-#: ../src/multicellular_stage/MulticellularSpecies.cs:979
+#: ../src/multicellular_stage/MulticellularSpecies.cs:1029
 msgid "TOLERANCE_DETAIL_TEXT"
 msgstr ""
 

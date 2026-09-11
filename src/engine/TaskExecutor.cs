@@ -200,7 +200,10 @@ public class TaskExecutor
     ///   ones queued from another thread while this method is executing) are complete, which may be unwanted in
     ///   some cases.
     /// </param>
-    public void RunTasks(List<Task> tasks, bool runExtraTasksOnCallingThread = false)
+    /// <param name="catchErrors">
+    ///   If set to true, then caught errors are shown to the player rather than letting them escape
+    /// </param>
+    public void RunTasks(List<Task> tasks, bool runExtraTasksOnCallingThread = false, bool catchErrors = false)
     {
         // Queue all but the first task
         Task? firstTask = null;
@@ -261,9 +264,25 @@ public class TaskExecutor
         // Wait for all given tasks to complete
         foreach (var task in mainThreadTaskStorage)
         {
-            // TODO: so apparently this Wait call can allocate memory, in SpinThenBlockingWait which eventually calls
-            // EnsureLockObjectCreated
-            task.Wait();
+            try
+            {
+                // TODO: so apparently this Wait call can allocate memory, in SpinThenBlockingWait which eventually
+                // calls EnsureLockObjectCreated
+                task.Wait();
+            }
+            catch (Exception e)
+            {
+                GD.PrintErr("Error encountered from a waited task on the primary waiting thread");
+
+                if (catchErrors)
+                {
+                    LogInterceptor.ForwardCaughtError(e, "Error from waited background task");
+                }
+                else
+                {
+                    throw;
+                }
+            }
         }
 
         mainThreadTaskStorage.Clear();
