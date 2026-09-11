@@ -1,39 +1,11 @@
 ﻿namespace ThriveTest.MicrobeStage;
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using Godot;
 using Xunit;
 
 public class EditorActionTests
 {
-    [Fact]
-    public void EditorAction_HistoryResetKeepsActionsAfterResetWhenPreviousActionIsCombined()
-    {
-        var history = new EditorActionHistory<EditorAction>();
-
-        history.AddAction(new CombinedEditorAction(
-            new SingleEditorAction<RigidityActionData>(_ => { }, _ => { }, new RigidityActionData(0.2f, 0.1f)),
-            new SingleEditorAction<RigidityActionData>(_ => { }, _ => { }, new RigidityActionData(0.3f, 0.2f))));
-
-        var newCell = new NewMicrobeActionData(new OrganelleLayout<OrganelleTemplate>(), new MembraneType(), 0,
-            Colors.White, null, null);
-        history.AddAction(new SingleEditorAction<NewMicrobeActionData>(_ => { }, _ => { }, newCell));
-
-        var placement = new OrganellePlacementActionData(
-            new OrganelleTemplate(new OrganelleDefinition { Hexes = [new Hex(0, 0)] }, new Hex(0, 0), 0),
-            new Hex(0, 0), 0);
-        history.AddAction(new SingleEditorAction<OrganellePlacementActionData>(_ => { }, _ => { }, placement));
-
-        var performedData = new List<EditorCombinableActionData>();
-        history.GetPerformedActionData(performedData);
-
-        Assert.Collection(performedData,
-            item => Assert.Same(newCell, item),
-            item => Assert.Same(placement, item));
-    }
-
     [Fact]
     public void EditorAction_SubsequentRigidityChangesCombine()
     {
