@@ -693,6 +693,10 @@ public class SimulationCache
         cachedProcessLists.Clear();
     }
 
+    /// <summary>
+    ///   Gets aggregate process capacities including cell specialisation. Callers should only apply
+    ///   environmental tolerance and process conditions to these rates.
+    /// </summary>
     public List<TweakedProcess> GetActiveProcessList(Species species)
     {
 #if CHECK_HASH_CODE_REUSED_INSTANCES
@@ -709,20 +713,35 @@ public class SimulationCache
         if (species is MicrobeSpecies microbeSpecies)
         {
             ProcessSystem.ComputeActiveProcessList(microbeSpecies.Organelles, ref cached);
+            ApplySpecializationToProcessRates(cached, microbeSpecies.CellTypeSpecializationBonus);
         }
         else if (species is MulticellularSpecies multicellularSpecies)
         {
-            List<IReadOnlyOrganelleTemplate> allOrganelles = [];
+            cached = new List<TweakedProcess>();
+            List<TweakedProcess>? cellProcesses = null;
+            var cellOrganelles = new List<IReadOnlyOrganelleTemplate>();
+            var cells = multicellularSpecies.EditorCells;
 
-            foreach (var cell in multicellularSpecies.EditorCells)
+            foreach (var hex in cells)
             {
-                foreach (var organelle in cell.Data!.CellType.Organelles)
-                {
-                    allOrganelles.Add(organelle);
-                }
+                var cell = hex.Data ?? throw new ArgumentException("editor cell does not have cell template set");
+                cellProcesses?.Clear();
+                cellOrganelles.Clear();
+                cellOrganelles.AddRange(cell.CellType.Organelles);
+                ProcessSystem.ComputeActiveProcessList(cellOrganelles, ref cellProcesses);
+                var specialization = cell.CellType.CellTypeSpecializationBonus *
+                    CellBodyPlanInternalCalculations.GetAdjacencySpecializationBonusFromBodyPlan(cell, cells);
+                ApplySpecializationToProcessRates(cellProcesses, specialization);
+                ProcessSystem.MergeProcessLists(cached, cellProcesses);
             }
 
-            ProcessSystem.ComputeActiveProcessList(allOrganelles, ref cached);
+            // MergeProcessLists marks entries while aggregating them. Do not expose those temporary marks.
+            for (int i = 0; i < cached.Count; ++i)
+            {
+                var process = cached[i];
+                process.Marked = false;
+                cached[i] = process;
+            }
         }
         else
         {
@@ -827,6 +846,19 @@ public class SimulationCache
 
         cachedPredationToolsRawScores.Add(key, predationToolsRawScores);
         return predationToolsRawScores;
+    }
+
+    /// <summary>
+    ///   Scales copies of the aggregated rates, leaving shared organelle definitions unchanged.
+    /// </summary>
+    private static void ApplySpecializationToProcessRates(List<TweakedProcess> processes, float specialization)
+    {
+        for (int i = 0; i < processes.Count; ++i)
+        {
+            var process = processes[i];
+            process.Rate *= specialization;
+            processes[i] = process;
+        }
     }
 
     private static ToxinToolScores CalculateToxinToolScores(float averageToxicity, float everyToxinScore,

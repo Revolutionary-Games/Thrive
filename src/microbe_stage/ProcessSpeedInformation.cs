@@ -64,7 +64,7 @@ public class ProcessSpeedInformation : IProcessDisplayInfo
     }
 
     /// <summary>
-    ///   Scales all non-environmental inputs and outputs with the given modifier
+    ///   Scales process speed, non-environmental inputs, and all outputs with the given modifier
     /// </summary>
     public void ScaleSpeed(float modifier, Dictionary<Compound, float>? workMemory)
     {
@@ -94,9 +94,6 @@ public class ProcessSpeedInformation : IProcessDisplayInfo
 
             foreach (var output in WritableOutputs)
             {
-                if (IProcessDisplayInfo.IsEnvironmental(output.Key))
-                    continue;
-
                 workMemory.Add(output.Key, output.Value * modifier);
             }
 
@@ -106,8 +103,9 @@ public class ProcessSpeedInformation : IProcessDisplayInfo
             }
         }
 
-        // Scales speed, which is independent of input and output values
         CurrentSpeed *= modifier;
+        ATPProduction *= modifier;
+        ATPConsumption *= modifier;
     }
 
     public bool Equals(IProcessDisplayInfo? other)
