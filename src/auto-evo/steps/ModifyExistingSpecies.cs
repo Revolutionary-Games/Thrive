@@ -41,6 +41,7 @@ public class ModifyExistingSpecies : IRunStep
 
     private readonly List<Hex> hexTemporaryMemory1 = new();
     private readonly List<Hex> hexTemporaryMemory2 = new();
+    private readonly HashSet<Hex> hexTemporaryMemory3 = new();
 
     private readonly List<Species> lastGeneratedMutations = new();
 
@@ -240,7 +241,7 @@ public class ModifyExistingSpecies : IRunStep
                             multicellularMutant.RepositionCellTypesToOrigin();
                             MulticellularLayoutHelpers.UpdateGameplayLayoutForAutoEvo(
                                 multicellularMutant.ModifiableGameplayCells, multicellularMutant.ModifiableEditorCells,
-                                hexTemporaryMemory1, hexTemporaryMemory2);
+                                hexTemporaryMemory1, hexTemporaryMemory2, hexTemporaryMemory3);
                         }
 
                         // OnEdited is expensive, so we only run it here on species that exit auto-evo
@@ -253,7 +254,7 @@ public class ModifyExistingSpecies : IRunStep
                         {
                             MulticellularLayoutHelpers.UpdateGameplayLayoutForAutoEvo(
                                 multicellularMutant.ModifiableGameplayCells, multicellularMutant.ModifiableEditorCells,
-                                hexTemporaryMemory1, hexTemporaryMemory2);
+                                hexTemporaryMemory1, hexTemporaryMemory2, hexTemporaryMemory3);
                         }
 
                         // Only apply a new name and colour to results that are actually kept

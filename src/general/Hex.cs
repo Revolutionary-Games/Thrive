@@ -189,7 +189,7 @@ public struct Hex : IEquatable<Hex>, IComparable<Hex>
     }
 
     /// <summary>
-    ///   Converts axial hex coordinates to coordinates in the cube based hex model
+    ///   Converts axial hex coordinates to coordinates in the cube-based hex model
     /// </summary>
     public static Vector3I AxialToCube(Hex hex)
     {
