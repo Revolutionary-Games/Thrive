@@ -210,13 +210,19 @@ public class ProcessSpeedTests
         biome.Chunks["food"] = new ChunkConfiguration
         {
             Density = 1,
-            Compounds = new() { [Compound.Glucose] = new() { Amount = 1 } },
+            Compounds = new Dictionary<Compound, ChunkConfiguration.ChunkCompound>
+            {
+                [Compound.Glucose] = new() { Amount = 1 },
+            },
         };
         AssertThat(ProcessSystem.CalculateProcessMaximumSpeed(tweaked, 1, biome, CompoundAmountType.Current, true)
             .CurrentSpeed).IsEqual(1.0f);
 
         var toxin = SimulationParameters.Instance.GetBioProcess("cytotoxinSynthesis");
-        var empty = new BiomeConditions(new(), null, null, null, null) { Chunks = new() };
+        var empty = new BiomeConditions(new Dictionary<Compound, BiomeCompoundProperties>(), null, null, null, null)
+        {
+            Chunks = new Dictionary<string, ChunkConfiguration>(),
+        };
         AssertThat(ProcessSystem.CalculateProcessMaximumSpeed(new TweakedProcess(toxin), 1,
             empty, CompoundAmountType.Current, true).CurrentSpeed).IsEqual(1.0f);
     }
@@ -260,7 +266,7 @@ public class ProcessSpeedTests
         bag.AddSpecificCapacityForCompound(Compound.ATP, 0.125f);
         bag.AddSpecificCapacityForCompound(Compound.Oxytoxy, 0.0625f);
         var tweaked = new TweakedProcess(process);
-        var statistics = RunProcesses(new() { tweaked }, bag, CreateBiome(process), 1, 1);
+        var statistics = RunProcesses(new List<TweakedProcess> { tweaked }, bag, CreateBiome(process), 1, 1);
 
         AssertThat(statistics.Processes[tweaked].CurrentSpeed).IsEqual(0.0625f);
         AssertThat(bag.GetCompoundAmount(Compound.Glucose)).IsEqual(0.4375f);
@@ -296,7 +302,7 @@ public class ProcessSpeedTests
 
             var before = new Dictionary<Compound, float>(bag.Compounds);
             var tweaked = new TweakedProcess(process);
-            var statistics = RunProcesses(new() { tweaked }, bag, CreateBiome(process), 1, 1);
+            var statistics = RunProcesses(new List<TweakedProcess> { tweaked }, bag, CreateBiome(process), 1, 1);
             if (fraction <= minimum)
             {
                 AssertThat(statistics.Processes[tweaked].CurrentSpeed).IsEqual(0.0f);
@@ -327,7 +333,8 @@ public class ProcessSpeedTests
         var atp = SimulationParameters.GetCompound(Compound.ATP);
         var bag = new CompoundBag(10);
         bag.Compounds[Compound.Glucose] = first.Process.Inputs[glucose];
-        var statistics = RunProcesses(new() { first, second }, bag, CreateBiome(first.Process), 1, 1);
+        var statistics =
+            RunProcesses(new List<TweakedProcess> { first, second }, bag, CreateBiome(first.Process), 1, 1);
         AssertThat(statistics.Processes[first].CurrentSpeed).IsEqual(1.0f);
         AssertThat(statistics.Processes[second].CurrentSpeed).IsEqual(0.0f);
         AssertThat(bag.GetCompoundAmount(Compound.Glucose)).IsEqual(0.0f);
@@ -396,7 +403,7 @@ public class ProcessSpeedTests
 
         var before = new Dictionary<Compound, float>(bag.Compounds);
         var tweaked = new TweakedProcess(process, rate) { SpeedMultiplier = manual };
-        var statistics = RunProcesses(new() { tweaked }, bag, biome, modifier, delta, toxin);
+        var statistics = RunProcesses(new List<TweakedProcess> { tweaked }, bag, biome, modifier, delta, toxin);
         var speed = statistics.Processes.TryGetValue(tweaked, out var processStatistics) ?
             processStatistics.CurrentSpeed :
             0;
