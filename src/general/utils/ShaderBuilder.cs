@@ -76,15 +76,9 @@ public sealed class ShaderBuilder
         result.Append(LoadModuleCode(module.Path)).Append('\n');
     }
 
-    private sealed class ShaderModule
+    private sealed class ShaderModule(string path, string[] dependencies)
     {
-        public readonly string Path;
-        public readonly string[] Dependencies;
-
-        public ShaderModule(string path, string[] dependencies)
-        {
-            Path = path;
-            Dependencies = dependencies;
-        }
+        public readonly string Path = path;
+        public readonly string[] Dependencies = dependencies;
     }
 }
