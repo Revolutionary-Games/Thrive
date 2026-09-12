@@ -33,8 +33,9 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     // textures.
     private const string NoiseProfileFileName = "cloud_base_128.res";
     private const string SkyResourcesDir = "res://assets/textures/sky/";
-    private const string RaymarcherShaderFileName = "res://shaders/sky/clouds_march.glsl";
+    private const string ShaderModuleDir = "res://shaders/sky/lib/";
     private const string UpsamplerShaderFileName = "res://shaders/sky/upsampler.glsl";
+    private const string GeneratedSourceDumpPath = "user://clouds_march_generated.glsl";
 
     private static readonly Lock InstanceLock = new();
 
@@ -69,10 +70,11 @@ public partial class VolumetricCloudsEffect : CompositorEffect
 #pragma warning disable CA2213
     private RenderingDevice? renderingDevice;
 
-    private RDShaderSpirV rayMarcherSpirv = null!;
     private RDShaderSpirV upsamplerSpirv = null!;
     private ImageTexture3D noiseProfile = null!;
 #pragma warning restore CA2213
+
+    private string rayMarcherSource = null!;
 
     private volatile int state;
 
@@ -313,7 +315,7 @@ public partial class VolumetricCloudsEffect : CompositorEffect
             colorTextureName.Dispose();
             depthTextureName.Dispose();
 
-            rayMarcherSpirv = null!;
+            rayMarcherSource = null!;
             upsamplerSpirv = null!;
             noiseProfile = null!;
 
@@ -336,6 +338,36 @@ public partial class VolumetricCloudsEffect : CompositorEffect
             throw new Exception($"Error in shader {path}: {spirv.CompileErrorCompute}");
 
         return spirv;
+    }
+
+    private static string BuildRayMarcherSource()
+    {
+        var builder = new ShaderBuilder();
+
+        builder.AddModule("cloud_interface", ShaderModuleDir + "clouds_compute_interface.gdshaderinc");
+        builder.AddModule("math", ShaderModuleDir + "math.gdshaderinc");
+        builder.AddModule("phase", ShaderModuleDir + "phase.gdshaderinc", "math");
+        builder.AddModule("cloud_density", ShaderModuleDir + "cloud_density.gdshaderinc", "math", "cloud_interface");
+        builder.AddModule("cloud_march", ShaderModuleDir + "cloud_march.gdshaderinc", "math", "phase",
+            "cloud_density", "cloud_interface");
+        builder.AddModule("cloud_main", ShaderModuleDir + "clouds_compute_main.gdshaderinc", "math", "cloud_march",
+            "cloud_interface");
+
+        // The interface module has to come first as it carries the version directive
+        return builder.Build("cloud_interface", "cloud_main");
+    }
+
+    private static void DumpGeneratedSource(string source)
+    {
+        using var file = FileAccess.Open(GeneratedSourceDumpPath, FileAccess.ModeFlags.Write);
+
+        if (file is null)
+        {
+            GD.PrintErr("Cannot write generated shader source to " + GeneratedSourceDumpPath);
+            return;
+        }
+
+        file.StoreString(source);
     }
 
     /// <summary>
@@ -424,14 +456,14 @@ public partial class VolumetricCloudsEffect : CompositorEffect
 
     private void InitializeCompute()
     {
-        if (rayMarcherSpirv == null! || upsamplerSpirv == null!)
+        if (rayMarcherSource == null! || upsamplerSpirv == null!)
             throw new Exception("Resources have not been loaded yet.");
 
         renderingDevice = RenderingServer.GetRenderingDevice();
         if (renderingDevice is null)
             return;
 
-        rayMarcherShader = renderingDevice.ShaderCreateFromSpirV(rayMarcherSpirv);
+        rayMarcherShader = renderingDevice.ShaderCreateFromSpirV(CompileComputeSource(rayMarcherSource));
         rayMarcherPipeline = renderingDevice.ComputePipelineCreate(rayMarcherShader);
 
         upsamplerShader = renderingDevice.ShaderCreateFromSpirV(upsamplerSpirv);
@@ -460,6 +492,27 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         noiseTexture = RenderingServer.TextureGetRdTexture(noiseProfile.GetRid());
 
         paramUbo = renderingDevice.UniformBufferCreate(UniformParamsBufferSize, uniformParamsBuffer);
+    }
+
+    private RDShaderSpirV CompileComputeSource(string source)
+    {
+        var shaderSource = new RDShaderSource
+        {
+            Language = RenderingDevice.ShaderLanguage.Glsl,
+            SourceCompute = source,
+        };
+
+        var spirv = renderingDevice!.ShaderCompileSpirVFromSource(shaderSource);
+
+        if (spirv.CompileErrorCompute != string.Empty)
+        {
+            DumpGeneratedSource(source);
+
+            throw new Exception($"Error in generated cloud shader: {spirv.CompileErrorCompute}. The generated " +
+                $"source has been written to {GeneratedSourceDumpPath}");
+        }
+
+        return spirv;
     }
 
     /// <summary>
@@ -593,11 +646,8 @@ public partial class VolumetricCloudsEffect : CompositorEffect
 
     private void LoadResources()
     {
-        rayMarcherSpirv = LoadSpirV(RaymarcherShaderFileName);
+        rayMarcherSource = BuildRayMarcherSource();
         upsamplerSpirv = LoadSpirV(UpsamplerShaderFileName);
-
-        if (rayMarcherSpirv.CompileErrorCompute != string.Empty)
-            throw new Exception("Error in shader clouds_march.glsl " + rayMarcherSpirv.CompileErrorCompute);
 
         const string noiseProfilePath = SkyResourcesDir + NoiseProfileFileName;
         if (ResourceLoader.Exists(noiseProfilePath))
