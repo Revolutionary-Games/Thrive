@@ -756,7 +756,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
             var availableRate = inputCompound == Compound.Temperature ?
                 CalculateTemperatureEffect(availableInEnvironment) :
-                availableInEnvironment / (input.Value * speedModifier);
+                availableInEnvironment / input.Value;
 
             result.AvailableAmounts[inputCompound] = availableInEnvironment;
 
@@ -767,12 +767,15 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
             speedFactor *= availableRate;
 
-            result.WritableInputs[inputCompound] = input.Value * speedModifier;
+            // Environmental requirements describe baseline levels, independent of process capacity.
+            result.WritableFullSpeedRequiredEnvironmentalInputs[inputCompound] = input.Value;
+            result.WritableInputs[inputCompound] = input.Value;
         }
 
         result.Efficiency = efficiency;
 
-        speedFactor *= process.Rate;
+        // Apply capacity and speed together so equal products give identical process information.
+        speedFactor *= process.Rate * speedModifier;
 
         // Note that we don't consider storage constraints here, so we don't use spaceConstraintModifier calculations
 
@@ -790,7 +793,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
             var inputCompound = entry.Key.ID;
 
-            var adjustedValue = entry.Value * speedFactor * speedModifier;
+            var adjustedValue = entry.Value * speedFactor;
             result.WritableInputs.Add(inputCompound, adjustedValue);
 
             if (adjustedValue > 0)
@@ -812,7 +815,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
         foreach (var entry in process.Process.Outputs)
         {
-            var amount = entry.Value * speedFactor * speedModifier;
+            var amount = entry.Value * speedFactor;
 
             var outputCompound = entry.Key.ID;
 
@@ -1268,6 +1271,8 @@ public partial class ProcessSystem : BaseSystem<World, float>
         // Bool for can your cell do the process
         bool canDoProcess = true;
 
+        float effectiveRate = process.Rate * overallSpeedModifier;
+
         float environmentModifier = 1.0f;
 
         // This modifies the process overall speed to allow really fast processes to run, for example if there are
@@ -1298,7 +1303,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
             // do environmental modifier here, and save it for later
             environmentModifier *= inputCompound == Compound.Temperature ?
                 CalculateTemperatureEffect(ambient) :
-                ambient / (entry.Value * overallSpeedModifier);
+                ambient / entry.Value;
 
             if (environmentModifier <= MathUtils.EPSILON)
                 currentProcessStatistics?.AddLimitingFactor(inputCompound);
@@ -1324,8 +1329,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
             var inputCompound = entry.Key.ID;
 
-            var inputRemoved = entry.Value * process.Rate * environmentModifier * process.SpeedMultiplier *
-                overallSpeedModifier;
+            var inputRemoved = entry.Value * effectiveRate * environmentModifier * process.SpeedMultiplier;
 
             inputRemoved = inputRemoved * delta * spaceConstraintModifier;
 
@@ -1337,7 +1341,8 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
                 if (availableAmount > MathUtils.EPSILON)
                 {
-                    var neededModifier = availableAmount / inputRemoved;
+                    // This limit is relative to the demand already reduced by earlier constraints.
+                    var neededModifier = spaceConstraintModifier * (availableAmount / inputRemoved);
 
                     if (neededModifier > Constants.MINIMUM_RUNNABLE_PROCESS_FRACTION)
                     {
@@ -1367,8 +1372,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
             // For now, lets assume compounds we produce are also useful
             bag.SetUseful(outputCompound);
 
-            var outputAdded = entry.Value * process.Rate * environmentModifier * process.SpeedMultiplier *
-                overallSpeedModifier;
+            var outputAdded = entry.Value * effectiveRate * environmentModifier * process.SpeedMultiplier;
 
             outputAdded = outputAdded * delta * spaceConstraintModifier;
 
@@ -1384,7 +1388,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
                 if (remainingSpace > MathUtils.EPSILON)
                 {
-                    var neededModifier = remainingSpace / outputAdded;
+                    var neededModifier = spaceConstraintModifier * (remainingSpace / outputAdded);
 
                     if (neededModifier > Constants.MINIMUM_RUNNABLE_PROCESS_FRACTION)
                     {
@@ -1414,8 +1418,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
             return;
         }
 
-        float totalModifier = process.Rate * environmentModifier * spaceConstraintModifier *
-            process.SpeedMultiplier * overallSpeedModifier;
+        float totalModifier = effectiveRate * environmentModifier * spaceConstraintModifier * process.SpeedMultiplier;
 
         // Apply ATP production speed cap if in effect
         if (isATPProducer && processorInfo.ATPProductionSpeedModifier != 0)
@@ -1432,8 +1435,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
             totalModifier *= processorInfo.ATPProductionSpeedModifier;
         }
 
-        // TODO: should the overall speed modifier be included in here? It already has scaled the inputs and
-        // outputs
+        // Record the effective per-second speed, including all applied constraints and modifiers.
         currentProcessStatistics?.CurrentSpeed = totalModifier;
 
         // Only multiplying totalModifier by delta time after recording this process' speed per second
