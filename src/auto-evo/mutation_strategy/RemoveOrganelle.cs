@@ -66,15 +66,18 @@ public class RemoveOrganelle : IMutationStrategy<Species>
         if (baseSpecies.Organelles.Count <= 1)
             return null;
 
-        var organelles = baseSpecies.Organelles.Where(x => criteria(x.Definition))
-            .OrderBy(_ => random.Next()).Take(Constants.AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS);
+        var baseOrganelles = baseSpecies.Organelles.Organelles;
+        Span<int> candidateIndices = stackalloc int[Constants.AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS];
+        int candidateCount = SelectOrganelleIndices(baseOrganelles, candidateIndices, random);
 
         List<Mutant>? mutated = null;
 
         MutationWorkMemory? workMemory = null;
 
-        foreach (var organelle in organelles)
+        foreach (int candidateIndex in candidateIndices[..candidateCount])
         {
+            var organelle = baseOrganelles[candidateIndex];
+
             // The player cannot remove the nucleus, so Auto-Evo should not be able to either
             if (ReferenceEquals(organelle.Definition, Nucleus))
                 continue;
@@ -87,7 +90,6 @@ public class RemoveOrganelle : IMutationStrategy<Species>
             // Is this the best way to do this? Probably not, but this is how mutations.cs does is
             // and the other way outright did not work
             // This is now slightly improved - hhyyrylainen
-            var baseOrganelles = baseSpecies.Organelles.Organelles;
             var count = baseSpecies.Organelles.Count;
 
             for (var i = 0; i < count; ++i)
@@ -121,6 +123,7 @@ public class RemoveOrganelle : IMutationStrategy<Species>
         List<Mutant>? mutated = null;
 
         var cellTypeCount = baseSpecies.CellTypes.Count;
+        Span<int> candidateIndices = stackalloc int[Constants.AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS];
 
         for (var i = 0; i < cellTypeCount; ++i)
         {
@@ -128,13 +131,15 @@ public class RemoveOrganelle : IMutationStrategy<Species>
             if (baseCellType.Organelles.Count <= 1)
                 continue;
 
-            var organelles = baseCellType.Organelles.Where(x => criteria(x.Definition))
-                .OrderBy(_ => random.Next()).Take(Constants.AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS);
+            var baseOrganelles = baseCellType.ModifiableOrganelles.Organelles;
+            int candidateCount = SelectOrganelleIndices(baseOrganelles, candidateIndices, random);
 
             MutationWorkMemory? workMemory = null;
 
-            foreach (var organelle in organelles)
+            foreach (int candidateIndex in candidateIndices[..candidateCount])
             {
+                var organelle = baseOrganelles[candidateIndex];
+
                 // The player cannot remove the nucleus, so Auto-Evo should not be able to either
                 if (ReferenceEquals(organelle.Definition, Nucleus))
                     continue;
@@ -178,7 +183,6 @@ public class RemoveOrganelle : IMutationStrategy<Species>
 
                 // Clone the organelles for the targeted cell type, excluding the targeted organelle
                 // Is this the best way to do this?
-                var baseOrganelles = baseCellType.ModifiableOrganelles;
                 var organelleCount = baseCellType.Organelles.Count;
 
                 for (var j = 0; j < organelleCount; ++j)
@@ -202,5 +206,61 @@ public class RemoveOrganelle : IMutationStrategy<Species>
         }
 
         return mutated;
+    }
+
+    /// <summary>
+    ///   Uses reservoir sampling to select matching organelles, then shuffles the selected indices into attempt order.
+    /// </summary>
+    /// <param name="organelles">The original organelle list, filtered using this strategy's criteria.</param>
+    /// <param name="candidates">The output buffer, whose length limits the number of selected indices.</param>
+    /// <param name="random">The random source used for reservoir replacement and shuffling.</param>
+    /// <returns>
+    ///   The number of valid entries at the start of <paramref name="candidates"/>. Each entry indexes the original
+    ///   organelle list; entries beyond the returned count may be uninitialized or left over from an earlier call.
+    /// </returns>
+    /// <remarks>
+    ///   <para>
+    ///     This only filters by criteria. Callers may skip protected organelles in the sample without replacing them,
+    ///     so the sample size limits attempts rather than successful removals.
+    ///   </para>
+    /// </remarks>
+    private int SelectOrganelleIndices(IReadOnlyList<OrganelleTemplate> organelles, Span<int> candidates, Random random)
+    {
+        var matchingCount = 0;
+        var selectedCount = 0;
+        var organelleCount = organelles.Count;
+        for (int i = 0; i < organelleCount; ++i)
+        {
+            if (!criteria(organelles[i].Definition))
+                continue;
+
+            // Count only matching organelles for sampling, but store their indices in the original list.
+            ++matchingCount;
+            if (selectedCount < candidates.Length)
+            {
+                candidates[selectedCount++] = i;
+                continue;
+            }
+
+            // With uniform draws, the m-th match enters a full k-slot reservoir with probability k/m.
+            // Each earlier match had selection probability k/(m - 1) and survives with probability (m - 1)/m,
+            // so its probability of remaining in the sample is also k/m.
+            // For example, with k = 2, the fifth match replaces a slot only on draws 0 or 1 out of [0, 5).
+            var replacement = random.Next(matchingCount);
+            if (replacement < candidates.Length)
+            {
+                candidates[replacement] = i;
+            }
+        }
+
+        // Reservoir sampling chooses a uniform subset, not a uniform order. Use a Fisher-Yates shuffle for attempts.
+        // This is also needed when all matches fit in the buffer and would otherwise remain in source order.
+        for (int i = 0; i < selectedCount - 1; ++i)
+        {
+            var swapIndex = i + random.Next(selectedCount - i);
+            (candidates[i], candidates[swapIndex]) = (candidates[swapIndex], candidates[i]);
+        }
+
+        return selectedCount;
     }
 }

@@ -404,6 +404,64 @@ public static class CommonMutationFunctions
         return true;
     }
 
+    /// <summary>
+    ///   Fills the output with distinct indices from [0, candidateCount), in random selection order.
+    /// </summary>
+    /// <param name="candidateCount">The number of available candidates. Must be non-negative.</param>
+    /// <param name="candidates">
+    ///   Receives the selected indices. Its length is the requested sample size and must not exceed
+    ///   <paramref name="candidateCount"/>. An empty span produces no output and consumes no random values.
+    /// </param>
+    /// <param name="random">The random source used to choose ranks among the remaining candidates.</param>
+    /// <remarks>
+    ///   <para>
+    ///     Each draw chooses a rank among the indices not yet selected, then maps that rank back to the original
+    ///     index range. With uniform random draws, every ordered sample of distinct indices is equally likely.
+    ///     The caller owns the output buffer; this method does not copy or modify the source collection.
+    ///   </para>
+    ///   <para>
+    ///     For k output indices, this takes O(k^2) time and O(k) temporary stack space, with no heap allocations
+    ///     by the sampling algorithm. Keep k small enough for the internal stack allocation, even when the output
+    ///     buffer itself is not on the stack. Use another algorithm for large samples.
+    ///   </para>
+    /// </remarks>
+    internal static void SelectCandidateIndices(int candidateCount, Span<int> candidates, Random random)
+    {
+        // At the start of each draw, selected[..i] is sorted for rank mapping, while candidates[..i] keeps draw order.
+        Span<int> selected = stackalloc int[candidates.Length];
+        for (int i = 0; i < candidates.Length; ++i)
+        {
+            var remaining = candidateCount - i;
+
+            // A single remaining index needs no random draw.
+            var index = remaining == 1 ? 0 : random.Next(remaining);
+            var insertion = 0;
+
+            // Skip previously selected indices to map the remaining rank to an original index.
+            // Example: from [0, 6), with sorted selections [1, 3], the remaining indices are [0, 2, 4, 5].
+            // Rank 2 maps to index 4: skipping 1 changes 2 to 3, then skipping 3 changes it to 4.
+            while (insertion < i && selected[insertion] <= index)
+            {
+                ++index;
+                ++insertion;
+            }
+
+            candidates[i] = index;
+
+            // The final selection needs no sorted insertion because there is no next draw.
+            if (i + 1 == candidates.Length)
+                break;
+
+            // Insert the new index in sorted order so the next draw can skip all previous selections.
+            for (int j = i; j > insertion; --j)
+            {
+                selected[j] = selected[j - 1];
+            }
+
+            selected[insertion] = index;
+        }
+    }
+
     private static bool TryAddNewCell(ref double mp, CellType newCellType, int mpCost, List<Hex> workMemory1,
         List<Hex> workMemory2, CellTemplate baseCell, Hex.HexSide hexSide, IReadOnlyHexWithData<CellTemplate> baseHex,
         IndividualHexLayout<CellTemplate> newCells)
