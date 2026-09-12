@@ -138,6 +138,8 @@ public class RemoveOrganelle : IMutationStrategy<Species>
 
         var cellTypeCount = baseSpecies.CellTypes.Count;
 
+        MutationWorkMemory? workMemory = null;
+
         for (var i = 0; i < cellTypeCount; ++i)
         {
             var baseCellType = baseSpecies.ModifiableCellTypes[i];
@@ -147,7 +149,10 @@ public class RemoveOrganelle : IMutationStrategy<Species>
             var organelles = baseCellType.Organelles.Where(x => criteria(x.Definition))
                 .OrderBy(_ => random.Next()).Take(Constants.AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS);
 
-            MutationWorkMemory? workMemory = null;
+            workMemory ??= new MutationWorkMemory();
+
+            var occupied = workMemory.WorkingMemory3;
+            occupied.Clear();
 
             foreach (var organelle in organelles)
             {
@@ -163,8 +168,6 @@ public class RemoveOrganelle : IMutationStrategy<Species>
                 var newSpecies = baseSpecies.Clone(false, false);
                 var newCellType = newSpecies.ModifiableCellTypes[i];
                 var newCellTypeOrganelles = newCellType.ModifiableOrganelles;
-
-                workMemory ??= new MutationWorkMemory();
 
                 // Clone organelles for the cell types not currently targeted
                 for (var j = 0; j < cellTypeCount; ++j)
@@ -185,10 +188,21 @@ public class RemoveOrganelle : IMutationStrategy<Species>
                         if (ReferenceEquals(parentOrganelle, organelle))
                             continue;
 
-                        // Copy the organelle
-                        var copiedOrganelle = parentOrganelle.Clone();
-                        clonedCellType.ModifiableOrganelles.AddIfPossible(copiedOrganelle,
-                            workMemory.WorkingMemory1, workMemory.WorkingMemory2);
+                        var definition = parentOrganelle.Definition;
+                        var position = parentOrganelle.Position;
+                        var orientation = parentOrganelle.Orientation;
+
+                        if (!clonedCellType.ModifiableOrganelles.IsOrganellePositionFree(definition, position.Q,
+                                position.R, orientation, occupied, out _))
+                        {
+                            continue;
+                        }
+
+                        var rotated = definition.GetRotatedHexes(orientation);
+                        for (var r = 0; r < rotated.Count; ++r)
+                            occupied.Add(rotated[r] + position);
+
+                        clonedCellType.ModifiableOrganelles.AddAutoEvoAttemptOrganelle(parentOrganelle.Clone());
                     }
                 }
 
@@ -204,10 +218,21 @@ public class RemoveOrganelle : IMutationStrategy<Species>
                     if (ReferenceEquals(parentOrganelle, organelle))
                         continue;
 
-                    // Copy the organelle
-                    var newOrganelle = parentOrganelle.Clone();
-                    newCellTypeOrganelles.AddIfPossible(newOrganelle, workMemory.WorkingMemory1,
-                        workMemory.WorkingMemory2);
+                    var definition = parentOrganelle.Definition;
+                    var position = parentOrganelle.Position;
+                    var orientation = parentOrganelle.Orientation;
+
+                    if (!newCellTypeOrganelles.IsOrganellePositionFree(definition, position.Q, position.R,
+                            orientation, occupied, out _))
+                    {
+                        continue;
+                    }
+
+                    var rotated = definition.GetRotatedHexes(orientation);
+                    for (var r = 0; r < rotated.Count; ++r)
+                        occupied.Add(rotated[r] + position);
+
+                    newCellTypeOrganelles.AddAutoEvoAttemptOrganelle(parentOrganelle.Clone());
                 }
 
                 AttachIslandHexes(newCellTypeOrganelles, workMemory);
