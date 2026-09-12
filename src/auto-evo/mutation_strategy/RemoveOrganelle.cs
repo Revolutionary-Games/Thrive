@@ -177,6 +177,8 @@ public class RemoveOrganelle : IMutationStrategy<Species>
                     if (ReferenceEquals(clonedCellType, newCellType))
                         continue;
 
+                    occupied.Clear();
+
                     var parentCellTypeOrganelles =
                         baseSpecies.ModifiableCellTypes[j].ModifiableOrganelles;
                     var copyOrganelleCount = parentCellTypeOrganelles.Count;
@@ -210,6 +212,8 @@ public class RemoveOrganelle : IMutationStrategy<Species>
                 // Is this the best way to do this?
                 var baseOrganelles = baseCellType.ModifiableOrganelles;
                 var organelleCount = baseCellType.Organelles.Count;
+
+                occupied.Clear();
 
                 for (var j = 0; j < organelleCount; ++j)
                 {
