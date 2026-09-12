@@ -276,7 +276,8 @@ public static class MichePopulation
 
                 var traversalScore = 0.0f;
 
-                for (int i = 0; i < currentBackTraversal.Count; ++i)
+                var count = currentBackTraversal.Count;
+                for (int i = 0; i < count; ++i)
                 {
                     var currentMiche = currentBackTraversal[i];
                     var rawScore = cache.GetPressureScore(currentMiche.Pressure, patch, currentSpecies);
