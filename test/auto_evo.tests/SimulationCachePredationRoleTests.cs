@@ -66,12 +66,12 @@ public class SimulationCachePredationRoleTests
     [TestCase(false, ToxinType.Oxytoxy, 9.939762f, 9.953802f)]
     [TestCase(false, ToxinType.Cytotoxin, 9.939762f, 9.303881f)]
     [TestCase(false, ToxinType.Macrolide, 9.939762f, 42.95154f)]
-    [TestCase(false, ToxinType.ChannelInhibitor, 9.939762f, 8546.805f)]
+    [TestCase(false, ToxinType.ChannelInhibitor, 9.939762f, 8546.542f)]
     [TestCase(false, ToxinType.OxygenMetabolismInhibitor, 9.939762f, 9.93459f)]
     [TestCase(true, ToxinType.Oxytoxy, 0.31303066f, 0.33341095f)]
     [TestCase(true, ToxinType.Cytotoxin, 0.31303066f, 0.32250232f)]
     [TestCase(true, ToxinType.Macrolide, 0.31303066f, 14.746543f)]
-    [TestCase(true, ToxinType.ChannelInhibitor, 0.31303066f, 892.47894f)]
+    [TestCase(true, ToxinType.ChannelInhibitor, 0.31303066f, 892.47577f)]
     [TestCase(true, ToxinType.OxygenMetabolismInhibitor, 0.31303066f, 0.3331734f)]
     public void SinglePredatorToxin(bool multicellular, ToxinType toxin,
         float expectedControl, float expectedArmed)

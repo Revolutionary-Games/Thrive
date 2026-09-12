@@ -95,7 +95,7 @@ public class IndividualHexLayout<TData> : HexLayout<HexWithData<TData>>, IReadOn
         return CanPlace(hex.Position);
     }
 
-    protected override void GetHexComponentPositions(HexWithData<TData> hex, List<Hex> result)
+    public override void GetHexComponentPositions(HexWithData<TData> hex, List<Hex> result)
     {
         result.Clear();
 

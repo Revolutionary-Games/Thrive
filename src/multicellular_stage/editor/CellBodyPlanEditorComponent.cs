@@ -25,6 +25,7 @@ public partial class CellBodyPlanEditorComponent :
 
     private readonly List<Hex> hexTemporaryMemory = [];
     private readonly List<Hex> hexTemporaryMemory2 = [];
+    private readonly HashSet<Hex> hexTemporaryMemory3 = [];
     private readonly List<Hex> islandResults = [];
     private readonly HashSet<Hex> islandsWorkMemory1 = [];
     private readonly List<Hex> islandsWorkMemory2 = [];
@@ -737,7 +738,7 @@ public partial class CellBodyPlanEditorComponent :
         // TODO: as this is a long operation, it would be very nice to be able to run this in a background thread
         MulticellularLayoutHelpers.UpdateGameplayLayout(editedSpecies.ModifiableGameplayCells,
             editedSpecies.ModifiableEditorCells, editedMicrobeCells, AlgorithmQuality.High, hexTemporaryMemory,
-            hexTemporaryMemory2);
+            hexTemporaryMemory2, hexTemporaryMemory3);
 
         editedSpecies.ReproductionMethod = ReproductionMethod;
         editedSpecies.ModifiableSporeCellType = SporeCellType;
@@ -821,8 +822,8 @@ public partial class CellBodyPlanEditorComponent :
         }
 
         // This is checked due to a species data requirement
-        if (ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy
-                or MulticellularReproductionMethod.SexualAnisogamy && editedMicrobeCells.Count < 2)
+        if ((ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy
+                or MulticellularReproductionMethod.SexualAnisogamy) && editedMicrobeCells.Count < 2)
         {
             ToolTipManager.Instance.ShowPopup(
                 Localization.Translate("ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"), 5);
