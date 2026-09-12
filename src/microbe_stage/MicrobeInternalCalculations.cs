@@ -85,8 +85,14 @@ public static class MicrobeInternalCalculations
     public static float GetTotalNominalCapacity(IEnumerable<OrganelleTemplate> organelles,
         float totalSpecializationBonus)
     {
-        return organelles.Sum(o => GetNominalCapacityForOrganelle(o.Definition, o.Upgrades,
-            totalSpecializationBonus));
+        float capacity = 0;
+        foreach (var organelle in organelles)
+        {
+            capacity += GetNominalCapacityForOrganelle(organelle.Definition, organelle.Upgrades,
+                totalSpecializationBonus);
+        }
+
+        return capacity;
     }
 
     public static Dictionary<Compound, float> GetTotalSpecificCapacity(IReadOnlyList<OrganelleTemplate> organelles,

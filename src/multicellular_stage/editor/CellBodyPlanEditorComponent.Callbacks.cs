@@ -141,6 +141,8 @@ public partial class CellBodyPlanEditorComponent
             UpdateMassBuddingCellCountSlider();
         }
 
+        OnReproductionMethodChangedToSexual();
+
         UpdateReproductionMethodChoice();
         UpdateAnisogamyStateAndCost();
     }
@@ -160,6 +162,8 @@ public partial class CellBodyPlanEditorComponent
         {
             UpdateSpecialCellTypeDisplays();
         }
+
+        OnReproductionMethodChangedToSexual();
 
         UpdateReproductionMethodChoice();
         UpdateAnisogamyStateAndCost();
@@ -259,23 +263,6 @@ public partial class CellBodyPlanEditorComponent
     }
 
     [ArchiveAllowedMethod]
-    private void DoSporeCellChangeAction(SpecialCellTypeChangeActionData data)
-    {
-        ChangeCellType(data.OldCellType, data.NewCellType, SpecialCellArchetype.Spore);
-    }
-
-    [ArchiveAllowedMethod]
-    private void UndoSporeCellChangeAction(SpecialCellTypeChangeActionData data)
-    {
-        if (data.NewCellType != null)
-        {
-            CellTypeVisualsOverride?.ForgetChanges(data.NewCellType);
-        }
-
-        ChangeCellType(data.NewCellType, data.OldCellType, SpecialCellArchetype.Spore);
-    }
-
-    [ArchiveAllowedMethod]
     private void DoMassBuddingCellCountChangeAction(MassBuddingCellCountActionData data)
     {
         DesiredMassBuddingCellCount = data.NewCellCount;
@@ -289,5 +276,15 @@ public partial class CellBodyPlanEditorComponent
         DesiredMassBuddingCellCount = data.OldCellCount;
 
         UpdateMassBuddingCellCountSlider();
+    }
+
+    private void OnReproductionMethodChangedToSexual()
+    {
+        // If the player hasn't set a sex type, force one to be set here now
+        if (SelectedGameteTypeForPlayer == GameteType.All)
+        {
+            GD.Print("Forcing gamete type for player after switching to a sexual reproduction method");
+            SelectedGameteTypeForPlayer = GameteType.A;
+        }
     }
 }

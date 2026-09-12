@@ -57,20 +57,26 @@ public sealed partial class CloudsConfig : ValidatedConfig
 
         if (!Check(CloudInnerHeight >= 0.0f, $"CloudInnerHeight is an altitude above the ground so it cannot " +
                 $"be negative, but is {CloudInnerHeight}"))
+        {
             valid = false;
+        }
 
         // The ray marcher derives its shell from these two, and an inverted or empty shell leaves it nothing to
         // march through
         if (!Check(CloudOuterHeight > CloudInnerHeight, $"CloudOuterHeight ({CloudOuterHeight}) must be " +
                 $"greater than CloudInnerHeight ({CloudInnerHeight}), otherwise the cloud layer has no thickness"))
+        {
             valid = false;
+        }
 
         if (!Check(CloudTileSize > 0.0f, $"CloudTileSize must be positive, but is {CloudTileSize}"))
             valid = false;
 
         if (!Check(DensityMultiplier is >= 0.0f and <= 1.0f, $"DensityMultiplier must be between 0 and 1, but " +
                 $"is {DensityMultiplier}"))
+        {
             valid = false;
+        }
 
         if (!Check(Coverage is >= 0.1f and <= 1.0f, $"Coverage must be between 0.1 and 1, but is {Coverage}"))
             valid = false;
@@ -86,7 +92,9 @@ public sealed partial class CloudsConfig : ValidatedConfig
 
         if (!Check(ResolutionDivisor is >= 1 and <= 4, $"ResolutionDivisor must be between 1 and 4, but is " +
                 $"{ResolutionDivisor}"))
+        {
             valid = false;
+        }
 
         return valid;
     }

@@ -41,7 +41,7 @@ public partial class FleetNameLabel : Button, IEntityNameLabel
         switch (entity)
         {
             case SpaceFleet fleet:
-
+            {
                 if (fleet.UnitName == previousName &&
                     Math.Abs(fleet.CombatPower - previousStrength) < MathUtils.EPSILON)
                 {
@@ -53,6 +53,7 @@ public partial class FleetNameLabel : Button, IEntityNameLabel
 
                 newText = translationTemplate.FormatSafe(previousName, previousStrength);
                 break;
+            }
 
             default:
                 throw new ArgumentException("Unsupported entity type", nameof(entity));

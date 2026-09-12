@@ -41,6 +41,7 @@ public class ModifyExistingSpecies : IRunStep
 
     private readonly List<Hex> hexTemporaryMemory1 = new();
     private readonly List<Hex> hexTemporaryMemory2 = new();
+    private readonly HashSet<Hex> hexTemporaryMemory3 = new();
 
     private readonly List<Species> lastGeneratedMutations = new();
 
@@ -240,7 +241,7 @@ public class ModifyExistingSpecies : IRunStep
                             multicellularMutant.RepositionCellTypesToOrigin();
                             MulticellularLayoutHelpers.UpdateGameplayLayoutForAutoEvo(
                                 multicellularMutant.ModifiableGameplayCells, multicellularMutant.ModifiableEditorCells,
-                                hexTemporaryMemory1, hexTemporaryMemory2);
+                                hexTemporaryMemory1, hexTemporaryMemory2, hexTemporaryMemory3);
                         }
 
                         // OnEdited is expensive, so we only run it here on species that exit auto-evo
@@ -253,7 +254,7 @@ public class ModifyExistingSpecies : IRunStep
                         {
                             MulticellularLayoutHelpers.UpdateGameplayLayoutForAutoEvo(
                                 multicellularMutant.ModifiableGameplayCells, multicellularMutant.ModifiableEditorCells,
-                                hexTemporaryMemory1, hexTemporaryMemory2);
+                                hexTemporaryMemory1, hexTemporaryMemory2, hexTemporaryMemory3);
                         }
 
                         // Only apply a new name and colour to results that are actually kept
@@ -449,10 +450,24 @@ public class ModifyExistingSpecies : IRunStep
 
                 foreach (var speciesTuple in temporaryMutations1)
                 {
-                    // TODO: this seems like the longest part, so splitting this into multiple steps (maybe bundling
-                    // up mutation strategies) would be good to have the auto-evo steps flow more smoothly
-                    var mutated = mutationStrategy.MutationsOf(speciesTuple.Species, speciesTuple.MP, lawk, random,
-                        patch.Biome);
+                    // For SelectionPressures that have a maximum score, no reason to generate mutations for species
+                    // that already have the maximum score
+                    var produceMutations = true;
+                    if (currentMiche.Pressure.IsThresholdPressure)
+                    {
+                        var score = currentMiche.Pressure.Score(speciesTuple.Species, patch, cache);
+                        if (score >= Constants.AUTO_EVO_THRESHOLD_MICHE_MAX_SCORE)
+                            produceMutations = false;
+                    }
+
+                    List<Mutant>? mutated = null;
+                    if (produceMutations)
+                    {
+                        // TODO: this seems like the longest part, so splitting this into multiple steps (maybe bundling
+                        // up mutation strategies) would be good to have the auto-evo steps flow more smoothly
+                        mutated = mutationStrategy.MutationsOf(speciesTuple.Species, speciesTuple.MP, lawk, random,
+                            patch.Biome);
+                    }
 
                     if (mutated != null)
                     {

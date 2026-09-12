@@ -25,6 +25,7 @@ public partial class CellBodyPlanEditorComponent :
 
     private readonly List<Hex> hexTemporaryMemory = [];
     private readonly List<Hex> hexTemporaryMemory2 = [];
+    private readonly HashSet<Hex> hexTemporaryMemory3 = [];
     private readonly List<Hex> islandResults = [];
     private readonly HashSet<Hex> islandsWorkMemory1 = [];
     private readonly List<Hex> islandsWorkMemory2 = [];
@@ -720,7 +721,19 @@ public partial class CellBodyPlanEditorComponent :
         GameteACellType = multicellularSpecies.ModifiableGameteTypeA;
         GameteBCellType = multicellularSpecies.ModifiableGameteTypeB;
         DesiredMassBuddingCellCount = multicellularSpecies.MassBuddingCellCount;
-        SelectedGameteTypeForPlayer = species.PlayerGamete;
+
+        // Ignore invalid species data
+        if (species.PlayerGamete != GameteType.All || (multicellularSpecies.ReproductionMethod !=
+                MulticellularReproductionMethod.SexualAnisogamy && multicellularSpecies.ReproductionMethod !=
+                MulticellularReproductionMethod.SexualIsogamy))
+        {
+            SelectedGameteTypeForPlayer = species.PlayerGamete;
+        }
+        else
+        {
+            GD.Print("Player gamete type might be bad when entering the editor, setting it to A");
+            SelectedGameteTypeForPlayer = GameteType.A;
+        }
 
         UpdateCellTypeSelections();
 
@@ -766,7 +779,7 @@ public partial class CellBodyPlanEditorComponent :
         // TODO: as this is a long operation, it would be very nice to be able to run this in a background thread
         MulticellularLayoutHelpers.UpdateGameplayLayout(editedSpecies.ModifiableGameplayCells,
             editedSpecies.ModifiableEditorCells, editedMicrobeCells, AlgorithmQuality.High, hexTemporaryMemory,
-            hexTemporaryMemory2);
+            hexTemporaryMemory2, hexTemporaryMemory3);
 
         editedSpecies.ReproductionMethod = ReproductionMethod;
         editedSpecies.ModifiableSporeCellType = SporeCellType;
@@ -784,6 +797,11 @@ public partial class CellBodyPlanEditorComponent :
         if (ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy
             or MulticellularReproductionMethod.SexualAnisogamy)
         {
+            editedSpecies.ModifiableGameteTypeA = GameteACellType;
+
+            if (SelectedGameteTypeForPlayer == GameteType.All)
+                throw new InvalidOperationException("Player gamete type cannot be set to All for sexual reproduction");
+
             if (ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy)
             {
                 // Isogamy doesn't allow changing this
@@ -797,6 +815,9 @@ public partial class CellBodyPlanEditorComponent :
         else
         {
             editedSpecies.PlayerGamete = GameteType.All;
+
+            if (editedSpecies.ReproductionMethod == MulticellularReproductionMethod.SexualAnisogamy)
+                throw new Exception("Logic error in player gamete type setting");
         }
 
         tempFreshlyUpdatedCells.Clear();

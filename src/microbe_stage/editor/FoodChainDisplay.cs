@@ -474,11 +474,15 @@ public partial class FoodChainDisplay : Control
                 case NoOpPressure:
                 case PredatorRoot:
                 case RootPressure:
+                {
                     break;
+                }
 
                 default:
+                {
                     // Pressures that don't contribute energy are not critical to show if this code hasn't been
                     // updated to know about them
+
                     if (energy > 0)
                     {
                         GD.PrintErr($"Unknown miche selection pressure ({miche.Pressure.GetType().Name}) to show " +
@@ -486,6 +490,7 @@ public partial class FoodChainDisplay : Control
                     }
 
                     break;
+                }
             }
         }
 
