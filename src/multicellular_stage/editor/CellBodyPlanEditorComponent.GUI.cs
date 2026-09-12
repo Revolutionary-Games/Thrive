@@ -81,6 +81,8 @@ public partial class CellBodyPlanEditorComponent
         organismStatisticsPanel.OnTranslationsChanged();
 
         UpdateSpecializationDisplay();
+
+        UpdateAnisogamyStateAndCost();
     }
 
     private void ConfirmFinishEditingWithNegativeATPPressed()
