@@ -272,7 +272,7 @@ public class RunResults : IArchivable
     }
 
     public void AddTrackedEnergyForSpecies(Species species, Patch patch, SelectionPressure pressure,
-        float speciesFitness, float totalFitness, float speciesEnergy)
+        float speciesFitness, float totalFitness, float speciesEnergy, float totalAvailableEnergy)
     {
         MakeSureResultExistsForSpecies(species);
 
@@ -284,7 +284,7 @@ public class RunResults : IArchivable
             CurrentSpeciesFitness = speciesFitness,
             CurrentSpeciesEnergy = speciesEnergy,
             TotalFitness = totalFitness,
-            TotalAvailableEnergy = pressure.GetEnergy(patch),
+            TotalAvailableEnergy = totalAvailableEnergy,
         };
     }
 
