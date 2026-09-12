@@ -214,7 +214,11 @@ public abstract class Species : ICloneable, IArchivable, IReadOnlySpecies
     ///   True when a new cache ID is needed for auto-evo. Only call from auto-evo on initial generation
     ///   before any cache stats are done.
     /// </param>
-    public virtual void OnAttemptedInAutoEvo(bool refreshCache)
+    /// <param name="updateInitialCompounds">
+    ///   False only for internal auto-evo candidates. Their initial compounds must be updated before inserting
+    ///   them into the result miche tree, including candidates that will not pass the population check.
+    /// </param>
+    public virtual void OnAttemptedInAutoEvo(bool refreshCache, bool updateInitialCompounds = true)
     {
         cachedBaseReproductionCost = null;
         cachedTotalReproductionCost = null;

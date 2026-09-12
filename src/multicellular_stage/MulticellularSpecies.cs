@@ -458,9 +458,9 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         }
     }
 
-    public override void OnAttemptedInAutoEvo(bool refreshCache)
+    public override void OnAttemptedInAutoEvo(bool refreshCache, bool updateInitialCompounds = true)
     {
-        base.OnAttemptedInAutoEvo(refreshCache);
+        base.OnAttemptedInAutoEvo(refreshCache, updateInitialCompounds);
 
         // Refresh specialization calculations for all cell types
         for (int i = 0; i < CellTypes.Count; ++i)
@@ -469,7 +469,8 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
             cellType.CalculateSpecialization();
         }
 
-        UpdateInitialCompounds();
+        if (updateInitialCompounds)
+            UpdateInitialCompounds();
 
         cachedFillTimes.Clear();
     }

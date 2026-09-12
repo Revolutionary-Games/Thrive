@@ -242,13 +242,14 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         }
     }
 
-    public override void OnAttemptedInAutoEvo(bool refreshCache)
+    public override void OnAttemptedInAutoEvo(bool refreshCache, bool updateInitialCompounds = true)
     {
-        base.OnAttemptedInAutoEvo(refreshCache);
+        base.OnAttemptedInAutoEvo(refreshCache, updateInitialCompounds);
 
         CellTypeSpecializationBonus = MicrobeInternalCalculations.CalculateSpecializationBonus(Organelles,
             new Dictionary<OrganelleDefinition, int>());
-        UpdateInitialCompounds();
+        if (updateInitialCompounds)
+            UpdateInitialCompounds();
         UpdateIsBacteria();
 
         cachedFillTimes.Clear();
