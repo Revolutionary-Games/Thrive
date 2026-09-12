@@ -13,15 +13,15 @@ using static GdUnit4.Assertions;
 [RequireGodotRuntime]
 public class RandomOrganelleSelectionTests
 {
-    private static OrganelleDefinition Cytoplasm => SimulationParameters.Instance.GetOrganelleType("cytoplasm");
+    private readonly OrganelleDefinition cytoplasm = SimulationParameters.Instance.GetOrganelleType("cytoplasm");
 
-    private static BiomeConditions Biome => SimulationParameters.Instance.GetBiome("aavolcanic_vent").Conditions;
+    private readonly BiomeConditions biome = SimulationParameters.Instance.GetBiome("aavolcanic_vent").Conditions;
 
     [TestCase]
     public void EmptyAddCandidatesDoNotConsumeRandom()
     {
         var random = new RecordingRandom();
-        var mutants = new AddOrganelleAnywhere(_ => false).MutationsOf(CreateMicrobe(), 1000, false, random, Biome);
+        var mutants = new AddOrganelleAnywhere(_ => false).MutationsOf(CreateMicrobe(), 1000, false, random, biome);
 
         AssertThat(mutants).IsNotNull();
         AssertThat(mutants!.Count).IsEqual(0);
@@ -35,9 +35,9 @@ public class RandomOrganelleSelectionTests
         var random = new RecordingRandom();
 
         AssertThat(strategy.MutationsOf(CreateMicrobe(), 0, false,
-            random, Biome)).IsNull();
+            random, biome)).IsNull();
         AssertThat(strategy.MutationsOf(new MulticellularSpecies(2, "Test", "Multicellular"),
-            1000, false, random, Biome)).IsNull();
+            1000, false, random, biome)).IsNull();
         AssertThat(random.Calls.Count).IsEqual(0);
     }
 
@@ -47,7 +47,7 @@ public class RandomOrganelleSelectionTests
         var random = new RecordingRandom();
         var mutants = new AddOrganelleAnywhere(o => o.InternalName == "nucleus")
             .MutationsOf(CreateMicrobe(), Constants.ORGANELLE_CHEAPEST_COST,
-                false, random, Biome);
+                false, random, biome);
 
         AssertThat(mutants).IsNotNull();
         AssertThat(mutants!.Count).IsEqual(0);
@@ -61,11 +61,11 @@ public class RandomOrganelleSelectionTests
         var original = CreateMicrobe();
         var random = new RecordingRandom();
         var mutants = new AddOrganelleAnywhere(o => o.InternalName == "cytoplasm")
-            .MutationsOf(original, 1000, false, random, Biome);
+            .MutationsOf(original, 1000, false, random, biome);
 
         AssertThat(mutants).IsNotNull();
         AssertThat(mutants!.Count).IsEqual(1);
-        AssertThat(mutants[0].MP).IsEqual(1000.0 - Cytoplasm.MPCost);
+        AssertThat(mutants[0].MP).IsEqual(1000.0 - cytoplasm.MPCost);
         AssertThat(original.Organelles.Count).IsEqual(1);
         var mutant = (MicrobeSpecies)mutants[0].Species;
         AssertThat(mutant.Organelles.Count).IsEqual(2);
@@ -87,7 +87,7 @@ public class RandomOrganelleSelectionTests
             for (int second = 0; second < 2; ++second)
             {
                 var mutants = strategy.MutationsOf(CreateMicrobe(), 1000, false,
-                    new SelectionRandom([first, second]), Biome);
+                    new SelectionRandom([first, second]), biome);
                 AssertThat(mutants).IsNotNull();
                 AssertThat(mutants!.Count).IsEqual(3);
                 var names = mutants.Select(m => ((MicrobeSpecies)m.Species).Organelles[1].Definition.InternalName)
@@ -114,7 +114,7 @@ public class RandomOrganelleSelectionTests
             foreach (int seed in new[] { 1, 71, 431 })
             {
                 var mutants = strategy.MutationsOf(original, 1000, false,
-                    new XoShiRo256starstar(seed), Biome);
+                    new XoShiRo256starstar(seed), biome);
                 AssertThat(mutants).IsNotNull();
                 AssertThat(mutants!.Count).IsEqual(Math.Min(count, Constants.AUTO_EVO_ORGANELLE_ADD_ATTEMPTS));
                 var added = mutants.Select(m => ((MicrobeSpecies)m.Species).Organelles[1].Definition).ToArray();
@@ -132,12 +132,12 @@ public class RandomOrganelleSelectionTests
             .Where(o => o.MPCost > Constants.ORGANELLE_CHEAPEST_COST)
             .Take(Constants.AUTO_EVO_ORGANELLE_ADD_ATTEMPTS).ToHashSet();
         AssertThat(candidates.Count).IsEqual(Constants.AUTO_EVO_ORGANELLE_ADD_ATTEMPTS);
-        candidates.Add(Cytoplasm);
+        candidates.Add(cytoplasm);
 
         // Use a separate dense list to describe an order selecting every expensive candidate, but not cytoplasm.
         var remaining = SimulationParameters.Instance.GetAllOrganelles().Where(candidates.Contains).ToList();
         var ranks = new List<int>();
-        foreach (var candidate in remaining.Where(o => !ReferenceEquals(o, Cytoplasm)).ToArray())
+        foreach (var candidate in remaining.Where(o => !ReferenceEquals(o, cytoplasm)).ToArray())
         {
             int index = remaining.IndexOf(candidate);
             ranks.Add(index);
@@ -146,7 +146,7 @@ public class RandomOrganelleSelectionTests
 
         var mutants = new AddOrganelleAnywhere(candidates.Contains).MutationsOf(CreateMicrobe(),
             Constants.ORGANELLE_CHEAPEST_COST, false, new SelectionRandom(ranks.ToArray()),
-            Biome);
+            biome);
 
         AssertThat(mutants).IsNotNull();
         AssertThat(mutants!.Count).IsEqual(0);
@@ -165,7 +165,7 @@ public class RandomOrganelleSelectionTests
             for (int second = 0; second < 2; ++second)
             {
                 var mutants = strategy.MutationsOf(CreateMulticellular(), 1000, false,
-                    new SelectionRandom([first, second]), Biome);
+                    new SelectionRandom([first, second]), biome);
                 AssertThat(mutants).IsNotNull();
                 AssertThat(mutants!.Count).IsEqual(3);
                 var names = mutants.Select(m => ((MulticellularSpecies)m.Species)
@@ -182,7 +182,7 @@ public class RandomOrganelleSelectionTests
     public void AddCellCandidatesRespectAttemptLimitWithoutDuplicates()
     {
         // Each candidate creates one new cell type, making selected candidates observable in the variants.
-        var definitions = GetAddableDefinitions().Where(o => !ReferenceEquals(o, Cytoplasm)).ToArray();
+        var definitions = GetAddableDefinitions().Where(o => !ReferenceEquals(o, cytoplasm)).ToArray();
         foreach (int count in new[] { 0, 1, 2, 14, 15, 16, definitions.Length })
         {
             var candidates = definitions.Take(count).ToHashSet();
@@ -191,7 +191,7 @@ public class RandomOrganelleSelectionTests
 
             foreach (int seed in new[] { 1, 71, 431 })
             {
-                var mutants = strategy.MutationsOf(original, 1000, false, new XoShiRo256starstar(seed), Biome);
+                var mutants = strategy.MutationsOf(original, 1000, false, new XoShiRo256starstar(seed), biome);
                 AssertThat(mutants).IsNotNull();
                 AssertThat(mutants!.Count).IsEqual(Math.Min(count, Constants.AUTO_EVO_ORGANELLE_ADD_ATTEMPTS));
                 var added = mutants.Select(m => ((MulticellularSpecies)m.Species)
@@ -214,7 +214,7 @@ public class RandomOrganelleSelectionTests
             !o.IsIncompatibleWithMembrane(membrane)).ToArray();
     }
 
-    private static MicrobeSpecies CreateMicrobe()
+    private MicrobeSpecies CreateMicrobe()
     {
         var species = new MicrobeSpecies(1, "Test", "RandomSelection")
         {
@@ -222,20 +222,20 @@ public class RandomOrganelleSelectionTests
             MembraneType = SimulationParameters.Instance.GetMembrane("single"),
         };
 
-        species.Organelles.Add(new OrganelleTemplate(Cytoplasm, new Hex(0, 0), 0));
+        species.Organelles.Add(new OrganelleTemplate(cytoplasm, new Hex(0, 0), 0));
         species.OnEdited();
 
         return species;
     }
 
-    private static MulticellularSpecies CreateMulticellular()
+    private MulticellularSpecies CreateMulticellular()
     {
         var species = new MulticellularSpecies(1, "Test", "RandomCellSelection");
         var cellType = new CellType(SimulationParameters.Instance.GetMembrane("single"))
         {
             CellTypeName = "Original",
         };
-        cellType.ModifiableOrganelles.Add(new OrganelleTemplate(Cytoplasm, new Hex(0, 0), 0));
+        cellType.ModifiableOrganelles.Add(new OrganelleTemplate(cytoplasm, new Hex(0, 0), 0));
         species.ModifiableCellTypes.Add(cellType);
         species.ModifiableGameplayCells.AddFast(new CellTemplate(cellType, new Hex(0, 0), 0), [], []);
         return species;

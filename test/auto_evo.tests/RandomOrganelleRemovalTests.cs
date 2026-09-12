@@ -13,9 +13,9 @@ using static GdUnit4.Assertions;
 [RequireGodotRuntime]
 public class RandomOrganelleRemovalTests
 {
-    private static OrganelleDefinition Cytoplasm => SimulationParameters.Instance.GetOrganelleType("cytoplasm");
+    private readonly OrganelleDefinition cytoplasm = SimulationParameters.Instance.GetOrganelleType("cytoplasm");
 
-    private static BiomeConditions Biome => SimulationParameters.Instance.GetBiome("aavolcanic_vent").Conditions;
+    private readonly BiomeConditions biome = SimulationParameters.Instance.GetBiome("aavolcanic_vent").Conditions;
 
     [TestCase(false)]
     [TestCase(true)]
@@ -31,7 +31,7 @@ public class RandomOrganelleRemovalTests
             var strategy = new RemoveOrganelle(candidates.Contains);
             foreach (int seed in new[] { 1, 71, 431 })
             {
-                var mutants = strategy.MutationsOf(original, 1000, false, new XoShiRo256starstar(seed), Biome);
+                var mutants = strategy.MutationsOf(original, 1000, false, new XoShiRo256starstar(seed), biome);
                 if (count == 0)
                 {
                     AssertThat(mutants).IsNull();
@@ -70,7 +70,7 @@ public class RandomOrganelleRemovalTests
         // Fixed seeds cover the resulting orders without depending on an algorithm's random-call sequence.
         for (int seed = 0; seed < 128; ++seed)
         {
-            var mutants = strategy.MutationsOf(original, 1000, false, new XoShiRo256starstar(seed), Biome);
+            var mutants = strategy.MutationsOf(original, 1000, false, new XoShiRo256starstar(seed), biome);
             AssertThat(mutants).IsNotNull();
             AssertThat(mutants!.Count).IsEqual(3);
             var removed = mutants.Select(m => definitions.Except(GetDefinitions(m.Species)).Single().InternalName)
@@ -92,7 +92,7 @@ public class RandomOrganelleRemovalTests
             AddCellType(species, definitions.Take(counts[i]).ToArray());
 
         var strategy = new RemoveOrganelle(definitions.Contains);
-        var mutants = strategy.MutationsOf(species, 1000, false, new XoShiRo256starstar(71), Biome);
+        var mutants = strategy.MutationsOf(species, 1000, false, new XoShiRo256starstar(71), biome);
         AssertThat(mutants).IsNotNull();
         AssertThat(mutants!.Count).IsEqual(14);
         var mutationsPerType = new int[counts.Length];
@@ -129,7 +129,7 @@ public class RandomOrganelleRemovalTests
 
             for (int seed = 0; seed < 128; ++seed)
             {
-                var mutants = strategy.MutationsOf(original, 1000, false, new XoShiRo256starstar(seed), Biome);
+                var mutants = strategy.MutationsOf(original, 1000, false, new XoShiRo256starstar(seed), biome);
                 AssertThat(mutants).IsNotNull();
                 AssertThat(mutants!.Count is 9 or 10).IsTrue();
                 if (removableCount == 9)
@@ -161,7 +161,7 @@ public class RandomOrganelleRemovalTests
         var selected = new HashSet<OrganelleDefinition>();
         for (int seed = 0; seed < 128 && selected.Count < definitions.Length; ++seed)
         {
-            var mutants = strategy.MutationsOf(original, 1000, false, new XoShiRo256starstar(seed), Biome);
+            var mutants = strategy.MutationsOf(original, 1000, false, new XoShiRo256starstar(seed), biome);
             AssertThat(mutants).IsNotNull();
             foreach (var mutant in mutants!)
                 selected.Add(definitions.Except(GetDefinitions(mutant.Species)).Single());
@@ -170,15 +170,22 @@ public class RandomOrganelleRemovalTests
         AssertThat(selected.Count).IsEqual(definitions.Length);
     }
 
-    private static OrganelleDefinition[] GetCandidates()
+    private static IEnumerable<OrganelleDefinition> GetDefinitions(Species species, int cellType = 0)
+    {
+        return species is MicrobeSpecies microbe ?
+            microbe.Organelles.Select(o => o.Definition) :
+            ((MulticellularSpecies)species).CellTypes[cellType].Organelles.Select(o => o.Definition);
+    }
+
+    private OrganelleDefinition[] GetCandidates()
     {
         return SimulationParameters.Instance.GetAllOrganelles()
-            .Where(o => o.AutoEvoCanPlace && o.Hexes.Count == 1 && !ReferenceEquals(o, Cytoplasm) &&
+            .Where(o => o.AutoEvoCanPlace && o.Hexes.Count == 1 && !ReferenceEquals(o, cytoplasm) &&
                 !o.HasBindingFeature)
             .Take(12).ToArray();
     }
 
-    private static Species CreateSpecies(bool multicellular, OrganelleDefinition[] definitions)
+    private Species CreateSpecies(bool multicellular, OrganelleDefinition[] definitions)
     {
         if (multicellular)
         {
@@ -196,7 +203,7 @@ public class RandomOrganelleRemovalTests
         return microbe;
     }
 
-    private static void AddCellType(MulticellularSpecies species, OrganelleDefinition[] definitions)
+    private void AddCellType(MulticellularSpecies species, OrganelleDefinition[] definitions)
     {
         var cellType = new CellType(SimulationParameters.Instance.GetMembrane("single"))
         {
@@ -206,21 +213,14 @@ public class RandomOrganelleRemovalTests
         species.ModifiableCellTypes.Add(cellType);
     }
 
-    private static void FillOrganelles(OrganelleLayout<OrganelleTemplate> layout, OrganelleDefinition[] definitions)
+    private void FillOrganelles(OrganelleLayout<OrganelleTemplate> layout, OrganelleDefinition[] definitions)
     {
         // A cytoplasm backbone keeps the layout connected after any candidate is removed.
         for (int i = 0; i < Math.Max(2, definitions.Length); ++i)
         {
-            layout.Add(new OrganelleTemplate(Cytoplasm, new Hex(i, 0), 0));
+            layout.Add(new OrganelleTemplate(cytoplasm, new Hex(i, 0), 0));
             if (i < definitions.Length)
                 layout.Add(new OrganelleTemplate(definitions[i], new Hex(i, 1), 0));
         }
-    }
-
-    private static IEnumerable<OrganelleDefinition> GetDefinitions(Species species, int cellType = 0)
-    {
-        return species is MicrobeSpecies microbe ?
-            microbe.Organelles.Select(o => o.Definition) :
-            ((MulticellularSpecies)species).CellTypes[cellType].Organelles.Select(o => o.Definition);
     }
 }

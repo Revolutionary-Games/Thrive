@@ -405,26 +405,41 @@ public static class CommonMutationFunctions
     }
 
     /// <summary>
-    ///   Draws a random sample without replacement using only the small, bounded set of selected indices.
-    ///   The output length must not exceed the candidate count and must be small enough for stack allocation.
+    ///   Fills the output with distinct indices from [0, candidateCount), in random selection order.
     /// </summary>
+    /// <param name="candidateCount">The number of available candidates. Must be non-negative.</param>
+    /// <param name="candidates">
+    ///   Receives the selected indices. Its length is the requested sample size and must not exceed
+    ///   <paramref name="candidateCount"/>. An empty span produces no output and consumes no random values.
+    /// </param>
+    /// <param name="random">The random source used to choose ranks among the remaining candidates.</param>
     /// <remarks>
     ///   <para>
-    ///     This algorithm takes O(k^2) time and uses O(k) additional stack space, where k is
-    ///     <paramref name="candidates"/>.Length. It avoids heap allocations and is intended for small samples.
-    ///     Consider using other algorithms when k is big.
+    ///     Each draw chooses a rank among the indices not yet selected, then maps that rank back to the original
+    ///     index range. With uniform random draws, every ordered sample of distinct indices is equally likely.
+    ///     The caller owns the output buffer; this method does not copy or modify the source collection.
+    ///   </para>
+    ///   <para>
+    ///     For k output indices, this takes O(k^2) time and O(k) temporary stack space, with no heap allocations
+    ///     by the sampling algorithm. Keep k small enough for the internal stack allocation, even when the output
+    ///     buffer itself is not on the stack. Use another algorithm for large samples.
     ///   </para>
     /// </remarks>
     internal static void SelectCandidateIndices(int candidateCount, Span<int> candidates, Random random)
     {
+        // At the start of each draw, selected[..i] is sorted for rank mapping, while candidates[..i] keeps draw order.
         Span<int> selected = stackalloc int[candidates.Length];
         for (int i = 0; i < candidates.Length; ++i)
         {
             var remaining = candidateCount - i;
+
+            // A single remaining index needs no random draw.
             var index = remaining == 1 ? 0 : random.Next(remaining);
             var insertion = 0;
 
-            // Convert a rank among the remaining candidates to an index in the original array.
+            // Skip previously selected indices to map the remaining rank to an original index.
+            // Example: from [0, 6), with sorted selections [1, 3], the remaining indices are [0, 2, 4, 5].
+            // Rank 2 maps to index 4: skipping 1 changes 2 to 3, then skipping 3 changes it to 4.
             while (insertion < i && selected[insertion] <= index)
             {
                 ++index;
@@ -432,9 +447,12 @@ public static class CommonMutationFunctions
             }
 
             candidates[i] = index;
+
+            // The final selection needs no sorted insertion because there is no next draw.
             if (i + 1 == candidates.Length)
                 break;
 
+            // Insert the new index in sorted order so the next draw can skip all previous selections.
             for (int j = i; j > insertion; --j)
             {
                 selected[j] = selected[j - 1];
