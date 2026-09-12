@@ -353,7 +353,7 @@ should be used. The command line tools can be installed with
 `xcode-select --install`. Homebrew is again recommended to get the
 other tools on mac, like cmake (`brew install cmake`).
 
-For the gdextension to be compiled, `godot` must be available in PATH
+For the gdextension to be compiled, `godot-mono` or `godot` must be available in PATH
 to generate the required binding files. And when compiling outside the
 container Python and other [Godot build
 dependencies](https://docs.godotengine.org/en/stable/contributing/development/compiling/index.html#toc-devel-compiling)
@@ -479,9 +479,10 @@ Optional downloads
 
 In addition to the following optional downloads you need to have Godot
 in your PATH for the scripts to find it. To do this create a link /
-rename the Godot editor executable to just `godot` or `godot.exe` if
-you are on Windows. Then you need to either add the folder where that
-executable is to your system PATH or move the executable (along with
+rename the Godot editor executable to `godot-mono` or `godot` (with `.exe` on
+Windows). The scripts prefer `godot-mono` when both names are available.
+Then you need to either add the folder where that executable is to your
+system PATH or move the executable (along with
 the other Godot resources it needs, i.e. the entire `GodotSharp`
 folder) to a path that is already in PATH.
 
@@ -776,8 +777,8 @@ apply.
 
 There is a provided script `dotnet run --project Scripts -- package`
 which helps with bundling the game up for releases. This relies on
-`godot` (or `godot.exe`) being the name of the Godot editor that is
-the current version and it being in PATH.
+`godot-mono` or `godot` (with `.exe` on Windows) being the name of the Godot
+editor that is the current version and it being in PATH.
 
 To set this up basically create a new folder that you add to PATH (Windows 
 registry, `.bashrc` or `.zshrc` for Linux/Mac) and create a copy or 

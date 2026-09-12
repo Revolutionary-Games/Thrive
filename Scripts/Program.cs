@@ -96,13 +96,14 @@ public class Program
     {
         CommandLineHelpers.HandleDefaultOptions(options);
 
-        var godot = ExecutableFinder.Which("godot");
+        var godot = GodotExecutable.Path;
 
         if (options.Godot is not false)
         {
             if (string.IsNullOrEmpty(godot))
             {
-                ColourConsole.WriteErrorLine("Could not find 'godot' executable, make sure it is in PATH");
+                ColourConsole.WriteErrorLine(
+                    "Could not find 'godot-mono' or 'godot' executable, make sure it is in PATH");
                 return 2;
             }
 
@@ -400,7 +401,7 @@ public class Program
 
         using var combined = CancellationTokenSource.CreateLinkedTokenSource(tokenSource.Token, timeout.Token);
 
-        var startInfo = new ProcessStartInfo("godot");
+        var startInfo = new ProcessStartInfo(GodotExecutable.RequiredPath);
         startInfo.ArgumentList.Add(PackageTool.GODOT_HEADLESS_FLAG);
         startInfo.ArgumentList.Add("--editor");
         startInfo.ArgumentList.Add("--quit-after");
