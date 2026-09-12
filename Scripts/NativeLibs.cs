@@ -1537,7 +1537,7 @@ public class NativeLibs
 
         Directory.CreateDirectory(temporaryFolder);
 
-        var startInfo = new ProcessStartInfo("godot")
+        var startInfo = new ProcessStartInfo(GodotExecutable.RequiredPath)
         {
             WorkingDirectory = temporaryFolder,
         };
