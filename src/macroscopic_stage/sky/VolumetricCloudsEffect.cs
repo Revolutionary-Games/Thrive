@@ -8,6 +8,7 @@
 // #define TOOLS_ENABLED
 
 using System;
+using System.Text;
 using System.Threading;
 using Godot;
 using Godot.Collections;
@@ -357,17 +358,19 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         return builder.Build("cloud_interface", "cloud_main");
     }
 
-    private static void DumpGeneratedSource(string source)
+    private static bool TryDumpGeneratedSource(string source)
     {
         using var file = FileAccess.Open(GeneratedSourceDumpPath, FileAccess.ModeFlags.Write);
 
         if (file is null)
         {
             GD.PrintErr("Cannot write generated shader source to " + GeneratedSourceDumpPath);
-            return;
+            return false;
         }
 
         file.StoreString(source);
+
+        return true;
     }
 
     /// <summary>
@@ -506,10 +509,18 @@ public partial class VolumetricCloudsEffect : CompositorEffect
 
         if (spirv.CompileErrorCompute != string.Empty)
         {
-            DumpGeneratedSource(source);
+            var errorMessageBuilder = new StringBuilder();
 
-            throw new Exception($"Error in generated cloud shader: {spirv.CompileErrorCompute}. The generated " +
-                $"source has been written to {GeneratedSourceDumpPath}");
+            errorMessageBuilder.Append("Error in generated cloud shader: ");
+            errorMessageBuilder.Append(spirv.CompileErrorCompute);
+
+            if (TryDumpGeneratedSource(source))
+            {
+                errorMessageBuilder.Append("The generated source has been written to ");
+                errorMessageBuilder.Append(GeneratedSourceDumpPath);
+            }
+
+            throw new Exception(errorMessageBuilder.ToString());
         }
 
         return spirv;
