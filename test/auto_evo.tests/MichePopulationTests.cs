@@ -185,17 +185,8 @@ public class MichePopulationTests
     private sealed record Fixture(WorldGenerationSettings Settings, GameWorld World, Patch Patch,
         List<MicrobeSpecies> Species);
 
-    private sealed class CountingPressure : SelectionPressure
+    private sealed class CountingPressure(int identity, Func<Species, float> score) : SelectionPressure(1, [])
     {
-        private readonly int identity;
-        private readonly Func<Species, float> score;
-
-        public CountingPressure(int identity, Func<Species, float> score) : base(1, [])
-        {
-            this.identity = identity;
-            this.score = score;
-        }
-
         public int HashCalls { get; private set; }
         public int EnergyCalls { get; private set; }
         public int DescriptionCalls { get; private set; }
@@ -218,6 +209,11 @@ public class MichePopulationTests
         {
             ++DescriptionCalls;
             return new LocalizedString("TEST_MICHE_ENERGY", identity);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return ReferenceEquals(this, obj);
         }
 
         public override int GetHashCode()
