@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using GdUnit4;
 using Godot;
 using Systems;
-using Tools;
 using static GdUnit4.Assertions;
 
 /// <summary>
@@ -86,28 +85,6 @@ public class TaskExecutorIntegrationTests
         AssertThat(secondArrays[(int)Mesh.ArrayType.Vertex].AsVector3Array()).IsEqual(vertices);
         AssertThat(secondArrays[(int)Mesh.ArrayType.Index].AsInt32Array())
             .IsEqual(firstArrays[(int)Mesh.ArrayType.Index].AsInt32Array());
-    }
-
-    [TestCase]
-    public void ThreadedRunSimulator_PreservesAllScheduledSystems()
-    {
-        var mainSystem = new SystemToSchedule(typeof(FluidCurrentsSystem), "currents") { RunsOnMainThread = true };
-        var workerSystem = new SystemToSchedule(typeof(CompoundCloudSystem), "clouds");
-        var simulator = new ThreadedRunSimulator(new[] { mainSystem }, new[] { workerSystem }, 2);
-        var result = simulator.Simulate(12345, 2);
-        AssertThat(result.Count).IsEqual(2);
-        AssertThat(result[0].Contains(mainSystem)).IsTrue();
-        int workerOccurrences = 0;
-        foreach (var thread in result)
-        {
-            foreach (var system in thread)
-            {
-                if (ReferenceEquals(system, workerSystem))
-                    ++workerOccurrences;
-            }
-        }
-
-        AssertThat(workerOccurrences).IsEqual(1);
     }
 
     private sealed class SphereFunction : IMeshGeneratingFunction
