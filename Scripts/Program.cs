@@ -401,7 +401,14 @@ public class Program
 
         using var combined = CancellationTokenSource.CreateLinkedTokenSource(tokenSource.Token, timeout.Token);
 
-        var startInfo = new ProcessStartInfo(GodotExecutable.RequiredPath);
+        var godot = GodotExecutable.Path;
+        if (godot == null)
+        {
+            ColourConsole.WriteWarningLine("Godot was not found; skipping asset import");
+            return 0;
+        }
+
+        var startInfo = new ProcessStartInfo(godot);
         startInfo.ArgumentList.Add(PackageTool.GODOT_HEADLESS_FLAG);
         startInfo.ArgumentList.Add("--editor");
         startInfo.ArgumentList.Add("--quit-after");
