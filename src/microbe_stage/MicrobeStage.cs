@@ -1131,6 +1131,12 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
     public override void OnReturnFromEditor()
     {
+        // Teleport the player to a random position if the environment should always be reset ehen leaving the editor
+        if (GameWorld.WorldSettings.Difficulty.AlwaysResetEnvironment)
+        {
+            TeleportPlayerToRandomNewPosition();
+        }
+
         UpdatePatchSettings(true, true);
 
         base.OnReturnFromEditor();
@@ -2021,6 +2027,17 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         }
 
         return radius;
+    }
+
+    private void TeleportPlayerToRandomNewPosition()
+    {
+        ref var position = ref Player.Get<WorldPosition>();
+        var newPosition = new Vector3(random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE), 0,
+            random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE));
+        ref var physics = ref Player.Get<Physics>();
+
+        physics.TeleportTo(ref position, newPosition, WorldSimulation);
+        WorldSimulation.ClearPlayerLocationDependentCaches();
     }
 
     private void UpdateZoomLevels(bool isMulticellular)
