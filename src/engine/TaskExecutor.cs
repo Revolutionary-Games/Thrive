@@ -25,8 +25,6 @@ public class TaskExecutor
 
     private readonly ConcurrentQueue<ThreadCommand> queuedTasks = new();
 
-    private readonly List<Task> mainThreadTaskStorage = new();
-
     private bool running = true;
     private int currentThreadCount;
     private int usedNativeTaskCount;
@@ -192,7 +190,7 @@ public class TaskExecutor
     /// </summary>
     /// <param name="tasks">
     ///   List of tasks to execute and wait to finish. Not modified but must be List to avoid a memory allocation in
-    ///   the foreach.
+    ///   the foreach. Do not mutate this list while the call is in progress.
     /// </param>
     /// <param name="runExtraTasksOnCallingThread">
     ///   If true, the main thread processes tasks while there are queued tasks. Set this to false if you want to wait
@@ -218,8 +216,6 @@ public class TaskExecutor
             {
                 firstTask = task;
             }
-
-            mainThreadTaskStorage.Add(task);
         }
 
         if (firstTask == null)
@@ -262,7 +258,7 @@ public class TaskExecutor
         // tasks
 
         // Wait for all given tasks to complete
-        foreach (var task in mainThreadTaskStorage)
+        foreach (var task in tasks)
         {
             try
             {
@@ -284,8 +280,6 @@ public class TaskExecutor
                 }
             }
         }
-
-        mainThreadTaskStorage.Clear();
     }
 
     public void ReApplyThreadCount()
