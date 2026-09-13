@@ -45,9 +45,9 @@ public class TaskExecutorTests
     public void RunTasks_WaitsForAcceptedWork(bool fail, bool help, bool cancelledBeforeStart)
     {
         using var cancellation = new CancellationTokenSource();
-        using var siblingStarted = new ManualResetEventSlim();
-        using var releaseSibling = new ManualResetEventSlim();
-        using var returned = new ManualResetEventSlim();
+        var siblingStarted = new ManualResetEventSlim();
+        var releaseSibling = new ManualResetEventSlim();
+        var returned = new ManualResetEventSlim();
         var sibling = new Task(() =>
         {
             siblingStarted.Set();
@@ -98,6 +98,11 @@ public class TaskExecutorTests
             releaseSibling.Set();
             AssertThat(caller.Join(TimeSpan.FromSeconds(10))).IsTrue();
             AssertThat(sibling.Wait(TimeSpan.FromSeconds(10))).IsTrue();
+
+            // Dispose only after both users stop. A timeout must not dispose events still used by background work.
+            siblingStarted.Dispose();
+            releaseSibling.Dispose();
+            returned.Dispose();
         }
 
         AssertThat(siblingCompletedAtReturn).IsTrue();

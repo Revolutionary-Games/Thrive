@@ -203,7 +203,8 @@ public class TaskExecutor
     /// </param>
     public void RunTasks(List<Task> tasks, bool runExtraTasksOnCallingThread = false, bool catchErrors = false)
     {
-        if (tasks.Count == 0)
+        var taskCount = tasks.Count;
+        if (taskCount == 0)
             return;
 
         // Reject null entries before accepting any work. The caller owns this stable list and its unstarted tasks.
@@ -219,7 +220,7 @@ public class TaskExecutor
         try
         {
             // Queue all but the first task, recording only entries actually accepted by the executor.
-            for (int i = 1; i < tasks.Count; ++i)
+            for (int i = 1; i < taskCount; ++i)
             {
                 AddTask(tasks[i], false);
                 ++queuedTaskCount;
@@ -233,7 +234,7 @@ public class TaskExecutor
             {
                 // Helping retains the existing policy of running any queued work, including other callers' tasks.
                 // This does not wait for future submissions after the queue becomes empty.
-                while (queuedTasks.TryDequeue(out ThreadCommand command))
+                while (queuedTasks.TryDequeue(out var command))
                 {
                     if (command.CommandType == ThreadCommand.Type.Quit)
                     {
@@ -249,7 +250,8 @@ public class TaskExecutor
         catch (Exception e)
         {
             schedulingFailed = true;
-            (errors ??= new List<Exception>()).Add(e);
+            errors ??= new List<Exception>();
+            errors.Add(e);
 
             // A partially submitted batch still needs its workers woken before we wait for the accepted prefix.
             NotifyAllNewTasksAdded();
@@ -266,7 +268,8 @@ public class TaskExecutor
             }
             catch (Exception e)
             {
-                (errors ??= new List<Exception>()).Add(e);
+                errors ??= new List<Exception>();
+                errors.Add(e);
             }
         }
 
