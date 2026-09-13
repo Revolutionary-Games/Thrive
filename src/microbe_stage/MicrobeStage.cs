@@ -2037,6 +2037,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         ref var physics = ref Player.Get<Physics>();
 
         physics.TeleportTo(ref position, newPosition, WorldSimulation);
+        WorldSimulation.ReportPlayerPosition(newPosition);
         WorldSimulation.ClearPlayerLocationDependentCaches();
     }
 
