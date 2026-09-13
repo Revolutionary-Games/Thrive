@@ -40,6 +40,8 @@ public partial class FreeViewCamera : Camera3D
 
     private const float MaxPitch = MathF.PI * 0.5f - 0.01f;
 
+    private readonly StringName sprintAction = new("g_sprint");
+
     private float pitch;
     private float yaw;
 
@@ -55,48 +57,18 @@ public partial class FreeViewCamera : Camera3D
         ApplyRotation();
     }
 
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+        InputManager.RegisterReceiver(this);
+    }
+
     public override void _ExitTree()
     {
         base._ExitTree();
+        InputManager.UnregisterReceiver(this);
 
         StopLooking();
-    }
-
-    public override void _Process(double delta)
-    {
-        if (!looking)
-            return;
-
-        var basis = GlobalBasis;
-        var direction = Vector3.Zero;
-
-        if (Input.IsPhysicalKeyPressed(Key.W))
-            direction -= basis.Z;
-
-        if (Input.IsPhysicalKeyPressed(Key.S))
-            direction += basis.Z;
-
-        if (Input.IsPhysicalKeyPressed(Key.A))
-            direction -= basis.X;
-
-        if (Input.IsPhysicalKeyPressed(Key.D))
-            direction += basis.X;
-
-        if (Input.IsPhysicalKeyPressed(Key.E))
-            direction += Vector3.Up;
-
-        if (Input.IsPhysicalKeyPressed(Key.Q))
-            direction -= Vector3.Up;
-
-        if (direction.IsZeroApprox())
-            return;
-
-        float speed = MoveSpeed;
-
-        if (Input.IsPhysicalKeyPressed(Key.Shift))
-            speed *= SprintMultiplier;
-
-        GlobalPosition += direction.Normalized() * (speed * (float)delta);
     }
 
     public override void _Notification(int what)
@@ -107,12 +79,6 @@ public partial class FreeViewCamera : Camera3D
 
     public override void _Input(InputEvent @event)
     {
-        if (@event is InputEventMouseButton button)
-        {
-            HandleMouseButton(button);
-            return;
-        }
-
         if (@event is InputEventMouseMotion motion && looking)
         {
             yaw -= motion.Relative.X * MouseSensitivity;
@@ -124,28 +90,54 @@ public partial class FreeViewCamera : Camera3D
         }
     }
 
-    private void HandleMouseButton(InputEventMouseButton button)
+    [RunOnKeyChange("e_secondary", OnlyUnhandled = false)]
+    public void OnLookInput(bool pressed)
     {
-        if (button.ButtonIndex == MouseButton.Right)
-        {
-            SetLooking(button.Pressed);
-            GetViewport().SetInputAsHandled();
+        SetLooking(pressed);
+    }
+
+    [RunOnAxis(["g_move_forward", "g_move_backwards"], [-1.0f, 1.0f])]
+    [RunOnAxis(["g_move_left", "g_move_right"], [-1.0f, 1.0f])]
+    [RunOnAxis(["g_move_down", "g_move_up"], [-1.0f, 1.0f])]
+    [RunOnAxisGroup]
+    public void Move(double delta, float forwardBackward, float leftRight, float downUp)
+    {
+        if (!looking)
             return;
+
+        var basis = GlobalBasis;
+        var direction = basis.Z * forwardBackward + basis.X * leftRight + Vector3.Up * downUp;
+
+        if (direction.IsZeroApprox())
+            return;
+
+        float speed = MoveSpeed;
+
+        if (Input.IsActionPressed(sprintAction))
+            speed *= SprintMultiplier;
+
+        GlobalPosition += direction.Normalized() * (speed * (float)delta);
+    }
+
+    [RunOnAxis(["g_zoom_out", "g_zoom_in"], [-1.0f, 1.0f], UseDiscreteKeyInputs = true)]
+    public void ChangeMoveSpeed(double delta, float value)
+    {
+        _ = delta;
+
+        if (!looking)
+            return;
+
+        AdjustMoveSpeed(MathF.Pow(SpeedAdjustFactor, value));
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            sprintAction.Dispose();
         }
 
-        if (!looking || !button.Pressed)
-            return;
-
-        if (button.ButtonIndex == MouseButton.WheelUp)
-        {
-            AdjustMoveSpeed(SpeedAdjustFactor);
-            GetViewport().SetInputAsHandled();
-        }
-        else if (button.ButtonIndex == MouseButton.WheelDown)
-        {
-            AdjustMoveSpeed(1.0f / SpeedAdjustFactor);
-            GetViewport().SetInputAsHandled();
-        }
+        base.Dispose(disposing);
     }
 
     private void ApplyRotation()
