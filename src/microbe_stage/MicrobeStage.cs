@@ -131,6 +131,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
     // Player sexual reproduction helper code
     private float compatibleMateSpawnedLast = 1000;
+    private float mateSpawnErrorTimer = 1000;
     private float matePositionLastUpdated = 1000;
     private float matePositionLineActiveSeconds;
     private Vector3 matePosition = Vector3.Zero;
@@ -992,6 +993,14 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         if (WorldSimulation.Processing)
             throw new Exception("This shouldn't be ran while world is in the middle of a simulation");
 
+        // The player species changes type below, so any existing run has stale species data. This also needs to
+        // happen before the conversion because an in-progress run must not inspect the species while it is being
+        // changed.
+        if (GameWorld.ResetAutoEvoRun())
+        {
+            GD.Print("Aborted the existing auto-evo run before moving the player to the multicellular stage");
+        }
+
         GD.Print("Disbanding colony and becoming multicellular");
 
         // Move to multicellular always happens when the player is in a colony, so we force-disband that here before
@@ -1076,6 +1085,12 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         GiveReproductionPopulationBonus();
 
         CurrentGame!.EnterPrototypes();
+
+        // See the comment in MicrobeStage.MoveToMacroscopic
+        if (GameWorld.ResetAutoEvoRun())
+        {
+            GD.Print("Aborted the existing auto-evo run before moving the player to the macroscopic stage");
+        }
 
         var modifiedSpecies = GameWorld.ChangeSpeciesToMacroscopic(Player.Get<SpeciesMember>().Species);
 
@@ -1213,16 +1228,23 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
             ref var growth = ref Player.Get<MulticellularGrowth>();
 
-            growth.IsASpore = false;
-
             if (multicellularSpeciesType.Species.ReproductionMethod == MulticellularReproductionMethod.Sporulation)
             {
+                // Returning from the editor turns the player into a new spore. Do not carry over the growth state
+                // from the colony that entered the editor, otherwise germination can treat the spore as a fully grown
+                // colony.
+                growth.ResetGrowthProgress();
                 growth.IsASpore = true;
             }
-            else if (multicellularSpeciesType.Species.ReproductionMethod is MulticellularReproductionMethod.Budding
-                     or MulticellularReproductionMethod.MassBudding)
+            else
             {
-                adjacencyBonus = multicellularSpeciesType.Species.GetAdjacencySpecializationBonus(0);
+                growth.IsASpore = false;
+
+                if (multicellularSpeciesType.Species.ReproductionMethod is MulticellularReproductionMethod.Budding
+                    or MulticellularReproductionMethod.MassBudding)
+                {
+                    adjacencyBonus = multicellularSpeciesType.Species.GetAdjacencySpecializationBonus(0);
+                }
             }
 
             // If the player has a colony, all resources need to be transferred to the stem cell to avoid them being
@@ -1313,12 +1335,15 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
                 topUp = true;
                 break;
             case ReproductionCompoundHandling.TopUpOnPatchChange:
+            {
                 if (switchedPatchInEditorForCompounds)
                 {
                     topUp = true;
                 }
 
                 break;
+            }
+
             default:
                 GD.PrintErr("Unknown handling of reproduction compounds mode: " +
                     $"{GameWorld.WorldSettings.Difficulty.ReproductionCompounds}");
@@ -1546,6 +1571,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         // Initialise the simulation on a basic level first to ensure the base stage setup has all the objects it needs
         WorldSimulation.Init(rootOfDynamicallySpawned, Clouds, this);
+        WorldSimulation.MessageReceiver = HUD.HUDMessages;
 
         patchManager = new PatchManager(WorldSimulation.SpawnSystem, WorldSimulation.MicrobeTerrainSystem,
             WorldSimulation.ProcessSystem, Clouds, WorldSimulation.TimedLifeSystem, worldLight);
@@ -2159,12 +2185,29 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             mateGuidanceLine.Visible = GameWorld.WorldSettings.Difficulty.ShowMatePosition &&
                 matePositionFound && matePositionLineActiveSeconds < 60;
 
-            if (!matePositionFound && GameWorld.WorldSettings.Difficulty.SpawnCompatibleMateOnCall &&
-                compatibleMateSpawnedLast > 90)
+            if (!matePositionFound && GameWorld.WorldSettings.Difficulty.SpawnCompatibleMateOnCall)
             {
-                GD.Print("Spawning compatible mate for the player as they called for one");
-                compatibleMateSpawnedLast = 0;
-                SpawnCompatibleMate();
+                if (compatibleMateSpawnedLast > Constants.MICROBE_MATE_FORCE_SPAWN_INTERVAL)
+                {
+                    GD.Print("Spawning compatible mate for the player as they called for one");
+                    compatibleMateSpawnedLast = 0;
+                    mateSpawnErrorTimer = Constants.MATE_FORCE_SPAWN_ERROR_REPORT_INTERVAL * 0.5f;
+                    SpawnCompatibleMate();
+                }
+                else
+                {
+                    mateSpawnErrorTimer += delta;
+
+                    // Show a message now and then about the spawn mate command not working
+                    if (mateSpawnErrorTimer >= Constants.MATE_FORCE_SPAWN_ERROR_REPORT_INTERVAL)
+                    {
+                        mateSpawnErrorTimer = 0;
+                        HUD.HUDMessages.ShowMessage(Localization.Translate("COOLDOWN_NOT_ELAPSED_FOR_MATE_SPAWN")
+                                .FormatSafe(Math.Ceiling(Constants.MICROBE_MATE_FORCE_SPAWN_INTERVAL -
+                                    compatibleMateSpawnedLast)),
+                            DisplayDuration.Long);
+                    }
+                }
             }
         }
         else
@@ -2203,6 +2246,10 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             return false;
 
         var playerSpecies = Player.Get<SpeciesMember>().Species;
+
+        if (playerSpecies is not MulticellularSpecies multicellularSpecies)
+            return false;
+
         var playerSex = Player.Get<MicrobeSex>().Sex;
         var playerPosition = Player.Get<WorldPosition>().Position;
         var nearestDistanceSquared = Constants.GAMETE_MATE_CALL_MAX_DISTANCE_SQUARED;
@@ -2215,7 +2262,8 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
                 ref MicrobeSex sex, ref MulticellularGrowth growth) =>
             {
                 if (entity == Player || health.Dead || species.Species != playerSpecies ||
-                    !growth.IsFullyGrownMulticellular || !GameteHelpers.IsCompatible(playerSex, sex.Sex))
+                    !growth.IsFullyGrownMulticellular ||
+                    !GameteHelpers.IsCompatibleAfterSpeciesUpdate(playerSex, sex.Sex, multicellularSpecies))
                 {
                     return;
                 }
@@ -2238,19 +2286,24 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         if (GameWorld.PlayerSpecies is not MulticellularSpecies species || !HasAlivePlayer ||
             !Player.Has<WorldPosition>())
         {
+            GD.PrintErr("Can't spawn mate for player as either no player or player is not multicellular");
             return;
         }
 
         var playerPosition = Player.Get<WorldPosition>().Position;
-        var spawnDistance = Constants.MICROBE_SPAWN_RADIUS;
+        var spawnDistance = Constants.MICROBE_SPAWN_RADIUS * 0.9f;
         Vector3 spawnPosition = default;
         var radius = GetSpeciesTerrainCollisionRadius(species);
         bool foundSpawnPosition = false;
 
-        for (int i = 0; i < 50; ++i)
+        for (int i = 0; i < 100; ++i)
         {
             var angle = random.NextFloat() * MathF.Tau;
-            spawnPosition = playerPosition + new Vector3(MathF.Cos(angle), 0, MathF.Sin(angle)) * spawnDistance;
+
+            // Add some randomness to the spawn distance and position before checking, but don't go over the limit as
+            // then it might get despawned
+            spawnPosition = playerPosition + new Vector3(MathF.Cos(angle), 0, MathF.Sin(angle)) *
+                (int)(spawnDistance + random.NextFloat() * 0.1f * Constants.MICROBE_SPAWN_RADIUS);
             if (!WorldSimulation.MicrobeTerrainSystem.IsPositionBlocked(spawnPosition, radius))
             {
                 foundSpawnPosition = true;
@@ -2260,14 +2313,62 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         if (!foundSpawnPosition)
         {
-            GD.Print("Couldn't find a suitable position to spawn a compatible mate");
-            return;
+            GD.PrintErr("Couldn't find a suitable position to spawn a compatible mate without terrain overlap");
+
+            // Spawn one anyway so that the player is not stuck
+            radius = 5;
+            spawnDistance = Constants.MICROBE_SPAWN_RADIUS;
+
+            for (int i = 0; i < 100; ++i)
+            {
+                var angle = random.NextFloat() * MathF.Tau;
+
+                // Add some randomness to the spawn distance and position before checking
+                spawnPosition = playerPosition + new Vector3(MathF.Cos(angle), 0, MathF.Sin(angle)) * spawnDistance;
+                if (!WorldSimulation.MicrobeTerrainSystem.IsPositionBlocked(spawnPosition, radius))
+                {
+                    GD.Print("Found position with lower radius");
+                    break;
+                }
+            }
+
+            GD.Print("Using fallback position (that might be blocked by terrain): ", spawnPosition);
+            HUD.HUDMessages.ShowMessage(Localization.Translate("NO_UNBLOCKED_POSITION_FOUND_FOR_MATE_SPAWNED_ANYWAY"),
+                DisplayDuration.Long);
         }
 
         // Pick compatible sex for the spawned microbe
-        var sex = species.ReproductionMethod == MulticellularReproductionMethod.SexualAnisogamy ?
-            (Player.Get<MicrobeSex>().Sex == GameteType.A ? GameteType.B : GameteType.A) :
-            GameteType.All;
+        var playerSex = Player.Get<MicrobeSex>().Sex;
+
+        GameteType sex;
+        if (species.ReproductionMethod == MulticellularReproductionMethod.SexualAnisogamy)
+        {
+            sex = playerSex == GameteType.A ? GameteType.B : GameteType.A;
+        }
+        else
+        {
+            sex = GameteType.All;
+        }
+
+        if (!GameteHelpers.IsCompatibleAfterSpeciesUpdate(sex, playerSex, species))
+        {
+            GD.PrintErr("Failed to pick compatible sex for player");
+
+            // Try to fix it
+            if (playerSex == GameteType.All)
+            {
+                sex = GameteType.B;
+            }
+            else if (sex == GameteType.All)
+            {
+                sex = GameteType.B;
+            }
+
+            if (GameteHelpers.IsCompatibleAfterSpeciesUpdate(sex, playerSex, species))
+            {
+                GD.Print("Was able to fix it with a safety fallback");
+            }
+        }
 
         var (recorder, weight) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(WorldSimulation, this, species,
             spawnPosition, true, (null, 0), sex, out var entity, MulticellularSpawnState.FullColony);
@@ -2275,7 +2376,10 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         // Use a higher despawn radius to prevent the spawned microbe from despawning immediately
         WorldSimulation.SpawnSystem.NotifyExternalEntitySpawned(entity, recorder,
             Constants.MICROBE_DESPAWN_RADIUS_SQUARED * 1.25f, weight);
+
         SpawnHelpers.FinalizeEntitySpawn(recorder, WorldSimulation);
+        HUD.HUDMessages.ShowMessage(Localization.Translate("MATE_SPAWNED_DUE_TO_CALLING_FOR_ONE"),
+            DisplayDuration.Long);
     }
 
     private void OnSpawnEnemyCheatUsed(object? sender, EventArgs e)

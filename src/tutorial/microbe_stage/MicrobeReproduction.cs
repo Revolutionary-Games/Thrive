@@ -50,6 +50,7 @@ public class MicrobeReproduction : TutorialPhase, IArchivable
 
                 break;
             case TutorialEventType.EnteredMicrobeEditor:
+            {
                 if (ShownCurrently)
                     Hide();
 
@@ -58,6 +59,7 @@ public class MicrobeReproduction : TutorialPhase, IArchivable
                     ReportPreviousTutorialComplete();
 
                 break;
+            }
         }
 
         return false;

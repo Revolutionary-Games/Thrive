@@ -50,6 +50,7 @@ public class RunOnRelativeMouseAttribute : RunOnInputWithStrengthAttribute
         switch (axis)
         {
             case CapturedMouseAxis.Left:
+            {
                 if (relative.X < 0)
                 {
                     Strength = -relative.X;
@@ -57,7 +58,10 @@ public class RunOnRelativeMouseAttribute : RunOnInputWithStrengthAttribute
                 }
 
                 break;
+            }
+
             case CapturedMouseAxis.Right:
+            {
                 if (relative.X > 0)
                 {
                     Strength = relative.X;
@@ -65,7 +69,10 @@ public class RunOnRelativeMouseAttribute : RunOnInputWithStrengthAttribute
                 }
 
                 break;
+            }
+
             case CapturedMouseAxis.Up:
+            {
                 if (relative.Y < 0)
                 {
                     Strength = -relative.Y;
@@ -73,7 +80,10 @@ public class RunOnRelativeMouseAttribute : RunOnInputWithStrengthAttribute
                 }
 
                 break;
+            }
+
             case CapturedMouseAxis.Down:
+            {
                 if (relative.Y > 0)
                 {
                     Strength = relative.Y;
@@ -81,6 +91,8 @@ public class RunOnRelativeMouseAttribute : RunOnInputWithStrengthAttribute
                 }
 
                 break;
+            }
+
             default:
                 throw new InvalidOperationException("unhandled mouse axis");
         }

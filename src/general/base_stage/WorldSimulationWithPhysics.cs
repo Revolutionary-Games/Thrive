@@ -21,6 +21,24 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
     /// </summary>
     protected bool usePhysicsOnMainThread;
 
+    /// <summary>
+    ///   To avoid jitter of constantly changing physics steps, we evaluate performance over some time period.
+    /// </summary>
+    private const float PhysicsEvaluationPeriod = 1;
+
+    /// <summary>
+    ///   In case the performance gets better, we can increase physics fidelity again.
+    /// </summary>
+    private const float PhysicsRecoveryInterval = 90;
+
+    // Physics performance adjusting variables
+    private PhysicsSteppingState physicsSteppingState;
+    private float physicsTimeSinceLastRun;
+    private float physicsEvaluationTime;
+    private float physicsEvaluationDuration;
+    private float physicsTimeSinceStateChange;
+    private bool physicsPerformanceForCurrentRunConsumed;
+
     public WorldSimulationWithPhysics()
     {
     }
@@ -34,7 +52,23 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
         Dispose(false);
     }
 
+    public enum PhysicsSteppingState
+    {
+        FullSpeed,
+        ThirtyUpdatesPerSecond,
+        TenUpdatesPerSecond,
+        HalfSimulationTime,
+        QuarterSimulationTime,
+    }
+
     public PhysicalWorld PhysicalWorld => physics;
+
+    public PhysicsSteppingState CurrentPhysicsSteppingState => physicsSteppingState;
+
+    /// <summary>
+    ///   Set to allow the world to send some status messages
+    /// </summary>
+    public IHUDMessageReceiver? MessageReceiver { get; set; }
 
     public NativePhysicsBody CreateMovingBody(PhysicsShape shape, Vector3 position, Quaternion rotation)
     {
@@ -89,26 +123,50 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
 
     protected override void WaitForStartedPhysicsRun()
     {
-        physics.WaitUntilPhysicsRunEnds();
+        WaitForStartedPhysicsRun(true);
     }
 
     protected override void OnStartPhysicsRunIfTime(float delta)
     {
+        // Delta is in simulation time, while the physics duration is measured using wall-clock time. Convert it back
+        // to real time for the performance comparison. The scaled delta is still used for stepping physics below.
+        physicsTimeSinceLastRun += delta / WorldTimeScale;
+
+        var physicsDelta = physicsSteppingState switch
+        {
+            PhysicsSteppingState.HalfSimulationTime => delta * 0.5f,
+            PhysicsSteppingState.QuarterSimulationTime => delta * 0.25f,
+            _ => delta,
+        };
+
         if (usePhysicsOnMainThread)
         {
-            physics.ProcessPhysics(delta);
+            if (physics.ProcessPhysics(physicsDelta))
+            {
+                physicsPerformanceForCurrentRunConsumed = false;
+                RecordPhysicsPerformance();
+                physicsPerformanceForCurrentRunConsumed = true;
+            }
         }
         else
         {
-            physics.ProcessPhysicsOnBackgroundThread(delta);
+            // A background call is a new run from the point of view of the completion result. It may not actually
+            // step physics yet, in which case the following wait returns false and no measurement is recorded.
+            physicsPerformanceForCurrentRunConsumed = false;
+            physics.ProcessPhysicsOnBackgroundThread(physicsDelta);
         }
+    }
+
+    protected virtual float GetGameFPS()
+    {
+        return (float)Engine.GetFramesPerSecond();
     }
 
     protected override void Dispose(bool disposing)
     {
         // Derived classes should also wait for this before destroying things (and set metrics reporting off)
         physics.DisablePhysicsTimeRecording = true;
-        WaitForStartedPhysicsRun();
+        WaitForStartedPhysicsRun(disposing);
 
         ReleaseUnmanagedResources();
 
@@ -118,6 +176,15 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
         // }
 
         base.Dispose(disposing);
+    }
+
+    private void WaitForStartedPhysicsRun(bool recordPerformance)
+    {
+        if (physics.WaitUntilPhysicsRunEnds() && recordPerformance && !physicsPerformanceForCurrentRunConsumed)
+        {
+            RecordPhysicsPerformance();
+            physicsPerformanceForCurrentRunConsumed = true;
+        }
     }
 
     private void ReleaseUnmanagedResources()
@@ -134,5 +201,81 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
         }
 
         physics.Dispose();
+    }
+
+    private void RecordPhysicsPerformance()
+    {
+        physicsEvaluationTime += physicsTimeSinceLastRun;
+        physicsEvaluationDuration += physics.LatestPhysicsDuration;
+        physicsTimeSinceLastRun = 0;
+
+        if (physicsEvaluationTime < PhysicsEvaluationPeriod)
+            return;
+
+        var physicsIsTooSlow = physicsEvaluationDuration > physicsEvaluationTime;
+        var completedEvaluationTime = physicsEvaluationTime;
+        physicsEvaluationTime = 0;
+        physicsEvaluationDuration = 0;
+
+        if (physicsIsTooSlow)
+        {
+            physicsTimeSinceStateChange = 0;
+
+            if (physicsSteppingState != PhysicsSteppingState.QuarterSimulationTime)
+            {
+                // Slow down if we are too slow
+                physicsSteppingState = (PhysicsSteppingState)((int)physicsSteppingState + 1);
+                GD.Print("Physical world is detecting low performance, slowing down to: ", physicsSteppingState);
+
+                if (physicsSteppingState >= PhysicsSteppingState.TenUpdatesPerSecond)
+                {
+                    MessageReceiver?.ShowMessage(Localization.Translate("GAME_PHYSICS_PERFORMANCE_LOW_WARNING"));
+                }
+
+                ApplyPhysicsSteppingState();
+            }
+
+            return;
+        }
+
+        physicsTimeSinceStateChange += completedEvaluationTime;
+
+        // If we suffered temporary very low FPS but have now recovered, recover the simulation speed fast
+        if (physicsSteppingState > PhysicsSteppingState.ThirtyUpdatesPerSecond && physicsTimeSinceStateChange > 0.2f
+            && GetGameFPS() >= 60)
+        {
+            physicsTimeSinceStateChange = 0;
+            physicsSteppingState = (PhysicsSteppingState)((int)physicsSteppingState - 1);
+            GD.Print("FPS has recovered a lot, speeding up world simulation");
+            ApplyPhysicsSteppingState();
+            return;
+        }
+
+        if (physicsSteppingState != PhysicsSteppingState.FullSpeed &&
+            physicsTimeSinceStateChange >= PhysicsRecoveryInterval)
+        {
+            // Try to speed up to see if we have potentially recovered from slowness
+            physicsTimeSinceStateChange = 0;
+            physicsSteppingState = (PhysicsSteppingState)((int)physicsSteppingState - 1);
+            GD.Print("Checking physical world physics performance recovery");
+            ApplyPhysicsSteppingState();
+        }
+    }
+
+    private void ApplyPhysicsSteppingState()
+    {
+        var timestep = physicsSteppingState switch
+        {
+            PhysicsSteppingState.FullSpeed => 1.0f / 60,
+            PhysicsSteppingState.ThirtyUpdatesPerSecond => 1.0f / 30,
+
+            // These don't lower the timestep as it would make physics way less accurate
+            PhysicsSteppingState.TenUpdatesPerSecond => 1.0f / 10,
+            PhysicsSteppingState.HalfSimulationTime => 1.0f / 10,
+            PhysicsSteppingState.QuarterSimulationTime => 1.0f / 10,
+            _ => throw new ArgumentOutOfRangeException(),
+        };
+
+        physics.SetPhysicsTimestep(timestep);
     }
 }

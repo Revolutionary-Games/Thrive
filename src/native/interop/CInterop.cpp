@@ -509,6 +509,11 @@ float PhysicalWorldGetPhysicsAverageTime(PhysicalWorld* physicalWorld)
     return reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)->GetAveragePhysicsTime();
 }
 
+void PhysicalWorldSetPhysicsTimestep(PhysicalWorld* physicalWorld, float timestep)
+{
+    reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)->SetPhysicsTimestep(timestep);
+}
+
 bool PhysicalWorldDumpPhysicsState(PhysicalWorld* physicalWorld, const char* path)
 {
     return reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)->DumpSystemState(path);

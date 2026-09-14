@@ -641,8 +641,10 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
                 case NewMicrobeActionData:
                 case ColourActionData:
                 case OrganelleUpgradeActionData:
+                {
                     affectedACell = true;
                     break;
+                }
             }
 
             if (affectedACell)

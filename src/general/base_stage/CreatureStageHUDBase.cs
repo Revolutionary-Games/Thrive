@@ -525,9 +525,6 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
         // Prevent being stuck in a state where editor can no longer be entered
         // https://github.com/Revolutionary-Games/Thrive/issues/4204
         stage!.MovingToEditor = false;
-
-        // TODO: should the editor button be always unlocked like this
-        editorButton.Disabled = false;
     }
 
     public void ShowPatchName(string localizedPatchName)
@@ -880,6 +877,7 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
                 strainBar.Hide();
                 break;
             case Settings.StrainBarVisibility.VisibleWhenCloseToFull:
+            {
                 if (strainFraction >= 0.8f)
                 {
                     strainBar.Show();
@@ -890,7 +888,10 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
                 }
 
                 break;
+            }
+
             case Settings.StrainBarVisibility.VisibleWhenOverZero:
+            {
                 if (strainFraction > 0.0f)
                 {
                     strainBar.Show();
@@ -901,6 +902,8 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
                 }
 
                 break;
+            }
+
             case Settings.StrainBarVisibility.AlwaysVisible:
                 strainBar.Show();
                 break;

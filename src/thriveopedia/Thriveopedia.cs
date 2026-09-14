@@ -901,7 +901,9 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
                 string pageName = page.Key.TranslatedPageName.ToLower(CultureInfo.CurrentCulture);
                 if (newText == string.Empty
                     || searchDistanceArray[iterator] <= costThreshold || pageName.Contains(newText))
+                {
                     visible = true;
+                }
 
                 if (!visible && !titleSearchOnly)
                 {
@@ -910,7 +912,9 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
                         page.Key.TranslatedAdditionalSearchContent?.ToLower(CultureInfo.CurrentCulture);
                     if ((pageContent != null && pageContent.Contains(newText))
                         || (additionalContent != null && additionalContent.Contains(newText)))
+                    {
                         visible = true;
+                    }
                 }
 
                 visibilityArray[iterator] = visible;

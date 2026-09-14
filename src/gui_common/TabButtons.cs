@@ -423,6 +423,7 @@ public partial class TabButtons : HBoxContainer
                 button.ButtonPressed = true;
                 break;
             case PressType.PressedSignal:
+            {
                 button.EmitSignal("pressed");
 
                 // These don't seem to work in any current case but might just be necessary in the future
@@ -435,6 +436,8 @@ public partial class TabButtons : HBoxContainer
                     button.ButtonPressed = true;
 
                 break;
+            }
+
             default:
                 throw new ArgumentOutOfRangeException();
         }

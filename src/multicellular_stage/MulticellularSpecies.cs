@@ -333,6 +333,15 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
                 throw new Exception("Sexual reproduction method requires at least two gameplay cells");
         }
 
+        // Ensure player sex is set if using anisogamy
+        if (ReproductionMethod == MulticellularReproductionMethod.SexualAnisogamy && PlayerGamete == GameteType.All)
+        {
+            // For now, only check this is set for the player species, and not all species as mutation copying
+            // for player gamete type wasn't put in initially
+            if (PlayerSpecies)
+                throw new Exception("Player sex must be set if using anisogamy");
+        }
+
         if (ReproductionMethod == MulticellularReproductionMethod.MassBudding &&
             MassBuddingCellCount < Constants.MASS_BUDDING_MINIMUM_BUD_SIZE)
         {
@@ -369,6 +378,28 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 
 #if DEBUG
         ModifiableGameplayCells.ThrowIfCellsOverlap();
+        var allCellPositions = new Dictionary<Hex, CellTemplate>();
+        var cellPositionTemporaryStorage = new List<Hex>();
+        ModifiableGameplayCells.CalculateAllElementPositions(allCellPositions, cellPositionTemporaryStorage);
+
+        // This is kind of a similar implementation as CellLayout's ThrowIfCellsAreNotTouching
+        var touchingCells = new HashSet<CellTemplate>(ReferenceEqualityComparer.Instance);
+        foreach (var positionAndCell in allCellPositions)
+        {
+            // Skip already resolved
+            if (touchingCells.Contains(positionAndCell.Value))
+                continue;
+
+            foreach (var offset in Hex.HexNeighbourOffset.Values)
+            {
+                if (allCellPositions.TryGetValue(positionAndCell.Key + offset, out var adjacentCell) &&
+                    !ReferenceEquals(adjacentCell, positionAndCell.Value))
+                {
+                    touchingCells.Add(positionAndCell.Value);
+                    break;
+                }
+            }
+        }
 #endif
 
         foreach (var modifiableGameplayCell in ModifiableGameplayCells)
@@ -406,6 +437,24 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
                     $"spore cell type in species {FormattedIdentifier}");
 #endif
             }
+
+#if DEBUG
+
+            // Verify it is touching something else
+            bool touchingSomethingElse = touchingCells.Contains(modifiableGameplayCell);
+
+            // Root cell is always considered as touching something else
+            if (!touchingSomethingElse && ReferenceEquals(ModifiableGameplayCells[0], modifiableGameplayCell))
+            {
+                continue;
+            }
+
+            if (!touchingSomethingElse)
+            {
+                GD.PrintErr("Gameplay layout has a cell that doesn't touch anything else");
+                throw new Exception("Gameplay layout has a cell that doesn't touch anything else");
+            }
+#endif
         }
     }
 
@@ -714,6 +763,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         }
 
         ReproductionMethod = casted.ReproductionMethod;
+        PlayerGamete = casted.PlayerGamete;
 
         readonlyIndividualLayoutAdapter = null;
 
@@ -947,6 +997,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         }
 
         result.ReproductionMethod = ReproductionMethod;
+        result.PlayerGamete = PlayerGamete;
 
         result.MassBuddingCellCount = MassBuddingCellCount;
 

@@ -365,6 +365,7 @@ public class NativeLibs
             case Program.NativeLibOptions.OperationMode.Build:
                 return await OperateOnAllLibraries(BuildLocally, cancellationToken);
             case Program.NativeLibOptions.OperationMode.Package:
+            {
                 if (!OperatingSystem.IsMacOS())
                 {
                     ColourConsole.WriteInfoLine("Making distributable package and symbols for non-mac platforms");
@@ -373,8 +374,10 @@ public class NativeLibs
                 }
 
                 return await PackageForMac(cancellationToken);
+            }
 
             case Program.NativeLibOptions.OperationMode.Upload:
+            {
                 if (await OperateOnAllLibrariesWithResult(CheckAndUpload, cancellationToken) == true)
                 {
                     ColourConsole.WriteNormalLine("Will check for potential symbols to upload after library upload");
@@ -387,6 +390,7 @@ public class NativeLibs
 
                 // TODO: detect failures separately
                 return true;
+            }
 
             case Program.NativeLibOptions.OperationMode.Symbols:
                 ColourConsole.WriteNormalLine("Checking for any symbols missing from the server");

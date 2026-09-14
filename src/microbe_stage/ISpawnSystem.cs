@@ -36,8 +36,9 @@ public interface ISpawnSystem
     ///   done to speed up distance checks).
     /// </param>
     /// <param name="entityWeight">How much "space" the entity takes up in the spawn system</param>
+    /// <param name="disallowDespawning">Whether despawning should be temporarily disallowed for this entity</param>
     public void NotifyExternalEntitySpawned(in Entity entity, CommandBuffer commandBuffer, float despawnRadiusSquared,
-        float entityWeight);
+        float entityWeight, bool disallowDespawning = false);
 
     /// <summary>
     ///   Checks if the approximate entity count is not too much over the entity limit

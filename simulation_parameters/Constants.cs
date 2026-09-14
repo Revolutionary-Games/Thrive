@@ -735,7 +735,7 @@ public static class Constants
     ///   value is higher as spawned and microbe corpse chunks have now their individual limits (so the real limit is
     ///   double this)
     /// </summary>
-    public const int FLOATING_CHUNK_MAX_COUNT = 50;
+    public const int FLOATING_CHUNK_MAX_COUNT = 45;
 
     public const float CHUNK_VENT_COMPOUND_MULTIPLIER = 5000.0f;
 
@@ -1263,6 +1263,7 @@ public static class Constants
 
     public const float GAMETE_MERGE_DISTANCE_SQUARED = 4 * 4;
     public const float GAMETE_INITIAL_VELOCITY = 90;
+    public const float GAMETE_SENSOR_RADIUS_BEYOND_MEMBRANE = 15;
 
     /// <summary>
     ///   Automatically stops the player gamete shoot signal after this time
@@ -1274,14 +1275,19 @@ public static class Constants
     public const float GAMETE_MATE_CALL_MAX_DISTANCE_SQUARED = 550 * 550;
     public const float GAMETE_MATE_CALL_TARGET_DISTANCE_SQUARED = 50 * 50;
 
+    /// <summary>
+    ///   This timer makes a colony fire a gamete even if it cannot turn to face the player within this many seconds
+    /// </summary>
+    public const float GAMETE_SHOOT_AFTER_ANGLE_FAILS_FOR = 12;
+
+    public const float MICROBE_MATE_FORCE_SPAWN_INTERVAL = 90;
+    public const float MATE_FORCE_SPAWN_ERROR_REPORT_INTERVAL = 15;
+
     // Corpse info
-    public const float CORPSE_COMPOUND_COMPENSATION = 85.0f;
-    public const int CORPSE_CHUNK_DIVISOR = 3;
+    public const int CORPSE_CHUNK_MINIMUM = 1;
+    public const int CORPSE_CHUNK_DIVISOR = 4;
     public const float CORPSE_CHUNK_AMOUNT_MULTIPLIER = 1.0f;
-    public const int CORPSE_CHUNK_AMOUNT_CAP = 20;
-    public const int CORPSE_CHUNK_AMOUNT_DIMINISH_AFTER = 8;
-    public const int CORPSE_CHUNK_AMOUNT_DIMINISH_MORE_AFTER = 16;
-    public const float CHUNK_ENGULF_COMPOUND_DIVISOR = 30.0f;
+    public const int CORPSE_CHUNK_AMOUNT_CAP = 6;
     public const string DEFAULT_CHUNK_MODEL_NAME = "cytoplasm";
 
     // TODO: remove the drag variables if https://github.com/Revolutionary-Games/Thrive/issues/4719 is not decided to
@@ -1510,6 +1516,8 @@ public static class Constants
 
     public const float AUTO_EVO_MUTATION_RIGIDITY_STEP = 0.35f;
     public const float AUTO_EVO_MUTATION_TOXICITY_STEP = 0.2f;
+
+    public const int AUTO_EVO_THRESHOLD_MICHE_MAX_SCORE = 1;
 
     public const int AUTO_EVO_MAX_MUTATION_RECURSIONS = 3;
 

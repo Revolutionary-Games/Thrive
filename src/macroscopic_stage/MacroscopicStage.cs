@@ -275,6 +275,7 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
         if (Player?.Dead != false)
         {
             GD.PrintErr("Player object disappeared or died while transitioning to the editor");
+            HUD.OnCancelEditorEntry();
             return;
         }
 

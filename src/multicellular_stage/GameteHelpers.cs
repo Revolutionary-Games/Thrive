@@ -15,4 +15,25 @@
 
         return false;
     }
+
+    /// <summary>
+    ///   A more strict <see cref="IsCompatible"/> check that takes into account the species' changing of reproduction
+    ///   modes.
+    /// </summary>
+    /// <returns>True if compatible</returns>
+    public static bool IsCompatibleAfterSpeciesUpdate(GameteType a, GameteType b, MulticellularSpecies species)
+    {
+        // If the species is updated from isogamy to anisogamy, then that makes "All" act like gamete type A when
+        // firing, so that can cause incompatibility.
+        if (species.ReproductionMethod is MulticellularReproductionMethod.SexualAnisogamy)
+        {
+            if (a == GameteType.All)
+                a = GameteType.A;
+
+            if (b == GameteType.All)
+                b = GameteType.A;
+        }
+
+        return IsCompatible(a, b);
+    }
 }

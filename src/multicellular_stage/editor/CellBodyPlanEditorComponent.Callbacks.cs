@@ -271,6 +271,13 @@ public partial class CellBodyPlanEditorComponent
         if (ReproductionMethod is MulticellularReproductionMethod.SexualAnisogamy)
             GameteBCellType ??= Editor.EditedSpecies.ModifiableCellTypes[0];
 
+        // If the player hasn't set a sex type, force one to be set here now
+        if (SelectedGameteTypeForPlayer == GameteType.All)
+        {
+            GD.Print("Forcing gamete type for player as switching to sexual anisogamy");
+            SelectedGameteTypeForPlayer = GameteType.A;
+        }
+
         UpdateGameteDropdowns();
     }
 

@@ -14,7 +14,11 @@ using Godot;
 /// </remarks>
 public partial class ThriveopediaEvolutionaryTreePage : ThriveopediaPage, IThriveopediaPage
 {
-    private readonly List<Dictionary<uint, Species>> speciesHistoryList = new();
+    /// <summary>
+    ///   Full species data keyed by generation number. This is not a list indexed by generation as the generation
+    ///   history can have gaps in it (see <see cref="GenerationRecord.GetFullSpeciesRecord"/>).
+    /// </summary>
+    private readonly Dictionary<int, Dictionary<uint, Species>> speciesHistory = new();
 
 #pragma warning disable CA2213
     [Export]
@@ -82,14 +86,14 @@ public partial class ThriveopediaEvolutionaryTreePage : ThriveopediaPage, IThriv
         {
             CurrentGame.GameWorld.BuildEvolutionaryTree(evolutionaryTree);
 
-            speciesHistoryList.Clear();
+            speciesHistory.Clear();
 
             foreach (var generation in CurrentGame.GameWorld.GenerationHistory)
             {
                 var updatedSpeciesData = generation.Value.AllSpeciesData.ToDictionary(s => s.Key,
                     s => GenerationRecord
                         .GetFullSpeciesRecord(s.Key, generation.Key, CurrentGame.GameWorld.GenerationHistory).Species);
-                speciesHistoryList.Add(updatedSpeciesData);
+                speciesHistory[generation.Key] = updatedSpeciesData;
             }
         }
         catch (Exception e)
@@ -109,6 +113,14 @@ public partial class ThriveopediaEvolutionaryTreePage : ThriveopediaPage, IThriv
 
     private void EvolutionaryTreeNodeSelected(int generation, uint id)
     {
-        speciesDetailsPanelWithFossilisation.PreviewSpecies = speciesHistoryList[generation][id];
+        if (!speciesHistory.TryGetValue(generation, out var generationSpecies) ||
+            !generationSpecies.TryGetValue(id, out var species))
+        {
+            GD.PrintErr($"No data for species {id} in generation {generation} to show for the selected tree node");
+            speciesDetailsPanelWithFossilisation.PreviewSpecies = null;
+            return;
+        }
+
+        speciesDetailsPanelWithFossilisation.PreviewSpecies = species;
     }
 }

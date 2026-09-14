@@ -172,6 +172,7 @@ public class InProgressSave : IDisposable
         switch (state)
         {
             case State.Initial:
+            {
                 if (Type == SaveInformation.SaveType.Invalid)
                 {
                     // If we are just meant to show an error message, we can jump ahead steps
@@ -194,6 +195,7 @@ public class InProgressSave : IDisposable
 
                 state = State.Screenshot;
                 break;
+            }
 
             case State.Screenshot:
             {

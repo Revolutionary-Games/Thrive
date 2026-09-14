@@ -49,7 +49,8 @@ public class PhysicalWorld : IDisposable
     public float LatestPhysicsDuration => NativeMethods.PhysicalWorldGetPhysicsLatestTime(AccessWorldInternal());
 
     /// <summary>
-    ///   Time in seconds on average that physics simulation steps take
+    ///   Average time in seconds that physics simulation runs take. A run may
+    ///   process multiple fixed-time physics steps.
     /// </summary>
     public float AveragePhysicsDuration => NativeMethods.PhysicalWorldGetPhysicsAverageTime(AccessWorldInternal());
 
@@ -62,6 +63,15 @@ public class PhysicalWorld : IDisposable
     public static PhysicalWorld Create()
     {
         return new PhysicalWorld(NativeMethods.CreatePhysicalWorld());
+    }
+
+    /// <summary>
+    ///   Sets the timestep for the physics simulation. The timestep is in seconds.
+    /// </summary>
+    /// <param name="timestep">Timestep to set. Note invalid values are ignored.</param>
+    public void SetPhysicsTimestep(float timestep)
+    {
+        NativeMethods.PhysicalWorldSetPhysicsTimestep(AccessWorldInternal(), timestep);
     }
 
     /// <summary>
@@ -87,7 +97,7 @@ public class PhysicalWorld : IDisposable
     ///   continuing using the world.
     /// </summary>
     /// <param name="delta">
-    ///   Amount of time elapsed since the last call, used to simulate right amount of passed time
+    ///   Amount of time elapsed since the last call, used to simulate the right amount of passed time
     /// </param>
     public void ProcessPhysicsOnBackgroundThread(float delta)
     {
@@ -815,6 +825,9 @@ internal static partial class NativeMethods
 
     [DllImport("thrive_native")]
     internal static extern float PhysicalWorldGetPhysicsAverageTime(IntPtr physicalWorld);
+
+    [DllImport("thrive_native")]
+    internal static extern void PhysicalWorldSetPhysicsTimestep(IntPtr physicalWorld, float timestep);
 
     [DllImport("thrive_native", CharSet = CharSet.Ansi, BestFitMapping = false)]
     [return: MarshalAs(UnmanagedType.U1)]

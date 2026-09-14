@@ -57,6 +57,7 @@ public static class SteamBuild
                 return $@"third_party\windows\{SteamAssemblyNameForPlatform(platform, architecture)}";
 
             case SteamPlatform.Mac:
+            {
                 // Can't use LIPO on a DLL, so this needs to be split like this
                 switch (architecture)
                 {
@@ -72,6 +73,8 @@ public static class SteamBuild
                     default:
                         throw new ArgumentOutOfRangeException(nameof(architecture), architecture, null);
                 }
+            }
+
             default:
                 throw new ArgumentOutOfRangeException(nameof(platform), platform, null);
         }

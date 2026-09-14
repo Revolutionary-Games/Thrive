@@ -1472,11 +1472,14 @@ public class RunResults : IArchivable
                                 speciesResult.SplitFrom.FormattedNameBbCodeUnstyled), false, false, "newSpecies.png");
                             break;
                         case NewSpeciesType.SplitDueToMutation:
+                        {
                             LogEventGloballyAndLocally(world, patch, new LocalizedString(
                                     "TIMELINE_SELECTION_PRESSURE_SPLIT", newSpeciesEntry.FormattedNameBbCodeUnstyled,
                                     speciesResult.SplitFrom.FormattedNameBbCodeUnstyled),
                                 false, false, "newSpecies.png");
                             break;
+                        }
+
                         default:
                             GD.PrintErr("Unhandled newly created species type: ", speciesResult.NewlyCreated.Value);
                             break;

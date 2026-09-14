@@ -1,12 +1,14 @@
 [gd_scene format=3 uid="uid://drtupj52wg8wn"]
 
 [ext_resource type="Script" uid="uid://bpmfib2hf13bd" path="res://src/macroscopic_stage/sky/VolumetricCloudsEffect.cs" id="1_6n6mp"]
+[ext_resource type="Script" uid="uid://dn4h615seam1c" path="res://src/macroscopic_stage/sky/CloudsConfig.cs" id="2_s4i58"]
+[ext_resource type="Script" uid="uid://6v0qwlkyp02o" path="res://src/general/FreeViewCamera.cs" id="3_5jfpd"]
+[ext_resource type="Script" uid="uid://rxgsfix0v2hi" path="res://src/macroscopic_stage/sky/SkyEquippedEnvironment.cs" id="4_q3oiy"]
 
-[sub_resource type="Environment" id="Environment_m2g58"]
-tonemap_mode = 4
-tonemap_agx_white = 6.0
+[sub_resource type="Resource" id="Resource_5jfpd"]
+script = ExtResource("2_s4i58")
 
-[sub_resource type="CompositorEffect" id="CompositorEffect_vknin"]
+[sub_resource type="CompositorEffect" id="CompositorEffect_kf5fw"]
 resource_local_to_scene = false
 resource_name = ""
 enabled = true
@@ -14,14 +16,9 @@ effect_callback_type = 4
 needs_motion_vectors = false
 needs_normal_roughness = false
 script = ExtResource("1_6n6mp")
-PlanetRadius = 1000.0
-ProfileGpu = false
-CloudInnerHeight = 50.0
-CloudOuterHeight = 100.0
-metadata/_custom_type_script = "uid://bpmfib2hf13bd"
 
-[sub_resource type="Compositor" id="Compositor_8ykry"]
-compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_vknin")])
+[sub_resource type="Compositor" id="Compositor_s4i58"]
+compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_kf5fw")])
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n4y2n"]
 albedo_color = Color(0, 0.37254903, 0.043137256, 1)
@@ -34,15 +31,15 @@ height = 2000.0
 
 [node name="CloudSky" type="Node" unique_id=103953243]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=422753990]
-environment = SubResource("Environment_m2g58")
-compositor = SubResource("Compositor_8ykry")
-
-[node name="Camera3D" type="Camera3D" parent="." unique_id=2097667316]
-transform = Transform3D(0.98409724, 7.98059e-08, 0.1776307, -0.060220204, 0.94077986, 0.3336273, -0.16711122, -0.33901858, 0.9258187, 0, 1040, 0)
-current = true
-fov = 70.0
-far = 50000.0
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1161880078]
+compositor = SubResource("Compositor_s4i58")
+script = ExtResource("4_q3oiy")
+CloudsEffect = SubResource("CompositorEffect_kf5fw")
 
 [node name="DummyPlanet" type="MeshInstance3D" parent="." unique_id=1259534746]
 mesh = SubResource("SphereMesh_m2g58")
+
+[node name="FreeViewCamera" type="Camera3D" parent="." unique_id=607804586]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1100, 0)
+current = true
+script = ExtResource("3_5jfpd")

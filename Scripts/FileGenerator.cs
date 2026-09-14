@@ -48,6 +48,7 @@ public class FileGenerator
         switch (options.Type)
         {
             case FileTypeToGenerate.List:
+            {
                 ColourConsole.WriteInfoLine("Available file types to generate:");
 
                 foreach (var value in Enum.GetValues<FileTypeToGenerate>())
@@ -60,6 +61,8 @@ public class FileGenerator
                 }
 
                 return 0;
+            }
+
             case FileTypeToGenerate.OldReleaseNotes:
                 if (!await DownloadAndWriteOldGithubReleases(cancellationToken))
                     return 1;

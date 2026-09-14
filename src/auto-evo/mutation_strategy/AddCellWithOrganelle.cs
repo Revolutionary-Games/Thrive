@@ -83,7 +83,9 @@ public class AddCellWithOrganelle : IMutationStrategy<Species>
 
         if (mp < Constants.ORGANELLE_CHEAPEST_COST * Constants.MULTICELLULAR_EDITOR_COST_FACTOR &&
             mp < Constants.CELL_ADD_COST)
+        {
             return null;
+        }
 
         var organelles = allOrganelles.OrderBy(_ => random.Next())
             .Take(Constants.AUTO_EVO_ORGANELLE_ADD_ATTEMPTS);
