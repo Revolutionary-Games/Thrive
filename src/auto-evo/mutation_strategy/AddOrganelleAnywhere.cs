@@ -86,14 +86,9 @@ public class AddOrganelleAnywhere : IMutationStrategy<Species>
         if (mp < Constants.ORGANELLE_CHEAPEST_COST)
             return null;
 
-        // TODO: would the following be more efficient?
-        // var organelles = allOrganelles.ToList();
-        // organelles.Shuffle(random);
-        // organelles.RemoveRange(Constants.AUTO_EVO_ORGANELLE_ADD_ATTEMPTS,
-        //     organelles.Count - Constants.AUTO_EVO_ORGANELLE_ADD_ATTEMPTS);
-
-        var organelles = allOrganelles.OrderBy(_ => random.Next())
-            .Take(Constants.AUTO_EVO_ORGANELLE_ADD_ATTEMPTS);
+        var candidateCount = Math.Min(allOrganelles.Length, Constants.AUTO_EVO_ORGANELLE_ADD_ATTEMPTS);
+        Span<int> candidateIndices = stackalloc int[candidateCount];
+        SelectCandidateIndices(allOrganelles.Length, candidateIndices, random);
 
         var mutated = new List<Mutant>();
 
@@ -102,8 +97,11 @@ public class AddOrganelleAnywhere : IMutationStrategy<Species>
         var workMemory2 = new List<Hex>();
         var workMemory3 = new HashSet<Hex>();
 
-        foreach (var organelle in organelles)
+        // Iterate randomly selected organelles
+        foreach (var i in candidateIndices)
         {
+            var organelle = allOrganelles[i];
+
             if (organelle.MPCost > mp)
                 continue;
 
@@ -125,8 +123,7 @@ public class AddOrganelleAnywhere : IMutationStrategy<Species>
 
             // In the rare case that adding the organelle fails, this can skip adding it to be tested as the species
             // is not any different
-            if (AddOrganelle(organelle, direction, newSpecies, workMemory1, workMemory2,
-                    workMemory3, random))
+            if (AddOrganelle(organelle, direction, newSpecies, workMemory1, workMemory2, workMemory3, random))
             {
                 mutated.Add(new Mutant(newSpecies, mp - organelle.MPCost));
             }
