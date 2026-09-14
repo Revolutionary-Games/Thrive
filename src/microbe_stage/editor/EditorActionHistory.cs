@@ -9,6 +9,7 @@ using SharedBase.Archive;
 /// <summary>
 ///   Holds the action history for the editor.
 /// </summary>
+/// <typeparam name="TAction">Type of action in the history</typeparam>
 /// <remarks>
 ///   <para>
 ///     Is capable of MP calculation.
@@ -245,7 +246,7 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
     }
 
     /// <summary>
-    ///   Returns all actions since the last time a history resetting action was done
+    ///   Returns all actions since the last time a history-resetting action was done
     /// </summary>
     private List<EditorCombinableActionData> GetActionHistorySinceLastHistoryResettingAction()
     {
@@ -253,6 +254,6 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
         var lastHistoryResetActionIndex = relevantActions.FindLastIndex(d => d.ResetsHistory);
         return lastHistoryResetActionIndex == -1 ?
             relevantActions :
-            Actions.Skip(lastHistoryResetActionIndex).SelectMany(p => p.Data).ToList();
+            relevantActions.Skip(lastHistoryResetActionIndex).ToList();
     }
 }
