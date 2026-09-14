@@ -201,8 +201,8 @@ public class RemoveOrganelle : IMutationStrategy<Species>
                         }
 
                         var rotated = definition.GetRotatedHexes(orientation);
-                        for (var r = 0; r < rotated.Count; ++r)
-                            occupied.Add(rotated[r] + position);
+                        for (var rotatedIndex = 0; rotatedIndex < rotated.Count; ++rotatedIndex)
+                            occupied.Add(rotated[rotatedIndex] + position);
 
                         clonedCellType.ModifiableOrganelles.AddAutoEvoAttemptOrganelle(parentOrganelle.Clone());
                     }
@@ -233,8 +233,8 @@ public class RemoveOrganelle : IMutationStrategy<Species>
                     }
 
                     var rotated = definition.GetRotatedHexes(orientation);
-                    for (var r = 0; r < rotated.Count; ++r)
-                        occupied.Add(rotated[r] + position);
+                    for (var rotatedIndex = 0; rotatedIndex < rotated.Count; ++rotatedIndex)
+                        occupied.Add(rotated[rotatedIndex] + position);
 
                     newCellTypeOrganelles.AddAutoEvoAttemptOrganelle(parentOrganelle.Clone());
                 }
