@@ -48,14 +48,21 @@ public class TaskExecutorTests
         var siblingStarted = new ManualResetEventSlim();
         var releaseSibling = new ManualResetEventSlim();
         var returned = new ManualResetEventSlim();
+
+        // The finally block joins the caller and waits for the sibling before disposing these captured events.
+        // ReSharper cannot infer that lifetime guarantee from the completion assertions.
         var sibling = new Task(() =>
         {
+            // ReSharper disable once AccessToDisposedClosure
             siblingStarted.Set();
+
+            // ReSharper disable once AccessToDisposedClosure
             if (!releaseSibling.Wait(TimeSpan.FromSeconds(10)))
                 throw new TimeoutException("Sibling was not released");
         });
         var first = new Task(() =>
         {
+            // ReSharper disable once AccessToDisposedClosure
             if (!siblingStarted.Wait(TimeSpan.FromSeconds(10)))
                 throw new TimeoutException("Sibling did not start");
             if (fail)
@@ -76,6 +83,8 @@ public class TaskExecutorTests
             finally
             {
                 siblingCompletedAtReturn = sibling.IsCompleted;
+
+                // ReSharper disable once AccessToDisposedClosure
                 returned.Set();
             }
         }) { IsBackground = true };
@@ -89,6 +98,9 @@ public class TaskExecutorTests
             // First has ended and the sibling is held. Observe the caller actually waiting or returning;
             // a delay is not used to guess when the executor has reached its completion boundary.
             AssertThat(SpinWait.SpinUntil(() => first.IsCompleted, TimeSpan.FromSeconds(10))).IsTrue();
+
+            // SpinUntil invokes this predicate synchronously, before the finally block disposes returned.
+            // ReSharper disable once AccessToDisposedClosure
             AssertThat(SpinWait.SpinUntil(() => returned.IsSet ||
                 (caller.ThreadState & ThreadState.WaitSleepJoin) != 0, TimeSpan.FromSeconds(10))).IsTrue();
             AssertThat(returned.IsSet).IsFalse();
