@@ -195,8 +195,9 @@ public class AutoEvoRun
 
         var task = new Task(Run);
 
-        TaskExecutor.Instance.AddTask(task);
         started = true;
+        Running = true;
+        TaskExecutor.Instance.AddTask(task);
     }
 
     public void OneStep()
@@ -232,6 +233,7 @@ public class AutoEvoRun
         if (Running)
             return;
 
+        started = true;
         Running = true;
 
         var task = new Task(Run);
