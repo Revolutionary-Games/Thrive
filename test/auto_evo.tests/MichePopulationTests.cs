@@ -138,7 +138,144 @@ public class MichePopulationTests
         AssertThat(rootPressure.HashCalls).IsEqual(8);
     }
 
-    private static Fixture CreateFixture()
+    [TestCase(false, false, 1)]
+    [TestCase(false, true, 1)]
+    [TestCase(true, false, 1)]
+    [TestCase(true, true, 1)]
+    [TestCase(false, true, 2)]
+    [TestCase(true, true, 2)]
+    public void PatchesKeepIndependentResultsAcrossCapacityChanges(bool strict, bool trackEnergy, int steps)
+    {
+        var fixture = CreateFixture(9);
+        fixture.Settings.AutoEvoConfiguration = new AutoEvoConfiguration { StrictNicheCompetition = strict };
+        var patches = new List<Patch>(fixture.World.Map.Patches.Values);
+        foreach (var patch in patches)
+            patch.SpeciesInPatch.Clear();
+
+        var trees = new Dictionary<Patch, Miche>();
+        int[] speciesCounts = [9, 0, 1, 3, 9, 2];
+        for (int index = 0; index < speciesCounts.Length; ++index)
+        {
+            var patch = patches[index];
+            int speciesCount = speciesCounts[index];
+            for (int speciesIndex = 0; speciesIndex < speciesCount; ++speciesIndex)
+                patch.AddSpecies(fixture.Species[speciesIndex], 1000);
+
+            var root = new Miche(new CountingPressure(500 + index * 100, _ => 1));
+            for (int leafIndex = 0; leafIndex < speciesCount; ++leafIndex)
+            {
+                var parent = root;
+                for (int depth = 0; depth <= leafIndex; ++depth)
+                {
+                    bool zeroScore = index == 3;
+                    var node = new Miche(new CountingPressure(501 + index * 100 + leafIndex * 10 + depth,
+                        species => zeroScore ? 0 : species.ID * 0.7f));
+                    parent.AddChild(node);
+                    parent = node;
+                }
+
+                parent.Occupant = fixture.Species[leafIndex];
+            }
+
+            trees.Add(patch, root);
+        }
+
+        var expected = new Dictionary<Patch, RunResults>();
+        foreach (var patch in trees.Keys)
+            expected.Add(patch, SimulatePatches(fixture, trees, new HashSet<Patch> { patch }, trackEnergy, steps));
+
+        var actual = SimulatePatches(fixture, trees, new HashSet<Patch>(trees.Keys), trackEnergy, steps);
+        var repeated = SimulatePatches(fixture, trees, new HashSet<Patch>(trees.Keys), trackEnergy, steps);
+        foreach (var patch in trees.Keys)
+        {
+            AssertPatchResults(fixture, patch, expected[patch], actual, trackEnergy);
+            AssertPatchResults(fixture, patch, expected[patch], repeated, trackEnergy);
+        }
+    }
+
+    [TestCase]
+    public void FailedSimulationDoesNotAffectLaterCallsOrEarlierResults()
+    {
+        var fixture = CreateFixture();
+        var root = new Miche(new CountingPressure(1201, _ => 1));
+        root.AddChild(new Miche(new CountingPressure(1202, _ => 1)) { Occupant = fixture.Species[0] });
+        var before = Simulate(fixture, CopyMiche(root), true);
+        var failingRoot = new Miche(new CountingPressure(1203, _ => 1));
+        failingRoot.AddChild(new Miche(new CountingPressure(1204,
+            _ => throw new InvalidOperationException("Test scoring failure"))) { Occupant = fixture.Species[1] });
+
+        AssertThrown(() => Simulate(fixture, failingRoot, true)).IsInstanceOf<InvalidOperationException>();
+
+        var after = Simulate(fixture, CopyMiche(root), true);
+        foreach (var species in fixture.Species)
+            AssertThat(before.GetPatchEnergyResults(species)[fixture.Patch].TotalEnergyGathered).IsEqual(10000.0f);
+        AssertPatchResults(fixture, fixture.Patch, before, after, true);
+    }
+
+    private static RunResults SimulatePatches(Fixture fixture, Dictionary<Patch, Miche> trees,
+        HashSet<Patch> patches, bool trackEnergy, int steps)
+    {
+        var results = new RunResults();
+        foreach (var entry in trees)
+            results.AddNewMicheForPatch(entry.Key, CopyMiche(entry.Value));
+
+        var configuration = new SimulationConfiguration(fixture.Settings.AutoEvoConfiguration,
+            fixture.World.Map, fixture.Settings, steps)
+        {
+            Results = results,
+            CollectEnergyInformation = trackEnergy,
+            PatchesToRun = patches,
+        };
+        MichePopulation.Simulate(configuration, new SimulationCache(fixture.Settings), new Random(1234));
+        return results;
+    }
+
+    private static void AssertPatchResults(Fixture fixture, Patch patch, RunResults expected, RunResults actual,
+        bool trackEnergy)
+    {
+        foreach (var species in fixture.Species)
+        {
+            AssertThat(actual.GetPopulationInPatch(species, patch))
+                .IsEqual(expected.GetPopulationInPatch(species, patch));
+            if (!trackEnergy)
+                continue;
+
+            bool expectedHasEnergy = expected.GetPatchEnergyResults(species).TryGetValue(patch, out var expectedEnergy);
+            bool actualHasEnergy = actual.GetPatchEnergyResults(species).TryGetValue(patch, out var actualEnergy);
+            AssertThat(actualHasEnergy).IsEqual(expectedHasEnergy);
+            if (!expectedHasEnergy)
+                continue;
+
+            AssertFloatBits(actualEnergy!.TotalEnergyGathered, expectedEnergy!.TotalEnergyGathered);
+            AssertFloatBits(actualEnergy.IndividualCost, expectedEnergy.IndividualCost);
+            AssertThat(actualEnergy.PerNicheEnergy.Count).IsEqual(expectedEnergy.PerNicheEnergy.Count);
+            using var actualNiches = actualEnergy.PerNicheEnergy.Values.GetEnumerator();
+            foreach (var entry in expectedEnergy.PerNicheEnergy)
+            {
+                AssertThat(actualNiches.MoveNext()).IsTrue();
+                var actualNiche = actualNiches.Current;
+                AssertFloatBits(actualNiche.CurrentSpeciesFitness, entry.Value.CurrentSpeciesFitness);
+                AssertFloatBits(actualNiche.CurrentSpeciesEnergy, entry.Value.CurrentSpeciesEnergy);
+                AssertFloatBits(actualNiche.TotalFitness, entry.Value.TotalFitness);
+                AssertFloatBits(actualNiche.TotalAvailableEnergy, entry.Value.TotalAvailableEnergy);
+            }
+        }
+    }
+
+    private static Miche CopyMiche(Miche source)
+    {
+        var copy = new Miche(source.Pressure) { Occupant = source.Occupant };
+        foreach (var child in source.Children)
+            copy.AddChild(CopyMiche(child));
+        return copy;
+    }
+
+    private static void AssertFloatBits(float actual, float expected)
+    {
+        AssertThat(BitConverter.SingleToInt32Bits(actual)).IsEqual(BitConverter.SingleToInt32Bits(expected));
+    }
+
+    private static Fixture CreateFixture(int speciesCount = 3)
     {
         var settings = new WorldGenerationSettings
         {
@@ -146,7 +283,7 @@ public class MichePopulationTests
             WorldSize = WorldGenerationSettings.WorldSizeEnum.Small,
         };
         var species = new List<MicrobeSpecies>();
-        for (uint id = 1; id <= 3; ++id)
+        for (uint id = 1; id <= speciesCount; ++id)
         {
             var microbe = new MicrobeSpecies(id, "Test", "species" + id)
             {
