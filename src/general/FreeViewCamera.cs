@@ -130,15 +130,24 @@ public partial class FreeViewCamera : Camera3D
         GlobalPosition += direction.Normalized() * (speed * (float)delta);
     }
 
-    [RunOnAxis(["g_zoom_out", "g_zoom_in"], [-1.0f, 1.0f], UseDiscreteKeyInputs = true)]
-    public void ChangeMoveSpeed(double delta, float value)
+    [RunOnKeyDownWithRepeat("g_zoom_in")]
+    public bool IncreaseMoveSpeed()
     {
-        _ = delta;
-
         if (!looking)
-            return;
+            return false;
 
-        AdjustMoveSpeed(MathF.Pow(SpeedAdjustFactor, value));
+        AdjustMoveSpeed(SpeedAdjustFactor);
+        return true;
+    }
+
+    [RunOnKeyDownWithRepeat("g_zoom_out")]
+    public bool DecreaseMoveSpeed()
+    {
+        if (!looking)
+            return false;
+
+        AdjustMoveSpeed(1.0f / SpeedAdjustFactor);
+        return true;
     }
 
     protected override void Dispose(bool disposing)
