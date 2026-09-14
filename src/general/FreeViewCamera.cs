@@ -21,12 +21,6 @@ public partial class FreeViewCamera : Camera3D
     public float SprintMultiplier = 3.0f;
 
     [Export]
-    public float MouseSensitivity = 0.003f;
-
-    [Export]
-    public bool InvertY;
-
-    [Export]
     public float MinMoveSpeed = 0.05f;
 
     [Export]
@@ -77,23 +71,40 @@ public partial class FreeViewCamera : Camera3D
             StopLooking();
     }
 
-    public override void _Input(InputEvent @event)
-    {
-        if (@event is InputEventMouseMotion motion && looking)
-        {
-            yaw -= motion.Relative.X * MouseSensitivity;
-            pitch -= motion.Relative.Y * MouseSensitivity * (InvertY ? -1.0f : 1.0f);
-            pitch = Math.Clamp(pitch, -MaxPitch, MaxPitch);
-
-            ApplyRotation();
-            GetViewport().SetInputAsHandled();
-        }
-    }
-
     [RunOnKeyChange("e_secondary", OnlyUnhandled = false)]
     public void OnLookInput(bool pressed)
     {
         SetLooking(pressed);
+    }
+
+    [RunOnAxis([
+            RunOnKeyAttribute.CAPTURED_MOUSE_AS_AXIS_PREFIX +
+            nameof(RunOnRelativeMouseAttribute.CapturedMouseAxis.Right),
+            "g_look_yaw_negative",
+            RunOnKeyAttribute.CAPTURED_MOUSE_AS_AXIS_PREFIX +
+            nameof(RunOnRelativeMouseAttribute.CapturedMouseAxis.Left),
+            "g_look_yaw_positive",
+        ], [-1.0f, 1.0f],
+        Look = RunOnAxisAttribute.LookMode.Yaw)]
+    [RunOnAxis([
+            RunOnKeyAttribute.CAPTURED_MOUSE_AS_AXIS_PREFIX +
+            nameof(RunOnRelativeMouseAttribute.CapturedMouseAxis.Down),
+            "g_look_pitch_negative",
+            RunOnKeyAttribute.CAPTURED_MOUSE_AS_AXIS_PREFIX +
+            nameof(RunOnRelativeMouseAttribute.CapturedMouseAxis.Up),
+            "g_look_pitch_positive",
+        ], [-1.0f, 1.0f],
+        Look = RunOnAxisAttribute.LookMode.Pitch)]
+    [RunOnAxisGroup(InvokeAlsoWithNoInput = false, InvokeWithDelta = false)]
+    public void OnLook(float yawMovement, float pitchMovement)
+    {
+        if (!looking)
+            return;
+
+        yaw += yawMovement;
+        pitch = Math.Clamp(pitch + pitchMovement, -MaxPitch, MaxPitch);
+
+        ApplyRotation();
     }
 
     [RunOnAxis(["g_move_forward", "g_move_backwards"], [-1.0f, 1.0f])]
