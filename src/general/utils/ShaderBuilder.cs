@@ -42,7 +42,7 @@ public sealed class ShaderBuilder
 
     private static string LoadModuleCode(string path)
     {
-        var include = GD.Load<ShaderInclude>(path);
+        var include = ResourceLoader.Load<ShaderInclude>(path, cacheMode: ResourceLoader.CacheMode.Ignore);
 
         if (include is null)
             throw new InvalidOperationException($"Failed to load shader module file: {path}");
