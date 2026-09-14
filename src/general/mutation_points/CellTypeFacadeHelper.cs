@@ -72,7 +72,7 @@ public class CellTypeFacadeHelper
                 if (specialCellTypeChangeActionData.OldCellType != null)
                 {
                     if (!removedCellTypes.Any(type =>
-                        ReferenceEquals(type, specialCellTypeChangeActionData.OldCellType)))
+                            ReferenceEquals(type, specialCellTypeChangeActionData.OldCellType)))
                     {
                         removedCellTypes.Add(specialCellTypeChangeActionData.OldCellType);
                     }
