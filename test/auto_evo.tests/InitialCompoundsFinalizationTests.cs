@@ -107,6 +107,45 @@ public class InitialCompoundsFinalizationTests
         AssertCompounds(expected, parent.InitialCompounds);
     }
 
+#if DEBUG
+    [TestCase(false)]
+    [TestCase(true)]
+    public void ApplyingMutationWithMissingCompoundsPreservesParent(bool multicellular)
+    {
+        var parent = CreateSpecies(multicellular, false, false);
+        var candidate = (Species)parent.Clone();
+        var expected = new Dictionary<Compound, float>(parent.InitialCompounds);
+        AssertThat(expected.Count > 0).IsTrue();
+        candidate.InitialCompounds.Clear();
+
+        AssertThrown(() => parent.ApplyMutation(candidate))
+            .IsInstanceOf<InvalidOperationException>()
+            .HasPropertyValue(nameof(Exception.Message),
+                $"Cannot apply mutation {candidate.FormattedIdentifier} without initial compounds");
+        AssertCompounds(expected, parent.InitialCompounds);
+    }
+
+    [TestCase(false)]
+    [TestCase(true)]
+    public void SavingSpeciesWithMissingCompoundsFailsBeforeWritingProperties(bool multicellular)
+    {
+        var candidate = CreateSpecies(multicellular, false, false);
+        candidate.InitialCompounds.Clear();
+        using var data = new MemoryStream();
+        var manager = new ThriveArchiveManager();
+        var writer = new SArchiveMemoryWriter(data, manager);
+        manager.OnStartNewWrite(writer);
+        var position = data.Position;
+
+        AssertThrown(() => candidate.WriteToArchive(writer))
+            .IsInstanceOf<InvalidOperationException>()
+            .HasPropertyValue(nameof(Exception.Message),
+                $"Cannot save species {candidate.FormattedIdentifier} without initial compounds");
+        AssertThat(data.Position).IsEqual(position);
+        manager.OnFinishWrite(writer);
+    }
+#endif
+
     private static Species CreateSpecies(bool multicellular, bool massBudding,
         bool specializedStorage)
     {

@@ -485,6 +485,13 @@ public class ModifyExistingSpecies : IRunStep
 
                             tuple.Species.OnAttemptedInAutoEvo(true, false);
 
+#if DEBUG
+
+                            // Inherited compounds may be stale. Clear them so missing the refresh before result
+                            // tree insertion can be detected by the checks at compound consumption boundaries.
+                            tuple.Species.InitialCompounds.Clear();
+#endif
+
                             // If the visual hash of a species needs to be consistent while in the cache, then this
                             // would need to be called
                             // tuple.Species.OnEdited();
