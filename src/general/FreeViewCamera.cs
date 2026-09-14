@@ -3,19 +3,20 @@ using Godot;
 
 /// <summary>
 ///   A free-flying camera for looking around a 3D scene, behaving like freelook mode in the Godot editor. Hold the
-///   right mouse button to look around and move with WASD, and the cursor is left alone otherwise.
+///   <c>e_secondary</c> (e.g. RMB) to look around and move with the directional controls (e.g. WASD or any other input
+///   scheme), and the cursor is left alone otherwise.
 /// </summary>
 [GlobalClass]
 public partial class FreeViewCamera : Camera3D
 {
     /// <summary>
-    ///   Units moved per second. The mouse wheel adjusts this while looking around.
+    ///   Units moved per second. The zoom key adjusts this while looking around.
     /// </summary>
     [Export]
     public float MoveSpeed = 10.0f;
 
     /// <summary>
-    ///   What the move speed is multiplied by while shift is held.
+    ///   What the move speed is multiplied by while <c>g_sprint</c> is held.
     /// </summary>
     [Export]
     public float SprintMultiplier = 3.0f;
@@ -27,7 +28,7 @@ public partial class FreeViewCamera : Camera3D
     public float MaxMoveSpeed = 1000.0f;
 
     /// <summary>
-    ///   What one notch of the mouse wheel multiplies or divides the move speed by.
+    ///   What one notch of the zoom key multiplies or divides the move speed by.
     /// </summary>
     [Export(PropertyHint.Range, "1.01,4.0,0.01")]
     public float SpeedAdjustFactor = 1.1f;
