@@ -9,8 +9,13 @@ using Godot;
 /// </summary>
 /// <remarks>
 ///   <para>
-///     Modules are plain <c>.gdshaderinc</c> files. They must be written in the subset of GLSL that Godot's shading
-///     language also accepts, and must not declare uniforms of their own.
+///     Modules are plain <c>.gdshaderinc</c> files. Modules shared across backends must be written in the subset of
+///     GLSL that Godot's shading language also accepts, and must not declare uniforms of their own.
+///   </para>
+///   <para>
+///     Backend-specific modules, such as a backend's interface module, are exempt from this. They supply the
+///     declarations of their backend (version directive, layouts, uniforms, push constants) and define the macros the
+///     shared modules read their parameters through.
 ///   </para>
 /// </remarks>
 public sealed class ShaderBuilder
