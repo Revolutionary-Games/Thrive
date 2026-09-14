@@ -20,10 +20,6 @@ using Godot;
 /// </remarks>
 public sealed class ShaderBuilder
 {
-    private static readonly ResourceLoader.CacheMode CacheMode = FeatureInformation.IsExported() ?
-        ResourceLoader.CacheMode.Reuse :
-        ResourceLoader.CacheMode.Ignore;
-
     private readonly Dictionary<string, ShaderModule> modules = new();
     private readonly HashSet<string> emitted = new();
     private readonly List<string> pending = new();
@@ -51,7 +47,11 @@ public sealed class ShaderBuilder
 
     private static string LoadModuleCode(string path)
     {
-        var include = ResourceLoader.Load<ShaderInclude>(path, cacheMode: CacheMode);
+        var cacheMode = FeatureInformation.IsExported() ?
+            ResourceLoader.CacheMode.Reuse :
+            ResourceLoader.CacheMode.Ignore;
+
+        var include = ResourceLoader.Load<ShaderInclude>(path, cacheMode: cacheMode);
 
         if (include is null)
             throw new InvalidOperationException($"Failed to load shader module file: {path}");
