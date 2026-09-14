@@ -264,6 +264,8 @@ public class TaskExecutor
         {
             try
             {
+                // TODO: so apparently this Wait call can allocate memory, in SpinThenBlockingWait which eventually
+                // calls EnsureLockObjectCreated
                 tasks[i].Wait();
             }
             catch (Exception e)
@@ -279,15 +281,17 @@ public class TaskExecutor
         // Report errors only after all accepted work has stopped, including when error reporting itself fails.
         if (!catchErrors || schedulingFailed)
         {
-            if (!schedulingFailed)
-                GD.PrintErr("Error encountered from a waited task on the primary waiting thread");
+            var failure = new AggregateException(errors).Flatten();
 
-            throw new AggregateException(errors).Flatten();
+            if (!schedulingFailed)
+                GD.PrintErr($"Error encountered from a waited task on the primary waiting thread: {failure}");
+
+            throw failure;
         }
 
         foreach (var error in errors)
         {
-            GD.PrintErr("Error encountered from a waited task on the primary waiting thread");
+            GD.PrintErr($"Error encountered from a waited task on the primary waiting thread: {error}");
             LogInterceptor.ForwardCaughtError(error, "Error from waited background task");
         }
     }
