@@ -233,6 +233,8 @@ public partial class CellBodyPlanEditorComponent
     [ArchiveAllowedMethod]
     private void DoGameteACellChangeAction(GameteACellTypeChangeActionData data)
     {
+        // As mentioned above, this and other of the 6 actions here and below are obsolete functions kept for save
+        // compatibility and shouldn't be used otherwise
         GameteACellType = data.NewCellType;
 
         UpdateSpecialCellTypeDisplays();
@@ -260,6 +262,23 @@ public partial class CellBodyPlanEditorComponent
         GameteBCellType = data.OldCellType;
 
         UpdateSpecialCellTypeDisplays();
+    }
+
+    [ArchiveAllowedMethod]
+    private void DoSporeCellChangeAction(SpecialCellTypeChangeActionData data)
+    {
+        ChangeCellType(data.OldCellType, data.NewCellType, data.CellArchetype);
+    }
+
+    [ArchiveAllowedMethod]
+    private void UndoSporeCellChangeAction(SpecialCellTypeChangeActionData data)
+    {
+        if (data.NewCellType != null)
+        {
+            CellTypeVisualsOverride?.ForgetChanges(data.NewCellType);
+        }
+
+        ChangeCellType(data.NewCellType, data.OldCellType, data.CellArchetype);
     }
 
     [ArchiveAllowedMethod]
