@@ -267,7 +267,7 @@ public partial class CellBodyPlanEditorComponent
     [ArchiveAllowedMethod]
     private void DoSporeCellChangeAction(SpecialCellTypeChangeActionData data)
     {
-        ChangeCellType(data.OldCellType, data.NewCellType, data.CellArchetype);
+        ChangeCellType(data.OldCellType, data.NewCellType, SpecialCellArchetype.Spore);
     }
 
     [ArchiveAllowedMethod]
@@ -278,7 +278,7 @@ public partial class CellBodyPlanEditorComponent
             CellTypeVisualsOverride?.ForgetChanges(data.NewCellType);
         }
 
-        ChangeCellType(data.NewCellType, data.OldCellType, data.CellArchetype);
+        ChangeCellType(data.NewCellType, data.OldCellType, SpecialCellArchetype.Spore);
     }
 
     [ArchiveAllowedMethod]
