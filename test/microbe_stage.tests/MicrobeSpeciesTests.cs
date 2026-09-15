@@ -140,39 +140,48 @@ public class MicrobeSpeciesTests
         var species = CreateMicrobe(37, "StorageSpecialization", "single", "cytoplasm");
         species.CellTypeSpecializationBonus = 1;
 
-        // Current balance values: cytoplasm stores 0.5, a vacuole stores 5, and specialization doubles it.
+        // Derive expected capacities from balance data without using the capacity calculation helpers.
+        var parameters = SimulationParameters.Instance;
+        var cytoplasmCapacity = parameters.GetOrganelleType("cytoplasm").Components.Storage!.Capacity;
+        var vacuoleCapacity = parameters.GetOrganelleType("vacuole").Components.Storage!.Capacity;
+        var ordinaryCapacity = cytoplasmCapacity + vacuoleCapacity;
+        var specializedCapacity = vacuoleCapacity * Constants.VACUOLE_SPECIALIZED_MULTIPLIER;
+        var specializedTotalCapacity = cytoplasmCapacity + specializedCapacity;
+
         var capacity = species.StorageCapacities;
-        AssertBits(species.NominalStorageCapacity, 0.5f);
-        AssertBits(capacity.Nominal, 0.5f);
+        AssertBits(species.NominalStorageCapacity, cytoplasmCapacity);
+        AssertBits(capacity.Nominal, cytoplasmCapacity);
         AssertThat(capacity.Specific).IsEmpty();
-        AssertBits(capacity.Nominal + capacity.Specific.GetValueOrDefault(Compound.Ammonia), 0.5f);
-        AssertBits(capacity.Nominal + capacity.Specific.GetValueOrDefault(Compound.Glucose), 0.5f);
+        AssertBits(capacity.Nominal + capacity.Specific.GetValueOrDefault(Compound.Ammonia), cytoplasmCapacity);
+        AssertBits(capacity.Nominal + capacity.Specific.GetValueOrDefault(Compound.Glucose), cytoplasmCapacity);
 
         var vacuole = CreateOrganelle("vacuole", new Hex(1, 0));
         species.Organelles.Add(vacuole);
         capacity = species.StorageCapacities;
-        AssertBits(species.NominalStorageCapacity, 5.5f);
-        AssertBits(capacity.Nominal, 5.5f);
+        AssertBits(species.NominalStorageCapacity, ordinaryCapacity);
+        AssertBits(capacity.Nominal, ordinaryCapacity);
         AssertThat(capacity.Specific).IsEmpty();
-        AssertBits(capacity.Nominal + capacity.Specific.GetValueOrDefault(Compound.Ammonia), 5.5f);
-        AssertBits(capacity.Nominal + capacity.Specific.GetValueOrDefault(Compound.Glucose), 5.5f);
+        AssertBits(capacity.Nominal + capacity.Specific.GetValueOrDefault(Compound.Ammonia), ordinaryCapacity);
+        AssertBits(capacity.Nominal + capacity.Specific.GetValueOrDefault(Compound.Glucose), ordinaryCapacity);
 
         Specialize(vacuole, Compound.Ammonia);
         capacity = species.StorageCapacities;
-        AssertBits(species.NominalStorageCapacity, 0.5f);
-        AssertBits(capacity.Nominal, 0.5f);
-        AssertCompounds(capacity.Specific, new Dictionary<Compound, float> { { Compound.Ammonia, 10 } });
-        AssertBits(capacity.Nominal + capacity.Specific.GetValueOrDefault(Compound.Ammonia), 10.5f);
-        AssertBits(capacity.Nominal + capacity.Specific.GetValueOrDefault(Compound.Glucose), 0.5f);
+        AssertBits(species.NominalStorageCapacity, cytoplasmCapacity);
+        AssertBits(capacity.Nominal, cytoplasmCapacity);
+        AssertCompounds(capacity.Specific,
+            new Dictionary<Compound, float> { { Compound.Ammonia, specializedCapacity } });
+        AssertBits(capacity.Nominal + capacity.Specific.GetValueOrDefault(Compound.Ammonia), specializedTotalCapacity);
+        AssertBits(capacity.Nominal + capacity.Specific.GetValueOrDefault(Compound.Glucose), cytoplasmCapacity);
 
         var upgrades = (StorageComponentUpgrades)vacuole.ModifiableUpgrades!.CustomUpgradeData!;
         upgrades.SpecializedFor = Compound.Glucose;
         capacity = species.StorageCapacities;
-        AssertBits(species.NominalStorageCapacity, 0.5f);
-        AssertBits(capacity.Nominal, 0.5f);
-        AssertCompounds(capacity.Specific, new Dictionary<Compound, float> { { Compound.Glucose, 10 } });
-        AssertBits(capacity.Nominal + capacity.Specific.GetValueOrDefault(Compound.Ammonia), 0.5f);
-        AssertBits(capacity.Nominal + capacity.Specific.GetValueOrDefault(Compound.Glucose), 10.5f);
+        AssertBits(species.NominalStorageCapacity, cytoplasmCapacity);
+        AssertBits(capacity.Nominal, cytoplasmCapacity);
+        AssertCompounds(capacity.Specific,
+            new Dictionary<Compound, float> { { Compound.Glucose, specializedCapacity } });
+        AssertBits(capacity.Nominal + capacity.Specific.GetValueOrDefault(Compound.Ammonia), cytoplasmCapacity);
+        AssertBits(capacity.Nominal + capacity.Specific.GetValueOrDefault(Compound.Glucose), specializedTotalCapacity);
     }
 
     /// <summary>
