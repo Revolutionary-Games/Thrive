@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-09 16:05+0300\n"
+"POT-Creation-Date: 2026-09-12 15:52+0300\n"
 "PO-Revision-Date: 2026-09-11 06:16+0000\n"
-"Last-Translator: 归灵祈昱 <guilingqiyu@gmail.com>\n"
+"Last-Translator: Guno haozheum <15721507614@163.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -174,16 +174,14 @@ msgstr ""
 "  {0}\n"
 "[b]总物种数：[/b]\n"
 "  平均值 {1}；标准差 {2}\n"
-"[b]总秒数：[/b]\n"
-"  平均值 {3}；标准差 {4}\n"
 "[b]现存物种数：[/b]\n"
-"  平均值 {5}；标准差 {6}\n"
+"  平均值 {3}；标准差 {4}\n"
 "[b]各区域物种数量：[/b]\n"
-"  平均值 {7}；标准差 {8}\n"
+"  平均值 {5}；标准差 {6}\n"
 "[b]各区域总种群数量：[/b]\n"
-"  平均值 {9}；标准差 {10}\n"
+"  平均值 {7}；标准差 {8}\n"
 "[b]微生物物种平均大小：[/b]\n"
-"  平均值 {11}；标准差 {12}\n"
+"  平均值 {9}；标准差 {10}\n"
 "\n"
 "[b]基本细胞器数据：[/b]"
 
@@ -1656,6 +1654,14 @@ msgstr "减小物体"
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "默认输出设备"
 
+#, fuzzy
+msgid "DEFAULT_GAMETE_B_CELL_TYPE_NAME"
+msgstr "孢子"
+
+#, fuzzy
+msgid "DEFAULT_GAMETE_CELL_TYPE_NAME"
+msgstr "孢子"
+
 msgid "DEFAULT_SPORE_CELL_TYPE_NAME"
 msgstr "孢子"
 
@@ -2627,7 +2633,7 @@ msgid "GAMEPLAY_BASICS_TITLE"
 msgstr "基本游戏系统"
 
 msgid "GAMETE_CELL_ENTITY_NAME"
-msgstr "{0} ({1})的配子"
+msgstr "{0}的配子"
 
 msgid "GAMETE_CELL_TYPE"
 msgstr "配子细胞类型"
@@ -2777,7 +2783,7 @@ msgid "GOD_TOOLS_TITLE"
 msgstr "上帝工具"
 
 msgid "GOING_NUCLEAR"
-msgstr "拥核"
+msgstr "迈向真核"
 
 msgid "GOOGLY_EYE_CELL"
 msgstr "呆滞眼球细胞"
@@ -4676,6 +4682,14 @@ msgstr "无事件记录"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "找不到化石目录"
 
+#, fuzzy
+msgid "NO_GAMETE_CELL_TYPE_SET"
+msgstr "配子类型A"
+
+#, fuzzy
+msgid "NO_GAMETE_CELL_TYPE_SET_TITLE"
+msgstr "未设置孢子细胞类型"
+
 msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
 msgstr "无法在当前游戏中获得成就"
 
@@ -6060,6 +6074,10 @@ msgstr "生成磷酸盐"
 msgid "SPECIALIZATION_COLON"
 msgstr "专业化："
 
+#, fuzzy
+msgid "SPECIAL_CELL_TYPE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
+msgstr "选择从何种细胞开始繁殖周期"
+
 msgid "SPECIAL_MOUSE_1"
 msgstr "鼠标侧键1"
 
@@ -6126,9 +6144,6 @@ msgstr "速度："
 
 msgid "SPEED_TOGGLE_TOOLTIP"
 msgstr "在正常与倍速的游戏速度之间切换"
-
-msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
-msgstr "选择从何种细胞开始繁殖周期"
 
 msgid "SPORE_REPRODUCTION_METHOD_EXPLANATION"
 msgstr "产生多个可选特化的后代，它们在转化为群落根细胞之前，能够寻找更好的环境。"
@@ -10134,6 +10149,9 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "缩小"
+
+#~ msgid "SPORE_ORIGIN_CELL_TYPE_SELECTION_POPUP_TITLE"
+#~ msgstr "选择从何种细胞开始繁殖周期"
 
 #~ msgid "SPORE_CELL_TYPE"
 #~ msgstr "孢子细胞类型"

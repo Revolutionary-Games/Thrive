@@ -148,7 +148,7 @@ public partial class CellBodyPlanEditorComponent :
     private CustomConfirmationDialog wrongGrowthOrderPopup = null!;
 
     [Export]
-    private CustomConfirmationDialog noSporeCellTypeSetPopup = null!;
+    private SpecialCellTypeUnsetPopup specialCellTypeUnsetPopup = null!;
 
     [Export]
     private LabelSettings toleranceWarningsFont = null!;
@@ -158,6 +158,12 @@ public partial class CellBodyPlanEditorComponent :
 
     [Export]
     private CellTypeMakerButton sporeCellTypeMakerButton = null!;
+
+    [Export]
+    private CellTypeMakerButton gameteACellTypeMakerButton = null!;
+
+    [Export]
+    private CellTypeMakerButton gameteBCellTypeMakerButton = null!;
 
     [Export]
     private CellTypePickerPopup cellTypePickerPopup = null!;
@@ -179,12 +185,6 @@ public partial class CellBodyPlanEditorComponent :
 
     [Export]
     private Control sexualReproductionSection = null!;
-
-    [Export]
-    private OptionButton gameteACellTypeDropdown = null!;
-
-    [Export]
-    private OptionButton gameteBCellTypeDropdown = null!;
 
     [Export]
     private Button sexualAnisogamyUpgradeButton = null!;
@@ -236,6 +236,9 @@ public partial class CellBodyPlanEditorComponent :
 
     private CellType? sporeCellType;
 
+    private CellType? gameteACellType;
+    private CellType? gameteBCellType;
+
     private EnergyBalanceInfoFull? energyBalanceInfo;
 
     [Signal]
@@ -272,6 +275,20 @@ public partial class CellBodyPlanEditorComponent :
 
             if (ReproductionMethod == MulticellularReproductionMethod.Sporulation && SporeCellType == null)
                 return true;
+
+            if (ReproductionMethod is MulticellularReproductionMethod.SexualAnisogamy
+                or MulticellularReproductionMethod.SexualIsogamy)
+            {
+                if (GameteACellType == null)
+                {
+                    return true;
+                }
+
+                if (GameteBCellType == null && ReproductionMethod == MulticellularReproductionMethod.SexualAnisogamy)
+                {
+                    return true;
+                }
+            }
 
             if (ReproductionMethod == MulticellularReproductionMethod.MassBudding &&
                 (DesiredMassBuddingCellCount < Constants.MASS_BUDDING_MINIMUM_BUD_SIZE ||
@@ -338,9 +355,33 @@ public partial class CellBodyPlanEditorComponent :
 
     public GameteType SelectedGameteTypeForPlayer { get; private set; } = GameteType.A;
 
-    public CellType? GameteACellType { get; private set; }
+    public CellType? GameteACellType
+    {
+        get => gameteACellType;
+        set
+        {
+            if (ReferenceEquals(gameteACellType, value))
+                return;
 
-    public CellType? GameteBCellType { get; private set; }
+            gameteACellType = value;
+
+            UpdateSpecialCellTypeDisplays();
+        }
+    }
+
+    public CellType? GameteBCellType
+    {
+        get => gameteBCellType;
+        set
+        {
+            if (ReferenceEquals(gameteBCellType, value))
+                return;
+
+            gameteBCellType = value;
+
+            UpdateSpecialCellTypeDisplays();
+        }
+    }
 
     /// <summary>
     ///   This variable should be clamped before use. It's intentional that it can exceed the number of cells, to make
@@ -742,6 +783,8 @@ public partial class CellBodyPlanEditorComponent :
 
         editedSpecies.ReproductionMethod = ReproductionMethod;
         editedSpecies.ModifiableSporeCellType = SporeCellType;
+        editedSpecies.ModifiableGameteTypeA = GameteACellType;
+        editedSpecies.ModifiableGameteTypeB = GameteBCellType;
 
         // MassBuddingCellCount changes are free if the resulting reproduction method isn't mass budding, so this check
         // needs to exist to prevent exploits
@@ -771,20 +814,10 @@ public partial class CellBodyPlanEditorComponent :
         }
         else
         {
-            editedSpecies.ModifiableGameteTypeA = null;
             editedSpecies.PlayerGamete = GameteType.All;
 
             if (editedSpecies.ReproductionMethod == MulticellularReproductionMethod.SexualAnisogamy)
                 throw new Exception("Logic error in player gamete type setting");
-        }
-
-        if (ReproductionMethod is MulticellularReproductionMethod.SexualAnisogamy)
-        {
-            editedSpecies.ModifiableGameteTypeB = GameteBCellType;
-        }
-        else
-        {
-            editedSpecies.ModifiableGameteTypeB = null;
         }
 
         tempFreshlyUpdatedCells.Clear();
@@ -817,17 +850,32 @@ public partial class CellBodyPlanEditorComponent :
 
         if (ReproductionMethod == MulticellularReproductionMethod.Sporulation && SporeCellType == null)
         {
-            noSporeCellTypeSetPopup.PopupCenteredShrink();
+            specialCellTypeUnsetPopup.DisplayForCellType(SpecialCellArchetype.Spore);
             return false;
         }
 
-        // This is checked due to a species data requirement
-        if ((ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy
-                or MulticellularReproductionMethod.SexualAnisogamy) && editedMicrobeCells.Count < 2)
+        if (ReproductionMethod is MulticellularReproductionMethod.SexualIsogamy
+            or MulticellularReproductionMethod.SexualAnisogamy)
         {
-            ToolTipManager.Instance.ShowPopup(
-                Localization.Translate("ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"), 5);
-            return false;
+            // This is checked due to a species data requirement
+            if (editedMicrobeCells.Count < 2)
+            {
+                ToolTipManager.Instance.ShowPopup(
+                    Localization.Translate("ERROR_REQUIRED_AT_LEAST_TWO_CELLS_FOR_SEXUAL_REPRODUCTION"), 5);
+                return false;
+            }
+
+            if (GameteACellType == null)
+            {
+                specialCellTypeUnsetPopup.DisplayForCellType(SpecialCellArchetype.GameteA);
+                return false;
+            }
+
+            if (GameteBCellType == null && ReproductionMethod == MulticellularReproductionMethod.SexualAnisogamy)
+            {
+                specialCellTypeUnsetPopup.DisplayForCellType(SpecialCellArchetype.GameteB);
+                return false;
+            }
         }
 
         if (ReproductionMethod == MulticellularReproductionMethod.MassBudding &&
@@ -947,9 +995,6 @@ public partial class CellBodyPlanEditorComponent :
         UpdateSpecializationDisplay();
 
         UpdateSpecialCellTypeDisplays();
-
-        // In case the cell type's name was changed
-        UpdateGameteDropdowns();
     }
 
     /// <summary>
@@ -1329,6 +1374,14 @@ public partial class CellBodyPlanEditorComponent :
         }
 
         return CellTypeVisualsOverride.GetCellType(cellType);
+    }
+
+    private CellType? GetEditedCellDataIfEditedAndNotNull(CellType? cellType)
+    {
+        if (cellType == null)
+            return null;
+
+        return GetEditedCellDataIfEdited(cellType);
     }
 
     /// <summary>
@@ -2330,10 +2383,49 @@ public partial class CellBodyPlanEditorComponent :
 
     private bool ShouldCellTypeBeDisplayed(CellType cellType)
     {
-        // The spore is a specialized cell type
-        if (SporeCellType != null && cellType.CellTypeName == SporeCellType.CellTypeName)
+        // Specialized cell types shouldn't be displayed outside the cell type pickers
+        if (cellType.CellTypeName == SporeCellType?.CellTypeName)
+            return false;
+
+        if (cellType.CellTypeName == GameteACellType?.CellTypeName)
+            return false;
+
+        if (cellType.CellTypeName == GameteBCellType?.CellTypeName)
             return false;
 
         return true;
+    }
+
+    private CellType? GetSpecialCellType(SpecialCellArchetype archetype)
+    {
+        switch (archetype)
+        {
+            case SpecialCellArchetype.Spore:
+                return SporeCellType;
+            case SpecialCellArchetype.GameteA:
+                return GameteACellType;
+            case SpecialCellArchetype.GameteB:
+                return GameteBCellType;
+            default:
+                throw new NotImplementedException($"Unimplemented special cell type: {archetype}");
+        }
+    }
+
+    private void SetSpecialCellType(SpecialCellArchetype archetype, CellType? cellType)
+    {
+        switch (archetype)
+        {
+            case SpecialCellArchetype.Spore:
+                SporeCellType = cellType;
+                break;
+            case SpecialCellArchetype.GameteA:
+                GameteACellType = cellType;
+                break;
+            case SpecialCellArchetype.GameteB:
+                GameteBCellType = cellType;
+                break;
+            default:
+                throw new NotImplementedException($"Unimplemented special cell type: {archetype}");
+        }
     }
 }

@@ -1242,9 +1242,6 @@ public static class Constants
 
     public const int MULTICELLULAR_REPRODUCTION_METHOD_CHANGE_COST = 50;
 
-    public const int SPORE_CELL_TYPE_CHANGE_COST = 10;
-
-    public const int GAMETE_CELL_TYPE_CHANGE_COST = 10;
     public const int MULTICELLULAR_ANISOGAMY_UPGRADE_COST = 55;
 
     public const int MASS_BUDDING_CELL_COUNT_CHANGE_COST = 10;
