@@ -68,6 +68,11 @@ public partial class CellBodyPlanEditorComponent
 
     public void OnMassBuddingCellCountChanged(float count)
     {
+        // The slider is refreshed whenever the body plan changes, including when a cell is placed or removed.
+        // We want to suppress action history creation while another reproduction method is active.
+        if (ReproductionMethod != MulticellularReproductionMethod.MassBudding)
+            return;
+
         var newCellCount = (int)count;
 
         if (newCellCount == DesiredMassBuddingCellCount)

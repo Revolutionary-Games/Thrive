@@ -60,7 +60,7 @@ Code style rules
   loops. They should be avoided everywhere else. LINQ is an exception
   to this rule (see below for more info)
 
-- Some common short names are accepted (and even preferred): i, k, a,
+- Some common short names are accepted (and even preferred): i, j, k, a,
   b used in loops (x, y, z used in loops that deal with coordinates or
   math, and variants like `cx` etc.), e used in `catch` blocks as the exception name. Other
   variables in loops and elsewhere need to be named with actually
