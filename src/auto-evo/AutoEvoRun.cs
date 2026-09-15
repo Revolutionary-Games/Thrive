@@ -624,8 +624,15 @@ public class AutoEvoRun
                         }
                         else
                         {
-                            TaskExecutor.Instance.RunTasks(concurrentStepTasks, true);
-                            concurrentStepTasks.Clear();
+                            try
+                            {
+                                TaskExecutor.Instance.RunTasks(concurrentStepTasks, true);
+                            }
+                            finally
+                            {
+                                // RunTasks drains accepted work before returning or propagating a failure.
+                                concurrentStepTasks.Clear();
+                            }
                         }
                     }
                     else
