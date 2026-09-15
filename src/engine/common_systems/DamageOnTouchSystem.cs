@@ -134,8 +134,15 @@ public partial class DamageOnTouchSystem : BaseSystem<World, float>
 
             if (HealthHelpers.IsDamageToxinType(damageType))
             {
+                var soundTarget = entity;
+                if (entity.Has<MicrobeColony>() && entity.Get<MicrobeColony>()
+                        .GetMicrobeFromSubShape(ref entityExtraData, subShape, out var hitEntity))
+                {
+                    soundTarget = hitEntity;
+                }
+
                 // Toxin damage is distributed to all members of a colony
-                HealthHelpers.DealDistributedMicrobeDamage(entity, damageValue, damageType, protection);
+                HealthHelpers.DealDistributedMicrobeDamage(entity, damageValue, damageType, protection, soundTarget);
                 return true;
             }
 

@@ -274,8 +274,9 @@ public static class HealthHelpers
     /// <param name="damage">Raw damage amount to do in total</param>
     /// <param name="damageSource">Damage type</param>
     /// <param name="instantKillProtectionThreshold">Instant kill protection</param>
+    /// <param name="soundTarget">The colony member that should play the damage sound.</param>
     public static void DealDistributedMicrobeDamage(in Entity entity, float damage, string damageSource,
-        float instantKillProtectionThreshold)
+        float instantKillProtectionThreshold, in Entity soundTarget)
     {
         if (entity.Has<MicrobeColony>())
         {
@@ -290,9 +291,12 @@ public static class HealthHelpers
                 {
                     ref var health = ref member.Get<Health>();
 
-                    // Only play sound on the real target entity to avoid very loud sound spam
+                    // TODO: this now plays sound on each colony member, rather than the center cell.
+                    // For player colony this makes any damage sound a bit quiet. Using "member == entity" would play
+                    // on the player itself, which might be preferable.
+
                     health.DealMicrobeDamage(ref entity.Get<CellProperties>(), member, perEntityDamage,
-                        damageSource, instantKillProtectionThreshold, member == entity);
+                        damageSource, instantKillProtectionThreshold, member == soundTarget);
                 }
                 else
                 {
@@ -305,7 +309,7 @@ public static class HealthHelpers
             // Not in a colony, deal damage normally
             ref var health = ref entity.Get<Health>();
             health.DealMicrobeDamage(ref entity.Get<CellProperties>(), entity, damage, damageSource,
-                instantKillProtectionThreshold);
+                instantKillProtectionThreshold, entity == soundTarget);
         }
         else
         {
