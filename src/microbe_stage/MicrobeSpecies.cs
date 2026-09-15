@@ -110,6 +110,12 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         }
     }
 
+    /// <summary>
+    ///   Current storage capacity excluding compound-specific storage.
+    /// </summary>
+    public float NominalStorageCapacity =>
+        MicrobeInternalCalculations.GetTotalNominalCapacity(Organelles, CellTypeSpecializationBonus);
+
     // TODO: precalculate this as it'll help auto-evo quite a bit
     /// <summary>
     ///   Compound capacities members of this species can store in their default configurations
