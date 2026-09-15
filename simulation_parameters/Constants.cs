@@ -1099,7 +1099,7 @@ public static class Constants
     /// <summary>
     ///   The maximum cap for efficiency of digestion.
     /// </summary>
-    public const float ENZYME_DIGESTION_EFFICIENCY_MAXIMUM = 0.6f;
+    public const float ENZYME_DIGESTION_EFFICIENCY_MAXIMUM = 1.0f;
 
     public const float THERMOPLAST_MIN_ATP_TEMPERATURE = 20.0f;
     public const float THERMOPLAST_MAX_ATP_TEMPERATURE = 120.0f;
