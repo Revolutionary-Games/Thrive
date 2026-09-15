@@ -4,7 +4,7 @@ using System.Linq;
 /// <summary>
 ///   Speed information of a process in specific patch. Used in the editor to show info to the player.
 /// </summary>
-public class ProcessSpeedInformation : IProcessDisplayInfo
+public class ProcessSpeedInformation : IProcessDisplayInfo, IReadOnlyProcessSpeedInfo
 {
     public ProcessSpeedInformation(BioProcess process)
     {
@@ -25,6 +25,9 @@ public class ProcessSpeedInformation : IProcessDisplayInfo
 
     // ReSharper disable once CollectionNeverQueried.Global
     public Dictionary<Compound, float> AvailableRates { get; } = new();
+
+    /// <inheritdoc/>
+    public ProcessInputAmounts AllInputs => new(WritableInputs);
 
     public IEnumerable<KeyValuePair<Compound, float>> Inputs =>
         WritableInputs.Where(p => !IProcessDisplayInfo.IsEnvironmental(p.Key));

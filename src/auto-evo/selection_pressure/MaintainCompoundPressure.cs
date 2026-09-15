@@ -60,8 +60,9 @@ public class MaintainCompoundPressure : SelectionPressure
         var compoundUsed = 0.0f;
         var compoundCreated = 0.0f;
 
-        foreach (var process in activeProcessList)
+        for (var i = 0; i < activeProcessList.Count; ++i)
         {
+            var process = activeProcessList[i];
             if (process.Process.Inputs.TryGetValue(compound, out var inputAmount))
             {
                 var processSpeed = cache
