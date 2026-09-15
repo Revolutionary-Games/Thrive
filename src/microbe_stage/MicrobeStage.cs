@@ -75,6 +75,8 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
     private bool playerInColony;
 
+    private int lastSeenPlayerColonySize = -1;
+
     /// <summary>
     ///   Used to mark the first time the player turns off tutorials in the game
     /// </summary>
@@ -445,13 +447,17 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
                 new CompoundEventArgs(Player.Get<CompoundAbsorber>().TotalAbsorbedCompounds ??
                     throw new Exception("Player is missing absorbed compounds")), this);
 
+            int newColonySize;
+
             // TODO: if we start getting a ton of tutorial stuff reported each frame we should only report stuff when
             // relevant, for example only when in a colony or just leaving a colony should the player colony
             // info be sent
             if (Player.Has<MicrobeColony>())
             {
+                ref var colony = ref Player.Get<MicrobeColony>();
+
                 TutorialState.SendEvent(TutorialEventType.MicrobePlayerColony,
-                    new MicrobeColonyEventArgs(true, Player.Get<MicrobeColony>().ColonyMembers.Length,
+                    new MicrobeColonyEventArgs(true, colony.ColonyMembers.Length,
                         Player.Has<MulticellularSpeciesMember>()), this);
 
                 if (playerAlive && GameWorld.PlayerSpecies is MulticellularSpecies)
@@ -464,11 +470,27 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
                     playerInColony = true;
                     AchievementEvents.ReportPlayerInCellColony();
                 }
+
+                newColonySize = colony.ColonyMembers.Length;
             }
             else if (playerAlive)
             {
                 MakeEditorForFreebuildAvailable();
                 playerInColony = false;
+                newColonySize = 1;
+            }
+            else
+            {
+                newColonySize = 0;
+            }
+
+            if (lastSeenPlayerColonySize != newColonySize)
+            {
+                if (UpdateZoomLevels(Player.Has<MulticellularSpeciesMember>()))
+                {
+                    // New size is taken into account now
+                    lastSeenPlayerColonySize = newColonySize;
+                }
             }
 
             if (Player.Has<CompoundStorage>())
@@ -2022,14 +2044,20 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         return radius;
     }
 
-    private void UpdateZoomLevels(bool isMulticellular)
+    private bool UpdateZoomLevels(bool isMulticellular)
     {
+        if (!HasPlayer)
+        {
+            GD.PrintErr("Update zoom called without player existing");
+            return false;
+        }
+
         if (isMulticellular)
         {
             var species = Player.Get<MulticellularSpeciesMember>().Species;
 
+            // Static size from designed body plan
             float maxDistance = 0.0f;
-
             foreach (var cell in species.ModifiableGameplayCells)
             {
                 float distance = Hex.AxialToCartesian(cell.Position).LengthSquared();
@@ -2041,9 +2069,66 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             }
 
             maxDistance = MathF.Sqrt(maxDistance);
+            int currentCellCount = 1;
+
+            // The above is not always super accurate, so actually we want to calculate also the dynamic size here
+            if (Player.Has<MicrobeColony>())
+            {
+                try
+                {
+                    ref var colony = ref Player.Get<MicrobeColony>();
+
+                    float gameplayDistance = 0;
+
+                    currentCellCount = colony.ColonyMembers.Length;
+
+                    foreach (var member in colony.ColonyMembers)
+                    {
+                        // Skip the colony leader by it not having this property
+                        if (!member.Has<AttachedToEntity>())
+                            continue;
+
+                        float currentDistance = member.Get<AttachedToEntity>().RelativePosition.Length();
+
+                        ref var cellStats = ref member.Get<CellProperties>();
+                        if (!cellStats.IsMembraneReady())
+                        {
+                            // Otherwise sometimes size would be incorrect, so we wait until membrane is ready before
+                            // calculating
+                            GD.Print("Player size skipping non-ready membrane");
+                            return false;
+                        }
+
+                        var membraneSize = cellStats.CreatedMembrane?.EncompassingCircleRadius ?? 0;
+
+                        float outerDistance = currentDistance + membraneSize;
+
+                        if (outerDistance > gameplayDistance)
+                            gameplayDistance = outerDistance;
+                    }
+
+                    if (gameplayDistance > maxDistance)
+                        maxDistance = gameplayDistance;
+                }
+                catch (Exception e)
+                {
+                    GD.PrintErr("Failed to calculate extra view distance from current colony: ", e);
+                }
+            }
 
             // Extra padding, just in case
             maxDistance += 20.0f;
+
+            // Each cell gives more padding distance to make this max zoom out effect more visible and lets the
+            // player actually see stuff outside their colony.
+            // Note: this could use the static cell count to make the view distance less variable. Right now this only
+            // allows the biggest zoom outs when controlling actually a big colony.
+            // maxDistance += species.ModifiableGameplayCells.Count * Constants.MULTICELLULAR_EXTRA_VIEW_PER_CELL;
+            maxDistance += currentCellCount * Constants.MULTICELLULAR_EXTRA_VIEW_PER_CELL;
+
+            // Give a little extra increase for colonies with many cells as a one-time increase
+            if (currentCellCount >= 10)
+                maxDistance *= Constants.MULTICELLULAR_CAMERA_MAX_VISION_RANGE_MULTIPLIER;
 
             Camera.MinCameraHeight = Constants.MULTICELLULAR_CAMERA_MIN_HEIGHT;
             Camera.MaxCameraHeight = float.Clamp(MathUtils.CameraDistanceFromRadiusOfObject(maxDistance, Camera.Fov),
@@ -2054,6 +2139,19 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             Camera.MinCameraHeight = Constants.MICROBE_CAMERA_MIN_HEIGHT;
             Camera.MaxCameraHeight = Constants.MICROBE_CAMERA_MAX_HEIGHT;
         }
+
+        // Immediately clamp camera height as it looks better than waiting for the player to try to zoom before
+        // forcing the height change.
+        if (Camera.CameraHeight > Camera.MaxCameraHeight)
+        {
+            // Now it combines with the respawn animation with this if-check
+            if (HasAlivePlayer)
+            {
+                Camera.CameraHeight = Camera.MaxCameraHeight;
+            }
+        }
+
+        return true;
     }
 
     private void UpdateBackground()

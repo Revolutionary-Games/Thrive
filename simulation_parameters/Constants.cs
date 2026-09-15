@@ -858,9 +858,19 @@ public static class Constants
     public const float MULTICELLULAR_CAMERA_MIN_HEIGHT = 8.0f;
 
     /// <summary>
-    ///   The highest that the dynamic multicellular camera max height can get.
+    ///   Multiplier for the maximum multicellular stage camera vision range when controlling a large colony.
+    ///   Note that this cannot still cause the value to exceed <see cref="MULTICELLULAR_CAMERA_MAX_HEIGHT"/>
     /// </summary>
-    public const float MULTICELLULAR_CAMERA_MAX_HEIGHT = 180.0f;
+    public const float MULTICELLULAR_CAMERA_MAX_VISION_RANGE_MULTIPLIER = 1.15f;
+
+    public const float MULTICELLULAR_EXTRA_VIEW_PER_CELL = 3;
+
+    /// <summary>
+    ///   The highest that the dynamic multicellular camera max height can get. This cannot be increased further
+    ///   without adjusting game systems as that otherwise would cause pop in and compound cloud plane movement glitch
+    ///   visuals.
+    /// </summary>
+    public const float MULTICELLULAR_CAMERA_MAX_HEIGHT = 110.0f;
 
     /// <summary>
     ///   Cells need at least this much ATP to regenerate health passively. This is now less than one to allow cells
