@@ -114,7 +114,7 @@ public class ChunkCompoundPressure : SelectionPressure
 
         if (species is MicrobeSpecies microbeSpecies)
         {
-            nominalStorageCapacity = microbeSpecies.StorageCapacities.Nominal;
+            nominalStorageCapacity = microbeSpecies.NominalStorageCapacity;
 
             if (microbeSpecies.CanEngulf &&
                 cache.GetBaseHexSizeForSpecies(microbeSpecies) >= chunk.Size * Constants.ENGULF_SIZE_RATIO_REQ)
