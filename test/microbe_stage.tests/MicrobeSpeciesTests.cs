@@ -130,6 +130,54 @@ public class MicrobeSpeciesTests
         AssertThat(species2!.GetVisualHashCode()).IsEqual(desiredHash2);
     }
 
+    /// <summary>
+    ///   Checks exact nominal and compound capacities when adding a vacuole, specializing it for ammonia,
+    ///   and changing the same upgrade to glucose.
+    /// </summary>
+    [TestCase]
+    public void VacuoleSpecializationUpdatesCompoundCapacities()
+    {
+        var species = CreateMicrobe(37, "StorageSpecialization", "single", "cytoplasm");
+        species.CellTypeSpecializationBonus = 1;
+
+        // Current balance values: cytoplasm stores 0.5, a vacuole stores 5, and specialization doubles it.
+        var capacity = species.StorageCapacities;
+        AssertBits(species.NominalStorageCapacity, 0.5f);
+        AssertBits(capacity.Nominal, 0.5f);
+        AssertThat(capacity.Specific).IsEmpty();
+        AssertBits(capacity.Nominal + capacity.Specific.GetValueOrDefault(Compound.Ammonia), 0.5f);
+        AssertBits(capacity.Nominal + capacity.Specific.GetValueOrDefault(Compound.Glucose), 0.5f);
+
+        var vacuole = CreateOrganelle("vacuole", new Hex(1, 0));
+        species.Organelles.Add(vacuole);
+        capacity = species.StorageCapacities;
+        AssertBits(species.NominalStorageCapacity, 5.5f);
+        AssertBits(capacity.Nominal, 5.5f);
+        AssertThat(capacity.Specific).IsEmpty();
+        AssertBits(capacity.Nominal + capacity.Specific.GetValueOrDefault(Compound.Ammonia), 5.5f);
+        AssertBits(capacity.Nominal + capacity.Specific.GetValueOrDefault(Compound.Glucose), 5.5f);
+
+        Specialize(vacuole, Compound.Ammonia);
+        capacity = species.StorageCapacities;
+        AssertBits(species.NominalStorageCapacity, 0.5f);
+        AssertBits(capacity.Nominal, 0.5f);
+        AssertCompounds(capacity.Specific, new Dictionary<Compound, float> { { Compound.Ammonia, 10 } });
+        AssertBits(capacity.Nominal + capacity.Specific.GetValueOrDefault(Compound.Ammonia), 10.5f);
+        AssertBits(capacity.Nominal + capacity.Specific.GetValueOrDefault(Compound.Glucose), 0.5f);
+
+        var upgrades = (StorageComponentUpgrades)vacuole.ModifiableUpgrades!.CustomUpgradeData!;
+        upgrades.SpecializedFor = Compound.Glucose;
+        capacity = species.StorageCapacities;
+        AssertBits(species.NominalStorageCapacity, 0.5f);
+        AssertBits(capacity.Nominal, 0.5f);
+        AssertCompounds(capacity.Specific, new Dictionary<Compound, float> { { Compound.Glucose, 10 } });
+        AssertBits(capacity.Nominal + capacity.Specific.GetValueOrDefault(Compound.Ammonia), 0.5f);
+        AssertBits(capacity.Nominal + capacity.Specific.GetValueOrDefault(Compound.Glucose), 10.5f);
+    }
+
+    /// <summary>
+    ///   Compares the nominal-only and complete capacity results for absent, ordinary, and specialized storage.
+    /// </summary>
     [TestCase]
     public void NominalCapacityMatchesCompleteCapacityAcrossStorageLayouts()
     {
@@ -155,6 +203,9 @@ public class MicrobeSpeciesTests
         AssertCurrentCapacity(specialized);
     }
 
+    /// <summary>
+    ///   Verifies that direct organelle, upgrade, and bonus changes are visible without edit notifications.
+    /// </summary>
     [TestCase]
     public void NominalCapacityImmediatelyObservesDirectChanges()
     {
@@ -189,6 +240,9 @@ public class MicrobeSpeciesTests
         AssertBits(species.NominalStorageCapacity, beforeAddition);
     }
 
+    /// <summary>
+    ///   Checks dictionary independence and preserves capacities and initial compounds across lifecycle changes.
+    /// </summary>
     [TestCase]
     public void StorageResultsRemainIndependentAcrossReadsAndLifecycleChanges()
     {
@@ -230,6 +284,9 @@ public class MicrobeSpeciesTests
         AssertCompounds(species.InitialCompounds, initial);
     }
 
+    /// <summary>
+    ///   Preserves specialized capacities and initial compounds through an archive round trip and reinitialization.
+    /// </summary>
     [TestCase]
     public void SpecializedStorageAndInitialCompoundsSurviveSerialization()
     {
@@ -259,6 +316,9 @@ public class MicrobeSpeciesTests
         AssertCompounds(loaded.InitialCompounds, initial);
     }
 
+    /// <summary>
+    ///   Replaces the organelle upgrades with storage specialization for the requested compound.
+    /// </summary>
     private static void Specialize(OrganelleTemplate organelle, Compound compound)
     {
         organelle.ModifiableUpgrades = new OrganelleUpgrades
@@ -267,11 +327,17 @@ public class MicrobeSpeciesTests
         };
     }
 
+    /// <summary>
+    ///   Checks bitwise agreement between the nominal-only and complete capacity getters.
+    /// </summary>
     private static void AssertCurrentCapacity(MicrobeSpecies species)
     {
         AssertBits(species.NominalStorageCapacity, species.StorageCapacities.Nominal);
     }
 
+    /// <summary>
+    ///   Checks the complete compound key set and bitwise equality of every expected value.
+    /// </summary>
     private static void AssertCompounds(Dictionary<Compound, float> actual, Dictionary<Compound, float> expected)
     {
         AssertThat(actual.Count).IsEqual(expected.Count);

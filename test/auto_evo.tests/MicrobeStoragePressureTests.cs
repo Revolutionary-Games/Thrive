@@ -13,6 +13,9 @@ using static SimulationCacheTestFixtures;
 [RequireGodotRuntime]
 public class MicrobeStoragePressureTests
 {
+    /// <summary>
+    ///   Preserves chunk, cloud, and reproduction scores using float bit patterns recorded before the optimization.
+    /// </summary>
     [TestCase(0, 1049475463, 1066034994, 1102323773)]
     [TestCase(1, 1041636084, 1057378690, 1093599037)]
     [TestCase(2, 1023134050, 1022469912, 1059252468)]
@@ -49,6 +52,9 @@ public class MicrobeStoragePressureTests
         AssertThat(BitConverter.SingleToInt32Bits(reproductionScore)).IsEqual(reproductionBits);
     }
 
+    /// <summary>
+    ///   Checks pre-optimization predation score bits with storage on both sides and fresh caches.
+    /// </summary>
     [TestCase(0, 1101293455, 1062016911)]
     [TestCase(1, 1101293455, 1062016911)]
     [TestCase(2, 1000514235, 1085952532)]
@@ -69,6 +75,11 @@ public class MicrobeStoragePressureTests
         AssertThat(BitConverter.SingleToInt32Bits(asPrey)).IsEqual(preyBits);
     }
 
+    /// <summary>
+    ///   Creates a compact species with toxins and vacuoles for storage-dependent scoring.
+    /// </summary>
+    /// <param name="id">Species identifier for the test</param>
+    /// <param name="specialization">0 for ordinary, 1 for mixed, or 2 for fully specialized storage</param>
     private static MicrobeSpecies CreateStorageSpecies(uint id, int specialization)
     {
         var species = CreateMicrobe(id, "StorageScores", "single", "cytoplasm");
