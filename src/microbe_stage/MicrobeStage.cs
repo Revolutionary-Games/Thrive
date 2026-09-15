@@ -2088,7 +2088,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
                         if (!member.Has<AttachedToEntity>())
                             continue;
 
-                        float currentDistanceSquared = member.Get<AttachedToEntity>().RelativePosition.LengthSquared();
+                        float currentDistance = member.Get<AttachedToEntity>().RelativePosition.Length();
 
                         ref var cellStats = ref member.Get<CellProperties>();
                         if (!cellStats.IsMembraneReady())
@@ -2101,13 +2101,11 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
                         var membraneSize = cellStats.CreatedMembrane?.EncompassingCircleRadius ?? 0;
 
-                        currentDistanceSquared += membraneSize * membraneSize;
+                        float outerDistance = currentDistance + membraneSize;
 
-                        if (currentDistanceSquared > gameplayDistance)
-                            gameplayDistance = currentDistanceSquared;
+                        if (outerDistance > gameplayDistance)
+                            gameplayDistance = outerDistance;
                     }
-
-                    gameplayDistance = MathF.Sqrt(gameplayDistance);
 
                     if (gameplayDistance > maxDistance)
                         maxDistance = gameplayDistance;
