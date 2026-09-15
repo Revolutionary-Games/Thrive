@@ -3,28 +3,23 @@ using Godot;
 
 /// <summary>
 ///   A free-flying camera for looking around a 3D scene, behaving like freelook mode in the Godot editor. Hold the
-///   right mouse button to look around and move with WASD, and the cursor is left alone otherwise.
+///   <c>e_secondary</c> (e.g. RMB) to look around and move with the directional controls (e.g. WASD or any other input
+///   scheme), and the cursor is left alone otherwise.
 /// </summary>
 [GlobalClass]
 public partial class FreeViewCamera : Camera3D
 {
     /// <summary>
-    ///   Units moved per second. The mouse wheel adjusts this while looking around.
+    ///   Units moved per second. The zoom key adjusts this while looking around.
     /// </summary>
     [Export]
     public float MoveSpeed = 10.0f;
 
     /// <summary>
-    ///   What the move speed is multiplied by while shift is held.
+    ///   What the move speed is multiplied by while <c>g_sprint</c> is held.
     /// </summary>
     [Export]
     public float SprintMultiplier = 3.0f;
-
-    [Export]
-    public float MouseSensitivity = 0.003f;
-
-    [Export]
-    public bool InvertY;
 
     [Export]
     public float MinMoveSpeed = 0.05f;
@@ -33,12 +28,14 @@ public partial class FreeViewCamera : Camera3D
     public float MaxMoveSpeed = 1000.0f;
 
     /// <summary>
-    ///   What one notch of the mouse wheel multiplies or divides the move speed by.
+    ///   What one notch of the zoom key multiplies or divides the move speed by.
     /// </summary>
     [Export(PropertyHint.Range, "1.01,4.0,0.01")]
     public float SpeedAdjustFactor = 1.1f;
 
     private const float MaxPitch = MathF.PI * 0.5f - 0.01f;
+
+    private readonly StringName sprintAction = new("g_sprint");
 
     private float pitch;
     private float yaw;
@@ -55,48 +52,18 @@ public partial class FreeViewCamera : Camera3D
         ApplyRotation();
     }
 
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+        InputManager.RegisterReceiver(this);
+    }
+
     public override void _ExitTree()
     {
         base._ExitTree();
+        InputManager.UnregisterReceiver(this);
 
         StopLooking();
-    }
-
-    public override void _Process(double delta)
-    {
-        if (!looking)
-            return;
-
-        var basis = GlobalBasis;
-        var direction = Vector3.Zero;
-
-        if (Input.IsPhysicalKeyPressed(Key.W))
-            direction -= basis.Z;
-
-        if (Input.IsPhysicalKeyPressed(Key.S))
-            direction += basis.Z;
-
-        if (Input.IsPhysicalKeyPressed(Key.A))
-            direction -= basis.X;
-
-        if (Input.IsPhysicalKeyPressed(Key.D))
-            direction += basis.X;
-
-        if (Input.IsPhysicalKeyPressed(Key.E))
-            direction += Vector3.Up;
-
-        if (Input.IsPhysicalKeyPressed(Key.Q))
-            direction -= Vector3.Up;
-
-        if (direction.IsZeroApprox())
-            return;
-
-        float speed = MoveSpeed;
-
-        if (Input.IsPhysicalKeyPressed(Key.Shift))
-            speed *= SprintMultiplier;
-
-        GlobalPosition += direction.Normalized() * (speed * (float)delta);
     }
 
     public override void _Notification(int what)
@@ -105,47 +72,93 @@ public partial class FreeViewCamera : Camera3D
             StopLooking();
     }
 
-    public override void _Input(InputEvent @event)
+    [RunOnKeyChange("e_secondary", OnlyUnhandled = false)]
+    public void OnLookInput(bool pressed)
     {
-        if (@event is InputEventMouseButton button)
-        {
-            HandleMouseButton(button);
-            return;
-        }
-
-        if (@event is InputEventMouseMotion motion && looking)
-        {
-            yaw -= motion.Relative.X * MouseSensitivity;
-            pitch -= motion.Relative.Y * MouseSensitivity * (InvertY ? -1.0f : 1.0f);
-            pitch = Math.Clamp(pitch, -MaxPitch, MaxPitch);
-
-            ApplyRotation();
-            GetViewport().SetInputAsHandled();
-        }
+        SetLooking(pressed);
     }
 
-    private void HandleMouseButton(InputEventMouseButton button)
+    [RunOnAxis([
+            RunOnKeyAttribute.CAPTURED_MOUSE_AS_AXIS_PREFIX +
+            nameof(RunOnRelativeMouseAttribute.CapturedMouseAxis.Right),
+            "g_look_yaw_negative",
+            RunOnKeyAttribute.CAPTURED_MOUSE_AS_AXIS_PREFIX +
+            nameof(RunOnRelativeMouseAttribute.CapturedMouseAxis.Left),
+            "g_look_yaw_positive",
+        ], [-1.0f, 1.0f],
+        Look = RunOnAxisAttribute.LookMode.Yaw)]
+    [RunOnAxis([
+            RunOnKeyAttribute.CAPTURED_MOUSE_AS_AXIS_PREFIX +
+            nameof(RunOnRelativeMouseAttribute.CapturedMouseAxis.Down),
+            "g_look_pitch_negative",
+            RunOnKeyAttribute.CAPTURED_MOUSE_AS_AXIS_PREFIX +
+            nameof(RunOnRelativeMouseAttribute.CapturedMouseAxis.Up),
+            "g_look_pitch_positive",
+        ], [-1.0f, 1.0f],
+        Look = RunOnAxisAttribute.LookMode.Pitch)]
+    [RunOnAxisGroup(InvokeAlsoWithNoInput = false, InvokeWithDelta = false)]
+    public void OnLook(float yawMovement, float pitchMovement)
     {
-        if (button.ButtonIndex == MouseButton.Right)
-        {
-            SetLooking(button.Pressed);
-            GetViewport().SetInputAsHandled();
-            return;
-        }
-
-        if (!looking || !button.Pressed)
+        if (!looking)
             return;
 
-        if (button.ButtonIndex == MouseButton.WheelUp)
+        yaw += yawMovement;
+        pitch = Math.Clamp(pitch + pitchMovement, -MaxPitch, MaxPitch);
+
+        ApplyRotation();
+    }
+
+    [RunOnAxis(["g_move_forward", "g_move_backwards"], [-1.0f, 1.0f])]
+    [RunOnAxis(["g_move_left", "g_move_right"], [-1.0f, 1.0f])]
+    [RunOnAxis(["g_move_down", "g_move_up"], [-1.0f, 1.0f])]
+    [RunOnAxisGroup]
+    public void Move(double delta, float forwardBackward, float leftRight, float downUp)
+    {
+        if (!looking)
+            return;
+
+        var basis = GlobalBasis;
+        var direction = basis.Z * forwardBackward + basis.X * leftRight + Vector3.Up * downUp;
+
+        if (direction.IsZeroApprox())
+            return;
+
+        float speed = MoveSpeed;
+
+        if (Input.IsActionPressed(sprintAction))
+            speed *= SprintMultiplier;
+
+        GlobalPosition += direction.Normalized() * (speed * (float)delta);
+    }
+
+    [RunOnKeyDownWithRepeat("g_zoom_in")]
+    public bool IncreaseMoveSpeed()
+    {
+        if (!looking)
+            return false;
+
+        AdjustMoveSpeed(SpeedAdjustFactor);
+        return true;
+    }
+
+    [RunOnKeyDownWithRepeat("g_zoom_out")]
+    public bool DecreaseMoveSpeed()
+    {
+        if (!looking)
+            return false;
+
+        AdjustMoveSpeed(1.0f / SpeedAdjustFactor);
+        return true;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
         {
-            AdjustMoveSpeed(SpeedAdjustFactor);
-            GetViewport().SetInputAsHandled();
+            sprintAction.Dispose();
         }
-        else if (button.ButtonIndex == MouseButton.WheelDown)
-        {
-            AdjustMoveSpeed(1.0f / SpeedAdjustFactor);
-            GetViewport().SetInputAsHandled();
-        }
+
+        base.Dispose(disposing);
     }
 
     private void ApplyRotation()

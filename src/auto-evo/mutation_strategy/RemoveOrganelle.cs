@@ -92,6 +92,9 @@ public class RemoveOrganelle : IMutationStrategy<Species>
             // This is now slightly improved - hhyyrylainen
             var count = baseSpecies.Organelles.Count;
 
+            var occupied = workMemory.WorkingMemory3;
+            occupied.Clear();
+
             for (var i = 0; i < count; ++i)
             {
                 var parentOrganelle = baseOrganelles[i];
@@ -99,10 +102,24 @@ public class RemoveOrganelle : IMutationStrategy<Species>
                 if (ReferenceEquals(parentOrganelle, organelle))
                     continue;
 
-                // Copy the organelle
-                var newOrganelle = parentOrganelle.Clone();
-                newSpecies.Organelles.AddIfPossible(newOrganelle, workMemory.WorkingMemory1,
-                    workMemory.WorkingMemory2);
+                var definition = parentOrganelle.Definition;
+                var position = parentOrganelle.Position;
+                var orientation = parentOrganelle.Orientation;
+
+                // Same decision as CanPlace: skipped only if it overlaps an organelle copied earlier, which means the
+                // parent layout was already invalid
+                if (!newSpecies.Organelles.IsOrganellePositionFree(definition, position.Q, position.R, orientation,
+                        occupied, out _))
+                {
+                    continue;
+                }
+
+                var rotated = definition.GetRotatedHexes(orientation);
+                int hexCount = rotated.Count;
+                for (var rotatedIndex = 0; rotatedIndex < hexCount; ++rotatedIndex)
+                    occupied.Add(rotated[rotatedIndex] + position);
+
+                newSpecies.Organelles.AddAutoEvoAttemptOrganelle(parentOrganelle.Clone());
             }
 
             AttachIslandHexes(newSpecies.Organelles, workMemory);
@@ -125,6 +142,8 @@ public class RemoveOrganelle : IMutationStrategy<Species>
         var cellTypeCount = baseSpecies.CellTypes.Count;
         Span<int> candidateIndices = stackalloc int[Constants.AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS];
 
+        MutationWorkMemory? workMemory = null;
+
         for (var i = 0; i < cellTypeCount; ++i)
         {
             var baseCellType = baseSpecies.ModifiableCellTypes[i];
@@ -134,7 +153,10 @@ public class RemoveOrganelle : IMutationStrategy<Species>
             var baseOrganelles = baseCellType.ModifiableOrganelles.Organelles;
             int candidateCount = SelectOrganelleIndices(baseOrganelles, candidateIndices, random);
 
-            MutationWorkMemory? workMemory = null;
+            workMemory ??= new MutationWorkMemory();
+
+            var occupied = workMemory.WorkingMemory3;
+            occupied.Clear();
 
             foreach (int candidateIndex in candidateIndices[..candidateCount])
             {
@@ -153,8 +175,6 @@ public class RemoveOrganelle : IMutationStrategy<Species>
                 var newCellType = newSpecies.ModifiableCellTypes[i];
                 var newCellTypeOrganelles = newCellType.ModifiableOrganelles;
 
-                workMemory ??= new MutationWorkMemory();
-
                 // Clone organelles for the cell types not currently targeted
                 for (var j = 0; j < cellTypeCount; ++j)
                 {
@@ -162,6 +182,8 @@ public class RemoveOrganelle : IMutationStrategy<Species>
 
                     if (ReferenceEquals(clonedCellType, newCellType))
                         continue;
+
+                    occupied.Clear();
 
                     var parentCellTypeOrganelles =
                         baseSpecies.ModifiableCellTypes[j].ModifiableOrganelles;
@@ -174,16 +196,30 @@ public class RemoveOrganelle : IMutationStrategy<Species>
                         if (ReferenceEquals(parentOrganelle, organelle))
                             continue;
 
-                        // Copy the organelle
-                        var copiedOrganelle = parentOrganelle.Clone();
-                        clonedCellType.ModifiableOrganelles.AddIfPossible(copiedOrganelle,
-                            workMemory.WorkingMemory1, workMemory.WorkingMemory2);
+                        var definition = parentOrganelle.Definition;
+                        var position = parentOrganelle.Position;
+                        var orientation = parentOrganelle.Orientation;
+
+                        if (!clonedCellType.ModifiableOrganelles.IsOrganellePositionFree(definition, position.Q,
+                                position.R, orientation, occupied, out _))
+                        {
+                            continue;
+                        }
+
+                        var rotated = definition.GetRotatedHexes(orientation);
+                        int hexCount = rotated.Count;
+                        for (var rotatedIndex = 0; rotatedIndex < hexCount; ++rotatedIndex)
+                            occupied.Add(rotated[rotatedIndex] + position);
+
+                        clonedCellType.ModifiableOrganelles.AddAutoEvoAttemptOrganelle(parentOrganelle.Clone());
                     }
                 }
 
                 // Clone the organelles for the targeted cell type, excluding the targeted organelle
                 // Is this the best way to do this?
                 var organelleCount = baseCellType.Organelles.Count;
+
+                occupied.Clear();
 
                 for (var j = 0; j < organelleCount; ++j)
                 {
@@ -192,10 +228,22 @@ public class RemoveOrganelle : IMutationStrategy<Species>
                     if (ReferenceEquals(parentOrganelle, organelle))
                         continue;
 
-                    // Copy the organelle
-                    var newOrganelle = parentOrganelle.Clone();
-                    newCellTypeOrganelles.AddIfPossible(newOrganelle, workMemory.WorkingMemory1,
-                        workMemory.WorkingMemory2);
+                    var definition = parentOrganelle.Definition;
+                    var position = parentOrganelle.Position;
+                    var orientation = parentOrganelle.Orientation;
+
+                    if (!newCellTypeOrganelles.IsOrganellePositionFree(definition, position.Q, position.R,
+                            orientation, occupied, out _))
+                    {
+                        continue;
+                    }
+
+                    var rotated = definition.GetRotatedHexes(orientation);
+                    int hexCount = rotated.Count;
+                    for (var rotatedIndex = 0; rotatedIndex < hexCount; ++rotatedIndex)
+                        occupied.Add(rotated[rotatedIndex] + position);
+
+                    newCellTypeOrganelles.AddAutoEvoAttemptOrganelle(parentOrganelle.Clone());
                 }
 
                 AttachIslandHexes(newCellTypeOrganelles, workMemory);
