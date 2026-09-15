@@ -2087,6 +2087,7 @@ public class SimulationCache
         {
             preyToolScores = GetPredationToolsRawScores(multicellularPrey);
             smallestPreyHexSize = preyHexSize;
+            var hasSelectedSmallestPreyCell = false;
             preyStorageNominal = multicellularPrey.StorageCapacities.Nominal;
 
             var totalToxinResistance = 0.0f;
@@ -2121,8 +2122,9 @@ public class SimulationCache
 
                 // for simplicity's sake we are for now taking the smallest size cell in the body
                 var cellTypeSize = GetBaseHexSizeForCellType(cellType);
-                if (cellTypeSize < smallestPreyHexSize)
+                if (!hasSelectedSmallestPreyCell || cellTypeSize < smallestPreyHexSize)
                 {
+                    hasSelectedSmallestPreyCell = true;
                     smallestPreyHexSize = cellTypeSize;
                     dissolverEnzyme = cellType.MembraneType.DissolverEnzyme;
                 }
