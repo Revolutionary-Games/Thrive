@@ -1131,7 +1131,13 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
     public override void OnReturnFromEditor()
     {
-        UpdatePatchSettings();
+        // Teleport the player to a random position if the environment should always be reset ehen leaving the editor
+        if (GameWorld.WorldSettings.Difficulty.AlwaysResetEnvironment)
+        {
+            TeleportPlayerToRandomNewPosition();
+        }
+
+        UpdatePatchSettings(true, true);
 
         base.OnReturnFromEditor();
 
@@ -1876,7 +1882,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         SaveHelper.QuickSave(this);
     }
 
-    protected override void UpdatePatchSettings(bool promptPatchNameChange = true)
+    protected override void UpdatePatchSettings(bool promptPatchNameChange = true, bool returningFromEditor = false)
     {
         ClearResolvedTolerancesCache();
 
@@ -1884,7 +1890,8 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         // TODO: would be nice to skip this if we are loading a save made in the editor as this gets called twice when
         // going back to the stage
-        if (patchManager.ApplyChangedPatchSettingsIfNeeded(currentPatch, this))
+        if (patchManager.ResetPatchIfNeeded(currentPatch, this,
+                GameWorld.WorldSettings.Difficulty.AlwaysResetEnvironment, returningFromEditor))
         {
             if (promptPatchNameChange)
                 HUD.ShowPatchName(CurrentPatchName.ToString());
@@ -2020,6 +2027,18 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         }
 
         return radius;
+    }
+
+    private void TeleportPlayerToRandomNewPosition()
+    {
+        ref var position = ref Player.Get<WorldPosition>();
+        var newPosition = new Vector3(random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE), 0,
+            random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE));
+        ref var physics = ref Player.Get<Physics>();
+
+        physics.TeleportTo(ref position, newPosition, WorldSimulation);
+        WorldSimulation.ReportPlayerPosition(newPosition);
+        WorldSimulation.ClearPlayerLocationDependentCaches();
     }
 
     private void UpdateZoomLevels(bool isMulticellular)

@@ -373,7 +373,7 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
         BaseHUD.OnStageLoaded(this);
     }
 
-    protected virtual void UpdatePatchSettings(bool promptPatchNameChange = true)
+    protected virtual void UpdatePatchSettings(bool promptPatchNameChange = true, bool returningFromEditor = false)
     {
         throw new GodotAbstractMethodNotOverriddenException();
     }
