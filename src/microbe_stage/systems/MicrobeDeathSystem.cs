@@ -108,14 +108,14 @@ public partial class MicrobeDeathSystem : BaseSystem<World, float>
         {
             foreach (var entry in organelle.Definition.InitialComposition)
             {
-                compoundsToRelease.TryGetValue(entry.Key, out var existing);
-
-                // Only add up if there are still some compounds left, otherwise
-                // we're releasing compounds out of thin air.
-                if (existing > 0)
+                if (compoundsToRelease.TryGetValue(entry.Key, out var existing) && existing > 0)
                 {
                     compoundsToRelease[entry.Key] =
                         existing + entry.Value * Constants.COMPOUND_MAKEUP_RELEASE_FRACTION;
+                }
+                else
+                {
+                    compoundsToRelease[entry.Key] = entry.Value * Constants.COMPOUND_MAKEUP_RELEASE_FRACTION;
                 }
             }
         }
