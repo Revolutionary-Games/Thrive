@@ -103,7 +103,7 @@ public partial class MicrobeDeathSystem : BaseSystem<World, float>
             compoundsToRelease[type.ID] = amount;
         }
 
-        // Eject some part of the build cost of all the organelles
+        // Eject some part of the build cost of all the organelles, plus glucose based on that
         EngulfableHelpers.CalculateDigestibleCompoundsFromOrganelles(organelleContainer.Organelles, compoundsToRelease,
             Constants.COMPOUND_MAKEUP_RELEASE_FRACTION);
 

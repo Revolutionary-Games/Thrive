@@ -571,7 +571,7 @@ public static class EngulfableHelpers
 
         var result = new Dictionary<Compound, float>();
 
-        // Add some part of the build cost of all the organelles
+        // Add some part of the build cost of all the organelles, plus glucose based on that
         CalculateDigestibleCompoundsFromOrganelles(organelleContainer.Organelles, result);
         return result;
     }
