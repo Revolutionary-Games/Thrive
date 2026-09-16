@@ -531,6 +531,25 @@ public static class EngulfableHelpers
             Constants.ADDITIONAL_DIGESTIBLE_GLUCOSE_AMOUNT_MULTIPLIER;
     }
 
+    public static void CalculateDigestibleCompoundsFromOrganelles(OrganelleLayout<PlacedOrganelle> organelles,
+        Dictionary<Compound, float> result, float releaseFraction = 1.0f)
+    {
+        foreach (var organelle in organelles.Organelles)
+        {
+            foreach (var entry in organelle.Definition.InitialComposition)
+            {
+                if (result.TryGetValue(entry.Key, out var existing) && existing > 0)
+                {
+                    result[entry.Key] = existing + entry.Value * releaseFraction;
+                }
+                else
+                {
+                    result[entry.Key] = entry.Value * releaseFraction;
+                }
+            }
+        }
+    }
+
     private static Dictionary<Compound, float> CalculateMicrobeAdditionalDigestibleCompounds(
         ref OrganelleContainer organelleContainer, ref CompoundStorage heldCompounds)
     {
@@ -540,17 +559,7 @@ public static class EngulfableHelpers
         var result = new Dictionary<Compound, float>();
 
         // Add some part of the build cost of all the organelles
-        foreach (var organelle in organelleContainer.Organelles)
-        {
-            foreach (var entry in organelle.Definition.InitialComposition)
-            {
-                if (!SimulationParameters.GetCompound(entry.Key).Digestible)
-                    continue;
-
-                result.TryGetValue(entry.Key, out float existing);
-                result[entry.Key] = existing + entry.Value;
-            }
-        }
+        CalculateDigestibleCompoundsFromOrganelles(organelleContainer.Organelles, result);
 
         CalculateBonusDigestibleGlucose(result, heldCompounds.Compounds);
         return result;
