@@ -12,7 +12,7 @@ public partial class CellBodyPlanEditorComponent :
     HexEditorComponentBase<MulticellularEditor, CombinedEditorAction, EditorAction, HexWithData<CellTemplate>,
         MulticellularSpecies>, IArchiveUpdatable
 {
-    public const ushort SERIALIZATION_VERSION = 9;
+    public const ushort SERIALIZATION_VERSION = 10;
 
     [Export]
     public int MaxToleranceWarnings = 3;
@@ -433,23 +433,6 @@ public partial class CellBodyPlanEditorComponent :
             foreach (var editedCellTemplate in editedMicrobeCells.AsModifiable())
             {
                 newLayout.AddFast(editedCellTemplate, workMemory1, workMemory2);
-
-                // A gamete cell type shouldn't be present in the body plan
-                if (GameteACellType != null && ReferenceEquals(editedCellTemplate.Data?.CellType, GameteACellType))
-                {
-                    var cellType = (CellType)GetEditedCellDataIfEdited(GameteACellType).Clone();
-                    cellType.SplitFromTypeName = GameteACellType.CellTypeName;
-                    GameteACellType = cellType;
-                    OnCellTypeAdded(cellType);
-                }
-
-                if (GameteBCellType != null && ReferenceEquals(editedCellTemplate.Data?.CellType, GameteBCellType))
-                {
-                    var cellType = (CellType)GetEditedCellDataIfEdited(GameteBCellType).Clone();
-                    cellType.SplitFromTypeName = GameteBCellType.CellTypeName;
-                    GameteBCellType = cellType;
-                    OnCellTypeAdded(cellType);
-                }
             }
 
             editedMicrobeCells = newLayout;
@@ -714,6 +697,12 @@ public partial class CellBodyPlanEditorComponent :
             {
                 ReproductionMethod = MulticellularReproductionMethod.Budding;
             }
+        }
+
+        if (version < 10)
+        {
+            GameteACellType = null;
+            GameteBCellType = null;
         }
     }
 

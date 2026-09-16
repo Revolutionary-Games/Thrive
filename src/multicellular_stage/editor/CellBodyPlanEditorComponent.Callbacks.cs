@@ -229,62 +229,25 @@ public partial class CellBodyPlanEditorComponent
         Editor.DirtyMutationPointsCache();
     }
 
-    // These next 7 functions are only here for save compatibility and are otherwise unused
+    // These next 6 functions are only here for save compatibility. They intentionally do nothing.
     [ArchiveAllowedMethod]
     private void DoGameteACellChangeAction(GameteACellTypeChangeActionData data)
     {
-        // As mentioned above, this and other of the 7 actions here and below are obsolete functions kept for save
-        // compatibility and shouldn't be used otherwise
-        SwitchGameteCellTypeLegacy(data.OldCellType, data.NewCellType, SpecialCellArchetype.GameteA);
     }
 
     [ArchiveAllowedMethod]
     private void UndoGameteACellChangeAction(GameteACellTypeChangeActionData data)
     {
-        SwitchGameteCellTypeLegacy(data.NewCellType, data.OldCellType, SpecialCellArchetype.GameteA);
     }
 
     [ArchiveAllowedMethod]
     private void DoGameteBCellChangeAction(GameteBCellTypeChangeActionData data)
     {
-        SwitchGameteCellTypeLegacy(data.OldCellType, data.NewCellType, SpecialCellArchetype.GameteB);
     }
 
     [ArchiveAllowedMethod]
     private void UndoGameteBCellChangeAction(GameteBCellTypeChangeActionData data)
     {
-        SwitchGameteCellTypeLegacy(data.NewCellType, data.OldCellType, SpecialCellArchetype.GameteB);
-    }
-
-    /// <summary>
-    ///   Only for save compatibility reasons
-    /// </summary>
-    private void SwitchGameteCellTypeLegacy(CellType? oldCellType, CellType? newCellType,
-        SpecialCellArchetype specialCellArchetype)
-    {
-        var specialCellType = GetSpecialCellType(specialCellArchetype);
-
-        // A dirty hack to determine whether the previous gamete cell type was added in a previous editor session
-        if (!ReferenceEquals(oldCellType, specialCellType)
-            && specialCellType != null)
-        {
-            Editor.EditedSpecies.ModifiableCellTypes.Remove(specialCellType);
-        }
-
-        CellType? cellTypeToUpdateTo = null;
-
-        if (newCellType != null)
-        {
-            cellTypeToUpdateTo = (CellType)GetEditedCellDataIfEdited(newCellType).Clone();
-            cellTypeToUpdateTo.SplitFromTypeName = newCellType.CellTypeName;
-        }
-
-        SetSpecialCellType(specialCellArchetype, cellTypeToUpdateTo);
-
-        if (cellTypeToUpdateTo != null)
-            OnCellTypeAdded(cellTypeToUpdateTo);
-
-        UpdateSpecialCellTypeDisplays();
     }
 
     [ArchiveAllowedMethod]
