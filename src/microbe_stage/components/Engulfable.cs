@@ -573,8 +573,6 @@ public static class EngulfableHelpers
 
         // Add some part of the build cost of all the organelles
         CalculateDigestibleCompoundsFromOrganelles(organelleContainer.Organelles, result);
-
-        CalculateBonusDigestibleGlucose(result, heldCompounds.Compounds);
         return result;
     }
 }

@@ -107,8 +107,6 @@ public partial class MicrobeDeathSystem : BaseSystem<World, float>
         EngulfableHelpers.CalculateDigestibleCompoundsFromOrganelles(organelleContainer.Organelles, compoundsToRelease,
             Constants.COMPOUND_MAKEUP_RELEASE_FRACTION);
 
-        EngulfableHelpers.CalculateBonusDigestibleGlucose(compoundsToRelease, compounds);
-
         if (!compoundsToRelease.Any(entry => entry.Value > 0 && !float.IsNaN(entry.Value)))
         {
             GD.Print("No compounds found to release on microbe death, skipping chunks");
