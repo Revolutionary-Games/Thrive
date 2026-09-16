@@ -430,9 +430,26 @@ public partial class CellBodyPlanEditorComponent :
             var workMemory1 = new List<Hex>();
             var workMemory2 = new List<Hex>();
 
-            foreach (var editedMicrobeOrganelle in editedMicrobeCells.AsModifiable())
+            foreach (var editedCellTemplate in editedMicrobeCells.AsModifiable())
             {
-                newLayout.AddFast(editedMicrobeOrganelle, workMemory1, workMemory2);
+                newLayout.AddFast(editedCellTemplate, workMemory1, workMemory2);
+
+                // A gamete cell type shouldn't be present in the body plan
+                if (GameteACellType != null && ReferenceEquals(editedCellTemplate.Data?.CellType, GameteACellType))
+                {
+                    var cellType = (CellType)GetEditedCellDataIfEdited(GameteACellType).Clone();
+                    cellType.SplitFromTypeName = GameteACellType.CellTypeName;
+                    GameteACellType = cellType;
+                    OnCellTypeAdded(cellType);
+                }
+
+                if (GameteBCellType != null && ReferenceEquals(editedCellTemplate.Data?.CellType, GameteBCellType))
+                {
+                    var cellType = (CellType)GetEditedCellDataIfEdited(GameteBCellType).Clone();
+                    cellType.SplitFromTypeName = GameteBCellType.CellTypeName;
+                    GameteBCellType = cellType;
+                    OnCellTypeAdded(cellType);
+                }
             }
 
             editedMicrobeCells = newLayout;
