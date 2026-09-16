@@ -115,13 +115,13 @@ public partial class SkyEquippedEnvironment : WorldEnvironment
         SetupSky();
 
         // Compositor effects need a RenderingDevice, which only the Forward+ renderer provides.
-        if (ForceUseCompatibilityRenderer || RenderingUtils.IsRenderingDeviceAvailable())
+        if (ForceUseCompatibilityRenderer || !RenderingUtils.IsRenderingDeviceAvailable())
         {
-            SetupCompositorEffects();
+            SetupFallbackQuad();
         }
         else
         {
-            SetupFallbackQuad();
+            SetupCompositorEffects();
         }
 
         Environment = skyEnvironment;
