@@ -196,6 +196,10 @@ public class ModifyExistingSpecies : IRunStep
                 // Add these mutant species into a new miche to test them
                 foreach (var mutation in mutationsToTry)
                 {
+                    // All candidates entering the result tree need valid initial compounds, even if their
+                    // population will be too low to pass FinalApply and call OnEdited.
+                    mutation.MutatedSpecies.UpdateInitialCompounds();
+
                     // WARNING: this modifies the miche tree meaning that no other step may be running at the same time
                     // that uses the miche tree for the same patch. And no further auto-evo steps after this can use
                     // the original miche tree state.
@@ -479,7 +483,7 @@ public class ModifyExistingSpecies : IRunStep
                                 throw new Exception("Mutation shouldn't have a cache number yet");
 #endif
 
-                            tuple.Species.OnAttemptedInAutoEvo(true);
+                            tuple.Species.OnAttemptedInAutoEvo(true, false);
 
                             // If the visual hash of a species needs to be consistent while in the cache, then this
                             // would need to be called
