@@ -538,13 +538,26 @@ public static class EngulfableHelpers
         {
             foreach (var entry in organelle.Definition.InitialComposition)
             {
+                var amount = entry.Value * releaseFraction;
+
                 if (result.TryGetValue(entry.Key, out var existing) && existing > 0)
                 {
-                    result[entry.Key] = existing + entry.Value * releaseFraction;
+                    result[entry.Key] = existing + amount;
                 }
                 else
                 {
-                    result[entry.Key] = entry.Value * releaseFraction;
+                    result[entry.Key] = amount;
+                }
+
+                // Add glucose representing the organic molecules that the organelle is made of
+                if (result.TryGetValue(entry.Key, out var existingGlucose) && existingGlucose > 0)
+                {
+                    result[Compound.Glucose] = existingGlucose + amount *
+                        Constants.ADDITIONAL_DIGESTIBLE_GLUCOSE_AMOUNT_MULTIPLIER;
+                }
+                else
+                {
+                    result[Compound.Glucose] = amount * Constants.ADDITIONAL_DIGESTIBLE_GLUCOSE_AMOUNT_MULTIPLIER;
                 }
             }
         }
