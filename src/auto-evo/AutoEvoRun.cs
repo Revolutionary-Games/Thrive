@@ -195,8 +195,9 @@ public class AutoEvoRun
 
         var task = new Task(Run);
 
-        TaskExecutor.Instance.AddTask(task);
         started = true;
+        Running = true;
+        TaskExecutor.Instance.AddTask(task);
     }
 
     public void OneStep()
@@ -232,6 +233,7 @@ public class AutoEvoRun
         if (Running)
             return;
 
+        started = true;
         Running = true;
 
         var task = new Task(Run);
@@ -622,8 +624,15 @@ public class AutoEvoRun
                         }
                         else
                         {
-                            TaskExecutor.Instance.RunTasks(concurrentStepTasks, true);
-                            concurrentStepTasks.Clear();
+                            try
+                            {
+                                TaskExecutor.Instance.RunTasks(concurrentStepTasks, true);
+                            }
+                            finally
+                            {
+                                // RunTasks drains accepted work before returning or propagating a failure.
+                                concurrentStepTasks.Clear();
+                            }
                         }
                     }
                     else

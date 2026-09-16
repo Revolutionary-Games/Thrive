@@ -110,6 +110,22 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         }
     }
 
+    /// <summary>
+    ///   Current nominal storage capacity for Auto-Evo scoring that only needs nominal capacity.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Do not use this property for gameplay storage limits: it excludes compound-specific
+    ///     capacity provided by vacuole upgrades. Use <see cref="StorageCapacities"/> and include
+    ///     the relevant compound-specific capacity instead.
+    ///   </para>
+    ///   <para>
+    ///     Calculated from the current organelles and specialization bonus on every access.
+    ///   </para>
+    /// </remarks>
+    public float NominalStorageCapacity =>
+        MicrobeInternalCalculations.GetTotalNominalCapacity(Organelles, CellTypeSpecializationBonus);
+
     // TODO: precalculate this as it'll help auto-evo quite a bit
     /// <summary>
     ///   Compound capacities members of this species can store in their default configurations
