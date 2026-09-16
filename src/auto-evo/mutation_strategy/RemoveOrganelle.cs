@@ -87,7 +87,7 @@ public class RemoveOrganelle : IMutationStrategy<Species>
 
             workMemory ??= new MutationWorkMemory();
 
-            // Is this the best way to do this? Probably not, but this is how mutations.cs does is
+            // Is this the best way to do this? Probably not, but this is how mutations.cs does it
             // and the other way outright did not work
             // This is now slightly improved - hhyyrylainen
             var count = baseSpecies.Organelles.Count;
