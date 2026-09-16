@@ -550,7 +550,7 @@ public static class EngulfableHelpers
                 }
 
                 // Add glucose representing the organic molecules that the organelle is made of
-                if (result.TryGetValue(entry.Key, out var existingGlucose) && existingGlucose > 0)
+                if (result.TryGetValue(Compound.Glucose, out var existingGlucose) && existingGlucose > 0)
                 {
                     result[Compound.Glucose] = existingGlucose + amount *
                         Constants.ADDITIONAL_DIGESTIBLE_GLUCOSE_AMOUNT_MULTIPLIER;
