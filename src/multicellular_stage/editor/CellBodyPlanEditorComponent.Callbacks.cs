@@ -229,25 +229,29 @@ public partial class CellBodyPlanEditorComponent
         Editor.DirtyMutationPointsCache();
     }
 
-    // These next 6 functions are only here for save compatibility. They intentionally do nothing.
+    // These next 6 functions are only here for save compatibility, and shouldn't be used otherwise
     [ArchiveAllowedMethod]
     private void DoGameteACellChangeAction(GameteACellTypeChangeActionData data)
     {
+        // Because of the new gamete selector functionality, this intentionally does nothing
     }
 
     [ArchiveAllowedMethod]
     private void UndoGameteACellChangeAction(GameteACellTypeChangeActionData data)
     {
+        // Because of the new gamete selector functionality, this intentionally does nothing
     }
 
     [ArchiveAllowedMethod]
     private void DoGameteBCellChangeAction(GameteBCellTypeChangeActionData data)
     {
+        // Because of the new gamete selector functionality, this intentionally does nothing
     }
 
     [ArchiveAllowedMethod]
     private void UndoGameteBCellChangeAction(GameteBCellTypeChangeActionData data)
     {
+        // Because of the new gamete selector functionality, this intentionally does nothing
     }
 
     [ArchiveAllowedMethod]
