@@ -15,12 +15,14 @@ using static GdUnit4.Assertions;
 [RequireGodotRuntime]
 public class InitialCompoundsFinalizationTests
 {
-    [TestCase(false, false, false)]
-    [TestCase(false, false, true)]
-    [TestCase(true, false, false)]
-    [TestCase(true, true, false)]
+    // Two cytoplasms give the small bacterium 1.0 capacity with a 1.05 specialisation bonus.
+    // Other fixtures consume 0.007 glucose per cytoplasm for 40 seconds; multicellular species get 1.5 times that.
+    [TestCase(false, false, false, 1.05f)]
+    [TestCase(false, false, true, 0.007f * 2 * 40)]
+    [TestCase(true, false, false, 0.007f * 2 * 40 * 1.5f)]
+    [TestCase(true, true, false, 0.007f * 4 * 40 * 1.5f)]
     public void LowPopulationMicheOccupantHasFreshCompoundsAfterSaving(bool multicellular, bool massBudding,
-        bool specializedStorage)
+        bool specializedStorage, float expectedGlucose)
     {
         var settings = new WorldGenerationSettings
         {
@@ -58,13 +60,13 @@ public class InitialCompoundsFinalizationTests
         }
 
         AssertThat(completed).IsTrue();
-        AssertThat(strategy.Expected.Count > 0).IsTrue();
+        AssertThat(strategy.Candidates.Count > 0).IsTrue();
         AssertThat(miche.Occupant).IsNotNull();
         var occupant = miche.Occupant!;
         AssertThat(occupant).IsNotSame(parent);
-        AssertThat(strategy.Expected.ContainsKey(occupant)).IsTrue();
+        AssertThat(strategy.Candidates.Contains(occupant)).IsTrue();
         AssertThat(MichePopulation.CalculatePopulationInPatch(occupant, miche, patch, cache)).IsEqual(0);
-        AssertCompounds(strategy.Expected[occupant], occupant.InitialCompounds);
+        AssertCompounds(expectedGlucose, occupant.InitialCompounds);
 
         using var data = new MemoryStream();
         var manager = new ThriveArchiveManager();
@@ -84,50 +86,71 @@ public class InitialCompoundsFinalizationTests
         foreach (var loadedTree in loadedTrees.Values)
         {
             AssertThat(loadedTree.Occupant).IsNotNull();
-            AssertCompounds(strategy.Expected[occupant], loadedTree.Occupant!.InitialCompounds);
+            AssertCompounds(expectedGlucose, loadedTree.Occupant!.InitialCompounds);
         }
     }
 
-    [TestCase(false, false, false)]
-    [TestCase(false, false, true)]
-    [TestCase(true, false, false)]
-    [TestCase(true, true, false)]
+    [TestCase(false, false, false, 0.5f)]
+    [TestCase(false, false, true, 0.007f * 40)]
+    [TestCase(true, false, false, 0.007f * 40 * 1.5f)]
+    [TestCase(true, true, false, 0.007f * 2 * 40 * 1.5f)]
     public void OnEditedRefreshesCompoundsAfterDeferredAttempt(bool multicellular, bool massBudding,
-        bool specializedStorage)
+        bool specializedStorage, float expectedGlucose)
     {
         var parent = CreateSpecies(multicellular, massBudding, specializedStorage);
         var candidate = (Species)parent.Clone();
-        var expected = new Dictionary<Compound, float>(parent.InitialCompounds);
         candidate.InitialCompounds.Clear();
         candidate.InitialCompounds.Add(Compound.Ammonia, -100);
         candidate.OnAttemptedInAutoEvo(true, false);
         candidate.OnEdited();
 
-        AssertCompounds(expected, candidate.InitialCompounds);
-        AssertCompounds(expected, parent.InitialCompounds);
+        AssertCompounds(expectedGlucose, candidate.InitialCompounds);
+        AssertCompounds(expectedGlucose, parent.InitialCompounds);
     }
 
-#if DEBUG
-    [TestCase(false)]
-    [TestCase(true)]
-    public void ApplyingMutationWithMissingCompoundsPreservesParent(bool multicellular)
+    [TestCase(false, false, 0.5f)]
+    [TestCase(false, true, 0.5f)]
+    [TestCase(true, false, 0.007f * 40 * 1.5f)]
+    [TestCase(true, true, 0.007f * 40 * 1.5f)]
+    public void DeferredAttemptClearsCompoundsAndDefaultAttemptRefreshesThem(bool multicellular, bool refreshCache,
+        float expectedGlucose)
     {
         var parent = CreateSpecies(multicellular, false, false);
         var candidate = (Species)parent.Clone();
-        var expected = new Dictionary<Compound, float>(parent.InitialCompounds);
-        AssertThat(expected.Count > 0).IsTrue();
         candidate.InitialCompounds.Clear();
+        candidate.InitialCompounds.Add(Compound.Ammonia, -100);
+        candidate.OnAttemptedInAutoEvo(refreshCache, false);
 
-        AssertThrown(() => parent.ApplyMutation(candidate))
-            .IsInstanceOf<InvalidOperationException>()
-            .HasPropertyValue(nameof(Exception.Message),
-                $"Cannot apply mutation {candidate.FormattedIdentifier} without initial compounds");
-        AssertCompounds(expected, parent.InitialCompounds);
+        AssertThat(candidate.InitialCompounds.Count).IsEqual(0);
+        AssertCompounds(expectedGlucose, parent.InitialCompounds);
+
+        candidate.OnAttemptedInAutoEvo(refreshCache);
+
+        AssertCompounds(expectedGlucose, candidate.InitialCompounds);
+        AssertCompounds(expectedGlucose, parent.InitialCompounds);
+    }
+
+    [TestCase(false, 0.5f)]
+    [TestCase(true, 0.007f * 40 * 1.5f)]
+    public void ApplyingFinalizedMutationCopiesCompounds(bool multicellular, float expectedGlucose)
+    {
+        var parent = CreateSpecies(multicellular, false, false);
+        var candidate = (Species)parent.Clone();
+        candidate.OnAttemptedInAutoEvo(true, false);
+        candidate.UpdateInitialCompounds();
+        AssertCompounds(expectedGlucose, candidate.InitialCompounds);
+        parent.InitialCompounds.Clear();
+        parent.InitialCompounds.Add(Compound.Ammonia, -100);
+
+        parent.ApplyMutation(candidate);
+
+        AssertCompounds(expectedGlucose, parent.InitialCompounds);
+        AssertCompounds(expectedGlucose, candidate.InitialCompounds);
     }
 
     [TestCase(false)]
     [TestCase(true)]
-    public void SavingSpeciesWithMissingCompoundsFailsBeforeWritingProperties(bool multicellular)
+    public void SavingSpeciesWithEmptyCompoundsPreservesEmptyCompounds(bool multicellular)
     {
         var candidate = CreateSpecies(multicellular, false, false);
         candidate.InitialCompounds.Clear();
@@ -135,16 +158,17 @@ public class InitialCompoundsFinalizationTests
         var manager = new ThriveArchiveManager();
         var writer = new SArchiveMemoryWriter(data, manager);
         manager.OnStartNewWrite(writer);
-        var position = data.Position;
-
-        AssertThrown(() => candidate.WriteToArchive(writer))
-            .IsInstanceOf<InvalidOperationException>()
-            .HasPropertyValue(nameof(Exception.Message),
-                $"Cannot save species {candidate.FormattedIdentifier} without initial compounds");
-        AssertThat(data.Position).IsEqual(position);
+        writer.WriteObject(candidate);
         manager.OnFinishWrite(writer);
+        data.Position = 0;
+        var reader = new SArchiveMemoryReader(data, manager);
+        manager.OnStartNewRead(reader);
+        var loaded = reader.ReadObjectOrNull<Species>();
+        manager.OnFinishRead(reader);
+
+        AssertThat(loaded).IsNotNull();
+        AssertThat(loaded!.InitialCompounds.Count).IsEqual(0);
     }
-#endif
 
     private static Species CreateSpecies(bool multicellular, bool massBudding,
         bool specializedStorage)
@@ -209,14 +233,12 @@ public class InitialCompoundsFinalizationTests
         return species;
     }
 
-    private static void AssertCompounds(Dictionary<Compound, float> expected, Dictionary<Compound, float> actual)
+    private static void AssertCompounds(float expectedGlucose, Dictionary<Compound, float> actual)
     {
-        AssertThat(actual.Count).IsEqual(expected.Count);
-        foreach (var entry in expected)
-        {
-            AssertThat(actual.ContainsKey(entry.Key)).IsTrue();
-            AssertThat(actual[entry.Key]).IsEqual(entry.Value);
-        }
+        AssertThat(actual.Count).IsEqual(1);
+        AssertThat(actual.ContainsKey(Compound.Glucose)).IsTrue();
+        AssertThat(actual[Compound.Glucose]).IsGreater(0);
+        AssertThat(actual[Compound.Glucose]).IsEqual(expectedGlucose);
     }
 
     /// <summary>
@@ -224,8 +246,7 @@ public class InitialCompoundsFinalizationTests
     /// </summary>
     private sealed class CompoundMutation : IMutationStrategy<Species>
     {
-        public Dictionary<Species, Dictionary<Compound, float>> Expected { get; } =
-            new(ReferenceEqualityComparer.Instance);
+        public HashSet<Species> Candidates { get; } = new(ReferenceEqualityComparer.Instance);
 
         public bool Repeatable => false;
 
@@ -247,9 +268,7 @@ public class InitialCompoundsFinalizationTests
                     new OrganelleTemplate(cytoplasm, new Hex(1, 0), 0));
             }
 
-            // Establish the expected public result before replacing it with deliberately stale inherited data.
-            candidate.OnAttemptedInAutoEvo(false);
-            Expected.Add(candidate, new Dictionary<Compound, float>(candidate.InitialCompounds));
+            Candidates.Add(candidate);
             candidate.InitialCompounds.Clear();
             candidate.InitialCompounds.Add(Compound.Ammonia, -100);
             return [new Mutant(candidate, mp - 1)];

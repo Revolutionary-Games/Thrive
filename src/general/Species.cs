@@ -217,13 +217,16 @@ public abstract class Species : ICloneable, IArchivable, IReadOnlySpecies
     /// <param name="updateInitialCompounds">
     ///   False only for internal auto-evo candidates, to avoid expensive compound balance and storage
     ///   calculations for candidates discarded during selection. This improves performance and reduces
-    ///   allocations. Their initial compounds must be updated before inserting them into the result miche
-    ///   tree, including candidates that will not pass the population check.
+    ///   allocations. This clears their inherited initial compounds, which must be updated before inserting
+    ///   them into the result miche tree, including candidates that will not pass the population check.
     /// </param>
     public virtual void OnAttemptedInAutoEvo(bool refreshCache, bool updateInitialCompounds = true)
     {
         cachedBaseReproductionCost = null;
         cachedTotalReproductionCost = null;
+
+        if (!updateInitialCompounds)
+            InitialCompounds.Clear();
 
         // We must skip regenerating the cache ID when not directly generated in auto-evo
         if (!refreshCache)
@@ -485,11 +488,6 @@ public abstract class Species : ICloneable, IArchivable, IReadOnlySpecies
 
     protected virtual void WriteBasePropertiesToArchive(ISArchiveWriter writer)
     {
-#if DEBUG
-        if (InitialCompounds.Count == 0)
-            throw new InvalidOperationException($"Cannot save species {FormattedIdentifier} without initial compounds");
-#endif
-
         writer.Write(ID);
         writer.Write(Genus);
         writer.Write(Epithet);
