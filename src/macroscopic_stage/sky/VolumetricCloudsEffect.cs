@@ -22,6 +22,9 @@ using Godot.Collections;
 [GlobalClass]
 public partial class VolumetricCloudsEffect : CompositorEffect
 {
+    public const string ShaderModuleDir = "res://shaders/sky/lib/";
+    public const string NoiseProfilePath = SkyResourcesDir + NoiseProfileFileName;
+
 #pragma warning disable CA2213
     [Export]
     public CloudsConfig CloudsConfig = new();
@@ -34,7 +37,6 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     // textures.
     private const string NoiseProfileFileName = "cloud_base_128.res";
     private const string SkyResourcesDir = "res://assets/textures/sky/";
-    private const string ShaderModuleDir = "res://shaders/sky/lib/";
     private const string UpsamplerShaderFileName = "res://shaders/sky/upsampler.glsl";
     private const string GeneratedSourceDumpPath = "user://clouds_march_generated.glsl";
 
@@ -128,6 +130,18 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     ///   that the clouds and the sky agree on where the sun is. A default is kept here for standalone use.
     /// </summary>
     public SunConfig SunConfig { get; set; } = new();
+
+    /// <summary>
+    ///   Registers the cloud modules shared by all backends.
+    /// </summary>
+    public static void AddSharedCloudModules(ShaderBuilder builder)
+    {
+        builder.AddModule("math", ShaderModuleDir + "math.gdshaderinc");
+        builder.AddModule("phase", ShaderModuleDir + "phase.gdshaderinc", "math", "cloud_interface");
+        builder.AddModule("cloud_density", ShaderModuleDir + "cloud_density.gdshaderinc", "math", "cloud_interface");
+        builder.AddModule("cloud_march", ShaderModuleDir + "cloud_march.gdshaderinc", "math", "phase",
+            "cloud_density", "cloud_interface");
+    }
 
     public override void _Notification(int what)
     {
@@ -346,11 +360,9 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         var builder = new ShaderBuilder();
 
         builder.AddModule("cloud_interface", ShaderModuleDir + "clouds_compute_interface.gdshaderinc");
-        builder.AddModule("math", ShaderModuleDir + "math.gdshaderinc");
-        builder.AddModule("phase", ShaderModuleDir + "phase.gdshaderinc", "math");
-        builder.AddModule("cloud_density", ShaderModuleDir + "cloud_density.gdshaderinc", "math", "cloud_interface");
-        builder.AddModule("cloud_march", ShaderModuleDir + "cloud_march.gdshaderinc", "math", "phase",
-            "cloud_density", "cloud_interface");
+
+        AddSharedCloudModules(builder);
+
         builder.AddModule("cloud_main", ShaderModuleDir + "clouds_compute_main.gdshaderinc", "math", "cloud_march",
             "cloud_interface");
 
@@ -660,10 +672,9 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         rayMarcherSource = BuildRayMarcherSource();
         upsamplerSpirv = LoadSpirV(UpsamplerShaderFileName);
 
-        const string noiseProfilePath = SkyResourcesDir + NoiseProfileFileName;
-        if (ResourceLoader.Exists(noiseProfilePath))
+        if (ResourceLoader.Exists(NoiseProfilePath))
         {
-            noiseProfile = ResourceLoader.Load<ImageTexture3D>(noiseProfilePath,
+            noiseProfile = ResourceLoader.Load<ImageTexture3D>(NoiseProfilePath,
                 cacheMode: ResourceLoader.CacheMode.Replace);
         }
         else
