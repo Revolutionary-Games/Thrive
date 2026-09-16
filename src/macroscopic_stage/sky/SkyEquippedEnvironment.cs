@@ -22,6 +22,12 @@ using Environment = Godot.Environment;
 #endif
 public partial class SkyEquippedEnvironment : WorldEnvironment
 {
+    /// <summary>
+    ///   If true, forces the use of the compatibility renderer, even when the RenderingDevice is available.
+    /// </summary>
+    [Export]
+    public bool ForceUseCompatibilityRenderer;
+
 #pragma warning disable CA2213
     /// <summary>
     ///   Material the sky is rendered with. When left unset, one is created automatically and bound to the shader at
@@ -109,7 +115,7 @@ public partial class SkyEquippedEnvironment : WorldEnvironment
         SetupSky();
 
         // Compositor effects need a RenderingDevice, which only the Forward+ renderer provides.
-        if (RenderingUtils.IsRenderingDeviceAvailable())
+        if (ForceUseCompatibilityRenderer || RenderingUtils.IsRenderingDeviceAvailable())
         {
             SetupCompositorEffects();
         }
