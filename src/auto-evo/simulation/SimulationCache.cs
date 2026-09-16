@@ -2060,7 +2060,7 @@ public class SimulationCache
             preyToolScores = GetPredationToolsRawScores(microbePrey);
             smallestPreyHexSize = preyHexSize;
             dissolverEnzyme = microbePrey.MembraneType.DissolverEnzyme;
-            preyStorageNominal = microbePrey.StorageCapacities.Nominal;
+            preyStorageNominal = microbePrey.NominalStorageCapacity;
 
             // uses an HP estimate without taking into account environmental tolerance effect
             preyHP = microbePrey.MembraneType.Hitpoints + microbePrey.MembraneRigidity *
@@ -2187,7 +2187,7 @@ public class SimulationCache
             predatorToxinResistance = microbePredator.MembraneType.ToxinResistance;
             predatorPhysicalResistance = microbePredator.MembraneType.PhysicalResistance;
 
-            predatorStorageNominal = microbePredator.StorageCapacities.Nominal;
+            predatorStorageNominal = microbePredator.NominalStorageCapacity;
 
             var organelles = microbePredator.Organelles.Organelles;
             int count = organelles.Count;

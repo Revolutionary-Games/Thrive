@@ -869,6 +869,14 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
             UpdateHistoryCallbackTargets(history);
         }
 
+        // A cheat command can be executed before this editor has entered the scene. In that case the editor misses
+        // the cheat event, so copy the global achievement state once the editor has a game to update.
+        if (AchievementsManager.HasUsedCheats && !CurrentGame.CheatsUsed)
+        {
+            GD.Print("Copying cheats used state to current game on editor entry");
+            CurrentGame.ReportCheatsUsed();
+        }
+
         InitEditor(!IsLoadedFromSave);
         SendFreebuildStatusToComponents();
 
