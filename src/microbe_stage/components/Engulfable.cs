@@ -515,21 +515,6 @@ public static class EngulfableHelpers
         }
     }
 
-    public static void CalculateBonusDigestibleGlucose(Dictionary<Compound, float> result,
-        CompoundBag compoundCapacityInfo)
-    {
-        result.TryGetValue(Compound.Glucose, out float existingGlucose);
-
-        if (existingGlucose < 0)
-        {
-            GD.PrintErr("Stored glucose was negative for bonus digestible glucose calculation");
-            existingGlucose = 0;
-        }
-
-        result[Compound.Glucose] = existingGlucose + compoundCapacityInfo.GetCapacityForCompound(Compound.Glucose) *
-            Constants.ADDITIONAL_DIGESTIBLE_GLUCOSE_AMOUNT_MULTIPLIER;
-    }
-
     public static void CalculateDigestibleCompoundsFromOrganelles(OrganelleLayout<PlacedOrganelle> organelles,
         Dictionary<Compound, float> result, float releaseFraction = 1.0f)
     {
