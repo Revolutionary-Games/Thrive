@@ -251,10 +251,9 @@ public static class EngulfableHelpers
         in Entity entity)
     {
         // Extra digestible compounds for microbes
-        if (entity.Has<OrganelleContainer>() && entity.Has<CompoundStorage>())
+        if (entity.Has<OrganelleContainer>())
         {
-            return CalculateMicrobeAdditionalDigestibleCompounds(ref entity.Get<OrganelleContainer>(),
-                ref entity.Get<CompoundStorage>());
+            return CalculateMicrobeAdditionalDigestibleCompounds(ref entity.Get<OrganelleContainer>());
         }
 
         // This entity type doesn't have extra digestible compounds
@@ -564,7 +563,7 @@ public static class EngulfableHelpers
     }
 
     private static Dictionary<Compound, float> CalculateMicrobeAdditionalDigestibleCompounds(
-        ref OrganelleContainer organelleContainer, ref CompoundStorage heldCompounds)
+        ref OrganelleContainer organelleContainer)
     {
         if (organelleContainer.Organelles == null)
             throw new ArgumentException("Organelle container has to be initialized");
