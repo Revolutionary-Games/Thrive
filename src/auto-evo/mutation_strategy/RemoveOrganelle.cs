@@ -58,6 +58,34 @@ public class RemoveOrganelle : IMutationStrategy<Species>
         };
     }
 
+    private static bool HasLaterDuplicate(IReadOnlyList<OrganelleTemplate> organelles, int i, int organelleCount)
+    {
+        var organelle = organelles[i];
+
+        // external organelles like pili and flagella are too dependent on exact locations to be considered equivalent
+        if (organelle.Definition.PositionedExternally)
+            return false;
+
+        for (int j = 0; j < organelleCount; ++j)
+        {
+            // We take the last possible duplicate part in the list, since that's less likely to create islands
+            if (j <= i)
+                continue;
+
+            var potentialDuplicate = organelles[j];
+            if (ReferenceEquals(potentialDuplicate.Definition, organelle.Definition))
+            {
+                // If two organelles of the same type have different upgrades, they are not duplicates
+                if (!Equals(organelle.Upgrades, potentialDuplicate.Upgrades))
+                    continue;
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     private List<Mutant>? MutationsOfMicrobe(MicrobeSpecies baseSpecies, double mp, Random random)
     {
         if (mp < Constants.ORGANELLE_REMOVE_COST)
@@ -284,6 +312,11 @@ public class RemoveOrganelle : IMutationStrategy<Species>
 
             // Count only matching organelles for sampling, but store their indices in the original list.
             ++matchingCount;
+
+            // If there are duplicate instances of organelles, we only attempt to delete one of them.
+            if (HasLaterDuplicate(organelles, i, organelleCount))
+                continue;
+
             if (selectedCount < candidates.Length)
             {
                 candidates[selectedCount++] = i;
