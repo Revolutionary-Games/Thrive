@@ -697,6 +697,13 @@ public class SimulationCache
     ///   Gets aggregate process capacities including cell specialisation. Callers should only apply
     ///   environmental tolerance and process conditions to these rates.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     The returned list belongs to this cache and must only be read, not reused for process aggregation or
+    ///     rebuilding. Internal aggregation marks are left as-is because readers do not use them and invalidating
+    ///     the cache discards the list.
+    ///   </para>
+    /// </remarks>
     public List<TweakedProcess> GetActiveProcessList(Species species)
     {
 #if CHECK_HASH_CODE_REUSED_INSTANCES
@@ -733,14 +740,6 @@ public class SimulationCache
                     CellBodyPlanInternalCalculations.GetAdjacencySpecializationBonusFromBodyPlan(cell, cells);
                 ApplySpecializationToProcessRates(cellProcesses, specialization);
                 ProcessSystem.MergeProcessLists(cached, cellProcesses);
-            }
-
-            // MergeProcessLists marks entries while aggregating them. Do not expose those temporary marks.
-            for (int i = 0; i < cached.Count; ++i)
-            {
-                var process = cached[i];
-                process.Marked = false;
-                cached[i] = process;
             }
         }
         else
