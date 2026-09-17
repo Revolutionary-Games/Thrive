@@ -59,6 +59,12 @@ public interface IDifficulty : IRegistryAssignable, IArchivable
     public ReproductionCompoundHandling ReproductionCompounds { get; }
 
     /// <summary>
+    ///   Sets whether to reset the gameplay space whenever leaving the editor, instead of only when the player moves
+    ///   to a different patch
+    /// </summary>
+    public bool AlwaysResetEnvironment { get; }
+
+    /// <summary>
     ///   Whether the player is allowed to switch to a related species on extinction (so can continue instead of
     ///   losing the game)
     /// </summary>
@@ -120,6 +126,7 @@ public static class DifficultyHelpers
             OrganelleUnlocksEnabled = difficulty.OrganelleUnlocksEnabled,
             SpawnCompatibleMateOnCall = difficulty.SpawnCompatibleMateOnCall,
             ShowMatePosition = difficulty.ShowMatePosition,
+            AlwaysResetEnvironment = difficulty.AlwaysResetEnvironment,
         };
     }
 
@@ -143,6 +150,7 @@ public static class DifficultyHelpers
             $", Instant Kill Protection: {difficulty.InstantKillProtection}" +
             $", Organelle Unlocks Enabled: {difficulty.OrganelleUnlocksEnabled}" +
             $", Spawn Compatible Mate On Call: {difficulty.SpawnCompatibleMateOnCall}" +
-            $", Show Mate Position: {difficulty.ShowMatePosition}";
+            $", Show Mate Position: {difficulty.ShowMatePosition}" +
+            $", Always reset environment after Editor: {difficulty.AlwaysResetEnvironment}";
     }
 }
