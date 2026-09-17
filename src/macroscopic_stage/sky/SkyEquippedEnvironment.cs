@@ -23,10 +23,17 @@ using Environment = Godot.Environment;
 public partial class SkyEquippedEnvironment : WorldEnvironment
 {
     /// <summary>
-    ///   If true, forces the use of the compatibility renderer, even when the RenderingDevice is available.
+    ///   If true, forces the use of the fullscreen quad, even when the RenderingDevice is available. It also prevents
+    ///   the VolumetricCloudsEffect initialization.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Note that this isn't equivalent to using the Compatibility renderer. Forward+ still uses different
+    ///     techniques for lighting and tonemapping, so the results aren't equivalent.
+    ///   </para>
+    /// </remarks>
     [Export]
-    public bool ForceUseCompatibilityRenderer;
+    public bool ForceUseFullscreenQuad;
 
 #pragma warning disable CA2213
     /// <summary>
@@ -123,7 +130,7 @@ public partial class SkyEquippedEnvironment : WorldEnvironment
         SetupSky();
 
         // Compositor effects need a RenderingDevice, which only the Forward+ renderer provides.
-        if (ForceUseCompatibilityRenderer || !RenderingUtils.IsRenderingDeviceAvailable())
+        if (ForceUseFullscreenQuad || !RenderingUtils.IsRenderingDeviceAvailable())
         {
             compatibilityConfig = new CloudsConfig();
 
