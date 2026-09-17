@@ -106,10 +106,6 @@ public class RemoveOrganelle : IMutationStrategy<Species>
         {
             var organelle = baseOrganelles[candidateIndex];
 
-            // The player cannot remove the nucleus, so Auto-Evo should not be able to either
-            if (ReferenceEquals(organelle.Definition, Nucleus))
-                continue;
-
             // Don't clone organelles as we want to do those ourselves
             var newSpecies = baseSpecies.Clone(false);
 
@@ -189,10 +185,6 @@ public class RemoveOrganelle : IMutationStrategy<Species>
             foreach (int candidateIndex in candidateIndices[..candidateCount])
             {
                 var organelle = baseOrganelles[candidateIndex];
-
-                // The player cannot remove the nucleus, so Auto-Evo should not be able to either
-                if (ReferenceEquals(organelle.Definition, Nucleus))
-                    continue;
 
                 // The Binding Agent cannot be removed in the Multicellular Stage
                 if (organelle.Definition.HasBindingFeature)
@@ -312,6 +304,10 @@ public class RemoveOrganelle : IMutationStrategy<Species>
 
             // Count only matching organelles for sampling, but store their indices in the original list.
             ++matchingCount;
+
+            // The player cannot remove the nucleus, so Auto-Evo should not be able to either
+            if (ReferenceEquals(organelles[i].Definition, Nucleus))
+                continue;
 
             // If there are duplicate instances of organelles, we only attempt to delete one of them.
             if (HasLaterDuplicate(organelles, i, organelleCount))
