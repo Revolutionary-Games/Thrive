@@ -60,6 +60,9 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
     private TextureButton newWorldButton = null!;
 
     [Export]
+    private TextureButton loadSaveButton = null!;
+
+    [Export]
     private CustomRichTextLabel currentWorldStatisticsLabel = null!;
 
     [Export]
@@ -145,6 +148,12 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
 
     [Export]
     private CustomConfirmationDialog exportSuccessNotificationDialog = null!;
+
+    [Export]
+    private Control mainGui = null!;
+
+    [Export]
+    private Control loadMenu = null!;
 #pragma warning restore CA2213
 
     private AutoEvoExploringToolWorld world = null!;
@@ -162,6 +171,8 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
     private int generationsPendingToRun;
 
     private int worldsPendingToRun;
+
+    private string? loadedSaveName;
 
     /// <summary>
     ///   The patch that the miche tab is displaying,
@@ -258,7 +269,15 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
 
         if (autoEvoRun == null && worldsPendingToRun > 0)
         {
-            InitNewWorld(world.AutoEvoConfiguration);
+            if (loadedSaveName != null)
+            {
+                InitWorldFromSave(loadedSaveName);
+            }
+            else
+            {
+                InitNewWorld(world.AutoEvoConfiguration);
+            }
+
             FinishOneGeneration();
             generationsPendingToRun = (int)Math.Round(finishXGenerationsSpinBox.Value) - 1;
             --worldsPendingToRun;
@@ -307,6 +326,35 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
     private void InitNewWorld(IAutoEvoConfiguration configuration)
     {
         var newWorld = new AutoEvoExploringToolWorld(configuration, PlanetCustomizerWorldGenerationSettings);
+        SetWorldsList(newWorld);
+    }
+
+    private void InitWorldFromSave(string saveName)
+    {
+        var loadedSave = Save.LoadFromFile(saveName);
+
+        if (loadedSave.SavedProperties == null)
+        {
+            loadedSaveName = null;
+            GD.PrintErr("Save has no GameProperties");
+            return;
+        }
+
+        var newWorld = new AutoEvoExploringToolWorld(loadedSave.SavedProperties);
+        SetWorldsList(newWorld);
+        generationDisplayed = world.CurrentGeneration;
+        historyListMenu.Text = generationDisplayed.ToString(CultureInfo.CurrentCulture);
+    }
+
+    private void InitAutoEvoConfigControls()
+    {
+        moveAttemptsPerSpeciesSpinBox.Value = world.AutoEvoConfiguration.MoveAttemptsPerSpecies;
+        mutationsPerSpeciesSpinBox.Value = world.AutoEvoConfiguration.MutationsPerSpecies;
+        strictNicheCompetitionCheckBox.ButtonPressed = world.AutoEvoConfiguration.StrictNicheCompetition;
+    }
+
+    private void SetWorldsList(AutoEvoExploringToolWorld newWorld)
+    {
         newWorld.GameProperties.GameWorld.Map.RevealAllPatches();
         worldsList.Add(newWorld);
         WorldsListMenuIndexChanged(worldsList.Count - 1);
@@ -315,13 +363,6 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         worldsListMenu.CreateElements();
 
         UpdateAllWorldsStatistics();
-    }
-
-    private void InitAutoEvoConfigControls()
-    {
-        moveAttemptsPerSpeciesSpinBox.Value = world.AutoEvoConfiguration.MoveAttemptsPerSpecies;
-        mutationsPerSpeciesSpinBox.Value = world.AutoEvoConfiguration.MutationsPerSpecies;
-        strictNicheCompetitionCheckBox.ButtonPressed = world.AutoEvoConfiguration.StrictNicheCompetition;
     }
 
     private void SetControlButtonsState(RunControlState runControlState)
@@ -522,6 +563,13 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
     {
         GUICommon.Instance.PlayButtonPressSound();
         FinishOneGeneration();
+    }
+
+    private void OnLoadSaveButtonPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        mainGui.Visible = !mainGui.Visible;
+        loadMenu.Visible = !loadMenu.Visible;
     }
 
     private void FinishOneGeneration()
@@ -1038,6 +1086,19 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         allWorldsStatisticsLabel.ExtendedBbcode = stringBuilder.ToString();
     }
 
+    private void OnSaveLoaded(string saveName)
+    {
+        mainGui.Visible = !mainGui.Visible;
+        loadMenu.Visible = !loadMenu.Visible;
+
+        loadedSaveName = saveName;
+
+        worldsList.Clear();
+        worldsListMenu.ClearAllItems();
+
+        InitWorldFromSave(saveName);
+    }
+
     /// <summary>
     ///   Stores all data auto-evo exploring tool needs to present a world.
     /// </summary>
@@ -1138,34 +1199,92 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
 
             PatchHistoryList.Add(GameProperties.GameWorld.Map.Patches.ToDictionary(p => p.Key,
                 p => (PatchSnapshot)p.Value.CurrentSnapshot.Clone()));
+            PatchesCount = GameProperties.GameWorld.Map.Patches.Count;
+
+            InitializeStatistics();
+            UpdateWorldStatistics();
+        }
+
+        /// <summary>
+        ///   Constructor for loading a world from an existing save
+        /// </summary>
+        public AutoEvoExploringToolWorld(GameProperties loadedGameProperties)
+        {
+            AutoEvoConfiguration = loadedGameProperties.GameWorld.WorldSettings.AutoEvoConfiguration.Clone();
+            WorldSettings = loadedGameProperties.GameWorld.WorldSettings;
+
+            GameProperties = loadedGameProperties;
+
+            var gameWorld = loadedGameProperties.GameWorld;
+
+            if (gameWorld.GenerationHistory.Count > 0)
+            {
+                for (int i = 0; i <= gameWorld.GenerationHistory.Keys.Max(); ++i)
+                {
+                    if (gameWorld.GenerationHistory.TryGetValue(i, out var generationRecord))
+                    {
+                        var speciesDictionary = new Dictionary<uint, Species>();
+                        foreach (var (speciesId, _) in generationRecord.AllSpeciesData)
+                        {
+                            var fullRecord =
+                                GenerationRecord.GetFullSpeciesRecord(speciesId, i, gameWorld.GenerationHistory);
+                            speciesDictionary.Add(speciesId, fullRecord.Species);
+                        }
+
+                        SpeciesHistoryList.Add(speciesDictionary);
+                        RunResultsList.Add(new LocalizedStringBuilder());
+                    }
+                }
+
+                var maxGeneration = gameWorld.GenerationHistory.Keys.Max();
+
+                for (int i = 0; i <= maxGeneration; ++i)
+                {
+                    var generationsBack = maxGeneration - i;
+
+                    PatchHistoryList.Add(gameWorld.Map.Patches.ToDictionary(s => s.Key,
+                        s =>
+                        {
+                            if (generationsBack == 0)
+                                return (PatchSnapshot)s.Value.CurrentSnapshot.Clone();
+
+                            var historyIndex = generationsBack - 1;
+
+                            return historyIndex < s.Value.History.Count ?
+                                (PatchSnapshot)s.Value.History[historyIndex].Clone() :
+                                new PatchSnapshot((BiomeConditions)s.Value.BiomeTemplate.Conditions.Clone(),
+                                    s.Value.BiomeTemplate.Background);
+                        }));
+                }
+
+                for (int i = 0; i <= gameWorld.GenerationHistory.Keys.Max(); ++i)
+                {
+                    MicheHistoryList.Add(new Dictionary<Patch, Miche>());
+                }
+
+                CurrentGeneration = gameWorld.GenerationHistory.Keys.Max();
+            }
+            else
+            {
+                RunResultsList.Add(new LocalizedStringBuilder());
+
+                var speciesDictionary = new Dictionary<uint, Species>();
+                SpeciesHistoryList.Add(speciesDictionary);
+                foreach (var (speciesId, species) in GameProperties.GameWorld.Species)
+                {
+                    speciesDictionary.Add(speciesId, (Species)species.Clone());
+                }
+
+                PatchHistoryList.Add(gameWorld.Map.Patches.ToDictionary(p => p.Key,
+                    p => (PatchSnapshot)p.Value.CurrentSnapshot.Clone()));
+                MicheHistoryList.Add(new Dictionary<Patch, Miche>());
+
+                CurrentGeneration = 0;
+            }
 
             PatchesCount = GameProperties.GameWorld.Map.Patches.Count;
 
-            foreach (var organelle in SimulationParameters.Instance.GetAllOrganelles())
-            {
-                MicrobeSpeciesOrganelleStatistics.Add(organelle, (0, 0));
-                foreach (var upgrade in organelle.AvailableUpgrades.Keys)
-                {
-                    organelle.AvailableUpgrades.TryGetValue(upgrade, out var upgradeName);
-                    if (upgradeName != null)
-                    {
-                        MicrobeSpeciesUpgradesStatistics.TryAdd(upgrade, (upgradeName.Name, 0, 0));
-                    }
-                }
-            }
-
-            MicrobeSpeciesUpgradesStatistics.Remove("none");
-
-            foreach (var membrane in SimulationParameters.Instance.GetAllMembranes())
-            {
-                MicrobeSpeciesMembranesStatistics.TryAdd(membrane.Name, 0);
-            }
-
-            foreach (var enzyme in SimulationParameters.Instance.GetAllEnzymes())
-            {
-                MicrobeSpeciesEnzymesStatistics.TryAdd(enzyme, (0, 0));
-            }
-
+            InitializeStatistics();
             UpdateWorldStatistics();
         }
 
@@ -1193,6 +1312,11 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
 
             var microbeSpecies = SpeciesHistoryList.Last().Values.Select(s => s as MicrobeSpecies).WhereNotNull()
                 .ToList();
+
+            if (microbeSpecies.Count == 0)
+            {
+                return;
+            }
 
             MicrobeSpeciesAverageHexSize = microbeSpecies.Average(s => s.BaseHexSize);
 
@@ -1229,6 +1353,34 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
                         0),
                     microbeSpecies.Average(s => s.Organelles.Count(o =>
                         o.Definition.Enzymes.TryGetValue(enzyme, out var value) && value > 0)));
+            }
+        }
+
+        private void InitializeStatistics()
+        {
+            foreach (var organelle in SimulationParameters.Instance.GetAllOrganelles())
+            {
+                MicrobeSpeciesOrganelleStatistics.Add(organelle, (0, 0));
+                foreach (var upgrade in organelle.AvailableUpgrades.Keys)
+                {
+                    organelle.AvailableUpgrades.TryGetValue(upgrade, out var upgradeName);
+                    if (upgradeName != null)
+                    {
+                        MicrobeSpeciesUpgradesStatistics.TryAdd(upgrade, (upgradeName.Name, 0, 0));
+                    }
+                }
+            }
+
+            MicrobeSpeciesUpgradesStatistics.Remove("none");
+
+            foreach (var membrane in SimulationParameters.Instance.GetAllMembranes())
+            {
+                MicrobeSpeciesMembranesStatistics.TryAdd(membrane.Name, 0);
+            }
+
+            foreach (var enzyme in SimulationParameters.Instance.GetAllEnzymes())
+            {
+                MicrobeSpeciesEnzymesStatistics.TryAdd(enzyme, (0, 0));
             }
         }
     }
