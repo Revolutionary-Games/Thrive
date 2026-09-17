@@ -288,8 +288,9 @@ public class RemoveOrganelle : IMutationStrategy<Species>
     /// </returns>
     /// <remarks>
     ///   <para>
-    ///     This only filters by criteria. Callers may skip protected organelles in the sample without replacing them,
-    ///     so the sample size limits attempts rather than successful removals.
+    ///     This mainly filters by criteria, but also excludes the Nucleus and any fully duplicate organelles.
+    ///     Callers may still skip protected organelles in the sample without replacing them, so the sample size limits
+    ///     attempts rather than successful removals.
     ///   </para>
     /// </remarks>
     private int SelectOrganelleIndices(IReadOnlyList<OrganelleTemplate> organelles, Span<int> candidates, Random random)
