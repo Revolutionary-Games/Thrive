@@ -22,5 +22,14 @@ uniform float cloudSunEnergy;
 #define CLOUD_MAX_DISTANCE cloudMaxDistance
 
 // Constant loop bounds, as GLES3 drivers handle those much better than uniform ones
-#define CLOUD_BASE_STEPS 24
+#define CLOUD_BASE_STEPS 32
 #define CLOUD_LIGHT_STEPS 4
+
+// Spends the step budget near the camera instead of evenly along the ray. Comment out for uniform steps.
+#define CLOUD_NEAR_WEIGHTED_STEPS
+
+// How strongly steps are pulled towards the camera. This is an exponent, so 2 is quadratic.
+#define CLOUD_STEP_EXPONENT 1.5
+
+// Fades out the detail noise where the steps are too long to sample it. Comment out to always use full detail.
+#define CLOUD_DETAIL_LOD
