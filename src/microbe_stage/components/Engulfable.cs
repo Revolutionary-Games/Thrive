@@ -540,6 +540,9 @@ public static class EngulfableHelpers
             }
         }
 
+        if (glucoseToAdd <= 0.0f)
+            return;
+
         if (result.TryGetValue(Compound.Glucose, out var existingGlucose) && existingGlucose > 0)
         {
             result[Compound.Glucose] = existingGlucose + glucoseToAdd;
