@@ -25,11 +25,6 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     public const string ShaderModuleDir = "res://shaders/sky/lib/";
     public const string NoiseProfilePath = SkyResourcesDir + NoiseProfileFileName;
 
-#pragma warning disable CA2213
-    [Export]
-    public CloudsConfig CloudsConfig = new();
-#pragma warning restore CA2213
-
     private const uint PushConstantsBufferSize = 128;
     private const uint UniformParamsBufferSize = 128;
 
@@ -131,6 +126,8 @@ public partial class VolumetricCloudsEffect : CompositorEffect
     /// </summary>
     public SunConfig SunConfig { get; set; } = new();
 
+    public CloudsConfig CloudsConfig { get; private set; } = new();
+
     /// <summary>
     ///   Registers the cloud modules shared by all backends.
     /// </summary>
@@ -141,6 +138,11 @@ public partial class VolumetricCloudsEffect : CompositorEffect
         builder.AddModule("cloud_density", ShaderModuleDir + "cloud_density.gdshaderinc", "math", "cloud_interface");
         builder.AddModule("cloud_march", ShaderModuleDir + "cloud_march.gdshaderinc", "math", "phase",
             "cloud_density", "cloud_interface");
+    }
+
+    public void BindCloudsConfig(CloudsConfig config)
+    {
+        CloudsConfig = config;
     }
 
     public override void _Notification(int what)
