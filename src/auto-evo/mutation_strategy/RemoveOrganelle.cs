@@ -62,7 +62,7 @@ public class RemoveOrganelle : IMutationStrategy<Species>
     {
         var organelle = organelles[i];
 
-        // external organelles like pili and flagella are too dependent on exact locations to be considered equivalent
+        // External organelles like pili and flagella are too dependent on exact locations to be considered equivalent
         if (organelle.Definition.PositionedExternally)
             return false;
 
