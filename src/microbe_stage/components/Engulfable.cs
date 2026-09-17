@@ -518,6 +518,8 @@ public static class EngulfableHelpers
     public static void CalculateDigestibleCompoundsFromOrganelles(OrganelleLayout<PlacedOrganelle> organelles,
         Dictionary<Compound, float> result, float releaseFraction = 1.0f)
     {
+        var glucoseToAdd = 0.0f;
+
         foreach (var organelle in organelles.Organelles)
         {
             foreach (var entry in organelle.Definition.InitialComposition)
@@ -534,16 +536,17 @@ public static class EngulfableHelpers
                 }
 
                 // Add glucose representing the organic molecules that the organelle is made of
-                if (result.TryGetValue(Compound.Glucose, out var existingGlucose) && existingGlucose > 0)
-                {
-                    result[Compound.Glucose] = existingGlucose + amount *
-                        Constants.ADDITIONAL_DIGESTIBLE_GLUCOSE_AMOUNT_MULTIPLIER;
-                }
-                else
-                {
-                    result[Compound.Glucose] = amount * Constants.ADDITIONAL_DIGESTIBLE_GLUCOSE_AMOUNT_MULTIPLIER;
-                }
+                glucoseToAdd += amount * Constants.ADDITIONAL_DIGESTIBLE_GLUCOSE_AMOUNT_MULTIPLIER;
             }
+        }
+
+        if (result.TryGetValue(Compound.Glucose, out var existingGlucose) && existingGlucose > 0)
+        {
+            result[Compound.Glucose] = existingGlucose + glucoseToAdd;
+        }
+        else
+        {
+            result[Compound.Glucose] = glucoseToAdd;
         }
     }
 
