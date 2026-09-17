@@ -246,36 +246,12 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         {
             if (instance.ModifiableGameteTypeA != null)
             {
-                var cell = (CellType)instance.ModifiableGameteTypeA.Clone();
-
-                string originalName = cell.CellTypeName;
-                int count = 1;
-
-                while (instance.ModifiableCellTypes.Any(c =>
-                    c.CellTypeName.Equals(cell.CellTypeName, StringComparison.InvariantCultureIgnoreCase)))
-                {
-                    cell.CellTypeName = $"{originalName} {count++}";
-                }
-
-                instance.ModifiableGameteTypeA = cell;
-                instance.ModifiableCellTypes.Add(cell);
+                instance.ModifiableGameteTypeA = instance.DuplicateCellType(instance.ModifiableGameteTypeA);
             }
 
             if (instance.ModifiableGameteTypeB != null)
             {
-                var cell = (CellType)instance.ModifiableGameteTypeB.Clone();
-
-                string originalName = cell.CellTypeName;
-                int count = 1;
-
-                while (instance.ModifiableCellTypes.Any(c =>
-                        c.CellTypeName.Equals(cell.CellTypeName, StringComparison.InvariantCultureIgnoreCase)))
-                {
-                    cell.CellTypeName = $"{originalName} {count++}";
-                }
-
-                instance.ModifiableGameteTypeB = cell;
-                instance.ModifiableCellTypes.Add(cell);
+                instance.ModifiableGameteTypeB = instance.DuplicateCellType(instance.ModifiableGameteTypeB);
             }
         }
 
@@ -1163,5 +1139,22 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         }
 
         return true;
+    }
+
+    private CellType DuplicateCellType(CellType cellType)
+    {
+        var cell = (CellType)cellType.Clone();
+
+        string originalName = cell.CellTypeName;
+        int count = 1;
+
+        while (ModifiableCellTypes.Any(c =>
+                c.CellTypeName.Equals(cell.CellTypeName, StringComparison.InvariantCultureIgnoreCase)))
+        {
+            cell.CellTypeName = $"{originalName} {count++}";
+        }
+
+        ModifiableCellTypes.Add(cell);
+        return cell;
     }
 }
