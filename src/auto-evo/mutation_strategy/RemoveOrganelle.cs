@@ -73,14 +73,15 @@ public class RemoveOrganelle : IMutationStrategy<Species>
                 continue;
 
             var potentialDuplicate = organelles[j];
-            if (ReferenceEquals(potentialDuplicate.Definition, organelle.Definition))
-            {
-                // If two organelles of the same type have different upgrades, they are not duplicates
-                if (!Equals(organelle.Upgrades, potentialDuplicate.Upgrades))
-                    continue;
 
-                return true;
-            }
+            if (!ReferenceEquals(potentialDuplicate.Definition, organelle.Definition))
+                continue;
+
+            // If two organelles of the same type have different upgrades, they are not duplicates
+            if (!Equals(organelle.Upgrades, potentialDuplicate.Upgrades))
+                continue;
+
+            return true;
         }
 
         return false;
