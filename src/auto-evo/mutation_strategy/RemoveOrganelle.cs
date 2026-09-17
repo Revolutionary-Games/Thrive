@@ -66,12 +66,10 @@ public class RemoveOrganelle : IMutationStrategy<Species>
         if (organelle.Definition.PositionedExternally)
             return false;
 
-        for (int j = 0; j < organelleCount; ++j)
+        // We take the last possible duplicate part in the list, since that's less likely to create islands
+        // So j starts from i + 1
+        for (int j = i + 1; j < organelleCount; ++j)
         {
-            // We take the last possible duplicate part in the list, since that's less likely to create islands
-            if (j <= i)
-                continue;
-
             var potentialDuplicate = organelles[j];
 
             if (!ReferenceEquals(potentialDuplicate.Definition, organelle.Definition))
