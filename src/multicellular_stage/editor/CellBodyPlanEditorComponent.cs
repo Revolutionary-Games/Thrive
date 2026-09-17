@@ -12,7 +12,7 @@ public partial class CellBodyPlanEditorComponent :
     HexEditorComponentBase<MulticellularEditor, CombinedEditorAction, EditorAction, HexWithData<CellTemplate>,
         MulticellularSpecies>, IArchiveUpdatable
 {
-    public const ushort SERIALIZATION_VERSION = 9;
+    public const ushort SERIALIZATION_VERSION = 10;
 
     [Export]
     public int MaxToleranceWarnings = 3;
@@ -96,6 +96,9 @@ public partial class CellBodyPlanEditorComponent :
 
     [Export]
     private PanelContainer layoutTab = null!;
+
+    [Export]
+    private Button automaticLayoutButton = null!;
 
     [Export]
     private CollapsibleList cellTypeSelectionList = null!;
@@ -355,6 +358,8 @@ public partial class CellBodyPlanEditorComponent :
     /// </summary>
     public int DesiredMassBuddingCellCount { get; private set; } = Constants.MASS_BUDDING_MINIMUM_BUD_SIZE;
 
+    public bool UsesManualPlayerLayout { get; private set; }
+
     protected override bool ShowFloatingLabels => ShowGrowthOrder;
 
     protected override bool ForceHideHover => false;
@@ -583,6 +588,7 @@ public partial class CellBodyPlanEditorComponent :
         writer.WriteObjectOrNull(GameteACellType);
         writer.WriteObjectOrNull(GameteBCellType);
         writer.Write((int)SelectedGameteTypeForPlayer);
+        writer.Write(UsesManualPlayerLayout);
     }
 
     public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
@@ -664,6 +670,11 @@ public partial class CellBodyPlanEditorComponent :
                 ReproductionMethod = MulticellularReproductionMethod.Budding;
             }
         }
+
+        if (version > 9)
+        {
+            UsesManualPlayerLayout = reader.ReadBool();
+        }
     }
 
     public override void OnEditorSpeciesSetup(Species species)
@@ -687,6 +698,7 @@ public partial class CellBodyPlanEditorComponent :
         GameteACellType = multicellularSpecies.ModifiableGameteTypeA;
         GameteBCellType = multicellularSpecies.ModifiableGameteTypeB;
         DesiredMassBuddingCellCount = multicellularSpecies.MassBuddingCellCount;
+        UsesManualPlayerLayout = multicellularSpecies.UsesManualPlayerLayout;
 
         // Ignore invalid species data
         if (species.PlayerGamete != GameteType.All || (multicellularSpecies.ReproductionMethod !=

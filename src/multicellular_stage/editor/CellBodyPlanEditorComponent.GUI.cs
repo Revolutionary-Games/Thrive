@@ -264,6 +264,8 @@ public partial class CellBodyPlanEditorComponent
         }
 
         UpdateCancelButtonVisibility();
+
+        UpdateLayoutTabContent();
     }
 
     private void UpdateGrowthOrderUI()
@@ -718,5 +720,22 @@ public partial class CellBodyPlanEditorComponent
 
         ignoredEditorWarnings.Add(EditorUserOverride.EndosymbiosisPending);
         OnFinish.Invoke(ignoredEditorWarnings);
+    }
+
+    private void UpdateLayoutTabContent()
+    {
+        automaticLayoutButton.ButtonPressed = !UsesManualPlayerLayout;
+    }
+
+    private void OnAutomaticLayoutModeUpdated(bool usesAutomatic)
+    {
+        bool targetValue = !usesAutomatic;
+
+        if (UsesManualPlayerLayout == targetValue)
+            return;
+
+        // TODO: make this an editor action
+        UsesManualPlayerLayout = targetValue;
+        UpdateLayoutTabContent();
     }
 }
