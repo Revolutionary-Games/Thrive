@@ -100,6 +100,9 @@ public partial class SkyEquippedEnvironment : WorldEnvironment
     private Compositor skyCompositor = null!;
     private Environment skyEnvironment = null!;
 
+    // This is only used when in the Compatibility renderer mode. It's null otherwise.
+    private CloudsConfig compatibilityConfig = null!;
+
     private ShaderMaterial? cloudQuadMaterial;
 
     private DirectionalLight3D? sunLight;
@@ -122,6 +125,8 @@ public partial class SkyEquippedEnvironment : WorldEnvironment
         // Compositor effects need a RenderingDevice, which only the Forward+ renderer provides.
         if (ForceUseCompatibilityRenderer || !RenderingUtils.IsRenderingDeviceAvailable())
         {
+            compatibilityConfig = new CloudsConfig();
+
             SetupFallbackQuad();
         }
         else
@@ -145,12 +150,16 @@ public partial class SkyEquippedEnvironment : WorldEnvironment
         ApplySunLightParameters();
 
         if (CloudsEffect is null)
-            return;
+        {
+            compatibilityConfig.PlanetCenter = AtmosphereConfig.PlanetCenter;
 
-        CloudsEffect.CloudsConfig.PlanetCenter = AtmosphereConfig.PlanetCenter;
-        CloudsEffect.SunConfig = SunConfig;
-
-        ApplyCloudQuadParameters();
+            ApplyCloudQuadParameters();
+        }
+        else
+        {
+            CloudsEffect.CloudsConfig.PlanetCenter = AtmosphereConfig.PlanetCenter;
+            CloudsEffect.SunConfig = SunConfig;
+        }
     }
 
     /// <summary>
@@ -323,22 +332,21 @@ public partial class SkyEquippedEnvironment : WorldEnvironment
 
     private void ApplyCloudQuadParameters()
     {
-        if (cloudQuadMaterial is null || CloudsEffect is null)
+        if (cloudQuadMaterial is null)
             return;
 
-        var config = CloudsEffect.CloudsConfig;
-        config.ValidateOnce();
+        compatibilityConfig.ValidateOnce();
 
-        float inner = MathF.Max(config.CloudInnerHeight, 0.0f);
-        float outer = MathF.Max(config.CloudOuterHeight, inner + 1.0f);
+        float inner = MathF.Max(compatibilityConfig.CloudInnerHeight, 0.0f);
+        float outer = MathF.Max(compatibilityConfig.CloudOuterHeight, inner + 1.0f);
 
-        cloudQuadMaterial.SetShaderParameter(cloudPlanetCenterParameter, config.PlanetCenter);
-        cloudQuadMaterial.SetShaderParameter(cloudInnerRadiusParameter, config.PlanetRadius + inner);
-        cloudQuadMaterial.SetShaderParameter(cloudOuterRadiusParameter, config.PlanetRadius + outer);
-        cloudQuadMaterial.SetShaderParameter(cloudTileSizeParameter, config.CloudTileSize);
-        cloudQuadMaterial.SetShaderParameter(cloudDensityMultiplierParameter, config.DensityMultiplier);
-        cloudQuadMaterial.SetShaderParameter(cloudCoverageParameter, config.Coverage);
-        cloudQuadMaterial.SetShaderParameter(cloudMaxDistanceParameter, config.MaxMarchDistance);
+        cloudQuadMaterial.SetShaderParameter(cloudPlanetCenterParameter, compatibilityConfig.PlanetCenter);
+        cloudQuadMaterial.SetShaderParameter(cloudInnerRadiusParameter, compatibilityConfig.PlanetRadius + inner);
+        cloudQuadMaterial.SetShaderParameter(cloudOuterRadiusParameter, compatibilityConfig.PlanetRadius + outer);
+        cloudQuadMaterial.SetShaderParameter(cloudTileSizeParameter, compatibilityConfig.CloudTileSize);
+        cloudQuadMaterial.SetShaderParameter(cloudDensityMultiplierParameter, compatibilityConfig.DensityMultiplier);
+        cloudQuadMaterial.SetShaderParameter(cloudCoverageParameter, compatibilityConfig.Coverage);
+        cloudQuadMaterial.SetShaderParameter(cloudMaxDistanceParameter, compatibilityConfig.MaxMarchDistance);
         cloudQuadMaterial.SetShaderParameter(cloudSunDirectionParameter, SunConfig.GetNormalizedDirection());
         cloudQuadMaterial.SetShaderParameter(cloudSunEnergyParameter, SunConfig.SunEnergy);
     }
