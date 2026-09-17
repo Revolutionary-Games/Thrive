@@ -101,6 +101,8 @@ public partial class SkyEquippedEnvironment : WorldEnvironment
     private Environment skyEnvironment = null!;
 
     private ShaderMaterial? cloudQuadMaterial;
+
+    private DirectionalLight3D? sunLight;
 #pragma warning restore CA2213
 
     public override void _Ready()
@@ -111,6 +113,9 @@ public partial class SkyEquippedEnvironment : WorldEnvironment
         skyEnvironment.TonemapAgxWhite = TonemapAgxWhite;
 
         sky = new Sky();
+
+        sunLight = new DirectionalLight3D();
+        AddChild(sunLight);
 
         SetupSky();
 
@@ -131,11 +136,13 @@ public partial class SkyEquippedEnvironment : WorldEnvironment
     ///   Applies all the configured parameters to the sky shader and updates the VolumetricCloudsEffect dependencies.
     ///   Needs to be called again after changing <see cref="AtmosphereConfig"/> or when replacing
     ///   <see cref="SunConfig"/> with another instance for the change to have effect on the clouds. On the
-    ///   Compatibility renderer this is also needed after changing the clouds config.
+    ///   Compatibility renderer this is also needed after changing the clouds config. Changes to the sun light only
+    ///   take effect after calling this.
     /// </summary>
     public void ApplyParameters()
     {
         ApplyShaderParameters();
+        ApplySunLightParameters();
 
         if (CloudsEffect is null)
             return;
@@ -300,6 +307,18 @@ public partial class SkyEquippedEnvironment : WorldEnvironment
         AddChild(quad);
 
         ApplyCloudQuadParameters();
+    }
+
+    private void ApplySunLightParameters()
+    {
+        if (sunLight is null)
+            return;
+
+        var direction = SunConfig.GetNormalizedDirection();
+        var up = MathF.Abs(direction.Y) > 0.99f ? Vector3.Forward : Vector3.Up;
+
+        sunLight.Basis = Basis.LookingAt(-direction, up);
+        sunLight.LightEnergy = SunConfig.LightEnergy;
     }
 
     private void ApplyCloudQuadParameters()
