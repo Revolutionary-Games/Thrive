@@ -65,6 +65,9 @@ public partial class CellBodyPlanEditorComponent :
     private Button tolerancesTabButton = null!;
 
     [Export]
+    private Button layoutTabButton = null!;
+
+    [Export]
     private PanelContainer structureTab = null!;
 
     [Export]
@@ -90,6 +93,9 @@ public partial class CellBodyPlanEditorComponent :
 
     [Export]
     private Container toleranceWarningContainer = null!;
+
+    [Export]
+    private PanelContainer layoutTab = null!;
 
     [Export]
     private CollapsibleList cellTypeSelectionList = null!;
@@ -248,6 +254,7 @@ public partial class CellBodyPlanEditorComponent :
         Behaviour,
         GrowthOrder,
         Tolerance,
+        Layout,
     }
 
     public override bool HasIslands =>
@@ -2280,6 +2287,7 @@ public partial class CellBodyPlanEditorComponent :
         behaviourEditor.Hide();
         growthOrderTab.Hide();
         toleranceTab.Hide();
+        layoutTab.Hide();
 
         ShowGrowthOrder = selectedSelectionMenuTab is SelectionMenuTab.GrowthOrder;
 
@@ -2320,6 +2328,13 @@ public partial class CellBodyPlanEditorComponent :
             {
                 toleranceTab.Show();
                 tolerancesTabButton.ButtonPressed = true;
+                break;
+            }
+
+            case SelectionMenuTab.Layout:
+            {
+                layoutTab.Show();
+                layoutTabButton.ButtonPressed = true;
                 break;
             }
 

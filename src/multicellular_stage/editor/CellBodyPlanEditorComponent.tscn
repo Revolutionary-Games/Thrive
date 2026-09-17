@@ -21,6 +21,8 @@
 [ext_resource type="PackedScene" uid="uid://bwegwjlcioasf" path="res://src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn" id="13"]
 [ext_resource type="PackedScene" uid="uid://dw3ubsraoopin" path="res://src/gui_common/TabButtons.tscn" id="15"]
 [ext_resource type="Texture2D" uid="uid://ckrug48v4bimt" path="res://assets/textures/gui/bevel/warningBadge.png" id="16"]
+[ext_resource type="LabelSettings" uid="uid://dd3w1mc3ion6w" path="res://src/gui_common/fonts/Body-Bold-AlmostSmall.tres" id="16_b2byg"]
+[ext_resource type="LabelSettings" uid="uid://bhs4dgsx2ut6q" path="res://src/gui_common/fonts/Body-Bold-AlmostSmall-Red.tres" id="17_338po"]
 [ext_resource type="PackedScene" uid="uid://bgeijgq7runaw" path="res://src/gui_common/FocusGrabber.tscn" id="18_7qvdx"]
 [ext_resource type="PackedScene" uid="uid://deiselg5ajg3d" path="res://src/multicellular_stage/editor/CellTypePickerPopup.tscn" id="21_hoe4k"]
 [ext_resource type="PackedScene" uid="uid://c6e83y3bsdx4q" path="res://src/microbe_stage/editor/EndosymbiosisPopup.tscn" id="23_hoe4k"]
@@ -341,7 +343,7 @@ _data = {
 &"show": SubResource("44")
 }
 
-[node name="CellBodyPlanEditorComponent" type="Control" unique_id=2093309640 node_paths=PackedStringArray("structureTabButton", "reproductionTabButton", "behaviourTabButton", "growthOrderTabButton", "tolerancesTabButton", "structureTab", "reproductionTab", "behaviourEditor", "growthOrderTab", "growthOrderGUI", "showGrowthOrderCoordinates", "tolerancesEditor", "toleranceTab", "toleranceWarningContainer", "cellTypeSelectionList", "modifyTypeButton", "deleteTypeButton", "duplicateTypeButton", "endosymbiosisButton", "endosymbiosisPopup", "pendingEndosymbiosisPopup", "generalDataErrorPopup", "cannotDeleteInUseTypeDialog", "duplicateCellTypeDialog", "duplicateCellTypeName", "cellPopupMenu", "organismStatisticsPanel", "rightPanelScrollContainer", "negativeAtpPopup", "wrongGrowthOrderPopup", "noSporeCellTypeSetPopup", "reproductionMethodDropdown", "sporeCellTypeMakerButton", "cellTypePickerPopup", "massBuddingCellCountSlider", "massBuddingCellCountLabel", "massBuddingMinSizeLabel", "buddingReproductionSection", "sporeReproductionSection", "sexualReproductionSection", "gameteACellTypeDropdown", "gameteBCellTypeDropdown", "sexualAnisogamyUpgradeButton", "sexualBenefitsExplanationLabel", "sexualBenefitsActiveLabel", "anisogamySettingsContainer", "playerGameteSelectionA", "gameteSelectionALabel", "playerGameteSelectionB", "massBuddingReproductionSection", "hexPositionEffectsContainer", "floatingLabelContainer", "islandPopup", "componentBottomLeftButtons", "mutationPointsBar", "cancelButton", "finishButtonWarningBadge", "finishOrNextButton")]
+[node name="CellBodyPlanEditorComponent" type="Control" unique_id=2093309640 node_paths=PackedStringArray("structureTabButton", "reproductionTabButton", "behaviourTabButton", "growthOrderTabButton", "tolerancesTabButton", "layoutTabButton", "structureTab", "reproductionTab", "behaviourEditor", "growthOrderTab", "growthOrderGUI", "showGrowthOrderCoordinates", "tolerancesEditor", "toleranceTab", "toleranceWarningContainer", "layoutTab", "cellTypeSelectionList", "modifyTypeButton", "deleteTypeButton", "duplicateTypeButton", "endosymbiosisButton", "endosymbiosisPopup", "pendingEndosymbiosisPopup", "generalDataErrorPopup", "cannotDeleteInUseTypeDialog", "duplicateCellTypeDialog", "duplicateCellTypeName", "cellPopupMenu", "organismStatisticsPanel", "rightPanelScrollContainer", "negativeAtpPopup", "wrongGrowthOrderPopup", "noSporeCellTypeSetPopup", "reproductionMethodDropdown", "sporeCellTypeMakerButton", "cellTypePickerPopup", "massBuddingCellCountSlider", "massBuddingCellCountLabel", "massBuddingMinSizeLabel", "buddingReproductionSection", "sporeReproductionSection", "sexualReproductionSection", "gameteACellTypeDropdown", "gameteBCellTypeDropdown", "sexualAnisogamyUpgradeButton", "sexualBenefitsExplanationLabel", "sexualBenefitsActiveLabel", "anisogamySettingsContainer", "playerGameteSelectionA", "gameteSelectionALabel", "playerGameteSelectionB", "massBuddingReproductionSection", "hexPositionEffectsContainer", "floatingLabelContainer", "islandPopup", "componentBottomLeftButtons", "mutationPointsBar", "cancelButton", "finishButtonWarningBadge", "finishOrNextButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -355,6 +357,7 @@ reproductionTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContai
 behaviourTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Behaviour")
 growthOrderTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Growth")
 tolerancesTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Tolerance")
+layoutTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Layout")
 structureTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure")
 reproductionTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction")
 behaviourEditor = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour")
@@ -364,6 +367,7 @@ showGrowthOrderCoordinates = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginC
 tolerancesEditor = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance/ScrollContainer/MarginContainer/TolerancesEditor")
 toleranceTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance")
 toleranceWarningContainer = NodePath("ToleranceWarnings")
+layoutTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Layout")
 cellTypeSelectionList = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Cells")
 modifyTypeButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Modify")
 deleteTypeButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Delete")
@@ -582,6 +586,23 @@ toggle_mode = true
 action_mode = 0
 button_group = SubResource("ButtonGroup_j7atr")
 text = "ENVIRONMENT_TOLERANCE"
+
+[node name="Layout" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons" unique_id=1668907671]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0.870588, 0.870588, 0.870588, 1)
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("5")
+theme_override_styles/pressed = SubResource("3")
+theme_override_styles/hover = SubResource("2")
+theme_override_styles/disabled = SubResource("4")
+toggle_mode = true
+action_mode = 0
+button_group = SubResource("ButtonGroup_j7atr")
+text = "LAYOUT_TAB"
 
 [node name="Structure" type="PanelContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" unique_id=1998025270]
 layout_mode = 2
@@ -916,6 +937,53 @@ theme_override_constants/margin_right = 10
 [node name="TolerancesEditor" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance/ScrollContainer/MarginContainer" unique_id=1336617322 instance=ExtResource("10_50jhs")]
 layout_mode = 2
 
+[node name="Layout" type="PanelContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" unique_id=1804417192]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_styles/panel = SubResource("14")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Layout" unique_id=84249690]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Layout/ScrollContainer" unique_id=1071924686]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_right = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Layout/ScrollContainer/MarginContainer" unique_id=2004295307]
+layout_mode = 2
+
+[node name="LayoutInfoLabel" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Layout/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1991898443]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "CELL_BODY_MANUAL_LAYOUT_INFO"
+label_settings = ExtResource("16_b2byg")
+autowrap_mode = 3
+
+[node name="AutomaticLayout" type="CheckButton" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Layout/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1249881385]
+layout_mode = 2
+tooltip_text = "USE_SPECIES_AUTOMATIC_LAYOUT_EXPLANATION"
+button_pressed = true
+text = "USE_SPECIES_AUTOMATIC_LAYOUT"
+
+[node name="LayoutError" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Layout/ScrollContainer/MarginContainer/VBoxContainer" unique_id=646474018]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP"
+label_settings = ExtResource("17_338po")
+autowrap_mode = 3
+
+[node name="LayoutExplanation" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Layout/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1585136331]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "CELL_BODY_MANUAL_LAYOUT_INSTRUCTIONS"
+label_settings = ExtResource("16_b2byg")
+autowrap_mode = 3
+
 [node name="RightPanel" type="MarginContainer" parent="." unique_id=1592655845]
 custom_minimum_size = Vector2(285, 657)
 layout_mode = 1
@@ -1179,6 +1247,7 @@ IsMulticellular = true
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Behaviour" to="." method="SetSelectionMenuTab" binds= ["Behaviour"]]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Growth" to="." method="SetSelectionMenuTab" binds= ["GrowthOrder"]]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Tolerance" to="." method="SetSelectionMenuTab" binds= ["Tolerance"]]
+[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Layout" to="." method="SetSelectionMenuTab" binds= ["Layout"]]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Modify" to="." method="OnModifyCurrentCellTypePressed"]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Delete" to="." method="OnDeleteCellTypePressed"]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/Duplicate" to="." method="OnTypeDuplicateStartPressed"]
