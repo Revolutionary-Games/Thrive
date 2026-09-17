@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using Godot;
 using SharedBase.Archive;
 using Systems;
@@ -11,7 +12,7 @@ using Systems;
 /// </summary>
 public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISimulationPhotographable
 {
-    public const ushort SERIALIZATION_VERSION = 8;
+    public const ushort SERIALIZATION_VERSION = 9;
 
     private readonly Dictionary<BiomeConditions, Dictionary<Compound, (float TimeToFill, float Storage)>>
         cachedFillTimes = new();
@@ -239,6 +240,43 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
             instance.ModifiableSporeCellType = null;
             if (instance.ReproductionMethod == MulticellularReproductionMethod.Sporulation)
                 instance.ReproductionMethod = MulticellularReproductionMethod.Budding;
+        }
+
+        if (version < 9)
+        {
+            if (instance.ModifiableGameteTypeA != null)
+            {
+                var cell = (CellType)instance.ModifiableGameteTypeA.Clone();
+
+                string originalName = cell.CellTypeName;
+                int count = 1;
+
+                while (instance.ModifiableCellTypes.Any(c =>
+                    c.CellTypeName.Equals(cell.CellTypeName, StringComparison.InvariantCultureIgnoreCase)))
+                {
+                    cell.CellTypeName = $"{originalName} {count++}";
+                }
+
+                instance.ModifiableGameteTypeA = cell;
+                instance.ModifiableCellTypes.Add(cell);
+            }
+
+            if (instance.ModifiableGameteTypeB != null)
+            {
+                var cell = (CellType)instance.ModifiableGameteTypeB.Clone();
+
+                string originalName = cell.CellTypeName;
+                int count = 1;
+
+                while (instance.ModifiableCellTypes.Any(c =>
+                        c.CellTypeName.Equals(cell.CellTypeName, StringComparison.InvariantCultureIgnoreCase)))
+                {
+                    cell.CellTypeName = $"{originalName} {count++}";
+                }
+
+                instance.ModifiableGameteTypeB = cell;
+                instance.ModifiableCellTypes.Add(cell);
+            }
         }
 
         return instance;
