@@ -302,9 +302,6 @@ public class RemoveOrganelle : IMutationStrategy<Species>
             if (!criteria(organelles[i].Definition))
                 continue;
 
-            // Count only matching organelles for sampling, but store their indices in the original list.
-            ++matchingCount;
-
             // The player cannot remove the nucleus, so Auto-Evo should not be able to either
             if (ReferenceEquals(organelles[i].Definition, Nucleus))
                 continue;
@@ -313,6 +310,8 @@ public class RemoveOrganelle : IMutationStrategy<Species>
             if (HasLaterDuplicate(organelles, i, organelleCount))
                 continue;
 
+            // Count only matching organelles for sampling, but store their indices in the original list.
+            ++matchingCount;
             if (selectedCount < candidates.Length)
             {
                 candidates[selectedCount++] = i;
