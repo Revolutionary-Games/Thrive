@@ -2142,8 +2142,14 @@ public static class Constants
     /// </summary>
     public const float TOLERANCE_DISPLAY_SLIDER_GRABBER_Y_OFFSET = 28.0f;
 
-    public const float TOLERANCE_INITIAL_TEMPERATURE_RANGE = 10;
+    /// <summary>
+    ///   Temperature flexibility value at which you can get the maximum bonus.
+    ///   Should be equal to the minimum value of
+    ///   <see cref="TolerancesEditorSubComponent.temperatureToleranceRangeSlider"/>.
+    /// </summary>
     public const float TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE = 2;
+
+    public const float TOLERANCE_INITIAL_TEMPERATURE_RANGE = 10;
     public const float TOLERANCE_MAXIMUM_SURVIVABLE_TEMPERATURE_DIFFERENCE = 40;
     public const float TOLERANCE_PERFECT_TEMPERATURE_SCORE = 0.1f;
 

@@ -203,6 +203,7 @@ focus_neighbor_bottom = NodePath("../../../Pressure/RangeDisplayContainer/VBoxCo
 focus_next = NodePath("../../../Pressure/RangeDisplayContainer/VBoxContainer/PressureSlider")
 focus_previous = NodePath("../../RangeDisplayContainer/VBoxContainer/TemperatureSlider")
 mouse_filter = 1
+min_value = 2
 max_value = 50.0
 value = 10.0
 rounded = true
