@@ -474,11 +474,15 @@ public partial class CellBodyPlanEditorComponent :
             else
             {
                 fullLayoutPreview = calculation.Result.Gameplay;
+                RebuildFullLayoutGrowthOrderSources(fullLayoutPreview);
                 if (UsesManualPlayerLayout && manualFullLayout.Count == 0)
                     CopyLayout(fullLayoutPreview, manualFullLayout);
 
                 if (layoutPreviewActive)
+                {
                     UpdateFullLayoutVisuals();
+                    UpdateGrowthOrderNumbers();
+                }
             }
         }
 
@@ -746,6 +750,8 @@ public partial class CellBodyPlanEditorComponent :
                 manualFullLayout.AddFast(new HexWithData<CellTemplate>(clone, clone.Position, clone.Orientation),
                     hexTemporaryMemory, hexTemporaryMemory2);
             }
+
+            RebuildFullLayoutGrowthOrderSources(manualFullLayout);
         }
 
         // Ignore invalid species data
@@ -796,16 +802,34 @@ public partial class CellBodyPlanEditorComponent :
 
         ApplyGrowthOrderToCells();
 
-        // Compute final cell layout positions and update the species
-        // TODO: maybe in the future we want to switch to editing the full hex layout with the entire cells in this
-        // editor so this step can be skipped. Or another approach that keeps the shape the player worked on better
-        // than this approach that can move around the cells a lot.
-        // This uses high quality as extra time spent doesn't matter here and is even important for the player species.
+        if (UsesManualPlayerLayout)
+        {
+            if (manualFullLayout.Count < 1)
+                throw new InvalidOperationException("Full layout should not be empty here");
 
-        // TODO: as this is a long operation, it would be very nice to be able to run this in a background thread
-        MulticellularLayoutHelpers.UpdateGameplayLayout(editedSpecies.ModifiableGameplayCells,
-            editedSpecies.ModifiableEditorCells, editedMicrobeCells, AlgorithmQuality.High, hexTemporaryMemory,
-            hexTemporaryMemory2, hexTemporaryMemory3);
+            // Manual positions are already final gameplay positions.
+            ReorderManualLayoutToGrowthOrder();
+            editedSpecies.ModifiableGameplayCells.Clear();
+            foreach (var cell in manualFullLayout)
+            {
+                var type = editedSpecies.ModifiableCellTypes.First(t =>
+                    t.CellTypeName == cell.Data!.ModifiableCellType.CellTypeName);
+                var template = new CellTemplate(type, cell.Position, cell.Orientation);
+                editedSpecies.ModifiableGameplayCells.AddFast(template, hexTemporaryMemory, hexTemporaryMemory2);
+            }
+
+            // Keep the compact layout as the editor layout, so opening the other tabs still edits the cell instances
+            // in the usual way and returning to the editor shows exactly what the player did.
+            editedSpecies.CopyEditorLayout(editedMicrobeCells.AsModifiable(), hexTemporaryMemory, hexTemporaryMemory2);
+        }
+        else
+        {
+            // TODO: as this is a long operation, it would be very nice to be able to run this in a background thread
+            // This uses high quality as extra time spent doesn't matter here and is important for the player species.
+            MulticellularLayoutHelpers.UpdateGameplayLayout(editedSpecies.ModifiableGameplayCells,
+                editedSpecies.ModifiableEditorCells, editedMicrobeCells, AlgorithmQuality.High, hexTemporaryMemory,
+                hexTemporaryMemory2, hexTemporaryMemory3);
+        }
 
         editedSpecies.ReproductionMethod = ReproductionMethod;
         editedSpecies.UsesManualPlayerLayout = UsesManualPlayerLayout;
