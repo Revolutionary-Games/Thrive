@@ -12,11 +12,19 @@ void fragment() {
         cloudPlanetCenter, cloudInnerRadius, cloudOuterRadius, normalize(cloudSunDirection), cloudSunEnergy,
         Ign(FRAGCOORD.xy));
 
-    // Opaque. OpenGL has no reversed Z, so nothing drawn means a depth of 1 and NDC depth goes from -1 to 1
+    // Opaque. OpenGL has no reversed Z, so nothing drawn means a depth of 1 and NDC depth goes from -1 to 1. The
+    // RenderingDevice renderers use reversed Z, where nothing drawn is 0 and NDC depth is already 0 to 1.
     float tMax = CLOUD_MAX_DISTANCE;
     float rawDepth = texture(depthTexture, SCREEN_UV).r;
-    if (rawDepth < 1.0) {
-        vec4 viewPos = INV_PROJECTION_MATRIX * vec4(ndc, rawDepth * 2.0 - 1.0, 1.0);
+#if CURRENT_RENDERER == RENDERER_COMPATIBILITY
+    bool hitOpaque = rawDepth < 1.0;
+    float ndcDepth = rawDepth * 2.0 - 1.0;
+#else
+    bool hitOpaque = rawDepth > 0.0;
+    float ndcDepth = rawDepth;
+#endif
+    if (hitOpaque) {
+        vec4 viewPos = INV_PROJECTION_MATRIX * vec4(ndc, ndcDepth, 1.0);
         viewPos.xyz /= viewPos.w;
         tMax = min(tMax, length(viewPos.xyz));
     }
