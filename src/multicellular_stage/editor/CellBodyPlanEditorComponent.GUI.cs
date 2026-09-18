@@ -296,6 +296,14 @@ public partial class CellBodyPlanEditorComponent
 
     private IEnumerable<(Vector3 Position, string Text, Color TextColor)> GrowthOrderFloatingNumbers()
     {
+        if (layoutPreviewActive)
+        {
+            foreach (var label in FullLayoutGrowthOrderFloatingNumbers())
+                yield return label;
+
+            yield break;
+        }
+
         var orderList = growthOrderGUI.GetCurrentOrder();
         var orderListCount = orderList.Count;
 
