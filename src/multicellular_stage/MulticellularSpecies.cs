@@ -901,6 +901,61 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         ModifiableGameplayCells = new CellLayout<CellTemplate>();
     }
 
+    /// <summary>
+    ///   Overrides the editor layout in this species with the given template. All cell types must exist already in
+    ///   this species when this is called.
+    /// </summary>
+    public void CopyEditorLayout(HexLayout<HexWithData<CellTemplate>> template, List<Hex> hexTemporaryMemory,
+        List<Hex> hexTemporaryMemory2)
+    {
+        if (modifiableEditorCells == null)
+        {
+            modifiableEditorCells = new IndividualHexLayout<CellTemplate>();
+        }
+        else
+        {
+            modifiableEditorCells.Clear();
+        }
+
+        foreach (var cell in template)
+        {
+            // Find the type to construct a hex instance
+            CellType? cellType = null;
+            var wantedTypeName = cell.Data!.CellType.CellTypeName;
+
+            foreach (var existingType in ModifiableCellTypes)
+            {
+                if (existingType.CellTypeName == wantedTypeName)
+                {
+                    cellType = existingType;
+                    break;
+                }
+            }
+
+            if (cellType == null)
+            {
+                // This should never be needed but for safety also do some fuzzier matching
+                GD.Print("Using case-insensitive type matching");
+
+                foreach (var existingType in ModifiableCellTypes)
+                {
+                    if (existingType.CellTypeName.Equals(wantedTypeName, StringComparison.OrdinalIgnoreCase))
+                    {
+                        cellType = existingType;
+                        break;
+                    }
+                }
+            }
+
+            if (cellType == null)
+                throw new InvalidOperationException($"No cell type exists for: {wantedTypeName}");
+
+            modifiableEditorCells.AddFast(new HexWithData<CellTemplate>(
+                new CellTemplate(cellType, cell.Position, cell.Orientation),
+                cell.Position, cell.Orientation), hexTemporaryMemory, hexTemporaryMemory2);
+        }
+    }
+
     public override object Clone()
     {
         return Clone(true, true);
