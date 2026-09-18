@@ -590,7 +590,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
                 // be really hard to apply
                 var perfectionFactor = 1 - Math.Max(0,
                         noExtraEffects.TemperatureTolerance - Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE) /
-                    (50 - Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE);
+                    (Constants.TOLERANCE_MAXIMUM_TEMPERATURE_RANGE - Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE);
                 result.TemperatureScore = 1 + perfectionFactor;
             }
             else

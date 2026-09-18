@@ -2149,6 +2149,13 @@ public static class Constants
     /// </summary>
     public const float TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE = 2;
 
+    /// <summary>
+    ///   Maximum temperature flexibility value.
+    ///   Should be equal to the maximum value of
+    ///   <see cref="TolerancesEditorSubComponent.temperatureToleranceRangeSlider"/>.
+    /// </summary>
+    public const float TOLERANCE_MAXIMUM_TEMPERATURE_RANGE = 15;
+
     public const float TOLERANCE_INITIAL_TEMPERATURE_RANGE = 10;
     public const float TOLERANCE_MAXIMUM_SURVIVABLE_TEMPERATURE_DIFFERENCE = 40;
     public const float TOLERANCE_PERFECT_TEMPERATURE_SCORE = 0.1f;
