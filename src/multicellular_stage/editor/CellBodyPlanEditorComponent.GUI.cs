@@ -733,6 +733,7 @@ public partial class CellBodyPlanEditorComponent
     private void UpdateLayoutTabContent()
     {
         automaticLayoutButton.ButtonPressed = !UsesManualPlayerLayout;
+        reapplyAutomaticLayoutButton.Visible = UsesManualPlayerLayout;
     }
 
     private void OnAutomaticLayoutModeUpdated(bool usesAutomatic)
@@ -744,6 +745,31 @@ public partial class CellBodyPlanEditorComponent
 
         // TODO: make this an editor action
         UsesManualPlayerLayout = targetValue;
+
+        if (UsesManualPlayerLayout)
+        {
+            if (fullLayoutPreview.Count > 0)
+            {
+                CopyLayout(fullLayoutPreview, manualFullLayout);
+            }
+            else
+            {
+                StartLayoutCalculation();
+            }
+        }
+        else
+        {
+            manualFullLayout.Clear();
+            StartLayoutCalculation();
+        }
+
         UpdateLayoutTabContent();
+        if (layoutPreviewActive)
+            UpdateFullLayoutVisuals();
+    }
+
+    private void OnReapplyAutomaticLayoutButtonPressed()
+    {
+        OnReapplyAutomaticLayoutPressed();
     }
 }
