@@ -14,9 +14,32 @@ using ThreadState = System.Threading.ThreadState;
 [RequireGodotRuntime]
 public class AutoEvoRunCompletionTests
 {
+    private int originalParallelTasks;
+    private string? cleanupFailure;
+
+    [Before]
+    public void EnsureEnoughWorkers()
+    {
+        originalParallelTasks = TaskExecutor.Instance.ParallelTasks;
+        TaskExecutor.Instance.ParallelTasks = Math.Max(originalParallelTasks, 2);
+    }
+
+    [After]
+    public void RestoreWorkers()
+    {
+        // Do not reduce the worker count while callbacks from a failed cleanup may still be running.
+        // The failing test already reports this; an After failure would be repeated for every case by GdUnit.
+        if (cleanupFailure != null)
+            return;
+
+        // This restores the configured count; the executor processes worker exit requests asynchronously.
+        TaskExecutor.Instance.ParallelTasks = originalParallelTasks;
+    }
+
     [TestCase]
     public void OneStep_FailureFinishesWithoutResultsOrRepeatingWork()
     {
+        RequireCompletedCleanup();
         int calls = 0;
         var workDuration = TimeSpan.Zero;
         var run = new ControlledRun(CreateWorld(), new ActionStep(_ =>
@@ -51,6 +74,7 @@ public class AutoEvoRunCompletionTests
     [TestCase(true)]
     public void OneStep_ObservesCancellationWithoutExecutingAnotherStep(bool afterGathering)
     {
+        RequireCompletedCleanup();
         int calls = 0;
         var run = new ControlledRun(CreateWorld(), new ActionStep(_ => ++calls));
         if (afterGathering)
@@ -75,6 +99,7 @@ public class AutoEvoRunCompletionTests
     [TestCase]
     public void OneStep_CancellationDuringTheStepFinishesAfterItReturns()
     {
+        RequireCompletedCleanup();
         bool runningAfterCancellation = false;
         bool finishedAfterCancellation = true;
         var workDuration = TimeSpan.Zero;
@@ -82,8 +107,15 @@ public class AutoEvoRunCompletionTests
         run = new ControlledRun(CreateWorld(), new ActionStep(_ =>
         {
             workDuration = MeasureControlledWork();
+
+            // The run is assigned before OneStep invokes this callback and is never reassigned afterward.
+            // ReSharper disable once AccessToModifiedClosure
             run!.Abort();
+
+            // ReSharper disable once AccessToModifiedClosure
             runningAfterCancellation = run.Running;
+
+            // ReSharper disable once AccessToModifiedClosure
             finishedAfterCancellation = run.Finished;
         }));
 
@@ -107,6 +139,7 @@ public class AutoEvoRunCompletionTests
     [TestCase(true)]
     public void PausedRun_CanFinishWithoutRepeatingCompletedSteps(bool continueInBackground)
     {
+        RequireCompletedCleanup();
         int calls = 0;
         var world = CreateWorld();
         var workDuration = TimeSpan.Zero;
@@ -161,6 +194,7 @@ public class AutoEvoRunCompletionTests
     [TestCase(true)]
     public void CompletedRun_LifecycleCallsLeaveFinalStateUnchanged(bool background)
     {
+        RequireCompletedCleanup();
         var world = CreateWorld();
         int calls = 0;
         var workDuration = TimeSpan.Zero;
@@ -211,59 +245,126 @@ public class AutoEvoRunCompletionTests
     [TestCase(false, true)]
     public void Start_PublishesFinalDataAfterAcceptedWorkStops(bool fail, bool cancel)
     {
+        RequireCompletedCleanup();
         var world = CreateWorld();
-        using var siblingStarted = new ManualResetEventSlim();
-        using var firstEnded = new ManualResetEventSlim();
-        using var releaseSibling = new ManualResetEventSlim();
-        using var siblingEnded = new ManualResetEventSlim();
+        var siblingStarted = new ManualResetEventSlim();
+        var firstEnded = new ManualResetEventSlim();
+        var releaseSibling = new ManualResetEventSlim();
+
+        // These captured flags are intentionally shared; all reads and writes use Volatile.
+        int firstExited = 0;
+        int siblingExited = 0;
+        bool siblingCompleted = false;
         Thread? owner = null;
         ControlledRun? run = null;
+
+        // Captured events are disposed only after both exit markers; ReSharper cannot infer this guarantee.
         run = new ControlledRun(world, new ActionStep(_ =>
         {
-            owner = Thread.CurrentThread;
-            if (!siblingStarted.Wait(TimeSpan.FromSeconds(10)))
-                throw new TimeoutException("Sibling did not start");
+            try
+            {
+                owner = Thread.CurrentThread;
 
-            if (cancel)
-                run!.Abort();
-            firstEnded.Set();
-            if (fail)
-                throw new InvalidOperationException("Expected background failure");
+                // ReSharper disable once AccessToDisposedClosure
+                if (!siblingStarted.Wait(TimeSpan.FromSeconds(10)))
+                    throw new TimeoutException("Sibling did not start");
+
+                if (cancel)
+                {
+                    // The run is assigned before Start queues this callback and is never reassigned afterward.
+                    // ReSharper disable once AccessToModifiedClosure
+                    run!.Abort();
+                }
+
+                // ReSharper disable once AccessToDisposedClosure
+                firstEnded.Set();
+                if (fail)
+                    throw new InvalidOperationException("Expected background failure");
+            }
+            finally
+            {
+                // No captured event may be accessed after publishing this marker, even on failure.
+                // ReSharper disable once AccessToModifiedClosure
+                Volatile.Write(ref firstExited, 1);
+            }
         }), new ActionStep(results =>
         {
-            siblingStarted.Set();
-            if (!releaseSibling.Wait(TimeSpan.FromSeconds(10)))
-                throw new TimeoutException("Sibling was not released");
+            try
+            {
+                // ReSharper disable once AccessToDisposedClosure
+                siblingStarted.Set();
 
-            ++world.PlayerSpecies.Generation;
-            results.AddPopulationResultForSpecies(world.PlayerSpecies, world.Map.CurrentPatch!, 123);
-            siblingEnded.Set();
+                // ReSharper disable once AccessToDisposedClosure
+                if (!releaseSibling.Wait(TimeSpan.FromSeconds(10)))
+                    throw new TimeoutException("Sibling was not released");
+
+                ++world.PlayerSpecies.Generation;
+                results.AddPopulationResultForSpecies(world.PlayerSpecies, world.Map.CurrentPatch!, 123);
+
+                // ReSharper disable once AccessToModifiedClosure
+                Volatile.Write(ref siblingCompleted, true);
+            }
+            finally
+            {
+                // ReSharper disable once AccessToModifiedClosure
+                Volatile.Write(ref siblingExited, 1);
+            }
         })) { FullSpeed = true, TrackMemoryInfo = true };
 
-        var blockedDuration = TimeSpan.Zero;
+        TimeSpan blockedDuration;
         var observation = Stopwatch.StartNew();
-        run.Start();
+        Exception? observationFailure = null;
         try
         {
+            run.Start();
             AssertThat(firstEnded.Wait(TimeSpan.FromSeconds(10))).IsTrue();
             AssertThat(SpinWait.SpinUntil(() => run.Finished ||
                     (owner!.ThreadState & ThreadState.WaitSleepJoin) != 0,
                 TimeSpan.FromSeconds(10))).IsTrue();
-            AssertThat(siblingEnded.IsSet).IsFalse();
+            AssertThat(Volatile.Read(ref siblingCompleted)).IsFalse();
             AssertThat(run.Finished).IsFalse();
             AssertThat(run.Running).IsTrue();
 
             // This entire measured interval is inside the accepted sibling step, before we release it.
             blockedDuration = MeasureControlledWork();
         }
+        catch (Exception e)
+        {
+            observationFailure = e;
+            throw;
+        }
         finally
         {
             releaseSibling.Set();
-            WaitForCompletion(run);
-            observation.Stop();
+
+            // Finished is under test and may be published too early. Wait for the event users independently.
+            if (!SpinWait.SpinUntil(() => Volatile.Read(ref firstExited) != 0 &&
+                    Volatile.Read(ref siblingExited) != 0, TimeSpan.FromSeconds(10)))
+            {
+                cleanupFailure = $"First callback exited: {Volatile.Read(ref firstExited) != 0}; " +
+                    $"sibling callback exited: {Volatile.Read(ref siblingExited) != 0}. " +
+                    "Callback events and worker configuration have been retained";
+                var cleanupError = new TimeoutException(cleanupFailure);
+                if (observationFailure != null)
+                {
+                    // GdUnit unwraps nested exceptions to their first cause, losing the other cleanup error.
+                    // Report both errors as text so the original assertion and its stack trace remain visible.
+                    AssertThat(false).OverrideFailureMessage(
+                        $"Observation and callback cleanup failed:\n{observationFailure}\n{cleanupError}").IsTrue();
+                }
+
+                // Keep the events alive on timeout: callbacks may still access them.
+                throw cleanupError;
+            }
+
+            siblingStarted.Dispose();
+            firstEnded.Dispose();
+            releaseSibling.Dispose();
         }
 
-        AssertThat(siblingEnded.IsSet).IsTrue();
+        WaitForCompletion(run);
+        observation.Stop();
+        AssertThat(Volatile.Read(ref siblingCompleted)).IsTrue();
         AssertThat(world.PlayerSpecies.Generation).IsEqual(2);
         AssertThat(run.Running).IsFalse();
         AssertThat(run.Aborted).IsEqual(fail || cancel);
@@ -312,6 +413,13 @@ public class AutoEvoRunCompletionTests
     private static void WaitForCompletion(AutoEvoRun run)
     {
         AssertThat(SpinWait.SpinUntil(() => run.Finished, TimeSpan.FromSeconds(10))).IsTrue();
+    }
+
+    private void RequireCompletedCleanup()
+    {
+        // A failed BeforeTest hook does not prevent the test body from running in the current GdUnit runner.
+        if (cleanupFailure != null)
+            throw new InvalidOperationException($"An earlier test could not clean up its callbacks: {cleanupFailure}");
     }
 
     private sealed class ControlledRun : AutoEvoRun
