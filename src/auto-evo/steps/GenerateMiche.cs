@@ -32,13 +32,11 @@ public class GenerateMiche : IRunStep
     {
         var rootMiche = new Miche(globalCache.RootPressure);
         var metabolicRoot = new Miche(globalCache.MetabolicStabilityPressure);
-        var avoidPredationMiche = new Miche(globalCache.GeneralAvoidPredationSelectionPressure);
         var energyConsumptionMiche = new Miche(globalCache.EnergyConsumptionPressure);
         var generatedMiche = new Miche(globalCache.EnvironmentalTolerancesPressure);
 
         rootMiche.AddChild(metabolicRoot);
-        metabolicRoot.AddChild(avoidPredationMiche);
-        avoidPredationMiche.AddChild(energyConsumptionMiche);
+        metabolicRoot.AddChild(energyConsumptionMiche);
         energyConsumptionMiche.AddChild(generatedMiche);
 
         // "Autotrophic" Miches
@@ -55,8 +53,10 @@ public class GenerateMiche : IRunStep
             glucoseAmount.Amount > 0)
         {
             var glucoseMiche = new Miche(globalCache.GlucoseConversionEfficiencyPressure);
-            glucoseMiche.AddChild(new Miche(globalCache.GlucoseCloudPressure));
+            var avoidPredationMiche = new Miche(globalCache.GeneralAvoidPredationSelectionPressure);
 
+            avoidPredationMiche.AddChild(new Miche(globalCache.GlucoseCloudPressure));
+            glucoseMiche.AddChild(avoidPredationMiche);
             lastGeneralMiche.AddChild(glucoseMiche);
         }
 
@@ -69,16 +69,18 @@ public class GenerateMiche : IRunStep
         if (hasSmallIronChunk || hasBigIronChunk)
         {
             var ironMiche = new Miche(globalCache.IronConversionEfficiencyPressure);
+            var avoidPredationMiche = new Miche(globalCache.GeneralAvoidPredationSelectionPressure);
 
             if (hasSmallIronChunk)
-                ironMiche.AddChild(new Miche(globalCache.SmallIronChunkPressure));
+                avoidPredationMiche.AddChild(new Miche(globalCache.SmallIronChunkPressure));
 
             if (hasBigIronChunk)
-                ironMiche.AddChild(new Miche(globalCache.BigIronChunkPressure));
+                avoidPredationMiche.AddChild(new Miche(globalCache.BigIronChunkPressure));
 
             // TODO: maybe allowing direct iron in a patch should also be considered (though not currently used by
             // any biome in the game)?
 
+            ironMiche.AddChild(avoidPredationMiche);
             lastGeneralMiche.AddChild(ironMiche);
         }
 
@@ -100,19 +102,21 @@ public class GenerateMiche : IRunStep
             var hydrogenSulfideMiche = new Miche(globalCache.HydrogenSulfideConversionEfficiencyPressure);
             var generateATP = new Miche(globalCache.MinorGlucoseConversionEfficiencyPressure);
             var maintainGlucose = new Miche(globalCache.MaintainGlucose);
+            var avoidPredationMiche = new Miche(globalCache.GeneralAvoidPredationSelectionPressure);
 
             if (hydrogenSulfideAmount.Amount > 0)
-                maintainGlucose.AddChild(new Miche(globalCache.HydrogenSulfideCloudPressure));
+                avoidPredationMiche.AddChild(new Miche(globalCache.HydrogenSulfideCloudPressure));
 
             if (hasSmallSulfurChunk)
-                maintainGlucose.AddChild(new Miche(globalCache.SmallSulfurChunkPressure));
+                avoidPredationMiche.AddChild(new Miche(globalCache.SmallSulfurChunkPressure));
 
             if (hasMediumSulfurChunk)
-                maintainGlucose.AddChild(new Miche(globalCache.MediumSulfurChunkPressure));
+                avoidPredationMiche.AddChild(new Miche(globalCache.MediumSulfurChunkPressure));
 
             if (hasLargeSulfurChunk)
-                maintainGlucose.AddChild(new Miche(globalCache.LargeSulfurChunkPressure));
+                avoidPredationMiche.AddChild(new Miche(globalCache.LargeSulfurChunkPressure));
 
+            maintainGlucose.AddChild(avoidPredationMiche);
             generateATP.AddChild(maintainGlucose);
             hydrogenSulfideMiche.AddChild(generateATP);
             lastGeneralMiche.AddChild(hydrogenSulfideMiche);
@@ -126,7 +130,10 @@ public class GenerateMiche : IRunStep
         if (hasRadioactiveChunk)
         {
             var radiationMiche = new Miche(globalCache.RadiationConversionEfficiencyPressure);
-            radiationMiche.AddChild(new Miche(globalCache.RadioactiveChunkPressure));
+            var avoidPredationMiche = new Miche(globalCache.GeneralAvoidPredationSelectionPressure);
+
+            avoidPredationMiche.AddChild(new Miche(globalCache.RadioactiveChunkPressure));
+            radiationMiche.AddChild(avoidPredationMiche);
 
             lastGeneralMiche.AddChild(radiationMiche);
         }
@@ -140,7 +147,11 @@ public class GenerateMiche : IRunStep
             var generateATP = new Miche(globalCache.MinorGlucoseConversionEfficiencyPressure);
             var maintainGlucose = new Miche(globalCache.MaintainGlucose);
             var envPressure = new Miche(globalCache.SunlightCompoundPressure);
+            var avoidPredationMiche = new Miche(globalCache.GeneralAvoidPredationSelectionPressure);
+            var envEnergy = new Miche(globalCache.SunlightCompoundEnergy);
 
+            avoidPredationMiche.AddChild(envEnergy);
+            envPressure.AddChild(avoidPredationMiche);
             maintainGlucose.AddChild(envPressure);
             generateATP.AddChild(maintainGlucose);
             sunlightMiche.AddChild(generateATP);
@@ -159,7 +170,11 @@ public class GenerateMiche : IRunStep
             var generateATP = new Miche(globalCache.MinorGlucoseConversionEfficiencyPressure);
             var maintainGlucose = new Miche(globalCache.MaintainGlucose);
             var tempCompPressure = new Miche(globalCache.TemperatureCompoundPressure);
+            var avoidPredationMiche = new Miche(globalCache.GeneralAvoidPredationSelectionPressure);
+            var tempCompEnergy = new Miche(globalCache.TemperatureCompoundEnergy);
 
+            avoidPredationMiche.AddChild(tempCompEnergy);
+            tempCompPressure.AddChild(avoidPredationMiche);
             tempSessilityMiche.AddChild(tempCompPressure);
             maintainGlucose.AddChild(tempSessilityMiche);
             generateATP.AddChild(maintainGlucose);
@@ -169,6 +184,7 @@ public class GenerateMiche : IRunStep
 
         var predationRoot = new Miche(globalCache.PredatorRoot);
         var predationGlucose = new Miche(globalCache.MinorGlucoseConversionEfficiencyPressure);
+        var avoidPredationMicheForPredators = new Miche(globalCache.GeneralAvoidPredationSelectionPressure);
         var supportedSpeciesCount = 0;
 
         // Per Target-Species Miches
@@ -180,7 +196,8 @@ public class GenerateMiche : IRunStep
             ++supportedSpeciesCount;
 
             // Predation Miches
-            predationGlucose.AddChild(new Miche(new PredationEffectivenessPressure(targetSpecies.Key, 8.0f)));
+            avoidPredationMicheForPredators.AddChild(new Miche(new PredationEffectivenessPressure(targetSpecies.Key,
+                8.0f)));
 
             // Endosymbiosis Miches
             if (targetSpecies.Key.PlayerSpecies && targetSpecies.Key.Endosymbiosis.StartedEndosymbiosis != null)
@@ -192,7 +209,10 @@ public class GenerateMiche : IRunStep
         }
 
         if (supportedSpeciesCount > 1)
+        {
+            predationGlucose.AddChild(avoidPredationMicheForPredators);
             predationRoot.AddChild(predationGlucose);
+        }
 
         generatedMiche.AddChild(predationRoot);
 
