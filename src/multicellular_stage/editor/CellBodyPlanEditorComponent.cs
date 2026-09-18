@@ -1063,7 +1063,11 @@ public partial class CellBodyPlanEditorComponent :
             if (fullCell == null)
                 return true;
 
+            // Moving full layout cells is always free
+            cellPopupMenu.GetActionPrice = _ => 0;
             cellPopupMenu.SelectedCells = [fullCell];
+
+            // Hide the usual options
             cellPopupMenu.ShowDeleteOption = false;
             cellPopupMenu.EnableDeleteOption = false;
             cellPopupMenu.ShowModifyOption = false;
