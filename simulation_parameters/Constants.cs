@@ -2171,8 +2171,14 @@ public static class Constants
 
     public const float TOLERANCE_PERFECT_THRESHOLD_PRESSURE = 350000;
 
+    /// <summary>
+    ///   Maximum pressure flexibility value.
+    ///   Should be equal to the maximum value of
+    ///   <see cref="TolerancesEditorSubComponent.pressureToleranceRangeSlider"/>.
+    /// </summary>
+    public const float TOLERANCE_MAXIMUM_PRESSURE_RANGE = 20000000;
+
     public const float TOLERANCE_INITIAL_PRESSURE_RANGE = 2400000;
-    public const float TOLERANCE_PRESSURE_RANGE_MAX = 2000000;
 
     // These values must be the same as in the editor
     public const float TOLERANCE_OXYGEN_RANGE_MAX = 0.1f;

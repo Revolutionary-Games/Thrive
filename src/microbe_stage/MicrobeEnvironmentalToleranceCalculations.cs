@@ -676,7 +676,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
 
                 var perfectionFactor = 1 - Math.Max(0,
                         noExtraEffects.PressureTolerance - Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE) /
-                    (8000000 - Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE);
+                    (Constants.TOLERANCE_MAXIMUM_PRESSURE_RANGE - Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE);
                 result.PressureScore = 1 + perfectionFactor;
             }
 
