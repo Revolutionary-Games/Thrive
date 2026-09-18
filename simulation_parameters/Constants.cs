@@ -2181,7 +2181,7 @@ public static class Constants
     ///   Should be equal to the maximum value of
     ///   <see cref="TolerancesEditorSubComponent.pressureToleranceRangeSlider"/>.
     /// </summary>
-    public const float TOLERANCE_MAXIMUM_PRESSURE_RANGE = 20000000;
+    public const float TOLERANCE_MAXIMUM_PRESSURE_RANGE = 25000000;
 
     public const float TOLERANCE_INITIAL_PRESSURE_RANGE = 8000000;
 
