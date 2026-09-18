@@ -2200,12 +2200,12 @@ public static class Constants
     public const float TOLERANCE_TEMPERATURE_SPEED_MODIFIER_MIN = 0.8f;
     public const float TOLERANCE_TEMPERATURE_OSMOREGULATION_MAX = 1.2f;
     public const float TOLERANCE_TEMPERATURE_HEALTH_MIN = 0.8f;
-    public const float TOLERANCE_TEMPERATURE_SPEED_BUFF_MAX = 1.1f;
+    public const float TOLERANCE_TEMPERATURE_SPEED_BUFF_MAX = 0.1f;
 
     public const float TOLERANCE_PRESSURE_SPEED_MODIFIER_MIN = 0.8f;
     public const float TOLERANCE_PRESSURE_OSMOREGULATION_MAX = 1.1f;
     public const float TOLERANCE_PRESSURE_HEALTH_MIN = 0.5f;
-    public const float TOLERANCE_PRESSURE_HEALTH_BUFF_MAX = 1.2f;
+    public const float TOLERANCE_PRESSURE_HEALTH_BUFF_MAX = 0.2f;
 
     public const float TOLERANCE_OXYGEN_HEALTH_MIN = 0.5f;
     public const float TOLERANCE_OXYGEN_OSMOREGULATION_MAX = 1.6f;
