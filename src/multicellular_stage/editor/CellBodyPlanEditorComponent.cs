@@ -894,6 +894,25 @@ public partial class CellBodyPlanEditorComponent :
         if (!base.CanFinishEditing(editorUserOverrides))
             return false;
 
+        if (UsesManualPlayerLayout)
+        {
+            if (pendingLayoutCalculation != null || manualFullLayout.Count == 0)
+            {
+                ToolTipManager.Instance.ShowPopup(Localization.Translate("CELL_LAYOUT_IS_BEING_CALCULATED"), 4);
+                return false;
+            }
+
+            // This needs to be called here so that errors are detected
+            UpdateFullLayoutVisuals();
+        }
+
+        if (UsesManualPlayerLayout && manualLayoutHasErrors)
+        {
+            ToolTipManager.Instance.ShowPopup(
+                Localization.Translate("CELL_BODY_MANUAL_LAYOUT_ERROR_OVERLAP_DISCONNECT"), 4);
+            return false;
+        }
+
         if (IsNegativeAtpProduction() &&
             !editorUserOverrides.Contains(EditorUserOverride.NotProducingEnoughATP))
         {
@@ -2205,6 +2224,7 @@ public partial class CellBodyPlanEditorComponent :
 
     private void OnGrowthOrderChanged()
     {
+        RefreshFullLayoutGrowthOrderIndices();
         RecalculateWrongGrowthOrderCells();
 
         UpdateGrowthOrderUI();
