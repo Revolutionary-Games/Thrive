@@ -442,8 +442,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
         }
         else if (data.TemperatureScore > 1)
         {
-            result.ProcessSpeedModifier *=
-                Math.Max(Constants.TOLERANCE_TEMPERATURE_SPEED_BUFF_MAX, temperatureScore);
+            result.ProcessSpeedModifier *= 1 + (temperatureScore - 1) * Constants.TOLERANCE_TEMPERATURE_SPEED_BUFF_MAX;
         }
 
         var pressureScore = (float)data.PressureScore;
@@ -457,7 +456,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
         }
         else if (data.PressureScore > 1)
         {
-            result.HealthModifier *= Math.Max(Constants.TOLERANCE_PRESSURE_HEALTH_BUFF_MAX, pressureScore);
+            result.HealthModifier *= 1 + (pressureScore - 1) * Constants.TOLERANCE_PRESSURE_HEALTH_BUFF_MAX;
         }
 
         var oxygenScore = (float)data.OxygenScore;
@@ -572,9 +571,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
                 // be really hard to apply
 
                 // Perfectly adapted
-                var perfectionFactor = Constants.TOLERANCE_PERFECT_TEMPERATURE_SCORE *
-                    (1 - (noExtraEffects.TemperatureTolerance / Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE));
-                result.TemperatureScore = 1 + perfectionFactor;
+                result.TemperatureScore = 2;
             }
             else
             {
@@ -587,7 +584,19 @@ public static class MicrobeEnvironmentalToleranceCalculations
             result.TemperatureRangeSizeAdjustment =
                 Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE - noExtraEffects.TemperatureTolerance;
 
-            result.TemperatureScore = 1;
+            if (!excludePositiveBuffs)
+            {
+                // Adaptation bonus ranges are calculated without the effects of organelles as they would otherwise
+                // be really hard to apply
+                var perfectionFactor = 1 - Math.Max(0,
+                        noExtraEffects.TemperatureTolerance - Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE) /
+                    (50 - Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE);
+                result.TemperatureScore = 1 + perfectionFactor;
+            }
+            else
+            {
+                result.TemperatureScore = 1;
+            }
         }
 
         if (patchTemperature > speciesTolerances.PreferredTemperature + speciesTolerances.TemperatureTolerance)
@@ -652,9 +661,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
                 // Perfectly adapted
                 if (!excludePositiveBuffs)
                 {
-                    var perfectionFactor = Constants.TOLERANCE_PERFECT_PRESSURE_SCORE *
-                        (1 - noExtraEffects.PressureTolerance / Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE);
-                    result.PressureScore = 1 + perfectionFactor;
+                    result.PressureScore = 2;
                 }
                 else
                 {
@@ -667,7 +674,10 @@ public static class MicrobeEnvironmentalToleranceCalculations
                 result.PressureRangeSizeAdjustment = Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE -
                     noExtraEffects.PressureTolerance;
 
-                result.PressureScore = 1;
+                var perfectionFactor = 1 - Math.Max(0,
+                        noExtraEffects.PressureTolerance - Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE) /
+                    (8000000 - Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE);
+                result.PressureScore = 1 + perfectionFactor;
             }
 
             result.MinimumPressureAdjustment = 0.0f;
