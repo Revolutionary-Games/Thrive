@@ -22,6 +22,10 @@ uniform float cloudSunEnergy;
 #define CLOUD_MAX_DISTANCE cloudMaxDistance
 
 // Constant loop bounds, as GLES3 drivers handle those much better than uniform ones
+// Note: these are hardcoded to be low because OpenGL is used on low end devices, so they wouldn't allow for more
+// march steps anyway for performance reasons. In future, ShaderBuilder may be extended to support constant code
+// substitution, which could be useful here to set select slightly lower (or higher) step amounts for multiple quality
+// settings for OpenGL mode as well, but it's not strictly necessary.
 #define CLOUD_BASE_STEPS 32
 #define CLOUD_LIGHT_STEPS 4
 
