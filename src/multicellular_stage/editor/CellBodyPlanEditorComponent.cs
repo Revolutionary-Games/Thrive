@@ -473,7 +473,7 @@ public partial class CellBodyPlanEditorComponent :
             }
             else
             {
-                fullLayoutPreview = calculation.Result.Gameplay;
+                SetFullLayoutPreview(calculation.Result.Gameplay);
                 RebuildFullLayoutGrowthOrderSources(fullLayoutPreview);
                 if (UsesManualPlayerLayout && manualFullLayout.Count == 0)
                     CopyLayout(fullLayoutPreview, manualFullLayout);
@@ -1043,7 +1043,23 @@ public partial class CellBodyPlanEditorComponent :
 
         // This may be called while hidden from the undo/redo system
         if (Visible)
-            UpdateAlreadyPlacedVisuals();
+        {
+            if (layoutPreviewActive)
+            {
+                if (UsesManualPlayerLayout)
+                {
+                    UpdateFullLayoutVisuals();
+                }
+                else
+                {
+                    StartLayoutCalculation();
+                }
+            }
+            else
+            {
+                UpdateAlreadyPlacedVisuals();
+            }
+        }
 
         UpdateCellTypeSelections();
 
