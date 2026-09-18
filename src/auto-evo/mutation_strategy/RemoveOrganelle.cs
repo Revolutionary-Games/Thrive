@@ -58,6 +58,34 @@ public class RemoveOrganelle : IMutationStrategy<Species>
         };
     }
 
+    private static bool HasLaterDuplicate(IReadOnlyList<OrganelleTemplate> organelles, int organelleIndex,
+        int organelleCount)
+    {
+        var organelle = organelles[organelleIndex];
+
+        // External organelles like pili and flagella are too dependent on exact locations to be considered equivalent
+        if (organelle.Definition.PositionedExternally)
+            return false;
+
+        // We take the last possible duplicate part in the list, since that's less likely to create islands
+        // So j starts from i + 1
+        for (int j = organelleIndex + 1; j < organelleCount; ++j)
+        {
+            var potentialDuplicate = organelles[j];
+
+            if (!ReferenceEquals(potentialDuplicate.Definition, organelle.Definition))
+                continue;
+
+            // If two organelles of the same type have different upgrades, they are not duplicates
+            if (!Equals(organelle.Upgrades, potentialDuplicate.Upgrades))
+                continue;
+
+            return true;
+        }
+
+        return false;
+    }
+
     private List<Mutant>? MutationsOfMicrobe(MicrobeSpecies baseSpecies, double mp, Random random)
     {
         if (mp < Constants.ORGANELLE_REMOVE_COST)
@@ -78,16 +106,12 @@ public class RemoveOrganelle : IMutationStrategy<Species>
         {
             var organelle = baseOrganelles[candidateIndex];
 
-            // The player cannot remove the nucleus, so Auto-Evo should not be able to either
-            if (ReferenceEquals(organelle.Definition, Nucleus))
-                continue;
-
             // Don't clone organelles as we want to do those ourselves
             var newSpecies = baseSpecies.Clone(false);
 
             workMemory ??= new MutationWorkMemory();
 
-            // Is this the best way to do this? Probably not, but this is how mutations.cs does is
+            // Is this the best way to do this? Probably not, but this is how mutations.cs does it
             // and the other way outright did not work
             // This is now slightly improved - hhyyrylainen
             var count = baseSpecies.Organelles.Count;
@@ -161,10 +185,6 @@ public class RemoveOrganelle : IMutationStrategy<Species>
             foreach (int candidateIndex in candidateIndices[..candidateCount])
             {
                 var organelle = baseOrganelles[candidateIndex];
-
-                // The player cannot remove the nucleus, so Auto-Evo should not be able to either
-                if (ReferenceEquals(organelle.Definition, Nucleus))
-                    continue;
 
                 // The Binding Agent cannot be removed in the Multicellular Stage
                 if (organelle.Definition.HasBindingFeature)
@@ -268,8 +288,9 @@ public class RemoveOrganelle : IMutationStrategy<Species>
     /// </returns>
     /// <remarks>
     ///   <para>
-    ///     This only filters by criteria. Callers may skip protected organelles in the sample without replacing them,
-    ///     so the sample size limits attempts rather than successful removals.
+    ///     This mainly filters by criteria, but also excludes the Nucleus and any fully duplicate organelles.
+    ///     Callers may still skip protected organelles in the sample without replacing them, so the sample size limits
+    ///     attempts rather than successful removals.
     ///   </para>
     /// </remarks>
     private int SelectOrganelleIndices(IReadOnlyList<OrganelleTemplate> organelles, Span<int> candidates, Random random)
@@ -280,6 +301,14 @@ public class RemoveOrganelle : IMutationStrategy<Species>
         for (int i = 0; i < organelleCount; ++i)
         {
             if (!criteria(organelles[i].Definition))
+                continue;
+
+            // The player cannot remove the nucleus, so Auto-Evo should not be able to either
+            if (ReferenceEquals(organelles[i].Definition, Nucleus))
+                continue;
+
+            // If there are duplicate instances of organelles, we only attempt to delete one of them.
+            if (HasLaterDuplicate(organelles, i, organelleCount))
                 continue;
 
             // Count only matching organelles for sampling, but store their indices in the original list.

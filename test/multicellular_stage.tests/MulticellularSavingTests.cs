@@ -45,6 +45,7 @@ public class MulticellularSavingTests
         // Ensure editor cells are generated
         var editorCells = species.ModifiableEditorCells;
         AssertThat(editorCells.Count).IsEqual(1);
+        species.OnEdited();
 
         var playerSpecies = new MicrobeSpecies(2, "Player", "Player")
         {

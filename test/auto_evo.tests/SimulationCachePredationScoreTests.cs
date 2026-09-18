@@ -45,6 +45,95 @@ public class SimulationCachePredationScoreTests
         AssertPredationLifecycle(predator, prey, 61.029884f);
     }
 
+    [TestCase("cellulose", Constants.CELLULASE_ENZYME, false)]
+    [TestCase("chitin", Constants.CHITINASE_ENZYME, false)]
+    [TestCase("cellulose", Constants.CELLULASE_ENZYME, true)]
+    [TestCase("chitin", Constants.CHITINASE_ENZYME, true)]
+    public void SingleCellMulticellularPreyRequiresItsMembraneEnzyme(string membrane, string enzyme,
+        bool addUnusedCellType)
+    {
+        var cellType = CreateCellType("Prey", membrane, CreateOrganelle("cytoplasm", new Hex(0, 0)));
+        var prey = CreateMulticellular(30, "SingleCellPrey", (cellType, new Hex(0, 0)));
+        if (addUnusedCellType)
+        {
+            // An unplaced type must not become the first selected real cell.
+            prey.ModifiableCellTypes.Insert(0,
+                CreateCellType("Unused", "single", CreateOrganelle("cytoplasm", new Hex(0, 0))));
+            prey.OnEdited();
+        }
+
+        var cache = CreateCache();
+        AssertThat(prey.EditorCells.Count).IsEqual(1);
+        AssertThat(cache.GetBaseHexSizeForSpecies(prey)).IsEqual(cache.GetBaseHexSizeForCellType(cellType));
+        AssertThat(cellType.MembraneType.DissolverEnzyme).IsEqual(enzyme);
+
+        var predator = CreateMembraneTestPredator(31);
+        AssertPredationLifecycle(predator, prey, 0.0f);
+
+        // A matching enzyme makes this same prey digestible at the public score seam.
+        var equippedPredator = CreateMembraneTestPredator(32, enzyme);
+        var score = CalculatePredationScore(equippedPredator, prey);
+        AssertThat(float.IsFinite(score)).IsTrue();
+        AssertThat(score).IsGreater(0.0f);
+    }
+
+    [TestCase("cellulose", "single")]
+    [TestCase("single", "cellulose")]
+    public void MulticellularPreyUsesSmallerCellsMembraneEnzyme(string largerMembrane, string smallerMembrane)
+    {
+        var largerCell = CreateCellType("Larger", largerMembrane,
+            CreateOrganelle("cytoplasm", new Hex(0, 0)), CreateOrganelle("cytoplasm", new Hex(1, 0)));
+        var smallerCell = CreateCellType("Smaller", smallerMembrane,
+            CreateOrganelle("cytoplasm", new Hex(0, 0)));
+        var prey = CreateMulticellular(33, "DifferentSizes",
+            (largerCell, new Hex(0, 0)), (smallerCell, new Hex(2, 0)));
+        var cache = CreateCache();
+        AssertThat(cache.GetBaseHexSizeForCellType(smallerCell))
+            .IsLess(cache.GetBaseHexSizeForCellType(largerCell));
+
+        var predator = CreateMembraneTestPredator(34);
+        var score = CalculatePredationScore(predator, prey);
+        AssertThat(float.IsFinite(score)).IsTrue();
+        if (smallerMembrane == "single")
+        {
+            AssertThat(score).IsGreater(0.0f);
+        }
+        else
+        {
+            AssertPredationLifecycle(predator, prey, 0.0f);
+        }
+    }
+
+    [TestCase("cellulose", "single")]
+    [TestCase("single", "cellulose")]
+    public void MulticellularPreyKeepsFirstCellTypesMembraneEnzymeOnEqualSizes(string firstMembrane,
+        string secondMembrane)
+    {
+        var firstCell = CreateCellType("First", firstMembrane, CreateOrganelle("cytoplasm", new Hex(0, 0)));
+        var secondCell = CreateCellType("Second", secondMembrane, CreateOrganelle("cytoplasm", new Hex(0, 0)));
+
+        // Place cells in the opposite order to CellTypes so the tie rule's ordering is explicit.
+        var prey = CreateMulticellular(35, "EqualSizes",
+            (secondCell, new Hex(0, 0)), (firstCell, new Hex(1, 0)));
+        prey.ModifiableCellTypes.Reverse();
+        prey.OnEdited();
+        var cache = CreateCache();
+        AssertThat(prey.CellTypes[0]).IsSame(firstCell);
+        AssertThat(cache.GetBaseHexSizeForCellType(firstCell)).IsEqual(cache.GetBaseHexSizeForCellType(secondCell));
+
+        var predator = CreateMembraneTestPredator(36);
+        var score = CalculatePredationScore(predator, prey);
+        AssertThat(float.IsFinite(score)).IsTrue();
+        if (firstMembrane == "single")
+        {
+            AssertThat(score).IsGreater(0.0f);
+        }
+        else
+        {
+            AssertPredationLifecycle(predator, prey, 0.0f);
+        }
+    }
+
     [TestCase]
     public void PreySlimeJetPropulsionReducesCatchability()
     {
@@ -180,6 +269,28 @@ public class SimulationCachePredationScoreTests
         var inhibitionBenefitWithSprint = unfundedMovementWithSprint - fullyFundedMovementWithSprint;
 
         AssertThat(inhibitionBenefitWithSprint > inhibitionBenefitWithoutSprint).IsTrue();
+    }
+
+    private static MicrobeSpecies CreateMembraneTestPredator(uint id, string? enzyme = null)
+    {
+        var predator = CreateMicrobe(id, "MembranePredator", "single",
+            "cytoplasm", "cytoplasm", "cytoplasm", "cytoplasm");
+        predator.IsBacteria = false;
+        foreach (var organelle in predator.Organelles)
+            organelle.Position = new Hex(organelle.Position.Q / 4, organelle.Position.R / 4);
+
+        if (enzyme != null)
+        {
+            var lysosome = CreateOrganelle("lysosome", new Hex(0, 1));
+            lysosome.ModifiableUpgrades = new OrganelleUpgrades
+            {
+                CustomUpgradeData = new LysosomeUpgrades(SimulationParameters.Instance.GetEnzyme(enzyme)),
+            };
+            predator.Organelles.Add(lysosome);
+        }
+
+        predator.OnEdited();
+        return predator;
     }
 
     private static float CalculatePredationScore(Species predator, Species prey)

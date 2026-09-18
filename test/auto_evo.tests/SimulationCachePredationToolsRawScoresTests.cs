@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using AutoEvo;
 using GdUnit4;
+using Systems;
 using static GdUnit4.Assertions;
 using static SimulationCacheTestFixtures;
 
@@ -114,6 +115,158 @@ public class SimulationCachePredationToolsRawScoresTests
     }
 
     [TestCase]
+    public void MulticellularRawScoresIgnoreUnusedCellTypes()
+    {
+        var cache = CreateCache();
+        var (species, _) = CreateMulticellularSpecies(103);
+
+        // Normalize the manually assigned characterization bonuses before comparing mutation results.
+        species.OnEdited();
+        var baseline = cache.GetPredationToolsRawScores(species);
+
+        var simulationParameters = SimulationParameters.Instance;
+        var unusedCellType = CreateCytotoxinCellType(simulationParameters);
+        species.ModifiableCellTypes.Add(unusedCellType);
+        species.OnEdited();
+        cache.Clear();
+
+        var withUnusedCellType = cache.GetPredationToolsRawScores(species);
+        AssertThat(withUnusedCellType.CytotoxinScore).IsEqual(0.0f);
+        AssertThat(withUnusedCellType.OxytoxyScore).IsEqual(baseline.OxytoxyScore);
+        AssertRawBits(withUnusedCellType, baseline);
+
+        species.ModifiableGameplayCells.AddFast(new CellTemplate(unusedCellType, new Hex(1, 1), 0),
+            new List<Hex>(), new List<Hex>());
+
+        var editorCells = species.ModifiableEditorCells;
+        editorCells.Clear();
+        MulticellularLayoutHelpers.GenerateEditorLayoutFromGameplayLayout(editorCells, species.ModifiableGameplayCells,
+            new List<Hex>(), new List<Hex>());
+        species.OnEdited();
+        cache.Clear();
+
+        var withPlacedCellType = cache.GetPredationToolsRawScores(species);
+        AssertThat(withPlacedCellType.CytotoxinScore > 0.0f).IsTrue();
+        AssertThat(withPlacedCellType.OxytoxyScore).IsEqual(withUnusedCellType.OxytoxyScore);
+    }
+
+    [TestCase]
+    public void MulticellularToxinProductionStaysWithEmittingCellTypes()
+    {
+        var cache = CreateCache();
+        var (species, oxytoxyCellType) = CreateMulticellularSpecies(104);
+        var cytotoxinCellType = CreateCytotoxinCellType(SimulationParameters.Instance);
+
+        species.ModifiableCellTypes.Add(cytotoxinCellType);
+        species.ModifiableGameplayCells.AddFast(new CellTemplate(cytotoxinCellType, new Hex(1, 1), 0),
+            new List<Hex>(), new List<Hex>());
+
+        var editorCells = species.ModifiableEditorCells;
+        editorCells.Clear();
+        MulticellularLayoutHelpers.GenerateEditorLayoutFromGameplayLayout(editorCells, species.ModifiableGameplayCells,
+            new List<Hex>(), new List<Hex>());
+        species.OnEdited();
+
+        oxytoxyCellType.CellTypeSpecializationBonus = 1.5f;
+        cytotoxinCellType.CellTypeSpecializationBonus = 0.75f;
+
+        var baseline = cache.GetPredationToolsRawScores(species);
+
+        oxytoxyCellType.CellTypeSpecializationBonus = 2.25f;
+        cache.Clear();
+
+        var withMoreOxytoxyProduction = cache.GetPredationToolsRawScores(species);
+        AssertThat(withMoreOxytoxyProduction.OxytoxyScore).IsNotEqual(baseline.OxytoxyScore);
+        AssertThat(withMoreOxytoxyProduction.CytotoxinScore).IsEqual(baseline.CytotoxinScore);
+    }
+
+    [TestCase(ToxinType.Cytotoxin)]
+    [TestCase(ToxinType.OxygenMetabolismInhibitor)]
+    [TestCase(ToxinType.Macrolide)]
+    [TestCase(ToxinType.ChannelInhibitor)]
+    public void MulticellularToxicityStaysWithEmittingCells(ToxinType otherToxinType)
+    {
+        var toxin = CreateToxin(new Hex(0, 4), ToxinType.Oxytoxy, 0.25f);
+        var oxytoxy = CreateCellType("Oxytoxy", "single", CreateOrganelle("cytoplasm", new Hex(0, 0)), toxin);
+        var otherToxins = CreateCellType("OtherToxins", "single", CreateOrganelle("cytoplasm", new Hex(0, 0)),
+            CreateToxin(new Hex(0, 4), otherToxinType, 0.25f));
+        var species = CreateMulticellular(106, "ToxicityIsolation", (oxytoxy, new Hex(0, 0)),
+            (otherToxins, new Hex(1, 0)));
+        var cache = CreateCache();
+        var baseline = cache.GetPredationToolsRawScores(species);
+
+        toxin.ModifiableUpgrades!.CustomUpgradeData = new ToxinUpgrades(ToxinType.Oxytoxy, 0.75f);
+        AssertRawBits(cache.GetPredationToolsRawScores(species), baseline);
+        cache.Clear();
+
+        var changed = cache.GetPredationToolsRawScores(species);
+        var expectedMultiplier = MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(0.75f, ToxinType.Oxytoxy) /
+            MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(0.25f, ToxinType.Oxytoxy);
+        AssertThat(changed.OxytoxyScore).IsEqualApprox(baseline.OxytoxyScore * expectedMultiplier, 1.0f);
+        AssertThat(changed.CytotoxinScore).IsEqual(baseline.CytotoxinScore);
+        AssertThat(changed.OxygenMetabolismInhibitorScore).IsEqual(baseline.OxygenMetabolismInhibitorScore);
+        AssertThat(changed.MacrolideScore).IsEqual(baseline.MacrolideScore);
+        AssertThat(changed.ChannelInhibitorScore).IsEqual(baseline.ChannelInhibitorScore);
+        AssertThat(changed.AverageToxicity).IsEqual(0.5f);
+        AssertRawBits(CreateCache().GetPredationToolsRawScores(species), changed);
+    }
+
+    [TestCase]
+    public void MulticellularSharedToxinAddsIndependentlyModifiedContributions()
+    {
+        var first = CreateCellType("First", "single", CreateOrganelle("cytoplasm", new Hex(0, 0)),
+            CreateToxin(new Hex(0, 4), ToxinType.Oxytoxy, 0.25f));
+        var secondToxin = CreateToxin(new Hex(0, 4), ToxinType.Oxytoxy, 0.25f);
+        var second = CreateCellType("Second", "single", CreateOrganelle("cytoplasm", new Hex(0, 0)), secondToxin);
+        var species = CreateMulticellular(107, "SharedToxin", (first, new Hex(0, 0)), (second, new Hex(1, 0)));
+        var cache = CreateCache();
+
+        // Observe each contribution in the same body plan, without changing adjacency or toxin organelle counts.
+        first.CellTypeSpecializationBonus = 1.0f;
+        second.CellTypeSpecializationBonus = 0.0f;
+        var firstContribution = cache.GetPredationToolsRawScores(species).OxytoxyScore;
+        first.CellTypeSpecializationBonus = 0.0f;
+        second.CellTypeSpecializationBonus = 2.0f;
+        cache.Clear();
+        var secondContribution = cache.GetPredationToolsRawScores(species).OxytoxyScore;
+
+        first.CellTypeSpecializationBonus = 1.0f;
+        secondToxin.ModifiableUpgrades!.CustomUpgradeData = new ToxinUpgrades(ToxinType.Oxytoxy, 0.75f);
+        cache.Clear();
+        var combined = cache.GetPredationToolsRawScores(species);
+        var secondMultiplier = MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(0.75f, ToxinType.Oxytoxy) /
+            MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(0.25f, ToxinType.Oxytoxy);
+        AssertThat(combined.OxytoxyScore).IsEqualApprox(
+            firstContribution + secondContribution * secondMultiplier, 1.0f);
+        AssertThat(combined.AverageToxicity).IsEqual(0.5f);
+    }
+
+    [TestCase]
+    public void MulticellularMixedToxinsUseCellAverageAndEqualTypeShares()
+    {
+        var firstOxytoxy = CreateToxin(new Hex(0, 4), ToxinType.Oxytoxy, 0.0f);
+        var secondOxytoxy = CreateToxin(new Hex(4, 0), ToxinType.Oxytoxy, 0.75f);
+        var cytotoxin = CreateToxin(new Hex(-4, 0), ToxinType.Cytotoxin, 0.0f);
+        var cell = CreateCellType("MixedToxins", "single", CreateOrganelle("cytoplasm", new Hex(0, 0)),
+            firstOxytoxy, secondOxytoxy, cytotoxin);
+        var species = CreateMulticellular(108, "MixedToxins", (cell, new Hex(0, 0)));
+        var cache = CreateCache();
+        var mixed = cache.GetPredationToolsRawScores(species);
+
+        // Two oxytoxy vacuoles still get one turn in the cycle, just like the single cytotoxin vacuole.
+        var oxytoxyMultiplier = Constants.OXYTOXY_DAMAGE / Constants.CYTOTOXIN_DAMAGE *
+            Constants.AUTO_EVO_ARTIFICIAL_UPGRADE_BONUS;
+        AssertThat(mixed.OxytoxyScore).IsEqualApprox(mixed.CytotoxinScore * oxytoxyMultiplier, 1.0f);
+        AssertThat(mixed.AverageToxicity).IsEqual(0.25f);
+
+        firstOxytoxy.ModifiableUpgrades!.CustomUpgradeData = new ToxinUpgrades(ToxinType.Oxytoxy, 0.25f);
+        secondOxytoxy.ModifiableUpgrades!.CustomUpgradeData = new ToxinUpgrades(ToxinType.Oxytoxy, 0.25f);
+        cytotoxin.ModifiableUpgrades!.CustomUpgradeData = new ToxinUpgrades(ToxinType.Cytotoxin, 0.25f);
+        cache.Clear();
+        AssertRawBits(cache.GetPredationToolsRawScores(species), mixed);
+    }
+
+    [TestCase]
     public void MulticellularSlimeJetScoreIgnoresCellsWithoutSlimeJets()
     {
         var cache = CreateCache();
@@ -219,6 +372,23 @@ public class SimulationCachePredationToolsRawScoresTests
         supportingCellType.CellTypeSpecializationBonus = 0.75f;
 
         return (species, contributingCellType);
+    }
+
+    private static CellType CreateCytotoxinCellType(SimulationParameters simulationParameters)
+    {
+        var cellType = new CellType(simulationParameters.GetMembrane("single"))
+        {
+            CellTypeName = "Cytotoxin",
+        };
+        cellType.ModifiableOrganelles.Add(CreateOrganelle("cytoplasm", new Hex(0, 0)));
+
+        var cytotoxin = CreateToxin(new Hex(-4, 0), ToxinType.Oxytoxy, 0.25f);
+        var cytotoxinUpgrades = cytotoxin.ModifiableUpgrades!;
+        cytotoxinUpgrades.ModifiableUnlockedFeatures.Clear();
+        cytotoxinUpgrades.CustomUpgradeData = new ToxinUpgrades(ToxinType.Cytotoxin, 0.25f);
+        cellType.ModifiableOrganelles.Add(cytotoxin);
+
+        return cellType;
     }
 
     private static MulticellularSpecies CreateSlimeJetSpecies(uint id,

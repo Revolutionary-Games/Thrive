@@ -103,24 +103,9 @@ public partial class MicrobeDeathSystem : BaseSystem<World, float>
             compoundsToRelease[type.ID] = amount;
         }
 
-        // Eject some part of the build cost of all the organelles
-        foreach (var organelle in organelleContainer.Organelles!)
-        {
-            foreach (var entry in organelle.Definition.InitialComposition)
-            {
-                compoundsToRelease.TryGetValue(entry.Key, out var existing);
-
-                // Only add up if there are still some compounds left, otherwise
-                // we're releasing compounds out of thin air.
-                if (existing > 0)
-                {
-                    compoundsToRelease[entry.Key] =
-                        existing + entry.Value * Constants.COMPOUND_MAKEUP_RELEASE_FRACTION;
-                }
-            }
-        }
-
-        EngulfableHelpers.CalculateBonusDigestibleGlucose(compoundsToRelease, compounds);
+        // Eject some part of the build cost of all the organelles, plus glucose based on that
+        EngulfableHelpers.CalculateDigestibleCompoundsFromOrganelles(organelleContainer.Organelles, compoundsToRelease,
+            Constants.COMPOUND_MAKEUP_RELEASE_FRACTION);
 
         if (!compoundsToRelease.Any(entry => entry.Value > 0 && !float.IsNaN(entry.Value)))
         {

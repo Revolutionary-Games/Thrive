@@ -472,9 +472,9 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         }
     }
 
-    public override void OnAttemptedInAutoEvo(bool refreshCache)
+    public override void OnAttemptedInAutoEvo(bool refreshCache, bool updateInitialCompounds = true)
     {
-        base.OnAttemptedInAutoEvo(refreshCache);
+        base.OnAttemptedInAutoEvo(refreshCache, updateInitialCompounds);
 
         // Refresh specialization calculations for all cell types
         for (int i = 0; i < CellTypes.Count; ++i)
@@ -483,7 +483,8 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
             cellType.CalculateSpecialization();
         }
 
-        UpdateInitialCompounds();
+        if (updateInitialCompounds)
+            UpdateInitialCompounds();
 
         cachedFillTimes.Clear();
     }
@@ -1149,7 +1150,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         int count = 1;
 
         while (ModifiableCellTypes.Any(c =>
-                c.CellTypeName.Equals(cell.CellTypeName, StringComparison.InvariantCultureIgnoreCase)))
+                   c.CellTypeName.Equals(cell.CellTypeName, StringComparison.InvariantCultureIgnoreCase)))
         {
             cell.CellTypeName = $"{originalName} {count++}";
         }
