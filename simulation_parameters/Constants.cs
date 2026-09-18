@@ -2169,7 +2169,12 @@ public static class Constants
     /// </summary>
     public const float TOLERANCE_PRESSURE_MAX = 80000000;
 
-    public const float TOLERANCE_PERFECT_THRESHOLD_PRESSURE = 350000;
+    /// <summary>
+    ///   Pressure flexibility value at which you can get the maximum bonus.
+    ///   Should be equal to the minimum value of
+    ///   <see cref="TolerancesEditorSubComponent.pressureToleranceRangeSlider"/>.
+    /// </summary>
+    public const float TOLERANCE_PERFECT_THRESHOLD_PRESSURE = 3000000;
 
     /// <summary>
     ///   Maximum pressure flexibility value.
